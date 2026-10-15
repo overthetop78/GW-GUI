@@ -7,10 +7,10 @@
   <data name="Emulation.Emulator.applewin.Description"><value>使用 AppleWin 模擬 Apple II 電腦。</value></data>
   <data name="Emulation.Emulator.minivmac.Description"><value>使用 Mini vMac 模擬 Macintosh II 電腦。</value></data>
   <data name="Emulation.Apple.Option.Model" xml:space="preserve"><value>机器变体</value></data>
-  <data name="Emulation.Apple.Video.Native" xml:space="preserve"><value>原生视频输出</value></data>
+  <data name="Emulation.Apple.Video.Native"><value>模擬核心的視訊設定</value></data>
   <data name="Emulation.Apple.Expansion" xml:space="preserve"><value>扩展卡</value></data>
   <data name="Emulation.Apple.Memory.Runtime" xml:space="preserve"><value>核心使用的内存</value></data>
-  <data name="Emulation.Apple.Firmware.Embedded" xml:space="preserve"><value>系统ROM包含在AppleWin核心中.</value></data>
+  <data name="Emulation.Apple.Firmware.Embedded"><value>AppleWin 已包含系統 ROM。</value></data>
   <data name="Emulation.Apple.Runtime.Unavailable" xml:space="preserve"><value>可用的核心不支持这种机器模型.</value></data>
   <data name="Emulation.Apple.Storage.Playlist" xml:space="preserve"><value>磁盘播放列表</value></data>
   <data name="Emulation.Apple.Value.Empty" xml:space="preserve"><value>空的 。</value></data>

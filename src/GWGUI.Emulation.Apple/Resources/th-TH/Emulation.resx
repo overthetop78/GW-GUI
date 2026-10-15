@@ -7,10 +7,10 @@
   <data name="Emulation.Emulator.applewin.Description"><value>จำลองคอมพิวเตอร์ Apple II ด้วย AppleWin</value></data>
   <data name="Emulation.Emulator.minivmac.Description"><value>จำลองคอมพิวเตอร์ Macintosh II ด้วย Mini vMac</value></data>
   <data name="Emulation.Apple.Option.Model" xml:space="preserve"><value>องค์ประกอบของเครื่อง</value></data>
-  <data name="Emulation.Apple.Video.Native" xml:space="preserve"><value>การแสดงผลวิดีโอแบบพื้นเมือง</value></data>
+  <data name="Emulation.Apple.Video.Native"><value>การตั้งค่าวิดีโอของแกนจำลอง</value></data>
   <data name="Emulation.Apple.Expansion" xml:space="preserve"><value>ไพ่ที่ขยายออกไป</value></data>
   <data name="Emulation.Apple.Memory.Runtime" xml:space="preserve"><value>หน่วยความจําที่ใช้โดยแกน</value></data>
-  <data name="Emulation.Apple.Firmware.Embedded" xml:space="preserve"><value>ระบบรอมส์รวมอยู่ในแกนแอปเปิ้ลวิน</value></data>
+  <data name="Emulation.Apple.Firmware.Embedded"><value>ไฟล์ ROM ของระบบรวมอยู่ใน AppleWin แล้ว</value></data>
   <data name="Emulation.Apple.Runtime.Unavailable" xml:space="preserve"><value>แกนหลักที่มีอยู่ไม่รองรับรุ่นของเครื่องนี้</value></data>
   <data name="Emulation.Apple.Storage.Playlist" xml:space="preserve"><value>รายการเล่นของดิสก์</value></data>
   <data name="Emulation.Apple.Value.Empty" xml:space="preserve"><value>ว่าง</value></data>

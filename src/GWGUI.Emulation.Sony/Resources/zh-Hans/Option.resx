@@ -109,7 +109,7 @@
   <data name="Emulation.Option.swanstation.swanstation_Display_AspectRatio.Help"><value>设置首选宽度比。 只在 RetroArch 的视频设置内选择“ Core 提供” 侧面比时才会工作 。 使用 Namco GunCon 控制器时将被迫“ 校正( NTSC) ”</value></data>
   <data name="Emulation.Option.Sony.Value.Custom"><value>自定义</value></data>
   <data name="Emulation.Option.Sony.Value.CorrectedNTSC"><value>已更正(NTSC)</value></data>
-  <data name="Emulation.Option.Sony.Value.CorrectedRegionNative"><value>已更正( 土著区域)</value></data>
+  <data name="Emulation.Option.Sony.Value.CorrectedRegionNative"><value>校正（根据区域）</value></data>
   <data name="Emulation.Option.Sony.Value.UncorrectedPAR11"><value>未更正(PAR 1:1)</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Display_CustomAspectRatioNumerator.Label"><value>自定义光谱比数值</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Display_CustomAspectRatioNumerator.Help"><value>设置自定义宽度比的分数, 如 4: 3中的 4 。</value></data>

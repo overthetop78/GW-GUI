@@ -109,7 +109,7 @@
   <data name="Emulation.Option.swanstation.swanstation_Display_AspectRatio.Help"><value>Ustawia preferowany współczynnik aspektu. Będzie działać tylko wtedy, gdy w ustawieniach wideo RetroArch zostanie wybrany współczynnik 'Core Provided'. Podczas korzystania z kontrolera Namco GunCon zostanie zmuszony do "skorygowania (NTSC)"</value></data>
   <data name="Emulation.Option.Sony.Value.Custom"><value>Własny</value></data>
   <data name="Emulation.Option.Sony.Value.CorrectedNTSC"><value>Sprostowane (NTSC)</value></data>
-  <data name="Emulation.Option.Sony.Value.CorrectedRegionNative"><value>Sprostowane (region rdzenny)</value></data>
+  <data name="Emulation.Option.Sony.Value.CorrectedRegionNative"><value>Skorygowane (według regionu)</value></data>
   <data name="Emulation.Option.Sony.Value.UncorrectedPAR11"><value>Bez poprawek (PAR 1: 1)</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Display_CustomAspectRatioNumerator.Label"><value>Niestandardowy wskaźnik Aspect</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Display_CustomAspectRatioNumerator.Help"><value>Ustawia licznik dla niestandardowych proporcji, np. 4 w 4: 3.</value></data>

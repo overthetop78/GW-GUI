@@ -7,10 +7,10 @@
   <data name="Emulation.Emulator.applewin.Description"><value>Emuluje komputery Apple II za pomocą emulatora AppleWin.</value></data>
   <data name="Emulation.Emulator.minivmac.Description"><value>Emuluje komputery Macintosh II za pomocą emulatora Mini vMac.</value></data>
   <data name="Emulation.Apple.Option.Model" xml:space="preserve"><value>Wariant maszyny</value></data>
-  <data name="Emulation.Apple.Video.Native" xml:space="preserve"><value>Native video output</value></data>
+  <data name="Emulation.Apple.Video.Native"><value>Ustawienia wideo rdzenia emulacji</value></data>
   <data name="Emulation.Apple.Expansion" xml:space="preserve"><value>Karty rozszerzeń</value></data>
   <data name="Emulation.Apple.Memory.Runtime" xml:space="preserve"><value>Pamięć używana przez rdzeń</value></data>
-  <data name="Emulation.Apple.Firmware.Embedded" xml:space="preserve"><value>System ROM jest włączony do rdzenia AppleWin.</value></data>
+  <data name="Emulation.Apple.Firmware.Embedded"><value>Systemowe pliki ROM są dołączone do AppleWin.</value></data>
   <data name="Emulation.Apple.Runtime.Unavailable" xml:space="preserve"><value>Dostępny rdzeń nie obsługuje tego modelu maszyny.</value></data>
   <data name="Emulation.Apple.Storage.Playlist" xml:space="preserve"><value>Listy odtwarzania dysku</value></data>
   <data name="Emulation.Apple.Value.Empty" xml:space="preserve"><value>Pusty</value></data>

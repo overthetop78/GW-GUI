@@ -97,7 +97,7 @@
   <data name="Emulation.Option.swanstation.swanstation_Display_AspectRatio.Help"><value>הגדר את יחס ההיבט המועדף. יעבוד רק כאשר יחס ההיבט 'Core Deliverd' נבחר בתוך הגדרות הווידאו של RetroArch. ייאלצו "לתקן" (NTSC) בעת שימוש בקר נמקו GunCon</value></data>
   <data name="Emulation.Option.Sony.Value.Custom"><value>מותאם אישית</value></data>
   <data name="Emulation.Option.Sony.Value.CorrectedNTSC"><value>תיקון (NTSC)</value></data>
-  <data name="Emulation.Option.Sony.Value.CorrectedRegionNative"><value>תיקון (Region Native)</value></data>
+  <data name="Emulation.Option.Sony.Value.CorrectedRegionNative"><value>מתוקן (לפי האזור)</value></data>
   <data name="Emulation.Option.Sony.Value.UncorrectedPAR11"><value>לא מתוקן (PAR 1:1)</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Display_CustomAspectRatioNumerator.Label"><value>יחס היבט מותאם אישית</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Display_CustomAspectRatioNumerator.Help"><value>הגדר את המספר ליחס האספקט מותאם אישית, למשל 4 ב-4:3.</value></data>

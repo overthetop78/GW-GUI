@@ -7,10 +7,10 @@
   <data name="Emulation.Emulator.applewin.Description"><value>Емулює комп’ютери Apple II за допомогою AppleWin.</value></data>
   <data name="Emulation.Emulator.minivmac.Description"><value>Емулює комп’ютери Macintosh II за допомогою Mini vMac.</value></data>
   <data name="Emulation.Apple.Option.Model" xml:space="preserve"><value>Варіант машини</value></data>
-  <data name="Emulation.Apple.Video.Native" xml:space="preserve"><value>Відеовіддача</value></data>
+  <data name="Emulation.Apple.Video.Native"><value>Налаштування відео ядра емуляції</value></data>
   <data name="Emulation.Apple.Expansion" xml:space="preserve"><value>Розширювальні картки</value></data>
   <data name="Emulation.Apple.Memory.Runtime" xml:space="preserve"><value>Пам'ять, що використовується ядром</value></data>
-  <data name="Emulation.Apple.Firmware.Embedded" xml:space="preserve"><value>Система ROMs входить в ядро AppleWin.</value></data>
+  <data name="Emulation.Apple.Firmware.Embedded"><value>Системні ROM включено до AppleWin.</value></data>
   <data name="Emulation.Apple.Runtime.Unavailable" xml:space="preserve"><value>Доступний ядро не підтримує цю модель машини.</value></data>
   <data name="Emulation.Apple.Storage.Playlist" xml:space="preserve"><value>Дискові списки відтворення</value></data>
   <data name="Emulation.Apple.Value.Empty" xml:space="preserve"><value>Зручності</value></data>

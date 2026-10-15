@@ -97,7 +97,7 @@
   <data name="Emulation.Option.swanstation.swanstation_Display_AspectRatio.Help"><value>Ορίζει την προτιμώμενη αναλογία διαστάσεων. Θα λειτουργήσει μόνο όταν επιλεγεί η αναλογία διαστάσεων 'Core Provided' μέσα στις ρυθμίσεις βίντεο του RetroArch. Θα αναγκαστεί να \"Συγχώνευση (NTSC)\" κατά τη χρήση ενός ελεγκτή Namco GunCon</value></data>
   <data name="Emulation.Option.Sony.Value.Custom"><value>Προσαρμοσμένο</value></data>
   <data name="Emulation.Option.Sony.Value.CorrectedNTSC"><value>Διορθώθηκε (NTSC)</value></data>
-  <data name="Emulation.Option.Sony.Value.CorrectedRegionNative"><value>Διορθώθηκε (Περιφέρεια ιθαγενών)</value></data>
+  <data name="Emulation.Option.Sony.Value.CorrectedRegionNative"><value>Διορθωμένη (ανάλογα με την περιοχή)</value></data>
   <data name="Emulation.Option.Sony.Value.UncorrectedPAR11"><value>Μη διορθωμένο (PAR 1:1)</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Display_CustomAspectRatioNumerator.Label"><value>Προσαρμοσμένος αριθμητής αναλογίας διαστάσεων</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Display_CustomAspectRatioNumerator.Help"><value>Ορίζει τον αριθμητή για την προσαρμοσμένη αναλογία διαστάσεων, π.χ. 4 στο 4:3.</value></data>

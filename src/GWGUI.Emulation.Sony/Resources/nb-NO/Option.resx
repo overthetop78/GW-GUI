@@ -106,7 +106,7 @@
   <data name="Emulation.Option.swanstation.swanstation_Display_AspectRatio.Help"><value>Angi det foretrukne aspektforholdet. Fungerer kun når aspektforholdet \"Kore Levert\" er valgt i RetroArch videoinnstillingene. vil bli tvunget til å «forbedre» (NTSC)' Når du bruker en Namco GunCon controller</value></data>
   <data name="Emulation.Option.Sony.Value.Custom"><value>Tilpasset</value></data>
   <data name="Emulation.Option.Sony.Value.CorrectedNTSC"><value>Rettet (NTSC)</value></data>
-  <data name="Emulation.Option.Sony.Value.CorrectedRegionNative"><value>Korrekt (region)</value></data>
+  <data name="Emulation.Option.Sony.Value.CorrectedRegionNative"><value>Korrigert (etter region)</value></data>
   <data name="Emulation.Option.Sony.Value.UncorrectedPAR11"><value>Ukorrigert (PAR 1:1)</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Display_CustomAspectRatioNumerator.Label"><value>Egendefinerte aspektforhold tallerator</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Display_CustomAspectRatioNumerator.Help"><value>Setter TYSKEN for det egendefinerte aspektforholdet, f.eks 4 i 4: 3.</value></data>

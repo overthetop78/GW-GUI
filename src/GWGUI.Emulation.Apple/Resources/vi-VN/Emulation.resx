@@ -7,10 +7,10 @@
   <data name="Emulation.Emulator.applewin.Description"><value>Giả lập máy tính Apple II bằng AppleWin.</value></data>
   <data name="Emulation.Emulator.minivmac.Description"><value>Giả lập máy tính Macintosh II bằng Mini vMac.</value></data>
   <data name="Emulation.Apple.Option.Model" xml:space="preserve"><value>Biến thế máy</value></data>
-  <data name="Emulation.Apple.Video.Native" xml:space="preserve"><value>Xuất ra phim bản địa</value></data>
+  <data name="Emulation.Apple.Video.Native"><value>Cài đặt video của lõi giả lập</value></data>
   <data name="Emulation.Apple.Expansion" xml:space="preserve"><value>Bài mở rộng</value></data>
   <data name="Emulation.Apple.Memory.Runtime" xml:space="preserve"><value>Bộ nhớ được dùng bởi lõi</value></data>
-  <data name="Emulation.Apple.Firmware.Embedded" xml:space="preserve"><value>Hệ thống ROM được bao gồm trong lõi AppleWin.</value></data>
+  <data name="Emulation.Apple.Firmware.Embedded"><value>Các ROM hệ thống được tích hợp trong AppleWin.</value></data>
   <data name="Emulation.Apple.Runtime.Unavailable" xml:space="preserve"><value>Các lõi sẵn sàng không hỗ trợ mô hình máy tính này.</value></data>
   <data name="Emulation.Apple.Storage.Playlist" xml:space="preserve"><value>Danh sách nhạc đĩa</value></data>
   <data name="Emulation.Apple.Value.Empty" xml:space="preserve"><value>Trống</value></data>

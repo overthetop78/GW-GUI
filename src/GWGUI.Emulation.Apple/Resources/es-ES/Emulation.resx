@@ -7,10 +7,10 @@
   <data name="Emulation.Emulator.applewin.Description"><value>Emula ordenadores Apple II con AppleWin.</value></data>
   <data name="Emulation.Emulator.minivmac.Description"><value>Emula ordenadores Macintosh II con Mini vMac.</value></data>
   <data name="Emulation.Apple.Option.Model" xml:space="preserve"><value>Variante de la máquina</value></data>
-  <data name="Emulation.Apple.Video.Native" xml:space="preserve"><value>Salida de vídeo nativa</value></data>
+  <data name="Emulation.Apple.Video.Native"><value>Ajustes de vídeo del núcleo de emulación</value></data>
   <data name="Emulation.Apple.Expansion" xml:space="preserve"><value>Tarjetas de expansión</value></data>
   <data name="Emulation.Apple.Memory.Runtime" xml:space="preserve"><value>Memoria utilizada por el núcleo</value></data>
-  <data name="Emulation.Apple.Firmware.Embedded" xml:space="preserve"><value>Los ROMs del sistema están incluidos en el núcleo AppleWin.</value></data>
+  <data name="Emulation.Apple.Firmware.Embedded"><value>Las ROM del sistema están incluidas en AppleWin.</value></data>
   <data name="Emulation.Apple.Runtime.Unavailable" xml:space="preserve"><value>El núcleo disponible no admite este modelo de máquina.</value></data>
   <data name="Emulation.Apple.Storage.Playlist" xml:space="preserve"><value>Lista de reproducción de discos</value></data>
   <data name="Emulation.Apple.Value.Empty" xml:space="preserve"><value>Vacío</value></data>

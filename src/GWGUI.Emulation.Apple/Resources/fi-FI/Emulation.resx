@@ -7,10 +7,10 @@
   <data name="Emulation.Emulator.applewin.Description"><value>Emuloi Apple II -tietokoneita AppleWin-emulaattorilla.</value></data>
   <data name="Emulation.Emulator.minivmac.Description"><value>Emuloi Macintosh II -tietokoneita Mini vMac -emulaattorilla.</value></data>
   <data name="Emulation.Apple.Option.Model" xml:space="preserve"><value>Koneen variantti</value></data>
-  <data name="Emulation.Apple.Video.Native" xml:space="preserve"><value>Oma videon tuloste</value></data>
+  <data name="Emulation.Apple.Video.Native"><value>Emulointiytimen videoasetukset</value></data>
   <data name="Emulation.Apple.Expansion" xml:space="preserve"><value>Laajennuskortit</value></data>
   <data name="Emulation.Apple.Memory.Runtime" xml:space="preserve"><value>Ydinmuisti</value></data>
-  <data name="Emulation.Apple.Firmware.Embedded" xml:space="preserve"><value>Järjestelmäromit sisältyvät AppleWin-ytimeen.</value></data>
+  <data name="Emulation.Apple.Firmware.Embedded"><value>Järjestelmän ROM-tiedostot sisältyvät AppleWiniin.</value></data>
   <data name="Emulation.Apple.Runtime.Unavailable" xml:space="preserve"><value>Käytettävissä oleva ydin ei tue tätä konemallia.</value></data>
   <data name="Emulation.Apple.Storage.Playlist" xml:space="preserve"><value>Levyn soittolistat</value></data>
   <data name="Emulation.Apple.Value.Empty" xml:space="preserve"><value>Tyhjä</value></data>

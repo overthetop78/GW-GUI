@@ -109,7 +109,7 @@
   <data name="Emulation.Option.swanstation.swanstation_Display_AspectRatio.Help"><value>Setează raportul de aspect preferat. Va funcționa numai atunci când raportul de aspect 'Core Prevazut' este selectat în interiorul setărilor video RetroArch. Va fi forţat să "Criamed (NTSC) " atunci când se utilizează un controler Namco GunCon</value></data>
   <data name="Emulation.Option.Sony.Value.Custom"><value>Personalizat</value></data>
   <data name="Emulation.Option.Sony.Value.CorrectedNTSC"><value>Corectat (NTSC)</value></data>
-  <data name="Emulation.Option.Sony.Value.CorrectedRegionNative"><value>Corectat (Region Native)</value></data>
+  <data name="Emulation.Option.Sony.Value.CorrectedRegionNative"><value>Corectat (în funcție de regiune)</value></data>
   <data name="Emulation.Option.Sony.Value.UncorrectedPAR11"><value>Necorectat (PAR 1:1)</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Display_CustomAspectRatioNumerator.Label"><value>Aspect personalizat Raport Numărator</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Display_CustomAspectRatioNumerator.Help"><value>Setează numărătorul pentru raportul aspectului personalizat, de exemplu 4 în 4:3.</value></data>

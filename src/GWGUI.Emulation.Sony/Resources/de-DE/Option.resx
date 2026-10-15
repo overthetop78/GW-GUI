@@ -97,7 +97,7 @@
   <data name="Emulation.Option.swanstation.swanstation_Display_AspectRatio.Help"><value>Legt das bevorzugte Seitenverhältnis fest. Funktioniert nur, wenn das Seitenverhältnis "Core Provided" in den Videoeinstellungen von RetroArch ausgewählt ist. Wird gezwungen, 'Corrected (NTSC)' bei Verwendung eines Namco GunCon Controllers</value></data>
   <data name="Emulation.Option.Sony.Value.Custom"><value>Zoll</value></data>
   <data name="Emulation.Option.Sony.Value.CorrectedNTSC"><value>Korrigiert (NTSC)</value></data>
-  <data name="Emulation.Option.Sony.Value.CorrectedRegionNative"><value>Korrigiert (Region Native)</value></data>
+  <data name="Emulation.Option.Sony.Value.CorrectedRegionNative"><value>Korrigiert (regionsabhängig)</value></data>
   <data name="Emulation.Option.Sony.Value.UncorrectedPAR11"><value>Unkorrigiert (PAR 1:1)</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Display_CustomAspectRatioNumerator.Label"><value>Benutzerdefinierter Seitenverhältnis-Zähler</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Display_CustomAspectRatioNumerator.Help"><value>Legt den Zähler für das benutzerdefinierte Seitenverhältnis fest, z. B. 4 in 4:3.</value></data>

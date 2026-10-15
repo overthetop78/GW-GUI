@@ -97,7 +97,7 @@
   <data name="Emulation.Option.swanstation.swanstation_Display_AspectRatio.Help"><value>Sætter det foretrukne aspektforhold. Vil kun virke, når 'Core Provided' -forholdet vælges indenfor RetroArch 's videoindstillinger. Vil blive tvunget til at 'Korrigeret (NTSC)', når du bruger en Namco GunCon controller</value></data>
   <data name="Emulation.Option.Sony.Value.Custom"><value>Brugerdefineret</value></data>
   <data name="Emulation.Option.Sony.Value.CorrectedNTSC"><value>Korrigeret (NTSC)</value></data>
-  <data name="Emulation.Option.Sony.Value.CorrectedRegionNative"><value>Korrigeret (region Native)</value></data>
+  <data name="Emulation.Option.Sony.Value.CorrectedRegionNative"><value>Korrigeret (regionsspecifikt)</value></data>
   <data name="Emulation.Option.Sony.Value.UncorrectedPAR11"><value>Ukorrigeret (PAR 1: 1)</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Display_CustomAspectRatioNumerator.Label"><value>Brugerdefineret Orienteringsratio Nummerering</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Display_CustomAspectRatioNumerator.Help"><value>Sætter tælleren for det brugerdefinerede forhold, f.eks. 4 i 4: 3.</value></data>

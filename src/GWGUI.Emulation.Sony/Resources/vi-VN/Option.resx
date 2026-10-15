@@ -109,7 +109,7 @@
   <data name="Emulation.Option.swanstation.swanstation_Display_AspectRatio.Help"><value>Đặt tỷ lệ hình thể ưa thích. Sẽ chỉ hoạt động khi tỷ lệ hình thể 'Core cung cấp' được chọn bên trong RetroArch thiết lập video. Sẽ bị bắt buộc phải sửa chữa. (NTSC)' khi dùng máy Namco GunCon Điều khiển</value></data>
   <data name="Emulation.Option.Sony.Value.Custom"><value>Tự chọn</value></data>
   <data name="Emulation.Option.Sony.Value.CorrectedNTSC"><value>Đã sửa (NTSC)</value></data>
-  <data name="Emulation.Option.Sony.Value.CorrectedRegionNative"><value>Sửa chữa (người bản địa bị đảo ngược)</value></data>
+  <data name="Emulation.Option.Sony.Value.CorrectedRegionNative"><value>Đã hiệu chỉnh (theo khu vực)</value></data>
   <data name="Emulation.Option.Sony.Value.UncorrectedPAR11"><value>Chưa sửa (PAR 1:1)</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Display_CustomAspectRatioNumerator.Label"><value>Trình tính tỷ lệ hình thể tự chọn</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Display_CustomAspectRatioNumerator.Help"><value>Đặt tử số cho tỷ lệ hình thể tự chọn, e.g. 4 trong 4:3.</value></data>

@@ -7,10 +7,10 @@
   <data name="Emulation.Emulator.applewin.Description"><value>AppleWin을 사용하여 Apple II 컴퓨터를 에뮬레이션합니다.</value></data>
   <data name="Emulation.Emulator.minivmac.Description"><value>Mini vMac을 사용하여 Macintosh II 컴퓨터를 에뮬레이션합니다.</value></data>
   <data name="Emulation.Apple.Option.Model" xml:space="preserve"><value>기계 변종</value></data>
-  <data name="Emulation.Apple.Video.Native" xml:space="preserve"><value>출력되는 Native video</value></data>
+  <data name="Emulation.Apple.Video.Native"><value>에뮬레이션 코어의 영상 설정</value></data>
   <data name="Emulation.Apple.Expansion" xml:space="preserve"><value>확장 카드</value></data>
   <data name="Emulation.Apple.Memory.Runtime" xml:space="preserve"><value>핵심에 의해 사용되는 기억</value></data>
-  <data name="Emulation.Apple.Firmware.Embedded" xml:space="preserve"><value>시스템 ROM은 AppleWin 코어에 포함되어 있습니다.</value></data>
+  <data name="Emulation.Apple.Firmware.Embedded"><value>시스템 ROM은 AppleWin에 포함되어 있습니다.</value></data>
   <data name="Emulation.Apple.Runtime.Unavailable" xml:space="preserve"><value>유효한 핵심은 이 기계 모형을 지원하지 않습니다.</value></data>
   <data name="Emulation.Apple.Storage.Playlist" xml:space="preserve"><value>디스크 재생 목록</value></data>
   <data name="Emulation.Apple.Value.Empty" xml:space="preserve"><value>뚱 베어</value></data>

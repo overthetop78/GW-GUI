@@ -109,7 +109,7 @@
   <data name="Emulation.Option.swanstation.swanstation_Display_AspectRatio.Help"><value>Ställ in det föredragna bildförhållandet. Kommer bara att fungera när "Core Provided"-aspektkvoten väljs inuti RetroArchs videoinställningar. Kommer att tvingas "Corrected (NTSC)" när du använder en Namco GunCon controller</value></data>
   <data name="Emulation.Option.Sony.Value.Custom"><value>Anpassad</value></data>
   <data name="Emulation.Option.Sony.Value.CorrectedNTSC"><value>Korrigerad (NTSC)</value></data>
-  <data name="Emulation.Option.Sony.Value.CorrectedRegionNative"><value>Korrigerad (Region Native)</value></data>
+  <data name="Emulation.Option.Sony.Value.CorrectedRegionNative"><value>Korrigerat (enligt region)</value></data>
   <data name="Emulation.Option.Sony.Value.UncorrectedPAR11"><value>Okorrigerad (PAR 1:1)</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Display_CustomAspectRatioNumerator.Label"><value>anpassad aspekt ratio numerator</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Display_CustomAspectRatioNumerator.Help"><value>Ställ numeratorn för det anpassade aspektförhållandet, t.ex. 4 i 4:3.</value></data>

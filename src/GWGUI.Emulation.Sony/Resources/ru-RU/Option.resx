@@ -109,7 +109,7 @@
   <data name="Emulation.Option.swanstation.swanstation_Display_AspectRatio.Help"><value>Устанавливает предпочтительное соотношение сторон. Работает только тогда, когда соотношение сторон «Core Provided» выбрано в настройках видео RetroArch. При использовании контроллера Namco GunCon он будет вынужден «корректироваться» (NTSC)</value></data>
   <data name="Emulation.Option.Sony.Value.Custom"><value>обычай</value></data>
   <data name="Emulation.Option.Sony.Value.CorrectedNTSC"><value>Исправлено (NTSC)</value></data>
-  <data name="Emulation.Option.Sony.Value.CorrectedRegionNative"><value>Исправлено (родной регион)</value></data>
+  <data name="Emulation.Option.Sony.Value.CorrectedRegionNative"><value>Скорректированное (по региону)</value></data>
   <data name="Emulation.Option.Sony.Value.UncorrectedPAR11"><value>Неисправленное (PAR 1:1)</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Display_CustomAspectRatioNumerator.Label"><value>Пользовательский аспект Соотношение числитель</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Display_CustomAspectRatioNumerator.Help"><value>Устанавливает числитель для пользовательского соотношения сторон, например 4 в 4:3.</value></data>

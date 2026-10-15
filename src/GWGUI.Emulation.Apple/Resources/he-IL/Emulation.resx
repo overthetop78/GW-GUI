@@ -7,10 +7,10 @@
   <data name="Emulation.Emulator.applewin.Description"><value>מדמה מחשבי Apple II באמצעות AppleWin.</value></data>
   <data name="Emulation.Emulator.minivmac.Description"><value>מדמה מחשבי Macintosh II באמצעות Mini vMac.</value></data>
   <data name="Emulation.Apple.Option.Model" xml:space="preserve"><value>גירסאות מכונה</value></data>
-  <data name="Emulation.Apple.Video.Native" xml:space="preserve"><value>הפקה: Native video</value></data>
+  <data name="Emulation.Apple.Video.Native"><value>הגדרות הווידאו של ליבת האמולציה</value></data>
   <data name="Emulation.Apple.Expansion" xml:space="preserve"><value>כרטיסי הרחבה</value></data>
   <data name="Emulation.Apple.Memory.Runtime" xml:space="preserve"><value>זיכרון המשמש את הליבה</value></data>
-  <data name="Emulation.Apple.Firmware.Embedded" xml:space="preserve"><value>המערכת ROMs נכללת בליבת AppleWin.</value></data>
+  <data name="Emulation.Apple.Firmware.Embedded"><value>קובצי ה-ROM של המערכת כלולים ב-AppleWin.</value></data>
   <data name="Emulation.Apple.Runtime.Unavailable" xml:space="preserve"><value>הליבה הזמינה אינה תומכת במודל המכונה הזה.</value></data>
   <data name="Emulation.Apple.Storage.Playlist" xml:space="preserve"><value>דיסק Playlists</value></data>
   <data name="Emulation.Apple.Value.Empty" xml:space="preserve"><value>ריק ריק</value></data>

@@ -97,7 +97,7 @@
   <data name="Emulation.Option.swanstation.swanstation_Display_AspectRatio.Help"><value>Nastaví preferovaný poměr stran. Bude fungovat pouze tehdy, když je v nastavení videa RetroArch vybrán poměr stran 'Core Provided'. Bude nucen "opravit (NTSC)" při použití Namco GunCon regulátoru</value></data>
   <data name="Emulation.Option.Sony.Value.Custom"><value>Vlastní</value></data>
   <data name="Emulation.Option.Sony.Value.CorrectedNTSC"><value>Opraveno (NTSC)</value></data>
-  <data name="Emulation.Option.Sony.Value.CorrectedRegionNative"><value>Opraveno (původní region)</value></data>
+  <data name="Emulation.Option.Sony.Value.CorrectedRegionNative"><value>Opravený (podle regionu)</value></data>
   <data name="Emulation.Option.Sony.Value.UncorrectedPAR11"><value>Neopravené (PAR 1: 1)</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Display_CustomAspectRatioNumerator.Label"><value>Číslice poměrného poměru na vlastní účet</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Display_CustomAspectRatioNumerator.Help"><value>Nastaví čitatel pro vlastní poměr stran, např.4 v4:3.</value></data>

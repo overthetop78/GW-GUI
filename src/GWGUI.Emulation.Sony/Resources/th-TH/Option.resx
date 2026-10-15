@@ -109,7 +109,7 @@
   <data name="Emulation.Option.swanstation.swanstation_Display_AspectRatio.Help"><value>ตั้งค่าสัดส่วนภาพที่ต้องการ จะทํางานเมื่อค่าสัดส่วน 'จัดการ' ถูกเลือกภายในการตั้งค่าวิดีโอของ RetroArch จะถูกบังคับให้ 'ตัด NTSC' เมื่อใช้ตัวควบคุมนัมโคGunCon</value></data>
   <data name="Emulation.Option.Sony.Value.Custom"><value>กําหนดเอง</value></data>
   <data name="Emulation.Option.Sony.Value.CorrectedNTSC"><value>แก้ไข (NTSC)</value></data>
-  <data name="Emulation.Option.Sony.Value.CorrectedRegionNative"><value>แก้ไขให้ถูกต้องแล้ว (ภาษาพื้นเมือง)</value></data>
+  <data name="Emulation.Option.Sony.Value.CorrectedRegionNative"><value>ปรับแก้ (ตามภูมิภาค)</value></data>
   <data name="Emulation.Option.Sony.Value.UncorrectedPAR11"><value>ยังไม่แก้ไข (PAR 1: 1)</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Display_CustomAspectRatioNumerator.Label"><value>ตัวตั้งสัดส่วนเอง</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Display_CustomAspectRatioNumerator.Help"><value>ตั้งค่าตัวเศษสําหรับสัดส่วนที่กําหนดเอง, e.g. 4 ใน 4.3</value></data>

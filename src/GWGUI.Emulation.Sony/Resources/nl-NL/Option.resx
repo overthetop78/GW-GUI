@@ -106,7 +106,7 @@
   <data name="Emulation.Option.swanstation.swanstation_Display_AspectRatio.Help"><value>Stelt de voorkeursverhouding in. Werkt alleen wanneer de beeldverhouding 'Core provided' is geselecteerd binnen de video-instellingen van RetroArch. Wordt gedwongen om 'Corrected (NTSC)' te gebruiken bij het gebruik van een Namco GunCon controller</value></data>
   <data name="Emulation.Option.Sony.Value.Custom"><value>Aangepast</value></data>
   <data name="Emulation.Option.Sony.Value.CorrectedNTSC"><value>Gecorrigeerd (NTSC)</value></data>
-  <data name="Emulation.Option.Sony.Value.CorrectedRegionNative"><value>Gecorrigeerd (Region Native)</value></data>
+  <data name="Emulation.Option.Sony.Value.CorrectedRegionNative"><value>Gecorrigeerd (volgens regio)</value></data>
   <data name="Emulation.Option.Sony.Value.UncorrectedPAR11"><value>Niet gecorrigeerd (PAR 1:1)</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Display_CustomAspectRatioNumerator.Label"><value>Aangepaste verhoudingsgetalnummering</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Display_CustomAspectRatioNumerator.Help"><value>Stelt de teller in voor de aangepaste aspectverhouding, bijvoorbeeld 4 in 4:3.</value></data>

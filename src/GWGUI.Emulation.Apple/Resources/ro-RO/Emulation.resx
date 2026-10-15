@@ -7,10 +7,10 @@
   <data name="Emulation.Emulator.applewin.Description"><value>Emulează calculatoare Apple II folosind AppleWin.</value></data>
   <data name="Emulation.Emulator.minivmac.Description"><value>Emulează calculatoare Macintosh II folosind Mini vMac.</value></data>
   <data name="Emulation.Apple.Option.Model" xml:space="preserve"><value>Varianta mașinii</value></data>
-  <data name="Emulation.Apple.Video.Native" xml:space="preserve"><value>Ieșire video nativă</value></data>
+  <data name="Emulation.Apple.Video.Native"><value>Setări video ale nucleului de emulare</value></data>
   <data name="Emulation.Apple.Expansion" xml:space="preserve"><value>Cărți de extindere</value></data>
   <data name="Emulation.Apple.Memory.Runtime" xml:space="preserve"><value>Memorie utilizată de nucleu</value></data>
-  <data name="Emulation.Apple.Firmware.Embedded" xml:space="preserve"><value>Sistemul ROM este inclus în nucleul AppleWin.</value></data>
+  <data name="Emulation.Apple.Firmware.Embedded"><value>ROM-urile de sistem sunt incluse în AppleWin.</value></data>
   <data name="Emulation.Apple.Runtime.Unavailable" xml:space="preserve"><value>Miezul disponibil nu suportă acest model de mașină.</value></data>
   <data name="Emulation.Apple.Storage.Playlist" xml:space="preserve"><value>Liste de redare disc</value></data>
   <data name="Emulation.Apple.Value.Empty" xml:space="preserve"><value>Gol</value></data>

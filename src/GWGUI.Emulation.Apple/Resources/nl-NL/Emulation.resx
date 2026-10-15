@@ -7,10 +7,10 @@
   <data name="Emulation.Emulator.applewin.Description"><value>Emuleert Apple II-computers met AppleWin.</value></data>
   <data name="Emulation.Emulator.minivmac.Description"><value>Emuleert Macintosh II-computers met Mini vMac.</value></data>
   <data name="Emulation.Apple.Option.Model" xml:space="preserve"><value>Machinevariant</value></data>
-  <data name="Emulation.Apple.Video.Native" xml:space="preserve"><value>Eigen video-uitvoer</value></data>
+  <data name="Emulation.Apple.Video.Native"><value>Video-instellingen van de emulatiekern</value></data>
   <data name="Emulation.Apple.Expansion" xml:space="preserve"><value>Uitbreidingskaarten</value></data>
   <data name="Emulation.Apple.Memory.Runtime" xml:space="preserve"><value>Geheugen gebruikt door de kern</value></data>
-  <data name="Emulation.Apple.Firmware.Embedded" xml:space="preserve"><value>De systeemroms zijn opgenomen in de AppleWin kern.</value></data>
+  <data name="Emulation.Apple.Firmware.Embedded"><value>De systeem-ROMs zijn inbegrepen in AppleWin.</value></data>
   <data name="Emulation.Apple.Runtime.Unavailable" xml:space="preserve"><value>De beschikbare kern ondersteunt dit machinemodel niet.</value></data>
   <data name="Emulation.Apple.Storage.Playlist" xml:space="preserve"><value>Schijfafspeellijsten</value></data>
   <data name="Emulation.Apple.Value.Empty" xml:space="preserve"><value>Leeg</value></data>

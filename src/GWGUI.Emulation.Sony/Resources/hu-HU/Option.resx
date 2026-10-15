@@ -97,7 +97,7 @@
   <data name="Emulation.Option.swanstation.swanstation_Display_AspectRatio.Help"><value>Beállítja az előnyben részesített képarányt. Csak akkor fog működni, ha a 'Core Provided' képarány kiválasztásra kerül a RetroArch videó beállításai között. A Namco GunCon vezérlő használata esetén kénytelenek lesznek "helyesbíteni (NTSC)"</value></data>
   <data name="Emulation.Option.Sony.Value.Custom"><value>Egyéni</value></data>
   <data name="Emulation.Option.Sony.Value.CorrectedNTSC"><value>Helyesbített (NTSC)</value></data>
-  <data name="Emulation.Option.Sony.Value.CorrectedRegionNative"><value>Helyesbített (őslakos régió)</value></data>
+  <data name="Emulation.Option.Sony.Value.CorrectedRegionNative"><value>Korrigált (régió szerint)</value></data>
   <data name="Emulation.Option.Sony.Value.UncorrectedPAR11"><value>Nem korrigált (PAR 1: 1)</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Display_CustomAspectRatioNumerator.Label"><value>Egyéni szemrevételezési arány Számológép</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Display_CustomAspectRatioNumerator.Help"><value>Beállítja a számlálót az egyedi megjelenítési arányhoz, pl. 4: 3-ban.</value></data>

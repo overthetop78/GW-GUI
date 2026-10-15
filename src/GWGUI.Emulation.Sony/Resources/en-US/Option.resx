@@ -97,7 +97,7 @@
   <data name="Emulation.Option.swanstation.swanstation_Display_AspectRatio.Help"><value>Sets the preferred aspect ratio. Will only work when the 'Core Provided' aspect ratio is selected inside RetroArch's Video settings. Will be forced to 'Corrected (NTSC)' when using a Namco GunCon controller</value></data>
   <data name="Emulation.Option.Sony.Value.Custom"><value>Custom</value></data>
   <data name="Emulation.Option.Sony.Value.CorrectedNTSC"><value>Corrected (NTSC)</value></data>
-  <data name="Emulation.Option.Sony.Value.CorrectedRegionNative"><value>Corrected (Region Native)</value></data>
+  <data name="Emulation.Option.Sony.Value.CorrectedRegionNative"><value>Corrected (native to the region)</value></data>
   <data name="Emulation.Option.Sony.Value.UncorrectedPAR11"><value>Uncorrected (PAR 1:1)</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Display_CustomAspectRatioNumerator.Label"><value>Custom Aspect Ratio Numerator</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Display_CustomAspectRatioNumerator.Help"><value>Sets the numerator for the custom aspect ratio, e.g. 4 in 4:3.</value></data>

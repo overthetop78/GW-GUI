@@ -97,7 +97,7 @@
   <data name="Emulation.Option.swanstation.swanstation_Display_AspectRatio.Help"><value>推奨アスペクト比を設定します。 「Core Provided」のアスペクト比がRetroArchのビデオ設定内で選択されている場合にのみ動作します。 Namco GunCon コントローラーを使用する際は、'Corrected (NTSC)' を強制します。</value></data>
   <data name="Emulation.Option.Sony.Value.Custom"><value>カスタマイズ</value></data>
   <data name="Emulation.Option.Sony.Value.CorrectedNTSC"><value>修正(NTSC)</value></data>
-  <data name="Emulation.Option.Sony.Value.CorrectedRegionNative"><value>修正(Region Native)</value></data>
+  <data name="Emulation.Option.Sony.Value.CorrectedRegionNative"><value>補正あり（地域に応じて）</value></data>
   <data name="Emulation.Option.Sony.Value.UncorrectedPAR11"><value>未修正 (PAR 1:1)</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Display_CustomAspectRatioNumerator.Label"><value>カスタムアスペクト レシオ ヌーメレータ</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Display_CustomAspectRatioNumerator.Help"><value>カスタムアスペクト比のnumeratorを設定します。例えば4 in 4:3です。</value></data>

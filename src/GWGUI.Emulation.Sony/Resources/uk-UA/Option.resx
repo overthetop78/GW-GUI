@@ -109,7 +109,7 @@
   <data name="Emulation.Option.swanstation.swanstation_Display_AspectRatio.Help"><value>Налаштовує кращий коефіцієнт аспекту. Увімкнено лише роботу при співвідношенні "Core" вибрано в налаштуваннях відеозапису RetroArch. Примусити 'Виправлення (NTSC)' при використанні Namco GunCon Контролер</value></data>
   <data name="Emulation.Option.Sony.Value.Custom"><value>Користувацькі</value></data>
   <data name="Emulation.Option.Sony.Value.CorrectedNTSC"><value>Виправлено (NTSC)</value></data>
-  <data name="Emulation.Option.Sony.Value.CorrectedRegionNative"><value>Виправлено (Region Native)</value></data>
+  <data name="Emulation.Option.Sony.Value.CorrectedRegionNative"><value>Скориговане (відповідно до регіону)</value></data>
   <data name="Emulation.Option.Sony.Value.UncorrectedPAR11"><value>Некоректний (PAR 1:1)</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Display_CustomAspectRatioNumerator.Label"><value>користувальницький коефіцієнт нумерації</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Display_CustomAspectRatioNumerator.Help"><value>Налаштовує нумератор для співвідношення користувацького аспекту, наприклад 4 в 4:3.</value></data>

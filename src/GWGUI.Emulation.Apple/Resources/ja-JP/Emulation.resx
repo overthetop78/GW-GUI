@@ -7,10 +7,10 @@
   <data name="Emulation.Emulator.applewin.Description"><value>AppleWin を使用して Apple II コンピューターをエミュレートします。</value></data>
   <data name="Emulation.Emulator.minivmac.Description"><value>Mini vMac を使用して Macintosh II コンピューターをエミュレートします。</value></data>
   <data name="Emulation.Apple.Option.Model" xml:space="preserve"><value>機械変形</value></data>
-  <data name="Emulation.Apple.Video.Native" xml:space="preserve"><value>ネイティブビデオ出力</value></data>
+  <data name="Emulation.Apple.Video.Native"><value>エミュレーションコアの映像設定</value></data>
   <data name="Emulation.Apple.Expansion" xml:space="preserve"><value>拡張カード</value></data>
   <data name="Emulation.Apple.Memory.Runtime" xml:space="preserve"><value>コアで使われる記憶</value></data>
-  <data name="Emulation.Apple.Firmware.Embedded" xml:space="preserve"><value>ROM は、AppleWin コアに含まれています。</value></data>
+  <data name="Emulation.Apple.Firmware.Embedded"><value>システム ROM は AppleWin に含まれています。</value></data>
   <data name="Emulation.Apple.Runtime.Unavailable" xml:space="preserve"><value>利用可能なコアは、このマシンモデルをサポートしていません。</value></data>
   <data name="Emulation.Apple.Storage.Playlist" xml:space="preserve"><value>ディスクプレイリスト</value></data>
   <data name="Emulation.Apple.Value.Empty" xml:space="preserve"><value>スタッフ</value></data>

@@ -7,10 +7,10 @@
   <data name="Emulation.Emulator.applewin.Description"><value>Εξομοιώνει υπολογιστές Apple II με το AppleWin.</value></data>
   <data name="Emulation.Emulator.minivmac.Description"><value>Εξομοιώνει υπολογιστές Macintosh II με το Mini vMac.</value></data>
   <data name="Emulation.Apple.Option.Model" xml:space="preserve"><value>Μεταλλική μηχανή</value></data>
-  <data name="Emulation.Apple.Video.Native" xml:space="preserve"><value>Έξοδος βίντεο από ιθαγενή</value></data>
+  <data name="Emulation.Apple.Video.Native"><value>Ρυθμίσεις βίντεο του πυρήνα εξομοίωσης</value></data>
   <data name="Emulation.Apple.Expansion" xml:space="preserve"><value>Κάρτες επέκτασης</value></data>
   <data name="Emulation.Apple.Memory.Runtime" xml:space="preserve"><value>Μνήμη που χρησιμοποιείται από τον πυρήνα</value></data>
-  <data name="Emulation.Apple.Firmware.Embedded" xml:space="preserve"><value>Τα ROM του συστήματος περιλαμβάνονται στον πυρήνα AppleWin.</value></data>
+  <data name="Emulation.Apple.Firmware.Embedded"><value>Οι ROM του συστήματος περιλαμβάνονται στο AppleWin.</value></data>
   <data name="Emulation.Apple.Runtime.Unavailable" xml:space="preserve"><value>Ο διαθέσιμος πυρήνας δεν υποστηρίζει αυτό το μοντέλο μηχανής.</value></data>
   <data name="Emulation.Apple.Storage.Playlist" xml:space="preserve"><value>Λίστες αναπαραγωγής δίσκων</value></data>
   <data name="Emulation.Apple.Value.Empty" xml:space="preserve"><value>Κενό</value></data>

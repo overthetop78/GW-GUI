@@ -7,10 +7,10 @@
   <data name="Emulation.Emulator.applewin.Description"><value>يحاكي حواسيب Apple II باستخدام AppleWin.</value></data>
   <data name="Emulation.Emulator.minivmac.Description"><value>يحاكي حواسيب Macintosh II باستخدام Mini vMac.</value></data>
   <data name="Emulation.Apple.Option.Model" xml:space="preserve"><value>متغيرات الآلات</value></data>
-  <data name="Emulation.Apple.Video.Native" xml:space="preserve"><value>ناتج الفيديو المحلي</value></data>
+  <data name="Emulation.Apple.Video.Native"><value>إعدادات الفيديو لنواة المحاكاة</value></data>
   <data name="Emulation.Apple.Expansion" xml:space="preserve"><value>بطاقات التوسع</value></data>
   <data name="Emulation.Apple.Memory.Runtime" xml:space="preserve"><value>الذاكرة التي تستخدمها القاع</value></data>
-  <data name="Emulation.Apple.Firmware.Embedded" xml:space="preserve"><value>تُدرج أقراص ذاكرة قراءة فقط في صلب آبلوين.</value></data>
+  <data name="Emulation.Apple.Firmware.Embedded"><value>ملفات ROM للنظام مضمنة في AppleWin.</value></data>
   <data name="Emulation.Apple.Runtime.Unavailable" xml:space="preserve"><value>اللب المتاح لا يدعم هذا النموذج الآلة</value></data>
   <data name="Emulation.Apple.Storage.Playlist" xml:space="preserve"><value>الملاعب المغلقة</value></data>
   <data name="Emulation.Apple.Value.Empty" xml:space="preserve"><value>فارغ</value></data>

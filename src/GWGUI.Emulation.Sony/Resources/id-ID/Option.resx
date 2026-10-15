@@ -97,7 +97,7 @@
   <data name="Emulation.Option.swanstation.swanstation_Display_AspectRatio.Help"><value>Tata rasio aspek yang disukai. Hanya akan bekerja ketika rasio aspek 'Core Menyediakan' dipilih di dalam pengaturan RetroArch Video. Akan dipaksa untuk 'Dikoreksi (NTSC)' ketika menggunakan pengontrol Namco GunCon</value></data>
   <data name="Emulation.Option.Sony.Value.Custom"><value>Gubahan</value></data>
   <data name="Emulation.Option.Sony.Value.CorrectedNTSC"><value>Dikoreksi (NTSC)</value></data>
-  <data name="Emulation.Option.Sony.Value.CorrectedRegionNative"><value>Diperbaiki (Daerah asli)</value></data>
+  <data name="Emulation.Option.Sony.Value.CorrectedRegionNative"><value>Dikoreksi (sesuai wilayah)</value></data>
   <data name="Emulation.Option.Sony.Value.UncorrectedPAR11"><value>Tidak dikoreksi (PAR 1: 1)</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Display_CustomAspectRatioNumerator.Label"><value>Numerator Aspek Rasio Gubahan</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Display_CustomAspectRatioNumerator.Help"><value>Tata pembilang untuk rasio aspek gubahan, misalnya 4 dalam 4: 3.</value></data>

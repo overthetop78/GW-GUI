@@ -7,10 +7,10 @@
   <data name="Emulation.Emulator.applewin.Description"><value>Apple II számítógépeket emulál AppleWin segítségével.</value></data>
   <data name="Emulation.Emulator.minivmac.Description"><value>Macintosh II számítógépeket emulál Mini vMac segítségével.</value></data>
   <data name="Emulation.Apple.Option.Model" xml:space="preserve"><value>Gépváltozat</value></data>
-  <data name="Emulation.Apple.Video.Native" xml:space="preserve"><value>Őshonos videó kimenet</value></data>
+  <data name="Emulation.Apple.Video.Native"><value>Az emulációs mag videobeállításai</value></data>
   <data name="Emulation.Apple.Expansion" xml:space="preserve"><value>Kiterjesztőkártyák</value></data>
   <data name="Emulation.Apple.Memory.Runtime" xml:space="preserve"><value>A mag által használt memória</value></data>
-  <data name="Emulation.Apple.Firmware.Embedded" xml:space="preserve"><value>A rendszer ROM-ok szerepelnek az AppleWin mag.</value></data>
+  <data name="Emulation.Apple.Firmware.Embedded"><value>A rendszer ROM-jai az AppleWin részei.</value></data>
   <data name="Emulation.Apple.Runtime.Unavailable" xml:space="preserve"><value>A rendelkezésre álló mag nem támogatja ezt a gépmodellt.</value></data>
   <data name="Emulation.Apple.Storage.Playlist" xml:space="preserve"><value>Lemezlisták</value></data>
   <data name="Emulation.Apple.Value.Empty" xml:space="preserve"><value>Üres</value></data>

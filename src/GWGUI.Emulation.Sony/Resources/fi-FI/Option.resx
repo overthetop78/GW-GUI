@@ -97,7 +97,7 @@
   <data name="Emulation.Option.swanstation.swanstation_Display_AspectRatio.Help"><value>Asettaa parhaan kuvasuhteen. Toimii vain, kun "Core edellyttäen" kuvasuhde on valittu sisällä RetroArch Video asetukset. Pakotetaan "Corrected (NTSC)" käyttämään Namco GunCon -ohjainta</value></data>
   <data name="Emulation.Option.Sony.Value.Custom"><value>Oma</value></data>
   <data name="Emulation.Option.Sony.Value.CorrectedNTSC"><value>Korjattu (NTSC)</value></data>
-  <data name="Emulation.Option.Sony.Value.CorrectedRegionNative"><value>Korjattu (alueellinen alkuasukas)</value></data>
+  <data name="Emulation.Option.Sony.Value.CorrectedRegionNative"><value>Korjattu (alueen mukaan)</value></data>
   <data name="Emulation.Option.Sony.Value.UncorrectedPAR11"><value>Korjaamaton (PAR 1:1)</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Display_CustomAspectRatioNumerator.Label"><value>mukautetun kuvasuhteen osoittaja</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Display_CustomAspectRatioNumerator.Help"><value>Asettaa mukautetun kuvasuhteen osoittajan, esim. 4:3.</value></data>

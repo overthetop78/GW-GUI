@@ -97,7 +97,7 @@
   <data name="Emulation.Option.swanstation.swanstation_Display_AspectRatio.Help"><value>يحدد نسبة الجانب المفضّل. سوف يعمل فقط عندما يتم اختيار نسبة "بروفيد" الجانبية داخل RetroArch في بيضات الفيديو. سيُجبر على تصوّب (NTSC) عند استخدام جهاز التحكم في نامكو GunCon</value></data>
   <data name="Emulation.Option.Sony.Value.Custom"><value>العرف</value></data>
   <data name="Emulation.Option.Sony.Value.CorrectedNTSC"><value>تصحيحها (NTSC)</value></data>
-  <data name="Emulation.Option.Sony.Value.CorrectedRegionNative"><value>تصحيحها (محل ريجيون)</value></data>
+  <data name="Emulation.Option.Sony.Value.CorrectedRegionNative"><value>مصحح (حسب المنطقة)</value></data>
   <data name="Emulation.Option.Sony.Value.UncorrectedPAR11"><value>غير مصحوف (PAR 1:1)</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Display_CustomAspectRatioNumerator.Label"><value>عدد المشتبه بهم</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Display_CustomAspectRatioNumerator.Help"><value>يحدد رقم نسبة الجانب العرفي، مثل 4 في 4:3.</value></data>

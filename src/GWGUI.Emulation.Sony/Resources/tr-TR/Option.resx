@@ -109,7 +109,7 @@
   <data name="Emulation.Option.swanstation.swanstation_Display_AspectRatio.Help"><value>Tercih edilen yön oranını ayarlar. Sadece 'Core Provided' yönü oranı RetroArch’s Video ayarlarında seçilirken çalışacak. Namco GunCon kontrolörünü kullanırken ‘Corrected (NTSC)’ye zorlanılacaktır.</value></data>
   <data name="Emulation.Option.Sony.Value.Custom"><value>Özel özel özelleştirme</value></data>
   <data name="Emulation.Option.Sony.Value.CorrectedNTSC"><value>Doğrulanmış (NTSC)</value></data>
-  <data name="Emulation.Option.Sony.Value.CorrectedRegionNative"><value>Doğrulanmış (Region Native)</value></data>
+  <data name="Emulation.Option.Sony.Value.CorrectedRegionNative"><value>Düzeltilmiş (bölgeye göre)</value></data>
   <data name="Emulation.Option.Sony.Value.UncorrectedPAR11"><value>Noter (PAR 1:1)</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Display_CustomAspectRatioNumerator.Label"><value>Özel Aspect Oran Numerator</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Display_CustomAspectRatioNumerator.Help"><value>Özel yön oranı için numerator ayarlar, e.g. 4:3.</value></data>

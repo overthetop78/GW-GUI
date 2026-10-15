@@ -97,7 +97,7 @@
   <data name="Emulation.Option.swanstation.swanstation_Display_AspectRatio.Help"><value>Establece la relación de aspecto preferida. Sólo funcionará cuando la relación de aspecto 'Core Provided' sea seleccionada dentro de los ajustes de vídeo de RetroArch. Será forzado a 'Corrected (NTSC)' cuando use un controlador Namco GunCon</value></data>
   <data name="Emulation.Option.Sony.Value.Custom"><value>Aduanas</value></data>
   <data name="Emulation.Option.Sony.Value.CorrectedNTSC"><value>Corregido (NTSC)</value></data>
-  <data name="Emulation.Option.Sony.Value.CorrectedRegionNative"><value>Corregido (Región Nativo)</value></data>
+  <data name="Emulation.Option.Sony.Value.CorrectedRegionNative"><value>Corregida (según la región)</value></data>
   <data name="Emulation.Option.Sony.Value.UncorrectedPAR11"><value>No corregido (PAR 1:1)</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Display_CustomAspectRatioNumerator.Label"><value>Numerador de Aspecto Personalizado</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Display_CustomAspectRatioNumerator.Help"><value>Establece el numerador para la relación de aspecto personalizado, por ejemplo 4 en 4:3.</value></data>

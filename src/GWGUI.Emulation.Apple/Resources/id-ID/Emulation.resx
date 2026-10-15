@@ -7,10 +7,10 @@
   <data name="Emulation.Emulator.applewin.Description"><value>Mengemulasikan komputer Apple II menggunakan AppleWin.</value></data>
   <data name="Emulation.Emulator.minivmac.Description"><value>Mengemulasikan komputer Macintosh II menggunakan Mini vMac.</value></data>
   <data name="Emulation.Apple.Option.Model" xml:space="preserve"><value>Varian mesin</value></data>
-  <data name="Emulation.Apple.Video.Native" xml:space="preserve"><value>Keluaran video asli</value></data>
+  <data name="Emulation.Apple.Video.Native"><value>Pengaturan video inti emulasi</value></data>
   <data name="Emulation.Apple.Expansion" xml:space="preserve"><value>Kartu ekspansi</value></data>
   <data name="Emulation.Apple.Memory.Runtime" xml:space="preserve"><value>Memori yang digunakan oleh inti</value></data>
-  <data name="Emulation.Apple.Firmware.Embedded" xml:space="preserve"><value>Sistem ROM disertakan dalam inti AppleWin.</value></data>
+  <data name="Emulation.Apple.Firmware.Embedded"><value>ROM sistem disertakan dalam AppleWin.</value></data>
   <data name="Emulation.Apple.Runtime.Unavailable" xml:space="preserve"><value>Inti yang tersedia tidak mendukung model mesin ini.</value></data>
   <data name="Emulation.Apple.Storage.Playlist" xml:space="preserve"><value>Daftar putar disk</value></data>
   <data name="Emulation.Apple.Value.Empty" xml:space="preserve"><value>Kosong</value></data>
