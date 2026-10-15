@@ -1275,4 +1275,5 @@
   <data name="Emulation.Option.pokket.Help"><value>Sett inn et kort i hver enhet for å aktivere den infrarøde forbindelsen.</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_audio_format.Label"><value>Høyttaleroppsett</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_audio_format.Help"><value>Angir høyttaleroppsettet som tilbys spillene. Spillet velger lydmiks ut fra dette oppsettet. Lydutgangen avhenger også av den valgte lydenheten i Windows.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_cheats.Help"><value>Laster .pnach-filer med juksekoder fra den valgte mappen. Filnavnene må inneholde spillets serienummer og CRC. Filene leses når spillet starter.</value></data>
 </root>

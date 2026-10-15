@@ -1275,4 +1275,5 @@
   <data name="Emulation.Option.pokket.Help"><value>Az infravörös kapcsolat engedélyezéséhez helyezzen egy kártyát mindkét egységbe.</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_audio_format.Label"><value>Hangszórók elrendezése</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_audio_format.Help"><value>Beállítja a játékoknak felkínált hangszóró-elrendezést. A játék ennek alapján választja ki a hangkeverést. A kimenet a Windowsban kiválasztott hangeszköztől is függ.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_cheats.Help"><value>Betölti a .pnach csaláskódfájlokat a kiválasztott mappából. A fájlneveknek tartalmazniuk kell a játék sorozatszámát és CRC-jét. A fájlok beolvasása a játék indításakor történik.</value></data>
 </root>

@@ -1313,4 +1313,5 @@
   <data name="Emulation.Option.rpcs3.rpcs3_audio_format.Label"><value>Speaker layout</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_audio_format.Help"><value>Sets the speaker layout offered to games. The game selects its audio mix from this layout. Output also depends on the selected Windows audio device.</value></data>
   <data name="Emulation.Option.Sony.Value.Frontend"><value>GW GUI</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_cheats.Help"><value>Loads .pnach cheat files from the selected folder. Use filenames containing the game serial number and CRC. Files are read when a game starts.</value></data>
 </root>

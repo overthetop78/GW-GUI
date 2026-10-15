@@ -1275,4 +1275,5 @@
   <data name="Emulation.Option.pokket.Help"><value>ใส่การ์ดในแต่ละเครื่องเพื่อเปิดใช้งานการเชื่อมต่ออินฟราเรด</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_audio_format.Label"><value>การจัดวางลำโพง</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_audio_format.Help"><value>กำหนดรูปแบบการจัดวางลำโพงที่เกมใช้ได้ เกมจะเลือกการผสมเสียงตามรูปแบบนี้ เสียงที่ส่งออกยังขึ้นอยู่กับอุปกรณ์เสียงที่เลือกใน Windows ด้วย</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_cheats.Help"><value>โหลดไฟล์รหัสโกง .pnach จากโฟลเดอร์ที่เลือก ชื่อไฟล์ต้องมีหมายเลขประจำเกมและ CRC โดยจะอ่านไฟล์เมื่อเริ่มเกม</value></data>
 </root>

@@ -1275,4 +1275,5 @@
   <data name="Emulation.Option.pokket.Help"><value>Kızılötesi bağlantıyı etkinleştirmek için her birime bir kart takın.</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_audio_format.Label"><value>Hoparlör düzeni</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_audio_format.Help"><value>Oyunlara sunulan hoparlör düzenini belirler. Oyun, ses karışımını bu düzene göre seçer. Çıkış, Windows’ta seçilen ses aygıtına da bağlıdır.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_cheats.Help"><value>Seçilen klasörden .pnach hile kodu dosyalarını yükler. Dosya adları oyunun seri numarasını ve CRC değerini içermelidir. Dosyalar oyun başlatılırken okunur.</value></data>
 </root>

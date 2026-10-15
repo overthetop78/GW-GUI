@@ -1275,4 +1275,5 @@
   <data name="Emulation.Option.pokket.Help"><value>Aseta kortti kumpaankin yksikköön infrapunayhteyden ottamiseksi käyttöön.</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_audio_format.Label"><value>Kaiuttimien sijoittelu</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_audio_format.Help"><value>Määrittää peleille tarjottavan kaiutinasettelun. Peli valitsee äänimiksauksensa tämän asettelun perusteella. Äänentoisto riippuu myös Windowsissa valitusta äänilaitteesta.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_cheats.Help"><value>Lataa .pnach-huijauskooditiedostot valitusta kansiosta. Tiedostonimien tulee sisältää pelin sarjanumero ja CRC. Tiedostot luetaan pelin käynnistyessä.</value></data>
 </root>

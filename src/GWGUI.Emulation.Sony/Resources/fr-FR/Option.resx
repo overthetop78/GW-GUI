@@ -1275,4 +1275,5 @@
   <data name="Emulation.Option.pokket.Help"><value>Insérez une carte dans chaque unité pour activer la liaison infrarouge.</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_audio_format.Label"><value>Disposition des haut-parleurs</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_audio_format.Help"><value>Définit la disposition des haut-parleurs proposée aux jeux. Le jeu choisit son mixage selon cette disposition. La sortie dépend aussi du périphérique audio Windows sélectionné.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_cheats.Help"><value>Charge les fichiers de codes de triche .pnach du dossier sélectionné. Les noms des fichiers doivent contenir le numéro de série du jeu et son CRC. Les fichiers sont lus au lancement du jeu.</value></data>
 </root>

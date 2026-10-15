@@ -1275,4 +1275,5 @@
   <data name="Emulation.Option.pokket.Help"><value>הכניסו כרטיס לכל יחידה כדי להפעיל את חיבור האינפרה־אדום.</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_audio_format.Label"><value>פריסת הרמקולים</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_audio_format.Help"><value>מגדיר את פריסת הרמקולים המוצעת למשחקים. המשחק בוחר את תמהיל השמע בהתאם לפריסה זו. הפלט תלוי גם בהתקן השמע שנבחר ב-Windows.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_cheats.Help"><value>טוען קובצי קודי רמאות מסוג .pnach מהתיקייה שנבחרה. שמות הקבצים צריכים לכלול את המספר הסידורי של המשחק ואת ה-CRC שלו. הקבצים נקראים בעת הפעלת המשחק.</value></data>
 </root>

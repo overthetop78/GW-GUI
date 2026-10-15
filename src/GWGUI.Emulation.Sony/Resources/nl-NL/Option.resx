@@ -1275,4 +1275,5 @@
   <data name="Emulation.Option.pokket.Help"><value>Plaats een kaart in elke eenheid om de infraroodverbinding in te schakelen.</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_audio_format.Label"><value>Luidsprekeropstelling</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_audio_format.Help"><value>Stelt de luidsprekeropstelling in die aan spellen wordt aangeboden. Het spel kiest op basis hiervan zijn audiomix. De uitvoer hangt ook af van het geselecteerde Windows-audioapparaat.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_cheats.Help"><value>Laadt .pnach-bestanden met cheatcodes uit de geselecteerde map. De bestandsnamen moeten het serienummer van het spel en de CRC bevatten. De bestanden worden bij het starten van het spel gelezen.</value></data>
 </root>

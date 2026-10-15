@@ -1275,4 +1275,5 @@
   <data name="Emulation.Option.pokket.Help"><value>Włóż kartę do każdej jednostki, aby włączyć połączenie przez podczerwień.</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_audio_format.Label"><value>Układ głośników</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_audio_format.Help"><value>Określa układ głośników dostępny dla gier. Gra wybiera miks dźwięku na podstawie tego układu. Wyjście zależy także od urządzenia dźwiękowego wybranego w systemie Windows.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_cheats.Help"><value>Wczytuje pliki kodów .pnach z wybranego folderu. Nazwy plików muszą zawierać numer seryjny gry i jej CRC. Pliki są odczytywane przy uruchamianiu gry.</value></data>
 </root>

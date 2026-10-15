@@ -1275,4 +1275,5 @@
   <data name="Emulation.Option.pokket.Help"><value>赤外線通信を有効にするには、各ユニットにカードを挿入してください。</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_audio_format.Label"><value>スピーカー配置</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_audio_format.Help"><value>ゲームに提供するスピーカー配置を設定します。ゲームはこの配置に応じて音声ミックスを選びます。出力は選択したWindowsのオーディオデバイスにも依存します。</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_cheats.Help"><value>選択したフォルダーから .pnach 形式のチートコードファイルを読み込みます。ファイル名にはゲームのシリアル番号と CRC を含めてください。ファイルはゲームの起動時に読み込まれます。</value></data>
 </root>

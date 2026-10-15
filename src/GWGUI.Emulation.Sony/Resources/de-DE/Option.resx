@@ -1275,4 +1275,5 @@
   <data name="Emulation.Option.pokket.Help"><value>Legen Sie in jede Einheit eine Karte ein, um die Infrarotverbindung zu aktivieren.</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_audio_format.Label"><value>Lautsprecheranordnung</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_audio_format.Help"><value>Legt die den Spielen angebotene Lautsprecheranordnung fest. Das Spiel wählt danach seine Tonmischung. Die Ausgabe hängt auch vom ausgewählten Windows-Audiogerät ab.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_cheats.Help"><value>Lädt .pnach-Dateien mit Cheatcodes aus dem ausgewählten Ordner. Die Dateinamen müssen die Seriennummer des Spiels und den CRC enthalten. Die Dateien werden beim Spielstart gelesen.</value></data>
 </root>

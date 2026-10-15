@@ -1275,4 +1275,5 @@
   <data name="Emulation.Option.pokket.Help"><value>적외선 연결을 활성화하려면 각 장치에 카드를 넣으세요.</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_audio_format.Label"><value>스피커 배치</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_audio_format.Help"><value>게임에 제공할 스피커 배치를 설정합니다. 게임은 이 배치에 따라 오디오 믹스를 선택합니다. 출력은 선택한 Windows 오디오 장치에도 영향을 받습니다.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_cheats.Help"><value>선택한 폴더에서 .pnach 치트 코드 파일을 불러옵니다. 파일 이름에는 게임의 일련 번호와 CRC가 포함되어야 합니다. 게임을 시작할 때 파일을 읽습니다.</value></data>
 </root>

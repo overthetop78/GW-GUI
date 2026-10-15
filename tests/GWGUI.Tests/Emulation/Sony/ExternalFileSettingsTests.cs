@@ -1,4 +1,6 @@
 using System.IO;
+using System.Net.Http;
+using System.Text.Json;
 using GWGUI.Emulation.Enums;
 using GWGUI.Emulation.Sony.Common.Machines.Common.Constants;
 using GWGUI.Emulation.Sony.Common.Machines.Common.Contracts;
@@ -35,11 +37,42 @@ public sealed class ExternalFileSettingsTests
     }
 
     [Fact]
-    public void OtherBackendsDoNotAcquireLrps2FileSelectors()
+    public void Pcee2OnlyReceivesItsOwnCheatFolderSelector()
     {
         var adapter = new GWGUI.Emulation.Sony.Emulators.Pcee2.Factories.Pcee2MachineFactory();
         var fields = adapter.GetSettingsBlocks(new MachineConfiguration(ModelConstants.PlayStation2, "pcee2")).SelectMany(block => block.Fields);
-        Assert.DoesNotContain(fields, field => field.Id == FileSystemConstants.GameIndexPathKey || field.Id == FileSystemConstants.CheatsDirectoryKey);
+        Assert.DoesNotContain(fields, field => field.Id == FileSystemConstants.GameIndexPathKey);
+        Assert.Single(fields, field => field.Id == GWGUI.Emulation.Sony.Emulators.Pcee2.Constants.CheatConstants.DirectoryKey);
+    }
+
+    [Theory]
+    [InlineData(false)]
+    [InlineData(true)]
+    public void Pcee2CheatFolderAndNativeToggleRoundTripTogether(bool enabled)
+    {
+        using var http = new HttpClient();
+        var module = new GWGUI.Emulation.Sony.Modules.SonyEmulationModule(Environment.CurrentDirectory, Environment.CurrentDirectory, http, Environment.CurrentDirectory);
+        var selected = Assert.IsType<MachineConfiguration>(module.ApplySettings(new MachineConfiguration(ModelConstants.PlayStation2, "pcee2"), new Dictionary<string, string?>
+        {
+            [GWGUI.Emulation.Sony.Emulators.Pcee2.Constants.OptionConstants.CheatsKey] = enabled ? "enabled" : "disabled",
+            [GWGUI.Emulation.Sony.Emulators.Pcee2.Constants.CheatConstants.DirectoryKey] = @"C:\codes"
+        }));
+        var restored = Assert.IsType<MachineConfiguration>(JsonSerializer.Deserialize<MachineConfiguration>(JsonSerializer.Serialize(selected)));
+        var adapter = new GWGUI.Emulation.Sony.Emulators.Pcee2.Factories.Pcee2MachineFactory();
+        var fields = adapter.GetSettingsBlocks(restored).SelectMany(block => block.Fields).ToArray();
+        var toggle = Assert.Single(fields, field => field.Id == GWGUI.Emulation.Sony.Emulators.Pcee2.Constants.OptionConstants.CheatsKey);
+        var folder = Assert.Single(fields, field => field.Id == GWGUI.Emulation.Sony.Emulators.Pcee2.Constants.CheatConstants.DirectoryKey);
+        Assert.True(toggle.RefreshSettingsOnChange);
+        Assert.Equal(EmulationSettingsEditor.DirectoryPath, folder.Editor);
+        Assert.Equal(enabled, folder.IsEnabled);
+        Assert.Equal(@"C:\codes", folder.Value);
+        Assert.Equal(toggle.Tab, folder.Tab);
+        Assert.Equal(toggle.BlockId, folder.BlockId);
+        Assert.Equal(EmulationMachineTab.General, folder.Tab);
+        Assert.Equal(GWGUI.Emulation.Sony.Emulators.Pcee2.Constants.OptionConstants.CheatsHelpResource, folder.ExplanationResourceKey);
+        Assert.Equal(enabled ? "enabled" : "disabled", ((GWGUI.Emulation.Sony.Common.Interfaces.IEmulatorSettingsAdapter)adapter).GetRuntimeOptions(restored)[toggle.Id]);
+        Assert.Equal("disabled", Assert.Single(new GWGUI.Emulation.Sony.Emulators.Pcee2.Factories.Pcee2MachineFactory()
+            .GetSettingsBlocks(new MachineConfiguration(ModelConstants.PlayStation2, "pcee2")).SelectMany(block => block.Fields), field => field.Id == toggle.Id).Value);
     }
 
     [Fact]

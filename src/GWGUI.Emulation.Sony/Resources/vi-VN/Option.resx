@@ -1275,4 +1275,5 @@
   <data name="Emulation.Option.pokket.Help"><value>Lắp thẻ vào mỗi thiết bị để bật kết nối hồng ngoại.</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_audio_format.Label"><value>Bố trí loa</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_audio_format.Help"><value>Đặt cách bố trí loa được cung cấp cho trò chơi. Trò chơi chọn cách phối âm dựa trên bố trí này. Âm thanh đầu ra còn phụ thuộc vào thiết bị âm thanh Windows đã chọn.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_cheats.Help"><value>Tải các tệp mã gian lận .pnach từ thư mục đã chọn. Tên tệp phải chứa số sê-ri của trò chơi và CRC. Các tệp được đọc khi trò chơi khởi chạy.</value></data>
 </root>

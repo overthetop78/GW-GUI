@@ -1275,4 +1275,5 @@
   <data name="Emulation.Option.pokket.Help"><value>Insira um cartão em cada unidade para ativar a conexão por infravermelho.</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_audio_format.Label"><value>Configuração dos alto-falantes</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_audio_format.Help"><value>Define a configuração dos alto-falantes oferecida aos jogos. O jogo escolhe a mixagem de áudio com base nessa configuração. A saída também depende do dispositivo de áudio selecionado no Windows.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_cheats.Help"><value>Carrega os arquivos de códigos de trapaça .pnach da pasta selecionada. Os nomes dos arquivos devem conter o número de série do jogo e seu CRC. Os arquivos são lidos ao iniciar o jogo.</value></data>
 </root>

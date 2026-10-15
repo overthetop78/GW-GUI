@@ -1275,4 +1275,5 @@
   <data name="Emulation.Option.pokket.Help"><value>Вставте картку в кожен пристрій, щоб увімкнути інфрачервоний зв&apos;язок.</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_audio_format.Label"><value>Розташування динаміків</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_audio_format.Help"><value>Задає розташування динаміків, доступне іграм. Гра вибирає звукове зведення відповідно до цієї схеми. Виведення також залежить від вибраного аудіопристрою Windows.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_cheats.Help"><value>Завантажує файли чит-кодів .pnach з вибраної папки. Назви файлів мають містити серійний номер гри та її CRC. Файли читаються під час запуску гри.</value></data>
 </root>

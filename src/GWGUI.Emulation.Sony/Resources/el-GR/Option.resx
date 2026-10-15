@@ -1275,4 +1275,5 @@
   <data name="Emulation.Option.pokket.Help"><value>Εισαγάγετε μια κάρτα σε κάθε μονάδα για να ενεργοποιήσετε την υπέρυθρη σύνδεση.</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_audio_format.Label"><value>Διάταξη ηχείων</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_audio_format.Help"><value>Ορίζει τη διάταξη ηχείων που διατίθεται στα παιχνίδια. Το παιχνίδι επιλέγει τη μίξη ήχου βάσει αυτής της διάταξης. Η έξοδος εξαρτάται επίσης από την επιλεγμένη συσκευή ήχου των Windows.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_cheats.Help"><value>Φορτώνει αρχεία κωδικών εξαπάτησης .pnach από τον επιλεγμένο φάκελο. Τα ονόματα αρχείων πρέπει να περιέχουν τον σειριακό αριθμό του παιχνιδιού και το CRC. Τα αρχεία διαβάζονται κατά την εκκίνηση του παιχνιδιού.</value></data>
 </root>

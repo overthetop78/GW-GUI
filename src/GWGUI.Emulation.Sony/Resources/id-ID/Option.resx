@@ -1275,4 +1275,5 @@
   <data name="Emulation.Option.pokket.Help"><value>Masukkan kartu ke setiap unit untuk mengaktifkan sambungan inframerah.</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_audio_format.Label"><value>Tata letak pengeras suara</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_audio_format.Help"><value>Menentukan tata letak pengeras suara yang tersedia untuk gim. Gim memilih bauran audio berdasarkan tata letak ini. Keluaran juga bergantung pada perangkat audio Windows yang dipilih.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_cheats.Help"><value>Memuat berkas kode curang .pnach dari folder yang dipilih. Nama berkas harus memuat nomor seri gim dan CRC-nya. Berkas dibaca saat gim dimulai.</value></data>
 </root>

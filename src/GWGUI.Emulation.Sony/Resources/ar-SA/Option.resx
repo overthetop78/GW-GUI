@@ -1275,4 +1275,5 @@
   <data name="Emulation.Option.pokket.Help"><value>أدخل بطاقة في كل وحدة لتفعيل الاتصال بالأشعة تحت الحمراء.</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_audio_format.Label"><value>توزيع مكبرات الصوت</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_audio_format.Help"><value>يحدد توزيع مكبرات الصوت المتاح للألعاب. تختار اللعبة مزيج الصوت وفق هذا التوزيع. يعتمد الخرج أيضًا على جهاز الصوت المحدد في Windows.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_cheats.Help"><value>يحمّل ملفات رموز الغش بصيغة .pnach من المجلد المحدد. استخدم أسماء ملفات تحتوي على الرقم التسلسلي للعبة وCRC. تُقرأ الملفات عند بدء اللعبة.</value></data>
 </root>

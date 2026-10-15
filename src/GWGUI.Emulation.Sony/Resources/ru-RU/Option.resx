@@ -1275,4 +1275,5 @@
   <data name="Emulation.Option.pokket.Help"><value>Вставьте карту в каждое устройство, чтобы включить инфракрасную связь.</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_audio_format.Label"><value>Расположение динамиков</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_audio_format.Help"><value>Задаёт расположение динамиков, доступное играм. Игра выбирает звуковой микс в соответствии с этой схемой. Вывод также зависит от выбранного аудиоустройства Windows.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_cheats.Help"><value>Загружает файлы чит-кодов .pnach из выбранной папки. Имена файлов должны содержать серийный номер игры и её CRC. Файлы читаются при запуске игры.</value></data>
 </root>

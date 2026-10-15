@@ -1275,4 +1275,5 @@
   <data name="Emulation.Option.pokket.Help"><value>在每台设备中插入一张卡，以启用红外连接。</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_audio_format.Label"><value>扬声器布局</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_audio_format.Help"><value>设置向游戏提供的扬声器布局。游戏会根据此布局选择音频混音方式。输出还取决于所选的 Windows 音频设备。</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_cheats.Help"><value>从所选文件夹加载 .pnach 作弊码文件。文件名须包含游戏序列号和 CRC。游戏启动时会读取这些文件。</value></data>
 </root>

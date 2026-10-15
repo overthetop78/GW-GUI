@@ -21,4 +21,5 @@ internal sealed record CoreDefinition(
     IReadOnlyList<string>? PreviousLibraryNames = null,
     Func<MachineConfiguration, CoreContentLoadPlan?>? CreateContentLoadPlan = null,
     Func<MachineConfiguration, IReadOnlyList<CoreControllerPort>>? CreateControllerPorts = null,
-    CoreFirmwarePersistenceSettings? FirmwarePersistence = null);
+    CoreFirmwarePersistenceSettings? FirmwarePersistence = null,
+    Action<MachineConfiguration, string>? PrepareSystemFiles = null);

@@ -176,6 +176,9 @@ internal static class OptionConstants
     internal const string NoInterlacingPatchesKey = "pcsx2_no_interlacing_patches";
     internal const string NoInterlacingPatchesLabelResource = "Emulation.Option.pcee2.pcsx2_no_interlacing_patches.Label";
     internal const string NoInterlacingPatchesHelpResource = "Emulation.Option.pcee2.pcsx2_no_interlacing_patches.Help";
+    internal const string CheatsKey = "pcsx2_cheats";
+    internal const string CheatsLabelResource = "Emulation.Option.Sony.Setting.EnableCheats.Label";
+    internal const string CheatsHelpResource = "Emulation.Option.pcee2.pcsx2_cheats.Help";
     internal const string MtvuKey = "pcsx2_mtvu";
     internal const string MtvuLabelResource = "Emulation.Option.pcee2.pcsx2_mtvu.Label";
     internal const string MtvuHelpResource = "Emulation.Option.pcee2.pcsx2_mtvu.Help";

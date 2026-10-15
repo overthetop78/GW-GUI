@@ -196,6 +196,12 @@ internal static class OptionCatalog
             new(OptionValueFunctions.ToNative(AxisDeadzone._20), OptionConstants.AxisDeadzone20DisplayName),
             new(OptionValueFunctions.ToNative(AxisDeadzone._30), OptionConstants.AxisDeadzone30DisplayName),
         ], IsVisible: true, Tab: EmulationMachineTab.Controllers, RequiresRestart: false),
+        new(OptionConstants.CheatsKey, OptionConstants.CheatsLabelResource, OptionConstants.CheatsHelpResource, null,
+            ToggleValueConstants.Disabled, ToggleValueConstants.Disabled,
+        [
+            new(ToggleValueConstants.Disabled, OptionValueResourceConstants.DisabledLabelResource),
+            new(ToggleValueConstants.Enabled, OptionValueResourceConstants.EnabledLabelResource)
+        ], Tab: EmulationMachineTab.General, RequiresRestart: true),
         new(OptionConstants.WidescreenPatchesKey, OptionConstants.WidescreenPatchesLabelResource, OptionConstants.WidescreenPatchesHelpResource, null,
             ToggleValueConstants.Disabled, ToggleValueConstants.Disabled,
         [

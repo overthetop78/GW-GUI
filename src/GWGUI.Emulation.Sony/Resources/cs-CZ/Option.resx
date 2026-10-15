@@ -1275,4 +1275,5 @@
   <data name="Emulation.Option.pokket.Help"><value>Vložte kartu do každé jednotky, abyste aktivovali infračervené propojení.</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_audio_format.Label"><value>Rozložení reproduktorů</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_audio_format.Help"><value>Nastaví rozložení reproduktorů dostupné hrám. Hra podle něj zvolí zvukový mix. Výstup závisí také na vybraném zvukovém zařízení Windows.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_cheats.Help"><value>Načítá soubory cheatů .pnach z vybrané složky. Názvy souborů musí obsahovat sériové číslo hry a CRC. Soubory se načítají při spuštění hry.</value></data>
 </root>

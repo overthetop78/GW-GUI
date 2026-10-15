@@ -87,6 +87,7 @@ internal sealed partial class ExternalCore : IEmulatorCore
             .Select(region => (region.Id, Path.Combine(coreSaveDirectory, region.FileName))).ToArray();
         Directory.CreateDirectory(systemDirectory);
         FirmwareConfigurationFunctions.CopySelectedFiles(configuration, new Engine().Adapter(configuration), systemDirectory);
+        _definition.PrepareSystemFiles?.Invoke(configuration, systemDirectory);
         _firmwareFiles = _definition.FirmwarePersistence is { } persistence
             ? FirmwareRuntimeFunctions.Prepare(configuration, _definition.Id, persistence, systemDirectory, saveDirectory)
             : [];

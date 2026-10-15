@@ -1275,4 +1275,5 @@
   <data name="Emulation.Option.pokket.Help"><value>Introduceți un card în fiecare unitate pentru a activa conexiunea prin infraroșu.</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_audio_format.Label"><value>Configurația difuzoarelor</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_audio_format.Help"><value>Stabilește configurația difuzoarelor disponibilă jocurilor. Jocul alege mixajul audio în funcție de această configurație. Ieșirea depinde și de dispozitivul audio selectat în Windows.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_cheats.Help"><value>Încarcă fișierele de coduri de trișare .pnach din dosarul selectat. Numele fișierelor trebuie să conțină numărul de serie al jocului și CRC-ul acestuia. Fișierele sunt citite la pornirea jocului.</value></data>
 </root>

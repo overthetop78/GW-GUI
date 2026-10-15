@@ -1275,4 +1275,5 @@
   <data name="Emulation.Option.pokket.Help"><value>Insira um cartão em cada unidade para ativar a ligação por infravermelhos.</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_audio_format.Label"><value>Configuração das colunas</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_audio_format.Help"><value>Define a configuração das colunas disponibilizada aos jogos. O jogo escolhe a mistura de áudio com base nessa configuração. A saída também depende do dispositivo de áudio selecionado no Windows.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_cheats.Help"><value>Carrega os ficheiros de códigos de batota .pnach da pasta selecionada. Os nomes dos ficheiros devem conter o número de série do jogo e o respetivo CRC. Os ficheiros são lidos ao iniciar o jogo.</value></data>
 </root>

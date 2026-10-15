@@ -23,5 +23,6 @@ internal static class CoreConstants
         StartupFailureDiagnostics: [InitializationFailureDiagnostic],
         FeedbackControllerTypes: [ControllerType.Joystick],
         CreateControllerPorts: ControllerConfigurationFunctions.CreatePorts,
-        FirmwarePersistence: FirmwareConstants.Persistence);
+        FirmwarePersistence: FirmwareConstants.Persistence,
+        PrepareSystemFiles: CheatFunctions.Prepare);
 }
