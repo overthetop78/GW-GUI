@@ -22,5 +22,6 @@ internal static class CoreConstants
         ControllerTypes: [ControllerType.Joystick, ControllerType.None],
         StartupTimeout: TimeSpan.FromMinutes(FirmwareInstallationTimeoutMinutes),
         ShutdownTimeout: TimeSpan.FromMinutes(CacheShutdownTimeoutMinutes),
-        PersistentDataDirectories: true);
+        PersistentDataDirectories: true,
+        SupportsSavedStates: false);
 }

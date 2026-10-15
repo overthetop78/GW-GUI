@@ -138,8 +138,10 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         }, cancellationToken, EmulationMessageCategory.Media,
             EmulationMessageCode.MediaOperationFailed);
 
-    public ValueTask SaveStateAsync(string path, CancellationToken cancellationToken = default) =>
-        QueueCommand(() =>
+    public ValueTask SaveStateAsync(string path, CancellationToken cancellationToken = default)
+    {
+        if (!_supportsSavedStates) throw new NotSupportedException();
+        return QueueCommand(() =>
         {
             var state = _core.SaveState();
             var header = new SavedStateHeader(SavedStateConstants.CurrentFormatVersion,
@@ -149,9 +151,12 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
             StateStore.Write(path, header, state);
         }, cancellationToken, EmulationMessageCategory.SavedState,
             EmulationMessageCode.SavedStateOperationFailed);
+    }
 
-    public ValueTask LoadStateAsync(string path, CancellationToken cancellationToken = default) =>
-        QueueCommand(() =>
+    public ValueTask LoadStateAsync(string path, CancellationToken cancellationToken = default)
+    {
+        if (!_supportsSavedStates) throw new NotSupportedException();
+        return QueueCommand(() =>
         {
             var saved = StateStore.Read(path);
             if (saved.Header.FormatVersion != SavedStateConstants.CurrentFormatVersion
@@ -163,6 +168,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
             _core.LoadState(saved.State);
         }, cancellationToken, EmulationMessageCategory.SavedState,
             EmulationMessageCode.SavedStateOperationFailed);
+    }
 
     public ValueTask SetOptionAsync(string key, string value, CancellationToken cancellationToken = default) =>
         QueueCommand(() => { _core.SetOption(key, value); _currentOptions[key] = value; }, cancellationToken,

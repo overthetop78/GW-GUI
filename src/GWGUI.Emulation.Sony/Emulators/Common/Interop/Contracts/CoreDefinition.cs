@@ -14,4 +14,5 @@ internal sealed record CoreDefinition(
     TimeSpan? StartupTimeout = null,
     TimeSpan? ShutdownTimeout = null,
     IReadOnlyList<string>? StartupFailureDiagnostics = null,
-    bool PersistentDataDirectories = false);
+    bool PersistentDataDirectories = false,
+    bool SupportsSavedStates = true);

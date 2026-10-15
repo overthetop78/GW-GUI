@@ -10,6 +10,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     private readonly object _gate = new();
     private MachineConfiguration _configuration;
     private readonly IEmulatorCore _core;
+    private readonly bool _supportsSavedStates;
     private readonly string _sessionDirectory;
     private readonly string? _saveDirectory;
     private readonly Action<string>? _deleteSession;
@@ -34,11 +35,12 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     internal Machine(Guid id, MachineConfiguration configuration,
         IEmulatorCore core, IReadOnlyList<MediaConfiguration> resolvedMedia,
         string sessionDirectory, IAudioOutput? audioOutput = null, string? saveDirectory = null,
-        Action<string>? deleteSession = null, Func<Exception, Exception>? startErrorTranslator = null)
+        Action<string>? deleteSession = null, Func<Exception, Exception>? startErrorTranslator = null, bool supportsSavedStates = true)
     {
         Id = id;
         _configuration = configuration;
         _core = core;
+        _supportsSavedStates = supportsSavedStates;
         _sessionDirectory = sessionDirectory;
         _saveDirectory = saveDirectory;
         _deleteSession = deleteSession;
@@ -135,7 +137,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         add => VideoFrameReady += value;
         remove => VideoFrameReady -= value;
     }
-    bool IEmulationSavedStates.IsSupported => true;
+    bool IEmulationSavedStates.IsSupported => _supportsSavedStates;
     ValueTask IEmulationSavedStates.SaveAsync(string path, CancellationToken cancellationToken) => SaveStateAsync(path, cancellationToken);
     ValueTask IEmulationSavedStates.LoadAsync(string path, CancellationToken cancellationToken) => LoadStateAsync(path, cancellationToken);
     void IEmulationInput.SetControllerPortDevice(int port, EmulationPeripheralCategory peripheral) => SetControllerPortDevice(port, ControllerFunctions.FromCommon(peripheral, Configuration));

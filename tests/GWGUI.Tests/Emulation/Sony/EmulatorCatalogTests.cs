@@ -2,6 +2,7 @@ using GWGUI.Emulation.Sony.Common.Dictionaries;
 using GWGUI.Emulation.Sony.Common.Machines.Common.Contracts;
 using GWGUI.Emulation.Sony.Common.Machines.Common.Constants;
 using GWGUI.Emulation.Sony.Common.Interfaces;
+using GWGUI.Emulation.Sony.Common.Contracts;
 using BeetleCore = GWGUI.Emulation.Sony.Emulators.BeetlePsx.Constants.CoreConstants;
 using BeetleHardwareCore = GWGUI.Emulation.Sony.Emulators.BeetlePsxHw.Constants.CoreConstants;
 using RearmedCore = GWGUI.Emulation.Sony.Emulators.PcsxRearmed.Constants.CoreConstants;
@@ -13,6 +14,29 @@ namespace GWGUI.Tests.Emulation.Sony;
 
 public sealed class EmulatorCatalogTests
 {
+    [Theory]
+    [InlineData(RpcsCore.Id, ModelConstants.PlayStation3, false)]
+    [InlineData(BeetleCore.Id, ModelConstants.PlayStation, true)]
+    [InlineData(BeetleHardwareCore.Id, ModelConstants.PlayStation, true)]
+    [InlineData(RearmedCore.Id, ModelConstants.PlayStation, true)]
+    [InlineData(PlayCore.Id, ModelConstants.PlayStation2, true)]
+    public async Task AdapterPublishesSavedStateSupportBeforeNativeInitialization(string id, string model, bool expected)
+    {
+        var adapter = Assert.Single(EmulatorCatalog.CreateAdapters(), item => item.EmulatorId == id);
+        var context = new EmulatorCreationContext("uncreated-session-" + Guid.NewGuid().ToString("N"), "unused-core.dll", "unused-host.exe", null, null);
+        var machine = adapter.Create(new MachineConfiguration(model, id, AudioEnabled: false), context);
+        try
+        {
+            Assert.Equal(expected, machine.SavedStates.IsSupported);
+            if (!expected)
+            {
+                await Assert.ThrowsAsync<NotSupportedException>(async () => await machine.SavedStates.SaveAsync("unused-state"));
+                await Assert.ThrowsAsync<NotSupportedException>(async () => await machine.SavedStates.LoadAsync("unused-state"));
+            }
+        }
+        finally { await machine.DisposeAsync(); }
+    }
+
     [Theory]
     [InlineData(null, "vulkan")]
     [InlineData("opengl", "opengl")]
