@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Constants;
+using GWGUI.Emulation.Sony.Common.Machines.Common.Functions;
 using GWGUI.Emulation.Sony.Common.Dictionaries;
 using GWGUI.Emulation.Sony.Common.Machines.Common.Contracts;
 using GWGUI.Emulation.Sony.Common.Machines.Common.Constants;
@@ -14,6 +16,22 @@ namespace GWGUI.Tests.Emulation.Sony;
 
 public sealed class EmulatorCatalogTests
 {
+    [Fact]
+    public void EveryRpcs3PortOffersOnlyItsDualShock3VisualWithoutPhysicalAssignments()
+    {
+        var configuration = new MachineConfiguration(ModelConstants.PlayStation3, RpcsCore.Id);
+        var settings = InputSettingsFunctions.Describe(configuration);
+        Assert.Equal(Enumerable.Range(1, 7), settings.ControllerPorts.Select(port => port.Number));
+        foreach (var port in settings.ControllerPorts)
+        {
+            var controller = Assert.Single(port.ControllerChoices, choice => choice.Id == "Joystick");
+            Assert.Equal(EmulationControllerVisualIds.SonyDualShock3, Assert.Single(controller.CompatibleVisualIds!));
+            Assert.Equal(EmulationControllerVisualIds.SonyDualShock3, controller.DefaultVisualId);
+            Assert.Empty(port.Bindings.Values);
+            Assert.Null(port.PhysicalDeviceId);
+        }
+    }
+
     [Theory]
     [InlineData(RpcsCore.Id, ModelConstants.PlayStation3, false)]
     [InlineData(BeetleCore.Id, ModelConstants.PlayStation, true)]

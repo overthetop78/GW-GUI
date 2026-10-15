@@ -147,3 +147,9 @@ Adaptation: classical silhouette alpha mask, removal of exterior background encl
 Asset: `src/GWGUI.Emulation.Sinclair/Assets/Machines/SpectrumSe.png`.
 Source: the prototype photograph published in ZX Shed issue 2, preserved by World of Spectrum: https://worldofspectrum.org/files/large/6b6c3ef9a7a2c60 (ZXShedIssue02.pdf).
 Adaptation: lossless assembly of the two embedded JPEG strips into the original 2048 x 653 photograph, classical silhouette alpha masking and proportional resizing to 512 pixels wide with transparent padding. The photographed rack enclosure, Cherry keyboard, connectors and controls are retained. The original photograph crops the top edge of the equipment; no missing parts or lettering have been generated or reconstructed. No open license is asserted for this source photograph.
+
+## Sony DualShock 3 controller photograph
+
+Asset: `src/GWGUI.App/Assets/Controllers/sony-dualshock-3.png`.
+Source: https://commons.wikimedia.org/wiki/File:PS3_controller.png (1200 x 880 PNG), photographed by Evan-Amos; controller cutout by Lorenziand, derived from PS3Versions.png. The source is released into the public domain by its authors.
+Adaptation: proportional classical resampling to 512 x 375 pixels, preserving the existing transparent silhouette and photographic markings. No generated or reconstructed parts.

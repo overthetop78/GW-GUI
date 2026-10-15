@@ -58,6 +58,7 @@ public static class EmulationControllerVisualIds
     public const string SonyGunCon = "sony-guncon";
     public const string SonyJustifier = "sony-justifier";
     public const string SonyDualShock2 = "sony-dualshock-2";
+    public const string SonyDualShock3 = "sony-dualshock-3";
     public const string SonyDualShock4 = "sony-dualshock-4";
     public const string SonyDualSense = "sony-dualsense";
     public const string SonyPsp1000 = "sony-psp-1000";

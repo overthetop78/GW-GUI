@@ -15,6 +15,7 @@ internal static partial class ControllerArtworkCatalog
         profiles[EmulationControllerVisualIds.SonyGunCon] = CreateSonyGunCon();
         profiles[EmulationControllerVisualIds.SonyJustifier] = CreateSonyJustifier();
         profiles[EmulationControllerVisualIds.SonyDualShock2] = CreateSonyDualShock2();
+        profiles[EmulationControllerVisualIds.SonyDualShock3] = CreateSonyDualShock3();
         profiles[EmulationControllerVisualIds.SonyDualShock4] = CreateSonyDualShock4();
         profiles[EmulationControllerVisualIds.SonyDualSense] = CreateSonyDualSense();
         profiles[EmulationControllerVisualIds.SonyPsp1000] = CreateSonyPsp1000();

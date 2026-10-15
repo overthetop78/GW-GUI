@@ -75,6 +75,7 @@ internal static class ControllerArtworkFileNames
     internal const string NintendoNesMax = "nintendo-nes-max.png";
     internal const string Playstation1 = "playstation-1.png";
     internal const string Playstation2 = "playstation-2.png";
+    internal const string SonyDualShock3 = "sony-dualshock-3.png";
     internal const string Playstation4 = "playstation-4.png";
     internal const string Playstation5 = "playstation-5.png";
     internal const string PowerplayCruiser = "powerplay-cruiser.png";

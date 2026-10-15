@@ -18,6 +18,7 @@ internal static partial class InputSettingsFunctions
         {
             ModelConstants.PlayStation => type == ControllerType.DualShock ? [EmulationControllerVisualIds.SonyDualShock1] : [EmulationControllerVisualIds.SonyPlayStationController],
             ModelConstants.PlayStation2 => [EmulationControllerVisualIds.SonyDualShock2],
+            ModelConstants.PlayStation3 => [EmulationControllerVisualIds.SonyDualShock3],
             ModelConstants.PocketStation => null,
             ModelConstants.Psp => [EmulationControllerVisualIds.SonyPsp1000],
             ModelConstants.PlayStation4 => [EmulationControllerVisualIds.SonyDualShock4],

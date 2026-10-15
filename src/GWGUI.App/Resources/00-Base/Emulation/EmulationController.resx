@@ -103,6 +103,7 @@
   <data name="Emulation.Controller.Visual.Model.sony-playstation-controller"><value>PlayStation</value></data>
   <data name="Emulation.Controller.Visual.Model.sony-dualshock-1"><value>PlayStation DualShock</value></data>
   <data name="Emulation.Controller.Visual.Model.sony-dualshock-2"><value>DUALSHOCK 2</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-dualshock-3"><value>DUALSHOCK 3</value></data>
   <data name="Emulation.Controller.Visual.Model.sony-psp-1000"><value>Sony PSP-1000</value></data>
   <data name="Emulation.Controller.Visual.Model.sony-dualshock-4"><value>DUALSHOCK 4</value></data>
   <data name="Emulation.Controller.Visual.Model.sony-dualsense"><value>DualSense</value></data>
