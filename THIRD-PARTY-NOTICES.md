@@ -184,3 +184,11 @@ Apple Joystick IIe/IIc A2M2002 photograph: Apple II Documentation Project, https
 Pippin wired Applejack controller photograph: Evan-Amos, public domain, https://commons.wikimedia.org/wiki/File:Bandai-Apple-Pippin-Applejack-Controller-FL.jpg . Background transparency and resizing with ImageMagick only; original photograph and markings preserved.
 
 CH Products Mach II and Mach III Apple II joystick photographs: Apple II Documentation Project, https://mirrors.apple2.org.za/Apple%20II%20Documentation%20Project/Peripherals/Digitizers/CH%20Products%20Mach%20II/Photos/CH%20Products%20Mach%20II.JPG and https://mirrors.apple2.org.za/Apple%20II%20Documentation%20Project/Peripherals/Digitizers/CH%20Products%20Mach%20III/Photos/CH%20Products%20Mach%20III.JPG . The archive does not identify a photographer or a specific license. The Mach III photograph contains two controllers; the Apple II controller with the 16-pin connector is the left-hand one retained here. Manual silhouette masks and proportional resizing with ImageMagick only, with no generated content. The shaft-top button duplicates button 0, as documented in Apple II/IIe/IIc Expansion Guide (1985), https://vintageapple.org/apple_ii/pdf/Apple_II-IIe-IIc_Expansion_Guide_1985.pdf .
+
+## Sinclair ZX Spectrum 128K photograph
+
+Asset: `src/GWGUI.Emulation.Sinclair/Assets/Machines/Spectrum128K.png`.
+Photograph by Bill Bertram (Pixel8), 21 August 2006. Licensed under Creative Commons Attribution-ShareAlike 2.5 Generic: https://creativecommons.org/licenses/by-sa/2.5/.
+Source: https://commons.wikimedia.org/wiki/File:ZX_Spectrum128K.jpg
+Original: https://upload.wikimedia.org/wikipedia/commons/1/1b/ZX_Spectrum128K.jpg
+Adaptation: classical exterior flood-fill and silhouette alpha mask, removal of the cast shadow, proportional resizing and transparent padding to 512 x 276 pixels. The complete photographed case, keyboard legends and heatsink are preserved; no generated or reconstructed parts. The adapted photograph remains under CC BY-SA 2.5.
