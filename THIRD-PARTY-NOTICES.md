@@ -166,3 +166,11 @@ Adaptation: classical silhouette alpha mask, removal of the exterior background 
 
 Asset: `src/GWGUI.Emulation.Philips/Assets/Machines/VideopacG7000.png`.
 The existing repository photograph is retained. This update changes only its alpha channel: classical edge matte cleanup with protection of the dark cable pixels and a subpixel feather. RGB pixels, lettering, controls and cable paths are unchanged; no new photograph or generated hardware is introduced. Dimensions remain 512 x 312 pixels.
+
+## Amstrad GX4000 controller photograph
+
+Asset: src/GWGUI.App/Assets/Controllers/amstrad-gx4000-controller.png.
+Photograph by Evan-Amos, 31 January 2012, dedicated to the public domain by the author; cropped from the 2012 console-set photograph by Jesus.arnold.
+Source: https://commons.wikimedia.org/wiki/File:GX4000_controller.png
+Original: https://upload.wikimedia.org/wikipedia/commons/9/9a/GX4000_controller.png
+Adaptation: classical removal of the exterior white background, proportional resizing to a maximum dimension of 512 pixels, and a transparent margin. No generated controls, lettering or reconstructed hardware.

@@ -6,12 +6,15 @@ public static class ControllerCatalog
     {
         var types = new List<ControllerType>();
         if (model.ControllerPortCount > BufferConstants.EmptyCollectionCount)
+        {
             types.Add(ControllerType.Joystick);
+            types.Add(ControllerType.Gamepad);
+        }
         types.Add(ControllerType.None);
         return types;
     }
 
-    public static ControllerType Default(Model model) => model.ControllerPortCount > BufferConstants.EmptyCollectionCount ? ControllerType.Joystick : ControllerType.None;
+    public static ControllerType Default(Model model) => model.ControllerPortCount <= BufferConstants.EmptyCollectionCount ? ControllerType.None : model.HasKeyboard ? ControllerType.Joystick : ControllerType.Gamepad;
 
     public static ControllerType Normalize(Model model, ControllerType type) => type != ControllerType.Automatic && Types(model).Contains(type) ? type : Default(model);
 

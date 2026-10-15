@@ -9,6 +9,7 @@ internal static partial class ControllerArtworkCatalog
     private static IReadOnlyDictionary<string, ProfileDefinition> CreateProfiles()
     {
         var profiles = new Dictionary<string, ProfileDefinition>(StringComparer.Ordinal);
+        profiles[EmulationControllerVisualIds.AmstradGx4000Controller] = CreateAmstradGx4000Controller();
         profiles[EmulationControllerVisualIds.PanasonicFzJp1] = CreatePanasonicFzJp1();
         profiles[EmulationControllerVisualIds.WataraSupervisionControls] = CreateWataraSupervisionControls();
         profiles[EmulationControllerVisualIds.ThomsonMj90102] = CreateThomsonJoystick();

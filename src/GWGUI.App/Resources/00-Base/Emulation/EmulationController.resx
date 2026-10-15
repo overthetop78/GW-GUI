@@ -151,4 +151,5 @@
   <data name="Emulation.Controller.Feedback.Weak"><value>Weak vibration</value></data>
   <data name="Emulation.Controller.Action.Reload"><value>Reload</value></data>
   <data name="Emulation.Controller.CrosshairColor"><value>Crosshair colour</value></data>
+  <data name="Emulation.Controller.Visual.Model.amstrad-gx4000-controller" xml:space="preserve"><value>Amstrad GX4000</value></data>
 </root>

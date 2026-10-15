@@ -2,6 +2,7 @@ namespace GWGUI.App.Views.Controls.Options.ControllerVisualization;
 
 internal static class ControllerArtworkFileNames
 {
+    internal const string AmstradGx4000Controller = "amstrad-gx4000-controller.png";
     internal const string PanasonicFzJp1 = "panasonic-fz-jp1.png";
     internal const string WataraSupervisionControls = "watara-supervision-controls.png";
     internal const string ThomsonMj90102 = "thomson-mj90-102.png";

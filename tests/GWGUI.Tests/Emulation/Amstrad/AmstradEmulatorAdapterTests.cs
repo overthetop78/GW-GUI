@@ -29,6 +29,49 @@ namespace GWGUI.Tests.Emulation.Amstrad;
 
 public sealed class AmstradEmulatorAdapterTests
 {
+    [Theory]
+    [InlineData("cpc-464")]
+    [InlineData("cpc-664")]
+    [InlineData("cpc-6128")]
+    [InlineData("cpc-464-plus")]
+    [InlineData("cpc-6128-plus")]
+    [InlineData("gx4000")]
+    public void AllModelsExposeGx4000GamepadOnBothPorts(string machineId)
+    {
+        using var httpClient = new HttpClient();
+        var module = new AmstradEmulationModule(Path.GetTempPath(), Path.GetTempPath(), httpClient, Path.GetTempPath());
+        var configuration = module.CreateConfiguration(machineId);
+        var settings = module.DescribeInputSettings(configuration);
+        Assert.Equal(2, settings.ControllerPorts.Count);
+        foreach (var port in settings.ControllerPorts)
+        {
+            var gamepad = Assert.Single(port.ControllerChoices, choice => choice.Id == nameof(ControllerType.Gamepad));
+            Assert.Equal(EmulationControllerCategory.Gamepad, gamepad.Category);
+            Assert.Equal(GWGUI.Emulation.Constants.EmulationControllerVisualIds.AmstradGx4000Controller, gamepad.DefaultVisualId);
+            Assert.Contains(gamepad.DefaultVisualId, gamepad.CompatibleVisualIds!);
+            Assert.Equal(6, gamepad.BindingDefinitions!.Count);
+            Assert.All(gamepad.BindingDefinitions, definition => Assert.True(string.IsNullOrEmpty(definition.DefaultBinding)));
+            Assert.Empty(port.Bindings.Values);
+            Assert.Equal("B", gamepad.VisualCommandIds![EmulationControllerVisualControl.PrimaryAction]);
+            Assert.Equal("A", gamepad.VisualCommandIds[EmulationControllerVisualControl.SecondaryAction]);
+        }
+        var selected = settings with
+        {
+            ControllerPorts = settings.ControllerPorts.Select(port => port with
+            {
+                SelectedControllerId = nameof(ControllerType.Gamepad),
+                VisualId = GWGUI.Emulation.Constants.EmulationControllerVisualIds.AmstradGx4000Controller
+            }).ToArray()
+        };
+        var restored = module.DescribeInputSettings(module.ApplyInputSettings(configuration, selected));
+        Assert.All(restored.ControllerPorts, port =>
+        {
+            Assert.Equal(nameof(ControllerType.Gamepad), port.SelectedControllerId);
+            Assert.Equal(GWGUI.Emulation.Constants.EmulationControllerVisualIds.AmstradGx4000Controller, port.VisualId);
+            Assert.Empty(port.Bindings.Values);
+        });
+    }
+
     [Fact]
     public void MachineGroupsExposeOnlyTheRequestedMachines()
     {
@@ -416,13 +459,15 @@ public sealed class AmstradEmulatorAdapterTests
             callbacks?.Dispose();
         }
     }
-    [Fact]
-    public void EmptyControllerMappingsKeepTheVirtualControllerNeutral()
+    [Theory]
+    [InlineData(ControllerType.Joystick)]
+    [InlineData(ControllerType.Gamepad)]
+    public void EmptyControllerMappingsKeepTheVirtualControllerNeutral(ControllerType controllerType)
     {
         const uint buttons = (1u << 4) | (1u << 0);
         var configuration = new InputConfiguration(ControllerBindings:
         [
-            new ControllerBinding(0, ControllerType.Joystick, ButtonMappings:
+            new ControllerBinding(0, controllerType, ButtonMappings:
                 new Dictionary<string, string>
                 {
                     ["Up"] = string.Empty,

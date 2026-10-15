@@ -20,6 +20,7 @@ internal static class InputSettingsFunctionsConstants
     internal const string ResourceControllerAutomatic = "Emulation.Controller.Automatic";
     internal const string ResourceControllerNone = "Emulation.Controller.None";
     internal const string ResourceControllerJoystick = "Emulation.Amstrad.Controller.Joystick";
+    internal const string ResourceControllerGamepad = "Controllers.Enum.Gamepad";
     internal const string ResourceControllerKeyboard = "Emulation.Amstrad.Controller.Keyboard";
     internal const string ResourceMouseButtonLeft = "Emulation.Mouse.Button.Left";
     internal const string ResourceMouseButtonRight = "Emulation.Mouse.Button.Right";

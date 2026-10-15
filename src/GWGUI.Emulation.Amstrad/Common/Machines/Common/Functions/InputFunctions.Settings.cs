@@ -73,5 +73,13 @@ internal static partial class InputSettingsFunctions
     private static EmulationControllerChoice Choice(ControllerType type) => new(
         type.ToString(), ControllerResourceKey(type), BindingDefinitions: ControllerDefinitions(type),
         CompatibleVisualIds: CompatibleVisualIds(type), DefaultVisualId: DefaultVisualId(type),
-        VisualCommandIds: VisualCommandIds(type)) { Category = type == ControllerType.None ? EmulationControllerCategory.None : EmulationControllerCategory.Joystick };
+        VisualCommandIds: VisualCommandIds(type))
+        {
+            Category = type switch
+            {
+                ControllerType.None => EmulationControllerCategory.None,
+                ControllerType.Gamepad => EmulationControllerCategory.Gamepad,
+                _ => EmulationControllerCategory.Joystick
+            }
+        };
 }

@@ -52,7 +52,7 @@ public sealed class AmstradEmulationModule : IEmulationModule, IEmulationEmulato
         var model = ModelCatalog.Get(machineId);
         return new MachineConfiguration(model.Id, DefaultEmulatorId(model.Id),
             Options: new Dictionary<string, string>(StringComparer.Ordinal), Id: Guid.NewGuid(),
-            Controllers: Enumerable.Repeat(ControllerType.Joystick, model.ControllerPortCount).ToArray(),
+            Controllers: Enumerable.Repeat(ControllerCatalog.Default(model), model.ControllerPortCount).ToArray(),
             Input: new InputConfiguration(), Media: []);
     }
 

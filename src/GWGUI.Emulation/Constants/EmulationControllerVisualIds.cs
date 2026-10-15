@@ -2,6 +2,7 @@ namespace GWGUI.Emulation.Constants;
 
 public static class EmulationControllerVisualIds
 {
+    public const string AmstradGx4000Controller = "amstrad-gx4000-controller";
     public const string PanasonicFzJp1 = "panasonic-fz-jp1";
     public const string WataraSupervisionControls = "watara-supervision-controls";
     public const string ThomsonMj90102 = "thomson-mj90-102";
