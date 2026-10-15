@@ -25,6 +25,7 @@ internal static class OptionValueFunctions
     {
         Renderer.Opengl => OptionConstants.RendererOpengl,
         Renderer.Software => OptionConstants.RendererSoftware,
+        Renderer.Vulkan => OptionConstants.RendererVulkan,
         _ => throw new ArgumentOutOfRangeException(nameof(value), value, null),
     };
 

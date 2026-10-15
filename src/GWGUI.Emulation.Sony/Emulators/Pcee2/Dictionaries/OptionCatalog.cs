@@ -33,6 +33,7 @@ internal static class OptionCatalog
         new(OptionConstants.RendererKey, OptionConstants.RendererLabelResource, OptionConstants.RendererHelpResource, null,
             OptionConstants.RendererDefaultValue, OptionConstants.RendererDefaultValue,
         [
+            new(OptionValueFunctions.ToNative(Renderer.Vulkan), HardwareRenderConstants.VulkanApiName),
             new(OptionValueFunctions.ToNative(Renderer.Opengl), OptionValueResourceConstants.OpenGLHardwareLabelResource),
             new(OptionValueFunctions.ToNative(Renderer.Software), OptionValueResourceConstants.SoftwareLabelResource),
         ], IsVisible: true, Tab: EmulationMachineTab.Video, RequiresRestart: true),

@@ -29,7 +29,8 @@ internal static class OptionConstants
     internal const string RendererHelpResource = "Emulation.Option.pcee2.pcsx2_renderer.Help";
     internal const string RendererOpengl = "opengl";
     internal const string RendererSoftware = "software";
-    internal static readonly string RendererDefaultValue = OptionValueFunctions.ToNative(Renderer.Opengl);
+    internal const string RendererVulkan = "vulkan";
+    internal static readonly string RendererDefaultValue = OptionValueFunctions.ToNative(Renderer.Vulkan);
     internal const string UpscaleMultiplierKey = "pcsx2_upscale_multiplier";
     internal const string UpscaleMultiplierLabelResource = "Emulation.Option.pcee2.pcsx2_upscale_multiplier.Label";
     internal const string UpscaleMultiplierHelpResource = "Emulation.Option.pcee2.pcsx2_upscale_multiplier.Help";
