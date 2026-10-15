@@ -23,25 +23,29 @@ namespace GWGUI.Tests.Emulation.ControllerInput;
 public sealed class KeyboardModuleBindingTests
 {
     [Theory]
-    [InlineData("Acorn")]
-    [InlineData("Apple")]
-    [InlineData("Coleco")]
-    [InlineData("Atari")]
-    public void MixedSpecialKeyBindingPersistsAndReachesNativeCallback(string family)
+    [InlineData("Acorn", EmulationKey.RightAlt)]
+    [InlineData("Apple", EmulationKey.RightAlt)]
+    [InlineData("Coleco", EmulationKey.RightAlt)]
+    [InlineData("Atari", EmulationKey.RightAlt)]
+    [InlineData("Acorn", EmulationKey.F24)]
+    [InlineData("Apple", EmulationKey.F24)]
+    [InlineData("Coleco", EmulationKey.F24)]
+    [InlineData("Atari", EmulationKey.F24)]
+    public void MixedSpecialKeyBindingPersistsAndReachesNativeCallback(string family, EmulationKey hostKey)
     {
         using var http = new HttpClient();
         var events = new List<(bool Pressed, uint Code)>();
         var scenario = Create(family, http, events);
         var settings = scenario.Manager.DescribeInputSettings(scenario.Configuration);
         Assert.Equal(EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller, settings.Keyboard!.Sources);
-        const string chord = "Keyboard:RightAlt+Mouse:Middle+Controller:A";
+        var chord = $"Keyboard:{hostKey}+Mouse:Middle+Controller:A";
         var values = new Dictionary<string, string>(settings.Keyboard.Values) { [scenario.TargetId] = chord };
         var changed = scenario.Manager.ApplyInputSettings(scenario.Configuration, settings with { Keyboard = settings.Keyboard with { Values = values } });
         var restored = (IEmulationConfiguration)JsonSerializer.Deserialize(JsonSerializer.Serialize(changed, changed.GetType()), changed.GetType())!;
         Assert.Equal(chord, scenario.Manager.DescribeInputSettings(restored).Keyboard!.Values[scenario.TargetId]);
         var physical = EmulationInputSnapshot.Empty with
         {
-            Keys = new HashSet<EmulationKey> { EmulationKey.RightAlt, EmulationKey.Z },
+            Keys = new HashSet<EmulationKey> { hostKey, EmulationKey.Z },
             Pointer = EmulationInputSnapshot.Empty.Pointer with { Middle = true },
             Controllers = [EmulationControllerState.Empty with { Buttons = 1u << 8 }]
         };

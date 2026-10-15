@@ -9,7 +9,10 @@ public static class EmulationKeyMapper
     [
         EmulationKey.F1, EmulationKey.F2, EmulationKey.F3, EmulationKey.F4,
         EmulationKey.F5, EmulationKey.F6, EmulationKey.F7, EmulationKey.F8,
-        EmulationKey.F9, EmulationKey.F10, EmulationKey.F11, EmulationKey.F12
+        EmulationKey.F9, EmulationKey.F10, EmulationKey.F11, EmulationKey.F12,
+        EmulationKey.F13, EmulationKey.F14, EmulationKey.F15, EmulationKey.F16,
+        EmulationKey.F17, EmulationKey.F18, EmulationKey.F19, EmulationKey.F20,
+        EmulationKey.F21, EmulationKey.F22, EmulationKey.F23, EmulationKey.F24
     ];
     public static bool TryMap(EmulationKey source, out Key result)
     {
@@ -35,7 +38,7 @@ public static class EmulationKeyMapper
             result = (EmulationKey)((int)EmulationKey.D0 + key - Key.D0);
             return true;
         }
-        if (key is >= Key.F1 and <= Key.F12)
+        if (key is >= Key.F1 and <= Key.F24)
         {
             result = FunctionKeys[key - Key.F1];
             return true;

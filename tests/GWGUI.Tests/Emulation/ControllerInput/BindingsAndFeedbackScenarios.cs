@@ -173,10 +173,12 @@ internal static class BindingsAndFeedbackScenarios
         Assert.False(KeyboardChordFunctions.TryParse("not-a-key",out _));
         Assert.Equal("Ctrl+Alt+Shift+F6+F8", KeyboardChordFunctions.Format(ModifierKeys.Shift | ModifierKeys.Control | ModifierKeys.Alt, [Key.F8, Key.F6]));
         Assert.Equal("RightCtrl+RightAlt+LeftShift+F6+F8", KeyboardChordFunctions.Format(ModifierKeys.Control | ModifierKeys.Alt | ModifierKeys.Shift, [Key.LeftShift, Key.F8, Key.RightAlt, Key.RightCtrl, Key.F6]));
-        for (var number = 1; number <= 12; number++)
+        for (var number = 1; number <= 24; number++)
         {
             Assert.True(GWGUI.App.Functions.Input.Keyboard.EmulationKeyMapper.TryMap(Enum.Parse<Key>("F" + number), out var function));
             Assert.Equal("F" + number, function.ToString());
+            Assert.True(GWGUI.App.Functions.Input.Keyboard.EmulationKeyMapper.TryMap(function, out var physical));
+            Assert.Equal(Enum.Parse<Key>("F" + number), physical);
         }
         Assert.True(GWGUI.App.Functions.Input.Keyboard.EmulationKeyMapper.TryMap(Key.LWin, out var leftWindows));
         Assert.Equal(EmulationKey.LeftWindows, leftWindows);
