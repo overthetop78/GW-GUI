@@ -45,4 +45,5 @@
   <data name="Emulation.Controller.Feedback.Strong"><value>Vibrazione forte</value></data>
   <data name="Emulation.Controller.Feedback.Weak"><value>Vibrazione debole</value></data>
   <data name="Emulation.Controller.Action.Reload"><value>Ricarica</value></data>
+  <data name="Emulation.Controller.CrosshairColor"><value>Colore del mirino</value></data>
 </root>

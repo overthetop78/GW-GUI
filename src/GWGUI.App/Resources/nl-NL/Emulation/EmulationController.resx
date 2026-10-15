@@ -45,4 +45,5 @@
   <data name="Emulation.Controller.Feedback.Strong"><value>Sterke trillingen</value></data>
   <data name="Emulation.Controller.Feedback.Weak"><value>Zwakke trillingen</value></data>
   <data name="Emulation.Controller.Action.Reload"><value>Herladen</value></data>
+  <data name="Emulation.Controller.CrosshairColor"><value>Kleur van het dradenkruis</value></data>
 </root>

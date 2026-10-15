@@ -45,4 +45,5 @@
   <data name="Emulation.Controller.Feedback.Strong"><value>Сильна вібрація</value></data>
   <data name="Emulation.Controller.Feedback.Weak"><value>Слабка вібрація</value></data>
   <data name="Emulation.Controller.Action.Reload"><value>Перезарядити</value></data>
+  <data name="Emulation.Controller.CrosshairColor"><value>Колір прицілу</value></data>
 </root>

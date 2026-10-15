@@ -719,11 +719,17 @@ public sealed class ConsoleFamilyModuleTests
                 Assert.DoesNotContain(storage.AvailableDevices, device => device.Slot == EmulationMediaSlot.Cartridge0);
                 if (model.Id == "PocketStation")
                 {
-                    var flash = Assert.Single(storage.AvailableDevices);
+                    Assert.Equal(2, storage.AvailableDevices.Count);
+                    var flash = Assert.Single(storage.AvailableDevices, device => device.Slot == EmulationMediaSlot.MemoryCard0);
                     Assert.Equal(EmulationMediaSlot.MemoryCard0, flash.Slot);
                     Assert.True(flash.IsPermanent);
                     Assert.Equal(new[] { ".bin", ".gme", ".mcr", ".mcd", ".mcs", ".pss" }, flash.AcceptedExtensions);
                     Assert.Contains(EmulationMediaSlot.MemoryCard0, storage.ConfiguredSlots);
+                    var linkedSlot = new EmulationMediaSlot(EmulationMediaCategory.MemoryCard, 1);
+                    var linkedFlash = Assert.Single(storage.AvailableDevices, device => device.Slot == linkedSlot);
+                    Assert.False(linkedFlash.IsPermanent);
+                    Assert.Equal(flash.AcceptedExtensions, linkedFlash.AcceptedExtensions);
+                    Assert.DoesNotContain(linkedSlot, storage.ConfiguredSlots);
                 }
                 if (model.Id == "PocketStation")
                     Assert.DoesNotContain(storage.AvailableDevices, device => device.Slot == EmulationMediaSlot.Cd0);

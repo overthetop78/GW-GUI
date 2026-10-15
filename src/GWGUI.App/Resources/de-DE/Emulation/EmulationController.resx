@@ -45,4 +45,5 @@
   <data name="Emulation.Controller.Feedback.Strong"><value>Starke Vibration</value></data>
   <data name="Emulation.Controller.Feedback.Weak"><value>Schwache Vibration</value></data>
   <data name="Emulation.Controller.Action.Reload"><value>Nachladen</value></data>
+  <data name="Emulation.Controller.CrosshairColor"><value>Farbe des Fadenkreuzes</value></data>
 </root>

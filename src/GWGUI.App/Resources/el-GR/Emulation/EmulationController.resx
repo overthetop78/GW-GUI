@@ -45,4 +45,5 @@
   <data name="Emulation.Controller.Feedback.Strong"><value>Ισχυρή δόνηση</value></data>
   <data name="Emulation.Controller.Feedback.Weak"><value>Ασθενής δόνηση</value></data>
   <data name="Emulation.Controller.Action.Reload"><value>Επαναγέμιση</value></data>
+  <data name="Emulation.Controller.CrosshairColor"><value>Χρώμα σταυρονήματος</value></data>
 </root>

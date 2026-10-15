@@ -45,4 +45,5 @@
   <data name="Emulation.Controller.Feedback.Strong"><value>Getaran kuat</value></data>
   <data name="Emulation.Controller.Feedback.Weak"><value>Getaran lemah</value></data>
   <data name="Emulation.Controller.Action.Reload"><value>Isi ulang peluru</value></data>
+  <data name="Emulation.Controller.CrosshairColor"><value>Warna bidikan</value></data>
 </root>

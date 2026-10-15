@@ -45,4 +45,5 @@
   <data name="Emulation.Controller.Feedback.Strong"><value>强振动</value></data>
   <data name="Emulation.Controller.Feedback.Weak"><value>弱振动</value></data>
   <data name="Emulation.Controller.Action.Reload"><value>重新装弹</value></data>
+  <data name="Emulation.Controller.CrosshairColor"><value>准星颜色</value></data>
 </root>

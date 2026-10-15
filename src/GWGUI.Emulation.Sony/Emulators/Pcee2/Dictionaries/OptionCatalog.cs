@@ -9,6 +9,7 @@ using CasMode = GWGUI.Emulation.Sony.Emulators.Pcee2.Enums.CasMode;
 using FrameLimiter = GWGUI.Emulation.Sony.Emulators.Pcee2.Enums.FrameLimiter;
 using HwDownloadMode = GWGUI.Emulation.Sony.Emulators.Pcee2.Enums.HwDownloadMode;
 using Lightgun = GWGUI.Emulation.Sony.Emulators.Pcee2.Enums.Lightgun;
+using CrosshairColor = GWGUI.Emulation.Sony.Emulators.Pcee2.Enums.CrosshairColor;
 using Multitap = GWGUI.Emulation.Sony.Emulators.Pcee2.Enums.Multitap;
 using Renderer = GWGUI.Emulation.Sony.Emulators.Pcee2.Enums.Renderer;
 using TextureFiltering = GWGUI.Emulation.Sony.Emulators.Pcee2.Enums.TextureFiltering;
@@ -153,6 +154,16 @@ internal static class OptionCatalog
             new(OptionValueFunctions.ToNative(Multitap.Port2), OptionValueResourceConstants.Port25PlayersLabelResource),
             new(OptionValueFunctions.ToNative(Multitap.Both), OptionValueResourceConstants.BothPorts8PlayersLabelResource),
         ], IsVisible: true, Tab: EmulationMachineTab.Controllers, RequiresRestart: true),
+        new(OptionConstants.CrosshairKey, OptionConstants.CrosshairLabelResource, null, null,
+            OptionConstants.CrosshairDisabled, OptionConstants.CrosshairDisabled,
+        [
+            new(OptionValueFunctions.ToNative(CrosshairColor.Disabled), OptionValueResourceConstants.DisabledLabelResource),
+            new(OptionValueFunctions.ToNative(CrosshairColor.White), OptionValueResourceConstants.WhiteLabelResource),
+            new(OptionValueFunctions.ToNative(CrosshairColor.Red), OptionValueResourceConstants.RedLabelResource),
+            new(OptionValueFunctions.ToNative(CrosshairColor.Green), OptionValueResourceConstants.GreenLabelResource),
+            new(OptionValueFunctions.ToNative(CrosshairColor.Blue), OptionValueResourceConstants.BlueLabelResource),
+            new(OptionValueFunctions.ToNative(CrosshairColor.Yellow), OptionValueResourceConstants.YellowLabelResource)
+        ], Tab: EmulationMachineTab.Video, RequiresRestart: true),
         new(OptionConstants.LightgunKey, OptionConstants.LightgunLabelResource, OptionConstants.LightgunHelpResource, null,
             OptionConstants.LightgunDefaultValue, OptionConstants.LightgunDefaultValue,
         [

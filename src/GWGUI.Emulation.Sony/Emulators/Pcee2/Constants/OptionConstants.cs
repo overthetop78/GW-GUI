@@ -136,6 +136,14 @@ internal static class OptionConstants
     internal const string MultitapBoth = "both";
     internal static readonly string MultitapDefaultValue = OptionValueFunctions.ToNative(Multitap.Disabled);
     internal const string LightgunKey = "pcsx2_lightgun";
+    internal const string CrosshairKey = "pcsx2_lightgun_crosshair";
+    internal const string CrosshairLabelResource = "Emulation.Controller.CrosshairColor";
+    internal const string CrosshairDisabled = "disabled";
+    internal const string CrosshairWhite = "FFFFFF";
+    internal const string CrosshairRed = "2020FF";
+    internal const string CrosshairGreen = "20FF20";
+    internal const string CrosshairBlue = "FFC020";
+    internal const string CrosshairYellow = "20E0FF";
     internal const string LightgunLabelResource = "Emulation.Option.pcee2.pcsx2_lightgun.Label";
     internal const string LightgunHelpResource = "Emulation.Option.pcee2.pcsx2_lightgun.Help";
     internal const string LightgunDisabled = "disabled";

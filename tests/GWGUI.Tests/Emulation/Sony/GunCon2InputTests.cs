@@ -19,6 +19,30 @@ namespace GWGUI.Tests.Emulation.Sony;
 public sealed class GunCon2InputTests
 {
     [Theory]
+    [InlineData("disabled", false)]
+    [InlineData("usb1", true)]
+    [InlineData("usb2", true)]
+    [InlineData("both", true)]
+    public void CrosshairUsesTheExactNativeColoursAndIsAvailableOnlyWithAGun(string usb, bool enabled)
+    {
+        var factory = new GWGUI.Emulation.Sony.Emulators.Pcee2.Factories.Pcee2MachineFactory();
+        var configuration = Configuration(usb);
+        var field = Assert.Single(factory.GetSettingsBlocks(configuration).SelectMany(block => block.Fields), field => field.Id == "pcsx2_lightgun_crosshair");
+        Assert.Equal(EmulationMachineTab.Video, field.Tab);
+        Assert.Equal(enabled, field.IsEnabled);
+        Assert.Equal("disabled", field.Value);
+        Assert.Equal("Emulation.Controller.CrosshairColor", field.LabelResourceKey);
+        Assert.Equal(new[] { "disabled", "FFFFFF", "2020FF", "20FF20", "FFC020", "20E0FF" }, field.Choices!.Select(choice => choice.Id));
+        foreach (var value in field.Choices!)
+        {
+            var selected = configuration with { Options = new Dictionary<string, string>(configuration.Options!) { [field.Id] = value.Id } };
+            Assert.Equal(value.Id, factory.GetRuntimeOptions(selected)[field.Id]);
+            Assert.Equal(value.Id, Assert.Single(factory.GetSettingsBlocks(selected).SelectMany(block => block.Fields), item => item.Id == field.Id).Value);
+        }
+        Assert.DoesNotContain(factory.GetSettingsBlocks(configuration).SelectMany(block => block.Fields), field => field.Id == "pcsx2_lightgun");
+    }
+
+    [Theory]
     [InlineData("disabled", "None", "None")]
     [InlineData("usb1", "GunCon2", "None")]
     [InlineData("usb2", "None", "GunCon2")]

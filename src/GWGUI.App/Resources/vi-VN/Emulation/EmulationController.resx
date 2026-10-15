@@ -45,4 +45,5 @@
   <data name="Emulation.Controller.Feedback.Strong"><value>rung động mạnh</value></data>
   <data name="Emulation.Controller.Feedback.Weak"><value>rung động yếu</value></data>
   <data name="Emulation.Controller.Action.Reload"><value>Nạp lại đạn</value></data>
+  <data name="Emulation.Controller.CrosshairColor"><value>Màu tâm ngắm</value></data>
 </root>

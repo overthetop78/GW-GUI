@@ -45,4 +45,5 @@
   <data name="Emulation.Controller.Feedback.Strong"><value>Silna wibracja</value></data>
   <data name="Emulation.Controller.Feedback.Weak"><value>Słabe wibracje</value></data>
   <data name="Emulation.Controller.Action.Reload"><value>Przeładuj</value></data>
+  <data name="Emulation.Controller.CrosshairColor"><value>Kolor celownika</value></data>
 </root>

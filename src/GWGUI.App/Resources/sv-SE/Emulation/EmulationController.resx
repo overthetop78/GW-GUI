@@ -45,4 +45,5 @@
   <data name="Emulation.Controller.Feedback.Strong"><value>Stark vibration</value></data>
   <data name="Emulation.Controller.Feedback.Weak"><value>Svag vibration</value></data>
   <data name="Emulation.Controller.Action.Reload"><value>Ladda om</value></data>
+  <data name="Emulation.Controller.CrosshairColor"><value>Siktets färg</value></data>
 </root>

@@ -45,4 +45,5 @@
   <data name="Emulation.Controller.Feedback.Strong"><value>Erős rezgés</value></data>
   <data name="Emulation.Controller.Feedback.Weak"><value>Gyenge rezgés</value></data>
   <data name="Emulation.Controller.Action.Reload"><value>Újratöltés</value></data>
+  <data name="Emulation.Controller.CrosshairColor"><value>Célkereszt színe</value></data>
 </root>

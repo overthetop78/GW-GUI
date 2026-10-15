@@ -45,4 +45,5 @@
   <data name="Emulation.Controller.Feedback.Strong"><value>Sterk vibrasjon</value></data>
   <data name="Emulation.Controller.Feedback.Weak"><value>Svak vibrasjon</value></data>
   <data name="Emulation.Controller.Action.Reload"><value>Lad om</value></data>
+  <data name="Emulation.Controller.CrosshairColor"><value>Siktekorsets farge</value></data>
 </root>

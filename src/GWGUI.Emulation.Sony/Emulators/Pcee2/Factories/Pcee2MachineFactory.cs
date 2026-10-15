@@ -19,6 +19,11 @@ internal sealed class Pcee2MachineFactory : CoreMachineFactory
     public override IReadOnlyList<InputBindingDefinition>? GetControllerBindingDefinitions(MachineConfiguration configuration, ControllerType type, int port) =>
         type == ControllerType.GunCon2 ? ControllerConfigurationFunctions.GunCommands : null;
     public override IReadOnlyList<EmulationSettingsBlock> GetSettingsBlocks(MachineConfiguration configuration) => base.GetSettingsBlocks(configuration)
-        .Select(block => block with { Fields = block.Fields.Where(field => field.Id != OptionConstants.LightgunKey).ToArray() })
+        .Select(block => block with
+        {
+            Fields = block.Fields.Where(field => field.Id != OptionConstants.LightgunKey).Select(field => field.Id == OptionConstants.CrosshairKey
+                ? field with { IsEnabled = Enumerable.Range(0, Controllers.UsbPortCount).Any(port => ControllerConfigurationFunctions.UsbType(configuration, port) == ControllerType.GunCon2) }
+                : field).ToArray()
+        })
         .Where(block => block.Fields.Count > 0).ToArray();
 }

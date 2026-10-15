@@ -45,4 +45,5 @@
   <data name="Emulation.Controller.Feedback.Strong"><value>강한 진동</value></data>
   <data name="Emulation.Controller.Feedback.Weak"><value>약한 진동</value></data>
   <data name="Emulation.Controller.Action.Reload"><value>재장전</value></data>
+  <data name="Emulation.Controller.CrosshairColor"><value>조준선 색상</value></data>
 </root>

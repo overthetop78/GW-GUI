@@ -1,4 +1,5 @@
 using System.Globalization;
+using CrosshairColor = GWGUI.Emulation.Sony.Emulators.Pcee2.Enums.CrosshairColor;
 using AnisotropicFiltering = GWGUI.Emulation.Sony.Emulators.Pcee2.Enums.AnisotropicFiltering;
 using AspectRatio = GWGUI.Emulation.Sony.Emulators.Pcee2.Enums.AspectRatio;
 using AudioBufferMs = GWGUI.Emulation.Sony.Emulators.Pcee2.Enums.AudioBufferMs;
@@ -21,6 +22,17 @@ namespace GWGUI.Emulation.Sony.Emulators.Pcee2.Functions;
 
 internal static class OptionValueFunctions
 {
+    internal static string ToNative(CrosshairColor value) => value switch
+    {
+        CrosshairColor.Disabled => OptionConstants.CrosshairDisabled,
+        CrosshairColor.White => OptionConstants.CrosshairWhite,
+        CrosshairColor.Red => OptionConstants.CrosshairRed,
+        CrosshairColor.Green => OptionConstants.CrosshairGreen,
+        CrosshairColor.Blue => OptionConstants.CrosshairBlue,
+        CrosshairColor.Yellow => OptionConstants.CrosshairYellow,
+        _ => throw new ArgumentOutOfRangeException(nameof(value), value, null)
+    };
+
     internal static string ToNative(Renderer value) => value switch
     {
         Renderer.Opengl => OptionConstants.RendererOpengl,

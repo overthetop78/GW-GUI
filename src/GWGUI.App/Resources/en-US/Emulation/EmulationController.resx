@@ -45,4 +45,5 @@
   <data name="Emulation.Controller.Feedback.Strong"><value>Strong vibration</value></data>
   <data name="Emulation.Controller.Feedback.Weak"><value>Weak vibration</value></data>
   <data name="Emulation.Controller.Action.Reload"><value>Reload</value></data>
+  <data name="Emulation.Controller.CrosshairColor"><value>Crosshair colour</value></data>
 </root>

@@ -45,4 +45,5 @@
   <data name="Emulation.Controller.Feedback.Strong"><value>Vibración fuerte</value></data>
   <data name="Emulation.Controller.Feedback.Weak"><value>Vibración débil</value></data>
   <data name="Emulation.Controller.Action.Reload"><value>Recargar</value></data>
+  <data name="Emulation.Controller.CrosshairColor"><value>Color de la retícula</value></data>
 </root>
