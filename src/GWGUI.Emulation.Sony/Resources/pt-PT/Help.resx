@@ -4,10 +4,6 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Sony.Help.Audio.Enabled.Detailed"><value>Controla se GW GUI reproduz as amostras de áudio geradas pelo emulador.</value></data>
-  <data name="Emulation.Sony.Help.Audio.Enabled.Short"><value>Activar ou desactivar o som emulado.</value></data>
-  <data name="Emulation.Sony.Help.Audio.Output.Detailed"><value>Escolha o dispositivo Windows que reproduz som a partir desta máquina emulado.</value></data>
-  <data name="Emulation.Sony.Help.Audio.Output.Short"><value>Saída de áudio usada pela GW GUI.</value></data>
   <data name="Emulation.Sony.Help.Cpu.Frequency.Detailed"><value>Mostra a frequência nominal do relógio do processador na máquina Sony selecionada.</value></data>
   <data name="Emulation.Sony.Help.Cpu.Frequency.Short"><value>Frequência de relógio do processador original.</value></data>
   <data name="Emulation.Sony.Help.Cpu.Model.Detailed"><value>Mostra o modelo de processador fornecido pela máquina Sony selecionada.</value></data>
@@ -22,8 +18,8 @@
   <data name="Emulation.Sony.Help.Memory.Ram.Short"><value>Quantidade de RAM disponível para a máquina emulado.</value></data>
   <data name="Emulation.Sony.Help.Cpu.EffectiveFrequency.Short"><value>Frequência do CPU emulado após a aplicação da porcentagem de relógio selecionada.</value></data>
   <data name="Emulation.Sony.Help.Cpu.EffectiveFrequency.Detailed"><value>A frequência nominal da consola é multiplicada pela percentagem seleccionada. Isso muda o processador emulado, não o processador host. Valores mais elevados podem reduzir os abrandamentos, mas podem interromper o tempo do jogo. Automático usa o emulador padrão.</value></data>
-  <data name="Emulation.Sony.Help.Video.Chip.Short"><value>Chips de vídeo originais usados pelas revisões de hardware da PlayStation.</value></data>
-  <data name="Emulation.Sony.Help.Video.Chip.Detailed"><value>Os chips Sony GPU listados variam com a revisão da placa-mãe. Opções internas de renderização controlam como o emulador produz geometria e pixels. Os filtros GW GUI processam a imagem concluída depois.</value></data>
-  <data name="Emulation.Sony.Help.Audio.Chip.Short"><value>Chips de áudio originais usados pelas revisões de hardware da PlayStation.</value></data>
-  <data name="Emulation.Sony.Help.Audio.Chip.Detailed"><value>O Sony SPU mistura vozes sonoras e decodifica amostras comprimidas. Os chips listados variam com a revisão da placa-mãe. Saída de áudio e latência controlar a reprodução em seu computador.</value></data>
+  <data name="Emulation.Sony.Help.Video.Chip.Short"><value>Hardware gráfico original da máquina selecionada.</value></data>
+  <data name="Emulation.Sony.Help.Video.Chip.Detailed"><value>Mostra o hardware gráfico original da máquina selecionada. As definições de renderização do emulador alteram a imagem gerada. Os filtros do GW GUI são aplicados em seguida.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Chip.Short"><value>Hardware de som original da máquina selecionada.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Chip.Detailed"><value>Mostra o hardware de som original da máquina selecionada. As definições de saída de áudio e latência controlam a reprodução no computador.</value></data>
 </root>

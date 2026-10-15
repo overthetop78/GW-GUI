@@ -5,7 +5,7 @@
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Nec.Help.Memory.Ram.Short"><value>Một núi RAM sẵn sàng cho máy mô phỏng.</value></data>
-  <data name="Emulation.Nec.Help.Memory.Ram.Detailed"><value>Chọn cách mở rộng RAM bị phơi bày bởi Bọ hung. Máy phải khởi chạy lại trước khi dùng số lượng mới.</value></data>
+  <data name="Emulation.Nec.Help.Memory.Ram.Detailed"><value>Chọn cách mở rộng RAM bị phơi bày bởi Bọ hung.</value></data>
   <data name="Emulation.Nec.Help.Firmware.Integrated.Short"><value>Không cần hồ sơ bên ngoài BIOS cho mô hình này.</value></data>
   <data name="Emulation.Nec.Help.Firmware.Integrated.Detailed"><value>Trò chơi hộp sọ trên máy này chạy mà không có một hệ thống bên ngoài BIOS.</value></data>
   <data name="Emulation.Nec.Help.Video.Resolution.Short"><value>Giải pháp nội bộ được thực hiện bởi Bọ chét.</value></data>

@@ -5,7 +5,7 @@
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Nec.Help.Memory.Ram.Short"><value>Сума RAM доступна до встановленої машини.</value></data>
-  <data name="Emulation.Nec.Help.Memory.Ram.Detailed"><value>Виберіть розширення RAM, виставлене BeetlePce. Машина повинна перезавантажити до нової кількості.</value></data>
+  <data name="Emulation.Nec.Help.Memory.Ram.Detailed"><value>Виберіть розширення RAM.</value></data>
   <data name="Emulation.Nec.Help.Firmware.Integrated.Short"><value>Для цієї моделі потрібен зовнішній файл BIOS.</value></data>
   <data name="Emulation.Nec.Help.Firmware.Integrated.Detailed"><value>Картридж ігри на цьому машині працюють без зовнішньої системи BIOS.</value></data>
   <data name="Emulation.Nec.Help.Video.Resolution.Short"><value>Внутрішня роздільна здатність забезпечується BeetlePce.</value></data>

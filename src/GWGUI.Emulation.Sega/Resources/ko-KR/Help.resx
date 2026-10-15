@@ -6,7 +6,7 @@
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Sega.Help.General.Model.Short"><value>Sega 기계 모델 구성.</value></data>
   <data name="Emulation.Sega.Help.Memory.Ram.Short"><value>에뮬레이션 기계에 사용할 수있는 RAM의 금액.</value></data>
-  <data name="Emulation.Sega.Help.Memory.Ram.Detailed"><value>에뮬레이션 코어에 노출된 RAM 확장을 선택합니다. 기계는 새로운 양의 앞에 재시작해야 합니다.</value></data>
+  <data name="Emulation.Sega.Help.Memory.Ram.Detailed"><value>에뮬레이션 코어에 노출된 RAM 확장을 선택합니다.</value></data>
   <data name="Emulation.Sega.Help.Firmware.Integrated.Short"><value>시스템 ROM은 에뮬레이션 코어에 내장되어 있습니다.</value></data>
   <data name="Emulation.Sega.Help.Firmware.Integrated.Detailed"><value>에뮬레이션 코어는 내부적으로 시스템 ROM을 제공하고 ROM 파일 선택기를 노출하지 않습니다.</value></data>
   <data name="Emulation.Sega.Help.General.Emulator.Short"><value>이 기계를 위해 선택된 유화제.</value></data>

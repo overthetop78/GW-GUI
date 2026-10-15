@@ -5,7 +5,7 @@
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Nec.Help.Memory.Ram.Short"><value>كمية RAM المتاحة للآلة المحاكاة.</value></data>
-  <data name="Emulation.Nec.Help.Memory.Ram.Detailed"><value>يَختارُ التوسيع RAM الذي كشفتْه بيتل بيس. يجب على الآلة أن تعود قبل استخدام المبلغ الجديد</value></data>
+  <data name="Emulation.Nec.Help.Memory.Ram.Detailed"><value>يَختارُ التوسيع RAM الذي كشفتْه بيتل بيس.</value></data>
   <data name="Emulation.Nec.Help.Firmware.Integrated.Short"><value>ولا يلزم تقديم أي ملف خارجي لهذا النموذج قدره BIOS.</value></data>
   <data name="Emulation.Nec.Help.Firmware.Integrated.Detailed"><value>ألعاب كارتريدج على هذه الآلة تشغيل بدون نظام خارجي BIOS.</value></data>
   <data name="Emulation.Nec.Help.Video.Resolution.Short"><value>قرار داخلي صادر عن بيتل بيس</value></data>

@@ -5,7 +5,7 @@
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Amstrad.Help.Memory.Ram.Short"><value>Кількість RAM доступна на емульованій машині.</value></data>
-  <data name="Emulation.Amstrad.Help.Memory.Ram.Detailed"><value>Виберіть RAM розширення, що піддається Caprice32. Машина повинна перезапустити до нового розміру.</value></data>
+  <data name="Emulation.Amstrad.Help.Memory.Ram.Detailed"><value>Виберіть RAM розширення.</value></data>
   <data name="Emulation.Amstrad.Help.Firmware.Integrated.Short"><value>Система ROM вбудована в Caprice32.</value></data>
   <data name="Emulation.Amstrad.Help.Firmware.Integrated.Detailed"><value>Caprice32 забезпечує систему ROM внутрішньо і не піддається вигнанню ROM вибірка файлів.</value></data>
   <data name="Emulation.Amstrad.Help.Video.Resolution.Short"><value>Внутрішнє вирішення, що надає Caprice32.</value></data>

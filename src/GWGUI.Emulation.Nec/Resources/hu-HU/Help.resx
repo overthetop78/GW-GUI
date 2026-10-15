@@ -5,7 +5,7 @@
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Nec.Help.Memory.Ram.Short"><value>Az emulált gép rendelkezésére álló RAM-mennyiség.</value></data>
-  <data name="Emulation.Nec.Help.Memory.Ram.Detailed"><value>Kiválasztja a RAM bővítést, amit BeetlePce mutat be. A gépet az új mennyiség használata előtt újra kell indítani.</value></data>
+  <data name="Emulation.Nec.Help.Memory.Ram.Detailed"><value>Kiválasztja a RAM bővítést.</value></data>
   <data name="Emulation.Nec.Help.Firmware.Integrated.Short"><value>Ehhez a modellhez nem szükséges külső BIOS fájl.</value></data>
   <data name="Emulation.Nec.Help.Firmware.Integrated.Detailed"><value>Patron játékok ezen a gépen fut nélkül egy külső rendszer BIOS.</value></data>
   <data name="Emulation.Nec.Help.Video.Resolution.Short"><value>BeetlePce belső felbontása.</value></data>

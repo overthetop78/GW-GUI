@@ -26,14 +26,12 @@
   <data name="Emulation.Option.ppsspp.ppsspp_language.Value.11"><value>중국 전통</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_language.Value.12"><value>중국어 간체</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_psp_model.Label"><value>PSP 모델</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_backend.Label"><value>기타 제품</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_backend.Help"><value>'자동'은 프런트 엔드 비디오 드라이버를 사용합니다. 주요 특징</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_software_rendering.Label"><value>소프트웨어 렌더링</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_software_rendering.Help"><value>, 정확 하 게. 주요 특징</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_software_rendering.Help"><value>더 많은 처리 성능을 사용하는 대신 소프트웨어 렌더링으로 정확도를 높입니다.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_internal_resolution.Label"><value>Rendering 해결책</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_internal_resolution.Help"><value>내부 렌더링 해상도를 선택합니다.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_mulitsample_level.Label"><value>MSAA 항아리싱</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_mulitsample_level.Help"><value>Vulkan 전용. 주요 특징</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_mulitsample_level.Help"><value>Vulkan으로 MSAA 안티앨리어싱을 적용합니다.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_cropto16x9.Label"><value>자르기에 16x9</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_cropto16x9.Help"><value>16:9 사진을 얻기 위해 상단과 하단 가장자리를 자르기.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_frameskip.Label"><value>프레임스키프</value></data>
@@ -46,7 +44,7 @@
   <data name="Emulation.Option.ppsspp.ppsspp_detect_vsync_swap_interval.Label"><value>프레임 속도 변경 감지</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_detect_vsync_swap_interval.Help"><value>프론트엔드</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Label"><value>버퍼 그래픽 명령</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Help"><value>GL/Vulkan만, 느리게, 더 적은 지연, 재시작.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Help"><value>GL/Vulkan만, 느리게, 더 적은 지연.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Value.0"><value>버퍼 없음</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Value.1"><value>최대 1</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_button_preference.Label"><value>확인 단추</value></data>

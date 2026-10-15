@@ -299,4 +299,7 @@
   <data name="Emulation.Video.Parameter.ProjectionVignette"><value>Kantmørkfarvning</value></data>
   <data name="Emulation.Video.Projection.Group.Optics"><value>Optik og lys</value></data>
   <data name="Emulation.Video.Projection.Group.Screen"><value>Fremvisningsskærm</value></data>
+  <data name="Emulation.Option.Common.Value.HardwareRendering"><value>Hardwarebaseret gengivelse</value></data>
+  <data name="Emulation.Option.Common.RenderingMode.Label"><value>Gengivelsestilstand</value></data>
+  <data name="Emulation.Option.Common.RenderingMode.Help"><value>Hardwarebaseret gengivelse bruger det grafik-API, der er valgt til programmet, hvis emulatoren understøtter det.</value></data>
 </root>

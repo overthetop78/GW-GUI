@@ -2,7 +2,7 @@ namespace GWGUI.Emulation.Sony.Common.Machines.Common.Functions;
 
 internal static class InputSnapshotFunctions
 {
-    internal static EmulationInputSnapshot Apply(EmulationInputSnapshot snapshot, InputConfiguration? configuration, bool controllerPointerSwitchPressed, int controllerPortCount = ControllerPortConstants.MaximumControllerPortCount)
+    internal static EmulationInputSnapshot Apply(EmulationInputSnapshot snapshot, InputConfiguration? configuration, bool controllerPointerSwitchPressed, int controllerPortCount = ControllerPortConstants.MaximumGamepadPortCount)
     {
         if (controllerPortCount < ControllerPortConstants.MinimumControllerPort
             || controllerPortCount > ControllerPortConstants.MaximumControllerPortCount)

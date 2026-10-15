@@ -6,7 +6,7 @@
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Sega.Help.General.Model.Short"><value>Sega machine modell konfigurálva.</value></data>
   <data name="Emulation.Sega.Help.Memory.Ram.Short"><value>Az emulált gép rendelkezésére álló RAM-mennyiség.</value></data>
-  <data name="Emulation.Sega.Help.Memory.Ram.Detailed"><value>Kiválasztja a RAM expanziót, amit az emulációs mag bocsát ki. A gépet az új mennyiség használata előtt újra kell indítani.</value></data>
+  <data name="Emulation.Sega.Help.Memory.Ram.Detailed"><value>Kiválasztja a RAM expanziót.</value></data>
   <data name="Emulation.Sega.Help.Firmware.Integrated.Short"><value>A ROM rendszer az emulációs magba épül.</value></data>
   <data name="Emulation.Sega.Help.Firmware.Integrated.Detailed"><value>Az emulációs mag biztosítja a rendszer ROM belső és nem tárja fel a ROM fájlbeállító.</value></data>
   <data name="Emulation.Sega.Help.General.Emulator.Short"><value>Emulátor kiválasztva ehhez a géphez.</value></data>

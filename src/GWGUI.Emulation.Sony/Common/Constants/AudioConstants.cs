@@ -13,6 +13,7 @@ internal static class AudioConstants
     internal const float MaximumVolume = 1f;
     internal const float DefaultVolume = MaximumVolume;
     internal const int DefaultLatencyMilliseconds = 50;
+    internal static IReadOnlyList<int> LatencyMilliseconds { get; } = [20, 35, 50, 75, 100, 150, 250];
     internal const int FirstSampleIndex = 0;
     internal const int MinimumSampleValue = short.MinValue;
     internal const int MaximumSampleValue = short.MaxValue;

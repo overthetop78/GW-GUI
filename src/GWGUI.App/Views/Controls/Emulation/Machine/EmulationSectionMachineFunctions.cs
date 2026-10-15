@@ -3,6 +3,7 @@ using GWGUI.App.Constants.Emulation.Errors;
 using GWGUI.App.Contracts.Emulation.Configurations;
 using GWGUI.App.Contracts.Machine;
 using GWGUI.App.Functions.Emulation.Shortcuts;
+using GWGUI.App.Functions.Emulation.Machine;
 using GWGUI.App.Presenters.Common;
 using GWGUI.App.Services.Audio;
 using System.IO;
@@ -48,6 +49,8 @@ public sealed partial class EmulationSection
 
     private ValueTask<EmulationMachineRuntime> CreateRuntimeAsync(IEmulationModule module, IEmulationConfiguration configuration, CancellationToken cancellationToken = default)
     {
+        configuration = EmulationVideoConfigurationFunctions.Apply(module, configuration,
+            GWGUI.App.Services.Emulation.EmulationVideoPresentationProfiles.Store.Get(module.Id, configuration.Id).Renderer);
         var moduleRoot = Path.Combine(_settings.EmulationStorageFolder, module.Id);
         return module.CreateRuntimeAsync(configuration,
             new EmulationRuntimeServices(Path.Combine(moduleRoot, "Sessions"), Path.Combine(moduleRoot, "States"), Path.Combine(moduleRoot, "Converted"), Environment.ProcessPath!, (device, latency) => new WasapiAudioOutput(device, latency)), cancellationToken);

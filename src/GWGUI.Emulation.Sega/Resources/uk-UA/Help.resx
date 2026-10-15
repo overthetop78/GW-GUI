@@ -6,7 +6,7 @@
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Sega.Help.General.Model.Short"><value>Налаштовано модель Sega-машини.</value></data>
   <data name="Emulation.Sega.Help.Memory.Ram.Short"><value>Сума RAM доступна до встановленої машини.</value></data>
-  <data name="Emulation.Sega.Help.Memory.Ram.Detailed"><value>Виберіть розширення RAM, виставлене емульсійним ядром. Машина повинна перезавантажити до нової кількості.</value></data>
+  <data name="Emulation.Sega.Help.Memory.Ram.Detailed"><value>Виберіть розширення RAM.</value></data>
   <data name="Emulation.Sega.Help.Firmware.Integrated.Short"><value>Система ROM вбудована в емуляційне ядро.</value></data>
   <data name="Emulation.Sega.Help.Firmware.Integrated.Detailed"><value>Основа емульсії забезпечує систему ROM внутрішньо і не виводить ROM-підбирач файлів.</value></data>
   <data name="Emulation.Sega.Help.General.Emulator.Short"><value>Емулятор, обраний для цієї машини.</value></data>

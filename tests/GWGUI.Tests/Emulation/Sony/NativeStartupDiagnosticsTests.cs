@@ -6,6 +6,27 @@ namespace GWGUI.Tests.Emulation.Sony;
 public sealed class NativeStartupDiagnosticsTests
 {
     [Fact]
+    public void StartupFailureKeepsTheOriginalCauseAndTheNativeMessagesInOrder()
+    {
+        var cause = new InvalidOperationException("Load failed");
+        string[] diagnostics = ["Opening GS device", "Native graphics error", Pcee2Core.InitializationFailureDiagnostic];
+
+        var error = CoreDiagnosticMonitor.WithNativeDiagnostics(cause, diagnostics);
+
+        Assert.Same(cause, error.InnerException);
+        Assert.Equal(cause.Message + Environment.NewLine + string.Join(Environment.NewLine, diagnostics), error.Message);
+        Assert.Contains("Native graphics error", error.ToString());
+        Assert.Equal(3, diagnostics.Length);
+    }
+
+    [Fact]
+    public void StartupFailureWithoutNativeMessagesKeepsTheOriginalException()
+    {
+        var cause = new ArgumentException("Invalid configuration");
+        Assert.Same(cause, CoreDiagnosticMonitor.WithNativeDiagnostics(cause, []));
+    }
+
+    [Fact]
     public void FatalCaptureReturnsNormallyAndTheNextManagedCheckReportsTheNativeFailure()
     {
         var monitor = new CoreDiagnosticMonitor(Pcee2Core.Definition.StartupFailureDiagnostics);

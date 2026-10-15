@@ -6,7 +6,7 @@
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Sega.Help.General.Model.Short"><value>Сконфигурирована модель Sega Machine.</value></data>
   <data name="Emulation.Sega.Help.Memory.Ram.Short"><value>Количество RAM, доступное для эмулируемой машины.</value></data>
-  <data name="Emulation.Sega.Help.Memory.Ram.Detailed"><value>Выбирает расширение RAM, экспонируемое эмуляционным ядром. Машина должна перезагрузиться до того, как будет использовано новое количество.</value></data>
+  <data name="Emulation.Sega.Help.Memory.Ram.Detailed"><value>Выбирает расширение RAM, экспонируемое эмуляционным ядром.</value></data>
   <data name="Emulation.Sega.Help.Firmware.Integrated.Short"><value>Система ROM встроена в ядро эмуляции.</value></data>
   <data name="Emulation.Sega.Help.Firmware.Integrated.Detailed"><value>Ядро эмуляции обеспечивает внутреннюю систему ROM и не выставляет селектор файлов ROM.</value></data>
   <data name="Emulation.Sega.Help.General.Emulator.Short"><value>Для этой машины выбран эмулятор.</value></data>

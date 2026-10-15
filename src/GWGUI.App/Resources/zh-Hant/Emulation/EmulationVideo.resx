@@ -299,4 +299,7 @@
   <data name="Emulation.Video.Parameter.ProjectionVignette"><value>边缘变暗</value></data>
   <data name="Emulation.Video.Projection.Group.Optics"><value>光线和光线</value></data>
   <data name="Emulation.Video.Projection.Group.Screen"><value>投影屏幕</value></data>
+  <data name="Emulation.Option.Common.Value.HardwareRendering"><value>硬體算繪</value></data>
+  <data name="Emulation.Option.Common.RenderingMode.Label"><value>算繪模式</value></data>
+  <data name="Emulation.Option.Common.RenderingMode.Help"><value>硬體算繪會使用應用程式所選的圖形 API，前提是模擬器支援該 API。</value></data>
 </root>

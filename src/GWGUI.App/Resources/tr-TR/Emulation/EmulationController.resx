@@ -44,4 +44,5 @@
   <data name="Emulation.Controller.Category.OtherSimulation"><value>Diğer simülasyon periferileri</value></data>
   <data name="Emulation.Controller.Feedback.Strong"><value>Güçlü titreşim</value></data>
   <data name="Emulation.Controller.Feedback.Weak"><value>Zayıf titreşim</value></data>
+  <data name="Emulation.Controller.Action.Reload"><value>Yeniden doldur</value></data>
 </root>

@@ -80,4 +80,6 @@
   <data name="Emulation.Storage.MemoryCard.ImageRequired"><value>Vælg en eksisterende kortfil.</value></data>
   <data name="Emulation.Storage.MemoryCard.InvalidSize"><value>Kortfilen har en ugyldig størrelse.</value></data>
   <data name="Emulation.Storage.MemoryCard.InvalidFormat"><value>Vælg et filformat understøttet af denne enhed.</value></data>
+  <data name="Emulation.Storage.Cache.Unlimited"><value>Ubegrænset</value></data>
+  <data name="Emulation.Storage.Cache.ClearOnGameClose"><value>Ryd, når spillet lukkes</value></data>
 </root>

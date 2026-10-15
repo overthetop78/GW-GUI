@@ -50,13 +50,11 @@
   <data name="Emulation.Option.ppsspp.ppsspp_psp_model.Label"><value>PSP Model</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_psp_model.Value.0"><value>PSP-1000</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_psp_model.Value.1"><value>PSP-2000/3000</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_backend.Label"><value>Backend</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_backend.Help"><value>'Automatic' will use the frontend video driver. Core</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_backend.Value.1"><value>OpenGL</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_backend.Value.2"><value>Vulkan</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_backend.Value.3"><value>D3D11</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_software_rendering.Label"><value>Software Rendering</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_software_rendering.Help"><value>Slow, accurate. Core</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_software_rendering.Help"><value>Use software rendering for improved accuracy at a higher processing cost.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_internal_resolution.Label"><value>Rendering Resolution</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_internal_resolution.Help"><value>Select the internal rendering resolution.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_internal_resolution.Value.0"><value>1x (480x272)</value></data>
@@ -70,7 +68,7 @@
   <data name="Emulation.Option.ppsspp.ppsspp_internal_resolution.Value.8"><value>9x (4320x2448)</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_internal_resolution.Value.9"><value>10x (4800x2720)</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_mulitsample_level.Label"><value>MSAA Antialiasing</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_mulitsample_level.Help"><value>Vulkan only. Core</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_mulitsample_level.Help"><value>Apply multisample anti-aliasing with Vulkan.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_mulitsample_level.Value.1"><value>x2</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_mulitsample_level.Value.2"><value>x4</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_mulitsample_level.Value.3"><value>x8</value></data>
@@ -94,7 +92,7 @@
   <data name="Emulation.Option.ppsspp.ppsspp_detect_vsync_swap_interval.Label"><value>Detect Frame Rate Changes</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_detect_vsync_swap_interval.Help"><value>Notify frontend.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Label"><value>Buffer Graphics Commands</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Help"><value>GL/Vulkan only, slower, less lag, restart.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Help"><value>GL/Vulkan only, slower, less lag.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Value.0"><value>No buffer</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Value.1"><value>Up to 1</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_button_preference.Label"><value>Confirmation Button</value></data>

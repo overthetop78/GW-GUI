@@ -35,7 +35,7 @@
   <data name="Emulation.Option.swanstation.swanstation_CDROM_ReadThread.Label"><value>CD-ROM เธรดที่อ่านแล้ว</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_ReadThread.Help"><value>อ่าน CD-ROM ไปข้างหน้าอย่างไม่สิ้นสุด ลดความเสี่ยงของจังหวะกรอบ</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_LoadImagePatches.Label"><value>ปรับใช้รูปแบบรูปภาพ</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_CDROM_LoadImagePatches.Help"><value>ปรับใช้แผ่นกับอิมเมจของแผ่นโดยอัตโนมัติ เมื่อมีการแสดงอยู่ในไดเรกทอรีเดียวกัน รองรับเฉพาะแผ่นแบบ PPF เท่านั้นในตัวเลือกนี้ ต้องการเริ่มระบบใหม่เพื่อปรับใช้</value></data>
+  <data name="Emulation.Option.swanstation.swanstation_CDROM_LoadImagePatches.Help"><value>ปรับใช้แผ่นกับอิมเมจของแผ่นโดยอัตโนมัติ เมื่อมีการแสดงอยู่ในไดเรกทอรีเดียวกัน รองรับเฉพาะแผ่นแบบ PPF เท่านั้นในตัวเลือกนี้</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_LoadImageToRAM.Label"><value>โหลดภาพ CD-ROM ภาพไปที่ RAM</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_LoadImageToRAM.Help"><value>โหลดอิมเมจแผ่นเป็น RAM ก่อนเริ่มจําลองข้อมูล อาจลดการผูกขาด หากคุณกําลังทํางานปิดหุ้นของเครือข่าย ด้วยค่าใช้จ่ายของการเริ่มต้นที่มากขึ้น ขณะที่ libretro ให้วิธีการวาดทับไม่ได้ ตัวจําลองจะปรากฏที่จะล็อคขึ้น ในขณะที่ภาพถูกโหลดล่วงหน้า</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_PreCacheCHD.Label"><value>Pre-cache CHD ภาพถึง RAM</value></data>
@@ -51,8 +51,6 @@
   <data name="Emulation.Option.Sony.Value.Interpreter"><value>ล่าม</value></data>
   <data name="Emulation.Option.Sony.Value.CachedInterpreter"><value>ล่ามแบบแคช</value></data>
   <data name="Emulation.Option.Sony.Value.Recompiler"><value>คอมไพล์ใหม่</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_GPU_Renderer.Label"><value>ตัวแสดงหน้าต่างของ GPU</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_GPU_Renderer.Help"><value>ซึ่งตัวแปลที่จะใช้เพื่อเลียนแบบ GPU</value></data>
   <data name="Emulation.Option.Sony.Value.HardwareOpenGL"><value>ฮาร์ดแวร์ (เปิด GL)</value></data>
   <data name="Emulation.Option.Sony.Value.Software"><value>ซอฟต์แวร์</value></data>
   <data name="Emulation.Option.swanstation.swanstation_GPU_ResolutionScale.Label"><value>ค่าความละเอียดภายใน</value></data>
@@ -60,7 +58,7 @@
   <data name="Emulation.Option.swanstation.swanstation_GPU_UseThread.Label"><value>การเรนเดอร์แบบข้อความ (software)</value></data>
   <data name="Emulation.Option.swanstation.swanstation_GPU_UseThread.Help"><value>ใช้เธรดที่สองสําหรับวาดกราฟฟิก ปัจจุบันมีเฉพาะผู้วาดซอฟต์แวร์เท่านั้น</value></data>
   <data name="Emulation.Option.swanstation.swanstation_GPU_UseSoftwareRendererForReadbacks.Label"><value>ใช้ตัวแสดงซอฟต์แวร์สําหรับอ่านกลับ</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_GPU_UseSoftwareRendererForReadbacks.Help"><value>ประมวลผลการทํางานซอฟแวร์พร้อมการแสดงผลอุปกรณ์ เมื่ออ่านข้อมูลภาพจาก VRAM เกม บาง อย่าง จําเป็น ต้อง มี การ เคลื่อน ไหว แบบ เบลอ ๆ หรือ การ เปลี่ยน แปลง ใน การ ต่อ สู้ หรือ เพื่อ แก้ไข เนื้อ เยื่อ ที่ ได้ รับ ความ เสีย หาย. เริ่มระบบแกนใหม่ หลังจากเปลี่ยนแปลงตัวเลือกนี้แล้ว</value></data>
+  <data name="Emulation.Option.swanstation.swanstation_GPU_UseSoftwareRendererForReadbacks.Help"><value>ประมวลผลการทํางานซอฟแวร์พร้อมการแสดงผลอุปกรณ์ เมื่ออ่านข้อมูลภาพจาก VRAM เกม บาง อย่าง จําเป็น ต้อง มี การ เคลื่อน ไหว แบบ เบลอ ๆ หรือ การ เปลี่ยน แปลง ใน การ ต่อ สู้ หรือ เพื่อ แก้ไข เนื้อ เยื่อ ที่ ได้ รับ ความ เสีย หาย.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_GPU_MSAA.Label"><value>การ ต่อ ต้าน การ ใช้ ยา หลาย ชนิด</value></data>
   <data name="Emulation.Option.swanstation.swanstation_GPU_MSAA.Help"><value>ใช้การต่อต้านสิ่งก่อสร้างหลาย ๆ ชนิด เพื่อผลิตวัตถุ 3 มิติ อาจ ทํา ให้ รูปหลายเหลี่ยม เรียบ ง่าย ได้ ด้วย ราคา ที่ ต่ํา กว่า เมื่อ เทียบ กับ การ เพิ่ม มาตรา ความ สามารถ แต่ อาจ เป็น ไป ได้ มาก กว่า ที่ จะ ทํา ให้ เกิด ความ ผิด พลาด ใน บาง เกม.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_GPU_TrueColor.Label"><value>แสดงด้วยความละเอียดสีเต็มที่</value></data>
@@ -141,7 +139,7 @@
   <data name="Emulation.Option.swanstation.swanstation_Display_LineEndOffset.Label"><value>ออฟเซต:</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Display_LineEndOffset.Help"><value>แผ่น พับ หรือ พืช ผล นอก เส้น จาก ส่วน ล่าง ของ ภาพ ที่ แสดง.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_MemoryCards_Card1Type.Label"><value>การ์ดหน่วยความจํา 1 ชนิด</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_MemoryCards_Card1Type.Help"><value>เลือกรูปแบบการ์ดหน่วยความจําสําหรับช่อง 1 เริ่มการทํางานแกนใหม่เมื่อมีการเปลี่ยนแปลงรูปแบบ ไพ่ใช้ร่วมกันและตัวเลือกในการ์ดแยกกันสองใบ ถูกคงไว้สําหรับการปรับแต่งเก่า ๆ แต่ไม่รองรับ รูปแบบ Libretro ใช้แฟ้ม .srm ไพ่แยกชื่อตามเกมใช้แฟ้ม .mcd สองรูปแบบนี้มีข้อมูลที่เหมือนกัน ในการแปลงค่าต่าง ๆ ระหว่างแฟ้ม ให้เปลี่ยนนามสกุลของแฟ้มและเพิ่ม หรือลบส่วนต่อท้ายของช่องว่าง _1</value></data>
+  <data name="Emulation.Option.swanstation.swanstation_MemoryCards_Card1Type.Help"><value>เลือกรูปแบบการ์ดหน่วยความจําสําหรับช่อง 1</value></data>
   <data name="Emulation.Option.Sony.Value.LibretroDefault"><value>Libretro (ค่าปริยาย)</value></data>
   <data name="Emulation.Option.Sony.Value.SharedBetweenAllGames"><value>แบ่งปันระหว่างเกมทั้งหมด</value></data>
   <data name="Emulation.Option.Sony.Value.SeparateCardPerGameGameCode"><value>ไพ่แยกต่อเกม (รหัส Game)</value></data>
@@ -292,7 +290,7 @@
   <data name="Emulation.Option.mednafen_psx.beetle_psx_gte_overclock.Label"><value>เวลาส่วนตัวของ GTE</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_gte_overclock.Help"><value>ประมวลผลทุกปฏิบัติการของ GTE Prographs Constructors ในวงจร CPU นี้สามารถทําให้อัตราเฟรมดีขึ้นอย่างมาก และทําให้จังหวะกรอบมากขึ้นในเกมที่ใช้ GTE หนัก</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_cd_access_method.Label"><value>วิธีการเข้าใช้งาน CD</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_cd_access_method.Help"><value>การเข้าถึงอย่างพร้อมเพรียงทําให้อุปกรณ์ต้นแบบเกิดขึ้นอีกครั้ง การ เข้า ไป อย่าง ไม่ รู้ จัก เหน็ด เหนื่อย อาจ ช่วย ลด การ หยุด พัก ใน อุปกรณ์ ที่ มี การ เก็บ ไว้ ช้า. การโหลดอิมเมจของแผ่นทั้งหมดลงใน RAM สามารถปรับปรุงการเรียกใช้เวลาระหว่างเกมได้ แต่จะทําให้ล่าช้าขึ้น โหมดนี้จะก่อให้เกิดปัญหา เมื่อมีข้อจํากัดของ RAM แผ่นเนื้อความจะใช้สิทธิ์ที่สัมพันธ์กันแทนการโหลดภาพทั้งหมด เริ่มการทํางานใหม่หลังจากเปลี่ยนแปลงตัวเลือกนี้แล้ว</value></data>
+  <data name="Emulation.Option.mednafen_psx.beetle_psx_cd_access_method.Help"><value>การเข้าถึงอย่างพร้อมเพรียงทําให้อุปกรณ์ต้นแบบเกิดขึ้นอีกครั้ง การ เข้า ไป อย่าง ไม่ รู้ จัก เหน็ด เหนื่อย อาจ ช่วย ลด การ หยุด พัก ใน อุปกรณ์ ที่ มี การ เก็บ ไว้ ช้า.</value></data>
   <data name="Emulation.Option.Sony.Value.Synchronous"><value>ปรับเทียบสี</value></data>
   <data name="Emulation.Option.Sony.Value.Asynchronous"><value>มี เหตุ ผล</value></data>
   <data name="Emulation.Option.Sony.Value.PreCache"><value>นําเสนอภาพนิ่งก่อน</value></data>
@@ -443,7 +441,7 @@
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_gte_overclock.Label"><value>เวลาส่วนตัวของ GTE</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_gte_overclock.Help"><value>ประมวลผลทุกปฏิบัติการของ GTE Prographs Constructors ในวงจร CPU นี้สามารถทําให้อัตราเฟรมดีขึ้นอย่างมาก และทําให้จังหวะกรอบมากขึ้นในเกมที่ใช้ GTE หนัก</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_access_method.Label"><value>วิธีการเข้าใช้งาน CD</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_access_method.Help"><value>การเข้าถึงอย่างพร้อมเพรียงทําให้อุปกรณ์ต้นแบบเกิดขึ้นอีกครั้ง การ เข้า ไป อย่าง ไม่ รู้ จัก เหน็ด เหนื่อย อาจ ช่วย ลด การ หยุด พัก ใน อุปกรณ์ ที่ มี การ เก็บ ไว้ ช้า. การโหลดอิมเมจของแผ่นทั้งหมดลงใน RAM สามารถปรับปรุงการเรียกใช้เวลาระหว่างเกมได้ แต่จะทําให้ล่าช้าขึ้น โหมดนี้จะก่อให้เกิดปัญหา เมื่อมีข้อจํากัดของ RAM แผ่นเนื้อความจะใช้สิทธิ์ที่สัมพันธ์กันแทนการโหลดภาพทั้งหมด เริ่มการทํางานใหม่หลังจากเปลี่ยนแปลงตัวเลือกนี้แล้ว</value></data>
+  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_access_method.Help"><value>การเข้าถึงอย่างพร้อมเพรียงทําให้อุปกรณ์ต้นแบบเกิดขึ้นอีกครั้ง การ เข้า ไป อย่าง ไม่ รู้ จัก เหน็ด เหนื่อย อาจ ช่วย ลด การ หยุด พัก ใน อุปกรณ์ ที่ มี การ เก็บ ไว้ ช้า.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_fastload.Label"><value>CD ความเร็วการโหลด</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_fastload.Help"><value>ค่าที่มากกว่า '2x (native)' สามารถลดเวลาการโหลดของเกมลงได้มาก แต่อาจจะแนะนําการจับเวลาผิดพลาดก็ได้ เกม บาง อย่าง อาจ ทํา ได้ ไม่ ดี กว่า ค่า ใด ๆ.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_skip_bios.Label"><value>ข้ามการเคลื่อนไหวของ BIOS ที่เริ่มทํางาน</value></data>
@@ -454,8 +452,6 @@
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_region.Help"><value>ตั้งค่าขอบเขตการล้มเหลวที่ถูกใช้เมื่อไม่สามารถตรวจสอบเนื้อหาโดยอัตโนมัติได้ (เช่น dictionary) PS-X EXE แฟ้ม). เกมบนแผ่นยังคงใช้ขอบเขตที่ฝังอยู่ในแผ่นอยู่</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_internal_resolution.Label"><value>ความละเอียดแฟ้ม GPU ภายใน</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_internal_resolution.Help"><value>ความละเอียดที่สูงกว่า '1x (native)' จะเพิ่มความเที่ยงตรงของโมเดล 3 มิติ ด้วยค่าใช้จ่ายในการใช้งานเพิ่มขึ้น องค์ประกอบ 2D โดยโดยทั่วไปจะถูกลดค่าด้วยการตั้งค่านี้</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_renderer.Label"><value>ตัวเรนเดอร์</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_renderer.Help"><value>เลือกวิธีการวาดภาพ ตัวแปลซอฟต์แวร์ถูกต้องที่สุด มันต้องการพลังงานประมวลผลมากขึ้น ในความละเอียดภายในที่สูงขึ้น การวาดฮาร์ดแวร์มีความแม่นยําน้อยกว่า แต่เร็วขึ้นในความละเอียดที่สูงขึ้น และสนับสนุนการปรับปรุงกราฟฟิก ตัวเลือกการแสดงผลฮาร์ดแวร์อัตโนมัติของ Vulkan หรือ OpenGL ตามตัวไดรเวอร์วิดีโอที่ใช้โดยโปรแกรม ถ้าไดรเวอร์ไม่รองรับทั้ง Vulkan หรือ OpenGL 3.3 แกนหลักจะใช้การแสดงผลซอฟต์แวร์แทน เริ่มระบบแกนใหม่ หลังจากเปลี่ยนแปลงตัวเลือกนี้แล้ว</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_renderer_software_fb.Label"><value>เฟรมบัฟเฟอร์ซอฟต์แวร์</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_renderer_software_fb.Help"><value>ใช้ตัววาดซอฟต์แวร์เป็นพื้นหลังในความละเอียดส่วนตัว ขณะที่ตัวแปลงฮาร์ดแวร์แสดงเกม นี้จะทําซ้ําการเคลื่อนไหวเบลอและการเปลี่ยนแปลงการต่อสู้ใน FF7 อย่างแม่นยํา เมื่อ พิการ อาร์ เอ ส ไอ จะ ลด ผล กระทบ เหล่า นี้ และ Vulkan ดึง มา ที่GPU. การ ทํา อย่าง นี้ อาจ ช่วย ปรับ ปรุง ความ เร็ว ได้ แต่ อาจ ก่อ ความ ผิด พลาด ร้าย แรง ได้ ด้วย. ให้มันเปิดใช้หากไม่แน่ใจ</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_color_format.Label"><value>รูปแบบสี</value></data>
@@ -770,9 +766,7 @@
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_nostalls.Label"><value>ปิดการใช้งานระบบ CPU/GTE</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_nostalls.Help"><value>จะทําให้เกมบางอย่างวิ่งเร็วเกินไป ควรจะถูกปิดเกือบทุกกรณี ล่ามเท่านั้น</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_fast_boot.Label"><value>บูตแบบเร็ว</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_fast_boot.Help"><value>ข้ามแอนิเมชันบูต BIOS เริ่มการทํางานใหม่อีกครั้ง</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_renderer.Label"><value>ตัวเรนเดอร์</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_renderer.Help"><value>ตัวแปลฮาร์ดแวร์ API หรือตัววาดซอฟต์แวร์ สลับหรือเปลี่ยนจากซอฟต์แวร์ที่ใช้งานบนแมลงวัน การสลับไปมาระหว่างฮาร์ดแวร์ API จะมีผลเมื่อเนื้อหาเริ่มทํางานอีกครั้ง</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_fast_boot.Help"><value>ข้ามแอนิเมชันบูต BIOS</value></data>
   <data name="Emulation.Option.Sony.Value.OpenGLHardware"><value>OpenGL (แฮร์แวร์)</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_upscale_multiplier.Label"><value>ความละเอียดภายใน</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_upscale_multiplier.Help"><value>ตัวเพิ่มความละเอียดการแสดงผลภายในสําหรับตัวแปลงฮาร์ดแวร์ ปรับความเข้มของเฟรมบัฟเฟอร์ เตรียมบินได้แล้ว</value></data>
@@ -809,8 +803,6 @@
   <data name="Emulation.Option.pcee2.pcsx2_fxaa.Help"><value>การต่อต้านการลดโทษจากกระบวนการราคาถูก</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_cas_mode.Label"><value>การปรับความเปรียบต่าง</value></data>
   <data name="Emulation.Option.Sony.Value.SharpenOnly"><value>ความคมเท่านั้น</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_audio_buffer_ms.Label"><value>บัฟเฟอร์เสียง</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_audio_buffer_ms.Help"><value>ตัวจําลองเก็บเสียงไว้เท่าไหร่ก่อนฉากหน้า ยิ่ง กว่า นั้น มัน จะ บิน ออก ไป จาก แผง ซึ่ง มิ ฉะนั้น แล้ว ก็ จะ ได้ ยิน ว่า เป็น การ หัก ใน เสียง ที่ ต้อง ใช้ เวลา ช้า มาก ก่อน ที่ คุณ จะ ได้ รับ ข่าว ใด ๆ. PCSX2 ปริยายของมันคือ 50 มิลส์ ซึ่งสมมุติว่ามันป้อนอุปกรณ์เสียงโดยตรง แทนที่จะใช้แผ่นฟร้อนต์เอนเตอร์เทนด์ ที่ดึงได้ครั้งเดียวต่อเฟรม</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_frame_limiter.Label"><value>ตัวจํากัดเฟรม</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_frame_limiter.Help"><value>สิ่งที่ยึดเครื่องจําลองความเร็วเต็ม ฟรันเอนด์ทิ้งท่าเดินรถ RetroArch ซึ่งแรงขับโดยให้แกนนํารอบนเสียง มันส่งผ่าน ภายในใช้ตัวจํากัดของ PCSX2 แทน - สําหรับอุปกรณ์ที่รอมาไม่เคยเกิดขึ้น เนื่องจากไดรเวอร์เสียงอยู่ด้านล่าง แทนที่จะถูกปิดกั้น และการแปรเปลี่ยนความเร็วส่วนตัวของ ตัวจําลองเอง แล้วถึงหน้าจอเมื่อเฟรมเสียรูป</value></data>
   <data name="Emulation.Option.Sony.Value.FrontendRetroArch"><value>ฟรันเอนด์ (RetroArch)</value></data>
@@ -827,7 +819,7 @@
   <data name="Emulation.Option.Sony.Value.Port25Players"><value>พอร์ต 2 (5 ผู้เล่น)</value></data>
   <data name="Emulation.Option.Sony.Value.BothPorts8Players"><value>พอร์ตทั้งสอง (8 ผู้เล่น)</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_lightgun.Label"><value>ไลท์กุน (GunCon6)</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_lightgun.Help"><value>จำลอง Namco GunCon 2 ผ่านพอร์ต USB เล็งด้วยปืนแสงของส่วนติดต่อ หรือเมาส์ที่ตั้งค่าให้ทำงานเป็นปืนแสง บนพอร์ตตัวควบคุมที่ตรงกัน ต้องเริ่มใหม่</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_lightgun.Help"><value>จำลอง Namco GunCon 2 ผ่านพอร์ต USB เล็งด้วยปืนแสงของส่วนติดต่อ หรือเมาส์ที่ตั้งค่าให้ทำงานเป็นปืนแสง บนพอร์ตตัวควบคุมที่ตรงกัน</value></data>
   <data name="Emulation.Option.Sony.Value.USBPort1"><value>พอร์ต USB 1</value></data>
   <data name="Emulation.Option.Sony.Value.USBPort2"><value>พอร์ต USB 2</value></data>
   <data name="Emulation.Option.Sony.Value.BothPorts"><value>พอร์ตทั้งสอง</value></data>
@@ -852,18 +844,18 @@
   <data name="Emulation.Option.pcee2.pcsx2_ee_cycle_skip.Label"><value>การข้ามวงจร EE</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_ee_cycle_skip.Help"><value>ทําให้วงจร EE ข้าม ช่วย ให้ เกม บาง อย่าง มี กิจกรรม มาก ถึงVUชนิด ทํา ให้ คน อื่น ๆ แตก แยก.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_cpu_recompiler.Label"><value>CPU Recommember (JIT)</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_cpu_recompiler.Help"><value>เปิดใช้งานหรือปิดการใช้งานการวนซ้ําเพื่อใช้ในการวินิจฉัยโรค เมื่อเปิดใช้งาน, EE, IOP, VU0 และ VU1 ให้ใช้คอมไพล์ JIT อย่างรวดเร็ว นี่เป็นค่าปริยาย เมื่อพิการ CPU ทุกตัวจะใช้การตีความที่ช้ากว่า นี่ จะ ช่วย วินิจฉัย ความ ผิด พลาด ของ JIT ได้: การ ตก ที่ ยัง คง เกิด ขึ้น โดย ไม่ มี การ ปรับ ปรุง แก้ไข ก็ มี สาเหตุ อีก อย่าง หนึ่ง. สวิตช์ CPU ของแต่ละคนด้านล่าง จะใช้ได้ก็ต่อเมื่อเปิดใช้งานตัวเลือกหลักเท่านั้น เริ่มการทํางานใหม่หลังจากเปลี่ยนแปลงตัวเลือกนี้แล้ว</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_cpu_recompiler.Help"><value>เปิดใช้งานหรือปิดการใช้งานการวนซ้ําเพื่อใช้ในการวินิจฉัยโรค เมื่อเปิดใช้งาน, EE, IOP.</value></data>
   <data name="Emulation.Option.Sony.Value.EnabledJITDefault"><value>เปิดใช้งาน (JIT, ค่าปริยาย)</value></data>
   <data name="Emulation.Option.Sony.Value.DisabledInterpreter"><value>ปิดการใช้งาน (ชั่วคราว)</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_rec_ee.Label"><value>- รีคอมไพล์ EE</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_rec_ee.Help"><value>วินิจฉัยโรค ปิดการใช้งานเพียง Emotion Engine (EE) dynarec ขณะปล่อยให้คนอื่นทํางานต่อ เริ่มการทํางานใหม่อีกครั้ง</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_rec_ee.Help"><value>วินิจฉัยโรค ปิดการใช้งานเพียง Emotion Engine (EE) dynarec ขณะปล่อยให้คนอื่นทํางานต่อ</value></data>
   <data name="Emulation.Option.Sony.Value.EnabledDefault"><value>เปิดใช้งาน (ค่าปริยาย)</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_rec_iop.Label"><value>- ตัวคอมไพล์ของ IOP</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_rec_iop.Help"><value>วินิจฉัยโรค ปิดการใช้งานเพียง IOP (R3000) dynarec ขณะปล่อยให้คนอื่นทํางานต่อ เริ่มการทํางานใหม่อีกครั้ง</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_rec_iop.Help"><value>วินิจฉัยโรค ปิดการใช้งานเพียง IOP (R3000) dynarec ขณะปล่อยให้คนอื่นทํางานต่อ</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_rec_vu0.Label"><value>VU0 Recompiller</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_rec_vu0.Help"><value>วินิจฉัยโรค ปิดการใช้งานเพียงแค่ VU0 ไมโคร VU Dinairec ในขณะที่ปล่อยให้อื่น ๆ บน เริ่มการทํางานใหม่อีกครั้ง</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_rec_vu0.Help"><value>วินิจฉัยโรค ปิดการใช้งานเพียงแค่ VU0 ไมโคร VU Dinairec ในขณะที่ปล่อยให้อื่น ๆ บน</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_rec_vu1.Label"><value>- รีคอมไพล์ของ VU1</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_rec_vu1.Help"><value>วินิจฉัยโรค ปิดการใช้งานเพียงแค่ VU1 ไมโคร VU Dinairec ในขณะที่ปล่อยให้อื่น ๆ บน เริ่มการทํางานใหม่อีกครั้ง</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_rec_vu1.Help"><value>วินิจฉัยโรค ปิดการใช้งานเพียงแค่ VU1 ไมโคร VU Dinairec ในขณะที่ปล่อยให้อื่น ๆ บน</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_memcard_slot1_enable.Label"><value>เปิดใช้งานสล็อต 1</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_memcard_slot1_enable.Help"><value>เปิดใช้งานการ์ดหน่วยความจําแบบ slot 1 PS2 การเปลี่ยนแปลงจะมีผลทันทีขณะที่เนื้อหากําลังทํางานอยู่</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_memcard_slot2_enable.Label"><value>เปิดใช้งานสล็อต 2</value></data>
@@ -914,8 +906,6 @@
   <data name="Emulation.Option.Sony.Value.AllTimers"><value>ตัวจับเวลาทั้งหมด</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_clocks_scale.Label"><value>การปรับขนาดนาฬิกา</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_clocks_scale.Help"><value>ค่าความเร็วของนาฬิกา PS3</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_renderer.Label"><value>ตัวเรนเดอร์</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_renderer.Help"><value>Vulkan แปลบนอุปกรณ์ของกองหน้าVulkan และวางแต่ละเฟรมสําเร็จรูปเป็นภาพ; เมื่อฟร้อนท์เอนต์ไม่ได้ทํางานอยู่เครื่องเล่นวิดีโอVulkan กรอบนี้จะถูกคัดลอกกลับไปผ่านทางหน่วยความจําแทน OpenGL นําตรงมาไว้ในบริบทของ OpenDL ของ Cardend</value></data>
   <data name="Emulation.Option.Sony.Value.NullNoVideo"><value>Null (ไม่มีวิดีโอ) Name</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_frame_limit.Label"><value>จํากัดกรอบภาพ</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_frame_limit.Help"><value>อัตราเฟรมสูงสุดที่เกมอาจจะทํางาน Auto is the vblack ความถี่, as in RPCS3; PS3 อัตราคนพื้นเมืองพลิกวิธี PS3 ♪ Does; off lets เกมที่ไม่รอคอย PS3'ปลดปล่อยตัวเองให้วิ่งเร็วเกินไป.</value></data>
@@ -992,7 +982,7 @@
   <data name="Emulation.Option.rpcs3.rpcs3_driver_wakeup_delay.Label"><value>หน่วงเวลาการตื่นนอนของไดรเวอร์</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_driver_wakeup_delay.Help"><value>ความหน่วงของไดรเวอร์จะล่าช้าในหน่วยจุลภาค 0 โดยปริยายแล้ว จะอยู่ใน RPCS3; เพิ่มให้เมื่อมีเกมที่ต้องการเท่านั้น</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_vblank_rate.Label"><value>ความทึบแสงของ VBlank</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_vblank_rate.Help"><value>อัตราการรีเฟรชของ PS3 ในเอชซี นอกจากนี้ยังอัตราเฟรมหลักถาม RetroArch สําหรับที่มีผลเมื่อเนื้อหาถูกโหลด; เกมที่สามารถทํางานได้มากกว่า 60 FPS ต้องการการแสดงผลที่รีเฟรชอย่างรวดเร็ว.</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_vblank_rate.Help"><value>กำหนดอัตรารีเฟรชที่จำลอง โหมดรายการความเข้ากันได้จะเพิ่มอัตรานี้เป็นสองเท่าสำหรับเกมที่รองรับ</value></data>
   <data name="Emulation.Option.Sony.Value.50HzPAL"><value>50 Hz (PAL)</value></data>
   <data name="Emulation.Option.Sony.Value.60HzNTSC"><value>60 Hz (NTSC)</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_thread_scheduler.Label"><value>ตัวจัดการจดหมาย</value></data>
@@ -1074,8 +1064,6 @@
   <data name="Emulation.Option.rpcs3.rpcs3_frame_pacing.Label"><value>การบรรจุเฟรมภาพ</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_frame_pacing.Help"><value>แผนของเกมถูกจับเวลาแล้ว นาฬิกาจําลองเป็นRPCS3 เวลาของตัวเองเช่นใน standoneRPCS3. RetroArch ให้เกมหนึ่ง PS3 รีเฟรชต่อเฟรม RetroArch แสดงล่วงหน้าอย่างรวดเร็วดังนั้นเร่งเกมขึ้น และเกมดําเนินการที่ความถี่ VBlank เมื่อ RetroArch แสดงหลายเฟรมต่อวินาที; กับ Vulkan ตัวแก้ไขปัจจุบันคือข้ามเฟรม.</value></data>
   <data name="Emulation.Option.Sony.Value.EmulatorClock"><value>นาฬิกาจําลอง</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_savedata_slot.Label"><value>จัดเก็บช่องข้อมูล</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_savedata_slot.Help"><value>เกม PS3 แสดงรายการของข้อมูลการบันทึกของมัน และให้เลือกตัวเล่น 'คลิกจากรายการ' แสดงในรายการในภาพเกม เพื่อใช้กับตัวควบคุม หมายเลขหนึ่งมีการเลือกหลักสําหรับคุณแทน: บันทึกการเขียนทับรายการในตําแหน่งนี้ในรายการของเกม หรือทําบันทึกใหม่เมื่อรายชื่อถูกย่อให้สั้นกว่า; การโหลดจะใช้เวลาที่ตําแหน่งนี้ และไม่พบอะไร เมื่อรายการนั้นสั้นลง 0 คือค่าแรก เกม ที่ เก็บ การ ช่วย ให้ รอด เพียง อย่าง เดียว ของ ตน เอง ไม่ ได้ แสดง รายการ ดัง นั้น จึง ใช้ ไม่ ได้ กับ เกม เหล่า นี้.</value></data>
   <data name="Emulation.Option.Sony.Value.PickFromList"><value>เลือกจากรายการ</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_master_volume.Label"><value>ระดับเสียงหลัก</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_master_volume.Help"><value>ปริมาตรเสียงหลัก</value></data>
@@ -1274,4 +1262,18 @@
   <data name="Emulation.Option.Sony.Setting.LineToQuad.Help" xml:space="preserve"><value>เกม บาง อย่าง (เช่น Doom, Hexen, Soul Blade, ฯลฯ) วาดเส้นทางแนวนอน โดยยืดสามเหลี่ยมแบบเดียว-พิกเซล บนหน้าจอ ซึ่งถูกวาดเป็นแถวของพิกเซลบนฮาร์ดแวร์ต้นฉบับ. การแฮ็คนี้ตรวจจับสามเหลี่ยมขนาดเล็กเหล่านี้ และแปลงมันไปยังควอดตามที่ต้องการ อนุญาตให้แสดงได้อย่างถูกต้องบนตัวแปลฮาร์ดแวร์ และที่ระดับความละเอียดภายใน ต้องการ 'Agorive' สําหรับบางชื่อ (e. g. กองกําลังมืด Duke Nikem) แต่อาจจะแนะนําข้อผิดพลาดทางกราฟิก ออกจาก 'Defult' ถ้าไม่แน่ใจ</value></data>
   <data name="Emulation.Option.Sony.Setting.DynarecEventCycles.Label" xml:space="preserve"><value>Dynarec DMA/GPU/MDEC/ Timeter Cycles</value></data>
   <data name="Emulation.Option.Sony.Setting.DynarecEventCycles.Help" xml:space="preserve"><value>วงจรสูงสุดที่ประมวลผลโดย CPU ก่อนที่จะมีการปรับปรุง GPU/DMA/MDEC/Timeter จํานวนมากขึ้นจะเร็วขึ้น มีผลกระทบต่อล่ามด้วงน้อยกว่า dynarc</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_aspect_ratio.Help"><value>กำหนดรูปแบบหน้าจอที่แจ้งให้เกมทราบ มีเพียงบางเกมที่รองรับอัตราส่วน 4:3</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_disk_cache_size.Label"><value>ขนาดแคชบนดิสก์</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_disk_cache_size.Help"><value>จำกัดพื้นที่ดิสก์ที่ใช้สำหรับแคชชั่วคราวของเกม เกมจะสร้างแคชที่ถูกลบขึ้นใหม่ ซึ่งอาจทำให้การเริ่มเกมครั้งถัดไปช้าลง</value></data>
+  <data name="Emulation.Option.pokket.Link"><value>การเชื่อมต่ออินฟราเรด</value></data>
+  <data name="Emulation.Option.pokket.Layout"><value>การจัดวางหน้าจอที่เชื่อมต่อ</value></data>
+  <data name="Emulation.Option.pokket.Audio"><value>แหล่งเสียงของเครื่องที่เชื่อมต่อ</value></data>
+  <data name="Emulation.Option.pokket.Identity"><value>รหัสฮาร์ดแวร์ของเครื่อง B</value></data>
+  <data name="Emulation.Option.pokket.Horizontal"><value>วางเคียงข้างกัน</value></data>
+  <data name="Emulation.Option.pokket.Vertical"><value>วางซ้อนกันในแนวตั้ง</value></data>
+  <data name="Emulation.Option.pokket.SelectUnitA"><value>ควบคุมเครื่อง A</value></data>
+  <data name="Emulation.Option.pokket.SelectUnitB"><value>ควบคุมเครื่อง B</value></data>
+  <data name="Emulation.Option.pokket.Help"><value>ใส่การ์ดในแต่ละเครื่องเพื่อเปิดใช้งานการเชื่อมต่ออินฟราเรด</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_audio_format.Label"><value>การจัดวางลำโพง</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_audio_format.Help"><value>กำหนดรูปแบบการจัดวางลำโพงที่เกมใช้ได้ เกมจะเลือกการผสมเสียงตามรูปแบบนี้ เสียงที่ส่งออกยังขึ้นอยู่กับอุปกรณ์เสียงที่เลือกใน Windows ด้วย</value></data>
 </root>

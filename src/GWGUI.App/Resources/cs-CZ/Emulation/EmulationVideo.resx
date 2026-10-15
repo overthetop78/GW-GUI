@@ -299,4 +299,7 @@
   <data name="Emulation.Video.Parameter.ProjectionVignette"><value>Ostří tmavnutí</value></data>
   <data name="Emulation.Video.Projection.Group.Optics"><value>Optika a světlo</value></data>
   <data name="Emulation.Video.Projection.Group.Screen"><value>Projekční plátno</value></data>
+  <data name="Emulation.Option.Common.Value.HardwareRendering"><value>Hardwarové vykreslování</value></data>
+  <data name="Emulation.Option.Common.RenderingMode.Label"><value>Režim vykreslování</value></data>
+  <data name="Emulation.Option.Common.RenderingMode.Help"><value>Hardwarové vykreslování používá grafické API zvolené pro aplikaci, pokud je emulátor podporuje.</value></data>
 </root>

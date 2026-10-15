@@ -419,7 +419,7 @@
   <data name="Emulation.Option.flycast.reicast_volume_modifier_enable.Value.disabled"><value>ปิดการใช้งาน</value></data>
   <data name="Emulation.Option.flycast.reicast_volume_modifier_enable.Value.enabled"><value>เปิดใช้งาน</value></data>
   <data name="Emulation.Option.flycast.reicast_anisotropic_filtering"><value>การกรอง Anistropic</value></data>
-  <data name="Emulation.Option.flycast.reicast_anisotropic_filtering.Description"><value>การ ปรับ ปรุง คุณภาพ ของ เนื้อ เยื่อ บน ผิว ที่ อยู่ ใน มุม ที่ มอง ด้วย ตา เปล่า โดย คํานึง ถึง กล้อง ถ่าย รูป. GPU. การเปลี่ยนแปลงไปยังการตั้งค่านี้ จะใช้ได้หลังจากเริ่มการทํางานใหม่อีกครั้งเท่านั้น</value></data>
+  <data name="Emulation.Option.flycast.reicast_anisotropic_filtering.Description"><value>การ ปรับ ปรุง คุณภาพ ของ เนื้อ เยื่อ บน ผิว ที่ อยู่ ใน มุม ที่ มอง ด้วย ตา เปล่า โดย คํานึง ถึง กล้อง ถ่าย รูป. GPU.</value></data>
   <data name="Emulation.Option.flycast.reicast_anisotropic_filtering.Value.off"><value>ปิดการใช้งาน</value></data>
   <data name="Emulation.Option.flycast.reicast_texture_filtering"><value>การกรองพื้นผิว</value></data>
   <data name="Emulation.Option.flycast.reicast_texture_filtering.Description"><value>โหมดการกรองพื้นผิวที่จะใช้ ซึ่งสามารถใช้เพื่อบังคับโหมดกรองสีบนแต่ละเนื้อผ้า เพื่อให้มีการปรากฎกรอบ (หรือเรียบกว่า) แทนค่าปริยาย ค่าอื่นที่ไม่ใช่ปริยาย อาจทําให้เกิดปัญหาในการแสดงผลได้ เปลี่ยนไปใช้การตั้งค่านี้หลังจากเริ่มการทํางานแล้วเท่านั้น</value></data>
@@ -1466,11 +1466,11 @@
   <data name="Emulation.Option.genesis_plus_gx_wide.genesis_plus_gx_wide_sms_fm_channel_8_volume.Description"><value>ลดปริมาตรของ Master System FM ช่อง 8</value></data>
   <data name="Emulation.Emulator.kronos.Description"><value>จําลอง Saturn, ST-V.</value></data>
   <data name="Emulation.Option.kronos.kronos_force_hle_bios"><value>บังคับ HLE BIOS</value></data>
-  <data name="Emulation.Option.kronos.kronos_force_hle_bios.Description"><value>ใช้ในความเสี่ยงของคุณเองเราเพียงให้การสนับสนุนสําหรับจริง BIOS. ต้องรีสตาร์ทใหม่</value></data>
+  <data name="Emulation.Option.kronos.kronos_force_hle_bios.Description"><value>ใช้ในความเสี่ยงของคุณเองเราเพียงให้การสนับสนุนสําหรับจริง BIOS.</value></data>
   <data name="Emulation.Option.kronos.kronos_force_hle_bios.Value.disabled"><value>ปิดการใช้งาน</value></data>
   <data name="Emulation.Option.kronos.kronos_force_hle_bios.Value.enabled"><value>เปิดใช้งาน</value></data>
   <data name="Emulation.Option.kronos.kronos_videoformattype"><value>รูปแบบวีดิทัศน์</value></data>
-  <data name="Emulation.Option.kronos.kronos_videoformattype.Description"><value>เลือกรูปแบบวีดิทัศน์สําหรับการแสดงผล ต้องการการเริ่มการทํางานใหม่</value></data>
+  <data name="Emulation.Option.kronos.kronos_videoformattype.Description"><value>เลือกรูปแบบวีดิทัศน์สําหรับการแสดงผล</value></data>
   <data name="Emulation.Option.kronos.kronos_videoformattype.Value.auto"><value>อัตโนมัติ</value></data>
   <data name="Emulation.Option.kronos.kronos_skipframe"><value>กรอบภาพName</value></data>
   <data name="Emulation.Option.kronos.kronos_skipframe.Description"><value>ข้ามการแสดงผลเฟรม X ออก X+1</value></data>
@@ -1485,11 +1485,11 @@
   <data name="Emulation.Option.kronos.kronos_usecache.Value.disabled"><value>ปิดการใช้งาน</value></data>
   <data name="Emulation.Option.kronos.kronos_usecache.Value.enabled"><value>เปิดใช้งาน</value></data>
   <data name="Emulation.Option.kronos.kronos_use_beetle_saves"><value>การ ช่วย เหลือ ร่วม กับ แมลง ปีก แข็ง</value></data>
-  <data name="Emulation.Option.kronos.kronos_use_beetle_saves.Description"><value>ใช้พาธเดียวกันกับการวนของแมลงปีกแข็งสําหรับแฟ้มบันทึก ต้องการการเริ่มการทํางานใหม่</value></data>
+  <data name="Emulation.Option.kronos.kronos_use_beetle_saves.Description"><value>ใช้พาธเดียวกันกับการวนของแมลงปีกแข็งสําหรับแฟ้มบันทึก</value></data>
   <data name="Emulation.Option.kronos.kronos_use_beetle_saves.Value.disabled"><value>ปิดการใช้งาน</value></data>
   <data name="Emulation.Option.kronos.kronos_use_beetle_saves.Value.enabled"><value>เปิดใช้งาน</value></data>
   <data name="Emulation.Option.kronos.kronos_addon_cartridge"><value>ตลับหมึกเพิ่มเติม</value></data>
-  <data name="Emulation.Option.kronos.kronos_addon_cartridge.Description"><value>เลือกตลับหมึกแบบเพิ่มเติม ต้องการการเริ่มการทํางานใหม่</value></data>
+  <data name="Emulation.Option.kronos.kronos_addon_cartridge.Description"><value>เลือกตลับหมึกแบบเพิ่มเติม</value></data>
   <data name="Emulation.Option.kronos.kronos_addon_cartridge.Value.none"><value>ไม่มี</value></data>
   <data name="Emulation.Option.kronos.kronos_addon_cartridge.Value.1M_extended_ram"><value>แยก 1 m สี</value></data>
   <data name="Emulation.Option.kronos.kronos_addon_cartridge.Value.4M_extended_ram"><value>แยก 4 ม. ม.</value></data>
@@ -1507,7 +1507,7 @@
   <data name="Emulation.Option.kronos.kronos_multitap_port2.Value.disabled"><value>ปิดการใช้งาน</value></data>
   <data name="Emulation.Option.kronos.kronos_multitap_port2.Value.enabled"><value>เปิดใช้งาน</value></data>
   <data name="Emulation.Option.kronos.kronos_resolution_mode"><value>ความละเอียด</value></data>
-  <data name="Emulation.Option.kronos.kronos_resolution_mode.Description"><value>แก้ไขความละเอียดการแสดงผล ต้องการการเริ่มการทํางานใหม่</value></data>
+  <data name="Emulation.Option.kronos.kronos_resolution_mode.Description"><value>แก้ไขความละเอียดการแสดงผล</value></data>
   <data name="Emulation.Option.kronos.kronos_resolution_mode.Value.original"><value>เดิม</value></data>
   <data name="Emulation.Option.kronos.kronos_resolution_mode.Value.2X"><value>2X</value></data>
   <data name="Emulation.Option.kronos.kronos_resolution_mode.Value.4X"><value>4X</value></data>
@@ -1544,7 +1544,7 @@
   <data name="Emulation.Option.kronos.kronos_stv_favorite_region.Value.JP"><value>JP</value></data>
   <data name="Emulation.Option.kronos.kronos_stv_favorite_region.Value.TW"><value>TW</value></data>
   <data name="Emulation.Option.kronos.kronos_language_id"><value>ภาษาชีวภาพ</value></data>
-  <data name="Emulation.Option.kronos.kronos_language_id.Description"><value>เลือกภาษาโปรดของคุณ จะแปลเกมบางเกมส์ ต้องการการเริ่มการทํางานใหม่</value></data>
+  <data name="Emulation.Option.kronos.kronos_language_id.Description"><value>เลือกภาษาโปรดของคุณ จะแปลเกมบางเกมส์</value></data>
   <data name="Emulation.Option.kronos.kronos_language_id.Value.English"><value>อังกฤษ</value></data>
   <data name="Emulation.Option.kronos.kronos_language_id.Value.German"><value>เยอรมัน</value></data>
   <data name="Emulation.Option.kronos.kronos_language_id.Value.French"><value>ฝรั่งเศส</value></data>
@@ -1840,7 +1840,7 @@
   <data name="Emulation.Option.smsplus.smsplus_ntsc_filter.Value.monochrome"><value>พิมพ์สีเดียว</value></data>
   <data name="Emulation.Emulator.supermodel.Description"><value>จําลอง Model 3.</value></data>
   <data name="Emulation.Option.supermodel.supermodel_initial_nvram_setup"><value>เริ่มงานอัตโนมัติ NVRAM ตั้งค่า</value></data>
-  <data name="Emulation.Option.supermodel.supermodel_initial_nvram_setup.Description"><value>เมื่อยังไม่มีเกม .srm หรือ standerf alone มีอยู่, การเริ่มสนับสนุนเกมด้วยซิงเกิล, ยืนคนเดียว, หรือไม่มีลิงก์ หรือตั้งค่า Star Wars Trilogy Arcade ไปยังตู้ตรง อื่น ๆ EEPROM สนามเก็บค่าตรวจสอบควันสําหรับที่ ROM ตั้งค่า การบันทึกที่มีอยู่ไม่เคยถูกแก้ไข ลบ .rm ของเกมเพื่อเริ่มการตั้งค่านี้ใหม่ เริ่มใช้งานเนื้อหาใหม่อีกครั้ง</value></data>
+  <data name="Emulation.Option.supermodel.supermodel_initial_nvram_setup.Description"><value>เมื่อยังไม่มีเกม .srm หรือ standerf alone มีอยู่, การเริ่มสนับสนุนเกมด้วยซิงเกิล, ยืนคนเดียว.</value></data>
   <data name="Emulation.Option.supermodel.supermodel_initial_nvram_setup.Value.enabled"><value>เปิดใช้งาน</value></data>
   <data name="Emulation.Option.supermodel.supermodel_initial_nvram_setup.Value.disabled"><value>ปิดการใช้งาน</value></data>
   <data name="Emulation.Option.supermodel.supermodel_network_board"><value>กระดานเครือข่าย</value></data>
@@ -3134,7 +3134,7 @@
   <data name="Emulation.Option.supermodel.supermodel_renderer_3d.Value.new3d"><value>สร้างใหม่ 3 มิติ (ค่าปริยาย)</value></data>
   <data name="Emulation.Option.supermodel.supermodel_renderer_3d.Value.legacy3d"><value>Express3D (Experition)</value></data>
   <data name="Emulation.Option.supermodel.supermodel_legacy_multi_texture"><value>ส่วนขยายแฟ้ม ISO3 มิติ</value></data>
-  <data name="Emulation.Option.supermodel.supermodel_legacy_multi_texture.Description"><value>ใช้ลายเส้นแปดอันสําหรับถอดรหัสข้อมูล EXIF3D แทนการแยกสีเป็นเนื้อเรื่องเดี่ยว ใช้กับรูปแบบ RAW3D เท่านั้น และมีผลหลังจากการเริ่มใช้งานเนื้อหาใหม่อีกครั้ง</value></data>
+  <data name="Emulation.Option.supermodel.supermodel_legacy_multi_texture.Description"><value>ใช้ลายเส้นแปดอันสําหรับถอดรหัสข้อมูล EXIF3D แทนการแยกสีเป็นเนื้อเรื่องเดี่ยว ใช้กับรูปแบบ RAW3D เท่านั้น และมีผลหลังจากการ</value></data>
   <data name="Emulation.Option.supermodel.supermodel_legacy_multi_texture.Value.disabled"><value>ปิดการใช้งาน</value></data>
   <data name="Emulation.Option.supermodel.supermodel_legacy_multi_texture.Value.enabled"><value>เปิดใช้งาน</value></data>
   <data name="Emulation.Option.supermodel.supermodel_quad_rendering"><value>การไล่ระดับสี</value></data>
@@ -3142,7 +3142,7 @@
   <data name="Emulation.Option.supermodel.supermodel_quad_rendering.Value.disabled"><value>ปิดการใช้งาน</value></data>
   <data name="Emulation.Option.supermodel.supermodel_quad_rendering.Value.enabled"><value>เปิดใช้งาน</value></data>
   <data name="Emulation.Option.supermodel.supermodel_crt_colors"><value>CRT สี</value></data>
-  <data name="Emulation.Option.supermodel.supermodel_crt_colors.Description"><value>ปรับใช้ Supermodelสีพื้นบ้านก่อนออกจากระบบ และการดัดแปลงแกมม่า ซึ่งแตกต่างจากสีหน้า CRT เครื่องมือแรเงา และปรับใช้กับ new3D หลังจากเริ่มการทํางานเนื้อหาใหม่แล้ว ไม่สนใจด้วย Express3D.</value></data>
+  <data name="Emulation.Option.supermodel.supermodel_crt_colors.Description"><value>ปรับใช้ Supermodelสีพื้นบ้านก่อนออกจากระบบ และการดัดแปลงแกมม่า ซึ่งแตกต่างจากสีหน้า CRT เครื่องมือแรเงา และปรับใช้กับ new3D หลังจาก</value></data>
   <data name="Emulation.Option.supermodel.supermodel_crt_colors.Value.0"><value>ไม่มี (ค่าปริยาย)</value></data>
   <data name="Emulation.Option.supermodel.supermodel_crt_colors.Value.1"><value>ARI/D93 (ญี่ปุ่น)</value></data>
   <data name="Emulation.Option.supermodel.supermodel_crt_colors.Value.2"><value>PVM-20M2U/D93</value></data>
@@ -3164,7 +3164,7 @@
   <data name="Emulation.Option.supermodel.supermodel_timing_overlay.Value.disabled"><value>ปิดการใช้งาน</value></data>
   <data name="Emulation.Option.supermodel.supermodel_timing_overlay.Value.enabled"><value>เปิดใช้งาน</value></data>
   <data name="Emulation.Option.supermodel.supermodel_upscale_mode"><value>ตัวกรองการเลื่อนระดับ 2 มิติ</value></data>
-  <data name="Emulation.Option.supermodel.supermodel_upscale_mode.Description"><value>เลือกตัวพิมพ์ใหญ่ Supermodel ตัวกรองที่ใช้ปรับระดับชั้นกระเบื้องภายใน 2 มิติ ก่อนที่จะถูกคอมไพล์ด้วย 3D. ในความละเอียดท้องถิ่น Supermodel ใช้ที่ใกล้ที่สุดเสมอ จะมีผลหลังจากเริ่มเนื้อหาใหม่อีกครั้ง</value></data>
+  <data name="Emulation.Option.supermodel.supermodel_upscale_mode.Description"><value>เลือกตัวพิมพ์ใหญ่ Supermodel ตัวกรองที่ใช้ปรับระดับชั้นกระเบื้องภายใน 2 มิติ ก่อนที่จะถูกคอมไพล์ด้วย 3D.</value></data>
   <data name="Emulation.Option.supermodel.supermodel_upscale_mode.Value.0"><value>ใกล้ที่สุด</value></data>
   <data name="Emulation.Option.supermodel.supermodel_upscale_mode.Value.1"><value>ไบนารีName</value></data>
   <data name="Emulation.Option.supermodel.supermodel_upscale_mode.Value.2"><value>เชิงเส้น (ค่าปริยาย)</value></data>
@@ -3248,7 +3248,7 @@
   <data name="Emulation.Option.supermodel.supermodel_ppc_frequency.Description"><value>ปรับแก้ PowerPC CPU ความถี่ในการเทรดวงจรความแม่นยําสําหรับการทํางานบนฮาร์ดแวร์ระดับต่ํา 'อัตโนมัติ' ตามขั้นตอนเกม (66/100) /166 MHzก้าว 2.x เกมเช่น เดย์โทนา 2 ทํางานที่ 166 MHzซึ่งมากกว่าสองครั้ง CPU งานของ 70 MHzเครื่องเร่งจังหวะเป็นคันโยกที่ใหญ่ที่สุด สําหรับฮาร์ดแวร์ที่อ่อนแอ ด้วยต้นทุนของวงจร</value></data>
   <data name="Emulation.Option.supermodel.supermodel_ppc_frequency.Value.auto"><value>อัตโนมัติ (ค่าปริยาย)</value></data>
   <data name="Emulation.Option.supermodel.supermodel_emulation_threading"><value>การจําลองเธรด</value></data>
-  <data name="Emulation.Option.supermodel.supermodel_emulation_threading.Description"><value>เลือกวิธี Supermodel แจกจ่ายงานการจําลองผ่านโฮสต์ CPU เธรด. multi-theaded ใช้กระดานเสียงและไดรฟ์บนเส้นด้ายงาน; หลาย thoughd + GPU การจําลอง PowerPC ซ้อนทับกันด้วยการประมวลผลกราฟิกด้วย ซึ่งไม่ขึ้นอยู่กับการตั้งค่าวิดีโอของ RetroArch ที่ทําเธรดใหม่ การเริ่มใช้งานเนื้อหาใหม่อีกครั้ง</value></data>
+  <data name="Emulation.Option.supermodel.supermodel_emulation_threading.Description"><value>เลือกวิธี Supermodel แจกจ่ายงานการจําลองผ่านโฮสต์ CPU เธรด. multi-theaded ใช้กระดานเสียงและไดรฟ์บนเส้นด้ายงาน.</value></data>
   <data name="Emulation.Option.supermodel.supermodel_emulation_threading.Value.single"><value>เธรดเดียว</value></data>
   <data name="Emulation.Option.supermodel.supermodel_emulation_threading.Value.multi"><value>พิมพ์แบบหลายเหลี่ยม</value></data>
   <data name="Emulation.Option.supermodel.supermodel_emulation_threading.Value.multi_gpu"><value>จํานวนครั้งที่อ่านแล้ว + GPU (ค่าปริยาย)</value></data>

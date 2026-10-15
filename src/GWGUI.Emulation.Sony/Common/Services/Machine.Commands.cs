@@ -48,10 +48,9 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         {
             _core.Initialize(Configuration, _sessionDirectory, _saveDirectory);
             initialized = true;
-            var audioSampleRate = 0;
             if (_audioOutput is not null)
             {
-                try { _audioOutput.Start(_core.SampleRate); audioSampleRate = _core.SampleRate; }
+                try { StartAudioOutput(_core.SampleRate, EmulationAudioChannelLayout.Stereo); }
                 catch { _audioOutput.Dispose(); _audioOutput = null; }
             }
             lock (_gate)
@@ -87,13 +86,12 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
                     {
                         try
                         {
-                            if (audio.SampleRate != audioSampleRate)
+                            if (audio.SampleRate != _audioSampleRate || audio.ChannelLayout != _audioChannelLayout)
                             {
                                 _audioOutput.Stop();
-                                _audioOutput.Start(audio.SampleRate);
-                                audioSampleRate = audio.SampleRate;
+                                StartAudioOutput(audio.SampleRate, audio.ChannelLayout);
                             }
-                            WriteAudio(audio.InterleavedStereo.Span);
+                            WriteAudio(audio.InterleavedSamples.Span);
                         }
                         catch { _audioOutput.Dispose(); _audioOutput = null; }
                     }
@@ -164,8 +162,17 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
             finally { _audioOutput?.Dispose(); }
             _audioOutput = factory?.Invoke();
             if (_audioOutput is not null && State is EmulationMachineState.Running or EmulationMachineState.Paused)
-                _audioOutput.Start(_core.SampleRate);
+                StartAudioOutput(_core.SampleRate, _audioChannelLayout);
         }
+    }
+
+    private void StartAudioOutput(int sampleRate, EmulationAudioChannelLayout layout)
+    {
+        if (_audioOutput is IMultichannelAudioOutput multichannel) multichannel.Start(sampleRate, layout);
+        else if (layout == EmulationAudioChannelLayout.Stereo) _audioOutput?.Start(sampleRate);
+        else throw new NotSupportedException(nameof(IMultichannelAudioOutput));
+        _audioSampleRate = sampleRate;
+        _audioChannelLayout = layout;
     }
 
     private void ThrowIfDisposed() => ObjectDisposedException.ThrowIf(_disposed, this);

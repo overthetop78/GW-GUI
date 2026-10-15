@@ -16,6 +16,7 @@ public static class EmulationControllerCommandIds
     public const string RightStickRight = "RightStickRight";
     public const string Fire1 = "Fire1";
     public const string Fire2 = "Fire2";
+    public const string Reload = "Reload";
     public const string Turbo = "Turbo";
     public const string A = "A";
     public const string B = "B";

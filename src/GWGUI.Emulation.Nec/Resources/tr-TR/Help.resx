@@ -5,7 +5,7 @@
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Nec.Help.Memory.Ram.Short"><value>Emated makineye mevcut RAM miktarı.</value></data>
-  <data name="Emulation.Nec.Help.Memory.Ram.Detailed"><value>BeetlePce tarafından açığa çıkan RAM genişletmesini seçin. Makine yeni miktardan önce yeniden başlamalıdır.</value></data>
+  <data name="Emulation.Nec.Help.Memory.Ram.Detailed"><value>BeetlePce tarafından açığa çıkan RAM genişletmesini seçin.</value></data>
   <data name="Emulation.Nec.Help.Firmware.Integrated.Short"><value>Bu model için dış BIOS dosyası gerekli değildir.</value></data>
   <data name="Emulation.Nec.Help.Firmware.Integrated.Detailed"><value>Bu makinedeki foton oyunları dış bir sistem olmadan çalışır BIOS.</value></data>
   <data name="Emulation.Nec.Help.Video.Resolution.Short"><value>BeetlePce tarafından verilen iç karar.</value></data>

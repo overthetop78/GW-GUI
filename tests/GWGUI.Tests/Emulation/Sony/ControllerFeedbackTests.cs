@@ -37,7 +37,8 @@ public sealed class ControllerFeedbackTests
     {
         var configuration = new MachineConfiguration(model, emulator);
         var settings = InputSettingsFunctions.Describe(configuration);
-        var choice = Assert.Single(settings.ControllerPorts[0].ControllerChoices, item => item.Id == type.ToString());
+        var portIndex = emulator == "pcee2" ? 2 : 0;
+        var choice = Assert.Single(settings.ControllerPorts[portIndex].ControllerChoices, item => item.Id == type.ToString());
         if (expected)
         {
             var outputs = choice.VisualOutputDefinitions![choice.DefaultVisualId!];
@@ -119,8 +120,8 @@ public sealed class ControllerFeedbackTests
 
     [Theory]
     [InlineData(-1, 0, .5f)]
-    [InlineData(17, 0, .5f)]
-    [InlineData(1, 8, .5f)]
+    [InlineData(21, 0, .5f)]
+    [InlineData(1, 10, .5f)]
     [InlineData(1, -1, .5f)]
     [InlineData(1, 0, -1f)]
     [InlineData(1, 0, 2f)]

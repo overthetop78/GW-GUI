@@ -39,8 +39,6 @@
   <data name="Emulation.Option.Sony.Value.Interpreter"><value>مترجم شفوي</value></data>
   <data name="Emulation.Option.Sony.Value.CachedInterpreter"><value>مترجم شفوي</value></data>
   <data name="Emulation.Option.Sony.Value.Recompiler"><value>إعادة التجميع</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_GPU_Renderer.Label"><value>GPU Render</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_GPU_Renderer.Help"><value>و الذي يستخدمه الـ GPU</value></data>
   <data name="Emulation.Option.Sony.Value.HardwareOpenGL"><value>البرمجيات (OpenGL)</value></data>
   <data name="Emulation.Option.Sony.Value.Software"><value>البرمجيات</value></data>
   <data name="Emulation.Option.swanstation.swanstation_GPU_ResolutionScale.Label"><value>جدول القرارات الداخلية</value></data>
@@ -129,7 +127,7 @@
   <data name="Emulation.Option.swanstation.swanstation_Display_LineEndOffset.Label"><value>نهاية آخر خط معروض</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Display_LineEndOffset.Help"><value>دفعات أو محاصيل من أسفل الصورة المُعرضة.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_MemoryCards_Card1Type.Label"><value>الرمز 1</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_MemoryCards_Card1Type.Help"><value>اختر تنسيق بطاقة الذاكرة للمنفذ 1. أعد تشغيل النواة عند تغيير التنسيق. تُحتفظ خيارات البطاقات المشتركة وخيارَي البطاقة المنفصلة للإعدادات القديمة، لكنها غير مدعومة. يستخدم تنسيق Libretro ملفات .srm. وتستخدم البطاقة المنفصلة المسماة باسم اللعبة ملفات .mcd. يحتوي التنسيقان على البيانات نفسها. للتحويل بينهما، غيّر امتداد الملف وأضف لاحقة المنفذ _1 أو احذفها.</value></data>
+  <data name="Emulation.Option.swanstation.swanstation_MemoryCards_Card1Type.Help"><value>اختر تنسيق بطاقة الذاكرة للمنفذ 1. تُحتفظ خيارات البطاقات المشتركة وخيارَي البطاقة المنفصلة للإعدادات القديمة، لكنها غير مدعومة. يستخدم تنسيق Libretro ملفات .srm. وتستخدم البطاقة المنفصلة المسماة باسم اللعبة ملفات .mcd. يحتوي التنسيقان على البيانات نفسها. للتحويل بينهما، غيّر امتداد الملف وأضف لاحقة المنفذ _1 أو احذفها.</value></data>
   <data name="Emulation.Option.Sony.Value.LibretroDefault"><value>ليبرترو (Default)</value></data>
   <data name="Emulation.Option.Sony.Value.SharedBetweenAllGames"><value>متقاسمة بين كل الألعاب</value></data>
   <data name="Emulation.Option.Sony.Value.SeparateCardPerGameGameCode"><value>لعبة كارد بير (رمز Game)</value></data>
@@ -442,8 +440,6 @@
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_region.Help"><value>ويضع منطقة التراجع المستخدمة عندما لا يمكن كشف المحتوى آلياً (مثل الملفات الخام PS-X EXE). لا تزال الألعاب المستندة إلى الأقراص تستخدم المنطقة المتأصلة على القرص.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_internal_resolution.Label"><value>القرار الداخلي GPU</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_internal_resolution.Help"><value>قرارات أعلى من 1x (Native) تحسّن نمذج 3D على حساب زيادة متطلبات الأداء</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_renderer.Label"><value>رندر</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_renderer.Help"><value>اختر كيف ترسم الصورة صانع البرمجيات هو الأكثر دقة. وهي تحتاج إلى قدر أكبر بكثير من القدرة على المعالجة في قرارات داخلية أعلى. إن إصدار البرمجيات الصلبة أقل دقة، ولكن أسرع في القرارات العليا ويدعم إدخال تحسينات على الرسوم البيانية. وتختار الأجهزة الآلية التي تصدر المعدات Vulkan أو المفتوحة GL وفقاً لسائق الفيديو الذي يستخدمه الطلب. إذا كان السائق لا يدعم Vulkan Nor opengl 3.3, استخدام البرمجيات الأساسية بدلا من ذلك. أعيدي تشغيل الجوهر بعد تغيير هذا الخيار.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_renderer_software_fb.Label"><value>برمجيات</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_renderer_software_fb.Help"><value>إستخدم صانع البرمجيات في الخلفية من القرار الأصلي بينما يُظهر متعهد الأجهزة اللعبة. يُستنسخ هذا الاقتراح الطائش والانتقالات في المعركة في إطار FF7 بدقة. عندما يكون معطل، يُغفل (إف جي إل) هذه الآثار Vulkan يرسمهم على GPU. ويمكن أن يؤدي إضعاف هذا الخيار إلى تحسين السرعة، ولكن يمكن أيضاً أن يتسبب في أخطاء بيانية خطيرة. أبقيه مُمكّنًا إن لم يكن آمنًا.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_color_format.Label"><value>النموذج البارد</value></data>
@@ -472,7 +468,7 @@
   <data name="Emulation.Option.Sony.Value.25Degrees"><value>25 درجة</value></data>
   <data name="Emulation.Option.Sony.Value.45Degrees"><value>45 درجة</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_video_cable.Label"><value>Anlog Video Cable</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_video_cable.Help"><value>محاكاة الكابل بين القنصل والتلفزيون بما في ذلك زينة الألوان وأسطوانة التليفزيون). 'RGB (SCART)' هو أذكى ناتج PSX يمكن أن يُنتج: RGB, لذا لا شيء معوّل ولا أحد من القطع الأثرية المزينة تحت يمكن أن يحدث لكنه ما زال سلكاً مدوّناً. 'RF' نماذج مرشدة خارجية - القنصل نفسه لا يملك أي شيء، فقط DC الرافعة إلى القوة الأولى - تضيق لوما أكثر وتضيف النمط المضبوط الذي يصنعه ناقل الصوت ضد حاملة الألوان التي هي أقوى من اللون المشبعة. يعمل في أي قرار داخلي: تُحل العينات الإضافية إلى أسفل قبل أن يتم توليد الإشارة، لذا فإن البيئات الأعلى تعمل كعينة خارقة للكابل بدلاً من إشارة أوسع، ولا يزال الناتج يحمل التفاصيل الفرعية التي ينتجها الشيك. مدعمة بمصدري البرمجيات رقم Vulkan وPopGL، ويتجاهلها صانع البرامجيات. على (أف جي إل) المرشّح الذي يزيل "النقاط الراقية" - النمط الدقيق على طول حواف الألوان الأفقية GL 4.3 أو GLES 3.1; على السائق الأكبر سنا المحاكاة لا تزال تجري، ولكن "مفترض" و 'RF' سوف تظهر تلك النقاط. يُطبّق على الفور؛ لا حاجة إلى إعادة تشغيل.</value></data>
+  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_video_cable.Help"><value>محاكاة الكابل بين القنصل والتلفزيون بما في ذلك زينة الألوان وأسطوانة التليفزيون). 'RGB (SCART)' هو أذكى ناتج PSX يمكن أن يُنتج: RGB, لذا لا شيء معوّل ولا أحد من القطع الأثرية المزينة تحت يمكن أن يحدث لكنه ما زال سلكاً مدوّناً. 'RF' نماذج مرشدة خارجية - القنصل نفسه لا يملك أي شيء، فقط DC الرافعة إلى القوة الأولى - تضيق لوما أكثر وتضيف النمط المضبوط الذي يصنعه ناقل الصوت ضد حاملة الألوان التي هي أقوى من اللون المشبعة. يعمل في أي قرار داخلي: تُحل العينات الإضافية إلى أسفل قبل أن يتم توليد الإشارة، لذا فإن البيئات الأعلى تعمل كعينة خارقة للكابل بدلاً من إشارة أوسع، ولا يزال الناتج يحمل التفاصيل الفرعية التي ينتجها الشيك. مدعمة بمصدري البرمجيات رقم Vulkan وPopGL، ويتجاهلها صانع البرامجيات. على (أف جي إل) المرشّح الذي يزيل "النقاط الراقية" - النمط الدقيق على طول حواف الألوان الأفقية GL 4.3 أو GLES 3.1; على السائق الأكبر سنا المحاكاة لا تزال تجري.</value></data>
   <data name="Emulation.Option.Sony.Value.NoSimulation"><value>لا محاكاة</value></data>
   <data name="Emulation.Option.Sony.Value.RGBSCART"><value>RGB (SCART)</value></data>
   <data name="Emulation.Option.Sony.Value.SVideo"><value>S-Video</value></data>
@@ -757,9 +753,7 @@
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_nostalls.Label"><value>Disable CPU/GTE Stalls</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_nostalls.Help"><value>سيسبب بعض الالعاب للركض بسرعة كبيرة يجب أن يكون معطل في جميع الحالات تقريباً مترجم شفوي فقط</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_fast_boot.Label"><value>بوتس</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_fast_boot.Help"><value>تزلج على الأحذية BIOS. يتطلب إعادة تشغيل.</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_renderer.Label"><value>رندر</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_renderer.Help"><value>صانع البرمجيات الصلبة API، أو صانع البرامج. ويطبق التحول إلى البرمجيات أو منها على الذبابة؛ ويصبح التبديل بين المعدات API نافذا عندما يعاد تشغيل المحتوى.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_fast_boot.Help"><value>تزلج على الأحذية BIOS.</value></data>
   <data name="Emulation.Option.Sony.Value.OpenGLHardware"><value>(Hardware)</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_upscale_multiplier.Label"><value>القرار الداخلي</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_upscale_multiplier.Help"><value>مضاعف قرار داخلي لمصدر المعدات. ويقيِّد أيضاً إطار النواتج. يعتمد على الذبابة.</value></data>
@@ -796,8 +790,6 @@
   <data name="Emulation.Option.pcee2.pcsx2_fxaa.Help"><value>التشويش بعد العملية المضادة للحركة.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_cas_mode.Label"><value>Sharpening Adaptive</value></data>
   <data name="Emulation.Option.Sony.Value.SharpenOnly"><value>(شاربن)</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_audio_buffer_ms.Label"><value>أوديو بوفر</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_audio_buffer_ms.Help"><value>كم الصوتية التي يحتفظ بها المرشد قبل المقدمة. أكثر من ذلك يَرْكبُ خارج a كشك الذي سَيُسْمعُ خلافاً لذلك كa إستراحة في الصوتِ، بكلفة ذلك التأخيرِ الكثير قَبْلَ أَنْ تَسْمْع أيّ شئَ. PCSX2 قبوها الخاص هو 50 مترا، الذي يفترض أنه يغذي جهاز صوتي مباشرة بدلا من واجهة تسحب مرة واحدة إطار.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_frame_limiter.Label"><value>Frame Limiter</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_frame_limiter.Help"><value>الذي يَحْملُ الدافع إلى السرعةِ الكاملةِ. وتغادر الجبهة المباعدة إلى RetroArch، التي تتعثر بجعل النواة تنتظر على الصوت الذي تحمله. استخدامات داخلية رقم PCSX2 الخاص بدلا من ذلك لجهاز حيث لا يحدث هذا الانتظار أبدا، لأن السائق الصوتي يتدحرج بدلا من إغلاق،</value></data>
   <data name="Emulation.Option.Sony.Value.FrontendRetroArch"><value>Frontend (RetroArch)</value></data>
@@ -814,7 +806,7 @@
   <data name="Emulation.Option.Sony.Value.Port25Players"><value>المرفأ 2 (5 لاعبين)</value></data>
   <data name="Emulation.Option.Sony.Value.BothPorts8Players"><value>المرافئ )٨ لاعبين(</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_lightgun.Label"><value>بندقية (GunCon 2)</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_lightgun.Help"><value>يحاكي Namco GunCon 2 عبر منفذ USB. يُوجَّه باستخدام المسدس الضوئي في الواجهة، أو فأرة مضبوطة للعمل كمسدس ضوئي، على منفذ وحدة التحكم المطابق. يتطلب إعادة التشغيل.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_lightgun.Help"><value>يحاكي Namco GunCon 2 عبر منفذ USB. يُوجَّه باستخدام المسدس الضوئي في الواجهة، أو فأرة مضبوطة للعمل كمسدس ضوئي.</value></data>
   <data name="Emulation.Option.Sony.Value.USBPort1"><value>المرفأ 1 من طراز USB</value></data>
   <data name="Emulation.Option.Sony.Value.USBPort2"><value>USB Port 2</value></data>
   <data name="Emulation.Option.Sony.Value.BothPorts"><value>كلتا المرافئ</value></data>
@@ -843,14 +835,14 @@
   <data name="Emulation.Option.Sony.Value.EnabledJITDefault"><value>يمكن استخدامها (JIT, Default)</value></data>
   <data name="Emulation.Option.Sony.Value.DisabledInterpreter"><value>المعاقون (مترجم شفوي)</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_rec_ee.Label"><value>- EE إعادة التجميع</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_rec_ee.Help"><value>تشخيصي غير قابل للنقاش Emotion Engine (EE) (دينارك) بينما يترك الآخرين على متن الطائرة، إلى بزوغ الذي يسبب تحطماً. يتطلب إعادة تشغيل.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_rec_ee.Help"><value>تشخيصي غير قابل للنقاش Emotion Engine (EE) (دينارك) بينما يترك الآخرين على متن الطائرة.</value></data>
   <data name="Emulation.Option.Sony.Value.EnabledDefault"><value>(النفقة)</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_rec_iop.Label"><value>- IOP إعادة التجميع</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_rec_iop.Help"><value>تشخيصي غير قابل للنقاش IOP (R3000) (دينارك) بينما يترك الآخرين على متن الطائرة، إلى بزوغ الذي يسبب تحطماً. يتطلب إعادة تشغيل.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_rec_iop.Help"><value>تشخيصي غير قابل للنقاش IOP (R3000) (دينارك) بينما يترك الآخرين على متن الطائرة.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_rec_vu0.Label"><value>- VU0 إعادة التجميع</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_rec_vu0.Help"><value>تشخيصي تم تعطيل فقط الميكروفو VU0 dynarec في الوقت الذي يترك الآخرين على، إلى مضاعفات التي يعيد التجميع تسبب تحطم. يتطلب إعادة تشغيل.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_rec_vu0.Help"><value>تشخيصي تم تعطيل فقط الميكروفو VU0 dynarec في الوقت الذي يترك الآخرين على.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_rec_vu1.Label"><value>- VU1 إعادة التجميع</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_rec_vu1.Help"><value>تشخيصي تم تعطيل فقط الميكروفو VU1 dynarec مع ترك الآخرين على، إلى مكرر الذي يعيد التجميع يسبب تحطم. يتطلب إعادة تشغيل.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_rec_vu1.Help"><value>تشخيصي تم تعطيل فقط الميكروفو VU1 dynarec مع ترك الآخرين على.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_memcard_slot1_enable.Label"><value>الجدول 1</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_memcard_slot1_enable.Help"><value>إحصلْ على بطاقةِ ذاكرةِ الطيار 1 PS2. تُطبّق التغييرات على الفور بينما يُجرى المحتوى.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_memcard_slot2_enable.Label"><value>الجدول 2</value></data>
@@ -901,8 +893,6 @@
   <data name="Emulation.Option.Sony.Value.AllTimers"><value>جميع التواريخ</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_clocks_scale.Label"><value>Scale</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_clocks_scale.Help"><value>Scale PS3</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_renderer.Label"><value>رندر</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_renderer.Help"><value>Vulkan يَصْدرُ على الواجهةِ Vulkan جهاز ويَدْيه كُلّ إطار منتهي كa صورة؛ عندما الجبهة لا تُديرُ سائقها Vulkan الفيديو، الإطار يُنسخُ من خلال الذاكرة بدلاً من ذلك. (إف بي جي إل) يرسم مباشرةً في سياق الواجهة المفتوحة.</value></data>
   <data name="Emulation.Option.Sony.Value.NullNoVideo"><value>نول (لا فيديو)</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_frame_limit.Label"><value>حدود الصدمة</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_frame_limit.Help"><value>أعلى سعر لللعبة قد تجري فيه. "الأوتو" هو تواتر (فلانك) كما في RPCS3; PS3 الوتيرة المحلية تدور حول الطريق PS3 نعم، دع الألعاب التي لا تنتظر PS3'يركضون بسرعة.</value></data>
@@ -979,7 +969,7 @@
   <data name="Emulation.Option.rpcs3.rpcs3_driver_wakeup_delay.Label"><value>سائق يستيقظ</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_driver_wakeup_delay.Help"><value>التأخير في إيقاظ السائقين بالثانيات الصغرى صفر بالتقصير، كما هو الحال في RPCS3؛ ولا ترفعه إلا عندما تحتاج اللعبة إليه.</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_vblank_rate.Label"><value>الترددات العالقة</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_vblank_rate.Help"><value>معدل تجديد PS3 في Hz. هو أيضاً المعدل الإطاري الذي يطلبه النواة (RetroArch) والذي يبدأ نفاذه عندما يتم تحميل المحتوى؛ والألعاب التي يمكن أن تدار فوق 60 من الـ FPS تحتاج إلى عرض يُعيد صدمه بهذه السرعة.</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_vblank_rate.Help"><value>يحدد معدل التحديث المحاكى. يضاعفه وضع قائمة التوافق للألعاب المدعومة.</value></data>
   <data name="Emulation.Option.Sony.Value.50HzPAL"><value>50 Hz (PAL)</value></data>
   <data name="Emulation.Option.Sony.Value.60HzNTSC"><value>60 Hz (NTSC)</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_thread_scheduler.Label"><value>جدول الخيط</value></data>
@@ -1061,8 +1051,6 @@
   <data name="Emulation.Option.rpcs3.rpcs3_frame_pacing.Label"><value>Frame Pacing</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_frame_pacing.Help"><value>ما تُحدّد إطارات اللعبة. ساعة الإمبراطور هي RPCS3 موقّت الخاص، كما في الواجهة RPCS3. RetroArch أعطِ اللعبةَ واحد PS3 التجديد حسب الإطار RetroArch تظهر، سريع جدا إلى الأمام سرعة اللعبة حتى ولعبة تشغيل في تردد الفبلانك عندما RetroArch تظهر أن الكثير من الإطارات في الثانية؛ مع Vulkan يَرْفعُه حالياً تَتخطّى الإطاراتَ.</value></data>
   <data name="Emulation.Option.Sony.Value.EmulatorClock"><value>ساعة الانطلاق</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_savedata_slot.Label"><value>صندوق البيانات</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_savedata_slot.Help"><value>لعبة PS3 تُظهر قائمة بياناتها المحفوظة وتسمح لللاعب أن يختار رقم لديه الخيار الأساسي بالنسبة لك بدلاً من ذلك: إنقاذ المداخل في هذا الموقع في قائمة اللعبة، أو جعل الخزنة الجديدة عندما تكون القائمة أقصر؛ والتحميل يأخذ الدخول في هذا المنصب، ولا يجد أي شيء حين تكون القائمة أقل. الألعاب التي تحافظ على واحدة لا تظهر قائمة، لذلك هذا لا ينطبق عليهم.</value></data>
   <data name="Emulation.Option.Sony.Value.PickFromList"><value>اختر من القائمة</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_master_volume.Label"><value>المعلم فولومي</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_master_volume.Help"><value>النسبة المئوية لحجم الصوت الرئيسي</value></data>
@@ -1274,4 +1262,18 @@
   <data name="Emulation.Option.Sony.Setting.LineToQuad.Help" xml:space="preserve"><value>بعض الألعاب (مثلاً) Doom, Hexen, Soul Blade, etc.) يرسم خطوطاً أفقية بتمديد المثلثات ذات الفخذ الواحد عبر الشاشة، التي تُستَعف كصف من البيكسلز على الأجهزة الأصلية. هذا الإختراق يكتشف هذه المثلثات الصغيرة ويحولها إلى أربعة أضعاف كما هو مطلوب، مما يسمح لها أن تظهر بشكل سليم على صانعي الأجهزة وفي قرارات داخلية متطورة. القوات المظلمة، دوك نوكوم ولكن يمكن أن تُقدّم ملامح بيانية. ارحلي في "ديفولت" إذا لم يكن هناك مانع.</value></data>
   <data name="Emulation.Option.Sony.Setting.DynarecEventCycles.Label" xml:space="preserve"><value>Dynarec DMA/GPU/MDEC/مباريات الأحداث الزمنية</value></data>
   <data name="Emulation.Option.Sony.Setting.DynarecEventCycles.Help" xml:space="preserve"><value>(ماكس) CPU قبل GPU/DMA/MDEC/دقّقَ تحديث التوقيت، عدد أعلى سَيصْبَحُ أسرعَ، عِنْدَهُ تأثير أقل بكثير على مترجم اللحومِ من ديانريك.</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_aspect_ratio.Help"><value>يحدد تنسيق الشاشة الذي يُبلّغ به الألعاب. لا تدعم نسبة 4:3 إلا بعض الألعاب.</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_disk_cache_size.Label"><value>حجم ذاكرة التخزين المؤقت على القرص</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_disk_cache_size.Help"><value>يحد مساحة القرص المستخدمة للبيانات المؤقتة للألعاب. تعيد الألعاب إنشاء البيانات المحذوفة، مما قد يبطئ التشغيل التالي.</value></data>
+  <data name="Emulation.Option.pokket.Link"><value>اتصال بالأشعة تحت الحمراء</value></data>
+  <data name="Emulation.Option.pokket.Layout"><value>ترتيب الشاشتين المتصلتين</value></data>
+  <data name="Emulation.Option.pokket.Audio"><value>مصدر صوت الوحدتين المتصلتين</value></data>
+  <data name="Emulation.Option.pokket.Identity"><value>المعرّف المادي للوحدة B</value></data>
+  <data name="Emulation.Option.pokket.Horizontal"><value>جنبًا إلى جنب</value></data>
+  <data name="Emulation.Option.pokket.Vertical"><value>واحدة فوق الأخرى</value></data>
+  <data name="Emulation.Option.pokket.SelectUnitA"><value>التحكم في الوحدة A</value></data>
+  <data name="Emulation.Option.pokket.SelectUnitB"><value>التحكم في الوحدة B</value></data>
+  <data name="Emulation.Option.pokket.Help"><value>أدخل بطاقة في كل وحدة لتفعيل الاتصال بالأشعة تحت الحمراء.</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_audio_format.Label"><value>توزيع مكبرات الصوت</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_audio_format.Help"><value>يحدد توزيع مكبرات الصوت المتاح للألعاب. تختار اللعبة مزيج الصوت وفق هذا التوزيع. يعتمد الخرج أيضًا على جهاز الصوت المحدد في Windows.</value></data>
 </root>

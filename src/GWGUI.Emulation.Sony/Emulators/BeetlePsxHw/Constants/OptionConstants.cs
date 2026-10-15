@@ -80,11 +80,11 @@ internal static class OptionConstants
     internal const string InternalResolution1xNative = "1x(native)";
     internal static readonly string InternalResolutionDefaultValue = OptionValueFunctions.ToNative(InternalResolution._1xNative);
     internal const string RendererKey = "beetle_psx_hw_renderer";
-    internal const string RendererLabelResource = "Emulation.Option.mednafen_psx_hw.beetle_psx_hw_renderer.Label";
-    internal const string RendererHelpResource = "Emulation.Option.mednafen_psx_hw.beetle_psx_hw_renderer.Help";
     internal const string RendererHardwareGl = "hardware_gl";
+    internal const string RendererHardware = "hardware";
+    internal const string RendererHardwareVk = "hardware_vk";
     internal const string RendererSoftware = "software";
-    internal static readonly string RendererDefaultValue = OptionValueFunctions.ToNative(Renderer.HardwareGl);
+    internal static readonly string RendererDefaultValue = OptionValueFunctions.ToNative(Renderer.Hardware);
     internal const string RendererSoftwareFbKey = "beetle_psx_hw_renderer_software_fb";
     internal const string RendererSoftwareFbLabelResource = "Emulation.Option.mednafen_psx_hw.beetle_psx_hw_renderer_software_fb.Label";
     internal const string RendererSoftwareFbHelpResource = "Emulation.Option.mednafen_psx_hw.beetle_psx_hw_renderer_software_fb.Help";

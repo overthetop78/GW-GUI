@@ -5,7 +5,7 @@
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Nec.Help.Memory.Ram.Short"><value>エミュレートされた機械に利用できるRAMの量。</value></data>
-  <data name="Emulation.Nec.Help.Memory.Ram.Detailed"><value>BeetlePce で公開されている RAM 拡張を選択します。 機械は新しい量が使用される前に再始動しなければなりません。</value></data>
+  <data name="Emulation.Nec.Help.Memory.Ram.Detailed"><value>BeetlePce で公開されている RAM 拡張を選択します。</value></data>
   <data name="Emulation.Nec.Help.Firmware.Integrated.Short"><value>このモデルでは、外部のBIOSファイルは必要ありません。</value></data>
   <data name="Emulation.Nec.Help.Firmware.Integrated.Detailed"><value>この機械のカートリッジ ゲームは外部システムなしで動くBIOS.</value></data>
   <data name="Emulation.Nec.Help.Video.Resolution.Short"><value>BeetlePce によってレンダリングされる内部決断。</value></data>

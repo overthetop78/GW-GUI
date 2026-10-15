@@ -14,7 +14,8 @@ public enum ControllerType
     Justifier,
     Mouse,
     Keyboard,
-    KeyboardAndMouse
+    KeyboardAndMouse,
+    GunCon2
 }
 
 public enum MouseAction { None, LeftButton, RightButton, MiddleButton }

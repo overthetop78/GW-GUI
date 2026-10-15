@@ -299,4 +299,7 @@
   <data name="Emulation.Video.Parameter.ProjectionVignette"><value>A szélek sötétedése</value></data>
   <data name="Emulation.Video.Projection.Group.Optics"><value>Optics and light</value></data>
   <data name="Emulation.Video.Projection.Group.Screen"><value>Vetítővászon</value></data>
+  <data name="Emulation.Option.Common.Value.HardwareRendering"><value>Hardveres renderelés</value></data>
+  <data name="Emulation.Option.Common.RenderingMode.Label"><value>Renderelési mód</value></data>
+  <data name="Emulation.Option.Common.RenderingMode.Help"><value>A hardveres renderelés az alkalmazáshoz kiválasztott grafikus API-t használja, ha az emulátor támogatja.</value></data>
 </root>

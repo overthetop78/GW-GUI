@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Sony.Emulators.Common.Constants;
 using GWGUI.Emulation.Sony.Emulators.Ppsspp.Constants;
 
 namespace GWGUI.Emulation.Sony.Emulators.Ppsspp.Dictionaries;
@@ -150,20 +151,25 @@ internal static class OptionCatalog
         ),
         new(
             OptionConstants.BackendKey,
-            OptionConstants.BackendLabel,
-            OptionConstants.BackendHelp,
+            GraphicsSettingsConstants.ModeLabel,
+            GraphicsSettingsConstants.ModeHelp,
             null,
-            "auto",
-            "auto",
+            OptionConstants.AutomaticBackend,
+            OptionConstants.AutomaticBackend,
             [
-                new("auto", "Emulation.Option.Sony.Value.Automatic"),
-                new("opengl", "Emulation.Option.ppsspp.ppsspp_backend.Value.1"),
-                new("vulkan", "Emulation.Option.ppsspp.ppsspp_backend.Value.2"),
+                new(OptionConstants.AutomaticBackend, "Emulation.Option.Sony.Value.Automatic"),
+                new(OptionConstants.OpenGlBackend, "Emulation.Option.ppsspp.ppsspp_backend.Value.1"),
+                new(OptionConstants.VulkanBackend, "Emulation.Option.ppsspp.ppsspp_backend.Value.2"),
                 new("d3d11", "Emulation.Option.ppsspp.ppsspp_backend.Value.3"),
-                new("none", "Emulation.Option.Sony.Value.None")
+                new(OptionConstants.NoVideoBackend, "Emulation.Option.Sony.Value.None")
             ],
             Tab: EmulationMachineTab.Video,
-            RequiresRestart: true
+            RequiresRestart: true,
+            GraphicsApiValues: new Dictionary<EmulationGraphicsApi, string>
+            {
+                [EmulationGraphicsApi.Automatic] = OptionConstants.AutomaticBackend,
+                [EmulationGraphicsApi.OpenGL] = OptionConstants.OpenGlBackend
+            }, RetainedRendererValues: [OptionConstants.NoVideoBackend]
         ),
         new(
             OptionConstants.SoftwareRenderingKey,
@@ -174,7 +180,7 @@ internal static class OptionCatalog
             "disabled",
             [new("disabled", "Emulation.Option.Sony.Value.Disabled"), new("enabled", "Emulation.Option.Sony.Value.Enabled")],
             Tab: EmulationMachineTab.Video,
-            RequiresRestart: false
+            RequiresRestart: true
         ),
         new(
             OptionConstants.InternalResolutionKey,
@@ -212,7 +218,7 @@ internal static class OptionCatalog
                 new("x8", "Emulation.Option.ppsspp.ppsspp_mulitsample_level.Value.3")
             ],
             Tab: EmulationMachineTab.Video,
-            RequiresRestart: false
+            RequiresRestart: true
         ),
         new(
             OptionConstants.Cropto16x9Key,
@@ -299,7 +305,7 @@ internal static class OptionCatalog
             "Up to 1",
             [new("No buffer", "Emulation.Option.ppsspp.ppsspp_inflight_frames.Value.0"), new("Up to 1", "Emulation.Option.ppsspp.ppsspp_inflight_frames.Value.1")],
             Tab: EmulationMachineTab.Video,
-            RequiresRestart: false
+            RequiresRestart: true
         ),
         new(
             OptionConstants.ButtonPreferenceKey,

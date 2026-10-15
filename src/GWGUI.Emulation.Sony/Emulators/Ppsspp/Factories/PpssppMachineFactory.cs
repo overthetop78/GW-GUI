@@ -12,8 +12,10 @@ internal sealed class PpssppMachineFactory : IEmulatorAdapter, IEmulatorFirmware
 
     public bool RequiresExternalFirmware => false;
     public IReadOnlyList<FirmwareSlot> GetFirmwareSlots(MachineConfiguration configuration) => [];
-    public IReadOnlyList<EmulationSettingsBlock> GetSettingsBlocks(MachineConfiguration configuration) => Emulators.Common.Interop.Functions.CoreSettingsFunctions.Blocks(Dictionaries.OptionCatalog.All, configuration);
+    public IReadOnlyList<EmulationSettingsBlock> GetSettingsBlocks(MachineConfiguration configuration) => Emulators.Common.Interop.Functions.CoreSettingsFunctions.Blocks(PpssppOptionFunctions.Options(configuration), configuration);
     public IReadOnlyDictionary<string, string> GetRuntimeOptions(MachineConfiguration configuration) => PpssppOptionFunctions.ToNative(configuration).Options!;
+    public MachineConfiguration ApplyVideoSettings(MachineConfiguration configuration, EmulationGraphicsApi graphicsApi) =>
+        PpssppOptionFunctions.ToNative(configuration with { GraphicsApi = graphicsApi });
     public IReadOnlyList<ControllerType> GetControllerTypes(MachineConfiguration configuration) => [ControllerType.Joystick];
     public IReadOnlyList<string> SupportedContentExtensions => PpssppConstants.ContentExtensions;
     public int GetMemoryKib(MachineConfiguration configuration) => configuration.Options?.GetValueOrDefault(OptionConstants.PspModelKey) != PpssppConstants.Psp1000Model ? PpssppConstants.ExpandedMemoryKib : ModelCatalog.Get(configuration.Model).RamKib;

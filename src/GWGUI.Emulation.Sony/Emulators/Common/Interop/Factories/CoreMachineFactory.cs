@@ -3,6 +3,7 @@ using System.IO;
 using GWGUI.Emulation.Sony.Emulators.Common.Interop.Constants;
 using GWGUI.Emulation.Sony.Emulators.Common.Interop.Contracts;
 using GWGUI.Emulation.Sony.Emulators.Common.Interop.Services;
+using GWGUI.Emulation.Sony.Emulators.Common.Functions;
 using PlayStationFirmware = GWGUI.Emulation.Sony.Common.Machines.PlayStation.Constants.FirmwareConstants;
 
 namespace GWGUI.Emulation.Sony.Emulators.Common.Interop.Factories;
@@ -15,11 +16,29 @@ internal abstract class CoreMachineFactory : IEmulatorAdapter, IEmulatorFirmware
     protected CoreReleaseSettings ReleaseSettings => CoreDefinition.ReleaseSettings;
     public bool RequiresExternalFirmware => CoreDefinition.RequiresExternalFirmware;
     public IReadOnlyList<FirmwareSlot> GetFirmwareSlots(MachineConfiguration configuration) => configuration.Model == ModelConstants.PlayStation ? [PlayStationFirmware.Selected] : CoreDefinition.Firmware;
-    public IReadOnlyList<EmulationSettingsBlock> GetSettingsBlocks(MachineConfiguration configuration) => CoreSettingsFunctions.Blocks(CoreDefinition, configuration);
-    public IReadOnlyDictionary<string, string> GetRuntimeOptions(MachineConfiguration configuration) => CoreSettingsFunctions.Configure(CoreDefinition, configuration).Options!;
-    public IReadOnlyList<ControllerType> GetControllerTypes(MachineConfiguration configuration) => CoreDefinition.ControllerTypes;
+    public virtual IReadOnlyList<EmulationSettingsBlock> GetSettingsBlocks(MachineConfiguration configuration) => CoreSettingsFunctions.Blocks(CoreDefinition, configuration);
+    public virtual IReadOnlyList<EmulationMediaDevice> GetStorageDevices(MachineConfiguration configuration) => [];
+    public virtual IReadOnlyList<InputBindingDefinition>? GetControllerBindingDefinitions(MachineConfiguration configuration, ControllerType type, int port) => null;
+    public IReadOnlyList<EmulationSettingsBlock> GetMachineSettingsBlocks(MachineConfiguration configuration)
+    {
+        var globalStorage = CoreDefinition.Options.Where(option => option.IsGlobalStorageOption).Select(option => option.Key).ToHashSet(StringComparer.Ordinal);
+        return GetSettingsBlocks(configuration).Select(block => block.Tab == EmulationMachineTab.Storage
+            ? block with { Fields = block.Fields.Where(field => globalStorage.Contains(field.Id)).ToArray() }
+            : block).Where(block => block.Fields.Count > 0).ToArray();
+    }
+    public IReadOnlyList<EmulationSettingsField> GetStorageDeviceConfigurationFields(MachineConfiguration configuration, EmulationMediaCategory category) =>
+        category == EmulationMediaCategory.CompactDiscDrive
+            ? CoreSettingsFunctions.Blocks(CoreDefinition.Options.Where(option => !option.IsGlobalStorageOption).ToArray(), configuration).Where(block => block.Tab == EmulationMachineTab.Storage).SelectMany(block => block.Fields).ToArray()
+            : [];
+    public IReadOnlyDictionary<string, string> GetRuntimeOptions(MachineConfiguration configuration) => Configure(configuration).Options!;
+    public virtual IReadOnlyList<int> GetAudioLatencyChoices(MachineConfiguration configuration) => AudioConstants.LatencyMilliseconds;
+    public virtual AudioConfiguration GetAudioConfiguration(MachineConfiguration configuration) => configuration.Audio ?? new AudioConfiguration();
+    public virtual MachineConfiguration ApplyVideoSettings(MachineConfiguration configuration, EmulationGraphicsApi graphicsApi) =>
+        GraphicsSettingsFunctions.Configure(configuration with { GraphicsApi = graphicsApi }, CoreDefinition.Options);
+    public virtual IReadOnlyList<ControllerType> GetControllerTypes(MachineConfiguration configuration) => CoreDefinition.ControllerTypes;
     public virtual IReadOnlyList<ControllerType> GetControllerTypes(MachineConfiguration configuration, int port) => GetControllerTypes(configuration);
     public virtual int GetControllerPortCount(MachineConfiguration configuration) => ModelCatalog.Get(configuration.Model).ControllerPortCount;
+    public virtual string? GetControllerPortDisplayName(MachineConfiguration configuration, int port) => null;
     public IReadOnlyList<EmulationControllerOutputDefinition> GetControllerOutputs(MachineConfiguration configuration, ControllerType type) =>
         CoreDefinition.FeedbackControllerTypes?.Contains(type) == true ? InputSettingsFunctions.RumbleOutputs : [];
     public IReadOnlyList<string> SupportedContentExtensions => CoreDefinition.Extensions;

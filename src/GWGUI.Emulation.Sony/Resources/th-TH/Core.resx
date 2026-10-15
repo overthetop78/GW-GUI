@@ -4,14 +4,14 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.pcsx2.Description"><value>จําลอง PlayStation 2 ระบบ</value></data>
-  <data name="Emulation.Emulator.ppsspp.Description"><value>จําลอง PlayStation Portable ระบบ</value></data>
-  <data name="Emulation.Emulator.swanstation.Description"><value>จําลองSony PlayStationและPS one</value></data>
-  <data name="Emulation.Emulator.pokketstation.Description"><value>จําลองการวางแผงSony00 PocketStation โดยมีภายนอกBIOS และภาพการ์ดหน่วยความจํา พ.ศ.</value></data>
-  <data name="Emulation.Emulator.mednafen_psx.Description"><value>จําลอง PlayStation ระบบที่มี Beetle PSX ตัววาดแสดงซอฟต์แวร์.</value></data>
-  <data name="Emulation.Emulator.mednafen_psx_hw.Description"><value>จําลอง PlayStation ระบบที่มี Beetle PSX ตัวแสดงฮาร์ดแวร์.</value></data>
-  <data name="Emulation.Emulator.pcsx_rearmed.Description"><value>จําลอง PlayStation ระบบที่มี PCSX-ReARMed.</value></data>
-  <data name="Emulation.Emulator.pcee2.Description"><value>จําลอง PlayStation 2 ระบบที่มี PCEE2 และด้วยสิ่งที่เหลือทิ้งไว้ BIOS.</value></data>
-  <data name="Emulation.Emulator.play.Description"><value>จําลอง PlayStation 2 ระบบที่มี Play! และระบบที่รวมเข้าด้วยกัน.</value></data>
-  <data name="Emulation.Emulator.rpcs3.Description"><value>จําลอง PlayStation 3 ระบบที่มี RPCS3 และเครื่องติดตั้งระบบภายนอก.</value></data>
+  <data name="Emulation.Emulator.pcsx2.Description"><value>จำลองระบบ PlayStation 2</value></data>
+  <data name="Emulation.Emulator.ppsspp.Description"><value>จำลองระบบ PlayStation Portable</value></data>
+  <data name="Emulation.Emulator.swanstation.Description"><value>จำลองระบบ Sony PlayStation / PS one</value></data>
+  <data name="Emulation.Emulator.pokketstation.Description"><value>จำลองอุปกรณ์พกพา Sony PocketStation โดยใช้ BIOS ภายนอกและไฟล์อิมเมจการ์ดหน่วยความจำ</value></data>
+  <data name="Emulation.Emulator.mednafen_psx.Description"><value>จำลองระบบ PlayStation ด้วยตัวเรนเดอร์แบบซอฟต์แวร์ของ Beetle PSX</value></data>
+  <data name="Emulation.Emulator.mednafen_psx_hw.Description"><value>จำลองระบบ PlayStation ด้วยตัวเรนเดอร์แบบฮาร์ดแวร์ของ Beetle PSX</value></data>
+  <data name="Emulation.Emulator.pcsx_rearmed.Description"><value>จำลองระบบ PlayStation ด้วย PCSX-ReARMed</value></data>
+  <data name="Emulation.Emulator.pcee2.Description"><value>จำลองระบบ PlayStation 2 ด้วย PCEE2 และ BIOS ภายนอก</value></data>
+  <data name="Emulation.Emulator.play.Description"><value>จำลองระบบ PlayStation 2 ด้วย Play! และการจำลองเฟิร์มแวร์ระบบที่มีอยู่ในตัว</value></data>
+  <data name="Emulation.Emulator.rpcs3.Description"><value>จำลองระบบ PlayStation 3 ด้วย RPCS3 และเฟิร์มแวร์ระบบภายนอก</value></data>
 </root>

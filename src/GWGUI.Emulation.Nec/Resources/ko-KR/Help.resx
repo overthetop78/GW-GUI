@@ -5,7 +5,7 @@
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Nec.Help.Memory.Ram.Short"><value>에뮬레이션 기계에 사용할 수있는 RAM의 금액.</value></data>
-  <data name="Emulation.Nec.Help.Memory.Ram.Detailed"><value>BeetlePce에 노출된 RAM 확장을 선택합니다. 기계는 새로운 양의 앞에 재시작해야 합니다.</value></data>
+  <data name="Emulation.Nec.Help.Memory.Ram.Detailed"><value>BeetlePce에 노출된 RAM 확장을 선택합니다.</value></data>
   <data name="Emulation.Nec.Help.Firmware.Integrated.Short"><value>이 모델에는 외부 BIOS 파일이 필요하지 않습니다.</value></data>
   <data name="Emulation.Nec.Help.Firmware.Integrated.Detailed"><value>외부 체계 BIOS. 없이 이 기계에 카트리지 게임</value></data>
   <data name="Emulation.Nec.Help.Video.Resolution.Short"><value>BeetlePce에 의해 렌더링 된 내부 해상도.</value></data>

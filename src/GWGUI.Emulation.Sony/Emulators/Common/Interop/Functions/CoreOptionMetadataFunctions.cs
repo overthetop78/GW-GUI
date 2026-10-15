@@ -1,4 +1,5 @@
 using GWGUI.Emulation.Sony.Emulators.Common.Interop.Constants;
+using GWGUI.Emulation.Sony.Emulators.Common.Functions;
 
 namespace GWGUI.Emulation.Sony.Emulators.Common.Interop.Functions;
 
@@ -7,12 +8,13 @@ internal static class CoreOptionMetadataFunctions
     internal static IReadOnlyList<CoreOption> WithCurrentValues(IReadOnlyList<CoreOption> options, IReadOnlyDictionary<string, string> currentValues) =>
         options.Select(option => currentValues.TryGetValue(option.Key, out var value) && option.CurrentValue != value ? option with { CurrentValue = value } : option).ToArray();
 
-    internal static IReadOnlyList<CoreOption> Merge(IReadOnlyList<CoreOption> native, IReadOnlyList<CoreOption> declared)
+    internal static IReadOnlyList<CoreOption> Merge(IReadOnlyList<CoreOption> native, IReadOnlyList<CoreOption> declared, EmulationGraphicsApi? graphicsApi = null)
     {
         var descriptions = declared.ToDictionary(option => option.Key, StringComparer.Ordinal);
         return native.Select(option =>
         {
             if (!descriptions.TryGetValue(option.Key, out var description)) return option;
+            description = GraphicsSettingsFunctions.Present(description, option.CurrentValue, graphicsApi);
             var labels = description.Values.ToDictionary(value => value.Value, value => value.Label, StringComparer.Ordinal);
             return option with
             {
@@ -24,7 +26,10 @@ internal static class CoreOptionMetadataFunctions
                 NumericRange = description.NumericRange,
                 NativeNumericFormat = description.NativeNumericFormat,
                 NativeZeroValue = description.NativeZeroValue,
-                Values = option.Values.Select(value => value with
+                GraphicsApiValues = description.GraphicsApiValues,
+                RetainedRendererValues = description.RetainedRendererValues,
+                IsGlobalStorageOption = description.IsGlobalStorageOption,
+                Values = option.Values.Where(value => description.GraphicsApiValues is null || labels.ContainsKey(value.Value)).Select(value => value with
                 {
                     Label = labels.TryGetValue(value.Value, out var label) ? label
                         : value.Value == description.NativeZeroValue ? OptionValueResourceConstants.DisabledLabelResource : value.Label

@@ -26,14 +26,12 @@
   <data name="Emulation.Option.ppsspp.ppsspp_language.Value.11"><value>Čínská tradiční</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_language.Value.12"><value>Zjednodušené čínské</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_psp_model.Label"><value>Model PSP</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_backend.Label"><value>Backend</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_backend.Help"><value>'Automatická' bude používat hlavní video ovladač. Jádro</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_software_rendering.Label"><value>Software Rendering</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_software_rendering.Help"><value>Pomalu, přesně. Jádro</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_software_rendering.Help"><value>Použijte softwarové vykreslování pro vyšší přesnost za cenu vyšších nároků na výpočetní výkon.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_internal_resolution.Label"><value>Rozlišení překladů</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_internal_resolution.Help"><value>Zvolte vnitřní rozlišení vykreslování.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_mulitsample_level.Label"><value>MSAA Antialiasing</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_mulitsample_level.Help"><value>Pouze Vulkan. Jádro</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_mulitsample_level.Help"><value>Použijte vyhlazování MSAA s rozhraním Vulkan.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_cropto16x9.Label"><value>Croph to 16x9</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_cropto16x9.Help"><value>Ořízněte horní a spodní okraje, abyste získali obrázek16:9.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_frameskip.Label"><value>Frameskip</value></data>
@@ -46,7 +44,7 @@
   <data name="Emulation.Option.ppsspp.ppsspp_detect_vsync_swap_interval.Label"><value>Zjistit změny rychlosti rámečku</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_detect_vsync_swap_interval.Help"><value>Uvědomte frontend.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Label"><value>Příkazy Buffer Graphics</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Help"><value>Pouze GL / Vulkan, pomalejší, méně zpoždění, restart.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Help"><value>Pouze GL / Vulkan, pomalejší, méně zpoždění.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Value.0"><value>Bez vyrovnávací úpravy</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Value.1"><value>Až do 1</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_button_preference.Label"><value>Tlačítko potvrzení</value></data>

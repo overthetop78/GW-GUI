@@ -363,21 +363,21 @@
   <data name="Emulation.Option.desmume.desmume_firmware_language.Value.German"><value>Tysk</value></data>
   <data name="Emulation.Option.desmume.desmume_firmware_language.Value.Italian"><value>Italiensk</value></data>
   <data name="Emulation.Option.desmume.desmume_firmware_language.Value.Spanish"><value>Spansk</value></data>
-  <data name="Emulation.Option.desmume.desmume_use_external_bios"><value>Brug ekstern BIOS / firmware (genstart)</value></data>
-  <data name="Emulation.Option.desmume.desmume_use_external_bios.Help"><value>Brug officielle BIOS. Der er behov for at genstarte kernen, så der kan ske ændringer.</value></data>
+  <data name="Emulation.Option.desmume.desmume_use_external_bios"><value>Brug ekstern BIOS / firmware</value></data>
+  <data name="Emulation.Option.desmume.desmume_use_external_bios.Help"><value>Brug officielle BIOS.</value></data>
   <data name="Emulation.Option.desmume.desmume_use_external_bios.Value.disabled"><value>Deaktiveret</value></data>
   <data name="Emulation.Option.desmume.desmume_use_external_bios.Value.enabled"><value>Aktiveret</value></data>
   <data name="Emulation.Option.desmume.desmume_boot_into_bios"><value>Boot Into BIOS (kun tolk og eksterne bios)</value></data>
   <data name="Emulation.Option.desmume.desmume_boot_into_bios.Help"><value>Boot direkte ind i BIOS.</value></data>
   <data name="Emulation.Option.desmume.desmume_boot_into_bios.Value.disabled"><value>Deaktiveret</value></data>
   <data name="Emulation.Option.desmume.desmume_boot_into_bios.Value.enabled"><value>Aktiveret</value></data>
-  <data name="Emulation.Option.desmume.desmume_load_to_memory"><value>Indlæs spil i hukommelse (genstart)</value></data>
+  <data name="Emulation.Option.desmume.desmume_load_to_memory"><value>Indlæs spil i hukommelse</value></data>
   <data name="Emulation.Option.desmume.desmume_load_to_memory.Help"><value>Indlæs spillet i hukommelsen for at reducere IO lag.</value></data>
   <data name="Emulation.Option.desmume.desmume_load_to_memory.Value.disabled"><value>Deaktiveret</value></data>
   <data name="Emulation.Option.desmume.desmume_load_to_memory.Value.enabled"><value>Aktiveret</value></data>
   <data name="Emulation.Option.desmume.desmume_num_cores"><value>CPU-malinger</value></data>
   <data name="Emulation.Option.desmume.desmume_num_cores.Help"><value>Indstil mængden af CPU-kerner der skal bruges.</value></data>
-  <data name="Emulation.Option.desmume.desmume_cpu_mode"><value>CPU-tilstand (genstart)</value></data>
+  <data name="Emulation.Option.desmume.desmume_cpu_mode"><value>CPU-tilstand</value></data>
   <data name="Emulation.Option.desmume.desmume_cpu_mode.Help"><value>Aktivér eller deaktivér brugen af den dynamiske recompiler.</value></data>
   <data name="Emulation.Option.desmume.desmume_cpu_mode.Value.interpreter"><value>tolk</value></data>
   <data name="Emulation.Option.desmume.desmume_jit_block_size"><value>JIT blokkets størrelse</value></data>
@@ -390,11 +390,11 @@
   <data name="Emulation.Option.desmume.desmume_frameskip.Help"><value>Sætter mængden af rammer der skal springe over.</value></data>
   <data name="Emulation.Option.desmume.desmume_internal_resolution"><value>Intern resolution</value></data>
   <data name="Emulation.Option.desmume.desmume_internal_resolution.Help"><value>Sætter den interne beslutning. Højere opløsninger kan give bedre klarhed for 3D scener og objekter, men vil øge ydeevnen krav</value></data>
-  <data name="Emulation.Option.desmume.desmume_opengl_mode"><value>OpenGL Rasterizer (genstart)</value></data>
+  <data name="Emulation.Option.desmume.desmume_opengl_mode"><value>OpenGL Rasterizer</value></data>
   <data name="Emulation.Option.desmume.desmume_opengl_mode.Help"><value>Aktivér OpenGL Rasterizer for 3D.</value></data>
   <data name="Emulation.Option.desmume.desmume_opengl_mode.Value.disabled"><value>Deaktiveret</value></data>
   <data name="Emulation.Option.desmume.desmume_opengl_mode.Value.enabled"><value>Aktiveret</value></data>
-  <data name="Emulation.Option.desmume.desmume_color_depth"><value>OpenGL: Farvedybde (genstart)</value></data>
+  <data name="Emulation.Option.desmume.desmume_color_depth"><value>OpenGL: Farvedybde</value></data>
   <data name="Emulation.Option.desmume.desmume_color_depth.Help"><value>Sætter farvedybden til enten 16- bit eller 32- bit farver. Kræver OpenGL Rasterizer.</value></data>
   <data name="Emulation.Option.desmume.desmume_gfx_multisampling"><value>OpenGL: Multisampling AA</value></data>
   <data name="Emulation.Option.desmume.desmume_gfx_multisampling.Help"><value>Sæt multiplikatoren for Multisampling Anti Aliasing. Kræver OpenGL Rasterizer.</value></data>
@@ -510,7 +510,7 @@
   <data name="Emulation.Option.desmume.desmume_mic_mode.Value.random"><value>Tilfældig</value></data>
   <data name="Emulation.Firmware.desmume.Slot0"><value>NDS Firmware</value></data>
   <data name="Emulation.Emulator.desmume2015.Description"><value>Emulerer kompatible Nintendo systemer med DeSmuME 2015.</value></data>
-  <data name="Emulation.Option.desmume2015.desmume_internal_resolution"><value>Intern opløsning (genstart)</value></data>
+  <data name="Emulation.Option.desmume2015.desmume_internal_resolution"><value>Intern opløsning</value></data>
   <data name="Emulation.Option.desmume2015.desmume_num_cores"><value>CPU-kerner</value></data>
   <data name="Emulation.Option.desmume2015.desmume_cpu_mode"><value>CPU-tilstand</value></data>
   <data name="Emulation.Option.desmume2015.desmume_cpu_mode.Value.interpreter"><value>tolk</value></data>
@@ -525,7 +525,7 @@
   <data name="Emulation.Option.desmume2015.desmume_screens_layout.Value.quick switch"><value>hurtigkontakt</value></data>
   <data name="Emulation.Option.desmume2015.desmume_screens_layout.Value.hybrid/top"><value>hybrid / top</value></data>
   <data name="Emulation.Option.desmume2015.desmume_screens_layout.Value.hybrid/bottom"><value>hybrid / bund</value></data>
-  <data name="Emulation.Option.desmume2015.desmume_hybrid_layout_scale"><value>Hybrid layout skala (genstart)</value></data>
+  <data name="Emulation.Option.desmume2015.desmume_hybrid_layout_scale"><value>Hybrid layout skala</value></data>
   <data name="Emulation.Option.desmume2015.desmume_hybrid_showboth_screens"><value>Hybrid layout viser begge skærme</value></data>
   <data name="Emulation.Option.desmume2015.desmume_hybrid_showboth_screens.Value.enabled"><value>Aktiveret</value></data>
   <data name="Emulation.Option.desmume2015.desmume_hybrid_showboth_screens.Value.disabled"><value>Deaktiveret</value></data>
@@ -561,7 +561,7 @@
   <data name="Emulation.Option.desmume2015.desmume_pointer_stylus_jitter"><value>Aktivér emuleret stilus jitter</value></data>
   <data name="Emulation.Option.desmume2015.desmume_pointer_stylus_jitter.Value.disabled"><value>Deaktiveret</value></data>
   <data name="Emulation.Option.desmume2015.desmume_pointer_stylus_jitter.Value.enabled"><value>Aktiveret</value></data>
-  <data name="Emulation.Option.desmume2015.desmume_load_to_memory"><value>Indlæs spil i hukommelse (genstart)</value></data>
+  <data name="Emulation.Option.desmume2015.desmume_load_to_memory"><value>Indlæs spil i hukommelse</value></data>
   <data name="Emulation.Option.desmume2015.desmume_load_to_memory.Value.disabled"><value>Deaktiveret</value></data>
   <data name="Emulation.Option.desmume2015.desmume_load_to_memory.Value.enabled"><value>Aktiveret</value></data>
   <data name="Emulation.Option.desmume2015.desmume_advanced_timing"><value>Aktivér avanceret Bus- Niveau Timing</value></data>
@@ -621,7 +621,7 @@
   <data name="Emulation.Option.melonds.melonds_threaded_renderer"><value>Gevind- softwarerenderer</value></data>
   <data name="Emulation.Option.melonds.melonds_threaded_renderer.Value.disabled"><value>Deaktiveret</value></data>
   <data name="Emulation.Option.melonds.melonds_threaded_renderer.Value.enabled"><value>Aktiveret</value></data>
-  <data name="Emulation.Option.melonds.melonds_opengl_renderer"><value>OpenGL Renderer (Genstart)</value></data>
+  <data name="Emulation.Option.melonds.melonds_opengl_renderer"><value>OpenGL Renderer</value></data>
   <data name="Emulation.Option.melonds.melonds_opengl_renderer.Value.disabled"><value>Deaktiveret</value></data>
   <data name="Emulation.Option.melonds.melonds_opengl_renderer.Value.enabled"><value>Aktiveret</value></data>
   <data name="Emulation.Option.melonds.melonds_opengl_resolution"><value>OpenGL- intern opløsning</value></data>
@@ -678,7 +678,7 @@
   <data name="Emulation.Option.melonds.melonds_hybrid_small_screen.Value.Top"><value>Top</value></data>
   <data name="Emulation.Option.melonds.melonds_hybrid_small_screen.Value.Duplicate"><value>Duplikér</value></data>
   <data name="Emulation.Option.melonds.melonds_hybrid_ratio"><value>Hybridforhold (kun OpenGL)</value></data>
-  <data name="Emulation.Option.melonds.melonds_jit_enable"><value>JIT Aktivér (genstart)</value></data>
+  <data name="Emulation.Option.melonds.melonds_jit_enable"><value>JIT Aktivér</value></data>
   <data name="Emulation.Option.melonds.melonds_jit_enable.Value.disabled"><value>Deaktiveret</value></data>
   <data name="Emulation.Option.melonds.melonds_jit_enable.Value.enabled"><value>Aktiveret</value></data>
   <data name="Emulation.Option.melonds.melonds_jit_block_size"><value>JIT blokkets størrelse</value></data>
@@ -720,7 +720,7 @@
   <data name="Emulation.Option.melondsds.melonds_audio_interpolation.Value.cubic"><value>Cubic</value></data>
   <data name="Emulation.Option.melondsds.melonds_audio_interpolation.Value.gaussian"><value>Gaussian</value></data>
   <data name="Emulation.Option.melondsds.melonds_jit_enable"><value>JIT Rekompiler</value></data>
-  <data name="Emulation.Option.melondsds.melonds_jit_enable.Help"><value>Rekompiler emuleret maskine kode i native kode, som det kører, betydeligt forbedre ydeevne over almindelig fortolkning. Det får virkning ved næste genstart. Hvis du er usikker, så lad den være aktiveret.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_jit_enable.Help"><value>Rekompiler emuleret maskine kode i native kode, som det kører, betydeligt forbedre ydeevne over almindelig fortolkning. Hvis du er usikker, så lad den være aktiveret.</value></data>
   <data name="Emulation.Option.melondsds.melonds_jit_enable.Value.disabled"><value>Deaktiveret</value></data>
   <data name="Emulation.Option.melondsds.melonds_jit_enable.Value.enabled"><value>Aktiveret</value></data>
   <data name="Emulation.Option.melondsds.melonds_jit_block_size"><value>Blokstørrelse</value></data>
@@ -731,15 +731,23 @@
   <data name="Emulation.Option.melondsds.melonds_jit_literal_optimisations.Value.disabled"><value>Deaktiveret</value></data>
   <data name="Emulation.Option.melondsds.melonds_jit_literal_optimisations.Value.enabled"><value>Aktiveret</value></data>
   <data name="Emulation.Option.melondsds.melonds_jit_fast_memory"><value>Hurtig hukommelse</value></data>
-  <data name="Emulation.Option.melondsds.melonds_jit_fast_memory.Help"><value>Deaktivér dette hvis du kører melonDS DS gennem en debugger, ellers vil de konstante (men forventede) SIGSEGV 'er blive irriterende. Det får virkning ved næste genstart. Hvis du er usikker, så lad den være aktiveret.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_jit_fast_memory.Help"><value>Deaktivér dette hvis du kører melonDS DS gennem en debugger, ellers vil de konstante (men forventede) SIGSEGV 'er blive irriterende. Hvis du er usikker, så lad den være aktiveret.</value></data>
   <data name="Emulation.Option.melondsds.melonds_jit_fast_memory.Value.disabled"><value>Deaktiveret</value></data>
   <data name="Emulation.Option.melondsds.melonds_jit_fast_memory.Value.enabled"><value>Aktiveret</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_wfc_dns"><value>DNS Tilsidesæt</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_wfc_dns.Help"><value>DNS-serveren der skal bruges til det emulerede adgangspunkt ("melonAP"). Brug dette til at spille online med brugerdefinerede servere, der genimplementere den ophørte Nintendo Wi- Fi Connection tjenester. Spilstøtten afhænger af serveren. &#xA;Nogle internetudbydere kan blokere anmodninger til disse servere. Hvis dette er tilfældet for dig, se https: / / tinyurl.com / 393cb755 for en workaround.&#xA;&#xA;De anførte servere er ikke tilknyttet libretro, Nintendo, melonDS team, eller denne kernes forfatter. Respekter venligst andre spillere og følg serverens regler.&#xA;&#xA;Hvis du er usikker, så tag af sted på Karu WFC. Ændringer får virkning ved næste genstart.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_wfc_dns.Help"><value>DNS-serveren der skal bruges til det emulerede adgangspunkt ("melonAP"). Brug dette til at spille online med brugerdefinerede servere, der genimplementere den ophørte Nintendo Wi- Fi Connection tjenester. Spilstøtten afhænger af serveren.
+Nogle internetudbydere kan blokere anmodninger til disse servere. Hvis dette er tilfældet for dig, se https: / / tinyurl.com / 393cb755 for en workaround.
+
+De anførte servere er ikke tilknyttet libretro, Nintendo, melonDS team, eller denne kernes forfatter. Respekter venligst andre spillere og følg serverens regler.
+
+Hvis du er usikker.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_wfc_dns.Value.95.217.77.181"><value>Wiimmfi (95.217.77.181)</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_wfc_dns.Value.default"><value>Lad være med at override</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_language"><value>Sprog</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_language.Help"><value>Overstiger sprogtilstanden i den emulerede konsol.&#xA;&#xA;Brug vært: Bruger frontlangens sprog, hvis det understøttes af konsollen.&#xA;Må ikke Tilride: Brug det sprog, der allerede er sat på firmware. Dette er fallback adfærd, hvis den efterlignede DS (eller DSi NAND) ikke understøtter frontend 's sprog.&#xA;&#xA;Ikke alle spil ærer denne indstilling. Ændringer får virkning ved næste genstart.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_language.Help"><value>Overstiger sprogtilstanden i den emulerede konsol.
+
+Brug vært: Bruger frontlangens sprog, hvis det understøttes af konsollen.
+Må ikke Tilride: Brug det sprog, der allerede er sat på firmware. Dette er fallback adfærd.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_language.Value.auto"><value>Brug vært</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_language.Value.en"><value>Engelsk</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_language.Value.ja"><value>Japansk</value></data>
@@ -749,11 +757,15 @@
   <data name="Emulation.Option.melondsds.melonds_firmware_language.Value.es"><value>Spansk</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_language.Value.default"><value>Lad være med at override</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_username"><value>Brugernavn</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_username.Help"><value>Overstiger brugernavnet givet til den emulerede konsol.&#xA;&#xA;Må ikke override: Bruger uanset navn er defineret på firmware.&#xA;Gæt: Prøv at få dit brugernavn fra frontend. Hvis det ikke lykkes, skal du prøve miljøvariablerne USER, USERNAME og LOGNAME.&#xA;melonDS DS: Anvendelse "melonDS DS". Dette er standard, hvis intet andet virker.&#xA;&#xA;Navne trunkeres til 10 tegn. Ændringer får virkning ved næste genstart.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_username.Help"><value>Overstiger brugernavnet givet til den emulerede konsol.
+
+Må ikke override: Bruger uanset navn er defineret på firmware.
+Gæt: Prøv at få dit brugernavn fra frontend. Hvis det ikke lykkes, skal du prøve miljøvariablerne USER, USERNAME og LOGNAME.
+melonDS DS: Anvendelse "melonDS DS". Dette er standard.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_username.Value.guess_username"><value>Gæt</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_username.Value.existing_username"><value>Lad være med at override</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_favorite_color"><value>Favoritfarve</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_favorite_color.Help"><value>Temaet ("favorit farve") af den emulerede konsol. Ændringer får virkning ved næste genstart.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_favorite_color.Help"><value>Temaet ("favorit farve") af den emulerede konsol.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_favorite_color.Value.0"><value>Gray</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_favorite_color.Value.1"><value>Brown Formand</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_favorite_color.Value.2"><value>Rød</value></data>
@@ -772,7 +784,7 @@
   <data name="Emulation.Option.melondsds.melonds_firmware_favorite_color.Value.15"><value>Mørk lyserød</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_favorite_color.Value.default"><value>Lad være med at override</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_birth_month"><value>Fødselsmåned</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_birth_month.Help"><value>Måned på din fødselsdag. Ændringer får virkning ved næste genstart.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_birth_month.Help"><value>Måned på din fødselsdag.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_birth_month.Value.1"><value>Januar</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_birth_month.Value.2"><value>Februar</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_birth_month.Value.3"><value>Marts</value></data>
@@ -787,29 +799,32 @@
   <data name="Emulation.Option.melondsds.melonds_firmware_birth_month.Value.12"><value>December</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_birth_month.Value.default"><value>Lad være med at override</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_birth_day"><value>Fødselsdag</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_birth_day.Help"><value>Dagen inden for en måned af din fødselsdag. Ændringer får virkning ved næste genstart.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_birth_day.Help"><value>Dagen inden for en måned af din fødselsdag.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_birth_day.Value.default"><value>Lad være med at override</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_enable_alarm"><value>Aktivér alarm</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_enable_alarm.Help"><value>Om den emulerede konsols alarm er aktiveret. Ændringer får virkning ved næste genstart.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_enable_alarm.Help"><value>Om den emulerede konsols alarm er aktiveret.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_enable_alarm.Value.disabled"><value>Deaktiveret</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_enable_alarm.Value.enabled"><value>Aktiveret</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_enable_alarm.Value.default"><value>Lad være med at override</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_alarm_hour"><value>Alarmtime</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_alarm_hour.Help"><value>Tidspunktet for den indstillede alarm. Ændringer får virkning ved næste genstart.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_alarm_hour.Help"><value>Tidspunktet for den indstillede alarm.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_alarm_hour.Value.default"><value>Lad være med at override</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_alarm_minute"><value>Alarmminut</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_alarm_minute.Help"><value>Tidspunktet for den indstillede alarm. Ændringer får virkning ved næste genstart.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_alarm_minute.Help"><value>Tidspunktet for den indstillede alarm.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_alarm_minute.Value.default"><value>Lad være med at override</value></data>
   <data name="Emulation.Option.melondsds.melonds_network_mode"><value>Netværkstilstand</value></data>
-  <data name="Emulation.Option.melondsds.melonds_network_mode.Help"><value>Sammenfatter hvordan melonDS DS emulerer Nintendo WFC. Hvis du er usikker, skal du bruge Indirekte tilstand.&#xA;&#xA;Indirekte: Brug libslirp til at efterligne DS 's netværksstak. Enkelt og behøver ingen opsætning.&#xA;Direkte: Ruter emulerede Wi- Fi-pakker til værtens netværksgrænseflade. Hurtigere og mere pålidelig, men kræver en Ethernet-forbindelse, og at WinPcap eller Npcap er installeret. Hvis ikke tilgængelig, falder tilbage til Indirekte tilstand.&#xA;&#xA;Ændringer får virkning ved næste genstart. Ikke relateret til lokal multiplayer.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_network_mode.Help"><value>Sammenfatter hvordan melonDS DS emulerer Nintendo WFC. Hvis du er usikker, skal du bruge Indirekte tilstand.
+
+Indirekte: Brug libslirp til at efterligne DS 's netværksstak. Enkelt og behøver ingen opsætning.
+Direkte: Ruter emulerede Wi- Fi-pakker til værtens netværksgrænseflade. Hurtigere og mere pålidelig, men kræver en Ethernet-forbindelse, og at WinPcap eller Npcap er installeret. Hvis ikke tilgængelig.</value></data>
   <data name="Emulation.Option.melondsds.melonds_network_mode.Value.disabled"><value>Deaktiveret</value></data>
   <data name="Emulation.Option.melondsds.melonds_network_mode.Value.indirect"><value>Indirekte</value></data>
   <data name="Emulation.Option.melondsds.melonds_network_mode.Value.direct"><value>Direkte</value></data>
   <data name="Emulation.Option.melondsds.melonds_direct_network_interface"><value>Netværksgrænseflade (direkte tilstand)</value></data>
-  <data name="Emulation.Option.melondsds.melonds_direct_network_interface.Help"><value>Vælg en netværksgrænseflade der skal bruges med direkte tilstand. Hvis du er usikker, så sæt til Automatic. Ændringer træder i kraft ved næste kernegenstart.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_direct_network_interface.Help"><value>Vælg en netværksgrænseflade der skal bruges med direkte tilstand. Hvis du er usikker.</value></data>
   <data name="Emulation.Option.melondsds.melonds_direct_network_interface.Value.auto"><value>Automatisk</value></data>
   <data name="Emulation.Option.melondsds.melonds_mac_address_mode"><value>Netværk MAC- adressetilstand</value></data>
-  <data name="Emulation.Option.melondsds.melonds_mac_address_mode.Help"><value>Konfigurerer hvordan den emulerede konsols MAC-adresse er indstillet. Ændring af denne indstilling kan gøre lokal multiplayer umuligt eller blokere adgang til at gemme filer i spil, der bruger MAC-adressen for at forhindre manipulation af gemme filer (dvs. ) (alias Pokémon).&#xA;Ingen relation til grænsefladen i direkte tilstand. Ændringer får virkning ved næste genstart.&#xA;Se https: / / bit.ly / 4fJtWKN for yderligere oplysninger.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_mac_address_mode.Help"><value>Konfigurerer hvordan den emulerede konsols MAC-adresse er indstillet. Ændring af denne indstilling kan gøre lokal multiplayer umuligt eller blokere adgang til at gemme filer i spil.</value></data>
   <data name="Emulation.Option.melondsds.melonds_mac_address_mode.Value.firmware"><value>Sæt fra firmware</value></data>
   <data name="Emulation.Option.melondsds.melonds_mac_address_mode.Value.from-username"><value>Derive fra libretro brugernavn</value></data>
   <data name="Emulation.Option.melondsds.melonds_show_unsupported_features"><value>Advar om ikke- understøttede funktioner</value></data>
@@ -1042,25 +1057,68 @@
   <data name="Emulation.Option.melondsds.melonds_screen_layout8.Value.rotate-right"><value>Roteret til højre</value></data>
   <data name="Emulation.Option.melondsds.melonds_screen_layout8.Value.rotate-180"><value>Upper Down</value></data>
   <data name="Emulation.Option.melondsds.melonds_console_mode"><value>Konsoltilstand</value></data>
-  <data name="Emulation.Option.melondsds.melonds_console_mode.Help"><value>Om en Nintendo DS skal efterligne eller Nintendo DSi.&#xA;&#xA;Auto bruger DSi-tilstand til spil, der har brug for en DSi, og DS-mode til alt andet. DS - og DSi-indstillingerne tvinger den tilsvarende konsol til at fungere; dette er for det meste nyttigt til udvikling af homebrew.&#xA;&#xA;DSi tilstand har nogle grænser:&#xA;&#xA;- Indfødt BIOS / firmware / NAND filer skal leveres, herunder for de regelmæssige DS.&#xA;- Nogle funktioner (såsom savestere) er ikke tilgængelige i DSi-tilstand.&#xA;&#xA;Se de DSi- specifikke muligheder i denne kategori for mere information. Hvis du er usikker, skal du bruge Auto. Ændringer træder i kraft ved næste genstart.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_console_mode.Help"><value>Om en Nintendo DS skal efterligne eller Nintendo DSi.
+
+Auto bruger DSi-tilstand til spil, der har brug for en DSi, og DS-mode til alt andet. DS - og DSi-indstillingerne tvinger den tilsvarende konsol til at fungere; dette er for det meste nyttigt til udvikling af homebrew.
+
+DSi tilstand har nogle grænser:
+
+- Indfødt BIOS / firmware / NAND filer skal leveres, herunder for de regelmæssige DS.
+- Nogle funktioner (såsom savestere) er ikke tilgængelige i DSi-tilstand.
+
+Se de DSi- specifikke muligheder i denne kategori for mere information. Hvis du er usikker.</value></data>
   <data name="Emulation.Option.melondsds.melonds_console_mode.Value.auto"><value>Automatisk</value></data>
   <data name="Emulation.Option.melondsds.melonds_console_mode.Value.dsi"><value>DSi (eksperimentel)</value></data>
   <data name="Emulation.Option.melondsds.melonds_sysfile_mode"><value>BIOS / Firmware-tilstand (DS-tilstand)</value></data>
-  <data name="Emulation.Option.melondsds.melonds_sysfile_mode.Help"><value>Bestemmer, om melonDS bruger hjemmehørende BIOS / firmware lossepladser eller deres egen build- i udskiftninger. Gælder kun for DS-tilstand, da DSi-tilstand altid kræver hjemmehørende BIOS og firmware dumps.&#xA;&#xA;Native tilstand bruger BIOS og firmware filer fra en reel DS. Placer dine dumps af disse i systemmappen eller dens "melonDS DS" undermappe og navngiv dem som følger:&#xA;&#xA;- DS BIOS: bios7.bin, bios9.bin&#xA;- DSi BIOS: dsi_bios7.bin, dsi_bios9.bin&#xA;- Firmware: Se "DS firmware" og "DSi firmwar" muligheder.&#xA;- DSi NAND: Se valgmulighed "DSi NAND".&#xA;&#xA;Falder tilbage til Build- In hvis nogen BIOS / firmware fil ikke er fundet.&#xA;&#xA;Build- In mode bruger melonDS 's build- in BIOS og firmware, og er velegnet til de fleste spil.&#xA;&#xA;Ændringer får virkning ved næste genstart.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_sysfile_mode.Help"><value>Bestemmer, om melonDS bruger hjemmehørende BIOS / firmware lossepladser eller deres egen build- i udskiftninger. Gælder kun for DS-tilstand, da DSi-tilstand altid kræver hjemmehørende BIOS og firmware dumps.
+
+Native tilstand bruger BIOS og firmware filer fra en reel DS. Placer dine dumps af disse i systemmappen eller dens "melonDS DS" undermappe og navngiv dem som følger:
+
+- DS BIOS: bios7.bin, bios9.bin
+- DSi BIOS: dsi_bios7.bin, dsi_bios9.bin
+- Firmware: Se "DS firmware" og "DSi firmwar" muligheder.
+- DSi NAND: Se valgmulighed "DSi NAND".
+
+Falder tilbage til Build- In hvis nogen BIOS / firmware fil ikke er fundet.
+
+Build- In mode bruger melonDS 's build- in BIOS og firmware.</value></data>
   <data name="Emulation.Option.melondsds.melonds_sysfile_mode.Value.native"><value>Indfødt</value></data>
   <data name="Emulation.Option.melondsds.melonds_sysfile_mode.Value.builtin"><value>Bygning</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_nds_path"><value>DS Firmware</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_nds_path.Help"><value>Vælg et firmware- billede der skal bruges til DS tilstand. Filer er anført her, hvis de:&#xA;&#xA;- Er inde i frontend 's system bibliotek, eller en undermappe kaldet "melonDS DS".&#xA;- er præcis 131,072 bytes (128KB), 262,144 byte (256KB.), eller 524,288 bytes [512KB] lange.&#xA;- Indeholder gyldige header data for DS firmware.&#xA;&#xA;Nintendo WFC-id 'er gemmes til firmware, så skift firmwarebilleder kan resultere i tab af nogle WFC data. Ignoreret i DSi-tilstand eller hvis BIOS / Firmware-tilstand er Build- In. Ændringer får virkning ved næste genstart.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_nds_path.Help"><value>Vælg et firmware- billede der skal bruges til DS tilstand. Filer er anført her, hvis de:
+
+- Er inde i frontend 's system bibliotek, eller en undermappe kaldet "melonDS DS".
+- er præcis 131,072 bytes (128KB), 262,144 byte (256KB.), eller 524,288 bytes [512KB] lange.
+- Indeholder gyldige header data for DS firmware.
+
+Nintendo WFC-id 'er gemmes til firmware.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_nds_path.Value./notfound"><value>Ingen fundet...</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_dsi_path"><value>DSi Firmware</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_dsi_path.Help"><value>Vælg et firmware- billede der skal bruges til DSi-tilstand. Filer er anført her, hvis de:&#xA;&#xA;- Er inde i frontend 's system bibliotek, eller en undermappe kaldet "melonDS DS".&#xA;- er præcis 131,072 bytes (128KB), 262,144 byte (256KB.), eller 524,288 bytes [512KB] lange.&#xA;- Indeholder gyldige header data for DSi firmware.&#xA;&#xA;Nintendo WFC-id 'er gemmes til firmware, så skift firmwarebilleder kan resultere i tab af nogle WFC data. Ændringer får virkning ved næste genstart.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_dsi_path.Help"><value>Vælg et firmware- billede der skal bruges til DSi-tilstand. Filer er anført her, hvis de:
+
+- Er inde i frontend 's system bibliotek, eller en undermappe kaldet "melonDS DS".
+- er præcis 131,072 bytes (128KB), 262,144 byte (256KB.), eller 524,288 bytes [512KB] lange.
+- Indeholder gyldige header data for DSi firmware.
+
+Nintendo WFC-id 'er gemmes til firmware.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_dsi_path.Value./notfound"><value>Ingen fundet...</value></data>
   <data name="Emulation.Option.melondsds.melonds_dsi_nand_path"><value>DSi NAND Sti</value></data>
-  <data name="Emulation.Option.melondsds.melonds_dsi_nand_path.Help"><value>Vælg et DSi NAND-billede der skal bruges. Krævet ved brug af DSi-tilstand. Filer er anført her, hvis de:&#xA;&#xA;- Er inde i frontend 's system bibliotek, eller en undermappe kaldet "melonDS DS".&#xA;- er præcis 251,658,304 bytes (240MB) eller 257,425.472 byte (245.5MB) lange med gyldige foddata, OR;&#xA;- er 64 bytes kortere end disse længder og indeholder tilsvarende data på fil offset 0xFF800.&#xA;&#xA;Sæt til "Auto" for at lade kernen vælge et NAND-billede, hvis region matcher den indlæste DSiWare ROM. Ændringer får virkning ved næste genstart.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_dsi_nand_path.Help"><value>Vælg et DSi NAND-billede der skal bruges. Krævet ved brug af DSi-tilstand. Filer er anført her, hvis de:
+
+- Er inde i frontend 's system bibliotek, eller en undermappe kaldet "melonDS DS".
+- er præcis 251,658,304 bytes (240MB) eller 257,425.472 byte (245.5MB) lange med gyldige foddata, OR;
+- er 64 bytes kortere end disse længder og indeholder tilsvarende data på fil offset 0xFF800.
+
+Sæt til "Auto" for at lade kernen vælge et NAND-billede.</value></data>
   <data name="Emulation.Option.melondsds.melonds_dsi_nand_path.Value./auto"><value>Auto (match ROM-region)</value></data>
   <data name="Emulation.Option.melondsds.melonds_dsi_nand_path.Value./notfound"><value>Ingen fundet...</value></data>
   <data name="Emulation.Option.melondsds.melonds_boot_mode"><value>Boot- tilstand</value></data>
-  <data name="Emulation.Option.melondsds.melonds_boot_mode.Help"><value>Afgør, hvordan melonDS støvler spil.&#xA;&#xA;Indfødt: Indlæs spil gennem systemmenuen, svarende til den virkelige DS / DSi boot proces. Kræver native BIOS og firmware filer i systemet mappe.&#xA;Direkte: Spring systemmenuen over og gå direkte til spillet. Understøttet til DSiWare hvis indfødte DSi systemfiler er tilgængelige.&#xA;&#xA;Ignoreret hvis indlæst uden et spil (Indfødt er tvunget), eller hvis du bruger Build- In BIOS / Firmware (Direkte er forceret). Ændringer får virkning ved næste genstart.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_boot_mode.Help"><value>Afgør, hvordan melonDS støvler spil.
+
+Indfødt: Indlæs spil gennem systemmenuen, svarende til den virkelige DS / DSi boot proces. Kræver native BIOS og firmware filer i systemet mappe.
+Direkte: Spring systemmenuen over og gå direkte til spillet. Understøttet til DSiWare hvis indfødte DSi systemfiler er tilgængelige.
+
+Ignoreret hvis indlæst uden et spil (Indfødt er tvunget).</value></data>
   <data name="Emulation.Option.melondsds.melonds_boot_mode.Value.direct"><value>Direkte</value></data>
   <data name="Emulation.Option.melondsds.melonds_boot_mode.Value.native"><value>Indfødt</value></data>
   <data name="Emulation.Option.melondsds.melonds_dsi_sdcard"><value>Virtuelt SD-kort (DSi)</value></data>
@@ -1068,7 +1126,7 @@
   <data name="Emulation.Option.melondsds.melonds_dsi_sdcard.Value.disabled"><value>Deaktiveret</value></data>
   <data name="Emulation.Option.melondsds.melonds_dsi_sdcard.Value.enabled"><value>Aktiveret</value></data>
   <data name="Emulation.Option.melondsds.melonds_dsi_sdcard_readonly"><value>Read- Only Mode (DSi)</value></data>
-  <data name="Emulation.Option.melondsds.melonds_dsi_sdcard_readonly.Help"><value>Hvis aktiveret, den emulerede DSi ser det virtuelle SD-kort som read- only. Ændringer træder i kraft med næste genstart.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_dsi_sdcard_readonly.Help"><value>Hvis aktiveret.</value></data>
   <data name="Emulation.Option.melondsds.melonds_dsi_sdcard_readonly.Value.disabled"><value>Deaktiveret</value></data>
   <data name="Emulation.Option.melondsds.melonds_dsi_sdcard_readonly.Value.enabled"><value>Aktiveret</value></data>
   <data name="Emulation.Option.melondsds.melonds_dsi_sdcard_sync_sdcard_to_host"><value>Sync SD-kort til vært (DSi)</value></data>
@@ -1080,7 +1138,7 @@
   <data name="Emulation.Option.melondsds.melonds_homebrew_sdcard.Value.disabled"><value>Deaktiveret</value></data>
   <data name="Emulation.Option.melondsds.melonds_homebrew_sdcard.Value.enabled"><value>Aktiveret</value></data>
   <data name="Emulation.Option.melondsds.melonds_homebrew_readonly"><value>Read- only tilstand</value></data>
-  <data name="Emulation.Option.melondsds.melonds_homebrew_readonly.Help"><value>Hvis det er aktiveret, vil homebrew-programmer se det virtuelle SD-kort som read- only. Ændringer træder i kraft med næste genstart.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_homebrew_readonly.Help"><value>Hvis det er aktiveret.</value></data>
   <data name="Emulation.Option.melondsds.melonds_homebrew_readonly.Value.disabled"><value>Deaktiveret</value></data>
   <data name="Emulation.Option.melondsds.melonds_homebrew_readonly.Value.enabled"><value>Aktiveret</value></data>
   <data name="Emulation.Option.melondsds.melonds_homebrew_sync_sdcard_to_host"><value>Synkronisér SD-kort til vært</value></data>
@@ -1125,13 +1183,18 @@
   <data name="Emulation.Option.melondsds.melonds_solar_sensor_host_sensor.Value.disabled"><value>Deaktiveret</value></data>
   <data name="Emulation.Option.melondsds.melonds_solar_sensor_host_sensor.Value.enabled"><value>Aktiveret</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_mode"><value>Tidstilstand</value></data>
-  <data name="Emulation.Option.melondsds.melonds_start_time_mode.Help"><value>Den initiale tid af den emulerede konsols interne ur.&#xA;&#xA;- Real: Start i synkronisering med din enheds ur.&#xA;- Synkroniseret: Synkroniser det emulerede ur til din enheds ur. Kan forårsage uventet adfærd i nogle spil, når rewinding eller fast- videresendelse.&#xA;- Relativ: Start i synkronisering med din enheds ur, plus eller minus en specificeret offset. vil blive begrænset til datoer, som DS kan repræsentere.&#xA;- Absolut: Start på en bestemt dato og tidspunkt, uanset din enheds ur.&#xA;&#xA;Alle datoer og tidspunkter er i din lokale tidszone. Ændringer får virkning ved næste genstart.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_start_time_mode.Help"><value>Den initiale tid af den emulerede konsols interne ur.
+
+- Real: Start i synkronisering med din enheds ur.
+- Synkroniseret: Synkroniser det emulerede ur til din enheds ur. Kan forårsage uventet adfærd i nogle spil, når rewinding eller fast- videresendelse.
+- Relativ: Start i synkronisering med din enheds ur, plus eller minus en specificeret offset. vil blive begrænset til datoer, som DS kan repræsentere.
+- Absolut: Start på en bestemt dato og tidspunkt.</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_mode.Value.real"><value>Real</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_mode.Value.sync"><value>Synkroniseret</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_mode.Value.relative"><value>Relativ</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_mode.Value.absolute"><value>Absolut</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_year_offset"><value>Starttidspunkt Offset (år)</value></data>
-  <data name="Emulation.Option.melondsds.melonds_start_time_relative_year_offset.Help"><value>Antallet af år til at udligne starttiden med. Anvendes kun, når starttidstilstand er relativ. Ændringer får virkning ved næste genstart.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_start_time_relative_year_offset.Help"><value>Antallet af år til at udligne starttiden med. Anvendes kun.</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_year_offset.Value.-20"><value>- 20 år</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_year_offset.Value.-19"><value>- 19 år</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_year_offset.Value.-18"><value>- 18 år</value></data>
@@ -1174,7 +1237,7 @@
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_year_offset.Value.19"><value>+ 19 år</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_year_offset.Value.20"><value>+ 20 år</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_day_offset"><value>Starttidsforskydning (dage)</value></data>
-  <data name="Emulation.Option.melondsds.melonds_start_time_relative_day_offset.Help"><value>Antallet af dage til at opveje starttidspunktet med. Anvendes kun, når starttidstilstand er relativ. Ændringer får virkning ved næste genstart.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_start_time_relative_day_offset.Help"><value>Antallet af dage til at opveje starttidspunktet med. Anvendes kun.</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_day_offset.Value.-364"><value>- 364 dage</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_day_offset.Value.-180"><value>- 180 dage</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_day_offset.Value.-150"><value>- 150 dage</value></data>
@@ -1219,7 +1282,7 @@
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_day_offset.Value.180"><value>+ 180 dage</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_day_offset.Value.364"><value>+ 364 dage</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_hour_offset"><value>Starttidsforskydning (timer)</value></data>
-  <data name="Emulation.Option.melondsds.melonds_start_time_relative_hour_offset.Help"><value>Antallet af timer til at opveje starttiden med. Anvendes kun, når starttidstilstand er relativ. Ændringer får virkning ved næste genstart.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_start_time_relative_hour_offset.Help"><value>Antallet af timer til at opveje starttiden med. Anvendes kun.</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_hour_offset.Value.-23"><value>- 23 timer</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_hour_offset.Value.-22"><value>- 22 timer</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_hour_offset.Value.-21"><value>- 21 timer</value></data>
@@ -1268,7 +1331,7 @@
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_hour_offset.Value.22"><value>+ 22 timer</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_hour_offset.Value.23"><value>+ 23 timer</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_minute_offset"><value>Starttidspunkt Offset (Minutter)</value></data>
-  <data name="Emulation.Option.melondsds.melonds_start_time_relative_minute_offset.Help"><value>Antallet af minutter til at opveje starttidspunktet med. Anvendes kun, når starttidstilstand er relativ. Ændringer får virkning ved næste genstart.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_start_time_relative_minute_offset.Help"><value>Antallet af minutter til at opveje starttidspunktet med. Anvendes kun.</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_minute_offset.Value.-59"><value>- 59 minutter</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_minute_offset.Value.-58"><value>- 58 minutter</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_minute_offset.Value.-57"><value>- 57 minutter</value></data>
@@ -1389,9 +1452,9 @@
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_minute_offset.Value.58"><value>+ 58 minutter</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_minute_offset.Value.59"><value>+ 59 minutter</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_absolute_year"><value>Startår</value></data>
-  <data name="Emulation.Option.melondsds.melonds_start_time_absolute_year.Help"><value>Det første år, der skal bruges, når starttidstilstand er absolut. Ændringer får virkning ved næste genstart.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_start_time_absolute_year.Help"><value>Det første år, der skal bruges.</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_absolute_month"><value>Startmåned</value></data>
-  <data name="Emulation.Option.melondsds.melonds_start_time_absolute_month.Help"><value>Den første måned, der skal bruges, når starttidstilstand er absolut. Ændringer får virkning ved næste genstart.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_start_time_absolute_month.Help"><value>Den første måned, der skal bruges.</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_absolute_month.Value.1"><value>Januar</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_absolute_month.Value.2"><value>Februar</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_absolute_month.Value.3"><value>Marts</value></data>
@@ -1405,15 +1468,18 @@
   <data name="Emulation.Option.melondsds.melonds_start_time_absolute_month.Value.11"><value>November</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_absolute_month.Value.12"><value>December</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_absolute_day"><value>Startdag</value></data>
-  <data name="Emulation.Option.melondsds.melonds_start_time_absolute_day.Help"><value>Den første dag i den måned, der skal bruges, når starttidspunkt tilstand er absolut. Dage, der strækker sig forbi slutningen af en måned vil rulle over til den næste (fx 31. april bliver 1. maj). Ændringer får virkning ved næste genstart.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_start_time_absolute_day.Help"><value>Den første dag i den måned, der skal bruges, når starttidspunkt tilstand er absolut. Dage.</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_absolute_hour"><value>Starttime</value></data>
-  <data name="Emulation.Option.melondsds.melonds_start_time_absolute_hour.Help"><value>Den indledende time, der skal bruges, når starttid tilstand er absolut. Ændringer træder i kraft ved næste genstart.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_start_time_absolute_hour.Help"><value>Den indledende time, der skal bruges.</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_absolute_minute"><value>Start minut</value></data>
-  <data name="Emulation.Option.melondsds.melonds_start_time_absolute_minute.Help"><value>Det første minut der skal bruges, når starttidstilstand er absolut. Ændringer træder i kraft ved næste genstart.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_start_time_absolute_minute.Help"><value>Det første minut der skal bruges.</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_absolute_second"><value>Starter anden</value></data>
-  <data name="Emulation.Option.melondsds.melonds_start_time_absolute_second.Help"><value>Det første sekund der skal bruges, når starttidstilstand er absolut. Ændringer træder i kraft ved næste genstart.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_start_time_absolute_second.Help"><value>Det første sekund der skal bruges.</value></data>
   <data name="Emulation.Option.melondsds.melonds_render_mode"><value>Udlejningstilstand</value></data>
-  <data name="Emulation.Option.melondsds.melonds_render_mode.Help"><value>Software er hurtigste og mest præcise. OpenGL (Classic) kan skalere op 3D-grafik, men nogle spil ikke render korrekt.&#xA;OpenGL (Compute) er præcis og understøtter opskalering, men vil ikke arbejde på nogle ældre enheder. Skifter til det tager et par sekunder at kompilere sine skygger.&#xA;&#xA;Falder tilbage til software rendering, hvis OpenGL ikke kan bruges. Ændringer træder i kraft med det samme, men kan kræve, at frontlangens videodriver genstartes.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_render_mode.Help"><value>Software er hurtigste og mest præcise. OpenGL (Classic) kan skalere op 3D-grafik, men nogle spil ikke render korrekt.
+OpenGL (Compute) er præcis og understøtter opskalering, men vil ikke arbejde på nogle ældre enheder. Skifter til det tager et par sekunder at kompilere sine skygger.
+
+Falder tilbage til software rendering, hvis OpenGL ikke kan bruges. Ændringer træder i kraft med det samme, men kan kræve.</value></data>
   <data name="Emulation.Option.melondsds.melonds_render_mode.Value.software"><value>Software</value></data>
   <data name="Emulation.Option.melondsds.melonds_render_mode.Value.opengl"><value>OpenGL (Classic)</value></data>
   <data name="Emulation.Option.melondsds.melonds_render_mode.Value.compute"><value>OpenGL (Compute)</value></data>
@@ -1614,7 +1680,7 @@
   <data name="Emulation.Option.fceumm.fceumm_ntsc_filter.Value.composite"><value>Sammensætning</value></data>
   <data name="Emulation.Option.fceumm.fceumm_ntsc_filter.Value.svideo"><value>S- Video</value></data>
   <data name="Emulation.Option.fceumm.fceumm_ntsc_filter.Value.monochrome"><value>Monokrom</value></data>
-  <data name="Emulation.Option.fceumm.fceumm_hdpacks"><value>HD teksturpakker (Genstart)</value></data>
+  <data name="Emulation.Option.fceumm.fceumm_hdpacks"><value>HD teksturpakker</value></data>
   <data name="Emulation.Option.fceumm.fceumm_hdpacks.Help"><value>Indlæs mesen- format HD tekstur pakker fra '&lt; system &gt; / HdPacks / &lt; rom navn &gt; / hires.txt' når de er tilstede. Replacerer fliser / sprite med høj opløsning kunst (PNG, DDS eller WebP) og giver pakkens brugerdefinerede baggrunde og OGG / WAV musik og lydeffekter. Kræver en frontend, der understøtter XRGB8888 output.</value></data>
   <data name="Emulation.Option.fceumm.fceumm_hdpacks.Value.enabled"><value>Aktiveret</value></data>
   <data name="Emulation.Option.fceumm.fceumm_hdpacks.Value.disabled"><value>Deaktiveret</value></data>
@@ -2056,10 +2122,10 @@
   <data name="Emulation.Firmware.mesen2.Slot25"><value>Super Game Boy BIOS</value></data>
   <data name="Emulation.Emulator.nestopia.Description"><value>Emulerer kompatible Nintendo-systemer med Nestopia.</value></data>
   <data name="Emulation.Option.nestopia.nestopia_favored_system"><value>Favored System</value></data>
-  <data name="Emulation.Option.nestopia.nestopia_favored_system.Help"><value>System til at foretrække for billeder, der ikke siger, hvilken en de ønsker. Billeder, der siger, og billeder fundet i NstDatabase.xml database fil, er upåvirket. Gælder kun, når 'Kraftsystem' er indstillet til 'Auto'. Kræver en genstart.</value></data>
+  <data name="Emulation.Option.nestopia.nestopia_favored_system.Help"><value>System til at foretrække for billeder, der ikke siger, hvilken en de ønsker. Billeder, der siger, og billeder fundet i NstDatabase.xml database fil, er upåvirket. Gælder kun.</value></data>
   <data name="Emulation.Option.nestopia.nestopia_favored_system.Value.famicom"><value>Familicom</value></data>
   <data name="Emulation.Option.nestopia.nestopia_force_system"><value>Kraftsystem</value></data>
-  <data name="Emulation.Option.nestopia.nestopia_force_system.Help"><value>Ignorer det system billedet beder om og brug denne ene i stedet. Ændring af denne indstilling vil genstarte spillet.</value></data>
+  <data name="Emulation.Option.nestopia.nestopia_force_system.Help"><value>Ignorer det system billedet beder om og brug denne ene i stedet.</value></data>
   <data name="Emulation.Option.nestopia.nestopia_force_system.Value.auto"><value>Automatisk</value></data>
   <data name="Emulation.Option.nestopia.nestopia_force_system.Value.famicom"><value>Familicom</value></data>
   <data name="Emulation.Option.nestopia.nestopia_fds_auto_insert"><value>FDS Auto Indsæt</value></data>
@@ -2309,7 +2375,10 @@
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_lcd_interlacing_brightnesss"><value>GBC LCD Interlacing Lysstyrke</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_lcd_interlacing_brightnesss.Help"><value>Justerer intensiteten af sammenfletningseffekten. Hold denne værdi lav, når du ikke bruger skygger. Højere værdier anbefales, når det kombineres med en skygger for at gøre effekten synlig.</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_RGB_SubPixel_Simulation"><value>GBC LCD RGB Subpixel skala Factor</value></data>
-  <data name="Emulation.Option.doublecherrygb.dcgb_gbc_RGB_SubPixel_Simulation.Help"><value>Simulerer fysiske GBC subpixels ved at opskalere og erstatte hver farve pixel med tilsvarende RGB komponenter.&#xA;&#xA;For de bedste resultater:&#xA;- Aktivér 'Integrer skalering' i RetroArch (Indstillinger - &gt; Video - &gt; Skalering).&#xA;- En kernegenstart kan være nødvendig efter ændring af denne indstilling.</value></data>
+  <data name="Emulation.Option.doublecherrygb.dcgb_gbc_RGB_SubPixel_Simulation.Help"><value>Simulerer fysiske GBC subpixels ved at opskalere og erstatte hver farve pixel med tilsvarende RGB komponenter.
+
+For de bedste resultater:
+- Aktivér 'Integrer skalering' i RetroArch (Indstillinger - &gt; Video - &gt; Skalering).</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_RGB_SubPixel_Simulation.Value.1"><value>Deaktiveret</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_LCD_blur"><value>GBC LCD BlurGenericName</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_LCD_blur.Help"><value>Anvender en skærm sløring effekt. Denne indstilling er meget CPU-intensiv. Sluk det på svagere hardware eller udnytte skygger i stedet.</value></data>
@@ -2568,7 +2637,7 @@
   <data name="Emulation.Firmware.gambatte.Slot0"><value>Game Boy BIOS</value></data>
   <data name="Emulation.Firmware.gambatte.Slot1"><value>Game Boy Color BIOS</value></data>
   <data name="Emulation.Emulator.gearboy.Description"><value>Emulerer kompatible Nintendo-systemer med GearBoy.</value></data>
-  <data name="Emulation.Option.gearboy.gearboy_barcode_boy"><value>Barcode Boy Mode (genstart)</value></data>
+  <data name="Emulation.Option.gearboy.gearboy_barcode_boy"><value>Barcode Boy Mode</value></data>
   <data name="Emulation.Option.gearboy.gearboy_barcode_boy.Help"><value>Auto tillægger Barcode Boy til spil anerkendt af ROM CRC. Aktiveret understøtter ugenkendte eller lappede rommer. Spil Link tilstand forbeholder den serielle port og deaktiverer Barcode Boy.</value></data>
   <data name="Emulation.Option.gearboy.gearboy_barcode_boy.Value.Auto"><value>Automatisk</value></data>
   <data name="Emulation.Option.gearboy.gearboy_barcode_boy.Value.Disabled"><value>Deaktiveret</value></data>
@@ -2636,10 +2705,10 @@
   <data name="Emulation.Option.gearboy.gearboy_barcode_digit_12.Help"><value>Digit 12 af den brugerdefinerede 13- cifrede stregkode, fra venstre mod højre. Vælg Brugerdefineret, sæt alle cifre og tryk derefter på Scan Barcode (RetroPad R).</value></data>
   <data name="Emulation.Option.gearboy.gearboy_barcode_digit_13"><value>Barcode Boy Custom Digit 13</value></data>
   <data name="Emulation.Option.gearboy.gearboy_barcode_digit_13.Help"><value>Digit 13 af den brugerdefinerede 13- cifrede stregkode, fra venstre mod højre. Vælg Brugerdefineret, sæt alle cifre og tryk derefter på Scan Barcode (RetroPad R).</value></data>
-  <data name="Emulation.Option.gearboy.gearboy_model"><value>Game Boy Model (genstart)</value></data>
+  <data name="Emulation.Option.gearboy.gearboy_model"><value>Game Boy Model</value></data>
   <data name="Emulation.Option.gearboy.gearboy_model.Help"><value>Vælg hvilken hardwaremodel der efterfølges. 'Auto' vælger automatisk den bedste model baseret på den indlæste ROM header. 'Game Boy DMG' styrker original Game Boy hardware '. Game Boy Advance kræfter Game Boy Advance tilstand, som muliggør mindre hardwaren forskelle til stede ved kørsel Game Boy spil på en GBA.</value></data>
   <data name="Emulation.Option.gearboy.gearboy_model.Value.Auto"><value>Automatisk</value></data>
-  <data name="Emulation.Option.gearboy.gearboy_mapper"><value>Mapper (genstart)</value></data>
+  <data name="Emulation.Option.gearboy.gearboy_mapper"><value>Mapper</value></data>
   <data name="Emulation.Option.gearboy.gearboy_mapper.Help"><value>Vælg hvilken Memory Bank Controller (MBC eller mapper) er emuleret. 'Auto' vælger automatisk den bedste MBC baseret på ROM header. Brug kun manuelt valg, hvis et spil har problemer med automatisk detektion.</value></data>
   <data name="Emulation.Option.gearboy.gearboy_mapper.Value.Auto"><value>Automatisk</value></data>
   <data name="Emulation.Option.gearboy.gearboy_mapper.Value.ROM Only"><value>Kun ROM</value></data>
@@ -2654,7 +2723,7 @@
   <data name="Emulation.Option.gearboy.gearboy_mapper.Value.Sintax"><value>Sintax</value></data>
   <data name="Emulation.Option.gearboy.gearboy_mapper.Value.NT old 1"><value>NT gamle 1</value></data>
   <data name="Emulation.Option.gearboy.gearboy_mapper.Value.NT old 2"><value>NT gamle 2</value></data>
-  <data name="Emulation.Option.gearboy.gearboy_sgb"><value>Super Game Boy (genstart)</value></data>
+  <data name="Emulation.Option.gearboy.gearboy_sgb"><value>Super Game Boy</value></data>
   <data name="Emulation.Option.gearboy.gearboy_sgb.Help"><value>Når det er aktiveret, vil kompatible ROM 'er køre i Super Game Boy tilstand. Når SGB -kompatible rompe kører som standard Game Boy (DMG) spil.</value></data>
   <data name="Emulation.Option.gearboy.gearboy_sgb.Value.Enabled"><value>Aktiveret</value></data>
   <data name="Emulation.Option.gearboy.gearboy_sgb.Value.Disabled"><value>Deaktiveret</value></data>
@@ -2662,11 +2731,11 @@
   <data name="Emulation.Option.gearboy.gearboy_sgb_border.Help"><value>Når det er aktiveret, vises Super Game Boy grænsen rundt om spilskærmen (256x224). Når du er deaktiveret, vises kun spilskærmen (160x144).</value></data>
   <data name="Emulation.Option.gearboy.gearboy_sgb_border.Value.Enabled"><value>Aktiveret</value></data>
   <data name="Emulation.Option.gearboy.gearboy_sgb_border.Value.Disabled"><value>Deaktiveret</value></data>
-  <data name="Emulation.Option.gearboy.gearboy_bootrom_dmg"><value>DMG Bootrom (genstart)</value></data>
+  <data name="Emulation.Option.gearboy.gearboy_bootrom_dmg"><value>DMG Bootrom</value></data>
   <data name="Emulation.Option.gearboy.gearboy_bootrom_dmg.Help"><value>Aktivér eller deaktivér den oprindelige Game Boy (DMG) bodrom. Når aktiveret, vil bodrom udføre ved opstart ligesom på ægte hardware, der viser Nintendo logo rulle animation. 'dmg_boot.bin' -filen skal være til stede i RetroArchs systemmappe.</value></data>
   <data name="Emulation.Option.gearboy.gearboy_bootrom_dmg.Value.Disabled"><value>Deaktiveret</value></data>
   <data name="Emulation.Option.gearboy.gearboy_bootrom_dmg.Value.Enabled"><value>Aktiveret</value></data>
-  <data name="Emulation.Option.gearboy.gearboy_bootrom_gbc"><value>GBC Bootrom (genstart)</value></data>
+  <data name="Emulation.Option.gearboy.gearboy_bootrom_gbc"><value>GBC Bootrom</value></data>
   <data name="Emulation.Option.gearboy.gearboy_bootrom_gbc.Help"><value>Aktivér eller deaktivér Game Boy Color bootrom. Når aktiveret, vil bootrom udføre ved opstart ligesom på ægte hardware, der viser Game Boy Color boot animation. 'cgb_boot.bin' -filen skal være til stede i RetroArchs systemmappe.</value></data>
   <data name="Emulation.Option.gearboy.gearboy_bootrom_gbc.Value.Disabled"><value>Deaktiveret</value></data>
   <data name="Emulation.Option.gearboy.gearboy_bootrom_gbc.Value.Enabled"><value>Aktiveret</value></data>
@@ -2730,7 +2799,7 @@
   <data name="Emulation.Option.gearboy.gearboy_up_down_allowed.Help"><value>Tillad at trykke, hurtigt vekslende, eller holde både venstre og højre (eller op og ned) retninger på samme tid. Dette kan forårsage bevægelsesbaserede fejl i visse spil. Det er bedst at holde denne mulighed deaktiveret.</value></data>
   <data name="Emulation.Option.gearboy.gearboy_up_down_allowed.Value.Disabled"><value>Deaktiveret</value></data>
   <data name="Emulation.Option.gearboy.gearboy_up_down_allowed.Value.Enabled"><value>Aktiveret</value></data>
-  <data name="Emulation.Option.gearboy.gearboy_link_enable"><value>Spil Link kabel aktiveret (genstart)</value></data>
+  <data name="Emulation.Option.gearboy.gearboy_link_enable"><value>Spil Link kabel aktiveret</value></data>
   <data name="Emulation.Option.gearboy.gearboy_link_enable.Help"><value>Kør to forbundne Game Boy systemer. Indlæser en ROM kører en separat kopi på hver skærm; bruge 2-afspiller Game Boy Link delsystem til at indlæse to forskellige ROM 'er. Kontrollør port 1 og 2 kontrolskærme 1 og to. Super Game Boy tilstand er deaktiveret, når linking.</value></data>
   <data name="Emulation.Option.gearboy.gearboy_link_enable.Value.Enabled"><value>Aktiveret</value></data>
   <data name="Emulation.Option.gearboy.gearboy_link_enable.Value.Disabled"><value>Deaktiveret</value></data>
@@ -2829,7 +2898,7 @@
   <data name="Emulation.Option.nside_sfc_balanced.higan_sfc_color_emulation"><value>Farveemulering</value></data>
   <data name="Emulation.Option.nside_sfc_balanced.higan_sfc_blur_emulation"><value>Bluremulering</value></data>
   <data name="Emulation.Option.nside_sfc_balanced.higan_sfc_scanline_emulation"><value>Scanline- emulering</value></data>
-  <data name="Emulation.Option.nside_sfc_balanced.higan_sfc_sgb_bios"><value>Foretrukket Super GameBoy BIOS (genstart)</value></data>
+  <data name="Emulation.Option.nside_sfc_balanced.higan_sfc_sgb_bios"><value>Foretrukket Super GameBoy BIOS</value></data>
   <data name="Emulation.Firmware.nside_sfc_balanced.Slot0"><value>Ekstern firmware</value></data>
   <data name="Emulation.Firmware.nside_sfc_balanced.Slot1"><value>Ekstern firmware</value></data>
   <data name="Emulation.Firmware.nside_sfc_balanced.Slot2"><value>Ekstern firmware</value></data>
@@ -2852,14 +2921,14 @@
   <data name="Emulation.Firmware.nside_sfc_balanced.Slot19"><value>SGB Boot Formand BIOS</value></data>
   <data name="Emulation.Firmware.nside_sfc_balanced.Slot20"><value>SGB Boot- billede</value></data>
   <data name="Emulation.Emulator.sameboy.Description"><value>Emulerer kompatible Nintendo-systemer med SameBoy.</value></data>
-  <data name="Emulation.Option.sameboy.sameboy_model"><value>System - Emuleret model (Kræver genstart)</value></data>
-  <data name="Emulation.Option.sameboy.sameboy_model.Help"><value>Valg af hvilken systemmodel indholdet skal startes på. Visse spil kan aktivere særlige ingame funktioner, når der køres på specifikke modeller. Denne indstilling kræver et indhold genstart for at kunne træde i kraft.</value></data>
+  <data name="Emulation.Option.sameboy.sameboy_model"><value>System - Emuleret model</value></data>
+  <data name="Emulation.Option.sameboy.sameboy_model.Help"><value>Valg af hvilken systemmodel indholdet skal startes på. Visse spil kan aktivere særlige ingame funktioner.</value></data>
   <data name="Emulation.Option.sameboy.sameboy_model.Value.Auto"><value>Autodetekter DMG / CGB</value></data>
   <data name="Emulation.Option.sameboy.sameboy_model.Value.Auto (SGB)"><value>Autodetekter DMG / SGB / CGB</value></data>
   <data name="Emulation.Option.sameboy.sameboy_model.Value.Game Boy Pocket"><value>Game Boy Pocket / lys</value></data>
   <data name="Emulation.Option.sameboy.sameboy_model.Value.Game Boy Player"><value>Game Boy Spiller (CPU AGB A)</value></data>
-  <data name="Emulation.Option.sameboy.sameboy_auto_sgb_model"><value>System - Autodetekteret SGB Model (Kræver genstart)</value></data>
-  <data name="Emulation.Option.sameboy.sameboy_auto_sgb_model.Help"><value>Angiver hvilken model af Super Game Boy hardware der skal efterligne når SGB indhold automatisk detekteres. Denne indstilling kræver et indhold genstart for at kunne træde i kraft.</value></data>
+  <data name="Emulation.Option.sameboy.sameboy_auto_sgb_model"><value>System - Autodetekteret SGB Model</value></data>
+  <data name="Emulation.Option.sameboy.sameboy_auto_sgb_model.Help"><value>Angiver hvilken model af Super Game Boy hardware der skal efterligne når SGB indhold automatisk detekteres.</value></data>
   <data name="Emulation.Option.sameboy.sameboy_mono_palette"><value>Video - GB Mono Palette</value></data>
   <data name="Emulation.Option.sameboy.sameboy_mono_palette.Help"><value>Vælger farvepaletten der skal bruges når du spiller Game Boy spil.</value></data>
   <data name="Emulation.Option.sameboy.sameboy_mono_palette.Value.greyscale"><value>Greyscale</value></data>
@@ -2901,22 +2970,22 @@
   <data name="Emulation.Option.sameboy.sameboy_link.Help"><value>Aktiverer emulering af linkkablet, der muliggør kommunikation og udveksling af data mellem to Game Boy-systemer.</value></data>
   <data name="Emulation.Option.sameboy.sameboy_link.Value.enabled"><value>Aktiveret</value></data>
   <data name="Emulation.Option.sameboy.sameboy_link.Value.disabled"><value>Deaktiveret</value></data>
-  <data name="Emulation.Option.sameboy.sameboy_model_1"><value>System - Emulated Model for Game Boy # 1 (Kræver genstart)</value></data>
-  <data name="Emulation.Option.sameboy.sameboy_model_1.Help"><value>Valg hvilket system model indholdet skal startes på for Game Boy # 1. Visse spil kan aktivere særlige ingame funktioner, når der køres på specifikke modeller. Denne indstilling kræver et indhold genstart for at kunne træde i kraft.</value></data>
+  <data name="Emulation.Option.sameboy.sameboy_model_1"><value>System - Emulated Model for Game Boy # 1</value></data>
+  <data name="Emulation.Option.sameboy.sameboy_model_1.Help"><value>Valg hvilket system model indholdet skal startes på for Game Boy # 1. Visse spil kan aktivere særlige ingame funktioner.</value></data>
   <data name="Emulation.Option.sameboy.sameboy_model_1.Value.Auto"><value>Autodetekter DMG / CGB</value></data>
   <data name="Emulation.Option.sameboy.sameboy_model_1.Value.Auto (SGB)"><value>Autodetekter DMG / SGB / CGB</value></data>
   <data name="Emulation.Option.sameboy.sameboy_model_1.Value.Game Boy Pocket"><value>Game Boy Pocket / lys</value></data>
   <data name="Emulation.Option.sameboy.sameboy_model_1.Value.Game Boy Player"><value>Game Boy Spiller (CPU AGB A)</value></data>
-  <data name="Emulation.Option.sameboy.sameboy_auto_sgb_model_1"><value>System - Auto Detected SGB Model til Game Boy # 1 (Kræver genstart)</value></data>
-  <data name="Emulation.Option.sameboy.sameboy_auto_sgb_model_1.Help"><value>Angiver hvilken model af Super Game Boy hardware der skal efterligne, når SGB indhold automatisk detekteres for Game Boy # 1. Denne indstilling kræver et indhold genstart for at kunne træde i kraft.</value></data>
-  <data name="Emulation.Option.sameboy.sameboy_model_2"><value>System - Emulated Model for Game Boy # 2 (Kræver genstart)</value></data>
-  <data name="Emulation.Option.sameboy.sameboy_model_2.Help"><value>Valg hvilket system model indholdet skal startes på for Game Boy # 2. Visse spil kan aktivere særlige ingame funktioner, når der køres på specifikke modeller. Denne indstilling kræver et indhold genstart for at kunne træde i kraft.</value></data>
+  <data name="Emulation.Option.sameboy.sameboy_auto_sgb_model_1"><value>System - Auto Detected SGB Model til Game Boy # 1</value></data>
+  <data name="Emulation.Option.sameboy.sameboy_auto_sgb_model_1.Help"><value>Angiver hvilken model af Super Game Boy hardware der skal efterligne.</value></data>
+  <data name="Emulation.Option.sameboy.sameboy_model_2"><value>System - Emulated Model for Game Boy # 2</value></data>
+  <data name="Emulation.Option.sameboy.sameboy_model_2.Help"><value>Valg hvilket system model indholdet skal startes på for Game Boy # 2. Visse spil kan aktivere særlige ingame funktioner.</value></data>
   <data name="Emulation.Option.sameboy.sameboy_model_2.Value.Auto"><value>Autodetekter DMG / CGB</value></data>
   <data name="Emulation.Option.sameboy.sameboy_model_2.Value.Auto (SGB)"><value>Autodetekter DMG / SGB / CGB</value></data>
   <data name="Emulation.Option.sameboy.sameboy_model_2.Value.Game Boy Pocket"><value>Game Boy Pocket / lys</value></data>
   <data name="Emulation.Option.sameboy.sameboy_model_2.Value.Game Boy Player"><value>Game Boy Spiller (CPU AGB A)</value></data>
-  <data name="Emulation.Option.sameboy.sameboy_auto_sgb_model_2"><value>System - Auto Detected SGB Model til Game Boy # 2 (Kræver genstart)</value></data>
-  <data name="Emulation.Option.sameboy.sameboy_auto_sgb_model_2.Help"><value>Angiver hvilken model af Super Game Boy hardware der skal efterligne, når SGB indhold automatisk detekteres for Game Boy # 2. Denne indstilling kræver et indhold genstart for at kunne træde i kraft.</value></data>
+  <data name="Emulation.Option.sameboy.sameboy_auto_sgb_model_2"><value>System - Auto Detected SGB Model til Game Boy # 2</value></data>
+  <data name="Emulation.Option.sameboy.sameboy_auto_sgb_model_2.Help"><value>Angiver hvilken model af Super Game Boy hardware der skal efterligne.</value></data>
   <data name="Emulation.Option.sameboy.sameboy_screen_layout"><value>Video - skærmlayout</value></data>
   <data name="Emulation.Option.sameboy.sameboy_screen_layout.Help"><value>Ved emulering af to systemer på én gang, definerer denne indstilling den respektive position for de to skærme.</value></data>
   <data name="Emulation.Option.sameboy.sameboy_screen_layout.Value.top-down"><value>Top- Down</value></data>
@@ -3011,10 +3080,10 @@
   <data name="Emulation.Option.tgbdual.tgbdual_audio_output"><value>Lydudgang</value></data>
   <data name="Emulation.Option.tgbdual.tgbdual_audio_output.Value.Both (mixed)"><value>Begge dele (blandet)</value></data>
   <data name="Emulation.Emulator.mednafen_gba.Description"><value>Emulerer kompatible Nintendo-systemer med Beetle GBA.</value></data>
-  <data name="Emulation.Option.mednafen_gba.gba_hle"><value>HLE bios emulering (Genstart)</value></data>
+  <data name="Emulation.Option.mednafen_gba.gba_hle"><value>HLE bios emulering</value></data>
   <data name="Emulation.Option.mednafen_gba.gba_hle.Value.enabled"><value>Aktiveret</value></data>
   <data name="Emulation.Option.mednafen_gba.gba_hle.Value.disabled"><value>Deaktiveret</value></data>
-  <data name="Emulation.Option.mednafen_gba.gba_use_mednafen_save_method"><value>Gem metode (Genstart)</value></data>
+  <data name="Emulation.Option.mednafen_gba.gba_use_mednafen_save_method"><value>Gem metode</value></data>
   <data name="Emulation.Option.mednafen_gba.gba_use_mednafen_save_method.Value.mednafen"><value>mezafinon</value></data>
   <data name="Emulation.Option.mednafen_gba.gba_use_mednafen_save_method.Value.libretro"><value>libreretro</value></data>
   <data name="Emulation.Firmware.mednafen_gba.Slot0"><value>Game Boy Advance BIOS</value></data>
@@ -3082,14 +3151,14 @@
   <data name="Emulation.Option.gpsp.gpsp_turbo_period.Help"><value>Angiv gentagelsesintervallet (i rammer), når Turbo A / B-knapperne holdes nede.</value></data>
   <data name="Emulation.Firmware.gpsp.Slot0"><value>Game Boy Advance BIOS</value></data>
   <data name="Emulation.Emulator.meteor.Description"><value>Emulerer kompatible Nintendo-systemer med Meteor.</value></data>
-  <data name="Emulation.Option.mgba.mgba_gb_model"><value>Game Boy Model (Genstart)</value></data>
+  <data name="Emulation.Option.mgba.mgba_gb_model"><value>Game Boy Model</value></data>
   <data name="Emulation.Option.mgba.mgba_gb_model.Help"><value>Kører indlæst indhold med en specifik Game Boy model. 'Autodetect' vil vælge den mest passende model for det aktuelle spil.</value></data>
   <data name="Emulation.Option.mgba.mgba_gb_model.Value.Autodetect"><value>Autodetekter</value></data>
-  <data name="Emulation.Option.mgba.mgba_use_bios"><value>Brug BIOS fil hvis fundet (genstart)</value></data>
+  <data name="Emulation.Option.mgba.mgba_use_bios"><value>Brug BIOS fil hvis fundet</value></data>
   <data name="Emulation.Option.mgba.mgba_use_bios.Help"><value>Brug officielle BIOS / bootloader til emuleret hardware, hvis det findes i RetroArch systemmappe.</value></data>
   <data name="Emulation.Option.mgba.mgba_use_bios.Value.ON"><value>Aktiveret</value></data>
   <data name="Emulation.Option.mgba.mgba_use_bios.Value.OFF"><value>Deaktiveret</value></data>
-  <data name="Emulation.Option.mgba.mgba_skip_bios"><value>Skip BIOS Intro (Genstart)</value></data>
+  <data name="Emulation.Option.mgba.mgba_skip_bios"><value>Skip BIOS Intro</value></data>
   <data name="Emulation.Option.mgba.mgba_skip_bios.Help"><value>Når du bruger en officiel BIOS / bootloader, springe start- up logo animation. Denne indstilling ignoreres når 'Brug BIOS fil hvis Fundet' er deaktiveret.</value></data>
   <data name="Emulation.Option.mgba.mgba_skip_bios.Value.OFF"><value>Deaktiveret</value></data>
   <data name="Emulation.Option.mgba.mgba_skip_bios.Value.ON"><value>Aktiveret</value></data>
@@ -3111,13 +3180,13 @@
   <data name="Emulation.Option.mgba.mgba_gb_colors.Value.GBC Green →"><value>GBC Grøn →</value></data>
   <data name="Emulation.Option.mgba.mgba_gb_colors.Value.GBC Dark Green →A"><value>GBC Dark Green → A</value></data>
   <data name="Emulation.Option.mgba.mgba_gb_colors.Value.GBC Reverse →B"><value>GBC Reverse → B</value></data>
-  <data name="Emulation.Option.mgba.mgba_gb_colors_preset"><value>Hardware Preset Game Boy Palettes (Genstart)</value></data>
+  <data name="Emulation.Option.mgba.mgba_gb_colors_preset"><value>Hardware Preset Game Boy Palettes</value></data>
   <data name="Emulation.Option.mgba.mgba_gb_colors_preset.Help"><value>Brug paletterne til Game Boy spil, der har forudsatte på Game Boy Color eller Super Game Boy.</value></data>
   <data name="Emulation.Option.mgba.mgba_gb_colors_preset.Value.0"><value>Standard Game Boy forudindstillet</value></data>
   <data name="Emulation.Option.mgba.mgba_gb_colors_preset.Value.1"><value>Game Boy Color kun presets</value></data>
   <data name="Emulation.Option.mgba.mgba_gb_colors_preset.Value.2"><value>Super Game Boy forudsætter kun</value></data>
   <data name="Emulation.Option.mgba.mgba_gb_colors_preset.Value.3"><value>Alle tilgængelige presets</value></data>
-  <data name="Emulation.Option.mgba.mgba_sgb_borders"><value>Brug Super Game Boy Borders (Genstart)</value></data>
+  <data name="Emulation.Option.mgba.mgba_sgb_borders"><value>Brug Super Game Boy Borders</value></data>
   <data name="Emulation.Option.mgba.mgba_sgb_borders.Help"><value>Vis Super Game Boy grænser, når du kører Super Game Boy- forbedrede spil.</value></data>
   <data name="Emulation.Option.mgba.mgba_sgb_borders.Value.ON"><value>Aktiveret</value></data>
   <data name="Emulation.Option.mgba.mgba_sgb_borders.Value.OFF"><value>Deaktiveret</value></data>
@@ -3145,7 +3214,7 @@
   <data name="Emulation.Option.mgba.mgba_solar_sensor_level"><value>Solarsensorniveau</value></data>
   <data name="Emulation.Option.mgba.mgba_solar_sensor_level.Help"><value>Sætter den omgivende sollysintensitet. Kan bruges af spil, der omfattede en sol sensor i deres patroner, e.g: Boktai-serien.</value></data>
   <data name="Emulation.Option.mgba.mgba_solar_sensor_level.Value.sensor"><value>Brug enhedssensor hvis tilgængelig</value></data>
-  <data name="Emulation.Option.mgba.mgba_force_gbp"><value>Game Boy Player Rumble (Genstart)</value></data>
+  <data name="Emulation.Option.mgba.mgba_force_gbp"><value>Game Boy Player Rumble</value></data>
   <data name="Emulation.Option.mgba.mgba_force_gbp.Help"><value>Aktivering af dette vil tillade kompatible spil med Game Boy Player boot logo til at gøre controlleren rumble. På grund af, hvordan Nintendo besluttet denne funktion skal virke, kan det forårsage fejl såsom flimren eller forsinkelse i nogle af disse spil.</value></data>
   <data name="Emulation.Option.mgba.mgba_force_gbp.Value.OFF"><value>Deaktiveret</value></data>
   <data name="Emulation.Option.mgba.mgba_force_gbp.Value.ON"><value>Aktiveret</value></data>
@@ -3170,17 +3239,17 @@
   <data name="Emulation.Firmware.mgba.Slot3"><value>Super Game Boy BIOS</value></data>
   <data name="Emulation.Emulator.vbam.Description"><value>Emulatorer kompatible Nintendo systemer med VBA-M.</value></data>
   <data name="Emulation.Option.vbam.vbam_usebios"><value>Brug officielt BIOS (hvis tilgængelig)</value></data>
-  <data name="Emulation.Option.vbam.vbam_usebios.Help"><value>Brug officielt BIOS, når det er tilgængeligt. Der er behov for at genstarte kernen, så der kan ske ændringer.</value></data>
+  <data name="Emulation.Option.vbam.vbam_usebios.Help"><value>Brug officielt BIOS, når det er tilgængeligt.</value></data>
   <data name="Emulation.Option.vbam.vbam_usebios.Value.disabled"><value>Deaktiveret</value></data>
   <data name="Emulation.Option.vbam.vbam_usebios.Value.enabled"><value>Aktiveret</value></data>
   <data name="Emulation.Option.vbam.vbam_forceRTCenable"><value>Force- Aktivér RTC</value></data>
   <data name="Emulation.Option.vbam.vbam_forceRTCenable.Help"><value>Kræver, at det interne realtidsur aktiveres uanset rom. Kan bruges til rom patches, der kræver ur skal være aktiveret (fx Pokemon).</value></data>
   <data name="Emulation.Option.vbam.vbam_forceRTCenable.Value.disabled"><value>Deaktiveret</value></data>
   <data name="Emulation.Option.vbam.vbam_forceRTCenable.Value.enabled"><value>Aktiveret</value></data>
-  <data name="Emulation.Option.vbam.vbam_gbHardware"><value>(GB) Emuleret hardware (kræver genstart)</value></data>
-  <data name="Emulation.Option.vbam.vbam_gbHardware.Help"><value>Sætter den Game Boy hardware type at efterligne. Genstart kernen for at ansøge.</value></data>
+  <data name="Emulation.Option.vbam.vbam_gbHardware"><value>(GB) Emuleret hardware</value></data>
+  <data name="Emulation.Option.vbam.vbam_gbHardware.Help"><value>Sætter den Game Boy hardware type at efterligne.</value></data>
   <data name="Emulation.Option.vbam.vbam_gbHardware.Value.auto"><value>Automatisk</value></data>
-  <data name="Emulation.Option.vbam.vbam_allowcolorizerhack"><value>(GB) Aktiver Colorizer Hack (behøver genstart)</value></data>
+  <data name="Emulation.Option.vbam.vbam_allowcolorizerhack"><value>(GB) Aktiver Colorizer Hack</value></data>
   <data name="Emulation.Option.vbam.vbam_allowcolorizerhack.Help"><value>Tillader Colorizer hacket GB spil (fx DX lappede spil) til normalt at køre i GBC / GBA hardware type. Dette deaktiverer også brugen af bios-fil. NOT RECOMMENDED til brug på ikke-farvede spil.</value></data>
   <data name="Emulation.Option.vbam.vbam_allowcolorizerhack.Value.disabled"><value>Deaktiveret</value></data>
   <data name="Emulation.Option.vbam.vbam_allowcolorizerhack.Value.enabled"><value>Aktiveret</value></data>
@@ -3296,11 +3365,11 @@
   <data name="Emulation.Firmware.vbam.Slot1"><value>Game Boy BIOS</value></data>
   <data name="Emulation.Firmware.vbam.Slot2"><value>Game Boy Color BIOS</value></data>
   <data name="Emulation.Emulator.vba_next.Description"><value>Emulerer kompatible Nintendo-systemer med VBA Next.</value></data>
-  <data name="Emulation.Option.vba_next.vbanext_bios"><value>Brug BIOS hvis tilgængelig (Genstart)</value></data>
+  <data name="Emulation.Option.vba_next.vbanext_bios"><value>Brug BIOS hvis tilgængelig</value></data>
   <data name="Emulation.Option.vba_next.vbanext_bios.Help"><value>Bruger BIOS til stede i RetroArchs systemmappe.</value></data>
   <data name="Emulation.Option.vba_next.vbanext_bios.Value.enabled"><value>Aktiveret</value></data>
   <data name="Emulation.Option.vba_next.vbanext_bios.Value.disabled"><value>Deaktiveret</value></data>
-  <data name="Emulation.Option.vba_next.vbanext_rtc"><value>RTC (Genstart)</value></data>
+  <data name="Emulation.Option.vba_next.vbanext_rtc"><value>RTC</value></data>
   <data name="Emulation.Option.vba_next.vbanext_rtc.Help"><value>Kontrol Real- Time Clock emulering. 'auto' bruger per- ROM override listen. 'aktiverede' kræfter RTC på for enhver ROM (nyttige for ROM hacks kræver RTC uden en matchende override). 'deaktiveret' styrker RTC off, tilsidesætter overriden liste.</value></data>
   <data name="Emulation.Option.vba_next.vbanext_rtc.Value.auto"><value>Automatisk</value></data>
   <data name="Emulation.Option.vba_next.vbanext_rtc.Value.enabled"><value>Aktiveret</value></data>
@@ -3325,11 +3394,11 @@
   <data name="Emulation.Option.dolphin.dolphin_emulation_speed.Value.1.0"><value>100% (normal hastighed)</value></data>
   <data name="Emulation.Option.dolphin.dolphin_emulation_speed.Value.0.0"><value>Ubegrænset</value></data>
   <data name="Emulation.Option.dolphin.dolphin_main_cpu_thread"><value>Core &gt; Dual Core Mode</value></data>
-  <data name="Emulation.Option.dolphin.dolphin_main_cpu_thread.Help"><value>Aktivér dual- core CPU emulering. Kræver kerne RESTART.</value></data>
+  <data name="Emulation.Option.dolphin.dolphin_main_cpu_thread.Help"><value>Aktivér dual- core CPU emulering.</value></data>
   <data name="Emulation.Option.dolphin.dolphin_main_cpu_thread.Value.disabled"><value>Deaktiveret</value></data>
   <data name="Emulation.Option.dolphin.dolphin_main_cpu_thread.Value.enabled"><value>Aktiveret</value></data>
   <data name="Emulation.Option.dolphin.dolphin_main_load_game_into_memory"><value>Hovednet &gt; Indlæs hele spillet ind i hukommelsen</value></data>
-  <data name="Emulation.Option.dolphin.dolphin_main_load_game_into_memory.Help"><value>Indlæs hele spillet i hukommelsen. Kræver kerne RESTART.</value></data>
+  <data name="Emulation.Option.dolphin.dolphin_main_load_game_into_memory.Help"><value>Indlæs hele spillet i hukommelsen.</value></data>
   <data name="Emulation.Option.dolphin.dolphin_main_load_game_into_memory.Value.disabled"><value>Deaktiveret</value></data>
   <data name="Emulation.Option.dolphin.dolphin_main_load_game_into_memory.Value.enabled"><value>Aktiveret</value></data>
   <data name="Emulation.Option.dolphin.dolphin_precision_frame_timing"><value>Hovednet &gt; Præcisionsramme Timing</value></data>
@@ -3349,7 +3418,7 @@
   <data name="Emulation.Option.dolphin.dolphin_main_accurate_cpu_cache.Value.disabled"><value>Deaktiveret</value></data>
   <data name="Emulation.Option.dolphin.dolphin_main_accurate_cpu_cache.Value.enabled"><value>Aktiveret</value></data>
   <data name="Emulation.Option.dolphin.dolphin_cheats_enabled"><value>Hovednet &gt; Intern svindel</value></data>
-  <data name="Emulation.Option.dolphin.dolphin_cheats_enabled.Help"><value>Aktivér opbygning af snydekoder. Genstart kernen for at få virkning.</value></data>
+  <data name="Emulation.Option.dolphin.dolphin_cheats_enabled.Help"><value>Aktivér opbygning af snydekoder.</value></data>
   <data name="Emulation.Option.dolphin.dolphin_cheats_enabled.Value.disabled"><value>Deaktiveret</value></data>
   <data name="Emulation.Option.dolphin.dolphin_cheats_enabled.Value.enabled"><value>Aktiveret</value></data>
   <data name="Emulation.Option.dolphin.dolphin_skip_gc_bios"><value>Hovednet &gt; Skip GameCube BIOS</value></data>
@@ -3467,7 +3536,7 @@
   <data name="Emulation.Option.dolphin.dolphin_gc_sp1.Value.13"><value>Modem TapServer</value></data>
   <data name="Emulation.Option.dolphin.dolphin_gc_sp1.Value.6"><value>Baseboard</value></data>
   <data name="Emulation.Option.dolphin.dolphin_enable_gamecube_mic"><value>Systemkonfiguration (GC) &gt; GameCube mikrofon</value></data>
-  <data name="Emulation.Option.dolphin.dolphin_enable_gamecube_mic.Help"><value>Emulere den officielle GameCube mikrofon tilbehør. Genstart kernen efter ændring af denne indstilling.</value></data>
+  <data name="Emulation.Option.dolphin.dolphin_enable_gamecube_mic.Help"><value>Emulere den officielle GameCube mikrofon tilbehør.</value></data>
   <data name="Emulation.Option.dolphin.dolphin_enable_gamecube_mic.Value.disabled"><value>Deaktiveret</value></data>
   <data name="Emulation.Option.dolphin.dolphin_enable_gamecube_mic.Value.enabled"><value>Aktiveret</value></data>
   <data name="Emulation.Option.dolphin.dolphin_hotkey_activate_microphone"><value>Systemkonfiguration (GC) &gt; Mikrofonknap</value></data>
@@ -3508,7 +3577,7 @@
   <data name="Emulation.Option.dolphin.dolphin_bluetooth_passthrough.Value.disabled"><value>Deaktiveret</value></data>
   <data name="Emulation.Option.dolphin.dolphin_bluetooth_passthrough.Value.enabled"><value>Aktiveret</value></data>
   <data name="Emulation.Option.dolphin.dolphin_wiispeak_enable"><value>Systemindstilling &gt; Wii Speak</value></data>
-  <data name="Emulation.Option.dolphin.dolphin_wiispeak_enable.Help"><value>Emulér Wii-mikrofonen. Genstart når denne indstilling ændres.</value></data>
+  <data name="Emulation.Option.dolphin.dolphin_wiispeak_enable.Help"><value>Emulér Wii-mikrofonen.</value></data>
   <data name="Emulation.Option.dolphin.dolphin_wiispeak_enable.Value.disabled"><value>Deaktiveret</value></data>
   <data name="Emulation.Option.dolphin.dolphin_wiispeak_enable.Value.enabled"><value>Aktiveret</value></data>
   <data name="Emulation.Option.dolphin.dolphin_wiispeak_muted"><value>Lyd &gt; Enheder &gt; Wii Speak Muted</value></data>
@@ -3516,7 +3585,7 @@
   <data name="Emulation.Option.dolphin.dolphin_wiispeak_muted.Value.disabled"><value>Deaktiveret</value></data>
   <data name="Emulation.Option.dolphin.dolphin_wiispeak_muted.Value.enabled"><value>Aktiveret</value></data>
   <data name="Emulation.Option.dolphin.dolphin_wii_logi_microphone_enable"><value>Systemindstilling &gt; Logitech USB-mikrofon</value></data>
-  <data name="Emulation.Option.dolphin.dolphin_wii_logi_microphone_enable.Help"><value>Emulér Logitech USB-mikrofonen. Genstart når denne indstilling ændres.</value></data>
+  <data name="Emulation.Option.dolphin.dolphin_wii_logi_microphone_enable.Help"><value>Emulér Logitech USB-mikrofonen.</value></data>
   <data name="Emulation.Option.dolphin.dolphin_wii_logi_microphone_enable.Value.disabled"><value>Deaktiveret</value></data>
   <data name="Emulation.Option.dolphin.dolphin_wii_logi_microphone_enable.Value.enabled"><value>Aktiveret</value></data>
   <data name="Emulation.Option.dolphin.dolphin_renderer"><value>Grafik &gt; Indstillinger &gt; Grafik- motor</value></data>
@@ -3744,7 +3813,7 @@
   <data name="Emulation.Option.dolphin.dolphin_swing_angle.Help"><value>Rotation i ekstremiteterne af en gynge (1- 180 °).</value></data>
   <data name="Emulation.Option.dolphin.dolphin_swing_angle.Value.90"><value>90 ° (standard)</value></data>
   <data name="Emulation.Option.dolphin.dolphin_cheats_import"><value>RetroArch Core &gt; Importér snyder automatisk til Retroarch</value></data>
-  <data name="Emulation.Option.dolphin.dolphin_cheats_import.Help"><value>Importér dolphin ini filer i RetroArch. Genstart kernen for at få virkning.</value></data>
+  <data name="Emulation.Option.dolphin.dolphin_cheats_import.Help"><value>Importér dolphin ini filer i RetroArch.</value></data>
   <data name="Emulation.Option.dolphin.dolphin_cheats_import.Value.disabled"><value>Deaktiveret</value></data>
   <data name="Emulation.Option.dolphin.dolphin_cheats_import.Value.enabled"><value>Aktiveret</value></data>
   <data name="Emulation.Option.dolphin.dolphin_save_load_settings"><value>RetroArch core &gt; Indlæs &amp; forebygg Gem indstillinger</value></data>
@@ -3756,7 +3825,7 @@
   <data name="Emulation.Option.dolphin.dolphin_ir_passthrough.Value.disabled"><value>Deaktiveret</value></data>
   <data name="Emulation.Option.dolphin.dolphin_ir_passthrough.Value.enabled"><value>Aktiveret</value></data>
   <data name="Emulation.Option.dolphin.dolphin_libretro_vfs_enabled"><value>RetroArch core &gt; Aktivér virtuelt filsystem (VFS)</value></data>
-  <data name="Emulation.Option.dolphin.dolphin_libretro_vfs_enabled.Help"><value>Aktivér VFS for SAF / SMB osv. Kræver kerne RESTART. Denne funktion er NEW og EXPERIMENTAL. Backup dine besparelser regelmæssigt.</value></data>
+  <data name="Emulation.Option.dolphin.dolphin_libretro_vfs_enabled.Help"><value>Aktivér VFS for SAF / SMB osv. Denne funktion er NEW og EXPERIMENTAL. Backup dine besparelser regelmæssigt.</value></data>
   <data name="Emulation.Option.dolphin.dolphin_libretro_vfs_enabled.Value.disabled"><value>Deaktiveret</value></data>
   <data name="Emulation.Option.dolphin.dolphin_libretro_vfs_enabled.Value.enabled"><value>Aktiveret</value></data>
   <data name="Emulation.Option.dolphin.dolphin_default_mouse_bindings_enabled"><value>RetroArch core &gt; Aktivér standardbindinger for mus</value></data>
@@ -3764,7 +3833,7 @@
   <data name="Emulation.Option.dolphin.dolphin_default_mouse_bindings_enabled.Value.disabled"><value>Deaktiveret</value></data>
   <data name="Emulation.Option.dolphin.dolphin_default_mouse_bindings_enabled.Value.enabled"><value>Aktiveret</value></data>
   <data name="Emulation.Option.dolphin.dolphin_dsu_enabled"><value>Wiimote (DSU) &gt; Aktivér DSU-klient</value></data>
-  <data name="Emulation.Option.dolphin.dolphin_dsu_enabled.Help"><value>Aktivér DSU-klient for DualShock bevægelsesdata. Genstart kernen for at få virkning.</value></data>
+  <data name="Emulation.Option.dolphin.dolphin_dsu_enabled.Help"><value>Aktivér DSU-klient for DualShock bevægelsesdata.</value></data>
   <data name="Emulation.Option.dolphin.dolphin_dsu_enabled.Value.disabled"><value>Deaktiveret</value></data>
   <data name="Emulation.Option.dolphin.dolphin_dsu_enabled.Value.enabled"><value>Aktiveret</value></data>
   <data name="Emulation.Option.dolphin.dolphin_dsu_ip_octet1"><value>Wiimot (DSU) &gt; Server IP Okt. 1</value></data>
@@ -3987,13 +4056,13 @@
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-dither-filter.Help"><value>Allow VI de- dither filter, genopretter betydelig farvedybde.</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-dither-filter.Value.True"><value>Aktiveret</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-dither-filter.Value.False"><value>Deaktiveret</value></data>
-  <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-upscaling"><value>(ParaLLEL -RDP) Opskalering faktor (genstart)</value></data>
+  <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-upscaling"><value>(ParaLLEL -RDP) Opskalering faktor</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-upscaling.Help"><value>Anvend intern opskaleringsfaktor.</value></data>
-  <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-super-sampled-read-back"><value>(ParaLLEL -RDP) SSAA rammebuffereffekter (genstart)</value></data>
+  <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-super-sampled-read-back"><value>(ParaLLEL -RDP) SSAA rammebuffereffekter</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-super-sampled-read-back.Help"><value>Super prøve rammebuffer effekter. Kan indføre artefakter.</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-super-sampled-read-back.Value.False"><value>Deaktiveret</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-super-sampled-read-back.Value.True"><value>Aktiveret</value></data>
-  <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-super-sampled-read-back-dither"><value>(ParaLLEL -RDP) Dither SSAA rammebuffereffekter (genstart)</value></data>
+  <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-super-sampled-read-back-dither"><value>(ParaLLEL -RDP) Dither SSAA rammebuffereffekter</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-super-sampled-read-back-dither.Help"><value>Dither super udtagne framebuffer effekter.</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-super-sampled-read-back-dither.Value.True"><value>Aktiveret</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-super-sampled-read-back-dither.Value.False"><value>Deaktiveret</value></data>
@@ -4103,7 +4172,7 @@
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-pak4.Value.rumble"><value>rumble</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-pak4.Value.transfer"><value>overførsel</value></data>
   <data name="Emulation.Emulator.parallel_n64.Description"><value>Emulater, der er kompatible Nintendo systemer med ParaLLel N64.</value></data>
-  <data name="Emulation.Option.parallel_n64.parallel-n64-upscaling"><value>Opskaleringsfaktor (genstart)</value></data>
+  <data name="Emulation.Option.parallel_n64.parallel-n64-upscaling"><value>Opskaleringsfaktor</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-upscaling.Help"><value>Render på et multiplum af konsollens opløsning.RDP ærer hver faktor; Angrilion renders på op til 4x og behandler 8x som 4x.</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-parallel-rdp-native-texture-lod"><value>Brug native tekstur LOD ved opskalering</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-parallel-rdp-native-texture-lod.Help"><value>Vælg tekstur mip niveauer som konsollen ville, fra en konsol pixel fodaftryk snarere end en opskaleret pixel er. Uden det en opskaleret render vælger skarpere niveauer, og spil, der bruger niveauet som kontakt viser det forkerte billede (maleriet i slutningen af slottet korridor i Super Mario 64). Æret af ParaLLEL-RDP og Angrylion.</value></data>
@@ -4348,7 +4417,7 @@
   <data name="Emulation.Option.parallel_n64.parallel-n64-rspplugin.Value.hle"><value>hle</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-rspplugin.Value.parallel"><value>parallel</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-screensize"><value>Opløsning</value></data>
-  <data name="Emulation.Option.parallel_n64.parallel-n64-screensize.Help"><value>Opløsning (genstart)</value></data>
+  <data name="Emulation.Option.parallel_n64.parallel-n64-screensize.Help"><value>Opløsning</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-aspectratiohint"><value>Orienteringsratio vink</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-aspectratiohint.Help"><value>Orienteringsratio vink (reinit)</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-aspectratiohint.Value.normal"><value>normal</value></data>
@@ -4401,7 +4470,7 @@
   <data name="Emulation.Option.parallel_n64.parallel-n64-alt-map.Value.disabled"><value>Deaktiveret</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-alt-map.Value.enabled"><value>Aktiveret</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-vcache-vbo"><value>(Glide64) VBO</value></data>
-  <data name="Emulation.Option.parallel_n64.parallel-n64-vcache-vbo.Help"><value>Vertex cache VBO (genstart)</value></data>
+  <data name="Emulation.Option.parallel_n64.parallel-n64-vcache-vbo.Help"><value>Vertex cache VBO</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-vcache-vbo.Value.disabled"><value>Deaktiveret</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-vcache-vbo.Value.enabled"><value>Aktiveret</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-boot-device"><value>Boot- enhed</value></data>
@@ -4411,7 +4480,7 @@
   <data name="Emulation.Option.parallel_n64.parallel-n64-64dd-hardware.Help"><value>Behandle indhold uden en anerkendt cylinderampul eller disk header som en 64DD disk. Udviklingsdisketter og MAME / SDK dumps bærer ingen header markering; almindelige patroner og D64-aftryk i detailhandelen identificeres ved deres hoved og påvirkes ikke af denne indstilling.</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-64dd-hardware.Value.disabled"><value>Deaktiveret</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-64dd-hardware.Value.enabled"><value>Aktiveret</value></data>
-  <data name="Emulation.Option.parallel_n64.parallel-n64-goldeneye-tlb-hack"><value>GoldenEye TLB Mapping Hack (Genstart)</value></data>
+  <data name="Emulation.Option.parallel_n64.parallel-n64-goldeneye-tlb-hack"><value>GoldenEye TLB Mapping Hack</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-goldeneye-tlb-hack.Help"><value>Kort GoldenEye 's demand-side 0x7F000000 kode segment direkte på ROM, uden om spillets egen TLB personsøger (kun ari64 dynerec). Historisk påkrævet for GoldenEye at køre på alle; på desktop- klasse værter den nøjagtige sti nu måler lige så hurtigt. Deaktiver for hardware- trofaste TLB adfærd eller for modificerede ROM 'er, der flytter spillet segment, som kortlægningen ville ødelægge.</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-goldeneye-tlb-hack.Value.enabled"><value>Aktiveret</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-goldeneye-tlb-hack.Value.disabled"><value>Deaktiveret</value></data>
@@ -4580,7 +4649,7 @@
   <data name="Emulation.Option.parallel_n64.parallel-n64-rtc-savestate"><value>Rollback N64 system ur på savestatning belastning</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-rtc-savestate.Value.enabled"><value>Ja</value></data>
   <data name="Emulation.Emulator.pokemini.Description"><value>Emulerer kompatible Nintendo-systemer med PokeMini.</value></data>
-  <data name="Emulation.Option.pokemini.pokemini_video_scale"><value>Videoskala (genstart)</value></data>
+  <data name="Emulation.Option.pokemini.pokemini_video_scale"><value>Videoskala</value></data>
   <data name="Emulation.Option.pokemini.pokemini_video_scale.Help"><value>Sæt intern videoskalafaktor. Øger skalafaktoren forbedrer udseendet af det interne 'Dot Matrix' LCD-filter.</value></data>
   <data name="Emulation.Option.pokemini.pokemini_60hz_mode"><value>60Hz-tilstand</value></data>
   <data name="Emulation.Option.pokemini.pokemini_60hz_mode.Help"><value>Opdater visningen på 60Hz i stedet for den indfødte 72Hz Pokemon Mini 's opdateringshastighed ved at droppe hver sjette ramme. Reducerer video glathed, men undgår skærmrivning på skærme, der ikke understøtter native drift over 60Hz.</value></data>
@@ -4780,13 +4849,13 @@
   <data name="Emulation.Firmware.bsnes.Slot18"><value>SGB Boot- billede</value></data>
   <data name="Emulation.Firmware.bsnes.Slot19"><value>BS-X - Sore wa Namae o Nusumareta Machi no Monogatari (Japan) (Rev 1)</value></data>
   <data name="Emulation.Emulator.bsnes_jg.Description"><value>Emulerer kompatible Nintendo-systemer med bsnes- jg.</value></data>
-  <data name="Emulation.Option.bsnes_jg.bsnes_jg_coproc_delaysync"><value>Forsinket LLE Coprocessor Sync (Genstart)</value></data>
+  <data name="Emulation.Option.bsnes_jg.bsnes_jg_coproc_delaysync"><value>Forsinket LLE Coprocessor Sync</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_coproc_delaysync.Help"><value>Forsinket synkronisering, når du bruger Low Level Coprocessor Emulation for mere hastighed på bekostning af nøjagtighed</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_coproc_delaysync.Value.off"><value>Fra (standard)</value></data>
-  <data name="Emulation.Option.bsnes_jg.bsnes_jg_coproc_preferhle"><value>Foretag HLE Coprocessor Emulering (Genstart)</value></data>
+  <data name="Emulation.Option.bsnes_jg.bsnes_jg_coproc_preferhle"><value>Foretag HLE Coprocessor Emulering</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_coproc_preferhle.Help"><value>Brug høj niveau coprocessor emulation, når det er muligt for mere hastighed på prisen for nøjagtighed</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_coproc_preferhle.Value.off"><value>Fra (standard)</value></data>
-  <data name="Emulation.Option.bsnes_jg.bsnes_jg_hotfixes"><value>Hotfikser (Genstart)</value></data>
+  <data name="Emulation.Option.bsnes_jg.bsnes_jg_hotfixes"><value>Hotfikser</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_hotfixes.Help"><value>Anvend hotfixes, når du spiller en håndfuld spil udgivet med store fejl (som er udstillet på ægte hardware). Spil i spørgsmål: Dirt Racer, Magical Drop, Rendering Ranger R2</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_hotfixes.Value.off"><value>Fra (standard)</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_runahead"><value>Intern run- Ahead</value></data>
@@ -4796,10 +4865,10 @@
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_runahead.Value.2"><value>2 stel</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_runahead.Value.3"><value>3 rammer</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_runahead.Value.4"><value>4 stel</value></data>
-  <data name="Emulation.Option.bsnes_jg.bsnes_jg_low_latency_audio"><value>Lav latency lyd (genstart)</value></data>
+  <data name="Emulation.Option.bsnes_jg.bsnes_jg_low_latency_audio"><value>Lav latency lyd</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_low_latency_audio.Help"><value>Brug mindre lydprøve stykker for en bedre oplevelse, når du bruger en frontend med en lav latency lyd konfiguration. Brug af denne indstilling i krævende coprocessor spil kan forårsage lyd artefakter.</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_low_latency_audio.Value.off"><value>Fra (standard)</value></data>
-  <data name="Emulation.Option.bsnes_jg.bsnes_jg_rsqual"><value>Resampler kvalitet (Genstart)</value></data>
+  <data name="Emulation.Option.bsnes_jg.bsnes_jg_rsqual"><value>Resampler kvalitet</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_rsqual.Help"><value>Sæt den interne resampler kvalitetsniveau (du kan høre en forskel, hvis du bruger pro audio udstyr og din fantasi)</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_rsqual.Value.fast"><value>Hurtig (standard)</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_rsqual.Value.medium"><value>Mellem</value></data>
@@ -4943,8 +5012,8 @@
   <data name="Emulation.Option.bsnes_hd_beta.bsnes_coprocessor_prefer_hle.Help"><value>Når denne indstilling er aktiveret, vil mindre nøjagtig HLE emulering altid blive brugt når den er tilgængelig. Hvis deaktiveret, vil HLE kun blive brugt, når LLE firmware mangler.</value></data>
   <data name="Emulation.Option.bsnes_hd_beta.bsnes_coprocessor_prefer_hle.Value.ON"><value>Aktiveret</value></data>
   <data name="Emulation.Option.bsnes_hd_beta.bsnes_coprocessor_prefer_hle.Value.OFF"><value>Deaktiveret</value></data>
-  <data name="Emulation.Option.bsnes_hd_beta.bsnes_sgb_bios"><value>Foretrukket Super Game Boy BIOS (Kræver genstart)</value></data>
-  <data name="Emulation.Option.bsnes_hd_beta.bsnes_sgb_bios.Help"><value>Giver mulighed for at vælge den foretrukne Super Game Boy BIOS, der skal bruges med kompatible titler. Kræver en genstart til at få virkning.</value></data>
+  <data name="Emulation.Option.bsnes_hd_beta.bsnes_sgb_bios"><value>Foretrukket Super Game Boy BIOS</value></data>
+  <data name="Emulation.Option.bsnes_hd_beta.bsnes_sgb_bios.Help"><value>Giver mulighed for at vælge den foretrukne Super Game Boy BIOS.</value></data>
   <data name="Emulation.Option.bsnes_hd_beta.bsnes_run_ahead_frames"><value>Intern run- Ahead</value></data>
   <data name="Emulation.Option.bsnes_hd_beta.bsnes_run_ahead_frames.Help"><value>Simulerer systemet før tid og ruller tilbage for at reducere input latency. Har meget høje systemkrav.</value></data>
   <data name="Emulation.Option.bsnes_hd_beta.bsnes_run_ahead_frames.Value.OFF"><value>Deaktiveret</value></data>
@@ -5189,7 +5258,7 @@
   <data name="Emulation.Option.bsnes_mercury_accuracy.bsnes_crop_overscan"><value>Crop overscan</value></data>
   <data name="Emulation.Option.bsnes_mercury_accuracy.bsnes_crop_overscan.Value.disabled"><value>Deaktiveret</value></data>
   <data name="Emulation.Option.bsnes_mercury_accuracy.bsnes_crop_overscan.Value.enabled"><value>Aktiveret</value></data>
-  <data name="Emulation.Option.bsnes_mercury_accuracy.bsnes_gamma_ramp"><value>Gamma rampe (kræver genstart)</value></data>
+  <data name="Emulation.Option.bsnes_mercury_accuracy.bsnes_gamma_ramp"><value>Gamma rampe</value></data>
   <data name="Emulation.Option.bsnes_mercury_accuracy.bsnes_gamma_ramp.Value.disabled"><value>Deaktiveret</value></data>
   <data name="Emulation.Option.bsnes_mercury_accuracy.bsnes_gamma_ramp.Value.enabled"><value>Aktiveret</value></data>
   <data name="Emulation.Firmware.bsnes_mercury_accuracy.Slot0"><value>Ekstern firmware</value></data>
@@ -5227,7 +5296,7 @@
   <data name="Emulation.Option.bsnes_mercury_balanced.bsnes_crop_overscan"><value>Crop overscan</value></data>
   <data name="Emulation.Option.bsnes_mercury_balanced.bsnes_crop_overscan.Value.disabled"><value>Deaktiveret</value></data>
   <data name="Emulation.Option.bsnes_mercury_balanced.bsnes_crop_overscan.Value.enabled"><value>Aktiveret</value></data>
-  <data name="Emulation.Option.bsnes_mercury_balanced.bsnes_gamma_ramp"><value>Gamma rampe (kræver genstart)</value></data>
+  <data name="Emulation.Option.bsnes_mercury_balanced.bsnes_gamma_ramp"><value>Gamma rampe</value></data>
   <data name="Emulation.Option.bsnes_mercury_balanced.bsnes_gamma_ramp.Value.disabled"><value>Deaktiveret</value></data>
   <data name="Emulation.Option.bsnes_mercury_balanced.bsnes_gamma_ramp.Value.enabled"><value>Aktiveret</value></data>
   <data name="Emulation.Firmware.bsnes_mercury_balanced.Slot0"><value>Ekstern firmware</value></data>
@@ -5265,7 +5334,7 @@
   <data name="Emulation.Option.bsnes_mercury_performance.bsnes_crop_overscan"><value>Crop overscan</value></data>
   <data name="Emulation.Option.bsnes_mercury_performance.bsnes_crop_overscan.Value.disabled"><value>Deaktiveret</value></data>
   <data name="Emulation.Option.bsnes_mercury_performance.bsnes_crop_overscan.Value.enabled"><value>Aktiveret</value></data>
-  <data name="Emulation.Option.bsnes_mercury_performance.bsnes_gamma_ramp"><value>Gamma rampe (kræver genstart)</value></data>
+  <data name="Emulation.Option.bsnes_mercury_performance.bsnes_gamma_ramp"><value>Gamma rampe</value></data>
   <data name="Emulation.Option.bsnes_mercury_performance.bsnes_gamma_ramp.Value.disabled"><value>Deaktiveret</value></data>
   <data name="Emulation.Option.bsnes_mercury_performance.bsnes_gamma_ramp.Value.enabled"><value>Aktiveret</value></data>
   <data name="Emulation.Firmware.bsnes_mercury_performance.Slot0"><value>Ekstern firmware</value></data>
@@ -5562,13 +5631,13 @@
   <data name="Emulation.Option.snes9x2002.snes9x2002_low_pass_filter.Value.enabled"><value>Aktiveret</value></data>
   <data name="Emulation.Option.snes9x2002.snes9x2002_low_pass_range"><value>Lydfilterniveau</value></data>
   <data name="Emulation.Option.snes9x2002.snes9x2002_low_pass_range.Help"><value>Angiv afskæringsfrekvensen for lydfilteret med lav pass. En højere værdi øger filterets opfattede "styrke", da en bredere vifte af højfrekvensspektret dæmpes.</value></data>
-  <data name="Emulation.Option.snes9x2002.snes9x2002_overclock_cycles"><value>Reduce Blowdown (Hack, Unsafe, Genstart)</value></data>
+  <data name="Emulation.Option.snes9x2002.snes9x2002_overclock_cycles"><value>Reduce Blowdown</value></data>
   <data name="Emulation.Option.snes9x2002.snes9x2002_overclock_cycles.Help"><value>Mange spil for SNES lidt af afmatning på grund af den svage vigtigste CPU. Denne indstilling hjælper med at lindre det på bekostning af mulige fejl. Kompatibel: Reducer afmatningen, men hold så meget spilkompatibilitet som muligt. Max: Reducer afmatning så meget som muligt, men vil bryde flere spil.</value></data>
   <data name="Emulation.Option.snes9x2002.snes9x2002_overclock_cycles.Value.disabled"><value>Deaktiveret</value></data>
   <data name="Emulation.Option.snes9x2002.snes9x2002_overclock_cycles.Value.compatible"><value>Kompatibel</value></data>
   <data name="Emulation.Option.snes9x2002.snes9x2002_overclock_cycles.Value.max"><value>Maks</value></data>
   <data name="Emulation.Emulator.snes9x2005.Description"><value>Emulerer kompatible Nintendo-systemer med Snes9x 2005.</value></data>
-  <data name="Emulation.Option.snes9x2005.snes9x_2005_region"><value>Konsol-region (genstart)</value></data>
+  <data name="Emulation.Option.snes9x2005.snes9x_2005_region"><value>Konsol-region</value></data>
   <data name="Emulation.Option.snes9x2005.snes9x_2005_region.Help"><value>Angiv hvilken region systemet er fra. 'PAL' er 50hz, 'NTSC' er 60hz. Spil vil køre hurtigere eller langsommere end normalt, hvis den forkerte region er valgt.</value></data>
   <data name="Emulation.Option.snes9x2005.snes9x_2005_region.Value.auto"><value>Automatisk</value></data>
   <data name="Emulation.Option.snes9x2005.snes9x_2005_frameskip"><value>Frameskip Formand</value></data>
@@ -5584,7 +5653,7 @@
   <data name="Emulation.Option.snes9x2005.snes9x_2005_low_pass_filter.Value.enabled"><value>Aktiveret</value></data>
   <data name="Emulation.Option.snes9x2005.snes9x_2005_low_pass_range"><value>Lydfilterniveau</value></data>
   <data name="Emulation.Option.snes9x2005.snes9x_2005_low_pass_range.Help"><value>Angiv afskæringsfrekvensen for lydfilteret med lav pass. En højere værdi øger filterets opfattede "styrke", da en bredere vifte af højfrekvensspektret dæmpes.</value></data>
-  <data name="Emulation.Option.snes9x2005.snes9x_2005_overclock_cycles"><value>Reduce Blowdown (Hack, Unsafe, Genstart)</value></data>
+  <data name="Emulation.Option.snes9x2005.snes9x_2005_overclock_cycles"><value>Reduce Blowdown</value></data>
   <data name="Emulation.Option.snes9x2005.snes9x_2005_overclock_cycles.Help"><value>Mange spil for SNES lidt af afmatning på grund af den svage vigtigste CPU. Denne indstilling hjælper allievere, at på bekostning af mulige fejl. COMPATIBLE: Reducer afmatningen, men hold så meget spilkompatibilitet som muligt. MAX: Reducer afmatning så meget som muligt, men vil bryde flere spil.</value></data>
   <data name="Emulation.Option.snes9x2005.snes9x_2005_overclock_cycles.Value.disabled"><value>Deaktiveret</value></data>
   <data name="Emulation.Option.snes9x2005.snes9x_2005_overclock_cycles.Value.compatible"><value>Kompatibel</value></data>
@@ -5594,7 +5663,7 @@
   <data name="Emulation.Option.snes9x2005.snes9x_2005_reduce_sprite_flicker.Value.disabled"><value>Deaktiveret</value></data>
   <data name="Emulation.Option.snes9x2005.snes9x_2005_reduce_sprite_flicker.Value.enabled"><value>Aktiveret</value></data>
   <data name="Emulation.Emulator.snes9x2005_plus.Description"><value>Emulerer kompatible Nintendo-systemer med Snes9x 2005 Plus.</value></data>
-  <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_region"><value>Konsol-region (genstart)</value></data>
+  <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_region"><value>Konsol-region</value></data>
   <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_region.Help"><value>Angiv hvilken region systemet er fra. 'PAL' er 50hz, 'NTSC' er 60hz. Spil vil køre hurtigere eller langsommere end normalt, hvis den forkerte region er valgt.</value></data>
   <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_region.Value.auto"><value>Automatisk</value></data>
   <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_frameskip"><value>Frameskip Formand</value></data>
@@ -5604,7 +5673,7 @@
   <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_frameskip.Value.manual"><value>Manual</value></data>
   <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_frameskip_threshold"><value>Frameskip Tærskel (%)</value></data>
   <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_frameskip_threshold.Help"><value>Når 'Frameskip' er indstillet til 'Manual', angiver den lydbuffergrænse (procentdel) under hvilken rammer vil blive sprunget over. Højere værdier reducerer risikoen for krakning ved at få rammer til at falde oftere.</value></data>
-  <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_overclock_cycles"><value>Reduce Blowdown (Hack, Unsafe, Genstart)</value></data>
+  <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_overclock_cycles"><value>Reduce Blowdown</value></data>
   <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_overclock_cycles.Help"><value>Mange spil for SNES lidt af afmatning på grund af den svage vigtigste CPU. Denne indstilling hjælper allievere, at på bekostning af mulige fejl. COMPATIBLE: Reducer afmatningen, men hold så meget spilkompatibilitet som muligt. MAX: Reducer afmatning så meget som muligt, men vil bryde flere spil.</value></data>
   <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_overclock_cycles.Value.disabled"><value>Deaktiveret</value></data>
   <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_overclock_cycles.Value.compatible"><value>Kompatibel</value></data>
@@ -5614,7 +5683,7 @@
   <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_reduce_sprite_flicker.Value.disabled"><value>Deaktiveret</value></data>
   <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_reduce_sprite_flicker.Value.enabled"><value>Aktiveret</value></data>
   <data name="Emulation.Emulator.snes9x2010.Description"><value>Emulerer kompatible Nintendo-systemer med Snes9x 2010.</value></data>
-  <data name="Emulation.Option.snes9x2010.snes9x_2010_region"><value>Konsol-region (genstart)</value></data>
+  <data name="Emulation.Option.snes9x2010.snes9x_2010_region"><value>Konsol-region</value></data>
   <data name="Emulation.Option.snes9x2010.snes9x_2010_region.Help"><value>Angiv hvilken region systemet er fra. 'PAL' er 50hz, 'NTSC' er 60hz. Spil vil køre hurtigere eller langsommere end normalt, hvis den forkerte region er valgt.</value></data>
   <data name="Emulation.Option.snes9x2010.snes9x_2010_region.Value.auto"><value>Automatisk</value></data>
   <data name="Emulation.Option.snes9x2010.snes9x_2010_audio_interpolation"><value>Audio Interpolation (Upræcis)</value></data>
@@ -5671,7 +5740,7 @@
   <data name="Emulation.Option.snes9x2010.snes9x_2010_reduce_sprite_flicker.Help"><value>Øger antallet af spritter, der kan tegnes samtidigt på skærmen.</value></data>
   <data name="Emulation.Option.snes9x2010.snes9x_2010_reduce_sprite_flicker.Value.disabled"><value>Deaktiveret</value></data>
   <data name="Emulation.Option.snes9x2010.snes9x_2010_reduce_sprite_flicker.Value.enabled"><value>Aktiveret</value></data>
-  <data name="Emulation.Option.snes9x2010.snes9x_2010_block_invalid_vram_access"><value>Blokugyldig VRAM-adgang (Genstart)</value></data>
+  <data name="Emulation.Option.snes9x2010.snes9x_2010_block_invalid_vram_access"><value>Blokugyldig VRAM-adgang</value></data>
   <data name="Emulation.Option.snes9x2010.snes9x_2010_block_invalid_vram_access.Help"><value>Nogle homebrew / ROM hacks kræver denne indstilling at være deaktiveret for korrekt drift.</value></data>
   <data name="Emulation.Option.snes9x2010.snes9x_2010_block_invalid_vram_access.Value.enabled"><value>Aktiveret</value></data>
   <data name="Emulation.Option.snes9x2010.snes9x_2010_block_invalid_vram_access.Value.disabled"><value>Deaktiveret</value></data>
@@ -5738,7 +5807,7 @@
   <data name="Emulation.Option.mednafen_supafaust.supafaust_thread_affinity_emu"><value>Emulering tråd affinitet maske</value></data>
   <data name="Emulation.Option.mednafen_supafaust.supafaust_thread_affinity_ppu"><value>PPU render tråd affinitet maske</value></data>
   <data name="Emulation.Option.mednafen_supafaust.supafaust_renderer"><value>PPU renderer</value></data>
-  <data name="Emulation.Option.beetle_vb.vb_3dmode"><value>3D-tilstand (kræver genstart)</value></data>
+  <data name="Emulation.Option.beetle_vb.vb_3dmode"><value>3D-tilstand</value></data>
   <data name="Emulation.Option.beetle_vb.vb_3dmode.Help"><value>Vælg 3D-tilstand. Anaglyph - anvendes i forbindelse med klassiske dual- lens- farve briller. Cyberscope - beregnet til brug med CyberScope 3D device. sidebyside - venstreøjet billede vises til venstre, og højre-øje billedet vises på højre. vli - Lotiske linjer alternativ mellem venstre og højre vision. hli - Vandrette linjer alternative mellem højre og venstre visning.</value></data>
   <data name="Emulation.Option.beetle_vb.vb_3dmode.Value.anaglyph"><value>anaglyph</value></data>
   <data name="Emulation.Option.beetle_vb.vb_3dmode.Value.cyberscope"><value>cyberscope</value></data>
@@ -5773,7 +5842,7 @@
   <data name="Emulation.Option.beetle_vb.vb_opposite_directions.Help"><value>Tillad at trykke op og ned eller venstre og højre retninger på samme tid. Dette kan forårsage fejl.</value></data>
   <data name="Emulation.Option.beetle_vb.vb_opposite_directions.Value.disabled"><value>Deaktiveret</value></data>
   <data name="Emulation.Option.beetle_vb.vb_opposite_directions.Value.enabled"><value>Aktiveret</value></data>
-  <data name="Emulation.Option.beetle_vb.vb_cpu_emulation"><value>CPU-emulering (Genstart)</value></data>
+  <data name="Emulation.Option.beetle_vb.vb_cpu_emulation"><value>CPU-emulering</value></data>
   <data name="Emulation.Option.beetle_vb.vb_cpu_emulation.Help"><value>Vælg mellem hurtigere og nøjagtig (langsommere) emulering.</value></data>
   <data name="Emulation.Option.beetle_vb.vb_cpu_emulation.Value.accurate"><value>nøjagtig</value></data>
   <data name="Emulation.Option.beetle_vb.vb_cpu_emulation.Value.fast"><value>hurtigt</value></data>
@@ -5926,7 +5995,9 @@
   <data name="Emulation.Option.cemu.cemu_uninstall_game.Value.disabled"><value>Deaktiveret</value></data>
   <data name="Emulation.Option.cemu.cemu_uninstall_game.Value.enabled"><value>Aktiveret</value></data>
   <data name="Emulation.Option.cemu.cemu_install_titles"><value>Installér indhold</value></data>
-  <data name="Emulation.Option.cemu.cemu_install_titles.Help"><value>Installerer hver opdatering og DLC i system / Cemu / titler til gems / Cemu / mlc01, den emulerede konsols lager. Hver enkelt går i en mappe af sin egen der; en NUS download (.app-filer) har brug for sine title.tmd og dens title.tik, dekryptering nøgle, ved siden af dem. En version allerede installeret, der er den samme eller nyere er efterladt alene.&#xA;&#xA;Når dette er ON, installering begynder med det samme, med dens fremskridt vist som en meddelelse, og det bliver OFF igen, når alt indhold er installeret, og denne menu er udgået eller en anden mulighed ændres. Titlen vil bruge det installerede indhold, når det er genstartet.&#xA;&#xA;Indhold fra andre steder kan installeres med RetroArch 's Main Menu &gt; Indlæs indhold, ved at vælge den tilsvarende title.tmd, med sin title.tik ved siden af.</value></data>
+  <data name="Emulation.Option.cemu.cemu_install_titles.Help"><value>Installerer hver opdatering og DLC i system / Cemu / titler til gems / Cemu / mlc01, den emulerede konsols lager. Hver enkelt går i en mappe af sin egen der; en NUS download (.app-filer) har brug for sine title.tmd og dens title.tik, dekryptering nøgle, ved siden af dem. En version allerede installeret, der er den samme eller nyere er efterladt alene.
+
+Når dette er ON, installering begynder med det samme, med dens fremskridt vist som en meddelelse, og det bliver OFF igen, når alt indhold er installeret, og denne menu er udgået eller en anden mulighed ændres. Indhold fra andre steder kan installeres med RetroArch 's Main Menu &gt; Indlæs indhold, ved at vælge den tilsvarende title.tmd, med sin title.tik ved siden af.</value></data>
   <data name="Emulation.Option.cemu.cemu_install_titles.Value.disabled"><value>Deaktiveret</value></data>
   <data name="Emulation.Option.cemu.cemu_install_titles.Value.enabled"><value>Aktiveret</value></data>
   <data name="Emulation.Option.cemu.cemu_uninstall_titles"><value>Fjern indhold</value></data>

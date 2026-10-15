@@ -1,5 +1,6 @@
 using GWGUI.Emulation.Sony.Emulators.Common.Interop.Contracts;
 using GWGUI.Emulation.Sony.Emulators.Pcee2.Dictionaries;
+using GWGUI.Emulation.Sony.Emulators.Pcee2.Functions;
 
 namespace GWGUI.Emulation.Sony.Emulators.Pcee2.Constants;
 
@@ -18,7 +19,8 @@ internal static class CoreConstants
         OptionCatalog.All, FirmwareConstants.All,
         new(Id, DisplayName, DescriptionResourceKey, new HashSet<string>(StringComparer.Ordinal) { ModelConstants.PlayStation2 }),
         RequiresExternalFirmware: true,
-        ControllerTypes: [ControllerType.Joystick, ControllerType.None],
+        ControllerTypes: [ControllerType.Joystick, ControllerType.None, ControllerType.GunCon2],
         StartupFailureDiagnostics: [InitializationFailureDiagnostic],
-        FeedbackControllerTypes: [ControllerType.Joystick]);
+        FeedbackControllerTypes: [ControllerType.Joystick],
+        CreateControllerPorts: ControllerConfigurationFunctions.CreatePorts);
 }

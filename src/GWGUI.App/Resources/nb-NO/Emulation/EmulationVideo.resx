@@ -299,4 +299,7 @@
   <data name="Emulation.Video.Parameter.ProjectionVignette"><value>Edge formørkelse</value></data>
   <data name="Emulation.Video.Projection.Group.Optics"><value>Optikk og lys</value></data>
   <data name="Emulation.Video.Projection.Group.Screen"><value>Projeksjonsskjerm</value></data>
+  <data name="Emulation.Option.Common.Value.HardwareRendering"><value>Maskinvaregjengivelse</value></data>
+  <data name="Emulation.Option.Common.RenderingMode.Label"><value>Gjengivelsesmodus</value></data>
+  <data name="Emulation.Option.Common.RenderingMode.Help"><value>Maskinvaregjengivelse bruker grafikk-API-et som er valgt for programmet, hvis emulatoren støtter det.</value></data>
 </root>

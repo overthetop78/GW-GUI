@@ -1,6 +1,7 @@
 using GWGUI.Emulation.Sony.Emulators.Common.Interop.Constants;
 using GWGUI.Emulation.Sony.Emulators.Common.Interop.Contracts;
 using System.Globalization;
+using GWGUI.Emulation.Sony.Emulators.Common.Functions;
 
 namespace GWGUI.Emulation.Sony.Emulators.Common.Interop.Functions;
 
@@ -24,7 +25,7 @@ internal static class CoreSettingsFunctions
             else if (definition.Id == Emulators.BeetlePsxHw.Constants.CoreConstants.Id)
                 options[Emulators.BeetlePsxHw.Constants.OptionConstants.OverrideBiosKey] = Emulators.BeetlePsxHw.Constants.OptionConstants.OverrideBiosDisabled;
         }
-        return AnalogToggleFunctions.Configure(MemoryCardFunctions.Configure(configuration with { Options = options }));
+        return AnalogToggleFunctions.Configure(MemoryCardFunctions.Configure(GraphicsSettingsFunctions.Configure(configuration with { Options = options }, definition.Options)));
     }
 
     internal static IReadOnlyList<EmulationSettingsBlock> Blocks(CoreDefinition definition, MachineConfiguration configuration) => Blocks(definition.Options, configuration);
@@ -36,8 +37,10 @@ internal static class CoreSettingsFunctions
 
     internal static IReadOnlyList<EmulationSettingsBlock> Blocks(IReadOnlyList<CoreOption> options, MachineConfiguration configuration)
     {
-        var fields = options.Where(IsVisible).Select(option =>
+        configuration = GraphicsSettingsFunctions.Configure(configuration, options);
+        var fields = options.Where(IsVisible).Select(source =>
         {
+            var option = GraphicsSettingsFunctions.Present(source, configuration.Options?.GetValueOrDefault(source.Key) ?? source.DefaultValue, configuration.GraphicsApi);
             var tab = option.Tab == EmulationMachineTab.General && configuration.Model is not (ModelConstants.PlayStation2 or ModelConstants.Psp) ? EmulationMachineTab.Cpu : option.Tab;
             if (CoreSettingsConstants.IsCdAudio(option.Key)) tab = EmulationMachineTab.Storage;
             if (option.Key == Emulators.Pcee2.Constants.OptionConstants.FastBootKey)
@@ -86,7 +89,7 @@ internal static class CoreSettingsFunctions
                 AppliesToControllerIds: ControllerOptionFunctions.Types(option),
                 ControllerPortNumber: ControllerOptionFunctions.PortNumber(option),
                 RefreshSettingsOnChange: option.Key.Contains(ControllerOptionConstants.Multitap, StringComparison.OrdinalIgnoreCase)
-                    || option.Key == Emulators.Ppsspp.Constants.OptionConstants.PspModelKey,
+                    || option.Key == Emulators.Ppsspp.Constants.OptionConstants.PspModelKey || option.GraphicsApiValues is not null,
                 IsGlobalControllerOption: option.Key.Contains(ControllerOptionConstants.Multitap, StringComparison.OrdinalIgnoreCase));
         }).ToArray();
         return fields.GroupBy(field => (field.Tab, field.BlockId)).Select(group => new EmulationSettingsBlock(

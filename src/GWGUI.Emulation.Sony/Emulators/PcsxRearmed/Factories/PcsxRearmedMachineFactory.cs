@@ -12,7 +12,7 @@ internal sealed class PcsxRearmedMachineFactory : CoreMachineFactory
         {
             OptionConstants.MultitapPort1 or OptionConstants.MultitapPort2 =>
                 ControllerPortConstants.SingleMultitapControllerCount,
-            OptionConstants.MultitapPorts1And2 => ControllerPortConstants.MaximumControllerPortCount,
+            OptionConstants.MultitapPorts1And2 => ControllerPortConstants.MaximumGamepadPortCount,
             _ => base.GetControllerPortCount(configuration)
         };
 }

@@ -20,7 +20,7 @@ internal sealed class SwanStationMachineFactory : CoreMachineFactory
                 OptionConstants.ControllerPortsMultitapModePort2Only =>
                 ControllerPortConstants.SingleMultitapControllerCount,
             OptionConstants.ControllerPortsMultitapModeBothPorts =>
-                ControllerPortConstants.MaximumControllerPortCount,
+                ControllerPortConstants.MaximumGamepadPortCount,
             _ => base.GetControllerPortCount(configuration)
         };
     protected override MachineConfiguration Configure(MachineConfiguration configuration) => SwanStationOptionFunctions.ToNative(base.Configure(configuration));

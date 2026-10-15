@@ -44,4 +44,5 @@
   <data name="Emulation.Controller.Category.OtherSimulation"><value>Egyéb szimuláció-perifériák</value></data>
   <data name="Emulation.Controller.Feedback.Strong"><value>Erős rezgés</value></data>
   <data name="Emulation.Controller.Feedback.Weak"><value>Gyenge rezgés</value></data>
+  <data name="Emulation.Controller.Action.Reload"><value>Újratöltés</value></data>
 </root>

@@ -23,7 +23,7 @@
   <data name="Emulation.Option.swanstation.swanstation_CDROM_ReadThread.Label"><value>CD-ROM 읽힌 실</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_ReadThread.Help"><value>CD-ROM 섹터를 비동기적으로 읽고 프레임 시간 스파이크의 위험을 감소시킵니다.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_LoadImagePatches.Label"><value>이미지 패치 적용</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_CDROM_LoadImagePatches.Help"><value>자동으로 같은 디렉토리에 존재하는 경우 디스크 이미지에 패치를 적용합니다. 현재 PPF 패치만 지원됩니다. 적용을 재시작하기 위한 핵심이 필요합니다.</value></data>
+  <data name="Emulation.Option.swanstation.swanstation_CDROM_LoadImagePatches.Help"><value>자동으로 같은 디렉토리에 존재하는 경우 디스크 이미지에 패치를 적용합니다. 현재 PPF 패치만 지원됩니다.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_LoadImageToRAM.Label"><value>RAM에 사전로드 CD-ROM 이미지</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_LoadImageToRAM.Help"><value>에뮬레이션을 시작하기 전에 RAM에 디스크 이미지를로드합니다. 네트워크 공유를 실행하는 경우 hitching을 줄일 수 있습니다, 더 큰 시작 시간의 비용. libretro는 오버레이를 그리기 위한 방법이 없기 때문에, 에뮬레이터는 이미지가 preloaded 동안 잠금에 나타납니다.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_PreCacheCHD.Label"><value>사전 캐시 CHD 이미지로 RAM</value></data>
@@ -39,8 +39,6 @@
   <data name="Emulation.Option.Sony.Value.Interpreter"><value>회사연혁</value></data>
   <data name="Emulation.Option.Sony.Value.CachedInterpreter"><value>자주 묻는 질문</value></data>
   <data name="Emulation.Option.Sony.Value.Recompiler"><value>Recompiler의</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_GPU_Renderer.Label"><value>GPU 렌더링기</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_GPU_Renderer.Help"><value>GPU를 에뮬레이션하기 위해 어떤 렌더링자.</value></data>
   <data name="Emulation.Option.Sony.Value.HardwareOpenGL"><value>하드웨어 (OpenGL)</value></data>
   <data name="Emulation.Option.Sony.Value.Software"><value>(주)</value></data>
   <data name="Emulation.Option.swanstation.swanstation_GPU_ResolutionScale.Label"><value>내부 해결책 가늠자</value></data>
@@ -48,7 +46,7 @@
   <data name="Emulation.Option.swanstation.swanstation_GPU_UseThread.Label"><value>스레드 렌더링 (Software)</value></data>
   <data name="Emulation.Option.swanstation.swanstation_GPU_UseThread.Help"><value>그림 도표를 위한 두번째 실을 사용하십시오. 현재 소프트웨어 렌더링기에서만 사용할 수 있습니다.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_GPU_UseSoftwareRendererForReadbacks.Label"><value>Readbacks를 위한 소프트웨어 렌더링기</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_GPU_UseSoftwareRendererForReadbacks.Help"><value>VRAM에서 이미지 데이터를 읽을 때 소프트웨어 렌더링을 실행하십시오. 일부 게임은 모션 블러 또는 전투 전환을 위해이 필요하거나 손상된 질감을 수정합니다. 이 옵션을 변경한 후 핵심을 재시작합니다.</value></data>
+  <data name="Emulation.Option.swanstation.swanstation_GPU_UseSoftwareRendererForReadbacks.Help"><value>VRAM에서 이미지 데이터를 읽을 때 소프트웨어 렌더링을 실행하십시오. 일부 게임은 모션 블러 또는 전투 전환을 위해이 필요하거나 손상된 질감을 수정합니다.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_GPU_MSAA.Label"><value>멀티 샘플 Antialiasing</value></data>
   <data name="Emulation.Option.swanstation.swanstation_GPU_MSAA.Help"><value>3D 객체를 렌더링하는 Multisample antialiasing을 사용합니다. 해상도 스케일을 증가와 비교하여 성능에 더 낮은 비용에서 다각형의 지그레이드 가장자리를 부드럽게 할 수 있지만 일부 게임에서 렌더링 오류가 발생할 가능성이 높아질 수도 있습니다.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_GPU_TrueColor.Label"><value>풀 컬러 정밀도로 렌더링</value></data>
@@ -129,7 +127,7 @@
   <data name="Emulation.Option.swanstation.swanstation_Display_LineEndOffset.Label"><value>마지막 표시 줄의 오프셋</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Display_LineEndOffset.Help"><value>표시된 이미지의 바닥에서 줄을 끄거나 작물.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_MemoryCards_Card1Type.Label"><value>메모리 카드 1 유형</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_MemoryCards_Card1Type.Help"><value>슬롯 1의 메모리 카드 형식을 선택하십시오. 형식을 변경할 때 코어를 재시작합니다. 공유 카드와 두 개의 별도의 카드 옵션은 오래된 구성을 위해 유지되지만 지원되지 않습니다. Libretro 형식은 .srm 파일을 사용합니다. 게임 사용 후 별도의 카드 .mcd 파일을 사용합니다. 이 두 가지 형식은 동일한 데이터를 포함합니다. 그 사이에 변환하려면 파일 확장을 변경하고 추가하거나 슬롯 스프릭스 _1를 제거하십시오.</value></data>
+  <data name="Emulation.Option.swanstation.swanstation_MemoryCards_Card1Type.Help"><value>슬롯 1의 메모리 카드 형식을 선택하십시오. 공유 카드와 두 개의 별도의 카드 옵션은 오래된 구성을 위해 유지되지만 지원되지 않습니다. Libretro 형식은 .srm 파일을 사용합니다. 게임 사용 후 별도의 카드 .mcd 파일을 사용합니다. 이 두 가지 형식은 동일한 데이터를 포함합니다. 그 사이에 변환하려면 파일 확장을 변경하고 추가하거나 슬롯 스프릭스 _1를 제거하십시오.</value></data>
   <data name="Emulation.Option.Sony.Value.LibretroDefault"><value>Libretro (기본값)</value></data>
   <data name="Emulation.Option.Sony.Value.SharedBetweenAllGames"><value>모든 게임 사이 공유</value></data>
   <data name="Emulation.Option.Sony.Value.SeparateCardPerGameGameCode"><value>게임별 분리 카드 (Game Code)</value></data>
@@ -442,8 +440,6 @@
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_region.Help"><value>내용이 자동 감지 될 수 없을 때 사용 된 fallback 지역을 설정합니다 (예 : raw PS-X EXE 파일). 디스크 기반 게임은 여전히 디스크에 내장 된 지역을 사용합니다.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_internal_resolution.Label"><value>내부 GPU 해결책</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_internal_resolution.Help"><value>'1x (Native)'보다 더 높은 해상도는 증가 된 성능 요구 사항의 비용으로 3D 모델의 fidelity를 향상시킵니다. 2D 요소는 일반적으로이 설정에 의해 결정됩니다.</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_renderer.Label"><value>회사연혁</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_renderer.Help"><value>이미지를 그리는 방법을 선택하십시오. 소프트웨어 렌더는 가장 정확합니다. 그것은 더 높은 내부 해결책에 훨씬 처리 힘 필요로 합니다. 하드웨어 렌더링은 덜 정확하지만 더 높은 해상도로 빠르고 그래픽 향상을 지원합니다. 자동 하드웨어 렌더링은 응용 프로그램에 의해 사용되는 비디오 드라이버에 따라 Vulkan 또는 OpenGL을 선택합니다. 드라이버가 Vulkan 또는 OpenGL 3.3을 지원하지 않는 경우 코어는 대신 소프트웨어 렌더링을 사용합니다. 이 옵션을 변경한 후 핵심을 재시작합니다.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_renderer_software_fb.Label"><value>소프트웨어 Framebuffer</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_renderer_software_fb.Help"><value>하드웨어 렌더링기가 게임을 표시하면서 기본 해상도의 배경에서 소프트웨어 익스플로러를 사용합니다. 이 reproduces 모션 흐림과 전투는 FF7에서 정확하게 전환합니다. 비활성화되면 OpenGL은 이러한 효과와 Vulkan이 GPU에 그립니다. 이 옵션을 비활성화하면 속도를 향상 할 수 있지만 심각한 그래픽 오류를 일으킬 수도 있습니다. 불확실한 경우에 그것을 활성화하십시오.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_color_format.Label"><value>색깔 체재</value></data>
@@ -473,7 +469,7 @@
   <data name="Emulation.Option.Sony.Value.25Degrees"><value>25 도</value></data>
   <data name="Emulation.Option.Sony.Value.45Degrees"><value>45도</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_video_cable.Label"><value>Analog 영상 케이블</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_video_cable.Help"><value>콘솔과 TV 사이의 케이블을 시뮬레이션, 컬러 인코딩 및 텔레비전의 디코더를 포함. 'No Simulation'은 체인을 완전히 전환하고 디스플레이에 프레임 버퍼 (기본값)). 'RGB (SCART)' 가장 날카로운 산출입니다 PSX 생성할 수 있었습니다: 다 밖으로는 아날로그를 나릅니다 RGB, 이 웹 사이트는 애플 리케이션에 전념. 우리는 정품 앱과 게임을 제공 할 목적으로이 사이트를 만들었습니다. 4AppsApk 최고의 안드로이드 애플 리케이션을위한 무료 APK 파일 다운로드 서비스, 계략.. 'RF' 외부 변조기 모델 - 콘솔 자체는 아무도 없다, 만 DC 힘에 잭 - 더 좁은 luma를 좁히고 비트 패턴을 추가하는 사운드 캐리어는 포화 색상에서 가장 강한,. 어떤 내부 해결책든지에 일하십시오: 여분 표본은 신호가 생성되기 전에 해결됩니다, 그래서 더 높은 조정 행위는 케이블을 오히려 더 넓은 신호 보다는 케이블로 간색하고, 산출 아직도 sub-pixel 세부사항을 출력합니다 암호해독기 생성합니다. Vulkan과 OpenGL 익스플로러에 의해 지원, 및 소프트웨어 렌더링기에 의해 무시. OpenGL에서 'hanging dots'를 제거하는 필터 - 수평 색상 가장자리에 따라 정밀한 도트 패턴 - GL 4.3 또는 GLES 3.1을 필요로한다; 이전 드라이버는 여전히 동작하지만, 'Composite'과 'RF'은 그 점을 보여줍니다. 즉시 신청하십시오; 필요 재시작 없음.</value></data>
+  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_video_cable.Help"><value>콘솔과 TV 사이의 케이블을 시뮬레이션, 컬러 인코딩 및 텔레비전의 디코더를 포함. 'No Simulation'은 체인을 완전히 전환하고 디스플레이에 프레임 버퍼 (기본값)). 'RGB (SCART)' 가장 날카로운 산출입니다 PSX 생성할 수 있었습니다: 다 밖으로는 아날로그를 나릅니다 RGB, 이 웹 사이트는 애플 리케이션에 전념. 우리는 정품 앱과 게임을 제공 할 목적으로이 사이트를 만들었습니다. 4AppsApk 최고의 안드로이드 애플 리케이션을위한 무료 APK 파일 다운로드 서비스, 계략.. 'RF' 외부 변조기 모델 - 콘솔 자체는 아무도 없다, 만 DC 힘에 잭 - 더 좁은 luma를 좁히고 비트 패턴을 추가하는 사운드 캐리어는 포화 색상에서 가장 강한,. 어떤 내부 해결책든지에 일하십시오: 여분 표본은 신호가 생성되기 전에 해결됩니다, 그래서 더 높은 조정 행위는 케이블을 오히려 더 넓은 신호 보다는 케이블로 간색하고, 산출 아직도 sub-pixel 세부사항을 출력합니다 암호해독기 생성합니다. Vulkan과 OpenGL 익스플로러에 의해 지원, 및 소프트웨어 렌더링기에 의해 무시. OpenGL에서 'hanging dots'를 제거하는 필터 - 수평 색상 가장자리에 따라 정밀한 도트 패턴 - GL 4.3 또는 GLES 3.1을 필요로한다; 이전 드라이버는 여전히 동작하지만, 'Composite'과 'RF'은 그 점을 보여줍니다. 즉시 신청하십시오.</value></data>
   <data name="Emulation.Option.Sony.Value.NoSimulation"><value>심볼 없음</value></data>
   <data name="Emulation.Option.Sony.Value.RGBSCART"><value>RGB (SCART)</value></data>
   <data name="Emulation.Option.Sony.Value.SVideo"><value>S-비디오</value></data>
@@ -758,9 +754,7 @@
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_nostalls.Label"><value>무능한 CPU/GTE Stalls</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_nostalls.Help"><value>몇 가지 게임을 빠르게 실행할 수 있습니다. 거의 모든 경우에 비활성화해야합니다. 인터프리터만.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_fast_boot.Label"><value>빠른 부팅</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_fast_boot.Help"><value>BIOS 부팅 애니메이션을 건너. 재시작.</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_renderer.Label"><value>회사연혁</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_renderer.Help"><value>하드웨어 렌더링 API, 또는 소프트웨어 렌더링기. 소프트웨어에서 전환하거나 비행에 적용; 하드웨어 APIs 사이 전환은 콘텐츠가 재시작될 때 효력을 발생합니다.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_fast_boot.Help"><value>BIOS 부팅 애니메이션을 건너.</value></data>
   <data name="Emulation.Option.Sony.Value.OpenGLHardware"><value>OpenGL (하드웨어)</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_upscale_multiplier.Label"><value>내부 해결책</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_upscale_multiplier.Help"><value>하드웨어 렌더를 위한 내부 연출 해결책 multiplier. 또한 산출 framebuffer를 확장합니다. 비행에 적용됩니다.</value></data>
@@ -797,8 +791,6 @@
   <data name="Emulation.Option.pcee2.pcsx2_fxaa.Help"><value>저렴한 포스트 처리 anti-aliasing.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_cas_mode.Label"><value>콘트라스트 Adaptive Sharpening</value></data>
   <data name="Emulation.Option.Sony.Value.SharpenOnly"><value>Sharpen 전용</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_audio_buffer_ms.Label"><value>오디오 버퍼</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_audio_buffer_ms.Help"><value>emulator가 프론트엔드보다 앞서 유지되는 방법. 더 많은 것은 소리의 휴식으로 들었을 것입니다, 당신이 아무것도 듣기 전에 그 많은 지연 비용에. PCSX2의 자체 기본은 50m이며, 이는 프레임을 한 번 끌어 당기는 frontend보다 오디오 장치를 직접 공급하는 것을 가정합니다.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_frame_limiter.Label"><value>구조 Limiter</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_frame_limiter.Help"><value>전체 속도에 에뮬레이터를 보유하고 있습니다. Frontend는 오디오를 통해 핵심이 기다리고 있기 때문에 RetroArch에 pacing을 떠납니다. 내부는 대신 PCSX2의 자신의 한계를 사용합니다 - 그 대기 결코 일어나지 않는 장치에 대한, 때문에 오디오 드라이버가 차단하는 것보다, 에뮬레이터 자체 속도 변이에 도달 한 다음 심지어 프레임 패딩으로 화면을 도달.</value></data>
   <data name="Emulation.Option.Sony.Value.FrontendRetroArch"><value>프론트엔드(RetroArch)</value></data>
@@ -815,7 +807,7 @@
   <data name="Emulation.Option.Sony.Value.Port25Players"><value>항구 2 (5명의 선수)</value></data>
   <data name="Emulation.Option.Sony.Value.BothPorts8Players"><value>항구 모두 (8명의 선수)</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_lightgun.Label"><value>라이트건 (GunCon 2)</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_lightgun.Help"><value>Namco GunCon 2를 USB 포트에 에뮬레이션하고, 일치하는 컨트롤러 포트에서 frontend의 lightgun (또는 마우스로 매핑)을 목표로합니다. 재시작.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_lightgun.Help"><value>Namco GunCon 2를 USB 포트에 에뮬레이션하고.</value></data>
   <data name="Emulation.Option.Sony.Value.USBPort1"><value>USB 포트 1</value></data>
   <data name="Emulation.Option.Sony.Value.USBPort2"><value>USB 포트 2</value></data>
   <data name="Emulation.Option.Sony.Value.BothPorts"><value>항구 둘 다</value></data>
@@ -844,14 +836,14 @@
   <data name="Emulation.Option.Sony.Value.EnabledJITDefault"><value>Enabled (JIT, 기본)</value></data>
   <data name="Emulation.Option.Sony.Value.DisabledInterpreter"><value>비활성화 (Interpreter)</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_rec_ee.Label"><value>- EE 리컴파일러</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_rec_ee.Help"><value>진단. Emotion Engine (EE) dynarec를 비활성화하여 다른 사람들을 떠나면서 다시 컴파일러가 충돌을 유발합니다. 재시작.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_rec_ee.Help"><value>진단. Emotion Engine (EE) dynarec를 비활성화하여 다른 사람들을 떠나면서 다시 컴파일러가 충돌을 유발합니다.</value></data>
   <data name="Emulation.Option.Sony.Value.EnabledDefault"><value>(기본값)</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_rec_iop.Label"><value>- IOP 재 컴파일러</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_rec_iop.Help"><value>진단. IOP (R3000) dynarec는 다른 사람들을 떠나면서 다시 컴파일러가 충돌을 유발하는 bisect에 무능합니다. 재시작.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_rec_iop.Help"><value>진단. IOP (R3000) dynarec는 다른 사람들을 떠나면서 다시 컴파일러가 충돌을 유발하는 bisect에 무능합니다.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_rec_vu0.Label"><value>- VU0 레코더</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_rec_vu0.Help"><value>진단. VU0 microVU dynarec를 제거하고 다른 사람들을 떠날 때, recompiler가 충돌을 유발하는 bisect에. 재시작.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_rec_vu0.Help"><value>진단. VU0 microVU dynarec를 제거하고 다른 사람들을 떠날 때.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_rec_vu1.Label"><value>- VU1 레코더</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_rec_vu1.Help"><value>진단. VU1 microVU dynarec를 제거하고 다른 사람들을 떠날 때, recompiler가 충돌을 유발하는 bisect에. 재시작.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_rec_vu1.Help"><value>진단. VU1 microVU dynarec를 제거하고 다른 사람들을 떠날 때.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_memcard_slot1_enable.Label"><value>슬롯 1 사용 가능</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_memcard_slot1_enable.Help"><value>슬롯 1 PS2 메모리 카드 활성화. 콘텐츠가 실행되는 동안 변경이 즉시 적용됩니다.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_memcard_slot2_enable.Label"><value>슬롯 2 사용 가능</value></data>
@@ -902,8 +894,6 @@
   <data name="Emulation.Option.Sony.Value.AllTimers"><value>모든 타이머</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_clocks_scale.Label"><value>시계 가늠자</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_clocks_scale.Help"><value>가늠자 PS3 시계 속도 비율.</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_renderer.Label"><value>회사연혁</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_renderer.Help"><value>Vulkan는 frontend의 Vulkan 장치에 렌더링하고 이미지로 각 완성 된 프레임을 손에 넣습니다. 프론트엔드가 Vulkan 비디오 드라이버를 실행하지 않을 때 프레임은 대신 메모리를 통해 다시 복사됩니다. OpenGL은 프론트엔드의 OpenGL 컨텍스트로 바로 그립니다.</value></data>
   <data name="Emulation.Option.Sony.Value.NullNoVideo"><value>Null (비디오 없음)</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_frame_limit.Label"><value>프레임 한계</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_frame_limit.Help"><value>가장 높은 프레임 속도 게임에서 실행할 수 있습니다. 자동차는 RPCS3에서 VBlank 주파수입니다. PS3 네이티브 페이스는 PS3가하는 방법을 플립합니다; PS3의 새로 고침을 기다리지 않는 게임을 해제하십시오.</value></data>
@@ -980,7 +970,7 @@
   <data name="Emulation.Option.rpcs3.rpcs3_driver_wakeup_delay.Label"><value>드라이버 Wake-Up 지연</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_driver_wakeup_delay.Help"><value>microseconds에 있는 운전사 wake-up 지연. 기본적으로 0, RPCS3에서; 게임이 그것을 필요로 할 때만 그것 올리십시오.</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_vblank_rate.Label"><value>VBlank 빈도</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_vblank_rate.Help"><value>PS3의 새로 고침 빈도는 Hz에서. 그것은 또한 프레임 속도 핵심은 콘텐츠가로드 될 때 효과가 걸리는 RetroArch를 요청합니다. 60 FPS 이상에서 실행 할 수있는 게임은 빠른 재생 디스플레이가 필요합니다.</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_vblank_rate.Help"><value>에뮬레이션할 화면 주사율을 설정합니다. 호환성 목록 모드는 지원되는 게임의 주사율을 두 배로 높입니다.</value></data>
   <data name="Emulation.Option.Sony.Value.50HzPAL"><value>50 Hz (PAL)</value></data>
   <data name="Emulation.Option.Sony.Value.60HzNTSC"><value>60 Hz (NTSC)</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_thread_scheduler.Label"><value>스레드 스케줄러</value></data>
@@ -1062,8 +1052,6 @@
   <data name="Emulation.Option.rpcs3.rpcs3_frame_pacing.Label"><value>구조 Pacing</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_frame_pacing.Help"><value>게임의 프레임은 시간이 지남에 따라. 에뮬레이터 시계는 RPCS3 자체 타이머, 독립형 RPCS3입니다. RetroArch 게임을 제공 하나 PS3 프레임 당 새로 고침 RetroArch 쇼, 그래서 빠르게 앞으로 속도 게임 업을 가속화하고 게임은 VBlank 주파수에서 실행 RetroArch는 많은 프레임이 두 번째를 보여줍니다; Vulkan 렌더링기와 함께 그것은 현재 프레임 건너 뛰고 있습니다.</value></data>
   <data name="Emulation.Option.Sony.Value.EmulatorClock"><value>Emulator 시계</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_savedata_slot.Label"><value>Data Slot 저장</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_savedata_slot.Help"><value>PS3 게임은 저장 데이터의 목록을 표시하고 플레이어를 선택합니다. 'Pick from list'는 게임 그림에서 목록, 컨트롤러와 함께 사용할 수 있습니다 보여줍니다. 숫자는 대신 당신을 위한 핵심 선택이 있습니다: 게임의 명부에 있는 이 위치에 항목을 덮고, 또는 목록이 더 짧은 때 새로운 득점을 합니다; 선적은 이 위치에 입장을 가지고 가고, 리스트가 더 짧을 경우 아무것도 찾아내십시오. 0개는 첫번째 입구입니다. 자신의 단일 저장을 유지하는 게임은 목록을 표시하지 않습니다, 그래서 이것은 그들에게 적용되지 않습니다.</value></data>
   <data name="Emulation.Option.Sony.Value.PickFromList"><value>자주 묻는 질문</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_master_volume.Label"><value>마스터 볼륨</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_master_volume.Help"><value>마스터 오디오 볼륨 비율.</value></data>
@@ -1274,4 +1262,18 @@
   <data name="Emulation.Option.Sony.Setting.LineToQuad.Help" xml:space="preserve"><value>일부 게임 (예: Doom, Hexen, Soul Blade 등) 화면 전체에 단일 픽셀 높은 삼각형을 뻗어서 수평선을 그리며 원래 하드웨어에서 픽셀의 행으로 래스터화됩니다. 이 해킹은이 작은 삼각형을 감지하고 필요에 따라 쿼드로 변환, 하드웨어 렌더링 및 확장 된 내부 해상도에 제대로 표시 할 수 있습니다. 'Aggressive'는 일부 타이틀 (예를 들어. 어두운 힘, duke nukem) 그러나 그렇지 않으면 graphical glitches를 소개할지도 모릅니다. 불확실한 경우 '과태'에 남겨두십시오.</value></data>
   <data name="Emulation.Option.Sony.Setting.DynarecEventCycles.Label" xml:space="preserve"><value>Dynarec DMA/GPU/MDEC/Timer 이벤트 사이클</value></data>
   <data name="Emulation.Option.Sony.Setting.DynarecEventCycles.Help" xml:space="preserve"><value>최대 주기는 GPU/DMA/MDEC/Timer 갱신의 앞에 CPU에 의해, 더 높은 수 검사될 것입니다 빠릅니다, dynarec 보다는 딱정벌레 해석기에 매우 더 적은 충격이 있습니다.</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_aspect_ratio.Help"><value>게임에 전달할 화면 형식을 설정합니다. 일부 게임만 4:3을 지원합니다.</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_disk_cache_size.Label"><value>디스크 캐시 크기</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_disk_cache_size.Help"><value>게임의 임시 캐시에 사용할 디스크 공간을 제한합니다. 삭제된 캐시는 게임이 다시 생성하므로 다음 시작이 느려질 수 있습니다.</value></data>
+  <data name="Emulation.Option.pokket.Link"><value>적외선 연결</value></data>
+  <data name="Emulation.Option.pokket.Layout"><value>연결된 화면 배치</value></data>
+  <data name="Emulation.Option.pokket.Audio"><value>연결된 장치의 오디오 소스</value></data>
+  <data name="Emulation.Option.pokket.Identity"><value>장치 B의 하드웨어 ID</value></data>
+  <data name="Emulation.Option.pokket.Horizontal"><value>가로로 나란히</value></data>
+  <data name="Emulation.Option.pokket.Vertical"><value>세로로 나란히</value></data>
+  <data name="Emulation.Option.pokket.SelectUnitA"><value>장치 A 조작</value></data>
+  <data name="Emulation.Option.pokket.SelectUnitB"><value>장치 B 조작</value></data>
+  <data name="Emulation.Option.pokket.Help"><value>적외선 연결을 활성화하려면 각 장치에 카드를 넣으세요.</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_audio_format.Label"><value>스피커 배치</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_audio_format.Help"><value>게임에 제공할 스피커 배치를 설정합니다. 게임은 이 배치에 따라 오디오 믹스를 선택합니다. 출력은 선택한 Windows 오디오 장치에도 영향을 받습니다.</value></data>
 </root>

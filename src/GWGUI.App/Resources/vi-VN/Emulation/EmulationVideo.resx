@@ -299,4 +299,7 @@
   <data name="Emulation.Video.Parameter.ProjectionVignette"><value>Tối về cạnh</value></data>
   <data name="Emulation.Video.Projection.Group.Optics"><value>Mắt và ánh sáng</value></data>
   <data name="Emulation.Video.Projection.Group.Screen"><value>Màn hình chiếu</value></data>
+  <data name="Emulation.Option.Common.Value.HardwareRendering"><value>Kết xuất bằng phần cứng</value></data>
+  <data name="Emulation.Option.Common.RenderingMode.Label"><value>Chế độ kết xuất</value></data>
+  <data name="Emulation.Option.Common.RenderingMode.Help"><value>Kết xuất bằng phần cứng sử dụng API đồ họa đã chọn cho ứng dụng nếu trình giả lập hỗ trợ.</value></data>
 </root>

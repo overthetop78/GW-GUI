@@ -3,7 +3,7 @@ using System.IO;
 namespace GWGUI.Emulation.Sony.Modules;
 
 public sealed class SonyEmulationModule : IEmulationModule, IEmulationEmulatorManager,
-    IEmulationFirmwareManager, IEmulationInputSettingsManager, IEmulationStorageSettingsManager, IEmulationModuleLocalization
+    IEmulationFirmwareManager, IEmulationInputSettingsManager, IEmulationStorageSettingsManager, IEmulationModuleLocalization, IEmulationVideoSettingsManager
 {
     private static readonly EmulationModuleLocalization Localization = new(typeof(SonyEmulationModule).Assembly, "GWGUI.Emulation.Sony.Resources.Emulation");
     private readonly ConfigurationStore _store;
@@ -57,7 +57,6 @@ public sealed class SonyEmulationModule : IEmulationModule, IEmulationEmulatorMa
         var model = ModelCatalog.Get(machineId);
         return new MachineConfiguration(model.Id, DefaultEmulatorId(model.Id),
             Options: new Dictionary<string, string>(StringComparer.Ordinal), Id: Guid.NewGuid(),
-            Controllers: Enumerable.Repeat(ControllerType.Joystick, model.ControllerPortCount).ToArray(),
             Input: new InputConfiguration(), Media: []);
     }
 
@@ -68,7 +67,7 @@ public sealed class SonyEmulationModule : IEmulationModule, IEmulationEmulatorMa
         var created = (MachineConfiguration)CreateConfiguration(machineId);
         var emulatorId = EmulatorCatalog.GetAll(machineId).Any(item => item.Id == current.EmulatorId) ? current.EmulatorId : created.EmulatorId;
         return created with { Id = current.Id, EmulatorId = emulatorId,
-            AudioEnabled = current.AudioEnabled, Audio = current.Audio };
+            AudioEnabled = current.AudioEnabled, Audio = current.Audio, GraphicsApi = current.GraphicsApi };
     }
 
     public IEmulationConfiguration ApplySettings(IEmulationConfiguration configuration, IReadOnlyDictionary<string, string?> values)
@@ -85,8 +84,8 @@ public sealed class SonyEmulationModule : IEmulationModule, IEmulationEmulatorMa
             if (item.Value is null) options.Remove(item.Key);
             else options[item.Key] = item.Value;
         }
-        var audio = sony.Audio ?? new AudioConfiguration();
-        return (adapter is null ? sony : FirmwareConfigurationFunctions.Apply(sony, values, adapter)) with
+        var audio = adapter is IEmulatorSettingsAdapter audioAdapter ? audioAdapter.GetAudioConfiguration(sony) : sony.Audio ?? new AudioConfiguration();
+        var updated = (adapter is null ? sony : FirmwareConfigurationFunctions.Apply(sony, values, adapter)) with
         {
             Options = options,
             AudioEnabled = values.TryGetValue(SettingsConstants.AudioEnabled, out var enabled) ? enabled == SettingsDescriptionFunctionsConstants.Enabled : sony.AudioEnabled,
@@ -96,6 +95,16 @@ public sealed class SonyEmulationModule : IEmulationModule, IEmulationEmulatorMa
                 LatencyMilliseconds = values.TryGetValue(SettingsConstants.AudioLatency, out var latency) && int.TryParse(latency, out var parsedLatency) ? parsedLatency : audio.LatencyMilliseconds
             }
         };
+        if (adapter is not IEmulatorSettingsAdapter settingsAdapter) return updated;
+        updated = updated with { Audio = settingsAdapter.GetAudioConfiguration(updated) };
+        return updated.GraphicsApi is { } api ? settingsAdapter.ApplyVideoSettings(updated, api) : updated;
+    }
+
+    public IEmulationConfiguration ApplyVideoSettings(IEmulationConfiguration configuration, EmulationGraphicsApi graphicsApi)
+    {
+        var sony = RequireConfiguration(configuration);
+        var adapter = EmulatorCatalog.CreateAdapters().FirstOrDefault(item => item.EmulatorId == sony.EmulatorId) as IEmulatorSettingsAdapter;
+        return adapter?.ApplyVideoSettings(sony, graphicsApi) ?? sony with { GraphicsApi = graphicsApi };
     }
 
     public IReadOnlyDictionary<string, string> RuntimeOptions(IEmulationConfiguration configuration)
@@ -204,7 +213,8 @@ public sealed class SonyEmulationModule : IEmulationModule, IEmulationEmulatorMa
                 EmulationMessageCategory.Emulator, EmulationMessageCode.EmulatorNotInstalled,
                 EmulationMessageSeverity.Error, EmulationMessageTarget.Dialog,
                 new EmulationEmulatorMessageContext(adapter.EmulatorId)));
-        var audio = sony.Audio ?? new AudioConfiguration();
+        var audio = adapter is IEmulatorSettingsAdapter settingsAdapter ? settingsAdapter.GetAudioConfiguration(sony) : sony.Audio ?? new AudioConfiguration();
+        sony = sony with { Audio = audio };
         var context = new EmulatorCreationContext(services.SessionsDirectory, corePath,
             services.HostExecutablePath,
             () => services.CreateAudioOutput(audio.OutputDeviceId, audio.LatencyMilliseconds),

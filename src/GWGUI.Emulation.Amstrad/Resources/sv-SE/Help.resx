@@ -5,7 +5,7 @@
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Amstrad.Help.Memory.Ram.Short"><value>Mängden av RAM tillgänglig för den emulerade maskinen.</value></data>
-  <data name="Emulation.Amstrad.Help.Memory.Ram.Detailed"><value>Väljer RAM expansion som exponeras av Caprice32. Maskinen måste starta om innan det nya beloppet används.</value></data>
+  <data name="Emulation.Amstrad.Help.Memory.Ram.Detailed"><value>Väljer RAM expansion som exponeras av Caprice32.</value></data>
   <data name="Emulation.Amstrad.Help.Firmware.Integrated.Short"><value>Systemet ROM är byggd i Caprice32.</value></data>
   <data name="Emulation.Amstrad.Help.Firmware.Integrated.Detailed"><value>Caprice32 ger systemet ROM internt och exponerar inte en ROM Filväljare.</value></data>
   <data name="Emulation.Amstrad.Help.Video.Resolution.Short"><value>Intern resolution som kapris32 har gjort.</value></data>

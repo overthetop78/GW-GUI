@@ -2,6 +2,9 @@ namespace GWGUI.Emulation.Sony.Emulators.SwanStation.Enums;
 
 internal enum GPURenderer
 {
-    OpenGL = 0,
-    Software = 1,
+    Automatic,
+    OpenGL,
+    Direct3D11,
+    Vulkan,
+    Software
 }

@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Sony.Emulators.Common.Constants;
 using BlackSetup = GWGUI.Emulation.Sony.Emulators.BeetlePsxHw.Enums.BlackSetup;
 using ColorFormat = GWGUI.Emulation.Sony.Emulators.BeetlePsxHw.Enums.ColorFormat;
 using Depth = GWGUI.Emulation.Sony.Emulators.BeetlePsxHw.Enums.Depth;
@@ -91,12 +92,19 @@ internal static class OptionCatalog
             new(OptionValueFunctions.ToNative(InternalResolution._8X), OptionValueFunctions.ToNative(InternalResolution._8X)),
             new(OptionValueFunctions.ToNative(InternalResolution._16X), OptionValueFunctions.ToNative(InternalResolution._16X)),
         ], IsVisible: true, Tab: EmulationMachineTab.Video, RequiresRestart: false),
-        new(OptionConstants.RendererKey, OptionConstants.RendererLabelResource, OptionConstants.RendererHelpResource, null,
+        new(OptionConstants.RendererKey, GraphicsSettingsConstants.ModeLabel, GraphicsSettingsConstants.ModeHelp, null,
             OptionConstants.RendererDefaultValue, OptionConstants.RendererDefaultValue,
         [
+            new(OptionValueFunctions.ToNative(Renderer.Hardware), GraphicsSettingsConstants.HardwareRenderingLabel),
             new(OptionValueFunctions.ToNative(Renderer.HardwareGl), OptionValueResourceConstants.HardwareOpenGLLabelResource),
+            new(OptionValueFunctions.ToNative(Renderer.HardwareVk), nameof(EmulationGraphicsApi.Vulkan)),
             new(OptionValueFunctions.ToNative(Renderer.Software), OptionValueResourceConstants.SoftwareLabelResource),
-        ], IsVisible: true, Tab: EmulationMachineTab.Video, RequiresRestart: true),
+        ], IsVisible: true, Tab: EmulationMachineTab.Video, RequiresRestart: true,
+            GraphicsApiValues: new Dictionary<EmulationGraphicsApi, string>
+            {
+                [EmulationGraphicsApi.Automatic] = OptionConstants.RendererHardwareGl,
+                [EmulationGraphicsApi.OpenGL] = OptionConstants.RendererHardwareGl
+            }, RetainedRendererValues: [OptionConstants.RendererSoftware]),
         new(OptionConstants.RendererSoftwareFbKey, OptionConstants.RendererSoftwareFbLabelResource, OptionConstants.RendererSoftwareFbHelpResource, null,
             ToggleValueConstants.Enabled, ToggleValueConstants.Enabled,
         [

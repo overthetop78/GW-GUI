@@ -34,7 +34,7 @@ internal static partial class EmulationSettingsLayout
             DetachForReuse(port.Visualizer);
             DetachForReuse(port.Bindings);
             if (port.Outputs is not null) DetachForReuse(port.Outputs);
-            var portLabel = LocExtension.Get("Emulation.Controller.Port", port.Number);
+            var portLabel = port.DisplayName ?? LocExtension.Get("Emulation.Controller.Port", port.Number);
             if (deviceOptionsFactory is null)
             {
             var legacyContent = new Grid();

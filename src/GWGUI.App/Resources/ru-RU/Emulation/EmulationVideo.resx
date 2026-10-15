@@ -299,4 +299,7 @@
   <data name="Emulation.Video.Parameter.ProjectionVignette"><value>Край темнеет</value></data>
   <data name="Emulation.Video.Projection.Group.Optics"><value>Оптика и свет</value></data>
   <data name="Emulation.Video.Projection.Group.Screen"><value>Экран проекции</value></data>
+  <data name="Emulation.Option.Common.Value.HardwareRendering"><value>Аппаратный рендеринг</value></data>
+  <data name="Emulation.Option.Common.RenderingMode.Label"><value>Режим рендеринга</value></data>
+  <data name="Emulation.Option.Common.RenderingMode.Help"><value>Аппаратный рендеринг использует графический API, выбранный для приложения, если эмулятор его поддерживает.</value></data>
 </root>

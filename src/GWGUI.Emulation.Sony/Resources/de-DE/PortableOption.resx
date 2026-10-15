@@ -26,14 +26,12 @@
   <data name="Emulation.Option.ppsspp.ppsspp_language.Value.11"><value>Chinesische Tradition</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_language.Value.12"><value>Chinesisch vereinfacht</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_psp_model.Label"><value>PSP-Modell</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_backend.Label"><value>Backend</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_backend.Help"><value>"Automatic" wird den Frontend-Videotreiber verwenden. Kernnetz</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_software_rendering.Label"><value>Software-Rendering</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_software_rendering.Help"><value>Langsam, genau. Kernnetz</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_software_rendering.Help"><value>Verwenden Sie Software-Rendering für höhere Genauigkeit bei höherem Rechenaufwand.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_internal_resolution.Label"><value>Übermittlungsbeschlüsse</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_internal_resolution.Help"><value>Wählen Sie die interne Rendering-Auflösung.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_mulitsample_level.Label"><value>MSAA Antialiasierung</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_mulitsample_level.Help"><value>Nur Vulkan. Kernnetz</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_mulitsample_level.Help"><value>Wenden Sie MSAA-Kantenglättung mit Vulkan an.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_cropto16x9.Label"><value>Ernte bis 16x9</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_cropto16x9.Help"><value>Schneiden Sie die oberen und unteren Ränder, um ein Bild von 16:9 zu erhalten.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_frameskip.Label"><value>Frameskip</value></data>
@@ -46,7 +44,7 @@
   <data name="Emulation.Option.ppsspp.ppsspp_detect_vsync_swap_interval.Label"><value>Frame Rate Changes erkennen</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_detect_vsync_swap_interval.Help"><value>Frontend benachrichtigen.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Label"><value>Puffer-Grafikbefehle</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Help"><value>Nur GL/Vulkan, langsamer, weniger Verzögerungen, Neustart.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Help"><value>Nur GL/Vulkan, langsamer, weniger Verzögerungen.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Value.0"><value>Kein Puffer</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Value.1"><value>Bis zu 1</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_button_preference.Label"><value>Bestätigungsbutton</value></data>

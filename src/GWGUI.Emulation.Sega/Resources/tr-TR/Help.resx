@@ -6,7 +6,7 @@
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Sega.Help.General.Model.Short"><value>Sega makinesi modeli yapılandırılıyor.</value></data>
   <data name="Emulation.Sega.Help.Memory.Ram.Short"><value>Emated makineye mevcut RAM miktarı.</value></data>
-  <data name="Emulation.Sega.Help.Memory.Ram.Detailed"><value>Emulation çekirdeği tarafından açığa çıkan RAM genişletmesini seçin. Makine yeni miktardan önce yeniden başlamalıdır.</value></data>
+  <data name="Emulation.Sega.Help.Memory.Ram.Detailed"><value>Emulation çekirdeği tarafından açığa çıkan RAM genişletmesini seçin.</value></data>
   <data name="Emulation.Sega.Help.Firmware.Integrated.Short"><value>Sistem ROM, emulation çekirdeğine inşa edilmiştir.</value></data>
   <data name="Emulation.Sega.Help.Firmware.Integrated.Detailed"><value>Emulation çekirdeği, sistem ROM'u içsel olarak sağlar ve bir ROM dosyasını seçmez.</value></data>
   <data name="Emulation.Sega.Help.General.Emulator.Short"><value>Bu makine için seçilen fotoğrafçılar.</value></data>

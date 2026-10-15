@@ -26,14 +26,12 @@
   <data name="Emulation.Option.ppsspp.ppsspp_language.Value.11"><value>Chinês Tradicional</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_language.Value.12"><value>Chinês Simplificado</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_psp_model.Label"><value>Modelo PSP</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_backend.Label"><value>Infraestrutura</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_backend.Help"><value>'Automatic' usará o driver de vídeo frontend. Principal</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_software_rendering.Label"><value>Renderização de Software</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_software_rendering.Help"><value>Devagar, com precisão. Principal</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_software_rendering.Help"><value>Utilize renderização por software para melhorar a precisão com maior consumo de recursos de processamento.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_internal_resolution.Label"><value>Resolução de renderização</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_internal_resolution.Help"><value>Selecione a resolução de renderização interna.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_mulitsample_level.Label"><value>Antialiasing MSAA</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_mulitsample_level.Help"><value>Apenas Vulkan. Principal</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_mulitsample_level.Help"><value>Aplique suavização de contornos MSAA com Vulkan.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_cropto16x9.Label"><value>Recortar até 16x9</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_cropto16x9.Help"><value>Recorte as bordas superior e inferior para obter uma imagem 16:9.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_frameskip.Label"><value>Frameskip</value></data>
@@ -46,7 +44,7 @@
   <data name="Emulation.Option.ppsspp.ppsspp_detect_vsync_swap_interval.Label"><value>Detectar alterações na taxa de quadros</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_detect_vsync_swap_interval.Help"><value>Notifique o frontend.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Label"><value>Comandos Gráficos de Buffer</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Help"><value>GL/Vulkan apenas, mais lento, menos lag, reiniciar.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Help"><value>GL/Vulkan apenas, mais lento, menos lag.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Value.0"><value>Sem buffer</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Value.1"><value>Até 1</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_button_preference.Label"><value>Botão de Confirmação</value></data>

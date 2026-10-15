@@ -299,4 +299,7 @@
   <data name="Emulation.Video.Parameter.ProjectionVignette"><value>边缘变暗</value></data>
   <data name="Emulation.Video.Projection.Group.Optics"><value>光线和光线</value></data>
   <data name="Emulation.Video.Projection.Group.Screen"><value>投影屏幕</value></data>
+  <data name="Emulation.Option.Common.Value.HardwareRendering"><value>硬件渲染</value></data>
+  <data name="Emulation.Option.Common.RenderingMode.Label"><value>渲染模式</value></data>
+  <data name="Emulation.Option.Common.RenderingMode.Help"><value>硬件渲染使用应用程序所选的图形 API，前提是模拟器支持该 API。</value></data>
 </root>

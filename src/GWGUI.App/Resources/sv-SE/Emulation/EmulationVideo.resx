@@ -299,4 +299,7 @@
   <data name="Emulation.Video.Parameter.ProjectionVignette"><value>Edge mörkare</value></data>
   <data name="Emulation.Video.Projection.Group.Optics"><value>Optik och ljus</value></data>
   <data name="Emulation.Video.Projection.Group.Screen"><value>Projektionsskärm</value></data>
+  <data name="Emulation.Option.Common.Value.HardwareRendering"><value>Hårdvarurendering</value></data>
+  <data name="Emulation.Option.Common.RenderingMode.Label"><value>Renderingsläge</value></data>
+  <data name="Emulation.Option.Common.RenderingMode.Help"><value>Hårdvarurendering använder det grafik-API som valts för programmet, om emulatorn stöder det.</value></data>
 </root>

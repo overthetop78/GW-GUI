@@ -12,7 +12,7 @@ internal static class AudioFunctions
         var firstSample = checked((chunk.FrameCount - maximumFrames) * AudioConstants.StereoChannelCount);
         return chunk with
         {
-            InterleavedStereo = chunk.InterleavedStereo[firstSample..].ToArray(),
+            InterleavedSamples = chunk.InterleavedSamples[firstSample..].ToArray(),
             FrameCount = maximumFrames
         };
     }

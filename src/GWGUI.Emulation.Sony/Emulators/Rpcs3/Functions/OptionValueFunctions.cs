@@ -1,4 +1,5 @@
 using System.Globalization;
+using AudioFormat = GWGUI.Emulation.Sony.Emulators.Rpcs3.Enums.AudioFormat;
 using AnisotropicFilter = GWGUI.Emulation.Sony.Emulators.Rpcs3.Enums.AnisotropicFilter;
 using ClocksScale = GWGUI.Emulation.Sony.Emulators.Rpcs3.Enums.ClocksScale;
 using DefaultResolution = GWGUI.Emulation.Sony.Emulators.Rpcs3.Enums.DefaultResolution;
@@ -29,6 +30,8 @@ using SpuXfloatAccuracy = GWGUI.Emulation.Sony.Emulators.Rpcs3.Enums.SpuXfloatAc
 using StretchToDisplay = GWGUI.Emulation.Sony.Emulators.Rpcs3.Enums.StretchToDisplay;
 using ThreadScheduler = GWGUI.Emulation.Sony.Emulators.Rpcs3.Enums.ThreadScheduler;
 using VblankRate = GWGUI.Emulation.Sony.Emulators.Rpcs3.Enums.VblankRate;
+using AspectRatio = GWGUI.Emulation.Sony.Emulators.Rpcs3.Enums.AspectRatio;
+using DiskCachePolicy = GWGUI.Emulation.Sony.Emulators.Rpcs3.Enums.DiskCachePolicy;
 using ZcullAccuracy = GWGUI.Emulation.Sony.Emulators.Rpcs3.Enums.ZcullAccuracy;
 using GWGUI.Emulation.Sony.Emulators.Rpcs3.Constants;
 using GWGUI.Emulation.Sony.Emulators.Common.Interop.Constants;
@@ -38,6 +41,30 @@ namespace GWGUI.Emulation.Sony.Emulators.Rpcs3.Functions;
 
 internal static class OptionValueFunctions
 {
+    internal static string ToNative(AudioFormat value) => value switch
+    {
+        AudioFormat.Stereo => OptionConstants.AudioFormatStereo,
+        AudioFormat.Surround51 => OptionConstants.AudioFormatSurround51,
+        AudioFormat.Surround71 => OptionConstants.AudioFormatSurround71,
+        _ => throw new ArgumentOutOfRangeException(nameof(value), value, null)
+    };
+
+    internal static string ToNative(AspectRatio value) => value switch
+    {
+        AspectRatio.Widescreen => OptionConstants.AspectRatioWidescreen,
+        AspectRatio.Standard => OptionConstants.AspectRatioStandard,
+        _ => throw new ArgumentOutOfRangeException(nameof(value), value, null)
+    };
+
+    internal static string ToNative(DiskCachePolicy value) => value switch
+    {
+        DiskCachePolicy.Unlimited => OptionConstants.DiskCacheUnlimited,
+        DiskCachePolicy.OneGigabyte => OptionConstants.DiskCacheOneGigabyte,
+        DiskCachePolicy.FiveGigabytes => OptionConstants.DiskCacheFiveGigabytes,
+        DiskCachePolicy.ClearOnGameClose => OptionConstants.DiskCacheClearOnGameClose,
+        _ => throw new ArgumentOutOfRangeException(nameof(value), value, null)
+    };
+
     internal static string ToNative(PpuDecoder value) => value switch
     {
         PpuDecoder.Llvm => OptionConstants.PpuDecoderLlvm,
@@ -181,6 +208,7 @@ internal static class OptionValueFunctions
 
     internal static string ToNative(VblankRate value) => value switch
     {
+        VblankRate.FromCompatibilityList => OptionConstants.VblankRateList,
         _ when Enum.IsDefined(value) => ((decimal)value).ToString(OptionNumericConstants.IntegerFormat, CultureInfo.InvariantCulture),
         _ => throw new ArgumentOutOfRangeException(nameof(value), value, null),
     };

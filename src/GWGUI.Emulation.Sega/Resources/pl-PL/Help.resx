@@ -6,7 +6,7 @@
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Sega.Help.General.Model.Short"><value>Konfigurowany model maszyny Sega.</value></data>
   <data name="Emulation.Sega.Help.Memory.Ram.Short"><value>Ilość pamięci RAM dostępnej dla maszyny emulowanej.</value></data>
-  <data name="Emulation.Sega.Help.Memory.Ram.Detailed"><value>Wybiera ekspansję RAM narażoną przez rdzeń emulacyjny. Maszyna musi ponownie uruchomić przed użyciem nowej ilości.</value></data>
+  <data name="Emulation.Sega.Help.Memory.Ram.Detailed"><value>Wybiera ekspansję RAM narażoną przez rdzeń emulacyjny.</value></data>
   <data name="Emulation.Sega.Help.Firmware.Integrated.Short"><value>System ROM jest wbudowany w rdzeń emulacyjny.</value></data>
   <data name="Emulation.Sega.Help.Firmware.Integrated.Detailed"><value>Rdzeń emulacyjny zapewnia system ROM wewnętrznie i nie ujawnia selektora plików ROM.</value></data>
   <data name="Emulation.Sega.Help.General.Emulator.Short"><value>Emulator wybrany dla tej maszyny.</value></data>

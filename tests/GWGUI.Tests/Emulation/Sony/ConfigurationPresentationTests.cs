@@ -1,4 +1,7 @@
 using System.IO;
+using System.Net.Http;
+using GWGUI.App.Functions.Emulation.Machine;
+using GWGUI.VideoPresentation.Enums;
 using GWGUI.App.Functions.Views.Emulation.Settings;
 using GWGUI.Emulation;
 using GWGUI.Emulation.Constants;
@@ -244,6 +247,13 @@ public sealed class ConfigurationPresentationTests
         var blocks = SettingsDescriptionFunctions.Create(Configuration(emulator));
         var audio = Assert.Single(blocks, block => block.Id == "audio");
         Assert.Equal(new[] { SettingsConstants.AudioEnabled, SettingsConstants.AudioOutput, SettingsConstants.AudioLatency }, audio.Fields.Select(field => field.Id));
+        foreach (var field in audio.Fields)
+        {
+            var help = field.Id == SettingsConstants.AudioEnabled ? "Emulation.Help.Audio.Enabled"
+                : field.Id == SettingsConstants.AudioOutput ? "Emulation.Help.Audio.Output" : "Emulation.Help.Audio.Latency";
+            Assert.Equal(help + ".Short", field.ExplanationResourceKey);
+            Assert.Equal(help + ".Detailed", field.DetailedExplanationResourceKey);
+        }
         Assert.False(audio.IsCompact);
         Assert.Contains(blocks, block => block.Tab == EmulationMachineTab.Audio && block.Id != audio.Id);
         var basic = blocks.Where(block => block.Tab == EmulationMachineTab.Video && !block.IsCollapsible).ToArray();
@@ -309,7 +319,7 @@ public sealed class ConfigurationPresentationTests
     public void Pcee2MultitapsExpandControllersButOnlyTwoNativeCardSelectorsExist()
     {
         var configuration = new MachineConfiguration(ModelConstants.PlayStation2, "pcee2", Options: new Dictionary<string, string> { ["pcsx2_multitap"] = "both" });
-        Assert.Equal(8, InputSettingsFunctions.Describe(configuration).ControllerPorts.Count);
+        Assert.Equal(10, InputSettingsFunctions.Describe(configuration).ControllerPorts.Count);
         Assert.Equal(2, StorageSettingsFunctions.Describe(configuration).AvailableDevices.Count(device => device.MediaType == EmulationMediaType.MemoryCard));
         Assert.Equal(2, GWGUI.Emulation.Sony.Emulators.Common.Interop.Functions.MemoryCardFunctions.NativeFileNames(configuration).Count);
     }
@@ -336,6 +346,44 @@ public sealed class ConfigurationPresentationTests
         var stick = Assert.Single(storage.AvailableDevices, device => device.MediaType == EmulationMediaType.MemoryCard);
         Assert.True(stick.UsesDirectory);
         Assert.Equal(Path.Combine("Sony", "PSP", "Memory Stick"), stick.DefaultImageSubdirectory);
+    }
+
+    [Theory]
+    [InlineData(null, false)]
+    [InlineData("auto", false)]
+    [InlineData("opengl", false)]
+    [InlineData("vulkan", true)]
+    [InlineData("d3d11", false)]
+    [InlineData("none", false)]
+    public void PspGraphicsApplicationPolicyMatchesConfigurationAndNativeMetadata(string? backend, bool vulkan)
+    {
+        var values = new Dictionary<string, string>();
+        if (backend is not null) values["ppsspp_backend"] = backend;
+        var originalValues = values.ToArray();
+        var configuration = new MachineConfiguration(ModelConstants.Psp, "ppsspp", Options: values);
+        var originalCatalog = GWGUI.Emulation.Sony.Emulators.Ppsspp.Dictionaries.OptionCatalog.All.ToArray();
+        var declared = GWGUI.Emulation.Sony.Emulators.Ppsspp.Functions.PpssppOptionFunctions.Options(configuration);
+        var native = declared.Select(option => option with { RequiresRestart = false }).ToArray();
+        var merged = CoreOptionMetadataFunctions.Merge(native, declared);
+        var fields = SettingsDescriptionFunctions.Create(configuration).SelectMany(block => block.Fields).ToArray();
+        foreach (var key in new[] { "ppsspp_backend", "ppsspp_software_rendering", "ppsspp_inflight_frames" })
+        {
+            Assert.True(fields.Single(field => field.Id == key).RequiresRestart);
+            Assert.True(merged.Single(option => option.Key == key).RequiresRestart);
+        }
+        var msaa = merged.Single(option => option.Key == "ppsspp_mulitsample_level");
+        Assert.True(msaa.RequiresRestart);
+        Assert.Equal(vulkan, msaa.IsVisible);
+        Assert.Equal(vulkan, fields.Any(field => field.Id == msaa.Key));
+        foreach (var key in new[] { "ppsspp_internal_resolution", "ppsspp_cropto16x9" })
+        {
+            Assert.Equal(vulkan, fields.Single(field => field.Id == key).RequiresRestart);
+            Assert.Equal(vulkan, merged.Single(option => option.Key == key).RequiresRestart);
+            Assert.False(originalCatalog.Single(option => option.Key == key).RequiresRestart);
+        }
+        Assert.False(merged.Single(option => option.Key == "ppsspp_fast_memory").RequiresRestart);
+        Assert.Equal(originalValues, values.ToArray());
+        Assert.Equal(originalCatalog, GWGUI.Emulation.Sony.Emulators.Ppsspp.Dictionaries.OptionCatalog.All);
     }
 
     [Fact]
@@ -395,6 +443,202 @@ public sealed class ConfigurationPresentationTests
         Assert.Equal(EmulationMachineTab.Storage, cd.ConfigurationFields!.Single(field => field.Id == "pcsx2_fastcdvd").Tab);
         Assert.DoesNotContain(fields, field => field.Id == "pcsx2_bios");
         Assert.DoesNotContain(fields, field => field.Id == "pcsx2_dev9_hdd");
+    }
+
+    [Theory]
+    [InlineData(50, "200", 50)]
+    [InlineData(75, "100", 75)]
+    [InlineData(100, null, 100)]
+    [InlineData(150, null, 150)]
+    [InlineData(200, null, 200)]
+    [InlineData(20, "150", 50)]
+    [InlineData(250, "100", 200)]
+    [InlineData(int.MinValue, null, 50)]
+    [InlineData(int.MaxValue, null, 200)]
+    [InlineData(null, "150", 150)]
+    [InlineData(null, "invalid", 50)]
+    [InlineData(null, null, 50)]
+    public void Pcee2UsesOneAudioLatencyForTheCommonControlAndNativeOptions(int? commonLatency, string? legacyLatency, int expected)
+    {
+        var options = new Dictionary<string, string> { ["pcsx2_upscale_multiplier"] = "2" };
+        if (legacyLatency is not null) options["pcsx2_audio_buffer_ms"] = legacyLatency;
+        var original = options.ToArray();
+        var configuration = new MachineConfiguration(ModelConstants.PlayStation2, "pcee2", Options: options,
+            Audio: commonLatency is { } latency ? new AudioConfiguration("device-id", latency) : null);
+        var adapter = new GWGUI.Emulation.Sony.Emulators.Pcee2.Factories.Pcee2MachineFactory();
+        var audio = adapter.GetAudioConfiguration(configuration);
+        var fields = SettingsDescriptionFunctions.Create(configuration).SelectMany(block => block.Fields).ToArray();
+        var field = Assert.Single(fields, item => item.Id == SettingsConstants.AudioLatency);
+        Assert.Equal(expected, audio.LatencyMilliseconds);
+        Assert.Equal(configuration.Audio?.OutputDeviceId, audio.OutputDeviceId);
+        Assert.Equal(expected.ToString(), field.Value);
+        Assert.Equal(new[] { "50", "75", "100", "150", "200" }, field.Choices!.Select(choice => choice.Id));
+        Assert.DoesNotContain(fields, item => item.Id == "pcsx2_audio_buffer_ms");
+        var native = adapter.GetRuntimeOptions(configuration);
+        Assert.Equal(expected.ToString(), native["pcsx2_audio_buffer_ms"]);
+        Assert.Equal("2", native["pcsx2_upscale_multiplier"]);
+        Assert.Equal(original, options.ToArray());
+        var declared = GWGUI.Emulation.Sony.Emulators.Pcee2.Dictionaries.OptionCatalog.All;
+        var nativeMetadata = declared.Select(option => option with { IsVisible = true }).ToArray();
+        Assert.False(CoreOptionMetadataFunctions.Merge(nativeMetadata, declared).Single(option => option.Key == "pcsx2_audio_buffer_ms").IsVisible);
+    }
+
+    [Fact]
+    public void Pcee2ApplySettingsFeedsTheCommonLatencyToRuntimeOptionsAndPreservesLegacySettings()
+    {
+        using var http = new HttpClient();
+        var module = new GWGUI.Emulation.Sony.Modules.SonyEmulationModule(Environment.CurrentDirectory, Environment.CurrentDirectory, http, Environment.CurrentDirectory);
+        var legacy = new MachineConfiguration(ModelConstants.PlayStation2, "pcee2",
+            Options: new Dictionary<string, string> { ["pcsx2_audio_buffer_ms"] = "200" });
+        var preserved = Assert.IsType<MachineConfiguration>(module.ApplySettings(legacy, new Dictionary<string, string?>()));
+        Assert.Equal(200, preserved.Audio!.LatencyMilliseconds);
+        var changed = Assert.IsType<MachineConfiguration>(module.ApplySettings(preserved, new Dictionary<string, string?> { [SettingsConstants.AudioLatency] = "75" }));
+        Assert.Equal(75, changed.Audio!.LatencyMilliseconds);
+        Assert.Equal("75", module.RuntimeOptions(changed)["pcsx2_audio_buffer_ms"]);
+        Assert.Equal("200", legacy.Options!["pcsx2_audio_buffer_ms"]);
+        Assert.Null(legacy.Audio);
+    }
+
+    public static IEnumerable<object[]> GraphicsApiConfigurations()
+    {
+        var adapters = new[]
+        {
+            (ModelConstants.PlayStation, "swanstation", "swanstation_GPU_Renderer", "OpenGL", "OpenGL", "OpenGL", "OpenGL"),
+            (ModelConstants.PlayStation, "mednafen_psx_hw", "beetle_psx_hw_renderer", "hardware_gl", "hardware_gl", "hardware_gl", "hardware_gl"),
+            (ModelConstants.PlayStation2, "pcee2", "pcsx2_renderer", "opengl", "vulkan", "vulkan", "vulkan"),
+            (ModelConstants.PlayStation2, "pcsx2", "pcsx2_renderer", "OpenGL", "OpenGL", "OpenGL", "OpenGL"),
+            (ModelConstants.PlayStation3, "rpcs3", "rpcs3_renderer", "opengl", "vulkan", "vulkan", "vulkan"),
+            (ModelConstants.Psp, "ppsspp", "ppsspp_backend", "opengl", "auto", "auto", "auto")
+        };
+        foreach (var (model, emulator, key, opengl, vulkan, direct3d, automatic) in adapters)
+        {
+            yield return [model, emulator, key, EmulationVideoRenderer.OpenGL, opengl];
+            yield return [model, emulator, key, EmulationVideoRenderer.Vulkan, vulkan];
+            yield return [model, emulator, key, EmulationVideoRenderer.Direct3D11, direct3d];
+            yield return [model, emulator, key, EmulationVideoRenderer.Wpf, automatic];
+        }
+    }
+
+    [Theory]
+    [InlineData("rpcs3_aspect_ratio", "16:9", EmulationMachineTab.Video, "16:9")]
+    [InlineData("rpcs3_aspect_ratio", "4:3", EmulationMachineTab.Video, "16:9")]
+    [InlineData("rpcs3_disk_cache_size", "unlimited", EmulationMachineTab.Storage, "1gb")]
+    [InlineData("rpcs3_disk_cache_size", "1gb", EmulationMachineTab.Storage, "1gb")]
+    [InlineData("rpcs3_disk_cache_size", "5gb", EmulationMachineTab.Storage, "1gb")]
+    [InlineData("rpcs3_disk_cache_size", "wipe", EmulationMachineTab.Storage, "1gb")]
+    [InlineData("rpcs3_vblank_rate", "list", EmulationMachineTab.Video, "60")]
+    public void Rpcs3PresentationAndCacheChoicesPersistAndReachTheCore(string key, string value, EmulationMachineTab tab, string defaultValue)
+    {
+        using var http = new HttpClient();
+        var module = new GWGUI.Emulation.Sony.Modules.SonyEmulationModule(Environment.CurrentDirectory, Environment.CurrentDirectory, http, Environment.CurrentDirectory);
+        var original = new MachineConfiguration(ModelConstants.PlayStation3, "rpcs3");
+        var field = module.Describe(original.Model, original).Blocks.SelectMany(block => block.Fields).Single(field => field.Id == key);
+        Assert.Equal(tab, field.Tab);
+        Assert.Equal(defaultValue, field.Value);
+        Assert.Contains(field.Choices!, choice => choice.Id == value);
+        if (key == "rpcs3_disk_cache_size")
+        {
+            var storage = module.DescribeStorageSettings(original);
+            Assert.DoesNotContain(storage.AvailableDevices.SelectMany(device => device.ConfigurationFields ?? []), item => item.Id == key);
+            Assert.Contains(storage.AvailableDevices, device => device.Slot.Category == EmulationMediaCategory.CompactDiscDrive && (device.ConfigurationFields?.Count ?? 0) > 0);
+        }
+        if (key == "rpcs3_aspect_ratio")
+        {
+            Assert.True(field.RequiresRestart);
+            Assert.Equal(value, field.Choices!.Single(choice => choice.Id == value).InvariantDisplayValue);
+        }
+        var changed = Assert.IsType<MachineConfiguration>(module.ApplySettings(original, new Dictionary<string, string?> { [key] = value }));
+        Assert.Equal(value, module.RuntimeOptions(changed)[key]);
+        var restored = System.Text.Json.JsonSerializer.Deserialize<MachineConfiguration>(System.Text.Json.JsonSerializer.Serialize(changed))!;
+        Assert.Equal(value, module.RuntimeOptions(restored)[key]);
+        var restoredField = module.Describe(restored.Model, restored).Blocks.SelectMany(block => block.Fields).Single(field => field.Id == key);
+        Assert.Equal(value, restoredField.Value);
+        Assert.Null(original.Options);
+    }
+
+    [Theory]
+    [InlineData("swanstation", "swanstation_GPU_Renderer", "Auto")]
+    [InlineData("mednafen_psx_hw", "beetle_psx_hw_renderer", "hardware")]
+    public void NativeDefaultRemainsAValidHardwareModeWithoutAnApplicationPreference(string emulator, string key, string expected)
+    {
+        using var http = new HttpClient();
+        var module = new GWGUI.Emulation.Sony.Modules.SonyEmulationModule(Environment.CurrentDirectory, Environment.CurrentDirectory, http, Environment.CurrentDirectory);
+        var configuration = new MachineConfiguration(ModelConstants.PlayStation, emulator);
+        var field = module.Describe(ModelConstants.PlayStation, configuration).Blocks.SelectMany(block => block.Fields).Single(field => field.Id == key);
+        Assert.Equal(expected, field.Value);
+        var hardware = Assert.Single(field.Choices!, choice => choice.DisplayResourceKey == "Emulation.Option.Common.Value.HardwareRendering");
+        Assert.Equal(expected, hardware.Id);
+        Assert.Equal(2, field.Choices!.Count);
+        Assert.Equal(expected, module.RuntimeOptions(configuration)[key]);
+    }
+
+    [Theory]
+    [MemberData(nameof(GraphicsApiConfigurations))]
+    public void SharedVideoRendererSelectsNativeApiAndLeavesOnlyOneHardwareMode(string model, string emulator, string key, EmulationVideoRenderer renderer, string expected)
+    {
+        using var http = new HttpClient();
+        var module = new GWGUI.Emulation.Sony.Modules.SonyEmulationModule(Environment.CurrentDirectory, Environment.CurrentDirectory, http, Environment.CurrentDirectory);
+        var originalOptions = new Dictionary<string, string> { ["unrelated"] = "kept" };
+        var configuration = new MachineConfiguration(model, emulator, Options: originalOptions);
+        var result = Assert.IsType<MachineConfiguration>(EmulationVideoConfigurationFunctions.Apply(module, configuration, renderer));
+        Assert.Equal(EmulationVideoConfigurationFunctions.GraphicsApi(renderer), result.GraphicsApi);
+        Assert.Equal(expected, result.Options![key]);
+        Assert.Equal(expected, module.RuntimeOptions(result)[key]);
+        Assert.Equal("kept", result.Options["unrelated"]);
+        Assert.Single(originalOptions);
+        Assert.Null(configuration.GraphicsApi);
+        var field = module.Describe(model, result).Blocks.SelectMany(block => block.Fields).Single(field => field.Id == key);
+        var hardware = Assert.Single(field.Choices!, choice => choice.DisplayResourceKey == "Emulation.Option.Common.Value.HardwareRendering");
+        Assert.Equal(expected, hardware.Id);
+        Assert.Equal(expected, field.Value);
+        Assert.True(field.RefreshSettingsOnChange);
+        if (emulator == "ppsspp")
+            Assert.DoesNotContain(module.Describe(model, result).Blocks.SelectMany(block => block.Fields), item => item.Id == "ppsspp_mulitsample_level");
+        var json = System.Text.Json.JsonSerializer.Serialize(result);
+        var restored = System.Text.Json.JsonSerializer.Deserialize<MachineConfiguration>(json)!;
+        Assert.Equal(result.GraphicsApi, restored.GraphicsApi);
+        Assert.Equal(expected, module.RuntimeOptions(restored)[key]);
+    }
+
+    [Theory]
+    [InlineData(ModelConstants.PlayStation, "swanstation", "swanstation_GPU_Renderer", "Software", "Software")]
+    [InlineData(ModelConstants.PlayStation, "mednafen_psx_hw", "beetle_psx_hw_renderer", "software", "software")]
+    [InlineData(ModelConstants.PlayStation2, "pcee2", "pcsx2_renderer", "software", "software")]
+    [InlineData(ModelConstants.PlayStation2, "pcsx2", "pcsx2_renderer", "Software", "Software (HW)")]
+    [InlineData(ModelConstants.PlayStation2, "pcsx2", "pcsx2_renderer", "Software (HW)", "Software (HW)")]
+    [InlineData(ModelConstants.PlayStation2, "pcsx2", "pcsx2_renderer", "Software (SW)", "Software (SW)")]
+    [InlineData(ModelConstants.PlayStation2, "pcsx2", "pcsx2_renderer", "paraLLEl-GS", "paraLLEl-GS")]
+    [InlineData(ModelConstants.PlayStation2, "pcsx2", "pcsx2_renderer", "D3D12", "D3D12")]
+    [InlineData(ModelConstants.PlayStation3, "rpcs3", "rpcs3_renderer", "null", "null")]
+    [InlineData(ModelConstants.Psp, "ppsspp", "ppsspp_backend", "none", "none")]
+    public void SharedApiPreservesSoftwareAndSpecialModesUntilHardwareIsSelected(string model, string emulator, string key, string previous, string expected)
+    {
+        using var http = new HttpClient();
+        var module = new GWGUI.Emulation.Sony.Modules.SonyEmulationModule(Environment.CurrentDirectory, Environment.CurrentDirectory, http, Environment.CurrentDirectory);
+        var original = new MachineConfiguration(model, emulator, Options: new Dictionary<string, string> { [key] = previous });
+        var configured = Assert.IsType<MachineConfiguration>(EmulationVideoConfigurationFunctions.Apply(module, original, EmulationVideoRenderer.OpenGL));
+        Assert.Equal(expected, configured.Options![key]);
+        Assert.Equal(expected, module.RuntimeOptions(configured)[key]);
+        Assert.Equal(previous, original.Options![key]);
+        var field = module.Describe(model, configured).Blocks.SelectMany(block => block.Fields).Single(field => field.Id == key);
+        Assert.Equal(expected, field.Value);
+        Assert.Contains(field.Choices!, choice => choice.Id == expected);
+        if (expected == "D3D12") Assert.Equal("D3D12", Assert.Single(field.Choices!, choice => choice.Id == expected).InvariantDisplayValue);
+        var hardware = Assert.Single(field.Choices!, choice => choice.DisplayResourceKey == "Emulation.Option.Common.Value.HardwareRendering");
+        var changed = module.ApplySettings(configured, new Dictionary<string, string?> { [key] = hardware.Id });
+        Assert.Equal(hardware.Id, module.RuntimeOptions(changed)[key]);
+    }
+
+    [Fact]
+    public void VideoPreferenceDoesNotInventOptionsForMachinesWithoutAnEmulator()
+    {
+        using var http = new HttpClient();
+        var module = new GWGUI.Emulation.Sony.Modules.SonyEmulationModule(Environment.CurrentDirectory, Environment.CurrentDirectory, http, Environment.CurrentDirectory);
+        var configuration = new MachineConfiguration(ModelConstants.PlayStation5, string.Empty);
+        var result = Assert.IsType<MachineConfiguration>(EmulationVideoConfigurationFunctions.Apply(module, configuration, EmulationVideoRenderer.Vulkan));
+        Assert.Equal(EmulationGraphicsApi.Vulkan, result.GraphicsApi);
+        Assert.Null(result.Options);
+        Assert.Empty(module.RuntimeOptions(result));
     }
 
     private static EmulationSettingsField[] Fields(string emulator) => SettingsDescriptionFunctions.Create(Configuration(emulator)).SelectMany(block => block.Fields).ToArray();

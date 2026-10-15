@@ -26,14 +26,12 @@
   <data name="Emulation.Option.ppsspp.ppsspp_language.Value.11"><value>Традиционный китайский</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_language.Value.12"><value>Китайцы упростили</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_psp_model.Label"><value>Модель PSP</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_backend.Label"><value>откидной</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_backend.Help"><value>«Автоматика» будет использовать фронтенд видео драйвер. ядро</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_software_rendering.Label"><value>Программное обеспечение Rendering</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_software_rendering.Help"><value>Медленно, точно. ядро</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_software_rendering.Help"><value>Используйте программный рендеринг для повышения точности ценой большей вычислительной нагрузки.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_internal_resolution.Label"><value>Осуществление резолюции</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_internal_resolution.Help"><value>Выберите внутреннюю резолюцию рендеринга.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_mulitsample_level.Label"><value>MSAA Антиалии</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_mulitsample_level.Help"><value>Только Vulkan. ядро</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_mulitsample_level.Help"><value>Примените сглаживание MSAA с помощью Vulkan.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_cropto16x9.Label"><value>Посадка до 16x9</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_cropto16x9.Help"><value>Вырезать верхний и нижний края, чтобы получить изображение 16:9.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_frameskip.Label"><value>Фреймскип</value></data>
@@ -46,7 +44,7 @@
   <data name="Emulation.Option.ppsspp.ppsspp_detect_vsync_swap_interval.Label"><value>Обнаружение изменений частоты кадров</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_detect_vsync_swap_interval.Help"><value>Уведомить Фронтенда.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Label"><value>Командование Buffer Graphics</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Help"><value>Только GL/Vulkan, медленнее, меньше отставания, перезапуск.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Help"><value>Только GL/Vulkan, медленнее, меньше отставания.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Value.0"><value>Без буфера</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Value.1"><value>До 1</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_button_preference.Label"><value>Кнопка подтверждения</value></data>

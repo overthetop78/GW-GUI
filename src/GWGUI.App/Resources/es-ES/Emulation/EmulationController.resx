@@ -44,4 +44,5 @@
   <data name="Emulation.Controller.Category.OtherSimulation"><value>Otras periféricas de simulación</value></data>
   <data name="Emulation.Controller.Feedback.Strong"><value>Vibración fuerte</value></data>
   <data name="Emulation.Controller.Feedback.Weak"><value>Vibración débil</value></data>
+  <data name="Emulation.Controller.Action.Reload"><value>Recargar</value></data>
 </root>

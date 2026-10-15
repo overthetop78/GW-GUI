@@ -39,8 +39,6 @@
   <data name="Emulation.Option.Sony.Value.Interpreter"><value>Tlumič</value></data>
   <data name="Emulation.Option.Sony.Value.CachedInterpreter"><value>Překladač v pouzdře</value></data>
   <data name="Emulation.Option.Sony.Value.Recompiler"><value>Recipiler</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_GPU_Renderer.Label"><value>GPU Návratnost</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_GPU_Renderer.Help"><value>Který se používá k napodobování GPU.</value></data>
   <data name="Emulation.Option.Sony.Value.HardwareOpenGL"><value>Hardware (OpenGL)</value></data>
   <data name="Emulation.Option.Sony.Value.Software"><value>Software</value></data>
   <data name="Emulation.Option.swanstation.swanstation_GPU_ResolutionScale.Label"><value>Stupnice vnitřního rozlišení</value></data>
@@ -48,7 +46,7 @@
   <data name="Emulation.Option.swanstation.swanstation_GPU_UseThread.Label"><value>Promítání závitů (software)</value></data>
   <data name="Emulation.Option.swanstation.swanstation_GPU_UseThread.Help"><value>Používá druhé vlákno pro kreslení grafiky. V současné době je k dispozici pouze pro softwarové přenašeče.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_GPU_UseSoftwareRendererForReadbacks.Label"><value>Použít software Renderer pro readbacks</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_GPU_UseSoftwareRendererForReadbacks.Help"><value>Spustit software renderování vedle hardwarového vykreslování při čtení obrazových dat z VRAM. Některé hry to potřebují pro pohyb rozmazané nebo bitevní přechody, nebo opravit poškozené textury. Po změně této volby restartujte jádro.</value></data>
+  <data name="Emulation.Option.swanstation.swanstation_GPU_UseSoftwareRendererForReadbacks.Help"><value>Spustit software renderování vedle hardwarového vykreslování při čtení obrazových dat z VRAM. Některé hry to potřebují pro pohyb rozmazané nebo bitevní přechody.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_GPU_MSAA.Label"><value>Multisample Antialiasing</value></data>
   <data name="Emulation.Option.swanstation.swanstation_GPU_MSAA.Help"><value>Používá multisample antialiasing pro vykreslování 3D objektů. Může vyhladit jagged hrany na polygonech za nižší náklady na výkon ve srovnání se zvyšováním stupnice rozlišení, ale může být více pravděpodobné, že způsobí vykreslování chyb v některých hrách.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_GPU_TrueColor.Label"><value>Render s plnou přesností barev</value></data>
@@ -129,7 +127,7 @@
   <data name="Emulation.Option.swanstation.swanstation_Display_LineEndOffset.Label"><value>Offset posledního zobrazeného řádku</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Display_LineEndOffset.Help"><value>Pady nebo plodiny off linky ze dna zobrazeného obrazu.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_MemoryCards_Card1Type.Label"><value>Typ paměťové karty 1</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_MemoryCards_Card1Type.Help"><value>Vyberte formát paměťové karty pro slot1. Restartujte jádro při změně formátů. Sdílené karty a dvě možnosti separáte- card jsou zachovány pro staré konfigurace, ale nejsou podporovány. Formát Libretro používá .srm soubory. Samostatná karta pojmenovaná po hře používá .mcd soubory. Tyto dva formáty obsahují identická data. Chcete-li převést mezi nimi, změnit rozšíření souboru a přidat nebo odstranit slot sufix _1.</value></data>
+  <data name="Emulation.Option.swanstation.swanstation_MemoryCards_Card1Type.Help"><value>Vyberte formát paměťové karty pro slot1. Sdílené karty a dvě možnosti separáte- card jsou zachovány pro staré konfigurace, ale nejsou podporovány. Formát Libretro používá .srm soubory. Samostatná karta pojmenovaná po hře používá .mcd soubory. Tyto dva formáty obsahují identická data. Chcete-li převést mezi nimi, změnit rozšíření souboru a přidat nebo odstranit slot sufix _1.</value></data>
   <data name="Emulation.Option.Sony.Value.LibretroDefault"><value>Libretro (výchozí)</value></data>
   <data name="Emulation.Option.Sony.Value.SharedBetweenAllGames"><value>Sdílené mezi všemi hrami</value></data>
   <data name="Emulation.Option.Sony.Value.SeparateCardPerGameGameCode"><value>Samostatná karta pro hru (herní kód)</value></data>
@@ -280,7 +278,7 @@
   <data name="Emulation.Option.mednafen_psx.beetle_psx_gte_overclock.Label"><value>Překročení GTE</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_gte_overclock.Help"><value>Proveďte každý provoz grafického koprocesoru GTE v jednom CPU cyklu. To může výrazně zlepšit rychlost snímku a aby načasování rámu stabilnější ve hrách, které používají GTE silně.</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_cd_access_method.Label"><value>Přístupová metoda CD</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_cd_access_method.Help"><value>Synchronní přístup reprodukuje původní hardware. Asynchronní přístup může snížit pauzy na zařízeních s pomalým uložením. Načtení celého obrazu disku do RAM může zlepšit časy načítání během hry, ale zpoždění spuštění. Tento režim může způsobit problémy při omezení RAM. Fyzické disky používají synchronní přístup namísto načítání celého obrazu. Restartovat po změně této volby.</value></data>
+  <data name="Emulation.Option.mednafen_psx.beetle_psx_cd_access_method.Help"><value>Synchronní přístup reprodukuje původní hardware. Asynchronní přístup může snížit pauzy na zařízeních s pomalým uložením. Načtení celého obrazu disku do RAM může zlepšit časy načítání během hry.</value></data>
   <data name="Emulation.Option.Sony.Value.Synchronous"><value>Synchronní</value></data>
   <data name="Emulation.Option.Sony.Value.Asynchronous"><value>Asynchronní</value></data>
   <data name="Emulation.Option.Sony.Value.PreCache"><value>Pre- Cache</value></data>
@@ -431,7 +429,7 @@
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_gte_overclock.Label"><value>Překročení GTE</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_gte_overclock.Help"><value>Proveďte každý provoz grafického koprocesoru GTE v jednom CPU cyklu. To může výrazně zlepšit rychlost snímku a aby načasování rámu stabilnější ve hrách, které používají GTE silně.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_access_method.Label"><value>Přístupová metoda CD</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_access_method.Help"><value>Synchronní přístup reprodukuje původní hardware. Asynchronní přístup může snížit pauzy na zařízeních s pomalým uložením. Načtení celého obrazu disku do RAM může zlepšit časy načítání během hry, ale zpoždění spuštění. Tento režim může způsobit problémy při omezení RAM. Fyzické disky používají synchronní přístup namísto načítání celého obrazu. Restartovat po změně této volby.</value></data>
+  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_access_method.Help"><value>Synchronní přístup reprodukuje původní hardware. Asynchronní přístup může snížit pauzy na zařízeních s pomalým uložením. Načtení celého obrazu disku do RAM může zlepšit časy načítání během hry.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_fastload.Label"><value>Rychlost nahrávání CD</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_fastload.Help"><value>Hodnoty vyšší než '2x (Native)' mohou výrazně snížit dobu načítání uvnitř hry, ale mohou zavádět chyby v načasování. Některé hry nemusí správně fungovat nad určitou hodnotu.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_skip_bios.Label"><value>Skip BIOS startup animace</value></data>
@@ -442,8 +440,6 @@
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_region.Help"><value>Nastaví záložní oblast použitou v případě, že obsah nemůže být automaticky detekován (např. surové soubory PS-X EXE). Disc- based games still use the area involted on the disk.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_internal_resolution.Label"><value>Vnitřní rozlišení GPU</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_internal_resolution.Help"><value>Usnesení vyšší než '1x (Native)' zlepšují věrnost 3D modelů na úkor zvýšených výkonových požadavků. 2D prvky nejsou tímto nastavením obecně ovlivněny.</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_renderer.Label"><value>Návratnost</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_renderer.Help"><value>Vyberte si, jak obrázek nakreslit. Předávající software je nejpřesnější. Ve vyšších vnitřních usneseních potřebuje mnohem více zpracovatelské síly. Hardwarové vykreslování je méně přesné, ale rychlejší při vyšších rozlišeních a podporuje zlepšení grafiky. Automatické hardwarové vykreslování vybere Vulkan nebo OpenGL podle video ovladače, který aplikace používá. Pokud řidič nepodporuje ani Vulkan, ani OpenGL 3.3, jádro místo toho používá softwarové vykreslování. Po změně této volby restartujte jádro.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_renderer_software_fb.Label"><value>Software Framebuffer</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_renderer_software_fb.Help"><value>Použít software renderer v pozadí na přirozeném rozlišení, zatímco hardware rendeler zobrazí hru. To reprodukuje pohyb rozostření a bitevní přechody v FF7 přesně. Když je OpenGL vyřazen, vynechá tyto efekty a Vulkan je nakreslí na GPU. Vypnutí této volby může zlepšit rychlost, ale také způsobit vážné chyby v grafice. Udržujte to zapnuté, pokud si nejste jisti.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_color_format.Label"><value>Formát barev</value></data>
@@ -472,7 +468,7 @@
   <data name="Emulation.Option.Sony.Value.25Degrees"><value>25 stupňů</value></data>
   <data name="Emulation.Option.Sony.Value.45Degrees"><value>45 stupňů</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_video_cable.Label"><value>Analogový videokabel</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_video_cable.Help"><value>Simuluje kabel mezi konzolou a televizí, včetně barevného kódování a dekodéru televize. 'No Simulation' zcela vypne řetěz a předá framebuffer přímo na displej (výchozí). 'RGB (SCART)' je nejostřejší výkon PSX může produkovat: multiout nese analog RGB, takže nic není modulováno a žádný z níže uvedených kódovacích artefaktů nemůže dojít - ale je to stále analogový drát, takže je band- limitován video zesilovač konzole a vstupní fáze sady spíše než být nekonečně ostrý. 'S-Video' band-limit barvy silně, ale udržuje luma a barva na oddělených drátech, takže jemné detaily zůstávají čisté. 'Kompozice' je počítá na jeden vodič, který dekodér pak musí vytáhnout znovu, náklady Luma detail a přidávání barevné skvrny a duhové fritování na jemných vzorů. 'RF' modely externího modulátoru - konzole sama o sobě nemá žádný, pouze DC jack to power one - zúžení lumy dále a přidávání beat vzor zvukový nosič dělá proti barevnému subnosiči, který je nejsilnější na nasycené barvě. Funguje při jakémkoliv vnitřním rozlišení: další vzorky jsou vyřešeny dříve, než je signál generován, takže vyšší nastavení působí jako nadsazení do kabelu spíše než širší signál, a výstup stále nese subpixel detail dekodér produkuje. Podporováno Vulkan a OpenGL renderers, a ignorován software renderer. Na OpenGL filtr, který odstraňuje 'zavěšené tečky' - jemný tečkovaný vzor podél horizontálních barevných hran - potřebuje GL 4.3 nebo GLES 3.1; na starším ovladači simulace stále běží, ale 'Kompozitní' a 'RF' tyto body zobrazí. Platí okamžitě; není třeba restartovat.</value></data>
+  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_video_cable.Help"><value>Simuluje kabel mezi konzolou a televizí, včetně barevného kódování a dekodéru televize. 'No Simulation' zcela vypne řetěz a předá framebuffer přímo na displej (výchozí). 'RGB (SCART)' je nejostřejší výkon PSX může produkovat: multiout nese analog RGB, takže nic není modulováno a žádný z níže uvedených kódovacích artefaktů nemůže dojít - ale je to stále analogový drát, takže je band- limitován video zesilovač konzole a vstupní fáze sady spíše než být nekonečně ostrý. 'S-Video' band-limit barvy silně, ale udržuje luma a barva na oddělených drátech, takže jemné detaily zůstávají čisté. 'Kompozice' je počítá na jeden vodič, který dekodér pak musí vytáhnout znovu, náklady Luma detail a přidávání barevné skvrny a duhové fritování na jemných vzorů. 'RF' modely externího modulátoru - konzole sama o sobě nemá žádný, pouze DC jack to power one - zúžení lumy dále a přidávání beat vzor zvukový nosič dělá proti barevnému subnosiči, který je nejsilnější na nasycené barvě. Funguje při jakémkoliv vnitřním rozlišení: další vzorky jsou vyřešeny dříve, než je signál generován, takže vyšší nastavení působí jako nadsazení do kabelu spíše než širší signál, a výstup stále nese subpixel detail dekodér produkuje. Podporováno Vulkan a OpenGL renderers, a ignorován software renderer. Na OpenGL filtr, který odstraňuje 'zavěšené tečky' - jemný tečkovaný vzor podél horizontálních barevných hran - potřebuje GL 4.3 nebo GLES 3.1; na starším ovladači simulace stále běží, ale 'Kompozitní' a 'RF' tyto body zobrazí. Platí okamžitě.</value></data>
   <data name="Emulation.Option.Sony.Value.NoSimulation"><value>Bez simulace</value></data>
   <data name="Emulation.Option.Sony.Value.RGBSCART"><value>RGB (SCART)</value></data>
   <data name="Emulation.Option.Sony.Value.SVideo"><value>S- Video</value></data>
@@ -757,9 +753,7 @@
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_nostalls.Label"><value>Zakázat CPU / GTE stánky</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_nostalls.Help"><value>To způsobí, že některé hry poběží příliš rychle. Měl by být téměř ve všech případech vyřazen. Pouze tlumočníka.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_fast_boot.Label"><value>Rychlá bota</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_fast_boot.Help"><value>Přeskočte BIOS boot animaci. Vyžaduje restart.</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_renderer.Label"><value>Návratnost</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_renderer.Help"><value>Hardware renderer API, nebo software rendeder. Přepínání na software nebo ze softwaru se vztahuje na fly; přepnutí mezi hardwarovými API nabývá účinnosti při restartu obsahu.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_fast_boot.Help"><value>Přeskočte BIOS boot animaci.</value></data>
   <data name="Emulation.Option.Sony.Value.OpenGLHardware"><value>OpenGL (Hardware)</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_upscale_multiplier.Label"><value>Vnitřní usnesení</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_upscale_multiplier.Help"><value>Interní násobitel rozlišení pro nositele hardwaru. Také změří výstupní framebuffer. Platí za běhu.</value></data>
@@ -796,8 +790,6 @@
   <data name="Emulation.Option.pcee2.pcsx2_fxaa.Help"><value>Laciné postprocesorové anti-aliasing.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_cas_mode.Label"><value>Přizpůsobení kontrastu</value></data>
   <data name="Emulation.Option.Sony.Value.SharpenOnly"><value>Pouze ořezané</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_audio_buffer_ms.Label"><value>Audio buffer</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_audio_buffer_ms.Help"><value>Kolik zvuku emulátor udržuje před frontendem. Více z toho jezdí ven stánek, který by jinak být slyšet jako přerušení zvuku, za cenu, že hodně zpoždění, než se něco dozvíte. Vlastní výchozí hodnota PCSX2 je 50 ms, což předpokládá, že je krmení audio zařízení přímo, než frontend, který táhne jednou rám.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_frame_limiter.Label"><value>Omezovač rámu</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_frame_limiter.Help"><value>Co drží emulátor v plné rychlosti. Frontend ponechává přechod do RetroArch, který brzdí tím, že jádro čeká na zvuku, které předá. Interní používá PCSX2 je vlastní omezovač místo - pro zařízení, kde to čekat nikdy nestane, protože audio ovladač podstupuje spíše než blokování, a emulátor vlastní rychlost variace pak dosáhne obrazovky jako nerovnoměrné rámu chůze.</value></data>
   <data name="Emulation.Option.Sony.Value.FrontendRetroArch"><value>Hranice (RetroArch)</value></data>
@@ -808,13 +800,13 @@
   <data name="Emulation.Option.pcee2.pcsx2_aspect_ratio.Label"><value>Poměr stran</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_aspect_ratio.Help"><value>Automatické zprávy 16: 9, když jsou zapnuty ploché záplaty, 4: 3 jinak.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_multitap.Label"><value>Multitap</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_multitap.Help"><value>Povolit adaptér multitap pro až 8 regulátorů. Objednávka se řídí fyzickými sloty (port 1: 1A-1D, pak port 2: 2A-2D). Doporučujeme restartovat.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_multitap.Help"><value>Povolit adaptér multitap pro až 8 regulátorů. Objednávka se řídí fyzickými sloty (port 1: 1A-1D.</value></data>
   <data name="Emulation.Option.Sony.Value.Disabled2Players"><value>Zakázáno (2 přehrávače)</value></data>
   <data name="Emulation.Option.Sony.Value.Port15Players"><value>Port 1 (5 hráčů)</value></data>
   <data name="Emulation.Option.Sony.Value.Port25Players"><value>Port 2 (5 hráčů)</value></data>
   <data name="Emulation.Option.Sony.Value.BothPorts8Players"><value>Oba porty (8 hráčů)</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_lightgun.Label"><value>Lightgun (GunCon 2)</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_lightgun.Help"><value>Emulovat Namco GunCon 2 na USB portu, zaměřený s přední je světelná zbraň (nebo myš mapovaný jako světelná pistole) na odpovídající regulátor port. Vyžaduje restart.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_lightgun.Help"><value>Emulovat Namco GunCon 2 na USB portu.</value></data>
   <data name="Emulation.Option.Sony.Value.USBPort1"><value>USB Přístav 1</value></data>
   <data name="Emulation.Option.Sony.Value.USBPort2"><value>USB Port 2</value></data>
   <data name="Emulation.Option.Sony.Value.BothPorts"><value>Oba porty</value></data>
@@ -839,18 +831,18 @@
   <data name="Emulation.Option.pcee2.pcsx2_ee_cycle_skip.Label"><value>Přeskok cyklu EE</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_ee_cycle_skip.Help"><value>EE přeskakuje cykly. Pomáhá některé hry s vysokou VU aktivitou, přerušuje ostatní.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_cpu_recompiler.Label"><value>CPU Recipiler (JIT)</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_cpu_recompiler.Help"><value>Povolit nebo zakázat rekompilace pro diagnostické účely. Pokud je povoleno, EE, IOP, VU0 a VU1 používají rychlé přepracování JIT. Tohle je výchozí hodnota. Při vypnutí používá každý CPU pomalejší výklad instrukcí. To pomáhá diagnostikovat chyby JIT: havárie, která se stále vyskytuje s rekompilací disabled má jinou příčinu. Čtyři jednotlivé CPU přepínače níže platí pouze tehdy, je-li tato volba zapnuta. Restartovat po změně této volby.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_cpu_recompiler.Help"><value>Povolit nebo zakázat rekompilace pro diagnostické účely. Pokud je povoleno, EE, IOP, VU0 a VU1 používají rychlé přepracování JIT. Tohle je výchozí hodnota. Při vypnutí používá každý CPU pomalejší výklad instrukcí. To pomáhá diagnostikovat chyby JIT: havárie, která se stále vyskytuje s rekompilací disabled má jinou příčinu. Čtyři jednotlivé CPU přepínače níže platí pouze tehdy.</value></data>
   <data name="Emulation.Option.Sony.Value.EnabledJITDefault"><value>Povoleno (JIT, Výchozí)</value></data>
   <data name="Emulation.Option.Sony.Value.DisabledInterpreter"><value>Zakázáno (tlumič)</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_rec_ee.Label"><value>- EE Recipiler</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_rec_ee.Help"><value>Diagnostika. Zakázat jen dynarec Emotion Engine (EE) při nechání ostatních na, Bisect, který rekompilátor způsobuje havárii. Vyžaduje restart.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_rec_ee.Help"><value>Diagnostika. Zakázat jen dynarec Emotion Engine (EE) při nechání ostatních na, Bisect.</value></data>
   <data name="Emulation.Option.Sony.Value.EnabledDefault"><value>Povolené (výchozí)</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_rec_iop.Label"><value>- IOP Recipiler</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_rec_iop.Help"><value>Diagnostika. Zakázat jen IOP (R3000) dynarec při ponechání ostatní na, Bisect, který překompilátor způsobuje havárii. Vyžaduje restart.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_rec_iop.Help"><value>Diagnostika. Zakázat jen IOP (R3000) dynarec při ponechání ostatní na, Bisect.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_rec_vu0.Label"><value>- VU0 Recipiler</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_rec_vu0.Help"><value>Diagnostika. Zakázat jen VU0 micro VU dynarec při ponechání ostatní na, Bisect, který překompilátor způsobuje havárii. Vyžaduje restart.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_rec_vu0.Help"><value>Diagnostika. Zakázat jen VU0 micro VU dynarec při ponechání ostatní na, Bisect.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_rec_vu1.Label"><value>- VU1 Recipiler</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_rec_vu1.Help"><value>Diagnostika. Zakázat jen VU1 micro VU dynarec při ponechání ostatní na, Bisect, který překompilátor způsobuje havárii. Vyžaduje restart.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_rec_vu1.Help"><value>Diagnostika. Zakázat jen VU1 micro VU dynarec při ponechání ostatní na, Bisect.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_memcard_slot1_enable.Label"><value>Slot 1 enabled</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_memcard_slot1_enable.Help"><value>Povolit paměťovou kartu Slot 1 PS2. Změny platí okamžitě, když je spuštěn obsah.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_memcard_slot2_enable.Label"><value>Slot 2 enabled</value></data>
@@ -901,8 +893,6 @@
   <data name="Emulation.Option.Sony.Value.AllTimers"><value>Všechny časovače</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_clocks_scale.Label"><value>Stupnice klíčů</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_clocks_scale.Help"><value>Scale PS3 procento rychlosti.</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_renderer.Label"><value>Návratnost</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_renderer.Help"><value>Vulkan vystupuje na zařízení frontend Vulkan a podává mu každý dokončený rám jako obrázek; když frontende nespouští svůj Vulkan video ovladač, rámec je zkopírován zpět přes paměť místo. OpenGL čerpá přímo do kontextu Opengle.</value></data>
   <data name="Emulation.Option.Sony.Value.NullNoVideo"><value>Null (No Video) Name</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_frame_limit.Label"><value>Frame Limit</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_frame_limit.Help"><value>Nejvyšší rychlost snímku hra může běžet. Auto je VBlank Frequency, stejně jako v RPCS3; PS3 Native kroky obrací tak, jak PS3 dělá; Zakázáno umožňuje hry, které nečekají na PS3 obnovování sami běží příliš rychle.</value></data>
@@ -979,7 +969,7 @@
   <data name="Emulation.Option.rpcs3.rpcs3_driver_wakeup_delay.Label"><value>Řidič Wake- Up zpoždění</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_driver_wakeup_delay.Help"><value>Řidič wake- up zpoždění v mikrosekundách. 0 ve výchozím nastavení, jako v RPCS3; zvýšit ji pouze tehdy, když hru potřebuje.</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_vblank_rate.Label"><value>VBlank Frequency</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_vblank_rate.Help"><value>Obnovovací rychlost PS3 v Hz. Jedná se také o frekvenci rámu jádra žádá RetroArch, který nabývá účinnosti při načítání obsahu; hry, které mohou běžet nad 60 FPS potřebují displej, který osvěží, že rychle.</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_vblank_rate.Help"><value>Nastaví emulovanou obnovovací frekvenci. Režim seznamu kompatibility ji u podporovaných her zdvojnásobí.</value></data>
   <data name="Emulation.Option.Sony.Value.50HzPAL"><value>50 Hz (PAL)</value></data>
   <data name="Emulation.Option.Sony.Value.60HzNTSC"><value>60 Hz (NTSC)</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_thread_scheduler.Label"><value>Thread Scheduler</value></data>
@@ -1061,8 +1051,6 @@
   <data name="Emulation.Option.rpcs3.rpcs3_frame_pacing.Label"><value>Pacing rámečku</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_frame_pacing.Help"><value>To, co hra rámy jsou načasovány. Emulator hodiny je RPCS3 vlastní časovač, jako v samostatné RPCS3. RetroArch dává hře jeden PS3 refresh per frame RetroArch show, tak rychle vpřed zrychluje hru nahoru a hra běží na VBlank Frequency, když RetroArch ukazuje, že mnoho snímků za sekundu; s Vulkan renderer to v současné době přeskakuje rámce.</value></data>
   <data name="Emulation.Option.Sony.Value.EmulatorClock"><value>Emulační hodiny</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_savedata_slot.Label"><value>Uložit úložiště dat</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_savedata_slot.Help"><value>Hra PS3 zobrazuje seznam svých uložených dat a nechá hráče vybrat. 'Vyberte si ze seznamu' zobrazí tento seznam v herním obraze, který má být použit s regulátorem. Číslo má jádro vybrat pro vás místo: úspora přepíše záznam na této pozici v seznamu hry, nebo dělá nové uložení, když je seznam kratší; načítání vezme zápis na tuto pozici, a nenajde nic, když seznam je kratší. 0 je první položka. Hry, které si ponechávají jedinou úsporu ze své vlastní neukazují seznam, takže se na ně nevztahuje.</value></data>
   <data name="Emulation.Option.Sony.Value.PickFromList"><value>Vyberte si ze seznamu</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_master_volume.Label"><value>Hlavní objem</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_master_volume.Help"><value>Hlavní hlasitost zvuku procento.</value></data>
@@ -1151,7 +1139,7 @@
   <data name="Emulation.Option.Sony.Setting.Fastcdvd.Help"><value>Rychle. CD/DVD přístup / vyhledávací časy. Malá hrstka her bude mít problémy s kompatibilitou s tímto povolením.</value></data>
   <data name="Emulation.Option.Sony.Setting.SharedMemoryCards.Help"><value>Používejte per- content nebo sdílené paměťové karty.</value></data>
   <data name="Emulation.Option.Sony.Setting.EnableCheats.Label"><value>Povolit kódy pro podvody ve hře</value></data>
-  <data name="Emulation.Option.Sony.Setting.EnableCheats.Help"><value>Přečtěte si kódy pro podvody her ze souborů ve vybrané složce. Po výběru jiné složky restartujte emulaci.</value></data>
+  <data name="Emulation.Option.Sony.Setting.EnableCheats.Help"><value>Přečtěte si kódy pro podvody her ze souborů ve vybrané složce.</value></data>
   <data name="Emulation.Option.Sony.Setting.HintLanguageUnlock.Label"><value>Odemknout další herní jazyky</value></data>
   <data name="Emulation.Option.Sony.Setting.HintLanguageUnlock.Help"><value>Pokud je povoleno, bude hledat uvnitř interní databáze pro možnosti odemknutí jazyka. Příklady zahrnují: vynucení mezinárodní japonské verze do angličtiny, odemknutí více evropských jazyků, atd.</value></data>
   <data name="Emulation.Option.Sony.Setting.Dev9Hdd.Help"><value>Emulovat SPEED rozšíření ATA pevný disk. Obraz žije v 'pcsx2 /DEV9hdd.raw'v adresáři systému frontend a je vytvořen při prvním použití v konfigurované velikosti.</value></data>
@@ -1233,7 +1221,7 @@
   <data name="Emulation.Option.Sony.Value.MergeTargets"><value>Sloučit cíle</value></data>
   <data name="Emulation.Option.Sony.Setting.DisableDepthConversion.Label"><value>Zakázat konverzi depth- buffer</value></data>
   <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Label"><value>Použít externí databázi GameIndex</value></data>
-  <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Help"><value>Vyžaduje hardwarovou renderování a manuální renderování. Načíst vybranou databázi herních kompatibilit, nebo nechat soubor prázdný pro použití built- v databázi. Restartovat emulaci po změně těchto nastavení.</value></data>
+  <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Help"><value>Vyžaduje hardwarovou renderování a manuální renderování. Načíst vybranou databázi herních kompatibilit.</value></data>
   <data name="Emulation.Option.Sony.Setting.FramebufferConversion.Label"><value>Převést renderování framebufferu</value></data>
   <data name="Emulation.Option.Sony.Setting.DisablePartialInvalidation.Label"><value>Zakázat částečné přerušení platnosti zdroje</value></data>
   <data name="Emulation.Option.Sony.Setting.GpuPaletteConversion.Label"><value>Převod palety na GPU</value></data>
@@ -1274,4 +1262,18 @@
   <data name="Emulation.Option.Sony.Setting.LineToQuad.Help" xml:space="preserve"><value>Některé hry (např. Doom, Hexen, Soul Blade, atd.) kreslete vodorovné čáry roztažením jednopixel- vysoké trojúhelníky přes obrazovku, které jsou rasterizovány jako řada pixelů na původní hardware. Tento hack detekuje tyto malé trojúhelníky a převádí je na čtyřkolky podle potřeby, což umožňuje, aby byly správně zobrazeny na hardwarových střelců a v rozšířených vnitřních rozlišeních. 'Agresivní' je nutné pro některé tituly (např. Temné síly, vévoda Nukem), ale může jinak zavést grafické závady. Odejděte na 'Výchozí', pokud si nejste jisti.</value></data>
   <data name="Emulation.Option.Sony.Setting.DynarecEventCycles.Label" xml:space="preserve"><value>Dynarec DMA / GPU / MDEC / Timer Event Cycle</value></data>
   <data name="Emulation.Option.Sony.Setting.DynarecEventCycles.Help" xml:space="preserve"><value>Maximální cykly prováděné CPU před kontrolou GPU / DMA / MDEC / Timer Update, vyšší počet bude rychlejší, má mnohem menší dopad na tlumočníka brouka než dynarec.</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_aspect_ratio.Help"><value>Nastaví formát obrazu předávaný hrám. Poměr 4:3 podporují jen některé hry.</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_disk_cache_size.Label"><value>Velikost diskové mezipaměti</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_disk_cache_size.Help"><value>Omezuje místo na disku používané pro dočasné mezipaměti her. Hry odstraněné mezipaměti znovu vytvoří, což může zpomalit příští spuštění.</value></data>
+  <data name="Emulation.Option.pokket.Link"><value>Infračervené propojení</value></data>
+  <data name="Emulation.Option.pokket.Layout"><value>Rozložení propojených obrazovek</value></data>
+  <data name="Emulation.Option.pokket.Audio"><value>Zdroj zvuku propojených jednotek</value></data>
+  <data name="Emulation.Option.pokket.Identity"><value>Hardwarový identifikátor jednotky B</value></data>
+  <data name="Emulation.Option.pokket.Horizontal"><value>Vedle sebe</value></data>
+  <data name="Emulation.Option.pokket.Vertical"><value>Nad sebou</value></data>
+  <data name="Emulation.Option.pokket.SelectUnitA"><value>Ovládat jednotku A</value></data>
+  <data name="Emulation.Option.pokket.SelectUnitB"><value>Ovládat jednotku B</value></data>
+  <data name="Emulation.Option.pokket.Help"><value>Vložte kartu do každé jednotky, abyste aktivovali infračervené propojení.</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_audio_format.Label"><value>Rozložení reproduktorů</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_audio_format.Help"><value>Nastaví rozložení reproduktorů dostupné hrám. Hra podle něj zvolí zvukový mix. Výstup závisí také na vybraném zvukovém zařízení Windows.</value></data>
 </root>

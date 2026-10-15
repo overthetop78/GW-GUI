@@ -299,4 +299,7 @@
   <data name="Emulation.Video.Parameter.ProjectionVignette"><value>Randverduistering</value></data>
   <data name="Emulation.Video.Projection.Group.Optics"><value>Optie en licht</value></data>
   <data name="Emulation.Video.Projection.Group.Screen"><value>Projectiescherm</value></data>
+  <data name="Emulation.Option.Common.Value.HardwareRendering"><value>Hardwarematige rendering</value></data>
+  <data name="Emulation.Option.Common.RenderingMode.Label"><value>Rendermodus</value></data>
+  <data name="Emulation.Option.Common.RenderingMode.Help"><value>Hardwarematige rendering gebruikt de voor de toepassing gekozen grafische API, als de emulator deze ondersteunt.</value></data>
 </root>

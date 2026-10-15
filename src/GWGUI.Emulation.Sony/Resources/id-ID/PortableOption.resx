@@ -26,14 +26,12 @@
   <data name="Emulation.Option.ppsspp.ppsspp_language.Value.11"><value>Cina Tradisional</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_language.Value.12"><value>Cina Disederhanakan</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_psp_model.Label"><value>Model PSP</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_backend.Label"><value>Backend</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_backend.Help"><value>'Otomatis' akan menggunakan penggerak video di depan. Inti</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_software_rendering.Label"><value>Rendering Perangkat Lunak</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_software_rendering.Help"><value>Lambat, akurat. Inti</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_software_rendering.Help"><value>Gunakan perenderan perangkat lunak untuk meningkatkan akurasi dengan kebutuhan daya pemrosesan yang lebih tinggi.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_internal_resolution.Label"><value>Resolusi Rendering</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_internal_resolution.Help"><value>Pilih resolusi render internal.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_mulitsample_level.Label"><value>Antialias MSAA</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_mulitsample_level.Help"><value>Vulkan saja. Inti</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_mulitsample_level.Help"><value>Terapkan penghalusan tepi MSAA dengan Vulkan.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_cropto16x9.Label"><value>Potong ke 16x9</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_cropto16x9.Help"><value>Potong bagian atas dan bawah tepi untuk mendapatkan gambar 16: 9.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_frameskip.Label"><value>Frameskip</value></data>
@@ -46,7 +44,7 @@
   <data name="Emulation.Option.ppsspp.ppsspp_detect_vsync_swap_interval.Label"><value>Deteksi Perubahan Laju Bingkai</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_detect_vsync_swap_interval.Help"><value>Beritahu frontend.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Label"><value>Perintah Grafis Buffer</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Help"><value>GL / Vulkan saja, lambat, kurang lag, restart.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Help"><value>GL / Vulkan saja, lambat, kurang lag.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Value.0"><value>Tidak ada buffer</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Value.1"><value>Sampai 1</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_button_preference.Label"><value>Tombol Konfirmasi</value></data>

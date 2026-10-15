@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Sony.Emulators.Common.Constants;
 using AnisotropicFiltering = GWGUI.Emulation.Sony.Emulators.Pcee2.Enums.AnisotropicFiltering;
 using AspectRatio = GWGUI.Emulation.Sony.Emulators.Pcee2.Enums.AspectRatio;
 using AudioBufferMs = GWGUI.Emulation.Sony.Emulators.Pcee2.Enums.AudioBufferMs;
@@ -30,13 +31,19 @@ internal static class OptionCatalog
             new(ToggleValueFunctions.ToNative(EmulationToggleState.Enabled, ToggleValueConstants.Enabled, ToggleValueConstants.Disabled), OptionValueResourceConstants.EnabledLabelResource),
             new(ToggleValueFunctions.ToNative(EmulationToggleState.Disabled, ToggleValueConstants.Enabled, ToggleValueConstants.Disabled), OptionValueResourceConstants.DisabledLabelResource),
         ], Tab: EmulationMachineTab.General, RequiresRestart: true),
-        new(OptionConstants.RendererKey, OptionConstants.RendererLabelResource, OptionConstants.RendererHelpResource, null,
+        new(OptionConstants.RendererKey, GraphicsSettingsConstants.ModeLabel, GraphicsSettingsConstants.ModeHelp, null,
             OptionConstants.RendererDefaultValue, OptionConstants.RendererDefaultValue,
         [
             new(OptionValueFunctions.ToNative(Renderer.Vulkan), HardwareRenderConstants.VulkanApiName),
             new(OptionValueFunctions.ToNative(Renderer.Opengl), OptionValueResourceConstants.OpenGLHardwareLabelResource),
             new(OptionValueFunctions.ToNative(Renderer.Software), OptionValueResourceConstants.SoftwareLabelResource),
-        ], IsVisible: true, Tab: EmulationMachineTab.Video, RequiresRestart: true),
+        ], IsVisible: true, Tab: EmulationMachineTab.Video, RequiresRestart: true,
+            GraphicsApiValues: new Dictionary<EmulationGraphicsApi, string>
+            {
+                [EmulationGraphicsApi.Automatic] = OptionConstants.RendererVulkan,
+                [EmulationGraphicsApi.Vulkan] = OptionConstants.RendererVulkan,
+                [EmulationGraphicsApi.OpenGL] = OptionConstants.RendererOpengl
+            }, RetainedRendererValues: [OptionConstants.RendererSoftware]),
         new(OptionConstants.UpscaleMultiplierKey, OptionConstants.UpscaleMultiplierLabelResource, OptionConstants.UpscaleMultiplierHelpResource, null,
             OptionConstants.UpscaleMultiplierDefaultValue, OptionConstants.UpscaleMultiplierDefaultValue, NumericOptionValueFunctions.Choices(OptionConstants.UpscaleMultiplierRanges, OptionNumericConstants.IntegerFormat),
             Tab: EmulationMachineTab.Video, RequiresRestart: false),
@@ -106,7 +113,8 @@ internal static class OptionCatalog
             new(OptionValueFunctions.ToNative(CasMode.Disabled), OptionValueResourceConstants.DisabledLabelResource),
             new(OptionValueFunctions.ToNative(CasMode.Sharpen), OptionValueResourceConstants.SharpenOnlyLabelResource),
         ], IsVisible: true, Tab: EmulationMachineTab.Video, RequiresRestart: false),
-        new(OptionConstants.AudioBufferMsKey, OptionConstants.AudioBufferMsLabelResource, OptionConstants.AudioBufferMsHelpResource, null,
+        new(OptionConstants.AudioBufferMsKey, SettingsDescriptionFunctionsConstants.ResourceAudioLatency,
+            "Emulation.Help.Audio.Latency.Short", null,
             OptionConstants.AudioBufferMsDefaultValue, OptionConstants.AudioBufferMsDefaultValue,
         [
             new(OptionValueFunctions.ToNative(AudioBufferMs._50), OptionConstants.AudioBufferMs50DisplayName),
@@ -114,7 +122,7 @@ internal static class OptionCatalog
             new(OptionValueFunctions.ToNative(AudioBufferMs._100), OptionConstants.AudioBufferMs100DisplayName),
             new(OptionValueFunctions.ToNative(AudioBufferMs._150), OptionConstants.AudioBufferMs150DisplayName),
             new(OptionValueFunctions.ToNative(AudioBufferMs._200), OptionConstants.AudioBufferMs200DisplayName),
-        ], IsVisible: true, Tab: EmulationMachineTab.Audio, RequiresRestart: false),
+        ], IsVisible: false, CategorizedDescription: "Emulation.Help.Audio.Latency.Detailed", Tab: EmulationMachineTab.Audio, RequiresRestart: false),
         new(OptionConstants.FrameLimiterKey, OptionConstants.FrameLimiterLabelResource, OptionConstants.FrameLimiterHelpResource, null,
             OptionConstants.FrameLimiterDefaultValue, OptionConstants.FrameLimiterDefaultValue,
         [

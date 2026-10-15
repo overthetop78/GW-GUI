@@ -4,10 +4,6 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Sony.Help.Audio.Enabled.Detailed"><value>يتحكم في ما إذا كان GW GUI يلعب العينات الصوتية المتولدة عن المرشد.</value></data>
-  <data name="Emulation.Sony.Help.Audio.Enabled.Short"><value>صوت محاكاة أو غير قابل للتحلل.</value></data>
-  <data name="Emulation.Sony.Help.Audio.Output.Detailed"><value>اختر جهاز (ويندوز) الذي يعزف الصوت من هذه الآلة المحاكاة</value></data>
-  <data name="Emulation.Sony.Help.Audio.Output.Short"><value>الناتج الصوتي الذي تستخدمه شركة GW GUI.</value></data>
   <data name="Emulation.Sony.Help.Cpu.Frequency.Detailed"><value>يُظهر تواتر الساعة الاسمية للمعالج في آلة مختارة من طراز Sony.</value></data>
   <data name="Emulation.Sony.Help.Cpu.Frequency.Short"><value>تواتر الساعة الأصلي.</value></data>
   <data name="Emulation.Sony.Help.Cpu.Model.Detailed"><value>يُظهر نموذج المعالج الذي توفره آلة Sony المختارة.</value></data>
@@ -22,8 +18,8 @@
   <data name="Emulation.Sony.Help.Memory.Ram.Short"><value>كمية RAM المتاحة للآلة المحاكاة.</value></data>
   <data name="Emulation.Sony.Help.Cpu.EffectiveFrequency.Short"><value>تواتر الطورائ CPU بعد تطبيق النسبة المئوية للساعة المختارة.</value></data>
   <data name="Emulation.Sony.Help.Cpu.EffectiveFrequency.Detailed"><value>وتضاعف تواتر الائتمان الاسمي بنسبة مئوية مختارة. هذا يغير المعالج المحوسب وليس المجهز المضيف القيم العليا يمكن أن تقلل من التباطؤ ولكن قد تكسر توقيت اللعبة. التلقائية تستخدم التخلف عن الدفع</value></data>
-  <data name="Emulation.Sony.Help.Video.Chip.Short"><value>رقائق الفيديو الأصلية التي استعملت من قبل PlayStation</value></data>
-  <data name="Emulation.Sony.Help.Video.Chip.Detailed"><value>The listed Sony GPUرقائقتختلف بتنقيح اللوحة الأم. وتتحكم الخيارات الداخلية في كيفية إنتاج المرشد الجيولوجيا والبيكسلزات. GW GUI مرشّح الصور المُنجزة بعد ذلك.</value></data>
-  <data name="Emulation.Sony.Help.Audio.Chip.Short"><value>الرقائق الصوتية الأصلية التي استخدمت من قبل تنقيحات معدات PlayStation.</value></data>
-  <data name="Emulation.Sony.Help.Audio.Chip.Detailed"><value>The Sony SPU الأصوات الصوتية والرموز العينات المضغوطة. الرقائق المدرجة تتباين مع تنقيح اللوحة الأم. مخرج الصوت وجهاز التحكم بالطوارئ على حاسوبك</value></data>
+  <data name="Emulation.Sony.Help.Video.Chip.Short"><value>عتاد الرسومات الأصلي للجهاز المحدد.</value></data>
+  <data name="Emulation.Sony.Help.Video.Chip.Detailed"><value>يعرض عتاد الرسومات الأصلي للجهاز المحدد. تغيّر إعدادات التصيير في المحاكي الصورة الناتجة. تُطبَّق مرشحات GW GUI بعد ذلك.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Chip.Short"><value>عتاد الصوت الأصلي للجهاز المحدد.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Chip.Detailed"><value>يعرض عتاد الصوت الأصلي للجهاز المحدد. تتحكم إعدادات إخراج الصوت وزمن التأخير في تشغيل الصوت على حاسوبك.</value></data>
 </root>

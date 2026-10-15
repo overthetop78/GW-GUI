@@ -419,10 +419,10 @@
   <data name="Emulation.Option.flycast.reicast_volume_modifier_enable.Value.disabled"><value>Ei käytössä</value></data>
   <data name="Emulation.Option.flycast.reicast_volume_modifier_enable.Value.enabled"><value>Käytössä</value></data>
   <data name="Emulation.Option.flycast.reicast_anisotropic_filtering"><value>Anisotrooppinen suodatus</value></data>
-  <data name="Emulation.Option.flycast.reicast_anisotropic_filtering.Description"><value>Paranna tekstuurien laatua pinnoilla, jotka ovat vinossa katselukulmat suhteessa kameraan. Korkeammat arvot ovat vaativampia GPU. Muutoksia tähän asetukseen sovelletaan vasta uudelleenkäynnistyksen jälkeen.</value></data>
+  <data name="Emulation.Option.flycast.reicast_anisotropic_filtering.Description"><value>Paranna tekstuurien laatua pinnoilla.</value></data>
   <data name="Emulation.Option.flycast.reicast_anisotropic_filtering.Value.off"><value>Ei käytössä</value></data>
   <data name="Emulation.Option.flycast.reicast_texture_filtering"><value>Tekstuurisuodatus</value></data>
-  <data name="Emulation.Option.flycast.reicast_texture_filtering.Description"><value>Tekstuurisuodatustila. Tätä voidaan käyttää tietyn tekstuurin suodatustilan pakottamiseen kaikille teksteille, jotta saadaan oletusta parempi (tai sileämpi) ulkonäkö. Muut arvot kuin oletus voivat aiheuttaa erilaisia renderointiongelmia. Muutokset tähän asetukseen koskevat vain uudelleenkäynnistyksen jälkeen.</value></data>
+  <data name="Emulation.Option.flycast.reicast_texture_filtering.Description"><value>Tekstuurisuodatustila. Tätä voidaan käyttää tietyn tekstuurin suodatustilan pakottamiseen kaikille teksteille.</value></data>
   <data name="Emulation.Option.flycast.reicast_texture_filtering.Value.0"><value>Oletus</value></data>
   <data name="Emulation.Option.flycast.reicast_texture_filtering.Value.1"><value>Voima Lähin naapuri</value></data>
   <data name="Emulation.Option.flycast.reicast_texture_filtering.Value.2"><value>Pakota Linear</value></data>
@@ -1466,11 +1466,11 @@
   <data name="Emulation.Option.genesis_plus_gx_wide.genesis_plus_gx_wide_sms_fm_channel_8_volume.Description"><value>Pienennä määrä Master System FM Kanava 8.</value></data>
   <data name="Emulation.Emulator.kronos.Description"><value>Emuloi Saturn, ST-V.</value></data>
   <data name="Emulation.Option.kronos.kronos_force_hle_bios"><value>Voima HLE BIOS</value></data>
-  <data name="Emulation.Option.kronos.kronos_force_hle_bios.Description"><value>Käytä omalla riskillä, tarjoamme vain tukea todellinen BIOS. Se vaatii uudelleenkäynnistystä.</value></data>
+  <data name="Emulation.Option.kronos.kronos_force_hle_bios.Description"><value>Käytä omalla riskillä.</value></data>
   <data name="Emulation.Option.kronos.kronos_force_hle_bios.Value.disabled"><value>Ei käytössä</value></data>
   <data name="Emulation.Option.kronos.kronos_force_hle_bios.Value.enabled"><value>Käytössä</value></data>
   <data name="Emulation.Option.kronos.kronos_videoformattype"><value>Videomuoto</value></data>
-  <data name="Emulation.Option.kronos.kronos_videoformattype.Description"><value>Valitse tulosteen videomuoto. Vaaditaan uudelleenkäynnistys.</value></data>
+  <data name="Emulation.Option.kronos.kronos_videoformattype.Description"><value>Valitse tulosteen videomuoto.</value></data>
   <data name="Emulation.Option.kronos.kronos_videoformattype.Value.auto"><value>Automaattinen</value></data>
   <data name="Emulation.Option.kronos.kronos_skipframe"><value>Frameskip</value></data>
   <data name="Emulation.Option.kronos.kronos_skipframe.Description"><value>Ohita X-ramien renderointi X+1</value></data>
@@ -1544,7 +1544,7 @@
   <data name="Emulation.Option.kronos.kronos_stv_favorite_region.Value.JP"><value>JP</value></data>
   <data name="Emulation.Option.kronos.kronos_stv_favorite_region.Value.TW"><value>TW</value></data>
   <data name="Emulation.Option.kronos.kronos_language_id"><value>Bios-kieli</value></data>
-  <data name="Emulation.Option.kronos.kronos_language_id.Description"><value>Valitse suosikki kieli, kääntää joitakin pelejä. Vaatii uudelleenkäynnistystä.</value></data>
+  <data name="Emulation.Option.kronos.kronos_language_id.Description"><value>Valitse suosikki kieli.</value></data>
   <data name="Emulation.Option.kronos.kronos_language_id.Value.English"><value>englanti</value></data>
   <data name="Emulation.Option.kronos.kronos_language_id.Value.German"><value>saksa</value></data>
   <data name="Emulation.Option.kronos.kronos_language_id.Value.French"><value>ranska</value></data>
@@ -1844,7 +1844,7 @@
   <data name="Emulation.Option.supermodel.supermodel_initial_nvram_setup.Value.enabled"><value>Käytössä</value></data>
   <data name="Emulation.Option.supermodel.supermodel_initial_nvram_setup.Value.disabled"><value>Ei käytössä</value></data>
   <data name="Emulation.Option.supermodel.supermodel_network_board"><value>Verkkolautakunta</value></data>
-  <data name="Emulation.Option.supermodel.supermodel_network_board.Description"><value>Yhdistä Model 3 verkkolauta, joka vastaa erillistä verkkoasetusta. Jotkut pelit paljastavat verkkotehtävänsä Service Menussa vain, kun aluksella on yhteys. Vaaditaan sisällön uudelleenkäynnistys. Kokeellinen linkitetty pelata kautta RetroArch Netplay on saatavilla Daytona USA 2, Dirt Devils, Harley-Davidson, Le Mans 24, Scud Race, Sega Rally 2, Ski Champ, Spikeout, Spikiout Final Edition ja Virtuaali 2 perhettä.</value></data>
+  <data name="Emulation.Option.supermodel.supermodel_network_board.Description"><value>Yhdistä Model 3 verkkolauta, joka vastaa erillistä verkkoasetusta. Jotkut pelit paljastavat verkkotehtävänsä Service Menussa vain, kun aluksella on yhteys. Kokeellinen linkitetty pelata kautta RetroArch Netplay on saatavilla Daytona USA 2, Dirt Devils, Harley-Davidson, Le Mans 24, Scud Race, Sega Rally 2, Ski Champ, Spikeout, Spikiout Final Edition ja Virtuaali 2 perhettä.</value></data>
   <data name="Emulation.Option.supermodel.supermodel_network_board.Value.enabled"><value>Käytössä</value></data>
   <data name="Emulation.Option.supermodel.supermodel_network_board.Value.disabled"><value>Ei käytössä</value></data>
   <data name="Emulation.Option.supermodel.supermodel_network_cabinets"><value>Linkit kaappiin</value></data>
@@ -1865,7 +1865,7 @@
   <data name="Emulation.Option.supermodel.supermodel_network_cabinets.Value.15"><value>15 kaappia</value></data>
   <data name="Emulation.Option.supermodel.supermodel_network_cabinets.Value.16"><value>16 Kaapit</value></data>
   <data name="Emulation.Option.supermodel.supermodel_nvram_settings"><value>NVRAM Asetukset</value></data>
-  <data name="Emulation.Option.supermodel.supermodel_nvram_settings.Description"><value>Anna RetroArch hallita tuettu NVRAM asetukset jokaiselle pelille. Kun käytössä, jokainen näytöllinen arvo käytetään käynnistettäessä ja ohittaa myöhemmät Service Menu muuttuu. Kun käytöstä, ydin ei muuta näitä kenttiä. Muille peleille tallennettuja asetuksia ei koskaan käytetä uudelleen. Käynnistä sisältö uudelleen sovellettavaksi.</value></data>
+  <data name="Emulation.Option.supermodel.supermodel_nvram_settings.Description"><value>Anna RetroArch hallita tuettu NVRAM asetukset jokaiselle pelille. Kun käytössä, jokainen näytöllinen arvo käytetään käynnistettäessä ja ohittaa myöhemmät Service Menu muuttuu. Kun käytöstä.</value></data>
   <data name="Emulation.Option.supermodel.supermodel_nvram_settings.Value.disabled"><value>Ei käytössä</value></data>
   <data name="Emulation.Option.supermodel.supermodel_nvram_settings.Value.enabled"><value>Käytössä</value></data>
   <data name="Emulation.Option.supermodel.supermodel_nvram_bassdx_country"><value>Maa</value></data>
@@ -3150,7 +3150,7 @@
   <data name="Emulation.Option.supermodel.supermodel_crt_colors.Value.4"><value>BT.601 525/D65 (USA)</value></data>
   <data name="Emulation.Option.supermodel.supermodel_crt_colors.Value.5"><value>BT.601 625/D65 (Eurooppa/Australia)</value></data>
   <data name="Emulation.Option.supermodel.supermodel_supersampling"><value>Supernäytteenotto</value></data>
-  <data name="Emulation.Option.supermodel.supermodel_supersampling.Description"><value>Renderöi jokainen lähtöpikseli useista sisäisistä näytteistä käyttäen Supermodel's natiivi supersampling pass. Asteikko pätee päälle sisäisen resoluution: 2x käyttää 4 näytettä per pikseli, 3x käyttää 9, ja 8x käyttää 64. Korkeammat arvot voivat vaatia huomattavia GPU aikaa ja muistia. Se vaikuttaa sisällön uudelleen käynnistämisen jälkeen.</value></data>
+  <data name="Emulation.Option.supermodel.supermodel_supersampling.Description"><value>Renderöi jokainen lähtöpikseli useista sisäisistä näytteistä käyttäen Supermodel's natiivi supersampling pass. Asteikko pätee päälle sisäisen resoluution: 2x käyttää 4 näytettä per pikseli, 3x käyttää 9.</value></data>
   <data name="Emulation.Option.supermodel.supermodel_supersampling.Value.1"><value>1x (pois käytöstä, oletus)</value></data>
   <data name="Emulation.Option.supermodel.supermodel_supersampling.Value.2"><value>2x (4 näytettä)</value></data>
   <data name="Emulation.Option.supermodel.supermodel_supersampling.Value.3"><value>3x (9 näytettä)</value></data>
@@ -3164,7 +3164,7 @@
   <data name="Emulation.Option.supermodel.supermodel_timing_overlay.Value.disabled"><value>Ei käytössä</value></data>
   <data name="Emulation.Option.supermodel.supermodel_timing_overlay.Value.enabled"><value>Käytössä</value></data>
   <data name="Emulation.Option.supermodel.supermodel_upscale_mode"><value>2D Layer suurennussuodin</value></data>
-  <data name="Emulation.Option.supermodel.supermodel_upscale_mode.Description"><value>Valitse alkuasukas Supermodel Suodatin, jota käytetään sisätilojen 2D-laattakerrosten suurentamiseen ennen kuin ne yhdistetään 3:eenD. Natiiviresoluutio Supermodel Käyttää aina Lähin. Se vaikuttaa sisällön uudelleen käynnistämisen jälkeen.</value></data>
+  <data name="Emulation.Option.supermodel.supermodel_upscale_mode.Description"><value>Valitse alkuasukas Supermodel Suodatin.</value></data>
   <data name="Emulation.Option.supermodel.supermodel_upscale_mode.Value.0"><value>Lähin</value></data>
   <data name="Emulation.Option.supermodel.supermodel_upscale_mode.Value.1"><value>Bikintti</value></data>
   <data name="Emulation.Option.supermodel.supermodel_upscale_mode.Value.2"><value>bilineaarinen (Default)</value></data>
@@ -3175,7 +3175,7 @@
   <data name="Emulation.Option.supermodel.supermodel_wide_screen.Value.enabled"><value>Käytössä</value></data>
   <data name="Emulation.Option.supermodel.supermodel_wide_screen.Value.wide_background"><value>Laajakuva + laaja tausta</value></data>
   <data name="Emulation.Option.supermodel.supermodel_no_white_flash"><value>Poista valkoinen salama käytöstä</value></data>
-  <data name="Emulation.Option.supermodel.supermodel_no_white_flash.Description"><value>Paina valkoinen flash yleensä näkyy, kun peli poistaa 3D renderöinti. SupermodelNoWhiteFlash-asetus vaatii sisällön uudelleenkäynnistystä.</value></data>
+  <data name="Emulation.Option.supermodel.supermodel_no_white_flash.Description"><value>Paina valkoinen flash yleensä näkyy.</value></data>
   <data name="Emulation.Option.supermodel.supermodel_no_white_flash.Value.disabled"><value>Ei käytössä</value></data>
   <data name="Emulation.Option.supermodel.supermodel_no_white_flash.Value.enabled"><value>Käytössä</value></data>
   <data name="Emulation.Option.supermodel.supermodel_av_timing"><value>Model 3 Ajoitustila</value></data>
@@ -3227,7 +3227,7 @@
   <data name="Emulation.Option.supermodel.supermodel_brake_output_range.Description"><value>Soveltaa vain pelejä tunnustettu Drive. Skaalaa jarru sen nolla lepoasentoon. Arvot alle 100% vähentää suurin emulgoitu poljin lähtö; arvot yli 100% saavuttaa täyden ulostulon vähemmän fyysinen liipaisimella.</value></data>
   <data name="Emulation.Option.supermodel.supermodel_brake_output_range.Value.75.3"><value>75.3% (00-C0)</value></data>
   <data name="Emulation.Option.supermodel.supermodel_sound_enable"><value>Ääni käytössä</value></data>
-  <data name="Emulation.Option.supermodel.supermodel_sound_enable.Description"><value>Ota käyttöön tai poista ääniemulointi. Sammutusääni voi parantaa merkittävästi suorituskykyä hidas laitteisto. Se vaikuttaa sisällön uudelleen käynnistämisen jälkeen.</value></data>
+  <data name="Emulation.Option.supermodel.supermodel_sound_enable.Description"><value>Ota käyttöön tai poista ääniemulointi. Sammutusääni voi parantaa merkittävästi suorituskykyä hidas laitteisto.</value></data>
   <data name="Emulation.Option.supermodel.supermodel_sound_enable.Value.enabled"><value>Käytössä</value></data>
   <data name="Emulation.Option.supermodel.supermodel_sound_enable.Value.disabled"><value>Ei käytössä</value></data>
   <data name="Emulation.Option.supermodel.supermodel_sound_volume"><value>Äänimäärä</value></data>
@@ -3248,7 +3248,7 @@
   <data name="Emulation.Option.supermodel.supermodel_ppc_frequency.Description"><value>Säädä tehoPC:tä CPU Taajuus kaupan syklin tarkkuus suorituskykyä alhainen-loppu laitteisto. "Auto" seuraa pelin askeleella (66/100 /166 MHz): Stepping 2.x peli, kuten Daytona 2 toimii 166 MHz, joka on yli kaksi kertaa CPU työ 70 MHz. Underclocking on suurin yksittäinen suorituskyvyn vipu heikko laitteisto, kustannuksella syklin tarkkuus.</value></data>
   <data name="Emulation.Option.supermodel.supermodel_ppc_frequency.Value.auto"><value>Auto (Ohjaus)</value></data>
   <data name="Emulation.Option.supermodel.supermodel_emulation_threading"><value>Emulsio sähke</value></data>
-  <data name="Emulation.Option.supermodel.supermodel_emulation_threading.Description"><value>Valitse tapa Supermodel jakaa emulgointi työtä isännän välillä CPU langat. Monikierretty ajaa työväen säikeiden ääni- ja vetolevyjä; monisäikeinen + GPU PowerPC-emulointi on myös päällekkäin grafiikankäsittelyn kanssa. Tämä ei riipu RetroArchin Threaded Video-asetuksesta. Aloita sisältö uudelleen.</value></data>
+  <data name="Emulation.Option.supermodel.supermodel_emulation_threading.Description"><value>Valitse tapa Supermodel jakaa emulgointi työtä isännän välillä CPU langat. Monikierretty ajaa työväen säikeiden ääni- ja vetolevyjä.</value></data>
   <data name="Emulation.Option.supermodel.supermodel_emulation_threading.Value.single"><value>Yksi säike</value></data>
   <data name="Emulation.Option.supermodel.supermodel_emulation_threading.Value.multi"><value>muut, poikkileikkauksen suurin mitta enintään 1 mm</value></data>
   <data name="Emulation.Option.supermodel.supermodel_emulation_threading.Value.multi_gpu"><value>muut, poikkileikkauksen suurin mitta enintään 1 mm GPU (Varaus)</value></data>

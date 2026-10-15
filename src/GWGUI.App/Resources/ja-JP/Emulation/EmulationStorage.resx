@@ -80,4 +80,6 @@
   <data name="Emulation.Storage.MemoryCard.ImageRequired"><value>既存のカードファイルを選択します。</value></data>
   <data name="Emulation.Storage.MemoryCard.InvalidSize"><value>カードファイルが無効なサイズです。</value></data>
   <data name="Emulation.Storage.MemoryCard.InvalidFormat"><value>このデバイスでサポートされているファイル形式を選択します。</value></data>
+  <data name="Emulation.Storage.Cache.Unlimited"><value>無制限</value></data>
+  <data name="Emulation.Storage.Cache.ClearOnGameClose"><value>ゲーム終了時に消去</value></data>
 </root>

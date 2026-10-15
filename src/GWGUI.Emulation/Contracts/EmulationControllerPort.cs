@@ -9,5 +9,6 @@ public sealed record EmulationControllerPort(
     int DeadZonePercent = 0,
     string? VisualId = null)
 {
+    public string? DisplayName { get; init; }
     public IReadOnlyDictionary<string, EmulationControllerOutputBinding> OutputBindings { get; init; } = new Dictionary<string, EmulationControllerOutputBinding>();
 }

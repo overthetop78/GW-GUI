@@ -299,4 +299,7 @@
   <data name="Emulation.Video.Parameter.ProjectionVignette"><value>Randverdunkelung</value></data>
   <data name="Emulation.Video.Projection.Group.Optics"><value>Optik und Licht</value></data>
   <data name="Emulation.Video.Projection.Group.Screen"><value>Projektionsschirm</value></data>
+  <data name="Emulation.Option.Common.Value.HardwareRendering"><value>Hardware-Rendering</value></data>
+  <data name="Emulation.Option.Common.RenderingMode.Label"><value>Rendermodus</value></data>
+  <data name="Emulation.Option.Common.RenderingMode.Help"><value>Das Hardware-Rendering verwendet die für die Anwendung ausgewählte Grafik-API, sofern der Emulator sie unterstützt.</value></data>
 </root>

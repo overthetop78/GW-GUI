@@ -3,7 +3,7 @@
   "id": "fairchild",
   "entryAssembly": "gwgui.emulation.fairchild.dll",
   "moduleVersion": "1.0.0",
-  "hostApiMinimum": "1.0",
-  "hostApiMaximum": "1.1",
+  "hostApiMinimum": "1.2",
+  "hostApiMaximum": "1.2",
   "updateCatalogUrl": "https://github.com/overthetop78/GW-GUI/releases/download/module-fairchild-catalog/update-catalog.json"
 }

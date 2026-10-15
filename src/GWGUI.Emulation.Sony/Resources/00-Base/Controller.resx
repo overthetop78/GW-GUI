@@ -14,6 +14,7 @@
   <data name="Emulation.Sony.Controller.PlayStationMouse"><value>PlayStation Mouse</value></data>
   <data name="Emulation.Sony.Controller.PlayStationMultitap"><value>PlayStation Multitap</value></data>
   <data name="Emulation.Sony.Controller.PlayStation2DualShock2"><value>DUALSHOCK 2</value></data>
+  <data name="Emulation.Sony.Controller.PlayStation2GunCon2"><value>Namco GunCon 2</value></data>
   <data name="Emulation.Sony.Controller.PlayStation2Multitap"><value>PlayStation 2 Multitap</value></data>
   <data name="Emulation.Sony.Controller.PlayStation2EyeToy"><value>EyeToy</value></data>
   <data name="Emulation.Sony.Controller.PlayStation2SingStarMicrophones"><value>SingStar</value></data>

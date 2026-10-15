@@ -6,7 +6,7 @@
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Sega.Help.General.Model.Short"><value>Το μοντέλο μηχανής Sega διαμορφώνεται.</value></data>
   <data name="Emulation.Sega.Help.Memory.Ram.Short"><value>Ποσότητα της RAM που διατίθεται στην προσομοιωμένη μηχανή.</value></data>
-  <data name="Emulation.Sega.Help.Memory.Ram.Detailed"><value>Επιλέγει την επέκταση RAM που εκτίθεται από τον πυρήνα εξομοίωσης. Η μηχανή πρέπει να επανεκκινήσει πριν χρησιμοποιηθεί το νέο ποσό.</value></data>
+  <data name="Emulation.Sega.Help.Memory.Ram.Detailed"><value>Επιλέγει την επέκταση RAM που εκτίθεται από τον πυρήνα εξομοίωσης.</value></data>
   <data name="Emulation.Sega.Help.Firmware.Integrated.Short"><value>Το σύστημα ROM είναι ενσωματωμένο στον πυρήνα εξομοίωσης.</value></data>
   <data name="Emulation.Sega.Help.Firmware.Integrated.Detailed"><value>Ο πυρήνας εξομοίωσης παρέχει το σύστημα ROM εσωτερικά και δεν εκθέτει έναν επιλογέα αρχείων ROM.</value></data>
   <data name="Emulation.Sega.Help.General.Emulator.Short"><value>Ο εξομοιωτής επιλέχθηκε για αυτό το μηχάνημα.</value></data>

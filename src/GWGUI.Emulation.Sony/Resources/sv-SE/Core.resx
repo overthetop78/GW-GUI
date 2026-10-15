@@ -6,12 +6,12 @@
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Emulator.pcsx2.Description"><value>Emulerar PlayStation 2-system.</value></data>
   <data name="Emulation.Emulator.ppsspp.Description"><value>Emulerar PlayStation Portable-system.</value></data>
-  <data name="Emulation.Emulator.swanstation.Description"><value>Emulerar Sony PlayStation och PS one system.</value></data>
-  <data name="Emulation.Emulator.pokketstation.Description"><value>Emulerar Sony PocketStation handhållen med en extern BIOS och minneskort bilder.</value></data>
-  <data name="Emulation.Emulator.mednafen_psx.Description"><value>Emulerar PlayStation system med Beetle PSX programvara renderer.</value></data>
-  <data name="Emulation.Emulator.mednafen_psx_hw.Description"><value>Emulerar PlayStation system med Beetle PSX hårdvaruåtergivning.</value></data>
-  <data name="Emulation.Emulator.pcsx_rearmed.Description"><value>Emulerar PlayStation system med PCSX-ReARMed.</value></data>
-  <data name="Emulation.Emulator.pcee2.Description"><value>Emulerar PlayStation 2-system med PCEE2 och en extern BIOS.</value></data>
-  <data name="Emulation.Emulator.play.Description"><value>Emulerar PlayStation 2-system med Play! och dess integrerade system firmware emulering.</value></data>
-  <data name="Emulation.Emulator.rpcs3.Description"><value>Emulerar PlayStation 3-system med RPCS3 och extern system firmware.</value></data>
+  <data name="Emulation.Emulator.swanstation.Description"><value>Emulerar Sony PlayStation / PS one-system.</value></data>
+  <data name="Emulation.Emulator.pokketstation.Description"><value>Emulerar den handhållna Sony PocketStation med ett externt BIOS och avbilder av minneskort.</value></data>
+  <data name="Emulation.Emulator.mednafen_psx.Description"><value>Emulerar PlayStation-system med programvarurenderaren i Beetle PSX.</value></data>
+  <data name="Emulation.Emulator.mednafen_psx_hw.Description"><value>Emulerar PlayStation-system med maskinvarurenderaren i Beetle PSX.</value></data>
+  <data name="Emulation.Emulator.pcsx_rearmed.Description"><value>Emulerar PlayStation-system med PCSX-ReARMed.</value></data>
+  <data name="Emulation.Emulator.pcee2.Description"><value>Emulerar PlayStation 2-system med PCEE2 och ett externt BIOS.</value></data>
+  <data name="Emulation.Emulator.play.Description"><value>Emulerar PlayStation 2-system med Play! och dess inbyggda emulering av systemets fasta programvara.</value></data>
+  <data name="Emulation.Emulator.rpcs3.Description"><value>Emulerar PlayStation 3-system med RPCS3 och extern fast systemprogramvara.</value></data>
 </root>

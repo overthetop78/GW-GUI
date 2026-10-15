@@ -80,4 +80,6 @@
   <data name="Emulation.Storage.MemoryCard.ImageRequired"><value>Selezionare un file di scheda esistente.</value></data>
   <data name="Emulation.Storage.MemoryCard.InvalidSize"><value>Il file della scheda ha una dimensione non valida.</value></data>
   <data name="Emulation.Storage.MemoryCard.InvalidFormat"><value>Scegli un formato di file supportato da questo dispositivo.</value></data>
+  <data name="Emulation.Storage.Cache.Unlimited"><value>Illimitata</value></data>
+  <data name="Emulation.Storage.Cache.ClearOnGameClose"><value>Svuota alla chiusura del gioco</value></data>
 </root>

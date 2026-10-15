@@ -35,7 +35,7 @@
   <data name="Emulation.Option.swanstation.swanstation_CDROM_ReadThread.Label"><value>CD-ROM Read Thread</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_ReadThread.Help"><value>CD-ROM sektörlerini tam anlamıyla okuyun, çerçeve zaman artışlarının riskini azaltır.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_LoadImagePatches.Label"><value>Görüntü Patches</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_CDROM_LoadImagePatches.Help"><value>Otomatik olarak aynı dizide mevcut olduğunda disk görüntüleri için yamalar uygulanır. Şu anda sadece PPF yamaları bu seçenekle destekleniyor. Uygulamaya yeniden başlamak için temelin değiştirilmesi gerekir.</value></data>
+  <data name="Emulation.Option.swanstation.swanstation_CDROM_LoadImagePatches.Help"><value>Otomatik olarak aynı dizide mevcut olduğunda disk görüntüleri için yamalar uygulanır. Şu anda sadece PPF yamaları bu seçenekle destekleniyor.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_LoadImageToRAM.Label"><value>Preload CD-ROM Image To Image to Image RAM</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_LoadImageToRAM.Help"><value>Emulation başlamadan önce disk görüntüyü RAM'a yükler. Bir ağ paylaşımını çalıştırırsanız, daha büyük bir başlangıç zamanından mal olabilir. libretro, overlays çekmenin bir yolunu sağladığı gibi, imge önceden yüklendiği zaman emülatör kilitlenecektir.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_PreCacheCHD.Label"><value>Pre-cache CHD Görüntüler To Images to Images RAM</value></data>
@@ -51,8 +51,6 @@
   <data name="Emulation.Option.Sony.Value.Interpreter"><value>Interpreter</value></data>
   <data name="Emulation.Option.Sony.Value.CachedInterpreter"><value>Cached Interpreter</value></data>
   <data name="Emulation.Option.Sony.Value.Recompiler"><value>Recompiler</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_GPU_Renderer.Label"><value>GPU</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_GPU_Renderer.Help"><value>GPU'yu taklit etmek için hangi filtreyi kullanın.</value></data>
   <data name="Emulation.Option.Sony.Value.HardwareOpenGL"><value>Donanım (OpenGL)</value></data>
   <data name="Emulation.Option.Sony.Value.Software"><value>Yazılım Software Software</value></data>
   <data name="Emulation.Option.swanstation.swanstation_GPU_ResolutionScale.Label"><value>İç Karar Ölçeği</value></data>
@@ -60,7 +58,7 @@
   <data name="Emulation.Option.swanstation.swanstation_GPU_UseThread.Label"><value>De ki:)</value></data>
   <data name="Emulation.Option.swanstation.swanstation_GPU_UseThread.Help"><value>Grafik çizim için ikinci bir iplik kullanın. Şu anda sadece yazılım sunucusu için kullanılabilir.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_GPU_UseSoftwareRendererForReadbacks.Label"><value>Readbacks için Software Renderer Kullanımı</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_GPU_UseSoftwareRendererForReadbacks.Help"><value>VRAM'dan görüntü verilerini okuduğunuzda donanımın yanı sıra yazılımları çalıştırın. Bazı oyunlar, hareket bulanık veya savaş geçişleri için buna ihtiyaç duyar ya da hasarlı dokuları düzeltmek gerekir. Bu seçeneği değiştirmeden sonra çekirdeğini yeniden başlatın.</value></data>
+  <data name="Emulation.Option.swanstation.swanstation_GPU_UseSoftwareRendererForReadbacks.Help"><value>VRAM'dan görüntü verilerini okuduğunuzda donanımın yanı sıra yazılımları çalıştırın. Bazı oyunlar.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_GPU_MSAA.Label"><value>Multisample Antialiasing</value></data>
   <data name="Emulation.Option.swanstation.swanstation_GPU_MSAA.Help"><value>3D nesneleri oluşturmak için multisample antialiasing kullanın. Karar ölçeğini artırmakla kıyasla daha düşük bir maliyetle poligonlarda jagged kenarlarını düzeltebilir, ancak bazı oyunlarda hataları ortaya çıkarmak için daha muhtemel olabilir.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_GPU_TrueColor.Label"><value>Tam renkli hassas</value></data>
@@ -141,7 +139,7 @@
   <data name="Emulation.Option.swanstation.swanstation_Display_LineEndOffset.Label"><value>Son görüntülenen çizginin sıralaması</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Display_LineEndOffset.Help"><value>Pads veya bitkileri görüntünün alt kısmından uzaklaştırır.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_MemoryCards_Card1Type.Label"><value>Memory Card 1 Type</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_MemoryCards_Card1Type.Help"><value>Slot için hafıza kartı formatını seçin 1. Değişen formatları değiştirirken çekirdeki yeniden başlatın. Paylaşılan kartlar ve iki ayrı kart seçeneği eski konfigürasyonlar için muhafaza edilir, ancak desteklenmez. Libretro formatı .srm dosyaları kullanır. Oyundan sonra verilen ayrı bir kart .mcd dosyaları kullanır. Bu iki format aynı verileri içerir. Onlar arasında dönüştürmek için, dosya uzatmasını değiştirin ve ek _1'yı çıkarın.</value></data>
+  <data name="Emulation.Option.swanstation.swanstation_MemoryCards_Card1Type.Help"><value>Slot için hafıza kartı formatını seçin 1. Paylaşılan kartlar ve iki ayrı kart seçeneği eski konfigürasyonlar için muhafaza edilir, ancak desteklenmez. Libretro formatı .srm dosyaları kullanır. Oyundan sonra verilen ayrı bir kart .mcd dosyaları kullanır. Bu iki format aynı verileri içerir. Onlar arasında dönüştürmek için, dosya uzatmasını değiştirin ve ek _1'yı çıkarın.</value></data>
   <data name="Emulation.Option.Sony.Value.LibretroDefault"><value>Libretro (Default)</value></data>
   <data name="Emulation.Option.Sony.Value.SharedBetweenAllGames"><value>Tüm Oyunlar arasında paylaşılan</value></data>
   <data name="Emulation.Option.Sony.Value.SeparateCardPerGameGameCode"><value>Ayrı Kart Game (Game Code)</value></data>
@@ -292,7 +290,7 @@
   <data name="Emulation.Option.mednafen_psx.beetle_psx_gte_overclock.Label"><value>GTE Over Hour</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_gte_overclock.Help"><value>GTE grafik ortaklarının her operasyonunu tek bir CPU döngüsünde yürütür. Bu, çerçeve oranını büyük ölçüde artırabilir ve GTE'yi ağır kullanan oyunlarda daha stabil hale getirebilir.</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_cd_access_method.Label"><value>CD Access Method</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_cd_access_method.Help"><value>Senkron erişim orijinal donanımı yeniden üretir. Asynchronous access, yavaş depolama ile cihazlarda durakları azaltabilir. Tüm disk görüntüyü RAM'a yükleyerek oyun sırasında yükleme süresini artırabilir, ancak gecikmeler başlatılır. Bu mod RAM sınırlı olduğunda sorunlara neden olabilir. Fiziksel diskler tüm görüntüyü yükleme yerine senkronizasyonlu erişim kullanır. Bu seçeneği değiştirdikten sonra yeniden başlayın.</value></data>
+  <data name="Emulation.Option.mednafen_psx.beetle_psx_cd_access_method.Help"><value>Senkron erişim orijinal donanımı yeniden üretir. Asynchronous access, yavaş depolama ile cihazlarda durakları azaltabilir. Tüm disk görüntüyü RAM'a yükleyerek oyun sırasında yükleme süresini artırabilir.</value></data>
   <data name="Emulation.Option.Sony.Value.Synchronous"><value>Senkron</value></data>
   <data name="Emulation.Option.Sony.Value.Asynchronous"><value>Asynchronous</value></data>
   <data name="Emulation.Option.Sony.Value.PreCache"><value>Pre-Cache</value></data>
@@ -443,7 +441,7 @@
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_gte_overclock.Label"><value>GTE Over Hour</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_gte_overclock.Help"><value>GTE grafik ortaklarının her operasyonunu tek bir CPU döngüsünde yürütür. Bu, çerçeve oranını büyük ölçüde artırabilir ve GTE'yi ağır kullanan oyunlarda daha stabil hale getirebilir.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_access_method.Label"><value>CD Access Method</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_access_method.Help"><value>Senkron erişim orijinal donanımı yeniden üretir. Asynchronous access, yavaş depolama ile cihazlarda durakları azaltabilir. Tüm disk görüntüyü RAM'a yükleyerek oyun sırasında yükleme süresini artırabilir, ancak gecikmeler başlatılır. Bu mod RAM sınırlı olduğunda sorunlara neden olabilir. Fiziksel diskler tüm görüntüyü yükleme yerine senkronizasyonlu erişim kullanır. Bu seçeneği değiştirdikten sonra yeniden başlayın.</value></data>
+  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_access_method.Help"><value>Senkron erişim orijinal donanımı yeniden üretir. Asynchronous access, yavaş depolama ile cihazlarda durakları azaltabilir. Tüm disk görüntüyü RAM'a yükleyerek oyun sırasında yükleme süresini artırabilir.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_fastload.Label"><value>CD Yükleniyor Hız</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_fastload.Help"><value>'2x (Native)'dan daha yüksek değerler, oyun yükleme zamanlarını büyük ölçüde azaltabilir, ancak zamanlama hatalarını tanıtabilir. Bazı oyunlar belirli bir değer üzerinde düzgün şekilde çalışmayabilir.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_skip_bios.Label"><value>Skip BIOS başlangıç animasyonu</value></data>
@@ -454,8 +452,6 @@
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_region.Help"><value>İçeriğin otomatik olarak tespit edilememesinde kullanılan geri dönüş bölgesini ayarlar (örneğin ham PS-X EXE dosyaları). Disk tabanlı oyunlar hala disk üzerinde gömülü bölgeyi kullanıyor.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_internal_resolution.Label"><value>İç GPU Çözümü</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_internal_resolution.Help"><value>“1x (Native)’den daha yüksek kararlar, artan performans gereksinimleri pahasına 3D modellerin sadakatini geliştirir. 2D elementler genellikle bu ayar tarafından etkilenmez.</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_renderer.Label"><value>Renderer</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_renderer.Help"><value>Görüntüyü nasıl çizeceğinizi seçin. Yazılım sunucusu en doğru olanıdır. Daha yüksek iç kararlarda çok daha fazla işleme gücüne ihtiyaç duyuyor. Donanım sunumu daha az doğru, ancak yüksek çözünürlüklerde daha hızlı ve grafikler iyileştirmelerini destekler. Otomatik donanım sunumu, uygulama tarafından kullanılan video sürücüsüne göre Vulkan veya OpenGL'yi seçer. Sürücü ne Vulkan'i destekliyorsa veya OpenGL 3.3, temel kullanım yazılımı yerine kullanır. Bu seçeneği değiştirmeden sonra çekirdeğini yeniden başlatın.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_renderer_software_fb.Label"><value>Software Framebuffer</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_renderer_software_fb.Help"><value>Donanım sunucusu oyunu gösterirken arka planda yazılım değiştiriciyi kullanın. Bu, hareketi FF7'de bulanık ve savaş geçişlerini doğru bir şekilde üretir. Engelli olduğunda, OpenGL bu etkiler ve Vulkan onları GPU'da çekiyor. Bu seçeneği ortadan kaldırmak hızı artırabilir ancak ciddi grafikler hatalarına da neden olabilir. Eminse etkinleştirin.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_color_format.Label"><value>Renk Biçimi</value></data>
@@ -770,9 +766,7 @@
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_nostalls.Label"><value>Engelliler CPU/GTE Stalls</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_nostalls.Help"><value>Bazı oyunların çok hızlı çalışmasına neden olacaktır. Hemen hemen tüm durumlarda engelli olmalıdır. Sadece yorumlayıcı.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_fast_boot.Label"><value>Hızlı Parmak</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_fast_boot.Help"><value>BIOS boot animasyonunu yazın. Yeniden başlamak gerekir.</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_renderer.Label"><value>Renderer</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_renderer.Help"><value>Donanım fileer API veya yazılım değiştirici. Yazılımdan geçiş uçta uygulanır; Donanım API'leri arasındaki geçiş, içerik yeniden başlatıldığında yürürlüğe girer.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_fast_boot.Help"><value>BIOS boot animasyonunu yazın.</value></data>
   <data name="Emulation.Option.Sony.Value.OpenGLHardware"><value>OpenGL (Hardware)</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_upscale_multiplier.Label"><value>İçsel Karar</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_upscale_multiplier.Help"><value>Donanım sunucusu için iç uygulama çözümü multiplier. Ayrıca çıkış çerçevesini ölçeklendirir. Uçucun üzerine uygulamalar.</value></data>
@@ -809,8 +803,6 @@
   <data name="Emulation.Option.pcee2.pcsx2_fxaa.Help"><value>Ucuz post-process anti-aliasing.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_cas_mode.Label"><value>Contrast Adaptive Sharping</value></data>
   <data name="Emulation.Option.Sony.Value.SharpenOnly"><value>Sharpen Only</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_audio_buffer_ms.Label"><value>Audio Buffer</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_audio_buffer_ms.Help"><value>Simülasyon ön uçun önünde ne kadar ses tutar. Daha fazlası, aksi takdirde seste bir mola olarak duyulacak bir tezgaha biniyorsa, her şeyi duyduğunuzdan önce bu kadar gecikme pahasına. PCSX2'ler kendi varsayılan 50 ms, bu da bir çerçeve çizen ön uçtan ziyade ses cihazı beslemeyi varsayıyor.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_frame_limiter.Label"><value>Frame Limiter</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_frame_limiter.Help"><value>Tam hız için emülatörü ne tutar. Frontend, arka plandaki sesin üstünden beslediği RetroArch'e giden pacing bırakıyor. İç, PCSX2'lerin yerine kendi limitlerini kullanır - beklemekte olan bir cihaz için, çünkü ses sürücüsü engellemeden ziyade kovalanır ve bu sürümün kendi hızı o zaman varyasyonu eşitsiz çerçeve pacing olarak ulaşır.</value></data>
   <data name="Emulation.Option.Sony.Value.FrontendRetroArch"><value>Frontend (RetroArch)</value></data>
@@ -821,13 +813,13 @@
   <data name="Emulation.Option.pcee2.pcsx2_aspect_ratio.Label"><value>Aspect Oranları</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_aspect_ratio.Help"><value>Otomatik raporlar 16:9 geniş ekran yamalar etkinleştirilirken, 4:3 Aksi takdirde.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_multitap.Label"><value>Multitap</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_multitap.Help"><value>Enable the multitap adaptörü for up to 8 denetleyicis. Oyuncu siparişi fiziksel yuvaları takip eder (port 1: 1A-1D, sonra port 2: 2A-2D). Yeniden başlatma önerilir.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_multitap.Help"><value>Enable the multitap adaptörü for up to 8 denetleyicis. Oyuncu siparişi fiziksel yuvaları takip eder (port 1: 1A-1D.</value></data>
   <data name="Emulation.Option.Sony.Value.Disabled2Players"><value>Disabled (2 oyuncu)</value></data>
   <data name="Emulation.Option.Sony.Value.Port15Players"><value>Port 1 (5 oyuncu)</value></data>
   <data name="Emulation.Option.Sony.Value.Port25Players"><value>Port 2 (5 oyuncu)</value></data>
   <data name="Emulation.Option.Sony.Value.BothPorts8Players"><value>Hem Ports (8 oyuncu)</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_lightgun.Label"><value>Lightgun (GunCon 2)</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_lightgun.Help"><value>Bir USB portunda bir Namco GunCon 2'yi taklit edin, öngeçmişin ışığıyla (veya fare eşleme kontrol portında) haritaladı. Yeniden başlamak gerekir.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_lightgun.Help"><value>Bir USB portunda bir Namco GunCon 2'yi taklit edin.</value></data>
   <data name="Emulation.Option.Sony.Value.USBPort1"><value>USB Port 1</value></data>
   <data name="Emulation.Option.Sony.Value.USBPort2"><value>USB Port 2</value></data>
   <data name="Emulation.Option.Sony.Value.BothPorts"><value>Her ikisi de Ports</value></data>
@@ -852,18 +844,18 @@
   <data name="Emulation.Option.pcee2.pcsx2_ee_cycle_skip.Label"><value>EE Bölüm Adı</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_ee_cycle_skip.Help"><value>EE at döngüleri yapın. Yüksek VU aktivitesi ile bazı oyunlara yardım edin, başkalarını kırın.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_cpu_recompiler.Label"><value>CPU Recompiler (JIT)</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_cpu_recompiler.Help"><value>Enable veya teşhis amaçlı rekompilasyon devre dışı bırakmak. Ne zaman etkinleştirilirse, EE, IOP, VU0 ve VU1 hızlı JIT recompilasyon kullanır. Bu varsayılandır. Engelli olduğunda, her CPU daha yavaş öğretim yorumu kullanır. Bu, JIT hatalarını teşhis etmeye yardımcı olur: hala recompilasyon engellileri ile meydana gelen bir kaza başka bir nedene sahiptir. Aşağıdaki dört bireysel CPU yalnızca bu master seçeneği etkinleştirildiği zaman geçerlidir. Bu seçeneği değiştirdikten sonra yeniden başlayın.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_cpu_recompiler.Help"><value>Enable veya teşhis amaçlı rekompilasyon devre dışı bırakmak. Ne zaman etkinleştirilirse, EE, IOP, VU0 ve VU1 hızlı JIT recompilasyon kullanır. Bu varsayılandır. Engelli olduğunda, her CPU daha yavaş öğretim yorumu kullanır. Bu.</value></data>
   <data name="Emulation.Option.Sony.Value.EnabledJITDefault"><value>Enabled (JIT, Varsayılan)</value></data>
   <data name="Emulation.Option.Sony.Value.DisabledInterpreter"><value>De ki:)</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_rec_ee.Label"><value>- EE Recompiler</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_rec_ee.Help"><value>Tanı. Sadece Emotion Engine (EE) diğerlerini terk ederken, rekompiler bir kazaya neden olan bisect'e geri döndü. Yeniden başlamak gerekir.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_rec_ee.Help"><value>Tanı. Sadece Emotion Engine (EE) diğerlerini terk ederken.</value></data>
   <data name="Emulation.Option.Sony.Value.EnabledDefault"><value>Enabled (Default)</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_rec_iop.Label"><value>- IOP Recompiler</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_rec_iop.Help"><value>Tanı. Sadece IOP (R3000) diğerlerini terk ederken, rekompiler bir kazaya neden olan bisect'e geri döndü. Yeniden başlamak gerekir.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_rec_iop.Help"><value>Tanı. Sadece IOP (R3000) diğerlerini terk ederken.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_rec_vu0.Label"><value>VU0 Recompiler</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_rec_vu0.Help"><value>Tanı. Sadece VU0 mikroVU dynarec diğerlerini terk ederken, rekompiler bir kazaya neden olan bisect'e geri döndü. Yeniden başlamak gerekir.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_rec_vu0.Help"><value>Tanı. Sadece VU0 mikroVU dynarec diğerlerini terk ederken.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_rec_vu1.Label"><value>VU1 Recompiler</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_rec_vu1.Help"><value>Tanı. Sadece VU1 mikroVU dynarec diğerlerini terk ederken, rekompiler bir kazaya neden olan bisect'e geri döndü. Yeniden başlamak gerekir.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_rec_vu1.Help"><value>Tanı. Sadece VU1 mikroVU dynarec diğerlerini terk ederken.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_memcard_slot1_enable.Label"><value>Slot 1 Enabled</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_memcard_slot1_enable.Help"><value>Slot 1 PS2 hafıza kartı kullanılabilir. Değişiklikler hemen içerik çalışırken uygulanır.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_memcard_slot2_enable.Label"><value>Slot 2 Enabled</value></data>
@@ -914,8 +906,6 @@
   <data name="Emulation.Option.Sony.Value.AllTimers"><value>Tüm Zamanlayıcılar</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_clocks_scale.Label"><value>Saatler Ölüyor</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_clocks_scale.Help"><value>PS3 saat hız yüzdesi.</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_renderer.Label"><value>Renderer</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_renderer.Help"><value>Vulkan ön uçtaki Vulkan cihazı ve her biri bir görüntü olarak bittiği çerçeveyi şekillendirir; Önde ise Vulkan video sürücüsünü çalıştırmıyorsa, çerçeve bunun yerine hafıza ile geri döndü. OpenGL doğrudan ön uçun AçıkGL bağlamına çizmektedir.</value></data>
   <data name="Emulation.Option.Sony.Value.NullNoVideo"><value>Null (No Video)</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_frame_limit.Label"><value>Frame Limit</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_frame_limit.Help"><value>En yüksek çerçeve oranı oyunu çalıştırabilir. Auto, VBlank Frekansı, RPCS3'da olduğu gibi; PS3 Yerli hızlar PS3 yolunda dönüyor; Devre dışı,PS3'nin yenilenmesini beklemeyen oyunlara izin veriyor.</value></data>
@@ -992,7 +982,7 @@
   <data name="Emulation.Option.rpcs3.rpcs3_driver_wakeup_delay.Label"><value>Sürücü Wake-Up Gecikme</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_driver_wakeup_delay.Help"><value>Sürücü mikrosaniyede gecikmeyi geciktirir. 0 varsayılan olarak RPCS3'da olduğu gibi; sadece bir oyun gerektiğinde yükseltir.</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_vblank_rate.Label"><value>VBlank Frekans</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_vblank_rate.Help"><value>PS3'ün Hz'deki yenileme oranı. Aynı zamanda temel, RetroArch'in yüklenmesi gereken çerçeve oranıdır; 60 FPS’nin üzerinde çalıştırılabilecek oyunlar bu hızlı yenilemelere ihtiyaç duyar.</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_vblank_rate.Help"><value>Öykünülen yenileme hızını ayarlar. Uyumluluk listesi modu, desteklenen oyunlarda bu hızı iki katına çıkarır.</value></data>
   <data name="Emulation.Option.Sony.Value.50HzPAL"><value>50 Hz (PAL)</value></data>
   <data name="Emulation.Option.Sony.Value.60HzNTSC"><value>60 Hz (NTSC)</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_thread_scheduler.Label"><value>Thread Scheduler</value></data>
@@ -1074,8 +1064,6 @@
   <data name="Emulation.Option.rpcs3.rpcs3_frame_pacing.Label"><value>Frame Pacing</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_frame_pacing.Help"><value>Oyunun çerçeveleri ne zaman tarafından yapılır. Emulator saat RPCS3'in kendi zamanlayıcısı, çünkü standalone RPCS3. RetroArch Oyuna bir tane verir PS3 çerçevede yenileme RetroArch Gösteriler, bu kadar hızlı ileri hızlar oyun yukarı ve oyun VBlank Frekansında çalışır RetroArch Birçok çerçevenin ikinci olduğunu gösterir; bununla birlikte Vulkan Şu anda çerçeveleri atlar.</value></data>
   <data name="Emulation.Option.Sony.Value.EmulatorClock"><value>Zamanlayıcı Saatler</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_savedata_slot.Label"><value>Data Slot Kaydet</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_savedata_slot.Help"><value>Bir PS3 oyunu, tasarruf verilerinin bir listesini gösteriyor ve oyuncu seçmesine izin veriyor. 'Pick'in oyun resminde bu listeyi gösterir, kontrol ile kullanılır. Bir sayı sizin için temel seçimine sahiptir: Oyunun listesindeki bu pozisyondan tasarruf etmek veya liste daha kısa olduğunda yeni bir kurtarma yapmak; Bu pozisyondaki girişi yüklemek ve listenin en kısa sürede hiçbir şey bulmak. 0 is the first entry. Kendilerinden tek tasarruf eden oyunlar bir liste göstermiyor, bu yüzden onlara uygulanmaz.</value></data>
   <data name="Emulation.Option.Sony.Value.PickFromList"><value>Listeden Alın</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_master_volume.Label"><value>Master Volume Master</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_master_volume.Help"><value>Master audio volume yüzdesi.</value></data>
@@ -1233,7 +1221,7 @@
   <data name="Emulation.Option.Sony.Value.MergeTargets"><value>Merge give hedefler</value></data>
   <data name="Emulation.Option.Sony.Setting.DisableDepthConversion.Label"><value>Disable derinlik-buffer Dönüşüm</value></data>
   <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Label"><value>Dış OyunIndex Database</value></data>
-  <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Help"><value>Donanımlı ve manuel bir uygulama düzeltmeleri gerektirir. Seçilen oyun uyumluluk veritabanını yükleyin veya bu ayarları değiştirerek dosyayı boş bırakın.Restart emulation after changing these settings.</value></data>
+  <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Help"><value>Donanımlı ve manuel bir uygulama düzeltmeleri gerektirir. Seçilen oyun uyumluluk veritabanını yükleyin veya bu ayarları değiştirerek dosyayı boş bırakın.</value></data>
   <data name="Emulation.Option.Sony.Setting.FramebufferConversion.Label"><value>Form çerçevesini çevirin</value></data>
   <data name="Emulation.Option.Sony.Setting.DisablePartialInvalidation.Label"><value>Disable Partial Source Invalidation</value></data>
   <data name="Emulation.Option.Sony.Setting.GpuPaletteConversion.Label"><value>Emisyon dönüşümleri GPU</value></data>
@@ -1274,4 +1262,18 @@
   <data name="Emulation.Option.Sony.Setting.LineToQuad.Help" xml:space="preserve"><value>Bazı oyunlar (e.g. Doom, Hexen, Soul Blade vs.) ekrandaki tek harfli üçgenleri kaldırarak yatay hatları çizer ve bu orijinal donanımda bir satır olarak algılanır. Bu hack, bu küçük üçgenleri tespit eder ve onları gerektiği gibi kudlara dönüştürür, onlara donanım değiştiriciler üzerinde düzgün bir şekilde gösterebilmelerine izin verir ve üst ölçekli iç kararlarda "Aggressive" bazı başlıklar için gereklidir (e.g. Karanlık Güçler, Duke Nukem) ama aksi takdirde grafiksel glitleri tanıtabilir. "Default"'da emin değilseniz bırakın.</value></data>
   <data name="Emulation.Option.Sony.Setting.DynarecEventCycles.Label" xml:space="preserve"><value>Dynarec DMA/GPU /MDEC /Timer Event Cycles</value></data>
   <data name="Emulation.Option.Sony.Setting.DynarecEventCycles.Help" xml:space="preserve"><value>GPU/DMA /MDEC /Timer Update kontrol etmeden önce CPU tarafından yönetilen Max çevrimleri kontrol edilir, daha yüksek sayı daha hızlı olacaktır, dynarecten çok daha az etkiye sahiptir.</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_aspect_ratio.Help"><value>Oyunlara bildirilen ekran biçimini ayarlar. Yalnızca bazı oyunlar 4:3 oranını destekler.</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_disk_cache_size.Label"><value>Disk önbelleği boyutu</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_disk_cache_size.Help"><value>Geçici oyun önbelleklerinin kullandığı disk alanını sınırlar. Oyunlar silinen önbellekleri yeniden oluşturur; bu da sonraki başlatmayı yavaşlatabilir.</value></data>
+  <data name="Emulation.Option.pokket.Link"><value>Kızılötesi bağlantı</value></data>
+  <data name="Emulation.Option.pokket.Layout"><value>Bağlı ekranların düzeni</value></data>
+  <data name="Emulation.Option.pokket.Audio"><value>Bağlı birimlerin ses kaynağı</value></data>
+  <data name="Emulation.Option.pokket.Identity"><value>B biriminin donanım kimliği</value></data>
+  <data name="Emulation.Option.pokket.Horizontal"><value>Yan yana</value></data>
+  <data name="Emulation.Option.pokket.Vertical"><value>Üst üste</value></data>
+  <data name="Emulation.Option.pokket.SelectUnitA"><value>A birimini kontrol et</value></data>
+  <data name="Emulation.Option.pokket.SelectUnitB"><value>B birimini kontrol et</value></data>
+  <data name="Emulation.Option.pokket.Help"><value>Kızılötesi bağlantıyı etkinleştirmek için her birime bir kart takın.</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_audio_format.Label"><value>Hoparlör düzeni</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_audio_format.Help"><value>Oyunlara sunulan hoparlör düzenini belirler. Oyun, ses karışımını bu düzene göre seçer. Çıkış, Windows’ta seçilen ses aygıtına da bağlıdır.</value></data>
 </root>

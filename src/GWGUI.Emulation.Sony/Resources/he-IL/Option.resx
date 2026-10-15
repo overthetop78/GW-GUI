@@ -23,7 +23,7 @@
   <data name="Emulation.Option.swanstation.swanstation_CDROM_ReadThread.Label"><value>CD-ROM Read</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_ReadThread.Help"><value>קרא את מגזרי CD-ROM לפני מסונכרן, להפחית את הסיכון של ספייק זמן מסגרת.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_LoadImagePatches.Label"><value>צילום: Patches</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_CDROM_LoadImagePatches.Help"><value>באופן אוטומטי חל כתמים על תמונות דיסק כאשר הם נוכחים באותו מנהל. כיום, רק איגרות PPF נתמכות באפשרות זו. צריך את הליבה כדי להתחיל מחדש ליישם.</value></data>
+  <data name="Emulation.Option.swanstation.swanstation_CDROM_LoadImagePatches.Help"><value>באופן אוטומטי חל כתמים על תמונות דיסק כאשר הם נוכחים באותו מנהל. כיום.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_LoadImageToRAM.Label"><value>Preload CD-ROM Image to RAM</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_LoadImageToRAM.Help"><value>לטעון את תמונת הדיסק ל- RAM לפני שמתחילים לחקות. עשוי להפחית מכה אם אתה מפעיל נתח רשת, עלות של זמן סטארט אפ גדול יותר. כמו libretro אינו מספק דרך למשוך מעליות, החיקוי יופיע לנעול בעוד התמונה מוסגרת.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_PreCacheCHD.Label"><value>Pre-cache CHD תמונות RAM</value></data>
@@ -39,8 +39,6 @@
   <data name="Emulation.Option.Sony.Value.Interpreter"><value>Interpreter</value></data>
   <data name="Emulation.Option.Sony.Value.CachedInterpreter"><value>צפו ב-Interpreter</value></data>
   <data name="Emulation.Option.Sony.Value.Recompiler"><value>Recompiler</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_GPU_Renderer.Label"><value>GPU Renderer</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_GPU_Renderer.Help"><value>מה שהופך את השימוש כדי לחקות את GPU.</value></data>
   <data name="Emulation.Option.Sony.Value.HardwareOpenGL"><value>Hardware (OpenGL)</value></data>
   <data name="Emulation.Option.Sony.Value.Software"><value>תוכנה Software</value></data>
   <data name="Emulation.Option.swanstation.swanstation_GPU_ResolutionScale.Label"><value>סולם ההחלטות הפנימי</value></data>
@@ -442,8 +440,6 @@
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_region.Help"><value>הגדר את אזור הנפילה בשימוש כאשר התוכן לא יכול להיות אוטומטי מוקרן (למשל קבצי PS-X EXE). משחקים מבוססי דיסק עדיין משתמשים באזור מוטבע על הדיסק.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_internal_resolution.Label"><value>החלטה GPU</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_internal_resolution.Help"><value>החלטות גבוהות יותר מ "1x (Native)" משפרות את נאמנותם של מודלים תלת-ממדיים על חשבון דרישות ביצועים מוגברות. 2D אלמנטים הם בדרך כלל לא מושפעים מההגדרה זו.</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_renderer.Label"><value>Renderer</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_renderer.Help"><value>בחרו כיצד לצייר את התמונה. התוכנה היא המדויקת ביותר. הוא זקוק ליותר כוח עיבוד בהחלטות פנימיות גבוהות יותר. גילוח חומרה הוא פחות מדויק, אבל מהר יותר בהחלטות גבוהות יותר ותומכת בשיפורים גרפיים. חומרה אוטומטית הופכת את בחירת Vulkan או OpenGL על פי נהג הווידאו המשמש היישום. אם הנהג אינו תומך Vulkan ולא ב-OpenGL 3.3, הליבה משתמשת בתוכנה שנעשית במקום זאת. שמור על הליבה לאחר שינוי אפשרות זו.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_renderer_software_fb.Label"><value>המונחים: insidebuffer</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_renderer_software_fb.Help"><value>השתמש בתוסף התוכנה ברקע ברזולוציה Native, בעוד חומרת החומרה מציגה את המשחק. פעולה זו משכפלת את המעברים של תנועת FF7 באופן מדויק. כאשר הם מוגבלים, OpenGL omits את ההשפעות הללו וVulkan שואבים אותם על GPU. ניתוק אפשרות זו יכול לשפר את המהירות אבל יכול גם לגרום שגיאות גרפיקה חמורות. שמור את זה אפשר אם לא בטוחים.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_color_format.Label"><value>פורמט Color Format</value></data>
@@ -473,7 +469,7 @@
   <data name="Emulation.Option.Sony.Value.25Degrees"><value>25 מעלות</value></data>
   <data name="Emulation.Option.Sony.Value.45Degrees"><value>45 מעלות</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_video_cable.Label"><value>Analog Video Cable</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_video_cable.Help"><value>סימס את הכבל בין הקונסולה לבין הטלוויזיה, כולל צבע קידוד והקודד של הטלוויזיה "No Simulation" מעביר את הרשת לחלוטין ומעביר את המפיץ ישר לתצוגה (default Default)). 'RGB (SCART)' הפלט החד ביותר PSX יכול לייצר: הרב-out נושא אנלוגי RGB, כך ששום דבר אינו מתואם ואף אחד מהפריטים ה ⁇  להלן יכול להתרחש - אבל הוא עדיין חוט אנלוגי, אז זה מוגבל על ידי המגבר וידאו של הקונסולה ואת שלב קלט של הסט ולא להיות חד אינסופית. "S-Video" הלהקה לימוזינה צבעו במידה רבה אך ממשיך luma וצבע על חוטים נפרדים, כל כך פרטים בסדר נשאר נקי.. 'RF' מודלים של מודול חיצוני - הקונסולה עצמה אין, רק DC ג 'ק לכוח אחד - צמצום luma נוסף והוספת דפוס הפעום נושאת הקול עושה נגד תת-קרקעית הצבעים, שהוא חזק ביותר על צבע רווי. עובד בכל החלטה פנימית: הדגימות הנוספות נפתרות לפני שהאות נוצר, כך הגדרות גבוהות יותר פועלות כ supersampling לתוך הכבלים ולא אות רחב יותר, והפלט עדיין נושא את הפרטים התת פיקסל שיוצר. נתמך על ידי Vulkan ו- OpenGL ממריצים, והתעלמו מהם ע"י יצרן התוכנה. ב-OpenGL המסנן שמסיר את "הצמדות הנקודות" - דפוס הדיסלקציה המצוין לאורך הקצוות הצבעוניים של הצבע האופקי - זקוק ל- GL 4.3 או GLES 3.1; על נהג מבוגר יותר עדיין פועלת סימולציה, אבל "Composite" ו-"RF" יציגו את אותם dots. תחזיות מיידיות; אין צורך להפעיל מחדש.</value></data>
+  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_video_cable.Help"><value>סימס את הכבל בין הקונסולה לבין הטלוויזיה, כולל צבע קידוד והקודד של הטלוויזיה "No Simulation" מעביר את הרשת לחלוטין ומעביר את המפיץ ישר לתצוגה (default Default)). 'RGB (SCART)' הפלט החד ביותר PSX יכול לייצר: הרב-out נושא אנלוגי RGB, כך ששום דבר אינו מתואם ואף אחד מהפריטים ה ⁇  להלן יכול להתרחש - אבל הוא עדיין חוט אנלוגי, אז זה מוגבל על ידי המגבר וידאו של הקונסולה ואת שלב קלט של הסט ולא להיות חד אינסופית. "S-Video" הלהקה לימוזינה צבעו במידה רבה אך ממשיך luma וצבע על חוטים נפרדים, כל כך פרטים בסדר נשאר נקי.. 'RF' מודלים של מודול חיצוני - הקונסולה עצמה אין, רק DC ג 'ק לכוח אחד - צמצום luma נוסף והוספת דפוס הפעום נושאת הקול עושה נגד תת-קרקעית הצבעים, שהוא חזק ביותר על צבע רווי. עובד בכל החלטה פנימית: הדגימות הנוספות נפתרות לפני שהאות נוצר, כך הגדרות גבוהות יותר פועלות כ supersampling לתוך הכבלים ולא אות רחב יותר, והפלט עדיין נושא את הפרטים התת פיקסל שיוצר. נתמך על ידי Vulkan ו- OpenGL ממריצים, והתעלמו מהם ע"י יצרן התוכנה. ב-OpenGL המסנן שמסיר את "הצמדות הנקודות" - דפוס הדיסלקציה המצוין לאורך הקצוות הצבעוניים של הצבע האופקי - זקוק ל- GL 4.3 או GLES 3.1; על נהג מבוגר יותר עדיין פועלת סימולציה, אבל "Composite" ו-"RF" יציגו את אותם dots. תחזיות מיידיות.</value></data>
   <data name="Emulation.Option.Sony.Value.NoSimulation"><value>אין סימולציה</value></data>
   <data name="Emulation.Option.Sony.Value.RGBSCART"><value>RGB (SCART)</value></data>
   <data name="Emulation.Option.Sony.Value.SVideo"><value>וידאו</value></data>
@@ -758,9 +754,7 @@
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_nostalls.Label"><value>CPU / GTE Stalls</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_nostalls.Help"><value>זה יגרום לכמה משחקים לרוץ מהר מדי. צריך להיות מוגבל כמעט בכל המקרים. רק אינטרפור.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_fast_boot.Label"><value>מהיר Boot</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_fast_boot.Help"><value>דלג את האנימציה של ה-BIOS דורש הפעלה מחדש.</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_renderer.Label"><value>Renderer</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_renderer.Help"><value>Hardware להפוך API, או את תוכנת התוכנה. מעבר או מתוכנה חל על זבוב; המעבר בין ממשקי API של חומרה משפיע כאשר התוכן מופעל מחדש.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_fast_boot.Help"><value>דלג את האנימציה של ה-BIOS</value></data>
   <data name="Emulation.Option.Sony.Value.OpenGLHardware"><value>OpenGL (Hardware)</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_upscale_multiplier.Label"><value>החלטה פנימית</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_upscale_multiplier.Help"><value>הצעת פתרון פנימית להכפלת חומרת החומרה. כמו כן, מקנה את מסגרת הפלט. עקבו אחרי The Fly</value></data>
@@ -797,8 +791,6 @@
   <data name="Emulation.Option.pcee2.pcsx2_fxaa.Help"><value>זול לאחר עיבוד אנטי-פליה.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_cas_mode.Label"><value>המונחים: shapeive Sharping</value></data>
   <data name="Emulation.Option.Sony.Value.SharpenOnly"><value>צופר רק</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_audio_buffer_ms.Label"><value>אודיו Buffer</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_audio_buffer_ms.Help"><value>כמה אודיו החיקוי ממשיך לפני החזית. יותר מזה רוכב על דוכן שאחרת יישמע כמו הפסקה בקול, במחיר של עיכוב הרבה לפני שאתה שומע משהו. ברירת המחדל של PCSX2 היא 50 ms, אשר מניח שהיא מאכילת מכשיר אודיו ישירות ולא חזית שמושכת פעם מסגרת.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_frame_limiter.Label"><value>המונחים Limiter</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_frame_limiter.Help"><value>מה מחזיק את החיקוי במהירות מלאה. Frontend משאיר את העוקץ ל- RetroArch, אשר עובר על ידי ביצוע המתנה הליבה על אודיו זה ידיים. פנימי משתמש ב- PCSX2 מגביל במקום זאת - למכשיר שבו ההמתנה מעולם לא מתרחשת, כי נהג אודיו תחת פיקוח ולא חסום, וריאציות המהירות של החיקוי עצמו מגיעות למסך כמו פירעון ללא מסגרת.</value></data>
   <data name="Emulation.Option.Sony.Value.FrontendRetroArch"><value>החזית (RetroArch)</value></data>
@@ -815,7 +807,7 @@
   <data name="Emulation.Option.Sony.Value.Port25Players"><value>פורט 2 (5 שחקנים)</value></data>
   <data name="Emulation.Option.Sony.Value.BothPorts8Players"><value>שני פורטים (8 שחקנים)</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_lightgun.Label"><value>Lightgun (GunCon)</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_lightgun.Help"><value>מדמה Namco GunCon 2 בחיבור USB. הכיוון מתבצע באמצעות אקדח האור של הממשק, או עכבר המוגדר כאקדח אור, ביציאת הבקר המתאימה. נדרשת הפעלה מחדש.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_lightgun.Help"><value>מדמה Namco GunCon 2 בחיבור USB. הכיוון מתבצע באמצעות אקדח האור של הממשק, או עכבר המוגדר כאקדח אור.</value></data>
   <data name="Emulation.Option.Sony.Value.USBPort1"><value>USB נמל 1</value></data>
   <data name="Emulation.Option.Sony.Value.USBPort2"><value>USB נמל 2</value></data>
   <data name="Emulation.Option.Sony.Value.BothPorts"><value>שני הנמלים</value></data>
@@ -844,14 +836,14 @@
   <data name="Emulation.Option.Sony.Value.EnabledJITDefault"><value>המונחים: JIT, Default</value></data>
   <data name="Emulation.Option.Sony.Value.DisabledInterpreter"><value>מוגבלות (interpreter)</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_rec_ee.Label"><value>EE Recompiler</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_rec_ee.Help"><value>אבחון. אכזב רק Emotion Engine (EE) דינארצ' בעודו עוזב את האחרים על, ל- bisect אשר recompiler גורם התרסקות. דורש הפעלה מחדש.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_rec_ee.Help"><value>אבחון. אכזב רק Emotion Engine (EE) דינארצ' בעודו עוזב את האחרים על.</value></data>
   <data name="Emulation.Option.Sony.Value.EnabledDefault"><value>אפשרות (Default)</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_rec_iop.Label"><value>IOP Recompiler</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_rec_iop.Help"><value>אבחון. להשבית רק את IOP (R3000) dynarec תוך השארת האחרים, כדי bisect אשר recompiler גורם התרסקות. דורש הפעלה מחדש.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_rec_iop.Help"><value>אבחון. להשבית רק את IOP (R3000) dynarec תוך השארת האחרים.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_rec_vu0.Label"><value>VU0 Recompiler</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_rec_vu0.Help"><value>אבחון. להשבית רק את ה- VU0 microvu dynarec תוך השארת האחרים, כדי bisect אשר recompiler גורם התרסקות. דורש הפעלה מחדש.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_rec_vu0.Help"><value>אבחון. להשבית רק את ה- VU0 microvu dynarec תוך השארת האחרים.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_rec_vu1.Label"><value>VU1 Recompiler</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_rec_vu1.Help"><value>אבחון. להשבית רק את ה- VU1 microvu dynarec ולהשאיר את האחרים על, כדי bisect אשר recompiler גורם התרסקות. דורש הפעלה מחדש.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_rec_vu1.Help"><value>אבחון. להשבית רק את ה- VU1 microvu dynarec ולהשאיר את האחרים על.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_memcard_slot1_enable.Label"><value>ערכת 1 Enabled</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_memcard_slot1_enable.Help"><value>ניתן לכרטיס הזיכרון של ה-PS2. שינויים חלים מיד כאשר התוכן פועל.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_memcard_slot2_enable.Label"><value>ערכת 2 Enabled</value></data>
@@ -902,8 +894,6 @@
   <data name="Emulation.Option.Sony.Value.AllTimers"><value>כל הזמן</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_clocks_scale.Label"><value>שעון סולם</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_clocks_scale.Help"><value>שיעור מהירות שעון PS3.</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_renderer.Label"><value>Renderer</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_renderer.Help"><value>Vulkan פועל על המכשיר הקדמי Vulkan ומעביר אותו כל מסגרת גמורה כתמונה; כאשר החזית אינה מפעילת את נהג הווידאו Vulkan, המסגרת מועתקת חזרה דרך הזיכרון במקום. OpenGL נכנס ישר להקשר ה-OpenGL של החזית</value></data>
   <data name="Emulation.Option.Sony.Value.NullNoVideo"><value>Null (No Video)</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_frame_limit.Label"><value>גבולות מסגרת</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_frame_limit.Help"><value>קצב המסגרת הגבוה ביותר שהמשחק עשוי לרוץ בו. Auto הוא התדירות VBlank, כמו ב RPCS3; PS3 Native הקצב הופך את האופן שבו ה-PS3 עושה; מוגבלות מאפשר משחקים שלא מחכים לרענון של PS3 לרוץ מהר מדי.</value></data>
@@ -980,7 +970,7 @@
   <data name="Emulation.Option.rpcs3.rpcs3_driver_wakeup_delay.Label"><value>שם הסרטון: Wake-Up נדחה</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_driver_wakeup_delay.Help"><value>עיכוב התעוררות נהגים במיקרו שניות. 0 כברירת מחדל, כמו RPCS3; להעלות אותו רק כאשר משחק צריך את זה.</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_vblank_rate.Label"><value>VBlank Frequency</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_vblank_rate.Help"><value>קצב הרענון של PS3 ב Hz. זה גם קצב המסגרת שואל הליבה RetroArch עבור, אשר לוקח השפעה כאשר התוכן הוא טעון; משחקים שיכולים לרוץ מעל 60 FPS צריך תצוגה כי רענון מהר.</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_vblank_rate.Help"><value>מגדיר את קצב הרענון המדומה. מצב רשימת התאימות מכפיל אותו במשחקים הנתמכים.</value></data>
   <data name="Emulation.Option.Sony.Value.50HzPAL"><value>50 Hz (PAL)</value></data>
   <data name="Emulation.Option.Sony.Value.60HzNTSC"><value>60 Hz (NTSC)</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_thread_scheduler.Label"><value>תגית: tagr</value></data>
@@ -1062,8 +1052,6 @@
   <data name="Emulation.Option.rpcs3.rpcs3_frame_pacing.Label"><value>המונחים: ping</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_frame_pacing.Help"><value>מה מסגרות המשחק ממתינות. שעון אדמירל הוא RPCS3'סמן משלו, כמו ב Standalone RPCS3. RetroArch נותן את המשחק אחד PS3 רענון למסגרת RetroArch הצגות, כל כך מהר להאיץ את המשחק למעלה ואת המשחק פועל בתדירות VBlank כאשר RetroArch מראה כי מסגרות רבות לשנייה; Vulkan כעת הוא מדלג על מסגרות.</value></data>
   <data name="Emulation.Option.Sony.Value.EmulatorClock"><value>שעון Emulator</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_savedata_slot.Label"><value>חסוך נתונים</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_savedata_slot.Help"><value>משחק PS3 מציג רשימה של נתוני החיסכון שלו ומאפשר לשחקן לבחור "Pick from list" מראה את הרשימה בתמונה המשחק, כדי לשמש עם הבקר. למספר יש את בחירת הליבה בשבילך במקום זאת: שמירה על הכניסה בעמדה זו ברשימה של המשחק, או עושה חיסכון חדש כאשר הרשימה קצרה יותר; טעינה לוקחת את הכניסה במיקום זה, ולא מוצא שום דבר כשהרשימה קצרה יותר. 0 הוא הכנס הראשון. משחקים ששומרים על הצלת יחיד משלהם אינם מציגים רשימה, כך שזה לא חל עליהם.</value></data>
   <data name="Emulation.Option.Sony.Value.PickFromList"><value>תגית: list</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_master_volume.Label"><value>Master Volume</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_master_volume.Help"><value>אחוז אודיו של המאסטר</value></data>
@@ -1151,7 +1139,7 @@
   <data name="Emulation.Option.Sony.Setting.Fastcdvd.Help"><value>מהר CD/ / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / /DVD זמני גישה / מראה. קומץ קטן של משחקים יהיו בעיות תאימות עם זה אפשרי.</value></data>
   <data name="Emulation.Option.Sony.Setting.SharedMemoryCards.Help"><value>השתמש בכרטיסי זיכרון או תוכן משותף.</value></data>
   <data name="Emulation.Option.Sony.Setting.EnableCheats.Label"><value>משחק לרמות קודים</value></data>
-  <data name="Emulation.Option.Sony.Setting.EnableCheats.Help"><value>קרא את משחק לרמות קודים מקבצים בתיקיה שנבחרה. Restart מחקה לאחר בחירת תיקיה אחרת.</value></data>
+  <data name="Emulation.Option.Sony.Setting.EnableCheats.Help"><value>קרא את משחק לרמות קודים מקבצים בתיקיה שנבחרה.</value></data>
   <data name="Emulation.Option.Sony.Setting.HintLanguageUnlock.Label"><value>Unlock Another Game Language</value></data>
   <data name="Emulation.Option.Sony.Setting.HintLanguageUnlock.Help"><value>אם אפשר, יחפש בתוך מסד הנתונים הפנימי של אפשרויות לפתיחה בשפה: לכפות גרסה יפנית בינלאומית לאנגלית, חשוף יותר שפות אירופיות וכו '</value></data>
   <data name="Emulation.Option.Sony.Setting.Dev9Hdd.Help"><value>דמיין את SPEED הרחבה ATA כונן קשיח: התמונה חיה ב- "pcsx2/DEV9hdd.raw"במערכת הקדמית, מנהל המערכת נוצר על שימוש ראשון בגודל מוגדר.</value></data>
@@ -1233,7 +1221,7 @@
   <data name="Emulation.Option.Sony.Value.MergeTargets"><value>המונחים: mit</value></data>
   <data name="Emulation.Option.Sony.Setting.DisableDepthConversion.Label"><value>המונחים: deep-buffer</value></data>
   <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Label"><value>שימוש ב-GameIndex Database</value></data>
-  <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Help"><value>נדרש חומרת חומרה ותיקון ידני של תיקוני טעינה. לטעון את מסד הנתונים שנבחר תאימות למשחק, או להשאיר את הקובץ ריק לשימוש מסד הנתונים בנוי-in. Restart מחקה לאחר שינוי הגדרות אלה.</value></data>
+  <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Help"><value>נדרש חומרת חומרה ותיקון ידני של תיקוני טעינה. לטעון את מסד הנתונים שנבחר תאימות למשחק.</value></data>
   <data name="Emulation.Option.Sony.Setting.FramebufferConversion.Label"><value>המונחים: make the make systembuffer</value></data>
   <data name="Emulation.Option.Sony.Setting.DisablePartialInvalidation.Label"><value>המונחים: different Source Invalidation</value></data>
   <data name="Emulation.Option.Sony.Setting.GpuPaletteConversion.Label"><value>המרה של Palette GPU</value></data>
@@ -1274,4 +1262,18 @@
   <data name="Emulation.Option.Sony.Setting.LineToQuad.Help" xml:space="preserve"><value>כמה משחקים (למשל. Doom, Hexen, Soul Blade וכו ') לצייר קווים אופקיים על ידי מתיחה משולש בגובה פיקסל אחד לאורך המסך, אשר הם rasterized כמו שורה של פיקסלים על חומרה מקורית. האקר זה מזהה את משולשים קטנים אלה וממיר אותם לסווג כנדרש, ומאפשר להם להיות מוצגים כראוי על חומרי החומרה ועל החלטות פנימיות בקנה מידה. "תוקפנות" נדרש עבור כמה תארים (למשל. כוחות אפלים, דיוק Nukem) אך עשויים אחרת להציג גלידות גרפיות. עזוב את 'לעזאזל' אם לא בטוח.</value></data>
   <data name="Emulation.Option.Sony.Setting.DynarecEventCycles.Label" xml:space="preserve"><value>Dynarec DMA/GPU/MDEC/Timer Event Cycles</value></data>
   <data name="Emulation.Option.Sony.Setting.DynarecEventCycles.Help" xml:space="preserve"><value>מחזורי מקס לרוץ על ידי CPU לפני GPU / DMA /MDEC /Timer Update נבדק, מספר גבוה יותר יהיה מהיר יותר, יש הרבה פחות השפעה על מתורגמן beetle מאשר דינראק.</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_aspect_ratio.Help"><value>מגדיר את תבנית המסך המדווחת למשחקים. רק חלק מהמשחקים תומכים ביחס 4:3.</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_disk_cache_size.Label"><value>גודל מטמון הדיסק</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_disk_cache_size.Help"><value>מגביל את שטח הדיסק המשמש למטמונים זמניים של משחקים. המשחקים יוצרים מחדש מטמונים שנמחקו, דבר שעלול להאט את ההפעלה הבאה.</value></data>
+  <data name="Emulation.Option.pokket.Link"><value>חיבור אינפרה־אדום</value></data>
+  <data name="Emulation.Option.pokket.Layout"><value>פריסת המסכים המחוברים</value></data>
+  <data name="Emulation.Option.pokket.Audio"><value>מקור השמע של היחידות המחוברות</value></data>
+  <data name="Emulation.Option.pokket.Identity"><value>מזהה החומרה של יחידה B</value></data>
+  <data name="Emulation.Option.pokket.Horizontal"><value>זה לצד זה</value></data>
+  <data name="Emulation.Option.pokket.Vertical"><value>זה מעל זה</value></data>
+  <data name="Emulation.Option.pokket.SelectUnitA"><value>שליטה ביחידה A</value></data>
+  <data name="Emulation.Option.pokket.SelectUnitB"><value>שליטה ביחידה B</value></data>
+  <data name="Emulation.Option.pokket.Help"><value>הכניסו כרטיס לכל יחידה כדי להפעיל את חיבור האינפרה־אדום.</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_audio_format.Label"><value>פריסת הרמקולים</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_audio_format.Help"><value>מגדיר את פריסת הרמקולים המוצעת למשחקים. המשחק בוחר את תמהיל השמע בהתאם לפריסה זו. הפלט תלוי גם בהתקן השמע שנבחר ב-Windows.</value></data>
 </root>

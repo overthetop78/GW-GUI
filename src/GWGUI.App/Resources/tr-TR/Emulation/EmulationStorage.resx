@@ -80,4 +80,6 @@
   <data name="Emulation.Storage.MemoryCard.ImageRequired"><value>Mevcut bir kart dosyasını seçin.</value></data>
   <data name="Emulation.Storage.MemoryCard.InvalidSize"><value>Kart dosyasının geçersiz bir büyüklüğü vardır.</value></data>
   <data name="Emulation.Storage.MemoryCard.InvalidFormat"><value>Bu cihaz tarafından desteklenen bir dosya formatı seçin.</value></data>
+  <data name="Emulation.Storage.Cache.Unlimited"><value>Sınırsız</value></data>
+  <data name="Emulation.Storage.Cache.ClearOnGameClose"><value>Oyun kapatıldığında temizle</value></data>
 </root>

@@ -5,7 +5,7 @@
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Nec.Help.Memory.Ram.Short"><value>Jumlah RAM yang tersedia untuk mesin yang diemulasi.</value></data>
-  <data name="Emulation.Nec.Help.Memory.Ram.Detailed"><value>Memilih perluasan RAM yang terpapar oleh BeetlePce. Mesin harus restart sebelum jumlah baru dipakai.</value></data>
+  <data name="Emulation.Nec.Help.Memory.Ram.Detailed"><value>Memilih perluasan RAM yang terpapar oleh BeetlePce.</value></data>
   <data name="Emulation.Nec.Help.Firmware.Integrated.Short"><value>Tidak ada berkas BIOS eksternal yang diperlukan untuk model ini.</value></data>
   <data name="Emulation.Nec.Help.Firmware.Integrated.Detailed"><value>Cartridge game di mesin ini berjalan tanpa sistem eksternal BIOS.</value></data>
   <data name="Emulation.Nec.Help.Video.Resolution.Short"><value>Resolusi internal yang diberikan oleh BeetlePce.</value></data>

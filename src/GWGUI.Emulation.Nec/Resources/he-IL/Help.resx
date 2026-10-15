@@ -5,7 +5,7 @@
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Nec.Help.Memory.Ram.Short"><value>כמות ה- RAM זמינה למכונה הנחשקת.</value></data>
-  <data name="Emulation.Nec.Help.Memory.Ram.Detailed"><value>בחר את הרחבת ה- RAM שנחשפה על ידי BeetlePce. המכונה חייבת להתחיל מחדש לפני השימוש בכמות חדשה.</value></data>
+  <data name="Emulation.Nec.Help.Memory.Ram.Detailed"><value>בחר את הרחבת ה- RAM שנחשפה על ידי BeetlePce.</value></data>
   <data name="Emulation.Nec.Help.Firmware.Integrated.Short"><value>אין צורך בקובץ BIOS חיצוני למודל זה.</value></data>
   <data name="Emulation.Nec.Help.Firmware.Integrated.Detailed"><value>משחקי קרטרידג' על מכונה זו לרוץ ללא מערכת חיצונית BIOS.</value></data>
   <data name="Emulation.Nec.Help.Video.Resolution.Short"><value>פתרון פנימי הניתן על ידי BeetlePce.</value></data>

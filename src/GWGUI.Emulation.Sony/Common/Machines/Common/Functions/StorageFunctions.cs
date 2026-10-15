@@ -41,19 +41,20 @@ internal static class StorageSettingsFunctions
                 ModelResourceKey: model.Id == ModelConstants.Psp ? StorageSettingsFunctionsConstants.UmdModelResource : StorageSettingsFunctionsConstants.CdModelResource,
                 IsPermanent: model.HasBuiltInCompactDiscDrive,
                 ConfigurationKind: EmulationStorageConfigurationKind.CompactDiscDrive,
-                ConfigurationFields: ((adapter as IEmulatorSettingsAdapter)?.GetSettingsBlocks(configuration) ?? []).Where(block => block.Tab == EmulationMachineTab.Storage).SelectMany(block => block.Fields).ToArray()));
+                ConfigurationFields: (adapter as IEmulatorSettingsAdapter)?.GetStorageDeviceConfigurationFields(configuration, EmulationMediaCategory.CompactDiscDrive) ?? []));
         devices.AddRange(mediaAdapter?.GetStorageDevices(configuration) ?? []);
         devices = devices.OrderByDescending(device => device.Slot.Category == EmulationMediaCategory.CompactDiscDrive).ThenByDescending(device => device.IsPermanent).ThenBy(device => device.Slot.Index).ToList();
+        var mounted = EmulationMediaConversionFunctions.ToCommon(configuration.Media ?? []);
         var configured = devices.Where(device => device.Slot.Category switch
         {
-            EmulationMediaCategory.MemoryCard => device.IsPermanent || model.HasBuiltInMemoryCard
+            EmulationMediaCategory.MemoryCard => device.IsPermanent || model.HasBuiltInMemoryCard && device.Slot == EmulationMediaSlot.MemoryCard0
+                || mounted.Any(media => media.Slot == device.Slot)
                 || OptionBool(options, StorageSettingsFunctionsConstants.MemoryCardEnabledOptionPrefix + device.Slot.Index),
             EmulationMediaCategory.CompactDiscDrive => model.HasBuiltInCompactDiscDrive
                 || OptionBool(options, StorageSettingsFunctionsConstants.CompactDiscDriveEnabledOption),
             EmulationMediaCategory.HardDisk => (configuration.Media ?? []).Any(media => media.Category == MediaCategory.HardDisk),
             _ => false
         }).Select(device => device.Slot).ToArray();
-        var mounted = EmulationMediaConversionFunctions.ToCommon(configuration.Media ?? []);
         var deviceSettings = devices.Where(device => device.MediaType == EmulationMediaType.MemoryCard)
             .Select(device => new EmulationStorageDeviceSettings(device.Slot,
                 MemoryCardPath: options.GetValueOrDefault(StorageSettingsFunctionsConstants.MemoryCardPathOptionPrefix + device.Slot.Index)
@@ -76,7 +77,7 @@ internal static class StorageSettingsFunctions
                 ?? throw new InvalidDataException(disk.Path);
             HardDiskImageValidation.ValidateExisting(disk.Path, format);
         }
-        var media = settings.MountedMedia.Where(item => item.Type != EmulationMediaType.HardDisk || settings.ConfiguredSlots.Contains(item.Slot)).Select((item, index) => new MediaConfiguration(
+        var media = settings.MountedMedia.Where(item => item.Type is not (EmulationMediaType.HardDisk or EmulationMediaType.MemoryCard) || settings.ConfiguredSlots.Contains(item.Slot)).Select((item, index) => new MediaConfiguration(
             item.Path, item.Type switch
             {
                 EmulationMediaType.Floppy => MediaCategory.Floppy,
@@ -86,7 +87,7 @@ internal static class StorageSettingsFunctions
                 EmulationMediaType.MemoryCard => MediaCategory.MemoryCard,
                 EmulationMediaType.HardDisk => MediaCategory.HardDisk,
                 _ => throw new ArgumentOutOfRangeException(nameof(settings), item.Type, null)
-            }, IsReadOnly: item.IsReadOnly, IsInserted: item.IsInserted, MountOrder: index)).ToArray();
+            }, IsReadOnly: item.IsReadOnly, IsInserted: item.IsInserted, MountOrder: index, SlotIndex: item.Slot.Index)).ToArray();
         var model = ModelCatalog.Get(configuration.Model);
         foreach (var item in media)
             if (!ConfigurationValidationFunctions.Supports(model, item.Category, adapterDevices))
@@ -96,6 +97,8 @@ internal static class StorageSettingsFunctions
         {
             [StorageSettingsFunctionsConstants.CompactDiscDriveEnabledOption] = settings.ConfiguredSlots.Contains(EmulationMediaSlot.Cd0).ToString()
         };
+        foreach (var device in settings.AvailableDevices.Where(device => device.MediaType == EmulationMediaType.MemoryCard))
+            options[StorageSettingsFunctionsConstants.MemoryCardEnabledOptionPrefix + device.Slot.Index] = settings.ConfiguredSlots.Contains(device.Slot).ToString();
         var cdOptions = settings.DeviceSettings?.FirstOrDefault(item => item.Slot == EmulationMediaSlot.Cd0) ?.CompactDisc?.Options;
         var cdFields = settings.AvailableDevices.FirstOrDefault(device => device.Slot == EmulationMediaSlot.Cd0) ?.ConfigurationFields ?? [];
         foreach (var field in cdFields)

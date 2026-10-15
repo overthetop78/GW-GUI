@@ -11,6 +11,13 @@ $ErrorActionPreference = 'Stop'
 $repository = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..\..'))
 $buildRoot = Join-Path $repository 'build'
 $applicationProject = Join-Path $repository 'src\GWGUI.App\GWGUI.App.csproj'
+$hostApiSource = Join-Path $repository 'src\GWGUI.Emulation\Constants\EmulationHostApi.cs'
+$hostApiDeclaration = [regex]::Match((Get-Content -LiteralPath $hostApiSource -Raw),
+    'CurrentVersion\s*\{[^}]+\}\s*=\s*new(?:\s+Version)?\s*\(\s*(?<major>\d+)\s*,\s*(?<minor>\d+)\s*\)')
+if (-not $hostApiDeclaration.Success) {
+    throw "Cannot read the host API version from '$hostApiSource'."
+}
+$hostApiVersion = [Version]::new([int]$hostApiDeclaration.Groups['major'].Value, [int]$hostApiDeclaration.Groups['minor'].Value)
 if ([string]::IsNullOrWhiteSpace($Version)) {
     [xml]$applicationProjectDocument = Get-Content -LiteralPath $applicationProject -Raw -Encoding UTF8
     $Version = [string]$applicationProjectDocument.Project.PropertyGroup.Version.'#text'
@@ -113,7 +120,6 @@ function New-GwGuiBuild {
             }
             $null = $applicationHashes[$file.Name].Add((Get-FileHash -LiteralPath $file.FullName -Algorithm SHA256).Hash)
         }
-        $hostApiVersion = [Version]'1.1'
         foreach ($moduleDefinition in $SelectedModules) {
             $project = $moduleDefinition.ProjectPath
             $manifest = $moduleDefinition.Manifest

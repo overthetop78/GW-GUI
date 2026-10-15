@@ -4,10 +4,6 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Sony.Help.Audio.Enabled.Detailed"><value>Mengendalikan apakah GW GUI memainkan sampel audio yang dihasilkan oleh emulator.</value></data>
-  <data name="Emulation.Sony.Help.Audio.Enabled.Short"><value>Aktifkan atau matikan suara yang tertimulasi.</value></data>
-  <data name="Emulation.Sony.Help.Audio.Output.Detailed"><value>Pilih perangkat Windows yang memainkan suara dari mesin ini beremulasi.</value></data>
-  <data name="Emulation.Sony.Help.Audio.Output.Short"><value>Keluaran audio yang digunakan oleh GW GUI.</value></data>
   <data name="Emulation.Sony.Help.Cpu.Frequency.Detailed"><value>Menunjukkan frekuensi jam nominal dari prosesor dalam mesin Sony terpilih.</value></data>
   <data name="Emulation.Sony.Help.Cpu.Frequency.Short"><value>Frekuensi jam prosesor asli.</value></data>
   <data name="Emulation.Sony.Help.Cpu.Model.Detailed"><value>Menampilkan model prosesor yang disediakan oleh mesin Sony terpilih.</value></data>
@@ -22,8 +18,8 @@
   <data name="Emulation.Sony.Help.Memory.Ram.Short"><value>Jumlah RAM yang tersedia untuk mesin yang diemulasi.</value></data>
   <data name="Emulation.Sony.Help.Cpu.EffectiveFrequency.Short"><value>Frekuensi CPU yang telah digandakan setelah menerapkan persentase jam yang dipilih.</value></data>
   <data name="Emulation.Sony.Help.Cpu.EffectiveFrequency.Detailed"><value>Frekuensi konsol nominal dikalikan dengan persentase yang dipilih. Ini mengubah prosesor yang digandakan, bukan processor host. Nilai yang lebih tinggi dapat mengurangi slowdowns tetapi mungkin istirahat waktu permainan. Otomatis memakai emulator baku.</value></data>
-  <data name="Emulation.Sony.Help.Video.Chip.Short"><value>Rekaman video asli yang digunakan oleh Revisi perangkat keras PlayStation.</value></data>
-  <data name="Emulation.Sony.Help.Video.Chip.Detailed"><value>Chip Sony GPU yang terdaftar bervariasi dengan revisi motherboard. Opsi rendering internal mengontrol bagaimana emulator menghasilkan geometri dan piksel. Filter gambar GW GUI memproses gambar yang selesai setelah itu.</value></data>
-  <data name="Emulation.Sony.Help.Audio.Chip.Short"><value>Keripik audio asli yang digunakan oleh Revisi perangkat keras PlayStation.</value></data>
-  <data name="Emulation.Sony.Help.Audio.Chip.Detailed"><value>Sony SPU mencampur suara dan decode sampel terkompresi. Chip yang terdaftar bervariasi dengan revisi motherboard. Pemutaran audio output dan latensi kontrol pada komputer Anda.</value></data>
+  <data name="Emulation.Sony.Help.Video.Chip.Short"><value>Perangkat keras grafis asli mesin yang dipilih.</value></data>
+  <data name="Emulation.Sony.Help.Video.Chip.Detailed"><value>Menampilkan perangkat keras grafis asli mesin yang dipilih. Pengaturan perenderan emulator mengubah gambar yang dihasilkan. Filter GW GUI diterapkan setelahnya.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Chip.Short"><value>Perangkat keras suara asli mesin yang dipilih.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Chip.Detailed"><value>Menampilkan perangkat keras suara asli mesin yang dipilih. Pengaturan keluaran audio dan latensi mengendalikan pemutaran suara di komputer Anda.</value></data>
 </root>

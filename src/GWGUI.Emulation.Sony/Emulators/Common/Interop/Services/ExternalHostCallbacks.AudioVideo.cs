@@ -83,8 +83,8 @@ internal sealed partial class ExternalHostCallbacks
             var maximumFrames = Math.Max(1, SampleRate / 5);
             if (chunk.FrameCount > maximumFrames)
             {
-                var retainedSamples = chunk.InterleavedStereo.Slice((chunk.FrameCount - maximumFrames) * 2).ToArray();
-                chunk = new AudioChunk(retainedSamples, chunk.SampleRate, maximumFrames, chunk.Sequence, chunk.Timestamp);
+                var retainedSamples = chunk.InterleavedSamples.Slice((chunk.FrameCount - maximumFrames) * chunk.ChannelCount).ToArray();
+                chunk = chunk with { InterleavedSamples = retainedSamples, FrameCount = maximumFrames };
                 AudioOverrunCount++;
             }
             _audioChunks.Enqueue(chunk);
@@ -95,6 +95,17 @@ internal sealed partial class ExternalHostCallbacks
                 AudioOverrunCount++;
             }
         }
+    }
+
+    private nuint HandleMultichannelAudioBatch(nint data, nuint frames, uint channels, uint mask)
+    {
+        if (data == nint.Zero || frames > MultichannelAudioConstants.MaximumFramesPerBatch
+            || !AudioChannelLayoutFunctions.TryFromNative(mask, channels, out var layout)) return 0;
+        if (frames == 0) return 0;
+        var samples = new short[checked((int)frames * (int)channels)];
+        Marshal.Copy(data, samples, 0, samples.Length);
+        PublishAudio(new AudioChunk(samples, SampleRate, (int)frames, ++_audioSequence, _clock.Elapsed, layout));
+        return frames;
     }
 
     internal bool TryDequeueAudio(out AudioChunk? chunk)

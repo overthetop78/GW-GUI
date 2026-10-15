@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Sony.Emulators.Common.Constants;
 using ConsoleRegion = GWGUI.Emulation.Sony.Emulators.SwanStation.Enums.ConsoleRegion;
 using ControllerPortsMultitapMode = GWGUI.Emulation.Sony.Emulators.SwanStation.Enums.ControllerPortsMultitapMode;
 using CPUExecutionMode = GWGUI.Emulation.Sony.Emulators.SwanStation.Enums.CPUExecutionMode;
@@ -87,12 +88,20 @@ internal static class OptionCatalog
             new(OptionValueFunctions.ToNative(CPUExecutionMode.CachedInterpreter), OptionValueResourceConstants.CachedInterpreterLabelResource),
             new(OptionValueFunctions.ToNative(CPUExecutionMode.Recompiler), OptionValueResourceConstants.RecompilerLabelResource),
         ], IsVisible: true, Tab: EmulationMachineTab.Cpu, RequiresRestart: false),
-        new(OptionConstants.GPURendererKey, OptionConstants.GPURendererLabelResource, OptionConstants.GPURendererHelpResource, null,
+        new(OptionConstants.GPURendererKey, GraphicsSettingsConstants.ModeLabel, GraphicsSettingsConstants.ModeHelp, null,
             OptionConstants.GPURendererDefaultValue, OptionConstants.GPURendererDefaultValue,
         [
+            new(OptionValueFunctions.ToNative(GPURenderer.Automatic), OptionValueResourceConstants.AutomaticLabelResource),
             new(OptionValueFunctions.ToNative(GPURenderer.OpenGL), OptionValueResourceConstants.HardwareOpenGLLabelResource),
+            new(OptionValueFunctions.ToNative(GPURenderer.Direct3D11), OptionConstants.GPURendererDirect3D11),
+            new(OptionValueFunctions.ToNative(GPURenderer.Vulkan), OptionConstants.GPURendererVulkan),
             new(OptionValueFunctions.ToNative(GPURenderer.Software), OptionValueResourceConstants.SoftwareLabelResource),
-        ], IsVisible: true, Tab: EmulationMachineTab.Video, RequiresRestart: false),
+        ], IsVisible: true, Tab: EmulationMachineTab.Video, RequiresRestart: false,
+            GraphicsApiValues: new Dictionary<EmulationGraphicsApi, string>
+            {
+                [EmulationGraphicsApi.Automatic] = OptionConstants.GPURendererOpenGL,
+                [EmulationGraphicsApi.OpenGL] = OptionConstants.GPURendererOpenGL
+            }, RetainedRendererValues: [OptionConstants.GPURendererSoftware]),
         new(OptionConstants.GPUResolutionScaleKey, OptionConstants.GPUResolutionScaleLabelResource, OptionConstants.GPUResolutionScaleHelpResource, null,
             OptionConstants.GPUResolutionScaleDefaultValue, OptionConstants.GPUResolutionScaleDefaultValue, [], Tab: EmulationMachineTab.Video, RequiresRestart: false,
             NumericRange: OptionConstants.GPUResolutionScaleRange, NativeNumericFormat: OptionNumericConstants.IntegerFormat, NativeZeroValue: null),

@@ -299,4 +299,7 @@
   <data name="Emulation.Video.Parameter.ProjectionVignette"><value>Oscurecedor de bordes</value></data>
   <data name="Emulation.Video.Projection.Group.Optics"><value>Óptica y luz</value></data>
   <data name="Emulation.Video.Projection.Group.Screen"><value>Pantalla de proyección</value></data>
+  <data name="Emulation.Option.Common.Value.HardwareRendering"><value>Renderizado por hardware</value></data>
+  <data name="Emulation.Option.Common.RenderingMode.Label"><value>Modo de renderizado</value></data>
+  <data name="Emulation.Option.Common.RenderingMode.Help"><value>El renderizado por hardware utiliza la API gráfica seleccionada para la aplicación si el emulador la admite.</value></data>
 </root>

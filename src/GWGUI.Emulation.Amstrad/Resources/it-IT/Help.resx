@@ -5,7 +5,7 @@
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Amstrad.Help.Memory.Ram.Short"><value>Importo RAM disponibile alla macchina emulata.</value></data>
-  <data name="Emulation.Amstrad.Help.Memory.Ram.Detailed"><value>Seleziona la RAM espansione esposta da Caprice32. La macchina deve riavviare prima che venga utilizzata la nuova quantità.</value></data>
+  <data name="Emulation.Amstrad.Help.Memory.Ram.Detailed"><value>Seleziona la RAM espansione esposta da Caprice32.</value></data>
   <data name="Emulation.Amstrad.Help.Firmware.Integrated.Short"><value>Il sistema ROM è costruito in Caprice32.</value></data>
   <data name="Emulation.Amstrad.Help.Firmware.Integrated.Detailed"><value>Caprice32 fornisce il sistema ROM internamente e non espone un ROM selettore di file.</value></data>
   <data name="Emulation.Amstrad.Help.Video.Resolution.Short"><value>Risoluzione interna resa da Caprice32.</value></data>

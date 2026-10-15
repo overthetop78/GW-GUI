@@ -80,4 +80,6 @@
   <data name="Emulation.Storage.MemoryCard.ImageRequired"><value>اختيار ملف البطاقات الحالي.</value></data>
   <data name="Emulation.Storage.MemoryCard.InvalidSize"><value>ملف البطاقة له حجم غير صحيح</value></data>
   <data name="Emulation.Storage.MemoryCard.InvalidFormat"><value>اختر استمارة ملف تدعمها هذه الأداة</value></data>
+  <data name="Emulation.Storage.Cache.Unlimited"><value>غير محدود</value></data>
+  <data name="Emulation.Storage.Cache.ClearOnGameClose"><value>مسح عند إغلاق اللعبة</value></data>
 </root>

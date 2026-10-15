@@ -3,6 +3,7 @@ namespace GWGUI.Emulation.Sony.Emulators.Rpcs3.Enums;
 // Native numeric values; nonnumeric modes use reserved values.
 internal enum VblankRate
 {
+    FromCompatibilityList = -1,
     _50 = 50,
     _60 = 60,
     _120 = 120,

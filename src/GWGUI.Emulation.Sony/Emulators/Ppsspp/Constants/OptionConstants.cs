@@ -2,6 +2,10 @@ namespace GWGUI.Emulation.Sony.Emulators.Ppsspp.Constants;
 
 internal static class OptionConstants
 {
+    internal const string VulkanBackend = "vulkan";
+    internal const string AutomaticBackend = "auto";
+    internal const string OpenGlBackend = "opengl";
+    internal const string NoVideoBackend = "none";
     internal const string CpuCoreKey = "ppsspp_cpu_core";
     internal const string CpuCoreLabel = "Emulation.Option.ppsspp.ppsspp_cpu_core.Label";
     internal const string FastMemoryKey = "ppsspp_fast_memory";
@@ -26,8 +30,6 @@ internal static class OptionConstants
     internal const string PspModelKey = "ppsspp_psp_model";
     internal const string PspModelLabel = "Emulation.Option.ppsspp.ppsspp_psp_model.Label";
     internal const string BackendKey = "ppsspp_backend";
-    internal const string BackendLabel = "Emulation.Option.ppsspp.ppsspp_backend.Label";
-    internal const string BackendHelp = "Emulation.Option.ppsspp.ppsspp_backend.Help";
     internal const string SoftwareRenderingKey = "ppsspp_software_rendering";
     internal const string SoftwareRenderingLabel = "Emulation.Option.ppsspp.ppsspp_software_rendering.Label";
     internal const string SoftwareRenderingHelp = "Emulation.Option.ppsspp.ppsspp_software_rendering.Help";

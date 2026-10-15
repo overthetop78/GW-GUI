@@ -4,10 +4,6 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Sony.Help.Audio.Enabled.Detailed"><value>Kontroluje, zda GW GUI přehrává audio vzorky generované emulátorem.</value></data>
-  <data name="Emulation.Sony.Help.Audio.Enabled.Short"><value>Povolit nebo zakázat emulovaný zvuk.</value></data>
-  <data name="Emulation.Sony.Help.Audio.Output.Detailed"><value>Vyberte zařízení Windows, které přehrává zvuk z tohoto emulovaného stroje.</value></data>
-  <data name="Emulation.Sony.Help.Audio.Output.Short"><value>Audio výstup použitý GW GUI.</value></data>
   <data name="Emulation.Sony.Help.Cpu.Frequency.Detailed"><value>Zobrazuje nominální hodinovou frekvenci procesoru ve zvoleném zařízení Sony.</value></data>
   <data name="Emulation.Sony.Help.Cpu.Frequency.Short"><value>Původní procesorová hodinová frekvence.</value></data>
   <data name="Emulation.Sony.Help.Cpu.Model.Detailed"><value>Zobrazuje model procesoru poskytnutý vybraným zařízením Sony.</value></data>
@@ -22,8 +18,8 @@
   <data name="Emulation.Sony.Help.Memory.Ram.Short"><value>Množství RAM dostupné pro emulovaný stroj.</value></data>
   <data name="Emulation.Sony.Help.Cpu.EffectiveFrequency.Short"><value>Frekvence emulovaného CPU po použití zvoleného procentního podílu hodin.</value></data>
   <data name="Emulation.Sony.Help.Cpu.EffectiveFrequency.Detailed"><value>Jmenovitá frekvence konzole se vynásobí zvoleným procentem. To mění emulovaný procesor, ne hostitelský procesor. Vyšší hodnoty mohou snížit zpomalení, ale může zlomit načasování hry. Automaticky používá výchozí emulátor.</value></data>
-  <data name="Emulation.Sony.Help.Video.Chip.Short"><value>Původní video čipy používané pro opravy hardwaru PlayStation.</value></data>
-  <data name="Emulation.Sony.Help.Video.Chip.Detailed"><value>Seznam čipů Sony GPU se liší s revizí základní desky. Možnosti interního vykreslování kontrolují, jak emulátor produkuje geometrii a pixely. GW GUI obrazové filtry následně zpracovávají dokončený obraz.</value></data>
-  <data name="Emulation.Sony.Help.Audio.Chip.Short"><value>Originální audio čipy používané pro opravy hardwaru PlayStation.</value></data>
-  <data name="Emulation.Sony.Help.Audio.Chip.Detailed"><value>Sony SPU míchá zvukové hlasy a dekóduje komprimované vzorky. Uvedené čipy se liší od základní desky revize. Přehrávání zvukového výstupu a latence na vašem počítači.</value></data>
+  <data name="Emulation.Sony.Help.Video.Chip.Short"><value>Původní grafický hardware vybraného stroje.</value></data>
+  <data name="Emulation.Sony.Help.Video.Chip.Detailed"><value>Zobrazuje původní grafický hardware vybraného stroje. Nastavení vykreslování emulátoru mění výsledný obraz. Filtry GW GUI se použijí následně.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Chip.Short"><value>Původní zvukový hardware vybraného stroje.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Chip.Detailed"><value>Zobrazuje původní zvukový hardware vybraného stroje. Nastavení zvukového výstupu a latence řídí přehrávání na počítači.</value></data>
 </root>

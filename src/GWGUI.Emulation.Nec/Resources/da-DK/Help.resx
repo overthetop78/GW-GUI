@@ -5,7 +5,7 @@
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Nec.Help.Memory.Ram.Short"><value>Mængde RAM til rådighed for den emulerede maskine.</value></data>
-  <data name="Emulation.Nec.Help.Memory.Ram.Detailed"><value>Vælger RAM udvidelse udsat af BeetlePce. Maskinen skal genstartes, før den nye mængde anvendes.</value></data>
+  <data name="Emulation.Nec.Help.Memory.Ram.Detailed"><value>Vælger RAM udvidelse udsat af BeetlePce.</value></data>
   <data name="Emulation.Nec.Help.Firmware.Integrated.Short"><value>Ingen ekstern BIOS-fil er nødvendig for denne model.</value></data>
   <data name="Emulation.Nec.Help.Firmware.Integrated.Detailed"><value>Cylinderspil på denne maskine køre uden et eksternt system BIOS.</value></data>
   <data name="Emulation.Nec.Help.Video.Resolution.Short"><value>Intern beslutning fra BeetlePce.</value></data>

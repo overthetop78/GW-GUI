@@ -44,4 +44,5 @@
   <data name="Emulation.Controller.Category.OtherSimulation"><value>其他模拟外围</value></data>
   <data name="Emulation.Controller.Feedback.Strong"><value>強烈震動</value></data>
   <data name="Emulation.Controller.Feedback.Weak"><value>微弱震動</value></data>
+  <data name="Emulation.Controller.Action.Reload"><value>重新裝彈</value></data>
 </root>

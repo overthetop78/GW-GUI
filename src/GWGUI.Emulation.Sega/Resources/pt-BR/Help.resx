@@ -6,7 +6,7 @@
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Sega.Help.General.Model.Short"><value>Modelo de máquina Sega sendo configurado.</value></data>
   <data name="Emulation.Sega.Help.Memory.Ram.Short"><value>Quantidade de RAM disponível para a máquina emulado.</value></data>
-  <data name="Emulation.Sega.Help.Memory.Ram.Detailed"><value>Selecciona a expansão da RAM exposta pelo núcleo de emulação. A máquina deve reiniciar antes da nova quantidade ser usada.</value></data>
+  <data name="Emulation.Sega.Help.Memory.Ram.Detailed"><value>Selecciona a expansão da RAM exposta pelo núcleo de emulação.</value></data>
   <data name="Emulation.Sega.Help.Firmware.Integrated.Short"><value>A ROM do sistema é construída no núcleo da emulação.</value></data>
   <data name="Emulation.Sega.Help.Firmware.Integrated.Detailed"><value>O núcleo de emulação fornece o sistema ROM internamente e não expõe um seletor de arquivos ROM.</value></data>
   <data name="Emulation.Sega.Help.General.Emulator.Short"><value>Emulador selecionado para esta máquina.</value></data>

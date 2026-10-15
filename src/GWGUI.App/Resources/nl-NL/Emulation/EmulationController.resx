@@ -44,4 +44,5 @@
   <data name="Emulation.Controller.Category.OtherSimulation"><value>Andere simulatierandapparatuur</value></data>
   <data name="Emulation.Controller.Feedback.Strong"><value>Sterke trillingen</value></data>
   <data name="Emulation.Controller.Feedback.Weak"><value>Zwakke trillingen</value></data>
+  <data name="Emulation.Controller.Action.Reload"><value>Herladen</value></data>
 </root>

@@ -6,7 +6,7 @@
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Sega.Help.General.Model.Short"><value>Sega machine model wordt geconfigureerd.</value></data>
   <data name="Emulation.Sega.Help.Memory.Ram.Short"><value>Hoeveelheid RAM beschikbaar voor de emuleerde machine.</value></data>
-  <data name="Emulation.Sega.Help.Memory.Ram.Detailed"><value>Selecteer de RAM uitbreiding blootgesteld door de emulatie kern. De machine moet opnieuw starten voordat de nieuwe hoeveelheid wordt gebruikt.</value></data>
+  <data name="Emulation.Sega.Help.Memory.Ram.Detailed"><value>Selecteer de RAM uitbreiding blootgesteld door de emulatie kern.</value></data>
   <data name="Emulation.Sega.Help.Firmware.Integrated.Short"><value>Het systeem ROM is ingebouwd in de emulatie kern.</value></data>
   <data name="Emulation.Sega.Help.Firmware.Integrated.Detailed"><value>De emulatiekern levert het systeem ROM intern en stelt geen ROM bestandsselectie bloot.</value></data>
   <data name="Emulation.Sega.Help.General.Emulator.Short"><value>Emulator geselecteerd voor deze machine.</value></data>

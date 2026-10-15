@@ -4,10 +4,6 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Sony.Help.Audio.Enabled.Detailed"><value>Ellenőrzi, hogy a GW GUI lejátszja-e az emulátor által létrehozott hangmintákat.</value></data>
-  <data name="Emulation.Sony.Help.Audio.Enabled.Short"><value>Emulált hang engedélyezése vagy letiltása.</value></data>
-  <data name="Emulation.Sony.Help.Audio.Output.Detailed"><value>Válassza ki a Windows eszköz, amely játszik hangot ebből az emulált gép.</value></data>
-  <data name="Emulation.Sony.Help.Audio.Output.Short"><value>A GW GUI által használt hangkimenet.</value></data>
   <data name="Emulation.Sony.Help.Cpu.Frequency.Detailed"><value>Megjeleníti a processzor névleges óra frekvenciáját a kiválasztott Sony gépben.</value></data>
   <data name="Emulation.Sony.Help.Cpu.Frequency.Short"><value>Eredeti processzor óra frekvencia.</value></data>
   <data name="Emulation.Sony.Help.Cpu.Model.Detailed"><value>Megjeleníti a kiválasztott Sony gép által biztosított processzor modellt.</value></data>
@@ -22,8 +18,8 @@
   <data name="Emulation.Sony.Help.Memory.Ram.Short"><value>Az emulált gép rendelkezésére álló RAM-mennyiség.</value></data>
   <data name="Emulation.Sony.Help.Cpu.EffectiveFrequency.Short"><value>Az emulált CPU gyakorisága a kiválasztott óra százalékos arányának alkalmazása után.</value></data>
   <data name="Emulation.Sony.Help.Cpu.EffectiveFrequency.Detailed"><value>A névleges konzolfrekvenciát megszorozzuk a kiválasztott százalékkal. Ez az emulált processzort változtatja meg, nem a host processzorét. A magasabb értékek csökkenthetik a lassulásokat, de megtörhetik a játék időzítését. Automatikus használata az emulátor alapértelmezett.</value></data>
-  <data name="Emulation.Sony.Help.Video.Chip.Short"><value>Eredeti videó chipek a PlayStation hardverrevízió által.</value></data>
-  <data name="Emulation.Sony.Help.Video.Chip.Detailed"><value>A felsorolt Sony GPU chipek változnak az alaplap felülvizsgálata. A belső renderelési opciók szabályozzák, hogy az emulátor hogyan termel geometriát és pixelt. A GW GUI képszűrők ezután feldolgozzák a befejezett képet.</value></data>
-  <data name="Emulation.Sony.Help.Audio.Chip.Short"><value>Eredeti hangchip, amit a PlayStation hardver revízió használ.</value></data>
-  <data name="Emulation.Sony.Help.Audio.Chip.Detailed"><value>A Sony SPU keveri a hangokat és dekódolja a sűrített mintákat. A felsorolt zsetonok eltérnek az alaplap felülvizsgálatától. Hangkimenet és késleltetés-szabályozó lejátszás a számítógépen.</value></data>
+  <data name="Emulation.Sony.Help.Video.Chip.Short"><value>A kiválasztott gép eredeti grafikus hardvere.</value></data>
+  <data name="Emulation.Sony.Help.Video.Chip.Detailed"><value>Megjeleníti a kiválasztott gép eredeti grafikus hardverét. Az emulátor renderelési beállításai módosítják az előállított képet. A GW GUI szűrői ezután kerülnek alkalmazásra.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Chip.Short"><value>A kiválasztott gép eredeti hanghardvere.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Chip.Detailed"><value>Megjeleníti a kiválasztott gép eredeti hanghardverét. A hangkimenet és a késleltetés beállításai szabályozzák a lejátszást a számítógépen.</value></data>
 </root>

@@ -44,4 +44,5 @@
   <data name="Emulation.Controller.Category.OtherSimulation"><value>Periferal simulasi lainnya</value></data>
   <data name="Emulation.Controller.Feedback.Strong"><value>Getaran kuat</value></data>
   <data name="Emulation.Controller.Feedback.Weak"><value>Getaran lemah</value></data>
+  <data name="Emulation.Controller.Action.Reload"><value>Isi ulang peluru</value></data>
 </root>

@@ -26,14 +26,12 @@
   <data name="Emulation.Option.ppsspp.ppsspp_language.Value.11"><value>中国の伝統</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_language.Value.12"><value>簡体中文</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_psp_model.Label"><value>PSPモデル</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_backend.Label"><value>バックエンド</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_backend.Help"><value>「自動」はフロントエンドのビデオ ドライバーを使用します。 コアコア</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_software_rendering.Label"><value>ソフトウェアレンダリング</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_software_rendering.Help"><value>スロー、正確。 コアコア</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_software_rendering.Help"><value>ソフトウェア描画を使用して精度を高めますが、より多くの処理能力が必要です。</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_internal_resolution.Label"><value>レンダリングの決断</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_internal_resolution.Help"><value>内部レンダリングの解像度を選択します。</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_mulitsample_level.Label"><value>MSAAアンチエイリアシング</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_mulitsample_level.Help"><value>Vulkan だけ。 コアコア</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_mulitsample_level.Help"><value>Vulkanでマルチサンプルアンチエイリアシング（MSAA）を適用します。</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_cropto16x9.Label"><value>作物から16x9</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_cropto16x9.Help"><value>上部と下部のエッジをクロップして、16:9写真を取得します。</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_frameskip.Label"><value>フレームスキップ</value></data>
@@ -46,7 +44,7 @@
   <data name="Emulation.Option.ppsspp.ppsspp_detect_vsync_swap_interval.Label"><value>フレーム率の変更を検出する</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_detect_vsync_swap_interval.Help"><value>フロントエンドを通知します。</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Label"><value>バッファ・グラフィックスのコマンド</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Help"><value>GL/Vulkan のみ、遅く、遅延が少なく、再起動します。</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Help"><value>GL/Vulkan のみ、遅く、遅延が少なく.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Value.0"><value>バッファなし</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Value.1"><value>最長 1</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_button_preference.Label"><value>確認ボタン</value></data>

@@ -6,7 +6,7 @@
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Sega.Help.General.Model.Short"><value>Sega maskine model er konfigureret.</value></data>
   <data name="Emulation.Sega.Help.Memory.Ram.Short"><value>Mængde RAM til rådighed for den emulerede maskine.</value></data>
-  <data name="Emulation.Sega.Help.Memory.Ram.Detailed"><value>Vælger den RAM-udvidelse, der eksponeres af emuleringskernen. Maskinen skal genstartes, før den nye mængde anvendes.</value></data>
+  <data name="Emulation.Sega.Help.Memory.Ram.Detailed"><value>Vælger den RAM-udvidelse, der eksponeres af emuleringskernen.</value></data>
   <data name="Emulation.Sega.Help.Firmware.Integrated.Short"><value>System ROM er indbygget i emulering kerne.</value></data>
   <data name="Emulation.Sega.Help.Firmware.Integrated.Detailed"><value>Emuleringskernen giver systemet ROM internt og afslører ikke en ROM-filvælger.</value></data>
   <data name="Emulation.Sega.Help.General.Emulator.Short"><value>Emulator valgt til denne maskine.</value></data>

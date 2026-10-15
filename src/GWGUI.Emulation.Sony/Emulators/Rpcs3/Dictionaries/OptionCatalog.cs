@@ -1,4 +1,6 @@
+using GWGUI.Emulation.Sony.Emulators.Common.Constants;
 using AnisotropicFilter = GWGUI.Emulation.Sony.Emulators.Rpcs3.Enums.AnisotropicFilter;
+using AudioFormat = GWGUI.Emulation.Sony.Emulators.Rpcs3.Enums.AudioFormat;
 using ClocksScale = GWGUI.Emulation.Sony.Emulators.Rpcs3.Enums.ClocksScale;
 using DefaultResolution = GWGUI.Emulation.Sony.Emulators.Rpcs3.Enums.DefaultResolution;
 using Dns = GWGUI.Emulation.Sony.Emulators.Rpcs3.Enums.Dns;
@@ -28,6 +30,8 @@ using SpuXfloatAccuracy = GWGUI.Emulation.Sony.Emulators.Rpcs3.Enums.SpuXfloatAc
 using StretchToDisplay = GWGUI.Emulation.Sony.Emulators.Rpcs3.Enums.StretchToDisplay;
 using ThreadScheduler = GWGUI.Emulation.Sony.Emulators.Rpcs3.Enums.ThreadScheduler;
 using VblankRate = GWGUI.Emulation.Sony.Emulators.Rpcs3.Enums.VblankRate;
+using AspectRatio = GWGUI.Emulation.Sony.Emulators.Rpcs3.Enums.AspectRatio;
+using DiskCachePolicy = GWGUI.Emulation.Sony.Emulators.Rpcs3.Enums.DiskCachePolicy;
 using ZcullAccuracy = GWGUI.Emulation.Sony.Emulators.Rpcs3.Enums.ZcullAccuracy;
 using GWGUI.Emulation.Sony.Emulators.Rpcs3.Functions;
 using GWGUI.Emulation.Sony.Emulators.Common.Interop.Functions;
@@ -41,6 +45,27 @@ internal static class OptionCatalog
 {
     internal static IReadOnlyList<CoreOption> All { get; } =
     [
+        new(OptionConstants.AudioFormatKey, OptionConstants.AudioFormatLabelResource, OptionConstants.AudioFormatHelpResource, null,
+            OptionConstants.AudioFormatStereo, OptionConstants.AudioFormatStereo,
+        [
+            new(OptionValueFunctions.ToNative(AudioFormat.Stereo), "2.0"),
+            new(OptionValueFunctions.ToNative(AudioFormat.Surround51), "5.1"),
+            new(OptionValueFunctions.ToNative(AudioFormat.Surround71), "7.1")
+        ], Tab: EmulationMachineTab.Audio, RequiresRestart: true),
+        new(OptionConstants.AspectRatioKey, OptionConstants.AspectRatioLabelResource, OptionConstants.AspectRatioHelpResource, null,
+            OptionConstants.AspectRatioWidescreen, OptionConstants.AspectRatioWidescreen,
+        [
+            new(OptionValueFunctions.ToNative(AspectRatio.Widescreen), OptionConstants.AspectRatioWidescreen),
+            new(OptionValueFunctions.ToNative(AspectRatio.Standard), OptionConstants.AspectRatioStandard)
+        ], Tab: EmulationMachineTab.Video, RequiresRestart: true),
+        new(OptionConstants.DiskCacheSizeKey, OptionConstants.DiskCacheSizeLabelResource, OptionConstants.DiskCacheSizeHelpResource, null,
+            OptionConstants.DiskCacheOneGigabyte, OptionConstants.DiskCacheOneGigabyte,
+        [
+            new(OptionValueFunctions.ToNative(DiskCachePolicy.Unlimited), OptionConstants.DiskCacheUnlimitedLabelResource),
+            new(OptionValueFunctions.ToNative(DiskCachePolicy.OneGigabyte), OptionConstants.DiskCacheOneGigabyteDisplayName),
+            new(OptionValueFunctions.ToNative(DiskCachePolicy.FiveGigabytes), OptionConstants.DiskCacheFiveGigabytesDisplayName),
+            new(OptionValueFunctions.ToNative(DiskCachePolicy.ClearOnGameClose), OptionConstants.DiskCacheClearOnGameCloseLabelResource)
+        ], Tab: EmulationMachineTab.Storage, IsGlobalStorageOption: true),
         new(OptionConstants.PpuDecoderKey, OptionConstants.PpuDecoderLabelResource, OptionConstants.PpuDecoderHelpResource, null,
             OptionConstants.PpuDecoderDefaultValue, OptionConstants.PpuDecoderDefaultValue,
         [
@@ -148,13 +173,19 @@ internal static class OptionCatalog
             new(OptionValueFunctions.ToNative(ClocksScale._200), OptionConstants.ClocksScale200DisplayName),
             new(OptionValueFunctions.ToNative(ClocksScale._300), OptionConstants.ClocksScale300DisplayName),
         ], IsVisible: true, Tab: EmulationMachineTab.Cpu, RequiresRestart: false),
-        new(OptionConstants.RendererKey, OptionConstants.RendererLabelResource, OptionConstants.RendererHelpResource, null,
+        new(OptionConstants.RendererKey, GraphicsSettingsConstants.ModeLabel, GraphicsSettingsConstants.ModeHelp, null,
             OptionConstants.RendererDefaultValue, OptionConstants.RendererDefaultValue,
         [
             new(OptionValueFunctions.ToNative(Renderer.Opengl), OptionConstants.RendererOpenglDisplayName),
             new(OptionValueFunctions.ToNative(Renderer.Vulkan), OptionConstants.RendererVulkanDisplayName),
             new(OptionValueFunctions.ToNative(Renderer.Null), OptionValueResourceConstants.NullNoVideoLabelResource),
-        ], IsVisible: true, Tab: EmulationMachineTab.Video, RequiresRestart: true),
+        ], IsVisible: true, Tab: EmulationMachineTab.Video, RequiresRestart: true,
+            GraphicsApiValues: new Dictionary<EmulationGraphicsApi, string>
+            {
+                [EmulationGraphicsApi.Automatic] = OptionConstants.RendererVulkan,
+                [EmulationGraphicsApi.Vulkan] = OptionConstants.RendererVulkan,
+                [EmulationGraphicsApi.OpenGL] = OptionConstants.RendererOpengl
+            }, RetainedRendererValues: [OptionConstants.RendererNull]),
         new(OptionConstants.FrameLimitKey, OptionConstants.FrameLimitLabelResource, OptionConstants.FrameLimitHelpResource, null,
             OptionConstants.FrameLimitDefaultValue, OptionConstants.FrameLimitDefaultValue,
         [
@@ -342,6 +373,7 @@ internal static class OptionCatalog
             new(OptionValueFunctions.ToNative(VblankRate._120), OptionConstants.VblankRate120DisplayName),
             new(OptionValueFunctions.ToNative(VblankRate._144), OptionConstants.VblankRate144DisplayName),
             new(OptionValueFunctions.ToNative(VblankRate._240), OptionConstants.VblankRate240DisplayName),
+            new(OptionValueFunctions.ToNative(VblankRate.FromCompatibilityList), OptionValueResourceConstants.PickFromListLabelResource),
         ], IsVisible: true, Tab: EmulationMachineTab.Video, RequiresRestart: false),
         new(OptionConstants.ThreadSchedulerKey, OptionConstants.ThreadSchedulerLabelResource, OptionConstants.ThreadSchedulerHelpResource, null,
             OptionConstants.ThreadSchedulerDefaultValue, OptionConstants.ThreadSchedulerDefaultValue,
@@ -554,12 +586,6 @@ internal static class OptionCatalog
             new(OptionValueFunctions.ToNative(FramePacing.Frontend), OptionValueResourceConstants.RetroArchLabelResource),
             new(OptionValueFunctions.ToNative(FramePacing.Emulator), OptionValueResourceConstants.EmulatorClockLabelResource),
         ], IsVisible: true, Tab: EmulationMachineTab.Video, RequiresRestart: false),
-        new(OptionConstants.SavedataSlotKey, OptionConstants.SavedataSlotLabelResource, OptionConstants.SavedataSlotHelpResource, null,
-            OptionConstants.SavedataSlotDefaultValue, OptionConstants.SavedataSlotDefaultValue, [
-            new(OptionConstants.SavedataSlotList, OptionValueResourceConstants.PickFromListLabelResource),
-            ..NumericOptionValueFunctions.Choices(OptionConstants.SavedataSlotRanges, OptionNumericConstants.IntegerFormat),
-        ],
-            Tab: EmulationMachineTab.Storage, RequiresRestart: false),
         new(OptionConstants.MasterVolumeKey, OptionConstants.MasterVolumeLabelResource, OptionConstants.MasterVolumeHelpResource, null,
             OptionConstants.MasterVolumeDefaultValue, OptionConstants.MasterVolumeDefaultValue, [], Tab: EmulationMachineTab.Audio, RequiresRestart: false,
             NumericRange: OptionConstants.MasterVolumeRange, NativeNumericFormat: OptionNumericConstants.IntegerFormat, NativeZeroValue: null),

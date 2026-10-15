@@ -18,6 +18,7 @@ internal static class InputSettingsFunctionsConstants
     internal const string ResourceControllerActionRight = "Emulation.Controller.Action.Right";
     internal const string ResourceControllerActionFire1 = "Emulation.Controller.Action.Fire1";
     internal const string ResourceControllerActionFire2 = "Emulation.Controller.Action.Fire2";
+    internal const string ResourceControllerActionReload = "Emulation.Controller.Action.Reload";
     internal const string ControllerCross = "✕";
     internal const string ControllerCircle = "○";
     internal const string ControllerSquare = "□";
@@ -64,6 +65,7 @@ internal static class InputSettingsFunctionsConstants
     internal const string ResourceDualAnalog = "Emulation.Sony.Controller.PlayStationDualAnalog";
     internal const string ResourceAnalogJoystick = "Emulation.Sony.Controller.PlayStationAnalogJoystick";
     internal const string ResourcePlayStationMouse = "Emulation.Sony.Controller.PlayStationMouse";
+    internal const string ResourceGunCon2 = "Emulation.Sony.Controller.PlayStation2GunCon2";
     internal const string ResourceGunCon = "Emulation.Sony.Controller.PlayStationNamcoGunCon";
     internal const string ResourceJustifier = "Emulation.Sony.Controller.PlayStationKonamiJustifier";
     internal const string NeGcon = "neGcon";

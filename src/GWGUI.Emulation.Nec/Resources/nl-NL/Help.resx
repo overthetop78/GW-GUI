@@ -5,7 +5,7 @@
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Nec.Help.Memory.Ram.Short"><value>Hoeveelheid RAM beschikbaar voor de emuleerde machine.</value></data>
-  <data name="Emulation.Nec.Help.Memory.Ram.Detailed"><value>Selecteer de RAM uitbreiding blootgesteld door BeetlePce. De machine moet opnieuw starten voordat de nieuwe hoeveelheid wordt gebruikt.</value></data>
+  <data name="Emulation.Nec.Help.Memory.Ram.Detailed"><value>Selecteer de RAM uitbreiding blootgesteld door BeetlePce.</value></data>
   <data name="Emulation.Nec.Help.Firmware.Integrated.Short"><value>Voor dit model is geen extern BIOS-bestand nodig.</value></data>
   <data name="Emulation.Nec.Help.Firmware.Integrated.Detailed"><value>Cartridge games op deze machine draaien zonder een extern systeem BIOS.</value></data>
   <data name="Emulation.Nec.Help.Video.Resolution.Short"><value>Interne resolutie van BeetlePce.</value></data>

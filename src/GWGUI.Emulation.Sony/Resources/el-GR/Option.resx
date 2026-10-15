@@ -23,7 +23,7 @@
   <data name="Emulation.Option.swanstation.swanstation_CDROM_ReadThread.Label"><value>CD-ROM Διαβάστε το νήμα</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_ReadThread.Help"><value>Διαβάζει τους τομείς CD-ROM μπροστά ασύγχρονα, μειώνοντας τον κίνδυνο των αιχμών του χρόνου καρέ.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_LoadImagePatches.Label"><value>Εφαρμογή προσαρτημάτων εικόνων</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_CDROM_LoadImagePatches.Help"><value>Αυτόματη εφαρμογή μπαλωμάτων σε εικόνες δίσκων όταν είναι παρόντα στον ίδιο κατάλογο. Επί του παρόντος μόνο τα patches PPF υποστηρίζονται με αυτή την επιλογή. Απαιτεί την επανεκκίνηση του πυρήνα για εφαρμογή.</value></data>
+  <data name="Emulation.Option.swanstation.swanstation_CDROM_LoadImagePatches.Help"><value>Αυτόματη εφαρμογή μπαλωμάτων σε εικόνες δίσκων όταν είναι παρόντα στον ίδιο κατάλογο. Επί του παρόντος μόνο τα patches PPF υποστηρίζονται με αυτή την επιλογή.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_LoadImageToRAM.Label"><value>Προφόρτωση εικόνας CD-ROM στη RAM</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_LoadImageToRAM.Help"><value>Φορτώνει την εικόνα του δίσκου στη RAM πριν αρχίσει η εξομοίωση. Μπορεί να μειώσει το οτοστόπ αν είστε τρέχει από ένα μερίδιο του δικτύου, με κόστος ενός μεγαλύτερου χρόνου εκκίνησης. Καθώς το libretro δεν παρέχει κανένα τρόπο για τη σχεδίαση επικαλύψεων, ο εξομοιωτής θα φαίνεται να κλειδώνει ενώ η εικόνα είναι προφορτωμένη.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_PreCacheCHD.Label"><value>Προ-κάσα εικόνες CHD στη RAM</value></data>
@@ -39,8 +39,6 @@
   <data name="Emulation.Option.Sony.Value.Interpreter"><value>Διερμηνευτής</value></data>
   <data name="Emulation.Option.Sony.Value.CachedInterpreter"><value>Καθυστερημένος διερμηνέας</value></data>
   <data name="Emulation.Option.Sony.Value.Recompiler"><value>Αντικαταστάτης</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_GPU_Renderer.Label"><value>Αναδοχέας GPU</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_GPU_Renderer.Help"><value>Που θα χρησιμοποιηθεί για να μιμηθεί το GPU.</value></data>
   <data name="Emulation.Option.Sony.Value.HardwareOpenGL"><value>Υλικό (OpenGL)</value></data>
   <data name="Emulation.Option.Sony.Value.Software"><value>Λογισμικό</value></data>
   <data name="Emulation.Option.swanstation.swanstation_GPU_ResolutionScale.Label"><value>Εσωτερική κλίμακα ανάλυσης</value></data>
@@ -48,7 +46,7 @@
   <data name="Emulation.Option.swanstation.swanstation_GPU_UseThread.Label"><value>Αποτύπωση με σπείρωμα (Λογισμικό)</value></data>
   <data name="Emulation.Option.swanstation.swanstation_GPU_UseThread.Help"><value>Χρησιμοποιεί ένα δεύτερο νήμα για τη σχεδίαση γραφικών. Επί του παρόντος διατίθεται μόνο για τον αποθέτη λογισμικού.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_GPU_UseSoftwareRendererForReadbacks.Label"><value>Χρήση λογισμικού Renderer για αναδρομές</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_GPU_UseSoftwareRendererForReadbacks.Help"><value>Εκτέλεση αποτύπωσης λογισμικού παράλληλα με την απόδοση υλικού κατά την ανάγνωση δεδομένων εικόνας από το VRAM. Ορισμένα παιχνίδια το χρειάζονται αυτό για τη θολούρα κίνησης ή τις μεταβάσεις μάχης, ή να διορθώσετε κατεστραμμένες υφές. Επανεκκίνηση του πυρήνα μετά την αλλαγή αυτής της επιλογής.</value></data>
+  <data name="Emulation.Option.swanstation.swanstation_GPU_UseSoftwareRendererForReadbacks.Help"><value>Εκτέλεση αποτύπωσης λογισμικού παράλληλα με την απόδοση υλικού κατά την ανάγνωση δεδομένων εικόνας από το VRAM. Ορισμένα παιχνίδια το χρειάζονται αυτό για τη θολούρα κίνησης ή τις μεταβάσεις μάχης.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_GPU_MSAA.Label"><value>Αντιαισθητική πολλαπλών δειγμάτων</value></data>
   <data name="Emulation.Option.swanstation.swanstation_GPU_MSAA.Help"><value>Χρησιμοποιεί πολυδείγμα antialiasing για την απόδοση τρισδιάστατων αντικειμένων. Μπορεί να εξομαλύνει τις οδοντωτές άκρες των πολύγωνων με χαμηλότερο κόστος από την απόδοση σε σύγκριση με την αύξηση της κλίμακας ανάλυσης, αλλά μπορεί να είναι πιο πιθανό να προκαλέσει σφάλματα απόδοσης σε ορισμένα παιχνίδια.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_GPU_TrueColor.Label"><value>Αποτύπωση με πλήρη ακρίβεια χρώματος</value></data>
@@ -129,7 +127,7 @@
   <data name="Emulation.Option.swanstation.swanstation_Display_LineEndOffset.Label"><value>Μετατόπιση της τελευταίας προβαλλόμενης γραμμής</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Display_LineEndOffset.Help"><value>Τα μέρη ή οι καλλιέργειες εκτός γραμμών από το κάτω μέρος της εμφανιζόμενης εικόνας.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_MemoryCards_Card1Type.Label"><value>Κάρτα μνήμης 1 τύπου</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_MemoryCards_Card1Type.Help"><value>Επιλέξτε τη μορφή της κάρτας μνήμης για υποδοχή 1. Επανεκκίνηση του πυρήνα κατά την αλλαγή των μορφών. Τα κοινά φύλλα και οι δύο επιλογές ξεχωριστής κάρτας διατηρούνται για παλιές ρυθμίσεις, αλλά δεν υποστηρίζονται. Η μορφή Libretro χρησιμοποιεί αρχεία .srm. Μια ξεχωριστή κάρτα που ονομάζεται από το παιχνίδι χρησιμοποιεί αρχεία .mcd. Αυτές οι δύο μορφές περιέχουν ταυτόσημα δεδομένα. Για να μετατρέψετε μεταξύ τους, αλλάξτε την επέκταση του αρχείου και προσθέστε ή αφαιρέστε το suffix υποδοχή _1.</value></data>
+  <data name="Emulation.Option.swanstation.swanstation_MemoryCards_Card1Type.Help"><value>Επιλέξτε τη μορφή της κάρτας μνήμης για υποδοχή 1. Τα κοινά φύλλα και οι δύο επιλογές ξεχωριστής κάρτας διατηρούνται για παλιές ρυθμίσεις, αλλά δεν υποστηρίζονται. Η μορφή Libretro χρησιμοποιεί αρχεία .srm. Μια ξεχωριστή κάρτα που ονομάζεται από το παιχνίδι χρησιμοποιεί αρχεία .mcd. Αυτές οι δύο μορφές περιέχουν ταυτόσημα δεδομένα. Για να μετατρέψετε μεταξύ τους, αλλάξτε την επέκταση του αρχείου και προσθέστε ή αφαιρέστε το suffix υποδοχή _1.</value></data>
   <data name="Emulation.Option.Sony.Value.LibretroDefault"><value>Libretro (Προκαθορισμένο)</value></data>
   <data name="Emulation.Option.Sony.Value.SharedBetweenAllGames"><value>Κοινή χρήση μεταξύ όλων των παιχνιδιών</value></data>
   <data name="Emulation.Option.Sony.Value.SeparateCardPerGameGameCode"><value>Ξεχωριστή κάρτα ανά παιχνίδι (κωδικός παιχνιδιού)</value></data>
@@ -280,7 +278,7 @@
   <data name="Emulation.Option.mednafen_psx.beetle_psx_gte_overclock.Label"><value>GTE Υπερώρια ώρα</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_gte_overclock.Help"><value>Εκτέλεση κάθε λειτουργίας του συνεπεξεργαστή γραφικών GTE σε έναν κύκλο CPU. Αυτό μπορεί να βελτιώσει σημαντικά το ρυθμό καρέ και να κάνει τον συγχρονισμό καρέ πιο σταθερό στα παιχνίδια που χρησιμοποιούν το GTE σε μεγάλο βαθμό.</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_cd_access_method.Label"><value>Μέθοδος πρόσβασης CD</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_cd_access_method.Help"><value>Η σύγχρονη πρόσβαση αναπαράγει το αρχικό υλικό. Ασύγχρονη πρόσβαση μπορεί να μειώσει τις παύσεις σε συσκευές με αργή αποθήκευση. Φόρτωση ολόκληρης της εικόνας δίσκου σε RAM μπορεί να βελτιώσει το χρόνο φόρτωσης κατά τη διάρκεια του παιχνιδιού, αλλά καθυστερήσεις εκκίνησης. Αυτή η λειτουργία μπορεί να προκαλέσει προβλήματα όταν η RAM είναι περιορισμένη. Οι φυσικοί δίσκοι χρησιμοποιούν σύγχρονη πρόσβαση αντί να φορτώνουν ολόκληρη την εικόνα. Επανεκκίνηση μετά την αλλαγή αυτής της επιλογής.</value></data>
+  <data name="Emulation.Option.mednafen_psx.beetle_psx_cd_access_method.Help"><value>Η σύγχρονη πρόσβαση αναπαράγει το αρχικό υλικό. Ασύγχρονη πρόσβαση μπορεί να μειώσει τις παύσεις σε συσκευές με αργή αποθήκευση. Φόρτωση ολόκληρης της εικόνας δίσκου σε RAM μπορεί να βελτιώσει το χρόνο φόρτωσης κατά τη διάρκεια του παιχνιδιού.</value></data>
   <data name="Emulation.Option.Sony.Value.Synchronous"><value>Συγχρονισμός</value></data>
   <data name="Emulation.Option.Sony.Value.Asynchronous"><value>Ασύγχρονη</value></data>
   <data name="Emulation.Option.Sony.Value.PreCache"><value>Προ- Κάσα</value></data>
@@ -431,7 +429,7 @@
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_gte_overclock.Label"><value>GTE Υπερώρια ώρα</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_gte_overclock.Help"><value>Εκτέλεση κάθε λειτουργίας του συνεπεξεργαστή γραφικών GTE σε έναν κύκλο CPU. Αυτό μπορεί να βελτιώσει σημαντικά το ρυθμό καρέ και να κάνει τον συγχρονισμό καρέ πιο σταθερό στα παιχνίδια που χρησιμοποιούν το GTE σε μεγάλο βαθμό.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_access_method.Label"><value>Μέθοδος πρόσβασης CD</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_access_method.Help"><value>Η σύγχρονη πρόσβαση αναπαράγει το αρχικό υλικό. Ασύγχρονη πρόσβαση μπορεί να μειώσει τις παύσεις σε συσκευές με αργή αποθήκευση. Φόρτωση ολόκληρης της εικόνας δίσκου σε RAM μπορεί να βελτιώσει το χρόνο φόρτωσης κατά τη διάρκεια του παιχνιδιού, αλλά καθυστερήσεις εκκίνησης. Αυτή η λειτουργία μπορεί να προκαλέσει προβλήματα όταν η RAM είναι περιορισμένη. Οι φυσικοί δίσκοι χρησιμοποιούν σύγχρονη πρόσβαση αντί να φορτώνουν ολόκληρη την εικόνα. Επανεκκίνηση μετά την αλλαγή αυτής της επιλογής.</value></data>
+  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_access_method.Help"><value>Η σύγχρονη πρόσβαση αναπαράγει το αρχικό υλικό. Ασύγχρονη πρόσβαση μπορεί να μειώσει τις παύσεις σε συσκευές με αργή αποθήκευση. Φόρτωση ολόκληρης της εικόνας δίσκου σε RAM μπορεί να βελτιώσει το χρόνο φόρτωσης κατά τη διάρκεια του παιχνιδιού.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_fastload.Label"><value>Ταχύτητα φόρτωσης CD</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_fastload.Help"><value>Οι τιμές μεγαλύτερες από το '2x (Native)' μπορούν να μειώσουν σημαντικά τους χρόνους φόρτωσης στο παιχνίδι, αλλά μπορεί να εισαγάγουν σφάλματα χρονισμού. Μερικά παιχνίδια μπορεί να μην λειτουργούν σωστά πάνω από μια ορισμένη τιμή.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_skip_bios.Label"><value>Παράλειψη κίνησης εκκίνησης BIOS</value></data>
@@ -442,8 +440,6 @@
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_region.Help"><value>Ορίζει την περιοχή επιστροφής που χρησιμοποιείται όταν το περιεχόμενο δεν μπορεί να ανιχνευθεί αυτόματα (π.χ. ακατέργαστα αρχεία PS-X EXE). Τα παιχνίδια με βάση το δίσκο εξακολουθούν να χρησιμοποιούν την περιοχή που είναι ενσωματωμένη στο δίσκο.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_internal_resolution.Label"><value>Εσωτερική ανάλυση GPU</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_internal_resolution.Help"><value>Οι αναλύσεις που υπερβαίνουν το '1x (Native)' βελτιώνουν την πιστότητα των τρισδιάστατων μοντέλων εις βάρος των αυξημένων απαιτήσεων απόδοσης.</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_renderer.Label"><value>Αποτύπωμα</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_renderer.Help"><value>Επιλέξτε τον τρόπο σχεδίασης της εικόνας. Ο αποθέτης λογισμικού είναι ο πιο ακριβής. Χρειάζεται πολύ περισσότερη δύναμη επεξεργασίας σε ανώτερες εσωτερικές αποφάσεις. Η απόδοση υλικού είναι λιγότερο ακριβής, αλλά ταχύτερη σε υψηλότερες αναλύσεις και υποστηρίζει βελτιώσεις γραφικών. Αυτόματη απόδοση υλικού επιλέγει Vulkan ή OpenGL σύμφωνα με τον οδηγό βίντεο που χρησιμοποιείται από την εφαρμογή. Εάν ο οδηγός δεν υποστηρίζει ούτε Vulkan ούτε OpenGL 3.3, ο πυρήνας χρησιμοποιεί την απόδοση λογισμικού αντ 'αυτού. Επανεκκίνηση του πυρήνα μετά την αλλαγή αυτής της επιλογής.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_renderer_software_fb.Label"><value>Λογισμικό Framebuffer</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_renderer_software_fb.Help"><value>Χρησιμοποιήστε τον απογραφέα λογισμικού στο παρασκήνιο στην εγγενή ανάλυση ενώ ο αποθέτης υλικού εμφανίζει το παιχνίδι. Αυτό αναπαράγει την κίνηση θολώνει και η μάχη μετατοπίζεται στο FF7 με ακρίβεια. Όταν απενεργοποιηθεί, το OpenGL παραλείπει αυτά τα εφέ και Vulkan τα αντλεί στο GPU. Η απενεργοποίηση αυτής της επιλογής μπορεί να βελτιώσει την ταχύτητα αλλά μπορεί επίσης να προκαλέσει σοβαρά σφάλματα γραφικών. Κρατήστε το ενεργοποιημένο αν δεν είναι σίγουρο.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_color_format.Label"><value>Μορφή χρώματος</value></data>
@@ -472,7 +468,7 @@
   <data name="Emulation.Option.Sony.Value.25Degrees"><value>25 μοίρες</value></data>
   <data name="Emulation.Option.Sony.Value.45Degrees"><value>45 μοίρες</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_video_cable.Label"><value>Αναλογικό καλώδιο βίντεο</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_video_cable.Help"><value>Προσομοιώνει το καλώδιο μεταξύ της κονσόλας και της τηλεόρασης, συμπεριλαμβανομένης της κωδικοποίησης χρώματος και του αποκωδικοποιητή της τηλεόρασης.). 'RGB (SCART)' είναι η πιο απότομη έξοδος του PSX θα μπορούσε να παράγει: το multi-out φέρει αναλογική RGB, Έτσι, τίποτα δεν είναι διαμορφωμένο και κανένα από τα τεχνουργήματα κωδικοποίησης παρακάτω μπορεί να συμβεί - αλλά εξακολουθεί να είναι ένα αναλογικό καλώδιο, έτσι ώστε να περιορίζεται ζώνη-περιορίζεται από ενισχυτή βίντεο της κονσόλας και το στάδιο εισόδου του σετ αντί να είναι απείρως αιχμηρό. 'S-Video' όρια ταινία χρώμα βαριά, αλλά διατηρεί luma και το χρώμα σε ξεχωριστά σύρματα, οπότε λεπτή λεπτομέρεια παραμένει καθαρό. \"Σύνθετη\" τα συνοψίζει πάνω σε ένα σύρμα, το οποίο ο αποκωδικοποιητής στη συνέχεια πρέπει να τραβήξει μακριά και πάλι, κοστολογώντας λεπτομέρεια luma και προσθέτοντας χρωματισμό και ουράνιο τόξο fringing σε λεπτά σχέδια. 'RF' μοντέλα ενός εξωτερικού διαμορφωτή - η ίδια η κονσόλα δεν έχει κανένα, μόνο ένα DC jack to power one - στενεύοντας luma περαιτέρω και προσθέτοντας το μοτίβο beat που ο φορέας ήχου κάνει ενάντια στο χρώμα subcarrier, η οποία είναι ισχυρότερη σε κορεσμένο χρώμα. Λειτουργεί σε οποιαδήποτε εσωτερική ανάλυση: τα επιπλέον δείγματα επιλύονται πριν δημιουργηθεί το σήμα, έτσι οι υψηλότερες ρυθμίσεις ενεργούν ως υπερδειγματοληπτική μέσα στο καλώδιο και όχι ένα ευρύτερο σήμα, και η έξοδος εξακολουθεί να φέρει την υπο-pixel λεπτομέρεια που παράγει ο αποκωδικοποιητής. Υποστηρίζεται από τους Vulkan και OpenGL performers, και αγνοείται από τον αποθέτη λογισμικού. Στο OpenGL το φίλτρο που αφαιρεί τις «κρέμες κουκκίδες» -το λεπτό διακεκομμένο μοτίβο κατά μήκος των οριζόντιων άκρων χρώματος - χρειάζεται GL 4.3 ή GLES 3.1· σε έναν παλαιότερο οδηγό η προσομοίωση εξακολουθεί να τρέχει, αλλά 'Σύνθετα' και 'RF' θα δείξει αυτές τις τελείες. Εφαρμόζεται αμέσως, δεν απαιτείται επανεκκίνηση.</value></data>
+  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_video_cable.Help"><value>Προσομοιώνει το καλώδιο μεταξύ της κονσόλας και της τηλεόρασης, συμπεριλαμβανομένης της κωδικοποίησης χρώματος και του αποκωδικοποιητή της τηλεόρασης.). 'RGB (SCART)' είναι η πιο απότομη έξοδος του PSX θα μπορούσε να παράγει: το multi-out φέρει αναλογική RGB, Έτσι, τίποτα δεν είναι διαμορφωμένο και κανένα από τα τεχνουργήματα κωδικοποίησης παρακάτω μπορεί να συμβεί - αλλά εξακολουθεί να είναι ένα αναλογικό καλώδιο, έτσι ώστε να περιορίζεται ζώνη-περιορίζεται από ενισχυτή βίντεο της κονσόλας και το στάδιο εισόδου του σετ αντί να είναι απείρως αιχμηρό. 'S-Video' όρια ταινία χρώμα βαριά, αλλά διατηρεί luma και το χρώμα σε ξεχωριστά σύρματα, οπότε λεπτή λεπτομέρεια παραμένει καθαρό. \"Σύνθετη\" τα συνοψίζει πάνω σε ένα σύρμα, το οποίο ο αποκωδικοποιητής στη συνέχεια πρέπει να τραβήξει μακριά και πάλι, κοστολογώντας λεπτομέρεια luma και προσθέτοντας χρωματισμό και ουράνιο τόξο fringing σε λεπτά σχέδια. 'RF' μοντέλα ενός εξωτερικού διαμορφωτή - η ίδια η κονσόλα δεν έχει κανένα, μόνο ένα DC jack to power one - στενεύοντας luma περαιτέρω και προσθέτοντας το μοτίβο beat που ο φορέας ήχου κάνει ενάντια στο χρώμα subcarrier, η οποία είναι ισχυρότερη σε κορεσμένο χρώμα. Λειτουργεί σε οποιαδήποτε εσωτερική ανάλυση: τα επιπλέον δείγματα επιλύονται πριν δημιουργηθεί το σήμα, έτσι οι υψηλότερες ρυθμίσεις ενεργούν ως υπερδειγματοληπτική μέσα στο καλώδιο και όχι ένα ευρύτερο σήμα, και η έξοδος εξακολουθεί να φέρει την υπο-pixel λεπτομέρεια που παράγει ο αποκωδικοποιητής. Υποστηρίζεται από τους Vulkan και OpenGL performers, και αγνοείται από τον αποθέτη λογισμικού. Στο OpenGL το φίλτρο που αφαιρεί τις «κρέμες κουκκίδες» -το λεπτό διακεκομμένο μοτίβο κατά μήκος των οριζόντιων άκρων χρώματος - χρειάζεται GL 4.3 ή GLES 3.1· σε έναν παλαιότερο οδηγό η προσομοίωση εξακολουθεί να τρέχει, αλλά 'Σύνθετα' και 'RF' θα δείξει αυτές τις τελείες. Εφαρμόζεται αμέσως.</value></data>
   <data name="Emulation.Option.Sony.Value.NoSimulation"><value>Χωρίς προσομοίωση</value></data>
   <data name="Emulation.Option.Sony.Value.RGBSCART"><value>RGB (SCART)</value></data>
   <data name="Emulation.Option.Sony.Value.SVideo"><value>S-βίντεο</value></data>
@@ -757,9 +753,7 @@
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_nostalls.Label"><value>Απενεργοποίηση επιβραδύνσεων CPU/GTE</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_nostalls.Help"><value>Θα προκαλέσει κάποια παιχνίδια για να τρέξει πάρα πολύ γρήγορα. Θα πρέπει να απενεργοποιηθεί σε όλες σχεδόν τις περιπτώσεις. Μόνο διερμηνέας.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_fast_boot.Label"><value>Γρήγορη εκκίνηση</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_fast_boot.Help"><value>Παράκαμψη του BIOS boot animation. Απαιτεί επανεκκίνηση.</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_renderer.Label"><value>Αποτύπωμα</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_renderer.Help"><value>Αποδοτής υλικού API, ή ο αποθέτης λογισμικού. Η μετάβαση από ή προς το Λογισμικό ισχύει για τη μύγα.Η εναλλαγή μεταξύ των APIs υλικού αρχίζει να ισχύει όταν το περιεχόμενο επανεκκινείται.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_fast_boot.Help"><value>Παράκαμψη του BIOS boot animation.</value></data>
   <data name="Emulation.Option.Sony.Value.OpenGLHardware"><value>OpenGL (σκληρό λογισμικό)</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_upscale_multiplier.Label"><value>Εσωτερική ανάλυση</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_upscale_multiplier.Help"><value>Εσωτερικός πολλαπλασιαστής ανάλυσης αποδόσεων για τον αποδοτή υλικού. Επίσης ζυγίζει το framebuffer εξόδου. Εφαρμόζει στην μύγα.</value></data>
@@ -796,8 +790,6 @@
   <data name="Emulation.Option.pcee2.pcsx2_fxaa.Help"><value>Φτηνές μετά-διαδικασία anti-aliasing.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_cas_mode.Label"><value>Προσαρμοστική σκλήρυνση αντίθεσης</value></data>
   <data name="Emulation.Option.Sony.Value.SharpenOnly"><value>Συγκέντρωση Μόνο</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_audio_buffer_ms.Label"><value>Διακόπτης ήχου</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_audio_buffer_ms.Help"><value>Πόσο ήχο κρατάει ο εξομοιωτής μπροστά από το περιβάλλον. Περισσότερο από αυτό οδηγεί έξω ένα στάβλο που διαφορετικά θα ακουστεί ως μια διακοπή του ήχου, με το κόστος αυτής της μεγάλης καθυστέρησης πριν να ακούσετε τίποτα. Το προεπιλεγμένο του PCSX2 είναι 50 ms, το οποίο υποθέτει ότι τροφοδοτεί μια συσκευή ήχου άμεσα και όχι ένα frontend που τραβά μία φορά το πλαίσιο.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_frame_limiter.Label"><value>Περιοριστής πλαισίου</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_frame_limiter.Help"><value>Αυτό που κρατάει τον εξομοιωτή σε πλήρη ταχύτητα. Ο Frontend αφήνει το βηματισμό στην RetroArch, η οποία ενεργοποιεί κάνοντας τον πυρήνα να περιμένει στον ήχο που του δίνει. Εσωτερικά χρησιμοποιεί τον κόφτη του PCSX2 αντί - για μια συσκευή όπου η αναμονή δεν συμβαίνει ποτέ, επειδή ο οδηγός ήχου υπονομεύει μάλλον παρά μπλοκάρει, και η παραλλαγή της ταχύτητας του εξομοιωτή φτάνει στη συνέχεια στην οθόνη ως ανομοιόμορφη κλιμάκωση καρέ.</value></data>
   <data name="Emulation.Option.Sony.Value.FrontendRetroArch"><value>Πλοίο (RetroArch)</value></data>
@@ -808,13 +800,13 @@
   <data name="Emulation.Option.pcee2.pcsx2_aspect_ratio.Label"><value>Αναλογία διαστάσεων</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_aspect_ratio.Help"><value>Αυτόματες αναφορές 16:9 όταν είναι ενεργοποιημένα τα έμπλαστρα ευρείας οθόνης, 4:3 διαφορετικά.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_multitap.Label"><value>Πολλαπλασιασμός</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_multitap.Help"><value>Ενεργοποιήστε τον προσαρμογέα multitap για έως 8 ελεγκτές. Η σειρά παικτών ακολουθεί τις φυσικές υποδοχές (λιμάνι 1: 1A-1D, στη συνέχεια θύρα 2: 2Α-2Δ). Επανεκκίνηση συνιστάται.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_multitap.Help"><value>Ενεργοποιήστε τον προσαρμογέα multitap για έως 8 ελεγκτές. Η σειρά παικτών ακολουθεί τις φυσικές υποδοχές (λιμάνι 1: 1A-1D.</value></data>
   <data name="Emulation.Option.Sony.Value.Disabled2Players"><value>Άτομα με ειδικές ανάγκες (2 παίκτες)</value></data>
   <data name="Emulation.Option.Sony.Value.Port15Players"><value>Θύρα 1 (5 παίκτες)</value></data>
   <data name="Emulation.Option.Sony.Value.Port25Players"><value>Θύρα 2 (5 παίκτες)</value></data>
   <data name="Emulation.Option.Sony.Value.BothPorts8Players"><value>Και τα δύο λιμάνια (8 παίκτες)</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_lightgun.Label"><value>Φωτεινό πιστόλι (GunCon 2)</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_lightgun.Help"><value>Προσομοίωση ενός Namco GunCon 2 σε μια θύρα USB, με στόχο το φωτοβόλο του Frontend (ή ποντίκι χαρτογραφημένο ως ελαφρύ όπλο) στην αντίστοιχη θύρα ελεγκτή. Απαιτεί επανεκκίνηση.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_lightgun.Help"><value>Προσομοίωση ενός Namco GunCon 2 σε μια θύρα USB.</value></data>
   <data name="Emulation.Option.Sony.Value.USBPort1"><value>Θύρα USB 1</value></data>
   <data name="Emulation.Option.Sony.Value.USBPort2"><value>Θύρα USB 2</value></data>
   <data name="Emulation.Option.Sony.Value.BothPorts"><value>Και οι δύο θύρες</value></data>
@@ -839,18 +831,18 @@
   <data name="Emulation.Option.pcee2.pcsx2_ee_cycle_skip.Label"><value>EE Κύκλος Skip</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_ee_cycle_skip.Help"><value>Κάνει τους EE κύκλους παρακάμψεων. Βοηθά μερικά παιχνίδια με υψηλή δραστηριότητα VU, σπάει άλλα.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_cpu_recompiler.Label"><value>Αντικαταστάτης CPU (JIT)</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_cpu_recompiler.Help"><value>Ενεργοποίηση ή απενεργοποίηση της επαναπροσαρμογής για διαγνωστικούς σκοπούς. Όταν ενεργοποιηθούν, οι EE, IOP, VU0 και VU1 χρησιμοποιούν γρήγορη επαναπροσαρμογή JIT. Αυτή είναι η προεπιλογή. Όταν απενεργοποιείται, κάθε CPU χρησιμοποιεί πιο αργή ερμηνεία οδηγιών. Αυτό βοηθά στη διάγνωση σφαλμάτων JIT: μια συντριβή που εξακολουθεί να συμβαίνει με recompilation disabled έχει άλλη αιτία. Οι τέσσερις μεμονωμένοι CPU διακόπτες παρακάτω ισχύουν μόνο όταν αυτή η κύρια επιλογή είναι ενεργοποιημένη. Επανεκκίνηση μετά την αλλαγή αυτής της επιλογής.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_cpu_recompiler.Help"><value>Ενεργοποίηση ή απενεργοποίηση της επαναπροσαρμογής για διαγνωστικούς σκοπούς. Όταν ενεργοποιηθούν, οι EE, IOP, VU0 και VU1 χρησιμοποιούν γρήγορη επαναπροσαρμογή JIT. Αυτή είναι η προεπιλογή. Όταν απενεργοποιείται.</value></data>
   <data name="Emulation.Option.Sony.Value.EnabledJITDefault"><value>Ενεργοποίηση (JIT, προκαθορισμένο)</value></data>
   <data name="Emulation.Option.Sony.Value.DisabledInterpreter"><value>Αναπηρία (Ερμηνευτής)</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_rec_ee.Label"><value>- EE Αντικαταστάτης</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_rec_ee.Help"><value>Διαγνωστικό. Απενεργοποίηση μόνο του Emotion Engine (EE) dynarec ενώ αφήνοντας τους άλλους ανοιχτό, σε bisect που recompiler προκαλεί συντριβή. Απαιτεί επανεκκίνηση.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_rec_ee.Help"><value>Διαγνωστικό. Απενεργοποίηση μόνο του Emotion Engine (EE) dynarec ενώ αφήνοντας τους άλλους ανοιχτό.</value></data>
   <data name="Emulation.Option.Sony.Value.EnabledDefault"><value>Ενεργοποιημένο (Προκαθορισμένο)</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_rec_iop.Label"><value>- Αντικαταστάτης IOP</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_rec_iop.Help"><value>Διαγνωστικό. Απενεργοποίηση μόνο του IOP (R3000) dynarec ενώ αφήνοντας τους άλλους ανοιχτό, σε bisect που recompiler προκαλεί συντριβή. Απαιτεί επανεκκίνηση.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_rec_iop.Help"><value>Διαγνωστικό. Απενεργοποίηση μόνο του IOP (R3000) dynarec ενώ αφήνοντας τους άλλους ανοιχτό.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_rec_vu0.Label"><value>- Αντικαταστάτης VU0</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_rec_vu0.Help"><value>Διαγνωστικό. Απενεργοποίηση μόνο του VU0 microVU dynarec ενώ αφήνοντας τα άλλα σε λειτουργία, να bisect που recompiler προκαλεί μια συντριβή. Απαιτεί επανεκκίνηση.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_rec_vu0.Help"><value>Διαγνωστικό. Απενεργοποίηση μόνο του VU0 microVU dynarec ενώ αφήνοντας τα άλλα σε λειτουργία.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_rec_vu1.Label"><value>- Αντικαταστάτης VU1</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_rec_vu1.Help"><value>Διαγνωστικό. Απενεργοποίηση μόνο της VU1 microVU dynarec ενώ αφήνοντας τους άλλους σε λειτουργία, να bisect που recompiler προκαλεί μια συντριβή. Απαιτεί επανεκκίνηση.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_rec_vu1.Help"><value>Διαγνωστικό. Απενεργοποίηση μόνο της VU1 microVU dynarec ενώ αφήνοντας τους άλλους σε λειτουργία.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_memcard_slot1_enable.Label"><value>1 ενεργοποιημένη υποδοχή</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_memcard_slot1_enable.Help"><value>Ενεργοποίηση της κάρτας μνήμης Slot 1 PS2. Οι αλλαγές ισχύουν άμεσα κατά την εκτέλεση του περιεχομένου.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_memcard_slot2_enable.Label"><value>Η υποδοχή 2 ενεργοποιήθηκε</value></data>
@@ -901,8 +893,6 @@
   <data name="Emulation.Option.Sony.Value.AllTimers"><value>Όλοι οι χρονομετρητές</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_clocks_scale.Label"><value>Κλίμακα ⁇ ολογιών</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_clocks_scale.Help"><value>Κλίμακα PS3 ποσοστό ταχύτητας ⁇ ολογιού.</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_renderer.Label"><value>Αποτύπωμα</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_renderer.Help"><value>Το Vulkan αποδίδει στη συσκευή Vulkan του συστήματος και το δίνει σε κάθε ολοκληρωμένο πλαίσιο ως εικόνα.Όταν το frontend δεν τρέχει τον οδηγό βίντεο Vulkan, το καρέ αντιγράφεται πίσω από τη μνήμη αντί για αυτό. Το OpenGL έλκει κατ' ευθείαν στο πλαίσιο του Open GL.</value></data>
   <data name="Emulation.Option.Sony.Value.NullNoVideo"><value>Null (Δεν υπάρχει βίντεο)</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_frame_limit.Label"><value>Όριο πλαισίου</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_frame_limit.Help"><value>Υψηλότερο ρυθμό καρέ το παιχνίδι μπορεί να τρέξει σε. Auto είναι η συχνότητα VBlank, όπως και στο RPCS3; PS3 Native ρυθμούς αναποδογυρίζει τον τρόπο με το PS3 κάνει? Απενεργοποίηση αφήνει τα παιχνίδια που δεν περιμένουν την ανανέωση του PS3 να τρέξει πάρα πολύ γρήγορα.</value></data>
@@ -979,7 +969,7 @@
   <data name="Emulation.Option.rpcs3.rpcs3_driver_wakeup_delay.Label"><value>Καθυστέρηση αφύπνισης οδηγού</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_driver_wakeup_delay.Help"><value>Καθυστέρηση αφύπνισης του οδηγού σε μικροδευτερόλεπτα. 0 εξ ορισμού, όπως στο RPCS3; αύξηση μόνο όταν ένα παιχνίδι το χρειάζεται.</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_vblank_rate.Label"><value>Συχνότητα VBlank</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_vblank_rate.Help"><value>Ο ρυθμός ανανέωσης του PS3 σε Hz. Είναι επίσης ο ρυθμός καρέ που ζητά ο πυρήνας RetroArch για, η οποία αρχίζει να ισχύει όταν φορτώνεται το περιεχόμενο? Παιχνίδια που μπορούν να τρέξει πάνω από 60 FPS χρειάζονται μια οθόνη που ανανεώνει τόσο γρήγορα.</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_vblank_rate.Help"><value>Ορίζει τον εξομοιωμένο ρυθμό ανανέωσης. Η λειτουργία λίστας συμβατότητας τον διπλασιάζει για τα υποστηριζόμενα παιχνίδια.</value></data>
   <data name="Emulation.Option.Sony.Value.50HzPAL"><value>50 Hz (PAL)</value></data>
   <data name="Emulation.Option.Sony.Value.60HzNTSC"><value>60 Hz (NTSC)</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_thread_scheduler.Label"><value>Προγραμματιστής νημάτων</value></data>
@@ -1061,8 +1051,6 @@
   <data name="Emulation.Option.rpcs3.rpcs3_frame_pacing.Label"><value>Πέδιλο καρέ</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_frame_pacing.Help"><value>Τα καρέ του παιχνιδιού έχουν χρονομετρηθεί. Το ρολόι εξομοιωτή είναι το δικό χρονόμετρο του RPCS3, όπως και στο αυτόνομο RPCS3. RetroArch δίνει στο παιχνίδι ένα PS3 ανανέωση ανά πλαίσιο RetroArch δείχνει, τόσο γρήγορα-προς τα εμπρός επιταχύνει το παιχνίδι μέχρι και το παιχνίδι τρέχει στη συχνότητα VBlank όταν RetroArch δείχνει ότι πολλά καρέ ένα δευτερόλεπτο? με το Vulkan απόδοση αυτή τη στιγμή παραλείπει πλαίσια.</value></data>
   <data name="Emulation.Option.Sony.Value.EmulatorClock"><value>Ρολόι εξομοιωτή</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_savedata_slot.Label"><value>Αποθήκευση Slot δεδομένων</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_savedata_slot.Help"><value>Ένα παιχνίδι PS3 εμφανίζει μια λίστα με τα αποθηκευμένα στοιχεία του και επιτρέπει στον παίκτη να επιλέξει. Το 'Pick from list' δείχνει αυτή τη λίστα στην εικόνα παιχνιδιού, που θα χρησιμοποιηθεί μαζί με το χειριστήριο. Ένας αριθμός έχει την επιλογή πυρήνα για εσάς: η αποθήκευση αντικαθιστά την καταχώρηση σε αυτή τη θέση στη λίστα του παιχνιδιού, ή κάνει μια νέα αποθήκευση όταν ο κατάλογος είναι μικρότερος; φόρτωση παίρνει την εγγραφή σε αυτήν τη θέση, και δεν βρίσκει τίποτα όταν η λίστα είναι μικρότερη. 0 είναι η πρώτη καταχώριση. Τα παιχνίδια που διατηρούν μια μοναδική αποθήκευση από τη δική τους δεν δείχνουν μια λίστα, έτσι αυτό δεν ισχύει για αυτούς.</value></data>
   <data name="Emulation.Option.Sony.Value.PickFromList"><value>Επιλογή από τη λίστα</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_master_volume.Label"><value>Βασικός όγκος</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_master_volume.Help"><value>Βασικό ποσοστό έντασης ήχου.</value></data>
@@ -1151,7 +1139,7 @@
   <data name="Emulation.Option.Sony.Setting.Fastcdvd.Help"><value>Γρήγορα. CD/DVD μια μικρή χούφτα παιχνιδιών θα έχουν προβλήματα συμβατότητας με αυτό ενεργοποιημένο.</value></data>
   <data name="Emulation.Option.Sony.Setting.SharedMemoryCards.Help"><value>Χρήση καρτών ανά περιεχόμενο ή κοινής μνήμης.</value></data>
   <data name="Emulation.Option.Sony.Setting.EnableCheats.Label"><value>Ενεργοποίηση κωδικών εξαπατήσεων παιχνιδιών</value></data>
-  <data name="Emulation.Option.Sony.Setting.EnableCheats.Help"><value>Διαβάστε τους κωδικούς εξαπατήσει παιχνίδι από τα αρχεία στον επιλεγμένο φάκελο. Επανεκκίνηση εξομοίωσης μετά την επιλογή ενός άλλου φακέλου.</value></data>
+  <data name="Emulation.Option.Sony.Setting.EnableCheats.Help"><value>Διαβάστε τους κωδικούς εξαπατήσει παιχνίδι από τα αρχεία στον επιλεγμένο φάκελο.</value></data>
   <data name="Emulation.Option.Sony.Setting.HintLanguageUnlock.Label"><value>Ξεκλειδώστε επιπλέον γλώσσες παιχνιδιού</value></data>
   <data name="Emulation.Option.Sony.Setting.HintLanguageUnlock.Help"><value>Αν ενεργοποιηθεί, θα εξετάσουμε μέσα στην εσωτερική βάση δεδομένων για επιλογές ξεκλειδώματος γλώσσας. Παραδείγματα περιλαμβάνουν: αναγκάζοντας μια διεθνή ιαπωνική έκδοση στα αγγλικά, ξεκλειδώνοντας περισσότερες ευρωπαϊκές γλώσσες, κλπ.</value></data>
   <data name="Emulation.Option.Sony.Setting.Dev9Hdd.Help"><value>Εξομοίωση του SPEED Επέκταση ATA Η εικόνα ζει στο 'pcsx2/DEV9hdd.raw' στον κατάλογο του συστήματος και δημιουργείται με την πρώτη χρήση στο ρυθμισμένο μέγεθος.</value></data>
@@ -1233,7 +1221,7 @@
   <data name="Emulation.Option.Sony.Value.MergeTargets"><value>Συγχώνευση στόχων</value></data>
   <data name="Emulation.Option.Sony.Setting.DisableDepthConversion.Label"><value>Απενεργοποίηση μετατροπής του βυθού- ρυθμιστή</value></data>
   <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Label"><value>Χρήση βάσης δεδομένων εξωτερικού παιχνιδιούIndex</value></data>
-  <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Help"><value>Απαιτεί έναν αποδοτή υλικού και χειροκίνητες διορθώσεις απόδοσης. Φόρτωση της επιλεγμένης βάσης δεδομένων συμβατότητας του παιχνιδιού, ή αφήστε το αρχείο κενό για να χρησιμοποιήσετε την ενσωματωμένη βάση δεδομένων. Επανεκκίνηση της προσομοίωσης μετά την αλλαγή αυτών των ρυθμίσεων.</value></data>
+  <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Help"><value>Απαιτεί έναν αποδοτή υλικού και χειροκίνητες διορθώσεις απόδοσης. Φόρτωση της επιλεγμένης βάσης δεδομένων συμβατότητας του παιχνιδιού.</value></data>
   <data name="Emulation.Option.Sony.Setting.FramebufferConversion.Label"><value>Μετατροπή του framebuffer απόδοσης</value></data>
   <data name="Emulation.Option.Sony.Setting.DisablePartialInvalidation.Label"><value>Απενεργοποίηση μερικής ακύρωσης πηγής</value></data>
   <data name="Emulation.Option.Sony.Setting.GpuPaletteConversion.Label"><value>Μετατροπή παλέτας σε GPU</value></data>
@@ -1274,4 +1262,18 @@
   <data name="Emulation.Option.Sony.Setting.LineToQuad.Help" xml:space="preserve"><value>Μερικά παιχνίδια (π.χ. Doom, Hexen, Soul Blade κ.λπ.) σχεδιάζουν οριζόντιες γραμμές με το τέντωμα ενός-pixel-high τρίγωνα σε όλη την οθόνη, τα οποία είναι rasterized ως μια σειρά από pixels στο αρχικό υλικό. Αυτό το hack ανιχνεύει αυτά τα μικρά τρίγωνα και τα μετατρέπει σε τετράκλινα, όπως απαιτείται, επιτρέποντάς τους να εμφανίζονται σωστά στους αποδότες υλικού και σε αναβαθμισμένες εσωτερικές αποφάσεις. \"Επιθετική\" είναι απαραίτητη για ορισμένους τίτλους (π.χ. σκοτεινές δυνάμεις, Duke nuclem) αλλά μπορεί διαφορετικά να εισαγάγει γραφικές δυσλειτουργίες. Φύγετε στο 'Προκαθορισμένο' αν δεν είστε σίγουροι.</value></data>
   <data name="Emulation.Option.Sony.Setting.DynarecEventCycles.Label" xml:space="preserve"><value>Dynarec DMA/GPU/ MDEC/Κύκλοι γεγονότων χρονομέτρων</value></data>
   <data name="Emulation.Option.Sony.Setting.DynarecEventCycles.Help" xml:space="preserve"><value>Μεγ. κύκλοι που εκτελούνται από την CPU πριν ελεγχθεί μια GPU/DMA/MDEC/Timer Update, υψηλότερος αριθμός θα είναι ταχύτερος, έχει πολύ μικρότερη επίδραση στον διερμηνέα σκαθάρων σε σχέση με το dynarec.</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_aspect_ratio.Help"><value>Ορίζει τη μορφή οθόνης που αναφέρεται στα παιχνίδια. Μόνο ορισμένα παιχνίδια υποστηρίζουν 4:3.</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_disk_cache_size.Label"><value>Μέγεθος προσωρινής μνήμης δίσκου</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_disk_cache_size.Help"><value>Περιορίζει τον χώρο δίσκου για τις προσωρινές μνήμες των παιχνιδιών. Τα παιχνίδια δημιουργούν ξανά όσες διαγράφονται, κάτι που μπορεί να καθυστερήσει την επόμενη εκκίνηση.</value></data>
+  <data name="Emulation.Option.pokket.Link"><value>Υπέρυθρη σύνδεση</value></data>
+  <data name="Emulation.Option.pokket.Layout"><value>Διάταξη συνδεδεμένων οθονών</value></data>
+  <data name="Emulation.Option.pokket.Audio"><value>Πηγή ήχου συνδεδεμένων μονάδων</value></data>
+  <data name="Emulation.Option.pokket.Identity"><value>Αναγνωριστικό υλικού της μονάδας B</value></data>
+  <data name="Emulation.Option.pokket.Horizontal"><value>Δίπλα δίπλα</value></data>
+  <data name="Emulation.Option.pokket.Vertical"><value>Η μία πάνω από την άλλη</value></data>
+  <data name="Emulation.Option.pokket.SelectUnitA"><value>Έλεγχος μονάδας A</value></data>
+  <data name="Emulation.Option.pokket.SelectUnitB"><value>Έλεγχος μονάδας B</value></data>
+  <data name="Emulation.Option.pokket.Help"><value>Εισαγάγετε μια κάρτα σε κάθε μονάδα για να ενεργοποιήσετε την υπέρυθρη σύνδεση.</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_audio_format.Label"><value>Διάταξη ηχείων</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_audio_format.Help"><value>Ορίζει τη διάταξη ηχείων που διατίθεται στα παιχνίδια. Το παιχνίδι επιλέγει τη μίξη ήχου βάσει αυτής της διάταξης. Η έξοδος εξαρτάται επίσης από την επιλεγμένη συσκευή ήχου των Windows.</value></data>
 </root>

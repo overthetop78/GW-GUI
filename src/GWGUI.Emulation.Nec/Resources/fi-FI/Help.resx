@@ -5,7 +5,7 @@
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Nec.Help.Memory.Ram.Short"><value>Emuloidulle koneelle käytettävissä olevan RAM-muistin määrä.</value></data>
-  <data name="Emulation.Nec.Help.Memory.Ram.Detailed"><value>Valitsee BeetlePcen altistaman RAM-laajennuksen. Koneen on aloitettava uudelleen ennen uuden määrän käyttöä.</value></data>
+  <data name="Emulation.Nec.Help.Memory.Ram.Detailed"><value>Valitsee BeetlePcen altistaman RAM-laajennuksen.</value></data>
   <data name="Emulation.Nec.Help.Firmware.Integrated.Short"><value>Tähän malliin ei tarvita ulkoisia BIOS-tiedostoja.</value></data>
   <data name="Emulation.Nec.Help.Firmware.Integrated.Detailed"><value>Patruuna pelejä tällä koneella ajaa ilman ulkoista järjestelmää BIOS.</value></data>
   <data name="Emulation.Nec.Help.Video.Resolution.Short"><value>BeetlePcen antama sisäinen ratkaisu.</value></data>

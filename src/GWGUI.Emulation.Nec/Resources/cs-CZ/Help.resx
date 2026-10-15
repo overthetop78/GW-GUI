@@ -5,7 +5,7 @@
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Nec.Help.Memory.Ram.Short"><value>Množství RAM dostupné pro emulovaný stroj.</value></data>
-  <data name="Emulation.Nec.Help.Memory.Ram.Detailed"><value>Vybere rozšíření RAM vystavené BeetlePce. Před použitím nového množství se stroj musí restartovat.</value></data>
+  <data name="Emulation.Nec.Help.Memory.Ram.Detailed"><value>Vybere rozšíření RAM vystavené BeetlePce.</value></data>
   <data name="Emulation.Nec.Help.Firmware.Integrated.Short"><value>Pro tento model není nutný externí BIOS soubor.</value></data>
   <data name="Emulation.Nec.Help.Firmware.Integrated.Detailed"><value>Cartridge hry na tomto stroji běží bez vnějšího systému BIOS.</value></data>
   <data name="Emulation.Nec.Help.Video.Resolution.Short"><value>Vnitřní usnesení vydávané BeetlePce.</value></data>

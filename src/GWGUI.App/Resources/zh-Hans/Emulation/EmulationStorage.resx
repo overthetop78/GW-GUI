@@ -80,4 +80,6 @@
   <data name="Emulation.Storage.MemoryCard.ImageRequired"><value>选择已有的卡片文件。</value></data>
   <data name="Emulation.Storage.MemoryCard.InvalidSize"><value>卡片文件的大小无效.</value></data>
   <data name="Emulation.Storage.MemoryCard.InvalidFormat"><value>选择由此设备支持的文件格式 。</value></data>
+  <data name="Emulation.Storage.Cache.Unlimited"><value>无限制</value></data>
+  <data name="Emulation.Storage.Cache.ClearOnGameClose"><value>关闭游戏时清空</value></data>
 </root>

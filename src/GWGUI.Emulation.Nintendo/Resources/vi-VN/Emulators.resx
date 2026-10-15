@@ -363,21 +363,21 @@
   <data name="Emulation.Option.desmume.desmume_firmware_language.Value.German"><value>ĐứcName</value></data>
   <data name="Emulation.Option.desmume.desmume_firmware_language.Value.Italian"><value>ÝName</value></data>
   <data name="Emulation.Option.desmume.desmume_firmware_language.Value.Spanish"><value>Tây Ban Nha</value></data>
-  <data name="Emulation.Option.desmume.desmume_use_external_bios"><value>Dùng bên ngoài BIOS/Firmware (bắt đầu)</value></data>
-  <data name="Emulation.Option.desmume.desmume_use_external_bios.Help"><value>Sử dụng chính thức BIOS. Cần phải khởi chạy lại lõi để thay đổi áp dụng.</value></data>
+  <data name="Emulation.Option.desmume.desmume_use_external_bios"><value>Dùng bên ngoài BIOS/Firmware</value></data>
+  <data name="Emulation.Option.desmume.desmume_use_external_bios.Help"><value>Sử dụng chính thức BIOS.</value></data>
   <data name="Emulation.Option.desmume.desmume_use_external_bios.Value.disabled"><value>Đã tắt</value></data>
   <data name="Emulation.Option.desmume.desmume_use_external_bios.Value.enabled"><value>Đã bật</value></data>
   <data name="Emulation.Option.desmume.desmume_boot_into_bios"><value>Khởi động vào BIOS (chỉ có sinh học nội dung và bên ngoài)</value></data>
   <data name="Emulation.Option.desmume.desmume_boot_into_bios.Help"><value>Khởi động trực tiếp vào năm BIOS.</value></data>
   <data name="Emulation.Option.desmume.desmume_boot_into_bios.Value.disabled"><value>Đã tắt</value></data>
   <data name="Emulation.Option.desmume.desmume_boot_into_bios.Value.enabled"><value>Đã bật</value></data>
-  <data name="Emulation.Option.desmume.desmume_load_to_memory"><value>Tải trò chơi vào bộ nhớ (bắt đầu)</value></data>
+  <data name="Emulation.Option.desmume.desmume_load_to_memory"><value>Tải trò chơi vào bộ nhớ</value></data>
   <data name="Emulation.Option.desmume.desmume_load_to_memory.Help"><value>Chuyển trò chơi vào trí nhớ để giảm IO độ trễ.</value></data>
   <data name="Emulation.Option.desmume.desmume_load_to_memory.Value.disabled"><value>Đã tắt</value></data>
   <data name="Emulation.Option.desmume.desmume_load_to_memory.Value.enabled"><value>Đã bật</value></data>
   <data name="Emulation.Option.desmume.desmume_num_cores"><value>CPU Cores</value></data>
   <data name="Emulation.Option.desmume.desmume_num_cores.Help"><value>Đặt số lượng lõi CPU cần dùng.</value></data>
-  <data name="Emulation.Option.desmume.desmume_cpu_mode"><value>Chế độ CPU (bắt đầu)</value></data>
+  <data name="Emulation.Option.desmume.desmume_cpu_mode"><value>Chế độ CPU</value></data>
   <data name="Emulation.Option.desmume.desmume_cpu_mode.Help"><value>Bật hay tắt khả năng sử dụng bộ tổng hợp động.</value></data>
   <data name="Emulation.Option.desmume.desmume_cpu_mode.Value.interpreter"><value>Trình thông dịch</value></data>
   <data name="Emulation.Option.desmume.desmume_jit_block_size"><value>Kích cỡ khối JIT</value></data>
@@ -394,7 +394,7 @@
   <data name="Emulation.Option.desmume.desmume_opengl_mode.Help"><value>Bật trình lọc OpenGL 3D.</value></data>
   <data name="Emulation.Option.desmume.desmume_opengl_mode.Value.disabled"><value>Đã tắt</value></data>
   <data name="Emulation.Option.desmume.desmume_opengl_mode.Value.enabled"><value>Đã bật</value></data>
-  <data name="Emulation.Option.desmume.desmume_color_depth"><value>OpenGL: Độ sâu màu (bắt đầu)</value></data>
+  <data name="Emulation.Option.desmume.desmume_color_depth"><value>OpenGL: Độ sâu màu</value></data>
   <data name="Emulation.Option.desmume.desmume_color_depth.Help"><value>Đặt độ sâu màu thành 16-bit hoặc 32 bit. Cần thiết bộ phân tích OpenGL.</value></data>
   <data name="Emulation.Option.desmume.desmume_gfx_multisampling"><value>OpenGL: đa phương tiện AA</value></data>
   <data name="Emulation.Option.desmume.desmume_gfx_multisampling.Help"><value>Thiết lập bộ nhân số cho phòng chống phá huỷ. Cần thiết bộ phân tích OpenGL.</value></data>
@@ -510,7 +510,7 @@
   <data name="Emulation.Option.desmume.desmume_mic_mode.Value.random"><value>Ngẫu nhiên</value></data>
   <data name="Emulation.Firmware.desmume.Slot0"><value>Phần cứng NDS</value></data>
   <data name="Emulation.Emulator.desmume2015.Description"><value>Kết hợp các hệ thống Nintendo với DeSmuME 2015.</value></data>
-  <data name="Emulation.Option.desmume2015.desmume_internal_resolution"><value>Độ phân giải nội bộ (bắt đầu)</value></data>
+  <data name="Emulation.Option.desmume2015.desmume_internal_resolution"><value>Độ phân giải nội bộ</value></data>
   <data name="Emulation.Option.desmume2015.desmume_num_cores"><value>Nhân CPU</value></data>
   <data name="Emulation.Option.desmume2015.desmume_cpu_mode"><value>Chế độ CPU</value></data>
   <data name="Emulation.Option.desmume2015.desmume_cpu_mode.Value.interpreter"><value>Trình thông dịch</value></data>
@@ -525,7 +525,7 @@
   <data name="Emulation.Option.desmume2015.desmume_screens_layout.Value.quick switch"><value>chuyển đổi nhanh</value></data>
   <data name="Emulation.Option.desmume2015.desmume_screens_layout.Value.hybrid/top"><value>Con tinh/ đỉnh</value></data>
   <data name="Emulation.Option.desmume2015.desmume_screens_layout.Value.hybrid/bottom"><value>lai/ Thu nhỏ</value></data>
-  <data name="Emulation.Option.desmume2015.desmume_hybrid_layout_scale"><value>Tỷ lệ bố trí lai (bắt đầu)</value></data>
+  <data name="Emulation.Option.desmume2015.desmume_hybrid_layout_scale"><value>Tỷ lệ bố trí lai</value></data>
   <data name="Emulation.Option.desmume2015.desmume_hybrid_showboth_screens"><value>Bố trí lai hiển thị cả hai màn hình</value></data>
   <data name="Emulation.Option.desmume2015.desmume_hybrid_showboth_screens.Value.enabled"><value>Đã bật</value></data>
   <data name="Emulation.Option.desmume2015.desmume_hybrid_showboth_screens.Value.disabled"><value>Đã tắt</value></data>
@@ -561,7 +561,7 @@
   <data name="Emulation.Option.desmume2015.desmume_pointer_stylus_jitter"><value>Bật khả năng bắt chước stylus</value></data>
   <data name="Emulation.Option.desmume2015.desmume_pointer_stylus_jitter.Value.disabled"><value>Đã tắt</value></data>
   <data name="Emulation.Option.desmume2015.desmume_pointer_stylus_jitter.Value.enabled"><value>Đã bật</value></data>
-  <data name="Emulation.Option.desmume2015.desmume_load_to_memory"><value>Nạp trò chơi vào bộ nhớ (bắt đầu)</value></data>
+  <data name="Emulation.Option.desmume2015.desmume_load_to_memory"><value>Nạp trò chơi vào bộ nhớ</value></data>
   <data name="Emulation.Option.desmume2015.desmume_load_to_memory.Value.disabled"><value>Đã tắt</value></data>
   <data name="Emulation.Option.desmume2015.desmume_load_to_memory.Value.enabled"><value>Đã bật</value></data>
   <data name="Emulation.Option.desmume2015.desmume_advanced_timing"><value>Bật thời gian bus-Level cao cấp</value></data>
@@ -621,7 +621,7 @@
   <data name="Emulation.Option.melonds.melonds_threaded_renderer"><value>Bộ vẽ phần mềm đã đọc</value></data>
   <data name="Emulation.Option.melonds.melonds_threaded_renderer.Value.disabled"><value>Đã tắt</value></data>
   <data name="Emulation.Option.melonds.melonds_threaded_renderer.Value.enabled"><value>Đã bật</value></data>
-  <data name="Emulation.Option.melonds.melonds_opengl_renderer"><value>Trình vẽ OpenGL (bắt đầu lại)</value></data>
+  <data name="Emulation.Option.melonds.melonds_opengl_renderer"><value>Trình vẽ OpenGL</value></data>
   <data name="Emulation.Option.melonds.melonds_opengl_renderer.Value.disabled"><value>Đã tắt</value></data>
   <data name="Emulation.Option.melonds.melonds_opengl_renderer.Value.enabled"><value>Đã bật</value></data>
   <data name="Emulation.Option.melonds.melonds_opengl_resolution"><value>Độ phân giải nội bộ OpenGL</value></data>
@@ -678,7 +678,7 @@
   <data name="Emulation.Option.melonds.melonds_hybrid_small_screen.Value.Top"><value>Trên</value></data>
   <data name="Emulation.Option.melonds.melonds_hybrid_small_screen.Value.Duplicate"><value>Lặp lại</value></data>
   <data name="Emulation.Option.melonds.melonds_hybrid_ratio"><value>Tỷ lệ lai (chỉ mởGL)</value></data>
-  <data name="Emulation.Option.melonds.melonds_jit_enable"><value>Bật JIT (bắt đầu lại)</value></data>
+  <data name="Emulation.Option.melonds.melonds_jit_enable"><value>Bật JIT</value></data>
   <data name="Emulation.Option.melonds.melonds_jit_enable.Value.disabled"><value>Đã tắt</value></data>
   <data name="Emulation.Option.melonds.melonds_jit_enable.Value.enabled"><value>Đã bật</value></data>
   <data name="Emulation.Option.melonds.melonds_jit_block_size"><value>Kích cỡ khối JIT</value></data>
@@ -720,7 +720,7 @@
   <data name="Emulation.Option.melondsds.melonds_audio_interpolation.Value.cubic"><value>Bậc ba</value></data>
   <data name="Emulation.Option.melondsds.melonds_audio_interpolation.Value.gaussian"><value>Gaussia</value></data>
   <data name="Emulation.Option.melondsds.melonds_jit_enable"><value>JIT Recomiler</value></data>
-  <data name="Emulation.Option.melondsds.melonds_jit_enable.Help"><value>Các máy tính tương tác mô phỏng mã máy bản địa trong khi chạy, cải thiện hiệu suất đáng kể so với giải thích đơn giản. Tạo hiệu ứng khi khởi chạy lại tiếp theo. Nếu không chắc chắn, hãy để lại hiệu lực.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_jit_enable.Help"><value>Các máy tính tương tác mô phỏng mã máy bản địa trong khi chạy, cải thiện hiệu suất đáng kể so với giải thích đơn giản. Nếu không chắc chắn, hãy để lại hiệu lực.</value></data>
   <data name="Emulation.Option.melondsds.melonds_jit_enable.Value.disabled"><value>Đã tắt</value></data>
   <data name="Emulation.Option.melondsds.melonds_jit_enable.Value.enabled"><value>Đã bật</value></data>
   <data name="Emulation.Option.melondsds.melonds_jit_block_size"><value>Cỡ khối</value></data>
@@ -731,15 +731,25 @@
   <data name="Emulation.Option.melondsds.melonds_jit_literal_optimisations.Value.disabled"><value>Đã tắt</value></data>
   <data name="Emulation.Option.melondsds.melonds_jit_literal_optimisations.Value.enabled"><value>Đã bật</value></data>
   <data name="Emulation.Option.melondsds.melonds_jit_fast_memory"><value>Bộ nhớ nhanh</value></data>
-  <data name="Emulation.Option.melondsds.melonds_jit_fast_memory.Help"><value>Tắt máy này nếu chạy melonDSDS thông qua một bộ gỡ lỗi, nếu không hằng số (nhưng mong đợi) SIGSEGVs sẽ khó chịu. Tạo hiệu ứng khi khởi chạy lại tiếp theo. Nếu không chắc chắn, hãy để lại hiệu lực.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_jit_fast_memory.Help"><value>Tắt máy này nếu chạy melonDSDS thông qua một bộ gỡ lỗi, nếu không hằng số (nhưng mong đợi) SIGSEGVs sẽ khó chịu. Nếu không chắc chắn, hãy để lại hiệu lực.</value></data>
   <data name="Emulation.Option.melondsds.melonds_jit_fast_memory.Value.disabled"><value>Đã tắt</value></data>
   <data name="Emulation.Option.melondsds.melonds_jit_fast_memory.Value.enabled"><value>Đã bật</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_wfc_dns"><value>Ghi đè DNS</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_wfc_dns.Help"><value>Máy phục vụ DNS cần dùng cho điểm truy cập đã mô phỏng ("MeonAP"). Dùng tùy chọn này để bật lên mạng với máy phục vụ tự chọn mà làm tăng cường dịch vụ kết nối Wi-Fi ngừng chạy Nintendo. Hỗ trợ trò chơi phụ thuộc vào máy phục vụ. &#xA;Một số nhà cung cấp dịch vụ mạng có thể chặn yêu cầu tới những máy phục vụ này. Nếu đây là trường hợp của bạn, hãy xem https mỡtinyurl.com/393cb755 để làm việc.&#xA;&#xA;Các máy chủ liệt kê không liên kết với libretro, Nintendo, đội melonDS hoặc là tác giả của lõi này. Xin hãy tôn trọng người chơi khác và làm theo luật lệ của máy chủ.&#xA;&#xA;Nếu không chắc chắn, hãy rời khỏi Kaeru WFC. Thay đổi có tác dụng khi khởi chạy lại tiếp.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_wfc_dns.Help"><value>Máy phục vụ DNS cần dùng cho điểm truy cập đã mô phỏng ("MeonAP"). Dùng tùy chọn này để bật lên mạng với máy phục vụ tự chọn mà làm tăng cường dịch vụ kết nối Wi-Fi ngừng chạy Nintendo. Hỗ trợ trò chơi phụ thuộc vào máy phục vụ.
+Một số nhà cung cấp dịch vụ mạng có thể chặn yêu cầu tới những máy phục vụ này. Nếu đây là trường hợp của bạn, hãy xem https mỡtinyurl.com/393cb755 để làm việc.
+
+Các máy chủ liệt kê không liên kết với libretro, Nintendo, đội melonDS hoặc là tác giả của lõi này. Xin hãy tôn trọng người chơi khác và làm theo luật lệ của máy chủ.
+
+Nếu không chắc chắn.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_wfc_dns.Value.95.217.77.181"><value>Wiimmfi (95.217.77.181)</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_wfc_dns.Value.default"><value>Đừng vượt quá giới hạn.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_language"><value>Ngôn ngữ</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_language.Help"><value>Ghi đè chế độ ngôn ngữ của bàn giao tiếp mô phỏng.&#xA;&#xA;Máy: Dùng ngôn ngữ của giao diện điều khiển nếu được hỗ trợ bởi bàn điều khiển.&#xA;Đừng ghi đè: sử dụng bất cứ ngôn ngữ nào đã được đặt trên phần mềm. Đây là hành vi ngược lại nếu việc mô phỏng DS (hoặc DSi NAND) không hỗ trợ ngôn ngữ giao diện điều khiển.&#xA;&#xA;Không phải trò chơi nào cũng tôn trọng thiết lập này. Thay đổi có tác dụng khi khởi chạy lại tiếp.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_language.Help"><value>Ghi đè chế độ ngôn ngữ của bàn giao tiếp mô phỏng.
+
+Máy: Dùng ngôn ngữ của giao diện điều khiển nếu được hỗ trợ bởi bàn điều khiển.
+Đừng ghi đè: sử dụng bất cứ ngôn ngữ nào đã được đặt trên phần mềm. Đây là hành vi ngược lại nếu việc mô phỏng DS (hoặc DSi NAND) không hỗ trợ ngôn ngữ giao diện điều khiển.
+
+Không phải trò chơi nào cũng tôn trọng thiết lập này.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_language.Value.auto"><value>Dùng máy</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_language.Value.en"><value>Tiếng Anh</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_language.Value.ja"><value>Nhật Bản</value></data>
@@ -749,11 +759,14 @@
   <data name="Emulation.Option.melondsds.melonds_firmware_language.Value.es"><value>Tây Ban Nha</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_language.Value.default"><value>Đừng vượt quá giới hạn.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_username"><value>Tên người dùng</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_username.Help"><value>Ghi đè tên người dùng cho giao diện mô phỏng.&#xA;&#xA;Không ghi đè: Dùng bất cứ tên nào được định nghĩa trên phần mềm công ty.&#xA;Đoán: Hãy thử lấy tên người dùng từ giao diện điều khiển. Nếu thất bại, hãy thử USER, USERNAME, và LOGNAME Biến môi trường.&#xA;melonDS DS: sử dụng "melonDS DS". Đây là mặc định nếu không có gì khác hoạt động.&#xA;&#xA;Tên đã bị cắt thành 10 kí tự. Thay đổi có tác dụng khi khởi chạy lại tiếp.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_username.Help"><value>Ghi đè tên người dùng cho giao diện mô phỏng.
+
+Không ghi đè: Dùng bất cứ tên nào được định nghĩa trên phần mềm công ty.
+Đoán: Hãy thử lấy tên người dùng từ giao diện điều khiển. Nếu thất bại, hãy thử USER, USERNAME.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_username.Value.guess_username"><value>Đoán</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_username.Value.existing_username"><value>Đừng vượt quá giới hạn.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_favorite_color"><value>Màu ưa thích</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_favorite_color.Help"><value>Sắc thái (" màu thích hợp") của bàn điều khiển mô phỏng. Thay đổi có tác dụng khi khởi chạy lại tiếp.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_favorite_color.Help"><value>Sắc thái (" màu thích hợp") của bàn điều khiển mô phỏng.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_favorite_color.Value.0"><value>Xám</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_favorite_color.Value.1"><value>Màu nâu</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_favorite_color.Value.2"><value>Đỏ</value></data>
@@ -772,7 +785,7 @@
   <data name="Emulation.Option.melondsds.melonds_firmware_favorite_color.Value.15"><value>Màu hồng đậm</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_favorite_color.Value.default"><value>Đừng vượt quá giới hạn.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_birth_month"><value>Tháng sinh</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_birth_month.Help"><value>Tháng sinh nhật của cô. Thay đổi có tác dụng khi khởi chạy lại tiếp.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_birth_month.Help"><value>Tháng sinh nhật của cô.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_birth_month.Value.1"><value>Tháng Giêng</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_birth_month.Value.2"><value>Tháng Hai</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_birth_month.Value.3"><value>Tháng Ba</value></data>
@@ -787,29 +800,33 @@
   <data name="Emulation.Option.melondsds.melonds_firmware_birth_month.Value.12"><value>Tháng Mười Hai</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_birth_month.Value.default"><value>Đừng vượt quá giới hạn.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_birth_day"><value>Ngày sinh</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_birth_day.Help"><value>Ngày trong tháng sinh nhật của anh. Thay đổi có tác dụng khi khởi chạy lại tiếp.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_birth_day.Help"><value>Ngày trong tháng sinh nhật của anh.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_birth_day.Value.default"><value>Đừng vượt quá giới hạn.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_enable_alarm"><value>Bật báo động</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_enable_alarm.Help"><value>Bật báo động bàn điều khiển đã mô phỏng hay không. Thay đổi có tác dụng khi khởi chạy lại tiếp.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_enable_alarm.Help"><value>Bật báo động bàn điều khiển đã mô phỏng hay không.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_enable_alarm.Value.disabled"><value>Đã tắt</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_enable_alarm.Value.enabled"><value>Đã bật</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_enable_alarm.Value.default"><value>Đừng vượt quá giới hạn.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_alarm_hour"><value>Giờ báo thức</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_alarm_hour.Help"><value>Giờ của báo động đã được cấu hình. Thay đổi có tác dụng khi khởi chạy lại tiếp.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_alarm_hour.Help"><value>Giờ của báo động đã được cấu hình.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_alarm_hour.Value.default"><value>Đừng vượt quá giới hạn.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_alarm_minute"><value>Thời khắc báo động</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_alarm_minute.Help"><value>Thời khắc của báo động đã được cấu hình. Thay đổi có tác dụng khi khởi chạy lại tiếp.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_alarm_minute.Help"><value>Thời khắc của báo động đã được cấu hình.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_alarm_minute.Value.default"><value>Đừng vượt quá giới hạn.</value></data>
   <data name="Emulation.Option.melondsds.melonds_network_mode"><value>Chế độ mạng</value></data>
-  <data name="Emulation.Option.melondsds.melonds_network_mode.Help"><value>Cấu hình cách melonDS DS Mô phỏng Nintendo WFC. Nếu không chắc chắn, hãy dùng chế độ gián tiếp.&#xA;&#xA;gián tiếp: Dùng libslirp để mô phỏng chồng mạng DS. Đơn giản và không cần dàn xếp.&#xA;Trực tiếp: lộ trình mô phỏng gói Wi-Fi tới giao diện mạng của vật chủ. Càng ngày càng đáng tin, nhưng cần một kết nối ethernet và WinPcap hay Npcap đã được cài đặt. Nếu không sẵn sàng, hãy trở lại chế độ gián tiếp.&#xA;&#xA;Thay đổi có tác dụng khi khởi chạy lại tiếp. Không liên quan đến nhiều người chơi địa phương.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_network_mode.Help"><value>Cấu hình cách melonDS DS Mô phỏng Nintendo WFC. Nếu không chắc chắn, hãy dùng chế độ gián tiếp.
+
+gián tiếp: Dùng libslirp để mô phỏng chồng mạng DS. Đơn giản và không cần dàn xếp.
+Trực tiếp: lộ trình mô phỏng gói Wi-Fi tới giao diện mạng của vật chủ. Càng ngày càng đáng tin, nhưng cần một kết nối ethernet và WinPcap hay Npcap đã được cài đặt. Nếu không sẵn sàng.</value></data>
   <data name="Emulation.Option.melondsds.melonds_network_mode.Value.disabled"><value>Đã tắt</value></data>
   <data name="Emulation.Option.melondsds.melonds_network_mode.Value.indirect"><value>gián tiếp</value></data>
   <data name="Emulation.Option.melondsds.melonds_network_mode.Value.direct"><value>Trực tiếp</value></data>
   <data name="Emulation.Option.melondsds.melonds_direct_network_interface"><value>Giao diện Mạng ( Chế độ khách)</value></data>
-  <data name="Emulation.Option.melondsds.melonds_direct_network_interface.Help"><value>Chọn một giao diện mạng cần dùng với chế độ trực tiếp. Nếu không chắc chắn, hãy tự động. Thay đổi có tác dụng khi lõi tiếp theo khởi động lại.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_direct_network_interface.Help"><value>Chọn một giao diện mạng cần dùng với chế độ trực tiếp. Nếu không chắc chắn.</value></data>
   <data name="Emulation.Option.melondsds.melonds_direct_network_interface.Value.auto"><value>Tự động</value></data>
   <data name="Emulation.Option.melondsds.melonds_mac_address_mode"><value>Chế độ địa chỉ MAC mạng</value></data>
-  <data name="Emulation.Option.melondsds.melonds_mac_address_mode.Help"><value>Cấu hình cách đặt địa chỉ bàn điều khiển mô phỏng MAC. Việc thay đổi tùy chọn này có thể làm cho nhiều người chơi địa phương không thể hoặc bị chặn truy cập để lưu tập tin trong trò chơi mà dùng địa chỉ MAC để ngăn cản việc sửa đổi tập tin lưu (v. d. Pokémon).&#xA;Không có liên quan đến giao diện chế độ trực tiếp. Thay đổi có tác dụng khi khởi chạy lại tiếp.&#xA;Xem https nghịch đảobit.ly/4fJtWKN để biết thêm thông tin.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_mac_address_mode.Help"><value>Cấu hình cách đặt địa chỉ bàn điều khiển mô phỏng MAC. Việc thay đổi tùy chọn này có thể làm cho nhiều người chơi địa phương không thể hoặc bị chặn truy cập để lưu tập tin trong trò chơi mà dùng địa chỉ MAC để ngăn cản việc sửa đổi tập tin lưu (v. d. Pokémon).
+Không có liên quan đến giao diện chế độ trực tiếp. Xem https nghịch đảobit.ly/4fJtWKN để biết thêm thông tin.</value></data>
   <data name="Emulation.Option.melondsds.melonds_mac_address_mode.Value.firmware"><value>Đặt từ phần cứng</value></data>
   <data name="Emulation.Option.melondsds.melonds_mac_address_mode.Value.from-username"><value>Từ tên người dùng thư viện</value></data>
   <data name="Emulation.Option.melondsds.melonds_show_unsupported_features"><value>Cảnh báo về những đặc điểm không được hỗ trợ</value></data>
@@ -1042,25 +1059,62 @@
   <data name="Emulation.Option.melondsds.melonds_screen_layout8.Value.rotate-right"><value>Xoay phải</value></data>
   <data name="Emulation.Option.melondsds.melonds_screen_layout8.Value.rotate-180"><value>Lên trên xuống</value></data>
   <data name="Emulation.Option.melondsds.melonds_console_mode"><value>Chế độ bàn điều khiển</value></data>
-  <data name="Emulation.Option.melondsds.melonds_console_mode.Help"><value>Có nên bắt chước khẩu Nintendo DS hoặc Nintendo DSi.&#xA;&#xA;Dùng tự động DSi Chế độ cho trò chơi cần thiết DSi, và DS Chế độ cho mọi thứ khác. Thiết lập DS và DSi buộc các giao diện tương ứng; điều này phần lớn hữu ích cho sự phát triển homebrew.&#xA;&#xA;Chế độ DSi có một số giới hạn:&#xA;&#xA;- Phải cung cấp hồ sơ của người bản địa BIOS/NAND, bao gồm DS.&#xA;- Một số tính năng (chẳng hạn như lưu liên bang) không có trong chế độ DSi.&#xA;&#xA;Xem các tùy chọn đặc trưng DSi trong phân loại này để biết thêm thông tin. Nếu không chắc chắn, hãy dùng Auto. Thay đổi có tác dụng khi khởi chạy lại tiếp theo.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_console_mode.Help"><value>Có nên bắt chước khẩu Nintendo DS hoặc Nintendo DSi.
+
+Dùng tự động DSi Chế độ cho trò chơi cần thiết DSi, và DS Chế độ cho mọi thứ khác. Thiết lập DS và DSi buộc các giao diện tương ứng; điều này phần lớn hữu ích cho sự phát triển homebrew.
+
+Chế độ DSi có một số giới hạn:
+
+- Phải cung cấp hồ sơ của người bản địa BIOS/NAND, bao gồm DS.
+- Một số tính năng (chẳng hạn như lưu liên bang) không có trong chế độ DSi.
+
+Xem các tùy chọn đặc trưng DSi trong phân loại này để biết thêm thông tin. Nếu không chắc chắn.</value></data>
   <data name="Emulation.Option.melondsds.melonds_console_mode.Value.auto"><value>Tự động</value></data>
   <data name="Emulation.Option.melondsds.melonds_console_mode.Value.dsi"><value>DSi (thử nghiệm)</value></data>
   <data name="Emulation.Option.melondsds.melonds_sysfile_mode"><value>BIOS/Firmware Motion (DS Chế độ)</value></data>
-  <data name="Emulation.Option.melondsds.melonds_sysfile_mode.Help"><value>Xác định rằngmelonDSngười sử dụng các bãi rác bản địa BIOS / bảo hiểm phần mềm hoặc các thay thế xây dựng của riêng mình. Chỉ áp dụng cho DS Chế độ, như DSi Chế độ luôn luôn yêu cầu bản địa BIOS và bãi bỏ phần cứng.&#xA;&#xA;Chế độ bản địa sử dụng BIOS và các tập tin phần mềm từ một thực tế DS. Đặt đổ những thứ này vào thư mục hệ thống hoặc "melonDS DS" và đặt tên chúng như sau:&#xA;&#xA;- DS BIOS: bios7.bin, bios9.bin&#xA;- DSi BIOS: dsi_bios7.bin, dsi_bios9.bin&#xA;- Xem các lựa chọn "DS Firmware" và "DSi Firmware".&#xA;- DSi NANDXem: "DSi NAND " lựa chọn.&#xA;&#xA;rơi trở lại Xây dựng-trong nếu bất kỳ tài liệu BIOS/ kiểm tra phần mềm không được tìm thấy.&#xA;&#xA;Chế độ xây dựng sử dụng melonDS được xây dựng trong BIOS và phần cứng, và thích hợp cho hầu hết các trò chơi.&#xA;&#xA;Thay đổi có tác dụng khi khởi chạy lại tiếp.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_sysfile_mode.Help"><value>Xác định rằngmelonDSngười sử dụng các bãi rác bản địa BIOS / bảo hiểm phần mềm hoặc các thay thế xây dựng của riêng mình. Chỉ áp dụng cho DS Chế độ, như DSi Chế độ luôn luôn yêu cầu bản địa BIOS và bãi bỏ phần cứng.
+
+Chế độ bản địa sử dụng BIOS và các tập tin phần mềm từ một thực tế DS. Đặt đổ những thứ này vào thư mục hệ thống hoặc "melonDS DS" và đặt tên chúng như sau:
+
+- DS BIOS: bios7.bin, bios9.bin
+- DSi BIOS: dsi_bios7.bin, dsi_bios9.bin
+- Xem các lựa chọn "DS Firmware" và "DSi Firmware".
+- DSi NANDXem: "DSi NAND " lựa chọn.
+
+rơi trở lại Xây dựng-trong nếu bất kỳ tài liệu BIOS/ kiểm tra phần mềm không được tìm thấy.
+
+Chế độ xây dựng sử dụng melonDS được xây dựng trong BIOS và phần cứng.</value></data>
   <data name="Emulation.Option.melondsds.melonds_sysfile_mode.Value.native"><value>Sở hữu</value></data>
   <data name="Emulation.Option.melondsds.melonds_sysfile_mode.Value.builtin"><value>Xây dựng</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_nds_path"><value>Phần cứng DS</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_nds_path.Help"><value>Chọn một ảnh phần cứng cần dùng cho chế độ DS. Tập tin được liệt kê ở đây nếu chúng:&#xA;&#xA;- Ở trong thư mục hệ thống giao diện điều khiển, hay là một thư mục con tên là "melonDS DS".&#xA;- Chính xác là 131,072 byte (128KB), 262, 1414 byte (256KB), hoặc 524.288 byte (512KBTạm biệt.&#xA;- Kiểm tra dữ liệu đầu trang hợp lệ của DSware.&#xA;&#xA;Nintendo ID của WFC được lưu vào phần mềm công ty, do đó việc chuyển đổi hình ảnh phần mềm có thể gây ra sự mất mát dữ liệu về WFC. Bỏ qua chế độDSi hoặc nếu chế độ BIOS/Firmware được xây dựng-in. Thay đổi có tác dụng khi khởi chạy lại tiếp.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_nds_path.Help"><value>Chọn một ảnh phần cứng cần dùng cho chế độ DS. Tập tin được liệt kê ở đây nếu chúng:
+
+- Ở trong thư mục hệ thống giao diện điều khiển, hay là một thư mục con tên là "melonDS DS".
+- Chính xác là 131,072 byte (128KB), 262, 1414 byte (256KB), hoặc 524.288 byte (512KBTạm biệt.
+- Kiểm tra dữ liệu đầu trang hợp lệ của DSware.
+
+Nintendo ID của WFC được lưu vào phần mềm công ty.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_nds_path.Value./notfound"><value>Không tìm thấy...</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_dsi_path"><value>Phần cứng DSi</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_dsi_path.Help"><value>Chọn một ảnh phần cứng cần dùng cho chế độ DSi. Tập tin được liệt kê ở đây nếu chúng:&#xA;&#xA;- Ở trong thư mục hệ thống giao diện điều khiển, hay là một thư mục con tên là "melonDS DS".&#xA;- Chính xác là 131,072 byte (128KB), 262, 1414 byte (256KB), hoặc 524.288 byte (512KBTạm biệt.&#xA;- Kiểm tra dữ liệu đầu trang hợp lệ của DSiware.&#xA;&#xA;Nintendo ID của WFC được lưu vào phần mềm công ty, do đó việc chuyển đổi hình ảnh phần mềm có thể gây ra sự mất mát dữ liệu về WFC. Thay đổi có tác dụng khi khởi chạy lại tiếp.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_dsi_path.Help"><value>Chọn một ảnh phần cứng cần dùng cho chế độ DSi. Tập tin được liệt kê ở đây nếu chúng:
+
+- Ở trong thư mục hệ thống giao diện điều khiển, hay là một thư mục con tên là "melonDS DS".
+- Chính xác là 131,072 byte (128KB), 262, 1414 byte (256KB), hoặc 524.288 byte (512KBTạm biệt.
+- Kiểm tra dữ liệu đầu trang hợp lệ của DSiware.
+
+Nintendo ID của WFC được lưu vào phần mềm công ty.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_dsi_path.Value./notfound"><value>Không tìm thấy...</value></data>
   <data name="Emulation.Option.melondsds.melonds_dsi_nand_path"><value>Đường DSi NAND</value></data>
-  <data name="Emulation.Option.melondsds.melonds_dsi_nand_path.Help"><value>Chọn một ảnh DSi NAND cần dùng. Cần thiết khi sử dụng chế độ DSi. Tập tin được liệt kê ở đây nếu chúng:&#xA;&#xA;- Ở trong thư mục hệ thống giao diện điều khiển, hay là một thư mục con tên là "melonDS DS".&#xA;- Chính xác là 251,658.304 byte (240MB) hoặc 257.425.472 byte (245.5MB) dài với dữ liệu chân trang hợp lệ, OR;&#xA;- Là 64 byte ngắn hơn các chiều dài và chứa dữ liệu tương đương tại bù đắp 0xFF800.&#xA;&#xA;Đặt thành "tự động" để cho lõi chọn một hình ảnh NAND có vùng phù hợp với DSiWare ROM. Thay đổi có tác dụng khi khởi chạy lại tiếp.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_dsi_nand_path.Help"><value>Chọn một ảnh DSi NAND cần dùng. Cần thiết khi sử dụng chế độ DSi. Tập tin được liệt kê ở đây nếu chúng:
+
+- Ở trong thư mục hệ thống giao diện điều khiển, hay là một thư mục con tên là "melonDS DS".
+- Chính xác là 251,658.304 byte (240MB) hoặc 257.425.472 byte (245.5MB) dài với dữ liệu chân trang hợp lệ, OR.</value></data>
   <data name="Emulation.Option.melondsds.melonds_dsi_nand_path.Value./auto"><value>Tự động (tùy theo vùng ROM)</value></data>
   <data name="Emulation.Option.melondsds.melonds_dsi_nand_path.Value./notfound"><value>Không tìm thấy...</value></data>
   <data name="Emulation.Option.melondsds.melonds_boot_mode"><value>Chế độ khởi động</value></data>
-  <data name="Emulation.Option.melondsds.melonds_boot_mode.Help"><value>Xác định melonDS trò chơi khởi động.&#xA;&#xA;Sở hữu: Nạp trò chơi qua trình đơn hệ thống, tương tự với tiến trình khởi động DS/DSi thật. Cần bản địa BIOS và tập tin phần mềm trong thư mục hệ thống.&#xA;Trực tiếp: Bỏ qua trình đơn hệ thống và đi thẳng vào trò chơi. Hỗ trợ cho DSiWare nếu có sẵn tập tin hệ thống DSi.&#xA;&#xA;Bị bỏ qua nếu nạp mà không dùng một trò chơi (bị ép buộc) hoặc nếu sử dụng xây dựng- in BIOS/ Firmware (Điều luật bị ép buộc). Thay đổi có tác dụng khi khởi chạy lại tiếp.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_boot_mode.Help"><value>Xác định melonDS trò chơi khởi động.
+
+Sở hữu: Nạp trò chơi qua trình đơn hệ thống.</value></data>
   <data name="Emulation.Option.melondsds.melonds_boot_mode.Value.direct"><value>Trực tiếp</value></data>
   <data name="Emulation.Option.melondsds.melonds_boot_mode.Value.native"><value>Sở hữu</value></data>
   <data name="Emulation.Option.melondsds.melonds_dsi_sdcard"><value>Thẻ SD ảo (DSi)</value></data>
@@ -1068,7 +1122,7 @@
   <data name="Emulation.Option.melondsds.melonds_dsi_sdcard.Value.disabled"><value>Đã tắt</value></data>
   <data name="Emulation.Option.melondsds.melonds_dsi_sdcard.Value.enabled"><value>Đã bật</value></data>
   <data name="Emulation.Option.melondsds.melonds_dsi_sdcard_readonly"><value>Chế độ chỉ đọc (DSi)</value></data>
-  <data name="Emulation.Option.melondsds.melonds_dsi_sdcard_readonly.Help"><value>Nếu bật, thẻ DSi mô phỏng xem thẻ SD là chỉ đọc. Thay đổi có hiệu lực khi khởi chạy lại tiếp.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_dsi_sdcard_readonly.Help"><value>Nếu bật.</value></data>
   <data name="Emulation.Option.melondsds.melonds_dsi_sdcard_readonly.Value.disabled"><value>Đã tắt</value></data>
   <data name="Emulation.Option.melondsds.melonds_dsi_sdcard_readonly.Value.enabled"><value>Đã bật</value></data>
   <data name="Emulation.Option.melondsds.melonds_dsi_sdcard_sync_sdcard_to_host"><value>Đồng bộ hoá quân bài SD cho máy (DSi)</value></data>
@@ -1080,7 +1134,7 @@
   <data name="Emulation.Option.melondsds.melonds_homebrew_sdcard.Value.disabled"><value>Đã tắt</value></data>
   <data name="Emulation.Option.melondsds.melonds_homebrew_sdcard.Value.enabled"><value>Đã bật</value></data>
   <data name="Emulation.Option.melondsds.melonds_homebrew_readonly"><value>Chế độ chỉ đọc</value></data>
-  <data name="Emulation.Option.melondsds.melonds_homebrew_readonly.Help"><value>Nếu bật, ứng dụng chính sẽ xem thẻ SD ảo là chỉ đọc. Thay đổi có hiệu lực khi khởi chạy lại tiếp.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_homebrew_readonly.Help"><value>Nếu bật.</value></data>
   <data name="Emulation.Option.melondsds.melonds_homebrew_readonly.Value.disabled"><value>Đã tắt</value></data>
   <data name="Emulation.Option.melondsds.melonds_homebrew_readonly.Value.enabled"><value>Đã bật</value></data>
   <data name="Emulation.Option.melondsds.melonds_homebrew_sync_sdcard_to_host"><value>Đồng bộ hoá quân bài SD cho máy</value></data>
@@ -1125,13 +1179,18 @@
   <data name="Emulation.Option.melondsds.melonds_solar_sensor_host_sensor.Value.disabled"><value>Đã tắt</value></data>
   <data name="Emulation.Option.melondsds.melonds_solar_sensor_host_sensor.Value.enabled"><value>Đã bật</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_mode"><value>Chế độ thời gian</value></data>
-  <data name="Emulation.Option.melondsds.melonds_start_time_mode.Help"><value>Thời gian đầu tiên của bảng điều khiển mô phỏng nội bộ.&#xA;&#xA;- Bắt đầu đồng bộ với đồng hồ của thiết bị.&#xA;- Đồng bộ hóa: đồng bộ hoá đồng hồ mô phỏng vào đồng hồ của thiết bị. Có thể gây ra những hành vi bất ngờ trong một số trò chơi khi tua lại hoặc tua nhanh.&#xA;- Tương đối: bắt đầu đồng bộ với đồng hồ của thiết bị, cộng thêm hoặc trừ đi một hiệu số đã xác định. Sẽ bị trói buộc vào ngày mà DS có thể đại diện.&#xA;Bắt đầu từ một thời gian và ngày tháng cụ thể, bất kể đồng hồ của thiết bị.&#xA;&#xA;Mọi thời gian và ngày tháng đều nằm trong vùng của bạn. Thay đổi có tác dụng khi khởi chạy lại tiếp.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_start_time_mode.Help"><value>Thời gian đầu tiên của bảng điều khiển mô phỏng nội bộ.
+
+- Bắt đầu đồng bộ với đồng hồ của thiết bị.
+- Đồng bộ hóa: đồng bộ hoá đồng hồ mô phỏng vào đồng hồ của thiết bị. Có thể gây ra những hành vi bất ngờ trong một số trò chơi khi tua lại hoặc tua nhanh.
+- Tương đối: bắt đầu đồng bộ với đồng hồ của thiết bị, cộng thêm hoặc trừ đi một hiệu số đã xác định. Sẽ bị trói buộc vào ngày mà DS có thể đại diện.
+Bắt đầu từ một thời gian và ngày tháng cụ thể.</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_mode.Value.real"><value>Thật</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_mode.Value.sync"><value>Đồng bộ hoá</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_mode.Value.relative"><value>Tương đối</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_mode.Value.absolute"><value>Tuyệt đối</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_year_offset"><value>Hiệu số giờ bắt đầu (Years)</value></data>
-  <data name="Emulation.Option.melondsds.melonds_start_time_relative_year_offset.Help"><value>Số năm để bù đắp thời gian bắt đầu bằng. Chỉ dùng khi khởi động chế độ thời gian là tương đối. Thay đổi có tác dụng khi khởi chạy lại tiếp.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_start_time_relative_year_offset.Help"><value>Số năm để bù đắp thời gian bắt đầu bằng. Chỉ dùng khi khởi động chế độ thời gian là tương đối.</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_year_offset.Value.-20"><value>- 20 năm.</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_year_offset.Value.-19"><value>- 19 năm.</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_year_offset.Value.-18"><value>- 18 năm.</value></data>
@@ -1174,7 +1233,7 @@
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_year_offset.Value.19"><value>+19 năm</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_year_offset.Value.20"><value>+ 20 năm</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_day_offset"><value>Khoảng cách thời gian bắt đầu (ngày)</value></data>
-  <data name="Emulation.Option.melondsds.melonds_start_time_relative_day_offset.Help"><value>Số ngày để bù đắp thời gian bắt đầu bằng. Chỉ dùng khi khởi động chế độ thời gian là tương đối. Thay đổi có tác dụng khi khởi chạy lại tiếp.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_start_time_relative_day_offset.Help"><value>Số ngày để bù đắp thời gian bắt đầu bằng. Chỉ dùng khi khởi động chế độ thời gian là tương đối.</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_day_offset.Value.-364"><value>- 364 ngày.</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_day_offset.Value.-180"><value>- 180 ngày.</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_day_offset.Value.-150"><value>- 150 ngày.</value></data>
@@ -1219,7 +1278,7 @@
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_day_offset.Value.180"><value>1, 80 ngày</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_day_offset.Value.364"><value>+ 364 ngày</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_hour_offset"><value>Khoảng cách thời gian bắt đầu (Hours)</value></data>
-  <data name="Emulation.Option.melondsds.melonds_start_time_relative_hour_offset.Help"><value>Số giờ để bù đắp thời gian bắt đầu bằng. Chỉ dùng khi khởi động chế độ thời gian là tương đối. Thay đổi có tác dụng khi khởi chạy lại tiếp.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_start_time_relative_hour_offset.Help"><value>Số giờ để bù đắp thời gian bắt đầu bằng. Chỉ dùng khi khởi động chế độ thời gian là tương đối.</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_hour_offset.Value.-23"><value>- 23 tiếng.</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_hour_offset.Value.-22"><value>- 22 tiếng.</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_hour_offset.Value.-21"><value>-21 giờ.</value></data>
@@ -1268,7 +1327,7 @@
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_hour_offset.Value.22"><value>+22 giờ</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_hour_offset.Value.23"><value>+ 23 giờ</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_minute_offset"><value>Khoảng cách thời gian bắt đầu (Minutes)</value></data>
-  <data name="Emulation.Option.melondsds.melonds_start_time_relative_minute_offset.Help"><value>Số phút để bù đắp thời gian bắt đầu bằng. Chỉ dùng khi khởi động chế độ thời gian là tương đối. Thay đổi có tác dụng khi khởi chạy lại tiếp.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_start_time_relative_minute_offset.Help"><value>Số phút để bù đắp thời gian bắt đầu bằng. Chỉ dùng khi khởi động chế độ thời gian là tương đối.</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_minute_offset.Value.-59"><value>-59 phút.</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_minute_offset.Value.-58"><value>-58 phút.</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_minute_offset.Value.-57"><value>- 57 phút.</value></data>
@@ -1389,9 +1448,9 @@
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_minute_offset.Value.58"><value>+58 phút</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_minute_offset.Value.59"><value>+59 phút</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_absolute_year"><value>Bắt đầu năm</value></data>
-  <data name="Emulation.Option.melondsds.melonds_start_time_absolute_year.Help"><value>Năm đầu tiên dùng khi bắt đầu chế độ thời gian là tuyệt đối. Thay đổi có tác dụng khi khởi chạy lại tiếp.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_start_time_absolute_year.Help"><value>Năm đầu tiên dùng khi bắt đầu chế độ thời gian là tuyệt đối.</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_absolute_month"><value>Bắt đầu hàng tháng</value></data>
-  <data name="Emulation.Option.melondsds.melonds_start_time_absolute_month.Help"><value>Tháng đầu tiên cần dùng khi bắt đầu chế độ thời gian là tuyệt đối. Thay đổi có tác dụng khi khởi chạy lại tiếp.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_start_time_absolute_month.Help"><value>Tháng đầu tiên cần dùng khi bắt đầu chế độ thời gian là tuyệt đối.</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_absolute_month.Value.1"><value>Tháng Giêng</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_absolute_month.Value.2"><value>Tháng Hai</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_absolute_month.Value.3"><value>Tháng Ba</value></data>
@@ -1405,15 +1464,16 @@
   <data name="Emulation.Option.melondsds.melonds_start_time_absolute_month.Value.11"><value>Tháng Mười Một</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_absolute_month.Value.12"><value>Tháng Mười Hai</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_absolute_day"><value>Ngày bắt đầu</value></data>
-  <data name="Emulation.Option.melondsds.melonds_start_time_absolute_day.Help"><value>Ngày đầu tiên trong tháng dùng khi bắt đầu chế độ thời gian là tuyệt đối. Những ngày kéo dài quá một tháng sẽ trôi qua cho đến cuối (v. Ngày 31 tháng Tư sẽ trở thành ngày 1 tháng 5. Thay đổi có tác dụng khi khởi chạy lại tiếp.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_start_time_absolute_day.Help"><value>Ngày đầu tiên trong tháng dùng khi bắt đầu chế độ thời gian là tuyệt đối. Những ngày kéo dài quá một tháng sẽ trôi qua cho đến cuối (v. Ngày 31 tháng Tư sẽ trở thành ngày 1 tháng 5.</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_absolute_hour"><value>Bắt đầu giờ</value></data>
-  <data name="Emulation.Option.melondsds.melonds_start_time_absolute_hour.Help"><value>Giờ đầu tiên cần dùng khi bắt đầu chế độ thời gian là tuyệt đối. Thay đổi có tác dụng khi khởi chạy lại tiếp.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_start_time_absolute_hour.Help"><value>Giờ đầu tiên cần dùng khi bắt đầu chế độ thời gian là tuyệt đối.</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_absolute_minute"><value>Phút bắt đầu</value></data>
-  <data name="Emulation.Option.melondsds.melonds_start_time_absolute_minute.Help"><value>Thời gian đầu tiên cần dùng khi bắt đầu chế độ thời gian là tuyệt đối. Thay đổi có tác dụng khi khởi chạy lại tiếp.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_start_time_absolute_minute.Help"><value>Thời gian đầu tiên cần dùng khi bắt đầu chế độ thời gian là tuyệt đối.</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_absolute_second"><value>Bắt đầu thứ hai</value></data>
-  <data name="Emulation.Option.melondsds.melonds_start_time_absolute_second.Help"><value>Thứ hai cần sử dụng khi bắt đầu chế độ thời gian là tuyệt đối. Thay đổi có tác dụng khi khởi chạy lại tiếp.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_start_time_absolute_second.Help"><value>Thứ hai cần sử dụng khi bắt đầu chế độ thời gian là tuyệt đối.</value></data>
   <data name="Emulation.Option.melondsds.melonds_render_mode"><value>Chế độ vẽ</value></data>
-  <data name="Emulation.Option.melondsds.melonds_render_mode.Help"><value>Phần mềm nhanh nhất và chính xác nhất. OpenGL (Clasic) có thể tăng cường đồ họa 3D, nhưng một số trò chơi không hoạt động đúng.&#xA;OpenGL (máy tính) là chính xác và hỗ trợ nâng cấp, nhưng sẽ không làm việc trên một số thiết bị cũ. Đổi sang nó mất vài giây để làm bóng đèn.&#xA;&#xA;Trở lại phần mềm vẽ nếu OpenGL không được sử dụng. Thay đổi có hiệu quả ngay lập tức nhưng có thể cần trình điều khiển video để khởi chạy lại.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_render_mode.Help"><value>Phần mềm nhanh nhất và chính xác nhất. OpenGL (Clasic) có thể tăng cường đồ họa 3D, nhưng một số trò chơi không hoạt động đúng.
+OpenGL (máy tính) là chính xác và hỗ trợ nâng cấp.</value></data>
   <data name="Emulation.Option.melondsds.melonds_render_mode.Value.software"><value>Phần mềm</value></data>
   <data name="Emulation.Option.melondsds.melonds_render_mode.Value.opengl"><value>OpenGL (Chuyến bay)</value></data>
   <data name="Emulation.Option.melondsds.melonds_render_mode.Value.compute"><value>OpenGL (máy tính)</value></data>
@@ -1614,7 +1674,7 @@
   <data name="Emulation.Option.fceumm.fceumm_ntsc_filter.Value.composite"><value>Tổng hợp</value></data>
   <data name="Emulation.Option.fceumm.fceumm_ntsc_filter.Value.svideo"><value>S-Video</value></data>
   <data name="Emulation.Option.fceumm.fceumm_ntsc_filter.Value.monochrome"><value>Đơn sắc</value></data>
-  <data name="Emulation.Option.fceumm.fceumm_hdpacks"><value>Gói văn bản HD (bắt đầu lại)</value></data>
+  <data name="Emulation.Option.fceumm.fceumm_hdpacks"><value>Gói văn bản HD</value></data>
   <data name="Emulation.Option.fceumm.fceumm_hdpacks.Help"><value>Nạp đạn Mesen-format HD gói kết cấu từ hệ thống &lt; subs &gt;/HdPacks/ &lt;rom name&gt;/hires.txt7676 "khi có mặt. Thay thế các miếng lát đá/ sàn với tác phẩm nghệ thuật phân giải cao (PNG, DDS hay WebP) và cho phép nguồn gốc tự chọn tập thể và nhạc OGG/WAV và hiệu ứng âm thanh. Cần thiết một giao diện điều khiển hỗ trợ XRGB8888 đầu ra.</value></data>
   <data name="Emulation.Option.fceumm.fceumm_hdpacks.Value.enabled"><value>Đã bật</value></data>
   <data name="Emulation.Option.fceumm.fceumm_hdpacks.Value.disabled"><value>Đã tắt</value></data>
@@ -2056,10 +2116,10 @@
   <data name="Emulation.Firmware.mesen2.Slot25"><value>Super Game Boy BIOS</value></data>
   <data name="Emulation.Emulator.nestopia.Description"><value>Kết hợp Nintendo hệ thống với Nestopia.</value></data>
   <data name="Emulation.Option.nestopia.nestopia_favored_system"><value>Hệ thống được ưu đãi</value></data>
-  <data name="Emulation.Option.nestopia.nestopia_favored_system.Help"><value>Hệ thống thích hơn cho ảnh không nói nó muốn cái nào. Hình ảnh cho biết, và hình ảnh được tìm thấy trong tập tin cơ sở dữ liệu NstDatabase.xml không bị ảnh hưởng. Chỉ áp dụng khi đặt « Hệ thống tìm kiếm » thành « Tự động ». Cần thiết khởi động lại.</value></data>
+  <data name="Emulation.Option.nestopia.nestopia_favored_system.Help"><value>Hệ thống thích hơn cho ảnh không nói nó muốn cái nào. Hình ảnh cho biết.</value></data>
   <data name="Emulation.Option.nestopia.nestopia_favored_system.Value.famicom"><value>Famicom</value></data>
   <data name="Emulation.Option.nestopia.nestopia_force_system"><value>Buộc hệ thống</value></data>
-  <data name="Emulation.Option.nestopia.nestopia_force_system.Help"><value>Bỏ qua hệ thống ảnh yêu cầu rồi dùng ảnh này. Thay đổi thiết lập này sẽ khởi động lại trò chơi.</value></data>
+  <data name="Emulation.Option.nestopia.nestopia_force_system.Help"><value>Bỏ qua hệ thống ảnh yêu cầu rồi dùng ảnh này.</value></data>
   <data name="Emulation.Option.nestopia.nestopia_force_system.Value.auto"><value>Tự động</value></data>
   <data name="Emulation.Option.nestopia.nestopia_force_system.Value.famicom"><value>Famicom</value></data>
   <data name="Emulation.Option.nestopia.nestopia_fds_auto_insert"><value>Chèn tự động FDS</value></data>
@@ -2309,7 +2369,10 @@
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_lcd_interlacing_brightnesss"><value>GBC LCD độ sáng liên tục</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_lcd_interlacing_brightnesss.Help"><value>Điều chỉnh cường độ của hiệu ứng liên kết. Giữ giá trị này thấp khi không dùng bộ làm bóng. Các giá trị cao hơn được đề nghị khi kết hợp với một cái bóng để làm cho hiệu ứng thấy được.</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_RGB_SubPixel_Simulation"><value>GBC LCD RGB Hệ số co dãn phụ</value></data>
-  <data name="Emulation.Option.doublecherrygb.dcgb_gbc_RGB_SubPixel_Simulation.Help"><value>Mô phỏng tàu con GBC vật lý bằng cách tăng và thay thế mỗi điểm ảnh màu bằng các thành phần RGB tương ứng.&#xA;&#xA;Để có kết quả tốt nhất:&#xA;- Bật 'Integer Scaling' trong RetroArch (Seting -&gt; Video -&gt; Scaling).&#xA;- Có thể cần khởi động lại lõi sau khi thay đổi thiết lập này.</value></data>
+  <data name="Emulation.Option.doublecherrygb.dcgb_gbc_RGB_SubPixel_Simulation.Help"><value>Mô phỏng tàu con GBC vật lý bằng cách tăng và thay thế mỗi điểm ảnh màu bằng các thành phần RGB tương ứng.
+
+Để có kết quả tốt nhất:
+- Bật 'Integer Scaling' trong RetroArch (Seting -&gt; Video -&gt; Scaling).</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_RGB_SubPixel_Simulation.Value.1"><value>Đã tắt</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_LCD_blur"><value>GBC LCD che mờ</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_LCD_blur.Help"><value>Ứng dụng hiệu ứng che mờ. Thiết lập này là CPU. Tắt phần cứng yếu hơn hoặc dùng đèn pha.</value></data>
@@ -2568,7 +2631,7 @@
   <data name="Emulation.Firmware.gambatte.Slot0"><value>Game Boy BIOS</value></data>
   <data name="Emulation.Firmware.gambatte.Slot1"><value>Game Boy Color BIOS</value></data>
   <data name="Emulation.Emulator.gearboy.Description"><value>Kết hợp Nintendo hệ thống với GearBoy.</value></data>
-  <data name="Emulation.Option.gearboy.gearboy_barcode_boy"><value>Chế độ thiếu niên mã vạch (bắt đầu)</value></data>
+  <data name="Emulation.Option.gearboy.gearboy_barcode_boy"><value>Chế độ thiếu niên mã vạch</value></data>
   <data name="Emulation.Option.gearboy.gearboy_barcode_boy.Help"><value>Tự động gắn cậu bé mã vạch vào trò chơi nhận diện bằng ROM CRC. Bật hỗ trợ không nhận ra hay không vá ROM. Chế độ trò chơi kết nối dự trữ cổng nối tiếp và vô hiệu hóa Nhóc Mã vạch.</value></data>
   <data name="Emulation.Option.gearboy.gearboy_barcode_boy.Value.Auto"><value>Tự động</value></data>
   <data name="Emulation.Option.gearboy.gearboy_barcode_boy.Value.Disabled"><value>Đã tắt</value></data>
@@ -2636,10 +2699,10 @@
   <data name="Emulation.Option.gearboy.gearboy_barcode_digit_12.Help"><value>Số 12 của mã 13 chữ số, từ trái sang phải. Chọn tự chọn, đặt tất cả các chữ số, rồi bấm mã thanh quét (RetroPad R).</value></data>
   <data name="Emulation.Option.gearboy.gearboy_barcode_digit_13"><value>Phong tục tự chọn 13</value></data>
   <data name="Emulation.Option.gearboy.gearboy_barcode_digit_13.Help"><value>Dirit 13 của mã 13 chữ số, từ trái sang phải. Chọn tự chọn, đặt tất cả các chữ số, rồi bấm mã thanh quét (RetroPad R).</value></data>
-  <data name="Emulation.Option.gearboy.gearboy_model"><value>Mô hình Game Boy (bắt đầu)</value></data>
+  <data name="Emulation.Option.gearboy.gearboy_model"><value>Mô hình Game Boy</value></data>
   <data name="Emulation.Option.gearboy.gearboy_model.Help"><value>Chọn mô hình phần cứng nào được mô phỏng. « Tự động » tự động chọn mô hình tốt nhất dựa trên bộ nạp ROM Đầu trang.Game Boy DMG' ép buộc gốc Game Boy Phần cứng.Game Boy AdvanceLực ' Game Boy Advance Chế độ, cho phép sự khác biệt phần cứng nhỏ hiện tại khi chạy Game Boy Trò chơi trên a GBA.</value></data>
   <data name="Emulation.Option.gearboy.gearboy_model.Value.Auto"><value>Tự động</value></data>
-  <data name="Emulation.Option.gearboy.gearboy_mapper"><value>Bản đồ (bắt đầu)</value></data>
+  <data name="Emulation.Option.gearboy.gearboy_mapper"><value>Bản đồ</value></data>
   <data name="Emulation.Option.gearboy.gearboy_mapper.Help"><value>Chọn trình điều khiển ngân hàng bộ nhớ nào (MBC hay máy vẽ bản đồ) được mô phỏng. Tự động chọn dạng MBC tốt nhất dựa trên phần đầu ROM. Chỉ sử dụng lựa chọn thủ công khi có vấn đề với việc phát hiện tự động.</value></data>
   <data name="Emulation.Option.gearboy.gearboy_mapper.Value.Auto"><value>Tự động</value></data>
   <data name="Emulation.Option.gearboy.gearboy_mapper.Value.ROM Only"><value>Chỉ ROM</value></data>
@@ -2654,7 +2717,7 @@
   <data name="Emulation.Option.gearboy.gearboy_mapper.Value.Sintax"><value>Sintax</value></data>
   <data name="Emulation.Option.gearboy.gearboy_mapper.Value.NT old 1"><value>NT cũ 1</value></data>
   <data name="Emulation.Option.gearboy.gearboy_mapper.Value.NT old 2"><value>NT cũ 2</value></data>
-  <data name="Emulation.Option.gearboy.gearboy_sgb"><value>Super Game Boy (bắt đầu)</value></data>
+  <data name="Emulation.Option.gearboy.gearboy_sgb"><value>Super Game Boy</value></data>
   <data name="Emulation.Option.gearboy.gearboy_sgb.Help"><value>Nếu bật, ROM tương thích sẽ chạy trong chế độ Super Game Boy. Khi tắt, các tập tin ROM có khả năng tương ứng SGB sẽ chạy như trò chơi Game Boy (DMG).</value></data>
   <data name="Emulation.Option.gearboy.gearboy_sgb.Value.Enabled"><value>Đã bật</value></data>
   <data name="Emulation.Option.gearboy.gearboy_sgb.Value.Disabled"><value>Đã tắt</value></data>
@@ -2662,11 +2725,11 @@
   <data name="Emulation.Option.gearboy.gearboy_sgb_border.Help"><value>Khi bật, biên giới Super Game Boy được hiển thị xung quanh màn hình trò chơi (56x224). Khi bị tắt, chỉ hiển thị màn hình trò chơi (160x144).</value></data>
   <data name="Emulation.Option.gearboy.gearboy_sgb_border.Value.Enabled"><value>Đã bật</value></data>
   <data name="Emulation.Option.gearboy.gearboy_sgb_border.Value.Disabled"><value>Đã tắt</value></data>
-  <data name="Emulation.Option.gearboy.gearboy_bootrom_dmg"><value>DMG Bootrom (bắt đầu)</value></data>
+  <data name="Emulation.Option.gearboy.gearboy_bootrom_dmg"><value>DMG Bootrom</value></data>
   <data name="Emulation.Option.gearboy.gearboy_bootrom_dmg.Help"><value>Bật hoặc tắt máy khởi động Game Boy (DMG). Khi bật, khởi động sẽ chạy khi khởi động cũng giống như phần cứng thật, hiển thị hoạt hình cuộn biểu tượng Nintendo. Tập tin 'dmg_boot.bin' phải có trong thư mục hệ thống RetroArch.</value></data>
   <data name="Emulation.Option.gearboy.gearboy_bootrom_dmg.Value.Disabled"><value>Đã tắt</value></data>
   <data name="Emulation.Option.gearboy.gearboy_bootrom_dmg.Value.Enabled"><value>Đã bật</value></data>
-  <data name="Emulation.Option.gearboy.gearboy_bootrom_gbc"><value>GBC Bootrom (bắt đầu)</value></data>
+  <data name="Emulation.Option.gearboy.gearboy_bootrom_gbc"><value>GBC Bootrom</value></data>
   <data name="Emulation.Option.gearboy.gearboy_bootrom_gbc.Help"><value>Kích hoạt hoặc vô hiệu hóa khẩu Game Boy Color. Khi bật, máy khởi động sẽ chạy khi khởi động cũng giống như phần cứng thật, hiển thị hoạt hình khởi động Game Boy Color. Tập tin 'cgb_boot.bin' phải có trong thư mục hệ thống RetroArch.</value></data>
   <data name="Emulation.Option.gearboy.gearboy_bootrom_gbc.Value.Disabled"><value>Đã tắt</value></data>
   <data name="Emulation.Option.gearboy.gearboy_bootrom_gbc.Value.Enabled"><value>Đã bật</value></data>
@@ -2730,7 +2793,7 @@
   <data name="Emulation.Option.gearboy.gearboy_up_down_allowed.Help"><value>Cho phép nhấn, nhanh chóng một dao động, hoặc giữ cả hai hướng trái và phải (hoặc lên xuống) cùng một lúc. Điều này có thể gây ra trục trặc về sự vận động trong một số trò chơi. Tốt nhất là giữ cho tùy chọn này bị tắt.</value></data>
   <data name="Emulation.Option.gearboy.gearboy_up_down_allowed.Value.Disabled"><value>Đã tắt</value></data>
   <data name="Emulation.Option.gearboy.gearboy_up_down_allowed.Value.Enabled"><value>Đã bật</value></data>
-  <data name="Emulation.Option.gearboy.gearboy_link_enable"><value>Bật khả năng liên kết trò chơi (bắt đầu)</value></data>
+  <data name="Emulation.Option.gearboy.gearboy_link_enable"><value>Bật khả năng liên kết trò chơi</value></data>
   <data name="Emulation.Option.gearboy.gearboy_link_enable.Help"><value>Chạy hai hệ thống Game Boy liên kết. Nạp 1 ROM bản riêng lẻ trên mỗi màn hình; sử dụng hệ thống phụ kiểu 2 đấu thủ Game Boy để nạp hai ROM khác nhau. Cổng Controller 1 và 2 điều khiển màn hình 1 và 2, Chế độ Super Game Boy bị tắt khi liên kết.</value></data>
   <data name="Emulation.Option.gearboy.gearboy_link_enable.Value.Enabled"><value>Đã bật</value></data>
   <data name="Emulation.Option.gearboy.gearboy_link_enable.Value.Disabled"><value>Đã tắt</value></data>
@@ -2829,7 +2892,7 @@
   <data name="Emulation.Option.nside_sfc_balanced.higan_sfc_color_emulation"><value>Mô phỏng màu</value></data>
   <data name="Emulation.Option.nside_sfc_balanced.higan_sfc_blur_emulation"><value>Mô phỏng che mờ</value></data>
   <data name="Emulation.Option.nside_sfc_balanced.higan_sfc_scanline_emulation"><value>Mô phỏng đường quét</value></data>
-  <data name="Emulation.Option.nside_sfc_balanced.higan_sfc_sgb_bios"><value>Thích trò chơi Super Boy BIOS (bắt đầu)</value></data>
+  <data name="Emulation.Option.nside_sfc_balanced.higan_sfc_sgb_bios"><value>Thích trò chơi Super Boy BIOS</value></data>
   <data name="Emulation.Firmware.nside_sfc_balanced.Slot0"><value>Phần cứng bên ngoài</value></data>
   <data name="Emulation.Firmware.nside_sfc_balanced.Slot1"><value>Phần cứng bên ngoài</value></data>
   <data name="Emulation.Firmware.nside_sfc_balanced.Slot2"><value>Phần cứng bên ngoài</value></data>
@@ -2852,14 +2915,14 @@
   <data name="Emulation.Firmware.nside_sfc_balanced.Slot19"><value>SGB Boot BIOS</value></data>
   <data name="Emulation.Firmware.nside_sfc_balanced.Slot20"><value>Ảnh khởi động SGB</value></data>
   <data name="Emulation.Emulator.sameboy.Description"><value>Kết hợp Nintendo hệ thống với SameBoy.</value></data>
-  <data name="Emulation.Option.sameboy.sameboy_model"><value>Mô hình hệ thống - Mô hình đã mô phỏng (bắt đầu lại)</value></data>
-  <data name="Emulation.Option.sameboy.sameboy_model.Help"><value>Chọn mô hình hệ thống nội dung nên được khởi chạy. Một số trò chơi có thể kích hoạt tính năng đặc biệt trong trò chơi khi chạy trên mô hình cụ thể. Tùy chọn này yêu cầu bản khởi chạy lại nội dung để có tác động.</value></data>
+  <data name="Emulation.Option.sameboy.sameboy_model"><value>Mô hình hệ thống - Mô hình đã mô phỏng</value></data>
+  <data name="Emulation.Option.sameboy.sameboy_model.Help"><value>Chọn mô hình hệ thống nội dung nên được khởi chạy. Một số trò chơi có thể kích hoạt tính năng đặc biệt trong trò chơi khi chạy trên mô hình cụ thể.</value></data>
   <data name="Emulation.Option.sameboy.sameboy_model.Value.Auto"><value>Phát hiện tự động DMG/CGB</value></data>
   <data name="Emulation.Option.sameboy.sameboy_model.Value.Auto (SGB)"><value>Tự động phát hiện DMG/SGB/CGB</value></data>
   <data name="Emulation.Option.sameboy.sameboy_model.Value.Game Boy Pocket"><value>Game Boy túi/Light</value></data>
   <data name="Emulation.Option.sameboy.sameboy_model.Value.Game Boy Player"><value>Game Boy Người chơi (CPU AGB A)</value></data>
-  <data name="Emulation.Option.sameboy.sameboy_auto_sgb_model"><value>Hệ thống - Mô hình SGB đã phát hiện tự động (bắt đầu lại đòi hỏi)</value></data>
-  <data name="Emulation.Option.sameboy.sameboy_auto_sgb_model.Help"><value>Xác định mô hình phần cứng Super Game Boy để mô phỏng khi nội dung SGB được phát hiện tự động. Tùy chọn này yêu cầu bản khởi chạy lại nội dung để có tác động.</value></data>
+  <data name="Emulation.Option.sameboy.sameboy_auto_sgb_model"><value>Hệ thống - Mô hình SGB đã phát hiện tự động</value></data>
+  <data name="Emulation.Option.sameboy.sameboy_auto_sgb_model.Help"><value>Xác định mô hình phần cứng Super Game Boy để mô phỏng khi nội dung SGB được phát hiện tự động.</value></data>
   <data name="Emulation.Option.sameboy.sameboy_mono_palette"><value>Ảnh động - Bảng màu đơn kênh GB</value></data>
   <data name="Emulation.Option.sameboy.sameboy_mono_palette.Help"><value>Chọn bảng màu cần dùng khi chơi Game Boy.</value></data>
   <data name="Emulation.Option.sameboy.sameboy_mono_palette.Value.greyscale"><value>Mức xám</value></data>
@@ -2901,22 +2964,22 @@
   <data name="Emulation.Option.sameboy.sameboy_link.Help"><value>Kích hoạt sự mô phỏng cáp liên kết, cho phép giao tiếp và trao đổi dữ liệu giữa hai hệ thống Game Boy.</value></data>
   <data name="Emulation.Option.sameboy.sameboy_link.Value.enabled"><value>Đã bật</value></data>
   <data name="Emulation.Option.sameboy.sameboy_link.Value.disabled"><value>Đã tắt</value></data>
-  <data name="Emulation.Option.sameboy.sameboy_model_1"><value>Hệ thống - Mô hình đã mô phỏng cho Game Boy # 1 (bắt đầu lại đòi hỏi)</value></data>
-  <data name="Emulation.Option.sameboy.sameboy_model_1.Help"><value>Chọn mô hình hệ thống mà nội dung nên được khởi động cho Game Boy # 1. Một số trò chơi có thể kích hoạt tính năng đặc biệt trong trò chơi khi chạy trên mô hình cụ thể. Tùy chọn này yêu cầu bản khởi chạy lại nội dung để có tác động.</value></data>
+  <data name="Emulation.Option.sameboy.sameboy_model_1"><value>Hệ thống - Mô hình đã mô phỏng cho Game Boy # 1</value></data>
+  <data name="Emulation.Option.sameboy.sameboy_model_1.Help"><value>Chọn mô hình hệ thống mà nội dung nên được khởi động cho Game Boy # 1. Một số trò chơi có thể kích hoạt tính năng đặc biệt trong trò chơi khi chạy trên mô hình cụ thể.</value></data>
   <data name="Emulation.Option.sameboy.sameboy_model_1.Value.Auto"><value>Phát hiện tự động DMG/CGB</value></data>
   <data name="Emulation.Option.sameboy.sameboy_model_1.Value.Auto (SGB)"><value>Tự động phát hiện DMG/SGB/CGB</value></data>
   <data name="Emulation.Option.sameboy.sameboy_model_1.Value.Game Boy Pocket"><value>Game Boy túi/Light</value></data>
   <data name="Emulation.Option.sameboy.sameboy_model_1.Value.Game Boy Player"><value>Game Boy Người chơi (CPU AGB A)</value></data>
-  <data name="Emulation.Option.sameboy.sameboy_auto_sgb_model_1"><value>Hệ thống - phát hiện SGB Mô hình cho Game Boy # 1 (bắt đầu lại)</value></data>
-  <data name="Emulation.Option.sameboy.sameboy_auto_sgb_model_1.Help"><value>Xác định mẫu nào của Super Game Boy Phần cứng để mô phỏng khi nào SGB Nội dung được phát hiện tự động cho Game Boy #1. Tùy chọn này yêu cầu bản khởi chạy lại nội dung để có tác động.</value></data>
-  <data name="Emulation.Option.sameboy.sameboy_model_2"><value>Hệ thống - Mô hình đã mô phỏng cho Game Boy 2 (bắt đầu lại đòi hỏi)</value></data>
-  <data name="Emulation.Option.sameboy.sameboy_model_2.Help"><value>Chọn mô hình hệ thống mà nội dung nên được khởi động cho Game Boy # 2. Một số trò chơi có thể kích hoạt tính năng đặc biệt trong trò chơi khi chạy trên mô hình cụ thể. Tùy chọn này yêu cầu bản khởi chạy lại nội dung để có tác động.</value></data>
+  <data name="Emulation.Option.sameboy.sameboy_auto_sgb_model_1"><value>Hệ thống - phát hiện SGB Mô hình cho Game Boy # 1</value></data>
+  <data name="Emulation.Option.sameboy.sameboy_auto_sgb_model_1.Help"><value>Xác định mẫu nào của Super Game Boy Phần cứng để mô phỏng khi nào SGB Nội dung được phát hiện tự động cho Game Boy #1.</value></data>
+  <data name="Emulation.Option.sameboy.sameboy_model_2"><value>Hệ thống - Mô hình đã mô phỏng cho Game Boy 2</value></data>
+  <data name="Emulation.Option.sameboy.sameboy_model_2.Help"><value>Chọn mô hình hệ thống mà nội dung nên được khởi động cho Game Boy # 2. Một số trò chơi có thể kích hoạt tính năng đặc biệt trong trò chơi khi chạy trên mô hình cụ thể.</value></data>
   <data name="Emulation.Option.sameboy.sameboy_model_2.Value.Auto"><value>Phát hiện tự động DMG/CGB</value></data>
   <data name="Emulation.Option.sameboy.sameboy_model_2.Value.Auto (SGB)"><value>Tự động phát hiện DMG/SGB/CGB</value></data>
   <data name="Emulation.Option.sameboy.sameboy_model_2.Value.Game Boy Pocket"><value>Game Boy túi/Light</value></data>
   <data name="Emulation.Option.sameboy.sameboy_model_2.Value.Game Boy Player"><value>Game Boy Người chơi (CPU AGB A)</value></data>
-  <data name="Emulation.Option.sameboy.sameboy_auto_sgb_model_2"><value>Hệ thống - phát hiện SGB Mô hình cho Game Boy 2 (các yêu cầu khởi động lại)</value></data>
-  <data name="Emulation.Option.sameboy.sameboy_auto_sgb_model_2.Help"><value>Xác định mô hình phần cứng Super Game Boy để mô phỏng khi nội dung của SGB được phát hiện tự động cho Game Boy # 2. Tùy chọn này yêu cầu bản khởi chạy lại nội dung để có tác động.</value></data>
+  <data name="Emulation.Option.sameboy.sameboy_auto_sgb_model_2"><value>Hệ thống - phát hiện SGB Mô hình cho Game Boy 2</value></data>
+  <data name="Emulation.Option.sameboy.sameboy_auto_sgb_model_2.Help"><value>Xác định mô hình phần cứng Super Game Boy để mô phỏng khi nội dung của SGB được phát hiện tự động cho Game Boy # 2.</value></data>
   <data name="Emulation.Option.sameboy.sameboy_screen_layout"><value>Ảnh động - Bố trí màn hìnhStencils</value></data>
   <data name="Emulation.Option.sameboy.sameboy_screen_layout.Help"><value>Khi nâng cấp hai hệ thống cùng một lúc, tùy chọn này xác định vị trí của mỗi màn hình.</value></data>
   <data name="Emulation.Option.sameboy.sameboy_screen_layout.Value.top-down"><value>Trên- dưới</value></data>
@@ -3011,10 +3074,10 @@
   <data name="Emulation.Option.tgbdual.tgbdual_audio_output"><value>Xuất âm thanh</value></data>
   <data name="Emulation.Option.tgbdual.tgbdual_audio_output.Value.Both (mixed)"><value>Cả hai (đã trộn)</value></data>
   <data name="Emulation.Emulator.mednafen_gba.Description"><value>Kết hợp các hệ thống Nintendo với Bọ hung GBA.</value></data>
-  <data name="Emulation.Option.mednafen_gba.gba_hle"><value>Sinh học HLE (bắt đầu lại)</value></data>
+  <data name="Emulation.Option.mednafen_gba.gba_hle"><value>Sinh học HLE</value></data>
   <data name="Emulation.Option.mednafen_gba.gba_hle.Value.enabled"><value>Đã bật</value></data>
   <data name="Emulation.Option.mednafen_gba.gba_hle.Value.disabled"><value>Đã tắt</value></data>
-  <data name="Emulation.Option.mednafen_gba.gba_use_mednafen_save_method"><value>Phương pháp lưu (bắt đầu lại)</value></data>
+  <data name="Emulation.Option.mednafen_gba.gba_use_mednafen_save_method"><value>Phương pháp lưu</value></data>
   <data name="Emulation.Option.mednafen_gba.gba_use_mednafen_save_method.Value.mednafen"><value>mednafen</value></data>
   <data name="Emulation.Option.mednafen_gba.gba_use_mednafen_save_method.Value.libretro"><value>libretro</value></data>
   <data name="Emulation.Firmware.mednafen_gba.Slot0"><value>Game Boy Advance BIOS</value></data>
@@ -3082,14 +3145,14 @@
   <data name="Emulation.Option.gpsp.gpsp_turbo_period.Help"><value>Chỉ định khoảng thời gian lặp lại (trong khung) khi giữ các nút Turbo A/B.</value></data>
   <data name="Emulation.Firmware.gpsp.Slot0"><value>Game Boy Advance BIOS</value></data>
   <data name="Emulation.Emulator.meteor.Description"><value>Kết hợp Nintendo hệ thống với Meteor.</value></data>
-  <data name="Emulation.Option.mgba.mgba_gb_model"><value>Mô hình Game Boy (bắt đầu lại)</value></data>
+  <data name="Emulation.Option.mgba.mgba_gb_model"><value>Mô hình Game Boy</value></data>
   <data name="Emulation.Option.mgba.mgba_gb_model.Help"><value>Chạy nội dung đã nạp với mô hình Game Boy riêng. 'Tìm ra tự động' sẽ chọn mô hình thích hợp nhất cho trò chơi hiện thời.</value></data>
   <data name="Emulation.Option.mgba.mgba_gb_model.Value.Autodetect"><value>Tự động phát hiện</value></data>
-  <data name="Emulation.Option.mgba.mgba_use_bios"><value>Dùng tập tin BIOS nếu tìm (bắt đầu lại)</value></data>
+  <data name="Emulation.Option.mgba.mgba_use_bios"><value>Dùng tập tin BIOS nếu tìm</value></data>
   <data name="Emulation.Option.mgba.mgba_use_bios.Help"><value>Sử dụng chính thức BIOS/bootloader để mô phỏng phần cứng, nếu có trong thư mục hệ thống của RetroAtch.</value></data>
   <data name="Emulation.Option.mgba.mgba_use_bios.Value.ON"><value>Đã bật</value></data>
   <data name="Emulation.Option.mgba.mgba_use_bios.Value.OFF"><value>Đã tắt</value></data>
-  <data name="Emulation.Option.mgba.mgba_skip_bios"><value>Bỏ qua Intro BIOS (bắt đầu lại)</value></data>
+  <data name="Emulation.Option.mgba.mgba_skip_bios"><value>Bỏ qua Intro BIOS</value></data>
   <data name="Emulation.Option.mgba.mgba_skip_bios.Help"><value>Khi sử dụng chính thức BIOS/bootloader, bỏ qua biểu tượng khởi động. Thiết lập này bị bỏ qua khi « Dùng tập tin « BIOS » nếu bị tắt.</value></data>
   <data name="Emulation.Option.mgba.mgba_skip_bios.Value.OFF"><value>Đã tắt</value></data>
   <data name="Emulation.Option.mgba.mgba_skip_bios.Value.ON"><value>Đã bật</value></data>
@@ -3111,13 +3174,13 @@
   <data name="Emulation.Option.mgba.mgba_gb_colors.Value.GBC Green →"><value>GBCComment</value></data>
   <data name="Emulation.Option.mgba.mgba_gb_colors.Value.GBC Dark Green →A"><value>GBC xanh lá cây tốicolor</value></data>
   <data name="Emulation.Option.mgba.mgba_gb_colors.Value.GBC Reverse →B"><value>Dòng ngang GBC</value></data>
-  <data name="Emulation.Option.mgba.mgba_gb_colors_preset"><value>Bảng màu Phần cứng Game Boy bảng màu (bắt đầu lại)</value></data>
+  <data name="Emulation.Option.mgba.mgba_gb_colors_preset"><value>Bảng màu Phần cứng Game Boy bảng màu</value></data>
   <data name="Emulation.Option.mgba.mgba_gb_colors_preset.Help"><value>Dùng bảng chọn Game Boy Trò chơi mà có sẵn trên Game Boy Color hay Super Game Boy.</value></data>
   <data name="Emulation.Option.mgba.mgba_gb_colors_preset.Value.0"><value>Mặc định Game Boy sẵn</value></data>
   <data name="Emulation.Option.mgba.mgba_gb_colors_preset.Value.1"><value>Game Boy Color chỉ định sẵn</value></data>
   <data name="Emulation.Option.mgba.mgba_gb_colors_preset.Value.2"><value>Chỉ đặt sẵn Super Game Boy</value></data>
   <data name="Emulation.Option.mgba.mgba_gb_colors_preset.Value.3"><value>Bất kỳ định sẵn nào</value></data>
-  <data name="Emulation.Option.mgba.mgba_sgb_borders"><value>Dùng viền Super Game Boy (bắt đầu lại)</value></data>
+  <data name="Emulation.Option.mgba.mgba_sgb_borders"><value>Dùng viền Super Game Boy</value></data>
   <data name="Emulation.Option.mgba.mgba_sgb_borders.Help"><value>Hiển thị Super Game Boy biên giới khi chạy trò Super Game Boy cải tiến.</value></data>
   <data name="Emulation.Option.mgba.mgba_sgb_borders.Value.ON"><value>Đã bật</value></data>
   <data name="Emulation.Option.mgba.mgba_sgb_borders.Value.OFF"><value>Đã tắt</value></data>
@@ -3145,7 +3208,7 @@
   <data name="Emulation.Option.mgba.mgba_solar_sensor_level"><value>Mức độ nhạy mặt trời</value></data>
   <data name="Emulation.Option.mgba.mgba_solar_sensor_level.Help"><value>Đặt cường độ ánh sáng xung quanh. Có thể sử dụng các trò chơi bao gồm một bộ cảm biến mặt trời trong hộp đạn của họ, e.g: bộ Boki.</value></data>
   <data name="Emulation.Option.mgba.mgba_solar_sensor_level.Value.sensor"><value>Dùng bộ nhạy thiết bị nếu sẵn sàng</value></data>
-  <data name="Emulation.Option.mgba.mgba_force_gbp"><value>Game Boy trình chơi Rumble (bắt đầu lại)</value></data>
+  <data name="Emulation.Option.mgba.mgba_force_gbp"><value>Game Boy trình chơi Rumble</value></data>
   <data name="Emulation.Option.mgba.mgba_force_gbp.Help"><value>Bật tùy chọn này sẽ cho phép trò chơi tương thích với logo khởi động Game Boy của máy chơi để làm cho bộ điều khiển chạy. Vì Nintendo đã quyết định tính năng này nên hoạt động như thế nào, nó có thể gây ra những trục trặc như nhấp nháy hoặc chậm trễ trong một số trò chơi này.</value></data>
   <data name="Emulation.Option.mgba.mgba_force_gbp.Value.OFF"><value>Đã tắt</value></data>
   <data name="Emulation.Option.mgba.mgba_force_gbp.Value.ON"><value>Đã bật</value></data>
@@ -3170,17 +3233,17 @@
   <data name="Emulation.Firmware.mgba.Slot3"><value>Super Game Boy BIOS</value></data>
   <data name="Emulation.Emulator.vbam.Description"><value>Kết hợp các hệ thống Nintendo với VBA-M.</value></data>
   <data name="Emulation.Option.vbam.vbam_usebios"><value>Dùng chính thức BIOS (nếu có)</value></data>
-  <data name="Emulation.Option.vbam.vbam_usebios.Help"><value>Sử dụng chính thức BIOS khi có. Cần phải khởi chạy lại lõi để thay đổi áp dụng.</value></data>
+  <data name="Emulation.Option.vbam.vbam_usebios.Help"><value>Sử dụng chính thức BIOS khi có.</value></data>
   <data name="Emulation.Option.vbam.vbam_usebios.Value.disabled"><value>Đã tắt</value></data>
   <data name="Emulation.Option.vbam.vbam_usebios.Value.enabled"><value>Đã bật</value></data>
   <data name="Emulation.Option.vbam.vbam_forceRTCenable"><value>Lực lượng RTC</value></data>
   <data name="Emulation.Option.vbam.vbam_forceRTCenable.Help"><value>Ép buộc các đồng hồ thời gian thực bên trong được sử dụng bất kể Rem. Có thể dùng cho vá rm cần thiết đồng hồ để bật (v. d., Pokemon).</value></data>
   <data name="Emulation.Option.vbam.vbam_forceRTCenable.Value.disabled"><value>Đã tắt</value></data>
   <data name="Emulation.Option.vbam.vbam_forceRTCenable.Value.enabled"><value>Đã bật</value></data>
-  <data name="Emulation.Option.vbam.vbam_gbHardware"><value>(GB) Phần cứng đã mô phỏng (bắt đầu lại)</value></data>
-  <data name="Emulation.Option.vbam.vbam_gbHardware.Help"><value>Thiết lập loại phần cứng Game Boy để mô phỏng. Khởi động lại lõi để áp dụng.</value></data>
+  <data name="Emulation.Option.vbam.vbam_gbHardware"><value>(GB) Phần cứng đã mô phỏng</value></data>
+  <data name="Emulation.Option.vbam.vbam_gbHardware.Help"><value>Thiết lập loại phần cứng Game Boy để mô phỏng.</value></data>
   <data name="Emulation.Option.vbam.vbam_gbHardware.Value.auto"><value>Tự động</value></data>
-  <data name="Emulation.Option.vbam.vbam_allowcolorizerhack"><value>(GB) Bật/tắt bộ lọc màu (neds khởi chạy lại)</value></data>
+  <data name="Emulation.Option.vbam.vbam_allowcolorizerhack"><value>(GB) Bật/tắt bộ lọc màu</value></data>
   <data name="Emulation.Option.vbam.vbam_allowcolorizerhack.Help"><value>Cho phép bộ tô màu hack trò chơi GB (v. d. Trò chơi vá DX để thường chạy kiểu phần cứng GBC/GBA. Điều này cũng vô hiệu hóa việc sử dụng tập tin sinh học. NOT RECOMMENDED để sử dụng cho các trò chơi không màu.</value></data>
   <data name="Emulation.Option.vbam.vbam_allowcolorizerhack.Value.disabled"><value>Đã tắt</value></data>
   <data name="Emulation.Option.vbam.vbam_allowcolorizerhack.Value.enabled"><value>Đã bật</value></data>
@@ -3296,11 +3359,11 @@
   <data name="Emulation.Firmware.vbam.Slot1"><value>Game Boy BIOS</value></data>
   <data name="Emulation.Firmware.vbam.Slot2"><value>Game Boy Color BIOS</value></data>
   <data name="Emulation.Emulator.vba_next.Description"><value>Kết hợp các hệ thống Nintendo với VBA Next.</value></data>
-  <data name="Emulation.Option.vba_next.vbanext_bios"><value>Dùng BIOS nếu có (bắt đầu lại)</value></data>
+  <data name="Emulation.Option.vba_next.vbanext_bios"><value>Dùng BIOS nếu có</value></data>
   <data name="Emulation.Option.vba_next.vbanext_bios.Help"><value>Sử dụng BIOS có mặt trong thư mục hệ thống RetroArch.</value></data>
   <data name="Emulation.Option.vba_next.vbanext_bios.Value.enabled"><value>Đã bật</value></data>
   <data name="Emulation.Option.vba_next.vbanext_bios.Value.disabled"><value>Đã tắt</value></data>
-  <data name="Emulation.Option.vba_next.vbanext_rtc"><value>RTC (bắt đầu lại)</value></data>
+  <data name="Emulation.Option.vba_next.vbanext_rtc"><value>RTC</value></data>
   <data name="Emulation.Option.vba_next.vbanext_rtc.Help"><value>Điều khiển đồng hồ thời gian thực. 'tự động' sử dụng...ROM Danh sách ghi đè. Lực lượng 'có thể' RTC trên cho bất kỳ ROM ( lợi dụng cho ROM Name RTC Không có lệnh ghi đè tương ứng. Các lực « khả năng » RTC tắt, vượt quá danh sách ghi đè.</value></data>
   <data name="Emulation.Option.vba_next.vbanext_rtc.Value.auto"><value>Tự động</value></data>
   <data name="Emulation.Option.vba_next.vbanext_rtc.Value.enabled"><value>Đã bật</value></data>
@@ -3325,11 +3388,11 @@
   <data name="Emulation.Option.dolphin.dolphin_emulation_speed.Value.1.0"><value>100% ( Tốc độ nhiệt)</value></data>
   <data name="Emulation.Option.dolphin.dolphin_emulation_speed.Value.0.0"><value>Vô hạn</value></data>
   <data name="Emulation.Option.dolphin.dolphin_main_cpu_thread"><value>Mã vạch &gt; Chế độ lõi Dual</value></data>
-  <data name="Emulation.Option.dolphin.dolphin_main_cpu_thread.Help"><value>Kích hoạt mô phỏng CPU kép. Cần thiết lõi RESTART.</value></data>
+  <data name="Emulation.Option.dolphin.dolphin_main_cpu_thread.Help"><value>Kích hoạt mô phỏng CPU kép.</value></data>
   <data name="Emulation.Option.dolphin.dolphin_main_cpu_thread.Value.disabled"><value>Đã tắt</value></data>
   <data name="Emulation.Option.dolphin.dolphin_main_cpu_thread.Value.enabled"><value>Đã bật</value></data>
   <data name="Emulation.Option.dolphin.dolphin_main_load_game_into_memory"><value>Cái lõi &gt; Nạp toàn bộ trò chơi vào bộ nhớ</value></data>
-  <data name="Emulation.Option.dolphin.dolphin_main_load_game_into_memory.Help"><value>Tải trò chơi vào bộ nhớ. Cần thiết lõi RESTART.</value></data>
+  <data name="Emulation.Option.dolphin.dolphin_main_load_game_into_memory.Help"><value>Tải trò chơi vào bộ nhớ.</value></data>
   <data name="Emulation.Option.dolphin.dolphin_main_load_game_into_memory.Value.disabled"><value>Đã tắt</value></data>
   <data name="Emulation.Option.dolphin.dolphin_main_load_game_into_memory.Value.enabled"><value>Đã bật</value></data>
   <data name="Emulation.Option.dolphin.dolphin_precision_frame_timing"><value>lõi &gt; Khung chính xác</value></data>
@@ -3349,7 +3412,7 @@
   <data name="Emulation.Option.dolphin.dolphin_main_accurate_cpu_cache.Value.disabled"><value>Đã tắt</value></data>
   <data name="Emulation.Option.dolphin.dolphin_main_accurate_cpu_cache.Value.enabled"><value>Đã bật</value></data>
   <data name="Emulation.Option.dolphin.dolphin_cheats_enabled"><value>Cốt lõi &gt; Gian lận nội bộ</value></data>
-  <data name="Emulation.Option.dolphin.dolphin_cheats_enabled.Help"><value>Bật mã gian lận có sẵn. Khởi động lại lõi để có hiệu quả.</value></data>
+  <data name="Emulation.Option.dolphin.dolphin_cheats_enabled.Help"><value>Bật mã gian lận có sẵn.</value></data>
   <data name="Emulation.Option.dolphin.dolphin_cheats_enabled.Value.disabled"><value>Đã tắt</value></data>
   <data name="Emulation.Option.dolphin.dolphin_cheats_enabled.Value.enabled"><value>Đã bật</value></data>
   <data name="Emulation.Option.dolphin.dolphin_skip_gc_bios"><value>lõi &gt; Bỏ qua GameCube BIOS</value></data>
@@ -3467,7 +3530,7 @@
   <data name="Emulation.Option.dolphin.dolphin_gc_sp1.Value.13"><value>Bộ điều giải Tháp</value></data>
   <data name="Emulation.Option.dolphin.dolphin_gc_sp1.Value.6"><value>Bảng cơ bản</value></data>
   <data name="Emulation.Option.dolphin.dolphin_enable_gamecube_mic"><value>Cấu hình hệ thống (GC) &gt; GameCube Microphone</value></data>
-  <data name="Emulation.Option.dolphin.dolphin_enable_gamecube_mic.Help"><value>Tính toán số lượng chính thức GameCube micro. Khởi động lại lõi sau khi thay đổi tùy chọn này.</value></data>
+  <data name="Emulation.Option.dolphin.dolphin_enable_gamecube_mic.Help"><value>Tính toán số lượng chính thức GameCube micro.</value></data>
   <data name="Emulation.Option.dolphin.dolphin_enable_gamecube_mic.Value.disabled"><value>Đã tắt</value></data>
   <data name="Emulation.Option.dolphin.dolphin_enable_gamecube_mic.Value.enabled"><value>Đã bật</value></data>
   <data name="Emulation.Option.dolphin.dolphin_hotkey_activate_microphone"><value>Cấu hình hệ thống (GC) &gt; Nút vi âm thanh</value></data>
@@ -3508,7 +3571,7 @@
   <data name="Emulation.Option.dolphin.dolphin_bluetooth_passthrough.Value.disabled"><value>Đã tắt</value></data>
   <data name="Emulation.Option.dolphin.dolphin_bluetooth_passthrough.Value.enabled"><value>Đã bật</value></data>
   <data name="Emulation.Option.dolphin.dolphin_wiispeak_enable"><value>Cấu hình hệ thống &gt; Phát âm Wii</value></data>
-  <data name="Emulation.Option.dolphin.dolphin_wiispeak_enable.Help"><value>Chuẩn bị micro Wii. Khởi động lại khi thay đổi tùy chọn này.</value></data>
+  <data name="Emulation.Option.dolphin.dolphin_wiispeak_enable.Help"><value>Chuẩn bị micro Wii.</value></data>
   <data name="Emulation.Option.dolphin.dolphin_wiispeak_enable.Value.disabled"><value>Đã tắt</value></data>
   <data name="Emulation.Option.dolphin.dolphin_wiispeak_enable.Value.enabled"><value>Đã bật</value></data>
   <data name="Emulation.Option.dolphin.dolphin_wiispeak_muted"><value>Âm thanh &gt; Thiết bị &gt; Wii Talk Muted</value></data>
@@ -3516,7 +3579,7 @@
   <data name="Emulation.Option.dolphin.dolphin_wiispeak_muted.Value.disabled"><value>Đã tắt</value></data>
   <data name="Emulation.Option.dolphin.dolphin_wiispeak_muted.Value.enabled"><value>Đã bật</value></data>
   <data name="Emulation.Option.dolphin.dolphin_wii_logi_microphone_enable"><value>Cấu hình hệ thống &gt; Máy vi âm USB Logitech</value></data>
-  <data name="Emulation.Option.dolphin.dolphin_wii_logi_microphone_enable.Help"><value>Sắp xếp micro USB Logitech. Khởi động lại khi thay đổi tùy chọn này.</value></data>
+  <data name="Emulation.Option.dolphin.dolphin_wii_logi_microphone_enable.Help"><value>Sắp xếp micro USB Logitech.</value></data>
   <data name="Emulation.Option.dolphin.dolphin_wii_logi_microphone_enable.Value.disabled"><value>Đã tắt</value></data>
   <data name="Emulation.Option.dolphin.dolphin_wii_logi_microphone_enable.Value.enabled"><value>Đã bật</value></data>
   <data name="Emulation.Option.dolphin.dolphin_renderer"><value>Đồ họa &gt; Thiết lập &gt; hậu phương đồ họa</value></data>
@@ -3744,7 +3807,7 @@
   <data name="Emulation.Option.dolphin.dolphin_swing_angle.Help"><value>Xoay ở hai đầu của một cái đu (1-80 °).</value></data>
   <data name="Emulation.Option.dolphin.dolphin_swing_angle.Value.90"><value>90° (Mặc định)</value></data>
   <data name="Emulation.Option.dolphin.dolphin_cheats_import"><value>RetroArch Core &gt; Tự động nhập khẩu gian lận vào Retro Arch</value></data>
-  <data name="Emulation.Option.dolphin.dolphin_cheats_import.Help"><value>Nhập khẩu dolphin tập tin ini vào RtroArch. Khởi động lại lõi để có hiệu quả.</value></data>
+  <data name="Emulation.Option.dolphin.dolphin_cheats_import.Help"><value>Nhập khẩu dolphin tập tin ini vào RtroArch.</value></data>
   <data name="Emulation.Option.dolphin.dolphin_cheats_import.Value.disabled"><value>Đã tắt</value></data>
   <data name="Emulation.Option.dolphin.dolphin_cheats_import.Value.enabled"><value>Đã bật</value></data>
   <data name="Emulation.Option.dolphin.dolphin_save_load_settings"><value>Thư mục chính &gt; Tải &amp; ngăn chặn Thiết lập Lưu</value></data>
@@ -3756,7 +3819,7 @@
   <data name="Emulation.Option.dolphin.dolphin_ir_passthrough.Value.disabled"><value>Đã tắt</value></data>
   <data name="Emulation.Option.dolphin.dolphin_ir_passthrough.Value.enabled"><value>Đã bật</value></data>
   <data name="Emulation.Option.dolphin.dolphin_libretro_vfs_enabled"><value>Phần tử retroArch &gt; Bật hệ thống tập tin ảo (VFS)</value></data>
-  <data name="Emulation.Option.dolphin.dolphin_libretro_vfs_enabled.Help"><value>Bật VFS cho SAF/SMB v. v. Cần thiết lõi RESTART. Đặc điểm này là NEW và EXPERIMENTAL. Hỗ trợ tiết kiệm thường xuyên.</value></data>
+  <data name="Emulation.Option.dolphin.dolphin_libretro_vfs_enabled.Help"><value>Bật VFS cho SAF/SMB v. v. Đặc điểm này là NEW và EXPERIMENTAL. Hỗ trợ tiết kiệm thường xuyên.</value></data>
   <data name="Emulation.Option.dolphin.dolphin_libretro_vfs_enabled.Value.disabled"><value>Đã tắt</value></data>
   <data name="Emulation.Option.dolphin.dolphin_libretro_vfs_enabled.Value.enabled"><value>Đã bật</value></data>
   <data name="Emulation.Option.dolphin.dolphin_default_mouse_bindings_enabled"><value>Công ty retroArch &gt; Bật tổ hợp chuột mặc định</value></data>
@@ -3764,7 +3827,7 @@
   <data name="Emulation.Option.dolphin.dolphin_default_mouse_bindings_enabled.Value.disabled"><value>Đã tắt</value></data>
   <data name="Emulation.Option.dolphin.dolphin_default_mouse_bindings_enabled.Value.enabled"><value>Đã bật</value></data>
   <data name="Emulation.Option.dolphin.dolphin_dsu_enabled"><value>Wiimote (DSU) &gt; Bật trình khách DSU</value></data>
-  <data name="Emulation.Option.dolphin.dolphin_dsu_enabled.Help"><value>Bật trình khách DSU cho dữ liệu chuyển động DualShock. Khởi động lại lõi để có hiệu quả.</value></data>
+  <data name="Emulation.Option.dolphin.dolphin_dsu_enabled.Help"><value>Bật trình khách DSU cho dữ liệu chuyển động DualShock.</value></data>
   <data name="Emulation.Option.dolphin.dolphin_dsu_enabled.Value.disabled"><value>Đã tắt</value></data>
   <data name="Emulation.Option.dolphin.dolphin_dsu_enabled.Value.enabled"><value>Đã bật</value></data>
   <data name="Emulation.Option.dolphin.dolphin_dsu_ip_octet1"><value>Wiimote (DSU) &gt; Máy phục vụ IP Oct 1</value></data>
@@ -3987,13 +4050,13 @@
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-dither-filter.Help"><value>Allow VI Bộ lọc giảm dần, phục hồi độ sâu màu sắc đáng kể.</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-dither-filter.Value.True"><value>Đã bật</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-dither-filter.Value.False"><value>Đã tắt</value></data>
-  <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-upscaling"><value>(ParallEl-RDP) Hệ số tăng (bắt đầu)</value></data>
+  <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-upscaling"><value>(ParallEl-RDP) Hệ số tăng</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-upscaling.Help"><value>Áp dụng yếu tố tăng tính trong nội bộ.</value></data>
-  <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-super-sampled-read-back"><value>(ParallEl-RDP) SSAA Hiệu ứng bộ đệm khung (bắt đầu)</value></data>
+  <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-super-sampled-read-back"><value>(ParallEl-RDP) SSAA Hiệu ứng bộ đệm khung</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-super-sampled-read-back.Help"><value>Hiệu ứng bộ đệm khung siêu mẫu. Có thể giới thiệu các hiện vật.</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-super-sampled-read-back.Value.False"><value>Đã tắt</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-super-sampled-read-back.Value.True"><value>Đã bật</value></data>
-  <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-super-sampled-read-back-dither"><value>(ParallEl-RDP) Dither SSAA Hiệu ứng bộ đệm khung (bắt đầu)</value></data>
+  <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-super-sampled-read-back-dither"><value>(ParallEl-RDP) Dither SSAA Hiệu ứng bộ đệm khung</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-super-sampled-read-back-dither.Help"><value>Hiệu ứng bộ đệm kiểu di chuyển siêu mẫu.</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-super-sampled-read-back-dither.Value.True"><value>Đã bật</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-super-sampled-read-back-dither.Value.False"><value>Đã tắt</value></data>
@@ -4103,7 +4166,7 @@
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-pak4.Value.rumble"><value>Rộng rãi</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-pak4.Value.transfer"><value>truyền:</value></data>
   <data name="Emulation.Emulator.parallel_n64.Description"><value>Tính chất tương thích Nintendo Name N64.</value></data>
-  <data name="Emulation.Option.parallel_n64.parallel-n64-upscaling"><value>Hệ số tăng lên (bắt đầu)</value></data>
+  <data name="Emulation.Option.parallel_n64.parallel-n64-upscaling"><value>Hệ số tăng lên</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-upscaling.Help"><value>Vẽ ở nhiều độ phân giải của bàn điều khiển.RDP Danh dự mỗi yếu tố, tức giận làm tăng lên 4x và đối xử với 8x thành 4x.</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-parallel-rdp-native-texture-lod"><value>Dùng họa tiết bản xứ LOD khi nâng lên</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-parallel-rdp-native-texture-lod.Help"><value>Chọn các lớp mip kết cấu như bàn điều khiển, từ dấu chân của điểm ảnh giao tiếp thay vì dấu chấm điểm ảnh được nâng cao. Nếu không có nó, một trình vẽ quy mô sẽ chọn cấp sắc hơn, và trò chơi dùng cấp làm công tắc hiển thị hình ảnh không đúng (hình vẽ ở cuối hành lang lâu đài ở Super Mario 64Được vinh danh bởi ParallEl-RDP và Charyion.</value></data>
@@ -4348,7 +4411,7 @@
   <data name="Emulation.Option.parallel_n64.parallel-n64-rspplugin.Value.hle"><value>hle</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-rspplugin.Value.parallel"><value>song song</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-screensize"><value>Độ phân giải</value></data>
-  <data name="Emulation.Option.parallel_n64.parallel-n64-screensize.Help"><value>Độ phân giải (bắt đầu)</value></data>
+  <data name="Emulation.Option.parallel_n64.parallel-n64-screensize.Help"><value>Độ phân giải</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-aspectratiohint"><value>Gợi ý tỷ lệ hình thể</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-aspectratiohint.Help"><value>Gợi ý tỷ lệ hình thể (reinit)</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-aspectratiohint.Value.normal"><value>chuẩn</value></data>
@@ -4401,7 +4464,7 @@
   <data name="Emulation.Option.parallel_n64.parallel-n64-alt-map.Value.disabled"><value>Đã tắt</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-alt-map.Value.enabled"><value>Đã bật</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-vcache-vbo"><value>Bộ nhớ tạm Vertex VBO</value></data>
-  <data name="Emulation.Option.parallel_n64.parallel-n64-vcache-vbo.Help"><value>Bộ nhớ tạm Vertex VBO (bắt đầu)</value></data>
+  <data name="Emulation.Option.parallel_n64.parallel-n64-vcache-vbo.Help"><value>Bộ nhớ tạm Vertex VBO</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-vcache-vbo.Value.disabled"><value>Đã tắt</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-vcache-vbo.Value.enabled"><value>Đã bật</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-boot-device"><value>Thiết bị khởi động</value></data>
@@ -4411,7 +4474,7 @@
   <data name="Emulation.Option.parallel_n64.parallel-n64-64dd-hardware.Help"><value>Xử lý nội dung mà không có hộp mực hoặc đầu đĩa đã ghi nhận là một ổ cứng 64DD đĩa. Đĩa phát triển và đồ bỏ MAME/SDK không mang theo nhãn đầu trang; hộp thường xuyên và các hình bán lẻ D64 được nhận diện bằng đầu đề và thiết lập này.</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-64dd-hardware.Value.disabled"><value>Đã tắt</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-64dd-hardware.Value.enabled"><value>Đã bật</value></data>
-  <data name="Emulation.Option.parallel_n64.parallel-n64-goldeneye-tlb-hack"><value>Mắt vàng TLBMapping Hack (bắt đầu lại)</value></data>
+  <data name="Emulation.Option.parallel_n64.parallel-n64-goldeneye-tlb-hack"><value>Mắt vàng TLBMapping Hack</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-goldeneye-tlb-hack.Help"><value>Ánh xạ yêu cầu của Mắt vàng 0x7F000000 Đoạn mã thẳng vào đoạn thẳng ROMBỏ qua trò chơi của chính mình TLB máy nhắn tin (ari64 dynarec chỉ). Lịch sử yêu cầu Mắt vàng phải chạy, trên các chủ thể cấp độ máy tính, con đường chính xác bây giờ đo lường nhanh như nhau. Tắt cho ứng xử của phần cứng TLB trung thành hoặc cho các ROM đã thay đổi để chuyển đổi đoạn trò chơi, mà bản đồ sẽ bị hỏng.</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-goldeneye-tlb-hack.Value.enabled"><value>Đã bật</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-goldeneye-tlb-hack.Value.disabled"><value>Đã tắt</value></data>
@@ -4580,7 +4643,7 @@
   <data name="Emulation.Option.parallel_n64.parallel-n64-rtc-savestate"><value>Quay N64 hệ thống đồng hồ khi tải liên bang</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-rtc-savestate.Value.enabled"><value>Có</value></data>
   <data name="Emulation.Emulator.pokemini.Description"><value>Kết hợp các hệ thống Nintendo với PokeMini.</value></data>
-  <data name="Emulation.Option.pokemini.pokemini_video_scale"><value>Tỷ lệ ảnh động (bắt đầu lại)</value></data>
+  <data name="Emulation.Option.pokemini.pokemini_video_scale"><value>Tỷ lệ ảnh động</value></data>
   <data name="Emulation.Option.pokemini.pokemini_video_scale.Help"><value>Đặt yếu tố quy mô phim nội bộ. Tăng tỷ lệ sẽ cải thiện diện mạo của bộ lọc 'Dot Ma trận' LCD nội bộ.</value></data>
   <data name="Emulation.Option.pokemini.pokemini_60hz_mode"><value>Chế độ 60Hz</value></data>
   <data name="Emulation.Option.pokemini.pokemini_60hz_mode.Help"><value>Cập nhật màn hình ở 60Hz thay vì tốc độ cập nhật của người bản địa 72Hz Pokemon Mini bằng cách giảm mỗi khung thứ sáu. Giảm độ mịn của phim, nhưng tránh bị rách màn hình khi hiển thị mà không hỗ trợ hoạt động bản địa trên 60Hz.</value></data>
@@ -4780,13 +4843,13 @@
   <data name="Emulation.Firmware.bsnes.Slot18"><value>Ảnh khởi động SGB</value></data>
   <data name="Emulation.Firmware.bsnes.Slot19"><value>BS-X - Sore wa Namae o Nusumareta Machi không Monogatari (Japan) (Rev 1)</value></data>
   <data name="Emulation.Emulator.bsnes_jg.Description"><value>Kết hợp giữa các hệ thống Nintendo với bnes-jg.</value></data>
-  <data name="Emulation.Option.bsnes_jg.bsnes_jg_coproc_delaysync"><value>Đồng bộ hoá LLE (bắt đầu lại)</value></data>
+  <data name="Emulation.Option.bsnes_jg.bsnes_jg_coproc_delaysync"><value>Đồng bộ hoá LLE</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_coproc_delaysync.Help"><value>Đồng bộ chậm khi sử dụng bộ đồng bộ cấp thấp để tăng tốc độ với chi phí chính xác</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_coproc_delaysync.Value.off"><value>Tắt (Mặc định)</value></data>
-  <data name="Emulation.Option.bsnes_jg.bsnes_jg_coproc_preferhle"><value>Thích hợp xử lý HLE (bắt đầu lại)</value></data>
+  <data name="Emulation.Option.bsnes_jg.bsnes_jg_coproc_preferhle"><value>Thích hợp xử lý HLE</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_coproc_preferhle.Help"><value>Sử dụng bộ đồng xử lý cấp cao khi có thể cho tốc độ hơn với chi phí chính xác</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_coproc_preferhle.Value.off"><value>Tắt (Mặc định)</value></data>
-  <data name="Emulation.Option.bsnes_jg.bsnes_jg_hotfixes"><value>Sửa chữa nóng (bắt đầu lại)</value></data>
+  <data name="Emulation.Option.bsnes_jg.bsnes_jg_hotfixes"><value>Sửa chữa nóng</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_hotfixes.Help"><value>Áp dụng các cột nóng khi chơi một số trò chơi phát hành với những con bọ lớn (mà được hiển thị trên phần cứng thật). Trò chơi trong câu hỏi: Dirt Raker, Magical Drop, Skeing Ranger R2</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_hotfixes.Value.off"><value>Tắt (Mặc định)</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_runahead"><value>Chạy bộ nội bộ</value></data>
@@ -4796,10 +4859,10 @@
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_runahead.Value.2"><value>2 khung</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_runahead.Value.3"><value>3 khung</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_runahead.Value.4"><value>4 khung</value></data>
-  <data name="Emulation.Option.bsnes_jg.bsnes_jg_low_latency_audio"><value>Âm thanh yên tĩnh thấp (bắt đầu lại)</value></data>
+  <data name="Emulation.Option.bsnes_jg.bsnes_jg_low_latency_audio"><value>Âm thanh yên tĩnh thấp</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_low_latency_audio.Help"><value>Sử dụng các mẫu âm thanh nhỏ hơn cho một kinh nghiệm tốt hơn khi sử dụng giao diện điều khiển với một cấu hình âm thanh ít nhiễu. Dùng tùy chọn này trong trò chơi đồng xử lý đòi hỏi có thể gây ra đồ tạo tác âm thanh.</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_low_latency_audio.Value.off"><value>Tắt (Mặc định)</value></data>
-  <data name="Emulation.Option.bsnes_jg.bsnes_jg_rsqual"><value>Chất lượng bộ cuộn lại (bắt đầu lại)</value></data>
+  <data name="Emulation.Option.bsnes_jg.bsnes_jg_rsqual"><value>Chất lượng bộ cuộn lại</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_rsqual.Help"><value>Thiết lập cấp độ chất lượng của resamler nội bộ (bạn có thể nghe thấy sự khác biệt nếu bạn sử dụng thiết bị âm thanh cao và trí tưởng tượng của bạn)</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_rsqual.Value.fast"><value>Nhanh (Mặc định)</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_rsqual.Value.medium"><value>Vừa</value></data>
@@ -4943,8 +5006,8 @@
   <data name="Emulation.Option.bsnes_hd_beta.bsnes_coprocessor_prefer_hle.Help"><value>Bật tùy chọn này thì mô phỏng HLE ít chính xác hơn sẽ luôn được dùng khi có sẵn. Nếu bị tàn tật, HLE sẽ chỉ được sử dụng khi thiếu phần cứng LLE.</value></data>
   <data name="Emulation.Option.bsnes_hd_beta.bsnes_coprocessor_prefer_hle.Value.ON"><value>Đã bật</value></data>
   <data name="Emulation.Option.bsnes_hd_beta.bsnes_coprocessor_prefer_hle.Value.OFF"><value>Đã tắt</value></data>
-  <data name="Emulation.Option.bsnes_hd_beta.bsnes_sgb_bios"><value>Thích Super Game Boy BIOS (bắt đầu lại nhu cầu)</value></data>
-  <data name="Emulation.Option.bsnes_hd_beta.bsnes_sgb_bios.Help"><value>Cho phép chọn loại Super Game Boy9876 BIOS được dùng với tiêu đề tương thích. Cần thiết khởi chạy lại để có tác dụng.</value></data>
+  <data name="Emulation.Option.bsnes_hd_beta.bsnes_sgb_bios"><value>Thích Super Game Boy BIOS</value></data>
+  <data name="Emulation.Option.bsnes_hd_beta.bsnes_sgb_bios.Help"><value>Cho phép chọn loại Super Game Boy9876 BIOS được dùng với tiêu đề tương thích.</value></data>
   <data name="Emulation.Option.bsnes_hd_beta.bsnes_run_ahead_frames"><value>Chạy bộ nội bộ</value></data>
   <data name="Emulation.Option.bsnes_hd_beta.bsnes_run_ahead_frames.Help"><value>Mô phỏng hệ thống trước thời gian và cuộn trở lại để giảm nhiễu nhập. Có yêu cầu rất cao về hệ thống.</value></data>
   <data name="Emulation.Option.bsnes_hd_beta.bsnes_run_ahead_frames.Value.OFF"><value>Đã tắt</value></data>
@@ -5189,7 +5252,7 @@
   <data name="Emulation.Option.bsnes_mercury_accuracy.bsnes_crop_overscan"><value>Cắt overscan</value></data>
   <data name="Emulation.Option.bsnes_mercury_accuracy.bsnes_crop_overscan.Value.disabled"><value>Đã tắt</value></data>
   <data name="Emulation.Option.bsnes_mercury_accuracy.bsnes_crop_overscan.Value.enabled"><value>Đã bật</value></data>
-  <data name="Emulation.Option.bsnes_mercury_accuracy.bsnes_gamma_ramp"><value>Bước nhảy Gamma (bắt đầu lại)</value></data>
+  <data name="Emulation.Option.bsnes_mercury_accuracy.bsnes_gamma_ramp"><value>Bước nhảy Gamma</value></data>
   <data name="Emulation.Option.bsnes_mercury_accuracy.bsnes_gamma_ramp.Value.disabled"><value>Đã tắt</value></data>
   <data name="Emulation.Option.bsnes_mercury_accuracy.bsnes_gamma_ramp.Value.enabled"><value>Đã bật</value></data>
   <data name="Emulation.Firmware.bsnes_mercury_accuracy.Slot0"><value>Phần cứng bên ngoài</value></data>
@@ -5227,7 +5290,7 @@
   <data name="Emulation.Option.bsnes_mercury_balanced.bsnes_crop_overscan"><value>Cắt overscan</value></data>
   <data name="Emulation.Option.bsnes_mercury_balanced.bsnes_crop_overscan.Value.disabled"><value>Đã tắt</value></data>
   <data name="Emulation.Option.bsnes_mercury_balanced.bsnes_crop_overscan.Value.enabled"><value>Đã bật</value></data>
-  <data name="Emulation.Option.bsnes_mercury_balanced.bsnes_gamma_ramp"><value>Bước nhảy Gamma (bắt đầu lại)</value></data>
+  <data name="Emulation.Option.bsnes_mercury_balanced.bsnes_gamma_ramp"><value>Bước nhảy Gamma</value></data>
   <data name="Emulation.Option.bsnes_mercury_balanced.bsnes_gamma_ramp.Value.disabled"><value>Đã tắt</value></data>
   <data name="Emulation.Option.bsnes_mercury_balanced.bsnes_gamma_ramp.Value.enabled"><value>Đã bật</value></data>
   <data name="Emulation.Firmware.bsnes_mercury_balanced.Slot0"><value>Phần cứng bên ngoài</value></data>
@@ -5265,7 +5328,7 @@
   <data name="Emulation.Option.bsnes_mercury_performance.bsnes_crop_overscan"><value>Cắt overscan</value></data>
   <data name="Emulation.Option.bsnes_mercury_performance.bsnes_crop_overscan.Value.disabled"><value>Đã tắt</value></data>
   <data name="Emulation.Option.bsnes_mercury_performance.bsnes_crop_overscan.Value.enabled"><value>Đã bật</value></data>
-  <data name="Emulation.Option.bsnes_mercury_performance.bsnes_gamma_ramp"><value>Bước nhảy Gamma (bắt đầu lại)</value></data>
+  <data name="Emulation.Option.bsnes_mercury_performance.bsnes_gamma_ramp"><value>Bước nhảy Gamma</value></data>
   <data name="Emulation.Option.bsnes_mercury_performance.bsnes_gamma_ramp.Value.disabled"><value>Đã tắt</value></data>
   <data name="Emulation.Option.bsnes_mercury_performance.bsnes_gamma_ramp.Value.enabled"><value>Đã bật</value></data>
   <data name="Emulation.Firmware.bsnes_mercury_performance.Slot0"><value>Phần cứng bên ngoài</value></data>
@@ -5562,13 +5625,13 @@
   <data name="Emulation.Option.snes9x2002.snes9x2002_low_pass_filter.Value.enabled"><value>Đã bật</value></data>
   <data name="Emulation.Option.snes9x2002.snes9x2002_low_pass_range"><value>Cấp bộ lọc âm thanh</value></data>
   <data name="Emulation.Option.snes9x2002.snes9x2002_low_pass_range.Help"><value>Chỉ định tần số cắt giảm của bộ lọc âm thanh thấp. Một giá trị cao hơn làm tăng sức mạnh được cảm nhận của bộ lọc, bởi vì một phạm vi rộng hơn của phổ tần số cao bị giảm đi.</value></data>
-  <data name="Emulation.Option.snes9x2002.snes9x2002_overclock_cycles"><value>Giảm tốc độ xuống (Hack, Unsafe, khởi động lại)</value></data>
+  <data name="Emulation.Option.snes9x2002.snes9x2002_overclock_cycles"><value>Giảm tốc độ xuống</value></data>
   <data name="Emulation.Option.snes9x2002.snes9x2002_overclock_cycles.Help"><value>Nhiều trận đấu cho số SNES người đã phải chịu đựng sự suy giảm từ từ do con số chính CPU. Tùy chọn này giúp giảm thiểu lỗi đó với chi phí của lỗi có thể. Tương thích: Giảm tốc độ xuống nhưng giữ càng nhiều trò chơi phù hợp càng tốt. Cực đại: giảm tốc độ xuống càng nhiều càng tốt nhưng sẽ phá vỡ nhiều trò chơi hơn.</value></data>
   <data name="Emulation.Option.snes9x2002.snes9x2002_overclock_cycles.Value.disabled"><value>Đã tắt</value></data>
   <data name="Emulation.Option.snes9x2002.snes9x2002_overclock_cycles.Value.compatible"><value>Tương thích</value></data>
   <data name="Emulation.Option.snes9x2002.snes9x2002_overclock_cycles.Value.max"><value>Cực đại</value></data>
   <data name="Emulation.Emulator.snes9x2005.Description"><value>Kết hợp các hệ thống Nintendo với Snes9x 2005.</value></data>
-  <data name="Emulation.Option.snes9x2005.snes9x_2005_region"><value>Vùng điều khiển (bắt đầu lại)</value></data>
+  <data name="Emulation.Option.snes9x2005.snes9x_2005_region"><value>Vùng điều khiển</value></data>
   <data name="Emulation.Option.snes9x2005.snes9x_2005_region.Help"><value>Xác định vùng nào là từ. PAL" là 50hz, 'NTSC' là 60hz. Trò chơi sẽ chạy nhanh hơn hoặc chậm hơn bình thường nếu vùng sai được chọn.</value></data>
   <data name="Emulation.Option.snes9x2005.snes9x_2005_region.Value.auto"><value>Tự động</value></data>
   <data name="Emulation.Option.snes9x2005.snes9x_2005_frameskip"><value>Bộ khung</value></data>
@@ -5584,7 +5647,7 @@
   <data name="Emulation.Option.snes9x2005.snes9x_2005_low_pass_filter.Value.enabled"><value>Đã bật</value></data>
   <data name="Emulation.Option.snes9x2005.snes9x_2005_low_pass_range"><value>Cấp bộ lọc âm thanh</value></data>
   <data name="Emulation.Option.snes9x2005.snes9x_2005_low_pass_range.Help"><value>Chỉ định tần số cắt giảm của bộ lọc âm thanh thấp. Một giá trị cao hơn làm tăng sức mạnh được cảm nhận của bộ lọc, bởi vì một phạm vi rộng hơn của phổ tần số cao bị giảm đi.</value></data>
-  <data name="Emulation.Option.snes9x2005.snes9x_2005_overclock_cycles"><value>Giảm tốc độ xuống (Hack, Unsafe, khởi động lại)</value></data>
+  <data name="Emulation.Option.snes9x2005.snes9x_2005_overclock_cycles"><value>Giảm tốc độ xuống</value></data>
   <data name="Emulation.Option.snes9x2005.snes9x_2005_overclock_cycles.Help"><value>Nhiều trận đấu cho số SNES người đã phải chịu đựng sự suy giảm từ từ do con số chính CPU. Tùy chọn này giúp xác định lỗi nào có thể xảy ra. COMPATIBLE: Giảm tốc độ xuống thấp nhưng giữ càng nhiều trò chơi tương thích càng tốt. MAX: Giảm tốc độ xuống càng nhiều càng tốt nhưng sẽ phá vỡ nhiều trận đấu hơn.</value></data>
   <data name="Emulation.Option.snes9x2005.snes9x_2005_overclock_cycles.Value.disabled"><value>Đã tắt</value></data>
   <data name="Emulation.Option.snes9x2005.snes9x_2005_overclock_cycles.Value.compatible"><value>Tương thích</value></data>
@@ -5594,7 +5657,7 @@
   <data name="Emulation.Option.snes9x2005.snes9x_2005_reduce_sprite_flicker.Value.disabled"><value>Đã tắt</value></data>
   <data name="Emulation.Option.snes9x2005.snes9x_2005_reduce_sprite_flicker.Value.enabled"><value>Đã bật</value></data>
   <data name="Emulation.Emulator.snes9x2005_plus.Description"><value>Kết hợp các hệ thống Nintendo với Snes9x 2005.</value></data>
-  <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_region"><value>Vùng điều khiển (bắt đầu lại)</value></data>
+  <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_region"><value>Vùng điều khiển</value></data>
   <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_region.Help"><value>Xác định vùng nào là từ. PAL" là 50hz, 'NTSC' là 60hz. Trò chơi sẽ chạy nhanh hơn hoặc chậm hơn bình thường nếu vùng sai được chọn.</value></data>
   <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_region.Value.auto"><value>Tự động</value></data>
   <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_frameskip"><value>Bộ khung</value></data>
@@ -5604,7 +5667,7 @@
   <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_frameskip.Value.manual"><value>Thủ công</value></data>
   <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_frameskip_threshold"><value>Bảng chọn khung ()</value></data>
   <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_frameskip_threshold.Help"><value>Khi 'Frameskip' được đặt thành « Manal », chỉ định ngưỡng đệm âm thanh (phần trăm) bên dưới khung sẽ được bỏ qua. Những giá trị cao hơn giảm nguy cơ bị nứt bằng cách làm cho khung ảnh giảm thường xuyên hơn.</value></data>
-  <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_overclock_cycles"><value>Giảm tốc độ xuống (Hack, Unsafe, khởi động lại)</value></data>
+  <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_overclock_cycles"><value>Giảm tốc độ xuống</value></data>
   <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_overclock_cycles.Help"><value>Nhiều trận đấu cho số SNES người đã phải chịu đựng sự suy giảm từ từ do con số chính CPU. Tùy chọn này giúp xác định lỗi nào có thể xảy ra. COMPATIBLE: Giảm tốc độ xuống thấp nhưng giữ càng nhiều trò chơi tương thích càng tốt. MAX: Giảm tốc độ xuống càng nhiều càng tốt nhưng sẽ phá vỡ nhiều trận đấu hơn.</value></data>
   <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_overclock_cycles.Value.disabled"><value>Đã tắt</value></data>
   <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_overclock_cycles.Value.compatible"><value>Tương thích</value></data>
@@ -5614,7 +5677,7 @@
   <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_reduce_sprite_flicker.Value.disabled"><value>Đã tắt</value></data>
   <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_reduce_sprite_flicker.Value.enabled"><value>Đã bật</value></data>
   <data name="Emulation.Emulator.snes9x2010.Description"><value>Kết hợp các hệ thống Nintendo với Snes9x 2010.</value></data>
-  <data name="Emulation.Option.snes9x2010.snes9x_2010_region"><value>Vùng điều khiển (bắt đầu lại)</value></data>
+  <data name="Emulation.Option.snes9x2010.snes9x_2010_region"><value>Vùng điều khiển</value></data>
   <data name="Emulation.Option.snes9x2010.snes9x_2010_region.Help"><value>Xác định vùng nào là từ. PAL" là 50hz, 'NTSC' là 60hz. Trò chơi sẽ chạy nhanh hơn hoặc chậm hơn bình thường nếu vùng sai được chọn.</value></data>
   <data name="Emulation.Option.snes9x2010.snes9x_2010_region.Value.auto"><value>Tự động</value></data>
   <data name="Emulation.Option.snes9x2010.snes9x_2010_audio_interpolation"><value>Nội suy âm thanh (không chính xác)</value></data>
@@ -5671,7 +5734,7 @@
   <data name="Emulation.Option.snes9x2010.snes9x_2010_reduce_sprite_flicker.Help"><value>Tăng số lượng các bào tử có thể được vẽ đồng thời trên màn hình.</value></data>
   <data name="Emulation.Option.snes9x2010.snes9x_2010_reduce_sprite_flicker.Value.disabled"><value>Đã tắt</value></data>
   <data name="Emulation.Option.snes9x2010.snes9x_2010_reduce_sprite_flicker.Value.enabled"><value>Đã bật</value></data>
-  <data name="Emulation.Option.snes9x2010.snes9x_2010_block_invalid_vram_access"><value>Số chặn VRAM Truy cập (bắt đầu lại) không hợp lệ</value></data>
+  <data name="Emulation.Option.snes9x2010.snes9x_2010_block_invalid_vram_access"><value>Số chặn VRAM Truy cập không hợp lệ</value></data>
   <data name="Emulation.Option.snes9x2010.snes9x_2010_block_invalid_vram_access.Help"><value>Một số máy chủ nhà/ROM hack cần thiết tùy chọn này để tắt hoạt động đúng.</value></data>
   <data name="Emulation.Option.snes9x2010.snes9x_2010_block_invalid_vram_access.Value.enabled"><value>Đã bật</value></data>
   <data name="Emulation.Option.snes9x2010.snes9x_2010_block_invalid_vram_access.Value.disabled"><value>Đã tắt</value></data>
@@ -5738,7 +5801,7 @@
   <data name="Emulation.Option.mednafen_supafaust.supafaust_thread_affinity_emu"><value>Tạo ra mặt nạ liên kết sợi</value></data>
   <data name="Emulation.Option.mednafen_supafaust.supafaust_thread_affinity_ppu"><value>Chương trình này vẽ mặt nạ tương thích với chỉ PPU</value></data>
   <data name="Emulation.Option.mednafen_supafaust.supafaust_renderer"><value>Trình vẽ PPU</value></data>
-  <data name="Emulation.Option.beetle_vb.vb_3dmode"><value>Chế độ 3D (cần khởi chạy lại)</value></data>
+  <data name="Emulation.Option.beetle_vb.vb_3dmode"><value>Chế độ 3D</value></data>
   <data name="Emulation.Option.beetle_vb.vb_3dmode.Help"><value>Chọn chế độ 3D. Anaglyph - được dùng để kết hợp với kính hai màu cổ điển. Vi ống kính - có mục đích dùng với thiết bị 3 chiều ba chiều bên trái — hình ảnh mắt trái được hiển thị, và ảnh mắt phải được hiển hiện ở bên phải. vli - Đường dọc thay thế giữa ô xem trái và phải. hli - các đường nằm ngang</value></data>
   <data name="Emulation.Option.beetle_vb.vb_3dmode.Value.anaglyph"><value>aaglyph</value></data>
   <data name="Emulation.Option.beetle_vb.vb_3dmode.Value.cyberscope"><value>Kính viễn vọng mạng</value></data>
@@ -5773,7 +5836,7 @@
   <data name="Emulation.Option.beetle_vb.vb_opposite_directions.Help"><value>Cho phép nhấn lên và xuống hoặc phải cùng một lúc. Điều này có thể gây ra những trục trặc.</value></data>
   <data name="Emulation.Option.beetle_vb.vb_opposite_directions.Value.disabled"><value>Đã tắt</value></data>
   <data name="Emulation.Option.beetle_vb.vb_opposite_directions.Value.enabled"><value>Đã bật</value></data>
-  <data name="Emulation.Option.beetle_vb.vb_cpu_emulation"><value>Mô phỏng CPU (bắt đầu lại)</value></data>
+  <data name="Emulation.Option.beetle_vb.vb_cpu_emulation"><value>Mô phỏng CPU</value></data>
   <data name="Emulation.Option.beetle_vb.vb_cpu_emulation.Help"><value>Chọn giữa sự mô phỏng nhanh và chính xác (từ nhỏ)</value></data>
   <data name="Emulation.Option.beetle_vb.vb_cpu_emulation.Value.accurate"><value>chính xác</value></data>
   <data name="Emulation.Option.beetle_vb.vb_cpu_emulation.Value.fast"><value>Nhanh</value></data>
@@ -5926,7 +5989,9 @@
   <data name="Emulation.Option.cemu.cemu_uninstall_game.Value.disabled"><value>Đã tắt</value></data>
   <data name="Emulation.Option.cemu.cemu_uninstall_game.Value.enabled"><value>Đã bật</value></data>
   <data name="Emulation.Option.cemu.cemu_install_titles"><value>Cài đặt Nội dung</value></data>
-  <data name="Emulation.Option.cemu.cemu_install_titles.Help"><value>Cài đặt mỗi bản cập nhật vàDLC trong hệ thống / Cemu/ tựa đề để lưu/Cemu/mlc01, bộ điều khiển mô phỏng. Mỗi cái đi vào thư mục riêng của nó ở đó; một NUS tải về (các tập tin.app) cần thiết title.tmd và nó title.tikChìa khóa giải mã, bên cạnh chúng. Một phiên bản đã được cài đặt giống nhau hoặc mới hơn sẽ được để lại một mình.&#xA;&#xA;Khi đây là ON, cài đặt bắt đầu ngay lập tức, với tiến trình được hiển thị như một thông báo, và nó chuyển OFF khi tất cả nội dung đã được cài đặt và trình đơn này được thoát hoặc một tùy chọn khác được thay đổi. Tựa đề sẽ dùng nội dung đã cài đặt khi nó được khởi chạy lại.&#xA;&#xA;Nội dung từ các địa điểm khác có thể được cài đặt với trình đơn chính của RetroAch &gt; Nạp nội dung, bằng cách chọn title.tmd, với title.tik bên cạnh nó.</value></data>
+  <data name="Emulation.Option.cemu.cemu_install_titles.Help"><value>Cài đặt mỗi bản cập nhật vàDLC trong hệ thống / Cemu/ tựa đề để lưu/Cemu/mlc01, bộ điều khiển mô phỏng. Mỗi cái đi vào thư mục riêng của nó ở đó; một NUS tải về (các tập tin.app) cần thiết title.tmd và nó title.tikChìa khóa giải mã, bên cạnh chúng. Một phiên bản đã được cài đặt giống nhau hoặc mới hơn sẽ được để lại một mình.
+
+Khi đây là ON, cài đặt bắt đầu ngay lập tức, với tiến trình được hiển thị như một thông báo, và nó chuyển OFF khi tất cả nội dung đã được cài đặt và trình đơn này được thoát hoặc một tùy chọn khác được thay đổi. Nội dung từ các địa điểm khác có thể được cài đặt với trình đơn chính của RetroAch &gt; Nạp nội dung, bằng cách chọn title.tmd, với title.tik bên cạnh nó.</value></data>
   <data name="Emulation.Option.cemu.cemu_install_titles.Value.disabled"><value>Đã tắt</value></data>
   <data name="Emulation.Option.cemu.cemu_install_titles.Value.enabled"><value>Đã bật</value></data>
   <data name="Emulation.Option.cemu.cemu_uninstall_titles"><value>Bỏ cài đặt nội dung</value></data>

@@ -363,21 +363,21 @@
   <data name="Emulation.Option.desmume.desmume_firmware_language.Value.German"><value>saksa</value></data>
   <data name="Emulation.Option.desmume.desmume_firmware_language.Value.Italian"><value>italia</value></data>
   <data name="Emulation.Option.desmume.desmume_firmware_language.Value.Spanish"><value>espanja</value></data>
-  <data name="Emulation.Option.desmume.desmume_use_external_bios"><value>Käytä ulkoisia BIOS/Firmware-ohjelmia (käynnistä uudelleen)</value></data>
-  <data name="Emulation.Option.desmume.desmume_use_external_bios.Help"><value>Käytä virallista BIOS. Ydin on käynnistettävä uudelleen, jotta muutoksia voidaan soveltaa.</value></data>
+  <data name="Emulation.Option.desmume.desmume_use_external_bios"><value>Käytä ulkoisia BIOS/Firmware-ohjelmia</value></data>
+  <data name="Emulation.Option.desmume.desmume_use_external_bios.Help"><value>Käytä virallista BIOS.</value></data>
   <data name="Emulation.Option.desmume.desmume_use_external_bios.Value.disabled"><value>Ei käytössä</value></data>
   <data name="Emulation.Option.desmume.desmume_use_external_bios.Value.enabled"><value>Käytössä</value></data>
   <data name="Emulation.Option.desmume.desmume_boot_into_bios"><value>Boot Into BIOS (vain tulkki ja ulkoiset biot)</value></data>
   <data name="Emulation.Option.desmume.desmume_boot_into_bios.Help"><value>Saapas suoraan BIOS.</value></data>
   <data name="Emulation.Option.desmume.desmume_boot_into_bios.Value.disabled"><value>Ei käytössä</value></data>
   <data name="Emulation.Option.desmume.desmume_boot_into_bios.Value.enabled"><value>Käytössä</value></data>
-  <data name="Emulation.Option.desmume.desmume_load_to_memory"><value>Lataa peli muistiin (käynnistä uudelleen)</value></data>
+  <data name="Emulation.Option.desmume.desmume_load_to_memory"><value>Lataa peli muistiin</value></data>
   <data name="Emulation.Option.desmume.desmume_load_to_memory.Help"><value>Lataa peli muistiin vähentää IO viive.</value></data>
   <data name="Emulation.Option.desmume.desmume_load_to_memory.Value.disabled"><value>Ei käytössä</value></data>
   <data name="Emulation.Option.desmume.desmume_load_to_memory.Value.enabled"><value>Käytössä</value></data>
   <data name="Emulation.Option.desmume.desmume_num_cores"><value>CPU Ydin</value></data>
   <data name="Emulation.Option.desmume.desmume_num_cores.Help"><value>Aseta käytössä olevien CPU-ytimien määrä.</value></data>
-  <data name="Emulation.Option.desmume.desmume_cpu_mode"><value>CPU-tila (käynnistys uudelleen)</value></data>
+  <data name="Emulation.Option.desmume.desmume_cpu_mode"><value>CPU-tila</value></data>
   <data name="Emulation.Option.desmume.desmume_cpu_mode.Help"><value>Ottaa käyttöön tai poistaa käytöstä dynaamisen komponentin.</value></data>
   <data name="Emulation.Option.desmume.desmume_cpu_mode.Value.interpreter"><value>tulkki</value></data>
   <data name="Emulation.Option.desmume.desmume_jit_block_size"><value>JIT-lohkon koko</value></data>
@@ -390,11 +390,11 @@
   <data name="Emulation.Option.desmume.desmume_frameskip.Help"><value>Asettaa määrän kehykset ohitettavaksi.</value></data>
   <data name="Emulation.Option.desmume.desmume_internal_resolution"><value>Sisäinen resoluutio</value></data>
   <data name="Emulation.Option.desmume.desmume_internal_resolution.Help"><value>Asettaa sisäisen resoluution. Korkeammat resoluutiot voivat selkeyttää 3D-kohtauksia ja -kohteita, mutta lisäävät suorituskykyvaatimuksia</value></data>
-  <data name="Emulation.Option.desmume.desmume_opengl_mode"><value>OpenGL Rasterizer (käynnistä uudelleen)</value></data>
+  <data name="Emulation.Option.desmume.desmume_opengl_mode"><value>OpenGL Rasterizer</value></data>
   <data name="Emulation.Option.desmume.desmume_opengl_mode.Help"><value>Ota käyttöön OpenGL Rasterizer 3D.</value></data>
   <data name="Emulation.Option.desmume.desmume_opengl_mode.Value.disabled"><value>Ei käytössä</value></data>
   <data name="Emulation.Option.desmume.desmume_opengl_mode.Value.enabled"><value>Käytössä</value></data>
-  <data name="Emulation.Option.desmume.desmume_color_depth"><value>OpenGL: Värisyvyys (käynnistä uudelleen)</value></data>
+  <data name="Emulation.Option.desmume.desmume_color_depth"><value>OpenGL: Värisyvyys</value></data>
   <data name="Emulation.Option.desmume.desmume_color_depth.Help"><value>Asettaa värisyvyyden joko 16-bittiseen tai 32-bittiin väreihin. Vaaditaan OpenGL Rasterizer.</value></data>
   <data name="Emulation.Option.desmume.desmume_gfx_multisampling"><value>OpenGL: MultiSampling AA</value></data>
   <data name="Emulation.Option.desmume.desmume_gfx_multisampling.Help"><value>Aseta kerroin MultiSampling Anti Aliasing. Vaaditaan OpenGL Rasterizer.</value></data>
@@ -510,7 +510,7 @@
   <data name="Emulation.Option.desmume.desmume_mic_mode.Value.random"><value>Satunnainen</value></data>
   <data name="Emulation.Firmware.desmume.Slot0"><value>NDS Firmware</value></data>
   <data name="Emulation.Emulator.desmume2015.Description"><value>Emulgoi yhteensopivat Nintendo-järjestelmät DeSmuME 2015:n kanssa.</value></data>
-  <data name="Emulation.Option.desmume2015.desmume_internal_resolution"><value>Sisäinen resoluutio (käynnistä uudelleen)</value></data>
+  <data name="Emulation.Option.desmume2015.desmume_internal_resolution"><value>Sisäinen resoluutio</value></data>
   <data name="Emulation.Option.desmume2015.desmume_num_cores"><value>CPU-ytimet</value></data>
   <data name="Emulation.Option.desmume2015.desmume_cpu_mode"><value>CPU-tila</value></data>
   <data name="Emulation.Option.desmume2015.desmume_cpu_mode.Value.interpreter"><value>tulkki</value></data>
@@ -525,7 +525,7 @@
   <data name="Emulation.Option.desmume2015.desmume_screens_layout.Value.quick switch"><value>pikakytkin</value></data>
   <data name="Emulation.Option.desmume2015.desmume_screens_layout.Value.hybrid/top"><value>hybridi/huippu</value></data>
   <data name="Emulation.Option.desmume2015.desmume_screens_layout.Value.hybrid/bottom"><value>hybridi/pohja</value></data>
-  <data name="Emulation.Option.desmume2015.desmume_hybrid_layout_scale"><value>Hybridipohjan asteikko (käynnistetään uudelleen)</value></data>
+  <data name="Emulation.Option.desmume2015.desmume_hybrid_layout_scale"><value>Hybridipohjan asteikko</value></data>
   <data name="Emulation.Option.desmume2015.desmume_hybrid_showboth_screens"><value>Hybridiasettelu näyttää molemmat näytöt</value></data>
   <data name="Emulation.Option.desmume2015.desmume_hybrid_showboth_screens.Value.enabled"><value>Käytössä</value></data>
   <data name="Emulation.Option.desmume2015.desmume_hybrid_showboth_screens.Value.disabled"><value>Ei käytössä</value></data>
@@ -561,7 +561,7 @@
   <data name="Emulation.Option.desmume2015.desmume_pointer_stylus_jitter"><value>Ota käyttöön emuloitu stylus jitter</value></data>
   <data name="Emulation.Option.desmume2015.desmume_pointer_stylus_jitter.Value.disabled"><value>Ei käytössä</value></data>
   <data name="Emulation.Option.desmume2015.desmume_pointer_stylus_jitter.Value.enabled"><value>Käytössä</value></data>
-  <data name="Emulation.Option.desmume2015.desmume_load_to_memory"><value>Lataa peli muistiin (käynnistä uudelleen)</value></data>
+  <data name="Emulation.Option.desmume2015.desmume_load_to_memory"><value>Lataa peli muistiin</value></data>
   <data name="Emulation.Option.desmume2015.desmume_load_to_memory.Value.disabled"><value>Ei käytössä</value></data>
   <data name="Emulation.Option.desmume2015.desmume_load_to_memory.Value.enabled"><value>Käytössä</value></data>
   <data name="Emulation.Option.desmume2015.desmume_advanced_timing"><value>Käytä kehittynyttä linja-autotason ajoitusta</value></data>
@@ -621,7 +621,7 @@
   <data name="Emulation.Option.melonds.melonds_threaded_renderer"><value>Kierretty ohjelmisto Renderer</value></data>
   <data name="Emulation.Option.melonds.melonds_threaded_renderer.Value.disabled"><value>Ei käytössä</value></data>
   <data name="Emulation.Option.melonds.melonds_threaded_renderer.Value.enabled"><value>Käytössä</value></data>
-  <data name="Emulation.Option.melonds.melonds_opengl_renderer"><value>OpenGL Renderer (käynnistä uudelleen)</value></data>
+  <data name="Emulation.Option.melonds.melonds_opengl_renderer"><value>OpenGL Renderer</value></data>
   <data name="Emulation.Option.melonds.melonds_opengl_renderer.Value.disabled"><value>Ei käytössä</value></data>
   <data name="Emulation.Option.melonds.melonds_opengl_renderer.Value.enabled"><value>Käytössä</value></data>
   <data name="Emulation.Option.melonds.melonds_opengl_resolution"><value>OpenGL Sisäinen resoluutio</value></data>
@@ -678,7 +678,7 @@
   <data name="Emulation.Option.melonds.melonds_hybrid_small_screen.Value.Top"><value>Ylös</value></data>
   <data name="Emulation.Option.melonds.melonds_hybrid_small_screen.Value.Duplicate"><value>Kaksinkertaista</value></data>
   <data name="Emulation.Option.melonds.melonds_hybrid_ratio"><value>Hybridisuhde (vain OpenGL)</value></data>
-  <data name="Emulation.Option.melonds.melonds_jit_enable"><value>JIT Ota käyttöön (käynnistä uudelleen)</value></data>
+  <data name="Emulation.Option.melonds.melonds_jit_enable"><value>JIT Ota käyttöön</value></data>
   <data name="Emulation.Option.melonds.melonds_jit_enable.Value.disabled"><value>Ei käytössä</value></data>
   <data name="Emulation.Option.melonds.melonds_jit_enable.Value.enabled"><value>Käytössä</value></data>
   <data name="Emulation.Option.melonds.melonds_jit_block_size"><value>JIT-lohkon koko</value></data>
@@ -720,7 +720,7 @@
   <data name="Emulation.Option.melondsds.melonds_audio_interpolation.Value.cubic"><value>Kubiitti</value></data>
   <data name="Emulation.Option.melondsds.melonds_audio_interpolation.Value.gaussian"><value>GaussianName</value></data>
   <data name="Emulation.Option.melondsds.melonds_jit_enable"><value>JIT-kompensaattori</value></data>
-  <data name="Emulation.Option.melondsds.melonds_jit_enable.Help"><value>Kompleksoi koneen koodin natiiviksi koodiksi, koska se toimii, mikä parantaa huomattavasti suorituskykyä tavallisen tulkinnan yläpuolella. Se vaikuttaa seuraavaan uudelleenkäynnistykseen. Jos ette ole varmoja, poistukaa käytöstä.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_jit_enable.Help"><value>Kompleksoi koneen koodin natiiviksi koodiksi, koska se toimii, mikä parantaa huomattavasti suorituskykyä tavallisen tulkinnan yläpuolella. Jos ette ole varmoja, poistukaa käytöstä.</value></data>
   <data name="Emulation.Option.melondsds.melonds_jit_enable.Value.disabled"><value>Ei käytössä</value></data>
   <data name="Emulation.Option.melondsds.melonds_jit_enable.Value.enabled"><value>Käytössä</value></data>
   <data name="Emulation.Option.melondsds.melonds_jit_block_size"><value>Kentän koko</value></data>
@@ -731,15 +731,23 @@
   <data name="Emulation.Option.melondsds.melonds_jit_literal_optimisations.Value.disabled"><value>Ei käytössä</value></data>
   <data name="Emulation.Option.melondsds.melonds_jit_literal_optimisations.Value.enabled"><value>Käytössä</value></data>
   <data name="Emulation.Option.melondsds.melonds_jit_fast_memory"><value>Nopea muisti</value></data>
-  <data name="Emulation.Option.melondsds.melonds_jit_fast_memory.Help"><value>Poista tämä käytöstä, jos käynnissä melonDS DS vianetsinnän avulla, muuten jatkuva (mutta odotettavissa) SIGSEGVs tulee ärsyttäväksi. Se vaikuttaa seuraavaan uudelleenkäynnistykseen. Jos ette ole varmoja, poistukaa käytöstä.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_jit_fast_memory.Help"><value>Poista tämä käytöstä, jos käynnissä melonDS DS vianetsinnän avulla, muuten jatkuva (mutta odotettavissa) SIGSEGVs tulee ärsyttäväksi. Jos ette ole varmoja, poistukaa käytöstä.</value></data>
   <data name="Emulation.Option.melondsds.melonds_jit_fast_memory.Value.disabled"><value>Ei käytössä</value></data>
   <data name="Emulation.Option.melondsds.melonds_jit_fast_memory.Value.enabled"><value>Käytössä</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_wfc_dns"><value>DNS- ohitus</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_wfc_dns.Help"><value>DNS-palvelin, jota käytetään emulgoituun yhteyspisteeseen ("melonAP"). Käytä tätä pelata verkossa mukautetun palvelimet, jotka toteutetaan uudelleen lopetettu Nintendo Wi-Fi Connection palvelut. Pelituki riippuu palvelimesta. &#xA;Jotkut internetpalvelujen tarjoajat voivat estää näitä palvelimia koskevat pyynnöt. Jos näin on, ks. https://tinyurl.com/393cb755.&#xA;&#xA;Listatut palvelimet eivät liity libretro, Nintendo, melonDS-tiimi tai tämän ytimen tekijä. Kunnioita muita pelaajia ja noudata palvelimen sääntöjä.&#xA;&#xA;Jos olet epävarma, jätä Kaeru WFC. Muutokset tulevat voimaan seuraavan uudelleenkäynnistyksen yhteydessä.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_wfc_dns.Help"><value>DNS-palvelin, jota käytetään emulgoituun yhteyspisteeseen ("melonAP"). Käytä tätä pelata verkossa mukautetun palvelimet, jotka toteutetaan uudelleen lopetettu Nintendo Wi-Fi Connection palvelut. Pelituki riippuu palvelimesta.
+Jotkut internetpalvelujen tarjoajat voivat estää näitä palvelimia koskevat pyynnöt. Jos näin on, ks. https://tinyurl.com/393cb755.
+
+Listatut palvelimet eivät liity libretro, Nintendo, melonDS-tiimi tai tämän ytimen tekijä. Kunnioita muita pelaajia ja noudata palvelimen sääntöjä.
+
+Jos olet epävarma.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_wfc_dns.Value.95.217.77.181"><value>Wiimfi (95.217.77.181)</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_wfc_dns.Value.default"><value>Älä ohita</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_language"><value>Kieli</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_language.Help"><value>Ohittaa emuloidun konsolin kielitilan.&#xA;&#xA;Käytä palvelinta: käyttää rintaman kieltä, jos konsoli tukee sitä.&#xA;Älä ohittaa: Käytä mitä tahansa kieltä on jo asetettu firmware. Tämä on varakäyttäytyminen, jos emulgoitu DS (tai DSi NAND) ei tue frontendin kieltä.&#xA;&#xA;Kaikki pelit eivät kunnioita tätä. Muutokset tulevat voimaan seuraavan uudelleenkäynnistyksen yhteydessä.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_language.Help"><value>Ohittaa emuloidun konsolin kielitilan.
+
+Käytä palvelinta: käyttää rintaman kieltä, jos konsoli tukee sitä.
+Älä ohittaa: Käytä mitä tahansa kieltä on jo asetettu firmware. Tämä on varakäyttäytyminen.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_language.Value.auto"><value>Käytä palvelinta</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_language.Value.en"><value>englanti</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_language.Value.ja"><value>japani</value></data>
@@ -749,11 +757,15 @@
   <data name="Emulation.Option.melondsds.melonds_firmware_language.Value.es"><value>espanja</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_language.Value.default"><value>Älä ohita</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_username"><value>Käyttäjätunnus</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_username.Help"><value>Ohittaa emuloidun konsolin käyttäjänimen.&#xA;&#xA;Älä ylitä: Käyttää mitä tahansa nimeä firmware-ohjelmistossa.&#xA;Arvaa: Yritä saada käyttäjätunnuksesi etusivulta. Jos tämä ei onnistu, kokeile USER, USERNAME ja LOGNAME ympäristömuuttujia.&#xA;melonDS DS: Käyttö melonDS DS." Tämä on oletus, jos mikään muu ei toimi.&#xA;&#xA;Nimet on tynkätty 10 merkkiä. Muutokset tulevat voimaan seuraavan uudelleenkäynnistyksen yhteydessä.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_username.Help"><value>Ohittaa emuloidun konsolin käyttäjänimen.
+
+Älä ylitä: Käyttää mitä tahansa nimeä firmware-ohjelmistossa.
+Arvaa: Yritä saada käyttäjätunnuksesi etusivulta. Jos tämä ei onnistu, kokeile USER, USERNAME ja LOGNAME ympäristömuuttujia.
+melonDS DS: Käyttö melonDS DS." Tämä on oletus.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_username.Value.guess_username"><value>Arvaa</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_username.Value.existing_username"><value>Älä ohita</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_favorite_color"><value>Suosikkiväri</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_favorite_color.Help"><value>Emuloidun konsolin teema ("suosikkiväri"). Muutokset tulevat voimaan seuraavan uudelleenkäynnistyksen yhteydessä.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_favorite_color.Help"><value>Emuloidun konsolin teema ("suosikkiväri").</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_favorite_color.Value.0"><value>Harmaa</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_favorite_color.Value.1"><value>Ruskea</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_favorite_color.Value.2"><value>Punainen</value></data>
@@ -772,7 +784,7 @@
   <data name="Emulation.Option.melondsds.melonds_firmware_favorite_color.Value.15"><value>Tumman vaaleanpunainen</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_favorite_color.Value.default"><value>Älä ohita</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_birth_month"><value>Syntymäkuukausi</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_birth_month.Help"><value>Syntymäpäiväsi kuukausi. Muutokset tulevat voimaan seuraavan uudelleenkäynnistyksen yhteydessä.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_birth_month.Help"><value>Syntymäpäiväsi kuukausi.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_birth_month.Value.1"><value>Tammikuu</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_birth_month.Value.2"><value>Helmikuu</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_birth_month.Value.3"><value>Maaliskuu</value></data>
@@ -787,29 +799,32 @@
   <data name="Emulation.Option.melondsds.melonds_firmware_birth_month.Value.12"><value>Joulukuu</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_birth_month.Value.default"><value>Älä ohita</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_birth_day"><value>Syntymäpäivä</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_birth_day.Help"><value>Päivän sisällä syntymäpäivästäsi. Muutokset tulevat voimaan seuraavan uudelleenkäynnistyksen yhteydessä.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_birth_day.Help"><value>Päivän sisällä syntymäpäivästäsi.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_birth_day.Value.default"><value>Älä ohita</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_enable_alarm"><value>Ota hälytys käyttöön</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_enable_alarm.Help"><value>Onko emuloitu konsolin hälytys käytössä. Muutokset tulevat voimaan seuraavan uudelleenkäynnistyksen yhteydessä.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_enable_alarm.Help"><value>Onko emuloitu konsolin hälytys käytössä.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_enable_alarm.Value.disabled"><value>Ei käytössä</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_enable_alarm.Value.enabled"><value>Käytössä</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_enable_alarm.Value.default"><value>Älä ohita</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_alarm_hour"><value>Hälytystunti</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_alarm_hour.Help"><value>Asennetun hälytyksen tunti. Muutokset tulevat voimaan seuraavan uudelleenkäynnistyksen yhteydessä.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_alarm_hour.Help"><value>Asennetun hälytyksen tunti.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_alarm_hour.Value.default"><value>Älä ohita</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_alarm_minute"><value>Hälytysminuutti</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_alarm_minute.Help"><value>Asetetun hälytyksen minuutti. Muutokset tulevat voimaan seuraavan uudelleenkäynnistyksen yhteydessä.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_alarm_minute.Help"><value>Asetetun hälytyksen minuutti.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_alarm_minute.Value.default"><value>Älä ohita</value></data>
   <data name="Emulation.Option.melondsds.melonds_network_mode"><value>Verkotustila</value></data>
-  <data name="Emulation.Option.melondsds.melonds_network_mode.Help"><value>Määrittelee, miten melonDS DS emuloi Nintendo WFC. Jos olet epävarma, käytä epäsuoraa tilaa.&#xA;&#xA;Epäsuora: Käytä libslirp jäljitellä DS verkkopino. Yksinkertainen eikä tarvitse lavastusta.&#xA;Suora: Reitit emulgoivat Wi-Fi paketteja isäntä verkon käyttöliittymään. Nopeampi ja luotettavampi, mutta vaatii ethernet-yhteyden ja että WinPcap tai Npcap on asennettu. Jos se ei ole käytettävissä, palaa epäsuoraan tilaan.&#xA;&#xA;Muutokset tulevat voimaan seuraavan uudelleenkäynnistyksen yhteydessä. Ei liity paikalliseen moninpeliin.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_network_mode.Help"><value>Määrittelee, miten melonDS DS emuloi Nintendo WFC. Jos olet epävarma, käytä epäsuoraa tilaa.
+
+Epäsuora: Käytä libslirp jäljitellä DS verkkopino. Yksinkertainen eikä tarvitse lavastusta.
+Suora: Reitit emulgoivat Wi-Fi paketteja isäntä verkon käyttöliittymään. Nopeampi ja luotettavampi, mutta vaatii ethernet-yhteyden ja että WinPcap tai Npcap on asennettu. Jos se ei ole käytettävissä.</value></data>
   <data name="Emulation.Option.melondsds.melonds_network_mode.Value.disabled"><value>Ei käytössä</value></data>
   <data name="Emulation.Option.melondsds.melonds_network_mode.Value.indirect"><value>Epäsuora</value></data>
   <data name="Emulation.Option.melondsds.melonds_network_mode.Value.direct"><value>Suora</value></data>
   <data name="Emulation.Option.melondsds.melonds_direct_network_interface"><value>Verkkoliitäntä (suora tila)</value></data>
-  <data name="Emulation.Option.melondsds.melonds_direct_network_interface.Help"><value>Valitse suorassa tilassa käytettävä verkkoliitäntä. Jos olet epävarma, aseta automaatille. Muutokset tulevat voimaan seuraavassa ytimen uudelleenkäynnistyksessä.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_direct_network_interface.Help"><value>Valitse suorassa tilassa käytettävä verkkoliitäntä. Jos olet epävarma.</value></data>
   <data name="Emulation.Option.melondsds.melonds_direct_network_interface.Value.auto"><value>Automaattinen</value></data>
   <data name="Emulation.Option.melondsds.melonds_mac_address_mode"><value>Verkon MAC- osoitetila</value></data>
-  <data name="Emulation.Option.melondsds.melonds_mac_address_mode.Help"><value>Muokkaa, miten emulgoitu konsolin MAC-osoite on asetettu. Tämän vaihtoehdon muuttaminen saattaa tehdä paikallisen moninpelin mahdottomaksi tai estää pääsyn tiedostojen tallentamiseen peleihin, jotka käyttävät MAC-osoitetta estääkseen tallennustiedostojen (esim. Pokémon).&#xA;Ei yhteyttä suoraan tilaan. Muutokset tulevat voimaan seuraavan uudelleenkäynnistyksen yhteydessä.&#xA;Ks. lisätietoja https://bit.ly/4fJtWKN:stä.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_mac_address_mode.Help"><value>Muokkaa, miten emulgoitu konsolin MAC-osoite on asetettu. Tämän vaihtoehdon muuttaminen saattaa tehdä paikallisen moninpelin mahdottomaksi tai estää pääsyn tiedostojen tallentamiseen peleihin.</value></data>
   <data name="Emulation.Option.melondsds.melonds_mac_address_mode.Value.firmware"><value>Aseta ohjelmistosta</value></data>
   <data name="Emulation.Option.melondsds.melonds_mac_address_mode.Value.from-username"><value>Derive alkaen libretro käyttäjätunnus</value></data>
   <data name="Emulation.Option.melondsds.melonds_show_unsupported_features"><value>Varoita tuettuja ominaisuuksia</value></data>
@@ -1042,25 +1057,66 @@
   <data name="Emulation.Option.melondsds.melonds_screen_layout8.Value.rotate-right"><value>Pyörinyt oikea</value></data>
   <data name="Emulation.Option.melondsds.melonds_screen_layout8.Value.rotate-180"><value>Ylösalaisin</value></data>
   <data name="Emulation.Option.melondsds.melonds_console_mode"><value>Konsolitila</value></data>
-  <data name="Emulation.Option.melondsds.melonds_console_mode.Help"><value>Olipa kyseessä Nintendo DS tai Nintendo DSi.&#xA;&#xA;Auto käyttää DSi-tilaa peleihin, jotka tarvitsevat DSin ja DS-tilan kaikkeen muuhun. DS- ja DSi-asetukset pakottavat vastaavan konsolin; tämä on enimmäkseen hyödyllistä kotikeittiön kehittämisessä.&#xA;&#xA;DSi-tilassa on joitakin rajoja:&#xA;&#xA;- Native BIOS / firmware / NAND tiedostot on toimitettava, myös säännöllisesti DS.&#xA;- Joitakin ominaisuuksia (kuten savestates) ei ole saatavilla DSi-tilassa.&#xA;&#xA;Katso lisätietoja tämän kategorian DSi-kohtaisista vaihtoehdoista. Jos olet epävarma, käytä autoa. Muutokset tulevat voimaan seuraavassa uudelleenkäynnistyksessä.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_console_mode.Help"><value>Olipa kyseessä Nintendo DS tai Nintendo DSi.
+
+Auto käyttää DSi-tilaa peleihin, jotka tarvitsevat DSin ja DS-tilan kaikkeen muuhun. DS- ja DSi-asetukset pakottavat vastaavan konsolin; tämä on enimmäkseen hyödyllistä kotikeittiön kehittämisessä.
+
+DSi-tilassa on joitakin rajoja:
+
+- Native BIOS / firmware / NAND tiedostot on toimitettava, myös säännöllisesti DS.
+- Joitakin ominaisuuksia (kuten savestates) ei ole saatavilla DSi-tilassa.
+
+Katso lisätietoja tämän kategorian DSi-kohtaisista vaihtoehdoista. Jos olet epävarma.</value></data>
   <data name="Emulation.Option.melondsds.melonds_console_mode.Value.auto"><value>Automaattinen</value></data>
   <data name="Emulation.Option.melondsds.melonds_console_mode.Value.dsi"><value>DSi (kokeilu)</value></data>
   <data name="Emulation.Option.melondsds.melonds_sysfile_mode"><value>BIOS/Firmware-tila (DS Mode)</value></data>
-  <data name="Emulation.Option.melondsds.melonds_sysfile_mode.Help"><value>Määrittää, käyttääkö melonDS alkuperäisiä BIOS/firmware kaatopaikkoja tai omia sisäänrakennettuja korvaajia. Sovelletaan vain DS-tilaan, koska DSi-tila vaatii aina natiivia BIOS:tä ja firmware- kaatopaikkoja.&#xA;&#xA;Native mode käyttää BIOS- ja firmware-tiedostoja oikeasta DS:stä. Aseta kaatopaikkasi järjestelmähakemistoon tai sen "melonDS DS"-alahakemistoon ja nimeä ne seuraavasti:&#xA;&#xA;- DS BIOS: bios7.bin, bios9.bin&#xA;- DSi BIOS: dsi_bios7.bin, dsi_bios9.bin&#xA;- Firmware: Katso "DS Firmware" ja "DSi Firmaware" vaihtoehtoja.&#xA;- DSi NAND: Ks. "DSi NAND"-vaihtoehto.&#xA;&#xA;Palaa sisäänrakennettuun, jos mitään BIOS/firmware-tiedostoa ei löydy.&#xA;&#xA;Built-In -tila käyttää melonDSin sisäänrakennettua BIOS-ohjelmistoa ja sopii useimpiin peleihin.&#xA;&#xA;Muutokset tulevat voimaan seuraavan uudelleenkäynnistyksen yhteydessä.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_sysfile_mode.Help"><value>Määrittää, käyttääkö melonDS alkuperäisiä BIOS/firmware kaatopaikkoja tai omia sisäänrakennettuja korvaajia. Sovelletaan vain DS-tilaan, koska DSi-tila vaatii aina natiivia BIOS:tä ja firmware- kaatopaikkoja.
+
+Native mode käyttää BIOS- ja firmware-tiedostoja oikeasta DS:stä. Aseta kaatopaikkasi järjestelmähakemistoon tai sen "melonDS DS"-alahakemistoon ja nimeä ne seuraavasti:
+
+- DS BIOS: bios7.bin, bios9.bin
+- DSi BIOS: dsi_bios7.bin, dsi_bios9.bin
+- Firmware: Katso "DS Firmware" ja "DSi Firmaware" vaihtoehtoja.
+- DSi NAND: Ks. "DSi NAND"-vaihtoehto.
+
+Palaa sisäänrakennettuun.</value></data>
   <data name="Emulation.Option.melondsds.melonds_sysfile_mode.Value.native"><value>Alkuperäinen</value></data>
   <data name="Emulation.Option.melondsds.melonds_sysfile_mode.Value.builtin"><value>Sisäänrakennettu</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_nds_path"><value>DS Firmware</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_nds_path.Help"><value>Valitse DS-tilassa käytettävä firmware-levykuva. Tiedostot on lueteltu tässä, jos ne:&#xA;&#xA;- Ovat eturivin järjestelmähakemistossa, tai alihakemistossa nimeltään "melonDS DS."&#xA;- Ovat täsmälleen 131 072 tavua (128KB), 262144 tavut (256KB) tai 524288 tavuja (512KB).&#xA;- Sisältää kelvollisia otsikkotietoja DS-ohjelmistolle.&#xA;&#xA;Nintendo WFC-tunnukset tallennetaan firmwareen, joten laiteohjelmistokuvien vaihtaminen voi johtaa joidenkin WFC:n tietojen menetykseen. Ohitettu DSi-tilassa tai jos BIOS/Firmware-tila on sisäänrakennettu. Muutokset tulevat voimaan seuraavan uudelleenkäynnistyksen yhteydessä.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_nds_path.Help"><value>Valitse DS-tilassa käytettävä firmware-levykuva. Tiedostot on lueteltu tässä, jos ne:
+
+- Ovat eturivin järjestelmähakemistossa, tai alihakemistossa nimeltään "melonDS DS."
+- Ovat täsmälleen 131 072 tavua (128KB), 262144 tavut (256KB) tai 524288 tavuja (512KB).
+- Sisältää kelvollisia otsikkotietoja DS-ohjelmistolle.
+
+Nintendo WFC-tunnukset tallennetaan firmwareen.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_nds_path.Value./notfound"><value>Ei löytynyt.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_dsi_path"><value>DSi Firmware</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_dsi_path.Help"><value>Valitse firmware-kuva, jota käytetään DSi-tilassa. Tiedostot on lueteltu tässä, jos ne:&#xA;&#xA;- Ovat eturivin järjestelmähakemistossa, tai alihakemistossa nimeltään "melonDS DS."&#xA;- Ovat täsmälleen 131 072 tavua (128KB), 262144 tavut (256KB) tai 524288 tavuja (512KB).&#xA;- Sisältää kelvollisia otsikkotietoja DSi-firmware.&#xA;&#xA;Nintendo WFC-tunnukset tallennetaan firmwareen, joten laiteohjelmistokuvien vaihtaminen voi johtaa joidenkin WFC:n tietojen menetykseen. Muutokset tulevat voimaan seuraavan uudelleenkäynnistyksen yhteydessä.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_dsi_path.Help"><value>Valitse firmware-kuva, jota käytetään DSi-tilassa. Tiedostot on lueteltu tässä, jos ne:
+
+- Ovat eturivin järjestelmähakemistossa, tai alihakemistossa nimeltään "melonDS DS."
+- Ovat täsmälleen 131 072 tavua (128KB), 262144 tavut (256KB) tai 524288 tavuja (512KB).
+- Sisältää kelvollisia otsikkotietoja DSi-firmware.
+
+Nintendo WFC-tunnukset tallennetaan firmwareen.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_dsi_path.Value./notfound"><value>Ei löytynyt.</value></data>
   <data name="Emulation.Option.melondsds.melonds_dsi_nand_path"><value>DSi NAND Polku</value></data>
-  <data name="Emulation.Option.melondsds.melonds_dsi_nand_path.Help"><value>Valitse DSi NAND kuva käytettäväksi. Vaaditaan käytettäessä DSi-tilaa. Tiedostot on lueteltu tässä, jos ne:&#xA;&#xA;- Ovat eturivin järjestelmähakemistossa, tai alihakemistossa nimeltään "melonDS DS."&#xA;- Ovat täsmälleen 251 658 304 tavua (240MB) tai 257 425 472 tavua (245.5MB) pitkä ja kelvolliset alatunnistetiedot, OR;&#xA;- Ovat 64 tavua lyhyempi kuin nämä pituudet ja sisältävät vastaavat tiedot tiedoston offset 0xFF800.&#xA;&#xA;Aseta "Auto" antaa ytimen valita NAND-kuva, jonka alue vastaa ladattua DSiWare ROM. Muutokset tulevat voimaan seuraavan uudelleenkäynnistyksen yhteydessä.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_dsi_nand_path.Help"><value>Valitse DSi NAND kuva käytettäväksi. Vaaditaan käytettäessä DSi-tilaa. Tiedostot on lueteltu tässä, jos ne:
+
+- Ovat eturivin järjestelmähakemistossa, tai alihakemistossa nimeltään "melonDS DS."
+- Ovat täsmälleen 251 658 304 tavua (240MB) tai 257 425 472 tavua (245.5MB) pitkä ja kelvolliset alatunnistetiedot, OR;
+- Ovat 64 tavua lyhyempi kuin nämä pituudet ja sisältävät vastaavat tiedot tiedoston offset 0xFF800.
+
+Aseta "Auto" antaa ytimen valita NAND-kuva.</value></data>
   <data name="Emulation.Option.melondsds.melonds_dsi_nand_path.Value./auto"><value>Auto (koko ROM-alue)</value></data>
   <data name="Emulation.Option.melondsds.melonds_dsi_nand_path.Value./notfound"><value>Ei löytynyt.</value></data>
   <data name="Emulation.Option.melondsds.melonds_boot_mode"><value>Käynnistystila</value></data>
-  <data name="Emulation.Option.melondsds.melonds_boot_mode.Help"><value>Päättää, miten melonDS saappaat pelejä.&#xA;&#xA;Native: Lataa pelejä järjestelmän valikosta, samanlainen kuin todellinen DS/DSi käynnistysprosessi. Vaatii natiivi BIOS ja firmware tiedostoja järjestelmän hakemistoon.&#xA;Suora: Ohita järjestelmävalikko ja mene suoraan peliin. Tuettu DSiWare jos natiivi DSi järjestelmätiedostoja on saatavilla.&#xA;&#xA;Ohitetaan, jos ladattu ilman peliä (Native on pakotettu) tai jos käytetään Built-In BIOS / Firmware (Direct on pakko). Muutokset tulevat voimaan seuraavan uudelleenkäynnistyksen yhteydessä.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_boot_mode.Help"><value>Päättää, miten melonDS saappaat pelejä.
+
+Native: Lataa pelejä järjestelmän valikosta, samanlainen kuin todellinen DS/DSi käynnistysprosessi. Vaatii natiivi BIOS ja firmware tiedostoja järjestelmän hakemistoon.
+Suora: Ohita järjestelmävalikko ja mene suoraan peliin. Tuettu DSiWare jos natiivi DSi järjestelmätiedostoja on saatavilla.
+
+Ohitetaan.</value></data>
   <data name="Emulation.Option.melondsds.melonds_boot_mode.Value.direct"><value>Suora</value></data>
   <data name="Emulation.Option.melondsds.melonds_boot_mode.Value.native"><value>Alkuperäinen</value></data>
   <data name="Emulation.Option.melondsds.melonds_dsi_sdcard"><value>Virtuaalinen SD-kortti (DSi)</value></data>
@@ -1068,7 +1124,7 @@
   <data name="Emulation.Option.melondsds.melonds_dsi_sdcard.Value.disabled"><value>Ei käytössä</value></data>
   <data name="Emulation.Option.melondsds.melonds_dsi_sdcard.Value.enabled"><value>Käytössä</value></data>
   <data name="Emulation.Option.melondsds.melonds_dsi_sdcard_readonly"><value>Ainoastaan lukutila (DSi)</value></data>
-  <data name="Emulation.Option.melondsds.melonds_dsi_sdcard_readonly.Help"><value>Jos käytössä, emuloitu DSi näkee virtuaalisen SD-kortin vain luettavana. Muutokset tulevat voimaan seuraavan uudelleenkäynnistyksen yhteydessä.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_dsi_sdcard_readonly.Help"><value>Jos käytössä.</value></data>
   <data name="Emulation.Option.melondsds.melonds_dsi_sdcard_readonly.Value.disabled"><value>Ei käytössä</value></data>
   <data name="Emulation.Option.melondsds.melonds_dsi_sdcard_readonly.Value.enabled"><value>Käytössä</value></data>
   <data name="Emulation.Option.melondsds.melonds_dsi_sdcard_sync_sdcard_to_host"><value>Synkronoi SD-kortti isännälle (DSi)</value></data>
@@ -1080,7 +1136,7 @@
   <data name="Emulation.Option.melondsds.melonds_homebrew_sdcard.Value.disabled"><value>Ei käytössä</value></data>
   <data name="Emulation.Option.melondsds.melonds_homebrew_sdcard.Value.enabled"><value>Käytössä</value></data>
   <data name="Emulation.Option.melondsds.melonds_homebrew_readonly"><value>Vain lukutila</value></data>
-  <data name="Emulation.Option.melondsds.melonds_homebrew_readonly.Help"><value>Jos käytössä, homebrew-sovellukset näkevät virtuaalisen SD-kortin vain lukuna. Muutokset tulevat voimaan seuraavan uudelleenkäynnistyksen yhteydessä.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_homebrew_readonly.Help"><value>Jos käytössä.</value></data>
   <data name="Emulation.Option.melondsds.melonds_homebrew_readonly.Value.disabled"><value>Ei käytössä</value></data>
   <data name="Emulation.Option.melondsds.melonds_homebrew_readonly.Value.enabled"><value>Käytössä</value></data>
   <data name="Emulation.Option.melondsds.melonds_homebrew_sync_sdcard_to_host"><value>Synkronoi SD-kortti isäntään</value></data>
@@ -1125,13 +1181,18 @@
   <data name="Emulation.Option.melondsds.melonds_solar_sensor_host_sensor.Value.disabled"><value>Ei käytössä</value></data>
   <data name="Emulation.Option.melondsds.melonds_solar_sensor_host_sensor.Value.enabled"><value>Käytössä</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_mode"><value>Aikatila</value></data>
-  <data name="Emulation.Option.melondsds.melonds_start_time_mode.Help"><value>Emuloidun konsolin sisäisen kellon alkuaika.&#xA;&#xA;Aloita synkronointi laitteen kellon kanssa.&#xA;Synkronisoi emuloitu kello laitteen kelloon. Voi aiheuttaa odottamatonta käyttäytymistä joissakin peleissä kelaamalla tai pikakelaamalla.&#xA;- Suhteellinen: Aloita synkronointi laitteen kellon kanssa plus tai miinus tietty offset. Rajoitetaan päivämäärät, joita DS voi edustaa.&#xA;- Absoluuttinen: Aloita tietty päivämäärä ja aika, riippumatta laitteen kello.&#xA;&#xA;Kaikki päivät ja ajat ovat omalla aikavyöhykkeelläsi. Muutokset tulevat voimaan seuraavan uudelleenkäynnistyksen yhteydessä.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_start_time_mode.Help"><value>Emuloidun konsolin sisäisen kellon alkuaika.
+
+Aloita synkronointi laitteen kellon kanssa.
+Synkronisoi emuloitu kello laitteen kelloon. Voi aiheuttaa odottamatonta käyttäytymistä joissakin peleissä kelaamalla tai pikakelaamalla.
+- Suhteellinen: Aloita synkronointi laitteen kellon kanssa plus tai miinus tietty offset. Rajoitetaan päivämäärät, joita DS voi edustaa.
+- Absoluuttinen: Aloita tietty päivämäärä ja aika.</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_mode.Value.real"><value>Todellinen</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_mode.Value.sync"><value>Synkronoitu</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_mode.Value.relative"><value>Suhteellinen</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_mode.Value.absolute"><value>Absoluuttinen</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_year_offset"><value>Käynnistysaika pois päältä (vuodet)</value></data>
-  <data name="Emulation.Option.melondsds.melonds_start_time_relative_year_offset.Help"><value>Niiden vuosien määrä, joiden kuluessa aloitusaika on ohitettu. Käytetään vain silloin, kun käynnistysaika on suhteellinen. Muutokset tulevat voimaan seuraavan uudelleenkäynnistyksen yhteydessä.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_start_time_relative_year_offset.Help"><value>Niiden vuosien määrä, joiden kuluessa aloitusaika on ohitettu. Käytetään vain silloin.</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_year_offset.Value.-20"><value>- 20 vuotta</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_year_offset.Value.-19"><value>- 19 vuotta</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_year_offset.Value.-18"><value>- 18 vuotta</value></data>
@@ -1174,7 +1235,7 @@
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_year_offset.Value.19"><value>+19 vuotta</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_year_offset.Value.20"><value>+20 vuotta</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_day_offset"><value>Käynnistysaika pois päältä (päivät)</value></data>
-  <data name="Emulation.Option.melondsds.melonds_start_time_relative_day_offset.Help"><value>Niiden päivien lukumäärä, joina aloitusaika on ohitettu. Käytetään vain silloin, kun käynnistysaika on suhteellinen. Muutokset tulevat voimaan seuraavan uudelleenkäynnistyksen yhteydessä.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_start_time_relative_day_offset.Help"><value>Niiden päivien lukumäärä, joina aloitusaika on ohitettu. Käytetään vain silloin.</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_day_offset.Value.-364"><value>- 364 päivää</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_day_offset.Value.-180"><value>- 180 päivää</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_day_offset.Value.-150"><value>- 150 päivää</value></data>
@@ -1219,7 +1280,7 @@
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_day_offset.Value.180"><value>+180 päivää</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_day_offset.Value.364"><value>+364 päivää</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_hour_offset"><value>Käynnistysaika pois päältä (tunnit)</value></data>
-  <data name="Emulation.Option.melondsds.melonds_start_time_relative_hour_offset.Help"><value>Niiden tuntien määrä, joilla aloitusaika on ohitettu. Käytetään vain silloin, kun käynnistysaika on suhteellinen. Muutokset tulevat voimaan seuraavan uudelleenkäynnistyksen yhteydessä.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_start_time_relative_hour_offset.Help"><value>Niiden tuntien määrä, joilla aloitusaika on ohitettu. Käytetään vain silloin.</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_hour_offset.Value.-23"><value>- 23 tuntia</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_hour_offset.Value.-22"><value>- 22 tuntia</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_hour_offset.Value.-21"><value>- 21 tuntia</value></data>
@@ -1268,7 +1329,7 @@
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_hour_offset.Value.22"><value>+22 tuntia</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_hour_offset.Value.23"><value>+23 tuntia</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_minute_offset"><value>Käynnistysaika pois päältä (minuutit)</value></data>
-  <data name="Emulation.Option.melondsds.melonds_start_time_relative_minute_offset.Help"><value>Aloitusajan tasaamiseen tarvittava minuuttien määrä. Käytetään vain silloin, kun käynnistysaika on suhteellinen. Muutokset tulevat voimaan seuraavan uudelleenkäynnistyksen yhteydessä.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_start_time_relative_minute_offset.Help"><value>Aloitusajan tasaamiseen tarvittava minuuttien määrä. Käytetään vain silloin.</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_minute_offset.Value.-59"><value>- 59 minuuttia</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_minute_offset.Value.-58"><value>- 58 minuuttia</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_minute_offset.Value.-57"><value>- 57 minuuttia</value></data>
@@ -1389,9 +1450,9 @@
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_minute_offset.Value.58"><value>+58 minuuttia</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_minute_offset.Value.59"><value>+59 minuuttia</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_absolute_year"><value>Aloitusvuosi</value></data>
-  <data name="Emulation.Option.melondsds.melonds_start_time_absolute_year.Help"><value>Ensimmäinen vuosi käyttää kun Käynnistysaika Mode on absoluuttinen. Muutokset tulevat voimaan seuraavan uudelleenkäynnistyksen yhteydessä.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_start_time_absolute_year.Help"><value>Ensimmäinen vuosi käyttää kun Käynnistysaika Mode on absoluuttinen.</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_absolute_month"><value>Aloituskuukausi</value></data>
-  <data name="Emulation.Option.melondsds.melonds_start_time_absolute_month.Help"><value>Ensimmäinen kuukausi, jota käytetään aloitusajan tilassa on absoluuttinen. Muutokset tulevat voimaan seuraavan uudelleenkäynnistyksen yhteydessä.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_start_time_absolute_month.Help"><value>Ensimmäinen kuukausi.</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_absolute_month.Value.1"><value>Tammikuu</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_absolute_month.Value.2"><value>Helmikuu</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_absolute_month.Value.3"><value>Maaliskuu</value></data>
@@ -1405,15 +1466,18 @@
   <data name="Emulation.Option.melondsds.melonds_start_time_absolute_month.Value.11"><value>Marraskuu</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_absolute_month.Value.12"><value>Joulukuu</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_absolute_day"><value>Aloituspäivä</value></data>
-  <data name="Emulation.Option.melondsds.melonds_start_time_absolute_day.Help"><value>Aikatilan aloituskuukauden ensimmäinen päivä on absoluuttinen. Päivät, jotka jatkuvat kuukauden lopun jälkeen, kääntyvät seuraavaan (esim. Huhtikuun 31. tulee 1. toukokuuta). Muutokset tulevat voimaan seuraavan uudelleenkäynnistyksen yhteydessä.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_start_time_absolute_day.Help"><value>Aikatilan aloituskuukauden ensimmäinen päivä on absoluuttinen. Päivät, jotka jatkuvat kuukauden lopun jälkeen.</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_absolute_hour"><value>Aloitustunti</value></data>
-  <data name="Emulation.Option.melondsds.melonds_start_time_absolute_hour.Help"><value>Ensimmäinen tunti käyttää kun Käynnistysaika Tila on Absoluuttinen. Muutokset tulevat voimaan seuraavan uudelleenkäynnistyksen yhteydessä.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_start_time_absolute_hour.Help"><value>Ensimmäinen tunti käyttää kun Käynnistysaika Tila on Absoluuttinen.</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_absolute_minute"><value>Aloitusminuutti</value></data>
-  <data name="Emulation.Option.melondsds.melonds_start_time_absolute_minute.Help"><value>Ensimmäinen minuutti, jota käytetään kun Käynnistysaikatila on absoluuttinen. Muutokset tulevat voimaan seuraavan uudelleenkäynnistyksen yhteydessä.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_start_time_absolute_minute.Help"><value>Ensimmäinen minuutti.</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_absolute_second"><value>Alkaa toinen</value></data>
-  <data name="Emulation.Option.melondsds.melonds_start_time_absolute_second.Help"><value>Ensimmäinen toinen, jota käytetään aloitusajan tilassa on absoluuttinen. Muutokset tulevat voimaan seuraavan uudelleenkäynnistyksen yhteydessä.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_start_time_absolute_second.Help"><value>Ensimmäinen toinen.</value></data>
   <data name="Emulation.Option.melondsds.melonds_render_mode"><value>Renderointitila</value></data>
-  <data name="Emulation.Option.melondsds.melonds_render_mode.Help"><value>Ohjelmisto on nopein ja tarkin. OpenGL (Classic) voi skaalata 3D-grafiikkaa, mutta jotkut pelit eivät tee oikein.&#xA;OpenGL (Compute) on tarkka ja tukee upscaling, mutta ei toimi joitakin vanhempia laitteita. Siihen siirtyminen vie muutaman sekunnin, ennen kuin sen varjostimet kootaan.&#xA;&#xA;Palaa ohjelmiston renderointiin, jos OpenGL:ää ei voida käyttää. Muutokset tulevat voimaan välittömästi, mutta ne voivat edellyttää etulinjan videoajurin uudelleenkäynnistystä.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_render_mode.Help"><value>Ohjelmisto on nopein ja tarkin. OpenGL (Classic) voi skaalata 3D-grafiikkaa, mutta jotkut pelit eivät tee oikein.
+OpenGL (Compute) on tarkka ja tukee upscaling, mutta ei toimi joitakin vanhempia laitteita. Siihen siirtyminen vie muutaman sekunnin, ennen kuin sen varjostimet kootaan.
+
+Palaa ohjelmiston renderointiin, jos OpenGL:ää ei voida käyttää. Muutokset tulevat voimaan välittömästi.</value></data>
   <data name="Emulation.Option.melondsds.melonds_render_mode.Value.software"><value>Ohjelmisto</value></data>
   <data name="Emulation.Option.melondsds.melonds_render_mode.Value.opengl"><value>OpenGL (Klassinen)</value></data>
   <data name="Emulation.Option.melondsds.melonds_render_mode.Value.compute"><value>OpenGL (Suppute)</value></data>
@@ -1614,7 +1678,7 @@
   <data name="Emulation.Option.fceumm.fceumm_ntsc_filter.Value.composite"><value>Yhdistetty</value></data>
   <data name="Emulation.Option.fceumm.fceumm_ntsc_filter.Value.svideo"><value>S-Video</value></data>
   <data name="Emulation.Option.fceumm.fceumm_ntsc_filter.Value.monochrome"><value>Yksivärinen</value></data>
-  <data name="Emulation.Option.fceumm.fceumm_hdpacks"><value>HD Texture Packs (uudelleenkäynnistys)</value></data>
+  <data name="Emulation.Option.fceumm.fceumm_hdpacks"><value>HD Texture Packs</value></data>
   <data name="Emulation.Option.fceumm.fceumm_hdpacks.Help"><value>Load Mesen-format HD texture packages from '&lt;system&gt;/HdPacks/ &lt;rom name&gt;/hires.txt' when present. Korvaa laatat/sprites korkean resoluution taideteoksella (PNG, DDS tai WebP) ja mahdollistaa paketin mukautetun taustan sekä OGG/WAV-musiikki- ja äänitehosteet. Vaatii etuosan, joka tukee XRGB8888-ulostuloa.</value></data>
   <data name="Emulation.Option.fceumm.fceumm_hdpacks.Value.enabled"><value>Käytössä</value></data>
   <data name="Emulation.Option.fceumm.fceumm_hdpacks.Value.disabled"><value>Ei käytössä</value></data>
@@ -2056,10 +2120,10 @@
   <data name="Emulation.Firmware.mesen2.Slot25"><value>Hienoa. Game Boy BIOS</value></data>
   <data name="Emulation.Emulator.nestopia.Description"><value>Emuloi yhteensopivat Nintendo-järjestelmät Nestopian kanssa.</value></data>
   <data name="Emulation.Option.nestopia.nestopia_favored_system"><value>Suosittu järjestelmä</value></data>
-  <data name="Emulation.Option.nestopia.nestopia_favored_system.Help"><value>Järjestelmä mieluummin kuvia, jotka eivät sano mitä he haluavat. Kuvat, jotka sanovat, ja kuvia löytyy NstDatabase.xml tietokanta tiedosto, ei vaikuta. Sovelletaan vain, kun "Force System" on asetettu "Auto." Se vaatii uudelleenkäynnistystä.</value></data>
+  <data name="Emulation.Option.nestopia.nestopia_favored_system.Help"><value>Järjestelmä mieluummin kuvia, jotka eivät sano mitä he haluavat. Kuvat, jotka sanovat, ja kuvia löytyy NstDatabase.xml tietokanta tiedosto, ei vaikuta. Sovelletaan vain.</value></data>
   <data name="Emulation.Option.nestopia.nestopia_favored_system.Value.famicom"><value>Famicom</value></data>
   <data name="Emulation.Option.nestopia.nestopia_force_system"><value>Voimajärjestelmä</value></data>
-  <data name="Emulation.Option.nestopia.nestopia_force_system.Help"><value>Älä välitä järjestelmästä, jota kuva pyytää ja käytä tätä. Tämän asetuksen muuttaminen käynnistää pelin uudelleen.</value></data>
+  <data name="Emulation.Option.nestopia.nestopia_force_system.Help"><value>Älä välitä järjestelmästä.</value></data>
   <data name="Emulation.Option.nestopia.nestopia_force_system.Value.auto"><value>Automaattinen</value></data>
   <data name="Emulation.Option.nestopia.nestopia_force_system.Value.famicom"><value>Famicom</value></data>
   <data name="Emulation.Option.nestopia.nestopia_fds_auto_insert"><value>FDS:n automaattinen lisäys</value></data>
@@ -2309,7 +2373,10 @@
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_lcd_interlacing_brightnesss"><value>GBC LCD Kirkkaus</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_lcd_interlacing_brightnesss.Help"><value>Säätää vuorovaikutusvaikutuksen voimakkuutta. Pidä tämä arvo alhaisena, kun et käytä varjostimia. Suurempia arvoja suositellaan, kun käytetään varjostinta, jotta vaikutus näkyy.</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_RGB_SubPixel_Simulation"><value>GBC LCD RGB Subpixel- asteikon tekijä</value></data>
-  <data name="Emulation.Option.doublecherrygb.dcgb_gbc_RGB_SubPixel_Simulation.Help"><value>Simuloi fyysisiä GBC-alapikseleitä suurentamalla ja korvaa jokaisen väripikselin vastaavilla RGB-komponenteilla.&#xA;&#xA;Parhaat tulokset:&#xA;- Ota käyttöön "Integer Scaling" RetroArchissa (Asetukset -&gt; Video -&gt; Scalling).&#xA;- Ytimen uudelleenkäynnistys voi olla tarpeen tämän asetuksen muuttamisen jälkeen.</value></data>
+  <data name="Emulation.Option.doublecherrygb.dcgb_gbc_RGB_SubPixel_Simulation.Help"><value>Simuloi fyysisiä GBC-alapikseleitä suurentamalla ja korvaa jokaisen väripikselin vastaavilla RGB-komponenteilla.
+
+Parhaat tulokset:
+- Ota käyttöön "Integer Scaling" RetroArchissa (Asetukset -&gt; Video -&gt; Scalling).</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_RGB_SubPixel_Simulation.Value.1"><value>Ei käytössä</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_LCD_blur"><value>GBC LCD Suhahdus</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_LCD_blur.Help"><value>Koskee näytön hämärää vaikutusta. Tämä asetus on erittäin CPU-intensiivinen. Sammuta se heikommalla laitteistolla tai käytä varjostimia.</value></data>
@@ -2568,7 +2635,7 @@
   <data name="Emulation.Firmware.gambatte.Slot0"><value>Game Boy BIOS</value></data>
   <data name="Emulation.Firmware.gambatte.Slot1"><value>Game Boy Color BIOS</value></data>
   <data name="Emulation.Emulator.gearboy.Description"><value>Emuloi yhteensopivat Nintendo-järjestelmät GearBoyn kanssa.</value></data>
-  <data name="Emulation.Option.gearboy.gearboy_barcode_boy"><value>Viivakoodipoikatila (käynnistä uudelleen)</value></data>
+  <data name="Emulation.Option.gearboy.gearboy_barcode_boy"><value>Viivakoodipoikatila</value></data>
   <data name="Emulation.Option.gearboy.gearboy_barcode_boy.Help"><value>Auto liittää viivakoodi Boy pelejä tunnustettu ROM CRC. Käytössä on tunnistamattomia tai paikattuja romeja. Game Link -tila varaa sarjaportin ja poistaa viivakoodipojan käytöstä.</value></data>
   <data name="Emulation.Option.gearboy.gearboy_barcode_boy.Value.Auto"><value>Automaattinen</value></data>
   <data name="Emulation.Option.gearboy.gearboy_barcode_boy.Value.Disabled"><value>Ei käytössä</value></data>
@@ -2636,10 +2703,10 @@
   <data name="Emulation.Option.gearboy.gearboy_barcode_digit_12.Help"><value>Digit 12 mukautetun 13-numeroinen viivakoodi, vasemmalta oikealle. Valitse Custom, aseta kaikki numerot ja paina Skannaa viivakoodi (RetroPad R).</value></data>
   <data name="Emulation.Option.gearboy.gearboy_barcode_digit_13"><value>Viivakoodi Poika Custom Digit 13</value></data>
   <data name="Emulation.Option.gearboy.gearboy_barcode_digit_13.Help"><value>Digit 13 mukautetun 13-numeroinen viivakoodi, vasemmalta oikealle. Valitse Custom, aseta kaikki numerot ja paina Skannaa viivakoodi (RetroPad R).</value></data>
-  <data name="Emulation.Option.gearboy.gearboy_model"><value>Game Boy -malli (uudelleenkäynnistys)</value></data>
+  <data name="Emulation.Option.gearboy.gearboy_model"><value>Game Boy -malli</value></data>
   <data name="Emulation.Option.gearboy.gearboy_model.Help"><value>Valitse mikä laitemalli on emulgoitu. "Auto" valitsee automaattisesti parhaan ladatun mallin ROM otsikon.Game Boy DMG'Voimia alkuperäisiä Game Boy laitteistoa."Game Boy Advance' voimilla Game Boy Advance tila, joka mahdollistaa pienet laitteistojen erot ajettaessa Game Boy Pelit on GBA.</value></data>
   <data name="Emulation.Option.gearboy.gearboy_model.Value.Auto"><value>Automaattinen</value></data>
-  <data name="Emulation.Option.gearboy.gearboy_mapper"><value>Mapper (uudelleenkäynnistys)</value></data>
+  <data name="Emulation.Option.gearboy.gearboy_mapper"><value>Mapper</value></data>
   <data name="Emulation.Option.gearboy.gearboy_mapper.Help"><value>Valitse mikä muistipankkiohjain (MBC tai mapper) emuloidaan. "Auto" valitsee automaattisesti parhaan MBC:n ROM-otsakkeen perusteella. Käytä manuaalista valintaa vain, jos pelillä on ongelmia automaattisen havaitsemisen kanssa.</value></data>
   <data name="Emulation.Option.gearboy.gearboy_mapper.Value.Auto"><value>Automaattinen</value></data>
   <data name="Emulation.Option.gearboy.gearboy_mapper.Value.ROM Only"><value>Ainoastaan ROM</value></data>
@@ -2654,7 +2721,7 @@
   <data name="Emulation.Option.gearboy.gearboy_mapper.Value.Sintax"><value>Sintax</value></data>
   <data name="Emulation.Option.gearboy.gearboy_mapper.Value.NT old 1"><value>NT1 vanhus</value></data>
   <data name="Emulation.Option.gearboy.gearboy_mapper.Value.NT old 2"><value>NT2 vanhus</value></data>
-  <data name="Emulation.Option.gearboy.gearboy_sgb"><value>Super Game Boy (uudelleenkäynnistys)</value></data>
+  <data name="Emulation.Option.gearboy.gearboy_sgb"><value>Super Game Boy</value></data>
   <data name="Emulation.Option.gearboy.gearboy_sgb.Help"><value>Kun käytössä, yhteensopivat ROMit toimivat Super Game Boy -tilassa. Kun käytöstä, SGB-yhteensopivat ROMit toimivat vakiona Game Boy (DMG) -pelejä.</value></data>
   <data name="Emulation.Option.gearboy.gearboy_sgb.Value.Enabled"><value>Käytössä</value></data>
   <data name="Emulation.Option.gearboy.gearboy_sgb.Value.Disabled"><value>Ei käytössä</value></data>
@@ -2662,11 +2729,11 @@
   <data name="Emulation.Option.gearboy.gearboy_sgb_border.Help"><value>Kun käytössä, Super Game Boy raja näkyy peliruudun ympäri (256x224). Kun ei käytössä, näytetään vain pelinäyttö (160x144).</value></data>
   <data name="Emulation.Option.gearboy.gearboy_sgb_border.Value.Enabled"><value>Käytössä</value></data>
   <data name="Emulation.Option.gearboy.gearboy_sgb_border.Value.Disabled"><value>Ei käytössä</value></data>
-  <data name="Emulation.Option.gearboy.gearboy_bootrom_dmg"><value>DMG Bootrom (käynnistä uudelleen)</value></data>
+  <data name="Emulation.Option.gearboy.gearboy_bootrom_dmg"><value>DMG Bootrom</value></data>
   <data name="Emulation.Option.gearboy.gearboy_bootrom_dmg.Help"><value>Ota käyttöön tai poista käytöstä alkuperäinen Game Boy (DMG) -bootrom. Kun käytössä, bootrom suorittaa startup aivan kuten oikealla laitteistolla, joka näyttää Nintendo logo animaatio. RetroArchin järjestelmähakemistossa on oltava "dmg_boot.bin" -tiedosto.</value></data>
   <data name="Emulation.Option.gearboy.gearboy_bootrom_dmg.Value.Disabled"><value>Ei käytössä</value></data>
   <data name="Emulation.Option.gearboy.gearboy_bootrom_dmg.Value.Enabled"><value>Käytössä</value></data>
-  <data name="Emulation.Option.gearboy.gearboy_bootrom_gbc"><value>GBC Bootrom (käynnistä uudelleen)</value></data>
+  <data name="Emulation.Option.gearboy.gearboy_bootrom_gbc"><value>GBC Bootrom</value></data>
   <data name="Emulation.Option.gearboy.gearboy_bootrom_gbc.Help"><value>Ota käyttöön tai poista käytöstä Game Boy Color -bootrom. Kun käytössä, bootrom suorittaa käynnistyksen aivan kuten oikealla laitteistolla, joka näyttää Game Boy Color saappaan animaatio. RetroArchin järjestelmähakemistossa on oltava "cgb_boot.bin" -tiedosto.</value></data>
   <data name="Emulation.Option.gearboy.gearboy_bootrom_gbc.Value.Disabled"><value>Ei käytössä</value></data>
   <data name="Emulation.Option.gearboy.gearboy_bootrom_gbc.Value.Enabled"><value>Käytössä</value></data>
@@ -2730,7 +2797,7 @@
   <data name="Emulation.Option.gearboy.gearboy_up_down_allowed.Help"><value>Salli painettaessa, vaihdettaessa nopeasti tai pitämällä sekä vasemman että oikean (tai ylös ja alas) suuntaan samanaikaisesti. Tämä voi aiheuttaa liikkumiseen perustuvia ongelmia tietyissä peleissä. On parasta pitää tämä vaihtoehto pois käytöstä.</value></data>
   <data name="Emulation.Option.gearboy.gearboy_up_down_allowed.Value.Disabled"><value>Ei käytössä</value></data>
   <data name="Emulation.Option.gearboy.gearboy_up_down_allowed.Value.Enabled"><value>Käytössä</value></data>
-  <data name="Emulation.Option.gearboy.gearboy_link_enable"><value>Peli Link-kaapeli Ota käyttöön (käynnistä uudelleen)</value></data>
+  <data name="Emulation.Option.gearboy.gearboy_link_enable"><value>Peli Link-kaapeli Ota käyttöön</value></data>
   <data name="Emulation.Option.gearboy.gearboy_link_enable.Help"><value>Suorita kaksi linkitettyä Game Boy-järjestelmää. Ladataan yksi ROM ajaa erillisen kopion kullakin näytöllä; käytä 2 Player Game Boy Link osajärjestelmä ladata kaksi erilaista ROM. Ohjainportit 1 ja 2 valvontaruudut 1 ja kaksi. Super Game Boy -tila ei ole käytössä linkitettäessä.</value></data>
   <data name="Emulation.Option.gearboy.gearboy_link_enable.Value.Enabled"><value>Käytössä</value></data>
   <data name="Emulation.Option.gearboy.gearboy_link_enable.Value.Disabled"><value>Ei käytössä</value></data>
@@ -2829,7 +2896,7 @@
   <data name="Emulation.Option.nside_sfc_balanced.higan_sfc_color_emulation"><value>Väriemulointi</value></data>
   <data name="Emulation.Option.nside_sfc_balanced.higan_sfc_blur_emulation"><value>Suhahdusemulointi</value></data>
   <data name="Emulation.Option.nside_sfc_balanced.higan_sfc_scanline_emulation"><value>Skannausemulointi</value></data>
-  <data name="Emulation.Option.nside_sfc_balanced.higan_sfc_sgb_bios"><value>Preferred Super GameBoy BIOS (uudelleenkäynnistys)</value></data>
+  <data name="Emulation.Option.nside_sfc_balanced.higan_sfc_sgb_bios"><value>Preferred Super GameBoy BIOS</value></data>
   <data name="Emulation.Firmware.nside_sfc_balanced.Slot0"><value>Ulkoiset laiteohjelmistot</value></data>
   <data name="Emulation.Firmware.nside_sfc_balanced.Slot1"><value>Ulkoiset laiteohjelmistot</value></data>
   <data name="Emulation.Firmware.nside_sfc_balanced.Slot2"><value>Ulkoiset laiteohjelmistot</value></data>
@@ -2852,14 +2919,14 @@
   <data name="Emulation.Firmware.nside_sfc_balanced.Slot19"><value>SGB Saapas BIOS</value></data>
   <data name="Emulation.Firmware.nside_sfc_balanced.Slot20"><value>SGB- käynnistyskuva</value></data>
   <data name="Emulation.Emulator.sameboy.Description"><value>Emulgoi yhteensopivat Nintendo-järjestelmät SameBoyn kanssa.</value></data>
-  <data name="Emulation.Option.sameboy.sameboy_model"><value>Järjestelmä - Emuloitu malli (vaatii uudelleenkäynnistystä)</value></data>
-  <data name="Emulation.Option.sameboy.sameboy_model.Help"><value>Valitsee minkä järjestelmän mallin sisällöstä tulisi aloittaa. Tietyt pelit voivat aktivoida erityisiä pelin ominaisuuksia, kun suoritetaan tiettyjä malleja. Tämä vaihtoehto edellyttää sisällön uudelleenkäynnistystä, jotta se tulee voimaan.</value></data>
+  <data name="Emulation.Option.sameboy.sameboy_model"><value>Järjestelmä - Emuloitu malli</value></data>
+  <data name="Emulation.Option.sameboy.sameboy_model.Help"><value>Valitsee minkä järjestelmän mallin sisällöstä tulisi aloittaa. Tietyt pelit voivat aktivoida erityisiä pelin ominaisuuksia, kun suoritetaan tiettyjä malleja.</value></data>
   <data name="Emulation.Option.sameboy.sameboy_model.Value.Auto"><value>Automaattinen tunnistus DMG/CGB</value></data>
   <data name="Emulation.Option.sameboy.sameboy_model.Value.Auto (SGB)"><value>Automaattinen tunnistus DMG/SGB/CGB</value></data>
   <data name="Emulation.Option.sameboy.sameboy_model.Value.Game Boy Pocket"><value>Game Boy Tasku/valo</value></data>
   <data name="Emulation.Option.sameboy.sameboy_model.Value.Game Boy Player"><value>Game Boy Pelaaja (CPU AGB A.</value></data>
-  <data name="Emulation.Option.sameboy.sameboy_auto_sgb_model"><value>Järjestelmä - Automaattinen tunnistus SGB malli (vaatii uudelleenkäynnistys)</value></data>
-  <data name="Emulation.Option.sameboy.sameboy_auto_sgb_model.Help"><value>Määrittää, mikä malli Super Game Boy laitteisto jäljitellä, kun SGB-sisältö on automaattisesti havaittu. Tämä vaihtoehto edellyttää sisällön uudelleenkäynnistystä, jotta se tulee voimaan.</value></data>
+  <data name="Emulation.Option.sameboy.sameboy_auto_sgb_model"><value>Järjestelmä - Automaattinen tunnistus SGB malli</value></data>
+  <data name="Emulation.Option.sameboy.sameboy_auto_sgb_model.Help"><value>Määrittää, mikä malli Super Game Boy laitteisto jäljitellä, kun SGB-sisältö on automaattisesti havaittu.</value></data>
   <data name="Emulation.Option.sameboy.sameboy_mono_palette"><value>Video - GB Mono Paletti</value></data>
   <data name="Emulation.Option.sameboy.sameboy_mono_palette.Help"><value>Valitsee väripaletin, jota pitäisi käyttää Game Boy -peleissä.</value></data>
   <data name="Emulation.Option.sameboy.sameboy_mono_palette.Value.greyscale"><value>Harmaasävy</value></data>
@@ -2901,22 +2968,22 @@
   <data name="Emulation.Option.sameboy.sameboy_link.Help"><value>Mahdollistaa linkin kaapelin emulgoinnin, mikä mahdollistaa kahden Game Boy -järjestelmän välisen viestinnän ja tietojenvaihdon.</value></data>
   <data name="Emulation.Option.sameboy.sameboy_link.Value.enabled"><value>Käytössä</value></data>
   <data name="Emulation.Option.sameboy.sameboy_link.Value.disabled"><value>Ei käytössä</value></data>
-  <data name="Emulation.Option.sameboy.sameboy_model_1"><value>Järjestelmä - Emuloitu malli Game Boy # 1 (vaatii uudelleenkäynnistys)</value></data>
-  <data name="Emulation.Option.sameboy.sameboy_model_1.Help"><value>Valitsee mikä järjestelmämalli sisältö tulisi aloittaa Game Boy #1. Tietyt pelit voivat aktivoida erityisiä pelin ominaisuuksia, kun suoritetaan tiettyjä malleja. Tämä vaihtoehto edellyttää sisällön uudelleenkäynnistystä, jotta se tulee voimaan.</value></data>
+  <data name="Emulation.Option.sameboy.sameboy_model_1"><value>Järjestelmä - Emuloitu malli Game Boy # 1</value></data>
+  <data name="Emulation.Option.sameboy.sameboy_model_1.Help"><value>Valitsee mikä järjestelmämalli sisältö tulisi aloittaa Game Boy #1. Tietyt pelit voivat aktivoida erityisiä pelin ominaisuuksia, kun suoritetaan tiettyjä malleja.</value></data>
   <data name="Emulation.Option.sameboy.sameboy_model_1.Value.Auto"><value>Automaattinen tunnistus DMG/CGB</value></data>
   <data name="Emulation.Option.sameboy.sameboy_model_1.Value.Auto (SGB)"><value>Automaattinen tunnistus DMG/SGB/CGB</value></data>
   <data name="Emulation.Option.sameboy.sameboy_model_1.Value.Game Boy Pocket"><value>Game Boy Tasku/valo</value></data>
   <data name="Emulation.Option.sameboy.sameboy_model_1.Value.Game Boy Player"><value>Game Boy Pelaaja (CPU AGB A.</value></data>
-  <data name="Emulation.Option.sameboy.sameboy_auto_sgb_model_1"><value>Järjestelmä - Automaattinen tunnistettu SGB Malli Game Boy # 1 (vaatii uudelleenkäynnistää)</value></data>
-  <data name="Emulation.Option.sameboy.sameboy_auto_sgb_model_1.Help"><value>Määrittää, mikä malli Super Game Boy laitteiston jäljitellä, kun SGB sisältöä havaitaan automaattisesti Game Boy #1. Tämä vaihtoehto edellyttää sisällön uudelleenkäynnistystä, jotta se tulee voimaan.</value></data>
-  <data name="Emulation.Option.sameboy.sameboy_model_2"><value>System - Emulated Model for Game Boy #2 (vaatii uudelleenkäynnistää)</value></data>
-  <data name="Emulation.Option.sameboy.sameboy_model_2.Help"><value>Valitsee, mikä järjestelmämalli sisältö tulisi aloittaa Game Boy # 2. Tietyt pelit voivat aktivoida erityisiä pelin ominaisuuksia, kun suoritetaan tiettyjä malleja. Tämä vaihtoehto edellyttää sisällön uudelleenkäynnistystä, jotta se tulee voimaan.</value></data>
+  <data name="Emulation.Option.sameboy.sameboy_auto_sgb_model_1"><value>Järjestelmä - Automaattinen tunnistettu SGB Malli Game Boy # 1</value></data>
+  <data name="Emulation.Option.sameboy.sameboy_auto_sgb_model_1.Help"><value>Määrittää, mikä malli Super Game Boy laitteiston jäljitellä, kun SGB sisältöä havaitaan automaattisesti Game Boy #1.</value></data>
+  <data name="Emulation.Option.sameboy.sameboy_model_2"><value>System - Emulated Model for Game Boy #2</value></data>
+  <data name="Emulation.Option.sameboy.sameboy_model_2.Help"><value>Valitsee, mikä järjestelmämalli sisältö tulisi aloittaa Game Boy # 2. Tietyt pelit voivat aktivoida erityisiä pelin ominaisuuksia, kun suoritetaan tiettyjä malleja.</value></data>
   <data name="Emulation.Option.sameboy.sameboy_model_2.Value.Auto"><value>Automaattinen tunnistus DMG/CGB</value></data>
   <data name="Emulation.Option.sameboy.sameboy_model_2.Value.Auto (SGB)"><value>Automaattinen tunnistus DMG/SGB/CGB</value></data>
   <data name="Emulation.Option.sameboy.sameboy_model_2.Value.Game Boy Pocket"><value>Game Boy Tasku/valo</value></data>
   <data name="Emulation.Option.sameboy.sameboy_model_2.Value.Game Boy Player"><value>Game Boy Pelaaja (CPU AGB A.</value></data>
-  <data name="Emulation.Option.sameboy.sameboy_auto_sgb_model_2"><value>System - Automaattinen tunnistettu SGB malli Game Boy # 2 (vaatii uudelleenkäynnistys)</value></data>
-  <data name="Emulation.Option.sameboy.sameboy_auto_sgb_model_2.Help"><value>Määrittää, mikä malli Super Game Boy laitteiston emuloida, kun SGB sisältöä automaattisesti havaitaan Game Boy #2. Tämä vaihtoehto edellyttää sisällön uudelleenkäynnistystä, jotta se tulee voimaan.</value></data>
+  <data name="Emulation.Option.sameboy.sameboy_auto_sgb_model_2"><value>System - Automaattinen tunnistettu SGB malli Game Boy # 2</value></data>
+  <data name="Emulation.Option.sameboy.sameboy_auto_sgb_model_2.Help"><value>Määrittää, mikä malli Super Game Boy laitteiston emuloida, kun SGB sisältöä automaattisesti havaitaan Game Boy #2.</value></data>
   <data name="Emulation.Option.sameboy.sameboy_screen_layout"><value>Video - Näytön asettelu</value></data>
   <data name="Emulation.Option.sameboy.sameboy_screen_layout.Help"><value>Kun emulgoidaan kahta järjestelmää samanaikaisesti, tässä vaihtoehdossa määritellään näiden kahden näytön sijainti.</value></data>
   <data name="Emulation.Option.sameboy.sameboy_screen_layout.Value.top-down"><value>Ylhäältä alas</value></data>
@@ -3011,10 +3078,10 @@
   <data name="Emulation.Option.tgbdual.tgbdual_audio_output"><value>Äänituloste</value></data>
   <data name="Emulation.Option.tgbdual.tgbdual_audio_output.Value.Both (mixed)"><value>Molemmat (sekoitettu)</value></data>
   <data name="Emulation.Emulator.mednafen_gba.Description"><value>Emulgoi yhteensopivat Nintendo-järjestelmät Beetle GBA.</value></data>
-  <data name="Emulation.Option.mednafen_gba.gba_hle"><value>HLE-bios-emulointi (uudelleenkäynnistys)</value></data>
+  <data name="Emulation.Option.mednafen_gba.gba_hle"><value>HLE-bios-emulointi</value></data>
   <data name="Emulation.Option.mednafen_gba.gba_hle.Value.enabled"><value>Käytössä</value></data>
   <data name="Emulation.Option.mednafen_gba.gba_hle.Value.disabled"><value>Ei käytössä</value></data>
-  <data name="Emulation.Option.mednafen_gba.gba_use_mednafen_save_method"><value>Tallenna menetelmä (käynnistä uudelleen)</value></data>
+  <data name="Emulation.Option.mednafen_gba.gba_use_mednafen_save_method"><value>Tallenna menetelmä</value></data>
   <data name="Emulation.Option.mednafen_gba.gba_use_mednafen_save_method.Value.mednafen"><value>mednafeeni</value></data>
   <data name="Emulation.Option.mednafen_gba.gba_use_mednafen_save_method.Value.libretro"><value>libretro</value></data>
   <data name="Emulation.Firmware.mednafen_gba.Slot0"><value>Game Boy Advance BIOS</value></data>
@@ -3082,14 +3149,14 @@
   <data name="Emulation.Option.gpsp.gpsp_turbo_period.Help"><value>Määritetään toistoväli (kehikkoina) Turbo A/B -painikkeita pidettäessä.</value></data>
   <data name="Emulation.Firmware.gpsp.Slot0"><value>Game Boy Advance BIOS</value></data>
   <data name="Emulation.Emulator.meteor.Description"><value>Emulgoi yhteensopivat Nintendo-järjestelmät Meteorin kanssa.</value></data>
-  <data name="Emulation.Option.mgba.mgba_gb_model"><value>Game Boy -malli (uudelleenkäynnistys)</value></data>
+  <data name="Emulation.Option.mgba.mgba_gb_model"><value>Game Boy -malli</value></data>
   <data name="Emulation.Option.mgba.mgba_gb_model.Help"><value>Ajaa ladattua sisältöä tietyllä Game Boy -mallilla. "Autodect" valitsee sopivimman mallin nykyiseen peliin.</value></data>
   <data name="Emulation.Option.mgba.mgba_gb_model.Value.Autodetect"><value>Automaattinen tunnistus</value></data>
-  <data name="Emulation.Option.mgba.mgba_use_bios"><value>Käytä BIOS- tiedostoa, jos se on löytynyt (käynnistä uudelleen)</value></data>
+  <data name="Emulation.Option.mgba.mgba_use_bios"><value>Käytä BIOS- tiedostoa, jos se on löytynyt</value></data>
   <data name="Emulation.Option.mgba.mgba_use_bios.Help"><value>Käytä virallista BIOS / bootloader emuloitu laitteisto, jos esiintyy RetroArch järjestelmän hakemistoon.</value></data>
   <data name="Emulation.Option.mgba.mgba_use_bios.Value.ON"><value>Käytössä</value></data>
   <data name="Emulation.Option.mgba.mgba_use_bios.Value.OFF"><value>Ei käytössä</value></data>
-  <data name="Emulation.Option.mgba.mgba_skip_bios"><value>Ohita BIOS-esiintyminen (käynnistä uudelleen)</value></data>
+  <data name="Emulation.Option.mgba.mgba_skip_bios"><value>Ohita BIOS-esiintyminen</value></data>
   <data name="Emulation.Option.mgba.mgba_skip_bios.Help"><value>Kun käytät virallista BIOS/bootloaderia, jätä start-up-logoanimaatio väliin. Tämä asetus jätetään huomiotta, kun 'Käytä BIOS- tiedostoa jos löytyi' ei ole käytössä.</value></data>
   <data name="Emulation.Option.mgba.mgba_skip_bios.Value.OFF"><value>Ei käytössä</value></data>
   <data name="Emulation.Option.mgba.mgba_skip_bios.Value.ON"><value>Käytössä</value></data>
@@ -3111,13 +3178,13 @@
   <data name="Emulation.Option.mgba.mgba_gb_colors.Value.GBC Green →"><value>GBC Vihreä →</value></data>
   <data name="Emulation.Option.mgba.mgba_gb_colors.Value.GBC Dark Green →A"><value>GBC Tummanvihreä →A</value></data>
   <data name="Emulation.Option.mgba.mgba_gb_colors.Value.GBC Reverse →B"><value>GBC Käänteinen →B</value></data>
-  <data name="Emulation.Option.mgba.mgba_gb_colors_preset"><value>Hardware Preset Game Boy -paletit (Palaa)</value></data>
+  <data name="Emulation.Option.mgba.mgba_gb_colors_preset"><value>Hardware Preset Game Boy -paletit</value></data>
   <data name="Emulation.Option.mgba.mgba_gb_colors_preset.Help"><value>Käytä paletteja Game Boy pelejä, jotka ovat presets Game Boy Color tai Super Game Boy.</value></data>
   <data name="Emulation.Option.mgba.mgba_gb_colors_preset.Value.0"><value>Oletus Game Boy esiasetettu</value></data>
   <data name="Emulation.Option.mgba.mgba_gb_colors_preset.Value.1"><value>Game Boy Color esiasettaa vain</value></data>
   <data name="Emulation.Option.mgba.mgba_gb_colors_preset.Value.2"><value>Vain Super Game Boy -esiasetukset</value></data>
   <data name="Emulation.Option.mgba.mgba_gb_colors_preset.Value.3"><value>Mahdolliset esiasetukset</value></data>
-  <data name="Emulation.Option.mgba.mgba_sgb_borders"><value>Käytä Super Game Boy rajat (käynnistä uudelleen)</value></data>
+  <data name="Emulation.Option.mgba.mgba_sgb_borders"><value>Käytä Super Game Boy rajat</value></data>
   <data name="Emulation.Option.mgba.mgba_sgb_borders.Help"><value>Näytä Super Game Boy rajat suoritettaessa Super Game Boy parannettuja pelejä.</value></data>
   <data name="Emulation.Option.mgba.mgba_sgb_borders.Value.ON"><value>Käytössä</value></data>
   <data name="Emulation.Option.mgba.mgba_sgb_borders.Value.OFF"><value>Ei käytössä</value></data>
@@ -3145,7 +3212,7 @@
   <data name="Emulation.Option.mgba.mgba_solar_sensor_level"><value>Aurinkoanturin taso</value></data>
   <data name="Emulation.Option.mgba.mgba_solar_sensor_level.Help"><value>Auringon säteilyn voimakkuus. Voidaan käyttää pelejä, jotka sisälsivät aurinkoanturin niiden patruunat, e.g: Boktai sarja.</value></data>
   <data name="Emulation.Option.mgba.mgba_solar_sensor_level.Value.sensor"><value>Käytä laitesensoria, jos saatavilla.</value></data>
-  <data name="Emulation.Option.mgba.mgba_force_gbp"><value>Game Boy Player Rumble (käynnistä uudelleen)</value></data>
+  <data name="Emulation.Option.mgba.mgba_force_gbp"><value>Game Boy Player Rumble</value></data>
   <data name="Emulation.Option.mgba.mgba_force_gbp.Help"><value>Tämä mahdollistaa yhteensopivat pelit Game Boy Player boot -logon kanssa tehdä ohjaimen trumble. Koska miten Nintendo päätti tämän ominaisuuden pitäisi toimia, se voi aiheuttaa glitches kuten välkkymistä tai viiveellä joissakin näistä peleistä.</value></data>
   <data name="Emulation.Option.mgba.mgba_force_gbp.Value.OFF"><value>Ei käytössä</value></data>
   <data name="Emulation.Option.mgba.mgba_force_gbp.Value.ON"><value>Käytössä</value></data>
@@ -3170,17 +3237,17 @@
   <data name="Emulation.Firmware.mgba.Slot3"><value>Hienoa. Game Boy BIOS</value></data>
   <data name="Emulation.Emulator.vbam.Description"><value>Emulgoi yhteensopivat Nintendo-järjestelmät VBA-M.</value></data>
   <data name="Emulation.Option.vbam.vbam_usebios"><value>Käytä virallisia BIOS (jos saatavilla)</value></data>
-  <data name="Emulation.Option.vbam.vbam_usebios.Help"><value>Käytä virallista BIOSia, kun se on saatavilla. Ydin on käynnistettävä uudelleen, jotta muutoksia voidaan soveltaa.</value></data>
+  <data name="Emulation.Option.vbam.vbam_usebios.Help"><value>Käytä virallista BIOSia, kun se on saatavilla.</value></data>
   <data name="Emulation.Option.vbam.vbam_usebios.Value.disabled"><value>Ei käytössä</value></data>
   <data name="Emulation.Option.vbam.vbam_usebios.Value.enabled"><value>Käytössä</value></data>
   <data name="Emulation.Option.vbam.vbam_forceRTCenable"><value>Voimakäyttöinen RTC</value></data>
   <data name="Emulation.Option.vbam.vbam_forceRTCenable.Help"><value>Pakottaa sisäisen reaaliaikaisen kellon käyttöön riippumatta rom. Käytetään rom laastarit, jotka vaativat kellon käyttöön (esim. Pokemon).</value></data>
   <data name="Emulation.Option.vbam.vbam_forceRTCenable.Value.disabled"><value>Ei käytössä</value></data>
   <data name="Emulation.Option.vbam.vbam_forceRTCenable.Value.enabled"><value>Käytössä</value></data>
-  <data name="Emulation.Option.vbam.vbam_gbHardware"><value>(GB) Emulgoitu laitteisto (Needs Restart)</value></data>
-  <data name="Emulation.Option.vbam.vbam_gbHardware.Help"><value>Asettaa Game Boy laitteistotyyppi jäljitellä. Aloita ydin uudelleen käytettäväksi.</value></data>
+  <data name="Emulation.Option.vbam.vbam_gbHardware"><value>(GB) Emulgoitu laitteisto</value></data>
+  <data name="Emulation.Option.vbam.vbam_gbHardware.Help"><value>Asettaa Game Boy laitteistotyyppi jäljitellä.</value></data>
   <data name="Emulation.Option.vbam.vbam_gbHardware.Value.auto"><value>Automaattinen</value></data>
-  <data name="Emulation.Option.vbam.vbam_allowcolorizerhack"><value>(GB) Ota käyttöön Colorizer Hack (Needs Restart)</value></data>
+  <data name="Emulation.Option.vbam.vbam_allowcolorizerhack"><value>(GB) Ota käyttöön Colorizer Hack</value></data>
   <data name="Emulation.Option.vbam.vbam_allowcolorizerhack.Help"><value>Sallii Colorizer hakkeroitu GB-pelejä (esim. DX paikkatut pelit) ajaa normaalisti GBC/GBA laitteistotyyppi. Tämä estää myös bios-tiedoston käytön. NOT RECOMMENDED värittömiin peleihin.</value></data>
   <data name="Emulation.Option.vbam.vbam_allowcolorizerhack.Value.disabled"><value>Ei käytössä</value></data>
   <data name="Emulation.Option.vbam.vbam_allowcolorizerhack.Value.enabled"><value>Käytössä</value></data>
@@ -3296,11 +3363,11 @@
   <data name="Emulation.Firmware.vbam.Slot1"><value>Game Boy BIOS</value></data>
   <data name="Emulation.Firmware.vbam.Slot2"><value>Game Boy Color BIOS</value></data>
   <data name="Emulation.Emulator.vba_next.Description"><value>Emulgoi yhteensopivat Nintendo-järjestelmät VBA Seuraavan kanssa.</value></data>
-  <data name="Emulation.Option.vba_next.vbanext_bios"><value>Käytä BIOSia, jos saatavilla (käynnistä uudelleen)</value></data>
+  <data name="Emulation.Option.vba_next.vbanext_bios"><value>Käytä BIOSia, jos saatavilla</value></data>
   <data name="Emulation.Option.vba_next.vbanext_bios.Help"><value>Käyttää BIOS läsnä RetroArchin järjestelmähakemistossa.</value></data>
   <data name="Emulation.Option.vba_next.vbanext_bios.Value.enabled"><value>Käytössä</value></data>
   <data name="Emulation.Option.vba_next.vbanext_bios.Value.disabled"><value>Ei käytössä</value></data>
-  <data name="Emulation.Option.vba_next.vbanext_rtc"><value>RTC (uudelleenkäynnistys)</value></data>
+  <data name="Emulation.Option.vba_next.vbanext_rtc"><value>RTC</value></data>
   <data name="Emulation.Option.vba_next.vbanext_rtc.Help"><value>Controls Real-Time Clock Emulation. 'auto' käyttää per-ROM- ohituslistaa. 'Aktivoidut' voimat RTC päälle tahansa ROM (hyödyllinen ROM hakata tarvitsevat RTC ilman yhteensopivaa ohitus). "pois päältä" voittaa RTC pois, ohittaa ohituksen luettelon.</value></data>
   <data name="Emulation.Option.vba_next.vbanext_rtc.Value.auto"><value>Automaattinen</value></data>
   <data name="Emulation.Option.vba_next.vbanext_rtc.Value.enabled"><value>Käytössä</value></data>
@@ -3325,11 +3392,11 @@
   <data name="Emulation.Option.dolphin.dolphin_emulation_speed.Value.1.0"><value>100% (normaali nopeus)</value></data>
   <data name="Emulation.Option.dolphin.dolphin_emulation_speed.Value.0.0"><value>Rajoittamaton</value></data>
   <data name="Emulation.Option.dolphin.dolphin_main_cpu_thread"><value>Ydin &gt; Kaksiydintila</value></data>
-  <data name="Emulation.Option.dolphin.dolphin_main_cpu_thread.Help"><value>Käytä dual-core CPU-emulointia. Vaatii ytimen RESTART.</value></data>
+  <data name="Emulation.Option.dolphin.dolphin_main_cpu_thread.Help"><value>Käytä dual-core CPU-emulointia.</value></data>
   <data name="Emulation.Option.dolphin.dolphin_main_cpu_thread.Value.disabled"><value>Ei käytössä</value></data>
   <data name="Emulation.Option.dolphin.dolphin_main_cpu_thread.Value.enabled"><value>Käytössä</value></data>
   <data name="Emulation.Option.dolphin.dolphin_main_load_game_into_memory"><value>Core &gt; Lataa koko peli muistiin</value></data>
-  <data name="Emulation.Option.dolphin.dolphin_main_load_game_into_memory.Help"><value>Lataa koko peli muistiin. Vaatii ytimen RESTART.</value></data>
+  <data name="Emulation.Option.dolphin.dolphin_main_load_game_into_memory.Help"><value>Lataa koko peli muistiin.</value></data>
   <data name="Emulation.Option.dolphin.dolphin_main_load_game_into_memory.Value.disabled"><value>Ei käytössä</value></data>
   <data name="Emulation.Option.dolphin.dolphin_main_load_game_into_memory.Value.enabled"><value>Käytössä</value></data>
   <data name="Emulation.Option.dolphin.dolphin_precision_frame_timing"><value>Ydin &gt; Tarkkuus Frame Ajoitus</value></data>
@@ -3349,7 +3416,7 @@
   <data name="Emulation.Option.dolphin.dolphin_main_accurate_cpu_cache.Value.disabled"><value>Ei käytössä</value></data>
   <data name="Emulation.Option.dolphin.dolphin_main_accurate_cpu_cache.Value.enabled"><value>Käytössä</value></data>
   <data name="Emulation.Option.dolphin.dolphin_cheats_enabled"><value>Ydin &gt; Sisäiset huijarit</value></data>
-  <data name="Emulation.Option.dolphin.dolphin_cheats_enabled.Help"><value>Ota käyttöön sisäänrakennetut huijauskoodit. Käynnistä ydin uudelleen voimaan.</value></data>
+  <data name="Emulation.Option.dolphin.dolphin_cheats_enabled.Help"><value>Ota käyttöön sisäänrakennetut huijauskoodit.</value></data>
   <data name="Emulation.Option.dolphin.dolphin_cheats_enabled.Value.disabled"><value>Ei käytössä</value></data>
   <data name="Emulation.Option.dolphin.dolphin_cheats_enabled.Value.enabled"><value>Käytössä</value></data>
   <data name="Emulation.Option.dolphin.dolphin_skip_gc_bios"><value>Ydin &gt; Skip GameCube BIOS</value></data>
@@ -3467,7 +3534,7 @@
   <data name="Emulation.Option.dolphin.dolphin_gc_sp1.Value.13"><value>ModeeminapainutinName</value></data>
   <data name="Emulation.Option.dolphin.dolphin_gc_sp1.Value.6"><value>Peruslevy</value></data>
   <data name="Emulation.Option.dolphin.dolphin_enable_gamecube_mic"><value>Järjestelmän asetukset (GC) &gt; GameCube-mikrofoni</value></data>
-  <data name="Emulation.Option.dolphin.dolphin_enable_gamecube_mic.Help"><value>Emuloida virallinen GameCube mikrofoni lisälaite. Aloita ydin uudelleen tämän vaihtoehdon muuttamisen jälkeen.</value></data>
+  <data name="Emulation.Option.dolphin.dolphin_enable_gamecube_mic.Help"><value>Emuloida virallinen GameCube mikrofoni lisälaite.</value></data>
   <data name="Emulation.Option.dolphin.dolphin_enable_gamecube_mic.Value.disabled"><value>Ei käytössä</value></data>
   <data name="Emulation.Option.dolphin.dolphin_enable_gamecube_mic.Value.enabled"><value>Käytössä</value></data>
   <data name="Emulation.Option.dolphin.dolphin_hotkey_activate_microphone"><value>Järjestelmän asetukset (GC) &gt; Mikrofonin painike</value></data>
@@ -3508,7 +3575,7 @@
   <data name="Emulation.Option.dolphin.dolphin_bluetooth_passthrough.Value.disabled"><value>Ei käytössä</value></data>
   <data name="Emulation.Option.dolphin.dolphin_bluetooth_passthrough.Value.enabled"><value>Käytössä</value></data>
   <data name="Emulation.Option.dolphin.dolphin_wiispeak_enable"><value>Järjestelmän asetukset &gt; Wii Speak</value></data>
-  <data name="Emulation.Option.dolphin.dolphin_wiispeak_enable.Help"><value>Emuloi Wii Speak -mikrofoni. Aloita uudelleen, kun muutat tätä vaihtoehtoa.</value></data>
+  <data name="Emulation.Option.dolphin.dolphin_wiispeak_enable.Help"><value>Emuloi Wii Speak -mikrofoni.</value></data>
   <data name="Emulation.Option.dolphin.dolphin_wiispeak_enable.Value.disabled"><value>Ei käytössä</value></data>
   <data name="Emulation.Option.dolphin.dolphin_wiispeak_enable.Value.enabled"><value>Käytössä</value></data>
   <data name="Emulation.Option.dolphin.dolphin_wiispeak_muted"><value>Ääni &gt; laitteet &gt; Wii Speak Muted</value></data>
@@ -3516,7 +3583,7 @@
   <data name="Emulation.Option.dolphin.dolphin_wiispeak_muted.Value.disabled"><value>Ei käytössä</value></data>
   <data name="Emulation.Option.dolphin.dolphin_wiispeak_muted.Value.enabled"><value>Käytössä</value></data>
   <data name="Emulation.Option.dolphin.dolphin_wii_logi_microphone_enable"><value>Järjestelmän asetukset &gt; Logitech USB-mikrofoni</value></data>
-  <data name="Emulation.Option.dolphin.dolphin_wii_logi_microphone_enable.Help"><value>Emulgoi Logitech USB-mikrofoni. Aloita uudelleen, kun muutat tätä vaihtoehtoa.</value></data>
+  <data name="Emulation.Option.dolphin.dolphin_wii_logi_microphone_enable.Help"><value>Emulgoi Logitech USB-mikrofoni.</value></data>
   <data name="Emulation.Option.dolphin.dolphin_wii_logi_microphone_enable.Value.disabled"><value>Ei käytössä</value></data>
   <data name="Emulation.Option.dolphin.dolphin_wii_logi_microphone_enable.Value.enabled"><value>Käytössä</value></data>
   <data name="Emulation.Option.dolphin.dolphin_renderer"><value>Grafiikka &gt; Asetukset &gt; Grafiikan taustaosa</value></data>
@@ -3744,7 +3811,7 @@
   <data name="Emulation.Option.dolphin.dolphin_swing_angle.Help"><value>Pyörii keinun raajoihin (1-180°).</value></data>
   <data name="Emulation.Option.dolphin.dolphin_swing_angle.Value.90"><value>90° (Ohjaus)</value></data>
   <data name="Emulation.Option.dolphin.dolphin_cheats_import"><value>Tuo huijarit automaattisesti RetroArchiin</value></data>
-  <data name="Emulation.Option.dolphin.dolphin_cheats_import.Help"><value>Tuo dolphin ini-tiedostoa RetroArchiin. Käynnistä ydin uudelleen voimaan.</value></data>
+  <data name="Emulation.Option.dolphin.dolphin_cheats_import.Help"><value>Tuo dolphin ini-tiedostoa RetroArchiin.</value></data>
   <data name="Emulation.Option.dolphin.dolphin_cheats_import.Value.disabled"><value>Ei käytössä</value></data>
   <data name="Emulation.Option.dolphin.dolphin_cheats_import.Value.enabled"><value>Käytössä</value></data>
   <data name="Emulation.Option.dolphin.dolphin_save_load_settings"><value>RetroArch core &gt; Load &amp; Prevent Tallenna asetukset</value></data>
@@ -3756,7 +3823,7 @@
   <data name="Emulation.Option.dolphin.dolphin_ir_passthrough.Value.disabled"><value>Ei käytössä</value></data>
   <data name="Emulation.Option.dolphin.dolphin_ir_passthrough.Value.enabled"><value>Käytössä</value></data>
   <data name="Emulation.Option.dolphin.dolphin_libretro_vfs_enabled"><value>RetroArch core &gt; Ota virtuaalitiedostojärjestelmä käyttöön (VFS)</value></data>
-  <data name="Emulation.Option.dolphin.dolphin_libretro_vfs_enabled.Help"><value>Ota käyttöön VFS SAF / SMB jne. Vaatii ytimen RESTART. Tämä ominaisuus on NEW ja EXPERIMENTAL. Varmuuskopioi tallennukset säännöllisesti.</value></data>
+  <data name="Emulation.Option.dolphin.dolphin_libretro_vfs_enabled.Help"><value>Ota käyttöön VFS SAF / SMB jne. Tämä ominaisuus on NEW ja EXPERIMENTAL. Varmuuskopioi tallennukset säännöllisesti.</value></data>
   <data name="Emulation.Option.dolphin.dolphin_libretro_vfs_enabled.Value.disabled"><value>Ei käytössä</value></data>
   <data name="Emulation.Option.dolphin.dolphin_libretro_vfs_enabled.Value.enabled"><value>Käytössä</value></data>
   <data name="Emulation.Option.dolphin.dolphin_default_mouse_bindings_enabled"><value>RetroArch core &gt; Ota hiiren oletussiteet käyttöön</value></data>
@@ -3764,7 +3831,7 @@
   <data name="Emulation.Option.dolphin.dolphin_default_mouse_bindings_enabled.Value.disabled"><value>Ei käytössä</value></data>
   <data name="Emulation.Option.dolphin.dolphin_default_mouse_bindings_enabled.Value.enabled"><value>Käytössä</value></data>
   <data name="Emulation.Option.dolphin.dolphin_dsu_enabled"><value>Wiimote (DSU) &gt; Ota käyttöön DSU-asiakas</value></data>
-  <data name="Emulation.Option.dolphin.dolphin_dsu_enabled.Help"><value>Ota käyttöön DSU-ohjelma DualShock liikedatalle. Käynnistä ydin uudelleen voimaan.</value></data>
+  <data name="Emulation.Option.dolphin.dolphin_dsu_enabled.Help"><value>Ota käyttöön DSU-ohjelma DualShock liikedatalle.</value></data>
   <data name="Emulation.Option.dolphin.dolphin_dsu_enabled.Value.disabled"><value>Ei käytössä</value></data>
   <data name="Emulation.Option.dolphin.dolphin_dsu_enabled.Value.enabled"><value>Käytössä</value></data>
   <data name="Emulation.Option.dolphin.dolphin_dsu_ip_octet1"><value>Wiimote (DSU) &gt; Palvelin IP Octet 1</value></data>
@@ -3987,13 +4054,13 @@
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-dither-filter.Help"><value>Allow VI de-dither suodatin, palauttaa merkittävän värisyvyyden.</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-dither-filter.Value.True"><value>Käytössä</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-dither-filter.Value.False"><value>Ei käytössä</value></data>
-  <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-upscaling"><value>(ParaLLEl-RDP) Nostamiskerroin (uudelleenkäynnistys)</value></data>
+  <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-upscaling"><value>(ParaLLEl-RDP) Nostamiskerroin</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-upscaling.Help"><value>Käytetään sisäistä kiihdytystekijää.</value></data>
-  <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-super-sampled-read-back"><value>(ParaLLEl-RDP) SSAA:n kehyspuskurivaikutukset (käynnistä uudelleen)</value></data>
+  <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-super-sampled-read-back"><value>(ParaLLEl-RDP) SSAA:n kehyspuskurivaikutukset</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-super-sampled-read-back.Help"><value>Mahtava näyte runkopuskuriefektejä. Voimme esitellä esineitä.</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-super-sampled-read-back.Value.False"><value>Ei käytössä</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-super-sampled-read-back.Value.True"><value>Käytössä</value></data>
-  <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-super-sampled-read-back-dither"><value>(ParaLLEl-RDP) Dither SSAA framebuffer vaikutukset (käynnistä uudelleen)</value></data>
+  <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-super-sampled-read-back-dither"><value>(ParaLLEl-RDP) Dither SSAA framebuffer vaikutukset</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-super-sampled-read-back-dither.Help"><value>Dither super näyte framebufferin vaikutukset.</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-super-sampled-read-back-dither.Value.True"><value>Käytössä</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-super-sampled-read-back-dither.Value.False"><value>Ei käytössä</value></data>
@@ -4103,7 +4170,7 @@
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-pak4.Value.rumble"><value>trumble</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-pak4.Value.transfer"><value>siirto</value></data>
   <data name="Emulation.Emulator.parallel_n64.Description"><value>Emulgoi yhteensopivat Nintendo järjestelmät ParaLLEl N64.</value></data>
-  <data name="Emulation.Option.parallel_n64.parallel-n64-upscaling"><value>Suurennuskerroin (uudelleenkäynnistys)</value></data>
+  <data name="Emulation.Option.parallel_n64.parallel-n64-upscaling"><value>Suurennuskerroin</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-upscaling.Help"><value>Renderöi konsolin resoluutiolla. ParaLLEl-RDP kunnioittaa jokaista tekijää; Angrylion renderöi jopa 4x ja kohtelee 8x kuin 4x.</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-parallel-rdp-native-texture-lod"><value>Käytä natiivia tekstuuria LOD kun upscaling</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-parallel-rdp-native-texture-lod.Help"><value>Pick texture Mip tasot kuten konsoli olisi, konsoli pikselin jalanjäljestä pikemminkin kuin upscaled pikselien. Ilman sitä korkealuokkainen renderi Valikoi terävämpiä tasoja, ja pelit, jotka käyttävät tasoa kytkimenä näyttävät väärän kuvan (maalaus lopussa linnan käytävä Super Mario 64). Kunnioittanut ParaLLEl-RDP ja Angrylion.</value></data>
@@ -4348,7 +4415,7 @@
   <data name="Emulation.Option.parallel_n64.parallel-n64-rspplugin.Value.hle"><value>hle</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-rspplugin.Value.parallel"><value>rinnakkaiset</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-screensize"><value>Päätöslauselma</value></data>
-  <data name="Emulation.Option.parallel_n64.parallel-n64-screensize.Help"><value>Resoluutio (uudelleenkäynnistys)</value></data>
+  <data name="Emulation.Option.parallel_n64.parallel-n64-screensize.Help"><value>Resoluutio</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-aspectratiohint"><value>Kuvasuhde vihje</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-aspectratiohint.Help"><value>Aspect ratio vint (reinit)</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-aspectratiohint.Value.normal"><value>normaali</value></data>
@@ -4401,7 +4468,7 @@
   <data name="Emulation.Option.parallel_n64.parallel-n64-alt-map.Value.disabled"><value>Ei käytössä</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-alt-map.Value.enabled"><value>Käytössä</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-vcache-vbo"><value>(Glide64) Vertex- välimuisti VBO</value></data>
-  <data name="Emulation.Option.parallel_n64.parallel-n64-vcache-vbo.Help"><value>Vertex välimuisti VBO (käynnistä uudelleen)</value></data>
+  <data name="Emulation.Option.parallel_n64.parallel-n64-vcache-vbo.Help"><value>Vertex välimuisti VBO</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-vcache-vbo.Value.disabled"><value>Ei käytössä</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-vcache-vbo.Value.enabled"><value>Käytössä</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-boot-device"><value>Käynnistä laite</value></data>
@@ -4411,7 +4478,7 @@
   <data name="Emulation.Option.parallel_n64.parallel-n64-64dd-hardware.Help"><value>Käsittele sisältöä ilman tunnettua patruunan tai levyn otsikkoa 64DD-levynä. Kehittämislevyt ja MAME/SDK-kaatopaikat eivät sisällä otsikkomerkkiä; niiden otsikko tunnistaa säännölliset patruunat ja vähittäiskaupan D64-kuvat eikä tämä asetus vaikuta niihin.</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-64dd-hardware.Value.disabled"><value>Ei käytössä</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-64dd-hardware.Value.enabled"><value>Käytössä</value></data>
-  <data name="Emulation.Option.parallel_n64.parallel-n64-goldeneye-tlb-hack"><value>GoldenEye TLB kartoitus hakata (Käynnistä)</value></data>
+  <data name="Emulation.Option.parallel_n64.parallel-n64-goldeneye-tlb-hack"><value>GoldenEye TLB kartoitus hakata</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-goldeneye-tlb-hack.Help"><value>Kartta GoldenEye n kysyntä-sivutettu 0x7F000000 koodi segmentti suoraan päälle ROM, ohittaen pelin oma TLB hakulaite (ari64 dynarec vain). Historiallisesti tarvitaan GoldenEye ollenkaan; työpöydän-luokan isännöi tarkka polku nyt mittaa aivan yhtä nopeasti. Poista käytöstä laitteistouskollinen TLB käyttäytyminen tai muokattu ROM, joka siirtää pelin segmentin, joka kartoitus turmelisi.</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-goldeneye-tlb-hack.Value.enabled"><value>Käytössä</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-goldeneye-tlb-hack.Value.disabled"><value>Ei käytössä</value></data>
@@ -4580,7 +4647,7 @@
   <data name="Emulation.Option.parallel_n64.parallel-n64-rtc-savestate"><value>Rollback N64 järjestelmän kellon savestate kuorma</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-rtc-savestate.Value.enabled"><value>Kyllä</value></data>
   <data name="Emulation.Emulator.pokemini.Description"><value>Emulgoi yhteensopivat Nintendo-järjestelmät PokeMinin kanssa.</value></data>
-  <data name="Emulation.Option.pokemini.pokemini_video_scale"><value>Videoasteikko (käynnistä uudelleen)</value></data>
+  <data name="Emulation.Option.pokemini.pokemini_video_scale"><value>Videoasteikko</value></data>
   <data name="Emulation.Option.pokemini.pokemini_video_scale.Help"><value>Aseta sisäinen videon mittakaavakerroin. Asteikon lisääminen parantaa sisäisen Dot Matrix - LCD-suodattimen ulkonäköä.</value></data>
   <data name="Emulation.Option.pokemini.pokemini_60hz_mode"><value>60Hz-tila</value></data>
   <data name="Emulation.Option.pokemini.pokemini_60hz_mode.Help"><value>Päivitä näyttö 60Hz sijasta natiivi 72Hz Pokemon Mini n virkistysnopeus pudottamalla joka kuudes kehys. Vähentää videon sileyttä, mutta välttää näytön repeytymistä näytöillä, jotka eivät tue natiivia toimintaa yli 60Hz.</value></data>
@@ -4780,13 +4847,13 @@
   <data name="Emulation.Firmware.bsnes.Slot18"><value>SGB- käynnistyskuva</value></data>
   <data name="Emulation.Firmware.bsnes.Slot19"><value>BS-X - Sore wa Namae o Nusumareeta Machi no Monogatari (Japani) (Rev 1)</value></data>
   <data name="Emulation.Emulator.bsnes_jg.Description"><value>Emulgoi yhteensopivat Nintendo-järjestelmät bsnes-jg:llä.</value></data>
-  <data name="Emulation.Option.bsnes_jg.bsnes_jg_coproc_delaysync"><value>Viivästys LLE Coprocesser Sync (käynnistä uudelleen)</value></data>
+  <data name="Emulation.Option.bsnes_jg.bsnes_jg_coproc_delaysync"><value>Viivästys LLE Coprocesser Sync</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_coproc_delaysync.Help"><value>Viivästytä synkronointia käytettäessä matalan tason coprocesser Emulsiota lisää nopeutta tarkkuushintaan</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_coproc_delaysync.Value.off"><value>Off (Default)</value></data>
-  <data name="Emulation.Option.bsnes_jg.bsnes_jg_coproc_preferhle"><value>Suosi HLE coprocesser Emulsio (Käynnistä)</value></data>
+  <data name="Emulation.Option.bsnes_jg.bsnes_jg_coproc_preferhle"><value>Suosi HLE coprocesser Emulsio</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_coproc_preferhle.Help"><value>Käytä korkean tason coprocess Emulsiota, jos mahdollista, enemmän nopeutta tarkkuushintaan</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_coproc_preferhle.Value.off"><value>Off (Default)</value></data>
-  <data name="Emulation.Option.bsnes_jg.bsnes_jg_hotfixes"><value>Hotfiksit (käynnistä uudelleen)</value></data>
+  <data name="Emulation.Option.bsnes_jg.bsnes_jg_hotfixes"><value>Hotfiksit</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_hotfixes.Help"><value>Käytä Hotfixejä, kun pelaat kourallinen pelejä julkaistiin suuria vikoja (jotka ovat esillä oikealla laitteistolla). Pelit: Dirt Racer, Magical Drop, Rendering Ranger R2</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_hotfixes.Value.off"><value>Off (Default)</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_runahead"><value>Sisäinen suorituksen pää</value></data>
@@ -4796,10 +4863,10 @@
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_runahead.Value.2"><value>2 kehikkoa</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_runahead.Value.3"><value>3 kehikkoa</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_runahead.Value.4"><value>4 kehikkoa</value></data>
-  <data name="Emulation.Option.bsnes_jg.bsnes_jg_low_latency_audio"><value>Low Latency Audio (uudelleenkäynnistys)</value></data>
+  <data name="Emulation.Option.bsnes_jg.bsnes_jg_low_latency_audio"><value>Low Latency Audio</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_low_latency_audio.Help"><value>Käytä pienempiä audio näyte paloja paremman kokemuksen käytettäessä etulinjan alhainen latenssi äänen konfiguraatio. Tämän vaihtoehdon käyttäminen vaativissa coprocess-peleissä voi aiheuttaa ääniesineitä.</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_low_latency_audio.Value.off"><value>Off (Default)</value></data>
-  <data name="Emulation.Option.bsnes_jg.bsnes_jg_rsqual"><value>Uusintanäytteen laatu (käynnistä uudelleen)</value></data>
+  <data name="Emulation.Option.bsnes_jg.bsnes_jg_rsqual"><value>Uusintanäytteen laatu</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_rsqual.Help"><value>Aseta sisäinen uudelleennäyttäjän laatutaso (saatat kuulla eron, jos käytät pro audio laitteet ja mielikuvitusta)</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_rsqual.Value.fast"><value>Nopea (Default)</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_rsqual.Value.medium"><value>Keskisuuri</value></data>
@@ -4943,8 +5010,8 @@
   <data name="Emulation.Option.bsnes_hd_beta.bsnes_coprocessor_prefer_hle.Help"><value>Kun tämä asetus on käytössä, vähemmän tarkkoja HLE-emulointia käytetään aina, kun se on käytettävissä. Jos HLE ei ole käytössä, sitä käytetään vain silloin, kun LLE-ohjelmisto puuttuu.</value></data>
   <data name="Emulation.Option.bsnes_hd_beta.bsnes_coprocessor_prefer_hle.Value.ON"><value>Käytössä</value></data>
   <data name="Emulation.Option.bsnes_hd_beta.bsnes_coprocessor_prefer_hle.Value.OFF"><value>Ei käytössä</value></data>
-  <data name="Emulation.Option.bsnes_hd_beta.bsnes_sgb_bios"><value>Preferred Super Game Boy BIOS (vaatii uudelleenkäynnistystä)</value></data>
-  <data name="Emulation.Option.bsnes_hd_beta.bsnes_sgb_bios.Help"><value>Mahdollistaa valita haluamasi Super Game Boy BIOS käytetään yhteensopivia otsikoita. Vaaditaan uudelleenkäynnistystä, jotta se tulisi voimaan.</value></data>
+  <data name="Emulation.Option.bsnes_hd_beta.bsnes_sgb_bios"><value>Preferred Super Game Boy BIOS</value></data>
+  <data name="Emulation.Option.bsnes_hd_beta.bsnes_sgb_bios.Help"><value>Mahdollistaa valita haluamasi Super Game Boy BIOS käytetään yhteensopivia otsikoita.</value></data>
   <data name="Emulation.Option.bsnes_hd_beta.bsnes_run_ahead_frames"><value>Sisäinen suorituksen pää</value></data>
   <data name="Emulation.Option.bsnes_hd_beta.bsnes_run_ahead_frames.Help"><value>Simuloi järjestelmää etukäteen ja pyörii takaisin vähentää syöte latenssi. Järjestelmävaatimukset ovat erittäin korkeat.</value></data>
   <data name="Emulation.Option.bsnes_hd_beta.bsnes_run_ahead_frames.Value.OFF"><value>Ei käytössä</value></data>
@@ -5189,7 +5256,7 @@
   <data name="Emulation.Option.bsnes_mercury_accuracy.bsnes_crop_overscan"><value>Crop overscan</value></data>
   <data name="Emulation.Option.bsnes_mercury_accuracy.bsnes_crop_overscan.Value.disabled"><value>Ei käytössä</value></data>
   <data name="Emulation.Option.bsnes_mercury_accuracy.bsnes_crop_overscan.Value.enabled"><value>Käytössä</value></data>
-  <data name="Emulation.Option.bsnes_mercury_accuracy.bsnes_gamma_ramp"><value>Gamma-ramppi (edellyttää uudelleenkäynnistystä)</value></data>
+  <data name="Emulation.Option.bsnes_mercury_accuracy.bsnes_gamma_ramp"><value>Gamma-ramppi</value></data>
   <data name="Emulation.Option.bsnes_mercury_accuracy.bsnes_gamma_ramp.Value.disabled"><value>Ei käytössä</value></data>
   <data name="Emulation.Option.bsnes_mercury_accuracy.bsnes_gamma_ramp.Value.enabled"><value>Käytössä</value></data>
   <data name="Emulation.Firmware.bsnes_mercury_accuracy.Slot0"><value>Ulkoiset laiteohjelmistot</value></data>
@@ -5227,7 +5294,7 @@
   <data name="Emulation.Option.bsnes_mercury_balanced.bsnes_crop_overscan"><value>Crop overscan</value></data>
   <data name="Emulation.Option.bsnes_mercury_balanced.bsnes_crop_overscan.Value.disabled"><value>Ei käytössä</value></data>
   <data name="Emulation.Option.bsnes_mercury_balanced.bsnes_crop_overscan.Value.enabled"><value>Käytössä</value></data>
-  <data name="Emulation.Option.bsnes_mercury_balanced.bsnes_gamma_ramp"><value>Gamma-ramppi (edellyttää uudelleenkäynnistystä)</value></data>
+  <data name="Emulation.Option.bsnes_mercury_balanced.bsnes_gamma_ramp"><value>Gamma-ramppi</value></data>
   <data name="Emulation.Option.bsnes_mercury_balanced.bsnes_gamma_ramp.Value.disabled"><value>Ei käytössä</value></data>
   <data name="Emulation.Option.bsnes_mercury_balanced.bsnes_gamma_ramp.Value.enabled"><value>Käytössä</value></data>
   <data name="Emulation.Firmware.bsnes_mercury_balanced.Slot0"><value>Ulkoiset laiteohjelmistot</value></data>
@@ -5265,7 +5332,7 @@
   <data name="Emulation.Option.bsnes_mercury_performance.bsnes_crop_overscan"><value>Crop overscan</value></data>
   <data name="Emulation.Option.bsnes_mercury_performance.bsnes_crop_overscan.Value.disabled"><value>Ei käytössä</value></data>
   <data name="Emulation.Option.bsnes_mercury_performance.bsnes_crop_overscan.Value.enabled"><value>Käytössä</value></data>
-  <data name="Emulation.Option.bsnes_mercury_performance.bsnes_gamma_ramp"><value>Gamma-ramppi (edellyttää uudelleenkäynnistystä)</value></data>
+  <data name="Emulation.Option.bsnes_mercury_performance.bsnes_gamma_ramp"><value>Gamma-ramppi</value></data>
   <data name="Emulation.Option.bsnes_mercury_performance.bsnes_gamma_ramp.Value.disabled"><value>Ei käytössä</value></data>
   <data name="Emulation.Option.bsnes_mercury_performance.bsnes_gamma_ramp.Value.enabled"><value>Käytössä</value></data>
   <data name="Emulation.Firmware.bsnes_mercury_performance.Slot0"><value>Ulkoiset laiteohjelmistot</value></data>
@@ -5562,13 +5629,13 @@
   <data name="Emulation.Option.snes9x2002.snes9x2002_low_pass_filter.Value.enabled"><value>Käytössä</value></data>
   <data name="Emulation.Option.snes9x2002.snes9x2002_low_pass_range"><value>Äänisuotimen taso</value></data>
   <data name="Emulation.Option.snes9x2002.snes9x2002_low_pass_range.Help"><value>Määritetään matalan pass-äänisuodattimen katkaisutaajuus. Korkeampi arvo lisää suodattimen "vahvuutta," koska suuritaajuusspektrin vaihteluväliä heikennetään.</value></data>
-  <data name="Emulation.Option.snes9x2002.snes9x2002_overclock_cycles"><value>Vähennä hidastamista (Hack, Unsafeal, Restart)</value></data>
+  <data name="Emulation.Option.snes9x2002.snes9x2002_overclock_cycles"><value>Vähennä hidastamista</value></data>
   <data name="Emulation.Option.snes9x2002.snes9x2002_overclock_cycles.Help"><value>Monet pelit SNES kärsivät hidastumisesta johtuen heikko tärkein CPU. Tämä vaihtoehto auttaa lievittämään tätä hinnalla mahdolliset bugit. Yhteensopiva: Vähentää hidastumista, mutta pitää mahdollisimman paljon peli yhteensopivuus niin paljon kuin mahdollista. Max: Vähennä hidastumista mahdollisimman paljon, mutta rikkoo enemmän pelejä.</value></data>
   <data name="Emulation.Option.snes9x2002.snes9x2002_overclock_cycles.Value.disabled"><value>Ei käytössä</value></data>
   <data name="Emulation.Option.snes9x2002.snes9x2002_overclock_cycles.Value.compatible"><value>Yhteensopiva</value></data>
   <data name="Emulation.Option.snes9x2002.snes9x2002_overclock_cycles.Value.max"><value>Max</value></data>
   <data name="Emulation.Emulator.snes9x2005.Description"><value>Emulgoi yhteensopivat Nintendo-järjestelmät Snes9x 2005.</value></data>
-  <data name="Emulation.Option.snes9x2005.snes9x_2005_region"><value>Konsolin alue (uudelleenkäynnistys)</value></data>
+  <data name="Emulation.Option.snes9x2005.snes9x_2005_region"><value>Konsolin alue</value></data>
   <data name="Emulation.Option.snes9x2005.snes9x_2005_region.Help"><value>Määritä, mistä alueesta järjestelmä on peräisin. 'PAL' on 50hz, 'NTSC' 60hz. Pelit kulkevat normaalia nopeammin tai hitaammin, jos väärä alue valitaan.</value></data>
   <data name="Emulation.Option.snes9x2005.snes9x_2005_region.Value.auto"><value>Automaattinen</value></data>
   <data name="Emulation.Option.snes9x2005.snes9x_2005_frameskip"><value>Frameskip</value></data>
@@ -5584,7 +5651,7 @@
   <data name="Emulation.Option.snes9x2005.snes9x_2005_low_pass_filter.Value.enabled"><value>Käytössä</value></data>
   <data name="Emulation.Option.snes9x2005.snes9x_2005_low_pass_range"><value>Äänisuotimen taso</value></data>
   <data name="Emulation.Option.snes9x2005.snes9x_2005_low_pass_range.Help"><value>Määritetään matalan pass-äänisuodattimen katkaisutaajuus. Korkeampi arvo lisää suodattimen "vahvuutta," koska suuritaajuusspektrin vaihteluväliä heikennetään.</value></data>
-  <data name="Emulation.Option.snes9x2005.snes9x_2005_overclock_cycles"><value>Vähennä hidastamista (Hack, Unsafeal, Restart)</value></data>
+  <data name="Emulation.Option.snes9x2005.snes9x_2005_overclock_cycles"><value>Vähennä hidastamista</value></data>
   <data name="Emulation.Option.snes9x2005.snes9x_2005_overclock_cycles.Help"><value>Monet pelit SNES kärsivät hidastumisesta johtuen heikko tärkein CPU. Tämä vaihtoehto auttaa allievoida, että hintaan mahdolliset bugit. COMPATIBLE: Vähennä hidastumista, mutta pidä mahdollisimman paljon peli yhteensopivuus. MAX: Vähentää hidastumista mahdollisimman paljon, mutta rikkoo enemmän pelejä.</value></data>
   <data name="Emulation.Option.snes9x2005.snes9x_2005_overclock_cycles.Value.disabled"><value>Ei käytössä</value></data>
   <data name="Emulation.Option.snes9x2005.snes9x_2005_overclock_cycles.Value.compatible"><value>Yhteensopiva</value></data>
@@ -5594,7 +5661,7 @@
   <data name="Emulation.Option.snes9x2005.snes9x_2005_reduce_sprite_flicker.Value.disabled"><value>Ei käytössä</value></data>
   <data name="Emulation.Option.snes9x2005.snes9x_2005_reduce_sprite_flicker.Value.enabled"><value>Käytössä</value></data>
   <data name="Emulation.Emulator.snes9x2005_plus.Description"><value>Emulgoi yhteensopivat Nintendo-järjestelmät Snes9x 2005 Plus:n kanssa.</value></data>
-  <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_region"><value>Konsolin alue (uudelleenkäynnistys)</value></data>
+  <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_region"><value>Konsolin alue</value></data>
   <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_region.Help"><value>Määritä, mistä alueesta järjestelmä on peräisin. 'PAL' on 50hz, 'NTSC' 60hz. Pelit kulkevat normaalia nopeammin tai hitaammin, jos väärä alue valitaan.</value></data>
   <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_region.Value.auto"><value>Automaattinen</value></data>
   <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_frameskip"><value>Frameskip</value></data>
@@ -5604,7 +5671,7 @@
   <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_frameskip.Value.manual"><value>Käsikirja</value></data>
   <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_frameskip_threshold"><value>Frameskip-kynnys (%)</value></data>
   <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_frameskip_threshold.Help"><value>Kun 'Frameskip' on asetettu 'Manuaaliksi', määritellään äänipuskurin käyttöasteen raja-arvo (prosentti), jonka alapuolella kehykset jätetään väliin. Suuremmat arvot vähentävät säröilyn riskiä aiheuttamalla, että kehykset putoavat useammin.</value></data>
-  <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_overclock_cycles"><value>Vähennä hidastamista (Hack, Unsafeal, Restart)</value></data>
+  <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_overclock_cycles"><value>Vähennä hidastamista</value></data>
   <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_overclock_cycles.Help"><value>Monet pelit SNES kärsivät hidastumisesta johtuen heikko tärkein CPU. Tämä vaihtoehto auttaa allievoida, että hintaan mahdolliset bugit. COMPATIBLE: Vähennä hidastumista, mutta pidä mahdollisimman paljon peli yhteensopivuus. MAX: Vähentää hidastumista mahdollisimman paljon, mutta rikkoo enemmän pelejä.</value></data>
   <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_overclock_cycles.Value.disabled"><value>Ei käytössä</value></data>
   <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_overclock_cycles.Value.compatible"><value>Yhteensopiva</value></data>
@@ -5614,7 +5681,7 @@
   <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_reduce_sprite_flicker.Value.disabled"><value>Ei käytössä</value></data>
   <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_reduce_sprite_flicker.Value.enabled"><value>Käytössä</value></data>
   <data name="Emulation.Emulator.snes9x2010.Description"><value>Emulgoi yhteensopivat Nintendo-järjestelmät Snes9x 2010.</value></data>
-  <data name="Emulation.Option.snes9x2010.snes9x_2010_region"><value>Konsolin alue (uudelleenkäynnistys)</value></data>
+  <data name="Emulation.Option.snes9x2010.snes9x_2010_region"><value>Konsolin alue</value></data>
   <data name="Emulation.Option.snes9x2010.snes9x_2010_region.Help"><value>Määritä, mistä alueesta järjestelmä on peräisin. 'PAL' on 50hz, 'NTSC' 60hz. Pelit kulkevat normaalia nopeammin tai hitaammin, jos väärä alue valitaan.</value></data>
   <data name="Emulation.Option.snes9x2010.snes9x_2010_region.Value.auto"><value>Automaattinen</value></data>
   <data name="Emulation.Option.snes9x2010.snes9x_2010_audio_interpolation"><value>Äänen interpolointi (epätarkkuus)</value></data>
@@ -5671,7 +5738,7 @@
   <data name="Emulation.Option.snes9x2010.snes9x_2010_reduce_sprite_flicker.Help"><value>Lisää spriittien määrää, jotka voidaan piirtää samanaikaisesti näytölle.</value></data>
   <data name="Emulation.Option.snes9x2010.snes9x_2010_reduce_sprite_flicker.Value.disabled"><value>Ei käytössä</value></data>
   <data name="Emulation.Option.snes9x2010.snes9x_2010_reduce_sprite_flicker.Value.enabled"><value>Käytössä</value></data>
-  <data name="Emulation.Option.snes9x2010.snes9x_2010_block_invalid_vram_access"><value>Estä virheellinen VRAM-yhteys (käynnistä uudelleen)</value></data>
+  <data name="Emulation.Option.snes9x2010.snes9x_2010_block_invalid_vram_access"><value>Estä virheellinen VRAM-yhteys</value></data>
   <data name="Emulation.Option.snes9x2010.snes9x_2010_block_invalid_vram_access.Help"><value>Jotkut homebrew / ROM hakata edellyttää tätä vaihtoehtoa ei voida käyttää oikein.</value></data>
   <data name="Emulation.Option.snes9x2010.snes9x_2010_block_invalid_vram_access.Value.enabled"><value>Käytössä</value></data>
   <data name="Emulation.Option.snes9x2010.snes9x_2010_block_invalid_vram_access.Value.disabled"><value>Ei käytössä</value></data>
@@ -5738,7 +5805,7 @@
   <data name="Emulation.Option.mednafen_supafaust.supafaust_thread_affinity_emu"><value>Emulointilangan affiniteetti maski</value></data>
   <data name="Emulation.Option.mednafen_supafaust.supafaust_thread_affinity_ppu"><value>PPU renderöi lanka affinity maski</value></data>
   <data name="Emulation.Option.mednafen_supafaust.supafaust_renderer"><value>PPU-renderi</value></data>
-  <data name="Emulation.Option.beetle_vb.vb_3dmode"><value>3D-tila (edellyttää uudelleenkäynnistystä)</value></data>
+  <data name="Emulation.Option.beetle_vb.vb_3dmode"><value>3D-tila</value></data>
   <data name="Emulation.Option.beetle_vb.vb_3dmode.Help"><value>Valitse 3D-tila. Anaglyph - käytetään yhdessä klassinen dual-lens-väri lasit. Kyberscope - tarkoitettu käytettäväksi CyberScope 3D-laitteen kanssa. vieressä - vasemmanpuoleinen kuva näkyy vasemmalla, ja oikea-silmäinen kuva näytetään oikealla. vli - Pystysuorat linjat vuorotellen vasemman ja oikean näkymän välillä. hli - Vaakasuuntaiset viivat vuorotellen vasemmalle ja oikealle.</value></data>
   <data name="Emulation.Option.beetle_vb.vb_3dmode.Value.anaglyph"><value>anaglyfi</value></data>
   <data name="Emulation.Option.beetle_vb.vb_3dmode.Value.cyberscope"><value>kyberscope</value></data>
@@ -5773,7 +5840,7 @@
   <data name="Emulation.Option.beetle_vb.vb_opposite_directions.Help"><value>Salli painella ylös ja alas tai vasemmalle ja oikealle samanaikaisesti. Tämä voi aiheuttaa häiriöitä.</value></data>
   <data name="Emulation.Option.beetle_vb.vb_opposite_directions.Value.disabled"><value>Ei käytössä</value></data>
   <data name="Emulation.Option.beetle_vb.vb_opposite_directions.Value.enabled"><value>Käytössä</value></data>
-  <data name="Emulation.Option.beetle_vb.vb_cpu_emulation"><value>CPU-emulointi (käynnistä uudelleen)</value></data>
+  <data name="Emulation.Option.beetle_vb.vb_cpu_emulation"><value>CPU-emulointi</value></data>
   <data name="Emulation.Option.beetle_vb.vb_cpu_emulation.Help"><value>Valitse nopeamman ja tarkemman (hitaamman) emulgoinnin välillä.</value></data>
   <data name="Emulation.Option.beetle_vb.vb_cpu_emulation.Value.accurate"><value>tarkka</value></data>
   <data name="Emulation.Option.beetle_vb.vb_cpu_emulation.Value.fast"><value>Nopea</value></data>
@@ -5926,7 +5993,9 @@
   <data name="Emulation.Option.cemu.cemu_uninstall_game.Value.disabled"><value>Ei käytössä</value></data>
   <data name="Emulation.Option.cemu.cemu_uninstall_game.Value.enabled"><value>Käytössä</value></data>
   <data name="Emulation.Option.cemu.cemu_install_titles"><value>Asenna sisältö</value></data>
-  <data name="Emulation.Option.cemu.cemu_install_titles.Help"><value>Asentaa jokaisen päivityksen ja DLC:n järjestelmään/Cemu/otsikot saveiksi/Cemu/mlc01, emulgoidun konsolin tallennustilaan. Jokainen menee omaan kansioonsa siellä; NUS:n lataus (.app-tiedostot) tarvitsee title.tmdin ja sen title.tik:n, salausavaimen, vieressä. Jo asennettu versio, joka on sama tai uudempi jätetään yksin.&#xA;&#xA;Kun tämä on ON, asennus alkaa välittömästi, ja sen edistyminen näkyy ilmoituksena, ja se täyttää OFF uudelleen, kun kaikki sisältö on asennettu ja tämä valikko on poistettu tai toinen vaihtoehto on muutettu. Otsikko käyttää asennettua sisältöä, kun se käynnistetään uudelleen.&#xA;&#xA;RetroArchin päävalikkoon &gt; Load Content voidaan asentaa muista paikoista peräisin olevaa sisältöä valitsemalla vastaava title.tmd, jonka vieressä on title.tik.</value></data>
+  <data name="Emulation.Option.cemu.cemu_install_titles.Help"><value>Asentaa jokaisen päivityksen ja DLC:n järjestelmään/Cemu/otsikot saveiksi/Cemu/mlc01, emulgoidun konsolin tallennustilaan. Jokainen menee omaan kansioonsa siellä; NUS:n lataus (.app-tiedostot) tarvitsee title.tmdin ja sen title.tik:n, salausavaimen, vieressä. Jo asennettu versio, joka on sama tai uudempi jätetään yksin.
+
+Kun tämä on ON, asennus alkaa välittömästi, ja sen edistyminen näkyy ilmoituksena, ja se täyttää OFF uudelleen, kun kaikki sisältö on asennettu ja tämä valikko on poistettu tai toinen vaihtoehto on muutettu. RetroArchin päävalikkoon &gt; Load Content voidaan asentaa muista paikoista peräisin olevaa sisältöä valitsemalla vastaava title.tmd, jonka vieressä on title.tik.</value></data>
   <data name="Emulation.Option.cemu.cemu_install_titles.Value.disabled"><value>Ei käytössä</value></data>
   <data name="Emulation.Option.cemu.cemu_install_titles.Value.enabled"><value>Käytössä</value></data>
   <data name="Emulation.Option.cemu.cemu_uninstall_titles"><value>Poista sisältö</value></data>

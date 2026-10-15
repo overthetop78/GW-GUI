@@ -299,4 +299,7 @@
   <data name="Emulation.Video.Parameter.ProjectionVignette"><value>Σκουραίνει η άκρη</value></data>
   <data name="Emulation.Video.Projection.Group.Optics"><value>Οπτικά και φως</value></data>
   <data name="Emulation.Video.Projection.Group.Screen"><value>Οθόνη προβολής</value></data>
+  <data name="Emulation.Option.Common.Value.HardwareRendering"><value>Απόδοση μέσω υλικού</value></data>
+  <data name="Emulation.Option.Common.RenderingMode.Label"><value>Λειτουργία απόδοσης</value></data>
+  <data name="Emulation.Option.Common.RenderingMode.Help"><value>Η απόδοση μέσω υλικού χρησιμοποιεί το API γραφικών που έχει επιλεγεί για την εφαρμογή, εφόσον το υποστηρίζει ο εξομοιωτής.</value></data>
 </root>

@@ -6,7 +6,7 @@
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Sega.Help.General.Model.Short"><value>Mô hình máy Sega đang được cấu hình.</value></data>
   <data name="Emulation.Sega.Help.Memory.Ram.Short"><value>Một núi RAM sẵn sàng cho máy mô phỏng.</value></data>
-  <data name="Emulation.Sega.Help.Memory.Ram.Detailed"><value>Chọn cách mở rộng RAM được phơi bày bởi lõi mô phỏng. Máy phải khởi chạy lại trước khi dùng số lượng mới.</value></data>
+  <data name="Emulation.Sega.Help.Memory.Ram.Detailed"><value>Chọn cách mở rộng RAM được phơi bày bởi lõi mô phỏng.</value></data>
   <data name="Emulation.Sega.Help.Firmware.Integrated.Short"><value>Hệ thống ROM được xây dựng thành nhân tạo.</value></data>
   <data name="Emulation.Sega.Help.Firmware.Integrated.Detailed"><value>lõi mô phỏng cung cấp hệ thống ROM nội bộ và không phơi bày bộ chọn tập tin ROM.</value></data>
   <data name="Emulation.Sega.Help.General.Emulator.Short"><value>Mô phỏng được chọn cho chiếc máy này.</value></data>

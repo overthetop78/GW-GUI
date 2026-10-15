@@ -363,21 +363,21 @@
   <data name="Emulation.Option.desmume.desmume_firmware_language.Value.German"><value>Німецький</value></data>
   <data name="Emulation.Option.desmume.desmume_firmware_language.Value.Italian"><value>Італійська</value></data>
   <data name="Emulation.Option.desmume.desmume_firmware_language.Value.Spanish"><value>Іспанська</value></data>
-  <data name="Emulation.Option.desmume.desmume_use_external_bios"><value>Використання зовнішніх BIOS / Прошивка (редизайн)</value></data>
-  <data name="Emulation.Option.desmume.desmume_use_external_bios.Help"><value>Використовуйте офіційний BIOS. Ядро потрібно перезавантажити для внесення змін.</value></data>
+  <data name="Emulation.Option.desmume.desmume_use_external_bios"><value>Використання зовнішніх BIOS / Прошивка</value></data>
+  <data name="Emulation.Option.desmume.desmume_use_external_bios.Help"><value>Використовуйте офіційний BIOS.</value></data>
   <data name="Emulation.Option.desmume.desmume_use_external_bios.Value.disabled"><value>Вимкнено</value></data>
   <data name="Emulation.Option.desmume.desmume_use_external_bios.Value.enabled"><value>Увімкнено</value></data>
   <data name="Emulation.Option.desmume.desmume_boot_into_bios"><value>Черевики Into BIOS (тільки для зовнішніх біоів)</value></data>
   <data name="Emulation.Option.desmume.desmume_boot_into_bios.Help"><value>Завантажуйте безпосередньо в BIOS.</value></data>
   <data name="Emulation.Option.desmume.desmume_boot_into_bios.Value.disabled"><value>Вимкнено</value></data>
   <data name="Emulation.Option.desmume.desmume_boot_into_bios.Value.enabled"><value>Увімкнено</value></data>
-  <data name="Emulation.Option.desmume.desmume_load_to_memory"><value>Навантаження ігор в пам'яті (замок)</value></data>
+  <data name="Emulation.Option.desmume.desmume_load_to_memory"><value>Навантаження ігор в пам'яті</value></data>
   <data name="Emulation.Option.desmume.desmume_load_to_memory.Help"><value>Завантажуйте гру в пам'ять, щоб зменшити IO-лаг.</value></data>
   <data name="Emulation.Option.desmume.desmume_load_to_memory.Value.disabled"><value>Вимкнено</value></data>
   <data name="Emulation.Option.desmume.desmume_load_to_memory.Value.enabled"><value>Увімкнено</value></data>
   <data name="Emulation.Option.desmume.desmume_num_cores"><value>CPU Ядра</value></data>
   <data name="Emulation.Option.desmume.desmume_num_cores.Help"><value>Встановити кількість CPU ядер для використання.</value></data>
-  <data name="Emulation.Option.desmume.desmume_cpu_mode"><value>CPU Режим (запуск)</value></data>
+  <data name="Emulation.Option.desmume.desmume_cpu_mode"><value>CPU Режим</value></data>
   <data name="Emulation.Option.desmume.desmume_cpu_mode.Help"><value>Увімкнути або вимкнути використання динамічного рекомпіляра.</value></data>
   <data name="Emulation.Option.desmume.desmume_cpu_mode.Value.interpreter"><value>перекладач</value></data>
   <data name="Emulation.Option.desmume.desmume_jit_block_size"><value>Розмір блоку JIT</value></data>
@@ -390,11 +390,11 @@
   <data name="Emulation.Option.desmume.desmume_frameskip.Help"><value>Налаштовує кількість кадрів для пропуску.</value></data>
   <data name="Emulation.Option.desmume.desmume_internal_resolution"><value>Внутрішнє вирішення</value></data>
   <data name="Emulation.Option.desmume.desmume_internal_resolution.Help"><value>Встановлює внутрішню роздільну здатність. Висока роздільна здатність може забезпечити кращу чіткість для 3D сцен і об'єктів, але підвищить вимоги до виконання</value></data>
-  <data name="Emulation.Option.desmume.desmume_opengl_mode"><value>OpenGL Растеризатор (замок)</value></data>
+  <data name="Emulation.Option.desmume.desmume_opengl_mode"><value>OpenGL Растеризатор</value></data>
   <data name="Emulation.Option.desmume.desmume_opengl_mode.Help"><value>Увімкніть OpenGL Rasterizer для 3D.</value></data>
   <data name="Emulation.Option.desmume.desmume_opengl_mode.Value.disabled"><value>Вимкнено</value></data>
   <data name="Emulation.Option.desmume.desmume_opengl_mode.Value.enabled"><value>Увімкнено</value></data>
-  <data name="Emulation.Option.desmume.desmume_color_depth"><value>OpenGL: Колір Глибина (замок)</value></data>
+  <data name="Emulation.Option.desmume.desmume_color_depth"><value>OpenGL: Колір Глибина</value></data>
   <data name="Emulation.Option.desmume.desmume_color_depth.Help"><value>Встановлює колір Глибина як 16-бітних, так і 32-розрядних кольорів. Потрібні приймачі OpenGL.</value></data>
   <data name="Emulation.Option.desmume.desmume_gfx_multisampling"><value>OpenGL: Multisampling AA</value></data>
   <data name="Emulation.Option.desmume.desmume_gfx_multisampling.Help"><value>Налаштуйте мультиплікатор для багатошарового анти-розмноження. Потрібні приймачі OpenGL.</value></data>
@@ -510,7 +510,7 @@
   <data name="Emulation.Option.desmume.desmume_mic_mode.Value.random"><value>Випадковий</value></data>
   <data name="Emulation.Firmware.desmume.Slot0"><value>Прошивка NDS</value></data>
   <data name="Emulation.Emulator.desmume2015.Description"><value>Утеплювачі сумісні системи Nintendo з DeSmuME 2015.</value></data>
-  <data name="Emulation.Option.desmume2015.desmume_internal_resolution"><value>Внутрішня роздільна здатність (ретарт)</value></data>
+  <data name="Emulation.Option.desmume2015.desmume_internal_resolution"><value>Внутрішня роздільна здатність</value></data>
   <data name="Emulation.Option.desmume2015.desmume_num_cores"><value>CPU ядер</value></data>
   <data name="Emulation.Option.desmume2015.desmume_cpu_mode"><value>CPU режим</value></data>
   <data name="Emulation.Option.desmume2015.desmume_cpu_mode.Value.interpreter"><value>перекладач</value></data>
@@ -525,7 +525,7 @@
   <data name="Emulation.Option.desmume2015.desmume_screens_layout.Value.quick switch"><value>швидкий перемикач</value></data>
   <data name="Emulation.Option.desmume2015.desmume_screens_layout.Value.hybrid/top"><value>гібрид/топ</value></data>
   <data name="Emulation.Option.desmume2015.desmume_screens_layout.Value.hybrid/bottom"><value>гібридний / нижній</value></data>
-  <data name="Emulation.Option.desmume2015.desmume_hybrid_layout_scale"><value>Гібридна шкала макета (ретарт)</value></data>
+  <data name="Emulation.Option.desmume2015.desmume_hybrid_layout_scale"><value>Гібридна шкала макета</value></data>
   <data name="Emulation.Option.desmume2015.desmume_hybrid_showboth_screens"><value>Гібридний макет показує як екрани</value></data>
   <data name="Emulation.Option.desmume2015.desmume_hybrid_showboth_screens.Value.enabled"><value>Увімкнено</value></data>
   <data name="Emulation.Option.desmume2015.desmume_hybrid_showboth_screens.Value.disabled"><value>Вимкнено</value></data>
@@ -561,7 +561,7 @@
   <data name="Emulation.Option.desmume2015.desmume_pointer_stylus_jitter"><value>Увімкнути емулювати стилус Джиттер</value></data>
   <data name="Emulation.Option.desmume2015.desmume_pointer_stylus_jitter.Value.disabled"><value>Вимкнено</value></data>
   <data name="Emulation.Option.desmume2015.desmume_pointer_stylus_jitter.Value.enabled"><value>Увімкнено</value></data>
-  <data name="Emulation.Option.desmume2015.desmume_load_to_memory"><value>Навантаження гри в пам'ять (ретарт)</value></data>
+  <data name="Emulation.Option.desmume2015.desmume_load_to_memory"><value>Навантаження гри в пам'ять</value></data>
   <data name="Emulation.Option.desmume2015.desmume_load_to_memory.Value.disabled"><value>Вимкнено</value></data>
   <data name="Emulation.Option.desmume2015.desmume_load_to_memory.Value.enabled"><value>Увімкнено</value></data>
   <data name="Emulation.Option.desmume2015.desmume_advanced_timing"><value>Увімкнути розширений автобус-виставлення шин</value></data>
@@ -621,7 +621,7 @@
   <data name="Emulation.Option.melonds.melonds_threaded_renderer"><value>Threaded Програмне забезпечення Renderer</value></data>
   <data name="Emulation.Option.melonds.melonds_threaded_renderer.Value.disabled"><value>Вимкнено</value></data>
   <data name="Emulation.Option.melonds.melonds_threaded_renderer.Value.enabled"><value>Увімкнено</value></data>
-  <data name="Emulation.Option.melonds.melonds_opengl_renderer"><value>OpenGL Рендерер (Restart)</value></data>
+  <data name="Emulation.Option.melonds.melonds_opengl_renderer"><value>OpenGL Рендерер</value></data>
   <data name="Emulation.Option.melonds.melonds_opengl_renderer.Value.disabled"><value>Вимкнено</value></data>
   <data name="Emulation.Option.melonds.melonds_opengl_renderer.Value.enabled"><value>Увімкнено</value></data>
   <data name="Emulation.Option.melonds.melonds_opengl_resolution"><value>OpenGL Внутрішня резолюція</value></data>
@@ -678,7 +678,7 @@
   <data name="Emulation.Option.melonds.melonds_hybrid_small_screen.Value.Top"><value>Топи</value></data>
   <data name="Emulation.Option.melonds.melonds_hybrid_small_screen.Value.Duplicate"><value>Дублікат</value></data>
   <data name="Emulation.Option.melonds.melonds_hybrid_ratio"><value>Гібрид Ратио (OpenGL Only)</value></data>
-  <data name="Emulation.Option.melonds.melonds_jit_enable"><value>JIT Увімкнути (Restart)</value></data>
+  <data name="Emulation.Option.melonds.melonds_jit_enable"><value>JIT Увімкнути</value></data>
   <data name="Emulation.Option.melonds.melonds_jit_enable.Value.disabled"><value>Вимкнено</value></data>
   <data name="Emulation.Option.melonds.melonds_jit_enable.Value.enabled"><value>Увімкнено</value></data>
   <data name="Emulation.Option.melonds.melonds_jit_block_size"><value>Розмір блоку JIT</value></data>
@@ -720,7 +720,7 @@
   <data name="Emulation.Option.melondsds.melonds_audio_interpolation.Value.cubic"><value>Кубіччі</value></data>
   <data name="Emulation.Option.melondsds.melonds_audio_interpolation.Value.gaussian"><value>Гауссіан</value></data>
   <data name="Emulation.Option.melondsds.melonds_jit_enable"><value>JIT Рекомпілер</value></data>
-  <data name="Emulation.Option.melondsds.melonds_jit_enable.Help"><value>Відновлює код машин на рідний код, оскільки він працює, значно покращуючи продуктивність над простою інтерпретацією. Прийміть ефект на наступний перезарядж. Якщо ви не впевнені, залиште ввімкнено.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_jit_enable.Help"><value>Відновлює код машин на рідний код, оскільки він працює, значно покращуючи продуктивність над простою інтерпретацією. Якщо ви не впевнені, залиште ввімкнено.</value></data>
   <data name="Emulation.Option.melondsds.melonds_jit_enable.Value.disabled"><value>Вимкнено</value></data>
   <data name="Emulation.Option.melondsds.melonds_jit_enable.Value.enabled"><value>Увімкнено</value></data>
   <data name="Emulation.Option.melondsds.melonds_jit_block_size"><value>Розмір блоку</value></data>
@@ -731,15 +731,23 @@
   <data name="Emulation.Option.melondsds.melonds_jit_literal_optimisations.Value.disabled"><value>Вимкнено</value></data>
   <data name="Emulation.Option.melondsds.melonds_jit_literal_optimisations.Value.enabled"><value>Увімкнено</value></data>
   <data name="Emulation.Option.melondsds.melonds_jit_fast_memory"><value>Швидка пам'ять</value></data>
-  <data name="Emulation.Option.melondsds.melonds_jit_fast_memory.Help"><value>Вимкніть це, якщо працює melonDS DS через дебугер, інакше констант (але очікувано) SIGSEGVs буде дратувати. Прийміть ефект на наступний перезарядж. Якщо ви не впевнені, залиште ввімкнено.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_jit_fast_memory.Help"><value>Вимкніть це, якщо працює melonDS DS через дебугер, інакше констант (але очікувано) SIGSEGVs буде дратувати. Якщо ви не впевнені, залиште ввімкнено.</value></data>
   <data name="Emulation.Option.melondsds.melonds_jit_fast_memory.Value.disabled"><value>Вимкнено</value></data>
   <data name="Emulation.Option.melondsds.melonds_jit_fast_memory.Value.enabled"><value>Увімкнено</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_wfc_dns"><value>DNS Опади</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_wfc_dns.Help"><value>Сервер DNS для використання емульованої точки доступу ("melonAP"). Використовуйте це, щоб грати онлайн з користувацькими серверами, які перепрощують безперервні служби підключення Nintendo Wi-Fi. Підтримка ігор залежить від сервера. &#xA;Деякі інтернет-провайдери можуть блокувати запити на ці сервери. Якщо це справа для вас, див. https://tinyurl.com/393cb755 для тренування.&#xA;&#xA;Зазначені сервери не афілійовані з libretro, Nintendo, команда melonDS або автор цього ядра. Будь ласка, поважайте інших гравців і дотримуйтесь правил сервера.&#xA;&#xA;Якщо ви не впевнені, залиште на Kaeru WFC. Зміни приймають ефект при наступному перезавантаженні.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_wfc_dns.Help"><value>Сервер DNS для використання емульованої точки доступу ("melonAP"). Використовуйте це, щоб грати онлайн з користувацькими серверами, які перепрощують безперервні служби підключення Nintendo Wi-Fi. Підтримка ігор залежить від сервера.
+Деякі інтернет-провайдери можуть блокувати запити на ці сервери. Якщо це справа для вас, див. https://tinyurl.com/393cb755 для тренування.
+
+Зазначені сервери не афілійовані з libretro, Nintendo, команда melonDS або автор цього ядра. Будь ласка, поважайте інших гравців і дотримуйтесь правил сервера.
+
+Якщо ви не впевнені.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_wfc_dns.Value.95.217.77.181"><value>Віммфі (95.217.77.181)</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_wfc_dns.Value.default"><value>Не пропустіть</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_language"><value>Мова</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_language.Help"><value>Перевизнає мовний режим емульованої консолі.&#xA;&#xA;Використовуйте хост: використовує мову фронтенда, якщо підтримується консолі.&#xA;Не перевизначте: Використовуйте будь-яку мову вже встановлену на прошивці. Це поведінкова поведінка, якщо емулювати DS (або DSi NAND) не підтримує мову фронтенда.&#xA;&#xA;Не кожна гра відзначає це налаштування. Зміни приймають ефект при наступному перезавантаженні.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_language.Help"><value>Перевизнає мовний режим емульованої консолі.
+
+Використовуйте хост: використовує мову фронтенда, якщо підтримується консолі.
+Не перевизначте: Використовуйте будь-яку мову вже встановлену на прошивці. Це поведінкова поведінка.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_language.Value.auto"><value>Використовуйте Хост</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_language.Value.en"><value>Українська</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_language.Value.ja"><value>Японська</value></data>
@@ -749,11 +757,15 @@
   <data name="Emulation.Option.melondsds.melonds_firmware_language.Value.es"><value>Іспанська</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_language.Value.default"><value>Не пропустіть</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_username"><value>Ім'я користувача</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_username.Help"><value>Надіславши ім'я користувача, надану емультифікованій консолі.&#xA;&#xA;Не перевизначте: Використовуйте те, що ім'я визначаються на прошивці.&#xA;Guess: Спробуйте отримати ім'я користувача з Frontend. Якщо це не вдалося, спробуйте USER, USERNAME та змінні середовища LOGNAME.&#xA;melonDS DS: Користування "melonDS 0DS". Це за замовчуванням, якщо нічого іншого не працює.&#xA;&#xA;Назви обрізаються до 10 символів. Зміни приймають ефект при наступному перезавантаженні.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_username.Help"><value>Надіславши ім'я користувача, надану емультифікованій консолі.
+
+Не перевизначте: Використовуйте те, що ім'я визначаються на прошивці.
+Guess: Спробуйте отримати ім'я користувача з Frontend. Якщо це не вдалося, спробуйте USER, USERNAME та змінні середовища LOGNAME.
+melonDS DS: Користування "melonDS 0DS". Це за замовчуванням.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_username.Value.guess_username"><value>Гусени</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_username.Value.existing_username"><value>Не пропустіть</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_favorite_color"><value>Улюблений колір</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_favorite_color.Help"><value>Тема («фаворитний колір») емульсійної консолі. Зміни приймають ефект при наступному перезавантаженні.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_favorite_color.Help"><value>Тема («фаворитний колір») емульсійної консолі.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_favorite_color.Value.0"><value>Сірий</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_favorite_color.Value.1"><value>Коричневий</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_favorite_color.Value.2"><value>Червоний</value></data>
@@ -772,7 +784,7 @@
   <data name="Emulation.Option.melondsds.melonds_firmware_favorite_color.Value.15"><value>Темно-рожевий</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_favorite_color.Value.default"><value>Не пропустіть</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_birth_month"><value>Рік народження</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_birth_month.Help"><value>Місяць вашого дня народження. Зміни приймають ефект при наступному перезавантаженні.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_birth_month.Help"><value>Місяць вашого дня народження.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_birth_month.Value.1"><value>Січень</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_birth_month.Value.2"><value>Лютий</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_birth_month.Value.3"><value>Березень</value></data>
@@ -787,29 +799,32 @@
   <data name="Emulation.Option.melondsds.melonds_firmware_birth_month.Value.12"><value>Грудень</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_birth_month.Value.default"><value>Не пропустіть</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_birth_day"><value>День Народження</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_birth_day.Help"><value>У день протягом місяця вашого дня народження. Зміни приймають ефект при наступному перезавантаженні.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_birth_day.Help"><value>У день протягом місяця вашого дня народження.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_birth_day.Value.default"><value>Не пропустіть</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_enable_alarm"><value>Увімкнути сигналізацію</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_enable_alarm.Help"><value>Увімкнено емульовану сигналізацію консолі. Зміни приймають ефект при наступному перезавантаженні.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_enable_alarm.Help"><value>Увімкнено емульовану сигналізацію консолі.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_enable_alarm.Value.disabled"><value>Вимкнено</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_enable_alarm.Value.enabled"><value>Увімкнено</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_enable_alarm.Value.default"><value>Не пропустіть</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_alarm_hour"><value>Час автономної роботи</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_alarm_hour.Help"><value>Час настроченої сигналізації. Зміни приймають ефект при наступному перезавантаженні.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_alarm_hour.Help"><value>Час настроченої сигналізації.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_alarm_hour.Value.default"><value>Не пропустіть</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_alarm_minute"><value>Мінуси сигналізації</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_alarm_minute.Help"><value>Хвиля налаштованої сигналізації. Зміни приймають ефект при наступному перезавантаженні.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_alarm_minute.Help"><value>Хвиля налаштованої сигналізації.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_alarm_minute.Value.default"><value>Не пропустіть</value></data>
   <data name="Emulation.Option.melondsds.melonds_network_mode"><value>Мережевий режим</value></data>
-  <data name="Emulation.Option.melondsds.melonds_network_mode.Help"><value>Налаштуйте, як melonDS DS емулятори Nintendo WFC. Якщо ви не впевнені, скористайтеся Непрямим режимом.&#xA;&#xA;Непряма: Використовуйте libslirp, щоб скомпільувати мережевий стек DS. Проста і не потребує налаштування.&#xA;Пряма: Маршрути, що емулюють Wi-Fi пакети до інтерфейсу мережі хост. Швидше і надійніший, але вимагає підключення ethernet і який встановлюється WinPcap або Npcap. що libpcap встановлений. Якщо ви недоступні, знизилися назад до непрямого режиму.&#xA;&#xA;Зміни приймають ефект при наступному перезавантаженні. Не пов'язані з локальним багатокористувацькими.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_network_mode.Help"><value>Налаштуйте, як melonDS DS емулятори Nintendo WFC. Якщо ви не впевнені, скористайтеся Непрямим режимом.
+
+Непряма: Використовуйте libslirp, щоб скомпільувати мережевий стек DS. Проста і не потребує налаштування.
+Пряма: Маршрути, що емулюють Wi-Fi пакети до інтерфейсу мережі хост. Швидше і надійніший, але вимагає підключення ethernet і який встановлюється WinPcap або Npcap. що libpcap встановлений. Якщо ви недоступні.</value></data>
   <data name="Emulation.Option.melondsds.melonds_network_mode.Value.disabled"><value>Вимкнено</value></data>
   <data name="Emulation.Option.melondsds.melonds_network_mode.Value.indirect"><value>Непрямий</value></data>
   <data name="Emulation.Option.melondsds.melonds_network_mode.Value.direct"><value>Напрямок</value></data>
   <data name="Emulation.Option.melondsds.melonds_direct_network_interface"><value>Інтерфейс мережі (режим прямого)</value></data>
-  <data name="Emulation.Option.melondsds.melonds_direct_network_interface.Help"><value>Виберіть мережевий інтерфейс для використання з прямим режимом. Якщо ви не замовляєте, встановіть на автоматичне. Зміни приймають ефект на наступному серцевому перезарядженні.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_direct_network_interface.Help"><value>Виберіть мережевий інтерфейс для використання з прямим режимом. Якщо ви не замовляєте.</value></data>
   <data name="Emulation.Option.melondsds.melonds_direct_network_interface.Value.auto"><value>Автоматичний</value></data>
   <data name="Emulation.Option.melondsds.melonds_mac_address_mode"><value>Режим доступу до мережі MAC</value></data>
-  <data name="Emulation.Option.melondsds.melonds_mac_address_mode.Help"><value>Налаштуйте, як встановлюється адреса MAC емульсійної консолі. Зміна цього параметра може зробити локальний багатокористувацький неможливий або блокувати доступ до збереження файлів в іграх, які використовують MAC-адресу для запобігання тампперингу збережених файлів (тобто. Покемон.&#xA;Немає відношення до інтерфейсу прямого режиму. Зміни приймають ефект при наступному перезавантаженні.&#xA;https://bit.ly/4fJtWKN для отримання додаткової інформації.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_mac_address_mode.Help"><value>Налаштуйте, як встановлюється адреса MAC емульсійної консолі. Зміна цього параметра може зробити локальний багатокористувацький неможливий або блокувати доступ до збереження файлів в іграх.</value></data>
   <data name="Emulation.Option.melondsds.melonds_mac_address_mode.Value.firmware"><value>Набір з прошивки</value></data>
   <data name="Emulation.Option.melondsds.melonds_mac_address_mode.Value.from-username"><value>Захист від імені libretro</value></data>
   <data name="Emulation.Option.melondsds.melonds_show_unsupported_features"><value>Warn Про Unsupported Особливості</value></data>
@@ -1042,25 +1057,68 @@
   <data name="Emulation.Option.melondsds.melonds_screen_layout8.Value.rotate-right"><value>Поворотний правий</value></data>
   <data name="Emulation.Option.melondsds.melonds_screen_layout8.Value.rotate-180"><value>Вгору вниз</value></data>
   <data name="Emulation.Option.melondsds.melonds_console_mode"><value>Режим консолі</value></data>
-  <data name="Emulation.Option.melondsds.melonds_console_mode.Help"><value>Чи можна скомпільувати Nintendo DS або a Nintendo DSi.&#xA;&#xA;Авто використовує режим DSi для ігор, які потребують режиму DSi та DS для всіх інших. У налаштуваннях DS та DSi змусити відповідну консоль; це в основному корисно для розвитку домашніх тварин.&#xA;&#xA;Режим DSi має певні ліміти:&#xA;&#xA;- Нативні файли BIOS/firmware/NAND повинні бути надані, в тому числі для регулярних DS.&#xA;- Деякі функції (наприклад, Savestates) не доступні в режимі DSi.&#xA;&#xA;Дивитися параметри DSi в цій категорії для отримання більш детальної інформації. Якщо ви не впевнені, користуйтеся авто. Зміни приймають ефект на наступному перезавантаженні.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_console_mode.Help"><value>Чи можна скомпільувати Nintendo DS або a Nintendo DSi.
+
+Авто використовує режим DSi для ігор, які потребують режиму DSi та DS для всіх інших. У налаштуваннях DS та DSi змусити відповідну консоль; це в основному корисно для розвитку домашніх тварин.
+
+Режим DSi має певні ліміти:
+
+- Нативні файли BIOS/firmware/NAND повинні бути надані, в тому числі для регулярних DS.
+- Деякі функції (наприклад, Savestates) не доступні в режимі DSi.
+
+Дивитися параметри DSi в цій категорії для отримання більш детальної інформації. Якщо ви не впевнені.</value></data>
   <data name="Emulation.Option.melondsds.melonds_console_mode.Value.auto"><value>Автоматичний</value></data>
   <data name="Emulation.Option.melondsds.melonds_console_mode.Value.dsi"><value>DSi (експертиментальні)</value></data>
   <data name="Emulation.Option.melondsds.melonds_sysfile_mode"><value>Режим BIOS/Прошивка (режим DS)</value></data>
-  <data name="Emulation.Option.melondsds.melonds_sysfile_mode.Help"><value>Визначає, чи melonDS використовує рідні BIOS/підтверджувальні відвали або власні вбудовані заміни. Тільки стосується режиму DS, так як режим DSi завжди вимагає рідних BIOS і мікропрограм.&#xA;&#xA;Нативний режим використовує файли BIOS і прошивки з реальних DS. Помістіть свої пельмені даних в системному каталозі або його підкатегорію "melonDS DS" і ім'я їх наступним чином:&#xA;&#xA;- DS BIOS: bios7.bin, bios9.bin&#xA;- DSi BIOS: dsi_bios7.bin, dsi_bios9.bin&#xA;- Прошивка: Дивитися "DS прошивку" і Параметри прошивки "DSi".&#xA;- DSi NAND: Дивитися "DSi 0NAND" варіант.&#xA;&#xA;Повернутися до Вбудованого, якщо не знайдено жодного файла BIOS/firmware.&#xA;&#xA;Вбудований режим використовує melonDS вбудовану BIOS і прошивку, а також підходить для більшості ігор.&#xA;&#xA;Зміни приймають ефект при наступному перезавантаженні.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_sysfile_mode.Help"><value>Визначає, чи melonDS використовує рідні BIOS/підтверджувальні відвали або власні вбудовані заміни. Тільки стосується режиму DS, так як режим DSi завжди вимагає рідних BIOS і мікропрограм.
+
+Нативний режим використовує файли BIOS і прошивки з реальних DS. Помістіть свої пельмені даних в системному каталозі або його підкатегорію "melonDS DS" і ім'я їх наступним чином:
+
+- DS BIOS: bios7.bin, bios9.bin
+- DSi BIOS: dsi_bios7.bin, dsi_bios9.bin
+- Прошивка: Дивитися "DS прошивку" і Параметри прошивки "DSi".
+- DSi NAND: Дивитися "DSi 0NAND" варіант.
+
+Повернутися до Вбудованого, якщо не знайдено жодного файла BIOS/firmware.
+
+Вбудований режим використовує melonDS вбудовану BIOS і прошивку.</value></data>
   <data name="Emulation.Option.melondsds.melonds_sysfile_mode.Value.native"><value>Навігація</value></data>
   <data name="Emulation.Option.melondsds.melonds_sysfile_mode.Value.builtin"><value>Вбудований</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_nds_path"><value>Прошивка DS</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_nds_path.Help"><value>Виберіть зображення прошивки для використання в режимі DS. Файли вказані тут, якщо вони:&#xA;&#xA;- Чи є всередині каталогу системи фронтенда, або підкатегорії імені "melonDS DS".&#xA;- Є точно 131,072 байтів (128KB), 262,144 bytes (256KB) або 524,288 bytes (512KB).&#xA;- Забезпечити достовірні дані заголовка для прошивки DS.&#xA;&#xA;Nintendo WFC ID зберігаються у прошивці, тому перемикання знімків прошивки може призвести до втрати деяких даних WFC. Ignored в режимі DSi або якщо BIOS / прошивка режим вбудований. Зміни приймають ефект при наступному перезавантаженні.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_nds_path.Help"><value>Виберіть зображення прошивки для використання в режимі DS. Файли вказані тут, якщо вони:
+
+- Чи є всередині каталогу системи фронтенда, або підкатегорії імені "melonDS DS".
+- Є точно 131,072 байтів (128KB), 262,144 bytes (256KB) або 524,288 bytes (512KB).
+- Забезпечити достовірні дані заголовка для прошивки DS.
+
+Nintendo WFC ID зберігаються у прошивці.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_nds_path.Value./notfound"><value>Не знайдено...</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_dsi_path"><value>Прошивка DSi</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_dsi_path.Help"><value>Виберіть зображення прошивки для використання в режимі DSi. Файли вказані тут, якщо вони:&#xA;&#xA;- Чи є всередині каталогу системи фронтенда, або підкатегорії імені "melonDS DS".&#xA;- Є точно 131,072 байтів (128KB), 262,144 bytes (256KB) або 524,288 bytes (512KB).&#xA;- Забезпечити достовірні дані заголовка для прошивки DSi.&#xA;&#xA;Nintendo WFC ID зберігаються у прошивці, тому перемикання знімків прошивки може призвести до втрати деяких даних WFC. Зміни приймають ефект при наступному перезавантаженні.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_dsi_path.Help"><value>Виберіть зображення прошивки для використання в режимі DSi. Файли вказані тут, якщо вони:
+
+- Чи є всередині каталогу системи фронтенда, або підкатегорії імені "melonDS DS".
+- Є точно 131,072 байтів (128KB), 262,144 bytes (256KB) або 524,288 bytes (512KB).
+- Забезпечити достовірні дані заголовка для прошивки DSi.
+
+Nintendo WFC ID зберігаються у прошивці.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_dsi_path.Value./notfound"><value>Не знайдено...</value></data>
   <data name="Emulation.Option.melondsds.melonds_dsi_nand_path"><value>DSi NAND Шлях</value></data>
-  <data name="Emulation.Option.melondsds.melonds_dsi_nand_path.Help"><value>Виберіть зображення DSi NAND для використання. Потрібні при використанні режиму DSi. Файли вказані тут, якщо вони:&#xA;&#xA;- Чи є всередині каталогу системи фронтенда, або підкатегорії імені "melonDS DS".&#xA;- Чи є точно 251,658,304 байтів (240MB) або 257,425,472 bytes (245.5MB) довгий з дійсними даними нижнього колонтитула, OR;&#xA;- Чи є 64 байтів коротше, ніж ці довжини і містять еквівалентні дані при вимкненні файлів 0xFF800.&#xA;&#xA;Встановити до "Авто" для того, щоб випустити ядро зображення NAND, регіон якого відповідає завантаженому DSiWare ROM. Зміни приймають ефект при наступному перезавантаженні.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_dsi_nand_path.Help"><value>Виберіть зображення DSi NAND для використання. Потрібні при використанні режиму DSi. Файли вказані тут, якщо вони:
+
+- Чи є всередині каталогу системи фронтенда, або підкатегорії імені "melonDS DS".
+- Чи є точно 251,658,304 байтів (240MB) або 257,425,472 bytes (245.5MB) довгий з дійсними даними нижнього колонтитула, OR;
+- Чи є 64 байтів коротше, ніж ці довжини і містять еквівалентні дані при вимкненні файлів 0xFF800.
+
+Встановити до "Авто" для того, щоб випустити ядро зображення NAND.</value></data>
   <data name="Emulation.Option.melondsds.melonds_dsi_nand_path.Value./auto"><value>Авто (матч ROM область)</value></data>
   <data name="Emulation.Option.melondsds.melonds_dsi_nand_path.Value./notfound"><value>Не знайдено...</value></data>
   <data name="Emulation.Option.melondsds.melonds_boot_mode"><value>Режим завантаження</value></data>
-  <data name="Emulation.Option.melondsds.melonds_boot_mode.Help"><value>Визначення, як melonDS завантажує ігри.&#xA;&#xA;Натив: Завантаження ігор через меню системи, аналогічні реальним процесам завантаження DS/DSi. Вимагає рідних BIOS і файлів прошивок в каталозі системи.&#xA;Прямий: Пропустити меню системи і перейти прямо в гру. Підтримувані для DSiWare, якщо доступні файли системи DSi.&#xA;&#xA;Ігнорувати, якщо завантажено без гри (нативний примусовий) або при використанні вбудованих BIOS / прошивок (пряма вимушена). Зміни приймають ефект при наступному перезавантаженні.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_boot_mode.Help"><value>Визначення, як melonDS завантажує ігри.
+
+Натив: Завантаження ігор через меню системи, аналогічні реальним процесам завантаження DS/DSi. Вимагає рідних BIOS і файлів прошивок в каталозі системи.
+Прямий: Пропустити меню системи і перейти прямо в гру. Підтримувані для DSiWare, якщо доступні файли системи DSi.
+
+Ігнорувати.</value></data>
   <data name="Emulation.Option.melondsds.melonds_boot_mode.Value.direct"><value>Напрямок</value></data>
   <data name="Emulation.Option.melondsds.melonds_boot_mode.Value.native"><value>Навігація</value></data>
   <data name="Emulation.Option.melondsds.melonds_dsi_sdcard"><value>Віртуальна SD-карта (DSi)</value></data>
@@ -1068,7 +1126,7 @@
   <data name="Emulation.Option.melondsds.melonds_dsi_sdcard.Value.disabled"><value>Вимкнено</value></data>
   <data name="Emulation.Option.melondsds.melonds_dsi_sdcard.Value.enabled"><value>Увімкнено</value></data>
   <data name="Emulation.Option.melondsds.melonds_dsi_sdcard_readonly"><value>Режим зчитування (DSi)</value></data>
-  <data name="Emulation.Option.melondsds.melonds_dsi_sdcard_readonly.Help"><value>Якщо увімкнено, емульований DSi бачить віртуальну SD-карту як зчитування. Зміни приймають ефект з наступним перезавантаженням.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_dsi_sdcard_readonly.Help"><value>Якщо увімкнено.</value></data>
   <data name="Emulation.Option.melondsds.melonds_dsi_sdcard_readonly.Value.disabled"><value>Вимкнено</value></data>
   <data name="Emulation.Option.melondsds.melonds_dsi_sdcard_readonly.Value.enabled"><value>Увімкнено</value></data>
   <data name="Emulation.Option.melondsds.melonds_dsi_sdcard_sync_sdcard_to_host"><value>Синхронізація SD-карт в Хост (DSi)</value></data>
@@ -1080,7 +1138,7 @@
   <data name="Emulation.Option.melondsds.melonds_homebrew_sdcard.Value.disabled"><value>Вимкнено</value></data>
   <data name="Emulation.Option.melondsds.melonds_homebrew_sdcard.Value.enabled"><value>Увімкнено</value></data>
   <data name="Emulation.Option.melondsds.melonds_homebrew_readonly"><value>Режим зчитування</value></data>
-  <data name="Emulation.Option.melondsds.melonds_homebrew_readonly.Help"><value>Якщо увімкнено, додатки Homebrew будуть бачити віртуальну SD-карту як зчитування. Зміни приймають ефект з наступним перезавантаженням.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_homebrew_readonly.Help"><value>Якщо увімкнено.</value></data>
   <data name="Emulation.Option.melondsds.melonds_homebrew_readonly.Value.disabled"><value>Вимкнено</value></data>
   <data name="Emulation.Option.melondsds.melonds_homebrew_readonly.Value.enabled"><value>Увімкнено</value></data>
   <data name="Emulation.Option.melondsds.melonds_homebrew_sync_sdcard_to_host"><value>Синхронізація SD-карти в Хост</value></data>
@@ -1125,13 +1183,18 @@
   <data name="Emulation.Option.melondsds.melonds_solar_sensor_host_sensor.Value.disabled"><value>Вимкнено</value></data>
   <data name="Emulation.Option.melondsds.melonds_solar_sensor_host_sensor.Value.enabled"><value>Увімкнено</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_mode"><value>часовий режим</value></data>
-  <data name="Emulation.Option.melondsds.melonds_start_time_mode.Help"><value>Початковий час вбудованого годинника консольу.&#xA;&#xA;- Реальний: Почати синхронізацію з годинником пристрою.&#xA;- Синхронізований: синхронізувати емульовані годинники до годинника пристрою. Може викликати несподівану поведінку в деяких іграх під час перемотування або швидкого переадресації.&#xA;- Відносний: Починайте в синхронізації з годинником пристрою, плюс або мінусом заданого офсету. Ви повинні бути обмежені дати, що DS може представляти.&#xA;- Абсолют: Почати на певну дату і час, незалежно від годинника пристрою.&#xA;&#xA;Всі дати та часи знаходяться в локальній зоні часу. Зміни приймають ефект при наступному перезавантаженні.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_start_time_mode.Help"><value>Початковий час вбудованого годинника консольу.
+
+- Реальний: Почати синхронізацію з годинником пристрою.
+- Синхронізований: синхронізувати емульовані годинники до годинника пристрою. Може викликати несподівану поведінку в деяких іграх під час перемотування або швидкого переадресації.
+- Відносний: Починайте в синхронізації з годинником пристрою, плюс або мінусом заданого офсету. Ви повинні бути обмежені дати, що DS може представляти.
+- Абсолют: Почати на певну дату і час.</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_mode.Value.real"><value>Редагувати</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_mode.Value.sync"><value>Синхронізований</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_mode.Value.relative"><value>Відносний</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_mode.Value.absolute"><value>Зручності</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_year_offset"><value>Почати час офсету (Years)</value></data>
-  <data name="Emulation.Option.melondsds.melonds_start_time_relative_year_offset.Help"><value>Кількість років, щоб згасити час від часу. Тільки використовується при поході часового режиму. Зміни приймають ефект при наступному перезавантаженні.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_start_time_relative_year_offset.Help"><value>Кількість років.</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_year_offset.Value.-20"><value>-20 років</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_year_offset.Value.-19"><value>-19 років</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_year_offset.Value.-18"><value>18 років</value></data>
@@ -1174,7 +1237,7 @@
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_year_offset.Value.19"><value>+19 років</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_year_offset.Value.20"><value>+20 років</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_day_offset"><value>Час початку офсету (Дні)</value></data>
-  <data name="Emulation.Option.melondsds.melonds_start_time_relative_day_offset.Help"><value>Кількість днів, щоб згасити час від початку. Тільки використовується при поході часового режиму. Зміни приймають ефект при наступному перезавантаженні.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_start_time_relative_day_offset.Help"><value>Кількість днів.</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_day_offset.Value.-364"><value>-364 днів</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_day_offset.Value.-180"><value>-180 днів</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_day_offset.Value.-150"><value>-150 днів</value></data>
@@ -1219,7 +1282,7 @@
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_day_offset.Value.180"><value>+180 днів</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_day_offset.Value.364"><value>+364 днів</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_hour_offset"><value>Час початку офсету (Hours)</value></data>
-  <data name="Emulation.Option.melondsds.melonds_start_time_relative_hour_offset.Help"><value>Кількість годин, щоб згасити час від часу. Тільки використовується при поході часового режиму. Зміни приймають ефект при наступному перезавантаженні.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_start_time_relative_hour_offset.Help"><value>Кількість годин.</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_hour_offset.Value.-23"><value>-23 годин</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_hour_offset.Value.-22"><value>-22 годин</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_hour_offset.Value.-21"><value>-21 годин</value></data>
@@ -1268,7 +1331,7 @@
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_hour_offset.Value.22"><value>+22 час</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_hour_offset.Value.23"><value>+23 годин</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_minute_offset"><value>Час початку офсету (Minutes)</value></data>
-  <data name="Emulation.Option.melondsds.melonds_start_time_relative_minute_offset.Help"><value>Кількість хвилин, щоб згасити час від часу. Тільки використовується при поході часового режиму. Зміни приймають ефект при наступному перезавантаженні.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_start_time_relative_minute_offset.Help"><value>Кількість хвилин.</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_minute_offset.Value.-59"><value>-59 хвилин</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_minute_offset.Value.-58"><value>-58 хвилин</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_minute_offset.Value.-57"><value>-57 хвилин</value></data>
@@ -1389,9 +1452,9 @@
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_minute_offset.Value.58"><value>+58 хвилин</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_minute_offset.Value.59"><value>+59 хвилини</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_absolute_year"><value>Початок року</value></data>
-  <data name="Emulation.Option.melondsds.melonds_start_time_absolute_year.Help"><value>Початковий рік для використання при запуску Time Mode є Абсолютним. Зміни приймають ефект при наступному перезавантаженні.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_start_time_absolute_year.Help"><value>Початковий рік для використання при запуску Time Mode є Абсолютним.</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_absolute_month"><value>Початок місяця</value></data>
-  <data name="Emulation.Option.melondsds.melonds_start_time_absolute_month.Help"><value>Початковий місяць, щоб використовувати при запуску часу режим Абсолютно. Зміни приймають ефект при наступному перезавантаженні.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_start_time_absolute_month.Help"><value>Початковий місяць.</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_absolute_month.Value.1"><value>Січень</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_absolute_month.Value.2"><value>Лютий</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_absolute_month.Value.3"><value>Березень</value></data>
@@ -1405,15 +1468,18 @@
   <data name="Emulation.Option.melondsds.melonds_start_time_absolute_month.Value.11"><value>Листопад</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_absolute_month.Value.12"><value>Грудень</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_absolute_day"><value>День старту</value></data>
-  <data name="Emulation.Option.melondsds.melonds_start_time_absolute_day.Help"><value>Початковий день місяця, щоб використовувати при запуску часового режиму є абсолютно. Днів, які подовжують минулий кінець місяця, буде розкочуватися на наступний (наприклад, 31 квітня пройде 1 травня. Зміни приймають ефект при наступному перезавантаженні.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_start_time_absolute_day.Help"><value>Початковий день місяця, щоб використовувати при запуску часового режиму є абсолютно. Днів, які подовжують минулий кінець місяця, буде розкочуватися на наступний (наприклад.</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_absolute_hour"><value>Час початку</value></data>
-  <data name="Emulation.Option.melondsds.melonds_start_time_absolute_hour.Help"><value>Початкова година, щоб використовувати при запуску часового режиму Абсолютно. Зміни приймають ефект при наступному перезавантаженні.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_start_time_absolute_hour.Help"><value>Початкова година.</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_absolute_minute"><value>Почати хвилину</value></data>
-  <data name="Emulation.Option.melondsds.melonds_start_time_absolute_minute.Help"><value>Початкова хвилина для використання при запуску часу режиму Абсолютно. Зміни приймають ефект при наступному перезавантаженні.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_start_time_absolute_minute.Help"><value>Початкова хвилина для використання при запуску часу режиму Абсолютно.</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_absolute_second"><value>Почати другий</value></data>
-  <data name="Emulation.Option.melondsds.melonds_start_time_absolute_second.Help"><value>Початкова друга для використання при запуску Time Mode є Абсолютно. Зміни приймають ефект при наступному перезавантаженні.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_start_time_absolute_second.Help"><value>Початкова друга для використання при запуску Time Mode є Абсолютно.</value></data>
   <data name="Emulation.Option.melondsds.melonds_render_mode"><value>Рендерний режим</value></data>
-  <data name="Emulation.Option.melondsds.melonds_render_mode.Help"><value>Програмне забезпечення є найшвидшим і найбільш точним. OpenGL (Classic) може масштабувати 3D графіку, але деякі ігри не рендеряться правильно.&#xA;OpenGL (Compute) є точним і підтримує зарахування, але не працює на деяких старих пристроях. Перемикання до нього займає кілька секунд, щоб компілювати його тіні.&#xA;&#xA;Повернутися до програмного забезпечення, якщо OpenGL не можна використовувати. Змінює ефект відразу, але може знадобитися відео драйвера Frontend для перезавантаження.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_render_mode.Help"><value>Програмне забезпечення є найшвидшим і найбільш точним. OpenGL (Classic) може масштабувати 3D графіку, але деякі ігри не рендеряться правильно.
+OpenGL (Compute) є точним і підтримує зарахування, але не працює на деяких старих пристроях. Перемикання до нього займає кілька секунд, щоб компілювати його тіні.
+
+Повернутися до програмного забезпечення, якщо OpenGL не можна використовувати. Змінює ефект відразу.</value></data>
   <data name="Emulation.Option.melondsds.melonds_render_mode.Value.software"><value>Програмне забезпечення</value></data>
   <data name="Emulation.Option.melondsds.melonds_render_mode.Value.opengl"><value>OpenGL (Класика)</value></data>
   <data name="Emulation.Option.melondsds.melonds_render_mode.Value.compute"><value>OpenGL (комплаєнс)</value></data>
@@ -1614,7 +1680,7 @@
   <data name="Emulation.Option.fceumm.fceumm_ntsc_filter.Value.composite"><value>Компонувальник</value></data>
   <data name="Emulation.Option.fceumm.fceumm_ntsc_filter.Value.svideo"><value>Веб-камера</value></data>
   <data name="Emulation.Option.fceumm.fceumm_ntsc_filter.Value.monochrome"><value>Монохромний</value></data>
-  <data name="Emulation.Option.fceumm.fceumm_hdpacks"><value>Пакети зображень HD (Restart)</value></data>
+  <data name="Emulation.Option.fceumm.fceumm_hdpacks"><value>Пакети зображень HD</value></data>
   <data name="Emulation.Option.fceumm.fceumm_hdpacks.Help"><value>Завантажити Mesen-format HD фактурні пакети з '&lt;system&gt;/HdPacks/&lt;rom name&gt;/hires.txt' присутній. Замінює плитку/спрайти з високою роздільною здатністю арт-роботи (PNG, DDS або WebP) і дозволяє налаштовувати власні фони пакету та музику OGG / WAV. Вимагає фронтенду, який підтримує вихід XRGB8888.</value></data>
   <data name="Emulation.Option.fceumm.fceumm_hdpacks.Value.enabled"><value>Увімкнено</value></data>
   <data name="Emulation.Option.fceumm.fceumm_hdpacks.Value.disabled"><value>Вимкнено</value></data>
@@ -2056,10 +2122,10 @@
   <data name="Emulation.Firmware.mesen2.Slot25"><value>Super Game Boy BIOS</value></data>
   <data name="Emulation.Emulator.nestopia.Description"><value>Утеплювачі сумісні Nintendo системи з Nestopia.</value></data>
   <data name="Emulation.Option.nestopia.nestopia_favored_system"><value>Захоплююча система</value></data>
-  <data name="Emulation.Option.nestopia.nestopia_favored_system.Help"><value>Система віддати перевагу зображенням, які не говорять про те, що вони хочуть. Зображень, які говорять і зображення, знайдені в файлі бази даних NstDatabase.xml, недоступні. Тільки діє в той час як "Система заводу" встановлюється до 'Авто'. Вимагає перезавантаження.</value></data>
+  <data name="Emulation.Option.nestopia.nestopia_favored_system.Help"><value>Система віддати перевагу зображенням, які не говорять про те, що вони хочуть. Зображень, які говорять і зображення, знайдені в файлі бази даних NstDatabase.xml.</value></data>
   <data name="Emulation.Option.nestopia.nestopia_favored_system.Value.famicom"><value>Фаміком</value></data>
   <data name="Emulation.Option.nestopia.nestopia_force_system"><value>Примусова система</value></data>
-  <data name="Emulation.Option.nestopia.nestopia_force_system.Help"><value>Ігнорувати систему зображення просить і використовувати його замість. Зміна цієї налаштування буде перезапустити гру.</value></data>
+  <data name="Emulation.Option.nestopia.nestopia_force_system.Help"><value>Ігнорувати систему зображення просить і використовувати його замість.</value></data>
   <data name="Emulation.Option.nestopia.nestopia_force_system.Value.auto"><value>Автоматичний</value></data>
   <data name="Emulation.Option.nestopia.nestopia_force_system.Value.famicom"><value>Фаміком</value></data>
   <data name="Emulation.Option.nestopia.nestopia_fds_auto_insert"><value>FDS Авто вставки</value></data>
@@ -2309,7 +2375,10 @@
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_lcd_interlacing_brightnesss"><value>GBC LCD Переплетення яскравість</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_lcd_interlacing_brightnesss.Help"><value>Регулює інтенсивність переплетення ефекту. Зберігайте це значення низьким при використанні тінейджерів. Більшість значень рекомендовані при поєднанні з шейкером, щоб зробити ефект видимим.</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_RGB_SubPixel_Simulation"><value>GBC LCD RGB субпіксельний ваговий фактор</value></data>
-  <data name="Emulation.Option.doublecherrygb.dcgb_gbc_RGB_SubPixel_Simulation.Help"><value>Симулятори фізичні підпікселі GBC за допомогою розкладання та заміни кожного піксельногопікселя з відповідними компонентами RGB.&#xA;&#xA;Для кращих результатів:&#xA;- Увімкнути 'Integer Scaling' в RetroArch (Налаштування -&gt; Відео -&gt; Скальлінг).&#xA;- Випадковий рештарт може бути обов'язково після зміни цього налаштування.</value></data>
+  <data name="Emulation.Option.doublecherrygb.dcgb_gbc_RGB_SubPixel_Simulation.Help"><value>Симулятори фізичні підпікселі GBC за допомогою розкладання та заміни кожного піксельногопікселя з відповідними компонентами RGB.
+
+Для кращих результатів:
+- Увімкнути 'Integer Scaling' в RetroArch (Налаштування -&gt; Відео -&gt; Скальлінг).</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_RGB_SubPixel_Simulation.Value.1"><value>Вимкнено</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_LCD_blur"><value>GBC LCD Блер</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_LCD_blur.Help"><value>Застосовує ефект розмиття дисплея. Ця установка є дуже CPU-інтенсивним. Увімкніть його на більш слабкі апаратні засоби або використовуючи шейдери замість.</value></data>
@@ -2568,7 +2637,7 @@
   <data name="Emulation.Firmware.gambatte.Slot0"><value>Game Boy BIOS</value></data>
   <data name="Emulation.Firmware.gambatte.Slot1"><value>Game Boy Color BIOS</value></data>
   <data name="Emulation.Emulator.gearboy.Description"><value>Використовуються сумісні системи Nintendo з GearBoy.</value></data>
-  <data name="Emulation.Option.gearboy.gearboy_barcode_boy"><value>Barcode Boy Mode (відновлення)</value></data>
+  <data name="Emulation.Option.gearboy.gearboy_barcode_boy"><value>Barcode Boy Mode</value></data>
   <data name="Emulation.Option.gearboy.gearboy_barcode_boy.Help"><value>Auto прикріплює Barcode Boy до ігор, визнаних ROM CRC. Увімкнути підтримку невизнаних або патчованих ROMs. Режим Loading зберігає послідовний порт і відключає Barcode Boy.</value></data>
   <data name="Emulation.Option.gearboy.gearboy_barcode_boy.Value.Auto"><value>Автоматичний</value></data>
   <data name="Emulation.Option.gearboy.gearboy_barcode_boy.Value.Disabled"><value>Вимкнено</value></data>
@@ -2636,10 +2705,10 @@
   <data name="Emulation.Option.gearboy.gearboy_barcode_digit_12.Help"><value>Digit 12 з користувальницького 13-цифрового штрих-коду, зліва направо. Виберіть Custom, встановіть всі цифри, потім натисніть Scan Barcode (RetroPad R).</value></data>
   <data name="Emulation.Option.gearboy.gearboy_barcode_digit_13"><value>Barcode Хлопець Custom Digit 13</value></data>
   <data name="Emulation.Option.gearboy.gearboy_barcode_digit_13.Help"><value>Digit 13 з користувальницького 13-цифрового штрих-коду, зліва направо. Виберіть Custom, встановіть всі цифри, потім натисніть Scan Barcode (RetroPad R).</value></data>
-  <data name="Emulation.Option.gearboy.gearboy_model"><value>Game Boy Модель (ресторан)</value></data>
+  <data name="Emulation.Option.gearboy.gearboy_model"><value>Game Boy Модель</value></data>
   <data name="Emulation.Option.gearboy.gearboy_model.Help"><value>Виберіть, яку модель обладнання емулятора. 'Авто' автоматично вибирає кращу модель на основі завантажених ROM заголовок. 'Game Boy DMG' сили оригінальні Game Boy апаратні засоби. "Game Boy Advance' силами Game Boy Advance режим, що дозволяє незначним габаритам техніки присутні при запуску Game Boy ігор на GBA.</value></data>
   <data name="Emulation.Option.gearboy.gearboy_model.Value.Auto"><value>Автоматичний</value></data>
-  <data name="Emulation.Option.gearboy.gearboy_mapper"><value>Мапер (ресторан)</value></data>
+  <data name="Emulation.Option.gearboy.gearboy_mapper"><value>Мапер</value></data>
   <data name="Emulation.Option.gearboy.gearboy_mapper.Help"><value>Виберіть, який Контролер пам'яті (MBC або mapper) оформлюється. "Авто" автоматично вибирає найкращий MBC на основі заголовка ROM. Використовуйте ручний вибір тільки якщо у грі є проблеми з автоматичним виявленням.</value></data>
   <data name="Emulation.Option.gearboy.gearboy_mapper.Value.Auto"><value>Автоматичний</value></data>
   <data name="Emulation.Option.gearboy.gearboy_mapper.Value.ROM Only"><value>ROM Тільки</value></data>
@@ -2654,7 +2723,7 @@
   <data name="Emulation.Option.gearboy.gearboy_mapper.Value.Sintax"><value>Синтаксис</value></data>
   <data name="Emulation.Option.gearboy.gearboy_mapper.Value.NT old 1"><value>NT старий 1</value></data>
   <data name="Emulation.Option.gearboy.gearboy_mapper.Value.NT old 2"><value>NT старий 2</value></data>
-  <data name="Emulation.Option.gearboy.gearboy_sgb"><value>Super Game Boy (замок)</value></data>
+  <data name="Emulation.Option.gearboy.gearboy_sgb"><value>Super Game Boy</value></data>
   <data name="Emulation.Option.gearboy.gearboy_sgb.Help"><value>Коли ввімкнено сумісні ROMs будуть працювати у режимі Super Game Boy. Коли вимкнено, SGB-сумісні ROMs будуть працювати як стандартний Game Boy (DMG) ігри.</value></data>
   <data name="Emulation.Option.gearboy.gearboy_sgb.Value.Enabled"><value>Увімкнено</value></data>
   <data name="Emulation.Option.gearboy.gearboy_sgb.Value.Disabled"><value>Вимкнено</value></data>
@@ -2662,11 +2731,11 @@
   <data name="Emulation.Option.gearboy.gearboy_sgb_border.Help"><value>Коли ввімкнено Super Game Boy кордон відображається навколо ігрового екрана (256x224). Коли вимкнено, показано лише ігровий екран (160x144).</value></data>
   <data name="Emulation.Option.gearboy.gearboy_sgb_border.Value.Enabled"><value>Увімкнено</value></data>
   <data name="Emulation.Option.gearboy.gearboy_sgb_border.Value.Disabled"><value>Вимкнено</value></data>
-  <data name="Emulation.Option.gearboy.gearboy_bootrom_dmg"><value>DMG Bootrom (замок)</value></data>
+  <data name="Emulation.Option.gearboy.gearboy_bootrom_dmg"><value>DMG Bootrom</value></data>
   <data name="Emulation.Option.gearboy.gearboy_bootrom_dmg.Help"><value>Увімкнути або вимкнути оригінальний Game Boy (DMG) bootrom. Коли ввімкнено, завантажувач буде виконуватися на запуску так само як на реальному обладнанні, демонструючи анімацію прокрутки логотипу Nintendo. Файл "dmg_boot.bin" повинен бути присутнім в каталозі системи RetroArch.</value></data>
   <data name="Emulation.Option.gearboy.gearboy_bootrom_dmg.Value.Disabled"><value>Вимкнено</value></data>
   <data name="Emulation.Option.gearboy.gearboy_bootrom_dmg.Value.Enabled"><value>Увімкнено</value></data>
-  <data name="Emulation.Option.gearboy.gearboy_bootrom_gbc"><value>GBC Bootrom (відновлення)</value></data>
+  <data name="Emulation.Option.gearboy.gearboy_bootrom_gbc"><value>GBC Bootrom</value></data>
   <data name="Emulation.Option.gearboy.gearboy_bootrom_gbc.Help"><value>Увімкнути або вимкнути Game Boy Color Bootrom. Коли ввімкнено, завантажувач буде виконуватися на запуску так само як на реальному обладнанні, демонструючи Game Boy Color Boot анімацію. Файл "cgb_boot.bin" повинен бути присутнім в каталозі системи RetroArch.</value></data>
   <data name="Emulation.Option.gearboy.gearboy_bootrom_gbc.Value.Disabled"><value>Вимкнено</value></data>
   <data name="Emulation.Option.gearboy.gearboy_bootrom_gbc.Value.Enabled"><value>Увімкнено</value></data>
@@ -2730,7 +2799,7 @@
   <data name="Emulation.Option.gearboy.gearboy_up_down_allowed.Help"><value>Дозвольте натискати, швидко чергувати або утримувати обидві лівої та правої (або вгору і вниз) напрямів одночасно. Це може викликати рух на основі блиску в певних іграх. Це найкраще, щоб зберегти цей варіант вимкнено.</value></data>
   <data name="Emulation.Option.gearboy.gearboy_up_down_allowed.Value.Disabled"><value>Вимкнено</value></data>
   <data name="Emulation.Option.gearboy.gearboy_up_down_allowed.Value.Enabled"><value>Увімкнено</value></data>
-  <data name="Emulation.Option.gearboy.gearboy_link_enable"><value>Гра Link Кабельний (рештатний)</value></data>
+  <data name="Emulation.Option.gearboy.gearboy_link_enable"><value>Гра Link Кабельний</value></data>
   <data name="Emulation.Option.gearboy.gearboy_link_enable.Help"><value>Запуск двох пов'язаних систем Game Boy. Завантаження одного ROM веде окрему копію на кожному екрані; використовувати підсистему 2 Player Game Boy Link для завантаження двох різних ROMs. Контролерні порти 1 і 2 контрольних екранів 1 та 2. Режим Super Game Boy відключений при підключенні.</value></data>
   <data name="Emulation.Option.gearboy.gearboy_link_enable.Value.Enabled"><value>Увімкнено</value></data>
   <data name="Emulation.Option.gearboy.gearboy_link_enable.Value.Disabled"><value>Вимкнено</value></data>
@@ -2829,7 +2898,7 @@
   <data name="Emulation.Option.nside_sfc_balanced.higan_sfc_color_emulation"><value>Кольорова емульсія</value></data>
   <data name="Emulation.Option.nside_sfc_balanced.higan_sfc_blur_emulation"><value>емульсія Blur</value></data>
   <data name="Emulation.Option.nside_sfc_balanced.higan_sfc_scanline_emulation"><value>Скандинаційна емульсія</value></data>
-  <data name="Emulation.Option.nside_sfc_balanced.higan_sfc_sgb_bios"><value>Найпопулярніші Super GameBoy BIOS (відновлення)</value></data>
+  <data name="Emulation.Option.nside_sfc_balanced.higan_sfc_sgb_bios"><value>Найпопулярніші Super GameBoy BIOS</value></data>
   <data name="Emulation.Firmware.nside_sfc_balanced.Slot0"><value>Зовнішня прошивка</value></data>
   <data name="Emulation.Firmware.nside_sfc_balanced.Slot1"><value>Зовнішня прошивка</value></data>
   <data name="Emulation.Firmware.nside_sfc_balanced.Slot2"><value>Зовнішня прошивка</value></data>
@@ -2852,14 +2921,14 @@
   <data name="Emulation.Firmware.nside_sfc_balanced.Slot19"><value>SGB Черевики BIOS</value></data>
   <data name="Emulation.Firmware.nside_sfc_balanced.Slot20"><value>SGB завантаження зображення</value></data>
   <data name="Emulation.Emulator.sameboy.Description"><value>Утеплювачі сумісні системи Nintendo з SameBoy.</value></data>
-  <data name="Emulation.Option.sameboy.sameboy_model"><value>Система - Вбудована модель (обов'язково перезавантажити)</value></data>
-  <data name="Emulation.Option.sameboy.sameboy_model.Help"><value>Вибирає, які моделі системи повинні бути розпочаті. Деякі ігри можуть активувати спеціальні ігрові функції при побіганні на конкретних моделях. Цей варіант вимагає перезавантаження контенту для того, щоб прийняти ефект.</value></data>
+  <data name="Emulation.Option.sameboy.sameboy_model"><value>Система - Вбудована модель</value></data>
+  <data name="Emulation.Option.sameboy.sameboy_model.Help"><value>Вибирає, які моделі системи повинні бути розпочаті. Деякі ігри можуть активувати спеціальні ігрові функції при побіганні на конкретних моделях.</value></data>
   <data name="Emulation.Option.sameboy.sameboy_model.Value.Auto"><value>Авто Детект DMG / CGB</value></data>
   <data name="Emulation.Option.sameboy.sameboy_model.Value.Auto (SGB)"><value>Auto Detect DMG / SGB / CGB</value></data>
   <data name="Emulation.Option.sameboy.sameboy_model.Value.Game Boy Pocket"><value>Game Boy Кишеньковий/світло</value></data>
   <data name="Emulation.Option.sameboy.sameboy_model.Value.Game Boy Player"><value>Game Boy Гравець (плеєр)CPU AGB А)</value></data>
-  <data name="Emulation.Option.sameboy.sameboy_auto_sgb_model"><value>Система - Автоматичне виявлення SGB моделі (обов'язково перезавантажити)</value></data>
-  <data name="Emulation.Option.sameboy.sameboy_auto_sgb_model.Help"><value>Визначає, яка модель обладнання Super Game Boy для визначення при автоматично виявленні вмісту SGB. Цей варіант вимагає перезавантаження контенту для того, щоб прийняти ефект.</value></data>
+  <data name="Emulation.Option.sameboy.sameboy_auto_sgb_model"><value>Система - Автоматичне виявлення SGB моделі</value></data>
+  <data name="Emulation.Option.sameboy.sameboy_auto_sgb_model.Help"><value>Визначає, яка модель обладнання Super Game Boy для визначення при автоматично виявленні вмісту SGB.</value></data>
   <data name="Emulation.Option.sameboy.sameboy_mono_palette"><value>Відео - Моно Палета GB</value></data>
   <data name="Emulation.Option.sameboy.sameboy_mono_palette.Help"><value>Виберіть колірну палітру, яка повинна бути використана при гранні Game Boy ігор.</value></data>
   <data name="Emulation.Option.sameboy.sameboy_mono_palette.Value.greyscale"><value>Сірий</value></data>
@@ -2901,22 +2970,22 @@
   <data name="Emulation.Option.sameboy.sameboy_link.Help"><value>Увімкнено емуляцію кабелю посилань, що дозволяє зв’язувати та обмін даними між двома системами Game Boy.</value></data>
   <data name="Emulation.Option.sameboy.sameboy_link.Value.enabled"><value>Увімкнено</value></data>
   <data name="Emulation.Option.sameboy.sameboy_link.Value.disabled"><value>Вимкнено</value></data>
-  <data name="Emulation.Option.sameboy.sameboy_model_1"><value>Система - Emulated Модель для Game Boy #1 (обов'язково перезапуск)</value></data>
-  <data name="Emulation.Option.sameboy.sameboy_model_1.Help"><value>Вибирає, яку модель системи контент повинен бути запущений на Game Boy #1. Деякі ігри можуть активувати спеціальні ігрові функції при побіганні на конкретних моделях. Цей варіант вимагає перезавантаження контенту для того, щоб прийняти ефект.</value></data>
+  <data name="Emulation.Option.sameboy.sameboy_model_1"><value>Система - Emulated Модель для Game Boy #1</value></data>
+  <data name="Emulation.Option.sameboy.sameboy_model_1.Help"><value>Вибирає, яку модель системи контент повинен бути запущений на Game Boy #1. Деякі ігри можуть активувати спеціальні ігрові функції при побіганні на конкретних моделях.</value></data>
   <data name="Emulation.Option.sameboy.sameboy_model_1.Value.Auto"><value>Авто Детект DMG / CGB</value></data>
   <data name="Emulation.Option.sameboy.sameboy_model_1.Value.Auto (SGB)"><value>Auto Detect DMG / SGB / CGB</value></data>
   <data name="Emulation.Option.sameboy.sameboy_model_1.Value.Game Boy Pocket"><value>Game Boy Кишеньковий/світло</value></data>
   <data name="Emulation.Option.sameboy.sameboy_model_1.Value.Game Boy Player"><value>Game Boy Гравець (плеєр)CPU AGB А)</value></data>
-  <data name="Emulation.Option.sameboy.sameboy_auto_sgb_model_1"><value>Система - Авто Визначений SGB Модель для Game Boy #1 (потрібно перезапустити)</value></data>
-  <data name="Emulation.Option.sameboy.sameboy_auto_sgb_model_1.Help"><value>Визначає, яка модель обладнання Super Game Boy для емуляції при вмісті SGB автоматично виявлена на Game Boy #1. Цей варіант вимагає перезавантаження контенту для того, щоб прийняти ефект.</value></data>
-  <data name="Emulation.Option.sameboy.sameboy_model_2"><value>Система - Emulated Модель для Game Boy #2 (обов'язково перезапуск)</value></data>
-  <data name="Emulation.Option.sameboy.sameboy_model_2.Help"><value>Вибирає, яку модель системи контент повинен бути запущений на Game Boy #2. Деякі ігри можуть активувати спеціальні ігрові функції при побіганні на конкретних моделях. Цей варіант вимагає перезавантаження контенту для того, щоб прийняти ефект.</value></data>
+  <data name="Emulation.Option.sameboy.sameboy_auto_sgb_model_1"><value>Система - Авто Визначений SGB Модель для Game Boy #1</value></data>
+  <data name="Emulation.Option.sameboy.sameboy_auto_sgb_model_1.Help"><value>Визначає, яка модель обладнання Super Game Boy для емуляції при вмісті SGB автоматично виявлена на Game Boy #1.</value></data>
+  <data name="Emulation.Option.sameboy.sameboy_model_2"><value>Система - Emulated Модель для Game Boy #2</value></data>
+  <data name="Emulation.Option.sameboy.sameboy_model_2.Help"><value>Вибирає, яку модель системи контент повинен бути запущений на Game Boy #2. Деякі ігри можуть активувати спеціальні ігрові функції при побіганні на конкретних моделях.</value></data>
   <data name="Emulation.Option.sameboy.sameboy_model_2.Value.Auto"><value>Авто Детект DMG / CGB</value></data>
   <data name="Emulation.Option.sameboy.sameboy_model_2.Value.Auto (SGB)"><value>Auto Detect DMG / SGB / CGB</value></data>
   <data name="Emulation.Option.sameboy.sameboy_model_2.Value.Game Boy Pocket"><value>Game Boy Кишеньковий/світло</value></data>
   <data name="Emulation.Option.sameboy.sameboy_model_2.Value.Game Boy Player"><value>Game Boy Гравець (плеєр)CPU AGB А)</value></data>
-  <data name="Emulation.Option.sameboy.sameboy_auto_sgb_model_2"><value>Система - Auto Detected SGB Модель для Game Boy #2 (обов'язково перезапуск)</value></data>
-  <data name="Emulation.Option.sameboy.sameboy_auto_sgb_model_2.Help"><value>Визначає, яка модель обладнання Super Game Boy для емуляції при вмісті SGB автоматично виявлена на Game Boy #2. Цей варіант вимагає перезавантаження контенту для того, щоб прийняти ефект.</value></data>
+  <data name="Emulation.Option.sameboy.sameboy_auto_sgb_model_2"><value>Система - Auto Detected SGB Модель для Game Boy #2</value></data>
+  <data name="Emulation.Option.sameboy.sameboy_auto_sgb_model_2.Help"><value>Визначає, яка модель обладнання Super Game Boy для емуляції при вмісті SGB автоматично виявлена на Game Boy #2.</value></data>
   <data name="Emulation.Option.sameboy.sameboy_screen_layout"><value>Відео - Схема розміщення екрану</value></data>
   <data name="Emulation.Option.sameboy.sameboy_screen_layout.Help"><value>При одночасному емульгуванні двох систем цей варіант визначає відповідне положення двох екранів.</value></data>
   <data name="Emulation.Option.sameboy.sameboy_screen_layout.Value.top-down"><value>Топ-Даун</value></data>
@@ -3011,10 +3080,10 @@
   <data name="Emulation.Option.tgbdual.tgbdual_audio_output"><value>Аудіовихід</value></data>
   <data name="Emulation.Option.tgbdual.tgbdual_audio_output.Value.Both (mixed)"><value>І (змішаний)</value></data>
   <data name="Emulation.Emulator.mednafen_gba.Description"><value>Використовуються сумісні системи Nintendo з Beetle GBA.</value></data>
-  <data name="Emulation.Option.mednafen_gba.gba_hle"><value>Емуляція HLE біоса (Restart)</value></data>
+  <data name="Emulation.Option.mednafen_gba.gba_hle"><value>Емуляція HLE біоса</value></data>
   <data name="Emulation.Option.mednafen_gba.gba_hle.Value.enabled"><value>Увімкнено</value></data>
   <data name="Emulation.Option.mednafen_gba.gba_hle.Value.disabled"><value>Вимкнено</value></data>
-  <data name="Emulation.Option.mednafen_gba.gba_use_mednafen_save_method"><value>Спосіб Зберегти (Restart)</value></data>
+  <data name="Emulation.Option.mednafen_gba.gba_use_mednafen_save_method"><value>Спосіб Зберегти</value></data>
   <data name="Emulation.Option.mednafen_gba.gba_use_mednafen_save_method.Value.mednafen"><value>Меднафен</value></data>
   <data name="Emulation.Option.mednafen_gba.gba_use_mednafen_save_method.Value.libretro"><value>лібретро</value></data>
   <data name="Emulation.Firmware.mednafen_gba.Slot0"><value>Game Boy Advance BIOS</value></data>
@@ -3082,14 +3151,14 @@
   <data name="Emulation.Option.gpsp.gpsp_turbo_period.Help"><value>Вкажіть інтервал повторення (в кадрах) при утриманні кнопки Turbo A/B.</value></data>
   <data name="Emulation.Firmware.gpsp.Slot0"><value>Game Boy Advance BIOS</value></data>
   <data name="Emulation.Emulator.meteor.Description"><value>Використовуються сумісні системи Nintendo з Meteor.</value></data>
-  <data name="Emulation.Option.mgba.mgba_gb_model"><value>Game Boy Модель (Restart)</value></data>
+  <data name="Emulation.Option.mgba.mgba_gb_model"><value>Game Boy Модель</value></data>
   <data name="Emulation.Option.mgba.mgba_gb_model.Help"><value>Запускає завантажений вміст з певною моделлю Game Boy. "Автодетек" підбере найбільш підходящу модель для поточної гри.</value></data>
   <data name="Emulation.Option.mgba.mgba_gb_model.Value.Autodetect"><value>Автодетект</value></data>
-  <data name="Emulation.Option.mgba.mgba_use_bios"><value>Використовуйте файл BIOS, якщо знайдено (Restart)</value></data>
+  <data name="Emulation.Option.mgba.mgba_use_bios"><value>Використовуйте файл BIOS, якщо знайдено</value></data>
   <data name="Emulation.Option.mgba.mgba_use_bios.Help"><value>Використовуйте офіційний BIOS /вантажувач для емульованої техніки, якщо присутні в каталозі системи RetroArch.</value></data>
   <data name="Emulation.Option.mgba.mgba_use_bios.Value.ON"><value>Увімкнено</value></data>
   <data name="Emulation.Option.mgba.mgba_use_bios.Value.OFF"><value>Вимкнено</value></data>
-  <data name="Emulation.Option.mgba.mgba_skip_bios"><value>Навігація BIOS Вступ (Restart)</value></data>
+  <data name="Emulation.Option.mgba.mgba_skip_bios"><value>Навігація BIOS Вступ</value></data>
   <data name="Emulation.Option.mgba.mgba_skip_bios.Help"><value>При використанні офіційного BIOS/завантажувача, пропустіть стартову анімацію логотипу. Цей параметр ігнорується, коли 'Використовувати файл BIOS, якщо знайдений' вимкнено.</value></data>
   <data name="Emulation.Option.mgba.mgba_skip_bios.Value.OFF"><value>Вимкнено</value></data>
   <data name="Emulation.Option.mgba.mgba_skip_bios.Value.ON"><value>Увімкнено</value></data>
@@ -3111,13 +3180,13 @@
   <data name="Emulation.Option.mgba.mgba_gb_colors.Value.GBC Green →"><value>GBC Зелений →</value></data>
   <data name="Emulation.Option.mgba.mgba_gb_colors.Value.GBC Dark Green →A"><value>GBC Dark Green → А</value></data>
   <data name="Emulation.Option.mgba.mgba_gb_colors.Value.GBC Reverse →B"><value>GBC Зворотній зв'язок</value></data>
-  <data name="Emulation.Option.mgba.mgba_gb_colors_preset"><value>Апаратний пресет Game Boy Палети (Restart)</value></data>
+  <data name="Emulation.Option.mgba.mgba_gb_colors_preset"><value>Апаратний пресет Game Boy Палети</value></data>
   <data name="Emulation.Option.mgba.mgba_gb_colors_preset.Help"><value>Використовуйте палітри для Game Boy ігор, які мають пресети на Game Boy Color або Super Game Boy.</value></data>
   <data name="Emulation.Option.mgba.mgba_gb_colors_preset.Value.0"><value>За замовчуванням Game Boy</value></data>
   <data name="Emulation.Option.mgba.mgba_gb_colors_preset.Value.1"><value>Game Boy Color пресети тільки</value></data>
   <data name="Emulation.Option.mgba.mgba_gb_colors_preset.Value.2"><value>Super Game Boy пресети тільки</value></data>
   <data name="Emulation.Option.mgba.mgba_gb_colors_preset.Value.3"><value>Будь-які доступні пресети</value></data>
-  <data name="Emulation.Option.mgba.mgba_sgb_borders"><value>Використовуйте Super Game Boy Borders (Restart)</value></data>
+  <data name="Emulation.Option.mgba.mgba_sgb_borders"><value>Використовуйте Super Game Boy Borders</value></data>
   <data name="Emulation.Option.mgba.mgba_sgb_borders.Help"><value>Дисплей Super Game Boy кордонів при роботі супер Game Boy розширені ігри.</value></data>
   <data name="Emulation.Option.mgba.mgba_sgb_borders.Value.ON"><value>Увімкнено</value></data>
   <data name="Emulation.Option.mgba.mgba_sgb_borders.Value.OFF"><value>Вимкнено</value></data>
@@ -3145,7 +3214,7 @@
   <data name="Emulation.Option.mgba.mgba_solar_sensor_level"><value>Рівень сонячного датчика</value></data>
   <data name="Emulation.Option.mgba.mgba_solar_sensor_level.Help"><value>Налаштовує інтенсивність навколишнього середовища. Може бути використаний за допомогою ігор, які включені сонячний датчик у своїх патронах, e.g: серія Boktai.</value></data>
   <data name="Emulation.Option.mgba.mgba_solar_sensor_level.Value.sensor"><value>Використання датчика пристрою, якщо доступний</value></data>
-  <data name="Emulation.Option.mgba.mgba_force_gbp"><value>Game Boy Гравець Rumble (Restart)</value></data>
+  <data name="Emulation.Option.mgba.mgba_force_gbp"><value>Game Boy Гравець Rumble</value></data>
   <data name="Emulation.Option.mgba.mgba_force_gbp.Help"><value>Увімкніть це дозволить сумісні ігри з логотипом завантаження Game Boy Player, щоб зробити контролер рмелі. У зв'язку з тим, як Nintendo вирішив цю функцію, вона може призвести до ударів, таких як флігеринг або лаг в деяких цих іграх.</value></data>
   <data name="Emulation.Option.mgba.mgba_force_gbp.Value.OFF"><value>Вимкнено</value></data>
   <data name="Emulation.Option.mgba.mgba_force_gbp.Value.ON"><value>Увімкнено</value></data>
@@ -3170,17 +3239,17 @@
   <data name="Emulation.Firmware.mgba.Slot3"><value>Super Game Boy BIOS</value></data>
   <data name="Emulation.Emulator.vbam.Description"><value>Використовуються сумісні системи Nintendo з VBA-M.</value></data>
   <data name="Emulation.Option.vbam.vbam_usebios"><value>Використовуйте Офіційні BIOS (Якщо це можливо)</value></data>
-  <data name="Emulation.Option.vbam.vbam_usebios.Help"><value>Використовуйте офіційні BIOS, коли це можливо. Ядро потрібно перезавантажити для внесення змін.</value></data>
+  <data name="Emulation.Option.vbam.vbam_usebios.Help"><value>Використовуйте офіційні BIOS.</value></data>
   <data name="Emulation.Option.vbam.vbam_usebios.Value.disabled"><value>Вимкнено</value></data>
   <data name="Emulation.Option.vbam.vbam_usebios.Value.enabled"><value>Увімкнено</value></data>
   <data name="Emulation.Option.vbam.vbam_forceRTCenable"><value>Примушені RTC</value></data>
   <data name="Emulation.Option.vbam.vbam_forceRTCenable.Help"><value>Сили внутрішнього годинника в режимі реального часу, щоб бути включений незалежно від ром. Використовуваний для тром-патчів, які вимагають годинника бути ввімкненими (наприклад, Pokemon).</value></data>
   <data name="Emulation.Option.vbam.vbam_forceRTCenable.Value.disabled"><value>Вимкнено</value></data>
   <data name="Emulation.Option.vbam.vbam_forceRTCenable.Value.enabled"><value>Увімкнено</value></data>
-  <data name="Emulation.Option.vbam.vbam_gbHardware"><value>(GB) Об'єднане обладнання (Needs Restart)</value></data>
-  <data name="Emulation.Option.vbam.vbam_gbHardware.Help"><value>Налаштовує тип обладнання Game Boy для емульсії. Перезапустіть ядро, щоб застосувати.</value></data>
+  <data name="Emulation.Option.vbam.vbam_gbHardware"><value>(GB) Об'єднане обладнання</value></data>
+  <data name="Emulation.Option.vbam.vbam_gbHardware.Help"><value>Налаштовує тип обладнання Game Boy для емульсії.</value></data>
   <data name="Emulation.Option.vbam.vbam_gbHardware.Value.auto"><value>Автоматичний</value></data>
-  <data name="Emulation.Option.vbam.vbam_allowcolorizerhack"><value>(GB) Увімкнути Colorizer Hack (Needs Restart)</value></data>
+  <data name="Emulation.Option.vbam.vbam_allowcolorizerhack"><value>(GB) Увімкнути Colorizer Hack</value></data>
   <data name="Emulation.Option.vbam.vbam_allowcolorizerhack.Help"><value>Allows Colorizer зламаний GB Ігри (наприклад, DX патчовані ігри) для нормального запуску в апаратному типі GBC /GBA. Це також відключає використання біо-файлу. NOT RECOMMENDED для використання на небарвних іграх.</value></data>
   <data name="Emulation.Option.vbam.vbam_allowcolorizerhack.Value.disabled"><value>Вимкнено</value></data>
   <data name="Emulation.Option.vbam.vbam_allowcolorizerhack.Value.enabled"><value>Увімкнено</value></data>
@@ -3296,11 +3365,11 @@
   <data name="Emulation.Firmware.vbam.Slot1"><value>Game Boy BIOS</value></data>
   <data name="Emulation.Firmware.vbam.Slot2"><value>Game Boy Color BIOS</value></data>
   <data name="Emulation.Emulator.vba_next.Description"><value>Використовуються сумісні системи Nintendo з VBA Next.</value></data>
-  <data name="Emulation.Option.vba_next.vbanext_bios"><value>Використовуйте BIOS, якщо це можливо (Restart)</value></data>
+  <data name="Emulation.Option.vba_next.vbanext_bios"><value>Використовуйте BIOS, якщо це можливо</value></data>
   <data name="Emulation.Option.vba_next.vbanext_bios.Help"><value>Використовуйте BIOS, присутні в каталозі системи RetroArch.</value></data>
   <data name="Emulation.Option.vba_next.vbanext_bios.Value.enabled"><value>Увімкнено</value></data>
   <data name="Emulation.Option.vba_next.vbanext_bios.Value.disabled"><value>Вимкнено</value></data>
-  <data name="Emulation.Option.vba_next.vbanext_rtc"><value>RTC (Restart)</value></data>
+  <data name="Emulation.Option.vba_next.vbanext_rtc"><value>RTC</value></data>
   <data name="Emulation.Option.vba_next.vbanext_rtc.Help"><value>Контролює емуляцію годинника реального часу. "auto" використовує пер-ROM перевизнаний список. RTC на будь-який ROM (використання для ROM хакі потрібні RTC без збігу надряддя. RTC від, перенаправлення переліку перевизначення.</value></data>
   <data name="Emulation.Option.vba_next.vbanext_rtc.Value.auto"><value>Автоматичний</value></data>
   <data name="Emulation.Option.vba_next.vbanext_rtc.Value.enabled"><value>Увімкнено</value></data>
@@ -3325,11 +3394,11 @@
   <data name="Emulation.Option.dolphin.dolphin_emulation_speed.Value.1.0"><value>100% (Нормальна швидкість)</value></data>
   <data name="Emulation.Option.dolphin.dolphin_emulation_speed.Value.0.0"><value>Без категорії</value></data>
   <data name="Emulation.Option.dolphin.dolphin_main_cpu_thread"><value>Головна &gt; Двоядерний режим</value></data>
-  <data name="Emulation.Option.dolphin.dolphin_main_cpu_thread.Help"><value>Увімкнути двоядерний CPU емульсія. Вимагає ядро RESTART.</value></data>
+  <data name="Emulation.Option.dolphin.dolphin_main_cpu_thread.Help"><value>Увімкнути двоядерний CPU емульсія.</value></data>
   <data name="Emulation.Option.dolphin.dolphin_main_cpu_thread.Value.disabled"><value>Вимкнено</value></data>
   <data name="Emulation.Option.dolphin.dolphin_main_cpu_thread.Value.enabled"><value>Увімкнено</value></data>
   <data name="Emulation.Option.dolphin.dolphin_main_load_game_into_memory"><value>Ядро &gt; Load Whole Game Into пам'яті</value></data>
-  <data name="Emulation.Option.dolphin.dolphin_main_load_game_into_memory.Help"><value>Завантаження Whole Game Into пам'яті. Вимагає ядро RESTART.</value></data>
+  <data name="Emulation.Option.dolphin.dolphin_main_load_game_into_memory.Help"><value>Завантаження Whole Game Into пам'яті.</value></data>
   <data name="Emulation.Option.dolphin.dolphin_main_load_game_into_memory.Value.disabled"><value>Вимкнено</value></data>
   <data name="Emulation.Option.dolphin.dolphin_main_load_game_into_memory.Value.enabled"><value>Увімкнено</value></data>
   <data name="Emulation.Option.dolphin.dolphin_precision_frame_timing"><value>Ядро &gt; Точна обробка кадрів</value></data>
@@ -3349,7 +3418,7 @@
   <data name="Emulation.Option.dolphin.dolphin_main_accurate_cpu_cache.Value.disabled"><value>Вимкнено</value></data>
   <data name="Emulation.Option.dolphin.dolphin_main_accurate_cpu_cache.Value.enabled"><value>Увімкнено</value></data>
   <data name="Emulation.Option.dolphin.dolphin_cheats_enabled"><value>Ядро &gt; Внутрішні Коди</value></data>
-  <data name="Emulation.Option.dolphin.dolphin_cheats_enabled.Help"><value>Увімкнути вбудовані коди обману. Перезапустіть ядро для ефекту.</value></data>
+  <data name="Emulation.Option.dolphin.dolphin_cheats_enabled.Help"><value>Увімкнути вбудовані коди обману.</value></data>
   <data name="Emulation.Option.dolphin.dolphin_cheats_enabled.Value.disabled"><value>Вимкнено</value></data>
   <data name="Emulation.Option.dolphin.dolphin_cheats_enabled.Value.enabled"><value>Увімкнено</value></data>
   <data name="Emulation.Option.dolphin.dolphin_skip_gc_bios"><value>Головна &gt; Скіп GameCube BIOS</value></data>
@@ -3467,7 +3536,7 @@
   <data name="Emulation.Option.dolphin.dolphin_gc_sp1.Value.13"><value>Модем TapServer</value></data>
   <data name="Emulation.Option.dolphin.dolphin_gc_sp1.Value.6"><value>Підвіска</value></data>
   <data name="Emulation.Option.dolphin.dolphin_enable_gamecube_mic"><value>Конфігурація системи (GC) &gt; Microphone GameCube</value></data>
-  <data name="Emulation.Option.dolphin.dolphin_enable_gamecube_mic.Help"><value>Налаштуйте офіційну підписку на мікрофон GameCube. Перезапустіть ядро після зміни цього варіанту.</value></data>
+  <data name="Emulation.Option.dolphin.dolphin_enable_gamecube_mic.Help"><value>Налаштуйте офіційну підписку на мікрофон GameCube.</value></data>
   <data name="Emulation.Option.dolphin.dolphin_enable_gamecube_mic.Value.disabled"><value>Вимкнено</value></data>
   <data name="Emulation.Option.dolphin.dolphin_enable_gamecube_mic.Value.enabled"><value>Увімкнено</value></data>
   <data name="Emulation.Option.dolphin.dolphin_hotkey_activate_microphone"><value>Конфігурація системи (GC) &gt; Кнопка Microphone</value></data>
@@ -3508,7 +3577,7 @@
   <data name="Emulation.Option.dolphin.dolphin_bluetooth_passthrough.Value.disabled"><value>Вимкнено</value></data>
   <data name="Emulation.Option.dolphin.dolphin_bluetooth_passthrough.Value.enabled"><value>Увімкнено</value></data>
   <data name="Emulation.Option.dolphin.dolphin_wiispeak_enable"><value>Налаштування системи &gt; Wii Speak</value></data>
-  <data name="Emulation.Option.dolphin.dolphin_wiispeak_enable.Help"><value>Емуляція мікрофона Wii Speak. Перезапуск при зміні цього варіанту.</value></data>
+  <data name="Emulation.Option.dolphin.dolphin_wiispeak_enable.Help"><value>Емуляція мікрофона Wii Speak.</value></data>
   <data name="Emulation.Option.dolphin.dolphin_wiispeak_enable.Value.disabled"><value>Вимкнено</value></data>
   <data name="Emulation.Option.dolphin.dolphin_wiispeak_enable.Value.enabled"><value>Увімкнено</value></data>
   <data name="Emulation.Option.dolphin.dolphin_wiispeak_muted"><value>Аудіо &gt; Пристрої &gt; Wii Speak Muted</value></data>
@@ -3516,7 +3585,7 @@
   <data name="Emulation.Option.dolphin.dolphin_wiispeak_muted.Value.disabled"><value>Вимкнено</value></data>
   <data name="Emulation.Option.dolphin.dolphin_wiispeak_muted.Value.enabled"><value>Увімкнено</value></data>
   <data name="Emulation.Option.dolphin.dolphin_wii_logi_microphone_enable"><value>Налаштування системи &gt; Logitech USB Microphone</value></data>
-  <data name="Emulation.Option.dolphin.dolphin_wii_logi_microphone_enable.Help"><value>Налаштування мікрофона Logitech USB. Перезапуск при зміні цього варіанту.</value></data>
+  <data name="Emulation.Option.dolphin.dolphin_wii_logi_microphone_enable.Help"><value>Налаштування мікрофона Logitech USB.</value></data>
   <data name="Emulation.Option.dolphin.dolphin_wii_logi_microphone_enable.Value.disabled"><value>Вимкнено</value></data>
   <data name="Emulation.Option.dolphin.dolphin_wii_logi_microphone_enable.Value.enabled"><value>Увімкнено</value></data>
   <data name="Emulation.Option.dolphin.dolphin_renderer"><value>Графіка &gt; Настройки &gt; Графічні задні</value></data>
@@ -3744,7 +3813,7 @@
   <data name="Emulation.Option.dolphin.dolphin_swing_angle.Help"><value>Поворот наноситься на кінцівки гойдалки (1-180°).</value></data>
   <data name="Emulation.Option.dolphin.dolphin_swing_angle.Value.90"><value>90° (Default)</value></data>
   <data name="Emulation.Option.dolphin.dolphin_cheats_import"><value>RetroArch Core &gt; Автоматично імпорт Коди в РетроАрхів</value></data>
-  <data name="Emulation.Option.dolphin.dolphin_cheats_import.Help"><value>Імпорт dolphin ini файлів в RetroArch. Перезапустіть ядро для ефекту.</value></data>
+  <data name="Emulation.Option.dolphin.dolphin_cheats_import.Help"><value>Імпорт dolphin ini файлів в RetroArch.</value></data>
   <data name="Emulation.Option.dolphin.dolphin_cheats_import.Value.disabled"><value>Вимкнено</value></data>
   <data name="Emulation.Option.dolphin.dolphin_cheats_import.Value.enabled"><value>Увімкнено</value></data>
   <data name="Emulation.Option.dolphin.dolphin_save_load_settings"><value>RetroArch ядро &gt; Навантаження та профілактика Зберегти налаштування</value></data>
@@ -3756,7 +3825,7 @@
   <data name="Emulation.Option.dolphin.dolphin_ir_passthrough.Value.disabled"><value>Вимкнено</value></data>
   <data name="Emulation.Option.dolphin.dolphin_ir_passthrough.Value.enabled"><value>Увімкнено</value></data>
   <data name="Emulation.Option.dolphin.dolphin_libretro_vfs_enabled"><value>RetroArch core &gt; Увімкнути віртуальну файлову систему (VFS)</value></data>
-  <data name="Emulation.Option.dolphin.dolphin_libretro_vfs_enabled.Help"><value>Увімкнути VFS для SAF/SMB тощо. Вимагає ядро RESTART. Ця функція є NEW і EXPERIMENTAL. Поверніть ваші заощадження регулярно.</value></data>
+  <data name="Emulation.Option.dolphin.dolphin_libretro_vfs_enabled.Help"><value>Увімкнути VFS для SAF/SMB тощо. Ця функція є NEW і EXPERIMENTAL. Поверніть ваші заощадження регулярно.</value></data>
   <data name="Emulation.Option.dolphin.dolphin_libretro_vfs_enabled.Value.disabled"><value>Вимкнено</value></data>
   <data name="Emulation.Option.dolphin.dolphin_libretro_vfs_enabled.Value.enabled"><value>Увімкнено</value></data>
   <data name="Emulation.Option.dolphin.dolphin_default_mouse_bindings_enabled"><value>RetroArch core &gt; Увімкнути за замовчуванням Mouse Binding</value></data>
@@ -3764,7 +3833,7 @@
   <data name="Emulation.Option.dolphin.dolphin_default_mouse_bindings_enabled.Value.disabled"><value>Вимкнено</value></data>
   <data name="Emulation.Option.dolphin.dolphin_default_mouse_bindings_enabled.Value.enabled"><value>Увімкнено</value></data>
   <data name="Emulation.Option.dolphin.dolphin_dsu_enabled"><value>Wiimote (DSU) &gt; Увімкнути клієнтів DSU</value></data>
-  <data name="Emulation.Option.dolphin.dolphin_dsu_enabled.Help"><value>Увімкнути клієнт DSU для даних руху DualShock. Перезапустіть ядро для ефекту.</value></data>
+  <data name="Emulation.Option.dolphin.dolphin_dsu_enabled.Help"><value>Увімкнути клієнт DSU для даних руху DualShock.</value></data>
   <data name="Emulation.Option.dolphin.dolphin_dsu_enabled.Value.disabled"><value>Вимкнено</value></data>
   <data name="Emulation.Option.dolphin.dolphin_dsu_enabled.Value.enabled"><value>Увімкнено</value></data>
   <data name="Emulation.Option.dolphin.dolphin_dsu_ip_octet1"><value>Wiimote (DSU) &gt; Сервер IP жовтець 1</value></data>
@@ -3987,13 +4056,13 @@
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-dither-filter.Help"><value>Allow VI de-dither фільтр, відновлює значну глибину кольору.</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-dither-filter.Value.True"><value>Увімкнено</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-dither-filter.Value.False"><value>Вимкнено</value></data>
-  <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-upscaling"><value>(ParaLLEl-RDP) Індикатор змінного струму (restart)</value></data>
+  <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-upscaling"><value>(ParaLLEl-RDP) Індикатор змінного струму</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-upscaling.Help"><value>Застосувати внутрішній фактор скалькуляції.</value></data>
-  <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-super-sampled-read-back"><value>(ParaLLEl-RDP) SSAA рутинні ефекти (restart)</value></data>
+  <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-super-sampled-read-back"><value>(ParaLLEl-RDP) SSAA рутинні ефекти</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-super-sampled-read-back.Help"><value>Супер зразок каркасно-шкарпеткові ефекти. Може вводити артефакти.</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-super-sampled-read-back.Value.False"><value>Вимкнено</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-super-sampled-read-back.Value.True"><value>Увімкнено</value></data>
-  <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-super-sampled-read-back-dither"><value>(ParaLLEl-RDP) Дитер SSAA каркаснобактеріальні ефекти (restart)</value></data>
+  <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-super-sampled-read-back-dither"><value>(ParaLLEl-RDP) Дитер SSAA каркаснобактеріальні ефекти</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-super-sampled-read-back-dither.Help"><value>Дрібні супер вибіркові рамибуферові ефекти.</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-super-sampled-read-back-dither.Value.True"><value>Увімкнено</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-super-sampled-read-back-dither.Value.False"><value>Вимкнено</value></data>
@@ -4103,7 +4172,7 @@
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-pak4.Value.rumble"><value>шемале</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-pak4.Value.transfer"><value>Перекази</value></data>
   <data name="Emulation.Emulator.parallel_n64.Description"><value>Сумісні системи Nintendo з ParaLLEl N64.</value></data>
-  <data name="Emulation.Option.parallel_n64.parallel-n64-upscaling"><value>Індикатор зарахування (ретарт)</value></data>
+  <data name="Emulation.Option.parallel_n64.parallel-n64-upscaling"><value>Індикатор зарахування</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-upscaling.Help"><value>Рендер при множині дозволу консолі. ParaLLEl-RDP відзначає кожного фактора; Angrylion рендерує до 4x і лікує 8х як 4х.</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-parallel-rdp-native-texture-lod"><value>Використовуйте рідну текстуру LOD при скалькуванні</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-parallel-rdp-native-texture-lod.Help"><value>Виберіть фактурні рівні mip, як консоль буде, від приставного відбитка пікселів, а не масштабованихпікселів. Без цього масштабованого рендеру вибирає гострі рівні, і ігри, які використовують рівень як перемикач показує неправильне зображення (розмальовка на кінці замкового коридора в Super Mario 64). Заслужений ParaLLEl-RDP і Angrylion.</value></data>
@@ -4348,7 +4417,7 @@
   <data name="Emulation.Option.parallel_n64.parallel-n64-rspplugin.Value.hle"><value>шемале</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-rspplugin.Value.parallel"><value>парасолька</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-screensize"><value>Редакція</value></data>
-  <data name="Emulation.Option.parallel_n64.parallel-n64-screensize.Help"><value>Резолюція (рештарт)</value></data>
+  <data name="Emulation.Option.parallel_n64.parallel-n64-screensize.Help"><value>Резолюція</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-aspectratiohint"><value>Підказка про співвідношення сторін</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-aspectratiohint.Help"><value>Підказка про співвідношенні Aspect (reinit)</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-aspectratiohint.Value.normal"><value>Нормативно</value></data>
@@ -4401,7 +4470,7 @@
   <data name="Emulation.Option.parallel_n64.parallel-n64-alt-map.Value.disabled"><value>Вимкнено</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-alt-map.Value.enabled"><value>Увімкнено</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-vcache-vbo"><value>(Glide64) Vertex кеш VBO</value></data>
-  <data name="Emulation.Option.parallel_n64.parallel-n64-vcache-vbo.Help"><value>Vertex cache VBO (відновлення)</value></data>
+  <data name="Emulation.Option.parallel_n64.parallel-n64-vcache-vbo.Help"><value>Vertex cache VBO</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-vcache-vbo.Value.disabled"><value>Вимкнено</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-vcache-vbo.Value.enabled"><value>Увімкнено</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-boot-device"><value>Пристрої завантаження</value></data>
@@ -4411,7 +4480,7 @@
   <data name="Emulation.Option.parallel_n64.parallel-n64-64dd-hardware.Help"><value>Помістити вміст без визначеного картриджа або заголовка диска як 64DD диск. Розробки дисків і MAME/SDK несуть маркера, регулярні картриджі та роздрібні зображення D64 визначаються їх заголовком і відключені цим налаштуванням.</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-64dd-hardware.Value.disabled"><value>Вимкнено</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-64dd-hardware.Value.enabled"><value>Увімкнено</value></data>
-  <data name="Emulation.Option.parallel_n64.parallel-n64-goldeneye-tlb-hack"><value>Золотий TLB Mapping Hack (Restart)</value></data>
+  <data name="Emulation.Option.parallel_n64.parallel-n64-goldeneye-tlb-hack"><value>Золотий TLB Mapping Hack</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-goldeneye-tlb-hack.Help"><value>Карта ЗолотоЕй запит-сторінок 0x7F000000 000 відрізок коду безпосередньо на ROM, обходячи власний TLB pager (ari64 динарець тільки). Історично потрібні для GoldenEye, щоб запустити всі; на настільному комп'ютері проводяться точний шлях зараз заходи так само швидко. Вимкніть для апаратно-фітної поведінки TLB або для модифікованих ROMs, які перемістили сегмент гри, який мапінг буде пошкоджений.</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-goldeneye-tlb-hack.Value.enabled"><value>Увімкнено</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-goldeneye-tlb-hack.Value.disabled"><value>Вимкнено</value></data>
@@ -4580,7 +4649,7 @@
   <data name="Emulation.Option.parallel_n64.parallel-n64-rtc-savestate"><value>Rollback N64 системний годинник на водонавантаженні</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-rtc-savestate.Value.enabled"><value>Так</value></data>
   <data name="Emulation.Emulator.pokemini.Description"><value>Використовуються сумісні системи Nintendo з PokeMini.</value></data>
-  <data name="Emulation.Option.pokemini.pokemini_video_scale"><value>Відео Ваги (Restart)</value></data>
+  <data name="Emulation.Option.pokemini.pokemini_video_scale"><value>Відео Ваги</value></data>
   <data name="Emulation.Option.pokemini.pokemini_video_scale.Help"><value>Встановити внутрішній відео-ваговий фактор. Збільшення коефіцієнта ваги покращує зовнішній вигляд внутрішнього фільтру «Dot Matrix» LCD.</value></data>
   <data name="Emulation.Option.pokemini.pokemini_60hz_mode"><value>60Hz Режим</value></data>
   <data name="Emulation.Option.pokemini.pokemini_60hz_mode.Help"><value>Оновіть дисплей на 60Hz замість рідного 72Hz Pokemon Mini частотою оновлення, зменшивши кожну шосту рамку. Зменшує розгладжування відео, але не уникає стирання екрана на дисплеї, які не підтримують рідну операцію над 60Hz.</value></data>
@@ -4780,13 +4849,13 @@
   <data name="Emulation.Firmware.bsnes.Slot18"><value>SGB завантаження зображення</value></data>
   <data name="Emulation.Firmware.bsnes.Slot19"><value>BS-X - Sore wa Namae o Nusumareta Machi no Monogatari (Японія) (Rev 1)</value></data>
   <data name="Emulation.Emulator.bsnes_jg.Description"><value>Використовуються сумісні системи Nintendo з bsnes-jg.</value></data>
-  <data name="Emulation.Option.bsnes_jg.bsnes_jg_coproc_delaysync"><value>Delay LLE Coprocessor Синхронізація (Restart)</value></data>
+  <data name="Emulation.Option.bsnes_jg.bsnes_jg_coproc_delaysync"><value>Delay LLE Coprocessor Синхронізація</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_coproc_delaysync.Help"><value>Накладання синхронізації при використанні емульсійного копроцесора низького рівня для більшої швидкості за вартістю точності</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_coproc_delaysync.Value.off"><value>Від (Default)</value></data>
-  <data name="Emulation.Option.bsnes_jg.bsnes_jg_coproc_preferhle"><value>Prefer HLE копроцесорна емульсія (Restart)</value></data>
+  <data name="Emulation.Option.bsnes_jg.bsnes_jg_coproc_preferhle"><value>Prefer HLE копроцесорна емульсія</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_coproc_preferhle.Help"><value>Використовуйте високорівневі копроцесорні емульсії при можливості для більшої швидкості за ціною точності</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_coproc_preferhle.Value.off"><value>Від (Default)</value></data>
-  <data name="Emulation.Option.bsnes_jg.bsnes_jg_hotfixes"><value>Гарячіфікси (Restart)</value></data>
+  <data name="Emulation.Option.bsnes_jg.bsnes_jg_hotfixes"><value>Гарячіфікси</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_hotfixes.Help"><value>Застосувати гарячіфікси при відтворенні ручних ігор, випущених з великими помилками (які експонуються на реальному обладнанні). Ігри на запитання: Dirt Racer, Magical Drop, Rendering Ranger R2</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_hotfixes.Value.off"><value>Від (Default)</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_runahead"><value>Внутрішній Run-Ahead</value></data>
@@ -4796,10 +4865,10 @@
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_runahead.Value.2"><value>2 р.</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_runahead.Value.3"><value>3 рами</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_runahead.Value.4"><value>4 р.</value></data>
-  <data name="Emulation.Option.bsnes_jg.bsnes_jg_low_latency_audio"><value>Низький Latency Audio (Restart)</value></data>
+  <data name="Emulation.Option.bsnes_jg.bsnes_jg_low_latency_audio"><value>Низький Latency Audio</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_low_latency_audio.Help"><value>Використовуйте менші звукові штани для кращого досвіду при використанні передньої з низькою конфігурацією аудіо. Використання цього параметра, що вимагає копроцесорних ігор може викликати аудіо артефакти.</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_low_latency_audio.Value.off"><value>Від (Default)</value></data>
-  <data name="Emulation.Option.bsnes_jg.bsnes_jg_rsqual"><value>Якість реамплерів (Restart)</value></data>
+  <data name="Emulation.Option.bsnes_jg.bsnes_jg_rsqual"><value>Якість реамплерів</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_rsqual.Help"><value>Встановити рівень якості внутрішнього ресемплера (ви можете почути різницю, якщо ви використовуєте про аудіообладнання та уяву)</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_rsqual.Value.fast"><value>Швидке (Default)</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_rsqual.Value.medium"><value>Середній</value></data>
@@ -4943,8 +5012,8 @@
   <data name="Emulation.Option.bsnes_hd_beta.bsnes_coprocessor_prefer_hle.Help"><value>При включенні цього параметра, менш точний емульсій HLE завжди буде використовуватися при наявності. Якщо вимкнено, HLE буде використовуватися тільки при прошивці LLE.</value></data>
   <data name="Emulation.Option.bsnes_hd_beta.bsnes_coprocessor_prefer_hle.Value.ON"><value>Увімкнено</value></data>
   <data name="Emulation.Option.bsnes_hd_beta.bsnes_coprocessor_prefer_hle.Value.OFF"><value>Вимкнено</value></data>
-  <data name="Emulation.Option.bsnes_hd_beta.bsnes_sgb_bios"><value>Preferred Super Game Boy BIOS (Вимагає перезапустити)</value></data>
-  <data name="Emulation.Option.bsnes_hd_beta.bsnes_sgb_bios.Help"><value>Дозволяє вибрати кращий Super Game Boy BIOS для використання з сумісними назвами. Вимагає перезапустити ефект.</value></data>
+  <data name="Emulation.Option.bsnes_hd_beta.bsnes_sgb_bios"><value>Preferred Super Game Boy BIOS</value></data>
+  <data name="Emulation.Option.bsnes_hd_beta.bsnes_sgb_bios.Help"><value>Дозволяє вибрати кращий Super Game Boy BIOS для використання з сумісними назвами.</value></data>
   <data name="Emulation.Option.bsnes_hd_beta.bsnes_run_ahead_frames"><value>Внутрішній Run-Ahead</value></data>
   <data name="Emulation.Option.bsnes_hd_beta.bsnes_run_ahead_frames.Help"><value>Прискорює систему за часом і розгортається назад для зменшення затримки вводу. Має дуже високі вимоги до системи.</value></data>
   <data name="Emulation.Option.bsnes_hd_beta.bsnes_run_ahead_frames.Value.OFF"><value>Вимкнено</value></data>
@@ -5189,7 +5258,7 @@
   <data name="Emulation.Option.bsnes_mercury_accuracy.bsnes_crop_overscan"><value>Капітальний перекидний</value></data>
   <data name="Emulation.Option.bsnes_mercury_accuracy.bsnes_crop_overscan.Value.disabled"><value>Вимкнено</value></data>
   <data name="Emulation.Option.bsnes_mercury_accuracy.bsnes_crop_overscan.Value.enabled"><value>Увімкнено</value></data>
-  <data name="Emulation.Option.bsnes_mercury_accuracy.bsnes_gamma_ramp"><value>Gamma ramp (обов'язково перезавантажити)</value></data>
+  <data name="Emulation.Option.bsnes_mercury_accuracy.bsnes_gamma_ramp"><value>Gamma ramp</value></data>
   <data name="Emulation.Option.bsnes_mercury_accuracy.bsnes_gamma_ramp.Value.disabled"><value>Вимкнено</value></data>
   <data name="Emulation.Option.bsnes_mercury_accuracy.bsnes_gamma_ramp.Value.enabled"><value>Увімкнено</value></data>
   <data name="Emulation.Firmware.bsnes_mercury_accuracy.Slot0"><value>Зовнішня прошивка</value></data>
@@ -5227,7 +5296,7 @@
   <data name="Emulation.Option.bsnes_mercury_balanced.bsnes_crop_overscan"><value>Капітальний перекидний</value></data>
   <data name="Emulation.Option.bsnes_mercury_balanced.bsnes_crop_overscan.Value.disabled"><value>Вимкнено</value></data>
   <data name="Emulation.Option.bsnes_mercury_balanced.bsnes_crop_overscan.Value.enabled"><value>Увімкнено</value></data>
-  <data name="Emulation.Option.bsnes_mercury_balanced.bsnes_gamma_ramp"><value>Gamma ramp (обов'язково перезавантажити)</value></data>
+  <data name="Emulation.Option.bsnes_mercury_balanced.bsnes_gamma_ramp"><value>Gamma ramp</value></data>
   <data name="Emulation.Option.bsnes_mercury_balanced.bsnes_gamma_ramp.Value.disabled"><value>Вимкнено</value></data>
   <data name="Emulation.Option.bsnes_mercury_balanced.bsnes_gamma_ramp.Value.enabled"><value>Увімкнено</value></data>
   <data name="Emulation.Firmware.bsnes_mercury_balanced.Slot0"><value>Зовнішня прошивка</value></data>
@@ -5265,7 +5334,7 @@
   <data name="Emulation.Option.bsnes_mercury_performance.bsnes_crop_overscan"><value>Капітальний перекидний</value></data>
   <data name="Emulation.Option.bsnes_mercury_performance.bsnes_crop_overscan.Value.disabled"><value>Вимкнено</value></data>
   <data name="Emulation.Option.bsnes_mercury_performance.bsnes_crop_overscan.Value.enabled"><value>Увімкнено</value></data>
-  <data name="Emulation.Option.bsnes_mercury_performance.bsnes_gamma_ramp"><value>Gamma ramp (обов'язково перезавантажити)</value></data>
+  <data name="Emulation.Option.bsnes_mercury_performance.bsnes_gamma_ramp"><value>Gamma ramp</value></data>
   <data name="Emulation.Option.bsnes_mercury_performance.bsnes_gamma_ramp.Value.disabled"><value>Вимкнено</value></data>
   <data name="Emulation.Option.bsnes_mercury_performance.bsnes_gamma_ramp.Value.enabled"><value>Увімкнено</value></data>
   <data name="Emulation.Firmware.bsnes_mercury_performance.Slot0"><value>Зовнішня прошивка</value></data>
@@ -5562,13 +5631,13 @@
   <data name="Emulation.Option.snes9x2002.snes9x2002_low_pass_filter.Value.enabled"><value>Увімкнено</value></data>
   <data name="Emulation.Option.snes9x2002.snes9x2002_low_pass_range"><value>Рівень звукового фільтра</value></data>
   <data name="Emulation.Option.snes9x2002.snes9x2002_low_pass_range.Help"><value>Вкажіть частоту відключення низького звукового фільтра. Чим вище значення збільшує сприймання «зміцнення» фільтра, так як більш широкий спектр спектр спектрів високочастотного спектру загострюється.</value></data>
-  <data name="Emulation.Option.snes9x2002.snes9x2002_overclock_cycles"><value>Знижувати потоки (Hack, Небезпечний, перезапуск)</value></data>
+  <data name="Emulation.Option.snes9x2002.snes9x2002_overclock_cycles"><value>Знижувати потоки</value></data>
   <data name="Emulation.Option.snes9x2002.snes9x2002_overclock_cycles.Help"><value>Багато ігор для SNES постраждали від уповільнення через слабкий основний CPU. Ця опція допомагає полегшити, що за вартістю можливих помилок. Сумісність: Зменшення уповільнення, але зберігати якомога більше сумісності ігор. Max: Скорочення уповільнення якомога простіше, але буде розбити більше ігор.</value></data>
   <data name="Emulation.Option.snes9x2002.snes9x2002_overclock_cycles.Value.disabled"><value>Вимкнено</value></data>
   <data name="Emulation.Option.snes9x2002.snes9x2002_overclock_cycles.Value.compatible"><value>Комп'ютери</value></data>
   <data name="Emulation.Option.snes9x2002.snes9x2002_overclock_cycles.Value.max"><value>Макс.</value></data>
   <data name="Emulation.Emulator.snes9x2005.Description"><value>Утеплювачі сумісні системи Nintendo з Snes9x 2005.</value></data>
-  <data name="Emulation.Option.snes9x2005.snes9x_2005_region"><value>Область консолі (Restart)</value></data>
+  <data name="Emulation.Option.snes9x2005.snes9x_2005_region"><value>Область консолі</value></data>
   <data name="Emulation.Option.snes9x2005.snes9x_2005_region.Help"><value>Вкажіть, яка область система знаходиться від. "PAL" - 50hz, 'NTSC' - 60hz. Ігри будуть працювати швидше або повільніше, ніж нормально, якщо вибраний невірний регіон.</value></data>
   <data name="Emulation.Option.snes9x2005.snes9x_2005_region.Value.auto"><value>Автоматичний</value></data>
   <data name="Emulation.Option.snes9x2005.snes9x_2005_frameskip"><value>Карсип</value></data>
@@ -5584,7 +5653,7 @@
   <data name="Emulation.Option.snes9x2005.snes9x_2005_low_pass_filter.Value.enabled"><value>Увімкнено</value></data>
   <data name="Emulation.Option.snes9x2005.snes9x_2005_low_pass_range"><value>Рівень звукового фільтра</value></data>
   <data name="Emulation.Option.snes9x2005.snes9x_2005_low_pass_range.Help"><value>Вкажіть частоту відключення низького звукового фільтра. Чим вище значення збільшує сприймання «зміцнення» фільтра, так як більш широкий спектр спектр спектрів високочастотного спектру загострюється.</value></data>
-  <data name="Emulation.Option.snes9x2005.snes9x_2005_overclock_cycles"><value>Знижувати потоки (Hack, Небезпечний, перезапуск)</value></data>
+  <data name="Emulation.Option.snes9x2005.snes9x_2005_overclock_cycles"><value>Знижувати потоки</value></data>
   <data name="Emulation.Option.snes9x2005.snes9x_2005_overclock_cycles.Help"><value>Багато ігор для SNES постраждали від уповільнення через слабкий основний CPU. Ця опція допомагає приділити, що за вартістю можливих помилок. COMPATIBLE: Зниження уповільнення, але зберігати якомога більше сумісності ігор. MAX: Зменшити уповільнення якомога простіше, але буде розбити більше ігор.</value></data>
   <data name="Emulation.Option.snes9x2005.snes9x_2005_overclock_cycles.Value.disabled"><value>Вимкнено</value></data>
   <data name="Emulation.Option.snes9x2005.snes9x_2005_overclock_cycles.Value.compatible"><value>Комп'ютери</value></data>
@@ -5594,7 +5663,7 @@
   <data name="Emulation.Option.snes9x2005.snes9x_2005_reduce_sprite_flicker.Value.disabled"><value>Вимкнено</value></data>
   <data name="Emulation.Option.snes9x2005.snes9x_2005_reduce_sprite_flicker.Value.enabled"><value>Увімкнено</value></data>
   <data name="Emulation.Emulator.snes9x2005_plus.Description"><value>Утеплювачі сумісні системи Nintendo з Snes9x 2005 Plus.</value></data>
-  <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_region"><value>Область консолі (Restart)</value></data>
+  <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_region"><value>Область консолі</value></data>
   <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_region.Help"><value>Вкажіть, яка область система знаходиться від. "PAL" - 50hz, 'NTSC' - 60hz. Ігри будуть працювати швидше або повільніше, ніж нормально, якщо вибраний невірний регіон.</value></data>
   <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_region.Value.auto"><value>Автоматичний</value></data>
   <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_frameskip"><value>Карсип</value></data>
@@ -5604,7 +5673,7 @@
   <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_frameskip.Value.manual"><value>Посібник</value></data>
   <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_frameskip_threshold"><value>Рамкип Пороги (%)</value></data>
   <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_frameskip_threshold.Help"><value>Коли 'Frameskip' встановлюється до 'Manual', визначає аудіо буферний поріг окупності (відсоток) нижче якого кадри будуть пропущені. Найвищі значення знижують ризик розтріскування, викликаючи кадри, щоб бути скидаються частіше.</value></data>
-  <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_overclock_cycles"><value>Знижувати потоки (Hack, Небезпечний, перезапуск)</value></data>
+  <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_overclock_cycles"><value>Знижувати потоки</value></data>
   <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_overclock_cycles.Help"><value>Багато ігор для SNES постраждали від уповільнення через слабкий основний CPU. Ця опція допомагає приділити, що за вартістю можливих помилок. COMPATIBLE: Зниження уповільнення, але зберігати якомога більше сумісності ігор. MAX: Зменшити уповільнення якомога простіше, але буде розбити більше ігор.</value></data>
   <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_overclock_cycles.Value.disabled"><value>Вимкнено</value></data>
   <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_overclock_cycles.Value.compatible"><value>Комп'ютери</value></data>
@@ -5614,7 +5683,7 @@
   <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_reduce_sprite_flicker.Value.disabled"><value>Вимкнено</value></data>
   <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_reduce_sprite_flicker.Value.enabled"><value>Увімкнено</value></data>
   <data name="Emulation.Emulator.snes9x2010.Description"><value>Використовуються сумісні системи Nintendo з Snes9x 2010.</value></data>
-  <data name="Emulation.Option.snes9x2010.snes9x_2010_region"><value>Область консолі (Restart)</value></data>
+  <data name="Emulation.Option.snes9x2010.snes9x_2010_region"><value>Область консолі</value></data>
   <data name="Emulation.Option.snes9x2010.snes9x_2010_region.Help"><value>Вкажіть, яка область система знаходиться від. "PAL" - 50hz, 'NTSC' - 60hz. Ігри будуть працювати швидше або повільніше, ніж нормально, якщо вибраний невірний регіон.</value></data>
   <data name="Emulation.Option.snes9x2010.snes9x_2010_region.Value.auto"><value>Автоматичний</value></data>
   <data name="Emulation.Option.snes9x2010.snes9x_2010_audio_interpolation"><value>Аудіо-інтерполяція (необхідний)</value></data>
@@ -5671,7 +5740,7 @@
   <data name="Emulation.Option.snes9x2010.snes9x_2010_reduce_sprite_flicker.Help"><value>Підвищує кількість спрайтів, які можна тягнути одночасно на екрані.</value></data>
   <data name="Emulation.Option.snes9x2010.snes9x_2010_reduce_sprite_flicker.Value.disabled"><value>Вимкнено</value></data>
   <data name="Emulation.Option.snes9x2010.snes9x_2010_reduce_sprite_flicker.Value.enabled"><value>Увімкнено</value></data>
-  <data name="Emulation.Option.snes9x2010.snes9x_2010_block_invalid_vram_access"><value>Блок Інвалідний VRAM доступ (Restart)</value></data>
+  <data name="Emulation.Option.snes9x2010.snes9x_2010_block_invalid_vram_access"><value>Блок Інвалідний VRAM доступ</value></data>
   <data name="Emulation.Option.snes9x2010.snes9x_2010_block_invalid_vram_access.Help"><value>Деякі Homebrew / ROM хакі вимагають цього варіанту, щоб бути відключені для коректної роботи.</value></data>
   <data name="Emulation.Option.snes9x2010.snes9x_2010_block_invalid_vram_access.Value.enabled"><value>Увімкнено</value></data>
   <data name="Emulation.Option.snes9x2010.snes9x_2010_block_invalid_vram_access.Value.disabled"><value>Вимкнено</value></data>
@@ -5738,7 +5807,7 @@
   <data name="Emulation.Option.mednafen_supafaust.supafaust_thread_affinity_emu"><value>Маска емульсійної нитки</value></data>
   <data name="Emulation.Option.mednafen_supafaust.supafaust_thread_affinity_ppu"><value>PPU набивають маску affinity</value></data>
   <data name="Emulation.Option.mednafen_supafaust.supafaust_renderer"><value>PPU рендерера</value></data>
-  <data name="Emulation.Option.beetle_vb.vb_3dmode"><value>Режим 3D (обов'язково перезавантажити)</value></data>
+  <data name="Emulation.Option.beetle_vb.vb_3dmode"><value>Режим 3D</value></data>
   <data name="Emulation.Option.beetle_vb.vb_3dmode.Help"><value>Виберіть режим 3D. Anaglyph - використовується в поєднанні з класичними склопакетами. Кібероскоп - призначений для використання з пристроєм CyberScope 3D. стороніbyside - образ зліва відображається на лівому, а зображення правої форми відображається праворуч. vli - вертикальні лінії чергуються між лівою і прямим виглядом. hli - Горизонтальні лінії чергують між ліворуч і правим видом.</value></data>
   <data name="Emulation.Option.beetle_vb.vb_3dmode.Value.anaglyph"><value>ааглиф</value></data>
   <data name="Emulation.Option.beetle_vb.vb_3dmode.Value.cyberscope"><value>Веб-камера</value></data>
@@ -5773,7 +5842,7 @@
   <data name="Emulation.Option.beetle_vb.vb_opposite_directions.Help"><value>Дозвольте натиснути і вниз або лівими та правими напрямами одночасно. Це може викликати блискавки.</value></data>
   <data name="Emulation.Option.beetle_vb.vb_opposite_directions.Value.disabled"><value>Вимкнено</value></data>
   <data name="Emulation.Option.beetle_vb.vb_opposite_directions.Value.enabled"><value>Увімкнено</value></data>
-  <data name="Emulation.Option.beetle_vb.vb_cpu_emulation"><value>CPU емульсія (Restart)</value></data>
+  <data name="Emulation.Option.beetle_vb.vb_cpu_emulation"><value>CPU емульсія</value></data>
   <data name="Emulation.Option.beetle_vb.vb_cpu_emulation.Help"><value>Виберіть між більш швидким і точним (повільним) емульсією.</value></data>
   <data name="Emulation.Option.beetle_vb.vb_cpu_emulation.Value.accurate"><value>точне</value></data>
   <data name="Emulation.Option.beetle_vb.vb_cpu_emulation.Value.fast"><value>швидко</value></data>
@@ -5926,7 +5995,9 @@
   <data name="Emulation.Option.cemu.cemu_uninstall_game.Value.disabled"><value>Вимкнено</value></data>
   <data name="Emulation.Option.cemu.cemu_uninstall_game.Value.enabled"><value>Увімкнено</value></data>
   <data name="Emulation.Option.cemu.cemu_install_titles"><value>Встановити контент</value></data>
-  <data name="Emulation.Option.cemu.cemu_install_titles.Help"><value>Встановлює всі оновлення та DLC в системі /Cemu/titles in saves/Cemu/mlc01, вбудоване зберігання консолі. Кожна з них йде в папку, а NUS завантажити (.app файли) потрібно її title.tmd і його title.tik, ключ розшифровки, поруч з ними. Версія вже встановлена, що є тим самим або новачком.&#xA;&#xA;Коли це ON, установка починається відразу, з його прогресом показується як повідомлення, і він обертається OFF знову при встановленні всіх вмісту і цей меню виводиться або інший варіант змінюється. Ім'я буде використовувати встановлений вміст, коли він перезавантажений.&#xA;&#xA;Контент з інших локацій можна встановити за допомогою основного меню RetroArch &gt; Навантаження контенту, вибравши відповідний title.tmd, з його title.tik.</value></data>
+  <data name="Emulation.Option.cemu.cemu_install_titles.Help"><value>Встановлює всі оновлення та DLC в системі /Cemu/titles in saves/Cemu/mlc01, вбудоване зберігання консолі. Кожна з них йде в папку, а NUS завантажити (.app файли) потрібно її title.tmd і його title.tik, ключ розшифровки, поруч з ними. Версія вже встановлена, що є тим самим або новачком.
+
+Коли це ON, установка починається відразу, з його прогресом показується як повідомлення, і він обертається OFF знову при встановленні всіх вмісту і цей меню виводиться або інший варіант змінюється. Контент з інших локацій можна встановити за допомогою основного меню RetroArch &gt; Навантаження контенту, вибравши відповідний title.tmd, з його title.tik.</value></data>
   <data name="Emulation.Option.cemu.cemu_install_titles.Value.disabled"><value>Вимкнено</value></data>
   <data name="Emulation.Option.cemu.cemu_install_titles.Value.enabled"><value>Увімкнено</value></data>
   <data name="Emulation.Option.cemu.cemu_uninstall_titles"><value>Встановити контент</value></data>

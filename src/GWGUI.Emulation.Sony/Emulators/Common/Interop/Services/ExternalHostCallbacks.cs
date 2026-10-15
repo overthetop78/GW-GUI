@@ -32,6 +32,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
     private int _optionsUpdated;
     private readonly object _inputGate = new();
     private readonly int[] _controllerTypes = Enumerable.Repeat((int)ControllerType.None, GWGUI.Emulation.Sony.Common.Constants.ControllerPortConstants.MaximumControllerPortCount).ToArray();
+    private readonly IReadOnlyList<CoreControllerPort>? _controllerPorts;
     private EmulationInputSnapshot _pendingInput = EmulationInputSnapshot.Empty;
     private EmulationInputSnapshot _polledInput = EmulationInputSnapshot.Empty;
     private int _pointerX = ExternalHostCallbacksConstants.PointerCoordinateCenter;
@@ -43,8 +44,9 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
     private readonly Dictionary<string, bool> _optionVisibility = new(StringComparer.Ordinal);
     internal ExternalDiskControl DiskControl { get; } = new();
 
-    internal ExternalHostCallbacks(string systemDirectory, string contentDirectory, string saveDirectory, IReadOnlyDictionary<string, string>? options, IReadOnlyList<string>? startupFailureDiagnostics = null)
+    internal ExternalHostCallbacks(string systemDirectory, string contentDirectory, string saveDirectory, IReadOnlyDictionary<string, string>? options, IReadOnlyList<string>? startupFailureDiagnostics = null, IReadOnlyList<CoreControllerPort>? controllerPorts = null)
     {
+        _controllerPorts = controllerPorts;
         DiagnosticMonitor = new CoreDiagnosticMonitor(startupFailureDiagnostics);
         Directory.CreateDirectory(systemDirectory);
         Directory.CreateDirectory(contentDirectory);
@@ -63,6 +65,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
         Video = HandleVideo;
         AudioSample = HandleAudioSample;
         AudioBatch = HandleAudioBatch;
+        MultichannelAudioBatch = HandleMultichannelAudioBatch;
         InputPoll = HandleInputPoll;
         InputState = HandleInputState;
         Log = HandleLog;
@@ -108,6 +111,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
     internal ExternalCoreApi.VideoCallback Video { get; }
     internal ExternalCoreApi.AudioSampleCallback AudioSample { get; }
     internal ExternalCoreApi.AudioBatchCallback AudioBatch { get; }
+    internal MultichannelAudioApi.BatchInt16 MultichannelAudioBatch { get; }
     internal ExternalCoreApi.InputPollCallback InputPoll { get; }
     internal ExternalCoreApi.InputStateCallback InputState { get; }
     internal NativeLogFunctions.WindowsX64Callback Log { get; }

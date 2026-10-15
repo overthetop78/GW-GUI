@@ -17,6 +17,17 @@ namespace GWGUI.Tests.Emulation.Sony;
 public sealed class EmulatorCatalogTests
 {
     [Fact]
+    public void PlayStationHardwareCatalogsKeepEveryNativeRendererAndTheirActualDefaults()
+    {
+        var swan = GWGUI.Emulation.Sony.Emulators.SwanStation.Constants.CoreConstants.Definition.Options.Single(option => option.Key == "swanstation_GPU_Renderer");
+        Assert.Equal("Auto", swan.DefaultValue);
+        Assert.Equal(new[] { "Auto", "OpenGL", "D3D11", "Vulkan", "Software" }, swan.Values.Select(value => value.Value));
+        var beetle = BeetleHardwareCore.Definition.Options.Single(option => option.Key == "beetle_psx_hw_renderer");
+        Assert.Equal("hardware", beetle.DefaultValue);
+        Assert.Equal(new[] { "hardware", "hardware_gl", "hardware_vk", "software" }, beetle.Values.Select(value => value.Value));
+    }
+
+    [Fact]
     public void EveryRpcs3PortOffersOnlyItsDualShock3VisualWithoutPhysicalAssignments()
     {
         var configuration = new MachineConfiguration(ModelConstants.PlayStation3, RpcsCore.Id);
@@ -73,7 +84,11 @@ public sealed class EmulatorCatalogTests
         Assert.True(option.RequiresRestart);
         var field = adapter.GetSettingsBlocks(configuration).SelectMany(block => block.Fields).Single(item => item.Id == key);
         Assert.Equal(expected, field.Value);
-        Assert.Equal("Vulkan", Assert.Single(field.Choices!, item => item.Id == "vulkan").InvariantDisplayValue);
+        Assert.Equal("Vulkan", Assert.Single(option.Values, item => item.Value == "vulkan").Label);
+        var hardware = Assert.Single(field.Choices!, item => item.DisplayResourceKey == "Emulation.Option.Common.Value.HardwareRendering");
+        Assert.Equal(selected == "opengl" ? "opengl" : "vulkan", hardware.Id);
+        Assert.Equal(2, field.Choices!.Count);
+        Assert.Contains(field.Choices, item => item.Id == "software");
         Assert.Equal(selected, configuration.Options?.GetValueOrDefault(key));
     }
 

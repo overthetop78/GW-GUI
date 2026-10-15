@@ -4,10 +4,6 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Sony.Help.Audio.Enabled.Detailed"><value>ควบคุมว่า GW GUI บรรเลงตัวอย่างเสียงที่สร้างโดยเครื่องจําลองเสียงหรือไม่</value></data>
-  <data name="Emulation.Sony.Help.Audio.Enabled.Short"><value>เปิดหรือปิดเสียงที่คัดลอกมา</value></data>
-  <data name="Emulation.Sony.Help.Audio.Output.Detailed"><value>เลือกอุปกรณ์วินโดวส์ที่เล่นเสียงจากเครื่องจําลองนี้</value></data>
-  <data name="Emulation.Sony.Help.Audio.Output.Short"><value>การแสดงผลเสียงที่ใช้โดย GW GUI.</value></data>
   <data name="Emulation.Sony.Help.Cpu.Frequency.Detailed"><value>แสดงความถี่ของนาฬิกาที่ระบุในตัวประมวลผล ในเครื่อง Sony</value></data>
   <data name="Emulation.Sony.Help.Cpu.Frequency.Short"><value>ความถี่ของตัวประมวลผลดั้งเดิม</value></data>
   <data name="Emulation.Sony.Help.Cpu.Model.Detailed"><value>แสดงรุ่นของตัวประมวลผลที่ถูกสร้างโดยเครื่อง Sony ที่เลือกไว้</value></data>
@@ -22,8 +18,8 @@
   <data name="Emulation.Sony.Help.Memory.Ram.Short"><value>ยอดของ RAM ที่ใช้ได้กับเครื่องเลียนแบบ</value></data>
   <data name="Emulation.Sony.Help.Cpu.EffectiveFrequency.Short"><value>ความถี่ของ CPU แบบย่อ หลังจากใช้หน่วยนาฬิกาที่เลือกไว้แล้ว</value></data>
   <data name="Emulation.Sony.Help.Cpu.EffectiveFrequency.Detailed"><value>ความถี่ของคอนโซลระบุ ถูกคูณด้วยเปอร์เซ็นต์ที่เลือก นี่เป็นการเปลี่ยนตัวประมวลผลที่คัดลอกมา ไม่ใช่ตัวประมวลผลของโฮสต์ ค่าที่สูงขึ้นสามารถลดความเร็วลง แต่อาจทําลายจังหวะเกมได้ ใช้ค่าปริยายของตัวจําลองโดยอัตโนมัติ</value></data>
-  <data name="Emulation.Sony.Help.Video.Chip.Short"><value>ชิปวิดีโอดั้งเดิมที่ถูกใช้โดยฮาร์ดแวร์PlayStation รุ่นเพิ่มเติม</value></data>
-  <data name="Emulation.Sony.Help.Video.Chip.Detailed"><value>Sony GPU ชิปรายการที่แตกต่างกันกับการปรับปรุงแผ่นแม่ ตัวเลือกในการแสดงผลควบคุมว่า ตัวจําลองสร้างเรขาคณิตและพิกเซลอย่างไร GW GUI เครื่องกรองภาพ จะประมวลผลภาพที่เสร็จสมบูรณ์หลังจากนั้น</value></data>
-  <data name="Emulation.Sony.Help.Audio.Chip.Short"><value>ชิปเพลงดั้งเดิมที่ถูกใช้โดยฮาร์ดแวร์ของPlayStation รุ่นเพิ่มเติม</value></data>
-  <data name="Emulation.Sony.Help.Audio.Chip.Detailed"><value>Sony SPU ผสมเสียงและถอดรหัสตัวอย่างบีบอัด รายการชิปมีความแตกต่าง กับการปรับปรุงแผ่นแม่ การเล่นเพลงและควบคุมการหน่วงเสียงบนคอมพิวเตอร์ของคุณ</value></data>
+  <data name="Emulation.Sony.Help.Video.Chip.Short"><value>ฮาร์ดแวร์กราฟิกดั้งเดิมของเครื่องที่เลือก</value></data>
+  <data name="Emulation.Sony.Help.Video.Chip.Detailed"><value>แสดงฮาร์ดแวร์กราฟิกดั้งเดิมของเครื่องที่เลือก การตั้งค่าการเรนเดอร์ของอีมูเลเตอร์จะเปลี่ยนภาพที่สร้างขึ้น จากนั้นจึงใช้ตัวกรองของ GW GUI</value></data>
+  <data name="Emulation.Sony.Help.Audio.Chip.Short"><value>ฮาร์ดแวร์เสียงดั้งเดิมของเครื่องที่เลือก</value></data>
+  <data name="Emulation.Sony.Help.Audio.Chip.Detailed"><value>แสดงฮาร์ดแวร์เสียงดั้งเดิมของเครื่องที่เลือก การตั้งค่าเอาต์พุตเสียงและความหน่วงจะควบคุมการเล่นเสียงบนคอมพิวเตอร์ของคุณ</value></data>
 </root>

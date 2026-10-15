@@ -2,12 +2,14 @@ using GWGUI.App.Contracts.Services.Audio;
 using System.Runtime.InteropServices;
 using GWGUI.Emulation;
 using GWGUI.Emulation.Contracts;
+using GWGUI.Emulation.Enums;
+using GWGUI.Emulation.Interfaces;
 using NAudio.CoreAudioApi;
 using NAudio.Wave;
 
 namespace GWGUI.App.Services.Audio;
 
-public sealed class WasapiAudioOutput : IAudioOutput
+public sealed class WasapiAudioOutput : IMultichannelAudioOutput
 {
     private readonly string? _deviceId;
     private readonly int _latencyMilliseconds;
@@ -17,6 +19,7 @@ public sealed class WasapiAudioOutput : IAudioOutput
     private byte[] _writeBuffer = [];
     private bool _disposed;
     private int _minimumLatencyMilliseconds;
+    private EmulationAudioChannelLayout _channelLayout = EmulationAudioChannelLayout.Stereo;
     private const int MaximumLatencyMilliseconds = 500;
 
     public WasapiAudioOutput(string? deviceId = null, int latencyMilliseconds = 50) : this(deviceId, latencyMilliseconds, CreateDevice) { }
@@ -41,8 +44,9 @@ public sealed class WasapiAudioOutput : IAudioOutput
         if (_buffer is { } buffer && previousLatency != Math.Max(_latencyMilliseconds, _minimumLatencyMilliseconds))
         {
             var sampleRate = buffer.WaveFormat.SampleRate;
+            var layout = _channelLayout;
             Stop();
-            Start(sampleRate);
+            Start(sampleRate, layout);
         }
         return true;
     }
@@ -67,14 +71,24 @@ public sealed class WasapiAudioOutput : IAudioOutput
         }
     }
 
-    public void Start(int sampleRate)
+    public void Start(int sampleRate) => Start(sampleRate, EmulationAudioChannelLayout.Stereo);
+
+    public void Start(int sampleRate, EmulationAudioChannelLayout channelLayout)
     {
         ObjectDisposedException.ThrowIf(_disposed, this);
         if (_device is not null) throw new InvalidOperationException("Audio output is already started.");
+        var format = new AudioChunk(ReadOnlyMemory<short>.Empty, sampleRate, 0, 0, TimeSpan.Zero, channelLayout);
+        if (!format.HasValidLength) throw new ArgumentOutOfRangeException(nameof(channelLayout));
         var completed = false;
         try
         {
-            _buffer = new BufferedWaveProvider(new WaveFormat(sampleRate, 16, 2)) { BufferDuration = TimeSpan.FromMilliseconds(Math.Max(250, _minimumLatencyMilliseconds)), DiscardOnBufferOverflow = true, ReadFully = true };
+            _channelLayout = channelLayout;
+            _buffer = new BufferedWaveProvider(new WaveFormatExtensible(sampleRate, 16, format.ChannelCount, (int)channelLayout))
+            {
+                BufferDuration = TimeSpan.FromMilliseconds(Math.Max(250, _minimumLatencyMilliseconds)),
+                DiscardOnBufferOverflow = true,
+                ReadFully = true
+            };
             _device = _createDevice(_deviceId, Math.Max(_latencyMilliseconds, _minimumLatencyMilliseconds));
             _device.Init(_buffer);
             _device.Play();
@@ -91,11 +105,12 @@ public sealed class WasapiAudioOutput : IAudioOutput
         return new WasapiOut(endpoint, AudioClientShareMode.Shared, false, latencyMilliseconds);
     }
 
-    public void Write(ReadOnlySpan<short> interleavedStereo)
+    public void Write(ReadOnlySpan<short> interleavedSamples)
     {
         ObjectDisposedException.ThrowIf(_disposed, this);
         if (_buffer is null) throw new InvalidOperationException("Audio output is not started.");
-        var bytes = MemoryMarshal.AsBytes(interleavedStereo);
+        if (interleavedSamples.Length % _buffer.WaveFormat.Channels != 0) throw new ArgumentException(nameof(interleavedSamples));
+        var bytes = MemoryMarshal.AsBytes(interleavedSamples);
         if (_writeBuffer.Length < bytes.Length) _writeBuffer = new byte[bytes.Length];
         bytes.CopyTo(_writeBuffer);
         _buffer.AddSamples(_writeBuffer, 0, bytes.Length);

@@ -6,12 +6,12 @@
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Emulator.pcsx2.Description"><value>PlayStation 2システムをエミュレートします。</value></data>
   <data name="Emulation.Emulator.ppsspp.Description"><value>PlayStation Portableシステムをエミュレートします。</value></data>
-  <data name="Emulation.Emulator.swanstation.Description"><value>Sony PlayStation および PS one システムを模倣して下さい。</value></data>
-  <data name="Emulation.Emulator.pokketstation.Description"><value>Sony PocketStationハンドヘルドを外部BIOSとメモリカードイメージでエミュレートします。</value></data>
-  <data name="Emulation.Emulator.mednafen_psx.Description"><value>Beetle PSXソフトウェアレンダラーでPlayStationシステムをエミュレートします。</value></data>
-  <data name="Emulation.Emulator.mednafen_psx_hw.Description"><value>Beetle PSXハードウェアレンダラーでPlayStationシステムをエミュレートします。</value></data>
-  <data name="Emulation.Emulator.pcsx_rearmed.Description"><value>PCSX-ReARMedとPlayStationシステムをエミュレートします。</value></data>
-  <data name="Emulation.Emulator.pcee2.Description"><value>PCEE2と外部BIOSでPlayStation 2システムをエミュレート。</value></data>
-  <data name="Emulation.Emulator.play.Description"><value>PlayStation 2システムをPlay!と統合システムファームウェアのエミュレーションで実現。</value></data>
+  <data name="Emulation.Emulator.swanstation.Description"><value>Sony PlayStation / PS oneシステムをエミュレートします。</value></data>
+  <data name="Emulation.Emulator.pokketstation.Description"><value>外部BIOSとメモリーカードイメージを使用して、携帯機器Sony PocketStationをエミュレートします。</value></data>
+  <data name="Emulation.Emulator.mednafen_psx.Description"><value>Beetle PSXのソフトウェアレンダラーでPlayStationシステムをエミュレートします。</value></data>
+  <data name="Emulation.Emulator.mednafen_psx_hw.Description"><value>Beetle PSXのハードウェアレンダラーでPlayStationシステムをエミュレートします。</value></data>
+  <data name="Emulation.Emulator.pcsx_rearmed.Description"><value>PCSX-ReARMedでPlayStationシステムをエミュレートします。</value></data>
+  <data name="Emulation.Emulator.pcee2.Description"><value>PCEE2と外部BIOSでPlayStation 2システムをエミュレートします。</value></data>
+  <data name="Emulation.Emulator.play.Description"><value>Play!とその内蔵システムファームウェアエミュレーションでPlayStation 2システムをエミュレートします。</value></data>
   <data name="Emulation.Emulator.rpcs3.Description"><value>RPCS3と外部システムファームウェアでPlayStation 3システムをエミュレートします。</value></data>
 </root>

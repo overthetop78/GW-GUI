@@ -39,8 +39,6 @@
   <data name="Emulation.Option.Sony.Value.Interpreter"><value>Interpreter</value></data>
   <data name="Emulation.Option.Sony.Value.CachedInterpreter"><value>Interpreter Cached</value></data>
   <data name="Emulation.Option.Sony.Value.Recompiler"><value>Rekomendasi</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_GPU_Renderer.Label"><value>Perender GPU</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_GPU_Renderer.Help"><value>Perender mana yang digunakan untuk meniru GPU.</value></data>
   <data name="Emulation.Option.Sony.Value.HardwareOpenGL"><value>Perangkat Keras (OpenGL)</value></data>
   <data name="Emulation.Option.Sony.Value.Software"><value>Perangkat Lunak</value></data>
   <data name="Emulation.Option.swanstation.swanstation_GPU_ResolutionScale.Label"><value>Skala Resolusi Internal</value></data>
@@ -48,7 +46,7 @@
   <data name="Emulation.Option.swanstation.swanstation_GPU_UseThread.Label"><value>Menghubungi Ancaman (Perangkat Lunak)</value></data>
   <data name="Emulation.Option.swanstation.swanstation_GPU_UseThread.Help"><value>Menggunakan thread kedua untuk menggambar grafis. Saat ini hanya tersedia bagi perender perangkat lunak.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_GPU_UseSoftwareRendererForReadbacks.Label"><value>Gunakan Perender Perangkat Lunak Untuk Readbacks</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_GPU_UseSoftwareRendererForReadbacks.Help"><value>Jalankan rendering perangkat lunak bersama merender perangkat keras ketika membaca data gambar dari VRAM. Beberapa game membutuhkan ini untuk gerak kabur atau transisi pertempuran, atau untuk memperbaiki tekstur rusak. Memulai ulang inti setelah mengubah pilihan ini.</value></data>
+  <data name="Emulation.Option.swanstation.swanstation_GPU_UseSoftwareRendererForReadbacks.Help"><value>Jalankan rendering perangkat lunak bersama merender perangkat keras ketika membaca data gambar dari VRAM. Beberapa game membutuhkan ini untuk gerak kabur atau transisi pertempuran.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_GPU_MSAA.Label"><value>Antialias Multisample</value></data>
   <data name="Emulation.Option.swanstation.swanstation_GPU_MSAA.Help"><value>Menggunakan antialias multisampel untuk merender objek 3D. Dapat memperhalus tepi bergerigi pada poligon dengan biaya yang lebih rendah untuk kinerja dibandingkan dengan meningkatkan skala resolusi, tetapi mungkin lebih mungkin untuk menyebabkan kesalahan render dalam beberapa game.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_GPU_TrueColor.Label"><value>Pencitraan dengan presisi warna penuh</value></data>
@@ -442,8 +440,6 @@
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_region.Help"><value>Tata daerah fallback yang dipakai ketika isi tidak dapat dideteksi otomatis (mis. mentah berkas PS-X EXE). Permainan berbasis Disc- masih menggunakan wilayah yang tertanam pada diska.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_internal_resolution.Label"><value>Resolusi GPU Internal</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_internal_resolution.Help"><value>Resolusi lebih tinggi dari '1x (Native)' meningkatkan kesetiaan model 3D dengan mengorbankan persyaratan kinerja. elemen 2D umumnya tidak terpengaruh oleh pengaturan ini.</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_renderer.Label"><value>Perender</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_renderer.Help"><value>Pilih bagaimana menggambar gambar. Perender perangkat lunak adalah yang paling akurat. Perlu lebih banyak daya pemrosesan pada resolusi internal yang lebih tinggi. Render perangkat keras kurang akurat, tapi lebih cepat pada resolusi yang lebih tinggi dan mendukung peningkatan grafis. Otomatis rendering perangkat keras memilih Vulkan atau OpenGL menurut driver video yang digunakan oleh aplikasi. Jika driver tidak mendukung Vulkan maupun OpenGL 3.3, inti menggunakan rendering perangkat lunak sebagai gantinya. Memulai ulang inti setelah mengubah pilihan ini.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_renderer_software_fb.Label"><value>Framebuffer Perangkat Lunak</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_renderer_software_fb.Help"><value>Gunakan perender perangkat lunak di latar belakang pada resolusi asli sementara perender hardware menampilkan permainan. Ini menghasilkan kembali gerak kabur dan transisi pertempuran di FF7 akurat. Ketika dinonaktifkan, OpenGL menghilangkan efek ini dan Vulkan menarik mereka pada GPU. Menonaktifkan opsi ini dapat meningkatkan kecepatan tetapi juga dapat menyebabkan kesalahan grafis yang serius. Tetap diaktifkan jika tidak yakin.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_color_format.Label"><value>Format Warna</value></data>
@@ -473,7 +469,7 @@
   <data name="Emulation.Option.Sony.Value.25Degrees"><value>25 derajat</value></data>
   <data name="Emulation.Option.Sony.Value.45Degrees"><value>45 derajat</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_video_cable.Label"><value>Kable Video Analog</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_video_cable.Help"><value>Mensimulasikan kabel antara konsol dan televisi, termasuk pengkodean warna dan decoder televisi. 'Tidak ada Simulasi' mematikan rantai sepenuhnya dan tangan framebuffer langsung ke tampilan (baku). 'RGB (SCART)' adalah output paling tajam PSX dapat menghasilkan: multi- out membawa analog RGB, Jadi tidak ada yang dimodulasi dan tidak ada artefak pengkodean di bawah dapat terjadi - tetapi masih sebuah kawat analog, sehingga adalah band-terbatas oleh consol video amplifier dan set 's input panggung daripada menjadi jauh tajam.' S-Video 'warna batas berat tapi terus luma dan warna pada kabel terpisah, sehingga detail halus tetap bersih.' Komposit 'jumlah mereka ke satu kawat, yang decoverder kemudian harus menarik lagi, kosmetik dan detail menambahkan warna pada rantai dan pelangi. 'RF' model sebuah modulator eksternal - konsol itu sendiri tidak memiliki, hanya DC jack ke daya satu - memperkecil luma lebih lanjut dan menambahkan pola beat pembawa suara membuat terhadap subcarrier warna, yang terkuat pada warna jenuh. Bekerja pada resolusi internal apapun: sampel ekstra diselesaikan sebelum sinyal dihasilkan, sehingga pengaturan yang lebih tinggi bertindak sebagai supersampling ke kabel daripada sinyal yang lebih luas, dan keluaran masih membawa detail sub-pixel yang diproduksi decoder. Didukung oleh Renderer Vulkan dan OpenGL, dan diabaikan oleh render Perangkat Lunak. Pada OpenGL filter yang menghapus 'titik gantung' - pola bertitik-titik baik sepanjang tepi warna horizontal - membutuhkan GL 4.3 atau GLES 3.1; pada driver yang lebih tua simulasi masih berjalan, tapi 'Composite' dan 'RF' akan menunjukkan titik-titiknya. Aplikasi segera; tidak perlu restart.</value></data>
+  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_video_cable.Help"><value>Mensimulasikan kabel antara konsol dan televisi, termasuk pengkodean warna dan decoder televisi. 'Tidak ada Simulasi' mematikan rantai sepenuhnya dan tangan framebuffer langsung ke tampilan (baku). 'RGB (SCART)' adalah output paling tajam PSX dapat menghasilkan: multi- out membawa analog RGB, Jadi tidak ada yang dimodulasi dan tidak ada artefak pengkodean di bawah dapat terjadi - tetapi masih sebuah kawat analog, sehingga adalah band-terbatas oleh consol video amplifier dan set 's input panggung daripada menjadi jauh tajam.' S-Video 'warna batas berat tapi terus luma dan warna pada kabel terpisah, sehingga detail halus tetap bersih.' Komposit 'jumlah mereka ke satu kawat, yang decoverder kemudian harus menarik lagi, kosmetik dan detail menambahkan warna pada rantai dan pelangi. 'RF' model sebuah modulator eksternal - konsol itu sendiri tidak memiliki, hanya DC jack ke daya satu - memperkecil luma lebih lanjut dan menambahkan pola beat pembawa suara membuat terhadap subcarrier warna, yang terkuat pada warna jenuh. Bekerja pada resolusi internal apapun: sampel ekstra diselesaikan sebelum sinyal dihasilkan, sehingga pengaturan yang lebih tinggi bertindak sebagai supersampling ke kabel daripada sinyal yang lebih luas, dan keluaran masih membawa detail sub-pixel yang diproduksi decoder. Didukung oleh Renderer Vulkan dan OpenGL, dan diabaikan oleh render Perangkat Lunak. Pada OpenGL filter yang menghapus 'titik gantung' - pola bertitik-titik baik sepanjang tepi warna horizontal - membutuhkan GL 4.3 atau GLES 3.1; pada driver yang lebih tua simulasi masih berjalan, tapi 'Composite' dan 'RF' akan menunjukkan titik-titiknya. Aplikasi segera.</value></data>
   <data name="Emulation.Option.Sony.Value.NoSimulation"><value>Tidak ada Simulasi</value></data>
   <data name="Emulation.Option.Sony.Value.RGBSCART"><value>RGB (SCART)</value></data>
   <data name="Emulation.Option.Sony.Value.SVideo"><value>S-Video</value></data>
@@ -758,9 +754,7 @@
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_nostalls.Label"><value>Nonaktifkan CPU / GTE Stalls</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_nostalls.Help"><value>Akan menyebabkan beberapa permainan berjalan terlalu cepat. Harus dinonaktifkan dalam hampir semua kasus. Hanya interpreter.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_fast_boot.Label"><value>Boot Cepat</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_fast_boot.Help"><value>Lewati animasi boot BIOS. Membutuhkan restart.</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_renderer.Label"><value>Perender</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_renderer.Help"><value>Hardware renderer API, atau perender perangkat lunak. Beralih ke atau dari Perangkat Lunak berlaku pada fly; mengubah antara perangkat keras APIs mengambil efek ketika isi dijalankan ulang.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_fast_boot.Help"><value>Lewati animasi boot BIOS.</value></data>
   <data name="Emulation.Option.Sony.Value.OpenGLHardware"><value>OpenGL (Perangkat Keras)</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_upscale_multiplier.Label"><value>Resolusi Internal</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_upscale_multiplier.Help"><value>Perkalian resolusi render internal untuk perender perangkat keras. Juga sisik framebuffer keluaran. Terapan pada lalat.</value></data>
@@ -797,8 +791,6 @@
   <data name="Emulation.Option.pcee2.pcsx2_fxaa.Help"><value>Posting murah - proses antialiasing.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_cas_mode.Label"><value>penajaman adaptif kontras</value></data>
   <data name="Emulation.Option.Sony.Value.SharpenOnly"><value>Hanya Menajamkan</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_audio_buffer_ms.Label"><value>Penyangga Audio</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_audio_buffer_ms.Help"><value>Berapa banyak suara yang emulator terus di depan frontend. Lebih dari itu naik keluar kios yang jika tidak akan terdengar sebagai istirahat dalam suara, dengan biaya yang banyak penundaan sebelum Anda mendengar apa-apa. default PCSX2 sendiri adalah 50 gram, yang mengasumsikan itu makan perangkat audio secara langsung daripada antarmuka yang menarik sekali bingkai.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_frame_limiter.Label"><value>Limiter Bingkai</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_frame_limiter.Help"><value>Apa yang menahan emulator dengan kecepatan penuh. Frontend meninggalkan mondar-mandir ke RetroArch, yang throttle dengan membuat inti menunggu pada audio itu tangan atas. Internal menggunakan batasan PCSX2 sendiri - untuk perangkat yang menunggu tidak pernah terjadi, karena driver audio underruns daripada memblokir, dan variasi kecepatan emulator sendiri kemudian mencapai layar sebagai pacing frame uneven.</value></data>
   <data name="Emulation.Option.Sony.Value.FrontendRetroArch"><value>Frontend (RetroArch)</value></data>
@@ -809,13 +801,13 @@
   <data name="Emulation.Option.pcee2.pcsx2_aspect_ratio.Label"><value>Rasio Aspek</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_aspect_ratio.Help"><value>Otomatis melaporkan 16: 9 ketika patch widescreen diaktifkan, 4: 3 sebaliknya.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_multitap.Label"><value>Multitap</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_multitap.Help"><value>Aktifkan adaptor multititap untuk hingga 8 controller. Urutan pemutar mengikuti slot fisik (port 1: 1A-1D, kemudian port 2: 2A- 2D). Restart direkomendasikan.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_multitap.Help"><value>Aktifkan adaptor multititap untuk hingga 8 controller. Urutan pemutar mengikuti slot fisik (port 1: 1A-1D.</value></data>
   <data name="Emulation.Option.Sony.Value.Disabled2Players"><value>Dinonaktifkan (2 pemain)</value></data>
   <data name="Emulation.Option.Sony.Value.Port15Players"><value>Port 1 (5 pemain)</value></data>
   <data name="Emulation.Option.Sony.Value.Port25Players"><value>Port 2 (5 pemain)</value></data>
   <data name="Emulation.Option.Sony.Value.BothPorts8Players"><value>Baik port (8 pemain)</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_lightgun.Label"><value>Lightgun (GunCon 2)</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_lightgun.Help"><value>Meniru Namco GunCon 2 di port USB, ditujukan dengan pistol senter antarmuka (atau tetikus dipetakan sebagai senapan kilat) pada port pengendali yang cocok. Membutuhkan restart.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_lightgun.Help"><value>Meniru Namco GunCon 2 di port USB.</value></data>
   <data name="Emulation.Option.Sony.Value.USBPort1"><value>Port USB 1</value></data>
   <data name="Emulation.Option.Sony.Value.USBPort2"><value>Port USB 2</value></data>
   <data name="Emulation.Option.Sony.Value.BothPorts"><value>Baik Port</value></data>
@@ -844,14 +836,14 @@
   <data name="Emulation.Option.Sony.Value.EnabledJITDefault"><value>Diaktifkan (JIT, Baku)</value></data>
   <data name="Emulation.Option.Sony.Value.DisabledInterpreter"><value>Dinonaktifkan (Interpreter)</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_rec_ee.Label"><value>- EE Rekomendasi</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_rec_ee.Help"><value>Diagnostik. Nonaktifkan hanya Emotion Engine (EE) dynarec sementara meninggalkan yang lain pada, untuk bisect yang recompiler menyebabkan kecelakaan. Membutuhkan restart.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_rec_ee.Help"><value>Diagnostik. Nonaktifkan hanya Emotion Engine (EE) dynarec sementara meninggalkan yang lain pada.</value></data>
   <data name="Emulation.Option.Sony.Value.EnabledDefault"><value>Diaktifkan (Baku)</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_rec_iop.Label"><value>- IOP Rekomendasi</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_rec_iop.Help"><value>Diagnostik. Nonaktifkan hanya IOP (R3000) dynarec ketika meninggalkan yang lain pada, untuk bisect yang recompiler menyebabkan kecelakaan. Membutuhkan restart.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_rec_iop.Help"><value>Diagnostik. Nonaktifkan hanya IOP (R3000) dynarec ketika meninggalkan yang lain pada.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_rec_vu0.Label"><value>- VU0 Rekomendasi</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_rec_vu0.Help"><value>Diagnostik. Matikan hanya VU0 microVU dynarec sementara meninggalkan yang lain pada, untuk bisect yang recompiiler menyebabkan kecelakaan. Membutuhkan restart.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_rec_vu0.Help"><value>Diagnostik. Matikan hanya VU0 microVU dynarec sementara meninggalkan yang lain pada.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_rec_vu1.Label"><value>- VU1 Rekomendasi</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_rec_vu1.Help"><value>Diagnostik. Matikan hanya VU1 microVU dynarec sementara meninggalkan yang lain pada, untuk bisect yang recompiiler menyebabkan kecelakaan. Membutuhkan restart.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_rec_vu1.Help"><value>Diagnostik. Matikan hanya VU1 microVU dynarec sementara meninggalkan yang lain pada.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_memcard_slot1_enable.Label"><value>Slot 1 Diaktifkan</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_memcard_slot1_enable.Help"><value>Aktifkan kartu memori Slot 1 PS2. Perubahan berlaku segera ketika isi sedang berjalan.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_memcard_slot2_enable.Label"><value>Slot 2 Diaktifkan</value></data>
@@ -902,8 +894,6 @@
   <data name="Emulation.Option.Sony.Value.AllTimers"><value>Semua Penghitung</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_clocks_scale.Label"><value>Skala Jam</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_clocks_scale.Help"><value>Skala persentase kecepatan jam PS3.</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_renderer.Label"><value>Perender</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_renderer.Help"><value>Vulkan merender di depan perangkat Vulkan dan tangan itu masing-masing selesai bingkai sebagai gambar; ketika frontend tidak menjalankan driver video Vulkan, frame disalin kembali melalui memori sebagai gantinya. OpenGL langsung ke dalam konteks OpengL.</value></data>
   <data name="Emulation.Option.Sony.Value.NullNoVideo"><value>Nall (Tidak ada Video)</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_frame_limit.Label"><value>Batas Bingkai</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_frame_limit.Help"><value>Tingkat frame tertinggi permainan dapat berjalan di. Otomatis adalah Frekuensi VBlank, seperti dalam RPCS3; PS3 Langkah asli membalik cara PS3 tidak; Dinonaktifkan memungkinkan permainan yang tidak menunggu PS3 's menyegarkan diri mereka sendiri berjalan terlalu cepat.</value></data>
@@ -980,7 +970,7 @@
   <data name="Emulation.Option.rpcs3.rpcs3_driver_wakeup_delay.Label"><value>Driver Wake- Delay Up</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_driver_wakeup_delay.Help"><value>Penggerak bangun - up penundaan dalam mikrodetik. 0 secara baku, seperti dalam RPCS3; meningkatkan hanya ketika permainan membutuhkannya.</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_vblank_rate.Label"><value>Frekuensi Velocation</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_vblank_rate.Help"><value>Tingkat penyegaran PS3 di Hz. Ini juga merupakan laju frame yang diminta oleh inti RetroArch, yang berakibat saat isi dimuat; game yang dapat berjalan di atas 60 FPS memerlukan tampilan yang menyegarkan secepat itu.</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_vblank_rate.Help"><value>Mengatur laju penyegaran yang diemulasikan. Mode daftar kompatibilitas menggandakannya untuk gim yang didukung.</value></data>
   <data name="Emulation.Option.Sony.Value.50HzPAL"><value>50 Hz (PAL)</value></data>
   <data name="Emulation.Option.Sony.Value.60HzNTSC"><value>60 Hz (NTSC)</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_thread_scheduler.Label"><value>Penjadwal Thread</value></data>
@@ -1062,8 +1052,6 @@
   <data name="Emulation.Option.rpcs3.rpcs3_frame_pacing.Label"><value>Pacing Bingkai</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_frame_pacing.Help"><value>Apa frame permainan adalah timeby. Jam emulator adalah waktu RPCS3 sendiri, seperti dalam standalone RPCS3. RetroArch memberikan game satu PS3 refresh per frame RetroArch menunjukkan, begitu cepat maju kecepatan permainan up dan permainan berjalan di Frekuensi VBlank ketika RetroArch menunjukkan bahwa banyak frame kedua; dengan Vulkan renderer itu saat ini melewati frame.</value></data>
   <data name="Emulation.Option.Sony.Value.EmulatorClock"><value>Jam emulator</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_savedata_slot.Label"><value>Simpan Slot Data</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_savedata_slot.Help"><value>Sebuah permainan PS3 menampilkan daftar dari data simpan dan membiarkan pemain memilih. 'Pilih dari daftar' menunjukkan bahwa list dalam gambar game, untuk digunakan dengan pengontrol. Sebuah angka memiliki pilihan inti untuk Anda sebaliknya: menyimpan overwrite entri pada posisi ini dalam daftar permainan, atau membuat sebuah save baru ketika daftar lebih pendek; memuat mengambil masukan di posisi ini, dan tidak menemukan apapun ketika daftar singkat. 0 adalah entry pertama. Permainan yang menyimpan satu save dari mereka sendiri tidak menunjukkan daftar, jadi ini tidak berlaku bagi mereka.</value></data>
   <data name="Emulation.Option.Sony.Value.PickFromList"><value>Pilih dari daftar</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_master_volume.Label"><value>Volume Master</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_master_volume.Help"><value>Persentase volume audio utama.</value></data>
@@ -1233,7 +1221,7 @@
   <data name="Emulation.Option.Sony.Value.MergeTargets"><value>Merge render target</value></data>
   <data name="Emulation.Option.Sony.Setting.DisableDepthConversion.Label"><value>Nonaktifkan konversi depth- buffer</value></data>
   <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Label"><value>Gunakan Basis Data GameIndex Eksternal</value></data>
-  <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Help"><value>Membutuhkan perender perangkat keras dan perbaikan render manual. Muat basis data kompatibilitas permainan terpilih, atau tinggalkan berkas kosong untuk memakai basis data built-in. Mulai ulang emulasi setelah mengubah pengaturan ini.</value></data>
+  <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Help"><value>Membutuhkan perender perangkat keras dan perbaikan render manual. Muat basis data kompatibilitas permainan terpilih.</value></data>
   <data name="Emulation.Option.Sony.Setting.FramebufferConversion.Label"><value>Ubah framebuffer yang dirender</value></data>
   <data name="Emulation.Option.Sony.Setting.DisablePartialInvalidation.Label"><value>Nonaktifkan Invalidasi Sumber Sebagian</value></data>
   <data name="Emulation.Option.Sony.Setting.GpuPaletteConversion.Label"><value>konversi palet di GPU</value></data>
@@ -1274,4 +1262,18 @@
   <data name="Emulation.Option.Sony.Setting.LineToQuad.Help" xml:space="preserve"><value>Beberapa permainan (mis. Doom, Hexen, Soul Blade, dll.) menggambar garis horizontal dengan merentangkan segitiga-piksel tinggi di layar, yang dikebiri sebagai baris pixel pada perangkat keras asli. Peretas ini mendeteksi segitiga kecil ini dan mengubahnya menjadi quad seperti yang diperlukan, memungkinkan mereka untuk ditampilkan dengan benar di perangkat keras renderer dan pada resolusi internal upscaled. 'Agresif' dibutuhkan untuk beberapa judul (misalnya Dark Forces, Duke Nukems) tetapi mungkin sebaliknya memperkenalkan gangguan grafis. Tinggalkan di 'Baku' jika tidak yakin.</value></data>
   <data name="Emulation.Option.Sony.Setting.DynarecEventCycles.Label" xml:space="preserve"><value>Dynarec DMA / GPU / MDEC / Timer Event Cycles</value></data>
   <data name="Emulation.Option.Sony.Setting.DynarecEventCycles.Help" xml:space="preserve"><value>Siklus maksimum dijalankan oleh CPU sebelum GPU / DMA / MDEC / Timer Update dicentang, angka yang lebih tinggi akan lebih cepat, memiliki dampak jauh lebih sedikit pada penerjemah kumbang daripada dynarec.</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_aspect_ratio.Help"><value>Mengatur format layar yang dilaporkan ke gim. Hanya sebagian gim yang mendukung 4:3.</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_disk_cache_size.Label"><value>Ukuran cache disk</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_disk_cache_size.Help"><value>Membatasi ruang disk untuk cache sementara gim. Gim membuat ulang cache yang dihapus, sehingga proses mulai berikutnya bisa lebih lambat.</value></data>
+  <data name="Emulation.Option.pokket.Link"><value>Sambungan inframerah</value></data>
+  <data name="Emulation.Option.pokket.Layout"><value>Tata letak layar yang terhubung</value></data>
+  <data name="Emulation.Option.pokket.Audio"><value>Sumber audio unit yang terhubung</value></data>
+  <data name="Emulation.Option.pokket.Identity"><value>Identitas perangkat keras unit B</value></data>
+  <data name="Emulation.Option.pokket.Horizontal"><value>Berdampingan</value></data>
+  <data name="Emulation.Option.pokket.Vertical"><value>Bertumpuk</value></data>
+  <data name="Emulation.Option.pokket.SelectUnitA"><value>Kendalikan unit A</value></data>
+  <data name="Emulation.Option.pokket.SelectUnitB"><value>Kendalikan unit B</value></data>
+  <data name="Emulation.Option.pokket.Help"><value>Masukkan kartu ke setiap unit untuk mengaktifkan sambungan inframerah.</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_audio_format.Label"><value>Tata letak pengeras suara</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_audio_format.Help"><value>Menentukan tata letak pengeras suara yang tersedia untuk gim. Gim memilih bauran audio berdasarkan tata letak ini. Keluaran juga bergantung pada perangkat audio Windows yang dipilih.</value></data>
 </root>

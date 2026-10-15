@@ -9,7 +9,7 @@ internal static class ControllerPortFunctions
     internal static uint Resolve(ControllerType type, int port, IReadOnlyList<IReadOnlyList<ControllerDevice>> ports)
     {
         if (port < SemanticPortConstants.MinimumControllerPort
-            || port >= SemanticPortConstants.MaximumControllerPortCount)
+            || port >= SemanticPortConstants.MaximumGamepadPortCount)
             throw new ArgumentOutOfRangeException(nameof(port), port, null);
         if (type == ControllerType.None) return NativeControllerConstants.NoneDevice;
         if (type == ControllerType.Joystick)

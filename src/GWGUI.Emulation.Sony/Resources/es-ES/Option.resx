@@ -23,7 +23,7 @@
   <data name="Emulation.Option.swanstation.swanstation_CDROM_ReadThread.Label"><value>CD-ROM Lee Thread</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_ReadThread.Help"><value>Lea los sectores CD-ROM por delante de manera asincrónica, reduciendo el riesgo de aumentos del tiempo de marco.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_LoadImagePatches.Label"><value>Apply Image Patches</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_CDROM_LoadImagePatches.Help"><value>Aplica automáticamente parches a imágenes de disco cuando están presentes en el mismo directorio. Actualmente solo se admiten parches PPF con esta opción. Requiere que el núcleo sea reiniciado para aplicar.</value></data>
+  <data name="Emulation.Option.swanstation.swanstation_CDROM_LoadImagePatches.Help"><value>Aplica automáticamente parches a imágenes de disco cuando están presentes en el mismo directorio. Actualmente solo se admiten parches PPF con esta opción.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_LoadImageToRAM.Label"><value>Descargar CD-ROM Imagen a RAM</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_LoadImageToRAM.Help"><value>Carga la imagen del disco a RAM antes de comenzar la emulación. Puede reducir el golpe si se está ejecutando una cuota de red, a un costo de mayor tiempo de puesta en marcha. Como libretro no proporciona ninguna manera de dibujar sobrecapas, el emulador aparecerá para cerrar mientras la imagen es precargada.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_PreCacheCHD.Label"><value>Imágenes de CHD pre-caché a RAM</value></data>
@@ -39,8 +39,6 @@
   <data name="Emulation.Option.Sony.Value.Interpreter"><value>Interpreter</value></data>
   <data name="Emulation.Option.Sony.Value.CachedInterpreter"><value>Cached Interpreter</value></data>
   <data name="Emulation.Option.Sony.Value.Recompiler"><value>Recompilador</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_GPU_Renderer.Label"><value>GPU Renderer</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_GPU_Renderer.Help"><value>Que renderizador utilizar para emular la GPU.</value></data>
   <data name="Emulation.Option.Sony.Value.HardwareOpenGL"><value>Hardware (OpenGL)</value></data>
   <data name="Emulation.Option.Sony.Value.Software"><value>Software</value></data>
   <data name="Emulation.Option.swanstation.swanstation_GPU_ResolutionScale.Label"><value>Escala de Resolución Interna</value></data>
@@ -48,7 +46,7 @@
   <data name="Emulation.Option.swanstation.swanstation_GPU_UseThread.Label"><value>Rendering Threaded (Software)</value></data>
   <data name="Emulation.Option.swanstation.swanstation_GPU_UseThread.Help"><value>Usa un segundo hilo para dibujar gráficos. Actualmente sólo está disponible para el renderizador de software.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_GPU_UseSoftwareRendererForReadbacks.Label"><value>Use Renderer Software Para Readbacks</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_GPU_UseSoftwareRendererForReadbacks.Help"><value>Ejecute software renderizado junto a la reproducción de hardware al leer datos de imagen de VRAM. Algunos juegos necesitan esto para las transiciones de movimiento borroso o batalla, o para fijar texturas dañadas. Reinicie el núcleo después de cambiar esta opción.</value></data>
+  <data name="Emulation.Option.swanstation.swanstation_GPU_UseSoftwareRendererForReadbacks.Help"><value>Ejecute software renderizado junto a la reproducción de hardware al leer datos de imagen de VRAM. Algunos juegos necesitan esto para las transiciones de movimiento borroso o batalla.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_GPU_MSAA.Label"><value>Multisample Antialiasing</value></data>
   <data name="Emulation.Option.swanstation.swanstation_GPU_MSAA.Help"><value>Utiliza antialiasing de varios muestreos para renderizar objetos 3D. Puede suavizar los bordes de jagged en polígonos a un costo menor para el rendimiento en comparación con aumentar la escala de resolución, pero puede ser más probable que cause errores de renderización en algunos juegos.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_GPU_TrueColor.Label"><value>Render con precisión de color completo</value></data>
@@ -129,7 +127,7 @@
   <data name="Emulation.Option.swanstation.swanstation_Display_LineEndOffset.Label"><value>Offset de la última línea mostrada</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Display_LineEndOffset.Help"><value>Paletas o cultivos fuera de las líneas desde el fondo de la imagen mostrada.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_MemoryCards_Card1Type.Label"><value>Tarjeta de memoria 1 Tipo</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_MemoryCards_Card1Type.Help"><value>Elija el formato de tarjeta de memoria para la ranura 1. Reinicie el núcleo cuando cambie los formatos. Las tarjetas compartidas y las dos opciones de tarjeta separada se conservan para configuraciones antiguas, pero no son compatibles. El formato Libretro utiliza archivos .srm. Una tarjeta separada llamada después de que el juego utiliza archivos .mcd. Estos dos formatos contienen datos idénticos. Para convertir entre ellos, cambie la extensión de archivo y agregue o retire el sufijo de ranura _1.</value></data>
+  <data name="Emulation.Option.swanstation.swanstation_MemoryCards_Card1Type.Help"><value>Elija el formato de tarjeta de memoria para la ranura 1. Las tarjetas compartidas y las dos opciones de tarjeta separada se conservan para configuraciones antiguas, pero no son compatibles. El formato Libretro utiliza archivos .srm. Una tarjeta separada llamada después de que el juego utiliza archivos .mcd. Estos dos formatos contienen datos idénticos. Para convertir entre ellos, cambie la extensión de archivo y agregue o retire el sufijo de ranura _1.</value></data>
   <data name="Emulation.Option.Sony.Value.LibretroDefault"><value>Libretro (Default)</value></data>
   <data name="Emulation.Option.Sony.Value.SharedBetweenAllGames"><value>Compartido entre todos los juegos</value></data>
   <data name="Emulation.Option.Sony.Value.SeparateCardPerGameGameCode"><value>Tarjeta separada por juego (Código de juegos)</value></data>
@@ -280,7 +278,7 @@
   <data name="Emulation.Option.mednafen_psx.beetle_psx_gte_overclock.Label"><value>GTE Overclock</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_gte_overclock.Help"><value>Ejecute cada operación del coprocesador de gráficos GTE en un ciclo CPU. Esto puede mejorar enormemente la tasa de marco y hacer que el tiempo del cuadro sea más estable en los juegos que usan GTE pesadamente.</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_cd_access_method.Label"><value>Método de acceso a los CD</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_cd_access_method.Help"><value>El acceso sincrónico reproduce el hardware original. El acceso asincrónico puede reducir las pausas en dispositivos con almacenamiento lento. Carga toda la imagen del disco en RAM puede mejorar los tiempos de carga durante el juego, pero retrasa la puesta en marcha. Este modo puede causar problemas cuando la RAM es limitada. Los discos físicos utilizan acceso sincrónico en lugar de cargar toda la imagen. Reinicie después de cambiar esta opción.</value></data>
+  <data name="Emulation.Option.mednafen_psx.beetle_psx_cd_access_method.Help"><value>El acceso sincrónico reproduce el hardware original. El acceso asincrónico puede reducir las pausas en dispositivos con almacenamiento lento. Carga toda la imagen del disco en RAM puede mejorar los tiempos de carga durante el juego.</value></data>
   <data name="Emulation.Option.Sony.Value.Synchronous"><value>Sincrónico</value></data>
   <data name="Emulation.Option.Sony.Value.Asynchronous"><value>Asincrónico</value></data>
   <data name="Emulation.Option.Sony.Value.PreCache"><value>Pre-Cache</value></data>
@@ -431,7 +429,7 @@
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_gte_overclock.Label"><value>GTE Overclock</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_gte_overclock.Help"><value>Ejecute cada operación del coprocesador de gráficos GTE en un ciclo CPU. Esto puede mejorar enormemente la tasa de marco y hacer que el tiempo del cuadro sea más estable en los juegos que usan GTE pesadamente.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_access_method.Label"><value>Método de acceso a los CD</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_access_method.Help"><value>El acceso sincrónico reproduce el hardware original. El acceso asincrónico puede reducir las pausas en dispositivos con almacenamiento lento. Carga toda la imagen del disco en RAM puede mejorar los tiempos de carga durante el juego, pero retrasa la puesta en marcha. Este modo puede causar problemas cuando la RAM es limitada. Los discos físicos utilizan acceso sincrónico en lugar de cargar toda la imagen. Reinicie después de cambiar esta opción.</value></data>
+  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_access_method.Help"><value>El acceso sincrónico reproduce el hardware original. El acceso asincrónico puede reducir las pausas en dispositivos con almacenamiento lento. Carga toda la imagen del disco en RAM puede mejorar los tiempos de carga durante el juego.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_fastload.Label"><value>CD Cargando velocidad</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_fastload.Help"><value>Los valores superiores a "2x (Native)" pueden reducir considerablemente los tiempos de carga en el juego, pero pueden introducir errores de sincronización. Algunos juegos pueden no funcionar correctamente por encima de un determinado valor.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_skip_bios.Label"><value>Salteando la animación de arranque BIOS</value></data>
@@ -442,8 +440,6 @@
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_region.Help"><value>Establece la región de retroceso utilizada cuando el contenido no puede ser autodetectado (por ejemplo, archivos PS-X EXE crudos). Los juegos basados en discos siguen utilizando la región incrustada en el disco.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_internal_resolution.Label"><value>Resolución interna de la GPU</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_internal_resolution.Help"><value>Resoluciones superiores a '1x (Native)' mejoran la fidelidad de los modelos 3D a expensas del aumento de requisitos de rendimiento. Los elementos 2D generalmente no se ven afectados por este ajuste.</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_renderer.Label"><value>Renderer</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_renderer.Help"><value>Elige cómo dibujar la imagen. El renderizador de software es el más preciso. Necesita mucho más poder de procesamiento en resoluciones internas superiores. El renderizado de hardware es menos preciso, pero más rápido en resoluciones superiores y soporta mejoras gráficas. El renderizado automático de hardware elige Vulkan o OpenGL según el controlador de vídeo utilizado por la aplicación. Si el controlador no soporta Vulkan ni OpenGL 3.3, el núcleo utiliza la renderización de software en su lugar. Reinicie el núcleo después de cambiar esta opción.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_renderer_software_fb.Label"><value>Framebuffer del software</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_renderer_software_fb.Help"><value>Utilice el renderizador de software en el fondo en la resolución nativa, mientras que el renderizado de hardware muestra el juego. Esto reproduce el movimiento borroso y las transiciones de batalla en FF7 con precisión. Cuando está deshabilitado, OpenGL omite estos efectos y Vulkan los dibuja en la GPU. Desactivar esta opción puede mejorar la velocidad, pero también puede causar errores gráficos graves. Mantenlo habilitado si no está seguro.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_color_format.Label"><value>Formato de color</value></data>
@@ -472,7 +468,7 @@
   <data name="Emulation.Option.Sony.Value.25Degrees"><value>25 grados</value></data>
   <data name="Emulation.Option.Sony.Value.45Degrees"><value>45 grados</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_video_cable.Label"><value>Cable de vídeo analógico</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_video_cable.Help"><value>Simula el cable entre la consola y la televisión, incluyendo la codificación de colores y el decodificador del televisor. 'No simulación' apaga completamente la cadena y da directamente al framebuffer a la pantalla (por defecto)). 'RGB (SCART)' es la salida más afilada PSX podría producir: el multi-out lleva analógico RGB, así que nada se modula y ninguno de los artefactos encubiertos a continuación puede ocurrir - pero todavía es un alambre análogo, por lo que está limitado por la banda del amplificador de vídeo de la consola y el escenario de entrada del conjunto en lugar de ser infinitamente agudo. 'S-Video' límites de banda fuertemente pero mantiene luma y color sobre cables separados, tan fino detalle permanece limpio.. 'RF' modelos un modulador externo - la consola en sí no tiene ninguno, sólo un DC jack to power one - estrechar luma más y añadir el patrón de beat que hace la portadora del sonido contra el subcarrera de color, lo cual es más fuerte en el color saturado. Funciona en cualquier resolución interna: las muestras adicionales se resuelven antes de que la señal sea generada, por lo que los ajustes más altos actúan como supersampling en el cable en lugar de una señal más amplia, y la salida todavía lleva el detalle del subpixel que produce el decodificador. Apoyado por los renderizadores Vulkan y OpenGL, e ignorado por el renderizado de Software. En OpenGL el filtro que elimina los 'puntos elevados' - el patrón fino puntado a lo largo de los bordes horizontales del color - necesita GL 4.3 o GLES 3.1; en un conductor mayor la simulación sigue funcionando, pero 'Composite' y 'RF' mostrará esos puntos. Se aplica inmediatamente; no es necesario reiniciar.</value></data>
+  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_video_cable.Help"><value>Simula el cable entre la consola y la televisión, incluyendo la codificación de colores y el decodificador del televisor. 'No simulación' apaga completamente la cadena y da directamente al framebuffer a la pantalla (por defecto)). 'RGB (SCART)' es la salida más afilada PSX podría producir: el multi-out lleva analógico RGB, así que nada se modula y ninguno de los artefactos encubiertos a continuación puede ocurrir - pero todavía es un alambre análogo, por lo que está limitado por la banda del amplificador de vídeo de la consola y el escenario de entrada del conjunto en lugar de ser infinitamente agudo. 'S-Video' límites de banda fuertemente pero mantiene luma y color sobre cables separados, tan fino detalle permanece limpio.. 'RF' modelos un modulador externo - la consola en sí no tiene ninguno, sólo un DC jack to power one - estrechar luma más y añadir el patrón de beat que hace la portadora del sonido contra el subcarrera de color, lo cual es más fuerte en el color saturado. Funciona en cualquier resolución interna: las muestras adicionales se resuelven antes de que la señal sea generada, por lo que los ajustes más altos actúan como supersampling en el cable en lugar de una señal más amplia, y la salida todavía lleva el detalle del subpixel que produce el decodificador. Apoyado por los renderizadores Vulkan y OpenGL, e ignorado por el renderizado de Software. En OpenGL el filtro que elimina los 'puntos elevados' - el patrón fino puntado a lo largo de los bordes horizontales del color - necesita GL 4.3 o GLES 3.1; en un conductor mayor la simulación sigue funcionando, pero 'Composite' y 'RF' mostrará esos puntos. Se aplica inmediatamente.</value></data>
   <data name="Emulation.Option.Sony.Value.NoSimulation"><value>No Simulación</value></data>
   <data name="Emulation.Option.Sony.Value.RGBSCART"><value>RGB (SCART)</value></data>
   <data name="Emulation.Option.Sony.Value.SVideo"><value>S-Video</value></data>
@@ -757,9 +753,7 @@
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_nostalls.Label"><value>Desactivar los sellos CPU/GTE</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_nostalls.Help"><value>Hará que algunos juegos funcionen demasiado rápido. Debería desactivarse en casi todos los casos. Sólo intérprete.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_fast_boot.Label"><value>Bota rápida</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_fast_boot.Help"><value>Saltar la animación de arranque del BIOS. Requiere reiniciar.</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_renderer.Label"><value>Renderer</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_renderer.Help"><value>Hardware renderer API, o el renderizador de software. Cambiar a o desde Software se aplica en la mosca; cambiar entre API de hardware tiene efecto cuando el contenido está reiniciado.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_fast_boot.Help"><value>Saltar la animación de arranque del BIOS.</value></data>
   <data name="Emulation.Option.Sony.Value.OpenGLHardware"><value>OpenGL (Hardware)</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_upscale_multiplier.Label"><value>Resolución interna</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_upscale_multiplier.Help"><value>Multiplicador interno de resolución renderizado para el renderizador de hardware. También escala el framebuffer de salida. Se aplica en la mosca.</value></data>
@@ -796,8 +790,6 @@
   <data name="Emulation.Option.pcee2.pcsx2_fxaa.Help"><value>barato post-proceso anti-aliasing.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_cas_mode.Label"><value>Afilado adaptativo de contraste</value></data>
   <data name="Emulation.Option.Sony.Value.SharpenOnly"><value>Sólo Sharpen</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_audio_buffer_ms.Label"><value>Audio Buffer</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_audio_buffer_ms.Help"><value>Cuánto audio el emulador se mantiene por delante del frontend. Más de eso saca un puesto que se escucharía como una ruptura en el sonido, a costa de tanto retraso antes de oír cualquier cosa. El propio predeterminado de PCSX2 es 50 ms, lo que supone que está alimentando un dispositivo de audio directamente en lugar de un frontend que tira una vez el marco.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_frame_limiter.Label"><value>Limitador del marco</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_frame_limiter.Help"><value>Lo que mantiene al emulador a toda velocidad. Frontend deja el pacing a RetroArch, que prospera haciendo que el núcleo espere en el audio que entrega. Interna utiliza el propio limitador de PCSX2 en su lugar - para un dispositivo donde esa espera nunca sucede, porque el controlador de audio subyace más que bloquear, y la propia variación de velocidad del emulador entonces llega a la pantalla como ajuste de marco desigual.</value></data>
   <data name="Emulation.Option.Sony.Value.FrontendRetroArch"><value>Frontend (RetroArch)</value></data>
@@ -808,13 +800,13 @@
   <data name="Emulation.Option.pcee2.pcsx2_aspect_ratio.Label"><value>Aspect Ratio</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_aspect_ratio.Help"><value>Informes automáticos 16:9 cuando los parches de pantalla ancha están habilitados, 4:3 si no.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_multitap.Label"><value>Multitap</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_multitap.Help"><value>Permite el adaptador multitap para hasta 8 controladores. El orden del jugador sigue las ranuras físicas (puerto 1: 1A-1D, luego puerto 2: 2A-2D). Reinicial recomendado.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_multitap.Help"><value>Permite el adaptador multitap para hasta 8 controladores. El orden del jugador sigue las ranuras físicas (puerto 1: 1A-1D.</value></data>
   <data name="Emulation.Option.Sony.Value.Disabled2Players"><value>Discapacitados (2 jugadores)</value></data>
   <data name="Emulation.Option.Sony.Value.Port15Players"><value>Puerto 1 (5 jugadores)</value></data>
   <data name="Emulation.Option.Sony.Value.Port25Players"><value>Puerto 2 (5 jugadores)</value></data>
   <data name="Emulation.Option.Sony.Value.BothPorts8Players"><value>Ambos puertos (8 jugadores)</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_lightgun.Label"><value>Lightgun (GunCon 2)</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_lightgun.Help"><value>Emula una Namco GunCon 2 en un puerto USB. Se apunta con la pistola de luz de la interfaz, o con un ratón configurado como pistola de luz, en el puerto de mando correspondiente. Requiere reiniciar.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_lightgun.Help"><value>Emula una Namco GunCon 2 en un puerto USB. Se apunta con la pistola de luz de la interfaz, o con un ratón configurado como pistola de luz.</value></data>
   <data name="Emulation.Option.Sony.Value.USBPort1"><value>Puerto USB 1</value></data>
   <data name="Emulation.Option.Sony.Value.USBPort2"><value>Puerto USB 2</value></data>
   <data name="Emulation.Option.Sony.Value.BothPorts"><value>Ambos puertos</value></data>
@@ -839,18 +831,18 @@
   <data name="Emulation.Option.pcee2.pcsx2_ee_cycle_skip.Label"><value>Ciclo de EE Skip</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_ee_cycle_skip.Help"><value>Hace los ciclos de salto EE. Ayuda a algunos juegos con alta actividad de VU, rompe otros.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_cpu_recompiler.Label"><value>CPU Recompilador (JIT)</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_cpu_recompiler.Help"><value>Activar o deshabilitar la recompilación para fines diagnósticos. Cuando está habilitado, EE, IOP, VU0 y VU1 usan la recompilación JIT rápida. Este es el defecto. Cuando se discapacita, cada CPU utiliza una interpretación de instrucción más lenta. Esto ayuda a diagnosticar errores JIT: un accidente que aún ocurre con la recompilación deshabilitado tiene otra causa. Los cuatro conmutadores individuales de CPU a continuación sólo se aplican cuando esta opción maestra está habilitada. Reinicie después de cambiar esta opción.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_cpu_recompiler.Help"><value>Activar o deshabilitar la recompilación para fines diagnósticos. Cuando está habilitado, EE, IOP, VU0 y VU1 usan la recompilación JIT rápida. Este es el defecto. Cuando se discapacita.</value></data>
   <data name="Emulation.Option.Sony.Value.EnabledJITDefault"><value>Enabled (JIT, Default)</value></data>
   <data name="Emulation.Option.Sony.Value.DisabledInterpreter"><value>Discapacitados (Interpreter)</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_rec_ee.Label"><value>- EE Recompilador</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_rec_ee.Help"><value>Diagnóstico. Desactivar sólo el Emotion Engine (EE) dynarec mientras deja los otros en, a bisect que recompiler causa un accidente. Requiere reiniciar.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_rec_ee.Help"><value>Diagnóstico. Desactivar sólo el Emotion Engine (EE) dynarec mientras deja los otros en.</value></data>
   <data name="Emulation.Option.Sony.Value.EnabledDefault"><value>Enabled (Default)</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_rec_iop.Label"><value>- IOP Recompilador</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_rec_iop.Help"><value>Diagnóstico. Desactivar sólo el IOP (R3000) dinarec mientras deja a los demás encendido, para bisect que recompiler causa un accidente. Requiere reiniciar.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_rec_iop.Help"><value>Diagnóstico. Desactivar sólo el IOP (R3000) dinarec mientras deja a los demás encendido.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_rec_vu0.Label"><value>- VU0 Recompilador</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_rec_vu0.Help"><value>Diagnóstico. Desactivar sólo el VU0 microVU dynarec mientras deja a los otros en, para bisect que recompiler causa un accidente. Requiere reiniciar.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_rec_vu0.Help"><value>Diagnóstico. Desactivar sólo el VU0 microVU dynarec mientras deja a los otros en.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_rec_vu1.Label"><value>- VU1 Recompilador</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_rec_vu1.Help"><value>Diagnóstico. Desactivar sólo el microVU VU1 dynarec mientras deja a los otros en, para bisectar que recompiler causa un accidente. Requiere reiniciar.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_rec_vu1.Help"><value>Diagnóstico. Desactivar sólo el microVU VU1 dynarec mientras deja a los otros en.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_memcard_slot1_enable.Label"><value>Ranura 1 Activado</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_memcard_slot1_enable.Help"><value>Permite la tarjeta de memoria Slot 1 PS2. Los cambios se aplican inmediatamente mientras el contenido está funcionando.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_memcard_slot2_enable.Label"><value>Ranura 2 Activado</value></data>
@@ -901,8 +893,6 @@
   <data name="Emulation.Option.Sony.Value.AllTimers"><value>Todas las Timers</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_clocks_scale.Label"><value>Escala de ropa</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_clocks_scale.Help"><value>Porcentaje de velocidad del reloj PS3 escala.</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_renderer.Label"><value>Renderer</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_renderer.Help"><value>Vulkan renderiza en el dispositivo de frontend Vulkan y lo entrega cada marco acabado como imagen; cuando la parte frontal no está ejecutando su Vulkan video driver, el cuadro se copia de nuevo a través de la memoria. OpenGL dibuja directamente en el contexto de OpenGl del frontend.</value></data>
   <data name="Emulation.Option.Sony.Value.NullNoVideo"><value>Null (No Video)</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_frame_limit.Label"><value>Límite del marco</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_frame_limit.Help"><value>La velocidad de marco más alta del juego puede correr a. Auto es el VBlank Frequency, como en RPCS3; PS3 Los ritmos nativos giran de la manera que hace el PS3; Desactivado permite juegos que no esperen al refresco del PS3 correr demasiado rápido.</value></data>
@@ -979,7 +969,7 @@
   <data name="Emulation.Option.rpcs3.rpcs3_driver_wakeup_delay.Label"><value>conductor despertando retraso</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_driver_wakeup_delay.Help"><value>Retraso de despertar del conductor en microsegundos. 0 por defecto, como en RPCS3; elevarlo sólo cuando un juego lo necesita.</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_vblank_rate.Label"><value>Frecuencia VBlank</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_vblank_rate.Help"><value>La tasa de actualización del PS3 en Hz. También es la tasa de marco que el núcleo pide RetroArch para, que tiene efecto cuando se carga el contenido; los juegos que pueden ejecutarse por encima de 60 FPS necesitan una pantalla que refresca eso rápido.</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_vblank_rate.Help"><value>Establece la frecuencia de actualización emulada. El modo de lista de compatibilidad la duplica para los juegos compatibles.</value></data>
   <data name="Emulation.Option.Sony.Value.50HzPAL"><value>50 Hz (PAL)</value></data>
   <data name="Emulation.Option.Sony.Value.60HzNTSC"><value>60 Hz (NTSC)</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_thread_scheduler.Label"><value>Thread Scheduler</value></data>
@@ -1061,8 +1051,6 @@
   <data name="Emulation.Option.rpcs3.rpcs3_frame_pacing.Label"><value>Pacto de marco</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_frame_pacing.Help"><value>Lo que los marcos del juego están cronometrados. El reloj de emulador es RPCS3 propio temporizador, como en independiente RPCS3. RetroArch da el juego uno PS3 refresco por marco RetroArch muestra, tan rápido hacia arriba del juego y el juego se ejecuta en la frecuencia VBlank cuando RetroArch muestra que muchos marcos un segundo; con el renderizador Vulkan actualmente salta los marcos.</value></data>
   <data name="Emulation.Option.Sony.Value.EmulatorClock"><value>Reloj de emulador</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_savedata_slot.Label"><value>Guardar la Ranura de Datos</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_savedata_slot.Help"><value>Un juego PS3 muestra una lista de sus datos guardados y permite al jugador elegir. 'Pick from list' muestra esa lista en la imagen del juego, para ser utilizado con el controlador. Un número tiene la selección de núcleo para usted en lugar: guardar sobreescribir la entrada en esta posición en la lista del juego, o hacer un nuevo ahorro cuando la lista es más corta; cargar toma la entrada a esta posición, y no encuentra nada cuando el listado es más corto. 0 es la primera entrada. Los juegos que guardan un solo ahorro de los suyos no muestran una lista, por lo que esto no se aplica a ellos.</value></data>
   <data name="Emulation.Option.Sony.Value.PickFromList"><value>Elija de la lista</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_master_volume.Label"><value>Volumen maestro</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_master_volume.Help"><value>Porcentaje del volumen de audio principal.</value></data>
@@ -1151,7 +1139,7 @@
   <data name="Emulation.Option.Sony.Setting.Fastcdvd.Help"><value>Rápido CD/DVD acceso/seguir tiempos. Un pequeño puñado de juegos tendrá problemas de compatibilidad con esto habilitado.</value></data>
   <data name="Emulation.Option.Sony.Setting.SharedMemoryCards.Help"><value>Utilice tarjetas de memoria compartidas o por contenido.</value></data>
   <data name="Emulation.Option.Sony.Setting.EnableCheats.Label"><value>Juegos Activar códigos de trampa juego</value></data>
-  <data name="Emulation.Option.Sony.Setting.EnableCheats.Help"><value>Lea los códigos de trampa del juego de archivos en la carpeta seleccionada. reiniciar emulación después de seleccionar otra carpeta.</value></data>
+  <data name="Emulation.Option.Sony.Setting.EnableCheats.Help"><value>Lea los códigos de trampa del juego de archivos en la carpeta seleccionada.</value></data>
   <data name="Emulation.Option.Sony.Setting.HintLanguageUnlock.Label"><value>Desbloquear idiomas adicionales del juego</value></data>
   <data name="Emulation.Option.Sony.Setting.HintLanguageUnlock.Help"><value>Si está habilitado, buscará dentro de la base de datos interna para desbloquear opciones de lenguaje. Ejemplos incluyen: forzar una versión japonesa internacional al inglés, desbloquear más idiomas europeos, etc.</value></data>
   <data name="Emulation.Option.Sony.Setting.Dev9Hdd.Help"><value>Emular a la SPEED expansión ATA disco duro. La imagen vive en 'pcsx2/DEV9hdd.raw' en el directorio del sistema frontend y se crea en el primer uso en el tamaño configurado.</value></data>
@@ -1274,4 +1262,18 @@
   <data name="Emulation.Option.Sony.Setting.LineToQuad.Help" xml:space="preserve"><value>Algunos juegos (por ejemplo. Doom, Hexen, Soul Blade, etc.) dibujan líneas horizontales estirando triángulos de un pixel-alto a través de la pantalla, que son rasterizados como una fila de píxeles en el hardware original. Este hack detecta estos pequeños triángulos y los convierte en cuádruples según sea necesario, permitiéndoles ser exhibidos adecuadamente en los renderizadores de hardware y en resoluciones internas escaladas. "Agresivo" es requerido para algunos títulos (por ejemplo: Fuerzas Oscuras, Duke Nukem) pero puede introducir de otra manera fallos gráficos. Salga en 'Default' si no está seguro.</value></data>
   <data name="Emulation.Option.Sony.Setting.DynarecEventCycles.Label" xml:space="preserve"><value>Dynarec DMA/19GPU/MDEC y Ciclos de eventos temporales</value></data>
   <data name="Emulation.Option.Sony.Setting.DynarecEventCycles.Help" xml:space="preserve"><value>Ciclos máximos gestionados por CPU antes de que se revise una GPU/DMA/MDEC/Timer Update, mayor número será más rápido, tiene mucho menos impacto en el intérprete del escarabajo que dynarec.</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_aspect_ratio.Help"><value>Establece el formato de pantalla comunicado a los juegos. Solo algunos juegos admiten 4:3.</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_disk_cache_size.Label"><value>Tamaño de la caché de disco</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_disk_cache_size.Help"><value>Limita el espacio en disco de las cachés temporales de los juegos. Los juegos vuelven a crear las cachés eliminadas, lo que puede ralentizar el siguiente inicio.</value></data>
+  <data name="Emulation.Option.pokket.Link"><value>Enlace infrarrojo</value></data>
+  <data name="Emulation.Option.pokket.Layout"><value>Disposición de las pantallas enlazadas</value></data>
+  <data name="Emulation.Option.pokket.Audio"><value>Fuente de audio de las unidades enlazadas</value></data>
+  <data name="Emulation.Option.pokket.Identity"><value>Identificador de hardware de la unidad B</value></data>
+  <data name="Emulation.Option.pokket.Horizontal"><value>Una al lado de la otra</value></data>
+  <data name="Emulation.Option.pokket.Vertical"><value>Una encima de la otra</value></data>
+  <data name="Emulation.Option.pokket.SelectUnitA"><value>Controlar la unidad A</value></data>
+  <data name="Emulation.Option.pokket.SelectUnitB"><value>Controlar la unidad B</value></data>
+  <data name="Emulation.Option.pokket.Help"><value>Inserte una tarjeta en cada unidad para activar el enlace infrarrojo.</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_audio_format.Label"><value>Disposición de altavoces</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_audio_format.Help"><value>Define la disposición de altavoces disponible para los juegos. El juego elige su mezcla de audio según esta disposición. La salida también depende del dispositivo de audio seleccionado en Windows.</value></data>
 </root>

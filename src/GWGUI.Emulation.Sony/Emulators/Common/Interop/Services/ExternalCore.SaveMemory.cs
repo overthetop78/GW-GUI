@@ -10,7 +10,7 @@ internal sealed partial class ExternalCore
 {
     private ExternalCoreApi.GetMemoryData? _getMemoryData;
     private ExternalCoreApi.GetMemorySize? _getMemorySize;
-    private string? _saveMemoryPath;
+    private IReadOnlyList<(uint Id, string Path)> _saveMemoryRegions = [];
     private bool _saveMemoryReady;
     private readonly List<(string Source, string Native)> _memoryCardFiles = [];
 
@@ -45,42 +45,54 @@ internal sealed partial class ExternalCore
         NativeMemoryCards.PersistFiles(_memoryCardFiles, _configuration?.Model == ModelConstants.PlayStation2 ? StorageSettingsFunctionsConstants.Ps2MemoryCardSize : StorageSettingsFunctionsConstants.MemoryCardSize);
     }
 
-    private (nint Pointer, int Size) SaveMemory()
+    private (nint Pointer, int Size) SaveMemory(uint id)
     {
-        var size = _getMemorySize?.Invoke(SaveMemoryConstants.SaveRamId) ?? ExternalCoreInteropConstants.EmptyNativeSize;
+        var size = _getMemorySize?.Invoke(id) ?? ExternalCoreInteropConstants.EmptyNativeSize;
         if (size == ExternalCoreInteropConstants.EmptyNativeSize) return default;
         if (size > SaveMemoryConstants.MaximumManagedBufferSize)
             throw new InvalidOperationException(CoreExceptions.InvalidStateSize(size));
-        var pointer = _getMemoryData?.Invoke(SaveMemoryConstants.SaveRamId) ?? nint.Zero;
+        var pointer = _getMemoryData?.Invoke(id) ?? nint.Zero;
         return pointer == nint.Zero ? default : (pointer, checked((int)size));
     }
 
     private void RestoreSaveMemory()
     {
         if (_configuration?.Model == ModelConstants.PlayStation) return;
-        if (_saveMemoryPath is null || !File.Exists(_saveMemoryPath)) return;
-        var memory = SaveMemory();
-        if (memory.Pointer == nint.Zero) return;
-        var bytes = File.ReadAllBytes(_saveMemoryPath);
-        if (bytes.Length != memory.Size)
-            throw new InvalidDataException(CoreExceptions.InvalidStateSize((nuint)bytes.Length));
-        Marshal.Copy(bytes, BufferConstants.FirstBufferIndex, memory.Pointer, bytes.Length);
+        foreach (var region in _saveMemoryRegions)
+        {
+            if (!File.Exists(region.Path)) continue;
+            var memory = SaveMemory(region.Id);
+            if (memory.Pointer == nint.Zero) continue;
+            var bytes = File.ReadAllBytes(region.Path);
+            if (bytes.Length != memory.Size)
+                throw new InvalidDataException(CoreExceptions.InvalidStateSize((nuint)bytes.Length));
+            Marshal.Copy(bytes, BufferConstants.FirstBufferIndex, memory.Pointer, bytes.Length);
+        }
     }
 
     private void PersistSaveMemory()
     {
         if (_configuration?.Model == ModelConstants.PlayStation) return;
-        if (!_saveMemoryReady || _saveMemoryPath is null) return;
-        var memory = SaveMemory();
+        if (!_saveMemoryReady) return;
+        var errors = new List<Exception>();
+        foreach (var region in _saveMemoryRegions)
+            try { PersistSaveMemory(region.Id, region.Path); }
+            catch (Exception error) { errors.Add(error); }
+        if (errors.Count > 0) throw new AggregateException(errors);
+    }
+
+    private void PersistSaveMemory(uint id, string path)
+    {
+        var memory = SaveMemory(id);
         if (memory.Pointer == nint.Zero) return;
         var bytes = new byte[memory.Size];
         Marshal.Copy(memory.Pointer, bytes, BufferConstants.FirstBufferIndex, bytes.Length);
-        Directory.CreateDirectory(Path.GetDirectoryName(_saveMemoryPath)!);
-        var temporaryPath = _saveMemoryPath + SaveMemoryConstants.TemporaryFileSuffix;
+        Directory.CreateDirectory(Path.GetDirectoryName(path)!);
+        var temporaryPath = path + SaveMemoryConstants.TemporaryFileSuffix;
         try
         {
             File.WriteAllBytes(temporaryPath, bytes);
-            File.Move(temporaryPath, _saveMemoryPath, overwrite: true);
+            File.Move(temporaryPath, path, overwrite: true);
         }
         finally
         {

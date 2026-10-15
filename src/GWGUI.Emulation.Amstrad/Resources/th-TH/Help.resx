@@ -5,7 +5,7 @@
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Amstrad.Help.Memory.Ram.Short"><value>จํานวนครั้งที่เล่น RAM สามารถใช้ได้กับเครื่องเลียนแบบ</value></data>
-  <data name="Emulation.Amstrad.Help.Memory.Ram.Detailed"><value>เลือก RAM ขยายการสัมผัสโดย Caprece32 เครื่องจะต้องเริ่มใหม่ก่อนปริมาณที่ใหม่จะใช้</value></data>
+  <data name="Emulation.Amstrad.Help.Memory.Ram.Detailed"><value>เลือก RAM ขยายการสัมผัสโดย Caprece32 เครื่องจะ</value></data>
   <data name="Emulation.Amstrad.Help.Firmware.Integrated.Short"><value>ระบบ ROM สร้างในแคปริเซค32</value></data>
   <data name="Emulation.Amstrad.Help.Firmware.Integrated.Detailed"><value>Caprice32 จัดเตรียมระบบ ROM ภายในและจะไม่เปิดเผย ROM ตัวกรองแฟ้ม</value></data>
   <data name="Emulation.Amstrad.Help.Video.Resolution.Short"><value>มติภายในโดย Caperice32.</value></data>

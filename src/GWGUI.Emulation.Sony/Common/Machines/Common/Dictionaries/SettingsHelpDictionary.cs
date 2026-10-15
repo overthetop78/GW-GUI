@@ -13,8 +13,8 @@ internal static class SettingsHelpDictionary
             [SettingsConstants.Model + ".audio"] = "Emulation.Sony.Help.Audio.Chip",
             [SettingsConstants.Ram] = "Emulation.Sony.Help.Memory.Ram",
             [SettingsConstants.FirmwareIntegrated] = "Emulation.Sony.Help.Firmware.Integrated",
-            [SettingsConstants.AudioEnabled] = "Emulation.Sony.Help.Audio.Enabled",
-            [SettingsConstants.AudioOutput] = "Emulation.Sony.Help.Audio.Output",
+            [SettingsConstants.AudioEnabled] = "Emulation.Help.Audio.Enabled",
+            [SettingsConstants.AudioOutput] = "Emulation.Help.Audio.Output",
             [SettingsConstants.AudioLatency] = "Emulation.Help.Audio.Latency"
         };
 }

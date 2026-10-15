@@ -17,12 +17,13 @@ internal static partial class InputSettingsFunctions
             var current = configured.FirstOrDefault(item => item.Port == index);
             var type = ControllerFunctions.Resolve(configuration, index);
             return new EmulationControllerPort(index + 1,
-                ControllerFunctions.Supported(configuration, index).Select(choice => Choice(choice, model, configuration)).ToArray(),
+                ControllerFunctions.Supported(configuration, index).Select(choice => Choice(choice, model, configuration, index)).ToArray(),
                 type.ToString(),
                 current?.DeviceId,
-                new EmulationInputBindingSet(ControllerDefinitions(type, model), current?.ButtonMappings ?? new Dictionary<string, string>(), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller, true),
+                new EmulationInputBindingSet(ControllerDefinitions(type, model, configuration, index), current?.ButtonMappings ?? new Dictionary<string, string>(), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller, true),
                 VisualId: current?.VisualId)
             {
+                DisplayName = (new Engine().Adapter(configuration) as IEmulatorControllerAdapter)?.GetControllerPortDisplayName(configuration, index),
                 OutputBindings = ValidOutputBindings(configuration, type, current?.VisualId, current?.OutputBindings)
             };
         }).ToArray();
@@ -85,6 +86,9 @@ internal static partial class InputSettingsFunctions
             Definition(InputSettingsFunctionsConstants.A, InputSettingsFunctionsConstants.ResourceControllerActionFire2, string.Empty)
         ];
 
+    private static IReadOnlyList<InputBindingDefinition> ControllerDefinitions(ControllerType type, Model model, MachineConfiguration configuration, int port) =>
+        (new Engine().Adapter(configuration) as IEmulatorControllerAdapter)?.GetControllerBindingDefinitions(configuration, type, port) ?? ControllerDefinitions(type, model);
+
     private static IReadOnlyList<InputBindingDefinition> PspControllerDefinitions() =>
     [
         Definition(InputSettingsFunctionsConstants.Up, InputSettingsFunctionsConstants.ResourceControllerActionUp, string.Empty),
@@ -112,6 +116,7 @@ internal static partial class InputSettingsFunctions
             return
             [
                 Definition(EmulationControllerCommandIds.B, InputSettingsFunctionsConstants.ResourceControllerActionFire1, string.Empty),
+                Definition(EmulationControllerCommandIds.Reload, InputSettingsFunctionsConstants.ResourceControllerActionReload, string.Empty),
                 Definition(EmulationControllerCommandIds.A, EmulationControllerCommandIds.A, string.Empty),
                 type == ControllerType.Justifier ? Definition(EmulationControllerCommandIds.Start, InputSettingsFunctionsConstants.ControllerStart, string.Empty) : Definition(EmulationControllerCommandIds.X, EmulationControllerCommandIds.B, string.Empty)
             ];
@@ -192,7 +197,7 @@ internal static partial class InputSettingsFunctions
             }
         };
 
-    private static EmulationControllerChoice Choice(ControllerType type, Model model, MachineConfiguration configuration) => new(
+    private static EmulationControllerChoice Choice(ControllerType type, Model model, MachineConfiguration configuration, int port) => new(
         type.ToString(), ControllerResourceKey(type, model),
         InvariantDisplayValue: type switch
         {
@@ -201,7 +206,7 @@ internal static partial class InputSettingsFunctions
             ControllerType.KeyboardAndMouse => InputSettingsFunctionsConstants.KeyboardAndMouseGlyphs,
             _ => null
         },
-        BindingDefinitions: ControllerDefinitions(type, model),
+        BindingDefinitions: ControllerDefinitions(type, model, configuration, port),
         CompatibleVisualIds: CompatibleVisualIds(type, model),
         DefaultVisualId: DefaultVisualId(type, model),
         VisualCommandIds: VisualCommandIds(type, model))
@@ -213,7 +218,7 @@ internal static partial class InputSettingsFunctions
             ControllerType.Automatic => EmulationControllerCategory.Unspecified,
             ControllerType.AnalogJoystick => EmulationControllerCategory.Joystick,
             ControllerType.NeGcon or ControllerType.NeGconRumble => EmulationControllerCategory.RacingSimulation,
-            ControllerType.GunCon or ControllerType.Justifier or ControllerType.Mouse => EmulationControllerCategory.PointingDevice,
+            ControllerType.GunCon or ControllerType.GunCon2 or ControllerType.Justifier or ControllerType.Mouse => EmulationControllerCategory.PointingDevice,
             ControllerType.Keyboard or ControllerType.KeyboardAndMouse => EmulationControllerCategory.OtherSimulation,
             _ => EmulationControllerCategory.Gamepad
         }

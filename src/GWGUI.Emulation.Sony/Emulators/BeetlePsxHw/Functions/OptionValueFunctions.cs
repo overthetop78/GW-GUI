@@ -69,6 +69,8 @@ internal static class OptionValueFunctions
     {
         Renderer.HardwareGl => OptionConstants.RendererHardwareGl,
         Renderer.Software => OptionConstants.RendererSoftware,
+        Renderer.Hardware => OptionConstants.RendererHardware,
+        Renderer.HardwareVk => OptionConstants.RendererHardwareVk,
         _ => throw new ArgumentOutOfRangeException(nameof(value), value, null),
     };
 

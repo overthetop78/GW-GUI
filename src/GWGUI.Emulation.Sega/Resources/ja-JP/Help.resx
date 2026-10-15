@@ -6,7 +6,7 @@
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Sega.Help.General.Model.Short"><value>構成されるSega機械モデル。</value></data>
   <data name="Emulation.Sega.Help.Memory.Ram.Short"><value>エミュレートされた機械に利用できるRAMの量。</value></data>
-  <data name="Emulation.Sega.Help.Memory.Ram.Detailed"><value>エミュレーション・コアが露出したRAM拡張を選択します。 機械は新しい量が使用される前に再始動しなければなりません。</value></data>
+  <data name="Emulation.Sega.Help.Memory.Ram.Detailed"><value>エミュレーション・コアが露出したRAM拡張を選択します。</value></data>
   <data name="Emulation.Sega.Help.Firmware.Integrated.Short"><value>システム ROM はエミュレーションの中心に造られます。</value></data>
   <data name="Emulation.Sega.Help.Firmware.Integrated.Detailed"><value>エミュレーションコアは、内部でシステムROMを提供し、ROMファイルセレクターを露出しません。</value></data>
   <data name="Emulation.Sega.Help.General.Emulator.Short"><value>この機械のために選ばれるエミュレータ。</value></data>

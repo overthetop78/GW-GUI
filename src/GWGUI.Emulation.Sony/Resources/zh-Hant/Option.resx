@@ -35,7 +35,7 @@
   <data name="Emulation.Option.swanstation.swanstation_CDROM_ReadThread.Label"><value>CD-ROM 讀取線索</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_ReadThread.Help"><value>同步讀取CD-ROM扇區,降低幀時間高峰的風險.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_LoadImagePatches.Label"><value>應用圖像補丁</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_CDROM_LoadImagePatches.Help"><value>在同一目錄中顯示的盤片圖像時自動應用補丁. 目前此選項只支持 PPF 補丁 。 需要重新啟動核心才能應用。</value></data>
+  <data name="Emulation.Option.swanstation.swanstation_CDROM_LoadImagePatches.Help"><value>在同一目錄中顯示的盤片圖像時自動應用補丁. 目前此選項只支持 PPF 補丁 。</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_LoadImageToRAM.Label"><value>預裝 CD-ROM 圖像到 RAM</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_LoadImageToRAM.Help"><value>在開始模擬前將盤片圖像裝入RAM。 可能減少搭載,如果您正在運行一個網絡共享, 成本更大的啟動時間。 由于libretro無法提供繪制疊加的方法,模擬器在圖像被預裝時會顯得會鎖定.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_PreCacheCHD.Label"><value>預切出CHD 圖像為RAM</value></data>
@@ -51,8 +51,6 @@
   <data name="Emulation.Option.Sony.Value.Interpreter"><value>口譯</value></data>
   <data name="Emulation.Option.Sony.Value.CachedInterpreter"><value>失譯口譯員</value></data>
   <data name="Emulation.Option.Sony.Value.Recompiler"><value>重新編譯器</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_GPU_Renderer.Label"><value>GPU 渲染器</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_GPU_Renderer.Help"><value>用于模擬 GPU 的哪個渲染器 。</value></data>
   <data name="Emulation.Option.Sony.Value.HardwareOpenGL"><value>硬件( OpenGL)</value></data>
   <data name="Emulation.Option.Sony.Value.Software"><value>軟件</value></data>
   <data name="Emulation.Option.swanstation.swanstation_GPU_ResolutionScale.Label"><value>內部分辨率縮放</value></data>
@@ -60,7 +58,7 @@
   <data name="Emulation.Option.swanstation.swanstation_GPU_UseThread.Label"><value>線條渲染( 軟件)</value></data>
   <data name="Emulation.Option.swanstation.swanstation_GPU_UseThread.Help"><value>用第二個線程來繪制圖形 。 目前僅供軟件渲染器使用.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_GPU_UseSoftwareRendererForReadbacks.Label"><value>使用軟件渲染器進行回讀</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_GPU_UseSoftwareRendererForReadbacks.Help"><value>在從 VRAM 讀取圖像數據時, 運行軟件渲染和硬件渲染。 一些游戲需要這個來進行運動模糊或戰斗過渡,或者修補被破壞的紋理. 更改此選項后重新啟動核心 。</value></data>
+  <data name="Emulation.Option.swanstation.swanstation_GPU_UseSoftwareRendererForReadbacks.Help"><value>在從 VRAM 讀取圖像數據時, 運行軟件渲染和硬件渲染。 一些游戲需要這個來進行運動模糊或戰斗過渡.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_GPU_MSAA.Label"><value>多樣解析</value></data>
   <data name="Emulation.Option.swanstation.swanstation_GPU_MSAA.Help"><value>使用多樣抗異名來渲染3D對象. 與提高分辨率尺度相比,在多邊形上可以平滑相接的邊緣,比性能成本低,但可能更可能導致一些游戲的渲染出錯誤.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_GPU_TrueColor.Label"><value>以全彩精度渲染</value></data>
@@ -141,7 +139,7 @@
   <data name="Emulation.Option.swanstation.swanstation_Display_LineEndOffset.Label"><value>最后一個顯示行的偏移</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Display_LineEndOffset.Help"><value>顯示圖像底部的花條或收割作物 。</value></data>
   <data name="Emulation.Option.swanstation.swanstation_MemoryCards_Card1Type.Label"><value>內存卡 1 類型</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_MemoryCards_Card1Type.Help"><value>選擇1槽的內存卡格式. 更改格式時重新啟動核心 。 共享卡和兩個單獨的卡選項被保留用于舊配置,但不支持. Libretro格式使用 .srm 文件. 以游戲使用命名的單獨卡片 .mcd 文件. 這兩種格式包含相同的數據. 要在它們之間轉換,請更改文件擴展名并添加或去掉插槽后綴_1.</value></data>
+  <data name="Emulation.Option.swanstation.swanstation_MemoryCards_Card1Type.Help"><value>選擇1槽的內存卡格式.  共享卡和兩個單獨的卡選項被保留用于舊配置,但不支持. Libretro格式使用 .srm 文件. 以游戲使用命名的單獨卡片 .mcd 文件. 這兩種格式包含相同的數據. 要在它們之間轉換,請更改文件擴展名并添加或去掉插槽后綴_1.</value></data>
   <data name="Emulation.Option.Sony.Value.LibretroDefault"><value>Libretro (默認)</value></data>
   <data name="Emulation.Option.Sony.Value.SharedBetweenAllGames"><value>在所有游戲中共享</value></data>
   <data name="Emulation.Option.Sony.Value.SeparateCardPerGameGameCode"><value>單獨的紙牌/ 每款游戲( Game 代碼)</value></data>
@@ -292,7 +290,7 @@
   <data name="Emulation.Option.mednafen_psx.beetle_psx_gte_overclock.Label"><value>GTE 超時</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_gte_overclock.Help"><value>在一個CPU周期中執行GTE圖形協處理器的每個操作. 這可以大大地提高幀率,使大量使用GTE的游戲中幀時間更加穩定.</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_cd_access_method.Label"><value>CD 訪問方法</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_cd_access_method.Help"><value>同步訪問復制了原始硬件. 同步訪問可以減少存儲緩慢的設備的暫停. 將整盤圖像裝入RAM可以改善游戲期間的加載時間,但會延遲啟動. 此模式在RAM受限時會出問題. 物理盤使用同步訪問,而不是裝入整個圖像. 更改此選項后重新啟動 。</value></data>
+  <data name="Emulation.Option.mednafen_psx.beetle_psx_cd_access_method.Help"><value>同步訪問復制了原始硬件. 同步訪問可以減少存儲緩慢的設備的暫停. 將整盤圖像裝入RAM可以改善游戲期間的加載時間,但會延遲啟動. 此模式在RAM受限時會出問題. 物理盤使用同步訪問.</value></data>
   <data name="Emulation.Option.Sony.Value.Synchronous"><value>同步</value></data>
   <data name="Emulation.Option.Sony.Value.Asynchronous"><value>同步</value></data>
   <data name="Emulation.Option.Sony.Value.PreCache"><value>預緩存</value></data>
@@ -443,7 +441,7 @@
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_gte_overclock.Label"><value>GTE 超時</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_gte_overclock.Help"><value>在一個CPU周期中執行GTE圖形協處理器的每個操作. 這可以大大地提高幀率,使大量使用GTE的游戲中幀時間更加穩定.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_access_method.Label"><value>CD 訪問方法</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_access_method.Help"><value>同步訪問復制了原始硬件. 同步訪問可以減少存儲緩慢的設備的暫停. 將整盤圖像裝入RAM可以改善游戲期間的加載時間,但會延遲啟動. 此模式在RAM受限時會出問題. 物理盤使用同步訪問,而不是裝入整個圖像. 更改此選項后重新啟動 。</value></data>
+  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_access_method.Help"><value>同步訪問復制了原始硬件. 同步訪問可以減少存儲緩慢的設備的暫停. 將整盤圖像裝入RAM可以改善游戲期間的加載時間,但會延遲啟動. 此模式在RAM受限時會出問題. 物理盤使用同步訪問.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_fastload.Label"><value>CD 裝入速度</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_fastload.Help"><value>高于"2x (Native)"的值可以大大減少游戲中加載時間,但可能引入計時錯誤. 有些游戲的功能可能不能正常地高于某一個值.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_skip_bios.Label"><value>跳過 BIOS 啟動動畫</value></data>
@@ -454,8 +452,6 @@
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_region.Help"><value>設置在內容不能被自動檢測時使用的后退區域(例如原始的PS-X EXE文件). 基于Disc的游戲仍然使用嵌入于光盤上的區域.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_internal_resolution.Label"><value>內部 GPU 分辨率</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_internal_resolution.Help"><value>高于"1x(Native)"的分辨率能改善3D模型的忠實性而犧牲了更高的性能要求. 2D元素一般不受此設定的影響.</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_renderer.Label"><value>渲染器</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_renderer.Help"><value>選擇如何繪制圖像。 軟件渲染器是最準確的. 在更高的內部分辨率下,它需要更多的處理能力。 硬件渲染的準確性較低,但在更高的分辨率下更快,并支持圖形的改進. 自動硬件渲染根據應用程序使用的視頻驅動程序選擇Vulkan或OpenGL. 如果驅動程序既不支持Vulkan,也不支持OpenGL 3.3,則核心使用軟件渲染取而代之. 更改此選項后重新啟動核心 。</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_renderer_software_fb.Label"><value>軟件框架緩沖器</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_renderer_software_fb.Help"><value>在原生分辨率的背景中使用軟件渲染器,而硬件渲染出器則顯示游戲. 這在FF7中復制了運動模糊和戰斗過渡的準確性. 被禁用后,OpenGL省略了這些效果并被Vulkan從GPU上取出. 禁用此選項可以提高速度,但也會造成嚴重的圖形錯誤. 如果不確定, 請繼續啟用 。</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_color_format.Label"><value>顏色格式</value></data>
@@ -485,7 +481,7 @@
   <data name="Emulation.Option.Sony.Value.25Degrees"><value>25度( C)</value></data>
   <data name="Emulation.Option.Sony.Value.45Degrees"><value>45度(45度)</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_video_cable.Label"><value>類似視頻電纜</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_video_cable.Help"><value>模擬控制臺和電視之間的電纜,包括彩色編碼和電視的解碼器。 “ 不模擬” 將鏈條完全切開, 并將幀緩沖器直接移到顯示器上( 默認)。 “ RGB (SCART) ” 是 PSX 能產生的最尖銳的輸出: 多輸出帶模擬 RGB , 所以沒有調節, 下面的任何編碼文物都無法發生—— 但是它仍然是一個模擬的線, 因此它是受控制臺的視頻放大器和電視輸入器的限制, 而不是無限尖銳。 “ S-Video” 頻帶限制的顏色很大, 但保持光度和色彩在單獨的線上保持干凈。 “ 復合體” 將它們集中到一條線上, 然后解碼儀要再次拉開來, 計算出潤色細節, 在細的圖案上添加彩色涂抹和彩。 “ RF” 模型外置調器本身沒有, 只有DC 的功率, 它能進一步縮小潤色, 并且增加出聲帶的分色度是最強的。 任何內部分辨率的工作:額外樣本在信號生成前被解析出,因此更高的設置起到超標入電纜而不是更寬的信號的作用,輸出仍然帶有解碼器產生的子像素細節. 由Vulkan和OpenGL渲染器支持,被軟件渲染所忽略. 在 OpenGL 上, 刪除“ 掛點” 的過濾器 - 橫向顏色邊緣上的細圓點圖案 - 需要 GL 4.3 或者說 GLES 3.1; 對于一個年長的驅動器, 模擬仍然運行, 但“ 復合” 和 'RF' 將顯示這些點. 立即應用;不需要重新啟動 。</value></data>
+  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_video_cable.Help"><value>模擬控制臺和電視之間的電纜,包括彩色編碼和電視的解碼器。 “ 不模擬” 將鏈條完全切開, 并將幀緩沖器直接移到顯示器上( 默認)。 “ RGB (SCART) ” 是 PSX 能產生的最尖銳的輸出: 多輸出帶模擬 RGB , 所以沒有調節, 下面的任何編碼文物都無法發生—— 但是它仍然是一個模擬的線, 因此它是受控制臺的視頻放大器和電視輸入器的限制, 而不是無限尖銳。 “ S-Video” 頻帶限制的顏色很大, 但保持光度和色彩在單獨的線上保持干凈。 “ 復合體” 將它們集中到一條線上, 然后解碼儀要再次拉開來, 計算出潤色細節, 在細的圖案上添加彩色涂抹和彩。 “ RF” 模型外置調器本身沒有, 只有DC 的功率, 它能進一步縮小潤色, 并且增加出聲帶的分色度是最強的。 任何內部分辨率的工作:額外樣本在信號生成前被解析出,因此更高的設置起到超標入電纜而不是更寬的信號的作用,輸出仍然帶有解碼器產生的子像素細節. 由Vulkan和OpenGL渲染器支持,被軟件渲染所忽略. 在 OpenGL 上, 刪除“ 掛點” 的過濾器 - 橫向顏色邊緣上的細圓點圖案 - 需要 GL 4.3 或者說 GLES 3.1; 對于一個年長的驅動器, 模擬仍然運行, 但“ 復合” 和 'RF' 將顯示這些點. 立即應用.</value></data>
   <data name="Emulation.Option.Sony.Value.NoSimulation"><value>無模擬</value></data>
   <data name="Emulation.Option.Sony.Value.RGBSCART"><value>RGB (SCART)</value></data>
   <data name="Emulation.Option.Sony.Value.SVideo"><value>S - 視頻</value></data>
@@ -770,9 +766,7 @@
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_nostalls.Label"><value>禁用 CPU/GTE Stalls</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_nostalls.Help"><value>會讓一些游戲跑得太快 幾乎在所有情況下都應該是殘疾人。 僅限口譯員。</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_fast_boot.Label"><value>快速啟動</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_fast_boot.Help"><value>跳過 BIOS 啟動動畫. 需要重新啟動 。</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_renderer.Label"><value>渲染器</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_renderer.Help"><value>硬件渲染器 API,或軟件渲染機. 切換到或從軟件應用到蒼蠅上;硬件API之間的切換在內容重啟時生效.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_fast_boot.Help"><value>跳過 BIOS 啟動動畫.</value></data>
   <data name="Emulation.Option.Sony.Value.OpenGLHardware"><value>OpenGL (硬件)</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_upscale_multiplier.Label"><value>內部解決</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_upscale_multiplier.Help"><value>硬件渲染器的內部渲染分辨率乘以. 同時縮放輸出幀緩沖器 。 應用于蒼蠅上.</value></data>
@@ -809,8 +803,6 @@
   <data name="Emulation.Option.pcee2.pcsx2_fxaa.Help"><value>廉價的后處理反變相.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_cas_mode.Label"><value>對比性適應性銳化</value></data>
   <data name="Emulation.Option.Sony.Value.SharpenOnly"><value>僅銳化</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_audio_buffer_ms.Label"><value>音頻緩沖</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_audio_buffer_ms.Help"><value>模擬器在前端保存了多少音頻. 更多的會跑出一個攤位, 否則會聽到作為音響的中斷, 在你聽到任何聲音之前花費了如此多的時間。 PCSX2本身的默認是50ms,它假設它是直接給一個音頻設備喂食,而不是前端一次拉出一幀.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_frame_limiter.Label"><value>框架限制器</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_frame_limiter.Help"><value>是什么把模擬器控制在全速上? 前端將相距留給了RetroArch,它通過讓核心在它交出的音頻上等待來節流. 內部使用PCSX2的自有限制器取而代之——用于一個從未等待過的設備,因為音頻驅動程序會潛入而非屏蔽,而仿真器自己的速度變異隨后作為不均勻的幀間隔到達屏幕.</value></data>
   <data name="Emulation.Option.Sony.Value.FrontendRetroArch"><value>前端 (RetroArch) (中文(簡體) ).</value></data>
@@ -821,13 +813,13 @@
   <data name="Emulation.Option.pcee2.pcsx2_aspect_ratio.Label"><value>外觀比率</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_aspect_ratio.Help"><value>當啟用寬屏補丁時自動報告 16: 9, 4: 3 否則.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_multitap.Label"><value>乘號</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_multitap.Help"><value>啟用最多8個控制器的多拓版適配器。 玩家順序跟隨物理槽(1號口:1A-1D,再接2號口:2A-2D). 重新開始建議。</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_multitap.Help"><value>啟用最多8個控制器的多拓版適配器。 玩家順序跟隨物理槽(1號口:1A-1D.</value></data>
   <data name="Emulation.Option.Sony.Value.Disabled2Players"><value>已禁用(2個玩家)</value></data>
   <data name="Emulation.Option.Sony.Value.Port15Players"><value>1號口(5名玩家)</value></data>
   <data name="Emulation.Option.Sony.Value.Port25Players"><value>港口2 (5名玩家)</value></data>
   <data name="Emulation.Option.Sony.Value.BothPorts8Players"><value>兩端口( 8 個玩家)</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_lightgun.Label"><value>輕炮(GunCon 2)</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_lightgun.Help"><value>在USB端口上模擬一款Namco GunCon 2,在匹配的控制器端口以前端的燈槍(或鼠標被映射為燈槍)瞄準. 需要重新啟動 。</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_lightgun.Help"><value>在USB端口上模擬一款Namco GunCon 2.</value></data>
   <data name="Emulation.Option.Sony.Value.USBPort1"><value>USB 1號港口</value></data>
   <data name="Emulation.Option.Sony.Value.USBPort2"><value>USB 二號港口</value></data>
   <data name="Emulation.Option.Sony.Value.BothPorts"><value>兩個港口</value></data>
@@ -852,18 +844,18 @@
   <data name="Emulation.Option.pcee2.pcsx2_ee_cycle_skip.Label"><value>EE 循環跳過</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_ee_cycle_skip.Help"><value>使EE跳過周期. 幫助一些具有高VU活性的游戲,打破了其他游戲.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_cpu_recompiler.Label"><value>CPU 編譯器( JIT)</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_cpu_recompiler.Help"><value>啟用或禁用用于診斷目的的再匯編 。 啟用后,EE,IOP,VU0和VU1使用快JIT再匯編. 這是默認的。 被禁用后,每個CPU都會使用更慢的指令解釋. 這有助于診斷 JIT 錯誤: 重新編譯后仍會發生的崩潰還有另一個原因 。 以下四個單獨的CPU開關僅在啟用此主選項時才適用. 更改此選項后重新啟動 。</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_cpu_recompiler.Help"><value>啟用或禁用用于診斷目的的再匯編 。 啟用后,EE,IOP,VU0和VU1使用快JIT再匯編. 這是默認的。 被禁用后.</value></data>
   <data name="Emulation.Option.Sony.Value.EnabledJITDefault"><value>啟用( JIT, 默認)</value></data>
   <data name="Emulation.Option.Sony.Value.DisabledInterpreter"><value>禁用( 解釋)</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_rec_ee.Label"><value>- EE 編譯器</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_rec_ee.Help"><value>診斷 僅禁用Emotion Engine(EE) dynarac,同時將其他的放入后再編譯器導致墜機的二節管. 需要重新啟動 。</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_rec_ee.Help"><value>診斷 僅禁用Emotion Engine(EE) dynarac.</value></data>
   <data name="Emulation.Option.Sony.Value.EnabledDefault"><value>已啟用( 默認)</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_rec_iop.Label"><value>- IOP 重編器</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_rec_iop.Help"><value>診斷 僅禁用 IOP( R3000) dynarac, 而讓其他的打開, 到二節鍵重新編譯導致崩潰 。 需要重新啟動 。</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_rec_iop.Help"><value>診斷 僅禁用 IOP( R3000) dynarac, 而讓其他的打開.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_rec_vu0.Label"><value>- VU0 重編器</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_rec_vu0.Help"><value>診斷 僅禁用 VU0 微VU dynarac 而讓其他的打開, 用于重編器導致崩潰的二分節 。 需要重新啟動 。</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_rec_vu0.Help"><value>診斷 僅禁用 VU0 微VU dynarac 而讓其他的打開.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_rec_vu1.Label"><value>- VU1再編譯器</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_rec_vu1.Help"><value>診斷 只禁用 VU1 微VU dynarec 同時讓其他的打開, 用于再編譯器導致崩潰的二節編譯 。 需要重新啟動 。</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_rec_vu1.Help"><value>診斷 只禁用 VU1 微VU dynarec 同時讓其他的打開.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_memcard_slot1_enable.Label"><value>槽 1 已啟用</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_memcard_slot1_enable.Help"><value>啟用 Slot 1 PS2 內存卡 。 在內容運行時立即應用更改 。</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_memcard_slot2_enable.Label"><value>槽 2 已啟用</value></data>
@@ -914,8 +906,6 @@
   <data name="Emulation.Option.Sony.Value.AllTimers"><value>所有計時器</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_clocks_scale.Label"><value>時鐘縮放</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_clocks_scale.Help"><value>縮放 PS3 時鐘速度百分比 。</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_renderer.Label"><value>渲染器</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_renderer.Help"><value>Vulkan 在前端的Vulkan設備上制作并把它每個完成的相框作為圖像手接;當前端沒有運行其Vulkan視頻驅動程序時,取而代之的是通過內存復制回相框. OpenGL 直取到前端的 OpanGL上下文( 需要重新啟動) 。</value></data>
   <data name="Emulation.Option.Sony.Value.NullNoVideo"><value>無效( 無視頻)</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_frame_limit.Label"><value>框架限制</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_frame_limit.Help"><value>游戲可能運行的最高幀率. Auto是VBlank頻率,如同 RPCS3; PS3 原生節奏翻轉了 PS3 的方式; Off讓不等待 PS3 刷新的游戲自己跑得太快.</value></data>
@@ -992,7 +982,7 @@
   <data name="Emulation.Option.rpcs3.rpcs3_driver_wakeup_delay.Label"><value>驅動程序喚醒延遲</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_driver_wakeup_delay.Help"><value>驅動器在微秒中喚醒延遲. 0默認,如RPCS3;只有在游戲需要時才會提高.</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_vblank_rate.Label"><value>VBlank 頻率</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_vblank_rate.Help"><value>PS3在Hz的刷新率. 這也是核心詢問RetroArch的幀率,在內容被加載后生效;可以運行超過60個FPS的游戲需要刷新如此快的顯示.</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_vblank_rate.Help"><value>設定模擬更新率。相容性清單模式會將支援遊戲的更新率提高一倍。</value></data>
   <data name="Emulation.Option.Sony.Value.50HzPAL"><value>50 Hz (PAL)</value></data>
   <data name="Emulation.Option.Sony.Value.60HzNTSC"><value>60 Hz (NTSC)</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_thread_scheduler.Label"><value>線程調度器</value></data>
@@ -1074,8 +1064,6 @@
   <data name="Emulation.Option.rpcs3.rpcs3_frame_pacing.Label"><value>框架鋪放</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_frame_pacing.Help"><value>游戲的幀被什么定時. 模擬時鐘為RPCS3自己的定時器,如獨立時的RPCS3. RetroArch 給游戲一個 PS3 每幀刷新 RetroArch 顯示,所以快速前進可以加快游戲速度,游戲運行于VBlank頻率時 RetroArch 顯示一個秒的許多幀; Vulkan 渲染器它目前跳過框架.</value></data>
   <data name="Emulation.Option.Sony.Value.EmulatorClock"><value>模擬時鐘</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_savedata_slot.Label"><value>保存數據槽</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_savedata_slot.Help"><value>PS3游戲顯示其保存數據列表, 并讓玩家選擇。 “ 從列表中選擇” 顯示該列表在游戲圖片中, 用于控制器 。 一個數字為您選擇了核心: 在游戲列表的這個位置保存條目, 或者當列表縮短時使新保存; 裝入此位置的條目, 當列表較短時則找不到。 0 是第一個條目 。 保留了單項保存的游戲不會顯示列表,所以這不適用于它們.</value></data>
   <data name="Emulation.Option.Sony.Value.PickFromList"><value>從列表中選取</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_master_volume.Label"><value>主音量</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_master_volume.Help"><value>主音量百分數.</value></data>
@@ -1151,7 +1139,7 @@
   <data name="Emulation.Option.Sony.Setting.Fastcdvd.Help"><value>快点 CD/ 数据DVD 访问/ 搜索时间。 少数游戏将存在与启用的兼容性问题 。</value></data>
   <data name="Emulation.Option.Sony.Setting.SharedMemoryCards.Help"><value>使用每个内容或共享的内存卡.</value></data>
   <data name="Emulation.Option.Sony.Setting.EnableCheats.Label"><value>启用游戏作弊代码</value></data>
-  <data name="Emulation.Option.Sony.Setting.EnableCheats.Help"><value>从选中文件夹中的文件读取游戏作弊代码。 在选择了另一个文件夹后, 重新启动仿真 。</value></data>
+  <data name="Emulation.Option.Sony.Setting.EnableCheats.Help"><value>从选中文件夹中的文件读取游戏作弊代码。 在选择了另一个文件夹后.</value></data>
   <data name="Emulation.Option.Sony.Setting.HintLanguageUnlock.Label"><value>解锁额外的游戏语言</value></data>
   <data name="Emulation.Option.Sony.Setting.HintLanguageUnlock.Help"><value>如果启用, 将会在内部数据库内查看语言解锁选项。 例如: 强制国际日文版使用英语, 解锁更多欧洲语言等 。</value></data>
   <data name="Emulation.Option.Sony.Setting.Dev9Hdd.Help"><value>模拟 SPEED 扩张 ATA 硬盘。 图像位于 pcsx2/ 。DEV9hdd.raw' 在前端系统目录中,在首次使用时按所配置的大小创建。</value></data>
@@ -1233,7 +1221,7 @@
   <data name="Emulation.Option.Sony.Value.MergeTargets"><value>合并生成目标</value></data>
   <data name="Emulation.Option.Sony.Setting.DisableDepthConversion.Label"><value>禁用深度缓冲转换</value></data>
   <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Label"><value>使用外部 GameIndex 数据库</value></data>
-  <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Help"><value>需要硬件渲染器和手动渲染修正。装入选中的游戏兼容性数据库,或留空文件使用内置数据库。在更改这些设置后重新启动仿真。</value></data>
+  <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Help"><value>需要硬件渲染器和手动渲染修正。装入选中的游戏兼容性数据库.</value></data>
   <data name="Emulation.Option.Sony.Setting.FramebufferConversion.Label"><value>转换渲染帧缓冲器</value></data>
   <data name="Emulation.Option.Sony.Setting.DisablePartialInvalidation.Label"><value>禁用部分源无效</value></data>
   <data name="Emulation.Option.Sony.Setting.GpuPaletteConversion.Label"><value>调色板转换于 GPU</value></data>
@@ -1274,4 +1262,18 @@
   <data name="Emulation.Option.Sony.Setting.LineToQuad.Help" xml:space="preserve"><value>一些游戲(如: Doom,Hexen,Soul Blade等)通過將單像素高的三角線伸展到屏幕上來畫出水平線,在原硬件上被光柵化為一行像素. 這種黑客可以檢測出這些小三角形并按需要將其轉換為四相,這樣就可以在硬件渲染器上和被提升的內部分辨率上正確顯示. 某些標題(例如. 黑暗的力量,核子公爵),但否則可能會引入圖形化的出克. 如果不確定,請在“ 默認” 離開 。</value></data>
   <data name="Emulation.Option.Sony.Setting.DynarecEventCycles.Label" xml:space="preserve"><value>Dynarec DMA/GPU/MDEC/計時事件周期</value></data>
   <data name="Emulation.Option.Sony.Setting.DynarecEventCycles.Help" xml:space="preserve"><value>在檢查一個GPU/DMA/MDEC/Timer Update前由CPU運行的最大周期,更高的數量會更快,對甲蟲解釋器的影響要小于dynarec.</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_aspect_ratio.Help"><value>設定向遊戲回報的畫面比例。只有部分遊戲支援4:3。</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_disk_cache_size.Label"><value>磁碟快取大小</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_disk_cache_size.Help"><value>限制遊戲暫存快取占用的磁碟空間。遊戲會重建已刪除的快取，因此下次啟動可能更慢。</value></data>
+  <data name="Emulation.Option.pokket.Link"><value>紅外線連接</value></data>
+  <data name="Emulation.Option.pokket.Layout"><value>連接畫面的排列方式</value></data>
+  <data name="Emulation.Option.pokket.Audio"><value>連接裝置的音源</value></data>
+  <data name="Emulation.Option.pokket.Identity"><value>裝置B的硬體識別碼</value></data>
+  <data name="Emulation.Option.pokket.Horizontal"><value>左右並排</value></data>
+  <data name="Emulation.Option.pokket.Vertical"><value>上下排列</value></data>
+  <data name="Emulation.Option.pokket.SelectUnitA"><value>控制裝置A</value></data>
+  <data name="Emulation.Option.pokket.SelectUnitB"><value>控制裝置B</value></data>
+  <data name="Emulation.Option.pokket.Help"><value>在每台裝置中插入一張卡，以啟用紅外線連接。</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_audio_format.Label"><value>揚聲器配置</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_audio_format.Help"><value>設定提供給遊戲的揚聲器配置。遊戲會根據此配置選擇音訊混音方式。輸出也取決於所選的 Windows 音訊裝置。</value></data>
 </root>

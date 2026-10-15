@@ -44,4 +44,5 @@
   <data name="Emulation.Controller.Category.OtherSimulation"><value>סימולציה נוספת</value></data>
   <data name="Emulation.Controller.Feedback.Strong"><value>רטט חזק</value></data>
   <data name="Emulation.Controller.Feedback.Weak"><value>רטט חלש</value></data>
+  <data name="Emulation.Controller.Action.Reload"><value>טעינה מחדש</value></data>
 </root>

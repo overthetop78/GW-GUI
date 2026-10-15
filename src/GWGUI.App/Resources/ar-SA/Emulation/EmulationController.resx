@@ -44,4 +44,5 @@
   <data name="Emulation.Controller.Category.OtherSimulation"><value>المحوريات المحاكاة الأخرى</value></data>
   <data name="Emulation.Controller.Feedback.Strong"><value>اهتزاز قوي</value></data>
   <data name="Emulation.Controller.Feedback.Weak"><value>اهتزاز ضعيف</value></data>
+  <data name="Emulation.Controller.Action.Reload"><value>إعادة التلقيم</value></data>
 </root>

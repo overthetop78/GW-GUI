@@ -18,6 +18,14 @@ internal sealed partial class ExternalHostCallbacks
         {
             switch (command)
             {
+                case MultichannelAudioConstants.GetBatchCallback:
+                    if (data == nint.Zero) return false;
+                    Marshal.StructureToPtr(new MultichannelAudioApi.Callback
+                    {
+                        Int16 = Marshal.GetFunctionPointerForDelegate(MultichannelAudioBatch),
+                        Float = nint.Zero
+                    }, data, false);
+                    return true;
                 case ExternalCoreApiConstants.GetRumbleInterface:
                     return Feedback.Register(data);
                 case ExternalCoreApiConstants.Shutdown:

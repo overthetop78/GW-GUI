@@ -80,4 +80,6 @@
   <data name="Emulation.Storage.MemoryCard.ImageRequired"><value>Selectaţi un fişier card existent.</value></data>
   <data name="Emulation.Storage.MemoryCard.InvalidSize"><value>Dosarul cardului are o dimensiune invalidă.</value></data>
   <data name="Emulation.Storage.MemoryCard.InvalidFormat"><value>Alegeți un format de fișier susținut de acest dispozitiv.</value></data>
+  <data name="Emulation.Storage.Cache.Unlimited"><value>Nelimitat</value></data>
+  <data name="Emulation.Storage.Cache.ClearOnGameClose"><value>Golește la închiderea jocului</value></data>
 </root>

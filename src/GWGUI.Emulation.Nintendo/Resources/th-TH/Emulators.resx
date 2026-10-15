@@ -363,21 +363,21 @@
   <data name="Emulation.Option.desmume.desmume_firmware_language.Value.German"><value>เยอรมัน</value></data>
   <data name="Emulation.Option.desmume.desmume_firmware_language.Value.Italian"><value>อิตาลี</value></data>
   <data name="Emulation.Option.desmume.desmume_firmware_language.Value.Spanish"><value>สเปน</value></data>
-  <data name="Emulation.Option.desmume.desmume_use_external_bios"><value>ใช้ภายนอก BIOS/Firmware (เริ่มใหม่)</value></data>
-  <data name="Emulation.Option.desmume.desmume_use_external_bios.Help"><value>ใช้อย่างเป็นทางการ BIOS. Core ต้องเริ่มการทํางานใหม่อีกครั้ง เพื่อให้มีการเปลี่ยนแปลงที่จะปรับใช้</value></data>
+  <data name="Emulation.Option.desmume.desmume_use_external_bios"><value>ใช้ภายนอก BIOS/Firmware</value></data>
+  <data name="Emulation.Option.desmume.desmume_use_external_bios.Help"><value>ใช้อย่างเป็นทางการ BIOS.</value></data>
   <data name="Emulation.Option.desmume.desmume_use_external_bios.Value.disabled"><value>ปิดการใช้งาน</value></data>
   <data name="Emulation.Option.desmume.desmume_use_external_bios.Value.enabled"><value>เปิดใช้งาน</value></data>
   <data name="Emulation.Option.desmume.desmume_boot_into_bios"><value>Boot in BIOS (interprilter and grabist bios เท่านั้น)</value></data>
   <data name="Emulation.Option.desmume.desmume_boot_into_bios.Help"><value>บูตตรงเข้าไปใน BIOS.</value></data>
   <data name="Emulation.Option.desmume.desmume_boot_into_bios.Value.disabled"><value>ปิดการใช้งาน</value></data>
   <data name="Emulation.Option.desmume.desmume_boot_into_bios.Value.enabled"><value>เปิดใช้งาน</value></data>
-  <data name="Emulation.Option.desmume.desmume_load_to_memory"><value>โหลดเกมไปยังหน่วยความจํา (เริ่มใหม่)</value></data>
+  <data name="Emulation.Option.desmume.desmume_load_to_memory"><value>โหลดเกมไปยังหน่วยความจํา</value></data>
   <data name="Emulation.Option.desmume.desmume_load_to_memory.Help"><value>ใส่เกมเข้าไปในหน่วยความจําเพื่อลด IO ชั่วคราว</value></data>
   <data name="Emulation.Option.desmume.desmume_load_to_memory.Value.disabled"><value>ปิดการใช้งาน</value></data>
   <data name="Emulation.Option.desmume.desmume_load_to_memory.Value.enabled"><value>เปิดใช้งาน</value></data>
   <data name="Emulation.Option.desmume.desmume_num_cores"><value>แท่ง CPU</value></data>
   <data name="Emulation.Option.desmume.desmume_num_cores.Help"><value>ตั้งค่าปริมาณ CPU ของแกนที่จะใช้</value></data>
-  <data name="Emulation.Option.desmume.desmume_cpu_mode"><value>โหมด CPU (เริ่มใหม่)</value></data>
+  <data name="Emulation.Option.desmume.desmume_cpu_mode"><value>โหมด CPU</value></data>
   <data name="Emulation.Option.desmume.desmume_cpu_mode.Help"><value>เปิดหรือปิดการใช้คอมไพล์แบบไม่ตายตัว</value></data>
   <data name="Emulation.Option.desmume.desmume_cpu_mode.Value.interpreter"><value>ล่าม</value></data>
   <data name="Emulation.Option.desmume.desmume_jit_block_size"><value>ขนาดบล็อก JIT</value></data>
@@ -390,11 +390,11 @@
   <data name="Emulation.Option.desmume.desmume_frameskip.Help"><value>ตั้งค่าปริมาณของเฟรมที่จะข้าม</value></data>
   <data name="Emulation.Option.desmume.desmume_internal_resolution"><value>ความละเอียดภายใน</value></data>
   <data name="Emulation.Option.desmume.desmume_internal_resolution.Help"><value>ตั้งค่าความละเอียดภายใน ความละเอียดที่สูงขึ้น สามารถทําให้ชัดเจนขึ้นสําหรับวัตถุ 3 มิติได้ แต่จะทําให้ความต้องการแสดงมากขึ้น</value></data>
-  <data name="Emulation.Option.desmume.desmume_opengl_mode"><value>OpenGL ราสเตอร์เซอร์ (เริ่มใหม่) Name</value></data>
+  <data name="Emulation.Option.desmume.desmume_opengl_mode"><value>OpenGL ราสเตอร์เซอร์ Name</value></data>
   <data name="Emulation.Option.desmume.desmume_opengl_mode.Help"><value>เปิดการใช้งาน OpenGL แบบราสเตอร์สําหรับ 3D.</value></data>
   <data name="Emulation.Option.desmume.desmume_opengl_mode.Value.disabled"><value>ปิดการใช้งาน</value></data>
   <data name="Emulation.Option.desmume.desmume_opengl_mode.Value.enabled"><value>เปิดใช้งาน</value></data>
-  <data name="Emulation.Option.desmume.desmume_color_depth"><value>ความลึกสี (เริ่ม)</value></data>
+  <data name="Emulation.Option.desmume.desmume_color_depth"><value>ความลึกสี</value></data>
   <data name="Emulation.Option.desmume.desmume_color_depth.Help"><value>ตั้งค่าความลึกสีให้เป็นแบบ 16 บิต หรือ 32 บิต ต้องการเครื่องราชอิสริยาภรณ์</value></data>
   <data name="Emulation.Option.desmume.desmume_gfx_multisampling"><value>OpenGL: Multiplesampling AA</value></data>
   <data name="Emulation.Option.desmume.desmume_gfx_multisampling.Help"><value>ตั้งค่าตัวคูณสําหรับ alsoulspampling aliasing ต้องการเครื่องราชอิสริยาภรณ์</value></data>
@@ -510,7 +510,7 @@
   <data name="Emulation.Option.desmume.desmume_mic_mode.Value.random"><value>สุ่ม</value></data>
   <data name="Emulation.Firmware.desmume.Slot0"><value>แคชของ NDS</value></data>
   <data name="Emulation.Emulator.desmume2015.Description"><value>จําลองที่เข้ากันได้ Nintendo ระบบด้วย DeSmuME15.</value></data>
-  <data name="Emulation.Option.desmume2015.desmume_internal_resolution"><value>ความละเอียดภายใน (เริ่มใหม่)</value></data>
+  <data name="Emulation.Option.desmume2015.desmume_internal_resolution"><value>ความละเอียดภายใน</value></data>
   <data name="Emulation.Option.desmume2015.desmume_num_cores"><value>แกน CPU</value></data>
   <data name="Emulation.Option.desmume2015.desmume_cpu_mode"><value>โหมด CPU</value></data>
   <data name="Emulation.Option.desmume2015.desmume_cpu_mode.Value.interpreter"><value>ล่าม</value></data>
@@ -525,7 +525,7 @@
   <data name="Emulation.Option.desmume2015.desmume_screens_layout.Value.quick switch"><value>สลับแบบเร็ว</value></data>
   <data name="Emulation.Option.desmume2015.desmume_screens_layout.Value.hybrid/top"><value>ลูกผสม/ บน</value></data>
   <data name="Emulation.Option.desmume2015.desmume_screens_layout.Value.hybrid/bottom"><value>ผสมเสียง/ ล่าง</value></data>
-  <data name="Emulation.Option.desmume2015.desmume_hybrid_layout_scale"><value>การจัดวางแบบผสม (เริ่มใหม่)</value></data>
+  <data name="Emulation.Option.desmume2015.desmume_hybrid_layout_scale"><value>การจัดวางแบบผสม</value></data>
   <data name="Emulation.Option.desmume2015.desmume_hybrid_showboth_screens"><value>ผังแป้นพิมพ์ผสม จะแสดงทั้งหน้าจอ</value></data>
   <data name="Emulation.Option.desmume2015.desmume_hybrid_showboth_screens.Value.enabled"><value>เปิดใช้งาน</value></data>
   <data name="Emulation.Option.desmume2015.desmume_hybrid_showboth_screens.Value.disabled"><value>ปิดการใช้งาน</value></data>
@@ -561,7 +561,7 @@
   <data name="Emulation.Option.desmume2015.desmume_pointer_stylus_jitter"><value>เปิดใช้การดึงข้อมูล stylus แบบย่อ</value></data>
   <data name="Emulation.Option.desmume2015.desmume_pointer_stylus_jitter.Value.disabled"><value>ปิดการใช้งาน</value></data>
   <data name="Emulation.Option.desmume2015.desmume_pointer_stylus_jitter.Value.enabled"><value>เปิดใช้งาน</value></data>
-  <data name="Emulation.Option.desmume2015.desmume_load_to_memory"><value>โหลดเกมไปยังหน่วยความจํา (เริ่มใหม่)</value></data>
+  <data name="Emulation.Option.desmume2015.desmume_load_to_memory"><value>โหลดเกมไปยังหน่วยความจํา</value></data>
   <data name="Emulation.Option.desmume2015.desmume_load_to_memory.Value.disabled"><value>ปิดการใช้งาน</value></data>
   <data name="Emulation.Option.desmume2015.desmume_load_to_memory.Value.enabled"><value>เปิดใช้งาน</value></data>
   <data name="Emulation.Option.desmume2015.desmume_advanced_timing"><value>เปิดใช้งานการจับเวลาบัสขั้นสูง</value></data>
@@ -621,7 +621,7 @@
   <data name="Emulation.Option.melonds.melonds_threaded_renderer"><value>ตัวแสดงซอฟต์แวร์แบบเธรด</value></data>
   <data name="Emulation.Option.melonds.melonds_threaded_renderer.Value.disabled"><value>ปิดการใช้งาน</value></data>
   <data name="Emulation.Option.melonds.melonds_threaded_renderer.Value.enabled"><value>เปิดใช้งาน</value></data>
-  <data name="Emulation.Option.melonds.melonds_opengl_renderer"><value>ตัวแสดงหน้าต่าง OpenGL (เริ่มใหม่)</value></data>
+  <data name="Emulation.Option.melonds.melonds_opengl_renderer"><value>ตัวแสดงหน้าต่าง OpenGL</value></data>
   <data name="Emulation.Option.melonds.melonds_opengl_renderer.Value.disabled"><value>ปิดการใช้งาน</value></data>
   <data name="Emulation.Option.melonds.melonds_opengl_renderer.Value.enabled"><value>เปิดใช้งาน</value></data>
   <data name="Emulation.Option.melonds.melonds_opengl_resolution"><value>ความละเอียดภายในของ OpenGL</value></data>
@@ -678,7 +678,7 @@
   <data name="Emulation.Option.melonds.melonds_hybrid_small_screen.Value.Top"><value>ด้านบน</value></data>
   <data name="Emulation.Option.melonds.melonds_hybrid_small_screen.Value.Duplicate"><value>ทําซ้ํา</value></data>
   <data name="Emulation.Option.melonds.melonds_hybrid_ratio"><value>เส้นต่อเนื่องแบบผสม (เปิด GL เท่านั้น)</value></data>
-  <data name="Emulation.Option.melonds.melonds_jit_enable"><value>เปิดใช้งาน JIT (เริ่มใหม่)</value></data>
+  <data name="Emulation.Option.melonds.melonds_jit_enable"><value>เปิดใช้งาน JIT</value></data>
   <data name="Emulation.Option.melonds.melonds_jit_enable.Value.disabled"><value>ปิดการใช้งาน</value></data>
   <data name="Emulation.Option.melonds.melonds_jit_enable.Value.enabled"><value>เปิดใช้งาน</value></data>
   <data name="Emulation.Option.melonds.melonds_jit_block_size"><value>ขนาดบล็อก JIT</value></data>
@@ -720,7 +720,7 @@
   <data name="Emulation.Option.melondsds.melonds_audio_interpolation.Value.cubic"><value>ลูกบาศก์</value></data>
   <data name="Emulation.Option.melondsds.melonds_audio_interpolation.Value.gaussian"><value>ภาษาเกาเซี่ยนName</value></data>
   <data name="Emulation.Option.melondsds.melonds_jit_enable"><value>ส่วนเสริม JIT</value></data>
-  <data name="Emulation.Option.melondsds.melonds_jit_enable.Help"><value>Recompilles เลียนแบบรหัสเครื่องจักรเป็นรหัสท้องถิ่นในขณะที่มันทํางานปรับปรุงมาก กว่าการตีความธรรมดา มีผลกระทบเมื่อเริ่มการทํางานครั้งต่อไป หากไม่แน่ใจ ก็จะเปิดการใช้งานการออกจาก</value></data>
+  <data name="Emulation.Option.melondsds.melonds_jit_enable.Help"><value>Recompilles เลียนแบบรหัสเครื่องจักรเป็นรหัสท้องถิ่นในขณะที่มันทํางานปรับปรุงมาก กว่าการตีความธรรมดา  หากไม่แน่ใจ ก็จะเปิดการใช้งานการออกจาก</value></data>
   <data name="Emulation.Option.melondsds.melonds_jit_enable.Value.disabled"><value>ปิดการใช้งาน</value></data>
   <data name="Emulation.Option.melondsds.melonds_jit_enable.Value.enabled"><value>เปิดใช้งาน</value></data>
   <data name="Emulation.Option.melondsds.melonds_jit_block_size"><value>ขนาดบล็อค</value></data>
@@ -731,15 +731,25 @@
   <data name="Emulation.Option.melondsds.melonds_jit_literal_optimisations.Value.disabled"><value>ปิดการใช้งาน</value></data>
   <data name="Emulation.Option.melondsds.melonds_jit_literal_optimisations.Value.enabled"><value>เปิดใช้งาน</value></data>
   <data name="Emulation.Option.melondsds.melonds_jit_fast_memory"><value>หน่วยความจําด่วน</value></data>
-  <data name="Emulation.Option.melondsds.melonds_jit_fast_memory.Help"><value>ปิดการใช้งานตัวเลือกนี้หากกําลังทํางานอยู่ melonDS DS ผ่านตัวดีบั๊ก ไม่เช่นนั้น ค่าคงที่ (แต่คาดว่า) SIGSEGV จะน่ารําคาญ มีผลกระทบเมื่อเริ่มการทํางานครั้งต่อไป หากไม่แน่ใจ ก็จะเปิดการใช้งานการออกจาก</value></data>
+  <data name="Emulation.Option.melondsds.melonds_jit_fast_memory.Help"><value>ปิดการใช้งานตัวเลือกนี้หากกําลังทํางานอยู่ melonDS DS ผ่านตัวดีบั๊ก ไม่เช่นนั้น ค่าคงที่ (แต่คาดว่า) SIGSEGV จะน่ารําคาญ  หากไม่แน่ใจ ก็จะเปิดการใช้งานการออกจาก</value></data>
   <data name="Emulation.Option.melondsds.melonds_jit_fast_memory.Value.disabled"><value>ปิดการใช้งาน</value></data>
   <data name="Emulation.Option.melondsds.melonds_jit_fast_memory.Value.enabled"><value>เปิดใช้งาน</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_wfc_dns"><value>การแทนที่ DNS</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_wfc_dns.Help"><value>เซิร์ฟเวอร์ DNS ที่จะใช้สําหรับจุดเข้าแบบย่อ ("MailoneAP"). ใช้นี่เพื่อเล่นออนไลน์ร่วมกับแม่ข่ายที่กําหนดเอง ซึ่งจะทําให้บริการ Nintendo Wi-Fi หยุดทํางานอีกครั้ง การรองรับเกมขึ้นอยู่กับเครื่องแม่ข่าย &#xA;ผู้ให้บริการอินเทอร์เน็ตบางรายอาจจะปิดกั้นการร้องขอจากแม่ข่ายเหล่านี้ ถ้านี่คือกรณีสําหรับคุณ ดูที่ https/titinyurl.com/393c755 สําหรับการทํางานแบบวนรอบ&#xA;&#xA;เซิร์ฟเวอร์ในรายการไม่ได้ร่วมกับ libretro Nintendo. melonDS ทีมหรือผู้เขียนแกนนี้ กรุณาเคารพผู้เล่นคนอื่น ๆ และทําตามกฎของแม่ข่าย&#xA;&#xA;ถ้า ไม่ แน่ ใจ จง ไป ที่ เค รู WFC. การเปลี่ยนแปลงมีผลเมื่อเริ่มการทํางานครั้งต่อไป</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_wfc_dns.Help"><value>เซิร์ฟเวอร์ DNS ที่จะใช้สําหรับจุดเข้าแบบย่อ ("MailoneAP"). ใช้นี่เพื่อเล่นออนไลน์ร่วมกับแม่ข่ายที่กําหนดเอง ซึ่งจะทําให้บริการ Nintendo Wi-Fi หยุดทํางานอีกครั้ง การรองรับเกมขึ้นอยู่กับเครื่องแม่ข่าย
+ผู้ให้บริการอินเทอร์เน็ตบางรายอาจจะปิดกั้นการร้องขอจากแม่ข่ายเหล่านี้ ถ้านี่คือกรณีสําหรับคุณ ดูที่ https/titinyurl.com/393c755 สําหรับการทํางานแบบวนรอบ
+
+เซิร์ฟเวอร์ในรายการไม่ได้ร่วมกับ libretro Nintendo. melonDS ทีมหรือผู้เขียนแกนนี้ กรุณาเคารพผู้เล่นคนอื่น ๆ และทําตามกฎของแม่ข่าย
+
+ถ้า ไม่ แน่ ใจ จง ไป ที่ เค รู WFC.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_wfc_dns.Value.95.217.77.181"><value>Wimmfi (95.217.77.181)</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_wfc_dns.Value.default"><value>อย่าทําอะไรเกินเหตุ</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_language"><value>ภาษา</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_language.Help"><value>ใช้แทนโหมดภาษาของคอนโซลแบบย่อ&#xA;&#xA;ใช้โฮสต์: ใช้ภาษาของกองหน้า หากมีการรองรับจากคอนโซล&#xA;อย่าใช้โอเวอร์ไรด์: ใช้ภาษาอะไรก็ตาม ที่ตั้งอยู่บนเครื่องคอมฯ แล้ว นี่เป็นพฤติกรรมที่ผิดพลาด ถ้าการเลียนแบบ DS (หรือ DSi NANDไม่สนับสนุนภาษาของกองหน้า&#xA;&#xA;ไม่ใช่ทุกเกมที่จะให้เกียรติในเกมนี้ การเปลี่ยนแปลงมีผลเมื่อเริ่มการทํางานครั้งต่อไป</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_language.Help"><value>ใช้แทนโหมดภาษาของคอนโซลแบบย่อ
+
+ใช้โฮสต์: ใช้ภาษาของกองหน้า หากมีการรองรับจากคอนโซล
+อย่าใช้โอเวอร์ไรด์: ใช้ภาษาอะไรก็ตาม ที่ตั้งอยู่บนเครื่องคอมฯ แล้ว นี่เป็นพฤติกรรมที่ผิดพลาด ถ้าการเลียนแบบ DS (หรือ DSi NANDไม่สนับสนุนภาษาของกองหน้า
+
+ไม่ใช่ทุกเกมที่จะให้เกียรติในเกมนี้</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_language.Value.auto"><value>ใช้เครื่อง</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_language.Value.en"><value>อังกฤษ</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_language.Value.ja"><value>ญี่ปุ่น</value></data>
@@ -749,11 +759,17 @@
   <data name="Emulation.Option.melondsds.melonds_firmware_language.Value.es"><value>สเปน</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_language.Value.default"><value>อย่าทําอะไรเกินเหตุ</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_username"><value>ชื่อผู้ใช้</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_username.Help"><value>ใช้แทนชื่อผู้ใช้ที่ให้กับคอนโซลแบบย่อ&#xA;&#xA;ห้ามใช้แทน: ใช้ชื่ออะไรก็ตามที่นิยามบนบริษัท&#xA;เดา: พยายาม เอา ชื่อ ของ คุณ ออก มา จาก ตําแหน่ง หน้า ปัด. ถ้าล้มเหลว ลอง USER, USERNAMEและ LOGNAME ตัวแปรแวดล้อม&#xA;melonDS DS"ใช้"melonDS DS". นี่เป็นค่าปริยายหากไม่มีวิธีอื่นทํางาน&#xA;&#xA;ชื่อจะถูกตัดเป็น 10 ตัวอักษร การเปลี่ยนแปลงมีผลเมื่อเริ่มการทํางานครั้งต่อไป</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_username.Help"><value>ใช้แทนชื่อผู้ใช้ที่ให้กับคอนโซลแบบย่อ
+
+ห้ามใช้แทน: ใช้ชื่ออะไรก็ตามที่นิยามบนบริษัท
+เดา: พยายาม เอา ชื่อ ของ คุณ ออก มา จาก ตําแหน่ง หน้า ปัด. ถ้าล้มเหลว ลอง USER, USERNAMEและ LOGNAME ตัวแปรแวดล้อม
+melonDS DS"ใช้"melonDS DS". นี่เป็นค่าปริยายหากไม่มีวิธีอื่นทํางาน
+
+ชื่อจะถูกตัดเป็น 10 ตัวอักษร</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_username.Value.guess_username"><value>เดาสิ</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_username.Value.existing_username"><value>อย่าทําอะไรเกินเหตุ</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_favorite_color"><value>สีโปรด</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_favorite_color.Help"><value>ชุดตกแต่ง ( "สี:") ของคอนโซลแบบย่อ การเปลี่ยนแปลงมีผลเมื่อเริ่มการทํางานครั้งต่อไป</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_favorite_color.Help"><value>ชุดตกแต่ง ( "สี:") ของคอนโซลแบบย่อ</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_favorite_color.Value.0"><value>เทา</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_favorite_color.Value.1"><value>สีน้ําตาลcolor</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_favorite_color.Value.2"><value>แดง</value></data>
@@ -772,7 +788,7 @@
   <data name="Emulation.Option.melondsds.melonds_firmware_favorite_color.Value.15"><value>สีชมพูเข้ม</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_favorite_color.Value.default"><value>อย่าทําอะไรเกินเหตุ</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_birth_month"><value>เดือนเกิด</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_birth_month.Help"><value>เดือนของวันเกิดคุณ การเปลี่ยนแปลงมีผลเมื่อเริ่มการทํางานครั้งต่อไป</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_birth_month.Help"><value>เดือนของวันเกิดคุณ</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_birth_month.Value.1"><value>มกราคม</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_birth_month.Value.2"><value>กุมภาพันธ์</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_birth_month.Value.3"><value>มีนาคม</value></data>
@@ -787,29 +803,36 @@
   <data name="Emulation.Option.melondsds.melonds_firmware_birth_month.Value.12"><value>ธันวาคม</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_birth_month.Value.default"><value>อย่าทําอะไรเกินเหตุ</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_birth_day"><value>วัน เกิด</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_birth_day.Help"><value>วันภายในเดือนของวันเกิดของคุณ การเปลี่ยนแปลงมีผลเมื่อเริ่มการทํางานครั้งต่อไป</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_birth_day.Help"><value>วันภายในเดือนของวันเกิดของคุณ</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_birth_day.Value.default"><value>อย่าทําอะไรเกินเหตุ</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_enable_alarm"><value>เปิดใช้การแจ้งเตือน</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_enable_alarm.Help"><value>จะให้เปิดใช้งานการแจ้งเตือนของคอนโซลแบบย่อหรือไม่ การเปลี่ยนแปลงมีผลเมื่อเริ่มการทํางานครั้งต่อไป</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_enable_alarm.Help"><value>จะให้เปิดใช้งานการแจ้งเตือนของคอนโซลแบบย่อหรือไม่</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_enable_alarm.Value.disabled"><value>ปิดการใช้งาน</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_enable_alarm.Value.enabled"><value>เปิดใช้งาน</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_enable_alarm.Value.default"><value>อย่าทําอะไรเกินเหตุ</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_alarm_hour"><value>ชั่วโมงปลุก</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_alarm_hour.Help"><value>ชั่วโมงของการกําหนด แจ้งเตือน การเปลี่ยนแปลงมีผลเมื่อเริ่มการทํางานครั้งต่อไป</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_alarm_hour.Help"><value>ชั่วโมงของการกําหนด แจ้งเตือน</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_alarm_hour.Value.default"><value>อย่าทําอะไรเกินเหตุ</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_alarm_minute"><value>นาทีแจ้งเตือน</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_alarm_minute.Help"><value>นาทีของการปรับสัญญาณ การเปลี่ยนแปลงมีผลเมื่อเริ่มการทํางานครั้งต่อไป</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_alarm_minute.Help"><value>นาทีของการปรับสัญญาณ</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_alarm_minute.Value.default"><value>อย่าทําอะไรเกินเหตุ</value></data>
   <data name="Emulation.Option.melondsds.melonds_network_mode"><value>โหมดระบบเครือข่าย</value></data>
-  <data name="Emulation.Option.melondsds.melonds_network_mode.Help"><value>ปรับแต่งวิธีการที่melonDSDSNintendoWFC. หาก ไม่ แน่ ใจ จง ใช้ โหมด ทาง อ้อม.&#xA;&#xA;ทิศทาง: ใช้ libslirp เพื่อเลียนแบบกองเครือข่ายของ DS ง่ายและไม่ต้องการการจัดฉาก&#xA;โดยตรง: เส้นทางการคัดลอกแพ็กเกต Wi-Fi ไปยังส่วนเชื่อมต่อเครือข่ายของโฮสต์ เร็วขึ้นและเชื่อถือได้มากขึ้น แต่ต้องการการเชื่อมต่อแบบ Entropnet และติดตั้ง WinPcap หรือ Npcap แล้ว libpcap หากไม่สามารถใช้งานได้ ให้กลับไปใช้โหมดทางอ้อม&#xA;&#xA;การเปลี่ยนแปลงมีผลเมื่อเริ่มการทํางานครั้งต่อไป ไม่เกี่ยวข้องกับนักแต่งเพลงท้องถิ่น</value></data>
+  <data name="Emulation.Option.melondsds.melonds_network_mode.Help"><value>ปรับแต่งวิธีการที่melonDSDSNintendoWFC. หาก ไม่ แน่ ใจ จง ใช้ โหมด ทาง อ้อม.
+
+ทิศทาง: ใช้ libslirp เพื่อเลียนแบบกองเครือข่ายของ DS ง่ายและไม่ต้องการการจัดฉาก
+โดยตรง: เส้นทางการคัดลอกแพ็กเกต Wi-Fi ไปยังส่วนเชื่อมต่อเครือข่ายของโฮสต์ เร็วขึ้นและเชื่อถือได้มากขึ้น แต่ต้องการการเชื่อมต่อแบบ Entropnet และติดตั้ง WinPcap หรือ Npcap แล้ว libpcap หากไม่สามารถใช้งานได้ ให้กลับไปใช้โหมดทางอ้อม
+
+ ไม่เกี่ยวข้องกับนักแต่งเพลงท้องถิ่น</value></data>
   <data name="Emulation.Option.melondsds.melonds_network_mode.Value.disabled"><value>ปิดการใช้งาน</value></data>
   <data name="Emulation.Option.melondsds.melonds_network_mode.Value.indirect"><value>ทิศทาง:</value></data>
   <data name="Emulation.Option.melondsds.melonds_network_mode.Value.direct"><value>ตรง</value></data>
   <data name="Emulation.Option.melondsds.melonds_direct_network_interface"><value>ส่วนติดต่อผู้ใช้เครือข่าย (โหมด Dirject)</value></data>
-  <data name="Emulation.Option.melondsds.melonds_direct_network_interface.Help"><value>เลือกอินเทอร์เฟซของเครือข่ายที่จะใช้ในโหมดโดยตรง ถ้าไม่แน่ใจ ให้ตั้งค่าให้อัตโนมัติ การเปลี่ยนแปลงมีผลเมื่อเริ่มแกนถัดไป</value></data>
+  <data name="Emulation.Option.melondsds.melonds_direct_network_interface.Help"><value>เลือกอินเทอร์เฟซของเครือข่ายที่จะใช้ในโหมดโดยตรง ถ้าไม่แน่ใจ ให้ตั้งค่าให้อัตโนมัติ</value></data>
   <data name="Emulation.Option.melondsds.melonds_direct_network_interface.Value.auto"><value>อัตโนมัติ</value></data>
   <data name="Emulation.Option.melondsds.melonds_mac_address_mode"><value>โหมดที่อยู่เครือข่าย MAC</value></data>
-  <data name="Emulation.Option.melondsds.melonds_mac_address_mode.Help"><value>ปรับแต่งการตั้งค่าที่อยู่ MAC ของคอนโซลแบบย่อ การเปลี่ยนค่านี้อาจทําให้การเข้าใช้งานนักเล่นหลายประเภทในท้องถิ่นเป็นไปไม่ได้ หรือบล็อกในการบันทึกแฟ้มในเกมที่ใช้ที่อยู่ MAC เพื่อป้องกันไม่ให้มีการปรับเปลี่ยนการบันทึกแฟ้มได้ (เช่นเดิม) โปเคมอน).&#xA;ไม่เกี่ยวข้องกับส่วนเชื่อมต่อโหมดโดยตรง การเปลี่ยนแปลงมีผลเมื่อเริ่มการทํางานครั้งต่อไป&#xA;ดูที่ https/202bit.ly/4fjtWKN เพื่อดูข้อมูลเพิ่มเติม</value></data>
+  <data name="Emulation.Option.melondsds.melonds_mac_address_mode.Help"><value>ปรับแต่งการตั้งค่าที่อยู่ MAC ของคอนโซลแบบย่อ การเปลี่ยนค่านี้อาจทําให้การเข้าใช้งานนักเล่นหลายประเภทในท้องถิ่นเป็นไปไม่ได้ หรือบล็อกในการบันทึกแฟ้มในเกมที่ใช้ที่อยู่ MAC เพื่อป้องกันไม่ให้มีการปรับเปลี่ยนการบันทึกแฟ้มได้ (เช่นเดิม) โปเคมอน).
+ไม่เกี่ยวข้องกับส่วนเชื่อมต่อโหมดโดยตรง
+ดูที่ https/202bit.ly/4fjtWKN เพื่อดูข้อมูลเพิ่มเติม</value></data>
   <data name="Emulation.Option.melondsds.melonds_mac_address_mode.Value.firmware"><value>ตั้งค่าจากเครื่องแม่ข่าย</value></data>
   <data name="Emulation.Option.melondsds.melonds_mac_address_mode.Value.from-username"><value>ถอดรหัสจากชื่อผู้ใช้ของ libretro</value></data>
   <data name="Emulation.Option.melondsds.melonds_show_unsupported_features"><value>เตือนเกี่ยวกับคุณสมบัติที่ยังไม่รองรับ</value></data>
@@ -1042,25 +1065,68 @@
   <data name="Emulation.Option.melondsds.melonds_screen_layout8.Value.rotate-right"><value>หมุนภาพไปทางขวา</value></data>
   <data name="Emulation.Option.melondsds.melonds_screen_layout8.Value.rotate-180"><value>กลับด้านลง</value></data>
   <data name="Emulation.Option.melondsds.melonds_console_mode"><value>โหมดคอนโซล</value></data>
-  <data name="Emulation.Option.melondsds.melonds_console_mode.Help"><value>ให้เลียนแบบ Nintendo DS หรือ Nintendo DSi.&#xA;&#xA;ใช้อัตโนมัติ DSi โหมดสําหรับเกมที่ต้องการ DSiและ DS โหมดสําหรับทุกอย่างอื่น DS และ DSi ตั้งค่าจะบังคับให้คอนโซลที่สัมพันธ์กัน ซึ่งมีประโยชน์มากสําหรับการพัฒนาแบบ Housebrew&#xA;&#xA;DSi โหมดมีข้อจํากัด:&#xA;&#xA;- ชนพื้นเมือง BIOSแม่ข่ายบริการ/ serviceNAND ต้องจัดแฟ้มต่าง ๆ รวมทั้งสําหรับแฟ้มปกติด้วย DS.&#xA;- คุณสมบัติบางตัว (เช่น บันทึกสถานะ) ไม่มีอยู่ DSi โหมด&#xA;&#xA;ดูตัวเลือกของ DSi ที่ระบุไว้ในหมวดหมู่นี้ สําหรับข้อมูลเพิ่มเติม หากไม่แน่ใจ ให้ใช้อัตโนมัติ การเปลี่ยนแปลงจะมีผลเมื่อเริ่มการทํางานครั้งต่อไป</value></data>
+  <data name="Emulation.Option.melondsds.melonds_console_mode.Help"><value>ให้เลียนแบบ Nintendo DS หรือ Nintendo DSi.
+
+ใช้อัตโนมัติ DSi โหมดสําหรับเกมที่ต้องการ DSiและ DS โหมดสําหรับทุกอย่างอื่น DS และ DSi ตั้งค่าจะบังคับให้คอนโซลที่สัมพันธ์กัน ซึ่งมีประโยชน์มากสําหรับการพัฒนาแบบ Housebrew
+
+DSi โหมดมีข้อจํากัด:
+
+- ชนพื้นเมือง BIOSแม่ข่ายบริการ/ serviceNAND ต้องจัดแฟ้มต่าง ๆ รวมทั้งสําหรับแฟ้มปกติด้วย DS.
+- คุณสมบัติบางตัว (เช่น บันทึกสถานะ) ไม่มีอยู่ DSi โหมด
+
+ดูตัวเลือกของ DSi ที่ระบุไว้ในหมวดหมู่นี้ สําหรับข้อมูลเพิ่มเติม หากไม่แน่ใจ ให้ใช้อัตโนมัติ</value></data>
   <data name="Emulation.Option.melondsds.melonds_console_mode.Value.auto"><value>อัตโนมัติ</value></data>
   <data name="Emulation.Option.melondsds.melonds_console_mode.Value.dsi"><value>DSi (การทดลอง)</value></data>
   <data name="Emulation.Option.melondsds.melonds_sysfile_mode"><value>BIOSโหมดเครื่อง / firmware (help)DS โหมด)</value></data>
-  <data name="Emulation.Option.melondsds.melonds_sysfile_mode.Help"><value>ระบุว่า melonDS ใช้ภาษาพื้นเมือง BIOSถังขยะ/ serverwares หรือตัวแทนที่ที่ถูกสร้างเอง ใช้ได้เฉพาะกับ DS โหมด, เป็น DSi โหมดต้องการภาษาพื้นเมืองเสมอ BIOS และกองขยะ&#xA;&#xA;โหมดภาษาพื้นเมืองใช้ BIOS และแฟ้ม counder from a real DS...วางกองขยะเหล่านี้ลงในไดเร็กทอรีของระบบหรือ "melonDS DS"กํากับและตั้งชื่อมันดังต่อไปนี้:&#xA;&#xA;- DS BIOS: bios7.bin, bios9.bin&#xA;- DSi BIOS: dsi_bios7.bin, dsi_bios9.bin&#xA;- เครื่องควบคุม: ดูที่ "DS เฟิร์มแวร์ และ "DSi ยูนิเซฟแวร์" ตัวเลือก&#xA;- DSi NAND. ดู "DSi NAND "ทางเลือก"&#xA;&#xA;ถอยกลับไปที่การสร้างภายในถ้าใด BIOSไม่พบแฟ้มบริการ / service&#xA;&#xA;โหมดคอมไพล์เข้าใช้ melonDSสร้างขึ้นภายใน BIOS และเป็นโครงข่าย และมีความเหมาะสมสําหรับเกมส่วนใหญ่&#xA;&#xA;การเปลี่ยนแปลงมีผลเมื่อเริ่มการทํางานครั้งต่อไป</value></data>
+  <data name="Emulation.Option.melondsds.melonds_sysfile_mode.Help"><value>ระบุว่า melonDS ใช้ภาษาพื้นเมือง BIOSถังขยะ/ serverwares หรือตัวแทนที่ที่ถูกสร้างเอง ใช้ได้เฉพาะกับ DS โหมด, เป็น DSi โหมดต้องการภาษาพื้นเมืองเสมอ BIOS และกองขยะ
+
+โหมดภาษาพื้นเมืองใช้ BIOS และแฟ้ม counder from a real DS...วางกองขยะเหล่านี้ลงในไดเร็กทอรีของระบบหรือ "melonDS DS"กํากับและตั้งชื่อมันดังต่อไปนี้:
+
+- DS BIOS: bios7.bin, bios9.bin
+- DSi BIOS: dsi_bios7.bin, dsi_bios9.bin
+- เครื่องควบคุม: ดูที่ "DS เฟิร์มแวร์ และ "DSi ยูนิเซฟแวร์" ตัวเลือก
+- DSi NAND. ดู "DSi NAND "ทางเลือก"
+
+ถอยกลับไปที่การสร้างภายในถ้าใด BIOSไม่พบแฟ้มบริการ / service
+
+โหมดคอมไพล์เข้าใช้ melonDSสร้างขึ้นภายใน BIOS และเป็นโครงข่าย และมีความเหมาะสมสําหรับเกมส่วนใหญ่</value></data>
   <data name="Emulation.Option.melondsds.melonds_sysfile_mode.Value.native"><value>พื้นบ้าน</value></data>
   <data name="Emulation.Option.melondsds.melonds_sysfile_mode.Value.builtin"><value>ที่สร้างมา</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_nds_path"><value>DS service</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_nds_path.Help"><value>เลือกอิมเมจของเครื่องแม่ข่ายที่จะใช้ DS โหมด. แฟ้มจะถูกแสดงไว้ที่นี่ถ้า:&#xA;&#xA;- อยู่ในไดเร็คทอรีของระบบของกองหน้าหรือ กํากับชื่อ "melonDS DS".&#xA;131,072 ไบต์ (พ.ศ.128KB) 262,144 ไบต์ (พ.ศ.256KB) หรือ 524,288 ไบต์ (พ.ศ.512KBยาว&#xA;- บรรจุข้อมูลส่วนหัวที่ถูกต้องสําหรับ DS เฟิร์มแวร์&#xA;&#xA;Nintendo WFC IDs ถูกบันทึกเป็น coundแวร์ ดังนั้นการเปลี่ยนรูปภาพของเครื่องคอมพิวเตอร์ อาจส่งผลให้สูญเสียบางอย่าง WFC ข้อมูล ไม่สนใจ DSi โหมดหรือถ้า BIOSโหมด Firmware ถูกสร้าง-ภายใน การเปลี่ยนแปลงจะมีผลเมื่อเริ่มการทํางานครั้งต่อไป</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_nds_path.Help"><value>เลือกอิมเมจของเครื่องแม่ข่ายที่จะใช้ DS โหมด. แฟ้มจะถูกแสดงไว้ที่นี่ถ้า:
+
+- อยู่ในไดเร็คทอรีของระบบของกองหน้าหรือ กํากับชื่อ "melonDS DS".
+131,072 ไบต์ (พ.ศ.128KB) 262,144 ไบต์ (พ.ศ.256KB) หรือ 524,288 ไบต์ (พ.ศ.512KBยาว
+- บรรจุข้อมูลส่วนหัวที่ถูกต้องสําหรับ DS เฟิร์มแวร์
+
+Nintendo WFC IDs ถูกบันทึกเป็น coundแวร์ ดังนั้นการเปลี่ยนรูปภาพของเครื่องคอมพิวเตอร์ อาจส่งผลให้สูญเสียบางอย่าง WFC ข้อมูล ไม่สนใจ DSi โหมดหรือถ้า BIOSโหมด Firmware ถูกสร้าง-ภายใน</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_nds_path.Value./notfound"><value>ไม่พบ...</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_dsi_path"><value>DSi ยูนิเวอร์แวร์</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_dsi_path.Help"><value>เลือกอิมเมจของเครื่องแม่ข่ายที่จะใช้ DSi โหมด. แฟ้มจะถูกแสดงไว้ที่นี่ถ้า:&#xA;&#xA;- อยู่ในไดเร็คทอรีของระบบของกองหน้าหรือ กํากับชื่อ "melonDS DS".&#xA;131,072 ไบต์ (พ.ศ.128KB) 262,144 ไบต์ (พ.ศ.256KB) หรือ 524,288 ไบต์ (พ.ศ.512KBยาว&#xA;- บรรจุข้อมูลส่วนหัวที่ถูกต้องสําหรับ DSi เฟิร์มแวร์&#xA;&#xA;Nintendo WFC IDs ถูกบันทึกเป็น coundแวร์ ดังนั้นการเปลี่ยนรูปภาพของเครื่องคอมพิวเตอร์ อาจส่งผลให้สูญเสียบางอย่าง WFC ข้อมูล การเปลี่ยนแปลงมีผลเมื่อเริ่มการทํางานครั้งต่อไป</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_dsi_path.Help"><value>เลือกอิมเมจของเครื่องแม่ข่ายที่จะใช้ DSi โหมด. แฟ้มจะถูกแสดงไว้ที่นี่ถ้า:
+
+- อยู่ในไดเร็คทอรีของระบบของกองหน้าหรือ กํากับชื่อ "melonDS DS".
+131,072 ไบต์ (พ.ศ.128KB) 262,144 ไบต์ (พ.ศ.256KB) หรือ 524,288 ไบต์ (พ.ศ.512KBยาว
+- บรรจุข้อมูลส่วนหัวที่ถูกต้องสําหรับ DSi เฟิร์มแวร์
+
+Nintendo WFC IDs ถูกบันทึกเป็น coundแวร์ ดังนั้นการเปลี่ยนรูปภาพของเครื่องคอมพิวเตอร์ อาจส่งผลให้สูญเสียบางอย่าง WFC ข้อมูล</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_dsi_path.Value./notfound"><value>ไม่พบ...</value></data>
   <data name="Emulation.Option.melondsds.melonds_dsi_nand_path"><value>DSi NAND พาธ</value></data>
-  <data name="Emulation.Option.melondsds.melonds_dsi_nand_path.Help"><value>เลือก DSi NAND อิมเมจที่ต้องการใช้ เมื่อใช้งาน DSi โหมด. แฟ้มจะถูกแสดงไว้ที่นี่ถ้า:&#xA;&#xA;- อยู่ในไดเร็กทอรีของระบบของกองหน้า หรือในบันทึกย่อยชื่อ "melonDS DS".&#xA;251,658,304 ไบต์ (พ.ศ.240MB) หรือ 207,425,472 bytes (พ.ศ.245.5MBยาวด้วยข้อมูลฟุตเลอร์ที่ถูกต้อง OR;&#xA;- เป็น 64 ไบต์ที่สั้นกว่าความยาวเหล่านี้ และมีข้อมูลเทียบเท่ากันที่ eptegration file 0xFFI800&#xA;&#xA;ตั้งเป็น "อัตโนมัติ" ให้แกนเลือก NAND ภาพที่พื้นที่ตรงกับส่วน DSIWare ที่โหลดมาแล้ว ROM. การเปลี่ยนแปลงมีผลเมื่อเริ่มการทํางานครั้งต่อไป</value></data>
+  <data name="Emulation.Option.melondsds.melonds_dsi_nand_path.Help"><value>เลือก DSi NAND อิมเมจที่ต้องการใช้ เมื่อใช้งาน DSi โหมด. แฟ้มจะถูกแสดงไว้ที่นี่ถ้า:
+
+- อยู่ในไดเร็กทอรีของระบบของกองหน้า หรือในบันทึกย่อยชื่อ "melonDS DS".
+251,658,304 ไบต์ (พ.ศ.240MB) หรือ 207,425,472 bytes (พ.ศ.245.5MBยาวด้วยข้อมูลฟุตเลอร์ที่ถูกต้อง OR;
+- เป็น 64 ไบต์ที่สั้นกว่าความยาวเหล่านี้ และมีข้อมูลเทียบเท่ากันที่ eptegration file 0xFFI800
+
+ตั้งเป็น "อัตโนมัติ" ให้แกนเลือก NAND ภาพที่พื้นที่ตรงกับส่วน DSIWare ที่โหลดมาแล้ว ROM.</value></data>
   <data name="Emulation.Option.melondsds.melonds_dsi_nand_path.Value./auto"><value>อัตโนมัติ (ตรงกัน) ROM ขอบเขต)</value></data>
   <data name="Emulation.Option.melondsds.melonds_dsi_nand_path.Value./notfound"><value>ไม่พบ...</value></data>
   <data name="Emulation.Option.melondsds.melonds_boot_mode"><value>โหมดบูต</value></data>
-  <data name="Emulation.Option.melondsds.melonds_boot_mode.Help"><value>ระบุวิธีการที่ melonDS บู๊ตเกมส์&#xA;&#xA;พื้นเมือง: โหลดเกมผ่านเมนูระบบที่คล้ายกับรายการจริง DS/DSi ประมวลผลการบูต ต้องการข้อมูลส่วนตัว BIOS และแฟ้มยูนิแวร์ในไดเร็กทอรีของระบบ&#xA;โดยตรง: ข้ามเมนูของระบบ แล้วตรงไปที่เกมเลย รองรับ DSIWaire หากเป็นพื้นเมือง DSi แฟ้มของระบบมีอยู่&#xA;&#xA;ไม่สนใจหากโหลดโดยไม่มีเกม (ถูกบังคับให้ใช้) หรือถ้าใช้งานตัวสร้าง-ภายใน BIOS/ Firmware (Dirject ถูกบังคับ) การเปลี่ยนแปลงจะมีผลเมื่อเริ่มการทํางานครั้งต่อไป</value></data>
+  <data name="Emulation.Option.melondsds.melonds_boot_mode.Help"><value>ระบุวิธีการที่ melonDS บู๊ตเกมส์
+
+พื้นเมือง: โหลดเกมผ่านเมนูระบบที่คล้ายกับรายการจริง DS/DSi ประมวลผลการบูต ต้องการข้อมูลส่วนตัว BIOS และแฟ้มยูนิแวร์ในไดเร็กทอรีของระบบ
+โดยตรง: ข้ามเมนูของระบบ แล้วตรงไปที่เกมเลย รองรับ DSIWaire หากเป็นพื้นเมือง DSi แฟ้มของระบบมีอยู่
+
+ไม่สนใจหากโหลดโดยไม่มีเกม (ถูกบังคับให้ใช้) หรือถ้าใช้งานตัวสร้าง-ภายใน BIOS/ Firmware (Dirject ถูกบังคับ)</value></data>
   <data name="Emulation.Option.melondsds.melonds_boot_mode.Value.direct"><value>ตรง</value></data>
   <data name="Emulation.Option.melondsds.melonds_boot_mode.Value.native"><value>พื้นบ้าน</value></data>
   <data name="Emulation.Option.melondsds.melonds_dsi_sdcard"><value>เสมือน SD ไพ่ (Description)DSi)</value></data>
@@ -1068,7 +1134,7 @@
   <data name="Emulation.Option.melondsds.melonds_dsi_sdcard.Value.disabled"><value>ปิดการใช้งาน</value></data>
   <data name="Emulation.Option.melondsds.melonds_dsi_sdcard.Value.enabled"><value>เปิดใช้งาน</value></data>
   <data name="Emulation.Option.melondsds.melonds_dsi_sdcard_readonly"><value>โหมดอ่านได้อย่างเดียว (Shortcut) NameDSi)</value></data>
-  <data name="Emulation.Option.melondsds.melonds_dsi_sdcard_readonly.Help"><value>หากเปิดใช้ จะทําการเลียนแบบ DSi เห็นภาพเสมือน SD ไพ่แบบอ่านได้อย่างเดียว การเปลี่ยนแปลงจะมีผลเมื่อเริ่มการทํางานครั้งต่อไป</value></data>
+  <data name="Emulation.Option.melondsds.melonds_dsi_sdcard_readonly.Help"><value>หากเปิดใช้ จะทําการเลียนแบบ DSi เห็นภาพเสมือน SD ไพ่แบบอ่านได้อย่างเดียว</value></data>
   <data name="Emulation.Option.melondsds.melonds_dsi_sdcard_readonly.Value.disabled"><value>ปิดการใช้งาน</value></data>
   <data name="Emulation.Option.melondsds.melonds_dsi_sdcard_readonly.Value.enabled"><value>เปิดใช้งาน</value></data>
   <data name="Emulation.Option.melondsds.melonds_dsi_sdcard_sync_sdcard_to_host"><value>ปรับเทียบข้อมูล SD นามบัตรเสมือน (ไปยังเครื่องโฮสต์) (DSi)</value></data>
@@ -1080,7 +1146,7 @@
   <data name="Emulation.Option.melondsds.melonds_homebrew_sdcard.Value.disabled"><value>ปิดการใช้งาน</value></data>
   <data name="Emulation.Option.melondsds.melonds_homebrew_sdcard.Value.enabled"><value>เปิดใช้งาน</value></data>
   <data name="Emulation.Option.melondsds.melonds_homebrew_readonly"><value>โหมดอ่านได้อย่างเดียว</value></data>
-  <data name="Emulation.Option.melondsds.melonds_homebrew_readonly.Help"><value>หากเปิดใช้ โปรแกรม homebrew จะเห็นภาพเสมือน SD ไพ่แบบอ่านได้อย่างเดียว การเปลี่ยนแปลงจะมีผลเมื่อเริ่มการทํางานครั้งต่อไป</value></data>
+  <data name="Emulation.Option.melondsds.melonds_homebrew_readonly.Help"><value>หากเปิดใช้ โปรแกรม homebrew จะเห็นภาพเสมือน SD ไพ่แบบอ่านได้อย่างเดียว</value></data>
   <data name="Emulation.Option.melondsds.melonds_homebrew_readonly.Value.disabled"><value>ปิดการใช้งาน</value></data>
   <data name="Emulation.Option.melondsds.melonds_homebrew_readonly.Value.enabled"><value>เปิดใช้งาน</value></data>
   <data name="Emulation.Option.melondsds.melonds_homebrew_sync_sdcard_to_host"><value>ปรับเทียบข้อมูล SD นามบัตรไปยังโฮสต์</value></data>
@@ -1125,13 +1191,20 @@
   <data name="Emulation.Option.melondsds.melonds_solar_sensor_host_sensor.Value.disabled"><value>ปิดการใช้งาน</value></data>
   <data name="Emulation.Option.melondsds.melonds_solar_sensor_host_sensor.Value.enabled"><value>เปิดใช้งาน</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_mode"><value>โหมดเวลา</value></data>
-  <data name="Emulation.Option.melondsds.melonds_start_time_mode.Help"><value>เวลาเริ่มต้นของนาฬิกาภายในของตัวจําลอง&#xA;&#xA;- เรียล: เริ่มตรงกับนาฬิกาของอุปกรณ์ของคุณ&#xA;- ปรับเทียบเวลา: ปรับจังหวะนาฬิกาให้เข้ากับนาฬิกาของอุปกรณ์ของคุณ อาจทําให้เกิดพฤติกรรมที่ไม่คาดฝันในบางเกม&#xA;- สัมพัทธ์: เริ่มการจับคู่กับนาฬิกาของอุปกรณ์ของคุณบวกหรือลบออฟเซ็ตที่ระบุไว้ จะถูกบังคับให้ใช้วันที่ DS สามารถแทนได้&#xA;- สัมบูรณ์: เริ่มที่วันที่และเวลาเฉพาะ ไม่คํานึงถึงนาฬิกาของอุปกรณ์ของคุณ&#xA;&#xA;เวลาและเวลาทั้งหมดอยู่ในเขตเวลาของคุณ การเปลี่ยนแปลงจะมีผลเมื่อเริ่มการทํางานครั้งต่อไป</value></data>
+  <data name="Emulation.Option.melondsds.melonds_start_time_mode.Help"><value>เวลาเริ่มต้นของนาฬิกาภายในของตัวจําลอง
+
+- เรียล: เริ่มตรงกับนาฬิกาของอุปกรณ์ของคุณ
+- ปรับเทียบเวลา: ปรับจังหวะนาฬิกาให้เข้ากับนาฬิกาของอุปกรณ์ของคุณ อาจทําให้เกิดพฤติกรรมที่ไม่คาดฝันในบางเกม
+- สัมพัทธ์: เริ่มการจับคู่กับนาฬิกาของอุปกรณ์ของคุณบวกหรือลบออฟเซ็ตที่ระบุไว้ จะถูกบังคับให้ใช้วันที่ DS สามารถแทนได้
+- สัมบูรณ์: เริ่มที่วันที่และเวลาเฉพาะ ไม่คํานึงถึงนาฬิกาของอุปกรณ์ของคุณ
+
+เวลาและเวลาทั้งหมดอยู่ในเขตเวลาของคุณ</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_mode.Value.real"><value>จริง</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_mode.Value.sync"><value>ปรับเทียบข้อมูลแล้ว</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_mode.Value.relative"><value>ความสัมพันธ์</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_mode.Value.absolute"><value>สัมบูรณ์</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_year_offset"><value>เริ่มการลดเวลา (ปี)</value></data>
-  <data name="Emulation.Option.melondsds.melonds_start_time_relative_year_offset.Help"><value>จํานวนปีในการปรับค่าเวลาเริ่มต้นโดย ใช้เฉพาะเมื่อเริ่มใช้โหมดเวลาแบบสัมพัทธ์เท่านั้น การเปลี่ยนแปลงจะมีผลเมื่อมีการเริ่มการทํางานครั้งต่อไป</value></data>
+  <data name="Emulation.Option.melondsds.melonds_start_time_relative_year_offset.Help"><value>จํานวนปีในการปรับค่าเวลาเริ่มต้นโดย ใช้เฉพาะเมื่อเริ่มใช้โหมดเวลาแบบสัมพัทธ์เท่านั้น</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_year_offset.Value.-20"><value>- 20 ปี</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_year_offset.Value.-19"><value>-19 ปี</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_year_offset.Value.-18"><value>18 ปี</value></data>
@@ -1174,7 +1247,7 @@
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_year_offset.Value.19"><value>+19 ปี</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_year_offset.Value.20"><value>+20 ปี</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_day_offset"><value>เริ่มการลดเวลา (วัน)</value></data>
-  <data name="Emulation.Option.melondsds.melonds_start_time_relative_day_offset.Help"><value>จํานวนวันที่จะชดเชยเวลาเริ่มต้นโดย ใช้เฉพาะเมื่อเริ่มใช้โหมดจับเวลาเท่านั้น การเปลี่ยนแปลงจะมีผลเมื่อมีการเริ่มการทํางานครั้งต่อไป</value></data>
+  <data name="Emulation.Option.melondsds.melonds_start_time_relative_day_offset.Help"><value>จํานวนวันที่จะชดเชยเวลาเริ่มต้นโดย ใช้เฉพาะเมื่อเริ่มใช้โหมดจับเวลาเท่านั้น</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_day_offset.Value.-364"><value>-364 วัน</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_day_offset.Value.-180"><value>- 180 วัน</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_day_offset.Value.-150"><value>-150 วัน</value></data>
@@ -1219,7 +1292,7 @@
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_day_offset.Value.180"><value>+ 180 วัน</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_day_offset.Value.364"><value>+364 วัน</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_hour_offset"><value>เริ่มการลดเวลา (ชั่วโมง)</value></data>
-  <data name="Emulation.Option.melondsds.melonds_start_time_relative_hour_offset.Help"><value>จํานวนชั่วโมงในการปรับค่าเวลาเริ่มต้นโดย ใช้เมื่อเริ่มใช้โหมดเวลาเท่านั้น การเปลี่ยนแปลงมีผลเมื่อเริ่มการทํางานครั้งต่อไป</value></data>
+  <data name="Emulation.Option.melondsds.melonds_start_time_relative_hour_offset.Help"><value>จํานวนชั่วโมงในการปรับค่าเวลาเริ่มต้นโดย ใช้เมื่อเริ่มใช้โหมดเวลาเท่านั้น</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_hour_offset.Value.-23"><value>23 ชั่วโมง</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_hour_offset.Value.-22"><value>-22 ชั่วโมง</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_hour_offset.Value.-21"><value>-21 ชั่วโมง</value></data>
@@ -1268,7 +1341,7 @@
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_hour_offset.Value.22"><value>+22 ชั่วโมง</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_hour_offset.Value.23"><value>+23 ชั่วโมง</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_minute_offset"><value>เริ่มการตั้งเวลาสัมพัทธ์ (inuts)</value></data>
-  <data name="Emulation.Option.melondsds.melonds_start_time_relative_minute_offset.Help"><value>จํานวนนาทีที่จะชดเชยเวลาเริ่มต้นโดย ใช้เมื่อเริ่มใช้โหมดเวลาเท่านั้น การเปลี่ยนแปลงมีผลเมื่อเริ่มการทํางานครั้งต่อไป</value></data>
+  <data name="Emulation.Option.melondsds.melonds_start_time_relative_minute_offset.Help"><value>จํานวนนาทีที่จะชดเชยเวลาเริ่มต้นโดย ใช้เมื่อเริ่มใช้โหมดเวลาเท่านั้น</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_minute_offset.Value.-59"><value>- 59 นาที</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_minute_offset.Value.-58"><value>- 58 นาที</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_minute_offset.Value.-57"><value>- 57 นาที</value></data>
@@ -1389,9 +1462,9 @@
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_minute_offset.Value.58"><value>+58 นาที</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_minute_offset.Value.59"><value>+ 59 นาที</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_absolute_year"><value>ปีเริ่มต้น</value></data>
-  <data name="Emulation.Option.melondsds.melonds_start_time_absolute_year.Help"><value>ปีแรกที่ใช้เมื่อเริ่มใช้โหมดเวลาเป็นช่วงสมบูรณ์ การเปลี่ยนแปลงมีผลเมื่อเริ่มการทํางานครั้งต่อไป</value></data>
+  <data name="Emulation.Option.melondsds.melonds_start_time_absolute_year.Help"><value>ปีแรกที่ใช้เมื่อเริ่มใช้โหมดเวลาเป็นช่วงสมบูรณ์</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_absolute_month"><value>เดือนที่เริ่ม</value></data>
-  <data name="Emulation.Option.melondsds.melonds_start_time_absolute_month.Help"><value>เดือนเริ่มต้นที่จะใช้เมื่อเริ่มใช้โหมดเวลา สัมบูรณ์ การเปลี่ยนแปลงมีผลเมื่อเริ่มการทํางานครั้งต่อไป</value></data>
+  <data name="Emulation.Option.melondsds.melonds_start_time_absolute_month.Help"><value>เดือนเริ่มต้นที่จะใช้เมื่อเริ่มใช้โหมดเวลา สัมบูรณ์</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_absolute_month.Value.1"><value>มกราคม</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_absolute_month.Value.2"><value>กุมภาพันธ์</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_absolute_month.Value.3"><value>มีนาคม</value></data>
@@ -1405,15 +1478,16 @@
   <data name="Emulation.Option.melondsds.melonds_start_time_absolute_month.Value.11"><value>พฤศจิกายน</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_absolute_month.Value.12"><value>ธันวาคม</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_absolute_day"><value>วันเริ่มต้น</value></data>
-  <data name="Emulation.Option.melondsds.melonds_start_time_absolute_day.Help"><value>วันเริ่มต้นของเดือนที่จะใช้เมื่อเริ่มใช้โหมดเวลาเป็นสัมบูรณ์ วัน ที่ ผ่าน ไป จน ถึง สิ้น เดือน จะ พลิก ผัน ไป สู่ วัน ถัด ไป (เช่น ปี ค. 31 เมษายนจะกลายเป็นวันที่ 1 พฤษภาคม พ.ศ. การเปลี่ยนแปลงมีผลเมื่อเริ่มการทํางานครั้งต่อไป</value></data>
+  <data name="Emulation.Option.melondsds.melonds_start_time_absolute_day.Help"><value>วันเริ่มต้นของเดือนที่จะใช้เมื่อเริ่มใช้โหมดเวลาเป็นสัมบูรณ์ วัน ที่ ผ่าน ไป จน ถึง สิ้น เดือน จะ พลิก ผัน ไป สู่ วัน ถัด ไป (เช่น ปี ค. 31 เมษายนจะกลายเป็นวันที่ 1 พฤษภาคม พ.ศ.</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_absolute_hour"><value>ชั่วโมงเริ่ม</value></data>
-  <data name="Emulation.Option.melondsds.melonds_start_time_absolute_hour.Help"><value>ชั่วโมงเริ่มต้นที่จะใช้เมื่อเริ่มใช้โหมดเวลาเป็น สัมบูรณ์ การเปลี่ยนแปลงมีผลเมื่อเริ่มการทํางานครั้งต่อไป</value></data>
+  <data name="Emulation.Option.melondsds.melonds_start_time_absolute_hour.Help"><value>ชั่วโมงเริ่มต้นที่จะใช้เมื่อเริ่มใช้โหมดเวลาเป็น สัมบูรณ์</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_absolute_minute"><value>นาทีที่เริ่ม</value></data>
-  <data name="Emulation.Option.melondsds.melonds_start_time_absolute_minute.Help"><value>หนึ่งนาทีแรกที่จะใช้เมื่อเริ่มใช้โหมดเวลาจะสมบูรณ์ การเปลี่ยนแปลงมีผลเมื่อเริ่มการทํางานครั้งต่อไป</value></data>
+  <data name="Emulation.Option.melondsds.melonds_start_time_absolute_minute.Help"><value>หนึ่งนาทีแรกที่จะใช้เมื่อเริ่มใช้โหมดเวลาจะสมบูรณ์</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_absolute_second"><value>เริ่มที่ 2</value></data>
-  <data name="Emulation.Option.melondsds.melonds_start_time_absolute_second.Help"><value>ลําดับที่สองที่จะใช้เมื่อเริ่มใช้โหมดเวลาจะสมบูรณ์ การเปลี่ยนแปลงมีผลเมื่อเริ่มการทํางานครั้งต่อไป</value></data>
+  <data name="Emulation.Option.melondsds.melonds_start_time_absolute_second.Help"><value>ลําดับที่สองที่จะใช้เมื่อเริ่มใช้โหมดเวลาจะสมบูรณ์</value></data>
   <data name="Emulation.Option.melondsds.melonds_render_mode"><value>โหมดการแสดงผล</value></data>
-  <data name="Emulation.Option.melondsds.melonds_render_mode.Help"><value>ซอฟต์แวร์นั้นเร็วที่สุด และแม่นยําที่สุด เกม OpenGL (Clastic) สามารถขยายกราฟฟิก 3 มิติ แต่บางเกมอาจจะแปลผิด&#xA;OpenGL (Compute) แม่นยํา และรองรับการยกระดับ แต่จะไม่ทํางานในอุปกรณ์ที่เก่ากว่านี้ การ เปลี่ยน ไป ใช้ เวลา สอง สาม วินาที เพื่อ รวบ รวม ร่ม เงา.&#xA;&#xA;กลับไปยังงานแปลซอฟต์แวร์ ถ้าไม่สามารถใช้ OpenGL ได้ การเปลี่ยนแปลงมีผลทันที แต่อาจจําเป็นต้องเรียกตัวขับวิดีโอของกองหน้าใหม่อีกครั้ง</value></data>
+  <data name="Emulation.Option.melondsds.melonds_render_mode.Help"><value>ซอฟต์แวร์นั้นเร็วที่สุด และแม่นยําที่สุด เกม OpenGL (Clastic) สามารถขยายกราฟฟิก 3 มิติ แต่บางเกมอาจจะแปลผิด
+OpenGL (Compute) แม่นยํา และรองรับการยกระดับ แต่จะไม่ทํางานในอุปกรณ์ที่เก่ากว่านี้ การ เปลี่ยน ไป ใช้ เวลา สอง สาม วินาที เพื่อ รวบ รวม ร่ม เงา.</value></data>
   <data name="Emulation.Option.melondsds.melonds_render_mode.Value.software"><value>ซอฟต์แวร์</value></data>
   <data name="Emulation.Option.melondsds.melonds_render_mode.Value.opengl"><value>OpenGL (ค.ศ.</value></data>
   <data name="Emulation.Option.melondsds.melonds_render_mode.Value.compute"><value>แบบ OpenGL (แบบรวม)</value></data>
@@ -1614,7 +1688,7 @@
   <data name="Emulation.Option.fceumm.fceumm_ntsc_filter.Value.composite"><value>คอมโพไซต์</value></data>
   <data name="Emulation.Option.fceumm.fceumm_ntsc_filter.Value.svideo"><value>S- วิดีโอ</value></data>
   <data name="Emulation.Option.fceumm.fceumm_ntsc_filter.Value.monochrome"><value>พิมพ์สีเดียว</value></data>
-  <data name="Emulation.Option.fceumm.fceumm_hdpacks"><value>ชุดพื้นผิว HD (เริ่มใหม่)</value></data>
+  <data name="Emulation.Option.fceumm.fceumm_hdpacks"><value>ชุดพื้นผิว HD</value></data>
   <data name="Emulation.Option.fceumm.fceumm_hdpacks.Help"><value>โหลดพื้นผิว Meen-format-HD จาก '/ hdpacks/ &lt; rames]/ hires.txt' เมื่อมาถึง แทนที่กระเบื้อง/ prinizes ด้วยงานศิลปะระดับสูง (PNG,DDS[101) หรือเว็บพี) และเปิดให้พื้นหลังที่กําหนดเองของแพ็คและOGG/WAV ดนตรีและเสียง. ต้องการตัวนําร่องที่รองรับผลลัพธ์ XRGB8888</value></data>
   <data name="Emulation.Option.fceumm.fceumm_hdpacks.Value.enabled"><value>เปิดใช้งาน</value></data>
   <data name="Emulation.Option.fceumm.fceumm_hdpacks.Value.disabled"><value>ปิดการใช้งาน</value></data>
@@ -2056,7 +2130,7 @@
   <data name="Emulation.Firmware.mesen2.Slot25"><value>ซูเปอร์ Game Boy BIOS</value></data>
   <data name="Emulation.Emulator.nestopia.Description"><value>จําลองที่เข้ากันได้กับระบบNintendo[1] ด้วยNestopia.</value></data>
   <data name="Emulation.Option.nestopia.nestopia_favored_system"><value>ระบบที่ชื่นชอบ</value></data>
-  <data name="Emulation.Option.nestopia.nestopia_favored_system.Help"><value>ระบบต้องการรูปภาพที่ไม่บอกว่าอันไหนที่ต้องการ ภาพต่าง ๆ ที่บอก และภาพที่พบในฐานข้อมูล NstDatabase.xml นั้นไม่ชัดเจนนัก ใช้เมื่อ 'force System' ถูกตั้งค่าเป็น 'อัตโนมัติ' เท่านั้น ต้องรีสตาร์ทใหม่</value></data>
+  <data name="Emulation.Option.nestopia.nestopia_favored_system.Help"><value>ระบบต้องการรูปภาพที่ไม่บอกว่าอันไหนที่ต้องการ ภาพต่าง ๆ ที่บอก และภาพที่พบในฐานข้อมูล NstDatabase.xml นั้นไม่ชัดเจนนัก ใช้เมื่อ 'force System' ถูกตั้งค่าเป็น 'อัตโนมัติ' เท่านั้น</value></data>
   <data name="Emulation.Option.nestopia.nestopia_favored_system.Value.famicom"><value>นามิคอม</value></data>
   <data name="Emulation.Option.nestopia.nestopia_force_system"><value>ระบบบังคับ</value></data>
   <data name="Emulation.Option.nestopia.nestopia_force_system.Help"><value>ไม่สนใจระบบภาพที่ร้องขอและใช้งานอันนี้แทน การเปลี่ยนการตั้งค่านี้จะทําให้เกมเริ่มเล่นอีกครั้ง</value></data>
@@ -2309,7 +2383,10 @@
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_lcd_interlacing_brightnesss"><value>ค่าความสว่างของแสง (GBC) LCD</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_lcd_interlacing_brightnesss.Help"><value>ปรับความเข้มของผลกระทบที่ทับถมกัน เก็บค่านี้ไว้ต่ําเมื่อไม่ได้ใช้แถบเงา มี การ แนะ นํา ให้ ใช้ ค่า ที่ สูง กว่า เมื่อ รวม กับ ร่ม เงา เพื่อ ทํา ให้ เห็น ผล ได้.</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_RGB_SubPixel_Simulation"><value>GBCLCDRGB ไมโครสเกลของพิกเซล</value></data>
-  <data name="Emulation.Option.doublecherrygb.dcgb_gbc_RGB_SubPixel_Simulation.Help"><value>จําลองพิกเซลย่อยของ GBC ทางกายภาพ โดยเพิ่มระดับและแทนที่แต่ละสีด้วยส่วนประกอบ RGB ที่สอดคล้องกัน&#xA;&#xA;เพื่อผลลัพธ์ที่ดีที่สุด:&#xA;- เปิดใช้งาน 'Interger Scaling' ใน RetroAch (Settings -") วิดีโอ -&gt; scalling).&#xA;- การเริ่มระบบแกนใหม่อาจจะจําเป็น หลังจากเปลี่ยนค่าที่ตั้งนี้</value></data>
+  <data name="Emulation.Option.doublecherrygb.dcgb_gbc_RGB_SubPixel_Simulation.Help"><value>จําลองพิกเซลย่อยของ GBC ทางกายภาพ โดยเพิ่มระดับและแทนที่แต่ละสีด้วยส่วนประกอบ RGB ที่สอดคล้องกัน
+
+เพื่อผลลัพธ์ที่ดีที่สุด:
+- เปิดใช้งาน 'Interger Scaling' ใน RetroAch (Settings -") วิดีโอ -&gt; scalling).</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_RGB_SubPixel_Simulation.Value.1"><value>ปิดการใช้งาน</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_LCD_blur"><value>เบลอแบบ GBCLCD</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_LCD_blur.Help"><value>ทําให้เกิดความเบลอของการแสดงผล การตั้งค่านี้เป็น CPU ระดับสูง ปิดมันด้วยฮาร์ดแวร์ที่อ่อนแอกว่า หรือใช้เครื่องบังแดดแทน</value></data>
@@ -2568,7 +2645,7 @@
   <data name="Emulation.Firmware.gambatte.Slot0"><value>Game Boy BIOS</value></data>
   <data name="Emulation.Firmware.gambatte.Slot1"><value>Game Boy Color BIOS</value></data>
   <data name="Emulation.Emulator.gearboy.Description"><value>จําลองที่เข้ากันได้กับระบบNintendo[1] ด้วยGearBoy.</value></data>
-  <data name="Emulation.Option.gearboy.gearboy_barcode_boy"><value>โหมด barcode Boy (เริ่มใหม่)</value></data>
+  <data name="Emulation.Option.gearboy.gearboy_barcode_boy"><value>โหมด barcode Boy</value></data>
   <data name="Emulation.Option.gearboy.gearboy_barcode_boy.Help"><value>Auto patchs Barcode boy เพื่อเล่นเกมที่รู้จักโดย ROM CRC. เปิดใช้งานการสนับสนุน uncognized or patched ROMs โหมดเชื่อมโยงเกมสํารองพอร์ตอนุกรม และปิดการใช้งาน Barcode Boy</value></data>
   <data name="Emulation.Option.gearboy.gearboy_barcode_boy.Value.Auto"><value>อัตโนมัติ</value></data>
   <data name="Emulation.Option.gearboy.gearboy_barcode_boy.Value.Disabled"><value>ปิดการใช้งาน</value></data>
@@ -2636,10 +2713,10 @@
   <data name="Emulation.Option.gearboy.gearboy_barcode_digit_12.Help"><value>Digit 12 ของบาร์โค้ดขนาด 13 หลักจากซ้ายไปขวา เลือกกําหนดเอง, ตั้งตัวเลขทั้งหมด แล้วกด Barcode (RetroPad R)</value></data>
   <data name="Emulation.Option.gearboy.gearboy_barcode_digit_13"><value>Barcode Boy กําหนดเอง Digit 13</value></data>
   <data name="Emulation.Option.gearboy.gearboy_barcode_digit_13.Help"><value>Digit 13 ของบาร์โค้ดขนาด 13 หลัก จากซ้ายไปขวา เลือกกําหนดเอง, ตั้งตัวเลขทั้งหมด แล้วกด Barcode (RetroPad R)</value></data>
-  <data name="Emulation.Option.gearboy.gearboy_model"><value>Game Boy Model (เริ่มต้น)</value></data>
+  <data name="Emulation.Option.gearboy.gearboy_model"><value>Game Boy Model</value></data>
   <data name="Emulation.Option.gearboy.gearboy_model.Help"><value>เลือกรุ่นของฮาร์ดแวร์ที่จะเลียนแบบ 'อัตโนมัติ' เลือกรุ่นที่ดีที่สุดโดยอัตโนมัติ โดยใช้พื้นฐานที่โหลดมาแล้ว ROM ส่วนหัว. 'Game Boy DMG'แรงดั้งเดิม' Game Boy ฮาร์ดแวร์Game Boy Advance'แรง' Game Boy Advance โหมดซึ่งช่วยให้มีความแตกต่างเล็กน้อยของฮาร์ดแวร์ เมื่อมีการเรียกทํางาน Game Boy เกมใน GBA.</value></data>
   <data name="Emulation.Option.gearboy.gearboy_model.Value.Auto"><value>อัตโนมัติ</value></data>
-  <data name="Emulation.Option.gearboy.gearboy_mapper"><value>เมือก (เริ่มใหม่)</value></data>
+  <data name="Emulation.Option.gearboy.gearboy_mapper"><value>เมือก</value></data>
   <data name="Emulation.Option.gearboy.gearboy_mapper.Help"><value>เลือกตัวควบคุมหน่วยความจําแบบใด (MBC หรือ mapper) จะถูกคัดลอก 'อัตโนมัติ' ให้เลือก MBC ที่ดีที่สุดโดยอัตโนมัติ โดยอิงมาจากส่วนหัว ROM ใช้การเลือกด้วยตนเองเฉพาะเมื่อเกมมีปัญหาในการตรวจสอบอัตโนมัติเท่านั้น</value></data>
   <data name="Emulation.Option.gearboy.gearboy_mapper.Value.Auto"><value>อัตโนมัติ</value></data>
   <data name="Emulation.Option.gearboy.gearboy_mapper.Value.ROM Only"><value>ROM เพียง พ.ศ.</value></data>
@@ -2654,7 +2731,7 @@
   <data name="Emulation.Option.gearboy.gearboy_mapper.Value.Sintax"><value>ฟิล์มสี</value></data>
   <data name="Emulation.Option.gearboy.gearboy_mapper.Value.NT old 1"><value>NT เก่า 1</value></data>
   <data name="Emulation.Option.gearboy.gearboy_mapper.Value.NT old 2"><value>NT เก่า 2</value></data>
-  <data name="Emulation.Option.gearboy.gearboy_sgb"><value>Super Game Boy (เริ่มต้น)</value></data>
+  <data name="Emulation.Option.gearboy.gearboy_sgb"><value>Super Game Boy</value></data>
   <data name="Emulation.Option.gearboy.gearboy_sgb.Help"><value>หากเปิดใช้ จะมีการใช้ ROMs ที่เข้ากันได้กับโหมด Super Game Boy เมื่อปิดการใช้งาน SGB ROMs ที่เข้ากันได้ จะทํางานเป็นเกมมาตรฐาน Game Boy (DMG)</value></data>
   <data name="Emulation.Option.gearboy.gearboy_sgb.Value.Enabled"><value>เปิดใช้งาน</value></data>
   <data name="Emulation.Option.gearboy.gearboy_sgb.Value.Disabled"><value>ปิดการใช้งาน</value></data>
@@ -2662,11 +2739,11 @@
   <data name="Emulation.Option.gearboy.gearboy_sgb_border.Help"><value>เมื่อเปิดใช้งาน ชายแดนซูเปอร์ Game Boy จะแสดงรอบหน้าจอเกม (256x224). เมื่อปิดการใช้งาน จะแสดงเพียงหน้าจอเกม (160x144).</value></data>
   <data name="Emulation.Option.gearboy.gearboy_sgb_border.Value.Enabled"><value>เปิดใช้งาน</value></data>
   <data name="Emulation.Option.gearboy.gearboy_sgb_border.Value.Disabled"><value>ปิดการใช้งาน</value></data>
-  <data name="Emulation.Option.gearboy.gearboy_bootrom_dmg"><value>DMG Bootrom (เริ่มใหม่)</value></data>
+  <data name="Emulation.Option.gearboy.gearboy_bootrom_dmg"><value>DMG Bootrom</value></data>
   <data name="Emulation.Option.gearboy.gearboy_bootrom_dmg.Help"><value>เปิดใช้งานหรือปิดการใช้งานต้นฉบับ Game Boy (DMG- บูตรอม หากเปิดใช้ จะมีการประมวลผลบูตรอมเมื่อเริ่มการทํางานเช่นเดียวกับบนฮาร์ดแวร์จริง ๆ โดยจะแสดงภาพเคลื่อนไหวของโลโก้ Nintendo แฟ้ม 'dmg_boot.bin' จะต้องปรากฏอยู่ในไดเร็คทอรีของระบบของเรโทรอาช</value></data>
   <data name="Emulation.Option.gearboy.gearboy_bootrom_dmg.Value.Disabled"><value>ปิดการใช้งาน</value></data>
   <data name="Emulation.Option.gearboy.gearboy_bootrom_dmg.Value.Enabled"><value>เปิดใช้งาน</value></data>
-  <data name="Emulation.Option.gearboy.gearboy_bootrom_gbc"><value>GBC Bootrom (เริ่มใหม่)</value></data>
+  <data name="Emulation.Option.gearboy.gearboy_bootrom_gbc"><value>GBC Bootrom</value></data>
   <data name="Emulation.Option.gearboy.gearboy_bootrom_gbc.Help"><value>เปิดหรือปิดการบูตรอม Game Boy Color เมื่อเปิดใช้งาน บูตรอมจะประมวลผลเมื่อเริ่มการทํางานเช่นเดียวกับบนฮาร์ดแวร์จริง ๆ โดยจะแสดงแอนิเมชันการบูตGame Boy Colorตัว แฟ้ม 'cgb_boot.bin' จะต้องปรากฏอยู่ในไดเร็คทอรีของระบบของเรโทรอาช</value></data>
   <data name="Emulation.Option.gearboy.gearboy_bootrom_gbc.Value.Disabled"><value>ปิดการใช้งาน</value></data>
   <data name="Emulation.Option.gearboy.gearboy_bootrom_gbc.Value.Enabled"><value>เปิดใช้งาน</value></data>
@@ -2730,7 +2807,7 @@
   <data name="Emulation.Option.gearboy.gearboy_up_down_allowed.Help"><value>อนุญาตให้กด, สลับอย่างรวดเร็ว, หรือถือทั้งซ้ายและขวา (หรือขึ้น-ลง) ในทิศทางเดียวกัน นี่ อาจ ทํา ให้ การ เคลื่อน ไหว เกิด ความ ผิด พลาด ใน บาง เกม. มันดีกว่าที่จะปิดทางเลือกนี้</value></data>
   <data name="Emulation.Option.gearboy.gearboy_up_down_allowed.Value.Disabled"><value>ปิดการใช้งาน</value></data>
   <data name="Emulation.Option.gearboy.gearboy_up_down_allowed.Value.Enabled"><value>เปิดใช้งาน</value></data>
-  <data name="Emulation.Option.gearboy.gearboy_link_enable"><value>เปิดใช้งานที่อยู่เชื่อมโยงของเกม (เริ่มใหม่)</value></data>
+  <data name="Emulation.Option.gearboy.gearboy_link_enable"><value>เปิดใช้งานที่อยู่เชื่อมโยงของเกม</value></data>
   <data name="Emulation.Option.gearboy.gearboy_link_enable.Help"><value>ประมวลผลสองระบบ Game Boy. กําลังโหลด 1 ROM เพื่อแยกสําเนาในแต่ละหน้าจอ; ใช้ 2 ผู้เล่น Game Boy แบบเชื่อมโยงเพื่อเรียกใช้โปรแกรม ROM ที่แตกต่างกัน 2 ตัว เครื่องควบคุมพอร์ต 1 และ 2 จอควบคุม 1 และ 2. โหมด Super Game Boy ถูกปิดเมื่อเชื่อมต่อ</value></data>
   <data name="Emulation.Option.gearboy.gearboy_link_enable.Value.Enabled"><value>เปิดใช้งาน</value></data>
   <data name="Emulation.Option.gearboy.gearboy_link_enable.Value.Disabled"><value>ปิดการใช้งาน</value></data>
@@ -2829,7 +2906,7 @@
   <data name="Emulation.Option.nside_sfc_balanced.higan_sfc_color_emulation"><value>การจําลองสี</value></data>
   <data name="Emulation.Option.nside_sfc_balanced.higan_sfc_blur_emulation"><value>การจําลองภาพเบลอ</value></data>
   <data name="Emulation.Option.nside_sfc_balanced.higan_sfc_scanline_emulation"><value>การจําลองเส้นการสแกน</value></data>
-  <data name="Emulation.Option.nside_sfc_balanced.higan_sfc_sgb_bios"><value>เกมซูเปอร์เกมส์ที่ควรใช้ BIOS (เริ่มใหม่)</value></data>
+  <data name="Emulation.Option.nside_sfc_balanced.higan_sfc_sgb_bios"><value>เกมซูเปอร์เกมส์ที่ควรใช้ BIOS</value></data>
   <data name="Emulation.Firmware.nside_sfc_balanced.Slot0"><value>แม่ข่ายภายนอก</value></data>
   <data name="Emulation.Firmware.nside_sfc_balanced.Slot1"><value>แม่ข่ายภายนอก</value></data>
   <data name="Emulation.Firmware.nside_sfc_balanced.Slot2"><value>แม่ข่ายภายนอก</value></data>
@@ -2852,13 +2929,13 @@
   <data name="Emulation.Firmware.nside_sfc_balanced.Slot19"><value>SGB บูต BIOS</value></data>
   <data name="Emulation.Firmware.nside_sfc_balanced.Slot20"><value>บูตภาพจาก SGB</value></data>
   <data name="Emulation.Emulator.sameboy.Description"><value>จําลองที่เข้ากันได้กับระบบNintendo[1] ด้วยSameBoy.</value></data>
-  <data name="Emulation.Option.sameboy.sameboy_model"><value>ระบบ - รุ่นจําลอง (เริ่มใหม่)</value></data>
+  <data name="Emulation.Option.sameboy.sameboy_model"><value>ระบบ - รุ่นจําลอง</value></data>
   <data name="Emulation.Option.sameboy.sameboy_model.Help"><value>เลือกรุ่นที่ต้องการเริ่มเนื้อหาของระบบ เกมบางเกมอาจจะกระตุ้น ลักษณะพิเศษในเกม เมื่อวิ่งบนรุ่นเฉพาะ ตัวเลือกนี้ต้องการทําการสร้างเนื้อหาใหม่อีกครั้ง เพื่อให้มีผล</value></data>
   <data name="Emulation.Option.sameboy.sameboy_model.Value.Auto"><value>ตรวจสอบ DMG/CGB โดยอัตโนมัติ</value></data>
   <data name="Emulation.Option.sameboy.sameboy_model.Value.Auto (SGB)"><value>ตรวจสอบ DMG/SGB/CGB โดยอัตโนมัติ</value></data>
   <data name="Emulation.Option.sameboy.sameboy_model.Value.Game Boy Pocket"><value>Game Boy Pocket/light</value></data>
   <data name="Emulation.Option.sameboy.sameboy_model.Value.Game Boy Player"><value>Game Boy ผู้เล่น (CPUAGB A (พ.ศ.</value></data>
-  <data name="Emulation.Option.sameboy.sameboy_auto_sgb_model"><value>ระบบ - ตรวจสอบอัตโนมัติ SGB รุ่น (เริ่มระบบใหม่)</value></data>
+  <data name="Emulation.Option.sameboy.sameboy_auto_sgb_model"><value>ระบบ - ตรวจสอบอัตโนมัติ SGB รุ่น</value></data>
   <data name="Emulation.Option.sameboy.sameboy_auto_sgb_model.Help"><value>กําหนดรุ่นของฮาร์ดแวร์ Super Game Boy ที่จะเลียนแบบเมื่อมีการตรวจสอบเนื้อหา SGB โดยอัตโนมัติ ตัวเลือกนี้ต้องการทําการสร้างเนื้อหาใหม่อีกครั้ง เพื่อให้มีผล</value></data>
   <data name="Emulation.Option.sameboy.sameboy_mono_palette"><value>วีดิทัศน์ - จานสีแบบโมโนของ GB</value></data>
   <data name="Emulation.Option.sameboy.sameboy_mono_palette.Help"><value>เลือกจานสีที่ต้องการใช้เมื่อมีการเล่นเกม Game Boy</value></data>
@@ -2901,21 +2978,21 @@
   <data name="Emulation.Option.sameboy.sameboy_link.Help"><value>เปิดให้ทําการจําลองสายเชื่อมต่อ อนุญาตให้สื่อสารและแลกเปลี่ยนข้อมูล ระหว่างระบบ Game Boy</value></data>
   <data name="Emulation.Option.sameboy.sameboy_link.Value.enabled"><value>เปิดใช้งาน</value></data>
   <data name="Emulation.Option.sameboy.sameboy_link.Value.disabled"><value>ปิดการใช้งาน</value></data>
-  <data name="Emulation.Option.sameboy.sameboy_model_1"><value>ระบบ - จําลองรุ่นสําหรับ Game Boy #1 (เริ่มใหม่)</value></data>
+  <data name="Emulation.Option.sameboy.sameboy_model_1"><value>ระบบ - จําลองรุ่นสําหรับ Game Boy #1</value></data>
   <data name="Emulation.Option.sameboy.sameboy_model_1.Help"><value>เลือกรุ่นที่ระบบควรจะเริ่มใช้งานสําหรับ Game Boy #1. เกมบางเกมอาจจะกระตุ้น ลักษณะพิเศษในเกม เมื่อวิ่งบนรุ่นเฉพาะ ตัวเลือกนี้ต้องการทําการสร้างเนื้อหาใหม่อีกครั้ง เพื่อให้มีผล</value></data>
   <data name="Emulation.Option.sameboy.sameboy_model_1.Value.Auto"><value>ตรวจสอบ DMG/CGB โดยอัตโนมัติ</value></data>
   <data name="Emulation.Option.sameboy.sameboy_model_1.Value.Auto (SGB)"><value>ตรวจสอบ DMG/SGB/CGB โดยอัตโนมัติ</value></data>
   <data name="Emulation.Option.sameboy.sameboy_model_1.Value.Game Boy Pocket"><value>Game Boy Pocket/light</value></data>
   <data name="Emulation.Option.sameboy.sameboy_model_1.Value.Game Boy Player"><value>Game Boy ผู้เล่น (CPUAGB A (พ.ศ.</value></data>
-  <data name="Emulation.Option.sameboy.sameboy_auto_sgb_model_1"><value>ระบบ - ตรวจจับได้SGB รุ่นสําหรับGame Boy #1 (Requitions recore)</value></data>
+  <data name="Emulation.Option.sameboy.sameboy_auto_sgb_model_1"><value>ระบบ - ตรวจจับได้SGB รุ่นสําหรับGame Boy #1</value></data>
   <data name="Emulation.Option.sameboy.sameboy_auto_sgb_model_1.Help"><value>กําหนดรุ่นของ Super Game Boy ฮาร์ดแวร์ที่จะเลียนแบบเมื่อ SGB ตรวจพบเนื้อหาโดยอัตโนมัติ Game Boy #1. ตัวเลือกนี้ต้องการทําการสร้างเนื้อหาใหม่อีกครั้ง เพื่อให้มีผล</value></data>
-  <data name="Emulation.Option.sameboy.sameboy_model_2"><value>ระบบ - จําลองรุ่นสําหรับ Game Boy2 2561 (เริ่มใหม่)</value></data>
+  <data name="Emulation.Option.sameboy.sameboy_model_2"><value>ระบบ - จําลองรุ่นสําหรับ Game Boy2 2561</value></data>
   <data name="Emulation.Option.sameboy.sameboy_model_2.Help"><value>เลือกรุ่นที่ระบบควรจะเริ่มใช้งานสําหรับ Game Boy #2 เกมบางเกมอาจจะกระตุ้น ลักษณะพิเศษในเกม เมื่อวิ่งบนรุ่นเฉพาะ ตัวเลือกนี้ต้องการทําการสร้างเนื้อหาใหม่อีกครั้ง เพื่อให้มีผล</value></data>
   <data name="Emulation.Option.sameboy.sameboy_model_2.Value.Auto"><value>ตรวจสอบ DMG/CGB โดยอัตโนมัติ</value></data>
   <data name="Emulation.Option.sameboy.sameboy_model_2.Value.Auto (SGB)"><value>ตรวจสอบ DMG/SGB/CGB โดยอัตโนมัติ</value></data>
   <data name="Emulation.Option.sameboy.sameboy_model_2.Value.Game Boy Pocket"><value>Game Boy Pocket/light</value></data>
   <data name="Emulation.Option.sameboy.sameboy_model_2.Value.Game Boy Player"><value>Game Boy ผู้เล่น (CPUAGB A (พ.ศ.</value></data>
-  <data name="Emulation.Option.sameboy.sameboy_auto_sgb_model_2"><value>ระบบ - ตรวจจับอัตโนมัติ SGB รุ่นสําหรับ Game Boy2 (Requires recorder)</value></data>
+  <data name="Emulation.Option.sameboy.sameboy_auto_sgb_model_2"><value>ระบบ - ตรวจจับอัตโนมัติ SGB รุ่นสําหรับ Game Boy2</value></data>
   <data name="Emulation.Option.sameboy.sameboy_auto_sgb_model_2.Help"><value>กําหนดรุ่นของ Super Game Boy ฮาร์ดแวร์ที่จะเลียนแบบเมื่อ SGB ตรวจพบเนื้อหาโดยอัตโนมัติ Game Boy #2. ตัวเลือกนี้ต้องการทําการสร้างเนื้อหาใหม่อีกครั้ง เพื่อให้มีผล</value></data>
   <data name="Emulation.Option.sameboy.sameboy_screen_layout"><value>วีดิทัศน์ - การจัดวางหน้าจอ</value></data>
   <data name="Emulation.Option.sameboy.sameboy_screen_layout.Help"><value>เมื่อจําลองระบบสองระบบพร้อมกัน ตัวเลือกนี้จะกําหนดตําแหน่งของหน้าจอทั้งสองแบบ</value></data>
@@ -3011,10 +3088,10 @@
   <data name="Emulation.Option.tgbdual.tgbdual_audio_output"><value>ส่วนส่งออกเสียง</value></data>
   <data name="Emulation.Option.tgbdual.tgbdual_audio_output.Value.Both (mixed)"><value>ทั้งสอง (มีหก)</value></data>
   <data name="Emulation.Emulator.mednafen_gba.Description"><value>จําลองที่เข้ากันได้กับระบบ Nintendo ด้วย chool GBA.</value></data>
-  <data name="Emulation.Option.mednafen_gba.gba_hle"><value>ตัวจําลอง HLE (เริ่มใหม่)</value></data>
+  <data name="Emulation.Option.mednafen_gba.gba_hle"><value>ตัวจําลอง HLE</value></data>
   <data name="Emulation.Option.mednafen_gba.gba_hle.Value.enabled"><value>เปิดใช้งาน</value></data>
   <data name="Emulation.Option.mednafen_gba.gba_hle.Value.disabled"><value>ปิดการใช้งาน</value></data>
-  <data name="Emulation.Option.mednafen_gba.gba_use_mednafen_save_method"><value>บันทึกวิธี (เริ่มใหม่)</value></data>
+  <data name="Emulation.Option.mednafen_gba.gba_use_mednafen_save_method"><value>บันทึกวิธี</value></data>
   <data name="Emulation.Option.mednafen_gba.gba_use_mednafen_save_method.Value.mednafen"><value>เมดนาเฟน</value></data>
   <data name="Emulation.Option.mednafen_gba.gba_use_mednafen_save_method.Value.libretro"><value>libretro</value></data>
   <data name="Emulation.Firmware.mednafen_gba.Slot0"><value>Game Boy Advance BIOS</value></data>
@@ -3082,14 +3159,14 @@
   <data name="Emulation.Option.gpsp.gpsp_turbo_period.Help"><value>กําหนดช่วงการซ้ํา (ในเฟรม) เมื่อกดปุ่ม Turbo A/B</value></data>
   <data name="Emulation.Firmware.gpsp.Slot0"><value>Game Boy Advance BIOS</value></data>
   <data name="Emulation.Emulator.meteor.Description"><value>จําลองที่เข้ากันได้กับระบบNintendo[1] ด้วยMeteor.</value></data>
-  <data name="Emulation.Option.mgba.mgba_gb_model"><value>Game Boy Model (เริ่มใหม่)</value></data>
+  <data name="Emulation.Option.mgba.mgba_gb_model"><value>Game Boy Model</value></data>
   <data name="Emulation.Option.mgba.mgba_gb_model.Help"><value>ประมวลผลเนื้อหาโดยใช้รุ่นของ Game Boy ที่ระบุไว้ 'ตรวจสอบอัตโนมัติ' จะเลือกรุ่นที่เหมาะสมที่สุดสําหรับเกมปัจจุบัน</value></data>
   <data name="Emulation.Option.mgba.mgba_gb_model.Value.Autodetect"><value>ตรวจหาอัตโนมัติ</value></data>
-  <data name="Emulation.Option.mgba.mgba_use_bios"><value>ใช้แฟ้ม BIOS หากพบ (เริ่มใหม่)</value></data>
+  <data name="Emulation.Option.mgba.mgba_use_bios"><value>ใช้แฟ้ม BIOS หากพบ</value></data>
   <data name="Emulation.Option.mgba.mgba_use_bios.Help"><value>ใช้ไลบรารี BIOS/ Bootloader สําหรับฮาร์ดแวร์เลียนแบบ หากมีอยู่ในไดเร็กทอรีของระบบของ RetroArch</value></data>
   <data name="Emulation.Option.mgba.mgba_use_bios.Value.ON"><value>เปิดใช้งาน</value></data>
   <data name="Emulation.Option.mgba.mgba_use_bios.Value.OFF"><value>ปิดการใช้งาน</value></data>
-  <data name="Emulation.Option.mgba.mgba_skip_bios"><value>ข้าม BIOS Intro (เริ่มใหม่)</value></data>
+  <data name="Emulation.Option.mgba.mgba_skip_bios"><value>ข้าม BIOS Intro</value></data>
   <data name="Emulation.Option.mgba.mgba_skip_bios.Help"><value>เมื่อใช้งานเครื่องโหลดข้อมูล BIOS/bootloader อย่างเป็นทางการ ให้ข้ามภาพเคลื่อนไหวของโลโก้เริ่มต้น การตั้งค่านี้จะถูกละทิ้งเมื่อไม่มีการใช้งานแฟ้ม BIOS หากพบแล้ว</value></data>
   <data name="Emulation.Option.mgba.mgba_skip_bios.Value.OFF"><value>ปิดการใช้งาน</value></data>
   <data name="Emulation.Option.mgba.mgba_skip_bios.Value.ON"><value>เปิดใช้งาน</value></data>
@@ -3111,13 +3188,13 @@
   <data name="Emulation.Option.mgba.mgba_gb_colors.Value.GBC Green →"><value>เขียว (GBC)</value></data>
   <data name="Emulation.Option.mgba.mgba_gb_colors.Value.GBC Dark Green →A"><value>สีเขียวเข้ม (GBC)</value></data>
   <data name="Emulation.Option.mgba.mgba_gb_colors.Value.GBC Reverse →B"><value>เส้นต่อเนื่องแบบ GBC</value></data>
-  <data name="Emulation.Option.mgba.mgba_gb_colors_preset"><value>ชุดฮาร์ดแวร์ Game Boy จานเสียง (เริ่มใหม่)</value></data>
+  <data name="Emulation.Option.mgba.mgba_gb_colors_preset"><value>ชุดฮาร์ดแวร์ Game Boy จานเสียง</value></data>
   <data name="Emulation.Option.mgba.mgba_gb_colors_preset.Help"><value>ใช้ แผ่น จาน สําหรับ เกม 11,000 Game Boy ที่ มี การ เรียง กัน ในGame Boy Color[หรือ ยอดGame Boy.</value></data>
   <data name="Emulation.Option.mgba.mgba_gb_colors_preset.Value.0"><value>ค่าปริยาย Game Boy ชุด</value></data>
   <data name="Emulation.Option.mgba.mgba_gb_colors_preset.Value.1"><value>Game Boy Color ชุดสําเร็จรูปเท่านั้น</value></data>
   <data name="Emulation.Option.mgba.mgba_gb_colors_preset.Value.2"><value>ชุดสําเร็จรูปแบบ Super Game Boy เท่านั้น</value></data>
   <data name="Emulation.Option.mgba.mgba_gb_colors_preset.Value.3"><value>ชุดสําเร็จต่าง ๆ ที่มีอยู่</value></data>
-  <data name="Emulation.Option.mgba.mgba_sgb_borders"><value>ใช้เส้นขอบแบบ Super Game Boy (เริ่มใหม่)</value></data>
+  <data name="Emulation.Option.mgba.mgba_sgb_borders"><value>ใช้เส้นขอบแบบ Super Game Boy</value></data>
   <data name="Emulation.Option.mgba.mgba_sgb_borders.Help"><value>แสดงขอบซูเปอร์Game Boy เมื่อทํางาน SuperGame Boy เกมเพิ่มเติม.</value></data>
   <data name="Emulation.Option.mgba.mgba_sgb_borders.Value.ON"><value>เปิดใช้งาน</value></data>
   <data name="Emulation.Option.mgba.mgba_sgb_borders.Value.OFF"><value>ปิดการใช้งาน</value></data>
@@ -3145,7 +3222,7 @@
   <data name="Emulation.Option.mgba.mgba_solar_sensor_level"><value>ระดับตัวตรวจจับแสงอาทิตย์</value></data>
   <data name="Emulation.Option.mgba.mgba_solar_sensor_level.Help"><value>ตั้งค่าความเข้มของแสงอาทิตย์ สามารถใช้ได้โดยเกมที่มีเซนเซอร์แสงอาทิตย์อยู่ในตลับหมึก e.g: ชุดของโบกตี (Boktai)</value></data>
   <data name="Emulation.Option.mgba.mgba_solar_sensor_level.Value.sensor"><value>ใช้เซ็นเซอร์ของอุปกรณ์หากมี</value></data>
-  <data name="Emulation.Option.mgba.mgba_force_gbp"><value>Game Boy ผู้เล่น Rubble (เริ่มใหม่)</value></data>
+  <data name="Emulation.Option.mgba.mgba_force_gbp"><value>Game Boy ผู้เล่น Rubble</value></data>
   <data name="Emulation.Option.mgba.mgba_force_gbp.Help"><value>การเปิดใช้งานนี้ จะอนุญาตให้เกมที่เข้ากันได้กับ Game Boy ผู้เล่นบูตโลโก้เพื่อให้เครื่องควบคุมปรับเสียง เนื่อง จาก Nintendo ตก ลง กัน ว่า ลักษณะ เด่น นี้ ควร ใช้ ได้ ผล อย่าง ไร จึง อาจ ทํา ให้ เกิด ข้อ บกพร่อง เช่น การ กระ พริบ ตา หรือ เฉื่อย ใน บาง เกม เหล่า นี้.</value></data>
   <data name="Emulation.Option.mgba.mgba_force_gbp.Value.OFF"><value>ปิดการใช้งาน</value></data>
   <data name="Emulation.Option.mgba.mgba_force_gbp.Value.ON"><value>เปิดใช้งาน</value></data>
@@ -3170,17 +3247,17 @@
   <data name="Emulation.Firmware.mgba.Slot3"><value>ซูเปอร์ Game Boy BIOS</value></data>
   <data name="Emulation.Emulator.vbam.Description"><value>จําลองที่เข้ากันได้กับระบบNintendo[1] ด้วยVBA-M.</value></data>
   <data name="Emulation.Option.vbam.vbam_usebios"><value>ใช้แบบทางการ BIOS (หากมี)</value></data>
-  <data name="Emulation.Option.vbam.vbam_usebios.Help"><value>ใช้ BIOS อย่างเป็นทางการเมื่อใช้ได้. Core ต้องเริ่มการทํางานใหม่อีกครั้ง เพื่อให้มีการเปลี่ยนแปลงที่จะปรับใช้</value></data>
+  <data name="Emulation.Option.vbam.vbam_usebios.Help"><value>ใช้ BIOS อย่างเป็นทางการเมื่อใช้ได้.</value></data>
   <data name="Emulation.Option.vbam.vbam_usebios.Value.disabled"><value>ปิดการใช้งาน</value></data>
   <data name="Emulation.Option.vbam.vbam_usebios.Value.enabled"><value>เปิดใช้งาน</value></data>
   <data name="Emulation.Option.vbam.vbam_forceRTCenable"><value>บังคับใช้ RTC ได้</value></data>
   <data name="Emulation.Option.vbam.vbam_forceRTCenable.Help"><value>บังคับให้เปิดใช้งานนาฬิกาจริงภายในของเวลาจริงโดยไม่คํานึงถึง Ram ใช้ได้กับแผ่นรอมที่ต้องใช้นาฬิกา (เช่น Pukmon)</value></data>
   <data name="Emulation.Option.vbam.vbam_forceRTCenable.Value.disabled"><value>ปิดการใช้งาน</value></data>
   <data name="Emulation.Option.vbam.vbam_forceRTCenable.Value.enabled"><value>เปิดใช้งาน</value></data>
-  <data name="Emulation.Option.vbam.vbam_gbHardware"><value>GB) ฮาร์ดแวร์จําลอง (NEDs เริ่มทํางานใหม่)</value></data>
-  <data name="Emulation.Option.vbam.vbam_gbHardware.Help"><value>ตั้งค่าชนิดของฮาร์ดแวร์ Game Boy เพื่อเลียนแบบ เริ่มระบบแกนใหม่ที่จะปรับใช้</value></data>
+  <data name="Emulation.Option.vbam.vbam_gbHardware"><value>GB) ฮาร์ดแวร์จําลอง</value></data>
+  <data name="Emulation.Option.vbam.vbam_gbHardware.Help"><value>ตั้งค่าชนิดของฮาร์ดแวร์ Game Boy เพื่อเลียนแบบ</value></data>
   <data name="Emulation.Option.vbam.vbam_gbHardware.Value.auto"><value>อัตโนมัติ</value></data>
-  <data name="Emulation.Option.vbam.vbam_allowcolorizerhack"><value>(GB) เปิดใช้งานการแฮกระบบสี (Needs recorder)</value></data>
+  <data name="Emulation.Option.vbam.vbam_allowcolorizerhack"><value>(GB) เปิดใช้งานการแฮกระบบสี</value></data>
   <data name="Emulation.Option.vbam.vbam_allowcolorizerhack.Help"><value>อนุญาตให้เครื่องสีแฮ็ค GBเกมได้ (เช่น) DX เกมปะติด) เพื่อใช้งานโดยทั่วไปในระบบฮาร์ดแวร์ GBC/GBA นี่ยังปิดการใช้แฟ้มไบโอด้วย NOT RECOMMENDED เพื่อใช้ในเกมที่ไม่ใช่สี</value></data>
   <data name="Emulation.Option.vbam.vbam_allowcolorizerhack.Value.disabled"><value>ปิดการใช้งาน</value></data>
   <data name="Emulation.Option.vbam.vbam_allowcolorizerhack.Value.enabled"><value>เปิดใช้งาน</value></data>
@@ -3296,11 +3373,11 @@
   <data name="Emulation.Firmware.vbam.Slot1"><value>Game Boy BIOS</value></data>
   <data name="Emulation.Firmware.vbam.Slot2"><value>Game Boy Color BIOS</value></data>
   <data name="Emulation.Emulator.vba_next.Description"><value>ระบบ ที่ เข้า กัน ได้ หนึ่ง พัน Nintendo โดย มีVBAตัว ต่อ ไป.</value></data>
-  <data name="Emulation.Option.vba_next.vbanext_bios"><value>ใช้ BIOS ถ้าใช้ได้ (เริ่มใหม่)</value></data>
+  <data name="Emulation.Option.vba_next.vbanext_bios"><value>ใช้ BIOS ถ้าใช้ได้</value></data>
   <data name="Emulation.Option.vba_next.vbanext_bios.Help"><value>ใช้ BIOS ที่อยู่ในไดเร็กทอรีของระบบของ RetroArch</value></data>
   <data name="Emulation.Option.vba_next.vbanext_bios.Value.enabled"><value>เปิดใช้งาน</value></data>
   <data name="Emulation.Option.vba_next.vbanext_bios.Value.disabled"><value>ปิดการใช้งาน</value></data>
-  <data name="Emulation.Option.vba_next.vbanext_rtc"><value>RTC (เริ่มใหม่)</value></data>
+  <data name="Emulation.Option.vba_next.vbanext_rtc"><value>RTC</value></data>
   <data name="Emulation.Option.vba_next.vbanext_rtc.Help"><value>ควบคุมการจําลองนาฬิกาแบบเรียลไทม์ 'auto' ใช้ตัวต่อROM แทนที่รายการ กองกําลัง 'ที่' สามารถ RTC สําหรับทุกคน ROM (ใช้เพื่อ) ROM ต้องการการแฮก RTC ไม่มีแรงบังคับที่เข้าคู่กัน) RTC ปิด, ทํารายการยกเลิก</value></data>
   <data name="Emulation.Option.vba_next.vbanext_rtc.Value.auto"><value>อัตโนมัติ</value></data>
   <data name="Emulation.Option.vba_next.vbanext_rtc.Value.enabled"><value>เปิดใช้งาน</value></data>
@@ -3325,11 +3402,11 @@
   <data name="Emulation.Option.dolphin.dolphin_emulation_speed.Value.1.0"><value>100% (ความเร็วสูงสุด)</value></data>
   <data name="Emulation.Option.dolphin.dolphin_emulation_speed.Value.0.0"><value>ไม่จํากัด</value></data>
   <data name="Emulation.Option.dolphin.dolphin_main_cpu_thread"><value>Core &gt; โหมดแกนหมุน</value></data>
-  <data name="Emulation.Option.dolphin.dolphin_main_cpu_thread.Help"><value>เปิดใช้การจําลอง CPU แบบคู่ ต้องการแกน RESTART.</value></data>
+  <data name="Emulation.Option.dolphin.dolphin_main_cpu_thread.Help"><value>เปิดใช้การจําลอง CPU แบบคู่</value></data>
   <data name="Emulation.Option.dolphin.dolphin_main_cpu_thread.Value.disabled"><value>ปิดการใช้งาน</value></data>
   <data name="Emulation.Option.dolphin.dolphin_main_cpu_thread.Value.enabled"><value>เปิดใช้งาน</value></data>
   <data name="Emulation.Option.dolphin.dolphin_main_load_game_into_memory"><value>Core &gt; โหลดเกมทั้งรายการไปยังหน่วยความจํา</value></data>
-  <data name="Emulation.Option.dolphin.dolphin_main_load_game_into_memory.Help"><value>โหลดเกมทั้งรายการไปยังหน่วยความจํา ต้องการแกน RESTART.</value></data>
+  <data name="Emulation.Option.dolphin.dolphin_main_load_game_into_memory.Help"><value>โหลดเกมทั้งรายการไปยังหน่วยความจํา</value></data>
   <data name="Emulation.Option.dolphin.dolphin_main_load_game_into_memory.Value.disabled"><value>ปิดการใช้งาน</value></data>
   <data name="Emulation.Option.dolphin.dolphin_main_load_game_into_memory.Value.enabled"><value>เปิดใช้งาน</value></data>
   <data name="Emulation.Option.dolphin.dolphin_precision_frame_timing"><value>มุม:</value></data>
@@ -3349,7 +3426,7 @@
   <data name="Emulation.Option.dolphin.dolphin_main_accurate_cpu_cache.Value.disabled"><value>ปิดการใช้งาน</value></data>
   <data name="Emulation.Option.dolphin.dolphin_main_accurate_cpu_cache.Value.enabled"><value>เปิดใช้งาน</value></data>
   <data name="Emulation.Option.dolphin.dolphin_cheats_enabled"><value>Core &gt; โกงภายใน</value></data>
-  <data name="Emulation.Option.dolphin.dolphin_cheats_enabled.Help"><value>เปิดการใช้งานรหัสการโกงภายใน เริ่มระบบแกนใหม่เพื่อรับผล</value></data>
+  <data name="Emulation.Option.dolphin.dolphin_cheats_enabled.Help"><value>เปิดการใช้งานรหัสการโกงภายใน</value></data>
   <data name="Emulation.Option.dolphin.dolphin_cheats_enabled.Value.disabled"><value>ปิดการใช้งาน</value></data>
   <data name="Emulation.Option.dolphin.dolphin_cheats_enabled.Value.enabled"><value>เปิดใช้งาน</value></data>
   <data name="Emulation.Option.dolphin.dolphin_skip_gc_bios"><value>Core &gt; ข้าม GameCube BIOS</value></data>
@@ -3467,7 +3544,7 @@
   <data name="Emulation.Option.dolphin.dolphin_gc_sp1.Value.13"><value>แม่ข่ายบริการการเคาะแบบโมเด็ม</value></data>
   <data name="Emulation.Option.dolphin.dolphin_gc_sp1.Value.6"><value>พื้นฐานกระดาน</value></data>
   <data name="Emulation.Option.dolphin.dolphin_enable_gamecube_mic"><value>การปรับแต่งระบบ (GC) &gt; GameCube Microphone</value></data>
-  <data name="Emulation.Option.dolphin.dolphin_enable_gamecube_mic.Help"><value>จําลอง ไมโครโฟน GameCube ชุดอย่างเป็นทางการ เริ่มแกนใหม่หลังจากเปลี่ยนแปลงตัวเลือกนี้</value></data>
+  <data name="Emulation.Option.dolphin.dolphin_enable_gamecube_mic.Help"><value>จําลอง ไมโครโฟน GameCube ชุดอย่างเป็นทางการ</value></data>
   <data name="Emulation.Option.dolphin.dolphin_enable_gamecube_mic.Value.disabled"><value>ปิดการใช้งาน</value></data>
   <data name="Emulation.Option.dolphin.dolphin_enable_gamecube_mic.Value.enabled"><value>เปิดใช้งาน</value></data>
   <data name="Emulation.Option.dolphin.dolphin_hotkey_activate_microphone"><value>การปรับแต่งระบบ (GC) &gt; ปุ่มไมโครโฟน</value></data>
@@ -3508,7 +3585,7 @@
   <data name="Emulation.Option.dolphin.dolphin_bluetooth_passthrough.Value.disabled"><value>ปิดการใช้งาน</value></data>
   <data name="Emulation.Option.dolphin.dolphin_bluetooth_passthrough.Value.enabled"><value>เปิดใช้งาน</value></data>
   <data name="Emulation.Option.dolphin.dolphin_wiispeak_enable"><value>การปรับแต่งระบบ &gt; Wii ภาษา</value></data>
-  <data name="Emulation.Option.dolphin.dolphin_wiispeak_enable.Help"><value>จําลอง ไมโครโฟน สื่อสาร Wii. เริ่มการทํางานใหม่เมื่อเปลี่ยนแปลงตัวเลือกนี้</value></data>
+  <data name="Emulation.Option.dolphin.dolphin_wiispeak_enable.Help"><value>จําลอง ไมโครโฟน สื่อสาร Wii.</value></data>
   <data name="Emulation.Option.dolphin.dolphin_wiispeak_enable.Value.disabled"><value>ปิดการใช้งาน</value></data>
   <data name="Emulation.Option.dolphin.dolphin_wiispeak_enable.Value.enabled"><value>เปิดใช้งาน</value></data>
   <data name="Emulation.Option.dolphin.dolphin_wiispeak_muted"><value>Audio &gt; อุปกรณ์ &gt; Wii ออกเสียง mutate</value></data>
@@ -3516,7 +3593,7 @@
   <data name="Emulation.Option.dolphin.dolphin_wiispeak_muted.Value.disabled"><value>ปิดการใช้งาน</value></data>
   <data name="Emulation.Option.dolphin.dolphin_wiispeak_muted.Value.enabled"><value>เปิดใช้งาน</value></data>
   <data name="Emulation.Option.dolphin.dolphin_wii_logi_microphone_enable"><value>การปรับแต่งระบบ &gt; Logitech USB Microphone</value></data>
-  <data name="Emulation.Option.dolphin.dolphin_wii_logi_microphone_enable.Help"><value>จําลองไมโครโฟน USB ของ Logitech เริ่มการทํางานใหม่เมื่อเปลี่ยนแปลงตัวเลือกนี้</value></data>
+  <data name="Emulation.Option.dolphin.dolphin_wii_logi_microphone_enable.Help"><value>จําลองไมโครโฟน USB ของ Logitech</value></data>
   <data name="Emulation.Option.dolphin.dolphin_wii_logi_microphone_enable.Value.disabled"><value>ปิดการใช้งาน</value></data>
   <data name="Emulation.Option.dolphin.dolphin_wii_logi_microphone_enable.Value.enabled"><value>เปิดใช้งาน</value></data>
   <data name="Emulation.Option.dolphin.dolphin_renderer"><value>กราฟิก &gt; ตั้งค่าต่าง ๆComment</value></data>
@@ -3744,7 +3821,7 @@
   <data name="Emulation.Option.dolphin.dolphin_swing_angle.Help"><value>หมุนได้ที่ปลายชิงช้า (180).</value></data>
   <data name="Emulation.Option.dolphin.dolphin_swing_angle.Value.90"><value>90 (ค่าปริยาย) พ.ศ.</value></data>
   <data name="Emulation.Option.dolphin.dolphin_cheats_import"><value>RetroArch Core &gt; นําการทุจริตเข้าสู่รีโทรอาชโดยอัตโนมัติ</value></data>
-  <data name="Emulation.Option.dolphin.dolphin_cheats_import.Help"><value>นําเข้าข้อมูล dolphin ไฟล์อินไอเข้าไปในรีโตรอาช เริ่มระบบแกนใหม่เพื่อรับผล</value></data>
+  <data name="Emulation.Option.dolphin.dolphin_cheats_import.Help"><value>นําเข้าข้อมูล dolphin ไฟล์อินไอเข้าไปในรีโตรอาช</value></data>
   <data name="Emulation.Option.dolphin.dolphin_cheats_import.Value.disabled"><value>ปิดการใช้งาน</value></data>
   <data name="Emulation.Option.dolphin.dolphin_cheats_import.Value.enabled"><value>เปิดใช้งาน</value></data>
   <data name="Emulation.Option.dolphin.dolphin_save_load_settings"><value>ตั้งค่าต่าง ๆ ของการบันทึก</value></data>
@@ -3756,7 +3833,7 @@
   <data name="Emulation.Option.dolphin.dolphin_ir_passthrough.Value.disabled"><value>ปิดการใช้งาน</value></data>
   <data name="Emulation.Option.dolphin.dolphin_ir_passthrough.Value.enabled"><value>เปิดใช้งาน</value></data>
   <data name="Emulation.Option.dolphin.dolphin_libretro_vfs_enabled"><value>retroArch หลัก &gt; เปิดใช้งานระบบแฟ้มเสมือน (VFS)</value></data>
-  <data name="Emulation.Option.dolphin.dolphin_libretro_vfs_enabled.Help"><value>เปิดการใช้งาน VFS สําหรับ SAF/SMB ฯลฯ ต้องการแกน RESTART. ลักษณะนี้อยู่ที่ NEW และ EXPERIMENTAL. สํารองข้อมูลของคุณเป็นประจํา</value></data>
+  <data name="Emulation.Option.dolphin.dolphin_libretro_vfs_enabled.Help"><value>ลักษณะนี้อยู่ที่ NEW และ EXPERIMENTAL. สํารองข้อมูลของคุณเป็นประจํา</value></data>
   <data name="Emulation.Option.dolphin.dolphin_libretro_vfs_enabled.Value.disabled"><value>ปิดการใช้งาน</value></data>
   <data name="Emulation.Option.dolphin.dolphin_libretro_vfs_enabled.Value.enabled"><value>เปิดใช้งาน</value></data>
   <data name="Emulation.Option.dolphin.dolphin_default_mouse_bindings_enabled"><value>ตั้งค่าแกนกลางของ retroAch &gt; เปิดใช้งานการจับคู่เมาส์ปริยาย</value></data>
@@ -3764,7 +3841,7 @@
   <data name="Emulation.Option.dolphin.dolphin_default_mouse_bindings_enabled.Value.disabled"><value>ปิดการใช้งาน</value></data>
   <data name="Emulation.Option.dolphin.dolphin_default_mouse_bindings_enabled.Value.enabled"><value>เปิดใช้งาน</value></data>
   <data name="Emulation.Option.dolphin.dolphin_dsu_enabled"><value>ไวโมเท (DSU) &gt; เปิดใช้งานไคลเอนต์ DSU</value></data>
-  <data name="Emulation.Option.dolphin.dolphin_dsu_enabled.Help"><value>เปิดใช้งานไคลเอนต์ DSU สําหรับข้อมูลการเคลื่อนไหวแบบ DualShock เริ่มระบบแกนใหม่เพื่อรับผล</value></data>
+  <data name="Emulation.Option.dolphin.dolphin_dsu_enabled.Help"><value>เปิดใช้งานไคลเอนต์ DSU สําหรับข้อมูลการเคลื่อนไหวแบบ DualShock</value></data>
   <data name="Emulation.Option.dolphin.dolphin_dsu_enabled.Value.disabled"><value>ปิดการใช้งาน</value></data>
   <data name="Emulation.Option.dolphin.dolphin_dsu_enabled.Value.enabled"><value>เปิดใช้งาน</value></data>
   <data name="Emulation.Option.dolphin.dolphin_dsu_ip_octet1"><value>Vimimote (DSU) &gt; เซิร์ฟเวอร์ IPCOCT 1</value></data>
@@ -3987,13 +4064,13 @@
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-dither-filter.Help"><value>Allow VI ตัวกรองสี de-dither จะทําการกู้คืนค่าความลึกสีที่มีนัยสําคัญ</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-dither-filter.Value.True"><value>เปิดใช้งาน</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-dither-filter.Value.False"><value>ปิดการใช้งาน</value></data>
-  <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-upscaling"><value>(Parailel El-RDP(เริ่มใหม่)</value></data>
+  <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-upscaling"><value>(Parailel El-RDP</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-upscaling.Help"><value>ใช้ตัวช่วยเพิ่มกําลังภายใน</value></data>
-  <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-super-sampled-read-back"><value>(Parailel El-RDP) SSAA ลูกเล่นแบบเฟรมบัฟเฟอร์ (เริ่มใหม่)</value></data>
+  <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-super-sampled-read-back"><value>(Parailel El-RDP) SSAA ลูกเล่นแบบเฟรมบัฟเฟอร์</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-super-sampled-read-back.Help"><value>ลูกเล่นแบบเฟรมบัฟเฟอร์ของตัวอย่าง อาจแนะนําวัตถุได้</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-super-sampled-read-back.Value.False"><value>ปิดการใช้งาน</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-super-sampled-read-back.Value.True"><value>เปิดใช้งาน</value></data>
-  <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-super-sampled-read-back-dither"><value>(Parailel El-RDP# ย้อมสี SSAA ลูกเล่นแบบเฟรมบัฟเฟอร์ (เริ่มใหม่)</value></data>
+  <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-super-sampled-read-back-dither"><value>(Parailel El-RDP# ย้อมสี SSAA ลูกเล่นแบบเฟรมบัฟเฟอร์</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-super-sampled-read-back-dither.Help"><value>ลูกเล่นแบบเฟรมบัฟเฟอร์</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-super-sampled-read-back-dither.Value.True"><value>เปิดใช้งาน</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-super-sampled-read-back-dither.Value.False"><value>ปิดการใช้งาน</value></data>
@@ -4103,7 +4180,7 @@
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-pak4.Value.rumble"><value>เสียง</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-pak4.Value.transfer"><value>การส่ง</value></data>
   <data name="Emulation.Emulator.parallel_n64.Description"><value>จําลองที่เข้ากันได้ Nintendo ระบบที่มีพาราลเอลName N64.</value></data>
-  <data name="Emulation.Option.parallel_n64.parallel-n64-upscaling"><value>ตัวเพิ่มความเร็ว (เริ่มต้น)</value></data>
+  <data name="Emulation.Option.parallel_n64.parallel-n64-upscaling"><value>ตัวเพิ่มความเร็ว</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-upscaling.Help"><value>แสดงในหลายมติของคอนโซล พาราลเอล-RDP ให้ เกียรติ แก่ ปัจจัย ทุก อย่าง; ความ โกรธ ทํา ให้ สูง ถึง 4x และ ใช้ 8x เป็น 4x.</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-parallel-rdp-native-texture-lod"><value>ใช้เนื้อความเดิม LOD เมื่อการเลื่อนชั้น</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-parallel-rdp-native-texture-lod.Help"><value>เลือกระดับพื้นผิวแบบคอนโซล จากรอยเท้าของคอนโซล แทนการเพิ่มขนาดพิกเซล หากไม่มีมัน จะทําให้มีระดับความคมชัด และเกมที่ใช้ระดับเป็นสวิตต์แสดงภาพผิด (ภาพวาดที่ปลายทางเดินปราสาทใน Super Rio) 64) ได้รับเกียรติจากพาราลเอลRDP และความโกรธเกรี้ยว</value></data>
@@ -4348,7 +4425,7 @@
   <data name="Emulation.Option.parallel_n64.parallel-n64-rspplugin.Value.hle"><value>hle</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-rspplugin.Value.parallel"><value>เส้นทแยง</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-screensize"><value>ความละเอียด</value></data>
-  <data name="Emulation.Option.parallel_n64.parallel-n64-screensize.Help"><value>ความละเอียด (เริ่มใหม่)</value></data>
+  <data name="Emulation.Option.parallel_n64.parallel-n64-screensize.Help"><value>ความละเอียด</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-aspectratiohint"><value>คําใบ้สัดส่วนภาพ</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-aspectratiohint.Help"><value>คําใบ้สัดส่วนภาพ (Rinit)</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-aspectratiohint.Value.normal"><value>ปกติ</value></data>
@@ -4401,7 +4478,7 @@
   <data name="Emulation.Option.parallel_n64.parallel-n64-alt-map.Value.disabled"><value>ปิดการใช้งาน</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-alt-map.Value.enabled"><value>เปิดใช้งาน</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-vcache-vbo"><value>(Gilide64). VBO แคชเวอร์เท็กซ์</value></data>
-  <data name="Emulation.Option.parallel_n64.parallel-n64-vcache-vbo.Help"><value>แคชของเวอร์เท็กซ์ VBO (เริ่มใหม่)</value></data>
+  <data name="Emulation.Option.parallel_n64.parallel-n64-vcache-vbo.Help"><value>แคชของเวอร์เท็กซ์ VBO</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-vcache-vbo.Value.disabled"><value>ปิดการใช้งาน</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-vcache-vbo.Value.enabled"><value>เปิดใช้งาน</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-boot-device"><value>อุปกรณ์บูต</value></data>
@@ -4411,7 +4488,7 @@
   <data name="Emulation.Option.parallel_n64.parallel-n64-64dd-hardware.Help"><value>ปฏิบัติกับเนื้อหา โดยไม่ต้องระบุตลับหมึกหรือส่วนหัวดิสก์เป็น 64DD ดิสก์ ดิสก์พัฒนาและ MAME/SDK ถังขยะไม่มีเครื่องหมายหัวกระดาษ; ตลับหมึกปกติและปลีก D64 ภาพต่าง ๆ ถูกจําแนกด้วยส่วนหัวและเครื่องหมายการค้า โดยการตั้งค่านี้</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-64dd-hardware.Value.disabled"><value>ปิดการใช้งาน</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-64dd-hardware.Value.enabled"><value>เปิดใช้งาน</value></data>
-  <data name="Emulation.Option.parallel_n64.parallel-n64-goldeneye-tlb-hack"><value>GoldenEye TLB แฮก (เริ่มใหม่)</value></data>
+  <data name="Emulation.Option.parallel_n64.parallel-n64-goldeneye-tlb-hack"><value>GoldenEye TLB แฮก</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-goldeneye-tlb-hack.Help"><value>Mat Golden Eye's regressed 0x7F000000 sections to the ROM. ผ่าน TLB Pager ของเกมเอง (Ari64 dynarec เท่านั้น). จําเป็นทางประวัติศาสตร์สําหรับโกลเด้นอีเย ที่จะทํางานที่ทั้งหมด บนชั้นหน้าจอโฮสต์เส้นทางที่ถูกต้องตอนนี้วัดได้รวดเร็วเพียง ปิดการใช้งานสําหรับพฤติกรรมของ TLB แบบซื่อสัตย์ หรือแบบ ROM ที่ถูกแก้ไข ซึ่งจะทําการย้ายส่วนของเกมซึ่งการจับคู่จะทําให้เสียหาย</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-goldeneye-tlb-hack.Value.enabled"><value>เปิดใช้งาน</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-goldeneye-tlb-hack.Value.disabled"><value>ปิดการใช้งาน</value></data>
@@ -4580,7 +4657,7 @@
   <data name="Emulation.Option.parallel_n64.parallel-n64-rtc-savestate"><value>Readback N64 System Office</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-rtc-savestate.Value.enabled"><value>ใช่</value></data>
   <data name="Emulation.Emulator.pokemini.Description"><value>จําลองที่เข้ากันได้กับระบบNintendo[1] ด้วยPokeMini.</value></data>
-  <data name="Emulation.Option.pokemini.pokemini_video_scale"><value>ปรับขนาดวิดีโอ (เริ่มใหม่)</value></data>
+  <data name="Emulation.Option.pokemini.pokemini_video_scale"><value>ปรับขนาดวิดีโอ</value></data>
   <data name="Emulation.Option.pokemini.pokemini_video_scale.Help"><value>ตั้งค่าสัดส่วนวิดีโอภายใน เพิ่มค่าสัดส่วนจะปรับปรุงรูปลักษณ์ภายใน 'ดอตแมททริกซ์' (LCD)</value></data>
   <data name="Emulation.Option.pokemini.pokemini_60hz_mode"><value>โหมด 60Hz</value></data>
   <data name="Emulation.Option.pokemini.pokemini_60hz_mode.Help"><value>ปรับปรุงการแสดงผลเมื่อ 60Hz แทนคนพื้นเมือง 72Hz อัตราการรีเฟรชของ Pokemon Mini โดยลดลงทุก 6 กรอบ ลดความนุ่มนวลของวิดีโอ แต่หลีกเลี่ยงการฉีกหน้าจอในการแสดงผลที่ไม่รองรับการดําเนินการพื้นเมืองกว่า 60Hz.</value></data>
@@ -4780,13 +4857,13 @@
   <data name="Emulation.Firmware.bsnes.Slot18"><value>บูตภาพจาก SGB</value></data>
   <data name="Emulation.Firmware.bsnes.Slot19"><value>BS-X - Sore wa naae o Numurata Machi no Mogathai (ญี่ปุ่น) (Rev 1)</value></data>
   <data name="Emulation.Emulator.bsnes_jg.Description"><value>การจําลองจะเข้ากันได้กับระบบ Nintendo ด้วย Bsnes-jg</value></data>
-  <data name="Emulation.Option.bsnes_jg.bsnes_jg_coproc_delaysync"><value>หน่วง LLE Crographor ปรับเทียบข้อมูล (เริ่มใหม่)</value></data>
+  <data name="Emulation.Option.bsnes_jg.bsnes_jg_coproc_delaysync"><value>หน่วง LLE Crographor ปรับเทียบข้อมูล</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_coproc_delaysync.Help"><value>หน่วงเวลาปรับเทียบเมื่อใช้หน่วยประมวลผลต่ําสําหรับความเร็วมากขึ้นในค่าใช้จ่ายของความถูกต้อง</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_coproc_delaysync.Value.off"><value>ปิด (ค่าปริยาย)</value></data>
-  <data name="Emulation.Option.bsnes_jg.bsnes_jg_coproc_preferhle"><value>โปรแกรมจําลองหน่วยประมวลผล HLE (เริ่มใหม่)</value></data>
+  <data name="Emulation.Option.bsnes_jg.bsnes_jg_coproc_preferhle"><value>โปรแกรมจําลองหน่วยประมวลผล HLE</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_coproc_preferhle.Help"><value>ใช้โปรเซสเซอร์ระดับสูงเมื่อเป็นไปได้สําหรับความเร็วมากขึ้นที่ค่าใช้จ่ายของความถูกต้อง</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_coproc_preferhle.Value.off"><value>ปิด (ค่าปริยาย)</value></data>
-  <data name="Emulation.Option.bsnes_jg.bsnes_jg_hotfixes"><value>Hotfixes (เริ่มใหม่) Name</value></data>
+  <data name="Emulation.Option.bsnes_jg.bsnes_jg_hotfixes"><value>Hotfixes Name</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_hotfixes.Help"><value>ปรับใช้ Hotfixes เมื่อเล่นเกมหยิบมือหนึ่ง ปล่อยด้วยบั๊กหลัก (ซึ่งแสดงบนฮาร์ดแวร์จริง). เกมในคําถาม: Dirt Rater, Magical Drop, Telection R2</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_hotfixes.Value.off"><value>ปิด (ค่าปริยาย)</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_runahead"><value>หัวประมวลผลภายใน</value></data>
@@ -4796,10 +4873,10 @@
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_runahead.Value.2"><value>2 กรอบ</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_runahead.Value.3"><value>3 กรอบ</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_runahead.Value.4"><value>4 กรอบ</value></data>
-  <data name="Emulation.Option.bsnes_jg.bsnes_jg_low_latency_audio"><value>เสียงสายต่ํา (เริ่มใหม่)</value></data>
+  <data name="Emulation.Option.bsnes_jg.bsnes_jg_low_latency_audio"><value>เสียงสายต่ํา</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_low_latency_audio.Help"><value>ใช้ส่วนย่อยของเสียงตัวอย่างที่มีขนาดเล็กกว่า สําหรับประสบการณ์ที่ดีกว่า เมื่อใช้แผ่นฟร้อนต์เอนด์ที่มีการปรับแต่งระบบเสียงน้อย การใช้ตัวเลือกนี้ในการเรียกข้อมูลเกมของโพรเซสดังกล่าว อาจทําให้เกิดวัตถุเสียงก็ได้</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_low_latency_audio.Value.off"><value>ปิด (ค่าปริยาย)</value></data>
-  <data name="Emulation.Option.bsnes_jg.bsnes_jg_rsqual"><value>คุณภาพของการเรียกข้อมูล (เริ่มใหม่)</value></data>
+  <data name="Emulation.Option.bsnes_jg.bsnes_jg_rsqual"><value>คุณภาพของการเรียกข้อมูล</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_rsqual.Help"><value>ตั้งค่าระดับคุณภาพภายในของ resampler (คุณอาจได้ยินความแตกต่าง หากคุณใช้อุปกรณ์เสียงโปรและจินตนาการของคุณ)</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_rsqual.Value.fast"><value>เร็ว (ค่าปริยาย)</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_rsqual.Value.medium"><value>สื่อ</value></data>
@@ -4944,7 +5021,7 @@
   <data name="Emulation.Option.bsnes_hd_beta.bsnes_coprocessor_prefer_hle.Value.ON"><value>เปิดใช้งาน</value></data>
   <data name="Emulation.Option.bsnes_hd_beta.bsnes_coprocessor_prefer_hle.Value.OFF"><value>ปิดการใช้งาน</value></data>
   <data name="Emulation.Option.bsnes_hd_beta.bsnes_sgb_bios"><value>Super Game Boy BIOS (Requires recore).</value></data>
-  <data name="Emulation.Option.bsnes_hd_beta.bsnes_sgb_bios.Help"><value>อนุญาตให้เลือก Super Game Boy BIOS ใช้กับชื่อที่เข้ากันได้ ต้องการการเริ่มการทํางานใหม่เพื่อให้มีผล</value></data>
+  <data name="Emulation.Option.bsnes_hd_beta.bsnes_sgb_bios.Help"><value>อนุญาตให้เลือก Super Game Boy BIOS ใช้กับชื่อที่เข้ากันได้</value></data>
   <data name="Emulation.Option.bsnes_hd_beta.bsnes_run_ahead_frames"><value>หัวประมวลผลภายใน</value></data>
   <data name="Emulation.Option.bsnes_hd_beta.bsnes_run_ahead_frames.Help"><value>จําลองระบบก่อนเวลาและม้วนกลับ เพื่อลดความล่าช้าในการป้อน มีความต้องการระบบสูงมาก</value></data>
   <data name="Emulation.Option.bsnes_hd_beta.bsnes_run_ahead_frames.Value.OFF"><value>ปิดการใช้งาน</value></data>
@@ -5189,7 +5266,7 @@
   <data name="Emulation.Option.bsnes_mercury_accuracy.bsnes_crop_overscan"><value>ทับส่วนที่ตัดได้</value></data>
   <data name="Emulation.Option.bsnes_mercury_accuracy.bsnes_crop_overscan.Value.disabled"><value>ปิดการใช้งาน</value></data>
   <data name="Emulation.Option.bsnes_mercury_accuracy.bsnes_crop_overscan.Value.enabled"><value>เปิดใช้งาน</value></data>
-  <data name="Emulation.Option.bsnes_mercury_accuracy.bsnes_gamma_ramp"><value>ทางลาดแกมมา (เริ่มใหม่)</value></data>
+  <data name="Emulation.Option.bsnes_mercury_accuracy.bsnes_gamma_ramp"><value>ทางลาดแกมมา</value></data>
   <data name="Emulation.Option.bsnes_mercury_accuracy.bsnes_gamma_ramp.Value.disabled"><value>ปิดการใช้งาน</value></data>
   <data name="Emulation.Option.bsnes_mercury_accuracy.bsnes_gamma_ramp.Value.enabled"><value>เปิดใช้งาน</value></data>
   <data name="Emulation.Firmware.bsnes_mercury_accuracy.Slot0"><value>แม่ข่ายภายนอก</value></data>
@@ -5227,7 +5304,7 @@
   <data name="Emulation.Option.bsnes_mercury_balanced.bsnes_crop_overscan"><value>ทับส่วนที่ตัดได้</value></data>
   <data name="Emulation.Option.bsnes_mercury_balanced.bsnes_crop_overscan.Value.disabled"><value>ปิดการใช้งาน</value></data>
   <data name="Emulation.Option.bsnes_mercury_balanced.bsnes_crop_overscan.Value.enabled"><value>เปิดใช้งาน</value></data>
-  <data name="Emulation.Option.bsnes_mercury_balanced.bsnes_gamma_ramp"><value>ทางลาดแกมมา (เริ่มใหม่)</value></data>
+  <data name="Emulation.Option.bsnes_mercury_balanced.bsnes_gamma_ramp"><value>ทางลาดแกมมา</value></data>
   <data name="Emulation.Option.bsnes_mercury_balanced.bsnes_gamma_ramp.Value.disabled"><value>ปิดการใช้งาน</value></data>
   <data name="Emulation.Option.bsnes_mercury_balanced.bsnes_gamma_ramp.Value.enabled"><value>เปิดใช้งาน</value></data>
   <data name="Emulation.Firmware.bsnes_mercury_balanced.Slot0"><value>แม่ข่ายภายนอก</value></data>
@@ -5265,7 +5342,7 @@
   <data name="Emulation.Option.bsnes_mercury_performance.bsnes_crop_overscan"><value>ทับส่วนที่ตัดได้</value></data>
   <data name="Emulation.Option.bsnes_mercury_performance.bsnes_crop_overscan.Value.disabled"><value>ปิดการใช้งาน</value></data>
   <data name="Emulation.Option.bsnes_mercury_performance.bsnes_crop_overscan.Value.enabled"><value>เปิดใช้งาน</value></data>
-  <data name="Emulation.Option.bsnes_mercury_performance.bsnes_gamma_ramp"><value>ทางลาดแกมมา (เริ่มใหม่)</value></data>
+  <data name="Emulation.Option.bsnes_mercury_performance.bsnes_gamma_ramp"><value>ทางลาดแกมมา</value></data>
   <data name="Emulation.Option.bsnes_mercury_performance.bsnes_gamma_ramp.Value.disabled"><value>ปิดการใช้งาน</value></data>
   <data name="Emulation.Option.bsnes_mercury_performance.bsnes_gamma_ramp.Value.enabled"><value>เปิดใช้งาน</value></data>
   <data name="Emulation.Firmware.bsnes_mercury_performance.Slot0"><value>แม่ข่ายภายนอก</value></data>
@@ -5562,13 +5639,13 @@
   <data name="Emulation.Option.snes9x2002.snes9x2002_low_pass_filter.Value.enabled"><value>เปิดใช้งาน</value></data>
   <data name="Emulation.Option.snes9x2002.snes9x2002_low_pass_range"><value>ระดับตัวกรองเสียง</value></data>
   <data name="Emulation.Option.snes9x2002.snes9x2002_low_pass_range.Help"><value>ระบุความถี่ของตัวกรองเสียงผ่านต่ํา ค่าที่สูงขึ้น เพิ่ม 'ความแรง' ที่จับต้องได้ของตัวกรอง เนื่องจากช่วงที่กว้างกว่า ของความถี่สูง ถูกลดระดับ</value></data>
-  <data name="Emulation.Option.snes9x2002.snes9x2002_overclock_cycles"><value>ลดความเฉื่อยลง (hack, Unbook, เริ่มทํางานใหม่)</value></data>
+  <data name="Emulation.Option.snes9x2002.snes9x2002_overclock_cycles"><value>ลดความเฉื่อยลง</value></data>
   <data name="Emulation.Option.snes9x2002.snes9x2002_overclock_cycles.Help"><value>เกม หลาย อย่าง สําหรับSNES[ทน ทุกข์ จาก การ ชะลอ ตัว เนื่อง จากCPU.หลัก ที่ อ่อนแอ) ตัวเลือกนี้จะช่วยบรรเทาค่าใช้จ่ายของข้อผิดพลาดที่อาจเกิดขึ้น เข้ากันได้: ลดความเร็วลง แต่เก็บเกมให้เหมาะสมมากที่สุดเท่าที่จะทําได้ แม็กซ์: ลดความเร็วลงให้มากที่สุด เท่าที่เป็นไปได้ แต่จะทําลายเกมมากขึ้น</value></data>
   <data name="Emulation.Option.snes9x2002.snes9x2002_overclock_cycles.Value.disabled"><value>ปิดการใช้งาน</value></data>
   <data name="Emulation.Option.snes9x2002.snes9x2002_overclock_cycles.Value.compatible"><value>ใช้ร่วมกันได้</value></data>
   <data name="Emulation.Option.snes9x2002.snes9x2002_overclock_cycles.Value.max"><value>ค่ามากที่สุด</value></data>
   <data name="Emulation.Emulator.snes9x2005.Description"><value>จําลองที่เข้ากันได้ Nintendo ระบบ ด้วย Snes9x48 2005.</value></data>
-  <data name="Emulation.Option.snes9x2005.snes9x_2005_region"><value>ขอบเขต cosole (เริ่มใหม่)</value></data>
+  <data name="Emulation.Option.snes9x2005.snes9x_2005_region"><value>ขอบเขต cosole</value></data>
   <data name="Emulation.Option.snes9x2005.snes9x_2005_region.Help"><value>ระบุขอบเขตที่ระบบมาจาก. 'PAL' เป็น 50hz, 'NTSC' คือ 60hz. เกมจะเรียกใช้เร็วกว่าหรือช้ากว่าปกติ หากพื้นที่ไม่ถูกต้องถูกเลือก</value></data>
   <data name="Emulation.Option.snes9x2005.snes9x_2005_region.Value.auto"><value>อัตโนมัติ</value></data>
   <data name="Emulation.Option.snes9x2005.snes9x_2005_frameskip"><value>กรอบภาพName</value></data>
@@ -5584,7 +5661,7 @@
   <data name="Emulation.Option.snes9x2005.snes9x_2005_low_pass_filter.Value.enabled"><value>เปิดใช้งาน</value></data>
   <data name="Emulation.Option.snes9x2005.snes9x_2005_low_pass_range"><value>ระดับตัวกรองเสียง</value></data>
   <data name="Emulation.Option.snes9x2005.snes9x_2005_low_pass_range.Help"><value>ระบุความถี่ของตัวกรองเสียงผ่านต่ํา ค่าที่สูงขึ้น เพิ่ม 'ความแรง' ที่จับต้องได้ของตัวกรอง เนื่องจากช่วงที่กว้างกว่า ของความถี่สูง ถูกลดระดับ</value></data>
-  <data name="Emulation.Option.snes9x2005.snes9x_2005_overclock_cycles"><value>ลดความเฉื่อยลง (hack, Unbook, เริ่มทํางานใหม่)</value></data>
+  <data name="Emulation.Option.snes9x2005.snes9x_2005_overclock_cycles"><value>ลดความเฉื่อยลง</value></data>
   <data name="Emulation.Option.snes9x2005.snes9x_2005_overclock_cycles.Help"><value>เกม หลาย อย่าง สําหรับSNES[ทน ทุกข์ จาก การ ชะลอ ตัว เนื่อง จากCPU.หลัก ที่ อ่อนแอ) ตัวเลือกนี้จะช่วยลดค่าใช้จ่ายของข้อผิดพลาดที่อาจเกิดขึ้น COMPATIBLE: ลดความเร็วลง แต่เก็บเกมที่เข้ากันได้มากที่สุดเท่าที่จะทําได้ MAX: ลดความเร็วลงให้น้อยที่สุดเท่าที่จะทําได้ แต่จะทําลายเกมได้มากขึ้น</value></data>
   <data name="Emulation.Option.snes9x2005.snes9x_2005_overclock_cycles.Value.disabled"><value>ปิดการใช้งาน</value></data>
   <data name="Emulation.Option.snes9x2005.snes9x_2005_overclock_cycles.Value.compatible"><value>ใช้ร่วมกันได้</value></data>
@@ -5594,7 +5671,7 @@
   <data name="Emulation.Option.snes9x2005.snes9x_2005_reduce_sprite_flicker.Value.disabled"><value>ปิดการใช้งาน</value></data>
   <data name="Emulation.Option.snes9x2005.snes9x_2005_reduce_sprite_flicker.Value.enabled"><value>เปิดใช้งาน</value></data>
   <data name="Emulation.Emulator.snes9x2005_plus.Description"><value>จําลองที่เข้ากันได้กับระบบ Nintendo ด้วย Snes9x 2005 บวก</value></data>
-  <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_region"><value>ขอบเขต cosole (เริ่มใหม่)</value></data>
+  <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_region"><value>ขอบเขต cosole</value></data>
   <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_region.Help"><value>ระบุขอบเขตที่ระบบมาจาก. 'PAL' เป็น 50hz, 'NTSC' คือ 60hz. เกมจะเรียกใช้เร็วกว่าหรือช้ากว่าปกติ หากพื้นที่ไม่ถูกต้องถูกเลือก</value></data>
   <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_region.Value.auto"><value>อัตโนมัติ</value></data>
   <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_frameskip"><value>กรอบภาพName</value></data>
@@ -5604,7 +5681,7 @@
   <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_frameskip.Value.manual"><value>ป้อนกระดาษเอง</value></data>
   <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_frameskip_threshold"><value>เฟรมสคิป Trescold (%)</value></data>
   <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_frameskip_threshold.Help"><value>เมื่อตั้งค่า 'frameskip' ให้เป็น 'manal' ให้กําหนดค่าขีดจํากัดการพักข้อมูลเสียง (Percentage) ด้านล่างที่เฟรมจะถูกข้ามไป ค่า ที่ สูง กว่า ช่วย ลด ความ เสี่ยง ที่ จะ แตก เป็น เสี่ยง โดย ทํา ให้ ต้อง ทิ้ง เฟรม บ่อย ขึ้น.</value></data>
-  <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_overclock_cycles"><value>ลดความเฉื่อยลง (hack, Unbook, เริ่มทํางานใหม่)</value></data>
+  <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_overclock_cycles"><value>ลดความเฉื่อยลง</value></data>
   <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_overclock_cycles.Help"><value>เกม หลาย อย่าง สําหรับSNES[ทน ทุกข์ จาก การ ชะลอ ตัว เนื่อง จากCPU.หลัก ที่ อ่อนแอ) ตัวเลือกนี้จะช่วยลดค่าใช้จ่ายของข้อผิดพลาดที่อาจเกิดขึ้น COMPATIBLE: ลดความเร็วลง แต่เก็บเกมที่เข้ากันได้มากที่สุดเท่าที่จะทําได้ MAX: ลดความเร็วลงให้น้อยที่สุดเท่าที่จะทําได้ แต่จะทําลายเกมได้มากขึ้น</value></data>
   <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_overclock_cycles.Value.disabled"><value>ปิดการใช้งาน</value></data>
   <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_overclock_cycles.Value.compatible"><value>ใช้ร่วมกันได้</value></data>
@@ -5614,7 +5691,7 @@
   <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_reduce_sprite_flicker.Value.disabled"><value>ปิดการใช้งาน</value></data>
   <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_reduce_sprite_flicker.Value.enabled"><value>เปิดใช้งาน</value></data>
   <data name="Emulation.Emulator.snes9x2010.Description"><value>การจําลองจะเข้ากันได้กับระบบ Nintendo ด้วย Snes9x20 2010.</value></data>
-  <data name="Emulation.Option.snes9x2010.snes9x_2010_region"><value>ขอบเขต cosole (เริ่มใหม่)</value></data>
+  <data name="Emulation.Option.snes9x2010.snes9x_2010_region"><value>ขอบเขต cosole</value></data>
   <data name="Emulation.Option.snes9x2010.snes9x_2010_region.Help"><value>ระบุขอบเขตที่ระบบมาจาก. 'PAL' เป็น 50hz, 'NTSC' คือ 60hz. เกมจะเรียกใช้เร็วกว่าหรือช้ากว่าปกติ หากพื้นที่ไม่ถูกต้องถูกเลือก</value></data>
   <data name="Emulation.Option.snes9x2010.snes9x_2010_region.Value.auto"><value>อัตโนมัติ</value></data>
   <data name="Emulation.Option.snes9x2010.snes9x_2010_audio_interpolation"><value>การเพิ่มเสียง (ไม่ถูกต้อง)</value></data>
@@ -5671,7 +5748,7 @@
   <data name="Emulation.Option.snes9x2010.snes9x_2010_reduce_sprite_flicker.Help"><value>เพิ่มจํานวนของสเปิรต์ที่สามารถวาดได้พร้อมกันบนหน้าจอ</value></data>
   <data name="Emulation.Option.snes9x2010.snes9x_2010_reduce_sprite_flicker.Value.disabled"><value>ปิดการใช้งาน</value></data>
   <data name="Emulation.Option.snes9x2010.snes9x_2010_reduce_sprite_flicker.Value.enabled"><value>เปิดใช้งาน</value></data>
-  <data name="Emulation.Option.snes9x2010.snes9x_2010_block_invalid_vram_access"><value>บล็อคการเข้าใช้งาน VRAM ไม่ถูกต้อง (เริ่มใหม่)</value></data>
+  <data name="Emulation.Option.snes9x2010.snes9x_2010_block_invalid_vram_access"><value>บล็อคการเข้าใช้งาน VRAM ไม่ถูกต้อง</value></data>
   <data name="Emulation.Option.snes9x2010.snes9x_2010_block_invalid_vram_access.Help"><value>ระบบ Homebrew/ ROM บางระบบต้องการตัวเลือกนี้ เพื่อใช้ในการปฏิบัติการที่ถูกต้อง</value></data>
   <data name="Emulation.Option.snes9x2010.snes9x_2010_block_invalid_vram_access.Value.enabled"><value>เปิดใช้งาน</value></data>
   <data name="Emulation.Option.snes9x2010.snes9x_2010_block_invalid_vram_access.Value.disabled"><value>ปิดการใช้งาน</value></data>
@@ -5738,7 +5815,7 @@
   <data name="Emulation.Option.mednafen_supafaust.supafaust_thread_affinity_emu"><value>การจําลองเธรดต่าง ๆ</value></data>
   <data name="Emulation.Option.mednafen_supafaust.supafaust_thread_affinity_ppu"><value>PPU ให้แสดงสถานะเธรด</value></data>
   <data name="Emulation.Option.mednafen_supafaust.supafaust_renderer"><value>PPU ตัวแปล</value></data>
-  <data name="Emulation.Option.beetle_vb.vb_3dmode"><value>โหมด 3 มิติ (เริ่มการทํางานใหม่อีกครั้ง)</value></data>
+  <data name="Emulation.Option.beetle_vb.vb_3dmode"><value>โหมด 3 มิติ</value></data>
   <data name="Emulation.Option.beetle_vb.vb_3dmode.Help"><value>เลือกโหมด 3 มิติ Anagliph - ใช้ร่วมกับแก้วคู่สีคลาสสิก Pylinescope - ตั้งใจจะใช้งานอุปกรณ์ไซเบอร์Scoppe 3 มิติ - ด้านซ้าย - มีการแสดงรูปภาพแบบตาซ้าย และภาพตาขวาจะแสดงอยู่ทางด้านขวา. vli - เส้นทางแนวตั้งสลับกันระหว่างมุมมองซ้ายกับขวา. hli - บรรทัดทางแนวนอนสลับกัน ระหว่างมุมมองซ้ายและด้านขวา</value></data>
   <data name="Emulation.Option.beetle_vb.vb_3dmode.Value.anaglyph"><value>anagliph</value></data>
   <data name="Emulation.Option.beetle_vb.vb_3dmode.Value.cyberscope"><value>ไซเบอร์Name</value></data>
@@ -5773,7 +5850,7 @@
   <data name="Emulation.Option.beetle_vb.vb_opposite_directions.Help"><value>อนุญาตให้กดขึ้นและลงหรือซ้ายและทิศทางที่ถูกต้องในเวลาเดียวกัน นี่อาจทําให้เกิดความผิดพลาด</value></data>
   <data name="Emulation.Option.beetle_vb.vb_opposite_directions.Value.disabled"><value>ปิดการใช้งาน</value></data>
   <data name="Emulation.Option.beetle_vb.vb_opposite_directions.Value.enabled"><value>เปิดใช้งาน</value></data>
-  <data name="Emulation.Option.beetle_vb.vb_cpu_emulation"><value>CPU จําลอง (เริ่มใหม่) พ.ศ.</value></data>
+  <data name="Emulation.Option.beetle_vb.vb_cpu_emulation"><value>CPU จําลอง พ.ศ.</value></data>
   <data name="Emulation.Option.beetle_vb.vb_cpu_emulation.Help"><value>เลือกการจําลองแบบเร็วและแม่นยําขึ้น</value></data>
   <data name="Emulation.Option.beetle_vb.vb_cpu_emulation.Value.accurate"><value>ถูกต้อง</value></data>
   <data name="Emulation.Option.beetle_vb.vb_cpu_emulation.Value.fast"><value>เร็ว</value></data>
@@ -5926,7 +6003,9 @@
   <data name="Emulation.Option.cemu.cemu_uninstall_game.Value.disabled"><value>ปิดการใช้งาน</value></data>
   <data name="Emulation.Option.cemu.cemu_uninstall_game.Value.enabled"><value>เปิดใช้งาน</value></data>
   <data name="Emulation.Option.cemu.cemu_install_titles"><value>ติดตั้งเนื้อหา</value></data>
-  <data name="Emulation.Option.cemu.cemu_install_titles.Help"><value>ติดตั้งการปรับปรุงและDLC ในระบบ/Cemu/ ชื่ออัลบั้มที่จะบันทึก/ Cemu/mlc01, คลังคอนโซลแบบย่อ และแต่ละคนในพวกเขาทั้งหมดจะเข้าไปอยู่ในโฟลเดอร์ของตน NUS การดาวน์โหลด (.appfiles) ต้องการแฟ้ม title.tmd และด้วยมัน (อัลกุรอาน) title.tikกุญแจถอดรหัส ข้างๆพวกเขา รุ่นที่ติดตั้งไว้อยู่แล้ว ว่าเป็นรุ่นเดียวกันหรือใหม่ จะถูกทิ้งให้อยู่คนเดียว&#xA;&#xA;เมื่อนี่คือ ON การติดตั้งจะเริ่มทันที โดยมีความคืบหน้าแสดงเป็นการแจ้งเตือน และได้เปลี่ยนเป็น OFF อีกครั้งเมื่อเนื้อหาทั้งหมดถูกติดตั้งแล้ว และเมนูนี้จะถูกออกหรือเปลี่ยนแปลงตัวเลือกอื่น ๆ แถบหัวเรื่องจะใช้เนื้อหาที่ติดตั้งไว้ เมื่อมันเริ่มทํางานใหม่&#xA;&#xA;เนื้อหาจากสถานที่อื่น ๆ สามารถติดตั้งด้วยเมนูหลักของ RetroArch; บรรจุเนื้อหาโดยการเลือก title.tmd โดยมี title.tik ด้านข้าง</value></data>
+  <data name="Emulation.Option.cemu.cemu_install_titles.Help"><value>ติดตั้งการปรับปรุงและDLC ในระบบ/Cemu/ ชื่ออัลบั้มที่จะบันทึก/ Cemu/mlc01, คลังคอนโซลแบบย่อ และแต่ละคนในพวกเขาทั้งหมดจะเข้าไปอยู่ในโฟลเดอร์ของตน NUS การดาวน์โหลด (.appfiles) ต้องการแฟ้ม title.tmd และด้วยมัน (อัลกุรอาน) title.tikกุญแจถอดรหัส ข้างๆพวกเขา รุ่นที่ติดตั้งไว้อยู่แล้ว ว่าเป็นรุ่นเดียวกันหรือใหม่ จะถูกทิ้งให้อยู่คนเดียว
+
+เนื้อหาจากสถานที่อื่น ๆ สามารถติดตั้งด้วยเมนูหลักของ RetroArch; บรรจุเนื้อหาโดยการเลือก title.tmd โดยมี title.tik ด้านข้าง</value></data>
   <data name="Emulation.Option.cemu.cemu_install_titles.Value.disabled"><value>ปิดการใช้งาน</value></data>
   <data name="Emulation.Option.cemu.cemu_install_titles.Value.enabled"><value>เปิดใช้งาน</value></data>
   <data name="Emulation.Option.cemu.cemu_uninstall_titles"><value>ยกเลิกการติดตั้งเนื้อหา</value></data>

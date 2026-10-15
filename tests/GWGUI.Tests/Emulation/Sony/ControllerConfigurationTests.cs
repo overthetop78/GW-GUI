@@ -75,19 +75,19 @@ public sealed class ControllerConfigurationTests
     [InlineData(SwanCore.Id, SwanOptions.ControllerPortsMultitapModeKey,
         SwanOptions.ControllerPortsMultitapModePort2Only, PortCounts.SingleMultitapControllerCount)]
     [InlineData(SwanCore.Id, SwanOptions.ControllerPortsMultitapModeKey,
-        SwanOptions.ControllerPortsMultitapModeBothPorts, PortCounts.MaximumControllerPortCount)]
+        SwanOptions.ControllerPortsMultitapModeBothPorts, PortCounts.MaximumGamepadPortCount)]
     [InlineData(RearmedCore.Id, RearmedOptions.MultitapKey,
         RearmedOptions.MultitapPort1, PortCounts.SingleMultitapControllerCount)]
     [InlineData(RearmedCore.Id, RearmedOptions.MultitapKey,
         RearmedOptions.MultitapPort2, PortCounts.SingleMultitapControllerCount)]
     [InlineData(RearmedCore.Id, RearmedOptions.MultitapKey,
-        RearmedOptions.MultitapPorts1And2, PortCounts.MaximumControllerPortCount)]
+        RearmedOptions.MultitapPorts1And2, PortCounts.MaximumGamepadPortCount)]
     [InlineData(PceeCore.Id, PceeOptions.MultitapKey,
-        PceeOptions.MultitapPort1, PortCounts.SingleMultitapControllerCount)]
+        PceeOptions.MultitapPort1, 7)]
     [InlineData(PceeCore.Id, PceeOptions.MultitapKey,
-        PceeOptions.MultitapPort2, PortCounts.SingleMultitapControllerCount)]
+        PceeOptions.MultitapPort2, 7)]
     [InlineData(PceeCore.Id, PceeOptions.MultitapKey,
-        PceeOptions.MultitapBoth, PortCounts.MaximumControllerPortCount)]
+        PceeOptions.MultitapBoth, 10)]
     public void MultitapMakesAllConfiguredPlayersAvailable(string emulator, string key, string value, int count)
     {
         var model = emulator == PceeCore.Id ? ModelConstants.PlayStation2 : ModelConstants.PlayStation;
@@ -102,7 +102,7 @@ public sealed class ControllerConfigurationTests
         foreach (var firstEnabled in new[] { false, true })
         foreach (var secondEnabled in new[] { false, true })
         {
-            var count = firstEnabled && secondEnabled ? PortCounts.MaximumControllerPortCount : firstEnabled || secondEnabled ? PortCounts.SingleMultitapControllerCount : PortCounts.TwoControllerPorts;
+            var count = firstEnabled && secondEnabled ? PortCounts.MaximumGamepadPortCount : firstEnabled || secondEnabled ? PortCounts.SingleMultitapControllerCount : PortCounts.TwoControllerPorts;
             AssertPortCapacity(new MachineConfiguration(ModelConstants.PlayStation, emulator,
                 Options: new Dictionary<string, string>
                 {

@@ -26,14 +26,12 @@
   <data name="Emulation.Option.ppsspp.ppsspp_language.Value.11"><value>Kinesisk traditionel</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_language.Value.12"><value>Kinesisk simplificeret</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_psp_model.Label"><value>PSP Model</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_backend.Label"><value>BaggrundStencils</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_backend.Help"><value>'Automatic' vil bruge billeddriveren med frontend. Hovednet</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_software_rendering.Label"><value>Softwareredigering</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_software_rendering.Help"><value>Langsomt, præcist. Hovednet</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_software_rendering.Help"><value>Brug softwarerendering for større nøjagtighed med et højere behov for regnekraft.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_internal_resolution.Label"><value>Rendering- opløsning</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_internal_resolution.Help"><value>Vælg den interne gengivelsesopløsning.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_mulitsample_level.Label"><value>MSAA Antialiserende midler</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_mulitsample_level.Help"><value>Kun Vulkan. Hovednet</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_mulitsample_level.Help"><value>Anvend MSAA-kantudjævning med Vulkan.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_cropto16x9.Label"><value>beskære til 16x9</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_cropto16x9.Help"><value>Hæld de øverste og nederste kanter for at få et 16: 9 billede.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_frameskip.Label"><value>Frameskip Formand</value></data>
@@ -46,7 +44,7 @@
   <data name="Emulation.Option.ppsspp.ppsspp_detect_vsync_swap_interval.Label"><value>Detektér rammestigningsændringer</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_detect_vsync_swap_interval.Help"><value>Underret frontend.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Label"><value>Buffergrafikkommandoer</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Help"><value>Kun GL / Vulkan, langsommere, mindre forsinkelse, genstart.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Help"><value>Kun GL / Vulkan, langsommere, mindre forsinkelse.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Value.0"><value>Ingen buffer</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Value.1"><value>op til 1</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_button_preference.Label"><value>Bekræftelsesknap</value></data>

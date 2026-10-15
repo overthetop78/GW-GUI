@@ -80,4 +80,6 @@
   <data name="Emulation.Storage.MemoryCard.ImageRequired"><value>Chọn một tập tin thẻ đã có.</value></data>
   <data name="Emulation.Storage.MemoryCard.InvalidSize"><value>Tập tin thẻ có kích cỡ không hợp lệ.</value></data>
   <data name="Emulation.Storage.MemoryCard.InvalidFormat"><value>Chọn định dạng tập tin được thiết bị này hỗ trợ.</value></data>
+  <data name="Emulation.Storage.Cache.Unlimited"><value>Không giới hạn</value></data>
+  <data name="Emulation.Storage.Cache.ClearOnGameClose"><value>Xóa khi đóng trò chơi</value></data>
 </root>

@@ -11,7 +11,7 @@ internal static class ControllerFunctions
         ValidatePort(configuration, port);
         var binding = configuration.Input?.ControllerBindings?.FirstOrDefault(item => item.Port == port);
         var type = binding?.Type ?? configuration.Controllers?.ElementAtOrDefault(port) ?? ControllerType.Automatic;
-        if (type == ControllerType.Automatic || type == ControllerType.None && !Supported(configuration, port).Contains(ControllerType.None)) type = ControllerCatalog.Default(configuration);
+        if (type == ControllerType.Automatic || type == ControllerType.None && !Supported(configuration, port).Contains(ControllerType.None)) type = Supported(configuration, port).FirstOrDefault();
         Validate(configuration, port, type);
         return type;
     }
@@ -56,7 +56,7 @@ internal static class ControllerFunctions
             EmulationPeripheralCategory.AnalogJoystick => types.Contains(ControllerType.AnalogJoystick) ? ControllerType.AnalogJoystick : ControllerType.Joystick,
             EmulationPeripheralCategory.Keyboard => ControllerType.Keyboard,
             EmulationPeripheralCategory.Mouse => ControllerType.Mouse,
-            EmulationPeripheralCategory.LightGun => types.Contains(ControllerType.GunCon) ? ControllerType.GunCon : ControllerType.Justifier,
+            EmulationPeripheralCategory.LightGun => types.Contains(ControllerType.GunCon2) ? ControllerType.GunCon2 : types.Contains(ControllerType.GunCon) ? ControllerType.GunCon : ControllerType.Justifier,
             EmulationPeripheralCategory.DrivingController => ControllerType.NeGcon,
             _ => throw new ArgumentOutOfRangeException(nameof(peripheral), peripheral, null)
         };

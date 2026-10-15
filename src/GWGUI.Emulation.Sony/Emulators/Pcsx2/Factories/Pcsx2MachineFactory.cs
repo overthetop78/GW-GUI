@@ -17,6 +17,8 @@ internal sealed class Pcsx2MachineFactory : IEmulatorAdapter, IEmulatorFirmwareA
         Emulators.Common.Interop.Functions.CoreSettingsFunctions.Blocks(Dictionaries.OptionCatalog.All, Pcsx2OptionFunctions.ToNative(configuration)));
     public void ValidateConfiguration(MachineConfiguration configuration) => FileSystemFunctions.Validate(configuration);
     public IReadOnlyDictionary<string, string> GetRuntimeOptions(MachineConfiguration configuration) => Pcsx2OptionFunctions.ToNative(configuration).Options!;
+    public MachineConfiguration ApplyVideoSettings(MachineConfiguration configuration, EmulationGraphicsApi graphicsApi) =>
+        Pcsx2OptionFunctions.ApplyVideoSettings(configuration, graphicsApi);
     public IReadOnlyList<ControllerType> GetControllerTypes(MachineConfiguration configuration) =>
         [ControllerType.Joystick, ControllerType.Keyboard, ControllerType.Mouse,
             ControllerType.KeyboardAndMouse, ControllerType.None];

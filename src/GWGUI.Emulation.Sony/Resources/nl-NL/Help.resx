@@ -4,10 +4,6 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Sony.Help.Audio.Enabled.Detailed"><value>Bepaalt of GW GUI de audio samples afspeelt die door de emulator worden gegenereerd.</value></data>
-  <data name="Emulation.Sony.Help.Audio.Enabled.Short"><value>Inschakelen of uitschakelen van emuleerd geluid.</value></data>
-  <data name="Emulation.Sony.Help.Audio.Output.Detailed"><value>Kies het Windows-apparaat dat geluid afspeelt vanaf deze geëmuleerde machine.</value></data>
-  <data name="Emulation.Sony.Help.Audio.Output.Short"><value>Audio-uitvoer gebruikt door GW GUI.</value></data>
   <data name="Emulation.Sony.Help.Cpu.Frequency.Detailed"><value>Toont de nominale klokfrequentie van de processor in de geselecteerde Sony machine.</value></data>
   <data name="Emulation.Sony.Help.Cpu.Frequency.Short"><value>Originele processor klokfrequentie.</value></data>
   <data name="Emulation.Sony.Help.Cpu.Model.Detailed"><value>Toont het processormodel dat door de geselecteerde Sony machine wordt geleverd.</value></data>
@@ -22,8 +18,8 @@
   <data name="Emulation.Sony.Help.Memory.Ram.Short"><value>Hoeveelheid RAM beschikbaar voor de emuleerde machine.</value></data>
   <data name="Emulation.Sony.Help.Cpu.EffectiveFrequency.Short"><value>Frequentie van de geemuleerde CPU na toepassing van het geselecteerde klokpercentage.</value></data>
   <data name="Emulation.Sony.Help.Cpu.EffectiveFrequency.Detailed"><value>De nominale consolefrequentie wordt vermenigvuldigd met het geselecteerde percentage. Dit verandert de geemuleerde processor, niet de host-processor. Hogere waarden kunnen vertragingen verminderen, maar kan breken spel timing. Automatisch gebruikt de standaard emulator.</value></data>
-  <data name="Emulation.Sony.Help.Video.Chip.Short"><value>Originele videochips gebruikt door PlayStation hardware revisies.</value></data>
-  <data name="Emulation.Sony.Help.Video.Chip.Detailed"><value>De vermelde Sony GPU chips variëren met de moederbord revisie. Interne rendering opties bepalen hoe de emulator geometrie en pixels produceert. GW GUI afbeeldingsfilters verwerken achteraf de voltooide afbeelding.</value></data>
-  <data name="Emulation.Sony.Help.Audio.Chip.Short"><value>Originele audiochips gebruikt door PlayStation hardware revisies.</value></data>
-  <data name="Emulation.Sony.Help.Audio.Chip.Detailed"><value>De Sony SPU mixt geluidstemmen en decodeert gecomprimeerde samples. De vermelde chips variëren met de moederbord revisie. Audio-uitvoer en latentie controle afspelen op uw computer.</value></data>
+  <data name="Emulation.Sony.Help.Video.Chip.Short"><value>Oorspronkelijke grafische hardware van de geselecteerde machine.</value></data>
+  <data name="Emulation.Sony.Help.Video.Chip.Detailed"><value>Toont de oorspronkelijke grafische hardware van de geselecteerde machine. De renderinstellingen van de emulator veranderen het gegenereerde beeld. De filters van GW GUI worden daarna toegepast.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Chip.Short"><value>Oorspronkelijke geluidshardware van de geselecteerde machine.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Chip.Detailed"><value>Toont de oorspronkelijke geluidshardware van de geselecteerde machine. De instellingen voor audio-uitvoer en latentie regelen het afspelen op uw computer.</value></data>
 </root>

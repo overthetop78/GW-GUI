@@ -80,4 +80,6 @@
   <data name="Emulation.Storage.MemoryCard.ImageRequired"><value>Επιλέξτε ένα υπάρχον αρχείο καρτών.</value></data>
   <data name="Emulation.Storage.MemoryCard.InvalidSize"><value>Το αρχείο της κάρτας έχει μη έγκυρο μέγεθος.</value></data>
   <data name="Emulation.Storage.MemoryCard.InvalidFormat"><value>Επιλέξτε μια μορφή αρχείου που υποστηρίζεται από αυτή τη συσκευή.</value></data>
+  <data name="Emulation.Storage.Cache.Unlimited"><value>Απεριόριστο</value></data>
+  <data name="Emulation.Storage.Cache.ClearOnGameClose"><value>Εκκαθάριση όταν κλείνει το παιχνίδι</value></data>
 </root>

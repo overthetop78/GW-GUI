@@ -5,7 +5,7 @@
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Nec.Help.Memory.Ram.Short"><value>可供模拟机器使用的金额为RAM美元。</value></data>
-  <data name="Emulation.Nec.Help.Memory.Ram.Detailed"><value>选择被BeetlePce所曝光的RAM扩展. 机器在使用新数量前必须重新启动.</value></data>
+  <data name="Emulation.Nec.Help.Memory.Ram.Detailed"><value>选择被BeetlePce所曝光的RAM扩展.</value></data>
   <data name="Emulation.Nec.Help.Firmware.Integrated.Short"><value>此模型不需要外部的 BIOS 文件 。</value></data>
   <data name="Emulation.Nec.Help.Firmware.Integrated.Detailed"><value>本机上的Cartridge游戏运行时没有外部系统BIOS.</value></data>
   <data name="Emulation.Nec.Help.Video.Resolution.Short"><value>(原始内容存档于2013-10-12). BeetlePce提供的内部解析.</value></data>

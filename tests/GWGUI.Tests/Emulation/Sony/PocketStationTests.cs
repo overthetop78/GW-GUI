@@ -9,11 +9,88 @@ using GWGUI.Emulation.Sony.Common.Machines.Common.Functions;
 using GWGUI.Emulation.Sony.Emulators.PokketStation.Constants;
 using GWGUI.Emulation.Sony.Emulators.PokketStation.Factories;
 using GWGUI.Emulation.Sony.Emulators.Common.Interop.Functions;
+using GWGUI.Emulation.Sony.Emulators.PokketStation.Functions;
+using System.Text.Json;
 
 namespace GWGUI.Tests.Emulation.Sony;
 
 public sealed class PocketStationTests
 {
+    [Fact]
+    public void TwoCardsKeepTheirSlotsAndExposeTwoIndependentUnassignedPorts()
+    {
+        var configuration = LinkedConfiguration();
+        var plan = Assert.IsType<GWGUI.Emulation.Sony.Emulators.Common.Interop.Contracts.CoreContentLoadPlan>(LinkFunctions.CreateLoadPlan(configuration));
+        Assert.Equal(0x101u, plan.SubsystemId);
+        Assert.EndsWith("unit-a.gme", plan.Paths[0]);
+        Assert.EndsWith("unit-b.gme", plan.Paths[1]);
+        Assert.Equal(new uint[] { 0x100, 0x200 }, plan.SaveMemoryRegions.Select(region => region.Id));
+        Assert.Equal(2, plan.SaveMemoryRegions.Select(region => region.FileName).Distinct().Count());
+        var input = InputSettingsFunctions.Describe(configuration);
+        Assert.Equal(2, input.ControllerPorts.Count);
+        Assert.All(input.ControllerPorts, port => Assert.Empty(port.Bindings.Values));
+        Assert.Contains(input.ControllerPorts[0].Bindings.Definitions, item => item.Id == EmulationControllerCommandIds.L);
+        Assert.Contains(input.ControllerPorts[0].Bindings.Definitions, item => item.Id == EmulationControllerCommandIds.R);
+        Assert.DoesNotContain(input.ControllerPorts[1].Bindings.Definitions, item => item.Id is EmulationControllerCommandIds.L or EmulationControllerCommandIds.R);
+        var storage = StorageSettingsFunctions.Describe(configuration);
+        Assert.Equal(2, storage.ConfiguredSlots.Count(slot => slot.Category == EmulationMediaCategory.MemoryCard));
+        var restored = JsonSerializer.Deserialize<MachineConfiguration>(JsonSerializer.Serialize(configuration))!;
+        Assert.Equal(plan.Paths, LinkFunctions.CreateLoadPlan(restored)!.Paths);
+        Assert.Equal(new int?[] { 1, 0 }, restored.Media!.Select(media => media.SlotIndex));
+    }
+
+    [Fact]
+    public void RemovingTheSecondaryCardReturnsToASingleUnitWithoutRenumberingThePrimary()
+    {
+        var configuration = LinkedConfiguration();
+        var storage = StorageSettingsFunctions.Describe(configuration);
+        var updated = StorageSettingsFunctions.Apply(configuration, storage with { ConfiguredSlots = [EmulationMediaSlot.MemoryCard0] });
+        Assert.Null(LinkFunctions.CreateLoadPlan(updated));
+        Assert.Single(InputSettingsFunctions.Describe(updated).ControllerPorts);
+        Assert.Equal(0, Assert.Single(updated.Media!).SlotIndex);
+        Assert.DoesNotContain(new PokketStationMachineFactory().GetSettingsBlocks(updated).SelectMany(block => block.Fields), field => field.Id == LinkConstants.LayoutKey);
+    }
+
+    [Fact]
+    public void ASecondaryCardAloneCannotBeLoadedAsThePrimary()
+    {
+        var configuration = Configuration() with { Media = [new MediaConfiguration("unit-b.gme", MediaCategory.MemoryCard, SlotIndex: 1)] };
+        Assert.Throws<InvalidOperationException>(() => LinkFunctions.CreateLoadPlan(configuration));
+        Assert.Equal(1, Assert.Single(EmulationMediaConversionFunctions.ToCommon(configuration.Media)).Slot.Index);
+    }
+
+    [Theory]
+    [InlineData("pokket_link_layout", "Side by side")]
+    [InlineData("pokket_link_layout", "Stacked")]
+    [InlineData("pokket_link_audio", "Both units")]
+    [InlineData("pokket_link_audio", "Unit A")]
+    [InlineData("pokket_link_audio", "Unit B")]
+    [InlineData("pokket_link_audio", "Unit A left, unit B right")]
+    [InlineData("pokket_link_unit_b_id", "Different from unit A")]
+    [InlineData("pokket_link_unit_b_id", "Same as unit A")]
+    public void EveryLinkChoiceReachesTheNativeConfiguration(string key, string value)
+    {
+        var factory = new PokketStationMachineFactory();
+        var original = LinkedConfiguration();
+        var field = factory.GetSettingsBlocks(original).SelectMany(block => block.Fields).Single(field => field.Id == key);
+        Assert.Contains(field.Choices!, choice => choice.Id == value);
+        Assert.Equal(LinkConstants.Help, field.ExplanationResourceKey);
+        Assert.Equal(key == LinkConstants.LayoutKey ? EmulationMachineTab.Video : key == LinkConstants.AudioKey ? EmulationMachineTab.Audio : EmulationMachineTab.General, field.Tab);
+        using var http = new System.Net.Http.HttpClient();
+        var module = new GWGUI.Emulation.Sony.Modules.SonyEmulationModule(Environment.CurrentDirectory, Environment.CurrentDirectory, http, Environment.CurrentDirectory);
+        var updated = Assert.IsType<MachineConfiguration>(module.ApplySettings(original, new Dictionary<string, string?> { [key] = value }));
+        Assert.Equal(value, factory.GetRuntimeOptions(updated)[key]);
+    }
+
+    private static MachineConfiguration LinkedConfiguration() => Configuration() with
+    {
+        Media =
+        [
+            new MediaConfiguration("unit-b.gme", MediaCategory.MemoryCard, MountOrder: 0, SlotIndex: 1),
+            new MediaConfiguration("unit-a.gme", MediaCategory.MemoryCard, MountOrder: 1, SlotIndex: 0)
+        ]
+    };
+
     [Theory]
     [InlineData(true, true)]
     [InlineData(false, true)]
@@ -75,12 +152,18 @@ public sealed class PocketStationTests
     public void StorageOffersPermanentMemoryCardWithoutOpticalDrive()
     {
         var storage = StorageSettingsFunctions.Describe(Configuration());
-        var device = Assert.Single(storage.AvailableDevices);
+        Assert.Equal(2, storage.AvailableDevices.Count);
+        var device = Assert.Single(storage.AvailableDevices, item => item.IsPermanent);
         Assert.Equal(EmulationMediaSlot.MemoryCard0, device.Slot);
         Assert.Equal(EmulationMediaType.MemoryCard, device.MediaType);
         Assert.True(device.IsPermanent);
         Assert.Contains(EmulationMediaSlot.MemoryCard0, storage.ConfiguredSlots);
         Assert.Equal(CoreConstants.Definition.Extensions, device.AcceptedExtensions);
+        var secondary = Assert.Single(storage.AvailableDevices, item => !item.IsPermanent);
+        Assert.Equal(new EmulationMediaSlot(EmulationMediaCategory.MemoryCard, 1), secondary.Slot);
+        Assert.Equal(EmulationMediaType.MemoryCard, secondary.MediaType);
+        Assert.DoesNotContain(secondary.Slot, storage.ConfiguredSlots);
+        Assert.DoesNotContain(storage.AvailableDevices, item => item.MediaType == EmulationMediaType.CompactDisc);
     }
 
     [Fact]

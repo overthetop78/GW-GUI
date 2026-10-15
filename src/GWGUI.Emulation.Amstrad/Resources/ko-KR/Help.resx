@@ -5,7 +5,7 @@
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Amstrad.Help.Memory.Ram.Short"><value>의 금액 RAM 에뮬레이션 기계에 사용할 수 있습니다.</value></data>
-  <data name="Emulation.Amstrad.Help.Memory.Ram.Detailed"><value>의 선택 RAM Caprice32에 의해 노출 된 확장. 기계는 새로운 금액이 사용되기 전에 다시 시작해야합니다.</value></data>
+  <data name="Emulation.Amstrad.Help.Memory.Ram.Detailed"><value>의 선택 RAM Caprice32에 의해 노출 된 확장.</value></data>
   <data name="Emulation.Amstrad.Help.Firmware.Integrated.Short"><value>시스템 ROM Caprice32에 내장되어 있습니다.</value></data>
   <data name="Emulation.Amstrad.Help.Firmware.Integrated.Detailed"><value>Caprice32 시스템 제공 ROM 내부 노출되지 않습니다. ROM 파일 선택기.</value></data>
   <data name="Emulation.Amstrad.Help.Video.Resolution.Short"><value>Caprice32에 의해 렌더링 된 내부 해상도.</value></data>

@@ -5,7 +5,7 @@
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Amstrad.Help.Memory.Ram.Short"><value>数量 RAM 封入された機械に利用できます。</value></data>
-  <data name="Emulation.Amstrad.Help.Memory.Ram.Detailed"><value>選択する RAM Caprice32 で露出した拡張。新しい量が使用される前にマシンを再起動する必要があります。</value></data>
+  <data name="Emulation.Amstrad.Help.Memory.Ram.Detailed"><value>選択する RAM Caprice32 で露出した拡張。</value></data>
   <data name="Emulation.Amstrad.Help.Firmware.Integrated.Short"><value>システム ROM Caprice32 にビルドされます。</value></data>
   <data name="Emulation.Amstrad.Help.Firmware.Integrated.Detailed"><value>Caprice32 システムを提供して下さい ROM 社内で、露出しない ROM ファイルのセレクター。</value></data>
   <data name="Emulation.Amstrad.Help.Video.Resolution.Short"><value>Caprice32 によってレンダリングされる内部決断。</value></data>

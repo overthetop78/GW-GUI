@@ -5,6 +5,34 @@ namespace GWGUI.Tests.Interface.EmulationViews;
 [Collection("WPF")]
 public class EmulationViewsTests(GWGUI.Tests.Application.TestInfrastructure.StaExecutionScenarios sta)
 {
+    [Fact]
+    public Task HardwarePortNamesAreUsedWithoutRenumberingTheBindings() => sta.Run(() =>
+    {
+        var editor = GWGUI.App.Views.Controls.Emulation.Options.EmulationControllerSettingsSection.CreatePort(
+            3, GWGUI.App.Enums.Input.InputCaptureSources.Keyboard, false, "Actions", "Search", "sony", "PlayStation2");
+        editor.DisplayName = "USB 1";
+        Assert.Equal(3, editor.Settings.Number);
+        var page = GWGUI.App.Functions.Views.Emulation.Settings.EmulationSettingsLayout.ControllerSettingsPage([editor.Settings]);
+        var tabs = Descendants(page).OfType<System.Windows.Controls.TabItem>().ToArray();
+        Assert.Equal("USB 1", Assert.Single(tabs).Header);
+    });
+
+    [Fact]
+    public Task ProcessorExtensionsStayInsideTheTwoExistingCpuCards() => sta.Run(() =>
+    {
+        var extension = new System.Windows.Controls.CheckBox();
+        var originalSpeed = new System.Windows.Controls.TextBlock { Text = "1.02 MHz" };
+        var page = GWGUI.App.Functions.Views.Emulation.Settings.EmulationSettingsLayout.CpuSettingsPage(
+            new GWGUI.App.Contracts.Views.Emulation.Settings.EmulationCpuSettingsContent(
+                new("CPU", new System.Windows.Controls.TextBlock { Text = "MOS 6502" }),
+                new System.Windows.Controls.TextBlock { Text = "Apple II" }, null, null,
+                new("Original speed", originalSpeed), null, [new("Z80 SoftCard", extension)]));
+        Assert.Equal(2, page.Children.Count);
+        Assert.Contains(extension, Descendants(page.Children[0]));
+        Assert.DoesNotContain(extension, Descendants(page.Children[1]));
+        Assert.Contains(originalSpeed, Descendants(page.Children[1]));
+    });
+
     [Fact] public Task FunctionalDirectorySelectorsRemainVisibleInGeneral() => sta.Run(MachineConfigurationScenarios.FunctionalDirectoriesRemainVisible);
     [Fact] public Task DraftReloadDiscardAndSavedConfigurationAreIsolated() => sta.RunAsync(MachineConfigurationScenarios.DraftLifecycle);
     [Fact] public Task MachineSwitchKeepsSavedAndDraftChanges() => sta.RunAsync(MachineConfigurationScenarios.MachineSwitchKeepsSavedAndDraftChanges);

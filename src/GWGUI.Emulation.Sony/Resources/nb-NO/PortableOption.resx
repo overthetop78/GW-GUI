@@ -26,14 +26,12 @@
   <data name="Emulation.Option.ppsspp.ppsspp_language.Value.11"><value>Kinesisk Tradisjonell</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_language.Value.12"><value>Forenklet kinesisk</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_psp_model.Label"><value>PSP-modell</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_backend.Label"><value>Motor</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_backend.Help"><value>\"Automatisk\" vil bruke frontend-videodriveren. Kjerne</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_software_rendering.Label"><value>Programvaregjengivelse</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_software_rendering.Help"><value>Sakte, nøyaktig. Kjerne</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_software_rendering.Help"><value>Bruk programvarerendering for bedre nøyaktighet med et høyere behov for regnekraft.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_internal_resolution.Label"><value>Realisering av resolusjon</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_internal_resolution.Help"><value>Velg den interne gjengivelsesoppløsningen.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_mulitsample_level.Label"><value>MSAA Antialiasing</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_mulitsample_level.Help"><value>Kun Vulkan. Kjerne</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_mulitsample_level.Help"><value>Bruk MSAA-kantutjevning med Vulkan.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_cropto16x9.Label"><value>Beskjær til 16x9</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_cropto16x9.Help"><value>Beskjer øvre og nedre kanter for å få et 16:9 bilde.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_frameskip.Label"><value>Framesp</value></data>
@@ -46,7 +44,7 @@
   <data name="Emulation.Option.ppsspp.ppsspp_detect_vsync_swap_interval.Label"><value>Oppdag rammerateendringer</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_detect_vsync_swap_interval.Help"><value>Varsle frontend.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Label"><value>Buffergrafikkkommandoer</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Help"><value>GL/Vulkan bare, langsommere og mindre lag, omstart.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Help"><value>GL/Vulkan bare, langsommere og mindre lag.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Value.0"><value>Ingen buffer</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Value.1"><value>Opp til 1</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_button_preference.Label"><value>Bekreftelsesknapp</value></data>

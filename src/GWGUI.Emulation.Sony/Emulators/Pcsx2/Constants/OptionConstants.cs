@@ -39,7 +39,6 @@ internal static class OptionConstants
     internal const string Dev9EthHelp = "Emulation.Option.Sony.Setting.Dev9Eth.Help";
 
     internal const string RendererKey = "pcsx2_renderer";
-    internal const string RendererLabel = "Emulation.Option.pcee2.pcsx2_renderer.Label";
 
     internal const string UpscaleMultiplierKey = "pcsx2_upscale_multiplier";
     internal const string UpscaleMultiplierLabel = "Emulation.Option.Sony.Value.InternalResolution";

@@ -299,4 +299,7 @@
   <data name="Emulation.Video.Parameter.ProjectionVignette"><value>ظالمة</value></data>
   <data name="Emulation.Video.Projection.Group.Optics"><value>الأفيون والضوء</value></data>
   <data name="Emulation.Video.Projection.Group.Screen"><value>شاشة الإسقاط</value></data>
+  <data name="Emulation.Option.Common.Value.HardwareRendering"><value>التصيير باستخدام العتاد</value></data>
+  <data name="Emulation.Option.Common.RenderingMode.Label"><value>وضع التصيير</value></data>
+  <data name="Emulation.Option.Common.RenderingMode.Help"><value>يستخدم التصيير العتادي واجهة الرسوميات (API) المحددة للتطبيق إذا كان المحاكي يدعمها.</value></data>
 </root>

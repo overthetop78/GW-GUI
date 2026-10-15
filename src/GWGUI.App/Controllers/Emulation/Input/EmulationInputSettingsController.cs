@@ -166,6 +166,7 @@ internal sealed class EmulationInputSettingsController
             editor.Type.DisplayMemberPath = nameof(EmulationControllerChoiceView.DisplayName);
             editor.Type.SelectedItem = choices.FirstOrDefault(choice => choice.Choice.Id == port.SelectedControllerId) ?? choices.FirstOrDefault();
         }
+        editor.DisplayName = port.DisplayName;
         editor.PhysicalDeviceId = port.PhysicalDeviceId;
         editor.Outputs.SetBindings(port.OutputBindings);
         editor.Bindings.SetReservedBindings(_reservedBindings);

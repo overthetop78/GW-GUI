@@ -6,7 +6,7 @@
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Sega.Help.General.Model.Short"><value>Sega机型正在配置中.</value></data>
   <data name="Emulation.Sega.Help.Memory.Ram.Short"><value>可供模拟机器使用的金额为RAM美元。</value></data>
-  <data name="Emulation.Sega.Help.Memory.Ram.Detailed"><value>选择模拟核心所暴露的RAM扩展. 机器在使用新数量前必须重新启动.</value></data>
+  <data name="Emulation.Sega.Help.Memory.Ram.Detailed"><value>选择模拟核心所暴露的RAM扩展.</value></data>
   <data name="Emulation.Sega.Help.Firmware.Integrated.Short"><value>系统ROM被建入仿真核心.</value></data>
   <data name="Emulation.Sega.Help.Firmware.Integrated.Detailed"><value>模拟核心在内部提供系统ROM,不出自ROM文件选择器.</value></data>
   <data name="Emulation.Sega.Help.General.Emulator.Short"><value>为此机器所选择的模拟器 。</value></data>

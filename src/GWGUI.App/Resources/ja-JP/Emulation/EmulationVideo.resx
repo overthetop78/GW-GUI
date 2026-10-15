@@ -299,4 +299,7 @@
   <data name="Emulation.Video.Parameter.ProjectionVignette"><value>エッジダークニング</value></data>
   <data name="Emulation.Video.Projection.Group.Optics"><value>光と光</value></data>
   <data name="Emulation.Video.Projection.Group.Screen"><value>投影スクリーン</value></data>
+  <data name="Emulation.Option.Common.Value.HardwareRendering"><value>ハードウェアレンダリング</value></data>
+  <data name="Emulation.Option.Common.RenderingMode.Label"><value>レンダリングモード</value></data>
+  <data name="Emulation.Option.Common.RenderingMode.Help"><value>ハードウェアレンダリングでは、エミュレーターが対応していれば、アプリケーションで選択したグラフィックス API を使用します。</value></data>
 </root>

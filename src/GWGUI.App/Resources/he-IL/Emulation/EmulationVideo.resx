@@ -299,4 +299,7 @@
   <data name="Emulation.Video.Parameter.ProjectionVignette"><value>תגית: Darking</value></data>
   <data name="Emulation.Video.Projection.Group.Optics"><value>אופטיקה ואור</value></data>
   <data name="Emulation.Video.Projection.Group.Screen"><value>מסך Projection</value></data>
+  <data name="Emulation.Option.Common.Value.HardwareRendering"><value>רינדור בחומרה</value></data>
+  <data name="Emulation.Option.Common.RenderingMode.Label"><value>מצב רינדור</value></data>
+  <data name="Emulation.Option.Common.RenderingMode.Help"><value>רינדור בחומרה משתמש ב־API הגרפי שנבחר עבור היישום, אם האמולטור תומך בו.</value></data>
 </root>

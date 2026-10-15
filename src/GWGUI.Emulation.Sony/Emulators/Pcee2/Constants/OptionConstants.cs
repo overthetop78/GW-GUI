@@ -25,8 +25,6 @@ internal static class OptionConstants
     internal const string FastBootLabelResource = "Emulation.Option.pcee2.pcsx2_fast_boot.Label";
     internal const string FastBootHelpResource = "Emulation.Option.pcee2.pcsx2_fast_boot.Help";
     internal const string RendererKey = "pcsx2_renderer";
-    internal const string RendererLabelResource = "Emulation.Option.pcee2.pcsx2_renderer.Label";
-    internal const string RendererHelpResource = "Emulation.Option.pcee2.pcsx2_renderer.Help";
     internal const string RendererOpengl = "opengl";
     internal const string RendererSoftware = "software";
     internal const string RendererVulkan = "vulkan";
@@ -103,8 +101,6 @@ internal static class OptionConstants
     internal const string CasModeSharpen = "sharpen";
     internal static readonly string CasModeDefaultValue = OptionValueFunctions.ToNative(CasMode.Disabled);
     internal const string AudioBufferMsKey = "pcsx2_audio_buffer_ms";
-    internal const string AudioBufferMsLabelResource = "Emulation.Option.pcee2.pcsx2_audio_buffer_ms.Label";
-    internal const string AudioBufferMsHelpResource = "Emulation.Option.pcee2.pcsx2_audio_buffer_ms.Help";
     internal const string AudioBufferMs50DisplayName = "50 ms";
     internal const string AudioBufferMs75DisplayName = "75 ms";
     internal const string AudioBufferMs100DisplayName = "100 ms";

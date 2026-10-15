@@ -299,4 +299,7 @@
   <data name="Emulation.Video.Parameter.ProjectionVignette"><value>Obscurcissement des bords</value></data>
   <data name="Emulation.Video.Projection.Group.Optics"><value>Optique et lumière</value></data>
   <data name="Emulation.Video.Projection.Group.Screen"><value>Écran de projection</value></data>
+  <data name="Emulation.Option.Common.Value.HardwareRendering"><value>Rendu matériel</value></data>
+  <data name="Emulation.Option.Common.RenderingMode.Label"><value>Mode de rendu</value></data>
+  <data name="Emulation.Option.Common.RenderingMode.Help"><value>Le rendu matériel utilise l’API graphique choisie pour l’application si l’émulateur la prend en charge.</value></data>
 </root>

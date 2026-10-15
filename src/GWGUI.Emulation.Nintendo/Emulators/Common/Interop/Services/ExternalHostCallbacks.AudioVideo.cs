@@ -83,7 +83,7 @@ internal sealed partial class ExternalHostCallbacks
             var maximumFrames = Math.Max(1, SampleRate / 5);
             if (chunk.FrameCount > maximumFrames)
             {
-                var retainedSamples = chunk.InterleavedStereo.Slice((chunk.FrameCount - maximumFrames) * 2).ToArray();
+                var retainedSamples = chunk.InterleavedSamples.Slice((chunk.FrameCount - maximumFrames) * 2).ToArray();
                 chunk = new AudioChunk(retainedSamples, chunk.SampleRate, maximumFrames, chunk.Sequence, chunk.Timestamp);
                 AudioOverrunCount++;
             }

@@ -136,6 +136,7 @@ internal static partial class InputSettingsFunctions
         ControllerType.AnalogController => InputSettingsFunctionsConstants.ResourceDualAnalog,
         ControllerType.AnalogJoystick => InputSettingsFunctionsConstants.ResourceAnalogJoystick,
         ControllerType.GunCon => InputSettingsFunctionsConstants.ResourceGunCon,
+        ControllerType.GunCon2 => InputSettingsFunctionsConstants.ResourceGunCon2,
         ControllerType.Justifier => InputSettingsFunctionsConstants.ResourceJustifier,
         ControllerType.Mouse => InputSettingsFunctionsConstants.ResourcePlayStationMouse,
         ControllerType.Keyboard => InputSettingsFunctionsConstants.ResourceControllerKeyboard,

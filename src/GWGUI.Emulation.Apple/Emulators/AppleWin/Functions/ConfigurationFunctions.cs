@@ -1,5 +1,6 @@
 using GWGUI.Emulation.Apple.Emulators.AppleWin.Constants;
 using GWGUI.Emulation.Apple.Emulators.AppleWin.Dictionaries;
+using NativeVideo = GWGUI.Emulation.Apple.Emulators.AppleWin.Constants.VideoConstants;
 
 namespace GWGUI.Emulation.Apple.Emulators.AppleWin.Functions;
 
@@ -9,6 +10,8 @@ internal static class ConfigurationFunctions
     {
         if (configuration.Family == MachineFamily.AppleII) options.TryAdd(OptionConstants.Machine, AppleWinModelCatalog.GetNativeValue(configuration.Model));
         ExpansionFunctions.InitializeStorage(configuration, options);
+        options[OptionConstants.VideoMode] = NativeVideo.SourceMode;
+        options[OptionConstants.VideoStyle] = NativeVideo.SourceStyle;
     }
 
     internal static void ValidateConfiguration(MachineConfiguration configuration)

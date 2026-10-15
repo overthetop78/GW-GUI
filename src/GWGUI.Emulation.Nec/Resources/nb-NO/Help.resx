@@ -5,7 +5,7 @@
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Nec.Help.Memory.Ram.Short"><value>Antall RAM som er tilgjengelig for den emulerte maskinen.</value></data>
-  <data name="Emulation.Nec.Help.Memory.Ram.Detailed"><value>Velger RAM-utvidelsen eksponert av BeetlePce. Maskinen må starte på nytt før den nye mengden brukes.</value></data>
+  <data name="Emulation.Nec.Help.Memory.Ram.Detailed"><value>Velger RAM-utvidelsen eksponert av BeetlePce.</value></data>
   <data name="Emulation.Nec.Help.Firmware.Integrated.Short"><value>Ingen ekstern BIOS-fil er nødvendig for denne modellen.</value></data>
   <data name="Emulation.Nec.Help.Firmware.Integrated.Detailed"><value>Patronspill på denne maskinen kjører uten et eksternt system BIOS.</value></data>
   <data name="Emulation.Nec.Help.Video.Resolution.Short"><value>Intern oppløsning fremstilt av BeetlePce.</value></data>

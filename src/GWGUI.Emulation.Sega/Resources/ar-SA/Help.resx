@@ -6,7 +6,7 @@
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Sega.Help.General.Model.Short"><value>Sega آلة تم تشكيلها</value></data>
   <data name="Emulation.Sega.Help.Memory.Ram.Short"><value>كمية RAM المتاحة للآلة المحاكاة.</value></data>
-  <data name="Emulation.Sega.Help.Memory.Ram.Detailed"><value>يُختار التوسع الـ RAM الذي تعرض له نواة المحاكاة. يجب على الآلة أن تعود قبل استخدام المبلغ الجديد</value></data>
+  <data name="Emulation.Sega.Help.Memory.Ram.Detailed"><value>يُختار التوسع الـ RAM الذي تعرض له نواة المحاكاة.</value></data>
   <data name="Emulation.Sega.Help.Firmware.Integrated.Short"><value>ROM النظام يُبنى في قلب المحاكاة</value></data>
   <data name="Emulation.Sega.Help.Firmware.Integrated.Detailed"><value>يوفر قلب المحاكاة ROM النظام داخليًا ولا يتيح اختيار ملف ROM.</value></data>
   <data name="Emulation.Sega.Help.General.Emulator.Short"><value>تم اختيار المرشد لهذه الآلة</value></data>

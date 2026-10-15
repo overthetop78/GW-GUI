@@ -42,6 +42,9 @@ internal static class OptionValueFunctions
     {
         GPURenderer.OpenGL => OptionConstants.GPURendererOpenGL,
         GPURenderer.Software => OptionConstants.GPURendererSoftware,
+        GPURenderer.Automatic => OptionConstants.GPURendererAutomatic,
+        GPURenderer.Direct3D11 => OptionConstants.GPURendererDirect3D11,
+        GPURenderer.Vulkan => OptionConstants.GPURendererVulkan,
         _ => throw new ArgumentOutOfRangeException(nameof(value), value, null),
     };
 

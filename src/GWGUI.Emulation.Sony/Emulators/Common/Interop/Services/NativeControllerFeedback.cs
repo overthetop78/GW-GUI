@@ -7,7 +7,7 @@ internal sealed class NativeControllerFeedback : IDisposable
     private const uint StrongEffect = 0;
     private const uint WeakEffect = 1;
     private readonly object _gate = new();
-    private readonly ushort[,] _values = new ushort[ControllerPortConstants.MaximumControllerPortCount, 2];
+    private readonly ushort[,] _values = new ushort[ControllerPortConstants.MaximumGamepadPortCount, 2];
     private readonly ExternalCoreApi.SetRumbleState _setState;
     private bool _disposed;
 
@@ -26,7 +26,7 @@ internal sealed class NativeControllerFeedback : IDisposable
 
     internal bool SetState(uint port, uint effect, ushort strength)
     {
-        if (port >= ControllerPortConstants.MaximumControllerPortCount || effect > WeakEffect) return false;
+        if (port >= ControllerPortConstants.MaximumGamepadPortCount || effect > WeakEffect) return false;
         lock (_gate)
         {
             if (_disposed) return false;
@@ -41,7 +41,7 @@ internal sealed class NativeControllerFeedback : IDisposable
         {
             if (_disposed) return [];
             var result = new List<ControllerFeedbackState>();
-            for (var port = 0; port < ControllerPortConstants.MaximumControllerPortCount; port++)
+            for (var port = 0; port < ControllerPortConstants.MaximumGamepadPortCount; port++)
             {
                 if (_values[port, StrongEffect] != 0)
                     result.Add(new(port, EmulationControllerFeedbackCommands.Strong, _values[port, StrongEffect] / (float)ushort.MaxValue));
@@ -54,7 +54,7 @@ internal sealed class NativeControllerFeedback : IDisposable
 
     internal void ResetPort(int port)
     {
-        if (port is < 0 or >= ControllerPortConstants.MaximumControllerPortCount) return;
+        if (port is < 0 or >= ControllerPortConstants.MaximumGamepadPortCount) return;
         lock (_gate)
         {
             _values[port, StrongEffect] = 0;

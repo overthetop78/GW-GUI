@@ -14,7 +14,7 @@ internal static class SettingsDescriptionFunctions
         blocks.Add(Block(EmulationMachineTab.Rom, SettingsConstants.ResourceFirmware,
             new EmulationSettingsField(SettingsConstants.Firmware, EmulationMachineTab.Rom,
                 EmulationMachineTab.Rom.ToString(), SettingsConstants.ResourceFirmware, EmulationSettingsEditor.Information,
-                null, ExplanationResourceKey: SettingsConstants.ResourceEmbeddedFirmware)));
+                SettingsConstants.Firmware, [new(SettingsConstants.Firmware, SettingsConstants.ResourceEmbeddedFirmware)], IsEnabled: false)));
         blocks.Add(Block(EmulationMachineTab.Cpu, SettingsConstants.ResourceExpansion,
             ExpansionFunctions.Fixed(configuration, Cards.Z80Field, Cards.Z80, AppleWinOptions.Slot5, SettingsChoiceConstants.ValueZ80SoftCard, SettingsTextConstants.SettingCardInSlot5, EmulationMachineTab.Cpu)));
         blocks.Add(Block(EmulationMachineTab.Audio, SettingsConstants.ResourceExpansion,
@@ -25,8 +25,6 @@ internal static class SettingsDescriptionFunctions
             ExpansionFunctions.Fixed(configuration, Cards.MouseField, Cards.Mouse, AppleWinOptions.Slot4, SettingsChoiceConstants.ValueMouseCard, SettingsTextConstants.SettingCardInSlot4, EmulationMachineTab.Mouse)));
         blocks.Add(Block(EmulationMachineTab.Video, SettingsConstants.ResourceNativeVideo,
             ExpansionFunctions.Fixed(configuration, Cards.VideoField, Cards.VideoHd, AppleWinOptions.Slot3, SettingsChoiceConstants.ValueVideoHD, SettingsTextConstants.SettingCardInSlot3, EmulationMachineTab.Video),
-            Native(configuration, Option(AppleWinOptions.VideoMode), EmulationMachineTab.Video),
-            Native(configuration, Option(AppleWinOptions.VideoStyle), EmulationMachineTab.Video),
             Native(configuration, Option(AppleWinOptions.VideoRefreshRate), EmulationMachineTab.Video)));
         blocks.Add(Block(EmulationMachineTab.Storage, StorageSettingsFunctionsConstants.ResourcePlaylist,
             Native(configuration, Option(AppleWinOptions.PlaylistStart), EmulationMachineTab.Storage),

@@ -299,4 +299,7 @@
   <data name="Emulation.Video.Parameter.ProjectionVignette"><value>Întuneric margine</value></data>
   <data name="Emulation.Video.Projection.Group.Optics"><value>Optica si lumina</value></data>
   <data name="Emulation.Video.Projection.Group.Screen"><value>Ecranul de proiectie</value></data>
+  <data name="Emulation.Option.Common.Value.HardwareRendering"><value>Randare hardware</value></data>
+  <data name="Emulation.Option.Common.RenderingMode.Label"><value>Mod de randare</value></data>
+  <data name="Emulation.Option.Common.RenderingMode.Help"><value>Randarea hardware folosește API-ul grafic selectat pentru aplicație, dacă emulatorul îl acceptă.</value></data>
 </root>

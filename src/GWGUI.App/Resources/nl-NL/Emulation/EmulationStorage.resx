@@ -80,4 +80,6 @@
   <data name="Emulation.Storage.MemoryCard.ImageRequired"><value>Selecteer een bestaand kaartbestand.</value></data>
   <data name="Emulation.Storage.MemoryCard.InvalidSize"><value>Het kaartbestand heeft een ongeldige grootte.</value></data>
   <data name="Emulation.Storage.MemoryCard.InvalidFormat"><value>Kies een bestandsformaat dat door dit apparaat wordt ondersteund.</value></data>
+  <data name="Emulation.Storage.Cache.Unlimited"><value>Onbeperkt</value></data>
+  <data name="Emulation.Storage.Cache.ClearOnGameClose"><value>Leegmaken bij het sluiten van het spel</value></data>
 </root>

@@ -4,10 +4,6 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Sony.Help.Audio.Enabled.Detailed"><value>Ελέγχει αν το GW GUI παίζει τα δείγματα ήχου που παράγονται από τον εξομοιωτή.</value></data>
-  <data name="Emulation.Sony.Help.Audio.Enabled.Short"><value>Ενεργοποίηση ή απενεργοποίηση εικονιζόμενου ήχου.</value></data>
-  <data name="Emulation.Sony.Help.Audio.Output.Detailed"><value>Επιλέξτε τη συσκευή των Windows που παίζει ήχο από αυτό το μιμούμενο μηχάνημα.</value></data>
-  <data name="Emulation.Sony.Help.Audio.Output.Short"><value>Έξοδος ήχου που χρησιμοποιείται από το GW GUI.</value></data>
   <data name="Emulation.Sony.Help.Cpu.Frequency.Detailed"><value>Εμφανίζει την ονομαστική συχνότητα ⁇ ολογιού του επεξεργαστή στην επιλεγμένη μηχανή Sony.</value></data>
   <data name="Emulation.Sony.Help.Cpu.Frequency.Short"><value>Αρχική συχνότητα ⁇ ολογιού επεξεργαστή.</value></data>
   <data name="Emulation.Sony.Help.Cpu.Model.Detailed"><value>Εμφανίζει το μοντέλο επεξεργαστή που παρέχεται από την επιλεγμένη μηχανή Sony.</value></data>
@@ -22,8 +18,8 @@
   <data name="Emulation.Sony.Help.Memory.Ram.Short"><value>Ποσότητα της RAM που διατίθεται στην προσομοιωμένη μηχανή.</value></data>
   <data name="Emulation.Sony.Help.Cpu.EffectiveFrequency.Short"><value>Συχνότητα της προσομοίωσης CPU μετά την εφαρμογή του επιλεγμένου ποσοστού ⁇ ολογιού.</value></data>
   <data name="Emulation.Sony.Help.Cpu.EffectiveFrequency.Detailed"><value>Η ονομαστική συχνότητα της κονσόλας πολλαπλασιάζεται με το επιλεγμένο ποσοστό. Αυτό αλλάζει τον εξομοιωμένο επεξεργαστή, όχι τον επεξεργαστή του υπολογιστή. Υψηλότερες τιμές μπορούν να μειώσουν τις επιβραδύνσεις αλλά μπορεί να σπάσουν το συγχρονισμό του παιχνιδιού. Αυτόματη χρήση του προεπιλεγμένου εξομοιωτή.</value></data>
-  <data name="Emulation.Sony.Help.Video.Chip.Short"><value>Αρχικές μάρκες βίντεο που χρησιμοποιούνται από αναθεωρήσεις υλικού του PlayStation.</value></data>
-  <data name="Emulation.Sony.Help.Video.Chip.Detailed"><value>Οι καταχωρημένες μάρκες Sony GPU ποικίλουν με την αναθεώρηση της μητρικής πλακέτας. Οι εσωτερικές επιλογές απόδοσης ελέγχουν πώς ο εξομοιωτής παράγει γεωμετρία και εικονοστοιχεία. Τα φίλτρα GW GUI επεξεργάζονται την ολοκληρωμένη εικόνα στη συνέχεια.</value></data>
-  <data name="Emulation.Sony.Help.Audio.Chip.Short"><value>Αρχικές μάρκες ήχου που χρησιμοποιούνται από αναθεωρήσεις υλικού του PlayStation.</value></data>
-  <data name="Emulation.Sony.Help.Audio.Chip.Detailed"><value>Η Sony SPU αναμιγνύει φωνές ήχου και αποκωδικοποιεί συμπιεσμένα δείγματα. Οι καταχωρημένες μάρκες ποικίλλουν ανάλογα με την αναθεώρηση της μητρικής πλακέτας. Έξοδος ήχου και λανθάνουσα λειτουργία ελέγχου αναπαραγωγής στον υπολογιστή σας.</value></data>
+  <data name="Emulation.Sony.Help.Video.Chip.Short"><value>Αρχικό υλικό γραφικών του επιλεγμένου μηχανήματος.</value></data>
+  <data name="Emulation.Sony.Help.Video.Chip.Detailed"><value>Εμφανίζει το αρχικό υλικό γραφικών του επιλεγμένου μηχανήματος. Οι ρυθμίσεις απόδοσης του εξομοιωτή αλλάζουν την παραγόμενη εικόνα. Τα φίλτρα του GW GUI εφαρμόζονται στη συνέχεια.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Chip.Short"><value>Αρχικό υλικό ήχου του επιλεγμένου μηχανήματος.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Chip.Detailed"><value>Εμφανίζει το αρχικό υλικό ήχου του επιλεγμένου μηχανήματος. Οι ρυθμίσεις εξόδου ήχου και καθυστέρησης ελέγχουν την αναπαραγωγή στον υπολογιστή σας.</value></data>
 </root>

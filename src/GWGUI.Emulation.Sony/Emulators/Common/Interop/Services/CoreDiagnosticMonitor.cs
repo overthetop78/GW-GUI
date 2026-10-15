@@ -7,6 +7,10 @@ internal sealed class CoreDiagnosticMonitor(IReadOnlyList<string>? startupFailur
     private string? _failure;
     internal string? Failure => Volatile.Read(ref _failure);
 
+    internal static Exception WithNativeDiagnostics(Exception error, IReadOnlyList<string> diagnostics) => diagnostics.Count == 0
+        ? error
+        : new InvalidOperationException(error.Message + Environment.NewLine + string.Join(Environment.NewLine, diagnostics), error);
+
     internal void Capture(string message)
     {
         if (Failure is not null || startupFailureDiagnostics is null) return;

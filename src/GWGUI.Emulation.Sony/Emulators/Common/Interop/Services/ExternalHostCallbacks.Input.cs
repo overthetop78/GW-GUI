@@ -98,6 +98,13 @@ internal sealed partial class ExternalHostCallbacks
 
     private short HandleInputState(uint port, uint device, uint index, uint id)
     {
+        if (_controllerPorts is not null)
+        {
+            var portDevice = device == LightGunDevice ? LightGunDevice : JoypadDevice;
+            var route = _controllerPorts.FirstOrDefault(item => item.NativePort == port && item.NativeDevice == portDevice);
+            if (route is null) return default;
+            port = checked((uint)route.ConfigurationPort);
+        }
         if (port >= _controllerTypes.Length
             || (ControllerType)Volatile.Read(ref _controllerTypes[(int)port]) == ControllerType.None)
             return default;
@@ -135,25 +142,21 @@ internal sealed partial class ExternalHostCallbacks
             };
 
         if (device == LightGunDevice)
+        {
+            var axisX = controller.Controls.ContainsKey(EmulationControllerCommandIds.LeftStickLeft) || controller.Controls.ContainsKey(EmulationControllerCommandIds.LeftStickRight);
+            var axisY = controller.Controls.ContainsKey(EmulationControllerCommandIds.LeftStickUp) || controller.Controls.ContainsKey(EmulationControllerCommandIds.LeftStickDown);
+            var x = axisX ? controller.LeftX : _pointerX;
+            var y = axisY ? controller.LeftY : _pointerY;
             return (LightGunInput)id switch
             {
-                LightGunInput.ScreenX => (short)_pointerX,
-                LightGunInput.ScreenY => (short)_pointerY,
+                LightGunInput.ScreenX => (short)x,
+                LightGunInput.ScreenY => (short)y,
                 LightGunInput.RelativeX => ClampToShort(input.Pointer.DeltaX),
                 LightGunInput.RelativeY => ClampToShort(input.Pointer.DeltaY),
-                LightGunInput.Offscreen => Bool(PointerIsOffscreen()),
-                LightGunInput.Reload => Bool(input.Pointer.ExtendedButton1),
-                LightGunInput.Trigger => Bool(PortButton(controller, EmulationControllerCommandIds.B, input.Pointer.Left)),
-                LightGunInput.AuxiliaryA => Bool(PortButton(controller, EmulationControllerCommandIds.A, input.Pointer.Right)),
-                LightGunInput.AuxiliaryB => Bool(PortButton(controller, EmulationControllerCommandIds.X, input.Pointer.Middle)),
-                LightGunInput.Start or LightGunInput.Pause => Bool(PortButton(controller, EmulationControllerCommandIds.Start)),
-                LightGunInput.Select => Bool(PortButton(controller, EmulationControllerCommandIds.Select)),
-                LightGunInput.Up => Bool(PortButton(controller, EmulationControllerCommandIds.Up)),
-                LightGunInput.Down => Bool(PortButton(controller, EmulationControllerCommandIds.Down)),
-                LightGunInput.Left => Bool(PortButton(controller, EmulationControllerCommandIds.Left)),
-                LightGunInput.Right => Bool(PortButton(controller, EmulationControllerCommandIds.Right)),
-                _ => default
+                LightGunInput.Offscreen => Bool(x <= PointerCoordinateMinimum || x >= PointerCoordinateMaximum || y <= PointerCoordinateMinimum || y >= PointerCoordinateMaximum),
+                _ => Bool(LightGunButton(controller, (LightGunInput)id))
             };
+        }
 
         if (port >= input.Controllers.Count) return 0;
         if (device == JoypadDevice)

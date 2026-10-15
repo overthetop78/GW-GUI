@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Sony.Emulators.Common.Constants;
 using GWGUI.Emulation.Sony.Emulators.Pcsx2.Constants;
 using GWGUI.Emulation.Sony.Emulators.Pcsx2.Enums;
 using GWGUI.Emulation.Sony.Emulators.Pcsx2.Functions;
@@ -9,7 +10,7 @@ internal static partial class OptionCatalog
 {
     private static IReadOnlyList<CoreOption> VideoOptions { get; } =
     [
-        Define(OptionConstants.RendererKey, OptionConstants.RendererLabel, null,
+        Define(OptionConstants.RendererKey, GraphicsSettingsConstants.ModeLabel, GraphicsSettingsConstants.ModeHelp,
             "Auto", EmulationMachineTab.Video,
             [
                 new(OptionValueFunctions.ToNative(RendererBackend.Automatic), OptionValueResourceConstants.AutomaticLabelResource),
@@ -20,7 +21,13 @@ internal static partial class OptionCatalog
                 new(OptionValueFunctions.ToNative(RendererBackend.ParallelGs), "paraLLEl-GS"),
                 new(OptionValueFunctions.ToNative(RendererBackend.SoftwareHardwarePresentation), "Emulation.Option.Sony.Value.SoftwareHardwarePresentation"),
                 new(OptionValueFunctions.ToNative(RendererBackend.SoftwarePresentation), OptionValueResourceConstants.SoftwareLabelResource),
-            ], restart: true),
+            ], restart: true, graphicsApis: new Dictionary<EmulationGraphicsApi, string>
+            {
+                [EmulationGraphicsApi.Automatic] = OptionValueFunctions.ToNative(RendererBackend.OpenGl),
+                [EmulationGraphicsApi.OpenGL] = OptionValueFunctions.ToNative(RendererBackend.OpenGl)
+            }, rendererModes: [OptionValueFunctions.ToNative(RendererBackend.SoftwareHardwarePresentation),
+                OptionValueFunctions.ToNative(RendererBackend.SoftwarePresentation), OptionValueFunctions.ToNative(RendererBackend.ParallelGs),
+                OptionValueFunctions.ToNative(RendererBackend.Direct3D12)]),
         Define(OptionConstants.UpscaleMultiplierKey, OptionConstants.UpscaleMultiplierLabel, OptionConstants.UpscaleMultiplierHelp,
             "1x (Native)", EmulationMachineTab.Video,
             [

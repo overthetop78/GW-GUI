@@ -80,4 +80,6 @@
   <data name="Emulation.Storage.MemoryCard.ImageRequired"><value>Vyberte existující kartový soubor.</value></data>
   <data name="Emulation.Storage.MemoryCard.InvalidSize"><value>Kartový soubor má neplatnou velikost.</value></data>
   <data name="Emulation.Storage.MemoryCard.InvalidFormat"><value>Vyberte formát souboru podporovaný tímto zařízením.</value></data>
+  <data name="Emulation.Storage.Cache.Unlimited"><value>Bez omezení</value></data>
+  <data name="Emulation.Storage.Cache.ClearOnGameClose"><value>Vymazat při zavření hry</value></data>
 </root>

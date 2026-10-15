@@ -18,4 +18,6 @@ internal sealed record CoreDefinition(
     bool SupportsSavedStates = true,
     IReadOnlyList<ControllerType>? FeedbackControllerTypes = null,
     TimeSpan? DisposalTimeout = null,
-    IReadOnlyList<string>? PreviousLibraryNames = null);
+    IReadOnlyList<string>? PreviousLibraryNames = null,
+    Func<MachineConfiguration, CoreContentLoadPlan?>? CreateContentLoadPlan = null,
+    Func<MachineConfiguration, IReadOnlyList<CoreControllerPort>>? CreateControllerPorts = null);

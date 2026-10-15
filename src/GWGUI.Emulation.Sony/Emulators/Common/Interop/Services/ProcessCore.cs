@@ -113,7 +113,7 @@ internal sealed class ProcessCore : IEmulatorCore
             FramesPerSecond = Response.ReadDouble();
             SampleRate = Response.ReadInt32();
             Options = JsonSerializer.Deserialize<IReadOnlyList<CoreOption>>(Response.ReadString(), CoreHostProtocol.JsonOptions) ?? [];
-            Options = CoreOptionMetadataFunctions.Merge(Options, CoreCatalog.Get(configuration.EmulatorId).Options);
+            Options = CoreOptionMetadataFunctions.Merge(Options, CoreCatalog.Get(configuration.EmulatorId).Options, configuration.GraphicsApi);
             Diagnostics = JsonSerializer.Deserialize<IReadOnlyList<string>>(Response.ReadString(), CoreHostProtocol.JsonOptions) ?? [];
             CoreName = Response.ReadString();
             CoreVersion = Response.ReadString();

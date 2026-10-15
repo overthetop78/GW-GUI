@@ -299,4 +299,7 @@
   <data name="Emulation.Video.Parameter.ProjectionVignette"><value>연락처</value></data>
   <data name="Emulation.Video.Projection.Group.Optics"><value>광학 및 빛</value></data>
   <data name="Emulation.Video.Projection.Group.Screen"><value>Projection 스크린</value></data>
+  <data name="Emulation.Option.Common.Value.HardwareRendering"><value>하드웨어 렌더링</value></data>
+  <data name="Emulation.Option.Common.RenderingMode.Label"><value>렌더링 모드</value></data>
+  <data name="Emulation.Option.Common.RenderingMode.Help"><value>하드웨어 렌더링은 에뮬레이터가 지원하는 경우 애플리케이션에서 선택한 그래픽 API를 사용합니다.</value></data>
 </root>

@@ -6,7 +6,7 @@
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Sega.Help.General.Model.Short"><value>Sega machine model fiind configurat.</value></data>
   <data name="Emulation.Sega.Help.Memory.Ram.Short"><value>Cantitatea de RAM disponibilă pentru aparatul emulat.</value></data>
-  <data name="Emulation.Sega.Help.Memory.Ram.Detailed"><value>Selectează expansiunea RAM expusă de miezul emulării. Aparatul trebuie să repornească înainte de utilizarea noii cantități.</value></data>
+  <data name="Emulation.Sega.Help.Memory.Ram.Detailed"><value>Selectează expansiunea RAM expusă de miezul emulării.</value></data>
   <data name="Emulation.Sega.Help.Firmware.Integrated.Short"><value>Sistemul ROM este construit în miezul de emulare.</value></data>
   <data name="Emulation.Sega.Help.Firmware.Integrated.Detailed"><value>Nucleul de emulare oferă sistemul ROM intern și nu expune un selector de fișiere ROM.</value></data>
   <data name="Emulation.Sega.Help.General.Emulator.Short"><value>Emulator selectat pentru această mașină.</value></data>

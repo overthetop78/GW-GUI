@@ -419,7 +419,7 @@
   <data name="Emulation.Option.flycast.reicast_volume_modifier_enable.Value.disabled"><value>מוגבלות</value></data>
   <data name="Emulation.Option.flycast.reicast_volume_modifier_enable.Value.enabled"><value>המונחים</value></data>
   <data name="Emulation.Option.flycast.reicast_anisotropic_filtering"><value>Anisotropic filter</value></data>
-  <data name="Emulation.Option.flycast.reicast_anisotropic_filtering.Description"><value>לשפר את איכות המרקם על פני השטח כי הם בזווית צפייה אובליק עם כבוד למצלמה. ערכים גבוהים יותר תובעניים יותר GPU. שינויים בהגדרה זו חלים רק לאחר הפעלה מחדש.</value></data>
+  <data name="Emulation.Option.flycast.reicast_anisotropic_filtering.Description"><value>לשפר את איכות המרקם על פני השטח כי הם בזווית צפייה אובליק עם כבוד למצלמה. ערכים גבוהים יותר תובעניים יותר GPU.</value></data>
   <data name="Emulation.Option.flycast.reicast_anisotropic_filtering.Value.off"><value>מוגבלות</value></data>
   <data name="Emulation.Option.flycast.reicast_texture_filtering"><value>טקסט המסנן</value></data>
   <data name="Emulation.Option.flycast.reicast_texture_filtering.Description"><value>מצב סינון הטקסטורה לשימוש.זה יכול לשמש כדי לכפות מצב מסנן מרקם מסוים על כל המרקם לקבל מראה פריך יותר (או חלק יותר) מאשר Default. Values מלבד Default עלול לגרום לבעיות שונות.</value></data>
@@ -1056,7 +1056,7 @@
   <data name="Emulation.Option.genesisplusgx.genesis_plus_gx_cart_size.Value.1meg"><value>1Mbit</value></data>
   <data name="Emulation.Option.genesisplusgx.genesis_plus_gx_cart_size.Value.2meg"><value>2Mbit</value></data>
   <data name="Emulation.Option.genesisplusgx.genesis_plus_gx_cart_size.Value.4meg"><value>4Mbit</value></data>
-  <data name="Emulation.Option.genesisplusgx.genesis_plus_gx_add_on"><value>CD תוספת (on)MD המונחים: requires Restart</value></data>
+  <data name="Emulation.Option.genesisplusgx.genesis_plus_gx_add_on"><value>CD תוספת (on)MD</value></data>
   <data name="Emulation.Option.genesisplusgx.genesis_plus_gx_add_on.Description"><value>המונחים: to use for CD השמע עם תמיכה Mega Drive/Genesis משחקים.</value></data>
   <data name="Emulation.Option.genesisplusgx.genesis_plus_gx_add_on.Value.auto"><value>אוֹטוֹמָטִי</value></data>
   <data name="Emulation.Option.genesisplusgx.genesis_plus_gx_add_on.Value.sega/mega cd"><value>Sega/Mega CD</value></data>
@@ -1267,7 +1267,7 @@
   <data name="Emulation.Option.genesis_plus_gx_wide.genesis_plus_gx_wide_cart_size.Value.1meg"><value>1Mbit</value></data>
   <data name="Emulation.Option.genesis_plus_gx_wide.genesis_plus_gx_wide_cart_size.Value.2meg"><value>2Mbit</value></data>
   <data name="Emulation.Option.genesis_plus_gx_wide.genesis_plus_gx_wide_cart_size.Value.4meg"><value>4Mbit</value></data>
-  <data name="Emulation.Option.genesis_plus_gx_wide.genesis_plus_gx_wide_add_on"><value>CD תוספת (on)MD המונחים: requires Restart</value></data>
+  <data name="Emulation.Option.genesis_plus_gx_wide.genesis_plus_gx_wide_add_on"><value>CD תוספת (on)MD</value></data>
   <data name="Emulation.Option.genesis_plus_gx_wide.genesis_plus_gx_wide_add_on.Description"><value>המונחים: to use for CD השמע עם תמיכה Mega Drive/Genesis משחקים.</value></data>
   <data name="Emulation.Option.genesis_plus_gx_wide.genesis_plus_gx_wide_add_on.Value.auto"><value>אוֹטוֹמָטִי</value></data>
   <data name="Emulation.Option.genesis_plus_gx_wide.genesis_plus_gx_wide_add_on.Value.sega/mega cd"><value>Sega/Mega CD</value></data>
@@ -1466,11 +1466,11 @@
   <data name="Emulation.Option.genesis_plus_gx_wide.genesis_plus_gx_wide_sms_fm_channel_8_volume.Description"><value>להקטין את נפח Master System FM ערוץ 8</value></data>
   <data name="Emulation.Emulator.kronos.Description"><value>עקבו אחרי Saturn, ST-V</value></data>
   <data name="Emulation.Option.kronos.kronos_force_hle_bios"><value>כוח הכוח HLE BIOS</value></data>
-  <data name="Emulation.Option.kronos.kronos_force_hle_bios.Description"><value>השתמש בסיכון שלך, אנו מספקים תמיכה אמיתית. BIOS. דורש הפעלה מחדש.</value></data>
+  <data name="Emulation.Option.kronos.kronos_force_hle_bios.Description"><value>השתמש בסיכון שלך.</value></data>
   <data name="Emulation.Option.kronos.kronos_force_hle_bios.Value.disabled"><value>מוגבלות</value></data>
   <data name="Emulation.Option.kronos.kronos_force_hle_bios.Value.enabled"><value>המונחים</value></data>
   <data name="Emulation.Option.kronos.kronos_videoformattype"><value>פורמט וידאו</value></data>
-  <data name="Emulation.Option.kronos.kronos_videoformattype.Description"><value>בחר פורמט וידאו עבור פלט.דרוש הפעלה מחדש.</value></data>
+  <data name="Emulation.Option.kronos.kronos_videoformattype.Description"><value>בחר פורמט וידאו עבור פלט.</value></data>
   <data name="Emulation.Option.kronos.kronos_videoformattype.Value.auto"><value>אוֹטוֹמָטִי</value></data>
   <data name="Emulation.Option.kronos.kronos_skipframe"><value>המונחים:</value></data>
   <data name="Emulation.Option.kronos.kronos_skipframe.Description"><value>פיזור X מסגרות מתוך X+1</value></data>
@@ -1485,11 +1485,11 @@
   <data name="Emulation.Option.kronos.kronos_usecache.Value.disabled"><value>מוגבלות</value></data>
   <data name="Emulation.Option.kronos.kronos_usecache.Value.enabled"><value>המונחים</value></data>
   <data name="Emulation.Option.kronos.kronos_use_beetle_saves"><value>תגית: beetle</value></data>
-  <data name="Emulation.Option.kronos.kronos_use_beetle_saves.Description"><value>השתמש באותה הדרך כמו beetle-saturn for Savefiles.דרוש הפעלה מחדש.</value></data>
+  <data name="Emulation.Option.kronos.kronos_use_beetle_saves.Description"><value>השתמש באותה הדרך כמו beetle-saturn for Savefiles.</value></data>
   <data name="Emulation.Option.kronos.kronos_use_beetle_saves.Value.disabled"><value>מוגבלות</value></data>
   <data name="Emulation.Option.kronos.kronos_use_beetle_saves.Value.enabled"><value>המונחים</value></data>
   <data name="Emulation.Option.kronos.kronos_addon_cartridge"><value>Addon Cartridge</value></data>
-  <data name="Emulation.Option.kronos.kronos_addon_cartridge.Description"><value>בחר את מחסנית התוספתן, דורש הפעלה מחדש.</value></data>
+  <data name="Emulation.Option.kronos.kronos_addon_cartridge.Description"><value>בחר את מחסנית התוספתן.</value></data>
   <data name="Emulation.Option.kronos.kronos_addon_cartridge.Value.none"><value>ללא</value></data>
   <data name="Emulation.Option.kronos.kronos_addon_cartridge.Value.1M_extended_ram"><value>1M extended ram</value></data>
   <data name="Emulation.Option.kronos.kronos_addon_cartridge.Value.4M_extended_ram"><value>4M extended ram</value></data>
@@ -1507,7 +1507,7 @@
   <data name="Emulation.Option.kronos.kronos_multitap_port2.Value.disabled"><value>מוגבלות</value></data>
   <data name="Emulation.Option.kronos.kronos_multitap_port2.Value.enabled"><value>המונחים</value></data>
   <data name="Emulation.Option.kronos.kronos_resolution_mode"><value>החלטה</value></data>
-  <data name="Emulation.Option.kronos.kronos_resolution_mode.Description"><value>שינוי ההחלטה דורש הפעלה מחדש.</value></data>
+  <data name="Emulation.Option.kronos.kronos_resolution_mode.Description"><value>שינוי ההחלטה</value></data>
   <data name="Emulation.Option.kronos.kronos_resolution_mode.Value.original"><value>מקור מקורי</value></data>
   <data name="Emulation.Option.kronos.kronos_resolution_mode.Value.2X"><value>2X</value></data>
   <data name="Emulation.Option.kronos.kronos_resolution_mode.Value.4X"><value>4X</value></data>
@@ -1840,7 +1840,7 @@
   <data name="Emulation.Option.smsplus.smsplus_ntsc_filter.Value.monochrome"><value>מונוכרום</value></data>
   <data name="Emulation.Emulator.supermodel.Description"><value>עקבו אחרי Model 3</value></data>
   <data name="Emulation.Option.supermodel.supermodel_initial_nvram_setup"><value>אוטומטי NVRAM התקנה</value></data>
-  <data name="Emulation.Option.supermodel.supermodel_initial_nvram_setup.Description"><value>כאשר לא קיים .srm או Standalone .nv תקף, ראשונית המשחקים הנתמכות עם יחיד, לעמוד לבד, או ללא קישור ולהגדיר את Star Wars Trilogy Arcade לקבינט האחר. EEPROM שדות שומרים על ערכי העשן המאומתים לכך ROM ערכות קיימות לעולם אינן משתנות.מחקו את srm של המשחק כדי לשחזר הגדרה ראשונית זו.תוכן Restart ליישם.</value></data>
+  <data name="Emulation.Option.supermodel.supermodel_initial_nvram_setup.Description"><value>כאשר לא קיים .srm או Standalone .nv תקף, ראשונית המשחקים הנתמכות עם יחיד, לעמוד לבד.</value></data>
   <data name="Emulation.Option.supermodel.supermodel_initial_nvram_setup.Value.enabled"><value>המונחים</value></data>
   <data name="Emulation.Option.supermodel.supermodel_initial_nvram_setup.Value.disabled"><value>מוגבלות</value></data>
   <data name="Emulation.Option.supermodel.supermodel_network_board"><value>מועצת רשת</value></data>
@@ -1865,7 +1865,7 @@
   <data name="Emulation.Option.supermodel.supermodel_network_cabinets.Value.15"><value>15 הקבינטים</value></data>
   <data name="Emulation.Option.supermodel.supermodel_network_cabinets.Value.16"><value>16 הקבינטים</value></data>
   <data name="Emulation.Option.supermodel.supermodel_nvram_settings"><value>NVRAM הגדרות</value></data>
-  <data name="Emulation.Option.supermodel.supermodel_nvram_settings.Description"><value>Let RetroArch לנהל את התמיכה NVRAM הגדרות עבור כל משחק.כאשר מופעל, כל ערך המוצג מוחל בסטארט-אפ ומתגבר על שינויים מאוחרים יותר של תפריט השירות. כאשר מוגבלות, הליבה אינה משנה שדות אלה.הגדרות שנשמרו עבור משחקים אחרים לעולם אינן בשימוש מחדש.</value></data>
+  <data name="Emulation.Option.supermodel.supermodel_nvram_settings.Description"><value>Let RetroArch לנהל את התמיכה NVRAM הגדרות עבור כל משחק.כאשר מופעל, כל ערך המוצג מוחל בסטארט-אפ ומתגבר על שינויים מאוחרים יותר של תפריט השירות. כאשר מוגבלות.</value></data>
   <data name="Emulation.Option.supermodel.supermodel_nvram_settings.Value.disabled"><value>מוגבלות</value></data>
   <data name="Emulation.Option.supermodel.supermodel_nvram_settings.Value.enabled"><value>המונחים</value></data>
   <data name="Emulation.Option.supermodel.supermodel_nvram_bassdx_country"><value>מדינה</value></data>
@@ -3134,7 +3134,7 @@
   <data name="Emulation.Option.supermodel.supermodel_renderer_3d.Value.new3d"><value>New3D (Default)</value></data>
   <data name="Emulation.Option.supermodel.supermodel_renderer_3d.Value.legacy3d"><value>Legacy3D (Experimental)</value></data>
   <data name="Emulation.Option.supermodel.supermodel_legacy_multi_texture"><value>Legacy3D Multi-Texture</value></data>
-  <data name="Emulation.Option.supermodel.supermodel_legacy_multi_texture.Description"><value>השתמש שמונה מפות מרקם עבור Legacy3D decoding במקום להימחק למרקם אחד בלבד חל על Legacy3d ונדרש אפקט לאחר הפעלה מחדש של תוכן.</value></data>
+  <data name="Emulation.Option.supermodel.supermodel_legacy_multi_texture.Description"><value>השתמש שמונה מפות מרקם עבור Legacy3D decoding במקום להימחק למרקם אחד בלבד חל על Legacy3d</value></data>
   <data name="Emulation.Option.supermodel.supermodel_legacy_multi_texture.Value.disabled"><value>מוגבלות</value></data>
   <data name="Emulation.Option.supermodel.supermodel_legacy_multi_texture.Value.enabled"><value>המונחים</value></data>
   <data name="Emulation.Option.supermodel.supermodel_quad_rendering"><value>תגית: Rendering</value></data>
@@ -3164,7 +3164,7 @@
   <data name="Emulation.Option.supermodel.supermodel_timing_overlay.Value.disabled"><value>מוגבלות</value></data>
   <data name="Emulation.Option.supermodel.supermodel_timing_overlay.Value.enabled"><value>המונחים</value></data>
   <data name="Emulation.Option.supermodel.supermodel_upscale_mode"><value>2D Layer Upscal filter</value></data>
-  <data name="Emulation.Option.supermodel.supermodel_upscale_mode.Description"><value>בחרו את הילידים Supermodel מסנן המשמש כדי upscale פנימיים 2D אריח שכבות לפני שהם מוטבעים עם 3D. ברזולוציה מקומית Supermodel תמיד משתמש קרוב יותר. לוקח אפקט לאחר הפעלה מחדש של תוכן.</value></data>
+  <data name="Emulation.Option.supermodel.supermodel_upscale_mode.Description"><value>בחרו את הילידים Supermodel מסנן המשמש כדי upscale פנימיים 2D אריח שכבות לפני שהם מוטבעים עם 3D. ברזולוציה מקומית Supermodel תמיד משתמש קרוב יותר.</value></data>
   <data name="Emulation.Option.supermodel.supermodel_upscale_mode.Value.0"><value>קרוב ביותר</value></data>
   <data name="Emulation.Option.supermodel.supermodel_upscale_mode.Value.1"><value>Biquintic</value></data>
   <data name="Emulation.Option.supermodel.supermodel_upscale_mode.Value.2"><value>בינארי (Default)</value></data>
@@ -3175,7 +3175,7 @@
   <data name="Emulation.Option.supermodel.supermodel_wide_screen.Value.enabled"><value>המונחים</value></data>
   <data name="Emulation.Option.supermodel.supermodel_wide_screen.Value.wide_background"><value>מסך רחב + רקע נרחב</value></data>
   <data name="Emulation.Option.supermodel.supermodel_no_white_flash"><value>תגית: White Flash</value></data>
-  <data name="Emulation.Option.supermodel.supermodel_no_white_flash.Description"><value>לחץ על הבזק לבן בדרך כלל מוצג כאשר משחק disables 3D להפוך. Equivalent to Standalone Supermodelההגדרה של No White Flash דורשת הפעלה מחדש של התוכן.</value></data>
+  <data name="Emulation.Option.supermodel.supermodel_no_white_flash.Description"><value>לחץ על הבזק לבן בדרך כלל מוצג כאשר משחק disables 3D להפוך.</value></data>
   <data name="Emulation.Option.supermodel.supermodel_no_white_flash.Value.disabled"><value>מוגבלות</value></data>
   <data name="Emulation.Option.supermodel.supermodel_no_white_flash.Value.enabled"><value>המונחים</value></data>
   <data name="Emulation.Option.supermodel.supermodel_av_timing"><value>Model 3 מצב תזמון</value></data>
@@ -3227,7 +3227,7 @@
   <data name="Emulation.Option.supermodel.supermodel_brake_output_range.Description"><value>מומלץ רק למשחקים המוכרים כנהג. קנה את הבלם ממצב המנוחה אפסי שלו.ערכים מתחת ל-100% להפחית את הפלט המרבי של פדראלי; ערכים מעל 100% מגיעים לתפוק מלא עם פחות נסיעות פיזיות.</value></data>
   <data name="Emulation.Option.supermodel.supermodel_brake_output_range.Value.75.3"><value>75.3% (00-C0)</value></data>
   <data name="Emulation.Option.supermodel.supermodel_sound_enable"><value>נשמע אמין</value></data>
-  <data name="Emulation.Option.supermodel.supermodel_sound_enable.Description"><value>חיקוי צליל אמין או disable. Disabling נשמע יכול לשפר באופן משמעותי את הביצועים על חומרה איטית. לוקח השפעה לאחר הפעלת תוכן מחדש.</value></data>
+  <data name="Emulation.Option.supermodel.supermodel_sound_enable.Description"><value>חיקוי צליל אמין או disable. Disabling נשמע יכול לשפר באופן משמעותי את הביצועים על חומרה איטית.</value></data>
   <data name="Emulation.Option.supermodel.supermodel_sound_enable.Value.enabled"><value>המונחים</value></data>
   <data name="Emulation.Option.supermodel.supermodel_sound_enable.Value.disabled"><value>מוגבלות</value></data>
   <data name="Emulation.Option.supermodel.supermodel_sound_volume"><value>Sound Volume</value></data>
@@ -3248,7 +3248,7 @@
   <data name="Emulation.Option.supermodel.supermodel_ppc_frequency.Description"><value>התאמת PowerPC CPU תדירות הדיוק של מחזור המסחר עבור ביצועים על חומרה נמוכה מקצה לקצה. "Auto" עוקב אחר שלב המשחק (66/100 / 100166 MHzתגית: a Stepping 2.x משחק: Daytona 2 רץ 166 MHzזה מעל פי שניים CPU העבודה של 70 MHz.Underclocking הוא אחד הביצועים הגדולים ביותר על חומרה חלשה, במחיר של דיוק מחזורי.</value></data>
   <data name="Emulation.Option.supermodel.supermodel_ppc_frequency.Value.auto"><value>רכב (Default)</value></data>
   <data name="Emulation.Option.supermodel.supermodel_emulation_threading"><value>המונחים:</value></data>
-  <data name="Emulation.Option.supermodel.supermodel_emulation_threading.Description"><value>בחר כיצד Supermodel הפצה של עבודות חיקוי על פני מארח CPU חוטים. Multi-threaded מנהלים את לוחות הקול והכונן על חוטי עבודה; Multi-Threaded + GPU כמו כן, חפיפה את חיקוי PowerPC עם עיבוד גרפי.זה בלתי תלוי של הגדרת וידאו מותשת של RetroArch. Restart תוכן ליישם.</value></data>
+  <data name="Emulation.Option.supermodel.supermodel_emulation_threading.Description"><value>בחר כיצד Supermodel הפצה של עבודות חיקוי על פני מארח CPU חוטים. Multi-threaded מנהלים את לוחות הקול והכונן על חוטי עבודה; Multi-Threaded + GPU כמו כן.</value></data>
   <data name="Emulation.Option.supermodel.supermodel_emulation_threading.Value.single"><value>תגית יחיד</value></data>
   <data name="Emulation.Option.supermodel.supermodel_emulation_threading.Value.multi"><value>Multi-threaded</value></data>
   <data name="Emulation.Option.supermodel.supermodel_emulation_threading.Value.multi_gpu"><value>Multi-threaded + GPU (Default)</value></data>

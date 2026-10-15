@@ -44,4 +44,5 @@
   <data name="Emulation.Controller.Category.OtherSimulation"><value>기타 시뮬레이션 주변 장치</value></data>
   <data name="Emulation.Controller.Feedback.Strong"><value>강한 진동</value></data>
   <data name="Emulation.Controller.Feedback.Weak"><value>약한 진동</value></data>
+  <data name="Emulation.Controller.Action.Reload"><value>재장전</value></data>
 </root>

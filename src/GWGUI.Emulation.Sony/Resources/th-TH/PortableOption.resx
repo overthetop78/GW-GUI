@@ -26,14 +26,12 @@
   <data name="Emulation.Option.ppsspp.ppsspp_language.Value.11"><value>ภาษาจีนดั้งเดิม</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_language.Value.12"><value>ภาษาจีนประยุกต์Name</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_psp_model.Label"><value>PSP แบบ</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_backend.Label"><value>โปรแกรมเบื้องหลัง</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_backend.Help"><value>'อัตโนมัติ' จะใช้ตัวขับวิดีโอด้านหน้า แกนหลัก</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_software_rendering.Label"><value>การเรนเดอร์ซอฟต์แวร์</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_software_rendering.Help"><value>ช้า, แม่นยํา แกนหลัก</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_software_rendering.Help"><value>ใช้การเรนเดอร์ด้วยซอฟต์แวร์เพื่อเพิ่มความแม่นยำ โดยต้องใช้กำลังประมวลผลมากขึ้น</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_internal_resolution.Label"><value>ความละเอียดการแสดงผล</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_internal_resolution.Help"><value>เลือกความละเอียดการแสดงผลภายใน</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_mulitsample_level.Label"><value>MSAA การต่อต้านการก่อกบฏ พ.ศ.</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_mulitsample_level.Help"><value>Vulkan เท่านั้น แกนหลัก</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_mulitsample_level.Help"><value>ใช้การลบรอยหยักแบบ MSAA ด้วย Vulkan</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_cropto16x9.Label"><value>ตัด เหลือ 16x9</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_cropto16x9.Help"><value>ตัดขอบบนและล่างเพื่อหาภาพ 16: 9</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_frameskip.Label"><value>กรอบภาพName</value></data>
@@ -46,7 +44,7 @@
   <data name="Emulation.Option.ppsspp.ppsspp_detect_vsync_swap_interval.Label"><value>ตรวจสอบการเปลี่ยนแปลงของเฟรมภาพ</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_detect_vsync_swap_interval.Help"><value>แจ้งให้ทราบล่วงหน้า</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Label"><value>ภาพถ่ายบัฟเฟอร์</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Help"><value>GL/Vulkan เท่านั้น ช้า, เฉื่อยลง, เริ่มใหม่</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Help"><value>GL/Vulkan เท่านั้น ช้า, เฉื่อยลง.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Value.0"><value>ไม่มีบัฟเฟอร์</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Value.1"><value>ถึง 1</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_button_preference.Label"><value>ปุ่มยืนยัน</value></data>

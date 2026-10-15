@@ -54,7 +54,9 @@ public sealed class FloppyDriveConfigurationDialog : Window
         _redirectWrites.Content = LocExtension.Get("Emulation.Storage.Floppy.WriteRedirect");
         _redirectWrites.IsChecked = settings.RedirectWrites;
 
-        var drive = StorageDialogUi.CompactFields((LocExtension.Get(EmulationResourceKeys.DeviceIdentifier), new TextBox { Text = identifier, IsReadOnly = true }), (LocExtension.Get(EmulationResourceKeys.Model), _model));
+        var drive = options.Models.Count > 1
+            ? StorageDialogUi.CompactFields((LocExtension.Get(EmulationResourceKeys.Model), _model))
+            : null;
         var behavior = new StackPanel();
         behavior.Children.Add(StorageDialogUi.CompactFields((LocExtension.Get("Emulation.Storage.Floppy.Speed"), _speed)));
         _writeProtected.Margin = new Thickness(0, 8, 0, 4);
@@ -62,10 +64,14 @@ public sealed class FloppyDriveConfigurationDialog : Window
         behavior.Children.Add(_writeProtected);
         behavior.Children.Add(_redirectWrites);
         var body = new StackPanel();
-        var driveCard = StorageDialogUi.IconCard(IconGlyphs.Memory, LocExtension.Get("Emulation.Storage.Floppy.Drive"), drive);
-        body.Children.Add(options.CanConfigureBehavior
-            ? StorageDialogUi.SideBySide(driveCard, StorageDialogUi.IconCard(IconGlyphs.Settings, LocExtension.Get("Emulation.Input.Behavior"), behavior))
-            : driveCard);
+        var driveCard = drive is null ? null : StorageDialogUi.IconCard(IconGlyphs.Memory, LocExtension.Get("Emulation.Storage.Floppy.Drive"), drive);
+        if (options.CanConfigureBehavior)
+        {
+            var behaviorCard = StorageDialogUi.IconCard(IconGlyphs.Settings, LocExtension.Get("Emulation.Input.Behavior"), behavior);
+            body.Children.Add(driveCard is null ? behaviorCard : StorageDialogUi.SideBySide(driveCard, behaviorCard));
+        }
+        else if (driveCard is not null)
+            body.Children.Add(driveCard);
         foreach (var field in configurationFields ?? [])
         {
             var control = StorageConfigurationFieldFunctions.Create(field, moduleId, settings.Options);

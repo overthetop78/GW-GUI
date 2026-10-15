@@ -53,24 +53,18 @@ internal sealed partial class EmulationModuleSettingsSection
         var machineName = (_machines.SelectedItem as EmulationMachineChoice)?.DisplayName ?? settings.MachineId;
         var cpuName = EmulationSettingsValuePresentationFunctions.DisplayValue(cpu, _module);
         var originalSpeed = originalSpeedField is null ? string.Empty : EmulationSettingsValuePresentationFunctions.DisplayValue(originalSpeedField, _module);
+        var hardwareFields = new[] { cpu, speed, originalSpeedField, precision, fpu }.OfType<EmulationSettingsField>().Select(field => field.Id).ToHashSet(StringComparer.Ordinal);
+        var processorFields = fields.Where(field => !hardwareFields.Contains(field.Id)).Select(CreateControlField).ToArray();
         var page = EmulationSettingsLayout.CpuSettingsPage(new EmulationCpuSettingsContent(
             cpuControl,
             new TextBlock { Text = string.Join(" · ", new[] { machineName, cpuName, originalSpeed }.Where(value => !string.IsNullOrWhiteSpace(value))) },
             precision is null ? null : CreateControlField(precision),
             fpu is null ? null : CreateControlField(fpu),
             originalSpeedField is null ? new EmulationSettingsControlField(LocExtension.Get("Emulation.Cpu.SpeedOriginal"), new TextBlock { Text = originalSpeed }) : CreateControlField(originalSpeedField),
-            speed is { IsEnabled: true } ? speedControl : null));
-        var panel = new StackPanel();
-        panel.Children.Add(page);
-        var hardwareFields = new[] { cpu, speed, originalSpeedField, precision, fpu }.OfType<EmulationSettingsField>().Select(field => field.Id).ToHashSet(StringComparer.Ordinal);
-        foreach (var block in settings.Blocks.Where(block => block.Tab == EmulationMachineTab.Cpu && block.IsVisible))
-        {
-            var extra = block.Fields.Where(field => field.IsVisible && !hardwareFields.Contains(field.Id)).Select(CreateControlField).ToArray();
-            if (extra.Length != 0)
-                panel.Children.Add(EmulationSettingsLayout.IconCard(EmulationSettingsLayout.CompactForm(block.Columns, extra), LocExtension.GetForModule(_module, block.TitleResourceKey), block.Icon ?? string.Empty));
-        }
+            speed is { IsEnabled: true } ? speedControl : null,
+            processorFields));
         ApplySettingsRules(settings);
-        return EmulationSettingsLayout.ScrollPage(panel);
+        return EmulationSettingsLayout.ScrollPage(page);
     }
 
     private UIElement BuildMemorySettingsTab(EmulationMachineSettings settings)

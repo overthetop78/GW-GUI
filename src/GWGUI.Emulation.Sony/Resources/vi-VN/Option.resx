@@ -35,7 +35,7 @@
   <data name="Emulation.Option.swanstation.swanstation_CDROM_ReadThread.Label"><value>Tread đọc CD-ROM</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_ReadThread.Help"><value>Đọc các phân khu CD-ROM ở phía trước, giảm nguy cơ tăng tốc thời gian.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_LoadImagePatches.Label"><value>Áp dụng đắp vá ảnh</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_CDROM_LoadImagePatches.Help"><value>Tự động áp dụng các đắp vá vào đĩa ảnh khi chúng có trong cùng thư mục. Chỉ các đắp vá PPF hiện thời được hỗ trợ với tùy chọn này. Cần thiết lõi được khởi chạy lại để áp dụng.</value></data>
+  <data name="Emulation.Option.swanstation.swanstation_CDROM_LoadImagePatches.Help"><value>Tự động áp dụng các đắp vá vào đĩa ảnh khi chúng có trong cùng thư mục. Chỉ các đắp vá PPF hiện thời được hỗ trợ với tùy chọn này.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_LoadImageToRAM.Label"><value>Nạp trước CD-ROM ảnh tới RAM</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_LoadImageToRAM.Help"><value>Nạp ảnh đĩa vào RAM trước khi bắt đầu mô phỏng. Có thể giảm bớt việc đi lại nếu bạn đang chạy khỏi phần chia sẻ mạng lưới, với giá phải trả là một thời gian bắt đầu lớn hơn. Vì thư viện không cung cấp cách nào để phủ, trình giả lập sẽ xuất hiện để khóa trong khi ảnh được nạp trước.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_PreCacheCHD.Label"><value>Pre-cache CHD hình ảnh đến RAM</value></data>
@@ -51,8 +51,6 @@
   <data name="Emulation.Option.Sony.Value.Interpreter"><value>Trình thông dịch</value></data>
   <data name="Emulation.Option.Sony.Value.CachedInterpreter"><value>Trình thông dịch Cached</value></data>
   <data name="Emulation.Option.Sony.Value.Recompiler"><value>Bộ tổng hợp</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_GPU_Renderer.Label"><value>Trình vẽ GPU</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_GPU_Renderer.Help"><value>Mà trình tạo ra để sử dụng để mô phỏng GPU.</value></data>
   <data name="Emulation.Option.Sony.Value.HardwareOpenGL"><value>Phần cứng (mởGL) Name</value></data>
   <data name="Emulation.Option.Sony.Value.Software"><value>Phần mềm</value></data>
   <data name="Emulation.Option.swanstation.swanstation_GPU_ResolutionScale.Label"><value>Tỷ lệ độ phân giải nội bộ</value></data>
@@ -60,7 +58,7 @@
   <data name="Emulation.Option.swanstation.swanstation_GPU_UseThread.Label"><value>Vẽ đã đọc (phần mềm soft)</value></data>
   <data name="Emulation.Option.swanstation.swanstation_GPU_UseThread.Help"><value>Dùng chỉ thứ hai để vẽ đồ họa. Hiện thời chỉ sẵn sàng cho bộ tạo phần mềm.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_GPU_UseSoftwareRendererForReadbacks.Label"><value>Dùng bộ vẽ phần mềm để đọc ngược lại</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_GPU_UseSoftwareRendererForReadbacks.Help"><value>Chạy phần mềm vẽ dọc theo phần cứng khi đọc dữ liệu ảnh từ VRAM. Một số trò chơi cần điều này để thay đổi chuyển động hoặc chuyển tiếp chiến tranh, hoặc sửa chữa kết cấu bị hư hại. Khởi động lại lõi sau khi thay đổi tùy chọn này.</value></data>
+  <data name="Emulation.Option.swanstation.swanstation_GPU_UseSoftwareRendererForReadbacks.Help"><value>Chạy phần mềm vẽ dọc theo phần cứng khi đọc dữ liệu ảnh từ VRAM. Một số trò chơi cần điều này để thay đổi chuyển động hoặc chuyển tiếp chiến tranh.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_GPU_MSAA.Label"><value>Làm trơn đa thanh</value></data>
   <data name="Emulation.Option.swanstation.swanstation_GPU_MSAA.Help"><value>Dùng phương pháp khử trùng đa chiều để vẽ các vật thể 3 chiều. Có thể làm mịn các cạnh hình chữ nhật trên đa giác với chi phí thấp hơn so với hiệu suất so với tăng tỷ lệ độ phân giải, nhưng có lẽ sẽ gây ra lỗi trong một số trò chơi.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_GPU_TrueColor.Label"><value>Vẽ với độ chính xác đầy đủ màu</value></data>
@@ -141,7 +139,7 @@
   <data name="Emulation.Option.swanstation.swanstation_Display_LineEndOffset.Label"><value>Hiệu số của dòng hiển thị cuối cùng</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Display_LineEndOffset.Help"><value>Các giấy da hoặc vụ mùa ngoài đường ống từ dưới cùng của ảnh được hiển thị.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_MemoryCards_Card1Type.Label"><value>Thẻ nhớ 1 loại</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_MemoryCards_Card1Type.Help"><value>Chọn định dạng thẻ bộ nhớ cho khe 1. Khởi động lại lõi khi thay đổi định dạng. Thẻ chia sẻ và hai tùy chọn thẻ riêng được giữ lại cho các cấu hình cũ, nhưng không hỗ trợ. Định dạng Libretro dùng tập tin .srm. Một lá bài khác được đặt tên sau khi trò chơi sử dụng tập tin .mcd. Hai định dạng này chứa dữ liệu giống hệt nhau. Để chuyển đổi giữa chúng, hãy thay đổi phần mở rộng tập tin và thêm hoặc loại bỏ hậu tố khe _1.</value></data>
+  <data name="Emulation.Option.swanstation.swanstation_MemoryCards_Card1Type.Help"><value>Chọn định dạng thẻ bộ nhớ cho khe 1. Thẻ chia sẻ và hai tùy chọn thẻ riêng được giữ lại cho các cấu hình cũ, nhưng không hỗ trợ. Định dạng Libretro dùng tập tin .srm. Một lá bài khác được đặt tên sau khi trò chơi sử dụng tập tin .mcd. Hai định dạng này chứa dữ liệu giống hệt nhau. Để chuyển đổi giữa chúng, hãy thay đổi phần mở rộng tập tin và thêm hoặc loại bỏ hậu tố khe _1.</value></data>
   <data name="Emulation.Option.Sony.Value.LibretroDefault"><value>Libretro (Mặc định)</value></data>
   <data name="Emulation.Option.Sony.Value.SharedBetweenAllGames"><value>Chia sẻ giữa mọi trò chơi</value></data>
   <data name="Emulation.Option.Sony.Value.SeparateCardPerGameGameCode"><value>Bài riêng cho mỗi trò chơi (luật chơi)</value></data>
@@ -292,7 +290,7 @@
   <data name="Emulation.Option.mednafen_psx.beetle_psx_gte_overclock.Label"><value>GTE overclock</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_gte_overclock.Help"><value>Thực hiện mọi hoạt động của trình xử lý đồ họa GTE trong một chu kỳ CPU. Điều này có thể cải thiện tỉ lệ khung hình một cách đáng kể và làm cho khung thời gian ổn định hơn trong các trò chơi sử dụng GTE nặng.</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_cd_access_method.Label"><value>Phương pháp truy cập CD</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_cd_access_method.Help"><value>Truy cập đồng thời tái tạo phần cứng ban đầu. Việc truy cập tiện lợi có thể làm giảm sự dừng lại trên thiết bị bằng cách lưu trữ chậm. Đang nạp toàn bộ ảnh đĩa vào RAM có thể cải thiện việc tải thời gian trong trò chơi, nhưng trì hoãn việc khởi chạy. Chế độ này có thể gây ra vấn đề khi giới hạn RAM. Các đĩa vật lý dùng quyền truy cập đồng bộ thay vì tải toàn bộ ảnh. Khởi động lại sau khi thay đổi tùy chọn này.</value></data>
+  <data name="Emulation.Option.mednafen_psx.beetle_psx_cd_access_method.Help"><value>Truy cập đồng thời tái tạo phần cứng ban đầu. Việc truy cập tiện lợi có thể làm giảm sự dừng lại trên thiết bị bằng cách lưu trữ chậm. Đang nạp toàn bộ ảnh đĩa vào RAM có thể cải thiện việc tải thời gian trong trò chơi.</value></data>
   <data name="Emulation.Option.Sony.Value.Synchronous"><value>Đồng bộ hoá</value></data>
   <data name="Emulation.Option.Sony.Value.Asynchronous"><value>Tiện thê</value></data>
   <data name="Emulation.Option.Sony.Value.PreCache"><value>Bộ nhớ tạm sẵn</value></data>
@@ -443,7 +441,7 @@
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_gte_overclock.Label"><value>GTE overclock</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_gte_overclock.Help"><value>Thực hiện mọi hoạt động của trình xử lý đồ họa GTE trong một chu kỳ CPU. Điều này có thể cải thiện tỉ lệ khung hình và tạo khung thời gian ổn định hơn trong các trò chơi sử dụng GTE nặng.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_access_method.Label"><value>Phương pháp truy cập CD</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_access_method.Help"><value>Truy cập đồng thời tái tạo phần cứng ban đầu. Việc truy cập tiện lợi có thể làm giảm sự dừng lại trên thiết bị bằng cách lưu trữ chậm. Đang nạp toàn bộ ảnh đĩa vào RAM có thể cải thiện việc tải thời gian trong trò chơi, nhưng trì hoãn việc khởi chạy. Chế độ này có thể gây ra vấn đề khi giới hạn RAM. Các đĩa vật lý dùng quyền truy cập đồng bộ thay vì tải toàn bộ ảnh. Khởi động lại sau khi thay đổi tùy chọn này.</value></data>
+  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_access_method.Help"><value>Truy cập đồng thời tái tạo phần cứng ban đầu. Việc truy cập tiện lợi có thể làm giảm sự dừng lại trên thiết bị bằng cách lưu trữ chậm. Đang nạp toàn bộ ảnh đĩa vào RAM có thể cải thiện việc tải thời gian trong trò chơi.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_fastload.Label"><value>Tốc độ nạp CD</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_fastload.Help"><value>Giá trị cao hơn '2x (mặc định) có thể giảm rất nhiều thời gian tải trong trò chơi, nhưng có thể giới thiệu lỗi thời gian. Một số trò chơi có thể không hoạt động đúng trên một giá trị nhất định.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_skip_bios.Label"><value>Bỏ qua hoạt hình khởi chạy BIOS</value></data>
@@ -454,8 +452,6 @@
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_region.Help"><value>Đặt vùng hậu phương được dùng khi nội dung không thể được phát hiện tự động (v. d. thô. PS-X EXE Tập tin). Các trò chơi dựa trên đĩa vẫn còn sử dụng vùng được nhúng vào đĩa.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_internal_resolution.Label"><value>Độ phân giải GPU nội bộ</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_internal_resolution.Help"><value>Độ phân giải cao hơn « 1x » cải thiện sự chung thủy của mô hình 3D với chi phí tăng yêu cầu hiệu suất. Các yếu tố 2D thường không bị ảnh hưởng bởi thiết lập này.</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_renderer.Label"><value>Vẽ</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_renderer.Help"><value>Chọn cách vẽ ảnh. Người làm phần mềm là chính xác nhất. Nó cần nhiều năng lượng xử lý hơn ở những giải pháp nội bộ cao hơn. Vẽ phần cứng ít chính xác hơn, nhưng nhanh hơn ở độ phân giải cao hơn và hỗ trợ việc cải tiến đồ họa. Phần cứng tự động chọn Vulkan hay OpenGL tùy theo trình điều khiển phim dùng bởi ứng dụng này. Nếu trình điều khiển không hỗ trợ Vulkan hoặc OpenGL 3.3, thì lõi sử dụng việc vẽ phần mềm thay vào đó. Khởi động lại lõi sau khi thay đổi tùy chọn này.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_renderer_software_fb.Label"><value>Bộ đệm khung phần mềm</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_renderer_software_fb.Help"><value>Dùng bộ làm ra phần mềm trong nền tại độ phân giải bản địa trong khi trình dịch phần cứng hiển thị trò chơi. Điều này mô phỏng chuyển động mờ nhạt và sự thay đổi trong FF7 một cách chính xác. Khi bị tắt, OpenGL loại bỏ các hiệu ứng này và Vulkan vẽ chúng trên GPU. Việc tắt tùy chọn này có thể cải thiện tốc độ nhưng cũng có thể gây ra lỗi đồ họa nghiêm trọng. Giữ cho nó hoạt động nếu không chắc chắn.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_color_format.Label"><value>Định dạng màu</value></data>
@@ -485,7 +481,7 @@
   <data name="Emulation.Option.Sony.Value.25Degrees"><value>25 độ</value></data>
   <data name="Emulation.Option.Sony.Value.45Degrees"><value>45 độ</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_video_cable.Label"><value>Bộ sửa ảnh động Analog</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_video_cable.Help"><value>Mô phỏng cáp giữa bàn điều khiển và ti vi, bao gồm bộ mã màu và bộ giải mã của tivi. « Không có trình mô phỏng » hoàn toàn cắt chuỗi và đưa thẳng bộ đệm khung vào màn hình (mặc định). 'RGB (SCART)' là đầu ra sắc nhất PSX có thể sản xuất: các mang ra đa dạng tương tự RGB, Vì vậy, không có gì được điều chỉnh và các đồ tạo tác của mã hóa bên dưới có thể xảy ra - nhưng nó vẫn là một sợi dây tương tự, vì vậy nó được giới hạn bởi bộ khuếch đại video của bàn điều khiển và giai đoạn đầu vào của tập hợp thay vì vô cùng sắc nét. 'S-Video màu nhiều nhưng giữ cho luma và màu sắc riêng biệt, do đó, chi tiết tốt sẽ được giữ sạch. 'Corposite' tổng hợp chúng lên một dây thép, mà bộ giải mã phải kéo tách ra, chi phí bôi đen và cầu vồng màu trên các mô hình tốt đẹp.. 'RF' Mô hình một mô phỏng bên ngoài - bản thân bàn điều khiển có không, chỉ có một DC Jack để cung cấp năng lượng một - thu hẹp Luma thêm và thêm các mô hình nhịp, hệ thống âm thanh làm cho chống lại tàu ngầm màu sắc, đó là mạnh nhất trên màu bão hòa. Làm việc ở bất kỳ độ phân giải nội bộ nào: các mẫu phụ được giải quyết trước khi tín hiệu được tạo ra, vì vậy thiết lập cao hơn hoạt động như siêu ống dẫn vào dây cáp thay vì một tín hiệu rộng hơn, và kết xuất vẫn mang theo chi tiết ngầm mà bộ giải mã sản xuất. Được hỗ trợ bởi các trình dịch Vulkan và OpenGL, và bị bỏ qua bởi trình dịch phần mềm. Trên bộ lọc OpenGL, loại bỏ dấu chấm - mẫu chấm tốt dọc theo cạnh màu ngang - cần thiết GL 4.3 hay GLES 3.1; trên một trình điều khiển cũ hơn, mô phỏng vẫn còn chạy, nhưng « Trung tâm » và 'RF' sẽ hiển thị những dấu chấm đó. Yêu cầu ngay lập tức; không cần khởi động lại.</value></data>
+  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_video_cable.Help"><value>Mô phỏng cáp giữa bàn điều khiển và ti vi, bao gồm bộ mã màu và bộ giải mã của tivi. « Không có trình mô phỏng » hoàn toàn cắt chuỗi và đưa thẳng bộ đệm khung vào màn hình (mặc định). 'RGB (SCART)' là đầu ra sắc nhất PSX có thể sản xuất: các mang ra đa dạng tương tự RGB, Vì vậy, không có gì được điều chỉnh và các đồ tạo tác của mã hóa bên dưới có thể xảy ra - nhưng nó vẫn là một sợi dây tương tự, vì vậy nó được giới hạn bởi bộ khuếch đại video của bàn điều khiển và giai đoạn đầu vào của tập hợp thay vì vô cùng sắc nét. 'S-Video màu nhiều nhưng giữ cho luma và màu sắc riêng biệt, do đó, chi tiết tốt sẽ được giữ sạch. 'Corposite' tổng hợp chúng lên một dây thép, mà bộ giải mã phải kéo tách ra, chi phí bôi đen và cầu vồng màu trên các mô hình tốt đẹp.. 'RF' Mô hình một mô phỏng bên ngoài - bản thân bàn điều khiển có không, chỉ có một DC Jack để cung cấp năng lượng một - thu hẹp Luma thêm và thêm các mô hình nhịp, hệ thống âm thanh làm cho chống lại tàu ngầm màu sắc, đó là mạnh nhất trên màu bão hòa. Làm việc ở bất kỳ độ phân giải nội bộ nào: các mẫu phụ được giải quyết trước khi tín hiệu được tạo ra, vì vậy thiết lập cao hơn hoạt động như siêu ống dẫn vào dây cáp thay vì một tín hiệu rộng hơn, và kết xuất vẫn mang theo chi tiết ngầm mà bộ giải mã sản xuất. Được hỗ trợ bởi các trình dịch Vulkan và OpenGL, và bị bỏ qua bởi trình dịch phần mềm. Trên bộ lọc OpenGL, loại bỏ dấu chấm - mẫu chấm tốt dọc theo cạnh màu ngang - cần thiết GL 4.3 hay GLES 3.1; trên một trình điều khiển cũ hơn, mô phỏng vẫn còn chạy, nhưng « Trung tâm » và 'RF' sẽ hiển thị những dấu chấm đó. Yêu cầu ngay lập tức.</value></data>
   <data name="Emulation.Option.Sony.Value.NoSimulation"><value>Không mô phỏng</value></data>
   <data name="Emulation.Option.Sony.Value.RGBSCART"><value>RGB (SCART)</value></data>
   <data name="Emulation.Option.Sony.Value.SVideo"><value>S-Video</value></data>
@@ -770,9 +766,7 @@
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_nostalls.Label"><value>Tắt CPU/GTE Stalls</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_nostalls.Help"><value>Sẽ làm cho một số trò chơi chạy quá nhanh. Nên được vô hiệu hóa trong hầu hết các trường hợp. Chỉ thông dịch viên thôi.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_fast_boot.Label"><value>Khởi động nhanh</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_fast_boot.Help"><value>Bỏ qua hoạt hình khởi động BIOS. Yêu cầu khởi động lại.</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_renderer.Label"><value>Vẽ</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_renderer.Help"><value>Người làm phần cứng API, hay người dịch phần mềm. Chuyển đổi sang hoặc từ phần mềm áp dụng cho việc bay; chuyển đổi giữa phần cứng APIs có tác động khi nội dung được khởi chạy lại.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_fast_boot.Help"><value>Bỏ qua hoạt hình khởi động BIOS.</value></data>
   <data name="Emulation.Option.Sony.Value.OpenGLHardware"><value>OpenGL (phần mềm giả)</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_upscale_multiplier.Label"><value>Độ phân giải nội bộ</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_upscale_multiplier.Help"><value>Độ phân giải vẽ bên trong cho bộ tạo phần cứng. Cũng cân ô khung bộ đệm. Xác nhận trên máy bay.</value></data>
@@ -809,8 +803,6 @@
   <data name="Emulation.Option.pcee2.pcsx2_fxaa.Help"><value>Thuốc giảm đau rẻ tiền.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_cas_mode.Label"><value>Điều chỉnh sự tương phản sắc bén</value></data>
   <data name="Emulation.Option.Sony.Value.SharpenOnly"><value>Chỉ mài sắc</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_audio_buffer_ms.Label"><value>Bộ đệm âm thanh</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_audio_buffer_ms.Help"><value>Bao nhiêu âm thanh trình giả lập giữ phía trước giao diện điều khiển. Nhiều hơn trong số đó chạy ra ngoài một cái chuồng mà nếu không sẽ được nghe như là một sự gián đoạn trong âm thanh, với chi phí của rất nhiều chậm trễ trước khi bạn nghe thấy bất cứ điều gì. Mặc định của PCSX2 là 50 ms, giả sử nó đang cung cấp cho một thiết bị âm thanh trực tiếp hơn là một giao diện điều khiển kéo một khi khung hình.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_frame_limiter.Label"><value>Giới hạn khung</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_frame_limiter.Help"><value>Cái gì giữ cho máy giả lập chạy hết tốc lực. Phía trước để lại tốc độ RetroArch, mà ga bằng cách làm cho lõi đợi âm thanh nó đưa qua. Bộ nội bộ sử dụng trình hạn chế PCSX2 của riêng mình - cho một thiết bị mà chờ đợi không bao giờ xảy ra, bởi vì trình điều khiển âm thanh chạy chậm thay vì chặn lại, và sự biến đổi tốc độ của chính trình giả lập sau đó đạt đến màn hình là bước đi không đều đặn.</value></data>
   <data name="Emulation.Option.Sony.Value.FrontendRetroArch"><value>Frontend (RetroArch)</value></data>
@@ -821,13 +813,13 @@
   <data name="Emulation.Option.pcee2.pcsx2_aspect_ratio.Label"><value>Tỷ lệ hình thể</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_aspect_ratio.Help"><value>Báo cáo tự động 16:9 khi các vá màn hình rộng được bật, còn 4:3 thì khác.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_multitap.Label"><value>Đa thức</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_multitap.Help"><value>Bật trình đa ứng dụng cho tới 8 bộ điều khiển. Thứ tự người chơi theo các khe cắm vật lý (tập 1: 1- 1- chiều, rồi cổng 2: 2A-2D). Khởi động lại.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_multitap.Help"><value>Bật trình đa ứng dụng cho tới 8 bộ điều khiển. Thứ tự người chơi theo các khe cắm vật lý (tập 1: 1- 1- chiều.</value></data>
   <data name="Emulation.Option.Sony.Value.Disabled2Players"><value>Tắt (2 người chơi)</value></data>
   <data name="Emulation.Option.Sony.Value.Port15Players"><value>Cổng 1 (4 người chơi)</value></data>
   <data name="Emulation.Option.Sony.Value.Port25Players"><value>Cổng 2 (4 người chơi)</value></data>
   <data name="Emulation.Option.Sony.Value.BothPorts8Players"><value>Cả hai cổng (1 người chơi)</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_lightgun.Label"><value>Súng ánh sáng (GunCon 2)</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_lightgun.Help"><value>Đặt một Namco GunCon 2 trên cổng USB, với súng ngắn giao diện điều khiển (hoặc con chuột được vẽ là súng ngắn) ở cổng điều khiển tương ứng. Yêu cầu khởi động lại.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_lightgun.Help"><value>Đặt một Namco GunCon 2 trên cổng USB.</value></data>
   <data name="Emulation.Option.Sony.Value.USBPort1"><value>Cổng USB 1</value></data>
   <data name="Emulation.Option.Sony.Value.USBPort2"><value>Cổng USB 2</value></data>
   <data name="Emulation.Option.Sony.Value.BothPorts"><value>Cả hai cổng</value></data>
@@ -852,18 +844,18 @@
   <data name="Emulation.Option.pcee2.pcsx2_ee_cycle_skip.Label"><value>Bỏ qua vòng quay EE</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_ee_cycle_skip.Help"><value>Nó tạo ra các chu kỳ EE. Giúp một số trò chơi với hoạt động VU cao cấp, phá hỏng những trò khác.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_cpu_recompiler.Label"><value>Bộ tổng hợp CPU (JIT)</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_cpu_recompiler.Help"><value>Bật hay tắt khả năng phục hồi cho mục đích chẩn đoán. Khi được bật, EE, IOP, VU0 và VU1 sử dụng nhanh JIT recomiration. Đây là điều mặc định. Khi bị tắt, mỗi CPU sử dụng cách giải thích chậm hơn. Tùy chọn này giúp chẩn đoán lỗi JIT: lỗi xảy ra với khả năng phục hồi lại bị tắt có một nguyên nhân khác. Bốn công tắc CPU cá nhân bên dưới chỉ áp dụng khi bạn bật tùy chọn chủ này. Khởi động lại sau khi thay đổi tùy chọn này.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_cpu_recompiler.Help"><value>Bật hay tắt khả năng phục hồi cho mục đích chẩn đoán. Khi được bật, EE, IOP, VU0 và VU1 sử dụng nhanh JIT recomiration. Đây là điều mặc định. Khi bị tắt.</value></data>
   <data name="Emulation.Option.Sony.Value.EnabledJITDefault"><value>Bật (JIT, mặc định)</value></data>
   <data name="Emulation.Option.Sony.Value.DisabledInterpreter"><value>Tắt (bên trong)</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_rec_ee.Label"><value>- EE Recomiler</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_rec_ee.Help"><value>Chẩn đoán. Chỉ cần tắt máy Emotion Engine (EE) trong khi để lại những cái khác, để chất tái tạo gây ra một vụ tai nạn. Yêu cầu khởi động lại.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_rec_ee.Help"><value>Chẩn đoán. Chỉ cần tắt máy Emotion Engine (EE) trong khi để lại những cái khác.</value></data>
   <data name="Emulation.Option.Sony.Value.EnabledDefault"><value>Bật (Mặc định)</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_rec_iop.Label"><value>- IOP Recomiler</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_rec_iop.Help"><value>Chẩn đoán. Chỉ cần tắt máy IOP (R3000) trong khi để lại những cái khác, để chất tái tạo gây ra một vụ tai nạn. Yêu cầu khởi động lại.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_rec_iop.Help"><value>Chẩn đoán. Chỉ cần tắt máy IOP (R3000) trong khi để lại những cái khác.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_rec_vu0.Label"><value>- Phục hồi VU0</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_rec_vu0.Help"><value>Chẩn đoán. Tắt máy vi mạch VU0 microVU trong khi để lại những cái còn lại, để chất tái tạo gây ra một tai nạn. Yêu cầu khởi động lại.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_rec_vu0.Help"><value>Chẩn đoán. Tắt máy vi mạch VU0 microVU trong khi để lại những cái còn lại.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_rec_vu1.Label"><value>- Phục hồi VU1</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_rec_vu1.Help"><value>Chẩn đoán. Tắt máy vi mạch VU1 microVU trong khi để lại những cái còn lại, cho chất tái tạo gây ra tai nạn. Yêu cầu khởi động lại.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_rec_vu1.Help"><value>Chẩn đoán. Tắt máy vi mạch VU1 microVU trong khi để lại những cái còn lại.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_memcard_slot1_enable.Label"><value>Bật dấu chấm 1</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_memcard_slot1_enable.Help"><value>Bật thẻ nhớ Snot 1 PS2. Thay đổi áp dụng ngay khi nội dung đang chạy.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_memcard_slot2_enable.Label"><value>Bật Slot 2</value></data>
@@ -914,8 +906,6 @@
   <data name="Emulation.Option.Sony.Value.AllTimers"><value>Tất cả Tim</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_clocks_scale.Label"><value>Tỷ lệ đồng hồ</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_clocks_scale.Help"><value>Phóng tốc độ đồng hồ PS3.</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_renderer.Label"><value>Vẽ</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_renderer.Help"><value>Vulkan Vẽ trên giao diện điều khiển Vulkan thiết bị và tay nó mỗi khung hoàn thành như một hình ảnh; khi giao diện điều khiển không chạy của nó Vulkan Trình điều khiển phim, khung được sao chép lại qua bộ nhớ. OpenGL vẽ thẳng vào ngữ cảnh OpenGL của giao diện điều khiển</value></data>
   <data name="Emulation.Option.Sony.Value.NullNoVideo"><value>Nell (không có phim)</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_frame_limit.Label"><value>Giới hạn khung</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_frame_limit.Help"><value>Tỷ lệ khung cao nhất mà trò chơi có thể chạy. Tự động là tần số VBlink Frequency, như trong RPCS3; PS3 người bản địa thay đổi cách PS3 làm; off cho phép trò chơi không chờ đợi PS3 của mình tự tươi tỉnh quá nhanh.</value></data>
@@ -992,7 +982,7 @@
   <data name="Emulation.Option.rpcs3.rpcs3_driver_wakeup_delay.Label"><value>Trễ trình điều khiển Wake-Up</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_driver_wakeup_delay.Help"><value>Trình điều khiển thức dậy trễ trong phần triệu giây. 0 theo mặc định, như trong RPCS3; tăng nó chỉ khi một trò chơi cần thiết.</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_vblank_rate.Label"><value>Tần số VBlak</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_vblank_rate.Help"><value>Tỷ lệ cập nhật PS3 ở Hz. Nó cũng là tỷ lệ khung mà lõi yêu cầu RetroArch, mà có hiệu quả khi nội dung được nạp; trò chơi có thể chạy trên 60 FPS cần một màn hình làm tươi tỉnh nhanh như vậy.</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_vblank_rate.Help"><value>Đặt tần số quét được mô phỏng. Chế độ danh sách tương thích tăng gấp đôi tần số này cho các trò chơi được hỗ trợ.</value></data>
   <data name="Emulation.Option.Sony.Value.50HzPAL"><value>50 Hz (PAL)</value></data>
   <data name="Emulation.Option.Sony.Value.60HzNTSC"><value>60 Hz (NTSC)</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_thread_scheduler.Label"><value>Bộ lập lịch Thread</value></data>
@@ -1074,8 +1064,6 @@
   <data name="Emulation.Option.rpcs3.rpcs3_frame_pacing.Label"><value>Comment</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_frame_pacing.Help"><value>Những gì các khung của trò chơi được thời gian bởi. Đồng hồ giả lập là RPCS3 của riêng mình, như trong số RPCS3. RetroArchngười cho trò chơi một PS3 để cập nhật mỗi khung RetroArch chương trình, như vậy nhanh chóng tua nhanh tốc độ các trò chơi lên và trò chơi chạy ở mức tần số VBberk khi RetroArch cho thấy rằng nhiều khung hình một giây; với Vulkan bộ trình bày nó hiện đang bỏ qua khung.</value></data>
   <data name="Emulation.Option.Sony.Value.EmulatorClock"><value>Đồng hồ giả lập</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_savedata_slot.Label"><value>Lưu Sổ tay dữ liệu</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_savedata_slot.Help"><value>Một trò chơi PS3 hiển thị một danh sách các dữ liệu lưu của nó và cho phép người chơi chọn. 'Pick từ danh sách' hiển thị danh sách đó trong hình ảnh trò chơi, để được sử dụng với bộ điều khiển. Một số có các lựa chọn cốt lõi cho bạn thay vào đó: lưu ghi đè mục này tại vị trí này trong danh sách trò chơi, hoặc làm cho một tiết kiệm mới khi danh sách ngắn hơn; tải mục này ở vị trí đó, và không tìm thấy gì khi liệt kê là ngắn hơn. 0 là mục nhập đầu tiên. Những trò chơi có thể tự cứu lấy mình không cho thấy một danh sách, vì vậy điều này không áp dụng cho họ.</value></data>
   <data name="Emulation.Option.Sony.Value.PickFromList"><value>Chọn trong danh sách</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_master_volume.Label"><value>Âm lượng bậc thầy</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_master_volume.Help"><value>Tỷ lệ âm thanh cao.</value></data>
@@ -1151,7 +1139,7 @@
   <data name="Emulation.Option.Sony.Setting.Fastcdvd.Help"><value>Nhanh CD/DVD Truy cập/tìm kiếm giờ. Một nắm nhỏ của trò chơi sẽ có vấn đề tương thích với việc bật.</value></data>
   <data name="Emulation.Option.Sony.Setting.SharedMemoryCards.Help"><value>Dùng thẻ nhớ theo ý riêng hay chia sẻ.</value></data>
   <data name="Emulation.Option.Sony.Setting.EnableCheats.Label"><value>Bật mã gian lận trò chơi</value></data>
-  <data name="Emulation.Option.Sony.Setting.EnableCheats.Help"><value>Đọc mã trò chơi gian lận từ tập tin trong thư mục đã chọn. Bắt đầu lại tiến trình mô phỏng sau khi chọn thư mục khác.</value></data>
+  <data name="Emulation.Option.Sony.Setting.EnableCheats.Help"><value>Đọc mã trò chơi gian lận từ tập tin trong thư mục đã chọn.</value></data>
   <data name="Emulation.Option.Sony.Setting.HintLanguageUnlock.Label"><value>Bỏ khoá ngôn ngữ trò chơi bổ sung</value></data>
   <data name="Emulation.Option.Sony.Setting.HintLanguageUnlock.Help"><value>Nếu bật, sẽ tìm kiếm trong cơ sở dữ liệu nội bộ để tìm các tùy chọn khoá ngôn ngữ. Ví dụ: ép buộc người Nhật dịch sang tiếng Anh, mở rộng thêm ngôn ngữ châu Âu, v.v...</value></data>
   <data name="Emulation.Option.Sony.Setting.Dev9Hdd.Help"><value>Hãy phân tích SPEED Mở rộng ATA Ổ cứng. Hình ảnh ở 'pcsx2/DEV9hdd.raw« trong thư mục hệ thống giao diện điều khiển » và được tạo lần đầu tiên tại kích cỡ cấu hình.</value></data>
@@ -1233,7 +1221,7 @@
   <data name="Emulation.Option.Sony.Value.MergeTargets"><value>Nhập mục tiêu</value></data>
   <data name="Emulation.Option.Sony.Setting.DisableDepthConversion.Label"><value>Tắt chuyển đổi bộ đệm sâu</value></data>
   <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Label"><value>Dùng cơ sở dữ liệu trò chơi ngoài trời</value></data>
-  <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Help"><value>Cần thiết bộ làm phần cứng và vẽ bằng tay sửa chữa. Nạp cơ sở dữ liệu tương thích với trò chơi đã chọn, hoặc để trống tập tin để dùng cơ sở dữ liệu đã xây dựng. Chạy lại cấu hình sau khi thay đổi thiết lập này.</value></data>
+  <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Help"><value>Cần thiết bộ làm phần cứng và vẽ bằng tay sửa chữa. Nạp cơ sở dữ liệu tương thích với trò chơi đã chọn.</value></data>
   <data name="Emulation.Option.Sony.Setting.FramebufferConversion.Label"><value>Chuyển đổi bộ đệm khung vẽ</value></data>
   <data name="Emulation.Option.Sony.Setting.DisablePartialInvalidation.Label"><value>Tắt nguồn phần không hợp lệ</value></data>
   <data name="Emulation.Option.Sony.Setting.GpuPaletteConversion.Label"><value>Tải bảng chọn GPU</value></data>
@@ -1274,4 +1262,18 @@
   <data name="Emulation.Option.Sony.Setting.LineToQuad.Help" xml:space="preserve"><value>Một số trò chơi (e.g. Doom, Hexen, Soul Blade, etc.) vẽ các đường ngang bằng cách kéo dài những tam giác cao một chiều trên màn hình, được giải phóng như một hàng điểm ảnh trên phần cứng gốc. Việc hack này phát hiện những hình tam giác nhỏ và chuyển đổi chúng thành bốn cạnh khi cần thiết, cho phép hiển thị chúng đúng trên các trình dịch phần cứng và ở mức cao hơn độ phân giải nội bộ. Cần thiết cho một số tiêu đề (v. d. Lực lượng tối, Công tước Nukem) nhưng nếu không thì có thể giới thiệu các lỗi đồ họa. Để lại tại 'Default' nếu không chắc chắn.</value></data>
   <data name="Emulation.Option.Sony.Setting.DynarecEventCycles.Label" xml:space="preserve"><value>Dynarec DMA/GPU/MDEC/Nghi thức canh giờ</value></data>
   <data name="Emulation.Option.Sony.Setting.DynarecEventCycles.Help" xml:space="preserve"><value>Chu kỳ tối đa chạy bởi CPU trước khi a GPU/DMA/MDEC/Bật tùy chọn này thì đồng hồ hẹn giờ được bật, số cao hơn sẽ nhanh hơn, có ít tác động hơn nhiều đến trình thông dịch bọ cánh cứng hơn gấp trăm lần.</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_aspect_ratio.Help"><value>Đặt định dạng màn hình được thông báo cho trò chơi. Chỉ một số trò chơi hỗ trợ 4:3.</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_disk_cache_size.Label"><value>Dung lượng bộ nhớ đệm trên đĩa</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_disk_cache_size.Help"><value>Giới hạn dung lượng đĩa dành cho bộ nhớ đệm tạm của trò chơi. Trò chơi tạo lại dữ liệu đệm đã xóa, có thể khiến lần khởi động tiếp theo chậm hơn.</value></data>
+  <data name="Emulation.Option.pokket.Link"><value>Kết nối hồng ngoại</value></data>
+  <data name="Emulation.Option.pokket.Layout"><value>Bố trí các màn hình được kết nối</value></data>
+  <data name="Emulation.Option.pokket.Audio"><value>Nguồn âm thanh của các thiết bị được kết nối</value></data>
+  <data name="Emulation.Option.pokket.Identity"><value>Mã phần cứng của thiết bị B</value></data>
+  <data name="Emulation.Option.pokket.Horizontal"><value>Cạnh nhau</value></data>
+  <data name="Emulation.Option.pokket.Vertical"><value>Xếp theo chiều dọc</value></data>
+  <data name="Emulation.Option.pokket.SelectUnitA"><value>Điều khiển thiết bị A</value></data>
+  <data name="Emulation.Option.pokket.SelectUnitB"><value>Điều khiển thiết bị B</value></data>
+  <data name="Emulation.Option.pokket.Help"><value>Lắp thẻ vào mỗi thiết bị để bật kết nối hồng ngoại.</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_audio_format.Label"><value>Bố trí loa</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_audio_format.Help"><value>Đặt cách bố trí loa được cung cấp cho trò chơi. Trò chơi chọn cách phối âm dựa trên bố trí này. Âm thanh đầu ra còn phụ thuộc vào thiết bị âm thanh Windows đã chọn.</value></data>
 </root>

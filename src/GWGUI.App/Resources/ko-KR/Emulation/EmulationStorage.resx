@@ -80,4 +80,6 @@
   <data name="Emulation.Storage.MemoryCard.ImageRequired"><value>기존 카드 파일을 선택하십시오.</value></data>
   <data name="Emulation.Storage.MemoryCard.InvalidSize"><value>카드 파일에는 잘못된 크기가 있습니다.</value></data>
   <data name="Emulation.Storage.MemoryCard.InvalidFormat"><value>이 장치에 의해 지원되는 파일 형식을 선택하십시오.</value></data>
+  <data name="Emulation.Storage.Cache.Unlimited"><value>제한 없음</value></data>
+  <data name="Emulation.Storage.Cache.ClearOnGameClose"><value>게임 종료 시 비우기</value></data>
 </root>

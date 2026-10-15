@@ -26,14 +26,12 @@
   <data name="Emulation.Option.ppsspp.ppsspp_language.Value.11"><value>Kiinalainen perinteinen</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_language.Value.12"><value>Kiina Yksinkertaistettu</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_psp_model.Label"><value>PSP-malli</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_backend.Label"><value>Taustaosa</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_backend.Help"><value>"Automaattinen" käyttää eturivin videoajuria. Ydin</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_software_rendering.Label"><value>Software Rendering</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_software_rendering.Help"><value>Hitaasti, tarkasti. Ydin</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_software_rendering.Help"><value>Käytä ohjelmistopohjaista renderöintiä tarkkuuden parantamiseksi suuremmalla laskentatehon tarpeella.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_internal_resolution.Label"><value>Renderointiresoluutio</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_internal_resolution.Help"><value>Valitse sisäinen renderointiresoluutio.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_mulitsample_level.Label"><value>MSAA Anti-aliasointi</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_mulitsample_level.Help"><value>Vain Vulkan. Ydin</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_mulitsample_level.Help"><value>Käytä MSAA-reunanpehmennystä Vulkanin avulla.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_cropto16x9.Label"><value>Sato 16x9</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_cropto16x9.Help"><value>Rajaa ylä- ja alareunat saada 16:9 kuva.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_frameskip.Label"><value>Frameskip</value></data>
@@ -46,7 +44,7 @@
   <data name="Emulation.Option.ppsspp.ppsspp_detect_vsync_swap_interval.Label"><value>Tunnista kuvanopeuden muutokset</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_detect_vsync_swap_interval.Help"><value>Ilmoita rintamalle.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Label"><value>Puskurigrafiikan komennot</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Help"><value>Vain GL/Vulkan, hitaampi, vähemmän viivettä, käynnistä uudelleen.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Help"><value>Vain GL/Vulkan, hitaampi, vähemmän viivettä.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Value.0"><value>Ei puskuria</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Value.1"><value>Enintään 1</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_button_preference.Label"><value>Vahvistuspainike</value></data>

@@ -68,11 +68,12 @@ internal static class OptionConstants
     internal const string CPUExecutionModeRecompiler = "Recompiler";
     internal static readonly string CPUExecutionModeDefaultValue = OptionValueFunctions.ToNative(CPUExecutionMode.Recompiler);
     internal const string GPURendererKey = "swanstation_GPU_Renderer";
-    internal const string GPURendererLabelResource = "Emulation.Option.swanstation.swanstation_GPU_Renderer.Label";
-    internal const string GPURendererHelpResource = "Emulation.Option.swanstation.swanstation_GPU_Renderer.Help";
     internal const string GPURendererOpenGL = "OpenGL";
+    internal const string GPURendererAutomatic = "Auto";
+    internal const string GPURendererDirect3D11 = "D3D11";
+    internal const string GPURendererVulkan = "Vulkan";
     internal const string GPURendererSoftware = "Software";
-    internal static readonly string GPURendererDefaultValue = OptionValueFunctions.ToNative(GPURenderer.OpenGL);
+    internal static readonly string GPURendererDefaultValue = OptionValueFunctions.ToNative(GPURenderer.Automatic);
     internal const string GPUResolutionScaleKey = "swanstation_GPU_ResolutionScale";
     internal const string GPUResolutionScaleLabelResource = "Emulation.Option.swanstation.swanstation_GPU_ResolutionScale.Label";
     internal const string GPUResolutionScaleHelpResource = "Emulation.Option.swanstation.swanstation_GPU_ResolutionScale.Help";

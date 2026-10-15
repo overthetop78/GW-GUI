@@ -53,7 +53,7 @@ internal sealed class AudioOutputController : IDisposable
             if (_stopped || _paused || _muted) return;
             if (chunk.SampleRate != _sampleRate) Restart(chunk.SampleRate);
             if (!EnsureStarted()) return;
-            var samples = AudioOutputFunctions.ApplyVolume(chunk.InterleavedStereo.Span, _volume, ref _volumeBuffer);
+            var samples = AudioOutputFunctions.ApplyVolume(chunk.InterleavedSamples.Span, _volume, ref _volumeBuffer);
             try { _output!.Write(samples); }
             catch
             {

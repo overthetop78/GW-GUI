@@ -51,8 +51,6 @@
   <data name="Emulation.Option.Sony.Value.Interpreter"><value>Interpretor</value></data>
   <data name="Emulation.Option.Sony.Value.CachedInterpreter"><value>Interpretor cache</value></data>
   <data name="Emulation.Option.Sony.Value.Recompiler"><value>Recompilator</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_GPU_Renderer.Label"><value>Renderer GPU</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_GPU_Renderer.Help"><value>Care randator pentru a utiliza pentru a emula GPU.</value></data>
   <data name="Emulation.Option.Sony.Value.HardwareOpenGL"><value>Hardware (OpenGL)</value></data>
   <data name="Emulation.Option.Sony.Value.Software"><value>Programe</value></data>
   <data name="Emulation.Option.swanstation.swanstation_GPU_ResolutionScale.Label"><value>Scala de rezoluție internă</value></data>
@@ -60,7 +58,7 @@
   <data name="Emulation.Option.swanstation.swanstation_GPU_UseThread.Label"><value>Randament filetat (software)</value></data>
   <data name="Emulation.Option.swanstation.swanstation_GPU_UseThread.Help"><value>Folosește un al doilea fir pentru desen grafic. În prezent este disponibil doar pentru randatorul de software.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_GPU_UseSoftwareRendererForReadbacks.Label"><value>Utilizați Renderer software-ul pentru citire</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_GPU_UseSoftwareRendererForReadbacks.Help"><value>Rulați redarea software-ului alături de randarea hardware-ului atunci când citiți datele imaginii din VRAM. Unele jocuri au nevoie de acest lucru pentru înceţoşarea mişcării sau tranziţii de luptă, sau pentru a repara texturi deteriorate. Reporniți nucleul după schimbarea acestei opțiuni.</value></data>
+  <data name="Emulation.Option.swanstation.swanstation_GPU_UseSoftwareRendererForReadbacks.Help"><value>Rulați redarea software-ului alături de randarea hardware-ului atunci când citiți datele imaginii din VRAM. Unele jocuri au nevoie de acest lucru pentru înceţoşarea mişcării sau tranziţii de luptă.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_GPU_MSAA.Label"><value>Multiprobe Antialiasing</value></data>
   <data name="Emulation.Option.swanstation.swanstation_GPU_MSAA.Help"><value>Folosește mai multe probe anti-aliasing pentru redarea de obiecte 3D. Poate netezi marginile zimțate pe poligoni la un cost mai mic pentru performanță în comparație cu creșterea scalei de rezoluție, dar poate fi mult mai probabil să provoace erori de redare în unele jocuri.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_GPU_TrueColor.Label"><value>Render cu precizie de culoare completa</value></data>
@@ -141,7 +139,7 @@
   <data name="Emulation.Option.swanstation.swanstation_Display_LineEndOffset.Label"><value>Deplasarea ultimei linii afișate</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Display_LineEndOffset.Help"><value>Pad-uri sau culturi off linii din partea de jos a imaginii afișate.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_MemoryCards_Card1Type.Label"><value>Card de memorie 1 Tip</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_MemoryCards_Card1Type.Help"><value>Alegeți formatul cardului de memorie pentru slot 1. Reporniți miezul atunci când se schimbă formatele. Cărţile partajate şi cele două opţiuni cu cărţi separate sunt păstrate pentru configuraţii vechi, dar nu sunt acceptate. Formatul Libretro folosește fișiere .srm. O carte separată numită după joc folosește fișiere .mcd. Aceste două formate conţin date identice. Pentru a converti între ele, modificați extensia de fișier și adăugați sau eliminați sufixul slotului _1.</value></data>
+  <data name="Emulation.Option.swanstation.swanstation_MemoryCards_Card1Type.Help"><value>Alegeți formatul cardului de memorie pentru slot 1. Cărţile partajate şi cele două opţiuni cu cărţi separate sunt păstrate pentru configuraţii vechi, dar nu sunt acceptate. Formatul Libretro folosește fișiere .srm. O carte separată numită după joc folosește fișiere .mcd. Aceste două formate conţin date identice. Pentru a converti între ele, modificați extensia de fișier și adăugați sau eliminați sufixul slotului _1.</value></data>
   <data name="Emulation.Option.Sony.Value.LibretroDefault"><value>Libretro (Default)</value></data>
   <data name="Emulation.Option.Sony.Value.SharedBetweenAllGames"><value>Partajat între toate jocurile</value></data>
   <data name="Emulation.Option.Sony.Value.SeparateCardPerGameGameCode"><value>Card separat per joc (cod de joc)</value></data>
@@ -292,7 +290,7 @@
   <data name="Emulation.Option.mednafen_psx.beetle_psx_gte_overclock.Label"><value>GTE Overclock</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_gte_overclock.Help"><value>Executaţi fiecare operaţiune a coprocesorului GTE de grafică într-un singur ciclu CPU. Acest lucru poate îmbunătăți foarte mult rata de cadru și face calendarul cadru mai stabil în jocuri care folosesc GTE puternic.</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_cd_access_method.Label"><value>Metoda de acces CD</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_cd_access_method.Help"><value>Acces sincron reproduce hardware-ul original. Acces asincronic poate reduce pauzele pe dispozitive cu stocare lentă. Încărcare întreaga imagine disc în RAM poate îmbunătăți timpii de încărcare în timpul jocului, dar întârzie pornire. Acest mod poate cauza probleme atunci când RAM este limitat. Discurile fizice folosesc acces sincron în loc să încarce întreaga imagine. Repornire după schimbarea acestei opțiuni.</value></data>
+  <data name="Emulation.Option.mednafen_psx.beetle_psx_cd_access_method.Help"><value>Acces sincron reproduce hardware-ul original. Acces asincronic poate reduce pauzele pe dispozitive cu stocare lentă. Încărcare întreaga imagine disc în RAM poate îmbunătăți timpii de încărcare în timpul jocului.</value></data>
   <data name="Emulation.Option.Sony.Value.Synchronous"><value>Sincronizare</value></data>
   <data name="Emulation.Option.Sony.Value.Asynchronous"><value>Asincrone</value></data>
   <data name="Emulation.Option.Sony.Value.PreCache"><value>Pre-Cache</value></data>
@@ -443,7 +441,7 @@
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_gte_overclock.Label"><value>GTE Overclock</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_gte_overclock.Help"><value>Executaţi fiecare operaţiune a coprocesorului GTE de grafică într-un singur ciclu CPU. Acest lucru poate îmbunătăți foarte mult rata de cadru și face calendarul cadru mai stabil în jocuri care folosesc GTE puternic.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_access_method.Label"><value>Metoda de acces CD</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_access_method.Help"><value>Acces sincron reproduce hardware-ul original. Acces asincronic poate reduce pauzele pe dispozitive cu stocare lentă. Încărcare întreaga imagine disc în RAM poate îmbunătăți timpii de încărcare în timpul jocului, dar întârzie pornire. Acest mod poate cauza probleme atunci când RAM este limitat. Discurile fizice folosesc acces sincron în loc să încarce întreaga imagine. Repornire după schimbarea acestei opțiuni.</value></data>
+  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_access_method.Help"><value>Acces sincron reproduce hardware-ul original. Acces asincronic poate reduce pauzele pe dispozitive cu stocare lentă. Încărcare întreaga imagine disc în RAM poate îmbunătăți timpii de încărcare în timpul jocului.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_fastload.Label"><value>Viteză de încărcare CD</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_fastload.Help"><value>Valorile mai mari de "2x (Native)" pot reduce semnificativ timpul de încărcare în joc, dar pot introduce erori de sincronizare. Unele jocuri pot să nu funcționeze în mod corespunzător peste o anumită valoare.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_skip_bios.Label"><value>Sari peste animația de pornire BIOS</value></data>
@@ -454,8 +452,6 @@
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_region.Help"><value>Setează regiunea de rezervă utilizată atunci când conținutul nu poate fi detectat automat (de exemplu, fișierele PS-X EXE brute). Jocurile bazate pe disc folosesc încă regiunea integrată pe disc.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_internal_resolution.Label"><value>Rezoluția internă a GPU</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_internal_resolution.Help"><value>Rezoluţiile mai mari de "1x (Native) îmbunătăţesc fidelitatea modelelor 3D în detrimentul cerinţelor de performanţă crescute. Elementele 2D sunt, în general, neafectate de această setare.</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_renderer.Label"><value>Renderer</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_renderer.Help"><value>Alegeți cum să desenați imaginea. Transmiţătorul de software este cel mai precis. Are nevoie de mult mai multă putere de procesare la rezoluţii interne superioare. Redarea hardware-ului este mai puţin precisă, dar mai rapidă la rezoluţii superioare şi susţine îmbunătăţiri grafice. Redarea automată a hardware-ului alege Vulkan sau OpenGL în funcţie de şoferul video folosit de aplicaţie. În cazul în care conducătorul auto nu suportă nici Vulkan, nici OpenGL 3.3, nucleul utilizează randarea software-ului. Reporniți nucleul după schimbarea acestei opțiuni.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_renderer_software_fb.Label"><value>Framebuffer software</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_renderer_software_fb.Help"><value>Utilizați randatorul de software în fundal la rezoluția nativă, în timp ce Fabricantul de hardware afișează jocul. Acest lucru reproduce înceţoşarea mişcării şi tranziţiile de luptă în FF7 cu precizie. Când sunt dezactivate, OpenGL omite aceste efecte şi Vulkan le atrage asupra GPU. Dezactivarea acestei opțiuni poate îmbunătăți viteza, dar poate provoca și erori grafice grave. Păstraţi-l activat dacă nu este sigur.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_color_format.Label"><value>Format culoare</value></data>
@@ -485,7 +481,7 @@
   <data name="Emulation.Option.Sony.Value.25Degrees"><value>25 de grade</value></data>
   <data name="Emulation.Option.Sony.Value.45Degrees"><value>45 grade</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_video_cable.Label"><value>Cablu video analogic</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_video_cable.Help"><value>Simulează cablul dintre consolă și televizor, inclusiv codarea culorii și decodorul televiziunii. "No Simulation" dezactivează în întregime lanțul și îl pune direct pe ecran (default)). 'RGB (SCART)' este cea mai ascutita iesire PSX ar putea produce: multi-out poartă analog RGB, deci nimic nu este modulat și nici unul dintre artefactele de codare de mai jos pot apărea - dar este încă un fir analogic, astfel încât este banda-limitată de amplificatorul video al consolei și etapa de intrare a setului mai degrabă decât să fie infinit ascuțit. "S-Video" bandă-limitelor culoare puternic, dar păstrează zuma și culoarea pe fire separate, așa că detaliu fin rămâne curat. 'Composit' le rezumă într-un singur fir, care decodor apoi trebuie să trageți din nou în afară, costând detalii luma și adăugarea fring culoare si crengii curcubeu pe modele fine. 'RF' modele un modulator extern - consola în sine nu are nici unul, doar a DC cric pentru a alimenta o - îngustarea mai departe Luma și adăugarea modelului de batere purtatorul de sunet face împotriva subcarrier culoare, care este cel mai puternic pe culori saturate. Funcționează la orice rezoluție internă: eșantioanele suplimentare sunt rezolvate înainte de generarea semnalului, setările atât de mari acționează ca supersamplere în cablu mai degrabă decât un semnal mai larg, iar producția încă poartă detaliul sub-pixel pe care îl produce decodorul. Sprijinit de Vulkan şi OpenGL Readers, şi ignorat de către Răzbunător Software. Pe OpenGL, filtrul care elimină "punctele atârnatoare" - modelul punctat fin de-a lungul marginilor orizontale ale culorii - are nevoie de GL 4.3 sau GLES 3.1; pe un conducător auto mai vechi simularea continuă, dar 'Composit' și 'RF' vor arăta punctele respective. Se aplică imediat; nu este necesară repornirea.</value></data>
+  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_video_cable.Help"><value>Simulează cablul dintre consolă și televizor, inclusiv codarea culorii și decodorul televiziunii. "No Simulation" dezactivează în întregime lanțul și îl pune direct pe ecran (default)). 'RGB (SCART)' este cea mai ascutita iesire PSX ar putea produce: multi-out poartă analog RGB, deci nimic nu este modulat și nici unul dintre artefactele de codare de mai jos pot apărea - dar este încă un fir analogic, astfel încât este banda-limitată de amplificatorul video al consolei și etapa de intrare a setului mai degrabă decât să fie infinit ascuțit. "S-Video" bandă-limitelor culoare puternic, dar păstrează zuma și culoarea pe fire separate, așa că detaliu fin rămâne curat. 'Composit' le rezumă într-un singur fir, care decodor apoi trebuie să trageți din nou în afară, costând detalii luma și adăugarea fring culoare si crengii curcubeu pe modele fine. 'RF' modele un modulator extern - consola în sine nu are nici unul, doar a DC cric pentru a alimenta o - îngustarea mai departe Luma și adăugarea modelului de batere purtatorul de sunet face împotriva subcarrier culoare, care este cel mai puternic pe culori saturate. Funcționează la orice rezoluție internă: eșantioanele suplimentare sunt rezolvate înainte de generarea semnalului, setările atât de mari acționează ca supersamplere în cablu mai degrabă decât un semnal mai larg, iar producția încă poartă detaliul sub-pixel pe care îl produce decodorul. Sprijinit de Vulkan şi OpenGL Readers, şi ignorat de către Răzbunător Software. Pe OpenGL, filtrul care elimină "punctele atârnatoare" - modelul punctat fin de-a lungul marginilor orizontale ale culorii - are nevoie de GL 4.3 sau GLES 3.1; pe un conducător auto mai vechi simularea continuă, dar 'Composit' și 'RF' vor arăta punctele respective. Se aplică imediat.</value></data>
   <data name="Emulation.Option.Sony.Value.NoSimulation"><value>Fără simulare</value></data>
   <data name="Emulation.Option.Sony.Value.RGBSCART"><value>RGB (SCART)</value></data>
   <data name="Emulation.Option.Sony.Value.SVideo"><value>S-Video</value></data>
@@ -770,9 +766,7 @@
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_nostalls.Label"><value>Dezactivează Stallurile CPU/GTE</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_nostalls.Help"><value>Va provoca unele jocuri pentru a rula prea repede. Ar trebui să fie dezactivat în aproape toate cazurile. Doar interpret.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_fast_boot.Label"><value>Boot rapid</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_fast_boot.Help"><value>Sari peste animaţia de boot BIOS. Necesită repornire.</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_renderer.Label"><value>Renderer</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_renderer.Help"><value>Hardware redaker API, sau randatorul software-ului. Comutarea la sau de la Software se aplică pe muscă; comutarea între API hardware produce efecte atunci când conținutul este repornit.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_fast_boot.Help"><value>Sari peste animaţia de boot BIOS.</value></data>
   <data name="Emulation.Option.Sony.Value.OpenGLHardware"><value>OpenGL (Hardware)</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_upscale_multiplier.Label"><value>Rezoluția internă</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_upscale_multiplier.Help"><value>Multiplicator de rezoluție a redării interne pentru randatorul hardware. De asemenea, solzeaza rama buffer de iesire. Se aplică pe muscă.</value></data>
@@ -809,8 +803,6 @@
   <data name="Emulation.Option.pcee2.pcsx2_fxaa.Help"><value>Ieftin post-proces anti-aliasing.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_cas_mode.Label"><value>Ascuţirea adaptivă a contrastului</value></data>
   <data name="Emulation.Option.Sony.Value.SharpenOnly"><value>Ascute numai</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_audio_buffer_ms.Label"><value>Buffer audio</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_audio_buffer_ms.Help"><value>Cât de mult audio emulator păstrează înainte de frontend. Mai mult se plimbă afară un stand care altfel ar fi auzit ca o pauză în sunet, cu costul de atâta întârziere înainte de a auzi ceva. Propriul implicit al PCSX2 este de 50 ms, care presupune că alimentează un dispozitiv audio în mod direct decât un frontend care trage o dată pe cadru.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_frame_limiter.Label"><value>Limitator cadru</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_frame_limiter.Help"><value>Ceea ce ţine emulatorul la viteză maximă. Frontend-ul lasă pacing la RetroArch, care accelerează prin a face miezul să aștepte pe audio se mâinile peste. Intern folosește propriul limitator PCSX2 în schimb - pentru un dispozitiv unde această așteptare nu se întâmplă niciodată, deoarece driver-ul audio subruns mai degrabă decât blocarea, și propria variație de viteză a emulatorului apoi ajunge la ecran ca pacing cadru inegal.</value></data>
   <data name="Emulation.Option.Sony.Value.FrontendRetroArch"><value>Frontend (RetroArch)</value></data>
@@ -821,13 +813,13 @@
   <data name="Emulation.Option.pcee2.pcsx2_aspect_ratio.Label"><value>Raportul Aspect</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_aspect_ratio.Help"><value>Rapoarte automate 16:9 atunci când sunt activate patch-uri cu ecran larg, 4:3 altfel.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_multitap.Label"><value>Multi-tap</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_multitap.Help"><value>Activează adaptorul multitap pentru până la 8 controlere. Comanda jucătorului urmează sloturile fizice (port 1: 1A-1D, apoi portul 2: 2A-2D). Repornire recomandată.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_multitap.Help"><value>Activează adaptorul multitap pentru până la 8 controlere. Comanda jucătorului urmează sloturile fizice (port 1: 1A-1D.</value></data>
   <data name="Emulation.Option.Sony.Value.Disabled2Players"><value>Dezactivat (2 jucători)</value></data>
   <data name="Emulation.Option.Sony.Value.Port15Players"><value>Portul 1 (5 jucători)</value></data>
   <data name="Emulation.Option.Sony.Value.Port25Players"><value>Port 2 (5 jucători)</value></data>
   <data name="Emulation.Option.Sony.Value.BothPorts8Players"><value>Ambele porturi (8 jucători)</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_lightgun.Label"><value>Lightgun (GunCon 2)</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_lightgun.Help"><value>Emulaţi un Namco GunCon 2 pe un port USB, ţintit cu arma uşoară a frontului (sau mouse-ul cartografiat ca pistol luminos) în portul de controler care se potriveşte. Necesită repornire.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_lightgun.Help"><value>Emulaţi un Namco GunCon 2 pe un port USB.</value></data>
   <data name="Emulation.Option.Sony.Value.USBPort1"><value>Port USB 1</value></data>
   <data name="Emulation.Option.Sony.Value.USBPort2"><value>Port USB 2</value></data>
   <data name="Emulation.Option.Sony.Value.BothPorts"><value>Ambele porturi</value></data>
@@ -852,18 +844,18 @@
   <data name="Emulation.Option.pcee2.pcsx2_ee_cycle_skip.Label"><value>EE Ciclu Skip</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_ee_cycle_skip.Help"><value>Face ca EE să sară peste cicluri. Ajută unele jocuri cu activitate VU mare, rupe altele.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_cpu_recompiler.Label"><value>Recompiler CPU (JIT)</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_cpu_recompiler.Help"><value>Activează sau dezactivează recompilarea în scopuri de diagnosticare. Atunci când este activat, EE, IOP, VU0 și VU1 utilizează recompilarea JIT rapidă. Acesta este implicitul. Când sunt dezactivate, fiecare CPU utilizează o interpretare mai lentă a instrucţiunilor. Acest lucru ajută la diagnosticarea erorilor JIT: un accident care apare încă cu recompilare dezactivată are o altă cauză. Cele patru comutatoare individuale CPU de mai jos se aplică numai atunci când această opțiune principală este activată. Repornire după schimbarea acestei opțiuni.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_cpu_recompiler.Help"><value>Activează sau dezactivează recompilarea în scopuri de diagnosticare. Atunci când este activat, EE, IOP, VU0 și VU1 utilizează recompilarea JIT rapidă. Acesta este implicitul. Când sunt dezactivate.</value></data>
   <data name="Emulation.Option.Sony.Value.EnabledJITDefault"><value>Activat (JIT, implicit)</value></data>
   <data name="Emulation.Option.Sony.Value.DisabledInterpreter"><value>Dezactivat (Interpretor)</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_rec_ee.Label"><value>- Recompiler EE</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_rec_ee.Help"><value>Diagnostic. Dezactivează doar Emotion Engine (EE) dinarec în timp ce lasă celelalte pe, pentru a bisect care recompilator provoacă un accident. Necesită repornire.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_rec_ee.Help"><value>Diagnostic. Dezactivează doar Emotion Engine (EE) dinarec în timp ce lasă celelalte pe.</value></data>
   <data name="Emulation.Option.Sony.Value.EnabledDefault"><value>Activat (Default)</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_rec_iop.Label"><value>- Recompiler IOP</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_rec_iop.Help"><value>Diagnostic. Dezactivați doar IOP (R3000) dinarec în timp ce lăsați ceilalți pe, pentru a bisect care recompiler provoacă un accident. Necesită repornire.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_rec_iop.Help"><value>Diagnostic. Dezactivați doar IOP (R3000) dinarec în timp ce lăsați ceilalți pe.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_rec_vu0.Label"><value>- Recompiler VU0</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_rec_vu0.Help"><value>Diagnostic. Dezactivează doar dinarec VU0 microVU în timp ce lăsând celelalte pe, pentru a bisect care recompiler provoacă un accident. Necesită repornire.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_rec_vu0.Help"><value>Diagnostic. Dezactivează doar dinarec VU0 microVU în timp ce lăsând celelalte pe.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_rec_vu1.Label"><value>- Recompiler VU1</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_rec_vu1.Help"><value>Diagnostic. Dezactivează doar dinarec VU1 microVU în timp ce lăsați ceilalți pe, pentru a bisect care recompiler provoacă un accident. Necesită repornire.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_rec_vu1.Help"><value>Diagnostic. Dezactivează doar dinarec VU1 microVU în timp ce lăsați ceilalți pe.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_memcard_slot1_enable.Label"><value>Slot 1 activat</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_memcard_slot1_enable.Help"><value>Activează cardul de memorie Slot 1 PS2. Modificările se aplică imediat în timpul funcționării conținutului.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_memcard_slot2_enable.Label"><value>Slot 2 activat</value></data>
@@ -914,8 +906,6 @@
   <data name="Emulation.Option.Sony.Value.AllTimers"><value>Toate Timerele</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_clocks_scale.Label"><value>Scala ceasurilor</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_clocks_scale.Help"><value>Scalează procentul de viteză a ceasului PS3.</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_renderer.Label"><value>Renderer</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_renderer.Help"><value>Vulkan randeaza pe frontend lui Vulkan dispozitiv și mâini, fiecare cadru terminat ca o imagine; atunci când frontend nu este difuzate sale Vulkan driver video, cadrul este copiat înapoi prin memorie în schimb. OpenGL atrage direct în contextul OpenGL al frontend-ului.</value></data>
   <data name="Emulation.Option.Sony.Value.NullNoVideo"><value>Null (fără video)</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_frame_limit.Label"><value>Limita cadrului</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_frame_limit.Help"><value>Cea mai mare rată de cadru jocul poate rula la. Auto este frecvența VBlank, la fel ca în RPCS3; PS3 Ritmurile native răstoarnă calea PS3 face; Dezactivat lasă jocuri care nu așteaptă pentru PS3'Se împrospătează prea repede..</value></data>
@@ -992,7 +982,7 @@
   <data name="Emulation.Option.rpcs3.rpcs3_driver_wakeup_delay.Label"><value>Întârziere de trezire a şoferului</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_driver_wakeup_delay.Help"><value>Driver wake-up întârziere în microsecunde. 0 implicit, ca și în RPCS3; ridica doar atunci când un joc are nevoie de ea.</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_vblank_rate.Label"><value>Frecvenţa VBlank</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_vblank_rate.Help"><value>Rata de reîmprospătare a PS3 în Hz. Acesta este, de asemenea, rata cadrului pentru care se solicită RetroArch, care produce efecte atunci când conținutul este încărcat; jocuri care pot rula peste 60 FPS au nevoie de un ecran care reîmprospătează atât de repede.</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_vblank_rate.Help"><value>Setează rata de reîmprospătare emulată. Modul listei de compatibilitate o dublează pentru jocurile compatibile.</value></data>
   <data name="Emulation.Option.Sony.Value.50HzPAL"><value>50 Hz (PAL)</value></data>
   <data name="Emulation.Option.Sony.Value.60HzNTSC"><value>60 Hz (NTSC)</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_thread_scheduler.Label"><value>Planificator filet</value></data>
@@ -1074,8 +1064,6 @@
   <data name="Emulation.Option.rpcs3.rpcs3_frame_pacing.Label"><value>Pacing cadru</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_frame_pacing.Help"><value>Ceea ce cadrele jocului sunt cronometrate de. Ceasul emulator este propriul cronometru al lui RPCS3, la fel ca în standalone RPCS3. RetroArch da jocul unu PS3 reîmprospătare per cadru RetroArch arată, atât de rapid înainte viteza jocului în sus și jocul rulează la frecvența VBlank atunci când RetroArch arată că multe cadre pe secundă; cu Vulkan rander-l sare peste rame în prezent.</value></data>
   <data name="Emulation.Option.Sony.Value.EmulatorClock"><value>Ceasul emulatorului</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_savedata_slot.Label"><value>Salvează slotul de date</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_savedata_slot.Help"><value>Un joc PS3 arată o listă a datelor sale salva și permite jucătorului alege. "Pick din lista" arată că lista în imaginea de joc, pentru a fi utilizate cu controlorul. Un număr are pick-ul de bază pentru tine în schimb: economisirea suprascrie intrarea la această poziție din lista jocului, sau face o nouă salvare atunci când lista este mai scurtă; încărcarea ia intrarea în această poziție, și nu găsește nimic atunci când listă este mai scurt. 0 este prima intrare. Jocuri care păstrează un singur salva de propria lor nu arată o listă, astfel încât acest lucru nu se aplică pentru ei.</value></data>
   <data name="Emulation.Option.Sony.Value.PickFromList"><value>Alege din listă</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_master_volume.Label"><value>volumul principal</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_master_volume.Help"><value>Procentajul volumului audio principal.</value></data>
@@ -1151,7 +1139,7 @@
   <data name="Emulation.Option.Sony.Setting.Fastcdvd.Help"><value>Repede. CD/DVD acces/timpuri de aplauze. O mână mică de jocuri vor avea probleme de compatibilitate cu acest lucru activat.</value></data>
   <data name="Emulation.Option.Sony.Setting.SharedMemoryCards.Help"><value>Utilizați pe conținut sau carduri de memorie partajate.</value></data>
   <data name="Emulation.Option.Sony.Setting.EnableCheats.Label"><value>Activează codurile de joc ieftin</value></data>
-  <data name="Emulation.Option.Sony.Setting.EnableCheats.Help"><value>Citiți coduri de ieftin joc din fișierele din dosarul selectat. Reporniți emulația după selectarea unui alt dosar.</value></data>
+  <data name="Emulation.Option.Sony.Setting.EnableCheats.Help"><value>Citiți coduri de ieftin joc din fișierele din dosarul selectat.</value></data>
   <data name="Emulation.Option.Sony.Setting.HintLanguageUnlock.Label"><value>Deblochează limbi de joc suplimentare</value></data>
   <data name="Emulation.Option.Sony.Setting.HintLanguageUnlock.Help"><value>Dacă este activată, va căuta în interiorul bazei de date interne pentru opțiunile de deblocare a limbii. Exemplele includ: forțarea unei versiuni japoneze internaționale în limba engleză, deblocarea mai multe limbi europene, etc</value></data>
   <data name="Emulation.Option.Sony.Setting.Dev9Hdd.Help"><value>Emulează SPEED Expansion's ATA Hard disk. Imaginea locuiește la 'pcsx2/DEV9hdd.raw' in directorul de sistem frontend si este creat pe prima utilizare la marimea configurata.</value></data>
@@ -1233,7 +1221,7 @@
   <data name="Emulation.Option.Sony.Value.MergeTargets"><value>Combină obiectivele de reconfigurare</value></data>
   <data name="Emulation.Option.Sony.Setting.DisableDepthConversion.Label"><value>Dezactivează conversia adancimii</value></data>
   <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Label"><value>Utilizați baza de date GameIndex externă</value></data>
-  <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Help"><value>Necesită un rendredere hardware și remedieri manuale. Încarcă baza de date de compatibilitate a jocului selectat sau lasă fișierul gol pentru a utiliza baza de date încorporat. Reporni emulația după schimbarea acestor setări.</value></data>
+  <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Help"><value>Necesită un rendredere hardware și remedieri manuale. Încarcă baza de date de compatibilitate a jocului selectat sau lasă fișierul gol pentru a utiliza baza de date încorporat.</value></data>
   <data name="Emulation.Option.Sony.Setting.FramebufferConversion.Label"><value>Convertește rama de redare buffer</value></data>
   <data name="Emulation.Option.Sony.Setting.DisablePartialInvalidation.Label"><value>Dezactivează invalidarea parțială a sursei</value></data>
   <data name="Emulation.Option.Sony.Setting.GpuPaletteConversion.Label"><value>Conversia paletei pe GPU</value></data>
@@ -1274,4 +1262,18 @@
   <data name="Emulation.Option.Sony.Setting.LineToQuad.Help" xml:space="preserve"><value>Unele jocuri (ex. Doom, Hexen, Soul Blade etc.) desena linii orizontale prin întindere triunghiuri uni-pixel-high pe ecran, care sunt rasterized ca un rând de pixeli pe hardware original. Acest hack detectează aceste triunghiuri mici și le convertește în quad-uri, după cum este necesar, permițându-le să fie afișate în mod corespunzător pe randerele hardware și la rezoluții interne extinse. "Agresiv" este necesară pentru unele titluri (de exemplu, Forțele întunecate, Ducele Nukem), dar altfel pot introduce erori grafice. Pleacă la "Default" dacă nu eşti sigur.</value></data>
   <data name="Emulation.Option.Sony.Setting.DynarecEventCycles.Label" xml:space="preserve"><value>Dynarec DMA/GPU/MDEC/Cicluri de evenimente temporizate</value></data>
   <data name="Emulation.Option.Sony.Setting.DynarecEventCycles.Help" xml:space="preserve"><value>Ciclurile Max parcurse de CPU înainte ca un GPU/DMA/MDEC/Timer Update să fie verificat, numărul mai mare va fi mai rapid, are mult mai puțin impact asupra interpretului gândacului decât dinarec.</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_aspect_ratio.Help"><value>Setează formatul ecranului comunicat jocurilor. Numai unele jocuri acceptă raportul 4:3.</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_disk_cache_size.Label"><value>Dimensiunea memoriei cache pe disc</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_disk_cache_size.Help"><value>Limitează spațiul pe disc folosit de memoria cache temporară a jocurilor. Jocurile recreează datele șterse, ceea ce poate încetini următoarea pornire.</value></data>
+  <data name="Emulation.Option.pokket.Link"><value>Conexiune prin infraroșu</value></data>
+  <data name="Emulation.Option.pokket.Layout"><value>Aranjarea ecranelor conectate</value></data>
+  <data name="Emulation.Option.pokket.Audio"><value>Sursa audio a unităților conectate</value></data>
+  <data name="Emulation.Option.pokket.Identity"><value>Identificatorul hardware al unității B</value></data>
+  <data name="Emulation.Option.pokket.Horizontal"><value>Alăturate</value></data>
+  <data name="Emulation.Option.pokket.Vertical"><value>Unul deasupra celuilalt</value></data>
+  <data name="Emulation.Option.pokket.SelectUnitA"><value>Controlează unitatea A</value></data>
+  <data name="Emulation.Option.pokket.SelectUnitB"><value>Controlează unitatea B</value></data>
+  <data name="Emulation.Option.pokket.Help"><value>Introduceți un card în fiecare unitate pentru a activa conexiunea prin infraroșu.</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_audio_format.Label"><value>Configurația difuzoarelor</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_audio_format.Help"><value>Stabilește configurația difuzoarelor disponibilă jocurilor. Jocul alege mixajul audio în funcție de această configurație. Ieșirea depinde și de dispozitivul audio selectat în Windows.</value></data>
 </root>

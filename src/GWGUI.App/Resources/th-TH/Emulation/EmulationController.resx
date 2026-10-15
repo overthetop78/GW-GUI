@@ -44,4 +44,5 @@
   <data name="Emulation.Controller.Category.OtherSimulation"><value>อนุภาค อื่น ๆ ที่ เห็น ด้วย ตา</value></data>
   <data name="Emulation.Controller.Feedback.Strong"><value>การสั่นแรง</value></data>
   <data name="Emulation.Controller.Feedback.Weak"><value>การสั่นเบา</value></data>
+  <data name="Emulation.Controller.Action.Reload"><value>บรรจุกระสุนใหม่</value></data>
 </root>

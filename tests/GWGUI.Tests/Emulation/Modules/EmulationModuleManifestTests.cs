@@ -7,7 +7,7 @@ public sealed class EmulationModuleManifestTests
 {
     private const string Valid = """
         {"schemaVersion":2,"id":"commodore","entryAssembly":"gwgui.emulation.commodore.dll",
-         "moduleVersion":"1.0.0","hostApiMinimum":"1.0","hostApiMaximum":"1.1",
+         "moduleVersion":"1.0.0","hostApiMinimum":"1.0","hostApiMaximum":"1.2",
          "updateCatalogUrl":"https://example.test/commodore/update-catalog.json"}
         """;
 
@@ -26,6 +26,15 @@ public sealed class EmulationModuleManifestTests
         json["hostApiMinimum"] = "1.1";
         Assert.Throws<InvalidDataException>(() => EmulationModuleManifestReader.Parse(json.ToJsonString(), new Version(1, 0)));
         Assert.NotNull(EmulationModuleManifestReader.Parse(json.ToJsonString(), new Version(1, 1)));
+    }
+
+    [Fact]
+    public void VideoSettingsApiRequiresAnUpdatedHostBeforeModuleLoading()
+    {
+        var json = JsonNode.Parse(Valid)!;
+        json["hostApiMinimum"] = "1.2";
+        Assert.Throws<InvalidDataException>(() => EmulationModuleManifestReader.Parse(json.ToJsonString(), new Version(1, 1)));
+        Assert.NotNull(EmulationModuleManifestReader.Parse(json.ToJsonString(), new Version(1, 2)));
     }
 
     [Theory]

@@ -38,6 +38,29 @@ namespace GWGUI.Emulation.Sony.Emulators.Rpcs3.Constants;
 
 internal static class OptionConstants
 {
+    internal const string AudioFormatKey = "rpcs3_audio_format";
+    internal const string AudioFormatLabelResource = "Emulation.Option.rpcs3.rpcs3_audio_format.Label";
+    internal const string AudioFormatHelpResource = "Emulation.Option.rpcs3.rpcs3_audio_format.Help";
+    internal const string AudioFormatStereo = "stereo";
+    internal const string AudioFormatSurround51 = "surround_5_1";
+    internal const string AudioFormatSurround71 = "surround_7_1";
+    internal const string AspectRatioKey = "rpcs3_aspect_ratio";
+    internal const string AspectRatioLabelResource = "Emulation.Video.AspectRatio";
+    internal const string AspectRatioHelpResource = "Emulation.Option.rpcs3.rpcs3_aspect_ratio.Help";
+    internal const string AspectRatioWidescreen = "16:9";
+    internal const string AspectRatioStandard = "4:3";
+    internal const string DiskCacheSizeKey = "rpcs3_disk_cache_size";
+    internal const string DiskCacheSizeLabelResource = "Emulation.Option.rpcs3.rpcs3_disk_cache_size.Label";
+    internal const string DiskCacheSizeHelpResource = "Emulation.Option.rpcs3.rpcs3_disk_cache_size.Help";
+    internal const string DiskCacheUnlimited = "unlimited";
+    internal const string DiskCacheOneGigabyte = "1gb";
+    internal const string DiskCacheFiveGigabytes = "5gb";
+    internal const string DiskCacheClearOnGameClose = "wipe";
+    internal const string DiskCacheUnlimitedLabelResource = "Emulation.Storage.Cache.Unlimited";
+    internal const string DiskCacheClearOnGameCloseLabelResource = "Emulation.Storage.Cache.ClearOnGameClose";
+    internal const string DiskCacheOneGigabyteDisplayName = "1 GB";
+    internal const string DiskCacheFiveGigabytesDisplayName = "5 GB";
+    internal const string VblankRateList = "list";
     internal const string PpuDecoderKey = "rpcs3_ppu_decoder";
     internal const string PpuDecoderLabelResource = "Emulation.Option.rpcs3.rpcs3_ppu_decoder.Label";
     internal const string PpuDecoderHelpResource = "Emulation.Option.rpcs3.rpcs3_ppu_decoder.Help";
@@ -116,8 +139,6 @@ internal static class OptionConstants
     internal const string ClocksScale300DisplayName = "300%";
     internal static readonly string ClocksScaleDefaultValue = OptionValueFunctions.ToNative(ClocksScale._100);
     internal const string RendererKey = "rpcs3_renderer";
-    internal const string RendererLabelResource = "Emulation.Option.rpcs3.rpcs3_renderer.Label";
-    internal const string RendererHelpResource = "Emulation.Option.rpcs3.rpcs3_renderer.Help";
     internal const string RendererOpengl = "opengl";
     internal const string RendererOpenglDisplayName = "OpenGL";
     internal const string RendererNull = "null";
@@ -425,15 +446,6 @@ internal static class OptionConstants
     internal const string FramePacingFrontend = "frontend";
     internal const string FramePacingEmulator = "emulator";
     internal static readonly string FramePacingDefaultValue = OptionValueFunctions.ToNative(FramePacing.Emulator);
-    internal const string SavedataSlotKey = "rpcs3_savedata_slot";
-    internal const string SavedataSlotLabelResource = "Emulation.Option.rpcs3.rpcs3_savedata_slot.Label";
-    internal const string SavedataSlotHelpResource = "Emulation.Option.rpcs3.rpcs3_savedata_slot.Help";
-    internal static IReadOnlyList<EmulationSettingsNumericRange> SavedataSlotRanges { get; } =
-    [
-        new(0, 9, 1),
-    ];
-    internal const string SavedataSlotDefaultValue = "list";
-    internal const string SavedataSlotList = "list";
     internal const string MasterVolumeKey = "rpcs3_master_volume";
     internal const string MasterVolumeLabelResource = "Emulation.Option.rpcs3.rpcs3_master_volume.Label";
     internal const string MasterVolumeHelpResource = "Emulation.Option.rpcs3.rpcs3_master_volume.Help";

@@ -5,7 +5,7 @@
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Nec.Help.Memory.Ram.Short"><value>Quantidade de RAM disponível para a máquina emulado.</value></data>
-  <data name="Emulation.Nec.Help.Memory.Ram.Detailed"><value>Selecciona a expansão da RAM exposta pelo BeetlePce. A máquina deve reiniciar antes da nova quantidade ser usada.</value></data>
+  <data name="Emulation.Nec.Help.Memory.Ram.Detailed"><value>Selecciona a expansão da RAM exposta pelo BeetlePce.</value></data>
   <data name="Emulation.Nec.Help.Firmware.Integrated.Short"><value>Nenhum arquivo BIOS externo é necessário para este modelo.</value></data>
   <data name="Emulation.Nec.Help.Firmware.Integrated.Detailed"><value>Jogos de cartucho nesta máquina rodam sem um sistema externo BIOS.</value></data>
   <data name="Emulation.Nec.Help.Video.Resolution.Short"><value>Resolução interna apresentada pelo BeetlePce.</value></data>

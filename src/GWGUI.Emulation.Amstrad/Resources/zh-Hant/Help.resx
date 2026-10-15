@@ -5,7 +5,7 @@
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Amstrad.Help.Memory.Ram.Short"><value>数额 RAM 可供模拟机器使用。</value></data>
-  <data name="Emulation.Amstrad.Help.Memory.Ram.Detailed"><value>选择 RAM Capricy32 曝光的扩展。 机器必须在使用新量前重新启动 。</value></data>
+  <data name="Emulation.Amstrad.Help.Memory.Ram.Detailed"><value>选择 RAM Capricy32 曝光的扩展。</value></data>
   <data name="Emulation.Amstrad.Help.Firmware.Integrated.Short"><value>系统 ROM 被建入 Capricy32 。</value></data>
   <data name="Emulation.Amstrad.Help.Firmware.Integrated.Detailed"><value>Caprice32 提供系统 ROM 内部,不暴露 ROM 文件选择器。</value></data>
   <data name="Emulation.Amstrad.Help.Video.Resolution.Short"><value>由Capircy32公司做出内部解析.</value></data>

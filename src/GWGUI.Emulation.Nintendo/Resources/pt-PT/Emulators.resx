@@ -363,21 +363,21 @@
   <data name="Emulation.Option.desmume.desmume_firmware_language.Value.German"><value>Alemão</value></data>
   <data name="Emulation.Option.desmume.desmume_firmware_language.Value.Italian"><value>Italiano</value></data>
   <data name="Emulation.Option.desmume.desmume_firmware_language.Value.Spanish"><value>Espanhol</value></data>
-  <data name="Emulation.Option.desmume.desmume_use_external_bios"><value>Usar BIOS/Firmware Externo (reiniciar)</value></data>
-  <data name="Emulation.Option.desmume.desmume_use_external_bios.Help"><value>Use oficial BIOS. O núcleo precisa ser reiniciado para que as alterações se apliquem.</value></data>
+  <data name="Emulation.Option.desmume.desmume_use_external_bios"><value>Usar BIOS/Firmware Externo</value></data>
+  <data name="Emulation.Option.desmume.desmume_use_external_bios.Help"><value>Use oficial BIOS.</value></data>
   <data name="Emulation.Option.desmume.desmume_use_external_bios.Value.disabled"><value>Desativado</value></data>
   <data name="Emulation.Option.desmume.desmume_use_external_bios.Value.enabled"><value>Ativado</value></data>
   <data name="Emulation.Option.desmume.desmume_boot_into_bios"><value>Boot Into BIOS (interpretador e somente bios externos)</value></data>
   <data name="Emulation.Option.desmume.desmume_boot_into_bios.Help"><value>Arranca directamente para a BIOS.</value></data>
   <data name="Emulation.Option.desmume.desmume_boot_into_bios.Value.disabled"><value>Desativado</value></data>
   <data name="Emulation.Option.desmume.desmume_boot_into_bios.Value.enabled"><value>Ativado</value></data>
-  <data name="Emulation.Option.desmume.desmume_load_to_memory"><value>Carregar o Jogo na Memória (reiniciar)</value></data>
+  <data name="Emulation.Option.desmume.desmume_load_to_memory"><value>Carregar o Jogo na Memória</value></data>
   <data name="Emulation.Option.desmume.desmume_load_to_memory.Help"><value>Carregar o jogo na memória para reduzir o atraso de IO.</value></data>
   <data name="Emulation.Option.desmume.desmume_load_to_memory.Value.disabled"><value>Desativado</value></data>
   <data name="Emulation.Option.desmume.desmume_load_to_memory.Value.enabled"><value>Ativado</value></data>
   <data name="Emulation.Option.desmume.desmume_num_cores"><value>Núcleos de CPU</value></data>
   <data name="Emulation.Option.desmume.desmume_num_cores.Help"><value>Define a quantidade de núcleos de CPU a usar.</value></data>
-  <data name="Emulation.Option.desmume.desmume_cpu_mode"><value>Modo de CPU (reiniciar)</value></data>
+  <data name="Emulation.Option.desmume.desmume_cpu_mode"><value>Modo de CPU</value></data>
   <data name="Emulation.Option.desmume.desmume_cpu_mode.Help"><value>Activar ou desactivar o uso do recompilador dinâmico.</value></data>
   <data name="Emulation.Option.desmume.desmume_cpu_mode.Value.interpreter"><value>intérprete</value></data>
   <data name="Emulation.Option.desmume.desmume_jit_block_size"><value>Tamanho do Bloco JIT</value></data>
@@ -390,11 +390,11 @@
   <data name="Emulation.Option.desmume.desmume_frameskip.Help"><value>Define a quantidade de quadros a saltar.</value></data>
   <data name="Emulation.Option.desmume.desmume_internal_resolution"><value>Resolução interna</value></data>
   <data name="Emulation.Option.desmume.desmume_internal_resolution.Help"><value>Define a resolução interna. Resoluções mais elevadas podem proporcionar melhor clareza para cenas e objetos 3D, mas aumentarão os requisitos de desempenho</value></data>
-  <data name="Emulation.Option.desmume.desmume_opengl_mode"><value>Rasterizador OpenGL (reiniciar)</value></data>
+  <data name="Emulation.Option.desmume.desmume_opengl_mode"><value>Rasterizador OpenGL</value></data>
   <data name="Emulation.Option.desmume.desmume_opengl_mode.Help"><value>Activar o Rasterizador OpenGL para 3D.</value></data>
   <data name="Emulation.Option.desmume.desmume_opengl_mode.Value.disabled"><value>Desativado</value></data>
   <data name="Emulation.Option.desmume.desmume_opengl_mode.Value.enabled"><value>Ativado</value></data>
-  <data name="Emulation.Option.desmume.desmume_color_depth"><value>OpenGL: Profundidade de Cores (reiniciar)</value></data>
+  <data name="Emulation.Option.desmume.desmume_color_depth"><value>OpenGL: Profundidade de Cores</value></data>
   <data name="Emulation.Option.desmume.desmume_color_depth.Help"><value>Define a Profundidade de Cores para as cores 16 bits ou 32 bits. Requer o Rasterizador OpenGL.</value></data>
   <data name="Emulation.Option.desmume.desmume_gfx_multisampling"><value>OpenGL: Multiamostragem AA</value></data>
   <data name="Emulation.Option.desmume.desmume_gfx_multisampling.Help"><value>Defina o multiplicador para Multisampling Anti Aliasing. Requer o Rasterizador OpenGL.</value></data>
@@ -510,7 +510,7 @@
   <data name="Emulation.Option.desmume.desmume_mic_mode.Value.random"><value>Aleatório</value></data>
   <data name="Emulation.Firmware.desmume.Slot0"><value>Firmware NDS</value></data>
   <data name="Emulation.Emulator.desmume2015.Description"><value>Emula sistemas Nintendo compatíveis com DeSmuME 2015.</value></data>
-  <data name="Emulation.Option.desmume2015.desmume_internal_resolution"><value>Resolução interna (reiniciar)</value></data>
+  <data name="Emulation.Option.desmume2015.desmume_internal_resolution"><value>Resolução interna</value></data>
   <data name="Emulation.Option.desmume2015.desmume_num_cores"><value>Núcleos de CPU</value></data>
   <data name="Emulation.Option.desmume2015.desmume_cpu_mode"><value>Modo de CPU</value></data>
   <data name="Emulation.Option.desmume2015.desmume_cpu_mode.Value.interpreter"><value>intérprete</value></data>
@@ -525,7 +525,7 @@
   <data name="Emulation.Option.desmume2015.desmume_screens_layout.Value.quick switch"><value>interruptor rápido</value></data>
   <data name="Emulation.Option.desmume2015.desmume_screens_layout.Value.hybrid/top"><value>híbrido/topo</value></data>
   <data name="Emulation.Option.desmume2015.desmume_screens_layout.Value.hybrid/bottom"><value>híbrido/debaixo</value></data>
-  <data name="Emulation.Option.desmume2015.desmume_hybrid_layout_scale"><value>Escala de disposição híbrida (reiniciar)</value></data>
+  <data name="Emulation.Option.desmume2015.desmume_hybrid_layout_scale"><value>Escala de disposição híbrida</value></data>
   <data name="Emulation.Option.desmume2015.desmume_hybrid_showboth_screens"><value>A disposição híbrida mostra ambas as telas</value></data>
   <data name="Emulation.Option.desmume2015.desmume_hybrid_showboth_screens.Value.enabled"><value>Ativado</value></data>
   <data name="Emulation.Option.desmume2015.desmume_hybrid_showboth_screens.Value.disabled"><value>Desativado</value></data>
@@ -561,7 +561,7 @@
   <data name="Emulation.Option.desmume2015.desmume_pointer_stylus_jitter"><value>Activar o jitter emulado do stylus</value></data>
   <data name="Emulation.Option.desmume2015.desmume_pointer_stylus_jitter.Value.disabled"><value>Desativado</value></data>
   <data name="Emulation.Option.desmume2015.desmume_pointer_stylus_jitter.Value.enabled"><value>Ativado</value></data>
-  <data name="Emulation.Option.desmume2015.desmume_load_to_memory"><value>Carregar o Jogo na Memória (reiniciar)</value></data>
+  <data name="Emulation.Option.desmume2015.desmume_load_to_memory"><value>Carregar o Jogo na Memória</value></data>
   <data name="Emulation.Option.desmume2015.desmume_load_to_memory.Value.disabled"><value>Desativado</value></data>
   <data name="Emulation.Option.desmume2015.desmume_load_to_memory.Value.enabled"><value>Ativado</value></data>
   <data name="Emulation.Option.desmume2015.desmume_advanced_timing"><value>Activar o Tempo Avançado do Nível de Ônibus</value></data>
@@ -621,7 +621,7 @@
   <data name="Emulation.Option.melonds.melonds_threaded_renderer"><value>Renderizador de Software Threaded</value></data>
   <data name="Emulation.Option.melonds.melonds_threaded_renderer.Value.disabled"><value>Desativado</value></data>
   <data name="Emulation.Option.melonds.melonds_threaded_renderer.Value.enabled"><value>Ativado</value></data>
-  <data name="Emulation.Option.melonds.melonds_opengl_renderer"><value>OpenGL Renderer (Reiniciar)</value></data>
+  <data name="Emulation.Option.melonds.melonds_opengl_renderer"><value>OpenGL Renderer</value></data>
   <data name="Emulation.Option.melonds.melonds_opengl_renderer.Value.disabled"><value>Desativado</value></data>
   <data name="Emulation.Option.melonds.melonds_opengl_renderer.Value.enabled"><value>Ativado</value></data>
   <data name="Emulation.Option.melonds.melonds_opengl_resolution"><value>Resolução Interna do OpenGL</value></data>
@@ -678,7 +678,7 @@
   <data name="Emulation.Option.melonds.melonds_hybrid_small_screen.Value.Top"><value>Topo</value></data>
   <data name="Emulation.Option.melonds.melonds_hybrid_small_screen.Value.Duplicate"><value>Duplicar</value></data>
   <data name="Emulation.Option.melonds.melonds_hybrid_ratio"><value>Razão híbrida (apenas OpenGL)</value></data>
-  <data name="Emulation.Option.melonds.melonds_jit_enable"><value>Activar o JIT (Reiniciar)</value></data>
+  <data name="Emulation.Option.melonds.melonds_jit_enable"><value>Activar o JIT</value></data>
   <data name="Emulation.Option.melonds.melonds_jit_enable.Value.disabled"><value>Desativado</value></data>
   <data name="Emulation.Option.melonds.melonds_jit_enable.Value.enabled"><value>Ativado</value></data>
   <data name="Emulation.Option.melonds.melonds_jit_block_size"><value>Tamanho do Bloco JIT</value></data>
@@ -720,7 +720,7 @@
   <data name="Emulation.Option.melondsds.melonds_audio_interpolation.Value.cubic"><value>Cubic</value></data>
   <data name="Emulation.Option.melondsds.melonds_audio_interpolation.Value.gaussian"><value>Gaussiano</value></data>
   <data name="Emulation.Option.melondsds.melonds_jit_enable"><value>Recompilador JIT</value></data>
-  <data name="Emulation.Option.melondsds.melonds_jit_enable.Help"><value>Recompila código de máquina emulado em código nativo à medida que ele é executado, melhorando consideravelmente o desempenho sobre a interpretação simples. Faz efeito na próxima reinicialização. Se não tiver certeza, deixe ativado.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_jit_enable.Help"><value>Recompila código de máquina emulado em código nativo à medida que ele é executado, melhorando consideravelmente o desempenho sobre a interpretação simples. Se não tiver certeza, deixe ativado.</value></data>
   <data name="Emulation.Option.melondsds.melonds_jit_enable.Value.disabled"><value>Desativado</value></data>
   <data name="Emulation.Option.melondsds.melonds_jit_enable.Value.enabled"><value>Ativado</value></data>
   <data name="Emulation.Option.melondsds.melonds_jit_block_size"><value>Tamanho do Bloco</value></data>
@@ -731,15 +731,25 @@
   <data name="Emulation.Option.melondsds.melonds_jit_literal_optimisations.Value.disabled"><value>Desativado</value></data>
   <data name="Emulation.Option.melondsds.melonds_jit_literal_optimisations.Value.enabled"><value>Ativado</value></data>
   <data name="Emulation.Option.melondsds.melonds_jit_fast_memory"><value>Memória Rápida</value></data>
-  <data name="Emulation.Option.melondsds.melonds_jit_fast_memory.Help"><value>Desabilitar isso se executar o melonDS DS através de um depurador, caso contrário, a constante (mas esperado) SIGSEGVs vai ficar irritante. Faz efeito na próxima reinicialização. Se não tiver certeza, deixe ativado.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_jit_fast_memory.Help"><value>Desabilitar isso se executar o melonDS DS através de um depurador, caso contrário, a constante (mas esperado) SIGSEGVs vai ficar irritante. Se não tiver certeza, deixe ativado.</value></data>
   <data name="Emulation.Option.melondsds.melonds_jit_fast_memory.Value.disabled"><value>Desativado</value></data>
   <data name="Emulation.Option.melondsds.melonds_jit_fast_memory.Value.enabled"><value>Ativado</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_wfc_dns"><value>Substituir o DNS</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_wfc_dns.Help"><value>O servidor DNS a usar para o ponto de acesso emulado ("melonAP"). Use isso para jogar online com servidores personalizados que reimplementam os serviços de conexão Wi-Fi da Nintendo. O suporte ao jogo depende do servidor. &#xA;Alguns provedores de serviços de internet podem bloquear solicitações para esses servidores. Se este for o seu caso, consulte https://tinyurl.com/393cb755 para obter uma solução alternativa.&#xA;&#xA;Os servidores listados não estão afiliados ao libretro, Nintendo, a equipe melonDS ou o autor deste núcleo. Por favor, respeite outros jogadores e siga as regras do servidor.&#xA;&#xA;Se não tiver a certeza, saia em Kaeru WFC. As alterações entram em vigor na próxima reinicialização.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_wfc_dns.Help"><value>O servidor DNS a usar para o ponto de acesso emulado ("melonAP"). Use isso para jogar online com servidores personalizados que reimplementam os serviços de conexão Wi-Fi da Nintendo. O suporte ao jogo depende do servidor.
+Alguns provedores de serviços de internet podem bloquear solicitações para esses servidores. Se este for o seu caso, consulte https://tinyurl.com/393cb755 para obter uma solução alternativa.
+
+Os servidores listados não estão afiliados ao libretro, Nintendo, a equipe melonDS ou o autor deste núcleo. Por favor, respeite outros jogadores e siga as regras do servidor.
+
+Se não tiver a certeza.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_wfc_dns.Value.95.217.77.181"><value>Wiimmfi (95.217.77.181)</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_wfc_dns.Value.default"><value>Não Sobreponha</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_language"><value>Linguagem</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_language.Help"><value>Sobrepõe o modo de linguagem do console emulado.&#xA;&#xA;Use Host: Usa o idioma do frontend se for suportado pelo console.&#xA;Não Sobrescrever: Use qualquer idioma que já esteja definido no firmware. Este é o comportamento de retrocesso se o DS emulado (ou DSi NAND) não suporta a linguagem do frontend.&#xA;&#xA;Nem todos os jogos honram este cenário. As alterações entram em vigor na próxima reinicialização.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_language.Help"><value>Sobrepõe o modo de linguagem do console emulado.
+
+Use Host: Usa o idioma do frontend se for suportado pelo console.
+Não Sobrescrever: Use qualquer idioma que já esteja definido no firmware. Este é o comportamento de retrocesso se o DS emulado (ou DSi NAND) não suporta a linguagem do frontend.
+
+Nem todos os jogos honram este cenário.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_language.Value.auto"><value>Usar a Máquina</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_language.Value.en"><value>Inglês</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_language.Value.ja"><value>Japonês</value></data>
@@ -749,11 +759,14 @@
   <data name="Emulation.Option.melondsds.melonds_firmware_language.Value.es"><value>Espanhol</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_language.Value.default"><value>Não Sobreponha</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_username"><value>Nome de usuário</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_username.Help"><value>Sobrepõe o nome de usuário dado ao console emulado.&#xA;&#xA;Não Sobrescrever: Usa qualquer nome definido no firmware.&#xA;Adivinhe: Tente obter seu nome de usuário na interface. Se isso falhar, tente as variáveis de ambiente USER, USERNAME e LOGNAME.&#xA;melonDS DS: Usa "melonDS DS". Este é o padrão se nada mais funcionar.&#xA;&#xA;Os nomes são truncados em 10 caracteres. As alterações entram em vigor na próxima reinicialização.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_username.Help"><value>Sobrepõe o nome de usuário dado ao console emulado.
+
+Não Sobrescrever: Usa qualquer nome definido no firmware.
+Adivinhe: Tente obter seu nome de usuário na interface. Se isso falhar, tente as variáveis de ambiente USER.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_username.Value.guess_username"><value>Adivinha.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_username.Value.existing_username"><value>Não Sobreponha</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_favorite_color"><value>Cor Favorita</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_favorite_color.Help"><value>O tema ("cor favorita") do console emulado. As alterações entram em vigor na próxima reinicialização.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_favorite_color.Help"><value>O tema ("cor favorita") do console emulado.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_favorite_color.Value.0"><value>Cinza</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_favorite_color.Value.1"><value>Castanho</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_favorite_color.Value.2"><value>Vermelho</value></data>
@@ -772,7 +785,7 @@
   <data name="Emulation.Option.melondsds.melonds_firmware_favorite_color.Value.15"><value>Rosa Escura</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_favorite_color.Value.default"><value>Não Sobreponha</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_birth_month"><value>Mês de Nascimento</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_birth_month.Help"><value>O mês do teu aniversário. As alterações entram em vigor na próxima reinicialização.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_birth_month.Help"><value>O mês do teu aniversário.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_birth_month.Value.1"><value>Janeiro</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_birth_month.Value.2"><value>Fevereiro</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_birth_month.Value.3"><value>Março</value></data>
@@ -787,29 +800,32 @@
   <data name="Emulation.Option.melondsds.melonds_firmware_birth_month.Value.12"><value>Dezembro</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_birth_month.Value.default"><value>Não Sobreponha</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_birth_day"><value>Dia do Nascimento</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_birth_day.Help"><value>O dia dentro do mês do teu aniversário. As alterações entram em vigor na próxima reinicialização.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_birth_day.Help"><value>O dia dentro do mês do teu aniversário.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_birth_day.Value.default"><value>Não Sobreponha</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_enable_alarm"><value>Habilitar alarme</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_enable_alarm.Help"><value>Se o alarme da consola emulado está activo. As alterações entram em vigor na próxima reinicialização.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_enable_alarm.Help"><value>Se o alarme da consola emulado está activo.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_enable_alarm.Value.disabled"><value>Desativado</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_enable_alarm.Value.enabled"><value>Ativado</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_enable_alarm.Value.default"><value>Não Sobreponha</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_alarm_hour"><value>Hora do Alarme</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_alarm_hour.Help"><value>A hora do alarme configurado. As alterações entram em vigor na próxima reinicialização.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_alarm_hour.Help"><value>A hora do alarme configurado.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_alarm_hour.Value.default"><value>Não Sobreponha</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_alarm_minute"><value>Minuto de Alarme</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_alarm_minute.Help"><value>O minuto do alarme configurado. As alterações entram em vigor na próxima reinicialização.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_alarm_minute.Help"><value>O minuto do alarme configurado.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_alarm_minute.Value.default"><value>Não Sobreponha</value></data>
   <data name="Emulation.Option.melondsds.melonds_network_mode"><value>Modo de rede</value></data>
-  <data name="Emulation.Option.melondsds.melonds_network_mode.Help"><value>Configura como o melonDS DS emula o Nintendo WFC. Se não tiver certeza, use o modo indireto.&#xA;&#xA;Indireto: Use o libslirp para emular a pilha de rede do DS. Simples e não precisa de configuração.&#xA;Directo: Rotas emuladas pacotes Wi-Fi para a interface de rede do host. Mais rápido e mais confiável, mas requer uma conexão ethernet e que WinPcap ou Npcap está instalado. Se não estiver disponível, cai de volta para o modo Indireto.&#xA;&#xA;As alterações entram em vigor na próxima reinicialização. Não relacionado com multiplayer local.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_network_mode.Help"><value>Configura como o melonDS DS emula o Nintendo WFC. Se não tiver certeza, use o modo indireto.
+
+Indireto: Use o libslirp para emular a pilha de rede do DS. Simples e não precisa de configuração.
+Directo: Rotas emuladas pacotes Wi-Fi para a interface de rede do host. Mais rápido e mais confiável, mas requer uma conexão ethernet e que WinPcap ou Npcap está instalado. Se não estiver disponível.</value></data>
   <data name="Emulation.Option.melondsds.melonds_network_mode.Value.disabled"><value>Desativado</value></data>
   <data name="Emulation.Option.melondsds.melonds_network_mode.Value.indirect"><value>Indireto</value></data>
   <data name="Emulation.Option.melondsds.melonds_network_mode.Value.direct"><value>Directo</value></data>
   <data name="Emulation.Option.melondsds.melonds_direct_network_interface"><value>Interface de rede (modo direto)</value></data>
-  <data name="Emulation.Option.melondsds.melonds_direct_network_interface.Help"><value>Selecione uma interface de rede para usar com o Modo Direto. Se não tiver certeza, configure como Automático. As alterações fazem efeito no próximo núcleo reiniciar.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_direct_network_interface.Help"><value>Selecione uma interface de rede para usar com o Modo Direto. Se não tiver certeza.</value></data>
   <data name="Emulation.Option.melondsds.melonds_direct_network_interface.Value.auto"><value>Automático</value></data>
   <data name="Emulation.Option.melondsds.melonds_mac_address_mode"><value>Modo de endereço MAC da rede</value></data>
-  <data name="Emulation.Option.melondsds.melonds_mac_address_mode.Help"><value>Configura como o endereço MAC do console emulado é definido. Alterar esta opção pode tornar impossível o acesso do multiplayer local ou bloquear a gravação de arquivos em jogos que usam o endereço MAC para evitar adulteração de arquivos de salvar (ou seja, Pokémon).&#xA;Nenhuma relação com a interface de modo direto. As alterações entram em vigor na próxima reinicialização.&#xA;Ver https://bit.ly/4fJtWKN para mais informações.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_mac_address_mode.Help"><value>Configura como o endereço MAC do console emulado é definido. Alterar esta opção pode tornar impossível o acesso do multiplayer local ou bloquear a gravação de arquivos em jogos que usam o endereço MAC para evitar adulteração de arquivos de salvar (ou seja.</value></data>
   <data name="Emulation.Option.melondsds.melonds_mac_address_mode.Value.firmware"><value>Definir a partir do firmware</value></data>
   <data name="Emulation.Option.melondsds.melonds_mac_address_mode.Value.from-username"><value>Deriva do nome de utilizador libretro</value></data>
   <data name="Emulation.Option.melondsds.melonds_show_unsupported_features"><value>Avisar sobre as funcionalidades não suportadas</value></data>
@@ -1042,25 +1058,62 @@
   <data name="Emulation.Option.melondsds.melonds_screen_layout8.Value.rotate-right"><value>Rodado para a Direita</value></data>
   <data name="Emulation.Option.melondsds.melonds_screen_layout8.Value.rotate-180"><value>De cabeça para baixo</value></data>
   <data name="Emulation.Option.melondsds.melonds_console_mode"><value>Modo de Consola</value></data>
-  <data name="Emulation.Option.melondsds.melonds_console_mode.Help"><value>Se emular um Nintendo DS ou um Nintendo DSi.&#xA;&#xA;Auto usa modo DSi para jogos que precisam de um DSi, e modo DS para tudo o mais. As configurações DS e DSi forçam o console correspondente; isso é principalmente útil para o desenvolvimento homebrew.&#xA;&#xA;O modo DSi tem alguns limites:&#xA;&#xA;- Os arquivos BIOS/firmware/NAND nativos devem ser fornecidos, inclusive para o DS regular.&#xA;- Alguns recursos (como savestates) não estão disponíveis no modo DSi.&#xA;&#xA;Veja as opções específicas do DSi nesta categoria para mais informações. Se não tiver certeza, use Auto. As alterações entram em vigor na próxima reinicialização.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_console_mode.Help"><value>Se emular um Nintendo DS ou um Nintendo DSi.
+
+Auto usa modo DSi para jogos que precisam de um DSi, e modo DS para tudo o mais. As configurações DS e DSi forçam o console correspondente; isso é principalmente útil para o desenvolvimento homebrew.
+
+O modo DSi tem alguns limites:
+
+- Os arquivos BIOS/firmware/NAND nativos devem ser fornecidos, inclusive para o DS regular.
+- Alguns recursos (como savestates) não estão disponíveis no modo DSi.
+
+Veja as opções específicas do DSi nesta categoria para mais informações. Se não tiver certeza.</value></data>
   <data name="Emulation.Option.melondsds.melonds_console_mode.Value.auto"><value>Automático</value></data>
   <data name="Emulation.Option.melondsds.melonds_console_mode.Value.dsi"><value>DSi (experimental)</value></data>
   <data name="Emulation.Option.melondsds.melonds_sysfile_mode"><value>BIOS/Modo Firmware (DS Modo)</value></data>
-  <data name="Emulation.Option.melondsds.melonds_sysfile_mode.Help"><value>Determina se o melonDS usa descargas nativas de BIOS/firmware ou suas próprias substituições incorporadas. Apenas se aplica ao modo DS, já que o modo DSi requer sempre BIOS nativos e descargas de firmware.&#xA;&#xA;O modo nativo usa arquivos BIOS e firmware de um DS real. Coloque seus despejos destes no diretório do sistema ou seu subdiretório "melonDS DS" e nomeie-os como segue:&#xA;&#xA;- DS BIOS: bios7.bin, bios9.bin&#xA;- DSi BIOS: dsi_bios7.bin, dsi_bios9.bin&#xA;- Firmware: Veja as opções "DS Firmeware" e "DSi Firmerware".&#xA;- DSi NAND: Ver a opção "DSi NAND".&#xA;&#xA;Regressa ao Built-In se algum arquivo BIOS/firmware não for encontrado.&#xA;&#xA;O modo embutido usa BIOS e firmware incorporados do melonDS, e é adequado para a maioria dos jogos.&#xA;&#xA;As alterações entram em vigor na próxima reinicialização.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_sysfile_mode.Help"><value>Determina se o melonDS usa descargas nativas de BIOS/firmware ou suas próprias substituições incorporadas. Apenas se aplica ao modo DS, já que o modo DSi requer sempre BIOS nativos e descargas de firmware.
+
+O modo nativo usa arquivos BIOS e firmware de um DS real. Coloque seus despejos destes no diretório do sistema ou seu subdiretório "melonDS DS" e nomeie-os como segue:
+
+- DS BIOS: bios7.bin, bios9.bin
+- DSi BIOS: dsi_bios7.bin, dsi_bios9.bin
+- Firmware: Veja as opções "DS Firmeware" e "DSi Firmerware".
+- DSi NAND: Ver a opção "DSi NAND".
+
+Regressa ao Built-In se algum arquivo BIOS/firmware não for encontrado.
+
+O modo embutido usa BIOS e firmware incorporados do melonDS.</value></data>
   <data name="Emulation.Option.melondsds.melonds_sysfile_mode.Value.native"><value>Nativo</value></data>
   <data name="Emulation.Option.melondsds.melonds_sysfile_mode.Value.builtin"><value>Incorporado</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_nds_path"><value>Firmware DS</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_nds_path.Help"><value>Selecione uma imagem de firmware para usar no modo DS. Os arquivos estão listados aqui se eles:&#xA;&#xA;- Estão dentro do diretório de sistema da frontend, ou um subdiretório chamado "melonDS DS".&#xA;- São exatamente 131.072 bytes (128KB), 262.144 bytes (256KB) ou 524.288 bytes (512KB).&#xA;- Contenha dados válidos do cabeçalho para o firmware DS.&#xA;&#xA;IDs Nintendo WFC são salvos em firmware, então mudar imagens de firmware pode resultar na perda de alguns dados WFC. Ignorado no modo DSi ou se o modo BIOS/Firmware estiver incorporado. As alterações entram em vigor na próxima reinicialização.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_nds_path.Help"><value>Selecione uma imagem de firmware para usar no modo DS. Os arquivos estão listados aqui se eles:
+
+- Estão dentro do diretório de sistema da frontend, ou um subdiretório chamado "melonDS DS".
+- São exatamente 131.072 bytes (128KB), 262.144 bytes (256KB) ou 524.288 bytes (512KB).
+- Contenha dados válidos do cabeçalho para o firmware DS.
+
+IDs Nintendo WFC são salvos em firmware.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_nds_path.Value./notfound"><value>Nenhum encontrado...</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_dsi_path"><value>Firmware DSi</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_dsi_path.Help"><value>Selecione uma imagem de firmware para usar no modo DSi. Os arquivos estão listados aqui se eles:&#xA;&#xA;- Estão dentro do diretório de sistema da frontend, ou um subdiretório chamado "melonDS DS".&#xA;- São exatamente 131.072 bytes (128KB), 262.144 bytes (256KB) ou 524.288 bytes (512KB).&#xA;- Contenha dados válidos do cabeçalho para o firmware DSi.&#xA;&#xA;IDs Nintendo WFC são salvos em firmware, então mudar imagens de firmware pode resultar na perda de alguns dados WFC. As alterações entram em vigor na próxima reinicialização.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_dsi_path.Help"><value>Selecione uma imagem de firmware para usar no modo DSi. Os arquivos estão listados aqui se eles:
+
+- Estão dentro do diretório de sistema da frontend, ou um subdiretório chamado "melonDS DS".
+- São exatamente 131.072 bytes (128KB), 262.144 bytes (256KB) ou 524.288 bytes (512KB).
+- Contenha dados válidos do cabeçalho para o firmware DSi.
+
+IDs Nintendo WFC são salvos em firmware.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_dsi_path.Value./notfound"><value>Nenhum encontrado...</value></data>
   <data name="Emulation.Option.melondsds.melonds_dsi_nand_path"><value>Localização do DSi NAND</value></data>
-  <data name="Emulation.Option.melondsds.melonds_dsi_nand_path.Help"><value>Selecione uma imagem DSi NAND para usar. Necessário ao usar o modo DSi. Os arquivos estão listados aqui se eles:&#xA;&#xA;- Estão dentro do diretório de sistema da frontend, ou um subdiretório chamado "melonDS DS".&#xA;- São exatamente 251.658,304 bytes (240MB) ou 257.425.472 bytes (245.5MB) de comprimento com dados válidos do rodapé, OR;&#xA;- São 64 bytes mais curtos do que estes comprimentos e contêm dados equivalentes no arquivo offset 0xFF800.&#xA;&#xA;Configure como "Automático" para permitir que o núcleo escolha uma imagem NAND cuja região corresponde ao DSiWare carregado ROM. As alterações entram em vigor na próxima reinicialização.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_dsi_nand_path.Help"><value>Selecione uma imagem DSi NAND para usar. Necessário ao usar o modo DSi. Os arquivos estão listados aqui se eles:
+
+- Estão dentro do diretório de sistema da frontend, ou um subdiretório chamado "melonDS DS".
+- São exatamente 251.658,304 bytes (240MB) ou 257.425.472 bytes (245.5MB) de comprimento com dados válidos do rodapé, OR.</value></data>
   <data name="Emulation.Option.melondsds.melonds_dsi_nand_path.Value./auto"><value>Auto (região da ROM de correspondência)</value></data>
   <data name="Emulation.Option.melondsds.melonds_dsi_nand_path.Value./notfound"><value>Nenhum encontrado...</value></data>
   <data name="Emulation.Option.melondsds.melonds_boot_mode"><value>Modo de arranque</value></data>
-  <data name="Emulation.Option.melondsds.melonds_boot_mode.Help"><value>Determina como os jogos de botas melonDS.&#xA;&#xA;Nativo: Carregar jogos através do menu do sistema, semelhante ao processo real de inicialização DS/DSi. Requer BIOS nativos e arquivos de firmware no diretório do sistema.&#xA;Direto: Pular o menu do sistema e ir direto para o jogo. Suportado para DSiWare se os arquivos nativos do sistema DSi estão disponíveis.&#xA;&#xA;Ignorado se carregado sem um jogo (Nativo é forçado) ou se usando Built-In BIOS/Firmware (Direto é forçado). As alterações entram em vigor na próxima reinicialização.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_boot_mode.Help"><value>Determina como os jogos de botas melonDS.
+
+Nativo: Carregar jogos através do menu do sistema.</value></data>
   <data name="Emulation.Option.melondsds.melonds_boot_mode.Value.direct"><value>Directo</value></data>
   <data name="Emulation.Option.melondsds.melonds_boot_mode.Value.native"><value>Nativo</value></data>
   <data name="Emulation.Option.melondsds.melonds_dsi_sdcard"><value>Cartão SD Virtual (DSi)</value></data>
@@ -1068,7 +1121,7 @@
   <data name="Emulation.Option.melondsds.melonds_dsi_sdcard.Value.disabled"><value>Desativado</value></data>
   <data name="Emulation.Option.melondsds.melonds_dsi_sdcard.Value.enabled"><value>Ativado</value></data>
   <data name="Emulation.Option.melondsds.melonds_dsi_sdcard_readonly"><value>Modo somente leitura (DSi)</value></data>
-  <data name="Emulation.Option.melondsds.melonds_dsi_sdcard_readonly.Help"><value>Se habilitado, o DSi emulado vê o cartão SD virtual como somente leitura. As alterações entram em vigor com a próxima reinicialização.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_dsi_sdcard_readonly.Help"><value>Se habilitado.</value></data>
   <data name="Emulation.Option.melondsds.melonds_dsi_sdcard_readonly.Value.disabled"><value>Desativado</value></data>
   <data name="Emulation.Option.melondsds.melonds_dsi_sdcard_readonly.Value.enabled"><value>Ativado</value></data>
   <data name="Emulation.Option.melondsds.melonds_dsi_sdcard_sync_sdcard_to_host"><value>Sincronizar o Cartão SD para a Máquina (DSi)</value></data>
@@ -1080,7 +1133,7 @@
   <data name="Emulation.Option.melondsds.melonds_homebrew_sdcard.Value.disabled"><value>Desativado</value></data>
   <data name="Emulation.Option.melondsds.melonds_homebrew_sdcard.Value.enabled"><value>Ativado</value></data>
   <data name="Emulation.Option.melondsds.melonds_homebrew_readonly"><value>Modo somente leitura</value></data>
-  <data name="Emulation.Option.melondsds.melonds_homebrew_readonly.Help"><value>Se habilitado, aplicativos homebrew verá o cartão SD virtual como somente leitura. As alterações entram em vigor com a próxima reinicialização.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_homebrew_readonly.Help"><value>Se habilitado.</value></data>
   <data name="Emulation.Option.melondsds.melonds_homebrew_readonly.Value.disabled"><value>Desativado</value></data>
   <data name="Emulation.Option.melondsds.melonds_homebrew_readonly.Value.enabled"><value>Ativado</value></data>
   <data name="Emulation.Option.melondsds.melonds_homebrew_sync_sdcard_to_host"><value>Sincronizar o Cartão SD para a Máquina</value></data>
@@ -1125,13 +1178,18 @@
   <data name="Emulation.Option.melondsds.melonds_solar_sensor_host_sensor.Value.disabled"><value>Desativado</value></data>
   <data name="Emulation.Option.melondsds.melonds_solar_sensor_host_sensor.Value.enabled"><value>Ativado</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_mode"><value>Modo de Tempo</value></data>
-  <data name="Emulation.Option.melondsds.melonds_start_time_mode.Help"><value>A hora inicial do relógio interno da consola emulado.&#xA;&#xA;- Real: Comece em sincronia com o relógio do seu dispositivo.&#xA;- Sincronizado: Sincronize o relógio emulado com o relógio do seu dispositivo. Pode causar comportamento inesperado em alguns jogos ao retroceder ou avançar rapidamente.&#xA;- Relativo: Comece em sincronia com o relógio do seu dispositivo, mais ou menos um deslocamento especificado. Será limitado a datas que o DS pode representar.&#xA;- Absoluto: Comece em uma data e hora específicas, independentemente do relógio de seu dispositivo.&#xA;&#xA;Todas as datas e horários estão no seu fuso horário local. As alterações entram em vigor na próxima reinicialização.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_start_time_mode.Help"><value>A hora inicial do relógio interno da consola emulado.
+
+- Real: Comece em sincronia com o relógio do seu dispositivo.
+- Sincronizado: Sincronize o relógio emulado com o relógio do seu dispositivo. Pode causar comportamento inesperado em alguns jogos ao retroceder ou avançar rapidamente.
+- Relativo: Comece em sincronia com o relógio do seu dispositivo, mais ou menos um deslocamento especificado. Será limitado a datas que o DS pode representar.
+- Absoluto: Comece em uma data e hora específicas.</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_mode.Value.real"><value>Real</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_mode.Value.sync"><value>Sincronizado</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_mode.Value.relative"><value>Relativo</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_mode.Value.absolute"><value>Absoluto</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_year_offset"><value>Deslocamento da hora inicial (Anos)</value></data>
-  <data name="Emulation.Option.melondsds.melonds_start_time_relative_year_offset.Help"><value>O número de anos para compensar o tempo inicial. Só é usado quando o Modo de Hora Inicial é Relativo. As alterações entram em vigor na próxima reinicialização.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_start_time_relative_year_offset.Help"><value>O número de anos para compensar o tempo inicial. Só é usado quando o Modo de Hora Inicial é Relativo.</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_year_offset.Value.-20"><value>-20 anos</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_year_offset.Value.-19"><value>-19 anos</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_year_offset.Value.-18"><value>-18 anos</value></data>
@@ -1174,7 +1232,7 @@
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_year_offset.Value.19"><value>+19 anos</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_year_offset.Value.20"><value>+20 anos</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_day_offset"><value>Deslocamento da hora inicial (dias)</value></data>
-  <data name="Emulation.Option.melondsds.melonds_start_time_relative_day_offset.Help"><value>O número de dias para compensar o tempo inicial. Só é usado quando o Modo de Hora Inicial é Relativo. As alterações entram em vigor na próxima reinicialização.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_start_time_relative_day_offset.Help"><value>O número de dias para compensar o tempo inicial. Só é usado quando o Modo de Hora Inicial é Relativo.</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_day_offset.Value.-364"><value>-364 dias</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_day_offset.Value.-180"><value>-180 dias</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_day_offset.Value.-150"><value>-150 dias</value></data>
@@ -1219,7 +1277,7 @@
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_day_offset.Value.180"><value>+180 dias</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_day_offset.Value.364"><value>+364 dias</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_hour_offset"><value>Deslocamento da hora inicial (horas)</value></data>
-  <data name="Emulation.Option.melondsds.melonds_start_time_relative_hour_offset.Help"><value>O número de horas para compensar o tempo inicial. Só é usado quando o Modo de Hora Inicial é Relativo. As alterações entram em vigor na próxima reinicialização.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_start_time_relative_hour_offset.Help"><value>O número de horas para compensar o tempo inicial. Só é usado quando o Modo de Hora Inicial é Relativo.</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_hour_offset.Value.-23"><value>-23 horas</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_hour_offset.Value.-22"><value>-22 horas.</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_hour_offset.Value.-21"><value>-21 horas.</value></data>
@@ -1268,7 +1326,7 @@
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_hour_offset.Value.22"><value>+22 horas</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_hour_offset.Value.23"><value>+23 horas</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_minute_offset"><value>Deslocamento da hora inicial (minutos)</value></data>
-  <data name="Emulation.Option.melondsds.melonds_start_time_relative_minute_offset.Help"><value>O número de minutos para compensar o tempo inicial. Só é usado quando o Modo de Hora Inicial é Relativo. As alterações entram em vigor na próxima reinicialização.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_start_time_relative_minute_offset.Help"><value>O número de minutos para compensar o tempo inicial. Só é usado quando o Modo de Hora Inicial é Relativo.</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_minute_offset.Value.-59"><value>-59 minutos</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_minute_offset.Value.-58"><value>-58 minutos</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_minute_offset.Value.-57"><value>-57 minutos</value></data>
@@ -1389,9 +1447,9 @@
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_minute_offset.Value.58"><value>+58 minutos</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_minute_offset.Value.59"><value>+59 minutos</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_absolute_year"><value>Ano de início</value></data>
-  <data name="Emulation.Option.melondsds.melonds_start_time_absolute_year.Help"><value>O ano inicial a ser usado quando o Modo de Hora Inicial é Absoluto. As alterações entram em vigor na próxima reinicialização.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_start_time_absolute_year.Help"><value>O ano inicial a ser usado quando o Modo de Hora Inicial é Absoluto.</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_absolute_month"><value>Mês inicial</value></data>
-  <data name="Emulation.Option.melondsds.melonds_start_time_absolute_month.Help"><value>O mês inicial a usar quando o Modo de Hora Inicial é Absoluto. As alterações entram em vigor na próxima reinicialização.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_start_time_absolute_month.Help"><value>O mês inicial a usar quando o Modo de Hora Inicial é Absoluto.</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_absolute_month.Value.1"><value>Janeiro</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_absolute_month.Value.2"><value>Fevereiro</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_absolute_month.Value.3"><value>Março</value></data>
@@ -1405,15 +1463,18 @@
   <data name="Emulation.Option.melondsds.melonds_start_time_absolute_month.Value.11"><value>Novembro</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_absolute_month.Value.12"><value>Dezembro</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_absolute_day"><value>Dia de início</value></data>
-  <data name="Emulation.Option.melondsds.melonds_start_time_absolute_day.Help"><value>O dia inicial do mês a usar quando o Modo de Hora Inicial é Absoluto. Os dias que se estendem após o fim de um mês vão rolar para o próximo (por exemplo, 31 de abril será 1o de maio). As alterações entram em vigor na próxima reinicialização.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_start_time_absolute_day.Help"><value>O dia inicial do mês a usar quando o Modo de Hora Inicial é Absoluto. Os dias que se estendem após o fim de um mês vão rolar para o próximo (por exemplo.</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_absolute_hour"><value>Hora de Início</value></data>
-  <data name="Emulation.Option.melondsds.melonds_start_time_absolute_hour.Help"><value>A hora inicial a usar quando o Modo de Hora Inicial é Absoluto. As alterações entram em vigor na próxima reinicialização.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_start_time_absolute_hour.Help"><value>A hora inicial a usar quando o Modo de Hora Inicial é Absoluto.</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_absolute_minute"><value>Minuto inicial</value></data>
-  <data name="Emulation.Option.melondsds.melonds_start_time_absolute_minute.Help"><value>O minuto inicial a usar quando o Modo de Hora Inicial é Absoluto. As alterações entram em vigor na próxima reinicialização.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_start_time_absolute_minute.Help"><value>O minuto inicial a usar quando o Modo de Hora Inicial é Absoluto.</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_absolute_second"><value>Iniciando segundo</value></data>
-  <data name="Emulation.Option.melondsds.melonds_start_time_absolute_second.Help"><value>O segundo inicial a ser usado quando o Modo de Hora Inicial é Absoluto. As alterações entram em vigor na próxima reinicialização.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_start_time_absolute_second.Help"><value>O segundo inicial a ser usado quando o Modo de Hora Inicial é Absoluto.</value></data>
   <data name="Emulation.Option.melondsds.melonds_render_mode"><value>Modo de renderização</value></data>
-  <data name="Emulation.Option.melondsds.melonds_render_mode.Help"><value>O software é mais rápido e preciso. OpenGL (Classic) pode aumentar os gráficos 3D, mas alguns jogos não renderizam corretamente.&#xA;O OpenGL (Compute) é preciso e suporta upscaling, mas não funciona em alguns dispositivos mais antigos. Mudar para ele leva alguns segundos para compilar seus shaders.&#xA;&#xA;Regressa à renderização de software se o OpenGL não puder ser usado. As alterações produzem efeito imediatamente, mas podem exigir que o driver de vídeo da frontend seja reiniciado.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_render_mode.Help"><value>O software é mais rápido e preciso. OpenGL (Classic) pode aumentar os gráficos 3D, mas alguns jogos não renderizam corretamente.
+O OpenGL (Compute) é preciso e suporta upscaling, mas não funciona em alguns dispositivos mais antigos. Mudar para ele leva alguns segundos para compilar seus shaders.
+
+Regressa à renderização de software se o OpenGL não puder ser usado. As alterações produzem efeito imediatamente.</value></data>
   <data name="Emulation.Option.melondsds.melonds_render_mode.Value.software"><value>Software</value></data>
   <data name="Emulation.Option.melondsds.melonds_render_mode.Value.opengl"><value>OpenGL (Classic)</value></data>
   <data name="Emulation.Option.melondsds.melonds_render_mode.Value.compute"><value>OpenGL (Computar)</value></data>
@@ -1614,7 +1675,7 @@
   <data name="Emulation.Option.fceumm.fceumm_ntsc_filter.Value.composite"><value>Composto</value></data>
   <data name="Emulation.Option.fceumm.fceumm_ntsc_filter.Value.svideo"><value>S-Vídeo</value></data>
   <data name="Emulation.Option.fceumm.fceumm_ntsc_filter.Value.monochrome"><value>Monocromático</value></data>
-  <data name="Emulation.Option.fceumm.fceumm_hdpacks"><value>Pacotes de textura HD (Reiniciar)</value></data>
+  <data name="Emulation.Option.fceumm.fceumm_hdpacks"><value>Pacotes de textura HD</value></data>
   <data name="Emulation.Option.fceumm.fceumm_hdpacks.Help"><value>Carregar pacotes de textura HD em formato Mesen a partir de '&lt;system&gt;/HdPacks/&lt;rom name&gt;/hires.txt' quando presente. Substitui azulejos/espritos com arte de alta resolução (PNG, DDS ou WebP) e permite os fundos personalizados do pacote e música OGG/WAV e efeitos sonoros. Requer uma interface que suporte a saída XRGB8888.</value></data>
   <data name="Emulation.Option.fceumm.fceumm_hdpacks.Value.enabled"><value>Ativado</value></data>
   <data name="Emulation.Option.fceumm.fceumm_hdpacks.Value.disabled"><value>Desativado</value></data>
@@ -2056,10 +2117,10 @@
   <data name="Emulation.Firmware.mesen2.Slot25"><value>BIOS Super Game Boy</value></data>
   <data name="Emulation.Emulator.nestopia.Description"><value>Emula sistemas Nintendo compatíveis com Nestopia.</value></data>
   <data name="Emulation.Option.nestopia.nestopia_favored_system"><value>Sistema Favorito</value></data>
-  <data name="Emulation.Option.nestopia.nestopia_favored_system.Help"><value>Sistema preferir para imagens que não dizem qual eles querem. Imagens que dizem, e imagens encontradas no arquivo de banco de dados NstDatabase.xml, não são afetadas. Apenas se aplica enquanto 'Force System' está definido como 'Auto'. Requer uma reinicialização.</value></data>
+  <data name="Emulation.Option.nestopia.nestopia_favored_system.Help"><value>Sistema preferir para imagens que não dizem qual eles querem. Imagens que dizem, e imagens encontradas no arquivo de banco de dados NstDatabase.xml.</value></data>
   <data name="Emulation.Option.nestopia.nestopia_favored_system.Value.famicom"><value>Famicom</value></data>
   <data name="Emulation.Option.nestopia.nestopia_force_system"><value>Forçar o Sistema</value></data>
-  <data name="Emulation.Option.nestopia.nestopia_force_system.Help"><value>Ignorar o sistema que a imagem pede e usar este em vez disso. A alteração desta configuração irá reiniciar o jogo.</value></data>
+  <data name="Emulation.Option.nestopia.nestopia_force_system.Help"><value>Ignorar o sistema que a imagem pede e usar este em vez disso.</value></data>
   <data name="Emulation.Option.nestopia.nestopia_force_system.Value.auto"><value>Automático</value></data>
   <data name="Emulation.Option.nestopia.nestopia_force_system.Value.famicom"><value>Famicom</value></data>
   <data name="Emulation.Option.nestopia.nestopia_fds_auto_insert"><value>Inserir Auto FDS</value></data>
@@ -2309,7 +2370,10 @@
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_lcd_interlacing_brightnesss"><value>Brilho entrelaçado LCD GBC</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_lcd_interlacing_brightnesss.Help"><value>Ajusta a intensidade do efeito de entrelaçamento. Mantenha este valor baixo quando não usar shaders. Valores mais elevados são recomendados quando combinados com um sombreador para tornar o efeito visível.</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_RGB_SubPixel_Simulation"><value>GBC LCD RGB Fator de Escala de Subpixels</value></data>
-  <data name="Emulation.Option.doublecherrygb.dcgb_gbc_RGB_SubPixel_Simulation.Help"><value>Simula subpixels GBC físicos por upscaling e substituição de cada pixel de cor com componentes RGB correspondentes.&#xA;&#xA;Para melhores resultados:&#xA;- Activar 'Integer Scaleing' em RetroArch (Configurações -&gt; Vídeo -&gt; Scaleamento).&#xA;- Pode ser necessário reiniciar o núcleo após alterar esta configuração.</value></data>
+  <data name="Emulation.Option.doublecherrygb.dcgb_gbc_RGB_SubPixel_Simulation.Help"><value>Simula subpixels GBC físicos por upscaling e substituição de cada pixel de cor com componentes RGB correspondentes.
+
+Para melhores resultados:
+- Activar 'Integer Scaleing' em RetroArch (Configurações -&gt; Vídeo -&gt; Scaleamento).</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_RGB_SubPixel_Simulation.Value.1"><value>Desativado</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_LCD_blur"><value>Borrão LCD GBC</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_LCD_blur.Help"><value>Aplica um efeito de borrão da tela. Esta configuração é altamente intensiva em CPU. Desligue-o no hardware mais fraco ou utilize shaders em vez disso.</value></data>
@@ -2568,7 +2632,7 @@
   <data name="Emulation.Firmware.gambatte.Slot0"><value>Game Boy BIOS</value></data>
   <data name="Emulation.Firmware.gambatte.Slot1"><value>Game Boy Color BIOS</value></data>
   <data name="Emulation.Emulator.gearboy.Description"><value>Emula sistemas Nintendo compatíveis com GearBoy.</value></data>
-  <data name="Emulation.Option.gearboy.gearboy_barcode_boy"><value>Modo Menino de Código de Barras (reiniciar)</value></data>
+  <data name="Emulation.Option.gearboy.gearboy_barcode_boy"><value>Modo Menino de Código de Barras</value></data>
   <data name="Emulation.Option.gearboy.gearboy_barcode_boy.Help"><value>Auto liga Barcode Boy aos jogos reconhecidos pela ROM CRC. Suportes habilitados não reconhecidos ou ROMs remendados. O modo Game Link reserva a porta serial e desativa o Barcode Boy.</value></data>
   <data name="Emulation.Option.gearboy.gearboy_barcode_boy.Value.Auto"><value>Automático</value></data>
   <data name="Emulation.Option.gearboy.gearboy_barcode_boy.Value.Disabled"><value>Desativado</value></data>
@@ -2636,10 +2700,10 @@
   <data name="Emulation.Option.gearboy.gearboy_barcode_digit_12.Help"><value>Dígito 12 do código de barras personalizado de 13 dígitos, da esquerda para a direita. Selecione Personalizado, defina todos os dígitos e, em seguida, pressione Scan Barcode (RetroPad R).</value></data>
   <data name="Emulation.Option.gearboy.gearboy_barcode_digit_13"><value>Código de barras menino personalizado Dígito 13</value></data>
   <data name="Emulation.Option.gearboy.gearboy_barcode_digit_13.Help"><value>Dígito 13 do código de barras personalizado de 13 dígitos, da esquerda para a direita. Selecione Personalizado, defina todos os dígitos e, em seguida, pressione Scan Barcode (RetroPad R).</value></data>
-  <data name="Emulation.Option.gearboy.gearboy_model"><value>Game Boy Modelo (recomeçar)</value></data>
+  <data name="Emulation.Option.gearboy.gearboy_model"><value>Game Boy Modelo</value></data>
   <data name="Emulation.Option.gearboy.gearboy_model.Help"><value>Selecione qual modelo de hardware é emulado. O 'Auto' seleciona automaticamente o melhor modelo com base no cabeçalho carregado ROM. 'Game Boy DMG' força o hardware original Game Boy.'Game Boy Advance' forças Game Boy Advance modo, que permite pequenas diferenças de hardware presentes ao executar Game Boy jogos num GBA.</value></data>
   <data name="Emulation.Option.gearboy.gearboy_model.Value.Auto"><value>Automático</value></data>
-  <data name="Emulation.Option.gearboy.gearboy_mapper"><value>Mapper (reiniciar)</value></data>
+  <data name="Emulation.Option.gearboy.gearboy_mapper"><value>Mapper</value></data>
   <data name="Emulation.Option.gearboy.gearboy_mapper.Help"><value>Selecione qual Controlador de Bancos de Memória (MBC ou mapper) é emulado. O 'Auto' seleciona automaticamente o melhor MBC com base no cabeçalho ROM. Use a seleção manual somente se um jogo tiver problemas com detecção automática.</value></data>
   <data name="Emulation.Option.gearboy.gearboy_mapper.Value.Auto"><value>Automático</value></data>
   <data name="Emulation.Option.gearboy.gearboy_mapper.Value.ROM Only"><value>Apenas ROM</value></data>
@@ -2654,7 +2718,7 @@
   <data name="Emulation.Option.gearboy.gearboy_mapper.Value.Sintax"><value>Sintaxe</value></data>
   <data name="Emulation.Option.gearboy.gearboy_mapper.Value.NT old 1"><value>NT velho 1</value></data>
   <data name="Emulation.Option.gearboy.gearboy_mapper.Value.NT old 2"><value>NT idade 2</value></data>
-  <data name="Emulation.Option.gearboy.gearboy_sgb"><value>Super Game Boy (reiniciar)</value></data>
+  <data name="Emulation.Option.gearboy.gearboy_sgb"><value>Super Game Boy</value></data>
   <data name="Emulation.Option.gearboy.gearboy_sgb.Help"><value>Quando habilitado, ROMs compatíveis serão executados no modo Super Game Boy. Quando desativados, os ROMs compatíveis com SGB serão executados como jogos padrão do Game Boy (DMG).</value></data>
   <data name="Emulation.Option.gearboy.gearboy_sgb.Value.Enabled"><value>Ativado</value></data>
   <data name="Emulation.Option.gearboy.gearboy_sgb.Value.Disabled"><value>Desativado</value></data>
@@ -2662,11 +2726,11 @@
   <data name="Emulation.Option.gearboy.gearboy_sgb_border.Help"><value>Quando ativado, a borda do Super Game Boy é exibida em torno da tela do jogo (256x224). Quando desabilitado, somente a tela do jogo é mostrada (160x144).</value></data>
   <data name="Emulation.Option.gearboy.gearboy_sgb_border.Value.Enabled"><value>Ativado</value></data>
   <data name="Emulation.Option.gearboy.gearboy_sgb_border.Value.Disabled"><value>Desativado</value></data>
-  <data name="Emulation.Option.gearboy.gearboy_bootrom_dmg"><value>DMG Bootrom (começar)</value></data>
+  <data name="Emulation.Option.gearboy.gearboy_bootrom_dmg"><value>DMG Bootrom</value></data>
   <data name="Emulation.Option.gearboy.gearboy_bootrom_dmg.Help"><value>Activar ou desactivar o bootrom original do Game Boy (DMG). Quando habilitado, o bootrom será executado na inicialização exatamente como em hardware real, mostrando a animação de rolagem do logotipo da Nintendo. O ficheiro 'dmg_boot.bin' deve estar presente no directório do sistema da RetroArch.</value></data>
   <data name="Emulation.Option.gearboy.gearboy_bootrom_dmg.Value.Disabled"><value>Desativado</value></data>
   <data name="Emulation.Option.gearboy.gearboy_bootrom_dmg.Value.Enabled"><value>Ativado</value></data>
-  <data name="Emulation.Option.gearboy.gearboy_bootrom_gbc"><value>Bootrom GBC (reiniciar)</value></data>
+  <data name="Emulation.Option.gearboy.gearboy_bootrom_gbc"><value>Bootrom GBC</value></data>
   <data name="Emulation.Option.gearboy.gearboy_bootrom_gbc.Help"><value>Activar ou desactivar o bootrom do Game Boy Color. Quando ativado, o bootrom será executado na inicialização exatamente como no hardware real, mostrando a animação de boot Game Boy Color. O ficheiro 'cgb_boot.bin' deve estar presente no directório do sistema da RetroArch.</value></data>
   <data name="Emulation.Option.gearboy.gearboy_bootrom_gbc.Value.Disabled"><value>Desativado</value></data>
   <data name="Emulation.Option.gearboy.gearboy_bootrom_gbc.Value.Enabled"><value>Ativado</value></data>
@@ -2730,7 +2794,7 @@
   <data name="Emulation.Option.gearboy.gearboy_up_down_allowed.Help"><value>Permitir pressionar, alternar rapidamente, ou manter ambas as direções esquerda e direita (ou para cima e para baixo) ao mesmo tempo. Isso pode causar falhas baseadas em movimentos em certos jogos. É melhor manter esta opção desactivada.</value></data>
   <data name="Emulation.Option.gearboy.gearboy_up_down_allowed.Value.Disabled"><value>Desativado</value></data>
   <data name="Emulation.Option.gearboy.gearboy_up_down_allowed.Value.Enabled"><value>Ativado</value></data>
-  <data name="Emulation.Option.gearboy.gearboy_link_enable"><value>Cabo de Ligação do Jogo Activar (reiniciar)</value></data>
+  <data name="Emulation.Option.gearboy.gearboy_link_enable"><value>Cabo de Ligação do Jogo Activar</value></data>
   <data name="Emulation.Option.gearboy.gearboy_link_enable.Help"><value>Executar dois sistemas ligados Game Boy. Carregar uma ROM executa uma cópia separada em cada tela; use o subsistema 2 Game Boy Link para carregar duas ROMs diferentes. Portas do controlador 1 e 2 telas de controle 1 e 2. O modo Super Game Boy está desativado ao ligar.</value></data>
   <data name="Emulation.Option.gearboy.gearboy_link_enable.Value.Enabled"><value>Ativado</value></data>
   <data name="Emulation.Option.gearboy.gearboy_link_enable.Value.Disabled"><value>Desativado</value></data>
@@ -2829,7 +2893,7 @@
   <data name="Emulation.Option.nside_sfc_balanced.higan_sfc_color_emulation"><value>Emulação de cores</value></data>
   <data name="Emulation.Option.nside_sfc_balanced.higan_sfc_blur_emulation"><value>Emulação do borrão</value></data>
   <data name="Emulation.Option.nside_sfc_balanced.higan_sfc_scanline_emulation"><value>Emulação digitalizada</value></data>
-  <data name="Emulation.Option.nside_sfc_balanced.higan_sfc_sgb_bios"><value>BIOS Super GameBoy (recomeçar)</value></data>
+  <data name="Emulation.Option.nside_sfc_balanced.higan_sfc_sgb_bios"><value>BIOS Super GameBoy</value></data>
   <data name="Emulation.Firmware.nside_sfc_balanced.Slot0"><value>firmware externo</value></data>
   <data name="Emulation.Firmware.nside_sfc_balanced.Slot1"><value>firmware externo</value></data>
   <data name="Emulation.Firmware.nside_sfc_balanced.Slot2"><value>firmware externo</value></data>
@@ -2852,14 +2916,14 @@
   <data name="Emulation.Firmware.nside_sfc_balanced.Slot19"><value>BIOS de arranque SGB</value></data>
   <data name="Emulation.Firmware.nside_sfc_balanced.Slot20"><value>Imagem de arranque SGB</value></data>
   <data name="Emulation.Emulator.sameboy.Description"><value>Emula sistemas Nintendo compatíveis com o SameBoy.</value></data>
-  <data name="Emulation.Option.sameboy.sameboy_model"><value>Sistema - Modelo emulado (Reiniciação dos requisitos)</value></data>
-  <data name="Emulation.Option.sameboy.sameboy_model.Help"><value>Escolhe qual modelo de sistema o conteúdo deve ser iniciado. Certos jogos podem ativar recursos especiais no jogo quando executados em modelos específicos. Esta opção requer uma reinicialização do conteúdo para fazer efeito.</value></data>
+  <data name="Emulation.Option.sameboy.sameboy_model"><value>Sistema - Modelo emulado</value></data>
+  <data name="Emulation.Option.sameboy.sameboy_model.Help"><value>Escolhe qual modelo de sistema o conteúdo deve ser iniciado. Certos jogos podem ativar recursos especiais no jogo quando executados em modelos específicos.</value></data>
   <data name="Emulation.Option.sameboy.sameboy_model.Value.Auto"><value>Auto Detectar DMG/CGB</value></data>
   <data name="Emulation.Option.sameboy.sameboy_model.Value.Auto (SGB)"><value>Auto Detectar DMG/SGB/CGB</value></data>
   <data name="Emulation.Option.sameboy.sameboy_model.Value.Game Boy Pocket"><value>Game Boy Bolso/Luz</value></data>
   <data name="Emulation.Option.sameboy.sameboy_model.Value.Game Boy Player"><value>Game Boy Jogador (CPU AGB A)</value></data>
-  <data name="Emulation.Option.sameboy.sameboy_auto_sgb_model"><value>Sistema - Modelo SGB Auto Detectado (Reiniciação de Requerimentos)</value></data>
-  <data name="Emulation.Option.sameboy.sameboy_auto_sgb_model.Help"><value>Especifica que modelo de hardware Super Game Boy para emular quando o conteúdo SGB é detectado automaticamente. Esta opção requer uma reinicialização do conteúdo para fazer efeito.</value></data>
+  <data name="Emulation.Option.sameboy.sameboy_auto_sgb_model"><value>Sistema - Modelo SGB Auto Detectado</value></data>
+  <data name="Emulation.Option.sameboy.sameboy_auto_sgb_model.Help"><value>Especifica que modelo de hardware Super Game Boy para emular quando o conteúdo SGB é detectado automaticamente.</value></data>
   <data name="Emulation.Option.sameboy.sameboy_mono_palette"><value>Vídeo - GB de Paleta Mono</value></data>
   <data name="Emulation.Option.sameboy.sameboy_mono_palette.Help"><value>Selecciona a paleta de cores que deve ser usada ao jogar jogos do Game Boy.</value></data>
   <data name="Emulation.Option.sameboy.sameboy_mono_palette.Value.greyscale"><value>Tons de cinza</value></data>
@@ -2901,22 +2965,22 @@
   <data name="Emulation.Option.sameboy.sameboy_link.Help"><value>Permite a emulação do cabo de ligação, permitindo a comunicação e troca de dados entre dois sistemas Game Boy.</value></data>
   <data name="Emulation.Option.sameboy.sameboy_link.Value.enabled"><value>Ativado</value></data>
   <data name="Emulation.Option.sameboy.sameboy_link.Value.disabled"><value>Desativado</value></data>
-  <data name="Emulation.Option.sameboy.sameboy_model_1"><value>Sistema - Modelo emulado para Game Boy #1 (Reiniciação dos requisitos)</value></data>
-  <data name="Emulation.Option.sameboy.sameboy_model_1.Help"><value>Escolhe qual modelo de sistema o conteúdo deve ser iniciado para Game Boy #1. Certos jogos podem ativar recursos especiais no jogo quando executados em modelos específicos. Esta opção requer uma reinicialização do conteúdo para fazer efeito.</value></data>
+  <data name="Emulation.Option.sameboy.sameboy_model_1"><value>Sistema - Modelo emulado para Game Boy #1</value></data>
+  <data name="Emulation.Option.sameboy.sameboy_model_1.Help"><value>Escolhe qual modelo de sistema o conteúdo deve ser iniciado para Game Boy #1. Certos jogos podem ativar recursos especiais no jogo quando executados em modelos específicos.</value></data>
   <data name="Emulation.Option.sameboy.sameboy_model_1.Value.Auto"><value>Auto Detectar DMG/CGB</value></data>
   <data name="Emulation.Option.sameboy.sameboy_model_1.Value.Auto (SGB)"><value>Auto Detectar DMG/SGB/CGB</value></data>
   <data name="Emulation.Option.sameboy.sameboy_model_1.Value.Game Boy Pocket"><value>Game Boy Bolso/Luz</value></data>
   <data name="Emulation.Option.sameboy.sameboy_model_1.Value.Game Boy Player"><value>Game Boy Jogador (CPU AGB A)</value></data>
-  <data name="Emulation.Option.sameboy.sameboy_auto_sgb_model_1"><value>Sistema - Modelo SGB Auto Detectado para Game Boy #1 (Reiniciação Requerimentos)</value></data>
-  <data name="Emulation.Option.sameboy.sameboy_auto_sgb_model_1.Help"><value>Especifica qual modelo de hardware Super Game Boy para emular quando o conteúdo SGB é detectado automaticamente para Game Boy #1. Esta opção requer uma reinicialização do conteúdo para fazer efeito.</value></data>
-  <data name="Emulation.Option.sameboy.sameboy_model_2"><value>Sistema - Modelo emulado para Game Boy #2 (Reiniciação dos requisitos)</value></data>
-  <data name="Emulation.Option.sameboy.sameboy_model_2.Help"><value>Escolhe qual modelo de sistema o conteúdo deve ser iniciado para Game Boy #2. Certos jogos podem ativar recursos especiais no jogo quando executados em modelos específicos. Esta opção requer uma reinicialização do conteúdo para fazer efeito.</value></data>
+  <data name="Emulation.Option.sameboy.sameboy_auto_sgb_model_1"><value>Sistema - Modelo SGB Auto Detectado para Game Boy #1</value></data>
+  <data name="Emulation.Option.sameboy.sameboy_auto_sgb_model_1.Help"><value>Especifica qual modelo de hardware Super Game Boy para emular quando o conteúdo SGB é detectado automaticamente para Game Boy #1.</value></data>
+  <data name="Emulation.Option.sameboy.sameboy_model_2"><value>Sistema - Modelo emulado para Game Boy #2</value></data>
+  <data name="Emulation.Option.sameboy.sameboy_model_2.Help"><value>Escolhe qual modelo de sistema o conteúdo deve ser iniciado para Game Boy #2. Certos jogos podem ativar recursos especiais no jogo quando executados em modelos específicos.</value></data>
   <data name="Emulation.Option.sameboy.sameboy_model_2.Value.Auto"><value>Auto Detectar DMG/CGB</value></data>
   <data name="Emulation.Option.sameboy.sameboy_model_2.Value.Auto (SGB)"><value>Auto Detectar DMG/SGB/CGB</value></data>
   <data name="Emulation.Option.sameboy.sameboy_model_2.Value.Game Boy Pocket"><value>Game Boy Bolso/Luz</value></data>
   <data name="Emulation.Option.sameboy.sameboy_model_2.Value.Game Boy Player"><value>Game Boy Jogador (CPU AGB A)</value></data>
-  <data name="Emulation.Option.sameboy.sameboy_auto_sgb_model_2"><value>Sistema - Modelo SGB Auto Detectado para Game Boy #2 (Reiniciação dos requisitos)</value></data>
-  <data name="Emulation.Option.sameboy.sameboy_auto_sgb_model_2.Help"><value>Especifica qual modelo de hardware Super Game Boy para emular quando o conteúdo SGB é detectado automaticamente para Game Boy #2. Esta opção requer uma reinicialização do conteúdo para fazer efeito.</value></data>
+  <data name="Emulation.Option.sameboy.sameboy_auto_sgb_model_2"><value>Sistema - Modelo SGB Auto Detectado para Game Boy #2</value></data>
+  <data name="Emulation.Option.sameboy.sameboy_auto_sgb_model_2.Help"><value>Especifica qual modelo de hardware Super Game Boy para emular quando o conteúdo SGB é detectado automaticamente para Game Boy #2.</value></data>
   <data name="Emulation.Option.sameboy.sameboy_screen_layout"><value>Vídeo - Disposição da Tela</value></data>
   <data name="Emulation.Option.sameboy.sameboy_screen_layout.Help"><value>Ao emular dois sistemas ao mesmo tempo, esta opção define a respectiva posição das duas telas.</value></data>
   <data name="Emulation.Option.sameboy.sameboy_screen_layout.Value.top-down"><value>Top-Down</value></data>
@@ -3011,10 +3075,10 @@
   <data name="Emulation.Option.tgbdual.tgbdual_audio_output"><value>Saída de áudio</value></data>
   <data name="Emulation.Option.tgbdual.tgbdual_audio_output.Value.Both (mixed)"><value>Ambos (misturados)</value></data>
   <data name="Emulation.Emulator.mednafen_gba.Description"><value>Emula sistemas Nintendo compatíveis com Beetle GBA.</value></data>
-  <data name="Emulation.Option.mednafen_gba.gba_hle"><value>Emulação de bios HLE (Restart)</value></data>
+  <data name="Emulation.Option.mednafen_gba.gba_hle"><value>Emulação de bios HLE</value></data>
   <data name="Emulation.Option.mednafen_gba.gba_hle.Value.enabled"><value>Ativado</value></data>
   <data name="Emulation.Option.mednafen_gba.gba_hle.Value.disabled"><value>Desativado</value></data>
-  <data name="Emulation.Option.mednafen_gba.gba_use_mednafen_save_method"><value>Método de Gravação (Reiniciar)</value></data>
+  <data name="Emulation.Option.mednafen_gba.gba_use_mednafen_save_method"><value>Método de Gravação</value></data>
   <data name="Emulation.Option.mednafen_gba.gba_use_mednafen_save_method.Value.mednafen"><value>mednafeno</value></data>
   <data name="Emulation.Option.mednafen_gba.gba_use_mednafen_save_method.Value.libretro"><value>libretro</value></data>
   <data name="Emulation.Firmware.mednafen_gba.Slot0"><value>Game Boy Advance BIOS</value></data>
@@ -3082,14 +3146,14 @@
   <data name="Emulation.Option.gpsp.gpsp_turbo_period.Help"><value>Especifique o intervalo de repetição (em quadros) ao segurar os botões Turbo A/B.</value></data>
   <data name="Emulation.Firmware.gpsp.Slot0"><value>Game Boy Advance BIOS</value></data>
   <data name="Emulation.Emulator.meteor.Description"><value>Emula sistemas Nintendo compatíveis com o Meteor.</value></data>
-  <data name="Emulation.Option.mgba.mgba_gb_model"><value>Game Boy Modelo (Recomeçar)</value></data>
+  <data name="Emulation.Option.mgba.mgba_gb_model"><value>Game Boy Modelo</value></data>
   <data name="Emulation.Option.mgba.mgba_gb_model.Help"><value>Executa o conteúdo carregado com um modelo específico do Game Boy. O 'Autodetect' selecionará o modelo mais apropriado para o jogo atual.</value></data>
   <data name="Emulation.Option.mgba.mgba_gb_model.Value.Autodetect"><value>Detectar automaticamente</value></data>
-  <data name="Emulation.Option.mgba.mgba_use_bios"><value>Usar o Ficheiro BIOS se Encontrado (Reiniciar)</value></data>
+  <data name="Emulation.Option.mgba.mgba_use_bios"><value>Usar o Ficheiro BIOS se Encontrado</value></data>
   <data name="Emulation.Option.mgba.mgba_use_bios.Help"><value>Use BIOS/bootloader oficial para hardware emulado, se presente no diretório do sistema da RetroArch.</value></data>
   <data name="Emulation.Option.mgba.mgba_use_bios.Value.ON"><value>Ativado</value></data>
   <data name="Emulation.Option.mgba.mgba_use_bios.Value.OFF"><value>Desativado</value></data>
-  <data name="Emulation.Option.mgba.mgba_skip_bios"><value>Ignorar a Introdução da BIOS (Reiniciar)</value></data>
+  <data name="Emulation.Option.mgba.mgba_skip_bios"><value>Ignorar a Introdução da BIOS</value></data>
   <data name="Emulation.Option.mgba.mgba_skip_bios.Help"><value>Ao usar um BIOS/bootloader oficial, pule a animação do logo de inicialização. Esta configuração é ignorada quando 'Use o arquivo BIOS se encontrado' estiver desativado.</value></data>
   <data name="Emulation.Option.mgba.mgba_skip_bios.Value.OFF"><value>Desativado</value></data>
   <data name="Emulation.Option.mgba.mgba_skip_bios.Value.ON"><value>Ativado</value></data>
@@ -3111,13 +3175,13 @@
   <data name="Emulation.Option.mgba.mgba_gb_colors.Value.GBC Green →"><value>GBC Verde →</value></data>
   <data name="Emulation.Option.mgba.mgba_gb_colors.Value.GBC Dark Green →A"><value>GBC Verde escuro →A</value></data>
   <data name="Emulation.Option.mgba.mgba_gb_colors.Value.GBC Reverse →B"><value>GBC Inversa →B</value></data>
-  <data name="Emulation.Option.mgba.mgba_gb_colors_preset"><value>Predefinição do hardware Game Boy Paletas (Reiniciar)</value></data>
+  <data name="Emulation.Option.mgba.mgba_gb_colors_preset"><value>Predefinição do hardware Game Boy Paletas</value></data>
   <data name="Emulation.Option.mgba.mgba_gb_colors_preset.Help"><value>Use as paletas para Game Boy jogos que têm predefinições no Game Boy Color ou Super Game Boy.</value></data>
   <data name="Emulation.Option.mgba.mgba_gb_colors_preset.Value.0"><value>Predefinição padrão do Game Boy</value></data>
   <data name="Emulation.Option.mgba.mgba_gb_colors_preset.Value.1"><value>Game Boy Color apenas predefinições</value></data>
   <data name="Emulation.Option.mgba.mgba_gb_colors_preset.Value.2"><value>Apenas predefinições do Super Game Boy</value></data>
   <data name="Emulation.Option.mgba.mgba_gb_colors_preset.Value.3"><value>Quaisquer predefinições disponíveis</value></data>
-  <data name="Emulation.Option.mgba.mgba_sgb_borders"><value>Usar as Fronteiras do Super Game Boy (Reiniciar)</value></data>
+  <data name="Emulation.Option.mgba.mgba_sgb_borders"><value>Usar as Fronteiras do Super Game Boy</value></data>
   <data name="Emulation.Option.mgba.mgba_sgb_borders.Help"><value>Display Super Game Boy bordas ao executar Super Game Boy jogos melhorados.</value></data>
   <data name="Emulation.Option.mgba.mgba_sgb_borders.Value.ON"><value>Ativado</value></data>
   <data name="Emulation.Option.mgba.mgba_sgb_borders.Value.OFF"><value>Desativado</value></data>
@@ -3145,7 +3209,7 @@
   <data name="Emulation.Option.mgba.mgba_solar_sensor_level"><value>Nível do sensor solar</value></data>
   <data name="Emulation.Option.mgba.mgba_solar_sensor_level.Help"><value>Define a intensidade da luz solar ambiente. Pode ser usado por jogos que incluíram um sensor solar em seus cartuchos, e.g: a série Boktai.</value></data>
   <data name="Emulation.Option.mgba.mgba_solar_sensor_level.Value.sensor"><value>Usar o sensor do dispositivo, se disponível</value></data>
-  <data name="Emulation.Option.mgba.mgba_force_gbp"><value>Game Boy Jogador Rumble (Reiniciar)</value></data>
+  <data name="Emulation.Option.mgba.mgba_force_gbp"><value>Game Boy Jogador Rumble</value></data>
   <data name="Emulation.Option.mgba.mgba_force_gbp.Help"><value>Ativar isso permitirá jogos compatíveis com o logotipo de inicialização do Game Boy Player para fazer o controle rumble. Devido à forma como a Nintendo decidiu que este recurso deveria funcionar, pode causar falhas tais como piscando ou desfasamento em alguns desses jogos.</value></data>
   <data name="Emulation.Option.mgba.mgba_force_gbp.Value.OFF"><value>Desativado</value></data>
   <data name="Emulation.Option.mgba.mgba_force_gbp.Value.ON"><value>Ativado</value></data>
@@ -3170,17 +3234,17 @@
   <data name="Emulation.Firmware.mgba.Slot3"><value>BIOS Super Game Boy</value></data>
   <data name="Emulation.Emulator.vbam.Description"><value>Emula sistemas Nintendo compatíveis com VBA-M.</value></data>
   <data name="Emulation.Option.vbam.vbam_usebios"><value>Usar BIOS Oficial (se disponível)</value></data>
-  <data name="Emulation.Option.vbam.vbam_usebios.Help"><value>Usar BIOS oficial quando disponível. O núcleo precisa ser reiniciado para que as alterações se apliquem.</value></data>
+  <data name="Emulation.Option.vbam.vbam_usebios.Help"><value>Usar BIOS oficial quando disponível.</value></data>
   <data name="Emulation.Option.vbam.vbam_usebios.Value.disabled"><value>Desativado</value></data>
   <data name="Emulation.Option.vbam.vbam_usebios.Value.enabled"><value>Ativado</value></data>
   <data name="Emulation.Option.vbam.vbam_forceRTCenable"><value>RTC compatível com força</value></data>
   <data name="Emulation.Option.vbam.vbam_forceRTCenable.Help"><value>Força o relógio interno em tempo real a ser ativado independentemente de rom. Utilizado para patches rom que exigem relógio para ser ativado (por exemplo, Pokemon).</value></data>
   <data name="Emulation.Option.vbam.vbam_forceRTCenable.Value.disabled"><value>Desativado</value></data>
   <data name="Emulation.Option.vbam.vbam_forceRTCenable.Value.enabled"><value>Ativado</value></data>
-  <data name="Emulation.Option.vbam.vbam_gbHardware"><value>(GB) Hardware Emulado (Precisa de Reiniciar)</value></data>
-  <data name="Emulation.Option.vbam.vbam_gbHardware.Help"><value>Define o tipo de hardware do Game Boy para emular. Reinicie o núcleo para se aplicar.</value></data>
+  <data name="Emulation.Option.vbam.vbam_gbHardware"><value>(GB) Hardware Emulado</value></data>
+  <data name="Emulation.Option.vbam.vbam_gbHardware.Help"><value>Define o tipo de hardware do Game Boy para emular.</value></data>
   <data name="Emulation.Option.vbam.vbam_gbHardware.Value.auto"><value>Automático</value></data>
-  <data name="Emulation.Option.vbam.vbam_allowcolorizerhack"><value>(GB) Activar o Hack Colorizador (Precisa de Reiniciar)</value></data>
+  <data name="Emulation.Option.vbam.vbam_allowcolorizerhack"><value>(GB) Activar o Hack Colorizador</value></data>
   <data name="Emulation.Option.vbam.vbam_allowcolorizerhack.Help"><value>Permite que Colorizer hackeou jogos GB (por exemplo, DX patched games) para executar normalmente no tipo de hardware GBC/GBA. Isso também desativa o uso do arquivo bios. NOT RECOMMENDED para uso em jogos não coloridos.</value></data>
   <data name="Emulation.Option.vbam.vbam_allowcolorizerhack.Value.disabled"><value>Desativado</value></data>
   <data name="Emulation.Option.vbam.vbam_allowcolorizerhack.Value.enabled"><value>Ativado</value></data>
@@ -3296,11 +3360,11 @@
   <data name="Emulation.Firmware.vbam.Slot1"><value>Game Boy BIOS</value></data>
   <data name="Emulation.Firmware.vbam.Slot2"><value>Game Boy Color BIOS</value></data>
   <data name="Emulation.Emulator.vba_next.Description"><value>Emula sistemas Nintendo compatíveis com VBA Next.</value></data>
-  <data name="Emulation.Option.vba_next.vbanext_bios"><value>Usar BIOS se disponível (Reiniciar)</value></data>
+  <data name="Emulation.Option.vba_next.vbanext_bios"><value>Usar BIOS se disponível</value></data>
   <data name="Emulation.Option.vba_next.vbanext_bios.Help"><value>Usa BIOS presente no diretório do sistema da RetroArch.</value></data>
   <data name="Emulation.Option.vba_next.vbanext_bios.Value.enabled"><value>Ativado</value></data>
   <data name="Emulation.Option.vba_next.vbanext_bios.Value.disabled"><value>Desativado</value></data>
-  <data name="Emulation.Option.vba_next.vbanext_rtc"><value>RTC (Reiniciar)</value></data>
+  <data name="Emulation.Option.vba_next.vbanext_rtc"><value>RTC</value></data>
   <data name="Emulation.Option.vba_next.vbanext_rtc.Help"><value>Controla a emulação do Relógio em Tempo Real. O 'auto' usa a lista de sobreposição por ROM. O RTC é ativado para qualquer ROM (utilizado para hacks de ROM que precisem de RTC sem um cancelamento correspondente). O "disabled" desliga o RTC, substituindo a lista.</value></data>
   <data name="Emulation.Option.vba_next.vbanext_rtc.Value.auto"><value>Automático</value></data>
   <data name="Emulation.Option.vba_next.vbanext_rtc.Value.enabled"><value>Ativado</value></data>
@@ -3325,11 +3389,11 @@
   <data name="Emulation.Option.dolphin.dolphin_emulation_speed.Value.1.0"><value>100% (velocidade normal)</value></data>
   <data name="Emulation.Option.dolphin.dolphin_emulation_speed.Value.0.0"><value>Ilimitado</value></data>
   <data name="Emulation.Option.dolphin.dolphin_main_cpu_thread"><value>Core &gt; Modo dual do núcleo</value></data>
-  <data name="Emulation.Option.dolphin.dolphin_main_cpu_thread.Help"><value>Activar emulação de CPU dual-core. Requer núcleo RESTART.</value></data>
+  <data name="Emulation.Option.dolphin.dolphin_main_cpu_thread.Help"><value>Activar emulação de CPU dual-core.</value></data>
   <data name="Emulation.Option.dolphin.dolphin_main_cpu_thread.Value.disabled"><value>Desativado</value></data>
   <data name="Emulation.Option.dolphin.dolphin_main_cpu_thread.Value.enabled"><value>Ativado</value></data>
   <data name="Emulation.Option.dolphin.dolphin_main_load_game_into_memory"><value>Núcleo &gt; Carregar todo o jogo em memória</value></data>
-  <data name="Emulation.Option.dolphin.dolphin_main_load_game_into_memory.Help"><value>Carregar todo o jogo em memória. Requer núcleo RESTART.</value></data>
+  <data name="Emulation.Option.dolphin.dolphin_main_load_game_into_memory.Help"><value>Carregar todo o jogo em memória.</value></data>
   <data name="Emulation.Option.dolphin.dolphin_main_load_game_into_memory.Value.disabled"><value>Desativado</value></data>
   <data name="Emulation.Option.dolphin.dolphin_main_load_game_into_memory.Value.enabled"><value>Ativado</value></data>
   <data name="Emulation.Option.dolphin.dolphin_precision_frame_timing"><value>Núcleo &gt; Temporização da moldura de precisão</value></data>
@@ -3349,7 +3413,7 @@
   <data name="Emulation.Option.dolphin.dolphin_main_accurate_cpu_cache.Value.disabled"><value>Desativado</value></data>
   <data name="Emulation.Option.dolphin.dolphin_main_accurate_cpu_cache.Value.enabled"><value>Ativado</value></data>
   <data name="Emulation.Option.dolphin.dolphin_cheats_enabled"><value>Núcleo &gt; Cheats internos</value></data>
-  <data name="Emulation.Option.dolphin.dolphin_cheats_enabled.Help"><value>Activar códigos de fraude incorporados. Reinicie o núcleo para fazer efeito.</value></data>
+  <data name="Emulation.Option.dolphin.dolphin_cheats_enabled.Help"><value>Activar códigos de fraude incorporados.</value></data>
   <data name="Emulation.Option.dolphin.dolphin_cheats_enabled.Value.disabled"><value>Desativado</value></data>
   <data name="Emulation.Option.dolphin.dolphin_cheats_enabled.Value.enabled"><value>Ativado</value></data>
   <data name="Emulation.Option.dolphin.dolphin_skip_gc_bios"><value>Núcleo &gt; Ignorar BIOS do GameCube</value></data>
@@ -3467,7 +3531,7 @@
   <data name="Emulation.Option.dolphin.dolphin_gc_sp1.Value.13"><value>Servidor de Toques Modem</value></data>
   <data name="Emulation.Option.dolphin.dolphin_gc_sp1.Value.6"><value>Quadro de base</value></data>
   <data name="Emulation.Option.dolphin.dolphin_enable_gamecube_mic"><value>Configuração do sistema (GC) &gt; Microfone GameCube</value></data>
-  <data name="Emulation.Option.dolphin.dolphin_enable_gamecube_mic.Help"><value>Emular o acessório oficial do microfone GameCube. Reiniciar o núcleo após alterar esta opção.</value></data>
+  <data name="Emulation.Option.dolphin.dolphin_enable_gamecube_mic.Help"><value>Emular o acessório oficial do microfone GameCube.</value></data>
   <data name="Emulation.Option.dolphin.dolphin_enable_gamecube_mic.Value.disabled"><value>Desativado</value></data>
   <data name="Emulation.Option.dolphin.dolphin_enable_gamecube_mic.Value.enabled"><value>Ativado</value></data>
   <data name="Emulation.Option.dolphin.dolphin_hotkey_activate_microphone"><value>Configuração do Sistema (GC) &gt; Botão de Microfone</value></data>
@@ -3508,7 +3572,7 @@
   <data name="Emulation.Option.dolphin.dolphin_bluetooth_passthrough.Value.disabled"><value>Desativado</value></data>
   <data name="Emulation.Option.dolphin.dolphin_bluetooth_passthrough.Value.enabled"><value>Ativado</value></data>
   <data name="Emulation.Option.dolphin.dolphin_wiispeak_enable"><value>Configuração do sistema &gt; Wii Speak</value></data>
-  <data name="Emulation.Option.dolphin.dolphin_wiispeak_enable.Help"><value>Emula o microfone Wii Speak. Reiniciar ao alterar esta opção.</value></data>
+  <data name="Emulation.Option.dolphin.dolphin_wiispeak_enable.Help"><value>Emula o microfone Wii Speak.</value></data>
   <data name="Emulation.Option.dolphin.dolphin_wiispeak_enable.Value.disabled"><value>Desativado</value></data>
   <data name="Emulation.Option.dolphin.dolphin_wiispeak_enable.Value.enabled"><value>Ativado</value></data>
   <data name="Emulation.Option.dolphin.dolphin_wiispeak_muted"><value>Áudio &gt; Dispositivos &gt; Wii Speak Muted</value></data>
@@ -3516,7 +3580,7 @@
   <data name="Emulation.Option.dolphin.dolphin_wiispeak_muted.Value.disabled"><value>Desativado</value></data>
   <data name="Emulation.Option.dolphin.dolphin_wiispeak_muted.Value.enabled"><value>Ativado</value></data>
   <data name="Emulation.Option.dolphin.dolphin_wii_logi_microphone_enable"><value>Configuração do sistema &gt; Microfone USB Logitech</value></data>
-  <data name="Emulation.Option.dolphin.dolphin_wii_logi_microphone_enable.Help"><value>Emular o microfone USB Logitech. Reiniciar ao alterar esta opção.</value></data>
+  <data name="Emulation.Option.dolphin.dolphin_wii_logi_microphone_enable.Help"><value>Emular o microfone USB Logitech.</value></data>
   <data name="Emulation.Option.dolphin.dolphin_wii_logi_microphone_enable.Value.disabled"><value>Desativado</value></data>
   <data name="Emulation.Option.dolphin.dolphin_wii_logi_microphone_enable.Value.enabled"><value>Ativado</value></data>
   <data name="Emulation.Option.dolphin.dolphin_renderer"><value>Gráficos &gt; Configurações &gt; Infraestrutura gráfica</value></data>
@@ -3744,7 +3808,7 @@
   <data name="Emulation.Option.dolphin.dolphin_swing_angle.Help"><value>Rotação aplicada nas extremidades de um balanço (1-180°).</value></data>
   <data name="Emulation.Option.dolphin.dolphin_swing_angle.Value.90"><value>90° (Padrão)</value></data>
   <data name="Emulation.Option.dolphin.dolphin_cheats_import"><value>RetroArch Core &gt; Importar Automaticamente Cheats para o RetroArch</value></data>
-  <data name="Emulation.Option.dolphin.dolphin_cheats_import.Help"><value>Importar ficheiros dolphin ini para o RetroArch. Reinicie o núcleo para fazer efeito.</value></data>
+  <data name="Emulation.Option.dolphin.dolphin_cheats_import.Help"><value>Importar ficheiros dolphin ini para o RetroArch.</value></data>
   <data name="Emulation.Option.dolphin.dolphin_cheats_import.Value.disabled"><value>Desativado</value></data>
   <data name="Emulation.Option.dolphin.dolphin_cheats_import.Value.enabled"><value>Ativado</value></data>
   <data name="Emulation.Option.dolphin.dolphin_save_load_settings"><value>Núcleo RetroArch &gt; Carregar e evitar salvar configurações</value></data>
@@ -3756,7 +3820,7 @@
   <data name="Emulation.Option.dolphin.dolphin_ir_passthrough.Value.disabled"><value>Desativado</value></data>
   <data name="Emulation.Option.dolphin.dolphin_ir_passthrough.Value.enabled"><value>Ativado</value></data>
   <data name="Emulation.Option.dolphin.dolphin_libretro_vfs_enabled"><value>Núcleo RetroArch &gt; Activar o Sistema de Ficheiros Virtuais (VFS)</value></data>
-  <data name="Emulation.Option.dolphin.dolphin_libretro_vfs_enabled.Help"><value>Activar VFS para SAF/SMB, etc. Requer núcleo RESTART. Esta característica é NEW e EXPERIMENTAL. Faça backup de suas economias regularmente.</value></data>
+  <data name="Emulation.Option.dolphin.dolphin_libretro_vfs_enabled.Help"><value>Activar VFS para SAF/SMB.</value></data>
   <data name="Emulation.Option.dolphin.dolphin_libretro_vfs_enabled.Value.disabled"><value>Desativado</value></data>
   <data name="Emulation.Option.dolphin.dolphin_libretro_vfs_enabled.Value.enabled"><value>Ativado</value></data>
   <data name="Emulation.Option.dolphin.dolphin_default_mouse_bindings_enabled"><value>Núcleo do RetroArch &gt; Activar as Ligações por Omissão de Mouse</value></data>
@@ -3764,7 +3828,7 @@
   <data name="Emulation.Option.dolphin.dolphin_default_mouse_bindings_enabled.Value.disabled"><value>Desativado</value></data>
   <data name="Emulation.Option.dolphin.dolphin_default_mouse_bindings_enabled.Value.enabled"><value>Ativado</value></data>
   <data name="Emulation.Option.dolphin.dolphin_dsu_enabled"><value>Wiimote (DSU) &gt; Activar o Cliente DSU</value></data>
-  <data name="Emulation.Option.dolphin.dolphin_dsu_enabled.Help"><value>Activar o cliente DSU para os dados de movimento DualShock. Reinicie o núcleo para fazer efeito.</value></data>
+  <data name="Emulation.Option.dolphin.dolphin_dsu_enabled.Help"><value>Activar o cliente DSU para os dados de movimento DualShock.</value></data>
   <data name="Emulation.Option.dolphin.dolphin_dsu_enabled.Value.disabled"><value>Desativado</value></data>
   <data name="Emulation.Option.dolphin.dolphin_dsu_enabled.Value.enabled"><value>Ativado</value></data>
   <data name="Emulation.Option.dolphin.dolphin_dsu_ip_octet1"><value>Wiimote (DSU) &gt; Octet de IP do servidor 1</value></data>
@@ -3987,13 +4051,13 @@
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-dither-filter.Help"><value>Allow VI filtro de-dither, recupera a profundidade significativa da cor.</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-dither-filter.Value.True"><value>Ativado</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-dither-filter.Value.False"><value>Desativado</value></data>
-  <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-upscaling"><value>(ParaLLEl-RDP) Factor de aumento (começar)</value></data>
+  <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-upscaling"><value>(ParaLLEl-RDP) Factor de aumento</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-upscaling.Help"><value>Aplicar fator de upscaling interno.</value></data>
-  <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-super-sampled-read-back"><value>(ParaLLEl-RDP) Efeitos do buffer de quadros SSAA (reiniciar)</value></data>
+  <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-super-sampled-read-back"><value>(ParaLLEl-RDP) Efeitos do buffer de quadros SSAA</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-super-sampled-read-back.Help"><value>Efeitos super amostra framebuffer. Pode introduzir artefactos.</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-super-sampled-read-back.Value.False"><value>Desativado</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-super-sampled-read-back.Value.True"><value>Ativado</value></data>
-  <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-super-sampled-read-back-dither"><value>(ParaLLEl- RDP) Dither SSAA framebuffer effects (reaccionar)</value></data>
+  <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-super-sampled-read-back-dither"><value>(ParaLLEl- RDP) Dither SSAA framebuffer effects</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-super-sampled-read-back-dither.Help"><value>Efeitos de framebuffer super amostrados dither.</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-super-sampled-read-back-dither.Value.True"><value>Ativado</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-super-sampled-read-back-dither.Value.False"><value>Desativado</value></data>
@@ -4103,7 +4167,7 @@
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-pak4.Value.rumble"><value>rumble</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-pak4.Value.transfer"><value>transferência</value></data>
   <data name="Emulation.Emulator.parallel_n64.Description"><value>Emula sistemas Nintendo compatíveis com o ParaLLEl N64.</value></data>
-  <data name="Emulation.Option.parallel_n64.parallel-n64-upscaling"><value>Factor de aumento (recomeçar)</value></data>
+  <data name="Emulation.Option.parallel_n64.parallel-n64-upscaling"><value>Factor de aumento</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-upscaling.Help"><value>Renderize com um múltiplo da resolução do console. ParaLLEl-RDP honra todos os fatores; Angrylion renderiza até 4x e trata 8x como 4x.</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-parallel-rdp-native-texture-lod"><value>Usar LOD de textura nativa ao aumentar a escala</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-parallel-rdp-native-texture-lod.Help"><value>Escolha níveis de textura mip como o console faria, a partir da pegada de um pixel do console em vez de um Pixel upscaled. Sem ele uma renderização upscaled seleciona níveis mais afiados, e jogos que usam o nível como um interruptor mostram a imagem errada (a pintura no final do corredor castelo em Super Mario 64). Honrado por ParaLLEl-RDP e Angrylion.</value></data>
@@ -4348,7 +4412,7 @@
   <data name="Emulation.Option.parallel_n64.parallel-n64-rspplugin.Value.hle"><value>hle</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-rspplugin.Value.parallel"><value>paralelo</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-screensize"><value>Resolução</value></data>
-  <data name="Emulation.Option.parallel_n64.parallel-n64-screensize.Help"><value>Resolução (começar)</value></data>
+  <data name="Emulation.Option.parallel_n64.parallel-n64-screensize.Help"><value>Resolução</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-aspectratiohint"><value>Sugestão da relação de proporções</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-aspectratiohint.Help"><value>Dica da relação de proporções (reinit)</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-aspectratiohint.Value.normal"><value>normal</value></data>
@@ -4401,7 +4465,7 @@
   <data name="Emulation.Option.parallel_n64.parallel-n64-alt-map.Value.disabled"><value>Desativado</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-alt-map.Value.enabled"><value>Ativado</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-vcache-vbo"><value>(Glide64) cache de vértices VBO</value></data>
-  <data name="Emulation.Option.parallel_n64.parallel-n64-vcache-vbo.Help"><value>Cache de vértices VBO (começar)</value></data>
+  <data name="Emulation.Option.parallel_n64.parallel-n64-vcache-vbo.Help"><value>Cache de vértices VBO</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-vcache-vbo.Value.disabled"><value>Desativado</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-vcache-vbo.Value.enabled"><value>Ativado</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-boot-device"><value>Dispositivo de arranque</value></data>
@@ -4411,7 +4475,7 @@
   <data name="Emulation.Option.parallel_n64.parallel-n64-64dd-hardware.Help"><value>Tratar o conteúdo sem um cartucho reconhecido ou cabeçalho de disco como um disco 64DD. Discos de desenvolvimento e descarga MAME/SDK não carregam nenhum marcador de cabeçalho; cartuchos regulares e imagens D64 varejo são identificados pelo seu cabeçalho e não afetados por esta configuração.</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-64dd-hardware.Value.disabled"><value>Desativado</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-64dd-hardware.Value.enabled"><value>Ativado</value></data>
-  <data name="Emulation.Option.parallel_n64.parallel-n64-goldeneye-tlb-hack"><value>GoldenEye TLB Mapping Hack (Reiniciar)</value></data>
+  <data name="Emulation.Option.parallel_n64.parallel-n64-goldeneye-tlb-hack"><value>GoldenEye TLB Mapping Hack</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-goldeneye-tlb-hack.Help"><value>Mapa GoldenEye's demand-paged 0x7F000000 segmento código diretamente para o ROM, ignorando o próprio jogo TLB pager (ari64 dynarec somente). Historicamente necessário para GoldenEye executar em tudo; no desktop-classe hospeda o caminho preciso agora mede tão rápido. Desabilitar para o comportamento de TLB confiável em hardware ou para ROMs modificados que realojam o segmento do jogo, que o mapeamento corromperia.</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-goldeneye-tlb-hack.Value.enabled"><value>Ativado</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-goldeneye-tlb-hack.Value.disabled"><value>Desativado</value></data>
@@ -4580,7 +4644,7 @@
   <data name="Emulation.Option.parallel_n64.parallel-n64-rtc-savestate"><value>Retroceder o relógio do sistema N64 na carga savestate</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-rtc-savestate.Value.enabled"><value>Sim</value></data>
   <data name="Emulation.Emulator.pokemini.Description"><value>Emula sistemas Nintendo compatíveis com PokeMini.</value></data>
-  <data name="Emulation.Option.pokemini.pokemini_video_scale"><value>Escala de Vídeo (Reiniciar)</value></data>
+  <data name="Emulation.Option.pokemini.pokemini_video_scale"><value>Escala de Vídeo</value></data>
   <data name="Emulation.Option.pokemini.pokemini_video_scale.Help"><value>Definir fator de escala interna de vídeo. Aumentar o fator de escala melhora a aparência do filtro LCD interno 'Dot Matrix'.</value></data>
   <data name="Emulation.Option.pokemini.pokemini_60hz_mode"><value>Modo 60Hz</value></data>
   <data name="Emulation.Option.pokemini.pokemini_60hz_mode.Help"><value>Atualize o visor a 60Hz em vez da taxa de atualização nativa de 72Hz do Pokemon Mini, baixando cada sexta moldura. Reduz a suavidade do vídeo, mas evita rasgar tela em displays que não suportam operação nativa acima de 60Hz.</value></data>
@@ -4780,13 +4844,13 @@
   <data name="Emulation.Firmware.bsnes.Slot18"><value>Imagem de arranque SGB</value></data>
   <data name="Emulation.Firmware.bsnes.Slot19"><value>BS-X - Sore wa Namae o Nusumareta Machi no Monogatari (Japão) (Rev 1)</value></data>
   <data name="Emulation.Emulator.bsnes_jg.Description"><value>Emula sistemas Nintendo compatíveis com bsnes-jg.</value></data>
-  <data name="Emulation.Option.bsnes_jg.bsnes_jg_coproc_delaysync"><value>Atrasar o Sincronização do Coprocessador LLE (Reiniciar)</value></data>
+  <data name="Emulation.Option.bsnes_jg.bsnes_jg_coproc_delaysync"><value>Atrasar o Sincronização do Coprocessador LLE</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_coproc_delaysync.Help"><value>Sincronização tardia ao usar emulação de coprocessador de baixo nível para mais velocidade ao custo da precisão</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_coproc_delaysync.Value.off"><value>Desligado (Padrão)</value></data>
-  <data name="Emulation.Option.bsnes_jg.bsnes_jg_coproc_preferhle"><value>Preferir a Emulação do Coprocessador HLE (Reiniciar)</value></data>
+  <data name="Emulation.Option.bsnes_jg.bsnes_jg_coproc_preferhle"><value>Preferir a Emulação do Coprocessador HLE</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_coproc_preferhle.Help"><value>Usar emulação de coprocessador de alto nível quando possível para mais velocidade ao custo da precisão</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_coproc_preferhle.Value.off"><value>Desligado (Padrão)</value></data>
-  <data name="Emulation.Option.bsnes_jg.bsnes_jg_hotfixes"><value>Hotfixes (Reiniciar)</value></data>
+  <data name="Emulation.Option.bsnes_jg.bsnes_jg_hotfixes"><value>Hotfixes</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_hotfixes.Help"><value>Aplique hotfixes ao jogar um punhado de jogos lançados com erros maiores (que são exibidos em hardware real). Jogos em questão: Dirt Racer, Magical Drop, Rendering Ranger R2</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_hotfixes.Value.off"><value>Desligado (Padrão)</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_runahead"><value>Correr para a frente interna</value></data>
@@ -4796,10 +4860,10 @@
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_runahead.Value.2"><value>2 quadros</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_runahead.Value.3"><value>3 quadros</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_runahead.Value.4"><value>4 quadros</value></data>
-  <data name="Emulation.Option.bsnes_jg.bsnes_jg_low_latency_audio"><value>Áudio de Baixa Latência (Reiniciar)</value></data>
+  <data name="Emulation.Option.bsnes_jg.bsnes_jg_low_latency_audio"><value>Áudio de Baixa Latência</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_low_latency_audio.Help"><value>Use blocos de amostra de áudio menores para uma melhor experiência ao usar um frontend com uma configuração de áudio de baixa latência. Usar esta opção em jogos de coprocessador exigentes pode causar artefatos de áudio.</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_low_latency_audio.Value.off"><value>Desligado (Padrão)</value></data>
-  <data name="Emulation.Option.bsnes_jg.bsnes_jg_rsqual"><value>Qualidade do Reamostrador (Reiniciar)</value></data>
+  <data name="Emulation.Option.bsnes_jg.bsnes_jg_rsqual"><value>Qualidade do Reamostrador</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_rsqual.Help"><value>Defina o nível de qualidade do reamostrador interno (você pode ouvir uma diferença se você usar equipamento de áudio profissional e sua imaginação)</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_rsqual.Value.fast"><value>Rápido (Padrão)</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_rsqual.Value.medium"><value>Médio</value></data>
@@ -4943,8 +5007,8 @@
   <data name="Emulation.Option.bsnes_hd_beta.bsnes_coprocessor_prefer_hle.Help"><value>Quando esta opção estiver habilitada, a emulação HLE menos precisa será sempre usada quando disponível. Se desactivado, o HLE só será utilizado quando faltar firmware LLE.</value></data>
   <data name="Emulation.Option.bsnes_hd_beta.bsnes_coprocessor_prefer_hle.Value.ON"><value>Ativado</value></data>
   <data name="Emulation.Option.bsnes_hd_beta.bsnes_coprocessor_prefer_hle.Value.OFF"><value>Desativado</value></data>
-  <data name="Emulation.Option.bsnes_hd_beta.bsnes_sgb_bios"><value>BIOS Super Game Boy Preferido (Reiniciação dos Requisitos)</value></data>
-  <data name="Emulation.Option.bsnes_hd_beta.bsnes_sgb_bios.Help"><value>Permite escolher o BIOS Super Game Boy preferido para ser usado com títulos compatíveis. Requer uma reinicialização para fazer efeito.</value></data>
+  <data name="Emulation.Option.bsnes_hd_beta.bsnes_sgb_bios"><value>BIOS Super Game Boy Preferido</value></data>
+  <data name="Emulation.Option.bsnes_hd_beta.bsnes_sgb_bios.Help"><value>Permite escolher o BIOS Super Game Boy preferido para ser usado com títulos compatíveis.</value></data>
   <data name="Emulation.Option.bsnes_hd_beta.bsnes_run_ahead_frames"><value>Correr para a frente interna</value></data>
   <data name="Emulation.Option.bsnes_hd_beta.bsnes_run_ahead_frames.Help"><value>Simula o sistema antes do tempo e roda de volta para reduzir a latência da entrada. Tem requisitos de sistema muito elevados.</value></data>
   <data name="Emulation.Option.bsnes_hd_beta.bsnes_run_ahead_frames.Value.OFF"><value>Desativado</value></data>
@@ -5189,7 +5253,7 @@
   <data name="Emulation.Option.bsnes_mercury_accuracy.bsnes_crop_overscan"><value>Overscan de cultura</value></data>
   <data name="Emulation.Option.bsnes_mercury_accuracy.bsnes_crop_overscan.Value.disabled"><value>Desativado</value></data>
   <data name="Emulation.Option.bsnes_mercury_accuracy.bsnes_crop_overscan.Value.enabled"><value>Ativado</value></data>
-  <data name="Emulation.Option.bsnes_mercury_accuracy.bsnes_gamma_ramp"><value>Rampa Gama (necessita de reiniciar)</value></data>
+  <data name="Emulation.Option.bsnes_mercury_accuracy.bsnes_gamma_ramp"><value>Rampa Gama</value></data>
   <data name="Emulation.Option.bsnes_mercury_accuracy.bsnes_gamma_ramp.Value.disabled"><value>Desativado</value></data>
   <data name="Emulation.Option.bsnes_mercury_accuracy.bsnes_gamma_ramp.Value.enabled"><value>Ativado</value></data>
   <data name="Emulation.Firmware.bsnes_mercury_accuracy.Slot0"><value>firmware externo</value></data>
@@ -5227,7 +5291,7 @@
   <data name="Emulation.Option.bsnes_mercury_balanced.bsnes_crop_overscan"><value>Overscan de cultura</value></data>
   <data name="Emulation.Option.bsnes_mercury_balanced.bsnes_crop_overscan.Value.disabled"><value>Desativado</value></data>
   <data name="Emulation.Option.bsnes_mercury_balanced.bsnes_crop_overscan.Value.enabled"><value>Ativado</value></data>
-  <data name="Emulation.Option.bsnes_mercury_balanced.bsnes_gamma_ramp"><value>Rampa Gama (necessita de reiniciar)</value></data>
+  <data name="Emulation.Option.bsnes_mercury_balanced.bsnes_gamma_ramp"><value>Rampa Gama</value></data>
   <data name="Emulation.Option.bsnes_mercury_balanced.bsnes_gamma_ramp.Value.disabled"><value>Desativado</value></data>
   <data name="Emulation.Option.bsnes_mercury_balanced.bsnes_gamma_ramp.Value.enabled"><value>Ativado</value></data>
   <data name="Emulation.Firmware.bsnes_mercury_balanced.Slot0"><value>firmware externo</value></data>
@@ -5265,7 +5329,7 @@
   <data name="Emulation.Option.bsnes_mercury_performance.bsnes_crop_overscan"><value>Overscan de cultura</value></data>
   <data name="Emulation.Option.bsnes_mercury_performance.bsnes_crop_overscan.Value.disabled"><value>Desativado</value></data>
   <data name="Emulation.Option.bsnes_mercury_performance.bsnes_crop_overscan.Value.enabled"><value>Ativado</value></data>
-  <data name="Emulation.Option.bsnes_mercury_performance.bsnes_gamma_ramp"><value>Rampa Gama (necessita de reiniciar)</value></data>
+  <data name="Emulation.Option.bsnes_mercury_performance.bsnes_gamma_ramp"><value>Rampa Gama</value></data>
   <data name="Emulation.Option.bsnes_mercury_performance.bsnes_gamma_ramp.Value.disabled"><value>Desativado</value></data>
   <data name="Emulation.Option.bsnes_mercury_performance.bsnes_gamma_ramp.Value.enabled"><value>Ativado</value></data>
   <data name="Emulation.Firmware.bsnes_mercury_performance.Slot0"><value>firmware externo</value></data>
@@ -5562,13 +5626,13 @@
   <data name="Emulation.Option.snes9x2002.snes9x2002_low_pass_filter.Value.enabled"><value>Ativado</value></data>
   <data name="Emulation.Option.snes9x2002.snes9x2002_low_pass_range"><value>Nível de Filtro de Áudio</value></data>
   <data name="Emulation.Option.snes9x2002.snes9x2002_low_pass_range.Help"><value>Especifique a frequência de corte do filtro de áudio passa baixo. Um valor maior aumenta a percepção de 'força' do filtro, uma vez que uma gama mais ampla do espectro de alta frequência é atenuada.</value></data>
-  <data name="Emulation.Option.snes9x2002.snes9x2002_overclock_cycles"><value>Reduzir a desaceleração (Hack, Unsafe, Reiniciar)</value></data>
+  <data name="Emulation.Option.snes9x2002.snes9x2002_overclock_cycles"><value>Reduzir a desaceleração</value></data>
   <data name="Emulation.Option.snes9x2002.snes9x2002_overclock_cycles.Help"><value>Muitos jogos para o SNES sofreram de desaceleração devido ao fraco principal CPU. Esta opção ajuda a aliviar isso ao custo de possíveis bugs. Compatível: Reduzir a desaceleração, mas manter o máximo de compatibilidade do jogo possível. Max: Reduzir a desaceleração o máximo possível, mas vai quebrar mais jogos.</value></data>
   <data name="Emulation.Option.snes9x2002.snes9x2002_overclock_cycles.Value.disabled"><value>Desativado</value></data>
   <data name="Emulation.Option.snes9x2002.snes9x2002_overclock_cycles.Value.compatible"><value>Compatível</value></data>
   <data name="Emulation.Option.snes9x2002.snes9x2002_overclock_cycles.Value.max"><value>Máxima</value></data>
   <data name="Emulation.Emulator.snes9x2005.Description"><value>Emula sistemas Nintendo compatíveis com o Snes9x 2005.</value></data>
-  <data name="Emulation.Option.snes9x2005.snes9x_2005_region"><value>Região da Consola (Reiniciar)</value></data>
+  <data name="Emulation.Option.snes9x2005.snes9x_2005_region"><value>Região da Consola</value></data>
   <data name="Emulation.Option.snes9x2005.snes9x_2005_region.Help"><value>Especifique de que região o sistema é. 'PAL' é 50hz, 'NTSC' é 60hz. Os jogos serão executados mais rápido ou mais lento do que o normal se a região incorreta estiver selecionada.</value></data>
   <data name="Emulation.Option.snes9x2005.snes9x_2005_region.Value.auto"><value>Automático</value></data>
   <data name="Emulation.Option.snes9x2005.snes9x_2005_frameskip"><value>Frameskip</value></data>
@@ -5584,7 +5648,7 @@
   <data name="Emulation.Option.snes9x2005.snes9x_2005_low_pass_filter.Value.enabled"><value>Ativado</value></data>
   <data name="Emulation.Option.snes9x2005.snes9x_2005_low_pass_range"><value>Nível de Filtro de Áudio</value></data>
   <data name="Emulation.Option.snes9x2005.snes9x_2005_low_pass_range.Help"><value>Especifique a frequência de corte do filtro de áudio passa baixo. Um valor maior aumenta a percepção de 'força' do filtro, uma vez que uma gama mais ampla do espectro de alta frequência é atenuada.</value></data>
-  <data name="Emulation.Option.snes9x2005.snes9x_2005_overclock_cycles"><value>Reduzir a desaceleração (Hack, Unsafe, Reiniciar)</value></data>
+  <data name="Emulation.Option.snes9x2005.snes9x_2005_overclock_cycles"><value>Reduzir a desaceleração</value></data>
   <data name="Emulation.Option.snes9x2005.snes9x_2005_overclock_cycles.Help"><value>Muitos jogos para o SNES sofreram de desaceleração devido ao fraco principal CPU. Esta opção ajuda a alievar isso ao custo de possíveis bugs. COMPATIBLE: Reduzir o abrandamento, mas manter tanta compatibilidade de jogo quanto possível. MAX: Reduzir desaceleração o máximo possível, mas vai quebrar mais jogos.</value></data>
   <data name="Emulation.Option.snes9x2005.snes9x_2005_overclock_cycles.Value.disabled"><value>Desativado</value></data>
   <data name="Emulation.Option.snes9x2005.snes9x_2005_overclock_cycles.Value.compatible"><value>Compatível</value></data>
@@ -5594,7 +5658,7 @@
   <data name="Emulation.Option.snes9x2005.snes9x_2005_reduce_sprite_flicker.Value.disabled"><value>Desativado</value></data>
   <data name="Emulation.Option.snes9x2005.snes9x_2005_reduce_sprite_flicker.Value.enabled"><value>Ativado</value></data>
   <data name="Emulation.Emulator.snes9x2005_plus.Description"><value>Emula sistemas Nintendo compatíveis com o Snes9x 2005 Plus.</value></data>
-  <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_region"><value>Região da Consola (Reiniciar)</value></data>
+  <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_region"><value>Região da Consola</value></data>
   <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_region.Help"><value>Especifique de que região o sistema é. 'PAL' é 50hz, 'NTSC' é 60hz. Os jogos serão executados mais rápido ou mais lento do que o normal se a região incorreta estiver selecionada.</value></data>
   <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_region.Value.auto"><value>Automático</value></data>
   <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_frameskip"><value>Frameskip</value></data>
@@ -5604,7 +5668,7 @@
   <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_frameskip.Value.manual"><value>Manual</value></data>
   <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_frameskip_threshold"><value>Limiar de Frameskip (%)</value></data>
   <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_frameskip_threshold.Help"><value>Quando 'Frameskip' é definido como 'Manual', especifica o limiar de ocupação do buffer de áudio (percentagem) abaixo do qual os quadros serão ignorados. Valores mais elevados reduzem o risco de crepitar, fazendo com que os quadros sejam derrubados com maior frequência.</value></data>
-  <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_overclock_cycles"><value>Reduzir a desaceleração (Hack, Unsafe, Reiniciar)</value></data>
+  <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_overclock_cycles"><value>Reduzir a desaceleração</value></data>
   <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_overclock_cycles.Help"><value>Muitos jogos para o SNES sofreram de desaceleração devido ao fraco principal CPU. Esta opção ajuda a alievar isso ao custo de possíveis bugs. COMPATIBLE: Reduzir o abrandamento, mas manter tanta compatibilidade de jogo quanto possível. MAX: Reduzir desaceleração o máximo possível, mas vai quebrar mais jogos.</value></data>
   <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_overclock_cycles.Value.disabled"><value>Desativado</value></data>
   <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_overclock_cycles.Value.compatible"><value>Compatível</value></data>
@@ -5614,7 +5678,7 @@
   <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_reduce_sprite_flicker.Value.disabled"><value>Desativado</value></data>
   <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_reduce_sprite_flicker.Value.enabled"><value>Ativado</value></data>
   <data name="Emulation.Emulator.snes9x2010.Description"><value>Emula sistemas Nintendo compatíveis com o Snes9x 2010.</value></data>
-  <data name="Emulation.Option.snes9x2010.snes9x_2010_region"><value>Região da Consola (Reiniciar)</value></data>
+  <data name="Emulation.Option.snes9x2010.snes9x_2010_region"><value>Região da Consola</value></data>
   <data name="Emulation.Option.snes9x2010.snes9x_2010_region.Help"><value>Especifique de que região o sistema é. 'PAL' é 50hz, 'NTSC' é 60hz. Os jogos serão executados mais rápido ou mais lento do que o normal se a região incorreta estiver selecionada.</value></data>
   <data name="Emulation.Option.snes9x2010.snes9x_2010_region.Value.auto"><value>Automático</value></data>
   <data name="Emulation.Option.snes9x2010.snes9x_2010_audio_interpolation"><value>Interpolação de áudio (incorrecto)</value></data>
@@ -5671,7 +5735,7 @@
   <data name="Emulation.Option.snes9x2010.snes9x_2010_reduce_sprite_flicker.Help"><value>Aumenta o número de imagens que podem ser desenhadas simultaneamente na tela.</value></data>
   <data name="Emulation.Option.snes9x2010.snes9x_2010_reduce_sprite_flicker.Value.disabled"><value>Desativado</value></data>
   <data name="Emulation.Option.snes9x2010.snes9x_2010_reduce_sprite_flicker.Value.enabled"><value>Ativado</value></data>
-  <data name="Emulation.Option.snes9x2010.snes9x_2010_block_invalid_vram_access"><value>Bloquear o Acesso VRAM Inválido (Reiniciar)</value></data>
+  <data name="Emulation.Option.snes9x2010.snes9x_2010_block_invalid_vram_access"><value>Bloquear o Acesso VRAM Inválido</value></data>
   <data name="Emulation.Option.snes9x2010.snes9x_2010_block_invalid_vram_access.Help"><value>Alguns hacks homebrew/ROM exigem que esta opção seja desativada para uma operação correta.</value></data>
   <data name="Emulation.Option.snes9x2010.snes9x_2010_block_invalid_vram_access.Value.enabled"><value>Ativado</value></data>
   <data name="Emulation.Option.snes9x2010.snes9x_2010_block_invalid_vram_access.Value.disabled"><value>Desativado</value></data>
@@ -5738,7 +5802,7 @@
   <data name="Emulation.Option.mednafen_supafaust.supafaust_thread_affinity_emu"><value>Máscara de afinidade da linha de emulação</value></data>
   <data name="Emulation.Option.mednafen_supafaust.supafaust_thread_affinity_ppu"><value>Máscara de afinidade do thread da PPUName</value></data>
   <data name="Emulation.Option.mednafen_supafaust.supafaust_renderer"><value>renderizador de PPU</value></data>
-  <data name="Emulation.Option.beetle_vb.vb_3dmode"><value>Modo 3D (necessita reiniciar)</value></data>
+  <data name="Emulation.Option.beetle_vb.vb_3dmode"><value>Modo 3D</value></data>
   <data name="Emulation.Option.beetle_vb.vb_3dmode.Help"><value>Selecione o modo 3D. Anaglifo - usado em conjunto com vidros clássicos de dupla-lens-color. Cyberscope - destinado a ser usado com o dispositivo CyberScope 3D. sidebyside - a imagem do olho esquerdo é mostrada à esquerda, e a imagem de olho direito é exibida à direita. vli - Linhas verticais alternam entre a esquerda e a direita. hli - As linhas horizontais alternam- se entre a direita e a esquerda.</value></data>
   <data name="Emulation.Option.beetle_vb.vb_3dmode.Value.anaglyph"><value>anaglifo</value></data>
   <data name="Emulation.Option.beetle_vb.vb_3dmode.Value.cyberscope"><value>ciberscópio</value></data>
@@ -5773,7 +5837,7 @@
   <data name="Emulation.Option.beetle_vb.vb_opposite_directions.Help"><value>Permitir pressionar para cima e para baixo ou direções esquerda e direita ao mesmo tempo. Isto pode causar falhas.</value></data>
   <data name="Emulation.Option.beetle_vb.vb_opposite_directions.Value.disabled"><value>Desativado</value></data>
   <data name="Emulation.Option.beetle_vb.vb_opposite_directions.Value.enabled"><value>Ativado</value></data>
-  <data name="Emulation.Option.beetle_vb.vb_cpu_emulation"><value>Emulação de CPU (Reiniciar)</value></data>
+  <data name="Emulation.Option.beetle_vb.vb_cpu_emulation"><value>Emulação de CPU</value></data>
   <data name="Emulation.Option.beetle_vb.vb_cpu_emulation.Help"><value>Escolha entre emulação mais rápida e precisa (mais lenta).</value></data>
   <data name="Emulation.Option.beetle_vb.vb_cpu_emulation.Value.accurate"><value>exato</value></data>
   <data name="Emulation.Option.beetle_vb.vb_cpu_emulation.Value.fast"><value>rápido</value></data>
@@ -5926,7 +5990,9 @@
   <data name="Emulation.Option.cemu.cemu_uninstall_game.Value.disabled"><value>Desativado</value></data>
   <data name="Emulation.Option.cemu.cemu_uninstall_game.Value.enabled"><value>Ativado</value></data>
   <data name="Emulation.Option.cemu.cemu_install_titles"><value>Instalar conteúdo</value></data>
-  <data name="Emulation.Option.cemu.cemu_install_titles.Help"><value>Instala todas as atualizações e DLC no sistema/Cemu/titles em saves/Cemu7/mlc01, o armazenamento do console emulado. Cada um vai em uma pasta de seu próprio lá; um NUS download (arquivos.app) precisa de seus title.tmd e sua title.tik, a chave de decodificação, ao lado deles. Uma versão já instalada que seja a mesma ou mais recente é deixada em paz.&#xA;&#xA;Quando isto é ON, a instalação começa imediatamente, com o seu progresso mostrado como uma notificação, e volta OFF novamente quando todo o conteúdo está instalado e este menu é terminado ou outra opção é alterada. O título usará o conteúdo instalado uma vez reiniciado.&#xA;&#xA;O conteúdo de outros locais pode ser instalado com o Menu Principal da RetroArch &gt; Conteúdo de Carga, selecionando o correspondente title.tmd, com o seu title.tik ao lado dele.</value></data>
+  <data name="Emulation.Option.cemu.cemu_install_titles.Help"><value>Instala todas as atualizações e DLC no sistema/Cemu/titles em saves/Cemu7/mlc01, o armazenamento do console emulado. Cada um vai em uma pasta de seu próprio lá; um NUS download (arquivos.app) precisa de seus title.tmd e sua title.tik, a chave de decodificação, ao lado deles. Uma versão já instalada que seja a mesma ou mais recente é deixada em paz.
+
+Quando isto é ON, a instalação começa imediatamente, com o seu progresso mostrado como uma notificação, e volta OFF novamente quando todo o conteúdo está instalado e este menu é terminado ou outra opção é alterada. O conteúdo de outros locais pode ser instalado com o Menu Principal da RetroArch &gt; Conteúdo de Carga, selecionando o correspondente title.tmd, com o seu title.tik ao lado dele.</value></data>
   <data name="Emulation.Option.cemu.cemu_install_titles.Value.disabled"><value>Desativado</value></data>
   <data name="Emulation.Option.cemu.cemu_install_titles.Value.enabled"><value>Ativado</value></data>
   <data name="Emulation.Option.cemu.cemu_uninstall_titles"><value>Desinstalar o Conteúdo</value></data>

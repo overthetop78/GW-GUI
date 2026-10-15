@@ -80,4 +80,6 @@
   <data name="Emulation.Storage.MemoryCard.ImageRequired"><value>เลือกแฟ้มไพ่ที่มีอยู่แล้ว</value></data>
   <data name="Emulation.Storage.MemoryCard.InvalidSize"><value>แฟ้มการ์ดมีขนาดไม่ถูกต้อง</value></data>
   <data name="Emulation.Storage.MemoryCard.InvalidFormat"><value>เลือกรูปแบบแฟ้มที่อุปกรณ์นี้รองรับ</value></data>
+  <data name="Emulation.Storage.Cache.Unlimited"><value>ไม่จำกัด</value></data>
+  <data name="Emulation.Storage.Cache.ClearOnGameClose"><value>ล้างเมื่อปิดเกม</value></data>
 </root>

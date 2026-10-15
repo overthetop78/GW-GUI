@@ -2,6 +2,7 @@ using GWGUI.App.Constants.Controls.Visual;
 using GWGUI.App.Functions.Views.Emulation.Storage;
 using GWGUI.App.Localization.Extensions;
 using GWGUI.Emulation;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -60,10 +61,21 @@ public sealed class CoreOptionsDialog : Window
         _controls[option.Key] = control;
         if (!string.IsNullOrWhiteSpace(option.Description))
             control.ToolTip = Resolve(option.Description);
-        return (System.Text.RegularExpressions.Regex.Replace(Resolve(option.Name), @"\s*\(restart required\)", string.Empty, System.Text.RegularExpressions.RegexOptions.IgnoreCase), control);
+        return (Resolve(option.Name), control);
     }
 
-    private string Resolve(string text) => text.StartsWith("Emulation.", StringComparison.Ordinal) ? LocExtension.GetForModule(_moduleId, text) : text;
+    private string Resolve(string text)
+    {
+        var value = text.StartsWith("Emulation.", StringComparison.Ordinal) ? LocExtension.GetForModule(_moduleId, text) : text;
+        value = Regex.Replace(value, @"\s*[\(\[](?=[^()\[\]]*\b(?:restart|reboot)\b)[^()\[\]]*[\)\]]", string.Empty, RegexOptions.IgnoreCase);
+        return Regex.Replace(value, @"(^|(?<=[.!?])\s+)(?<sentence>.*?)(?=(?<=[.!?])\s+|$)", match =>
+        {
+            var sentence = match.Groups["sentence"].Value;
+            var notice = Regex.IsMatch(sentence, @"\b(?:restart|reboot)\w*\b", RegexOptions.IgnoreCase)
+                && Regex.IsMatch(sentence, @"\b(?:require\w*|need\w*|must|recommended)\b|after changing|take\w* effect|to apply", RegexOptions.IgnoreCase);
+            return notice ? string.Empty : match.Value;
+        }, RegexOptions.Singleline).Trim();
+    }
 
     private static string ReadValue(FrameworkElement control) => control switch
     {

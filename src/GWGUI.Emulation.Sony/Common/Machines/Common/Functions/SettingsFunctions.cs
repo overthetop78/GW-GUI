@@ -7,6 +7,8 @@ internal static partial class SettingsDescriptionFunctions
         var model = ModelCatalog.Get(configuration.Model);
         var adapter = EmulatorCatalog.CreateAdapters().FirstOrDefault(item => item.EmulatorId == configuration.EmulatorId);
         var settingsAdapter = adapter as IEmulatorSettingsAdapter;
+        var audio = settingsAdapter?.GetAudioConfiguration(configuration) ?? configuration.Audio ?? new AudioConfiguration();
+        var latencies = settingsAdapter?.GetAudioLatencyChoices(configuration) ?? AudioConstants.LatencyMilliseconds;
         var blocks = new List<EmulationSettingsBlock>
         {
             Block(SettingsDescriptionFunctionsConstants.General, EmulationMachineTab.General,
@@ -46,12 +48,12 @@ internal static partial class SettingsDescriptionFunctions
                 SettingsDescriptionFunctionsConstants.ResourceAudio,
                 SettingsDescriptionFunctionsConstants.IconAudio, 2,
                 Toggle(SettingsConstants.AudioEnabled, EmulationMachineTab.Audio, SettingsDescriptionFunctionsConstants.Audio, SettingsDescriptionFunctionsConstants.ResourceAudioEnabled, configuration.AudioEnabled),
-                AudioOutput(configuration.Audio?.OutputDeviceId),
+                AudioOutput(audio.OutputDeviceId),
                 Select(SettingsConstants.AudioLatency, EmulationMachineTab.Audio,
                     SettingsDescriptionFunctionsConstants.Audio,
                     SettingsDescriptionFunctionsConstants.ResourceAudioLatency,
-                    (configuration.Audio?.LatencyMilliseconds ?? 50).ToString(),
-                    new[] { 20, 35, 50, 75, 100, 150, 250 }.Select(value => Invariant(value.ToString(), $"{value} ms", value))),
+                    audio.LatencyMilliseconds.ToString(),
+                    latencies.Select(value => Invariant(value.ToString(), $"{value} ms", value))),
                 Information(SettingsConstants.Model + ".audio", EmulationMachineTab.Audio,
                     SettingsDescriptionFunctionsConstants.Audio,
                     SettingsDescriptionFunctionsConstants.ResourceAudioChip,
@@ -64,9 +66,8 @@ internal static partial class SettingsDescriptionFunctions
                 blocks.Add(Block(SettingsDescriptionFunctionsConstants.Firmware, EmulationMachineTab.Rom,
                     SettingsDescriptionFunctionsConstants.ResourceRom, SettingsDescriptionFunctionsConstants.IconFirmware,
                     SettingsDescriptionFunctionsConstants.SingleColumnLayout, [.. firmware]));
-            foreach (var coreBlock in settingsAdapter?.GetSettingsBlocks(configuration) ?? [])
+            foreach (var coreBlock in settingsAdapter?.GetMachineSettingsBlocks(configuration) ?? [])
             {
-                if (coreBlock.Tab == EmulationMachineTab.Storage) continue;
                 var index = blocks.FindIndex(block => block.Id == coreBlock.Id);
                 if (index < 0) blocks.Add(coreBlock);
                 else
@@ -103,12 +104,12 @@ internal static partial class SettingsDescriptionFunctions
             blocks[renderingVideo] = rendering with { Fields = [.. blocks[hardwareVideo].Fields.Select(field => field with { BlockId = rendering.Id }), .. rendering.Fields] };
             blocks.RemoveAt(hardwareVideo);
         }
-        var audio = blocks.FindIndex(block => block.Id == SettingsDescriptionFunctionsConstants.Audio);
+        var audioBlock = blocks.FindIndex(block => block.Id == SettingsDescriptionFunctionsConstants.Audio);
         var nativeAudio = blocks.FindIndex(block => block.Id == SettingsDescriptionFunctionsConstants.EmulatorAudioOptionsBlock);
-        if (audio >= 0 && nativeAudio >= 0)
+        if (audioBlock >= 0 && nativeAudio >= 0)
         {
-            var chip = blocks[audio].Fields.Single(field => field.Id == SettingsConstants.Model + ".audio");
-            blocks[audio] = blocks[audio] with { Fields = blocks[audio].Fields.Where(field => field != chip).ToArray() };
+            var chip = blocks[audioBlock].Fields.Single(field => field.Id == SettingsConstants.Model + ".audio");
+            blocks[audioBlock] = blocks[audioBlock] with { Fields = blocks[audioBlock].Fields.Where(field => field != chip).ToArray() };
             blocks[nativeAudio] = blocks[nativeAudio] with { Fields =
                 [chip with { BlockId = blocks[nativeAudio].Id }, .. blocks[nativeAudio].Fields] };
         }

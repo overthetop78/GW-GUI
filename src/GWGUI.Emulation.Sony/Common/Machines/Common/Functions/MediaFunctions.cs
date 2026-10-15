@@ -16,12 +16,13 @@ internal static class EmulationMediaConversionFunctions
                 EmulationMediaType.MemoryCard => MediaCategory.MemoryCard,
                 EmulationMediaType.HardDisk => MediaCategory.HardDisk,
                 _ => throw new ArgumentOutOfRangeException(nameof(media), item.Type, null)
-            }, IsReadOnly: item.IsReadOnly, IsInserted: item.IsInserted, MountOrder: index)).ToArray()
+            }, IsReadOnly: item.IsReadOnly, IsInserted: item.IsInserted, MountOrder: index, SlotIndex: item.Slot.Index)).ToArray()
     };
 
     internal static IReadOnlyList<EmulationMedia> ToCommon(IEnumerable<MediaConfiguration> media)
     {
         var indexes = new Dictionary<EmulationMediaCategory, int>();
+        var slots = new HashSet<EmulationMediaSlot>();
         return media.OrderBy(item => item.MountOrder).Select(item =>
         {
             var category = item.Category switch
@@ -34,8 +35,10 @@ internal static class EmulationMediaConversionFunctions
                 MediaCategory.HardDisk => EmulationMediaCategory.HardDisk,
                 _ => throw new ArgumentOutOfRangeException(nameof(media), item.Category, null)
             };
-            var index = indexes.GetValueOrDefault(category);
-            indexes[category] = index + 1;
+            var index = item.SlotIndex ?? indexes.GetValueOrDefault(category);
+            indexes[category] = Math.Max(indexes.GetValueOrDefault(category), index + 1);
+            if (index < 0 || !slots.Add(new EmulationMediaSlot(category, index)))
+                throw new ArgumentOutOfRangeException(nameof(media), index, null);
             var type = item.Category switch
             {
                 MediaCategory.Floppy or MediaCategory.Snapshot => EmulationMediaType.Floppy,

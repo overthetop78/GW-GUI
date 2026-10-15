@@ -26,14 +26,12 @@
   <data name="Emulation.Option.ppsspp.ppsspp_language.Value.11"><value>סינית מסורתית</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_language.Value.12"><value>סינית סימלה</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_psp_model.Label"><value>מודל PSP</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_backend.Label"><value>חזרה</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_backend.Help"><value>"Automatic" יהיה להשתמש בנהג הווידאו הקדמי. הליבה Core</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_software_rendering.Label"><value>תוכנה Rendering</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_software_rendering.Help"><value>איטי, מדויק. הליבה Core</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_software_rendering.Help"><value>השתמש בעיבוד גרפי תוכנתי לשיפור הדיוק במחיר של דרישות עיבוד גבוהות יותר.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_internal_resolution.Label"><value>קבלת החלטה</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_internal_resolution.Help"><value>בחר את ההחלטה הפנימית.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_mulitsample_level.Label"><value>MSAA אנטישמיות</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_mulitsample_level.Help"><value>Vulkan בלבד הליבה Core</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_mulitsample_level.Help"><value>החל החלקת קצוות MSAA באמצעות Vulkan.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_cropto16x9.Label"><value>Crop to 16x9</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_cropto16x9.Help"><value>צמצם את הקצוות העליונים והתחתונים כדי לקבל תמונה של 16:9.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_frameskip.Label"><value>המונחים:</value></data>
@@ -46,7 +44,7 @@
   <data name="Emulation.Option.ppsspp.ppsspp_detect_vsync_swap_interval.Label"><value>שינויים ב-Detect Frame</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_detect_vsync_swap_interval.Help"><value>היישר הקדמי.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Label"><value>פקודות גרפיות Buffer</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Help"><value>GL/Vulkan רק, איטי יותר, פחות lag, מחדש.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Help"><value>GL/Vulkan רק, איטי יותר, פחות lag.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Value.0"><value>לא buffer</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Value.1"><value>עד 1</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_button_preference.Label"><value>תגית: Button</value></data>

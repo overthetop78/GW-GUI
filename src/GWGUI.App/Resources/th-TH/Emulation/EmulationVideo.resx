@@ -299,4 +299,7 @@
   <data name="Emulation.Video.Parameter.ProjectionVignette"><value>ความมืดของขอบ</value></data>
   <data name="Emulation.Video.Projection.Group.Optics"><value>ปฏิภาณและแสง</value></data>
   <data name="Emulation.Video.Projection.Group.Screen"><value>หน้าจอคํานวณ</value></data>
+  <data name="Emulation.Option.Common.Value.HardwareRendering"><value>การเรนเดอร์ด้วยฮาร์ดแวร์</value></data>
+  <data name="Emulation.Option.Common.RenderingMode.Label"><value>โหมดการเรนเดอร์</value></data>
+  <data name="Emulation.Option.Common.RenderingMode.Help"><value>การเรนเดอร์ด้วยฮาร์ดแวร์ใช้ API กราฟิกที่เลือกไว้สำหรับแอปพลิเคชัน หากอีมูเลเตอร์รองรับ</value></data>
 </root>

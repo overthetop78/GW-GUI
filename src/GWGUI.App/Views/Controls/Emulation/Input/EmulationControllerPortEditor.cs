@@ -45,6 +45,7 @@ internal sealed class EmulationControllerPortEditor
     private void VisualizerUnloaded(object sender, RoutedEventArgs args) => _visualizationController.Stop();
 
     internal int Number { get; }
+    internal string? DisplayName { get; set; }
     internal string ModuleId { get; }
     internal string MachineId { get; }
     internal ComboBox Type { get; }
@@ -68,5 +69,5 @@ internal sealed class EmulationControllerPortEditor
         Visualizer.Visibility = profile is null ? Visibility.Collapsed : Visibility.Visible;
     }
 
-    internal EmulationControllerPortSettings Settings => new(Number, Type, Visual, Visualizer, Bindings, Outputs);
+    internal EmulationControllerPortSettings Settings => new(Number, Type, Visual, Visualizer, Bindings, Outputs) { DisplayName = DisplayName };
 }

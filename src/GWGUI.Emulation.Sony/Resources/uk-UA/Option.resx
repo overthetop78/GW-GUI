@@ -35,7 +35,7 @@
   <data name="Emulation.Option.swanstation.swanstation_CDROM_ReadThread.Label"><value>CD-ROM Читання нитка</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_ReadThread.Help"><value>Читає сектори CD-ROM перед тимчасовим чином, знижуючи ризик виникнення часових походів кадру.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_LoadImagePatches.Label"><value>Застосувати патчі зображень</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_CDROM_LoadImagePatches.Help"><value>Автоматично застосовується патчі для дискових зображень, коли вони присутні в одному каталозі. В даний час тільки PPF патчі підтримуються цим варіантом. Вимагати ядро, щоб перезапуститися до застосування.</value></data>
+  <data name="Emulation.Option.swanstation.swanstation_CDROM_LoadImagePatches.Help"><value>Автоматично застосовується патчі для дискових зображень, коли вони присутні в одному каталозі. В даний час тільки PPF патчі підтримуються цим варіантом. Вимагати ядро.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_LoadImageToRAM.Label"><value>Перевантаження CD-ROM Зображення для RAM</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_LoadImageToRAM.Help"><value>Завантаження образу диска до RAM перед початком емульсії. Може зменшити удари, якщо ви працюєте з мережевої частки, за вартістю більшого часу запуску. Як libretro не дає можливості малювати накладки, емулятор з'явиться, щоб заблокувати під час перевантаження зображення.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_PreCacheCHD.Label"><value>Pre-cache CHD Зображень до RAM</value></data>
@@ -51,8 +51,6 @@
   <data name="Emulation.Option.Sony.Value.Interpreter"><value>Інтерпреттер</value></data>
   <data name="Emulation.Option.Sony.Value.CachedInterpreter"><value>Кетд Інтерпретер</value></data>
   <data name="Emulation.Option.Sony.Value.Recompiler"><value>Рекомпілер</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_GPU_Renderer.Label"><value>GPU Рендерер</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_GPU_Renderer.Help"><value>Який рендерер використовувати для емуляції GPU.</value></data>
   <data name="Emulation.Option.Sony.Value.HardwareOpenGL"><value>Обладнання (OpenGL)</value></data>
   <data name="Emulation.Option.Sony.Value.Software"><value>Програмне забезпечення</value></data>
   <data name="Emulation.Option.swanstation.swanstation_GPU_ResolutionScale.Label"><value>Внутрішня роздільна здатність</value></data>
@@ -60,7 +58,7 @@
   <data name="Emulation.Option.swanstation.swanstation_GPU_UseThread.Label"><value>Ниткані рендеринг (Software)</value></data>
   <data name="Emulation.Option.swanstation.swanstation_GPU_UseThread.Help"><value>Використовує другу нитку для графіки малювання. В даний час доступна тільки для рендерингу програмного забезпечення.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_GPU_UseSoftwareRendererForReadbacks.Label"><value>Використовуйте програму Renderer для читання</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_GPU_UseSoftwareRendererForReadbacks.Help"><value>Запустіть програмне забезпечення, що надає поряд з апаратним забезпеченням при зчитуванні даних зображень від VRAM. Деякі ігри потребують цього для руху розмитих або бойових переходів, або зафіксувати пошкоджені текстури. Перезапустіть ядро після зміни цього варіанту.</value></data>
+  <data name="Emulation.Option.swanstation.swanstation_GPU_UseSoftwareRendererForReadbacks.Help"><value>Запустіть програмне забезпечення, що надає поряд з апаратним забезпеченням при зчитуванні даних зображень від VRAM. Деякі ігри потребують цього для руху розмитих або бойових переходів.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_GPU_MSAA.Label"><value>Multisample Анталіязування</value></data>
   <data name="Emulation.Option.swanstation.swanstation_GPU_MSAA.Help"><value>Використовуйте багатокамерні антиалії для рендерингу об'єктів 3D. Може згладжувати джгутні краї на полігонах при меншій вартості, ніж збільшення масштабу роздільної здатності, але може бути швидше за все, викликати похибки рендерингу в деяких іграх.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_GPU_TrueColor.Label"><value>Рендер з повним кольором прецизії</value></data>
@@ -141,7 +139,7 @@
   <data name="Emulation.Option.swanstation.swanstation_Display_LineEndOffset.Label"><value>Офсет останнього вихідного рядка</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Display_LineEndOffset.Help"><value>Накладки або посіви знизу виводяться зображення.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_MemoryCards_Card1Type.Label"><value>Картка пам'яті 1 тип</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_MemoryCards_Card1Type.Help"><value>Виберіть формат карти пам'яті для слота 1. Перезапустіть ядро при зміні форматів. Для старих конфігурацій, але не підтримуються дві роздільні карти. Формат Libretro використовує файли .srm. Окрема карта, названа після гри використовує файли .mcd. Ці два формати містять ідентичні дані. Щоб конвертувати між ними, змініть розширення файлів і додайте або видаліть suffix _1.</value></data>
+  <data name="Emulation.Option.swanstation.swanstation_MemoryCards_Card1Type.Help"><value>Виберіть формат карти пам'яті для слота 1. Для старих конфігурацій, але не підтримуються дві роздільні карти. Формат Libretro використовує файли .srm. Окрема карта, названа після гри використовує файли .mcd. Ці два формати містять ідентичні дані. Щоб конвертувати між ними, змініть розширення файлів і додайте або видаліть suffix _1.</value></data>
   <data name="Emulation.Option.Sony.Value.LibretroDefault"><value>Лібретро (Default)</value></data>
   <data name="Emulation.Option.Sony.Value.SharedBetweenAllGames"><value>Поділитися між всі ігри</value></data>
   <data name="Emulation.Option.Sony.Value.SeparateCardPerGameGameCode"><value>Окрема картка за гру (Game Code)</value></data>
@@ -454,8 +452,6 @@
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_region.Help"><value>Налаштовує область, що використовується при розміщенні вмісту, не може бути автоматично вилучений (наприклад, сирі файли PS-X EXE). Дискові ігри все ще використовують область, вбудовану на диск.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_internal_resolution.Label"><value>Внутрішня резолюція GPU</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_internal_resolution.Help"><value>Рішення вище, ніж «1x (нативний)» покращують точність моделей 3D за рахунок підвищених експлуатаційних вимог. Елементи 2D зазвичай неафіловані цим параметром.</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_renderer.Label"><value>Рендерер</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_renderer.Help"><value>Виберіть, як намалювати зображення. Програма рендерера є найбільш точною. Це потребує значної кількості переробної потужності при підвищених внутрішніх розв’язках. Апаратний рендеринг є менш точним, але швидше при більш високій роздільній здатності та підтримує покращення графіки. Автоматичний апаратний рендеринг вибирає Vulkan або OpenGL відповідно до відео драйвера, що використовується додатком. Якщо драйвер не підтримує Vulkan ні OpenGL 3.3, ядро використовує програмне забезпечення. Перезапустіть ядро після зміни цього варіанту.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_renderer_software_fb.Label"><value>Програмне забезпечення Framebuffer</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_renderer_software_fb.Help"><value>Використовуйте рендеринг програмного забезпечення у фоні на рідній роздільній здатності, а апаратний райдер відображає гру. Цей відтворює рух розмитим і бойовими переходами в FF7 точно. Коли вимкнено, OpenGL omits ці ефекти і Vulkan малює їх на GPU. Відключення цього параметра може поліпшити швидкість, але також може викликати серйозні помилки графіки. Увімкніть його, якщо це не передбачено.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_color_format.Label"><value>Кольоровий формат</value></data>
@@ -485,7 +481,7 @@
   <data name="Emulation.Option.Sony.Value.25Degrees"><value>25 градусів</value></data>
   <data name="Emulation.Option.Sony.Value.45Degrees"><value>45 градусів</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_video_cable.Label"><value>Аналоговий відео кабель</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_video_cable.Help"><value>Симуляторний кабель між консольом і телебаченням, в тому числі кодування кольору та декодером телевізора. "Не симуляційно" повністю перемикає мережу і ручить каркасу прямо до дисплея (за замовчуванням)). 'RGB (SCART)' є найяскравим виведенням PSX може виготовити: мульти-out несе аналог RGB, так що нічого не модулюється і жоден з кодування артефактів нижче може статися - але це ще аналоговий дріт, тому він обмежується відеопідсилювачем консолі та вхідним етапом набору замість нескінченно гострих. "S-Video' band-limits колір сильно зберігає люму і забарвлення на окремих дротах, тому дрібна деталь залишається чистою. 'Компостити' підводить їх до одного дроту, який потім має розтягувати знову, вартість деталі luma і додавання кольорового змазування і веселка фруйнування на тонких візерунках. 'RF' моделі зовнішнього модулятора - сама консоль не має, тільки DC джек для живлення один - звуження luma далі і додавання ударного малюнка звукоперевізник робить проти кольорового підкар'єра, який найсильніший на насиченому кольорі. Працює в будь-якій внутрішній роздільній здатності: додаткові зразки вирішуються до утворення сигналу, тому більш високі налаштування діють як надшвидкий у кабель, а не ширший сигнал, і вихід все ще несе підпіксельну деталь. Підтримувані рекламодавцями Vulkan і OpenGL та ігнорували рендеринг Програми. На OpenGL фільтр, який виводить «високі точки» - тонкий об'ємний візерунок по горизонтальних кольорових краях - потребує GL 4.3 або GLES 3.1; на старшому воді імітаційне моделювання все ще працює, але «Компостент» і «RF» покажуть ті точки. Відповіді відразу, не потрібно перезапустити.</value></data>
+  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_video_cable.Help"><value>Симуляторний кабель між консольом і телебаченням, в тому числі кодування кольору та декодером телевізора. "Не симуляційно" повністю перемикає мережу і ручить каркасу прямо до дисплея (за замовчуванням)). 'RGB (SCART)' є найяскравим виведенням PSX може виготовити: мульти-out несе аналог RGB, так що нічого не модулюється і жоден з кодування артефактів нижче може статися - але це ще аналоговий дріт, тому він обмежується відеопідсилювачем консолі та вхідним етапом набору замість нескінченно гострих. "S-Video' band-limits колір сильно зберігає люму і забарвлення на окремих дротах, тому дрібна деталь залишається чистою. 'Компостити' підводить їх до одного дроту, який потім має розтягувати знову, вартість деталі luma і додавання кольорового змазування і веселка фруйнування на тонких візерунках. 'RF' моделі зовнішнього модулятора - сама консоль не має, тільки DC джек для живлення один - звуження luma далі і додавання ударного малюнка звукоперевізник робить проти кольорового підкар'єра, який найсильніший на насиченому кольорі. Працює в будь-якій внутрішній роздільній здатності: додаткові зразки вирішуються до утворення сигналу, тому більш високі налаштування діють як надшвидкий у кабель, а не ширший сигнал, і вихід все ще несе підпіксельну деталь. Підтримувані рекламодавцями Vulkan і OpenGL та ігнорували рендеринг Програми. На OpenGL фільтр, який виводить «високі точки» - тонкий об'ємний візерунок по горизонтальних кольорових краях - потребує GL 4.3 або GLES 3.1; на старшому воді імітаційне моделювання все ще працює, але «Компостент» і «RF» покажуть ті точки. Відповіді відразу.</value></data>
   <data name="Emulation.Option.Sony.Value.NoSimulation"><value>No Симулятор</value></data>
   <data name="Emulation.Option.Sony.Value.RGBSCART"><value>RGB (SCART)</value></data>
   <data name="Emulation.Option.Sony.Value.SVideo"><value>Веб-камера</value></data>
@@ -770,9 +766,7 @@
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_nostalls.Label"><value>Вимкнено CPU/GTE Stalls</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_nostalls.Help"><value>Заподіяти деякі ігри, щоб запустити занадто швидко. Вимкнено практично у всіх випадках. Єдиний переклад.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_fast_boot.Label"><value>Швидке завантаження</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_fast_boot.Help"><value>Пропустіть програму BIOS для завантаження. Вимагає перезавантаження.</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_renderer.Label"><value>Рендерер</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_renderer.Help"><value>API рендерера обладнання, або рендеринг програмного забезпечення. Переключення або від Програмного забезпечення діє на льоті; перемикання між апаратними APIами приймає ефект при перезавантаженні вмісту.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_fast_boot.Help"><value>Пропустіть програму BIOS для завантаження.</value></data>
   <data name="Emulation.Option.Sony.Value.OpenGLHardware"><value>OpenGL (Гардеса)</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_upscale_multiplier.Label"><value>Внутрішнє вирішення</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_upscale_multiplier.Help"><value>Внутрішній рендеринг роздільної здатності мультиплікатора для апаратного рендерингу. Також масштабує вихідний каркас. Застосовується на льоті.</value></data>
@@ -809,8 +803,6 @@
   <data name="Emulation.Option.pcee2.pcsx2_fxaa.Help"><value>Недорогий пост-обробний антиалюзій.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_cas_mode.Label"><value>Контрастне Адаптивне заточування</value></data>
   <data name="Emulation.Option.Sony.Value.SharpenOnly"><value>Заточка тільки</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_audio_buffer_ms.Label"><value>Аудіо Buffer</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_audio_buffer_ms.Help"><value>Скільки аудіо емулятора зберігає передню частину. Більшість з них вирушає на стол, який інакше буде чути як прорив у звукі, за вартістю цієї затримки до того, як ви чуєте нічого. PCSX2 власної за замовчуванням становить 50 мс, що припускає його живлення аудіопристрою безпосередньо, а не передньої частини, яка тягне один раз кадром.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_frame_limiter.Label"><value>Лімітатор каркаса</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_frame_limiter.Help"><value>Що має емулятор на повну швидкість. Фронт залишає за собою штампування RetroArch, яка дрочить, роблячи сердечник очікування на аудіо він руки над. Внутрішня використовує PCSX2 замість того, щоб пристрій, де ніколи не буває, тому що аудіо драйвер підрядає, а не блокує, і емулятор власної швидкості варіації потім досягає екрана як нерівномірний каркас.</value></data>
   <data name="Emulation.Option.Sony.Value.FrontendRetroArch"><value>Фронт (RetroArch)</value></data>
@@ -827,7 +819,7 @@
   <data name="Emulation.Option.Sony.Value.Port25Players"><value>Порт 2 (5 гравців)</value></data>
   <data name="Emulation.Option.Sony.Value.BothPorts8Players"><value>Обидва порти (8 гравців)</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_lightgun.Label"><value>Кошик (GunCon 2,2 км)</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_lightgun.Help"><value>Емуляція Namco GunCon 2 на USB-порті, спрямованих на легкий пістолет передньої частини (або мишки картовані як блискавка) на відповідність портом контролера. Вимагає перезавантаження.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_lightgun.Help"><value>Емуляція Namco GunCon 2 на USB-порті.</value></data>
   <data name="Emulation.Option.Sony.Value.USBPort1"><value>USB-порт 1</value></data>
   <data name="Emulation.Option.Sony.Value.USBPort2"><value>USB-порт 2</value></data>
   <data name="Emulation.Option.Sony.Value.BothPorts"><value>Обидва порти</value></data>
@@ -856,14 +848,14 @@
   <data name="Emulation.Option.Sony.Value.EnabledJITDefault"><value>Увімкнути (JIT, За замовчуванням)</value></data>
   <data name="Emulation.Option.Sony.Value.DisabledInterpreter"><value>Вимкнено (Interpreter)</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_rec_ee.Label"><value>- EE Рекомпілер</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_rec_ee.Help"><value>Діагностика. Вимкніть тільки динарець Emotion Engine (EE) при виїзді з інших, щоб bisect, який рекомпітер викликає аварійну катастрофу. Вимагає перезавантаження.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_rec_ee.Help"><value>Діагностика. Вимкніть тільки динарець Emotion Engine (EE) при виїзді з інших, щоб bisect.</value></data>
   <data name="Emulation.Option.Sony.Value.EnabledDefault"><value>Увімкнути (Default)</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_rec_iop.Label"><value>- IOP Рекомпілер</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_rec_iop.Help"><value>Діагностика. Вимкнено лише динарець IOP (R3000) при виїзді з інших на бісекто, що рекомпіляр викликає аварійну катастрофу. Вимагає перезавантаження.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_rec_iop.Help"><value>Діагностика. Вимкнено лише динарець IOP (R3000) при виїзді з інших на бісекто.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_rec_vu0.Label"><value>- VU0 Рекомпілер</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_rec_vu0.Help"><value>Діагностика. Вимкнено лише VU0 мікроВУ динарець, залишаючи інші на місці, щоб з'ясувати, що рекомпіляр викликає аварійну катастрофу. Вимагає перезавантаження.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_rec_vu0.Help"><value>Діагностика. Вимкнено лише VU0 мікроВУ динарець, залишаючи інші на місці, щоб з'ясувати.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_rec_vu1.Label"><value>- VU1 Рекомпілер</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_rec_vu1.Help"><value>Діагностика. Вимкнено лише VU1 мікроВУ динарець, залишаючи інші на місці, щоб з'ясувати, що рекомпіляр викликає аварійну катастрофу. Вимагає перезавантаження.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_rec_vu1.Help"><value>Діагностика. Вимкнено лише VU1 мікроВУ динарець, залишаючи інші на місці, щоб з'ясувати.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_memcard_slot1_enable.Label"><value>Слот 1 Увімкнути</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_memcard_slot1_enable.Help"><value>Увімкніть карту пам'яті слота 1 PS2. Змінюється негайно, коли контент працює.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_memcard_slot2_enable.Label"><value>Слот 2 Увімкнути</value></data>
@@ -914,8 +906,6 @@
   <data name="Emulation.Option.Sony.Value.AllTimers"><value>Всі Таймери</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_clocks_scale.Label"><value>Годинники Ваги</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_clocks_scale.Help"><value>Відсоток швидкості шкала PS3.</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_renderer.Label"><value>Рендерер</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_renderer.Help"><value>Vulkan надає на передній Vulkan пристрій і руки він кожен готовий кадр як зображення; коли фронтенд не працює його Vulkan відео драйвера, рамка скопійована назад через пам'ять замість. OpenGL виводить прямо в контекст Frontend's OpenGL.</value></data>
   <data name="Emulation.Option.Sony.Value.NullNoVideo"><value>Нулл (No Відео)</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_frame_limit.Label"><value>Ліміт каркаса</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_frame_limit.Help"><value>Найвища частота кадрів гра може працювати. Авто - це частота VBlank, як в RPCS3; PS3 Нативні темпи застібають шлях PS3; Відпускає ігри, які не чекають на оновлення PS3 занадто швидко.</value></data>
@@ -992,7 +982,7 @@
   <data name="Emulation.Option.rpcs3.rpcs3_driver_wakeup_delay.Label"><value>Драйвер Wake-Up Delay</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_driver_wakeup_delay.Help"><value>Затримка драйвера в мікросекундах. 0 за замовчуванням, як у RPCS3; підняти його тільки при необхідності гри.</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_vblank_rate.Label"><value>Частота VBlank</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_vblank_rate.Help"><value>Швидкість оновлення PS3 в Гц. Це також частота кадрів, ядро просить RetroArch для того, що приймає ефект при завантаженні контенту; ігри, які можуть працювати над 60 FPS потребують дисплея, який швидко освіжає.</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_vblank_rate.Help"><value>Задає емульовану частоту оновлення. Режим списку сумісності подвоює її для підтримуваних ігор.</value></data>
   <data name="Emulation.Option.Sony.Value.50HzPAL"><value>50 Hz (PAL)</value></data>
   <data name="Emulation.Option.Sony.Value.60HzNTSC"><value>60 Hz (NTSC)</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_thread_scheduler.Label"><value>Нитка планер</value></data>
@@ -1074,8 +1064,6 @@
   <data name="Emulation.Option.rpcs3.rpcs3_frame_pacing.Label"><value>Каркасні обмотки</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_frame_pacing.Help"><value>Які кадри гри часуються. Емуляторний годинник RPCS3 власним таймером, як в автономному RPCS3. RetroArch дає гру один PS3 освіжаючи за кадром RetroArch показує, так швидко перенаправлена швидкість гри вгору і гра працює на частоті VBlank коли RetroArch показує що багато кадрів другий; з Vulkan рендерером в даний час пропускає рамки.</value></data>
   <data name="Emulation.Option.Sony.Value.EmulatorClock"><value>Емулятор годинник</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_savedata_slot.Label"><value>Зберегти слот даних</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_savedata_slot.Help"><value>Гра PS3 показує список своїх збережених даних і дозволяє підібрати гравця. "Пік зі списку" показує, що список у ігровій картині, щоб використовуватися з контролером. Кількість має базовий вибір для вас замість: збереження перезаписів входу в цю позицію у списку ігор або робить нову економію, коли список коротше; завантаження займає запис на цій позиції і нічого не знаходить при скороченні списку. 0 є першим записом. Ігри, які зберігають єдину рятівку самостійно не демонструють список, тому це не стосується їх.</value></data>
   <data name="Emulation.Option.Sony.Value.PickFromList"><value>Підбір зі списку</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_master_volume.Label"><value>Магістральне об'єм</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_master_volume.Help"><value>Відсоток гучності магістрів аудіо.</value></data>
@@ -1233,7 +1221,7 @@
   <data name="Emulation.Option.Sony.Value.MergeTargets"><value>Цільові цілі</value></data>
   <data name="Emulation.Option.Sony.Setting.DisableDepthConversion.Label"><value>Вимкнена глибинна конвертація</value></data>
   <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Label"><value>Використання зовнішньої бази даних GameIndex</value></data>
-  <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Help"><value>Зажадає апаратний рендер і ручний рендеринг фіксує. Завантаження вибраної бази даних сумісності гри або залишити файл порожнім, щоб використовувати вбудовану базу даних. Перезапустіть емульсію після зміни цих налаштувань.</value></data>
+  <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Help"><value>Зажадає апаратний рендер і ручний рендеринг фіксує. Завантаження вибраної бази даних сумісності гри або залишити файл порожнім.</value></data>
   <data name="Emulation.Option.Sony.Setting.FramebufferConversion.Label"><value>Перетворення рендерингового каркаса</value></data>
   <data name="Emulation.Option.Sony.Setting.DisablePartialInvalidation.Label"><value>Нездатна оцінка джерела</value></data>
   <data name="Emulation.Option.Sony.Setting.GpuPaletteConversion.Label"><value>Перетворення палітра на GPU</value></data>
@@ -1274,4 +1262,18 @@
   <data name="Emulation.Option.Sony.Setting.LineToQuad.Help" xml:space="preserve"><value>Деякі ігри (наприклад, Doom, Hexen, Soul Blade і т.д.) малюємо горизонтальні лінії шляхом розтягування однопіксельних трикутників по екрану, які растеризовані як ряд пікселів на оригінальному обладнанні. Цей хак виявляє ці маленькі трикутники і перетворює їх на квадроцикли, як це потрібно, дозволяючи їм добре відображатися на апаратних рендерах і в масштабованих внутрішніх роздільних рішеннях. "Аггіпресивний" необхідний для деяких назв (наприклад, Темні сили, Дюк Накомем) але можуть в іншому випадку ввести графічні щілини. Залишити коментар або відгук про 'Default'</value></data>
   <data name="Emulation.Option.Sony.Setting.DynarecEventCycles.Label" xml:space="preserve"><value>Dynarec DMA/GPU/MDEC/Timer Цикли подій</value></data>
   <data name="Emulation.Option.Sony.Setting.DynarecEventCycles.Help" xml:space="preserve"><value>Максимальна кількість циклів, які працюють за допомогою CPU до GPU/DMA /MDEC/Timer Update перевіряється, що вище число буде швидше, має значно менший вплив на інтерпретатор буряка, ніж динарець.</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_aspect_ratio.Help"><value>Задає формат екрана, який повідомляється іграм. Лише деякі ігри підтримують 4:3.</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_disk_cache_size.Label"><value>Розмір дискового кешу</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_disk_cache_size.Help"><value>Обмежує місце на диску для тимчасових кешів ігор. Ігри заново створюють видалені кеші, що може сповільнити наступний запуск.</value></data>
+  <data name="Emulation.Option.pokket.Link"><value>Інфрачервоний зв&apos;язок</value></data>
+  <data name="Emulation.Option.pokket.Layout"><value>Розташування з&apos;єднаних екранів</value></data>
+  <data name="Emulation.Option.pokket.Audio"><value>Джерело звуку з&apos;єднаних пристроїв</value></data>
+  <data name="Emulation.Option.pokket.Identity"><value>Апаратний ідентифікатор пристрою B</value></data>
+  <data name="Emulation.Option.pokket.Horizontal"><value>Поруч</value></data>
+  <data name="Emulation.Option.pokket.Vertical"><value>Один над одним</value></data>
+  <data name="Emulation.Option.pokket.SelectUnitA"><value>Керувати пристроєм A</value></data>
+  <data name="Emulation.Option.pokket.SelectUnitB"><value>Керувати пристроєм B</value></data>
+  <data name="Emulation.Option.pokket.Help"><value>Вставте картку в кожен пристрій, щоб увімкнути інфрачервоний зв&apos;язок.</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_audio_format.Label"><value>Розташування динаміків</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_audio_format.Help"><value>Задає розташування динаміків, доступне іграм. Гра вибирає звукове зведення відповідно до цієї схеми. Виведення також залежить від вибраного аудіопристрою Windows.</value></data>
 </root>

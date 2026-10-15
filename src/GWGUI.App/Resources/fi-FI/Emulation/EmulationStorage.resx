@@ -80,4 +80,6 @@
   <data name="Emulation.Storage.MemoryCard.ImageRequired"><value>Valitse olemassa oleva korttitiedosto.</value></data>
   <data name="Emulation.Storage.MemoryCard.InvalidSize"><value>Korttitiedoston koko on virheellinen.</value></data>
   <data name="Emulation.Storage.MemoryCard.InvalidFormat"><value>Valitse tämän laitteen tukema tiedostomuoto.</value></data>
+  <data name="Emulation.Storage.Cache.Unlimited"><value>Rajoittamaton</value></data>
+  <data name="Emulation.Storage.Cache.ClearOnGameClose"><value>Tyhjennä, kun peli suljetaan</value></data>
 </root>

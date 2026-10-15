@@ -6,7 +6,7 @@
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Sega.Help.General.Model.Short"><value>מודל מכונה Sega מוגדר.</value></data>
   <data name="Emulation.Sega.Help.Memory.Ram.Short"><value>כמות ה- RAM זמינה למכונה הנחשקת.</value></data>
-  <data name="Emulation.Sega.Help.Memory.Ram.Detailed"><value>בחר את הרחבת ה- RAM שנחשפו על ידי הליבה של חיקוי. המכונה חייבת להתחיל מחדש לפני השימוש בכמות חדשה.</value></data>
+  <data name="Emulation.Sega.Help.Memory.Ram.Detailed"><value>בחר את הרחבת ה- RAM שנחשפו על ידי הליבה של חיקוי.</value></data>
   <data name="Emulation.Sega.Help.Firmware.Integrated.Short"><value>המערכת ROM בנויה אל הליבה של החיקוי.</value></data>
   <data name="Emulation.Sega.Help.Firmware.Integrated.Detailed"><value>הליבה של החיקוי מספק את המערכת ROM בפנים ואינו חושף קובץ ROM.</value></data>
   <data name="Emulation.Sega.Help.General.Emulator.Short"><value>אדמירטור נבחר למכונה זו.</value></data>

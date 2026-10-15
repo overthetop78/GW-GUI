@@ -299,4 +299,7 @@
   <data name="Emulation.Video.Parameter.ProjectionVignette"><value>Edgen tummuminen</value></data>
   <data name="Emulation.Video.Projection.Group.Optics"><value>Optiikka ja valo</value></data>
   <data name="Emulation.Video.Projection.Group.Screen"><value>Projection-näyttö</value></data>
+  <data name="Emulation.Option.Common.Value.HardwareRendering"><value>Laitteistokiihdytetty renderöinti</value></data>
+  <data name="Emulation.Option.Common.RenderingMode.Label"><value>Renderöintitila</value></data>
+  <data name="Emulation.Option.Common.RenderingMode.Help"><value>Laitteistokiihdytetty renderöinti käyttää sovellukselle valittua grafiikkarajapintaa (API), jos emulaattori tukee sitä.</value></data>
 </root>

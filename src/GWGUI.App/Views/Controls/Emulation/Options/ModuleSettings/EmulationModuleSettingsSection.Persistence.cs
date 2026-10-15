@@ -6,6 +6,7 @@ using GWGUI.App.Functions.Views.Emulation.Settings;
 using GWGUI.App.Localization.Extensions;
 using GWGUI.App.Services.Emulation;
 using GWGUI.App.Constants.Views.Emulation;
+using GWGUI.App.Functions.Emulation.Machine;
 using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
@@ -71,6 +72,7 @@ internal sealed partial class EmulationModuleSettingsSection
         if (_storageSettings is not null) _configuration = _storageSettings.Apply(_configuration);
         if (_emulatorManagement is not null)
             await _emulatorManagement.EnsureEmulatorSelectedAsync();
+        _configuration = EmulationVideoConfigurationFunctions.Apply(_module, _configuration, _profiles.Get(_module.Id, _configuration.Id).Renderer);
         var configuration = _configuration;
         await _profiles.SaveAsync(_module.Id, configuration.Id);
         await _module.SaveConfigurationAsync(configuration);
@@ -152,5 +154,6 @@ internal sealed partial class EmulationModuleSettingsSection
             _configuration = _module.ApplySettings(_configuration, _fieldControls.ToDictionary(item => item.Key, item => ReadValue(item.Value), StringComparer.Ordinal));
         if (_inputSettings is not null) _configuration = _inputSettings.Apply(_configuration);
         if (_storageSettings is not null) _configuration = _storageSettings.Apply(_configuration);
+        _configuration = EmulationVideoConfigurationFunctions.Apply(_module, _configuration, _profiles.Get(_module.Id, _configuration.Id).Renderer);
     }
 }

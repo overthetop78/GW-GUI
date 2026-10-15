@@ -23,7 +23,7 @@
   <data name="Emulation.Option.swanstation.swanstation_CDROM_ReadThread.Label"><value>CD-ROM Læs tråd</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_ReadThread.Help"><value>Læser CD-ROM sektorer frem asynkron, reducere risikoen for frame time spikes.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_LoadImagePatches.Label"><value>Anvend billed- patches</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_CDROM_LoadImagePatches.Help"><value>Anvender automatisk patches på disk-billeder, når de er til stede i samme mappe. I øjeblikket er kun PPF-patches understøttet med denne indstilling. Kræver, at kernen genstartes for at kunne anvendes.</value></data>
+  <data name="Emulation.Option.swanstation.swanstation_CDROM_LoadImagePatches.Help"><value>Anvender automatisk patches på disk-billeder, når de er til stede i samme mappe. I øjeblikket er kun PPF-patches understøttet med denne indstilling. Kræver.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_LoadImageToRAM.Label"><value>Præload CD-ROM Billede til RAM</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_LoadImageToRAM.Help"><value>Indlæser disk-billedet til RAM, før du starter emulering. Kan reducere Hitching, hvis du kører fra en netværkshare, på bekostning af en større starttid. Da libretro ikke giver nogen måde at trække overlays, emulatoren vil synes at låse op, mens billedet er forudindlæst.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_PreCacheCHD.Label"><value>Pre-cache CHD billeder til RAM</value></data>
@@ -39,8 +39,6 @@
   <data name="Emulation.Option.Sony.Value.Interpreter"><value>Tolk</value></data>
   <data name="Emulation.Option.Sony.Value.CachedInterpreter"><value>Cached Tolk</value></data>
   <data name="Emulation.Option.Sony.Value.Recompiler"><value>Rekompiler</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_GPU_Renderer.Label"><value>GPU Renderer</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_GPU_Renderer.Help"><value>Hvilken renderer at bruge til at efterligne GPU.</value></data>
   <data name="Emulation.Option.Sony.Value.HardwareOpenGL"><value>Hardware (OpenGL)</value></data>
   <data name="Emulation.Option.Sony.Value.Software"><value>Software</value></data>
   <data name="Emulation.Option.swanstation.swanstation_GPU_ResolutionScale.Label"><value>Intern afviklingsskala</value></data>
@@ -48,7 +46,7 @@
   <data name="Emulation.Option.swanstation.swanstation_GPU_UseThread.Label"><value>Gevindomformere (software)</value></data>
   <data name="Emulation.Option.swanstation.swanstation_GPU_UseThread.Help"><value>Bruger en anden tråd til at tegne grafik. I øjeblikket kun tilgængelig for software renderer.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_GPU_UseSoftwareRendererForReadbacks.Label"><value>Brug software Renderer til readbacks</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_GPU_UseSoftwareRendererForReadbacks.Help"><value>Kør softwaregengivelse side hardwaregengivelse, når du læser billeddata fra VRAM. Nogle spil har brug for dette til bevægelse slør eller kamp overgange, eller at fastsætte beskadigede teksturer. Genstart kernen efter at have ændret denne indstilling.</value></data>
+  <data name="Emulation.Option.swanstation.swanstation_GPU_UseSoftwareRendererForReadbacks.Help"><value>Kør softwaregengivelse side hardwaregengivelse, når du læser billeddata fra VRAM. Nogle spil har brug for dette til bevægelse slør eller kamp overgange.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_GPU_MSAA.Label"><value>Multiample antialiasing</value></data>
   <data name="Emulation.Option.swanstation.swanstation_GPU_MSAA.Help"><value>Bruger flersidige antialiasing til gengivelse af 3D-objekter. Kan glatte ud kagede kanter på polygoner til en lavere pris for ydeevne i forhold til at øge opløsningen skala, men kan være mere tilbøjelige til at forårsage rendering fejl i nogle spil.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_GPU_TrueColor.Label"><value>Render med fuld farvepræcision</value></data>
@@ -129,7 +127,7 @@
   <data name="Emulation.Option.swanstation.swanstation_Display_LineEndOffset.Label"><value>Udbyttet af den sidst viste linje</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Display_LineEndOffset.Help"><value>Pads eller afgrøder off linjer fra bunden af det viste billede.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_MemoryCards_Card1Type.Label"><value>Hukommelseskort 1 Type</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_MemoryCards_Card1Type.Help"><value>Vælg hukommelseskortet format for slot 1. Genstart kernen, når du ændrer formater. Delt kort og de to separate- card muligheder er bevaret for gamle konfigurationer, men er ikke understøttet. Den Libretro format bruger .srm filer. Et særskilt kort opkaldt efter spillet bruger .mcd filer. Disse to formater indeholder identiske data. At konvertere mellem dem, ændre filforlængelse og tilføje eller fjerne slot suffiks _1.</value></data>
+  <data name="Emulation.Option.swanstation.swanstation_MemoryCards_Card1Type.Help"><value>Vælg hukommelseskortet format for slot 1. Delt kort og de to separate- card muligheder er bevaret for gamle konfigurationer, men er ikke understøttet. Den Libretro format bruger .srm filer. Et særskilt kort opkaldt efter spillet bruger .mcd filer. Disse to formater indeholder identiske data. At konvertere mellem dem, ændre filforlængelse og tilføje eller fjerne slot suffiks _1.</value></data>
   <data name="Emulation.Option.Sony.Value.LibretroDefault"><value>Libreretro (standard)</value></data>
   <data name="Emulation.Option.Sony.Value.SharedBetweenAllGames"><value>Del mellem alle spil</value></data>
   <data name="Emulation.Option.Sony.Value.SeparateCardPerGameGameCode"><value>Separat kort per spil (spilkode)</value></data>
@@ -280,7 +278,7 @@
   <data name="Emulation.Option.mednafen_psx.beetle_psx_gte_overclock.Label"><value>GTE Overclock</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_gte_overclock.Help"><value>Udfør hver operation af GTE grafik coprocessor i en CPU cyklus. Dette kan i høj grad forbedre frame rate og gøre rammen timing mere stabil i spil, der bruger GTE kraftigt.</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_cd_access_method.Label"><value>CD Adgangsmetode</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_cd_access_method.Help"><value>Synkron adgang reproducerer den oprindelige hardware. Asynkron adgang kan reducere pauser på enheder med langsom opbevaring. Indlæsning af hele disk billede i RAM kan forbedre loading gange under spillet, men forsinker opstart. Denne tilstand kan forårsage problemer, når RAM er begrænset. Fysiske diske bruger synkron adgang i stedet for at indlæse hele billedet. Genstart efter ændring af denne indstilling.</value></data>
+  <data name="Emulation.Option.mednafen_psx.beetle_psx_cd_access_method.Help"><value>Synkron adgang reproducerer den oprindelige hardware. Asynkron adgang kan reducere pauser på enheder med langsom opbevaring. Indlæsning af hele disk billede i RAM kan forbedre loading gange under spillet, men forsinker opstart. Denne tilstand kan forårsage problemer.</value></data>
   <data name="Emulation.Option.Sony.Value.Synchronous"><value>Synkron</value></data>
   <data name="Emulation.Option.Sony.Value.Asynchronous"><value>Asynkron</value></data>
   <data name="Emulation.Option.Sony.Value.PreCache"><value>Præ- cache</value></data>
@@ -431,7 +429,7 @@
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_gte_overclock.Label"><value>GTE Overclock</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_gte_overclock.Help"><value>Udfør hver operation af GTE grafik coprocessor i en CPU cyklus. Dette kan i høj grad forbedre frame rate og gøre rammen timing mere stabil i spil, der bruger GTE kraftigt.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_access_method.Label"><value>CD Adgangsmetode</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_access_method.Help"><value>Synkron adgang reproducerer den oprindelige hardware. Asynkron adgang kan reducere pauser på enheder med langsom opbevaring. Indlæsning af hele disk billede i RAM kan forbedre loading gange under spillet, men forsinker opstart. Denne tilstand kan forårsage problemer, når RAM er begrænset. Fysiske diske bruger synkron adgang i stedet for at indlæse hele billedet. Genstart efter ændring af denne indstilling.</value></data>
+  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_access_method.Help"><value>Synkron adgang reproducerer den oprindelige hardware. Asynkron adgang kan reducere pauser på enheder med langsom opbevaring. Indlæsning af hele disk billede i RAM kan forbedre loading gange under spillet, men forsinker opstart. Denne tilstand kan forårsage problemer.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_fastload.Label"><value>CD Belastningshastighed</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_fastload.Help"><value>Værdier højere end '2x (Indfødt)' kan i høj grad reducere indlæsning gange, men kan indføre timing fejl. Nogle spil kan ikke fungere korrekt over en bestemt værdi.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_skip_bios.Label"><value>Spring BIOS opstart- animation over</value></data>
@@ -442,8 +440,6 @@
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_region.Help"><value>Sætter den fallback-region der bruges når indhold ikke kan detekteres automatisk (fx rå PS-X EXE filer). Disc- baserede spil stadig bruge regionen indlejret på disken.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_internal_resolution.Label"><value>Intern GPU-opløsning</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_internal_resolution.Help"><value>Resolutioner højere end '1x (Indfødt) "forbedre troværdigheden af 3D-modeller på bekostning af øget ydeevne krav. 2D elementer er generelt upåvirket af denne indstilling.</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_renderer.Label"><value>Renderer</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_renderer.Help"><value>Vælg hvordan du tegner billedet. Den software renderer er den mest nøjagtige. Det har brug for langt mere processorkraft ved højere interne beslutninger. hardwaregengivelse er mindre præcis, men hurtigere ved højere opløsninger og understøtter grafik forbedringer. Automatisk hardwaregengivelse vælger Vulkan eller OpenGL i henhold til den videodriver, der anvendes af programmet. Hvis føreren hverken understøtter Vulkan eller OpenGL 3.3, bruger kernen softwaregengivelse i stedet. Genstart kernen efter at have ændret denne indstilling.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_renderer_software_fb.Label"><value>Software Framebuffer</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_renderer_software_fb.Help"><value>Brug software renderer i baggrunden ved den indfødte opløsning, mens hardware renderer viser spillet. Dette reproducerer bevægelse sløring og kamp overgange i FF7 præcist. Når de er deaktiveret, udelader OpenGL disse effekter og Vulkan trækker dem på GPU. Deaktivering af denne indstilling kan forbedre hastigheden, men kan også forårsage alvorlige grafikfejl. Hold det aktiveret, hvis du er usikker.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_color_format.Label"><value>Farveformat</value></data>
@@ -472,7 +468,7 @@
   <data name="Emulation.Option.Sony.Value.25Degrees"><value>25 grader</value></data>
   <data name="Emulation.Option.Sony.Value.45Degrees"><value>45 grader</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_video_cable.Label"><value>Analog videokabel</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_video_cable.Help"><value>Simulerer kablet mellem konsollen og fjernsynet, herunder farvekodning og fjernsynets dekoder. 'No Simulation' slår kæden helt fra og giver rammebufferen direkte til skærmen (standard)). 'RGB (SCART)' er den skarpeste udgang PSX kunne producere: multi- out bærer analoge RGB, så intet er moduleret og ingen af de kodning artefakter nedenfor kan forekomme - men det er stadig en analog ledning, så den er band- begrænset af konsollens video forstærker og sættet input fase i stedet for at være uendelig skarpe. 'S-Video' band- begrænser farve tungt, men holder luma og farve på separate ledninger, så fine detaljer forbliver rene. 'Composite' opsummerer dem på én tråd, som dekoder derefter nødt til at trække fra hinanden igen, koster luma detalje og tilføjer farve smaling og regnbue fringing på fine mønstre. 'RF' modeller en ekstern modulator - konsollen selv har ingen, kun en DC jack til magten en - indsnævring luma yderligere og tilføje beat mønster lydbæreren gør mod farve underholder, som er stærkest på mættet farve. Fungerer ved enhver intern opløsning: de ekstra prøver er løst ned, før signalet genereres, så højere indstillinger fungerer som supersampling ind i kablet snarere end et bredere signal, og output stadig bærer sub- pixel detaljer dekoder producerer. Støttet af Vulkan og OpenGL rendere, og ignoreret af Software renderer. På OpenGL har det filter, der fjerner 'hængende prikker' - det fine stiplede mønster langs vandrette farvekanter - brug for GL 4.3 eller GLES 3.1; på en ældre driver kører simulationen stadig, men 'Composite' og 'RF' vil vise disse prikker. Gælder med det samme; ingen genstart nødvendig.</value></data>
+  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_video_cable.Help"><value>Simulerer kablet mellem konsollen og fjernsynet, herunder farvekodning og fjernsynets dekoder. 'No Simulation' slår kæden helt fra og giver rammebufferen direkte til skærmen (standard)). 'RGB (SCART)' er den skarpeste udgang PSX kunne producere: multi- out bærer analoge RGB, så intet er moduleret og ingen af de kodning artefakter nedenfor kan forekomme - men det er stadig en analog ledning, så den er band- begrænset af konsollens video forstærker og sættet input fase i stedet for at være uendelig skarpe. 'S-Video' band- begrænser farve tungt, men holder luma og farve på separate ledninger, så fine detaljer forbliver rene. 'Composite' opsummerer dem på én tråd, som dekoder derefter nødt til at trække fra hinanden igen, koster luma detalje og tilføjer farve smaling og regnbue fringing på fine mønstre. 'RF' modeller en ekstern modulator - konsollen selv har ingen, kun en DC jack til magten en - indsnævring luma yderligere og tilføje beat mønster lydbæreren gør mod farve underholder, som er stærkest på mættet farve. Fungerer ved enhver intern opløsning: de ekstra prøver er løst ned, før signalet genereres, så højere indstillinger fungerer som supersampling ind i kablet snarere end et bredere signal, og output stadig bærer sub- pixel detaljer dekoder producerer. Støttet af Vulkan og OpenGL rendere, og ignoreret af Software renderer. På OpenGL har det filter, der fjerner 'hængende prikker' - det fine stiplede mønster langs vandrette farvekanter - brug for GL 4.3 eller GLES 3.1; på en ældre driver kører simulationen stadig, men 'Composite' og 'RF' vil vise disse prikker. Gælder med det samme.</value></data>
   <data name="Emulation.Option.Sony.Value.NoSimulation"><value>Ingen simulation</value></data>
   <data name="Emulation.Option.Sony.Value.RGBSCART"><value>RGB (SCART)</value></data>
   <data name="Emulation.Option.Sony.Value.SVideo"><value>S- Video</value></data>
@@ -757,9 +753,7 @@
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_nostalls.Label"><value>Deaktivér CPU / GTE-stalde</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_nostalls.Help"><value>vil få nogle spil til at køre for hurtigt. Bør være deaktiveret i næsten alle tilfælde. Kun tolk.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_fast_boot.Label"><value>Fast Boot</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_fast_boot.Help"><value>Spring BIOS boot animation over. Kræver genstart.</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_renderer.Label"><value>Renderer</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_renderer.Help"><value>Hardware renderer API, eller software renderer. Skift til eller fra software gælder på flue; skifte mellem hardware API 'er får virkning, når indholdet genstartes.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_fast_boot.Help"><value>Spring BIOS boot animation over.</value></data>
   <data name="Emulation.Option.Sony.Value.OpenGLHardware"><value>OpenGL (Hardware)</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_upscale_multiplier.Label"><value>Intern resolution</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_upscale_multiplier.Help"><value>Intern rendering opløsning multiplikator for hardware-renderer. Også skalere output framework buffer. Det passer på fluen.</value></data>
@@ -796,8 +790,6 @@
   <data name="Emulation.Option.pcee2.pcsx2_fxaa.Help"><value>Billige post- proces anti-aliasing.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_cas_mode.Label"><value>Kontrasttilpasning til slibning</value></data>
   <data name="Emulation.Option.Sony.Value.SharpenOnly"><value>Kun skarpere</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_audio_buffer_ms.Label"><value>Lydbuffer</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_audio_buffer_ms.Help"><value>Hvor meget lyd emulatoren holder foran frontend. Mere af det rider ud en stald, der ellers ville blive hørt som et brud i lyden, på bekostning af så meget forsinkelse før du hører noget. PCSX2 's egen standard er 50 ms, som antager, at det fodrer en lydenhed direkte i stedet for en frontend, der trækker én gang en ramme.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_frame_limiter.Label"><value>Frame Limiter</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_frame_limiter.Help"><value>Hvad holder emulatoren til fuld hastighed. Frontend efterlader pacing til RetroArch, som styrter ved at gøre kernen vente på lyd det hænder over. Intern bruger PCSX2 's egen limiter i stedet - for en enhed, hvor der venter aldrig sker, fordi lyddriveren underløber snarere end blokerer, og emulatorens egen hastighedsvariation når derefter skærmen som ujævn frame pacing.</value></data>
   <data name="Emulation.Option.Sony.Value.FrontendRetroArch"><value>Frontend (RetroArch)</value></data>
@@ -808,13 +800,13 @@
   <data name="Emulation.Option.pcee2.pcsx2_aspect_ratio.Label"><value>Orienteringsforhold</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_aspect_ratio.Help"><value>Automatiske rapporter 16: 9 når wallcreen patches er aktiveret, 4: 3 ellers.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_multitap.Label"><value>Multitap</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_multitap.Help"><value>Aktivér multitap-adapteren for op til 8 controllere. Spillerrækkefølge følger de fysiske slots (port 1: 1A- 1D, derefter port 2: 2A- 2D). Genstart anbefalet.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_multitap.Help"><value>Aktivér multitap-adapteren for op til 8 controllere. Spillerrækkefølge følger de fysiske slots (port 1: 1A- 1D.</value></data>
   <data name="Emulation.Option.Sony.Value.Disabled2Players"><value>Deaktiveret (2 spillere)</value></data>
   <data name="Emulation.Option.Sony.Value.Port15Players"><value>Port 1 (5 spillere)</value></data>
   <data name="Emulation.Option.Sony.Value.Port25Players"><value>Port 2 (5 spillere)</value></data>
   <data name="Emulation.Option.Sony.Value.BothPorts8Players"><value>Begge porte (8 spillere)</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_lightgun.Label"><value>Lightgun (GunCon 2)</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_lightgun.Help"><value>Emulere en Namco GunCon 2 på en USB-port, der er rettet mod frontend 's lyspistol (eller mus kortlagt som lightgun) på matchende controller port. Kræver genstart.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_lightgun.Help"><value>Emulere en Namco GunCon 2 på en USB-port.</value></data>
   <data name="Emulation.Option.Sony.Value.USBPort1"><value>USB Port 1</value></data>
   <data name="Emulation.Option.Sony.Value.USBPort2"><value>USB Port 2</value></data>
   <data name="Emulation.Option.Sony.Value.BothPorts"><value>Begge havne</value></data>
@@ -839,18 +831,18 @@
   <data name="Emulation.Option.pcee2.pcsx2_ee_cycle_skip.Label"><value>EE Cyklus Skip</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_ee_cycle_skip.Help"><value>Får EE til at springe cykler over. Hjælper nogle spil med høj VU aktivitet, bryder andre.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_cpu_recompiler.Label"><value>CPU Rekompiler (JIT)</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_cpu_recompiler.Help"><value>Aktivér eller deaktivér omkompilering til diagnostiske formål. Når det er aktiveret, bruger EE, IOP, VU0 og VU1 hurtig JIT-omgruppering. Dette er standarden. Når de er deaktiveret, bruger hver CPU langsommere undervisning fortolkning. Dette hjælper med at diagnosticere JIT fejl: et nedbrud, der stadig sker med omkompilering deaktiveret har en anden årsag. De fire individuelle CPU-kontakter nedenfor gælder kun, når denne hovedindstilling er aktiveret. Genstart efter ændring af denne indstilling.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_cpu_recompiler.Help"><value>Aktivér eller deaktivér omkompilering til diagnostiske formål. Når det er aktiveret, bruger EE, IOP, VU0 og VU1 hurtig JIT-omgruppering. Dette er standarden. Når de er deaktiveret, bruger hver CPU langsommere undervisning fortolkning. Dette hjælper med at diagnosticere JIT fejl: et nedbrud, der stadig sker med omkompilering deaktiveret har en anden årsag. De fire individuelle CPU-kontakter nedenfor gælder kun.</value></data>
   <data name="Emulation.Option.Sony.Value.EnabledJITDefault"><value>Aktiveret (JIT, standard)</value></data>
   <data name="Emulation.Option.Sony.Value.DisabledInterpreter"><value>Deaktiveret (tolk)</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_rec_ee.Label"><value>- EE Rekompiler</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_rec_ee.Help"><value>Diagnostisk. Deaktivér blot Emotion Engine (EE) dynerec, mens du forlader de andre på, at bisect som recompiler forårsager et nedbrud. Kræver genstart.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_rec_ee.Help"><value>Diagnostisk. Deaktivér blot Emotion Engine (EE) dynerec, mens du forlader de andre på.</value></data>
   <data name="Emulation.Option.Sony.Value.EnabledDefault"><value>Aktiveret (standard)</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_rec_iop.Label"><value>- IOP Rekompiler</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_rec_iop.Help"><value>Diagnostisk. Deaktivér blot IOP (R3000) dynerec mens forlader de andre på, at bisect som recompiler forårsager et nedbrud. Kræver genstart.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_rec_iop.Help"><value>Diagnostisk. Deaktivér blot IOP (R3000) dynerec mens forlader de andre på.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_rec_vu0.Label"><value>- VU0 Rekompiler</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_rec_vu0.Help"><value>Diagnostisk. Deaktivér blot VU0 microVU dynarec, mens du forlader de andre på, at bisect som recompiler forårsager et nedbrud. Kræver genstart.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_rec_vu0.Help"><value>Diagnostisk. Deaktivér blot VU0 microVU dynarec, mens du forlader de andre på.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_rec_vu1.Label"><value>- VU1 Rekompiler</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_rec_vu1.Help"><value>Diagnostisk. Deaktivér blot VU1 microVU dynarec, mens forlader de andre på, at bisect som recompiler forårsager et nedbrud. Kræver genstart.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_rec_vu1.Help"><value>Diagnostisk. Deaktivér blot VU1 microVU dynarec, mens forlader de andre på.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_memcard_slot1_enable.Label"><value>Slot 1 Aktiveret</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_memcard_slot1_enable.Help"><value>Aktivér Slot 1 PS2 hukommelseskort. Ændringer gælder med det samme, mens indholdet kører.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_memcard_slot2_enable.Label"><value>Slot 2 Aktiveret</value></data>
@@ -901,8 +893,6 @@
   <data name="Emulation.Option.Sony.Value.AllTimers"><value>Alle Timere</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_clocks_scale.Label"><value>Clacks Scale</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_clocks_scale.Help"><value>Skalér PS3 clockhastighed procent.</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_renderer.Label"><value>Renderer</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_renderer.Help"><value>Vulkan gør på frontend "s Vulkan enhed og hænder det hver færdig ramme som et billede; når frontend ikke kører sin Vulkan videodriver, bliver rammen kopieret tilbage gennem hukommelsen i stedet. OpenGL trækker direkte ind i frontend 's OpenGlL sammenhæng.</value></data>
   <data name="Emulation.Option.Sony.Value.NullNoVideo"><value>Null (ingen video)</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_frame_limit.Label"><value>Grænse for ramme</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_frame_limit.Help"><value>Højeste frame rate spillet kan køre på. Auto er VBlank Frequency, som i RPCS3; PS3 Indfødte skridt vender den måde, PS3 gør; Deaktiveret lader spil, der ikke venter på PS3 s opdatering selv køre for hurtigt.</value></data>
@@ -979,7 +969,7 @@
   <data name="Emulation.Option.rpcs3.rpcs3_driver_wakeup_delay.Label"><value>Driver Wake- Up Delay</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_driver_wakeup_delay.Help"><value>Driver wake- up forsinkelse i mikrosekunder. 0 som standard, som i RPCS3; hæve det kun når et spil har brug for det.</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_vblank_rate.Label"><value>VBlank Frekvens</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_vblank_rate.Help"><value>PS3 's opdateringshastighed i Hz. Det er også den frame rate kernen beder RetroArch for, som træder i kraft, når indholdet er indlæst; spil, der kan køre over 60 FPS har brug for en skærm, der genopfrisker så hurtigt.</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_vblank_rate.Help"><value>Indstiller den emulerede opdateringsfrekvens. Tilstanden med kompatibilitetslisten fordobler den for understøttede spil.</value></data>
   <data name="Emulation.Option.Sony.Value.50HzPAL"><value>50 Hz (PAL)</value></data>
   <data name="Emulation.Option.Sony.Value.60HzNTSC"><value>60 Hz (NTSC)</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_thread_scheduler.Label"><value>Tråd Scheduler</value></data>
@@ -1061,8 +1051,6 @@
   <data name="Emulation.Option.rpcs3.rpcs3_frame_pacing.Label"><value>Frame Pacing</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_frame_pacing.Help"><value>Hvad spillets rammer er timet af. Emulator ur er RPCS3 's egen timer, som i standalone RPCS3. RetroArch giver spillet en PS3 opdatering per ramme RetroArch viser, så fast- fremad hastigheder spillet op og spillet kører ved VBlank Frequency, når RetroArch viser at mange rammer et sekund; med Vulkan renderer det i øjeblikket springer rammer.</value></data>
   <data name="Emulation.Option.Sony.Value.EmulatorClock"><value>Emulatorur</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_savedata_slot.Label"><value>Gem data Slot</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_savedata_slot.Help"><value>Et PS3 spil viser en liste over sine gemmedata og lader spilleren vælge. 'Vælg fra listen' viser denne liste i spilbilledet, der skal bruges sammen med controlleren. Et nummer har kernen vælger for dig i stedet: at gemme overskrifter posten på denne position i spillets liste, eller gør en ny gem når listen er kortere; indlæsning tager indgangen på denne holdning, og finder intet, når listen bliver kortere. 0 er den første post. Spil, der holder en enkelt besparelse af deres egen ikke vise en liste, så dette gælder ikke for dem.</value></data>
   <data name="Emulation.Option.Sony.Value.PickFromList"><value>Vælg fra listen</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_master_volume.Label"><value>Master Volume</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_master_volume.Help"><value>Master lydstyrke procent.</value></data>
@@ -1151,7 +1139,7 @@
   <data name="Emulation.Option.Sony.Setting.Fastcdvd.Help"><value>Hurtig CD/DVD adgang / søge tider. En lille håndfuld spil vil have kompatibilitetsproblemer med dette aktiveret.</value></data>
   <data name="Emulation.Option.Sony.Setting.SharedMemoryCards.Help"><value>Brug per- indhold eller delte hukommelseskort.</value></data>
   <data name="Emulation.Option.Sony.Setting.EnableCheats.Label"><value>Aktivér spilsnyd koder</value></data>
-  <data name="Emulation.Option.Sony.Setting.EnableCheats.Help"><value>Læs spil snyd koder fra filer i den valgte mappe. Genstart emulering efter at have valgt en anden mappe.</value></data>
+  <data name="Emulation.Option.Sony.Setting.EnableCheats.Help"><value>Læs spil snyd koder fra filer i den valgte mappe.</value></data>
   <data name="Emulation.Option.Sony.Setting.HintLanguageUnlock.Label"><value>Lås op for yderligere spilsprog</value></data>
   <data name="Emulation.Option.Sony.Setting.HintLanguageUnlock.Help"><value>Hvis aktiveret, vil kigge i den interne database for sproglåse muligheder. Eksempler omfatter: tvinge en international japansk version til engelsk, frigøre flere europæiske sprog osv.</value></data>
   <data name="Emulation.Option.Sony.Setting.Dev9Hdd.Help"><value>Emulér SPEED ekspansions- ATA harddisk. Billedet bor på 'pcsx2 /DEV9hdd.raw'i frontend systemmappen og er oprettet ved første brug i den indstillede størrelse.</value></data>
@@ -1233,7 +1221,7 @@
   <data name="Emulation.Option.Sony.Value.MergeTargets"><value>Sammenfletning render mål</value></data>
   <data name="Emulation.Option.Sony.Setting.DisableDepthConversion.Label"><value>Deaktivér depth- buffer konvertering</value></data>
   <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Label"><value>Brug ekstern GameIndex database</value></data>
-  <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Help"><value>Kræver en hardware- renderer og manuel rendering rettelser. Indlæs den valgte spilkompatibilitet database, eller lad filen tom for at bruge build- in database. Genstart emulering efter ændring af disse indstillinger.</value></data>
+  <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Help"><value>Kræver en hardware- renderer og manuel rendering rettelser. Indlæs den valgte spilkompatibilitet database.</value></data>
   <data name="Emulation.Option.Sony.Setting.FramebufferConversion.Label"><value>Konvertér rendering framebuffer</value></data>
   <data name="Emulation.Option.Sony.Setting.DisablePartialInvalidation.Label"><value>Deaktivér delvis kildevalidering</value></data>
   <data name="Emulation.Option.Sony.Setting.GpuPaletteConversion.Label"><value>Palettekonvertering den GPU</value></data>
@@ -1274,4 +1262,18 @@
   <data name="Emulation.Option.Sony.Setting.LineToQuad.Help" xml:space="preserve"><value>Nogle spil (fx Doom, Hexen, Soul Blade osv.) trække vandrette linjer ved at strække enkelt- pixel-høje trekanter på tværs af skærmen, som er rasterized som en række pixels på oprindelige hardware. Dette hack registrerer disse små trekanter og konverterer dem til quads efter behov, så de kan blive vist ordentligt på hardware renders og ved opskalerede interne resolutioner. 'Aggressive' er påkrævet for nogle titler (fx mørke kræfter, hertug nukem) men kan ellers indføre grafiske glitches. Forlad ved 'Standard' hvis du er usikker.</value></data>
   <data name="Emulation.Option.Sony.Setting.DynarecEventCycles.Label" xml:space="preserve"><value>Dynarec DMA / GPU / MDEC / Timer Event Cykler</value></data>
   <data name="Emulation.Option.Sony.Setting.DynarecEventCycles.Help" xml:space="preserve"><value>Maks. cyklusser køres af CPU før en GPU / DMA / MDEC / Timer Update er kontrolleret, højere antal vil være hurtigere, har langt mindre indvirkning på bille tolk end dynerec.</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_aspect_ratio.Help"><value>Indstiller det skærmformat, der oplyses til spillene. Kun nogle spil understøtter 4:3.</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_disk_cache_size.Label"><value>Størrelse på diskcache</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_disk_cache_size.Help"><value>Begrænser diskpladsen til midlertidige spilcacher. Spillene genskaber slettede cacher, hvilket kan gøre næste start langsommere.</value></data>
+  <data name="Emulation.Option.pokket.Link"><value>Infrarød forbindelse</value></data>
+  <data name="Emulation.Option.pokket.Layout"><value>Layout for forbundne skærme</value></data>
+  <data name="Emulation.Option.pokket.Audio"><value>Lydkilde for forbundne enheder</value></data>
+  <data name="Emulation.Option.pokket.Identity"><value>Hardwareidentitet for enhed B</value></data>
+  <data name="Emulation.Option.pokket.Horizontal"><value>Side om side</value></data>
+  <data name="Emulation.Option.pokket.Vertical"><value>Over hinanden</value></data>
+  <data name="Emulation.Option.pokket.SelectUnitA"><value>Styr enhed A</value></data>
+  <data name="Emulation.Option.pokket.SelectUnitB"><value>Styr enhed B</value></data>
+  <data name="Emulation.Option.pokket.Help"><value>Indsæt et kort i hver enhed for at aktivere den infrarøde forbindelse.</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_audio_format.Label"><value>Højttaleropstilling</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_audio_format.Help"><value>Angiver den højttaleropstilling, spillene får tilbudt. Spillet vælger sit lydmix ud fra opstillingen. Lydudgangen afhænger også af den valgte lydenhed i Windows.</value></data>
 </root>

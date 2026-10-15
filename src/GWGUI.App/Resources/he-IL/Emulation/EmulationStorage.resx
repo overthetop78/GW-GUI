@@ -80,4 +80,6 @@
   <data name="Emulation.Storage.MemoryCard.ImageRequired"><value>בחר קובץ כרטיס קיים.</value></data>
   <data name="Emulation.Storage.MemoryCard.InvalidSize"><value>לקובץ הכרטיס יש גודל לא חוקי.</value></data>
   <data name="Emulation.Storage.MemoryCard.InvalidFormat"><value>בחר פורמט קובץ נתמך על ידי מכשיר זה.</value></data>
+  <data name="Emulation.Storage.Cache.Unlimited"><value>ללא הגבלה</value></data>
+  <data name="Emulation.Storage.Cache.ClearOnGameClose"><value>ניקוי בעת סגירת המשחק</value></data>
 </root>

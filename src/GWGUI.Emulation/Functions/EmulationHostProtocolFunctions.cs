@@ -138,8 +138,10 @@ internal static class EmulationHostProtocolFunctions
         writer.Write(chunks.Count);
         foreach (var chunk in chunks)
         {
-            writer.Write(chunk.SampleRate); writer.Write(chunk.FrameCount); writer.Write(chunk.Sequence); writer.Write(chunk.Timestamp.Ticks);
-            WriteBytes(writer, MemoryMarshal.AsBytes(chunk.InterleavedStereo.Span));
+            if (!chunk.HasValidLength) throw new InvalidDataException(string.Format(EmulationHostProtocolConstants.InvalidPcmPayloadFormat, nameof(AudioChunk)));
+            writer.Write(chunk.SampleRate); writer.Write(chunk.FrameCount); writer.Write((uint)chunk.ChannelLayout);
+            writer.Write(chunk.Sequence); writer.Write(chunk.Timestamp.Ticks);
+            WriteBytes(writer, MemoryMarshal.AsBytes(chunk.InterleavedSamples.Span));
         }
     }
 
@@ -152,13 +154,16 @@ internal static class EmulationHostProtocolFunctions
         for (var index = 0; index < count; index++)
         {
             var sampleRate = reader.ReadInt32(); var frameCount = reader.ReadInt32();
+            var layout = (EmulationAudioChannelLayout)reader.ReadUInt32();
             var sequence = reader.ReadInt64(); var timestamp = TimeSpan.FromTicks(reader.ReadInt64());
             var bytes = ReadBytes(reader, hostName);
             if (bytes.Length % EmulationHostProtocolConstants.BytesPerPcmSample != 0)
                 throw new InvalidDataException(string.Format(EmulationHostProtocolConstants.InvalidPcmPayloadFormat, hostName));
             var samples = new short[bytes.Length / EmulationHostProtocolConstants.BytesPerPcmSample];
             Buffer.BlockCopy(bytes, 0, samples, 0, bytes.Length);
-            chunks[index] = new AudioChunk(samples, sampleRate, frameCount, sequence, timestamp);
+            var chunk = new AudioChunk(samples, sampleRate, frameCount, sequence, timestamp, layout);
+            if (!chunk.HasValidLength) throw new InvalidDataException(string.Format(EmulationHostProtocolConstants.InvalidPcmPayloadFormat, hostName));
+            chunks[index] = chunk;
         }
         return chunks;
     }

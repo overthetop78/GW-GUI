@@ -22,6 +22,8 @@ internal static partial class EmulationSettingsLayout
         settings.CpuSummary.TextWrapping = TextWrapping.Wrap;
         settings.CpuSummary.SetResourceReference(TextBlock.ForegroundProperty, "MutedTextBrush");
         processor.Children.Add(settings.CpuSummary);
+        if (settings.ProcessorFields is { Count: > 0 })
+            processor.Children.Add(SettingsFieldGrid(settings.ProcessorFields.ToArray()));
 
         var processorCard = IconCard(processor, LocExtension.Get("Emulation.Cpu.Processor"), ProcessorIcon);
         var compatibilityFields = new List<EmulationSettingsControlField>();

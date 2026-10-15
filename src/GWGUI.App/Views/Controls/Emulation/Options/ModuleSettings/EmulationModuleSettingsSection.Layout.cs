@@ -5,6 +5,7 @@ using GWGUI.App.Contracts.Emulation.Settings;
 using GWGUI.App.Contracts.Emulation.Configurations;
 using GWGUI.App.Contracts.Views.Emulation.Settings;
 using GWGUI.App.Functions.Views.Emulation.Machine;
+using GWGUI.App.Functions.Emulation.Machine;
 using GWGUI.App.Functions.Views.Emulation.Settings;
 using GWGUI.App.Localization.Extensions;
 using GWGUI.App.Services.Emulation;
@@ -48,6 +49,7 @@ internal sealed partial class EmulationModuleSettingsSection
     {
         _fieldControls.Clear();
         _userChangeHandlers.Clear();
+        _configuration = EmulationVideoConfigurationFunctions.Apply(_module, _configuration, _profiles.Get(_module.Id, _configuration.Id).Renderer);
         var settings = _module.Describe(_configuration.MachineId, _configuration);
         var tabs = EmulationMachineTabs.Create(tab => settings.Visibility.Tabs.GetValueOrDefault(tab) ? BuildTab(settings, tab) : null, $"{_module.Id}:{_configuration.MachineId}", TabActivatedAsync, _selectedTab);
         AttachUserChangeHandlers();
@@ -135,16 +137,19 @@ internal sealed partial class EmulationModuleSettingsSection
             SelectedValue = profile.Renderer
         };
         System.Windows.Automation.AutomationProperties.SetAutomationId(renderer, nameof(EmulationVideoPresentationProfile.Renderer));
-        renderer.SelectionChanged += async (_, _) =>
+        renderer.SelectionChanged += async (_, _) => await ExecuteAsync(async () =>
         {
             if (renderer.SelectedValue is not EmulationVideoRenderer choice) return;
+            CaptureEditorValues();
             var current = _profiles.Get(_module.Id, _configuration.Id);
             _profiles.Set(_module.Id, _configuration.Id, current with { Renderer = choice });
-            if (!_saved.Any(item => item.Id == _configuration.Id))
-                EmulationConfigurationDraftStore.Set(_module.Id, _configuration);
-            VideoConfigurationChanged?.Invoke(this, new EmulationConfigurationSavedEventArgs(_configuration));
-            await ExecuteAsync(SaveVideoProfileAsync);
-        };
+            _configuration = EmulationVideoConfigurationFunctions.Apply(_module, _configuration, choice);
+            RebuildEditor();
+            var saved = _saved.Any(item => item.Id == _configuration.Id);
+            await SaveVideoProfileAsync();
+            await PersistCapturedConfigurationAsync(_configuration, saved);
+            if (!saved) VideoConfigurationChanged?.Invoke(this, new EmulationConfigurationSavedEventArgs(_configuration));
+        });
         var rendererChoice = EmulationSettingsLayout.VideoSettingsChoice(
             new EmulationVideoSettingsField(LocExtension.Get(rendererResourceKey), renderer, Explanation: LocExtension.Get("Emulation.Help.Video.Rendering.Short"), DetailedExplanation: LocExtension.Get("Emulation.Help.Video.Rendering.Detailed")));
         _videoProcessing.SetConfiguration(profile.Processing, display, rendererChoice, nativeSettings: nativeSettings);

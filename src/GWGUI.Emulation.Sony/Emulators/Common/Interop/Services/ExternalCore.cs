@@ -27,9 +27,9 @@ internal sealed partial class ExternalCore : IEmulatorCore
     private MachineConfiguration? _configuration;
     private string? _sessionDirectory;
     private string? _saveDirectory;
-    private nint _contentBuffer;
     private bool _gameLoaded;
     private bool _initialized;
+    private IReadOnlyList<CoreControllerPort>? _controllerPorts;
 
     internal ExternalCore(CoreDefinition definition, string corePath)
     {
@@ -43,7 +43,8 @@ internal sealed partial class ExternalCore : IEmulatorCore
     public IReadOnlyList<string> Diagnostics => _host?.Diagnostics ?? [];
     public IReadOnlyDictionary<int, bool> LedStates => _host?.LedStates ?? new Dictionary<int, bool>();
     public bool ShutdownRequested => _host?.ShutdownRequested ?? false;
-    public IReadOnlyList<ControllerFeedbackState> ControllerFeedback => _host?.Feedback.Snapshot() ?? [];
+    public IReadOnlyList<ControllerFeedbackState> ControllerFeedback => (_host?.Feedback.Snapshot() ?? [])
+        .Select(state => state with { Port = _controllerPorts?.FirstOrDefault(port => port.NativeDevice == ExternalHostCallbacksConstants.JoypadDevice && port.NativePort == state.Port)?.ConfigurationPort ?? state.Port }).ToArray();
     public string CoreName { get; private set; } = string.Empty;
     public string CoreVersion { get; private set; } = string.Empty;
     public IReadOnlySet<string> SupportedContentExtensions { get; private set; } =
@@ -68,6 +69,7 @@ internal sealed partial class ExternalCore : IEmulatorCore
         _saveDirectory = saveDirectory is null ? null : Path.GetFullPath(saveDirectory);
         _saveMemoryReady = false;
         var media = ResolveConfiguredMedia(configuration);
+        var contentPlan = _definition.CreateContentLoadPlan?.Invoke(configuration);
         foreach (var item in media)
             if (!File.Exists(item.Path))
                 throw new FileNotFoundException(CoreExceptions.MediaNotFound(), item.Path);
@@ -79,7 +81,8 @@ internal sealed partial class ExternalCore : IEmulatorCore
         saveDirectory = Path.GetFullPath(saveDirectory ?? Path.Combine(sessionDirectory, CoreDirectoryConstants.SavesDirectoryName));
         var coreSaveDirectory = Path.Combine(saveDirectory, _definition.Id);
         var (systemDirectory, contentDirectory) = CoreDirectoryFunctions.NativeDataDirectories(_definition, sessionDirectory, saveDirectory);
-        _saveMemoryPath = Path.Combine(coreSaveDirectory, SaveMemoryConstants.FileName);
+        _saveMemoryRegions = (contentPlan?.SaveMemoryRegions ?? [new CoreSaveMemoryRegion(SaveMemoryConstants.SaveRamId, SaveMemoryConstants.FileName)])
+            .Select(region => (region.Id, Path.Combine(coreSaveDirectory, region.FileName))).ToArray();
         Directory.CreateDirectory(systemDirectory);
         FirmwareConfigurationFunctions.CopySelectedFiles(configuration, new Engine().Adapter(configuration), systemDirectory);
         Directory.CreateDirectory(contentDirectory);
@@ -90,7 +93,8 @@ internal sealed partial class ExternalCore : IEmulatorCore
         File.Copy(sourceCorePath, isolatedCorePath, true);
         var contentPath = PrepareContentPath(media, contentDirectory);
         var nativeSaveDirectory = PrepareMemoryCards(configuration, saveDirectory, systemDirectory);
-        _host = new ExternalHostCallbacks(systemDirectory, contentDirectory, nativeSaveDirectory, configuration.Options ?? new Dictionary<string, string>(), _definition.StartupFailureDiagnostics);
+        _controllerPorts = _definition.CreateControllerPorts?.Invoke(configuration);
+        _host = new ExternalHostCallbacks(systemDirectory, contentDirectory, nativeSaveDirectory, configuration.Options ?? new Dictionary<string, string>(), _definition.StartupFailureDiagnostics, _controllerPorts);
 
         try
         {
@@ -108,6 +112,7 @@ internal sealed partial class ExternalCore : IEmulatorCore
                 .Select(extension => extension.TrimStart(MediaConstants.ExtensionPrefix))
                 .ToHashSet(StringComparer.OrdinalIgnoreCase);
             ValidateExtension(contentPath);
+            foreach (var path in contentPlan?.Paths ?? []) ValidateExtension(path);
 
             Export<ExternalCoreApi.SetEnvironment>(ExternalCoreConstants.RetroSetEnvironment)(_host.Environment);
             Export<ExternalCoreApi.SetVideo>(ExternalCoreConstants.RetroSetVideoRefresh)(_host.Video);
@@ -131,13 +136,16 @@ internal sealed partial class ExternalCore : IEmulatorCore
             ApplyConfiguredControllers(requireAdvertised: false);
 
             var loadGame = Export<ExternalCoreApi.LoadGame>(ExternalCoreConstants.RetroLoadGame);
-            if (contentPath is null)
+            if (contentPlan is not null)
+                _gameLoaded = LoadSubsystem(contentPlan, info.NeedFullPath);
+            else if (contentPath is null)
             {
                 if (!_host.SupportsNoGame)
                     throw new InvalidOperationException(CoreExceptions.StartWithoutMediaUnsupported());
                 _gameLoaded = loadGame(0);
             }
             else _gameLoaded = LoadGame(loadGame, contentPath, info.NeedFullPath);
+            _host.DiagnosticMonitor.ThrowIfFailed();
             if (!_gameLoaded) throw new InvalidOperationException(CoreExceptions.ContentRefused());
             _host.ValidateConfiguredOptions();
             ApplyConfiguredControllers(requireAdvertised: true);
@@ -148,9 +156,12 @@ internal sealed partial class ExternalCore : IEmulatorCore
             _host.HardwareRender.Reset();
             _host.DiagnosticMonitor.ThrowIfFailed();
         }
-        catch
+        catch (Exception error)
         {
-            Dispose();
+            var startupError = CoreDiagnosticMonitor.WithNativeDiagnostics(error, _host?.Diagnostics ?? []);
+            try { Dispose(); }
+            catch (Exception cleanupError) { throw new AggregateException(startupError, cleanupError); }
+            if (!ReferenceEquals(startupError, error)) throw startupError;
             throw;
         }
     }
@@ -187,10 +198,17 @@ internal sealed partial class ExternalCore : IEmulatorCore
         var host = _host ?? throw new InvalidOperationException(CoreExceptions.CoreNotInitialized());
         var setter = _setControllerPortDevice ?? throw new InvalidOperationException(CoreExceptions.CoreNotInitialized());
         SemanticControllerFunctions.Validate(configuration, port, type);
-        var nativeId = ControllerPortFunctions.Resolve(type, port, host.ControllerPorts);
-        setter((uint)port, nativeId);
+        var route = _controllerPorts?.Single(item => item.ConfigurationPort == port);
+        if (_gameLoaded && route is { CanChangeWhileRunning: false } && SemanticControllerFunctions.Resolve(configuration, port) != type)
+            throw new NotSupportedException();
+        var nativePort = route?.NativePort ?? (uint)port;
+        if (route is null || route.NativeDevice == ExternalHostCallbacksConstants.JoypadDevice)
+        {
+            var nativeId = ControllerPortFunctions.Resolve(type, checked((int)nativePort), host.ControllerPorts);
+            setter(nativePort, nativeId);
+            host.Feedback.ResetPort(checked((int)nativePort));
+        }
         host.SetControllerType(port, type);
-        host.Feedback.ResetPort(port);
         _configuration = SemanticControllerFunctions.WithControllerType(configuration, port, type);
     }
 
@@ -278,20 +296,15 @@ internal sealed partial class ExternalCore : IEmulatorCore
 
     private bool LoadGame(ExternalCoreApi.LoadGame loadGame, string path, bool needFullPath)
     {
-        using var nativePath = new ExternalCoreUtf8String(path);
+        var nativePath = AllocateContentPath(path);
         var game = Marshal.AllocHGlobal(Marshal.SizeOf<ExternalCoreApi.GameInfo>());
         try
         {
             var content = needFullPath ? null : File.ReadAllBytes(path);
-            if (content is not null)
-            {
-                _contentBuffer = Marshal.AllocHGlobal(content.Length);
-                Marshal.Copy(content, BufferConstants.FirstBufferIndex, _contentBuffer, content.Length);
-            }
             Marshal.StructureToPtr(new ExternalCoreApi.GameInfo
             {
                 Path = nativePath.Pointer,
-                Data = _contentBuffer,
+                Data = content is null ? nint.Zero : AllocateContent(content),
                 Size = content is null ? ExternalCoreInteropConstants.EmptyNativeSize : (nuint)content.Length
             }, game, false);
             return loadGame(game);
@@ -345,11 +358,7 @@ internal sealed partial class ExternalCore : IEmulatorCore
                         {
                             GC.KeepAlive(callbacks);
                             _library = null;
-                            if (_contentBuffer != nint.Zero)
-                            {
-                                Marshal.FreeHGlobal(_contentBuffer);
-                                _contentBuffer = nint.Zero;
-                            }
+                            ReleaseContentBuffers();
                         }
                     }
                 }

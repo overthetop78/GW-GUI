@@ -299,4 +299,7 @@
   <data name="Emulation.Video.Parameter.ProjectionVignette"><value>Edge karanlıklaştırma</value></data>
   <data name="Emulation.Video.Projection.Group.Optics"><value>Optik ve ışık</value></data>
   <data name="Emulation.Video.Projection.Group.Screen"><value>Projection ekran</value></data>
+  <data name="Emulation.Option.Common.Value.HardwareRendering"><value>Donanımsal işleme</value></data>
+  <data name="Emulation.Option.Common.RenderingMode.Label"><value>İşleme modu</value></data>
+  <data name="Emulation.Option.Common.RenderingMode.Help"><value>Donanımsal işleme, emülatör destekliyorsa uygulama için seçilen grafik API’sini kullanır.</value></data>
 </root>

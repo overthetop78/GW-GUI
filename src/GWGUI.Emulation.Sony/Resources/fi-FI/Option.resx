@@ -23,7 +23,7 @@
   <data name="Emulation.Option.swanstation.swanstation_CDROM_ReadThread.Label"><value>CD-ROM Lue lanka</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_ReadThread.Help"><value>Luee CD-ROM sektoreita eteenpäin asynkronisesti, vähentää riskiä kehys aikapiikkejä.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_LoadImagePatches.Label"><value>Käytä kuvapaikkoja</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_CDROM_LoadImagePatches.Help"><value>Sovella levykuviin automaattisesti, kun ne ovat samassa hakemistossa. Tällä hetkellä vain PPF-laastareita tuetaan tällä vaihtoehdolla. Vaaditaan, että ydin käynnistetään uudelleen.</value></data>
+  <data name="Emulation.Option.swanstation.swanstation_CDROM_LoadImagePatches.Help"><value>Sovella levykuviin automaattisesti, kun ne ovat samassa hakemistossa. Tällä hetkellä vain PPF-laastareita tuetaan tällä vaihtoehdolla. Vaaditaan.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_LoadImageToRAM.Label"><value>Preload CD-ROM Image to RAM</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_LoadImageToRAM.Help"><value>Lataa levykuvan RAM-muistiin ennen emuloinnin aloittamista. Voi vähentää hitching jos olet käynnissä pois verkon osake, hintaan suurempi käynnistysaika. Koska libretro ei anna mahdollisuutta piirtää overlays, emulaattori näyttää lukita, kun kuva on esiladattu.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_PreCacheCHD.Label"><value>Pre-cache CHD kuvia RAM</value></data>
@@ -39,8 +39,6 @@
   <data name="Emulation.Option.Sony.Value.Interpreter"><value>Tulkki</value></data>
   <data name="Emulation.Option.Sony.Value.CachedInterpreter"><value>Välimuisti tulkki</value></data>
   <data name="Emulation.Option.Sony.Value.Recompiler"><value>Uudelleenpakkaaja</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_GPU_Renderer.Label"><value>GPU Renderöijä</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_GPU_Renderer.Help"><value>Jonka avulla voit matkia GPU:ta.</value></data>
   <data name="Emulation.Option.Sony.Value.HardwareOpenGL"><value>Hardware (OpenGL)</value></data>
   <data name="Emulation.Option.Sony.Value.Software"><value>Ohjelmisto</value></data>
   <data name="Emulation.Option.swanstation.swanstation_GPU_ResolutionScale.Label"><value>Sisäinen resoluutioasteikko</value></data>
@@ -48,7 +46,7 @@
   <data name="Emulation.Option.swanstation.swanstation_GPU_UseThread.Label"><value>Kierretty Renderointi (ohjelmisto)</value></data>
   <data name="Emulation.Option.swanstation.swanstation_GPU_UseThread.Help"><value>Käyttää toista lankaa piirtää grafiikkaa. Tällä hetkellä saatavilla vain ohjelmiston renderöintiin.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_GPU_UseSoftwareRendererForReadbacks.Label"><value>Käytä ohjelmisto Renderer Readbacks</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_GPU_UseSoftwareRendererForReadbacks.Help"><value>Suorita ohjelmistojen renderöinti laitteiston renderöinnin rinnalla, kun luet kuvatietoja osoitteesta VRAM. Jotkut pelit tarvitsevat tämän liikkeen hämärä tai taistelu siirtymiä, tai korjata vaurioituneita tekstuureja. Käynnistä ydin uudelleen tämän vaihtoehdon muuttamisen jälkeen.</value></data>
+  <data name="Emulation.Option.swanstation.swanstation_GPU_UseSoftwareRendererForReadbacks.Help"><value>Suorita ohjelmistojen renderöinti laitteiston renderöinnin rinnalla, kun luet kuvatietoja osoitteesta VRAM. Jotkut pelit tarvitsevat tämän liikkeen hämärä tai taistelu siirtymiä.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_GPU_MSAA.Label"><value>Moninäyte Antialiasing</value></data>
   <data name="Emulation.Option.swanstation.swanstation_GPU_MSAA.Help"><value>Käyttää moninäyte antialiasing tehdä 3D esineitä. Voi tasoittaa rosoisia reunoja monikulmioissa halvemmalla suorituskyvylle kuin kasvattamalla resoluutioasteikkoa, mutta voi olla todennäköisempää aiheuttaa renderointivirheitä joissakin peleissä.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_GPU_TrueColor.Label"><value>Renderi täydellä värin tarkkuudella</value></data>
@@ -129,7 +127,7 @@
   <data name="Emulation.Option.swanstation.swanstation_Display_LineEndOffset.Label"><value>Viimeisen näytetyn rivin poikkeama</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Display_LineEndOffset.Help"><value>Tyynyt tai sato pois linjat alareunassa näytetään kuva.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_MemoryCards_Card1Type.Label"><value>Muistikortti 1 tyyppi</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_MemoryCards_Card1Type.Help"><value>Valitse muistikortin muoto slot 1. Käynnistä ydin uudelleen formaatteja muutettaessa. Jaetut kortit ja kaksi erillistä korttivaihtoehtoa säilytetään vanhoissa konfiguraatioissa, mutta niitä ei tueta. Libretro-muodossa käytetään .srm-tiedostoja. Erillinen kortti nimetty pelin mukaan käyttää .mcd tiedostoja. Nämä kaksi muotoa sisältävät identtisiä tietoja. Voit muuntaa heidän välillään, muuttaa tiedostotunnistetta ja lisätä tai poistaa rakopääte _1.</value></data>
+  <data name="Emulation.Option.swanstation.swanstation_MemoryCards_Card1Type.Help"><value>Valitse muistikortin muoto slot 1. Jaetut kortit ja kaksi erillistä korttivaihtoehtoa säilytetään vanhoissa konfiguraatioissa, mutta niitä ei tueta. Libretro-muodossa käytetään .srm-tiedostoja. Erillinen kortti nimetty pelin mukaan käyttää .mcd tiedostoja. Nämä kaksi muotoa sisältävät identtisiä tietoja. Voit muuntaa heidän välillään, muuttaa tiedostotunnistetta ja lisätä tai poistaa rakopääte _1.</value></data>
   <data name="Emulation.Option.Sony.Value.LibretroDefault"><value>Libretro (Default)</value></data>
   <data name="Emulation.Option.Sony.Value.SharedBetweenAllGames"><value>Jaettu kaikkien pelien välillä</value></data>
   <data name="Emulation.Option.Sony.Value.SeparateCardPerGameGameCode"><value>Erillinen kortti per peli (pelikoodi)</value></data>
@@ -280,7 +278,7 @@
   <data name="Emulation.Option.mednafen_psx.beetle_psx_gte_overclock.Label"><value>GTE Ylikellot</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_gte_overclock.Help"><value>Suorita kaikki toiminnot GTE-grafiikka coprocesser yhdellä CPU sykli. Tämä voi parantaa huomattavasti kehysnopeus ja tehdä kehys ajoitus vakaampi peleissä, jotka käyttävät GTE voimakkaasti.</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_cd_access_method.Label"><value>CD-käyttötapa</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_cd_access_method.Help"><value>Synkroninen pääsy kopioi alkuperäisen laitteiston. Synkroninen pääsy voi vähentää taukoja laitteiden hidas tallennus. Koko levykuvan lataaminen RAM-muistiin voi parantaa latausaikoja pelin aikana, mutta viivästyttää käynnistymistä. Tämä tila voi aiheuttaa ongelmia, kun RAM on rajoitettu. Fyysiset levyt käyttävät synkronoitua kulkua koko kuvan latauksen sijaan. Aloita uudelleen tämän vaihtoehdon muuttamisen jälkeen.</value></data>
+  <data name="Emulation.Option.mednafen_psx.beetle_psx_cd_access_method.Help"><value>Synkroninen pääsy kopioi alkuperäisen laitteiston. Synkroninen pääsy voi vähentää taukoja laitteiden hidas tallennus. Koko levykuvan lataaminen RAM-muistiin voi parantaa latausaikoja pelin aikana, mutta viivästyttää käynnistymistä. Tämä tila voi aiheuttaa ongelmia.</value></data>
   <data name="Emulation.Option.Sony.Value.Synchronous"><value>Synkroniset</value></data>
   <data name="Emulation.Option.Sony.Value.Asynchronous"><value>Asynkroninen</value></data>
   <data name="Emulation.Option.Sony.Value.PreCache"><value>Esivälimuisti</value></data>
@@ -431,7 +429,7 @@
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_gte_overclock.Label"><value>GTE Ylikellot</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_gte_overclock.Help"><value>Suorita kaikki toiminnot GTE-grafiikka coprocesser yhdellä CPU sykli. Tämä voi parantaa huomattavasti kehysnopeus ja tehdä kehys ajoitus vakaampi peleissä, jotka käyttävät GTE voimakkaasti.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_access_method.Label"><value>CD-käyttötapa</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_access_method.Help"><value>Synkroninen pääsy kopioi alkuperäisen laitteiston. Synkroninen pääsy voi vähentää taukoja laitteiden hidas tallennus. Koko levykuvan lataaminen RAM-muistiin voi parantaa latausaikoja pelin aikana, mutta viivästyttää käynnistymistä. Tämä tila voi aiheuttaa ongelmia, kun RAM on rajoitettu. Fyysiset levyt käyttävät synkronoitua kulkua koko kuvan latauksen sijaan. Aloita uudelleen tämän vaihtoehdon muuttamisen jälkeen.</value></data>
+  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_access_method.Help"><value>Synkroninen pääsy kopioi alkuperäisen laitteiston. Synkroninen pääsy voi vähentää taukoja laitteiden hidas tallennus. Koko levykuvan lataaminen RAM-muistiin voi parantaa latausaikoja pelin aikana, mutta viivästyttää käynnistymistä. Tämä tila voi aiheuttaa ongelmia.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_fastload.Label"><value>CD:n latausnopeus</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_fastload.Help"><value>"2x (Native)" -arvoa suuremmat arvot voivat huomattavasti lyhentää pelin latausaikoja, mutta ne voivat aiheuttaa ajoitusvirheitä. Jotkut pelit eivät välttämättä toimi oikein tietyn arvon yläpuolella.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_skip_bios.Label"><value>Ohita BIOS- käynnistysanimaatio</value></data>
@@ -442,8 +440,6 @@
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_region.Help"><value>Asettaa varaalueen, jota käytetään, kun sisältöä ei voida tunnistaa automaattisesti (esim. raaka PS-X EXE -tiedostot). Levypohjaiset pelit käyttävät edelleen levylle upotettua aluetta.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_internal_resolution.Label"><value>Sisäinen GPU-resoluutio</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_internal_resolution.Help"><value>Tämä asetus ei yleensä vaikuta 2D-elementteihin.</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_renderer.Label"><value>Renderöijä</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_renderer.Help"><value>Valitse, miten piirrät kuvan. Ohjelmiston renderointi on tarkin. Se tarvitsee paljon enemmän käsittelytehoa korkeampia sisäisiä päätöslauselmia. Hardware renderöinti on vähemmän tarkka, mutta nopeammin korkeampi resoluutio ja tukee grafiikan parannuksia. Automaattinen laitteiston renderöinti valitsee Vulkan tai OpenGL sovelluksen käyttämän videoohjaimen mukaan. Jos kuljettaja ei tue Vulkan eikä OpenGL 3.3, ydin käyttää sen sijaan ohjelmiston renderointia. Käynnistä ydin uudelleen tämän vaihtoehdon muuttamisen jälkeen.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_renderer_software_fb.Label"><value>Ohjelmisto Framebuffer</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_renderer_software_fb.Help"><value>Käytä ohjelmiston renderin taustalla natiivi resoluutio, kun laitteisto renderer näyttää pelin. Tämä toistaa liikkeen sumentumisen ja taistelun siirtymät FF7 tarkasti. Kun käytöstä, OpenGL jättää nämä vaikutukset ja Vulkan piirtää ne GPU. Tämän vaihtoehdon poistaminen voi parantaa nopeutta, mutta se voi myös aiheuttaa vakavia grafiikkavirheitä. Pidä se käytössä, jos olet epävarma.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_color_format.Label"><value>Värimuoto</value></data>
@@ -472,7 +468,7 @@
   <data name="Emulation.Option.Sony.Value.25Degrees"><value>25 astetta</value></data>
   <data name="Emulation.Option.Sony.Value.45Degrees"><value>45 astetta</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_video_cable.Label"><value>Analoginen videokaapeli</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_video_cable.Help"><value>Simuloi konsolin ja television välisen kaapelin, mukaan lukien värikoodaus sekä television dekooderi. "Ei simulaatiota" kytkee ketjun kokonaan pois päältä ja ojentaa framebufferin suoraan näytölle (oletusarvo). 'RGB (SCART)' on terävin tuloste PSX voisi tuottaa: multi-out kuljettaa analoginen RGB, joten mitään ei ole muokattu eikä mikään alla olevista koodaavista esineistä voi tapahtua - mutta se on edelleen analoginen lanka, joten se on bändiä rajoittaa konsolin videovahvistin ja setin syöttövaihe sen sijaan, että se olisi äärettömän terävä. 'S-Video' bändin raja-arvot väri voimakkaasti, mutta pitää luman ja värin erillisissä langoissa, niin hieno yksityiskohta pysyy puhtaana. 'Composite' yhdistää ne yhteen johtoon, jonka dekooderi joutuu sitten irrottamaan uudelleen, kallistaen Luma yksityiskohtia ja lisäämällä väri smearing ja sateenkaari fring hienoja kuvioita. 'RF' malleja ulkoinen modulaattori - konsoli itse ei ole, vain DC Jack teho yksi - kaventaa lumaa edelleen ja lisäämällä biittikuvion äänen kantaja tekee vastaan väri alikantaja, joka on vahvin tyydyttynyt väri. Toimii millä tahansa sisäisellä resoluutiolla: ylimääräiset näytteet poistetaan ennen signaalin tuottamista, joten korkeammat asetukset toimivat pikemminkin supernäytteenä kaapeliin kuin laajemmana signaalina, ja tulos sisältää edelleen dekooderin tuottaman alipikselin. Tuetut Vulkan ja OpenGL renderöijät, jotka Software renderori ei huomioinut. OpenGL:ssä suodatin, joka poistaa "hangailupisteitä" - hienon kuvion vaakaviivoja pitkin - tarvitsee GL 4.3 tai GLES 3.1; vanhemmalla kuljettajalla simulointi toimii edelleen, mutta "Composite" ja "RF" näyttävät nämä pisteet. Sovelletaan välittömästi; uudelleenkäynnistystä ei tarvita.</value></data>
+  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_video_cable.Help"><value>Simuloi konsolin ja television välisen kaapelin, mukaan lukien värikoodaus sekä television dekooderi. "Ei simulaatiota" kytkee ketjun kokonaan pois päältä ja ojentaa framebufferin suoraan näytölle (oletusarvo). 'RGB (SCART)' on terävin tuloste PSX voisi tuottaa: multi-out kuljettaa analoginen RGB, joten mitään ei ole muokattu eikä mikään alla olevista koodaavista esineistä voi tapahtua - mutta se on edelleen analoginen lanka, joten se on bändiä rajoittaa konsolin videovahvistin ja setin syöttövaihe sen sijaan, että se olisi äärettömän terävä. 'S-Video' bändin raja-arvot väri voimakkaasti, mutta pitää luman ja värin erillisissä langoissa, niin hieno yksityiskohta pysyy puhtaana. 'Composite' yhdistää ne yhteen johtoon, jonka dekooderi joutuu sitten irrottamaan uudelleen, kallistaen Luma yksityiskohtia ja lisäämällä väri smearing ja sateenkaari fring hienoja kuvioita. 'RF' malleja ulkoinen modulaattori - konsoli itse ei ole, vain DC Jack teho yksi - kaventaa lumaa edelleen ja lisäämällä biittikuvion äänen kantaja tekee vastaan väri alikantaja, joka on vahvin tyydyttynyt väri. Toimii millä tahansa sisäisellä resoluutiolla: ylimääräiset näytteet poistetaan ennen signaalin tuottamista, joten korkeammat asetukset toimivat pikemminkin supernäytteenä kaapeliin kuin laajemmana signaalina, ja tulos sisältää edelleen dekooderin tuottaman alipikselin. Tuetut Vulkan ja OpenGL renderöijät, jotka Software renderori ei huomioinut. OpenGL:ssä suodatin, joka poistaa "hangailupisteitä" - hienon kuvion vaakaviivoja pitkin - tarvitsee GL 4.3 tai GLES 3.1; vanhemmalla kuljettajalla simulointi toimii edelleen, mutta "Composite" ja "RF" näyttävät nämä pisteet. Sovelletaan välittömästi.</value></data>
   <data name="Emulation.Option.Sony.Value.NoSimulation"><value>Ei simulaatiota</value></data>
   <data name="Emulation.Option.Sony.Value.RGBSCART"><value>RGB (SCART)</value></data>
   <data name="Emulation.Option.Sony.Value.SVideo"><value>S-Video</value></data>
@@ -758,8 +754,6 @@
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_nostalls.Help"><value>Aiheuttaa joitakin pelejä juosta liian nopeasti. Pitäisi olla lähes kaikissa tapauksissa. Vain tulkki.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_fast_boot.Label"><value>Nopea saapas</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_fast_boot.Help"><value>Jätä BIOS-kengän animaatio väliin. Se vaatii käynnistystä.</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_renderer.Label"><value>Renderöijä</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_renderer.Help"><value>Hardware render API, tai ohjelmiston renderin. Siirtyminen ohjelmistoon tai ohjelmistosta koskee lentämistä; laitteiston vaihtaminen API:iin tulee voimaan, kun sisältö käynnistetään uudelleen.</value></data>
   <data name="Emulation.Option.Sony.Value.OpenGLHardware"><value>OpenGL (Hardware)</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_upscale_multiplier.Label"><value>Sisäinen kriisinratkaisu</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_upscale_multiplier.Help"><value>Sisäinen renderöinti resoluutiokerroin laitteiston renderaattorille. Myös asteikot lähtö runkopuskuri. Kelpaa kärpäselle.</value></data>
@@ -796,8 +790,6 @@
   <data name="Emulation.Option.pcee2.pcsx2_fxaa.Help"><value>Halpa prosessin jälkeinen anti-aliasointi.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_cas_mode.Label"><value>Adaptiivinen teroitus</value></data>
   <data name="Emulation.Option.Sony.Value.SharpenOnly"><value>Teroita vain</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_audio_buffer_ms.Label"><value>ÄänipuskuriName</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_audio_buffer_ms.Help"><value>Kuinka paljon ääntä emulaattori pitää eturintamassa. Enemmän se ratsastaa ulos koju, joka muuten olisi kuulostaa tauko äänessä, hinnalla että paljon viive ennen kuin kuulet mitään. PCSX2:n oma oletus on 50 ms, mikä olettaa sen syöttävän audiolaitetta suoraan sen sijaan, että se vetäisi kerran runkoa.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_frame_limiter.Label"><value>Runkorajoitin</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_frame_limiter.Help"><value>Mikä pitää emulaattorin täydessä vauhdissa. Frontend jättää välimatkan RetroArch, joka kaasuttaa tekemällä ydin odottaa ääni se antaa. Sisäinen käyttää sen sijaan PCSX2:n omaa rajoitinta - laitteelle, jossa tätä odotusta ei koskaan tapahdu, koska audio-ohjain alittaa pikemmin kuin estää, ja emulaattorin oma nopeusvaihtelu saavuttaa näytön epätasaisena kehyksenä.</value></data>
   <data name="Emulation.Option.Sony.Value.FrontendRetroArch"><value>Etusivu (RetroArch)</value></data>
@@ -808,7 +800,7 @@
   <data name="Emulation.Option.pcee2.pcsx2_aspect_ratio.Label"><value>Aspektisuhde</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_aspect_ratio.Help"><value>Automaattiset ilmoitukset 16:9, kun laajakuvapaikat ovat käytössä, 4:3 muuten.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_multitap.Label"><value>Multinap</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_multitap.Help"><value>Ota käyttöön multitap adapteri jopa 8 ohjaimet. Pelaajan tilaus noudattaa fyysisiä lähtö- ja saapumisaikoja (portti 1: 1A-1D, sitten portti 2: 2A-2D). Suositellaan uudelleenkäynnistystä.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_multitap.Help"><value>Ota käyttöön multitap adapteri jopa 8 ohjaimet. Pelaajan tilaus noudattaa fyysisiä lähtö- ja saapumisaikoja (portti 1: 1A-1D.</value></data>
   <data name="Emulation.Option.Sony.Value.Disabled2Players"><value>Vammainen (2 pelaajaa)</value></data>
   <data name="Emulation.Option.Sony.Value.Port15Players"><value>Satama 1 (5 pelaajaa)</value></data>
   <data name="Emulation.Option.Sony.Value.Port25Players"><value>Portti 2 (5 pelaajaa)</value></data>
@@ -839,7 +831,7 @@
   <data name="Emulation.Option.pcee2.pcsx2_ee_cycle_skip.Label"><value>EE Syklin ohitus</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_ee_cycle_skip.Help"><value>Tekee EE hypätä syklit. Auttaa joitakin pelejä korkealla VU toimintaa, rikkoo muita.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_cpu_recompiler.Label"><value>CPU-kompensaattori (JIT)</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_cpu_recompiler.Help"><value>Ota käyttöön tai poista käytöstä uudelleen kokoaminen diagnostisia tarkoituksia varten. Kun käytössä, EE, IOP, VU0 ja VU1 käyttävät nopeaa JIT-kommentointia. Tämä on oletus. Vammaisina jokainen CPU käyttää hitaampaa opetustulkkausta. Tämä auttaa diagnosoimaan JIT-virheet: kaatuminen, joka vielä tapahtuu rekommentit pois käytöstä on toinen syy. Seuraavat neljä yksittäistä CPU-kytkintä ovat voimassa vain silloin, kun tämä päävaihtoehto on käytössä. Aloita uudelleen tämän vaihtoehdon muuttamisen jälkeen.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_cpu_recompiler.Help"><value>Ota käyttöön tai poista käytöstä uudelleen kokoaminen diagnostisia tarkoituksia varten. Kun käytössä, EE, IOP, VU0 ja VU1 käyttävät nopeaa JIT-kommentointia. Tämä on oletus. Vammaisina jokainen CPU käyttää hitaampaa opetustulkkausta. Tämä auttaa diagnosoimaan JIT-virheet: kaatuminen, joka vielä tapahtuu rekommentit pois käytöstä on toinen syy. Seuraavat neljä yksittäistä CPU-kytkintä ovat voimassa vain silloin.</value></data>
   <data name="Emulation.Option.Sony.Value.EnabledJITDefault"><value>Käytössä (JIT, oletus)</value></data>
   <data name="Emulation.Option.Sony.Value.DisabledInterpreter"><value>Ei käytössä (väli)</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_rec_ee.Label"><value>- EE Uudelleenpakkaaja</value></data>
@@ -901,8 +893,6 @@
   <data name="Emulation.Option.Sony.Value.AllTimers"><value>Kaikki ajastimet</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_clocks_scale.Label"><value>Kellon asteikko</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_clocks_scale.Help"><value>Skaalaa PS3-kellonopeusprosentti.</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_renderer.Label"><value>Renderöijä</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_renderer.Help"><value>Vulkan renderöi rintamalla Vulkan laitteen ja ojentaa sen jokaisen valmiin kehyksen kuvana; kun etuosa ei ole käynnissä sen Vulkan videokuljettaja, kehys kopioidaan takaisin muistin avulla. OpenGL vetää suoraan frontendin AvoimenGL-kontekstiin.</value></data>
   <data name="Emulation.Option.Sony.Value.NullNoVideo"><value>Hullu (ei videota)</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_frame_limit.Label"><value>Runkoraja</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_frame_limit.Help"><value>Korkein kuvanopeus, jolla peli voi kulkea. Auto on VBlank-taajuus, kuten RPCS3:ssä; PS3 Native -tahdit kääntävät PS3-taajuutta; Ei käytössä antaa pelejä, jotka eivät odota PS3:n virkistymistä itse liian nopeasti.</value></data>
@@ -979,7 +969,7 @@
   <data name="Emulation.Option.rpcs3.rpcs3_driver_wakeup_delay.Label"><value>Kuljettajan herätysviive</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_driver_wakeup_delay.Help"><value>Kuljettajan heräämisen viive mikrosekunneissa. 0 oletusarvoisesti, kuten RPCS3; nostaa sitä vain kun peli tarvitsee sitä.</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_vblank_rate.Label"><value>VBlank- taajuus</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_vblank_rate.Help"><value>PS3:n virkistysnopeus Hz:ssä. Se on myös kehysnopeus ydin pyytää RetroArch, joka tulee voimaan, kun sisältöä ladataan; pelejä, jotka voivat ajaa yli 60 FPS tarvitsee näytön, joka virkistää niin nopeasti.</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_vblank_rate.Help"><value>Asettaa emuloidun virkistystaajuuden. Yhteensopivuuslistatila kaksinkertaistaa sen tuetuissa peleissä.</value></data>
   <data name="Emulation.Option.Sony.Value.50HzPAL"><value>50 Hz (PAL)</value></data>
   <data name="Emulation.Option.Sony.Value.60HzNTSC"><value>60 Hz (NTSC)</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_thread_scheduler.Label"><value>Säikeen ajastin</value></data>
@@ -1061,8 +1051,6 @@
   <data name="Emulation.Option.rpcs3.rpcs3_frame_pacing.Label"><value>Rungon takertuminen</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_frame_pacing.Help"><value>Pelin kuvat ajoitetaan. Emulaattori kello on RPCS3 oma ajastin, kuten standalone RPCS3. RetroArch antaa pelin yksi PS3 Virkistä per kehys RetroArch näyttää, joten pikakelata nopeuttaa pelin ylös ja peli toimii VBlank Frequency RetroArch osoittaa, että monet kehykset toinen; kanssa Vulkan renderöi se tällä hetkellä ohittaa kehyksiä.</value></data>
   <data name="Emulation.Option.Sony.Value.EmulatorClock"><value>Emulaattorikello</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_savedata_slot.Label"><value>Tallenna data Slot</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_savedata_slot.Help"><value>PS3-peli näyttää listan tallennetiedoistaan ja antaa pelaajan valita. Valitse listalta näyttää pelikuvassa olevan luettelon, jota käytetään ohjaimen kanssa. Numero on ydin valinta sinulle sen sijaan: tallentaa ylikirjoittaa merkintä tässä asemassa pelin luettelossa, tai tekee uuden tallennin, kun lista on lyhyempi; lataus ottaa merkinnän tässä asennossa, eikä löydä mitään, kun luettelo on lyhyempi. 0 on ensimmäinen merkintä. Pelit, jotka pitävät yhden tallennuksen omasta eivät näytä luetteloa, joten tämä ei koske niitä.</value></data>
   <data name="Emulation.Option.Sony.Value.PickFromList"><value>Valitse luettelosta</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_master_volume.Label"><value>Päätilavuus</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_master_volume.Help"><value>Master audiovolyymiprosentti.</value></data>
@@ -1151,7 +1139,7 @@
   <data name="Emulation.Option.Sony.Setting.Fastcdvd.Help"><value>Nopea CD/DVD pääsy/haku-ajat. Pieni kourallinen pelejä on yhteensopivuus ongelmia tämän kanssa.</value></data>
   <data name="Emulation.Option.Sony.Setting.SharedMemoryCards.Help"><value>Käytä per-sisältö tai jaettu muistikortteja.</value></data>
   <data name="Emulation.Option.Sony.Setting.EnableCheats.Label"><value>Käytä pelin huijauskoodeja</value></data>
-  <data name="Emulation.Option.Sony.Setting.EnableCheats.Help"><value>Lue peli huijata koodit tiedostoja valittu kansio. Aloita emulointi uudelleen valittua toista kansiota.</value></data>
+  <data name="Emulation.Option.Sony.Setting.EnableCheats.Help"><value>Lue peli huijata koodit tiedostoja valittu kansio.</value></data>
   <data name="Emulation.Option.Sony.Setting.HintLanguageUnlock.Label"><value>Avaa lisää pelikieliä</value></data>
   <data name="Emulation.Option.Sony.Setting.HintLanguageUnlock.Help"><value>Jos käytössä, etsii sisäisen tietokannan sisään kielten avaa vaihtoehtoja. Esimerkkejä ovat: pakottaa kansainvälinen japani versio Englanti, avata enemmän eurooppalaisia kieliä, jne</value></data>
   <data name="Emulation.Option.Sony.Setting.Dev9Hdd.Help"><value>Emuloidaan SPEED Laajennuksen ATA Kuva elää Pcsx2/DEV9hdd.raw' etusivun järjestelmän hakemistossa ja luodaan ensimmäisen käytön määritellyssä koossa.</value></data>
@@ -1274,4 +1262,18 @@
   <data name="Emulation.Option.Sony.Setting.LineToQuad.Help" xml:space="preserve"><value>Joitakin pelejä (esim. Doom, Hexen, Soul Blade jne.) piirtää vaakasuorat viivat venyttämällä yhden pikselin korkea kolmiot koko näytön, jotka ovat rasterized kuin rivi pikseleitä alkuperäisen laitteiston. Tämä hakata tunnistaa nämä pienet kolmiot ja muuntaa ne quads tarpeen mukaan, jotta ne voidaan näyttää asianmukaisesti laitteiston renderöijät ja korkea-asteella sisäisiä päätöslauselmia. 'Aggressiivinen' tarvitaan joitakin otsikoita (esim. Pimeät voimat, Duke nukem) mutta voi muuten esitellä graafisia vikoja. Lähtekää Defaultista, jos ette ole varmoja.</value></data>
   <data name="Emulation.Option.Sony.Setting.DynarecEventCycles.Label" xml:space="preserve"><value>Dynarec DMA/GPU/MDEC/Timer-tapahtumasyklit</value></data>
   <data name="Emulation.Option.Sony.Setting.DynarecEventCycles.Help" xml:space="preserve"><value>Max syklit suoritetaan CPU ennen GPU/DMA/MDEC/Timer Update tarkastetaan, suurempi määrä on nopeampi, on paljon vähemmän vaikutusta kovakuoriainen tulkki kuin dynarec.</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_aspect_ratio.Help"><value>Asettaa peleille ilmoitettavan kuvasuhteen. Vain osa peleistä tukee kuvasuhdetta 4:3.</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_disk_cache_size.Label"><value>Levyvälimuistin koko</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_disk_cache_size.Help"><value>Rajoittaa pelien väliaikaisten välimuistien käyttämää levytilaa. Pelit luovat poistetut välimuistit uudelleen, mikä voi hidastaa seuraavaa käynnistystä.</value></data>
+  <data name="Emulation.Option.pokket.Link"><value>Infrapunayhteys</value></data>
+  <data name="Emulation.Option.pokket.Layout"><value>Yhdistettyjen näyttöjen asettelu</value></data>
+  <data name="Emulation.Option.pokket.Audio"><value>Yhdistettyjen yksiköiden äänilähde</value></data>
+  <data name="Emulation.Option.pokket.Identity"><value>Yksikön B laitteistotunniste</value></data>
+  <data name="Emulation.Option.pokket.Horizontal"><value>Vierekkäin</value></data>
+  <data name="Emulation.Option.pokket.Vertical"><value>Päällekkäin</value></data>
+  <data name="Emulation.Option.pokket.SelectUnitA"><value>Ohjaa yksikköä A</value></data>
+  <data name="Emulation.Option.pokket.SelectUnitB"><value>Ohjaa yksikköä B</value></data>
+  <data name="Emulation.Option.pokket.Help"><value>Aseta kortti kumpaankin yksikköön infrapunayhteyden ottamiseksi käyttöön.</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_audio_format.Label"><value>Kaiuttimien sijoittelu</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_audio_format.Help"><value>Määrittää peleille tarjottavan kaiutinasettelun. Peli valitsee äänimiksauksensa tämän asettelun perusteella. Äänentoisto riippuu myös Windowsissa valitusta äänilaitteesta.</value></data>
 </root>

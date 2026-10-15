@@ -6,7 +6,7 @@
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Sega.Help.General.Model.Short"><value>Sega model stroje je nakonfigurován.</value></data>
   <data name="Emulation.Sega.Help.Memory.Ram.Short"><value>Množství RAM dostupné pro emulovaný stroj.</value></data>
-  <data name="Emulation.Sega.Help.Memory.Ram.Detailed"><value>Vybere rozšíření RAM vystavené emulačním jádrem. Před použitím nového množství se stroj musí restartovat.</value></data>
+  <data name="Emulation.Sega.Help.Memory.Ram.Detailed"><value>Vybere rozšíření RAM vystavené emulačním jádrem.</value></data>
   <data name="Emulation.Sega.Help.Firmware.Integrated.Short"><value>Systém ROM je postaven do emulačního jádra.</value></data>
   <data name="Emulation.Sega.Help.Firmware.Integrated.Detailed"><value>Emulační jádro poskytuje systém ROM interně a neodhaluje volič souboru ROM.</value></data>
   <data name="Emulation.Sega.Help.General.Emulator.Short"><value>Emulátor vybrán pro tento stroj.</value></data>

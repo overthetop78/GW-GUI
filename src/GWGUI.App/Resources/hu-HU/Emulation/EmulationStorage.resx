@@ -80,4 +80,6 @@
   <data name="Emulation.Storage.MemoryCard.ImageRequired"><value>Válasszon ki egy meglévő kártyafájlt.</value></data>
   <data name="Emulation.Storage.MemoryCard.InvalidSize"><value>A kártyafájl érvénytelen méretű.</value></data>
   <data name="Emulation.Storage.MemoryCard.InvalidFormat"><value>Válassza ki az eszköz által támogatott fájlformátumot.</value></data>
+  <data name="Emulation.Storage.Cache.Unlimited"><value>Korlátlan</value></data>
+  <data name="Emulation.Storage.Cache.ClearOnGameClose"><value>Törlés a játék bezárásakor</value></data>
 </root>

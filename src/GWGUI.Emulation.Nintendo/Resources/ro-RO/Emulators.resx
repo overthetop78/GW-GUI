@@ -363,21 +363,21 @@
   <data name="Emulation.Option.desmume.desmume_firmware_language.Value.German"><value>Germană</value></data>
   <data name="Emulation.Option.desmume.desmume_firmware_language.Value.Italian"><value>Italiană</value></data>
   <data name="Emulation.Option.desmume.desmume_firmware_language.Value.Spanish"><value>Spaniolă</value></data>
-  <data name="Emulation.Option.desmume.desmume_use_external_bios"><value>Utilizați BIOS/Firmware extern (repornire)</value></data>
-  <data name="Emulation.Option.desmume.desmume_use_external_bios.Help"><value>Utilizare oficială BIOS. Trebuie să se repornească nucleul pentru ca modificările să poată fi aplicate.</value></data>
+  <data name="Emulation.Option.desmume.desmume_use_external_bios"><value>Utilizați BIOS/Firmware extern</value></data>
+  <data name="Emulation.Option.desmume.desmume_use_external_bios.Help"><value>Utilizare oficială BIOS.</value></data>
   <data name="Emulation.Option.desmume.desmume_use_external_bios.Value.disabled"><value>Dezactivat</value></data>
   <data name="Emulation.Option.desmume.desmume_use_external_bios.Value.enabled"><value>Activat</value></data>
   <data name="Emulation.Option.desmume.desmume_boot_into_bios"><value>Boot Into BIOS (numai interpret și bio-uri externe)</value></data>
   <data name="Emulation.Option.desmume.desmume_boot_into_bios.Help"><value>Boot direct în BIOS.</value></data>
   <data name="Emulation.Option.desmume.desmume_boot_into_bios.Value.disabled"><value>Dezactivat</value></data>
   <data name="Emulation.Option.desmume.desmume_boot_into_bios.Value.enabled"><value>Activat</value></data>
-  <data name="Emulation.Option.desmume.desmume_load_to_memory"><value>Încarcă jocul în memorie (repornire)</value></data>
+  <data name="Emulation.Option.desmume.desmume_load_to_memory"><value>Încarcă jocul în memorie</value></data>
   <data name="Emulation.Option.desmume.desmume_load_to_memory.Help"><value>Încarcă jocul în memorie pentru a reduce decalajul IO.</value></data>
   <data name="Emulation.Option.desmume.desmume_load_to_memory.Value.disabled"><value>Dezactivat</value></data>
   <data name="Emulation.Option.desmume.desmume_load_to_memory.Value.enabled"><value>Activat</value></data>
   <data name="Emulation.Option.desmume.desmume_num_cores"><value>CPU cores</value></data>
   <data name="Emulation.Option.desmume.desmume_num_cores.Help"><value>Setați cantitatea de nuclee CPU pentru a utiliza.</value></data>
-  <data name="Emulation.Option.desmume.desmume_cpu_mode"><value>Mod CPU (repornire)</value></data>
+  <data name="Emulation.Option.desmume.desmume_cpu_mode"><value>Mod CPU</value></data>
   <data name="Emulation.Option.desmume.desmume_cpu_mode.Help"><value>Activează sau dezactivează utilizarea recompiler-ului dinamic.</value></data>
   <data name="Emulation.Option.desmume.desmume_cpu_mode.Value.interpreter"><value>interpret</value></data>
   <data name="Emulation.Option.desmume.desmume_jit_block_size"><value>Dimensiune bloc JIT</value></data>
@@ -390,11 +390,11 @@
   <data name="Emulation.Option.desmume.desmume_frameskip.Help"><value>Setează cantitatea de rame pentru a sări.</value></data>
   <data name="Emulation.Option.desmume.desmume_internal_resolution"><value>Rezoluția internă</value></data>
   <data name="Emulation.Option.desmume.desmume_internal_resolution.Help"><value>Setează rezoluția internă. Rezoluțiile superioare pot oferi o mai bună claritate pentru scenele și obiectele 3D, dar vor spori cerințele de performanță</value></data>
-  <data name="Emulation.Option.desmume.desmume_opengl_mode"><value>Rasterizer OpenGL (repornire)</value></data>
+  <data name="Emulation.Option.desmume.desmume_opengl_mode"><value>Rasterizer OpenGL</value></data>
   <data name="Emulation.Option.desmume.desmume_opengl_mode.Help"><value>Activează Rasterizerul OpenGL pentru 3D.</value></data>
   <data name="Emulation.Option.desmume.desmume_opengl_mode.Value.disabled"><value>Dezactivat</value></data>
   <data name="Emulation.Option.desmume.desmume_opengl_mode.Value.enabled"><value>Activat</value></data>
-  <data name="Emulation.Option.desmume.desmume_color_depth"><value>OpenGL: Adâncime de culoare (repornire)</value></data>
+  <data name="Emulation.Option.desmume.desmume_color_depth"><value>OpenGL: Adâncime de culoare</value></data>
   <data name="Emulation.Option.desmume.desmume_color_depth.Help"><value>Setează Adâncimea de culoare la culorile 16-bit sau 32-biți. Necesită Rasterizer OpenGL.</value></data>
   <data name="Emulation.Option.desmume.desmume_gfx_multisampling"><value>OpenGL: Multisamping AA</value></data>
   <data name="Emulation.Option.desmume.desmume_gfx_multisampling.Help"><value>Setează multiplicatorul pentru Multisampling Anti Aliasing. Necesită Rasterizer OpenGL.</value></data>
@@ -510,7 +510,7 @@
   <data name="Emulation.Option.desmume.desmume_mic_mode.Value.random"><value>Aleator</value></data>
   <data name="Emulation.Firmware.desmume.Slot0"><value>Firmware NDS</value></data>
   <data name="Emulation.Emulator.desmume2015.Description"><value>Emulează sistemele compatibile Nintendo cu DeSmuME 2015.</value></data>
-  <data name="Emulation.Option.desmume2015.desmume_internal_resolution"><value>Rezoluţia internă (repornire)</value></data>
+  <data name="Emulation.Option.desmume2015.desmume_internal_resolution"><value>Rezoluţia internă</value></data>
   <data name="Emulation.Option.desmume2015.desmume_num_cores"><value>CPU nuclee</value></data>
   <data name="Emulation.Option.desmume2015.desmume_cpu_mode"><value>Mod CPU</value></data>
   <data name="Emulation.Option.desmume2015.desmume_cpu_mode.Value.interpreter"><value>interpret</value></data>
@@ -525,7 +525,7 @@
   <data name="Emulation.Option.desmume2015.desmume_screens_layout.Value.quick switch"><value>Comutare rapidă</value></data>
   <data name="Emulation.Option.desmume2015.desmume_screens_layout.Value.hybrid/top"><value>hibrid/top</value></data>
   <data name="Emulation.Option.desmume2015.desmume_screens_layout.Value.hybrid/bottom"><value>hibrid/jos</value></data>
-  <data name="Emulation.Option.desmume2015.desmume_hybrid_layout_scale"><value>Scala de dispunere hibridă (pornire)</value></data>
+  <data name="Emulation.Option.desmume2015.desmume_hybrid_layout_scale"><value>Scala de dispunere hibridă</value></data>
   <data name="Emulation.Option.desmume2015.desmume_hybrid_showboth_screens"><value>Layout hibrid arată ambele ecrane</value></data>
   <data name="Emulation.Option.desmume2015.desmume_hybrid_showboth_screens.Value.enabled"><value>Activat</value></data>
   <data name="Emulation.Option.desmume2015.desmume_hybrid_showboth_screens.Value.disabled"><value>Dezactivat</value></data>
@@ -561,7 +561,7 @@
   <data name="Emulation.Option.desmume2015.desmume_pointer_stylus_jitter"><value>Activează jitter stylus emulat</value></data>
   <data name="Emulation.Option.desmume2015.desmume_pointer_stylus_jitter.Value.disabled"><value>Dezactivat</value></data>
   <data name="Emulation.Option.desmume2015.desmume_pointer_stylus_jitter.Value.enabled"><value>Activat</value></data>
-  <data name="Emulation.Option.desmume2015.desmume_load_to_memory"><value>Încarcă jocul în memorie (repornire)</value></data>
+  <data name="Emulation.Option.desmume2015.desmume_load_to_memory"><value>Încarcă jocul în memorie</value></data>
   <data name="Emulation.Option.desmume2015.desmume_load_to_memory.Value.disabled"><value>Dezactivat</value></data>
   <data name="Emulation.Option.desmume2015.desmume_load_to_memory.Value.enabled"><value>Activat</value></data>
   <data name="Emulation.Option.desmume2015.desmume_advanced_timing"><value>Activează sincronizarea avansată a nivelului de autobuz</value></data>
@@ -621,7 +621,7 @@
   <data name="Emulation.Option.melonds.melonds_threaded_renderer"><value>Renderer software filetat</value></data>
   <data name="Emulation.Option.melonds.melonds_threaded_renderer.Value.disabled"><value>Dezactivat</value></data>
   <data name="Emulation.Option.melonds.melonds_threaded_renderer.Value.enabled"><value>Activat</value></data>
-  <data name="Emulation.Option.melonds.melonds_opengl_renderer"><value>OpenGL Renderer (Repornire)</value></data>
+  <data name="Emulation.Option.melonds.melonds_opengl_renderer"><value>OpenGL Renderer</value></data>
   <data name="Emulation.Option.melonds.melonds_opengl_renderer.Value.disabled"><value>Dezactivat</value></data>
   <data name="Emulation.Option.melonds.melonds_opengl_renderer.Value.enabled"><value>Activat</value></data>
   <data name="Emulation.Option.melonds.melonds_opengl_resolution"><value>Rezoluţia internă OpenGL</value></data>
@@ -678,7 +678,7 @@
   <data name="Emulation.Option.melonds.melonds_hybrid_small_screen.Value.Top"><value>Sus</value></data>
   <data name="Emulation.Option.melonds.melonds_hybrid_small_screen.Value.Duplicate"><value>Duplicat</value></data>
   <data name="Emulation.Option.melonds.melonds_hybrid_ratio"><value>Raport hibrid (doar OpenGL)</value></data>
-  <data name="Emulation.Option.melonds.melonds_jit_enable"><value>Activează JIT (Repornire)</value></data>
+  <data name="Emulation.Option.melonds.melonds_jit_enable"><value>Activează JIT</value></data>
   <data name="Emulation.Option.melonds.melonds_jit_enable.Value.disabled"><value>Dezactivat</value></data>
   <data name="Emulation.Option.melonds.melonds_jit_enable.Value.enabled"><value>Activat</value></data>
   <data name="Emulation.Option.melonds.melonds_jit_block_size"><value>Dimensiune bloc JIT</value></data>
@@ -720,7 +720,7 @@
   <data name="Emulation.Option.melondsds.melonds_audio_interpolation.Value.cubic"><value>Cubic</value></data>
   <data name="Emulation.Option.melondsds.melonds_audio_interpolation.Value.gaussian"><value>Gaussian</value></data>
   <data name="Emulation.Option.melondsds.melonds_jit_enable"><value>Recompiler JIT</value></data>
-  <data name="Emulation.Option.melondsds.melonds_jit_enable.Help"><value>Recompilează codul mașinii în cod nativ pe măsură ce rulează, îmbunătățind considerabil performanța asupra interpretării simple. Îşi face efectul la următoarea repornire. Dacă nu este sigur, lăsați activat.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_jit_enable.Help"><value>Recompilează codul mașinii în cod nativ pe măsură ce rulează, îmbunătățind considerabil performanța asupra interpretării simple. Dacă nu este sigur, lăsați activat.</value></data>
   <data name="Emulation.Option.melondsds.melonds_jit_enable.Value.disabled"><value>Dezactivat</value></data>
   <data name="Emulation.Option.melondsds.melonds_jit_enable.Value.enabled"><value>Activat</value></data>
   <data name="Emulation.Option.melondsds.melonds_jit_block_size"><value>Mărime bloc</value></data>
@@ -731,15 +731,25 @@
   <data name="Emulation.Option.melondsds.melonds_jit_literal_optimisations.Value.disabled"><value>Dezactivat</value></data>
   <data name="Emulation.Option.melondsds.melonds_jit_literal_optimisations.Value.enabled"><value>Activat</value></data>
   <data name="Emulation.Option.melondsds.melonds_jit_fast_memory"><value>Memorie rapidă</value></data>
-  <data name="Emulation.Option.melondsds.melonds_jit_fast_memory.Help"><value>Dezactivează acest lucru dacă rulează melonDS DS printr-un depanator, altfel constanta (dar așteptată) SIGSEGV va deveni enervantă. Îşi face efectul la următoarea repornire. Dacă nu este sigur, lăsați activat.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_jit_fast_memory.Help"><value>Dezactivează acest lucru dacă rulează melonDS DS printr-un depanator, altfel constanta (dar așteptată) SIGSEGV va deveni enervantă. Dacă nu este sigur, lăsați activat.</value></data>
   <data name="Emulation.Option.melondsds.melonds_jit_fast_memory.Value.disabled"><value>Dezactivat</value></data>
   <data name="Emulation.Option.melondsds.melonds_jit_fast_memory.Value.enabled"><value>Activat</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_wfc_dns"><value>DNS Suprascrie</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_wfc_dns.Help"><value>Serverul DNS pentru a utiliza punctul de acces emulat ("melonAP"). Utilizați acest lucru pentru a juca on-line cu servere personalizate care reimplementează serviciile Nintendo Wi-Fi Connection întrerupt. Suportul jocului depinde de server. &#xA;Unii furnizori de servicii de internet pot bloca cererile către aceste servere. În acest caz, a se vedea https://tinyurl.com/393cb755.&#xA;&#xA;Serverele enumerate nu sunt afiliate cu libretro, Nintendo, echipa melonDS sau autorul acestui nucleu. Vă rugăm să respectați alți jucători și urmați regulile serverului.&#xA;&#xA;Dacă nu eşti sigur, pleacă pe Kaeru WFC. Modificările intră în vigoare la următoarea repornire.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_wfc_dns.Help"><value>Serverul DNS pentru a utiliza punctul de acces emulat ("melonAP"). Utilizați acest lucru pentru a juca on-line cu servere personalizate care reimplementează serviciile Nintendo Wi-Fi Connection întrerupt. Suportul jocului depinde de server.
+Unii furnizori de servicii de internet pot bloca cererile către aceste servere. În acest caz, a se vedea https://tinyurl.com/393cb755.
+
+Serverele enumerate nu sunt afiliate cu libretro, Nintendo, echipa melonDS sau autorul acestui nucleu. Vă rugăm să respectați alți jucători și urmați regulile serverului.
+
+Dacă nu eşti sigur.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_wfc_dns.Value.95.217.77.181"><value>Wiimmfi (95.217.711)</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_wfc_dns.Value.default"><value>Nu suprascrie.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_language"><value>Limbă</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_language.Help"><value>Suprascrie modul de limbaj al consolei emulate.&#xA;&#xA;Foloseste gazda: foloseste limba frontend-ului daca este sustinuta de consola.&#xA;Nu override: Utilizați orice limbă este deja setat pe firmware. Acesta este comportamentul de rezervă în cazul în care DS (sau DSi NAND) emulat nu sprijină limba frontend lui.&#xA;&#xA;Nu fiecare joc onorează acest cadru. Modificările intră în vigoare la următoarea repornire.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_language.Help"><value>Suprascrie modul de limbaj al consolei emulate.
+
+Foloseste gazda: foloseste limba frontend-ului daca este sustinuta de consola.
+Nu override: Utilizați orice limbă este deja setat pe firmware. Acesta este comportamentul de rezervă în cazul în care DS (sau DSi NAND) emulat nu sprijină limba frontend lui.
+
+Nu fiecare joc onorează acest cadru.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_language.Value.auto"><value>Folosește gazdă</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_language.Value.en"><value>Engleză</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_language.Value.ja"><value>Japoneză</value></data>
@@ -749,11 +759,14 @@
   <data name="Emulation.Option.melondsds.melonds_firmware_language.Value.es"><value>Spaniolă</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_language.Value.default"><value>Nu suprascrie.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_username"><value>Nume utilizator</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_username.Help"><value>Suprascrie numele de utilizator dat consolei emulate.&#xA;&#xA;Nu override: Folosește orice nume este definit pe firmware.&#xA;Ghici: Încercați să obțineți numele de utilizator din frontend. În cazul în care acest lucru nu reușește, încercați USER, USERNAME, și LOGNAME variabile de mediu.&#xA;melonDS DS: Folosește "melonDS DS". Aceasta este implicit dacă nimic altceva nu funcționează.&#xA;&#xA;Numele sunt trunchiate la 10 caractere. Modificările intră în vigoare la următoarea repornire.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_username.Help"><value>Suprascrie numele de utilizator dat consolei emulate.
+
+Nu override: Folosește orice nume este definit pe firmware.
+Ghici: Încercați să obțineți numele de utilizator din frontend. În cazul în care acest lucru nu reușește, încercați USER, USERNAME.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_username.Value.guess_username"><value>Ghiceşte.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_username.Value.existing_username"><value>Nu suprascrie.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_favorite_color"><value>Culoare preferată</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_favorite_color.Help"><value>Tema ("culoare preferată") a consolei emulate. Modificările intră în vigoare la următoarea repornire.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_favorite_color.Help"><value>Tema ("culoare preferată") a consolei emulate.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_favorite_color.Value.0"><value>Gri</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_favorite_color.Value.1"><value>Maro</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_favorite_color.Value.2"><value>Roșu</value></data>
@@ -772,7 +785,7 @@
   <data name="Emulation.Option.melondsds.melonds_firmware_favorite_color.Value.15"><value>Roz închis</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_favorite_color.Value.default"><value>Nu suprascrie.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_birth_month"><value>Luna de naștere</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_birth_month.Help"><value>În luna de ziua ta. Modificările intră în vigoare la următoarea repornire.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_birth_month.Help"><value>În luna de ziua ta.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_birth_month.Value.1"><value>ianuarie</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_birth_month.Value.2"><value>februarie</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_birth_month.Value.3"><value>Martie</value></data>
@@ -787,29 +800,33 @@
   <data name="Emulation.Option.melondsds.melonds_firmware_birth_month.Value.12"><value>decembrie</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_birth_month.Value.default"><value>Nu suprascrie.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_birth_day"><value>Ziua de naștere</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_birth_day.Help"><value>Ziua din luna de ziua ta. Modificările intră în vigoare la următoarea repornire.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_birth_day.Help"><value>Ziua din luna de ziua ta.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_birth_day.Value.default"><value>Nu suprascrie.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_enable_alarm"><value>Activează alarma</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_enable_alarm.Help"><value>Dacă alarma consolei emulate este activată. Modificările intră în vigoare la următoarea repornire.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_enable_alarm.Help"><value>Dacă alarma consolei emulate este activată.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_enable_alarm.Value.disabled"><value>Dezactivat</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_enable_alarm.Value.enabled"><value>Activat</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_enable_alarm.Value.default"><value>Nu suprascrie.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_alarm_hour"><value>Ora alarmei</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_alarm_hour.Help"><value>Ora alarmei configurate. Modificările intră în vigoare la următoarea repornire.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_alarm_hour.Help"><value>Ora alarmei configurate.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_alarm_hour.Value.default"><value>Nu suprascrie.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_alarm_minute"><value>Alarmă minut</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_alarm_minute.Help"><value>În minutul alarmei configurate. Modificările intră în vigoare la următoarea repornire.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_alarm_minute.Help"><value>În minutul alarmei configurate.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_alarm_minute.Value.default"><value>Nu suprascrie.</value></data>
   <data name="Emulation.Option.melondsds.melonds_network_mode"><value>Modul de rețea</value></data>
-  <data name="Emulation.Option.melondsds.melonds_network_mode.Help"><value>Configurează cum melonDS DS emulează Nintendo WFC. Dacă nu sunteți sigur, utilizați modul indirect.&#xA;&#xA;Indirect: Utilizați libslirp pentru a emula stiva de rețea DS. Simplu și nu are nevoie de configurare.&#xA;Direct: Trasee emulate pachete Wi-Fi la interfata de retea gazda. Mai rapid și mai fiabil, dar necesită o conexiune eternet și că WinPcap sau Npcap este instalat. În cazul în care nu este disponibil, cade înapoi la modul indirect.&#xA;&#xA;Modificările intră în vigoare la următoarea repornire. Nu are legătură cu multiplayerul local.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_network_mode.Help"><value>Configurează cum melonDS DS emulează Nintendo WFC. Dacă nu sunteți sigur, utilizați modul indirect.
+
+Indirect: Utilizați libslirp pentru a emula stiva de rețea DS. Simplu și nu are nevoie de configurare.
+Direct: Trasee emulate pachete Wi-Fi la interfata de retea gazda. Mai rapid și mai fiabil, dar necesită o conexiune eternet și că WinPcap sau Npcap este instalat. În cazul în care nu este disponibil.</value></data>
   <data name="Emulation.Option.melondsds.melonds_network_mode.Value.disabled"><value>Dezactivat</value></data>
   <data name="Emulation.Option.melondsds.melonds_network_mode.Value.indirect"><value>Indirect</value></data>
   <data name="Emulation.Option.melondsds.melonds_network_mode.Value.direct"><value>directă</value></data>
   <data name="Emulation.Option.melondsds.melonds_direct_network_interface"><value>Interfață de rețea (mod direct)</value></data>
-  <data name="Emulation.Option.melondsds.melonds_direct_network_interface.Help"><value>Selectaţi o interfaţă de reţea pentru a utiliza cu modul direct. Dacă nu este sigur, setat pe Automat. Modificările intră în vigoare la următoarea repornire a miezului.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_direct_network_interface.Help"><value>Selectaţi o interfaţă de reţea pentru a utiliza cu modul direct. Dacă nu este sigur.</value></data>
   <data name="Emulation.Option.melondsds.melonds_direct_network_interface.Value.auto"><value>Automat</value></data>
   <data name="Emulation.Option.melondsds.melonds_mac_address_mode"><value>Modul de adresă MAC al rețelei</value></data>
-  <data name="Emulation.Option.melondsds.melonds_mac_address_mode.Help"><value>Configurează modul în care este setată adresa MAC a consolei emulate. Schimbarea acestei opțiuni ar putea face imposibilă multiplayer-ul local sau blocarea accesului pentru a salva fișiere în jocuri care utilizează adresa MAC pentru a preveni manipularea fișierelor de salvare (adică. Pokémon).&#xA;Nicio legătură cu interfața modulului direct. Modificările intră în vigoare la următoarea repornire.&#xA;A se vedea https://bit.ly/4fJtWKN pentru mai multe informații.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_mac_address_mode.Help"><value>Configurează modul în care este setată adresa MAC a consolei emulate. Schimbarea acestei opțiuni ar putea face imposibilă multiplayer-ul local sau blocarea accesului pentru a salva fișiere în jocuri care utilizează adresa MAC pentru a preveni manipularea fișierelor de salvare (adică. Pokémon).
+Nicio legătură cu interfața modulului direct. A se vedea https://bit.ly/4fJtWKN pentru mai multe informații.</value></data>
   <data name="Emulation.Option.melondsds.melonds_mac_address_mode.Value.firmware"><value>Set din firmware</value></data>
   <data name="Emulation.Option.melondsds.melonds_mac_address_mode.Value.from-username"><value>Derive from libretro username</value></data>
   <data name="Emulation.Option.melondsds.melonds_show_unsupported_features"><value>Avertizează despre caracteristicile nesusţinute</value></data>
@@ -1042,25 +1059,62 @@
   <data name="Emulation.Option.melondsds.melonds_screen_layout8.Value.rotate-right"><value>Rotite la dreapta</value></data>
   <data name="Emulation.Option.melondsds.melonds_screen_layout8.Value.rotate-180"><value>Cu susul în jos</value></data>
   <data name="Emulation.Option.melondsds.melonds_console_mode"><value>Mod consolă</value></data>
-  <data name="Emulation.Option.melondsds.melonds_console_mode.Help"><value>Dacă să emuleze un Nintendo DS sau un Nintendo DSi.&#xA;&#xA;Auto folosește modul DSi pentru jocuri care au nevoie de un DSi, și modul DS pentru orice altceva. Setările DS și DSi forțează consola corespunzătoare; acest lucru este în mare parte util pentru dezvoltarea homebrew.&#xA;&#xA;Modul DSi are câteva limite:&#xA;&#xA;- Fişierele BIOS/firmware/NAND trebuie furnizate, inclusiv pentru DS regulat.&#xA;- Unele caracteristici (cum ar fi savestats) nu sunt disponibile în modul DSi.&#xA;&#xA;A se vedea opțiunile specifice DSi din această categorie pentru mai multe informații. Dacă nu sunteţi sigur, utilizaţi Auto. Modificările intră în vigoare la următoarea repornire.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_console_mode.Help"><value>Dacă să emuleze un Nintendo DS sau un Nintendo DSi.
+
+Auto folosește modul DSi pentru jocuri care au nevoie de un DSi, și modul DS pentru orice altceva. Setările DS și DSi forțează consola corespunzătoare; acest lucru este în mare parte util pentru dezvoltarea homebrew.
+
+Modul DSi are câteva limite:
+
+- Fişierele BIOS/firmware/NAND trebuie furnizate, inclusiv pentru DS regulat.
+- Unele caracteristici (cum ar fi savestats) nu sunt disponibile în modul DSi.
+
+A se vedea opțiunile specifice DSi din această categorie pentru mai multe informații. Dacă nu sunteţi sigur.</value></data>
   <data name="Emulation.Option.melondsds.melonds_console_mode.Value.auto"><value>Automat</value></data>
   <data name="Emulation.Option.melondsds.melonds_console_mode.Value.dsi"><value>DSi (experimental)</value></data>
   <data name="Emulation.Option.melondsds.melonds_sysfile_mode"><value>Modul BIOS/Firmware (Modul DS)</value></data>
-  <data name="Emulation.Option.melondsds.melonds_sysfile_mode.Help"><value>Determină dacă melonDS utilizează gropi native BIOS/firmware-ul sau propriile sale înlocuitori încorporate. Se aplică numai la modul DS, deoarece modul DSi necesită întotdeauna BIOS nativ și halde firmware.&#xA;&#xA;Modul nativ folosește BIOS și fișiere firmware de la un DS real. Plasați gropile de gunoi ale acestora în directorul sistemului sau subdosarul "melonDS DS" și spuneți-le după cum urmează:&#xA;&#xA;- DS BIOS: bios7.bin, bios9.bin&#xA;- DSi BIOS: dsi_bios7.bin, dsi_bios9.bin&#xA;- Firmware: A se vedea opțiunile "DS Firmware" și "DSi Firmweare."&#xA;- DSi NAND: Vezi "DSi NAND "opţiune.&#xA;&#xA;Se întoarce la Built-In dacă nu este găsit niciun fișier BIOS/firmware.&#xA;&#xA;Modul construit-In folosește melonDS built-in BIOS și firmware, și este potrivit pentru majoritatea jocurilor.&#xA;&#xA;Modificările intră în vigoare la următoarea repornire.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_sysfile_mode.Help"><value>Determină dacă melonDS utilizează gropi native BIOS/firmware-ul sau propriile sale înlocuitori încorporate. Se aplică numai la modul DS, deoarece modul DSi necesită întotdeauna BIOS nativ și halde firmware.
+
+Modul nativ folosește BIOS și fișiere firmware de la un DS real. Plasați gropile de gunoi ale acestora în directorul sistemului sau subdosarul "melonDS DS" și spuneți-le după cum urmează:
+
+- DS BIOS: bios7.bin, bios9.bin
+- DSi BIOS: dsi_bios7.bin, dsi_bios9.bin
+- Firmware: A se vedea opțiunile "DS Firmware" și "DSi Firmweare."
+- DSi NAND: Vezi "DSi NAND "opţiune.
+
+Se întoarce la Built-In dacă nu este găsit niciun fișier BIOS/firmware.
+
+Modul construit-In folosește melonDS built-in BIOS și firmware.</value></data>
   <data name="Emulation.Option.melondsds.melonds_sysfile_mode.Value.native"><value>Nativ</value></data>
   <data name="Emulation.Option.melondsds.melonds_sysfile_mode.Value.builtin"><value>Construit-In</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_nds_path"><value>DS Firmware</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_nds_path.Help"><value>Alegeți o imagine firmware de utilizat pentru modul DS. Fișierele sunt enumerate aici dacă:&#xA;&#xA;- se află în directorul de sistem al frontend-ului sau un subdirector numit "melonDS DS."&#xA;- sunt exact 131,072 octeți (128KB), 262,144 bytes (256KB) sau 524,288 octeţi (512KB).&#xA;- Contine datele header valide pentru DS firmware.&#xA;&#xA;ID-urile Nintendo WFC sunt salvate pe firmware, astfel încât comutarea imaginilor firmwear poate duce la pierderea unor date WFC. Ignorat în modul DSi sau dacă modul BIOS/Firmware este construit. Modificările intră în vigoare la următoarea repornire.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_nds_path.Help"><value>Alegeți o imagine firmware de utilizat pentru modul DS. Fișierele sunt enumerate aici dacă:
+
+- se află în directorul de sistem al frontend-ului sau un subdirector numit "melonDS DS."
+- sunt exact 131,072 octeți (128KB), 262,144 bytes (256KB) sau 524,288 octeţi (512KB).
+- Contine datele header valide pentru DS firmware.
+
+ID-urile Nintendo WFC sunt salvate pe firmware.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_nds_path.Value./notfound"><value>Nu l-am găsit...</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_dsi_path"><value>DSi Firmware</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_dsi_path.Help"><value>Alegeți o imagine firmware de utilizat pentru modul DSi. Fișierele sunt enumerate aici dacă:&#xA;&#xA;- se află în directorul de sistem al frontend-ului sau un subdirector numit "melonDS DS."&#xA;- sunt exact 131,072 octeți (128KB), 262,144 bytes (256KB) sau 524,288 octeţi (512KB).&#xA;- Conţine datele header valide pentru DSi firmware.&#xA;&#xA;ID-urile Nintendo WFC sunt salvate pe firmware, astfel încât comutarea imaginilor firmwear poate duce la pierderea unor date WFC. Modificările intră în vigoare la următoarea repornire.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_dsi_path.Help"><value>Alegeți o imagine firmware de utilizat pentru modul DSi. Fișierele sunt enumerate aici dacă:
+
+- se află în directorul de sistem al frontend-ului sau un subdirector numit "melonDS DS."
+- sunt exact 131,072 octeți (128KB), 262,144 bytes (256KB) sau 524,288 octeţi (512KB).
+- Conţine datele header valide pentru DSi firmware.
+
+ID-urile Nintendo WFC sunt salvate pe firmware.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_dsi_path.Value./notfound"><value>Nu l-am găsit...</value></data>
   <data name="Emulation.Option.melondsds.melonds_dsi_nand_path"><value>Calea DSi NAND</value></data>
-  <data name="Emulation.Option.melondsds.melonds_dsi_nand_path.Help"><value>Alegeți o imagine DSi NAND pentru a utiliza. Necesar atunci când se utilizează modul DSi. Fișierele sunt enumerate aici dacă:&#xA;&#xA;- se află în directorul de sistem al frontend-ului sau un subdirector numit "melonDS DS."&#xA;- sunt exact 251,658,304 bytes (240MB) sau 257,425,472 octeți (245.5MB), lungi cu date de subsol valabile, OR;&#xA;- sunt 64 de octeți mai mici decât aceste lungimi și conțin date echivalente la 0xFF800.&#xA;&#xA;Setat pe "Auto" pentru a permite miezului să aleagă o imagine NAND a cărei regiune se potrivește cu încărcat DSiWare ROM. Modificările intră în vigoare la următoarea repornire.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_dsi_nand_path.Help"><value>Alegeți o imagine DSi NAND pentru a utiliza. Necesar atunci când se utilizează modul DSi. Fișierele sunt enumerate aici dacă:
+
+- se află în directorul de sistem al frontend-ului sau un subdirector numit "melonDS DS."
+- sunt exact 251,658,304 bytes (240MB) sau 257,425,472 octeți (245.5MB), lungi cu date de subsol valabile, OR.</value></data>
   <data name="Emulation.Option.melondsds.melonds_dsi_nand_path.Value./auto"><value>Auto (regiune ROM meci)</value></data>
   <data name="Emulation.Option.melondsds.melonds_dsi_nand_path.Value./notfound"><value>Nu l-am găsit...</value></data>
   <data name="Emulation.Option.melondsds.melonds_boot_mode"><value>Mod boot</value></data>
-  <data name="Emulation.Option.melondsds.melonds_boot_mode.Help"><value>Determină modul în care melonDS cizme jocuri.&#xA;&#xA;Nativ: Încarcă jocuri prin meniul sistemului, similar cu adevăratul proces de boot DS/DSi. Necesită BIOS nativ și fișiere firmware în directorul de sistem.&#xA;Direct: Sari peste meniul sistemului și du-te direct la joc. Suportat pentru DSiWare dacă sunt disponibile fișiere de sistem native DSi.&#xA;&#xA;Ignorate dacă sunt încărcate fără un joc (Native is forced) sau în cazul în care se utilizează Built-In BIOS/Firmware (Direct este forțat). Modificările intră în vigoare la următoarea repornire.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_boot_mode.Help"><value>Determină modul în care melonDS cizme jocuri.
+
+Nativ: Încarcă jocuri prin meniul sistemului.</value></data>
   <data name="Emulation.Option.melondsds.melonds_boot_mode.Value.direct"><value>directă</value></data>
   <data name="Emulation.Option.melondsds.melonds_boot_mode.Value.native"><value>Nativ</value></data>
   <data name="Emulation.Option.melondsds.melonds_dsi_sdcard"><value>Card virtual SD (DSi)</value></data>
@@ -1068,7 +1122,7 @@
   <data name="Emulation.Option.melondsds.melonds_dsi_sdcard.Value.disabled"><value>Dezactivat</value></data>
   <data name="Emulation.Option.melondsds.melonds_dsi_sdcard.Value.enabled"><value>Activat</value></data>
   <data name="Emulation.Option.melondsds.melonds_dsi_sdcard_readonly"><value>Mod exclusiv de citire (DSi)</value></data>
-  <data name="Emulation.Option.melondsds.melonds_dsi_sdcard_readonly.Help"><value>Dacă este activat, DSi emulat vede cardul SD virtual ca fiind doar citit. Modificările intră în vigoare la următoarea repornire.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_dsi_sdcard_readonly.Help"><value>Dacă este activat.</value></data>
   <data name="Emulation.Option.melondsds.melonds_dsi_sdcard_readonly.Value.disabled"><value>Dezactivat</value></data>
   <data name="Emulation.Option.melondsds.melonds_dsi_sdcard_readonly.Value.enabled"><value>Activat</value></data>
   <data name="Emulation.Option.melondsds.melonds_dsi_sdcard_sync_sdcard_to_host"><value>Sync Card SD to Host (DSi)</value></data>
@@ -1080,7 +1134,7 @@
   <data name="Emulation.Option.melondsds.melonds_homebrew_sdcard.Value.disabled"><value>Dezactivat</value></data>
   <data name="Emulation.Option.melondsds.melonds_homebrew_sdcard.Value.enabled"><value>Activat</value></data>
   <data name="Emulation.Option.melondsds.melonds_homebrew_readonly"><value>Mod exclusiv de citire</value></data>
-  <data name="Emulation.Option.melondsds.melonds_homebrew_readonly.Help"><value>Dacă sunt activate, aplicațiile homebrew vor vedea cardul SD virtual ca fiind doar citit. Modificările intră în vigoare la următoarea repornire.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_homebrew_readonly.Help"><value>Dacă sunt activate.</value></data>
   <data name="Emulation.Option.melondsds.melonds_homebrew_readonly.Value.disabled"><value>Dezactivat</value></data>
   <data name="Emulation.Option.melondsds.melonds_homebrew_readonly.Value.enabled"><value>Activat</value></data>
   <data name="Emulation.Option.melondsds.melonds_homebrew_sync_sdcard_to_host"><value>Sincronizează cardul SD către gazdă</value></data>
@@ -1125,13 +1179,18 @@
   <data name="Emulation.Option.melondsds.melonds_solar_sensor_host_sensor.Value.disabled"><value>Dezactivat</value></data>
   <data name="Emulation.Option.melondsds.melonds_solar_sensor_host_sensor.Value.enabled"><value>Activat</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_mode"><value>Mod timp</value></data>
-  <data name="Emulation.Option.melondsds.melonds_start_time_mode.Help"><value>Timpul iniţial al ceasului intern al consolei emulate.&#xA;&#xA;Începeţi să vă sincronizaţi cu ceasul dispozitivului.&#xA;- Sincronizat: sincronizează ceasul emulat la ceasul dispozitivului. Poate provoca un comportament neașteptat în unele jocuri atunci când derularea sau fast-forward.&#xA;- Relativ: Începeţi să vă sincronizaţi cu ceasul dispozitivului, plus sau minus un offset specificat. Va fi constrâns până la datele pe care DS le poate reprezenta.&#xA;- Absolut: începe la o dată și oră specifică, indiferent de ceasul dispozitivului.&#xA;&#xA;Toate datele şi orele sunt în fusul orar local. Modificările intră în vigoare la următoarea repornire.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_start_time_mode.Help"><value>Timpul iniţial al ceasului intern al consolei emulate.
+
+Începeţi să vă sincronizaţi cu ceasul dispozitivului.
+- Sincronizat: sincronizează ceasul emulat la ceasul dispozitivului. Poate provoca un comportament neașteptat în unele jocuri atunci când derularea sau fast-forward.
+- Relativ: Începeţi să vă sincronizaţi cu ceasul dispozitivului, plus sau minus un offset specificat. Va fi constrâns până la datele pe care DS le poate reprezenta.
+- Absolut: începe la o dată și oră specifică.</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_mode.Value.real"><value>Real</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_mode.Value.sync"><value>Sincronizat</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_mode.Value.relative"><value>Relativ</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_mode.Value.absolute"><value>Absolut.</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_year_offset"><value>Deplasarea timpului de pornire (ani)</value></data>
-  <data name="Emulation.Option.melondsds.melonds_start_time_relative_year_offset.Help"><value>Numărul de ani pentru a compensa ora de începere cu. Utilizat numai atunci când modul de pornire a timpului este relativ. Modificările intră în vigoare la următoarea repornire.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_start_time_relative_year_offset.Help"><value>Numărul de ani pentru a compensa ora de începere cu. Utilizat numai atunci când modul de pornire a timpului este relativ.</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_year_offset.Value.-20"><value>- 20 de ani.</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_year_offset.Value.-19"><value>- 19 ani.</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_year_offset.Value.-18"><value>- 18 ani.</value></data>
@@ -1174,7 +1233,7 @@
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_year_offset.Value.19"><value>+19 ani</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_year_offset.Value.20"><value>+20 ani</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_day_offset"><value>Timp de pornire Offset (zile)</value></data>
-  <data name="Emulation.Option.melondsds.melonds_start_time_relative_day_offset.Help"><value>Numărul de zile pentru a compensa ora de începere cu. Utilizat numai atunci când modul de pornire a timpului este relativ. Modificările intră în vigoare la următoarea repornire.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_start_time_relative_day_offset.Help"><value>Numărul de zile pentru a compensa ora de începere cu. Utilizat numai atunci când modul de pornire a timpului este relativ.</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_day_offset.Value.-364"><value>-364 zile</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_day_offset.Value.-180"><value>- 180 de zile</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_day_offset.Value.-150"><value>- 150 de zile.</value></data>
@@ -1219,7 +1278,7 @@
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_day_offset.Value.180"><value>+180 zile</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_day_offset.Value.364"><value>+364 zile</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_hour_offset"><value>Timp de pornire Offset (Hours)</value></data>
-  <data name="Emulation.Option.melondsds.melonds_start_time_relative_hour_offset.Help"><value>Numărul de ore pentru a compensa ora de începere cu. Utilizat numai atunci când modul de pornire a timpului este relativ. Modificările intră în vigoare la următoarea repornire.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_start_time_relative_hour_offset.Help"><value>Numărul de ore pentru a compensa ora de începere cu. Utilizat numai atunci când modul de pornire a timpului este relativ.</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_hour_offset.Value.-23"><value>- 23 ore.</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_hour_offset.Value.-22"><value>- 22 ore.</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_hour_offset.Value.-21"><value>- 21 de ore.</value></data>
@@ -1268,7 +1327,7 @@
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_hour_offset.Value.22"><value>+22 ore</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_hour_offset.Value.23"><value>+23 ore</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_minute_offset"><value>Timp de pornire Offset (Minute)</value></data>
-  <data name="Emulation.Option.melondsds.melonds_start_time_relative_minute_offset.Help"><value>Numărul de minute pentru a compensa ora de începere cu. Utilizat numai atunci când modul de pornire a timpului este relativ. Modificările intră în vigoare la următoarea repornire.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_start_time_relative_minute_offset.Help"><value>Numărul de minute pentru a compensa ora de începere cu. Utilizat numai atunci când modul de pornire a timpului este relativ.</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_minute_offset.Value.-59"><value>- 59 minute.</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_minute_offset.Value.-58"><value>- 58 de minute.</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_minute_offset.Value.-57"><value>- 57 de minute.</value></data>
@@ -1389,9 +1448,9 @@
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_minute_offset.Value.58"><value>+58 minute</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_relative_minute_offset.Value.59"><value>+59 minute</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_absolute_year"><value>Anul de începere</value></data>
-  <data name="Emulation.Option.melondsds.melonds_start_time_absolute_year.Help"><value>Anul iniţial de utilizare atunci când modul "Start Time" este Absolut. Modificările intră în vigoare la următoarea repornire.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_start_time_absolute_year.Help"><value>Anul iniţial de utilizare atunci când modul "Start Time" este Absolut.</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_absolute_month"><value>Luna de începere</value></data>
-  <data name="Emulation.Option.melondsds.melonds_start_time_absolute_month.Help"><value>Luna iniţială care trebuie utilizată la pornirea modului Timp este absolută. Modificările intră în vigoare la următoarea repornire.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_start_time_absolute_month.Help"><value>Luna iniţială care trebuie utilizată la pornirea modului Timp este absolută.</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_absolute_month.Value.1"><value>ianuarie</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_absolute_month.Value.2"><value>februarie</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_absolute_month.Value.3"><value>Martie</value></data>
@@ -1405,15 +1464,18 @@
   <data name="Emulation.Option.melondsds.melonds_start_time_absolute_month.Value.11"><value>Noiembrie</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_absolute_month.Value.12"><value>decembrie</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_absolute_day"><value>Începând cu ziua</value></data>
-  <data name="Emulation.Option.melondsds.melonds_start_time_absolute_day.Help"><value>Ziua inițială a lunii pe care trebuie să o utilizați la pornirea modului Timp este absolută. Zilele care se prelungesc de la sfârşitul unei luni vor trece peste următoarea (ex. 31 aprilie va deveni 1 mai). Modificările intră în vigoare la următoarea repornire.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_start_time_absolute_day.Help"><value>Ziua inițială a lunii pe care trebuie să o utilizați la pornirea modului Timp este absolută. Zilele care se prelungesc de la sfârşitul unei luni vor trece peste următoarea (ex. 31 aprilie va deveni 1 mai).</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_absolute_hour"><value>Ora de începere</value></data>
-  <data name="Emulation.Option.melondsds.melonds_start_time_absolute_hour.Help"><value>Ora inițială pentru a utiliza atunci când modul de pornire este absolută. Modificările intră în vigoare la următoarea repornire.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_start_time_absolute_hour.Help"><value>Ora inițială pentru a utiliza atunci când modul de pornire este absolută.</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_absolute_minute"><value>Momentul de pornire</value></data>
-  <data name="Emulation.Option.melondsds.melonds_start_time_absolute_minute.Help"><value>Primul minut pe care trebuie să-l utilizaţi la pornirea modului Timp este Absolut. Modificările intră în vigoare la următoarea repornire.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_start_time_absolute_minute.Help"><value>Primul minut pe care trebuie să-l utilizaţi la pornirea modului Timp este Absolut.</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_absolute_second"><value>Începând cu al doilea</value></data>
-  <data name="Emulation.Option.melondsds.melonds_start_time_absolute_second.Help"><value>Cea de-a doua iniţială care trebuie utilizată la pornirea modului Timp este Absolută. Modificările intră în vigoare la următoarea repornire.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_start_time_absolute_second.Help"><value>Cea de-a doua iniţială care trebuie utilizată la pornirea modului Timp este Absolută.</value></data>
   <data name="Emulation.Option.melondsds.melonds_render_mode"><value>Mod render</value></data>
-  <data name="Emulation.Option.melondsds.melonds_render_mode.Help"><value>Software-ul este cel mai rapid și mai precis. OpenGL (Classic) poate mări grafica 3D, dar unele jocuri nu redă corect.&#xA;OpenGL (Compute) este corectă și suportă creșterea, dar nu va funcționa pe unele dispozitive mai vechi. Trecerea la ea ia câteva secunde pentru a compila umbrare sale.&#xA;&#xA;Se întoarce la redarea software-ului dacă OpenGL nu poate fi folosit. Modificările intră în vigoare imediat, dar pot necesita reluarea video driver-ului frontend.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_render_mode.Help"><value>Software-ul este cel mai rapid și mai precis. OpenGL (Classic) poate mări grafica 3D, dar unele jocuri nu redă corect.
+OpenGL (Compute) este corectă și suportă creșterea, dar nu va funcționa pe unele dispozitive mai vechi. Trecerea la ea ia câteva secunde pentru a compila umbrare sale.
+
+Se întoarce la redarea software-ului dacă OpenGL nu poate fi folosit. Modificările intră în vigoare imediat.</value></data>
   <data name="Emulation.Option.melondsds.melonds_render_mode.Value.software"><value>Programe</value></data>
   <data name="Emulation.Option.melondsds.melonds_render_mode.Value.opengl"><value>OpenGL (Classic)</value></data>
   <data name="Emulation.Option.melondsds.melonds_render_mode.Value.compute"><value>OpenGL (Compute)</value></data>
@@ -1614,7 +1676,7 @@
   <data name="Emulation.Option.fceumm.fceumm_ntsc_filter.Value.composite"><value>Compus</value></data>
   <data name="Emulation.Option.fceumm.fceumm_ntsc_filter.Value.svideo"><value>S-Video</value></data>
   <data name="Emulation.Option.fceumm.fceumm_ntsc_filter.Value.monochrome"><value>Monocrom</value></data>
-  <data name="Emulation.Option.fceumm.fceumm_hdpacks"><value>Pachete de textură HD (Repornire)</value></data>
+  <data name="Emulation.Option.fceumm.fceumm_hdpacks"><value>Pachete de textură HD</value></data>
   <data name="Emulation.Option.fceumm.fceumm_hdpacks.Help"><value>Încărcați Mesen-format HD ambalaje textura de la "&lt;system&gt;/HdPacks/&lt;rom name&gt;/hires.txt" atunci când sunt prezente. Înlocuiește gresie/sprites cu lucrări de artă de înaltă rezoluție (PNG, DDS sau WebP) și permite fundalurile personalizate ale pachetului și OGG/WAV muzică și efecte sonore. Necesită un frontend care suportă XRGB8888 de ieșire.</value></data>
   <data name="Emulation.Option.fceumm.fceumm_hdpacks.Value.enabled"><value>Activat</value></data>
   <data name="Emulation.Option.fceumm.fceumm_hdpacks.Value.disabled"><value>Dezactivat</value></data>
@@ -2056,10 +2118,10 @@
   <data name="Emulation.Firmware.mesen2.Slot25"><value>Super Game Boy BIOS</value></data>
   <data name="Emulation.Emulator.nestopia.Description"><value>Emulează sistemele compatibile Nintendo cu Nestopia.</value></data>
   <data name="Emulation.Option.nestopia.nestopia_favored_system"><value>Sistem favorabil</value></data>
-  <data name="Emulation.Option.nestopia.nestopia_favored_system.Help"><value>Sistemul preferă imaginile care nu spun pe care le doresc. Imagini care spun, și imagini găsite în NstDatabase.xml fișier baza de date, sunt neafectate. Se aplică numai în timp ce "Force System" este setat pe 'Auto'. Necesită o repornire.</value></data>
+  <data name="Emulation.Option.nestopia.nestopia_favored_system.Help"><value>Sistemul preferă imaginile care nu spun pe care le doresc. Imagini care spun, și imagini găsite în NstDatabase.xml fișier baza de date.</value></data>
   <data name="Emulation.Option.nestopia.nestopia_favored_system.Value.famicom"><value>Famicom</value></data>
   <data name="Emulation.Option.nestopia.nestopia_force_system"><value>Sistem de forță</value></data>
-  <data name="Emulation.Option.nestopia.nestopia_force_system.Help"><value>Ignoră sistemul pe care imaginea îl cere și folosește-l pe acesta în schimb. Schimbarea acestei setări va reporni jocul.</value></data>
+  <data name="Emulation.Option.nestopia.nestopia_force_system.Help"><value>Ignoră sistemul pe care imaginea îl cere și folosește-l pe acesta în schimb.</value></data>
   <data name="Emulation.Option.nestopia.nestopia_force_system.Value.auto"><value>Automat</value></data>
   <data name="Emulation.Option.nestopia.nestopia_force_system.Value.famicom"><value>Famicom</value></data>
   <data name="Emulation.Option.nestopia.nestopia_fds_auto_insert"><value>Interfață automată FDS</value></data>
@@ -2309,7 +2371,10 @@
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_lcd_interlacing_brightnesss"><value>GBC LCD Interconectarea luminii</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_lcd_interlacing_brightnesss.Help"><value>Reglează intensitatea efectului de interconectare. Păstrați această valoare scăzută atunci când nu se utilizează umbritori. Se recomandă valori mai mari atunci când sunt combinate cu un umbritor pentru a face efectul vizibil.</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_RGB_SubPixel_Simulation"><value>GBC LCD RGB Factorul de scalare subpixel</value></data>
-  <data name="Emulation.Option.doublecherrygb.dcgb_gbc_RGB_SubPixel_Simulation.Help"><value>Simulează subpixelii fizici GBC prin upscaling și înlocuirea fiecărui pixel de culoare cu componentele corespunzătoare RGB.&#xA;&#xA;Pentru cele mai bune rezultate:&#xA;- Activați "Integer Scaling" în RetroArch (Settings -&gt; Video - &gt; Scalare).&#xA;- O repornire a miezului poate fi necesară după schimbarea acestei setări.</value></data>
+  <data name="Emulation.Option.doublecherrygb.dcgb_gbc_RGB_SubPixel_Simulation.Help"><value>Simulează subpixelii fizici GBC prin upscaling și înlocuirea fiecărui pixel de culoare cu componentele corespunzătoare RGB.
+
+Pentru cele mai bune rezultate:
+- Activați "Integer Scaling" în RetroArch (Settings -&gt; Video - &gt; Scalare).</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_RGB_SubPixel_Simulation.Value.1"><value>Dezactivat</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_LCD_blur"><value>Ceaţă LCD GBC</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_LCD_blur.Help"><value>Aplică un efect înceţoşat. Această setare este extrem de CPU-intensivă. Opreste-l pe hardware mai slab sau foloseste in schimb nuante.</value></data>
@@ -2568,7 +2633,7 @@
   <data name="Emulation.Firmware.gambatte.Slot0"><value>Game Boy BIOS</value></data>
   <data name="Emulation.Firmware.gambatte.Slot1"><value>Game Boy Color BIOS</value></data>
   <data name="Emulation.Emulator.gearboy.Description"><value>Emulează sisteme compatibile Nintendo cu GearBoy.</value></data>
-  <data name="Emulation.Option.gearboy.gearboy_barcode_boy"><value>Modul băiatului cu cod de bare (repornire)</value></data>
+  <data name="Emulation.Option.gearboy.gearboy_barcode_boy"><value>Modul băiatului cu cod de bare</value></data>
   <data name="Emulation.Option.gearboy.gearboy_barcode_boy.Help"><value>Ataşează automat Barcode Boy la jocuri recunoscute de ROM CRC. Suporturi activate nerecunoscute sau patch-uri ROM. Modul Game Link rezervă portul serial și dezactivează Barcode Boy.</value></data>
   <data name="Emulation.Option.gearboy.gearboy_barcode_boy.Value.Auto"><value>Automat</value></data>
   <data name="Emulation.Option.gearboy.gearboy_barcode_boy.Value.Disabled"><value>Dezactivat</value></data>
@@ -2636,10 +2701,10 @@
   <data name="Emulation.Option.gearboy.gearboy_barcode_digit_12.Help"><value>Digit 12 din codul de bare 13 cifre personalizat, de la stânga la dreapta. Selectaţi Custom, setaţi toate cifrele, apoi apăsaţi Scan Barcode (RetroPad R).</value></data>
   <data name="Emulation.Option.gearboy.gearboy_barcode_digit_13"><value>Cod de bare Boy Personalizat Digit 13</value></data>
   <data name="Emulation.Option.gearboy.gearboy_barcode_digit_13.Help"><value>Digit 13 din codul de bare personalizat 13 cifre, de la stânga la dreapta. Selectaţi Custom, setaţi toate cifrele, apoi apăsaţi Scan Barcode (RetroPad R).</value></data>
-  <data name="Emulation.Option.gearboy.gearboy_model"><value>Game Boy Model (repornire)</value></data>
+  <data name="Emulation.Option.gearboy.gearboy_model"><value>Game Boy Model</value></data>
   <data name="Emulation.Option.gearboy.gearboy_model.Help"><value>Selectați modelul hardware care este emulat. "Auto" selectează automat cel mai bun model bazat pe antetul încărcat ROM. 'Game Boy DMG' forțe originale Game Boy hardware. ' Game Boy Advance' forțe de mod Game Boy Advance, ceea ce permite diferențe minore de hardware prezente la rularea Game Boy jocuri pe un sistem deGBA.</value></data>
   <data name="Emulation.Option.gearboy.gearboy_model.Value.Auto"><value>Automat</value></data>
-  <data name="Emulation.Option.gearboy.gearboy_mapper"><value>Maper (repornire)</value></data>
+  <data name="Emulation.Option.gearboy.gearboy_mapper"><value>Maper</value></data>
   <data name="Emulation.Option.gearboy.gearboy_mapper.Help"><value>Selectaţi ce Controller de Memorie Bank (MBC sau maper) este emulat. 'Auto' selectează automat cel mai bun MBC bazat pe antetul ROM. Utilizați selecția manuală numai dacă un joc are probleme cu detectarea automată.</value></data>
   <data name="Emulation.Option.gearboy.gearboy_mapper.Value.Auto"><value>Automat</value></data>
   <data name="Emulation.Option.gearboy.gearboy_mapper.Value.ROM Only"><value>Numai ROM</value></data>
@@ -2654,7 +2719,7 @@
   <data name="Emulation.Option.gearboy.gearboy_mapper.Value.Sintax"><value>Sintaxă</value></data>
   <data name="Emulation.Option.gearboy.gearboy_mapper.Value.NT old 1"><value>Vechi NT 1</value></data>
   <data name="Emulation.Option.gearboy.gearboy_mapper.Value.NT old 2"><value>Vechiul NT 2</value></data>
-  <data name="Emulation.Option.gearboy.gearboy_sgb"><value>Super Game Boy (repornire)</value></data>
+  <data name="Emulation.Option.gearboy.gearboy_sgb"><value>Super Game Boy</value></data>
   <data name="Emulation.Option.gearboy.gearboy_sgb.Help"><value>Când este activat, ROM-urile compatibile vor rula în modul Super Game Boy. Când sunt dezactivate, ROM-urile compatibile cu SGB vor rula ca jocuri standard Game Boy (DMG).</value></data>
   <data name="Emulation.Option.gearboy.gearboy_sgb.Value.Enabled"><value>Activat</value></data>
   <data name="Emulation.Option.gearboy.gearboy_sgb.Value.Disabled"><value>Dezactivat</value></data>
@@ -2662,11 +2727,11 @@
   <data name="Emulation.Option.gearboy.gearboy_sgb_border.Help"><value>Când este activat, frontiera Super Game Boy este afișată în jurul ecranului de joc (256x224). Când sunt dezactivate, este afișat doar ecranul de joc (160x144).</value></data>
   <data name="Emulation.Option.gearboy.gearboy_sgb_border.Value.Enabled"><value>Activat</value></data>
   <data name="Emulation.Option.gearboy.gearboy_sgb_border.Value.Disabled"><value>Dezactivat</value></data>
-  <data name="Emulation.Option.gearboy.gearboy_bootrom_dmg"><value>DMG Bootrom (repornire)</value></data>
+  <data name="Emulation.Option.gearboy.gearboy_bootrom_dmg"><value>DMG Bootrom</value></data>
   <data name="Emulation.Option.gearboy.gearboy_bootrom_dmg.Help"><value>Activați sau dezactivați bootrom-ul original Game Boy (DMG). Atunci când este activat, bootrom-ul va executa la pornire exact ca pe hardware-ul real, arătând animația defilare a logo-ului Nintendo. Fișierul 'dmg_boot.bin' trebuie să fie prezent în directorul de sistem al RetroArch.</value></data>
   <data name="Emulation.Option.gearboy.gearboy_bootrom_dmg.Value.Disabled"><value>Dezactivat</value></data>
   <data name="Emulation.Option.gearboy.gearboy_bootrom_dmg.Value.Enabled"><value>Activat</value></data>
-  <data name="Emulation.Option.gearboy.gearboy_bootrom_gbc"><value>GBC Bootrom (repornire)</value></data>
+  <data name="Emulation.Option.gearboy.gearboy_bootrom_gbc"><value>GBC Bootrom</value></data>
   <data name="Emulation.Option.gearboy.gearboy_bootrom_gbc.Help"><value>Activează sau dezactivează bootrom-ul Game Boy Color. Când este activat, bootrom-ul va executa la pornire exact ca pe hardware real, arătând animația de boot Game Boy Color. Fișierul 'cgb_boot.bin' trebuie să fie prezent în directorul de sistem al RetroArch.</value></data>
   <data name="Emulation.Option.gearboy.gearboy_bootrom_gbc.Value.Disabled"><value>Dezactivat</value></data>
   <data name="Emulation.Option.gearboy.gearboy_bootrom_gbc.Value.Enabled"><value>Activat</value></data>
@@ -2730,7 +2795,7 @@
   <data name="Emulation.Option.gearboy.gearboy_up_down_allowed.Help"><value>Permite apăsarea, alternarea rapidă sau menținerea în același timp a direcțiilor stânga și dreapta (sau sus și jos). Acest lucru poate provoca erori bazate pe mișcare în anumite jocuri. Cel mai bine e să păstrăm această opţiune dezactivată.</value></data>
   <data name="Emulation.Option.gearboy.gearboy_up_down_allowed.Value.Disabled"><value>Dezactivat</value></data>
   <data name="Emulation.Option.gearboy.gearboy_up_down_allowed.Value.Enabled"><value>Activat</value></data>
-  <data name="Emulation.Option.gearboy.gearboy_link_enable"><value>Cablu de legătură joc activat (repornire)</value></data>
+  <data name="Emulation.Option.gearboy.gearboy_link_enable"><value>Cablu de legătură joc activat</value></data>
   <data name="Emulation.Option.gearboy.gearboy_link_enable.Help"><value>Rulează două sisteme Game Boy conectate. Încărcarea unui ROM rulează o copie separată pe fiecare ecran; utilizați subsistemul 2 Player Game Boy Link pentru a încărca două ROM-uri diferite. Porturile de control 1 şi 2 ecrane de control1 şi 2. Modul Super Game Boy este dezactivat atunci când se leagă.</value></data>
   <data name="Emulation.Option.gearboy.gearboy_link_enable.Value.Enabled"><value>Activat</value></data>
   <data name="Emulation.Option.gearboy.gearboy_link_enable.Value.Disabled"><value>Dezactivat</value></data>
@@ -2829,7 +2894,7 @@
   <data name="Emulation.Option.nside_sfc_balanced.higan_sfc_color_emulation"><value>Imitarea culorilor</value></data>
   <data name="Emulation.Option.nside_sfc_balanced.higan_sfc_blur_emulation"><value>Emulare încețoșată</value></data>
   <data name="Emulation.Option.nside_sfc_balanced.higan_sfc_scanline_emulation"><value>Emulare scanată</value></data>
-  <data name="Emulation.Option.nside_sfc_balanced.higan_sfc_sgb_bios"><value>Super GameBoy BIOS preferat (restart)</value></data>
+  <data name="Emulation.Option.nside_sfc_balanced.higan_sfc_sgb_bios"><value>Super GameBoy BIOS preferat</value></data>
   <data name="Emulation.Firmware.nside_sfc_balanced.Slot0"><value>Firmware extern</value></data>
   <data name="Emulation.Firmware.nside_sfc_balanced.Slot1"><value>Firmware extern</value></data>
   <data name="Emulation.Firmware.nside_sfc_balanced.Slot2"><value>Firmware extern</value></data>
@@ -2852,14 +2917,14 @@
   <data name="Emulation.Firmware.nside_sfc_balanced.Slot19"><value>SGB Boot BIOS</value></data>
   <data name="Emulation.Firmware.nside_sfc_balanced.Slot20"><value>Imagine SGB Boot</value></data>
   <data name="Emulation.Emulator.sameboy.Description"><value>Emulează sisteme compatibile Nintendo cu SameBoy.</value></data>
-  <data name="Emulation.Option.sameboy.sameboy_model"><value>Sistem - Model emulat (Requires Restart)</value></data>
-  <data name="Emulation.Option.sameboy.sameboy_model.Help"><value>Alegeți modelul de sistem pe care trebuie pornit conținutul. Anumite jocuri pot activa caracteristici speciale în joc atunci când rulează pe modele specifice. Această opțiune necesită o repornire a conținutului pentru a intra în vigoare.</value></data>
+  <data name="Emulation.Option.sameboy.sameboy_model"><value>Sistem - Model emulat</value></data>
+  <data name="Emulation.Option.sameboy.sameboy_model.Help"><value>Alegeți modelul de sistem pe care trebuie pornit conținutul. Anumite jocuri pot activa caracteristici speciale în joc atunci când rulează pe modele specifice.</value></data>
   <data name="Emulation.Option.sameboy.sameboy_model.Value.Auto"><value>Detectează automat DMG/CGB</value></data>
   <data name="Emulation.Option.sameboy.sameboy_model.Value.Auto (SGB)"><value>Detectează automat DMG/SGB/CGB</value></data>
   <data name="Emulation.Option.sameboy.sameboy_model.Value.Game Boy Pocket"><value>Game Boy Buzunar/Lumina</value></data>
   <data name="Emulation.Option.sameboy.sameboy_model.Value.Game Boy Player"><value>Game Boy Jucător (CPU AGB A)</value></data>
-  <data name="Emulation.Option.sameboy.sameboy_auto_sgb_model"><value>Sistem - Autodetectat SGB Model (Requires Restart)</value></data>
-  <data name="Emulation.Option.sameboy.sameboy_auto_sgb_model.Help"><value>Specifică ce model de hardware Super Game Boy pentru a emula atunci când conținutul SGB este detectat automat. Această opțiune necesită o repornire a conținutului pentru a intra în vigoare.</value></data>
+  <data name="Emulation.Option.sameboy.sameboy_auto_sgb_model"><value>Sistem - Autodetectat SGB Model</value></data>
+  <data name="Emulation.Option.sameboy.sameboy_auto_sgb_model.Help"><value>Specifică ce model de hardware Super Game Boy pentru a emula atunci când conținutul SGB este detectat automat.</value></data>
   <data name="Emulation.Option.sameboy.sameboy_mono_palette"><value>Video - GB Mono Palette</value></data>
   <data name="Emulation.Option.sameboy.sameboy_mono_palette.Help"><value>Selectează paleta de culori care trebuie folosită atunci când se joacă jocuri Game Boy.</value></data>
   <data name="Emulation.Option.sameboy.sameboy_mono_palette.Value.greyscale"><value>Scală gri</value></data>
@@ -2901,22 +2966,22 @@
   <data name="Emulation.Option.sameboy.sameboy_link.Help"><value>Activează emularea cablului de legătură, permițând comunicarea și schimbul de date între două sisteme Game Boy.</value></data>
   <data name="Emulation.Option.sameboy.sameboy_link.Value.enabled"><value>Activat</value></data>
   <data name="Emulation.Option.sameboy.sameboy_link.Value.disabled"><value>Dezactivat</value></data>
-  <data name="Emulation.Option.sameboy.sameboy_model_1"><value>Sistem - Model emulat pentru Game Boy # 1 (Requires Restart)</value></data>
-  <data name="Emulation.Option.sameboy.sameboy_model_1.Help"><value>Alege care model de sistem conținutul ar trebui să fie pornit pentru Game Boy # 1. Anumite jocuri pot activa caracteristici speciale în joc atunci când rulează pe modele specifice. Această opțiune necesită o repornire a conținutului pentru a intra în vigoare.</value></data>
+  <data name="Emulation.Option.sameboy.sameboy_model_1"><value>Sistem - Model emulat pentru Game Boy # 1</value></data>
+  <data name="Emulation.Option.sameboy.sameboy_model_1.Help"><value>Alege care model de sistem conținutul ar trebui să fie pornit pentru Game Boy # 1. Anumite jocuri pot activa caracteristici speciale în joc atunci când rulează pe modele specifice.</value></data>
   <data name="Emulation.Option.sameboy.sameboy_model_1.Value.Auto"><value>Detectează automat DMG/CGB</value></data>
   <data name="Emulation.Option.sameboy.sameboy_model_1.Value.Auto (SGB)"><value>Detectează automat DMG/SGB/CGB</value></data>
   <data name="Emulation.Option.sameboy.sameboy_model_1.Value.Game Boy Pocket"><value>Game Boy Buzunar/Lumina</value></data>
   <data name="Emulation.Option.sameboy.sameboy_model_1.Value.Game Boy Player"><value>Game Boy Jucător (CPU AGB A)</value></data>
-  <data name="Emulation.Option.sameboy.sameboy_auto_sgb_model_1"><value>Sistem - Autodetectat SGB Model pentru Game Boy # 1 (Requires Restart)</value></data>
-  <data name="Emulation.Option.sameboy.sameboy_auto_sgb_model_1.Help"><value>Specifică ce model de hardware Super Game Boy să emuleze atunci când conţinutul SGB este detectat automat pentru Game Boy #1. Această opțiune necesită o repornire a conținutului pentru a intra în vigoare.</value></data>
-  <data name="Emulation.Option.sameboy.sameboy_model_2"><value>Sistem - Model emulat pentru Game Boy # 2 (Requires Restart)</value></data>
-  <data name="Emulation.Option.sameboy.sameboy_model_2.Help"><value>Alege care model de sistem conținutul ar trebui să fie pornit pentru Game Boy #2. Anumite jocuri pot activa caracteristici speciale în joc atunci când rulează pe modele specifice. Această opțiune necesită o repornire a conținutului pentru a intra în vigoare.</value></data>
+  <data name="Emulation.Option.sameboy.sameboy_auto_sgb_model_1"><value>Sistem - Autodetectat SGB Model pentru Game Boy # 1</value></data>
+  <data name="Emulation.Option.sameboy.sameboy_auto_sgb_model_1.Help"><value>Specifică ce model de hardware Super Game Boy să emuleze atunci când conţinutul SGB este detectat automat pentru Game Boy #1.</value></data>
+  <data name="Emulation.Option.sameboy.sameboy_model_2"><value>Sistem - Model emulat pentru Game Boy # 2</value></data>
+  <data name="Emulation.Option.sameboy.sameboy_model_2.Help"><value>Alege care model de sistem conținutul ar trebui să fie pornit pentru Game Boy #2. Anumite jocuri pot activa caracteristici speciale în joc atunci când rulează pe modele specifice.</value></data>
   <data name="Emulation.Option.sameboy.sameboy_model_2.Value.Auto"><value>Detectează automat DMG/CGB</value></data>
   <data name="Emulation.Option.sameboy.sameboy_model_2.Value.Auto (SGB)"><value>Detectează automat DMG/SGB/CGB</value></data>
   <data name="Emulation.Option.sameboy.sameboy_model_2.Value.Game Boy Pocket"><value>Game Boy Buzunar/Lumina</value></data>
   <data name="Emulation.Option.sameboy.sameboy_model_2.Value.Game Boy Player"><value>Game Boy Jucător (CPU AGB A)</value></data>
-  <data name="Emulation.Option.sameboy.sameboy_auto_sgb_model_2"><value>Sistem - Autodetectat SGB Model pentru Game Boy # 2 (Requires Restart)</value></data>
-  <data name="Emulation.Option.sameboy.sameboy_auto_sgb_model_2.Help"><value>Specifică ce model de hardware Super Game Boy pentru a emula atunci când conţinutul SGB este detectat automat pentru Game Boy #2. Această opțiune necesită o repornire a conținutului pentru a intra în vigoare.</value></data>
+  <data name="Emulation.Option.sameboy.sameboy_auto_sgb_model_2"><value>Sistem - Autodetectat SGB Model pentru Game Boy # 2</value></data>
+  <data name="Emulation.Option.sameboy.sameboy_auto_sgb_model_2.Help"><value>Specifică ce model de hardware Super Game Boy pentru a emula atunci când conţinutul SGB este detectat automat pentru Game Boy #2.</value></data>
   <data name="Emulation.Option.sameboy.sameboy_screen_layout"><value>Aranjament video - ecran</value></data>
   <data name="Emulation.Option.sameboy.sameboy_screen_layout.Help"><value>Atunci când emulează două sisteme simultan, această opțiune definește poziția respectivă a celor două ecrane.</value></data>
   <data name="Emulation.Option.sameboy.sameboy_screen_layout.Value.top-down"><value>Top-Down</value></data>
@@ -3011,10 +3076,10 @@
   <data name="Emulation.Option.tgbdual.tgbdual_audio_output"><value>Ieșire audio</value></data>
   <data name="Emulation.Option.tgbdual.tgbdual_audio_output.Value.Both (mixed)"><value>Ambele (amestecate)</value></data>
   <data name="Emulation.Emulator.mednafen_gba.Description"><value>Emulează sistemele Nintendo compatibile cu Beetle GBA.</value></data>
-  <data name="Emulation.Option.mednafen_gba.gba_hle"><value>HLE bios emulation (Repornire)</value></data>
+  <data name="Emulation.Option.mednafen_gba.gba_hle"><value>HLE bios emulation</value></data>
   <data name="Emulation.Option.mednafen_gba.gba_hle.Value.enabled"><value>Activat</value></data>
   <data name="Emulation.Option.mednafen_gba.gba_hle.Value.disabled"><value>Dezactivat</value></data>
-  <data name="Emulation.Option.mednafen_gba.gba_use_mednafen_save_method"><value>Metoda de salvare (Repornire)</value></data>
+  <data name="Emulation.Option.mednafen_gba.gba_use_mednafen_save_method"><value>Metoda de salvare</value></data>
   <data name="Emulation.Option.mednafen_gba.gba_use_mednafen_save_method.Value.mednafen"><value>mednafen</value></data>
   <data name="Emulation.Option.mednafen_gba.gba_use_mednafen_save_method.Value.libretro"><value>libretro</value></data>
   <data name="Emulation.Firmware.mednafen_gba.Slot0"><value>Game Boy Advance BIOS</value></data>
@@ -3082,14 +3147,14 @@
   <data name="Emulation.Option.gpsp.gpsp_turbo_period.Help"><value>Se specifică intervalul de repetare (în cadre) atunci când țineți apăsat butoanele Turbo A/B.</value></data>
   <data name="Emulation.Firmware.gpsp.Slot0"><value>Game Boy Advance BIOS</value></data>
   <data name="Emulation.Emulator.meteor.Description"><value>Emulează sistemele compatibile Nintendo cu Meteor.</value></data>
-  <data name="Emulation.Option.mgba.mgba_gb_model"><value>Game Boy Model (Repornire)</value></data>
+  <data name="Emulation.Option.mgba.mgba_gb_model"><value>Game Boy Model</value></data>
   <data name="Emulation.Option.mgba.mgba_gb_model.Help"><value>Rulează conținut încărcat cu un anumit model Game Boy. "Autodetect" va selecta modelul cel mai potrivit pentru jocul curent.</value></data>
   <data name="Emulation.Option.mgba.mgba_gb_model.Value.Autodetect"><value>Autodetectează</value></data>
-  <data name="Emulation.Option.mgba.mgba_use_bios"><value>Folosește fișierul BIOS dacă este găsit (Repornire)</value></data>
+  <data name="Emulation.Option.mgba.mgba_use_bios"><value>Folosește fișierul BIOS dacă este găsit</value></data>
   <data name="Emulation.Option.mgba.mgba_use_bios.Help"><value>Utilizați BIOS oficial / Bootloader pentru hardware emulat, dacă sunt prezente în directorul de sistem RetroArch lui.</value></data>
   <data name="Emulation.Option.mgba.mgba_use_bios.Value.ON"><value>Activat</value></data>
   <data name="Emulation.Option.mgba.mgba_use_bios.Value.OFF"><value>Dezactivat</value></data>
-  <data name="Emulation.Option.mgba.mgba_skip_bios"><value>Skip BIOS Intro (Repornire)</value></data>
+  <data name="Emulation.Option.mgba.mgba_skip_bios"><value>Skip BIOS Intro</value></data>
   <data name="Emulation.Option.mgba.mgba_skip_bios.Help"><value>Atunci când utilizați un BIOS oficial / Bootloader, săriți animația logo-ului start-up. Această setare este ignorat atunci când "Folosiți fișierul BIOS dacă a fost găsit" este dezactivat.</value></data>
   <data name="Emulation.Option.mgba.mgba_skip_bios.Value.OFF"><value>Dezactivat</value></data>
   <data name="Emulation.Option.mgba.mgba_skip_bios.Value.ON"><value>Activat</value></data>
@@ -3111,13 +3176,13 @@
   <data name="Emulation.Option.mgba.mgba_gb_colors.Value.GBC Green →"><value>GBC Verde →</value></data>
   <data name="Emulation.Option.mgba.mgba_gb_colors.Value.GBC Dark Green →A"><value>GBC Verde închis →A</value></data>
   <data name="Emulation.Option.mgba.mgba_gb_colors.Value.GBC Reverse →B"><value>GBC Reverse →B</value></data>
-  <data name="Emulation.Option.mgba.mgba_gb_colors_preset"><value>Hardware Preset Game Boy Palettes (Repornire)</value></data>
+  <data name="Emulation.Option.mgba.mgba_gb_colors_preset"><value>Hardware Preset Game Boy Palettes</value></data>
   <data name="Emulation.Option.mgba.mgba_gb_colors_preset.Help"><value>Utilizați paletele pentru Game Boy jocuri care au presetate pe Game Boy Color sau Super Game Boy.</value></data>
   <data name="Emulation.Option.mgba.mgba_gb_colors_preset.Value.0"><value>Preset implicit Game Boy</value></data>
   <data name="Emulation.Option.mgba.mgba_gb_colors_preset.Value.1"><value>Doar presetări Game Boy Color</value></data>
   <data name="Emulation.Option.mgba.mgba_gb_colors_preset.Value.2"><value>Numai Super Game Boy presetează</value></data>
   <data name="Emulation.Option.mgba.mgba_gb_colors_preset.Value.3"><value>Orice presetări disponibile</value></data>
-  <data name="Emulation.Option.mgba.mgba_sgb_borders"><value>Folosește Super Game Boy Borders (Repornire)</value></data>
+  <data name="Emulation.Option.mgba.mgba_sgb_borders"><value>Folosește Super Game Boy Borders</value></data>
   <data name="Emulation.Option.mgba.mgba_sgb_borders.Help"><value>Afișează Super Game Boy frontiere atunci când rulează super Game Boy jocuri îmbunătățite.</value></data>
   <data name="Emulation.Option.mgba.mgba_sgb_borders.Value.ON"><value>Activat</value></data>
   <data name="Emulation.Option.mgba.mgba_sgb_borders.Value.OFF"><value>Dezactivat</value></data>
@@ -3145,7 +3210,7 @@
   <data name="Emulation.Option.mgba.mgba_solar_sensor_level"><value>Nivelul senzorilor solari</value></data>
   <data name="Emulation.Option.mgba.mgba_solar_sensor_level.Help"><value>Setează intensitatea ambientală a soarelui. Poate fi folosit de jocuri care au inclus un senzor solar în cartușele lor, e.g: seria Boktai.</value></data>
   <data name="Emulation.Option.mgba.mgba_solar_sensor_level.Value.sensor"><value>Utilizați senzorul dispozitivului dacă este disponibil</value></data>
-  <data name="Emulation.Option.mgba.mgba_force_gbp"><value>Game Boy Player Rumble (Repornire)</value></data>
+  <data name="Emulation.Option.mgba.mgba_force_gbp"><value>Game Boy Player Rumble</value></data>
   <data name="Emulation.Option.mgba.mgba_force_gbp.Help"><value>Activarea acestui lucru va permite jocuri compatibile cu logo-ul de boot Game Boy Player pentru a face rumble controler. Datorită modului în care Nintendo a decis că această caracteristică ar trebui să funcționeze, aceasta poate provoca erori cum ar fi pâlpâirea sau lag în unele dintre aceste jocuri.</value></data>
   <data name="Emulation.Option.mgba.mgba_force_gbp.Value.OFF"><value>Dezactivat</value></data>
   <data name="Emulation.Option.mgba.mgba_force_gbp.Value.ON"><value>Activat</value></data>
@@ -3170,17 +3235,17 @@
   <data name="Emulation.Firmware.mgba.Slot3"><value>Super Game Boy BIOS</value></data>
   <data name="Emulation.Emulator.vbam.Description"><value>Emulează sisteme compatibile Nintendo cu VBA-M.</value></data>
   <data name="Emulation.Option.vbam.vbam_usebios"><value>Utilizați BIOS-ul oficial (dacă este disponibil)</value></data>
-  <data name="Emulation.Option.vbam.vbam_usebios.Help"><value>Utilizaţi BIOS oficial atunci când este disponibil. Trebuie să se repornească nucleul pentru ca modificările să poată fi aplicate.</value></data>
+  <data name="Emulation.Option.vbam.vbam_usebios.Help"><value>Utilizaţi BIOS oficial atunci când este disponibil.</value></data>
   <data name="Emulation.Option.vbam.vbam_usebios.Value.disabled"><value>Dezactivat</value></data>
   <data name="Emulation.Option.vbam.vbam_usebios.Value.enabled"><value>Activat</value></data>
   <data name="Emulation.Option.vbam.vbam_forceRTCenable"><value>Enable force RTC</value></data>
   <data name="Emulation.Option.vbam.vbam_forceRTCenable.Help"><value>Forțează ceasul intern în timp real să fie activat indiferent de rom. Util pentru patch-uri rom care necesită ceas pentru a fi activat (ex., Pokemon).</value></data>
   <data name="Emulation.Option.vbam.vbam_forceRTCenable.Value.disabled"><value>Dezactivat</value></data>
   <data name="Emulation.Option.vbam.vbam_forceRTCenable.Value.enabled"><value>Activat</value></data>
-  <data name="Emulation.Option.vbam.vbam_gbHardware"><value>(GB) Hardware emulat (necesită repornire)</value></data>
-  <data name="Emulation.Option.vbam.vbam_gbHardware.Help"><value>Setează tipul hardware Game Boy pentru a emula. Reporniți nucleul pentru a aplica.</value></data>
+  <data name="Emulation.Option.vbam.vbam_gbHardware"><value>(GB) Hardware emulat</value></data>
+  <data name="Emulation.Option.vbam.vbam_gbHardware.Help"><value>Setează tipul hardware Game Boy pentru a emula.</value></data>
   <data name="Emulation.Option.vbam.vbam_gbHardware.Value.auto"><value>Automat</value></data>
-  <data name="Emulation.Option.vbam.vbam_allowcolorizerhack"><value>(GB) Activați Colorizer Hack (nevoi repornire)</value></data>
+  <data name="Emulation.Option.vbam.vbam_allowcolorizerhack"><value>(GB) Activați Colorizer Hack</value></data>
   <data name="Emulation.Option.vbam.vbam_allowcolorizerhack.Help"><value>Permite Colorizer hacked GB jocuri (de exemplu, DX jocuri patch-uri) pentru a rula în mod normal, în tip hardware GBC/GBA. Acest lucru dezactivează, de asemenea, utilizarea fișierelor bio. NOT RECOMMENDED pentru utilizare la jocuri necolorate.</value></data>
   <data name="Emulation.Option.vbam.vbam_allowcolorizerhack.Value.disabled"><value>Dezactivat</value></data>
   <data name="Emulation.Option.vbam.vbam_allowcolorizerhack.Value.enabled"><value>Activat</value></data>
@@ -3296,11 +3361,11 @@
   <data name="Emulation.Firmware.vbam.Slot1"><value>Game Boy BIOS</value></data>
   <data name="Emulation.Firmware.vbam.Slot2"><value>Game Boy Color BIOS</value></data>
   <data name="Emulation.Emulator.vba_next.Description"><value>Emulează sistemele compatibile Nintendo cu VBA Next.</value></data>
-  <data name="Emulation.Option.vba_next.vbanext_bios"><value>Utilizați BIOS dacă este disponibil (Repornire)</value></data>
+  <data name="Emulation.Option.vba_next.vbanext_bios"><value>Utilizați BIOS dacă este disponibil</value></data>
   <data name="Emulation.Option.vba_next.vbanext_bios.Help"><value>Folosește BIOS prezent în directorul de sistem al RetroArch.</value></data>
   <data name="Emulation.Option.vba_next.vbanext_bios.Value.enabled"><value>Activat</value></data>
   <data name="Emulation.Option.vba_next.vbanext_bios.Value.disabled"><value>Dezactivat</value></data>
-  <data name="Emulation.Option.vba_next.vbanext_rtc"><value>RTC (Repornire)</value></data>
+  <data name="Emulation.Option.vba_next.vbanext_rtc"><value>RTC</value></data>
   <data name="Emulation.Option.vba_next.vbanext_rtc.Help"><value>Controls Real-Time Clock emulation. 'auto' foloseste lista de suprascriere per-ROM. 'enabled' forces RTC on pentru orice ROM (folositor pentru hacks ROM care au nevoie de RTC fără o suprascriere de potrivire). "dezactivat" forțe RTC off, imperativ lista de anulare.</value></data>
   <data name="Emulation.Option.vba_next.vbanext_rtc.Value.auto"><value>Automat</value></data>
   <data name="Emulation.Option.vba_next.vbanext_rtc.Value.enabled"><value>Activat</value></data>
@@ -3325,11 +3390,11 @@
   <data name="Emulation.Option.dolphin.dolphin_emulation_speed.Value.1.0"><value>100% (viteza normală)</value></data>
   <data name="Emulation.Option.dolphin.dolphin_emulation_speed.Value.0.0"><value>Nelimitat</value></data>
   <data name="Emulation.Option.dolphin.dolphin_main_cpu_thread"><value>Central &gt; Mod de bază dual</value></data>
-  <data name="Emulation.Option.dolphin.dolphin_main_cpu_thread.Help"><value>Activează emulaţia dual-core CPU. Necesită nucleul RESTART.</value></data>
+  <data name="Emulation.Option.dolphin.dolphin_main_cpu_thread.Help"><value>Activează emulaţia dual-core CPU.</value></data>
   <data name="Emulation.Option.dolphin.dolphin_main_cpu_thread.Value.disabled"><value>Dezactivat</value></data>
   <data name="Emulation.Option.dolphin.dolphin_main_cpu_thread.Value.enabled"><value>Activat</value></data>
   <data name="Emulation.Option.dolphin.dolphin_main_load_game_into_memory"><value>Core &gt; Încarcă întregul joc în memorie</value></data>
-  <data name="Emulation.Option.dolphin.dolphin_main_load_game_into_memory.Help"><value>Încărcaţi întregul joc în memorie. Necesită nucleul RESTART.</value></data>
+  <data name="Emulation.Option.dolphin.dolphin_main_load_game_into_memory.Help"><value>Încărcaţi întregul joc în memorie.</value></data>
   <data name="Emulation.Option.dolphin.dolphin_main_load_game_into_memory.Value.disabled"><value>Dezactivat</value></data>
   <data name="Emulation.Option.dolphin.dolphin_main_load_game_into_memory.Value.enabled"><value>Activat</value></data>
   <data name="Emulation.Option.dolphin.dolphin_precision_frame_timing"><value>Core &gt; Sincronizarea cadrului de precizie</value></data>
@@ -3349,7 +3414,7 @@
   <data name="Emulation.Option.dolphin.dolphin_main_accurate_cpu_cache.Value.disabled"><value>Dezactivat</value></data>
   <data name="Emulation.Option.dolphin.dolphin_main_accurate_cpu_cache.Value.enabled"><value>Activat</value></data>
   <data name="Emulation.Option.dolphin.dolphin_cheats_enabled"><value>Central &gt; Trucuri interne</value></data>
-  <data name="Emulation.Option.dolphin.dolphin_cheats_enabled.Help"><value>Activează codurile de înșelăciune încorporate. Reporniţi nucleul pentru a-şi face efectul.</value></data>
+  <data name="Emulation.Option.dolphin.dolphin_cheats_enabled.Help"><value>Activează codurile de înșelăciune încorporate.</value></data>
   <data name="Emulation.Option.dolphin.dolphin_cheats_enabled.Value.disabled"><value>Dezactivat</value></data>
   <data name="Emulation.Option.dolphin.dolphin_cheats_enabled.Value.enabled"><value>Activat</value></data>
   <data name="Emulation.Option.dolphin.dolphin_skip_gc_bios"><value>Nucleu &gt; Sari GameCube BIOS</value></data>
@@ -3467,7 +3532,7 @@
   <data name="Emulation.Option.dolphin.dolphin_gc_sp1.Value.13"><value>Modem TapServer</value></data>
   <data name="Emulation.Option.dolphin.dolphin_gc_sp1.Value.6"><value>Tablou de bază</value></data>
   <data name="Emulation.Option.dolphin.dolphin_enable_gamecube_mic"><value>Configurare sistem (GC) &gt; Microfon GameCube</value></data>
-  <data name="Emulation.Option.dolphin.dolphin_enable_gamecube_mic.Help"><value>Emulează accesoriul oficial al microfonului GameCube. Reporniți nucleul după schimbarea acestei opțiuni.</value></data>
+  <data name="Emulation.Option.dolphin.dolphin_enable_gamecube_mic.Help"><value>Emulează accesoriul oficial al microfonului GameCube.</value></data>
   <data name="Emulation.Option.dolphin.dolphin_enable_gamecube_mic.Value.disabled"><value>Dezactivat</value></data>
   <data name="Emulation.Option.dolphin.dolphin_enable_gamecube_mic.Value.enabled"><value>Activat</value></data>
   <data name="Emulation.Option.dolphin.dolphin_hotkey_activate_microphone"><value>Configurare sistem (GC) &gt; Buton microfon</value></data>
@@ -3508,7 +3573,7 @@
   <data name="Emulation.Option.dolphin.dolphin_bluetooth_passthrough.Value.disabled"><value>Dezactivat</value></data>
   <data name="Emulation.Option.dolphin.dolphin_bluetooth_passthrough.Value.enabled"><value>Activat</value></data>
   <data name="Emulation.Option.dolphin.dolphin_wiispeak_enable"><value>Configurare sistem &gt; Wii Speak</value></data>
-  <data name="Emulation.Option.dolphin.dolphin_wiispeak_enable.Help"><value>Emite microfonul Wii Speak. Reporniţi la schimbarea acestei opţiuni.</value></data>
+  <data name="Emulation.Option.dolphin.dolphin_wiispeak_enable.Help"><value>Emite microfonul Wii Speak.</value></data>
   <data name="Emulation.Option.dolphin.dolphin_wiispeak_enable.Value.disabled"><value>Dezactivat</value></data>
   <data name="Emulation.Option.dolphin.dolphin_wiispeak_enable.Value.enabled"><value>Activat</value></data>
   <data name="Emulation.Option.dolphin.dolphin_wiispeak_muted"><value>Audio &gt; Dispozitive &gt; Wii Speak Muted</value></data>
@@ -3516,7 +3581,7 @@
   <data name="Emulation.Option.dolphin.dolphin_wiispeak_muted.Value.disabled"><value>Dezactivat</value></data>
   <data name="Emulation.Option.dolphin.dolphin_wiispeak_muted.Value.enabled"><value>Activat</value></data>
   <data name="Emulation.Option.dolphin.dolphin_wii_logi_microphone_enable"><value>Configurare sistem &gt; Microfon USB Logitech</value></data>
-  <data name="Emulation.Option.dolphin.dolphin_wii_logi_microphone_enable.Help"><value>Emulează microfonul USB Logitech. Reporniţi la schimbarea acestei opţiuni.</value></data>
+  <data name="Emulation.Option.dolphin.dolphin_wii_logi_microphone_enable.Help"><value>Emulează microfonul USB Logitech.</value></data>
   <data name="Emulation.Option.dolphin.dolphin_wii_logi_microphone_enable.Value.disabled"><value>Dezactivat</value></data>
   <data name="Emulation.Option.dolphin.dolphin_wii_logi_microphone_enable.Value.enabled"><value>Activat</value></data>
   <data name="Emulation.Option.dolphin.dolphin_renderer"><value>Grafică &gt; Setări &gt; Platforma grafică</value></data>
@@ -3744,7 +3809,7 @@
   <data name="Emulation.Option.dolphin.dolphin_swing_angle.Help"><value>Rotație aplicată la extremitățile unui leagăn (1-180°).</value></data>
   <data name="Emulation.Option.dolphin.dolphin_swing_angle.Value.90"><value>90° (Default)</value></data>
   <data name="Emulation.Option.dolphin.dolphin_cheats_import"><value>RetroArch Core &gt; Import automat Trucuri în RetroArh</value></data>
-  <data name="Emulation.Option.dolphin.dolphin_cheats_import.Help"><value>Importă fișiere dolphin ini în RetroArch. Reporniţi nucleul pentru a-şi face efectul.</value></data>
+  <data name="Emulation.Option.dolphin.dolphin_cheats_import.Help"><value>Importă fișiere dolphin ini în RetroArch.</value></data>
   <data name="Emulation.Option.dolphin.dolphin_cheats_import.Value.disabled"><value>Dezactivat</value></data>
   <data name="Emulation.Option.dolphin.dolphin_cheats_import.Value.enabled"><value>Activat</value></data>
   <data name="Emulation.Option.dolphin.dolphin_save_load_settings"><value>RetroArch core &gt; Încarcă și previne configurările de salvare</value></data>
@@ -3756,7 +3821,7 @@
   <data name="Emulation.Option.dolphin.dolphin_ir_passthrough.Value.disabled"><value>Dezactivat</value></data>
   <data name="Emulation.Option.dolphin.dolphin_ir_passthrough.Value.enabled"><value>Activat</value></data>
   <data name="Emulation.Option.dolphin.dolphin_libretro_vfs_enabled"><value>RetroArch core &gt; Activați sistemul de fișiere virtuale (VFS)</value></data>
-  <data name="Emulation.Option.dolphin.dolphin_libretro_vfs_enabled.Help"><value>Activează VFS pentru SAF/SMB etc. Necesită nucleul RESTART. Această caracteristică este NEW and EXPERIMENTAL. Backup salvează în mod regulat.</value></data>
+  <data name="Emulation.Option.dolphin.dolphin_libretro_vfs_enabled.Help"><value>Activează VFS pentru SAF/SMB etc. Această caracteristică este NEW and EXPERIMENTAL. Backup salvează în mod regulat.</value></data>
   <data name="Emulation.Option.dolphin.dolphin_libretro_vfs_enabled.Value.disabled"><value>Dezactivat</value></data>
   <data name="Emulation.Option.dolphin.dolphin_libretro_vfs_enabled.Value.enabled"><value>Activat</value></data>
   <data name="Emulation.Option.dolphin.dolphin_default_mouse_bindings_enabled"><value>Nucleu RetroArch &gt; Activați legarea implicită a șoarecelui</value></data>
@@ -3764,7 +3829,7 @@
   <data name="Emulation.Option.dolphin.dolphin_default_mouse_bindings_enabled.Value.disabled"><value>Dezactivat</value></data>
   <data name="Emulation.Option.dolphin.dolphin_default_mouse_bindings_enabled.Value.enabled"><value>Activat</value></data>
   <data name="Emulation.Option.dolphin.dolphin_dsu_enabled"><value>Wiimote (DSU) &gt; Activați clientul DSU</value></data>
-  <data name="Emulation.Option.dolphin.dolphin_dsu_enabled.Help"><value>Activează clientul DSU pentru datele de mișcare DualShock. Reporniţi nucleul pentru a-şi face efectul.</value></data>
+  <data name="Emulation.Option.dolphin.dolphin_dsu_enabled.Help"><value>Activează clientul DSU pentru datele de mișcare DualShock.</value></data>
   <data name="Emulation.Option.dolphin.dolphin_dsu_enabled.Value.disabled"><value>Dezactivat</value></data>
   <data name="Emulation.Option.dolphin.dolphin_dsu_enabled.Value.enabled"><value>Activat</value></data>
   <data name="Emulation.Option.dolphin.dolphin_dsu_ip_octet1"><value>dl Wiimote (DSU) &gt; Server IP Octet 1</value></data>
@@ -3987,13 +4052,13 @@
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-dither-filter.Help"><value>Allow VI filtru de-diter, recuperează adâncimea semnificativă a culorii.</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-dither-filter.Value.True"><value>Activat</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-dither-filter.Value.False"><value>Dezactivat</value></data>
-  <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-upscaling"><value>[ParaLLEL-RDP] Factor de creștere (repornire)</value></data>
+  <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-upscaling"><value>[ParaLLEL-RDP] Factor de creștere</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-upscaling.Help"><value>Aplicaţi factorul de creştere internă.</value></data>
-  <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-super-sampled-read-back"><value>(ParaLLEL-RDP) Efecte SSAA cadrubuffer (repornire)</value></data>
+  <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-super-sampled-read-back"><value>(ParaLLEL-RDP) Efecte SSAA cadrubuffer</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-super-sampled-read-back.Help"><value>Efecte super-proba de cadru. Poate introduce artefacte.</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-super-sampled-read-back.Value.False"><value>Dezactivat</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-super-sampled-read-back.Value.True"><value>Activat</value></data>
-  <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-super-sampled-read-back-dither"><value>(ParaLLEL-RDP) Efecte dither SSAA cadrubuffer (repornire)</value></data>
+  <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-super-sampled-read-back-dither"><value>(ParaLLEL-RDP) Efecte dither SSAA cadrubuffer</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-super-sampled-read-back-dither.Help"><value>Efecte diter super eșantion de cadrubuffer.</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-super-sampled-read-back-dither.Value.True"><value>Activat</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-super-sampled-read-back-dither.Value.False"><value>Dezactivat</value></data>
@@ -4103,7 +4168,7 @@
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-pak4.Value.rumble"><value>Rumble</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-pak4.Value.transfer"><value>transfer</value></data>
   <data name="Emulation.Emulator.parallel_n64.Description"><value>Emulează sistemele compatibile Nintendo cu ParaLLEl N64.</value></data>
-  <data name="Emulation.Option.parallel_n64.parallel-n64-upscaling"><value>Factor de creștere (repornire)</value></data>
+  <data name="Emulation.Option.parallel_n64.parallel-n64-upscaling"><value>Factor de creștere</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-upscaling.Help"><value>Render la un multiplu al rezoluţiei consolei. ParaLLEL-RDP onorează fiecare factor; Angilion redă până la 4x și tratează 8x ca 4x.</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-parallel-rdp-native-texture-lod"><value>Utilizați textura nativă LOD atunci când se upscaling</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-parallel-rdp-native-texture-lod.Help"><value>Alege nivelul de textura mip ca consola ar fi, de la o amprentă pixel consolă mai degrabă decât un pixeli upscaled. Fără ea un upscaled redă selectează niveluri mai ascuțite, și jocuri care folosesc nivelul ca un comutator arată imaginea greșită (pictura de la capătul coridorului castel în Super Mario 64). Onorată de ParallEl-RDP şi Angilion.</value></data>
@@ -4348,7 +4413,7 @@
   <data name="Emulation.Option.parallel_n64.parallel-n64-rspplugin.Value.hle"><value>hle</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-rspplugin.Value.parallel"><value>paralelă</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-screensize"><value>Rezoluţie</value></data>
-  <data name="Emulation.Option.parallel_n64.parallel-n64-screensize.Help"><value>Rezoluție (repornire)</value></data>
+  <data name="Emulation.Option.parallel_n64.parallel-n64-screensize.Help"><value>Rezoluție</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-aspectratiohint"><value>Indicii privind raportul de aspect</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-aspectratiohint.Help"><value>Indicii privind raportul de aspect (reinit)</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-aspectratiohint.Value.normal"><value>normală</value></data>
@@ -4401,7 +4466,7 @@
   <data name="Emulation.Option.parallel_n64.parallel-n64-alt-map.Value.disabled"><value>Dezactivat</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-alt-map.Value.enabled"><value>Activat</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-vcache-vbo"><value>(Glide64) Vertex cache VBO</value></data>
-  <data name="Emulation.Option.parallel_n64.parallel-n64-vcache-vbo.Help"><value>VBO cache Vertex (repornire)</value></data>
+  <data name="Emulation.Option.parallel_n64.parallel-n64-vcache-vbo.Help"><value>VBO cache Vertex</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-vcache-vbo.Value.disabled"><value>Dezactivat</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-vcache-vbo.Value.enabled"><value>Activat</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-boot-device"><value>Dispozitiv de boot</value></data>
@@ -4411,7 +4476,7 @@
   <data name="Emulation.Option.parallel_n64.parallel-n64-64dd-hardware.Help"><value>Se tratează conținutul fără un cartuș sau antet recunoscut ca disc 64DD. Discurile de dezvoltare și haldele MAME/SDK nu poartă marker pentru antet; cartușe regulate și imagini D64 cu amănuntul sunt identificate prin antetul lor și neafectate de această setare.</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-64dd-hardware.Value.disabled"><value>Dezactivat</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-64dd-hardware.Value.enabled"><value>Activat</value></data>
-  <data name="Emulation.Option.parallel_n64.parallel-n64-goldeneye-tlb-hack"><value>Golden Eye TLB Mapping Hack (Repornire)</value></data>
+  <data name="Emulation.Option.parallel_n64.parallel-n64-goldeneye-tlb-hack"><value>Golden Eye TLB Mapping Hack</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-goldeneye-tlb-hack.Help"><value>Harta lui GoldenEye a cerut-pagina 0x7F000000 cod segment direct pe ROM, ocolind propriul pager TLB (numai dinarec Ari64). Istoric necesar pentru GoldenEye a rula la toate; pe desktop-class gazduieste calea exacta acum masoara la fel de repede. Dezactivează pentru comportamentul hardware-credincios TLB sau pentru ROM modificat care mută segmentul de joc, pe care cartografierea l-ar corupe.</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-goldeneye-tlb-hack.Value.enabled"><value>Activat</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-goldeneye-tlb-hack.Value.disabled"><value>Dezactivat</value></data>
@@ -4580,7 +4645,7 @@
   <data name="Emulation.Option.parallel_n64.parallel-n64-rtc-savestate"><value>Ceas sistem Rollback N64 la sarcina de salvare</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-rtc-savestate.Value.enabled"><value>Da</value></data>
   <data name="Emulation.Emulator.pokemini.Description"><value>Emulează sistemele compatibile Nintendo cu PokeMini.</value></data>
-  <data name="Emulation.Option.pokemini.pokemini_video_scale"><value>Scară video (Repornire)</value></data>
+  <data name="Emulation.Option.pokemini.pokemini_video_scale"><value>Scară video</value></data>
   <data name="Emulation.Option.pokemini.pokemini_video_scale.Help"><value>Setează factorul intern al scalei video. Creșterea factorului de scală îmbunătățește aspectul filtrului LCD intern 'Dot Matrix'.</value></data>
   <data name="Emulation.Option.pokemini.pokemini_60hz_mode"><value>Mod 60Hz</value></data>
   <data name="Emulation.Option.pokemini.pokemini_60hz_mode.Help"><value>Actualizați ecranul la 60Hz în loc de rata de reîmprospătare a lui Pokemon Mini nativ 72Hz prin scăderea fiecărui cadru al șaselea. Reduce netezimea video, dar evită ruperea ecranului pe ecrane care nu suportă funcționarea nativă peste 60Hz.</value></data>
@@ -4780,13 +4845,13 @@
   <data name="Emulation.Firmware.bsnes.Slot18"><value>Imagine SGB Boot</value></data>
   <data name="Emulation.Firmware.bsnes.Slot19"><value>BS-X - Sore wa Namae o Nusumareta Machi no Monogatari (Japonia) (Rev 1)</value></data>
   <data name="Emulation.Emulator.bsnes_jg.Description"><value>Emulează sisteme compatibile Nintendo cu bsnes-jg.</value></data>
-  <data name="Emulation.Option.bsnes_jg.bsnes_jg_coproc_delaysync"><value>LLE Coprocesor Sync (Restart)</value></data>
+  <data name="Emulation.Option.bsnes_jg.bsnes_jg_coproc_delaysync"><value>LLE Coprocesor Sync</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_coproc_delaysync.Help"><value>Sincronizare întârziere atunci când se utilizează emulație de coprocesor la nivel scăzut pentru mai multă viteză, cu costul preciziei</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_coproc_delaysync.Value.off"><value>oprit (Default)</value></data>
-  <data name="Emulation.Option.bsnes_jg.bsnes_jg_coproc_preferhle"><value>Preferați emulația coprocesorului HLE (Repornire)</value></data>
+  <data name="Emulation.Option.bsnes_jg.bsnes_jg_coproc_preferhle"><value>Preferați emulația coprocesorului HLE</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_coproc_preferhle.Help"><value>Utilizați emularea coprocesorului la nivel înalt atunci când este posibil pentru mai multă viteză, cu costul exactității</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_coproc_preferhle.Value.off"><value>oprit (Default)</value></data>
-  <data name="Emulation.Option.bsnes_jg.bsnes_jg_hotfixes"><value>Fixări fierbinți (Repornire)</value></data>
+  <data name="Emulation.Option.bsnes_jg.bsnes_jg_hotfixes"><value>Fixări fierbinți</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_hotfixes.Help"><value>Aplica hotfixs atunci când joci o mână de jocuri lansate cu bug-uri majore (care sunt expuse pe hardware real). Jocuri în cauză: Dirt Racer, Magic Drop, Rendering Ranger R2</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_hotfixes.Value.off"><value>oprit (Default)</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_runahead"><value>Intern Run- Ahead</value></data>
@@ -4796,10 +4861,10 @@
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_runahead.Value.2"><value>2 cadre</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_runahead.Value.3"><value>3 cadre</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_runahead.Value.4"><value>4 cadre</value></data>
-  <data name="Emulation.Option.bsnes_jg.bsnes_jg_low_latency_audio"><value>Low Latency Audio (Repornire)</value></data>
+  <data name="Emulation.Option.bsnes_jg.bsnes_jg_low_latency_audio"><value>Low Latency Audio</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_low_latency_audio.Help"><value>Utilizați bucăți de eșantion audio mai mici pentru o experiență mai bună atunci când utilizați un frontend cu o configurație audio latență scăzută. Folosind această opțiune în jocuri de coprocesor solicitante poate provoca artefacte audio.</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_low_latency_audio.Value.off"><value>oprit (Default)</value></data>
-  <data name="Emulation.Option.bsnes_jg.bsnes_jg_rsqual"><value>Calitate de reeșantionare (Repornire)</value></data>
+  <data name="Emulation.Option.bsnes_jg.bsnes_jg_rsqual"><value>Calitate de reeșantionare</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_rsqual.Help"><value>Setați nivelul de calitate al reeșantionorului intern (puteți auzi o diferență dacă utilizați echipamente audio pro și imaginația dumneavoastră)</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_rsqual.Value.fast"><value>Rapid (Default)</value></data>
   <data name="Emulation.Option.bsnes_jg.bsnes_jg_rsqual.Value.medium"><value>Mediu</value></data>
@@ -4943,8 +5008,8 @@
   <data name="Emulation.Option.bsnes_hd_beta.bsnes_coprocessor_prefer_hle.Help"><value>Atunci când această opțiune este activată, emulația HLE mai puțin precisă va fi întotdeauna utilizată atunci când este disponibilă. Dacă este dezactivat, HLE va fi utilizat numai atunci când LLE firmware lipsește.</value></data>
   <data name="Emulation.Option.bsnes_hd_beta.bsnes_coprocessor_prefer_hle.Value.ON"><value>Activat</value></data>
   <data name="Emulation.Option.bsnes_hd_beta.bsnes_coprocessor_prefer_hle.Value.OFF"><value>Dezactivat</value></data>
-  <data name="Emulation.Option.bsnes_hd_beta.bsnes_sgb_bios"><value>Super Game Boy BIOS preferat (Requires Restart)</value></data>
-  <data name="Emulation.Option.bsnes_hd_beta.bsnes_sgb_bios.Help"><value>Permite să aleagă Super Game Boy BIOS preferat pentru a fi utilizat cu titluri compatibile. Necesită o repornire pentru a intra în vigoare.</value></data>
+  <data name="Emulation.Option.bsnes_hd_beta.bsnes_sgb_bios"><value>Super Game Boy BIOS preferat</value></data>
+  <data name="Emulation.Option.bsnes_hd_beta.bsnes_sgb_bios.Help"><value>Permite să aleagă Super Game Boy BIOS preferat pentru a fi utilizat cu titluri compatibile.</value></data>
   <data name="Emulation.Option.bsnes_hd_beta.bsnes_run_ahead_frames"><value>Intern Run- Ahead</value></data>
   <data name="Emulation.Option.bsnes_hd_beta.bsnes_run_ahead_frames.Help"><value>Simulează sistemul înainte de timp și se rostogolește înapoi pentru a reduce latența de intrare. Are cerințe foarte ridicate de sistem.</value></data>
   <data name="Emulation.Option.bsnes_hd_beta.bsnes_run_ahead_frames.Value.OFF"><value>Dezactivat</value></data>
@@ -5189,7 +5254,7 @@
   <data name="Emulation.Option.bsnes_mercury_accuracy.bsnes_crop_overscan"><value>Suprascanarea culturilor</value></data>
   <data name="Emulation.Option.bsnes_mercury_accuracy.bsnes_crop_overscan.Value.disabled"><value>Dezactivat</value></data>
   <data name="Emulation.Option.bsnes_mercury_accuracy.bsnes_crop_overscan.Value.enabled"><value>Activat</value></data>
-  <data name="Emulation.Option.bsnes_mercury_accuracy.bsnes_gamma_ramp"><value>Rampa Gamma (necesită repornirea)</value></data>
+  <data name="Emulation.Option.bsnes_mercury_accuracy.bsnes_gamma_ramp"><value>Rampa Gamma</value></data>
   <data name="Emulation.Option.bsnes_mercury_accuracy.bsnes_gamma_ramp.Value.disabled"><value>Dezactivat</value></data>
   <data name="Emulation.Option.bsnes_mercury_accuracy.bsnes_gamma_ramp.Value.enabled"><value>Activat</value></data>
   <data name="Emulation.Firmware.bsnes_mercury_accuracy.Slot0"><value>Firmware extern</value></data>
@@ -5227,7 +5292,7 @@
   <data name="Emulation.Option.bsnes_mercury_balanced.bsnes_crop_overscan"><value>Suprascanarea culturilor</value></data>
   <data name="Emulation.Option.bsnes_mercury_balanced.bsnes_crop_overscan.Value.disabled"><value>Dezactivat</value></data>
   <data name="Emulation.Option.bsnes_mercury_balanced.bsnes_crop_overscan.Value.enabled"><value>Activat</value></data>
-  <data name="Emulation.Option.bsnes_mercury_balanced.bsnes_gamma_ramp"><value>Rampa Gamma (necesită repornirea)</value></data>
+  <data name="Emulation.Option.bsnes_mercury_balanced.bsnes_gamma_ramp"><value>Rampa Gamma</value></data>
   <data name="Emulation.Option.bsnes_mercury_balanced.bsnes_gamma_ramp.Value.disabled"><value>Dezactivat</value></data>
   <data name="Emulation.Option.bsnes_mercury_balanced.bsnes_gamma_ramp.Value.enabled"><value>Activat</value></data>
   <data name="Emulation.Firmware.bsnes_mercury_balanced.Slot0"><value>Firmware extern</value></data>
@@ -5265,7 +5330,7 @@
   <data name="Emulation.Option.bsnes_mercury_performance.bsnes_crop_overscan"><value>Suprascanarea culturilor</value></data>
   <data name="Emulation.Option.bsnes_mercury_performance.bsnes_crop_overscan.Value.disabled"><value>Dezactivat</value></data>
   <data name="Emulation.Option.bsnes_mercury_performance.bsnes_crop_overscan.Value.enabled"><value>Activat</value></data>
-  <data name="Emulation.Option.bsnes_mercury_performance.bsnes_gamma_ramp"><value>Rampa Gamma (necesită repornirea)</value></data>
+  <data name="Emulation.Option.bsnes_mercury_performance.bsnes_gamma_ramp"><value>Rampa Gamma</value></data>
   <data name="Emulation.Option.bsnes_mercury_performance.bsnes_gamma_ramp.Value.disabled"><value>Dezactivat</value></data>
   <data name="Emulation.Option.bsnes_mercury_performance.bsnes_gamma_ramp.Value.enabled"><value>Activat</value></data>
   <data name="Emulation.Firmware.bsnes_mercury_performance.Slot0"><value>Firmware extern</value></data>
@@ -5562,13 +5627,13 @@
   <data name="Emulation.Option.snes9x2002.snes9x2002_low_pass_filter.Value.enabled"><value>Activat</value></data>
   <data name="Emulation.Option.snes9x2002.snes9x2002_low_pass_range"><value>Nivel filtru audio</value></data>
   <data name="Emulation.Option.snes9x2002.snes9x2002_low_pass_range.Help"><value>A se preciza frecvența de întrerupere a filtrului audio cu trecere joasă. O valoare mai mare sporește "puterea" percepută a filtrului, deoarece o gamă mai largă de spectru de înaltă frecvență este atenuată.</value></data>
-  <data name="Emulation.Option.snes9x2002.snes9x2002_overclock_cycles"><value>Reducerea încetinirii (Hack, Insafe, Repornire)</value></data>
+  <data name="Emulation.Option.snes9x2002.snes9x2002_overclock_cycles"><value>Reducerea încetinirii</value></data>
   <data name="Emulation.Option.snes9x2002.snes9x2002_overclock_cycles.Help"><value>Multe jocuri pentru SNES au suferit de încetinire din cauza principalei slabe CPU. Această opțiune ajută la atenuarea asta cu costul posibilelor bug-uri. Compatibil: Reduce încetini, dar păstrați cât mai mult compatibilitatea jocului posibil. Max: Reduce încetinire cât mai mult posibil, dar va rupe mai multe jocuri.</value></data>
   <data name="Emulation.Option.snes9x2002.snes9x2002_overclock_cycles.Value.disabled"><value>Dezactivat</value></data>
   <data name="Emulation.Option.snes9x2002.snes9x2002_overclock_cycles.Value.compatible"><value>Compatibil</value></data>
   <data name="Emulation.Option.snes9x2002.snes9x2002_overclock_cycles.Value.max"><value>Max</value></data>
   <data name="Emulation.Emulator.snes9x2005.Description"><value>Emulează sistemele compatibile Nintendo cu Snes9x 2005.</value></data>
-  <data name="Emulation.Option.snes9x2005.snes9x_2005_region"><value>Regiunea Console (Repornire)</value></data>
+  <data name="Emulation.Option.snes9x2005.snes9x_2005_region"><value>Regiunea Console</value></data>
   <data name="Emulation.Option.snes9x2005.snes9x_2005_region.Help"><value>Specificaţi din ce regiune este sistemul. "PAL" este 50hz, 'NTSC' este 60hz. Jocurile vor rula mai repede sau mai lent decât în mod normal, dacă regiunea incorectă este selectată.</value></data>
   <data name="Emulation.Option.snes9x2005.snes9x_2005_region.Value.auto"><value>Automat</value></data>
   <data name="Emulation.Option.snes9x2005.snes9x_2005_frameskip"><value>Frameskip</value></data>
@@ -5584,7 +5649,7 @@
   <data name="Emulation.Option.snes9x2005.snes9x_2005_low_pass_filter.Value.enabled"><value>Activat</value></data>
   <data name="Emulation.Option.snes9x2005.snes9x_2005_low_pass_range"><value>Nivel filtru audio</value></data>
   <data name="Emulation.Option.snes9x2005.snes9x_2005_low_pass_range.Help"><value>A se preciza frecvența de întrerupere a filtrului audio cu trecere joasă. O valoare mai mare sporește "puterea" percepută a filtrului, deoarece o gamă mai largă de spectru de înaltă frecvență este atenuată.</value></data>
-  <data name="Emulation.Option.snes9x2005.snes9x_2005_overclock_cycles"><value>Reducerea încetinirii (Hack, Insafe, Repornire)</value></data>
+  <data name="Emulation.Option.snes9x2005.snes9x_2005_overclock_cycles"><value>Reducerea încetinirii</value></data>
   <data name="Emulation.Option.snes9x2005.snes9x_2005_overclock_cycles.Help"><value>Multe jocuri pentru SNES au suferit de încetinire din cauza principalei slabe CPU. Această opțiune ajută la alievarea că, cu costul de posibile bug-uri. COMPATIBLE: Reduceți lent, dar păstrați cât mai mult compatibilitatea jocului posibil. MAX: Reduce încetinire cât mai mult posibil, dar va rupe mai multe jocuri.</value></data>
   <data name="Emulation.Option.snes9x2005.snes9x_2005_overclock_cycles.Value.disabled"><value>Dezactivat</value></data>
   <data name="Emulation.Option.snes9x2005.snes9x_2005_overclock_cycles.Value.compatible"><value>Compatibil</value></data>
@@ -5594,7 +5659,7 @@
   <data name="Emulation.Option.snes9x2005.snes9x_2005_reduce_sprite_flicker.Value.disabled"><value>Dezactivat</value></data>
   <data name="Emulation.Option.snes9x2005.snes9x_2005_reduce_sprite_flicker.Value.enabled"><value>Activat</value></data>
   <data name="Emulation.Emulator.snes9x2005_plus.Description"><value>Emulează sisteme compatibile Nintendo cu Snes9x 2005 Plus.</value></data>
-  <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_region"><value>Regiunea Console (Repornire)</value></data>
+  <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_region"><value>Regiunea Console</value></data>
   <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_region.Help"><value>Specificaţi din ce regiune este sistemul. "PAL" este 50hz, 'NTSC' este 60hz. Jocurile vor rula mai repede sau mai lent decât în mod normal, dacă regiunea incorectă este selectată.</value></data>
   <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_region.Value.auto"><value>Automat</value></data>
   <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_frameskip"><value>Frameskip</value></data>
@@ -5604,7 +5669,7 @@
   <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_frameskip.Value.manual"><value>Manual</value></data>
   <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_frameskip_threshold"><value>Prag frameskip (%)</value></data>
   <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_frameskip_threshold.Help"><value>Atunci când "Frameskip" este setat la 'Manual', specifică pragul de ocupare a tamponului audio (procent) sub care ramele vor fi omise. Valorile mai mari reduc riscul de trosnituri, determinând scăderea mai frecventă a ramelor.</value></data>
-  <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_overclock_cycles"><value>Reducerea încetinirii (Hack, Insafe, Repornire)</value></data>
+  <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_overclock_cycles"><value>Reducerea încetinirii</value></data>
   <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_overclock_cycles.Help"><value>Multe jocuri pentru SNES au suferit de încetinire din cauza principalei slabe CPU. Această opțiune ajută la alievarea că, cu costul de posibile bug-uri. COMPATIBLE: Reduceți lent, dar păstrați cât mai mult compatibilitatea jocului posibil. MAX: Reduce încetinire cât mai mult posibil, dar va rupe mai multe jocuri.</value></data>
   <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_overclock_cycles.Value.disabled"><value>Dezactivat</value></data>
   <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_overclock_cycles.Value.compatible"><value>Compatibil</value></data>
@@ -5614,7 +5679,7 @@
   <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_reduce_sprite_flicker.Value.disabled"><value>Dezactivat</value></data>
   <data name="Emulation.Option.snes9x2005_plus.snes9x_2005_reduce_sprite_flicker.Value.enabled"><value>Activat</value></data>
   <data name="Emulation.Emulator.snes9x2010.Description"><value>Emulează sistemele compatibile Nintendo cu Snes9x 2010.</value></data>
-  <data name="Emulation.Option.snes9x2010.snes9x_2010_region"><value>Regiunea Console (Repornire)</value></data>
+  <data name="Emulation.Option.snes9x2010.snes9x_2010_region"><value>Regiunea Console</value></data>
   <data name="Emulation.Option.snes9x2010.snes9x_2010_region.Help"><value>Specificaţi din ce regiune este sistemul. "PAL" este 50hz, 'NTSC' este 60hz. Jocurile vor rula mai repede sau mai lent decât în mod normal, dacă regiunea incorectă este selectată.</value></data>
   <data name="Emulation.Option.snes9x2010.snes9x_2010_region.Value.auto"><value>Automat</value></data>
   <data name="Emulation.Option.snes9x2010.snes9x_2010_audio_interpolation"><value>Interpolare audio (inexactă)</value></data>
@@ -5671,7 +5736,7 @@
   <data name="Emulation.Option.snes9x2010.snes9x_2010_reduce_sprite_flicker.Help"><value>Crește numărul de sprite care pot fi trase simultan pe ecran.</value></data>
   <data name="Emulation.Option.snes9x2010.snes9x_2010_reduce_sprite_flicker.Value.disabled"><value>Dezactivat</value></data>
   <data name="Emulation.Option.snes9x2010.snes9x_2010_reduce_sprite_flicker.Value.enabled"><value>Activat</value></data>
-  <data name="Emulation.Option.snes9x2010.snes9x_2010_block_invalid_vram_access"><value>Acces VRAM nevalidă în bloc (Repornire)</value></data>
+  <data name="Emulation.Option.snes9x2010.snes9x_2010_block_invalid_vram_access"><value>Acces VRAM nevalidă în bloc</value></data>
   <data name="Emulation.Option.snes9x2010.snes9x_2010_block_invalid_vram_access.Help"><value>Unele homebrew / ROM hacks necesită această opțiune pentru a fi dezactivate pentru funcționarea corectă.</value></data>
   <data name="Emulation.Option.snes9x2010.snes9x_2010_block_invalid_vram_access.Value.enabled"><value>Activat</value></data>
   <data name="Emulation.Option.snes9x2010.snes9x_2010_block_invalid_vram_access.Value.disabled"><value>Dezactivat</value></data>
@@ -5738,7 +5803,7 @@
   <data name="Emulation.Option.mednafen_supafaust.supafaust_thread_affinity_emu"><value>Mască de afinitate a firului de emulare</value></data>
   <data name="Emulation.Option.mednafen_supafaust.supafaust_thread_affinity_ppu"><value>Mască de afinitate a firului redător PPU</value></data>
   <data name="Emulation.Option.mednafen_supafaust.supafaust_renderer"><value>Reductor PPU</value></data>
-  <data name="Emulation.Option.beetle_vb.vb_3dmode"><value>Modul 3D (necesită repornirea)</value></data>
+  <data name="Emulation.Option.beetle_vb.vb_3dmode"><value>Modul 3D</value></data>
   <data name="Emulation.Option.beetle_vb.vb_3dmode.Help"><value>Selectaţi modul 3D. Anaglyph - folosit în combinație cu ochelari clasici dual-lens de culoare. Cyberscope - destinat utilizării cu dispozitivul CyborgScope 3D. lateral - imaginea stanga-ochi este afisata pe partea stanga, iar imaginea dreapta-ochiul este afişată pe partea dreaptă. vli - Liniile verticale alternează între vedere stânga şi dreapta. hli - linii orizontale alternate între vedere stângă şi cea dreaptă.</value></data>
   <data name="Emulation.Option.beetle_vb.vb_3dmode.Value.anaglyph"><value>anaglifă</value></data>
   <data name="Emulation.Option.beetle_vb.vb_3dmode.Value.cyberscope"><value>cyberscop</value></data>
@@ -5773,7 +5838,7 @@
   <data name="Emulation.Option.beetle_vb.vb_opposite_directions.Help"><value>Permiteți apăsarea în sus și în jos sau stânga și direcția dreaptă, în același timp. Acest lucru poate provoca erori.</value></data>
   <data name="Emulation.Option.beetle_vb.vb_opposite_directions.Value.disabled"><value>Dezactivat</value></data>
   <data name="Emulation.Option.beetle_vb.vb_opposite_directions.Value.enabled"><value>Activat</value></data>
-  <data name="Emulation.Option.beetle_vb.vb_cpu_emulation"><value>CPU emulare (Repornire)</value></data>
+  <data name="Emulation.Option.beetle_vb.vb_cpu_emulation"><value>CPU emulare</value></data>
   <data name="Emulation.Option.beetle_vb.vb_cpu_emulation.Help"><value>Alegeți între emulație mai rapidă și precisă (mai lentă).</value></data>
   <data name="Emulation.Option.beetle_vb.vb_cpu_emulation.Value.accurate"><value>corect</value></data>
   <data name="Emulation.Option.beetle_vb.vb_cpu_emulation.Value.fast"><value>Rapid</value></data>

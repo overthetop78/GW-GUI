@@ -26,14 +26,12 @@
   <data name="Emulation.Option.ppsspp.ppsspp_language.Value.11"><value>Kínai Hagyományos</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_language.Value.12"><value>Egyszerűsített kínai</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_psp_model.Label"><value>PSP modell</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_backend.Label"><value>Háttér</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_backend.Help"><value>Az 'Automatic' a frontend videó meghajtót fogja használni. Törzshálózat</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_software_rendering.Label"><value>Software Rendering</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_software_rendering.Help"><value>Lassú, pontos. Törzshálózat</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_software_rendering.Help"><value>Használjon szoftveres renderelést a nagyobb pontosság érdekében, nagyobb számítási igény mellett.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_internal_resolution.Label"><value>Feloldás</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_internal_resolution.Help"><value>Válassza ki a belső renderelés felbontását.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_mulitsample_level.Label"><value>MSAA antialiasing</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_mulitsample_level.Help"><value>Csak Vulkan. Törzshálózat</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_mulitsample_level.Help"><value>Alkalmazzon MSAA élsimítást a Vulkan használatával.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_cropto16x9.Label"><value>Crop - 16x9</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_cropto16x9.Help"><value>Terjeszd a felső és alsó széleket, hogy egy 16: 9 képet.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_frameskip.Label"><value>Frameszkip</value></data>

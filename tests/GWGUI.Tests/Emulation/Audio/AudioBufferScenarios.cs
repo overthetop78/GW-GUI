@@ -1,8 +1,39 @@
 using GWGUI.App.Services.Audio;
 using NAudio.Wave;
+using System.IO;
 namespace GWGUI.Tests.Emulation.Audio;
 internal static class AudioBufferScenarios
 {
+    internal static void Multichannel(GWGUI.Emulation.Enums.EmulationAudioChannelLayout layout)
+    {
+        var devices = new List<Output>();
+        using var audio = new WasapiAudioOutput(null, 50, (_, _) => { var device = new Output(); devices.Add(device); return device; });
+        audio.Start(48000, layout);
+        void Check(Output device)
+        {
+            var channels = System.Numerics.BitOperations.PopCount((uint)layout);
+            var provider = device.Provider!;
+            Assert.Equal(channels, provider.WaveFormat.Channels);
+            Assert.Equal(channels * sizeof(short), provider.WaveFormat.BlockAlign);
+            using var stream = new MemoryStream();
+            using (var writer = new BinaryWriter(stream, System.Text.Encoding.UTF8, true)) provider.WaveFormat.Serialize(writer);
+            Assert.Equal((uint)layout, System.Buffers.Binary.BinaryPrimitives.ReadUInt32LittleEndian(stream.ToArray().AsSpan(24, 4)));
+            var samples = Enumerable.Range(1, channels * 2).Select(value => (short)(value * 100)).ToArray();
+            audio.Write(samples);
+            var bytes = new byte[samples.Length * sizeof(short)];
+            Assert.Equal(bytes.Length, provider.Read(bytes, 0, bytes.Length));
+            Assert.Equal(samples, System.Runtime.InteropServices.MemoryMarshal.Cast<byte, short>(bytes).ToArray());
+        }
+        Check(Assert.Single(devices));
+        Assert.True(audio.TrySetMinimumLatency(100));
+        Assert.Equal(2, devices.Count);
+        Assert.Equal(1, devices[0].Disposals);
+        Check(devices[1]);
+        audio.Dispose();
+        Assert.All(devices, device => Assert.Equal(1, device.Stops));
+        Assert.All(devices, device => Assert.Equal(1, device.Disposals));
+    }
+
     private sealed class Sink : GWGUI.Emulation.Interfaces.IAudioOutput
     {
         public List<short[]> Samples = []; public List<int> Rates = []; public int Flushes,Stops,Disposals;

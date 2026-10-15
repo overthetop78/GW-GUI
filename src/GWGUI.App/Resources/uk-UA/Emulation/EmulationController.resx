@@ -44,4 +44,5 @@
   <data name="Emulation.Controller.Category.OtherSimulation"><value>Інші симуляції периферій</value></data>
   <data name="Emulation.Controller.Feedback.Strong"><value>Сильна вібрація</value></data>
   <data name="Emulation.Controller.Feedback.Weak"><value>Слабка вібрація</value></data>
+  <data name="Emulation.Controller.Action.Reload"><value>Перезарядити</value></data>
 </root>

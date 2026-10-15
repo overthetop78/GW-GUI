@@ -80,4 +80,6 @@
   <data name="Emulation.Storage.MemoryCard.ImageRequired"><value>Pilih berkas kartu yang ada.</value></data>
   <data name="Emulation.Storage.MemoryCard.InvalidSize"><value>Berkas kartu memiliki ukuran yang tidak valid.</value></data>
   <data name="Emulation.Storage.MemoryCard.InvalidFormat"><value>Pilih suatu format berkas yang didukung oleh perangkat ini.</value></data>
+  <data name="Emulation.Storage.Cache.Unlimited"><value>Tanpa batas</value></data>
+  <data name="Emulation.Storage.Cache.ClearOnGameClose"><value>Kosongkan saat gim ditutup</value></data>
 </root>

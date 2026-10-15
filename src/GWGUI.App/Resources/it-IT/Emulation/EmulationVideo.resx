@@ -299,4 +299,7 @@
   <data name="Emulation.Video.Parameter.ProjectionVignette"><value>Bordo oscurante</value></data>
   <data name="Emulation.Video.Projection.Group.Optics"><value>Ottica e luce</value></data>
   <data name="Emulation.Video.Projection.Group.Screen"><value>Schermo di proiezione</value></data>
+  <data name="Emulation.Option.Common.Value.HardwareRendering"><value>Rendering hardware</value></data>
+  <data name="Emulation.Option.Common.RenderingMode.Label"><value>Modalità di rendering</value></data>
+  <data name="Emulation.Option.Common.RenderingMode.Help"><value>Il rendering hardware usa l’API grafica selezionata per l’applicazione, se l’emulatore la supporta.</value></data>
 </root>

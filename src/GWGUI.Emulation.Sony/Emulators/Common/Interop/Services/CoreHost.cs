@@ -111,7 +111,7 @@ public static class CoreHost
                     responseStream.SetLength(0);
                     responseStream.Position = 0;
                     writer.Write(false);
-                    writer.Write(error.ToString());
+                    writer.Write(CoreDiagnosticMonitor.WithNativeDiagnostics(error, core?.Diagnostics ?? []).ToString());
                 }
                 writer.Flush();
                 CoreHostProtocol.WriteBytes(transportWriter, responseStream.GetBuffer().AsSpan(BufferConstants.FirstBufferIndex, checked((int)responseStream.Length)));

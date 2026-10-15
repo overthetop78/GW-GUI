@@ -15,7 +15,10 @@ public sealed record CoreOption(
     bool RequiresRestart = false,
     EmulationSettingsNumericRange? NumericRange = null,
     string? NativeNumericFormat = null,
-    string? NativeZeroValue = null);
+    string? NativeZeroValue = null,
+    IReadOnlyDictionary<EmulationGraphicsApi, string>? GraphicsApiValues = null,
+    IReadOnlyList<string>? RetainedRendererValues = null,
+    bool IsGlobalStorageOption = false);
 
 public sealed record CoreOptionValue(string Value, string Label);
 

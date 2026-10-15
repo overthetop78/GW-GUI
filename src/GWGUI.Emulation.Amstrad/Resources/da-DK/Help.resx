@@ -5,7 +5,7 @@
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Amstrad.Help.Memory.Ram.Short"><value>Beløb RAM til rådighed for den emulerede maskine.</value></data>
-  <data name="Emulation.Amstrad.Help.Memory.Ram.Detailed"><value>Vælger RAM udvidelse udsat af Caprice32. Maskinen skal genstarte før den nye mængde anvendes.</value></data>
+  <data name="Emulation.Amstrad.Help.Memory.Ram.Detailed"><value>Vælger RAM udvidelse udsat af Caprice32.</value></data>
   <data name="Emulation.Amstrad.Help.Firmware.Integrated.Short"><value>Systemet ROM er indbygget i Caprice32.</value></data>
   <data name="Emulation.Amstrad.Help.Firmware.Integrated.Detailed"><value>Caprice32 giver systemet ROM Indvendigt og ikke afsløre en ROM filvælger.</value></data>
   <data name="Emulation.Amstrad.Help.Video.Resolution.Short"><value>Kommissionen bemærker, at de to største lufthavne i perioden fra den 1. januar 2014 til den 31. december 2014 har en samlet kapacitet på [...] mio. passagerer.</value></data>

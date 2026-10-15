@@ -81,7 +81,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
                                 _audioOutput.Start(audio.SampleRate);
                                 audioSampleRate = audio.SampleRate;
                             }
-                            WriteAudio(audio.InterleavedStereo.Span);
+                            WriteAudio(audio.InterleavedSamples.Span);
                         }
                         catch { _audioOutput.Dispose(); _audioOutput = null; }
                     }

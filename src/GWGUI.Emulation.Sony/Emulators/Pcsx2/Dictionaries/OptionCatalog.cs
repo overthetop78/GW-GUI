@@ -19,9 +19,11 @@ internal static partial class OptionCatalog
 
     private static CoreOption Define(string key, string label, string? help, string defaultValue,
         EmulationMachineTab tab, IReadOnlyList<CoreOptionValue> values, bool restart = false, bool visible = true,
-        EmulationSettingsNumericRange? range = null, string? nativeZero = null) =>
+        EmulationSettingsNumericRange? range = null, string? nativeZero = null,
+        IReadOnlyDictionary<EmulationGraphicsApi, string>? graphicsApis = null, IReadOnlyList<string>? rendererModes = null) =>
         new(key, label, help, null, defaultValue, defaultValue, values, IsVisible: visible, Tab: tab,
-            RequiresRestart: restart, NumericRange: range, NativeNumericFormat: range is null ? null : "0", NativeZeroValue: nativeZero);
+            RequiresRestart: restart, NumericRange: range, NativeNumericFormat: range is null ? null : "0", NativeZeroValue: nativeZero,
+            GraphicsApiValues: graphicsApis, RetainedRendererValues: rendererModes);
 
     internal static IReadOnlyDictionary<string, IReadOnlyDictionary<string, string>> LegacyValues { get; } =
         new Dictionary<string, IReadOnlyDictionary<string, string>>(StringComparer.Ordinal)

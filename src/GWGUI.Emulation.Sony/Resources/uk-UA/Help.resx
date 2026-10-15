@@ -4,10 +4,6 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Sony.Help.Audio.Enabled.Detailed"><value>Контролює, чи грає GW GUI аудіо зразки, що створюються емулятором.</value></data>
-  <data name="Emulation.Sony.Help.Audio.Enabled.Short"><value>Увімкнути або вимкнути емульований звук.</value></data>
-  <data name="Emulation.Sony.Help.Audio.Output.Detailed"><value>Виберіть пристрій Windows, який грає звук з цієї емульсії машини.</value></data>
-  <data name="Emulation.Sony.Help.Audio.Output.Short"><value>Аудіовихід, що використовується GW GUI.</value></data>
   <data name="Emulation.Sony.Help.Cpu.Frequency.Detailed"><value>Показує номінальну частоту годинника процесора в обраній машині Sony.</value></data>
   <data name="Emulation.Sony.Help.Cpu.Frequency.Short"><value>Оригінальний процесор годинникової частоти.</value></data>
   <data name="Emulation.Sony.Help.Cpu.Model.Detailed"><value>Покажіть модель процесора, надана вибраною машиною Sony.</value></data>
@@ -22,8 +18,8 @@
   <data name="Emulation.Sony.Help.Memory.Ram.Short"><value>Сума RAM доступна до встановленої машини.</value></data>
   <data name="Emulation.Sony.Help.Cpu.EffectiveFrequency.Short"><value>Частота емульсії CPU після внесення обраного відсотка годинника.</value></data>
   <data name="Emulation.Sony.Help.Cpu.EffectiveFrequency.Detailed"><value>Нормальна частота консолі передається вибраним відсотком. Це змінює емульований процесор, а не господарський процесор. Більші значення можуть зменшити сповільнення, але може розбити тривалість гри. Автоматичне використання емулятора за замовчуванням.</value></data>
-  <data name="Emulation.Sony.Help.Video.Chip.Short"><value>Оригінальні відео чіпси, які використовуються в апаратних версіях PlayStation.</value></data>
-  <data name="Emulation.Sony.Help.Video.Chip.Detailed"><value>Перераховані чіпси Sony GPU відрізняються від материнської плати. Внутрішні параметри рендерингу, як емулятор виробляє геометрію та пікселі. GW GUI фільтри обробляють завершене зображення після</value></data>
-  <data name="Emulation.Sony.Help.Audio.Chip.Short"><value>Оригінальні звукові чіпси, які використовуються в апаратних версіях PlayStation.</value></data>
-  <data name="Emulation.Sony.Help.Audio.Chip.Detailed"><value>Sony SPU змішує звукові голоси і декодує компресовані зразки. Вказані чіпси варіюватися з дошкою для материнських плат. Відтворення аудіо та затримки на вашому комп'ютері.</value></data>
+  <data name="Emulation.Sony.Help.Video.Chip.Short"><value>Оригінальне графічне обладнання вибраного пристрою.</value></data>
+  <data name="Emulation.Sony.Help.Video.Chip.Detailed"><value>Показує оригінальне графічне обладнання вибраного пристрою. Налаштування рендерингу емулятора змінюють створене зображення. Фільтри GW GUI застосовуються після цього.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Chip.Short"><value>Оригінальне звукове обладнання вибраного пристрою.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Chip.Detailed"><value>Показує оригінальне звукове обладнання вибраного пристрою. Налаштування аудіовиходу й затримки керують відтворенням на комп’ютері.</value></data>
 </root>

@@ -5,7 +5,7 @@
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Nec.Help.Memory.Ram.Short"><value>ยอดของ RAM ที่ใช้ได้กับเครื่องเลียนแบบ</value></data>
-  <data name="Emulation.Nec.Help.Memory.Ram.Detailed"><value>เลือกการขยาย RAM ที่ถูกเปิดรับจาก chinkPce เครื่องต้องเริ่มการทํางานใหม่ก่อนใช้ปริมาณที่มากขึ้น</value></data>
+  <data name="Emulation.Nec.Help.Memory.Ram.Detailed"><value>เลือกการขยาย RAM ที่ถูกเปิดรับจาก chinkPce เครื่อง</value></data>
   <data name="Emulation.Nec.Help.Firmware.Integrated.Short"><value>ไม่ จําเป็น ต้อง มี แฟ้ม ต่าง ๆ BIOS ตัว สําหรับ รุ่น นี้.</value></data>
   <data name="Emulation.Nec.Help.Firmware.Integrated.Detailed"><value>เกมตลับหมึกในเครื่องนี้ ทํางานโดยไม่มีระบบภายนอก BIOS.</value></data>
   <data name="Emulation.Nec.Help.Video.Resolution.Short"><value>มติภายใน แปลโดย AugustPece</value></data>

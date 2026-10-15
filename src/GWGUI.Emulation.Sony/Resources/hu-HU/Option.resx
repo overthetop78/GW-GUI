@@ -23,7 +23,7 @@
   <data name="Emulation.Option.swanstation.swanstation_CDROM_ReadThread.Label"><value>CD-ROM Olvassa el a fonalat</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_ReadThread.Help"><value>CD-ROM szektort olvas előre aszinkron módon, csökkentve a képidőugrások kockázatát.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_LoadImagePatches.Label"><value>Image Patches alkalmazása</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_CDROM_LoadImagePatches.Help"><value>Automatikusan alkalmazza a tapaszt a lemezes képekre, ha azok ugyanabban a könyvtárban vannak. Jelenleg csak PPF tapaszokat támogatunk ezzel az opcióval. A magot újra kell indítani.</value></data>
+  <data name="Emulation.Option.swanstation.swanstation_CDROM_LoadImagePatches.Help"><value>Automatikusan alkalmazza a tapaszt a lemezes képekre.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_LoadImageToRAM.Label"><value>Előtöltés CD-ROM Kép RAM</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_LoadImageToRAM.Help"><value>A lemezen lévő képet a RAM-ra tölti az emuláció megkezdése előtt. Csökkentheti a stoppolás, ha fut le egy hálózati részvény, az ára egy nagyobb indítási idő. Mivel a libretro nem biztosít módot overlays rajzolására, az emulátor úgy tűnik, hogy zár, amíg a kép előre betöltve.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_PreCacheCHD.Label"><value>Pre- cache CHD képek RAM</value></data>
@@ -39,8 +39,6 @@
   <data name="Emulation.Option.Sony.Value.Interpreter"><value>Interpreter</value></data>
   <data name="Emulation.Option.Sony.Value.CachedInterpreter"><value>Tárolt interpreter</value></data>
   <data name="Emulation.Option.Sony.Value.Recompiler"><value>Requiper</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_GPU_Renderer.Label"><value>GPU Felderer</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_GPU_Renderer.Help"><value>Amelyiket a GPU utánzására használják.</value></data>
   <data name="Emulation.Option.Sony.Value.HardwareOpenGL"><value>Hardware (OpenGL)</value></data>
   <data name="Emulation.Option.Sony.Value.Software"><value>Szoftver</value></data>
   <data name="Emulation.Option.swanstation.swanstation_GPU_ResolutionScale.Label"><value>Belső szanálási skála</value></data>
@@ -48,7 +46,7 @@
   <data name="Emulation.Option.swanstation.swanstation_GPU_UseThread.Label"><value>Menetes Renderelés (Szoftver)</value></data>
   <data name="Emulation.Option.swanstation.swanstation_GPU_UseThread.Help"><value>Használt egy második szál rajz grafika. Jelenleg csak a szoftver renderelő.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_GPU_UseSoftwareRendererForReadbacks.Label"><value>Software Renderer használata visszacsatoláshoz</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_GPU_UseSoftwareRendererForReadbacks.Help"><value>A VRAM-ból származó képadatok olvasásakor a hardveres renderelés mellett futtasson szoftvert. Néhány játék szüksége van erre a mozgás homályos vagy harci átmenetek, vagy javítani sérült textúrák. A mag újraindítása ezen opció megváltoztatása után.</value></data>
+  <data name="Emulation.Option.swanstation.swanstation_GPU_UseSoftwareRendererForReadbacks.Help"><value>A VRAM-ból származó képadatok olvasásakor a hardveres renderelés mellett futtasson szoftvert. Néhány játék szüksége van erre a mozgás homályos vagy harci átmenetek.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_GPU_MSAA.Label"><value>Többmintából álló antialiasing</value></data>
   <data name="Emulation.Option.swanstation.swanstation_GPU_MSAA.Help"><value>Több minta antialiasing használata 3D objektumok megjelenítéséhez. A poligon jagged széleit a teljesítményhez képest alacsonyabb költséggel lehet elsimítani, mint a felbontás skáláját, de egyes játékokban nagyobb valószínűséggel okozhat elhasználódási hibákat.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_GPU_TrueColor.Label"><value>Render teljes színpontossággal</value></data>
@@ -280,7 +278,7 @@
   <data name="Emulation.Option.mednafen_psx.beetle_psx_gte_overclock.Label"><value>GTE Overhour</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_gte_overclock.Help"><value>Végezze el a GTE grafikus társprocesszorának minden működését egy CPU-ciklusban. Ez nagyban javíthatja a keret sebességét, és lehetővé teszi keretidőzítés stabilabb játékok, amelyek erősen használják a GTE.</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_cd_access_method.Label"><value>CD- hozzáférési módszer</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_cd_access_method.Help"><value>A szinkron hozzáférés reprodukálja az eredeti hardvert. Az aszinkron hozzáférés csökkentheti a lassú tárolású eszközök szüneteit. Betöltése az egész lemez kép RAM javíthatja a betöltési idő során a játék, de késleltetés indítása. Ez az üzemmód problémákat okozhat, ha a RAM korlátozott. A fizikai lemezek szinkronizált hozzáférést használnak az egész kép betöltése helyett. Az opció módosítása után újra kell indítanunk.</value></data>
+  <data name="Emulation.Option.mednafen_psx.beetle_psx_cd_access_method.Help"><value>A szinkron hozzáférés reprodukálja az eredeti hardvert. Az aszinkron hozzáférés csökkentheti a lassú tárolású eszközök szüneteit. Betöltése az egész lemez kép RAM javíthatja a betöltési idő során a játék, de késleltetés indítása. Ez az üzemmód problémákat okozhat.</value></data>
   <data name="Emulation.Option.Sony.Value.Synchronous"><value>Szinkron</value></data>
   <data name="Emulation.Option.Sony.Value.Asynchronous"><value>Szinkron</value></data>
   <data name="Emulation.Option.Sony.Value.PreCache"><value>Pre- gyorsítótár</value></data>
@@ -431,7 +429,7 @@
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_gte_overclock.Label"><value>GTE Overhour</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_gte_overclock.Help"><value>Végezze el a GTE grafikus társprocesszorának minden működését egy CPU-ciklusban. Ez nagyban javíthatja a keret sebességét, és lehetővé teszi keretidőzítés stabilabb játékok, amelyek erősen használják a GTE.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_access_method.Label"><value>CD- hozzáférési módszer</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_access_method.Help"><value>A szinkron hozzáférés reprodukálja az eredeti hardvert. Az aszinkron hozzáférés csökkentheti a lassú tárolású eszközök szüneteit. Betöltése az egész lemez kép RAM javíthatja a betöltési idő során a játék, de késleltetés indítása. Ez az üzemmód problémákat okozhat, ha a RAM korlátozott. A fizikai lemezek szinkronizált hozzáférést használnak az egész kép betöltése helyett. Az opció módosítása után újra kell indítanunk.</value></data>
+  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_access_method.Help"><value>A szinkron hozzáférés reprodukálja az eredeti hardvert. Az aszinkron hozzáférés csökkentheti a lassú tárolású eszközök szüneteit. Betöltése az egész lemez kép RAM javíthatja a betöltési idő során a játék, de késleltetés indítása. Ez az üzemmód problémákat okozhat.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_fastload.Label"><value>CD betöltési sebesség</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_fastload.Help"><value>A 2x-nél (individual) magasabb értékek jelentősen csökkenthetik a játékon belüli betöltési időt, de időzítési hibákat vezethetnek be. Néhány játék nem működik megfelelően egy bizonyos érték felett.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_skip_bios.Label"><value>A BIOS indító animáció kihagyása</value></data>
@@ -442,8 +440,6 @@
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_region.Help"><value>Beállítja a használt defback régiót, ha a tartalom nem érzékelhető automatikusan (pl. nyers PS-X EXE fájlok). Disc-alapú játékok még mindig használja a régiót beágyazott a lemez.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_internal_resolution.Label"><value>Belső GPU-szanálás</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_internal_resolution.Help"><value>Az 1x-nél (individual) magasabb állásfoglalások javítják a 3D modellek hűségét a megnövekedett teljesítménykövetelmények rovására. A 2D elemeket ez általában nem érinti.</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_renderer.Label"><value>Felderer</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_renderer.Help"><value>Válassza ki, hogyan rajzolja le a képet. A szoftver renderelő a legpontosabb. Sokkal több feldolgozási energiára van szüksége magasabb belső állásfoglalásokban. Hardware rendering kevésbé pontos, de gyorsabb magasabb felbontások, és támogatja a grafikus fejlesztések. Automatikus hardver renderelés választja Vulkan vagy OpenGL szerint a videó meghajtó által használt alkalmazás. Ha a járművezető sem Vulkan, sem az OpenGL 3.3 támogatást nem nyújt, a mag inkább szoftvert használ. A mag újraindítása ezen opció megváltoztatása után.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_renderer_software_fb.Label"><value>Szoftver Framebuffer</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_renderer_software_fb.Help"><value>Használja a szoftver renderer a háttérben az anyanyelvi felbontást, míg a hardver Renderer megjeleníti a játékot. Ez reprodukálja a mozgás homályos és harci átmenetek FF7 pontosan. Ha letiltották, az OpenGL kihagyja ezeket a hatásokat, és a Vulkan rajzolja őket a GPU-ra. E lehetőség kikapcsolása növelheti a sebességet, de súlyos grafikus hibákat is okozhat. Tartsa bekapcsolva, ha nem biztos benne.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_color_format.Label"><value>Színformátum</value></data>
@@ -758,9 +754,7 @@
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_nostalls.Label"><value>CPU / GTE standok kikapcsolása</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_nostalls.Help"><value>Néhány játék túl gyorsan fog futni. Szinte minden esetben mozgásképtelenné kell tenni. Csak interpreter.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_fast_boot.Label"><value>Fast Boot</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_fast_boot.Help"><value>Hagyd ki a BIOS boot animációt. Újra kell indítania.</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_renderer.Label"><value>Felderer</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_renderer.Help"><value>Hardware renderer API, vagy a szoftver. A Szoftverre vagy onnan történő váltás a repülés során érvényes; a hardver API-k közötti váltás a tartalom újraindításakor lép érvénybe.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_fast_boot.Help"><value>Hagyd ki a BIOS boot animációt.</value></data>
   <data name="Emulation.Option.Sony.Value.OpenGLHardware"><value>OpenGL (Hardware)</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_upscale_multiplier.Label"><value>Belső szanálás</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_upscale_multiplier.Help"><value>Belső renderelési felbontási szorzó a hardver-kölcsönzőnek. Méri a kimeneti keretpuffert is. Repül a légy.</value></data>
@@ -797,8 +791,6 @@
   <data name="Emulation.Option.pcee2.pcsx2_fxaa.Help"><value>Olcsó post-process anti-aliasing.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_cas_mode.Label"><value>Kontraszt adaptív élezés</value></data>
   <data name="Emulation.Option.Sony.Value.SharpenOnly"><value>Csak élesen</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_audio_buffer_ms.Label"><value>Hangpuffer</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_audio_buffer_ms.Help"><value>Mennyi hangot tart az emulátor a frontend előtt. Többnyire kilovagol egy fülkéből, amit egyébként úgy hallanának, mint egy szakadás a hangban, a sok késés árán, mielőtt bármit is hallanál. A PCSX2 saját alapértelmezett értéke 50 ms, ami azt feltételezi, hogy közvetlenül egy hangeszközt ad el, nem pedig egy olyan frontenst, amely egyszer meghúzza a keretet.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_frame_limiter.Label"><value>Fémkorlát</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_frame_limiter.Help"><value>Mi tartja az emulátort teljes sebességig. A Frontend hagyja a járkálást RetroArch, amely fojtogatja azáltal, hogy a magot várja a hang, hogy átadja. Belső használja a PCSX2 saját limiter helyett - egy eszköz, ahol a várakozás soha nem történik meg, mert az audió meghajtó aláfut inkább blokkolás helyett, és az emulátor saját sebességváltozatát majd eléri a képernyőn egyenetlen képkockáként.</value></data>
   <data name="Emulation.Option.Sony.Value.FrontendRetroArch"><value>Frontend (RetroArch)</value></data>
@@ -809,13 +801,13 @@
   <data name="Emulation.Option.pcee2.pcsx2_aspect_ratio.Label"><value>Szemrevételezési arány</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_aspect_ratio.Help"><value>Automatikus jelentések 16: 9, ha a reflektív tapaszok engedélyezve vannak, 4: 3 egyébként.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_multitap.Label"><value>Multipp</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_multitap.Help"><value>A multi-tap adapter bekapcsolása 8 vezérlőig. A játékosok sorrendje követi a fizikai rések (port 1: 1A- 1D, majd port 2: 2A- 2D). Javasolt újraindítás.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_multitap.Help"><value>A multi-tap adapter bekapcsolása 8 vezérlőig. A játékosok sorrendje követi a fizikai rések (port 1: 1A- 1D.</value></data>
   <data name="Emulation.Option.Sony.Value.Disabled2Players"><value>Fogyatékos (2 játékos)</value></data>
   <data name="Emulation.Option.Sony.Value.Port15Players"><value>Port 1 (5 játékos)</value></data>
   <data name="Emulation.Option.Sony.Value.Port25Players"><value>Port 2 (5 játékos)</value></data>
   <data name="Emulation.Option.Sony.Value.BothPorts8Players"><value>Mindkét kikötő (8 játékos)</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_lightgun.Label"><value>Fénypuska (GunCon 2)</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_lightgun.Help"><value>Emuláljuk a Namco GunCon 2 egy USB port, célja az elülső fényfegyver (vagy egér feltérképezett fénypisztoly) a megfelelő vezérlő port. Újra kell indítania.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_lightgun.Help"><value>Emuláljuk a Namco GunCon 2 egy USB port.</value></data>
   <data name="Emulation.Option.Sony.Value.USBPort1"><value>USB 1-es kikötő</value></data>
   <data name="Emulation.Option.Sony.Value.USBPort2"><value>USB 2-es kikötő</value></data>
   <data name="Emulation.Option.Sony.Value.BothPorts"><value>Mindkét kikötő</value></data>
@@ -840,18 +832,18 @@
   <data name="Emulation.Option.pcee2.pcsx2_ee_cycle_skip.Label"><value>EE Ciklus kihagyása</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_ee_cycle_skip.Help"><value>Ez teszi a EE kiugró ciklusok. Segít néhány játék magas VU tevékenység, megtöri mások.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_cpu_recompiler.Label"><value>CPU Rekompiler (JIT)</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_cpu_recompiler.Help"><value>Újratöltés engedélyezése vagy letiltása diagnosztikai célokra. Ha be van jelölve, az EE, IOP, VU0 és VU1 gyors JIT újraösszeállítást alkalmaz. Ez az alapértelmezés. Ha nem működik, minden CPU lassabban értelmezi az utasításokat. Ez segít diagnosztizálni a JIT hibákat: egy összeomlás, amely még mindig történik az újraösszeállítás fogyatékos van egy másik oka. Az alábbi négy egyéni CPU kapcsoló csak akkor érvényes, ha ez a főopció be van kapcsolva. Az opció módosítása után újra kell indítanunk.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_cpu_recompiler.Help"><value>Újratöltés engedélyezése vagy letiltása diagnosztikai célokra. Ha be van jelölve, az EE, IOP, VU0 és VU1 gyors JIT újraösszeállítást alkalmaz. Ez az alapértelmezés. Ha nem működik, minden CPU lassabban értelmezi az utasításokat. Ez segít diagnosztizálni a JIT hibákat: egy összeomlás, amely még mindig történik az újraösszeállítás fogyatékos van egy másik oka. Az alábbi négy egyéni CPU kapcsoló csak akkor érvényes.</value></data>
   <data name="Emulation.Option.Sony.Value.EnabledJITDefault"><value>Engedélyezett (JIT, alapértelmezés)</value></data>
   <data name="Emulation.Option.Sony.Value.DisabledInterpreter"><value>Fogyatékos (Interpreter)</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_rec_ee.Label"><value>- EE rekombináns</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_rec_ee.Help"><value>Diagnosztikai. Csak az Emotion Engine (EE) dynarec kikapcsolása, miközben a többiek bekapcsolva maradnak, hogy szétváljanak, ami visszafordítja az ütközést. Újra kell indítania.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_rec_ee.Help"><value>Diagnosztikai. Csak az Emotion Engine (EE) dynarec kikapcsolása, miközben a többiek bekapcsolva maradnak, hogy szétváljanak.</value></data>
   <data name="Emulation.Option.Sony.Value.EnabledDefault"><value>Engedélyezett (alapértelmezés)</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_rec_iop.Label"><value>- IOP rekombináns</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_rec_iop.Help"><value>Diagnosztikai. Csak a IOP (R3000) dynarec kikapcsolása, miközben a többiek bekapcsolva maradnak, hogy az újrafordító egy összeomlást okozzon. Újra kell indítania.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_rec_iop.Help"><value>Diagnosztikai. Csak a IOP (R3000) dynarec kikapcsolása, miközben a többiek bekapcsolva maradnak.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_rec_vu0.Label"><value>- VU0 rekombináns</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_rec_vu0.Help"><value>Diagnosztikai. Csak a VU0 microVU dynarec letiltása, miközben a többit bekapcsolva hagyja, hogy szétválasszák, ami visszafordítja az ütközést. Újra kell indítania.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_rec_vu0.Help"><value>Diagnosztikai. Csak a VU0 microVU dynarec letiltása, miközben a többit bekapcsolva hagyja, hogy szétválasszák.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_rec_vu1.Label"><value>- VU1 rekombináns</value></data>
-  <data name="Emulation.Option.pcee2.pcsx2_rec_vu1.Help"><value>Diagnosztikai. Csak a VU1 microVU dynarec kikapcsolása, miközben a többiek bekapcsolva maradnak, hogy az újrafordító szétváljon, ami balesetet okoz. Újra kell indítania.</value></data>
+  <data name="Emulation.Option.pcee2.pcsx2_rec_vu1.Help"><value>Diagnosztikai. Csak a VU1 microVU dynarec kikapcsolása, miközben a többiek bekapcsolva maradnak, hogy az újrafordító szétváljon.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_memcard_slot1_enable.Label"><value>Slot 1 Engedélyezett</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_memcard_slot1_enable.Help"><value>Engedélyezze az 1 PS2 memóriakártyát. A módosítások a tartalom futása közben azonnal alkalmazandók.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_memcard_slot2_enable.Label"><value>Slot 2 Engedélyezett</value></data>
@@ -902,8 +894,6 @@
   <data name="Emulation.Option.Sony.Value.AllTimers"><value>Minden időzítő</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_clocks_scale.Label"><value>Óramű</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_clocks_scale.Help"><value>A PS3 óra fordulatszáma százalékban.</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_renderer.Label"><value>Felderer</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_renderer.Help"><value>Vulkan rendel a frontend eszköz Vulkan és átadja minden kész keret, mint egy kép; amikor a front nem fut a Vulkan videó meghajtó, a keretet másolja vissza memória helyett. Az OpenGL egyenesen a frontend openGL kontextusába rajzol.</value></data>
   <data name="Emulation.Option.Sony.Value.NullNoVideo"><value>Null (nincs videó)</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_frame_limit.Label"><value>Keretkorlát</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_frame_limit.Help"><value>Legmagasabb frame ráta a játék futhat. Auto a VBlank Frekvencia, mint az RPCS3; PS3 Native pates flats the way the PS3 does; Letiltva let games that don 't waiting for the PS3' s fresh yourself run too fast.</value></data>
@@ -980,7 +970,7 @@
   <data name="Emulation.Option.rpcs3.rpcs3_driver_wakeup_delay.Label"><value>Driver Wake- Up Delay</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_driver_wakeup_delay.Help"><value>Driver ébresztő késleltetés mikroszekundum. 0 alapértelmezés szerint, mint az RPCS3; emelje csak akkor, ha egy játék szüksége van rá.</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_vblank_rate.Label"><value>VBlank gyakoriság</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_vblank_rate.Help"><value>A PS3 frissítési sebessége Hz-ben. Ez is a frame rate a mag kéri RetroArch, amely hatályba lép, ha tartalom betöltése; játékok, amelyek futnak fölött 60 FPS kell egy kijelző, hogy frissíti, hogy gyors.</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_vblank_rate.Help"><value>Beállítja az emulált képfrissítési frekvenciát. A kompatibilitási lista módja megduplázza azt a támogatott játékoknál.</value></data>
   <data name="Emulation.Option.Sony.Value.50HzPAL"><value>50 Hz (PAL)</value></data>
   <data name="Emulation.Option.Sony.Value.60HzNTSC"><value>60 Hz (NTSC)</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_thread_scheduler.Label"><value>Menetes Scheduler</value></data>
@@ -1062,8 +1052,6 @@
   <data name="Emulation.Option.rpcs3.rpcs3_frame_pacing.Label"><value>Keret kijelölése</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_frame_pacing.Help"><value>Amivel a játék keretei időzítettek. Az Emulátor óra RPCS3 saját időzítője, mint a standalone RPCS3. RetroArch ad a játék egy PS3 frissítést képkockánként RetroArch show, így a quick-forward felgyorsítja a játékot, és a játék fut a VBlank Frekvencia, amikor RetroArch azt mutatja, hogy sok keret másodpercenként; A Vulkan renderer jelenleg kihagyja keretek.</value></data>
   <data name="Emulation.Option.Sony.Value.EmulatorClock"><value>Emulátor óra</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_savedata_slot.Label"><value>Az adatslot mentése</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_savedata_slot.Help"><value>A PS3 játék a mentési adatok listáját jeleníti meg, és lehetővé teszi, hogy a játékos válasszon. A 'Válassza ki a listából' azt a listát mutatja a játékképben, amit a vezérlőnél kell használni. Egy számnál van a fő választás az Ön számára: a mentés felülírja a bejegyzést ebben a pozícióban a játék listájában, vagy egy új elmentést tesz, ha a lista rövidebb; a betöltés ezen a helyen veszi a nevezőt, és nem talál semmit, amikor a lista alacsonyabb. 0 az első bejegyzés. Játékok, amelyek egy mentés saját nem mutatja a listát, így ez nem vonatkozik rájuk.</value></data>
   <data name="Emulation.Option.Sony.Value.PickFromList"><value>Válasszon a listáról</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_master_volume.Label"><value>Master Volume</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_master_volume.Help"><value>Master hangtérfogat százalék.</value></data>
@@ -1233,7 +1221,7 @@
   <data name="Emulation.Option.Sony.Value.MergeTargets"><value>Egyesülés célpontok</value></data>
   <data name="Emulation.Option.Sony.Setting.DisableDepthConversion.Label"><value>A depth- pufferkonverzió kikapcsolása</value></data>
   <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Label"><value>Külső GameIndex adatbázis használata</value></data>
-  <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Help"><value>A hardveres renderelő és a manuális renderelés javításait igényli. A kijelölt játék kompatibilitási adatbázisa betöltése, vagy üresen hagyja a fájlt az épületben való használathoz. A beállítások módosítása után az emuláció újraindítása.</value></data>
+  <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Help"><value>A hardveres renderelő és a manuális renderelés javításait igényli. A kijelölt játék kompatibilitási adatbázisa betöltése.</value></data>
   <data name="Emulation.Option.Sony.Setting.FramebufferConversion.Label"><value>A renderelés keretbuffer konvertálása</value></data>
   <data name="Emulation.Option.Sony.Setting.DisablePartialInvalidation.Label"><value>Részleges forráskódú érvényesítés kikapcsolása</value></data>
   <data name="Emulation.Option.Sony.Setting.GpuPaletteConversion.Label"><value>Palette konverzió GPU</value></data>
@@ -1274,4 +1262,18 @@
   <data name="Emulation.Option.Sony.Setting.LineToQuad.Help" xml:space="preserve"><value>Néhány játék (pl.: Doom, Hexen, Soul Blade, stb.) rajzoljon vízszintes vonalak nyújtásával egypixeles-magas háromszögek a képernyőn, amelyek raszterizálódnak, mint egy sor pixel az eredeti hardver. Ez a hack észleli ezeket a kis háromszögeket, és átalakítja őket quads szükség szerint, lehetővé téve számukra, hogy megfelelően megjelenítse a hardverkölcsönzők és magasabb belső felbontások. "Agresszív" szükséges egyes címek (például sötét erők, herceg nukem), de egyébként bevezethet grafikus hibák. Menj el az 'Alapértelmezés' -nél, ha bizonytalan vagy.</value></data>
   <data name="Emulation.Option.Sony.Setting.DynarecEventCycles.Label" xml:space="preserve"><value>Dynarec DMA / GPU / MDEC / Timer Event Cycles</value></data>
   <data name="Emulation.Option.Sony.Setting.DynarecEventCycles.Help" xml:space="preserve"><value>A CPU által futtatott maximális ciklusok a GPU / DMA / MDEC / Timer Update ellenőrzése előtt, nagyobb szám lesz gyorsabb, sokkal kisebb hatással vannak a bogár tolmácsra, mint a dynarec.</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_aspect_ratio.Help"><value>Beállítja a játékoknak jelzett képarányt. Csak néhány játék támogatja a 4:3 arányt.</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_disk_cache_size.Label"><value>Lemezgyorsítótár mérete</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_disk_cache_size.Help"><value>Korlátozza a játékok ideiglenes gyorsítótárai által használt lemezterületet. A játékok újra létrehozzák a törölt gyorsítótárakat, ami lassíthatja a következő indítást.</value></data>
+  <data name="Emulation.Option.pokket.Link"><value>Infravörös kapcsolat</value></data>
+  <data name="Emulation.Option.pokket.Layout"><value>Összekapcsolt képernyők elrendezése</value></data>
+  <data name="Emulation.Option.pokket.Audio"><value>Összekapcsolt egységek hangforrása</value></data>
+  <data name="Emulation.Option.pokket.Identity"><value>A B egység hardverazonosítója</value></data>
+  <data name="Emulation.Option.pokket.Horizontal"><value>Egymás mellett</value></data>
+  <data name="Emulation.Option.pokket.Vertical"><value>Egymás felett</value></data>
+  <data name="Emulation.Option.pokket.SelectUnitA"><value>Az A egység vezérlése</value></data>
+  <data name="Emulation.Option.pokket.SelectUnitB"><value>A B egység vezérlése</value></data>
+  <data name="Emulation.Option.pokket.Help"><value>Az infravörös kapcsolat engedélyezéséhez helyezzen egy kártyát mindkét egységbe.</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_audio_format.Label"><value>Hangszórók elrendezése</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_audio_format.Help"><value>Beállítja a játékoknak felkínált hangszóró-elrendezést. A játék ennek alapján választja ki a hangkeverést. A kimenet a Windowsban kiválasztott hangeszköztől is függ.</value></data>
 </root>

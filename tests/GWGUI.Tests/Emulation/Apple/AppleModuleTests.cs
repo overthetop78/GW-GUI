@@ -15,6 +15,48 @@ namespace GWGUI.Tests.Emulation.Apple;
 
 public sealed class AppleModuleTests
 {
+    [Theory]
+    [InlineData(MachineModel.AppleII)]
+    [InlineData(MachineModel.AppleIIPlus)]
+    [InlineData(MachineModel.AppleIIJPlus)]
+    [InlineData(MachineModel.AppleIIe)]
+    [InlineData(MachineModel.AppleIIeEnhanced)]
+    public void AppleTwoUsesCommonVideoEffectsAndDisplaysItsEmbeddedRom(MachineModel model)
+    {
+        using var client = new System.Net.Http.HttpClient();
+        var module = new GWGUI.Emulation.Apple.Modules.AppleEmulationModule(".", ".", client, ".");
+        var configuration = new MachineConfiguration(model);
+        var fields = module.Describe(configuration.MachineId, configuration).Blocks.SelectMany(block => block.Fields).ToArray();
+        Assert.Equal("Emulation.Cpu.SpeedOriginal", Assert.Single(fields, field => field.Id == SettingsConstants.CpuFrequency).LabelResourceKey);
+        Assert.DoesNotContain(fields, field => field.Id is "applewin_video_mode" or "applewin_video_style");
+        Assert.Contains(fields, field => field.Id == "expansion.video");
+        Assert.Contains(fields, field => field.Id == "applewin_video_refresh_rate");
+        Assert.Equal("Color (RGB Card/Monitor)", module.RuntimeOptions(configuration)["applewin_video_mode"]);
+        Assert.Equal("560 x 192", module.RuntimeOptions(configuration)["applewin_video_style"]);
+        var firmware = Assert.Single(fields, field => field.Id == SettingsConstants.Firmware);
+        Assert.Equal(EmulationSettingsEditor.Information, firmware.Editor);
+        Assert.Equal(SettingsConstants.ResourceEmbeddedFirmware, Assert.Single(firmware.Choices!).DisplayResourceKey);
+        const string prefix = "GWGUI.Emulation.Apple.Resources.Emulation.";
+        var cultures = typeof(GWGUI.Emulation.Apple.Modules.AppleEmulationModule).Assembly.GetManifestResourceNames()
+            .Where(name => name.StartsWith(prefix, StringComparison.Ordinal) && name.EndsWith(".resources", StringComparison.Ordinal))
+            .Select(name => name[prefix.Length..^".resources".Length]).Where(name => name != "00-Base").ToArray();
+        Assert.Equal(29, cultures.Length);
+        foreach (var culture in cultures)
+            Assert.True(module.TryGetString(SettingsConstants.ResourceEmbeddedFirmware, System.Globalization.CultureInfo.GetCultureInfo(culture), out _));
+    }
+
+    [Fact]
+    public void MacintoshTwoKeepsItsExternalRomPathEditor()
+    {
+        using var client = new System.Net.Http.HttpClient();
+        var module = new GWGUI.Emulation.Apple.Modules.AppleEmulationModule(".", ".", client, ".");
+        var configuration = new MachineConfiguration(MachineModel.MacintoshII);
+        var field = Assert.Single(module.Describe(configuration.MachineId, configuration).Blocks.SelectMany(block => block.Fields), field => field.Id == SettingsConstants.Firmware);
+        Assert.Equal(EmulationSettingsEditor.Path, field.Editor);
+        var updated = (MachineConfiguration)module.ApplySettings(configuration, new Dictionary<string, string?> { [field.Id] = "MacII.ROM" });
+        Assert.Equal("MacII.ROM", Assert.Single(updated.Firmwares).Path);
+    }
+
     [Fact]
     public void ExpansionCardsUseTheirFunctionalTabsAndRefreshTheirSlotAvailability()
     {
