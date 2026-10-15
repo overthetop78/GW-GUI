@@ -153,3 +153,16 @@ Adaptation: lossless assembly of the two embedded JPEG strips into the original 
 Asset: `src/GWGUI.App/Assets/Controllers/sony-dualshock-3.png`.
 Source: https://commons.wikimedia.org/wiki/File:PS3_controller.png (1200 x 880 PNG), photographed by Evan-Amos; controller cutout by Lorenziand, derived from PS3Versions.png. The source is released into the public domain by its authors.
 Adaptation: proportional classical resampling to 512 x 375 pixels, preserving the existing transparent silhouette and photographic markings. No generated or reconstructed parts.
+
+## Sinclair ZX80 photograph
+
+Asset: `src/GWGUI.Emulation.Sinclair/Assets/Machines/Zx80.png`.
+Photograph by Daniel Ryde, Skövde, 31 August 2004; levels and sharpening edit by Ian Dunster. Licensed under Creative Commons Attribution-ShareAlike 3.0 Unported: https://creativecommons.org/licenses/by-sa/3.0/.
+Source: https://commons.wikimedia.org/wiki/File:ZX80.jpg
+Original: https://upload.wikimedia.org/wikipedia/commons/2/24/ZX80.jpg
+Adaptation: classical silhouette alpha mask, removal of the exterior background and cast shadow, proportional resizing and transparent padding to 512 x 406 pixels. The complete photographed case, keyboard and printed legends are retained. No generated or reconstructed parts. This adapted photograph remains under CC BY-SA 3.0.
+
+## Philips Videopac G7000 alpha correction
+
+Asset: `src/GWGUI.Emulation.Philips/Assets/Machines/VideopacG7000.png`.
+The existing repository photograph is retained. This update changes only its alpha channel: classical edge matte cleanup with protection of the dark cable pixels and a subpixel feather. RGB pixels, lettering, controls and cable paths are unchanged; no new photograph or generated hardware is introduced. Dimensions remain 512 x 312 pixels.
