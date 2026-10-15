@@ -16,4 +16,5 @@ internal sealed record CoreDefinition(
     IReadOnlyList<string>? StartupFailureDiagnostics = null,
     bool PersistentDataDirectories = false,
     bool SupportsSavedStates = true,
-    IReadOnlyList<ControllerType>? FeedbackControllerTypes = null);
+    IReadOnlyList<ControllerType>? FeedbackControllerTypes = null,
+    TimeSpan? DisposalTimeout = null);

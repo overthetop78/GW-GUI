@@ -6,6 +6,7 @@ namespace GWGUI.Emulation.Sony.Emulators.Play.Constants;
 internal static class CoreConstants
 {
     internal const string Id = "play";
+    internal const int DisposalTimeoutSeconds = 5;
     internal const string DisplayName = "Play!";
     internal const string LibraryName = "Play!";
     internal const string LibraryFileName = "play_libretro.dll";
@@ -17,5 +18,6 @@ internal static class CoreConstants
         OptionCatalog.All, FirmwareConstants.All,
         new(Id, DisplayName, DescriptionResourceKey, new HashSet<string>(StringComparer.Ordinal) { ModelConstants.PlayStation2 }),
         RequiresExternalFirmware: false,
-        ControllerTypes: [ControllerType.Joystick, ControllerType.None]);
+        ControllerTypes: [ControllerType.Joystick, ControllerType.None],
+        DisposalTimeout: TimeSpan.FromSeconds(DisposalTimeoutSeconds));
 }

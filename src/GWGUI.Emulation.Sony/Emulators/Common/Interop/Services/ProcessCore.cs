@@ -288,18 +288,7 @@ internal sealed class ProcessCore : IEmulatorCore
         _writer!.Write((byte)command);
     }
 
-    private TimeSpan RequestTimeoutFor(HostCommand command)
-    {
-        var defaultTimeout = TimeSpan.FromSeconds(ProcessCoreConstants.ResponseTimeoutSeconds);
-        if (_configuration is null) return defaultTimeout;
-        var definition = CoreCatalog.Get(_configuration.EmulatorId);
-        return command switch
-        {
-            HostCommand.Initialize or HostCommand.HardReset => definition.StartupTimeout ?? defaultTimeout,
-            HostCommand.Stop or HostCommand.Dispose => definition.ShutdownTimeout ?? defaultTimeout,
-            _ => defaultTimeout
-        };
-    }
+    private TimeSpan RequestTimeoutFor(HostCommand command) => CoreTimeoutFunctions.For(_configuration is null ? null : CoreCatalog.Get(_configuration.EmulatorId), command);
 
     private void CompleteRequest()
     {
