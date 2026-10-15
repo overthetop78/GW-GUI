@@ -1192,7 +1192,7 @@
   <data name="Emulation.Option.Sony.Setting.Fastcdvd.Help"><value>Быстро CD/DVD У небольшого количества игр будут проблемы с совместимостью с этим включенным.</value></data>
   <data name="Emulation.Option.Sony.Setting.SharedMemoryCards.Help"><value>Используйте карты памяти на каждый контент или общие карты памяти.</value></data>
   <data name="Emulation.Option.Sony.Setting.EnableCheats.Label"><value>Включите игровые чит-коды</value></data>
-  <data name="Emulation.Option.Sony.Setting.EnableCheats.Help"><value>Включите файлы читов, которые будут считаны из каталога «читы» в системной папке.</value></data>
+  <data name="Emulation.Option.Sony.Setting.EnableCheats.Help"><value>Прочитайте игровые чит-коды из файлов в выбранной папке. Перезагрузите эмуляцию после выбора другой папки.</value></data>
   <data name="Emulation.Option.Sony.Setting.HintLanguageUnlock.Label"><value>Разблокировать дополнительные игровые языки</value></data>
   <data name="Emulation.Option.Sony.Setting.HintLanguageUnlock.Help"><value>Если включена, загляните во внутреннюю базу данных для вариантов разблокировки языка. Примеры включают: принуждение международной японской версии к английскому языку, разблокировка большего количества европейских языков и т. Д.</value></data>
   <data name="Emulation.Option.Sony.Setting.Dev9Hdd.Help"><value>Подражать SPEED расширение ATA Жесткий диск. Изображение живет на 'pcsx2/DEV9hdd.rawв каталоге системы frontend и создается при первом использовании при настроенном размере.</value></data>
@@ -1274,7 +1274,7 @@
   <data name="Emulation.Option.Sony.Value.MergeTargets"><value>Объединить цели рендеринга</value></data>
   <data name="Emulation.Option.Sony.Setting.DisableDepthConversion.Label"><value>Отключение преобразования глубинного буфера</value></data>
   <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Label"><value>Использование внешней базы данных GameIndex</value></data>
-  <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Help"><value>Загрузите базу данных совместимости с игрой из &lt;system&gt;/resources/GameIndex.yaml Если присутствует, возвращаясь к встроенной базе данных, когда она отсутствует. При отключении всегда используйте базу данных, встроенную в ядро.</value></data>
+  <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Help"><value>Требуется аппаратный рендер и исправления ручного рендеринга. Загрузите выбранную базу данных совместимости игры, или оставьте файл пустым для использования встроенной базы данных. Перезагрузите эмуляцию после изменения этих настроек.</value></data>
   <data name="Emulation.Option.Sony.Setting.FramebufferConversion.Label"><value>Преобразовать фреймбуфер рендеринга</value></data>
   <data name="Emulation.Option.Sony.Setting.DisablePartialInvalidation.Label"><value>Отключение частичной инвалидации источника</value></data>
   <data name="Emulation.Option.Sony.Setting.GpuPaletteConversion.Label"><value>Конверсия палитры на GPU</value></data>
@@ -1296,4 +1296,5 @@
   <data name="Emulation.Option.Sony.Setting.InvertRightStick.Label"><value>Переверните оси правильной аналоговой палочки</value></data>
   <data name="Emulation.Option.Sony.Setting.AnalogMode.Label"><value>Начать в аналоговом режиме</value></data>
   <data name="Emulation.Option.Sony.Setting.AnalogMode.Help"><value>Запустите контроллер в аналоговом режиме, а не в цифровом. Некоторые игры (например, Ridge Racer V) загружают планшет в цифровом виде и обычно требуют нажатия на контроллер. ANALOG кнопка для включения палок; включить это, чтобы получить аналоговые элементы управления с самого начала. Игры, которые блокируют режим контроллера не затронуты.</value></data>
+  <data name="Emulation.Option.Sony.Files.CheatsDirectory"><value>папка, содержащая чит-коды игр</value></data>
 </root>

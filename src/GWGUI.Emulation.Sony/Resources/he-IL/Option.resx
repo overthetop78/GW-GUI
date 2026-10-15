@@ -1192,7 +1192,7 @@
   <data name="Emulation.Option.Sony.Setting.Fastcdvd.Help"><value>מהר CD/ / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / /DVD זמני גישה / מראה. קומץ קטן של משחקים יהיו בעיות תאימות עם זה אפשרי.</value></data>
   <data name="Emulation.Option.Sony.Setting.SharedMemoryCards.Help"><value>השתמש בכרטיסי זיכרון או תוכן משותף.</value></data>
   <data name="Emulation.Option.Sony.Setting.EnableCheats.Label"><value>משחק לרמות קודים</value></data>
-  <data name="Emulation.Option.Sony.Setting.EnableCheats.Help"><value>ניתן לרמות קבצים כדי לקרוא מהבמאית "צ'אטים" בתיקיה המערכת.</value></data>
+  <data name="Emulation.Option.Sony.Setting.EnableCheats.Help"><value>קרא את משחק לרמות קודים מקבצים בתיקיה שנבחרה. Restart מחקה לאחר בחירת תיקיה אחרת.</value></data>
   <data name="Emulation.Option.Sony.Setting.HintLanguageUnlock.Label"><value>Unlock Another Game Language</value></data>
   <data name="Emulation.Option.Sony.Setting.HintLanguageUnlock.Help"><value>אם אפשר, יחפש בתוך מסד הנתונים הפנימי של אפשרויות לפתיחה בשפה: לכפות גרסה יפנית בינלאומית לאנגלית, חשוף יותר שפות אירופיות וכו '</value></data>
   <data name="Emulation.Option.Sony.Setting.Dev9Hdd.Help"><value>דמיין את SPEED הרחבה ATA כונן קשיח: התמונה חיה ב- "pcsx2/DEV9hdd.raw"במערכת הקדמית, מנהל המערכת נוצר על שימוש ראשון בגודל מוגדר.</value></data>
@@ -1274,7 +1274,7 @@
   <data name="Emulation.Option.Sony.Value.MergeTargets"><value>המונחים: mit</value></data>
   <data name="Emulation.Option.Sony.Setting.DisableDepthConversion.Label"><value>המונחים: deep-buffer</value></data>
   <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Label"><value>שימוש ב-GameIndex Database</value></data>
-  <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Help"><value>לטעון את מסד הנתונים של תאימות המשחק מ &lt;system&gt; / Resources /GameIndex.yaml אם זה נכון, ליפול חזרה למסד הנתונים שנבנה כאשר הוא חסר.כאשר הוא מוגבל, תמיד להשתמש במסד הנתונים שנבנה ליבת.</value></data>
+  <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Help"><value>נדרש חומרת חומרה ותיקון ידני של תיקוני טעינה. לטעון את מסד הנתונים שנבחר תאימות למשחק, או להשאיר את הקובץ ריק לשימוש מסד הנתונים בנוי-in. Restart מחקה לאחר שינוי הגדרות אלה.</value></data>
   <data name="Emulation.Option.Sony.Setting.FramebufferConversion.Label"><value>המונחים: make the make systembuffer</value></data>
   <data name="Emulation.Option.Sony.Setting.DisablePartialInvalidation.Label"><value>המונחים: different Source Invalidation</value></data>
   <data name="Emulation.Option.Sony.Setting.GpuPaletteConversion.Label"><value>המרה של Palette GPU</value></data>
@@ -1296,4 +1296,5 @@
   <data name="Emulation.Option.Sony.Setting.InvertRightStick.Label"><value>למנוע את החרדות של מקל האנלוגי הנכון</value></data>
   <data name="Emulation.Option.Sony.Setting.AnalogMode.Label"><value>התחל במצב Analog</value></data>
   <data name="Emulation.Option.Sony.Setting.AnalogMode.Help"><value>התחל את הבקר במצב אנלוגי ולא דיגיטלי.חלק משחקים (למשל רידג ' Racer V) לחול את המשטח בדיגיטל ובדרך כלל דורשים לחיצה על הבקר ANALOG כפתור כדי לאפשר את מקלות; לאפשר זאת כדי לקבל שליטה אנלוגית מההתחלה.משחקים המנעולים את מצב הבקר אינם מושפעים.</value></data>
+  <data name="Emulation.Option.Sony.Files.CheatsDirectory"><value>משחק המכיל קודים לרמות</value></data>
 </root>

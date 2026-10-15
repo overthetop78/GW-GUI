@@ -1192,7 +1192,7 @@
   <data name="Emulation.Option.Sony.Setting.Fastcdvd.Help"><value>퀵메뉴 CD/ / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / /DVD 접근/주 시간. 게임의 작은 손이 이 활성화된과 호환이 되는 문제.</value></data>
   <data name="Emulation.Option.Sony.Setting.SharedMemoryCards.Help"><value>의 사용 per-content 또는 공유 메모리 카드.</value></data>
   <data name="Emulation.Option.Sony.Setting.EnableCheats.Label"><value>Enable 게임 속임수 코드</value></data>
-  <data name="Emulation.Option.Sony.Setting.EnableCheats.Help"><value>시스템 폴더의 'cheats' 디렉토리에서 읽을 수 있는 속임수 파일.</value></data>
+  <data name="Emulation.Option.Sony.Setting.EnableCheats.Help"><value>선택한 폴더에 파일에서 게임 속임수를 읽으십시오. 다른 폴더를 선택한 후 나머지 에뮬레이션.</value></data>
   <data name="Emulation.Option.Sony.Setting.HintLanguageUnlock.Label"><value>추가 게임 언어 잠금 해제</value></data>
   <data name="Emulation.Option.Sony.Setting.HintLanguageUnlock.Help"><value>활성화되면 언어 잠금 옵션을 위한 내부 데이터베이스를 볼 수 있습니다. 예는 다음과 같습니다. 외국어로 영어로 외국어를 강제하고 유럽 언어의 잠금을 해제 등</value></data>
   <data name="Emulation.Option.Sony.Setting.Dev9Hdd.Help"><value>의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 SPEED 확장의 ATA 하드 드라이브. 이미지는 'pcsx2/'에 생명을줍니다.DEV9hdd.raw' frontend system directory에서 설정된 크기에서 첫 번째 사용으로 생성됩니다.</value></data>
@@ -1274,7 +1274,7 @@
   <data name="Emulation.Option.Sony.Value.MergeTargets"><value>Merge는 표적을 만듭니다</value></data>
   <data name="Emulation.Option.Sony.Setting.DisableDepthConversion.Label"><value>가변 깊이-buffer 변환</value></data>
   <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Label"><value>외부 GameIndex 데이터베이스 사용</value></data>
-  <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Help"><value>&lt;system&gt;/resources/에서 게임 호환성 데이터베이스를 로드하십시오.GameIndex.yaml 현재, 내장 데이터베이스로 다시 떨어지면 누락됩니다. 비활성화되면 항상 핵심에 내장 된 데이터베이스를 사용합니다.</value></data>
+  <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Help"><value>하드웨어 렌더링 및 수동 렌더링 수정을 요구합니다. 선택한 게임 호환성 데이터베이스를로드하거나 내장 데이터베이스를 사용하는 파일을 빈 상태로 남겨두십시오. 이러한 설정을 변경한 후 나머지 에뮬레이션.</value></data>
   <data name="Emulation.Option.Sony.Setting.FramebufferConversion.Label"><value>렌더링 프레임 버퍼를 변환</value></data>
   <data name="Emulation.Option.Sony.Setting.DisablePartialInvalidation.Label"><value>부패적 인 권한</value></data>
   <data name="Emulation.Option.Sony.Setting.GpuPaletteConversion.Label"><value>Palette 변환에 GPU</value></data>
@@ -1296,4 +1296,5 @@
   <data name="Emulation.Option.Sony.Setting.InvertRightStick.Label"><value>오른쪽 아날로그 스틱의 axes를 변환</value></data>
   <data name="Emulation.Option.Sony.Setting.AnalogMode.Label"><value>아날로그 모드로 시작</value></data>
   <data name="Emulation.Option.Sony.Setting.AnalogMode.Help"><value>디지털보다 아날로그 모드에서 컨트롤러를 시작하십시오. 일부 게임 (예 : Ridge Racer V)는 디지털 패드를 부팅하고 일반적으로 컨트롤러의 누르는 데 필요합니다. ANALOG 버튼을 사용하여 스틱을 활성화;이 시작에서 아날로그 제어를 얻을 수 있습니다. 컨트롤러 모드를 잠금하는 게임은 비범죄입니다.</value></data>
+  <data name="Emulation.Option.Sony.Files.CheatsDirectory"><value>게임 속임수 코드를 포함하는 폴더</value></data>
 </root>

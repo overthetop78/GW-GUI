@@ -2,7 +2,6 @@ namespace GWGUI.Emulation.Sony.Emulators.Pcsx2.Constants;
 
 internal static class HardDiskConstants
 {
-    internal const string SystemUri = "gwgui://pcsx2-system";
     internal const string NativeFile = "pcsx2/DEV9hdd.raw";
     internal const string Extension = ".raw";
     internal const string ImageExtension = ".img";

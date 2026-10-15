@@ -1192,7 +1192,7 @@
   <data name="Emulation.Option.Sony.Setting.Fastcdvd.Help"><value>เร็ว CD/DVD เข้าถึง/ สืบค้นเวลา เกมขนาดเล็กจะมีปัญหาความเข้ากันได้กับเกมนี้</value></data>
   <data name="Emulation.Option.Sony.Setting.SharedMemoryCards.Help"><value>ใช้การ์ดหน่วยความจําต่อแถวหรือใช้ร่วมกัน</value></data>
   <data name="Emulation.Option.Sony.Setting.EnableCheats.Label"><value>เปิดใช้การโกงรหัสเกม</value></data>
-  <data name="Emulation.Option.Sony.Setting.EnableCheats.Help"><value>เปิดใช้การโกงแฟ้มที่จะอ่านได้จากไดเรกทอรี 'hats' ในโฟลเดอร์ของระบบ</value></data>
+  <data name="Emulation.Option.Sony.Setting.EnableCheats.Help"><value>อ่านรหัสการโกงจากแฟ้มในโฟลเดอร์ที่เลือกไว้ การจําลองใหม่หลังจากการเลือกโฟลเดอร์อื่น</value></data>
   <data name="Emulation.Option.Sony.Setting.HintLanguageUnlock.Label"><value>ภาษาเกมปลดล็อค</value></data>
   <data name="Emulation.Option.Sony.Setting.HintLanguageUnlock.Help"><value>หากเปิดใช้ จะทําการค้นหาตัวเลือกต่าง ๆ ภายในฐานข้อมูลภายใน เพื่อทําการปลดล็อคภาษาได้ ตัวอย่างคือ: การบังคับให้ภาษาญี่ปุ่นรุ่นต่าง ๆ เป็นไปตามภาษาอังกฤษ การปลดล็อคภาษายุโรปมากขึ้น เป็นต้น</value></data>
   <data name="Emulation.Option.Sony.Setting.Dev9Hdd.Help"><value>เลียนแบบ SPEED การขยาย ATA ฮาร์ดไดรฟ์ ภาพอยู่ที่ 'pcsx2/DEV9hdd.raw'ในไดเรกทอรีของระบบหน้า และถูกสร้างเมื่อใช้งานครั้งแรกที่ขนาดปรับแต่งแล้ว'</value></data>
@@ -1274,7 +1274,7 @@
   <data name="Emulation.Option.Sony.Value.MergeTargets"><value>รวมเป้าหมายที่แสดง</value></data>
   <data name="Emulation.Option.Sony.Setting.DisableDepthConversion.Label"><value>ปิดการแปลงค่าความลึก</value></data>
   <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Label"><value>ใช้ฐานข้อมูลของเกมภายนอก</value></data>
-  <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Help"><value>โหลดฐานข้อมูลการเข้ากันได้กับเกมจาก &lt; ระบบแฟ้ม&gt;/ Resourcess/GameIndex.yaml หากมีอยู่ ให้ถอยกลับไปใช้ฐานข้อมูลที่ถูกสร้างจากฐานข้อมูลที่ขาดหายไป เมื่อไม่มีการใช้งาน จะใช้ฐานข้อมูลที่ถูกสร้างไว้ในแกนหลักเสมอ</value></data>
+  <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Help"><value>ต้องการตัวแปลงฮาร์ดแวร์และตัวแก้ไขด้วยตนเอง โปรดโหลดฐานข้อมูลความเข้ากันได้ของเกมที่เลือกไว้ หรือปล่อยว่างไว้เพื่อใช้ฐานข้อมูลที่ฝังอยู่ภายใน แล้วทําการจําลองโปรแกรมใหม่หลังจากเปลี่ยนการตั้งค่าเหล่านี้</value></data>
   <data name="Emulation.Option.Sony.Setting.FramebufferConversion.Label"><value>แปลงเฟรมบัฟเฟอร์ของการแสดงผล</value></data>
   <data name="Emulation.Option.Sony.Setting.DisablePartialInvalidation.Label"><value>ปิดการใช้แหล่งไม่ถูกต้อง</value></data>
   <data name="Emulation.Option.Sony.Setting.GpuPaletteConversion.Label"><value>การแปลงจานสีเมื่อ GPU</value></data>
@@ -1296,4 +1296,5 @@
   <data name="Emulation.Option.Sony.Setting.InvertRightStick.Label"><value>กลับค่าแกนของแท่งแอเนล็อกด้านขวา</value></data>
   <data name="Emulation.Option.Sony.Setting.AnalogMode.Label"><value>เริ่มในโหมดอะนาล็อก</value></data>
   <data name="Emulation.Option.Sony.Setting.AnalogMode.Help"><value>เริ่มตัวควบคุมในโหมดแอ็คชั่นแทนที่จะเป็นดิจิทัล เกมบางเกม (เช่น Round Rumer V) บูตแผ่นในดิจิทัลและตามปกติแล้วต้องใช้กดตัวควบคุม ANALOG ปุ่มเพื่อเปิดใช้งานแท่งไม้; เปิดให้ใช้ควบคุมแบบเอนกประสงค์จากตอนต้นได้. เกมที่ล็อกโหมดควบคุมไม่สามารถป้องกันได้</value></data>
+  <data name="Emulation.Option.Sony.Files.CheatsDirectory"><value>โฟลเดอร์ที่มีรหัสการโกงเกม</value></data>
 </root>

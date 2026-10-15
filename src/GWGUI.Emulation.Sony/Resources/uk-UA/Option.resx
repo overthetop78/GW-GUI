@@ -1192,7 +1192,7 @@
   <data name="Emulation.Option.Sony.Setting.Fastcdvd.Help"><value>Зручності CD, , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , ,DVD час доступу/сек. Невелика функціональність ігор буде мати проблеми сумісності з цим ввімкненим.</value></data>
   <data name="Emulation.Option.Sony.Setting.SharedMemoryCards.Help"><value>Використовуйте для користувача або спільні карти пам'яті.</value></data>
   <data name="Emulation.Option.Sony.Setting.EnableCheats.Label"><value>Увімкнути гру Коди обману</value></data>
-  <data name="Emulation.Option.Sony.Setting.EnableCheats.Help"><value>Увімкнути файли зчитування з каталогу "Чатки" в папці системи.</value></data>
+  <data name="Emulation.Option.Sony.Setting.EnableCheats.Help"><value>Читання гри Коди з файлів у вибраній папці. Решта емульсії після вибору іншої папки.</value></data>
   <data name="Emulation.Option.Sony.Setting.HintLanguageUnlock.Label"><value>Розблокувати додаткові мови гри</value></data>
   <data name="Emulation.Option.Sony.Setting.HintLanguageUnlock.Help"><value>Якщо увімкнено, буде виглядати всередині внутрішньої бази даних для варіантів розблокування мови. Приклади включають: для залучення міжнародної японської версії до англійської мови, розблокування більш європейських мов і т.д.</value></data>
   <data name="Emulation.Option.Sony.Setting.Dev9Hdd.Help"><value>Наповнення SPEED розширення ATA жорсткий диск. Зображення життя в 'pcsx2/DEV9hdd.raw- в каталозі передньої системи і створюється на першому використанні на налаштованому розмірі.</value></data>
@@ -1274,7 +1274,7 @@
   <data name="Emulation.Option.Sony.Value.MergeTargets"><value>Цільові цілі</value></data>
   <data name="Emulation.Option.Sony.Setting.DisableDepthConversion.Label"><value>Вимкнена глибинна конвертація</value></data>
   <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Label"><value>Використання зовнішньої бази даних GameIndex</value></data>
-  <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Help"><value>Завантаження бази даних програвачів від &lt;system&gt;/resources/GameIndex.yaml якщо це не вистачає, що ви не можете використовувати базу даних, що побудовані в ядро.</value></data>
+  <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Help"><value>Зажадає апаратний рендер і ручний рендеринг фіксує. Завантаження вибраної бази даних сумісності гри або залишити файл порожнім, щоб використовувати вбудовану базу даних. Перезапустіть емульсію після зміни цих налаштувань.</value></data>
   <data name="Emulation.Option.Sony.Setting.FramebufferConversion.Label"><value>Перетворення рендерингового каркаса</value></data>
   <data name="Emulation.Option.Sony.Setting.DisablePartialInvalidation.Label"><value>Нездатна оцінка джерела</value></data>
   <data name="Emulation.Option.Sony.Setting.GpuPaletteConversion.Label"><value>Перетворення палітра на GPU</value></data>
@@ -1296,4 +1296,5 @@
   <data name="Emulation.Option.Sony.Setting.InvertRightStick.Label"><value>Збочення осі правої аналогової палички</value></data>
   <data name="Emulation.Option.Sony.Setting.AnalogMode.Label"><value>Почати в Аналоговий режим</value></data>
   <data name="Emulation.Option.Sony.Setting.AnalogMode.Help"><value>Почати контролер в аналоговому режимі, а не цифровому. Деякі ігри (наприклад, Ridge Racer V) завантажують диск в цифровому режимі і зазвичай вимагають натискання контролера ANALOG кнопка, щоб включити палички; включити це для отримання аналогових контрольних пристроїв від початку. Ігри, які зафіксують режим контролера, неафіловані.</value></data>
+  <data name="Emulation.Option.Sony.Files.CheatsDirectory"><value>Складаний, що містить коди гри обману</value></data>
 </root>

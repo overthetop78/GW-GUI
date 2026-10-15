@@ -69,6 +69,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
     }
 
     internal string SystemDirectory { get; }
+    internal bool CheatsEnabled => _options.GetValueOrDefault(OptionConstants.EnableCheatsKey) == EmulationSettingConstants.Enabled;
     internal string ContentDirectory { get; }
     internal string SaveDirectory { get; }
     internal VideoFrame? LatestVideoFrame { get; private set; }

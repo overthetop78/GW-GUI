@@ -1192,7 +1192,7 @@
   <data name="Emulation.Option.Sony.Setting.Fastcdvd.Help"><value>速い CD???????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????DVD アクセス/週の時間。ゲームの小さな便利な問題は、この機能を有効にして互換性の問題があります。</value></data>
   <data name="Emulation.Option.Sony.Setting.SharedMemoryCards.Help"><value>コンテンツや共有メモリカードで利用する。</value></data>
   <data name="Emulation.Option.Sony.Setting.EnableCheats.Label"><value>ゲーム不正コードを有効にする</value></data>
-  <data name="Emulation.Option.Sony.Setting.EnableCheats.Help"><value>システムフォルダ内の'cheats'ディレクトリから読み込むために、不正なファイルを有効にします。</value></data>
+  <data name="Emulation.Option.Sony.Setting.EnableCheats.Help"><value>選択したフォルダ内のファイルからゲームチートコードを読みます。別のフォルダを選択した後にエミュレーションを再起動します。</value></data>
   <data name="Emulation.Option.Sony.Setting.HintLanguageUnlock.Label"><value>追加のゲーム言語のロックを解除</value></data>
   <data name="Emulation.Option.Sony.Setting.HintLanguageUnlock.Help"><value>有効化した場合は、言語のロック解除オプションの社内データベース内をご覧いただけます。例えば、国際日本語版を英語に強制し、よりヨーロッパの言語のロックを解除するなど</value></data>
   <data name="Emulation.Option.Sony.Setting.Dev9Hdd.Help"><value>エミュレータ SPEED 拡張の ATA ハードドライブ。 'pcsx2/DEV9hdd.raw' は、フロントエンドのシステムディレクトリーで、最初に設定されたサイズで使用して作成されます。</value></data>
@@ -1274,7 +1274,7 @@
   <data name="Emulation.Option.Sony.Value.MergeTargets"><value>レンダーターゲットをマージ</value></data>
   <data name="Emulation.Option.Sony.Setting.DisableDepthConversion.Label"><value>可搬深部バッファ変換</value></data>
   <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Label"><value>外部ゲームインデックスデータベースを使用する</value></data>
-  <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Help"><value>&lt;system&gt;/resources/ からゲーム互換性データベースをロードするGameIndex.yaml 現時点では、データベースが不足しているときに、組み込みのデータベースに戻ります。無効にすると、常にコアに組み込まれたデータベースを使用します。</value></data>
+  <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Help"><value>ハードウェアのレンダラーと手動レンダリングの修正が必要です。選択したゲーム互換性データベースをロードするか、組み込みのデータベースを使用するために空のファイルを残します。これらの設定を変更した後にエミュレーションを再起動します。</value></data>
   <data name="Emulation.Option.Sony.Setting.FramebufferConversion.Label"><value>レンダリングフレームバッファを変換</value></data>
   <data name="Emulation.Option.Sony.Setting.DisablePartialInvalidation.Label"><value>無効な部分的な源の無効化</value></data>
   <data name="Emulation.Option.Sony.Setting.GpuPaletteConversion.Label"><value>パレット変換 GPU</value></data>
@@ -1296,4 +1296,5 @@
   <data name="Emulation.Option.Sony.Setting.InvertRightStick.Label"><value>正しいアナログ棒の軸を反転</value></data>
   <data name="Emulation.Option.Sony.Setting.AnalogMode.Label"><value>アナログモードで開始</value></data>
   <data name="Emulation.Option.Sony.Setting.AnalogMode.Help"><value>デジタルではなくアナログモードでコントローラーを起動します。一部のゲーム(リッジレーサーVなど)は、デジタルでパッドを起動し、通常、コントローラーのプレスが必要です。 ANALOG ボタンでスティックを有効化。これを有効にして、スタートからアナログ制御を得ることができます。 コントローラーモードをロックするゲームは影響を受けません。</value></data>
+  <data name="Emulation.Option.Sony.Files.CheatsDirectory"><value>ゲームを含むフォルダチートコード</value></data>
 </root>

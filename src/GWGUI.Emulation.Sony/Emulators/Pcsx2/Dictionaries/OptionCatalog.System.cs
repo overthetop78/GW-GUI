@@ -42,6 +42,6 @@ internal static partial class OptionCatalog
             ToggleChoices),
         Define(OptionConstants.UseExternalGameindexKey, OptionConstants.UseExternalGameindexLabel, OptionConstants.UseExternalGameindexHelp,
             "disabled", EmulationMachineTab.General,
-            ToggleChoices),
+            ToggleChoices, restart: true),
     ];
 }

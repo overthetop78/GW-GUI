@@ -24,7 +24,7 @@ internal static class MachineConfigurationScenarios
         public Exception? SaveError;
         public List<IReadOnlyDictionary<string,string?>> Applied = [];
         public IEmulationModule Service;
-        public Module(bool includeVideo = false)
+        public Module(bool includeVideo = false, bool includeDirectories = false)
         {
             Service = ControlledDependencies.Simulate<IEmulationModule>((method,args) => method.Name switch
             {
@@ -32,7 +32,7 @@ internal static class MachineConfigurationScenarios
                 "get_DisplayResourceKey" => "Emulation.Machine.Model",
                 "get_Machines" => new EmulationMachineDefinition[] { new("a","Emulation.Machine.Model"),new("b","Emulation.Machine.Model") },
                 "CreateConfiguration" => new Configuration(Id,Guid.NewGuid(),(string)args[0]!),
-                "Describe" => Describe((Configuration)args[1]!, includeVideo),
+                "Describe" => Describe((Configuration)args[1]!, includeVideo, includeDirectories),
                 "LoadConfigurationsAsync" => ValueTask.FromResult<IReadOnlyList<IEmulationConfiguration>>(Saved.ToArray()),
                 "SaveConfigurationAsync" => Save((IEmulationConfiguration)args[0]!),
                 "ApplySettings" => Apply((Configuration)args[0]!, (IReadOnlyDictionary<string,string?>)args[1]!),
@@ -46,7 +46,7 @@ internal static class MachineConfigurationScenarios
         }
         private Configuration Apply(Configuration configuration, IReadOnlyDictionary<string,string?> values)
         { Applied.Add(new Dictionary<string,string?>(values)); return configuration with { Value = values["toggle"] ?? "off" }; }
-        private static EmulationMachineSettings Describe(Configuration configuration, bool includeVideo) => new(configuration.MachineId,
+        private static EmulationMachineSettings Describe(Configuration configuration, bool includeVideo, bool includeDirectories) => new(configuration.MachineId,
             new(new Dictionary<EmulationMachineTab,bool>
             {
                 [EmulationMachineTab.General] = true,
@@ -55,7 +55,9 @@ internal static class MachineConfigurationScenarios
             }),
             [new("general",EmulationMachineTab.General,"Emulation.Machine.Model",
                 [new("toggle",EmulationMachineTab.General,"general","Emulation.Value.Enabled",EmulationSettingsEditor.Toggle,configuration.Value,EnabledValue:"on",DisabledValue:"off"),
-                 new("hidden",EmulationMachineTab.General,"general","Emulation.Machine.Model",EmulationSettingsEditor.Text,"hidden",IsVisible:false)]),
+                 new("hidden",EmulationMachineTab.General,"general","Emulation.Machine.Model",EmulationSettingsEditor.Text,"hidden",IsVisible:false),
+                 new("codes",EmulationMachineTab.General,"general","Emulation.Machine.Model",EmulationSettingsEditor.DirectoryPath,"selected-codes",IsVisible:includeDirectories),
+                 new("default-folder",EmulationMachineTab.General,"general","Emulation.Machine.Model",EmulationSettingsEditor.DirectoryPath,"default-images",IsVisible:includeDirectories,DefaultFolderCategory:EmulationDefaultFolderCategory.HardDisk)]),
              new("cpu",EmulationMachineTab.Cpu,"Emulation.Machine.Model", [new("locked",EmulationMachineTab.Cpu,"cpu","Emulation.Machine.Model",EmulationSettingsEditor.Text,"fixed",IsEnabled:false)])]);
         public void Cleanup() { EmulationConfigurationDraftStore.Remove(Id,"a"); EmulationConfigurationDraftStore.Remove(Id,"b"); }
     }
@@ -64,6 +66,24 @@ internal static class MachineConfigurationScenarios
         if(root is T control) yield return control;
         foreach(var child in LogicalTreeHelper.GetChildren(root).OfType<DependencyObject>())
             foreach(var descendant in Controls<T>(child)) yield return descendant;
+    }
+    public static void FunctionalDirectoriesRemainVisible()
+    {
+        var module = new Module(includeDirectories: true);
+        var files = new MemoryVideoProfileFiles();
+        var store = new VideoPresentationProfileStore("virtual-video", fileSystem: files, schedule: action => { action(); return Task.CompletedTask; });
+        var view = new EmulationModuleSettingsSection(module.Service, store, error => throw error);
+        try
+        {
+            Assert.Contains(Controls<TextBox>(view), control => control.Text == "selected-codes");
+            Assert.DoesNotContain(Controls<TextBox>(view), control => control.Text == "default-images");
+            Assert.Empty(files.Writes);
+        }
+        finally
+        {
+            view.Content = null;
+            module.Cleanup();
+        }
     }
     public static async Task ConfigurationEditing(bool failed)
     {

@@ -1192,7 +1192,7 @@
   <data name="Emulation.Option.Sony.Setting.Fastcdvd.Help"><value>Nopea CD/DVD pääsy/haku-ajat. Pieni kourallinen pelejä on yhteensopivuus ongelmia tämän kanssa.</value></data>
   <data name="Emulation.Option.Sony.Setting.SharedMemoryCards.Help"><value>Käytä per-sisältö tai jaettu muistikortteja.</value></data>
   <data name="Emulation.Option.Sony.Setting.EnableCheats.Label"><value>Käytä pelin huijauskoodeja</value></data>
-  <data name="Emulation.Option.Sony.Setting.EnableCheats.Help"><value>Käytä huijaustiedostoja, jotka luetaan järjestelmän kansiossa olevista "petos"-kansioista.</value></data>
+  <data name="Emulation.Option.Sony.Setting.EnableCheats.Help"><value>Lue peli huijata koodit tiedostoja valittu kansio. Aloita emulointi uudelleen valittua toista kansiota.</value></data>
   <data name="Emulation.Option.Sony.Setting.HintLanguageUnlock.Label"><value>Avaa lisää pelikieliä</value></data>
   <data name="Emulation.Option.Sony.Setting.HintLanguageUnlock.Help"><value>Jos käytössä, etsii sisäisen tietokannan sisään kielten avaa vaihtoehtoja. Esimerkkejä ovat: pakottaa kansainvälinen japani versio Englanti, avata enemmän eurooppalaisia kieliä, jne</value></data>
   <data name="Emulation.Option.Sony.Setting.Dev9Hdd.Help"><value>Emuloidaan SPEED Laajennuksen ATA Kuva elää Pcsx2/DEV9hdd.raw' etusivun järjestelmän hakemistossa ja luodaan ensimmäisen käytön määritellyssä koossa.</value></data>
@@ -1274,7 +1274,7 @@
   <data name="Emulation.Option.Sony.Value.MergeTargets"><value>Yhdistä merkkien asettelu</value></data>
   <data name="Emulation.Option.Sony.Setting.DisableDepthConversion.Label"><value>Poista syvyyspuskurin muuntaminen käytöstä</value></data>
   <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Label"><value>Käytä ulkoista pelin index- tietokantaa</value></data>
-  <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Help"><value>Lataa pelin yhteensopivuustietokanta &lt;system&gt;/resurssit/GameIndex.yaml jos on, palaamalla sisäänrakennettuun tietokantaan, kun se puuttuu. Kun se on pois päältä, käytä aina ytimeen rakennettua tietokantaa.</value></data>
+  <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Help"><value>Vaaditaan laitteiston renderointi ja manuaalinen renderointi korjaukset. Lataa valittu pelin yhteensopivuus tietokanta, tai jätä tiedosto tyhjäksi käyttää sisäänrakennettua tietokantaa. Käynnistä emulointi näiden asetusten muuttamisen jälkeen.</value></data>
   <data name="Emulation.Option.Sony.Setting.FramebufferConversion.Label"><value>Muunna renderointikehyspuskuri</value></data>
   <data name="Emulation.Option.Sony.Setting.DisablePartialInvalidation.Label"><value>Poista osittainen lähdevaltuutus käytöstä</value></data>
   <data name="Emulation.Option.Sony.Setting.GpuPaletteConversion.Label"><value>Palettien muuntaminen päälle GPU</value></data>
@@ -1296,4 +1296,5 @@
   <data name="Emulation.Option.Sony.Setting.InvertRightStick.Label"><value>Käännä oikean analogista tikkua akselit</value></data>
   <data name="Emulation.Option.Sony.Setting.AnalogMode.Label"><value>Aloita analogisessa tilassa</value></data>
   <data name="Emulation.Option.Sony.Setting.AnalogMode.Help"><value>Käynnistä ohjain analogisessa tilassa eikä digitaalisessa tilassa. Jotkut pelit (esim. Ridge Racer V) käynnistävät alustan digitaalisessa tilassa ja vaativat yleensä painikkeen painamista ohjaimelta ANALOG painiketta, jonka avulla tikut otetaan käyttöön; tämän avulla voidaan saada analogisia ohjauslaitteita alusta alkaen. Pelejä, jotka lukitsevat ohjaintilan, ei muuteta.</value></data>
+  <data name="Emulation.Option.Sony.Files.CheatsDirectory"><value>Kansio, joka sisältää pelin huijauskoodit</value></data>
 </root>

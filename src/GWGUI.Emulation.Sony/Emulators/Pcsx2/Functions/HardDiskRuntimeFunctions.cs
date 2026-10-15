@@ -1,6 +1,5 @@
 using System.Globalization;
 using System.IO;
-using GWGUI.Emulation.Services;
 using GWGUI.Emulation.Sony.Emulators.Pcsx2.Constants;
 
 namespace GWGUI.Emulation.Sony.Emulators.Pcsx2.Functions;
@@ -38,23 +37,4 @@ internal static class HardDiskRuntimeFunctions
         return configuration with { Options = options };
     }
 
-    internal static string SystemDirectory(MachineConfiguration configuration, string physicalDirectory) => Selected(configuration) is null ? physicalDirectory : HardDiskConstants.SystemUri;
-
-    internal static (string Path, bool IsReadOnly) Resolve(MachineConfiguration configuration, string systemDirectory, string path)
-    {
-        var normalized = path.Replace('\\', '/');
-        if (!normalized.Equals(HardDiskConstants.SystemUri, StringComparison.Ordinal)
-            && !normalized.StartsWith(HardDiskConstants.SystemUri + "/", StringComparison.Ordinal)) return (path, false);
-        var relative = normalized[HardDiskConstants.SystemUri.Length..].TrimStart('/');
-        if (relative.Equals(HardDiskConstants.NativeFile, StringComparison.OrdinalIgnoreCase))
-        {
-            var disk = Selected(configuration) ?? throw new FileNotFoundException(null, path);
-            return (Path.GetFullPath(disk.Path), disk.IsReadOnly);
-        }
-        var root = Path.GetFullPath(systemDirectory);
-        var resolved = Path.GetFullPath(Path.Combine(root, relative));
-        if (!resolved.Equals(root, StringComparison.OrdinalIgnoreCase) && !resolved.StartsWith(root + Path.DirectorySeparatorChar, StringComparison.OrdinalIgnoreCase))
-            throw new InvalidDataException(path);
-        return (resolved, false);
-    }
 }

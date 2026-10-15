@@ -1192,7 +1192,7 @@
   <data name="Emulation.Option.Sony.Setting.Fastcdvd.Help"><value>Rychle. CD/DVD přístup / vyhledávací časy. Malá hrstka her bude mít problémy s kompatibilitou s tímto povolením.</value></data>
   <data name="Emulation.Option.Sony.Setting.SharedMemoryCards.Help"><value>Používejte per- content nebo sdílené paměťové karty.</value></data>
   <data name="Emulation.Option.Sony.Setting.EnableCheats.Label"><value>Povolit kódy pro podvody ve hře</value></data>
-  <data name="Emulation.Option.Sony.Setting.EnableCheats.Help"><value>Povolit cheat soubory, které se mají číst z adresáře 'cheats' v systémové složce.</value></data>
+  <data name="Emulation.Option.Sony.Setting.EnableCheats.Help"><value>Přečtěte si kódy pro podvody her ze souborů ve vybrané složce. Po výběru jiné složky restartujte emulaci.</value></data>
   <data name="Emulation.Option.Sony.Setting.HintLanguageUnlock.Label"><value>Odemknout další herní jazyky</value></data>
   <data name="Emulation.Option.Sony.Setting.HintLanguageUnlock.Help"><value>Pokud je povoleno, bude hledat uvnitř interní databáze pro možnosti odemknutí jazyka. Příklady zahrnují: vynucení mezinárodní japonské verze do angličtiny, odemknutí více evropských jazyků, atd.</value></data>
   <data name="Emulation.Option.Sony.Setting.Dev9Hdd.Help"><value>Emulovat SPEED rozšíření ATA pevný disk. Obraz žije v 'pcsx2 /DEV9hdd.raw'v adresáři systému frontend a je vytvořen při prvním použití v konfigurované velikosti.</value></data>
@@ -1274,7 +1274,7 @@
   <data name="Emulation.Option.Sony.Value.MergeTargets"><value>Sloučit cíle</value></data>
   <data name="Emulation.Option.Sony.Setting.DisableDepthConversion.Label"><value>Zakázat konverzi depth- buffer</value></data>
   <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Label"><value>Použít externí databázi GameIndex</value></data>
-  <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Help"><value>Načíst databázi herních kompatibilit z &lt; systému &gt; / zdroje /GameIndex.yaml Pokud je přítomna, vrací se zpět do databáze, když chybí. Pokud je vypnuta, vždy použijte databázi zabudovanou do jádra.</value></data>
+  <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Help"><value>Vyžaduje hardwarovou renderování a manuální renderování. Načíst vybranou databázi herních kompatibilit, nebo nechat soubor prázdný pro použití built- v databázi. Restartovat emulaci po změně těchto nastavení.</value></data>
   <data name="Emulation.Option.Sony.Setting.FramebufferConversion.Label"><value>Převést renderování framebufferu</value></data>
   <data name="Emulation.Option.Sony.Setting.DisablePartialInvalidation.Label"><value>Zakázat částečné přerušení platnosti zdroje</value></data>
   <data name="Emulation.Option.Sony.Setting.GpuPaletteConversion.Label"><value>Převod palety na GPU</value></data>
@@ -1296,4 +1296,5 @@
   <data name="Emulation.Option.Sony.Setting.InvertRightStick.Label"><value>Převést osy pravé analogové hůl</value></data>
   <data name="Emulation.Option.Sony.Setting.AnalogMode.Label"><value>Spustit v analogovém režimu</value></data>
   <data name="Emulation.Option.Sony.Setting.AnalogMode.Help"><value>Spusťte regulátor v analogovém režimu spíše než v digitálním. Některé hry (např. Ridge Racer V) zabootovat pad v digitálním a obvykle vyžadují stisknutí regulátoru ANALOG tlačítko pro zapnutí holí; umožňuje získat analogové ovladače od začátku. Hry, které uzamknou režim regulátoru, nejsou ovlivněny.</value></data>
+  <data name="Emulation.Option.Sony.Files.CheatsDirectory"><value>Složka obsahující kódy herního podvádění</value></data>
 </root>

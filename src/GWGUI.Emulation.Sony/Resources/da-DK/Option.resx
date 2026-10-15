@@ -1192,7 +1192,7 @@
   <data name="Emulation.Option.Sony.Setting.Fastcdvd.Help"><value>Hurtig CD/DVD adgang / søge tider. En lille håndfuld spil vil have kompatibilitetsproblemer med dette aktiveret.</value></data>
   <data name="Emulation.Option.Sony.Setting.SharedMemoryCards.Help"><value>Brug per- indhold eller delte hukommelseskort.</value></data>
   <data name="Emulation.Option.Sony.Setting.EnableCheats.Label"><value>Aktivér spilsnyd koder</value></data>
-  <data name="Emulation.Option.Sony.Setting.EnableCheats.Help"><value>Aktivér at snyde filer der skal læses fra 'snyder' mappen i systemmappen.</value></data>
+  <data name="Emulation.Option.Sony.Setting.EnableCheats.Help"><value>Læs spil snyd koder fra filer i den valgte mappe. Genstart emulering efter at have valgt en anden mappe.</value></data>
   <data name="Emulation.Option.Sony.Setting.HintLanguageUnlock.Label"><value>Lås op for yderligere spilsprog</value></data>
   <data name="Emulation.Option.Sony.Setting.HintLanguageUnlock.Help"><value>Hvis aktiveret, vil kigge i den interne database for sproglåse muligheder. Eksempler omfatter: tvinge en international japansk version til engelsk, frigøre flere europæiske sprog osv.</value></data>
   <data name="Emulation.Option.Sony.Setting.Dev9Hdd.Help"><value>Emulér SPEED ekspansions- ATA harddisk. Billedet bor på 'pcsx2 /DEV9hdd.raw'i frontend systemmappen og er oprettet ved første brug i den indstillede størrelse.</value></data>
@@ -1274,7 +1274,7 @@
   <data name="Emulation.Option.Sony.Value.MergeTargets"><value>Sammenfletning render mål</value></data>
   <data name="Emulation.Option.Sony.Setting.DisableDepthConversion.Label"><value>Deaktivér depth- buffer konvertering</value></data>
   <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Label"><value>Brug ekstern GameIndex database</value></data>
-  <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Help"><value>Indlæs spils kompatibilitetsdatabasen fra &lt; system &gt; / ressourcer /GameIndex.yaml hvis den er til stede, falder tilbage til den indbyggede database, når den mangler. Når den er deaktiveret, skal du altid bruge databasen indbygget i kernen.</value></data>
+  <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Help"><value>Kræver en hardware- renderer og manuel rendering rettelser. Indlæs den valgte spilkompatibilitet database, eller lad filen tom for at bruge build- in database. Genstart emulering efter ændring af disse indstillinger.</value></data>
   <data name="Emulation.Option.Sony.Setting.FramebufferConversion.Label"><value>Konvertér rendering framebuffer</value></data>
   <data name="Emulation.Option.Sony.Setting.DisablePartialInvalidation.Label"><value>Deaktivér delvis kildevalidering</value></data>
   <data name="Emulation.Option.Sony.Setting.GpuPaletteConversion.Label"><value>Palettekonvertering den GPU</value></data>
@@ -1296,4 +1296,5 @@
   <data name="Emulation.Option.Sony.Setting.InvertRightStick.Label"><value>Vend økserne af den rigtige analoge pind</value></data>
   <data name="Emulation.Option.Sony.Setting.AnalogMode.Label"><value>Start i analog tilstand</value></data>
   <data name="Emulation.Option.Sony.Setting.AnalogMode.Help"><value>Start controlleren i analog tilstand snarere end digital. Nogle spil (fx Ridge Racer V) boot blokken i digital og normalt kræver at trykke på controlleren 's ANALOG knap til at aktivere sticks; aktivér dette for at få analoge kontroller fra starten. Spil der låser controllertilstanden er upåvirket.</value></data>
+  <data name="Emulation.Option.Sony.Files.CheatsDirectory"><value>Mappe der indeholder spilsnyd-koder</value></data>
 </root>

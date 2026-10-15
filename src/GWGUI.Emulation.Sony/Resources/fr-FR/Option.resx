@@ -1192,7 +1192,7 @@
   <data name="Emulation.Option.Sony.Setting.Fastcdvd.Help"><value>Réduire les temps de lecture et de recherche du CD/DVD. Cette option peut provoquer des problèmes de compatibilité avec certains jeux.</value></data>
   <data name="Emulation.Option.Sony.Setting.SharedMemoryCards.Help"><value>Utiliser des cartes mémoire partagées ou des cartes propres à chaque jeu.</value></data>
   <data name="Emulation.Option.Sony.Setting.EnableCheats.Label"><value>Activer les codes de triche</value></data>
-  <data name="Emulation.Option.Sony.Setting.EnableCheats.Help"><value>Lire les fichiers de codes de triche placés dans le sous-dossier cheats du dossier système du cœur.</value></data>
+  <data name="Emulation.Option.Sony.Setting.EnableCheats.Help"><value>Lire les fichiers de codes de triche du dossier sélectionné. Redémarrer l’émulation après avoir choisi un autre dossier.</value></data>
   <data name="Emulation.Option.Sony.Setting.HintLanguageUnlock.Label"><value>Débloquer les langues supplémentaires des jeux</value></data>
   <data name="Emulation.Option.Sony.Setting.HintLanguageUnlock.Help"><value>Rechercher dans la base interne les correctifs débloquant des langues supplémentaires : anglais dans certaines éditions japonaises internationales, langues européennes supplémentaires, etc.</value></data>
   <data name="Emulation.Option.Sony.Setting.Dev9Hdd.Help"><value>Émuler le disque dur ATA de l’extension SPEED. Le cœur ouvre pcsx2/DEV9hdd.raw dans son dossier système et crée l’image à la capacité sélectionnée si elle n’existe pas.</value></data>
@@ -1274,7 +1274,7 @@
   <data name="Emulation.Option.Sony.Value.MergeTargets"><value>Fusionner les cibles de rendu</value></data>
   <data name="Emulation.Option.Sony.Setting.DisableDepthConversion.Label"><value>Désactiver la conversion du tampon de profondeur</value></data>
   <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Label"><value>Utiliser une base GameIndex externe</value></data>
-  <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Help"><value>Charger la base de compatibilité GameIndex.yaml depuis le sous-dossier resources du dossier système du cœur si elle existe ; sinon, utiliser la base intégrée. Lorsque cette option est désactivée, la base intégrée est toujours utilisée.</value></data>
+  <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Help"><value>Nécessite un moteur de rendu matériel et les corrections manuelles du rendu. Charger la base de compatibilité des jeux sélectionnée, ou ne sélectionner aucun fichier pour utiliser la base intégrée. Redémarrer l’émulation après modification de ces paramètres.</value></data>
   <data name="Emulation.Option.Sony.Setting.FramebufferConversion.Label"><value>Conversion du tampon de rendu</value></data>
   <data name="Emulation.Option.Sony.Setting.DisablePartialInvalidation.Label"><value>Désactiver l’invalidation partielle des sources</value></data>
   <data name="Emulation.Option.Sony.Setting.GpuPaletteConversion.Label"><value>Conversion des palettes par le GPU</value></data>
@@ -1296,4 +1296,5 @@
   <data name="Emulation.Option.Sony.Setting.InvertRightStick.Label"><value>Inverser les axes du stick analogique droit</value></data>
   <data name="Emulation.Option.Sony.Setting.AnalogMode.Label"><value>Démarrer en mode analogique</value></data>
   <data name="Emulation.Option.Sony.Setting.AnalogMode.Help"><value>Démarrer la manette en mode analogique. Certains jeux, comme Ridge Racer V, démarrent normalement en mode numérique et nécessitent d’appuyer sur le bouton ANALOG pour activer les sticks. Cette option permet leur utilisation dès le départ. Les jeux qui imposent leur mode de manette ne sont pas affectés.</value></data>
+  <data name="Emulation.Option.Sony.Files.CheatsDirectory"><value>Dossier des codes de triche</value></data>
 </root>

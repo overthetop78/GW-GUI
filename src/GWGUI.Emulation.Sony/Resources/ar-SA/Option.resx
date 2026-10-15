@@ -1192,7 +1192,7 @@
   <data name="Emulation.Option.Sony.Setting.Fastcdvd.Help"><value>بسرعة CD/DVD أوقات الوصول/البحث، حفنة صغيرة من الألعاب ستكون لديها مشاكل في التوافق مع هذا المُمكن.</value></data>
   <data name="Emulation.Option.Sony.Setting.SharedMemoryCards.Help"><value>استخدمي بطاقات الذاكرة لكل وحدة أو المشتركة</value></data>
   <data name="Emulation.Option.Sony.Setting.EnableCheats.Label"><value>رموز الغش في لعبة</value></data>
-  <data name="Emulation.Option.Sony.Setting.EnableCheats.Help"><value>ملفات الغش التي يمكن قراءتها من دليل الخياطة في ملف النظام</value></data>
+  <data name="Emulation.Option.Sony.Setting.EnableCheats.Help"><value>اقرأ رموز غش لعبة من الملفات في الملف المختار، اعيدي صياغة ملف آخر بعد اختيار ملف آخر</value></data>
   <data name="Emulation.Option.Sony.Setting.HintLanguageUnlock.Label"><value>فتح لغات اللعبة الإضافية</value></data>
   <data name="Emulation.Option.Sony.Setting.HintLanguageUnlock.Help"><value>وإذا مُكنت، ستبحث في قاعدة البيانات الداخلية لخيارات تحرير اللغات، ومن الأمثلة على ذلك: إرغام نسخة يابانية دولية على اللغة الإنكليزية، وفتح المزيد من اللغات الأوروبية، وما إلى ذلك</value></data>
   <data name="Emulation.Option.Sony.Setting.Dev9Hdd.Help"><value>إحياء SPEED التوسع ATA القرص الصلب، الصورة تُقيم في "باكس2"DEV9hdd.rawفي دليل نظام الواجهة و يتم صنعه على أول استخدام في الحجم المكون</value></data>
@@ -1274,7 +1274,7 @@
   <data name="Emulation.Option.Sony.Value.MergeTargets"><value>الأهداف</value></data>
   <data name="Emulation.Option.Sony.Setting.DisableDepthConversion.Label"><value>تحويل مكثفات عميقة</value></data>
   <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Label"><value>قاعدة بيانات الـ (GmeIndex)</value></data>
-  <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Help"><value>:: وضع قاعدة بيانات التوافق بين اللعبة من نظام &amp;quot; إدوارد &amp;quot;/الموارد/GameIndex.yaml إذا كان موجوداً، يتراجع إلى قاعدة البيانات عند فقدانها، وعندما يُعوق، يستعمل دائماً قاعدة البيانات التي تُبنى في القاع.</value></data>
+  <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Help"><value>يتطلب صانعاً للمعدات وأجهزة يدوية لتجهيزها، و ضع قاعدة بيانات متوافقة مع اللعبة، أو ترك الملف فارغاً لاستخدام قاعدة البيانات المُنشأة، و أعيدي الاختراع بعد تغيير هذه البيئات.</value></data>
   <data name="Emulation.Option.Sony.Setting.FramebufferConversion.Label"><value>تحويل قاذفة الإطار</value></data>
   <data name="Emulation.Option.Sony.Setting.DisablePartialInvalidation.Label"><value>المصدر:</value></data>
   <data name="Emulation.Option.Sony.Setting.GpuPaletteConversion.Label"><value>تحويل باليت على GPU</value></data>
@@ -1296,4 +1296,5 @@
   <data name="Emulation.Option.Sony.Setting.InvertRightStick.Label"><value>من دون فأس من عصا التناظر الصحيحة</value></data>
   <data name="Emulation.Option.Sony.Setting.AnalogMode.Label"><value>ابدأ في أسلوب الأنالوك</value></data>
   <data name="Emulation.Option.Sony.Setting.AnalogMode.Help"><value>ابدأوا بالتحكم في طريقة التناظر بدلاً من رقمية بعض الألعاب (مثل (ريدج رايسر في ANALOG الزر الذي سيمكن العصي، و يُمكن هذا من الحصول على مراقبة مُتَوَجَهِدَة من البداية الألعاب التي تُغلق نمط المُراقبين لا تتأثر</value></data>
+  <data name="Emulation.Option.Sony.Files.CheatsDirectory"><value>"الجندر" الذي يحتوي على رموز غش لعبة</value></data>
 </root>

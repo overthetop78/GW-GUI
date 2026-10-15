@@ -1192,7 +1192,7 @@
   <data name="Emulation.Option.Sony.Setting.Fastcdvd.Help"><value>Snel CD'DVD toegang / zoektijden. Een kleine handvol games zal compatibiliteitsproblemen met deze ingeschakeld.</value></data>
   <data name="Emulation.Option.Sony.Setting.SharedMemoryCards.Help"><value>Gebruik per-content of gedeelde geheugenkaarten.</value></data>
   <data name="Emulation.Option.Sony.Setting.EnableCheats.Label"><value>Spelcodes activeren</value></data>
-  <data name="Emulation.Option.Sony.Setting.EnableCheats.Help"><value>Activeer Cheat-bestanden om gelezen te worden vanuit de 'cheats' directory in de systeemmap.</value></data>
+  <data name="Emulation.Option.Sony.Setting.EnableCheats.Help"><value>Lees de cheat codes van de bestanden in de geselecteerde map. Herstart emulatie na het selecteren van een andere map.</value></data>
   <data name="Emulation.Option.Sony.Setting.HintLanguageUnlock.Label"><value>Extra speltalen ontgrendelen</value></data>
   <data name="Emulation.Option.Sony.Setting.HintLanguageUnlock.Help"><value>Als dit is ingeschakeld, zal in de interne database kijken voor taalontgrendeling opties. Voorbeelden zijn: het dwingen van een internationale Japanse versie naar het Engels, het ontgrendelen van meer Europese talen, enz.</value></data>
   <data name="Emulation.Option.Sony.Setting.Dev9Hdd.Help"><value>Emuleer de SPEED uitbreidingen ATA De afbeelding leeft op 'pcsx2/DEV9hdd.raw' in de frontend systeem directory en wordt gemaakt bij eerste gebruik bij de geconfigureerde grootte.</value></data>
@@ -1274,7 +1274,7 @@
   <data name="Emulation.Option.Sony.Value.MergeTargets"><value>Teruggeven van doelen samenvoegen</value></data>
   <data name="Emulation.Option.Sony.Setting.DisableDepthConversion.Label"><value>Omzetting van dieptebuffer uitschakelen</value></data>
   <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Label"><value>Externe GameIndex-database gebruiken</value></data>
-  <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Help"><value>De game-compatibiliteitsdatabase laden uit &lt;system&gt;/resources/GameIndex.yaml indien aanwezig, terugvallend op de ingebouwde database wanneer deze ontbreekt. Gebruik bij uitgeschakeld altijd de database die in de kern is ingebouwd.</value></data>
+  <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Help"><value>Vereist een hardware renderer en handmatig rendering fixes. Laad de geselecteerde spelcompatibiliteitsdatabase, of laat het bestand leeg om de ingebouwde database te gebruiken. Herstart emulatie na het wijzigen van deze instellingen.</value></data>
   <data name="Emulation.Option.Sony.Setting.FramebufferConversion.Label"><value>De rendering framebuffer omzetten</value></data>
   <data name="Emulation.Option.Sony.Setting.DisablePartialInvalidation.Label"><value>Gedeeltelijke bronvalidatie uitschakelen</value></data>
   <data name="Emulation.Option.Sony.Setting.GpuPaletteConversion.Label"><value>Paletconversie op GPU</value></data>
@@ -1296,4 +1296,5 @@
   <data name="Emulation.Option.Sony.Setting.InvertRightStick.Label"><value>De assen van de rechter analoge stok omkeren</value></data>
   <data name="Emulation.Option.Sony.Setting.AnalogMode.Label"><value>Beginnen in analoge modus</value></data>
   <data name="Emulation.Option.Sony.Setting.AnalogMode.Help"><value>Start de controller in analoge modus in plaats van digitaal. Sommige games (bijv. Ridge Racer V) booten het pad in digitaal en vereisen normaal gesproken het drukken van de controller ANALOG knop om de sticks in te schakelen; schakel dit in om analoge controles vanaf het begin te krijgen. Spelletjes die de controller modus vergrendelen worden niet beïnvloed.</value></data>
+  <data name="Emulation.Option.Sony.Files.CheatsDirectory"><value>Map met spel-cheat codes</value></data>
 </root>

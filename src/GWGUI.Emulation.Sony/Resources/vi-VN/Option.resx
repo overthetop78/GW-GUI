@@ -1192,7 +1192,7 @@
   <data name="Emulation.Option.Sony.Setting.Fastcdvd.Help"><value>Nhanh CD/DVD Truy cập/tìm kiếm giờ. Một nắm nhỏ của trò chơi sẽ có vấn đề tương thích với việc bật.</value></data>
   <data name="Emulation.Option.Sony.Setting.SharedMemoryCards.Help"><value>Dùng thẻ nhớ theo ý riêng hay chia sẻ.</value></data>
   <data name="Emulation.Option.Sony.Setting.EnableCheats.Label"><value>Bật mã gian lận trò chơi</value></data>
-  <data name="Emulation.Option.Sony.Setting.EnableCheats.Help"><value>Bật các tập tin gian lận cần đọc từ thư mục «cheat » trong thư mục hệ thống.</value></data>
+  <data name="Emulation.Option.Sony.Setting.EnableCheats.Help"><value>Đọc mã trò chơi gian lận từ tập tin trong thư mục đã chọn. Bắt đầu lại tiến trình mô phỏng sau khi chọn thư mục khác.</value></data>
   <data name="Emulation.Option.Sony.Setting.HintLanguageUnlock.Label"><value>Bỏ khoá ngôn ngữ trò chơi bổ sung</value></data>
   <data name="Emulation.Option.Sony.Setting.HintLanguageUnlock.Help"><value>Nếu bật, sẽ tìm kiếm trong cơ sở dữ liệu nội bộ để tìm các tùy chọn khoá ngôn ngữ. Ví dụ: ép buộc người Nhật dịch sang tiếng Anh, mở rộng thêm ngôn ngữ châu Âu, v.v...</value></data>
   <data name="Emulation.Option.Sony.Setting.Dev9Hdd.Help"><value>Hãy phân tích SPEED Mở rộng ATA Ổ cứng. Hình ảnh ở 'pcsx2/DEV9hdd.raw« trong thư mục hệ thống giao diện điều khiển » và được tạo lần đầu tiên tại kích cỡ cấu hình.</value></data>
@@ -1274,7 +1274,7 @@
   <data name="Emulation.Option.Sony.Value.MergeTargets"><value>Nhập mục tiêu</value></data>
   <data name="Emulation.Option.Sony.Setting.DisableDepthConversion.Label"><value>Tắt chuyển đổi bộ đệm sâu</value></data>
   <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Label"><value>Dùng cơ sở dữ liệu trò chơi ngoài trời</value></data>
-  <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Help"><value>Tải cơ sở dữ liệu tương thích với trò chơi từ &lt; system&gt;/resources/GameIndex.yaml Nếu có, hãy quay lại cơ sở dữ liệu đã xây dựng khi nó bị mất. Khi bị tắt, luôn luôn sử dụng cơ sở dữ liệu được xây dựng vào lõi.</value></data>
+  <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Help"><value>Cần thiết bộ làm phần cứng và vẽ bằng tay sửa chữa. Nạp cơ sở dữ liệu tương thích với trò chơi đã chọn, hoặc để trống tập tin để dùng cơ sở dữ liệu đã xây dựng. Chạy lại cấu hình sau khi thay đổi thiết lập này.</value></data>
   <data name="Emulation.Option.Sony.Setting.FramebufferConversion.Label"><value>Chuyển đổi bộ đệm khung vẽ</value></data>
   <data name="Emulation.Option.Sony.Setting.DisablePartialInvalidation.Label"><value>Tắt nguồn phần không hợp lệ</value></data>
   <data name="Emulation.Option.Sony.Setting.GpuPaletteConversion.Label"><value>Tải bảng chọn GPU</value></data>
@@ -1296,4 +1296,5 @@
   <data name="Emulation.Option.Sony.Setting.InvertRightStick.Label"><value>Đảo trục của thanh y hệt bên phải</value></data>
   <data name="Emulation.Option.Sony.Setting.AnalogMode.Label"><value>Bắt đầu trong chế độ giải mã</value></data>
   <data name="Emulation.Option.Sony.Setting.AnalogMode.Help"><value>Chạy bộ điều khiển trong chế độ tương tự thay vì số. Một số trò chơi (v. d. Ridge Raner V) khởi động bộ đệm bằng kỹ thuật số và thường yêu cầu nhấn bộ điều khiển ANALOG Nút để bật các thanh; bật tùy chọn này để có được điều khiển tương tự ngay từ đầu. Trò chơi nào khoá chế độ điều khiển thì không bị động.</value></data>
+  <data name="Emulation.Option.Sony.Files.CheatsDirectory"><value>Thư mục chứa mã gian lận trong trò chơi</value></data>
 </root>

@@ -1192,7 +1192,7 @@
   <data name="Emulation.Option.Sony.Setting.Fastcdvd.Help"><value>Repede. CD/DVD acces/timpuri de aplauze. O mână mică de jocuri vor avea probleme de compatibilitate cu acest lucru activat.</value></data>
   <data name="Emulation.Option.Sony.Setting.SharedMemoryCards.Help"><value>Utilizați pe conținut sau carduri de memorie partajate.</value></data>
   <data name="Emulation.Option.Sony.Setting.EnableCheats.Label"><value>Activează codurile de joc ieftin</value></data>
-  <data name="Emulation.Option.Sony.Setting.EnableCheats.Help"><value>Activează fișierele trișat pentru a fi citite din directorul "trișează" din dosarul de sistem.</value></data>
+  <data name="Emulation.Option.Sony.Setting.EnableCheats.Help"><value>Citiți coduri de ieftin joc din fișierele din dosarul selectat. Reporniți emulația după selectarea unui alt dosar.</value></data>
   <data name="Emulation.Option.Sony.Setting.HintLanguageUnlock.Label"><value>Deblochează limbi de joc suplimentare</value></data>
   <data name="Emulation.Option.Sony.Setting.HintLanguageUnlock.Help"><value>Dacă este activată, va căuta în interiorul bazei de date interne pentru opțiunile de deblocare a limbii. Exemplele includ: forțarea unei versiuni japoneze internaționale în limba engleză, deblocarea mai multe limbi europene, etc</value></data>
   <data name="Emulation.Option.Sony.Setting.Dev9Hdd.Help"><value>Emulează SPEED Expansion's ATA Hard disk. Imaginea locuiește la 'pcsx2/DEV9hdd.raw' in directorul de sistem frontend si este creat pe prima utilizare la marimea configurata.</value></data>
@@ -1274,7 +1274,7 @@
   <data name="Emulation.Option.Sony.Value.MergeTargets"><value>Combină obiectivele de reconfigurare</value></data>
   <data name="Emulation.Option.Sony.Setting.DisableDepthConversion.Label"><value>Dezactivează conversia adancimii</value></data>
   <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Label"><value>Utilizați baza de date GameIndex externă</value></data>
-  <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Help"><value>Încărcați baza de date de compatibilitate a jocului de la &lt;system&gt;/ resurse/GameIndex.yaml dacă este prezent, cazându-se înapoi în baza de date încorporată atunci când lipsește. Când este dezactivat, utilizați întotdeauna baza de date construită în nucleu.</value></data>
+  <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Help"><value>Necesită un rendredere hardware și remedieri manuale. Încarcă baza de date de compatibilitate a jocului selectat sau lasă fișierul gol pentru a utiliza baza de date încorporat. Reporni emulația după schimbarea acestor setări.</value></data>
   <data name="Emulation.Option.Sony.Setting.FramebufferConversion.Label"><value>Convertește rama de redare buffer</value></data>
   <data name="Emulation.Option.Sony.Setting.DisablePartialInvalidation.Label"><value>Dezactivează invalidarea parțială a sursei</value></data>
   <data name="Emulation.Option.Sony.Setting.GpuPaletteConversion.Label"><value>Conversia paletei pe GPU</value></data>
@@ -1296,4 +1296,5 @@
   <data name="Emulation.Option.Sony.Setting.InvertRightStick.Label"><value>Inversează axele stick-ului analog drept</value></data>
   <data name="Emulation.Option.Sony.Setting.AnalogMode.Label"><value>Pornește în modul analog</value></data>
   <data name="Emulation.Option.Sony.Setting.AnalogMode.Help"><value>Începeți controlerul în modul analogic, mai degrabă decât digital. Unele jocuri (de exemplu Ridge Racer V) boot pad-ul în digital și, în mod normal, necesită apăsarea controlerului ANALOG buton pentru a activa stick-uri; permite acest lucru pentru a obține controale analogice de la început. Jocuri care bloca modul de controler sunt neafectate.</value></data>
+  <data name="Emulation.Option.Sony.Files.CheatsDirectory"><value>Dosar care conține coduri de joc pentru trișori</value></data>
 </root>

@@ -57,6 +57,7 @@ internal sealed class ExternalCore : IEmulatorCore
 
     public void Initialize(MachineConfiguration configuration, string sessionDirectory, string? saveDirectory = null)
     {
+        Functions.FileSystemFunctions.Validate(configuration);
         configuration = Functions.HardDiskRuntimeFunctions.Configure(configuration);
         _configuration = configuration;
         _sessionDirectory = Path.GetFullPath(sessionDirectory);
@@ -84,10 +85,11 @@ internal sealed class ExternalCore : IEmulatorCore
         var isolatedCorePath = Path.Combine(isolatedCoreDirectory, ExternalCoreConstants.LibraryName);
         File.Copy(sourceCorePath, isolatedCorePath, true);
         var contentPath = PrepareContentPath(media, contentDirectory);
-        Func<string, (string Path, bool IsReadOnly)>? pathResolver = Functions.HardDiskRuntimeFunctions.Selected(configuration) is null
-            ? null : path => Functions.HardDiskRuntimeFunctions.Resolve(configuration, systemDirectory, path);
+        var nativeSystemDirectory = Functions.FileSystemFunctions.SystemDirectory(configuration, systemDirectory);
+        Func<string, (string Path, bool IsReadOnly)>? pathResolver = nativeSystemDirectory == systemDirectory
+            ? null : path => Functions.FileSystemFunctions.Resolve(configuration, systemDirectory, path, _host?.CheatsEnabled);
         _host = new ExternalHostCallbacks(systemDirectory, contentDirectory, saveDirectory, configuration.Options ?? new Dictionary<string, string>(),
-            Functions.HardDiskRuntimeFunctions.SystemDirectory(configuration, systemDirectory), pathResolver);
+            nativeSystemDirectory, pathResolver);
 
         try
         {

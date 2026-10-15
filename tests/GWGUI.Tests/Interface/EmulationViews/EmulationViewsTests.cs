@@ -5,6 +5,7 @@ namespace GWGUI.Tests.Interface.EmulationViews;
 [Collection("WPF")]
 public class EmulationViewsTests(GWGUI.Tests.Application.TestInfrastructure.StaExecutionScenarios sta)
 {
+    [Fact] public Task FunctionalDirectorySelectorsRemainVisibleInGeneral() => sta.Run(MachineConfigurationScenarios.FunctionalDirectoriesRemainVisible);
     [Fact] public Task DraftReloadDiscardAndSavedConfigurationAreIsolated() => sta.RunAsync(MachineConfigurationScenarios.DraftLifecycle);
     [Fact] public Task MachineSwitchKeepsSavedAndDraftChanges() => sta.RunAsync(MachineConfigurationScenarios.MachineSwitchKeepsSavedAndDraftChanges);
     [Fact] public Task VideoProfileChangesArePublishedAndPersisted() => sta.RunAsync(MachineConfigurationScenarios.VideoProfileChangesArePublishedAndPersisted);

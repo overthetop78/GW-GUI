@@ -1192,7 +1192,7 @@
   <data name="Emulation.Option.Sony.Setting.Fastcdvd.Help" xml:space="preserve"><value>Fast CD/DVD access/seek times. A small handful of games will have compatibility problems with this enabled.</value></data>
   <data name="Emulation.Option.Sony.Setting.SharedMemoryCards.Help" xml:space="preserve"><value>Use per-content or shared memory cards.</value></data>
   <data name="Emulation.Option.Sony.Setting.EnableCheats.Label"><value>Enable game cheat codes</value></data>
-  <data name="Emulation.Option.Sony.Setting.EnableCheats.Help" xml:space="preserve"><value>Enable cheat files to be read from the 'cheats' directory in the system folder.</value></data>
+  <data name="Emulation.Option.Sony.Setting.EnableCheats.Help"><value>Read game cheat codes from files in the selected folder. Restart emulation after selecting another folder.</value></data>
   <data name="Emulation.Option.Sony.Setting.HintLanguageUnlock.Label"><value>Unlock additional game languages</value></data>
   <data name="Emulation.Option.Sony.Setting.HintLanguageUnlock.Help" xml:space="preserve"><value>If enabled, will look inside the internal database for language unlock options. Examples include: forcing an international Japanese version to English, unlocking more European languages, etc</value></data>
   <data name="Emulation.Option.Sony.Setting.Dev9Hdd.Help" xml:space="preserve"><value>Emulate the SPEED expansion's ATA hard drive. The image lives at 'pcsx2/DEV9hdd.raw' in the frontend system directory and is created on first use at the configured size.</value></data>
@@ -1274,7 +1274,7 @@
   <data name="Emulation.Option.Sony.Value.MergeTargets"><value>Merge render targets</value></data>
   <data name="Emulation.Option.Sony.Setting.DisableDepthConversion.Label"><value>Disable depth-buffer conversion</value></data>
   <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Label" xml:space="preserve"><value>Use External GameIndex Database</value></data>
-  <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Help" xml:space="preserve"><value>Load the game-compatibility database from &lt;system&gt;/resources/GameIndex.yaml if present, falling back to the built-in database when it is missing. When disabled, always use the database built into the core.</value></data>
+  <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Help"><value>Requires a hardware renderer and manual rendering fixes. Load the selected game compatibility database, or leave the file empty to use the built-in database. Restart emulation after changing these settings.</value></data>
   <data name="Emulation.Option.Sony.Setting.FramebufferConversion.Label"><value>Convert the rendering framebuffer</value></data>
   <data name="Emulation.Option.Sony.Setting.DisablePartialInvalidation.Label" xml:space="preserve"><value>Disable Partial Source Invalidation</value></data>
   <data name="Emulation.Option.Sony.Setting.GpuPaletteConversion.Label"><value>Palette conversion on GPU</value></data>
@@ -1296,4 +1296,5 @@
   <data name="Emulation.Option.Sony.Setting.InvertRightStick.Label"><value>Invert the axes of the right analog stick</value></data>
   <data name="Emulation.Option.Sony.Setting.AnalogMode.Label" xml:space="preserve"><value>Start in Analog Mode</value></data>
   <data name="Emulation.Option.Sony.Setting.AnalogMode.Help" xml:space="preserve"><value>Start the controller in analog mode rather than digital. Some games (e.g. Ridge Racer V) boot the pad in digital and normally require pressing the controller's ANALOG button to enable the sticks; enable this to get analog controls from the start. Games that lock the controller mode are unaffected.</value></data>
+  <data name="Emulation.Option.Sony.Files.CheatsDirectory"><value>Folder containing game cheat codes</value></data>
 </root>

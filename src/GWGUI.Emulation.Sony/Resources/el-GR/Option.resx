@@ -1192,7 +1192,7 @@
   <data name="Emulation.Option.Sony.Setting.Fastcdvd.Help"><value>Γρήγορα. CD/DVD μια μικρή χούφτα παιχνιδιών θα έχουν προβλήματα συμβατότητας με αυτό ενεργοποιημένο.</value></data>
   <data name="Emulation.Option.Sony.Setting.SharedMemoryCards.Help"><value>Χρήση καρτών ανά περιεχόμενο ή κοινής μνήμης.</value></data>
   <data name="Emulation.Option.Sony.Setting.EnableCheats.Label"><value>Ενεργοποίηση κωδικών εξαπατήσεων παιχνιδιών</value></data>
-  <data name="Emulation.Option.Sony.Setting.EnableCheats.Help"><value>Ενεργοποίηση της αντιγραφής αρχείων για ανάγνωση από τον κατάλογο 'cheats' στο φάκελο συστήματος.</value></data>
+  <data name="Emulation.Option.Sony.Setting.EnableCheats.Help"><value>Διαβάστε τους κωδικούς εξαπατήσει παιχνίδι από τα αρχεία στον επιλεγμένο φάκελο. Επανεκκίνηση εξομοίωσης μετά την επιλογή ενός άλλου φακέλου.</value></data>
   <data name="Emulation.Option.Sony.Setting.HintLanguageUnlock.Label"><value>Ξεκλειδώστε επιπλέον γλώσσες παιχνιδιού</value></data>
   <data name="Emulation.Option.Sony.Setting.HintLanguageUnlock.Help"><value>Αν ενεργοποιηθεί, θα εξετάσουμε μέσα στην εσωτερική βάση δεδομένων για επιλογές ξεκλειδώματος γλώσσας. Παραδείγματα περιλαμβάνουν: αναγκάζοντας μια διεθνή ιαπωνική έκδοση στα αγγλικά, ξεκλειδώνοντας περισσότερες ευρωπαϊκές γλώσσες, κλπ.</value></data>
   <data name="Emulation.Option.Sony.Setting.Dev9Hdd.Help"><value>Εξομοίωση του SPEED Επέκταση ATA Η εικόνα ζει στο 'pcsx2/DEV9hdd.raw' στον κατάλογο του συστήματος και δημιουργείται με την πρώτη χρήση στο ρυθμισμένο μέγεθος.</value></data>
@@ -1274,7 +1274,7 @@
   <data name="Emulation.Option.Sony.Value.MergeTargets"><value>Συγχώνευση στόχων</value></data>
   <data name="Emulation.Option.Sony.Setting.DisableDepthConversion.Label"><value>Απενεργοποίηση μετατροπής του βυθού- ρυθμιστή</value></data>
   <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Label"><value>Χρήση βάσης δεδομένων εξωτερικού παιχνιδιούIndex</value></data>
-  <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Help"><value>Φόρτωση της βάσης δεδομένων συμβατότητας με το παιχνίδι από &lt;system&gt;/resources/GameIndex.yaml εάν υπάρχει, να υποχωρεί στην ενσωματωμένη βάση δεδομένων όταν λείπει. Όταν απενεργοποιείται, χρησιμοποιήστε πάντα τη βάση δεδομένων ενσωματωμένη στον πυρήνα.</value></data>
+  <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Help"><value>Απαιτεί έναν αποδοτή υλικού και χειροκίνητες διορθώσεις απόδοσης. Φόρτωση της επιλεγμένης βάσης δεδομένων συμβατότητας του παιχνιδιού, ή αφήστε το αρχείο κενό για να χρησιμοποιήσετε την ενσωματωμένη βάση δεδομένων. Επανεκκίνηση της προσομοίωσης μετά την αλλαγή αυτών των ρυθμίσεων.</value></data>
   <data name="Emulation.Option.Sony.Setting.FramebufferConversion.Label"><value>Μετατροπή του framebuffer απόδοσης</value></data>
   <data name="Emulation.Option.Sony.Setting.DisablePartialInvalidation.Label"><value>Απενεργοποίηση μερικής ακύρωσης πηγής</value></data>
   <data name="Emulation.Option.Sony.Setting.GpuPaletteConversion.Label"><value>Μετατροπή παλέτας σε GPU</value></data>
@@ -1296,4 +1296,5 @@
   <data name="Emulation.Option.Sony.Setting.InvertRightStick.Label"><value>Αντιστροφή των αξόνων του σωστού αναλογικού ραβδιού</value></data>
   <data name="Emulation.Option.Sony.Setting.AnalogMode.Label"><value>Έναρξη σε λειτουργία αναλογικής</value></data>
   <data name="Emulation.Option.Sony.Setting.AnalogMode.Help"><value>Μερικά παιχνίδια (π.χ. Ridge Racer V) εκκινούν το pad σε ψηφιακή και συνήθως απαιτούν πίεση του controller του ANALOG κουμπί για να ενεργοποιήσετε τα ραβδιά; ενεργοποιήσετε αυτό για να πάρει αναλογικά χειριστήρια από την αρχή. Παιχνίδια που κλειδώνουν τη λειτουργία του ελεγκτή δεν επηρεάζονται.</value></data>
+  <data name="Emulation.Option.Sony.Files.CheatsDirectory"><value>Φάκελος που περιέχει κωδικούς εξαπατήσει παιχνίδι</value></data>
 </root>

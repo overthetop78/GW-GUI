@@ -1192,7 +1192,7 @@
   <data name="Emulation.Option.Sony.Setting.Fastcdvd.Help"><value>Gyors CD/DVD hozzáférés / keresési idő. Egy kis maroknyi játék kompatibilitási problémák ezzel engedélyezve.</value></data>
   <data name="Emulation.Option.Sony.Setting.SharedMemoryCards.Help"><value>Használjon per- tartalmat vagy megosztott memóriakártyát.</value></data>
   <data name="Emulation.Option.Sony.Setting.EnableCheats.Label"><value>A játék csalási kódjainak engedélyezése</value></data>
-  <data name="Emulation.Option.Sony.Setting.EnableCheats.Help"><value>A 'csal' könyvtárból olvasható fájlok engedélyezése a rendszermappában.</value></data>
+  <data name="Emulation.Option.Sony.Setting.EnableCheats.Help"><value>Olvasson játék csalási kódok fájlokat a kiválasztott mappában. Indítsa újra emuláció után kiválasztását egy másik mappa.</value></data>
   <data name="Emulation.Option.Sony.Setting.HintLanguageUnlock.Label"><value>További játéknyelvek megnyitása</value></data>
   <data name="Emulation.Option.Sony.Setting.HintLanguageUnlock.Help"><value>Ha be van jelölve, a belső adatbázisba fog nézni a nyelvi feloldási opciók miatt. Példák: nemzetközi japán változat angol nyelvre való kényszerítése, több európai nyelv felszabadítása stb.</value></data>
   <data name="Emulation.Option.Sony.Setting.Dev9Hdd.Help"><value>Emulálódik a SPEED a növekedés ATA merevlemez. A kép él 'pcsx2 /DEV9hdd.raw'a frontend rendszerkönyvtárban, és a beállított méreten történő első használatkor jön létre.</value></data>
@@ -1274,7 +1274,7 @@
   <data name="Emulation.Option.Sony.Value.MergeTargets"><value>Egyesülés célpontok</value></data>
   <data name="Emulation.Option.Sony.Setting.DisableDepthConversion.Label"><value>A depth- pufferkonverzió kikapcsolása</value></data>
   <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Label"><value>Külső GameIndex adatbázis használata</value></data>
-  <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Help"><value>A játék kompatibilitási adatbázis betöltése &lt; rendszer &gt; / erőforrások /GameIndex.yaml ha van, akkor visszaesik az épületbe, ha hiányzik. Ha nincs, mindig használja a magba épített adatbázist.</value></data>
+  <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Help"><value>A hardveres renderelő és a manuális renderelés javításait igényli. A kijelölt játék kompatibilitási adatbázisa betöltése, vagy üresen hagyja a fájlt az épületben való használathoz. A beállítások módosítása után az emuláció újraindítása.</value></data>
   <data name="Emulation.Option.Sony.Setting.FramebufferConversion.Label"><value>A renderelés keretbuffer konvertálása</value></data>
   <data name="Emulation.Option.Sony.Setting.DisablePartialInvalidation.Label"><value>Részleges forráskódú érvényesítés kikapcsolása</value></data>
   <data name="Emulation.Option.Sony.Setting.GpuPaletteConversion.Label"><value>Palette konverzió GPU</value></data>
@@ -1296,4 +1296,5 @@
   <data name="Emulation.Option.Sony.Setting.InvertRightStick.Label"><value>Fordítsa meg a tengelyek a jobb analóg bot</value></data>
   <data name="Emulation.Option.Sony.Setting.AnalogMode.Label"><value>Indítás analóg módban</value></data>
   <data name="Emulation.Option.Sony.Setting.AnalogMode.Help"><value>Indítsa el a vezérlő analóg módban helyett digitális. Néhány játék (pl. Ridge Racer V) indítsa a pad digitális, és általában megköveteli, hogy nyomja meg a vezérlő ANALOG gombbal engedélyezheti a botokat; lehetővé teszi, hogy ez az analóg vezérlések az elejétől kezdve. A vezérlő üzemmódot lezáró játékok érintetlenek.</value></data>
+  <data name="Emulation.Option.Sony.Files.CheatsDirectory"><value>A játék csalási kódjait tartalmazó mappa</value></data>
 </root>

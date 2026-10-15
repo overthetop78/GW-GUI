@@ -1192,7 +1192,7 @@
   <data name="Emulation.Option.Sony.Setting.Fastcdvd.Help"><value>Cepat CD/DVD waktu akses / cari. Sejumlah kecil permainan akan memiliki masalah kompatibilitas dengan ini diaktifkan.</value></data>
   <data name="Emulation.Option.Sony.Setting.SharedMemoryCards.Help"><value>Gunakan kartu memori yang sedang digunakan atau terbagi.</value></data>
   <data name="Emulation.Option.Sony.Setting.EnableCheats.Label"><value>Aktifkan kode game cheat</value></data>
-  <data name="Emulation.Option.Sony.Setting.EnableCheats.Help"><value>Aktifkan berkas cheat untuk dibaca dari direktori 'cheat' dalam folder sistem.</value></data>
+  <data name="Emulation.Option.Sony.Setting.EnableCheats.Help"><value>Baca kembali kode kecurangan game dari berkas dalam folder yang dipilih. Mulai lagi emulasi setelah memilih folder lain.</value></data>
   <data name="Emulation.Option.Sony.Setting.HintLanguageUnlock.Label"><value>Buka bahasa permainan tambahan</value></data>
   <data name="Emulation.Option.Sony.Setting.HintLanguageUnlock.Help"><value>Jika diaktifkan, akan melihat ke dalam basis data internal untuk pilihan membuka bahasa. Contoh termasuk: memaksa versi Jepang internasional ke bahasa Inggris, membuka lebih banyak bahasa Eropa, dll</value></data>
   <data name="Emulation.Option.Sony.Setting.Dev9Hdd.Help"><value>Mengemulasi SPEED ekspansi ATA Hard drive. Gambar hidup di 'pcsx2 /DEV9hdd.raw'di frontend direktori sistem dan dibuat pada penggunaan pertama pada ukuran yang dikonfigurasi.</value></data>
@@ -1274,7 +1274,7 @@
   <data name="Emulation.Option.Sony.Value.MergeTargets"><value>Merge render target</value></data>
   <data name="Emulation.Option.Sony.Setting.DisableDepthConversion.Label"><value>Nonaktifkan konversi depth- buffer</value></data>
   <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Label"><value>Gunakan Basis Data GameIndex Eksternal</value></data>
-  <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Help"><value>Muat basis data game- kompatibilitas dari &lt; sistem &gt; / sumberdaya /GameIndex.yaml jika ada, kembali ke basis data built-in ketika hilang. Ketika dinonaktifkan, selalu gunakan basis data yang dibangun ke dalam inti.</value></data>
+  <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Help"><value>Membutuhkan perender perangkat keras dan perbaikan render manual. Muat basis data kompatibilitas permainan terpilih, atau tinggalkan berkas kosong untuk memakai basis data built-in. Mulai ulang emulasi setelah mengubah pengaturan ini.</value></data>
   <data name="Emulation.Option.Sony.Setting.FramebufferConversion.Label"><value>Ubah framebuffer yang dirender</value></data>
   <data name="Emulation.Option.Sony.Setting.DisablePartialInvalidation.Label"><value>Nonaktifkan Invalidasi Sumber Sebagian</value></data>
   <data name="Emulation.Option.Sony.Setting.GpuPaletteConversion.Label"><value>konversi palet di GPU</value></data>
@@ -1296,4 +1296,5 @@
   <data name="Emulation.Option.Sony.Setting.InvertRightStick.Label"><value>Membalikkan sumbu dari batang analog kanan</value></data>
   <data name="Emulation.Option.Sony.Setting.AnalogMode.Label"><value>Awal dalam Mode Analog</value></data>
   <data name="Emulation.Option.Sony.Setting.AnalogMode.Help"><value>Mulai pengontrol dalam mode analog daripada digital. Beberapa game (mis. Ridge Racer V) boot pad dalam digital dan biasanya membutuhkan menekan pengontrol ANALOG tombol untuk mengaktifkan tongkat; aktifkan ini untuk mendapatkan kendali analog dari awal. Permainan yang mengunci mode pengendali tidak terpengaruh.</value></data>
+  <data name="Emulation.Option.Sony.Files.CheatsDirectory"><value>Folder berisi kode game cheat</value></data>
 </root>

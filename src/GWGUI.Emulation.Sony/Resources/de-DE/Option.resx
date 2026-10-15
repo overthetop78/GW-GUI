@@ -1192,7 +1192,7 @@
   <data name="Emulation.Option.Sony.Setting.Fastcdvd.Help"><value>Schnell CD/DVD Zugangs-/Suchzeiten. Eine kleine Handvoll Spiele wird Kompatibilitätsprobleme haben, wenn diese aktiviert sind.</value></data>
   <data name="Emulation.Option.Sony.Setting.SharedMemoryCards.Help"><value>Verwenden Sie Per-Content- oder Shared-Speicherkarten.</value></data>
   <data name="Emulation.Option.Sony.Setting.EnableCheats.Label"><value>Spiele Cheat Codes aktivieren</value></data>
-  <data name="Emulation.Option.Sony.Setting.EnableCheats.Help"><value>Aktivieren Sie Cheat-Dateien, die aus dem Verzeichnis "Cheats" im Systemordner gelesen werden.</value></data>
+  <data name="Emulation.Option.Sony.Setting.EnableCheats.Help"><value>Lesen Sie Spiel-Cheat-Codes aus Dateien im ausgewählten Ordner. Starten Sie die Emulation nach Auswahl eines anderen Ordners neu.</value></data>
   <data name="Emulation.Option.Sony.Setting.HintLanguageUnlock.Label"><value>Schalten Sie zusätzliche Spielsprachen frei</value></data>
   <data name="Emulation.Option.Sony.Setting.HintLanguageUnlock.Help"><value>Wenn aktiviert, schauen Sie in die interne Datenbank nach Optionen für die Sprachfreischaltung, z. B.: Erzwingen einer internationalen japanischen Version ins Englische, Freischalten von mehr europäischen Sprachen usw.</value></data>
   <data name="Emulation.Option.Sony.Setting.Dev9Hdd.Help"><value>Emulieren Sie die SPEED Expansion ATA Das Bild lebt auf 'pcsx2/DEV9hdd.raw' im Frontend-Systemverzeichnis und wird bei der ersten Verwendung in der konfigurierten Größe erstellt.</value></data>
@@ -1274,7 +1274,7 @@
   <data name="Emulation.Option.Sony.Value.MergeTargets"><value>Zusammenführung der Renderziele</value></data>
   <data name="Emulation.Option.Sony.Setting.DisableDepthConversion.Label"><value>Tiefenpuffer-Konvertierung deaktivieren</value></data>
   <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Label"><value>Verwenden Sie die externe GameIndex-Datenbank</value></data>
-  <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Help"><value>Laden Sie die Datenbank zur Kompatibilität mit dem Spiel aus &lt;system&gt;/resources/GameIndex.yaml Wenn vorhanden, zurück in die eingebaute Datenbank, wenn sie fehlt, und wenn deaktiviert, immer die im Kern eingebaute Datenbank verwenden.</value></data>
+  <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Help"><value>Erfordert einen Hardware-Renderer und manuelle Rendering-Fixes. Laden Sie die ausgewählte Datenbank zur Kompatibilität mit dem Spiel oder lassen Sie die Datei leer, um die eingebaute Datenbank zu verwenden. Starten Sie die Emulation nach dem Ändern dieser Einstellungen neu.</value></data>
   <data name="Emulation.Option.Sony.Setting.FramebufferConversion.Label"><value>Konvertieren Sie den Rendering Framebuffer</value></data>
   <data name="Emulation.Option.Sony.Setting.DisablePartialInvalidation.Label"><value>Deaktivieren der teilweisen Quelleninvalidierung</value></data>
   <data name="Emulation.Option.Sony.Setting.GpuPaletteConversion.Label"><value>Palettenumwandlung auf GPU</value></data>
@@ -1296,4 +1296,5 @@
   <data name="Emulation.Option.Sony.Setting.InvertRightStick.Label"><value>Invertieren Sie die Achsen des rechten Analog-Sticks</value></data>
   <data name="Emulation.Option.Sony.Setting.AnalogMode.Label"><value>Starten Sie im analogen Modus</value></data>
   <data name="Emulation.Option.Sony.Setting.AnalogMode.Help"><value>Einige Spiele (z.B. Ridge Racer V) booten das Pad in digitaler Form und erfordern normalerweise das Drücken des Controllers. ANALOG Die Taste zum Aktivieren der Sticks; damit können Sie von Anfang an analoge Steuerungen erhalten. Spiele, die den Controller-Modus sperren, sind nicht betroffen.</value></data>
+  <data name="Emulation.Option.Sony.Files.CheatsDirectory"><value>Ordner mit Spiel-Cheat-Codes</value></data>
 </root>

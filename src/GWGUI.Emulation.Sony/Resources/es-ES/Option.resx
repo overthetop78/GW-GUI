@@ -1192,7 +1192,7 @@
   <data name="Emulation.Option.Sony.Setting.Fastcdvd.Help"><value>Rápido CD/DVD acceso/seguir tiempos. Un pequeño puñado de juegos tendrá problemas de compatibilidad con esto habilitado.</value></data>
   <data name="Emulation.Option.Sony.Setting.SharedMemoryCards.Help"><value>Utilice tarjetas de memoria compartidas o por contenido.</value></data>
   <data name="Emulation.Option.Sony.Setting.EnableCheats.Label"><value>Juegos Activar códigos de trampa juego</value></data>
-  <data name="Emulation.Option.Sony.Setting.EnableCheats.Help"><value>Permite que los archivos de trampa sean leídos desde el directorio 'cheats' en la carpeta del sistema.</value></data>
+  <data name="Emulation.Option.Sony.Setting.EnableCheats.Help"><value>Lea los códigos de trampa del juego de archivos en la carpeta seleccionada. reiniciar emulación después de seleccionar otra carpeta.</value></data>
   <data name="Emulation.Option.Sony.Setting.HintLanguageUnlock.Label"><value>Desbloquear idiomas adicionales del juego</value></data>
   <data name="Emulation.Option.Sony.Setting.HintLanguageUnlock.Help"><value>Si está habilitado, buscará dentro de la base de datos interna para desbloquear opciones de lenguaje. Ejemplos incluyen: forzar una versión japonesa internacional al inglés, desbloquear más idiomas europeos, etc.</value></data>
   <data name="Emulation.Option.Sony.Setting.Dev9Hdd.Help"><value>Emular a la SPEED expansión ATA disco duro. La imagen vive en 'pcsx2/DEV9hdd.raw' en el directorio del sistema frontend y se crea en el primer uso en el tamaño configurado.</value></data>
@@ -1274,7 +1274,7 @@
   <data name="Emulation.Option.Sony.Value.MergeTargets"><value>Combinar objetivos de renderización</value></data>
   <data name="Emulation.Option.Sony.Setting.DisableDepthConversion.Label"><value>Conversión de amortiguación de profundidad</value></data>
   <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Label"><value>Use la base de datos externa GameIndex</value></data>
-  <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Help"><value>Cargar la base de datos de compatibilidad con el juego de  ⁇ system/resources/GameIndex.yaml si está presente, volver a la base de datos integrada cuando no está. Cuando está deshabilitado, utilice siempre la base de datos incorporada en el núcleo.</value></data>
+  <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Help"><value>Requiere un renderizador de hardware y correcciones de renderización manual. Cargue la base de datos de compatibilidad de juego seleccionada, o deje el archivo vacío para utilizar la base de datos integrada.</value></data>
   <data name="Emulation.Option.Sony.Setting.FramebufferConversion.Label"><value>Convertir el framebuffer de renderización</value></data>
   <data name="Emulation.Option.Sony.Setting.DisablePartialInvalidation.Label"><value>Invalidación de la fuente parcial</value></data>
   <data name="Emulation.Option.Sony.Setting.GpuPaletteConversion.Label"><value>Conversión de paleta en GPU</value></data>
@@ -1296,4 +1296,5 @@
   <data name="Emulation.Option.Sony.Setting.InvertRightStick.Label"><value>Invierte los ejes de la barra analógica derecha</value></data>
   <data name="Emulation.Option.Sony.Setting.AnalogMode.Label"><value>Comienza en modo analógico</value></data>
   <data name="Emulation.Option.Sony.Setting.AnalogMode.Help"><value>Comience el controlador en modo analógico en lugar de digital. Algunos juegos (por ejemplo Ridge Racer V) arrancan la almohadilla en digital y normalmente requieren presionar el controlador ANALOG botón para habilitar las barras; habilitar esto para obtener controles analógicos desde el inicio. Juegos que bloquean el modo controlador no se afectan.</value></data>
+  <data name="Emulation.Option.Sony.Files.CheatsDirectory"><value>Carpeta que contiene códigos de trampa juego</value></data>
 </root>

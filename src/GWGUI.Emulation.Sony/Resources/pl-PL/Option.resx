@@ -1192,7 +1192,7 @@
   <data name="Emulation.Option.Sony.Setting.Fastcdvd.Help"><value>Szybko CD/DVD czas dostępu / wyszukiwania. Mała garstka gier będzie miała problemy z kompatybilnością z tym włączone.</value></data>
   <data name="Emulation.Option.Sony.Setting.SharedMemoryCards.Help"><value>Użyj karty per- content lub współdzielonej pamięci.</value></data>
   <data name="Emulation.Option.Sony.Setting.EnableCheats.Label"><value>Włącz kody oszustw gry</value></data>
-  <data name="Emulation.Option.Sony.Setting.EnableCheats.Help"><value>Włącz czytanie plików oszukiwania z katalogu 'cheats' w folderze systemowym.</value></data>
+  <data name="Emulation.Option.Sony.Setting.EnableCheats.Help"><value>Czytaj kody gry do ściągania z plików w wybranym folderze. Wznawiaj emulację po wybraniu innego folderu.</value></data>
   <data name="Emulation.Option.Sony.Setting.HintLanguageUnlock.Label"><value>Odblokuj dodatkowe języki gry</value></data>
   <data name="Emulation.Option.Sony.Setting.HintLanguageUnlock.Help"><value>Jeśli jest włączona, będzie szukać wewnątrz wewnętrznej bazy danych dla opcji odblokowania języka. Przykłady obejmują: zmuszanie międzynarodowej wersji japońskiej do języka angielskiego, odblokowanie więcej języków europejskich, itp.</value></data>
   <data name="Emulation.Option.Sony.Setting.Dev9Hdd.Help"><value>Emulate SPEED rozszerzenie ATA dysk twardy. Obraz żyje w 'pcsx2 /DEV9hdd.raw'w katalogu systemowym frontend i jest tworzony przy pierwszym użyciu przy skonfigurowanym rozmiarze.</value></data>
@@ -1274,7 +1274,7 @@
   <data name="Emulation.Option.Sony.Value.MergeTargets"><value>Połączenia renderują cele</value></data>
   <data name="Emulation.Option.Sony.Setting.DisableDepthConversion.Label"><value>Wyłącz konwersję bufora depth- buffer</value></data>
   <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Label"><value>Użyj zewnętrznej bazy danych GameIndex</value></data>
-  <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Help"><value>Wczytaj bazę danych kompatybilności z gry z &lt; systemu &gt; / zasobów /GameIndex.yaml jeśli jest obecny, wracając do bazy danych budynku, gdy brakuje. Gdy jest wyłączony, zawsze używać bazy danych wbudowanej w rdzeń.</value></data>
+  <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Help"><value>Wymaga renderowania sprzętu i ręcznych poprawek renderowania. Wczytaj wybraną bazę danych kompatybilności gry lub zostaw pusty plik, aby użyć bazy danych built- in. Po zmianie tych ustawień wznawiaj emulację.</value></data>
   <data name="Emulation.Option.Sony.Setting.FramebufferConversion.Label"><value>Przelicz bufor ram renderowania</value></data>
   <data name="Emulation.Option.Sony.Setting.DisablePartialInvalidation.Label"><value>Wyłącz częściową inwalidację źródła</value></data>
   <data name="Emulation.Option.Sony.Setting.GpuPaletteConversion.Label"><value>Konwersja palety na GPU</value></data>
@@ -1296,4 +1296,5 @@
   <data name="Emulation.Option.Sony.Setting.InvertRightStick.Label"><value>Odwróć osie prawej patyczki analogowej</value></data>
   <data name="Emulation.Option.Sony.Setting.AnalogMode.Label"><value>Zacznij w trybie analogowym</value></data>
   <data name="Emulation.Option.Sony.Setting.AnalogMode.Help"><value>Uruchom sterownik w trybie analogowym, a nie cyfrowym. Niektóre gry (np. Ridge Racer V) uruchamiają panel w trybie cyfrowym i zwykle wymagają naciśnięcia sterownika ANALOG przycisk, aby włączyć kije; umożliwić to uzyskać analogowe sterowanie od początku. Gry, które blokują tryb kontrolera są bez zmian.</value></data>
+  <data name="Emulation.Option.Sony.Files.CheatsDirectory"><value>Folder zawierający kody gry oszukiwania</value></data>
 </root>

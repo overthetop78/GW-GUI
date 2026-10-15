@@ -1192,7 +1192,7 @@
   <data name="Emulation.Option.Sony.Setting.Fastcdvd.Help"><value>快点 CD/ 数据DVD 访问/ 搜索时间。 少数游戏将存在与启用的兼容性问题 。</value></data>
   <data name="Emulation.Option.Sony.Setting.SharedMemoryCards.Help"><value>使用每个内容或共享的内存卡.</value></data>
   <data name="Emulation.Option.Sony.Setting.EnableCheats.Label"><value>启用游戏作弊代码</value></data>
-  <data name="Emulation.Option.Sony.Setting.EnableCheats.Help"><value>启用从系统文件夹中的“ cheats” 目录读取的欺骗文件 。</value></data>
+  <data name="Emulation.Option.Sony.Setting.EnableCheats.Help"><value>从选中文件夹中的文件读取游戏作弊代码。 在选择了另一个文件夹后, 重新启动仿真 。</value></data>
   <data name="Emulation.Option.Sony.Setting.HintLanguageUnlock.Label"><value>解锁额外的游戏语言</value></data>
   <data name="Emulation.Option.Sony.Setting.HintLanguageUnlock.Help"><value>如果启用, 将会在内部数据库内查看语言解锁选项。 例如: 强制国际日文版使用英语, 解锁更多欧洲语言等 。</value></data>
   <data name="Emulation.Option.Sony.Setting.Dev9Hdd.Help"><value>模拟 SPEED 扩张 ATA 硬盘。 图像位于 pcsx2/ 。DEV9hdd.raw' 在前端系统目录中,在首次使用时按所配置的大小创建。</value></data>
@@ -1274,7 +1274,7 @@
   <data name="Emulation.Option.Sony.Value.MergeTargets"><value>合并生成目标</value></data>
   <data name="Emulation.Option.Sony.Setting.DisableDepthConversion.Label"><value>禁用深度缓冲转换</value></data>
   <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Label"><value>使用外部 GameIndex 数据库</value></data>
-  <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Help"><value>从 &lt; system&gt;/resources// 上装游戏兼容性数据库GameIndex.yaml 如果存在, 则在缺失时返回内置数据库。 禁用时, 总是使用内置数据库。</value></data>
+  <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Help"><value>需要硬件渲染器和手动渲染修正。装入选中的游戏兼容性数据库,或留空文件使用内置数据库。在更改这些设置后重新启动仿真。</value></data>
   <data name="Emulation.Option.Sony.Setting.FramebufferConversion.Label"><value>转换渲染帧缓冲器</value></data>
   <data name="Emulation.Option.Sony.Setting.DisablePartialInvalidation.Label"><value>禁用部分源无效</value></data>
   <data name="Emulation.Option.Sony.Setting.GpuPaletteConversion.Label"><value>调色板转换于 GPU</value></data>
@@ -1296,4 +1296,5 @@
   <data name="Emulation.Option.Sony.Setting.InvertRightStick.Label"><value>右相模杆的轴反转</value></data>
   <data name="Emulation.Option.Sony.Setting.AnalogMode.Label"><value>以模拟模式开始</value></data>
   <data name="Emulation.Option.Sony.Setting.AnalogMode.Help"><value>以模拟模式而不是数字模式启动控制器。有些游戏(例如Ridge Racer V)将垫子放在数字中,通常需要按控制器的 ANALOG 按钮来启用棒; 启用此选项从一开始就获得模拟控制。锁起控制器模式的游戏不受影响。</value></data>
+  <data name="Emulation.Option.Sony.Files.CheatsDirectory"><value>包含游戏欺骗代码的文件夹</value></data>
 </root>
