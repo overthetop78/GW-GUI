@@ -75,6 +75,7 @@ internal sealed partial class ExternalCore
         if (memory.Pointer == nint.Zero) return;
         var bytes = new byte[memory.Size];
         Marshal.Copy(memory.Pointer, bytes, BufferConstants.FirstBufferIndex, bytes.Length);
+        Directory.CreateDirectory(Path.GetDirectoryName(_saveMemoryPath)!);
         var temporaryPath = _saveMemoryPath + SaveMemoryConstants.TemporaryFileSuffix;
         try
         {

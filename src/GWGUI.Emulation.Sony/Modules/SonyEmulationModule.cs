@@ -212,26 +212,11 @@ public sealed class SonyEmulationModule : IEmulationModule, IEmulationEmulatorMa
         var storage = StorageSettingsFunctions.Describe(sony);
         var mounted = adapter.ResolveConfiguredMedia(sony);
         return new EmulationMachineRuntime(sony,
-            media => _engine.CreateMachine(WithMedia(sony, media), context),
+            media => _engine.CreateMachine(EmulationMediaConversionFunctions.WithMedia(sony, media), context),
             storage.AvailableDevices.Where(device => storage.ConfiguredSlots.Contains(device.Slot)).ToArray(), mounted,
             MachineConfigurationConstants.ResourceKey(sony.Model),
             SupportsPointerCapture: ModelCatalog.Get(sony.Model).MouseButtonCount > 0);
     }
-
-    private static MachineConfiguration WithMedia(MachineConfiguration configuration, IEnumerable<EmulationMedia> media) => configuration with
-    {
-        Media = media.Select((item, index) => new MediaConfiguration(item.Path,
-            item.Type switch
-            {
-                EmulationMediaType.Floppy => MediaCategory.Floppy,
-                EmulationMediaType.Cassette => MediaCategory.Cassette,
-                EmulationMediaType.Cartridge => MediaCategory.Cartridge,
-                EmulationMediaType.CompactDisc => MediaCategory.CompactDisc,
-                EmulationMediaType.HardDisk => MediaCategory.HardDisk,
-                _ => throw new ArgumentOutOfRangeException(nameof(media), item.Type, null)
-            }, IsReadOnly: item.IsReadOnly, IsInserted: item.IsInserted,
-            MountOrder: index)).ToArray()
-    };
 
     public string GetFirmwareDirectory(string machineId)
     {

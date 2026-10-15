@@ -4,6 +4,21 @@ namespace GWGUI.Emulation.Sony.Common.Machines.Common.Functions;
 
 internal static class EmulationMediaConversionFunctions
 {
+    internal static MachineConfiguration WithMedia(MachineConfiguration configuration, IEnumerable<EmulationMedia> media) => configuration with
+    {
+        Media = media.Select((item, index) => new MediaConfiguration(item.Path,
+            item.Type switch
+            {
+                EmulationMediaType.Floppy => MediaCategory.Floppy,
+                EmulationMediaType.Cassette => MediaCategory.Cassette,
+                EmulationMediaType.Cartridge => MediaCategory.Cartridge,
+                EmulationMediaType.CompactDisc => MediaCategory.CompactDisc,
+                EmulationMediaType.MemoryCard => MediaCategory.MemoryCard,
+                EmulationMediaType.HardDisk => MediaCategory.HardDisk,
+                _ => throw new ArgumentOutOfRangeException(nameof(media), item.Type, null)
+            }, IsReadOnly: item.IsReadOnly, IsInserted: item.IsInserted, MountOrder: index)).ToArray()
+    };
+
     internal static IReadOnlyList<EmulationMedia> ToCommon(IEnumerable<MediaConfiguration> media)
     {
         var indexes = new Dictionary<EmulationMediaCategory, int>();

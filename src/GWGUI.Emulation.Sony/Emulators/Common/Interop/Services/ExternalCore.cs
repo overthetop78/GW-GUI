@@ -100,7 +100,7 @@ internal sealed partial class ExternalCore : IEmulatorCore
                 throw new NotSupportedException(CoreExceptions.UnsupportedApiVersion(apiVersion));
             Export<ExternalCoreApi.GetSystemInfo>(ExternalCoreConstants.RetroGetSystemInfo)(out var info);
             var libraryName = Marshal.PtrToStringUTF8(info.LibraryName);
-            if (!string.Equals(libraryName, _definition.LibraryName, StringComparison.OrdinalIgnoreCase))
+            if (!CoreIdentityFunctions.Accepts(_definition, libraryName))
                 throw new InvalidDataException(CoreExceptions.LibraryIdentityMismatch(libraryName));
             CoreName = libraryName!;
             CoreVersion = Marshal.PtrToStringUTF8(info.LibraryVersion) ?? string.Empty;

@@ -17,4 +17,5 @@ internal sealed record CoreDefinition(
     bool PersistentDataDirectories = false,
     bool SupportsSavedStates = true,
     IReadOnlyList<ControllerType>? FeedbackControllerTypes = null,
-    TimeSpan? DisposalTimeout = null);
+    TimeSpan? DisposalTimeout = null,
+    IReadOnlyList<string>? PreviousLibraryNames = null);

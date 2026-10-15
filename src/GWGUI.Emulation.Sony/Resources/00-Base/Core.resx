@@ -8,7 +8,7 @@
   <data name="Emulation.Emulator.pcsx2.Description"><value>Emulates PlayStation 2 systems.</value></data>
   <data name="Emulation.Emulator.ppsspp.Description"><value>Emulates PlayStation Portable systems.</value></data>
   <data name="Emulation.Emulator.swanstation.Description"><value>Emulates Sony PlayStation and PS one systems.</value></data>
-  <data name="Emulation.Emulator.pokketstation"><value>pokketstation</value></data>
+  <data name="Emulation.Emulator.pokketstation"><value>Pokket</value></data>
   <data name="Emulation.Emulator.pokketstation.Description"><value>Emulates the Sony PocketStation handheld with an external BIOS and memory card images.</value></data>
   <data name="Emulation.Emulator.mednafen_psx"><value>Beetle PSX</value></data>
   <data name="Emulation.Emulator.mednafen_psx_hw"><value>Beetle PSX HW</value></data>

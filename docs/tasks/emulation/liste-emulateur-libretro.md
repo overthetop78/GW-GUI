@@ -255,10 +255,12 @@ Le Model A reste dans le périmètre demandé. Toutefois, le port b2 à la révi
 | `pcsx2_libretro.dll`           | PlayStation 2              |
 | `pcsx_rearmed_libretro.dll`    | PlayStation / PS1          |
 | `play_libretro.dll`            | PlayStation 2              |
-| `pokketstation_libretro.dll`   | PocketStation              |
+| `pokket_libretro.dll`          | PocketStation              |
 | `ppsspp_libretro.dll`          | PlayStation Portable / PSP |
 | `rpcs3_libretro.dll`           | PlayStation 3              |
 | `swanstation_libretro.dll`     | PlayStation / PS1          |
+
+Pokket est le nouveau nom du cœur PocketStation précédemment distribué comme `pokketstation_libretro.dll`. L adaptateur conserve l identifiant de configuration `pokketstation`, le nom du fichier installé et les chemins de sauvegarde existants ; les nouvelles installations utilisent le paquet officiel `pokket_libretro.dll.zip`.
 
 ## Émulateurs — Autres machines et systèmes
 
