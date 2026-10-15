@@ -4,6 +4,7 @@ using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using GWGUI.Emulation.Sony.Emulators.Ppsspp.Exceptions;
 using GWGUI.Emulation.Sony.Emulators.Ppsspp.Constants;
+using GWGUI.Emulation.Sony.Emulators.Ppsspp.Functions;
 using NativeControllerConstants = GWGUI.Emulation.Sony.Emulators.Common.Interop.Constants.ControllerPortConstants;
 
 namespace GWGUI.Emulation.Sony.Emulators.Ppsspp.Services;
@@ -66,7 +67,8 @@ internal sealed class ExternalCore : IEmulatorCore
         using (var stream = File.OpenRead(sourceCorePath))
             CoreSha256 = Convert.ToHexString(SHA256.HashData(stream));
 
-        var systemDirectory = Path.Combine(sessionDirectory, CoreDirectoryConstants.SystemDirectoryName);
+        var systemDirectory = Path.GetDirectoryName(sourceCorePath)!;
+        SystemFilesFunctions.Validate(systemDirectory);
         var contentDirectory = Path.Combine(sessionDirectory, CoreDirectoryConstants.ContentDirectoryName);
         saveDirectory = Path.GetFullPath(saveDirectory ?? Path.Combine(sessionDirectory, CoreDirectoryConstants.SavesDirectoryName));
         Directory.CreateDirectory(systemDirectory);
@@ -130,6 +132,7 @@ internal sealed class ExternalCore : IEmulatorCore
             if (!_gameLoaded) throw new InvalidOperationException(PpssppExceptions.ContentRefused());
             Export<ExternalCoreApi.GetSystemAvInfo>(ExternalCoreConstants.RetroGetSystemAvInfo)(out var av);
             _host.ApplyInitialAvInfo(av);
+            _host.HardwareRender.Reset();
         }
         catch
         {
@@ -217,8 +220,12 @@ internal sealed class ExternalCore : IEmulatorCore
 
     public void Stop()
     {
-        if (_gameLoaded) _unloadGame?.Invoke();
-        _gameLoaded = false;
+        try { _host?.HardwareRender.NotifyDestroy(); }
+        finally
+        {
+            try { if (_gameLoaded) _unloadGame?.Invoke(); }
+            finally { _gameLoaded = false; }
+        }
     }
 
     private void ValidateExtension(string? path)

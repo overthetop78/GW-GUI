@@ -140,4 +140,5 @@
   <data name="Emulation.Error.Core.UnknownHostCommand"><value>emulation コアホストは未知のコマンド {0} を受信しました。</value></data>
   <data name="Emulation.Error.Core.UnsupportedApiVersion"><value>emulation コア API バージョン {0} はサポートされていません。</value></data>
   <data name="Emulation.Error.Core.VideoBufferUnavailable"><value>エミュレーションコアビデオバッファは使用できません。</value></data>
+  <data name="Emulation.Error.Ppsspp.SystemFilesMissing"><value>エミュレータシステムファイルが欠落または不完全です。エミュレータを再インストールします。</value></data>
 </root>

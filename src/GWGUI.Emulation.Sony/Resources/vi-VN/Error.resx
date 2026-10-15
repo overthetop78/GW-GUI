@@ -140,4 +140,5 @@
   <data name="Emulation.Error.Core.UnknownHostCommand"><value>Máy chủ trung tâm đã nhận được lệnh chưa biết {0}.</value></data>
   <data name="Emulation.Error.Core.UnsupportedApiVersion"><value>Trung tâm điều khiển API phiên bản {0} không được hỗ trợ.</value></data>
   <data name="Emulation.Error.Core.VideoBufferUnavailable"><value>Bộ đệm phát thanh chính không sẵn sàng.</value></data>
+  <data name="Emulation.Error.Ppsspp.SystemFilesMissing"><value>Các tập tin hệ thống mô phỏng bị thiếu hay không đầy đủ. Hãy cài đặt lại trình giả lập.</value></data>
 </root>

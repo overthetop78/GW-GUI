@@ -140,4 +140,5 @@
   <data name="Emulation.Error.Core.UnknownHostCommand"><value>에뮬레이션 코어 호스트는 알 수없는 명령 {0}을 받았습니다.</value></data>
   <data name="Emulation.Error.Core.UnsupportedApiVersion"><value>에뮬레이션 코어 API 버전 {0}은 지원되지 않습니다.</value></data>
   <data name="Emulation.Error.Core.VideoBufferUnavailable"><value>에뮬레이션 코어 비디오 버퍼는 사용할 수 없습니다.</value></data>
+  <data name="Emulation.Error.Ppsspp.SystemFilesMissing"><value>에뮬레이터 시스템 파일은 누락되거나 불완전합니다. 에뮬레이터를 다시 설치하십시오.</value></data>
 </root>

@@ -140,4 +140,5 @@
   <data name="Emulation.Error.Core.UnknownHostCommand"><value>Emuleringskjernen mottok den ukjente kommandoen {0}.</value></data>
   <data name="Emulation.Error.Core.UnsupportedApiVersion"><value>Emulation core API versjon {0} er ikke støttet.</value></data>
   <data name="Emulation.Error.Core.VideoBufferUnavailable"><value>Emuleringskjernen videobuffer er utilgjengelig.</value></data>
+  <data name="Emulation.Error.Ppsspp.SystemFilesMissing" xml:space="preserve"><value>Emulatorens systemfiler mangler eller er ufullstendige. Installer emulatoren på nytt.</value></data>
 </root>

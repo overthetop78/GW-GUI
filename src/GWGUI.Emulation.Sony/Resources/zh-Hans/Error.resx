@@ -140,4 +140,5 @@
   <data name="Emulation.Error.Core.UnknownHostCommand"><value>模拟核心主机收到未知命令{0}.</value></data>
   <data name="Emulation.Error.Core.UnsupportedApiVersion"><value>模拟核心API版本{0}是不支持的.</value></data>
   <data name="Emulation.Error.Core.VideoBufferUnavailable"><value>模拟核心视频缓冲器无法使用.</value></data>
+  <data name="Emulation.Error.Ppsspp.SystemFilesMissing" xml:space="preserve"><value>模拟器系统文件缺失或不完整。请重新安装模拟器。</value></data>
 </root>

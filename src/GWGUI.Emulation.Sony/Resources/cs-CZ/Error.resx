@@ -140,4 +140,5 @@
   <data name="Emulation.Error.Core.UnknownHostCommand"><value>Hostitel emulačního jádra obdržel neznámý příkaz{0}.</value></data>
   <data name="Emulation.Error.Core.UnsupportedApiVersion"><value>Emulační jádro API verze {0} není podporováno.</value></data>
   <data name="Emulation.Error.Core.VideoBufferUnavailable"><value>Emulační video buffer je nedostupný.</value></data>
+  <data name="Emulation.Error.Ppsspp.SystemFilesMissing"><value>Soubory emulatoru chybí nebo nejsou kompletní. Znovu nainstalujte emulátor.</value></data>
 </root>

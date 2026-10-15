@@ -140,4 +140,5 @@
   <data name="Emulation.Error.Core.UnsupportedContentExtension"><value>The emulation core does not support the content extension {0}.</value></data>
   <data name="Emulation.Error.Core.UnsupportedPixelFormat"><value>The emulation core returned the unsupported pixel format {0}.</value></data>
   <data name="Emulation.Error.Core.VideoBufferUnavailable"><value>The emulation core video buffer is unavailable.</value></data>
+  <data name="Emulation.Error.Ppsspp.SystemFilesMissing"><value>The emulator system files are missing or incomplete. Reinstall the emulator.</value></data>
 </root>

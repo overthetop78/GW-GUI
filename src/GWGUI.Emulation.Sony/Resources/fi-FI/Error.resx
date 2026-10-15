@@ -140,4 +140,5 @@
   <data name="Emulation.Error.Core.UnknownHostCommand"><value>Emulointiytimen isäntä sai tuntemattoman komennon {0}.</value></data>
   <data name="Emulation.Error.Core.UnsupportedApiVersion"><value>Emulointiytimen API-versiota {0} ei tueta.</value></data>
   <data name="Emulation.Error.Core.VideoBufferUnavailable"><value>Emulointiydinvideopuskuria ei ole saatavilla.</value></data>
+  <data name="Emulation.Error.Ppsspp.SystemFilesMissing" xml:space="preserve"><value>Emulaattorin järjestelmätiedostot puuttuvat tai ovat puutteelliset. Asenna emulaattori uudelleen.</value></data>
 </root>

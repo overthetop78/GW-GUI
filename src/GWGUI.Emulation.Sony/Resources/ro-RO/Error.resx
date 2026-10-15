@@ -140,4 +140,5 @@
   <data name="Emulation.Error.Core.UnknownHostCommand"><value>Gazda de bază a primit comanda necunoscută {0}.</value></data>
   <data name="Emulation.Error.Core.UnsupportedApiVersion"><value>Nucleul de emulare API versiunea {0} este nesusţinut.</value></data>
   <data name="Emulation.Error.Core.VideoBufferUnavailable"><value>Reteaua video de bază nu este disponibilă.</value></data>
+  <data name="Emulation.Error.Ppsspp.SystemFilesMissing"><value>Fişierele sistemului de emulator lipsesc sau sunt incomplete. Reinstalaţi emulatorul.</value></data>
 </root>

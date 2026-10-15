@@ -140,4 +140,5 @@
   <data name="Emulation.Error.Core.UnknownHostCommand"><value>De emulatiekernhost ontving het onbekende commando {0}.</value></data>
   <data name="Emulation.Error.Core.UnsupportedApiVersion"><value>De emulatiekern API-versie {0} wordt niet ondersteund.</value></data>
   <data name="Emulation.Error.Core.VideoBufferUnavailable"><value>De videobuffer van de emulatiekern is niet beschikbaar.</value></data>
+  <data name="Emulation.Error.Ppsspp.SystemFilesMissing" xml:space="preserve"><value>De systeembestanden van de emulator ontbreken of zijn onvolledig. Installeer de emulator opnieuw.</value></data>
 </root>

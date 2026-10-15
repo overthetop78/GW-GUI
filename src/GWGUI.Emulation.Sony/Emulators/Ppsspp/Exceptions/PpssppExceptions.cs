@@ -23,6 +23,7 @@ internal static class PpssppExceptions
     internal static string CorePathNotAbsolute() => Text("Emulation.Error.Ppsspp.CorePathNotAbsolute");
     internal static string CoreNotFound() => Text("Emulation.Error.Ppsspp.CoreNotFound");
     internal static string ArchiveMissingLibrary() => Text("Emulation.Error.Ppsspp.ArchiveMissingLibrary");
+    internal static string SystemFilesMissing() => Text("Emulation.Error.Ppsspp.SystemFilesMissing");
     internal static string DownloadedCoreNotPe() => Text("Emulation.Error.Ppsspp.DownloadedCoreNotPe");
     internal static string DownloadedCoreInvalidPe() => Text("Emulation.Error.Ppsspp.DownloadedCoreInvalidPe");
     internal static string DownloadedCoreWrongArchitecture() => Text("Emulation.Error.Ppsspp.DownloadedCoreWrongArchitecture");

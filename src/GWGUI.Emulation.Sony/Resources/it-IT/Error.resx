@@ -140,4 +140,5 @@
   <data name="Emulation.Error.Core.UnknownHostCommand"><value>Il core host di emulazione ha ricevuto il comando sconosciuto {0}.</value></data>
   <data name="Emulation.Error.Core.UnsupportedApiVersion"><value>La versione API core di emulazione {0} non è supportata.</value></data>
   <data name="Emulation.Error.Core.VideoBufferUnavailable"><value>Il buffer video del nucleo di emulazione non è disponibile.</value></data>
+  <data name="Emulation.Error.Ppsspp.SystemFilesMissing" xml:space="preserve"><value>I file di sistema dell’emulatore sono mancanti o incompleti. Reinstallare l’emulatore.</value></data>
 </root>

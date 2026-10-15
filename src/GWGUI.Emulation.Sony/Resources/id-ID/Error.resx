@@ -140,4 +140,5 @@
   <data name="Emulation.Error.Core.UnknownHostCommand"><value>Host core emulasi menerima perintah tak dikenal {0}.</value></data>
   <data name="Emulation.Error.Core.UnsupportedApiVersion"><value>Versi API inti emulasi {0} tidak didukung.</value></data>
   <data name="Emulation.Error.Core.VideoBufferUnavailable"><value>Penyangga video inti emulasi tidak tersedia.</value></data>
+  <data name="Emulation.Error.Ppsspp.SystemFilesMissing"><value>Berkas sistem emulator hilang atau tidak lengkap. Pasang ulang emulator.</value></data>
 </root>

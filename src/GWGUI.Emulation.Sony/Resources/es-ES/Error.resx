@@ -140,4 +140,5 @@
   <data name="Emulation.Error.Core.UnknownHostCommand"><value>El anfitrión central de emulación recibió el comando desconocido {0}.</value></data>
   <data name="Emulation.Error.Core.UnsupportedApiVersion"><value>La versión de la API central de emulación {0} no es compatible.</value></data>
   <data name="Emulation.Error.Core.VideoBufferUnavailable"><value>El búfer de vídeo central emulación no está disponible.</value></data>
+  <data name="Emulation.Error.Ppsspp.SystemFilesMissing" xml:space="preserve"><value>Los archivos de sistema del emulador faltan o están incompletos. Reinstala el emulador.</value></data>
 </root>

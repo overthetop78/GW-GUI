@@ -140,4 +140,5 @@
   <data name="Emulation.Error.Core.UnknownHostCommand"><value>تلقى المضيف الأساسي للمحتوى أمر غير معروف {0}.</value></data>
   <data name="Emulation.Error.Core.UnsupportedApiVersion"><value>جوهر المحاكاة API نسخة {0} غير مدعوم.</value></data>
   <data name="Emulation.Error.Core.VideoBufferUnavailable"><value>ولا يمكن الحصول على عازلة الفيديو الأساسية.</value></data>
+  <data name="Emulation.Error.Ppsspp.SystemFilesMissing" xml:space="preserve"><value>ملفات نظام المحاكي مفقودة أو غير مكتملة. أعد تثبيت المحاكي.</value></data>
 </root>

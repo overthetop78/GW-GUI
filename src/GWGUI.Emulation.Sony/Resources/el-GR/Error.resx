@@ -140,4 +140,5 @@
   <data name="Emulation.Error.Core.UnknownHostCommand"><value>Ο κεντρικός υπολογιστής εξομοίωσης έλαβε την άγνωστη εντολή {0}.</value></data>
   <data name="Emulation.Error.Core.UnsupportedApiVersion"><value>Η έκδοση API πυρήνα εξομοίωσης {0} δεν υποστηρίζεται.</value></data>
   <data name="Emulation.Error.Core.VideoBufferUnavailable"><value>Η ενδιάμεση μνήμη βίντεο εξομοίωσης δεν είναι διαθέσιμη.</value></data>
+  <data name="Emulation.Error.Ppsspp.SystemFilesMissing" xml:space="preserve"><value>Τα αρχεία συστήματος του εξομοιωτή λείπουν ή είναι ελλιπή. Εγκαταστήστε ξανά τον εξομοιωτή.</value></data>
 </root>

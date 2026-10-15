@@ -140,4 +140,5 @@
   <data name="Emulation.Error.Core.UnknownHostCommand"><value>המארח המרכזי של חיקוי קיבל את הפיקוד הלא ידוע {0}.</value></data>
   <data name="Emulation.Error.Core.UnsupportedApiVersion"><value>גרסת ה- API הליבה של חיקוי {0} היא ללא תמיכה.</value></data>
   <data name="Emulation.Error.Core.VideoBufferUnavailable"><value>buffer וידאו הליבה אינו זמין.</value></data>
+  <data name="Emulation.Error.Ppsspp.SystemFilesMissing" xml:space="preserve"><value>קובצי המערכת של האמולטור חסרים או אינם שלמים. יש להתקין מחדש את האמולטור.</value></data>
 </root>

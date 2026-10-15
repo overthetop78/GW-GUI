@@ -1,4 +1,5 @@
 using ExternalCoreInteropConstants = GWGUI.Emulation.Sony.Emulators.Common.Interop.Constants.ExternalCoreInteropConstants;
+using GWGUI.Emulation.Sony.Emulators.Common.Interop.Services;
 using GWGUI.Emulation.Sony.Emulators.Ppsspp.Constants;
 using GWGUI.Emulation.Sony.Emulators.Ppsspp.Contracts;
 using GWGUI.Emulation.Sony.Emulators.Ppsspp.Factories;
@@ -20,6 +21,12 @@ internal sealed partial class ExternalHostCallbacks
         {
             switch (command)
             {
+                case ExternalCoreApiConstants.SetHardwareRender:
+                    return HardwareRender.Configure(data);
+                case ExternalCoreApiConstants.GetPreferredHardwareRender:
+                    if (data == nint.Zero) return false;
+                    Marshal.WriteInt32(data, OpenGlHardwareRenderContext.OpenGlCoreContextType);
+                    return true;
                 case ExternalCoreApiConstants.GetSystemDirectory:
                     Marshal.WriteIntPtr(data, NativeString(SystemDirectory));
                     return true;

@@ -7,7 +7,6 @@ using GWGUI.Emulation.Sony.Emulators.Ppsspp.Services;
 
 using System.IO;
 using System.IO.Compression;
-using System.Security.Cryptography;
 using System.Text.Json;
 
 namespace GWGUI.Emulation.Sony.Emulators.Ppsspp.Services;
@@ -30,7 +29,7 @@ public sealed class CoreReleaseService
 
     public string? GetInstalledVersion()
     {
-        if (!File.Exists(RequiredLibraryPath)) return null;
+        if (!File.Exists(RequiredLibraryPath) || !SystemFilesFunctions.IsInstalled(_directory)) return null;
         var manifestPath = Path.Combine(_directory, CoreReleaseConstants.CoreJson);
         if (!File.Exists(manifestPath)) return CoreReleaseConstants.Unknown;
         try
@@ -54,7 +53,7 @@ public sealed class CoreReleaseService
 
     public bool IsInstalled(CoreRelease release)
     {
-        if (!File.Exists(RequiredLibraryPath)) return false;
+        if (!File.Exists(RequiredLibraryPath) || !SystemFilesFunctions.IsInstalled(_directory)) return false;
         try { VerifyWindowsX64Library(RequiredLibraryPath); return true; }
         catch (IOException) { return false; }
         catch (InvalidDataException) { return false; }
@@ -97,7 +96,8 @@ public sealed class CoreReleaseService
             else File.Copy(download, extracted, true);
 
             VerifyWindowsX64Library(extracted);
-            var sha256 = Hash(extracted);
+            var sha256 = ExternalCoreInstaller.Hash(extracted);
+            await SystemFilesFunctions.InstallAsync(_httpClient, _directory, cancellationToken).ConfigureAwait(false);
             File.Move(extracted, destination, true);
             await ExternalCoreInstaller.WriteManifestAsync(release.Id, release.DownloadUri.AbsoluteUri, destination, sha256, cancellationToken).ConfigureAwait(false);
             progress?.Report(1);
@@ -125,9 +125,4 @@ public sealed class CoreReleaseService
             throw new InvalidDataException(PpssppExceptions.DownloadedCoreWrongArchitecture());
     }
 
-    private static string Hash(string path)
-    {
-        using var stream = File.OpenRead(path);
-        return Convert.ToHexString(SHA256.HashData(stream));
-    }
 }

@@ -1,4 +1,3 @@
-using GWGUI.Emulation.Sony.Emulators.Ppsspp.Exceptions;
 using GWGUI.Emulation.Sony.Emulators.Ppsspp.Constants;
 using GWGUI.Emulation.Sony.Emulators.Ppsspp.Contracts;
 using GWGUI.Emulation.Sony.Emulators.Ppsspp.Factories;
@@ -6,7 +5,6 @@ using GWGUI.Emulation.Sony.Emulators.Ppsspp.Functions;
 using GWGUI.Emulation.Sony.Emulators.Ppsspp.Services;
 
 using System.IO;
-using System.IO.Compression;
 using System.Security.Cryptography;
 using System.Text.Json;
 
@@ -31,43 +29,15 @@ public sealed class ExternalCoreInstaller
     {
         get
         {
-            if (!File.Exists(LibraryPath)) return false;
+            if (!File.Exists(LibraryPath) || !SystemFilesFunctions.IsInstalled(_directory)) return false;
             try { CoreReleaseService.VerifyWindowsX64Library(LibraryPath); return true; }
             catch (IOException) { return false; }
             catch (InvalidDataException) { return false; }
         }
     }
 
-    public async Task<string> InstallAsync(CancellationToken cancellationToken = default)
-    {
-        Directory.CreateDirectory(_directory);
-        var package = LibraryPath + CoreReleaseConstants.Download;
-        var extracted = LibraryPath + CoreReleaseConstants.Extract;
-        try
-        {
-            using var response = await _httpClient.GetAsync(DownloadUrl, HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
-            response.EnsureSuccessStatusCode();
-            await using (var source = await response.Content.ReadAsStreamAsync(cancellationToken).ConfigureAwait(false))
-            await using (var destination = new FileStream(package, FileMode.Create, FileAccess.Write, FileShare.None, 81920, FileOptions.Asynchronous))
-                await source.CopyToAsync(destination, cancellationToken).ConfigureAwait(false);
-
-            using (var archive = ZipFile.OpenRead(package))
-            {
-                var entry = archive.Entries.FirstOrDefault(item => Path.GetFileName(item.FullName).Equals(CoreReleaseConstants.OptionLibretroDll, StringComparison.OrdinalIgnoreCase)) ?? throw new InvalidDataException(PpssppExceptions.ArchiveMissingLibrary());
-                entry.ExtractToFile(extracted, true);
-            }
-            CoreReleaseService.VerifyWindowsX64Library(extracted);
-            var sha256 = Hash(extracted);
-            File.Move(extracted, LibraryPath, true);
-            await WriteManifestAsync(CoreRevision, DownloadUrl, LibraryPath, sha256, cancellationToken).ConfigureAwait(false);
-            return LibraryPath;
-        }
-        finally
-        {
-            if (File.Exists(package)) File.Delete(package);
-            if (File.Exists(extracted)) File.Delete(extracted);
-        }
-    }
+    public Task<string> InstallAsync(CancellationToken cancellationToken = default) =>
+        new CoreReleaseService(_httpClient, _directory).InstallAsync(new CoreRelease(CoreRevision, CoreReleaseConstants.PpssppLatest, new Uri(DownloadUrl), null, true, true), cancellationToken: cancellationToken);
 
     internal static async Task WriteManifestAsync(string version, string source, string libraryPath, string sha256, CancellationToken cancellationToken)
     {

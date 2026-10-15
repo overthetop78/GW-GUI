@@ -140,4 +140,5 @@
   <data name="Emulation.Error.Core.UnknownHostCommand"><value>ตัวหลักของการจําลองได้รับคําสั่งที่ไม่รู้จัก {0}</value></data>
   <data name="Emulation.Error.Core.UnsupportedApiVersion"><value>ไม่สนับสนุนการจําลองแกน API รุ่น {0}</value></data>
   <data name="Emulation.Error.Core.VideoBufferUnavailable"><value>ไม่สามารถทําการจําลองระบบเทปบัฟเฟอร์หลักได้</value></data>
+  <data name="Emulation.Error.Ppsspp.SystemFilesMissing"><value>แฟ้มของระบบจําลองหายไปหรือไม่สมบูรณ์ โปรดติดตั้งเครื่องจําลองใหม่อีกครั้ง</value></data>
 </root>

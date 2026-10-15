@@ -140,4 +140,5 @@
   <data name="Emulation.Error.Core.UnknownHostCommand"><value>Ядро эмуляции получило неизвестную команду {0}.</value></data>
   <data name="Emulation.Error.Core.UnsupportedApiVersion"><value>Базовая версия API эмуляции {0} не поддерживается.</value></data>
   <data name="Emulation.Error.Core.VideoBufferUnavailable"><value>Буфер эмуляции ядра видео недоступен.</value></data>
+  <data name="Emulation.Error.Ppsspp.SystemFilesMissing" xml:space="preserve"><value>Системные файлы эмулятора отсутствуют или неполны. Переустановите эмулятор.</value></data>
 </root>

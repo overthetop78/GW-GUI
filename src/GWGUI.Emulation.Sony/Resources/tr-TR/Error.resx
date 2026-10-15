@@ -140,4 +140,5 @@
   <data name="Emulation.Error.Core.UnknownHostCommand"><value>Emulation core host bilinmeyen komut {0} aldı.</value></data>
   <data name="Emulation.Error.Core.UnsupportedApiVersion"><value>Emülasyon çekirdeği API versiyonu {0} desteklenmez.</value></data>
   <data name="Emulation.Error.Core.VideoBufferUnavailable"><value>Emulation main video buffer mevcut değildir.</value></data>
+  <data name="Emulation.Error.Ppsspp.SystemFilesMissing" xml:space="preserve"><value>Emülatörün sistem dosyaları eksik veya tamamlanmamış. Emülatörü yeniden yükleyin.</value></data>
 </root>

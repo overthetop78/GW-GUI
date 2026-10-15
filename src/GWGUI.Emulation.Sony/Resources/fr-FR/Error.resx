@@ -140,4 +140,5 @@
   <data name="Emulation.Error.Core.UnknownHostCommand"><value>L'hôte central d'émulation a reçu la commande inconnue {0}.</value></data>
   <data name="Emulation.Error.Core.UnsupportedApiVersion"><value>La version API {0} de base d'émulation n'est pas prise en charge.</value></data>
   <data name="Emulation.Error.Core.VideoBufferUnavailable"><value>Le tampon vidéo du cœur de l'émulation n'est pas disponible.</value></data>
+  <data name="Emulation.Error.Ppsspp.SystemFilesMissing" xml:space="preserve"><value>Les fichiers système de l’émulateur sont manquants ou incomplets. Réinstallez l’émulateur.</value></data>
 </root>

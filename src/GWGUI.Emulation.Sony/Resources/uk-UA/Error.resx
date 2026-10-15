@@ -140,4 +140,5 @@
   <data name="Emulation.Error.Core.UnknownHostCommand"><value>Ведучий емуляційного ядра отримав невідому команду {0}.</value></data>
   <data name="Emulation.Error.Core.UnsupportedApiVersion"><value>Версія емуляційного ядра API {0} не підтримується.</value></data>
   <data name="Emulation.Error.Core.VideoBufferUnavailable"><value>емуляційне ядро відео буфера є недоступним.</value></data>
+  <data name="Emulation.Error.Ppsspp.SystemFilesMissing"><value>Файли емулятора відсутні або неповні. Перевстановити емулятор.</value></data>
 </root>

@@ -1,4 +1,5 @@
 using GWGUI.Emulation.Sony.Emulators.Common.Interop.Functions;
+using GWGUI.Emulation.Sony.Emulators.Common.Interop.Services;
 using GWGUI.Emulation.Sony.Emulators.Ppsspp.Exceptions;
 using GWGUI.Emulation.Sony.Emulators.Ppsspp.Constants;
 using GWGUI.Emulation.Sony.Emulators.Ppsspp.Contracts;
@@ -16,6 +17,7 @@ namespace GWGUI.Emulation.Sony.Emulators.Ppsspp.Services;
 
 internal sealed partial class ExternalHostCallbacks : IDisposable
 {
+    internal HardwareRenderSession HardwareRender { get; } = new();
     private static readonly IReadOnlyDictionary<uint, EmulationKey> KeyboardMap = CreateKeyboardMap();
     private readonly Dictionary<string, string> _options = new(StringComparer.Ordinal);
     private readonly HashSet<string> _configuredOptionKeys = new(StringComparer.Ordinal);
@@ -141,10 +143,14 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
         if (_disposed) return;
         try
         {
-            foreach (var pointer in _nativeStrings.Values)
+            try { HardwareRender.Dispose(); }
+            finally
             {
-                try { Marshal.FreeCoTaskMem(pointer); }
-                catch (Exception) { }
+                foreach (var pointer in _nativeStrings.Values)
+                {
+                    try { Marshal.FreeCoTaskMem(pointer); }
+                    catch (Exception) { }
+                }
             }
         }
         finally

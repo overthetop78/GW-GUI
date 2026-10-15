@@ -140,4 +140,5 @@
   <data name="Emulation.Error.Core.UnknownHostCommand"><value>Główny host emulacyjny otrzymał nieznaną komendę {0}.</value></data>
   <data name="Emulation.Error.Core.UnsupportedApiVersion"><value>Rdzeń emulacyjny API wersja {0} nie jest obsługiwany.</value></data>
   <data name="Emulation.Error.Core.VideoBufferUnavailable"><value>Bufor wideo z rdzeniem emulacyjnym jest niedostępny.</value></data>
+  <data name="Emulation.Error.Ppsspp.SystemFilesMissing" xml:space="preserve"><value>Brakuje plików systemowych emulatora lub są one niekompletne. Zainstaluj emulator ponownie.</value></data>
 </root>
