@@ -7,6 +7,7 @@
   <data name="Emulation.Sony.Firmware.Integrated"><value>System ROM</value></data>
   <data name="Emulation.Sony.Firmware.Bios"><value>BIOS</value></data>
   <data name="Emulation.Sony.Firmware.Pcsx2.Rom1"><value>ROM1</value></data>
+  <data name="Emulation.Sony.Firmware.Pcsx2.Rom2"><value>ROM2</value></data>
   <data name="Emulation.Sony.Firmware.Pcsx2.Extended"><value>EROM</value></data>
   <data name="Emulation.Sony.Firmware.Pcsx2.Mechanics"><value>MEC</value></data>
   <data name="Emulation.Sony.Firmware.Pcsx2.Nvram"><value>NVRAM</value></data>

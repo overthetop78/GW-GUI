@@ -29,6 +29,7 @@ internal sealed class ExternalCore : IEmulatorCore
     private bool _gameLoaded;
     private bool _initialized;
     private readonly List<(string Source, string Native)> _memoryCardFiles = [];
+    private IReadOnlyList<(string Source, string Native, int Size)> _firmwareFiles = [];
 
     internal ExternalCore(string corePath) => _corePath = corePath;
 
@@ -74,6 +75,7 @@ internal sealed class ExternalCore : IEmulatorCore
         Directory.CreateDirectory(systemDirectory);
         NativeMemoryCards.PreparePs2(configuration, systemDirectory, _memoryCardFiles);
         FirmwareConfigurationFunctions.CopySelectedFiles(configuration, new GWGUI.Emulation.Sony.Emulators.Pcsx2.Factories.Pcsx2MachineFactory(), systemDirectory);
+        _firmwareFiles = Functions.FirmwareRuntimeFunctions.Prepare(configuration, systemDirectory, saveDirectory);
         Directory.CreateDirectory(contentDirectory);
         Directory.CreateDirectory(saveDirectory);
         var isolatedCoreDirectory = Path.Combine(sessionDirectory, ExternalCoreConstants.CoreDirectory);
@@ -294,12 +296,17 @@ internal sealed class ExternalCore : IEmulatorCore
                 _getSerializedSize = null;
                 _serialize = null;
                 _unserialize = null;
-                try { _host?.Dispose(); }
+                try { Functions.FirmwareRuntimeFunctions.Persist(_firmwareFiles); }
                 finally
                 {
-                    _host = null;
-                    try { _library?.Dispose(); }
-                    finally { _library = null; }
+                    _firmwareFiles = [];
+                    try { _host?.Dispose(); }
+                    finally
+                    {
+                        _host = null;
+                        try { _library?.Dispose(); }
+                        finally { _library = null; }
+                    }
                 }
             }
         }

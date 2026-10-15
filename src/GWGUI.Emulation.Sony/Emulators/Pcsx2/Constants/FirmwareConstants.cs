@@ -7,7 +7,10 @@ internal static class FirmwareConstants
     internal const string SystemFile = "pcsx2/bios/scph.bin";
     internal const string Rom1Field = "firmware.rom1";
     internal const string Rom1LabelResource = "Emulation.Sony.Firmware.Pcsx2.Rom1";
-    internal const string Rom1File = "pcsx2/bios/rom1.bin";
+    internal const string Rom1File = "pcsx2/bios/scph.rom1";
+    internal const string Rom2Field = "firmware.rom2";
+    internal const string Rom2LabelResource = "Emulation.Sony.Firmware.Pcsx2.Rom2";
+    internal const string Rom2File = "pcsx2/bios/scph.rom2";
     internal const string ExtendedField = "firmware.extended";
     internal const string ExtendedLabelResource = "Emulation.Sony.Firmware.Pcsx2.Extended";
     internal const string ExtendedFile = "pcsx2/bios/EROM.BIN";
@@ -17,10 +20,14 @@ internal static class FirmwareConstants
     internal const string NvramField = "firmware.nvram";
     internal const string NvramLabelResource = "Emulation.Sony.Firmware.Pcsx2.Nvram";
     internal const string NvramFile = "pcsx2/bios/scph.nvm";
+    internal const int NvramSize = 1024;
+    internal const int MechanicsSize = 4;
+    internal const string PersistentDirectory = "bios";
     internal static IReadOnlyList<FirmwareSlot> All { get; } =
     [
         new(SystemField, SystemFile, SystemLabelResource, true, SystemFile),
         new(Rom1Field, Rom1File, Rom1LabelResource, false, Rom1File),
+        new(Rom2Field, Rom2File, Rom2LabelResource, false, Rom2File),
         new(ExtendedField, ExtendedFile, ExtendedLabelResource, false, ExtendedFile),
         new(MechanicsField, MechanicsFile, MechanicsLabelResource, false, MechanicsFile),
         new(NvramField, NvramFile, NvramLabelResource, false, NvramFile),
