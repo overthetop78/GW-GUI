@@ -792,7 +792,6 @@
   <data name="Emulation.Option.Sony.Value.SharpenOnly"><value>Nur Scharfe</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_frame_limiter.Label"><value>Rahmenbegrenzer</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_frame_limiter.Help"><value>Was hält den Emulator zu voller Geschwindigkeit? Frontend überlässt das Tempo RetroArch, was drosselt, indem es den Kern auf das Audio warten lässt, das er übergibt. Internal verwendet stattdessen den PCSX2-eigenen Limiter - für ein Gerät, bei dem das Warten nie passiert, weil der Audiotreiber unterfährt anstatt zu blockieren, und die eigene Geschwindigkeitsvariation des Emulators erreicht dann den Bildschirm als unebener Frame-Takt.</value></data>
-  <data name="Emulation.Option.Sony.Value.FrontendRetroArch"><value>Vorderteil (RetroArch)</value></data>
   <data name="Emulation.Option.Sony.Value.InternalPCSX2"><value>Intern (PCSX2)</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_skip_duplicate_frames.Label"><value>Zeigen Sie keine identischen Videoframes an.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_skip_duplicate_frames.Help"><value>Geben Sie dem Frontend keinen Frame, den die GS nie neu erstellt hat - ein 30fps-Spiel liefert dann 30 einzigartige Frames anstelle von 60 mit jeder Sekunde wiederholt. Schalten Sie dies aus, wenn ein Frame-Generierungs- oder Interpolationsfilter jeden Frame als eigenen liefert.</value></data>

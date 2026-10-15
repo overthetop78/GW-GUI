@@ -805,7 +805,6 @@
   <data name="Emulation.Option.Sony.Value.SharpenOnly"><value>仅锐化</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_frame_limiter.Label"><value>框架限制器</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_frame_limiter.Help"><value>是什么把模拟器控制在全速上? 前端将相距留给了RetroArch,它通过让核心在它交出的音频上等待来节流. 内部使用PCSX2的自有限制器取而代之——用于一个从未等待过的设备,因为音频驱动程序会潜入而非屏蔽,而仿真器自己的速度变异随后作为不均匀的帧间隔到达屏幕.</value></data>
-  <data name="Emulation.Option.Sony.Value.FrontendRetroArch"><value>前端 (RetroArch) (中文(简体) ).</value></data>
   <data name="Emulation.Option.Sony.Value.InternalPCSX2"><value>内部(PCSX2)</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_skip_duplicate_frames.Label"><value>不显示相同的视频框 。</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_skip_duplicate_frames.Help"><value>不要交出前端的帧 GS永远不会重写 - 30fps游戏然后交付30个独有的帧而不是每秒重复一次的60个. 如果一个帧生成或插值过滤器需要每个帧作为自己的帧发送,则关闭此选项.</value></data>

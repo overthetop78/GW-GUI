@@ -792,7 +792,6 @@
   <data name="Emulation.Option.Sony.Value.SharpenOnly"><value>Affinez seulement</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_frame_limiter.Label"><value>Limiteur de cadre</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_frame_limiter.Help"><value>Ce qui retient l'émulateur à pleine vitesse. Frontend laisse le pas à RetroArch, qui agite en faisant attendre le noyau sur l'audio qu'il transmet. Internal utilise le limiteur de PCSX2 à la place - pour un périphérique où l'attente ne se produit jamais, parce que le pilote audio sous-exécute plutôt que de bloquer, et la variation de vitesse propre de l'émulateur atteint alors l'écran comme frame pacing inégal.</value></data>
-  <data name="Emulation.Option.Sony.Value.FrontendRetroArch"><value>Frontière (RetroArch)</value></data>
   <data name="Emulation.Option.Sony.Value.InternalPCSX2"><value>Interne (PCSX2)</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_skip_duplicate_frames.Label"><value>Ignorer les images vidéo identiques</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_skip_duplicate_frames.Help"><value>Ne remettez pas la façade d'un cadre le GS ne redrew - un jeu de 30fps offre ensuite 30 cadres uniques au lieu de 60 avec chaque seconde répétée. Éteignez cela si un filtre de génération ou d'interpolation a besoin de chaque cadre livré comme son propre.</value></data>

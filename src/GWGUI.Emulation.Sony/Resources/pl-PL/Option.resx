@@ -805,7 +805,6 @@
   <data name="Emulation.Option.Sony.Value.SharpenOnly"><value>Wyłącznie ostrzenie</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_frame_limiter.Label"><value>Ogranicznik ramki</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_frame_limiter.Help"><value>Co trzyma emulator do pełnej prędkości. Frontend pozostawia przejście do RetroArch, które tętni poprzez spowodowanie, że rdzeń czeka na dźwięk, który przekazuje. Wewnętrzne używa własnego ogranicznika PCSX2 zamiast - dla urządzenia, w którym to oczekiwanie nigdy się nie zdarza, ponieważ sterownik audio przechodzi raczej niż blokuje, a zmienność prędkości emulatora następnie dociera do ekranu jako nierównomierna ścieżka ramki.</value></data>
-  <data name="Emulation.Option.Sony.Value.FrontendRetroArch"><value>Frontend (RetroArch)</value></data>
   <data name="Emulation.Option.Sony.Value.InternalPCSX2"><value>Wewnętrzne (PCSX2)</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_skip_duplicate_frames.Label"><value>Nie wyświetlaj identycznych ramek wideo.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_skip_duplicate_frames.Help"><value>Nie podawaj na froncie ramki, której GS nigdy nie przerysował - gra 30fps następnie dostarcza 30 unikalnych klatek zamiast 60 z każdej sekundy powtarzane. Wyłącz to, jeśli generacja ramek lub filtr interpolacji wymaga każdej ramki dostarczonej jako własnej.</value></data>

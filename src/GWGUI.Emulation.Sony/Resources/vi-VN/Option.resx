@@ -805,7 +805,6 @@
   <data name="Emulation.Option.Sony.Value.SharpenOnly"><value>Chỉ mài sắc</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_frame_limiter.Label"><value>Giới hạn khung</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_frame_limiter.Help"><value>Cái gì giữ cho máy giả lập chạy hết tốc lực. Phía trước để lại tốc độ RetroArch, mà ga bằng cách làm cho lõi đợi âm thanh nó đưa qua. Bộ nội bộ sử dụng trình hạn chế PCSX2 của riêng mình - cho một thiết bị mà chờ đợi không bao giờ xảy ra, bởi vì trình điều khiển âm thanh chạy chậm thay vì chặn lại, và sự biến đổi tốc độ của chính trình giả lập sau đó đạt đến màn hình là bước đi không đều đặn.</value></data>
-  <data name="Emulation.Option.Sony.Value.FrontendRetroArch"><value>Frontend (RetroArch)</value></data>
   <data name="Emulation.Option.Sony.Value.InternalPCSX2"><value>Nội bộ (PCSX2)</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_skip_duplicate_frames.Label"><value>Không hiển thị khung phim giống hệt nhau.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_skip_duplicate_frames.Help"><value>Đừng đưa cho người điều khiển một khung GS không bao giờ tái tạo - một trò chơi 30 fps sau đó cung cấp cho 30 khung độc đáo thay vì 60 với mỗi giây lặp lại. Tắt cái này đi nếu một bộ lọc khung hay bộ lọc độ phân giải cần thiết mỗi khung được giao như của nó.</value></data>

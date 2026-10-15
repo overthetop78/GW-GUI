@@ -805,7 +805,6 @@
   <data name="Emulation.Option.Sony.Value.SharpenOnly"><value>Только Шарпен</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_frame_limiter.Label"><value>Ограничитель кадра</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_frame_limiter.Help"><value>Что удерживает эмулятор на полной скорости. Frontend оставляет шаг к RetroArch, который дросселирует, заставляя ядро ждать на аудио, которое оно передает. Вместо этого внутренний использует собственный ограничитель PCSX2 - для устройства, где это ожидание никогда не происходит, потому что аудиодрайвер отключается, а не блокируется, и собственное изменение скорости эмулятора затем достигает экрана как неравномерная скорость кадра.</value></data>
-  <data name="Emulation.Option.Sony.Value.FrontendRetroArch"><value>Фронт (RetroArch)</value></data>
   <data name="Emulation.Option.Sony.Value.InternalPCSX2"><value>Внутренний (PCSX2)</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_skip_duplicate_frames.Label"><value>Не отображайте идентичные видеокадры.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_skip_duplicate_frames.Help"><value>Не передайте фронтенду кадр, который GS никогда не перерисовывал - игра с 30 кадров в секунду затем предоставляет 30 уникальных кадров вместо 60 с повторением каждого второго. Выключите это, если генерация кадров или интерполяционный фильтр нуждается в каждом кадре.</value></data>

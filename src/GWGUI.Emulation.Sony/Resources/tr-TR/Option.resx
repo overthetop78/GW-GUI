@@ -805,7 +805,6 @@
   <data name="Emulation.Option.Sony.Value.SharpenOnly"><value>Sharpen Only</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_frame_limiter.Label"><value>Frame Limiter</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_frame_limiter.Help"><value>Tam hız için emülatörü ne tutar. Frontend, arka plandaki sesin üstünden beslediği RetroArch'e giden pacing bırakıyor. İç, PCSX2'lerin yerine kendi limitlerini kullanır - beklemekte olan bir cihaz için, çünkü ses sürücüsü engellemeden ziyade kovalanır ve bu sürümün kendi hızı o zaman varyasyonu eşitsiz çerçeve pacing olarak ulaşır.</value></data>
-  <data name="Emulation.Option.Sony.Value.FrontendRetroArch"><value>Frontend (RetroArch)</value></data>
   <data name="Emulation.Option.Sony.Value.InternalPCSX2"><value>İç (PCSX2)</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_skip_duplicate_frames.Label"><value>Aynı video çerçevelerini göstermeyin.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_skip_duplicate_frames.Help"><value>GS'nin asla geri dönmediğini bir çerçeveye sokmayın - 30fps oyun daha sonra tekrarlanan her saniye 60 yerine 30 eşsiz çerçeve sunar. Bir çerçeve nesli veya interpolasyon filtresinin kendi olarak teslim edilen her çerçeveye ihtiyacı varsa bunu bırakın.</value></data>

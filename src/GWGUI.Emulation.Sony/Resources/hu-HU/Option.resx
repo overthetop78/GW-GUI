@@ -793,7 +793,6 @@
   <data name="Emulation.Option.Sony.Value.SharpenOnly"><value>Csak élesen</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_frame_limiter.Label"><value>Fémkorlát</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_frame_limiter.Help"><value>Mi tartja az emulátort teljes sebességig. A Frontend hagyja a járkálást RetroArch, amely fojtogatja azáltal, hogy a magot várja a hang, hogy átadja. Belső használja a PCSX2 saját limiter helyett - egy eszköz, ahol a várakozás soha nem történik meg, mert az audió meghajtó aláfut inkább blokkolás helyett, és az emulátor saját sebességváltozatát majd eléri a képernyőn egyenetlen képkockáként.</value></data>
-  <data name="Emulation.Option.Sony.Value.FrontendRetroArch"><value>Frontend (RetroArch)</value></data>
   <data name="Emulation.Option.Sony.Value.InternalPCSX2"><value>Belső (PCSX2)</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_skip_duplicate_frames.Label"><value>Ne jelenjen meg azonos képkocka.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_skip_duplicate_frames.Help"><value>Ne adja át a frontend egy keretet a GS soha nem rajzolt - egy 30fps játék majd szállít 30 egyedi keretek helyett 60 minden másodpercet megismételve. Kapcsold ki ezt, ha egy képkocka generálásra vagy interpolációs szűrőre van szükség.</value></data>

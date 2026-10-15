@@ -96,7 +96,7 @@ internal static class OptionValueResourceConstants
     internal const string ForceProgressiveRateLabelResource = "Emulation.Option.Sony.Value.ForceProgressiveRate";
     internal const string FrameRateOnlyLabelResource = "Emulation.Option.Sony.Value.FrameRateOnly";
     internal const string FrenchLabelResource = "Emulation.Option.Sony.Value.French";
-    internal const string FrontendRetroArchLabelResource = "Emulation.Option.Sony.Value.FrontendRetroArch";
+    internal const string FrontendLabelResource = "Emulation.Option.Sony.Value.Frontend";
     internal const string FullLabelResource = "Emulation.Option.Sony.Value.Full";
     internal const string FullSlowLabelResource = "Emulation.Option.Sony.Value.FullSlow";
     internal const string GameCodeSerialLabelResource = "Emulation.Option.Sony.Value.GameCodeSerial";
@@ -213,7 +213,6 @@ internal static class OptionValueResourceConstants
     internal const string ReinhardSoftKneeLabelResource = "Emulation.Option.Sony.Value.ReinhardSoftKnee";
     internal const string RelaxedFastestLabelResource = "Emulation.Option.Sony.Value.RelaxedFastest";
     internal const string RelaxedLabelResource = "Emulation.Option.Sony.Value.Relaxed";
-    internal const string RetroArchLabelResource = "Emulation.Option.Sony.Value.RetroArch";
     internal const string RussianLabelResource = "Emulation.Option.Sony.Value.Russian";
     internal const string SABRLabelResource = "Emulation.Option.Sony.Value.SABR";
     internal const string SCEAAmericasLabelResource = "Emulation.Option.Sony.Value.SCEAAmericas";

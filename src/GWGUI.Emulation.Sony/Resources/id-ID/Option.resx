@@ -793,7 +793,6 @@
   <data name="Emulation.Option.Sony.Value.SharpenOnly"><value>Hanya Menajamkan</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_frame_limiter.Label"><value>Limiter Bingkai</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_frame_limiter.Help"><value>Apa yang menahan emulator dengan kecepatan penuh. Frontend meninggalkan mondar-mandir ke RetroArch, yang throttle dengan membuat inti menunggu pada audio itu tangan atas. Internal menggunakan batasan PCSX2 sendiri - untuk perangkat yang menunggu tidak pernah terjadi, karena driver audio underruns daripada memblokir, dan variasi kecepatan emulator sendiri kemudian mencapai layar sebagai pacing frame uneven.</value></data>
-  <data name="Emulation.Option.Sony.Value.FrontendRetroArch"><value>Frontend (RetroArch)</value></data>
   <data name="Emulation.Option.Sony.Value.InternalPCSX2"><value>Internal (PCSX2)</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_skip_duplicate_frames.Label"><value>Jangan tampilkan frame video yang identik.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_skip_duplicate_frames.Help"><value>Jangan tangan frontend bingkai GS pernah ditarik ulang - permainan 30fps kemudian memberikan 30 frame unik bukan 60 dengan setiap yang kedua diulang. Matikan ini jika suatu filter frame generation atau interpolasi memerlukan setiap bingkai yang dikirim sebagai miliknya.</value></data>

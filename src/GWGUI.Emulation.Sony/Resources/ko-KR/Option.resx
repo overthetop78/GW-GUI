@@ -793,7 +793,6 @@
   <data name="Emulation.Option.Sony.Value.SharpenOnly"><value>Sharpen 전용</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_frame_limiter.Label"><value>구조 Limiter</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_frame_limiter.Help"><value>전체 속도에 에뮬레이터를 보유하고 있습니다. Frontend는 오디오를 통해 핵심이 기다리고 있기 때문에 RetroArch에 pacing을 떠납니다. 내부는 대신 PCSX2의 자신의 한계를 사용합니다 - 그 대기 결코 일어나지 않는 장치에 대한, 때문에 오디오 드라이버가 차단하는 것보다, 에뮬레이터 자체 속도 변이에 도달 한 다음 심지어 프레임 패딩으로 화면을 도달.</value></data>
-  <data name="Emulation.Option.Sony.Value.FrontendRetroArch"><value>프론트엔드(RetroArch)</value></data>
   <data name="Emulation.Option.Sony.Value.InternalPCSX2"><value>내부 (PCSX2)</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_skip_duplicate_frames.Label"><value>동일한 영상 구조를 표시하지 마십시오.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_skip_duplicate_frames.Help"><value>프레임을 프론트엔드하지 마십시오. GS는 결코 철회되지 않습니다 - 30fps 게임 다음 각 두 번째 하나 반복으로 60 대신 30 개의 독특한 구조를 제공합니다. 프레임 생성 또는 인터폴레이션 필터가 각 프레임이 자체로 전달되는 경우 이 꺼짐.</value></data>

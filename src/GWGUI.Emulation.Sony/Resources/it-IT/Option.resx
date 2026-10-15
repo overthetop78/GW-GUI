@@ -793,7 +793,6 @@
   <data name="Emulation.Option.Sony.Value.SharpenOnly"><value>Solo affilare</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_frame_limiter.Label"><value>Limitatore di telaio</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_frame_limiter.Help"><value>Ciò che tiene l'emulatore a piena velocità. Frontend lascia il pacing a RetroArch, che trema facendo aspettare il core sull'audio che consegna. L'interno utilizza invece il limitatore di PCSX2 - per un dispositivo in cui quell'attesa non accade mai, perché l'audio driver è sottovaso piuttosto che bloccarsi, e la variazione della velocità dell'emulatore raggiunge lo schermo come pavimentazione irregolare del telaio.</value></data>
-  <data name="Emulation.Option.Sony.Value.FrontendRetroArch"><value>Fronte (RetroArch)</value></data>
   <data name="Emulation.Option.Sony.Value.InternalPCSX2"><value>Interno (PCSX2)</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_skip_duplicate_frames.Label"><value>Non visualizzare fotogrammi video identici.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_skip_duplicate_frames.Help"><value>Non consegnare il frontend una cornice la GS mai redrew - un gioco 30fps poi offre 30 frame unici invece di 60 con ogni secondo ripetuto. Spegnere questo se una generazione di fotogrammi o un filtro interpolazione ha bisogno di ogni cornice consegnata come propria.</value></data>

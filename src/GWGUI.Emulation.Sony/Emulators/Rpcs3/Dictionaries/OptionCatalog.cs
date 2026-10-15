@@ -583,7 +583,7 @@ internal static class OptionCatalog
         new(OptionConstants.FramePacingKey, OptionConstants.FramePacingLabelResource, OptionConstants.FramePacingHelpResource, null,
             OptionConstants.FramePacingDefaultValue, OptionConstants.FramePacingDefaultValue,
         [
-            new(OptionValueFunctions.ToNative(FramePacing.Frontend), OptionValueResourceConstants.RetroArchLabelResource),
+            new(OptionValueFunctions.ToNative(FramePacing.Frontend), OptionValueResourceConstants.FrontendLabelResource),
             new(OptionValueFunctions.ToNative(FramePacing.Emulator), OptionValueResourceConstants.EmulatorClockLabelResource),
         ], IsVisible: true, Tab: EmulationMachineTab.Video, RequiresRestart: false),
         new(OptionConstants.MasterVolumeKey, OptionConstants.MasterVolumeLabelResource, OptionConstants.MasterVolumeHelpResource, null,

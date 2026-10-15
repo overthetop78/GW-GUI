@@ -127,7 +127,7 @@ internal static class OptionCatalog
         new(OptionConstants.FrameLimiterKey, OptionConstants.FrameLimiterLabelResource, OptionConstants.FrameLimiterHelpResource, null,
             OptionConstants.FrameLimiterDefaultValue, OptionConstants.FrameLimiterDefaultValue,
         [
-            new(OptionValueFunctions.ToNative(FrameLimiter.Frontend), OptionValueResourceConstants.FrontendRetroArchLabelResource),
+            new(OptionValueFunctions.ToNative(FrameLimiter.Frontend), OptionValueResourceConstants.FrontendLabelResource),
             new(OptionValueFunctions.ToNative(FrameLimiter.Internal), OptionValueResourceConstants.InternalPCSX2LabelResource),
         ], IsVisible: true, Tab: EmulationMachineTab.Video, RequiresRestart: false),
         new(OptionConstants.SkipDuplicateFramesKey, OptionConstants.SkipDuplicateFramesLabelResource, OptionConstants.SkipDuplicateFramesHelpResource, null,

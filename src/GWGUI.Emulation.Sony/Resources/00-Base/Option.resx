@@ -808,7 +808,6 @@
   <data name="Emulation.Option.Sony.Value.SharpenOnly"><value>Sharpen Only</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_frame_limiter.Label"><value>Frame Limiter</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_frame_limiter.Help"><value>What holds the emulator to full speed. Frontend leaves the pacing to RetroArch, which throttles by making the core wait on the audio it hands over. Internal uses PCSX2's own limiter instead - for a device where that wait never happens, because the audio driver underruns rather than blocking, and the emulator's own speed variation then reaches the screen as uneven frame pacing.</value></data>
-  <data name="Emulation.Option.Sony.Value.FrontendRetroArch"><value>Frontend (RetroArch)</value></data>
   <data name="Emulation.Option.Sony.Value.InternalPCSX2"><value>Internal (PCSX2)</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_skip_duplicate_frames.Label"><value>Do not display identical video frames.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_skip_duplicate_frames.Help"><value>Don't hand the frontend a frame the GS never redrew - a 30fps game then delivers 30 unique frames instead of 60 with every second one repeated. Turn this off if a frame generation or interpolation filter needs every frame delivered as its own.</value></data>
@@ -1066,7 +1065,6 @@
   <data name="Emulation.Option.Sony.Value.FrameRateOnly"><value>Frame rate only</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_frame_pacing.Label"><value>Frame Pacing</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_frame_pacing.Help"><value>What the game's frames are timed by. Emulator clock is RPCS3's own timer, as in standalone RPCS3. RetroArch gives the game one PS3 refresh per frame RetroArch shows, so fast-forward speeds the game up and the game runs at the VBlank Frequency when RetroArch shows that many frames a second; with the Vulkan renderer it currently skips frames.</value></data>
-  <data name="Emulation.Option.Sony.Value.RetroArch"><value>RetroArch</value></data>
   <data name="Emulation.Option.Sony.Value.EmulatorClock"><value>Emulator clock</value></data>
   <data name="Emulation.Option.Sony.Value.PickFromList"><value>Pick from list</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_master_volume.Label"><value>Master Volume</value></data>
@@ -1314,4 +1312,5 @@
   <data name="Emulation.Option.pokket.Help"><value>Insert a card in each unit to enable the infrared link.</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_audio_format.Label"><value>Speaker layout</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_audio_format.Help"><value>Sets the speaker layout offered to games. The game selects its audio mix from this layout. Output also depends on the selected Windows audio device.</value></data>
+  <data name="Emulation.Option.Sony.Value.Frontend"><value>GW GUI</value></data>
 </root>

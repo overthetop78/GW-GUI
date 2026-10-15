@@ -792,7 +792,6 @@
   <data name="Emulation.Option.Sony.Value.SharpenOnly"><value>Teroita vain</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_frame_limiter.Label"><value>Runkorajoitin</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_frame_limiter.Help"><value>Mikä pitää emulaattorin täydessä vauhdissa. Frontend jättää välimatkan RetroArch, joka kaasuttaa tekemällä ydin odottaa ääni se antaa. Sisäinen käyttää sen sijaan PCSX2:n omaa rajoitinta - laitteelle, jossa tätä odotusta ei koskaan tapahdu, koska audio-ohjain alittaa pikemmin kuin estää, ja emulaattorin oma nopeusvaihtelu saavuttaa näytön epätasaisena kehyksenä.</value></data>
-  <data name="Emulation.Option.Sony.Value.FrontendRetroArch"><value>Etusivu (RetroArch)</value></data>
   <data name="Emulation.Option.Sony.Value.InternalPCSX2"><value>Sisäinen (PCSX2)</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_skip_duplicate_frames.Label"><value>Älä näytä samanlaisia videokehyksiä.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_skip_duplicate_frames.Help"><value>Älä anna etupenkille GS koskaan rewrew - 30 fps peli sitten toimittaa 30 ainutlaatuinen kehykset 60 sijasta jokainen toinen toistaan. Sammuta tämä, jos kehysgeneraattori tai interpolointisuodatin tarvitsee kaikki kehykset, jotka toimitetaan omana.</value></data>

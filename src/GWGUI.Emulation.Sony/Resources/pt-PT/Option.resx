@@ -805,7 +805,6 @@
   <data name="Emulation.Option.Sony.Value.SharpenOnly"><value>Afiar Apenas</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_frame_limiter.Label"><value>Limitador de Quadros</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_frame_limiter.Help"><value>O que mantém o emulador a toda a velocidade. Frontend deixa o ritmo para RetroArch, que acelera fazendo o núcleo esperar no áudio que ele entrega. O interno usa o próprio limitador do PCSX2 em vez disso - para um dispositivo onde essa espera nunca acontece, porque o driver de áudio falha ao invés de bloquear, e a própria variação de velocidade do emulador então atinge a tela como ritmo irregular da moldura.</value></data>
-  <data name="Emulation.Option.Sony.Value.FrontendRetroArch"><value>Frontend (RetroArch)</value></data>
   <data name="Emulation.Option.Sony.Value.InternalPCSX2"><value>Interno (PCSX2)</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_skip_duplicate_frames.Label"><value>Não exibir quadros de vídeo idênticos.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_skip_duplicate_frames.Help"><value>Não entregue a frontend uma moldura que o GS nunca redrew - um jogo de 30fps, em seguida, oferece 30 quadros únicos em vez de 60 com cada segundo repetido. Desligue isso se uma geração de quadros ou filtro de interpolação precisar de cada quadro fornecido como seu próprio.</value></data>

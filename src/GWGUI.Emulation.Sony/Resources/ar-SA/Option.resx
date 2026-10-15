@@ -792,7 +792,6 @@
   <data name="Emulation.Option.Sony.Value.SharpenOnly"><value>(شاربن)</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_frame_limiter.Label"><value>Frame Limiter</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_frame_limiter.Help"><value>الذي يَحْملُ الدافع إلى السرعةِ الكاملةِ. وتغادر الجبهة المباعدة إلى RetroArch، التي تتعثر بجعل النواة تنتظر على الصوت الذي تحمله. استخدامات داخلية رقم PCSX2 الخاص بدلا من ذلك لجهاز حيث لا يحدث هذا الانتظار أبدا، لأن السائق الصوتي يتدحرج بدلا من إغلاق،</value></data>
-  <data name="Emulation.Option.Sony.Value.FrontendRetroArch"><value>Frontend (RetroArch)</value></data>
   <data name="Emulation.Option.Sony.Value.InternalPCSX2"><value>داخلي (PCSX2)</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_skip_duplicate_frames.Label"><value>لا تعرضوا أشرطة فيديو متطابقة</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_skip_duplicate_frames.Help"><value>لا تُسلّمْ الجبهةَ a إطار GS أبداً أحمر... لعبة 30fps ثمّ يُوصلُ 30 إطار فريد بدلاً مِنْ 60 مع كُلّ ثانية واحدة متكررة. أطفأ هذا إذا كان الجيل الإطاري أو مرشح الإنتربول يحتاج إلى كل إطار تم تسليمه كإطار خاص به</value></data>

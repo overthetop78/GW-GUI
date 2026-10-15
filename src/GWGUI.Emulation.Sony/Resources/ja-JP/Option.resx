@@ -793,7 +793,6 @@
   <data name="Emulation.Option.Sony.Value.SharpenOnly"><value>シャープンのみ</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_frame_limiter.Label"><value>フレームのリミッター</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_frame_limiter.Help"><value>エミュレータをフルスピードに保持するもの。 フロントエンドは、それを上回るオーディオ上でコアの待ち時間を作ることによってスロットルであるRetroArchにパッシングを残します。 内部では、PCSX2のリミッターを代わりに使用 - オーディオドライバはブロックではなく実行し、エミュレータ独自の速度変化が不均一なフレームパッシングとして画面に到達するので、それが決して起こらない待つデバイスのために。</value></data>
-  <data name="Emulation.Option.Sony.Value.FrontendRetroArch"><value>フロントエンド(RetroArch)</value></data>
   <data name="Emulation.Option.Sony.Value.InternalPCSX2"><value>内部(PCSX2)</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_skip_duplicate_frames.Label"><value>同じビデオフレームを表示しないでください。</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_skip_duplicate_frames.Help"><value>GSのフレームをフロントエンドに渡さないでください - 30fpsのゲームは、毎秒60ではなく30ユニークなフレームを提供します。 フレーム生成または補間フィルタが、フレームの生成や内部に配信されるすべてのフレームが必要な場合は、これをオフにします。</value></data>

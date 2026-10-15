@@ -805,7 +805,6 @@
   <data name="Emulation.Option.Sony.Value.SharpenOnly"><value>Ascute numai</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_frame_limiter.Label"><value>Limitator cadru</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_frame_limiter.Help"><value>Ceea ce ţine emulatorul la viteză maximă. Frontend-ul lasă pacing la RetroArch, care accelerează prin a face miezul să aștepte pe audio se mâinile peste. Intern folosește propriul limitator PCSX2 în schimb - pentru un dispozitiv unde această așteptare nu se întâmplă niciodată, deoarece driver-ul audio subruns mai degrabă decât blocarea, și propria variație de viteză a emulatorului apoi ajunge la ecran ca pacing cadru inegal.</value></data>
-  <data name="Emulation.Option.Sony.Value.FrontendRetroArch"><value>Frontend (RetroArch)</value></data>
   <data name="Emulation.Option.Sony.Value.InternalPCSX2"><value>Internă (PCSX2)</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_skip_duplicate_frames.Label"><value>Nu afișa cadre video identice.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_skip_duplicate_frames.Help"><value>Nu da frontend-ul o ramă GS nu refrew - un joc 30fps apoi oferă 30 cadre unice în loc de 60 cu fiecare secundă repetat. Închideți acest lucru dacă un filtru de generare sau interpolare a cadrului are nevoie de fiecare cadru livrat ca propriu.</value></data>

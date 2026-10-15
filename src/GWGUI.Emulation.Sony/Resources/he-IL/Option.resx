@@ -793,7 +793,6 @@
   <data name="Emulation.Option.Sony.Value.SharpenOnly"><value>צופר רק</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_frame_limiter.Label"><value>המונחים Limiter</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_frame_limiter.Help"><value>מה מחזיק את החיקוי במהירות מלאה. Frontend משאיר את העוקץ ל- RetroArch, אשר עובר על ידי ביצוע המתנה הליבה על אודיו זה ידיים. פנימי משתמש ב- PCSX2 מגביל במקום זאת - למכשיר שבו ההמתנה מעולם לא מתרחשת, כי נהג אודיו תחת פיקוח ולא חסום, וריאציות המהירות של החיקוי עצמו מגיעות למסך כמו פירעון ללא מסגרת.</value></data>
-  <data name="Emulation.Option.Sony.Value.FrontendRetroArch"><value>החזית (RetroArch)</value></data>
   <data name="Emulation.Option.Sony.Value.InternalPCSX2"><value>פנימי (PCSX2)</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_skip_duplicate_frames.Label"><value>אל תציג מסגרת וידאו זהה.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_skip_duplicate_frames.Help"><value>אל תצמידו את המסגרת הקדמית של ה-GS לעולם לא מחדש - משחק 30fps ואז מספק 30 מסגרות ייחודיות במקום 60 עם כל שנייה חוזרת. הפוך את זה אם דור מסגרת או מסנן אינטרפולציה צריך כל מסגרת מועברת כמו שלה.</value></data>

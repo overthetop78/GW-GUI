@@ -792,7 +792,6 @@
   <data name="Emulation.Option.Sony.Value.SharpenOnly"><value>Sólo Sharpen</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_frame_limiter.Label"><value>Limitador del marco</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_frame_limiter.Help"><value>Lo que mantiene al emulador a toda velocidad. Frontend deja el pacing a RetroArch, que prospera haciendo que el núcleo espere en el audio que entrega. Interna utiliza el propio limitador de PCSX2 en su lugar - para un dispositivo donde esa espera nunca sucede, porque el controlador de audio subyace más que bloquear, y la propia variación de velocidad del emulador entonces llega a la pantalla como ajuste de marco desigual.</value></data>
-  <data name="Emulation.Option.Sony.Value.FrontendRetroArch"><value>Frontend (RetroArch)</value></data>
   <data name="Emulation.Option.Sony.Value.InternalPCSX2"><value>Interno (PCSX2)</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_skip_duplicate_frames.Label"><value>No muestre los marcos de vídeo idénticos.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_skip_duplicate_frames.Help"><value>No entregues el frontend un marco que el GS nunca redrew - un juego de 30 fps entonces entrega 30 marcos únicos en lugar de 60 con cada segundo repetido. Apaga esto si un filtro de generación o interpolación necesita cada marco entregado como propio.</value></data>

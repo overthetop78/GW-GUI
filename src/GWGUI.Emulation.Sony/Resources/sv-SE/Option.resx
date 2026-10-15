@@ -805,7 +805,6 @@
   <data name="Emulation.Option.Sony.Value.SharpenOnly"><value>Sharpen Endast</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_frame_limiter.Label"><value>Rambegränsning</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_frame_limiter.Help"><value>Det som håller emulatorn till full fart. Frontend lämnar pacingen till RetroArch, som stryper genom att göra kärnan vänta på ljudet det händer över. Internal använder PCSX2: s egen begränsare istället - för en enhet där den väntan aldrig händer, eftersom ljuddrivrutinen går i stället för att blockera och emulatorns egna hastighetsvariation sedan når skärmen som ojämn ram pacing.</value></data>
-  <data name="Emulation.Option.Sony.Value.FrontendRetroArch"><value>Frontend (RetroArch)</value></data>
   <data name="Emulation.Option.Sony.Value.InternalPCSX2"><value>Interna (PCSX2)</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_skip_duplicate_frames.Label"><value>Visa inte identiska videoramar.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_skip_duplicate_frames.Help"><value>Skicka inte frontend en ram GS aldrig rödrew - ett 30fps spel levererar sedan 30 unika ramar istället för 60 med varje sekund upprepas. Stäng av detta om en ramgenerering eller interpoleringsfilter behöver varje bild som levereras som sin egen.</value></data>

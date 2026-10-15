@@ -792,7 +792,6 @@
   <data name="Emulation.Option.Sony.Value.SharpenOnly"><value>Συγκέντρωση Μόνο</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_frame_limiter.Label"><value>Περιοριστής πλαισίου</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_frame_limiter.Help"><value>Αυτό που κρατάει τον εξομοιωτή σε πλήρη ταχύτητα. Ο Frontend αφήνει το βηματισμό στην RetroArch, η οποία ενεργοποιεί κάνοντας τον πυρήνα να περιμένει στον ήχο που του δίνει. Εσωτερικά χρησιμοποιεί τον κόφτη του PCSX2 αντί - για μια συσκευή όπου η αναμονή δεν συμβαίνει ποτέ, επειδή ο οδηγός ήχου υπονομεύει μάλλον παρά μπλοκάρει, και η παραλλαγή της ταχύτητας του εξομοιωτή φτάνει στη συνέχεια στην οθόνη ως ανομοιόμορφη κλιμάκωση καρέ.</value></data>
-  <data name="Emulation.Option.Sony.Value.FrontendRetroArch"><value>Πλοίο (RetroArch)</value></data>
   <data name="Emulation.Option.Sony.Value.InternalPCSX2"><value>Εσωτερικό (PCSX2)</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_skip_duplicate_frames.Label"><value>Να μην εμφανίζονται πανομοιότυπα πλαίσια βίντεο.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_skip_duplicate_frames.Help"><value>Μην δίνετε στο frontend ένα πλαίσιο το GS ποτέ redrew - ένα παιχνίδι 30fps στη συνέχεια παραδίδει 30 μοναδικά πλαίσια αντί 60 με κάθε δευτερόλεπτο να επαναλαμβάνεται. Κλείστο αν ένα φίλτρο παραγωγής καρέ ή παρεμβολής χρειάζεται κάθε πλαίσιο που παραδίδεται ως δικό του.</value></data>

@@ -805,7 +805,6 @@
   <data name="Emulation.Option.Sony.Value.SharpenOnly"><value>Заточка тільки</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_frame_limiter.Label"><value>Лімітатор каркаса</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_frame_limiter.Help"><value>Що має емулятор на повну швидкість. Фронт залишає за собою штампування RetroArch, яка дрочить, роблячи сердечник очікування на аудіо він руки над. Внутрішня використовує PCSX2 замість того, щоб пристрій, де ніколи не буває, тому що аудіо драйвер підрядає, а не блокує, і емулятор власної швидкості варіації потім досягає екрана як нерівномірний каркас.</value></data>
-  <data name="Emulation.Option.Sony.Value.FrontendRetroArch"><value>Фронт (RetroArch)</value></data>
   <data name="Emulation.Option.Sony.Value.InternalPCSX2"><value>Внутрішній (PCSX2)</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_skip_duplicate_frames.Label"><value>Не відображати ідентичні відеорамки.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_skip_duplicate_frames.Help"><value>Не торкайтеся передньої рамки GS ніколи не відреагувати - 30fps гра потім доставляє 30 унікальних кадрів замість 60 з кожним другим повтором. Увімкніть, чи потрібен фільтр для міжполяризації кадру.</value></data>

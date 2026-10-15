@@ -792,7 +792,6 @@
   <data name="Emulation.Option.Sony.Value.SharpenOnly"><value>Pouze ořezané</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_frame_limiter.Label"><value>Omezovač rámu</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_frame_limiter.Help"><value>Co drží emulátor v plné rychlosti. Frontend ponechává přechod do RetroArch, který brzdí tím, že jádro čeká na zvuku, které předá. Interní používá PCSX2 je vlastní omezovač místo - pro zařízení, kde to čekat nikdy nestane, protože audio ovladač podstupuje spíše než blokování, a emulátor vlastní rychlost variace pak dosáhne obrazovky jako nerovnoměrné rámu chůze.</value></data>
-  <data name="Emulation.Option.Sony.Value.FrontendRetroArch"><value>Hranice (RetroArch)</value></data>
   <data name="Emulation.Option.Sony.Value.InternalPCSX2"><value>Vnitřní (PCSX2)</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_skip_duplicate_frames.Label"><value>Nezobrazovat stejné video rámce.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_skip_duplicate_frames.Help"><value>Nepodávejte přední část rámu, který GS nikdy nepřekreslil - 30fps hra pak dodává 30 unikátních snímků namísto 60 s každou druhou opakovat. Vypněte to, pokud generování rámu nebo interpolační filtr potřebuje každý rámec dodávaný jako svůj vlastní.</value></data>

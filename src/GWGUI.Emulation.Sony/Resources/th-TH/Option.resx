@@ -805,7 +805,6 @@
   <data name="Emulation.Option.Sony.Value.SharpenOnly"><value>ความคมเท่านั้น</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_frame_limiter.Label"><value>ตัวจํากัดเฟรม</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_frame_limiter.Help"><value>สิ่งที่ยึดเครื่องจําลองความเร็วเต็ม ฟรันเอนด์ทิ้งท่าเดินรถ RetroArch ซึ่งแรงขับโดยให้แกนนํารอบนเสียง มันส่งผ่าน ภายในใช้ตัวจํากัดของ PCSX2 แทน - สําหรับอุปกรณ์ที่รอมาไม่เคยเกิดขึ้น เนื่องจากไดรเวอร์เสียงอยู่ด้านล่าง แทนที่จะถูกปิดกั้น และการแปรเปลี่ยนความเร็วส่วนตัวของ ตัวจําลองเอง แล้วถึงหน้าจอเมื่อเฟรมเสียรูป</value></data>
-  <data name="Emulation.Option.Sony.Value.FrontendRetroArch"><value>ฟรันเอนด์ (RetroArch)</value></data>
   <data name="Emulation.Option.Sony.Value.InternalPCSX2"><value>ภายใน (PCSX2)</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_skip_duplicate_frames.Label"><value>ไม่ต้องแสดงเฟรมวิดีโอที่เหมือนกัน</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_skip_duplicate_frames.Help"><value>อย่ายื่นกรอบฉากที่ GS ไม่เคยแต่งใหม่ - เกม 30fps แล้วส่งเฟรมที่มีเอกลักษณ์ 30 อันแทน 60 ชิ้น ทุกวินาทีซ้ํากัน ปิดนี้ถ้า ชั่วรุ่นเฟรมหรือตัวกรองอินเทอร์เน็ต ต้องการทุกเฟรมที่ส่งเป็นของตัวเอง</value></data>

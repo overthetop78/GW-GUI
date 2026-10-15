@@ -802,7 +802,6 @@
   <data name="Emulation.Option.Sony.Value.SharpenOnly"><value>Skjerp bare</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_frame_limiter.Label"><value>Rammebegrenser</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_frame_limiter.Help"><value>Hva som holder emulatoren i full fart. Frontend etterlater pacing til RetroArch, som throtles ved å gjøre kjernen vente på lyden det hender over. Intern bruker PCSX2 sin egen grenser i stedet - for en enhet der det venter aldri skjer, fordi lyddriveren underløper heller enn blokkering og emulatorens egen hastighetsvariasjon når deretter skjermen som ujevn rammepacering.</value></data>
-  <data name="Emulation.Option.Sony.Value.FrontendRetroArch"><value>Frontend (RetroArch)</value></data>
   <data name="Emulation.Option.Sony.Value.InternalPCSX2"><value>Intern (PCSX2)</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_skip_duplicate_frames.Label"><value>Ikke vis identiske videorammer.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_skip_duplicate_frames.Help"><value>Ikke hånd frontend en ramme GS aldri redrew - et 30fps-spill så gir 30 unike rammer i stedet for 60 med hvert sekund gjentatt. Slå av dette dersom en rammegenerasjon eller interpolasjonsfilter trenger alle rammer levert som sin egen.</value></data>

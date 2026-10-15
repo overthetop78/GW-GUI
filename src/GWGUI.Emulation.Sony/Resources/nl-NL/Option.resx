@@ -802,7 +802,6 @@
   <data name="Emulation.Option.Sony.Value.SharpenOnly"><value>Alleen verscherpen</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_frame_limiter.Label"><value>Frame-limiter</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_frame_limiter.Help"><value>Wat de emulator op volle snelheid houdt. Frontend laat de pacing over aan RetroArch, die gaspedaalt door de kern te laten wachten op het geluid dat hij geeft. Internal maakt gebruik van PCSX2's eigen limiter in plaats daarvan - voor een apparaat waar dat wachten nooit gebeurt, omdat het audio-driver onderruns eerder dan blokkeren, en de emulator zijn eigen snelheid variatie bereikt vervolgens het scherm als ongelijke frame pacing.</value></data>
-  <data name="Emulation.Option.Sony.Value.FrontendRetroArch"><value>Frontend (RetroArch)</value></data>
   <data name="Emulation.Option.Sony.Value.InternalPCSX2"><value>Intern (PCSX2)</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_skip_duplicate_frames.Label"><value>Geen identieke videoframes weergeven.</value></data>
   <data name="Emulation.Option.pcee2.pcsx2_skip_duplicate_frames.Help"><value>Geef de frontend geen frame van de GS nooit opnieuw gemaakt - een 30fps spel levert dan 30 unieke frames in plaats van 60 met elke seconde herhaald. Schakel dit uit als een frame generatie of interpolatie filter elk frames geleverd moet hebben.</value></data>
