@@ -10,6 +10,26 @@ namespace GWGUI.Tests.Emulation.Sony;
 
 public sealed class RuntimeOptionTests
 {
+    [Fact]
+    public void CurrentSelectionsRemainSeparateFromNativeDefaultsAndSurviveUpdates()
+    {
+        var renderer = new CoreOption("renderer", "Renderer", null, null, "vulkan", "vulkan", [new("vulkan", "Vulkan"), new("software", "Software")]);
+        var unknown = new CoreOption("future", "Future", null, null, "default", "native", []);
+        var selected = new Dictionary<string, string> { ["renderer"] = "software", ["notAnnounced"] = "ignored" };
+        var applied = CoreOptionMetadataFunctions.WithCurrentValues([renderer, unknown], selected);
+        Assert.Equal("software", applied[0].CurrentValue);
+        Assert.Equal("vulkan", applied[0].DefaultValue);
+        Assert.Same(renderer.Values, applied[0].Values);
+        Assert.Equal("vulkan", renderer.CurrentValue);
+        Assert.Same(unknown, applied[1]);
+        selected["renderer"] = "vulkan";
+        var updated = CoreOptionMetadataFunctions.WithCurrentValues(applied, selected);
+        Assert.Equal("vulkan", updated[0].CurrentValue);
+        Assert.Equal("software", applied[0].CurrentValue);
+        Assert.Same(unknown, updated[1]);
+        Assert.Same(renderer, Assert.Single(CoreOptionMetadataFunctions.WithCurrentValues([renderer], new Dictionary<string, string>())));
+    }
+
     [Theory]
     [InlineData("pcsx2", ModelConstants.PlayStation2, "pcsx2_axis_deadzone1", "12", "12%")]
     [InlineData("mednafen_psx", ModelConstants.PlayStation, "beetle_psx_cpu_freq_scale", "115", "120%")]

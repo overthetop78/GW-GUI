@@ -137,6 +137,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
         if (option.Values.Count > 0 && !option.Values.Any(item => item.Value.Equals(value, StringComparison.Ordinal)))
             throw new ArgumentOutOfRangeException(nameof(value), value, CoreExceptions.InvalidOptionValue(value, key));
         _options[key] = value;
+        OptionCatalog = CoreOptionMetadataFunctions.WithCurrentValues(OptionCatalog, _options);
         Interlocked.Exchange(ref _optionsUpdated, 1);
         _updateOptionsDisplay?.Invoke();
     }

@@ -154,7 +154,7 @@ internal sealed partial class ExternalHostCallbacks
             if (!_options.ContainsKey(key) && defaultValue.Length > 0) _options[key] = defaultValue;
             catalog.Add(new CoreOption(key, name, null, null, defaultValue, defaultValue, values, !_optionVisibility.TryGetValue(key, out var visible) || visible));
         }
-        OptionCatalog = catalog;
+        OptionCatalog = CoreOptionMetadataFunctions.WithCurrentValues(catalog, _options);
     }
 
     private void RegisterVersionTwoOptions(nint options)
@@ -187,7 +187,7 @@ internal sealed partial class ExternalHostCallbacks
             catalog.Add(new CoreOption(key, name, description, category, defaultValue, defaultValue, values, !_optionVisibility.TryGetValue(key, out var visible) || visible));
             if (!_options.ContainsKey(key) && defaultValue.Length > 0) _options[key] = defaultValue;
         }
-        OptionCatalog = catalog;
+        OptionCatalog = CoreOptionMetadataFunctions.WithCurrentValues(catalog, _options);
     }
 
     private bool ApplyOptionVisibility(nint data)

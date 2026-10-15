@@ -4,6 +4,9 @@ namespace GWGUI.Emulation.Sony.Emulators.Common.Interop.Functions;
 
 internal static class CoreOptionMetadataFunctions
 {
+    internal static IReadOnlyList<CoreOption> WithCurrentValues(IReadOnlyList<CoreOption> options, IReadOnlyDictionary<string, string> currentValues) =>
+        options.Select(option => currentValues.TryGetValue(option.Key, out var value) && option.CurrentValue != value ? option with { CurrentValue = value } : option).ToArray();
+
     internal static IReadOnlyList<CoreOption> Merge(IReadOnlyList<CoreOption> native, IReadOnlyList<CoreOption> declared)
     {
         var descriptions = declared.ToDictionary(option => option.Key, StringComparer.Ordinal);
