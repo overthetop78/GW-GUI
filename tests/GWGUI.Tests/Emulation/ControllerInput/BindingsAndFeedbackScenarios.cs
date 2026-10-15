@@ -4,6 +4,7 @@ using GWGUI.App.Functions.Input.Bindings;
 using System.Windows.Input;
 using GWGUI.Emulation.Enums;
 using GWGUI.Emulation.Functions;
+using System.IO;
 namespace GWGUI.Tests.Emulation.ControllerInput;
 internal static class BindingsAndFeedbackScenarios
 {
@@ -184,5 +185,31 @@ internal static class BindingsAndFeedbackScenarios
         Assert.Equal(EmulationKey.LeftWindows, leftWindows);
         Assert.True(GWGUI.App.Functions.Input.Keyboard.EmulationKeyMapper.TryMap(Key.RWin, out var rightWindows));
         Assert.Equal(EmulationKey.RightWindows, rightWindows);
+        var physicalKeys = new HashSet<EmulationKey>();
+        foreach (var key in Enum.GetValues<Key>().Distinct())
+        {
+            if (key is Key.None or Key.System or Key.ImeProcessed or Key.DeadCharProcessed or Key.NoName)
+            {
+                Assert.False(GWGUI.App.Functions.Input.Keyboard.EmulationKeyMapper.TryMap(key, out _));
+                continue;
+            }
+            Assert.True(GWGUI.App.Functions.Input.Keyboard.EmulationKeyMapper.TryMap(key, out var mapped), key.ToString());
+            Assert.True(GWGUI.App.Functions.Input.Keyboard.EmulationKeyMapper.TryMap(mapped, out var restored));
+            Assert.Equal(key, restored);
+            physicalKeys.Add(mapped);
+        }
+        using var stream = new MemoryStream();
+        using (var writer = new BinaryWriter(stream, System.Text.Encoding.UTF8, true))
+            EmulationHostProtocolFunctions.WriteInput(writer, EmulationInputSnapshot.Empty with { Keys = physicalKeys });
+        stream.Position = 0;
+        using (var reader = new BinaryReader(stream, System.Text.Encoding.UTF8, true))
+            Assert.True(physicalKeys.SetEquals(EmulationHostProtocolFunctions.ReadInput(reader, "keyboard").Keys));
+        Assert.True(GWGUI.App.Functions.Input.Keyboard.EmulationKeyMapper.TryMap(Key.OemPipe, out var pipe));
+        Assert.True(GWGUI.App.Functions.Input.Keyboard.EmulationKeyMapper.TryMap(Key.Oem102, out var iso));
+        Assert.NotEqual(pipe, iso);
+        Assert.Equal(EmulationKey.Backslash, pipe);
+        Assert.True(KeyboardChordFunctions.TryParse("Sleep", out var sleep));
+        Assert.True(KeyboardChordFunctions.IsWindowsReserved(sleep));
+        Assert.False(GWGUI.App.Services.Input.Keyboard.ForegroundKeyboardShortcutGuard.ShouldIntercept(Key.Sleep, ModifierKeys.None));
     }
 }

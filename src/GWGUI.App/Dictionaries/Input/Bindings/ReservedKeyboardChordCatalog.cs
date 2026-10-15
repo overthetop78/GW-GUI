@@ -11,6 +11,7 @@ internal static class ReservedKeyboardChordCatalog
         new(ModifierKeys.Windows, []),
         new(ModifierKeys.None, [Key.LWin]),
         new(ModifierKeys.None, [Key.RWin]),
+        new(ModifierKeys.None, [Key.Sleep]),
         new(ModifierKeys.Alt, [Key.Tab]),
         new(ModifierKeys.Alt, [Key.Escape]),
         new(ModifierKeys.Alt, [Key.F4]),

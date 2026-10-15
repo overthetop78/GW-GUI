@@ -135,6 +135,74 @@ public enum EmulationKey
     NumpadPlus = 102,
     NumpadEnter = 103,
 
+    // Additional editing and system keys
+    Cancel = 203,
+    LineFeed = 204,
+    Clear = 205,
+    Select = 206,
+    Print = 207,
+    Execute = 208,
+    PrintScreen = 209,
+    Applications = 210,
+    Sleep = 211,
+
+    // Additional numeric keypad and lock keys
+    NumpadSeparator = 212,
+    NumLock = 213,
+    ScrollLock = 214,
+
+    // International input modes and keyboard keys
+    KanaMode = 215,
+    JunjaMode = 216,
+    FinalMode = 217,
+    HanjaMode = 218,
+    ImeConvert = 219,
+    ImeNonConvert = 220,
+    ImeAccept = 221,
+    ImeModeChange = 222,
+    AbntC1 = 223,
+    AbntC2 = 224,
+
+    // Additional OEM and extended keyboard keys
+    Oem8 = 225,
+    Oem102 = 226,
+    OemAttn = 227,
+    OemFinish = 228,
+    OemCopy = 229,
+    OemAuto = 230,
+    OemEnlw = 231,
+    OemBackTab = 232,
+    Attn = 233,
+    CrSel = 234,
+    ExSel = 235,
+    EraseEof = 236,
+    Play = 237,
+    Zoom = 238,
+    Pa1 = 239,
+    OemClear = 240,
+
+    // Browser keys
+    BrowserBack = 241,
+    BrowserForward = 242,
+    BrowserRefresh = 243,
+    BrowserStop = 244,
+    BrowserSearch = 245,
+    BrowserFavorites = 246,
+    BrowserHome = 247,
+
+    // Multimedia and application launch keys
+    VolumeMute = 248,
+    VolumeDown = 249,
+    VolumeUp = 250,
+    MediaNextTrack = 251,
+    MediaPreviousTrack = 252,
+    MediaStop = 253,
+    MediaPlayPause = 254,
+    LaunchMail = 255,
+    SelectMedia = 256,
+    LaunchApplication1 = 257,
+    LaunchApplication2 = 258,
+
     // Acorn
     AcornF0 = 104,
     AcornCopy = 105,

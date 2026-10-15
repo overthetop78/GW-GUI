@@ -31,6 +31,18 @@ public sealed class KeyboardModuleBindingTests
     [InlineData("Apple", EmulationKey.F24)]
     [InlineData("Coleco", EmulationKey.F24)]
     [InlineData("Atari", EmulationKey.F24)]
+    [InlineData("Acorn", EmulationKey.Oem102)]
+    [InlineData("Apple", EmulationKey.Oem102)]
+    [InlineData("Coleco", EmulationKey.Oem102)]
+    [InlineData("Atari", EmulationKey.Oem102)]
+    [InlineData("Acorn", EmulationKey.MediaPlayPause)]
+    [InlineData("Apple", EmulationKey.MediaPlayPause)]
+    [InlineData("Coleco", EmulationKey.MediaPlayPause)]
+    [InlineData("Atari", EmulationKey.MediaPlayPause)]
+    [InlineData("Acorn", EmulationKey.NumpadSeparator)]
+    [InlineData("Apple", EmulationKey.NumpadSeparator)]
+    [InlineData("Coleco", EmulationKey.NumpadSeparator)]
+    [InlineData("Atari", EmulationKey.NumpadSeparator)]
     public void MixedSpecialKeyBindingPersistsAndReachesNativeCallback(string family, EmulationKey hostKey)
     {
         using var http = new HttpClient();
