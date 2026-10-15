@@ -4,6 +4,8 @@ internal static class ControllerArtworkFileNames
 {
     internal const string AppleStandardJ665 = "apple-standard-j665.png";
     internal const string AppleA2M2002 = "apple-a2m2002.png";
+    internal const string AppleChMachII = "apple-ch-mach-ii.png";
+    internal const string AppleChMachIII = "apple-ch-mach-iii.png";
     internal const string PippinApplejack = "apple-pippin-applejack.png";
     internal const string PippinApplejackWired = "apple-pippin-applejack-wired.png";
     internal const string AmstradGx4000Controller = "amstrad-gx4000-controller.png";

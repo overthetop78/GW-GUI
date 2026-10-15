@@ -321,7 +321,9 @@ public sealed class AppleModuleTests
         Assert.Equal(EmulationControllerVisualIds.AppleStandardJ665, joystick.DefaultVisualId);
         Assert.Contains(EmulationControllerVisualIds.AppleStandardJ665, joystick.CompatibleVisualIds!);
         Assert.Contains(EmulationControllerVisualIds.AppleA2M2002, joystick.CompatibleVisualIds!);
-        Assert.Equal(2, joystick.CompatibleVisualIds!.Count);
+        Assert.Contains(EmulationControllerVisualIds.AppleChMachII, joystick.CompatibleVisualIds!);
+        Assert.Contains(EmulationControllerVisualIds.AppleChMachIII, joystick.CompatibleVisualIds!);
+        Assert.Equal(4, joystick.CompatibleVisualIds!.Count);
         Assert.Equal(6, joystick.VisualCommandIds!.Count);
         Assert.Equal(EmulationControllerCommandIds.Fire1, joystick.VisualCommandIds[EmulationControllerVisualControl.PrimaryAction]);
         Assert.Empty(port.Bindings.Values);

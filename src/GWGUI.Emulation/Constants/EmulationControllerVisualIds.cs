@@ -4,6 +4,8 @@ public static class EmulationControllerVisualIds
 {
     public const string AppleStandardJ665 = "apple-standard-j665";
     public const string AppleA2M2002 = "apple-a2m2002";
+    public const string AppleChMachII = "apple-ch-mach-ii";
+    public const string AppleChMachIII = "apple-ch-mach-iii";
     public const string PippinApplejack = "apple-pippin-applejack";
     public const string PippinApplejackWired = "apple-pippin-applejack-wired";
     public const string AmstradGx4000Controller = "amstrad-gx4000-controller";

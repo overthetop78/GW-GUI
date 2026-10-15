@@ -11,6 +11,8 @@ internal static partial class ControllerArtworkCatalog
         var profiles = new Dictionary<string, ProfileDefinition>(StringComparer.Ordinal);
         profiles[EmulationControllerVisualIds.AppleStandardJ665] = CreateAppleStandardJ665();
         profiles[EmulationControllerVisualIds.AppleA2M2002] = CreateAppleA2M2002();
+        profiles[EmulationControllerVisualIds.AppleChMachII] = CreateAppleChMachII();
+        profiles[EmulationControllerVisualIds.AppleChMachIII] = CreateAppleChMachIII();
         profiles[EmulationControllerVisualIds.PippinApplejack] = CreatePippinApplejack();
         profiles[EmulationControllerVisualIds.PippinApplejackWired] = CreatePippinApplejackWired();
         profiles[EmulationControllerVisualIds.AmstradGx4000Controller] = CreateAmstradGx4000Controller();

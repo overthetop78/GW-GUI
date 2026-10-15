@@ -156,4 +156,6 @@
   <data name="Emulation.Controller.Visual.Model.apple-pippin-applejack" xml:space="preserve"><value>Pippin Applejack PA-82014</value></data>
   <data name="Emulation.Controller.Visual.Model.apple-a2m2002" xml:space="preserve"><value>Apple Joystick IIe / IIc A2M2002</value></data>
   <data name="Emulation.Controller.Visual.Model.apple-pippin-applejack-wired" xml:space="preserve"><value>Pippin Applejack P-ADB</value></data>
+  <data name="Emulation.Controller.Visual.Model.apple-ch-mach-ii" xml:space="preserve"><value>CH Products Mach II</value></data>
+  <data name="Emulation.Controller.Visual.Model.apple-ch-mach-iii" xml:space="preserve"><value>CH Products Mach III</value></data>
 </root>

@@ -90,7 +90,13 @@ internal static class InputSettingsFunctions
             _ => throw new ArgumentOutOfRangeException(nameof(category), category, null)
         },
         BindingDefinitions: ControllerDefinitions(category),
-        CompatibleVisualIds: category == PeripheralCategory.AnalogJoystick ? [EmulationControllerVisualIds.AppleStandardJ665, EmulationControllerVisualIds.AppleA2M2002] : null,
+        CompatibleVisualIds: category == PeripheralCategory.AnalogJoystick ?
+        [
+            EmulationControllerVisualIds.AppleStandardJ665,
+            EmulationControllerVisualIds.AppleA2M2002,
+            EmulationControllerVisualIds.AppleChMachII,
+            EmulationControllerVisualIds.AppleChMachIII
+        ] : null,
         DefaultVisualId: category == PeripheralCategory.AnalogJoystick ? EmulationControllerVisualIds.AppleStandardJ665 : null,
         VisualCommandIds: category == PeripheralCategory.AnalogJoystick ? new Dictionary<EmulationControllerVisualControl, string>
         {
