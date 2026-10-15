@@ -16,7 +16,7 @@ internal static partial class SettingsDescriptionFunctions
                 Information(SettingsConstants.MainMemory, EmulationMachineTab.Ram, SettingsConstants.ResourceMemory, $"{hardware.MainMemoryBytes / SettingsConstants.Kibibyte} KiB")),
             Audio(configuration)
         };
-        if (new Engine().Adapter(configuration) is IEmulatorSettings settings) blocks.AddRange(settings.DescribeSettings(configuration));
+        if (new Engine().SelectedAdapter(configuration) is IEmulatorSettings settings) blocks.AddRange(settings.DescribeSettings(configuration));
         return blocks;
     }
 

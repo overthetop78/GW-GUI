@@ -24,6 +24,7 @@ public sealed class Engine
     }
 
     internal IEmulatorAdapter Adapter(MachineConfiguration configuration) => Adapter(configuration.Core);
+    internal IEmulatorAdapter? SelectedAdapter(MachineConfiguration configuration) => configuration.Core == Emulator.None ? null : Adapter(configuration);
     internal IEmulatorAdapter Adapter(Emulator emulator) => _adapters.Values.SingleOrDefault(adapter => string.Equals(adapter.EmulatorKey, emulator.ToString(), StringComparison.Ordinal)) ?? throw new ArgumentOutOfRangeException(nameof(emulator));
 
     internal IEmulatorAdapter Adapter(string emulatorId) => _adapters.TryGetValue(emulatorId, out var adapter) ? adapter : throw new ArgumentOutOfRangeException(nameof(emulatorId));

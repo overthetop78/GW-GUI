@@ -180,6 +180,7 @@ public sealed class AppleModuleTests
     [InlineData(MachineModel.MacintoshPlus, false, 3, 0)]
     [InlineData(MachineModel.MacintoshClassic, false, 3, 0)]
     [InlineData(MachineModel.MacintoshII, true, 3, 0)]
+    [InlineData(MachineModel.Pippin, false, 0, 0)]
     public void SelectionDescribesPhysicalModelWithoutClaimingUnsupportedRuntime(MachineModel model, bool executable, int keys, int ports)
     {
         var configuration = new MachineConfiguration(model);
@@ -275,10 +276,12 @@ public sealed class AppleModuleTests
         Assert.Throws<ArgumentException>(() => new MachineConfiguration(MachineModel.MacintoshII, media: [new("floppy.dsk", MediaCategory.Floppy, EmulationMediaSlot.Floppy0), new("disk.img", MediaCategory.HardDisk, EmulationMediaSlot.HardDisk0)]));
     }
 
-    [Fact]
-    public void EmptyHardDiskDeviceSurvivesPersistenceAndCanBeRemoved()
+    [Theory]
+    [InlineData(MachineModel.AppleIIe)]
+    [InlineData(MachineModel.MacintoshII)]
+    public void EmptyHardDiskDeviceSurvivesPersistenceAndCanBeRemoved(MachineModel model)
     {
-        var configuration = new MachineConfiguration(MachineModel.AppleIIe);
+        var configuration = new MachineConfiguration(model);
         var settings = StorageSettingsFunctions.Describe(configuration);
         var applied = StorageSettingsFunctions.Apply(configuration, settings with
         {
@@ -290,6 +293,9 @@ public sealed class AppleModuleTests
         var restored = ConfigurationStoreFunctions.FromDocument(ConfigurationStoreFunctions.Deserialize(json), pathBase);
         var reloaded = StorageSettingsFunctions.Describe(restored);
         Assert.Contains(EmulationMediaSlot.HardDisk0, reloaded.ConfiguredSlots);
+        var hardDisk = Assert.Single(reloaded.AvailableDevices, device => device.Slot == EmulationMediaSlot.HardDisk0);
+        Assert.Equal(EmulationStorageConfigurationKind.HardDiskDrive, hardDisk.ConfigurationKind);
+        Assert.NotEmpty(hardDisk.HardDiskFormats!);
         Assert.Empty(reloaded.MountedMedia);
         var removed = StorageSettingsFunctions.Apply(restored, reloaded with
         {
@@ -297,7 +303,61 @@ public sealed class AppleModuleTests
         });
         Assert.DoesNotContain(EmulationMediaSlot.HardDisk0, StorageSettingsFunctions.Describe(removed).ConfiguredSlots);
         Assert.Contains(EmulationMediaSlot.Floppy0, StorageSettingsFunctions.Describe(removed).ConfiguredSlots);
-        Assert.Contains(EmulationMediaSlot.Floppy1, StorageSettingsFunctions.Describe(removed).ConfiguredSlots);
+        Assert.Equal(model == MachineModel.AppleIIe, StorageSettingsFunctions.Describe(removed).ConfiguredSlots.Contains(EmulationMediaSlot.Floppy1));
+    }
+
+    [Theory]
+    [InlineData(MachineModel.AppleII)]
+    [InlineData(MachineModel.AppleIIPlus)]
+    [InlineData(MachineModel.AppleIIJPlus)]
+    [InlineData(MachineModel.AppleIIe)]
+    [InlineData(MachineModel.AppleIIeEnhanced)]
+    public void AppleJoystickVisualKeepsAnalogDirectionsAndEmptyPhysicalBindings(MachineModel model)
+    {
+        var configuration = new MachineConfiguration(model);
+        var settings = InputSettingsFunctions.Describe(configuration);
+        var port = Assert.Single(settings.ControllerPorts);
+        var joystick = Assert.Single(port.ControllerChoices, choice => choice.Id == nameof(PeripheralCategory.AnalogJoystick));
+        Assert.Equal(EmulationControllerVisualIds.AppleStandardJ665, joystick.DefaultVisualId);
+        Assert.Contains(EmulationControllerVisualIds.AppleStandardJ665, joystick.CompatibleVisualIds!);
+        Assert.Contains(EmulationControllerVisualIds.AppleA2M2002, joystick.CompatibleVisualIds!);
+        Assert.Equal(2, joystick.CompatibleVisualIds!.Count);
+        Assert.Equal(6, joystick.VisualCommandIds!.Count);
+        Assert.Equal(EmulationControllerCommandIds.Fire1, joystick.VisualCommandIds[EmulationControllerVisualControl.PrimaryAction]);
+        Assert.Empty(port.Bindings.Values);
+        Assert.All(port.Bindings.Definitions.Take(4), definition => Assert.NotNull(definition.OppositeDirectionId));
+        foreach (var visualId in joystick.CompatibleVisualIds)
+        {
+            var restored = InputSettingsFunctions.Apply(configuration, settings with
+            {
+                ControllerPorts = [port with { VisualId = visualId }]
+            });
+            var restoredPort = Assert.Single(InputSettingsFunctions.Describe(restored).ControllerPorts);
+            Assert.Equal(visualId, restoredPort.VisualId);
+            Assert.Empty(restoredPort.Bindings.Values);
+        }
+    }
+
+    [Fact]
+    public async Task PippinIsListedWithoutAdvertisingAnIncompatibleEmulator()
+    {
+        using var client = new System.Net.Http.HttpClient();
+        var module = new GWGUI.Emulation.Apple.Modules.AppleEmulationModule(".", ".", client, ".");
+        Assert.Contains(module.Machines, machine => machine.Id == nameof(MachineModel.Pippin));
+        var configuration = (MachineConfiguration)module.CreateConfiguration(nameof(MachineModel.Pippin));
+        Assert.Equal(MachineFamily.Pippin, configuration.Family);
+        Assert.Equal(Emulator.None, configuration.Core);
+        Assert.Empty(await module.GetEmulatorInstallationsAsync(configuration));
+        var settings = module.Describe(configuration.MachineId, configuration);
+        Assert.True(settings.Visibility.Tabs[EmulationMachineTab.General]);
+        Assert.False(settings.Visibility.Tabs[EmulationMachineTab.Controllers]);
+        Assert.False(settings.Visibility.Tabs[EmulationMachineTab.Storage]);
+        Assert.Empty(await module.ScanFirmwareAsync(configuration.MachineId, configuration));
+        var document = ConfigurationStoreFunctions.ToDocument(configuration, Path.GetTempPath());
+        var json = JsonSerializer.SerializeToElement(document, new JsonSerializerOptions(JsonSerializerDefaults.Web));
+        var reloaded = ConfigurationStoreFunctions.FromDocument(ConfigurationStoreFunctions.Deserialize(json), Path.GetTempPath());
+        Assert.Equal(MachineModel.Pippin, reloaded.Model);
+        Assert.Equal(Emulator.None, reloaded.Core);
     }
 
     [Fact]

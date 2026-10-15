@@ -38,6 +38,7 @@ public sealed class AppleEmulationModule : IEmulationModule, IEmulationEmulatorM
         if (current.Model != model) throw new ArgumentException(nameof(configuration));
         var tabs = DefaultVisibility.Tabs.ToDictionary(item => item.Key, item => item.Key switch
         {
+            _ when current.Core == Emulator.None => item.Key is EmulationMachineTab.General or EmulationMachineTab.Cpu or EmulationMachineTab.Ram,
             EmulationMachineTab.Mouse => current.Family == MachineFamily.Macintosh || ConfigurationFunctions.SupportsRuntime(model),
             EmulationMachineTab.Controllers => ConfigurationFunctions.ControllerPortCount(model)
                 > BufferConstants.EmptyCollectionCount,
@@ -171,7 +172,7 @@ public sealed class AppleEmulationModule : IEmulationModule, IEmulationEmulatorM
     {
         var current = Require(configuration);
         if (current.Model != ModelCatalog.Parse(machineId)) throw new ArgumentException(nameof(machineId));
-        if (_engine.Adapter(current) is not IEmulatorFirmwareAdapter firmwareAdapter || !ConfigurationFunctions.SupportsRuntime(current.Model)) return [];
+        if (_engine.SelectedAdapter(current) is not IEmulatorFirmwareAdapter firmwareAdapter || !ConfigurationFunctions.SupportsRuntime(current.Model)) return [];
         var directory = GetFirmwareDirectory(machineId);
         Directory.CreateDirectory(directory);
         var candidates = new List<EmulationFirmwareCandidate>();
@@ -186,7 +187,7 @@ public sealed class AppleEmulationModule : IEmulationModule, IEmulationEmulatorM
     public IEmulationConfiguration UseFirmware(IEmulationConfiguration configuration, EmulationFirmwareCandidate firmware)
     {
         var current = Require(configuration);
-        if (_engine.Adapter(current) is not IEmulatorFirmwareAdapter firmwareAdapter || !ConfigurationFunctions.SupportsRuntime(current.Model))
+        if (_engine.SelectedAdapter(current) is not IEmulatorFirmwareAdapter firmwareAdapter || !ConfigurationFunctions.SupportsRuntime(current.Model))
             throw new ArgumentException(nameof(configuration));
         var scanned = FirmwareFunctions.ScanFileAsync(firmwareAdapter, current, firmware.Path, CancellationToken.None).GetAwaiter().GetResult();
         var result = current with { Firmwares = [FirmwareFunctions.Select(scanned)] };

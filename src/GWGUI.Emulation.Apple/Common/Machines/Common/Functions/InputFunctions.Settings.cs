@@ -4,7 +4,7 @@ using GWGUI.Emulation.Apple.Common.Machines.Macintosh.Dictionaries;
 namespace GWGUI.Emulation.Apple.Common.Machines.Common.Functions;
 internal static class InputSettingsFunctions
 {
-    internal static bool SupportsPointer(MachineConfiguration configuration) => new Engine().Adapter(configuration) is IEmulatorPointerCapabilities capabilities && capabilities.SupportsPointer(configuration);
+    internal static bool SupportsPointer(MachineConfiguration configuration) => new Engine().SelectedAdapter(configuration) is IEmulatorPointerCapabilities capabilities && capabilities.SupportsPointer(configuration);
     internal static IReadOnlyDictionary<EmulationKey, EmulationKey> DefaultHostKeys(MachineModel model) => model switch
     {
         MachineModel.AppleIIe or MachineModel.AppleIIeEnhanced => AppleIIKeyboardDictionary.DefaultHostKeys,
@@ -89,7 +89,18 @@ internal static class InputSettingsFunctions
             PeripheralCategory.AnalogJoystick => InputSettingsFunctionsConstants.ResourceControllerAnalogJoystick,
             _ => throw new ArgumentOutOfRangeException(nameof(category), category, null)
         },
-        BindingDefinitions: ControllerDefinitions(category)
+        BindingDefinitions: ControllerDefinitions(category),
+        CompatibleVisualIds: category == PeripheralCategory.AnalogJoystick ? [EmulationControllerVisualIds.AppleStandardJ665, EmulationControllerVisualIds.AppleA2M2002] : null,
+        DefaultVisualId: category == PeripheralCategory.AnalogJoystick ? EmulationControllerVisualIds.AppleStandardJ665 : null,
+        VisualCommandIds: category == PeripheralCategory.AnalogJoystick ? new Dictionary<EmulationControllerVisualControl, string>
+        {
+            [EmulationControllerVisualControl.DirectionUp] = EmulationControllerCommandIds.Up,
+            [EmulationControllerVisualControl.DirectionDown] = EmulationControllerCommandIds.Down,
+            [EmulationControllerVisualControl.DirectionLeft] = EmulationControllerCommandIds.Left,
+            [EmulationControllerVisualControl.DirectionRight] = EmulationControllerCommandIds.Right,
+            [EmulationControllerVisualControl.PrimaryAction] = EmulationControllerCommandIds.Fire1,
+            [EmulationControllerVisualControl.SecondaryAction] = EmulationControllerCommandIds.Fire2
+        } : null
     ) { Category = category == PeripheralCategory.None ? EmulationControllerCategory.None : EmulationControllerCategory.Joystick };
     private static IReadOnlyList<InputBindingDefinition> ControllerDefinitions(PeripheralCategory category) => category == PeripheralCategory.None 
         ? [] 

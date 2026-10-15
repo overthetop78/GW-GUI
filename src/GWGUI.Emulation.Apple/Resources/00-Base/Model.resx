@@ -14,4 +14,5 @@
   <data name="Emulation.Apple.Model.MacintoshPlus" xml:space="preserve"><value>Macintosh Plus</value></data>
   <data name="Emulation.Apple.Model.MacintoshClassic" xml:space="preserve"><value>Macintosh Classic</value></data>
   <data name="Emulation.Apple.Model.MacintoshII" xml:space="preserve"><value>Macintosh II</value></data>
+  <data name="Emulation.Apple.Model.Pippin" xml:space="preserve"><value>Apple / Bandai Pippin @mark</value></data>
 </root>

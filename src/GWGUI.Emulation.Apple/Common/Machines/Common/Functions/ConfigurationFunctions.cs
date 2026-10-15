@@ -28,8 +28,11 @@ internal static class ConfigurationFunctions
             throw new ArgumentException(nameof(configuration));
         var hardware = HardwareModelCatalog.Get(configuration.Model);
         var engine = new Engine();
-        var selectedAdapter = engine.Adapter(configuration);
-        if (!selectedAdapter.Definition.MachineIds.Contains(configuration.MachineId) && (engine.Adapters(configuration.MachineId).Count > 0 || configuration.Core != hardware.Emulator)) throw new ArgumentException(nameof(configuration.Core));
+        var selectedAdapter = engine.SelectedAdapter(configuration);
+        if (selectedAdapter is null
+            ? hardware.Emulator != Emulator.None || engine.Adapters(configuration.MachineId).Count > 0
+            : !selectedAdapter.Definition.MachineIds.Contains(configuration.MachineId) && (engine.Adapters(configuration.MachineId).Count > 0 || configuration.Core != hardware.Emulator))
+            throw new ArgumentException(nameof(configuration.Core));
         var firmwareRoles = new HashSet<FirmwareCategory>();
         foreach (var firmware in configuration.Firmwares)
             if (!firmwareRoles.Add(firmware.Category)

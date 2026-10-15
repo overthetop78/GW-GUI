@@ -21,7 +21,8 @@ internal static class StorageSettingsFunctions
                 IsRemovable: false, RequiresMachineRecreation: true,
                 DisplayLabel: StorageSettingsFunctionsConstants.HardDiskLabel,
                 ImageDirectory: configuration.Folders.HardDisks,
-                HardDiskFormats: HardDiskFormats.For(configuration)));
+                HardDiskFormats: HardDiskFormats.For(configuration),
+                ConfigurationKind: EmulationStorageConfigurationKind.HardDiskDrive));
         }
         return new(devices, devices.Where(device => device.IsPermanent || configuration.Options.ContainsKey(StorageSettingsFunctionsConstants.StorageDevice + device.Slot) || configuration.Media.Any(media => media.Slot == device.Slot)).Select(device => device.Slot).ToArray(),
             configuration.Media.Select(EmulationMediaConversionFunctions.ToCommon).ToArray());

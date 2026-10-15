@@ -152,4 +152,8 @@
   <data name="Emulation.Controller.Action.Reload"><value>Reload</value></data>
   <data name="Emulation.Controller.CrosshairColor"><value>Crosshair colour</value></data>
   <data name="Emulation.Controller.Visual.Model.amstrad-gx4000-controller" xml:space="preserve"><value>Amstrad GX4000</value></data>
+  <data name="Emulation.Controller.Visual.Model.apple-standard-j665" xml:space="preserve"><value>Standard J-665 / G-665</value></data>
+  <data name="Emulation.Controller.Visual.Model.apple-pippin-applejack" xml:space="preserve"><value>Pippin Applejack PA-82014</value></data>
+  <data name="Emulation.Controller.Visual.Model.apple-a2m2002" xml:space="preserve"><value>Apple Joystick IIe / IIc A2M2002</value></data>
+  <data name="Emulation.Controller.Visual.Model.apple-pippin-applejack-wired" xml:space="preserve"><value>Pippin Applejack P-ADB</value></data>
 </root>

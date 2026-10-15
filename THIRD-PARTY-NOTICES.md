@@ -174,3 +174,11 @@ Photograph by Evan-Amos, 31 January 2012, dedicated to the public domain by the 
 Source: https://commons.wikimedia.org/wiki/File:GX4000_controller.png
 Original: https://upload.wikimedia.org/wikipedia/commons/9/9a/GX4000_controller.png
 Adaptation: classical removal of the exterior white background, proportional resizing to a maximum dimension of 512 pixels, and a transparent margin. No generated controls, lettering or reconstructed hardware.
+
+Apple Standard J-665/G-665 controller photograph: phreakindee, CC0, https://commons.wikimedia.org/wiki/File:Standard_J-665_Joystick.jpg . The physical controller was isolated from its packaging and background with a manually drawn mask and resized with ImageMagick; no generated content. The two fire buttons and analog stick retain the original photograph.
+
+Apple/Bandai Pippin @mark console and Applejack controller photograph: Evan-Amos, public domain, https://commons.wikimedia.org/wiki/File:Pippin-Atmark-Console-Set.jpg . Background transparency and resizing only, with ImageMagick; no generated content.
+
+Apple Joystick IIe/IIc A2M2002 photograph: Apple II Documentation Project, https://mirrors.apple2.org.za/Apple%20II%20Documentation%20Project/Peripherals/Digitizers/Apple%20Joystick%20IIe%20and%20IIc/Photos/ . Source file: Apple Joystick IIe and IIc - Top.jpg ; model confirmed by the Base.jpg label and original Apple user instructions in the same collection. The archive does not identify the photographer or a specific license. Existing photograph isolated with a manual mask and resized to 512 pixels using ImageMagick, without generated content.
+
+Pippin wired Applejack controller photograph: Evan-Amos, public domain, https://commons.wikimedia.org/wiki/File:Bandai-Apple-Pippin-Applejack-Controller-FL.jpg . Background transparency and resizing with ImageMagick only; original photograph and markings preserved.

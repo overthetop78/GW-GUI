@@ -1,6 +1,6 @@
 namespace GWGUI.Emulation.Apple.Common.Machines.Common.Enums;
 
-public enum MachineFamily { AppleII, Macintosh }
+public enum MachineFamily { AppleII, Macintosh, Pippin }
 
 public enum MachineModel
 {
@@ -13,5 +13,6 @@ public enum MachineModel
     Macintosh512K,
     MacintoshPlus,
     MacintoshClassic,
-    MacintoshII
+    MacintoshII,
+    Pippin
 }

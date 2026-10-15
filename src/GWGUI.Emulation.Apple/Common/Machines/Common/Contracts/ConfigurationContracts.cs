@@ -39,7 +39,7 @@ public sealed record MachineConfiguration : IEmulationConfiguration
         SchemaVersion = schemaVersion;
         AudioEnabled = audioEnabled;
         Folders = folders ?? new FolderConfiguration();
-        if (new Engine().Adapter(this) is IEmulatorConfiguration adapter) adapter.InitializeOptions(this, (Dictionary<string, string>)Options);
+        if (new Engine().SelectedAdapter(this) is IEmulatorConfiguration adapter) adapter.InitializeOptions(this, (Dictionary<string, string>)Options);
         ConfigurationFunctions.Validate(this);
     }
 
@@ -50,6 +50,7 @@ public sealed record MachineConfiguration : IEmulationConfiguration
     public string MachineId => Model.ToString();
     public MachineFamily Family => Model switch
     {
+        MachineModel.Pippin => MachineFamily.Pippin,
         MachineModel.AppleII or MachineModel.AppleIIPlus or MachineModel.AppleIIJPlus
             or MachineModel.AppleIIe or MachineModel.AppleIIeEnhanced => MachineFamily.AppleII,
         _ => MachineFamily.Macintosh
