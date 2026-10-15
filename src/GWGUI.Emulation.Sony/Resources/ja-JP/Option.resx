@@ -150,8 +150,6 @@
   <data name="Emulation.Option.swanstation.swanstation_Controller_EnableRumble.Help"><value>サポートされている入力デバイスでランブル装備のゲームパッドを使用するときにハプティックフィードバックを有効にします。</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller_ShowCrosshair.Label"><value>GunConの目的カーソルを表示</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller_ShowCrosshair.Help"><value>入力デバイスが'Namco GunCon'に設定されている場合、クロスヘアを表示します。</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_Controller1_ForceAnalog.Label"><value>コントローラー 1つの力のアナログモード</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_Controller1_ForceAnalog.Help"><value>アナログモードを常にオンにします。 一部のゲームで問題を引き起こす可能性があります。 このオプションは、アナログモードをサポートするゲームにのみ使用しますが、自動的にそれ自体を有効にしません。 無効にすると、DualShockのアナログモードコンボを押すとアナログモードを切り替えることができます。</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller1_AnalogDPadInDigitalMode.Label"><value>コントローラー1はデジタル モードのDパッドのためのアナログの棒を使用します</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller1_AnalogDPadInDigitalMode.Help"><value>アナログスティックを使用して、デジタルモードのd-padとボタンを制御することができます。</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller1_AxisScale.Label"><value>コントローラー 1つのアナログの軸線スケール</value></data>
@@ -170,7 +168,6 @@
   <data name="Emulation.Option.Sony.Value.Quadratic"><value>クアドラティック</value></data>
   <data name="Emulation.Option.Sony.Value.Cubic"><value>キュービック</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller2_ForceAnalog.Label"><value>コントローラー2力のアナログモード</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_Controller2_ForceAnalog.Help"><value>アナログモードを常にオンにします。 一部のゲームで問題を引き起こす可能性があります。 このオプションは、アナログモードをサポートするゲームにのみ使用しますが、自動的にそれ自体を有効にしません。 無効にすると、DualShockのアナログモードコンボを押すとアナログモードを切り替えることができます。</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller2_AnalogDPadInDigitalMode.Label"><value>コントローラー2はデジタル モードのDパッドのためのアナログの棒を使用します</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller2_AnalogDPadInDigitalMode.Help"><value>アナログスティックを使用して、デジタルモードのd-padとボタンを制御することができます。</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller2_AxisScale.Label"><value>コントローラー2のアナログ軸スケール</value></data>
@@ -186,7 +183,6 @@
   <data name="Emulation.Option.swanstation.swanstation_Controller2_TwistResponse.Label"><value>コントローラー2 NeGconのねじれの応答</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller2_TwistResponse.Help"><value>左のアナログ棒のためのねじれ応答タイプを設定します。 「Quadratic」は小さい動きを作るとき「Linear」より大きい精密を可能にし、現代コントローラーのためにより適していますが、「Cubic」はさらに小さい動きの精密を増加させますが、「exaggerates'より大きい移動を高めます。 レース車輪の周辺機器を使用するとき『Linear』は一般に有用です。</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller3_ForceAnalog.Label"><value>コントローラー3力のアナログモード</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_Controller3_ForceAnalog.Help"><value>アナログモードを常にオンにします。 一部のゲームで問題を引き起こす可能性があります。 このオプションは、アナログモードをサポートするゲームにのみ使用しますが、自動的にそれ自体を有効にしません。 無効にすると、DualShockのアナログモードコンボを押すとアナログモードを切り替えることができます。</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller3_AnalogDPadInDigitalMode.Label"><value>コントローラー3はデジタル モードのDパッドのためのアナログの棒を使用します</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller3_AnalogDPadInDigitalMode.Help"><value>アナログスティックを使用して、デジタルモードのd-padとボタンを制御することができます。</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller3_AxisScale.Label"><value>コントローラー3のアナログ軸スケール</value></data>
@@ -198,7 +194,6 @@
   <data name="Emulation.Option.swanstation.swanstation_Controller3_TwistResponse.Label"><value>コントローラー3 NeGconのねじれの応答</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller3_TwistResponse.Help"><value>左のアナログ棒のためのねじれ応答タイプを設定します。 「Quadratic」は小さい動きを作るとき「Linear」より大きい精密を可能にし、現代コントローラーのためにより適していますが、「Cubic」はさらに小さい動きの精密を増加させますが、「exaggerates'より大きい移動を高めます。 レース車輪の周辺機器を使用するとき『Linear』は一般に有用です。</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller4_ForceAnalog.Label"><value>コントローラー4力のアナログモード</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_Controller4_ForceAnalog.Help"><value>アナログモードを常にオンにします。 一部のゲームで問題を引き起こす可能性があります。 このオプションは、アナログモードをサポートするゲームにのみ使用しますが、自動的にそれ自体を有効にしません。 無効にすると、DualShockのアナログモードコンボを押すとアナログモードを切り替えることができます。</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller4_AnalogDPadInDigitalMode.Label"><value>コントローラー4はデジタル モードのDパッドのためのアナログの棒を使用します</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller4_AnalogDPadInDigitalMode.Help"><value>アナログスティックを使用して、デジタルモードのd-padとボタンを制御することができます。</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller4_AxisScale.Label"><value>コントローラー4のアナログの軸線スケール</value></data>
@@ -210,7 +205,6 @@
   <data name="Emulation.Option.swanstation.swanstation_Controller4_TwistResponse.Label"><value>コントローラー4 NeGconのねじれの応答</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller4_TwistResponse.Help"><value>左のアナログ棒のためのねじれ応答タイプを設定します。 「Quadratic」は小さい動きを作るとき「Linear」より大きい精密を可能にし、現代コントローラーのためにより適していますが、「Cubic」はさらに小さい動きの精密を増加させますが、「exaggerates'より大きい移動を高めます。 レース車輪の周辺機器を使用するとき『Linear』は一般に有用です。</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller5_ForceAnalog.Label"><value>コントローラー5力のアナログモード</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_Controller5_ForceAnalog.Help"><value>アナログモードを常にオンにします。 一部のゲームで問題を引き起こす可能性があります。 このオプションは、アナログモードをサポートするゲームにのみ使用しますが、自動的にそれ自体を有効にしません。 無効にすると、DualShockのアナログモードコンボを押すとアナログモードを切り替えることができます。</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller5_AnalogDPadInDigitalMode.Label"><value>コントローラー5はデジタル モードのDパッドのためのアナログの棒を使用します</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller5_AnalogDPadInDigitalMode.Help"><value>アナログスティックを使用して、デジタルモードのd-padとボタンを制御することができます。</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller5_AxisScale.Label"><value>コントローラー 5つのアナログの軸線スケール</value></data>
@@ -218,7 +212,6 @@
   <data name="Emulation.Option.swanstation.swanstation_Controller5_VibrationBias.Label"><value>コントローラー5振動バイアス</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller5_VibrationBias.Help"><value>振動の強度にオフセットを適用し、より高い値はより小さい振動をより著しくします。</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller6_ForceAnalog.Label"><value>コントローラー6力のアナログモード</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_Controller6_ForceAnalog.Help"><value>アナログモードを常にオンにします。 一部のゲームで問題を引き起こす可能性があります。 このオプションは、アナログモードをサポートするゲームにのみ使用しますが、自動的にそれ自体を有効にしません。 無効にすると、DualShockのアナログモードコンボを押すとアナログモードを切り替えることができます。</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller6_AnalogDPadInDigitalMode.Label"><value>コントローラー6はデジタル モードのDパッドのためのアナログの棒を使用します</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller6_AnalogDPadInDigitalMode.Help"><value>アナログスティックを使用して、デジタルモードのd-padとボタンを制御することができます。</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller6_AxisScale.Label"><value>コントローラー 6つのアナログの軸線スケール</value></data>
@@ -226,7 +219,6 @@
   <data name="Emulation.Option.swanstation.swanstation_Controller6_VibrationBias.Label"><value>コントローラー 6振動バイアス</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller6_VibrationBias.Help"><value>振動の強度にオフセットを適用し、より高い値はより小さい振動をより著しくします。</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller7_ForceAnalog.Label"><value>コントローラー7力のアナログモード</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_Controller7_ForceAnalog.Help"><value>アナログモードを常にオンにします。 一部のゲームで問題を引き起こす可能性があります。 このオプションは、アナログモードをサポートするゲームにのみ使用しますが、自動的にそれ自体を有効にしません。 無効にすると、DualShockのアナログモードコンボを押すとアナログモードを切り替えることができます。</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller7_AnalogDPadInDigitalMode.Label"><value>コントローラー 7 デジタル モードの D-Pad のためのアナログ棒を使用して下さい</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller7_AnalogDPadInDigitalMode.Help"><value>アナログスティックを使用して、デジタルモードのd-padとボタンを制御することができます。</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller7_AxisScale.Label"><value>コントローラー 7のアナログの軸線スケール</value></data>
@@ -234,7 +226,6 @@
   <data name="Emulation.Option.swanstation.swanstation_Controller7_VibrationBias.Label"><value>コントローラー7振動バイアス</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller7_VibrationBias.Help"><value>振動の強度にオフセットを適用し、より高い値はより小さい振動をより著しくします。</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller8_ForceAnalog.Label"><value>コントローラー8力のアナログモード</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_Controller8_ForceAnalog.Help"><value>アナログモードを常にオンにします。 一部のゲームで問題を引き起こす可能性があります。 このオプションは、アナログモードをサポートするゲームにのみ使用しますが、自動的にそれ自体を有効にしません。 無効にすると、DualShockのアナログモードコンボを押すとアナログモードを切り替えることができます。</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller8_AnalogDPadInDigitalMode.Label"><value>コントローラー8はデジタル モードのDパッドのためのアナログの棒を使用します</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller8_AnalogDPadInDigitalMode.Help"><value>アナログスティックを使用して、デジタルモードのd-padとボタンを制御することができます。</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller8_AxisScale.Label"><value>コントローラー8のアナログの軸線スケール</value></data>
@@ -328,13 +319,7 @@
   <data name="Emulation.Option.mednafen_psx.beetle_psx_display_osd.Help"><value>コアによって生成されるOSDメッセージを表示します。</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_calibration.Label"><value>アナログ入力範囲を適応</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_calibration.Help"><value>デバイスがDualShock、アナログコントローラー、Analog Joystick、またはneGconに設定されると、アナログ入力の動的キャリブレーションを有効にします。 最大登録した入力値はリアルタイムで監視され、アナログ座標をエミュレータに渡してスケールするために使用されます。 メガマンレジェンド2などのゲームで、現代のコントローラーよりも大きな価値が期待できます。 最良の結果を得るために、アナログスティックは、毎回のコンテンツが読み込まれるキャリブレーションアルゴリズムをチューニングするのに十分な範囲で回転する必要があります。</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_toggle.Label"><value>DualShock アナログモード トグル</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_toggle.Help"><value>入力デバイスタイプがない場合 DualShock, このオプションは、エミュレート可能 DualShock とりあえず DIGITAL そして、 ANALOG 元のハードウェアのようなモード. 選択ボタンの組み合わせでモードを切り替えることもできます。</value></data>
   <data name="Emulation.Option.Sony.Value.DefaultAnalog"><value>デフォルトAnalog</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_toggle_combo.Label"><value>DualShock アナログモードコンボ</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_toggle_combo.Help"><value>DIGITALとANALOGモードをエミュレートしたDualShockでトグルするために使用されるボタンの組み合わせ。</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_toggle_hold.Label"><value>DualShock アナログモード コンボホールドディレイ</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_toggle_hold.Help"><value>アナログモードコンボボタン用の時間を保持します。</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_enable_multitap_port1.Label"><value>ポート1のマルチタップ</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_enable_multitap_port1.Help"><value>ポート1でマルチタップ機能を有効にします。</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_enable_multitap_port2.Label"><value>ポート2のマルチタップ</value></data>
@@ -364,24 +349,16 @@
   <data name="Emulation.Option.mednafen_psx.beetle_psx_mouse_sensitivity.Help"><value>「マウス」入力デバイスタイプの応答性。</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_negcon_response.Label"><value>neGconのねじれの応答</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_negcon_response.Help"><value>'twist' アクションをエミュレートした 'neGcon' 入力デバイスと組み合わせると、左のアナログスティック応答タイプ。 アナログ棒の変位は、線形、量的または立方的にneGconの回転角度にマッピングされるかもしれません。 「Quadratic」は小さい動きを作るとき「Linear」より大きい精密を可能にします。 「Cubic」はさらに小さな運動精度を増加させますが、「exaggerates」はより大きい動きます。 注意:レースホイール周辺機器の使用時に「リニア」のみ推奨されます。 慣習的なコントローラーはneGcon 'twist'のメカニズムと基本的に異なっている方法でアナログ入力を、線形マッピングが小さい動きをオーバーアスペクトし、罰金制御を損ないます。 ほとんどの場合、「Quadratic」は、実際のハードウェアの最も近い近似を提供します。</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_negcon_deadzone.Label"><value>neGcon ねじれのデッドゾーン</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_negcon_deadzone.Help"><value>'neGcon'入力デバイスのエミュレートの'twist'アクションをシミュレートするとき、左アナログスティックデッドゾーン。 コントローラーの漂流を除去するのに使用される。 Note: ほとんどのneGcon互換タイトルは、'twist'デッドゾーン値を設定するためのゲーム内オプションを提供します。 精度の喪失を避けるため、ゲーム内デッドゾーンは*always*をゼロに設定する必要があります。 必須の調整は、このコアオプションを介して*のみ*が適用されます。 'neGcon Twist Response'が「Quadratic」または「Cubic」に設定されている場合は、これは特に重要です。</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_use_mednafen_memcard0_method.Label"><value>メモリカード方法</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_use_mednafen_memcard0_method.Help"><value>左側のメモリカードスロットに使用されるデータフォーマットを保存します。 Mednafenのスタンドアロンバージョンとの互換性のために「Mednaフェン」が使用できます。 Beetle PSX、Libretro(.srm)およびMednafen(.mcr)で使用された場合は内部的に同じフォーマットを持ち、名前を変更することで互いに変換することができます。</value></data>
   <data name="Emulation.Option.Sony.Value.Libretro"><value>リブレトロ</value></data>
   <data name="Emulation.Option.Sony.Value.Mednafen"><value>メドナフェン</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_enable_memcard1.Label"><value>メモリカードスロット2</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_enable_memcard1.Help"><value>正しいメモリカードスロットで2番目のメモリーカードをエミュレートします。 注意:一部のゲームでは、このオプションが正しい操作のために無効にする必要があります(例えば。 コードネームテンカ)。 注:Memory Cardスロット2はMednafen (.mcr)の保存フォーマットを使用します。</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_shared_memory_cards.Label"><value>共有メモリカード</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_shared_memory_cards.Help"><value>各コンテンツの別々のカードではなく、共有メモリカードを使用します。 注意:'Memory Cardメソッド'が'Libretro'に設定されている場合は、メモリカードスロット2のみの影響を受けます。</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_memcard_left_index.Label"><value>メモリカードスロット1指数</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_memcard_left_index.Help"><value>現在、左スロットに読み込まれたメモリカード。 このオプションは、メモリカードメソッドがMednafenに設定されている場合のみ動作します。</value></data>
   <data name="Emulation.Option.Sony.Value.0Default"><value>0 (デフォルト)</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_memcard_right_index.Label"><value>メモリカードスロット2指数</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_memcard_right_index.Help"><value>現在、右スロットに読み込まれたメモリーカード。 このオプションは、メモリカードスロット2が有効になっている場合にのみ機能します。</value></data>
   <data name="Emulation.Option.Sony.Value.1Default"><value>1 (デフォルト)</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_line_render.Label"><value>ラインツークォードハック</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_line_render.Help"><value>一部のゲーム(例:) Doom、HexenのSoul Blade等)はスクリーンを渡る単一ピクセルの高さの三角形を伸ばすことによって水平なラインを引いて元のハードウェア上のピクセルの列としてrasterizedです。 このハックは、これらの小さな三角形を検知し、必要に応じてクォードに変換します。これにより、ハードウェアのレンダラーとスケールアップされた内部解像度で適切に表示できます。 'Aggressive' は、いくつかのタイトル(例:)に必須です。 ダークフォース、デューク・ヌケム(Duke Nukem)は他にグラフィカルなグリッチを紹介するかもしれません。 unsure なら「デフォルト」で残します。</value></data>
   <data name="Emulation.Option.Sony.Value.Default"><value>デフォルト</value></data>
   <data name="Emulation.Option.Sony.Value.Aggressive"><value>攻撃的</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_widescreen_hack.Label"><value>より広い画面でゲームを変更</value></data>
@@ -403,8 +380,6 @@
   <data name="Emulation.Option.mednafen_psx.beetle_psx_dynarec_op_cycles.Help"><value>CPU の指示ごとのダイナレック料金をサイクルします。 「2」は高速ですが、エミュレートされた CPU はそれに対してペースでゲームに半速表示されます - CD ストリーミングが停止したり、デナレークの下でハングするゲームの「1」を設定します(例:. 寄生虫Eve 2)。 '1' 設定は、充電メモリが 2 つのサイクルと 1 つすべてにアクセスし、実際の CPU に近いです。</value></data>
   <data name="Emulation.Option.Sony.Value.2Default"><value>2 (デフォルト)</value></data>
   <data name="Emulation.Option.Sony.Value.1AccurateFixesParasiteEve2EtcPoint"><value>1 (アキュレーション、フィックスパラサイトイブ2など)</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_dynarec_eventcycles.Label"><value>Dynarec DMA/GPU/MDEC/Timer イベントサイクル</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_dynarec_eventcycles.Help"><value>GPU/DMA/MDEC/Timer Update がチェックされる前に CPU によって実行される最大サイクルは、より高い数がより速くなり、ダイナレックよりもビートルのインタープリターにあまり影響しません。</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_dynarec_spu_samples.Label"><value>Dynarec SPU サンプル</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_dynarec_spu_samples.Help"><value>SPU Updateがチェックされる前に実行する最大SPUサンプル, より高い番号は高速になります, しかし、他の何かといくつかのゲームで健全な不具合を引き起こします 1.</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_dynarec_spgp_opt.Label"><value>Dynarec SP GPがRAMの最適化をヒット</value></data>
@@ -593,12 +568,6 @@
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_display_vram.Help"><value>エミュレートされたコンソールのVRAM全体を視覚化します。 OpenGL と Vulkan のハードウェアレンダラーでのみサポートされます。 注意: これはデバッグ目的のためであり、通常は無効にする必要があります。</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_calibration.Label"><value>アナログ入力範囲を適応</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_calibration.Help"><value>デバイスがDualShock、アナログコントローラー、Analog Joystick、またはneGconに設定されると、アナログ入力の動的キャリブレーションを有効にします。 最大登録した入力値はリアルタイムで監視され、アナログ座標をエミュレータに渡してスケールするために使用されます。 メガマンレジェンド2などのゲームで、現代のコントローラーよりも大きな価値が期待できます。 最良の結果を得るために、アナログスティックは、毎回のコンテンツが読み込まれるキャリブレーションアルゴリズムをチューニングするのに十分な範囲で回転する必要があります。</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_toggle.Label"><value>DualShock アナログモード トグル</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_toggle.Help"><value>入力デバイスタイプがない場合 DualShock, このオプションは、エミュレート可能 DualShock とりあえず DIGITAL そして、 ANALOG 元のハードウェアのようなモード. 選択ボタンの組み合わせでモードを切り替えることもできます。</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_toggle_combo.Label"><value>DualShock アナログモードコンボ</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_toggle_combo.Help"><value>DIGITALとANALOGモードをエミュレートしたDualShockでトグルするために使用されるボタンの組み合わせ。</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_toggle_hold.Label"><value>DualShock アナログモード コンボホールドディレイ</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_toggle_hold.Help"><value>アナログモードコンボボタン用の時間を保持します。</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_enable_multitap_port1.Label"><value>ポート1のマルチタップ</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_enable_multitap_port1.Help"><value>ポート1でマルチタップ機能を有効にします。</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_enable_multitap_port2.Label"><value>ポート2のマルチタップ</value></data>
@@ -615,20 +584,12 @@
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_mouse_sensitivity.Help"><value>「マウス」入力デバイスタイプの応答性。</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_negcon_response.Label"><value>neGconのねじれの応答</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_negcon_response.Help"><value>'twist' アクションをエミュレートした 'neGcon' 入力デバイスと組み合わせると、左のアナログスティック応答タイプ。 アナログ棒の変位は、線形、量的または立方的にneGconの回転角度にマッピングされるかもしれません。 「Quadratic」は小さい動きを作るとき「Linear」より大きい精密を可能にします。 「Cubic」はさらに小さな運動精度を増加させますが、「exaggerates」はより大きい動きます。 注意:レースホイール周辺機器の使用時に「リニア」のみ推奨されます。 慣習的なコントローラーはneGcon 'twist'のメカニズムと基本的に異なっている方法でアナログ入力を、線形マッピングが小さい動きをオーバーアスペクトし、罰金制御を損ないます。 ほとんどの場合、「Quadratic」は、実際のハードウェアの最も近い近似を提供します。</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_negcon_deadzone.Label"><value>neGcon ねじれのデッドゾーン</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_negcon_deadzone.Help"><value>'neGcon'入力デバイスのエミュレートの'twist'アクションをシミュレートするとき、左アナログスティックデッドゾーン。 コントローラーの漂流を除去するのに使用される。 Note: ほとんどのneGcon互換タイトルは、'twist'デッドゾーン値を設定するためのゲーム内オプションを提供します。 精度の喪失を避けるため、ゲーム内デッドゾーンは*always*をゼロに設定する必要があります。 必須の調整は、このコアオプションを介して*のみ*が適用されます。 'neGcon Twist Response'が「Quadratic」または「Cubic」に設定されている場合は、これは特に重要です。</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_use_mednafen_memcard0_method.Label"><value>メモリカード方法</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_use_mednafen_memcard0_method.Help"><value>左側のメモリカードスロットに使用されるデータフォーマットを保存します。 Mednafenのスタンドアロンバージョンとの互換性のために「Mednaフェン」が使用できます。 Beetle PSX、Libretro(.srm)およびMednafen(.mcr)で使用された場合は内部的に同じフォーマットを持ち、名前を変更することで互いに変換することができます。</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_enable_memcard1.Label"><value>メモリカードスロット2</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_enable_memcard1.Help"><value>正しいメモリカードスロットで2番目のメモリーカードをエミュレートします。 注意:一部のゲームでは、このオプションが正しい操作のために無効にする必要があります(例えば。 コードネームテンカ)。 注:Memory Cardスロット2はMednafen (.mcr)の保存フォーマットを使用します。</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_shared_memory_cards.Label"><value>共有メモリカード</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_shared_memory_cards.Help"><value>各コンテンツの別々のカードではなく、共有メモリカードを使用します。 注意:'Memory Cardメソッド'が'Libretro'に設定されている場合は、メモリカードスロット2のみの影響を受けます。</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_memcard_left_index.Label"><value>メモリカードスロット1指数</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_memcard_left_index.Help"><value>現在、左スロットに読み込まれたメモリカード。 このオプションは、メモリカードメソッドがMednafenに設定されている場合のみ動作します。</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_memcard_right_index.Label"><value>メモリカードスロット2指数</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_memcard_right_index.Help"><value>現在、右スロットに読み込まれたメモリーカード。 このオプションは、メモリカードスロット2が有効になっている場合にのみ機能します。</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_line_render.Label"><value>ラインツークォードハック</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_line_render.Help"><value>一部のゲーム(例:) Doom、HexenのSoul Blade等)はスクリーンを渡る単一ピクセルの高さの三角形を伸ばすことによって水平なラインを引いて元のハードウェア上のピクセルの列としてrasterizedです。 このハックは、これらの小さな三角形を検知し、必要に応じてクォードに変換します。これにより、ハードウェアのレンダラーとスケールアップされた内部解像度で適切に表示できます。 'Aggressive' は、いくつかのタイトル(例:)に必須です。 ダークフォース、デューク・ヌケム(Duke Nukem)は他にグラフィカルなグリッチを紹介するかもしれません。 unsure なら「デフォルト」で残します。</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_widescreen_hack.Label"><value>より広い画面でゲームを変更</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_widescreen_hack.Help"><value>レンダー3Dコンテンツは、ワイドスクリーンアスペクト比でエミュレートされたフレームバッファを生成し出力します。 完全な3Dゲームで最高の結果を生み出します。 2D要素は水平に伸ばされ、誤って並べ替えられます。</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_widescreen_hack_aspect_ratio.Label"><value>ワイドスクリーンのアスペクト比</value></data>
@@ -641,8 +602,6 @@
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_dynarec_invalidate.Help"><value>一部のゲームでは「フル」の無効化が必要で、「DMAのみ」が必要です。</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_dynarec_op_cycles.Label"><value>指示ごとの Dynarec サイクル</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_dynarec_op_cycles.Help"><value>CPU の指示ごとのダイナレック料金をサイクルします。 「2」は高速ですが、エミュレートされた CPU はそれに対してペースでゲームに半速表示されます - CD ストリーミングが停止したり、デナレークの下でハングするゲームの「1」を設定します(例:. 寄生虫Eve 2)。 '1' 設定は、充電メモリが 2 つのサイクルと 1 つすべてにアクセスし、実際の CPU に近いです。</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_dynarec_eventcycles.Label"><value>Dynarec DMA/GPU/MDEC/Timer イベントサイクル</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_dynarec_eventcycles.Help"><value>GPU/DMA/MDEC/Timer Update がチェックされる前に CPU によって実行される最大サイクルは、より高い数がより速くなり、ダイナレックよりもビートルのインタープリターにあまり影響しません。</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_dynarec_spu_samples.Label"><value>Dynarec SPU サンプル</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_dynarec_spu_samples.Help"><value>SPU Updateがチェックされる前に実行する最大SPUサンプル, より高い番号は高速になります, しかし、他の何かといくつかのゲームで健全な不具合を引き起こします 1.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_dynarec_spgp_opt.Label"><value>Dynarec SP GPがRAMの最適化をヒット</value></data>
@@ -1297,4 +1256,22 @@
   <data name="Emulation.Option.Sony.Setting.AnalogMode.Label"><value>アナログモードで開始</value></data>
   <data name="Emulation.Option.Sony.Setting.AnalogMode.Help"><value>デジタルではなくアナログモードでコントローラーを起動します。一部のゲーム(リッジレーサーVなど)は、デジタルでパッドを起動し、通常、コントローラーのプレスが必要です。 ANALOG ボタンでスティックを有効化。これを有効にして、スタートからアナログ制御を得ることができます。 コントローラーモードをロックするゲームは影響を受けません。</value></data>
   <data name="Emulation.Option.Sony.Files.CheatsDirectory"><value>ゲームを含むフォルダチートコード</value></data>
+  <data name="Emulation.Option.Sony.Setting.ForceAnalog.Label" xml:space="preserve"><value>コントローラー 1つの力のアナログモード</value></data>
+  <data name="Emulation.Option.Sony.Setting.ForceAnalog.Help" xml:space="preserve"><value>アナログモードを常にオンにします。 一部のゲームで問題を引き起こす可能性があります。 このオプションは、アナログモードをサポートするゲームにのみ使用しますが、自動的にそれ自体を有効にしません。 無効にすると、DualShockのアナログモードコンボを押すとアナログモードを切り替えることができます。</value></data>
+  <data name="Emulation.Option.Sony.Setting.AnalogToggle.Label" xml:space="preserve"><value>DualShock アナログモード トグル</value></data>
+  <data name="Emulation.Option.Sony.Setting.AnalogToggle.Help" xml:space="preserve"><value>入力デバイスタイプがない場合 DualShock, このオプションは、エミュレート可能 DualShock とりあえず DIGITAL そして、 ANALOG 元のハードウェアのようなモード. 選択ボタンの組み合わせでモードを切り替えることもできます。</value></data>
+  <data name="Emulation.Option.Sony.Setting.AnalogToggleCombo.Label" xml:space="preserve"><value>DualShock アナログモードコンボ</value></data>
+  <data name="Emulation.Option.Sony.Setting.AnalogToggleCombo.Help" xml:space="preserve"><value>DIGITALとANALOGモードをエミュレートしたDualShockでトグルするために使用されるボタンの組み合わせ。</value></data>
+  <data name="Emulation.Option.Sony.Setting.AnalogToggleHold.Label" xml:space="preserve"><value>DualShock アナログモード コンボホールドディレイ</value></data>
+  <data name="Emulation.Option.Sony.Setting.AnalogToggleHold.Help" xml:space="preserve"><value>アナログモードコンボボタン用の時間を保持します。</value></data>
+  <data name="Emulation.Option.Sony.Setting.NegconDeadzone.Label" xml:space="preserve"><value>neGcon ねじれのデッドゾーン</value></data>
+  <data name="Emulation.Option.Sony.Setting.NegconDeadzone.Help" xml:space="preserve"><value>'neGcon'入力デバイスのエミュレートの'twist'アクションをシミュレートするとき、左アナログスティックデッドゾーン。 コントローラーの漂流を除去するのに使用される。 Note: ほとんどのneGcon互換タイトルは、'twist'デッドゾーン値を設定するためのゲーム内オプションを提供します。 精度の喪失を避けるため、ゲーム内デッドゾーンは*always*をゼロに設定する必要があります。 必須の調整は、このコアオプションを介して*のみ*が適用されます。 'neGcon Twist Response'が「Quadratic」または「Cubic」に設定されている場合は、これは特に重要です。</value></data>
+  <data name="Emulation.Option.Sony.Setting.SecondMemoryCard.Label" xml:space="preserve"><value>メモリカードスロット2</value></data>
+  <data name="Emulation.Option.Sony.Setting.SecondMemoryCard.Help" xml:space="preserve"><value>正しいメモリカードスロットで2番目のメモリーカードをエミュレートします。 注意:一部のゲームでは、このオプションが正しい操作のために無効にする必要があります(例えば。 コードネームテンカ)。 注:Memory Cardスロット2はMednafen (.mcr)の保存フォーマットを使用します。</value></data>
+  <data name="Emulation.Option.Sony.Setting.SharedMemoryCardMethod.Label" xml:space="preserve"><value>共有メモリカード</value></data>
+  <data name="Emulation.Option.Sony.Setting.SharedMemoryCardMethod.Help" xml:space="preserve"><value>各コンテンツの別々のカードではなく、共有メモリカードを使用します。 注意:'Memory Cardメソッド'が'Libretro'に設定されている場合は、メモリカードスロット2のみの影響を受けます。</value></data>
+  <data name="Emulation.Option.Sony.Setting.LineToQuad.Label" xml:space="preserve"><value>ラインツークォードハック</value></data>
+  <data name="Emulation.Option.Sony.Setting.LineToQuad.Help" xml:space="preserve"><value>一部のゲーム(例:) Doom、HexenのSoul Blade等)はスクリーンを渡る単一ピクセルの高さの三角形を伸ばすことによって水平なラインを引いて元のハードウェア上のピクセルの列としてrasterizedです。 このハックは、これらの小さな三角形を検知し、必要に応じてクォードに変換します。これにより、ハードウェアのレンダラーとスケールアップされた内部解像度で適切に表示できます。 'Aggressive' は、いくつかのタイトル(例:)に必須です。 ダークフォース、デューク・ヌケム(Duke Nukem)は他にグラフィカルなグリッチを紹介するかもしれません。 unsure なら「デフォルト」で残します。</value></data>
+  <data name="Emulation.Option.Sony.Setting.DynarecEventCycles.Label" xml:space="preserve"><value>Dynarec DMA/GPU/MDEC/Timer イベントサイクル</value></data>
+  <data name="Emulation.Option.Sony.Setting.DynarecEventCycles.Help" xml:space="preserve"><value>GPU/DMA/MDEC/Timer Update がチェックされる前に CPU によって実行される最大サイクルは、より高い数がより速くなり、ダイナレックよりもビートルのインタープリターにあまり影響しません。</value></data>
 </root>

@@ -100,15 +100,15 @@ internal static class OptionConstants
     internal const string AnalogCalibrationLabelResource = "Emulation.Option.mednafen_psx.beetle_psx_analog_calibration.Label";
     internal const string AnalogCalibrationHelpResource = "Emulation.Option.mednafen_psx.beetle_psx_analog_calibration.Help";
     internal const string AnalogToggleKey = "beetle_psx_analog_toggle";
-    internal const string AnalogToggleLabelResource = "Emulation.Option.mednafen_psx.beetle_psx_analog_toggle.Label";
-    internal const string AnalogToggleHelpResource = "Emulation.Option.mednafen_psx.beetle_psx_analog_toggle.Help";
+    internal const string AnalogToggleLabelResource = OptionTextResourceConstants.AnalogToggleLabel;
+    internal const string AnalogToggleHelpResource = OptionTextResourceConstants.AnalogToggleHelp;
     internal const string AnalogToggleDisabled = "disabled";
     internal const string AnalogToggleEnabled = "enabled";
     internal const string AnalogToggleEnabledAnalog = "enabled-analog";
     internal static readonly string AnalogToggleDefaultValue = OptionValueFunctions.ToNative(AnalogToggle.Disabled);
     internal const string AnalogToggleComboKey = "beetle_psx_analog_toggle_combo";
-    internal const string AnalogToggleComboLabelResource = "Emulation.Option.mednafen_psx.beetle_psx_analog_toggle_combo.Label";
-    internal const string AnalogToggleComboHelpResource = "Emulation.Option.mednafen_psx.beetle_psx_analog_toggle_combo.Help";
+    internal const string AnalogToggleComboLabelResource = OptionTextResourceConstants.AnalogToggleComboLabel;
+    internal const string AnalogToggleComboHelpResource = OptionTextResourceConstants.AnalogToggleComboHelp;
     internal const string AnalogToggleComboL1PlusL2PlusR1PlusR2PlusStartPlusSelect = "l1+l2+r1+r2+start+select";
     internal const string AnalogToggleComboL1PlusR1PlusSelect = "l1+r1+select";
     internal const string AnalogToggleComboL1PlusR1PlusStart = "l1+r1+start";
@@ -121,8 +121,8 @@ internal static class OptionConstants
     internal const string AnalogToggleComboL3PlusR3 = "l3+r3";
     internal static readonly string AnalogToggleComboDefaultValue = OptionValueFunctions.ToNative(AnalogToggleCombo.L1PlusR1PlusSelect);
     internal const string AnalogToggleHoldKey = "beetle_psx_analog_toggle_hold";
-    internal const string AnalogToggleHoldLabelResource = "Emulation.Option.mednafen_psx.beetle_psx_analog_toggle_hold.Label";
-    internal const string AnalogToggleHoldHelpResource = "Emulation.Option.mednafen_psx.beetle_psx_analog_toggle_hold.Help";
+    internal const string AnalogToggleHoldLabelResource = OptionTextResourceConstants.AnalogToggleHoldLabel;
+    internal const string AnalogToggleHoldHelpResource = OptionTextResourceConstants.AnalogToggleHoldHelp;
     internal static IReadOnlyList<EmulationSettingsNumericRange> AnalogToggleHoldRanges { get; } =
     [
         new(0, 5, 1),
@@ -178,8 +178,8 @@ internal static class OptionConstants
     internal const string NegconResponseCubic = "cubic";
     internal static readonly string NegconResponseDefaultValue = OptionValueFunctions.ToNative(AnalogResponseCurve.Linear);
     internal const string NegconDeadzoneKey = "beetle_psx_negcon_deadzone";
-    internal const string NegconDeadzoneLabelResource = "Emulation.Option.mednafen_psx.beetle_psx_negcon_deadzone.Label";
-    internal const string NegconDeadzoneHelpResource = "Emulation.Option.mednafen_psx.beetle_psx_negcon_deadzone.Help";
+    internal const string NegconDeadzoneLabelResource = OptionTextResourceConstants.NegconDeadzoneLabel;
+    internal const string NegconDeadzoneHelpResource = OptionTextResourceConstants.NegconDeadzoneHelp;
     internal static EmulationSettingsNumericRange NegconDeadzoneRange { get; } = new(0, 30, 5, OptionNumericConstants.PercentageSuffix);
     internal const string NegconDeadzoneDefaultValue = "0%";
     internal const string UseMednafenMemcard0MethodKey = "beetle_psx_use_mednafen_memcard0_method";
@@ -189,11 +189,11 @@ internal static class OptionConstants
     internal const string UseMednafenMemcard0MethodMednafen = "mednafen";
     internal static readonly string UseMednafenMemcard0MethodDefaultValue = OptionValueFunctions.ToNative(UseMednafenMemcard0Method.Libretro);
     internal const string EnableMemcard1Key = "beetle_psx_enable_memcard1";
-    internal const string EnableMemcard1LabelResource = "Emulation.Option.mednafen_psx.beetle_psx_enable_memcard1.Label";
-    internal const string EnableMemcard1HelpResource = "Emulation.Option.mednafen_psx.beetle_psx_enable_memcard1.Help";
+    internal const string EnableMemcard1LabelResource = OptionTextResourceConstants.SecondMemoryCardLabel;
+    internal const string EnableMemcard1HelpResource = OptionTextResourceConstants.SecondMemoryCardHelp;
     internal const string SharedMemoryCardsKey = "beetle_psx_shared_memory_cards";
-    internal const string SharedMemoryCardsLabelResource = "Emulation.Option.mednafen_psx.beetle_psx_shared_memory_cards.Label";
-    internal const string SharedMemoryCardsHelpResource = "Emulation.Option.mednafen_psx.beetle_psx_shared_memory_cards.Help";
+    internal const string SharedMemoryCardsLabelResource = OptionTextResourceConstants.SharedMemoryCardMethodLabel;
+    internal const string SharedMemoryCardsHelpResource = OptionTextResourceConstants.SharedMemoryCardMethodHelp;
     internal const string MemcardLeftIndexKey = "beetle_psx_memcard_left_index";
     internal const string MemcardLeftIndexLabelResource = "Emulation.Option.mednafen_psx.beetle_psx_memcard_left_index.Label";
     internal const string MemcardLeftIndexHelpResource = "Emulation.Option.mednafen_psx.beetle_psx_memcard_left_index.Help";
@@ -204,8 +204,8 @@ internal static class OptionConstants
     internal const string MemcardRightIndexHelpResource = "Emulation.Option.mednafen_psx.beetle_psx_memcard_right_index.Help";
     internal const string MemcardRightIndexDefaultValue = "1";
     internal const string LineRenderKey = "beetle_psx_line_render";
-    internal const string LineRenderLabelResource = "Emulation.Option.mednafen_psx.beetle_psx_line_render.Label";
-    internal const string LineRenderHelpResource = "Emulation.Option.mednafen_psx.beetle_psx_line_render.Help";
+    internal const string LineRenderLabelResource = OptionTextResourceConstants.LineToQuadLabel;
+    internal const string LineRenderHelpResource = OptionTextResourceConstants.LineToQuadHelp;
     internal const string LineRenderDefault = "default";
     internal const string LineRenderAggressive = "aggressive";
     internal const string LineRenderDisabled = "disabled";
@@ -245,8 +245,8 @@ internal static class OptionConstants
     internal const string DynarecOpCyclesHelpResource = "Emulation.Option.mednafen_psx.beetle_psx_dynarec_op_cycles.Help";
     internal static readonly string DynarecOpCyclesDefaultValue = OptionValueFunctions.ToNative(DynarecOpCycles._2);
     internal const string DynarecEventcyclesKey = "beetle_psx_dynarec_eventcycles";
-    internal const string DynarecEventcyclesLabelResource = "Emulation.Option.mednafen_psx.beetle_psx_dynarec_eventcycles.Label";
-    internal const string DynarecEventcyclesHelpResource = "Emulation.Option.mednafen_psx.beetle_psx_dynarec_eventcycles.Help";
+    internal const string DynarecEventcyclesLabelResource = OptionTextResourceConstants.DynarecEventCyclesLabel;
+    internal const string DynarecEventcyclesHelpResource = OptionTextResourceConstants.DynarecEventCyclesHelp;
     internal static EmulationSettingsNumericRange DynarecEventcyclesRange { get; } = new(128, 2048, 128);
     internal const string DynarecEventcyclesDefaultValue = "128";
     internal const string DynarecSpuSamplesKey = "beetle_psx_dynarec_spu_samples";

@@ -150,8 +150,6 @@
   <data name="Emulation.Option.swanstation.swanstation_Controller_EnableRumble.Help"><value>يمكن الحصول على تغذية مرتدة عندما تستخدم لوحة لعبة مجهزة بجهاز مدخلات مدعوم.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller_ShowCrosshair.Label"><value>شوّفْ الدافعَ إلى GunCon</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller_ShowCrosshair.Help"><value>اظهروا مفترقاً عندما يتم تصميم جهاز الإدخال لـ "نامكو GunCon"</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_Controller1_ForceAnalog.Label"><value>المراقب المالي ١ - طريقة تحليل القوة</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_Controller1_ForceAnalog.Help"><value>أسلوب القوات المشابه دائماً قد يسبب مشاكل مع بعض الألعاب. ولا يستخدم هذا الخيار إلا للألعاب التي تدعم أسلوب التناظر، ولكنها لا تمكنه تلقائيا من ذلك. عندما يكون معطل، يُمكن أن تهتز طريقة التناظر عن طريق الضغط والاحتفاظ DualShock طريقة التدوير.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller1_AnalogDPadInDigitalMode.Label"><value>المراقب المالي 1 - استخدام عصا الأنالوك لـ D-Pad في النموذج الرقمي</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller1_AnalogDPadInDigitalMode.Help"><value>يسمح لك باستخدام العصي التناظرية للسيطرة على الدبابات في النظام الرقمي، وكذلك الأزرار.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller1_AxisScale.Label"><value>1 Analog Axis Scale</value></data>
@@ -170,7 +168,6 @@
   <data name="Emulation.Option.Sony.Value.Quadratic"><value>Quadratic</value></data>
   <data name="Emulation.Option.Sony.Value.Cubic"><value>Cubic</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller2_ForceAnalog.Label"><value>المراقب المالي ٢ - طريقة تحليل القوة</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_Controller2_ForceAnalog.Help"><value>أسلوب القوات المشابه دائماً قد يسبب مشاكل مع بعض الألعاب. ولا يستخدم هذا الخيار إلا للألعاب التي تدعم أسلوب التناظر، ولكنها لا تمكنه تلقائيا من ذلك. عندما يكون معطل، يُمكن أن تهتز طريقة التناظر عن طريق الضغط والاحتفاظ DualShock طريقة التدوير.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller2_AnalogDPadInDigitalMode.Label"><value>المراقب المالي 2 - استخدام عصا الأنالوك لـ D-Pad في النموذج الرقمي</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller2_AnalogDPadInDigitalMode.Help"><value>يسمح لك باستخدام العصي التناظرية للسيطرة على الدبابات في النظام الرقمي، وكذلك الأزرار.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller2_AxisScale.Label"><value>المراقب المالي</value></data>
@@ -186,7 +183,6 @@
   <data name="Emulation.Option.swanstation.swanstation_Controller2_TwistResponse.Label"><value>المراقب المالي NeGcon 2</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller2_TwistResponse.Help"><value>(الكودراتيك) يسمح بدقّة أكبر من "لينار" عندما يقوم بعمل حركات صغيرة و أكثر ملاءمة لأجهزة التحكم الحديثة</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller3_ForceAnalog.Label"><value>المراقب المالي 3 - طريقة تحليل القوة</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_Controller3_ForceAnalog.Help"><value>أسلوب القوات المشابه دائماً قد يسبب مشاكل مع بعض الألعاب. ولا يستخدم هذا الخيار إلا للألعاب التي تدعم أسلوب التناظر، ولكنها لا تمكنه تلقائيا من ذلك. عندما يكون معطل، يُمكن أن تهتز طريقة التناظر عن طريق الضغط والاحتفاظ DualShock طريقة التدوير.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller3_AnalogDPadInDigitalMode.Label"><value>المراقب المالي 3 - استخدام عصا الأنالوك لـ D-Pad في النموذج الرقمي</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller3_AnalogDPadInDigitalMode.Help"><value>يسمح لك باستخدام العصي التناظرية للسيطرة على الدبابات في النظام الرقمي، وكذلك الأزرار.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller3_AxisScale.Label"><value>المراقب المالي 3 محور أنالوغ</value></data>
@@ -198,7 +194,6 @@
   <data name="Emulation.Option.swanstation.swanstation_Controller3_TwistResponse.Label"><value>المراقب المالي NeGcon 3</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller3_TwistResponse.Help"><value>(الكودراتيك) يسمح بدقّة أكبر من "لينار" عندما يقوم بعمل حركات صغيرة و أكثر ملاءمة لأجهزة التحكم الحديثة</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller4_ForceAnalog.Label"><value>المراقب المالي 4 - طريقة تحليل القوة</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_Controller4_ForceAnalog.Help"><value>أسلوب القوات المشابه دائماً قد يسبب مشاكل مع بعض الألعاب. ولا يستخدم هذا الخيار إلا للألعاب التي تدعم أسلوب التناظر، ولكنها لا تمكنه تلقائيا من ذلك. عندما يكون معطل، يُمكن أن تهتز طريقة التناظر عن طريق الضغط والاحتفاظ DualShock طريقة التدوير.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller4_AnalogDPadInDigitalMode.Label"><value>المراقب المالي 4 - استخدام عصا الأنالوك لـ D-Pad في النموذج الرقمي</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller4_AnalogDPadInDigitalMode.Help"><value>يسمح لك باستخدام العصي التناظرية للسيطرة على الدبابات في النظام الرقمي، وكذلك الأزرار.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller4_AxisScale.Label"><value>المراقب المالي</value></data>
@@ -210,7 +205,6 @@
   <data name="Emulation.Option.swanstation.swanstation_Controller4_TwistResponse.Label"><value>المراقب المالي NeGcon 4</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller4_TwistResponse.Help"><value>(الكودراتيك) يسمح بدقّة أكبر من "لينار" عندما يقوم بعمل حركات صغيرة و أكثر ملاءمة لأجهزة التحكم الحديثة</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller5_ForceAnalog.Label"><value>المراقب المالي 5 - طريقة تحليل القوة</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_Controller5_ForceAnalog.Help"><value>أسلوب القوات المشابه دائماً قد يسبب مشاكل مع بعض الألعاب. ولا يستخدم هذا الخيار إلا للألعاب التي تدعم أسلوب التناظر، ولكنها لا تمكنه تلقائيا من ذلك. عندما يكون معطل، يُمكن أن تهتز طريقة التناظر عن طريق الضغط والاحتفاظ DualShock طريقة التدوير.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller5_AnalogDPadInDigitalMode.Label"><value>المراقب المالي 5 - استخدام عصا الأنالوك لـ D-Pad في النموذج الرقمي</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller5_AnalogDPadInDigitalMode.Help"><value>يسمح لك باستخدام العصي التناظرية للسيطرة على الدبابات في النظام الرقمي، وكذلك الأزرار.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller5_AxisScale.Label"><value>المراقب المالي</value></data>
@@ -218,7 +212,6 @@
   <data name="Emulation.Option.swanstation.swanstation_Controller5_VibrationBias.Label"><value>المراقب المالي 5</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller5_VibrationBias.Help"><value>وتعتمد قيماً أعلى تعوض عن الكثافة الهشّة، مما يجعل اليقظة الأصغر أكثر وضوحاً.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller6_ForceAnalog.Label"><value>المراقب المالي 6 - طريقة تحليل القوة</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_Controller6_ForceAnalog.Help"><value>أسلوب القوات المشابه دائماً قد يسبب مشاكل مع بعض الألعاب. ولا يستخدم هذا الخيار إلا للألعاب التي تدعم أسلوب التناظر، ولكنها لا تمكنه تلقائيا من ذلك. عندما يكون معطل، يُمكن أن تهتز طريقة التناظر عن طريق الضغط والاحتفاظ DualShock طريقة التدوير.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller6_AnalogDPadInDigitalMode.Label"><value>المراقب المالي 6 - استخدام عصا الأنالوك لـ D-Pad في النموذج الرقمي</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller6_AnalogDPadInDigitalMode.Help"><value>يسمح لك باستخدام العصي التناظرية للسيطرة على الدبابات في النظام الرقمي، وكذلك الأزرار.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller6_AxisScale.Label"><value>المراقب المالي 6</value></data>
@@ -226,7 +219,6 @@
   <data name="Emulation.Option.swanstation.swanstation_Controller6_VibrationBias.Label"><value>المراقب المالي 6</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller6_VibrationBias.Help"><value>وتعتمد قيماً أعلى تعوض عن الكثافة الهشّة، مما يجعل اليقظة الأصغر أكثر وضوحاً.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller7_ForceAnalog.Label"><value>المراقب المالي 7</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_Controller7_ForceAnalog.Help"><value>أسلوب القوات المشابه دائماً قد يسبب مشاكل مع بعض الألعاب. ولا يستخدم هذا الخيار إلا للألعاب التي تدعم أسلوب التناظر، ولكنها لا تمكنه تلقائيا من ذلك. عندما يكون معطل، يُمكن أن تهتز طريقة التناظر عن طريق الضغط والاحتفاظ DualShock طريقة التدوير.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller7_AnalogDPadInDigitalMode.Label"><value>المراقب المالي 7 - استخدام عصا الأنالوك لـ D-Pad في النموذج الرقمي</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller7_AnalogDPadInDigitalMode.Help"><value>يسمح لك باستخدام العصي التناظرية للسيطرة على الدبابات في النظام الرقمي، وكذلك الأزرار.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller7_AxisScale.Label"><value>المراقب المالي 7</value></data>
@@ -234,7 +226,6 @@
   <data name="Emulation.Option.swanstation.swanstation_Controller7_VibrationBias.Label"><value>المراقب المالي 7</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller7_VibrationBias.Help"><value>وتعتمد قيماً أعلى تعوض عن الكثافة الهشّة، مما يجعل اليقظة الأصغر أكثر وضوحاً.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller8_ForceAnalog.Label"><value>المراقب المالي 8</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_Controller8_ForceAnalog.Help"><value>أسلوب القوات المشابه دائماً قد يسبب مشاكل مع بعض الألعاب. ولا يستخدم هذا الخيار إلا للألعاب التي تدعم أسلوب التناظر، ولكنها لا تمكنه تلقائيا من ذلك. عندما يكون معطل، يُمكن أن تهتز طريقة التناظر عن طريق الضغط والاحتفاظ DualShock طريقة التدوير.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller8_AnalogDPadInDigitalMode.Label"><value>المراقِب المالي 8 يَستعملُ عصي الأنالوج ل D-Pad في النموذج الرقمي</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller8_AnalogDPadInDigitalMode.Help"><value>يسمح لك باستخدام العصي التناظرية للسيطرة على الدبابات في النظام الرقمي، وكذلك الأزرار.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller8_AxisScale.Label"><value>المراقب المالي 8</value></data>
@@ -328,13 +319,7 @@
   <data name="Emulation.Option.mednafen_psx.beetle_psx_display_osd.Help"><value>اعرض رسائل OSD التي تولدت عن النواة.</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_calibration.Label"><value>نطاق المدخلات المشابهة المعتمدة</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_calibration.Help"><value>التمكين من إجراء معايرة دينامية للمدخلات اللاهوتية عندما يكون الجهاز جاهزاً DualShock, متحكم بالآداب، حشرة الفرح الناطق أو neGcon. وتُرصد في الوقت الحقيقي قيم المدخلات القصوى المسجلة وتستخدم لقياس الإحداثيات المشابهة التي تُنقل إلى الناشر. ينبغي استخدام ذلك في ألعاب من قبيل أسطورة &amp;quot; ميغا مان &amp;apos; ٢ التي تتوقع قيما أكبر مما يوفره المتحكمون الحديثون. من أجل تحقيق أفضل النتائج، ينبغي تناوب عصا التناظر على نحو كامل لضبط خوارزمية المعايرة في كل مرة يتم فيها تحميل المحتوى.</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_toggle.Label"><value>DualShock Analog Mode Toggle</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_toggle.Help"><value>وعندما يكون نوع جهاز المدخلات DualShock، يسمح هذا الخيار بأن يُنظَّم DualShock المحتوية بين DIGITAL وANALOG أسلوب مثل المعدات الأصلية. ويمكن أيضاً أن يُنظَّف الأسلوب باستخدام مزيج الزر المختار.</value></data>
   <data name="Emulation.Option.Sony.Value.DefaultAnalog"><value>Default-Analog</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_toggle_combo.Label"><value>DualShock Analog Mode Combo</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_toggle_combo.Help"><value>مجموعة الأزرار المستخدمة للتبديل بين الوضع DIGITAL والوضع ANALOG في وحدة DualShock المحاكاة.</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_toggle_hold.Label"><value>DualShock تمهّل التأخّر</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_toggle_hold.Help"><value>إحتفظ بوقتك لتجميع الأزرار المشابهة</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_enable_multitap_port1.Label"><value>حزمة متعددة في الميناء 1</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_enable_multitap_port1.Help"><value>Enable multitap functionity on port 1.</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_enable_multitap_port2.Label"><value>حزمة متعددة في الميناء 2</value></data>
@@ -364,24 +349,16 @@
   <data name="Emulation.Option.mednafen_psx.beetle_psx_mouse_sensitivity.Help"><value>ردة فعل من نوع جهاز الدفع</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_negcon_response.Label"><value>neGcon Twist Response</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_negcon_response.Help"><value>من النوع اليساري لإستجابة العصي عند تحفيز "العمل المتصفح" من أجهزة مدخل "neGcon التشريد بالعصي التناظرية قد يتم رسمه إلى neGcon تناوباً سواء بشكل خطي أو رباعي أو متعمد ملاحظة: "اللينار" يوصى به فقط عندما يستخدم العجلات المتحركة. المتحكمون التقليديون ينفذون مدخلاً مُعدياً بطريقة مختلفة بشكل أساسي عن آلية الـ neGcon، مثل رسم خرائط خطيّة فوق الأوعية الصغيرة التي تعطل التحكم بالغرامات. في معظم الحالات، "الكوادراتيك" يوفر أقرب تقدير للمعدات الحقيقية.</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_negcon_deadzone.Label"><value>neGcon Twist deadzone</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_negcon_deadzone.Help"><value>الشعار اليساري يَلْصقُ مميتاً عندما حَفّزَ عملِ ' تويتر' مِنْ أجهزة مدخلات ' neGcon. تستخدم للقضاء على الانجراف المتحكم. ملاحظه: معظم الألقاب الـ neGcon- المتوافقة توفر خيارات في اللعبة لتحديد قيمة "الموتى" وتجنبا لفقدان الدقة، ينبغي أن تكون المنطقة المميتة داخل اللعبة *دائماً* يجب أن تكون صفرا. أي تعديلات مطلوبة ينبغي أن تُجرى *فقط* يُطبَّق عبر هذا الخيار الأساسي. هذا مهم جداً عندما يكون رد التصفير لعام neGcon جاهزاً لـ "كودراتيك" أو "كابيك".</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_use_mednafen_memcard0_method.Label"><value>طريقة الذاكرة</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_use_mednafen_memcard0_method.Help"><value>"إحتفظي بنسخة البيانات المستخدمة لبطاقة الذاكرة الأيسر" "ميدنافين) قد يستخدم للتوافق مع النسخة الوحيدة من (ميدنافن). عندما تُستخدم Beetle PSX, Libretro (.srm) وميدنافين (.mcr) الإنقاذ له أشكال متطابقة داخلياً ويمكن تحويلها بين بعضها البعض عن طريق إعادة تسميتها.</value></data>
   <data name="Emulation.Option.Sony.Value.Libretro"><value>ليبرترو</value></data>
   <data name="Emulation.Option.Sony.Value.Mednafen"><value>ميدنافين</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_enable_memcard1.Label"><value>Memory Card Slot 2</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_enable_memcard1.Help"><value>امنحي بطاقة ذاكرة ثانية في فتحة البطاقة اليمنى ملاحظة: تتطلب بعض المباريات أن يكون هذا الخيار معوقاً من أجل التشغيل الصحيح (مثلاً). (الاسم الرمزي (تينكا Note: Memory Card Slot 2 uses the Mednafen (.mcr) save format.</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_shared_memory_cards.Label"><value>البطاقات التذكارية المشتركة</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_shared_memory_cards.Help"><value>استخدام بطاقات الذاكرة المشتركة بدلا من البطاقات المنفصلة لكل محتوى. ملاحظة: إذا كان 'Memory Card طريقة مصممة ل 'ليبريترو'، فقط فتحة بطاقة الذاكرة 2 سوف تتأثر.</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_memcard_left_index.Label"><value>Memory Card Slot</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_memcard_left_index.Help"><value>بطاقة الذاكرة محملة حالياً في الحي الأيسر ولن ينجح هذا الخيار إلا إذا تم تحديد طريقة بطاقات الذاكرة في ميدنافين.</value></data>
   <data name="Emulation.Option.Sony.Value.0Default"><value>صفر (Default)</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_memcard_right_index.Label"><value>سجل لبطاقات الذاكرة 2</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_memcard_right_index.Help"><value>بطاقة الذاكرة محملة حاليا في المكان الصحيح. ولن ينجح هذا الخيار إلا إذا مُنِعَت الميمورية Slot 2.</value></data>
   <data name="Emulation.Option.Sony.Value.1Default"><value>1 (Default)</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_line_render.Label"><value>خط إلى كواد هاك</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_line_render.Help"><value>بعض الألعاب (مثلاً) Doom, Hexen, Soul Blade, etc.) يرسم خطوطاً أفقية بتمديد المثلثات ذات الفخذ الواحد عبر الشاشة، التي تُستَعف كصف من البيكسلز على الأجهزة الأصلية. هذا الإختراق يكتشف هذه المثلثات الصغيرة ويحولها إلى أربعة أضعاف كما هو مطلوب، مما يسمح لها أن تظهر بشكل سليم على صانعي الأجهزة وفي قرارات داخلية متطورة. القوات المظلمة، دوك نوكوم ولكن يمكن أن تُقدّم ملامح بيانية. ارحلي في "ديفولت" إذا لم يكن هناك مانع.</value></data>
   <data name="Emulation.Option.Sony.Value.Default"><value>التقصير</value></data>
   <data name="Emulation.Option.Sony.Value.Aggressive"><value>المعتدي</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_widescreen_hack.Label"><value>تعديل اللعبة لشاشة أوسع</value></data>
@@ -403,8 +380,6 @@
   <data name="Emulation.Option.mednafen_psx.beetle_psx_dynarec_op_cycles.Help"><value>(سيكل) تُهم (دينارك) لكل شخص CPU التعليمات الثانية أسرع، لكن المحاكاة CPU يبدو أن نصف السرعة للألعاب التي تسرع نفسها ضدها CD كواشا أو شنق تحت الدير (مثلاً). عشية الطفيليات 2. الـ1 تُوجّه رسوم الذاكرة إلى دورتين و كل شيء آخر، قرب CPU الحقيقي.</value></data>
   <data name="Emulation.Option.Sony.Value.2Default"><value>2 (Default)</value></data>
   <data name="Emulation.Option.Sony.Value.1AccurateFixesParasiteEve2EtcPoint"><value>1 (دقيقة، حواء طفيلي من طراز Fixes Parasite Eve 2 وما إلى ذلك)</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_dynarec_eventcycles.Label"><value>Dynarec DMA/GPU/MDEC/مباريات الأحداث الزمنية</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_dynarec_eventcycles.Help"><value>(ماكس) CPU قبل GPU/DMA/MDEC/دقّقَ تحديث التوقيت، عدد أعلى سَيصْبَحُ أسرعَ، عِنْدَهُ تأثير أقل بكثير على مترجم اللحومِ من ديانريك.</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_dynarec_spu_samples.Label"><value>عينات Dynarec SPU</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_dynarec_spu_samples.Help"><value>(ماكس SPU) عينة للهرب قبل أن يتم فحص التحديث رقمه SPU، سيكون الرقم الأعلى أسرع، لكن سيسبب جروحاً صوتية في بعض الألعاب مع أي شيء آخر غير 1</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_dynarec_spgp_opt.Label"><value>Dynarec SP GP اضرب RAM تحقيق الاستخدام الأمثل</value></data>
@@ -592,12 +567,6 @@
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_display_vram.Help"><value>تصوّر كلّ المؤامرة الـ VRAM. فقط مدعمة من قِبل المفترقين و Vulkan صانعو البرمجيات الصلبة. هذا لأغراض التشويه، وينبغي عادة أن يكون معوقا.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_calibration.Label"><value>نطاق المدخلات المشابهة المعتمدة</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_calibration.Help"><value>التمكين من إجراء معايرة دينامية للمدخلات اللاهوتية عندما يكون الجهاز جاهزاً DualShock, متحكم بالآداب، حشرة الفرح الناطق أو neGcon. وتُرصد في الوقت الحقيقي قيم المدخلات القصوى المسجلة وتستخدم لقياس الإحداثيات المشابهة التي تُنقل إلى الناشر. ينبغي استخدام ذلك في ألعاب من قبيل أسطورة &amp;quot; ميغا مان &amp;apos; ٢ التي تتوقع قيما أكبر مما يوفره المتحكمون الحديثون. من أجل تحقيق أفضل النتائج، ينبغي تناوب عصا التناظر على نحو كامل لضبط خوارزمية المعايرة في كل مرة يتم فيها تحميل المحتوى.</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_toggle.Label"><value>DualShock Analog Mode Toggle</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_toggle.Help"><value>وعندما يكون نوع جهاز المدخلات DualShock، يسمح هذا الخيار بأن يُنظَّم DualShock المحتوية بين DIGITAL وANALOG أسلوب مثل المعدات الأصلية. ويمكن أيضاً أن يُنظَّف الأسلوب باستخدام مزيج الزر المختار.</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_toggle_combo.Label"><value>DualShock Analog Mode Combo</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_toggle_combo.Help"><value>مجموعة الأزرار المستخدمة للتبديل بين الوضع DIGITAL والوضع ANALOG في وحدة DualShock المحاكاة.</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_toggle_hold.Label"><value>DualShock تمهّل التأخّر</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_toggle_hold.Help"><value>إحتفظ بوقتك لتجميع الأزرار المشابهة</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_enable_multitap_port1.Label"><value>حزمة متعددة في الميناء 1</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_enable_multitap_port1.Help"><value>Enable multitap functionity on port 1.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_enable_multitap_port2.Label"><value>حزمة متعددة في الميناء 2</value></data>
@@ -614,20 +583,12 @@
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_mouse_sensitivity.Help"><value>ردة فعل من نوع جهاز الدفع</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_negcon_response.Label"><value>neGcon Twist Response</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_negcon_response.Help"><value>من النوع اليساري لإستجابة العصي عند تحفيز "العمل المتصفح" من أجهزة مدخل "neGcon التشريد بالعصي التناظرية قد يتم رسمه إلى neGcon تناوباً سواء بشكل خطي أو رباعي أو متعمد ملاحظة: "اللينار" يوصى به فقط عندما يستخدم العجلات المتحركة. المتحكمون التقليديون ينفذون مدخلاً مُعدياً بطريقة مختلفة بشكل أساسي عن آلية الـ neGcon، مثل رسم خرائط خطيّة فوق الأوعية الصغيرة التي تعطل التحكم بالغرامات. في معظم الحالات، "الكوادراتيك" يوفر أقرب تقدير للمعدات الحقيقية.</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_negcon_deadzone.Label"><value>neGcon Twist deadzone</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_negcon_deadzone.Help"><value>الشعار اليساري يَلْصقُ مميتاً عندما حَفّزَ عملِ ' تويتر' مِنْ أجهزة مدخلات ' neGcon. تستخدم للقضاء على الانجراف المتحكم. ملاحظه: معظم الألقاب الـ neGcon- المتوافقة توفر خيارات في اللعبة لتحديد قيمة "الموتى" وتجنبا لفقدان الدقة، ينبغي أن تكون المنطقة المميتة داخل اللعبة *دائماً* يجب أن تكون صفرا. أي تعديلات مطلوبة ينبغي أن تُجرى *فقط* يُطبَّق عبر هذا الخيار الأساسي. هذا مهم جداً عندما يكون رد التصفير لعام neGcon جاهزاً لـ "كودراتيك" أو "كابيك".</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_use_mednafen_memcard0_method.Label"><value>طريقة الذاكرة</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_use_mednafen_memcard0_method.Help"><value>"إحتفظي بنسخة البيانات المستخدمة لبطاقة الذاكرة الأيسر" "ميدنافين) قد يستخدم للتوافق مع النسخة الوحيدة من (ميدنافن). عندما تُستخدم Beetle PSX, Libretro (.srm) وميدنافين (.mcr) الإنقاذ له أشكال متطابقة داخلياً ويمكن تحويلها بين بعضها البعض عن طريق إعادة تسميتها.</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_enable_memcard1.Label"><value>Memory Card Slot 2</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_enable_memcard1.Help"><value>امنحي بطاقة ذاكرة ثانية في فتحة البطاقة اليمنى ملاحظة: تتطلب بعض المباريات أن يكون هذا الخيار معوقاً من أجل التشغيل الصحيح (مثلاً). (الاسم الرمزي (تينكا Note: Memory Card Slot 2 uses the Mednafen (.mcr) save format.</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_shared_memory_cards.Label"><value>البطاقات التذكارية المشتركة</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_shared_memory_cards.Help"><value>استخدام بطاقات الذاكرة المشتركة بدلا من البطاقات المنفصلة لكل محتوى. ملاحظة: إذا كان 'Memory Card طريقة مصممة ل 'ليبريترو'، فقط فتحة بطاقة الذاكرة 2 سوف تتأثر.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_memcard_left_index.Label"><value>Memory Card Slot</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_memcard_left_index.Help"><value>بطاقة الذاكرة محملة حالياً في الحي الأيسر ولن ينجح هذا الخيار إلا إذا تم تحديد طريقة بطاقات الذاكرة في ميدنافين.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_memcard_right_index.Label"><value>سجل لبطاقات الذاكرة 2</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_memcard_right_index.Help"><value>بطاقة الذاكرة محملة حاليا في المكان الصحيح. ولن ينجح هذا الخيار إلا إذا مُنِعَت الميمورية Slot 2.</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_line_render.Label"><value>خط إلى كواد هاك</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_line_render.Help"><value>بعض الألعاب (مثلاً) Doom, Hexen, Soul Blade, etc.) يرسم خطوطاً أفقية بتمديد المثلثات ذات الفخذ الواحد عبر الشاشة، التي تُستَعف كصف من البيكسلز على الأجهزة الأصلية. هذا الإختراق يكتشف هذه المثلثات الصغيرة ويحولها إلى أربعة أضعاف كما هو مطلوب، مما يسمح لها أن تظهر بشكل سليم على صانعي الأجهزة وفي قرارات داخلية متطورة. القوات المظلمة، دوك نوكوم ولكن يمكن أن تُقدّم ملامح بيانية. ارحلي في "ديفولت" إذا لم يكن هناك مانع.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_widescreen_hack.Label"><value>تعديل اللعبة لشاشة أوسع</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_widescreen_hack.Help"><value>محتوى الرندس 3D بشكل مفتقر إلى الشهية، ويُنتج المكبّل المضغوط في نسبة واسعة النطاق من الجانب. تنتج أفضل النتائج بألعاب ثلاثية الأبعاد بالكامل، وستمتد عناصر الـ2D أفقياً ويمكن أن تكون مشوشة.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_widescreen_hack_aspect_ratio.Label"><value>النسبة المتوقعة للشاشة الأوسع نطاقا</value></data>
@@ -640,8 +601,6 @@
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_dynarec_invalidate.Help"><value>بعض المباريات تتطلب "البطلان، وبعضها يتطلب 'DMA فقط'.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_dynarec_op_cycles.Label"><value>Dynarec دورات دراسية لكل تعليم</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_dynarec_op_cycles.Help"><value>(سيكل) تُهم (دينارك) لكل شخص CPU التعليمات الثانية أسرع، لكن المحاكاة CPU يبدو أن نصف السرعة للألعاب التي تسرع نفسها ضدها CD كواشا أو شنق تحت الدير (مثلاً). عشية الطفيليات 2. الـ1 تُوجّه رسوم الذاكرة إلى دورتين و كل شيء آخر، قرب CPU الحقيقي.</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_dynarec_eventcycles.Label"><value>Dynarec DMA/GPU/MDEC/مباريات الأحداث الزمنية</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_dynarec_eventcycles.Help"><value>(ماكس) CPU قبل GPU/DMA/MDEC/دقّقَ تحديث التوقيت، عدد أعلى سَيصْبَحُ أسرعَ، عِنْدَهُ تأثير أقل بكثير على مترجم اللحومِ من ديانريك.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_dynarec_spu_samples.Label"><value>عينات Dynarec SPU</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_dynarec_spu_samples.Help"><value>(ماكس SPU) عينة للهرب قبل أن يتم فحص التحديث رقمه SPU، سيكون الرقم الأعلى أسرع، لكن سيسبب جروحاً صوتية في بعض الألعاب مع أي شيء آخر غير 1</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_dynarec_spgp_opt.Label"><value>Dynarec SP GP اضرب RAM تحقيق الاستخدام الأمثل</value></data>
@@ -1297,4 +1256,22 @@
   <data name="Emulation.Option.Sony.Setting.AnalogMode.Label"><value>ابدأ في أسلوب الأنالوك</value></data>
   <data name="Emulation.Option.Sony.Setting.AnalogMode.Help"><value>ابدأوا بالتحكم في طريقة التناظر بدلاً من رقمية بعض الألعاب (مثل (ريدج رايسر في ANALOG الزر الذي سيمكن العصي، و يُمكن هذا من الحصول على مراقبة مُتَوَجَهِدَة من البداية الألعاب التي تُغلق نمط المُراقبين لا تتأثر</value></data>
   <data name="Emulation.Option.Sony.Files.CheatsDirectory"><value>"الجندر" الذي يحتوي على رموز غش لعبة</value></data>
+  <data name="Emulation.Option.Sony.Setting.ForceAnalog.Label" xml:space="preserve"><value>المراقب المالي ١ - طريقة تحليل القوة</value></data>
+  <data name="Emulation.Option.Sony.Setting.ForceAnalog.Help" xml:space="preserve"><value>أسلوب القوات المشابه دائماً قد يسبب مشاكل مع بعض الألعاب. ولا يستخدم هذا الخيار إلا للألعاب التي تدعم أسلوب التناظر، ولكنها لا تمكنه تلقائيا من ذلك. عندما يكون معطل، يُمكن أن تهتز طريقة التناظر عن طريق الضغط والاحتفاظ DualShock طريقة التدوير.</value></data>
+  <data name="Emulation.Option.Sony.Setting.AnalogToggle.Label" xml:space="preserve"><value>DualShock Analog Mode Toggle</value></data>
+  <data name="Emulation.Option.Sony.Setting.AnalogToggle.Help" xml:space="preserve"><value>وعندما يكون نوع جهاز المدخلات DualShock، يسمح هذا الخيار بأن يُنظَّم DualShock المحتوية بين DIGITAL وANALOG أسلوب مثل المعدات الأصلية. ويمكن أيضاً أن يُنظَّف الأسلوب باستخدام مزيج الزر المختار.</value></data>
+  <data name="Emulation.Option.Sony.Setting.AnalogToggleCombo.Label" xml:space="preserve"><value>DualShock Analog Mode Combo</value></data>
+  <data name="Emulation.Option.Sony.Setting.AnalogToggleCombo.Help" xml:space="preserve"><value>مجموعة الأزرار المستخدمة للتبديل بين الوضع DIGITAL والوضع ANALOG في وحدة DualShock المحاكاة.</value></data>
+  <data name="Emulation.Option.Sony.Setting.AnalogToggleHold.Label" xml:space="preserve"><value>DualShock تمهّل التأخّر</value></data>
+  <data name="Emulation.Option.Sony.Setting.AnalogToggleHold.Help" xml:space="preserve"><value>إحتفظ بوقتك لتجميع الأزرار المشابهة</value></data>
+  <data name="Emulation.Option.Sony.Setting.NegconDeadzone.Label" xml:space="preserve"><value>neGcon Twist deadzone</value></data>
+  <data name="Emulation.Option.Sony.Setting.NegconDeadzone.Help" xml:space="preserve"><value>الشعار اليساري يَلْصقُ مميتاً عندما حَفّزَ عملِ ' تويتر' مِنْ أجهزة مدخلات ' neGcon. تستخدم للقضاء على الانجراف المتحكم. ملاحظه: معظم الألقاب الـ neGcon- المتوافقة توفر خيارات في اللعبة لتحديد قيمة "الموتى" وتجنبا لفقدان الدقة، ينبغي أن تكون المنطقة المميتة داخل اللعبة *دائماً* يجب أن تكون صفرا. أي تعديلات مطلوبة ينبغي أن تُجرى *فقط* يُطبَّق عبر هذا الخيار الأساسي. هذا مهم جداً عندما يكون رد التصفير لعام neGcon جاهزاً لـ "كودراتيك" أو "كابيك".</value></data>
+  <data name="Emulation.Option.Sony.Setting.SecondMemoryCard.Label" xml:space="preserve"><value>Memory Card Slot 2</value></data>
+  <data name="Emulation.Option.Sony.Setting.SecondMemoryCard.Help" xml:space="preserve"><value>امنحي بطاقة ذاكرة ثانية في فتحة البطاقة اليمنى ملاحظة: تتطلب بعض المباريات أن يكون هذا الخيار معوقاً من أجل التشغيل الصحيح (مثلاً). (الاسم الرمزي (تينكا Note: Memory Card Slot 2 uses the Mednafen (.mcr) save format.</value></data>
+  <data name="Emulation.Option.Sony.Setting.SharedMemoryCardMethod.Label" xml:space="preserve"><value>البطاقات التذكارية المشتركة</value></data>
+  <data name="Emulation.Option.Sony.Setting.SharedMemoryCardMethod.Help" xml:space="preserve"><value>استخدام بطاقات الذاكرة المشتركة بدلا من البطاقات المنفصلة لكل محتوى. ملاحظة: إذا كان 'Memory Card طريقة مصممة ل 'ليبريترو'، فقط فتحة بطاقة الذاكرة 2 سوف تتأثر.</value></data>
+  <data name="Emulation.Option.Sony.Setting.LineToQuad.Label" xml:space="preserve"><value>خط إلى كواد هاك</value></data>
+  <data name="Emulation.Option.Sony.Setting.LineToQuad.Help" xml:space="preserve"><value>بعض الألعاب (مثلاً) Doom, Hexen, Soul Blade, etc.) يرسم خطوطاً أفقية بتمديد المثلثات ذات الفخذ الواحد عبر الشاشة، التي تُستَعف كصف من البيكسلز على الأجهزة الأصلية. هذا الإختراق يكتشف هذه المثلثات الصغيرة ويحولها إلى أربعة أضعاف كما هو مطلوب، مما يسمح لها أن تظهر بشكل سليم على صانعي الأجهزة وفي قرارات داخلية متطورة. القوات المظلمة، دوك نوكوم ولكن يمكن أن تُقدّم ملامح بيانية. ارحلي في "ديفولت" إذا لم يكن هناك مانع.</value></data>
+  <data name="Emulation.Option.Sony.Setting.DynarecEventCycles.Label" xml:space="preserve"><value>Dynarec DMA/GPU/MDEC/مباريات الأحداث الزمنية</value></data>
+  <data name="Emulation.Option.Sony.Setting.DynarecEventCycles.Help" xml:space="preserve"><value>(ماكس) CPU قبل GPU/DMA/MDEC/دقّقَ تحديث التوقيت، عدد أعلى سَيصْبَحُ أسرعَ، عِنْدَهُ تأثير أقل بكثير على مترجم اللحومِ من ديانريك.</value></data>
 </root>

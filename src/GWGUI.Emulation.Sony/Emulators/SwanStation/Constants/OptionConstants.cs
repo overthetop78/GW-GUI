@@ -279,8 +279,8 @@ internal static class OptionConstants
     internal const string ControllerShowCrosshairLabelResource = "Emulation.Option.swanstation.swanstation_Controller_ShowCrosshair.Label";
     internal const string ControllerShowCrosshairHelpResource = "Emulation.Option.swanstation.swanstation_Controller_ShowCrosshair.Help";
     internal const string Controller1ForceAnalogKey = "swanstation_Controller1_ForceAnalog";
-    internal const string Controller1ForceAnalogLabelResource = "Emulation.Option.swanstation.swanstation_Controller1_ForceAnalog.Label";
-    internal const string Controller1ForceAnalogHelpResource = "Emulation.Option.swanstation.swanstation_Controller1_ForceAnalog.Help";
+    internal const string Controller1ForceAnalogLabelResource = OptionTextResourceConstants.ForceAnalogLabel;
+    internal const string Controller1ForceAnalogHelpResource = OptionTextResourceConstants.ForceAnalogHelp;
     internal const string Controller1AnalogDPadInDigitalModeKey = "swanstation_Controller1_AnalogDPadInDigitalMode";
     internal const string Controller1AnalogDPadInDigitalModeLabelResource = "Emulation.Option.swanstation.swanstation_Controller1_AnalogDPadInDigitalMode.Label";
     internal const string Controller1AnalogDPadInDigitalModeHelpResource = "Emulation.Option.swanstation.swanstation_Controller1_AnalogDPadInDigitalMode.Help";
@@ -318,7 +318,7 @@ internal static class OptionConstants
     internal static readonly string Controller1TwistResponseDefaultValue = OptionValueFunctions.ToNative(AnalogResponseCurve.Linear);
     internal const string Controller2ForceAnalogKey = "swanstation_Controller2_ForceAnalog";
     internal const string Controller2ForceAnalogLabelResource = "Emulation.Option.swanstation.swanstation_Controller2_ForceAnalog.Label";
-    internal const string Controller2ForceAnalogHelpResource = "Emulation.Option.swanstation.swanstation_Controller2_ForceAnalog.Help";
+    internal const string Controller2ForceAnalogHelpResource = OptionTextResourceConstants.ForceAnalogHelp;
     internal const string Controller2AnalogDPadInDigitalModeKey = "swanstation_Controller2_AnalogDPadInDigitalMode";
     internal const string Controller2AnalogDPadInDigitalModeLabelResource = "Emulation.Option.swanstation.swanstation_Controller2_AnalogDPadInDigitalMode.Label";
     internal const string Controller2AnalogDPadInDigitalModeHelpResource = "Emulation.Option.swanstation.swanstation_Controller2_AnalogDPadInDigitalMode.Help";
@@ -353,7 +353,7 @@ internal static class OptionConstants
     internal static readonly string Controller2TwistResponseDefaultValue = OptionValueFunctions.ToNative(AnalogResponseCurve.Linear);
     internal const string Controller3ForceAnalogKey = "swanstation_Controller3_ForceAnalog";
     internal const string Controller3ForceAnalogLabelResource = "Emulation.Option.swanstation.swanstation_Controller3_ForceAnalog.Label";
-    internal const string Controller3ForceAnalogHelpResource = "Emulation.Option.swanstation.swanstation_Controller3_ForceAnalog.Help";
+    internal const string Controller3ForceAnalogHelpResource = OptionTextResourceConstants.ForceAnalogHelp;
     internal const string Controller3AnalogDPadInDigitalModeKey = "swanstation_Controller3_AnalogDPadInDigitalMode";
     internal const string Controller3AnalogDPadInDigitalModeLabelResource = "Emulation.Option.swanstation.swanstation_Controller3_AnalogDPadInDigitalMode.Label";
     internal const string Controller3AnalogDPadInDigitalModeHelpResource = "Emulation.Option.swanstation.swanstation_Controller3_AnalogDPadInDigitalMode.Help";
@@ -378,7 +378,7 @@ internal static class OptionConstants
     internal static readonly string Controller3TwistResponseDefaultValue = OptionValueFunctions.ToNative(AnalogResponseCurve.Linear);
     internal const string Controller4ForceAnalogKey = "swanstation_Controller4_ForceAnalog";
     internal const string Controller4ForceAnalogLabelResource = "Emulation.Option.swanstation.swanstation_Controller4_ForceAnalog.Label";
-    internal const string Controller4ForceAnalogHelpResource = "Emulation.Option.swanstation.swanstation_Controller4_ForceAnalog.Help";
+    internal const string Controller4ForceAnalogHelpResource = OptionTextResourceConstants.ForceAnalogHelp;
     internal const string Controller4AnalogDPadInDigitalModeKey = "swanstation_Controller4_AnalogDPadInDigitalMode";
     internal const string Controller4AnalogDPadInDigitalModeLabelResource = "Emulation.Option.swanstation.swanstation_Controller4_AnalogDPadInDigitalMode.Label";
     internal const string Controller4AnalogDPadInDigitalModeHelpResource = "Emulation.Option.swanstation.swanstation_Controller4_AnalogDPadInDigitalMode.Help";
@@ -403,7 +403,7 @@ internal static class OptionConstants
     internal static readonly string Controller4TwistResponseDefaultValue = OptionValueFunctions.ToNative(AnalogResponseCurve.Linear);
     internal const string Controller5ForceAnalogKey = "swanstation_Controller5_ForceAnalog";
     internal const string Controller5ForceAnalogLabelResource = "Emulation.Option.swanstation.swanstation_Controller5_ForceAnalog.Label";
-    internal const string Controller5ForceAnalogHelpResource = "Emulation.Option.swanstation.swanstation_Controller5_ForceAnalog.Help";
+    internal const string Controller5ForceAnalogHelpResource = OptionTextResourceConstants.ForceAnalogHelp;
     internal const string Controller5AnalogDPadInDigitalModeKey = "swanstation_Controller5_AnalogDPadInDigitalMode";
     internal const string Controller5AnalogDPadInDigitalModeLabelResource = "Emulation.Option.swanstation.swanstation_Controller5_AnalogDPadInDigitalMode.Label";
     internal const string Controller5AnalogDPadInDigitalModeHelpResource = "Emulation.Option.swanstation.swanstation_Controller5_AnalogDPadInDigitalMode.Help";
@@ -419,7 +419,7 @@ internal static class OptionConstants
     internal const string Controller5VibrationBiasDefaultValue = "8";
     internal const string Controller6ForceAnalogKey = "swanstation_Controller6_ForceAnalog";
     internal const string Controller6ForceAnalogLabelResource = "Emulation.Option.swanstation.swanstation_Controller6_ForceAnalog.Label";
-    internal const string Controller6ForceAnalogHelpResource = "Emulation.Option.swanstation.swanstation_Controller6_ForceAnalog.Help";
+    internal const string Controller6ForceAnalogHelpResource = OptionTextResourceConstants.ForceAnalogHelp;
     internal const string Controller6AnalogDPadInDigitalModeKey = "swanstation_Controller6_AnalogDPadInDigitalMode";
     internal const string Controller6AnalogDPadInDigitalModeLabelResource = "Emulation.Option.swanstation.swanstation_Controller6_AnalogDPadInDigitalMode.Label";
     internal const string Controller6AnalogDPadInDigitalModeHelpResource = "Emulation.Option.swanstation.swanstation_Controller6_AnalogDPadInDigitalMode.Help";
@@ -435,7 +435,7 @@ internal static class OptionConstants
     internal const string Controller6VibrationBiasDefaultValue = "8";
     internal const string Controller7ForceAnalogKey = "swanstation_Controller7_ForceAnalog";
     internal const string Controller7ForceAnalogLabelResource = "Emulation.Option.swanstation.swanstation_Controller7_ForceAnalog.Label";
-    internal const string Controller7ForceAnalogHelpResource = "Emulation.Option.swanstation.swanstation_Controller7_ForceAnalog.Help";
+    internal const string Controller7ForceAnalogHelpResource = OptionTextResourceConstants.ForceAnalogHelp;
     internal const string Controller7AnalogDPadInDigitalModeKey = "swanstation_Controller7_AnalogDPadInDigitalMode";
     internal const string Controller7AnalogDPadInDigitalModeLabelResource = "Emulation.Option.swanstation.swanstation_Controller7_AnalogDPadInDigitalMode.Label";
     internal const string Controller7AnalogDPadInDigitalModeHelpResource = "Emulation.Option.swanstation.swanstation_Controller7_AnalogDPadInDigitalMode.Help";
@@ -451,7 +451,7 @@ internal static class OptionConstants
     internal const string Controller7VibrationBiasDefaultValue = "8";
     internal const string Controller8ForceAnalogKey = "swanstation_Controller8_ForceAnalog";
     internal const string Controller8ForceAnalogLabelResource = "Emulation.Option.swanstation.swanstation_Controller8_ForceAnalog.Label";
-    internal const string Controller8ForceAnalogHelpResource = "Emulation.Option.swanstation.swanstation_Controller8_ForceAnalog.Help";
+    internal const string Controller8ForceAnalogHelpResource = OptionTextResourceConstants.ForceAnalogHelp;
     internal const string Controller8AnalogDPadInDigitalModeKey = "swanstation_Controller8_AnalogDPadInDigitalMode";
     internal const string Controller8AnalogDPadInDigitalModeLabelResource = "Emulation.Option.swanstation.swanstation_Controller8_AnalogDPadInDigitalMode.Label";
     internal const string Controller8AnalogDPadInDigitalModeHelpResource = "Emulation.Option.swanstation.swanstation_Controller8_AnalogDPadInDigitalMode.Help";

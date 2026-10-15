@@ -162,8 +162,6 @@
   <data name="Emulation.Option.swanstation.swanstation_Controller_EnableRumble.Help"><value>使用帶有支持的輸入設備的朗布爾設備游戲盤時啟用隨機反饋 。</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller_ShowCrosshair.Label"><value>顯示 GunCon 瞄準光標</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller_ShowCrosshair.Help"><value>當輸入設備被設定為"Namco GunCon"時,顯示十字花紋.</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_Controller1_ForceAnalog.Label"><value>控制器 1 強制模擬模式</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_Controller1_ForceAnalog.Help"><value>總是使用模擬模式。 可能會引起一些游戲出問題. 只用于支持模擬模式但不自動啟用的游戲。 被禁用時,模擬模式可以通過按下并持有DualShock Analog Mode Combo來切換.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller1_AnalogDPadInDigitalMode.Label"><value>控制器 1 在數字模式下使用 D- Pad 的模擬棒</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller1_AnalogDPadInDigitalMode.Help"><value>允許您使用模擬棒來控制數字模式中的d-pad,以及按鈕.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller1_AxisScale.Label"><value>1 類似軸縮放</value></data>
@@ -182,7 +180,6 @@
   <data name="Emulation.Option.Sony.Value.Quadratic"><value>四進制</value></data>
   <data name="Emulation.Option.Sony.Value.Cubic"><value>立方體</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller2_ForceAnalog.Label"><value>控制器 2 強制模擬模式</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_Controller2_ForceAnalog.Help"><value>總是使用模擬模式。 可能會引起一些游戲出問題. 只用于支持模擬模式但不自動啟用的游戲。 被禁用時,模擬模式可以通過按下并持有DualShock Analog Mode Combo來切換.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller2_AnalogDPadInDigitalMode.Label"><value>控制器 2 在數字模式下使用 D- Pad 的模擬棒</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller2_AnalogDPadInDigitalMode.Help"><value>允許您使用模擬棒來控制數字模式中的d-pad,以及按鈕.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller2_AxisScale.Label"><value>控制器 2 類似軸</value></data>
@@ -198,7 +195,6 @@
   <data name="Emulation.Option.swanstation.swanstation_Controller2_TwistResponse.Label"><value>主計長2 NeGcon Twist反應</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller2_TwistResponse.Help"><value>設置左側模擬棒的扭矩響應類型 。 “ 二次曲線 ” 在進行小運動時比“ 亮度 ” 更加精確, 而且更適合現代控制器 。 雖然“ 立方形” 進一步提高了小動作精度, 但“ 夸大” 較大運動 。 通常只有在使用賽車輪外緣時, “ 亮出 ” ( Linear) 才有用 。</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller3_ForceAnalog.Label"><value>控制器 3 強制模擬模式</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_Controller3_ForceAnalog.Help"><value>總是使用模擬模式。 可能會引起一些游戲出問題. 只用于支持模擬模式但不自動啟用的游戲。 被禁用時,模擬模式可以通過按下并持有DualShock Analog Mode Combo來切換.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller3_AnalogDPadInDigitalMode.Label"><value>控制器 3 在數字模式下使用 D- Pad 的模擬棒</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller3_AnalogDPadInDigitalMode.Help"><value>允許您使用模擬棒來控制數字模式中的d-pad,以及按鈕.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller3_AxisScale.Label"><value>控制器 3 類似軸大小</value></data>
@@ -210,7 +206,6 @@
   <data name="Emulation.Option.swanstation.swanstation_Controller3_TwistResponse.Label"><value>主計長3 NeGcon Twist 反應</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller3_TwistResponse.Help"><value>設置左側模擬棒的扭矩響應類型 。 “ 二次曲線 ” 在進行小運動時比“ 亮度 ” 更加精確, 而且更適合現代控制器 。 雖然“ 立方形” 進一步提高了小動作精度, 但“ 夸大” 較大運動 。 通常只有在使用賽車輪外緣時, “ 亮出 ” ( Linear) 才有用 。</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller4_ForceAnalog.Label"><value>控制器 4 強制模擬模式</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_Controller4_ForceAnalog.Help"><value>總是使用模擬模式。 可能會引起一些游戲出問題. 只用于支持模擬模式但不自動啟用的游戲。 被禁用時,模擬模式可以通過按下并持有DualShock Analog Mode Combo來切換.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller4_AnalogDPadInDigitalMode.Label"><value>控制器 4 在數字模式下使用 D- Pad 的模擬棒</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller4_AnalogDPadInDigitalMode.Help"><value>允許您使用模擬棒來控制數字模式中的d-pad,以及按鈕.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller4_AxisScale.Label"><value>控制器 4 類似軸大小</value></data>
@@ -222,7 +217,6 @@
   <data name="Emulation.Option.swanstation.swanstation_Controller4_TwistResponse.Label"><value>主計長4 NeGcon Twist反應</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller4_TwistResponse.Help"><value>設置左側模擬棒的扭矩響應類型 。 “ 二次曲線 ” 在進行小運動時比“ 亮度 ” 更加精確, 而且更適合現代控制器 。 雖然“ 立方形” 進一步提高了小動作精度, 但“ 夸大” 較大運動 。 通常只有在使用賽車輪外緣時, “ 亮出 ” ( Linear) 才有用 。</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller5_ForceAnalog.Label"><value>控制器 5 強制模擬模式</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_Controller5_ForceAnalog.Help"><value>總是使用模擬模式。 可能會引起一些游戲出問題. 只用于支持模擬模式但不自動啟用的游戲。 被禁用時,模擬模式可以通過按下并持有DualShock Analog Mode Combo來切換.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller5_AnalogDPadInDigitalMode.Label"><value>控制器 5 在數字模式下使用 D- Pad 的模擬棒</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller5_AnalogDPadInDigitalMode.Help"><value>允許您使用模擬棒來控制數字模式中的d-pad,以及按鈕.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller5_AxisScale.Label"><value>5 類似軸縮放</value></data>
@@ -230,7 +224,6 @@
   <data name="Emulation.Option.swanstation.swanstation_Controller5_VibrationBias.Label"><value>5個振動比斯</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller5_VibrationBias.Help"><value>高值將抵消振動強度,使較小的振動更能被注意。</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller6_ForceAnalog.Label"><value>控制器 6 強制模擬模式</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_Controller6_ForceAnalog.Help"><value>總是使用模擬模式。 可能會引起一些游戲出問題. 只用于支持模擬模式但不自動啟用的游戲。 被禁用時,模擬模式可以通過按下并持有DualShock Analog Mode Combo來切換.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller6_AnalogDPadInDigitalMode.Label"><value>控制器 6 在數字模式下使用 D- Pad 的模擬棒</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller6_AnalogDPadInDigitalMode.Help"><value>允許您使用模擬棒來控制數字模式中的d-pad,以及按鈕.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller6_AxisScale.Label"><value>6 類似軸縮放</value></data>
@@ -238,7 +231,6 @@
   <data name="Emulation.Option.swanstation.swanstation_Controller6_VibrationBias.Label"><value>6個振動比斯</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller6_VibrationBias.Help"><value>高值將抵消振動強度,使較小的振動更能被注意。</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller7_ForceAnalog.Label"><value>控制器 7 強制模擬模式</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_Controller7_ForceAnalog.Help"><value>總是使用模擬模式。 可能會引起一些游戲出問題. 只用于支持模擬模式但不自動啟用的游戲。 被禁用時,模擬模式可以通過按下并持有DualShock Analog Mode Combo來切換.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller7_AnalogDPadInDigitalMode.Label"><value>控制器 7 在數字模式下使用 D- Pad 的模擬棒</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller7_AnalogDPadInDigitalMode.Help"><value>允許您使用模擬棒來控制數字模式中的d-pad,以及按鈕.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller7_AxisScale.Label"><value>控制器 7 類似軸</value></data>
@@ -246,7 +238,6 @@
   <data name="Emulation.Option.swanstation.swanstation_Controller7_VibrationBias.Label"><value>7 振動比斯</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller7_VibrationBias.Help"><value>高值將抵消振動強度,使較小的振動更能被注意。</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller8_ForceAnalog.Label"><value>控制器 8 強制模擬模式</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_Controller8_ForceAnalog.Help"><value>總是使用模擬模式。 可能會引起一些游戲出問題. 只用于支持模擬模式但不自動啟用的游戲。 被禁用時,模擬模式可以通過按下并持有DualShock Analog Mode Combo來切換.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller8_AnalogDPadInDigitalMode.Label"><value>控制器 8 在數字模式下使用 D- Pad 的模擬棒</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller8_AnalogDPadInDigitalMode.Help"><value>允許您使用模擬棒來控制數字模式中的d-pad,以及按鈕.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller8_AxisScale.Label"><value>控制器 8 類似軸</value></data>
@@ -340,13 +331,7 @@
   <data name="Emulation.Option.mednafen_psx.beetle_psx_display_osd.Help"><value>顯示由核心生成的 OSD 消息 。</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_calibration.Label"><value>適應模擬輸入范圍</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_calibration.Help"><value>在設備設定為 DualShock, Analog Controller, Aanalog Joystick 或 neGcon 時啟用模擬輸入的動態校正. 最大已注冊輸入值被實時監控,并用于向模擬器傳遞的模擬坐標比例. 這應用于"Mega Man Legends 2"等期望值大于現代控制器提供的游戲. 為了取得最佳效果,模擬棒應被完全旋轉來調諧每次裝入內容時的校正算法.</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_toggle.Label"><value>DualShock 模擬模式切換</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_toggle.Help"><value>當輸入設備類型為DualShock時,此選項允許將被模擬的DualShock在DIGITAL和ANALOG模式之間切換出與原始硬件一樣. 模式也可以通過使用所選的按鈕組合來切換.</value></data>
   <data name="Emulation.Option.Sony.Value.DefaultAnalog"><value>默認日志</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_toggle_combo.Label"><value>DualShock 模擬模式 Combo</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_toggle_combo.Help"><value>用于在 DIGITAL 模式和 ANALOG 模式之間切換用于模擬 DualShock 的按鈕組合 。</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_toggle_hold.Label"><value>DualShock 模擬模式 Combo 拖放</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_toggle_hold.Help"><value>保持模擬模式組合按鈕的時間 。</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_enable_multitap_port1.Label"><value>1號口的多塔布</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_enable_multitap_port1.Help"><value>在端口 1 上啟用多拖放功能 。</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_enable_multitap_port2.Label"><value>港口 2 上的多圖</value></data>
@@ -376,24 +361,16 @@
   <data name="Emulation.Option.mednafen_psx.beetle_psx_mouse_sensitivity.Help"><value>“ Mouse” 輸入設備類型的響應性 。</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_negcon_response.Label"><value>neGcon Twist反應</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_negcon_response.Help"><value>模擬“ neGcon” 輸入設備的“ twist” 動作時左鍵相接響應類型 。 仿真棒移位可以被映射為neGcon自轉角度, 可以是線性、 四面體或立方體。 當進行小運動時, “ 四面體” 可以比“ 距離” 更精確 。 “ 立方體” 進一步提高了小運動精度, 但“ 夸大” 更大的運動 。 注:"Linear"只有在使用賽車輪外圍時才被推薦. 常規控制器執行模擬輸入的方式與neGcon"twist"機制有著根本的不同,這樣線性映射會過度放大小運動,損害精細控制. 在大多數情況下,"Quadratic"提供了真實硬件最接近的近似.</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_negcon_deadzone.Label"><value>neGcon Twist Deadzone (英語).</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_negcon_deadzone.Help"><value>模擬“ neGcon” 輸入設備的“ twist” 動作時左鍵粘接死區 。 用來消除控制器漂移. 注意: 多數 neGcon 兼容標題為設置 “ twist” 死區值提供了游戲中選項 。 為了避免精度損失,游戲中死區應*永遠*被設定為0. 任何必要的調整都應通過這一核心選項適用*只使用*。 當“neGcon Twist response”被設定為“Quadratic”或“cubic”時,這一點尤其重要。</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_use_mednafen_memcard0_method.Label"><value>內存卡方法</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_use_mednafen_memcard0_method.Help"><value>保存左側內存卡槽使用的數據格式. "Mednafen"可能用于與獨立版本的Mednafen相容. 與Beetle PSX一起使用時,Libretro (.srm)和Mednafen (.mcr) savers具有內部相同的格式,可以通過更名互相轉換.</value></data>
   <data name="Emulation.Option.Sony.Value.Libretro"><value>自由軟件</value></data>
   <data name="Emulation.Option.Sony.Value.Mednafen"><value>梅德納芬</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_enable_memcard1.Label"><value>內存卡槽 2</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_enable_memcard1.Help"><value>將第二張內存卡刻入右側內存牌位. 注意:有些游戲要求此選項被禁用以進行正確的操作(例如. 代號"Tenka". 注:Memory Card Slot 2使用Mednafen(.mcr)保存格式.</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_shared_memory_cards.Label"><value>共享內存卡</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_shared_memory_cards.Help"><value>每個內容使用共享內存卡而不是單獨的卡. 注:如果將"Memory Card方法"設定為"Libretro",則僅會影響內存卡槽2.</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_memcard_left_index.Label"><value>內存卡槽 1 索引</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_memcard_left_index.Help"><value>內存卡目前裝入了左槽. 此選項只有在內存卡方法設定為 Mednafen 時才會有效 。</value></data>
   <data name="Emulation.Option.Sony.Value.0Default"><value>0 (默認)</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_memcard_right_index.Label"><value>內存卡槽 2 索引</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_memcard_right_index.Help"><value>內存卡目前裝入右槽. 此選項只有在啟用內存卡槽 2 時才會有效 。</value></data>
   <data name="Emulation.Option.Sony.Value.1Default"><value>1 (默認)</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_line_render.Label"><value>由一行至一行哈克</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_line_render.Help"><value>一些游戲(如: Doom,Hexen,Soul Blade等)通過將單像素高的三角線伸展到屏幕上來畫出水平線,在原硬件上被光柵化為一行像素. 這種黑客可以檢測出這些小三角形并按需要將其轉換為四相,這樣就可以在硬件渲染器上和被提升的內部分辨率上正確顯示. 某些標題(例如. 黑暗的力量,核子公爵),但否則可能會引入圖形化的出克. 如果不確定,請在“ 默認” 離開 。</value></data>
   <data name="Emulation.Option.Sony.Value.Default"><value>默認</value></data>
   <data name="Emulation.Option.Sony.Value.Aggressive"><value>侵略性</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_widescreen_hack.Label"><value>修改游戲以擴大屏幕范圍</value></data>
@@ -415,8 +392,6 @@
   <data name="Emulation.Option.mednafen_psx.beetle_psx_dynarec_op_cycles.Help"><value>循環每CPU指令的dynarec充電. '2' 更快,但被模擬的CPU似乎半速到自相矛盾的游戲 - 設置"1"的游戲,其CD流道攤位或懸掛在dynalec下(例如. 護衛夜2。 '1'設置充電內存訪問兩個周期和所有其他一個周期,接近真實的CPU.</value></data>
   <data name="Emulation.Option.Sony.Value.2Default"><value>2 (默認)</value></data>
   <data name="Emulation.Option.Sony.Value.1AccurateFixesParasiteEve2EtcPoint"><value>1 (準確,Fixes Parasite Eve 2等).</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_dynarec_eventcycles.Label"><value>Dynarec DMA/GPU/MDEC/計時事件周期</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_dynarec_eventcycles.Help"><value>在檢查一個GPU/DMA/MDEC/Timer Update前由CPU運行的最大周期,更高的數量會更快,對甲蟲解釋器的影響要小于dynarec.</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_dynarec_spu_samples.Label"><value>Dynarec SPU 樣本</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_dynarec_spu_samples.Help"><value>在檢查SPU更新之前,需要運行的Max SPU樣本,更高的數字會更快,但在某些游戲中會導致音效故障,除了1.</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_dynarec_spgp_opt.Label"><value>Dynarec SP GP Hit RAM 優化</value></data>
@@ -605,12 +580,6 @@
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_display_vram.Help"><value>可視化整個模擬控制臺的VRAM. 只由OpenGL和Vulkan硬件渲染器支持. 注意: 這是為調試目的, 一般應該禁用 。</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_calibration.Label"><value>適應模擬輸入范圍</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_calibration.Help"><value>在設備設定為 DualShock, Analog Controller, Aanalog Joystick 或 neGcon 時啟用模擬輸入的動態校正. 最大已注冊輸入值被實時監控,并用于向模擬器傳遞的模擬坐標比例. 這應用于"Mega Man Legends 2"等期望值大于現代控制器提供的游戲. 為了取得最佳效果,模擬棒應被完全旋轉來調諧每次裝入內容時的校正算法.</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_toggle.Label"><value>DualShock 模擬模式切換</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_toggle.Help"><value>當輸入設備類型為DualShock時,此選項允許將被模擬的DualShock在DIGITAL和ANALOG模式之間切換出與原始硬件一樣. 模式也可以通過使用所選的按鈕組合來切換.</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_toggle_combo.Label"><value>DualShock 模擬模式 Combo</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_toggle_combo.Help"><value>用于在 DIGITAL 模式和 ANALOG 模式之間切換用于模擬 DualShock 的按鈕組合 。</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_toggle_hold.Label"><value>DualShock 模擬模式 Combo 拖放</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_toggle_hold.Help"><value>保持模擬模式組合按鈕的時間 。</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_enable_multitap_port1.Label"><value>1號口的多站</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_enable_multitap_port1.Help"><value>在端口 1 上啟用多拖放功能 。</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_enable_multitap_port2.Label"><value>港口 2 上的多圖</value></data>
@@ -627,20 +596,12 @@
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_mouse_sensitivity.Help"><value>“ Mouse” 輸入設備類型的響應性 。</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_negcon_response.Label"><value>neGcon Twist反應</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_negcon_response.Help"><value>模擬“ neGcon” 輸入設備的“ twist” 動作時左鍵相接響應類型 。 仿真棒移位可以被映射為neGcon自轉角度, 可以是線性、 四面體或立方體。 當進行小運動時, “ 四面體” 可以比“ 距離” 更精確 。 “ 立方體” 進一步提高了小運動精度, 但“ 夸大” 更大的運動 。 注:"Linear"只有在使用賽車輪外圍時才被推薦. 常規控制器執行模擬輸入的方式與neGcon"twist"機制有著根本的不同,這樣線性映射會過度放大小運動,損害精細控制. 在大多數情況下,"Quadratic"提供了真實硬件最接近的近似.</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_negcon_deadzone.Label"><value>neGcon Twist Deadzone (英語).</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_negcon_deadzone.Help"><value>模擬“ neGcon” 輸入設備的“ twist” 動作時左鍵粘接死區 。 用來消除控制器漂移. 注意: 多數 neGcon 兼容標題為設置 “ twist” 死區值提供了游戲中選項 。 為了避免精度損失,游戲中死區應*永遠*被設定為0. 任何必要的調整都應通過這一核心選項適用*只使用*。 當“neGcon Twist response”被設定為“Quadratic”或“cubic”時,這一點尤其重要。</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_use_mednafen_memcard0_method.Label"><value>內存卡方法</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_use_mednafen_memcard0_method.Help"><value>保存左側內存卡槽使用的數據格式. "Mednafen"可能用于與獨立版本的Mednafen相容. 與Beetle PSX一起使用時,Libretro (.srm)和Mednafen (.mcr) savers具有內部相同的格式,可以通過更名互相轉換.</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_enable_memcard1.Label"><value>內存卡槽 2</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_enable_memcard1.Help"><value>將第二張內存卡刻入右側內存牌位. 注意:有些游戲要求此選項被禁用以進行正確的操作(例如. 代號"Tenka". 注:Memory Card Slot 2使用Mednafen(.mcr)保存格式.</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_shared_memory_cards.Label"><value>共享內存卡</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_shared_memory_cards.Help"><value>每個內容使用共享內存卡而不是單獨的卡. 注:如果將"Memory Card方法"設定為"Libretro",則僅會影響內存卡槽2.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_memcard_left_index.Label"><value>內存卡槽 1 索引</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_memcard_left_index.Help"><value>內存卡目前裝入了左槽. 此選項只有在內存卡方法設定為 Mednafen 時才會有效 。</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_memcard_right_index.Label"><value>內存卡槽 2 索引</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_memcard_right_index.Help"><value>內存卡目前裝入右槽. 此選項只有在啟用內存卡槽 2 時才會有效 。</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_line_render.Label"><value>由一行至一行哈克</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_line_render.Help"><value>一些游戲(如: Doom,Hexen,Soul Blade等)通過將單像素高的三角線伸展到屏幕上來畫出水平線,在原硬件上被光柵化為一行像素. 這種黑客可以檢測出這些小三角形并按需要將其轉換為四相,這樣就可以在硬件渲染器上和被提升的內部分辨率上正確顯示. 某些標題(例如. 黑暗的力量,核子公爵),但否則可能會引入圖形化的出克. 如果不確定,請在“ 默認” 離開 。</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_widescreen_hack.Label"><value>修改游戲以擴大屏幕范圍</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_widescreen_hack.Help"><value>Render 3D 內容反向并輸出被模擬的幀緩沖器,以寬屏相比. 以完全3D游戲產生最佳效果. 2D元素會被水平拉伸并可能錯配.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_widescreen_hack_aspect_ratio.Label"><value>寬屏幕的外觀比</value></data>
@@ -653,8 +614,6 @@
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_dynarec_invalidate.Help"><value>有的游戲需要"Full"無效,有的則需要"DMA Only".</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_dynarec_op_cycles.Label"><value>每個指令的 Dynarec 循環</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_dynarec_op_cycles.Help"><value>循環每CPU指令的dynarec充電. '2' 更快,但被模擬的CPU似乎半速到自相矛盾的游戲 - 設置"1"的游戲,其CD流道攤位或懸掛在dynalec下(例如. 護衛夜2。 '1'設置充電內存訪問兩個周期和所有其他一個周期,接近真實的CPU.</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_dynarec_eventcycles.Label"><value>Dynarec DMA/GPU/MDEC/計時事件周期</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_dynarec_eventcycles.Help"><value>在檢查一個GPU/DMA/MDEC/Timer Update前由CPU運行的最大周期,更高的數量會更快,對甲蟲解釋器的影響要小于dynarec.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_dynarec_spu_samples.Label"><value>Dynarec SPU 樣本</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_dynarec_spu_samples.Help"><value>在檢查SPU更新之前,需要運行的Max SPU樣本,更高的數字會更快,但在某些游戲中會導致音效故障,除了1.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_dynarec_spgp_opt.Label"><value>Dynarec SP GP Hit RAM 優化</value></data>
@@ -1297,4 +1256,22 @@
   <data name="Emulation.Option.Sony.Setting.AnalogMode.Label"><value>以模拟模式开始</value></data>
   <data name="Emulation.Option.Sony.Setting.AnalogMode.Help"><value>以模拟模式而不是数字模式启动控制器。有些游戏(例如Ridge Racer V)将垫子放在数字中,通常需要按控制器的 ANALOG 按钮来启用棒; 启用此选项从一开始就获得模拟控制。锁起控制器模式的游戏不受影响。</value></data>
   <data name="Emulation.Option.Sony.Files.CheatsDirectory"><value>包含游戏欺骗代码的文件夹</value></data>
+  <data name="Emulation.Option.Sony.Setting.ForceAnalog.Label" xml:space="preserve"><value>控制器 1 強制模擬模式</value></data>
+  <data name="Emulation.Option.Sony.Setting.ForceAnalog.Help" xml:space="preserve"><value>總是使用模擬模式。 可能會引起一些游戲出問題. 只用于支持模擬模式但不自動啟用的游戲。 被禁用時,模擬模式可以通過按下并持有DualShock Analog Mode Combo來切換.</value></data>
+  <data name="Emulation.Option.Sony.Setting.AnalogToggle.Label" xml:space="preserve"><value>DualShock 模擬模式切換</value></data>
+  <data name="Emulation.Option.Sony.Setting.AnalogToggle.Help" xml:space="preserve"><value>當輸入設備類型為DualShock時,此選項允許將被模擬的DualShock在DIGITAL和ANALOG模式之間切換出與原始硬件一樣. 模式也可以通過使用所選的按鈕組合來切換.</value></data>
+  <data name="Emulation.Option.Sony.Setting.AnalogToggleCombo.Label" xml:space="preserve"><value>DualShock 模擬模式 Combo</value></data>
+  <data name="Emulation.Option.Sony.Setting.AnalogToggleCombo.Help" xml:space="preserve"><value>用于在 DIGITAL 模式和 ANALOG 模式之間切換用于模擬 DualShock 的按鈕組合 。</value></data>
+  <data name="Emulation.Option.Sony.Setting.AnalogToggleHold.Label" xml:space="preserve"><value>DualShock 模擬模式 Combo 拖放</value></data>
+  <data name="Emulation.Option.Sony.Setting.AnalogToggleHold.Help" xml:space="preserve"><value>保持模擬模式組合按鈕的時間 。</value></data>
+  <data name="Emulation.Option.Sony.Setting.NegconDeadzone.Label" xml:space="preserve"><value>neGcon Twist Deadzone (英語).</value></data>
+  <data name="Emulation.Option.Sony.Setting.NegconDeadzone.Help" xml:space="preserve"><value>模擬“ neGcon” 輸入設備的“ twist” 動作時左鍵粘接死區 。 用來消除控制器漂移. 注意: 多數 neGcon 兼容標題為設置 “ twist” 死區值提供了游戲中選項 。 為了避免精度損失,游戲中死區應*永遠*被設定為0. 任何必要的調整都應通過這一核心選項適用*只使用*。 當“neGcon Twist response”被設定為“Quadratic”或“cubic”時,這一點尤其重要。</value></data>
+  <data name="Emulation.Option.Sony.Setting.SecondMemoryCard.Label" xml:space="preserve"><value>內存卡槽 2</value></data>
+  <data name="Emulation.Option.Sony.Setting.SecondMemoryCard.Help" xml:space="preserve"><value>將第二張內存卡刻入右側內存牌位. 注意:有些游戲要求此選項被禁用以進行正確的操作(例如. 代號"Tenka". 注:Memory Card Slot 2使用Mednafen(.mcr)保存格式.</value></data>
+  <data name="Emulation.Option.Sony.Setting.SharedMemoryCardMethod.Label" xml:space="preserve"><value>共享內存卡</value></data>
+  <data name="Emulation.Option.Sony.Setting.SharedMemoryCardMethod.Help" xml:space="preserve"><value>每個內容使用共享內存卡而不是單獨的卡. 注:如果將"Memory Card方法"設定為"Libretro",則僅會影響內存卡槽2.</value></data>
+  <data name="Emulation.Option.Sony.Setting.LineToQuad.Label" xml:space="preserve"><value>由一行至一行哈克</value></data>
+  <data name="Emulation.Option.Sony.Setting.LineToQuad.Help" xml:space="preserve"><value>一些游戲(如: Doom,Hexen,Soul Blade等)通過將單像素高的三角線伸展到屏幕上來畫出水平線,在原硬件上被光柵化為一行像素. 這種黑客可以檢測出這些小三角形并按需要將其轉換為四相,這樣就可以在硬件渲染器上和被提升的內部分辨率上正確顯示. 某些標題(例如. 黑暗的力量,核子公爵),但否則可能會引入圖形化的出克. 如果不確定,請在“ 默認” 離開 。</value></data>
+  <data name="Emulation.Option.Sony.Setting.DynarecEventCycles.Label" xml:space="preserve"><value>Dynarec DMA/GPU/MDEC/計時事件周期</value></data>
+  <data name="Emulation.Option.Sony.Setting.DynarecEventCycles.Help" xml:space="preserve"><value>在檢查一個GPU/DMA/MDEC/Timer Update前由CPU運行的最大周期,更高的數量會更快,對甲蟲解釋器的影響要小于dynarec.</value></data>
 </root>

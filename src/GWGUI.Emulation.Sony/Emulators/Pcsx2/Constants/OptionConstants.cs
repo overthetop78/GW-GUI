@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Sony.Emulators.Common.Interop.Constants;
 namespace GWGUI.Emulation.Sony.Emulators.Pcsx2.Constants;
 
 internal static class OptionConstants
@@ -14,7 +15,7 @@ internal static class OptionConstants
     internal const string FastcdvdHelp = "Emulation.Option.Sony.Setting.Fastcdvd.Help";
 
     internal const string SharedMemoryCardsKey = "pcsx2_shared_memory_cards";
-    internal const string SharedMemoryCardsLabel = "Emulation.Option.mednafen_psx.beetle_psx_shared_memory_cards.Label";
+    internal const string SharedMemoryCardsLabel = OptionTextResourceConstants.SharedMemoryCardMethodLabel;
     internal const string SharedMemoryCardsHelp = "Emulation.Option.Sony.Setting.SharedMemoryCards.Help";
 
     internal const string EnableCheatsKey = "pcsx2_enable_cheats";

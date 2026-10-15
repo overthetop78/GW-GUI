@@ -162,8 +162,6 @@
   <data name="Emulation.Option.swanstation.swanstation_Controller_EnableRumble.Help"><value>เปิดใช้การตอบรับแบบ HEXIVD เมื่อใช้เกมที่ปรับเสียงรบกวนด้วยอุปกรณ์ป้อนข้อมูลที่รองรับ</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller_ShowCrosshair.Label"><value>แสดงเคอร์เซอร์ชี้สําหรับ GunCon</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller_ShowCrosshair.Help"><value>แสดงเส้นประเมื่ออุปกรณ์นําเข้าตั้งค่าเป็น 'นัมโคGunCon'</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_Controller1_ForceAnalog.Label"><value>โหมดคอนโทรล 1 พลังอะนาล็อก</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_Controller1_ForceAnalog.Help"><value>บังคับให้ใช้โหมดอนาล็อกตลอดเวลา อาจทําให้เกิดปัญหากับเกมบางอย่าง ใช้ตัวเลือกนี้กับเกมที่รองรับโหมดแอ็คชั่นเท่านั้น แต่ไม่ได้เปิดใช้งานเองโดยอัตโนมัติ เมื่อถูกทําให้พิการ โหมดแอนาล็อกสามารถสลับได้ โดยการกดและจับ DualShock Analog Mode Combo.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller1_AnalogDPadInDigitalMode.Label"><value>ตัวควบคุม 1 ใช้แท่งแอนาล็อกสําหรับ D- Pad ในโหมดดิจิทัล</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller1_AnalogDPadInDigitalMode.Help"><value>อนุญาตให้คุณใช้แท่งแอนาล็อกควบคุม d-pad ในโหมดดิจิทัล รวมถึงปุ่มด้วย</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller1_AxisScale.Label"><value>ตัวควบคุม 1 แอนาล็อก Axis Scheme</value></data>
@@ -182,7 +180,6 @@
   <data name="Emulation.Option.Sony.Value.Quadratic"><value>ควอดราติก</value></data>
   <data name="Emulation.Option.Sony.Value.Cubic"><value>ลูกบาศก์</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller2_ForceAnalog.Label"><value>โหมดคอนโทรล 2 พลังอะนาล็อก</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_Controller2_ForceAnalog.Help"><value>บังคับให้ใช้โหมดอนาล็อกตลอดเวลา อาจทําให้เกิดปัญหากับเกมบางอย่าง ใช้ตัวเลือกนี้กับเกมที่รองรับโหมดแอ็คชั่นเท่านั้น แต่ไม่ได้เปิดใช้งานเองโดยอัตโนมัติ เมื่อถูกทําให้พิการ โหมดแอนาล็อกสามารถสลับได้ โดยการกดและจับ DualShock Analog Mode Combo.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller2_AnalogDPadInDigitalMode.Label"><value>ตัวควบคุม 2 ใช้แท่งแอนาล็อกสําหรับ D- Pad ในโหมดดิจิทัล</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller2_AnalogDPadInDigitalMode.Help"><value>อนุญาตให้คุณใช้แท่งแอนาล็อกควบคุม d-pad ในโหมดดิจิทัล รวมถึงปุ่มด้วย</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller2_AxisScale.Label"><value>ตัวควบคุม 2 แอนาล็อก Axis Scheme</value></data>
@@ -198,7 +195,6 @@
   <data name="Emulation.Option.swanstation.swanstation_Controller2_TwistResponse.Label"><value>ตัวควบคุม 2 NeGcon บิดเบี้ยว</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller2_TwistResponse.Help"><value>ตั้งค่าชนิดการตอบสนองแบบเกลียวสําหรับแท่งแอนาล็อกด้านซ้าย 'Kraadic' อนุญาตให้มีความแม่นยํามากกว่า 'Linar' เมื่อเคลื่อนตัวขนาดเล็ก และเหมาะกับเครื่องมือควบคุมสมัยใหม่ ในขณะที่ 'ลบทิ้ง' เพิ่มความแม่นยําในการเคลื่อนไหวเล็กน้อย แต่ 'อเนกประสงค์' การเคลื่อนไหวขนาดใหญ่ขึ้น โดยทั่วไปแล้ว จะมีประโยชน์เมื่อใช้ล้อหมุนต่อพ่วงเท่านั้น</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller3_ForceAnalog.Label"><value>โหมดคอนโทรล 3 พลังอะนาล็อก</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_Controller3_ForceAnalog.Help"><value>บังคับให้ใช้โหมดอนาล็อกตลอดเวลา อาจทําให้เกิดปัญหากับเกมบางอย่าง ใช้ตัวเลือกนี้กับเกมที่รองรับโหมดแอ็คชั่นเท่านั้น แต่ไม่ได้เปิดใช้งานเองโดยอัตโนมัติ เมื่อถูกทําให้พิการ โหมดแอนาล็อกสามารถสลับได้ โดยการกดและจับ DualShock Analog Mode Combo.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller3_AnalogDPadInDigitalMode.Label"><value>ตัวควบคุม 3 ใช้แท่งแอนาล็อกสําหรับ D- Pad ในโหมดดิจิทัล</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller3_AnalogDPadInDigitalMode.Help"><value>อนุญาตให้คุณใช้แท่งแอนาล็อกควบคุม d-pad ในโหมดดิจิทัล รวมถึงปุ่มด้วย</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller3_AxisScale.Label"><value>ตัวควบคุม 3 แอนาล็อก Axis Scheme</value></data>
@@ -210,7 +206,6 @@
   <data name="Emulation.Option.swanstation.swanstation_Controller3_TwistResponse.Label"><value>ตัวควบคุม 3 NeGcon บิดเบี้ยว</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller3_TwistResponse.Help"><value>ตั้งค่าชนิดการตอบสนองแบบเกลียวสําหรับแท่งแอนาล็อกด้านซ้าย 'Kraadic' อนุญาตให้มีความแม่นยํามากกว่า 'Linar' เมื่อเคลื่อนตัวขนาดเล็ก และเหมาะกับเครื่องมือควบคุมสมัยใหม่ ในขณะที่ 'ลบทิ้ง' เพิ่มความแม่นยําในการเคลื่อนไหวเล็กน้อย แต่ 'อเนกประสงค์' การเคลื่อนไหวขนาดใหญ่ขึ้น โดยทั่วไปแล้ว จะมีประโยชน์เมื่อใช้ล้อหมุนต่อพ่วงเท่านั้น</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller4_ForceAnalog.Label"><value>โหมดคอนโทรล 4 พลังอะนาล็อก</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_Controller4_ForceAnalog.Help"><value>บังคับให้ใช้โหมดอนาล็อกตลอดเวลา อาจทําให้เกิดปัญหากับเกมบางอย่าง ใช้ตัวเลือกนี้กับเกมที่รองรับโหมดแอ็คชั่นเท่านั้น แต่ไม่ได้เปิดใช้งานเองโดยอัตโนมัติ เมื่อถูกทําให้พิการ โหมดแอนาล็อกสามารถสลับได้ โดยการกดและจับ DualShock Analog Mode Combo.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller4_AnalogDPadInDigitalMode.Label"><value>ตัวควบคุม 4 ใช้แท่งแอนาล็อกสําหรับ D-pad ในโหมดดิจิทัล</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller4_AnalogDPadInDigitalMode.Help"><value>อนุญาตให้คุณใช้แท่งแอนาล็อกควบคุม d-pad ในโหมดดิจิทัล รวมถึงปุ่มด้วย</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller4_AxisScale.Label"><value>ตัวควบคุม 4 แอนาล็อก Axis Scheme</value></data>
@@ -222,7 +217,6 @@
   <data name="Emulation.Option.swanstation.swanstation_Controller4_TwistResponse.Label"><value>ตัวควบคุม 4 NeGcon บิดเบี้ยว</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller4_TwistResponse.Help"><value>ตั้งค่าชนิดการตอบสนองแบบเกลียวสําหรับแท่งแอนาล็อกด้านซ้าย 'Kraadic' อนุญาตให้มีความแม่นยํามากกว่า 'Linar' เมื่อเคลื่อนตัวขนาดเล็ก และเหมาะกับเครื่องมือควบคุมสมัยใหม่ ในขณะที่ 'ลบทิ้ง' เพิ่มความแม่นยําในการเคลื่อนไหวเล็กน้อย แต่ 'อเนกประสงค์' การเคลื่อนไหวขนาดใหญ่ขึ้น โดยทั่วไปแล้ว จะมีประโยชน์เมื่อใช้ล้อหมุนต่อพ่วงเท่านั้น</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller5_ForceAnalog.Label"><value>คอนโทรล 5 แอนาล็อก</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_Controller5_ForceAnalog.Help"><value>บังคับให้ใช้โหมดอนาล็อกตลอดเวลา อาจทําให้เกิดปัญหากับเกมบางอย่าง ใช้ตัวเลือกนี้กับเกมที่รองรับโหมดแอ็คชั่นเท่านั้น แต่ไม่ได้เปิดใช้งานเองโดยอัตโนมัติ เมื่อถูกทําให้พิการ โหมดแอนาล็อกสามารถสลับได้ โดยการกดและจับ DualShock Analog Mode Combo.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller5_AnalogDPadInDigitalMode.Label"><value>โปรแกรมควบคุม 5 ใช้แท่งแอนาล็อกสําหรับ D- Pad ในโหมดดิจิทัล</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller5_AnalogDPadInDigitalMode.Help"><value>อนุญาตให้คุณใช้แท่งแอนาล็อกควบคุม d-pad ในโหมดดิจิทัล รวมถึงปุ่มด้วย</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller5_AxisScale.Label"><value>ตัวควบคุม 5 แอนาล็อก เอกซ์ซิสสเกล</value></data>
@@ -230,7 +224,6 @@
   <data name="Emulation.Option.swanstation.swanstation_Controller5_VibrationBias.Label"><value>คอนโทรล 5 ไวเบรชัน บี อัส</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller5_VibrationBias.Help"><value>ปรับ ตัว ให้ เข้า กับ การ สั่น สะเทือน ของ ความ ถี่ ค่า ที่ สูง ขึ้น จะ ทํา ให้ แรง สั่น สะเทือน เล็ก ลง.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller6_ForceAnalog.Label"><value>คอนโทรล 6 ฟอร์ซ แอนาล็อก</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_Controller6_ForceAnalog.Help"><value>บังคับให้ใช้โหมดอนาล็อกตลอดเวลา อาจทําให้เกิดปัญหากับเกมบางอย่าง ใช้ตัวเลือกนี้กับเกมที่รองรับโหมดแอ็คชั่นเท่านั้น แต่ไม่ได้เปิดใช้งานเองโดยอัตโนมัติ เมื่อถูกทําให้พิการ โหมดแอนาล็อกสามารถสลับได้ โดยการกดและจับ DualShock Analog Mode Combo.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller6_AnalogDPadInDigitalMode.Label"><value>ควบคุม 6 ใช้ ไม้ อา นา ล็อก สําหรับ D- Pad ในโหมดดิจิทัล</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller6_AnalogDPadInDigitalMode.Help"><value>อนุญาตให้คุณใช้แท่งแอนาล็อกควบคุม d-pad ในโหมดดิจิทัล รวมถึงปุ่มด้วย</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller6_AxisScale.Label"><value>ตัวควบคุม 6 แอนาล็อก เอกซ์ซิสสเกล</value></data>
@@ -238,7 +231,6 @@
   <data name="Emulation.Option.swanstation.swanstation_Controller6_VibrationBias.Label"><value>คอนโทรล 6 ไวเบรชัน บี อัส</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller6_VibrationBias.Help"><value>ปรับ ตัว ให้ เข้า กับ การ สั่น สะเทือน ของ ความ ถี่ ค่า ที่ สูง ขึ้น จะ ทํา ให้ แรง สั่น สะเทือน เล็ก ลง.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller7_ForceAnalog.Label"><value>โหมดคอนโทรล 7 พลังอะนาล็อก</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_Controller7_ForceAnalog.Help"><value>บังคับให้ใช้โหมดอนาล็อกตลอดเวลา อาจทําให้เกิดปัญหากับเกมบางอย่าง ใช้ตัวเลือกนี้กับเกมที่รองรับโหมดแอ็คชั่นเท่านั้น แต่ไม่ได้เปิดใช้งานเองโดยอัตโนมัติ เมื่อถูกทําให้พิการ โหมดแอนาล็อกสามารถสลับได้ โดยการกดและจับ DualShock Analog Mode Combo.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller7_AnalogDPadInDigitalMode.Label"><value>ตัวควบคุม 7 ใช้แท่งแอนาล็อกสําหรับ D- Pad ในโหมดดิจิทัล</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller7_AnalogDPadInDigitalMode.Help"><value>อนุญาตให้คุณใช้แท่งแอนาล็อกควบคุม d-pad ในโหมดดิจิทัล รวมถึงปุ่มด้วย</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller7_AxisScale.Label"><value>ตัวควบคุม 7 แอนาล็อก Axis Scheme</value></data>
@@ -246,7 +238,6 @@
   <data name="Emulation.Option.swanstation.swanstation_Controller7_VibrationBias.Label"><value>คอนโทรล 7 ไวเบรชัน บี อัส</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller7_VibrationBias.Help"><value>ปรับ ตัว ให้ เข้า กับ การ สั่น สะเทือน ของ ความ ถี่ ค่า ที่ สูง ขึ้น จะ ทํา ให้ แรง สั่น สะเทือน เล็ก ลง.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller8_ForceAnalog.Label"><value>โหมดคอนโทรล 8 พลังอะนาล็อก</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_Controller8_ForceAnalog.Help"><value>บังคับให้ใช้โหมดอนาล็อกตลอดเวลา อาจทําให้เกิดปัญหากับเกมบางอย่าง ใช้ตัวเลือกนี้กับเกมที่รองรับโหมดแอ็คชั่นเท่านั้น แต่ไม่ได้เปิดใช้งานเองโดยอัตโนมัติ เมื่อถูกทําให้พิการ โหมดแอนาล็อกสามารถสลับได้ โดยการกดและจับ DualShock Analog Mode Combo.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller8_AnalogDPadInDigitalMode.Label"><value>โปรแกรมควบคุม 8 ใช้แท่งแอนาล็อกสําหรับ D- Pad ในโหมดดิจิทัล</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller8_AnalogDPadInDigitalMode.Help"><value>อนุญาตให้คุณใช้แท่งแอนาล็อกควบคุม d-pad ในโหมดดิจิทัล รวมถึงปุ่มด้วย</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller8_AxisScale.Label"><value>ตัวควบคุม 8 แอนาล็อก Axis Scheme</value></data>
@@ -340,13 +331,7 @@
   <data name="Emulation.Option.mednafen_psx.beetle_psx_display_osd.Help"><value>แสดงข้อความ OSD ที่ถูกสร้างจากแกนหลัก</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_calibration.Label"><value>ปรับช่วงการป้อนข้อมูลแบบย่อ</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_calibration.Help"><value>เปิดใช้การปรับเทียบข้อมูลแบบไม่ตายตัว เมื่ออุปกรณ์ถูกตั้งค่าเป็น DualShock, Analog Control, Annalog จอยสติ๊ก หรือ neGcon. ค่าที่ขึ้นทะเบียนสูงสุดจะถูกติดตามในเรียลไทม์ และใช้ในการปรับขนาดพิกัดแบบอนาล็อกผ่านไปยังเครื่องจําลอง ข้อ นี้ ควร ใช้ สําหรับ เกม ต่าง ๆ เช่น ตํานาน เม กา แมน 2 ซึ่ง คาด หมาย ค่า นิยม ที่ ใหญ่ กว่า สิ่ง ที่ ผู้ ควบคุม สมัย ใหม่ ให้ ไว้. เพื่อ จะ ได้ ผล ดี ที่ สุด ควร ใช้ การ หมุน แบบ แอ ส ล็อก อย่าง เต็ม ขนาด ใน การ ปรับ ความ คิด ให้ ถูก ต้อง ทุก ครั้ง ที่ บรรจุ เนื้อหา.</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_toggle.Label"><value>DualShock เปิด/สลับโหมดอะนาล็อก</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_toggle.Help"><value>เมื่อชนิดของอุปกรณ์นําเข้า DualShock, ตัวเลือกนี้ จะอนุญาตให้จําลองภาพได้ DualShock ให้สลับไปมาระหว่าง DIGITAL และ ANALOG โหมดเช่น ฮาร์ดแวร์ดั้งเดิม. คุณสามารถสลับโหมดได้โดยการใช้ชุดปุ่มที่เลือกไว้</value></data>
   <data name="Emulation.Option.Sony.Value.DefaultAnalog"><value>ปูมบันทึกปริยาย</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_toggle_combo.Label"><value>DualShock Analog Mode Combo</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_toggle_combo.Help"><value>การจับคู่ปุ่มที่จะใช้ในการสลับค่าระหว่าง DIGITAL และ ANALOG โหมดสําหรับภาพเลียนแบบ DualShock.</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_toggle_hold.Label"><value>DualShock Annalog Mode Combo ถ่วงเวลาไว้</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_toggle_hold.Help"><value>เก็บเวลาสําหรับปุ่มในโหมด Akregator</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_enable_multitap_port1.Label"><value>มัลติแทปบนพอร์ต 1</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_enable_multitap_port1.Help"><value>เปิดการใช้งานมัลติแทปบนพอร์ต 1</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_enable_multitap_port2.Label"><value>มัลติแทปบนพอร์ต 2</value></data>
@@ -376,24 +361,16 @@
   <data name="Emulation.Option.mednafen_psx.beetle_psx_mouse_sensitivity.Help"><value>การรองรับชนิดของอุปกรณ์ป้อนข้อมูล 'Muse'</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_negcon_response.Label"><value>neGcon บิดเบี้ยว</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_negcon_response.Help"><value>รูปแบบการตอบรับแบบ Akregator แบบ Officture เมื่อจําลองการกระทํา 'twist' ของอุปกรณ์ป้อนข้อมูล 'neGcon' การกระจัดแท่งแอนาล็อกอาจถูกโยงไปยัง neGcon มุมการหมุนแบบเชิงเส้น, ควอดราติก หรือลูกบาศก์ 'quadraditic' จะอนุญาตให้มีความแม่นยํามากกว่า 'Linar' เมื่อเคลื่อนตัวเล็ก ๆ เพิ่มความแม่นยําในการเคลื่อนไหวขนาดเล็ก หมายเหตุ: 'Linar' ขอแนะนําให้ใช้เฉพาะล้อหมุนเท่านั้น เครื่องควบคุมอนุสรณ์ ทําหน้าที่ป้อนข้อมูลแบบอนาล็อก ในลักษณะที่แตกต่างจากกลไก neGcon ' ในกรณีส่วนใหญ่ ' Quadratic' เป็นการประมาณที่ใกล้เคียงที่สุดของฮาร์ดแวร์จริง</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_negcon_deadzone.Label"><value>neGcon บิดเบี้ยวโซนประหาร</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_negcon_deadzone.Help"><value>วางแท่งแอนาล็อกไว้เมื่อเลียนแบบการกระทํา 'twist' ของอุปกรณ์ป้อนข้อมูล 'neGcon' ใช้ในการกําจัด การปล่อยตัวควบคุม หมายเหตุ: ตําแหน่งส่วนใหญ่ neGcon ที่เข้าคู่กัน ให้ตัวเลือกในเกมสําหรับตั้งค่าค่าพื้นที่ตายของ'ทวิสต์' เพื่อหลีกเลี่ยงการสูญเสียความแม่นยํา พื้นที่ตายของเกมควร * อย่างต่อเนื่อง * กําหนดเป็นศูนย์ ควรมีการปรับแก้ใด ๆ ที่ต้องการ *เท่านั้น* ปรับใช้ผ่านทางตัวเลือกแกนนี้. นี้มีความสําคัญโดยเฉพาะอย่างยิ่งเมื่อ 'neGconTrography' ถูกตั้งค่าเป็น ' Quadraditic' หรือ 'braic'</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_use_mednafen_memcard0_method.Label"><value>วิธีการใช้การ์ดหน่วยความจํา</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_use_mednafen_memcard0_method.Help"><value>บันทึกรูปแบบของข้อมูลที่ใช้สําหรับช่องหน่วยความจําด้านซ้าย 'mednafen' อาจจะถูกใช้เพื่อความเข้ากันได้กับ Medanafen รุ่นยืนได้ เมื่อใช้กับ Beetle PSX, Libretro (.srm) และม้าพันธุ์ดี (ชาวมักกะฮ์) (.mcr) การบันทึกมีรูปแบบที่เหมือนกันภายใน และสามารถแปลงค่าระหว่างตัวอื่น ๆ ได้ด้วยการเปลี่ยนชื่อ.</value></data>
   <data name="Emulation.Option.Sony.Value.Libretro"><value>Libretro</value></data>
   <data name="Emulation.Option.Sony.Value.Mednafen"><value>เมดนาเฟน</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_enable_memcard1.Label"><value>การ์ดหน่วยความจํา slot 2</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_enable_memcard1.Help"><value>จําลองเมมโมรี่การ์ดที่สอง ในช่องหน่วยความจําที่ถูกต้อง ข้อควรจํา: บางเกมต้องการปิดการใช้งานตัวเลือกนี้ เพื่อใช้ในการปฏิบัติการที่ถูกต้อง (เช่น Code name Tenka). หมายเหตุ: Memory Card Slot 2 ใช้รูปแบบ Mednafen (.mcr). บันทึกรูปแบบ</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_shared_memory_cards.Label"><value>การ์ดหน่วยความจําที่ใช้ร่วมกัน</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_shared_memory_cards.Help"><value>ใช้การ์ดหน่วยความจําที่ใช้ร่วมกันแทนการแยกไพ่สําหรับแต่ละเนื้อหา ข้อควรจํา: ถ้าวิธีการ 'Memory Card' ถูกตั้งค่าเป็น 'Libretro' จะมีผลกับการ์ดหน่วยความจํา ช่อง 2 เท่านั้น</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_memcard_left_index.Label"><value>ดัชนี% 1</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_memcard_left_index.Help"><value>เมมโมรีการ์ดที่โหลดอยู่ในปัจจุบัน ในช่องด้านซ้าย ตัวเลือกนี้จะใช้ได้ก็ต่อเมื่อมีการตั้งค่าวิธีหน่วยความจําใน Mednafen เท่านั้น</value></data>
   <data name="Emulation.Option.Sony.Value.0Default"><value>0 (ค่าปริยาย)</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_memcard_right_index.Label"><value>เมมโมรี่การ์ด slot 2 ดัชนี</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_memcard_right_index.Help"><value>เมมโมรี่การ์ดที่โหลดอยู่ในปัจจุบัน ในช่องที่ถูกต้อง ตัวเลือกนี้จะทํางานก็ต่อเมื่อมีการเปิดใช้งานการ์ดหน่วยความจํา sล็อต 2 เท่านั้น</value></data>
   <data name="Emulation.Option.Sony.Value.1Default"><value>1 (ค่าปริยาย)</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_line_render.Label"><value>แฮ็คแบบเส้นตรงต่อควอด</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_line_render.Help"><value>เกม บาง อย่าง (เช่น Doom, Hexen, Soul Blade, ฯลฯ) วาดเส้นทางแนวนอน โดยยืดสามเหลี่ยมแบบเดียว-พิกเซล บนหน้าจอ ซึ่งถูกวาดเป็นแถวของพิกเซลบนฮาร์ดแวร์ต้นฉบับ. การแฮ็คนี้ตรวจจับสามเหลี่ยมขนาดเล็กเหล่านี้ และแปลงมันไปยังควอดตามที่ต้องการ อนุญาตให้แสดงได้อย่างถูกต้องบนตัวแปลฮาร์ดแวร์ และที่ระดับความละเอียดภายใน ต้องการ 'Agorive' สําหรับบางชื่อ (e. g. กองกําลังมืด Duke Nikem) แต่อาจจะแนะนําข้อผิดพลาดทางกราฟิก ออกจาก 'Defult' ถ้าไม่แน่ใจ</value></data>
   <data name="Emulation.Option.Sony.Value.Default"><value>ค่าปริยาย</value></data>
   <data name="Emulation.Option.Sony.Value.Aggressive"><value>ก้าวร้าว</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_widescreen_hack.Label"><value>แก้ไขเกมสําหรับหน้าจอที่กว้างขึ้น</value></data>
@@ -415,8 +392,6 @@
   <data name="Emulation.Option.mednafen_psx.beetle_psx_dynarec_op_cycles.Help"><value>วนรอบประจุ dynarc ต่อ CPU คําสั่ง '2' เร็วกว่า แต่ตัวจําลอง CPU ปรากฎครึ่งสปีดที่จะเกมที่ก้าวตัวเองกับมัน - การตั้งค่า '1' สําหรับเกมที่มี CD แผง ลอย หรือ แขวน อยู่ ใต้ เด นา รีค (e.g.. parasite Eve( 2). '1' กําหนดค่าหน่วยความจําเข้าใช้ 2 รอบ และอื่น ๆ อีก หนึ่ง ใกล้กับ CPU จริง</value></data>
   <data name="Emulation.Option.Sony.Value.2Default"><value>2 (ค่าปริยาย)</value></data>
   <data name="Emulation.Option.Sony.Value.1AccurateFixesParasiteEve2EtcPoint"><value>1 (ถูกต้อง, แก้ไขปรสิต eve 2 เป็นต้น)</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_dynarec_eventcycles.Label"><value>Dynarec DMA/GPU/MDEC/ Timeter Cycles</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_dynarec_eventcycles.Help"><value>วงจรสูงสุดที่ประมวลผลโดย CPU ก่อนที่จะมีการปรับปรุง GPU/DMA/MDEC/Timeter จํานวนมากขึ้นจะเร็วขึ้น มีผลกระทบต่อล่ามด้วงน้อยกว่า dynarc</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_dynarec_spu_samples.Label"><value>ตัวอย่าง Dynarec SPU</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_dynarec_spu_samples.Help"><value>ค่ามากที่สุด SPU ตัวอย่างก่อน a SPU Check updates, more number will was first back, แต่จะทําให้เสียงเสียในบางเกม กับสิ่งอื่นที่ไม่ใช่ 1.</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_dynarec_spgp_opt.Label"><value>Dynarec SP GP เจอ RAM ปรับค่าแสง:</value></data>
@@ -605,12 +580,6 @@
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_display_vram.Help"><value>วิชัวไลซ์แผงควบคุมทั้งหมด VRAM รองรับโดยตัวแปลฮาร์ดแวร์แบบ OpenGL และ Vulkan เท่านั้น ข้อควรจํา: นี่เป็นสําหรับวัตถุประสงค์การดีบั๊ก และปกติควรจะปิดการใช้งาน</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_calibration.Label"><value>ปรับช่วงการป้อนข้อมูลแบบย่อ</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_calibration.Help"><value>เปิดใช้การปรับเทียบข้อมูลแบบไม่ตายตัว เมื่ออุปกรณ์ถูกตั้งค่าเป็น DualShock, Analog Control, Annalog จอยสติ๊ก หรือ neGcon. ค่าที่ขึ้นทะเบียนสูงสุดจะถูกติดตามในเรียลไทม์ และใช้ในการปรับขนาดพิกัดแบบอนาล็อกผ่านไปยังเครื่องจําลอง ข้อ นี้ ควร ใช้ สําหรับ เกม ต่าง ๆ เช่น ตํานาน เม กา แมน 2 ซึ่ง คาด หมาย ค่า นิยม ที่ ใหญ่ กว่า สิ่ง ที่ ผู้ ควบคุม สมัย ใหม่ ให้ ไว้. เพื่อ จะ ได้ ผล ดี ที่ สุด ควร ใช้ การ หมุน แบบ แอ ส ล็อก อย่าง เต็ม ขนาด ใน การ ปรับ ความ คิด ให้ ถูก ต้อง ทุก ครั้ง ที่ บรรจุ เนื้อหา.</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_toggle.Label"><value>DualShock เปิด/สลับโหมดอะนาล็อก</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_toggle.Help"><value>เมื่อชนิดของอุปกรณ์นําเข้า DualShock, ตัวเลือกนี้ จะอนุญาตให้จําลองภาพได้ DualShock ให้สลับไปมาระหว่าง DIGITAL และ ANALOG โหมดเช่น ฮาร์ดแวร์ดั้งเดิม. คุณสามารถสลับโหมดได้โดยการใช้ชุดปุ่มที่เลือกไว้</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_toggle_combo.Label"><value>DualShock Analog Mode Combo</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_toggle_combo.Help"><value>การจับคู่ปุ่มที่จะใช้ในการสลับค่าระหว่าง DIGITAL และ ANALOG โหมดสําหรับภาพเลียนแบบ DualShock.</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_toggle_hold.Label"><value>DualShock Annalog Mode Combo ถ่วงเวลาไว้</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_toggle_hold.Help"><value>เก็บเวลาสําหรับปุ่มในโหมด Akregator</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_enable_multitap_port1.Label"><value>มัลติแทปบนพอร์ต 1</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_enable_multitap_port1.Help"><value>เปิดการใช้งานมัลติแทปบนพอร์ต 1</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_enable_multitap_port2.Label"><value>มัลติแทปบนพอร์ต 2</value></data>
@@ -627,20 +596,12 @@
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_mouse_sensitivity.Help"><value>การรองรับชนิดของอุปกรณ์ป้อนข้อมูล 'Muse'</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_negcon_response.Label"><value>neGcon บิดเบี้ยว</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_negcon_response.Help"><value>รูปแบบการตอบรับแบบ Akregator แบบ Officture เมื่อจําลองการกระทํา 'twist' ของอุปกรณ์ป้อนข้อมูล 'neGcon' การกระจัดแท่งแอนาล็อกอาจถูกโยงไปยัง neGcon มุมการหมุนแบบเชิงเส้น, ควอดราติก หรือลูกบาศก์ 'quadraditic' จะอนุญาตให้มีความแม่นยํามากกว่า 'Linar' เมื่อเคลื่อนตัวเล็ก ๆ เพิ่มความแม่นยําในการเคลื่อนไหวขนาดเล็ก หมายเหตุ: 'Linar' ขอแนะนําให้ใช้เฉพาะล้อหมุนเท่านั้น เครื่องควบคุมอนุสรณ์ ทําหน้าที่ป้อนข้อมูลแบบอนาล็อก ในลักษณะที่แตกต่างจากกลไก neGcon ' ในกรณีส่วนใหญ่ ' Quadratic' เป็นการประมาณที่ใกล้เคียงที่สุดของฮาร์ดแวร์จริง</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_negcon_deadzone.Label"><value>neGcon บิดเบี้ยวโซนประหาร</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_negcon_deadzone.Help"><value>วางแท่งแอนาล็อกไว้เมื่อเลียนแบบการกระทํา 'twist' ของอุปกรณ์ป้อนข้อมูล 'neGcon' ใช้ในการกําจัด การปล่อยตัวควบคุม หมายเหตุ: ตําแหน่งส่วนใหญ่ neGcon ที่เข้าคู่กัน ให้ตัวเลือกในเกมสําหรับตั้งค่าค่าพื้นที่ตายของ'ทวิสต์' เพื่อหลีกเลี่ยงการสูญเสียความแม่นยํา พื้นที่ตายของเกมควร * อย่างต่อเนื่อง * กําหนดเป็นศูนย์ ควรมีการปรับแก้ใด ๆ ที่ต้องการ *เท่านั้น* ปรับใช้ผ่านทางตัวเลือกแกนนี้. นี้มีความสําคัญโดยเฉพาะอย่างยิ่งเมื่อ 'neGconTrography' ถูกตั้งค่าเป็น ' Quadraditic' หรือ 'braic'</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_use_mednafen_memcard0_method.Label"><value>วิธีการใช้การ์ดหน่วยความจํา</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_use_mednafen_memcard0_method.Help"><value>บันทึกรูปแบบของข้อมูลที่ใช้สําหรับช่องหน่วยความจําด้านซ้าย 'mednafen' อาจจะถูกใช้เพื่อความเข้ากันได้กับ Medanafen รุ่นยืนได้ เมื่อใช้กับ Beetle PSX, Libretro (.srm) และม้าพันธุ์ดี (ชาวมักกะฮ์) (.mcr) การบันทึกมีรูปแบบที่เหมือนกันภายใน และสามารถแปลงค่าระหว่างตัวอื่น ๆ ได้ด้วยการเปลี่ยนชื่อ.</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_enable_memcard1.Label"><value>การ์ดหน่วยความจํา slot 2</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_enable_memcard1.Help"><value>จําลองเมมโมรี่การ์ดที่สอง ในช่องหน่วยความจําที่ถูกต้อง ข้อควรจํา: บางเกมต้องการปิดการใช้งานตัวเลือกนี้ เพื่อใช้ในการปฏิบัติการที่ถูกต้อง (เช่น Code name Tenka). หมายเหตุ: Memory Card Slot 2 ใช้รูปแบบ Mednafen (.mcr). บันทึกรูปแบบ</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_shared_memory_cards.Label"><value>การ์ดหน่วยความจําที่ใช้ร่วมกัน</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_shared_memory_cards.Help"><value>ใช้การ์ดหน่วยความจําที่ใช้ร่วมกันแทนการแยกไพ่สําหรับแต่ละเนื้อหา ข้อควรจํา: ถ้าวิธีการ 'Memory Card' ถูกตั้งค่าเป็น 'Libretro' จะมีผลกับการ์ดหน่วยความจํา ช่อง 2 เท่านั้น</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_memcard_left_index.Label"><value>ดัชนี% 1</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_memcard_left_index.Help"><value>เมมโมรีการ์ดที่โหลดอยู่ในปัจจุบัน ในช่องด้านซ้าย ตัวเลือกนี้จะใช้ได้ก็ต่อเมื่อมีการตั้งค่าวิธีหน่วยความจําใน Mednafen เท่านั้น</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_memcard_right_index.Label"><value>เมมโมรี่การ์ด slot 2 ดัชนี</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_memcard_right_index.Help"><value>เมมโมรี่การ์ดที่โหลดอยู่ในปัจจุบัน ในช่องที่ถูกต้อง ตัวเลือกนี้จะทํางานก็ต่อเมื่อมีการเปิดใช้งานการ์ดหน่วยความจํา sล็อต 2 เท่านั้น</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_line_render.Label"><value>แฮ็คแบบเส้นตรงต่อควอด</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_line_render.Help"><value>เกม บาง อย่าง (เช่น Doom, Hexen, Soul Blade, ฯลฯ) วาดเส้นทางแนวนอน โดยยืดสามเหลี่ยมแบบเดียว-พิกเซล บนหน้าจอ ซึ่งถูกวาดเป็นแถวของพิกเซลบนฮาร์ดแวร์ต้นฉบับ. การแฮ็คนี้ตรวจจับสามเหลี่ยมขนาดเล็กเหล่านี้ และแปลงมันไปยังควอดตามที่ต้องการ อนุญาตให้แสดงได้อย่างถูกต้องบนตัวแปลฮาร์ดแวร์ และที่ระดับความละเอียดภายใน ต้องการ 'Agorive' สําหรับบางชื่อ (e. g. กองกําลังมืด Duke Nikem) แต่อาจจะแนะนําข้อผิดพลาดทางกราฟิก ออกจาก 'Defult' ถ้าไม่แน่ใจ</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_widescreen_hack.Label"><value>แก้ไขเกมสําหรับหน้าจอที่กว้างขึ้น</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_widescreen_hack.Help"><value>Sheel 3D เนื้อหาเชิงอรรถ และแสดงเฟรมบัฟเฟอร์แบบย่อ โดยสัดส่วนจอกว้าง ผลิตผลที่ดีที่สุดด้วยเกมแบบ 3 มิติเต็ม 2 มิติ จะยืดออกทางแนวนอน และอาจจะทําให้การเอียงผิด</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_widescreen_hack_aspect_ratio.Label"><value>สัดส่วนภาพสําหรับจอที่กว้างขึ้น</value></data>
@@ -653,8 +614,6 @@
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_dynarec_invalidate.Help"><value>บางเกมต้องการ 'full' plaination, บางรายการต้องใช้ 'DMA' เท่านั้น</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_dynarec_op_cycles.Label"><value>วัฏจักรของ Dynarec ต่อการสั่งงาน</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_dynarec_op_cycles.Help"><value>วนรอบประจุ dynarc ต่อ CPU คําสั่ง '2' เร็วกว่า แต่ตัวจําลอง CPU ปรากฎครึ่งสปีดที่จะเกมที่ก้าวตัวเองกับมัน - การตั้งค่า '1' สําหรับเกมที่มี CD แผง ลอย หรือ แขวน อยู่ ใต้ เด นา รีค (e.g.. parasite Eve( 2). '1' กําหนดค่าหน่วยความจําเข้าใช้ 2 รอบ และอื่น ๆ อีก หนึ่ง ใกล้กับ CPU จริง</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_dynarec_eventcycles.Label"><value>Dynarec DMA/GPU/MDEC/ Timeter Cycles</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_dynarec_eventcycles.Help"><value>วงจรสูงสุดที่ประมวลผลโดย CPU ก่อนที่จะมีการปรับปรุง GPU/DMA/MDEC/Timeter จํานวนมากขึ้นจะเร็วขึ้น มีผลกระทบต่อล่ามด้วงน้อยกว่า dynarc</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_dynarec_spu_samples.Label"><value>ตัวอย่าง Dynarec SPU</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_dynarec_spu_samples.Help"><value>ค่ามากที่สุด SPU ตัวอย่างก่อน a SPU Check updates, more number will was first back, แต่จะทําให้เสียงเสียในบางเกม กับสิ่งอื่นที่ไม่ใช่ 1.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_dynarec_spgp_opt.Label"><value>Dynarec SP GP เจอ RAM ปรับค่าแสง:</value></data>
@@ -1297,4 +1256,22 @@
   <data name="Emulation.Option.Sony.Setting.AnalogMode.Label"><value>เริ่มในโหมดอะนาล็อก</value></data>
   <data name="Emulation.Option.Sony.Setting.AnalogMode.Help"><value>เริ่มตัวควบคุมในโหมดแอ็คชั่นแทนที่จะเป็นดิจิทัล เกมบางเกม (เช่น Round Rumer V) บูตแผ่นในดิจิทัลและตามปกติแล้วต้องใช้กดตัวควบคุม ANALOG ปุ่มเพื่อเปิดใช้งานแท่งไม้; เปิดให้ใช้ควบคุมแบบเอนกประสงค์จากตอนต้นได้. เกมที่ล็อกโหมดควบคุมไม่สามารถป้องกันได้</value></data>
   <data name="Emulation.Option.Sony.Files.CheatsDirectory"><value>โฟลเดอร์ที่มีรหัสการโกงเกม</value></data>
+  <data name="Emulation.Option.Sony.Setting.ForceAnalog.Label" xml:space="preserve"><value>โหมดคอนโทรล 1 พลังอะนาล็อก</value></data>
+  <data name="Emulation.Option.Sony.Setting.ForceAnalog.Help" xml:space="preserve"><value>บังคับให้ใช้โหมดอนาล็อกตลอดเวลา อาจทําให้เกิดปัญหากับเกมบางอย่าง ใช้ตัวเลือกนี้กับเกมที่รองรับโหมดแอ็คชั่นเท่านั้น แต่ไม่ได้เปิดใช้งานเองโดยอัตโนมัติ เมื่อถูกทําให้พิการ โหมดแอนาล็อกสามารถสลับได้ โดยการกดและจับ DualShock Analog Mode Combo.</value></data>
+  <data name="Emulation.Option.Sony.Setting.AnalogToggle.Label" xml:space="preserve"><value>DualShock เปิด/สลับโหมดอะนาล็อก</value></data>
+  <data name="Emulation.Option.Sony.Setting.AnalogToggle.Help" xml:space="preserve"><value>เมื่อชนิดของอุปกรณ์นําเข้า DualShock, ตัวเลือกนี้ จะอนุญาตให้จําลองภาพได้ DualShock ให้สลับไปมาระหว่าง DIGITAL และ ANALOG โหมดเช่น ฮาร์ดแวร์ดั้งเดิม. คุณสามารถสลับโหมดได้โดยการใช้ชุดปุ่มที่เลือกไว้</value></data>
+  <data name="Emulation.Option.Sony.Setting.AnalogToggleCombo.Label" xml:space="preserve"><value>DualShock Analog Mode Combo</value></data>
+  <data name="Emulation.Option.Sony.Setting.AnalogToggleCombo.Help" xml:space="preserve"><value>การจับคู่ปุ่มที่จะใช้ในการสลับค่าระหว่าง DIGITAL และ ANALOG โหมดสําหรับภาพเลียนแบบ DualShock.</value></data>
+  <data name="Emulation.Option.Sony.Setting.AnalogToggleHold.Label" xml:space="preserve"><value>DualShock Annalog Mode Combo ถ่วงเวลาไว้</value></data>
+  <data name="Emulation.Option.Sony.Setting.AnalogToggleHold.Help" xml:space="preserve"><value>เก็บเวลาสําหรับปุ่มในโหมด Akregator</value></data>
+  <data name="Emulation.Option.Sony.Setting.NegconDeadzone.Label" xml:space="preserve"><value>neGcon บิดเบี้ยวโซนประหาร</value></data>
+  <data name="Emulation.Option.Sony.Setting.NegconDeadzone.Help" xml:space="preserve"><value>วางแท่งแอนาล็อกไว้เมื่อเลียนแบบการกระทํา 'twist' ของอุปกรณ์ป้อนข้อมูล 'neGcon' ใช้ในการกําจัด การปล่อยตัวควบคุม หมายเหตุ: ตําแหน่งส่วนใหญ่ neGcon ที่เข้าคู่กัน ให้ตัวเลือกในเกมสําหรับตั้งค่าค่าพื้นที่ตายของ'ทวิสต์' เพื่อหลีกเลี่ยงการสูญเสียความแม่นยํา พื้นที่ตายของเกมควร * อย่างต่อเนื่อง * กําหนดเป็นศูนย์ ควรมีการปรับแก้ใด ๆ ที่ต้องการ *เท่านั้น* ปรับใช้ผ่านทางตัวเลือกแกนนี้. นี้มีความสําคัญโดยเฉพาะอย่างยิ่งเมื่อ 'neGconTrography' ถูกตั้งค่าเป็น ' Quadraditic' หรือ 'braic'</value></data>
+  <data name="Emulation.Option.Sony.Setting.SecondMemoryCard.Label" xml:space="preserve"><value>การ์ดหน่วยความจํา slot 2</value></data>
+  <data name="Emulation.Option.Sony.Setting.SecondMemoryCard.Help" xml:space="preserve"><value>จําลองเมมโมรี่การ์ดที่สอง ในช่องหน่วยความจําที่ถูกต้อง ข้อควรจํา: บางเกมต้องการปิดการใช้งานตัวเลือกนี้ เพื่อใช้ในการปฏิบัติการที่ถูกต้อง (เช่น Code name Tenka). หมายเหตุ: Memory Card Slot 2 ใช้รูปแบบ Mednafen (.mcr). บันทึกรูปแบบ</value></data>
+  <data name="Emulation.Option.Sony.Setting.SharedMemoryCardMethod.Label" xml:space="preserve"><value>การ์ดหน่วยความจําที่ใช้ร่วมกัน</value></data>
+  <data name="Emulation.Option.Sony.Setting.SharedMemoryCardMethod.Help" xml:space="preserve"><value>ใช้การ์ดหน่วยความจําที่ใช้ร่วมกันแทนการแยกไพ่สําหรับแต่ละเนื้อหา ข้อควรจํา: ถ้าวิธีการ 'Memory Card' ถูกตั้งค่าเป็น 'Libretro' จะมีผลกับการ์ดหน่วยความจํา ช่อง 2 เท่านั้น</value></data>
+  <data name="Emulation.Option.Sony.Setting.LineToQuad.Label" xml:space="preserve"><value>แฮ็คแบบเส้นตรงต่อควอด</value></data>
+  <data name="Emulation.Option.Sony.Setting.LineToQuad.Help" xml:space="preserve"><value>เกม บาง อย่าง (เช่น Doom, Hexen, Soul Blade, ฯลฯ) วาดเส้นทางแนวนอน โดยยืดสามเหลี่ยมแบบเดียว-พิกเซล บนหน้าจอ ซึ่งถูกวาดเป็นแถวของพิกเซลบนฮาร์ดแวร์ต้นฉบับ. การแฮ็คนี้ตรวจจับสามเหลี่ยมขนาดเล็กเหล่านี้ และแปลงมันไปยังควอดตามที่ต้องการ อนุญาตให้แสดงได้อย่างถูกต้องบนตัวแปลฮาร์ดแวร์ และที่ระดับความละเอียดภายใน ต้องการ 'Agorive' สําหรับบางชื่อ (e. g. กองกําลังมืด Duke Nikem) แต่อาจจะแนะนําข้อผิดพลาดทางกราฟิก ออกจาก 'Defult' ถ้าไม่แน่ใจ</value></data>
+  <data name="Emulation.Option.Sony.Setting.DynarecEventCycles.Label" xml:space="preserve"><value>Dynarec DMA/GPU/MDEC/ Timeter Cycles</value></data>
+  <data name="Emulation.Option.Sony.Setting.DynarecEventCycles.Help" xml:space="preserve"><value>วงจรสูงสุดที่ประมวลผลโดย CPU ก่อนที่จะมีการปรับปรุง GPU/DMA/MDEC/Timeter จํานวนมากขึ้นจะเร็วขึ้น มีผลกระทบต่อล่ามด้วงน้อยกว่า dynarc</value></data>
 </root>

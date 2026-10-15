@@ -150,8 +150,6 @@
   <data name="Emulation.Option.swanstation.swanstation_Controller_EnableRumble.Help"><value>משוב Hapticable בעת שימוש rumble-e מאובזר עם מכשיר קלט נתמך.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller_ShowCrosshair.Label"><value>עקבו אחרי GunCon</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller_ShowCrosshair.Help"><value>הצג לוחצים כאשר מכשיר הקלט מוגדר "Namco GunCon".</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_Controller1_ForceAnalog.Label"><value>המונחים: Force Analog Mode</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_Controller1_ForceAnalog.Help"><value>מצב אנלוגי של כוחות להיות תמיד. יכול לגרום לבעיות עם כמה משחקים. רק להשתמש באפשרות זו למשחקים התומכים במצב אנלוגי, אך אינם מאפשרים זאת באופן אוטומטי. כאשר נכים, מצב אנלוגי ניתן להתגבר על ידי לחיצה והחזקה במצב DualShock Analog Combo.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller1_AnalogDPadInDigitalMode.Label"><value>בקר 1 השתמש מקלות אנלוגיים עבור d-pad במצב דיגיטלי</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller1_AnalogDPadInDigitalMode.Help"><value>מאפשר לך להשתמש מקלות אנלוגי כדי לשלוט ב- d-pad במצב דיגיטלי, כמו גם את הכפתורים.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller1_AxisScale.Label"><value>1 Analog הציר Scale</value></data>
@@ -170,7 +168,6 @@
   <data name="Emulation.Option.Sony.Value.Quadratic"><value>Quadratic</value></data>
   <data name="Emulation.Option.Sony.Value.Cubic"><value>קובי</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller2_ForceAnalog.Label"><value>המונחים: Force Analog Mode</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_Controller2_ForceAnalog.Help"><value>מצב אנלוגי של כוחות להיות תמיד. יכול לגרום לבעיות עם כמה משחקים. רק להשתמש באפשרות זו למשחקים התומכים במצב אנלוגי, אך אינם מאפשרים זאת באופן אוטומטי. כאשר נכים, מצב אנלוגי ניתן להתגבר על ידי לחיצה והחזקה במצב DualShock Analog Combo.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller2_AnalogDPadInDigitalMode.Label"><value>בקר 2 השתמש מקלות אנלוגי עבור d-pad במצב דיגיטלי</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller2_AnalogDPadInDigitalMode.Help"><value>מאפשר לך להשתמש מקלות אנלוגי כדי לשלוט ב- d-pad במצב דיגיטלי, כמו גם את הכפתורים.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller2_AxisScale.Label"><value>המונחים: Analog Axis Scale</value></data>
@@ -186,7 +183,6 @@
   <data name="Emulation.Option.swanstation.swanstation_Controller2_TwistResponse.Label"><value>ביקורת: NeGcon Twist Response</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller2_TwistResponse.Help"><value>הגדר את סוג התגובה המעוות של מקל האנלוגי השמאלי. "Quadratic" מאפשר דיוק גדול יותר מאשר 'Linear' בעת ביצוע תנועות קטנות, והוא מתאים יותר עבור בקרים מודרניים, בעוד "Cubic" מעלה דיוק תנועה קטן, אבל תנועות גדולות "exaggerates".</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller3_ForceAnalog.Label"><value>תגית: Power Analog Mode</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_Controller3_ForceAnalog.Help"><value>מצב אנלוגי של כוחות להיות תמיד. יכול לגרום לבעיות עם כמה משחקים. רק להשתמש באפשרות זו למשחקים התומכים במצב אנלוגי, אך אינם מאפשרים זאת באופן אוטומטי. כאשר נכים, מצב אנלוגי ניתן להתגבר על ידי לחיצה והחזקה במצב DualShock Analog Combo.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller3_AnalogDPadInDigitalMode.Label"><value>בקר 3 השתמש מקלות אנלוגיים עבור d-pad במצב דיגיטלי</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller3_AnalogDPadInDigitalMode.Help"><value>מאפשר לך להשתמש מקלות אנלוגי כדי לשלוט ב- d-pad במצב דיגיטלי, כמו גם את הכפתורים.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller3_AxisScale.Label"><value>אתר אנליסטים Analog Axis Scale</value></data>
@@ -198,7 +194,6 @@
   <data name="Emulation.Option.swanstation.swanstation_Controller3_TwistResponse.Label"><value>ביקורת: NeGcon Twist Response</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller3_TwistResponse.Help"><value>הגדר את סוג התגובה המעוות של מקל האנלוגי השמאלי. "Quadratic" מאפשר דיוק גדול יותר מאשר 'Linear' בעת ביצוע תנועות קטנות, והוא מתאים יותר עבור בקרים מודרניים, בעוד "Cubic" מעלה דיוק תנועה קטן, אבל תנועות גדולות "exaggerates".</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller4_ForceAnalog.Label"><value>תגית: Power Analog Mode</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_Controller4_ForceAnalog.Help"><value>מצב אנלוגי של כוחות להיות תמיד. יכול לגרום לבעיות עם כמה משחקים. רק להשתמש באפשרות זו למשחקים התומכים במצב אנלוגי, אך אינם מאפשרים זאת באופן אוטומטי. כאשר נכים, מצב אנלוגי ניתן להתגבר על ידי לחיצה והחזקה במצב DualShock Analog Combo.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller4_AnalogDPadInDigitalMode.Label"><value>בקר 4 השתמש מקלות אנלוגיים עבור d-pad במצב דיגיטלי</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller4_AnalogDPadInDigitalMode.Help"><value>מאפשר לך להשתמש מקלות אנלוגי כדי לשלוט ב- d-pad במצב דיגיטלי, כמו גם את הכפתורים.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller4_AxisScale.Label"><value>4 Analog הציר Scale</value></data>
@@ -210,7 +205,6 @@
   <data name="Emulation.Option.swanstation.swanstation_Controller4_TwistResponse.Label"><value>ביקורת: NeGcon Twist Response</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller4_TwistResponse.Help"><value>הגדר את סוג התגובה המעוות של מקל האנלוגי השמאלי. "Quadratic" מאפשר דיוק גדול יותר מאשר 'Linear' בעת ביצוע תנועות קטנות, והוא מתאים יותר עבור בקרים מודרניים, בעוד "Cubic" מעלה דיוק תנועה קטן, אבל תנועות גדולות "exaggerates".</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller5_ForceAnalog.Label"><value>המונחים: Force Analog Mode</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_Controller5_ForceAnalog.Help"><value>מצב אנלוגי של כוחות להיות תמיד. יכול לגרום לבעיות עם כמה משחקים. רק להשתמש באפשרות זו למשחקים התומכים במצב אנלוגי, אך אינם מאפשרים זאת באופן אוטומטי. כאשר נכים, מצב אנלוגי ניתן להתגבר על ידי לחיצה והחזקה במצב DualShock Analog Combo.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller5_AnalogDPadInDigitalMode.Label"><value>בקר 5 השתמש מקלות אנלוגיים עבור d-pad במצב דיגיטלי</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller5_AnalogDPadInDigitalMode.Help"><value>מאפשר לך להשתמש מקלות אנלוגי כדי לשלוט ב- d-pad במצב דיגיטלי, כמו גם את הכפתורים.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller5_AxisScale.Label"><value>מדד 5 Analog הציר Scale</value></data>
@@ -218,7 +212,6 @@
   <data name="Emulation.Option.swanstation.swanstation_Controller5_VibrationBias.Label"><value>ביקורת 5 Vibration Bias</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller5_VibrationBias.Help"><value>נספח התחלה לעצימות רטט, ערכים גבוהים יותר יהפכו תנודות קטנות יותר לא ניתנות למדידה.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller6_ForceAnalog.Label"><value>המונחים: Force Analog Mode</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_Controller6_ForceAnalog.Help"><value>מצב אנלוגי של כוחות להיות תמיד. יכול לגרום לבעיות עם כמה משחקים. רק להשתמש באפשרות זו למשחקים התומכים במצב אנלוגי, אך אינם מאפשרים זאת באופן אוטומטי. כאשר נכים, מצב אנלוגי ניתן להתגבר על ידי לחיצה והחזקה במצב DualShock Analog Combo.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller6_AnalogDPadInDigitalMode.Label"><value>בקר 6 השתמש מקלות אנלוגיים עבור d-pad במצב דיגיטלי</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller6_AnalogDPadInDigitalMode.Help"><value>מאפשר לך להשתמש מקלות אנלוגי כדי לשלוט ב- d-pad במצב דיגיטלי, כמו גם את הכפתורים.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller6_AxisScale.Label"><value>המונחים: Analog Axis Scale</value></data>
@@ -226,7 +219,6 @@
   <data name="Emulation.Option.swanstation.swanstation_Controller6_VibrationBias.Label"><value>ביקורת 6 Vibration Bias</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller6_VibrationBias.Help"><value>נספח התחלה לעצימות רטט, ערכים גבוהים יותר יהפכו תנודות קטנות יותר לא ניתנות למדידה.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller7_ForceAnalog.Label"><value>המונחים: Force Analog Mode</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_Controller7_ForceAnalog.Help"><value>מצב אנלוגי של כוחות להיות תמיד. יכול לגרום לבעיות עם כמה משחקים. רק להשתמש באפשרות זו למשחקים התומכים במצב אנלוגי, אך אינם מאפשרים זאת באופן אוטומטי. כאשר נכים, מצב אנלוגי ניתן להתגבר על ידי לחיצה והחזקה במצב DualShock Analog Combo.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller7_AnalogDPadInDigitalMode.Label"><value>בקר 7 השתמש מקלות אנלוגיים עבור d-pad במצב דיגיטלי</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller7_AnalogDPadInDigitalMode.Help"><value>מאפשר לך להשתמש מקלות אנלוגי כדי לשלוט ב- d-pad במצב דיגיטלי, כמו גם את הכפתורים.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller7_AxisScale.Label"><value>המונחים: Analog Axis Scale</value></data>
@@ -234,7 +226,6 @@
   <data name="Emulation.Option.swanstation.swanstation_Controller7_VibrationBias.Label"><value>ביקורת 7 Vibration Bias</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller7_VibrationBias.Help"><value>נספח התחלה לעצימות רטט, ערכים גבוהים יותר יהפכו תנודות קטנות יותר לא ניתנות למדידה.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller8_ForceAnalog.Label"><value>המונחים: Force Analog Mode</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_Controller8_ForceAnalog.Help"><value>מצב אנלוגי של כוחות להיות תמיד. יכול לגרום לבעיות עם כמה משחקים. רק להשתמש באפשרות זו למשחקים התומכים במצב אנלוגי, אך אינם מאפשרים זאת באופן אוטומטי. כאשר נכים, מצב אנלוגי ניתן להתגבר על ידי לחיצה והחזקה במצב DualShock Analog Combo.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller8_AnalogDPadInDigitalMode.Label"><value>בקר 8 השתמש מקלות אנלוגיים עבור d-pad במצב דיגיטלי</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller8_AnalogDPadInDigitalMode.Help"><value>מאפשר לך להשתמש מקלות אנלוגי כדי לשלוט ב- d-pad במצב דיגיטלי, כמו גם את הכפתורים.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Controller8_AxisScale.Label"><value>כתובת: 8 Analog הציר Scale</value></data>
@@ -328,13 +319,7 @@
   <data name="Emulation.Option.mednafen_psx.beetle_psx_display_osd.Help"><value>הצגת הודעות OSD שנוצרות על ידי הליבה.</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_calibration.Label"><value>טווח הקלט האנלוגי</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_calibration.Help"><value>קליברציה דינמית של קלטות אנלוגיות כאשר המכשיר מוגדר DualShock, Analog Controllerstick או neGcon. ערכי קלט רשומים מקסימליים נמצאים במעקב בזמן אמת ומשמשים לתאורדות אנלוגיות בקנה מידה עברו לחיקוי. זה צריך לשמש למשחקים כגון Mega Man Legends 2 אשר מצפים לערכים גדולים יותר ממה שהבקר המודרני מספק. עבור התוצאות הטובות ביותר, מקלות אנלוגיות צריך להיות לסובב במלואם כדי לכוון את אלגוריתם calibration בכל פעם תוכן טעון.</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_toggle.Label"><value>DualShock Analog Mode toggle</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_toggle.Help"><value>כאשר סוג מכשיר הקלט הוא DualShock, אפשרות זו מאפשרת חיקוי של DualShock בין DIGITAL ו-ANALOG כמו חומרה מקורית. מצב יכול גם להיות מלוטש על ידי שימוש בשילוב הלחצן שנבחר.</value></data>
   <data name="Emulation.Option.Sony.Value.DefaultAnalog"><value>Default-Analog</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_toggle_combo.Label"><value>DualShock Analog Mode Combo</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_toggle_combo.Help"><value>השילוב של הכפתור אשר ישמש כדי לעקוף בין DIGITAL ו- ANALOG מצב עבור חיקוי DualShock.</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_toggle_hold.Label"><value>DualShock המונחים: Analog mode combohold</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_toggle_hold.Help"><value>החזיקו זמן עבור כפתורים במצב אנלוגי.</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_enable_multitap_port1.Label"><value>Multitap On Port 1</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_enable_multitap_port1.Help"><value>פונקציונליות multitapable על הנמל 1.</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_enable_multitap_port2.Label"><value>Multitap on Port 2</value></data>
@@ -364,24 +349,16 @@
   <data name="Emulation.Option.mednafen_psx.beetle_psx_mouse_sensitivity.Help"><value>אחריות של סוג הקלט "Mouse"</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_negcon_response.Label"><value>neGcon Twist Response</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_negcon_response.Help"><value>סוג התגובה של דבק אנלוגי שמאל כאשר מדגימים את פעולת ה-"twist" של חיקוי מכשירי קלט "neGcon". עקירת מקל Analog עשויה להיות ממופה לזווית הסיבוב neGcon או ליניארית, חד-משמעית או מעוקבת. "Quadratic" מאפשר דיוק גדול יותר מאשר 'Linear' בעת ביצוע תנועות קטנות. "Cubic" מגביר את הדיוק של התנועה הקטנה, אבל תנועות גדולות יותר "exaggerates". הערה: "Linear" מומלץ רק בעת שימוש היקפי גלגל המירוצים. בקרים קונבנציונאליים ליישם קלט אנלוגי באופן שונה ביסודו של מנגנון neGcon 'twist', כזה מיפוי ליניארי מעל דגימה קטנים תנועות, פגיעה בשליטה בסדר. ברוב המקרים, "Quadratic" מספק את התוספת הקרובה ביותר של חומרה אמיתית.</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_negcon_deadzone.Label"><value>neGcon Twist Deadzone</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_negcon_deadzone.Help"><value>שמאל אנלוגי מקל מתזון כאשר מדגימים את פעולת ה-'twist' של מכשירי קלט 'neGcon'. משמש כדי לחסל את סחף הבקר. הערה: רוב neGcon תואמים מספקים אפשרויות במשחק להגדרת ערך "איזון מת". כדי להימנע מאובדן הדיוק, אזור המתים במשחק צריך *תמיד* להיות מוגדר לאפס. כל התאמות הנדרשות צריך * רק* יש ליישם באמצעות אפשרות הליבה הזו. זה חשוב במיוחד כאשר "neGcon Twist Response" מוגדר "Quadratic" או "Cubic".</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_use_mednafen_memcard0_method.Label"><value>שיטת Memory Card Method</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_use_mednafen_memcard0_method.Help"><value>שמור פורמט נתונים המשמש עבור חריץ כרטיס הזיכרון השמאלית "מינדנפן" עשוי לשמש תאימות עם הגרסה של מדנגן עמידה. כאשר נעשה שימוש עם Beetle PSX, Libretro (.srm) ו- Mednafen (.mcr) יש פורמטים זהים פנימי ניתן להמיר בין אחד לשני באמצעות renaming.</value></data>
   <data name="Emulation.Option.Sony.Value.Libretro"><value>Libretro</value></data>
   <data name="Emulation.Option.Sony.Value.Mednafen"><value>Mednafen</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_enable_memcard1.Label"><value>כרטיס זיכרון 2</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_enable_memcard1.Help"><value>דמיין כרטיס זיכרון שני בחניון הזיכרון הנכון. הערה: כמה משחקים דורשים אפשרות זו להיות מוגבלות עבור פעולה נכונה (למשל. שם קוד: Tenka הערה: Memory Card Slot 2 משתמש בתבנית מדנפן (.mcr).</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_shared_memory_cards.Label"><value>כרטיסי זיכרון משותפים</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_shared_memory_cards.Help"><value>השתמש בכרטיסי זיכרון משותפים במקום כרטיסים נפרדים לכל תוכן. הערה: אם שיטת Memory Card מוגדרת ל- 'Libretro', רק חריץ כרטיס זיכרון 2 יושפע.</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_memcard_left_index.Label"><value>כרטיס זיכרון מספר 1 מדד</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_memcard_left_index.Help"><value>כרטיס הזיכרון כרגע טעון באגף השמאלי. אפשרות זו תעבוד רק אם שיטת כרטיס הזיכרון נקבעת ל- Mednafen.</value></data>
   <data name="Emulation.Option.Sony.Value.0Default"><value>0 (Default)</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_memcard_right_index.Label"><value>Memory Card חריץ 2 Index</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_memcard_right_index.Help"><value>כרטיס הזיכרון כרגע טעון במרווח הנכון. אפשרות זו תעבוד רק אם ניתן לכרטיס זיכרון 2.</value></data>
   <data name="Emulation.Option.Sony.Value.1Default"><value>1 (Default)</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_line_render.Label"><value>Line-to-Quad hack</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_line_render.Help"><value>כמה משחקים (למשל. Doom, Hexen, Soul Blade וכו ') לצייר קווים אופקיים על ידי מתיחה משולש בגובה פיקסל אחד לאורך המסך, אשר הם rasterized כמו שורה של פיקסלים על חומרה מקורית. האקר זה מזהה את משולשים קטנים אלה וממיר אותם לסווג כנדרש, ומאפשר להם להיות מוצגים כראוי על חומרי החומרה ועל החלטות פנימיות בקנה מידה. "תוקפנות" נדרש עבור כמה תארים (למשל. כוחות אפלים, דיוק Nukem) אך עשויים אחרת להציג גלידות גרפיות. עזוב את 'לעזאזל' אם לא בטוח.</value></data>
   <data name="Emulation.Option.Sony.Value.Default"><value>Default</value></data>
   <data name="Emulation.Option.Sony.Value.Aggressive"><value>תוקפנות</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_widescreen_hack.Label"><value>לשנות את המשחק למסך רחב יותר</value></data>
@@ -403,8 +380,6 @@
   <data name="Emulation.Option.mednafen_psx.beetle_psx_dynarec_op_cycles.Help"><value>מחזורי ה-Ddynarec מטענים לפי הוראות CPU. "2" הוא מהיר יותר, אבל ה-CPU המוטבע מופיע במהירות למחצה למשחקים שמקצבים את עצמם - להגדיר '1' עבור משחקים שהזרמת CD שלהם דוכנים או נתלה מתחת לדינראק (למשל. Parasite Eve 2 ההגדרה '1' מעניקה לזיכרון גישה לשני מחזורים וכל דבר אחר, קרוב ל- CPU האמיתי.</value></data>
   <data name="Emulation.Option.Sony.Value.2Default"><value>2 (Default)</value></data>
   <data name="Emulation.Option.Sony.Value.1AccurateFixesParasiteEve2EtcPoint"><value>1 (תיקון, Fixes Parasite Eve 2 וכו ')</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_dynarec_eventcycles.Label"><value>Dynarec DMA/GPU/MDEC/Timer Event Cycles</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_dynarec_eventcycles.Help"><value>מחזורי מקס לרוץ על ידי CPU לפני GPU / DMA /MDEC /Timer Update נבדק, מספר גבוה יותר יהיה מהיר יותר, יש הרבה פחות השפעה על מתורגמן beetle מאשר דינראק.</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_dynarec_spu_samples.Label"><value>Dynarec SPU דוגמאות</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_dynarec_spu_samples.Help"><value>דוגמיות מקס SPU לרוץ לפני בדיקת SPU, מספר גבוה יותר יהיה מהיר יותר, אבל יגרום glitches קול במשחקים עם כל דבר אחר מאשר 1.</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_dynarec_spgp_opt.Label"><value>Dynarec SP GP להיט Hit RAM אופטימיזציה</value></data>
@@ -593,12 +568,6 @@
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_display_vram.Help"><value>דמיין את ה-VRAM של הקונסולה. רק נתמך על ידי OpenGL ו Vulkan חומרי גלם. הערה: זה למטרות הונאה, ובדרך כלל צריך להיות מוגבלות.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_calibration.Label"><value>טווח הקלט האנלוגי</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_calibration.Help"><value>קליברציה דינמית של קלטות אנלוגיות כאשר המכשיר מוגדר DualShock, Analog Controllerstick או neGcon. ערכי קלט רשומים מקסימליים נמצאים במעקב בזמן אמת ומשמשים לתאורדות אנלוגיות בקנה מידה עברו לחיקוי. זה צריך לשמש למשחקים כגון Mega Man Legends 2 אשר מצפים לערכים גדולים יותר ממה שהבקר המודרני מספק. עבור התוצאות הטובות ביותר, מקלות אנלוגיות צריך להיות לסובב במלואם כדי לכוון את אלגוריתם calibration בכל פעם תוכן טעון.</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_toggle.Label"><value>DualShock Analog Mode toggle</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_toggle.Help"><value>כאשר סוג מכשיר הקלט הוא DualShock, אפשרות זו מאפשרת חיקוי של DualShock בין DIGITAL ו-ANALOG כמו חומרה מקורית. מצב יכול גם להיות מלוטש על ידי שימוש בשילוב הלחצן שנבחר.</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_toggle_combo.Label"><value>DualShock Analog Mode Combo</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_toggle_combo.Help"><value>השילוב של הכפתור אשר ישמש כדי לעקוף בין DIGITAL ו- ANALOG מצב עבור חיקוי DualShock.</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_toggle_hold.Label"><value>DualShock המונחים: Analog mode combohold</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_toggle_hold.Help"><value>החזיקו זמן עבור כפתורים במצב אנלוגי.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_enable_multitap_port1.Label"><value>Multitap On Port 1</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_enable_multitap_port1.Help"><value>פונקציונליות multitapable על הנמל 1.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_enable_multitap_port2.Label"><value>Multitap on Port 2</value></data>
@@ -615,20 +584,12 @@
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_mouse_sensitivity.Help"><value>אחריות של סוג הקלט "Mouse"</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_negcon_response.Label"><value>neGcon Twist Response</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_negcon_response.Help"><value>סוג התגובה של דבק אנלוגי שמאל כאשר מדגימים את פעולת ה-"twist" של חיקוי מכשירי קלט "neGcon". עקירת מקל Analog עשויה להיות ממופה לזווית הסיבוב neGcon או ליניארית, חד-משמעית או מעוקבת. "Quadratic" מאפשר דיוק גדול יותר מאשר 'Linear' בעת ביצוע תנועות קטנות. "Cubic" מגביר את הדיוק של התנועה הקטנה, אבל תנועות גדולות יותר "exaggerates". הערה: "Linear" מומלץ רק בעת שימוש היקפי גלגל המירוצים. בקרים קונבנציונאליים ליישם קלט אנלוגי באופן שונה ביסודו של מנגנון neGcon 'twist', כזה מיפוי ליניארי מעל דגימה קטנים תנועות, פגיעה בשליטה בסדר. ברוב המקרים, "Quadratic" מספק את התוספת הקרובה ביותר של חומרה אמיתית.</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_negcon_deadzone.Label"><value>neGcon Twist Deadzone</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_negcon_deadzone.Help"><value>שמאל אנלוגי מקל מתזון כאשר מדגימים את פעולת ה-'twist' של מכשירי קלט 'neGcon'. משמש כדי לחסל את סחף הבקר. הערה: רוב neGcon תואמים מספקים אפשרויות במשחק להגדרת ערך "איזון מת". כדי להימנע מאובדן הדיוק, אזור המתים במשחק צריך *תמיד* להיות מוגדר לאפס. כל התאמות הנדרשות צריך * רק* יש ליישם באמצעות אפשרות הליבה הזו. זה חשוב במיוחד כאשר "neGcon Twist Response" מוגדר "Quadratic" או "Cubic".</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_use_mednafen_memcard0_method.Label"><value>שיטת Memory Card Method</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_use_mednafen_memcard0_method.Help"><value>שמור פורמט נתונים המשמש עבור חריץ כרטיס הזיכרון השמאלית "מינדנפן" עשוי לשמש תאימות עם הגרסה של מדנגן עמידה. כאשר נעשה שימוש עם Beetle PSX, Libretro (.srm) ו- Mednafen (.mcr) יש פורמטים זהים פנימי ניתן להמיר בין אחד לשני באמצעות renaming.</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_enable_memcard1.Label"><value>כרטיס זיכרון 2</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_enable_memcard1.Help"><value>דמיין כרטיס זיכרון שני בחניון הזיכרון הנכון. הערה: כמה משחקים דורשים אפשרות זו להיות מוגבלות עבור פעולה נכונה (למשל. שם קוד: Tenka הערה: Memory Card Slot 2 משתמש בתבנית מדנפן (.mcr).</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_shared_memory_cards.Label"><value>כרטיסי זיכרון משותפים</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_shared_memory_cards.Help"><value>השתמש בכרטיסי זיכרון משותפים במקום כרטיסים נפרדים לכל תוכן. הערה: אם שיטת Memory Card מוגדרת ל- 'Libretro', רק חריץ כרטיס זיכרון 2 יושפע.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_memcard_left_index.Label"><value>כרטיס זיכרון מספר 1 מדד</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_memcard_left_index.Help"><value>כרטיס הזיכרון כרגע טעון באגף השמאלי. אפשרות זו תעבוד רק אם שיטת כרטיס הזיכרון נקבעת ל- Mednafen.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_memcard_right_index.Label"><value>Memory Card חריץ 2 Index</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_memcard_right_index.Help"><value>כרטיס הזיכרון כרגע טעון במרווח הנכון. אפשרות זו תעבוד רק אם ניתן לכרטיס זיכרון 2.</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_line_render.Label"><value>Line-to-Quad hack</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_line_render.Help"><value>כמה משחקים (למשל. Doom, Hexen, Soul Blade וכו ') לצייר קווים אופקיים על ידי מתיחה משולש בגובה פיקסל אחד לאורך המסך, אשר הם rasterized כמו שורה של פיקסלים על חומרה מקורית. האקר זה מזהה את משולשים קטנים אלה וממיר אותם לסווג כנדרש, ומאפשר להם להיות מוצגים כראוי על חומרי החומרה ועל החלטות פנימיות בקנה מידה. "תוקפנות" נדרש עבור כמה תארים (למשל. כוחות אפלים, דיוק Nukem) אך עשויים אחרת להציג גלידות גרפיות. עזוב את 'לעזאזל' אם לא בטוח.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_widescreen_hack.Label"><value>לשנות את המשחק למסך רחב יותר</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_widescreen_hack.Help"><value>Render 3D תוכן anamorphical ופלט את מסגרת חיקוי ביחס היבט רחב של המסך. התוצאות הטובות ביותר עם משחקי 3D מלאים. 2D אלמנטים יהיו מתוחים אופקית ועשויות להיות מוטה.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_widescreen_hack_aspect_ratio.Label"><value>יחס Aspect למסך הרחב</value></data>
@@ -641,8 +602,6 @@
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_dynarec_invalidate.Help"><value>חלק מהמשחקים דורשים אי-התאמה מלאה, חלקם זקוקים ל"DMA בלבד".</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_dynarec_op_cycles.Label"><value>המונחים: Dynarec Cycles Per Directory</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_dynarec_op_cycles.Help"><value>מחזורי ה-Ddynarec מטענים לפי הוראות CPU. "2" הוא מהיר יותר, אבל ה-CPU המוטבע מופיע במהירות למחצה למשחקים שמקצבים את עצמם - להגדיר '1' עבור משחקים שהזרמת CD שלהם דוכנים או נתלה מתחת לדינראק (למשל. Parasite Eve 2 ההגדרה '1' מעניקה לזיכרון גישה לשני מחזורים וכל דבר אחר, קרוב ל- CPU האמיתי.</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_dynarec_eventcycles.Label"><value>Dynarec DMA/GPU/MDEC/Timer Event Cycles</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_dynarec_eventcycles.Help"><value>מחזורי מקס לרוץ על ידי CPU לפני GPU / DMA /MDEC /Timer Update נבדק, מספר גבוה יותר יהיה מהיר יותר, יש הרבה פחות השפעה על מתורגמן beetle מאשר דינראק.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_dynarec_spu_samples.Label"><value>Dynarec SPU דוגמאות</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_dynarec_spu_samples.Help"><value>דוגמיות מקס SPU לרוץ לפני בדיקת SPU, מספר גבוה יותר יהיה מהיר יותר, אבל יגרום glitches קול במשחקים עם כל דבר אחר מאשר 1.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_dynarec_spgp_opt.Label"><value>Dynarec SP GP להיט Hit RAM אופטימיזציה</value></data>
@@ -1297,4 +1256,22 @@
   <data name="Emulation.Option.Sony.Setting.AnalogMode.Label"><value>התחל במצב Analog</value></data>
   <data name="Emulation.Option.Sony.Setting.AnalogMode.Help"><value>התחל את הבקר במצב אנלוגי ולא דיגיטלי.חלק משחקים (למשל רידג ' Racer V) לחול את המשטח בדיגיטל ובדרך כלל דורשים לחיצה על הבקר ANALOG כפתור כדי לאפשר את מקלות; לאפשר זאת כדי לקבל שליטה אנלוגית מההתחלה.משחקים המנעולים את מצב הבקר אינם מושפעים.</value></data>
   <data name="Emulation.Option.Sony.Files.CheatsDirectory"><value>משחק המכיל קודים לרמות</value></data>
+  <data name="Emulation.Option.Sony.Setting.ForceAnalog.Label" xml:space="preserve"><value>המונחים: Force Analog Mode</value></data>
+  <data name="Emulation.Option.Sony.Setting.ForceAnalog.Help" xml:space="preserve"><value>מצב אנלוגי של כוחות להיות תמיד. יכול לגרום לבעיות עם כמה משחקים. רק להשתמש באפשרות זו למשחקים התומכים במצב אנלוגי, אך אינם מאפשרים זאת באופן אוטומטי. כאשר נכים, מצב אנלוגי ניתן להתגבר על ידי לחיצה והחזקה במצב DualShock Analog Combo.</value></data>
+  <data name="Emulation.Option.Sony.Setting.AnalogToggle.Label" xml:space="preserve"><value>DualShock Analog Mode toggle</value></data>
+  <data name="Emulation.Option.Sony.Setting.AnalogToggle.Help" xml:space="preserve"><value>כאשר סוג מכשיר הקלט הוא DualShock, אפשרות זו מאפשרת חיקוי של DualShock בין DIGITAL ו-ANALOG כמו חומרה מקורית. מצב יכול גם להיות מלוטש על ידי שימוש בשילוב הלחצן שנבחר.</value></data>
+  <data name="Emulation.Option.Sony.Setting.AnalogToggleCombo.Label" xml:space="preserve"><value>DualShock Analog Mode Combo</value></data>
+  <data name="Emulation.Option.Sony.Setting.AnalogToggleCombo.Help" xml:space="preserve"><value>השילוב של הכפתור אשר ישמש כדי לעקוף בין DIGITAL ו- ANALOG מצב עבור חיקוי DualShock.</value></data>
+  <data name="Emulation.Option.Sony.Setting.AnalogToggleHold.Label" xml:space="preserve"><value>DualShock המונחים: Analog mode combohold</value></data>
+  <data name="Emulation.Option.Sony.Setting.AnalogToggleHold.Help" xml:space="preserve"><value>החזיקו זמן עבור כפתורים במצב אנלוגי.</value></data>
+  <data name="Emulation.Option.Sony.Setting.NegconDeadzone.Label" xml:space="preserve"><value>neGcon Twist Deadzone</value></data>
+  <data name="Emulation.Option.Sony.Setting.NegconDeadzone.Help" xml:space="preserve"><value>שמאל אנלוגי מקל מתזון כאשר מדגימים את פעולת ה-'twist' של מכשירי קלט 'neGcon'. משמש כדי לחסל את סחף הבקר. הערה: רוב neGcon תואמים מספקים אפשרויות במשחק להגדרת ערך "איזון מת". כדי להימנע מאובדן הדיוק, אזור המתים במשחק צריך *תמיד* להיות מוגדר לאפס. כל התאמות הנדרשות צריך * רק* יש ליישם באמצעות אפשרות הליבה הזו. זה חשוב במיוחד כאשר "neGcon Twist Response" מוגדר "Quadratic" או "Cubic".</value></data>
+  <data name="Emulation.Option.Sony.Setting.SecondMemoryCard.Label" xml:space="preserve"><value>כרטיס זיכרון 2</value></data>
+  <data name="Emulation.Option.Sony.Setting.SecondMemoryCard.Help" xml:space="preserve"><value>דמיין כרטיס זיכרון שני בחניון הזיכרון הנכון. הערה: כמה משחקים דורשים אפשרות זו להיות מוגבלות עבור פעולה נכונה (למשל. שם קוד: Tenka הערה: Memory Card Slot 2 משתמש בתבנית מדנפן (.mcr).</value></data>
+  <data name="Emulation.Option.Sony.Setting.SharedMemoryCardMethod.Label" xml:space="preserve"><value>כרטיסי זיכרון משותפים</value></data>
+  <data name="Emulation.Option.Sony.Setting.SharedMemoryCardMethod.Help" xml:space="preserve"><value>השתמש בכרטיסי זיכרון משותפים במקום כרטיסים נפרדים לכל תוכן. הערה: אם שיטת Memory Card מוגדרת ל- 'Libretro', רק חריץ כרטיס זיכרון 2 יושפע.</value></data>
+  <data name="Emulation.Option.Sony.Setting.LineToQuad.Label" xml:space="preserve"><value>Line-to-Quad hack</value></data>
+  <data name="Emulation.Option.Sony.Setting.LineToQuad.Help" xml:space="preserve"><value>כמה משחקים (למשל. Doom, Hexen, Soul Blade וכו ') לצייר קווים אופקיים על ידי מתיחה משולש בגובה פיקסל אחד לאורך המסך, אשר הם rasterized כמו שורה של פיקסלים על חומרה מקורית. האקר זה מזהה את משולשים קטנים אלה וממיר אותם לסווג כנדרש, ומאפשר להם להיות מוצגים כראוי על חומרי החומרה ועל החלטות פנימיות בקנה מידה. "תוקפנות" נדרש עבור כמה תארים (למשל. כוחות אפלים, דיוק Nukem) אך עשויים אחרת להציג גלידות גרפיות. עזוב את 'לעזאזל' אם לא בטוח.</value></data>
+  <data name="Emulation.Option.Sony.Setting.DynarecEventCycles.Label" xml:space="preserve"><value>Dynarec DMA/GPU/MDEC/Timer Event Cycles</value></data>
+  <data name="Emulation.Option.Sony.Setting.DynarecEventCycles.Help" xml:space="preserve"><value>מחזורי מקס לרוץ על ידי CPU לפני GPU / DMA /MDEC /Timer Update נבדק, מספר גבוה יותר יהיה מהיר יותר, יש הרבה פחות השפעה על מתורגמן beetle מאשר דינראק.</value></data>
 </root>
