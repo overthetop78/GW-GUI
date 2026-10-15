@@ -11,11 +11,13 @@ internal static class CoreConstants
     internal const string LibraryFileName = "pcee2_libretro.dll";
     internal const string OfficialPackageUrl = "https://buildbot.libretro.com/nightly/windows/x86_64/latest/pcee2_libretro.dll.zip";
     internal const string DescriptionResourceKey = "Emulation.Emulator.pcee2.Description";
+    internal const string InitializationFailureDiagnostic = "VMManager::Initialize() failed.";
     internal static CoreDefinition Definition { get; } = new(
         Id, LibraryName, LibraryFileName, FirmwareConstants.ContentExtensions,
         new(new Uri(OfficialPackageUrl), LibraryFileName, LibraryFileName, DisplayName),
         OptionCatalog.All, FirmwareConstants.All,
         new(Id, DisplayName, DescriptionResourceKey, new HashSet<string>(StringComparer.Ordinal) { ModelConstants.PlayStation2 }),
         RequiresExternalFirmware: true,
-        ControllerTypes: [ControllerType.Joystick, ControllerType.None]);
+        ControllerTypes: [ControllerType.Joystick, ControllerType.None],
+        StartupFailureDiagnostics: [InitializationFailureDiagnostic]);
 }

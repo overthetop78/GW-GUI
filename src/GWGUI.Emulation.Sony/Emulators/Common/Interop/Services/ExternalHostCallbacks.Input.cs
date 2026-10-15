@@ -91,6 +91,7 @@ internal sealed partial class ExternalHostCallbacks
 
     private void AddDiagnostic(string message)
     {
+        DiagnosticMonitor.Capture(message);
         _diagnostics.Enqueue(message);
         while (_diagnostics.Count > 500) _diagnostics.TryDequeue(out _);
     }

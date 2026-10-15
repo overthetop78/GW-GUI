@@ -12,4 +12,5 @@ internal sealed record CoreDefinition(
     bool RequiresExternalFirmware,
     IReadOnlyList<ControllerType> ControllerTypes,
     TimeSpan? StartupTimeout = null,
-    TimeSpan? ShutdownTimeout = null);
+    TimeSpan? ShutdownTimeout = null,
+    IReadOnlyList<string>? StartupFailureDiagnostics = null);

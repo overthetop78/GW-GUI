@@ -16,6 +16,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
 {
     private static readonly IReadOnlyDictionary<uint, EmulationKey> KeyboardMap = CreateKeyboardMap();
     internal HardwareRenderSession HardwareRender { get; } = new();
+    internal CoreDiagnosticMonitor DiagnosticMonitor { get; }
     private readonly Dictionary<string, string> _options = new(StringComparer.Ordinal);
     private readonly HashSet<string> _configuredOptionKeys = new(StringComparer.Ordinal);
     private readonly Dictionary<string, nint> _nativeStrings = new(StringComparer.Ordinal);
@@ -39,8 +40,9 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
     private readonly Dictionary<string, bool> _optionVisibility = new(StringComparer.Ordinal);
     internal ExternalDiskControl DiskControl { get; } = new();
 
-    internal ExternalHostCallbacks(string systemDirectory, string contentDirectory, string saveDirectory, IReadOnlyDictionary<string, string>? options)
+    internal ExternalHostCallbacks(string systemDirectory, string contentDirectory, string saveDirectory, IReadOnlyDictionary<string, string>? options, IReadOnlyList<string>? startupFailureDiagnostics = null)
     {
+        DiagnosticMonitor = new CoreDiagnosticMonitor(startupFailureDiagnostics);
         Directory.CreateDirectory(systemDirectory);
         Directory.CreateDirectory(contentDirectory);
         Directory.CreateDirectory(saveDirectory);

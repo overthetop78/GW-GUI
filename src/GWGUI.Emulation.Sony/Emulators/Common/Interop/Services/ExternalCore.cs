@@ -89,7 +89,7 @@ internal sealed partial class ExternalCore : IEmulatorCore
         File.Copy(sourceCorePath, isolatedCorePath, true);
         var contentPath = PrepareContentPath(media, contentDirectory);
         var nativeSaveDirectory = PrepareMemoryCards(configuration, saveDirectory, systemDirectory);
-        _host = new ExternalHostCallbacks(systemDirectory, contentDirectory, nativeSaveDirectory, configuration.Options ?? new Dictionary<string, string>());
+        _host = new ExternalHostCallbacks(systemDirectory, contentDirectory, nativeSaveDirectory, configuration.Options ?? new Dictionary<string, string>(), _definition.StartupFailureDiagnostics);
 
         try
         {
@@ -145,6 +145,7 @@ internal sealed partial class ExternalCore : IEmulatorCore
             Export<ExternalCoreApi.GetSystemAvInfo>(ExternalCoreConstants.RetroGetSystemAvInfo)(out var av);
             _host.ApplyInitialAvInfo(av);
             _host.HardwareRender.Reset();
+            _host.DiagnosticMonitor.ThrowIfFailed();
         }
         catch
         {
@@ -161,7 +162,11 @@ internal sealed partial class ExternalCore : IEmulatorCore
         return Path.GetFullPath(media[0].Path);
     }
 
-    public void RunFrame() => (_run ?? throw new InvalidOperationException(CoreExceptions.CoreNotInitialized()))();
+    public void RunFrame()
+    {
+        (_run ?? throw new InvalidOperationException(CoreExceptions.CoreNotInitialized()))();
+        _host?.DiagnosticMonitor.ThrowIfFailed();
+    }
     public void HardReset()
     {
         var configuration = _configuration ?? throw new InvalidOperationException(CoreExceptions.CoreNotInitialized());
