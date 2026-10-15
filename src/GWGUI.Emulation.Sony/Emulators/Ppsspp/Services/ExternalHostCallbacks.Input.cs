@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Sony.Emulators.Common.Interop.Functions;
 using GWGUI.Emulation.Sony.Emulators.Ppsspp.Constants;
 using GWGUI.Emulation.Sony.Emulators.Ppsspp.Contracts;
 using GWGUI.Emulation.Sony.Emulators.Ppsspp.Factories;
@@ -74,9 +75,9 @@ internal sealed partial class ExternalHostCallbacks
 
     private static bool IsModifier(EmulationKey key) => key is EmulationKey.LeftShift or EmulationKey.RightShift or EmulationKey.LeftControl or EmulationKey.RightControl or EmulationKey.LeftAlt or EmulationKey.RightAlt;
 
-    private void HandleLog(int level, nint format)
+    private void HandleLog(int level, nint format, nint firstArgument, nint secondArgument)
     {
-        var message = format == 0 ? null : Marshal.PtrToStringUTF8(format);
+        var message = NativeLogFunctions.Read(format, firstArgument, secondArgument);
         if (!string.IsNullOrWhiteSpace(message)) AddDiagnostic($"[{level}] {message.TrimEnd()}");
     }
 

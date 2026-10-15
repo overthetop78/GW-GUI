@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Sony.Emulators.Common.Interop.Functions;
 using GWGUI.Emulation.Sony.Emulators.Pcsx2.Exceptions;
 using GWGUI.Emulation.Sony.Emulators.Pcsx2.Constants;
 using GWGUI.Emulation.Sony.Emulators.Pcsx2.Contracts;
@@ -110,7 +111,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
     internal ExternalCoreApi.AudioBatchCallback AudioBatch { get; }
     internal ExternalCoreApi.InputPollCallback InputPoll { get; }
     internal ExternalCoreApi.InputStateCallback InputState { get; }
-    internal ExternalCoreApi.LogCallback Log { get; }
+    internal NativeLogFunctions.WindowsX64Callback Log { get; }
     internal ExternalCoreApi.SetLedState Led { get; }
     internal int SampleRate { get; set; } = 44100;
     internal double FramesPerSecond { get; private set; } = 50;
