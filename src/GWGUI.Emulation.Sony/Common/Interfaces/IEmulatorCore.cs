@@ -8,6 +8,7 @@ internal interface IEmulatorCore : IDisposable
     IReadOnlyList<CoreOption> Options { get; }
     IReadOnlyList<string> Diagnostics { get; }
     IReadOnlyDictionary<int, bool> LedStates { get; }
+    bool ShutdownRequested => false;
     string CoreName { get; }
     string CoreVersion { get; }
     IReadOnlySet<string> SupportedContentExtensions { get; }

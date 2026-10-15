@@ -18,6 +18,9 @@ internal sealed partial class ExternalHostCallbacks
         {
             switch (command)
             {
+                case ExternalCoreApiConstants.Shutdown:
+                    _shutdownRequested = true;
+                    return true;
                 case ExternalCoreApiConstants.SetHardwareRender:
                     return HardwareRender.Configure(data);
                 case ExternalCoreApiConstants.GetPreferredHardwareRender:

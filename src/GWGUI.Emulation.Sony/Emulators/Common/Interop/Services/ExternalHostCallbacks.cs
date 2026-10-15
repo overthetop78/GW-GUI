@@ -26,6 +26,8 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
     private long _videoSequence;
     private long _audioSequence;
     private bool _disposed;
+    private volatile bool _shutdownRequested;
+    internal bool ShutdownRequested => _shutdownRequested;
     private int _optionsUpdated;
     private readonly object _inputGate = new();
     private readonly int[] _controllerTypes = Enumerable.Repeat((int)ControllerType.None, GWGUI.Emulation.Sony.Common.Constants.ControllerPortConstants.MaximumControllerPortCount).ToArray();

@@ -50,6 +50,7 @@ internal sealed class ProcessCore : IEmulatorCore
     public IReadOnlyList<CoreOption> Options { get; private set; } = [];
     public IReadOnlyList<string> Diagnostics { get; private set; } = [];
     public IReadOnlyDictionary<int, bool> LedStates { get; private set; } = new Dictionary<int, bool>();
+    public bool ShutdownRequested { get; private set; }
     public string CoreName { get; private set; } = string.Empty;
     public string CoreVersion { get; private set; } = string.Empty;
     public IReadOnlySet<string> SupportedContentExtensions { get; private set; } = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
@@ -119,6 +120,7 @@ internal sealed class ProcessCore : IEmulatorCore
             DiskCount = Response.ReadInt32();
             CurrentDiskIndex = Response.ReadInt32();
             LedStates = CoreHostProtocol.ReadLedStates(Response);
+            ShutdownRequested = Response.ReadBoolean();
             _initialized = true;
         }
         catch
@@ -146,6 +148,7 @@ internal sealed class ProcessCore : IEmulatorCore
         if (Response.ReadBoolean())
             Diagnostics = JsonSerializer.Deserialize<IReadOnlyList<string>>(Response.ReadString(), CoreHostProtocol.JsonOptions) ?? [];
         LedStates = CoreHostProtocol.ReadLedStates(Response);
+        ShutdownRequested = Response.ReadBoolean();
     }
 
     public void HardReset()
@@ -248,6 +251,7 @@ internal sealed class ProcessCore : IEmulatorCore
             LatestAudioChunk = null;
             Options = [];
             Diagnostics = [];
+            ShutdownRequested = false;
             LedStates = new Dictionary<int, bool>();
             DiskCount = 0;
             CurrentDiskIndex = -1;

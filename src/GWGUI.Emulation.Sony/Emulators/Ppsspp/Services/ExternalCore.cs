@@ -35,6 +35,7 @@ internal sealed class ExternalCore : IEmulatorCore
     public IReadOnlyList<CoreOption> Options => _host?.OptionCatalog ?? [];
     public IReadOnlyList<string> Diagnostics => _host?.Diagnostics ?? [];
     public IReadOnlyDictionary<int, bool> LedStates => _host?.LedStates ?? new Dictionary<int, bool>();
+    public bool ShutdownRequested => _host?.ShutdownRequested ?? false;
     public string CoreName { get; private set; } = string.Empty;
     public string CoreVersion { get; private set; } = string.Empty;
     public IReadOnlySet<string> SupportedContentExtensions { get; private set; } =

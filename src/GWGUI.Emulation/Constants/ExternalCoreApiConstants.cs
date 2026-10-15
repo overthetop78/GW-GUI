@@ -45,6 +45,7 @@ internal static class ExternalCoreApiConstants
     internal const uint GetOverscan = 2;
     internal const uint GetCanDuplicateFrames = 3;
     internal const uint SetMessage = 6;
+    internal const uint Shutdown = 7;
     internal const uint SetPerformanceLevel = 8;
     internal const uint GetSystemDirectory = 9;
     internal const uint SetPixelFormat = 10;

@@ -59,6 +59,7 @@ public static class CoreHost
                             writer.Write(string.Join('|', core.SupportedContentExtensions.Order(StringComparer.OrdinalIgnoreCase)));
                             writer.Write(core.DiskCount); writer.Write(core.CurrentDiskIndex);
                             CoreHostProtocol.WriteLedStates(writer, core.LedStates);
+                            writer.Write(core.ShutdownRequested);
                             break;
                         case HostCommand.RunFrame:
                             var activeCore = EnsureCore(core);
@@ -82,6 +83,7 @@ public static class CoreHost
                                 lastDiagnosticCount = diagnostics.Count;
                             }
                             CoreHostProtocol.WriteLedStates(writer, activeCore.LedStates);
+                            writer.Write(activeCore.ShutdownRequested);
                             break;
                         case HostCommand.HardReset: EnsureCore(core).HardReset(); WriteSuccess(writer); break;
                         case HostCommand.SoftReset: EnsureCore(core).SoftReset(); WriteSuccess(writer); break;

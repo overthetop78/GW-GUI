@@ -62,7 +62,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
             var nextFrame = TimeProvider.System.GetTimestamp();
             long videoSequence = 0;
 
-            while (!cancellationToken.IsCancellationRequested)
+            while (!cancellationToken.IsCancellationRequested && !_core.ShutdownRequested)
             {
                 lock (_gate)
                     while (_pauseRequested && _commands.IsEmpty && !cancellationToken.IsCancellationRequested)
@@ -75,6 +75,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
                     if (_pauseRequested) continue;
 
                 _core.RunFrame();
+                if (_core.ShutdownRequested) break;
                 if (_core.LatestVideoFrame is { } video && video.Sequence != videoSequence)
                 {
                     videoSequence = video.Sequence;
