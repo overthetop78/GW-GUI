@@ -8,8 +8,6 @@
   <data name="Emulation.Option.pcsx2.pcsx2_fastboot.Help"><value>Bỏ qua BIOS màn hình khởi động và khởi động thẳng tới trận đấu. Tắt tùy chọn này nếu bạn muốn truy cập thiết lập hệ thống PS2 hoặc truy cập bộ quản lý Memory Card.</value></data>
   <data name="Emulation.Option.pcsx2.pcsx2_renderer.Value.0"><value>Tự động</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_cpu_core.Label"><value>lõi CPU</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_cpu_core.Value.0"><value>Dynarec (JIT)</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_cpu_core.Value.1"><value>Trình thông dịch IR</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_fast_memory.Label"><value>Bộ nhớ nhanh</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_fast_memory.Help"><value>Không ổn định.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_ignore_bad_memory_access.Label"><value>Bỏ qua các truy cập bộ nhớ sai</value></data>

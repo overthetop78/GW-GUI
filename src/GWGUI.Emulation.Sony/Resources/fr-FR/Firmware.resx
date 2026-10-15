@@ -8,4 +8,12 @@
   <data name="Emulation.Sony.Firmware.PlayStation.Japan"><value>BIOS (Japon)</value></data>
   <data name="Emulation.Sony.Firmware.PlayStation.NorthAmerica"><value>BIOS (Amérique du Nord)</value></data>
   <data name="Emulation.Sony.Firmware.PlayStation.Europe"><value>BIOS (Europe)</value></data>
+  <data name="Emulation.Sony.Firmware.Rom1.Help"><value>ROM facultative du lecteur DVD de la PS2.</value></data>
+  <data name="Emulation.Sony.Firmware.Rom1.Details"><value>Choisissez le dump ROM1 correspondant au BIOS sélectionné, généralement un fichier .rom1 ou rom1.bin. Il contient des modules du lecteur DVD et des données d’identification. Laissez ce champ vide si votre console ne possède pas de dump ROM1. Le BIOS principal se sélectionne dans le champ BIOS.</value></data>
+  <data name="Emulation.Sony.Firmware.Rom2.Help"><value>ROM facultative de la PS2 contenant des polices chinoises.</value></data>
+  <data name="Emulation.Sony.Firmware.Rom2.Details"><value>Choisissez le dump ROM2 de la console chinoise SCPH-50009 correspondant au BIOS sélectionné, généralement un fichier .rom2 ou rom2.bin. Laissez ce champ vide pour les consoles sans ROM2. Ce fichier ne remplace pas le BIOS principal.</value></data>
+  <data name="Emulation.Sony.Firmware.Nvram.Help"><value>Paramètres enregistrés de la console.</value></data>
+  <data name="Emulation.Sony.Firmware.Nvram.Details"><value>Sélectionnez un fichier .nvm de 1024 octets correspondant au BIOS choisi. Il contient les paramètres de la console. Ce fichier est facultatif : laissez le champ vide pour réutiliser les paramètres enregistrés ou laisser l’émulateur créer les valeurs par défaut.</value></data>
+  <data name="Emulation.Sony.Firmware.Mec.Help"><value>Version du contrôleur mécanique.</value></data>
+  <data name="Emulation.Sony.Firmware.Mec.Details"><value>Sélectionnez un fichier .mec de 4 octets correspondant au BIOS choisi. Il contient le numéro de version du contrôleur mécanique, et non son firmware complet. Ce fichier est facultatif : laissez le champ vide pour réutiliser les données enregistrées ou laisser l’émulateur créer un fichier par défaut.</value></data>
 </root>

@@ -6,21 +6,21 @@ internal static partial class ControllerArtworkCatalog
 {
     private static ProfileDefinition CreateSonyPsp1000() => new(ControllerArtworkFileNames.SonyPsp1000,
             [
-                new(EmulationControllerVisualControl.DirectionUp, ControllerVisualZoneShape.DirectionalPad, 6.0d, 20.0d, 15.0d, 27.0d),
-                new(EmulationControllerVisualControl.DirectionDown, ControllerVisualZoneShape.DirectionalPad, 6.0d, 20.0d, 15.0d, 27.0d),
-                new(EmulationControllerVisualControl.DirectionLeft, ControllerVisualZoneShape.DirectionalPad, 6.0d, 20.0d, 15.0d, 27.0d),
-                new(EmulationControllerVisualControl.DirectionRight, ControllerVisualZoneShape.DirectionalPad, 6.0d, 20.0d, 15.0d, 27.0d),
-                new(EmulationControllerVisualControl.StickUp, ControllerVisualZoneShape.Ellipse, 9.1d, 47.8d, 3.0d, 4.0d),
-                new(EmulationControllerVisualControl.StickDown, ControllerVisualZoneShape.Ellipse, 9.1d, 56.4d, 3.0d, 4.0d),
-                new(EmulationControllerVisualControl.StickLeft, ControllerVisualZoneShape.Ellipse, 6.5d, 52.1d, 3.0d, 4.0d),
-                new(EmulationControllerVisualControl.StickRight, ControllerVisualZoneShape.Ellipse, 11.7d, 52.1d, 3.0d, 4.0d),
-                new(EmulationControllerVisualControl.PrimaryAction, ControllerVisualZoneShape.Ellipse, 81.4d, 60.5d, 4.2d, 6.0d),
-                new(EmulationControllerVisualControl.SecondaryAction, ControllerVisualZoneShape.Ellipse, 88.3d, 51.0d, 4.2d, 6.0d),
-                new(EmulationControllerVisualControl.TertiaryAction, ControllerVisualZoneShape.Ellipse, 77.0d, 47.5d, 4.2d, 6.0d),
-                new(EmulationControllerVisualControl.QuaternaryAction, ControllerVisualZoneShape.Ellipse, 84.0d, 38.5d, 4.2d, 6.0d),
-                new(EmulationControllerVisualControl.LeftShoulder, ControllerVisualZoneShape.RoundedRectangle, 8.0d, 7.0d, 12.0d, 7.0d),
-                new(EmulationControllerVisualControl.RightShoulder, ControllerVisualZoneShape.RoundedRectangle, 80.0d, 7.0d, 12.0d, 7.0d),
-                new(EmulationControllerVisualControl.Option, ControllerVisualZoneShape.Ellipse, 62.2d, 80.5d, 3.5d, 5.0d),
-                new(EmulationControllerVisualControl.Start, ControllerVisualZoneShape.Ellipse, 68.7d, 83.0d, 3.5d, 5.0d)
+                new(EmulationControllerVisualControl.DirectionUp, ControllerVisualZoneShape.DirectionalPad, 2.3d, 24.1d, 15.1d, 38.4d),
+                new(EmulationControllerVisualControl.DirectionDown, ControllerVisualZoneShape.DirectionalPad, 2.3d, 24.1d, 15.1d, 38.4d),
+                new(EmulationControllerVisualControl.DirectionLeft, ControllerVisualZoneShape.DirectionalPad, 2.3d, 24.1d, 15.1d, 38.4d),
+                new(EmulationControllerVisualControl.DirectionRight, ControllerVisualZoneShape.DirectionalPad, 2.3d, 24.1d, 15.1d, 38.4d),
+                new(EmulationControllerVisualControl.StickUp, ControllerVisualZoneShape.Ellipse, 8.0d, 65.2d, 2.6d, 6.3d),
+                new(EmulationControllerVisualControl.StickDown, ControllerVisualZoneShape.Ellipse, 8.0d, 75.0d, 2.6d, 6.3d),
+                new(EmulationControllerVisualControl.StickLeft, ControllerVisualZoneShape.Ellipse, 5.5d, 70.1d, 2.6d, 6.3d),
+                new(EmulationControllerVisualControl.StickRight, ControllerVisualZoneShape.Ellipse, 10.5d, 70.1d, 2.6d, 6.3d),
+                new(EmulationControllerVisualControl.PrimaryAction, ControllerVisualZoneShape.Ellipse, 86.3d, 47.3d, 5.9d, 13.4d),
+                new(EmulationControllerVisualControl.SecondaryAction, ControllerVisualZoneShape.Ellipse, 91.6d, 34.4d, 5.9d, 13.4d),
+                new(EmulationControllerVisualControl.TertiaryAction, ControllerVisualZoneShape.Ellipse, 80.3d, 34.4d, 5.9d, 13.4d),
+                new(EmulationControllerVisualControl.QuaternaryAction, ControllerVisualZoneShape.Ellipse, 85.9d, 21.4d, 5.9d, 13.4d),
+                new(EmulationControllerVisualControl.LeftShoulder, ControllerVisualZoneShape.RoundedRectangle, 8.6d, 3.6d, 7.0d, 5.8d),
+                new(EmulationControllerVisualControl.RightShoulder, ControllerVisualZoneShape.RoundedRectangle, 84.4d, 3.6d, 7.0d, 5.8d),
+                new(EmulationControllerVisualControl.Option, ControllerVisualZoneShape.Ellipse, 67.8d, 85.3d, 7.0d, 8.9d),
+                new(EmulationControllerVisualControl.Start, ControllerVisualZoneShape.Ellipse, 74.2d, 85.3d, 7.8d, 8.9d)
             ]);
 }

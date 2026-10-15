@@ -8,8 +8,6 @@
   <data name="Emulation.Option.pcsx2.pcsx2_fastboot.Help"><value>Skips BIOS οθόνη εκκίνησης και μπότες κατ 'ευθείαν στο παιχνίδι. Απενεργοποίηση αυτού αν θέλετε να αποκτήσετε πρόσβαση στις ρυθμίσεις του συστήματος PS2 ή πρόσβαση στο διαχειριστή Memory Card.</value></data>
   <data name="Emulation.Option.pcsx2.pcsx2_renderer.Value.0"><value>Αυτόματο</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_cpu_core.Label"><value>Πυρήνας CPU</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_cpu_core.Value.0"><value>Dynarec (JIT)</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_cpu_core.Value.1"><value>Διερμηνευτής IR</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_fast_memory.Label"><value>Γρήγορη μνήμη</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_fast_memory.Help"><value>Ασταθής.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_ignore_bad_memory_access.Label"><value>Αγνοήστε τις κακές προσβάσεις μνήμης</value></data>

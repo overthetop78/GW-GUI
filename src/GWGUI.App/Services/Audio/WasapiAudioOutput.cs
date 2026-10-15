@@ -14,6 +14,7 @@ public sealed class WasapiAudioOutput : IMultichannelAudioOutput
     private readonly string? _deviceId;
     private readonly int _latencyMilliseconds;
     private IWavePlayer? _device;
+    private MMDevice? _endpoint;
     private readonly Func<string?, int, IWavePlayer> _createDevice;
     private BufferedWaveProvider? _buffer;
     private byte[] _writeBuffer = [];
@@ -22,7 +23,12 @@ public sealed class WasapiAudioOutput : IMultichannelAudioOutput
     private EmulationAudioChannelLayout _channelLayout = EmulationAudioChannelLayout.Stereo;
     private const int MaximumLatencyMilliseconds = 500;
 
-    public WasapiAudioOutput(string? deviceId = null, int latencyMilliseconds = 50) : this(deviceId, latencyMilliseconds, CreateDevice) { }
+    public WasapiAudioOutput(string? deviceId = null, int latencyMilliseconds = 50)
+    {
+        _deviceId = string.IsNullOrWhiteSpace(deviceId) ? null : deviceId;
+        _latencyMilliseconds = Math.Clamp(latencyMilliseconds, 10, 500);
+        _createDevice = CreateDevice;
+    }
 
     public AudioOutputBufferStatus? BufferStatus
     {
@@ -52,10 +58,9 @@ public sealed class WasapiAudioOutput : IMultichannelAudioOutput
     }
 
     internal WasapiAudioOutput(string? deviceId, int latencyMilliseconds, Func<string?, int, IWavePlayer> createDevice)
+        : this(deviceId, latencyMilliseconds)
     {
         _createDevice = createDevice ?? throw new ArgumentNullException(nameof(createDevice));
-        _deviceId = string.IsNullOrWhiteSpace(deviceId) ? null : deviceId;
-        _latencyMilliseconds = Math.Clamp(latencyMilliseconds, 10, 500);
     }
 
     public static IReadOnlyList<AudioOutputDevice> GetOutputDevices()
@@ -63,7 +68,10 @@ public sealed class WasapiAudioOutput : IMultichannelAudioOutput
         try
         {
             using var enumerator = new MMDeviceEnumerator();
-            return enumerator.EnumerateAudioEndPoints(DataFlow.Render, DeviceState.Active) .Select(device => new AudioOutputDevice(device.ID, device.FriendlyName)) .OrderBy(device => device.Name, StringComparer.CurrentCultureIgnoreCase) .ToArray();
+            var outputs = new List<AudioOutputDevice>();
+            foreach (var device in enumerator.EnumerateAudioEndPoints(DataFlow.Render, DeviceState.Active))
+                using (device) outputs.Add(new AudioOutputDevice(device.ID, device.FriendlyName));
+            return outputs.OrderBy(device => device.Name, StringComparer.CurrentCultureIgnoreCase).ToArray();
         }
         catch (COMException)
         {
@@ -97,12 +105,21 @@ public sealed class WasapiAudioOutput : IMultichannelAudioOutput
         finally { if (!completed) Stop(); }
     }
 
-    private static IWavePlayer CreateDevice(string? deviceId, int latencyMilliseconds)
+    private IWavePlayer CreateDevice(string? deviceId, int latencyMilliseconds)
     {
-        if (deviceId is null) return new WasapiOut(AudioClientShareMode.Shared, false, latencyMilliseconds);
         using var enumerator = new MMDeviceEnumerator();
-        var endpoint = enumerator.GetDevice(deviceId);
-        return new WasapiOut(endpoint, AudioClientShareMode.Shared, false, latencyMilliseconds);
+        var endpoint = deviceId is null ? enumerator.GetDefaultAudioEndpoint(DataFlow.Render, Role.Console) : enumerator.GetDevice(deviceId);
+        try
+        {
+            var device = new WasapiOut(endpoint, AudioClientShareMode.Shared, false, latencyMilliseconds);
+            _endpoint = endpoint;
+            return device;
+        }
+        catch
+        {
+            endpoint.Dispose();
+            throw;
+        }
     }
 
     public void Write(ReadOnlySpan<short> interleavedSamples)
@@ -121,12 +138,18 @@ public sealed class WasapiAudioOutput : IMultichannelAudioOutput
     public void Stop()
     {
         var device = _device;
+        var endpoint = _endpoint;
         _device = null;
+        _endpoint = null;
         try { device?.Stop(); }
         finally
         {
             try { device?.Dispose(); }
-            finally { _buffer = null; _writeBuffer = []; }
+            finally
+            {
+                try { endpoint?.Dispose(); }
+                finally { _buffer = null; _writeBuffer = []; }
+            }
         }
     }
 

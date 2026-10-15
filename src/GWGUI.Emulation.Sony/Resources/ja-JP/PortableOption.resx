@@ -8,8 +8,6 @@
   <data name="Emulation.Option.pcsx2.pcsx2_fastboot.Help"><value>BIOSの起動画面をスキップし、ゲームに直進します。 PS2 システム設定にアクセスしたり、Memory Card マネージャにアクセスしたい場合は、これを無効にします。</value></data>
   <data name="Emulation.Option.pcsx2.pcsx2_renderer.Value.0"><value>自動</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_cpu_core.Label"><value>CPUコア</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_cpu_core.Value.0"><value>Dynarec (JIT)</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_cpu_core.Value.1"><value>IR通訳者</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_fast_memory.Label"><value>速い記憶</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_fast_memory.Help"><value>不安定な。</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_ignore_bad_memory_access.Label"><value>悪いメモリアクセスを無視する</value></data>

@@ -175,7 +175,6 @@
   <data name="Emulation.Snk.Value.Flop"><value>flop</value></data>
   <data name="Emulation.Snk.Value.Hard" xml:space="preserve"><value>kemény</value></data>
   <data name="Emulation.Snk.Value.Prin"><value>prin</value></data>
-  <data name="Emulation.Snk.Value.Rom" xml:space="preserve"><value>zű</value></data>
   <data name="Emulation.Snk.Value.Serl" xml:space="preserve"><value>SR</value></data>
   <data name="Emulation.Snk.Setting.VFSEnabled" xml:space="preserve"><value>VFS Engedélyezett</value></data>
   <data name="Emulation.Snk.Setting.JoystickDeadzone"><value>Joystick Deadzone</value></data>

@@ -8,4 +8,12 @@
   <data name="Emulation.Sony.Firmware.PlayStation.Japan"><value>BIOS (Japan)</value></data>
   <data name="Emulation.Sony.Firmware.PlayStation.NorthAmerica"><value>BIOS (Nordamerika)</value></data>
   <data name="Emulation.Sony.Firmware.PlayStation.Europe"><value>BIOS (Europa)</value></data>
+  <data name="Emulation.Sony.Firmware.Rom1.Help"><value>Valgfri ROM til PS2-konsollens DVD-afspiller.</value></data>
+  <data name="Emulation.Sony.Firmware.Rom1.Details"><value>Vælg den ROM1-kopi, der passer til den valgte BIOS, normalt en .rom1-fil eller rom1.bin. Den indeholder DVD-afspillerens moduler og identifikationsdata. Lad feltet være tomt, hvis din konsol ikke har en ROM1-kopi. Den primære BIOS vælges i feltet BIOS.</value></data>
+  <data name="Emulation.Sony.Firmware.Rom2.Help"><value>Valgfri PS2-ROM med kinesiske skrifttyper.</value></data>
+  <data name="Emulation.Sony.Firmware.Rom2.Details"><value>Vælg en ROM2-kopi fra den kinesiske SCPH-50009-konsol, der passer til den valgte BIOS, normalt en .rom2-fil eller rom2.bin. Lad feltet være tomt for konsoller uden ROM2. Filen erstatter ikke den primære BIOS.</value></data>
+  <data name="Emulation.Sony.Firmware.Nvram.Help"><value>Gemte konsolindstillinger.</value></data>
+  <data name="Emulation.Sony.Firmware.Nvram.Details"><value>Vælg en .nvm-fil på 1024 byte, der passer til den valgte BIOS. Den indeholder konsollens indstillinger. Filen er valgfri: lad feltet være tomt for at genbruge gemte indstillinger eller lade emulatoren oprette standardindstillinger.</value></data>
+  <data name="Emulation.Sony.Firmware.Mec.Help"><value>Den mekaniske controllers version.</value></data>
+  <data name="Emulation.Sony.Firmware.Mec.Details"><value>Vælg en .mec-fil på 4 byte, der passer til den valgte BIOS. Den indeholder den mekaniske controllers versionsnummer, ikke hele dens firmware. Filen er valgfri: lad feltet være tomt for at genbruge gemte data eller lade emulatoren oprette en standardfil.</value></data>
 </root>

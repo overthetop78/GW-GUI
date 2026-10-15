@@ -8,4 +8,12 @@
   <data name="Emulation.Sony.Firmware.PlayStation.Japan"><value>BIOS (Japonia)</value></data>
   <data name="Emulation.Sony.Firmware.PlayStation.NorthAmerica"><value>BIOS (Ameryka Północna)</value></data>
   <data name="Emulation.Sony.Firmware.PlayStation.Europe"><value>BIOS (Europa)</value></data>
+  <data name="Emulation.Sony.Firmware.Rom1.Help"><value>Opcjonalna pamięć ROM odtwarzacza DVD konsoli PS2.</value></data>
+  <data name="Emulation.Sony.Firmware.Rom1.Details"><value>Wybierz obraz ROM1 pasujący do wybranego BIOS-u, zwykle plik .rom1 lub rom1.bin. Zawiera moduły odtwarzacza DVD i dane identyfikacyjne. Pozostaw pole puste, jeśli konsola nie ma obrazu ROM1. Główny BIOS wybiera się w polu BIOS.</value></data>
+  <data name="Emulation.Sony.Firmware.Rom2.Help"><value>Opcjonalna pamięć ROM konsoli PS2 zawierająca chińskie czcionki.</value></data>
+  <data name="Emulation.Sony.Firmware.Rom2.Details"><value>Wybierz obraz ROM2 chińskiej konsoli SCPH-50009 pasujący do wybranego BIOS-u, zwykle plik .rom2 lub rom2.bin. Dla konsol bez ROM2 pozostaw pole puste. Ten plik nie zastępuje głównego BIOS-u.</value></data>
+  <data name="Emulation.Sony.Firmware.Nvram.Help"><value>Zapisane ustawienia konsoli.</value></data>
+  <data name="Emulation.Sony.Firmware.Nvram.Details"><value>Wybierz plik .nvm o rozmiarze 1024 bajtów pasujący do wybranego BIOS-u. Zawiera ustawienia konsoli. Plik jest opcjonalny: pozostaw pole puste, aby użyć zapisanych ustawień lub pozwolić emulatorowi utworzyć ustawienia domyślne.</value></data>
+  <data name="Emulation.Sony.Firmware.Mec.Help"><value>Wersja kontrolera mechanicznego.</value></data>
+  <data name="Emulation.Sony.Firmware.Mec.Details"><value>Wybierz plik .mec o rozmiarze 4 bajtów pasujący do wybranego BIOS-u. Zawiera numer wersji kontrolera mechanicznego, a nie jego pełne oprogramowanie układowe. Plik jest opcjonalny: pozostaw pole puste, aby użyć zapisanych danych lub pozwolić emulatorowi utworzyć plik domyślny.</value></data>
 </root>

@@ -175,7 +175,6 @@
   <data name="Emulation.Snk.Value.Flop" xml:space="preserve"><value>Flopp</value></data>
   <data name="Emulation.Snk.Value.Hard" xml:space="preserve"><value>hård hård hård hård hård hård</value></data>
   <data name="Emulation.Snk.Value.Prin" xml:space="preserve"><value>prins</value></data>
-  <data name="Emulation.Snk.Value.Rom" xml:space="preserve"><value>rom rom</value></data>
   <data name="Emulation.Snk.Value.Serl" xml:space="preserve"><value>Serl</value></data>
   <data name="Emulation.Snk.Setting.VFSEnabled"><value>VFS Enabled</value></data>
   <data name="Emulation.Snk.Setting.JoystickDeadzone"><value>Joystick Deadzone</value></data>

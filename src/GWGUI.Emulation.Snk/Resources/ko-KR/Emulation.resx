@@ -175,7 +175,6 @@
   <data name="Emulation.Snk.Value.Flop" xml:space="preserve"><value>뚱 베어</value></data>
   <data name="Emulation.Snk.Value.Hard" xml:space="preserve"><value>뚱 베어</value></data>
   <data name="Emulation.Snk.Value.Prin" xml:space="preserve"><value>뚱 베어</value></data>
-  <data name="Emulation.Snk.Value.Rom" xml:space="preserve"><value>롬으로</value></data>
   <data name="Emulation.Snk.Value.Serl" xml:space="preserve"><value>팟캐스트</value></data>
   <data name="Emulation.Snk.Setting.VFSEnabled" xml:space="preserve"><value>VFS 지원하다</value></data>
   <data name="Emulation.Snk.Setting.JoystickDeadzone" xml:space="preserve"><value>조이스틱 Deadzone</value></data>

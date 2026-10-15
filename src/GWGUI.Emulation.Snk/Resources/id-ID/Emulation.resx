@@ -175,7 +175,6 @@
   <data name="Emulation.Snk.Value.Flop" xml:space="preserve"><value>gagal</value></data>
   <data name="Emulation.Snk.Value.Hard" xml:space="preserve"><value>keras</value></data>
   <data name="Emulation.Snk.Value.Prin"><value>prin</value></data>
-  <data name="Emulation.Snk.Value.Rom"><value>rom</value></data>
   <data name="Emulation.Snk.Value.Serl"><value>serl</value></data>
   <data name="Emulation.Snk.Setting.VFSEnabled" xml:space="preserve"><value>VFS Diaktifkan</value></data>
   <data name="Emulation.Snk.Setting.JoystickDeadzone" xml:space="preserve"><value>Zona Kematian Joystick</value></data>

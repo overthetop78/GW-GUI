@@ -8,4 +8,12 @@
   <data name="Emulation.Sony.Firmware.PlayStation.Japan"><value>BIOS (Japani)</value></data>
   <data name="Emulation.Sony.Firmware.PlayStation.NorthAmerica"><value>BIOS (Pohjois-Amerikka)</value></data>
   <data name="Emulation.Sony.Firmware.PlayStation.Europe"><value>BIOS (Eurooppa)</value></data>
+  <data name="Emulation.Sony.Firmware.Rom1.Help"><value>PS2:n DVD-soittimen valinnainen ROM.</value></data>
+  <data name="Emulation.Sony.Firmware.Rom1.Details"><value>Valitse valittua BIOSia vastaava ROM1-vedos, yleensä .rom1-tiedosto tai rom1.bin. Se sisältää DVD-soittimen moduuleja ja tunnistetietoja. Jätä kenttä tyhjäksi, jos konsolillasi ei ole ROM1-vedosta. Valitse varsinainen BIOS BIOS-kentässä.</value></data>
+  <data name="Emulation.Sony.Firmware.Rom2.Help"><value>Valinnainen PS2-ROM, joka sisältää kiinalaisia kirjasimia.</value></data>
+  <data name="Emulation.Sony.Firmware.Rom2.Details"><value>Valitse kiinalaisen SCPH-50009-konsolin ROM2-vedos, joka vastaa valittua BIOSia, yleensä .rom2-tiedosto tai rom2.bin. Jätä kenttä tyhjäksi konsoleille, joissa ei ole ROM2:ta. Tämä tiedosto ei korvaa varsinaista BIOSia.</value></data>
+  <data name="Emulation.Sony.Firmware.Nvram.Help"><value>Tallennetut konsoliasetukset.</value></data>
+  <data name="Emulation.Sony.Firmware.Nvram.Details"><value>Valitse valittua BIOSia vastaava 1024 tavun .nvm-tiedosto. Se sisältää konsolin asetukset. Tiedosto on valinnainen: jätä kenttä tyhjäksi, jos haluat käyttää tallennettuja asetuksia tai antaa emulaattorin luoda oletusasetukset.</value></data>
+  <data name="Emulation.Sony.Firmware.Mec.Help"><value>Mekaanisen ohjaimen versio.</value></data>
+  <data name="Emulation.Sony.Firmware.Mec.Details"><value>Valitse valittua BIOSia vastaava 4 tavun .mec-tiedosto. Se sisältää mekaanisen ohjaimen versionumeron, ei koko laiteohjelmistoa. Tiedosto on valinnainen: jätä kenttä tyhjäksi, jos haluat käyttää tallennettuja tietoja tai antaa emulaattorin luoda oletustiedoston.</value></data>
 </root>

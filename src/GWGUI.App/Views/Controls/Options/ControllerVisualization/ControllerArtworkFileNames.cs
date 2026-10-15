@@ -98,6 +98,7 @@ internal static class ControllerArtworkFileNames
     internal const string SonyPlayStationMouse = "sony-playstation-mouse.png";
     internal const string SonyNeGcon = "sony-negcon.png";
     internal const string SonyGunCon = "sony-guncon.png";
+    internal const string SonyGunCon2 = "sony-guncon2.png";
     internal const string SonyJustifier = "sony-justifier.png";
     internal const string SonyPsp1000 = "sony-psp-1000.png";
     internal const string SuncomTac2 = "suncom-tac-2.png";

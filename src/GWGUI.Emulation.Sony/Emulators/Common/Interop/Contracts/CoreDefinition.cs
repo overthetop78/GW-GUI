@@ -20,4 +20,5 @@ internal sealed record CoreDefinition(
     TimeSpan? DisposalTimeout = null,
     IReadOnlyList<string>? PreviousLibraryNames = null,
     Func<MachineConfiguration, CoreContentLoadPlan?>? CreateContentLoadPlan = null,
-    Func<MachineConfiguration, IReadOnlyList<CoreControllerPort>>? CreateControllerPorts = null);
+    Func<MachineConfiguration, IReadOnlyList<CoreControllerPort>>? CreateControllerPorts = null,
+    CoreFirmwarePersistenceSettings? FirmwarePersistence = null);

@@ -175,7 +175,6 @@
   <data name="Emulation.Snk.Value.Flop" xml:space="preserve"><value>フロップル</value></data>
   <data name="Emulation.Snk.Value.Hard" xml:space="preserve"><value>硬い</value></data>
   <data name="Emulation.Snk.Value.Prin" xml:space="preserve"><value>サインイン</value></data>
-  <data name="Emulation.Snk.Value.Rom" xml:space="preserve"><value>ルーム</value></data>
   <data name="Emulation.Snk.Value.Serl" xml:space="preserve"><value>セル</value></data>
   <data name="Emulation.Snk.Setting.VFSEnabled" xml:space="preserve"><value>VFS 有効化</value></data>
   <data name="Emulation.Snk.Setting.JoystickDeadzone" xml:space="preserve"><value>ジョイスティック・デッドゾーン</value></data>

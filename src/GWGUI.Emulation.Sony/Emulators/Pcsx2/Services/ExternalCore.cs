@@ -7,6 +7,8 @@ using GWGUI.Emulation.Sony.Emulators.Pcsx2.Constants;
 using NativeControllerFunctions = GWGUI.Emulation.Sony.Emulators.Common.Interop.Functions.ControllerPortFunctions;
 using NativeControllerDevice = GWGUI.Emulation.Sony.Emulators.Common.Interop.Contracts.ControllerDevice;
 using NativeMemoryCards = GWGUI.Emulation.Sony.Emulators.Common.Interop.Functions.MemoryCardFunctions;
+using NativeFirmware = GWGUI.Emulation.Sony.Emulators.Common.Interop.Functions.FirmwareRuntimeFunctions;
+using FirmwareConstants = GWGUI.Emulation.Sony.Emulators.Pcsx2.Constants.FirmwareConstants;
 
 namespace GWGUI.Emulation.Sony.Emulators.Pcsx2.Services;
 
@@ -79,7 +81,7 @@ internal sealed class ExternalCore : IEmulatorCore
         Directory.CreateDirectory(systemDirectory);
         NativeMemoryCards.PreparePs2(configuration, systemDirectory, _memoryCardFiles);
         FirmwareConfigurationFunctions.CopySelectedFiles(configuration, new GWGUI.Emulation.Sony.Emulators.Pcsx2.Factories.Pcsx2MachineFactory(), systemDirectory);
-        _firmwareFiles = Functions.FirmwareRuntimeFunctions.Prepare(configuration, systemDirectory, saveDirectory);
+        _firmwareFiles = NativeFirmware.Prepare(configuration, Pcsx2Constants.Id, FirmwareConstants.Persistence, systemDirectory, saveDirectory);
         Directory.CreateDirectory(contentDirectory);
         Directory.CreateDirectory(saveDirectory);
         var isolatedCoreDirectory = Path.Combine(sessionDirectory, ExternalCoreConstants.CoreDirectory);
@@ -314,7 +316,7 @@ internal sealed class ExternalCore : IEmulatorCore
                     _getSerializedSize = null;
                     _serialize = null;
                     _unserialize = null;
-                    try { Functions.FirmwareRuntimeFunctions.Persist(_firmwareFiles); }
+                    try { NativeFirmware.Persist(_firmwareFiles); }
                     finally
                     {
                         _firmwareFiles = [];

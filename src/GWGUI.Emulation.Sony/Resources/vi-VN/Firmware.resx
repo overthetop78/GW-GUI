@@ -8,4 +8,12 @@
   <data name="Emulation.Sony.Firmware.PlayStation.Japan"><value>BIOS (Japan)</value></data>
   <data name="Emulation.Sony.Firmware.PlayStation.NorthAmerica"><value>BIOS (Mỹ)</value></data>
   <data name="Emulation.Sony.Firmware.PlayStation.Europe"><value>BIOS (Europe)</value></data>
+  <data name="Emulation.Sony.Firmware.Rom1.Help"><value>ROM tùy chọn của trình phát DVD trên PS2.</value></data>
+  <data name="Emulation.Sony.Firmware.Rom1.Details"><value>Chọn bản sao ROM1 phù hợp với BIOS đã chọn, thường là tệp .rom1 hoặc rom1.bin. Tệp chứa các mô-đun phát DVD và dữ liệu nhận dạng. Để trống nếu máy của bạn không có bản sao ROM1. Chọn BIOS chính trong trường BIOS.</value></data>
+  <data name="Emulation.Sony.Firmware.Rom2.Help"><value>ROM PS2 tùy chọn chứa phông chữ tiếng Trung.</value></data>
+  <data name="Emulation.Sony.Firmware.Rom2.Details"><value>Chọn bản sao ROM2 của máy SCPH-50009 bản Trung Quốc phù hợp với BIOS đã chọn, thường là tệp .rom2 hoặc rom2.bin. Để trống đối với máy không có ROM2. Tệp này không thay thế BIOS chính.</value></data>
+  <data name="Emulation.Sony.Firmware.Nvram.Help"><value>Cài đặt đã lưu của máy.</value></data>
+  <data name="Emulation.Sony.Firmware.Nvram.Details"><value>Chọn tệp .nvm có kích thước 1024 byte phù hợp với BIOS đã chọn. Tệp chứa cài đặt của máy. Tệp này không bắt buộc: để trống để dùng lại cài đặt đã lưu hoặc để trình giả lập tạo các giá trị mặc định.</value></data>
+  <data name="Emulation.Sony.Firmware.Mec.Help"><value>Phiên bản bộ điều khiển cơ khí.</value></data>
+  <data name="Emulation.Sony.Firmware.Mec.Details"><value>Chọn tệp .mec có kích thước 4 byte phù hợp với BIOS đã chọn. Tệp chứa số phiên bản bộ điều khiển cơ khí, không phải toàn bộ phần sụn. Tệp này không bắt buộc: để trống để dùng lại dữ liệu đã lưu hoặc để trình giả lập tạo tệp mặc định.</value></data>
 </root>

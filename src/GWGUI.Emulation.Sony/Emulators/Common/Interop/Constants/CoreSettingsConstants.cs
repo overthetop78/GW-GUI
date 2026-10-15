@@ -24,7 +24,7 @@ internal static class CoreSettingsConstants
     internal const string NumericFormat = "0.########";
     internal const string StorageTitleResource = "Emulation.Tab.Storage";
     internal const string MouseTitleResource = "Emulation.Tab.Mouse";
-    internal const string ControllersTitleResource = "Emulation.Tab.Controllers";
+    internal const string ControllersTitleResource = "Emulation.Tab.Controller";
     internal const string StorageIcon = "\uEDA2";
     internal const string MouseIcon = "\uE962";
     internal const string ControllersIcon = "\uE7FC";

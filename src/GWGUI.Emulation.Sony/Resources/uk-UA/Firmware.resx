@@ -8,4 +8,12 @@
   <data name="Emulation.Sony.Firmware.PlayStation.Japan"><value>BIOS (Японія)</value></data>
   <data name="Emulation.Sony.Firmware.PlayStation.NorthAmerica"><value>BIOS (Північна Америка)</value></data>
   <data name="Emulation.Sony.Firmware.PlayStation.Europe"><value>BIOS (Європа)</value></data>
+  <data name="Emulation.Sony.Firmware.Rom1.Help"><value>Необов’язкова ROM DVD-програвача PS2.</value></data>
+  <data name="Emulation.Sony.Firmware.Rom1.Details"><value>Виберіть дамп ROM1, що відповідає вибраному BIOS, зазвичай файл .rom1 або rom1.bin. Він містить модулі DVD-програвача та ідентифікаційні дані. Залиште поле порожнім, якщо ваша консоль не має дампа ROM1. Основний BIOS вибирається в полі BIOS.</value></data>
+  <data name="Emulation.Sony.Firmware.Rom2.Help"><value>Необов’язкова ROM PS2 з китайськими шрифтами.</value></data>
+  <data name="Emulation.Sony.Firmware.Rom2.Details"><value>Виберіть дамп ROM2 китайської консолі SCPH-50009, що відповідає вибраному BIOS, зазвичай файл .rom2 або rom2.bin. Для консолей без ROM2 залиште поле порожнім. Цей файл не замінює основний BIOS.</value></data>
+  <data name="Emulation.Sony.Firmware.Nvram.Help"><value>Збережені налаштування консолі.</value></data>
+  <data name="Emulation.Sony.Firmware.Nvram.Details"><value>Виберіть файл .nvm розміром 1024 байти, що відповідає вибраному BIOS. Він містить налаштування консолі. Файл необов’язковий: залиште поле порожнім, щоб використати збережені налаштування або дозволити емулятору створити стандартні значення.</value></data>
+  <data name="Emulation.Sony.Firmware.Mec.Help"><value>Версія механічного контролера.</value></data>
+  <data name="Emulation.Sony.Firmware.Mec.Details"><value>Виберіть файл .mec розміром 4 байти, що відповідає вибраному BIOS. Він містить номер версії механічного контролера, а не його повну прошивку. Файл необов’язковий: залиште поле порожнім, щоб використати збережені дані або дозволити емулятору створити стандартний файл.</value></data>
 </root>

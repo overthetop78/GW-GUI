@@ -8,4 +8,12 @@
   <data name="Emulation.Sony.Firmware.PlayStation.Japan"><value>BIOS (יפן)</value></data>
   <data name="Emulation.Sony.Firmware.PlayStation.NorthAmerica"><value>BIOS (צפון אמריקה)</value></data>
   <data name="Emulation.Sony.Firmware.PlayStation.Europe"><value>BIOS (אירופה)</value></data>
+  <data name="Emulation.Sony.Firmware.Rom1.Help"><value>ROM אופציונלי של נגן ה-DVD ב-PS2.</value></data>
+  <data name="Emulation.Sony.Firmware.Rom1.Details"><value>בחרו עותק ROM1 התואם ל-BIOS שנבחר, בדרך כלל קובץ .rom1 או rom1.bin. הוא מכיל מודולים של נגן DVD ונתוני זיהוי. השאירו את השדה ריק אם לקונסולה שלכם אין עותק ROM1. את ה-BIOS הראשי יש לבחור בשדה BIOS.</value></data>
+  <data name="Emulation.Sony.Firmware.Rom2.Help"><value>ROM אופציונלי של PS2 המכיל גופנים סיניים.</value></data>
+  <data name="Emulation.Sony.Firmware.Rom2.Details"><value>בחרו עותק ROM2 של הקונסולה הסינית SCPH-50009 התואם ל-BIOS שנבחר, בדרך כלל קובץ .rom2 או rom2.bin. השאירו את השדה ריק בקונסולות ללא ROM2. קובץ זה אינו מחליף את ה-BIOS הראשי.</value></data>
+  <data name="Emulation.Sony.Firmware.Nvram.Help"><value>הגדרות הקונסולה השמורות.</value></data>
+  <data name="Emulation.Sony.Firmware.Nvram.Details"><value>בחרו קובץ .nvm בגודל 1024 בתים התואם ל-BIOS שנבחר. הוא מכיל את הגדרות הקונסולה. הקובץ אופציונלי: השאירו את השדה ריק כדי להשתמש בהגדרות השמורות או לאפשר לאמולטור ליצור הגדרות ברירת מחדל.</value></data>
+  <data name="Emulation.Sony.Firmware.Mec.Help"><value>גרסת הבקר המכני.</value></data>
+  <data name="Emulation.Sony.Firmware.Mec.Details"><value>בחרו קובץ .mec בגודל 4 בתים התואם ל-BIOS שנבחר. הוא מכיל את מספר הגרסה של הבקר המכני, ולא את הקושחה המלאה שלו. הקובץ אופציונלי: השאירו את השדה ריק כדי להשתמש בנתונים השמורים או לאפשר לאמולטור ליצור קובץ ברירת מחדל.</value></data>
 </root>

@@ -8,8 +8,6 @@
   <data name="Emulation.Option.pcsx2.pcsx2_fastboot.Help"><value>Melewatkan layar awal BIOS dan sepatu bot langsung ke permainan. Nonaktifkan ini jika Anda ingin mengakses pengaturan sistem PS2 atau akses manajer Memory Card.</value></data>
   <data name="Emulation.Option.pcsx2.pcsx2_renderer.Value.0"><value>Otomatis</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_cpu_core.Label"><value>Inti CPU</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_cpu_core.Value.0"><value>Dynarec (JIT)</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_cpu_core.Value.1"><value>Interpreter IR</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_fast_memory.Label"><value>Memori Cepat</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_fast_memory.Help"><value>Tidak stabil.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_ignore_bad_memory_access.Label"><value>Abaikan Akses Memori Buruk</value></data>

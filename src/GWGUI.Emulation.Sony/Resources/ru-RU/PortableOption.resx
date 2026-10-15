@@ -8,8 +8,6 @@
   <data name="Emulation.Option.pcsx2.pcsx2_fastboot.Help"><value>Пропускает экран запуска BIOS и загружается прямо в игру. Отключите это, если вы хотите получить доступ к настройкам системы PS2 или к менеджеру Memory Card.</value></data>
   <data name="Emulation.Option.pcsx2.pcsx2_renderer.Value.0"><value>Автоматический</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_cpu_core.Label"><value>CPU ядро</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_cpu_core.Value.0"><value>Dynarec (JIT)</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_cpu_core.Value.1"><value>IR Переводчик</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_fast_memory.Label"><value>Быстрая память</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_fast_memory.Help"><value>Нестабильно.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_ignore_bad_memory_access.Label"><value>Игнорировать плохой доступ к памяти</value></data>

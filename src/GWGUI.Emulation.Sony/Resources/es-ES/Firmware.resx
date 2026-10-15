@@ -8,4 +8,12 @@
   <data name="Emulation.Sony.Firmware.PlayStation.Japan"><value>BIOS (Japón)</value></data>
   <data name="Emulation.Sony.Firmware.PlayStation.NorthAmerica"><value>BIOS (América del Norte)</value></data>
   <data name="Emulation.Sony.Firmware.PlayStation.Europe"><value>BIOS (Europa)</value></data>
+  <data name="Emulation.Sony.Firmware.Rom1.Help"><value>ROM opcional del reproductor de DVD de PS2.</value></data>
+  <data name="Emulation.Sony.Firmware.Rom1.Details"><value>Seleccione el volcado ROM1 correspondiente a la BIOS seleccionada, normalmente un archivo .rom1 o rom1.bin. Contiene módulos del reproductor de DVD y datos de identificación. Deje el campo vacío si su consola no dispone de un volcado ROM1. La BIOS principal se selecciona en el campo BIOS.</value></data>
+  <data name="Emulation.Sony.Firmware.Rom2.Help"><value>ROM opcional de PS2 con fuentes chinas.</value></data>
+  <data name="Emulation.Sony.Firmware.Rom2.Details"><value>Seleccione el volcado ROM2 de la consola china SCPH-50009 correspondiente a la BIOS seleccionada, normalmente un archivo .rom2 o rom2.bin. Deje el campo vacío en consolas sin ROM2. Este archivo no sustituye a la BIOS principal.</value></data>
+  <data name="Emulation.Sony.Firmware.Nvram.Help"><value>Configuración guardada de la consola.</value></data>
+  <data name="Emulation.Sony.Firmware.Nvram.Details"><value>Seleccione un archivo .nvm de 1024 bytes correspondiente a la BIOS seleccionada. Contiene la configuración de la consola. Es opcional: deje el campo vacío para reutilizar la configuración guardada o permitir que el emulador genere los valores predeterminados.</value></data>
+  <data name="Emulation.Sony.Firmware.Mec.Help"><value>Versión del controlador mecánico.</value></data>
+  <data name="Emulation.Sony.Firmware.Mec.Details"><value>Seleccione un archivo .mec de 4 bytes correspondiente a la BIOS seleccionada. Contiene el número de versión del controlador mecánico, no su firmware completo. Es opcional: deje el campo vacío para reutilizar los datos guardados o permitir que el emulador genere un archivo predeterminado.</value></data>
 </root>

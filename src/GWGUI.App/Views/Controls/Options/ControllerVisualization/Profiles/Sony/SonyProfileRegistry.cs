@@ -13,6 +13,7 @@ internal static partial class ControllerArtworkCatalog
         profiles[EmulationControllerVisualIds.SonyPlayStationMouse] = CreateSonyPlayStationMouse();
         profiles[EmulationControllerVisualIds.SonyNeGcon] = CreateSonyNeGcon();
         profiles[EmulationControllerVisualIds.SonyGunCon] = CreateSonyGunCon();
+        profiles[EmulationControllerVisualIds.SonyGunCon2] = CreateSonyGunCon2();
         profiles[EmulationControllerVisualIds.SonyJustifier] = CreateSonyJustifier();
         profiles[EmulationControllerVisualIds.SonyDualShock2] = CreateSonyDualShock2();
         profiles[EmulationControllerVisualIds.SonyDualShock3] = CreateSonyDualShock3();

@@ -8,8 +8,6 @@
   <data name="Emulation.Option.pcsx2.pcsx2_fastboot.Help"><value>Pomija ekran startowy BIOS i buty prosto do gry. Wyłącz to, jeśli chcesz uzyskać dostęp do ustawień systemowych PS2 lub dostępu do menedżera Memory Card.</value></data>
   <data name="Emulation.Option.pcsx2.pcsx2_renderer.Value.0"><value>Automatyczny</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_cpu_core.Label"><value>CPU Core</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_cpu_core.Value.0"><value>Dynarec (JIT)</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_cpu_core.Value.1"><value>Interpreter IR</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_fast_memory.Label"><value>Szybka pamięć</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_fast_memory.Help"><value>Niestabilna.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_ignore_bad_memory_access.Label"><value>Ignoruj złe dostępu do pamięci</value></data>

@@ -426,7 +426,7 @@ internal static class SettingsChoiceConstants
     internal const string ValueRealTime = "Emulation.Snk.Value.RealTime";
     internal const string ValueRecursively = "Emulation.Snk.Value.Recursively";
     internal const string ValueResistorNetwork = "Emulation.Snk.Value.ResistorNetwork";
-    internal const string ValueRom = "Emulation.Snk.Value.Rom";
+    internal const string ValueRom = "Emulation.Tab.Rom";
     internal const string ValueSelectAB = "Emulation.Snk.Value.SelectAB";
     internal const string ValueSelectLR = "Emulation.Snk.Value.SelectLR";
     internal const string ValueSerl = "Emulation.Snk.Value.Serl";

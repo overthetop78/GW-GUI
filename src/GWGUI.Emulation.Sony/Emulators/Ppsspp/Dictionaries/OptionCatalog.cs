@@ -12,7 +12,7 @@ internal static class OptionCatalog
             null,
             "JIT",
             "JIT",
-            [new("JIT", "Emulation.Option.ppsspp.ppsspp_cpu_core.Value.0"), new("IR JIT", "Emulation.Option.ppsspp.ppsspp_cpu_core.Value.1"), new("Interpreter", "Emulation.Option.Sony.Value.Interpreter")],
+            [new("JIT", OptionConstants.JitResource), new("IR JIT", OptionConstants.IrJitResource), new("Interpreter", "Emulation.Option.Sony.Value.Interpreter")],
             Tab: EmulationMachineTab.Cpu,
             RequiresRestart: true
         ),

@@ -14,6 +14,7 @@ internal static class FirmwareConfigurationFunctions
             slot.LabelResourceKey, EmulationSettingsEditor.Path,
             configuration.FirmwarePaths?.GetValueOrDefault(slot.FieldId)
                 ?? (configuration.Model == ModelConstants.PlayStation && configuration.FirmwarePaths?.Count == 1 ? configuration.FirmwarePaths.Values.Single() : null),
+            ExplanationResourceKey: slot.ExplanationResourceKey, DetailedExplanationResourceKey: slot.DetailedExplanationResourceKey,
             DefaultFolderCategory: EmulationDefaultFolderCategory.Firmware)).ToArray();
 
     internal static MachineConfiguration Apply(MachineConfiguration configuration, IReadOnlyDictionary<string, string?> values, IEmulatorAdapter adapter)
@@ -41,10 +42,19 @@ internal static class FirmwareConfigurationFunctions
             using var stream = File.OpenRead(path);
             var digest = Convert.ToHexString(SHA256.HashData(stream));
             var name = Path.GetFileName(path);
-            foreach (var slot in slots.Where(slot => configuration.Model == ModelConstants.PlayStation ? PlayStationFirmware.BiosExtensions.Contains(Path.GetExtension(path)) : Path.GetExtension(slot.FileName).Equals(Path.GetExtension(path), StringComparison.OrdinalIgnoreCase)))
+            foreach (var slot in MatchingSlots(configuration.Model, slots, name))
                 candidates.Add(new EmulationFirmwareCandidate(digest + slot.FieldId, path, name, null, EmulationFirmwareCompatibility.Unknown, slot.FieldId));
         }
         return candidates;
+    }
+
+    internal static IReadOnlyList<FirmwareSlot> MatchingSlots(string model, IReadOnlyList<FirmwareSlot> slots, string fileName)
+    {
+        var named = slots.Where(slot => slot.CandidateFileNames?.Contains(fileName, StringComparer.OrdinalIgnoreCase) == true).ToArray();
+        if (named.Length > 0) return named;
+        var extension = Path.GetExtension(fileName);
+        return slots.Where(slot => model == ModelConstants.PlayStation ? PlayStationFirmware.BiosExtensions.Contains(extension)
+            : Path.GetExtension(slot.FileName).Equals(extension, StringComparison.OrdinalIgnoreCase)).ToArray();
     }
 
     internal static void CopySelectedFiles(MachineConfiguration configuration, IEmulatorAdapter adapter, string destinationDirectory)

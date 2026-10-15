@@ -27,6 +27,77 @@ namespace GWGUI.Tests.Emulation.Sony;
 public sealed class ConfigurationPresentationTests
 {
     [Theory]
+    [InlineData("pcee2")]
+    [InlineData("pcsx2")]
+    public void Ps2SupplementaryRomSelectionsRemainIndependentFromTheBios(string emulator)
+    {
+        using var http = new HttpClient();
+        var module = new GWGUI.Emulation.Sony.Modules.SonyEmulationModule(Environment.CurrentDirectory, Environment.CurrentDirectory, http, Environment.CurrentDirectory);
+        var original = new MachineConfiguration(ModelConstants.PlayStation2, emulator,
+            FirmwarePaths: new Dictionary<string, string> { ["firmware.system"] = "selected-bios.bin" });
+        var selected = Assert.IsType<MachineConfiguration>(module.ApplySettings(original, new Dictionary<string, string?>
+        {
+            ["firmware.rom1"] = "selected.rom1", ["firmware.rom2"] = "selected.rom2",
+            ["firmware.nvram"] = "selected.nvm", ["firmware.mechanics"] = "selected.mec"
+        }));
+        var fields = SettingsDescriptionFunctions.Create(selected).Where(block => block.Tab == EmulationMachineTab.Rom)
+            .SelectMany(block => block.Fields).Where(field => field.Editor == EmulationSettingsEditor.Path).ToArray();
+        Assert.Equal("selected-bios.bin", Assert.Single(fields, field => field.Id == "firmware.system").Value);
+        Assert.Equal("selected.rom1", Assert.Single(fields, field => field.Id == "firmware.rom1").Value);
+        Assert.Equal("selected.rom2", Assert.Single(fields, field => field.Id == "firmware.rom2").Value);
+        Assert.Equal("selected.nvm", Assert.Single(fields, field => field.Id == "firmware.nvram").Value);
+        Assert.Equal("selected.mec", Assert.Single(fields, field => field.Id == "firmware.mechanics").Value);
+        Assert.Equal(5, fields.Length);
+        foreach (var field in fields.Where(field => field.Id != "firmware.system"))
+        {
+            Assert.False(string.IsNullOrWhiteSpace(field.ExplanationResourceKey));
+            Assert.False(string.IsNullOrWhiteSpace(field.DetailedExplanationResourceKey));
+            Assert.Equal(EmulationDefaultFolderCategory.Firmware, field.DefaultFolderCategory);
+        }
+        Assert.DoesNotContain(fields, field => field.Id == "firmware.extended");
+        var cleared = Assert.IsType<MachineConfiguration>(module.ApplySettings(selected, new Dictionary<string, string?> { ["firmware.rom1"] = null }));
+        Assert.False(cleared.FirmwarePaths!.ContainsKey("firmware.rom1"));
+        Assert.Equal("selected-bios.bin", cleared.FirmwarePaths["firmware.system"]);
+        Assert.Equal("selected.rom2", cleared.FirmwarePaths["firmware.rom2"]);
+        Assert.Equal("selected.nvm", cleared.FirmwarePaths["firmware.nvram"]);
+        Assert.Equal("selected.mec", cleared.FirmwarePaths["firmware.mechanics"]);
+        var automaticNvram = Assert.IsType<MachineConfiguration>(module.ApplySettings(selected, new Dictionary<string, string?> { ["firmware.nvram"] = null }));
+        Assert.False(automaticNvram.FirmwarePaths!.ContainsKey("firmware.nvram"));
+        Assert.Equal("selected-bios.bin", automaticNvram.FirmwarePaths["firmware.system"]);
+        Assert.Equal("selected.rom1", automaticNvram.FirmwarePaths["firmware.rom1"]);
+        Assert.Equal("selected.mec", automaticNvram.FirmwarePaths["firmware.mechanics"]);
+        Assert.DoesNotContain(selected.Options!.Keys, key => key.StartsWith("firmware.", StringComparison.Ordinal));
+    }
+
+    [Theory]
+    [InlineData("rom1.bin", "firmware.rom1")]
+    [InlineData("ROM1.BIN", "firmware.rom1")]
+    [InlineData("console.rom1", "firmware.rom1")]
+    [InlineData("console.bin.rom1", "firmware.rom1")]
+    [InlineData("rom2.bin", "firmware.rom2")]
+    [InlineData("ROM2.BIN", "firmware.rom2")]
+    [InlineData("console.rom2", "firmware.rom2")]
+    [InlineData("console.bin.rom2", "firmware.rom2")]
+    [InlineData("console.nvm", "firmware.nvram")]
+    [InlineData("CONSOLE.NVM", "firmware.nvram")]
+    [InlineData("console.mec", "firmware.mechanics")]
+    [InlineData("CONSOLE.MEC", "firmware.mechanics")]
+    [InlineData("scph39001.bin", "firmware.system")]
+    [InlineData("unrelated.txt", null)]
+    public void Ps2DetectedDumpsTargetTheirOwnFieldBeforeTheGenericBinExtension(string name, string? destination)
+    {
+        foreach (var emulator in new[] { "pcee2", "pcsx2" })
+        {
+            var configuration = new MachineConfiguration(ModelConstants.PlayStation2, emulator);
+            var adapter = EmulatorCatalog.CreateAdapters().Single(item => item.EmulatorId == emulator);
+            var slots = FirmwareConfigurationFunctions.Slots(configuration, adapter);
+            var matches = FirmwareConfigurationFunctions.MatchingSlots(configuration.Model, slots, name);
+            if (destination is null) Assert.Empty(matches);
+            else Assert.Equal(destination, Assert.Single(matches).FieldId);
+        }
+    }
+
+    [Theory]
     [InlineData(Swan.Id)]
     [InlineData(Beetle.Id)]
     [InlineData(BeetleHw.Id)]

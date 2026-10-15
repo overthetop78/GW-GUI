@@ -175,7 +175,6 @@
   <data name="Emulation.Snk.Value.Flop" xml:space="preserve"><value>трупи</value></data>
   <data name="Emulation.Snk.Value.Hard" xml:space="preserve"><value>важка</value></data>
   <data name="Emulation.Snk.Value.Prin" xml:space="preserve"><value>труси</value></data>
-  <data name="Emulation.Snk.Value.Rom" xml:space="preserve"><value>трм</value></data>
   <data name="Emulation.Snk.Value.Serl" xml:space="preserve"><value>кіптява</value></data>
   <data name="Emulation.Snk.Setting.VFSEnabled" xml:space="preserve"><value>VFS Увімкнути</value></data>
   <data name="Emulation.Snk.Setting.JoystickDeadzone" xml:space="preserve"><value>Джойстик Дедзон</value></data>

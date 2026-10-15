@@ -30,6 +30,7 @@ internal sealed partial class ExternalCore : IEmulatorCore
     private bool _gameLoaded;
     private bool _initialized;
     private IReadOnlyList<CoreControllerPort>? _controllerPorts;
+    private IReadOnlyList<(string Source, string Native, int Size)> _firmwareFiles = [];
 
     internal ExternalCore(CoreDefinition definition, string corePath)
     {
@@ -85,6 +86,9 @@ internal sealed partial class ExternalCore : IEmulatorCore
             .Select(region => (region.Id, Path.Combine(coreSaveDirectory, region.FileName))).ToArray();
         Directory.CreateDirectory(systemDirectory);
         FirmwareConfigurationFunctions.CopySelectedFiles(configuration, new Engine().Adapter(configuration), systemDirectory);
+        _firmwareFiles = _definition.FirmwarePersistence is { } persistence
+            ? FirmwareRuntimeFunctions.Prepare(configuration, _definition.Id, persistence, systemDirectory, saveDirectory)
+            : [];
         Directory.CreateDirectory(contentDirectory);
         Directory.CreateDirectory(saveDirectory);
         var isolatedCoreDirectory = Path.Combine(sessionDirectory, ExternalCoreConstants.CoreDirectory);
@@ -349,16 +353,21 @@ internal sealed partial class ExternalCore : IEmulatorCore
                     _unserialize = null;
                     _getMemoryData = null;
                     _getMemorySize = null;
-                    try { _host?.Dispose(); }
+                    try { FirmwareRuntimeFunctions.Persist(_firmwareFiles); }
                     finally
                     {
-                        _host = null;
-                        try { _library?.Dispose(); }
+                        _firmwareFiles = [];
+                        try { _host?.Dispose(); }
                         finally
                         {
-                            GC.KeepAlive(callbacks);
-                            _library = null;
-                            ReleaseContentBuffers();
+                            _host = null;
+                            try { _library?.Dispose(); }
+                            finally
+                            {
+                                GC.KeepAlive(callbacks);
+                                _library = null;
+                                ReleaseContentBuffers();
+                            }
                         }
                     }
                 }

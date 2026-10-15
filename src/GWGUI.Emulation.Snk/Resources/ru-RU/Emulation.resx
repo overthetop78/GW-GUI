@@ -175,7 +175,6 @@
   <data name="Emulation.Snk.Value.Flop" xml:space="preserve"><value>провал</value></data>
   <data name="Emulation.Snk.Value.Hard" xml:space="preserve"><value>твердый</value></data>
   <data name="Emulation.Snk.Value.Prin" xml:space="preserve"><value>пин</value></data>
-  <data name="Emulation.Snk.Value.Rom" xml:space="preserve"><value>ром</value></data>
   <data name="Emulation.Snk.Value.Serl" xml:space="preserve"><value>серль</value></data>
   <data name="Emulation.Snk.Setting.VFSEnabled" xml:space="preserve"><value>VFS включенный</value></data>
   <data name="Emulation.Snk.Setting.JoystickDeadzone" xml:space="preserve"><value>Джойстик Дэдзон</value></data>

@@ -8,4 +8,12 @@
   <data name="Emulation.Sony.Firmware.PlayStation.Japan"><value>BIOS (Giappone)</value></data>
   <data name="Emulation.Sony.Firmware.PlayStation.NorthAmerica"><value>BIOS (America del Nord)</value></data>
   <data name="Emulation.Sony.Firmware.PlayStation.Europe"><value>BIOS (Europa)</value></data>
+  <data name="Emulation.Sony.Firmware.Rom1.Help"><value>ROM facoltativa del lettore DVD della PS2.</value></data>
+  <data name="Emulation.Sony.Firmware.Rom1.Details"><value>Selezionare il dump ROM1 corrispondente al BIOS selezionato, solitamente un file .rom1 o rom1.bin. Contiene moduli del lettore DVD e dati identificativi. Lasciare il campo vuoto se la console non dispone di un dump ROM1. Il BIOS principale va selezionato nel campo BIOS.</value></data>
+  <data name="Emulation.Sony.Firmware.Rom2.Help"><value>ROM facoltativa della PS2 contenente caratteri cinesi.</value></data>
+  <data name="Emulation.Sony.Firmware.Rom2.Details"><value>Selezionare il dump ROM2 della console cinese SCPH-50009 corrispondente al BIOS selezionato, solitamente un file .rom2 o rom2.bin. Lasciare il campo vuoto per le console senza ROM2. Questo file non sostituisce il BIOS principale.</value></data>
+  <data name="Emulation.Sony.Firmware.Nvram.Help"><value>Impostazioni salvate della console.</value></data>
+  <data name="Emulation.Sony.Firmware.Nvram.Details"><value>Selezionare un file .nvm di 1024 byte corrispondente al BIOS selezionato. Contiene le impostazioni della console. Il file è facoltativo: lasciare il campo vuoto per riutilizzare le impostazioni salvate o consentire all’emulatore di creare i valori predefiniti.</value></data>
+  <data name="Emulation.Sony.Firmware.Mec.Help"><value>Versione del controller meccanico.</value></data>
+  <data name="Emulation.Sony.Firmware.Mec.Details"><value>Selezionare un file .mec di 4 byte corrispondente al BIOS selezionato. Contiene il numero di versione del controller meccanico, non il suo firmware completo. Il file è facoltativo: lasciare il campo vuoto per riutilizzare i dati salvati o consentire all’emulatore di creare un file predefinito.</value></data>
 </root>

@@ -175,7 +175,6 @@
   <data name="Emulation.Snk.Value.Flop" xml:space="preserve"><value>הצצה</value></data>
   <data name="Emulation.Snk.Value.Hard" xml:space="preserve"><value>קשה</value></data>
   <data name="Emulation.Snk.Value.Prin"><value>prin</value></data>
-  <data name="Emulation.Snk.Value.Rom" xml:space="preserve"><value>רומא רומי</value></data>
   <data name="Emulation.Snk.Value.Serl" xml:space="preserve"><value>מערבה</value></data>
   <data name="Emulation.Snk.Setting.VFSEnabled" xml:space="preserve"><value>VFS המונחים</value></data>
   <data name="Emulation.Snk.Setting.JoystickDeadzone"><value>Joystick Deadzone</value></data>

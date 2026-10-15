@@ -175,7 +175,6 @@
   <data name="Emulation.Snk.Value.Flop" xml:space="preserve"><value>ย่อหาย</value></data>
   <data name="Emulation.Snk.Value.Hard" xml:space="preserve"><value>หนัก</value></data>
   <data name="Emulation.Snk.Value.Prin" xml:space="preserve"><value>อยู่เหนือ% 1 ตัวปัจจุบัน</value></data>
-  <data name="Emulation.Snk.Value.Rom" xml:space="preserve"><value>รอม</value></data>
   <data name="Emulation.Snk.Value.Serl" xml:space="preserve"><value>เซอริล</value></data>
   <data name="Emulation.Snk.Setting.VFSEnabled" xml:space="preserve"><value>VFS เปิดใช้งาน</value></data>
   <data name="Emulation.Snk.Setting.JoystickDeadzone" xml:space="preserve"><value>แท่งควบคุมตายโซน</value></data>

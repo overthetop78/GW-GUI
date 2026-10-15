@@ -8,4 +8,12 @@
   <data name="Emulation.Sony.Firmware.PlayStation.Japan"><value>BIOS (japan)</value></data>
   <data name="Emulation.Sony.Firmware.PlayStation.NorthAmerica"><value>BIOS (Nordamerika)</value></data>
   <data name="Emulation.Sony.Firmware.PlayStation.Europe"><value>BIOS (Europa)</value></data>
+  <data name="Emulation.Sony.Firmware.Rom1.Help"><value>Valfri ROM för PS2-konsolens DVD-spelare.</value></data>
+  <data name="Emulation.Sony.Firmware.Rom1.Details"><value>Välj den ROM1-kopia som hör till valt BIOS, vanligtvis en .rom1-fil eller rom1.bin. Den innehåller DVD-spelarens moduler och identifieringsdata. Lämna fältet tomt om konsolen saknar en ROM1-kopia. Huvud-BIOS väljs i fältet BIOS.</value></data>
+  <data name="Emulation.Sony.Firmware.Rom2.Help"><value>Valfri PS2-ROM som innehåller kinesiska teckensnitt.</value></data>
+  <data name="Emulation.Sony.Firmware.Rom2.Details"><value>Välj en ROM2-kopia från den kinesiska SCPH-50009-konsolen som hör till valt BIOS, vanligtvis en .rom2-fil eller rom2.bin. Lämna fältet tomt för konsoler utan ROM2. Filen ersätter inte huvud-BIOS.</value></data>
+  <data name="Emulation.Sony.Firmware.Nvram.Help"><value>Sparade konsolinställningar.</value></data>
+  <data name="Emulation.Sony.Firmware.Nvram.Details"><value>Välj en .nvm-fil på 1024 byte som hör till valt BIOS. Den innehåller konsolens inställningar. Filen är valfri: lämna fältet tomt för att använda sparade inställningar eller låta emulatorn skapa standardinställningar.</value></data>
+  <data name="Emulation.Sony.Firmware.Mec.Help"><value>Den mekaniska styrenhetens version.</value></data>
+  <data name="Emulation.Sony.Firmware.Mec.Details"><value>Välj en .mec-fil på 4 byte som hör till valt BIOS. Den innehåller den mekaniska styrenhetens versionsnummer, inte hela dess fasta programvara. Filen är valfri: lämna fältet tomt för att använda sparade data eller låta emulatorn skapa en standardfil.</value></data>
 </root>

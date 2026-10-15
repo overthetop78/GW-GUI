@@ -17,6 +17,21 @@ namespace GWGUI.Tests.Emulation.Sony;
 public sealed class EmulatorCatalogTests
 {
     [Fact]
+    public void Pcee2RetainsItsBiosDataWithoutChangingOtherCoresPersistence()
+    {
+        var persistence = Assert.IsType<GWGUI.Emulation.Sony.Emulators.Common.Interop.Contracts.CoreFirmwarePersistenceSettings>(PceeCore.Definition.FirmwarePersistence);
+        Assert.Equal("firmware.system", persistence.IdentityFieldId);
+        Assert.Equal("bios", persistence.DirectoryName);
+        Assert.Collection(persistence.Files,
+            file => { Assert.Equal("firmware.nvram", file.FieldId); Assert.Equal("pcsx2/bios/scph.nvm", file.FileName); Assert.Equal(1024, file.Size); },
+            file => { Assert.Equal("firmware.mechanics", file.FieldId); Assert.Equal("pcsx2/bios/scph.mec", file.FileName); Assert.Equal(4, file.Size); });
+        Assert.Null(RpcsCore.Definition.FirmwarePersistence);
+        Assert.Null(PlayCore.Definition.FirmwarePersistence);
+        Assert.Null(BeetleCore.Definition.FirmwarePersistence);
+        Assert.Null(RearmedCore.Definition.FirmwarePersistence);
+    }
+
+    [Fact]
     public void PlayStationHardwareCatalogsKeepEveryNativeRendererAndTheirActualDefaults()
     {
         var swan = GWGUI.Emulation.Sony.Emulators.SwanStation.Constants.CoreConstants.Definition.Options.Single(option => option.Key == "swanstation_GPU_Renderer");

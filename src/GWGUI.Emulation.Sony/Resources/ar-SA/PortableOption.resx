@@ -8,8 +8,6 @@
   <data name="Emulation.Option.pcsx2.pcsx2_fastboot.Help"><value>Skips BIOS الشاشة والأحذية مباشرة إلى اللعبة. تخلص من هذا إذا كنت تريد الدخول إلى نظام PS2 أو الوصول إلى مدير Memory Card.</value></data>
   <data name="Emulation.Option.pcsx2.pcsx2_renderer.Value.0"><value>تلقائي</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_cpu_core.Label"><value>CPU</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_cpu_core.Value.0"><value>Dynarec (JIT)</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_cpu_core.Value.1"><value>IR</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_fast_memory.Label"><value>الذاكرة السريعة</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_fast_memory.Help"><value>غير مستقر</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_ignore_bad_memory_access.Label"><value>تتجاهل دخول الذاكرة السيئ</value></data>

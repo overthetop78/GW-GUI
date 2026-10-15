@@ -523,7 +523,6 @@
   <data name="Emulation.Snk.Value.Flop" xml:space="preserve"><value>flop</value></data>
   <data name="Emulation.Snk.Value.Hard" xml:space="preserve"><value>hard</value></data>
   <data name="Emulation.Snk.Value.Prin" xml:space="preserve"><value>prin</value></data>
-  <data name="Emulation.Snk.Value.Rom" xml:space="preserve"><value>rom</value></data>
   <data name="Emulation.Snk.Value.Serl" xml:space="preserve"><value>serl</value></data>
   <data name="Emulation.Snk.Setting.VFSEnabled" xml:space="preserve"><value>VFS Enabled</value></data>
   <data name="Emulation.Snk.Help.VFSEnabled" xml:space="preserve"><value>Use the virtual file system supplied by the application. Version 4 or later is required.</value></data>

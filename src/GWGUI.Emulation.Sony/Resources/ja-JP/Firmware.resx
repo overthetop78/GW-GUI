@@ -8,4 +8,12 @@
   <data name="Emulation.Sony.Firmware.PlayStation.Japan"><value>BIOS(日本)</value></data>
   <data name="Emulation.Sony.Firmware.PlayStation.NorthAmerica"><value>BIOS(北米)</value></data>
   <data name="Emulation.Sony.Firmware.PlayStation.Europe"><value>BIOS(ヨーロッパ)</value></data>
+  <data name="Emulation.Sony.Firmware.Rom1.Help"><value>PS2のDVDプレーヤー用ROM（任意）。</value></data>
+  <data name="Emulation.Sony.Firmware.Rom1.Details"><value>選択したBIOSに対応するROM1のダンプ（通常は.rom1ファイルまたはrom1.bin）を選択します。DVDプレーヤーのモジュールと識別情報が含まれています。ROM1のダンプがない本体では空欄にしてください。メインのBIOSはBIOS欄で選択します。</value></data>
+  <data name="Emulation.Sony.Firmware.Rom2.Help"><value>中国語フォントを含むPS2用ROM（任意）。</value></data>
+  <data name="Emulation.Sony.Firmware.Rom2.Details"><value>選択したBIOSに対応する中国向けSCPH-50009のROM2ダンプ（通常は.rom2ファイルまたはrom2.bin）を選択します。ROM2がない本体では空欄にしてください。このファイルはメインのBIOSの代わりにはなりません。</value></data>
+  <data name="Emulation.Sony.Firmware.Nvram.Help"><value>保存された本体設定。</value></data>
+  <data name="Emulation.Sony.Firmware.Nvram.Details"><value>選択したBIOSに対応する1024バイトの.nvmファイルを選択します。本体の設定が含まれています。このファイルは任意です。空欄にすると、保存済みの設定を再利用するか、エミュレーターが初期設定を作成します。</value></data>
+  <data name="Emulation.Sony.Firmware.Mec.Help"><value>メカニカルコントローラーのバージョン。</value></data>
+  <data name="Emulation.Sony.Firmware.Mec.Details"><value>選択したBIOSに対応する4バイトの.mecファイルを選択します。メカニカルコントローラーのバージョン番号が含まれており、完全なファームウェアではありません。このファイルは任意です。空欄にすると、保存済みデータを再利用するか、エミュレーターが既定のファイルを作成します。</value></data>
 </root>

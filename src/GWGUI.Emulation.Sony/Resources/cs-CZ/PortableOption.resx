@@ -8,8 +8,6 @@
   <data name="Emulation.Option.pcsx2.pcsx2_fastboot.Help"><value>Přeskočí BIOS spuštění obrazovky a boty přímo do hry. Zakázat to, pokud chcete přístup k nastavení systému PS2 nebo k správci Memory Card.</value></data>
   <data name="Emulation.Option.pcsx2.pcsx2_renderer.Value.0"><value>Automatický</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_cpu_core.Label"><value>Jádro CPU</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_cpu_core.Value.0"><value>Dynarec (JIT)</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_cpu_core.Value.1"><value>IR tlumič</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_fast_memory.Label"><value>Rychlá paměť</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_fast_memory.Help"><value>Nestabilní.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_ignore_bad_memory_access.Label"><value>Ignorovat špatné paměťové přístupy</value></data>

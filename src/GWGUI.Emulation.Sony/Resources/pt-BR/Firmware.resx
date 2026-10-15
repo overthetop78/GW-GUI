@@ -8,4 +8,12 @@
   <data name="Emulation.Sony.Firmware.PlayStation.Japan"><value>BIOS (Japão)</value></data>
   <data name="Emulation.Sony.Firmware.PlayStation.NorthAmerica"><value>BIOS (América do Norte)</value></data>
   <data name="Emulation.Sony.Firmware.PlayStation.Europe"><value>BIOS (Europa)</value></data>
+  <data name="Emulation.Sony.Firmware.Rom1.Help"><value>ROM opcional do reprodutor de DVD do PS2.</value></data>
+  <data name="Emulation.Sony.Firmware.Rom1.Details"><value>Selecione o dump ROM1 correspondente ao BIOS selecionado, geralmente um arquivo .rom1 ou rom1.bin. Ele contém módulos do reprodutor de DVD e dados de identificação. Deixe o campo vazio se o console não tiver um dump ROM1. Selecione o BIOS principal no campo BIOS.</value></data>
+  <data name="Emulation.Sony.Firmware.Rom2.Help"><value>ROM opcional do PS2 que contém fontes chinesas.</value></data>
+  <data name="Emulation.Sony.Firmware.Rom2.Details"><value>Selecione o dump ROM2 do console chinês SCPH-50009 correspondente ao BIOS selecionado, geralmente um arquivo .rom2 ou rom2.bin. Deixe o campo vazio para consoles sem ROM2. Este arquivo não substitui o BIOS principal.</value></data>
+  <data name="Emulation.Sony.Firmware.Nvram.Help"><value>Configurações salvas do console.</value></data>
+  <data name="Emulation.Sony.Firmware.Nvram.Details"><value>Selecione um arquivo .nvm de 1024 bytes correspondente ao BIOS escolhido. Ele contém as configurações do console. O arquivo é opcional: deixe o campo vazio para reutilizar as configurações salvas ou permitir que o emulador crie os valores padrão.</value></data>
+  <data name="Emulation.Sony.Firmware.Mec.Help"><value>Versão do controlador mecânico.</value></data>
+  <data name="Emulation.Sony.Firmware.Mec.Details"><value>Selecione um arquivo .mec de 4 bytes correspondente ao BIOS escolhido. Ele contém o número de versão do controlador mecânico, não o firmware completo. O arquivo é opcional: deixe o campo vazio para reutilizar os dados salvos ou permitir que o emulador crie um arquivo padrão.</value></data>
 </root>

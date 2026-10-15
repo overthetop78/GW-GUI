@@ -60,6 +60,13 @@ public sealed class GunCon2InputTests
             Assert.Equal(new[] { "GunCon2", "None" }, port.ControllerChoices.Select(choice => choice.Id).Order());
             var gun = port.ControllerChoices.Single(choice => choice.Id == "GunCon2");
             Assert.Equal(EmulationControllerCategory.PointingDevice, gun.Category);
+            Assert.Equal(EmulationControllerVisualIds.SonyGunCon2, Assert.Single(gun.CompatibleVisualIds!));
+            Assert.Equal(EmulationControllerVisualIds.SonyGunCon2, gun.DefaultVisualId);
+            Assert.Equal(EmulationControllerCommandIds.B, gun.VisualCommandIds![EmulationControllerVisualControl.PrimaryAction]);
+            Assert.Equal(EmulationControllerCommandIds.X, gun.VisualCommandIds[EmulationControllerVisualControl.TertiaryAction]);
+            Assert.Equal(EmulationControllerCommandIds.Y, gun.VisualCommandIds[EmulationControllerVisualControl.QuaternaryAction]);
+            Assert.Equal(EmulationControllerCommandIds.Start, gun.VisualCommandIds[EmulationControllerVisualControl.Start]);
+            Assert.Equal(EmulationControllerCommandIds.Select, gun.VisualCommandIds[EmulationControllerVisualControl.Option]);
             Assert.Equal(15, gun.BindingDefinitions!.Count);
             Assert.All(gun.BindingDefinitions, command => Assert.Empty(command.DefaultBinding));
             Assert.Empty(port.Bindings.Values);

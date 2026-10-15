@@ -175,7 +175,6 @@
   <data name="Emulation.Snk.Value.Flop" xml:space="preserve"><value>شعلة</value></data>
   <data name="Emulation.Snk.Value.Hard" xml:space="preserve"><value>صعب</value></data>
   <data name="Emulation.Snk.Value.Prin" xml:space="preserve"><value>شرن</value></data>
-  <data name="Emulation.Snk.Value.Rom" xml:space="preserve"><value>روما</value></data>
   <data name="Emulation.Snk.Value.Serl" xml:space="preserve"><value>سيريل</value></data>
   <data name="Emulation.Snk.Setting.VFSEnabled" xml:space="preserve"><value>VFS التمكين</value></data>
   <data name="Emulation.Snk.Setting.JoystickDeadzone" xml:space="preserve"><value>Joystick Deathzone</value></data>

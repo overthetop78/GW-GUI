@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Sony.Emulators.Common.Interop.Contracts;
+
 namespace GWGUI.Emulation.Sony.Emulators.Pcsx2.Constants;
 
 internal static class FirmwareConstants
@@ -6,31 +8,31 @@ internal static class FirmwareConstants
     internal const string SystemLabelResource = FirmwareCatalogConstants.ResourceBios;
     internal const string SystemFile = "pcsx2/bios/scph.bin";
     internal const string Rom1Field = "firmware.rom1";
-    internal const string Rom1LabelResource = "Emulation.Sony.Firmware.Pcsx2.Rom1";
     internal const string Rom1File = "pcsx2/bios/scph.rom1";
     internal const string Rom2Field = "firmware.rom2";
-    internal const string Rom2LabelResource = "Emulation.Sony.Firmware.Pcsx2.Rom2";
     internal const string Rom2File = "pcsx2/bios/scph.rom2";
-    internal const string ExtendedField = "firmware.extended";
-    internal const string ExtendedLabelResource = "Emulation.Sony.Firmware.Pcsx2.Extended";
-    internal const string ExtendedFile = "pcsx2/bios/EROM.BIN";
+    internal const string Rom1DumpName = "rom1.bin";
+    internal const string Rom2DumpName = "rom2.bin";
     internal const string MechanicsField = "firmware.mechanics";
-    internal const string MechanicsLabelResource = "Emulation.Sony.Firmware.Pcsx2.Mechanics";
     internal const string MechanicsFile = "pcsx2/bios/scph.mec";
     internal const string NvramField = "firmware.nvram";
-    internal const string NvramLabelResource = "Emulation.Sony.Firmware.Pcsx2.Nvram";
     internal const string NvramFile = "pcsx2/bios/scph.nvm";
     internal const int NvramSize = 1024;
     internal const int MechanicsSize = 4;
     internal const string PersistentDirectory = "bios";
+    internal static CoreFirmwarePersistenceSettings Persistence { get; } = new(SystemField, PersistentDirectory,
+        [new(NvramField, NvramFile, NvramSize), new(MechanicsField, MechanicsFile, MechanicsSize)]);
     internal static IReadOnlyList<FirmwareSlot> All { get; } =
     [
         new(SystemField, SystemFile, SystemLabelResource, true, SystemFile),
-        new(Rom1Field, Rom1File, Rom1LabelResource, false, Rom1File),
-        new(Rom2Field, Rom2File, Rom2LabelResource, false, Rom2File),
-        new(ExtendedField, ExtendedFile, ExtendedLabelResource, false, ExtendedFile),
-        new(MechanicsField, MechanicsFile, MechanicsLabelResource, false, MechanicsFile),
-        new(NvramField, NvramFile, NvramLabelResource, false, NvramFile),
+        new(Rom1Field, Rom1File, FirmwareCatalogConstants.ResourceRom1, false, Rom1File,
+            FirmwareCatalogConstants.ResourceRom1Help, FirmwareCatalogConstants.ResourceRom1Details, [Rom1DumpName]),
+        new(Rom2Field, Rom2File, FirmwareCatalogConstants.ResourceRom2, false, Rom2File,
+            FirmwareCatalogConstants.ResourceRom2Help, FirmwareCatalogConstants.ResourceRom2Details, [Rom2DumpName]),
+        new(MechanicsField, MechanicsFile, FirmwareCatalogConstants.ResourceMechanics, false, MechanicsFile,
+            FirmwareCatalogConstants.ResourceMechanicsHelp, FirmwareCatalogConstants.ResourceMechanicsDetails),
+        new(NvramField, NvramFile, FirmwareCatalogConstants.ResourceNvram, false, NvramFile,
+            FirmwareCatalogConstants.ResourceNvramHelp, FirmwareCatalogConstants.ResourceNvramDetails),
     ];
     internal const string ElfExtension = ".elf";
     internal const string IsoExtension = ".iso";

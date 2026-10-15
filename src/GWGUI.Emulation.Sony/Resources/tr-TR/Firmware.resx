@@ -8,4 +8,12 @@
   <data name="Emulation.Sony.Firmware.PlayStation.Japan"><value>BIOS (Japonya)</value></data>
   <data name="Emulation.Sony.Firmware.PlayStation.NorthAmerica"><value>BIOS (Kuzey Amerika)</value></data>
   <data name="Emulation.Sony.Firmware.PlayStation.Europe"><value>BIOS (Avrupa)</value></data>
+  <data name="Emulation.Sony.Firmware.Rom1.Help"><value>PS2 DVD oynatıcısının isteğe bağlı ROM dosyası.</value></data>
+  <data name="Emulation.Sony.Firmware.Rom1.Details"><value>Seçili BIOS ile eşleşen ROM1 kopyasını seçin; genellikle .rom1 dosyası veya rom1.bin olur. DVD oynatıcı modüllerini ve kimlik bilgilerini içerir. Konsolunuzun ROM1 kopyası yoksa bu alanı boş bırakın. Ana BIOS dosyasını BIOS alanında seçin.</value></data>
+  <data name="Emulation.Sony.Firmware.Rom2.Help"><value>Çince yazı tipleri içeren isteğe bağlı PS2 ROM dosyası.</value></data>
+  <data name="Emulation.Sony.Firmware.Rom2.Details"><value>Seçili BIOS ile eşleşen Çin modeli SCPH-50009 konsolunun ROM2 kopyasını seçin; genellikle .rom2 dosyası veya rom2.bin olur. ROM2 bulunmayan konsollarda bu alanı boş bırakın. Bu dosya ana BIOS dosyasının yerine geçmez.</value></data>
+  <data name="Emulation.Sony.Firmware.Nvram.Help"><value>Kaydedilmiş konsol ayarları.</value></data>
+  <data name="Emulation.Sony.Firmware.Nvram.Details"><value>Seçilen BIOS ile eşleşen 1024 baytlık bir .nvm dosyası seçin. Konsol ayarlarını içerir. Bu dosya isteğe bağlıdır: kaydedilmiş ayarları kullanmak veya emülatörün varsayılanları oluşturmasını sağlamak için alanı boş bırakın.</value></data>
+  <data name="Emulation.Sony.Firmware.Mec.Help"><value>Mekanik denetleyicinin sürümü.</value></data>
+  <data name="Emulation.Sony.Firmware.Mec.Details"><value>Seçilen BIOS ile eşleşen 4 baytlık bir .mec dosyası seçin. Mekanik denetleyicinin sürüm numarasını içerir, tüm ürün yazılımını içermez. Bu dosya isteğe bağlıdır: kaydedilmiş verileri kullanmak veya emülatörün varsayılan bir dosya oluşturmasını sağlamak için alanı boş bırakın.</value></data>
 </root>

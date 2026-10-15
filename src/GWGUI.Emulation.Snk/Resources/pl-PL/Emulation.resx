@@ -175,7 +175,6 @@
   <data name="Emulation.Snk.Value.Flop"><value>flop</value></data>
   <data name="Emulation.Snk.Value.Hard" xml:space="preserve"><value>twarde</value></data>
   <data name="Emulation.Snk.Value.Prin" xml:space="preserve"><value>pryn</value></data>
-  <data name="Emulation.Snk.Value.Rom" xml:space="preserve"><value>romCity in New York USA</value></data>
   <data name="Emulation.Snk.Value.Serl"><value>serl</value></data>
   <data name="Emulation.Snk.Setting.VFSEnabled" xml:space="preserve"><value>VFS Włączone</value></data>
   <data name="Emulation.Snk.Setting.JoystickDeadzone" xml:space="preserve"><value>Termin Joystick</value></data>

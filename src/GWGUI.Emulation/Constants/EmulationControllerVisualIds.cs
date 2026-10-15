@@ -56,6 +56,7 @@ public static class EmulationControllerVisualIds
     public const string SonyPlayStationMouse = "sony-playstation-mouse";
     public const string SonyNeGcon = "sony-negcon";
     public const string SonyGunCon = "sony-guncon";
+    public const string SonyGunCon2 = "sony-guncon2";
     public const string SonyJustifier = "sony-justifier";
     public const string SonyDualShock2 = "sony-dualshock-2";
     public const string SonyDualShock3 = "sony-dualshock-3";

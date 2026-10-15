@@ -13,7 +13,9 @@ internal static partial class InputSettingsFunctions
             ControllerType.GunCon => [EmulationControllerVisualIds.SonyGunCon],
             ControllerType.Justifier => [EmulationControllerVisualIds.SonyJustifier],
             _ => null
-        } : type is not (ControllerType.Joystick or ControllerType.DualShock)
+        } : type == ControllerType.GunCon2 && model.Id == ModelConstants.PlayStation2
+            ? [EmulationControllerVisualIds.SonyGunCon2]
+            : type is not (ControllerType.Joystick or ControllerType.DualShock)
             ? null : model.Id switch
         {
             ModelConstants.PlayStation => type == ControllerType.DualShock ? [EmulationControllerVisualIds.SonyDualShock1] : [EmulationControllerVisualIds.SonyPlayStationController],
@@ -34,6 +36,13 @@ internal static partial class InputSettingsFunctions
             {
                 [EmulationControllerVisualControl.MouseLeftButton] = nameof(MouseAction.LeftButton),
                 [EmulationControllerVisualControl.MouseRightButton] = nameof(MouseAction.RightButton)
+            } : type == ControllerType.GunCon2 ? new Dictionary<EmulationControllerVisualControl, string>
+            {
+                [EmulationControllerVisualControl.PrimaryAction] = EmulationControllerCommandIds.B,
+                [EmulationControllerVisualControl.TertiaryAction] = EmulationControllerCommandIds.X,
+                [EmulationControllerVisualControl.QuaternaryAction] = EmulationControllerCommandIds.Y,
+                [EmulationControllerVisualControl.Start] = EmulationControllerCommandIds.Start,
+                [EmulationControllerVisualControl.Option] = EmulationControllerCommandIds.Select
             } : type is ControllerType.GunCon or ControllerType.Justifier ? new Dictionary<EmulationControllerVisualControl, string>
             {
                 [EmulationControllerVisualControl.PrimaryAction] = EmulationControllerCommandIds.B,

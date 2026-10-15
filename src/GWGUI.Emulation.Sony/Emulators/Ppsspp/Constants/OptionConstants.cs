@@ -8,6 +8,8 @@ internal static class OptionConstants
     internal const string NoVideoBackend = "none";
     internal const string CpuCoreKey = "ppsspp_cpu_core";
     internal const string CpuCoreLabel = "Emulation.Option.ppsspp.ppsspp_cpu_core.Label";
+    internal const string JitResource = "Emulation.Option.Cpu.Jit";
+    internal const string IrJitResource = "Emulation.Option.Cpu.IrJit";
     internal const string FastMemoryKey = "ppsspp_fast_memory";
     internal const string FastMemoryLabel = "Emulation.Option.ppsspp.ppsspp_fast_memory.Label";
     internal const string FastMemoryHelp = "Emulation.Option.ppsspp.ppsspp_fast_memory.Help";

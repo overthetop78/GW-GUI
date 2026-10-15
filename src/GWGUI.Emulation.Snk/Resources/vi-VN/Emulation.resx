@@ -175,7 +175,6 @@
   <data name="Emulation.Snk.Value.Flop" xml:space="preserve"><value>Giảm dần</value></data>
   <data name="Emulation.Snk.Value.Hard" xml:space="preserve"><value>cứng</value></data>
   <data name="Emulation.Snk.Value.Prin"><value>prin</value></data>
-  <data name="Emulation.Snk.Value.Rom" xml:space="preserve"><value>Rem</value></data>
   <data name="Emulation.Snk.Value.Serl" xml:space="preserve"><value>rl</value></data>
   <data name="Emulation.Snk.Setting.VFSEnabled" xml:space="preserve"><value>VFS Bật</value></data>
   <data name="Emulation.Snk.Setting.JoystickDeadzone" xml:space="preserve"><value>Name</value></data>

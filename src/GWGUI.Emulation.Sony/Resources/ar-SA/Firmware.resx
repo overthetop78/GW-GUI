@@ -8,4 +8,12 @@
   <data name="Emulation.Sony.Firmware.PlayStation.Japan"><value>BIOS (اليابان)</value></data>
   <data name="Emulation.Sony.Firmware.PlayStation.NorthAmerica"><value>BIOS (شمال أمريكا)</value></data>
   <data name="Emulation.Sony.Firmware.PlayStation.Europe"><value>BIOS (أوروبا)</value></data>
+  <data name="Emulation.Sony.Firmware.Rom1.Help"><value>ذاكرة ROM اختيارية لمشغل DVD في PS2.</value></data>
+  <data name="Emulation.Sony.Firmware.Rom1.Details"><value>اختر نسخة ROM1 المطابقة لملف BIOS المحدد، عادة بامتداد .rom1 أو باسم rom1.bin. تتضمن وحدات مشغل DVD وبيانات التعريف. اترك الحقل فارغاً إذا لم تكن لدى جهازك نسخة ROM1. ضع ملف BIOS الرئيسي في حقل BIOS.</value></data>
+  <data name="Emulation.Sony.Firmware.Rom2.Help"><value>ذاكرة ROM اختيارية في PS2 تحتوي على خطوط صينية.</value></data>
+  <data name="Emulation.Sony.Firmware.Rom2.Details"><value>اختر نسخة ROM2 الخاصة بالجهاز الصيني SCPH-50009 والمطابقة لملف BIOS المحدد، عادة بامتداد .rom2 أو باسم rom2.bin. اترك الحقل فارغاً للأجهزة التي لا تحتوي على ROM2. لا يحل هذا الملف محل BIOS الرئيسي.</value></data>
+  <data name="Emulation.Sony.Firmware.Nvram.Help"><value>إعدادات الجهاز المحفوظة.</value></data>
+  <data name="Emulation.Sony.Firmware.Nvram.Details"><value>اختر ملف .nvm بحجم 1024 بايت مطابقاً لملف BIOS المحدد. يحتوي على إعدادات الجهاز. هذا الملف اختياري: اترك الحقل فارغاً لاستعادة الإعدادات المحفوظة أو ليُنشئ المحاكي إعدادات افتراضية.</value></data>
+  <data name="Emulation.Sony.Firmware.Mec.Help"><value>إصدار وحدة التحكم الميكانيكية.</value></data>
+  <data name="Emulation.Sony.Firmware.Mec.Details"><value>اختر ملف .mec بحجم 4 بايت مطابقاً لملف BIOS المحدد. يحتوي على رقم إصدار وحدة التحكم الميكانيكية وليس على برنامجها الثابت الكامل. هذا الملف اختياري: اترك الحقل فارغاً لاستعادة البيانات المحفوظة أو ليُنشئ المحاكي ملفاً افتراضياً.</value></data>
 </root>

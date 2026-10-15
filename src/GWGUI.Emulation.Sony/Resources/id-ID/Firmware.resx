@@ -8,4 +8,12 @@
   <data name="Emulation.Sony.Firmware.PlayStation.Japan"><value>BIOS (Jepang)</value></data>
   <data name="Emulation.Sony.Firmware.PlayStation.NorthAmerica"><value>BIOS (Amerika Utara)</value></data>
   <data name="Emulation.Sony.Firmware.PlayStation.Europe"><value>BIOS (Eropa)</value></data>
+  <data name="Emulation.Sony.Firmware.Rom1.Help"><value>ROM opsional untuk pemutar DVD PS2.</value></data>
+  <data name="Emulation.Sony.Firmware.Rom1.Details"><value>Pilih salinan ROM1 yang sesuai dengan BIOS terpilih, biasanya berkas .rom1 atau rom1.bin. Berkas ini berisi modul pemutar DVD dan data identifikasi. Biarkan kolom kosong jika konsol Anda tidak memiliki salinan ROM1. Pilih BIOS utama pada kolom BIOS.</value></data>
+  <data name="Emulation.Sony.Firmware.Rom2.Help"><value>ROM PS2 opsional yang berisi fon Tionghoa.</value></data>
+  <data name="Emulation.Sony.Firmware.Rom2.Details"><value>Pilih salinan ROM2 dari konsol SCPH-50009 versi Tiongkok yang sesuai dengan BIOS terpilih, biasanya berkas .rom2 atau rom2.bin. Biarkan kolom kosong untuk konsol tanpa ROM2. Berkas ini tidak menggantikan BIOS utama.</value></data>
+  <data name="Emulation.Sony.Firmware.Nvram.Help"><value>Pengaturan konsol yang tersimpan.</value></data>
+  <data name="Emulation.Sony.Firmware.Nvram.Details"><value>Pilih berkas .nvm berukuran 1024 bita yang sesuai dengan BIOS terpilih. Berkas ini berisi pengaturan konsol. Berkas ini opsional: biarkan kolom kosong untuk menggunakan pengaturan tersimpan atau membiarkan emulator membuat pengaturan bawaan.</value></data>
+  <data name="Emulation.Sony.Firmware.Mec.Help"><value>Versi pengontrol mekanis.</value></data>
+  <data name="Emulation.Sony.Firmware.Mec.Details"><value>Pilih berkas .mec berukuran 4 bita yang sesuai dengan BIOS terpilih. Berkas ini berisi nomor versi pengontrol mekanis, bukan firmware lengkapnya. Berkas ini opsional: biarkan kolom kosong untuk menggunakan data tersimpan atau membiarkan emulator membuat berkas bawaan.</value></data>
 </root>

@@ -5,4 +5,6 @@
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.LoadOptions" xml:space="preserve"><value>Load available options</value></data>
+  <data name="Emulation.Option.Cpu.Jit"><value>JIT</value></data>
+  <data name="Emulation.Option.Cpu.IrJit"><value>IR JIT</value></data>
 </root>

@@ -175,7 +175,6 @@
   <data name="Emulation.Snk.Value.Flop" xml:space="preserve"><value>调头</value></data>
   <data name="Emulation.Snk.Value.Hard" xml:space="preserve"><value>难</value></data>
   <data name="Emulation.Snk.Value.Prin" xml:space="preserve"><value>普林语Name</value></data>
-  <data name="Emulation.Snk.Value.Rom" xml:space="preserve"><value>缩放</value></data>
   <data name="Emulation.Snk.Value.Serl" xml:space="preserve"><value>塞尔维亚</value></data>
   <data name="Emulation.Snk.Setting.VFSEnabled" xml:space="preserve"><value>VFS 已启用</value></data>
   <data name="Emulation.Snk.Setting.JoystickDeadzone" xml:space="preserve"><value>欢乐棒死区</value></data>

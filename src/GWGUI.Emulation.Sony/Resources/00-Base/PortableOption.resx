@@ -12,8 +12,6 @@
   <data name="Emulation.Option.pcsx2.pcsx2_renderer.Value.3"><value>D3D12</value></data>
   <data name="Emulation.Option.pcsx2.pcsx2_renderer.Value.4"><value>Vulkan</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_cpu_core.Label"><value>CPU Core</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_cpu_core.Value.0"><value>Dynarec (JIT)</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_cpu_core.Value.1"><value>IR Interpreter</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_fast_memory.Label"><value>Fast Memory</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_fast_memory.Help"><value>Unstable.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_ignore_bad_memory_access.Label"><value>Ignore Bad Memory Accesses</value></data>

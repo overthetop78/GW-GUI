@@ -8,8 +8,6 @@
   <data name="Emulation.Option.pcsx2.pcsx2_fastboot.Help"><value>Hopper BIOS oppstartsskjerm og støvler rett til spillet. Deaktiver dette hvis du vil få tilgang til PS2 systeminnstillingene eller komme i kontakt med sjefen Memory Card.</value></data>
   <data name="Emulation.Option.pcsx2.pcsx2_renderer.Value.0"><value>Automatisk</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_cpu_core.Label"><value>CPU-kjerne</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_cpu_core.Value.0"><value>Dynarec (JIT)</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_cpu_core.Value.1"><value>IR-tolker</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_fast_memory.Label"><value>Rask hukommelse</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_fast_memory.Help"><value>Ustabil.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_ignore_bad_memory_access.Label"><value>Ignorer dårlige minnetilganger</value></data>
