@@ -17,7 +17,7 @@ internal static class CoreOptionValidationFunctions
             if (option.Key == SettingsConstants.AudioLatency)
             {
                 if (!int.TryParse(option.Value, System.Globalization.NumberStyles.Integer, System.Globalization.CultureInfo.InvariantCulture, out var latency)
-                    || !SettingsConstants.Latencies.Contains(latency))
+                    || !EmulationSettingConstants.AudioLatencyMillisecondsChoices.Contains(latency))
                     throw new ArgumentException(nameof(configuration.Options));
                 continue;
             }

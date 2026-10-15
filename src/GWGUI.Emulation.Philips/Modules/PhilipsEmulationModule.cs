@@ -143,7 +143,7 @@ public sealed class PhilipsEmulationModule : IEmulationModule, IEmulationEmulato
                 new EmulationEmulatorMessageContext(adapter.EmulatorId)));
         var output = current.Options.GetValueOrDefault(SettingsConstants.AudioOutput);
         if (output == SettingsConstants.DefaultOutput) output = null;
-        var latency = current.Options.TryGetValue(SettingsConstants.AudioLatency, out var selectedLatency) && int.TryParse(selectedLatency, NumberStyles.Integer, CultureInfo.InvariantCulture, out var parsed) ? parsed : SettingsConstants.DefaultLatency;
+        var latency = current.Options.TryGetValue(SettingsConstants.AudioLatency, out var selectedLatency) && int.TryParse(selectedLatency, NumberStyles.Integer, CultureInfo.InvariantCulture, out var parsed) ? parsed : EmulationSettingConstants.DefaultAudioLatencyMilliseconds;
         var context = new EmulatorCreationContext(services.SessionsDirectory, corePath,
             services.HostExecutablePath, () => services.CreateAudioOutput(output, latency),
             value => value.Folders.Saves ?? Path.Combine(services.StatesDirectory, EmulationModuleConstants.SavesDirectoryName, value.Id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat)));

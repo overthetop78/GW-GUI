@@ -34,10 +34,6 @@ internal static class SettingsConstants
     internal const string ResourceAudioLatency = "Emulation.Audio.Latency";
     internal const string ResourceAudioVolume = "Explorer.Volume";
     internal const string ResourceDefaultOutput = "Emulation.Audio.DefaultOutput";
-    internal const int DefaultLatency = 50;
-    internal const int DefaultVolume = 100;
     internal const int Kibibyte = 1024;
     internal const int Megahertz = 1_000_000;
-    internal static readonly IReadOnlyList<int> Latencies = [20, 30, 40, 50, 75, 100, 150, 200];
-    internal static readonly IReadOnlyList<int> Volumes = [0, 25, 50, 75, 100];
 }

@@ -15,7 +15,7 @@ internal static class CoreOptionValidationFunctions
             var valid = option.Key switch
             {
                 SettingsConstants.AudioOutput => !string.IsNullOrWhiteSpace(option.Value),
-                SettingsConstants.AudioLatency => int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var latency) && SettingsConstants.Latencies.Contains(latency),
+                SettingsConstants.AudioLatency => int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var latency) && EmulationSettingConstants.AudioLatencyMillisecondsChoices.Contains(latency),
                 VideoAudioSettingsConstants.AudioVolumeOption => int.TryParse(option.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var volume) && volume >= VideoAudioSettingsConstants.MinimumVolumePercent && volume <= VideoAudioSettingsConstants.MaximumVolumePercent,
                 _ => catalog.Any(definition => definition.Key == option.Key && definition.Values.Any(choice => choice.Value == option.Value))
             };

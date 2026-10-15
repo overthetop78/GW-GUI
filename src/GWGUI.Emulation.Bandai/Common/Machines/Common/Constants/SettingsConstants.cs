@@ -52,8 +52,4 @@ internal static class SettingsConstants
     internal const string PercentUnit = "%";
     internal static readonly IReadOnlyList<string> CartridgeExtensions = [".ws", ".wsc", ".pc2", ".bin"];
     internal static readonly IReadOnlyList<string> CompactDiscExtensions = [".cue", ".zip", ".iso", ".bin"];
-    internal const int DefaultLatency = 50;
-    internal const int DefaultVolume = 100;
-    internal static readonly IReadOnlyList<int> Latencies = [20, 30, 40, 50, 75, 100, 150, 200];
-    internal static readonly IReadOnlyList<int> Volumes = [0, 25, 50, 75, 100];
 }
