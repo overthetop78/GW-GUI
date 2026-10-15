@@ -4,7 +4,7 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.theodore.Description" xml:space="preserve"><value>Emuleert Thomson MO en TO computers.</value></data>
+  <data name="Emulation.Emulator.theodore.Description"><value>Emuleert Thomson MO / TO.</value></data>
   <data name="Emulation.Thomson.Start" xml:space="preserve"><value>Programma opstarten</value></data>
   <data name="Emulation.Thomson.Start.AutoRun" xml:space="preserve"><value>Het geladen programma automatisch starten</value></data>
   <data name="Emulation.Thomson.Start.UseGameHash" xml:space="preserve"><value>Identificeer het programma door zijn controlesom</value></data>

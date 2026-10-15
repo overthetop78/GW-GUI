@@ -4,7 +4,7 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.opera.Description" xml:space="preserve"><value>Videopelien emulointi (3DO)</value></data>
+  <data name="Emulation.Emulator.opera.Description"><value>Emuloi seuraavia järjestelmiä: 3DO.</value></data>
   <data name="Emulation.Panasonic.Memory.Capacity" xml:space="preserve"><value>Emuloitu muistikapasiteetti</value></data>
   <data name="Emulation.Panasonic.Video.Mode" xml:space="preserve"><value>Videotila</value></data>
   <data name="Emulation.Panasonic.Video.PixelFormat" xml:space="preserve"><value>Pikselin värimuoto</value></data>

@@ -7,9 +7,9 @@
   <data name="Emulation.Bandai.Video.Native" xml:space="preserve"><value>Console video</value></data>
   <data name="Emulation.Bandai.Audio.Native" xml:space="preserve"><value>Console-geluid</value></data>
   <data name="Emulation.Bandai.Controls.Native" xml:space="preserve"><value>Console-besturing</value></data>
-  <data name="Emulation.Emulator.mednafen_wswan.Description" xml:space="preserve"><value>Emuleert WonderSwan consoles.</value></data>
-  <data name="Emulation.Emulator.playdiaemu.Description" xml:space="preserve"><value>Playdia-schijf afspelen met PlaydiaEmu.</value></data>
-  <data name="Emulation.Emulator.tamalibretro.Description" xml:space="preserve"><value>Tamagotchi P1 emulatie met TamaLIBretro.</value></data>
+  <data name="Emulation.Emulator.mednafen_wswan.Description"><value>Emuleert WonderSwan.</value></data>
+  <data name="Emulation.Emulator.playdiaemu.Description"><value>Speelt Playdia-schijven af met PlaydiaEmu.</value></data>
+  <data name="Emulation.Emulator.tamalibretro.Description"><value>Emuleert Tamagotchi P1 met TamaLIBretro.</value></data>
   <data name="Emulation.Bandai.Playdia.Hle" xml:space="preserve"><value>Deze kern speelt schijven zonder de processors na te bootsen.</value></data>
   <data name="Emulation.Bandai.Memory.Display" xml:space="preserve"><value>Toon geheugen</value></data>
   <data name="Emulation.Bandai.Setting.DisplayRotation" xml:space="preserve"><value>Richting tonen</value></data>

@@ -12,20 +12,20 @@
   <data name="Emulation.Snk.System.Native" xml:space="preserve"><value>Thiết lập hệ thống</value></data>
   <data name="Emulation.Snk.Firmware.SystemBios" xml:space="preserve"><value>Hệ thống BIOS</value></data>
   <data name="Emulation.Snk.Firmware.AuxiliaryBios" xml:space="preserve"><value>Tiện ích BIOS</value></data>
-  <data name="Emulation.Emulator.neocd.Description" xml:space="preserve"><value>Kết hợp ảnh mới CD và Neo Geo CDZ.</value></data>
-  <data name="Emulation.Emulator.mame2016.Description" xml:space="preserve"><value>Tính chất tương thích SNK Hệ thống.</value></data>
-  <data name="Emulation.Emulator.mame2010.Description" xml:space="preserve"><value>Tính chất tương thích SNK Hệ thống.</value></data>
-  <data name="Emulation.Emulator.mame2003.Description" xml:space="preserve"><value>Tính chất tương thích SNK Hệ thống.</value></data>
-  <data name="Emulation.Emulator.mame2015.Description" xml:space="preserve"><value>Tính chất tương thích SNK Hệ thống.</value></data>
-  <data name="Emulation.Emulator.fbalpha2012.Description" xml:space="preserve"><value>Tính chất tương thích SNK Hệ thống.</value></data>
-  <data name="Emulation.Emulator.fbneo.Description" xml:space="preserve"><value>Tính chất tương thích SNK Hệ thống.</value></data>
-  <data name="Emulation.Emulator.hbmame.Description" xml:space="preserve"><value>Tính chất tương thích SNK Hệ thống.</value></data>
-  <data name="Emulation.Emulator.mame2003_plus.Description" xml:space="preserve"><value>Tính chất tương thích SNK Hệ thống.</value></data>
-  <data name="Emulation.Emulator.mame2000.Description" xml:space="preserve"><value>Tính chất tương thích SNK Hệ thống.</value></data>
-  <data name="Emulation.Emulator.fbalpha.Description" xml:space="preserve"><value>Tính chất tương thích SNK Hệ thống.</value></data>
-  <data name="Emulation.Emulator.fbalpha2012_neogeo.Description" xml:space="preserve"><value>Tính chất tương thích SNK Hệ thống.</value></data>
-  <data name="Emulation.Emulator.geolith.Description" xml:space="preserve"><value>Kết hợp hộp mực địa lý Neo và CD Hệ thống.</value></data>
-  <data name="Emulation.Emulator.mame.Description" xml:space="preserve"><value>Tính chất tương thích SNK Hệ thống.</value></data>
+  <data name="Emulation.Emulator.neocd.Description"><value>Giả lập Neo Geo CD và Neo Geo CDZ.</value></data>
+  <data name="Emulation.Emulator.mame2016.Description"><value>Giả lập các hệ thống SNK tương thích.</value></data>
+  <data name="Emulation.Emulator.mame2010.Description" xml:space="preserve"><value>Giả lập các hệ thống SNK tương thích.</value></data>
+  <data name="Emulation.Emulator.mame2003.Description" xml:space="preserve"><value>Giả lập các hệ thống SNK tương thích.</value></data>
+  <data name="Emulation.Emulator.mame2015.Description" xml:space="preserve"><value>Giả lập các hệ thống SNK tương thích.</value></data>
+  <data name="Emulation.Emulator.fbalpha2012.Description" xml:space="preserve"><value>Giả lập các hệ thống SNK tương thích.</value></data>
+  <data name="Emulation.Emulator.fbneo.Description" xml:space="preserve"><value>Giả lập các hệ thống SNK tương thích.</value></data>
+  <data name="Emulation.Emulator.hbmame.Description" xml:space="preserve"><value>Giả lập các hệ thống SNK tương thích.</value></data>
+  <data name="Emulation.Emulator.mame2003_plus.Description" xml:space="preserve"><value>Giả lập các hệ thống SNK tương thích.</value></data>
+  <data name="Emulation.Emulator.mame2000.Description" xml:space="preserve"><value>Giả lập các hệ thống SNK tương thích.</value></data>
+  <data name="Emulation.Emulator.fbalpha.Description" xml:space="preserve"><value>Giả lập các hệ thống SNK tương thích.</value></data>
+  <data name="Emulation.Emulator.fbalpha2012_neogeo.Description" xml:space="preserve"><value>Giả lập các hệ thống SNK tương thích.</value></data>
+  <data name="Emulation.Emulator.geolith.Description"><value>Giả lập hệ thống Neo Geo dùng băng trò chơi và đĩa CD.</value></data>
+  <data name="Emulation.Emulator.mame.Description" xml:space="preserve"><value>Giả lập các hệ thống SNK tương thích.</value></data>
   <data name="Emulation.Snk.Setting.Language" xml:space="preserve"><value>Ngôn ngữ</value></data>
   <data name="Emulation.Snk.Value.Japanese" xml:space="preserve"><value>Nhật Bản</value></data>
   <data name="Emulation.Snk.Value.English" xml:space="preserve"><value>Tiếng Anh</value></data>
@@ -247,8 +247,8 @@
   <data name="Emulation.Snk.Help.CDDMALengthLimit" xml:space="preserve"><value>Sửa lại BIOS tải lên con trỏ khi a CD đệm DMA là lớn hơn một lĩnh vực, sửa chữa âm thanh bị hỏng trong lĩnh vực bổ sung của Fighting. đây là một sự hack, và hành vi phần cứng thực sự là chưa được xác nhận.</value></data>
   <data name="Emulation.Snk.Help.SkipCDLoading" xml:space="preserve"><value>Nhanh chóng tua qua CD Đang tải màn hình...</value></data>
   <data name="Emulation.Snk.Value.ThirdOrderInterpolation" xml:space="preserve"><value>Thứ ba độ tuần hoàn (4 điểm)</value></data>
-  <data name="Emulation.Emulator.race.Description" xml:space="preserve"><value>Tính toán các giao diện đơn sắc và màu</value></data>
-  <data name="Emulation.Emulator.mednafen_ngp.Description" xml:space="preserve"><value>Tính toán các giao diện đơn sắc và màu</value></data>
+  <data name="Emulation.Emulator.race.Description"><value>Giả lập Neo Geo Pocket và Neo Geo Pocket Color.</value></data>
+  <data name="Emulation.Emulator.mednafen_ngp.Description" xml:space="preserve"><value>Giả lập Neo Geo Pocket và Neo Geo Pocket Color.</value></data>
   <data name="Emulation.Snk.Help.Language" xml:space="preserve"><value>Chọn ngôn ngữ dùng cho trò chơi tương thích.</value></data>
   <data name="Emulation.Snk.Setting.Frameskip" xml:space="preserve"><value>Bỏ qua khung ảnh động</value></data>
   <data name="Emulation.Snk.Help.Frameskip" xml:space="preserve"><value>Bỏ qua một số khung phim khi hiệu suất không đủ, để giảm sự ngắt quãng trong đầu ra âm thanh.</value></data>

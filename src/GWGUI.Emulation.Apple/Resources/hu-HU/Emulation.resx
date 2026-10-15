@@ -4,8 +4,8 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.applewin.Description" xml:space="preserve"><value>Alma II az AppleWin-nel való emuláció.</value></data>
-  <data name="Emulation.Emulator.minivmac.Description" xml:space="preserve"><value>Macintosh II emuláció Mini vMac-szel.</value></data>
+  <data name="Emulation.Emulator.applewin.Description"><value>Apple II számítógépeket emulál AppleWin segítségével.</value></data>
+  <data name="Emulation.Emulator.minivmac.Description"><value>Macintosh II számítógépeket emulál Mini vMac segítségével.</value></data>
   <data name="Emulation.Apple.Option.Model" xml:space="preserve"><value>Gépváltozat</value></data>
   <data name="Emulation.Apple.Video.Native" xml:space="preserve"><value>Őshonos videó kimenet</value></data>
   <data name="Emulation.Apple.Expansion" xml:space="preserve"><value>Kiterjesztőkártyák</value></data>

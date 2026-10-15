@@ -12,20 +12,20 @@
   <data name="Emulation.Snk.System.Native" xml:space="preserve"><value>Pengaturan sistem</value></data>
   <data name="Emulation.Snk.Firmware.SystemBios" xml:space="preserve"><value>Sistem BIOS</value></data>
   <data name="Emulation.Snk.Firmware.AuxiliaryBios" xml:space="preserve"><value>Tambahan BIOS</value></data>
-  <data name="Emulation.Emulator.neocd.Description" xml:space="preserve"><value>Emulate Neo Geo CD dan Neo Geo CDZ.</value></data>
-  <data name="Emulation.Emulator.mame2016.Description" xml:space="preserve"><value>Kompatibel emulasi SNK sistem.</value></data>
-  <data name="Emulation.Emulator.mame2010.Description" xml:space="preserve"><value>Kompatibel emulasi SNK sistem.</value></data>
-  <data name="Emulation.Emulator.mame2003.Description" xml:space="preserve"><value>Kompatibel emulasi SNK sistem.</value></data>
-  <data name="Emulation.Emulator.mame2015.Description" xml:space="preserve"><value>Kompatibel emulasi SNK sistem.</value></data>
-  <data name="Emulation.Emulator.fbalpha2012.Description" xml:space="preserve"><value>Kompatibel emulasi SNK sistem.</value></data>
-  <data name="Emulation.Emulator.fbneo.Description" xml:space="preserve"><value>Kompatibel emulasi SNK sistem.</value></data>
-  <data name="Emulation.Emulator.hbmame.Description" xml:space="preserve"><value>Kompatibel emulasi SNK sistem.</value></data>
-  <data name="Emulation.Emulator.mame2003_plus.Description" xml:space="preserve"><value>Kompatibel emulasi SNK sistem.</value></data>
-  <data name="Emulation.Emulator.mame2000.Description" xml:space="preserve"><value>Kompatibel emulasi SNK sistem.</value></data>
-  <data name="Emulation.Emulator.fbalpha.Description" xml:space="preserve"><value>Kompatibel emulasi SNK sistem.</value></data>
-  <data name="Emulation.Emulator.fbalpha2012_neogeo.Description" xml:space="preserve"><value>Kompatibel emulasi SNK sistem.</value></data>
-  <data name="Emulation.Emulator.geolith.Description" xml:space="preserve"><value>Emulasi Neo Geo cartridge dan CD sistem.</value></data>
-  <data name="Emulation.Emulator.mame.Description" xml:space="preserve"><value>Kompatibel emulasi SNK sistem.</value></data>
+  <data name="Emulation.Emulator.neocd.Description"><value>Mengemulasikan Neo Geo CD dan Neo Geo CDZ.</value></data>
+  <data name="Emulation.Emulator.mame2016.Description"><value>Mengemulasikan sistem SNK yang kompatibel.</value></data>
+  <data name="Emulation.Emulator.mame2010.Description" xml:space="preserve"><value>Mengemulasikan sistem SNK yang kompatibel.</value></data>
+  <data name="Emulation.Emulator.mame2003.Description" xml:space="preserve"><value>Mengemulasikan sistem SNK yang kompatibel.</value></data>
+  <data name="Emulation.Emulator.mame2015.Description" xml:space="preserve"><value>Mengemulasikan sistem SNK yang kompatibel.</value></data>
+  <data name="Emulation.Emulator.fbalpha2012.Description" xml:space="preserve"><value>Mengemulasikan sistem SNK yang kompatibel.</value></data>
+  <data name="Emulation.Emulator.fbneo.Description" xml:space="preserve"><value>Mengemulasikan sistem SNK yang kompatibel.</value></data>
+  <data name="Emulation.Emulator.hbmame.Description" xml:space="preserve"><value>Mengemulasikan sistem SNK yang kompatibel.</value></data>
+  <data name="Emulation.Emulator.mame2003_plus.Description" xml:space="preserve"><value>Mengemulasikan sistem SNK yang kompatibel.</value></data>
+  <data name="Emulation.Emulator.mame2000.Description" xml:space="preserve"><value>Mengemulasikan sistem SNK yang kompatibel.</value></data>
+  <data name="Emulation.Emulator.fbalpha.Description" xml:space="preserve"><value>Mengemulasikan sistem SNK yang kompatibel.</value></data>
+  <data name="Emulation.Emulator.fbalpha2012_neogeo.Description" xml:space="preserve"><value>Mengemulasikan sistem SNK yang kompatibel.</value></data>
+  <data name="Emulation.Emulator.geolith.Description"><value>Mengemulasikan sistem Neo Geo yang menggunakan kartrid gim dan CD.</value></data>
+  <data name="Emulation.Emulator.mame.Description" xml:space="preserve"><value>Mengemulasikan sistem SNK yang kompatibel.</value></data>
   <data name="Emulation.Snk.Setting.Language" xml:space="preserve"><value>Bahasa</value></data>
   <data name="Emulation.Snk.Value.Japanese" xml:space="preserve"><value>Bahasa Jepang</value></data>
   <data name="Emulation.Snk.Value.English" xml:space="preserve"><value>Bahasa Inggris</value></data>
@@ -247,8 +247,8 @@
   <data name="Emulation.Snk.Help.CDDMALengthLimit" xml:space="preserve"><value>Benar BIOS upload pointer ketika CD buffer DMA Ini adalah peretasan, dan perilaku perangkat keras yang nyata belum dikonfirmasi.</value></data>
   <data name="Emulation.Snk.Help.SkipCDLoading" xml:space="preserve"><value>Maju terus CD memuat layar</value></data>
   <data name="Emulation.Snk.Value.ThirdOrderInterpolation" xml:space="preserve"><value>Kehausan urutan interpolasi (4 poin)</value></data>
-  <data name="Emulation.Emulator.race.Description" xml:space="preserve"><value>Mengemulasi monokrom dan warna konsol genggam.</value></data>
-  <data name="Emulation.Emulator.mednafen_ngp.Description" xml:space="preserve"><value>Mengemulasi monokrom dan warna konsol genggam.</value></data>
+  <data name="Emulation.Emulator.race.Description"><value>Mengemulasikan Neo Geo Pocket dan Neo Geo Pocket Color.</value></data>
+  <data name="Emulation.Emulator.mednafen_ngp.Description" xml:space="preserve"><value>Mengemulasikan Neo Geo Pocket dan Neo Geo Pocket Color.</value></data>
   <data name="Emulation.Snk.Help.Language" xml:space="preserve"><value>Pilih bahasa yang digunakan oleh permainan yang kompatibel.</value></data>
   <data name="Emulation.Snk.Setting.Frameskip" xml:space="preserve"><value>Gambar video dilewati</value></data>
   <data name="Emulation.Snk.Help.Frameskip" xml:space="preserve"><value>Lewati beberapa frame video ketika kinerja tidak cukup, untuk mengurangi interupsi dalam output audio.</value></data>

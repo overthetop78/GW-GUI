@@ -4,8 +4,8 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.applewin.Description" xml:space="preserve"><value>Măr II emulaţie cu AppleWin.</value></data>
-  <data name="Emulation.Emulator.minivmac.Description" xml:space="preserve"><value>MacintoshCity in Germany II emulare cu Mini vMac.</value></data>
+  <data name="Emulation.Emulator.applewin.Description"><value>Emulează calculatoare Apple II folosind AppleWin.</value></data>
+  <data name="Emulation.Emulator.minivmac.Description"><value>Emulează calculatoare Macintosh II folosind Mini vMac.</value></data>
   <data name="Emulation.Apple.Option.Model" xml:space="preserve"><value>Varianta mașinii</value></data>
   <data name="Emulation.Apple.Video.Native" xml:space="preserve"><value>Ieșire video nativă</value></data>
   <data name="Emulation.Apple.Expansion" xml:space="preserve"><value>Cărți de extindere</value></data>

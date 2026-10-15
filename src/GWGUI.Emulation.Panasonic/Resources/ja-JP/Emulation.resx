@@ -4,7 +4,7 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.opera.Description" xml:space="preserve"><value>ビデオ ゲームエミュレーション (3)DO)...</value></data>
+  <data name="Emulation.Emulator.opera.Description"><value>3DO をエミュレートします。</value></data>
   <data name="Emulation.Panasonic.Memory.Capacity" xml:space="preserve"><value>記憶容量をエミュレート</value></data>
   <data name="Emulation.Panasonic.Video.Mode" xml:space="preserve"><value>ビデオモード</value></data>
   <data name="Emulation.Panasonic.Video.PixelFormat" xml:space="preserve"><value>ピクセルカラーフォーマット</value></data>

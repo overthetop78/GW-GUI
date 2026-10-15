@@ -4,8 +4,8 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.applewin.Description" xml:space="preserve"><value>Táo II Kết hợp với AppleWin.</value></data>
-  <data name="Emulation.Emulator.minivmac.Description" xml:space="preserve"><value>Mactosh II Kết hợp với máy vi VMac.</value></data>
+  <data name="Emulation.Emulator.applewin.Description"><value>Giả lập máy tính Apple II bằng AppleWin.</value></data>
+  <data name="Emulation.Emulator.minivmac.Description"><value>Giả lập máy tính Macintosh II bằng Mini vMac.</value></data>
   <data name="Emulation.Apple.Option.Model" xml:space="preserve"><value>Biến thế máy</value></data>
   <data name="Emulation.Apple.Video.Native" xml:space="preserve"><value>Xuất ra phim bản địa</value></data>
   <data name="Emulation.Apple.Expansion" xml:space="preserve"><value>Bài mở rộng</value></data>

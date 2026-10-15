@@ -4,8 +4,8 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.applewin.Description" xml:space="preserve"><value>アップル II AppleWin とエミュレーションします。</value></data>
-  <data name="Emulation.Emulator.minivmac.Description" xml:space="preserve"><value>マッキントッシュ II ミニvMacでエミュレーション。</value></data>
+  <data name="Emulation.Emulator.applewin.Description"><value>AppleWin を使用して Apple II コンピューターをエミュレートします。</value></data>
+  <data name="Emulation.Emulator.minivmac.Description"><value>Mini vMac を使用して Macintosh II コンピューターをエミュレートします。</value></data>
   <data name="Emulation.Apple.Option.Model" xml:space="preserve"><value>機械変形</value></data>
   <data name="Emulation.Apple.Video.Native" xml:space="preserve"><value>ネイティブビデオ出力</value></data>
   <data name="Emulation.Apple.Expansion" xml:space="preserve"><value>拡張カード</value></data>

@@ -4,8 +4,8 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.applewin.Description" xml:space="preserve"><value>Jablečné II emulace s AppleWin.</value></data>
-  <data name="Emulation.Emulator.minivmac.Description" xml:space="preserve"><value>MacintoshCity in New York USA II emulace s Mini vMac.</value></data>
+  <data name="Emulation.Emulator.applewin.Description"><value>Emuluje počítače Apple II v emulátoru AppleWin.</value></data>
+  <data name="Emulation.Emulator.minivmac.Description"><value>Emuluje počítače Macintosh II v emulátoru Mini vMac.</value></data>
   <data name="Emulation.Apple.Option.Model" xml:space="preserve"><value>Varianta stroje</value></data>
   <data name="Emulation.Apple.Video.Native" xml:space="preserve"><value>Původní video výstup</value></data>
   <data name="Emulation.Apple.Expansion" xml:space="preserve"><value>Rozšiřovací karty</value></data>

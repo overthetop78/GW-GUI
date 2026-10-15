@@ -12,20 +12,20 @@
   <data name="Emulation.Snk.System.Native" xml:space="preserve"><value>Nastavení systému</value></data>
   <data name="Emulation.Snk.Firmware.SystemBios" xml:space="preserve"><value>Systém BIOS</value></data>
   <data name="Emulation.Snk.Firmware.AuxiliaryBios" xml:space="preserve"><value>Pomocné látky BIOS</value></data>
-  <data name="Emulation.Emulator.neocd.Description" xml:space="preserve"><value>Emuláty Neo Geo CD a Neo Geo CDZ.</value></data>
-  <data name="Emulation.Emulator.mame2016.Description" xml:space="preserve"><value>Kompatibilní s emuláty SNK systémy.</value></data>
-  <data name="Emulation.Emulator.mame2010.Description" xml:space="preserve"><value>Kompatibilní s emuláty SNK systémy.</value></data>
-  <data name="Emulation.Emulator.mame2003.Description" xml:space="preserve"><value>Kompatibilní s emuláty SNK systémy.</value></data>
-  <data name="Emulation.Emulator.mame2015.Description" xml:space="preserve"><value>Kompatibilní s emuláty SNK systémy.</value></data>
-  <data name="Emulation.Emulator.fbalpha2012.Description" xml:space="preserve"><value>Kompatibilní s emuláty SNK systémy.</value></data>
-  <data name="Emulation.Emulator.fbneo.Description" xml:space="preserve"><value>Kompatibilní s emuláty SNK systémy.</value></data>
-  <data name="Emulation.Emulator.hbmame.Description" xml:space="preserve"><value>Kompatibilní s emuláty SNK systémy.</value></data>
-  <data name="Emulation.Emulator.mame2003_plus.Description" xml:space="preserve"><value>Kompatibilní s emuláty SNK systémy.</value></data>
-  <data name="Emulation.Emulator.mame2000.Description" xml:space="preserve"><value>Kompatibilní s emuláty SNK systémy.</value></data>
-  <data name="Emulation.Emulator.fbalpha.Description" xml:space="preserve"><value>Kompatibilní s emuláty SNK systémy.</value></data>
-  <data name="Emulation.Emulator.fbalpha2012_neogeo.Description" xml:space="preserve"><value>Kompatibilní s emuláty SNK systémy.</value></data>
-  <data name="Emulation.Emulator.geolith.Description" xml:space="preserve"><value>Emuláty Neo Geo zásobní vložka a CD systémy.</value></data>
-  <data name="Emulation.Emulator.mame.Description" xml:space="preserve"><value>Kompatibilní s emuláty SNK systémy.</value></data>
+  <data name="Emulation.Emulator.neocd.Description"><value>Emuluje Neo Geo CD a Neo Geo CDZ.</value></data>
+  <data name="Emulation.Emulator.mame2016.Description"><value>Emuluje kompatibilní systémy SNK.</value></data>
+  <data name="Emulation.Emulator.mame2010.Description" xml:space="preserve"><value>Emuluje kompatibilní systémy SNK.</value></data>
+  <data name="Emulation.Emulator.mame2003.Description" xml:space="preserve"><value>Emuluje kompatibilní systémy SNK.</value></data>
+  <data name="Emulation.Emulator.mame2015.Description" xml:space="preserve"><value>Emuluje kompatibilní systémy SNK.</value></data>
+  <data name="Emulation.Emulator.fbalpha2012.Description" xml:space="preserve"><value>Emuluje kompatibilní systémy SNK.</value></data>
+  <data name="Emulation.Emulator.fbneo.Description" xml:space="preserve"><value>Emuluje kompatibilní systémy SNK.</value></data>
+  <data name="Emulation.Emulator.hbmame.Description" xml:space="preserve"><value>Emuluje kompatibilní systémy SNK.</value></data>
+  <data name="Emulation.Emulator.mame2003_plus.Description" xml:space="preserve"><value>Emuluje kompatibilní systémy SNK.</value></data>
+  <data name="Emulation.Emulator.mame2000.Description" xml:space="preserve"><value>Emuluje kompatibilní systémy SNK.</value></data>
+  <data name="Emulation.Emulator.fbalpha.Description" xml:space="preserve"><value>Emuluje kompatibilní systémy SNK.</value></data>
+  <data name="Emulation.Emulator.fbalpha2012_neogeo.Description" xml:space="preserve"><value>Emuluje kompatibilní systémy SNK.</value></data>
+  <data name="Emulation.Emulator.geolith.Description"><value>Emuluje systémy Neo Geo s herními moduly a disky CD.</value></data>
+  <data name="Emulation.Emulator.mame.Description" xml:space="preserve"><value>Emuluje kompatibilní systémy SNK.</value></data>
   <data name="Emulation.Snk.Setting.Language" xml:space="preserve"><value>Jazyk</value></data>
   <data name="Emulation.Snk.Value.Japanese" xml:space="preserve"><value>japonský jazyk</value></data>
   <data name="Emulation.Snk.Value.English" xml:space="preserve"><value>Anglický jazyk</value></data>
@@ -247,8 +247,8 @@
   <data name="Emulation.Snk.Help.CDDMALengthLimit" xml:space="preserve"><value>Opravit BIOS upload indikátory, když a CD buffer DMA je větší než jeden sektor, fixace poškozeného zvuku v bonusové fázi Art of Fighting. Jedná se o hack, a skutečné hardware chování je nepotvrzené.</value></data>
   <data name="Emulation.Snk.Help.SkipCDLoading" xml:space="preserve"><value>Přetočte to dopředu. CD ložné plochy</value></data>
   <data name="Emulation.Snk.Value.ThirdOrderInterpolation" xml:space="preserve"><value>Interpolace mezi třídami (4 body)</value></data>
-  <data name="Emulation.Emulator.race.Description" xml:space="preserve"><value>Emuluje monochromní a barevné ruční konzole.</value></data>
-  <data name="Emulation.Emulator.mednafen_ngp.Description" xml:space="preserve"><value>Emuluje monochromní a barevné ruční konzole.</value></data>
+  <data name="Emulation.Emulator.race.Description"><value>Emuluje Neo Geo Pocket a Neo Geo Pocket Color.</value></data>
+  <data name="Emulation.Emulator.mednafen_ngp.Description" xml:space="preserve"><value>Emuluje Neo Geo Pocket a Neo Geo Pocket Color.</value></data>
   <data name="Emulation.Snk.Help.Language" xml:space="preserve"><value>Vyberte jazyk používaný kompatibilními hrami.</value></data>
   <data name="Emulation.Snk.Setting.Frameskip" xml:space="preserve"><value>Přeskočení rámečku videa</value></data>
   <data name="Emulation.Snk.Help.Frameskip" xml:space="preserve"><value>Přeskočit některé video rámce, pokud výkon je nedostatečný, ke snížení přerušení v audio výstupu.</value></data>

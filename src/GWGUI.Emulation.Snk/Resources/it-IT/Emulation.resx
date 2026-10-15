@@ -12,20 +12,20 @@
   <data name="Emulation.Snk.System.Native" xml:space="preserve"><value>Impostazioni del sistema</value></data>
   <data name="Emulation.Snk.Firmware.SystemBios" xml:space="preserve"><value>Sistema BIOS</value></data>
   <data name="Emulation.Snk.Firmware.AuxiliaryBios" xml:space="preserve"><value>Ausiliare BIOS</value></data>
-  <data name="Emulation.Emulator.neocd.Description" xml:space="preserve"><value>Emulazione di Neo Geo CD e Neo Geo CDZ.</value></data>
-  <data name="Emulation.Emulator.mame2016.Description" xml:space="preserve"><value>Emulazione compatibile SNK sistemi.</value></data>
-  <data name="Emulation.Emulator.mame2010.Description" xml:space="preserve"><value>Emulazione compatibile SNK sistemi.</value></data>
-  <data name="Emulation.Emulator.mame2003.Description" xml:space="preserve"><value>Emulazione compatibile SNK sistemi.</value></data>
-  <data name="Emulation.Emulator.mame2015.Description" xml:space="preserve"><value>Emulazione compatibile SNK sistemi.</value></data>
-  <data name="Emulation.Emulator.fbalpha2012.Description" xml:space="preserve"><value>Emulazione compatibile SNK sistemi.</value></data>
-  <data name="Emulation.Emulator.fbneo.Description" xml:space="preserve"><value>Emulazione compatibile SNK sistemi.</value></data>
-  <data name="Emulation.Emulator.hbmame.Description" xml:space="preserve"><value>Emulazione compatibile SNK sistemi.</value></data>
-  <data name="Emulation.Emulator.mame2003_plus.Description" xml:space="preserve"><value>Emulazione compatibile SNK sistemi.</value></data>
-  <data name="Emulation.Emulator.mame2000.Description" xml:space="preserve"><value>Emulazione compatibile SNK sistemi.</value></data>
-  <data name="Emulation.Emulator.fbalpha.Description" xml:space="preserve"><value>Emulazione compatibile SNK sistemi.</value></data>
-  <data name="Emulation.Emulator.fbalpha2012_neogeo.Description" xml:space="preserve"><value>Emulazione compatibile SNK sistemi.</value></data>
-  <data name="Emulation.Emulator.geolith.Description" xml:space="preserve"><value>Emula la cartuccia Neo Geo CD sistemi.</value></data>
-  <data name="Emulation.Emulator.mame.Description" xml:space="preserve"><value>Emulazione compatibile SNK sistemi.</value></data>
+  <data name="Emulation.Emulator.neocd.Description"><value>Emula Neo Geo CD e Neo Geo CDZ.</value></data>
+  <data name="Emulation.Emulator.mame2016.Description"><value>Emula i sistemi SNK compatibili.</value></data>
+  <data name="Emulation.Emulator.mame2010.Description" xml:space="preserve"><value>Emula i sistemi SNK compatibili.</value></data>
+  <data name="Emulation.Emulator.mame2003.Description" xml:space="preserve"><value>Emula i sistemi SNK compatibili.</value></data>
+  <data name="Emulation.Emulator.mame2015.Description" xml:space="preserve"><value>Emula i sistemi SNK compatibili.</value></data>
+  <data name="Emulation.Emulator.fbalpha2012.Description" xml:space="preserve"><value>Emula i sistemi SNK compatibili.</value></data>
+  <data name="Emulation.Emulator.fbneo.Description" xml:space="preserve"><value>Emula i sistemi SNK compatibili.</value></data>
+  <data name="Emulation.Emulator.hbmame.Description" xml:space="preserve"><value>Emula i sistemi SNK compatibili.</value></data>
+  <data name="Emulation.Emulator.mame2003_plus.Description" xml:space="preserve"><value>Emula i sistemi SNK compatibili.</value></data>
+  <data name="Emulation.Emulator.mame2000.Description" xml:space="preserve"><value>Emula i sistemi SNK compatibili.</value></data>
+  <data name="Emulation.Emulator.fbalpha.Description" xml:space="preserve"><value>Emula i sistemi SNK compatibili.</value></data>
+  <data name="Emulation.Emulator.fbalpha2012_neogeo.Description" xml:space="preserve"><value>Emula i sistemi SNK compatibili.</value></data>
+  <data name="Emulation.Emulator.geolith.Description"><value>Emula i sistemi Neo Geo con cartucce di gioco e CD.</value></data>
+  <data name="Emulation.Emulator.mame.Description" xml:space="preserve"><value>Emula i sistemi SNK compatibili.</value></data>
   <data name="Emulation.Snk.Setting.Language" xml:space="preserve"><value>Lingua</value></data>
   <data name="Emulation.Snk.Value.Japanese" xml:space="preserve"><value>Lingua giapponese</value></data>
   <data name="Emulation.Snk.Value.English" xml:space="preserve"><value>Lingua inglese</value></data>
@@ -247,8 +247,8 @@
   <data name="Emulation.Snk.Help.CDDMALengthLimit" xml:space="preserve"><value>Correggere BIOS carica punti quando un CD buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer buffer DMA è più grande di un settore, che fissa il suono danneggiato nella fase bonus di Art of Fighting, che è un hack, e il comportamento hardware reale non è confermato.</value></data>
   <data name="Emulation.Snk.Help.SkipCDLoading" xml:space="preserve"><value>Verso il basso CD schermi di carico</value></data>
   <data name="Emulation.Snk.Value.ThirdOrderInterpolation" xml:space="preserve"><value>Interpolazione di terzo ordine (4 punti)</value></data>
-  <data name="Emulation.Emulator.race.Description" xml:space="preserve"><value>Emola le console monocroma e colorate.</value></data>
-  <data name="Emulation.Emulator.mednafen_ngp.Description" xml:space="preserve"><value>Emola le console monocroma e colorate.</value></data>
+  <data name="Emulation.Emulator.race.Description"><value>Emula Neo Geo Pocket e Neo Geo Pocket Color.</value></data>
+  <data name="Emulation.Emulator.mednafen_ngp.Description" xml:space="preserve"><value>Emula Neo Geo Pocket e Neo Geo Pocket Color.</value></data>
   <data name="Emulation.Snk.Help.Language" xml:space="preserve"><value>Selezionare la lingua utilizzata da giochi compatibili.</value></data>
   <data name="Emulation.Snk.Setting.Frameskip" xml:space="preserve"><value>Video cornice saltando</value></data>
   <data name="Emulation.Snk.Help.Frameskip" xml:space="preserve"><value>Salta alcuni frame video quando le prestazioni sono insufficienti, per ridurre le interruzioni nell'uscita audio.</value></data>

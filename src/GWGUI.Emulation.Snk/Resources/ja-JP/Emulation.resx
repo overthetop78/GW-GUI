@@ -12,20 +12,20 @@
   <data name="Emulation.Snk.System.Native" xml:space="preserve"><value>システム設定</value></data>
   <data name="Emulation.Snk.Firmware.SystemBios" xml:space="preserve"><value>ソリューション BIOS</value></data>
   <data name="Emulation.Snk.Firmware.AuxiliaryBios" xml:space="preserve"><value>補助補助金 BIOS</value></data>
-  <data name="Emulation.Emulator.neocd.Description" xml:space="preserve"><value>ネオジオをエミュレート CD ネオジオ CDZ.</value></data>
-  <data name="Emulation.Emulator.mame2016.Description" xml:space="preserve"><value>互換性をエミュレート SNK システム。</value></data>
-  <data name="Emulation.Emulator.mame2010.Description" xml:space="preserve"><value>互換性をエミュレート SNK システム。</value></data>
-  <data name="Emulation.Emulator.mame2003.Description" xml:space="preserve"><value>互換性をエミュレート SNK システム。</value></data>
-  <data name="Emulation.Emulator.mame2015.Description" xml:space="preserve"><value>互換性をエミュレート SNK システム。</value></data>
-  <data name="Emulation.Emulator.fbalpha2012.Description" xml:space="preserve"><value>互換性をエミュレート SNK システム。</value></data>
-  <data name="Emulation.Emulator.fbneo.Description" xml:space="preserve"><value>互換性をエミュレート SNK システム。</value></data>
-  <data name="Emulation.Emulator.hbmame.Description" xml:space="preserve"><value>互換性をエミュレート SNK システム。</value></data>
-  <data name="Emulation.Emulator.mame2003_plus.Description" xml:space="preserve"><value>互換性をエミュレート SNK システム。</value></data>
-  <data name="Emulation.Emulator.mame2000.Description" xml:space="preserve"><value>互換性をエミュレート SNK システム。</value></data>
-  <data name="Emulation.Emulator.fbalpha.Description" xml:space="preserve"><value>互換性をエミュレート SNK システム。</value></data>
-  <data name="Emulation.Emulator.fbalpha2012_neogeo.Description" xml:space="preserve"><value>互換性をエミュレート SNK システム。</value></data>
-  <data name="Emulation.Emulator.geolith.Description" xml:space="preserve"><value>ネオジオカートリッジをエミュレートし、 CD システム。</value></data>
-  <data name="Emulation.Emulator.mame.Description" xml:space="preserve"><value>互換性をエミュレート SNK システム。</value></data>
+  <data name="Emulation.Emulator.neocd.Description"><value>Neo Geo CD と Neo Geo CDZ をエミュレートします。</value></data>
+  <data name="Emulation.Emulator.mame2016.Description"><value>対応する SNK システムをエミュレートします。</value></data>
+  <data name="Emulation.Emulator.mame2010.Description" xml:space="preserve"><value>対応する SNK システムをエミュレートします。</value></data>
+  <data name="Emulation.Emulator.mame2003.Description" xml:space="preserve"><value>対応する SNK システムをエミュレートします。</value></data>
+  <data name="Emulation.Emulator.mame2015.Description" xml:space="preserve"><value>対応する SNK システムをエミュレートします。</value></data>
+  <data name="Emulation.Emulator.fbalpha2012.Description" xml:space="preserve"><value>対応する SNK システムをエミュレートします。</value></data>
+  <data name="Emulation.Emulator.fbneo.Description" xml:space="preserve"><value>対応する SNK システムをエミュレートします。</value></data>
+  <data name="Emulation.Emulator.hbmame.Description" xml:space="preserve"><value>対応する SNK システムをエミュレートします。</value></data>
+  <data name="Emulation.Emulator.mame2003_plus.Description" xml:space="preserve"><value>対応する SNK システムをエミュレートします。</value></data>
+  <data name="Emulation.Emulator.mame2000.Description" xml:space="preserve"><value>対応する SNK システムをエミュレートします。</value></data>
+  <data name="Emulation.Emulator.fbalpha.Description" xml:space="preserve"><value>対応する SNK システムをエミュレートします。</value></data>
+  <data name="Emulation.Emulator.fbalpha2012_neogeo.Description" xml:space="preserve"><value>対応する SNK システムをエミュレートします。</value></data>
+  <data name="Emulation.Emulator.geolith.Description"><value>ゲームカートリッジと CD を使用する Neo Geo システムをエミュレートします。</value></data>
+  <data name="Emulation.Emulator.mame.Description" xml:space="preserve"><value>対応する SNK システムをエミュレートします。</value></data>
   <data name="Emulation.Snk.Setting.Language" xml:space="preserve"><value>中国語(簡体)</value></data>
   <data name="Emulation.Snk.Value.Japanese" xml:space="preserve"><value>日語の言語</value></data>
   <data name="Emulation.Snk.Value.English" xml:space="preserve"><value>中国語(簡体)</value></data>
@@ -247,8 +247,8 @@
   <data name="Emulation.Snk.Help.CDDMALengthLimit" xml:space="preserve"><value>正しい BIOS 投稿ポインタがいつか CD バッファ DMA ファイティングのボーナスステージで破損したサウンドを修正する1つのセクターよりも大きいです。 これはハックであり、実際のハードウェアの動作は未確認です。</value></data>
   <data name="Emulation.Snk.Help.SkipCDLoading" xml:space="preserve"><value>急な方を通る CD ローディング スクリーン</value></data>
   <data name="Emulation.Snk.Value.ThirdOrderInterpolation" xml:space="preserve"><value>第三次補間 (4ポイント)</value></data>
-  <data name="Emulation.Emulator.race.Description" xml:space="preserve"><value>モノクロとカラーハンドヘルドコンソールをエミュレートします。</value></data>
-  <data name="Emulation.Emulator.mednafen_ngp.Description" xml:space="preserve"><value>モノクロとカラーハンドヘルドコンソールをエミュレートします。</value></data>
+  <data name="Emulation.Emulator.race.Description"><value>Neo Geo Pocket と Neo Geo Pocket Color をエミュレートします。</value></data>
+  <data name="Emulation.Emulator.mednafen_ngp.Description" xml:space="preserve"><value>Neo Geo Pocket と Neo Geo Pocket Color をエミュレートします。</value></data>
   <data name="Emulation.Snk.Help.Language" xml:space="preserve"><value>互換性のあるゲームで使われる言語を選択します。</value></data>
   <data name="Emulation.Snk.Setting.Frameskip" xml:space="preserve"><value>ビデオフレームのスキッピング</value></data>
   <data name="Emulation.Snk.Help.Frameskip" xml:space="preserve"><value>パフォーマンスが不十分であるとき、ビデオフレームをスキップして、オーディオ出力の中断を削減します。</value></data>

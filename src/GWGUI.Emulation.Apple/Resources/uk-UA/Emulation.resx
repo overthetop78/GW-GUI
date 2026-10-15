@@ -4,8 +4,8 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.applewin.Description" xml:space="preserve"><value>ПАО II емульсія з AppleWin.</value></data>
-  <data name="Emulation.Emulator.minivmac.Description" xml:space="preserve"><value>Малінтош II емульсія з міні vMac.</value></data>
+  <data name="Emulation.Emulator.applewin.Description"><value>Емулює комп’ютери Apple II за допомогою AppleWin.</value></data>
+  <data name="Emulation.Emulator.minivmac.Description"><value>Емулює комп’ютери Macintosh II за допомогою Mini vMac.</value></data>
   <data name="Emulation.Apple.Option.Model" xml:space="preserve"><value>Варіант машини</value></data>
   <data name="Emulation.Apple.Video.Native" xml:space="preserve"><value>Відеовіддача</value></data>
   <data name="Emulation.Apple.Expansion" xml:space="preserve"><value>Розширювальні картки</value></data>

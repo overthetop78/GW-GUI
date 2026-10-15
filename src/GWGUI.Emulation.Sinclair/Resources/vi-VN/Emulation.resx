@@ -4,7 +4,7 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.81.Description" xml:space="preserve"><value>Tính toán các bài toán ZX81.</value></data>
+  <data name="Emulation.Emulator.81.Description"><value>Giả lập Sinclair ZX81.</value></data>
   <data name="Emulation.Sinclair.Audio.Native" xml:space="preserve"><value>Phần cứng âm thanh</value></data>
   <data name="Emulation.Sinclair.Content.Initial" xml:space="preserve"><value>Nội dung ban đầu</value></data>
   <data name="Emulation.Sinclair.Memory.Display" xml:space="preserve"><value>Bộ nhớ phim</value></data>
@@ -34,7 +34,7 @@
   <data name="Emulation.Sinclair.Value.TvSpeaker" xml:space="preserve"><value>Bộ phát thanh lớn trên truyền hình</value></data>
   <data name="Emulation.Sinclair.Value.Unfiltered" xml:space="preserve"><value>Chưa lọc</value></data>
   <data name="Emulation.Sinclair.Video.Native" xml:space="preserve"><value>Hiển thị ảnh động</value></data>
-  <data name="Emulation.Emulator.fuse.Description" xml:space="preserve"><value>Tính ZX SPECTRUM và máy tính tương thích.</value></data>
+  <data name="Emulation.Emulator.fuse.Description"><value>Giả lập các hệ thống ZX Spectrum tương thích.</value></data>
   <data name="Emulation.Sinclair.Setting.BeeperVolume" xml:space="preserve"><value>Âm lượng âm thanh được xây dựng</value></data>
   <data name="Emulation.Sinclair.Setting.Issue2Keyboard" xml:space="preserve"><value>Bản sửa đổi 2 bàn phím</value></data>
   <data name="Emulation.Sinclair.Value.Clean" xml:space="preserve"><value>Xoá ảnh</value></data>

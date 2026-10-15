@@ -12,20 +12,20 @@
   <data name="Emulation.Snk.System.Native" xml:space="preserve"><value>Rendszerbeállítások</value></data>
   <data name="Emulation.Snk.Firmware.SystemBios" xml:space="preserve"><value>Rendszer BIOS</value></data>
   <data name="Emulation.Snk.Firmware.AuxiliaryBios" xml:space="preserve"><value>Segédanyag BIOS</value></data>
-  <data name="Emulation.Emulator.neocd.Description" xml:space="preserve"><value>Emulates Neo Geo CD és Neo Geo CDZ.</value></data>
-  <data name="Emulation.Emulator.mame2016.Description" xml:space="preserve"><value>Kompatibilis emulátumok SNK rendszerek.</value></data>
-  <data name="Emulation.Emulator.mame2010.Description" xml:space="preserve"><value>Kompatibilis emulátumok SNK rendszerek.</value></data>
-  <data name="Emulation.Emulator.mame2003.Description" xml:space="preserve"><value>Kompatibilis emulátumok SNK rendszerek.</value></data>
-  <data name="Emulation.Emulator.mame2015.Description" xml:space="preserve"><value>Kompatibilis emulátumok SNK rendszerek.</value></data>
-  <data name="Emulation.Emulator.fbalpha2012.Description" xml:space="preserve"><value>Kompatibilis emulátumok SNK rendszerek.</value></data>
-  <data name="Emulation.Emulator.fbneo.Description" xml:space="preserve"><value>Kompatibilis emulátumok SNK rendszerek.</value></data>
-  <data name="Emulation.Emulator.hbmame.Description" xml:space="preserve"><value>Kompatibilis emulátumok SNK rendszerek.</value></data>
-  <data name="Emulation.Emulator.mame2003_plus.Description" xml:space="preserve"><value>Kompatibilis emulátumok SNK rendszerek.</value></data>
-  <data name="Emulation.Emulator.mame2000.Description" xml:space="preserve"><value>Kompatibilis emulátumok SNK rendszerek.</value></data>
-  <data name="Emulation.Emulator.fbalpha.Description" xml:space="preserve"><value>Kompatibilis emulátumok SNK rendszerek.</value></data>
-  <data name="Emulation.Emulator.fbalpha2012_neogeo.Description" xml:space="preserve"><value>Kompatibilis emulátumok SNK rendszerek.</value></data>
-  <data name="Emulation.Emulator.geolith.Description" xml:space="preserve"><value>Emulates Neo Geo patron és CD rendszerek.</value></data>
-  <data name="Emulation.Emulator.mame.Description" xml:space="preserve"><value>Kompatibilis emulátumok SNK rendszerek.</value></data>
+  <data name="Emulation.Emulator.neocd.Description"><value>Neo Geo CD és Neo Geo CDZ konzolokat emulál.</value></data>
+  <data name="Emulation.Emulator.mame2016.Description"><value>Kompatibilis SNK rendszereket emulál.</value></data>
+  <data name="Emulation.Emulator.mame2010.Description" xml:space="preserve"><value>Kompatibilis SNK rendszereket emulál.</value></data>
+  <data name="Emulation.Emulator.mame2003.Description" xml:space="preserve"><value>Kompatibilis SNK rendszereket emulál.</value></data>
+  <data name="Emulation.Emulator.mame2015.Description" xml:space="preserve"><value>Kompatibilis SNK rendszereket emulál.</value></data>
+  <data name="Emulation.Emulator.fbalpha2012.Description" xml:space="preserve"><value>Kompatibilis SNK rendszereket emulál.</value></data>
+  <data name="Emulation.Emulator.fbneo.Description" xml:space="preserve"><value>Kompatibilis SNK rendszereket emulál.</value></data>
+  <data name="Emulation.Emulator.hbmame.Description" xml:space="preserve"><value>Kompatibilis SNK rendszereket emulál.</value></data>
+  <data name="Emulation.Emulator.mame2003_plus.Description" xml:space="preserve"><value>Kompatibilis SNK rendszereket emulál.</value></data>
+  <data name="Emulation.Emulator.mame2000.Description" xml:space="preserve"><value>Kompatibilis SNK rendszereket emulál.</value></data>
+  <data name="Emulation.Emulator.fbalpha.Description" xml:space="preserve"><value>Kompatibilis SNK rendszereket emulál.</value></data>
+  <data name="Emulation.Emulator.fbalpha2012_neogeo.Description" xml:space="preserve"><value>Kompatibilis SNK rendszereket emulál.</value></data>
+  <data name="Emulation.Emulator.geolith.Description"><value>Játékkazettás és CD-alapú Neo Geo rendszereket emulál.</value></data>
+  <data name="Emulation.Emulator.mame.Description" xml:space="preserve"><value>Kompatibilis SNK rendszereket emulál.</value></data>
   <data name="Emulation.Snk.Setting.Language" xml:space="preserve"><value>Nyelv</value></data>
   <data name="Emulation.Snk.Value.Japanese" xml:space="preserve"><value>Japán nyelv</value></data>
   <data name="Emulation.Snk.Value.English" xml:space="preserve"><value>Angol nyelv</value></data>
@@ -247,8 +247,8 @@
   <data name="Emulation.Snk.Help.CDDMALengthLimit" xml:space="preserve"><value>Javítsa a BIOS feltöltési mutatók, ha a CD pufferelési tényező DMA nagyobb, mint egy szektor, rögzítése sérült hang Art of Fighting bónusz szakaszában. Ez egy hack, és a valódi hardver viselkedés nem erősített.</value></data>
   <data name="Emulation.Snk.Help.SkipCDLoading" xml:space="preserve"><value>Áthajtó CD rakodóképernyők</value></data>
   <data name="Emulation.Snk.Value.ThirdOrderInterpolation" xml:space="preserve"><value>A harmadik sorrendben történő interpoláció (4 pont)</value></data>
-  <data name="Emulation.Emulator.race.Description" xml:space="preserve"><value>Emulálja a monokróm és színes kézi konzolokat.</value></data>
-  <data name="Emulation.Emulator.mednafen_ngp.Description" xml:space="preserve"><value>Emulálja a monokróm és színes kézi konzolokat.</value></data>
+  <data name="Emulation.Emulator.race.Description"><value>Neo Geo Pocket és Neo Geo Pocket Color konzolokat emulál.</value></data>
+  <data name="Emulation.Emulator.mednafen_ngp.Description" xml:space="preserve"><value>Neo Geo Pocket és Neo Geo Pocket Color konzolokat emulál.</value></data>
   <data name="Emulation.Snk.Help.Language" xml:space="preserve"><value>Válassza ki a kompatibilis játékok által használt nyelvet.</value></data>
   <data name="Emulation.Snk.Setting.Frameskip" xml:space="preserve"><value>Videóképkocka kihagyása</value></data>
   <data name="Emulation.Snk.Help.Frameskip" xml:space="preserve"><value>Kihagyunk néhány videó keretet, ha a teljesítmény nem elegendő, hogy csökkentsék a megszakítások a hangkimenet.</value></data>

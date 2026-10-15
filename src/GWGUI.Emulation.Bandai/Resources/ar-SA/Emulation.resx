@@ -7,9 +7,9 @@
   <data name="Emulation.Bandai.Video.Native" xml:space="preserve"><value>شريط فيديو كونسول</value></data>
   <data name="Emulation.Bandai.Audio.Native" xml:space="preserve"><value>صوت الكونسول</value></data>
   <data name="Emulation.Bandai.Controls.Native" xml:space="preserve"><value>ضوابط Console</value></data>
-  <data name="Emulation.Emulator.mednafen_wswan.Description" xml:space="preserve"><value>يُمَدّسُ قنصلَاتَ وندر سوان.</value></data>
-  <data name="Emulation.Emulator.playdiaemu.Description" xml:space="preserve"><value>(بلايديا) تعزف مع (بلايديا إيمو)</value></data>
-  <data name="Emulation.Emulator.tamalibretro.Description" xml:space="preserve"><value>تاماغوتشي P1 "مُحاكاة مع "تاماليبريترو</value></data>
+  <data name="Emulation.Emulator.mednafen_wswan.Description"><value>يحاكي WonderSwan.</value></data>
+  <data name="Emulation.Emulator.playdiaemu.Description"><value>يشغّل أقراص Playdia باستخدام PlaydiaEmu.</value></data>
+  <data name="Emulation.Emulator.tamalibretro.Description"><value>يحاكي Tamagotchi P1 باستخدام TamaLIBretro.</value></data>
   <data name="Emulation.Bandai.Playdia.Hle" xml:space="preserve"><value>هذا اللبّ يُعمّرُ دونَ تَنْشيط المُجهزين.</value></data>
   <data name="Emulation.Bandai.Memory.Display" xml:space="preserve"><value>ذكري</value></data>
   <data name="Emulation.Bandai.Setting.DisplayRotation" xml:space="preserve"><value>التوجه</value></data>

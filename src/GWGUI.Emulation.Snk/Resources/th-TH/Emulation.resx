@@ -12,20 +12,20 @@
   <data name="Emulation.Snk.System.Native" xml:space="preserve"><value>ตั้งค่าระบบ</value></data>
   <data name="Emulation.Snk.Firmware.SystemBios" xml:space="preserve"><value>ระบบ BIOS</value></data>
   <data name="Emulation.Snk.Firmware.AuxiliaryBios" xml:space="preserve"><value>ความจุ BIOS</value></data>
-  <data name="Emulation.Emulator.neocd.Description" xml:space="preserve"><value>จําลอง Geo นีโอ CD และ นีโอ จีโอ CDZ.</value></data>
-  <data name="Emulation.Emulator.mame2016.Description" xml:space="preserve"><value>จําลองที่เข้ากันได้ SNK ระบบ</value></data>
-  <data name="Emulation.Emulator.mame2010.Description" xml:space="preserve"><value>จําลองที่เข้ากันได้ SNK ระบบ</value></data>
-  <data name="Emulation.Emulator.mame2003.Description" xml:space="preserve"><value>จําลองที่เข้ากันได้ SNK ระบบ</value></data>
-  <data name="Emulation.Emulator.mame2015.Description" xml:space="preserve"><value>จําลองที่เข้ากันได้ SNK ระบบ</value></data>
-  <data name="Emulation.Emulator.fbalpha2012.Description" xml:space="preserve"><value>จําลองที่เข้ากันได้ SNK ระบบ</value></data>
-  <data name="Emulation.Emulator.fbneo.Description" xml:space="preserve"><value>จําลองที่เข้ากันได้ SNK ระบบ</value></data>
-  <data name="Emulation.Emulator.hbmame.Description" xml:space="preserve"><value>จําลองที่เข้ากันได้ SNK ระบบ</value></data>
-  <data name="Emulation.Emulator.mame2003_plus.Description" xml:space="preserve"><value>จําลองที่เข้ากันได้ SNK ระบบ</value></data>
-  <data name="Emulation.Emulator.mame2000.Description" xml:space="preserve"><value>จําลองที่เข้ากันได้ SNK ระบบ</value></data>
-  <data name="Emulation.Emulator.fbalpha.Description" xml:space="preserve"><value>จําลองที่เข้ากันได้ SNK ระบบ</value></data>
-  <data name="Emulation.Emulator.fbalpha2012_neogeo.Description" xml:space="preserve"><value>จําลองที่เข้ากันได้ SNK ระบบ</value></data>
-  <data name="Emulation.Emulator.geolith.Description" xml:space="preserve"><value>จําลองตลับหมึกนีโอจีโอ CD ระบบ</value></data>
-  <data name="Emulation.Emulator.mame.Description" xml:space="preserve"><value>จําลองที่เข้ากันได้ SNK ระบบ</value></data>
+  <data name="Emulation.Emulator.neocd.Description"><value>จำลอง Neo Geo CD และ Neo Geo CDZ</value></data>
+  <data name="Emulation.Emulator.mame2016.Description"><value>จำลองระบบ SNK ที่รองรับ</value></data>
+  <data name="Emulation.Emulator.mame2010.Description" xml:space="preserve"><value>จำลองระบบ SNK ที่รองรับ</value></data>
+  <data name="Emulation.Emulator.mame2003.Description" xml:space="preserve"><value>จำลองระบบ SNK ที่รองรับ</value></data>
+  <data name="Emulation.Emulator.mame2015.Description" xml:space="preserve"><value>จำลองระบบ SNK ที่รองรับ</value></data>
+  <data name="Emulation.Emulator.fbalpha2012.Description" xml:space="preserve"><value>จำลองระบบ SNK ที่รองรับ</value></data>
+  <data name="Emulation.Emulator.fbneo.Description" xml:space="preserve"><value>จำลองระบบ SNK ที่รองรับ</value></data>
+  <data name="Emulation.Emulator.hbmame.Description" xml:space="preserve"><value>จำลองระบบ SNK ที่รองรับ</value></data>
+  <data name="Emulation.Emulator.mame2003_plus.Description" xml:space="preserve"><value>จำลองระบบ SNK ที่รองรับ</value></data>
+  <data name="Emulation.Emulator.mame2000.Description" xml:space="preserve"><value>จำลองระบบ SNK ที่รองรับ</value></data>
+  <data name="Emulation.Emulator.fbalpha.Description" xml:space="preserve"><value>จำลองระบบ SNK ที่รองรับ</value></data>
+  <data name="Emulation.Emulator.fbalpha2012_neogeo.Description" xml:space="preserve"><value>จำลองระบบ SNK ที่รองรับ</value></data>
+  <data name="Emulation.Emulator.geolith.Description"><value>จำลองระบบ Neo Geo ที่ใช้ตลับเกมและแผ่น CD</value></data>
+  <data name="Emulation.Emulator.mame.Description" xml:space="preserve"><value>จำลองระบบ SNK ที่รองรับ</value></data>
   <data name="Emulation.Snk.Setting.Language" xml:space="preserve"><value>ภาษา</value></data>
   <data name="Emulation.Snk.Value.Japanese" xml:space="preserve"><value>ภาษาญี่ปุ่น</value></data>
   <data name="Emulation.Snk.Value.English" xml:space="preserve"><value>ภาษาอังกฤษName</value></data>
@@ -247,8 +247,8 @@
   <data name="Emulation.Snk.Help.CDDMALengthLimit" xml:space="preserve"><value>แก้ไข BIOS ปลั๊กอินอัปโหลดเมื่อ CD บัฟเฟอร์ DMA นี่เป็นระบบแฮ็ค และพฤติกรรมของฮาร์ดแวร์ที่แท้จริง ก็ยังไม่ได้รับการยืนยัน</value></data>
   <data name="Emulation.Snk.Help.SkipCDLoading" xml:space="preserve"><value>เดินหน้าอย่างรวดเร็วผ่านทาง CD กําลังเรียกหน้าจอ</value></data>
   <data name="Emulation.Snk.Value.ThirdOrderInterpolation" xml:space="preserve"><value>การเพิ่มจุดสาม (4 จุด)</value></data>
-  <data name="Emulation.Emulator.race.Description" xml:space="preserve"><value>จําลองการวาดแบบสีเดียว และปรับสีของคอนโซล</value></data>
-  <data name="Emulation.Emulator.mednafen_ngp.Description" xml:space="preserve"><value>จําลองการวาดแบบสีเดียว และปรับสีของคอนโซล</value></data>
+  <data name="Emulation.Emulator.race.Description"><value>จำลอง Neo Geo Pocket และ Neo Geo Pocket Color</value></data>
+  <data name="Emulation.Emulator.mednafen_ngp.Description" xml:space="preserve"><value>จำลอง Neo Geo Pocket และ Neo Geo Pocket Color</value></data>
   <data name="Emulation.Snk.Help.Language" xml:space="preserve"><value>เลือกภาษาที่ใช้ได้โดยเกมที่เข้ากันได้</value></data>
   <data name="Emulation.Snk.Setting.Frameskip" xml:space="preserve"><value>กระโดดข้ามเฟรมภาพวิดีโอ</value></data>
   <data name="Emulation.Snk.Help.Frameskip" xml:space="preserve"><value>ข้ามเฟรมวิดีโอบางอันเมื่อประสิทธิภาพไม่เพียงพอ เพื่อลดการขัดจังหวะในเสียง</value></data>

@@ -4,7 +4,7 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.81.Description" xml:space="preserve"><value>Megörökíti a Sinclair-t ZX81.</value></data>
+  <data name="Emulation.Emulator.81.Description"><value>Sinclair ZX81 rendszereket emulál.</value></data>
   <data name="Emulation.Sinclair.Audio.Native" xml:space="preserve"><value>Hanghardver</value></data>
   <data name="Emulation.Sinclair.Content.Initial" xml:space="preserve"><value>A kezdeti tartalom</value></data>
   <data name="Emulation.Sinclair.Memory.Display" xml:space="preserve"><value>Videómemória</value></data>
@@ -34,7 +34,7 @@
   <data name="Emulation.Sinclair.Value.TvSpeaker" xml:space="preserve"><value>Televíziós hangszóró</value></data>
   <data name="Emulation.Sinclair.Value.Unfiltered" xml:space="preserve"><value>Szűrés nélkül</value></data>
   <data name="Emulation.Sinclair.Video.Native" xml:space="preserve"><value>Videó kijelző</value></data>
-  <data name="Emulation.Emulator.fuse.Description" xml:space="preserve"><value>Emulátok ZX SPECTRUM és kompatibilis számítógépeket.</value></data>
+  <data name="Emulation.Emulator.fuse.Description"><value>Kompatibilis ZX Spectrum rendszereket emulál.</value></data>
   <data name="Emulation.Sinclair.Setting.BeeperVolume" xml:space="preserve"><value>Beépített hangmennyiség</value></data>
   <data name="Emulation.Sinclair.Setting.Issue2Keyboard" xml:space="preserve"><value>2. revízió billentyűzet</value></data>
   <data name="Emulation.Sinclair.Value.Clean" xml:space="preserve"><value>Képek törlése</value></data>

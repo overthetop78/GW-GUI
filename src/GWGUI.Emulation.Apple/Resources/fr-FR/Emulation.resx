@@ -4,8 +4,8 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.applewin.Description" xml:space="preserve"><value>Pommes II émulation avec AppleWin.</value></data>
-  <data name="Emulation.Emulator.minivmac.Description" xml:space="preserve"><value>Maïs II émulation avec Mini vMac.</value></data>
+  <data name="Emulation.Emulator.applewin.Description"><value>Émule les ordinateurs Apple II avec AppleWin.</value></data>
+  <data name="Emulation.Emulator.minivmac.Description"><value>Émule les ordinateurs Macintosh II avec Mini vMac.</value></data>
   <data name="Emulation.Apple.Option.Model" xml:space="preserve"><value>Variante de la machine</value></data>
   <data name="Emulation.Apple.Video.Native" xml:space="preserve"><value>Sortie vidéo autochtone</value></data>
   <data name="Emulation.Apple.Expansion" xml:space="preserve"><value>Cartes d'extension</value></data>

@@ -12,20 +12,20 @@
   <data name="Emulation.Snk.System.Native" xml:space="preserve"><value>Sistem ayarları</value></data>
   <data name="Emulation.Snk.Firmware.SystemBios" xml:space="preserve"><value>Sistem Sistem Sistemi BIOS</value></data>
   <data name="Emulation.Snk.Firmware.AuxiliaryBios" xml:space="preserve"><value>Yardımcı BIOS</value></data>
-  <data name="Emulation.Emulator.neocd.Description" xml:space="preserve"><value>Neo Geo Geo'u Emülüyor CD Neo Geo CDZ.</value></data>
-  <data name="Emulation.Emulator.mame2016.Description" xml:space="preserve"><value>Emulates uyumlu SNK sistemler.</value></data>
-  <data name="Emulation.Emulator.mame2010.Description" xml:space="preserve"><value>Emulates uyumlu SNK sistemler.</value></data>
-  <data name="Emulation.Emulator.mame2003.Description" xml:space="preserve"><value>Emulates uyumlu SNK sistemler.</value></data>
-  <data name="Emulation.Emulator.mame2015.Description" xml:space="preserve"><value>Emulates uyumlu SNK sistemler.</value></data>
-  <data name="Emulation.Emulator.fbalpha2012.Description" xml:space="preserve"><value>Emulates uyumlu SNK sistemler.</value></data>
-  <data name="Emulation.Emulator.fbneo.Description" xml:space="preserve"><value>Emulates uyumlu SNK sistemler.</value></data>
-  <data name="Emulation.Emulator.hbmame.Description" xml:space="preserve"><value>Emulates uyumlu SNK sistemler.</value></data>
-  <data name="Emulation.Emulator.mame2003_plus.Description" xml:space="preserve"><value>Emulates uyumlu SNK sistemler.</value></data>
-  <data name="Emulation.Emulator.mame2000.Description" xml:space="preserve"><value>Emulates uyumlu SNK sistemler.</value></data>
-  <data name="Emulation.Emulator.fbalpha.Description" xml:space="preserve"><value>Emulates uyumlu SNK sistemler.</value></data>
-  <data name="Emulation.Emulator.fbalpha2012_neogeo.Description" xml:space="preserve"><value>Emulates uyumlu SNK sistemler.</value></data>
-  <data name="Emulation.Emulator.geolith.Description" xml:space="preserve"><value>Neo Geo kartuşunu ve Emulateslerini CD sistemler.</value></data>
-  <data name="Emulation.Emulator.mame.Description" xml:space="preserve"><value>Emulates uyumlu SNK sistemler.</value></data>
+  <data name="Emulation.Emulator.neocd.Description"><value>Neo Geo CD ve Neo Geo CDZ konsollarını emüle eder.</value></data>
+  <data name="Emulation.Emulator.mame2016.Description"><value>Uyumlu SNK sistemlerini emüle eder.</value></data>
+  <data name="Emulation.Emulator.mame2010.Description" xml:space="preserve"><value>Uyumlu SNK sistemlerini emüle eder.</value></data>
+  <data name="Emulation.Emulator.mame2003.Description" xml:space="preserve"><value>Uyumlu SNK sistemlerini emüle eder.</value></data>
+  <data name="Emulation.Emulator.mame2015.Description" xml:space="preserve"><value>Uyumlu SNK sistemlerini emüle eder.</value></data>
+  <data name="Emulation.Emulator.fbalpha2012.Description" xml:space="preserve"><value>Uyumlu SNK sistemlerini emüle eder.</value></data>
+  <data name="Emulation.Emulator.fbneo.Description" xml:space="preserve"><value>Uyumlu SNK sistemlerini emüle eder.</value></data>
+  <data name="Emulation.Emulator.hbmame.Description" xml:space="preserve"><value>Uyumlu SNK sistemlerini emüle eder.</value></data>
+  <data name="Emulation.Emulator.mame2003_plus.Description" xml:space="preserve"><value>Uyumlu SNK sistemlerini emüle eder.</value></data>
+  <data name="Emulation.Emulator.mame2000.Description" xml:space="preserve"><value>Uyumlu SNK sistemlerini emüle eder.</value></data>
+  <data name="Emulation.Emulator.fbalpha.Description" xml:space="preserve"><value>Uyumlu SNK sistemlerini emüle eder.</value></data>
+  <data name="Emulation.Emulator.fbalpha2012_neogeo.Description" xml:space="preserve"><value>Uyumlu SNK sistemlerini emüle eder.</value></data>
+  <data name="Emulation.Emulator.geolith.Description"><value>Oyun kartuşu ve CD kullanan Neo Geo sistemlerini emüle eder.</value></data>
+  <data name="Emulation.Emulator.mame.Description" xml:space="preserve"><value>Uyumlu SNK sistemlerini emüle eder.</value></data>
   <data name="Emulation.Snk.Setting.Language" xml:space="preserve"><value>Dili Dili Dili</value></data>
   <data name="Emulation.Snk.Value.Japanese" xml:space="preserve"><value>Japonca dil dili</value></data>
   <data name="Emulation.Snk.Value.English" xml:space="preserve"><value>İngilizce dil dili İngilizce</value></data>
@@ -247,8 +247,8 @@
   <data name="Emulation.Snk.Help.CDDMALengthLimit" xml:space="preserve"><value>Doğruyu düzeltin BIOS Yükleme noktası, bir zaman CD Buffer DMA Bir sektörden daha büyük, Mücadelenin bonus aşamasındaki Art of Fighting'ın bozulması. Bu bir hack ve gerçek donanım davranışı teyit edilmez.</value></data>
   <data name="Emulation.Snk.Help.SkipCDLoading" xml:space="preserve"><value>Hızlı ileri CD yükleme ekran ekranları yükleme ekran ekran ekran ekranları</value></data>
   <data name="Emulation.Snk.Value.ThirdOrderInterpolation" xml:space="preserve"><value>Üçüncü sipariş interpolasyon (4 puan)</value></data>
-  <data name="Emulation.Emulator.race.Description" xml:space="preserve"><value>Monokrom ve renkli el konsolları emulates.</value></data>
-  <data name="Emulation.Emulator.mednafen_ngp.Description" xml:space="preserve"><value>Monokrom ve renkli el konsolları emulates.</value></data>
+  <data name="Emulation.Emulator.race.Description"><value>Neo Geo Pocket ve Neo Geo Pocket Color konsollarını emüle eder.</value></data>
+  <data name="Emulation.Emulator.mednafen_ngp.Description" xml:space="preserve"><value>Neo Geo Pocket ve Neo Geo Pocket Color konsollarını emüle eder.</value></data>
   <data name="Emulation.Snk.Help.Language" xml:space="preserve"><value>Uyumlu oyunlar tarafından kullanılan dili seçin.</value></data>
   <data name="Emulation.Snk.Setting.Frameskip" xml:space="preserve"><value>Video çerçeve atping</value></data>
   <data name="Emulation.Snk.Help.Frameskip" xml:space="preserve"><value>Performans yetersiz olduğunda bazı video çerçevelerini girin, ses çıkışında kesintileri azaltmak için.</value></data>

@@ -4,7 +4,7 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.81.Description" xml:space="preserve"><value>Sinclair를 에뮬레이트 ZX81.</value></data>
+  <data name="Emulation.Emulator.81.Description"><value>Sinclair ZX81 시스템을 에뮬레이션합니다.</value></data>
   <data name="Emulation.Sinclair.Audio.Native" xml:space="preserve"><value>오디오 하드웨어</value></data>
   <data name="Emulation.Sinclair.Content.Initial" xml:space="preserve"><value>초기 내용</value></data>
   <data name="Emulation.Sinclair.Memory.Display" xml:space="preserve"><value>영상 기억</value></data>
@@ -34,7 +34,7 @@
   <data name="Emulation.Sinclair.Value.TvSpeaker" xml:space="preserve"><value>텔레비전 확성기</value></data>
   <data name="Emulation.Sinclair.Value.Unfiltered" xml:space="preserve"><value>뚱 베어</value></data>
   <data name="Emulation.Sinclair.Video.Native" xml:space="preserve"><value>영상 표시</value></data>
-  <data name="Emulation.Emulator.fuse.Description" xml:space="preserve"><value>의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 ZX SPECTRUM 호환되는 컴퓨터.</value></data>
+  <data name="Emulation.Emulator.fuse.Description"><value>호환되는 ZX Spectrum 시스템을 에뮬레이션합니다.</value></data>
   <data name="Emulation.Sinclair.Setting.BeeperVolume" xml:space="preserve"><value>내장 사운드 볼륨</value></data>
   <data name="Emulation.Sinclair.Setting.Issue2Keyboard" xml:space="preserve"><value>개정 2 키보드</value></data>
   <data name="Emulation.Sinclair.Value.Clean" xml:space="preserve"><value>맑음</value></data>

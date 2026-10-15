@@ -7,9 +7,9 @@
   <data name="Emulation.Bandai.Video.Native" xml:space="preserve"><value>Konzolové video</value></data>
   <data name="Emulation.Bandai.Audio.Native" xml:space="preserve"><value>Zvuk konzole</value></data>
   <data name="Emulation.Bandai.Controls.Native" xml:space="preserve"><value>Ovládání konzole</value></data>
-  <data name="Emulation.Emulator.mednafen_wswan.Description" xml:space="preserve"><value>Emuluje konzole WonderSwan.</value></data>
-  <data name="Emulation.Emulator.playdiaemu.Description" xml:space="preserve"><value>Přehrávání disků s PlaydiaEmu.</value></data>
-  <data name="Emulation.Emulator.tamalibretro.Description" xml:space="preserve"><value>TamagotchiCity in Ontario Canada P1 emulace s TamaLIBretro.</value></data>
+  <data name="Emulation.Emulator.mednafen_wswan.Description"><value>Emuluje WonderSwan.</value></data>
+  <data name="Emulation.Emulator.playdiaemu.Description"><value>Přehrává disky Playdia pomocí emulátoru PlaydiaEmu.</value></data>
+  <data name="Emulation.Emulator.tamalibretro.Description"><value>Emuluje Tamagotchi P1 v emulátoru TamaLIBretro.</value></data>
   <data name="Emulation.Bandai.Playdia.Hle" xml:space="preserve"><value>Toto jádro hraje disky bez emulace procesorů.</value></data>
   <data name="Emulation.Bandai.Memory.Display" xml:space="preserve"><value>Zobrazit paměť</value></data>
   <data name="Emulation.Bandai.Setting.DisplayRotation" xml:space="preserve"><value>Orientace zobrazení</value></data>

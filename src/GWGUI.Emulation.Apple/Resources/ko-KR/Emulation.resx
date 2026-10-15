@@ -4,8 +4,8 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.applewin.Description" xml:space="preserve"><value>의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 II AppleWin과의 에뮬레이션.</value></data>
-  <data name="Emulation.Emulator.minivmac.Description" xml:space="preserve"><value>맥린토시 II Mini vMac과의 에뮬레이션.</value></data>
+  <data name="Emulation.Emulator.applewin.Description"><value>AppleWin을 사용하여 Apple II 컴퓨터를 에뮬레이션합니다.</value></data>
+  <data name="Emulation.Emulator.minivmac.Description"><value>Mini vMac을 사용하여 Macintosh II 컴퓨터를 에뮬레이션합니다.</value></data>
   <data name="Emulation.Apple.Option.Model" xml:space="preserve"><value>기계 변종</value></data>
   <data name="Emulation.Apple.Video.Native" xml:space="preserve"><value>출력되는 Native video</value></data>
   <data name="Emulation.Apple.Expansion" xml:space="preserve"><value>확장 카드</value></data>

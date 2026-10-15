@@ -4,7 +4,7 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.opera.Description" xml:space="preserve"><value>Emulace videoher (3DO).</value></data>
+  <data name="Emulation.Emulator.opera.Description"><value>Emuluje 3DO.</value></data>
   <data name="Emulation.Panasonic.Memory.Capacity" xml:space="preserve"><value>Vyvinutá paměťová kapacita</value></data>
   <data name="Emulation.Panasonic.Video.Mode" xml:space="preserve"><value>Video režim</value></data>
   <data name="Emulation.Panasonic.Video.PixelFormat" xml:space="preserve"><value>Barevný formát pixelů</value></data>

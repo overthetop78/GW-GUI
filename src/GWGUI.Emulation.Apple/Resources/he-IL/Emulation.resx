@@ -4,8 +4,8 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.applewin.Description" xml:space="preserve"><value>Apple Apple Apple Apple II חיקוי עם AppleWin</value></data>
-  <data name="Emulation.Emulator.minivmac.Description" xml:space="preserve"><value>Macintosh II חיקוי עם Mini vMac</value></data>
+  <data name="Emulation.Emulator.applewin.Description"><value>מדמה מחשבי Apple II באמצעות AppleWin.</value></data>
+  <data name="Emulation.Emulator.minivmac.Description"><value>מדמה מחשבי Macintosh II באמצעות Mini vMac.</value></data>
   <data name="Emulation.Apple.Option.Model" xml:space="preserve"><value>גירסאות מכונה</value></data>
   <data name="Emulation.Apple.Video.Native" xml:space="preserve"><value>הפקה: Native video</value></data>
   <data name="Emulation.Apple.Expansion" xml:space="preserve"><value>כרטיסי הרחבה</value></data>

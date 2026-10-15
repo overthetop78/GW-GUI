@@ -7,9 +7,9 @@
   <data name="Emulation.Bandai.Video.Native" xml:space="preserve"><value>Video konsol</value></data>
   <data name="Emulation.Bandai.Audio.Native" xml:space="preserve"><value>Suara konsol</value></data>
   <data name="Emulation.Bandai.Controls.Native" xml:space="preserve"><value>Konsol kontrol</value></data>
-  <data name="Emulation.Emulator.mednafen_wswan.Description" xml:space="preserve"><value>Memulasi konsol WonderSwan.</value></data>
-  <data name="Emulation.Emulator.playdiaemu.Description" xml:space="preserve"><value>Playdia memutar disc dengan PlaydiaEmu.</value></data>
-  <data name="Emulation.Emulator.tamalibretro.Description" xml:space="preserve"><value>Tamagotchi P1 Emulasi dengan TamaLIBretro.</value></data>
+  <data name="Emulation.Emulator.mednafen_wswan.Description"><value>Mengemulasikan WonderSwan.</value></data>
+  <data name="Emulation.Emulator.playdiaemu.Description"><value>Memutar cakram Playdia menggunakan PlaydiaEmu.</value></data>
+  <data name="Emulation.Emulator.tamalibretro.Description"><value>Mengemulasikan Tamagotchi P1 menggunakan TamaLIBretro.</value></data>
   <data name="Emulation.Bandai.Playdia.Hle" xml:space="preserve"><value>Inti ini memainkan cakram tanpa meniru prosesor.</value></data>
   <data name="Emulation.Bandai.Memory.Display" xml:space="preserve"><value>Tampilkan memori</value></data>
   <data name="Emulation.Bandai.Setting.DisplayRotation" xml:space="preserve"><value>Orientasi tampilan</value></data>

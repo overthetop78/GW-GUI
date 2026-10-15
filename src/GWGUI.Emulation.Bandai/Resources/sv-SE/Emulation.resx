@@ -7,9 +7,9 @@
   <data name="Emulation.Bandai.Video.Native" xml:space="preserve"><value>Konsol video</value></data>
   <data name="Emulation.Bandai.Audio.Native" xml:space="preserve"><value>Konsolljud</value></data>
   <data name="Emulation.Bandai.Controls.Native" xml:space="preserve"><value>Konsolkontroller</value></data>
-  <data name="Emulation.Emulator.mednafen_wswan.Description" xml:space="preserve"><value>Emulerar WonderSwan konsoler.</value></data>
-  <data name="Emulation.Emulator.playdiaemu.Description" xml:space="preserve"><value>Playdia disc playback med PlaydiaEmu.</value></data>
-  <data name="Emulation.Emulator.tamalibretro.Description" xml:space="preserve"><value>Tamagotchi P1 emulering med TamaLIBretro.</value></data>
+  <data name="Emulation.Emulator.mednafen_wswan.Description"><value>Emulerar WonderSwan.</value></data>
+  <data name="Emulation.Emulator.playdiaemu.Description"><value>Spelar upp Playdia-skivor med PlaydiaEmu.</value></data>
+  <data name="Emulation.Emulator.tamalibretro.Description"><value>Emulerar Tamagotchi P1 med TamaLIBretro.</value></data>
   <data name="Emulation.Bandai.Playdia.Hle" xml:space="preserve"><value>Denna kärna spelar skivor utan att emulera processorerna.</value></data>
   <data name="Emulation.Bandai.Memory.Display" xml:space="preserve"><value>Visa minne</value></data>
   <data name="Emulation.Bandai.Setting.DisplayRotation" xml:space="preserve"><value>Visa orientering</value></data>

@@ -7,9 +7,9 @@
   <data name="Emulation.Bandai.Video.Native" xml:space="preserve"><value>控制台视频</value></data>
   <data name="Emulation.Bandai.Audio.Native" xml:space="preserve"><value>控制台声音</value></data>
   <data name="Emulation.Bandai.Controls.Native" xml:space="preserve"><value>控制台控制</value></data>
-  <data name="Emulation.Emulator.mednafen_wswan.Description" xml:space="preserve"><value>模拟神奇天鹅控制台.</value></data>
-  <data name="Emulation.Emulator.playdiaemu.Description" xml:space="preserve"><value>Playdia DCD 与 PlaydiaEmu 一起播放 。</value></data>
-  <data name="Emulation.Emulator.tamalibretro.Description" xml:space="preserve"><value>塔马戈奇 P1 与 TamaLIBretro 模拟 。</value></data>
+  <data name="Emulation.Emulator.mednafen_wswan.Description"><value>模擬 WonderSwan。</value></data>
+  <data name="Emulation.Emulator.playdiaemu.Description"><value>使用 PlaydiaEmu 播放 Playdia 光碟。</value></data>
+  <data name="Emulation.Emulator.tamalibretro.Description"><value>使用 TamaLIBretro 模擬 Tamagotchi P1。</value></data>
   <data name="Emulation.Bandai.Playdia.Hle" xml:space="preserve"><value>此核心在播放盘片时不模仿处理器.</value></data>
   <data name="Emulation.Bandai.Memory.Display" xml:space="preserve"><value>显示内存</value></data>
   <data name="Emulation.Bandai.Setting.DisplayRotation" xml:space="preserve"><value>显示方向</value></data>

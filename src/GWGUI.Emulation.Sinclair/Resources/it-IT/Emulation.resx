@@ -4,7 +4,7 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.81.Description" xml:space="preserve"><value>Emulates il Sinclair ZX81.</value></data>
+  <data name="Emulation.Emulator.81.Description"><value>Emula Sinclair ZX81.</value></data>
   <data name="Emulation.Sinclair.Audio.Native" xml:space="preserve"><value>Hardware audio</value></data>
   <data name="Emulation.Sinclair.Content.Initial" xml:space="preserve"><value>Contenuto iniziale</value></data>
   <data name="Emulation.Sinclair.Memory.Display" xml:space="preserve"><value>Video memoria</value></data>
@@ -34,7 +34,7 @@
   <data name="Emulation.Sinclair.Value.TvSpeaker" xml:space="preserve"><value>diffusore televisivo</value></data>
   <data name="Emulation.Sinclair.Value.Unfiltered" xml:space="preserve"><value>Non filtrato</value></data>
   <data name="Emulation.Sinclair.Video.Native" xml:space="preserve"><value>Visualizzazione video</value></data>
-  <data name="Emulation.Emulator.fuse.Description" xml:space="preserve"><value>Emulates ZX SPECTRUM e computer compatibili.</value></data>
+  <data name="Emulation.Emulator.fuse.Description"><value>Emula i sistemi ZX Spectrum compatibili.</value></data>
   <data name="Emulation.Sinclair.Setting.BeeperVolume" xml:space="preserve"><value>Volume audio integrato</value></data>
   <data name="Emulation.Sinclair.Setting.Issue2Keyboard" xml:space="preserve"><value>Revisione 2 tastiera</value></data>
   <data name="Emulation.Sinclair.Value.Clean" xml:space="preserve"><value>Immagine chiara</value></data>

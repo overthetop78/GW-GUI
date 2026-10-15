@@ -12,20 +12,20 @@
   <data name="Emulation.Snk.System.Native" xml:space="preserve"><value>시스템 설정</value></data>
   <data name="Emulation.Snk.Firmware.SystemBios" xml:space="preserve"><value>시스템 BIOS</value></data>
   <data name="Emulation.Snk.Firmware.AuxiliaryBios" xml:space="preserve"><value>의약 BIOS</value></data>
-  <data name="Emulation.Emulator.neocd.Description" xml:space="preserve"><value>네오 지오를 격리 CD 네오 지오 CDZ.</value></data>
-  <data name="Emulation.Emulator.mame2016.Description" xml:space="preserve"><value>호환 SNK 시스템.</value></data>
-  <data name="Emulation.Emulator.mame2010.Description" xml:space="preserve"><value>호환 SNK 시스템.</value></data>
-  <data name="Emulation.Emulator.mame2003.Description" xml:space="preserve"><value>호환 SNK 시스템.</value></data>
-  <data name="Emulation.Emulator.mame2015.Description" xml:space="preserve"><value>호환 SNK 시스템.</value></data>
-  <data name="Emulation.Emulator.fbalpha2012.Description" xml:space="preserve"><value>호환 SNK 시스템.</value></data>
-  <data name="Emulation.Emulator.fbneo.Description" xml:space="preserve"><value>호환 SNK 시스템.</value></data>
-  <data name="Emulation.Emulator.hbmame.Description" xml:space="preserve"><value>호환 SNK 시스템.</value></data>
-  <data name="Emulation.Emulator.mame2003_plus.Description" xml:space="preserve"><value>호환 SNK 시스템.</value></data>
-  <data name="Emulation.Emulator.mame2000.Description" xml:space="preserve"><value>호환 SNK 시스템.</value></data>
-  <data name="Emulation.Emulator.fbalpha.Description" xml:space="preserve"><value>호환 SNK 시스템.</value></data>
-  <data name="Emulation.Emulator.fbalpha2012_neogeo.Description" xml:space="preserve"><value>호환 SNK 시스템.</value></data>
-  <data name="Emulation.Emulator.geolith.Description" xml:space="preserve"><value>Neo Geo 카트리지와 에뮬레이션 CD 시스템.</value></data>
-  <data name="Emulation.Emulator.mame.Description" xml:space="preserve"><value>호환 SNK 시스템.</value></data>
+  <data name="Emulation.Emulator.neocd.Description"><value>Neo Geo CD 및 Neo Geo CDZ 콘솔을 에뮬레이션합니다.</value></data>
+  <data name="Emulation.Emulator.mame2016.Description"><value>호환되는 SNK 시스템을 에뮬레이션합니다.</value></data>
+  <data name="Emulation.Emulator.mame2010.Description" xml:space="preserve"><value>호환되는 SNK 시스템을 에뮬레이션합니다.</value></data>
+  <data name="Emulation.Emulator.mame2003.Description" xml:space="preserve"><value>호환되는 SNK 시스템을 에뮬레이션합니다.</value></data>
+  <data name="Emulation.Emulator.mame2015.Description" xml:space="preserve"><value>호환되는 SNK 시스템을 에뮬레이션합니다.</value></data>
+  <data name="Emulation.Emulator.fbalpha2012.Description" xml:space="preserve"><value>호환되는 SNK 시스템을 에뮬레이션합니다.</value></data>
+  <data name="Emulation.Emulator.fbneo.Description" xml:space="preserve"><value>호환되는 SNK 시스템을 에뮬레이션합니다.</value></data>
+  <data name="Emulation.Emulator.hbmame.Description" xml:space="preserve"><value>호환되는 SNK 시스템을 에뮬레이션합니다.</value></data>
+  <data name="Emulation.Emulator.mame2003_plus.Description" xml:space="preserve"><value>호환되는 SNK 시스템을 에뮬레이션합니다.</value></data>
+  <data name="Emulation.Emulator.mame2000.Description" xml:space="preserve"><value>호환되는 SNK 시스템을 에뮬레이션합니다.</value></data>
+  <data name="Emulation.Emulator.fbalpha.Description" xml:space="preserve"><value>호환되는 SNK 시스템을 에뮬레이션합니다.</value></data>
+  <data name="Emulation.Emulator.fbalpha2012_neogeo.Description" xml:space="preserve"><value>호환되는 SNK 시스템을 에뮬레이션합니다.</value></data>
+  <data name="Emulation.Emulator.geolith.Description"><value>게임 카트리지와 CD를 사용하는 Neo Geo 시스템을 에뮬레이션합니다.</value></data>
+  <data name="Emulation.Emulator.mame.Description" xml:space="preserve"><value>호환되는 SNK 시스템을 에뮬레이션합니다.</value></data>
   <data name="Emulation.Snk.Setting.Language" xml:space="preserve"><value>의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의</value></data>
   <data name="Emulation.Snk.Value.Japanese" xml:space="preserve"><value>일본국어</value></data>
   <data name="Emulation.Snk.Value.English" xml:space="preserve"><value>한국어</value></data>
@@ -247,8 +247,8 @@
   <data name="Emulation.Snk.Help.CDDMALengthLimit" xml:space="preserve"><value>의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 BIOS 업로드 포인터 CD 퀵메뉴 DMA 한 분야보다 더 큰, 싸움의 보너스 단계의 예술에 손상된 소리를 수정. 이것은 해킹이며, 실제 하드웨어 행동은 확인되지 않습니다.</value></data>
   <data name="Emulation.Snk.Help.SkipCDLoading" xml:space="preserve"><value>빠른 대면 CD 적재 화면</value></data>
   <data name="Emulation.Snk.Value.ThirdOrderInterpolation" xml:space="preserve"><value>세 번째 주문 간섭 (4 점)</value></data>
-  <data name="Emulation.Emulator.race.Description" xml:space="preserve"><value>단일 크롬 및 컬러 핸드 헬드 콘솔을 격리합니다.</value></data>
-  <data name="Emulation.Emulator.mednafen_ngp.Description" xml:space="preserve"><value>단일 크롬 및 컬러 핸드 헬드 콘솔을 격리합니다.</value></data>
+  <data name="Emulation.Emulator.race.Description"><value>Neo Geo Pocket 및 Neo Geo Pocket Color 콘솔을 에뮬레이션합니다.</value></data>
+  <data name="Emulation.Emulator.mednafen_ngp.Description" xml:space="preserve"><value>Neo Geo Pocket 및 Neo Geo Pocket Color 콘솔을 에뮬레이션합니다.</value></data>
   <data name="Emulation.Snk.Help.Language" xml:space="preserve"><value>호환 게임에 의해 사용되는 언어를 선택하십시오.</value></data>
   <data name="Emulation.Snk.Setting.Frameskip" xml:space="preserve"><value>Video Frame 건너뛰기</value></data>
   <data name="Emulation.Snk.Help.Frameskip" xml:space="preserve"><value>성능이 부족할 때 일부 비디오 프레임을 건너, 오디오 출력의 중단을 감소.</value></data>

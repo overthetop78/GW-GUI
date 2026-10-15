@@ -12,20 +12,20 @@
   <data name="Emulation.Snk.System.Native" xml:space="preserve"><value>Systemindstillinger</value></data>
   <data name="Emulation.Snk.Firmware.SystemBios"><value>System BIOS</value></data>
   <data name="Emulation.Snk.Firmware.AuxiliaryBios" xml:space="preserve"><value>Hjælpemidler BIOS</value></data>
-  <data name="Emulation.Emulator.neocd.Description" xml:space="preserve"><value>Emulates Neo Geo CD og Neo Geo CDZ.</value></data>
-  <data name="Emulation.Emulator.mame2016.Description" xml:space="preserve"><value>Emulater, der er kompatible SNK systemer.</value></data>
-  <data name="Emulation.Emulator.mame2010.Description" xml:space="preserve"><value>Emulater, der er kompatible SNK systemer.</value></data>
-  <data name="Emulation.Emulator.mame2003.Description" xml:space="preserve"><value>Emulater, der er kompatible SNK systemer.</value></data>
-  <data name="Emulation.Emulator.mame2015.Description" xml:space="preserve"><value>Emulater, der er kompatible SNK systemer.</value></data>
-  <data name="Emulation.Emulator.fbalpha2012.Description" xml:space="preserve"><value>Emulater, der er kompatible SNK systemer.</value></data>
-  <data name="Emulation.Emulator.fbneo.Description" xml:space="preserve"><value>Emulater, der er kompatible SNK systemer.</value></data>
-  <data name="Emulation.Emulator.hbmame.Description" xml:space="preserve"><value>Emulater, der er kompatible SNK systemer.</value></data>
-  <data name="Emulation.Emulator.mame2003_plus.Description" xml:space="preserve"><value>Emulater, der er kompatible SNK systemer.</value></data>
-  <data name="Emulation.Emulator.mame2000.Description" xml:space="preserve"><value>Emulater, der er kompatible SNK systemer.</value></data>
-  <data name="Emulation.Emulator.fbalpha.Description" xml:space="preserve"><value>Emulater, der er kompatible SNK systemer.</value></data>
-  <data name="Emulation.Emulator.fbalpha2012_neogeo.Description" xml:space="preserve"><value>Emulater, der er kompatible SNK systemer.</value></data>
-  <data name="Emulation.Emulator.geolith.Description" xml:space="preserve"><value>Emulerer Neo Geo cylinderampul og CD systemer.</value></data>
-  <data name="Emulation.Emulator.mame.Description" xml:space="preserve"><value>Emulater, der er kompatible SNK systemer.</value></data>
+  <data name="Emulation.Emulator.neocd.Description"><value>Emulerer Neo Geo CD og Neo Geo CDZ.</value></data>
+  <data name="Emulation.Emulator.mame2016.Description"><value>Emulerer kompatible SNK-systemer.</value></data>
+  <data name="Emulation.Emulator.mame2010.Description" xml:space="preserve"><value>Emulerer kompatible SNK-systemer.</value></data>
+  <data name="Emulation.Emulator.mame2003.Description" xml:space="preserve"><value>Emulerer kompatible SNK-systemer.</value></data>
+  <data name="Emulation.Emulator.mame2015.Description" xml:space="preserve"><value>Emulerer kompatible SNK-systemer.</value></data>
+  <data name="Emulation.Emulator.fbalpha2012.Description" xml:space="preserve"><value>Emulerer kompatible SNK-systemer.</value></data>
+  <data name="Emulation.Emulator.fbneo.Description" xml:space="preserve"><value>Emulerer kompatible SNK-systemer.</value></data>
+  <data name="Emulation.Emulator.hbmame.Description" xml:space="preserve"><value>Emulerer kompatible SNK-systemer.</value></data>
+  <data name="Emulation.Emulator.mame2003_plus.Description" xml:space="preserve"><value>Emulerer kompatible SNK-systemer.</value></data>
+  <data name="Emulation.Emulator.mame2000.Description" xml:space="preserve"><value>Emulerer kompatible SNK-systemer.</value></data>
+  <data name="Emulation.Emulator.fbalpha.Description" xml:space="preserve"><value>Emulerer kompatible SNK-systemer.</value></data>
+  <data name="Emulation.Emulator.fbalpha2012_neogeo.Description" xml:space="preserve"><value>Emulerer kompatible SNK-systemer.</value></data>
+  <data name="Emulation.Emulator.geolith.Description"><value>Emulerer Neo Geo-systemer med spilkassetter og CD.</value></data>
+  <data name="Emulation.Emulator.mame.Description" xml:space="preserve"><value>Emulerer kompatible SNK-systemer.</value></data>
   <data name="Emulation.Snk.Setting.Language" xml:space="preserve"><value>Sprog</value></data>
   <data name="Emulation.Snk.Value.Japanese" xml:space="preserve"><value>Japansk</value></data>
   <data name="Emulation.Snk.Value.English" xml:space="preserve"><value>Engelsk</value></data>
@@ -247,8 +247,8 @@
   <data name="Emulation.Snk.Help.CDDMALengthLimit" xml:space="preserve"><value>Ret BIOS uploade pointers når en CD buffer DMA er større end en sektor, fastsættelse beskadiget lyd i Art of Fighting bonus fase. Dette er et hack, og reel hardware adfærd er ubekræftet.</value></data>
   <data name="Emulation.Snk.Help.SkipCDLoading" xml:space="preserve"><value>Fremover CD Belastningsskærme</value></data>
   <data name="Emulation.Snk.Value.ThirdOrderInterpolation" xml:space="preserve"><value>Tomordersinterpolation (4 point)</value></data>
-  <data name="Emulation.Emulator.race.Description" xml:space="preserve"><value>Opfylder de monokrome og farvehåndholdte konsoller.</value></data>
-  <data name="Emulation.Emulator.mednafen_ngp.Description" xml:space="preserve"><value>Opfylder de monokrome og farvehåndholdte konsoller.</value></data>
+  <data name="Emulation.Emulator.race.Description"><value>Emulerer Neo Geo Pocket og Neo Geo Pocket Color.</value></data>
+  <data name="Emulation.Emulator.mednafen_ngp.Description" xml:space="preserve"><value>Emulerer Neo Geo Pocket og Neo Geo Pocket Color.</value></data>
   <data name="Emulation.Snk.Help.Language" xml:space="preserve"><value>Vælg det sprog, der bruges af kompatible spil.</value></data>
   <data name="Emulation.Snk.Setting.Frameskip" xml:space="preserve"><value>Videokamre springer over</value></data>
   <data name="Emulation.Snk.Help.Frameskip" xml:space="preserve"><value>Spring nogle videobilleder over, når ydelsen er utilstrækkelig, for at reducere afbrydelser i lyduddata.</value></data>

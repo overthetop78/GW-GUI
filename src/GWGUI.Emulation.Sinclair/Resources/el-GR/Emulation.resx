@@ -4,7 +4,7 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.81.Description" xml:space="preserve"><value>Προσομοιάζει τον Σινκλέρ ZX81.</value></data>
+  <data name="Emulation.Emulator.81.Description"><value>Εξομοιώνει Sinclair ZX81.</value></data>
   <data name="Emulation.Sinclair.Audio.Native" xml:space="preserve"><value>Υλικό ήχου</value></data>
   <data name="Emulation.Sinclair.Content.Initial" xml:space="preserve"><value>Αρχική περιεκτικότητα</value></data>
   <data name="Emulation.Sinclair.Memory.Display" xml:space="preserve"><value>μνήμη βίντεο</value></data>
@@ -34,7 +34,7 @@
   <data name="Emulation.Sinclair.Value.TvSpeaker" xml:space="preserve"><value>Μεγάφωνο τηλεόρασης</value></data>
   <data name="Emulation.Sinclair.Value.Unfiltered" xml:space="preserve"><value>Μη φιλτράρεται</value></data>
   <data name="Emulation.Sinclair.Video.Native" xml:space="preserve"><value>Εμφάνιση βίντεο</value></data>
-  <data name="Emulation.Emulator.fuse.Description" xml:space="preserve"><value>Εξομοίωση ZX SPECTRUM και συμβατοί υπολογιστές.</value></data>
+  <data name="Emulation.Emulator.fuse.Description"><value>Εξομοιώνει συμβατά συστήματα ZX Spectrum.</value></data>
   <data name="Emulation.Sinclair.Setting.BeeperVolume" xml:space="preserve"><value>Ενσωματωμένη ένταση ήχου</value></data>
   <data name="Emulation.Sinclair.Setting.Issue2Keyboard" xml:space="preserve"><value>Αναθεώρηση 2 πληκτρολογίου</value></data>
   <data name="Emulation.Sinclair.Value.Clean" xml:space="preserve"><value>Καθαρισμός εικόνας</value></data>

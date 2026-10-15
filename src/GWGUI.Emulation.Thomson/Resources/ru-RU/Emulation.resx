@@ -4,7 +4,7 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.theodore.Description" xml:space="preserve"><value>Имитирует Томсона MO и TO Компьютеры.</value></data>
+  <data name="Emulation.Emulator.theodore.Description"><value>Эмулирует Thomson MO / TO.</value></data>
   <data name="Emulation.Thomson.Start" xml:space="preserve"><value>Программа стартапа</value></data>
   <data name="Emulation.Thomson.Start.AutoRun" xml:space="preserve"><value>Запуск загруженной программы автоматически</value></data>
   <data name="Emulation.Thomson.Start.UseGameHash" xml:space="preserve"><value>Определить программу по ее контрольной сумме</value></data>

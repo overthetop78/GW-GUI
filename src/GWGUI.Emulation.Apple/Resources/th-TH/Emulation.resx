@@ -4,8 +4,8 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.applewin.Description" xml:space="preserve"><value>แอปเปิล II เลียนแบบกับแอปเปิลวิน</value></data>
-  <data name="Emulation.Emulator.minivmac.Description" xml:space="preserve"><value>แมกอินทอช II จําลองกับมินิ vMac</value></data>
+  <data name="Emulation.Emulator.applewin.Description"><value>จำลองคอมพิวเตอร์ Apple II ด้วย AppleWin</value></data>
+  <data name="Emulation.Emulator.minivmac.Description"><value>จำลองคอมพิวเตอร์ Macintosh II ด้วย Mini vMac</value></data>
   <data name="Emulation.Apple.Option.Model" xml:space="preserve"><value>องค์ประกอบของเครื่อง</value></data>
   <data name="Emulation.Apple.Video.Native" xml:space="preserve"><value>การแสดงผลวิดีโอแบบพื้นเมือง</value></data>
   <data name="Emulation.Apple.Expansion" xml:space="preserve"><value>ไพ่ที่ขยายออกไป</value></data>

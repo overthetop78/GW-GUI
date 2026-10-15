@@ -7,9 +7,9 @@
   <data name="Emulation.Bandai.Video.Native" xml:space="preserve"><value>Konsolenvideo</value></data>
   <data name="Emulation.Bandai.Audio.Native" xml:space="preserve"><value>Konsolengeräusche</value></data>
   <data name="Emulation.Bandai.Controls.Native" xml:space="preserve"><value>Bedienelemente für die Konsole</value></data>
-  <data name="Emulation.Emulator.mednafen_wswan.Description" xml:space="preserve"><value>Emuliert WonderSwan-Konsolen.</value></data>
-  <data name="Emulation.Emulator.playdiaemu.Description" xml:space="preserve"><value>Playdia Disc Playback mit PlaydiaEmu.</value></data>
-  <data name="Emulation.Emulator.tamalibretro.Description" xml:space="preserve"><value>Tambogat P1 Emulation mit TamaLIBretro.</value></data>
+  <data name="Emulation.Emulator.mednafen_wswan.Description"><value>Emuliert WonderSwan.</value></data>
+  <data name="Emulation.Emulator.playdiaemu.Description"><value>Gibt Playdia-Discs mit PlaydiaEmu wieder.</value></data>
+  <data name="Emulation.Emulator.tamalibretro.Description"><value>Emuliert Tamagotchi P1 mit TamaLIBretro.</value></data>
   <data name="Emulation.Bandai.Playdia.Hle" xml:space="preserve"><value>Dieser Kern spielt Discs ab, ohne die Prozessoren zu emulieren.</value></data>
   <data name="Emulation.Bandai.Memory.Display" xml:space="preserve"><value>Anzeigespeicher</value></data>
   <data name="Emulation.Bandai.Setting.DisplayRotation" xml:space="preserve"><value>Ausrichtung des Displays</value></data>

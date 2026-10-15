@@ -7,9 +7,9 @@
   <data name="Emulation.Bandai.Video.Native" xml:space="preserve"><value>Konsolivideo</value></data>
   <data name="Emulation.Bandai.Audio.Native" xml:space="preserve"><value>Konsoliääni</value></data>
   <data name="Emulation.Bandai.Controls.Native" xml:space="preserve"><value>Konsolinhallinta</value></data>
-  <data name="Emulation.Emulator.mednafen_wswan.Description" xml:space="preserve"><value>Emuloidaan WonderSwan-konsolit.</value></data>
-  <data name="Emulation.Emulator.playdiaemu.Description" xml:space="preserve"><value>Playdia levyn toisto PlaydiaEmulla.</value></data>
-  <data name="Emulation.Emulator.tamalibretro.Description" xml:space="preserve"><value>Tamagotchi P1 Emulointi TamaLIBretro.</value></data>
+  <data name="Emulation.Emulator.mednafen_wswan.Description"><value>Emuloi seuraavia järjestelmiä: WonderSwan.</value></data>
+  <data name="Emulation.Emulator.playdiaemu.Description"><value>Toistaa Playdia-levyjä emulaattorilla PlaydiaEmu.</value></data>
+  <data name="Emulation.Emulator.tamalibretro.Description"><value>Emuloi laitetta Tamagotchi P1 emulaattorilla TamaLIBretro.</value></data>
   <data name="Emulation.Bandai.Playdia.Hle" xml:space="preserve"><value>Tämä ydin toistaa levyjä ilman prosessorien jäljittelyä.</value></data>
   <data name="Emulation.Bandai.Memory.Display" xml:space="preserve"><value>Näytä muisti</value></data>
   <data name="Emulation.Bandai.Setting.DisplayRotation" xml:space="preserve"><value>Näytön suunta</value></data>

@@ -12,20 +12,20 @@
   <data name="Emulation.Snk.System.Native" xml:space="preserve"><value>Налаштування системи</value></data>
   <data name="Emulation.Snk.Firmware.SystemBios" xml:space="preserve"><value>Системы BIOS</value></data>
   <data name="Emulation.Snk.Firmware.AuxiliaryBios" xml:space="preserve"><value>Допоміжні BIOS</value></data>
-  <data name="Emulation.Emulator.neocd.Description" xml:space="preserve"><value>Нео Гео CD й Neo Geo CDZ.</value></data>
-  <data name="Emulation.Emulator.mame2016.Description" xml:space="preserve"><value>Емульти сумісні SNK системи.</value></data>
-  <data name="Emulation.Emulator.mame2010.Description" xml:space="preserve"><value>Емульти сумісні SNK системи.</value></data>
-  <data name="Emulation.Emulator.mame2003.Description" xml:space="preserve"><value>Емульти сумісні SNK системи.</value></data>
-  <data name="Emulation.Emulator.mame2015.Description" xml:space="preserve"><value>Емульти сумісні SNK системи.</value></data>
-  <data name="Emulation.Emulator.fbalpha2012.Description" xml:space="preserve"><value>Емульти сумісні SNK системи.</value></data>
-  <data name="Emulation.Emulator.fbneo.Description" xml:space="preserve"><value>Емульти сумісні SNK системи.</value></data>
-  <data name="Emulation.Emulator.hbmame.Description" xml:space="preserve"><value>Емульти сумісні SNK системи.</value></data>
-  <data name="Emulation.Emulator.mame2003_plus.Description" xml:space="preserve"><value>Емульти сумісні SNK системи.</value></data>
-  <data name="Emulation.Emulator.mame2000.Description" xml:space="preserve"><value>Емульти сумісні SNK системи.</value></data>
-  <data name="Emulation.Emulator.fbalpha.Description" xml:space="preserve"><value>Емульти сумісні SNK системи.</value></data>
-  <data name="Emulation.Emulator.fbalpha2012_neogeo.Description" xml:space="preserve"><value>Емульти сумісні SNK системи.</value></data>
-  <data name="Emulation.Emulator.geolith.Description" xml:space="preserve"><value>Нео Геопапір і CD системи.</value></data>
-  <data name="Emulation.Emulator.mame.Description" xml:space="preserve"><value>Емульти сумісні SNK системи.</value></data>
+  <data name="Emulation.Emulator.neocd.Description"><value>Емулює Neo Geo CD та Neo Geo CDZ.</value></data>
+  <data name="Emulation.Emulator.mame2016.Description"><value>Емулює сумісні системи SNK.</value></data>
+  <data name="Emulation.Emulator.mame2010.Description" xml:space="preserve"><value>Емулює сумісні системи SNK.</value></data>
+  <data name="Emulation.Emulator.mame2003.Description" xml:space="preserve"><value>Емулює сумісні системи SNK.</value></data>
+  <data name="Emulation.Emulator.mame2015.Description" xml:space="preserve"><value>Емулює сумісні системи SNK.</value></data>
+  <data name="Emulation.Emulator.fbalpha2012.Description" xml:space="preserve"><value>Емулює сумісні системи SNK.</value></data>
+  <data name="Emulation.Emulator.fbneo.Description" xml:space="preserve"><value>Емулює сумісні системи SNK.</value></data>
+  <data name="Emulation.Emulator.hbmame.Description" xml:space="preserve"><value>Емулює сумісні системи SNK.</value></data>
+  <data name="Emulation.Emulator.mame2003_plus.Description" xml:space="preserve"><value>Емулює сумісні системи SNK.</value></data>
+  <data name="Emulation.Emulator.mame2000.Description" xml:space="preserve"><value>Емулює сумісні системи SNK.</value></data>
+  <data name="Emulation.Emulator.fbalpha.Description" xml:space="preserve"><value>Емулює сумісні системи SNK.</value></data>
+  <data name="Emulation.Emulator.fbalpha2012_neogeo.Description" xml:space="preserve"><value>Емулює сумісні системи SNK.</value></data>
+  <data name="Emulation.Emulator.geolith.Description"><value>Емулює системи Neo Geo з ігровими картриджами та CD.</value></data>
+  <data name="Emulation.Emulator.mame.Description" xml:space="preserve"><value>Емулює сумісні системи SNK.</value></data>
   <data name="Emulation.Snk.Setting.Language" xml:space="preserve"><value>УКРАЇНСЬКА</value></data>
   <data name="Emulation.Snk.Value.Japanese" xml:space="preserve"><value>Японська мова</value></data>
   <data name="Emulation.Snk.Value.English" xml:space="preserve"><value>Українська мова</value></data>
@@ -247,8 +247,8 @@
   <data name="Emulation.Snk.Help.CDDMALengthLimit" xml:space="preserve"><value>Користь BIOS завантажувати точори при завантаженні CD буфер DMA більший, ніж один сектор, фіксація пошкодженого звуку в мистецтві бонусної сцени Боротьба. Це рубати, і реальна поведінка апаратних засобів непідтверджується.</value></data>
   <data name="Emulation.Snk.Help.SkipCDLoading" xml:space="preserve"><value>Швидкий переадресація через CD завантаження екранів</value></data>
   <data name="Emulation.Snk.Value.ThirdOrderInterpolation" xml:space="preserve"><value>Міжполяція третього порядку (4 точки)</value></data>
-  <data name="Emulation.Emulator.race.Description" xml:space="preserve"><value>Втілює монохромні та кольорові ручні консолі.</value></data>
-  <data name="Emulation.Emulator.mednafen_ngp.Description" xml:space="preserve"><value>Втілює монохромні та кольорові ручні консолі.</value></data>
+  <data name="Emulation.Emulator.race.Description"><value>Емулює Neo Geo Pocket та Neo Geo Pocket Color.</value></data>
+  <data name="Emulation.Emulator.mednafen_ngp.Description" xml:space="preserve"><value>Емулює Neo Geo Pocket та Neo Geo Pocket Color.</value></data>
   <data name="Emulation.Snk.Help.Language" xml:space="preserve"><value>Виберіть мову, яку використовується сумісними ігри.</value></data>
   <data name="Emulation.Snk.Setting.Frameskip" xml:space="preserve"><value>Відеорамка пропускає</value></data>
   <data name="Emulation.Snk.Help.Frameskip" xml:space="preserve"><value>Виконайте відеорамки, коли продуктивність недостатня, щоб зменшити перерву в аудіовихід.</value></data>

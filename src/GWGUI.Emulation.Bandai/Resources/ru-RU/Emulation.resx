@@ -7,9 +7,9 @@
   <data name="Emulation.Bandai.Video.Native" xml:space="preserve"><value>Консольное видео</value></data>
   <data name="Emulation.Bandai.Audio.Native" xml:space="preserve"><value>Консольный звук</value></data>
   <data name="Emulation.Bandai.Controls.Native" xml:space="preserve"><value>Консольный контроль</value></data>
-  <data name="Emulation.Emulator.mednafen_wswan.Description" xml:space="preserve"><value>Имитирует консоли WonderSwan.</value></data>
-  <data name="Emulation.Emulator.playdiaemu.Description" xml:space="preserve"><value>Воспроизведение диска Playdia с помощью PlaydiaEmu.</value></data>
-  <data name="Emulation.Emulator.tamalibretro.Description" xml:space="preserve"><value>Тамагочи P1 Эмуляция с TamaLIBretro.</value></data>
+  <data name="Emulation.Emulator.mednafen_wswan.Description"><value>Эмулирует WonderSwan.</value></data>
+  <data name="Emulation.Emulator.playdiaemu.Description"><value>Воспроизводит диски Playdia с помощью PlaydiaEmu.</value></data>
+  <data name="Emulation.Emulator.tamalibretro.Description"><value>Эмулирует Tamagotchi P1 с помощью TamaLIBretro.</value></data>
   <data name="Emulation.Bandai.Playdia.Hle" xml:space="preserve"><value>Это ядро воспроизводит диски без эмуляции процессоров.</value></data>
   <data name="Emulation.Bandai.Memory.Display" xml:space="preserve"><value>Отображение памяти</value></data>
   <data name="Emulation.Bandai.Setting.DisplayRotation" xml:space="preserve"><value>Ориентация дисплея</value></data>

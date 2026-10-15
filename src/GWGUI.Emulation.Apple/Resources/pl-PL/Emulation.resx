@@ -4,8 +4,8 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.applewin.Description" xml:space="preserve"><value>Jabłko II emulacja z AppleWin.</value></data>
-  <data name="Emulation.Emulator.minivmac.Description" xml:space="preserve"><value>MacintoshCity in New Brunswick Canada II emulacja z mini vMac.</value></data>
+  <data name="Emulation.Emulator.applewin.Description"><value>Emuluje komputery Apple II za pomocą emulatora AppleWin.</value></data>
+  <data name="Emulation.Emulator.minivmac.Description"><value>Emuluje komputery Macintosh II za pomocą emulatora Mini vMac.</value></data>
   <data name="Emulation.Apple.Option.Model" xml:space="preserve"><value>Wariant maszyny</value></data>
   <data name="Emulation.Apple.Video.Native" xml:space="preserve"><value>Native video output</value></data>
   <data name="Emulation.Apple.Expansion" xml:space="preserve"><value>Karty rozszerzeń</value></data>

@@ -12,20 +12,20 @@
   <data name="Emulation.Snk.System.Native" xml:space="preserve"><value>הגדרות מערכת</value></data>
   <data name="Emulation.Snk.Firmware.SystemBios" xml:space="preserve"><value>מערכת מערכת BIOS</value></data>
   <data name="Emulation.Snk.Firmware.AuxiliaryBios" xml:space="preserve"><value>עזר BIOS</value></data>
-  <data name="Emulation.Emulator.neocd.Description" xml:space="preserve"><value>עקבו אחרי Neo Geo CD ניאו גיאו CDZ.</value></data>
-  <data name="Emulation.Emulator.mame2016.Description" xml:space="preserve"><value>ספקולציות תואמים SNK מערכות.</value></data>
-  <data name="Emulation.Emulator.mame2010.Description" xml:space="preserve"><value>ספקולציות תואמים SNK מערכות.</value></data>
-  <data name="Emulation.Emulator.mame2003.Description" xml:space="preserve"><value>ספקולציות תואמים SNK מערכות.</value></data>
-  <data name="Emulation.Emulator.mame2015.Description" xml:space="preserve"><value>ספקולציות תואמים SNK מערכות.</value></data>
-  <data name="Emulation.Emulator.fbalpha2012.Description" xml:space="preserve"><value>ספקולציות תואמים SNK מערכות.</value></data>
-  <data name="Emulation.Emulator.fbneo.Description" xml:space="preserve"><value>ספקולציות תואמים SNK מערכות.</value></data>
-  <data name="Emulation.Emulator.hbmame.Description" xml:space="preserve"><value>ספקולציות תואמים SNK מערכות.</value></data>
-  <data name="Emulation.Emulator.mame2003_plus.Description" xml:space="preserve"><value>ספקולציות תואמים SNK מערכות.</value></data>
-  <data name="Emulation.Emulator.mame2000.Description" xml:space="preserve"><value>ספקולציות תואמים SNK מערכות.</value></data>
-  <data name="Emulation.Emulator.fbalpha.Description" xml:space="preserve"><value>ספקולציות תואמים SNK מערכות.</value></data>
-  <data name="Emulation.Emulator.fbalpha2012_neogeo.Description" xml:space="preserve"><value>ספקולציות תואמים SNK מערכות.</value></data>
-  <data name="Emulation.Emulator.geolith.Description" xml:space="preserve"><value>עקבו אחרי Neo Georidge and CD מערכות.</value></data>
-  <data name="Emulation.Emulator.mame.Description" xml:space="preserve"><value>ספקולציות תואמים SNK מערכות.</value></data>
+  <data name="Emulation.Emulator.neocd.Description"><value>מדמה את Neo Geo CD ואת Neo Geo CDZ.</value></data>
+  <data name="Emulation.Emulator.mame2016.Description"><value>מדמה מערכות SNK תואמות.</value></data>
+  <data name="Emulation.Emulator.mame2010.Description" xml:space="preserve"><value>מדמה מערכות SNK תואמות.</value></data>
+  <data name="Emulation.Emulator.mame2003.Description" xml:space="preserve"><value>מדמה מערכות SNK תואמות.</value></data>
+  <data name="Emulation.Emulator.mame2015.Description" xml:space="preserve"><value>מדמה מערכות SNK תואמות.</value></data>
+  <data name="Emulation.Emulator.fbalpha2012.Description" xml:space="preserve"><value>מדמה מערכות SNK תואמות.</value></data>
+  <data name="Emulation.Emulator.fbneo.Description" xml:space="preserve"><value>מדמה מערכות SNK תואמות.</value></data>
+  <data name="Emulation.Emulator.hbmame.Description" xml:space="preserve"><value>מדמה מערכות SNK תואמות.</value></data>
+  <data name="Emulation.Emulator.mame2003_plus.Description" xml:space="preserve"><value>מדמה מערכות SNK תואמות.</value></data>
+  <data name="Emulation.Emulator.mame2000.Description" xml:space="preserve"><value>מדמה מערכות SNK תואמות.</value></data>
+  <data name="Emulation.Emulator.fbalpha.Description" xml:space="preserve"><value>מדמה מערכות SNK תואמות.</value></data>
+  <data name="Emulation.Emulator.fbalpha2012_neogeo.Description" xml:space="preserve"><value>מדמה מערכות SNK תואמות.</value></data>
+  <data name="Emulation.Emulator.geolith.Description"><value>מדמה מערכות Neo Geo המשתמשות במחסניות משחק ובתקליטורי CD.</value></data>
+  <data name="Emulation.Emulator.mame.Description" xml:space="preserve"><value>מדמה מערכות SNK תואמות.</value></data>
   <data name="Emulation.Snk.Setting.Language" xml:space="preserve"><value>שפה</value></data>
   <data name="Emulation.Snk.Value.Japanese" xml:space="preserve"><value>שפה יפנית</value></data>
   <data name="Emulation.Snk.Value.English" xml:space="preserve"><value>שפה אנגלית</value></data>
@@ -247,8 +247,8 @@
   <data name="Emulation.Snk.Help.CDDMALengthLimit" xml:space="preserve"><value>לתקן את BIOS העלאת נקודות כאשר CD buffer DMA גדול יותר ממגזר אחד, תיקון קול מושחת בשלב בונוס של אמנות של לחימה.זהו האקר, והתנהגות חומרה אמיתית אינה מאומתת.</value></data>
   <data name="Emulation.Snk.Help.SkipCDLoading" xml:space="preserve"><value>קדימה CD מסך טעינה</value></data>
   <data name="Emulation.Snk.Value.ThirdOrderInterpolation" xml:space="preserve"><value>התפוצצות הזמנה שלישית (4 נקודות)</value></data>
-  <data name="Emulation.Emulator.race.Description" xml:space="preserve"><value>מטביע את הקונסולות המונוכרות והצבע.</value></data>
-  <data name="Emulation.Emulator.mednafen_ngp.Description" xml:space="preserve"><value>מטביע את הקונסולות המונוכרות והצבע.</value></data>
+  <data name="Emulation.Emulator.race.Description"><value>מדמה את Neo Geo Pocket ואת Neo Geo Pocket Color.</value></data>
+  <data name="Emulation.Emulator.mednafen_ngp.Description" xml:space="preserve"><value>מדמה את Neo Geo Pocket ואת Neo Geo Pocket Color.</value></data>
   <data name="Emulation.Snk.Help.Language" xml:space="preserve"><value>בחרו את השפה בשימוש על ידי משחקים תואמים.</value></data>
   <data name="Emulation.Snk.Setting.Frameskip" xml:space="preserve"><value>מסגרת וידאו לדלג</value></data>
   <data name="Emulation.Snk.Help.Frameskip" xml:space="preserve"><value>דלג כמה מסגרות וידאו כאשר הביצועים אינם מספיקים, כדי להפחית את ההפרעות בפלט אודיו.</value></data>

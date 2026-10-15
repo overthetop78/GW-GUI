@@ -7,9 +7,9 @@
   <data name="Emulation.Bandai.Video.Native" xml:space="preserve"><value>コンソールビデオ</value></data>
   <data name="Emulation.Bandai.Audio.Native" xml:space="preserve"><value>コンソールサウンド</value></data>
   <data name="Emulation.Bandai.Controls.Native" xml:space="preserve"><value>コンソール制御</value></data>
-  <data name="Emulation.Emulator.mednafen_wswan.Description" xml:space="preserve"><value>WonderSwan コンソールをエミュレートします。</value></data>
-  <data name="Emulation.Emulator.playdiaemu.Description" xml:space="preserve"><value>PlaydiaEmu で再生する Playdia ディスク再生</value></data>
-  <data name="Emulation.Emulator.tamalibretro.Description" xml:space="preserve"><value>玉ノッチ P1 TamaLIBretro とエミュレーション。</value></data>
+  <data name="Emulation.Emulator.mednafen_wswan.Description"><value>WonderSwan をエミュレートします。</value></data>
+  <data name="Emulation.Emulator.playdiaemu.Description"><value>PlaydiaEmu を使用して Playdia のディスクを再生します。</value></data>
+  <data name="Emulation.Emulator.tamalibretro.Description"><value>TamaLIBretro を使用して Tamagotchi P1 をエミュレートします。</value></data>
   <data name="Emulation.Bandai.Playdia.Hle" xml:space="preserve"><value>プロセッサをエミュレートすることなくディスクをコアで再生します。</value></data>
   <data name="Emulation.Bandai.Memory.Display" xml:space="preserve"><value>ディスプレイメモリ</value></data>
   <data name="Emulation.Bandai.Setting.DisplayRotation" xml:space="preserve"><value>ディスプレイの向き</value></data>

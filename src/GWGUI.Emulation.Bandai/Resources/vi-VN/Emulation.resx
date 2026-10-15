@@ -7,9 +7,9 @@
   <data name="Emulation.Bandai.Video.Native" xml:space="preserve"><value>Video bàn điều khiển</value></data>
   <data name="Emulation.Bandai.Audio.Native" xml:space="preserve"><value>Âm thanh bàn điều khiển</value></data>
   <data name="Emulation.Bandai.Controls.Native" xml:space="preserve"><value>Điều khiển bàn điều khiển</value></data>
-  <data name="Emulation.Emulator.mednafen_wswan.Description" xml:space="preserve"><value>Hãy đặt các bàn điều khiển WonderSwan.</value></data>
-  <data name="Emulation.Emulator.playdiaemu.Description" xml:space="preserve"><value>Playdia đĩa phát lại bằng PlaydiaEmu.</value></data>
-  <data name="Emulation.Emulator.tamalibretro.Description" xml:space="preserve"><value>Ta- ri- tiName P1 Liên lạc với TamaLIBretro.</value></data>
+  <data name="Emulation.Emulator.mednafen_wswan.Description"><value>Giả lập WonderSwan.</value></data>
+  <data name="Emulation.Emulator.playdiaemu.Description"><value>Phát nội dung đĩa Playdia bằng PlaydiaEmu.</value></data>
+  <data name="Emulation.Emulator.tamalibretro.Description"><value>Giả lập Tamagotchi P1 bằng TamaLIBretro.</value></data>
   <data name="Emulation.Bandai.Playdia.Hle" xml:space="preserve"><value>Cái lõi này chơi đĩa mà không cần nâng cấp bộ xử lý.</value></data>
   <data name="Emulation.Bandai.Memory.Display" xml:space="preserve"><value>Hiển thị bộ nhớ</value></data>
   <data name="Emulation.Bandai.Setting.DisplayRotation" xml:space="preserve"><value>Hiện hướng</value></data>

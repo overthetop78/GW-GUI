@@ -12,20 +12,20 @@
   <data name="Emulation.Snk.System.Native" xml:space="preserve"><value>ألف - أطر النظام</value></data>
   <data name="Emulation.Snk.Firmware.SystemBios" xml:space="preserve"><value>النظام BIOS</value></data>
   <data name="Emulation.Snk.Firmware.AuxiliaryBios" xml:space="preserve"><value>مساعدة BIOS</value></data>
-  <data name="Emulation.Emulator.neocd.Description" xml:space="preserve"><value>Emulates Neo Geo CD ورقم &amp;quot; نيو جي &amp;quot; CDZ.</value></data>
-  <data name="Emulation.Emulator.mame2016.Description" xml:space="preserve"><value>صيغ متوافقة SNK أنظمة</value></data>
-  <data name="Emulation.Emulator.mame2010.Description" xml:space="preserve"><value>صيغ متوافقة SNK أنظمة</value></data>
-  <data name="Emulation.Emulator.mame2003.Description" xml:space="preserve"><value>صيغ متوافقة SNK أنظمة</value></data>
-  <data name="Emulation.Emulator.mame2015.Description" xml:space="preserve"><value>صيغ متوافقة SNK أنظمة</value></data>
-  <data name="Emulation.Emulator.fbalpha2012.Description" xml:space="preserve"><value>صيغ متوافقة SNK أنظمة</value></data>
-  <data name="Emulation.Emulator.fbneo.Description" xml:space="preserve"><value>صيغ متوافقة SNK أنظمة</value></data>
-  <data name="Emulation.Emulator.hbmame.Description" xml:space="preserve"><value>صيغ متوافقة SNK أنظمة</value></data>
-  <data name="Emulation.Emulator.mame2003_plus.Description" xml:space="preserve"><value>صيغ متوافقة SNK أنظمة</value></data>
-  <data name="Emulation.Emulator.mame2000.Description" xml:space="preserve"><value>صيغ متوافقة SNK أنظمة</value></data>
-  <data name="Emulation.Emulator.fbalpha.Description" xml:space="preserve"><value>صيغ متوافقة SNK أنظمة</value></data>
-  <data name="Emulation.Emulator.fbalpha2012_neogeo.Description" xml:space="preserve"><value>صيغ متوافقة SNK أنظمة</value></data>
-  <data name="Emulation.Emulator.geolith.Description" xml:space="preserve"><value>إميريس نيو جي CD أنظمة</value></data>
-  <data name="Emulation.Emulator.mame.Description" xml:space="preserve"><value>صيغ متوافقة SNK أنظمة</value></data>
+  <data name="Emulation.Emulator.neocd.Description"><value>يحاكي Neo Geo CD وNeo Geo CDZ.</value></data>
+  <data name="Emulation.Emulator.mame2016.Description"><value>يحاكي أنظمة SNK المتوافقة.</value></data>
+  <data name="Emulation.Emulator.mame2010.Description" xml:space="preserve"><value>يحاكي أنظمة SNK المتوافقة.</value></data>
+  <data name="Emulation.Emulator.mame2003.Description" xml:space="preserve"><value>يحاكي أنظمة SNK المتوافقة.</value></data>
+  <data name="Emulation.Emulator.mame2015.Description" xml:space="preserve"><value>يحاكي أنظمة SNK المتوافقة.</value></data>
+  <data name="Emulation.Emulator.fbalpha2012.Description" xml:space="preserve"><value>يحاكي أنظمة SNK المتوافقة.</value></data>
+  <data name="Emulation.Emulator.fbneo.Description" xml:space="preserve"><value>يحاكي أنظمة SNK المتوافقة.</value></data>
+  <data name="Emulation.Emulator.hbmame.Description" xml:space="preserve"><value>يحاكي أنظمة SNK المتوافقة.</value></data>
+  <data name="Emulation.Emulator.mame2003_plus.Description" xml:space="preserve"><value>يحاكي أنظمة SNK المتوافقة.</value></data>
+  <data name="Emulation.Emulator.mame2000.Description" xml:space="preserve"><value>يحاكي أنظمة SNK المتوافقة.</value></data>
+  <data name="Emulation.Emulator.fbalpha.Description" xml:space="preserve"><value>يحاكي أنظمة SNK المتوافقة.</value></data>
+  <data name="Emulation.Emulator.fbalpha2012_neogeo.Description" xml:space="preserve"><value>يحاكي أنظمة SNK المتوافقة.</value></data>
+  <data name="Emulation.Emulator.geolith.Description"><value>يحاكي أنظمة Neo Geo التي تستخدم خراطيش الألعاب وأقراص CD.</value></data>
+  <data name="Emulation.Emulator.mame.Description" xml:space="preserve"><value>يحاكي أنظمة SNK المتوافقة.</value></data>
   <data name="Emulation.Snk.Setting.Language" xml:space="preserve"><value>اللغة</value></data>
   <data name="Emulation.Snk.Value.Japanese" xml:space="preserve"><value>اللغة اليابانية</value></data>
   <data name="Emulation.Snk.Value.English" xml:space="preserve"><value>اللغة الإنكليزية</value></data>
@@ -247,8 +247,8 @@
   <data name="Emulation.Snk.Help.CDDMALengthLimit" xml:space="preserve"><value>صحيح BIOS مُلصقات تحميل عندما CD عازل DMA أكبر من قطاع واحد، يصلح الصوت الفاسد في مرحلة "فن القتال" المكافأة، هذا قرصان، و سلوك الأجهزة الحقيقي غير مؤكد</value></data>
   <data name="Emulation.Snk.Help.SkipCDLoading" xml:space="preserve"><value>بسرعة CD شاشات التحميل</value></data>
   <data name="Emulation.Snk.Value.ThirdOrderInterpolation" xml:space="preserve"><value>الإنتربول من الدرجة الثالثة )٤ نقاط(</value></data>
-  <data name="Emulation.Emulator.race.Description" xml:space="preserve"><value>يُمْكِنُ الأوّلَ و النسيجِ المُحتَلِمِ.</value></data>
-  <data name="Emulation.Emulator.mednafen_ngp.Description" xml:space="preserve"><value>يُمْكِنُ الأوّلَ و النسيجِ المُحتَلِمِ.</value></data>
+  <data name="Emulation.Emulator.race.Description"><value>يحاكي Neo Geo Pocket وNeo Geo Pocket Color.</value></data>
+  <data name="Emulation.Emulator.mednafen_ngp.Description" xml:space="preserve"><value>يحاكي Neo Geo Pocket وNeo Geo Pocket Color.</value></data>
   <data name="Emulation.Snk.Help.Language" xml:space="preserve"><value>إختار اللغة المستخدمة من خلال ألعاب متوافقة</value></data>
   <data name="Emulation.Snk.Setting.Frameskip" xml:space="preserve"><value>إطار فيديو يتخطى</value></data>
   <data name="Emulation.Snk.Help.Frameskip" xml:space="preserve"><value>تزلج بعض أُطر الفيديو عندما يكون الأداء غير كافٍ، لتقليل حالات انقطاع الإنتاج الصوتي.</value></data>

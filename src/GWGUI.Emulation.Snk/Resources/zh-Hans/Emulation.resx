@@ -12,20 +12,20 @@
   <data name="Emulation.Snk.System.Native" xml:space="preserve"><value>系统设置</value></data>
   <data name="Emulation.Snk.Firmware.SystemBios" xml:space="preserve"><value>系统 BIOS</value></data>
   <data name="Emulation.Snk.Firmware.AuxiliaryBios" xml:space="preserve"><value>辅助 BIOS</value></data>
-  <data name="Emulation.Emulator.neocd.Description" xml:space="preserve"><value>模拟新地理学 CD 和 Neo Geo 数据 CDZ.</value></data>
-  <data name="Emulation.Emulator.mame2016.Description" xml:space="preserve"><value>模拟兼容 SNK 系统。</value></data>
-  <data name="Emulation.Emulator.mame2010.Description" xml:space="preserve"><value>模拟兼容 SNK 系统。</value></data>
-  <data name="Emulation.Emulator.mame2003.Description" xml:space="preserve"><value>模拟兼容 SNK 系统。</value></data>
-  <data name="Emulation.Emulator.mame2015.Description" xml:space="preserve"><value>模拟兼容 SNK 系统。</value></data>
-  <data name="Emulation.Emulator.fbalpha2012.Description" xml:space="preserve"><value>模拟兼容 SNK 系统。</value></data>
-  <data name="Emulation.Emulator.fbneo.Description" xml:space="preserve"><value>模拟兼容 SNK 系统。</value></data>
-  <data name="Emulation.Emulator.hbmame.Description" xml:space="preserve"><value>模拟兼容 SNK 系统。</value></data>
-  <data name="Emulation.Emulator.mame2003_plus.Description" xml:space="preserve"><value>模拟兼容 SNK 系统。</value></data>
-  <data name="Emulation.Emulator.mame2000.Description" xml:space="preserve"><value>模拟兼容 SNK 系统。</value></data>
-  <data name="Emulation.Emulator.fbalpha.Description" xml:space="preserve"><value>模拟兼容 SNK 系统。</value></data>
-  <data name="Emulation.Emulator.fbalpha2012_neogeo.Description" xml:space="preserve"><value>模拟兼容 SNK 系统。</value></data>
-  <data name="Emulation.Emulator.geolith.Description" xml:space="preserve"><value>模拟 Neo Geo 弹匣和 CD 系统。</value></data>
-  <data name="Emulation.Emulator.mame.Description" xml:space="preserve"><value>模拟兼容 SNK 系统。</value></data>
+  <data name="Emulation.Emulator.neocd.Description"><value>模拟 Neo Geo CD 和 Neo Geo CDZ。</value></data>
+  <data name="Emulation.Emulator.mame2016.Description"><value>模拟兼容的 SNK 系统。</value></data>
+  <data name="Emulation.Emulator.mame2010.Description" xml:space="preserve"><value>模拟兼容的 SNK 系统。</value></data>
+  <data name="Emulation.Emulator.mame2003.Description" xml:space="preserve"><value>模拟兼容的 SNK 系统。</value></data>
+  <data name="Emulation.Emulator.mame2015.Description" xml:space="preserve"><value>模拟兼容的 SNK 系统。</value></data>
+  <data name="Emulation.Emulator.fbalpha2012.Description" xml:space="preserve"><value>模拟兼容的 SNK 系统。</value></data>
+  <data name="Emulation.Emulator.fbneo.Description" xml:space="preserve"><value>模拟兼容的 SNK 系统。</value></data>
+  <data name="Emulation.Emulator.hbmame.Description" xml:space="preserve"><value>模拟兼容的 SNK 系统。</value></data>
+  <data name="Emulation.Emulator.mame2003_plus.Description" xml:space="preserve"><value>模拟兼容的 SNK 系统。</value></data>
+  <data name="Emulation.Emulator.mame2000.Description" xml:space="preserve"><value>模拟兼容的 SNK 系统。</value></data>
+  <data name="Emulation.Emulator.fbalpha.Description" xml:space="preserve"><value>模拟兼容的 SNK 系统。</value></data>
+  <data name="Emulation.Emulator.fbalpha2012_neogeo.Description" xml:space="preserve"><value>模拟兼容的 SNK 系统。</value></data>
+  <data name="Emulation.Emulator.geolith.Description"><value>模拟使用游戏卡带和 CD 的 Neo Geo 系统。</value></data>
+  <data name="Emulation.Emulator.mame.Description" xml:space="preserve"><value>模拟兼容的 SNK 系统。</value></data>
   <data name="Emulation.Snk.Setting.Language" xml:space="preserve"><value>语言</value></data>
   <data name="Emulation.Snk.Value.Japanese" xml:space="preserve"><value>日语</value></data>
   <data name="Emulation.Snk.Value.English" xml:space="preserve"><value>英语</value></data>
@@ -247,8 +247,8 @@
   <data name="Emulation.Snk.Help.CDDMALengthLimit" xml:space="preserve"><value>更正 BIOS 上传指针当一个 CD 缓冲 DMA 大于一个区, 修复了“ 战斗艺术” 奖赏舞台上损坏的声音。 这是一个黑客, 而真正的硬件行为是未经证实的 。</value></data>
   <data name="Emulation.Snk.Help.SkipCDLoading" xml:space="preserve"><value>快速前进通过 CD 装入屏幕</value></data>
   <data name="Emulation.Snk.Value.ThirdOrderInterpolation" xml:space="preserve"><value>三等插值( 4分)</value></data>
-  <data name="Emulation.Emulator.race.Description" xml:space="preserve"><value>模拟单色和彩色手持控制台。</value></data>
-  <data name="Emulation.Emulator.mednafen_ngp.Description" xml:space="preserve"><value>模拟单色和彩色手持控制台。</value></data>
+  <data name="Emulation.Emulator.race.Description"><value>模拟 Neo Geo Pocket 和 Neo Geo Pocket Color。</value></data>
+  <data name="Emulation.Emulator.mednafen_ngp.Description" xml:space="preserve"><value>模拟 Neo Geo Pocket 和 Neo Geo Pocket Color。</value></data>
   <data name="Emulation.Snk.Help.Language" xml:space="preserve"><value>选择兼容游戏所使用的语言。</value></data>
   <data name="Emulation.Snk.Setting.Frameskip" xml:space="preserve"><value>视频帧跳过</value></data>
   <data name="Emulation.Snk.Help.Frameskip" xml:space="preserve"><value>当性能不足时跳过一些视频帧,以减少音频输出中断.</value></data>

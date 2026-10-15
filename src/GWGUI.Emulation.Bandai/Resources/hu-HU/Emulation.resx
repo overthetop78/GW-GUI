@@ -7,9 +7,9 @@
   <data name="Emulation.Bandai.Video.Native" xml:space="preserve"><value>Konzol videó</value></data>
   <data name="Emulation.Bandai.Audio.Native" xml:space="preserve"><value>Konzol hang</value></data>
   <data name="Emulation.Bandai.Controls.Native" xml:space="preserve"><value>Konzolok kezelőszerve</value></data>
-  <data name="Emulation.Emulator.mednafen_wswan.Description" xml:space="preserve"><value>Emulálja a csodahattyú konzolokat.</value></data>
-  <data name="Emulation.Emulator.playdiaemu.Description" xml:space="preserve"><value>PlaydiaEmu lejátszás.</value></data>
-  <data name="Emulation.Emulator.tamalibretro.Description" xml:space="preserve"><value>Tamagotchi P1 Emuláció a Tamali Bretróval.</value></data>
+  <data name="Emulation.Emulator.mednafen_wswan.Description"><value>WonderSwan rendszereket emulál.</value></data>
+  <data name="Emulation.Emulator.playdiaemu.Description"><value>Playdia lemezeket játszik le PlaydiaEmu segítségével.</value></data>
+  <data name="Emulation.Emulator.tamalibretro.Description"><value>Tamagotchi P1 eszközt emulál TamaLIBretro segítségével.</value></data>
   <data name="Emulation.Bandai.Playdia.Hle" xml:space="preserve"><value>Ez a mag lemezeket játszik anélkül, hogy a processzorokat utánozná.</value></data>
   <data name="Emulation.Bandai.Memory.Display" xml:space="preserve"><value>Memória megjelenítése</value></data>
   <data name="Emulation.Bandai.Setting.DisplayRotation" xml:space="preserve"><value>A kijelző iránya</value></data>

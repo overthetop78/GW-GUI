@@ -4,8 +4,8 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.applewin.Description" xml:space="preserve"><value>Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple Apple II AppleWin ile tebrik.</value></data>
-  <data name="Emulation.Emulator.minivmac.Description" xml:space="preserve"><value>Macintosh II Mini vMac ile tebrik.</value></data>
+  <data name="Emulation.Emulator.applewin.Description"><value>AppleWin kullanarak Apple II bilgisayarlarını emüle eder.</value></data>
+  <data name="Emulation.Emulator.minivmac.Description"><value>Mini vMac kullanarak Macintosh II bilgisayarlarını emüle eder.</value></data>
   <data name="Emulation.Apple.Option.Model" xml:space="preserve"><value>Machine variable</value></data>
   <data name="Emulation.Apple.Video.Native" xml:space="preserve"><value>Yerli video çıktı</value></data>
   <data name="Emulation.Apple.Expansion" xml:space="preserve"><value>Genişleme kartları</value></data>

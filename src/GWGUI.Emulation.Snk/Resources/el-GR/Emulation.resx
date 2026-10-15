@@ -12,20 +12,20 @@
   <data name="Emulation.Snk.System.Native" xml:space="preserve"><value>⁇  συστήματος</value></data>
   <data name="Emulation.Snk.Firmware.SystemBios" xml:space="preserve"><value>Σύστημα BIOS</value></data>
   <data name="Emulation.Snk.Firmware.AuxiliaryBios" xml:space="preserve"><value>Βοηθητικό BIOS</value></data>
-  <data name="Emulation.Emulator.neocd.Description" xml:space="preserve"><value>Προσομοιάζει Neo Geo CD και Neo Geo CDZ.</value></data>
-  <data name="Emulation.Emulator.mame2016.Description" xml:space="preserve"><value>Προσομοιάζει συμβατά SNK συστήματα.</value></data>
-  <data name="Emulation.Emulator.mame2010.Description" xml:space="preserve"><value>Προσομοιάζει συμβατά SNK συστήματα.</value></data>
-  <data name="Emulation.Emulator.mame2003.Description" xml:space="preserve"><value>Προσομοιάζει συμβατά SNK συστήματα.</value></data>
-  <data name="Emulation.Emulator.mame2015.Description" xml:space="preserve"><value>Προσομοιάζει συμβατά SNK συστήματα.</value></data>
-  <data name="Emulation.Emulator.fbalpha2012.Description" xml:space="preserve"><value>Προσομοιάζει συμβατά SNK συστήματα.</value></data>
-  <data name="Emulation.Emulator.fbneo.Description" xml:space="preserve"><value>Προσομοιάζει συμβατά SNK συστήματα.</value></data>
-  <data name="Emulation.Emulator.hbmame.Description" xml:space="preserve"><value>Προσομοιάζει συμβατά SNK συστήματα.</value></data>
-  <data name="Emulation.Emulator.mame2003_plus.Description" xml:space="preserve"><value>Προσομοιάζει συμβατά SNK συστήματα.</value></data>
-  <data name="Emulation.Emulator.mame2000.Description" xml:space="preserve"><value>Προσομοιάζει συμβατά SNK συστήματα.</value></data>
-  <data name="Emulation.Emulator.fbalpha.Description" xml:space="preserve"><value>Προσομοιάζει συμβατά SNK συστήματα.</value></data>
-  <data name="Emulation.Emulator.fbalpha2012_neogeo.Description" xml:space="preserve"><value>Προσομοιάζει συμβατά SNK συστήματα.</value></data>
-  <data name="Emulation.Emulator.geolith.Description" xml:space="preserve"><value>Προσομοιάζει Neo Geo φυσίγγιο και CD συστήματα.</value></data>
-  <data name="Emulation.Emulator.mame.Description" xml:space="preserve"><value>Προσομοιάζει συμβατά SNK συστήματα.</value></data>
+  <data name="Emulation.Emulator.neocd.Description"><value>Εξομοιώνει Neo Geo CD και Neo Geo CDZ.</value></data>
+  <data name="Emulation.Emulator.mame2016.Description"><value>Εξομοιώνει συμβατά συστήματα SNK.</value></data>
+  <data name="Emulation.Emulator.mame2010.Description" xml:space="preserve"><value>Εξομοιώνει συμβατά συστήματα SNK.</value></data>
+  <data name="Emulation.Emulator.mame2003.Description" xml:space="preserve"><value>Εξομοιώνει συμβατά συστήματα SNK.</value></data>
+  <data name="Emulation.Emulator.mame2015.Description" xml:space="preserve"><value>Εξομοιώνει συμβατά συστήματα SNK.</value></data>
+  <data name="Emulation.Emulator.fbalpha2012.Description" xml:space="preserve"><value>Εξομοιώνει συμβατά συστήματα SNK.</value></data>
+  <data name="Emulation.Emulator.fbneo.Description" xml:space="preserve"><value>Εξομοιώνει συμβατά συστήματα SNK.</value></data>
+  <data name="Emulation.Emulator.hbmame.Description" xml:space="preserve"><value>Εξομοιώνει συμβατά συστήματα SNK.</value></data>
+  <data name="Emulation.Emulator.mame2003_plus.Description" xml:space="preserve"><value>Εξομοιώνει συμβατά συστήματα SNK.</value></data>
+  <data name="Emulation.Emulator.mame2000.Description" xml:space="preserve"><value>Εξομοιώνει συμβατά συστήματα SNK.</value></data>
+  <data name="Emulation.Emulator.fbalpha.Description" xml:space="preserve"><value>Εξομοιώνει συμβατά συστήματα SNK.</value></data>
+  <data name="Emulation.Emulator.fbalpha2012_neogeo.Description" xml:space="preserve"><value>Εξομοιώνει συμβατά συστήματα SNK.</value></data>
+  <data name="Emulation.Emulator.geolith.Description"><value>Εξομοιώνει συστήματα Neo Geo που χρησιμοποιούν κασέτες παιχνιδιών και CD.</value></data>
+  <data name="Emulation.Emulator.mame.Description" xml:space="preserve"><value>Εξομοιώνει συμβατά συστήματα SNK.</value></data>
   <data name="Emulation.Snk.Setting.Language" xml:space="preserve"><value>Γλώσσα</value></data>
   <data name="Emulation.Snk.Value.Japanese" xml:space="preserve"><value>Ιαπωνική γλώσσα</value></data>
   <data name="Emulation.Snk.Value.English" xml:space="preserve"><value>Αγγλική γλώσσα</value></data>
@@ -247,8 +247,8 @@
   <data name="Emulation.Snk.Help.CDDMALengthLimit" xml:space="preserve"><value>Διόρθωση BIOS αποστολή δεικτών όταν a CD ⁇ ιαλύτης DMA είναι μεγαλύτερο από έναν τομέα, τη διόρθωση αλλοιωμένου ήχου στο στάδιο μπόνους της Τέχνης της καταπολέμησης. Αυτό είναι ένα hack, και η πραγματική συμπεριφορά υλικού είναι ανεπιβεβαίωτη.</value></data>
   <data name="Emulation.Snk.Help.SkipCDLoading" xml:space="preserve"><value>Πρόσω ολοταχώς CD Οθόνες φόρτωσης</value></data>
   <data name="Emulation.Snk.Value.ThirdOrderInterpolation" xml:space="preserve"><value>Τριτοταγής παρεμβολή (4 βαθμοί)</value></data>
-  <data name="Emulation.Emulator.race.Description" xml:space="preserve"><value>Προσομοιάζει τις μονόχρωμες και έγχρωμες κονσόλες χειρός.</value></data>
-  <data name="Emulation.Emulator.mednafen_ngp.Description" xml:space="preserve"><value>Προσομοιάζει τις μονόχρωμες και έγχρωμες κονσόλες χειρός.</value></data>
+  <data name="Emulation.Emulator.race.Description"><value>Εξομοιώνει Neo Geo Pocket και Neo Geo Pocket Color.</value></data>
+  <data name="Emulation.Emulator.mednafen_ngp.Description" xml:space="preserve"><value>Εξομοιώνει Neo Geo Pocket και Neo Geo Pocket Color.</value></data>
   <data name="Emulation.Snk.Help.Language" xml:space="preserve"><value>Επιλέξτε τη γλώσσα που χρησιμοποιείται από συμβατά παιχνίδια.</value></data>
   <data name="Emulation.Snk.Setting.Frameskip" xml:space="preserve"><value>Παράλειψη πλαισίου βίντεο</value></data>
   <data name="Emulation.Snk.Help.Frameskip" xml:space="preserve"><value>Παράλειψη ορισμένων πλαισίων βίντεο όταν η απόδοση είναι ανεπαρκής, για να μειώσει τις διακοπές στην έξοδο ήχου.</value></data>

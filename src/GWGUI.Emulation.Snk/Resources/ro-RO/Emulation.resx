@@ -12,20 +12,20 @@
   <data name="Emulation.Snk.System.Native" xml:space="preserve"><value>Configurările sistemului</value></data>
   <data name="Emulation.Snk.Firmware.SystemBios" xml:space="preserve"><value>Sistem BIOS</value></data>
   <data name="Emulation.Snk.Firmware.AuxiliaryBios" xml:space="preserve"><value>Auxiliar BIOS</value></data>
-  <data name="Emulation.Emulator.neocd.Description" xml:space="preserve"><value>Emulează Neo Geo CD şi Neo Geo CDZ.</value></data>
-  <data name="Emulation.Emulator.mame2016.Description" xml:space="preserve"><value>Emulează compatibil SNK sisteme.</value></data>
-  <data name="Emulation.Emulator.mame2010.Description" xml:space="preserve"><value>Emulează compatibil SNK sisteme.</value></data>
-  <data name="Emulation.Emulator.mame2003.Description" xml:space="preserve"><value>Emulează compatibil SNK sisteme.</value></data>
-  <data name="Emulation.Emulator.mame2015.Description" xml:space="preserve"><value>Emulează compatibil SNK sisteme.</value></data>
-  <data name="Emulation.Emulator.fbalpha2012.Description" xml:space="preserve"><value>Emulează compatibil SNK sisteme.</value></data>
-  <data name="Emulation.Emulator.fbneo.Description" xml:space="preserve"><value>Emulează compatibil SNK sisteme.</value></data>
-  <data name="Emulation.Emulator.hbmame.Description" xml:space="preserve"><value>Emulează compatibil SNK sisteme.</value></data>
-  <data name="Emulation.Emulator.mame2003_plus.Description" xml:space="preserve"><value>Emulează compatibil SNK sisteme.</value></data>
-  <data name="Emulation.Emulator.mame2000.Description" xml:space="preserve"><value>Emulează compatibil SNK sisteme.</value></data>
-  <data name="Emulation.Emulator.fbalpha.Description" xml:space="preserve"><value>Emulează compatibil SNK sisteme.</value></data>
-  <data name="Emulation.Emulator.fbalpha2012_neogeo.Description" xml:space="preserve"><value>Emulează compatibil SNK sisteme.</value></data>
-  <data name="Emulation.Emulator.geolith.Description" xml:space="preserve"><value>Emulează cartuşul Neo Geo şi CD sisteme.</value></data>
-  <data name="Emulation.Emulator.mame.Description" xml:space="preserve"><value>Emulează compatibil SNK sisteme.</value></data>
+  <data name="Emulation.Emulator.neocd.Description"><value>Emulează Neo Geo CD și Neo Geo CDZ.</value></data>
+  <data name="Emulation.Emulator.mame2016.Description"><value>Emulează sisteme SNK compatibile.</value></data>
+  <data name="Emulation.Emulator.mame2010.Description" xml:space="preserve"><value>Emulează sisteme SNK compatibile.</value></data>
+  <data name="Emulation.Emulator.mame2003.Description" xml:space="preserve"><value>Emulează sisteme SNK compatibile.</value></data>
+  <data name="Emulation.Emulator.mame2015.Description" xml:space="preserve"><value>Emulează sisteme SNK compatibile.</value></data>
+  <data name="Emulation.Emulator.fbalpha2012.Description" xml:space="preserve"><value>Emulează sisteme SNK compatibile.</value></data>
+  <data name="Emulation.Emulator.fbneo.Description" xml:space="preserve"><value>Emulează sisteme SNK compatibile.</value></data>
+  <data name="Emulation.Emulator.hbmame.Description" xml:space="preserve"><value>Emulează sisteme SNK compatibile.</value></data>
+  <data name="Emulation.Emulator.mame2003_plus.Description" xml:space="preserve"><value>Emulează sisteme SNK compatibile.</value></data>
+  <data name="Emulation.Emulator.mame2000.Description" xml:space="preserve"><value>Emulează sisteme SNK compatibile.</value></data>
+  <data name="Emulation.Emulator.fbalpha.Description" xml:space="preserve"><value>Emulează sisteme SNK compatibile.</value></data>
+  <data name="Emulation.Emulator.fbalpha2012_neogeo.Description" xml:space="preserve"><value>Emulează sisteme SNK compatibile.</value></data>
+  <data name="Emulation.Emulator.geolith.Description"><value>Emulează sisteme Neo Geo cu cartușe de jocuri și CD-uri.</value></data>
+  <data name="Emulation.Emulator.mame.Description" xml:space="preserve"><value>Emulează sisteme SNK compatibile.</value></data>
   <data name="Emulation.Snk.Setting.Language" xml:space="preserve"><value>Limba</value></data>
   <data name="Emulation.Snk.Value.Japanese" xml:space="preserve"><value>Limba japoneză</value></data>
   <data name="Emulation.Snk.Value.English" xml:space="preserve"><value>Limba engleză</value></data>
@@ -247,8 +247,8 @@
   <data name="Emulation.Snk.Help.CDDMALengthLimit" xml:space="preserve"><value>Corectează BIOS încărcați indicii atunci când o CD tampon DMA este mai mare decât un singur sector, fixarea sunet corupt în stadiul bonus Art of Fighting lui. Acesta este un hack, și comportamentul hardware real este neconfirmat.</value></data>
   <data name="Emulation.Snk.Help.SkipCDLoading" xml:space="preserve"><value>Rapid-înainte prin CD ecrane de încărcare</value></data>
   <data name="Emulation.Snk.Value.ThirdOrderInterpolation" xml:space="preserve"><value>interpolare de ordinul al treilea (4 puncte)</value></data>
-  <data name="Emulation.Emulator.race.Description" xml:space="preserve"><value>Emulează consolele cu monocrom și cu culori.</value></data>
-  <data name="Emulation.Emulator.mednafen_ngp.Description" xml:space="preserve"><value>Emulează consolele cu monocrom și cu culori.</value></data>
+  <data name="Emulation.Emulator.race.Description"><value>Emulează Neo Geo Pocket și Neo Geo Pocket Color.</value></data>
+  <data name="Emulation.Emulator.mednafen_ngp.Description" xml:space="preserve"><value>Emulează Neo Geo Pocket și Neo Geo Pocket Color.</value></data>
   <data name="Emulation.Snk.Help.Language" xml:space="preserve"><value>Selectaţi limba utilizată de jocuri compatibile.</value></data>
   <data name="Emulation.Snk.Setting.Frameskip" xml:space="preserve"><value>Sare peste cadrul video</value></data>
   <data name="Emulation.Snk.Help.Frameskip" xml:space="preserve"><value>Săriți peste unele cadre video atunci când performanța este insuficientă, pentru a reduce întreruperile în ieșire audio.</value></data>

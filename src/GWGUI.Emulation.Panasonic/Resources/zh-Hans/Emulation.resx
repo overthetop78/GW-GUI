@@ -4,7 +4,7 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.opera.Description" xml:space="preserve"><value>电子游戏模拟( 3)DO) (中文(简体) ).</value></data>
+  <data name="Emulation.Emulator.opera.Description"><value>模拟 3DO。</value></data>
   <data name="Emulation.Panasonic.Memory.Capacity" xml:space="preserve"><value>模拟内存容量</value></data>
   <data name="Emulation.Panasonic.Video.Mode" xml:space="preserve"><value>视频模式</value></data>
   <data name="Emulation.Panasonic.Video.PixelFormat" xml:space="preserve"><value>像素颜色格式</value></data>

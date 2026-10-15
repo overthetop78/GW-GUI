@@ -7,9 +7,9 @@
   <data name="Emulation.Bandai.Video.Native" xml:space="preserve"><value>Consolă video</value></data>
   <data name="Emulation.Bandai.Audio.Native" xml:space="preserve"><value>Sunet de consolă</value></data>
   <data name="Emulation.Bandai.Controls.Native" xml:space="preserve"><value>Controalele consolei</value></data>
-  <data name="Emulation.Emulator.mednafen_wswan.Description" xml:space="preserve"><value>Emulează consolele WonderSwan.</value></data>
-  <data name="Emulation.Emulator.playdiaemu.Description" xml:space="preserve"><value>Redare disc Playdia cu PlaydiaEmu.</value></data>
-  <data name="Emulation.Emulator.tamalibretro.Description" xml:space="preserve"><value>TamagotchiCity in California USA P1 emulare cu TamaliBretro.</value></data>
+  <data name="Emulation.Emulator.mednafen_wswan.Description"><value>Emulează WonderSwan.</value></data>
+  <data name="Emulation.Emulator.playdiaemu.Description"><value>Redă discuri Playdia folosind PlaydiaEmu.</value></data>
+  <data name="Emulation.Emulator.tamalibretro.Description"><value>Emulează Tamagotchi P1 folosind TamaLIBretro.</value></data>
   <data name="Emulation.Bandai.Playdia.Hle" xml:space="preserve"><value>Acest nucleu joacă discuri fără a emula procesoarele.</value></data>
   <data name="Emulation.Bandai.Memory.Display" xml:space="preserve"><value>Memorie afișată</value></data>
   <data name="Emulation.Bandai.Setting.DisplayRotation" xml:space="preserve"><value>Orientarea ecranului</value></data>

@@ -7,9 +7,9 @@
   <data name="Emulation.Bandai.Video.Native" xml:space="preserve"><value>Konsola wideo</value></data>
   <data name="Emulation.Bandai.Audio.Native" xml:space="preserve"><value>Dźwięk konsoli</value></data>
   <data name="Emulation.Bandai.Controls.Native" xml:space="preserve"><value>Sterowanie konsolą</value></data>
-  <data name="Emulation.Emulator.mednafen_wswan.Description" xml:space="preserve"><value>Emuluje konsole WonderSwan.</value></data>
-  <data name="Emulation.Emulator.playdiaemu.Description" xml:space="preserve"><value>Playdia odtwarzanie płyt z PlaydiaEmu.</value></data>
-  <data name="Emulation.Emulator.tamalibretro.Description" xml:space="preserve"><value>Tamagotchi P1 emulacja z TamaLIBretro.</value></data>
+  <data name="Emulation.Emulator.mednafen_wswan.Description"><value>Emuluje WonderSwan.</value></data>
+  <data name="Emulation.Emulator.playdiaemu.Description"><value>Odtwarza płyty Playdia za pomocą emulatora PlaydiaEmu.</value></data>
+  <data name="Emulation.Emulator.tamalibretro.Description"><value>Emuluje Tamagotchi P1 za pomocą emulatora TamaLIBretro.</value></data>
   <data name="Emulation.Bandai.Playdia.Hle" xml:space="preserve"><value>Rdzeń ten gra na dyskach bez emulowania procesorów.</value></data>
   <data name="Emulation.Bandai.Memory.Display" xml:space="preserve"><value>Wyświetl pamięć</value></data>
   <data name="Emulation.Bandai.Setting.DisplayRotation" xml:space="preserve"><value>Orientacja wyświetlacza</value></data>

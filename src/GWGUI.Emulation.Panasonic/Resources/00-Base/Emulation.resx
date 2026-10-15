@@ -8,7 +8,7 @@
   <data name="Emulation.Panasonic.Firmware.Font" xml:space="preserve"><value>ROM2</value></data>
   <data name="Emulation.Panasonic.Cpu.SwiHle" xml:space="preserve"><value>SWI HLE</value></data>
   <data name="Emulation.Panasonic.Video.MatrixEngine" xml:space="preserve"><value>MADAM</value></data>
-  <data name="Emulation.Emulator.opera.Description" xml:space="preserve"><value>Video game emulation (3DO).</value></data>
+  <data name="Emulation.Emulator.opera.Description"><value>Emulates 3DO.</value></data>
   <data name="Emulation.Panasonic.Memory.Capacity" xml:space="preserve"><value>Emulated memory capacity</value></data>
   <data name="Emulation.Panasonic.Video.Mode" xml:space="preserve"><value>Video mode</value></data>
   <data name="Emulation.Panasonic.Video.PixelFormat" xml:space="preserve"><value>Pixel color format</value></data>

@@ -7,9 +7,9 @@
   <data name="Emulation.Bandai.Video.Native" xml:space="preserve"><value>คลิปวิดีโอ</value></data>
   <data name="Emulation.Bandai.Audio.Native" xml:space="preserve"><value>เสียงคอนโซล</value></data>
   <data name="Emulation.Bandai.Controls.Native" xml:space="preserve"><value>ควบคุมคอนโซล</value></data>
-  <data name="Emulation.Emulator.mednafen_wswan.Description" xml:space="preserve"><value>แผงควบคุม WonderSwan</value></data>
-  <data name="Emulation.Emulator.playdiaemu.Description" xml:space="preserve"><value>เล่นแผ่น Dayia โดยเล่นโดยPlaydiaEmu</value></data>
-  <data name="Emulation.Emulator.tamalibretro.Description" xml:space="preserve"><value>ทา มา โตะ ชิ P1 จับคู่กับ ทามาลลลไอเบรโทร</value></data>
+  <data name="Emulation.Emulator.mednafen_wswan.Description"><value>จำลอง WonderSwan</value></data>
+  <data name="Emulation.Emulator.playdiaemu.Description"><value>เล่นแผ่น Playdia ด้วย PlaydiaEmu</value></data>
+  <data name="Emulation.Emulator.tamalibretro.Description"><value>จำลอง Tamagotchi P1 ด้วย TamaLIBretro</value></data>
   <data name="Emulation.Bandai.Playdia.Hle" xml:space="preserve"><value>ไดรฟ์หลักนี้ ไม่ได้ทําการปรับค่าโพรเซสของดิสก์</value></data>
   <data name="Emulation.Bandai.Memory.Display" xml:space="preserve"><value>แสดงหน่วยความจํา</value></data>
   <data name="Emulation.Bandai.Setting.DisplayRotation" xml:space="preserve"><value>แสดงทิศทางการทํางาน</value></data>

@@ -4,8 +4,8 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.applewin.Description" xml:space="preserve"><value>Μήλα II Μοιρασμός με το AppleWin.</value></data>
-  <data name="Emulation.Emulator.minivmac.Description" xml:space="preserve"><value>Μακιντόες II Μοιρασμός με Mini vMac.</value></data>
+  <data name="Emulation.Emulator.applewin.Description"><value>Εξομοιώνει υπολογιστές Apple II με το AppleWin.</value></data>
+  <data name="Emulation.Emulator.minivmac.Description"><value>Εξομοιώνει υπολογιστές Macintosh II με το Mini vMac.</value></data>
   <data name="Emulation.Apple.Option.Model" xml:space="preserve"><value>Μεταλλική μηχανή</value></data>
   <data name="Emulation.Apple.Video.Native" xml:space="preserve"><value>Έξοδος βίντεο από ιθαγενή</value></data>
   <data name="Emulation.Apple.Expansion" xml:space="preserve"><value>Κάρτες επέκτασης</value></data>

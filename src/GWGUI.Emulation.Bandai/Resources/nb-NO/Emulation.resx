@@ -7,9 +7,9 @@
   <data name="Emulation.Bandai.Video.Native" xml:space="preserve"><value>Konsollvideo</value></data>
   <data name="Emulation.Bandai.Audio.Native" xml:space="preserve"><value>Konsolllyd</value></data>
   <data name="Emulation.Bandai.Controls.Native" xml:space="preserve"><value>Konsollkontroller</value></data>
-  <data name="Emulation.Emulator.mednafen_wswan.Description" xml:space="preserve"><value>Emulerer WonderSwan-konsoller.</value></data>
-  <data name="Emulation.Emulator.playdiaemu.Description" xml:space="preserve"><value>Playdia plate avspilling med PlaydiaEmu.</value></data>
-  <data name="Emulation.Emulator.tamalibretro.Description" xml:space="preserve"><value>Tamagotchi P1 emulering med TamaLIBretro.</value></data>
+  <data name="Emulation.Emulator.mednafen_wswan.Description"><value>Emulerer WonderSwan.</value></data>
+  <data name="Emulation.Emulator.playdiaemu.Description"><value>Spiller av Playdia-plater med PlaydiaEmu.</value></data>
+  <data name="Emulation.Emulator.tamalibretro.Description"><value>Emulerer Tamagotchi P1 med TamaLIBretro.</value></data>
   <data name="Emulation.Bandai.Playdia.Hle" xml:space="preserve"><value>Denne kjernen spiller plater uten å emulere prosessorene.</value></data>
   <data name="Emulation.Bandai.Memory.Display" xml:space="preserve"><value>Vis minne</value></data>
   <data name="Emulation.Bandai.Setting.DisplayRotation" xml:space="preserve"><value>Vis orientering</value></data>

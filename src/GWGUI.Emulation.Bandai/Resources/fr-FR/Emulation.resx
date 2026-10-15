@@ -7,9 +7,9 @@
   <data name="Emulation.Bandai.Video.Native" xml:space="preserve"><value>Vidéo de la console</value></data>
   <data name="Emulation.Bandai.Audio.Native" xml:space="preserve"><value>Son de la console</value></data>
   <data name="Emulation.Bandai.Controls.Native" xml:space="preserve"><value>Commandes de la console</value></data>
-  <data name="Emulation.Emulator.mednafen_wswan.Description" xml:space="preserve"><value>Émule les consoles WonderSwan.</value></data>
-  <data name="Emulation.Emulator.playdiaemu.Description" xml:space="preserve"><value>Lit les disques Playdia avec PlaydiaEmu.</value></data>
-  <data name="Emulation.Emulator.tamalibretro.Description" xml:space="preserve"><value>Émule le Tamagotchi P1 avec TamaLIBretro.</value></data>
+  <data name="Emulation.Emulator.mednafen_wswan.Description"><value>Émule WonderSwan.</value></data>
+  <data name="Emulation.Emulator.playdiaemu.Description"><value>Lit les disques Playdia avec PlaydiaEmu.</value></data>
+  <data name="Emulation.Emulator.tamalibretro.Description"><value>Émule Tamagotchi P1 avec TamaLIBretro.</value></data>
   <data name="Emulation.Bandai.Playdia.Hle" xml:space="preserve"><value>Ce cœur lit les disques sans émuler les processeurs.</value></data>
   <data name="Emulation.Bandai.Memory.Display" xml:space="preserve"><value>Mémoire vidéo</value></data>
   <data name="Emulation.Bandai.Setting.DisplayRotation" xml:space="preserve"><value>Orientation de l’affichage</value></data>

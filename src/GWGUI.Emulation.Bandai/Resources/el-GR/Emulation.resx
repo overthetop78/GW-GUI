@@ -7,9 +7,9 @@
   <data name="Emulation.Bandai.Video.Native" xml:space="preserve"><value>Κονσόλα βίντεο</value></data>
   <data name="Emulation.Bandai.Audio.Native" xml:space="preserve"><value>Ήχος κονσόλας</value></data>
   <data name="Emulation.Bandai.Controls.Native" xml:space="preserve"><value>Έλεγχος κονσόλας</value></data>
-  <data name="Emulation.Emulator.mednafen_wswan.Description" xml:space="preserve"><value>Προσομοιάζει κονσόλες WonderSwan.</value></data>
-  <data name="Emulation.Emulator.playdiaemu.Description" xml:space="preserve"><value>Playdia δισκοβολία με PlaydiaEmu.</value></data>
-  <data name="Emulation.Emulator.tamalibretro.Description" xml:space="preserve"><value>Ταμαγκοτίτσι P1 εξομοίωση με TamaLIBretro.</value></data>
+  <data name="Emulation.Emulator.mednafen_wswan.Description"><value>Εξομοιώνει WonderSwan.</value></data>
+  <data name="Emulation.Emulator.playdiaemu.Description"><value>Αναπαράγει δίσκους Playdia με το PlaydiaEmu.</value></data>
+  <data name="Emulation.Emulator.tamalibretro.Description"><value>Εξομοιώνει Tamagotchi P1 με το TamaLIBretro.</value></data>
   <data name="Emulation.Bandai.Playdia.Hle" xml:space="preserve"><value>Αυτός ο πυρήνας παίζει δίσκους χωρίς να εξομοιώνει τους επεξεργαστές.</value></data>
   <data name="Emulation.Bandai.Memory.Display" xml:space="preserve"><value>Εμφάνιση μνήμης</value></data>
   <data name="Emulation.Bandai.Setting.DisplayRotation" xml:space="preserve"><value>Απεικόνιση προσανατολισμού</value></data>
