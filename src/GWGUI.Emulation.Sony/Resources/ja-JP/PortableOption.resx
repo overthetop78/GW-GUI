@@ -12,10 +12,10 @@
   <data name="Emulation.Option.ppsspp.ppsspp_fast_memory.Help"><value>不安定な。</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_ignore_bad_memory_access.Label"><value>悪いメモリアクセスを無視する</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_io_timing_method.Label"><value>I/O タイミング方式</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_io_timing_method.Value.1"><value>ホスト</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_io_timing_method.Value.1" xml:space="preserve"><value>ホストコンピューター</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_io_timing_method.Value.2"><value>UMD遅延をシミュレートする</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_force_lag_sync.Label"><value>力の実質の時計は同期します</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_force_lag_sync.Help"><value>より遅い、より少ないラグ。</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_force_lag_sync.Help" xml:space="preserve"><value>エミュレーションをリアルタイムクロックと同期して入力遅延を減らします。性能が低下する場合があります。</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_locked_cpu_speed.Label"><value>ロックされたCPUの速度</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_cache_iso.Label"><value>完全なISOをRAMでキャッシュする</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_cheats.Label"><value>内部チート サポート</value></data>
@@ -38,7 +38,7 @@
   <data name="Emulation.Option.ppsspp.ppsspp_frameskiptype.Value.1"><value>FPSの割合</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_auto_frameskip.Label"><value>オートフレームスキップ</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_frame_duplication.Label"><value>レンダリングの重複フレームは60 Hzに組み立てます</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_frame_duplication.Help"><value>より低いフレームレートで走るゲームではフレームレートを滑らかにすることができます。</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_frame_duplication.Help" xml:space="preserve"><value>フレームレートが低いゲームで映像フレームを複製し、動きを滑らかにします。</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_detect_vsync_swap_interval.Label"><value>フレーム率の変更を検出する</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_detect_vsync_swap_interval.Help"><value>フロントエンドを通知します。</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Label"><value>バッファ・グラフィックスのコマンド</value></data>

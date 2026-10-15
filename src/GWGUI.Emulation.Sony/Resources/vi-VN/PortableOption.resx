@@ -12,10 +12,10 @@
   <data name="Emulation.Option.ppsspp.ppsspp_fast_memory.Help"><value>Không ổn định.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_ignore_bad_memory_access.Label"><value>Bỏ qua các truy cập bộ nhớ sai</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_io_timing_method.Label"><value>Phương pháp đếm giờ I/O</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_io_timing_method.Value.1"><value>Máy</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_io_timing_method.Value.1" xml:space="preserve"><value>Máy tính chủ</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_io_timing_method.Value.2"><value>Mô phỏng sự chậm trễ UMD</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_force_lag_sync.Label"><value>Buộc đồng hồ chạy thật</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_force_lag_sync.Help"><value>Chậm lại, ít trễ hơn.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_force_lag_sync.Help" xml:space="preserve"><value>Đồng bộ hóa trình giả lập với đồng hồ thời gian thực để giảm độ trễ đầu vào. Điều này có thể làm giảm hiệu năng.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_locked_cpu_speed.Label"><value>Tốc độ CPU bị khóa</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_cache_iso.Label"><value>Cache đầy đủ ISO in RAM</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_cheats.Label"><value>Hỗ trợ việc gian lận nội bộ</value></data>
@@ -38,7 +38,7 @@
   <data name="Emulation.Option.ppsspp.ppsspp_frameskiptype.Value.1"><value>Phần trăm FPS</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_auto_frameskip.Label"><value>Bộ khung tự động</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_frame_duplication.Label"><value>Vẽ Khung sao chép thành 60 Hz</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_frame_duplication.Help"><value>Có thể làm cho khung hình mịn hơn trong các trò chơi chạy dưới khung cảnh.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_frame_duplication.Help" xml:space="preserve"><value>Lặp lại các khung hình video để chuyển động mượt hơn trong trò chơi có tốc độ khung hình thấp.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_detect_vsync_swap_interval.Label"><value>Phát hiện tỷ lệ khung thay đổi</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_detect_vsync_swap_interval.Help"><value>Thông báo giao diện điều khiển.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Label"><value>Lệnh trình đệm</value></data>

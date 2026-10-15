@@ -12,10 +12,10 @@
   <data name="Emulation.Option.ppsspp.ppsspp_fast_memory.Help"><value>無常相.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_ignore_bad_memory_access.Label"><value>忽略不良內存訪問</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_io_timing_method.Label"><value>I/O 時間安排方法</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_io_timing_method.Value.1"><value>東道主</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_io_timing_method.Value.1" xml:space="preserve"><value>主機電腦</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_io_timing_method.Value.2"><value>模擬 UMD 延遲</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_force_lag_sync.Label"><value>強制真正的時鐘同步</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_force_lag_sync.Help"><value>慢點,慢點</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_force_lag_sync.Help" xml:space="preserve"><value>將模擬過程與即時時鐘同步以減少輸入延遲。這可能降低效能。</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_locked_cpu_speed.Label"><value>鎖定了 CPU 速度</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_cache_iso.Label"><value>緩存全 ISO in RAM</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_cheats.Label"><value>內部騙取支持</value></data>
@@ -38,7 +38,7 @@
   <data name="Emulation.Option.ppsspp.ppsspp_frameskiptype.Value.1"><value>占FPS的百分數</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_auto_frameskip.Label"><value>自動框架skip</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_frame_duplication.Label"><value>復制框架為 60 Hz</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_frame_duplication.Help"><value>在以下幀率運行的游戲中,可以使幀率更平滑.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_frame_duplication.Help" xml:space="preserve"><value>複製視訊影格，讓低影格率遊戲中的動作更流暢。</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_detect_vsync_swap_interval.Label"><value>檢測幀率變化</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_detect_vsync_swap_interval.Help"><value>通知前端 。</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Label"><value>緩沖圖形命令</value></data>

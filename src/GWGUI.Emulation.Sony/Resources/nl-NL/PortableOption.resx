@@ -12,10 +12,10 @@
   <data name="Emulation.Option.ppsspp.ppsspp_fast_memory.Help"><value>Instabiel.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_ignore_bad_memory_access.Label"><value>Onjuiste geheugentoegangen negeren</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_io_timing_method.Label"><value>I/O Timingmethode</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_io_timing_method.Value.1"><value>Host</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_io_timing_method.Value.1" xml:space="preserve"><value>Hostcomputer</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_io_timing_method.Value.2"><value>UMD-vertragingen simuleren</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_force_lag_sync.Label"><value>Echte klok synchroniseren forceren</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_force_lag_sync.Help"><value>Langzamer, minder vertraging.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_force_lag_sync.Help" xml:space="preserve"><value>Synchroniseert de emulatie met de realtimeklok om invoervertraging te verminderen. Dit kan de prestaties verminderen.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_locked_cpu_speed.Label"><value>Vergrendelde CPU snelheid</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_cache_iso.Label"><value>Cache Volledige ISO in RAM</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_cheats.Label"><value>Interne ondersteuning voor Cheats</value></data>
@@ -38,7 +38,7 @@
   <data name="Emulation.Option.ppsspp.ppsspp_frameskiptype.Value.1"><value>Percentage FPS</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_auto_frameskip.Label"><value>Auto frameskip</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_frame_duplication.Label"><value>Frames dupliceren naar 60 Hz</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_frame_duplication.Help"><value>Kan framerate gladder maken in games die draaien op lagere kadersnelheden.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_frame_duplication.Help" xml:space="preserve"><value>Dupliceert videobeelden voor vloeiendere bewegingen in spellen met een lage beeldsnelheid.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_detect_vsync_swap_interval.Label"><value>Detecteer frame rate wijzigingen</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_detect_vsync_swap_interval.Help"><value>Licht frontend in.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Label"><value>buffer graphics commando's</value></data>

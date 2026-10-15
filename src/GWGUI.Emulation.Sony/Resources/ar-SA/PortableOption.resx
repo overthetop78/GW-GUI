@@ -12,10 +12,10 @@
   <data name="Emulation.Option.ppsspp.ppsspp_fast_memory.Help"><value>غير مستقر</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_ignore_bad_memory_access.Label"><value>تتجاهل دخول الذاكرة السيئ</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_io_timing_method.Label"><value>I/O Timing Method</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_io_timing_method.Value.1"><value>البلد المضيف</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_io_timing_method.Value.1" xml:space="preserve"><value>الكمبيوتر المضيف</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_io_timing_method.Value.2"><value>الحد من UMD</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_force_lag_sync.Label"><value>"الطاقة العقارية"</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_force_lag_sync.Help"><value>أبطأ، أقل رطوبة.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_force_lag_sync.Help" xml:space="preserve"><value>زامن المحاكاة مع ساعة الوقت الحقيقي لتقليل تأخر الإدخال. قد يؤدي ذلك إلى انخفاض الأداء.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_locked_cpu_speed.Label"><value>Locked CPU Spe</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_cache_iso.Label"><value>Cache Full ISO في RAM</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_cheats.Label"><value>دعم الطبقات الداخلية</value></data>
@@ -38,7 +38,7 @@
   <data name="Emulation.Option.ppsspp.ppsspp_frameskiptype.Value.1"><value>نسبة FPS</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_auto_frameskip.Label"><value>Auto Frameskip</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_frame_duplication.Label"><value>اسطوانات مكررة من طراز Render إلى 60 Hz</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_frame_duplication.Help"><value>يمكن أن تجعل من التأشيرات أكثر سلاسة في الألعاب التي تركض في أسفل الإطارات.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_frame_duplication.Help" xml:space="preserve"><value>كرّر إطارات الفيديو لتحسين سلاسة الحركة في الألعاب ذات معدل الإطارات المنخفض.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_detect_vsync_swap_interval.Label"><value>التغيرات في معدلات الخزعة</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_detect_vsync_swap_interval.Help"><value>ابلغوا مقدماتكم</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Label"><value>قيادات الخرافات</value></data>

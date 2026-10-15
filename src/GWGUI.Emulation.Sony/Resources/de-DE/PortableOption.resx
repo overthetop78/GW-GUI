@@ -12,10 +12,10 @@
   <data name="Emulation.Option.ppsspp.ppsspp_fast_memory.Help"><value>Instabil.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_ignore_bad_memory_access.Label"><value>Ignorieren Sie schlechte Gedächtniszugriffe</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_io_timing_method.Label"><value>I/O-Timingmethode</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_io_timing_method.Value.1"><value>Gastgeber</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_io_timing_method.Value.1" xml:space="preserve"><value>Host-Computer</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_io_timing_method.Value.2"><value>Simulieren von UMD-Verzögerungen</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_force_lag_sync.Label"><value>Kraft Real Clock Sync</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_force_lag_sync.Help"><value>Langsamer, weniger Verzögerung.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_force_lag_sync.Help" xml:space="preserve"><value>Synchronisiert die Emulation mit der Echtzeituhr, um die Eingabeverzögerung zu verringern. Dies kann die Leistung verringern.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_locked_cpu_speed.Label"><value>Gesperrte CPU-Geschwindigkeit</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_cache_iso.Label"><value>Cache Full ISO im RAM</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_cheats.Label"><value>Interne Cheats Unterstützung</value></data>
@@ -38,7 +38,7 @@
   <data name="Emulation.Option.ppsspp.ppsspp_frameskiptype.Value.1"><value>Prozentsatz der FPS</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_auto_frameskip.Label"><value>Auto Frameskip</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_frame_duplication.Label"><value>Rendern von Duplicate Frames bis 60 Hz</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_frame_duplication.Help"><value>Kann die Framerate in Spielen, die mit niedrigeren Framerraten laufen, glatter machen.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_frame_duplication.Help" xml:space="preserve"><value>Dupliziert Videobilder für flüssigere Bewegungen in Spielen mit niedriger Bildrate.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_detect_vsync_swap_interval.Label"><value>Frame Rate Changes erkennen</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_detect_vsync_swap_interval.Help"><value>Frontend benachrichtigen.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Label"><value>Puffer-Grafikbefehle</value></data>

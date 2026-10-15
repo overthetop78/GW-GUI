@@ -5,7 +5,6 @@ using GWGUI.Emulation.Apple.Emulators.Common.Interop.Functions;
 using GWGUI.Emulation.Interop;
 using System.IO;
 using System.Security.Cryptography;
-using AppleWinOptions = GWGUI.Emulation.Apple.Emulators.AppleWin.Constants.OptionConstants;
 
 namespace GWGUI.Emulation.Apple.Emulators.Common.Interop.Services;
 
@@ -76,9 +75,6 @@ internal sealed partial class ExternalCore : IEmulatorCore
             _library = new ExternalCoreLibrary(_corePath);
             _exports = CoreFunctions.ResolveExports(_library);
             var runtimeOptions = new Dictionary<string, string>(configuration.Options, StringComparer.Ordinal);
-            if (Emulator == Emulator.AppleWin && configuration.Media.Any(item => item.IsInserted && item.Category == MediaCategory.HardDisk)
-                && !runtimeOptions.ContainsKey(AppleWinOptions.Slot7))
-                runtimeOptions[AppleWinOptions.Slot7] = AppleWinOptions.HardDiskController;
             _callbacks = new ExternalHostCallbacks(Emulator,
                 systemDirectory,
                 Path.Combine(_sessionDirectory, CoreDirectoryConstants.ContentDirectoryName),

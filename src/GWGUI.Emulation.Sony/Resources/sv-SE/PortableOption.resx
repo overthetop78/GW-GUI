@@ -12,10 +12,10 @@
   <data name="Emulation.Option.ppsspp.ppsspp_fast_memory.Help"><value>Instabilt.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_ignore_bad_memory_access.Label"><value>Ignorera dåliga minnestillgångar</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_io_timing_method.Label"><value>I/O Timing Method</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_io_timing_method.Value.1"><value>Värd</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_io_timing_method.Value.1" xml:space="preserve"><value>Värddator</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_io_timing_method.Value.2"><value>Simulera UMD förseningar</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_force_lag_sync.Label"><value>Kraft verklig klocka synkronisera</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_force_lag_sync.Help"><value>Långsammare, mindre lag.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_force_lag_sync.Help" xml:space="preserve"><value>Synkroniserar emuleringen med realtidsklockan för att minska inmatningsfördröjningen. Detta kan minska prestandan.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_locked_cpu_speed.Label"><value>Låst CPU-hastighet</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_cache_iso.Label"><value>Cache Full ISO i RAM</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_cheats.Label"><value>Interna fusk stöd</value></data>
@@ -38,7 +38,7 @@
   <data name="Emulation.Option.ppsspp.ppsspp_frameskiptype.Value.1"><value>procent av FPS</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_auto_frameskip.Label"><value>Auto Frameskip</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_frame_duplication.Label"><value>Gör dubbla ramar till 60 Hz</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_frame_duplication.Help"><value>Kan göra framerate smidigare i spel som körs vid lägre ramarat.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_frame_duplication.Help" xml:space="preserve"><value>Duplicerar videobilder för jämnare rörelser i spel med låg bildfrekvens.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_detect_vsync_swap_interval.Label"><value>Detektera Frame Rate Förändringar</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_detect_vsync_swap_interval.Help"><value>Meddela frontend.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Label"><value>Buffer Graphics kommandon</value></data>

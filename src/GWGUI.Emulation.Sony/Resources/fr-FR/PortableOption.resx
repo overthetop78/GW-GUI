@@ -12,10 +12,10 @@
   <data name="Emulation.Option.ppsspp.ppsspp_fast_memory.Help"><value>C'est instable.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_ignore_bad_memory_access.Label"><value>Ignorer les accès mémoire invalides</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_io_timing_method.Label"><value>Accès au UMD</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_io_timing_method.Value.1"><value>Animateur</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_io_timing_method.Value.1" xml:space="preserve"><value>Ordinateur hôte</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_io_timing_method.Value.2"><value>Simuler UMD retards</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_force_lag_sync.Label"><value>Synchroniser les entrées-sorties</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_force_lag_sync.Help"><value>Plus lentement, moins de retard.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_force_lag_sync.Help" xml:space="preserve"><value>Synchronise l’émulation avec l’horloge temps réel pour réduire la latence des entrées. Cela peut réduire les performances.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_locked_cpu_speed.Label"><value>Vitesse du CPU</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_cache_iso.Label"><value>Précharger le UMD en RAM</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_cheats.Label"><value>Activer les codes de triche</value></data>
@@ -38,7 +38,7 @@
   <data name="Emulation.Option.ppsspp.ppsspp_frameskiptype.Value.1"><value>Pourcentage de FPS</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_auto_frameskip.Label"><value>Saut d’images automatique</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_frame_duplication.Label"><value>Dupliquer les images</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_frame_duplication.Help"><value>Peut rendre le framerate plus lisse dans les jeux qui fonctionnent à des frame Rats inférieurs.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_frame_duplication.Help" xml:space="preserve"><value>Duplique les images vidéo pour améliorer la fluidité des mouvements dans les jeux à faible cadence d’images.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_detect_vsync_swap_interval.Label"><value>Cadence verticale automatique</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_detect_vsync_swap_interval.Help"><value>Avertissez le frontend.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Label"><value>Images en tampon</value></data>

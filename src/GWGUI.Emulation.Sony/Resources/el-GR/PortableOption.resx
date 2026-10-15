@@ -12,10 +12,10 @@
   <data name="Emulation.Option.ppsspp.ppsspp_fast_memory.Help"><value>Ασταθής.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_ignore_bad_memory_access.Label"><value>Αγνοήστε τις κακές προσβάσεις μνήμης</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_io_timing_method.Label"><value>Μέθοδος χρονισμού I/O</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_io_timing_method.Value.1"><value>Υπολογιστής</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_io_timing_method.Value.1" xml:space="preserve"><value>Υπολογιστής υποδοχής</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_io_timing_method.Value.2"><value>Εξομοίωση καθυστερήσεων UMD</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_force_lag_sync.Label"><value>Εξαναγκασμός πραγματικού συγχρονισμού ⁇ ολογιού</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_force_lag_sync.Help"><value>Πιο αργά, λιγότερο αργοπορημένα.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_force_lag_sync.Help" xml:space="preserve"><value>Συγχρονίζει την εξομοίωση με το ρολόι πραγματικού χρόνου για μείωση της καθυστέρησης εισόδου. Αυτό μπορεί να μειώσει την απόδοση.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_locked_cpu_speed.Label"><value>Κλειδωμένο CPU Ταχύτητα</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_cache_iso.Label"><value>Πλήρης λανθάνουσα μνήμη ISO στη RAM</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_cheats.Label"><value>Εσωτερική υποστήριξη απατεώνων</value></data>
@@ -38,7 +38,7 @@
   <data name="Emulation.Option.ppsspp.ppsspp_frameskiptype.Value.1"><value>Ποσοστό FPS</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_auto_frameskip.Label"><value>Αυτόματο Frameskip</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_frame_duplication.Label"><value>Αποτύπωση διπλών πλαισίων σε 60 Hz</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_frame_duplication.Help"><value>Μπορεί να κάνει το πλαίσιο πιο ομαλή σε παιχνίδια που τρέχουν σε χαμηλότερες framerates.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_frame_duplication.Help" xml:space="preserve"><value>Διπλασιάζει τα καρέ βίντεο για ομαλότερη κίνηση σε παιχνίδια με χαμηλό ρυθμό καρέ.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_detect_vsync_swap_interval.Label"><value>Ανίχνευση αλλαγών ρυθμού πλαισίου</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_detect_vsync_swap_interval.Help"><value>Ειδοποίησε το κέντρο.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Label"><value>Εντολές γραφικών buffer</value></data>

@@ -12,10 +12,10 @@
   <data name="Emulation.Option.ppsspp.ppsspp_fast_memory.Help"><value>Instabil.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_ignore_bad_memory_access.Label"><value>Rossz memóriakártyák figyelmen kívül hagyása</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_io_timing_method.Label"><value>I / O Időzítési módszer</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_io_timing_method.Value.1"><value>Vendéglátó</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_io_timing_method.Value.1" xml:space="preserve"><value>Gazdaszámítógép</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_io_timing_method.Value.2"><value>Az UMD késleltetésének szimulálása</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_force_lag_sync.Label"><value>Force Real Clock szinkronizálás</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_force_lag_sync.Help"><value>Lassabban, lassabban.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_force_lag_sync.Help" xml:space="preserve"><value>A valós idejű órához szinkronizálja az emulációt a bemeneti késleltetés csökkentéséhez. Ez csökkentheti a teljesítményt.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_locked_cpu_speed.Label"><value>Zárolt CPU sebesség</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_cache_iso.Label"><value>A gyorsítótár teljes ISO RAM-ban</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_cheats.Label"><value>Belső csalások támogatása</value></data>
@@ -38,7 +38,7 @@
   <data name="Emulation.Option.ppsspp.ppsspp_frameskiptype.Value.1"><value>FPS százalékos aránya</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_auto_frameskip.Label"><value>Automatikus Frameskip</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_frame_duplication.Label"><value>kétszeres képkockáknak 60 Hz-re való leadása</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_frame_duplication.Help"><value>Lehet, hogy framerate simább a játékok, hogy fut alacsonyabb framérates.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_frame_duplication.Help" xml:space="preserve"><value>Megkettőzi a videoképkockákat az alacsony képkockasebességű játékok mozgásának simításához.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_detect_vsync_swap_interval.Label"><value>A keretarány változásainak detektálása</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_detect_vsync_swap_interval.Help"><value>Értesítse a frontot.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Label"><value>Puffergrafikus parancsok</value></data>

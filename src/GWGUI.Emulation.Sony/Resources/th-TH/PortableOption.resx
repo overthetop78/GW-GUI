@@ -12,10 +12,10 @@
   <data name="Emulation.Option.ppsspp.ppsspp_fast_memory.Help"><value>ยากที่จะเข้าใจ</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_ignore_bad_memory_access.Label"><value>ไม่สนใจการเข้าใช้งานหน่วยความจําที่ไม่ดี</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_io_timing_method.Label"><value>I/O วิธีการปรับแต่ง</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_io_timing_method.Value.1"><value>เครื่อง</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_io_timing_method.Value.1" xml:space="preserve"><value>คอมพิวเตอร์โฮสต์</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_io_timing_method.Value.2"><value>จําลองการหน่วงเวลา UMD</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_force_lag_sync.Label"><value>บังคับปรับเทียบนาฬิกาจริง</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_force_lag_sync.Help"><value>ช้าลง เฉื่อยกว่า</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_force_lag_sync.Help" xml:space="preserve"><value>ซิงโครไนซ์การจำลองกับนาฬิกาเวลาจริงเพื่อลดความหน่วงของอินพุต แต่อาจทำให้ประสิทธิภาพลดลง</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_locked_cpu_speed.Label"><value>ความเร็ว CPU ที่ถูกล็อค</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_cache_iso.Label"><value>แคชเชียร์เต็ม ISO ใน RAM</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_cheats.Label"><value>สนับสนุนการทุจริตภายใน</value></data>
@@ -38,7 +38,7 @@
   <data name="Emulation.Option.ppsspp.ppsspp_frameskiptype.Value.1"><value>ร้อยละของ FPS</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_auto_frameskip.Label"><value>เฟรมสคีปอัตโนมัติ</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_frame_duplication.Label"><value>สร้างกรอบภาพซ้ําเป็น 60 Hz</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_frame_duplication.Help"><value>สามารถทําให้กรอบเรียบขึ้นในเกม ที่วิ่งที่ระดับล่าง</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_frame_duplication.Help" xml:space="preserve"><value>ทำซ้ำเฟรมวิดีโอเพื่อให้การเคลื่อนไหวราบรื่นขึ้นในเกมที่มีอัตราเฟรมต่ำ</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_detect_vsync_swap_interval.Label"><value>ตรวจสอบการเปลี่ยนแปลงของเฟรมภาพ</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_detect_vsync_swap_interval.Help"><value>แจ้งให้ทราบล่วงหน้า</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Label"><value>ภาพถ่ายบัฟเฟอร์</value></data>

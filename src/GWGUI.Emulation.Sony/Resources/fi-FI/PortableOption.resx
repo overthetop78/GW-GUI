@@ -12,10 +12,10 @@
   <data name="Emulation.Option.ppsspp.ppsspp_fast_memory.Help"><value>Epästabiili.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_ignore_bad_memory_access.Label"><value>Älä välitä huonoista muistoista</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_io_timing_method.Label"><value>I/O Ajoitusmenetelmä</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_io_timing_method.Value.1"><value>Palvelin</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_io_timing_method.Value.1" xml:space="preserve"><value>Isäntätietokone</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_io_timing_method.Value.2"><value>Simuloi UMD-viiveet</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_force_lag_sync.Label"><value>voima todellinen kellon synkronointi</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_force_lag_sync.Help"><value>Hitaammin, vähemmän viivettä.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_force_lag_sync.Help" xml:space="preserve"><value>Synkronoi emuloinnin reaaliaikakelloon syöttöviiveen vähentämiseksi. Tämä voi heikentää suorituskykyä.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_locked_cpu_speed.Label"><value>Lukittu CPU Nopeus</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_cache_iso.Label"><value>Välimuistin koko ISO RAM-muodossa</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_cheats.Label"><value>Sisäinen huijaustuki</value></data>
@@ -38,7 +38,7 @@
   <data name="Emulation.Option.ppsspp.ppsspp_frameskiptype.Value.1"><value>Prosenttia FPS:stä</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_auto_frameskip.Label"><value>Automaattinen kehyskippi</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_frame_duplication.Label"><value>Renderoi kehykset 60 Hz:iin</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_frame_duplication.Help"><value>Voi tehdä framerate sileämpi pelejä, jotka toimivat alemmalla kehystys.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_frame_duplication.Help" xml:space="preserve"><value>Kahdentaa videoruudut liikkeen sulavoittamiseksi peleissä, joiden kuvataajuus on alhainen.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_detect_vsync_swap_interval.Label"><value>Tunnista kuvanopeuden muutokset</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_detect_vsync_swap_interval.Help"><value>Ilmoita rintamalle.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Label"><value>Puskurigrafiikan komennot</value></data>

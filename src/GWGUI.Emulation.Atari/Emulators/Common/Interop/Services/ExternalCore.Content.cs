@@ -78,21 +78,38 @@ internal sealed partial class ExternalCore : IEmulatorCore
         var exports = _exports;
         var callbacks = _callbacks;
         var library = _library;
-        CoreLifecycleFunctions.Cleanup(exports, _gameLoaded, _nativeInitialized, () => callbacks?.Dispose(), () => library?.Dispose());
+        var content = _content;
+        var preparedContent = _preparedContent;
+        var gameLoaded = _gameLoaded;
+        var nativeInitialized = _nativeInitialized;
+        _exports = null;
+        _callbacks = null;
+        _library = null;
+        _content = null;
+        _preparedContent = null;
         _gameLoaded = false;
         _supportsSaveStates = false;
         _nativeInitialized = false;
-        _content?.Dispose();
-        _content = null;
-        _mediaAdapter.CleanupPreparedContent(_preparedContent);
-        _preparedContent = null;
-        _cartridge = null;
-        _mountedMedia.Clear();
-        _sessionMedia.Clear();
-        _configuration = null;
-        _callbacks = null;
-        _exports = null;
-        _library = null;
+        try
+        {
+            CoreLifecycleFunctions.Cleanup(exports, gameLoaded, nativeInitialized, () => callbacks?.Dispose(), () => library?.Dispose());
+        }
+        finally
+        {
+            GC.KeepAlive(callbacks);
+            try { content?.Dispose(); }
+            finally
+            {
+                try { _mediaAdapter.CleanupPreparedContent(preparedContent); }
+                finally
+                {
+                    _cartridge = null;
+                    _mountedMedia.Clear();
+                    _sessionMedia.Clear();
+                    _configuration = null;
+                }
+            }
+        }
     }
 
     public void Dispose()

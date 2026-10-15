@@ -12,10 +12,10 @@
   <data name="Emulation.Option.ppsspp.ppsspp_fast_memory.Help"><value>옵션 정보</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_ignore_bad_memory_access.Label"><value>나쁜 메모리 액세스 무시</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_io_timing_method.Label"><value>I/O 타이밍 방법</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_io_timing_method.Value.1"><value>이름 </value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_io_timing_method.Value.1" xml:space="preserve"><value>호스트 컴퓨터</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_io_timing_method.Value.2"><value>UMD 지연</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_force_lag_sync.Label"><value>힘 진짜 시계 Sync</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_force_lag_sync.Help"><value>느린, 더 적은 지연.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_force_lag_sync.Help" xml:space="preserve"><value>입력 지연을 줄이기 위해 에뮬레이션을 실시간 시계와 동기화합니다. 성능이 저하될 수 있습니다.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_locked_cpu_speed.Label"><value>Locked CPU 속도</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_cache_iso.Label"><value>RAM의 Cache 전체 ISO</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_cheats.Label"><value>내부 Cheats 지원</value></data>
@@ -38,7 +38,7 @@
   <data name="Emulation.Option.ppsspp.ppsspp_frameskiptype.Value.1"><value>FPS의 퍼센트</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_auto_frameskip.Label"><value>자동 Frameskip</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_frame_duplication.Label"><value>중복 프레임을 60 Hz로 렌더링</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_frame_duplication.Help"><value>더 낮은 프레임을 실행하는 게임에서 짜임새를 만들 수 있습니다.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_frame_duplication.Help" xml:space="preserve"><value>프레임 속도가 낮은 게임에서 비디오 프레임을 복제하여 움직임을 더 부드럽게 합니다.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_detect_vsync_swap_interval.Label"><value>프레임 속도 변경 감지</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_detect_vsync_swap_interval.Help"><value>프론트엔드</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Label"><value>버퍼 그래픽 명령</value></data>
