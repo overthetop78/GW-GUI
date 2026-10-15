@@ -17,56 +17,77 @@ internal sealed partial class ExternalCore : IEmulatorCore
             RequireCallbacks().SetOption(option.Key, option.Value);
         var candidate = ContentFunctions.Create(prepared.RuntimePath, prepared.NeedsFullPath, _info.Extensions);
         var previousContent = _content;
-        if (_gameLoaded)
+        var transferred = false;
+        try
         {
-            exports.UnloadGame();
-            _gameLoaded = false;
-        }
-
-        if (!exports.LoadGame(candidate.GameInfo))
-        {
-            candidate.Dispose();
-            if (previousContent is null || !exports.LoadGame(previousContent.GameInfo))
-                throw CartridgeExceptions.RollbackFailed();
+            if (_gameLoaded)
+            {
+                exports.UnloadGame();
+                _gameLoaded = false;
+            }
+            if (!exports.LoadGame(candidate.GameInfo))
+            {
+                if (previousContent is null || !exports.LoadGame(previousContent.GameInfo))
+                    throw CartridgeExceptions.RollbackFailed();
+                _gameLoaded = true;
+                throw CartridgeExceptions.ReplacementFailed();
+            }
             _gameLoaded = true;
-            throw CartridgeExceptions.ReplacementFailed();
+            _content = candidate;
+            _cartridge = prepared;
+            transferred = true;
+            previousContent?.Dispose();
+            _supportsSaveStates = StateFunctions.IsAvailable(exports);
+            MediaRuntimeFunctions.Register(_mountedMedia, media with { IsInserted = true });
         }
-
-        _gameLoaded = true;
-        _supportsSaveStates = StateFunctions.IsAvailable(exports);
-        previousContent?.Dispose();
-        _content = candidate;
-        _cartridge = prepared;
-        MediaRuntimeFunctions.Register(_mountedMedia, media with { IsInserted = true });
+        finally
+        {
+            if (!transferred) candidate.Dispose();
+        }
     }
 
     private void ReplacePreparedContent(MediaConfiguration media)
     {
         var configuration = _configuration ?? throw new InvalidOperationException(ErrorMessages.CoreNotInitialized);
         var prepared = _mediaAdapter.PrepareContent(configuration, media, _sessionDirectory ?? throw new InvalidOperationException(ErrorMessages.CoreNotInitialized), _info) ?? throw new NotSupportedException(ErrorMessages.ContentLoadFailed);
-        var candidate = ContentFunctions.Create(prepared.RuntimePath, prepared.NeedsFullPath, _info.Extensions);
-        var exports = RequireExports();
-        var previousContent = _content;
-        if (_gameLoaded)
+        LoadedContent? candidate = null;
+        var transferred = false;
+        try
         {
-            exports.UnloadGame();
-            _gameLoaded = false;
+            candidate = ContentFunctions.Create(prepared.RuntimePath, prepared.NeedsFullPath, _info.Extensions);
+            var exports = RequireExports();
+            var previousContent = _content;
+            var previousPreparedContent = _preparedContent;
+            if (_gameLoaded)
+            {
+                exports.UnloadGame();
+                _gameLoaded = false;
+            }
+            if (!exports.LoadGame(candidate.GameInfo))
+            {
+                if (previousContent is not null && exports.LoadGame(previousContent.GameInfo))
+                    _gameLoaded = true;
+                throw _mediaAdapter.ContentLoadException(ErrorMessages.ContentLoadFailed);
+            }
+            _gameLoaded = true;
+            _content = candidate;
+            _preparedContent = prepared;
+            _cartridge = null;
+            transferred = true;
+            try { previousContent?.Dispose(); }
+            finally { _mediaAdapter.CleanupPreparedContent(previousPreparedContent); }
+            _supportsSaveStates = StateFunctions.IsAvailable(exports);
+            if (prepared.ActivityPaths is { } activityPaths) RequireCallbacks().TrackOpticalMedia(activityPaths);
+            MediaRuntimeFunctions.Register(_mountedMedia, media with { IsInserted = true });
         }
-        if (!exports.LoadGame(candidate.GameInfo))
+        finally
         {
-            candidate.Dispose();
-            if (previousContent is not null && exports.LoadGame(previousContent.GameInfo))
-                _gameLoaded = true;
-            throw _mediaAdapter.ContentLoadException(ErrorMessages.ContentLoadFailed);
+            if (!transferred)
+            {
+                try { candidate?.Dispose(); }
+                finally { _mediaAdapter.CleanupPreparedContent(prepared); }
+            }
         }
-        _gameLoaded = true;
-        _supportsSaveStates = StateFunctions.IsAvailable(exports);
-        previousContent?.Dispose();
-        _content = candidate;
-        _preparedContent = prepared;
-        if (prepared.ActivityPaths is { } activityPaths) RequireCallbacks().TrackOpticalMedia(activityPaths);
-        _cartridge = null;
-        MediaRuntimeFunctions.Register(_mountedMedia, media with { IsInserted = true });
     }
 
     private ExternalCoreExports RequireExports() => _exports ?? throw new InvalidOperationException(ErrorMessages.CoreNotInitialized);

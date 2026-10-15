@@ -98,21 +98,5 @@ internal sealed partial class ExternalCore : IEmulatorCore
         }
     }
 
-    public void Stop()
-    {
-        if (_gameLoaded && _exports is not null)
-        {
-            _exports.UnloadGame();
-            _gameLoaded = false;
-        }
-        _supportsSaveStates = false;
-        _content?.Dispose();
-        _content = null;
-        _mediaAdapter.CleanupPreparedContent(_preparedContent);
-        _preparedContent = null;
-        _cartridge = null;
-        _mountedMedia.Clear();
-        _sessionMedia.Clear();
-        _configuration = null;
-    }
+    public void Stop() => DisposeNativeResources();
 }

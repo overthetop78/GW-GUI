@@ -275,41 +275,42 @@ internal sealed class ExternalCore : IEmulatorCore
 
     private void Cleanup()
     {
-        _lastDiagnostics = _environment?.Diagnostics.ToArray() ?? _lastDiagnostics;
+        var exports = _exports;
+        var library = _library;
+        var environment = _environment;
+        var input = _input;
+        var video = _video;
+        var audio = _audio;
+        var content = _content;
+        var loaded = _loaded;
+        var initialized = _initialized;
+        _lastDiagnostics = environment?.Diagnostics.ToArray() ?? _lastDiagnostics;
+        _exports = null;
+        _library = null;
+        _environment = null;
+        _input = null;
+        _video = null;
+        _audio = null;
+        _content = null;
+        _configuration = null;
+        _loaded = false;
+        _initialized = false;
         try
         {
-            try
-            {
-                _input?.Release();
-            }
-            finally
-            {
-                CoreLifecycleFunctions.Cleanup(_exports, _loaded, _initialized, () => _environment?.Dispose(), () => _library?.Dispose());
-            }
+            try { input?.Release(); }
+            finally { CoreLifecycleFunctions.Cleanup(exports, loaded, initialized, () => environment?.Dispose(), () => library?.Dispose()); }
         }
         finally
         {
-            try
-            {
-                _video?.Dispose();
-            }
-            finally
-            {
-                _audio?.Dispose();
-                _exports = null;
-                _library = null;
-                _environment = null;
-                _input = null;
-                _video = null;
-                _audio = null;
-                _configuration = null;
-                _content = null;
-                _loaded = false;
-                _initialized = false;
-            }
+            GC.KeepAlive(environment);
+            GC.KeepAlive(input);
+            GC.KeepAlive(video);
+            GC.KeepAlive(audio);
+            GC.KeepAlive(content);
+            try { video?.Dispose(); }
+            finally { audio?.Dispose(); }
         }
     }
-
     private static EmulationMessageException UnsupportedMedia() => new(new EmulationMessage(EmulationMessageCategory.Media, EmulationMessageCode.MediaUnsupported, EmulationMessageSeverity.Error, EmulationMessageTarget.Dialog));
     private static EmulationMessageException InvalidState() => new(new EmulationMessage(EmulationMessageCategory.SavedState, EmulationMessageCode.SavedStateInvalid, EmulationMessageSeverity.Error, EmulationMessageTarget.Dialog));
 }

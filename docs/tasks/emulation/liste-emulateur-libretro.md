@@ -1,5 +1,7 @@
 ## Émulateurs — Consoles et ordinateurs
 
+Périmètre confirmé : conserver uniquement les DLL de ce catalogue, sans ajout d autres moteurs pour combler leurs limites. Acorn conserve b2 seul. Les Macintosh 128K/512K/Plus/Classic, le ZX80 et le X68030 ne sont pas considérés comme pris en charge lorsque les DLL indiquées ne les exposent pas ; les précisions des sections concernées font foi. Les modèles demandés restent identifiés dans les tableaux, sans leur attribuer une compatibilité native non vérifiée.
+
 ### Acorn
 
 | DLL               | Machines émulées                       |
@@ -29,6 +31,8 @@ Le Model A reste dans le périmètre demandé. Toutefois, le port b2 à la révi
 | ----------------------- | ------------------------------------------------------------------------------------------- |
 | `applewin_libretro.dll` | Apple II, Apple II+, Apple IIe                                                              |
 | `minivmac_libretro.dll` | Macintosh 128K, 512K, Plus, Classic et autres Macintosh 68k compatibles selon configuration |
+
+Les Macintosh 128K, 512K, Plus et Classic restent demandés. Le port Libretro à la révision `babdf7b53d361a7225858b68a8a64efe8b06f5e5` utilise toutefois une configuration de compilation Macintosh II : [CNFGRAPI.h](https://github.com/libretro/libretro-minivmac/blob/babdf7b53d361a7225858b68a8a64efe8b06f5e5/minivmac/cfg/CNFGRAPI.h) fixe `MacII.ROM`, une ROM de 256 Kio et ses sommes de contrôle. Les variantes du projet Mini vMac ne sont pas des modèles sélectionnables dans cette DLL. Le module propose donc cette DLL pour Macintosh II uniquement ; fournir une ROM de Macintosh Plus ne transforme pas ce binaire en variante Plus.
 
 ### Arduboy
 
@@ -229,12 +233,16 @@ Le Model A reste dans le périmètre demandé. Toutefois, le port b2 à la révi
 | `px68k_libretro.dll` | X68000, X68000 XVI, X68030 |
 | `x1_libretro.dll`    | Sharp X1 et compatibles    |
 
+La prise en charge du X68030 par la DLL PX68K indiquée reste à établir : les fréquences de l’option [px68k_cpuspeed](https://github.com/libretro/px68k-libretro/blob/0ad84d7058a12b7db4f7f7a906e87fad4e2f26f6/libretro_core_options.h) règlent la vitesse du CPU, pas son modèle. Une fréquence de 25 MHz ne prouve pas l’émulation d’un 68030. À cette révision, le module expose X68000 et X68000 XVI ; le X68030 demandé demeure dans la liste des machines sans être annoncé comme validé par ce moteur.
+
 ### Sinclair
 
 | DLL                 | Machines émulées                                       |
 | ------------------- | ------------------------------------------------------ |
 | `81_libretro.dll`   | ZX80, ZX81                                             |
 | `fuse_libretro.dll` | ZX Spectrum 16K, 48K, 128K, +2, +2A, +3 et compatibles |
+
+Le ZX80 reste demandé, mais le port EightyOne à la révision `fa7094910d040baa5fd8b11dbf6a1a618330ecd9` sélectionne explicitement `MACHINEZX81` dans [src/libretro.cpp](https://github.com/libretro/81-libretro/blob/fa7094910d040baa5fd8b11dbf6a1a618330ecd9/src/libretro.cpp#L393) et réinitialise depuis `zx81_16k.z81`. Les capacités ZX80 de l’émulateur autonome ne prouvent pas leur exposition dans cette DLL. Le module ne présente donc pas EightyOne comme moteur ZX80 fonctionnel.
 
 ### SNK
 
