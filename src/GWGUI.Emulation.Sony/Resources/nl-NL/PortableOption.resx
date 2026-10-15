@@ -46,7 +46,7 @@
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Value.0"><value>Geen extra grafische buffering</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Value.1"><value>Maximaal één videoframe bufferen</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_button_preference.Label"><value>Bevestigingsknop</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_analog_is_circular.Label"><value>Analoge Circle vs. Square Gate-compensatie</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_analog_is_circular.Label"><value>Compensatie van het ronde en vierkante bewegingsbereik van de analoge stick</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_analog_deadzone.Label"><value>Analoge dode zone</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_analog_deadzone.Help"><value>Pas een extra dode zone voor de analoge stick toe na de invoerverwerking door de toepassing.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_analog_sensitivity.Label"><value>Analoge asschaal</value></data>
@@ -55,7 +55,7 @@
   <data name="Emulation.Option.ppsspp.ppsspp_skip_buffer_effects.Help"><value>Sla framebuffer-effecten over om de prestaties te verbeteren. Sommige spellen geven dan mogelijk geen beeld weer.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_skip_gpu_readbacks.Label"><value>GPU-readbacks overslaan</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_skip_gpu_readbacks.Help"><value>Sla het kopiëren van grafische gegevens van de GPU naar de CPU over. Sommige spellen hebben deze kopieën nodig voor een correcte weergave.</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_lazy_texture_caching.Label"><value>luie textuurcaching (versneld)</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_lazy_texture_caching.Label"><value>Uitgestelde textuurcaching (versnelling)</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_lazy_texture_caching.Help"><value>Sneller, maar kan tekstproblemen veroorzaken in een paar spellen.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_spline_quality.Label"><value>Spline/Bezier krommen kwaliteit</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_spline_quality.Help"><value>Alleen gebruikt door sommige games, regelt de gladheid van bochten.</value></data>

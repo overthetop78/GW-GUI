@@ -267,7 +267,7 @@
   <data name="Emulation.Option.swanstation.swanstation_CPU_FastmemMode.Help"><value>Använder sidfel för att bestämma hårdvaruminnestillgångar vid runtime. Kan ge en betydande prestandaförbättring i vissa spel, men gör kärnan svårare att debug.</value></data>
   <data name="Emulation.Option.Sony.Value.DisabledSlower"><value>Inaktiverad (slower)</value></data>
   <data name="Emulation.Option.Sony.Value.LUTFaster"><value>LUT (Snabbare)</value></data>
-  <data name="Emulation.Option.Sony.Value.MMapHardwareFaster64BitOnly"><value>MMap (Hårdvara, snabbare, 64-bitars bara)</value></data>
+  <data name="Emulation.Option.Sony.Value.MMapHardwareFaster64BitOnly"><value>MMap (maskinvara, snabbare, endast 64-bitars)</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CPU_FastmemRewrite.Label"><value>CPU recompiler snabb minnesåtkomst omskrivning</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CPU_FastmemRewrite.Help"><value>Skriv instruktioner när snabb minnesåtkomst är aktiverad för CPU-rekompilatorn. Detta kan förbättra hastigheten. Det kan också orsaka emulatorn att krascha på vissa plattformar.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_TextureReplacements_EnableVRAMWriteReplacements.Label"><value>Aktivera VRAM Skriv textur Ersättning</value></data>
@@ -746,14 +746,14 @@
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_crosshair2.Label"><value>Spelare 2 Lightgun Crosshair</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_crosshair2.Help"><value>Visa eller dölja den riktade markören för spelare 2 när du använder GunCon eller Konami Gun. Inaktivera RGB32-utgången i videoinställningarna för det här alternativet att fungera.</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_konamigunadjustx.Label"><value>Konami Gun X Axis Offset</value></data>
-  <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_konamigunadjustx.Help"><value>Applicera en X-axel kompensation för ljuspistolinmatning när du emulerar en Konami Gun (Hyper Blaster / Justifier) enhet. Kan användas för att korrigera riktade misslyckanden.</value></data>
+  <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_konamigunadjustx.Help"><value>Förskjuter ljuspistolens inmatning längs X-axeln vid emulering av Konami Gun (Hyper Blaster / Justifier) för att korrigera siktfel.</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_konamigunadjusty.Label"><value>Konami Gun Y Axis Offset</value></data>
-  <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_konamigunadjusty.Help"><value>Applicera en Y-axel kompensation för ljuspistolinmatning när du emulerar en Konami Gun (Hyper Blaster / Justifier) enhet. Kan användas för att korrigera riktade misslyckanden.</value></data>
+  <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_konamigunadjusty.Help"><value>Förskjuter ljuspistolens inmatning längs Y-axeln vid emulering av Konami Gun (Hyper Blaster / Justifier) för att korrigera siktfel.</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustx.Label"><value>Guncon X Axis Offset</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustx.Help"><value>Applicera en X-axel kompensation för ljuspistolinmatning när du emulerar en Guncon-enhet. Kan användas för att korrigera riktade misslyckanden.</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjusty.Label"><value>Guncon Y Axis Offset</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjusty.Help"><value>Applicera en Y-axel kompensation för ljuspistolinmatning när du emulerar en Guncon-enhet. Kan användas för att korrigera riktade misslyckanden.</value></data>
-  <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustratiox.Label"><value>Guncon X Axis svar</value></data>
+  <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustratiox.Label"><value>Respons för Guncons X-axel</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustratiox.Help"><value>Justera relativ storlek av horisontell ljuspistolrörelse när man emulerar en Guncon-enhet. Kan användas för att korrigera riktade misslyckanden.</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustratioy.Label"><value>Guncon Y Axis svar</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustratioy.Help"><value>Justera relativ omfattning av vertikal ljuspistolrörelse när du emulerar en Guncon-enhet. Kan användas för att korrigera riktade misslyckanden.</value></data>
@@ -1008,7 +1008,7 @@
   <data name="Emulation.Option.rpcs3.rpcs3_network_enabled.Label"><value>Nätverksaktiverat</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_network_enabled.Help"><value>Låt spel nå internet. Verkar när innehållet laddas.</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_psn_status.Label"><value>PSN Status</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_psn_status.Help"><value>Vilka spel ser på PlayStation Network. Simulerad får dem att tro att de är inloggade, som vissa behöver komma förbi sina menyer; RPCN ansluter till RPCS3 egen server och behöver Network Enabled och ett konto RPCN: kärnan kan inte skapa en, så sätt upp den i fristående RPCS3 och kopiera sin rpcn.yml till system/rpcs3/ (system/rpcs3/config/ på Windows). Verkar när innehållet laddas.</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_psn_status.Help"><value>Bestämmer vilken PlayStation Network-status spelen ser. Simulerat läge får dem att tro att användaren är inloggad, vilket vissa spel behöver för att komma vidare från menyerna. RPCN ansluter till RPCS3:s egen server och kräver aktiverat nätverk och ett RPCN-konto. Kärnan kan inte skapa kontot: konfigurera det i det fristående RPCS3-programmet och kopiera rpcn.yml till system/rpcs3/ (till system/rpcs3/config/ på Windows). Inställningen tillämpas när innehåll läses in.</value></data>
   <data name="Emulation.Option.Sony.Value.Simulated"><value>Simulerad</value></data>
   <data name="Emulation.Option.Sony.Value.RPCN"><value>RPCN</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_upnp.Label"><value>UPnP</value></data>
@@ -1167,7 +1167,7 @@
   <data name="Emulation.Option.Sony.Value.Unsynchronized"><value>Osynkroniserad</value></data>
   <data name="Emulation.Option.Sony.Setting.NointerlacingHint.Label"><value>Möjligt deinterlacing patches</value></data>
   <data name="Emulation.Option.Sony.Setting.NointerlacingHint.Help"><value>Om det är aktiverat kommer att titta i den interna databasen om en patch är tillgänglig för spelet för att förvandla bilden till antingen en icke-interlaced, full ram eller progressiv scan video signal, och / eller en kombination av allt ovanstående. Bild kommer att vara mer stabil och Deinterlacing kan stängas av.</value></data>
-  <data name="Emulation.Option.Sony.Value.BilinearForcedExcludingSprite"><value>Bilinear (tvångs exklusive sprit)</value></data>
+  <data name="Emulation.Option.Sony.Value.BilinearForcedExcludingSprite"><value>Tvingad bilinjär filtrering, utom för sprites</value></data>
   <data name="Emulation.Option.Sony.Value.Scaled"><value>Skalas till den interna resolutionen</value></data>
   <data name="Emulation.Option.Sony.Value.Unscaled"><value>Originalkonsolupplösning</value></data>
   <data name="Emulation.Option.Sony.Value.Force32Bit"><value>Force 32bit</value></data>
@@ -1179,11 +1179,11 @@
   <data name="Emulation.Option.Sony.Setting.PcrtcAntiblur.Help"><value>Inaktivera detta för den mest exakta utgångsbilden. Gör det möjligt för detta kommer att försöka fördjupa bilden. Mest märkbar på mjukvaruåtergivning och paraLLEl.</value></data>
   <data name="Emulation.Option.Sony.Setting.PcrtcScreenOffsets.Label"><value>Skärmpositionskompensationer (PCRTC) ) )</value></data>
   <data name="Emulation.Option.Sony.Setting.DisableInterlaceOffset.Label"><value>Inaktivera den vertikala offset som används för interlaced video</value></data>
-  <data name="Emulation.Option.Sony.Setting.AutoFlushSoftware.Label"><value>Automatisk cache flush (programvara rendering)</value></data>
+  <data name="Emulation.Option.Sony.Setting.AutoFlushSoftware.Label"><value>Automatisk tömning av cache (programvarurendering)</value></data>
   <data name="Emulation.Option.Sony.Setting.SwRendererThreads.Label"><value>CPU Trådar som används för mjukvaruåtergivning</value></data>
   <data name="Emulation.Option.Sony.Setting.SwRendererThreads.Help"><value>Antal extra arbetstagartrådar mjukvaruåtergivningen rasteriserar med, ovanpå GS Tråd själv. 0 rasteriserar på GS Enbart tråd (lägsta latens, bäst på 2-4 kärn CPU) Mer trådar hjälper scener med många alfa-effekter på CPU med reservkärnor. Endast används av mjukvaruåtergivningen.</value></data>
   <data name="Emulation.Option.Sony.Setting.VuAccurateAddsub.Label"><value>Noggrann tillägg och subtraktion (VU) ) )</value></data>
-  <data name="Emulation.Option.Sony.Setting.VuAccurateAddsub.Help"><value>Modellera VU adderns exponent-avståndsutbrott på varje tillägg och subtrahera. Tri-Ace-spelen som kräver detta beteende (Star Ocean 3, Radiata Stories, Valkyrie Profile 2) får det automatiskt per titel via speldatabasen även när detta är inaktiverat; gör det globalt endast när jagar noggrannhet i andra titlar. Kostnader på hastigheten på VUTunga spel.</value></data>
+  <data name="Emulation.Option.Sony.Setting.VuAccurateAddsub.Help"><value>Efterliknar trunkeringen som beror på skillnaden mellan exponenterna vid addition och subtraktion i VU. Speldatabasen aktiverar detta automatiskt för berörda Tri-Ace-spel, som Star Ocean 3, Radiata Stories och Valkyrie Profile 2, även när denna allmänna inställning är avstängd. Aktivera den för andra spel bara när noggrannheten kräver det; spel som använder VU mycket kan bli långsammare.</value></data>
   <data name="Emulation.Option.Sony.Setting.EeAccurateFpu.Label"><value>Exakt flytande punkt aritmetik (EE FPU) ) )</value></data>
   <data name="Emulation.Option.Sony.Setting.EeAccurateFpu.Help"><value>Kör EE FPU lägga till, sub, mul och de smälta kedjorna genom den förlängda intervall dubbla pipeline: exakt tillägg / sub mot hårdvarumodellen, nära exakta multiplikar, korrekt hantering av de stora värdena de stora värdena PS2 möjliggör, exakt integerkonvertering och re-bitop ABS////NEG. Mätad gratis på arbetsbelastningsnivå (inom kör buller på ram genomströmning); aktiverad som standard.</value></data>
   <data name="Emulation.Option.Sony.Setting.VuExactMul.Label"><value>Exakt multiplikation (VU) ) )</value></data>
@@ -1223,14 +1223,14 @@
   <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Label"><value>Använda Extern GameIndex Database</value></data>
   <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Help"><value>Kräver en hårdvaruåtergivning och manuell rendering fixes. Ladda den valda spelkompatibilitetsdatabasen.</value></data>
   <data name="Emulation.Option.Sony.Setting.FramebufferConversion.Label"><value>Konvertera den rendering rambuffert</value></data>
-  <data name="Emulation.Option.Sony.Setting.DisablePartialInvalidation.Label"><value>Inaktivera partiell källa ogiltigförklaring</value></data>
+  <data name="Emulation.Option.Sony.Setting.DisablePartialInvalidation.Label"><value>Inaktivera partiell ogiltigförklaring av källor</value></data>
   <data name="Emulation.Option.Sony.Setting.GpuPaletteConversion.Label"><value>Palette omvandling på GPU</value></data>
   <data name="Emulation.Option.Sony.Setting.PreloadFrameData.Label"><value>Load Frame Data i förväg</value></data>
   <data name="Emulation.Option.Sony.Setting.HalfPixelOffset.Label"><value>Halvpixel position offset</value></data>
   <data name="Emulation.Option.Sony.Value.NormalVertex"><value>Normal Vertex Offset</value></data>
   <data name="Emulation.Option.Sony.Value.SpecialTexture"><value>Specialtexture offset</value></data>
   <data name="Emulation.Option.Sony.Value.SpecialTextureAggressive"><value>Aggressiv textur kompensation</value></data>
-  <data name="Emulation.Option.Sony.Value.AlignToNative"><value>Anpassa till den ursprungliga resolutionen</value></data>
+  <data name="Emulation.Option.Sony.Value.AlignToNative"><value>Anpassa till den ursprungliga upplösningen</value></data>
   <data name="Emulation.Option.Sony.Setting.RoundSprite.Label"><value>Runda 2D SPRITE Samordnarna</value></data>
   <data name="Emulation.Option.Sony.Value.Half"><value>Hälften</value></data>
   <data name="Emulation.Option.Sony.Setting.AlignSprite.Label"><value>Align 2D SPRITE Samordnarna</value></data>
@@ -1245,22 +1245,22 @@
   <data name="Emulation.Option.Sony.Setting.AnalogMode.Help"><value>Starta kontrollern i analogt läge snarare än digitalt. Vissa spel (t.ex. Ridge Racer V) startar dynan i digitalt och kräver normalt att du trycker på kontrollerns ANALOG knappen för att aktivera pinnen; gör det möjligt för detta att få analoga kontroller från början. Spel som låser kontrollläget är opåverkade.</value></data>
   <data name="Emulation.Option.Sony.Files.CheatsDirectory"><value>Mappar som innehåller spel fuskkoder</value></data>
   <data name="Emulation.Option.Sony.Setting.ForceAnalog.Label" xml:space="preserve"><value>Controller 1 kraft analogt läge</value></data>
-  <data name="Emulation.Option.Sony.Setting.ForceAnalog.Help" xml:space="preserve"><value>Tvingar analogt läge att alltid vara på. Kan orsaka problem med vissa spel. Använd bara det här alternativet för spel som stöder analogt läge men gör inte automatiskt det själva. När funktionshindrade kan analogt läge växlas genom att trycka på och hålla DualShock Analog Mode Combo.</value></data>
-  <data name="Emulation.Option.Sony.Setting.AnalogToggle.Label" xml:space="preserve"><value>DualShock Analogt läge Toggle</value></data>
+  <data name="Emulation.Option.Sony.Setting.ForceAnalog.Help" xml:space="preserve"><value>Håller analogt läge aktiverat hela tiden. Kan orsaka problem i vissa spel. Använd bara inställningen för spel som stöder analogt läge men inte aktiverar det automatiskt. När inställningen är avstängd kan läget växlas genom att hålla ned knappkombinationen för analogt läge på DualShock.</value></data>
+  <data name="Emulation.Option.Sony.Setting.AnalogToggle.Label" xml:space="preserve"><value>Växla analogt läge på DualShock</value></data>
   <data name="Emulation.Option.Sony.Setting.AnalogToggle.Help" xml:space="preserve"><value>När ingångsenheten typ är DualShock, gör det här alternativet att den emulerade DualShock kan växlas mellan DIGITAL och ANALOG läge som original hårdvara. Mode kan också växlas med den valda knappkombinationen.</value></data>
-  <data name="Emulation.Option.Sony.Setting.AnalogToggleCombo.Label" xml:space="preserve"><value>DualShock Analogt läge Combo</value></data>
+  <data name="Emulation.Option.Sony.Setting.AnalogToggleCombo.Label" xml:space="preserve"><value>Knappkombination för analogt läge på DualShock</value></data>
   <data name="Emulation.Option.Sony.Setting.AnalogToggleCombo.Help" xml:space="preserve"><value>Knappkombinationen som kommer att användas för att växla mellan DIGITAL och ANALOG-läge för den emulerade DualShock.</value></data>
-  <data name="Emulation.Option.Sony.Setting.AnalogToggleHold.Label" xml:space="preserve"><value>DualShock Analogt läge Combo Hold Delay</value></data>
+  <data name="Emulation.Option.Sony.Setting.AnalogToggleHold.Label" xml:space="preserve"><value>Hålltid för DualShocks analoga knappkombination</value></data>
   <data name="Emulation.Option.Sony.Setting.AnalogToggleHold.Help" xml:space="preserve"><value>Håll tid för de analoga läge combo knappar.</value></data>
   <data name="Emulation.Option.Sony.Setting.NegconDeadzone.Label" xml:space="preserve"><value>neGcon Twist Deadzone</value></data>
-  <data name="Emulation.Option.Sony.Setting.NegconDeadzone.Help" xml:space="preserve"><value>Vänster analog pinne död zon när simulera "twist" åtgärder emulerade 'neGcon' Input-enheter. Används för att eliminera styrenhet drift. Obs!: De flesta neGcon-kompatibla titlar ger spelalternativ för att ställa in ett "twist" deadzone värde. För att undvika förlust av precision bör in-game deadzone * alltid * ställas till noll. Eventuella nödvändiga justeringar bör * endast* tillämpas via detta kärnalternativ. Detta är särskilt viktigt när "neGcon Twist Response" är inställd på "Quadratic" eller "Cubic".</value></data>
+  <data name="Emulation.Option.Sony.Setting.NegconDeadzone.Help" xml:space="preserve"><value>Dödzon för vänster analog styrspak när den simulerar vridningen av en neGcon-kontroll. Tar bort oavsiktliga rörelser från styrspakens drift. Många kompatibla spel har en egen dödzonsinställning: ställ alltid den på noll och gör justeringar endast med denna kärninställning för att behålla precisionen, särskilt med kvadratisk eller kubisk respons.</value></data>
   <data name="Emulation.Option.Sony.Setting.SecondMemoryCard.Label" xml:space="preserve"><value>Minneskort Slot 2</value></data>
   <data name="Emulation.Option.Sony.Setting.SecondMemoryCard.Help" xml:space="preserve"><value>Emulera ett andra minneskort i rätt minne kortplats. Obs!: Vissa spel kräver att detta alternativ är inaktiverat för korrekt drift (t.ex. Codename Tenka). Obs!: Memory Card Slot 2 använder Mednafen (.mcr) spara format.</value></data>
   <data name="Emulation.Option.Sony.Setting.SharedMemoryCardMethod.Label" xml:space="preserve"><value>Delade minneskort</value></data>
   <data name="Emulation.Option.Sony.Setting.SharedMemoryCardMethod.Help" xml:space="preserve"><value>Använd delade minneskort istället för separata kort för varje innehåll. Om "Memory Card Method" är inställt på "Libretro", kommer endast minneskortplats 2 att påverkas.</value></data>
   <data name="Emulation.Option.Sony.Setting.LineToQuad.Label" xml:space="preserve"><value>Line-to-Quad Hack</value></data>
-  <data name="Emulation.Option.Sony.Setting.LineToQuad.Help" xml:space="preserve"><value>Vissa spel (t.ex. Doom, Hexen, Soul Blade etc.) dra horisontella linjer genom att sträcka enstaka pixelhöga trianglar över skärmen, som rasteriseras som rad av pixlar på original hårdvara. Denna hacka upptäcker dessa små trianglar och omvandlar dem till quads enligt behov, så att de kan visas ordentligt på hårdvaruåtergivningarna och vid uppskalade interna resolutioner. "Aggressive" krävs för vissa titlar (t.ex. mörka krafter, hertig nukem) men kan annars introducera grafiska glitches. Lämna på "Default" om du är osäker.</value></data>
-  <data name="Emulation.Option.Sony.Setting.DynarecEventCycles.Label" xml:space="preserve"><value>Dynarec DMA / GPU / MDEC / Time Event Cycles</value></data>
+  <data name="Emulation.Option.Sony.Setting.LineToQuad.Help" xml:space="preserve"><value>Vissa spel, som Doom, Hexen och Soul Blade, ritar vågräta linjer med trianglar som är en pixel höga. Korrigeringen omvandlar dem till fyrhörningar för korrekt visning med maskinvarurendering och ökad intern upplösning. Dark Forces och Duke Nukem kräver den aggressiva inställningen, som kan orsaka grafikfel i andra spel. Behåll standardinställningen om du är osäker.</value></data>
+  <data name="Emulation.Option.Sony.Setting.DynarecEventCycles.Label" xml:space="preserve"><value>Händelsecykler för DMA/GPU/MDEC/tidtagare (dynamisk omkompilering)</value></data>
   <data name="Emulation.Option.Sony.Setting.DynarecEventCycles.Help" xml:space="preserve"><value>Max-cykler som körs av CPU innan en GPU / DMA / MDEC / Timer Update kontrolleras, högre antal kommer att vara snabbare, har mycket mindre inverkan på beetle tolk än dynarec.</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_aspect_ratio.Help"><value>Anger skärmformatet som rapporteras till spelen. Bara vissa spel stöder 4:3.</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_disk_cache_size.Label"><value>Diskcachens storlek</value></data>

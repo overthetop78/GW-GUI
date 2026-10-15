@@ -46,7 +46,7 @@
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Value.0"><value>Ingen ekstra grafikkbufring</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Value.1"><value>Bufre opptil ett videobilde</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_button_preference.Label"><value>Bekreftelsesknapp</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_analog_is_circular.Label"><value>Analog sirkel vs Square Gate kompensasjon</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_analog_is_circular.Label"><value>Kompensasjon for analog styrespaks sirkulære og firkantede bevegelsesområde</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_analog_deadzone.Label"><value>Analog Deadzone</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_analog_deadzone.Help"><value>Bruk en ekstra dødsone for den analoge styrespaken etter programmets behandling av inndata.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_analog_sensitivity.Label"><value>Analog akseskala</value></data>
@@ -55,7 +55,7 @@
   <data name="Emulation.Option.ppsspp.ppsspp_skip_buffer_effects.Help"><value>Hopp over effekter som bruker bildebufferen for å forbedre ytelsen. Enkelte spill kan bli uten bilde.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_skip_gpu_readbacks.Label"><value>Hopp over GPU Readbacks</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_skip_gpu_readbacks.Help"><value>Hopp over kopiering av grafikkdata fra GPU til CPU. Enkelte spill trenger disse kopiene for å vise bildet riktig.</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_lazy_texture_caching.Label"><value>lazy tekstur caching (speedup)</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_lazy_texture_caching.Label"><value>Utsatt teksturbufring (raskere)</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_lazy_texture_caching.Help"><value>Raskere, men kan forårsake tekstproblemer i noen få spill.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_spline_quality.Label"><value>spline/bezier kurve kvalitet</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_spline_quality.Help"><value>Bare brukt av noen spill, styrer glatthet i kurver.</value></data>

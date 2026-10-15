@@ -46,7 +46,7 @@
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Value.0"><value>Fără memorie tampon grafică suplimentară</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Value.1"><value>Stocarea a cel mult unui cadru video în memoria tampon</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_button_preference.Label"><value>Buton de confirmare</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_analog_is_circular.Label"><value>Cercul analogic vs Despăgubire poarta pătrată</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_analog_is_circular.Label"><value>Compensarea domeniului circular și pătrat al manetei analogice</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_analog_deadzone.Label"><value>Analog Deadzone</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_analog_deadzone.Help"><value>Aplicați o zonă moartă suplimentară manetei analogice după procesarea intrărilor de către aplicație.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_analog_sensitivity.Label"><value>Scala axei analogice</value></data>
@@ -55,7 +55,7 @@
   <data name="Emulation.Option.ppsspp.ppsspp_skip_buffer_effects.Help"><value>Omiteți efectele memoriei tampon de cadre pentru a îmbunătăți performanța. Unele jocuri pot rămâne fără imagine.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_skip_gpu_readbacks.Label"><value>Săriți peste replicile GPU</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_skip_gpu_readbacks.Help"><value>Omiteți copierea datelor grafice de la GPU la CPU. Unele jocuri au nevoie de aceste copii pentru afișarea corectă.</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_lazy_texture_caching.Label"><value>Caching cu textură leneşă (Speedup)</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_lazy_texture_caching.Label"><value>Stocare amânată a texturilor în cache (accelerare)</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_lazy_texture_caching.Help"><value>Mai repede, dar poate provoca probleme de text în câteva jocuri.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_spline_quality.Label"><value>calitatea curbelor spline/bezier</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_spline_quality.Help"><value>Folosit doar de unele jocuri, controlează netezimea curbelor.</value></data>

@@ -46,7 +46,7 @@
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Value.0"><value>追加のグラフィックスバッファリングなし</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Value.1"><value>最大1ビデオフレーム分をバッファリング</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_button_preference.Label"><value>確認ボタン</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_analog_is_circular.Label"><value>アナログサークル対スクエアゲート補償</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_analog_is_circular.Label"><value>アナログスティックの円形・正方形可動範囲の補正</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_analog_deadzone.Label"><value>アナログのデッドゾーン</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_analog_deadzone.Help"><value>アプリケーションの入力処理後に、アナログスティックのデッドゾーンを追加で適用します。</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_analog_sensitivity.Label"><value>アナログ軸スケール</value></data>
@@ -55,7 +55,7 @@
   <data name="Emulation.Option.ppsspp.ppsspp_skip_buffer_effects.Help"><value>フレームバッファのエフェクトを省略してパフォーマンスを向上させます。一部のゲームでは画像が表示されなくなることがあります。</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_skip_gpu_readbacks.Label"><value>GPUの読み戻しをスキップする</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_skip_gpu_readbacks.Help"><value>GPUからCPUへのグラフィックスデータのコピーを省略します。一部のゲームでは、正しく表示するためにこれらのコピーが必要です。</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_lazy_texture_caching.Label"><value>レイジーテクスチャキャッシング(スピードアップ)</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_lazy_texture_caching.Label"><value>テクスチャの遅延キャッシュ（高速化）</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_lazy_texture_caching.Help"><value>より速く、しかし少数のゲームでテキスト問題を引き起こすことができます。</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_spline_quality.Label"><value>スプライン/ベジアー カーブの質</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_spline_quality.Help"><value>一部のゲームでのみ使用し、曲線の滑らかさをコントロールします。</value></data>

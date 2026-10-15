@@ -46,7 +46,7 @@
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Value.0"><value>Nincs további grafikus pufferelés</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Value.1"><value>Legfeljebb egy videóképkocka pufferelése</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_button_preference.Label"><value>Megerősítő gomb</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_analog_is_circular.Label"><value>Analóg kör vs Square Gate Kompenzáció</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_analog_is_circular.Label"><value>Az analóg kar kör és négyzet alakú mozgástartományának kompenzálása</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_analog_deadzone.Label"><value>Analóg Deadzone</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_analog_deadzone.Help"><value>További holtzóna alkalmazása az analóg karra az alkalmazás bemenetfeldolgozása után.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_analog_sensitivity.Label"><value>Analóg tengelyskála</value></data>
@@ -55,7 +55,7 @@
   <data name="Emulation.Option.ppsspp.ppsspp_skip_buffer_effects.Help"><value>A képkockapuffert használó effektusok kihagyása a teljesítmény javításához. Egyes játékokban eltűnhet a kép.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_skip_gpu_readbacks.Label"><value>A GPU visszajelzések kihagyása</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_skip_gpu_readbacks.Help"><value>A grafikus adatok GPU-ról CPU-ra másolásának kihagyása. Egyes játékoknak szükségük van ezekre a másolatokra a helyes megjelenítéshez.</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_lazy_texture_caching.Label"><value>Laza textúrás gyorsítótár (Speedup)</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_lazy_texture_caching.Label"><value>Textúrák halasztott gyorsítótárazása (gyorsítás)</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_lazy_texture_caching.Help"><value>Gyorsabban, de okozhat szöveges problémákat néhány játék.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_spline_quality.Label"><value>Spline / Bezier görbék minősége</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_spline_quality.Help"><value>Csak néhány játék által használt, szabályozza a görbék simaságát.</value></data>

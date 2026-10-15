@@ -267,11 +267,11 @@
   <data name="Emulation.Option.swanstation.swanstation_CPU_FastmemMode.Help"><value>ใช้ข้อผิดพลาดของหน้า เพื่อกําหนดค่าหน่วยความจําฮาร์ดแวร์ในขณะทํางาน สามารถทําให้ผลงานดีขึ้น ในบางเกมได้ แต่ทําให้แกนหลักยากที่จะดีบั๊ก</value></data>
   <data name="Emulation.Option.Sony.Value.DisabledSlower"><value>ปิดการใช้งาน (ช้า)</value></data>
   <data name="Emulation.Option.Sony.Value.LUTFaster"><value>LUT (ฝรั่งเศส)</value></data>
-  <data name="Emulation.Option.Sony.Value.MMapHardwareFaster64BitOnly"><value>MMap ( Hardrware, เร็วขึ้น 64- Bit เท่านั้น)</value></data>
+  <data name="Emulation.Option.Sony.Value.MMapHardwareFaster64BitOnly"><value>MMap (ฮาร์ดแวร์ เร็วกว่า เฉพาะ 64 บิต)</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CPU_FastmemRewrite.Label"><value>โปรแกรม CPU Recorder recompiller accessed menu เข้าใช้หน่วยความจําด่วนอีกครั้ง</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CPU_FastmemRewrite.Help"><value>เขียนคําสั่งใหม่เมื่อเปิดการใช้งานหน่วยความจําอย่างรวดเร็ว สําหรับคอมไพล์ CPU ใหม่ นี้สามารถปรับปรุงความเร็ว นอกจากนี้ยังทําให้เครื่องจําลอง ตกบนแพลตฟอร์มบางส่วน</value></data>
   <data name="Emulation.Option.swanstation.swanstation_TextureReplacements_EnableVRAMWriteReplacements.Label"><value>เปิดใช้การแทนที่พื้นผิวข้อความแบบเขียน VRAM</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_TextureReplacements_EnableVRAMWriteReplacements.Help"><value>แทนที่รายการ 'VRAM' ด้วยเนื้อความแบบ DuckStation-formation packs from the swanstation/Textrations' ในไดเร็กทอรีของระบบฟร้อนต์ นี้ใช้ได้เฉพาะกับตัวแปลแบบ Vulkan และ D3D11 (ซึ่งมีอยู่) เท่านั้น</value></data>
+  <data name="Emulation.Option.swanstation.swanstation_TextureReplacements_EnableVRAMWriteReplacements.Help"><value>แทนที่พื้นผิวที่เขียนลง VRAM ด้วยชุดพื้นผิวรูปแบบ DuckStation จากโฟลเดอร์ swanstation/textures ภายในไดเรกทอรีระบบของแอปพลิเคชัน ใช้ได้เฉพาะกับตัวเรนเดอร์ Vulkan และ D3D11 (หากมี)</value></data>
   <data name="Emulation.Option.swanstation.swanstation_TextureReplacements_PreloadTextures.Label"><value>การแทนที่พื้นผิวก่อน</value></data>
   <data name="Emulation.Option.swanstation.swanstation_TextureReplacements_PreloadTextures.Help"><value>โหลดเนื้อความสําหรับแทนที่ของ VRAM ไปยัง RAM</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Main_RunaheadFrameCount.Label"><value>หัวประมวลผลภายใน</value></data>
@@ -746,14 +746,14 @@
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_crosshair2.Label"><value>ผู้เล่น 2 ไลท์กุนครอสแฮร์</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_crosshair2.Help"><value>แสดงหรือซ่อนเคอร์เซอร์ชี้สําหรับเครื่องเล่น 2 เมื่อใช้ GunCon หรือ Konami Gun. ปิดการแสดงผล RGB32 ในการตั้งค่าวิดีโอสําหรับตัวเลือกนี้ที่ใช้งานได้</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_konamigunadjustx.Label"><value>Konami Gun X Axis Construction</value></data>
-  <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_konamigunadjustx.Help"><value>ใช้ปรับค่าแกน X กับค่านําเข้าของปืนเบา เมื่อมีการจําลอง Konami Gun (Hyper Blaster / Justifier) อุปกรณ์. สามารถใช้แก้ไขการเล็งผิดได้</value></data>
+  <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_konamigunadjustx.Help"><value>เลื่อนอินพุตของปืนแสงตามแกน X ขณะจำลอง Konami Gun (Hyper Blaster / Justifier) เพื่อแก้ไขการคลาดเคลื่อนของการเล็ง</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_konamigunadjusty.Label"><value>Konami Gun Y Axis Construction</value></data>
-  <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_konamigunadjusty.Help"><value>ปรับใช้ค่าแกน Y กับค่านําเข้าปืนเบาเมื่อจําลองKonami GunHyper Blaster อุปกรณ์ /Justifier. สามารถใช้แก้ไขการเล็งผิดได้</value></data>
+  <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_konamigunadjusty.Help"><value>เลื่อนอินพุตของปืนแสงตามแกน Y ขณะจำลอง Konami Gun (Hyper Blaster / Justifier) เพื่อแก้ไขการคลาดเคลื่อนของการเล็ง</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustx.Label"><value>ออฟเซตส์ของ Guncon X Axis</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustx.Help"><value>ปรับใช้ปรับค่าแกน X กับค่านําเข้าปืนเบา เมื่อมีการจําลองอุปกรณ์กันคอน สามารถใช้แก้ไขการเล็งผิดได้</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjusty.Label"><value>ออฟเซตส์ Guncon Y Axis</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjusty.Help"><value>ปรับใช้ค่าพิกัดแกน Y กับค่านําเข้าปืนเบา เมื่อมีการจําลองอุปกรณ์กันคอน สามารถใช้แก้ไขการเล็งผิดได้</value></data>
-  <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustratiox.Label"><value>Guncon X Axis Construction</value></data>
+  <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustratiox.Label"><value>การตอบสนองแกน X ของ Guncon</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustratiox.Help"><value>ปรับขนาดสัมพัทธ์ของการเคลื่อนไหวปืนแบบแนวนอนเมื่อจําลองอุปกรณ์กันคอน สามารถใช้แก้ไขการเล็งผิดได้</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustratioy.Label"><value>กุนคอน Y Axis Construction</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustratioy.Help"><value>ปรับขนาดสัมพัทธ์ของการเคลื่อนไหวปืนดิ่งเมื่อจําลองอุปกรณ์กันคอน สามารถใช้แก้ไขการเล็งผิดได้</value></data>
@@ -1008,7 +1008,7 @@
   <data name="Emulation.Option.rpcs3.rpcs3_network_enabled.Label"><value>เปิดใช้งานเครือข่าย</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_network_enabled.Help"><value>ให้เกมเข้าถึงอินเทอร์เน็ต จะมีผลเมื่อมีการโหลดเนื้อหา</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_psn_status.Label"><value>สถานะ PSN</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_psn_status.Help"><value>สิ่งที่เกมเห็นจากเครือข่าย PlayStation การจําลองทําให้พวกเขาเชื่อว่าพวกเขาได้รับการลงนามในซึ่งบางคนต้องการที่จะได้รับผ่านเมนูของพวกเขา; RPCN เชื่อมต่อกับ RPCS3'แม่ข่ายบริการส่วนตัวและต้องการเปิดใช้งานเครือข่าย RPCN บัญชี: แกนไม่สามารถสร้างหนึ่งเพื่อให้ตั้งขึ้นในยืนคนเดียว RPCS3 และคัดลอกมัน rpcn.yml ถึง system/rpcs3/ (system/rpcs3/config/ บนหน้าต่างต่าง ๆ). จะมีผลเมื่อมีการโหลดเนื้อหา</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_psn_status.Help"><value>กำหนดสถานะ PlayStation Network ที่เกมเห็น โหมดจำลองทำให้เกมเข้าใจว่าผู้ใช้ลงชื่อเข้าใช้แล้ว ซึ่งบางเกมจำเป็นต้องใช้เพื่อผ่านเมนู RPCN เชื่อมต่อกับเซิร์ฟเวอร์ของ RPCS3 และต้องเปิดใช้เครือข่ายพร้อมมีบัญชี RPCN คอร์ไม่สามารถสร้างบัญชีได้ ให้ตั้งค่าบัญชีในแอปพลิเคชัน RPCS3 แบบแยก แล้วคัดลอก rpcn.yml ไปยัง system/rpcs3/ (ไปยัง system/rpcs3/config/ บน Windows) การตั้งค่าจะมีผลเมื่อโหลดเนื้อหา</value></data>
   <data name="Emulation.Option.Sony.Value.Simulated"><value>จําลอง</value></data>
   <data name="Emulation.Option.Sony.Value.RPCN"><value>RPCN</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_upnp.Label"><value>UPNP</value></data>
@@ -1167,7 +1167,7 @@
   <data name="Emulation.Option.Sony.Value.Unsynchronized"><value>ไม่ใช้เอฟเฟ็คต์</value></data>
   <data name="Emulation.Option.Sony.Setting.NointerlacingHint.Label"><value>เปิดใช้การตัดเสียง</value></data>
   <data name="Emulation.Option.Sony.Setting.NointerlacingHint.Help"><value>หากเปิดใช้ จะมีการค้นหาในฐานข้อมูลภายใน หากมีแพทช์ที่เปิดให้เกมเปลี่ยนภาพเป็นรูปภาพที่ไม่ทับค่า, แบบเต็มเฟรม, หรือสัญญาณ สแกนภาพแบบก้าวหน้า, และ/หรือการรวมกันของทั้งหมดด้านบน ภาพจะสามารถตั้งค่าความเสถียรและลดความเข้มได้</value></data>
-  <data name="Emulation.Option.Sony.Value.BilinearForcedExcludingSprite"><value>แบบไบลิเนียร์ (ไม่รวมลายพิมพ์ซ้ํา)</value></data>
+  <data name="Emulation.Option.Sony.Value.BilinearForcedExcludingSprite"><value>บังคับใช้การกรองแบบไบลิเนียร์ ยกเว้นสไปรต์</value></data>
   <data name="Emulation.Option.Sony.Value.Scaled"><value>ปรับเป็นความละเอียดภายใน</value></data>
   <data name="Emulation.Option.Sony.Value.Unscaled"><value>การแสดงผลของคอนโซลดั้งเดิม</value></data>
   <data name="Emulation.Option.Sony.Value.Force32Bit"><value>บังคับ 32 บิต</value></data>
@@ -1179,11 +1179,11 @@
   <data name="Emulation.Option.Sony.Setting.PcrtcAntiblur.Help"><value>ปิดการใช้งานตัวเลือกนี้เพื่อให้ใช้ภาพผลลัพธ์ที่ถูกต้องที่สุด การเปิดใช้งานตัวเลือกนี้จะเป็นการลบรายการของภาพที่มีรายละเอียดมากที่สุดบนตัวประมวลผลโปรแกรม และตัวแสดงพาราลเอล</value></data>
   <data name="Emulation.Option.Sony.Setting.PcrtcScreenOffsets.Label"><value>ปรับค่าตําแหน่งของจอภาพ (Screen value)PCRTC)</value></data>
   <data name="Emulation.Option.Sony.Setting.DisableInterlaceOffset.Label"><value>ปิดการแสดงผลตรงข้ามแนวตั้งที่ใช้กับวิดีโอแบบทับกัน</value></data>
-  <data name="Emulation.Option.Sony.Setting.AutoFlushSoftware.Label"><value>อัตโนมัติเพื่อล้างแคช (ส่วนแสดงผลของซอฟต์แวร์)</value></data>
+  <data name="Emulation.Option.Sony.Setting.AutoFlushSoftware.Label"><value>ล้างแคชอัตโนมัติ (เรนเดอร์ด้วยซอฟต์แวร์)</value></data>
   <data name="Emulation.Option.Sony.Setting.SwRendererThreads.Label"><value>CPU เธรดที่ใช้สําหรับใช้ในการแปลโปรแกรม</value></data>
   <data name="Emulation.Option.Sony.Setting.SwRendererThreads.Help"><value>จํานวนเธรดงานเพิ่มเติมที่ตัวแปลงโปรแกรมจะใช้สี Regressizes ด้วย บน GS เส้นด้ายเอง 0 rasterizes บน GS เธรดเท่านั้น (มีความล่าช้าน้อยที่สุด, ดีที่สุดใน CPU 2-4 หลัก). มีเธรดอื่น ๆ ที่มีส่วนช่วยเหลือในการแสดงด้วย อัลฟาที่มีผลกระทบกับ CPU ที่มีแกนสํารอง ใช้เฉพาะกับตัวประมวลผลซอฟต์แวร์เท่านั้น</value></data>
   <data name="Emulation.Option.Sony.Setting.VuAccurateAddsub.Label"><value>การ เพิ่ม และ การ ลบ ที่ ถูก ต้อง (เอ ส โต เนีย), 1 / 2VU)</value></data>
-  <data name="Emulation.Option.Sony.Setting.VuAccurateAddsub.Help"><value>โมเดล VU เกมของ Adler ที่ต้องการ (Sarge 3, Radia Thaily), Valky Racy 2) รับข้อมูลโดยอัตโนมัติต่อชื่อฐานข้อมูลเกม แม้มันจะถูกปิดลงก็ตาม; เปิดให้ทั่วโลกได้เมื่อไล่ติดตามความแม่นยําในชื่ออื่น ๆ เท่านั้น VU- เกมหลอกเด็ก</value></data>
+  <data name="Emulation.Option.Sony.Setting.VuAccurateAddsub.Help"><value>จำลองการตัดทอนตามผลต่างของเลขชี้กำลังในการบวกและลบของ VU ฐานข้อมูลเกมเปิดใช้พฤติกรรมนี้โดยอัตโนมัติสำหรับเกม Tri-Ace ที่จำเป็นต้องใช้ เช่น Star Ocean 3, Radiata Stories และ Valkyrie Profile 2 แม้จะปิดตัวเลือกส่วนกลางนี้อยู่ก็ตาม เปิดใช้กับเกมอื่นเฉพาะเมื่อต้องการความแม่นยำเพิ่มขึ้น เพราะอาจทำให้เกมที่ใช้ VU มากทำงานช้าลง</value></data>
   <data name="Emulation.Option.Sony.Setting.EeAccurateFpu.Label"><value>คํานวณจุดลอยได้ถูกต้อง (Splam- paths)EE FPU)</value></data>
   <data name="Emulation.Option.Sony.Setting.EeAccurateFpu.Help"><value>ทํางาน EE FPU เพิ่ม, สํารอง, mul และสายฟิวส์ ผ่านท่อส่งสองคู่ขยาย: บวก/แทนที่แน่นอนกับอุปกรณ์จําลอง, การเพิ่มขนาดใกล้ การจัดการที่ถูกต้องของ PS2 อนุญาตการแปลงจํานวนเต็มเป๊ะ ๆ และข้อมูลกํากับบริสุทธิ์ ABS/NEG. วัดระดับการโหลดฟรีเมื่อทํางาน (หากมีเสียงทํางานบนเฟรมผ่านลูกข่าย); เปิดใช้งานโดยปริยาย</value></data>
   <data name="Emulation.Option.Sony.Setting.VuExactMul.Label"><value>ผลรวมคูณ (VU)</value></data>
@@ -1223,14 +1223,14 @@
   <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Label"><value>ใช้ฐานข้อมูลของเกมภายนอก</value></data>
   <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Help"><value>ต้องการตัวแปลงฮาร์ดแวร์และตัวแก้ไขด้วยตนเอง โปรดโหลดฐานข้อมูลความเข้ากันได้ของเกมที่เลือกไว้ หรือปล่อยว่างไว้เพื่อใช้ฐานข้อมูลที่ฝังอยู่ภายใน แล้วทําการจําลองโปรแกรมใหม่หลังจากเปลี่ยนการตั้งค่าเหล่านี้</value></data>
   <data name="Emulation.Option.Sony.Setting.FramebufferConversion.Label"><value>แปลงเฟรมบัฟเฟอร์ของการแสดงผล</value></data>
-  <data name="Emulation.Option.Sony.Setting.DisablePartialInvalidation.Label"><value>ปิดการใช้แหล่งไม่ถูกต้อง</value></data>
+  <data name="Emulation.Option.Sony.Setting.DisablePartialInvalidation.Label"><value>ปิดการยกเลิกความถูกต้องบางส่วนของแหล่งข้อมูล</value></data>
   <data name="Emulation.Option.Sony.Setting.GpuPaletteConversion.Label"><value>การแปลงจานสีเมื่อ GPU</value></data>
   <data name="Emulation.Option.Sony.Setting.PreloadFrameData.Label"><value>โหลดข้อมูลเฟรมล่วงหน้า</value></data>
   <data name="Emulation.Option.Sony.Setting.HalfPixelOffset.Label"><value>ออฟเซตต์ของตําแหน่งครึ่งพิกเซล</value></data>
   <data name="Emulation.Option.Sony.Value.NormalVertex"><value>ปรับค่ามุมปกติ</value></data>
   <data name="Emulation.Option.Sony.Value.SpecialTexture"><value>ปรับค่าพื้นผิวพิเศษ</value></data>
   <data name="Emulation.Option.Sony.Value.SpecialTextureAggressive"><value>ปรับค่าพื้นผิวแบบโค้ง</value></data>
-  <data name="Emulation.Option.Sony.Value.AlignToNative"><value>จัดเรียงไปยังความละเอียดเดิม</value></data>
+  <data name="Emulation.Option.Sony.Value.AlignToNative"><value>จัดแนวตามความละเอียดดั้งเดิม</value></data>
   <data name="Emulation.Option.Sony.Setting.RoundSprite.Label"><value>หมุนรอบ 2 มิติ SPRITE พิกัด</value></data>
   <data name="Emulation.Option.Sony.Value.Half"><value>ครึ่ง</value></data>
   <data name="Emulation.Option.Sony.Setting.AlignSprite.Label"><value>จัดเรียง 2 มิติ SPRITE พิกัด</value></data>
@@ -1245,22 +1245,22 @@
   <data name="Emulation.Option.Sony.Setting.AnalogMode.Help"><value>เริ่มตัวควบคุมในโหมดแอ็คชั่นแทนที่จะเป็นดิจิทัล เกมบางเกม (เช่น Round Rumer V) บูตแผ่นในดิจิทัลและตามปกติแล้วต้องใช้กดตัวควบคุม ANALOG ปุ่มเพื่อเปิดใช้งานแท่งไม้; เปิดให้ใช้ควบคุมแบบเอนกประสงค์จากตอนต้นได้. เกมที่ล็อกโหมดควบคุมไม่สามารถป้องกันได้</value></data>
   <data name="Emulation.Option.Sony.Files.CheatsDirectory"><value>โฟลเดอร์ที่มีรหัสการโกงเกม</value></data>
   <data name="Emulation.Option.Sony.Setting.ForceAnalog.Label" xml:space="preserve"><value>โหมดคอนโทรล 1 พลังอะนาล็อก</value></data>
-  <data name="Emulation.Option.Sony.Setting.ForceAnalog.Help" xml:space="preserve"><value>บังคับให้ใช้โหมดอนาล็อกตลอดเวลา อาจทําให้เกิดปัญหากับเกมบางอย่าง ใช้ตัวเลือกนี้กับเกมที่รองรับโหมดแอ็คชั่นเท่านั้น แต่ไม่ได้เปิดใช้งานเองโดยอัตโนมัติ เมื่อถูกทําให้พิการ โหมดแอนาล็อกสามารถสลับได้ โดยการกดและจับ DualShock Analog Mode Combo.</value></data>
-  <data name="Emulation.Option.Sony.Setting.AnalogToggle.Label" xml:space="preserve"><value>DualShock เปิด/สลับโหมดอะนาล็อก</value></data>
+  <data name="Emulation.Option.Sony.Setting.ForceAnalog.Help" xml:space="preserve"><value>บังคับให้เปิดโหมดอนาล็อกตลอดเวลา ซึ่งอาจทำให้บางเกมมีปัญหา ใช้เฉพาะเกมที่รองรับโหมดอนาล็อกแต่ไม่เปิดใช้งานเองโดยอัตโนมัติ เมื่อปิดตัวเลือกนี้ สามารถสลับโหมดได้โดยกดชุดปุ่มสำหรับโหมดอนาล็อกของ DualShock ค้างไว้</value></data>
+  <data name="Emulation.Option.Sony.Setting.AnalogToggle.Label" xml:space="preserve"><value>สลับโหมดอนาล็อกของ DualShock</value></data>
   <data name="Emulation.Option.Sony.Setting.AnalogToggle.Help" xml:space="preserve"><value>เมื่อชนิดของอุปกรณ์นําเข้า DualShock, ตัวเลือกนี้ จะอนุญาตให้จําลองภาพได้ DualShock ให้สลับไปมาระหว่าง DIGITAL และ ANALOG โหมดเช่น ฮาร์ดแวร์ดั้งเดิม. คุณสามารถสลับโหมดได้โดยการใช้ชุดปุ่มที่เลือกไว้</value></data>
-  <data name="Emulation.Option.Sony.Setting.AnalogToggleCombo.Label" xml:space="preserve"><value>DualShock Analog Mode Combo</value></data>
+  <data name="Emulation.Option.Sony.Setting.AnalogToggleCombo.Label" xml:space="preserve"><value>ชุดปุ่มสำหรับโหมดอนาล็อกของ DualShock</value></data>
   <data name="Emulation.Option.Sony.Setting.AnalogToggleCombo.Help" xml:space="preserve"><value>การจับคู่ปุ่มที่จะใช้ในการสลับค่าระหว่าง DIGITAL และ ANALOG โหมดสําหรับภาพเลียนแบบ DualShock.</value></data>
-  <data name="Emulation.Option.Sony.Setting.AnalogToggleHold.Label" xml:space="preserve"><value>DualShock Annalog Mode Combo ถ่วงเวลาไว้</value></data>
+  <data name="Emulation.Option.Sony.Setting.AnalogToggleHold.Label" xml:space="preserve"><value>ระยะเวลากดชุดปุ่มอนาล็อกของ DualShock ค้างไว้</value></data>
   <data name="Emulation.Option.Sony.Setting.AnalogToggleHold.Help" xml:space="preserve"><value>เก็บเวลาสําหรับปุ่มในโหมด Akregator</value></data>
   <data name="Emulation.Option.Sony.Setting.NegconDeadzone.Label" xml:space="preserve"><value>neGcon บิดเบี้ยวโซนประหาร</value></data>
-  <data name="Emulation.Option.Sony.Setting.NegconDeadzone.Help" xml:space="preserve"><value>วางแท่งแอนาล็อกไว้เมื่อเลียนแบบการกระทํา 'twist' ของอุปกรณ์ป้อนข้อมูล 'neGcon' ใช้ในการกําจัด การปล่อยตัวควบคุม หมายเหตุ: ตําแหน่งส่วนใหญ่ neGcon ที่เข้าคู่กัน ให้ตัวเลือกในเกมสําหรับตั้งค่าค่าพื้นที่ตายของ'ทวิสต์' เพื่อหลีกเลี่ยงการสูญเสียความแม่นยํา พื้นที่ตายของเกมควร * อย่างต่อเนื่อง * กําหนดเป็นศูนย์ ควรมีการปรับแก้ใด ๆ ที่ต้องการ *เท่านั้น* ปรับใช้ผ่านทางตัวเลือกแกนนี้. นี้มีความสําคัญโดยเฉพาะอย่างยิ่งเมื่อ 'neGconTrography' ถูกตั้งค่าเป็น ' Quadraditic' หรือ 'braic'</value></data>
+  <data name="Emulation.Option.Sony.Setting.NegconDeadzone.Help" xml:space="preserve"><value>เดดโซนของก้านอนาล็อกซ้ายเมื่อจำลองการบิดของตัวควบคุม neGcon ช่วยป้องกันการเคลื่อนไหวที่ไม่ตั้งใจจากอาการก้านไหล เกมที่รองรับหลายเกมมีการตั้งค่าเดดโซนของตนเอง ให้ตั้งค่าในเกมเป็นศูนย์เสมอ และปรับผ่านตัวเลือกของคอร์นี้เท่านั้นเพื่อรักษาความแม่นยำ โดยเฉพาะเมื่อใช้การตอบสนองแบบกำลังสองหรือกำลังสาม</value></data>
   <data name="Emulation.Option.Sony.Setting.SecondMemoryCard.Label" xml:space="preserve"><value>การ์ดหน่วยความจํา slot 2</value></data>
   <data name="Emulation.Option.Sony.Setting.SecondMemoryCard.Help" xml:space="preserve"><value>จําลองเมมโมรี่การ์ดที่สอง ในช่องหน่วยความจําที่ถูกต้อง ข้อควรจํา: บางเกมต้องการปิดการใช้งานตัวเลือกนี้ เพื่อใช้ในการปฏิบัติการที่ถูกต้อง (เช่น Code name Tenka). หมายเหตุ: Memory Card Slot 2 ใช้รูปแบบ Mednafen (.mcr). บันทึกรูปแบบ</value></data>
   <data name="Emulation.Option.Sony.Setting.SharedMemoryCardMethod.Label" xml:space="preserve"><value>การ์ดหน่วยความจําที่ใช้ร่วมกัน</value></data>
   <data name="Emulation.Option.Sony.Setting.SharedMemoryCardMethod.Help" xml:space="preserve"><value>ใช้การ์ดหน่วยความจําที่ใช้ร่วมกันแทนการแยกไพ่สําหรับแต่ละเนื้อหา ข้อควรจํา: ถ้าวิธีการ 'Memory Card' ถูกตั้งค่าเป็น 'Libretro' จะมีผลกับการ์ดหน่วยความจํา ช่อง 2 เท่านั้น</value></data>
   <data name="Emulation.Option.Sony.Setting.LineToQuad.Label" xml:space="preserve"><value>แฮ็คแบบเส้นตรงต่อควอด</value></data>
-  <data name="Emulation.Option.Sony.Setting.LineToQuad.Help" xml:space="preserve"><value>เกม บาง อย่าง (เช่น Doom, Hexen, Soul Blade, ฯลฯ) วาดเส้นทางแนวนอน โดยยืดสามเหลี่ยมแบบเดียว-พิกเซล บนหน้าจอ ซึ่งถูกวาดเป็นแถวของพิกเซลบนฮาร์ดแวร์ต้นฉบับ. การแฮ็คนี้ตรวจจับสามเหลี่ยมขนาดเล็กเหล่านี้ และแปลงมันไปยังควอดตามที่ต้องการ อนุญาตให้แสดงได้อย่างถูกต้องบนตัวแปลฮาร์ดแวร์ และที่ระดับความละเอียดภายใน ต้องการ 'Agorive' สําหรับบางชื่อ (e. g. กองกําลังมืด Duke Nikem) แต่อาจจะแนะนําข้อผิดพลาดทางกราฟิก ออกจาก 'Defult' ถ้าไม่แน่ใจ</value></data>
-  <data name="Emulation.Option.Sony.Setting.DynarecEventCycles.Label" xml:space="preserve"><value>Dynarec DMA/GPU/MDEC/ Timeter Cycles</value></data>
+  <data name="Emulation.Option.Sony.Setting.LineToQuad.Help" xml:space="preserve"><value>บางเกม เช่น Doom, Hexen และ Soul Blade วาดเส้นแนวนอนด้วยสามเหลี่ยมสูงหนึ่งพิกเซล การแก้ไขนี้แปลงสามเหลี่ยมเป็นรูปสี่เหลี่ยมเพื่อแสดงผลอย่างถูกต้องด้วยการเรนเดอร์ฮาร์ดแวร์และความละเอียดภายในที่สูงขึ้น Dark Forces และ Duke Nukem ต้องใช้การตั้งค่าแบบเข้มข้น ซึ่งอาจทำให้เกมอื่นแสดงภาพผิดพลาด หากไม่แน่ใจให้คงค่าเริ่มต้นไว้</value></data>
+  <data name="Emulation.Option.Sony.Setting.DynarecEventCycles.Label" xml:space="preserve"><value>รอบเหตุการณ์ DMA/GPU/MDEC/ตัวจับเวลา (คอมไพล์ใหม่แบบไดนามิก)</value></data>
   <data name="Emulation.Option.Sony.Setting.DynarecEventCycles.Help" xml:space="preserve"><value>วงจรสูงสุดที่ประมวลผลโดย CPU ก่อนที่จะมีการปรับปรุง GPU/DMA/MDEC/Timeter จํานวนมากขึ้นจะเร็วขึ้น มีผลกระทบต่อล่ามด้วงน้อยกว่า dynarc</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_aspect_ratio.Help"><value>กำหนดรูปแบบหน้าจอที่แจ้งให้เกมทราบ มีเพียงบางเกมที่รองรับอัตราส่วน 4:3</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_disk_cache_size.Label"><value>ขนาดแคชบนดิสก์</value></data>

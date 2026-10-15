@@ -46,7 +46,7 @@
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Value.0"><value>Tanpa penyanggaan grafis tambahan</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Value.1"><value>Sangga hingga satu bingkai video</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_button_preference.Label"><value>Tombol Konfirmasi</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_analog_is_circular.Label"><value>Analog Circle vs Square Gate Compensation</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_analog_is_circular.Label"><value>Kompensasi rentang gerak lingkaran dan persegi pada stik analog</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_analog_deadzone.Label"><value>Deadzone Analog</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_analog_deadzone.Help"><value>Terapkan zona mati tambahan pada stik analog setelah pemrosesan masukan oleh aplikasi.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_analog_sensitivity.Label"><value>Skala Sumbu Analog</value></data>
@@ -55,7 +55,7 @@
   <data name="Emulation.Option.ppsspp.ppsspp_skip_buffer_effects.Help"><value>Lewati efek penyangga bingkai untuk meningkatkan kinerja. Beberapa game mungkin tidak menampilkan gambar.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_skip_gpu_readbacks.Label"><value>Lewati Readbacks GPU</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_skip_gpu_readbacks.Help"><value>Lewati penyalinan data grafis dari GPU ke CPU. Beberapa game memerlukan salinan ini agar tampil dengan benar.</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_lazy_texture_caching.Label"><value>Cache Tekstur Lazy (Speedup)</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_lazy_texture_caching.Label"><value>Penyimpanan tekstur dalam cache secara tertunda (percepatan)</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_lazy_texture_caching.Help"><value>Lebih cepat, tapi bisa menyebabkan masalah teks dalam beberapa game.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_spline_quality.Label"><value>Kualitas Kurva Seram / Bezier</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_spline_quality.Help"><value>Hanya digunakan oleh beberapa permainan, mengontrol kelembutan kurva.</value></data>

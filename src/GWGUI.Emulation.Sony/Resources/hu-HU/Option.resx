@@ -255,7 +255,7 @@
   <data name="Emulation.Option.swanstation.swanstation_CPU_FastmemMode.Help"><value>Az oldal hibáit használja, hogy meghatározza a hardveres memóriához való hozzáférést futáskor. Bizonyos játékokban jelentős teljesítmény-javulást eredményezhet, de megnehezíti a mag hibakeresését.</value></data>
   <data name="Emulation.Option.Sony.Value.DisabledSlower"><value>Fogyatékos (lassabb)</value></data>
   <data name="Emulation.Option.Sony.Value.LUTFaster"><value>LUT (gyorsabb)</value></data>
-  <data name="Emulation.Option.Sony.Value.MMapHardwareFaster64BitOnly"><value>MMap (Hardware, gyorsabb, 64- Bit only)</value></data>
+  <data name="Emulation.Option.Sony.Value.MMapHardwareFaster64BitOnly"><value>MMap (hardveres, gyorsabb, csak 64 bites)</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CPU_FastmemRewrite.Label"><value>Gyors memória hozzáférés újraírása a CPU-ban</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CPU_FastmemRewrite.Help"><value>Átírja az utasításokat, ha a CPU fordítóhoz gyors memória-hozzáférés van engedélyezve. Ez javíthatja a sebességet. Ez azt is okozhatja, hogy az emulátor összeomlik néhány platformon.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_TextureReplacements_EnableVRAMWriteReplacements.Label"><value>VRAM írási szöveg helyettesítésének engedélyezése</value></data>
@@ -734,14 +734,14 @@
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_crosshair2.Label"><value>2. játékos Lightgun Crosshair</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_crosshair2.Help"><value>A 2. játékos célkurzorának megjelenítése vagy elrejtése GunCon vagy Konami Gun használatakor. Az RGB32 kimenet kikapcsolása a videó beállításokban ehhez az opcióhoz.</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_konamigunadjustx.Label"><value>Konami Gun X Axis offset</value></data>
-  <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_konamigunadjustx.Help"><value>Az Konami Gun (Hyper Blaster / Justifier) eszköz modellezésekor alkalmazzon egy X tengelyeltolódást a fénypisztoly bemenetére. Használható a hibás célzás korrigálására.</value></data>
+  <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_konamigunadjustx.Help"><value>Eltolja a fénypisztoly bemenetét az X tengelyen a Konami Gun (Hyper Blaster / Justifier) emulációjakor, a célzási hibák javításához.</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_konamigunadjusty.Label"><value>Konami Gun Y Axis offset</value></data>
-  <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_konamigunadjusty.Help"><value>Egy Konami Gun (Hyper Blaster / Justifier) eszköz modellezésekor alkalmazzunk Y tengelyeltolódást a fénypisztoly bemenetére. Használható a hibás célzás korrigálására.</value></data>
+  <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_konamigunadjusty.Help"><value>Eltolja a fénypisztoly bemenetét az Y tengelyen a Konami Gun (Hyper Blaster / Justifier) emulációjakor, a célzási hibák javításához.</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustx.Label"><value>Guncon X Axis Offset</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustx.Help"><value>A Guncon eszköz lemásolásakor alkalmazzon egy X-tengelyt a fényfegyver bemenetére. Használható a hibás célzás korrigálására.</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjusty.Label"><value>Guncon Y Axis Offset</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjusty.Help"><value>A Guncon eszköz utánzásakor az Y tengely eltolódik a fénypisztoly bemenetére. Használható a hibás célzás korrigálására.</value></data>
-  <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustratiox.Label"><value>Guncon X tengely válasz</value></data>
+  <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustratiox.Label"><value>A Guncon X tengelyének válasza</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustratiox.Help"><value>Állítsuk be a vízszintes fényfegyver mozgásának relatív nagyságrendjét, amikor egy Guncon eszközt utánzunk. Használható a hibás célzás korrigálására.</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustratioy.Label"><value>Guncon Y tengelyválasz</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustratioy.Help"><value>Állítsuk be a függőleges fényfegyver mozgásának relatív nagyságát, amikor egy Guncon eszközt utánzunk. Használható a hibás célzás korrigálására.</value></data>
@@ -996,7 +996,7 @@
   <data name="Emulation.Option.rpcs3.rpcs3_network_enabled.Label"><value>Hálózat bekapcsolva</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_network_enabled.Help"><value>Hagyjuk, hogy a játékok elérjék az interneten. A tartalom betöltésekor lép hatályba.</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_psn_status.Label"><value>PSN-státusz</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_psn_status.Help"><value>Milyen játékok látják a PlayStation Network. A szimulációk elhitetik velük, hogy be vannak jelentkezve, és néhány esetben át kell jutniuk az étlapjukon; RPCN csatlakozik RPCS3 saját szerveréhez, szüksége van a Network Enfed-re és egy RPCN számlára: a mag nem tud egyet létrehozni, így önállóan állíthatja fel RPCS3 és másolhatja rpcn.yml -ét system/rpcs3/ (system/rpcs3/config/ Windows-ra). A tartalom betöltésekor lép hatályba.</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_psn_status.Help"><value>Meghatározza a játékoknak jelzett PlayStation Network-állapotot. A szimulált mód bejelentkezést jelez, amelyre egyes játékoknak szükségük van a menükből való továbblépéshez. Az RPCN az RPCS3 saját kiszolgálójához kapcsolódik, és bekapcsolt hálózatot, valamint RPCN-fiókot igényel. A mag nem tud fiókot létrehozni: állítsa be az önálló RPCS3 alkalmazásban, majd másolja az rpcn.yml fájlt a system/rpcs3/ mappába (Windows alatt a system/rpcs3/config/ mappába). A beállítás a tartalom betöltésekor lép érvénybe.</value></data>
   <data name="Emulation.Option.Sony.Value.Simulated"><value>Szimulált</value></data>
   <data name="Emulation.Option.Sony.Value.RPCN"><value>RPCN</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_upnp.Label"><value>UPnP</value></data>
@@ -1145,7 +1145,7 @@
   <data name="Emulation.Option.Sony.Setting.Dev9Hdd.Help"><value>Emulálódik a SPEED a növekedés ATA merevlemez. A kép él 'pcsx2 /DEV9hdd.raw'a frontend rendszerkönyvtárban, és a beállított méreten történő első használatkor jön létre.</value></data>
   <data name="Emulation.Option.Sony.Setting.Dev9HddSize.Label"><value>merevlemez-kapacitás</value></data>
   <data name="Emulation.Option.Sony.Setting.Dev9HddSize.Help"><value>Új kapacitás HDD A kép létrejön. A meglévő kép megtartja a vele létrehozott méretet.</value></data>
-  <data name="Emulation.Option.Sony.Setting.Dev9Eth.Help"><value>Emulálódik a SPEED explosion 's ethernet adapter keresztül a Sockets backend: a userspace TCP/UDP bélelve DHCP szerver, nem szükséges host hálózati konfiguráció vagy kiváltságok.</value></data>
+  <data name="Emulation.Option.Sony.Setting.Dev9Eth.Help"><value>A SPEED bővítő Ethernet-adapterét emulálja a Sockets háttérmodullal: felhasználói térben futó TCP/UDP protokollverem belső DHCP-kiszolgálóval, a gazdagép hálózati beállításainak módosítása és különleges jogosultságok nélkül.</value></data>
   <data name="Emulation.Option.Sony.Setting.UpscaleMultiplier.Help"><value>Rajzoljon a többszöri a PS2A szoftver továbbítói 2x-et rajzolnak 2x-ért vagy magasabb.</value></data>
   <data name="Emulation.Option.Sony.Setting.NativeScaling.Label"><value>A hatások megtartása a konzol eredeti felbontásánál</value></data>
   <data name="Emulation.Option.Sony.Setting.NativeScaling.Help"><value>A játék a képkocka töredékén rajzol, mint például a virágzás vagy a homályos áthaladás, a belső felbontás helyett az anyai felbontás. A elmosódott kép felbontásának árán a konzol egy elmosódott sugarát és pozícióját tartja meg; az "agresszív" a kiugró képre is vonatkozik. Az "automatikus" a játék adatbázisát használja, ahol nincs "normál". Minden más értéket az adatbázistól és az "Enable" -tól függetlenül használnak. HW Hacks.</value></data>
@@ -1167,7 +1167,7 @@
   <data name="Emulation.Option.Sony.Value.Unsynchronized"><value>Nem szinkronizált</value></data>
   <data name="Emulation.Option.Sony.Setting.NointerlacingHint.Label"><value>Deinterlaquing foltok engedélyezése</value></data>
   <data name="Emulation.Option.Sony.Setting.NointerlacingHint.Help"><value>Ha be van jelölve, akkor a belső adatbázisba fog nézni, ha a játék számára elérhető egy tapasz, amely a képet nem-interlaced, teljes képkeret vagy progresszív scan videojelet és / vagy a fentiek kombinációját alakítja át. A kép stabilabb lesz, és a Deinterlacing kikapcsolható.</value></data>
-  <data name="Emulation.Option.Sony.Value.BilinearForcedExcludingSprite"><value>Bilinear (Erszényes kerítőhálós tonhalhalászhajó, a sprit kivételével)</value></data>
+  <data name="Emulation.Option.Sony.Value.BilinearForcedExcludingSprite"><value>Kényszerített bilineáris szűrés, a sprite-ok kivételével</value></data>
   <data name="Emulation.Option.Sony.Value.Scaled"><value>A belső szanálásra méretezett</value></data>
   <data name="Emulation.Option.Sony.Value.Unscaled"><value>Eredeti konzol felbontása</value></data>
   <data name="Emulation.Option.Sony.Value.Force32Bit"><value>A 32bites erő</value></data>
@@ -1179,11 +1179,11 @@
   <data name="Emulation.Option.Sony.Setting.PcrtcAntiblur.Help"><value>Ha ezt letiltja a legpontosabb kimeneti képért, akkor megpróbálja megtörni a képet. A legészrevehetőbb a szoftverkölcsönzőn és a parallelen.</value></data>
   <data name="Emulation.Option.Sony.Setting.PcrtcScreenOffsets.Label"><value>Képernyő pozíciókiegyenlítés (PCRTC)</value></data>
   <data name="Emulation.Option.Sony.Setting.DisableInterlaceOffset.Label"><value>Az interlaced videóhoz használt függőleges eltolódás kikapcsolása</value></data>
-  <data name="Emulation.Option.Sony.Setting.AutoFlushSoftware.Label"><value>Automatikus gyorsítótár flush (szoftver renderelés)</value></data>
+  <data name="Emulation.Option.Sony.Setting.AutoFlushSoftware.Label"><value>Gyorsítótár automatikus ürítése (szoftveres megjelenítés)</value></data>
   <data name="Emulation.Option.Sony.Setting.SwRendererThreads.Label"><value>CPU A szoftverek megjelenítéséhez használt szálak</value></data>
   <data name="Emulation.Option.Sony.Setting.SwRendererThreads.Help"><value>A további dolgozók száma a szoftver rendererelő raszterizes, tetején a GS A szál maga. 0 raszterizes a GS A legtöbb szál segít sok alfa effektus CPU tartalék maggal. Csak a szoftver által használt.</value></data>
   <data name="Emulation.Option.Sony.Setting.VuAccurateAddsub.Label"><value>Pontos összeadás és kivonás (VU)</value></data>
-  <data name="Emulation.Option.Sony.Setting.VuAccurateAddsub.Help"><value>Modell a VU A Tri- Ace játékok, amelyek ezt a viselkedést igénylik (Star Ocean 3, Radiata Stories, Valkyrie Profile 2) automatikusan kap egy címet a játék adatbázisában, még ha ez le is van tiltva; lehetővé teszi, hogy globálisan csak akkor, ha a pontosság más címeken. VU- Nehéz játékok.</value></data>
+  <data name="Emulation.Option.Sony.Setting.VuAccurateAddsub.Help"><value>Modellezi az exponensek különbségéből eredő csonkítást a VU összeadásainál és kivonásainál. A játékadatbázis automatikusan bekapcsolja az érintett Tri-Ace-játékokhoz, például a Star Ocean 3, Radiata Stories és Valkyrie Profile 2 esetén akkor is, ha ez az általános beállítás ki van kapcsolva. Más játékoknál csak a pontosság érdekében kapcsolja be; lassíthatja a VU-t intenzíven használó játékokat.</value></data>
   <data name="Emulation.Option.Sony.Setting.EeAccurateFpu.Label"><value>Pontos lebegéspont számtani (EE FPU)</value></data>
   <data name="Emulation.Option.Sony.Setting.EeAccurateFpu.Help"><value>Futás! EE FPU add, sub, mul és a olvasztott láncok keresztül a kiterjesztett-tartomány kettős csővezeték: pontos add / sub szemben a hardver modell, közel-pontos szorzók, helyes kezelése a hatalmas értékek PS2 lehetővé teszi, egész szám átalakítás, és a tiszta- bitop ABS/NEG. A munkaterhelés szintjén (a keretáthaladáskor fellépő zajon belül) a mért érték ingyenes; alapértelmezés szerint engedélyezve.</value></data>
   <data name="Emulation.Option.Sony.Setting.VuExactMul.Label"><value>Pontos szorzás (VU)</value></data>
@@ -1223,14 +1223,14 @@
   <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Label"><value>Külső GameIndex adatbázis használata</value></data>
   <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Help"><value>A hardveres renderelő és a manuális renderelés javításait igényli. A kijelölt játék kompatibilitási adatbázisa betöltése.</value></data>
   <data name="Emulation.Option.Sony.Setting.FramebufferConversion.Label"><value>A renderelés keretbuffer konvertálása</value></data>
-  <data name="Emulation.Option.Sony.Setting.DisablePartialInvalidation.Label"><value>Részleges forráskódú érvényesítés kikapcsolása</value></data>
+  <data name="Emulation.Option.Sony.Setting.DisablePartialInvalidation.Label"><value>Források részleges érvénytelenítésének kikapcsolása</value></data>
   <data name="Emulation.Option.Sony.Setting.GpuPaletteConversion.Label"><value>Palette konverzió GPU</value></data>
   <data name="Emulation.Option.Sony.Setting.PreloadFrameData.Label"><value>A képkeret adatainak előre történő betöltése</value></data>
   <data name="Emulation.Option.Sony.Setting.HalfPixelOffset.Label"><value>Félpixel pozíció eltolása</value></data>
   <data name="Emulation.Option.Sony.Value.NormalVertex"><value>Normál vertex eltolódás</value></data>
   <data name="Emulation.Option.Sony.Value.SpecialTexture"><value>Különleges textúrák</value></data>
   <data name="Emulation.Option.Sony.Value.SpecialTextureAggressive"><value>Agresszív textúrák eltolódása</value></data>
-  <data name="Emulation.Option.Sony.Value.AlignToNative"><value>Az eredeti felbontáshoz való igazodás</value></data>
+  <data name="Emulation.Option.Sony.Value.AlignToNative"><value>Igazítás az eredeti felbontáshoz</value></data>
   <data name="Emulation.Option.Sony.Setting.RoundSprite.Label"><value>2. kör SPRITE koordináták</value></data>
   <data name="Emulation.Option.Sony.Value.Half"><value>Fele</value></data>
   <data name="Emulation.Option.Sony.Setting.AlignSprite.Label"><value>A 2D-s egyenlet SPRITE koordináták</value></data>
@@ -1245,22 +1245,22 @@
   <data name="Emulation.Option.Sony.Setting.AnalogMode.Help"><value>Indítsa el a vezérlő analóg módban helyett digitális. Néhány játék (pl. Ridge Racer V) indítsa a pad digitális, és általában megköveteli, hogy nyomja meg a vezérlő ANALOG gombbal engedélyezheti a botokat; lehetővé teszi, hogy ez az analóg vezérlések az elejétől kezdve. A vezérlő üzemmódot lezáró játékok érintetlenek.</value></data>
   <data name="Emulation.Option.Sony.Files.CheatsDirectory"><value>A játék csalási kódjait tartalmazó mappa</value></data>
   <data name="Emulation.Option.Sony.Setting.ForceAnalog.Label" xml:space="preserve"><value>Vezérlő 1 Erő Analóg mód</value></data>
-  <data name="Emulation.Option.Sony.Setting.ForceAnalog.Help" xml:space="preserve"><value>Az analóg üzemmód mindig be van kapcsolva. Lehet, hogy problémát okoz néhány játék. Csak akkor használja ezt az opciót, ha analóg módot támogat, de nem teszi automatikusan lehetővé. Ha nem működik, az analóg mód a DualShock Analóg Mode Combo megnyomásával és tartásával kapcsolható be.</value></data>
-  <data name="Emulation.Option.Sony.Setting.AnalogToggle.Label" xml:space="preserve"><value>DualShock Analóg mód bekapcsolása</value></data>
+  <data name="Emulation.Option.Sony.Setting.ForceAnalog.Help" xml:space="preserve"><value>Folyamatosan bekapcsolva tartja az analóg módot. Egyes játékokban problémát okozhat. Csak olyan játékoknál használja, amelyek támogatják az analóg módot, de nem kapcsolják be automatikusan. Ha ez a beállítás ki van kapcsolva, a mód a DualShock analóg gombkombinációjának nyomva tartásával váltható.</value></data>
+  <data name="Emulation.Option.Sony.Setting.AnalogToggle.Label" xml:space="preserve"><value>DualShock analóg mód váltása</value></data>
   <data name="Emulation.Option.Sony.Setting.AnalogToggle.Help" xml:space="preserve"><value>Ha a bemeneti eszköz típusa DualShock, akkor ez az opció lehetővé teszi, hogy az emulált DualShock -et DIGITAL és ANALOG üzemmódba kapcsolják, mint az eredeti hardvert. A mód a kiválasztott gombkombinációval is bekapcsolható.</value></data>
-  <data name="Emulation.Option.Sony.Setting.AnalogToggleCombo.Label" xml:space="preserve"><value>DualShock Analóg mód Combo</value></data>
+  <data name="Emulation.Option.Sony.Setting.AnalogToggleCombo.Label" xml:space="preserve"><value>DualShock analóg mód gombkombinációja</value></data>
   <data name="Emulation.Option.Sony.Setting.AnalogToggleCombo.Help" xml:space="preserve"><value>A DIGITAL és ANALOG üzemmód közötti átkapcsoláshoz használt gombkombináció az emulált DualShock esetében.</value></data>
-  <data name="Emulation.Option.Sony.Setting.AnalogToggleHold.Label" xml:space="preserve"><value>DualShock Analóg mód Combo Hold Delay</value></data>
+  <data name="Emulation.Option.Sony.Setting.AnalogToggleHold.Label" xml:space="preserve"><value>DualShock analóg gombkombinációjának nyomva tartási ideje</value></data>
   <data name="Emulation.Option.Sony.Setting.AnalogToggleHold.Help" xml:space="preserve"><value>Tartsuk az időt az analóg módú kombinált gombokra.</value></data>
   <data name="Emulation.Option.Sony.Setting.NegconDeadzone.Label" xml:space="preserve"><value>neGcon Twist Deadzone</value></data>
-  <data name="Emulation.Option.Sony.Setting.NegconDeadzone.Help" xml:space="preserve"><value>Bal analóg stick holtzóna, amikor szimulálja az emulált 'neGcon' bemeneti eszközök "csavart" hatását. A vezérlő eltérítésének kiküszöbölésére használják. Megjegyzés: A legtöbb neGcon- kompatibilis cím ingame opciókat biztosít a 'twist' holtzóna érték beállításához. A pontosság elvesztésének elkerülése érdekében az in-game holtzóna *Mindig.* 0-ra kell állítani. Minden szükséges kiigazítást * csak * kell alkalmazni ezen a fő opción keresztül. Ez különösen akkor fontos, ha a "neGcon Twist Response" értéke "Quadratic" vagy "Cubic".</value></data>
+  <data name="Emulation.Option.Sony.Setting.NegconDeadzone.Help" xml:space="preserve"><value>A bal analóg kar holtzónája a neGcon vezérlő csavarásának szimulálásakor. Kiküszöböli a kar elmozdulásából eredő nem kívánt mozgásokat. Sok kompatibilis játék saját holtzónabeállítást kínál: azt mindig állítsa nullára, és a pontosság megőrzéséhez csak ezzel a magbeállítással végezzen módosításokat, különösen négyzetes vagy köbös válasz esetén.</value></data>
   <data name="Emulation.Option.Sony.Setting.SecondMemoryCard.Label" xml:space="preserve"><value>Memóriakártya résidő 2</value></data>
   <data name="Emulation.Option.Sony.Setting.SecondMemoryCard.Help" xml:space="preserve"><value>Emuláljunk egy második memóriakártyát a jobb memóriakódban. Megjegyzés: Néhány játék megköveteli, hogy ezt az opciót letiltsák a helyes használathoz (pl. Codename Tenka). Megjegyzés: A Memory Card 2. telek a Mednafen (.mcr) mentési formátumot használja.</value></data>
   <data name="Emulation.Option.Sony.Setting.SharedMemoryCardMethod.Label" xml:space="preserve"><value>Közös memóriakártyák</value></data>
   <data name="Emulation.Option.Sony.Setting.SharedMemoryCardMethod.Help" xml:space="preserve"><value>A megosztott memóriakártyák használata külön kártyák helyett minden tartalomhoz. Megjegyzés: Ha a 'Memory Card módszer' "Libretro" -ra van beállítva, akkor csak a 2-es memóriakártya slot lesz hatással.</value></data>
   <data name="Emulation.Option.Sony.Setting.LineToQuad.Label" xml:space="preserve"><value>Line- to- Quad Hack</value></data>
-  <data name="Emulation.Option.Sony.Setting.LineToQuad.Help" xml:space="preserve"><value>Néhány játék (pl.: Doom, Hexen, Soul Blade, stb.) rajzoljon vízszintes vonalak nyújtásával egypixeles-magas háromszögek a képernyőn, amelyek raszterizálódnak, mint egy sor pixel az eredeti hardver. Ez a hack észleli ezeket a kis háromszögeket, és átalakítja őket quads szükség szerint, lehetővé téve számukra, hogy megfelelően megjelenítse a hardverkölcsönzők és magasabb belső felbontások. "Agresszív" szükséges egyes címek (például sötét erők, herceg nukem), de egyébként bevezethet grafikus hibák. Menj el az 'Alapértelmezés' -nél, ha bizonytalan vagy.</value></data>
-  <data name="Emulation.Option.Sony.Setting.DynarecEventCycles.Label" xml:space="preserve"><value>Dynarec DMA / GPU / MDEC / Timer Event Cycles</value></data>
+  <data name="Emulation.Option.Sony.Setting.LineToQuad.Help" xml:space="preserve"><value>Egyes játékok, például a Doom, a Hexen és a Soul Blade, egy pixel magas háromszögekkel rajzolják a vízszintes vonalakat. A javítás négyszögekké alakítja ezeket a helyes hardveres megjelenítéshez és a nagyobb belső felbontáshoz. A Dark Forces és a Duke Nukem az agresszív beállítást igényli, amely más játékokban grafikai hibákat okozhat. Ha bizonytalan, tartsa meg az alapértelmezett beállítást.</value></data>
+  <data name="Emulation.Option.Sony.Setting.DynarecEventCycles.Label" xml:space="preserve"><value>DMA/GPU/MDEC/időzítő eseményciklusok (dinamikus újrafordító)</value></data>
   <data name="Emulation.Option.Sony.Setting.DynarecEventCycles.Help" xml:space="preserve"><value>A CPU által futtatott maximális ciklusok a GPU / DMA / MDEC / Timer Update ellenőrzése előtt, nagyobb szám lesz gyorsabb, sokkal kisebb hatással vannak a bogár tolmácsra, mint a dynarec.</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_aspect_ratio.Help"><value>Beállítja a játékoknak jelzett képarányt. Csak néhány játék támogatja a 4:3 arányt.</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_disk_cache_size.Label"><value>Lemezgyorsítótár mérete</value></data>

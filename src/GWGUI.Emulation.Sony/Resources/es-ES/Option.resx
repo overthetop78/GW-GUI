@@ -255,7 +255,7 @@
   <data name="Emulation.Option.swanstation.swanstation_CPU_FastmemMode.Help"><value>Usa fallos de página para determinar los accesos de memoria del hardware a tiempo de ejecución. Puede proporcionar una mejora significativa del rendimiento en algunos juegos, pero hacer el núcleo más difícil de depurar.</value></data>
   <data name="Emulation.Option.Sony.Value.DisabledSlower"><value>Discapacitados (Más lento)</value></data>
   <data name="Emulation.Option.Sony.Value.LUTFaster"><value>LUT (Más rápido.)</value></data>
-  <data name="Emulation.Option.Sony.Value.MMapHardwareFaster64BitOnly"><value>MMap (Hardware, más rápido, sólo 64-Bit)</value></data>
+  <data name="Emulation.Option.Sony.Value.MMapHardwareFaster64BitOnly"><value>MMap (hardware, más rápido, solo 64 bits)</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CPU_FastmemRewrite.Label"><value>CPU Recompilador de acceso rápido a la memoria reescribir</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CPU_FastmemRewrite.Help"><value>Reescribir instrucciones cuando el acceso rápido a la memoria está habilitado para el recompilador de CPU. Esto puede mejorar la velocidad. También puede hacer que el emulador se estrella en algunas plataformas.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_TextureReplacements_EnableVRAMWriteReplacements.Label"><value>Activar VRAM Escribir Reemplazo de Textura</value></data>
@@ -733,14 +733,14 @@
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_crosshair2.Label"><value>Jugador 2 Lightgun Crosshair</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_crosshair2.Help"><value>Mostrar o ocultar el cursor puntero para el jugador 2 al usar GunCon o Konami Gun. Desactivar la salida RGB32 en los ajustes de vídeo para que esta opción funcione.</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_konamigunadjustx.Label"><value>Konami Gun X Axis Offset</value></data>
-  <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_konamigunadjustx.Help"><value>aplicar un eje x offset a la entrada de arma ligera al emular un dispositivo Konami Gun (Hyper Blaster / Justifier). Se puede utilizar para corregir las fallas de apuntar.</value></data>
+  <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_konamigunadjustx.Help"><value>Aplica un desplazamiento en el eje X de la pistola óptica al emular un dispositivo Konami Gun (Hyper Blaster / Justifier), para corregir desviaciones de apuntado.</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_konamigunadjusty.Label"><value>Konami Gun Y Axis Offset</value></data>
-  <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_konamigunadjusty.Help"><value>aplicar un eje y offset a la entrada de arma ligera al emular un dispositivo Konami Gun (Hyper Blaster / Justifier). Se puede utilizar para corregir las fallas de apuntar.</value></data>
+  <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_konamigunadjusty.Help"><value>Aplica un desplazamiento en el eje Y de la pistola óptica al emular un dispositivo Konami Gun (Hyper Blaster / Justifier), para corregir desviaciones de apuntado.</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustx.Label"><value>Guncon X Axis Offset</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustx.Help"><value>Aplique un eje X offset a la entrada de arma ligera al emular un dispositivo Guncon. Se puede utilizar para corregir las fallas de apuntar.</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjusty.Label"><value>Guncon Y Axis Offset</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjusty.Help"><value>Aplicar un eje Y offset a la entrada de arma ligera al emular un dispositivo Guncon. Se puede utilizar para corregir las fallas de apuntar.</value></data>
-  <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustratiox.Label"><value>Respuesta del Guncon X Axis</value></data>
+  <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustratiox.Label"><value>Respuesta del eje X de Guncon</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustratiox.Help"><value>Ajuste la magnitud relativa del movimiento de arma ligera horizontal al emular un dispositivo Guncon. Se puede utilizar para corregir las fallas de apuntar.</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustratioy.Label"><value>Respuesta del Guncon Y Axis</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustratioy.Help"><value>Ajuste la magnitud relativa del movimiento vertical de armas ligeras al emular un dispositivo Guncon. Se puede utilizar para corregir las fallas de apuntar.</value></data>
@@ -995,7 +995,7 @@
   <data name="Emulation.Option.rpcs3.rpcs3_network_enabled.Label"><value>Network Enabled</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_network_enabled.Help"><value>Deje que los juegos lleguen a Internet. Efectúa cuando se carga el contenido.</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_psn_status.Label"><value>PSN Situación</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_psn_status.Help"><value>Qué juegos ver de la Red PlayStation. Simulated los hace creer que están firmados, lo cual algunos necesitan pasar de sus menús; RPCN conexiones a RPCS3's propio servidor y necesidades Network Enabled RPCN cuenta: el núcleo no puede crear uno, así que configurarlo en standalone RPCS3 y copiar su rpcn.yml dentro de system/rpcs3/ (system/rpcs3/config/ en Windows). Efectúa cuando se carga el contenido.</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_psn_status.Help"><value>Determina el estado de PlayStation Network que ven los juegos. El modo simulado les hace creer que se ha iniciado sesión, algo que algunos necesitan para superar sus menús. RPCN se conecta al servidor propio de RPCS3 y requiere la red activada y una cuenta RPCN. El núcleo no puede crear la cuenta: configúrala en la aplicación independiente RPCS3 y copia rpcn.yml en system/rpcs3/ (en system/rpcs3/config/ en Windows). Se aplica al cargar el contenido.</value></data>
   <data name="Emulation.Option.Sony.Value.Simulated"><value>Simulado</value></data>
   <data name="Emulation.Option.Sony.Value.RPCN"><value>RPCN</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_upnp.Label"><value>UPnP</value></data>
@@ -1167,7 +1167,7 @@
   <data name="Emulation.Option.Sony.Value.Unsynchronized"><value>Sincronización</value></data>
   <data name="Emulation.Option.Sony.Setting.NointerlacingHint.Label"><value>Activar parches de desinterlazamiento</value></data>
   <data name="Emulation.Option.Sony.Setting.NointerlacingHint.Help"><value>Si está habilitado, se verá en la base de datos interna si hay un parche disponible para que el juego convierta la imagen en un marco no interlazado, completo o una señal de vídeo de exploración progresiva, y/o una combinación de todo lo anterior. La imagen será más estable y se puede apagar el desinterlazamiento.</value></data>
-  <data name="Emulation.Option.Sony.Value.BilinearForcedExcludingSprite"><value>Bilinear (Forzado , excluyendo el esprido)</value></data>
+  <data name="Emulation.Option.Sony.Value.BilinearForcedExcludingSprite"><value>Filtrado bilineal forzado, excepto para sprites</value></data>
   <data name="Emulation.Option.Sony.Value.Scaled"><value>Escalada a la resolución interna</value></data>
   <data name="Emulation.Option.Sony.Value.Unscaled"><value>Resolución de consola original</value></data>
   <data name="Emulation.Option.Sony.Value.Force32Bit"><value>Fuerza 32bit</value></data>
@@ -1179,11 +1179,11 @@
   <data name="Emulation.Option.Sony.Setting.PcrtcAntiblur.Help"><value>Desactivar esto para la imagen de salida más precisa. Habilitar esto intentará desbloquear la imagen. Lo más notable en el renderizador de software y paraLLEl.</value></data>
   <data name="Emulation.Option.Sony.Setting.PcrtcScreenOffsets.Label"><value>Anticipos de posición de la pantalla (PCRTC)</value></data>
   <data name="Emulation.Option.Sony.Setting.DisableInterlaceOffset.Label"><value>Desactivar el offset vertical utilizado para el vídeo interlazado</value></data>
-  <data name="Emulation.Option.Sony.Setting.AutoFlushSoftware.Label"><value>Flush de caché automático (rendición de software)</value></data>
+  <data name="Emulation.Option.Sony.Setting.AutoFlushSoftware.Label"><value>Vaciado automático de caché (renderizado por software)</value></data>
   <data name="Emulation.Option.Sony.Setting.SwRendererThreads.Label"><value>CPU hilos utilizados para la renderización de software</value></data>
   <data name="Emulation.Option.Sony.Setting.SwRendererThreads.Help"><value>Número de hilos de trabajo extra el renderizador de software rasteriza con, en la parte superior de GS hilo en sí. 0 rasteriza en el GS hilo solo (latencia más baja, mejor en 2-4 núcleo CPUs). Más hilos ayudan a escenas con muchos efectos alfa en las CPU con núcleos de repuesto. Únicamente utilizado por el renderizador de software.</value></data>
   <data name="Emulation.Option.Sony.Setting.VuAccurateAddsub.Label"><value>Adicionamiento y resta precisa (VU)</value></data>
-  <data name="Emulation.Option.Sony.Setting.VuAccurateAddsub.Help"><value>Modelo de la VU La truncación exponente de adder en cada adición y subtracto. Los juegos de Tri-Ace que requieren este comportamiento (Star Ocean 3, Radiata Stories, Valkyrie Profile 2) lo obtienen automáticamente por título a través de la base de datos del juego incluso cuando esto es deshabilitado; lo habilitan globalmente sólo cuando se persigue la precisión en otros títulos. VU- juegos pesados.</value></data>
+  <data name="Emulation.Option.Sony.Setting.VuAccurateAddsub.Help"><value>Reproduce el truncamiento debido a la diferencia de exponentes en las sumas y restas de la VU. La base de datos ya lo activa automáticamente para los juegos de Tri-Ace que lo necesitan, como Star Ocean 3, Radiata Stories y Valkyrie Profile 2, aunque esta opción global esté desactivada. Actívalo en otros juegos solo si la precisión lo exige; puede ralentizar los que usan intensamente la VU.</value></data>
   <data name="Emulation.Option.Sony.Setting.EeAccurateFpu.Label"><value>Aritmética precisa de punto flotante (EE FPU)</value></data>
   <data name="Emulation.Option.Sony.Setting.EeAccurateFpu.Help"><value>Corre EE FPU añadir, sub, mul y las cadenas fusionadas a través del doble oleoducto de rango extendido: exactamente añadir/sub contra el modelo de hardware, multiplicaciones de cerca de la salida, correcto manejo de los valores enormes PS2 permite, conversión exacta de enteros, y puro-bitop ABS/NEG. Medido libre a nivel de carga de trabajo (en funcionamiento ruido en la entrada de marco); habilitado por defecto.</value></data>
   <data name="Emulation.Option.Sony.Setting.VuExactMul.Label"><value>Multiplicación de la acción (VU)</value></data>
@@ -1223,14 +1223,14 @@
   <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Label"><value>Use la base de datos externa GameIndex</value></data>
   <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Help"><value>Requiere un renderizador de hardware y correcciones de renderización manual. Cargue la base de datos de compatibilidad de juego seleccionada, o deje el archivo vacío para utilizar la base de datos integrada.</value></data>
   <data name="Emulation.Option.Sony.Setting.FramebufferConversion.Label"><value>Convertir el framebuffer de renderización</value></data>
-  <data name="Emulation.Option.Sony.Setting.DisablePartialInvalidation.Label"><value>Invalidación de la fuente parcial</value></data>
+  <data name="Emulation.Option.Sony.Setting.DisablePartialInvalidation.Label"><value>Desactivar la invalidación parcial de las fuentes</value></data>
   <data name="Emulation.Option.Sony.Setting.GpuPaletteConversion.Label"><value>Conversión de paleta en GPU</value></data>
   <data name="Emulation.Option.Sony.Setting.PreloadFrameData.Label"><value>Datos de marco de carga por adelantado</value></data>
   <data name="Emulation.Option.Sony.Setting.HalfPixelOffset.Label"><value>offset de posición de medio píxeles</value></data>
   <data name="Emulation.Option.Sony.Value.NormalVertex"><value>offset de vértice normal</value></data>
   <data name="Emulation.Option.Sony.Value.SpecialTexture"><value>Contratación de textura especial</value></data>
   <data name="Emulation.Option.Sony.Value.SpecialTextureAggressive"><value>Contrarrestación de textura agresiva</value></data>
-  <data name="Emulation.Option.Sony.Value.AlignToNative"><value>Alineación a la resolución original</value></data>
+  <data name="Emulation.Option.Sony.Value.AlignToNative"><value>Alinear con la resolución original</value></data>
   <data name="Emulation.Option.Sony.Setting.RoundSprite.Label"><value>Ronda 2D SPRITE coordenadas</value></data>
   <data name="Emulation.Option.Sony.Value.Half"><value>Medio</value></data>
   <data name="Emulation.Option.Sony.Setting.AlignSprite.Label"><value>Alinear 2D SPRITE coordenadas</value></data>
@@ -1245,22 +1245,22 @@
   <data name="Emulation.Option.Sony.Setting.AnalogMode.Help"><value>Comience el controlador en modo analógico en lugar de digital. Algunos juegos (por ejemplo Ridge Racer V) arrancan la almohadilla en digital y normalmente requieren presionar el controlador ANALOG botón para habilitar las barras; habilitar esto para obtener controles analógicos desde el inicio. Juegos que bloquean el modo controlador no se afectan.</value></data>
   <data name="Emulation.Option.Sony.Files.CheatsDirectory"><value>Carpeta que contiene códigos de trampa juego</value></data>
   <data name="Emulation.Option.Sony.Setting.ForceAnalog.Label" xml:space="preserve"><value>Controlador 1 modo de analógico de la fuerza</value></data>
-  <data name="Emulation.Option.Sony.Setting.ForceAnalog.Help" xml:space="preserve"><value>El modo analógico de las fuerzas está siempre encendido. Puede causar problemas con algunos juegos. Únicamente utilice esta opción para juegos que soportan el modo analógico pero no lo permiten automáticamente. Cuando está deshabilitado, el modo analógico se puede cambiar pulsando y sosteniendo el Combo del Modo Analógico DualShock.</value></data>
-  <data name="Emulation.Option.Sony.Setting.AnalogToggle.Label" xml:space="preserve"><value>Modo analógico DualShock Toggle</value></data>
+  <data name="Emulation.Option.Sony.Setting.ForceAnalog.Help" xml:space="preserve"><value>Mantiene siempre activado el modo analógico. Puede causar problemas en algunos juegos. Úsalo solo con juegos que admitan este modo pero no lo activen automáticamente. Cuando esta opción está desactivada, el modo se puede alternar manteniendo pulsada la combinación de botones del modo analógico DualShock.</value></data>
+  <data name="Emulation.Option.Sony.Setting.AnalogToggle.Label" xml:space="preserve"><value>Alternar el modo analógico DualShock</value></data>
   <data name="Emulation.Option.Sony.Setting.AnalogToggle.Help" xml:space="preserve"><value>Cuando el tipo de dispositivo de entrada es DualShock, esta opción permite que la emulación DualShock sea removida entre DIGITAL y modo ANALOG como hardware original. El modo también se puede cambiar usando la combinación de botones seleccionada.</value></data>
-  <data name="Emulation.Option.Sony.Setting.AnalogToggleCombo.Label" xml:space="preserve"><value>DualShock modo analógico Combo</value></data>
+  <data name="Emulation.Option.Sony.Setting.AnalogToggleCombo.Label" xml:space="preserve"><value>Combinación de botones para el modo analógico DualShock</value></data>
   <data name="Emulation.Option.Sony.Setting.AnalogToggleCombo.Help" xml:space="preserve"><value>La combinación de botones que se utilizará para cambiar entre el modo DIGITAL y ANALOG para el DualShock emulado.</value></data>
-  <data name="Emulation.Option.Sony.Setting.AnalogToggleHold.Label" xml:space="preserve"><value>Modo analógico DualShock Combo Hold Delay</value></data>
+  <data name="Emulation.Option.Sony.Setting.AnalogToggleHold.Label" xml:space="preserve"><value>Tiempo de pulsación de la combinación analógica DualShock</value></data>
   <data name="Emulation.Option.Sony.Setting.AnalogToggleHold.Help" xml:space="preserve"><value>Mantenga tiempo para los botones combo de modo analógico.</value></data>
   <data name="Emulation.Option.Sony.Setting.NegconDeadzone.Label" xml:space="preserve"><value>neGcon Twist Deadzone</value></data>
-  <data name="Emulation.Option.Sony.Setting.NegconDeadzone.Help" xml:space="preserve"><value>Zona muerta analógica izquierda al simular la acción 'twist' de los dispositivos de entrada "neGcon" emulados. Solía eliminar la deriva del controlador. Nota: La mayoría de los títulos compatibles con neGcon proporcionan opciones en el juego para establecer un valor "twist" zona muerta. Para evitar la pérdida de precisión, la zona muerta en el juego debe *siempre* ser fijada a cero. Cualquier ajuste requerido debe *sólo* ser aplicado a través de esta opción principal. Esto es particularmente importante cuando 'neGcon Twist Response' se establece en 'Quadratic' o 'Cubic'.</value></data>
+  <data name="Emulation.Option.Sony.Setting.NegconDeadzone.Help" xml:space="preserve"><value>Zona muerta de la palanca analógica izquierda al simular la torsión de un mando neGcon. Elimina movimientos involuntarios por la deriva de la palanca. Muchos juegos compatibles tienen su propio ajuste: déjalo siempre a cero y realiza los ajustes únicamente con esta opción del núcleo para conservar la precisión, especialmente con una respuesta cuadrática o cúbica.</value></data>
   <data name="Emulation.Option.Sony.Setting.SecondMemoryCard.Label" xml:space="preserve"><value>Tarjeta de memoria Ranura 2</value></data>
   <data name="Emulation.Option.Sony.Setting.SecondMemoryCard.Help" xml:space="preserve"><value>Emular una segunda tarjeta de memoria en la ranura de tarjetas de memoria correcta. Nota: Algunos juegos requieren que esta opción esté deshabilitada para una operación correcta (por ejemplo. Codename Tenka). Nota: Memory Card Ranura 2 utiliza el Mednafen (.mcr) formato de ahorro.</value></data>
   <data name="Emulation.Option.Sony.Setting.SharedMemoryCardMethod.Label" xml:space="preserve"><value>Tarjetas de memoria compartidas</value></data>
   <data name="Emulation.Option.Sony.Setting.SharedMemoryCardMethod.Help" xml:space="preserve"><value>Utilice tarjetas de memoria compartidas en lugar de tarjetas separadas para cada contenido. Nota: si 'Memory Card Method' se establece en 'Libretro', sólo la ranura de tarjeta de memoria 2 será afectada.</value></data>
   <data name="Emulation.Option.Sony.Setting.LineToQuad.Label" xml:space="preserve"><value>Juego de línea a cuadrícula</value></data>
-  <data name="Emulation.Option.Sony.Setting.LineToQuad.Help" xml:space="preserve"><value>Algunos juegos (por ejemplo. Doom, Hexen, Soul Blade, etc.) dibujan líneas horizontales estirando triángulos de un pixel-alto a través de la pantalla, que son rasterizados como una fila de píxeles en el hardware original. Este hack detecta estos pequeños triángulos y los convierte en cuádruples según sea necesario, permitiéndoles ser exhibidos adecuadamente en los renderizadores de hardware y en resoluciones internas escaladas. "Agresivo" es requerido para algunos títulos (por ejemplo: Fuerzas Oscuras, Duke Nukem) pero puede introducir de otra manera fallos gráficos. Salga en 'Default' si no está seguro.</value></data>
-  <data name="Emulation.Option.Sony.Setting.DynarecEventCycles.Label" xml:space="preserve"><value>Dynarec DMA/19GPU/MDEC y Ciclos de eventos temporales</value></data>
+  <data name="Emulation.Option.Sony.Setting.LineToQuad.Help" xml:space="preserve"><value>Algunos juegos, como Doom, Hexen y Soul Blade, dibujan líneas horizontales con triángulos de un píxel de alto. Esta corrección los convierte en cuadriláteros para mostrarlos correctamente con renderizado por hardware y una resolución interna mayor. Dark Forces y Duke Nukem requieren el ajuste agresivo, que puede causar errores gráficos en otros juegos. En caso de duda, conserva el ajuste predeterminado.</value></data>
+  <data name="Emulation.Option.Sony.Setting.DynarecEventCycles.Label" xml:space="preserve"><value>Ciclos de eventos DMA/GPU/MDEC/temporizadores (recompilación dinámica)</value></data>
   <data name="Emulation.Option.Sony.Setting.DynarecEventCycles.Help" xml:space="preserve"><value>Ciclos máximos gestionados por CPU antes de que se revise una GPU/DMA/MDEC/Timer Update, mayor número será más rápido, tiene mucho menos impacto en el intérprete del escarabajo que dynarec.</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_aspect_ratio.Help"><value>Establece el formato de pantalla comunicado a los juegos. Solo algunos juegos admiten 4:3.</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_disk_cache_size.Label"><value>Tamaño de la caché de disco</value></data>

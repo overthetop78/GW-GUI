@@ -46,7 +46,7 @@
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Value.0"><value>Bez dodatkowego buforowania grafiki</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Value.1"><value>Buforuj maksymalnie jedną klatkę wideo</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_button_preference.Label"><value>Przycisk potwierdzenia</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_analog_is_circular.Label"><value>analogowy okrąg w porównaniu z kwadratową bramą kompensacji</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_analog_is_circular.Label"><value>Kompensacja kołowego i kwadratowego zakresu drążka analogowego</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_analog_deadzone.Label"><value>Termin analogowy</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_analog_deadzone.Help"><value>Zastosuj dodatkową martwą strefę drążka analogowego po przetworzeniu wejścia przez aplikację.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_analog_sensitivity.Label"><value>skala osi analogowej</value></data>
@@ -55,7 +55,7 @@
   <data name="Emulation.Option.ppsspp.ppsspp_skip_buffer_effects.Help"><value>Pomiń efekty bufora klatek, aby poprawić wydajność. W niektórych grach obraz może się nie wyświetlać.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_skip_gpu_readbacks.Label"><value>Pomiń GPU Readbacks</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_skip_gpu_readbacks.Help"><value>Pomiń kopiowanie danych graficznych z GPU do CPU. Niektóre gry potrzebują tych kopii do poprawnego wyświetlania obrazu.</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_lazy_texture_caching.Label"><value>Uchwyt tekstury leniwej (Speedup)</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_lazy_texture_caching.Label"><value>Opóźnione buforowanie tekstur (przyspieszenie)</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_lazy_texture_caching.Help"><value>Szybciej, ale może powodować problemy tekstowe w kilku grach.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_spline_quality.Label"><value>Jakość krzywych Spline / Bezier</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_spline_quality.Help"><value>Używane tylko przez niektóre gry, kontroluje gładkość krzywych.</value></data>

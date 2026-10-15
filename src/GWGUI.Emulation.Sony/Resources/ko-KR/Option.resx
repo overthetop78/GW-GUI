@@ -255,7 +255,7 @@
   <data name="Emulation.Option.swanstation.swanstation_CPU_FastmemMode.Help"><value>런타임에 하드웨어 메모리 액세스를 결정하는 페이지 오류를 사용합니다. 일부 게임에서 중요한 성능 개선을 제공 할 수 있지만, 코어를 디버깅에 더 어렵게 만듭니다.</value></data>
   <data name="Emulation.Option.Sony.Value.DisabledSlower"><value>비활성화 (Slower)</value></data>
   <data name="Emulation.Option.Sony.Value.LUTFaster"><value>LUT (꽃)</value></data>
-  <data name="Emulation.Option.Sony.Value.MMapHardwareFaster64BitOnly"><value>MMap (하드웨어, 패스너, 64-Bit 전용)</value></data>
+  <data name="Emulation.Option.Sony.Value.MMapHardwareFaster64BitOnly"><value>MMap(하드웨어, 더 빠름, 64비트 전용)</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CPU_FastmemRewrite.Label"><value>CPU Recompiler 빠른 기억 접근 재쓰기</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CPU_FastmemRewrite.Help"><value>빠른 메모리 액세스가 CPU recompiler에 사용할 때 지시를 씁니다. 이것은 속도를 개량할 수 있습니다. 그것은 또한 일부 플랫폼에서 충돌하는 에뮬레이터를 일으킬 수 있습니다.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_TextureReplacements_EnableVRAMWriteReplacements.Label"><value>Enable VRAM 쓰기 Texture 교체</value></data>
@@ -734,14 +734,14 @@
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_crosshair2.Label"><value>플레이어 2 Lightgun Crosshair</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_crosshair2.Help"><value>GunCon 또는 Konami Gun을 사용할 때 플레이어 2의 목표 커서를 표시하거나 숨깁니다. 이 옵션을 위한 비디오 설정에서 RGB32 출력을 실행할 수 있습니다.</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_konamigunadjustx.Label"><value>Konami Gun x 축선 상쇄</value></data>
-  <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_konamigunadjustx.Help"><value>Konami Gun (Hyper Blaster / Justifier) 장치를 에뮬레이션 할 때 가벼운 총 입력으로 X 축 오프셋을 적용합니다. misalignments를 조정하기 위하여 사용될 수 있습니다.</value></data>
+  <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_konamigunadjustx.Help"><value>Konami Gun(Hyper Blaster / Justifier)을 에뮬레이션할 때 광선총 입력을 X축 방향으로 이동하여 조준 오차를 보정합니다.</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_konamigunadjusty.Label"><value>Konami Gun Y 축선 상쇄</value></data>
-  <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_konamigunadjusty.Help"><value>Konami Gun (Hyper Blaster / Justifier) 장치를 에뮬레이션 할 때 가벼운 총 입력으로 Y 축 오프셋을 적용합니다. misalignments를 조정하기 위하여 사용될 수 있습니다.</value></data>
+  <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_konamigunadjusty.Help"><value>Konami Gun(Hyper Blaster / Justifier)을 에뮬레이션할 때 광선총 입력을 Y축 방향으로 이동하여 조준 오차를 보정합니다.</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustx.Label"><value>Guncon X 축선 상쇄</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustx.Help"><value>Guncon 장치를 유화할 때 가벼운 총 입력에 X 축선 상쇄를 적용하십시오. misalignments를 조정하기 위하여 사용될 수 있습니다.</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjusty.Label"><value>Guncon Y 축선 분파</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjusty.Help"><value>Guncon 장치를 유화할 때 가벼운 총 입력에 Y 축선 상쇄를 적용하십시오. misalignments를 조정하기 위하여 사용될 수 있습니다.</value></data>
-  <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustratiox.Label"><value>Guncon X 축 응답</value></data>
+  <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustratiox.Label"><value>Guncon X축 응답</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustratiox.Help"><value>Guncon 장치를 유화할 때 수평한 빛 총 동의의 상대적인 크기를 조정하십시오. misalignments를 조정하기 위하여 사용될 수 있습니다.</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustratioy.Label"><value>Guncon Y 축선 응답</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustratioy.Help"><value>Guncon 장치를 격리할 때 수직 가벼운 총 동의의 상대적인 엄밀도를 조정하십시오. misalignments를 조정하기 위하여 사용될 수 있습니다.</value></data>
@@ -996,7 +996,7 @@
   <data name="Emulation.Option.rpcs3.rpcs3_network_enabled.Label"><value>Network 사용 가능</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_network_enabled.Help"><value>게임이 인터넷에 도달하자. 내용이 적재될 때 효력을 가지고 가십시오.</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_psn_status.Label"><value>PSN 상태</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_psn_status.Help"><value>게임이 PlayStation 네트워크의 모습. 시뮬레이션은 그들이 서명 한 것을 믿고있다, 어떤 메뉴를 과거에 얻을 필요가; RPCN는 연결 RPCS3 자신의 서버와 필요 네트워크 Enabled 및 RPCN 계정: 코어 하나 만들 수 없습니다, 그래서 독립에서 설정 RPCS3 그리고 복사 rpcn.yml 으로 system/rpcs3/ (system/rpcs3/config/ Windows). 내용이 적재될 때 효력을 가지고 가십시오.</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_psn_status.Help"><value>게임에 표시되는 PlayStation Network 상태를 설정합니다. 시뮬레이션 모드는 로그인된 상태로 인식하게 하므로, 로그인이 필요한 일부 게임에서 메뉴를 지나 진행할 수 있습니다. RPCN은 RPCS3 자체 서버에 연결하며, 네트워크 활성화와 RPCN 계정이 필요합니다. 코어에서는 계정을 만들 수 없습니다. 독립 실행형 RPCS3에서 계정을 설정한 다음 rpcn.yml을 system/rpcs3/에 복사하세요(Windows에서는 system/rpcs3/config/). 콘텐츠를 불러올 때 설정이 적용됩니다.</value></data>
   <data name="Emulation.Option.Sony.Value.Simulated"><value>관련 기사</value></data>
   <data name="Emulation.Option.Sony.Value.RPCN"><value>RPCN</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_upnp.Label"><value>뚱 베어</value></data>
@@ -1167,7 +1167,7 @@
   <data name="Emulation.Option.Sony.Value.Unsynchronized"><value>동기화 된</value></data>
   <data name="Emulation.Option.Sony.Setting.NointerlacingHint.Label"><value>멸균 패치 사용</value></data>
   <data name="Emulation.Option.Sony.Setting.NointerlacingHint.Help"><value>활성화되면, 패치가 비결, 전체 프레임 또는 진보적 인 검사 비디오 신호 중 하나에 이미지를 돌려주는 게임에 사용할 수 있는지 내부 데이터베이스에서 볼 수 있으며, 위의 조합을 / 또는. 이미지는 더 안정적이고 Deinterlacing이 꺼질 수 있습니다.</value></data>
-  <data name="Emulation.Option.Sony.Value.BilinearForcedExcludingSprite"><value>Bilinear (스프라이트 제외)</value></data>
+  <data name="Emulation.Option.Sony.Value.BilinearForcedExcludingSprite"><value>스프라이트를 제외하고 바이리니어 필터링 강제</value></data>
   <data name="Emulation.Option.Sony.Value.Scaled"><value>내부 해상도로 확장</value></data>
   <data name="Emulation.Option.Sony.Value.Unscaled"><value>Original 콘솔 해상도</value></data>
   <data name="Emulation.Option.Sony.Value.Force32Bit"><value>힘 32bit</value></data>
@@ -1179,11 +1179,11 @@
   <data name="Emulation.Option.Sony.Setting.PcrtcAntiblur.Help"><value>이 작업을 가장 정확한 출력 이미지에 비활성화합니다. 이 활성화는 이미지를 제거하려고합니다. 대부분의 소프트웨어 렌더링기 및 paraLLEl에 주목할만한.</value></data>
   <data name="Emulation.Option.Sony.Setting.PcrtcScreenOffsets.Label"><value>화면 위치 오프셋 (screen position offset)PCRTC) )</value></data>
   <data name="Emulation.Option.Sony.Setting.DisableInterlaceOffset.Label"><value>interlaced 영상을 위해 사용된 수직 분파</value></data>
-  <data name="Emulation.Option.Sony.Setting.AutoFlushSoftware.Label"><value>자동 캐시 플러시 (software 렌더링)</value></data>
+  <data name="Emulation.Option.Sony.Setting.AutoFlushSoftware.Label"><value>자동 캐시 비우기(소프트웨어 렌더링)</value></data>
   <data name="Emulation.Option.Sony.Setting.SwRendererThreads.Label"><value>CPU 소프트웨어 렌더링에 사용되는 스레드</value></data>
   <data name="Emulation.Option.Sony.Setting.SwRendererThreads.Help"><value>추가 노동자의 수는 소프트웨어 연출자 rasterizes, 위에의 위에 실을 뀁니다 GS 실 자체. 0 의 멸균 GS 실 혼자 (낮은 대기, 2-4 핵심 CPU에 베스트). 더 많은 스레드는 예비 코어와 CPU에 많은 알파 효과와 장면을 돕습니다. 소프트웨어 렌더링기에 의해만 사용됩니다.</value></data>
   <data name="Emulation.Option.Sony.Setting.VuAccurateAddsub.Label"><value>정밀화 및 하부화 (정밀화)VU) )</value></data>
-  <data name="Emulation.Option.Sony.Setting.VuAccurateAddsub.Help"><value>모형 의 VU adder의 exponent-street truncation on each add and subtract. 이 행동 (Star Ocean 3, Radiata Stories, Valkyrie Profile 2)이 비활성화 될 때 게임 데이터베이스를 통해 제목 당 자동으로 얻을; 다른 타이틀에 정확도를 차링 할 때 전 세계적으로 사용할 수 있습니다. 비용 속도 VU-heavy 게임.</value></data>
+  <data name="Emulation.Option.Sony.Setting.VuAccurateAddsub.Help"><value>VU의 덧셈과 뺄셈에서 지수 차이에 따라 발생하는 절삭을 재현합니다. Star Ocean 3, Radiata Stories, Valkyrie Profile 2 등 이 동작이 필요한 Tri-Ace 게임에서는 전역 옵션이 꺼져 있어도 게임 데이터베이스를 통해 자동으로 적용됩니다. 다른 게임에서는 정확도가 필요한 경우에만 활성화하세요. VU를 많이 사용하는 게임은 느려질 수 있습니다.</value></data>
   <data name="Emulation.Option.Sony.Setting.EeAccurateFpu.Label"><value>정확한 부동점 arithmetic (EE FPU) )</value></data>
   <data name="Emulation.Option.Sony.Setting.EeAccurateFpu.Help"><value>을 핥 EE FPU 확장 범위 더블 파이프를 통해 추가, 하위, mul 및 융합 체인: 하드웨어 모델에 대한 정확한 add/sub, near-exact multiplies, 거대한 값의 올바른 취급 PS2 허용, 정확한 정수 변환, 그리고 순수 비트팝 ABS/ / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / /NEG. workload 레벨에서 자유롭게 측정 (프레임 처리량에 소음을 실행); 기본적으로 활성화.</value></data>
   <data name="Emulation.Option.Sony.Setting.VuExactMul.Label"><value>정확한 다중화 (VU) )</value></data>
@@ -1223,14 +1223,14 @@
   <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Label"><value>외부 GameIndex 데이터베이스 사용</value></data>
   <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Help"><value>하드웨어 렌더링 및 수동 렌더링 수정을 요구합니다. 선택한 게임 호환성 데이터베이스를로드하거나 내장 데이터베이스를 사용하는 파일을 빈 상태로 남겨두십시오. 이러한 설정을 변경한 후 나머지 에뮬레이션.</value></data>
   <data name="Emulation.Option.Sony.Setting.FramebufferConversion.Label"><value>렌더링 프레임 버퍼를 변환</value></data>
-  <data name="Emulation.Option.Sony.Setting.DisablePartialInvalidation.Label"><value>부패적 인 권한</value></data>
+  <data name="Emulation.Option.Sony.Setting.DisablePartialInvalidation.Label"><value>소스의 부분 무효화 비활성화</value></data>
   <data name="Emulation.Option.Sony.Setting.GpuPaletteConversion.Label"><value>Palette 변환에 GPU</value></data>
   <data name="Emulation.Option.Sony.Setting.PreloadFrameData.Label"><value>Load Frame data를 미리 설치</value></data>
   <data name="Emulation.Option.Sony.Setting.HalfPixelOffset.Label"><value>반 화소 위치 상쇄</value></data>
   <data name="Emulation.Option.Sony.Value.NormalVertex"><value>일반 vertex 상쇄</value></data>
   <data name="Emulation.Option.Sony.Value.SpecialTexture"><value>특수 텍스처 오프셋</value></data>
   <data name="Emulation.Option.Sony.Value.SpecialTextureAggressive"><value>텍스처 오프셋</value></data>
-  <data name="Emulation.Option.Sony.Value.AlignToNative"><value>원래의 해결책에 Align</value></data>
+  <data name="Emulation.Option.Sony.Value.AlignToNative"><value>원래 해상도에 맞춤</value></data>
   <data name="Emulation.Option.Sony.Setting.RoundSprite.Label"><value>둥근 2D SPRITE 의 특징</value></data>
   <data name="Emulation.Option.Sony.Value.Half"><value>은밀한</value></data>
   <data name="Emulation.Option.Sony.Setting.AlignSprite.Label"><value>Align 2D의 특징 SPRITE 의 특징</value></data>
@@ -1245,22 +1245,22 @@
   <data name="Emulation.Option.Sony.Setting.AnalogMode.Help"><value>디지털보다 아날로그 모드에서 컨트롤러를 시작하십시오. 일부 게임 (예 : Ridge Racer V)는 디지털 패드를 부팅하고 일반적으로 컨트롤러의 누르는 데 필요합니다. ANALOG 버튼을 사용하여 스틱을 활성화;이 시작에서 아날로그 제어를 얻을 수 있습니다. 컨트롤러 모드를 잠금하는 게임은 비범죄입니다.</value></data>
   <data name="Emulation.Option.Sony.Files.CheatsDirectory"><value>게임 속임수 코드를 포함하는 폴더</value></data>
   <data name="Emulation.Option.Sony.Setting.ForceAnalog.Label" xml:space="preserve"><value>관제사 1 힘 아날로그 형태</value></data>
-  <data name="Emulation.Option.Sony.Setting.ForceAnalog.Help" xml:space="preserve"><value>힘 아날로그 형태는 항상 위에 일 것입니다. 일부 게임에 문제가 발생할 수 있습니다. 이 옵션을 사용하여 아날로그 모드를 지원하지만 자동으로 활성화하지 않습니다. 비활성화 할 때 아날로그 모드는 DualShock 아날로그 모드 콤보를 누르고 보관하여 견인할 수 있습니다.</value></data>
-  <data name="Emulation.Option.Sony.Setting.AnalogToggle.Label" xml:space="preserve"><value>DualShock 아날로그 모드 토글</value></data>
+  <data name="Emulation.Option.Sony.Setting.ForceAnalog.Help" xml:space="preserve"><value>아날로그 모드를 항상 활성화합니다. 일부 게임에서 문제가 발생할 수 있습니다. 아날로그 모드를 지원하지만 자동으로 활성화하지 않는 게임에서만 사용하세요. 이 옵션을 비활성화하면 DualShock 아날로그 모드 버튼 조합을 길게 눌러 모드를 전환할 수 있습니다.</value></data>
+  <data name="Emulation.Option.Sony.Setting.AnalogToggle.Label" xml:space="preserve"><value>DualShock 아날로그 모드 전환</value></data>
   <data name="Emulation.Option.Sony.Setting.AnalogToggle.Help" xml:space="preserve"><value>입력 장치 유형이 DualShock일 때, 이 선택권은 emulated DualShock가 본래 기계설비 같이 DIGITAL와 ANALOG 형태 사이에서 견인될 수 있다는 것을 허용합니다. 모드는 선택된 버튼 조합을 사용하여 견인할 수 있습니다.</value></data>
-  <data name="Emulation.Option.Sony.Setting.AnalogToggleCombo.Label" xml:space="preserve"><value>DualShock 아날로그 모드 콤보</value></data>
+  <data name="Emulation.Option.Sony.Setting.AnalogToggleCombo.Label" xml:space="preserve"><value>DualShock 아날로그 모드 버튼 조합</value></data>
   <data name="Emulation.Option.Sony.Setting.AnalogToggleCombo.Help" xml:space="preserve"><value>에뮬레이트 DualShock를 위한 DIGITAL와 ANALOG 형태 사이 toggle에 사용될 단추 조합.</value></data>
-  <data name="Emulation.Option.Sony.Setting.AnalogToggleHold.Label" xml:space="preserve"><value>DualShock 아날로그 모드 콤보 보유 지연</value></data>
+  <data name="Emulation.Option.Sony.Setting.AnalogToggleHold.Label" xml:space="preserve"><value>DualShock 아날로그 버튼 조합 누름 시간</value></data>
   <data name="Emulation.Option.Sony.Setting.AnalogToggleHold.Help" xml:space="preserve"><value>아날로그 형태 combo 단추를 위한 시간을 붙들십시오.</value></data>
   <data name="Emulation.Option.Sony.Setting.NegconDeadzone.Label" xml:space="preserve"><value>neGcon 트위스트 Deadzone</value></data>
-  <data name="Emulation.Option.Sony.Setting.NegconDeadzone.Help" xml:space="preserve"><value>왼쪽 아날로그 스틱 deadzone 에뮬레이션 된 'neGcon' 입력 장치의 동작을 시뮬레이션 할 때. 관제사를 삭제하기 위하여 사용하는 drift. 참고 : 대부분의 neGcon 호환 제목은 'twist' deadzone 값을 설정하기위한 게임 옵션을 제공합니다. 정밀도의 손실을 피하기 위해, 게임 deadzone는 *always* 0에 놓아야 합니다. 필요한 모든 조정은 *only* 이 핵심 선택권을 통해 적용되어야 합니다. 'neGcon Twist Response'가 'Quadratic' 또는 'Cubic'로 설정되면 특히 중요합니다.</value></data>
+  <data name="Emulation.Option.Sony.Setting.NegconDeadzone.Help" xml:space="preserve"><value>neGcon 컨트롤러의 비틀기 동작을 재현할 때 사용하는 왼쪽 아날로그 스틱의 데드존입니다. 스틱 쏠림으로 인한 의도하지 않은 움직임을 방지합니다. 많은 호환 게임에 자체 데드존 설정이 있습니다. 정밀도를 유지하려면 게임의 설정은 항상 0으로 두고, 조정은 이 코어 옵션에서만 하세요. 특히 이차 또는 삼차 응답 곡선을 사용할 때 중요합니다.</value></data>
   <data name="Emulation.Option.Sony.Setting.SecondMemoryCard.Label" xml:space="preserve"><value>메모리 카드 슬롯 2</value></data>
   <data name="Emulation.Option.Sony.Setting.SecondMemoryCard.Help" xml:space="preserve"><value>오른쪽 메모리 카드 슬롯에서 두 번째 메모리 카드를 격리합니다. 참고 : 일부 게임은 올바른 작동을 위해 비활성화 할 수있는이 옵션을 요구합니다 (예를 들어. 코드명 Tenka). 참고 : Memory Card 슬롯 2는 Mednafen (.mcr) 저장 형식을 사용합니다.</value></data>
   <data name="Emulation.Option.Sony.Setting.SharedMemoryCardMethod.Label" xml:space="preserve"><value>공유 메모리 카드</value></data>
   <data name="Emulation.Option.Sony.Setting.SharedMemoryCardMethod.Help" xml:space="preserve"><value>각 콘텐츠에 별도의 카드 대신 공유 메모리 카드를 사용합니다. 참고 : 'Memory Card Method'가 'Libretro'로 설정되면 메모리 카드 슬롯 2는 영향을받습니다.</value></data>
   <data name="Emulation.Option.Sony.Setting.LineToQuad.Label" xml:space="preserve"><value>Line-to-Quad 해킹</value></data>
-  <data name="Emulation.Option.Sony.Setting.LineToQuad.Help" xml:space="preserve"><value>일부 게임 (예: Doom, Hexen, Soul Blade 등) 화면 전체에 단일 픽셀 높은 삼각형을 뻗어서 수평선을 그리며 원래 하드웨어에서 픽셀의 행으로 래스터화됩니다. 이 해킹은이 작은 삼각형을 감지하고 필요에 따라 쿼드로 변환, 하드웨어 렌더링 및 확장 된 내부 해상도에 제대로 표시 할 수 있습니다. 'Aggressive'는 일부 타이틀 (예를 들어. 어두운 힘, duke nukem) 그러나 그렇지 않으면 graphical glitches를 소개할지도 모릅니다. 불확실한 경우 '과태'에 남겨두십시오.</value></data>
-  <data name="Emulation.Option.Sony.Setting.DynarecEventCycles.Label" xml:space="preserve"><value>Dynarec DMA/GPU/MDEC/Timer 이벤트 사이클</value></data>
+  <data name="Emulation.Option.Sony.Setting.LineToQuad.Help" xml:space="preserve"><value>Doom, Hexen, Soul Blade 등의 게임은 높이가 1픽셀인 삼각형으로 수평선을 그립니다. 이 보정은 삼각형을 사각형으로 변환하여 하드웨어 렌더링과 높은 내부 해상도에서 올바르게 표시합니다. Dark Forces와 Duke Nukem에는 적극적인 설정이 필요하지만, 다른 게임에서는 그래픽 오류가 발생할 수 있습니다. 확실하지 않으면 기본 설정을 유지하세요.</value></data>
+  <data name="Emulation.Option.Sony.Setting.DynarecEventCycles.Label" xml:space="preserve"><value>DMA/GPU/MDEC/타이머 이벤트 주기(동적 재컴파일)</value></data>
   <data name="Emulation.Option.Sony.Setting.DynarecEventCycles.Help" xml:space="preserve"><value>최대 주기는 GPU/DMA/MDEC/Timer 갱신의 앞에 CPU에 의해, 더 높은 수 검사될 것입니다 빠릅니다, dynarec 보다는 딱정벌레 해석기에 매우 더 적은 충격이 있습니다.</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_aspect_ratio.Help"><value>게임에 전달할 화면 형식을 설정합니다. 일부 게임만 4:3을 지원합니다.</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_disk_cache_size.Label"><value>디스크 캐시 크기</value></data>

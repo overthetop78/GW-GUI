@@ -46,7 +46,7 @@
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Value.0"><value>Без додаткової буферизації графіки</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Value.1"><value>Буферизувати щонайбільше один відеокадр</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_button_preference.Label"><value>Підтвердження кнопки</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_analog_is_circular.Label"><value>Аналогове коло проти Квадратних воріт компенсація</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_analog_is_circular.Label"><value>Компенсація круглого та квадратного діапазону аналогового стіка</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_analog_deadzone.Label"><value>Аналог Дедзон</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_analog_deadzone.Help"><value>Застосовувати додаткову мертву зону аналогового стіка після обробки введення застосунком.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_analog_sensitivity.Label"><value>Аналогова axis масштаб</value></data>
@@ -55,7 +55,7 @@
   <data name="Emulation.Option.ppsspp.ppsspp_skip_buffer_effects.Help"><value>Пропускати ефекти кадрового буфера для підвищення продуктивності. У деяких іграх зображення може зникнути.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_skip_gpu_readbacks.Label"><value>Пропустити читання GPU</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_skip_gpu_readbacks.Help"><value>Пропускати копіювання графічних даних із GPU до CPU. Деяким іграм ці копії потрібні для правильного відображення.</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_lazy_texture_caching.Label"><value>Затишна текстура кешування (Speedup)</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_lazy_texture_caching.Label"><value>Відкладене кешування текстур (прискорення)</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_lazy_texture_caching.Help"><value>Швидше за все, але може викликати текстові проблеми в декількох іграх.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_spline_quality.Label"><value>Spline/bezier кривих якість</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_spline_quality.Help"><value>Тільки використовують деякі ігри, контролює гладкість кривих.</value></data>

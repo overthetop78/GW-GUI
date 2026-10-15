@@ -46,7 +46,7 @@
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Value.0"><value>无额外图形缓冲</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Value.1"><value>最多缓冲一个视频帧</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_button_preference.Label"><value>确认按钮</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_analog_is_circular.Label"><value>模拟圆与平方门补偿</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_analog_is_circular.Label"><value>模拟摇杆圆形与方形移动范围补偿</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_analog_deadzone.Label"><value>类似死区</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_analog_deadzone.Help"><value>在应用程序处理输入后，对模拟摇杆额外应用死区设置。</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_analog_sensitivity.Label"><value>类似轴缩放</value></data>
@@ -55,7 +55,7 @@
   <data name="Emulation.Option.ppsspp.ppsspp_skip_buffer_effects.Help"><value>跳过帧缓冲效果以提高性能。部分游戏可能无法显示画面。</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_skip_gpu_readbacks.Label"><value>跳过 GPU 读取</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_skip_gpu_readbacks.Help"><value>跳过从GPU向CPU复制图形数据。部分游戏需要这些复制操作才能正确显示。</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_lazy_texture_caching.Label"><value>懒惰纹理缓存( 跳出)</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_lazy_texture_caching.Label"><value>延迟纹理缓存（加速）</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_lazy_texture_caching.Help"><value>更快,但可以在几场游戏中引起文本问题.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_spline_quality.Label"><value>Spline/ Bezier 曲线质量</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_spline_quality.Help"><value>仅被一些游戏所使用,控制曲线的平滑.</value></data>

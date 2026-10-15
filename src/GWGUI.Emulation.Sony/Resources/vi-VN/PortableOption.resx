@@ -46,7 +46,7 @@
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Value.0"><value>Không đệm đồ họa bổ sung</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Value.1"><value>Đệm tối đa một khung hình video</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_button_preference.Label"><value>&amp; Xác nhận nút</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_analog_is_circular.Label"><value>Tính toán vòng tròn so với cổng hình vuông</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_analog_is_circular.Label"><value>Bù phạm vi chuyển động hình tròn và hình vuông của cần analog</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_analog_deadzone.Label"><value>Vùng chết Analog</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_analog_deadzone.Help"><value>Áp dụng thêm vùng chết cho cần analog sau khi ứng dụng xử lý đầu vào.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_analog_sensitivity.Label"><value>Tỷ lệ Trục Analog</value></data>
@@ -55,7 +55,7 @@
   <data name="Emulation.Option.ppsspp.ppsspp_skip_buffer_effects.Help"><value>Bỏ qua hiệu ứng bộ đệm khung hình để tăng hiệu suất. Một số trò chơi có thể không hiển thị hình ảnh.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_skip_gpu_readbacks.Label"><value>Nhảy ngược đọc GPU</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_skip_gpu_readbacks.Help"><value>Bỏ qua việc sao chép dữ liệu đồ họa từ GPU sang CPU. Một số trò chơi cần các bản sao này để hiển thị chính xác.</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_lazy_texture_caching.Label"><value>Hộp sơn nền mờ nhạt (góp lên)</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_lazy_texture_caching.Label"><value>Lưu kết cấu vào bộ nhớ đệm theo kiểu trì hoãn (tăng tốc)</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_lazy_texture_caching.Help"><value>Nhanh hơn, nhưng có thể gây ra vấn đề về văn bản trong một vài trò chơi.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_spline_quality.Label"><value>Chốt trục/ Đường cong Độ trưng</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_spline_quality.Help"><value>Chỉ được sử dụng bởi một số trò chơi, điều khiển độ mịn của đường cong.</value></data>

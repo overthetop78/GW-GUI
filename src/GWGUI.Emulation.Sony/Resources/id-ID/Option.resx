@@ -255,7 +255,7 @@
   <data name="Emulation.Option.swanstation.swanstation_CPU_FastmemMode.Help"><value>Menggunakan kesalahan halaman untuk menentukan akses memori perangkat keras pada waktu berjalan. Dapat memberikan peningkatan kinerja yang signifikan dalam beberapa pertandingan, tetapi membuat inti lebih sulit untuk debug.</value></data>
   <data name="Emulation.Option.Sony.Value.DisabledSlower"><value>Dinonaktifkan (Lambat)</value></data>
   <data name="Emulation.Option.Sony.Value.LUTFaster"><value>LUT (Lebih cepat)</value></data>
-  <data name="Emulation.Option.Sony.Value.MMapHardwareFaster64BitOnly"><value>MMap (Perangkat Keras, Lebih cepat, Hanya 64- Bit)</value></data>
+  <data name="Emulation.Option.Sony.Value.MMapHardwareFaster64BitOnly"><value>MMap (perangkat keras, lebih cepat, hanya 64-bit)</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CPU_FastmemRewrite.Label"><value>Register Cepat Akses Memori CPU Rewrite</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CPU_FastmemRewrite.Help"><value>Tulis ulang instruksi ketika akses memori cepat diaktifkan untuk pengisi ulang CPU. Ini bisa meningkatkan kecepatan. Hal ini juga dapat menyebabkan emulator untuk kecelakaan pada beberapa platform.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_TextureReplacements_EnableVRAMWriteReplacements.Label"><value>Aktifkan Penggantian Teks VRAM Writture</value></data>
@@ -734,14 +734,14 @@
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_crosshair2.Label"><value>Pemutar 2 Lightgun Crosshair</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_crosshair2.Help"><value>Tampilkan atau sembunyikan kursor tujuan untuk pemain 2 ketika menggunakan GunCon atau Konami Gun. Nonaktifkan keluaran RGB32 pada pengaturan video bagi opsi ini untuk bekerja.</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_konamigunadjustx.Label"><value>Konami Gun X Axis Ofset</value></data>
-  <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_konamigunadjustx.Help"><value>Terapkan ofset sumbu X ke masukan pistol ringan ketika meniru suatu perangkat Konami Gun (Hyper Blaster / Justifier). Dapat digunakan untuk memperbaiki tujuan misalignments.</value></data>
+  <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_konamigunadjustx.Help"><value>Menggeser masukan pistol cahaya pada sumbu X saat mengemulasikan Konami Gun (Hyper Blaster / Justifier), untuk memperbaiki penyimpangan bidikan.</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_konamigunadjusty.Label"><value>Konami Gun Y Axis Ofset</value></data>
-  <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_konamigunadjusty.Help"><value>Terapkan ofset sumbu Y ke masukan pistol ringan ketika emulasi perangkat Konami Gun (Hyper Blaster / Justifier). Dapat digunakan untuk memperbaiki tujuan misalignments.</value></data>
+  <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_konamigunadjusty.Help"><value>Menggeser masukan pistol cahaya pada sumbu Y saat mengemulasikan Konami Gun (Hyper Blaster / Justifier), untuk memperbaiki penyimpangan bidikan.</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustx.Label"><value>Guncon X Axis Ofset</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustx.Help"><value>Terapkan ofset sumbu X ke masukan pistol ringan ketika meniru perangkat Guncon. Dapat digunakan untuk memperbaiki tujuan misalignments.</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjusty.Label"><value>Guncon Y Axis Ofset</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjusty.Help"><value>Terapkan ofset sumbu Y ke masukan pistol ringan ketika meniru perangkat Guncon. Dapat digunakan untuk memperbaiki tujuan misalignments.</value></data>
-  <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustratiox.Label"><value>Guncon X Axis Respon</value></data>
+  <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustratiox.Label"><value>Respons sumbu X Guncon</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustratiox.Help"><value>Sesuaikan besarnya gerak senapan cahaya horizontal ketika meniru perangkat Guncon. Dapat digunakan untuk memperbaiki tujuan misalignments.</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustratioy.Label"><value>Respon Guncon Y Axis</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustratioy.Help"><value>Atur besarnya gerak senjata vertikal saat meniru perangkat Guncon. Dapat digunakan untuk memperbaiki tujuan misalignments.</value></data>
@@ -996,7 +996,7 @@
   <data name="Emulation.Option.rpcs3.rpcs3_network_enabled.Label"><value>Jaringan Diaktifkan</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_network_enabled.Help"><value>Mari kita main di internet. Mengambil efek ketika isi dimuat.</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_psn_status.Label"><value>Status PSN</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_psn_status.Help"><value>Permainan apa yang dilihat dari PlayStation Network. Simulasikan membuat mereka percaya bahwa mereka tergabung, dimana beberapa perlu untuk melewati menu mereka; RPCN terhubung ke server sendiri RPCS3 dan membutuhkan akun Network Diaktifkan dan RPCN: inti tidak dapat menciptakan satu, jadi atur dalam standalone RPCS3 dan salin nya rpcn.yml ke system/rpcs3/ (system/rpcs3/config/ di Windows). Mengambil efek ketika isi dimuat.</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_psn_status.Help"><value>Menentukan status PlayStation Network yang terlihat oleh game. Mode simulasi membuat game menganggap pengguna sudah masuk, yang diperlukan beberapa game untuk melewati menunya. RPCN terhubung ke server milik RPCS3 dan memerlukan jaringan yang diaktifkan serta akun RPCN. Inti tidak dapat membuat akun: atur akun di aplikasi RPCS3 mandiri, lalu salin rpcn.yml ke system/rpcs3/ (ke system/rpcs3/config/ pada Windows). Pengaturan diterapkan saat konten dimuat.</value></data>
   <data name="Emulation.Option.Sony.Value.Simulated"><value>Simulasikan</value></data>
   <data name="Emulation.Option.Sony.Value.RPCN"><value>RPCN</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_upnp.Label"><value>UPnP</value></data>
@@ -1050,7 +1050,7 @@
   <data name="Emulation.Option.rpcs3.rpcs3_perf_overlay.Help"><value>Tampilkan informasi kinerja dari RPCS3 melalui gambar permainan. Ini termasuk tingkat frame diukur oleh RPCS3. Tingkat detail yang lebih tinggi juga menunjukkan waktu diambil oleh setiap frame dan muatan CPU dan GPU.</value></data>
   <data name="Emulation.Option.Sony.Value.FrameRateOnly"><value>Tingkat bingkai saja</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_frame_pacing.Label"><value>Pacing Bingkai</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_frame_pacing.Help"><value>Apa frame permainan adalah timeby. Jam emulator adalah waktu RPCS3 sendiri, seperti dalam standalone RPCS3. RetroArch memberikan game satu PS3 refresh per frame RetroArch menunjukkan, begitu cepat maju kecepatan permainan up dan permainan berjalan di Frekuensi VBlank ketika RetroArch menunjukkan bahwa banyak frame kedua; dengan Vulkan renderer itu saat ini melewati frame.</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_frame_pacing.Help"><value>Menentukan acuan waktu bingkai game. Jam emulator menggunakan pewaktu internal RPCS3, seperti aplikasi RPCS3 mandiri. Mode RetroArch memberi game satu penyegaran PS3 untuk setiap bingkai yang ditampilkan RetroArch. Pemajuan cepat akan mempercepat game; game berjalan pada frekuensi VBlank yang diatur ketika RetroArch menampilkan jumlah bingkai per detik yang sama. Dengan perender Vulkan, mode ini saat ini melewati bingkai.</value></data>
   <data name="Emulation.Option.Sony.Value.EmulatorClock"><value>Jam emulator</value></data>
   <data name="Emulation.Option.Sony.Value.PickFromList"><value>Pilih dari daftar</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_master_volume.Label"><value>Volume Master</value></data>
@@ -1167,7 +1167,7 @@
   <data name="Emulation.Option.Sony.Value.Unsynchronized"><value>Tak tersinkronisasi</value></data>
   <data name="Emulation.Option.Sony.Setting.NointerlacingHint.Label"><value>Aktifkan patch deinterlacing</value></data>
   <data name="Emulation.Option.Sony.Setting.NointerlacingHint.Help"><value>Jika diaktifkan, akan terlihat dalam database internal jika patch tersedia untuk permainan untuk mengubah gambar menjadi baik tidak interlaced, frame penuh, atau progresif scan sinyal video, dan / atau kombinasi dari semua di atas. Gambar akan lebih stabil dan Deinterlacing dapat dimatikan.</value></data>
-  <data name="Emulation.Option.Sony.Value.BilinearForcedExcludingSprite"><value>Bilinear (sprite yang dikecualikan)</value></data>
+  <data name="Emulation.Option.Sony.Value.BilinearForcedExcludingSprite"><value>Pemfilteran bilinear paksa, kecuali sprite</value></data>
   <data name="Emulation.Option.Sony.Value.Scaled"><value>Skala ke resolusi internal</value></data>
   <data name="Emulation.Option.Sony.Value.Unscaled"><value>Resolusi konsol asli</value></data>
   <data name="Emulation.Option.Sony.Value.Force32Bit"><value>Paksa 32bit</value></data>
@@ -1179,11 +1179,11 @@
   <data name="Emulation.Option.Sony.Setting.PcrtcAntiblur.Help"><value>Nonaktifkan ini untuk gambar keluaran yang paling akurat. Mengaktifkan ini akan mencoba mengaburkan gambar. Paling terlihat pada render perangkat lunak dan parallel.</value></data>
   <data name="Emulation.Option.Sony.Setting.PcrtcScreenOffsets.Label"><value>Posisi layar dimatikan (PCRTC)</value></data>
   <data name="Emulation.Option.Sony.Setting.DisableInterlaceOffset.Label"><value>Nonaktifkan ofset vertikal yang dipakai untuk video interlaced</value></data>
-  <data name="Emulation.Option.Sony.Setting.AutoFlushSoftware.Label"><value>Cache otomatis flush (perrender perangkat lunak)</value></data>
+  <data name="Emulation.Option.Sony.Setting.AutoFlushSoftware.Label"><value>Pengosongan cache otomatis (perenderan perangkat lunak)</value></data>
   <data name="Emulation.Option.Sony.Setting.SwRendererThreads.Label"><value>CPU thread yang digunakan untuk render perangkat lunak</value></data>
   <data name="Emulation.Option.Sony.Setting.SwRendererThreads.Help"><value>Jumlah benang pekerja ekstra perangkat lunak renderer rasterizes dengan, di atas GS benang itu sendiri. 0 rasterize pada GS thread saja (latensi terendah, terbaik pada 2-4 core CPU). Lebih banyak thread membantu adegan dengan banyak efek alpha di CPU dengan cores luring. hanya digunakan oleh render perangkat lunak.</value></data>
   <data name="Emulation.Option.Sony.Setting.VuAccurateAddsub.Label"><value>Penambahan akurasi dan pengurangan (VU)</value></data>
-  <data name="Emulation.Option.Sony.Setting.VuAccurateAddsub.Help"><value>Model VU pemotongan jarak eksponen adder pada setiap penambahan dan pengurangan. Permainan Tri- Ace yang memerlukan perilaku ini (Star Ocean 3, Radiata Stories, Valkyrie Profile 2) dapat secara otomatis per judul melalui basis game bahkan ketika ini dinonaktifkan; memungkinkan ini secara global hanya ketika mengejar akurasi dalam judul lain. Biaya kecepatan pada judul lain. VU- Permainan berat.</value></data>
+  <data name="Emulation.Option.Sony.Setting.VuAccurateAddsub.Help"><value>Menyimulasikan pemotongan presisi akibat selisih eksponen dalam operasi penjumlahan dan pengurangan VU. Basis data game mengaktifkannya secara otomatis untuk game Tri-Ace yang memerlukannya, termasuk Star Ocean 3, Radiata Stories, dan Valkyrie Profile 2, meskipun opsi global ini dinonaktifkan. Aktifkan untuk game lain hanya jika diperlukan demi akurasi; game yang banyak menggunakan VU dapat menjadi lebih lambat.</value></data>
   <data name="Emulation.Option.Sony.Setting.EeAccurateFpu.Label"><value>Aritmatika ackurat-titik (EE FPU)</value></data>
   <data name="Emulation.Option.Sony.Setting.EeAccurateFpu.Help"><value>Lari EE FPU tambah, sub, mul dan rantai yang menyatu melalui ekstended- kisaran pipa ganda: tepat tambah / sub terhadap model perangkat keras, dekat- tepat perkalian, penanganan yang benar dari nilai besar PS2 mengijinkan, konversi integer tepat, dan pure- bitop ABS/NEG. Diukur bebas pada tingkat beban kerja (dalam menjalankan kebisingan pada frame throughput); diaktifkan secara baku.</value></data>
   <data name="Emulation.Option.Sony.Setting.VuExactMul.Label"><value>Perkalian yang tepat (VU)</value></data>
@@ -1205,7 +1205,7 @@
   <data name="Emulation.Option.Sony.Setting.GameEnhancementsHint.Label"><value>Aktifkan peningkatan game- spesifik</value></data>
   <data name="Emulation.Option.Sony.Setting.GameEnhancementsHint.Help"><value>Applies game- spesifik peningkatan jika patch untuk permainan dapat ditemukan di dalam database internal. Contoh peningkatan: LOD [Tingkat Detail] peningkatan, lebih baik menarik jarak, kemampuan untuk melewatkan FMVs, dll.</value></data>
   <data name="Emulation.Option.Sony.Setting.UncappedFramerateHint.Label"><value>Hapus batas kecepatan frame permainan</value></data>
-  <data name="Emulation.Option.Sony.Setting.UncappedFramerateHint.Help"><value>Buka tutup framerat jika patch untuk permainan dapat ditemukan di dalam basis data internal. Ini dapat mengubah game 30fps menjadi 60fps terkunci, atau menstabilkan framerat. Anda mungkin harus meningkatkan. EE Rangkaian sepeda digabungkan dengan ini untuk sebuah frakasi terkunci yang stabil. 60FP PAL-untuk-NTSC melakukan apa yang dikatakan jika dapat menemukan patch, jika tidak, itu hanya akan mencoba untuk menggunakan baku uncapped framerate patch (50fps untuk PAL, 60FPS untuk NTSC)</value></data>
+  <data name="Emulation.Option.Sony.Setting.UncappedFramerateHint.Help"><value>Membuka batas laju bingkai jika basis data internal berisi patch untuk game tersebut. Ini dapat mengubah game 30 fps menjadi 60 fps tetap atau menstabilkan laju bingkai. Anda mungkin perlu sekaligus meningkatkan laju siklus EE agar laju bingkai tetap stabil. Opsi 60 fps PAL ke NTSC menggunakan patch yang sesuai jika tersedia; jika tidak, opsi ini mencoba patch pembuka batas biasa (50 fps untuk PAL, 60 fps untuk NTSC).</value></data>
   <data name="Emulation.Option.Sony.Setting.EnableHwHacks.Label"><value>Perbaikan peranti keras manual (tidak disarankan)</value></data>
   <data name="Emulation.Option.Sony.Setting.EnableHwHacks.Help"><value>Ini akan menonaktifkan pengaturan otomatis dari basis data. Kecuali Anda tahu apa yang Anda lakukan ini NOT RECOMMENDED untuk mengubah ini ON.</value></data>
   <data name="Emulation.Option.Sony.Setting.CpuSpriteSize.Label"><value>Lebar maksimum dari 2D SPRITES yang diubah oleh CPU</value></data>
@@ -1223,14 +1223,14 @@
   <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Label"><value>Gunakan Basis Data GameIndex Eksternal</value></data>
   <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Help"><value>Membutuhkan perender perangkat keras dan perbaikan render manual. Muat basis data kompatibilitas permainan terpilih.</value></data>
   <data name="Emulation.Option.Sony.Setting.FramebufferConversion.Label"><value>Ubah framebuffer yang dirender</value></data>
-  <data name="Emulation.Option.Sony.Setting.DisablePartialInvalidation.Label"><value>Nonaktifkan Invalidasi Sumber Sebagian</value></data>
+  <data name="Emulation.Option.Sony.Setting.DisablePartialInvalidation.Label"><value>Nonaktifkan invalidasi sebagian sumber</value></data>
   <data name="Emulation.Option.Sony.Setting.GpuPaletteConversion.Label"><value>konversi palet di GPU</value></data>
   <data name="Emulation.Option.Sony.Setting.PreloadFrameData.Label"><value>Muat data frame di muka</value></data>
   <data name="Emulation.Option.Sony.Setting.HalfPixelOffset.Label"><value>Ofset posisi Half- piksel</value></data>
   <data name="Emulation.Option.Sony.Value.NormalVertex"><value>Ofset verteks normal</value></data>
   <data name="Emulation.Option.Sony.Value.SpecialTexture"><value>Ofset tekstur khusus</value></data>
   <data name="Emulation.Option.Sony.Value.SpecialTextureAggressive"><value>Ofset tekstur aggresif</value></data>
-  <data name="Emulation.Option.Sony.Value.AlignToNative"><value>Align ke resolusi asli</value></data>
+  <data name="Emulation.Option.Sony.Value.AlignToNative"><value>Selaraskan dengan resolusi asli</value></data>
   <data name="Emulation.Option.Sony.Setting.RoundSprite.Label"><value>Ronde 2D SPRITE koordinat</value></data>
   <data name="Emulation.Option.Sony.Value.Half"><value>Setengah</value></data>
   <data name="Emulation.Option.Sony.Setting.AlignSprite.Label"><value>Rata 2D SPRITE koordinat</value></data>
@@ -1245,22 +1245,22 @@
   <data name="Emulation.Option.Sony.Setting.AnalogMode.Help"><value>Mulai pengontrol dalam mode analog daripada digital. Beberapa game (mis. Ridge Racer V) boot pad dalam digital dan biasanya membutuhkan menekan pengontrol ANALOG tombol untuk mengaktifkan tongkat; aktifkan ini untuk mendapatkan kendali analog dari awal. Permainan yang mengunci mode pengendali tidak terpengaruh.</value></data>
   <data name="Emulation.Option.Sony.Files.CheatsDirectory"><value>Folder berisi kode game cheat</value></data>
   <data name="Emulation.Option.Sony.Setting.ForceAnalog.Label" xml:space="preserve"><value>Mode Analog Paksa 1 Pengontrol</value></data>
-  <data name="Emulation.Option.Sony.Setting.ForceAnalog.Help" xml:space="preserve"><value>Modus analog yang selalu aktif. Mungkin menyebabkan masalah dengan beberapa permainan. Hanya gunakan opsi ini untuk game yang mendukung mode analog tapi jangan secara otomatis mengaktifkannya sendiri. Ketika dinonaktifkan, mode analog dapat diubah dengan menekan dan memegang Mode Combo DualShock Analog.</value></data>
-  <data name="Emulation.Option.Sony.Setting.AnalogToggle.Label" xml:space="preserve"><value>Mode Moda Analog DualShock</value></data>
+  <data name="Emulation.Option.Sony.Setting.ForceAnalog.Help" xml:space="preserve"><value>Memaksa mode analog selalu aktif. Dapat menimbulkan masalah pada beberapa game. Gunakan hanya untuk game yang mendukung mode analog tetapi tidak mengaktifkannya secara otomatis. Saat opsi ini dinonaktifkan, mode dapat dialihkan dengan menahan kombinasi tombol mode analog DualShock.</value></data>
+  <data name="Emulation.Option.Sony.Setting.AnalogToggle.Label" xml:space="preserve"><value>Alihkan mode analog DualShock</value></data>
   <data name="Emulation.Option.Sony.Setting.AnalogToggle.Help" xml:space="preserve"><value>Ketika tipe perangkat masukan adalah DualShock, opsi ini memungkinkan emulasi DualShock untuk menjadi toggled antara DIGITAL dan ANALOG mode seperti hardware asli. Mode juga dapat diubah dengan menggunakan kombinasi tombol yang dipilih.</value></data>
-  <data name="Emulation.Option.Sony.Setting.AnalogToggleCombo.Label" xml:space="preserve"><value>Mode Combo DualShock Analog</value></data>
+  <data name="Emulation.Option.Sony.Setting.AnalogToggleCombo.Label" xml:space="preserve"><value>Kombinasi tombol mode analog DualShock</value></data>
   <data name="Emulation.Option.Sony.Setting.AnalogToggleCombo.Help" xml:space="preserve"><value>Kombinasi tombol yang akan digunakan untuk menjungkitkan antara mode DIGITAL dan ANALOG untuk emulasi DualShock.</value></data>
-  <data name="Emulation.Option.Sony.Setting.AnalogToggleHold.Label" xml:space="preserve"><value>DualShock Analog Mode Combo Tahan Tundaan</value></data>
+  <data name="Emulation.Option.Sony.Setting.AnalogToggleHold.Label" xml:space="preserve"><value>Durasi menahan kombinasi tombol analog DualShock</value></data>
   <data name="Emulation.Option.Sony.Setting.AnalogToggleHold.Help" xml:space="preserve"><value>Tahan waktu untuk mode analog tombol combo.</value></data>
   <data name="Emulation.Option.Sony.Setting.NegconDeadzone.Label" xml:space="preserve"><value>neGcon Twist Deadzone</value></data>
-  <data name="Emulation.Option.Sony.Setting.NegconDeadzone.Help" xml:space="preserve"><value>Zona mati analog kiri ketika mensimulasikan aksi 'twist' dari emulasi perangkat masukan neGcon. Digunakan untuk menghilangkan drift controler. Catatan: Judul yang paling kompatibel neGcon-memberikan opsi in- game untuk menset nilai 'twist' deadzone. Untuk menghindari kehilangan presisi, zona mati in- game harus * selalu * diatur ke nol. Setiap penyesuaian yang diperlukan harus * hanya * diterapkan melalui opsi inti ini. Hal ini sangat penting ketika 'neGcon Twist Response' diatur ke 'Quadrocable' atau 'Cubic'.</value></data>
+  <data name="Emulation.Option.Sony.Setting.NegconDeadzone.Help" xml:space="preserve"><value>Zona mati stik analog kiri saat menyimulasikan putaran pengontrol neGcon. Menghilangkan gerakan tak disengaja akibat pergeseran stik. Banyak game yang kompatibel memiliki pengaturan zona mati sendiri: selalu atur ke nol dan lakukan penyesuaian hanya melalui opsi inti ini agar presisi tetap terjaga, terutama dengan respons kuadratik atau kubik.</value></data>
   <data name="Emulation.Option.Sony.Setting.SecondMemoryCard.Label" xml:space="preserve"><value>Kartu Memori Slot 2</value></data>
   <data name="Emulation.Option.Sony.Setting.SecondMemoryCard.Help" xml:space="preserve"><value>Meniru kartu memori kedua di slot kartu memori yang tepat. Catatan: Beberapa game memerlukan opsi ini untuk dinonaktifkan untuk operasi yang benar (mis. Codename Tenka). Catatan: Memory Card Slot 2 menggunakan Mednafen (.mcr) menyimpan format.</value></data>
   <data name="Emulation.Option.Sony.Setting.SharedMemoryCardMethod.Label" xml:space="preserve"><value>Kartu Memori Bersama</value></data>
   <data name="Emulation.Option.Sony.Setting.SharedMemoryCardMethod.Help" xml:space="preserve"><value>Gunakan kartu memori terbagi daripada memisahkan kartu untuk setiap isi. Catatan: jika 'Memory Card Metode' diset ke 'Libretro', hanya slot kartu memori 2 yang akan terpengaruh.</value></data>
   <data name="Emulation.Option.Sony.Setting.LineToQuad.Label" xml:space="preserve"><value>Line- to- Quad Hack</value></data>
-  <data name="Emulation.Option.Sony.Setting.LineToQuad.Help" xml:space="preserve"><value>Beberapa permainan (mis. Doom, Hexen, Soul Blade, dll.) menggambar garis horizontal dengan merentangkan segitiga-piksel tinggi di layar, yang dikebiri sebagai baris pixel pada perangkat keras asli. Peretas ini mendeteksi segitiga kecil ini dan mengubahnya menjadi quad seperti yang diperlukan, memungkinkan mereka untuk ditampilkan dengan benar di perangkat keras renderer dan pada resolusi internal upscaled. 'Agresif' dibutuhkan untuk beberapa judul (misalnya Dark Forces, Duke Nukems) tetapi mungkin sebaliknya memperkenalkan gangguan grafis. Tinggalkan di 'Baku' jika tidak yakin.</value></data>
-  <data name="Emulation.Option.Sony.Setting.DynarecEventCycles.Label" xml:space="preserve"><value>Dynarec DMA / GPU / MDEC / Timer Event Cycles</value></data>
+  <data name="Emulation.Option.Sony.Setting.LineToQuad.Help" xml:space="preserve"><value>Beberapa game, seperti Doom, Hexen, dan Soul Blade, menggambar garis horizontal dengan segitiga setinggi satu piksel. Koreksi ini mengubahnya menjadi segi empat agar tampil dengan benar melalui perenderan perangkat keras dan resolusi internal yang lebih tinggi. Dark Forces dan Duke Nukem memerlukan pengaturan agresif, yang dapat menimbulkan cacat grafis pada game lain. Jika ragu, pertahankan pengaturan bawaan.</value></data>
+  <data name="Emulation.Option.Sony.Setting.DynarecEventCycles.Label" xml:space="preserve"><value>Siklus peristiwa DMA/GPU/MDEC/pewaktu (kompilasi ulang dinamis)</value></data>
   <data name="Emulation.Option.Sony.Setting.DynarecEventCycles.Help" xml:space="preserve"><value>Siklus maksimum dijalankan oleh CPU sebelum GPU / DMA / MDEC / Timer Update dicentang, angka yang lebih tinggi akan lebih cepat, memiliki dampak jauh lebih sedikit pada penerjemah kumbang daripada dynarec.</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_aspect_ratio.Help"><value>Mengatur format layar yang dilaporkan ke gim. Hanya sebagian gim yang mendukung 4:3.</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_disk_cache_size.Label"><value>Ukuran cache disk</value></data>

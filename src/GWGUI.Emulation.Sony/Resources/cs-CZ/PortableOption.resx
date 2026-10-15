@@ -46,7 +46,7 @@
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Value.0"><value>Bez další vyrovnávací paměti grafiky</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Value.1"><value>Uložit do vyrovnávací paměti nejvýše jeden videosnímek</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_button_preference.Label"><value>Tlačítko potvrzení</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_analog_is_circular.Label"><value>analogový kruh vs. hranatá brána kompenzace</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_analog_is_circular.Label"><value>Kompenzace kruhového a čtvercového rozsahu analogové páčky</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_analog_deadzone.Label"><value>Analogová deadzone</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_analog_deadzone.Help"><value>Použít další mrtvou zónu analogové páčky po zpracování vstupu aplikací.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_analog_sensitivity.Label"><value>Analogová osa stupnice</value></data>
@@ -55,7 +55,7 @@
   <data name="Emulation.Option.ppsspp.ppsspp_skip_buffer_effects.Help"><value>Přeskočit efekty obrazové vyrovnávací paměti pro vyšší výkon. Některé hry pak nemusí zobrazit žádný obraz.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_skip_gpu_readbacks.Label"><value>Přeskočit zálohování GPU</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_skip_gpu_readbacks.Help"><value>Přeskočit kopírování grafických dat z GPU do CPU. Některé hry tyto kopie potřebují pro správné zobrazení.</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_lazy_texture_caching.Label"><value>líná textura caching (speedup)</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_lazy_texture_caching.Label"><value>Odložené ukládání textur do mezipaměti (zrychlení)</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_lazy_texture_caching.Help"><value>Rychlejší, ale může způsobit problémy s textem v několika hrách.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_spline_quality.Label"><value>Kvalita Spline / Bezier křivek</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_spline_quality.Help"><value>Používá se jen u některých her, ovládá hladkost křivek.</value></data>

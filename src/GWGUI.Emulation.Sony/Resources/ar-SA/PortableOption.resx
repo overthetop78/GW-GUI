@@ -46,7 +46,7 @@
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Value.0"><value>بدون تخزين مؤقت إضافي للرسوميات</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Value.1"><value>تخزين إطار فيديو واحد كحد أقصى</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_button_preference.Label"><value>Confirmation Button</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_analog_is_circular.Label"><value>دائرة مدوّنة ضد البوابات المربعة</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_analog_is_circular.Label"><value>تعويض المجال الدائري والمربع للعصا التناظرية</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_analog_deadzone.Label"><value>Analog deadzone</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_analog_deadzone.Help"><value>تطبيق منطقة سكون إضافية للعصا التناظرية بعد معالجة إدخال التطبيق.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_analog_sensitivity.Label"><value>Anlog Axis Scale</value></data>
@@ -55,7 +55,7 @@
   <data name="Emulation.Option.ppsspp.ppsspp_skip_buffer_effects.Help"><value>تجاوز تأثيرات مخزن الإطارات لتحسين الأداء. قد لا تعرض بعض الألعاب أي صورة.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_skip_gpu_readbacks.Label"><value>Skip GPU الارتدادات</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_skip_gpu_readbacks.Help"><value>تجاوز نسخ بيانات الرسوميات من GPU إلى CPU. تحتاج بعض الألعاب إلى هذه النسخ لعرض الصورة بشكل صحيح.</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_lazy_texture_caching.Label"><value>الفرز الكسول للنسيج (السريع)</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_lazy_texture_caching.Label"><value>التخزين المؤقت المؤجل للخامات (تسريع)</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_lazy_texture_caching.Help"><value>أسرع، ولكن يمكن أن تسبب مشاكل في النص في بضعة ألعاب.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_spline_quality.Label"><value>نوعية المنسوجات العنكبوتية/الدنيا</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_spline_quality.Help"><value>فقط تستخدم من قبل بعض الألعاب، التحكم بسلاسة المنحنيات.</value></data>

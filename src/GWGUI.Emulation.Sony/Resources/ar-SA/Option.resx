@@ -255,7 +255,7 @@
   <data name="Emulation.Option.swanstation.swanstation_CPU_FastmemMode.Help"><value>يستعمل عيوب الصفحات لتحديد دخول ذاكرة الأجهزة في وقت التشغيل. ويمكن أن يوفر تحسيناً كبيراً في الأداء في بعض الألعاب، ولكنه يجعل من الصعب إبطال مفعول الجوهر.</value></data>
   <data name="Emulation.Option.Sony.Value.DisabledSlower"><value>المعاقون (المنخفضون)</value></data>
   <data name="Emulation.Option.Sony.Value.LUTFaster"><value>LUT (أسرع)</value></data>
-  <data name="Emulation.Option.Sony.Value.MMapHardwareFaster64BitOnly"><value>MMap ((هارد واير)، أسرع، 64-بيت) فقط)</value></data>
+  <data name="Emulation.Option.Sony.Value.MMapHardwareFaster64BitOnly"><value>MMap (عتادي، أسرع، لأنظمة 64 بت فقط)</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CPU_FastmemRewrite.Label"><value>CPU اعادة كتابة التذكرة السريعة</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CPU_FastmemRewrite.Help"><value>إعادة كتابة التعليمات عندما يكون الوصول السريع للذاكرة متاحاً CPU إعادة التجميع. هذا يمكن أن يحسن السرعة. يمكنه أيضاً أن يجعل المرشد ينهار على بعض المنهاجات</value></data>
   <data name="Emulation.Option.swanstation.swanstation_TextureReplacements_EnableVRAMWriteReplacements.Label"><value>التمكين VRAM استبدال النسيج</value></data>
@@ -733,14 +733,14 @@
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_crosshair2.Label"><value>اللاعب 2 - لايتغو كروسهاير</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_crosshair2.Help"><value>أظهر أو أخفي الستار الهادف لللاعب 2 عند استخدام GunCon أو Konami Gun. ناتج RGB32 غير قابل للنشر في مواضع الفيديو لهذا الخيار للعمل.</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_konamigunadjustx.Label"><value>Konami Gun X Axis Offset</value></data>
-  <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_konamigunadjustx.Help"><value>يطبّق إزاحة على المحور X لمدخلات المسدس الضوئي عند محاكاة جهاز Konami Gun (Hyper Blaster / Justifier). يمكن استخدامه لتصحيح انحراف التصويب.</value></data>
+  <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_konamigunadjustx.Help"><value>يطبّق إزاحة على المحور X لمدخلات المسدس الضوئي عند محاكاة Konami Gun (Hyper Blaster / Justifier)، لتصحيح انحراف التصويب.</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_konamigunadjusty.Label"><value>Konami Gun Y Axis Offset</value></data>
-  <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_konamigunadjusty.Help"><value>يطبّق إزاحة على المحور Y لمدخلات المسدس الضوئي عند محاكاة جهاز Konami Gun (Hyper Blaster / Justifier). يمكن استخدامه لتصحيح انحراف التصويب.</value></data>
+  <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_konamigunadjusty.Help"><value>يطبّق إزاحة على المحور Y لمدخلات المسدس الضوئي عند محاكاة Konami Gun (Hyper Blaster / Justifier)، لتصحيح انحراف التصويب.</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustx.Label"><value>Guncon X Axis Offset</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustx.Help"><value>تطبيق محور إكس قابل لمدخلات أسلحة خفيفة عند حفز جهاز مدفعية يمكن استخدامه لتصحيح الأخطاء التصويبية.</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjusty.Label"><value>غونكون ي.</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjusty.Help"><value>تطبيق محور Y قابل لمدخلات بندقية خفيفة عند حفز جهاز غوكون. يمكن استخدامه لتصحيح الأخطاء التصويبية.</value></data>
-  <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustratiox.Label"><value>Guncon X Axis Response</value></data>
+  <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustratiox.Label"><value>استجابة محور X في Guncon</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustratiox.Help"><value>مجرد حجم نسبي من الحركة الأفقية للضوء عندما تحفز جهاز مدفع. يمكن استخدامه لتصحيح الأخطاء التصويبية.</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustratioy.Label"><value>الرد على المحور</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustratioy.Help"><value>مجرد حجم نسبي من الحركة الرأسية للسلاح الخفيف عندما يزرع جهاز غانكون يمكن استخدامه لتصحيح الأخطاء التصويبية.</value></data>
@@ -995,7 +995,7 @@
   <data name="Emulation.Option.rpcs3.rpcs3_network_enabled.Label"><value>الشبكة التمكينية</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_network_enabled.Help"><value>دع الألعاب تصل إلى الإنترنت يصبح نافذاً عندما يتم تحميل المحتوى</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_psn_status.Label"><value>PSN Status</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_psn_status.Help"><value>أي ألعاب ترى شبكة PlayStation. محاكاة تجعلهم يعتقدون أنهم وقعوا في، والتي يجب على البعض أن يجتازوا معيشتهم; RPCN الوصلات إلى RPCS3'خادم خاص وشبكة للاحتياجات مُمَكَّنة RPCN الحساب: لا يمكن أن يخلق النواة واحدة، لذلك وضعه في قائمة بذاتها RPCS3 ونسخه rpcn.yml Into system/rpcs3/ (system/rpcs3/config/ على النوافذ). يصبح نافذاً عندما يتم تحميل المحتوى</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_psn_status.Help"><value>يحدد حالة PlayStation Network التي تراها الألعاب. يجعل الوضع المحاكى الألعاب تعتقد أنها متصلة، وهو ما تحتاج إليه بعض الألعاب لتجاوز قوائمها. يتصل RPCN بخادم RPCS3 الخاص ويتطلب تمكين الشبكة وحساب RPCN. لا تستطيع النواة إنشاء الحساب؛ أنشئه وأعدّه في تطبيق RPCS3 المستقل، ثم انسخ ملف rpcn.yml إلى system/rpcs3/ (إلى system/rpcs3/config/ على Windows). يسري الإعداد عند تحميل المحتوى.</value></data>
   <data name="Emulation.Option.Sony.Value.Simulated"><value>محاكاة</value></data>
   <data name="Emulation.Option.Sony.Value.RPCN"><value>RPCN</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_upnp.Label"><value>UPnP</value></data>
@@ -1167,7 +1167,7 @@
   <data name="Emulation.Option.Sony.Value.Unsynchronized"><value>غير متزامنة</value></data>
   <data name="Emulation.Option.Sony.Setting.NointerlacingHint.Label"><value>رقائق قابلة للانفصال</value></data>
   <data name="Emulation.Option.Sony.Setting.NointerlacingHint.Help"><value>وإذا مُكنت، ستنظر قاعدة البيانات الداخلية في حالة توافر رقعة لللعبة لتحويل الصورة إلى إشارة فيديو غير مُنتظمة أو كاملة أو مُسحّة تدريجياً، و/أو مزيج من كل ما سبق، فإن الصورة ستكون أكثر استقراراً ويمكن إيقاف التحلل.</value></data>
-  <data name="Emulation.Option.Sony.Value.BilinearForcedExcludingSprite"><value>بلينار (مسبقة باستثناء المعلق)</value></data>
+  <data name="Emulation.Option.Sony.Value.BilinearForcedExcludingSprite"><value>ترشيح ثنائي الخطية إجباري، باستثناء الرسوم ثنائية الأبعاد</value></data>
   <data name="Emulation.Option.Sony.Value.Scaled"><value>مُقَدَّم إلى القرار الداخلي</value></data>
   <data name="Emulation.Option.Sony.Value.Unscaled"><value>القرار الأصلي بشأن الضمان</value></data>
   <data name="Emulation.Option.Sony.Value.Force32Bit"><value>القوة</value></data>
@@ -1179,11 +1179,11 @@
   <data name="Emulation.Option.Sony.Setting.PcrtcAntiblur.Help"><value>إبطال هذا من أجل أدق صورة للناتج، مما سيحاول إضعاف الصورة، أكثرها وضوحاً على صانع البرامجيات وشبهها.</value></data>
   <data name="Emulation.Option.Sony.Setting.PcrtcScreenOffsets.Label"><value>صافي الوظائف (مقابلات)PCRTC)</value></data>
   <data name="Emulation.Option.Sony.Setting.DisableInterlaceOffset.Label"><value>إلغاء التعويض الرأسي المستخدم في الفيديو المتقاطع</value></data>
-  <data name="Emulation.Option.Sony.Setting.AutoFlushSoftware.Label"><value>دفتر المطاط الآلي (العمل بنظام برمجيات)</value></data>
+  <data name="Emulation.Option.Sony.Setting.AutoFlushSoftware.Label"><value>تفريغ الذاكرة المخبأة تلقائيًا (العرض البرمجي)</value></data>
   <data name="Emulation.Option.Sony.Setting.SwRendererThreads.Label"><value>CPU الخيوط المستخدمة في برمجيات</value></data>
   <data name="Emulation.Option.Sony.Setting.SwRendererThreads.Help"><value>عدد العمال الإضافيين الذين يُخدّرون برمجيات صانعي البرمجيات مع، على رأس GS خبز نفسه، لا يوجد أي حشرات على GS (أ) الخيط وحده (أقل درجة من التساهل، أفضل ما يكون في وحدات البرمجيات الأساسية 2-4 - يساعد المزيد من الخيوط المشاهد التي لها تأثيرات ألفا كثيرة على وحدات الاختراعات المحتوية على نواة احتياطية، ويستخدمها فقط صانع البرمجيات.</value></data>
   <data name="Emulation.Option.Sony.Setting.VuAccurateAddsub.Label"><value>الإضافة والتعاقد الدقيق (الإضافة والطرح الدقيق)VU)</value></data>
-  <data name="Emulation.Option.Sony.Setting.VuAccurateAddsub.Help"><value>النموذج VU ألعاب "تري آي" التي تتطلب هذا السلوك (المحيط 3، (راديتا ستوريز)، (فالكيري) تُعطيها تلقائياً عن طريق قاعدة بيانات اللعبة حتى عندما يكون هذا معوقاً، و تُمكنها على الصعيد العالمي فقط عندما تُطارد الدقة في ألقاب أخرى. VU-ألعاب ثقيلة</value></data>
+  <data name="Emulation.Option.Sony.Setting.VuAccurateAddsub.Help"><value>يحاكي اقتطاع الدقة المرتبط بفارق الأسس عند عمليات الجمع والطرح في VU. تفعّل قاعدة بيانات الألعاب هذا السلوك تلقائيًا لألعاب Tri-Ace المعنية، ومنها Star Ocean 3 وRadiata Stories وValkyrie Profile 2، حتى عند تعطيل هذا الخيار العام. فعّله للألعاب الأخرى فقط عند الحاجة إلى الدقة؛ فقد يبطئ الألعاب التي تستخدم VU بكثافة.</value></data>
   <data name="Emulation.Option.Sony.Setting.EeAccurateFpu.Label"><value>مقياس مقياسي دقيق للعمود (Accurate floating-point)EE FPU)</value></data>
   <data name="Emulation.Option.Sony.Setting.EeAccurateFpu.Help"><value>اركض EE FPU إضافة، سلاسل فرعية، وقطعية، ومصنوعة من خلال خط الأنابيب المزدوج الممتد: إضافة/موضوعية على وجه الدقة إلى نموذج المعدات، وتعددية الأجهزة تقريبا، والتعامل الصحيح مع القيم الضخمة PS2 يسمح، تحويل البتروجين الدقيق، ونظافة ABS/NEG. مقياس حر على مستوى عبء العمل (في حالة الضوضاء على منصة الإطار)؛ مُمكّن من التقصير.</value></data>
   <data name="Emulation.Option.Sony.Setting.VuExactMul.Label"><value>التكاثر (التكرار)VU)</value></data>
@@ -1223,14 +1223,14 @@
   <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Label"><value>قاعدة بيانات الـ (GmeIndex)</value></data>
   <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Help"><value>يتطلب صانعاً للمعدات وأجهزة يدوية لتجهيزها، و ضع قاعدة بيانات متوافقة مع اللعبة، أو ترك الملف فارغاً لاستخدام قاعدة البيانات المُنشأة، و أعيدي الاختراع بعد تغيير هذه البيئات.</value></data>
   <data name="Emulation.Option.Sony.Setting.FramebufferConversion.Label"><value>تحويل قاذفة الإطار</value></data>
-  <data name="Emulation.Option.Sony.Setting.DisablePartialInvalidation.Label"><value>المصدر:</value></data>
+  <data name="Emulation.Option.Sony.Setting.DisablePartialInvalidation.Label"><value>تعطيل الإبطال الجزئي للمصادر</value></data>
   <data name="Emulation.Option.Sony.Setting.GpuPaletteConversion.Label"><value>تحويل باليت على GPU</value></data>
   <data name="Emulation.Option.Sony.Setting.PreloadFrameData.Label"><value>بيانات إطار تحديد الموقع مقدما</value></data>
   <data name="Emulation.Option.Sony.Setting.HalfPixelOffset.Label"><value>تعويض عن وظيفة نصف بيكسل</value></data>
   <data name="Emulation.Option.Sony.Value.NormalVertex"><value>التعويض عن اللافقار العادي</value></data>
   <data name="Emulation.Option.Sony.Value.SpecialTexture"><value>التعويض عن النسيج الخاص</value></data>
   <data name="Emulation.Option.Sony.Value.SpecialTextureAggressive"><value>التعويض عن النسيج المضغوط</value></data>
-  <data name="Emulation.Option.Sony.Value.AlignToNative"><value>التمسك بالقرار الأصلي</value></data>
+  <data name="Emulation.Option.Sony.Value.AlignToNative"><value>المحاذاة مع الدقة الأصلية</value></data>
   <data name="Emulation.Option.Sony.Setting.RoundSprite.Label"><value>الجولة 2 دال SPRITE الإحداثيات</value></data>
   <data name="Emulation.Option.Sony.Value.Half"><value>نصف</value></data>
   <data name="Emulation.Option.Sony.Setting.AlignSprite.Label"><value>أنثى SPRITE الإحداثيات</value></data>
@@ -1245,22 +1245,22 @@
   <data name="Emulation.Option.Sony.Setting.AnalogMode.Help"><value>ابدأوا بالتحكم في طريقة التناظر بدلاً من رقمية بعض الألعاب (مثل (ريدج رايسر في ANALOG الزر الذي سيمكن العصي، و يُمكن هذا من الحصول على مراقبة مُتَوَجَهِدَة من البداية الألعاب التي تُغلق نمط المُراقبين لا تتأثر</value></data>
   <data name="Emulation.Option.Sony.Files.CheatsDirectory"><value>"الجندر" الذي يحتوي على رموز غش لعبة</value></data>
   <data name="Emulation.Option.Sony.Setting.ForceAnalog.Label" xml:space="preserve"><value>المراقب المالي ١ - طريقة تحليل القوة</value></data>
-  <data name="Emulation.Option.Sony.Setting.ForceAnalog.Help" xml:space="preserve"><value>أسلوب القوات المشابه دائماً قد يسبب مشاكل مع بعض الألعاب. ولا يستخدم هذا الخيار إلا للألعاب التي تدعم أسلوب التناظر، ولكنها لا تمكنه تلقائيا من ذلك. عندما يكون معطل، يُمكن أن تهتز طريقة التناظر عن طريق الضغط والاحتفاظ DualShock طريقة التدوير.</value></data>
-  <data name="Emulation.Option.Sony.Setting.AnalogToggle.Label" xml:space="preserve"><value>DualShock Analog Mode Toggle</value></data>
+  <data name="Emulation.Option.Sony.Setting.ForceAnalog.Help" xml:space="preserve"><value>يفرض بقاء الوضع التناظري مفعّلًا، وقد يسبب مشكلات في بعض الألعاب. استخدمه فقط للألعاب التي تدعم الوضع التناظري ولا تفعّله تلقائيًا. عند تعطيل هذا الخيار، يمكن تبديل الوضع بالضغط المطوّل على مجموعة أزرار الوضع التناظري في DualShock.</value></data>
+  <data name="Emulation.Option.Sony.Setting.AnalogToggle.Label" xml:space="preserve"><value>تبديل الوضع التناظري في DualShock</value></data>
   <data name="Emulation.Option.Sony.Setting.AnalogToggle.Help" xml:space="preserve"><value>وعندما يكون نوع جهاز المدخلات DualShock، يسمح هذا الخيار بأن يُنظَّم DualShock المحتوية بين DIGITAL وANALOG أسلوب مثل المعدات الأصلية. ويمكن أيضاً أن يُنظَّف الأسلوب باستخدام مزيج الزر المختار.</value></data>
-  <data name="Emulation.Option.Sony.Setting.AnalogToggleCombo.Label" xml:space="preserve"><value>DualShock Analog Mode Combo</value></data>
+  <data name="Emulation.Option.Sony.Setting.AnalogToggleCombo.Label" xml:space="preserve"><value>مجموعة أزرار تبديل الوضع التناظري في DualShock</value></data>
   <data name="Emulation.Option.Sony.Setting.AnalogToggleCombo.Help" xml:space="preserve"><value>مجموعة الأزرار المستخدمة للتبديل بين الوضع DIGITAL والوضع ANALOG في وحدة DualShock المحاكاة.</value></data>
-  <data name="Emulation.Option.Sony.Setting.AnalogToggleHold.Label" xml:space="preserve"><value>DualShock تمهّل التأخّر</value></data>
+  <data name="Emulation.Option.Sony.Setting.AnalogToggleHold.Label" xml:space="preserve"><value>مدة الضغط على مجموعة أزرار الوضع التناظري في DualShock</value></data>
   <data name="Emulation.Option.Sony.Setting.AnalogToggleHold.Help" xml:space="preserve"><value>إحتفظ بوقتك لتجميع الأزرار المشابهة</value></data>
   <data name="Emulation.Option.Sony.Setting.NegconDeadzone.Label" xml:space="preserve"><value>neGcon Twist deadzone</value></data>
-  <data name="Emulation.Option.Sony.Setting.NegconDeadzone.Help" xml:space="preserve"><value>الشعار اليساري يَلْصقُ مميتاً عندما حَفّزَ عملِ ' تويتر' مِنْ أجهزة مدخلات ' neGcon. تستخدم للقضاء على الانجراف المتحكم. ملاحظه: معظم الألقاب الـ neGcon- المتوافقة توفر خيارات في اللعبة لتحديد قيمة "الموتى" وتجنبا لفقدان الدقة، ينبغي أن تكون المنطقة المميتة داخل اللعبة *دائماً* يجب أن تكون صفرا. أي تعديلات مطلوبة ينبغي أن تُجرى *فقط* يُطبَّق عبر هذا الخيار الأساسي. هذا مهم جداً عندما يكون رد التصفير لعام neGcon جاهزاً لـ "كودراتيك" أو "كابيك".</value></data>
+  <data name="Emulation.Option.Sony.Setting.NegconDeadzone.Help" xml:space="preserve"><value>المنطقة الميتة للعصا التناظرية اليسرى عند محاكاة التواء وحدة neGcon. تمنع الحركة غير المقصودة بسبب انحراف العصا. توفر ألعاب متوافقة كثيرة إعدادًا خاصًا للمنطقة الميتة: اضبطه دائمًا على صفر، وأجرِ التعديلات باستخدام خيار النواة هذا فقط للحفاظ على الدقة، خصوصًا مع الاستجابة التربيعية أو التكعيبية.</value></data>
   <data name="Emulation.Option.Sony.Setting.SecondMemoryCard.Label" xml:space="preserve"><value>Memory Card Slot 2</value></data>
-  <data name="Emulation.Option.Sony.Setting.SecondMemoryCard.Help" xml:space="preserve"><value>امنحي بطاقة ذاكرة ثانية في فتحة البطاقة اليمنى ملاحظة: تتطلب بعض المباريات أن يكون هذا الخيار معوقاً من أجل التشغيل الصحيح (مثلاً). (الاسم الرمزي (تينكا Note: Memory Card Slot 2 uses the Mednafen (.mcr) save format.</value></data>
+  <data name="Emulation.Option.Sony.Setting.SecondMemoryCard.Help" xml:space="preserve"><value>يحاكي بطاقة ذاكرة ثانية في الفتحة اليمنى. تتطلب بعض الألعاب، مثل Codename Tenka، تعطيل هذا الخيار لتعمل بشكل صحيح. تستخدم بطاقة الفتحة الثانية تنسيق حفظ Mednafen ‏(.mcr).</value></data>
   <data name="Emulation.Option.Sony.Setting.SharedMemoryCardMethod.Label" xml:space="preserve"><value>البطاقات التذكارية المشتركة</value></data>
   <data name="Emulation.Option.Sony.Setting.SharedMemoryCardMethod.Help" xml:space="preserve"><value>استخدام بطاقات الذاكرة المشتركة بدلا من البطاقات المنفصلة لكل محتوى. ملاحظة: إذا كان 'Memory Card طريقة مصممة ل 'ليبريترو'، فقط فتحة بطاقة الذاكرة 2 سوف تتأثر.</value></data>
   <data name="Emulation.Option.Sony.Setting.LineToQuad.Label" xml:space="preserve"><value>خط إلى كواد هاك</value></data>
-  <data name="Emulation.Option.Sony.Setting.LineToQuad.Help" xml:space="preserve"><value>بعض الألعاب (مثلاً) Doom, Hexen, Soul Blade, etc.) يرسم خطوطاً أفقية بتمديد المثلثات ذات الفخذ الواحد عبر الشاشة، التي تُستَعف كصف من البيكسلز على الأجهزة الأصلية. هذا الإختراق يكتشف هذه المثلثات الصغيرة ويحولها إلى أربعة أضعاف كما هو مطلوب، مما يسمح لها أن تظهر بشكل سليم على صانعي الأجهزة وفي قرارات داخلية متطورة. القوات المظلمة، دوك نوكوم ولكن يمكن أن تُقدّم ملامح بيانية. ارحلي في "ديفولت" إذا لم يكن هناك مانع.</value></data>
-  <data name="Emulation.Option.Sony.Setting.DynarecEventCycles.Label" xml:space="preserve"><value>Dynarec DMA/GPU/MDEC/مباريات الأحداث الزمنية</value></data>
+  <data name="Emulation.Option.Sony.Setting.LineToQuad.Help" xml:space="preserve"><value>ترسم بعض الألعاب، مثل Doom وHexen وSoul Blade، خطوطًا أفقية باستخدام مثلثات بارتفاع بكسل واحد. يحوّل هذا التصحيح تلك المثلثات إلى أشكال رباعية لعرضها بشكل صحيح باستخدام العرض العتادي والدقة الداخلية الأعلى. تحتاج Dark Forces وDuke Nukem إلى الوضع القوي، لكنه قد يسبب عيوبًا رسومية في ألعاب أخرى. احتفظ بالإعداد الافتراضي عند الشك.</value></data>
+  <data name="Emulation.Option.Sony.Setting.DynarecEventCycles.Label" xml:space="preserve"><value>دورات أحداث DMA/GPU/MDEC والمؤقتات (إعادة الترجمة الديناميكية)</value></data>
   <data name="Emulation.Option.Sony.Setting.DynarecEventCycles.Help" xml:space="preserve"><value>(ماكس) CPU قبل GPU/DMA/MDEC/دقّقَ تحديث التوقيت، عدد أعلى سَيصْبَحُ أسرعَ، عِنْدَهُ تأثير أقل بكثير على مترجم اللحومِ من ديانريك.</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_aspect_ratio.Help"><value>يحدد تنسيق الشاشة الذي يُبلّغ به الألعاب. لا تدعم نسبة 4:3 إلا بعض الألعاب.</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_disk_cache_size.Label"><value>حجم ذاكرة التخزين المؤقت على القرص</value></data>

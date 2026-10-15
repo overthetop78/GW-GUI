@@ -46,7 +46,7 @@
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Value.0"><value>Ek grafik arabelleği yok</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Value.1"><value>En fazla bir video karesini arabelleğe al</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_button_preference.Label"><value>Onay Düğmesini Doğrulama</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_analog_is_circular.Label"><value>Analog daire vs kare kapı tazminat</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_analog_is_circular.Label"><value>Analog çubuğun dairesel ve kare hareket aralığı telafisi</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_analog_deadzone.Label"><value>Analog Deadzone</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_analog_deadzone.Help"><value>Uygulamanın giriş işlemesinden sonra analog çubuğa ek ölü bölge ayarı uygulayın.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_analog_sensitivity.Label"><value>Analog Axis Scale</value></data>
@@ -55,7 +55,7 @@
   <data name="Emulation.Option.ppsspp.ppsspp_skip_buffer_effects.Help"><value>Performansı artırmak için kare arabelleği efektlerini atlayın. Bazı oyunlarda görüntü kaybolabilir.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_skip_gpu_readbacks.Label"><value>Skip Skip Skip GPU Readbacks</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_skip_gpu_readbacks.Help"><value>Grafik verilerinin GPU&apos;dan CPU&apos;ya kopyalanmasını atlayın. Bazı oyunlar düzgün görüntüleme için bu kopyalara ihtiyaç duyar.</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_lazy_texture_caching.Label"><value>tembel doku kalibrasyonu (hızlı)</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_lazy_texture_caching.Label"><value>Ertelenmiş doku önbellekleme (hızlandırma)</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_lazy_texture_caching.Help"><value>Faster, ancak birkaç oyundaki metin problemlerine neden olabilir.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_spline_quality.Label"><value>spline/bezier eğrileri kaliteli</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_spline_quality.Help"><value>Sadece bazı oyunlar tarafından kullanılır, eğrilerin düzgünliğini kontrol eder.</value></data>

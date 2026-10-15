@@ -255,7 +255,7 @@
   <data name="Emulation.Option.swanstation.swanstation_CPU_FastmemMode.Help"><value>Používá stránky chyby pro určení hardwarové paměti přístupy v runtime. Může poskytnout významné zlepšení výkonu v některých hrách, ale aby jádro těžší ladit.</value></data>
   <data name="Emulation.Option.Sony.Value.DisabledSlower"><value>Zakázáno (Pomalejší)</value></data>
   <data name="Emulation.Option.Sony.Value.LUTFaster"><value>LUT (Rychleji)</value></data>
-  <data name="Emulation.Option.Sony.Value.MMapHardwareFaster64BitOnly"><value>MMap (hardware, rychlejší, pouze 64- bit)</value></data>
+  <data name="Emulation.Option.Sony.Value.MMapHardwareFaster64BitOnly"><value>MMap (hardwarové, rychlejší, pouze 64bitové)</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CPU_FastmemRewrite.Label"><value>CPU Recompiler Rychlý přístup k paměti Přepsat</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CPU_FastmemRewrite.Help"><value>Přepsat pokyny, pokud je pro rekompilátor CPU povolen rychlý přístup do paměti. To může zlepšit rychlost. To může také způsobit, že emulátor havaruje na některých platformách.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_TextureReplacements_EnableVRAMWriteReplacements.Label"><value>Povolit výměnu textury VRAM</value></data>
@@ -733,14 +733,14 @@
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_crosshair2.Label"><value>Hráč 2 Lightgun Crosshair</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_crosshair2.Help"><value>Zobrazovat nebo skrýt zaměřovací kurzor pro hráče 2 při použití GunCon nebo Konami Gun. Zakázat výstup RGB32 v nastavení videa pro tuto volbu.</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_konamigunadjustx.Label"><value>Konami Gun X Offset osy</value></data>
-  <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_konamigunadjustx.Help"><value>Při emulaci zařízení Konami Gun (Hyper Blaster / Justifier) použijte posun osy X na vstup lehké pistole. Lze použít ke korekci zacílení nerovností.</value></data>
+  <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_konamigunadjustx.Help"><value>Posune vstup světelné pistole v ose X při emulaci zařízení Konami Gun (Hyper Blaster / Justifier), aby se opravily nepřesnosti míření.</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_konamigunadjusty.Label"><value>Offset osy Konami Gun Y</value></data>
-  <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_konamigunadjusty.Help"><value>Při emulaci zařízení Konami Gun (Hyper Blaster / Justifier) se použije posun osy Y na vstup lehké pistole. Lze použít ke korekci zacílení nerovností.</value></data>
+  <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_konamigunadjusty.Help"><value>Posune vstup světelné pistole v ose Y při emulaci zařízení Konami Gun (Hyper Blaster / Justifier), aby se opravily nepřesnosti míření.</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustx.Label"><value>Guncon X Offset osy</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustx.Help"><value>Při emulaci zařízení Guncon se použije posun osy X na vstup lehké zbraně. Lze použít ke korekci zacílení nerovností.</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjusty.Label"><value>Offset osy Guncon Y</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjusty.Help"><value>Při emulaci zařízení Guncon se použije posun osy Y na vstup do lehkého děla. Lze použít ke korekci zacílení nerovností.</value></data>
-  <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustratiox.Label"><value>Odpověď Guncon X Axis</value></data>
+  <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustratiox.Label"><value>Odezva osy X zařízení Guncon</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustratiox.Help"><value>Upravte relativní velikost horizontálního pohybu lehké zbraně při napodobování zařízení Guncon. Lze použít ke korekci zacílení nerovností.</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustratioy.Label"><value>Odpověď Guncon Y Axis</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustratioy.Help"><value>Upravte relativní velikost svislého pohybu lehké zbraně při napodobování zařízení Guncon. Lze použít ke korekci zacílení nerovností.</value></data>
@@ -995,7 +995,7 @@
   <data name="Emulation.Option.rpcs3.rpcs3_network_enabled.Label"><value>Síť povolena</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_network_enabled.Help"><value>Umožňuje hry dosáhnout na internet. Při načítání obsahu nabývá účinku.</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_psn_status.Label"><value>Stav PSN</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_psn_status.Help"><value>Jaké hry vidět na PlayStation Network. Simulovaný je přesvědčuje, že jsou přihlášeni, což někteří potřebují, aby se dostali přes svá menu; RPCN spojuje RPCS3 s vlastním serverem a potřebami sítě Enabled a RPCN účtu: jádro nemůže vytvořit jeden, tak jej nastavit samostatně RPCS3 a zkopírovat jeho rpcn.yml do system/rpcs3/ (system/rpcs3/config/ na Windows). Při načítání obsahu nabývá účinku.</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_psn_status.Help"><value>Určuje stav sítě PlayStation Network, který vidí hry. Simulovaný režim předstírá přihlášení, které některé hry potřebují k překonání nabídek. RPCN se připojuje k vlastnímu serveru RPCS3 a vyžaduje zapnutou síť a účet RPCN. Jádro účet vytvořit neumí: nastavte jej v samostatné aplikaci RPCS3 a zkopírujte soubor rpcn.yml do system/rpcs3/ (ve Windows do system/rpcs3/config/). Nastavení se použije při načtení obsahu.</value></data>
   <data name="Emulation.Option.Sony.Value.Simulated"><value>Simulované</value></data>
   <data name="Emulation.Option.Sony.Value.RPCN"><value>RPCN</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_upnp.Label"><value>UPnP</value></data>
@@ -1049,7 +1049,7 @@
   <data name="Emulation.Option.rpcs3.rpcs3_perf_overlay.Help"><value>Zobrazit informace o výkonu z RPCS3 přes herní obrázek. To zahrnuje rychlost rámu měřenou RPCS3. Vyšší úrovně detailů také ukazují čas, který každý rám a CPU a GPU zatížení.</value></data>
   <data name="Emulation.Option.Sony.Value.FrameRateOnly"><value>Pouze sazba snímku</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_frame_pacing.Label"><value>Pacing rámečku</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_frame_pacing.Help"><value>To, co hra rámy jsou načasovány. Emulator hodiny je RPCS3 vlastní časovač, jako v samostatné RPCS3. RetroArch dává hře jeden PS3 refresh per frame RetroArch show, tak rychle vpřed zrychluje hru nahoru a hra běží na VBlank Frequency, když RetroArch ukazuje, že mnoho snímků za sekundu; s Vulkan renderer to v současné době přeskakuje rámce.</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_frame_pacing.Help"><value>Určuje časování snímků hry. Hodiny emulátoru používají vlastní časovač RPCS3, stejně jako samostatná aplikace RPCS3. Režim RetroArch provede jedno obnovení PS3 na každý snímek zobrazený aplikací RetroArch. Rychlé přetáčení tak zrychlí hru; hra běží na nastavené frekvenci VBlank, když RetroArch zobrazuje stejný počet snímků za sekundu. S vykreslováním Vulkan tento režim v současnosti přeskakuje snímky.</value></data>
   <data name="Emulation.Option.Sony.Value.EmulatorClock"><value>Emulační hodiny</value></data>
   <data name="Emulation.Option.Sony.Value.PickFromList"><value>Vyberte si ze seznamu</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_master_volume.Label"><value>Hlavní objem</value></data>
@@ -1152,7 +1152,7 @@
   <data name="Emulation.Option.Sony.Value.Normal"><value>Normální</value></data>
   <data name="Emulation.Option.Sony.Setting.PgsSsaa.Help"><value>Aplikujte nadměrně antialiasing (SSAA). Na rozdíl od rovné vzestupy, nadsazení udržuje soudržný vizuální pohled, kde 3D prvky mají podobné rozlišení jako UI elementy. Pro 2x high- res scanout potřebujete alespoň '4x SSAA objednáno '(nebo vyšší); 4x higher-res scanout requirements' 16x SSAA (objednané) "specificky -- režim plain 16x používá řídkou mřížku, která podporuje pouze 2x. '32x SSAA (objednané) "je mřížka 4x8, čtyři vzorky napříč a osm dolů: také krmí 4x scanout v plné výšce pole, který dává hry v terénu dvakrát svislého rozlišení 16x objednané, za dvojnásobek jeho nákladů. Nastavení to na" Native "zakáže super vzorkování.</value></data>
   <data name="Emulation.Option.Sony.Setting.PgsHighResScanout.Label"><value>Experimentální video výstup s vysokým rozlišením</value></data>
-  <data name="Emulation.Option.Sony.Setting.PgsHighResScanout.Help"><value>Scans out above native resolution with paraLLEL (2x: 640x448 se stává 1280x896; 4x: 2560x1792). Nefunguje s každou hrou, některé mohou vyžadovat náplasti na vrcholu. 2x vyžaduje Supersampling na 4x SSAA objednáno nebo vyšší; 4x vyžaduje 16x SSAA objednáno, a padá zpět na 2x na nižší mřížky. Na 16x SSAA s prostým 4x scanout celá výběrová mřížka je vynaložena na rozlišení, takže hrany nemají žádné zbytkové antialiasing; antialiated 4x režim namísto rekonstruuje každý výstupní pixel ze sousedních vzorků se stanem filtr, obchodování s mírnou měkkost pro mnohem méně textury třpytič. Hra, která dává jedno pole najednou dostane polovinu výšky od 4x (2560x896); celý režim výšky pole dává tomu celý 2560x1792 a potřebuje 32x SSAA objednáno, padající zpět na rovinné 4x na menších roštech. Jeho antialiated varianta uplatňuje stejnou rekonstrukci stanu v této výšce, a padá zpět na antialiated 4x na menších roštech.</value></data>
+  <data name="Emulation.Option.Sony.Setting.PgsHighResScanout.Help"><value>Umožňuje výstup paraLLEl nad původním rozlišením: 2x mění 640x448 na 1280x896, 4x na 2560x1792. Nepracuje se všemi hrami; některé potřebují další opravy. Režim 2x vyžaduje pravidelné 4x SSAA nebo vyšší. Režim 4x vyžaduje pravidelné 16x SSAA a při menší vzorkovací mřížce přejde na 2x. Při pravidelném 16x SSAA využije běžný výstup 4x všechny vzorky na rozlišení, takže již nezbývají pro vyhlazení hran. Vyhlazená varianta 4x rekonstruuje každý pixel ze sousedních vzorků pomocí trojúhelníkového filtru: mírně změkčí obraz, ale výrazně omezí třpytění textur. Hry vykreslující po půlsnímcích získají s běžným 4x poloviční výšku (2560x896). Režim plné výšky poskytuje 2560x1792 a vyžaduje pravidelné 32x SSAA; s menší mřížkou přejde na běžné 4x. Jeho vyhlazená varianta používá stejný filtr v plné výšce a s menší mřížkou přejde na vyhlazené 4x.</value></data>
   <data name="Emulation.Option.Sony.Value.Enabled4XFullFieldHeight"><value>4 × (plná výška video pole)</value></data>
   <data name="Emulation.Option.Sony.Value.Enabled4XAntiAliasedFullFieldHeight"><value>4 × (AA, plná výška video pole)</value></data>
   <data name="Emulation.Option.Sony.Setting.PgsSsTex.Label"><value>Experimentální textura nadsazení</value></data>
@@ -1167,7 +1167,7 @@
   <data name="Emulation.Option.Sony.Value.Unsynchronized"><value>Nesynchronizované</value></data>
   <data name="Emulation.Option.Sony.Setting.NointerlacingHint.Label"><value>Povolit deinterlakační náplasti</value></data>
   <data name="Emulation.Option.Sony.Setting.NointerlacingHint.Help"><value>Pokud je zapnuto, bude se podívat do interní databáze, pokud je pro hru k dispozici náplast, která změní obraz buď na neprokládaný, plný rám, nebo progresivní scan video signál, a / nebo kombinaci všech výše uvedených. Obrázek bude stabilnější a Deinterlacing může být vypnut.</value></data>
-  <data name="Emulation.Option.Sony.Value.BilinearForcedExcludingSprite"><value>Bilineární (Nucené kromě spritu)</value></data>
+  <data name="Emulation.Option.Sony.Value.BilinearForcedExcludingSprite"><value>Vynucené bilineární filtrování kromě spritů</value></data>
   <data name="Emulation.Option.Sony.Value.Scaled"><value>Vyhodnoceno podle vnitřního rozlišení</value></data>
   <data name="Emulation.Option.Sony.Value.Unscaled"><value>Původní rozlišení konzoly</value></data>
   <data name="Emulation.Option.Sony.Value.Force32Bit"><value>Síla 32bit</value></data>
@@ -1179,11 +1179,11 @@
   <data name="Emulation.Option.Sony.Setting.PcrtcAntiblur.Help"><value>Zakázat to pro nejpřesnější výstupní obrázek. Umožní to se pokusí odmlžit obraz. Nejvýraznější na software renderer a parallel.</value></data>
   <data name="Emulation.Option.Sony.Setting.PcrtcScreenOffsets.Label"><value>Vyrovnávací body polohy obrazovky (PCRTC)</value></data>
   <data name="Emulation.Option.Sony.Setting.DisableInterlaceOffset.Label"><value>Zakázat vertikální posun použitý pro prokládané video</value></data>
-  <data name="Emulation.Option.Sony.Setting.AutoFlushSoftware.Label"><value>Automatická cache flush (softwarové vykreslování)</value></data>
+  <data name="Emulation.Option.Sony.Setting.AutoFlushSoftware.Label"><value>Automatické vyprázdnění mezipaměti (softwarové vykreslování)</value></data>
   <data name="Emulation.Option.Sony.Setting.SwRendererThreads.Label"><value>CPU nitě používané pro softwarové vykreslování</value></data>
   <data name="Emulation.Option.Sony.Setting.SwRendererThreads.Help"><value>Počet dalších pracovníků závity software renderer rasterizuje s, Na vrcholu GS Niť sama. 0 rasterizuje na GS pouze nit (nejnižší latence, nejlepší na 2-4 jádrových procesorech). Více závitů pomáhá scénám s mnoha alfa efekty na CPU s náhradními jádry. Používané pouze software renderer.</value></data>
   <data name="Emulation.Option.Sony.Setting.VuAccurateAddsub.Label"><value>Přesné sčítání a odečítání (VU)</value></data>
-  <data name="Emulation.Option.Sony.Setting.VuAccurateAddsub.Help"><value>Model VU Mider exponent- distance redukce na každém add a odečtení. Tri-Ace hry, které vyžadují toto chování (Star Ocean 3, Radiata příběhy, Valkyrie Profil 2) dostat automaticky za titul přes herní databázi, i když je to zakázán; umožní to globálně pouze při pronásledování přesnosti v jiných titulech. Náklady rychlost na VU- Těžké hry.</value></data>
+  <data name="Emulation.Option.Sony.Setting.VuAccurateAddsub.Help"><value>Napodobuje ořezání přesnosti podle rozdílu exponentů při sčítání a odčítání ve VU. Databáze her je automaticky zapíná pro příslušné hry Tri-Ace, včetně Star Ocean 3, Radiata Stories a Valkyrie Profile 2, i když je tato obecná volba vypnutá. U jiných her zapínejte pouze kvůli požadované přesnosti; hry intenzivně využívající VU se mohou zpomalit.</value></data>
   <data name="Emulation.Option.Sony.Setting.EeAccurateFpu.Label"><value>Přesné plavání -bod aritmetika (EE FPU)</value></data>
   <data name="Emulation.Option.Sony.Setting.EeAccurateFpu.Help"><value>Běž. EE FPU přidávat, sub, mul a tavené řetězy přes rozšířený-rozsah dvojitého potrubí: přesný doplněk / sub proti hardwarovému modelu, blízko-přesné násobky, správné zacházení s obrovskými hodnotami PS2 umožňuje, přesné celé číslo konverze, a purebitop ABS/NEG. Měřeno zdarma při pracovní zátěži (v rámci hluku při provozu na snímku propustnosti); povoleno standardně.</value></data>
   <data name="Emulation.Option.Sony.Setting.VuExactMul.Label"><value>Přesné násobení (VU)</value></data>
@@ -1223,14 +1223,14 @@
   <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Label"><value>Použít externí databázi GameIndex</value></data>
   <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Help"><value>Vyžaduje hardwarovou renderování a manuální renderování. Načíst vybranou databázi herních kompatibilit.</value></data>
   <data name="Emulation.Option.Sony.Setting.FramebufferConversion.Label"><value>Převést renderování framebufferu</value></data>
-  <data name="Emulation.Option.Sony.Setting.DisablePartialInvalidation.Label"><value>Zakázat částečné přerušení platnosti zdroje</value></data>
+  <data name="Emulation.Option.Sony.Setting.DisablePartialInvalidation.Label"><value>Zakázat částečné zneplatnění zdrojů</value></data>
   <data name="Emulation.Option.Sony.Setting.GpuPaletteConversion.Label"><value>Převod palety na GPU</value></data>
   <data name="Emulation.Option.Sony.Setting.PreloadFrameData.Label"><value>Načíst data rámečku předem</value></data>
   <data name="Emulation.Option.Sony.Setting.HalfPixelOffset.Label"><value>Poloha půlky pixelů</value></data>
   <data name="Emulation.Option.Sony.Value.NormalVertex"><value>Normální vrcholový posun</value></data>
   <data name="Emulation.Option.Sony.Value.SpecialTexture"><value>Speciální textura ofsetu</value></data>
   <data name="Emulation.Option.Sony.Value.SpecialTextureAggressive"><value>Agresivní textura ofsetu</value></data>
-  <data name="Emulation.Option.Sony.Value.AlignToNative"><value>Zarovnat k původnímu usnesení</value></data>
+  <data name="Emulation.Option.Sony.Value.AlignToNative"><value>Zarovnat podle původního rozlišení</value></data>
   <data name="Emulation.Option.Sony.Setting.RoundSprite.Label"><value>Kolo 2D SPRITE souřadnice</value></data>
   <data name="Emulation.Option.Sony.Value.Half"><value>Polovina</value></data>
   <data name="Emulation.Option.Sony.Setting.AlignSprite.Label"><value>Zarovnat 2D SPRITE souřadnice</value></data>
@@ -1245,22 +1245,22 @@
   <data name="Emulation.Option.Sony.Setting.AnalogMode.Help"><value>Spusťte regulátor v analogovém režimu spíše než v digitálním. Některé hry (např. Ridge Racer V) zabootovat pad v digitálním a obvykle vyžadují stisknutí regulátoru ANALOG tlačítko pro zapnutí holí; umožňuje získat analogové ovladače od začátku. Hry, které uzamknou režim regulátoru, nejsou ovlivněny.</value></data>
   <data name="Emulation.Option.Sony.Files.CheatsDirectory"><value>Složka obsahující kódy herního podvádění</value></data>
   <data name="Emulation.Option.Sony.Setting.ForceAnalog.Label" xml:space="preserve"><value>regulátor 1 silový analogový režim</value></data>
-  <data name="Emulation.Option.Sony.Setting.ForceAnalog.Help" xml:space="preserve"><value>Síla analogového režimu, aby byl stále zapnutý. Může způsobit problémy s některými hrami. Používejte tuto volbu pouze pro hry, které podporují analogový režim, ale sami jej neaktivují. Po vypnutí lze analogový režim přepnout stisknutím a podržením DualShock Analog Mode Combo.</value></data>
-  <data name="Emulation.Option.Sony.Setting.AnalogToggle.Label" xml:space="preserve"><value>Přepnout analogový režim DualShock</value></data>
+  <data name="Emulation.Option.Sony.Setting.ForceAnalog.Help" xml:space="preserve"><value>Vynutí trvale zapnutý analogový režim. V některých hrách může způsobit potíže. Používejte pouze u her, které analogový režim podporují, ale samy jej nezapínají. Je-li tato volba vypnutá, lze režim přepínat podržením kombinace tlačítek pro analogový režim DualShock.</value></data>
+  <data name="Emulation.Option.Sony.Setting.AnalogToggle.Label" xml:space="preserve"><value>Přepínání analogového režimu DualShock</value></data>
   <data name="Emulation.Option.Sony.Setting.AnalogToggle.Help" xml:space="preserve"><value>Pokud je typ vstupního zařízení DualShock, tato volba umožňuje emulaci DualShock přepnout mezi režim DIGITAL a ANALOG jako originální hardware. Režim lze také přepnout pomocí zvolené kombinace tlačítka.</value></data>
-  <data name="Emulation.Option.Sony.Setting.AnalogToggleCombo.Label" xml:space="preserve"><value>DualShock Analogový režim Combo</value></data>
+  <data name="Emulation.Option.Sony.Setting.AnalogToggleCombo.Label" xml:space="preserve"><value>Kombinace tlačítek pro analogový režim DualShock</value></data>
   <data name="Emulation.Option.Sony.Setting.AnalogToggleCombo.Help" xml:space="preserve"><value>Kombinace tlačítka, která bude použita pro přepínání mezi režimem DIGITAL a ANALOG pro emulovaný DualShock.</value></data>
-  <data name="Emulation.Option.Sony.Setting.AnalogToggleHold.Label" xml:space="preserve"><value>DualShock Analogový režim Combo Hold Lay</value></data>
+  <data name="Emulation.Option.Sony.Setting.AnalogToggleHold.Label" xml:space="preserve"><value>Doba podržení kombinace pro analogový režim DualShock</value></data>
   <data name="Emulation.Option.Sony.Setting.AnalogToggleHold.Help" xml:space="preserve"><value>Vydržet čas pro analogový režim kombinování tlačítek.</value></data>
   <data name="Emulation.Option.Sony.Setting.NegconDeadzone.Label" xml:space="preserve"><value>neGcon Twist Deadzone</value></data>
-  <data name="Emulation.Option.Sony.Setting.NegconDeadzone.Help" xml:space="preserve"><value>Levý analogový klacek při simulaci "twist" akce emulovaných 'neGcon' vstupních zařízení. Používá se k eliminaci driftu regulátoru. Poznámka: Většina neGcon- kompatibilních titulů poskytuje in- herní možnosti pro nastavení 'twist' deadzone hodnoty. Aby se zabránilo ztrátě přesnosti, měla by být in- game deadzone * vždy * nastavena na nulu. Jakékoli požadované úpravy by měly * pouze * být uplatněny prostřednictvím této hlavní opce. To je zvláště důležité, pokud je "neGcon Twist Response" nastavena na "kvadratické" nebo "kubické".</value></data>
+  <data name="Emulation.Option.Sony.Setting.NegconDeadzone.Help" xml:space="preserve"><value>Mrtvá zóna levé analogové páčky při simulaci otáčení ovladače neGcon. Odstraňuje nechtěné pohyby způsobené driftem páčky. Mnoho kompatibilních her nabízí vlastní nastavení mrtvé zóny: vždy je nastavte na nulu a úpravy provádějte pouze touto volbou jádra, aby se zachovala přesnost, zejména při kvadratické nebo kubické odezvě.</value></data>
   <data name="Emulation.Option.Sony.Setting.SecondMemoryCard.Label" xml:space="preserve"><value>Paměťová karta Slot 2</value></data>
   <data name="Emulation.Option.Sony.Setting.SecondMemoryCard.Help" xml:space="preserve"><value>Emulovat druhou paměťovou kartu v pravém slotu paměťové karty. Poznámka: Některé hry vyžadují, aby tato volba byla vypnuta pro správný provoz (např. Krycí jméno Tenka). Poznámka: Memory Card Slot 2 používá formát Mednafen (.mcr) uložit.</value></data>
   <data name="Emulation.Option.Sony.Setting.SharedMemoryCardMethod.Label" xml:space="preserve"><value>Sdílené paměťové karty</value></data>
   <data name="Emulation.Option.Sony.Setting.SharedMemoryCardMethod.Help" xml:space="preserve"><value>Pro každý obsah použijte sdílené paměťové karty místo samostatných karet. Poznámka: je-li metodaMemory Card nastavena na 'Libretro', ovlivní se pouze slot paměťové karty2.</value></data>
   <data name="Emulation.Option.Sony.Setting.LineToQuad.Label" xml:space="preserve"><value>Line- to- Quad Hack</value></data>
-  <data name="Emulation.Option.Sony.Setting.LineToQuad.Help" xml:space="preserve"><value>Některé hry (např. Doom, Hexen, Soul Blade, atd.) kreslete vodorovné čáry roztažením jednopixel- vysoké trojúhelníky přes obrazovku, které jsou rasterizovány jako řada pixelů na původní hardware. Tento hack detekuje tyto malé trojúhelníky a převádí je na čtyřkolky podle potřeby, což umožňuje, aby byly správně zobrazeny na hardwarových střelců a v rozšířených vnitřních rozlišeních. 'Agresivní' je nutné pro některé tituly (např. Temné síly, vévoda Nukem), ale může jinak zavést grafické závady. Odejděte na 'Výchozí', pokud si nejste jisti.</value></data>
-  <data name="Emulation.Option.Sony.Setting.DynarecEventCycles.Label" xml:space="preserve"><value>Dynarec DMA / GPU / MDEC / Timer Event Cycle</value></data>
+  <data name="Emulation.Option.Sony.Setting.LineToQuad.Help" xml:space="preserve"><value>Některé hry, například Doom, Hexen a Soul Blade, kreslí vodorovné čáry pomocí trojúhelníků vysokých jeden pixel. Tato oprava je převádí na čtyřúhelníky, aby se správně zobrazovaly při hardwarovém vykreslování a zvýšeném vnitřním rozlišení. Dark Forces a Duke Nukem vyžadují agresivní režim, který však může v jiných hrách způsobit grafické chyby. Pokud si nejste jisti, ponechte výchozí nastavení.</value></data>
+  <data name="Emulation.Option.Sony.Setting.DynarecEventCycles.Label" xml:space="preserve"><value>Cykly událostí DMA/GPU/MDEC/časovačů (dynamický překladač)</value></data>
   <data name="Emulation.Option.Sony.Setting.DynarecEventCycles.Help" xml:space="preserve"><value>Maximální cykly prováděné CPU před kontrolou GPU / DMA / MDEC / Timer Update, vyšší počet bude rychlejší, má mnohem menší dopad na tlumočníka brouka než dynarec.</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_aspect_ratio.Help"><value>Nastaví formát obrazu předávaný hrám. Poměr 4:3 podporují jen některé hry.</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_disk_cache_size.Label"><value>Velikost diskové mezipaměti</value></data>

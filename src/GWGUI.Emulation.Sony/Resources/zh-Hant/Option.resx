@@ -267,7 +267,7 @@
   <data name="Emulation.Option.swanstation.swanstation_CPU_FastmemMode.Help"><value>使用頁面斷層來確定運行時的硬件內存訪問. 可以在某些游戲中提供顯著的性能改進,但使核心更難被調試.</value></data>
   <data name="Emulation.Option.Sony.Value.DisabledSlower"><value>已禁用( 較慢)</value></data>
   <data name="Emulation.Option.Sony.Value.LUTFaster"><value>LUT (更快) (中文(簡體) ).</value></data>
-  <data name="Emulation.Option.Sony.Value.MMapHardwareFaster64BitOnly"><value>MMap( 硬件, 更快, 只有 64- Bit)</value></data>
+  <data name="Emulation.Option.Sony.Value.MMapHardwareFaster64BitOnly"><value>MMap（硬體，更快，僅限64位元）</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CPU_FastmemRewrite.Label"><value>CPU 重編器快速內存訪問重寫</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CPU_FastmemRewrite.Help"><value>當CPU再編譯器啟用快速內存訪問時重寫指令. 這可以提高速度。 這也會導致模擬器在一些平臺上崩潰.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_TextureReplacements_EnableVRAMWriteReplacements.Label"><value>啟用 VRAM 寫入紋理替換</value></data>
@@ -746,14 +746,14 @@
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_crosshair2.Label"><value>玩家 2 發光槍</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_crosshair2.Help"><value>在使用GunCon或Konami Gun時顯示或隱藏玩家2的瞄準光標. 在視頻設置中禁用 RGB32 輸出, 此選項可以工作 。</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_konamigunadjustx.Label"><value>Konami Gun X軸偏移</value></data>
-  <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_konamigunadjustx.Help"><value>在模擬時將 X 軸抵消為輕炮輸入 Konami Gun (Hyper Blaster / Justifier) 設備. 可用于糾正瞄準偏差.</value></data>
+  <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_konamigunadjustx.Help"><value>模擬Konami Gun（Hyper Blaster / Justifier）時，沿X軸偏移光槍輸入，以修正瞄準偏差。</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_konamigunadjusty.Label"><value>Konami Gun Y 軸向偏移</value></data>
-  <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_konamigunadjusty.Help"><value>在仿真Konami Gun(Hyper Blaster/Justifier)裝置時,將一Y軸相抵消為輕炮輸入. 可用于糾正瞄準偏差.</value></data>
+  <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_konamigunadjusty.Help"><value>模擬Konami Gun（Hyper Blaster / Justifier）時，沿Y軸偏移光槍輸入，以修正瞄準偏差。</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustx.Label"><value>Guncon X 軸偏移</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustx.Help"><value>在仿真Guncon設備時將X軸偏移到輕炮輸入上. 可用于糾正瞄準偏差.</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjusty.Label"><value>Guncon Y 軸偏移</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjusty.Help"><value>在仿真Guncon設備時將 Y 軸偏移為輕炮輸入. 可用于糾正瞄準偏差.</value></data>
-  <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustratiox.Label"><value>Guncon X軸響應</value></data>
+  <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustratiox.Label"><value>Guncon X軸反應</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustratiox.Help"><value>在仿真Guncon裝置時,調整水平光槍運動的相對規模. 可用于糾正瞄準偏差.</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustratioy.Label"><value>Guncon Y 軸式反應</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustratioy.Help"><value>仿真貢康裝置時調整垂直光炮運動的相對規模. 可用于糾正瞄準偏差.</value></data>
@@ -1008,7 +1008,7 @@
   <data name="Emulation.Option.rpcs3.rpcs3_network_enabled.Label"><value>網絡已啟用</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_network_enabled.Help"><value>讓游戲進入互聯網。 當內容被裝入時生效 。</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_psn_status.Label"><value>PSN 狀態</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_psn_status.Help"><value>PlayStation Network的游戲所見所聞. 模擬讓他們相信他們簽了字 有些人需要通過菜單; RPCN 連接到 RPCS3's 自己的服務器和需要 Network 啟用并啟用了 RPCN 帳號: 核心無法創建, 因此將其單獨設置 RPCS3 并復制其文本 rpcn.yml 輸入 system/rpcs3/ (system/rpcs3/config/ 在視窗上). 當內容被裝入時生效 。</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_psn_status.Help"><value>設定遊戲所看到的PlayStation Network狀態。模擬模式讓遊戲認為使用者已登入，部分遊戲需要此狀態才能通過選單。RPCN連線至RPCS3自己的伺服器，需要啟用網路並擁有RPCN帳號。核心無法建立帳號：請在獨立版RPCS3中設定帳號，再將rpcn.yml複製到system/rpcs3/（Windows下為system/rpcs3/config/）。設定在載入內容時生效。</value></data>
   <data name="Emulation.Option.Sony.Value.Simulated"><value>模擬</value></data>
   <data name="Emulation.Option.Sony.Value.RPCN"><value>RPCN</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_upnp.Label"><value>UPnP 數字化</value></data>
@@ -1167,7 +1167,7 @@
   <data name="Emulation.Option.Sony.Value.Unsynchronized"><value>未同步</value></data>
   <data name="Emulation.Option.Sony.Setting.NointerlacingHint.Label"><value>启用解接补丁</value></data>
   <data name="Emulation.Option.Sony.Setting.NointerlacingHint.Help"><value>如果启用, 如果游戏有补丁可以将图像转换成非相接的全帧或渐进扫描视频信号, 以及/ 或上述所有内容的组合, 则会查看内部数据库。 图像将更加稳定, 并可以关闭相接符 。</value></data>
-  <data name="Emulation.Option.Sony.Value.BilinearForcedExcludingSprite"><value>比线性( 强制排除了图示)</value></data>
+  <data name="Emulation.Option.Sony.Value.BilinearForcedExcludingSprite"><value>強制雙線性篩選，精靈圖除外</value></data>
   <data name="Emulation.Option.Sony.Value.Scaled"><value>缩放到内部分辨率</value></data>
   <data name="Emulation.Option.Sony.Value.Unscaled"><value>原控制台解析</value></data>
   <data name="Emulation.Option.Sony.Value.Force32Bit"><value>强制 32 位</value></data>
@@ -1179,11 +1179,11 @@
   <data name="Emulation.Option.Sony.Setting.PcrtcAntiblur.Help"><value>禁用此选项以获取最准确的输出图像。 启用此选项将试图去化图像。 在软件渲染器和 paraLLEl 上最显著 。</value></data>
   <data name="Emulation.Option.Sony.Setting.PcrtcScreenOffsets.Label"><value>屏幕位置抵消(PCRTC) , (中文(简体) ).</value></data>
   <data name="Emulation.Option.Sony.Setting.DisableInterlaceOffset.Label"><value>禁用插合视频所用的垂直偏移</value></data>
-  <data name="Emulation.Option.Sony.Setting.AutoFlushSoftware.Label"><value>自动缓存冲 (软件渲染)</value></data>
+  <data name="Emulation.Option.Sony.Setting.AutoFlushSoftware.Label"><value>自動清空快取（軟體算繪）</value></data>
   <data name="Emulation.Option.Sony.Setting.SwRendererThreads.Label"><value>CPU 软件渲染所用的线程</value></data>
   <data name="Emulation.Option.Sony.Setting.SwRendererThreads.Help"><value>软件渲染器在软件的上方加光线线条的数目 GS 线程本身。 0 光栅化 GS 线程单(最低的纬度,最好的是2-4个核心CPU) 。 更多的线程帮助场景, 并且对CPU 具有许多α效果, 并且有备用核心。 只有软件渲染器使用 。</value></data>
   <data name="Emulation.Option.Sony.Setting.VuAccurateAddsub.Label"><value>准确的增减(VU) , (中文(简体) ).</value></data>
-  <data name="Emulation.Option.Sony.Setting.VuAccurateAddsub.Help"><value>模式 VU 添加器在每次加减时的缩写。 需要此行为的三相游戏( Star Ocean 3, Radiata Stories, Valkyrie Profile 2) 即使此游戏被禁用, 也会通过游戏数据库自动获得; 只有在其他标题中追逐精确度时才能在全球范围启用。 成本速度 。 VU- 游戏很重</value></data>
+  <data name="Emulation.Option.Sony.Setting.VuAccurateAddsub.Help"><value>重現VU加減運算中由指數差導致的截斷。遊戲資料庫會為需要此行為的Tri-Ace遊戲自動啟用，包括Star Ocean 3、Radiata Stories和Valkyrie Profile 2，即使此全域選項已關閉也是如此。其他遊戲僅在需要提高精度時啟用；大量使用VU的遊戲可能變慢。</value></data>
   <data name="Emulation.Option.Sony.Setting.EeAccurateFpu.Label"><value>精确浮点算术( Q)EE FPU) , (中文(简体) ).</value></data>
   <data name="Emulation.Option.Sony.Setting.EeAccurateFpu.Help"><value>运行 EE FPU 透过扩展范围的双管,添加、子、子和被保险链: 精确的加/子与硬件模型相对应, 近精确的多倍, 正确处理巨大的值 PS2 允许, 精确整数转换, 和纯比妥 ABS/ 数据NEG. 按工作量水平(在帧吞吐量下运行中的噪音)进行计量;默认启用。</value></data>
   <data name="Emulation.Option.Sony.Setting.VuExactMul.Label"><value>精确乘法( Q)VU) , (中文(简体) ).</value></data>
@@ -1223,14 +1223,14 @@
   <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Label"><value>使用外部 GameIndex 数据库</value></data>
   <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Help"><value>需要硬件渲染器和手动渲染修正。装入选中的游戏兼容性数据库.</value></data>
   <data name="Emulation.Option.Sony.Setting.FramebufferConversion.Label"><value>转换渲染帧缓冲器</value></data>
-  <data name="Emulation.Option.Sony.Setting.DisablePartialInvalidation.Label"><value>禁用部分源无效</value></data>
+  <data name="Emulation.Option.Sony.Setting.DisablePartialInvalidation.Label"><value>停用來源的部分失效處理</value></data>
   <data name="Emulation.Option.Sony.Setting.GpuPaletteConversion.Label"><value>调色板转换于 GPU</value></data>
   <data name="Emulation.Option.Sony.Setting.PreloadFrameData.Label"><value>提前装入帧数据</value></data>
   <data name="Emulation.Option.Sony.Setting.HalfPixelOffset.Label"><value>半像素职位 11</value></data>
   <data name="Emulation.Option.Sony.Value.NormalVertex"><value>常规顶点的平移</value></data>
   <data name="Emulation.Option.Sony.Value.SpecialTexture"><value>特别纹理</value></data>
   <data name="Emulation.Option.Sony.Value.SpecialTextureAggressive"><value>粗略纹理</value></data>
-  <data name="Emulation.Option.Sony.Value.AlignToNative"><value>与原始分辨率对齐</value></data>
+  <data name="Emulation.Option.Sony.Value.AlignToNative"><value>與原始解析度對齊</value></data>
   <data name="Emulation.Option.Sony.Setting.RoundSprite.Label"><value>第2D轮 SPRITE 坐标</value></data>
   <data name="Emulation.Option.Sony.Value.Half"><value>半个</value></data>
   <data name="Emulation.Option.Sony.Setting.AlignSprite.Label"><value>对齐 2D SPRITE 坐标</value></data>
@@ -1245,22 +1245,22 @@
   <data name="Emulation.Option.Sony.Setting.AnalogMode.Help"><value>以模拟模式而不是数字模式启动控制器。有些游戏(例如Ridge Racer V)将垫子放在数字中,通常需要按控制器的 ANALOG 按钮来启用棒; 启用此选项从一开始就获得模拟控制。锁起控制器模式的游戏不受影响。</value></data>
   <data name="Emulation.Option.Sony.Files.CheatsDirectory"><value>包含游戏欺骗代码的文件夹</value></data>
   <data name="Emulation.Option.Sony.Setting.ForceAnalog.Label" xml:space="preserve"><value>控制器 1 強制模擬模式</value></data>
-  <data name="Emulation.Option.Sony.Setting.ForceAnalog.Help" xml:space="preserve"><value>總是使用模擬模式。 可能會引起一些游戲出問題. 只用于支持模擬模式但不自動啟用的游戲。 被禁用時,模擬模式可以通過按下并持有DualShock Analog Mode Combo來切換.</value></data>
-  <data name="Emulation.Option.Sony.Setting.AnalogToggle.Label" xml:space="preserve"><value>DualShock 模擬模式切換</value></data>
+  <data name="Emulation.Option.Sony.Setting.ForceAnalog.Help" xml:space="preserve"><value>強制始終啟用類比模式，可能導致部分遊戲出現問題。僅用於支援類比模式但不會自動啟用的遊戲。關閉此選項後，可按住DualShock類比模式按鍵組合來切換模式。</value></data>
+  <data name="Emulation.Option.Sony.Setting.AnalogToggle.Label" xml:space="preserve"><value>切換DualShock類比模式</value></data>
   <data name="Emulation.Option.Sony.Setting.AnalogToggle.Help" xml:space="preserve"><value>當輸入設備類型為DualShock時,此選項允許將被模擬的DualShock在DIGITAL和ANALOG模式之間切換出與原始硬件一樣. 模式也可以通過使用所選的按鈕組合來切換.</value></data>
-  <data name="Emulation.Option.Sony.Setting.AnalogToggleCombo.Label" xml:space="preserve"><value>DualShock 模擬模式 Combo</value></data>
+  <data name="Emulation.Option.Sony.Setting.AnalogToggleCombo.Label" xml:space="preserve"><value>DualShock類比模式按鍵組合</value></data>
   <data name="Emulation.Option.Sony.Setting.AnalogToggleCombo.Help" xml:space="preserve"><value>用于在 DIGITAL 模式和 ANALOG 模式之間切換用于模擬 DualShock 的按鈕組合 。</value></data>
-  <data name="Emulation.Option.Sony.Setting.AnalogToggleHold.Label" xml:space="preserve"><value>DualShock 模擬模式 Combo 拖放</value></data>
+  <data name="Emulation.Option.Sony.Setting.AnalogToggleHold.Label" xml:space="preserve"><value>DualShock類比模式按鍵組合的按住時間</value></data>
   <data name="Emulation.Option.Sony.Setting.AnalogToggleHold.Help" xml:space="preserve"><value>保持模擬模式組合按鈕的時間 。</value></data>
   <data name="Emulation.Option.Sony.Setting.NegconDeadzone.Label" xml:space="preserve"><value>neGcon Twist Deadzone (英語).</value></data>
-  <data name="Emulation.Option.Sony.Setting.NegconDeadzone.Help" xml:space="preserve"><value>模擬“ neGcon” 輸入設備的“ twist” 動作時左鍵粘接死區 。 用來消除控制器漂移. 注意: 多數 neGcon 兼容標題為設置 “ twist” 死區值提供了游戲中選項 。 為了避免精度損失,游戲中死區應*永遠*被設定為0. 任何必要的調整都應通過這一核心選項適用*只使用*。 當“neGcon Twist response”被設定為“Quadratic”或“cubic”時,這一點尤其重要。</value></data>
+  <data name="Emulation.Option.Sony.Setting.NegconDeadzone.Help" xml:space="preserve"><value>左類比搖桿在模擬neGcon控制器扭轉操作時使用的死區，可消除搖桿漂移造成的意外移動。許多相容遊戲也提供死區設定：請始終將遊戲內死區設為零，僅透過此核心選項進行調整，以保持精度，使用二次或三次反應曲線時尤其重要。</value></data>
   <data name="Emulation.Option.Sony.Setting.SecondMemoryCard.Label" xml:space="preserve"><value>內存卡槽 2</value></data>
   <data name="Emulation.Option.Sony.Setting.SecondMemoryCard.Help" xml:space="preserve"><value>將第二張內存卡刻入右側內存牌位. 注意:有些游戲要求此選項被禁用以進行正確的操作(例如. 代號"Tenka". 注:Memory Card Slot 2使用Mednafen(.mcr)保存格式.</value></data>
   <data name="Emulation.Option.Sony.Setting.SharedMemoryCardMethod.Label" xml:space="preserve"><value>共享內存卡</value></data>
   <data name="Emulation.Option.Sony.Setting.SharedMemoryCardMethod.Help" xml:space="preserve"><value>每個內容使用共享內存卡而不是單獨的卡. 注:如果將"Memory Card方法"設定為"Libretro",則僅會影響內存卡槽2.</value></data>
   <data name="Emulation.Option.Sony.Setting.LineToQuad.Label" xml:space="preserve"><value>由一行至一行哈克</value></data>
-  <data name="Emulation.Option.Sony.Setting.LineToQuad.Help" xml:space="preserve"><value>一些游戲(如: Doom,Hexen,Soul Blade等)通過將單像素高的三角線伸展到屏幕上來畫出水平線,在原硬件上被光柵化為一行像素. 這種黑客可以檢測出這些小三角形并按需要將其轉換為四相,這樣就可以在硬件渲染器上和被提升的內部分辨率上正確顯示. 某些標題(例如. 黑暗的力量,核子公爵),但否則可能會引入圖形化的出克. 如果不確定,請在“ 默認” 離開 。</value></data>
-  <data name="Emulation.Option.Sony.Setting.DynarecEventCycles.Label" xml:space="preserve"><value>Dynarec DMA/GPU/MDEC/計時事件周期</value></data>
+  <data name="Emulation.Option.Sony.Setting.LineToQuad.Help" xml:space="preserve"><value>Doom、Hexen和Soul Blade等遊戲使用高度為一個像素的三角形繪製水平線。此修正將其轉換為四邊形，使其在硬體算繪和更高內部解析度下正確顯示。Dark Forces和Duke Nukem需要積極設定，但該設定可能導致其他遊戲出現圖形錯誤。不確定時請保留預設設定。</value></data>
+  <data name="Emulation.Option.Sony.Setting.DynarecEventCycles.Label" xml:space="preserve"><value>DMA/GPU/MDEC/計時器事件週期（動態重新編譯）</value></data>
   <data name="Emulation.Option.Sony.Setting.DynarecEventCycles.Help" xml:space="preserve"><value>在檢查一個GPU/DMA/MDEC/Timer Update前由CPU運行的最大周期,更高的數量會更快,對甲蟲解釋器的影響要小于dynarec.</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_aspect_ratio.Help"><value>設定向遊戲回報的畫面比例。只有部分遊戲支援4:3。</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_disk_cache_size.Label"><value>磁碟快取大小</value></data>

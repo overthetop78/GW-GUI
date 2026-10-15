@@ -255,7 +255,7 @@
   <data name="Emulation.Option.swanstation.swanstation_CPU_FastmemMode.Help"><value>実行時にハードウェアのメモリアクセスを判断するために、ページの障害を使用します。 一部のゲームでは重要なパフォーマンス改善を提供できますが、コアをデバッグするのは難しくなります。</value></data>
   <data name="Emulation.Option.Sony.Value.DisabledSlower"><value>障がい者(遅)</value></data>
   <data name="Emulation.Option.Sony.Value.LUTFaster"><value>LUT(ファスター)</value></data>
-  <data name="Emulation.Option.Sony.Value.MMapHardwareFaster64BitOnly"><value>MMap(ハードウェア、ファッサー、64ビットのみ)</value></data>
+  <data name="Emulation.Option.Sony.Value.MMapHardwareFaster64BitOnly"><value>MMap（ハードウェア、高速、64ビット専用）</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CPU_FastmemRewrite.Label"><value>CPU Recompilerの速い記憶アクセスは書き換えます</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CPU_FastmemRewrite.Help"><value>CPUのrecompilerのために速い記憶アクセスが有効になっているとき指示を書き換えて下さい。 速度を向上させることができます。 エミュレータは、いくつかのプラットフォームでクラッシュする可能性があります。</value></data>
   <data name="Emulation.Option.swanstation.swanstation_TextureReplacements_EnableVRAMWriteReplacements.Label"><value>VRAM書き込みテクスチャの交換を有効にします</value></data>
@@ -734,14 +734,14 @@
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_crosshair2.Label"><value>プレーヤー2 Lightgunの十字架</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_crosshair2.Help"><value>GunConかKonami Gunを使用してプレーヤー2のための目的のカーソルを表示するか、または隠して下さい。 このオプションが動作するビデオ設定でRGB32出力を無効にします。</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_konamigunadjustx.Label"><value>Konami Gun X軸オフセット</value></data>
-  <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_konamigunadjustx.Help"><value>Konami Gun (Hyper Blaster/Justifier) 装置を乳状にするとき軽い銃の入力に X 軸オフセットを適用して下さい。 誤差を補正するために使用することができます。</value></data>
+  <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_konamigunadjustx.Help"><value>Konami Gun（Hyper Blaster / Justifier）のエミュレーション時に、光線銃の入力をX軸方向にずらして照準のずれを補正します。</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_konamigunadjusty.Label"><value>Konami Gun Y軸オフセット</value></data>
-  <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_konamigunadjusty.Help"><value>軽い銃の入力にY軸オフセットをKonami Gun (Hyper Blaster/Justifier)装置乳状にする適用して下さい。 誤差を補正するために使用することができます。</value></data>
+  <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_konamigunadjusty.Help"><value>Konami Gun（Hyper Blaster / Justifier）のエミュレーション時に、光線銃の入力をY軸方向にずらして照準のずれを補正します。</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustx.Label"><value>Guncon X軸オフセット</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustx.Help"><value>ガンコンデバイスをエミュレートするときに、X軸のオフセットを適用します。 誤差を補正するために使用することができます。</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjusty.Label"><value>Guncon Y軸オフセット</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjusty.Help"><value>ガンコンデバイスをエミュレートするときに、Y軸のオフセットを適用します。 誤差を補正するために使用することができます。</value></data>
-  <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustratiox.Label"><value>Guncon X軸応答</value></data>
+  <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustratiox.Label"><value>GunconのX軸の応答</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustratiox.Help"><value>ガンコンデバイスをエミュレートするとき、水平光銃の動きの相対的な倍率を調整します。 誤差を補正するために使用することができます。</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustratioy.Label"><value>Guncon Y軸応答</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustratioy.Help"><value>ガンコンデバイスをエミュレートするとき、垂直ライトガンの動きの相対的な大きさを調整します。 誤差を補正するために使用することができます。</value></data>
@@ -996,7 +996,7 @@
   <data name="Emulation.Option.rpcs3.rpcs3_network_enabled.Label"><value>ネットワークの有効化</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_network_enabled.Help"><value>ゲームがインターネットにアクセスしましょう。 コンテンツが読み込まれるときに効果をとります。</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_psn_status.Label"><value>PSNステータス</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_psn_status.Help"><value>PlayStationネットワークのどのゲームが見えるか。 これらは、メニューを貼り付ける必要がいくつかあります。 RPCN は、RPCS3 のサーバーに接続し、ネットワークを有効にして RPCN アカウントが必要です。コアは 1 つを作成できませんので、スタンドアローン RPCS3 にセットアップし、rpcn.yml を system/rpcs3/ (system/rpcs3/config/) にコピーします。 コンテンツが読み込まれるときに効果をとります。</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_psn_status.Help"><value>ゲームに通知するPlayStation Networkの状態を設定します。シミュレーションモードではサインイン済みと見なされるため、サインインが必要なゲームでもメニューから先に進めます。RPCNはRPCS3独自のサーバーに接続するため、ネットワークの有効化とRPCNアカウントが必要です。コアではアカウントを作成できません。単体版RPCS3で設定し、rpcn.ymlをsystem/rpcs3/（Windowsではsystem/rpcs3/config/）にコピーしてください。設定はコンテンツの読み込み時に適用されます。</value></data>
   <data name="Emulation.Option.Sony.Value.Simulated"><value>シミュレート</value></data>
   <data name="Emulation.Option.Sony.Value.RPCN"><value>RPCN</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_upnp.Label"><value>アップンP</value></data>
@@ -1167,7 +1167,7 @@
   <data name="Emulation.Option.Sony.Value.Unsynchronized"><value>非同期化</value></data>
   <data name="Emulation.Option.Sony.Setting.NointerlacingHint.Label"><value>パッチのデインターレースを有効にします</value></data>
   <data name="Emulation.Option.Sony.Setting.NointerlacingHint.Help"><value>有効にすると、ゲームが非インターレース、フルフレーム、または進行中のスキャンビデオ信号のいずれかに画像をオンにするためのパッチが利用可能な場合は、内部データベースを調べます。 上記すべての組み合わせ。 画像はより安定して解読することができます。</value></data>
-  <data name="Emulation.Option.Sony.Value.BilinearForcedExcludingSprite"><value>バイリンガル(スプライトを除く)</value></data>
+  <data name="Emulation.Option.Sony.Value.BilinearForcedExcludingSprite"><value>スプライト以外にバイリニアフィルターを強制</value></data>
   <data name="Emulation.Option.Sony.Value.Scaled"><value>内部解像度にスケールアップ</value></data>
   <data name="Emulation.Option.Sony.Value.Unscaled"><value>元のコンソール決断</value></data>
   <data name="Emulation.Option.Sony.Value.Force32Bit"><value>力 32bit</value></data>
@@ -1179,11 +1179,11 @@
   <data name="Emulation.Option.Sony.Setting.PcrtcAntiblur.Help"><value>これにより、最も正確な出力イメージが無効になります。この機能を有効にすると、イメージを解凍しようとします。ソフトウェアレンダラーとparaLLELでほとんどの注目できます。</value></data>
   <data name="Emulation.Option.Sony.Setting.PcrtcScreenOffsets.Label"><value>スクリーンの位置のオフセット(PCRTC) ) )</value></data>
   <data name="Emulation.Option.Sony.Setting.DisableInterlaceOffset.Label"><value>インターレースビデオに使用される垂直オフセットを無効にします</value></data>
-  <data name="Emulation.Option.Sony.Setting.AutoFlushSoftware.Label"><value>自動キャッシュフラッシュ(ソフトウェアレンダリング)</value></data>
+  <data name="Emulation.Option.Sony.Setting.AutoFlushSoftware.Label"><value>キャッシュの自動フラッシュ（ソフトウェア描画）</value></data>
   <data name="Emulation.Option.Sony.Setting.SwRendererThreads.Label"><value>CPU ソフトウェアレンダリングに使用するスレッド</value></data>
   <data name="Emulation.Option.Sony.Setting.SwRendererThreads.Help"><value>追加のワーカーの数がソフトウェアのレンダラーが、上に、ラスタライズするスレッド GS スレッド自体。 0 は、 GS スレッドだけで(最も低いレイテンシ、2-4コアCPUで最高の)。 より多くのスレッドは、スペアコアでCPU上の多くのアルファエフェクトを持つシーンを支援します。 ソフトウェアレンダラーでのみ使用されます。</value></data>
   <data name="Emulation.Option.Sony.Setting.VuAccurateAddsub.Label"><value>正確な追加と減算()VU) ) )</value></data>
-  <data name="Emulation.Option.Sony.Setting.VuAccurateAddsub.Help"><value>モデル VU adderのあらゆる追加とサブトラクトに対する非能的な距離のトランセンション。この動作を必要とするトライエースゲーム(スターオーシャン3、ラディアタストーリーズ、ヴァラキーリープロファイル2)は、この無効になっている場合でも、ゲームデータベースを介して自動的にタイトルごとに取得します。他のタイトルで精度を追跡するときにのみ、グローバルに有効にします。コストは速度を上げる VU-ヘビーゲーム。</value></data>
+  <data name="Emulation.Option.Sony.Setting.VuAccurateAddsub.Help"><value>VUの加算と減算で、指数の差に応じて発生する切り捨てを再現します。Star Ocean 3、Radiata Stories、Valkyrie Profile 2など、この動作を必要とするTri-Aceのゲームでは、全体設定が無効でもゲームデータベースにより自動的に有効になります。ほかのゲームでは精度が必要な場合にのみ有効にしてください。VUを多用するゲームは遅くなることがあります。</value></data>
   <data name="Emulation.Option.Sony.Setting.EeAccurateFpu.Label"><value>正確な浮動小数点演算()EE FPU) ) )</value></data>
   <data name="Emulation.Option.Sony.Setting.EeAccurateFpu.Help"><value>実行する EE FPU 拡張範囲のダブルパイプラインを介して、サブ、モール、および溶融チェーンを追加します。ハードウェアモデル、ほぼ正確なマルチプライ、巨大な値の正しい処理に対する正確な追加/サブ PS2 完全整数変換、純正ビットプ ABS???????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????NEG. ワークロードレベルで測定された無料(フレームスループットで動作ノイズがない場合)。デフォルトで有効。</value></data>
   <data name="Emulation.Option.Sony.Setting.VuExactMul.Label"><value>正確な乗算 (Exact)VU) ) )</value></data>
@@ -1223,7 +1223,7 @@
   <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Label"><value>外部ゲームインデックスデータベースを使用する</value></data>
   <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Help"><value>ハードウェアのレンダラーと手動レンダリングの修正が必要です。選択したゲーム互換性データベースをロードするか.</value></data>
   <data name="Emulation.Option.Sony.Setting.FramebufferConversion.Label"><value>レンダリングフレームバッファを変換</value></data>
-  <data name="Emulation.Option.Sony.Setting.DisablePartialInvalidation.Label"><value>無効な部分的な源の無効化</value></data>
+  <data name="Emulation.Option.Sony.Setting.DisablePartialInvalidation.Label"><value>ソースの部分的な無効化を無効にする</value></data>
   <data name="Emulation.Option.Sony.Setting.GpuPaletteConversion.Label"><value>パレット変換 GPU</value></data>
   <data name="Emulation.Option.Sony.Setting.PreloadFrameData.Label"><value>事前にフレームデータをロードする</value></data>
   <data name="Emulation.Option.Sony.Setting.HalfPixelOffset.Label"><value>ハーフピクセル位置オフセット</value></data>
@@ -1245,22 +1245,22 @@
   <data name="Emulation.Option.Sony.Setting.AnalogMode.Help"><value>デジタルではなくアナログモードでコントローラーを起動します。一部のゲーム(リッジレーサーVなど)は、デジタルでパッドを起動し、通常、コントローラーのプレスが必要です。 ANALOG ボタンでスティックを有効化。これを有効にして、スタートからアナログ制御を得ることができます。 コントローラーモードをロックするゲームは影響を受けません。</value></data>
   <data name="Emulation.Option.Sony.Files.CheatsDirectory"><value>ゲームを含むフォルダチートコード</value></data>
   <data name="Emulation.Option.Sony.Setting.ForceAnalog.Label" xml:space="preserve"><value>コントローラー 1つの力のアナログモード</value></data>
-  <data name="Emulation.Option.Sony.Setting.ForceAnalog.Help" xml:space="preserve"><value>アナログモードを常にオンにします。 一部のゲームで問題を引き起こす可能性があります。 このオプションは、アナログモードをサポートするゲームにのみ使用しますが、自動的にそれ自体を有効にしません。 無効にすると、DualShockのアナログモードコンボを押すとアナログモードを切り替えることができます。</value></data>
-  <data name="Emulation.Option.Sony.Setting.AnalogToggle.Label" xml:space="preserve"><value>DualShock アナログモード トグル</value></data>
+  <data name="Emulation.Option.Sony.Setting.ForceAnalog.Help" xml:space="preserve"><value>アナログモードを常に有効にします。一部のゲームでは問題が発生することがあります。アナログモードに対応していても自動的に有効にしないゲームでのみ使用してください。この設定が無効な場合は、DualShockアナログモードのボタンの組み合わせを長押しして切り替えられます。</value></data>
+  <data name="Emulation.Option.Sony.Setting.AnalogToggle.Label" xml:space="preserve"><value>DualShockアナログモードの切り替え</value></data>
   <data name="Emulation.Option.Sony.Setting.AnalogToggle.Help" xml:space="preserve"><value>入力デバイスタイプがない場合 DualShock, このオプションは、エミュレート可能 DualShock とりあえず DIGITAL そして、 ANALOG 元のハードウェアのようなモード. 選択ボタンの組み合わせでモードを切り替えることもできます。</value></data>
-  <data name="Emulation.Option.Sony.Setting.AnalogToggleCombo.Label" xml:space="preserve"><value>DualShock アナログモードコンボ</value></data>
+  <data name="Emulation.Option.Sony.Setting.AnalogToggleCombo.Label" xml:space="preserve"><value>DualShockアナログモードのボタンの組み合わせ</value></data>
   <data name="Emulation.Option.Sony.Setting.AnalogToggleCombo.Help" xml:space="preserve"><value>DIGITALとANALOGモードをエミュレートしたDualShockでトグルするために使用されるボタンの組み合わせ。</value></data>
-  <data name="Emulation.Option.Sony.Setting.AnalogToggleHold.Label" xml:space="preserve"><value>DualShock アナログモード コンボホールドディレイ</value></data>
+  <data name="Emulation.Option.Sony.Setting.AnalogToggleHold.Label" xml:space="preserve"><value>DualShockアナログモードの組み合わせの長押し時間</value></data>
   <data name="Emulation.Option.Sony.Setting.AnalogToggleHold.Help" xml:space="preserve"><value>アナログモードコンボボタン用の時間を保持します。</value></data>
   <data name="Emulation.Option.Sony.Setting.NegconDeadzone.Label" xml:space="preserve"><value>neGcon ねじれのデッドゾーン</value></data>
-  <data name="Emulation.Option.Sony.Setting.NegconDeadzone.Help" xml:space="preserve"><value>'neGcon'入力デバイスのエミュレートの'twist'アクションをシミュレートするとき、左アナログスティックデッドゾーン。 コントローラーの漂流を除去するのに使用される。 Note: ほとんどのneGcon互換タイトルは、'twist'デッドゾーン値を設定するためのゲーム内オプションを提供します。 精度の喪失を避けるため、ゲーム内デッドゾーンは*always*をゼロに設定する必要があります。 必須の調整は、このコアオプションを介して*のみ*が適用されます。 'neGcon Twist Response'が「Quadratic」または「Cubic」に設定されている場合は、これは特に重要です。</value></data>
+  <data name="Emulation.Option.Sony.Setting.NegconDeadzone.Help" xml:space="preserve"><value>neGconコントローラーのひねり操作を再現する際の左アナログスティックのデッドゾーンです。スティックのドリフトによる意図しない動きを防ぎます。多くの対応ゲームには独自のデッドゾーン設定があります。精度を維持するため、ゲーム側は必ずゼロにし、調整はこのコア設定だけで行ってください。特に二次または三次の応答曲線を使う場合に重要です。</value></data>
   <data name="Emulation.Option.Sony.Setting.SecondMemoryCard.Label" xml:space="preserve"><value>メモリカードスロット2</value></data>
   <data name="Emulation.Option.Sony.Setting.SecondMemoryCard.Help" xml:space="preserve"><value>正しいメモリカードスロットで2番目のメモリーカードをエミュレートします。 注意:一部のゲームでは、このオプションが正しい操作のために無効にする必要があります(例えば。 コードネームテンカ)。 注:Memory Cardスロット2はMednafen (.mcr)の保存フォーマットを使用します。</value></data>
   <data name="Emulation.Option.Sony.Setting.SharedMemoryCardMethod.Label" xml:space="preserve"><value>共有メモリカード</value></data>
   <data name="Emulation.Option.Sony.Setting.SharedMemoryCardMethod.Help" xml:space="preserve"><value>各コンテンツの別々のカードではなく、共有メモリカードを使用します。 注意:'Memory Cardメソッド'が'Libretro'に設定されている場合は、メモリカードスロット2のみの影響を受けます。</value></data>
   <data name="Emulation.Option.Sony.Setting.LineToQuad.Label" xml:space="preserve"><value>ラインツークォードハック</value></data>
-  <data name="Emulation.Option.Sony.Setting.LineToQuad.Help" xml:space="preserve"><value>一部のゲーム(例:) Doom、HexenのSoul Blade等)はスクリーンを渡る単一ピクセルの高さの三角形を伸ばすことによって水平なラインを引いて元のハードウェア上のピクセルの列としてrasterizedです。 このハックは、これらの小さな三角形を検知し、必要に応じてクォードに変換します。これにより、ハードウェアのレンダラーとスケールアップされた内部解像度で適切に表示できます。 'Aggressive' は、いくつかのタイトル(例:)に必須です。 ダークフォース、デューク・ヌケム(Duke Nukem)は他にグラフィカルなグリッチを紹介するかもしれません。 unsure なら「デフォルト」で残します。</value></data>
-  <data name="Emulation.Option.Sony.Setting.DynarecEventCycles.Label" xml:space="preserve"><value>Dynarec DMA/GPU/MDEC/Timer イベントサイクル</value></data>
+  <data name="Emulation.Option.Sony.Setting.LineToQuad.Help" xml:space="preserve"><value>Doom、Hexen、Soul Bladeなどのゲームは、高さ1ピクセルの三角形で水平線を描画します。この補正は三角形を四角形に変換し、ハードウェア描画や高い内部解像度でも正しく表示できるようにします。Dark ForcesとDuke Nukemには積極的な設定が必要ですが、ほかのゲームでは描画の乱れが発生することがあります。判断できない場合は既定の設定を維持してください。</value></data>
+  <data name="Emulation.Option.Sony.Setting.DynarecEventCycles.Label" xml:space="preserve"><value>DMA/GPU/MDEC/タイマーのイベントサイクル（動的再コンパイル）</value></data>
   <data name="Emulation.Option.Sony.Setting.DynarecEventCycles.Help" xml:space="preserve"><value>GPU/DMA/MDEC/Timer Update がチェックされる前に CPU によって実行される最大サイクルは、より高い数がより速くなり、ダイナレックよりもビートルのインタープリターにあまり影響しません。</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_aspect_ratio.Help"><value>ゲームに通知する画面形式を設定します。4:3に対応しているゲームは一部のみです。</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_disk_cache_size.Label"><value>ディスクキャッシュ容量</value></data>

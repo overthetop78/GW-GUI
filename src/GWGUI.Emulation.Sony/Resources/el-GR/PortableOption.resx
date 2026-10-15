@@ -46,7 +46,7 @@
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Value.0"><value>Χωρίς πρόσθετη προσωρινή αποθήκευση γραφικών</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Value.1"><value>Προσωρινή αποθήκευση έως ενός καρέ βίντεο</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_button_preference.Label"><value>Κουμπί επιβεβαίωσης</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_analog_is_circular.Label"><value>Αναλογική αντιστάθμιση κύκλου εναντίον πλατείας πύλης</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_analog_is_circular.Label"><value>Αντιστάθμιση κυκλικού και τετράγωνου εύρους αναλογικού μοχλού</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_analog_deadzone.Label"><value>Αναλογική Νεκροζώνη</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_analog_deadzone.Help"><value>Εφαρμογή πρόσθετης νεκρής ζώνης στον αναλογικό μοχλό μετά την επεξεργασία εισόδου από την εφαρμογή.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_analog_sensitivity.Label"><value>Κλίμακα αναλογικού άξονα</value></data>
@@ -55,7 +55,7 @@
   <data name="Emulation.Option.ppsspp.ppsspp_skip_buffer_effects.Help"><value>Παράλειψη εφέ της ενδιάμεσης μνήμης καρέ για καλύτερη απόδοση. Ορισμένα παιχνίδια ενδέχεται να μην εμφανίζουν εικόνα.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_skip_gpu_readbacks.Label"><value>Παράλειψη αναδρομών GPU</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_skip_gpu_readbacks.Help"><value>Παράλειψη αντιγραφής δεδομένων γραφικών από τη GPU στη CPU. Ορισμένα παιχνίδια χρειάζονται αυτά τα αντίγραφα για σωστή εμφάνιση.</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_lazy_texture_caching.Label"><value>Τεμπέλης υφή Caching (Speedup)</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_lazy_texture_caching.Label"><value>Αναβαλλόμενη αποθήκευση υφών στην κρυφή μνήμη (επιτάχυνση)</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_lazy_texture_caching.Help"><value>Πιο γρήγορα, αλλά μπορεί να προκαλέσει προβλήματα κειμένου σε μερικά παιχνίδια.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_spline_quality.Label"><value>Ποιότητα καμπυλών spline/Bezier</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_spline_quality.Help"><value>Μόνο που χρησιμοποιείται από μερικά παιχνίδια, ελέγχει την ομαλότητα των καμπυλών.</value></data>

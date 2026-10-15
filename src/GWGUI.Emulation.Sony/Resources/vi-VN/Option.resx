@@ -267,7 +267,7 @@
   <data name="Emulation.Option.swanstation.swanstation_CPU_FastmemMode.Help"><value>Dùng lỗi trang để xác định các truy cập bộ nhớ phần cứng lúc chạy. Có thể cung cấp một sự cải tiến đáng kể trong một số trò chơi, nhưng làm cho lõi khó gỡ lỗi hơn.</value></data>
   <data name="Emulation.Option.Sony.Value.DisabledSlower"><value>Tắt (Slowler)</value></data>
   <data name="Emulation.Option.Sony.Value.LUTFaster"><value>LUT (Nhanh lên)</value></data>
-  <data name="Emulation.Option.Sony.Value.MMapHardwareFaster64BitOnly"><value>MMap (Hardware, nhanh hơn, chỉ 64-Bit)</value></data>
+  <data name="Emulation.Option.Sony.Value.MMapHardwareFaster64BitOnly"><value>MMap (phần cứng, nhanh hơn, chỉ 64 bit)</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CPU_FastmemRewrite.Label"><value>Bộ nhớ đáp ứng nhanh CPU</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CPU_FastmemRewrite.Help"><value>Viết lại hướng dẫn khi khả năng truy cập nhanh bộ nhớ đã được bật cho bộ sửa CPU. Điều này có thể cải thiện tốc độ. Nó cũng có thể gây ra giả lập sụp đổ trên một số nền tảng.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_TextureReplacements_EnableVRAMWriteReplacements.Label"><value>Bật VRAM để thay thế văn bản</value></data>
@@ -746,14 +746,14 @@
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_crosshair2.Label"><value>Màu chéo với đấu thủ &amp; 2</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_crosshair2.Help"><value>Hiển thị hoặc ẩn con trỏ mục tiêu cho người chơi 2 khi sử dụng GunCon hoặc Konami Gun. Tắt kết xuất RGB32 trong thiết lập video để tùy chọn này hoạt động.</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_konamigunadjustx.Label"><value>Hiệu số Konami Gun trục X</value></data>
-  <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_konamigunadjustx.Help"><value>Áp dụng một trục X bù đắp cho đầu vào súng ánh sáng khi mô phỏng một thiết bị Konami Gun (Hyper Blaster / Justifier). Có thể sử dụng để sửa chữa những sai lầm nhằm mục đích.</value></data>
+  <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_konamigunadjustx.Help"><value>Dịch đầu vào súng quang theo trục X khi mô phỏng Konami Gun (Hyper Blaster / Justifier) để sửa sai lệch khi ngắm.</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_konamigunadjusty.Label"><value>Khoảng cách Konami Gun Y trục</value></data>
-  <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_konamigunadjusty.Help"><value>Áp dụng một trục Y bù đắp cho đầu vào súng ánh sáng khi tạo ra một thiết bị Konami Gun (Hyper Blaster / Justifier). Có thể sử dụng để sửa chữa những sai lầm nhằm mục đích.</value></data>
+  <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_konamigunadjusty.Help"><value>Dịch đầu vào súng quang theo trục Y khi mô phỏng Konami Gun (Hyper Blaster / Justifier) để sửa sai lệch khi ngắm.</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustx.Label"><value>Khoảng cách Guncon X Trục</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustx.Help"><value>Áp dụng một trục X bù đắp để đầu vào ánh sáng súng khi nâng cao thiết bị Guncon. Có thể sử dụng để sửa chữa những sai lầm nhằm mục đích.</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjusty.Label"><value>Khoảng cách trục Guncon Y</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjusty.Help"><value>Áp dụng một trục Y bù đắp cho đầu vào ánh sáng súng khi mô phỏng một thiết bị Guncon. Có thể sử dụng để sửa chữa những sai lầm nhằm mục đích.</value></data>
-  <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustratiox.Label"><value>Đáp ứng Trục Guncon X</value></data>
+  <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustratiox.Label"><value>Đáp ứng trục X của Guncon</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustratiox.Help"><value>Điều chỉnh độ lớn tương đối của chuyển động súng ánh sáng ngang khi kích hoạt một thiết bị bắn súng. Có thể sử dụng để sửa chữa những sai lầm nhằm mục đích.</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustratioy.Label"><value>Ứng dụng Trục Guncon Y</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustratioy.Help"><value>Điều chỉnh độ lớn tương đối của chuyển động ánh sáng thẳng đứng khi nâng một thiết bị bắn súng. Có thể sử dụng để sửa chữa những sai lầm nhằm mục đích.</value></data>
@@ -1008,7 +1008,7 @@
   <data name="Emulation.Option.rpcs3.rpcs3_network_enabled.Label"><value>Mạng đã bật</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_network_enabled.Help"><value>Hãy để trò chơi lên internet. Có tác động khi tải nội dung.</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_psn_status.Label"><value>Trạng thái PSN</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_psn_status.Help"><value>Trò chơi nào nhìn thấy mạng PlayStation. Mô phỏng làm cho họ tin rằng họ đã ký vào, mà một số cần phải có được qua trình đơn của họ; RPCN kết nối RPCS3'Máy phục vụ của chính s và cần thiết Mạng Bật lên và một RPCN Tài khoản: lõi không thể tạo ra một, vì vậy đặt nó trong đứng vững RPCS3 và sao chép rpcn.yml vào system/rpcs3/ (system/rpcs3/config/ trên cửa sổ). Có tác động khi tải nội dung.</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_psn_status.Help"><value>Xác định trạng thái PlayStation Network mà trò chơi nhìn thấy. Chế độ mô phỏng khiến trò chơi cho rằng người dùng đã đăng nhập, điều mà một số trò chơi cần để vượt qua menu. RPCN kết nối với máy chủ riêng của RPCS3 và yêu cầu bật mạng cùng một tài khoản RPCN. Lõi không thể tạo tài khoản: hãy thiết lập tài khoản trong ứng dụng RPCS3 độc lập rồi sao chép rpcn.yml vào system/rpcs3/ (vào system/rpcs3/config/ trên Windows). Thiết lập được áp dụng khi tải nội dung.</value></data>
   <data name="Emulation.Option.Sony.Value.Simulated"><value>Mô phỏng</value></data>
   <data name="Emulation.Option.Sony.Value.RPCN"><value>RPCN</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_upnp.Label"><value>UpnP</value></data>
@@ -1167,7 +1167,7 @@
   <data name="Emulation.Option.Sony.Value.Unsynchronized"><value>Không có tính năng</value></data>
   <data name="Emulation.Option.Sony.Setting.NointerlacingHint.Label"><value>Bật các đắp vá phân cách</value></data>
   <data name="Emulation.Option.Sony.Setting.NointerlacingHint.Help"><value>Nếu bật, sẽ xem trong cơ sở dữ liệu nội bộ nếu có một miếng vá cho trò chơi để chuyển đổi ảnh thành một hay không ràng buộc, khung đầy đủ, hoặc quét dần dần, và/hoặc tổ hợp của tất cả các thứ trên. Ảnh sẽ ổn định hơn và khả năng ngắt kết hợp có thể được tắt.</value></data>
-  <data name="Emulation.Option.Sony.Value.BilinearForcedExcludingSprite"><value>Tuyến hai (đã gạt bỏ spite)</value></data>
+  <data name="Emulation.Option.Sony.Value.BilinearForcedExcludingSprite"><value>Buộc lọc song tuyến tính, ngoại trừ sprite</value></data>
   <data name="Emulation.Option.Sony.Value.Scaled"><value>Phóng to độ phân giải nội bộ</value></data>
   <data name="Emulation.Option.Sony.Value.Unscaled"><value>Độ phân giải bàn điều khiển gốc</value></data>
   <data name="Emulation.Option.Sony.Value.Force32Bit"><value>Lực 32 bit</value></data>
@@ -1179,11 +1179,11 @@
   <data name="Emulation.Option.Sony.Setting.PcrtcAntiblur.Help"><value>Tắt ảnh xuất này cho ảnh xuất chính xác nhất. Việc bật tùy chọn này sẽ cố gỡ bỏ ảnh. Phần lớn có thể nhận thấy trên bộ làm cho và làm cho ảnh ra.</value></data>
   <data name="Emulation.Option.Sony.Setting.PcrtcScreenOffsets.Label"><value>Hiệu số vị trí màn hình (PCRTC)</value></data>
   <data name="Emulation.Option.Sony.Setting.DisableInterlaceOffset.Label"><value>Tắt thao tác dọc được dùng cho phim có dây</value></data>
-  <data name="Emulation.Option.Sony.Setting.AutoFlushSoftware.Label"><value>Bức xạ bộ nhớ tạm tự động (bản vẽ phần mềm)</value></data>
+  <data name="Emulation.Option.Sony.Setting.AutoFlushSoftware.Label"><value>Tự động xóa bộ nhớ đệm (kết xuất bằng phần mềm)</value></data>
   <data name="Emulation.Option.Sony.Setting.SwRendererThreads.Label"><value>CPU chỉ dùng cho việc vẽ phần mềm</value></data>
   <data name="Emulation.Option.Sony.Setting.SwRendererThreads.Help"><value>Số lượng công nhân phụ chỉ phần mềm làm ra ra rasterizes với, trên đầu của các GS 0 rasterize trên các GS Chỉ sợi (đơn giản là độ mờ chậm nhất, tốt nhất trên hệ thống CPU lõi 2-4). Nhiều sợi khác giúp đỡ cảnh với nhiều hiệu ứng alpha trên CPU có lõi phụ dự phòng. Chỉ được dùng bởi bộ làm ra phần mềm.</value></data>
   <data name="Emulation.Option.Sony.Setting.VuAccurateAddsub.Label"><value>Thêm và trừ chính xácVU)</value></data>
-  <data name="Emulation.Option.Sony.Setting.VuAccurateAddsub.Help"><value>Mô hình VU Các trò chơi Tri-Ace đòi hỏi ứng xử này (Star Ocean 3, Radiata Story, profile 2) tự động cho mỗi tiêu đề thông qua cơ sở dữ liệu trò chơi khi nó bị tắt; hiệu lực toàn cầu chỉ khi nào chạy chính xác trong các tiêu đề khác. VU- Trò chơi nguy hiểm.</value></data>
+  <data name="Emulation.Option.Sony.Setting.VuAccurateAddsub.Help"><value>Mô phỏng việc cắt bớt theo chênh lệch số mũ trong các phép cộng và trừ của VU. Cơ sở dữ liệu trò chơi tự bật cơ chế này cho các trò chơi Tri-Ace cần đến nó, gồm Star Ocean 3, Radiata Stories và Valkyrie Profile 2, ngay cả khi tùy chọn chung đang tắt. Chỉ bật cho trò chơi khác nếu cần độ chính xác cao hơn; trò chơi sử dụng VU nhiều có thể bị chậm.</value></data>
   <data name="Emulation.Option.Sony.Setting.EeAccurateFpu.Label"><value>Số điểm nổi chính xác (EE FPU)</value></data>
   <data name="Emulation.Option.Sony.Setting.EeAccurateFpu.Help"><value>Chạy EE FPU Thêm, sub, mul và các dây chuyền cầu chì thông qua các đường ống đôi kéo dài dài: chính xác thêm/sub chống lại các mô hình phần cứng, gần như chính xác nhân đôi, xử lý các giá trị lớn các PS2 Cho phép, chuyển đổi số nguyên chính xác, và bitop tinh khiết ABS/NEG. Đo miễn phí ở cấp tải công việc (có chạy nhiễu trên khung thông qua); được bật theo mặc định.</value></data>
   <data name="Emulation.Option.Sony.Setting.VuExactMul.Label"><value>Phép nhân chính xác (VU)</value></data>
@@ -1223,14 +1223,14 @@
   <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Label"><value>Dùng cơ sở dữ liệu trò chơi ngoài trời</value></data>
   <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Help"><value>Cần thiết bộ làm phần cứng và vẽ bằng tay sửa chữa. Nạp cơ sở dữ liệu tương thích với trò chơi đã chọn.</value></data>
   <data name="Emulation.Option.Sony.Setting.FramebufferConversion.Label"><value>Chuyển đổi bộ đệm khung vẽ</value></data>
-  <data name="Emulation.Option.Sony.Setting.DisablePartialInvalidation.Label"><value>Tắt nguồn phần không hợp lệ</value></data>
+  <data name="Emulation.Option.Sony.Setting.DisablePartialInvalidation.Label"><value>Tắt vô hiệu hóa một phần nguồn</value></data>
   <data name="Emulation.Option.Sony.Setting.GpuPaletteConversion.Label"><value>Tải bảng chọn GPU</value></data>
   <data name="Emulation.Option.Sony.Setting.PreloadFrameData.Label"><value>Nạp dữ liệu khung trước</value></data>
   <data name="Emulation.Option.Sony.Setting.HalfPixelOffset.Label"><value>Hiệu số vị trí nửa sắc</value></data>
   <data name="Emulation.Option.Sony.Value.NormalVertex"><value>Độ lệch đỉnh chuẩn</value></data>
   <data name="Emulation.Option.Sony.Value.SpecialTexture"><value>Hiệu số họa tiết đặc biệt</value></data>
   <data name="Emulation.Option.Sony.Value.SpecialTextureAggressive"><value>Hiệu số họa tiết tích cực</value></data>
-  <data name="Emulation.Option.Sony.Value.AlignToNative"><value>Canh lề tới độ phân giải gốc</value></data>
+  <data name="Emulation.Option.Sony.Value.AlignToNative"><value>Căn theo độ phân giải gốc</value></data>
   <data name="Emulation.Option.Sony.Setting.RoundSprite.Label"><value>Vòng 2 chiều SPRITE Tọa độ</value></data>
   <data name="Emulation.Option.Sony.Value.Half"><value>Nửa</value></data>
   <data name="Emulation.Option.Sony.Setting.AlignSprite.Label"><value>Sắp hàng 2D SPRITE Tọa độ</value></data>
@@ -1245,22 +1245,22 @@
   <data name="Emulation.Option.Sony.Setting.AnalogMode.Help"><value>Chạy bộ điều khiển trong chế độ tương tự thay vì số. Một số trò chơi (v. d. Ridge Raner V) khởi động bộ đệm bằng kỹ thuật số và thường yêu cầu nhấn bộ điều khiển ANALOG Nút để bật các thanh; bật tùy chọn này để có được điều khiển tương tự ngay từ đầu. Trò chơi nào khoá chế độ điều khiển thì không bị động.</value></data>
   <data name="Emulation.Option.Sony.Files.CheatsDirectory"><value>Thư mục chứa mã gian lận trong trò chơi</value></data>
   <data name="Emulation.Option.Sony.Setting.ForceAnalog.Label" xml:space="preserve"><value>Điều khiển 1 Ép buộc chế độ giải mã</value></data>
-  <data name="Emulation.Option.Sony.Setting.ForceAnalog.Help" xml:space="preserve"><value>Lực lượng tương tự lúc nào cũng hoạt động. Có thể gây ra vài vấn đề với trò chơi. Chỉ dùng tùy chọn này cho trò chơi hỗ trợ chế độ tương tự nhưng không tự động hiệu lực nó. Khi bị tắt, chế độ tương tự có thể được bật lên bằng cách nhấn và giữ chế độ cấu hình chế độ DualShock.</value></data>
-  <data name="Emulation.Option.Sony.Setting.AnalogToggle.Label" xml:space="preserve"><value>Chế độ giải mã DualShock</value></data>
+  <data name="Emulation.Option.Sony.Setting.ForceAnalog.Help" xml:space="preserve"><value>Luôn bật chế độ analog. Có thể gây lỗi trong một số trò chơi. Chỉ dùng cho trò chơi có hỗ trợ chế độ analog nhưng không tự bật chế độ này. Khi tắt tùy chọn, có thể chuyển chế độ bằng cách giữ tổ hợp nút cho chế độ analog DualShock.</value></data>
+  <data name="Emulation.Option.Sony.Setting.AnalogToggle.Label" xml:space="preserve"><value>Chuyển đổi chế độ analog DualShock</value></data>
   <data name="Emulation.Option.Sony.Setting.AnalogToggle.Help" xml:space="preserve"><value>Khi kiểu thiết bị nhập là DualShock, Tùy chọn này cho phép mô phỏng DualShock để được bật lên giữa DIGITAL và ANALOG Chế độ như phần cứng ban đầu. Chế độ cũng có thể được bật lên bằng cách dùng tổ hợp nút đã chọn.</value></data>
-  <data name="Emulation.Option.Sony.Setting.AnalogToggleCombo.Label" xml:space="preserve"><value>Chế độ giải mã DualShock</value></data>
+  <data name="Emulation.Option.Sony.Setting.AnalogToggleCombo.Label" xml:space="preserve"><value>Tổ hợp nút cho chế độ analog DualShock</value></data>
   <data name="Emulation.Option.Sony.Setting.AnalogToggleCombo.Help" xml:space="preserve"><value>Tổ hợp nút sẽ được dùng để bật lên giữa chế độ DIGITAL và ANALOG cho chế độ mô phỏng DualShock.</value></data>
-  <data name="Emulation.Option.Sony.Setting.AnalogToggleHold.Label" xml:space="preserve"><value>Chế độ giải mã DualShock giữ lại</value></data>
+  <data name="Emulation.Option.Sony.Setting.AnalogToggleHold.Label" xml:space="preserve"><value>Thời gian giữ tổ hợp nút analog DualShock</value></data>
   <data name="Emulation.Option.Sony.Setting.AnalogToggleHold.Help" xml:space="preserve"><value>Giữ thời gian cho các nút kết hợp chế độ tương tự.</value></data>
   <data name="Emulation.Option.Sony.Setting.NegconDeadzone.Label" xml:space="preserve"><value>Vùng chết nghiêng neGcon</value></data>
-  <data name="Emulation.Option.Sony.Setting.NegconDeadzone.Help" xml:space="preserve"><value>Ở vùng chết tương tự bên trái khi mô phỏng hành động 'twist' của thiết bị nhập "neGcon". Dùng để loại bỏ sự trôi dạt điều khiển. Ghi chú: số neGcon sẽ cung cấp các tùy chọn trong trò chơi để thiết lập giá trị vùng chết của người đánh cá. Để tránh mất đi độ chính xác, vùng chết trong trò chơi nên * luôn là *. Bất cứ điều chỉnh nào cần thiết * Only* được áp dụng thông qua lựa chọn cốt lõi này. Điều này là đặc biệt quan trọng khi 'neGcon twist answer' được thiết lập để "Qudratic" hay "Cubic".</value></data>
+  <data name="Emulation.Option.Sony.Setting.NegconDeadzone.Help" xml:space="preserve"><value>Vùng chết của cần analog trái khi mô phỏng thao tác vặn của tay cầm neGcon. Loại bỏ chuyển động ngoài ý muốn do cần bị trôi. Nhiều trò chơi tương thích có thiết lập vùng chết riêng: luôn đặt thiết lập trong trò chơi về 0 và chỉ điều chỉnh bằng tùy chọn lõi này để giữ độ chính xác, nhất là khi dùng đáp ứng bậc hai hoặc bậc ba.</value></data>
   <data name="Emulation.Option.Sony.Setting.SecondMemoryCard.Label" xml:space="preserve"><value>Thẻ nhớ nhạt 2</value></data>
   <data name="Emulation.Option.Sony.Setting.SecondMemoryCard.Help" xml:space="preserve"><value>Nạp một thẻ nhớ thứ hai vào đúng khe cắm bộ nhớ. Ghi chú: một số trò chơi yêu cầu tùy chọn này bị tắt để thao tác đúng (v. d. Codename Tenka). Ghi chú: Memory Card Slot 2 sử dụng định dạng lưu trữ Mednafen (.mcr).</value></data>
   <data name="Emulation.Option.Sony.Setting.SharedMemoryCardMethod.Label" xml:space="preserve"><value>Thẻ nhớ chia sẻ</value></data>
   <data name="Emulation.Option.Sony.Setting.SharedMemoryCardMethod.Help" xml:space="preserve"><value>Dùng thẻ nhớ dùng chung thay cho bài riêng cho mỗi nội dung. Ghi chú: nếu phương pháp 'Memory Card được đặt thành 'Libretro', chỉ các khe cắm bộ nhớ 2 sẽ bị ảnh hưởng.</value></data>
   <data name="Emulation.Option.Sony.Setting.LineToQuad.Label" xml:space="preserve"><value>Name</value></data>
-  <data name="Emulation.Option.Sony.Setting.LineToQuad.Help" xml:space="preserve"><value>Một số trò chơi (e.g. Doom, Hexen, Soul Blade, etc.) vẽ các đường ngang bằng cách kéo dài những tam giác cao một chiều trên màn hình, được giải phóng như một hàng điểm ảnh trên phần cứng gốc. Việc hack này phát hiện những hình tam giác nhỏ và chuyển đổi chúng thành bốn cạnh khi cần thiết, cho phép hiển thị chúng đúng trên các trình dịch phần cứng và ở mức cao hơn độ phân giải nội bộ. Cần thiết cho một số tiêu đề (v. d. Lực lượng tối, Công tước Nukem) nhưng nếu không thì có thể giới thiệu các lỗi đồ họa. Để lại tại 'Default' nếu không chắc chắn.</value></data>
-  <data name="Emulation.Option.Sony.Setting.DynarecEventCycles.Label" xml:space="preserve"><value>Dynarec DMA/GPU/MDEC/Nghi thức canh giờ</value></data>
+  <data name="Emulation.Option.Sony.Setting.LineToQuad.Help" xml:space="preserve"><value>Một số trò chơi như Doom, Hexen và Soul Blade vẽ đường ngang bằng các tam giác cao một điểm ảnh. Tùy chọn sửa lỗi này chuyển chúng thành tứ giác để hiển thị đúng khi kết xuất bằng phần cứng và tăng độ phân giải nội bộ. Dark Forces và Duke Nukem cần thiết lập mạnh, nhưng thiết lập này có thể gây lỗi đồ họa trong trò chơi khác. Nếu không chắc chắn, hãy giữ thiết lập mặc định.</value></data>
+  <data name="Emulation.Option.Sony.Setting.DynarecEventCycles.Label" xml:space="preserve"><value>Chu kỳ sự kiện DMA/GPU/MDEC/bộ định thời (biên dịch lại động)</value></data>
   <data name="Emulation.Option.Sony.Setting.DynarecEventCycles.Help" xml:space="preserve"><value>Chu kỳ tối đa chạy bởi CPU trước khi a GPU/DMA/MDEC/Bật tùy chọn này thì đồng hồ hẹn giờ được bật, số cao hơn sẽ nhanh hơn, có ít tác động hơn nhiều đến trình thông dịch bọ cánh cứng hơn gấp trăm lần.</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_aspect_ratio.Help"><value>Đặt định dạng màn hình được thông báo cho trò chơi. Chỉ một số trò chơi hỗ trợ 4:3.</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_disk_cache_size.Label"><value>Dung lượng bộ nhớ đệm trên đĩa</value></data>

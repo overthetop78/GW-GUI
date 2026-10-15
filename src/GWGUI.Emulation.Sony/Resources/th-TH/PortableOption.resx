@@ -46,7 +46,7 @@
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Value.0"><value>ไม่มีการบัฟเฟอร์กราฟิกเพิ่มเติม</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Value.1"><value>บัฟเฟอร์วิดีโอสูงสุดหนึ่งเฟรม</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_button_preference.Label"><value>ปุ่มยืนยัน</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_analog_is_circular.Label"><value>การคอมไพล์แบบเอนาล็อกวงกลม vs Square ประตูสี่เหลี่ยม</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_analog_is_circular.Label"><value>ชดเชยช่วงการเคลื่อนที่แบบวงกลมและสี่เหลี่ยมของก้านอนาล็อก</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_analog_deadzone.Label"><value>อนาล็อกโซนตาย</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_analog_deadzone.Help"><value>ใช้การตั้งค่าเดดโซนเพิ่มเติมกับก้านอนาล็อกหลังจากแอปพลิเคชันประมวลผลอินพุตแล้ว</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_analog_sensitivity.Label"><value>ขนาด Analog Axis</value></data>
@@ -55,7 +55,7 @@
   <data name="Emulation.Option.ppsspp.ppsspp_skip_buffer_effects.Help"><value>ข้ามเอฟเฟกต์เฟรมบัฟเฟอร์เพื่อเพิ่มประสิทธิภาพ บางเกมอาจไม่แสดงภาพ</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_skip_gpu_readbacks.Label"><value>ข้ามการอ่านข้อมูล GPU</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_skip_gpu_readbacks.Help"><value>ข้ามการคัดลอกข้อมูลกราฟิกจาก GPU ไปยัง CPU บางเกมต้องใช้การคัดลอกนี้เพื่อแสดงผลอย่างถูกต้อง</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_lazy_texture_caching.Label"><value>Texture Lazy Caching (Spepedup)</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_lazy_texture_caching.Label"><value>แคชพื้นผิวแบบหน่วงเวลา (เพิ่มความเร็ว)</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_lazy_texture_caching.Help"><value>เร็วขึ้น แต่อาจทําให้เกิดปัญหาในการส่งข้อความในไม่กี่เกม</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_spline_quality.Label"><value>คุณภาพเส้นโค้งแบบสเปกไลน์/ bezier</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_spline_quality.Help"><value>ใช้เฉพาะเกมบางเกมส์เท่านั้น ที่ควบคุมความคมชัดของเส้นโค้ง</value></data>

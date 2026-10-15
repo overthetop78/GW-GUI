@@ -46,7 +46,7 @@
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Value.0"><value>Nessun buffer grafico aggiuntivo</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Value.1"><value>Memorizza nel buffer al massimo un fotogramma video</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_button_preference.Label"><value>Pulsante di conferma</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_analog_is_circular.Label"><value>cerchio analogico vs compensazione del cancello quadrato</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_analog_is_circular.Label"><value>Compensazione dell’escursione circolare e quadrata della levetta analogica</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_analog_deadzone.Label"><value>Analog Deadzone</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_analog_deadzone.Help"><value>Applica una zona morta aggiuntiva alla levetta analogica dopo l’elaborazione degli input da parte dell’applicazione.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_analog_sensitivity.Label"><value>Scala dell'asse analogico</value></data>
@@ -55,7 +55,7 @@
   <data name="Emulation.Option.ppsspp.ppsspp_skip_buffer_effects.Help"><value>Salta gli effetti del framebuffer per migliorare le prestazioni. Alcuni giochi potrebbero non mostrare alcuna immagine.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_skip_gpu_readbacks.Label"><value>Salta. GPU Leggi tutto</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_skip_gpu_readbacks.Help"><value>Salta la copia dei dati grafici dalla GPU alla CPU. Alcuni giochi richiedono queste copie per essere visualizzati correttamente.</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_lazy_texture_caching.Label"><value>Lazy Texture Caching (Speedup)</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_lazy_texture_caching.Label"><value>Cache differita delle texture (accelerazione)</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_lazy_texture_caching.Help"><value>Più veloce, ma può causare problemi di testo in alcuni giochi.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_spline_quality.Label"><value>qualità delle curve di spline/bezier</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_spline_quality.Help"><value>Utilizzato solo da alcuni giochi, controlla la scorrevolezza delle curve.</value></data>

@@ -255,7 +255,7 @@
   <data name="Emulation.Option.swanstation.swanstation_CPU_FastmemMode.Help"><value>Bruger side fejl til at bestemme hardware hukommelse adgang ved runtime. Kan give en betydelig forbedring af ydeevnen i nogle spil, men gøre kernen vanskeligere at debug.</value></data>
   <data name="Emulation.Option.Sony.Value.DisabledSlower"><value>Deaktiveret (Langsommere)</value></data>
   <data name="Emulation.Option.Sony.Value.LUTFaster"><value>LUT (Hurtigere)</value></data>
-  <data name="Emulation.Option.Sony.Value.MMapHardwareFaster64BitOnly"><value>MMap (Hardware, Hurtigere, 64-bit Kun)</value></data>
+  <data name="Emulation.Option.Sony.Value.MMapHardwareFaster64BitOnly"><value>MMap (hardware, hurtigere, kun 64-bit)</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CPU_FastmemRewrite.Label"><value>CPU Recompiler Hurtig Hukommelsesadgang omskrivning</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CPU_FastmemRewrite.Help"><value>Omskriv instruktioner når hurtig hukommelse adgang er aktiveret for CPU recompiler. Det kan forbedre hastigheden. Det kan også få emulatoren til at gå ned på nogle platforme.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_TextureReplacements_EnableVRAMWriteReplacements.Label"><value>Aktivér VRAM Skriv teksturerstatning</value></data>
@@ -733,14 +733,14 @@
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_crosshair2.Label"><value>Spiller 2 Lightgun Crosshair</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_crosshair2.Help"><value>Vis eller skjul sigtemarkøren for spiller 2, når du bruger GunCon eller Konami Gun. Deaktivér RGB32 output i videoindstillingerne for denne indstilling til at virke.</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_konamigunadjustx.Label"><value>Konami Gun X Axis Offset</value></data>
-  <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_konamigunadjustx.Help"><value>Anvend en X-akse forskydning til lyspistol input, når du efterligner en Konami Gun (Hyper Blaster / Justifier) enhed. Kan bruges til at rette op på fejljusteringer.</value></data>
+  <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_konamigunadjustx.Help"><value>Forskyder lyspistolens input langs X-aksen ved emulering af Konami Gun (Hyper Blaster / Justifier) for at rette sigtefejl.</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_konamigunadjusty.Label"><value>Konami Gun Y Axis Offset</value></data>
-  <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_konamigunadjusty.Help"><value>Påfør en Y-akse forskydning til lyspistol input, når du efterligner en Konami Gun (Hyper Blaster / Justifier) enhed. Kan bruges til at rette op på fejljusteringer.</value></data>
+  <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_konamigunadjusty.Help"><value>Forskyder lyspistolens input langs Y-aksen ved emulering af Konami Gun (Hyper Blaster / Justifier) for at rette sigtefejl.</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustx.Label"><value>Guncon X Axis Offset</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustx.Help"><value>Påfør en X-akse forskydning til lyspistol input, når du efterligner en Guncon enhed. Kan bruges til at rette op på fejljusteringer.</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjusty.Label"><value>Guncon Y Axis Offset</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjusty.Help"><value>Påfør en Y-akse forskudt på lyspistol input, når du efterligner en Guncon enhed. Kan bruges til at rette op på fejljusteringer.</value></data>
-  <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustratiox.Label"><value>Guncon X Axis Response</value></data>
+  <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustratiox.Label"><value>Respons for Guncons X-akse</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustratiox.Help"><value>Justere den relative størrelse af vandret lys pistol bevægelse, når efterligne en Guncon enhed. Kan bruges til at rette op på fejljusteringer.</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustratioy.Label"><value>guncon y-aksens respons</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustratioy.Help"><value>Juster den relative størrelse af lodret lys pistol bevægelse, når du efterligner en Guncon enhed. Kan bruges til at rette op på fejljusteringer.</value></data>
@@ -995,7 +995,7 @@
   <data name="Emulation.Option.rpcs3.rpcs3_network_enabled.Label"><value>Netværk aktiveret</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_network_enabled.Help"><value>Lader spil nå internettet. Tager effekt, når indholdet er indlæst.</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_psn_status.Label"><value>PSN-status</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_psn_status.Help"><value>Hvilke spil se af PlayStation Network. Simuleret får dem til at tro, at de er signerede i, som nogle har brug for at komme forbi deres menuer; RPCN forbinder til RPCS3 s egen server og behov Network Aktiveret og en RPCN konto: kernen kan ikke oprette en, så sæt den op i standalone RPCS3 og kopiere sin rpcn.yml ind system/rpcs3/ (system/rpcs3/config/ på Windows). Tager effekt, når indholdet er indlæst.</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_psn_status.Help"><value>Bestemmer den PlayStation Network-status, spillene ser. Simuleret tilstand får dem til at tro, at de er logget ind, hvilket nogle spil kræver for at komme videre fra menuerne. RPCN forbinder til RPCS3s egen server og kræver aktiveret netværk og en RPCN-konto. Kernen kan ikke oprette kontoen: opsæt den i det selvstændige RPCS3-program, og kopiér rpcn.yml til system/rpcs3/ (system/rpcs3/config/ på Windows). Indstillingen anvendes, når indholdet indlæses.</value></data>
   <data name="Emulation.Option.Sony.Value.Simulated"><value>Simuleret</value></data>
   <data name="Emulation.Option.Sony.Value.RPCN"><value>RPCN</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_upnp.Label"><value>UPnP</value></data>
@@ -1167,7 +1167,7 @@
   <data name="Emulation.Option.Sony.Value.Unsynchronized"><value>Ikke synkroniseret</value></data>
   <data name="Emulation.Option.Sony.Setting.NointerlacingHint.Label"><value>Aktivér deinterlacering- patches</value></data>
   <data name="Emulation.Option.Sony.Setting.NointerlacingHint.Help"><value>Hvis aktiveret, vil kigge i den interne database, hvis et plaster er til rådighed for spillet til at gøre billedet til enten en ikke-sammenflettet, fuld ramme, eller progressiv scanning videosignal, og / eller en kombination af alle ovenstående. Billede vil være mere stabil og Deinterlacing kan slukkes.</value></data>
-  <data name="Emulation.Option.Sony.Value.BilinearForcedExcludingSprite"><value>Bilinear (Tvangsbrændt, undtagen sprit)</value></data>
+  <data name="Emulation.Option.Sony.Value.BilinearForcedExcludingSprite"><value>Tvungen bilineær filtrering, undtagen sprites</value></data>
   <data name="Emulation.Option.Sony.Value.Scaled"><value>Skaleret til den interne opløsning</value></data>
   <data name="Emulation.Option.Sony.Value.Unscaled"><value>Original konsolopløsning</value></data>
   <data name="Emulation.Option.Sony.Value.Force32Bit"><value>Tving 32bit</value></data>
@@ -1179,11 +1179,11 @@
   <data name="Emulation.Option.Sony.Setting.PcrtcAntiblur.Help"><value>Deaktivér dette for den mest nøjagtige output billede. Aktivering af dette vil forsøge at deblur billedet. Mest mærkbar på software renderer og paraLLel.</value></data>
   <data name="Emulation.Option.Sony.Setting.PcrtcScreenOffsets.Label"><value>Skærmpositionsforskudt (PCRTC)</value></data>
   <data name="Emulation.Option.Sony.Setting.DisableInterlaceOffset.Label"><value>Deaktivér den lodrette forskydning, der bruges til interlaced video</value></data>
-  <data name="Emulation.Option.Sony.Setting.AutoFlushSoftware.Label"><value>Automatisk cache flush (software rendering)</value></data>
+  <data name="Emulation.Option.Sony.Setting.AutoFlushSoftware.Label"><value>Automatisk tømning af cache (softwaregengivelse)</value></data>
   <data name="Emulation.Option.Sony.Setting.SwRendererThreads.Label"><value>CPU tråde, der anvendes til software rendering</value></data>
   <data name="Emulation.Option.Sony.Setting.SwRendererThreads.Help"><value>Antal ekstra arbejder tråde software renderer rasterizes med, på toppen af GS tråd selv. 0 rasterizes på GS tråd alene (laveste latency, bedst på 234 kerne CPU 'er). Flere tråde hjælper scener med mange alfa effekter på CPU' er med ekstra kerner.</value></data>
   <data name="Emulation.Option.Sony.Setting.VuAccurateAddsub.Label"><value>Nøjagtig tilføjelse og fraktion (VU)</value></data>
-  <data name="Emulation.Option.Sony.Setting.VuAccurateAddsub.Help"><value>Model VU Adgangskonkurrencen mellem de forskellige add og subtraktion. Tri- Ace-spil, der kræver denne adfærd (Star Ocean 3, Radiata Stories, Valkyrie Profil 2) får den automatisk pr. titel via spildatabasen, selv når den er deaktiveret; gør det globalt kun muligt, når man jagter nøjagtighed i andre titler. Omkostninger på VU- tunge spil.</value></data>
+  <data name="Emulation.Option.Sony.Setting.VuAccurateAddsub.Help"><value>Efterligner afkortning på grund af forskellen mellem eksponenter ved addition og subtraktion i VU. Spildatabasen aktiverer det automatisk for de relevante Tri-Ace-spil, herunder Star Ocean 3, Radiata Stories og Valkyrie Profile 2, selv når denne generelle indstilling er slået fra. Aktivér kun indstillingen til andre spil, hvis nøjagtigheden kræver det; den kan sænke hastigheden i spil, der bruger VU meget.</value></data>
   <data name="Emulation.Option.Sony.Setting.EeAccurateFpu.Label"><value>Nøjagtig flydepunktaritmetisk (EE FPU)</value></data>
   <data name="Emulation.Option.Sony.Setting.EeAccurateFpu.Help"><value>Kør EE FPU tilføje, sub, mul og de sammensmeltet kæder gennem den udvidede-range dobbelt rørledning: præcis add / sub mod hardware model, nær- nøjagtige multiplies, korrekt håndtering af de enorme værdier PS2 tillader, nøjagtig heltal konvertering, og pure- bitop ABS/NEG. Målt frit på arbejdsstyrkeniveau (inden for kørelys støj på rammens gennemløb); aktiveret som standard.</value></data>
   <data name="Emulation.Option.Sony.Setting.VuExactMul.Label"><value>Eksakt multiplikation (VU)</value></data>
@@ -1205,7 +1205,7 @@
   <data name="Emulation.Option.Sony.Setting.GameEnhancementsHint.Label"><value>Aktivér spilspecifikke forbedringer</value></data>
   <data name="Emulation.Option.Sony.Setting.GameEnhancementsHint.Help"><value>Anvender game- specifikke forbedringer hvis patches til spillet kan findes inde i den interne database. Eksempler på forbedringer: LOD [Niveau af detaljer] forbedringer, bedre træk afstand, evne til at springe FMV 'er, osv.</value></data>
   <data name="Emulation.Option.Sony.Setting.UncappedFramerateHint.Label"><value>Fjern spillerammer hastighedsgrænser</value></data>
-  <data name="Emulation.Option.Sony.Setting.UncappedFramerateHint.Help"><value>Afhæver framerate hvis et plaster til spillet kan findes inde i den interne database. Dette kan vende et 30fps spil til 60fps låst, eller stabilisere framerate. Du kan være nødt til at øge EE Cykelhastighed i kombination med dette for en stabil låst framerate. 60fps PAL- til...NTSC gør, hvad der står, hvis det kan finde et plaster, ellers vil det bare forsøge at bruge standard ubegrænset framerate patch (50fps for PAL, 60fps for NTSC)</value></data>
+  <data name="Emulation.Option.Sony.Setting.UncappedFramerateHint.Help"><value>Fjerner grænsen for billedfrekvensen, hvis den interne database indeholder en rettelse til spillet. Det kan ændre et spil fra 30 til faste 60 billeder/s eller stabilisere billedfrekvensen. Det kan være nødvendigt samtidig at øge EE-cyklushastigheden for at holde billedfrekvensen stabil. Indstillingen til 60 billeder/s fra PAL til NTSC bruger en passende rettelse, hvis den findes; ellers forsøger den at bruge den almindelige rettelse til ubegrænset billedfrekvens (50 billeder/s for PAL, 60 for NTSC).</value></data>
   <data name="Emulation.Option.Sony.Setting.EnableHwHacks.Label"><value>Manuel hardware- rendering af rettelser (anbefales ikke)</value></data>
   <data name="Emulation.Option.Sony.Setting.EnableHwHacks.Help"><value>Dette vil deaktivere automatisk indstillinger fra databasen. Medmindre du ved, hvad du gør det er NOT RECOMMENDED til at vende dette ON.</value></data>
   <data name="Emulation.Option.Sony.Setting.CpuSpriteSize.Label"><value>Maksimal bredde på 2D SPRITES afgivet ved CPU</value></data>
@@ -1223,14 +1223,14 @@
   <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Label"><value>Brug ekstern GameIndex database</value></data>
   <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Help"><value>Kræver en hardware- renderer og manuel rendering rettelser. Indlæs den valgte spilkompatibilitet database.</value></data>
   <data name="Emulation.Option.Sony.Setting.FramebufferConversion.Label"><value>Konvertér rendering framebuffer</value></data>
-  <data name="Emulation.Option.Sony.Setting.DisablePartialInvalidation.Label"><value>Deaktivér delvis kildevalidering</value></data>
+  <data name="Emulation.Option.Sony.Setting.DisablePartialInvalidation.Label"><value>Deaktivér delvis ugyldiggørelse af kilder</value></data>
   <data name="Emulation.Option.Sony.Setting.GpuPaletteConversion.Label"><value>Palettekonvertering den GPU</value></data>
   <data name="Emulation.Option.Sony.Setting.PreloadFrameData.Label"><value>Indlæs rammedata på forhånd</value></data>
   <data name="Emulation.Option.Sony.Setting.HalfPixelOffset.Label"><value>Half- pixel- position forskudt</value></data>
   <data name="Emulation.Option.Sony.Value.NormalVertex"><value>Normal vinkelforskydning</value></data>
   <data name="Emulation.Option.Sony.Value.SpecialTexture"><value>Speciel tekstur offset</value></data>
   <data name="Emulation.Option.Sony.Value.SpecialTextureAggressive"><value>Aggressiv tekstur offset</value></data>
-  <data name="Emulation.Option.Sony.Value.AlignToNative"><value>Juster til den oprindelige opløsning</value></data>
+  <data name="Emulation.Option.Sony.Value.AlignToNative"><value>Tilpas til den oprindelige opløsning</value></data>
   <data name="Emulation.Option.Sony.Setting.RoundSprite.Label"><value>Runde 2D SPRITE koordinater</value></data>
   <data name="Emulation.Option.Sony.Value.Half"><value>Halvdelen</value></data>
   <data name="Emulation.Option.Sony.Setting.AlignSprite.Label"><value>Juster 2D SPRITE koordinater</value></data>
@@ -1245,22 +1245,22 @@
   <data name="Emulation.Option.Sony.Setting.AnalogMode.Help"><value>Start controlleren i analog tilstand snarere end digital. Nogle spil (fx Ridge Racer V) boot blokken i digital og normalt kræver at trykke på controlleren 's ANALOG knap til at aktivere sticks; aktivér dette for at få analoge kontroller fra starten. Spil der låser controllertilstanden er upåvirket.</value></data>
   <data name="Emulation.Option.Sony.Files.CheatsDirectory"><value>Mappe der indeholder spilsnyd-koder</value></data>
   <data name="Emulation.Option.Sony.Setting.ForceAnalog.Label" xml:space="preserve"><value>controller 1 kraft analog tilstand</value></data>
-  <data name="Emulation.Option.Sony.Setting.ForceAnalog.Help" xml:space="preserve"><value>Kræfter analog tilstand til altid at være på. Kan forårsage problemer med nogle spil. Brug kun denne indstilling til spil der understøtter analog tilstand, men ikke automatisk aktiverer den selv. Når den er deaktiveret, kan analog tilstand rogges ved at trykke på og holde DualShock Analog Mode Combo.</value></data>
-  <data name="Emulation.Option.Sony.Setting.AnalogToggle.Label" xml:space="preserve"><value>DualShock analog tilstand slås til / fra</value></data>
+  <data name="Emulation.Option.Sony.Setting.ForceAnalog.Help" xml:space="preserve"><value>Tvinger analog tilstand til altid at være aktiveret. Kan give problemer i nogle spil. Brug kun indstillingen til spil, som understøtter analog tilstand, men ikke selv aktiverer den. Når indstillingen er slået fra, kan tilstanden skiftes ved at holde knapkombinationen til analog tilstand på DualShock nede.</value></data>
+  <data name="Emulation.Option.Sony.Setting.AnalogToggle.Label" xml:space="preserve"><value>Skift analog tilstand på DualShock</value></data>
   <data name="Emulation.Option.Sony.Setting.AnalogToggle.Help" xml:space="preserve"><value>Når indtastningstypen er DualShock, gør dette det muligt at montere DualShock mellem DIGITAL og ANALOG tilstand som originalt hardware. Tilstand kan også slås til ved hjælp af den valgte knastekombination.</value></data>
-  <data name="Emulation.Option.Sony.Setting.AnalogToggleCombo.Label" xml:space="preserve"><value>DualShock Analog mode Combo</value></data>
+  <data name="Emulation.Option.Sony.Setting.AnalogToggleCombo.Label" xml:space="preserve"><value>Knapkombination til analog tilstand på DualShock</value></data>
   <data name="Emulation.Option.Sony.Setting.AnalogToggleCombo.Help" xml:space="preserve"><value>Knappen kombination, der vil blive brugt til at skifte mellem DIGITAL og ANALOG tilstand for den emulerede DualShock.</value></data>
-  <data name="Emulation.Option.Sony.Setting.AnalogToggleHold.Label" xml:space="preserve"><value>DualShock Analog tilstand Combo Hold delay</value></data>
+  <data name="Emulation.Option.Sony.Setting.AnalogToggleHold.Label" xml:space="preserve"><value>Holdetid for DualShocks analoge knapkombination</value></data>
   <data name="Emulation.Option.Sony.Setting.AnalogToggleHold.Help" xml:space="preserve"><value>Hold tid til de analoge combo-knapper.</value></data>
   <data name="Emulation.Option.Sony.Setting.NegconDeadzone.Label" xml:space="preserve"><value>neGcon Twist Deadzone</value></data>
-  <data name="Emulation.Option.Sony.Setting.NegconDeadzone.Help" xml:space="preserve"><value>Venstre analoge stick-deadzone ved simulering af 'twist' -virkningen af emulerede 'neGcon' indlæsningsanordninger. Bruges til at fjerne styreafdrift. Bemærk: De fleste neGcon- kompatible titler giver in-game muligheder for at indstille en 'twist' deadzone værdi. For at undgå tab af præcision, skal in-game deadzone * altid * sættes til nul. Eventuelle nødvendige justeringer bør * kun * anvendes via denne kerneindstilling. Dette er især vigtigt, når 'neGcon Twist Response' sættes til 'Quadratic' eller 'Cubic'.</value></data>
+  <data name="Emulation.Option.Sony.Setting.NegconDeadzone.Help" xml:space="preserve"><value>Dødzone for venstre analoge styrepind, når den simulerer vridning af en neGcon-controller. Fjerner utilsigtede bevægelser fra styrepindens drift. Mange kompatible spil har deres egen dødzone: sæt den altid til nul, og foretag kun justeringer med denne kerneindstilling for at bevare præcisionen, især med kvadratisk eller kubisk respons.</value></data>
   <data name="Emulation.Option.Sony.Setting.SecondMemoryCard.Label" xml:space="preserve"><value>Hukommelseskort Slot 2</value></data>
   <data name="Emulation.Option.Sony.Setting.SecondMemoryCard.Help" xml:space="preserve"><value>Emulér et andet hukommelseskort i den rigtige hukommelseskort slot. Bemærk: Nogle spil kræver, at denne indstilling deaktiveres for korrekt drift (fx Kodenavn Tenka). Bemærk: Memory Card Slot 2 bruger Mednafen (.mcr) gemme format.</value></data>
   <data name="Emulation.Option.Sony.Setting.SharedMemoryCardMethod.Label" xml:space="preserve"><value>Fælles hukommelseskort</value></data>
   <data name="Emulation.Option.Sony.Setting.SharedMemoryCardMethod.Help" xml:space="preserve"><value>Brug delte hukommelseskort i stedet for separate kort for hvert indhold. Bemærk: Hvis 'Memory Card Metode' er indstillet til 'Libretro', vil kun hukommelseskort slot 2 blive påvirket.</value></data>
   <data name="Emulation.Option.Sony.Setting.LineToQuad.Label" xml:space="preserve"><value>Line- to- Quad Hack</value></data>
-  <data name="Emulation.Option.Sony.Setting.LineToQuad.Help" xml:space="preserve"><value>Nogle spil (fx Doom, Hexen, Soul Blade osv.) trække vandrette linjer ved at strække enkelt- pixel-høje trekanter på tværs af skærmen, som er rasterized som en række pixels på oprindelige hardware. Dette hack registrerer disse små trekanter og konverterer dem til quads efter behov, så de kan blive vist ordentligt på hardware renders og ved opskalerede interne resolutioner. 'Aggressive' er påkrævet for nogle titler (fx mørke kræfter, hertug nukem) men kan ellers indføre grafiske glitches. Forlad ved 'Standard' hvis du er usikker.</value></data>
-  <data name="Emulation.Option.Sony.Setting.DynarecEventCycles.Label" xml:space="preserve"><value>Dynarec DMA / GPU / MDEC / Timer Event Cykler</value></data>
+  <data name="Emulation.Option.Sony.Setting.LineToQuad.Help" xml:space="preserve"><value>Nogle spil, f.eks. Doom, Hexen og Soul Blade, tegner vandrette linjer med trekanter, der er én pixel høje. Rettelsen omdanner dem til firkanter, så de vises korrekt med hardwaregengivelse og øget intern opløsning. Dark Forces og Duke Nukem kræver den aggressive indstilling, som dog kan give grafikfejl i andre spil. Behold standardindstillingen, hvis du er i tvivl.</value></data>
+  <data name="Emulation.Option.Sony.Setting.DynarecEventCycles.Label" xml:space="preserve"><value>Hændelsescyklusser for DMA/GPU/MDEC/timere (dynamisk genoversættelse)</value></data>
   <data name="Emulation.Option.Sony.Setting.DynarecEventCycles.Help" xml:space="preserve"><value>Maks. cyklusser køres af CPU før en GPU / DMA / MDEC / Timer Update er kontrolleret, højere antal vil være hurtigere, har langt mindre indvirkning på bille tolk end dynerec.</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_aspect_ratio.Help"><value>Indstiller det skærmformat, der oplyses til spillene. Kun nogle spil understøtter 4:3.</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_disk_cache_size.Label"><value>Størrelse på diskcache</value></data>

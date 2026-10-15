@@ -255,7 +255,7 @@
   <data name="Emulation.Option.swanstation.swanstation_CPU_FastmemMode.Help"><value>Käyttää sivun vikoja määrittää laitteiston muistin käynnit ajon aikana. Voi tarjota merkittävän suorituskyvyn parannusta joissakin peleissä, mutta tehdä ytimen vaikeampaa debug.</value></data>
   <data name="Emulation.Option.Sony.Value.DisabledSlower"><value>Ei käytössä (pienempi)</value></data>
   <data name="Emulation.Option.Sony.Value.LUTFaster"><value>LUT (nopea)</value></data>
-  <data name="Emulation.Option.Sony.Value.MMapHardwareFaster64BitOnly"><value>MMap (Hardware, Nopeampi, 64-bittinen)</value></data>
+  <data name="Emulation.Option.Sony.Value.MMapHardwareFaster64BitOnly"><value>MMap (laitteisto, nopeampi, vain 64-bittinen)</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CPU_FastmemRewrite.Label"><value>CPU-kompensoi nopea muistin uudelleenkirjoitus</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CPU_FastmemRewrite.Help"><value>Kirjoita ohjeet uudelleen, kun CPU:n rekommentille on käytössä nopea muisti. Tämä voi parantaa nopeutta. Se voi myös aiheuttaa emulaattorin kaatua joillakin alustoilla.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_TextureReplacements_EnableVRAMWriteReplacements.Label"><value>Ota VRAM-kirjoitustekstuurin vaihto käyttöön</value></data>
@@ -733,14 +733,14 @@
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_crosshair2.Label"><value>Pelaaja 2 Lightgun Crosshair</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_crosshair2.Help"><value>Näytä tai piilota tähtäyskursori pelaajalle 2 käytettäessä GunCon tai Konami Gun. Poista RGB32-ulostulo videoasetuksista, jotta tämä vaihtoehto toimii.</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_konamigunadjustx.Label"><value>Konami Gun X-akselin poikkeama</value></data>
-  <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_konamigunadjustx.Help"><value>Käytä X-akselin offsetia valopistooliin, kun jäljittelet Konami Gun (Hyper Blaster / Justifier) -laitetta. Voidaan käyttää tähtäysvirheiden korjaamiseen.</value></data>
+  <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_konamigunadjustx.Help"><value>Siirtää valopistoolin syötettä X-akselilla Konami Gun (Hyper Blaster / Justifier) -laitetta emuloitaessa tähtäysvirheiden korjaamiseksi.</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_konamigunadjusty.Label"><value>Konami Gun Y-akselin poikkeama</value></data>
-  <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_konamigunadjusty.Help"><value>Levitä Y-akselin offset valoase syötteeseen, kun jäljittelet Konami Gun (Hyper Blaster / Justifier) -laitetta. Voidaan käyttää tähtäysvirheiden korjaamiseen.</value></data>
+  <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_konamigunadjusty.Help"><value>Siirtää valopistoolin syötettä Y-akselilla Konami Gun (Hyper Blaster / Justifier) -laitetta emuloitaessa tähtäysvirheiden korjaamiseksi.</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustx.Label"><value>Guncon X -akselin offset</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustx.Help"><value>Käytä X-akselin offset-asentoon, kun jäljittelet Gunconin laitetta. Voidaan käyttää tähtäysvirheiden korjaamiseen.</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjusty.Label"><value>Guncon Y-akselin offset</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjusty.Help"><value>Käytä Y-akselia valopistoolin tuloon, kun jäljittelet Gunconin laitetta. Voidaan käyttää tähtäysvirheiden korjaamiseen.</value></data>
-  <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustratiox.Label"><value>Guncon X Axis - vaste</value></data>
+  <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustratiox.Label"><value>Gunconin X-akselin vaste</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustratiox.Help"><value>Säädä horisontaalisen kevyen aseen liikkeen suhteellista suuruutta, kun jäljittelet Guncon-laitetta. Voidaan käyttää tähtäysvirheiden korjaamiseen.</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustratioy.Label"><value>Guncon Y Axis - vaste</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustratioy.Help"><value>Säädä pystysuoran kevyen aseen liikkeen suhteellista suuruutta, kun jäljittelet Guncon-laitetta. Voidaan käyttää tähtäysvirheiden korjaamiseen.</value></data>
@@ -995,7 +995,7 @@
   <data name="Emulation.Option.rpcs3.rpcs3_network_enabled.Label"><value>Verkko käytössä</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_network_enabled.Help"><value>Annetaan pelien päästä internetiin. Se vaikuttaa, kun sisältö on ladattu.</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_psn_status.Label"><value>PSN-tila</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_psn_status.Help"><value>Mitä pelit näkevät PlayStation Network. Simuloitu saa heidät uskomaan, että he ovat allekirjoittaneet, jossa jotkut tarvitsevat päästä ruokalistansa ohi; RPCN kytkee RPCS3 oman palvelimen ja tarpeet Verkko Ota käyttöön ja RPCN tili: ydin ei voi luoda yksi, joten aseta se erilliseen RPCS3 ja kopioida sen rpcn.yml osaksi system/rpcs3/ (system/rpcs3/config/ Windows). Se vaikuttaa, kun sisältö on ladattu.</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_psn_status.Help"><value>Määrittää peleille näkyvän PlayStation Network -tilan. Simuloitu tila saa pelit uskomaan käyttäjän kirjautuneen sisään, mitä jotkin pelit tarvitsevat valikoista etenemiseen. RPCN muodostaa yhteyden RPCS3:n omaan palvelimeen ja edellyttää verkkoyhteyden käyttöönottoa sekä RPCN-tiliä. Ydin ei voi luoda tiliä: määritä se erillisessä RPCS3-sovelluksessa ja kopioi rpcn.yml kansioon system/rpcs3/ (Windowsissa system/rpcs3/config/). Asetus tulee voimaan sisältöä ladattaessa.</value></data>
   <data name="Emulation.Option.Sony.Value.Simulated"><value>Simuloitu</value></data>
   <data name="Emulation.Option.Sony.Value.RPCN"><value>RPCN</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_upnp.Label"><value>UPnP</value></data>
@@ -1167,7 +1167,7 @@
   <data name="Emulation.Option.Sony.Value.Unsynchronized"><value>Synkronisoitu</value></data>
   <data name="Emulation.Option.Sony.Setting.NointerlacingHint.Label"><value>Ota käyttöön laastarien deinterlacing</value></data>
   <data name="Emulation.Option.Sony.Setting.NointerlacingHint.Help"><value>Jos käytössä, etsii sisäisen tietokannan, jos paikka on käytettävissä pelin muuttaa kuvan joko ei-läppäinen, täysi kehys, tai progressiivinen skannaa videosignaali, ja / tai yhdistelmä kaikki edellä. Kuva on vakaampi ja Deinterlacing voidaan sammuttaa.</value></data>
-  <data name="Emulation.Option.Sony.Value.BilinearForcedExcludingSprite"><value>bilineaarinen (paksukumia lukuun ottamatta)</value></data>
+  <data name="Emulation.Option.Sony.Value.BilinearForcedExcludingSprite"><value>Pakotettu bilineaarinen suodatus, paitsi spriteille</value></data>
   <data name="Emulation.Option.Sony.Value.Scaled"><value>Skaalattu sisäiseen resoluutioon</value></data>
   <data name="Emulation.Option.Sony.Value.Unscaled"><value>Alkuperäinen konsolin resoluutio</value></data>
   <data name="Emulation.Option.Sony.Value.Force32Bit"><value>Pakota 32bit</value></data>
@@ -1179,11 +1179,11 @@
   <data name="Emulation.Option.Sony.Setting.PcrtcAntiblur.Help"><value>Poista tämä tarkimmista tulosteista. Tämän mahdollistaminen yrittää debluroida kuvan. Huomaavimmat ohjelmiston renderointi ja paraLLEl.</value></data>
   <data name="Emulation.Option.Sony.Setting.PcrtcScreenOffsets.Label"><value>Näytön asentojen offsetit (PCRTC)</value></data>
   <data name="Emulation.Option.Sony.Setting.DisableInterlaceOffset.Label"><value>Poista päällekkäin kytketyssä videossa käytetty pystysuorite</value></data>
-  <data name="Emulation.Option.Sony.Setting.AutoFlushSoftware.Label"><value>Automaattinen välimuistin huuhtelu (ohjelmistojen renderöinti)</value></data>
+  <data name="Emulation.Option.Sony.Setting.AutoFlushSoftware.Label"><value>Välimuistin automaattinen tyhjennys (ohjelmistorenderöinti)</value></data>
   <data name="Emulation.Option.Sony.Setting.SwRendererThreads.Label"><value>CPU Ohjelmistojen renderöinnissä käytettävät langat</value></data>
   <data name="Emulation.Option.Sony.Setting.SwRendererThreads.Help"><value>Määrä ylimääräisiä työntekijöiden säikeitä ohjelmisto renderöinti rasterize, päällä GS lanka itse. 0 rasterizes on the GS pelkästään lanka (alhaisin latenssi, paras 2-4 ytimen suorittimet). Lisää säikeitä auttaa kohtauksia monia alfa vaikutuksia suorittimet varaytimet. Käytä vain ohjelmiston renderointi.</value></data>
   <data name="Emulation.Option.Sony.Setting.VuAccurateAddsub.Label"><value>Tarkka lisäys ja vähennys (VU)</value></data>
-  <data name="Emulation.Option.Sony.Setting.VuAccurateAddsub.Help"><value>Malli VU adder eksponent-etäisyys katkaisu jokaisen lisän ja vähentää. Tri-Ace-pelit, jotka vaativat tätä käyttäytymistä (Star Ocean 3, Radiata Stories, Valkyrie Profile 2) saada sen automaattisesti otsikon kautta pelin tietokantaan, vaikka tämä on pois käytöstä; mahdollistaa sen maailmanlaajuisesti vain, kun jahtaa tarkkuus muissa otsikoissa. Kustannukset nopeus VU- Raskaita pelejä.</value></data>
+  <data name="Emulation.Option.Sony.Setting.VuAccurateAddsub.Help"><value>Jäljittelee eksponenttien erosta johtuvaa katkaisua VU:n yhteen- ja vähennyslaskuissa. Pelitietokanta ottaa sen automaattisesti käyttöön sitä tarvitsevissa Tri-Ace-peleissä, kuten Star Ocean 3, Radiata Stories ja Valkyrie Profile 2, vaikka yleinen asetus olisi pois päältä. Käytä muissa peleissä vain tarkkuuden sitä vaatiessa; VU:ta runsaasti käyttävät pelit voivat hidastua.</value></data>
   <data name="Emulation.Option.Sony.Setting.EeAccurateFpu.Label"><value>Tarkka liukulukua kuvaava aritmeettinen luku (EE FPU)</value></data>
   <data name="Emulation.Option.Sony.Setting.EeAccurateFpu.Help"><value>Juokse EE FPU Lisää, sub, mul ja sulatettu ketjut läpi laajennettu-kaista kaksoisputkisto: tarkka lisätä / osa vastaan laitteistomalli, lähes tarkka moninkertaistaa, oikea käsittely valtavat arvot PS2 sallii, tarkka kokonaisluku muuntaminen, ja puhdas-bitop ABS/NEG. Mitattu vapaalla työmäärällä (keulan läpimenon aikana melussa), oletusarvoisesti.</value></data>
   <data name="Emulation.Option.Sony.Setting.VuExactMul.Label"><value>Tarkat kertoimet (VU)</value></data>
@@ -1223,14 +1223,14 @@
   <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Label"><value>Käytä ulkoista pelin index- tietokantaa</value></data>
   <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Help"><value>Vaaditaan laitteiston renderointi ja manuaalinen renderointi korjaukset. Lataa valittu pelin yhteensopivuus tietokanta, tai jätä tiedosto tyhjäksi käyttää sisäänrakennettua tietokantaa. Käynnistä emulointi näiden asetusten muuttamisen jälkeen.</value></data>
   <data name="Emulation.Option.Sony.Setting.FramebufferConversion.Label"><value>Muunna renderointikehyspuskuri</value></data>
-  <data name="Emulation.Option.Sony.Setting.DisablePartialInvalidation.Label"><value>Poista osittainen lähdevaltuutus käytöstä</value></data>
+  <data name="Emulation.Option.Sony.Setting.DisablePartialInvalidation.Label"><value>Poista lähteiden osittainen mitätöinti käytöstä</value></data>
   <data name="Emulation.Option.Sony.Setting.GpuPaletteConversion.Label"><value>Palettien muuntaminen päälle GPU</value></data>
   <data name="Emulation.Option.Sony.Setting.PreloadFrameData.Label"><value>Kuormituskehystiedot etukäteen</value></data>
   <data name="Emulation.Option.Sony.Setting.HalfPixelOffset.Label"><value>Puolipikselin sijaintia vastaava</value></data>
   <data name="Emulation.Option.Sony.Value.NormalVertex"><value>Normaali huippupiste-offset</value></data>
   <data name="Emulation.Option.Sony.Value.SpecialTexture"><value>Erityisrakenne</value></data>
   <data name="Emulation.Option.Sony.Value.SpecialTextureAggressive"><value>Aggressiivinen rakennemukavuus</value></data>
-  <data name="Emulation.Option.Sony.Value.AlignToNative"><value>Asettukaa alkuperäiseen päätöslauselmaan</value></data>
+  <data name="Emulation.Option.Sony.Value.AlignToNative"><value>Kohdista alkuperäiseen tarkkuuteen</value></data>
   <data name="Emulation.Option.Sony.Setting.RoundSprite.Label"><value>Pyöreä 2D SPRITE koordinaatit</value></data>
   <data name="Emulation.Option.Sony.Value.Half"><value>Puoli</value></data>
   <data name="Emulation.Option.Sony.Setting.AlignSprite.Label"><value>Tasaa 2D SPRITE koordinaatit</value></data>
@@ -1245,22 +1245,22 @@
   <data name="Emulation.Option.Sony.Setting.AnalogMode.Help"><value>Käynnistä ohjain analogisessa tilassa eikä digitaalisessa tilassa. Jotkut pelit (esim. Ridge Racer V) käynnistävät alustan digitaalisessa tilassa ja vaativat yleensä painikkeen painamista ohjaimelta ANALOG painiketta, jonka avulla tikut otetaan käyttöön; tämän avulla voidaan saada analogisia ohjauslaitteita alusta alkaen. Pelejä, jotka lukitsevat ohjaintilan, ei muuteta.</value></data>
   <data name="Emulation.Option.Sony.Files.CheatsDirectory"><value>Kansio, joka sisältää pelin huijauskoodit</value></data>
   <data name="Emulation.Option.Sony.Setting.ForceAnalog.Label" xml:space="preserve"><value>ohjain 1 voiman analoginen tila</value></data>
-  <data name="Emulation.Option.Sony.Setting.ForceAnalog.Help" xml:space="preserve"><value>Voimat analoginen tila olla aina päällä. Voi aiheuttaa ongelmia joissakin peleissä. Käytä tätä vaihtoehtoa vain analogista tilaa tukeviin peleihin, mutta älä automaattisesti mahdollista sitä itse. Kun käytöstä poistaminen, analoginen tila voidaan vaihtaa painamalla ja pitämällä DualShock Analog Mode Combo.</value></data>
-  <data name="Emulation.Option.Sony.Setting.AnalogToggle.Label" xml:space="preserve"><value>DualShock Analoginen tila Vaihda</value></data>
+  <data name="Emulation.Option.Sony.Setting.ForceAnalog.Help" xml:space="preserve"><value>Pakottaa analogisen tilan jatkuvasti käyttöön. Voi aiheuttaa ongelmia joissakin peleissä. Käytä vain peleissä, jotka tukevat analogista tilaa mutta eivät ota sitä itse käyttöön. Kun asetus on pois käytöstä, tilaa voi vaihtaa pitämällä DualShockin analogisen tilan näppäinyhdistelmää painettuna.</value></data>
+  <data name="Emulation.Option.Sony.Setting.AnalogToggle.Label" xml:space="preserve"><value>DualShockin analogisen tilan vaihto</value></data>
   <data name="Emulation.Option.Sony.Setting.AnalogToggle.Help" xml:space="preserve"><value>Kun tulolaitetyyppi on DualShock, tämän vaihtoehdon avulla emulgoitu DualShock voidaan vaihtaa DIGITAL ja ANALOG moodin välillä kuten alkuperäinen laitteisto. Tila voidaan myös vaihtaa käyttämällä valittua painikkeen yhdistelmää.</value></data>
-  <data name="Emulation.Option.Sony.Setting.AnalogToggleCombo.Label" xml:space="preserve"><value>DualShock analoginen tila Combo</value></data>
+  <data name="Emulation.Option.Sony.Setting.AnalogToggleCombo.Label" xml:space="preserve"><value>DualShockin analogisen tilan näppäinyhdistelmä</value></data>
   <data name="Emulation.Option.Sony.Setting.AnalogToggleCombo.Help" xml:space="preserve"><value>Nappiyhdistelmä, jota käytetään vaihdella välillä DIGITAL ja ANALOG mode emulated DualShock.</value></data>
-  <data name="Emulation.Option.Sony.Setting.AnalogToggleHold.Label" xml:space="preserve"><value>DualShock analoginen tila combo pidä viive</value></data>
+  <data name="Emulation.Option.Sony.Setting.AnalogToggleHold.Label" xml:space="preserve"><value>DualShockin analogisen yhdistelmän pitoaika</value></data>
   <data name="Emulation.Option.Sony.Setting.AnalogToggleHold.Help" xml:space="preserve"><value>Pysäytä analogisen tilayhdistelmän painikkeet.</value></data>
   <data name="Emulation.Option.Sony.Setting.NegconDeadzone.Label" xml:space="preserve"><value>neGcon Twist Deadzone</value></data>
-  <data name="Emulation.Option.Sony.Setting.NegconDeadzone.Help" xml:space="preserve"><value>Vasen analoginen tikku Deadzone simuloitaessa 'twist' toimintaa emulgoitu "neGcon" tulolaitteet. Käytti poistaakseen ohjaimen ajelehtimisen. Huom: Useimmat neGcon-yhteensopivat otsikot tarjoavat pelinsisäisiä vaihtoehtoja 'twist' deadzone -arvon asettamiselle. Tarkkuuden menetyksen välttämiseksi pelin sisäinen kuollut alue tulisi *aina* asettaa nollaan. Tämän perusvaihtoehdon avulla voidaan tehdä tarvittavat mukautukset vain *,*. Tämä on erityisen tärkeää, kun "neGcon Twist Response" asetetaan "quadratic" tai "Cubic."</value></data>
+  <data name="Emulation.Option.Sony.Setting.NegconDeadzone.Help" xml:space="preserve"><value>Vasemman analogisen sauvan kuollut alue neGcon-ohjaimen kiertoliikettä jäljiteltäessä. Poistaa sauvan ajautumisesta aiheutuvat tahattomat liikkeet. Monissa yhteensopivissa peleissä on oma kuolleen alueen asetus: aseta se aina nollaan ja tee säädöt vain tällä ytimen asetuksella tarkkuuden säilyttämiseksi, erityisesti neliöllistä tai kuutiollista vastetta käytettäessä.</value></data>
   <data name="Emulation.Option.Sony.Setting.SecondMemoryCard.Label" xml:space="preserve"><value>Muistikortti Slot 2</value></data>
   <data name="Emulation.Option.Sony.Setting.SecondMemoryCard.Help" xml:space="preserve"><value>Emuloidaan toinen muistikortti oikeassa muistikortissa. Huom: Jotkut pelit vaativat tämän vaihtoehdon pois käytöstä oikeaa käyttöä varten (esim. Koodinimi Tenka). Huom. Memory Card Slot 2 käyttää Mednafenia (.mcr) tallenna muotoa.</value></data>
   <data name="Emulation.Option.Sony.Setting.SharedMemoryCardMethod.Label" xml:space="preserve"><value>Jaetut muistikortit</value></data>
   <data name="Emulation.Option.Sony.Setting.SharedMemoryCardMethod.Help" xml:space="preserve"><value>Käytä jaettuja muistikortteja eri korttien sijaan jokaiselle sisällölle. Huom: Jos "Memory Card Method" on asetettu "Libretro," vain muistikorttipaikka 2 vaikuttaa.</value></data>
   <data name="Emulation.Option.Sony.Setting.LineToQuad.Label" xml:space="preserve"><value>Line-to-Quad Hack</value></data>
-  <data name="Emulation.Option.Sony.Setting.LineToQuad.Help" xml:space="preserve"><value>Joitakin pelejä (esim. Doom, Hexen, Soul Blade jne.) piirtää vaakasuorat viivat venyttämällä yhden pikselin korkea kolmiot koko näytön, jotka ovat rasterized kuin rivi pikseleitä alkuperäisen laitteiston. Tämä hakata tunnistaa nämä pienet kolmiot ja muuntaa ne quads tarpeen mukaan, jotta ne voidaan näyttää asianmukaisesti laitteiston renderöijät ja korkea-asteella sisäisiä päätöslauselmia. 'Aggressiivinen' tarvitaan joitakin otsikoita (esim. Pimeät voimat, Duke nukem) mutta voi muuten esitellä graafisia vikoja. Lähtekää Defaultista, jos ette ole varmoja.</value></data>
-  <data name="Emulation.Option.Sony.Setting.DynarecEventCycles.Label" xml:space="preserve"><value>Dynarec DMA/GPU/MDEC/Timer-tapahtumasyklit</value></data>
+  <data name="Emulation.Option.Sony.Setting.LineToQuad.Help" xml:space="preserve"><value>Jotkin pelit, kuten Doom, Hexen ja Soul Blade, piirtävät vaakaviivat yhden pikselin korkuisilla kolmioilla. Korjaus muuntaa ne nelikulmioiksi, jotta ne näkyvät oikein laitteistorenderöinnissä ja suuremmalla sisäisellä tarkkuudella. Dark Forces ja Duke Nukem vaativat aggressiivisen asetuksen, joka voi aiheuttaa grafiikkavirheitä muissa peleissä. Jos olet epävarma, säilytä oletusasetus.</value></data>
+  <data name="Emulation.Option.Sony.Setting.DynarecEventCycles.Label" xml:space="preserve"><value>DMA/GPU/MDEC/ajastintapahtumien syklit (dynaaminen uudelleenkääntäjä)</value></data>
   <data name="Emulation.Option.Sony.Setting.DynarecEventCycles.Help" xml:space="preserve"><value>Max syklit suoritetaan CPU ennen GPU/DMA/MDEC/Timer Update tarkastetaan, suurempi määrä on nopeampi, on paljon vähemmän vaikutusta kovakuoriainen tulkki kuin dynarec.</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_aspect_ratio.Help"><value>Asettaa peleille ilmoitettavan kuvasuhteen. Vain osa peleistä tukee kuvasuhdetta 4:3.</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_disk_cache_size.Label"><value>Levyvälimuistin koko</value></data>

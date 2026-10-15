@@ -46,7 +46,7 @@
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Value.0"><value>Aucune mise en tampon graphique supplémentaire</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Value.1"><value>Mettre au maximum une image vidéo en tampon</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_button_preference.Label"><value>Bouton de validation</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_analog_is_circular.Label"><value>Limiter le stick au cercle</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_analog_is_circular.Label"><value>Compensation du débattement circulaire et carré du stick analogique</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_analog_deadzone.Label"><value>Zone morte du stick</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_analog_deadzone.Help"><value>Appliquer une zone morte supplémentaire au stick analogique après le traitement des entrées par l’application.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_analog_sensitivity.Label"><value>Sensibilité du stick</value></data>
@@ -55,7 +55,7 @@
   <data name="Emulation.Option.ppsspp.ppsspp_skip_buffer_effects.Help"><value>Ignorer les effets du tampon d’image pour améliorer les performances. Certains jeux peuvent ne plus afficher d’image.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_skip_gpu_readbacks.Label"><value>Ignorer les lectures du GPU</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_skip_gpu_readbacks.Help"><value>Ne pas copier les données graphiques du GPU vers le CPU. Certains jeux ont besoin de ces copies pour s’afficher correctement.</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_lazy_texture_caching.Label"><value>Cache des textures différé</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_lazy_texture_caching.Label"><value>Cache différé des textures (accélération)</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_lazy_texture_caching.Help"><value>Plus rapide, mais peut causer des problèmes de texte dans quelques jeux.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_spline_quality.Label"><value>Qualité des courbes</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_spline_quality.Help"><value>Uniquement utilisé par certains jeux, contrôle la fluidité des courbes.</value></data>

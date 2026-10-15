@@ -46,7 +46,7 @@
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Value.0"><value>Ei ylimääräistä grafiikan puskurointia</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Value.1"><value>Puskuroi enintään yksi videoruutu</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_button_preference.Label"><value>Vahvistuspainike</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_analog_is_circular.Label"><value>Analoginen ympyrä vs. portti -korvaus</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_analog_is_circular.Label"><value>Analogisen sauvan ympyrän ja neliön muotoisen liikealueen kompensointi</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_analog_deadzone.Label"><value>Analoginen Deadzone</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_analog_deadzone.Help"><value>Käytä analogiselle sauvalle ylimääräistä kuollutta aluetta sovelluksen syötteenkäsittelyn jälkeen.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_analog_sensitivity.Label"><value>Analoginen akseliasteikko</value></data>
@@ -55,7 +55,7 @@
   <data name="Emulation.Option.ppsspp.ppsspp_skip_buffer_effects.Help"><value>Ohita kuvapuskurin tehosteet suorituskyvyn parantamiseksi. Joissakin peleissä kuva voi puuttua kokonaan.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_skip_gpu_readbacks.Label"><value>Ohita GPU: n lukemat</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_skip_gpu_readbacks.Help"><value>Ohita grafiikkatietojen kopiointi GPU:lta CPU:lle. Jotkin pelit tarvitsevat nämä kopiot kuvan näyttämiseen oikein.</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_lazy_texture_caching.Label"><value>Lazy Texture Cachining (Speedup)</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_lazy_texture_caching.Label"><value>Tekstuurien viivästetty välimuistitus (nopeutus)</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_lazy_texture_caching.Help"><value>Nopeammin, mutta voi aiheuttaa tekstiongelmia muutamassa pelissä.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_spline_quality.Label"><value>spline/bezier-käyrien laatu</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_spline_quality.Help"><value>Käytetään vain joissakin peleissä, ohjaa sileys käyriä.</value></data>

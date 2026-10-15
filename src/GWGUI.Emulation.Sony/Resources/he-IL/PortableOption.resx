@@ -46,7 +46,7 @@
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Value.0"><value>ללא אגירה גרפית נוספת</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Value.1"><value>אגירה של עד פריים וידאו אחד</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_button_preference.Label"><value>תגית: Button</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_analog_is_circular.Label"><value>עיגול אנלוגי לעומת פיצוי שער מרובע</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_analog_is_circular.Label"><value>פיצוי בין טווח תנועה עגול למרובע של המוט האנלוגי</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_analog_deadzone.Label"><value>Analog Deadzone</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_analog_deadzone.Help"><value>החלת אזור מת נוסף על המוט האנלוגי לאחר עיבוד הקלט ביישום.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_analog_sensitivity.Label"><value>אנליזה: Proog הציר Scale</value></data>
@@ -55,7 +55,7 @@
   <data name="Emulation.Option.ppsspp.ppsspp_skip_buffer_effects.Help"><value>דילוג על אפקטים של מאגר הפריימים לשיפור הביצועים. ייתכן שבמשחקים מסוימים לא תוצג תמונה.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_skip_gpu_readbacks.Label"><value>דלג GPU Readbacks</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_skip_gpu_readbacks.Help"><value>דילוג על העתקת נתונים גרפיים מה־GPU אל ה־CPU. משחקים מסוימים זקוקים להעתקות אלה כדי להציג תמונה תקינה.</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_lazy_texture_caching.Label"><value>עצלן מרקם (Speedup)</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_lazy_texture_caching.Label"><value>שמירה מושהית של מרקמים במטמון (האצה)</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_lazy_texture_caching.Help"><value>מהיר יותר, אבל יכול לגרום לבעיות טקסט בכמה משחקים.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_spline_quality.Label"><value>spline/bezier מעוקל איכות</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_spline_quality.Help"><value>רק בשימוש על ידי כמה משחקים, שליטה חלקה של עקומות.</value></data>

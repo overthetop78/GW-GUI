@@ -46,7 +46,7 @@
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Value.0"><value>Без дополнительной буферизации графики</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Value.1"><value>Буферизовать не более одного видеокадра</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_button_preference.Label"><value>Кнопка подтверждения</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_analog_is_circular.Label"><value>Аналоговый круг против компенсации квадратных ворот</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_analog_is_circular.Label"><value>Компенсация круглого и квадратного диапазона аналогового стика</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_analog_deadzone.Label"><value>Аналоговый Deadzone</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_analog_deadzone.Help"><value>Применять дополнительную мёртвую зону аналогового стика после обработки ввода приложением.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_analog_sensitivity.Label"><value>Аналоговая шкала осей</value></data>
@@ -55,7 +55,7 @@
   <data name="Emulation.Option.ppsspp.ppsspp_skip_buffer_effects.Help"><value>Пропускать эффекты кадрового буфера для повышения производительности. В некоторых играх изображение может исчезнуть.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_skip_gpu_readbacks.Label"><value>Скип GPU Readbacks</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_skip_gpu_readbacks.Help"><value>Пропускать копирование графических данных из GPU в CPU. Некоторым играм эти копии необходимы для правильного отображения.</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_lazy_texture_caching.Label"><value>Ленивое кэширование текстуры (Speedup)</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_lazy_texture_caching.Label"><value>Отложенное кэширование текстур (ускорение)</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_lazy_texture_caching.Help"><value>Быстрее, но может вызвать проблемы с текстом в нескольких играх.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_spline_quality.Label"><value>Сплайн/Безье кривые качество</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_spline_quality.Help"><value>Используется только в некоторых играх, контролирует плавность кривых.</value></data>

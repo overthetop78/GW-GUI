@@ -255,7 +255,7 @@
   <data name="Emulation.Option.swanstation.swanstation_CPU_FastmemMode.Help"><value>השתמש שגיאות דף כדי לקבוע גישה לזיכרון חומרה בזמן ריצה. יכול לספק שיפור ביצועים משמעותי במשחקים מסוימים, אבל להפוך את הליבה יותר קשה debug.</value></data>
   <data name="Emulation.Option.Sony.Value.DisabledSlower"><value>מוגבלות (Slower)</value></data>
   <data name="Emulation.Option.Sony.Value.LUTFaster"><value>LUT (מהר יותר)</value></data>
-  <data name="Emulation.Option.Sony.Value.MMapHardwareFaster64BitOnly"><value>MMap (Hardware, Faster, 64-Bit בלבד)</value></data>
+  <data name="Emulation.Option.Sony.Value.MMapHardwareFaster64BitOnly"><value>MMap (חומרה, מהיר יותר, 64 סיביות בלבד)</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CPU_FastmemRewrite.Label"><value>CPU recompiler זיכרון גישה מחדש</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CPU_FastmemRewrite.Help"><value>כתיבת הוראות כאשר גישה זיכרון מהיר מופעלת עבור CPU recompiler. זה יכול לשפר את המהירות. זה יכול גם לגרום לחיקוי להתרסק על פלטפורמות מסוימות.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_TextureReplacements_EnableVRAMWriteReplacements.Label"><value>אפשרות ל-VRAM לכתוב החלפת טקסט</value></data>
@@ -734,14 +734,14 @@
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_crosshair2.Label"><value>שחקן 2 Lightgun Crossשיער</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_crosshair2.Help"><value>הצג או להסתיר את המטרה עבור שחקן 2 בעת שימוש GunCon או Konami Gun. פלט RGB32 Disable בהגדרות וידאו עבור אפשרות זו לעבוד.</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_konamigunadjustx.Label"><value>Konami Gun X ציר Offset</value></data>
-  <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_konamigunadjustx.Help"><value>השתמש ציר X כדי להקל על קלט אקדח כאשר מחקה Konami Gun (Hyper Blaster / Justifier) התקן. ניתן להשתמש כדי לתקן מטרות שגויות.</value></data>
+  <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_konamigunadjustx.Help"><value>מחיל היסט בציר X על קלט אקדח האור בעת הדמיית Konami Gun (Hyper Blaster / Justifier), לתיקון סטיות בכיוון.</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_konamigunadjusty.Label"><value>Konami Gun Y ציר Offset</value></data>
-  <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_konamigunadjusty.Help"><value>החל את ציר Y כדי להקל על קלט אקדח כאשר מחקה Konami Gun (Hyper Blaster / Justifier) מכשיר. ניתן להשתמש כדי לתקן מטרות שגויות.</value></data>
+  <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_konamigunadjusty.Help"><value>מחיל היסט בציר Y על קלט אקדח האור בעת הדמיית Konami Gun (Hyper Blaster / Justifier), לתיקון סטיות בכיוון.</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustx.Label"><value>Guncon X ציר Offset</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustx.Help"><value>החל ציר X מחלחל לקליטת אקדחים קלים בעת חיקוי של מכשיר Guncon. ניתן להשתמש כדי לתקן מטרות שגויות.</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjusty.Label"><value>Guncon Y ציר Offset</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjusty.Help"><value>השתמש בציר Y כדי להקל על קלט אקדח כאשר מחקה מכשיר Guncon. ניתן להשתמש כדי לתקן מטרות שגויות.</value></data>
-  <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustratiox.Label"><value>תגובה של Guncon X</value></data>
+  <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustratiox.Label"><value>תגובת ציר X של Guncon</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustratiox.Help"><value>התאמת גודל יחסי של תנועת אקדחים אור אופקית בעת חיקוי מכשיר Guncon. ניתן להשתמש כדי לתקן מטרות שגויות.</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustratioy.Label"><value>תגובה של Guncon Y</value></data>
   <data name="Emulation.Option.pcsx_rearmed.pcsx_rearmed_gunconadjustratioy.Help"><value>התאמת גודל יחסי של תנועת אקדחים אור אנכית בעת חיקוי מכשיר Guncon. ניתן להשתמש כדי לתקן מטרות שגויות.</value></data>
@@ -996,7 +996,7 @@
   <data name="Emulation.Option.rpcs3.rpcs3_network_enabled.Label"><value>רשת</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_network_enabled.Help"><value>בואו משחקים להגיע לאינטרנט. קח את ההשפעה כאשר התוכן טעון.</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_psn_status.Label"><value>סטטוס PSN</value></data>
-  <data name="Emulation.Option.rpcs3.rpcs3_psn_status.Help"><value>מה משחקים רואים ברשת PlayStation סימולט גורם להם להאמין שהם חתומה, אשר יש צורך לעבור את התפריטים שלהם.; RPCN להתחבר RPCS3'שרת משלו וזקוקה לרשת Enabled RPCN חשבון: הליבה לא יכולה ליצור אחד, אז להגדיר אותו ב Standalone RPCS3 ולהעתיק אותו rpcn.yml להיכנס לתוך system/rpcs3/ (system/rpcs3/config/ ב-Windows). קח את ההשפעה כאשר התוכן טעון.</value></data>
+  <data name="Emulation.Option.rpcs3.rpcs3_psn_status.Help"><value>קובע את מצב PlayStation Network שמוצג למשחקים. המצב המדומה גורם להם לחשוב שהמשתמש מחובר, דבר שמשחקים מסוימים דורשים כדי להתקדם מעבר לתפריטים. RPCN מתחבר לשרת של RPCS3 ודורש הפעלת רשת וחשבון RPCN. הליבה אינה יכולה ליצור חשבון: הגדירו אותו ביישום RPCS3 העצמאי והעתיקו את rpcn.yml אל system/rpcs3/ (אל system/rpcs3/config/ ב־Windows). ההגדרה מוחלת בעת טעינת התוכן.</value></data>
   <data name="Emulation.Option.Sony.Value.Simulated"><value>המונחים:</value></data>
   <data name="Emulation.Option.Sony.Value.RPCN"><value>RPCN</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_upnp.Label"><value>UPnP</value></data>
@@ -1145,7 +1145,7 @@
   <data name="Emulation.Option.Sony.Setting.Dev9Hdd.Help"><value>דמיין את SPEED הרחבה ATA כונן קשיח: התמונה חיה ב- "pcsx2/DEV9hdd.raw"במערכת הקדמית, מנהל המערכת נוצר על שימוש ראשון בגודל מוגדר.</value></data>
   <data name="Emulation.Option.Sony.Setting.Dev9HddSize.Label"><value>יכולת הדיסק הקשיח</value></data>
   <data name="Emulation.Option.Sony.Setting.Dev9HddSize.Help"><value>יכולת בשימוש כאשר חדש HDD תמונה נוצרת.דימוי קיים שומר על הגודל שהוא נוצר איתו.</value></data>
-  <data name="Emulation.Option.Sony.Setting.Dev9Eth.Help"><value>דמיין את SPEED מתאם ethernet של הרחבה דרך ה-Sockets backend: a Userspace TCP/ / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / /UDP ערימה עם פנים DHCP שרת, אין צורך בתצורה רשת מארחת או פריווילגיות.</value></data>
+  <data name="Emulation.Option.Sony.Setting.Dev9Eth.Help"><value>מדמה את מתאם ה־Ethernet של הרחבת SPEED באמצעות מנגנון Sockets: מחסנית TCP/UDP במרחב המשתמש עם שרת DHCP פנימי, ללא צורך בהגדרות רשת במחשב המארח או בהרשאות מיוחדות.</value></data>
   <data name="Emulation.Option.Sony.Setting.UpscaleMultiplier.Help"><value>צייר מספר PS2"הרזולוציה של התוכנה הופכת 2x עבור 2x ומעלה.</value></data>
   <data name="Emulation.Option.Sony.Setting.NativeScaling.Label"><value>שמור על אפקטים ברזולוציה המקורית של הקונסולה</value></data>
   <data name="Emulation.Option.Sony.Setting.NativeScaling.Help"><value>Render the buffers משחק שואב חלק מהמסגרת שלו, כגון מעבר פרח או מטושטש, ברזולוציה Native במקום הפתרון הפנימי. Keeps aטשטש's Radio ומיקום כמו על הקונסולה, עלות ההחלטה של התמונה המטושטשת; 'Aggressive' חל גם על האטרקציה הזאת של ה Buffers בחזרה. 'Automatic' משתמשת מסד הנתונים של 'N' עבור המשחק 'N', שבו הוא לא משנה אם הוא ערך 'N אחר של כל אחד הוא 'N', ללא קשר ל-', ללא קשר ל-', או 'N', ללא קשר ל-', ללא קשר ל-', ללא קשר ל-', ללא קשר ל-', ללא קשר ל-', ללא קשר ל-', ללא קשר ל-', ללא קשר ל-', ללא קשר ל-', ללא קשר ל-', אין זה משנה אם הוא בעל ערך 'NUMNUM', ללא קשר ל-', ללא קשר ל-', ללא קשר ל-', ללא קשר ל-', אין זה משנה אם הוא משתמש את ה-', ללא קשר ל-', 'NUM שימוש במסד הנתונים 'NUM 'NUM' של 'Automatic HW האקרים</value></data>
@@ -1167,7 +1167,7 @@
   <data name="Emulation.Option.Sony.Value.Unsynchronized"><value>UnsynSync</value></data>
   <data name="Emulation.Option.Sony.Setting.NointerlacingHint.Label"><value>המונחים: interlacing</value></data>
   <data name="Emulation.Option.Sony.Setting.NointerlacingHint.Help"><value>אם מופעל, יחפש במסד הנתונים הפנימי אם רצף זמין עבור המשחק כדי להפוך את התמונה למסגרת לא מכוונת, מלאה או אות וידאו מתקדם, ו / או שילוב של כל האמור לעיל. Image יהיה יציב יותר ו deinterlacing ניתן לכבות.</value></data>
-  <data name="Emulation.Option.Sony.Value.BilinearForcedExcludingSprite"><value>בינארי (Forced ludeing sprite)</value></data>
+  <data name="Emulation.Option.Sony.Value.BilinearForcedExcludingSprite"><value>סינון בילינארי כפוי, למעט ספרייטים</value></data>
   <data name="Emulation.Option.Sony.Value.Scaled"><value>● רזולוציה פנימית</value></data>
   <data name="Emulation.Option.Sony.Value.Unscaled"><value>פתרון הקונסולות המקורי</value></data>
   <data name="Emulation.Option.Sony.Value.Force32Bit"><value>כוח 32bit</value></data>
@@ -1179,11 +1179,11 @@
   <data name="Emulation.Option.Sony.Setting.PcrtcAntiblur.Help"><value>ניתן להבחין בכך עבור התמונה הפלטית המדויקת ביותר. Enabling זה ינסה לקלקל את התמונה.רוב בולט על קידוד תוכנה ו paraLL אל.</value></data>
   <data name="Emulation.Option.Sony.Setting.PcrtcScreenOffsets.Label"><value>מיקום המסך (Creditsets)PCRTC) )</value></data>
   <data name="Emulation.Option.Sony.Setting.DisableInterlaceOffset.Label"><value>להשבית את ה- offset האנכי המשמש עבור וידאו ממוזג</value></data>
-  <data name="Emulation.Option.Sony.Setting.AutoFlushSoftware.Label"><value>cache flush אוטומטי (עדכון תוכנה)</value></data>
+  <data name="Emulation.Option.Sony.Setting.AutoFlushSoftware.Label"><value>ריקון מטמון אוטומטי (רינדור בתוכנה)</value></data>
   <data name="Emulation.Option.Sony.Setting.SwRendererThreads.Label"><value>CPU חוטים המשמשים להכנת תוכנה</value></data>
   <data name="Emulation.Option.Sony.Setting.SwRendererThreads.Help"><value>מספר חוטים נוספים של העובד מחלחל עם, על גבי ה-Top of the Softwareer. GS תגית: 0 rasterizes on the GS חוט לבד (הההירות הנמוכה ביותר, הטובה ביותר על 2-4 מעבדים ליבה) חוטים נוספים עוזרים לסצנות עם אפקטים רבים של אלפא על CPU עם ליבות פנויות.</value></data>
   <data name="Emulation.Option.Sony.Setting.VuAccurateAddsub.Label"><value>תוספת ו subtraction (VU) )</value></data>
-  <data name="Emulation.Option.Sony.Setting.VuAccurateAddsub.Help"><value>המודל VU משחק ה- Tri-Ace הדורש התנהגות זו (Star Ocean 3, Radiata Stories, Valkyrie פרופיל 2) מקבל את זה אוטומטית לכותרת באמצעות מסד הנתונים של המשחק גם כאשר זה מוגבל; לאפשר את זה בעולם רק כאשר רודף דיוק בכותרות אחרות. VUמשחקים יפים</value></data>
+  <data name="Emulation.Option.Sony.Setting.VuAccurateAddsub.Help"><value>מדמה את הקיטום הנובע מהפרש המעריכים בפעולות החיבור והחיסור של VU. מסד נתוני המשחקים מפעיל זאת אוטומטית במשחקי Tri-Ace הזקוקים לכך, ובהם Star Ocean 3, Radiata Stories ו־Valkyrie Profile 2, גם כאשר האפשרות הכללית מושבתת. יש להפעיל במשחקים אחרים רק אם נדרש דיוק נוסף; האפשרות עלולה להאט משחקים המשתמשים רבות ב־VU.</value></data>
   <data name="Emulation.Option.Sony.Setting.EeAccurateFpu.Label"><value>המונחים: ́EE FPU) )</value></data>
   <data name="Emulation.Option.Sony.Setting.EeAccurateFpu.Help"><value>Run Run EE FPU הוסף, תת, mul ואת השרשראות הממוזגות באמצעות צינור כפול ארוך טווח: תוספת מדויקת / סוב נגד מודל החומרה, כמעט-exact מכפילים, טיפול נכון של הערכים הענקיים את הערכים הגדולים. PS2 מאפשר, בדיוק המרה integer, ו- Pure-bitop ABS/ / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / /NEG. נמדד חופשי ברמת עומס העבודה (עם הפעלת רעש על מסגרת דרך לוח); אשר מופעלת על ידי ברירת מחדל.</value></data>
   <data name="Emulation.Option.Sony.Setting.VuExactMul.Label"><value>ריבוי (Exact multiplication)VU) )</value></data>
@@ -1197,7 +1197,7 @@
   <data name="Emulation.Option.Sony.Setting.Vu1Softfloat.Label"><value>חיקוי של נקודת צף (VU1) )</value></data>
   <data name="Emulation.Option.Sony.Setting.Vu1Softfloat.Help"><value>Run Run VU1 על המתורגמן bitexact, אשר שרווליו הצפים מתיישרים באמצעות מודל התוכנה של הקונסולה-exact, במקום את מודל התוכנה, במקום את מודל התוכנה. SSE Recompiler. Fixes משחקים שביצועם תלוי בקונסולה מדויקת VU תוצאות.מחירים יקרים וקשקשים בעלי מורכבות סצנות; מאפשרים למשחק רק כאשר נדרש.</value></data>
   <data name="Emulation.Option.Sony.Setting.EeCpu.Label"><value>CPU מנוע הוצאה להורג (EE) )</value></data>
-  <data name="Emulation.Option.Sony.Setting.EeCpu.Help"><value>בחר מה מבצע את קוד ה- Emotion Engine Code. Recompiler הוא הבחירה הרגילה. אינטרטר מנהל את קוד ה- Emotion Engine Code. Recompiler הוא הבחירה הרגילה. EE ב- C: הרבה יותר איטי מכדי לשחק, אבל זה לוקח את המשחק. EE קומודור מתוך התמונה כולה, כך תל ששורדת היא לא באג קודגן.בחירת אינטרטר גם מתפוררת מהרם, אשר חל רק על ה-Recompiler.</value></data>
+  <data name="Emulation.Option.Sony.Setting.EeCpu.Help"><value>בוחר כיצד יבוצע קוד Emotion Engine. המהדר מחדש הוא הבחירה הרגילה. המפרש מבצע את קוד ה־EE ישירות ב־C: הוא איטי מדי למשחק, אך עוקף לחלוטין את המהדר מחדש של EE, כך שתקיעה שנותרת במצב זה אינה נובעת מיצירת הקוד שלו. בחירה במפרש משביתה גם את Fastmem, שחל רק על המהדר מחדש.</value></data>
   <data name="Emulation.Option.Sony.Setting.Fastmem.Label"><value>גישה מהירה לזיכרון</value></data>
   <data name="Emulation.Option.Sony.Setting.Fastmem.Help"><value>זיכרון אורח נכנס עם 4 ישירGB מיפוי ותיקון אלה שפגמים. Disable כדי לנתב כל גישה דרך מטפלים בזיכרון התוכנה - לאט יותר, אבל לוקח את המכונות פגומים / גיבוי מהרעיון לחלוטין, אשר שימושי בעת ציד תל.</value></data>
   <data name="Emulation.Option.Sony.Setting.Mtvu.Help"><value>ריצה VU1 על חוט משלה.המהירות הגדולה על מעבדי Multi-core; מספר קטן של משחקים תלויים עם זה.ה ברירת המחדל מתאימה ברירת המחדל של הפלטפורמה (על זרוע64, על הזרוע64, MTVU בכל פעם שהמקומיים VU1 Recompiler VU1).</value></data>
@@ -1223,14 +1223,14 @@
   <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Label"><value>שימוש ב-GameIndex Database</value></data>
   <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Help"><value>נדרש חומרת חומרה ותיקון ידני של תיקוני טעינה. לטעון את מסד הנתונים שנבחר תאימות למשחק.</value></data>
   <data name="Emulation.Option.Sony.Setting.FramebufferConversion.Label"><value>המונחים: make the make systembuffer</value></data>
-  <data name="Emulation.Option.Sony.Setting.DisablePartialInvalidation.Label"><value>המונחים: different Source Invalidation</value></data>
+  <data name="Emulation.Option.Sony.Setting.DisablePartialInvalidation.Label"><value>השבתת ביטול תוקף חלקי של מקורות</value></data>
   <data name="Emulation.Option.Sony.Setting.GpuPaletteConversion.Label"><value>המרה של Palette GPU</value></data>
   <data name="Emulation.Option.Sony.Setting.PreloadFrameData.Label"><value>עומס נתונים מראש</value></data>
   <data name="Emulation.Option.Sony.Setting.HalfPixelOffset.Label"><value>מיקום חצי פיקסל</value></data>
   <data name="Emulation.Option.Sony.Value.NormalVertex"><value>OUTEX LAST</value></data>
   <data name="Emulation.Option.Sony.Value.SpecialTexture"><value>מרקם מיוחד</value></data>
   <data name="Emulation.Option.Sony.Value.SpecialTextureAggressive"><value>מרקם אגרסיבי</value></data>
-  <data name="Emulation.Option.Sony.Value.AlignToNative"><value>אלינג להחלטת המקור</value></data>
+  <data name="Emulation.Option.Sony.Value.AlignToNative"><value>יישור לרזולוציה המקורית</value></data>
   <data name="Emulation.Option.Sony.Setting.RoundSprite.Label"><value>2D SPRITE לתאם</value></data>
   <data name="Emulation.Option.Sony.Value.Half"><value>חצי חצי חצי חצי חצי חצי חצי חצי חצי חצי</value></data>
   <data name="Emulation.Option.Sony.Setting.AlignSprite.Label"><value>אלזר 2D SPRITE לתאם</value></data>
@@ -1245,22 +1245,22 @@
   <data name="Emulation.Option.Sony.Setting.AnalogMode.Help"><value>התחל את הבקר במצב אנלוגי ולא דיגיטלי.חלק משחקים (למשל רידג ' Racer V) לחול את המשטח בדיגיטל ובדרך כלל דורשים לחיצה על הבקר ANALOG כפתור כדי לאפשר את מקלות; לאפשר זאת כדי לקבל שליטה אנלוגית מההתחלה.משחקים המנעולים את מצב הבקר אינם מושפעים.</value></data>
   <data name="Emulation.Option.Sony.Files.CheatsDirectory"><value>משחק המכיל קודים לרמות</value></data>
   <data name="Emulation.Option.Sony.Setting.ForceAnalog.Label" xml:space="preserve"><value>המונחים: Force Analog Mode</value></data>
-  <data name="Emulation.Option.Sony.Setting.ForceAnalog.Help" xml:space="preserve"><value>מצב אנלוגי של כוחות להיות תמיד. יכול לגרום לבעיות עם כמה משחקים. רק להשתמש באפשרות זו למשחקים התומכים במצב אנלוגי, אך אינם מאפשרים זאת באופן אוטומטי. כאשר נכים, מצב אנלוגי ניתן להתגבר על ידי לחיצה והחזקה במצב DualShock Analog Combo.</value></data>
-  <data name="Emulation.Option.Sony.Setting.AnalogToggle.Label" xml:space="preserve"><value>DualShock Analog Mode toggle</value></data>
+  <data name="Emulation.Option.Sony.Setting.ForceAnalog.Help" xml:space="preserve"><value>משאיר את המצב האנלוגי מופעל תמיד. עלול לגרום לבעיות במשחקים מסוימים. יש להשתמש באפשרות רק במשחקים שתומכים במצב אנלוגי אך אינם מפעילים אותו אוטומטית. כאשר האפשרות מושבתת, ניתן להחליף מצב באמצעות החזקת צירוף הכפתורים למצב האנלוגי של DualShock.</value></data>
+  <data name="Emulation.Option.Sony.Setting.AnalogToggle.Label" xml:space="preserve"><value>החלפת המצב האנלוגי של DualShock</value></data>
   <data name="Emulation.Option.Sony.Setting.AnalogToggle.Help" xml:space="preserve"><value>כאשר סוג מכשיר הקלט הוא DualShock, אפשרות זו מאפשרת חיקוי של DualShock בין DIGITAL ו-ANALOG כמו חומרה מקורית. מצב יכול גם להיות מלוטש על ידי שימוש בשילוב הלחצן שנבחר.</value></data>
-  <data name="Emulation.Option.Sony.Setting.AnalogToggleCombo.Label" xml:space="preserve"><value>DualShock Analog Mode Combo</value></data>
+  <data name="Emulation.Option.Sony.Setting.AnalogToggleCombo.Label" xml:space="preserve"><value>צירוף כפתורים למצב האנלוגי של DualShock</value></data>
   <data name="Emulation.Option.Sony.Setting.AnalogToggleCombo.Help" xml:space="preserve"><value>השילוב של הכפתור אשר ישמש כדי לעקוף בין DIGITAL ו- ANALOG מצב עבור חיקוי DualShock.</value></data>
-  <data name="Emulation.Option.Sony.Setting.AnalogToggleHold.Label" xml:space="preserve"><value>DualShock המונחים: Analog mode combohold</value></data>
+  <data name="Emulation.Option.Sony.Setting.AnalogToggleHold.Label" xml:space="preserve"><value>משך החזקת צירוף הכפתורים האנלוגי של DualShock</value></data>
   <data name="Emulation.Option.Sony.Setting.AnalogToggleHold.Help" xml:space="preserve"><value>החזיקו זמן עבור כפתורים במצב אנלוגי.</value></data>
   <data name="Emulation.Option.Sony.Setting.NegconDeadzone.Label" xml:space="preserve"><value>neGcon Twist Deadzone</value></data>
-  <data name="Emulation.Option.Sony.Setting.NegconDeadzone.Help" xml:space="preserve"><value>שמאל אנלוגי מקל מתזון כאשר מדגימים את פעולת ה-'twist' של מכשירי קלט 'neGcon'. משמש כדי לחסל את סחף הבקר. הערה: רוב neGcon תואמים מספקים אפשרויות במשחק להגדרת ערך "איזון מת". כדי להימנע מאובדן הדיוק, אזור המתים במשחק צריך *תמיד* להיות מוגדר לאפס. כל התאמות הנדרשות צריך * רק* יש ליישם באמצעות אפשרות הליבה הזו. זה חשוב במיוחד כאשר "neGcon Twist Response" מוגדר "Quadratic" או "Cubic".</value></data>
+  <data name="Emulation.Option.Sony.Setting.NegconDeadzone.Help" xml:space="preserve"><value>האזור המת של המוט האנלוגי השמאלי בעת הדמיית הפיתול של בקר neGcon. מונע תנועות לא רצויות עקב סחיפת המוט. משחקים תואמים רבים כוללים הגדרת אזור מת משלהם: יש להגדיר אותה תמיד לאפס ולבצע התאמות רק באמצעות אפשרות זו של הליבה, כדי לשמור על הדיוק, במיוחד עם תגובה ריבועית או ממעלה שלישית.</value></data>
   <data name="Emulation.Option.Sony.Setting.SecondMemoryCard.Label" xml:space="preserve"><value>כרטיס זיכרון 2</value></data>
   <data name="Emulation.Option.Sony.Setting.SecondMemoryCard.Help" xml:space="preserve"><value>דמיין כרטיס זיכרון שני בחניון הזיכרון הנכון. הערה: כמה משחקים דורשים אפשרות זו להיות מוגבלות עבור פעולה נכונה (למשל. שם קוד: Tenka הערה: Memory Card Slot 2 משתמש בתבנית מדנפן (.mcr).</value></data>
   <data name="Emulation.Option.Sony.Setting.SharedMemoryCardMethod.Label" xml:space="preserve"><value>כרטיסי זיכרון משותפים</value></data>
   <data name="Emulation.Option.Sony.Setting.SharedMemoryCardMethod.Help" xml:space="preserve"><value>השתמש בכרטיסי זיכרון משותפים במקום כרטיסים נפרדים לכל תוכן. הערה: אם שיטת Memory Card מוגדרת ל- 'Libretro', רק חריץ כרטיס זיכרון 2 יושפע.</value></data>
   <data name="Emulation.Option.Sony.Setting.LineToQuad.Label" xml:space="preserve"><value>Line-to-Quad hack</value></data>
-  <data name="Emulation.Option.Sony.Setting.LineToQuad.Help" xml:space="preserve"><value>כמה משחקים (למשל. Doom, Hexen, Soul Blade וכו ') לצייר קווים אופקיים על ידי מתיחה משולש בגובה פיקסל אחד לאורך המסך, אשר הם rasterized כמו שורה של פיקסלים על חומרה מקורית. האקר זה מזהה את משולשים קטנים אלה וממיר אותם לסווג כנדרש, ומאפשר להם להיות מוצגים כראוי על חומרי החומרה ועל החלטות פנימיות בקנה מידה. "תוקפנות" נדרש עבור כמה תארים (למשל. כוחות אפלים, דיוק Nukem) אך עשויים אחרת להציג גלידות גרפיות. עזוב את 'לעזאזל' אם לא בטוח.</value></data>
-  <data name="Emulation.Option.Sony.Setting.DynarecEventCycles.Label" xml:space="preserve"><value>Dynarec DMA/GPU/MDEC/Timer Event Cycles</value></data>
+  <data name="Emulation.Option.Sony.Setting.LineToQuad.Help" xml:space="preserve"><value>משחקים מסוימים, כגון Doom, Hexen ו־Soul Blade, מציירים קווים אופקיים באמצעות משולשים בגובה פיקסל אחד. התיקון ממיר אותם למרובעים כדי להציגם נכון ברינדור בחומרה וברזולוציה פנימית מוגדלת. Dark Forces ו־Duke Nukem דורשים את המצב האגרסיבי, אך הוא עלול לגרום לשיבושים גרפיים במשחקים אחרים. במקרה של ספק, השאירו את הגדרת ברירת המחדל.</value></data>
+  <data name="Emulation.Option.Sony.Setting.DynarecEventCycles.Label" xml:space="preserve"><value>מחזורי אירועים של DMA/GPU/MDEC/קוצבי זמן (הידור דינמי מחדש)</value></data>
   <data name="Emulation.Option.Sony.Setting.DynarecEventCycles.Help" xml:space="preserve"><value>מחזורי מקס לרוץ על ידי CPU לפני GPU / DMA /MDEC /Timer Update נבדק, מספר גבוה יותר יהיה מהיר יותר, יש הרבה פחות השפעה על מתורגמן beetle מאשר דינראק.</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_aspect_ratio.Help"><value>מגדיר את תבנית המסך המדווחת למשחקים. רק חלק מהמשחקים תומכים ביחס 4:3.</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_disk_cache_size.Label"><value>גודל מטמון הדיסק</value></data>

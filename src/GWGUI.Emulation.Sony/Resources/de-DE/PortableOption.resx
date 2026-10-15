@@ -46,7 +46,7 @@
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Value.0"><value>Keine zusätzliche Grafikpufferung</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Value.1"><value>Bis zu ein Videobild puffern</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_button_preference.Label"><value>Bestätigungsbutton</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_analog_is_circular.Label"><value>Analoger Kreis vs Quadrattor Kompensation</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_analog_is_circular.Label"><value>Ausgleich zwischen kreisförmigem und quadratischem Analogstick-Bereich</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_analog_deadzone.Label"><value>Analoge Deadzone</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_analog_deadzone.Help"><value>Nach der Eingabeverarbeitung der Anwendung eine zusätzliche Totzone für den Analogstick anwenden.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_analog_sensitivity.Label"><value>Analogachsenskala</value></data>
@@ -55,7 +55,7 @@
   <data name="Emulation.Option.ppsspp.ppsspp_skip_buffer_effects.Help"><value>Effekte des Bildpuffers überspringen, um die Leistung zu verbessern. Einige Spiele zeigen dann möglicherweise kein Bild.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_skip_gpu_readbacks.Label"><value>Skip GPU-Readbacks</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_skip_gpu_readbacks.Help"><value>Das Kopieren von Grafikdaten von der GPU zur CPU überspringen. Einige Spiele benötigen diese Kopien für eine korrekte Darstellung.</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_lazy_texture_caching.Label"><value>Lazy Textur Caching (Geschwindigkeit)</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_lazy_texture_caching.Label"><value>Verzögertes Textur-Caching (Beschleunigung)</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_lazy_texture_caching.Help"><value>Schneller, kann aber in einigen spielen textprobleme verursachen.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_spline_quality.Label"><value>Spline / Bezier kurven Qualität</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_spline_quality.Help"><value>Nur von einigen Spielen verwendet, steuert die Glätte der Kurven.</value></data>
