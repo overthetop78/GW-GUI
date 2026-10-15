@@ -19,6 +19,7 @@ internal sealed class Pcsx2MachineFactory : IEmulatorAdapter, IEmulatorFirmwareA
         [ControllerType.Joystick, ControllerType.Keyboard, ControllerType.Mouse,
             ControllerType.KeyboardAndMouse, ControllerType.None];
     public IReadOnlyList<string> SupportedContentExtensions => FirmwareConstants.ContentExtensions;
+    public IReadOnlyList<EmulationMediaDevice> GetStorageDevices(MachineConfiguration configuration) => Functions.StorageFunctions.Describe(configuration);
     public string EmulatorId => Pcsx2Constants.Id;
     public string EmulatorKey => Pcsx2Constants.Id;
     public EmulationEmulatorDefinition Definition { get; } = new(Pcsx2Constants.Id, Pcsx2Constants.DisplayName, Pcsx2Constants.DescriptionResourceKey, new[] { ModelConstants.PlayStation2 }.ToHashSet(StringComparer.Ordinal));

@@ -11,7 +11,7 @@ internal static class Pcsx2OptionFunctions
             if (options.TryGetValue(key, out var value) && aliases.TryGetValue(value, out var current)) options[key] = current;
         foreach (var option in Dictionaries.OptionCatalog.All.Where(option => option.NumericRange is not null))
             if (options.TryGetValue(option.Key, out var value)) options[option.Key] = CoreSettingsFunctions.NativeNumber(option, value);
-        return configuration with { Options = options };
+        return HardDiskRuntimeFunctions.Configure(configuration with { Options = options });
     }
 }
 

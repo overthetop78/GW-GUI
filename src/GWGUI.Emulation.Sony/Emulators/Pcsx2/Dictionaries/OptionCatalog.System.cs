@@ -31,15 +31,12 @@ internal static partial class OptionCatalog
             "disabled", EmulationMachineTab.Storage,
             ToggleChoices, visible: false),
         Define(OptionConstants.Dev9HddSizeKey, OptionConstants.Dev9HddSizeLabel, OptionConstants.Dev9HddSizeHelp,
-            "40 GiB", EmulationMachineTab.Storage,
-            [
-                new("8 GiB", "8 GiB"),
-                new("16 GiB", "16 GiB"),
-                new("20 GiB", "20 GiB"),
-                new("40 GiB", "40 GiB"),
-                new("80 GiB", "80 GiB"),
-                new("120 GiB", "120 GiB"),
-            ], visible: false),
+            HardDiskRuntimeFunctions.NativeCapacity(HardDiskConstants.DefaultCapacityGiB), EmulationMachineTab.Storage,
+            HardDiskConstants.CapacitiesGiB.Select(capacity =>
+            {
+                var value = HardDiskRuntimeFunctions.NativeCapacity(capacity);
+                return new CoreOptionValue(value, value);
+            }).ToArray(), visible: false),
         Define(OptionConstants.Dev9EthKey, OptionConstants.Dev9EthLabel, OptionConstants.Dev9EthHelp,
             "disabled", EmulationMachineTab.General,
             ToggleChoices),

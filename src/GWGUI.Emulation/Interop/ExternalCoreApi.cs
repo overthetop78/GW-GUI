@@ -37,6 +37,13 @@ internal static class ExternalCoreApi
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate int VfsRemove(nint path);
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate int VfsRename(nint oldPath, nint newPath);
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate int VfsStat(nint path, nint size);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate long VfsTruncate(nint stream, long length);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate int VfsMakeDirectory(nint path);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate nint VfsOpenDirectory(nint path, [MarshalAs(UnmanagedType.I1)] bool includeHidden);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] [return: MarshalAs(UnmanagedType.I1)] internal delegate bool VfsReadDirectory(nint directory);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate nint VfsDirectoryEntryName(nint directory);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] [return: MarshalAs(UnmanagedType.I1)] internal delegate bool VfsDirectoryEntryIsDirectory(nint directory);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate int VfsCloseDirectory(nint directory);
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)] [return: MarshalAs(UnmanagedType.I1)]
     internal delegate bool SetEjectState([MarshalAs(UnmanagedType.I1)] bool ejected);
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)] [return: MarshalAs(UnmanagedType.I1)]

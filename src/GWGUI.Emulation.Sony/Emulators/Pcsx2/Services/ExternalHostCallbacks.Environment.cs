@@ -109,7 +109,7 @@ internal sealed partial class ExternalHostCallbacks
                     }, data, false);
                     return true;
                 case ExternalCoreApiConstants.GetVfsInterface:
-                    return false;
+                    return _virtualFileSystem.Provide(data);
                 case ExternalCoreApiConstants.GetLedInterface:
                     if (data == 0) return false;
                     Marshal.StructureToPtr(new ExternalCoreApi.LedInterface

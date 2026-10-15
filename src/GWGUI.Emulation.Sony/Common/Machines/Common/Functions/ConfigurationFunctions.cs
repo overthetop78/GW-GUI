@@ -37,15 +37,16 @@ internal static class ConfigurationValidationFunctions
             if (!slots.Any(slot => slot.FieldId == item.Key)) throw new InvalidDataException(item.Key);
             if (!File.Exists(item.Value)) throw new FileNotFoundException(null, item.Value);
         }
+        var devices = (adapter as IEmulatorMediaAdapter)?.GetStorageDevices(configuration) ?? [];
         foreach (var media in configuration.Media ?? [])
         {
             if (!File.Exists(media.Path)) throw new FileNotFoundException(null, media.Path);
-            if (!Supports(model, media.Category))
+            if (!Supports(model, media.Category, devices))
                 throw new InvalidDataException($"{model.Id}:{media.Category}");
         }
     }
 
-    internal static bool Supports(Model model, MediaCategory category) => category switch
+    internal static bool Supports(Model model, MediaCategory category, IReadOnlyList<EmulationMediaDevice>? devices = null) => category switch
     {
         MediaCategory.Floppy => model.MaximumFloppyDriveCount > 0,
         MediaCategory.Cassette => model.SupportsCassetteDrive,
@@ -53,6 +54,7 @@ internal static class ConfigurationValidationFunctions
         MediaCategory.CompactDisc => model.SupportsCompactDiscDrive,
         MediaCategory.Snapshot => true,
         MediaCategory.MemoryCard => model.HasBuiltInMemoryCard,
+        MediaCategory.HardDisk => devices?.Any(device => device.MediaType == EmulationMediaType.HardDisk) == true,
         _ => false
     };
 }

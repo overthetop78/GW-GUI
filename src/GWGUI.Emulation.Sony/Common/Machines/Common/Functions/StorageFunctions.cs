@@ -42,6 +42,7 @@ internal static class StorageSettingsFunctions
                 IsPermanent: model.HasBuiltInCompactDiscDrive,
                 ConfigurationKind: EmulationStorageConfigurationKind.CompactDiscDrive,
                 ConfigurationFields: ((adapter as IEmulatorSettingsAdapter)?.GetSettingsBlocks(configuration) ?? []).Where(block => block.Tab == EmulationMachineTab.Storage).SelectMany(block => block.Fields).ToArray()));
+        devices.AddRange(mediaAdapter?.GetStorageDevices(configuration) ?? []);
         devices = devices.OrderByDescending(device => device.Slot.Category == EmulationMediaCategory.CompactDiscDrive).ThenByDescending(device => device.IsPermanent).ThenBy(device => device.Slot.Index).ToList();
         var configured = devices.Where(device => device.Slot.Category switch
         {
@@ -49,6 +50,7 @@ internal static class StorageSettingsFunctions
                 || OptionBool(options, StorageSettingsFunctionsConstants.MemoryCardEnabledOptionPrefix + device.Slot.Index),
             EmulationMediaCategory.CompactDiscDrive => model.HasBuiltInCompactDiscDrive
                 || OptionBool(options, StorageSettingsFunctionsConstants.CompactDiscDriveEnabledOption),
+            EmulationMediaCategory.HardDisk => (configuration.Media ?? []).Any(media => media.Category == MediaCategory.HardDisk),
             _ => false
         }).Select(device => device.Slot).ToArray();
         var mounted = EmulationMediaConversionFunctions.ToCommon(configuration.Media ?? []);
@@ -63,7 +65,18 @@ internal static class StorageSettingsFunctions
     internal static MachineConfiguration Apply(MachineConfiguration configuration, EmulationStorageSettings settings)
     {
         var mediaAdapter = EmulatorCatalog.CreateAdapters().FirstOrDefault(item => item.EmulatorId == configuration.EmulatorId) as IEmulatorMediaAdapter;
-        var media = settings.MountedMedia.Select((item, index) => new MediaConfiguration(
+        var adapterDevices = mediaAdapter?.GetStorageDevices(configuration) ?? [];
+        var hardDisks = settings.MountedMedia.Where(item => item.Type == EmulationMediaType.HardDisk && settings.ConfiguredSlots.Contains(item.Slot)).ToArray();
+        if (hardDisks.Select(item => item.Slot).Distinct().Count() != hardDisks.Length) throw new InvalidDataException(nameof(settings));
+        foreach (var disk in hardDisks)
+        {
+            var device = adapterDevices.SingleOrDefault(item => item.Slot == disk.Slot && item.MediaType == disk.Type)
+                ?? throw new InvalidDataException(nameof(settings));
+            var format = device.HardDiskFormats?.FirstOrDefault(item => item.Extension.Equals(Path.GetExtension(disk.Path), StringComparison.OrdinalIgnoreCase))
+                ?? throw new InvalidDataException(disk.Path);
+            HardDiskImageValidation.ValidateExisting(disk.Path, format);
+        }
+        var media = settings.MountedMedia.Where(item => item.Type != EmulationMediaType.HardDisk || settings.ConfiguredSlots.Contains(item.Slot)).Select((item, index) => new MediaConfiguration(
             item.Path, item.Type switch
             {
                 EmulationMediaType.Floppy => MediaCategory.Floppy,
@@ -71,11 +84,12 @@ internal static class StorageSettingsFunctions
                 EmulationMediaType.Cartridge => MediaCategory.Cartridge,
                 EmulationMediaType.CompactDisc => MediaCategory.CompactDisc,
                 EmulationMediaType.MemoryCard => MediaCategory.MemoryCard,
+                EmulationMediaType.HardDisk => MediaCategory.HardDisk,
                 _ => throw new ArgumentOutOfRangeException(nameof(settings), item.Type, null)
             }, IsReadOnly: item.IsReadOnly, IsInserted: item.IsInserted, MountOrder: index)).ToArray();
         var model = ModelCatalog.Get(configuration.Model);
         foreach (var item in media)
-            if (!ConfigurationValidationFunctions.Supports(model, item.Category))
+            if (!ConfigurationValidationFunctions.Supports(model, item.Category, adapterDevices))
                 throw new ArgumentOutOfRangeException(nameof(settings), item.Category, null);
         var options = new Dictionary<string, string>(configuration.Options
             ?? new Dictionary<string, string>(), StringComparer.Ordinal)

@@ -57,6 +57,7 @@ internal sealed class ExternalCore : IEmulatorCore
 
     public void Initialize(MachineConfiguration configuration, string sessionDirectory, string? saveDirectory = null)
     {
+        configuration = Functions.HardDiskRuntimeFunctions.Configure(configuration);
         _configuration = configuration;
         _sessionDirectory = Path.GetFullPath(sessionDirectory);
         _saveDirectory = saveDirectory is null ? null : Path.GetFullPath(saveDirectory);
@@ -83,7 +84,10 @@ internal sealed class ExternalCore : IEmulatorCore
         var isolatedCorePath = Path.Combine(isolatedCoreDirectory, ExternalCoreConstants.LibraryName);
         File.Copy(sourceCorePath, isolatedCorePath, true);
         var contentPath = PrepareContentPath(media, contentDirectory);
-        _host = new ExternalHostCallbacks(systemDirectory, contentDirectory, saveDirectory, configuration.Options ?? new Dictionary<string, string>());
+        Func<string, (string Path, bool IsReadOnly)>? pathResolver = Functions.HardDiskRuntimeFunctions.Selected(configuration) is null
+            ? null : path => Functions.HardDiskRuntimeFunctions.Resolve(configuration, systemDirectory, path);
+        _host = new ExternalHostCallbacks(systemDirectory, contentDirectory, saveDirectory, configuration.Options ?? new Dictionary<string, string>(),
+            Functions.HardDiskRuntimeFunctions.SystemDirectory(configuration, systemDirectory), pathResolver);
 
         try
         {
@@ -144,7 +148,7 @@ internal sealed class ExternalCore : IEmulatorCore
         }
     }
 
-    internal static IReadOnlyList<MediaConfiguration> ResolveConfiguredMedia(MachineConfiguration configuration) => (configuration.Media ?? []).Where(item => item.IsInserted).OrderBy(item => item.MountOrder).ToArray();
+    internal static IReadOnlyList<MediaConfiguration> ResolveConfiguredMedia(MachineConfiguration configuration) => (configuration.Media ?? []).Where(item => item.IsInserted && item.Category != MediaCategory.HardDisk).OrderBy(item => item.MountOrder).ToArray();
 
     internal static string? PrepareContentPath(IReadOnlyList<MediaConfiguration> media, string contentDirectory)
     {

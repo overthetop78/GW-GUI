@@ -3,6 +3,7 @@ namespace GWGUI.Emulation.Sony.Common.Interfaces;
 internal interface IEmulatorMediaAdapter
 {
     IReadOnlyList<string> SupportedContentExtensions { get; }
+    IReadOnlyList<EmulationMediaDevice> GetStorageDevices(MachineConfiguration configuration) => [];
     int GetMemoryCardCount(MachineConfiguration configuration) => configuration.Model switch
     {
         ModelConstants.Psp => 1,

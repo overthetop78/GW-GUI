@@ -327,16 +327,20 @@ public sealed class HardDiskDriveConfigurationDialog : Window
         _limits.Text = LocExtension.Get("Emulation.Hdd.Limits", StorageSizeFormatter.FormatCapacity(format.MaximumBytes));
         _preallocate.IsEnabled = format.SupportsFixedAllocation;
         if (!format.SupportsFixedAllocation) _preallocate.IsChecked = false;
-        var sizeChoices = new long[] { 20, 40, 80, 120, 250, 500, 1024, 2047 }.Where(size => IsSupportedCapacity(size * 1024 * 1024, format)).Select(size => new DiskSizeChoice(size, StorageSizeFormatter.FormatCapacity(size * 1024 * 1024)))
-            .Append(new DiskSizeChoice(null, LocExtension.Get("Emulation.Storage.Geometry.CustomSize"))).ToArray();
+        var sizeChoices = format.AllowedCapacitiesBytes is { } allowed
+            ? allowed.Distinct().Order().Where(size => IsSupportedCapacity(size, format)).Select(size => new HardDiskCapacityChoice(size, StorageSizeFormatter.FormatCapacity(size))).ToArray()
+            : new long[] { 20, 40, 80, 120, 250, 500, 1024, 2047 }.Select(size => size * 1024 * 1024).Where(size => IsSupportedCapacity(size, format))
+                .Select(size => new HardDiskCapacityChoice(size, StorageSizeFormatter.FormatCapacity(size)))
+                .Append(new HardDiskCapacityChoice(null, LocExtension.Get("Emulation.Storage.Geometry.CustomSize"))).ToArray();
         _sizePreset.ItemsSource = sizeChoices;
-        _sizePreset.SelectedIndex = sizeChoices.Length > 1 ? 1 : 0;
+        _sizePreset.SelectedIndex = format.AllowedCapacitiesBytes is null ? sizeChoices.Length > 1 ? 1 : 0
+            : Math.Max(0, Array.FindIndex(sizeChoices, choice => choice.Bytes == format.DefaultBytes));
         UpdateDiskGeometry();
     }
 
     private void UpdateDiskGeometry()
     {
-        var custom = (_sizePreset.SelectedItem as DiskSizeChoice)?.SizeMiB is null;
+        var custom = (_sizePreset.SelectedItem as HardDiskCapacityChoice)?.Bytes is null;
         _customSize.IsEnabled = custom;
         _sizeUnit.IsEnabled = custom;
         var automatic = _automaticGeometry.IsChecked == true;
@@ -383,9 +387,9 @@ public sealed class HardDiskDriveConfigurationDialog : Window
 
     private bool TryGetSelectedSize(out long byteSize)
     {
-        if ((_sizePreset.SelectedItem as DiskSizeChoice)?.SizeMiB is long preset)
+        if ((_sizePreset.SelectedItem as HardDiskCapacityChoice)?.Bytes is long preset)
         {
-            byteSize = preset * 1024L * 1024L;
+            byteSize = preset;
             return true;
         }
         if (double.TryParse(_customSize.Text, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.CurrentCulture, out var custom) && custom > 0)
@@ -401,7 +405,7 @@ public sealed class HardDiskDriveConfigurationDialog : Window
         return false;
     }
 
-    private static bool IsSupportedCapacity(long byteSize, HardDiskImageFormat format) => byteSize >= format.MinimumBytes && byteSize <= format.MaximumBytes && format.LogicalSectorSizes.Any(sectorSize => byteSize % sectorSize == 0);
+    private static bool IsSupportedCapacity(long byteSize, HardDiskImageFormat format) => HardDiskImageValidation.IsSupportedCapacity(byteSize, format);
 
 }
 

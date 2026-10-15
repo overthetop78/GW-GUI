@@ -10,6 +10,7 @@ using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Collections.Concurrent;
 using GWGUI.Emulation;
+using GWGUI.Emulation.Services;
 
 namespace GWGUI.Emulation.Sony.Emulators.Pcsx2.Services;
 
@@ -25,6 +26,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
     private long _videoSequence;
     private long _audioSequence;
     private bool _disposed;
+    private readonly ExternalCoreVirtualFileSystem _virtualFileSystem;
     private int _optionsUpdated;
     private readonly object _inputGate = new();
     private readonly int[] _controllerTypes = Enumerable.Repeat((int)ControllerType.None, ControllerPortConstants.MaximumControllerPortCount).ToArray();
@@ -39,12 +41,13 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
     private readonly Dictionary<string, bool> _optionVisibility = new(StringComparer.Ordinal);
     internal ExternalDiskControl DiskControl { get; } = new();
 
-    internal ExternalHostCallbacks(string systemDirectory, string contentDirectory, string saveDirectory, IReadOnlyDictionary<string, string>? options)
+    internal ExternalHostCallbacks(string systemDirectory, string contentDirectory, string saveDirectory, IReadOnlyDictionary<string, string>? options,
+        string? nativeSystemDirectory = null, Func<string, (string Path, bool IsReadOnly)>? pathResolver = null)
     {
         Directory.CreateDirectory(systemDirectory);
         Directory.CreateDirectory(contentDirectory);
         Directory.CreateDirectory(saveDirectory);
-        SystemDirectory = Path.GetFullPath(systemDirectory);
+        SystemDirectory = nativeSystemDirectory ?? Path.GetFullPath(systemDirectory);
         ContentDirectory = Path.GetFullPath(contentDirectory);
         SaveDirectory = Path.GetFullPath(saveDirectory);
         if (options is not null)
@@ -62,6 +65,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
         InputState = HandleInputState;
         Log = HandleLog;
         Led = HandleLed;
+        _virtualFileSystem = new ExternalCoreVirtualFileSystem(readObserver: null, pathResolver: pathResolver);
     }
 
     internal string SystemDirectory { get; }
@@ -165,6 +169,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
                 _previousKeys = new HashSet<EmulationKey>();
             }
             _disposed = true;
+            _virtualFileSystem.Dispose();
         }
     }
 }

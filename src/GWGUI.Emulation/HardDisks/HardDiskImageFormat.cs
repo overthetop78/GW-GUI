@@ -10,6 +10,9 @@ public sealed record HardDiskImageFormat(string Id, string Extension, string Int
 {
     public long MinimumBytes { get; init; } = 512;
 
+    /// <summary>Exact native capacities, or null when the other size limits suffice.</summary>
+    public IReadOnlyList<long>? AllowedCapacitiesBytes { get; init; }
+
     public IReadOnlySet<int> LogicalSectorSizes { get; init; } = new[] { 512 }.ToFrozenSet();
 
     public DiskChsGeometry? Geometry { get; init; }

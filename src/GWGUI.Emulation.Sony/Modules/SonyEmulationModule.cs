@@ -227,6 +227,7 @@ public sealed class SonyEmulationModule : IEmulationModule, IEmulationEmulatorMa
                 EmulationMediaType.Cassette => MediaCategory.Cassette,
                 EmulationMediaType.Cartridge => MediaCategory.Cartridge,
                 EmulationMediaType.CompactDisc => MediaCategory.CompactDisc,
+                EmulationMediaType.HardDisk => MediaCategory.HardDisk,
                 _ => throw new ArgumentOutOfRangeException(nameof(media), item.Type, null)
             }, IsReadOnly: item.IsReadOnly, IsInserted: item.IsInserted,
             MountOrder: index)).ToArray()

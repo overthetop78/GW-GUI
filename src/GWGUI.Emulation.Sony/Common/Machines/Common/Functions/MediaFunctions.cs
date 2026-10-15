@@ -16,6 +16,7 @@ internal static class EmulationMediaConversionFunctions
                 MediaCategory.Cartridge => EmulationMediaCategory.CartridgeSlot,
                 MediaCategory.CompactDisc => EmulationMediaCategory.CompactDiscDrive,
                 MediaCategory.MemoryCard => EmulationMediaCategory.MemoryCard,
+                MediaCategory.HardDisk => EmulationMediaCategory.HardDisk,
                 _ => throw new ArgumentOutOfRangeException(nameof(media), item.Category, null)
             };
             var index = indexes.GetValueOrDefault(category);
@@ -27,6 +28,7 @@ internal static class EmulationMediaConversionFunctions
                 MediaCategory.Cartridge => EmulationMediaType.Cartridge,
                 MediaCategory.CompactDisc => EmulationMediaType.CompactDisc,
                 MediaCategory.MemoryCard => EmulationMediaType.MemoryCard,
+                MediaCategory.HardDisk => EmulationMediaType.HardDisk,
                 _ => throw new ArgumentOutOfRangeException(nameof(media), item.Category, null)
             };
             return new EmulationMedia(Path.GetFullPath(item.Path), new EmulationMediaSlot(category, index), type, item.IsReadOnly, item.IsInserted);
