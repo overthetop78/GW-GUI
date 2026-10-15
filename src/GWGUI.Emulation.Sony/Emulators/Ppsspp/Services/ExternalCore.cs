@@ -27,6 +27,7 @@ internal sealed class ExternalCore : IEmulatorCore
     private string? _saveDirectory;
     private bool _gameLoaded;
     private bool _initialized;
+    private bool _disposing;
 
     internal ExternalCore(string corePath) => _corePath = corePath;
 
@@ -221,14 +222,11 @@ internal sealed class ExternalCore : IEmulatorCore
 
     public void Stop()
     {
+        var gameLoaded = _gameLoaded;
+        _gameLoaded = false;
         try { _host?.HardwareRender.NotifyDestroy(); }
-        finally
-        {
-            try { if (_gameLoaded) _unloadGame?.Invoke(); }
-            finally { _gameLoaded = false; }
-        }
+        finally { if (gameLoaded) _unloadGame?.Invoke(); }
     }
-
     private void ValidateExtension(string? path)
     {
         if (path is null) return;
@@ -261,33 +259,41 @@ internal sealed class ExternalCore : IEmulatorCore
 
     public void Dispose()
     {
-        try { Stop(); }
-        finally
+        if (_disposing) return;
+        _disposing = true;
+        try
         {
-            try
-            {
-                if (_initialized) _deinitialize?.Invoke();
-            }
+            var callbacks = _host;
+            try { Stop(); }
             finally
             {
-                _initialized = false;
-                _deinitialize = null;
-                _unloadGame = null;
-                _run = null;
-                _reset = null;
-                _setControllerPortDevice = null;
-                _getSerializedSize = null;
-                _serialize = null;
-                _unserialize = null;
-                try { _host?.Dispose(); }
+                try
+                {
+                    if (_initialized) _deinitialize?.Invoke();
+                }
                 finally
                 {
-                    _host = null;
-                    try { _library?.Dispose(); }
-                    finally { _library = null; }
+                    _initialized = false;
+                    _deinitialize = null;
+                    _unloadGame = null;
+                    _run = null;
+                    _reset = null;
+                    _setControllerPortDevice = null;
+                    _getSerializedSize = null;
+                    _serialize = null;
+                    _unserialize = null;
+                    try { _host?.Dispose(); }
+                    finally
+                    {
+                        _host = null;
+                        try { _library?.Dispose(); }
+                        finally { GC.KeepAlive(callbacks); _library = null; }
+                    }
                 }
             }
+
         }
+        finally { _disposing = false; }
     }
 }
 

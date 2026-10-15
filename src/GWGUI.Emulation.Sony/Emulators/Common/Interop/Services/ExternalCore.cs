@@ -29,6 +29,7 @@ internal sealed partial class ExternalCore : IEmulatorCore
     private string? _saveDirectory;
     private bool _gameLoaded;
     private bool _initialized;
+    private bool _disposing;
     private IReadOnlyList<CoreControllerPort>? _controllerPorts;
     private IReadOnlyList<(string Source, string Native, int Size)> _firmwareFiles = [];
 
@@ -269,6 +270,7 @@ internal sealed partial class ExternalCore : IEmulatorCore
     public void Stop()
     {
         if (!_gameLoaded) return;
+        _gameLoaded = false;
         try { PersistSaveMemory(); }
         finally
         {
@@ -282,7 +284,6 @@ internal sealed partial class ExternalCore : IEmulatorCore
                 try { PersistMemoryCards(); }
                 finally
                 {
-                    _gameLoaded = false;
                     _saveMemoryReady = false;
                     _memoryCardFiles.Clear();
                 }
@@ -328,50 +329,57 @@ internal sealed partial class ExternalCore : IEmulatorCore
 
     public void Dispose()
     {
-        var callbacks = _host;
-        try { _host?.HardwareRender.NotifyDestroy(); }
-        finally
+        if (_disposing) return;
+        _disposing = true;
+        try
         {
-
-            try { Stop(); }
+            var callbacks = _host;
+            try { _host?.HardwareRender.NotifyDestroy(); }
             finally
             {
-                try
-                {
-                    if (_initialized) _deinitialize?.Invoke();
-                }
+
+                try { Stop(); }
                 finally
                 {
-                    _initialized = false;
-                    _deinitialize = null;
-                    _unloadGame = null;
-                    _run = null;
-                    _reset = null;
-                    _setControllerPortDevice = null;
-                    _getSerializedSize = null;
-                    _serialize = null;
-                    _unserialize = null;
-                    _getMemoryData = null;
-                    _getMemorySize = null;
-                    try { FirmwareRuntimeFunctions.Persist(_firmwareFiles); }
+                    try
+                    {
+                        if (_initialized) _deinitialize?.Invoke();
+                    }
                     finally
                     {
-                        _firmwareFiles = [];
-                        try { _host?.Dispose(); }
+                        _initialized = false;
+                        _deinitialize = null;
+                        _unloadGame = null;
+                        _run = null;
+                        _reset = null;
+                        _setControllerPortDevice = null;
+                        _getSerializedSize = null;
+                        _serialize = null;
+                        _unserialize = null;
+                        _getMemoryData = null;
+                        _getMemorySize = null;
+                        try { FirmwareRuntimeFunctions.Persist(_firmwareFiles); }
                         finally
                         {
-                            _host = null;
-                            try { _library?.Dispose(); }
+                            _firmwareFiles = [];
+                            try { _host?.Dispose(); }
                             finally
                             {
-                                GC.KeepAlive(callbacks);
-                                _library = null;
-                                ReleaseContentBuffers();
+                                _host = null;
+                                try { _library?.Dispose(); }
+                                finally
+                                {
+                                    GC.KeepAlive(callbacks);
+                                    _library = null;
+                                    ReleaseContentBuffers();
+                                }
                             }
                         }
                     }
                 }
             }
+
         }
+        finally { _disposing = false; }
     }
 }

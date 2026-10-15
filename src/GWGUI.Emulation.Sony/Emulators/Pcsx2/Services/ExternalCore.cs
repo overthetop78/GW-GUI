@@ -30,6 +30,7 @@ internal sealed class ExternalCore : IEmulatorCore
     private string? _saveDirectory;
     private bool _gameLoaded;
     private bool _initialized;
+    private bool _disposing;
     private readonly List<(string Source, string Native)> _memoryCardFiles = [];
     private IReadOnlyList<(string Source, string Native, int Size)> _firmwareFiles = [];
 
@@ -249,6 +250,7 @@ internal sealed class ExternalCore : IEmulatorCore
     public void Stop()
     {
         if (!_gameLoaded) return;
+        _gameLoaded = false;
         try
         {
             try { _host?.HardwareRender.NotifyDestroy(); }
@@ -256,7 +258,6 @@ internal sealed class ExternalCore : IEmulatorCore
         }
         finally
         {
-            _gameLoaded = false;
             try { NativeMemoryCards.PersistFiles(_memoryCardFiles, StorageSettingsFunctionsConstants.Ps2MemoryCardSize); }
             finally { _memoryCardFiles.Clear(); }
         }
@@ -294,44 +295,51 @@ internal sealed class ExternalCore : IEmulatorCore
 
     public void Dispose()
     {
-        var callbacks = _host;
-        try { _host?.HardwareRender.NotifyDestroy(); }
-        finally
+        if (_disposing) return;
+        _disposing = true;
+        try
         {
-            try { Stop(); }
+            var callbacks = _host;
+            try { _host?.HardwareRender.NotifyDestroy(); }
             finally
             {
-                try
-                {
-                    if (_initialized) _deinitialize?.Invoke();
-                }
+                try { Stop(); }
                 finally
                 {
-                    _initialized = false;
-                    _deinitialize = null;
-                    _unloadGame = null;
-                    _run = null;
-                    _reset = null;
-                    _setControllerPortDevice = null;
-                    _getSerializedSize = null;
-                    _serialize = null;
-                    _unserialize = null;
-                    try { NativeFirmware.Persist(_firmwareFiles); }
+                    try
+                    {
+                        if (_initialized) _deinitialize?.Invoke();
+                    }
                     finally
                     {
-                        _firmwareFiles = [];
-                        try { _host?.Dispose(); }
+                        _initialized = false;
+                        _deinitialize = null;
+                        _unloadGame = null;
+                        _run = null;
+                        _reset = null;
+                        _setControllerPortDevice = null;
+                        _getSerializedSize = null;
+                        _serialize = null;
+                        _unserialize = null;
+                        try { NativeFirmware.Persist(_firmwareFiles); }
                         finally
                         {
-                            _host = null;
-                            try { _library?.Dispose(); }
-                            finally { GC.KeepAlive(callbacks); _library = null; }
+                            _firmwareFiles = [];
+                            try { _host?.Dispose(); }
+                            finally
+                            {
+                                _host = null;
+                                try { _library?.Dispose(); }
+                                finally { GC.KeepAlive(callbacks); _library = null; }
+                            }
                         }
                     }
                 }
+
             }
-        
+
         }
+        finally { _disposing = false; }
     }
 }
 
