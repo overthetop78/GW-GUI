@@ -74,10 +74,9 @@ internal sealed partial class ExternalCore : IEmulatorCore
         using (var stream = File.OpenRead(sourceCorePath))
             CoreSha256 = Convert.ToHexString(SHA256.HashData(stream));
 
-        var contentDirectory = Path.Combine(sessionDirectory, CoreDirectoryConstants.ContentDirectoryName);
         saveDirectory = Path.GetFullPath(saveDirectory ?? Path.Combine(sessionDirectory, CoreDirectoryConstants.SavesDirectoryName));
         var coreSaveDirectory = Path.Combine(saveDirectory, _definition.Id);
-        var systemDirectory = Path.Combine(sessionDirectory, CoreDirectoryConstants.SystemDirectoryName);
+        var (systemDirectory, contentDirectory) = CoreDirectoryFunctions.NativeDataDirectories(_definition, sessionDirectory, saveDirectory);
         _saveMemoryPath = Path.Combine(coreSaveDirectory, SaveMemoryConstants.FileName);
         Directory.CreateDirectory(systemDirectory);
         FirmwareConfigurationFunctions.CopySelectedFiles(configuration, new Engine().Adapter(configuration), systemDirectory);

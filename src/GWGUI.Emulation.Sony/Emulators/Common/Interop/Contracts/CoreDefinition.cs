@@ -13,4 +13,5 @@ internal sealed record CoreDefinition(
     IReadOnlyList<ControllerType> ControllerTypes,
     TimeSpan? StartupTimeout = null,
     TimeSpan? ShutdownTimeout = null,
-    IReadOnlyList<string>? StartupFailureDiagnostics = null);
+    IReadOnlyList<string>? StartupFailureDiagnostics = null,
+    bool PersistentDataDirectories = false);

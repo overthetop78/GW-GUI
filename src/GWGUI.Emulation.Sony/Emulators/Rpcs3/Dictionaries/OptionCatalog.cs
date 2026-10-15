@@ -152,6 +152,7 @@ internal static class OptionCatalog
             OptionConstants.RendererDefaultValue, OptionConstants.RendererDefaultValue,
         [
             new(OptionValueFunctions.ToNative(Renderer.Opengl), OptionConstants.RendererOpenglDisplayName),
+            new(OptionValueFunctions.ToNative(Renderer.Vulkan), OptionConstants.RendererVulkanDisplayName),
             new(OptionValueFunctions.ToNative(Renderer.Null), OptionValueResourceConstants.NullNoVideoLabelResource),
         ], IsVisible: true, Tab: EmulationMachineTab.Video, RequiresRestart: true),
         new(OptionConstants.FrameLimitKey, OptionConstants.FrameLimitLabelResource, OptionConstants.FrameLimitHelpResource, null,

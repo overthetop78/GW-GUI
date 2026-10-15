@@ -121,7 +121,9 @@ internal static class OptionConstants
     internal const string RendererOpengl = "opengl";
     internal const string RendererOpenglDisplayName = "OpenGL";
     internal const string RendererNull = "null";
-    internal static readonly string RendererDefaultValue = OptionValueFunctions.ToNative(Renderer.Opengl);
+    internal const string RendererVulkan = "vulkan";
+    internal const string RendererVulkanDisplayName = "Vulkan";
+    internal static readonly string RendererDefaultValue = OptionValueFunctions.ToNative(Renderer.Vulkan);
     internal const string FrameLimitKey = "rpcs3_frame_limit";
     internal const string FrameLimitLabelResource = "Emulation.Option.rpcs3.rpcs3_frame_limit.Label";
     internal const string FrameLimitHelpResource = "Emulation.Option.rpcs3.rpcs3_frame_limit.Help";

@@ -4,4 +4,5 @@ internal enum Renderer
 {
     Opengl = 0,
     Null = 1,
+    Vulkan = 2,
 }

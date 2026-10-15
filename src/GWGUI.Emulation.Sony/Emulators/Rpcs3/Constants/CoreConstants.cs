@@ -21,5 +21,6 @@ internal static class CoreConstants
         RequiresExternalFirmware: true,
         ControllerTypes: [ControllerType.Joystick, ControllerType.None],
         StartupTimeout: TimeSpan.FromMinutes(FirmwareInstallationTimeoutMinutes),
-        ShutdownTimeout: TimeSpan.FromMinutes(CacheShutdownTimeoutMinutes));
+        ShutdownTimeout: TimeSpan.FromMinutes(CacheShutdownTimeoutMinutes),
+        PersistentDataDirectories: true);
 }
