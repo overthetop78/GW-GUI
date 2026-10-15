@@ -11,7 +11,8 @@ internal static class StorageFunctions
     [
         new(EmulationMediaSlot.HardDisk0, EmulationMediaType.HardDisk, [HardDiskConstants.Extension, HardDiskConstants.ImageExtension],
             IsRemovable: false, RequiresMachineRecreation: true, DisplayLabel: HardDiskConstants.InterfaceName,
-            ModelResourceKey: OptionConstants.Dev9HddLabel, HardDiskFormats: Formats)
+            ModelResourceKey: OptionConstants.Dev9HddLabel, HardDiskFormats: Formats,
+            ConfigurationKind: EmulationStorageConfigurationKind.HardDiskDrive)
     ];
 
     private static IReadOnlyList<HardDiskImageFormat> CreateFormats()

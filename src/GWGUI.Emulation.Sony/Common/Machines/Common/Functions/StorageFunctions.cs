@@ -52,7 +52,8 @@ internal static class StorageSettingsFunctions
                 || OptionBool(options, StorageSettingsFunctionsConstants.MemoryCardEnabledOptionPrefix + device.Slot.Index),
             EmulationMediaCategory.CompactDiscDrive => model.HasBuiltInCompactDiscDrive
                 || OptionBool(options, StorageSettingsFunctionsConstants.CompactDiscDriveEnabledOption),
-            EmulationMediaCategory.HardDisk => (configuration.Media ?? []).Any(media => media.Category == MediaCategory.HardDisk),
+            EmulationMediaCategory.HardDisk => mounted.Any(media => media.Slot == device.Slot)
+                || OptionBool(options, StorageSettingsFunctionsConstants.HardDiskEnabledOptionPrefix + device.Slot.Index),
             _ => false
         }).Select(device => device.Slot).ToArray();
         var deviceSettings = devices.Where(device => device.MediaType == EmulationMediaType.MemoryCard)
@@ -99,6 +100,8 @@ internal static class StorageSettingsFunctions
         };
         foreach (var device in settings.AvailableDevices.Where(device => device.MediaType == EmulationMediaType.MemoryCard))
             options[StorageSettingsFunctionsConstants.MemoryCardEnabledOptionPrefix + device.Slot.Index] = settings.ConfiguredSlots.Contains(device.Slot).ToString();
+        foreach (var device in adapterDevices.Where(device => device.MediaType == EmulationMediaType.HardDisk))
+            options[StorageSettingsFunctionsConstants.HardDiskEnabledOptionPrefix + device.Slot.Index] = settings.ConfiguredSlots.Contains(device.Slot).ToString();
         var cdOptions = settings.DeviceSettings?.FirstOrDefault(item => item.Slot == EmulationMediaSlot.Cd0) ?.CompactDisc?.Options;
         var cdFields = settings.AvailableDevices.FirstOrDefault(device => device.Slot == EmulationMediaSlot.Cd0) ?.ConfigurationFields ?? [];
         foreach (var field in cdFields)

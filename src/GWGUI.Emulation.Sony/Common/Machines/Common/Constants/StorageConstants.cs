@@ -5,6 +5,7 @@ namespace GWGUI.Emulation.Sony.Common.Machines.Common.Constants;
 internal static class StorageSettingsFunctionsConstants
 {
     internal const string CompactDiscDriveEnabledOption = "storage.compactDiscDriveEnabled";
+    internal const string HardDiskEnabledOptionPrefix = "storage.hardDiskEnabled";
     internal const string CompactDiscDriveLabel = "CD";
     internal const string CdModelResource = "Emulation.Sony.Storage.CD";
     internal const int MemoryCardCount = 2;
