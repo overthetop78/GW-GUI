@@ -7,7 +7,7 @@ public sealed class EmulationModuleManifestTests
 {
     private const string Valid = """
         {"schemaVersion":2,"id":"commodore","entryAssembly":"gwgui.emulation.commodore.dll",
-         "moduleVersion":"1.0.0","hostApiMinimum":"1.0","hostApiMaximum":"1.0",
+         "moduleVersion":"1.0.0","hostApiMinimum":"1.0","hostApiMaximum":"1.1",
          "updateCatalogUrl":"https://example.test/commodore/update-catalog.json"}
         """;
 
@@ -17,6 +17,15 @@ public sealed class EmulationModuleManifestTests
         var manifest = EmulationModuleManifestReader.Parse(Valid);
         Assert.Equal("commodore", manifest.Id);
         Assert.Equal("1.0.0", manifest.ModuleVersion);
+    }
+
+    [Fact]
+    public void FeedbackApiRequiresAnUpdatedHostBeforeModuleLoading()
+    {
+        var json = JsonNode.Parse(Valid)!;
+        json["hostApiMinimum"] = "1.1";
+        Assert.Throws<InvalidDataException>(() => EmulationModuleManifestReader.Parse(json.ToJsonString(), new Version(1, 0)));
+        Assert.NotNull(EmulationModuleManifestReader.Parse(json.ToJsonString(), new Version(1, 1)));
     }
 
     [Theory]

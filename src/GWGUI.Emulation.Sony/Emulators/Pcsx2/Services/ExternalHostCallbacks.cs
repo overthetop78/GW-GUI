@@ -1,3 +1,4 @@
+using NativeControllerFeedback = GWGUI.Emulation.Sony.Emulators.Common.Interop.Services.NativeControllerFeedback;
 using GWGUI.Emulation.Sony.Emulators.Common.Interop.Functions;
 using GWGUI.Emulation.Sony.Emulators.Pcsx2.Exceptions;
 using GWGUI.Emulation.Sony.Emulators.Pcsx2.Constants;
@@ -30,6 +31,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
     private bool _disposed;
     private volatile bool _shutdownRequested;
     internal bool ShutdownRequested => _shutdownRequested;
+    internal NativeControllerFeedback Feedback { get; } = new();
     private readonly ExternalCoreVirtualFileSystem _virtualFileSystem;
     private int _optionsUpdated;
     private readonly object _inputGate = new();
@@ -161,6 +163,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
         }
         finally
         {
+            Feedback.Dispose();
             _nativeStrings.Clear();
             _keyboardEvent = null;
             _updateOptionsDisplay = null;

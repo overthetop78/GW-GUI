@@ -27,6 +27,7 @@ internal sealed class EmulationControllerPortEditor
         };
         Visualizer = new ControllerVisualizer { Visibility = Visibility.Collapsed };
         Bindings = new InputBindingEditor();
+        Outputs = new EmulationControllerOutputEditor();
         Visualizer.VisualZoneClicked += control =>
         {
             if (_visualCommandIds?.TryGetValue(control, out var commandId) == true)
@@ -56,6 +57,7 @@ internal sealed class EmulationControllerPortEditor
     internal string? PhysicalDeviceId { get; set; }
     internal ControllerVisualizer Visualizer { get; }
     internal InputBindingEditor Bindings { get; }
+    internal EmulationControllerOutputEditor Outputs { get; }
     internal int DeadZonePercent { get; set; }
 
     internal void SetVisualProfile(ControllerArtworkProfile? profile, IReadOnlyDictionary<EmulationControllerVisualControl, string>? commandIds)
@@ -66,5 +68,5 @@ internal sealed class EmulationControllerPortEditor
         Visualizer.Visibility = profile is null ? Visibility.Collapsed : Visibility.Visible;
     }
 
-    internal EmulationControllerPortSettings Settings => new(Number, Type, Visual, Visualizer, Bindings);
+    internal EmulationControllerPortSettings Settings => new(Number, Type, Visual, Visualizer, Bindings, Outputs);
 }

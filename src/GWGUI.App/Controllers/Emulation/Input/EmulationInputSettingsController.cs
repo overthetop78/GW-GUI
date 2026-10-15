@@ -167,6 +167,7 @@ internal sealed class EmulationInputSettingsController
             editor.Type.SelectedItem = choices.FirstOrDefault(choice => choice.Choice.Id == port.SelectedControllerId) ?? choices.FirstOrDefault();
         }
         editor.PhysicalDeviceId = port.PhysicalDeviceId;
+        editor.Outputs.SetBindings(port.OutputBindings);
         editor.Bindings.SetReservedBindings(_reservedBindings);
         editor.DeadZonePercent = port.DeadZonePercent;
         editor.Bindings.SetRows(port.Bindings.Definitions, port.Bindings.Values, _moduleId);
@@ -182,6 +183,7 @@ internal sealed class EmulationInputSettingsController
             SettingsChanged?.Invoke(this, EventArgs.Empty);
         };
         editor.Bindings.BindingsChanged += (_, _) => SettingsChanged?.Invoke(this, EventArgs.Empty);
+        editor.Outputs.BindingsChanged += (_, _) => SettingsChanged?.Invoke(this, EventArgs.Empty);
         return editor;
     }
 
@@ -253,6 +255,9 @@ internal sealed class EmulationInputSettingsController
     private void UpdateControllerVisualProfile(EmulationControllerPortEditor editor)
     {
         var selectedChoice = editor.SelectedControllerChoice;
+        var outputs = editor.SelectedVisualId is { } outputVisual && selectedChoice?.VisualOutputDefinitions?.TryGetValue(outputVisual, out var definitionsForOutput) == true
+            ? definitionsForOutput : null;
+        editor.Outputs.SetDefinitions(outputs, _moduleId);
         if (editor.Type.SelectedItem is EmulationControllerCategoryChoiceView && selectedChoice?.BindingDefinitions is { } bindings)
         {
             if (editor.SelectedVisualId is { } selectedVisual && selectedChoice.VisualBindingDefinitions?.TryGetValue(selectedVisual, out var visualBindings) == true) bindings = visualBindings;
@@ -327,7 +332,8 @@ internal sealed class EmulationInputSettingsController
             PhysicalDeviceId = editor.PhysicalDeviceId,
             Bindings = bindings,
             DeadZonePercent = editor.DeadZonePercent,
-            VisualId = editor.SelectedVisualId
+            VisualId = editor.SelectedVisualId,
+            OutputBindings = editor.Outputs.Values
         };
     }
 

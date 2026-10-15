@@ -113,7 +113,7 @@ function New-GwGuiBuild {
             }
             $null = $applicationHashes[$file.Name].Add((Get-FileHash -LiteralPath $file.FullName -Algorithm SHA256).Hash)
         }
-        $hostApiVersion = [Version]'1.0'
+        $hostApiVersion = [Version]'1.1'
         foreach ($moduleDefinition in $SelectedModules) {
             $project = $moduleDefinition.ProjectPath
             $manifest = $moduleDefinition.Manifest

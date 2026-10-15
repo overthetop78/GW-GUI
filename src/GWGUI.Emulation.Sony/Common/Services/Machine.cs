@@ -5,7 +5,7 @@ using System.IO;
 namespace GWGUI.Emulation.Sony.Common.Services;
 
 internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, IEmulationInput,
-    IEmulationMedia, IEmulationVideo, IEmulationAudio, IEmulationSavedStates, IEmulationRuntime
+    IEmulationMedia, IEmulationVideo, IEmulationAudio, IEmulationSavedStates, IEmulationRuntime, IEmulationControllerFeedbackSource
 {
     private readonly object _gate = new();
     private MachineConfiguration _configuration;

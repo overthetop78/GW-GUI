@@ -1,3 +1,4 @@
+using ControllerFeedbackProtocol = GWGUI.Emulation.Sony.Emulators.Common.Interop.Functions.ControllerFeedbackProtocol;
 using GWGUI.Emulation.Sony.Emulators.Pcsx2.Exceptions;
 using GWGUI.Emulation.Sony.Emulators.Pcsx2.Constants;
 using GWGUI.Emulation.Sony.Emulators.Pcsx2.Contracts;
@@ -60,6 +61,7 @@ public static class CoreHost
                             writer.Write(core.DiskCount); writer.Write(core.CurrentDiskIndex);
                             CoreHostProtocol.WriteLedStates(writer, core.LedStates);
                             writer.Write(core.ShutdownRequested);
+                            ControllerFeedbackProtocol.Write(writer, core.ControllerFeedback);
                             break;
                         case HostCommand.RunFrame:
                             var activeCore = EnsureCore(core);
@@ -84,6 +86,7 @@ public static class CoreHost
                             }
                             CoreHostProtocol.WriteLedStates(writer, activeCore.LedStates);
                             writer.Write(activeCore.ShutdownRequested);
+                            ControllerFeedbackProtocol.Write(writer, activeCore.ControllerFeedback);
                             break;
                         case HostCommand.HardReset: EnsureCore(core).HardReset(); WriteSuccess(writer); break;
                         case HostCommand.SoftReset: EnsureCore(core).SoftReset(); WriteSuccess(writer); break;

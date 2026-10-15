@@ -39,6 +39,7 @@ internal sealed class ExternalCore : IEmulatorCore
     public IReadOnlyList<string> Diagnostics => _host?.Diagnostics ?? [];
     public IReadOnlyDictionary<int, bool> LedStates => _host?.LedStates ?? new Dictionary<int, bool>();
     public bool ShutdownRequested => _host?.ShutdownRequested ?? false;
+    public IReadOnlyList<ControllerFeedbackState> ControllerFeedback => _host?.Feedback.Snapshot() ?? [];
     public string CoreName { get; private set; } = string.Empty;
     public string CoreVersion { get; private set; } = string.Empty;
     public IReadOnlySet<string> SupportedContentExtensions { get; private set; } =
@@ -190,6 +191,7 @@ internal sealed class ExternalCore : IEmulatorCore
         var nativeId = NativeControllerFunctions.Resolve(type, port, nativePorts);
         setter((uint)port, nativeId);
         host.SetControllerType(port, type);
+        host.Feedback.ResetPort(port);
         _configuration = ControllerFunctions.WithControllerType(configuration, port, type);
     }
 
@@ -290,6 +292,7 @@ internal sealed class ExternalCore : IEmulatorCore
 
     public void Dispose()
     {
+        var callbacks = _host;
         try { _host?.HardwareRender.NotifyDestroy(); }
         finally
         {
@@ -320,7 +323,7 @@ internal sealed class ExternalCore : IEmulatorCore
                         {
                             _host = null;
                             try { _library?.Dispose(); }
-                            finally { _library = null; }
+                            finally { GC.KeepAlive(callbacks); _library = null; }
                         }
                     }
                 }

@@ -42,4 +42,6 @@
   <data name="Emulation.Controller.Category.DanceSimulation"><value>Mô phỏng nhảy</value></data>
   <data name="Emulation.Controller.Category.SingingSimulation"><value>Trình mô phỏng ca hát</value></data>
   <data name="Emulation.Controller.Category.OtherSimulation"><value>Các ngoại biên mô phỏng khác</value></data>
+  <data name="Emulation.Controller.Feedback.Strong"><value>rung động mạnh</value></data>
+  <data name="Emulation.Controller.Feedback.Weak"><value>rung động yếu</value></data>
 </root>

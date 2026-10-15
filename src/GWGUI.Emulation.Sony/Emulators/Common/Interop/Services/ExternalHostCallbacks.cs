@@ -28,6 +28,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
     private bool _disposed;
     private volatile bool _shutdownRequested;
     internal bool ShutdownRequested => _shutdownRequested;
+    internal NativeControllerFeedback Feedback { get; } = new();
     private int _optionsUpdated;
     private readonly object _inputGate = new();
     private readonly int[] _controllerTypes = Enumerable.Repeat((int)ControllerType.None, GWGUI.Emulation.Sony.Common.Constants.ControllerPortConstants.MaximumControllerPortCount).ToArray();
@@ -157,6 +158,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
         }
         finally
         {
+            Feedback.Dispose();
             _nativeStrings.Clear();
             _keyboardEvent = null;
             _updateOptionsDisplay = null;

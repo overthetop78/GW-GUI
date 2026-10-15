@@ -42,4 +42,6 @@
   <data name="Emulation.Controller.Category.DanceSimulation"><value>Simulação de dança</value></data>
   <data name="Emulation.Controller.Category.SingingSimulation"><value>Simulação de canto</value></data>
   <data name="Emulation.Controller.Category.OtherSimulation"><value>Outros periféricos de simulação</value></data>
+  <data name="Emulation.Controller.Feedback.Strong"><value>Vibração forte</value></data>
+  <data name="Emulation.Controller.Feedback.Weak"><value>Vibração fraca</value></data>
 </root>

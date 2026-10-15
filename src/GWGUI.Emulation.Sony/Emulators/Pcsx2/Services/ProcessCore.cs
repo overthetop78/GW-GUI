@@ -1,3 +1,4 @@
+using ControllerFeedbackProtocol = GWGUI.Emulation.Sony.Emulators.Common.Interop.Functions.ControllerFeedbackProtocol;
 using GWGUI.Emulation.Sony.Emulators.Pcsx2.Exceptions;
 using GWGUI.Emulation.Sony.Emulators.Pcsx2.Enums;
 using GWGUI.Emulation.Sony.Emulators.Pcsx2.Constants;
@@ -51,6 +52,7 @@ internal sealed class ProcessCore : IEmulatorCore
     public IReadOnlyList<string> Diagnostics { get; private set; } = [];
     public IReadOnlyDictionary<int, bool> LedStates { get; private set; } = new Dictionary<int, bool>();
     public bool ShutdownRequested { get; private set; }
+    public IReadOnlyList<ControllerFeedbackState> ControllerFeedback { get; private set; } = [];
     public string CoreName { get; private set; } = string.Empty;
     public string CoreVersion { get; private set; } = string.Empty;
     public IReadOnlySet<string> SupportedContentExtensions { get; private set; } = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
@@ -121,6 +123,7 @@ internal sealed class ProcessCore : IEmulatorCore
             CurrentDiskIndex = Response.ReadInt32();
             LedStates = CoreHostProtocol.ReadLedStates(Response);
             ShutdownRequested = Response.ReadBoolean();
+            ControllerFeedback = ControllerFeedbackProtocol.Read(Response);
             _initialized = true;
         }
         catch
@@ -149,6 +152,7 @@ internal sealed class ProcessCore : IEmulatorCore
             Diagnostics = JsonSerializer.Deserialize<IReadOnlyList<string>>(Response.ReadString(), CoreHostProtocol.JsonOptions) ?? [];
         LedStates = CoreHostProtocol.ReadLedStates(Response);
         ShutdownRequested = Response.ReadBoolean();
+        ControllerFeedback = ControllerFeedbackProtocol.Read(Response);
     }
 
     public void HardReset()
@@ -252,6 +256,7 @@ internal sealed class ProcessCore : IEmulatorCore
             Options = [];
             Diagnostics = [];
             ShutdownRequested = false;
+            ControllerFeedback = [];
             LedStates = new Dictionary<int, bool>();
             DiskCount = 0;
             CurrentDiskIndex = -1;

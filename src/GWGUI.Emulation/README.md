@@ -7,10 +7,10 @@ states and its own update source without referencing `GWGUI.App`.
 ## Install
 
 ```xml
-<PackageReference Include="GWGUI.Emulation.SDK" Version="1.0.1" />
+<PackageReference Include="GWGUI.Emulation.SDK" Version="1.1.0" />
 ```
 
-The package targets .NET 10. The current host API is `1.0`, and the current `module.json` schema is
+The package targets .NET 10. The current host API is `1.1`, and the current `module.json` schema is
 `2`.
 
 ## Start a module
@@ -19,7 +19,7 @@ The package targets .NET 10. The current host API is `1.0`, and the current `mod
    directory into a new repository.
 2. Replace the example project identity, namespace, assembly name and values in `module.json`.
 3. Implement `IEmulationModuleFactory` and return an `IEmulationModule` from `Create`.
-4. Keep `hostApiMinimum` and `hostApiMaximum` at `1.0` while targeting this SDK API.
+4. Set `hostApiMinimum` and `hostApiMaximum` to `1.1` when using the optional controller feedback API. Existing modules using only API 1.0 may retain minimum `1.0` after checking compatibility with host API 1.1.
 5. Set `updateCatalogUrl` to the stable HTTPS JSON catalogue published by the module repository.
 6. Package the result with this structure:
 
@@ -59,3 +59,10 @@ documentation or internal implementation while retaining host API `1.0`.
 ## License
 
 MIT
+
+
+## Optional controller feedback (host API 1.1)
+
+A machine may implement `IEmulationControllerFeedbackSource`. Its complete snapshot contains only explicitly configured physical device/motor destinations and normalized strengths. An empty snapshot clears previous outputs. The host must also stop its outputs when inactive, paused, stopped, faulted or disposed, and must attempt every device even if one fails. It never takes ownership of a borrowed physical input service.
+
+`EmulationControllerChoice.VisualOutputDefinitions` describes the commands supported by each visual peripheral; `EmulationControllerPort.OutputBindings` contains the user's explicit destinations. Missing bindings remain empty, including after restoring defaults. Core-specific effect codes belong to the backend adapter, not these contracts. A module using these types must require host API 1.1; an older host must reject its manifest before loading its assembly.

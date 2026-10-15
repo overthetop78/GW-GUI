@@ -13,4 +13,5 @@ public sealed record EmulationControllerChoice(
     IReadOnlyDictionary<string, IReadOnlyList<InputBindingDefinition>>? VisualBindingDefinitions = null)
 {
     public EmulationControllerCategory Category { get; init; }
+    public IReadOnlyDictionary<string, IReadOnlyList<EmulationControllerOutputDefinition>>? VisualOutputDefinitions { get; init; }
 }

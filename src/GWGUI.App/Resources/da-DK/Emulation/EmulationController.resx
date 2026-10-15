@@ -42,4 +42,6 @@
   <data name="Emulation.Controller.Category.DanceSimulation"><value>Dansesimulation</value></data>
   <data name="Emulation.Controller.Category.SingingSimulation"><value>Sang simulation</value></data>
   <data name="Emulation.Controller.Category.OtherSimulation"><value>Andre simuleringsperiferier</value></data>
+  <data name="Emulation.Controller.Feedback.Strong"><value>Stærk vibration</value></data>
+  <data name="Emulation.Controller.Feedback.Weak"><value>Svag vibration</value></data>
 </root>

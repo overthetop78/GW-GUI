@@ -7,7 +7,7 @@ using System.IO;
 
 namespace GWGUI.Emulation.Sony.Emulators.Pcsx2.Factories;
 
-internal sealed class Pcsx2MachineFactory : IEmulatorAdapter, IEmulatorFirmwareAdapter, IEmulatorSettingsAdapter, IEmulatorControllerAdapter, IEmulatorMediaAdapter
+internal sealed class Pcsx2MachineFactory : IEmulatorAdapter, IEmulatorFirmwareAdapter, IEmulatorSettingsAdapter, IEmulatorControllerAdapter, IEmulatorControllerFeedbackAdapter, IEmulatorMediaAdapter
 {
     private IReadOnlyDictionary<string, CoreRelease> _availableReleases = new Dictionary<string, CoreRelease>(StringComparer.Ordinal);
 
@@ -20,6 +20,8 @@ internal sealed class Pcsx2MachineFactory : IEmulatorAdapter, IEmulatorFirmwareA
     public IReadOnlyList<ControllerType> GetControllerTypes(MachineConfiguration configuration) =>
         [ControllerType.Joystick, ControllerType.Keyboard, ControllerType.Mouse,
             ControllerType.KeyboardAndMouse, ControllerType.None];
+    public IReadOnlyList<EmulationControllerOutputDefinition> GetControllerOutputs(MachineConfiguration configuration, ControllerType type) =>
+        type == ControllerType.Joystick ? InputSettingsFunctions.RumbleOutputs : [];
     public IReadOnlyList<string> SupportedContentExtensions => FirmwareConstants.ContentExtensions;
     public IReadOnlyList<EmulationMediaDevice> GetStorageDevices(MachineConfiguration configuration) => Functions.StorageFunctions.Describe(configuration);
     public string EmulatorId => Pcsx2Constants.Id;

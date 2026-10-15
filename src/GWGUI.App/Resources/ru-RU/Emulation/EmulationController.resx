@@ -42,4 +42,6 @@
   <data name="Emulation.Controller.Category.DanceSimulation"><value>Танцующая симуляция</value></data>
   <data name="Emulation.Controller.Category.SingingSimulation"><value>Поющая симуляция</value></data>
   <data name="Emulation.Controller.Category.OtherSimulation"><value>Другие периферийные модели</value></data>
+  <data name="Emulation.Controller.Feedback.Strong"><value>Сильная вибрация</value></data>
+  <data name="Emulation.Controller.Feedback.Weak"><value>Слабая вибрация</value></data>
 </root>

@@ -42,4 +42,6 @@
   <data name="Emulation.Controller.Category.DanceSimulation"><value>Εξομοίωση χορού</value></data>
   <data name="Emulation.Controller.Category.SingingSimulation"><value>Εξομοίωση τραγουδιών</value></data>
   <data name="Emulation.Controller.Category.OtherSimulation"><value>Άλλα περιφερειακά προσομοιώσεων</value></data>
+  <data name="Emulation.Controller.Feedback.Strong"><value>Ισχυρή δόνηση</value></data>
+  <data name="Emulation.Controller.Feedback.Weak"><value>Ασθενής δόνηση</value></data>
 </root>

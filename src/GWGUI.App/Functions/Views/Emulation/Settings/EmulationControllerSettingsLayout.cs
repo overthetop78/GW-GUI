@@ -33,6 +33,7 @@ internal static partial class EmulationSettingsLayout
             DetachForReuse(port.Visual);
             DetachForReuse(port.Visualizer);
             DetachForReuse(port.Bindings);
+            if (port.Outputs is not null) DetachForReuse(port.Outputs);
             var portLabel = LocExtension.Get("Emulation.Controller.Port", port.Number);
             if (deviceOptionsFactory is null)
             {
@@ -43,16 +44,24 @@ internal static partial class EmulationSettingsLayout
             selectors.Margin = new Thickness(10, 10, 10, 4);
             legacyContent.Children.Add(selectors);
             var portContent = new Grid { ClipToBounds = true };
+            portContent.RowDefinitions.Add(new RowDefinition());
+            portContent.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
             portContent.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(3, GridUnitType.Star) });
             portContent.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(2, GridUnitType.Star) });
             port.Bindings.HorizontalAlignment = HorizontalAlignment.Stretch;
             portContent.Children.Add(port.Bindings);
+            if (port.Outputs is not null)
+            {
+                Grid.SetRow(port.Outputs, 1);
+                portContent.Children.Add(port.Outputs);
+            }
             port.Visualizer.MinWidth = 0;
             port.Visualizer.HorizontalAlignment = HorizontalAlignment.Stretch;
             port.Visualizer.VerticalAlignment = VerticalAlignment.Stretch;
             port.Visualizer.Margin = new Thickness(8, 4, 10, 8);
             port.Visualizer.ClipToBounds = true;
             Grid.SetColumn(port.Visualizer, 1);
+            Grid.SetRowSpan(port.Visualizer, 2);
             portContent.Children.Add(port.Visualizer);
             Grid.SetRow(portContent, 1);
             legacyContent.Children.Add(portContent);
@@ -69,6 +78,7 @@ internal static partial class EmulationSettingsLayout
             port.Bindings.Height = EmulationControllerSettingsConstants.MappingHeight;
             port.Bindings.HorizontalAlignment = HorizontalAlignment.Stretch;
             left.Children.Add(port.Bindings);
+            if (port.Outputs is not null) left.Children.Add(port.Outputs);
             content.Children.Add(left);
             var right = new Grid { Margin = new Thickness(6, 10, 10, 4) };
             right.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });

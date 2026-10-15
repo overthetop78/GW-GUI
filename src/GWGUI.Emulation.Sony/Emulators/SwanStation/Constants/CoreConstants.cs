@@ -21,5 +21,6 @@ internal static class CoreConstants
         RequiresExternalFirmware: true,
         ControllerTypes: [ControllerType.Joystick, ControllerType.DualShock,
             ControllerType.AnalogJoystick, ControllerType.GunCon, ControllerType.Mouse,
-            ControllerType.NeGcon, ControllerType.NeGconRumble, ControllerType.None]);
+            ControllerType.NeGcon, ControllerType.NeGconRumble, ControllerType.None],
+        FeedbackControllerTypes: [ControllerType.DualShock]);
 }

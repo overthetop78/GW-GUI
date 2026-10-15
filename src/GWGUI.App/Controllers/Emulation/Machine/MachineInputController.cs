@@ -20,6 +20,7 @@ namespace GWGUI.App.Controllers.Emulation.Machine;
 internal sealed class MachineInputController : IDisposable
 {
     private readonly MachineView _view;
+    private readonly MachineControllerFeedbackController _feedback;
     private readonly Func<IEmulatedMachine> _machine;
     private readonly IReadOnlyList<GlobalShortcutBinding> _globalShortcuts;
     private readonly Func<string, Task> _executeShortcut;
@@ -50,9 +51,10 @@ internal sealed class MachineInputController : IDisposable
         Func<IEmulatedMachine> machine, IReadOnlyList<GlobalShortcutBinding> globalShortcuts,
         Func<string, Task> executeShortcut, Func<bool> isActive,
         IRelativeMouseCapture? pointerCapture = null, Func<GameInputPhysicalState>? readPhysicalInput = null,
-        Action<FrameworkElement, IntPtr>? focus = null, bool automaticPolling = true)
+        Action<FrameworkElement, IntPtr>? focus = null, bool automaticPolling = true, IGameInputControllerSource? feedbackSource = null)
     {
         _view = view;
+        _feedback = new MachineControllerFeedbackController(feedbackSource ?? GameInputControllerSource.Instance);
         _pointerCapture = pointerCapture ?? new RelativeMouseCapture();
         _readPhysicalInput = readPhysicalInput ?? GameInputControllerReader.ReadPhysicalInput;
         _focus = focus ?? RelativeMouseCapture.Focus;
@@ -80,7 +82,8 @@ internal sealed class MachineInputController : IDisposable
         else
         {
             _timer.Stop();
-            ReleasePointer();
+            try { ReleasePointer(); }
+            finally { _feedback.Reset(); }
             _keys.Clear();
             _physicalKeys.Clear();
             _pressedShortcutKeys.Clear();
@@ -128,14 +131,20 @@ internal sealed class MachineInputController : IDisposable
     public void Dispose()
     {
         if (_disposed) return;
-        SetPowered(false);
-        _timer.Tick -= TimerTick;
-        _view.Loaded -= ViewLoaded;
-        _view.Unloaded -= ViewUnloaded;
-        _view.DisplayHost.MouseLeftButtonDown -= DisplayHostMouseLeftButtonDown;
-        DetachWindowHook();
-        Detach();
-        _disposed = true;
+        try { SetPowered(false); }
+        finally
+        {
+            _timer.Tick -= TimerTick;
+            _view.Loaded -= ViewLoaded;
+            _view.Unloaded -= ViewUnloaded;
+            _view.DisplayHost.MouseLeftButtonDown -= DisplayHostMouseLeftButtonDown;
+            try { DetachWindowHook(); }
+            finally
+            {
+                try { Detach(); }
+                finally { _feedback.Dispose(); _disposed = true; }
+            }
+        }
     }
 
     private void Attach()
@@ -255,6 +264,7 @@ internal sealed class MachineInputController : IDisposable
 
     internal void Deactivate()
     {
+        _feedback.Reset();
         if (_hostTransition) return;
         ReleasePointer();
         _keys.Clear();
@@ -295,6 +305,18 @@ internal sealed class MachineInputController : IDisposable
     private void TimerTick(object? sender, EventArgs args) => Publish();
 
     internal void Publish(int deltaX = 0, int deltaY = 0, int wheel = 0, int horizontalWheel = 0)
+    {
+        if (!_powered || _disposed) return;
+        try
+        {
+            var machine = _machine();
+            _feedback.Update(machine as IEmulationControllerFeedbackSource, _powered && !_disposed && _isActive() && machine.State == EmulationMachineState.Running);
+            PublishInput(deltaX, deltaY, wheel, horizontalWheel);
+        }
+        catch { _feedback.Reset(); throw; }
+    }
+
+    private void PublishInput(int deltaX, int deltaY, int wheel, int horizontalWheel)
     {
         if (!_powered || _disposed) return;
         if (!_isActive())

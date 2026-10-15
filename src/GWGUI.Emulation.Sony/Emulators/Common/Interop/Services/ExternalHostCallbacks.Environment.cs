@@ -18,6 +18,8 @@ internal sealed partial class ExternalHostCallbacks
         {
             switch (command)
             {
+                case ExternalCoreApiConstants.GetRumbleInterface:
+                    return Feedback.Register(data);
                 case ExternalCoreApiConstants.Shutdown:
                     _shutdownRequested = true;
                     return true;

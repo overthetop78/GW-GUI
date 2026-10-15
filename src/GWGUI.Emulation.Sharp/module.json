@@ -4,6 +4,6 @@
   "entryAssembly": "gwgui.emulation.sharp.dll",
   "moduleVersion": "1.0.0",
   "hostApiMinimum": "1.0",
-  "hostApiMaximum": "1.0",
+  "hostApiMaximum": "1.1",
   "updateCatalogUrl": "https://github.com/overthetop78/GW-GUI/releases/download/module-sharp-catalog/update-catalog.json"
 }

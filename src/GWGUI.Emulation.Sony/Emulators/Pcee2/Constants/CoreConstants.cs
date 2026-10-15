@@ -19,5 +19,6 @@ internal static class CoreConstants
         new(Id, DisplayName, DescriptionResourceKey, new HashSet<string>(StringComparer.Ordinal) { ModelConstants.PlayStation2 }),
         RequiresExternalFirmware: true,
         ControllerTypes: [ControllerType.Joystick, ControllerType.None],
-        StartupFailureDiagnostics: [InitializationFailureDiagnostic]);
+        StartupFailureDiagnostics: [InitializationFailureDiagnostic],
+        FeedbackControllerTypes: [ControllerType.Joystick]);
 }

@@ -17,11 +17,14 @@ internal static partial class InputSettingsFunctions
             var current = configured.FirstOrDefault(item => item.Port == index);
             var type = ControllerFunctions.Resolve(configuration, index);
             return new EmulationControllerPort(index + 1,
-                ControllerFunctions.Supported(configuration, index).Select(choice => Choice(choice, model)).ToArray(),
+                ControllerFunctions.Supported(configuration, index).Select(choice => Choice(choice, model, configuration)).ToArray(),
                 type.ToString(),
                 current?.DeviceId,
                 new EmulationInputBindingSet(ControllerDefinitions(type, model), current?.ButtonMappings ?? new Dictionary<string, string>(), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller, true),
-                VisualId: current?.VisualId);
+                VisualId: current?.VisualId)
+            {
+                OutputBindings = ValidOutputBindings(configuration, type, current?.VisualId, current?.OutputBindings)
+            };
         }).ToArray();
         return new EmulationInputSettings(keyboard, mouse, ports);
     }
@@ -43,7 +46,7 @@ internal static partial class InputSettingsFunctions
             ControllerFunctions.Validate(configuration, index, type);
             return new ControllerBinding(index, type, port.PhysicalDeviceId,
                 port.Bindings.Values.Where(item => !string.IsNullOrWhiteSpace(item.Key) && !string.IsNullOrWhiteSpace(item.Value)).ToDictionary(item => item.Key, item => item.Value, StringComparer.Ordinal),
-                port.VisualId);
+                port.VisualId, ValidOutputBindings(configuration, type, port.VisualId, port.OutputBindings));
         }).ToArray();
         return configuration with
         {
@@ -189,7 +192,7 @@ internal static partial class InputSettingsFunctions
             }
         };
 
-    private static EmulationControllerChoice Choice(ControllerType type, Model model) => new(
+    private static EmulationControllerChoice Choice(ControllerType type, Model model, MachineConfiguration configuration) => new(
         type.ToString(), ControllerResourceKey(type, model),
         InvariantDisplayValue: type switch
         {
@@ -203,6 +206,7 @@ internal static partial class InputSettingsFunctions
         DefaultVisualId: DefaultVisualId(type, model),
         VisualCommandIds: VisualCommandIds(type, model))
     {
+        VisualOutputDefinitions = VisualOutputs(configuration, type, model),
         Category = type switch
         {
             ControllerType.None => EmulationControllerCategory.None,

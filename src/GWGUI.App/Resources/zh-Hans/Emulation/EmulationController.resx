@@ -42,4 +42,6 @@
   <data name="Emulation.Controller.Category.DanceSimulation"><value>舞蹈模拟</value></data>
   <data name="Emulation.Controller.Category.SingingSimulation"><value>唱歌模拟</value></data>
   <data name="Emulation.Controller.Category.OtherSimulation"><value>其他模拟外围</value></data>
+  <data name="Emulation.Controller.Feedback.Strong"><value>强振动</value></data>
+  <data name="Emulation.Controller.Feedback.Weak"><value>弱振动</value></data>
 </root>

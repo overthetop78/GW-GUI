@@ -20,5 +20,6 @@ internal static class CoreConstants
         ControllerTypes: [ControllerType.Joystick, ControllerType.DualShock,
             ControllerType.AnalogJoystick, ControllerType.GunCon,
             ControllerType.Justifier, ControllerType.Mouse, ControllerType.NeGcon,
-            ControllerType.None]);
+            ControllerType.None],
+        FeedbackControllerTypes: [ControllerType.DualShock]);
 }

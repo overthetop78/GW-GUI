@@ -7,4 +7,7 @@ public sealed record EmulationControllerPort(
     string? PhysicalDeviceId,
     EmulationInputBindingSet Bindings,
     int DeadZonePercent = 0,
-    string? VisualId = null);
+    string? VisualId = null)
+{
+    public IReadOnlyDictionary<string, EmulationControllerOutputBinding> OutputBindings { get; init; } = new Dictionary<string, EmulationControllerOutputBinding>();
+}
