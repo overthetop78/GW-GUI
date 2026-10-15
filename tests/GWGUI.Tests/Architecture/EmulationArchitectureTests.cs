@@ -196,16 +196,14 @@ public sealed class EmulationArchitectureTests
         Assert.Equal(folders.Order(StringComparer.Ordinal), Directory.EnumerateDirectories(common).Select(Path.GetFileName).Order(StringComparer.Ordinal));
     }
 
-    [Fact]
-    public void FamilyEmulatorCatalogsDeclareAdaptersWithoutNamespaceReflection()
+    [Theory]
+    [MemberData(nameof(FamilyModules))]
+    public void FamilyEmulatorCatalogsDeclareAdaptersWithoutNamespaceReflection(string family)
     {
         var root = RepositoryRoot();
-        foreach (var family in new[] { "Commodore", "Amstrad", "Nec", "Nintendo", "Sega", "Sony", "Microsoft" })
-        {
-            var source = File.ReadAllText(Path.Combine(root, "src", $"GWGUI.Emulation.{family}", "Common", "Dictionaries", "EmulatorCatalog.cs"));
-            Assert.DoesNotContain("GetTypes()", source, StringComparison.Ordinal);
-            Assert.DoesNotContain("Namespace?.Contains", source, StringComparison.Ordinal);
-        }
+        var source = File.ReadAllText(Path.Combine(root, "src", $"GWGUI.Emulation.{family}", "Common", "Dictionaries", "EmulatorCatalog.cs"));
+        Assert.DoesNotContain("GetTypes()", source, StringComparison.Ordinal);
+        Assert.DoesNotContain("Namespace?.Contains", source, StringComparison.Ordinal);
     }
 
     [Fact]

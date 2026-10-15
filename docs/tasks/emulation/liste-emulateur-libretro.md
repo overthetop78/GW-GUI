@@ -121,7 +121,7 @@ Les Macintosh 128K, 512K, Plus et Classic restent demandés. Le port Libretro à
 
 | DLL                     | Machines émulées                 |
 | ----------------------- | -------------------------------- |
-| `cdi2015_libretro.dll`  | Philips CD-i                     |
+| `cdi2015_libretro.dll`  | Retiré à la demande utilisateur ; ne pas réintégrer |
 | `m2000_libretro.dll`    | Philips P2000T                   |
 | `o2em_libretro.dll`     | Odyssey², Philips Videopac G7000 |
 | `same_cdi_libretro.dll` | Philips CD-i                     |

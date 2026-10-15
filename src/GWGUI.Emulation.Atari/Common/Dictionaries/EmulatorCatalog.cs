@@ -5,7 +5,7 @@ internal static class EmulatorCatalog
     internal static IReadOnlyList<EmulationEmulatorDefinition> All => CreateAdapters().Select(adapter => adapter.Definition).OrderBy(definition => definition.Id, StringComparer.Ordinal).ToArray();
 
     internal static IReadOnlyList<IEmulatorAdapter> CreateAdapters() =>
-        typeof(EmulatorCatalog).Assembly.GetTypes().Where(type => !type.IsAbstract && typeof(IEmulatorAdapter).IsAssignableFrom(type)).Select(type => (IEmulatorAdapter)Activator.CreateInstance(type, nonPublic: true)!)
+        EmulationAdapterFunctions.Create<IEmulatorAdapter>(typeof(EmulatorCatalog).Assembly)
             .OrderBy(adapter => adapter.EmulatorId, StringComparer.Ordinal)
             .ToArray();
 

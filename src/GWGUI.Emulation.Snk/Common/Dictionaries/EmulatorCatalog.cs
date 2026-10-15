@@ -13,8 +13,7 @@ internal static class EmulatorCatalog
     private static readonly IReadOnlyDictionary<string, EmulatorDefinition> ById = Entries.ToDictionary(entry => entry.Id, StringComparer.Ordinal);
     internal static IReadOnlyList<EmulatorDefinition> All => Entries;
 
-    private static IReadOnlyList<IEmulatorAdapter> DiscoverAdapters() => typeof(EmulatorCatalog).Assembly.GetTypes().Where(type => !type.IsAbstract && typeof(IEmulatorAdapter).IsAssignableFrom(type)).Select(type => (IEmulatorAdapter)Activator.CreateInstance(type,
-        nonPublic: true)!).OrderBy(adapter => adapter.EmulatorId,
+    private static IReadOnlyList<IEmulatorAdapter> DiscoverAdapters() => EmulationAdapterFunctions.Create<IEmulatorAdapter>(typeof(EmulatorCatalog).Assembly).OrderBy(adapter => adapter.EmulatorId,
         StringComparer.Ordinal).ToArray();
     internal static IReadOnlyList<IEmulatorAdapter> CreateAdapters() => Entries.Select(entry => CreateAdapter(entry.Emulator)).ToArray();
     internal static IEmulatorAdapter CreateAdapter(Emulator emulator) => AdapterTypes.TryGetValue(emulator, out var type) ? (IEmulatorAdapter)Activator.CreateInstance(type, nonPublic: true)! : throw new ArgumentOutOfRangeException(nameof(emulator));

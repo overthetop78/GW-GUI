@@ -57,8 +57,9 @@ public sealed class ConsoleFamilyModuleTests
         }
     }
 
-    [Fact]
-    public void ConsoleFamilyFactoriesCreateTheDeclaredModules()
+    [Theory]
+    [MemberData(nameof(EmulationArchitectureTests.FamilyModules), MemberType = typeof(EmulationArchitectureTests))]
+    public void ConsoleFamilyFactoriesCreateTheDeclaredModules(string family)
     {
         var root = Path.Combine(Path.GetTempPath(), "gwgui-console-module-tests", Guid.NewGuid().ToString("N"));
         Directory.CreateDirectory(root);
@@ -66,16 +67,18 @@ public sealed class ConsoleFamilyModuleTests
         {
             using var http = new HttpClient();
             var context = new EmulationModuleContext(root, root, http);
-            var modules = new IEmulationModule[]
+            var assembly = Assembly.Load($"gwgui.emulation.{family.ToLowerInvariant()}");
+            var factoryType = Assert.Single(assembly.GetTypes(), type => !type.IsAbstract && typeof(IEmulationModuleFactory).IsAssignableFrom(type));
+            var factory = (IEmulationModuleFactory)Activator.CreateInstance(factoryType)!;
+            var module = factory.Create(context);
+            Assert.Equal(family.ToLowerInvariant(), module.Id);
+            Assert.NotEmpty(module.Machines);
+            foreach (var machine in module.Machines)
             {
-                new SegaEmulationModuleFactory().Create(context),
-                new NintendoEmulationModuleFactory().Create(context),
-                new SonyEmulationModuleFactory().Create(context),
-                new MicrosoftEmulationModuleFactory().Create(context),
-                new NecEmulationModuleFactory().Create(context)
-            };
-            Assert.Equal(new[] { "microsoft", "nec", "nintendo", "sega", "sony" }, modules.Select(module => module.Id).Order(StringComparer.Ordinal));
-            Assert.All(modules, module => Assert.NotEmpty(module.Machines));
+                var configuration = module.CreateConfiguration(machine.Id);
+                Assert.Equal(machine.Id, configuration.MachineId);
+                Assert.NotEmpty(module.Describe(machine.Id, configuration).Blocks);
+            }
         }
         finally
         {
