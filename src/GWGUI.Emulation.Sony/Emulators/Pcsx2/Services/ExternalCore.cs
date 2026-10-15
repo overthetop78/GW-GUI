@@ -142,6 +142,7 @@ internal sealed class ExternalCore : IEmulatorCore
             ApplyConfiguredControllers(requireAdvertised: true);
             Export<ExternalCoreApi.GetSystemAvInfo>(ExternalCoreConstants.RetroGetSystemAvInfo)(out var av);
             _host.ApplyInitialAvInfo(av);
+            _host.HardwareRender.Reset();
         }
         catch
         {
@@ -243,7 +244,11 @@ internal sealed class ExternalCore : IEmulatorCore
     public void Stop()
     {
         if (!_gameLoaded) return;
-        try { _unloadGame?.Invoke(); }
+        try
+        {
+            try { _host?.HardwareRender.NotifyDestroy(); }
+            finally { _unloadGame?.Invoke(); }
+        }
         finally
         {
             _gameLoaded = false;
@@ -284,37 +289,42 @@ internal sealed class ExternalCore : IEmulatorCore
 
     public void Dispose()
     {
-        try { Stop(); }
+        try { _host?.HardwareRender.NotifyDestroy(); }
         finally
         {
-            try
-            {
-                if (_initialized) _deinitialize?.Invoke();
-            }
+            try { Stop(); }
             finally
             {
-                _initialized = false;
-                _deinitialize = null;
-                _unloadGame = null;
-                _run = null;
-                _reset = null;
-                _setControllerPortDevice = null;
-                _getSerializedSize = null;
-                _serialize = null;
-                _unserialize = null;
-                try { Functions.FirmwareRuntimeFunctions.Persist(_firmwareFiles); }
+                try
+                {
+                    if (_initialized) _deinitialize?.Invoke();
+                }
                 finally
                 {
-                    _firmwareFiles = [];
-                    try { _host?.Dispose(); }
+                    _initialized = false;
+                    _deinitialize = null;
+                    _unloadGame = null;
+                    _run = null;
+                    _reset = null;
+                    _setControllerPortDevice = null;
+                    _getSerializedSize = null;
+                    _serialize = null;
+                    _unserialize = null;
+                    try { Functions.FirmwareRuntimeFunctions.Persist(_firmwareFiles); }
                     finally
                     {
-                        _host = null;
-                        try { _library?.Dispose(); }
-                        finally { _library = null; }
+                        _firmwareFiles = [];
+                        try { _host?.Dispose(); }
+                        finally
+                        {
+                            _host = null;
+                            try { _library?.Dispose(); }
+                            finally { _library = null; }
+                        }
                     }
                 }
             }
+        
         }
     }
 }

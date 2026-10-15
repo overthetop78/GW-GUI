@@ -3,14 +3,14 @@ using GWGUI.Emulation.Sony.Emulators.Common.Interop.Constants;
 
 namespace GWGUI.Emulation.Sony.Emulators.Common.Interop.Services;
 
-internal sealed partial class ExternalHostCallbacks
+internal sealed class HardwareRenderSession : IDisposable
 {
     private OpenGlHardwareRenderContext? _hardwareRenderContext;
     private ExternalCoreApi.HardwareContextReset? _coreContextReset;
     private ExternalCoreApi.HardwareContextReset? _coreContextDestroy;
     private bool _hardwareContextReset;
 
-    private bool ConfigureHardwareRender(nint data)
+    internal bool Configure(nint data)
     {
         if (data == nint.Zero) return false;
         var callback = Marshal.PtrToStructure<ExternalCoreApi.HardwareRenderCallback>(data);
@@ -19,7 +19,7 @@ internal sealed partial class ExternalHostCallbacks
         var context = new OpenGlHardwareRenderContext(callback);
         try
         {
-            DestroyHardwareContext();
+            Dispose();
             if (!context.MakeCurrentForCore()) throw new InvalidOperationException();
             _coreContextReset = callback.ContextReset == nint.Zero ? null : Marshal.GetDelegateForFunctionPointer<ExternalCoreApi.HardwareContextReset>(callback.ContextReset);
             _coreContextDestroy = callback.ContextDestroy == nint.Zero ? null : Marshal.GetDelegateForFunctionPointer<ExternalCoreApi.HardwareContextReset>(callback.ContextDestroy);
@@ -35,14 +35,14 @@ internal sealed partial class ExternalHostCallbacks
         }
     }
 
-    internal void ResetHardwareContext()
+    internal void Reset()
     {
         if (_hardwareRenderContext?.MakeCurrentForCore() != true) return;
-        _coreContextReset?.Invoke();
         _hardwareContextReset = true;
+        _coreContextReset?.Invoke();
     }
 
-    internal void NotifyHardwareContextDestroy()
+    internal void NotifyDestroy()
     {
         if (!_hardwareContextReset) return;
         _hardwareContextReset = false;
@@ -50,11 +50,19 @@ internal sealed partial class ExternalHostCallbacks
             _coreContextDestroy?.Invoke();
     }
 
-    internal void DestroyHardwareContext()
+    internal bool TryReadFramebuffer(int width, int height, out byte[] pixels)
+    {
+        pixels = [];
+        return _hardwareRenderContext?.TryReadFramebuffer(width, height, out pixels) == true;
+    }
+
+    internal void Resize(int width, int height) => _hardwareRenderContext?.EnsureFramebuffer(width, height);
+
+    public void Dispose()
     {
         try
         {
-            NotifyHardwareContextDestroy();
+            NotifyDestroy();
         }
         finally
         {

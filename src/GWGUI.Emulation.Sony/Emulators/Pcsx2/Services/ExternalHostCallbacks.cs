@@ -17,6 +17,7 @@ namespace GWGUI.Emulation.Sony.Emulators.Pcsx2.Services;
 internal sealed partial class ExternalHostCallbacks : IDisposable
 {
     private static readonly IReadOnlyDictionary<uint, EmulationKey> KeyboardMap = CreateKeyboardMap();
+    internal GWGUI.Emulation.Sony.Emulators.Common.Interop.Services.HardwareRenderSession HardwareRender { get; } = new();
     private readonly Dictionary<string, string> _options = new(StringComparer.Ordinal);
     private readonly HashSet<string> _configuredOptionKeys = new(StringComparer.Ordinal);
     private readonly Dictionary<string, nint> _nativeStrings = new(StringComparer.Ordinal);
@@ -145,10 +146,14 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
         if (_disposed) return;
         try
         {
-            foreach (var pointer in _nativeStrings.Values)
+            try { HardwareRender.Dispose(); }
+            finally
             {
-                try { Marshal.FreeCoTaskMem(pointer); }
-                catch (Exception) { }
+                foreach (var pointer in _nativeStrings.Values)
+                {
+                    try { Marshal.FreeCoTaskMem(pointer); }
+                    catch (Exception) { }
+                }
             }
         }
         finally

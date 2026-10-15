@@ -144,7 +144,7 @@ internal sealed partial class ExternalCore : IEmulatorCore
             _saveMemoryReady = true;
             Export<ExternalCoreApi.GetSystemAvInfo>(ExternalCoreConstants.RetroGetSystemAvInfo)(out var av);
             _host.ApplyInitialAvInfo(av);
-            _host.ResetHardwareContext();
+            _host.HardwareRender.Reset();
         }
         catch
         {
@@ -243,7 +243,11 @@ internal sealed partial class ExternalCore : IEmulatorCore
         try { PersistSaveMemory(); }
         finally
         {
-            try { _unloadGame?.Invoke(); }
+            try
+            {
+                try { _host?.HardwareRender.NotifyDestroy(); }
+                finally { _unloadGame?.Invoke(); }
+            }
             finally
             {
                 try { PersistMemoryCards(); }
@@ -300,7 +304,7 @@ internal sealed partial class ExternalCore : IEmulatorCore
 
     public void Dispose()
     {
-        try { _host?.NotifyHardwareContextDestroy(); }
+        try { _host?.HardwareRender.NotifyDestroy(); }
         finally
         {
 

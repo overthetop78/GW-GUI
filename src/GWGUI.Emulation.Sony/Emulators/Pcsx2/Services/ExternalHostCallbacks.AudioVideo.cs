@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Sony.Emulators.Common.Interop.Constants;
 using ExternalCoreInteropConstants = GWGUI.Emulation.Sony.Emulators.Common.Interop.Constants.ExternalCoreInteropConstants;
 using GWGUI.Emulation.Sony.Emulators.Pcsx2.Constants;
 using GWGUI.Emulation.Sony.Emulators.Pcsx2.Contracts;
@@ -16,6 +17,14 @@ internal sealed partial class ExternalHostCallbacks
     {
         if (data == nint.Zero || width == ExternalCoreInteropConstants.EmptyFrameDimension
             || height == ExternalCoreInteropConstants.EmptyFrameDimension) return;
+        if (data == HardwareRenderConstants.HardwareFramebuffer)
+        {
+            if (!HardwareRender.TryReadFramebuffer(checked((int)width), checked((int)height), out var frame)) return;
+            LatestVideoFrame = new VideoFrame(frame, checked((int)width), checked((int)height),
+                checked((int)width * HardwareRenderConstants.PixelByteCount), EmulationPixelFormat.Xrgb8888,
+                _aspectRatio > 0 ? _aspectRatio : width / (float)height, ++_videoSequence, _clock.Elapsed);
+            return;
+        }
         var byteCount = checked((int)(pitch * height));
         var pixels = new byte[byteCount];
         Marshal.Copy(data, pixels, BufferConstants.FirstBufferIndex, byteCount);
@@ -40,6 +49,7 @@ internal sealed partial class ExternalHostCallbacks
 
     private void ApplyGeometry(ExternalCoreApi.Geometry geometry)
     {
+        HardwareRender.Resize(checked((int)geometry.MaximumWidth), checked((int)geometry.MaximumHeight));
         if (float.IsFinite(geometry.AspectRatio) && geometry.AspectRatio > 0)
             _aspectRatio = geometry.AspectRatio;
         else if (geometry.BaseHeight > 0)
