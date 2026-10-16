@@ -1,5 +1,14 @@
 # Third-party notices
 
+## Thomson TO8D photograph
+
+Asset: `src/GWGUI.Emulation.Thomson/Assets/Machines/To8D.png`.
+Photograph by Frédéric BISSON, 24 April 2016, Retrogaming Days V, Évreux.
+Source: https://commons.wikimedia.org/wiki/File:Thomson_TO8D_(26347254330).jpg
+Original: https://upload.wikimedia.org/wikipedia/commons/b/b4/Thomson_TO8D_%2826347254330%29.jpg
+License: Creative Commons Attribution 2.0 Generic, https://creativecommons.org/licenses/by/2.0/.
+Adaptation: manual exterior silhouette alpha mask at the original 4912 x 3264 resolution, proportional resizing and transparent padding to 512 x 328 pixels with ImageMagick. The photographed case, keyboard, markings and inserted cartridge are preserved. Surrounding table, television and external cables are excluded. No generated or reconstructed parts.
+
 ## HDD formatting libraries
 
 This product includes software developed by Michiel Pelt.
