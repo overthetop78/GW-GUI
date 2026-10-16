@@ -6,8 +6,19 @@ Dernière livraison vérifiée : correctif LRPS2 sans conversion des anciens lib
 
 Historique détaillé disponible localement : `git show 9694f5147:docs/tasks/emulation/commun.md`. Les anciens essais, empreintes de médias, PID et résultats restent dans cet historique ; ils ne sont pas répétés dans les tâches restantes.
 
-## controller-artwork
+## Revue transversale des quinze familles
 
+Les 269 contrôles existants passent sur les DLL de la livraison Debug : Acorn 23, Apple 45, Bandai 20, Coleco 30, Epoch 15, Fairchild 6, Philips 5, Mattel 3, Sharp 10, Sinclair 7, SNK 70, Thomson 11, Watara 6, Wenquxing 12 et Panasonic 6. Le filtre et son inventaire couvrent bien les quinze familles. Aucun nouveau test ni artefact externe créé ; ces scénarios logiciels ne qualifient pas toutes les options, les supports natifs ou les périphériques physiques.
+
+La recherche des enums de quantités dans ces quinze modules n'a pas retrouvé les types numériques inutiles corrigés côté Sony. Les enums de modes et d'identités natives restent justifiés ; les plages Potator sont déjà générées numériquement. Aucun remplacement mécanique de ces types n'est effectué. Les limites de la section « Périmètre conservé » et les qualifications natives encore ouvertes restent à traiter ; aucun module supplémentaire déclaré terminé par cette revue.
+
+## Panasonic : BIOS intégré Opera et ROM externe
+
+Comparaison avec libretro/opera-libretro 684926fe2079ba12b59d99082291c0a8fe780c67 : dix-huit clés et leurs valeurs/défauts présents. Le BIOS intégré Opera Boot était bloqué par l'obligation locale d'une ROM externe. Sans ROM système sélectionnée, l'adaptateur demande désormais `opera-boot-internal` ; une ROM externe garde la priorité et les deux champs ROM restent accessibles. Aucun cœur modifié, aucune migration et aucun nouveau libellé à traduire.
+
+Qualification avec la DLL officielle Opera 1.0.0 684926f, SHA256 8B4BCD8677E6D275784656777C62E506A4E54EBED6709C11A2314602A95F2E20 : démarrage sans fichier dans System, 180 trames 320 × 240, processus hôte PID 49660 observé terminé et mapping vidéo absent après fermeture. Fixture externe, archive, DLL et sessions temporaires supprimées ; les seuls tests ont été reconstruits après retrait. Dix contrôles Panasonic permanents réussis, dont quatre nouveaux scénarios du choix de firmware. Build Debug complet réussi ; exécutable, deux copies du SDK et 23 modules vérifiés par empreinte, staging absent. Les autres limites de l'objectif restent ouvertes.
+
+## controller-artwork
 Lot visuels Sony : DualShock originale et PSP-1000 remplacées par des photographies identifiées, masques classiques et PNG transparents de 512 px. Les 25 et 16 zones ont été examinées par superposition ; 165 contrôles ciblés réussis. Build Debug complet terminé, exécutable, deux copies du SDK et 23 modules vérifiés, staging et sources temporaires supprimés.
 
 Lot Apple : Kraft Premium II ajouté aux cinq visuels Apple II, avec quatre directions analogiques et un seul bouton de tir ; PNG transparent 512 × 504. Les 46 contrôles Apple et catalogue passent avec les DLL du build Debug ; exécutable, deux copies du SDK et 23 modules vérifiés, staging et fichiers temporaires supprimés.

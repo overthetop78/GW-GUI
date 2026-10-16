@@ -8,7 +8,7 @@ internal static class FirmwareCatalog
         if (model != MachineModel.ThreeDO)
             throw new ArgumentOutOfRangeException(nameof(model));
         return[
-            new(FirmwareRole.SystemRom, FirmwareFunctions.Field(FirmwareRole.SystemRom), "Emulation.Firmware.Rom.System", NativeFirmwareConstants.SystemFiles, true),
+            new(FirmwareRole.SystemRom, FirmwareFunctions.Field(FirmwareRole.SystemRom), "Emulation.Firmware.Rom.System", NativeFirmwareConstants.SystemFiles, false),
             new(FirmwareRole.FontRom, FirmwareFunctions.Field(FirmwareRole.FontRom), "Emulation.Panasonic.Firmware.Font", NativeFirmwareConstants.FontFiles, false)
         ];
     }

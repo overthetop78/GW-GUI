@@ -27,7 +27,6 @@ internal static class FirmwareRuntimeFunctions
     internal static void Prepare(MachineConfiguration configuration, string systemDirectory)
     {
         Directory.CreateDirectory(systemDirectory);
-        if (!configuration.Firmware.Images.ContainsKey(FirmwareRole.SystemRom)) throw Missing();
         foreach (var image in configuration.Firmware.Images)
         {
             if (!Enum.IsDefined(image.Key)) throw new ArgumentException(nameof(configuration));

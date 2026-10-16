@@ -1,5 +1,6 @@
 using System.Globalization;
 using GWGUI.Emulation.Panasonic.Emulators.Opera.Constants;
+using NativeFirmwareConstants = GWGUI.Emulation.Panasonic.Emulators.Opera.Constants.FirmwareConstants;
 
 namespace GWGUI.Emulation.Panasonic.Emulators.Opera.Functions;
 internal static class RuntimeOptionFunctions
@@ -8,7 +9,9 @@ internal static class RuntimeOptionFunctions
     {
         ConfigurationFunctions.Validate(configuration);
         var values = configuration.Options.Where(option => option.Key.StartsWith(RuntimeOptionConstants.NativePrefix, StringComparison.Ordinal)).ToDictionary(option => option.Key, option => option.Value, StringComparer.Ordinal);
-        values[RuntimeOptionConstants.Bios] = FirmwareRuntimeFunctions.FileName(configuration, FirmwareRole.SystemRom);
+        values[RuntimeOptionConstants.Bios] = configuration.Firmware.Images.ContainsKey(FirmwareRole.SystemRom)
+            ? FirmwareRuntimeFunctions.FileName(configuration, FirmwareRole.SystemRom)
+            : NativeFirmwareConstants.BuiltInSystemRom;
         values[RuntimeOptionConstants.Font] = configuration.Firmware.Images.ContainsKey(FirmwareRole.FontRom) ? FirmwareRuntimeFunctions.FileName(configuration, FirmwareRole.FontRom) : RuntimeOptionConstants.NoFont;
         if (!values.ContainsKey(RuntimeOptionConstants.ActiveDevices))
             values[RuntimeOptionConstants.ActiveDevices] = Enumerable.Range(ControllerConstants.FirstPort,
