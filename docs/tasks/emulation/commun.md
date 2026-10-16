@@ -1,5 +1,20 @@
 # Travaux communs restants
 
+## Passage à Aucun dans tous les modules
+
+- [x] Reproduire puis corriger la notification intermédiaire du port.
+  - [x] Créer `tests/GWGUI.Tests/Interface/EmulationViews/ControllerNoneSelectionTests.cs` : parcourir les 23 modules et les ports de leurs machines, appliquer les réglages à chaque notification pendant Aucun/périphérique/Aucun, et contrôler que chaque notification contient un choix valide.
+  - [x] Modifier `src/GWGUI.App/Controllers/Emulation/Input/EmulationInputSettingsController.cs` : regrouper les changements de type et de visuel afin de notifier uniquement un état complet ; garantir la fin du regroupement dans finally.
+  - [x] Modifier `tests/GWGUI.Tests/Interface/EmulationViews/ControllerNoneSelectionTests.cs` : distinguer les ports proposant Aucun des commandes intégrées qui ne le proposent pas, vérifier leur déclaration, et contrôler aussi leurs changements de catégorie sans ajouter de capacité aux modules.
+- [x] Livrer le correctif commun.
+  - [x] Modifier `docs/tasks/emulation/commun.md` : consigner les contrôles des 23 modules, le build Debug complet et le résultat du correctif, après leur réussite effective.
+
+Exception Apple reproduite avant correction : le changement de type reconstruit ItemsSource des visuels, provoque une SelectionChanged intermédiaire et applique SelectedControllerId vide. Le contrôleur commun regroupe maintenant le changement du type, du visuel, des associations et des sorties ; une seule notification publie le port complet, avec libération du regroupement dans finally. Aucune validation de module assouplie et aucune exception masquée.
+
+Contrôle des 23 modules, de leurs machines et des moteurs déclarés : 669 occurrences de ports déconnectables et 1 230 passages à Aucun réussis, en appliquant chaque notification immédiatement comme la fenêtre réelle. Les 95 occurrences de ports ne déclarant pas Aucun sont vérifiées selon leurs catégories existantes, sans leur ajouter de capacité. Les modèles sans moteur ou port n'engendrent pas de faux essai de déconnexion. Les 23 scénarios transversaux et le contrôle Acorn existant réussissent sur les DLL finales : 24 tests, zéro échec. Aucun cœur natif lancé, aucun média ou fichier temporaire créé ; les arbres de contrôle sont déchargés dans finally et l'infrastructure STA existante est réutilisée.
+
+Build Debug complet réussi avec application et 23 modules ; exécutable présent, empreintes application/SDK/modules concordantes et staging absent. Le wrapper local-building.cmd pointe vers un chemin PowerShell inexistant ; le même build a été exécuté avec `pwsh -NoProfile -File scripts/local-building/build.ps1 -Configuration Debug -AllModules`, sans modifier le wrapper.
+
 ## Palettes WonderSwan dans Image
 
 - [x] Déplacer les préréglages sans dupliquer les réglages communs.

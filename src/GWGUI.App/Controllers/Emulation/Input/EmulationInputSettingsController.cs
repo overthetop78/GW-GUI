@@ -173,18 +173,23 @@ internal sealed class EmulationInputSettingsController
         editor.DeadZonePercent = port.DeadZonePercent;
         editor.Bindings.SetRows(port.Bindings.Definitions, port.Bindings.Values, _moduleId);
         UpdateControllerBindings(editor, port.VisualId, preserveCurrentBindings: true, preferredControllerId: port.SelectedControllerId);
-        editor.Type.SelectionChanged += (_, _) =>
+        var updatingSelection = false;
+        void UpdateSelection(Action update)
         {
-            UpdateControllerBindings(editor, preserveCurrentBindings: false);
+            if (updatingSelection) return;
+            updatingSelection = true;
+            try { update(); }
+            finally { updatingSelection = false; }
             SettingsChanged?.Invoke(this, EventArgs.Empty);
-        };
-        editor.Visual.SelectionChanged += (_, _) =>
+        }
+        void NotifyBindingsChanged(object? sender, EventArgs args)
         {
-            UpdateControllerVisualProfile(editor);
-            SettingsChanged?.Invoke(this, EventArgs.Empty);
-        };
-        editor.Bindings.BindingsChanged += (_, _) => SettingsChanged?.Invoke(this, EventArgs.Empty);
-        editor.Outputs.BindingsChanged += (_, _) => SettingsChanged?.Invoke(this, EventArgs.Empty);
+            if (!updatingSelection) SettingsChanged?.Invoke(this, EventArgs.Empty);
+        }
+        editor.Type.SelectionChanged += (_, _) => UpdateSelection(() => UpdateControllerBindings(editor, preserveCurrentBindings: false));
+        editor.Visual.SelectionChanged += (_, _) => UpdateSelection(() => UpdateControllerVisualProfile(editor));
+        editor.Bindings.BindingsChanged += NotifyBindingsChanged;
+        editor.Outputs.BindingsChanged += NotifyBindingsChanged;
         return editor;
     }
 
