@@ -14,6 +14,28 @@ namespace GWGUI.Tests.Emulation.Wenquxing;
 public sealed class WenquxingInputSettingsTests
 {
     [Theory]
+    [InlineData(EmulationKey.Left, 0x250u)]
+    [InlineData(EmulationKey.Up, 0x251u)]
+    [InlineData(EmulationKey.Right, 0x252u)]
+    [InlineData(EmulationKey.Down, 0x253u)]
+    [InlineData(EmulationKey.PageUp, 0x254u)]
+    [InlineData(EmulationKey.PageDown, 0x255u)]
+    public void NavigationUsesTheWqxemuBridgeCodesOnEveryModel(EmulationKey key, uint expectedCode)
+    {
+        foreach (var model in Enum.GetValues<MachineModel>())
+        {
+            Assert.Equal(expectedCode, KeyboardFunctions.CreateKeyMap(model)[key]);
+            var keyboard = new KeyboardState(model);
+            var events = new List<(bool Pressed, uint Code)>();
+            keyboard.Publish(new HashSet<EmulationKey> { key }, (pressed, code, character, modifiers) => events.Add((pressed, code)));
+            keyboard.Publish(new HashSet<EmulationKey> { key }, (pressed, code, character, modifiers) => events.Add((pressed, code)));
+            keyboard.Publish(new HashSet<EmulationKey>(), (pressed, code, character, modifiers) => events.Add((pressed, code)));
+            keyboard.Release((pressed, code, character, modifiers) => events.Add((pressed, code)));
+            Assert.Equal(new[] { (true, expectedCode), (false, expectedCode) }, events);
+        }
+    }
+
+    [Theory]
     [InlineData(MachineModel.NC1020)]
     [InlineData(MachineModel.PC1000)]
     [InlineData(MachineModel.CC800)]
