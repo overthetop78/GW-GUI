@@ -20,6 +20,10 @@ internal sealed partial class EmulationModuleSettingsSection
             SmallChange = range.Step,
             LargeChange = range.Step,
             IsSnapToTickEnabled = true,
+            TickPlacement = range.Step > 1 && (range.Maximum - range.Minimum) / range.Step <= 32 ? TickPlacement.BottomRight : TickPlacement.None,
+            Orientation = range.IsVertical ? Orientation.Vertical : Orientation.Horizontal,
+            IsDirectionReversed = range.IsVertical,
+            Height = range.IsVertical ? 180 : double.NaN,
             Value = Math.Clamp(value, range.Minimum, range.Maximum),
             VerticalAlignment = VerticalAlignment.Center,
         };
@@ -45,9 +49,43 @@ internal sealed partial class EmulationModuleSettingsSection
         row.Children.Add(slider);
         Grid.SetColumn(label, 1);
         row.Children.Add(label);
+        if (field.UseChoiceLabelsForSlider)
+        {
+            row.ColumnDefinitions.Clear();
+            row.ColumnDefinitions.Add(new ColumnDefinition());
+            row.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+            row.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+            Grid.SetColumn(label, 0);
+            Grid.SetRow(label, 1);
+            label.Margin = new Thickness(0, 6, 0, 0);
+            label.TextAlignment = TextAlignment.Left;
+            label.TextWrapping = TextWrapping.Wrap;
+        }
+        if (field.AutomaticValue is { } automaticValue)
+        {
+            var automatic = new CheckBox
+            {
+                Content = GWGUI.App.Localization.Extensions.LocExtension.Get("Visual.Automatic"),
+                IsChecked = field.Value == automaticValue, Margin = new Thickness(0, 0, 0, 8)
+            };
+            slider.IsEnabled = automatic.IsChecked != true;
+            var panel = new StackPanel();
+            panel.Children.Add(automatic);
+            panel.Children.Add(row);
+            panel.Tag = (Func<string>)(() => automatic.IsChecked == true ? automaticValue
+                : slider.Value.ToString(EmulationSliderConstants.NumericFormat, CultureInfo.InvariantCulture));
+            automatic.Checked += async (_, _) => { slider.IsEnabled = false; await ExecuteUserChangeAsync(); };
+            automatic.Unchecked += async (_, _) => { slider.IsEnabled = true; await ExecuteUserChangeAsync(); };
+            return panel;
+        }
         return row;
 
-        void UpdateLabel() => label.Text = slider.Value.ToString(EmulationSliderConstants.NumericFormat, CultureInfo.CurrentCulture) + range.UnitSuffix;
+        void UpdateLabel()
+        {
+            var choice = field.UseChoiceLabelsForSlider ? field.Choices?.FirstOrDefault(item => item.Id == slider.Value.ToString(EmulationSliderConstants.NumericFormat, CultureInfo.InvariantCulture)) : null;
+            label.Text = choice is not null ? ChoiceView(choice).DisplayName
+                : slider.Value.ToString(EmulationSliderConstants.NumericFormat, CultureInfo.CurrentCulture) + range.UnitSuffix;
+        }
 
         async Task SaveValueAsync()
         {

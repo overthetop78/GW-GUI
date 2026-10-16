@@ -103,13 +103,9 @@ internal sealed partial class EmulationModuleSettingsSection
             var groups = new StackPanel();
             foreach (var block in blocks.Where(block => block.IsCollapsible))
             {
-                groups.Children.Add(new Expander
-                {
-                    Header = LocExtension.GetForModule(_module, block.TitleResourceKey),
-                    IsExpanded = groups.Children.Count == 0,
-                    Content = EmulationSettingsLayout.VideoSettingsFields(block.Fields.Where(field => field.IsVisible && field.LabelResourceKey != rendererResourceKey).Select(CreateVideoSettingsField).ToArray()),
-                    Margin = new Thickness(0, 0, 0, 12)
-                });
+                groups.Children.Add(EmulationSettingsLayout.IconCard(
+                    EmulationSettingsLayout.VideoSettingsFields(block.Fields.Where(field => field.IsVisible && field.LabelResourceKey != rendererResourceKey).Select(CreateVideoSettingsField).ToArray()),
+                    LocExtension.GetForModule(_module, block.TitleResourceKey), block.Icon ?? IconGlyphs.Visualization));
             }
             if (groups.Children.Count > 0) nativeSettings = groups;
         }

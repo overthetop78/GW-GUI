@@ -5,7 +5,7 @@
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Option.pcsx2.pcsx2_fastboot.Label"><value>Fast Boot</value></data>
-  <data name="Emulation.Option.pcsx2.pcsx2_fastboot.Help"><value>Skips BIOS indító képernyő és csizma egyenesen a játék. Ha be szeretné kapcsolni a PS2 rendszerbeállításokat, vagy szeretne hozzáférni az Memory Card kezelőhöz.</value></data>
+  <data name="Emulation.Option.pcsx2.pcsx2_fastboot.Help"><value>Kihagyja a BIOS indító képernyő és indítsa el a játékot közvetlenül. Ha nem szeretné megnyitni a konzol beállításokat vagy a memóriakártya kezelőjét, akkor ne nyissa meg.</value></data>
   <data name="Emulation.Option.pcsx2.pcsx2_renderer.Value.0"><value>Automatikus</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_cpu_core.Label"><value>CPU-mag</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_fast_memory.Label"><value>Gyors memória</value></data>

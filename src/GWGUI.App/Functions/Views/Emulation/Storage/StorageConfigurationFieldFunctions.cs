@@ -13,6 +13,7 @@ internal static class StorageConfigurationFieldFunctions
 {
     internal static string Read(FrameworkElement control) => control switch
     {
+        Panel { Tag: Func<string> read } => read(),
         CheckBox { Tag: EmulationSettingsField field } toggle => toggle.IsChecked == true ? field.EnabledValue : field.DisabledValue,
         ComboBox { SelectedItem: EmulationSettingsChoiceView choice } => choice.Choice.Id,
         Slider slider => slider.Value.ToString(CultureInfo.InvariantCulture),
@@ -35,7 +36,19 @@ internal static class StorageConfigurationFieldFunctions
         {
             var choices = (field.Choices ?? []).Select(choice => new EmulationSettingsChoiceView(choice,
                 choice.InvariantDisplayValue ?? LocExtension.GetForModule(moduleId ?? string.Empty, choice.DisplayResourceKey))).ToArray();
-            control = new ComboBox { ItemsSource = choices, SelectedItem = choices.FirstOrDefault(choice => choice.Choice.Id == value) ?? choices.FirstOrDefault() };
+            if (choices.Length == 2)
+            {
+                var radios = new WrapPanel();
+                var group = Guid.NewGuid().ToString();
+                var selected = choices.FirstOrDefault(choice => choice.Choice.Id == value) ?? choices[0];
+                foreach (var choice in choices)
+                    radios.Children.Add(new RadioButton { Content = choice.DisplayName, Tag = choice,
+                        GroupName = group, IsChecked = choice.Choice.Id == selected.Choice.Id, Margin = new Thickness(0, 4, 14, 4) });
+                radios.Tag = (Func<string>)(() => radios.Children.OfType<RadioButton>()
+                    .Where(radio => radio.IsChecked == true).Select(radio => ((EmulationSettingsChoiceView)radio.Tag).Choice.Id).FirstOrDefault() ?? value ?? string.Empty);
+                control = radios;
+            }
+            else control = new ComboBox { ItemsSource = choices, SelectedItem = choices.FirstOrDefault(choice => choice.Choice.Id == value) ?? choices.FirstOrDefault() };
         }
         control.IsEnabled = field.IsEnabled;
         return control;
@@ -47,7 +60,12 @@ internal static class StorageConfigurationFieldFunctions
         if (control is Slider slider)
         {
             var number = new TextBlock { VerticalAlignment = VerticalAlignment.Center, Margin = new Thickness(8, 0, 0, 0) };
-            void UpdateNumber() => number.Text = slider.Value.ToString(CultureInfo.CurrentCulture) + field.NumericRange!.UnitSuffix;
+            void UpdateNumber()
+            {
+                var choice = field.UseChoiceLabelsForSlider ? field.Choices?.FirstOrDefault(item => item.Id == slider.Value.ToString(CultureInfo.InvariantCulture)) : null;
+                number.Text = choice is not null ? choice.InvariantDisplayValue ?? LocExtension.GetForModule(moduleId ?? string.Empty, choice.DisplayResourceKey)
+                    : slider.Value.ToString(CultureInfo.CurrentCulture) + field.NumericRange!.UnitSuffix;
+            }
             UpdateNumber();
             slider.ValueChanged += (_, _) => UpdateNumber();
             var row = new Grid();

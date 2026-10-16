@@ -4,9 +4,23 @@ namespace GWGUI.Emulation.Sony.Common.Machines.Common.Functions;
 
 internal static class EmulationMediaConversionFunctions
 {
-    internal static MachineConfiguration WithMedia(MachineConfiguration configuration, IEnumerable<EmulationMedia> media) => configuration with
+    internal static MachineConfiguration WithMedia(MachineConfiguration configuration, IEnumerable<EmulationMedia> media)
     {
-        Media = media.Select((item, index) => new MediaConfiguration(item.Path,
+        var mounted = media.ToArray();
+        var cards = StorageSettingsFunctions.Describe(configuration).AvailableDevices
+            .Where(device => device.ConfigurationKind == EmulationStorageConfigurationKind.MemoryCard).ToArray();
+        var options = new Dictionary<string, string>(configuration.Options ?? new Dictionary<string, string>(), StringComparer.Ordinal);
+        foreach (var device in cards)
+        {
+            var card = mounted.FirstOrDefault(item => item.Slot == device.Slot && item.IsInserted);
+            options[StorageSettingsFunctionsConstants.MemoryCardEnabledOptionPrefix + device.Slot.Index] = (card is not null).ToString();
+            if (card is not null)
+                options[StorageSettingsFunctionsConstants.MemoryCardPathOptionPrefix + device.Slot.Index] = card.Path;
+        }
+        return configuration with
+        {
+        Options = options,
+        Media = mounted.Where(item => !cards.Any(device => device.Slot == item.Slot)).Select((item, index) => new MediaConfiguration(item.Path,
             item.Type switch
             {
                 EmulationMediaType.Floppy => MediaCategory.Floppy,
@@ -17,7 +31,8 @@ internal static class EmulationMediaConversionFunctions
                 EmulationMediaType.HardDisk => MediaCategory.HardDisk,
                 _ => throw new ArgumentOutOfRangeException(nameof(media), item.Type, null)
             }, IsReadOnly: item.IsReadOnly, IsInserted: item.IsInserted, MountOrder: index, SlotIndex: item.Slot.Index)).ToArray()
-    };
+        };
+    }
 
     internal static IReadOnlyList<EmulationMedia> ToCommon(IEnumerable<MediaConfiguration> media)
     {

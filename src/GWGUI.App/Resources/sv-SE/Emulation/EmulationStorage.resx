@@ -43,7 +43,7 @@
   <data name="Emulation.Storage.HardDisk.Device"><value>Hårddisk</value></data>
   <data name="Emulation.Storage.Device.Interface"><value>Gränssnitt</value></data>
   <data name="Emulation.Storage.File.Preallocate"><value>Förallokera filen</value></data>
-  <data name="Emulation.Storage.Media.RemovableRuntimeHint"><value>Floppies och CD-skivor infogas eller byts ut från löparmaskinen.</value></data>
+  <data name="Emulation.Storage.Media.RemovableRuntimeHint"><value>Använd emuleringsvyn för att infoga eller ändra media.</value></data>
   <data name="Emulation.Storage.Media.Remove"><value>Ta bort medium</value></data>
   <data name="Emulation.Storage.Disk.ReplaceExisting"><value>Diskavbildningen finns redan: {0}\nVill du ersätta den?</value></data>
   <data name="Emulation.Storage.Device.CapabilitiesHint"><value>Tillgängliga typer, modeller och identifierare beror på den valda maskinen.</value></data>
@@ -82,4 +82,6 @@
   <data name="Emulation.Storage.MemoryCard.InvalidFormat"><value>Välj ett filformat som stöds av den här enheten.</value></data>
   <data name="Emulation.Storage.Cache.Unlimited"><value>Obegränsad</value></data>
   <data name="Emulation.Storage.Cache.ClearOnGameClose"><value>Töm när spelet stängs</value></data>
+  <data name="Emulation.Storage.MemoryCard.Device"><value>Minneskort</value></data>
+  <data name="Emulation.Storage.MemoryCard.Name"><value>Kortnamn</value></data>
 </root>

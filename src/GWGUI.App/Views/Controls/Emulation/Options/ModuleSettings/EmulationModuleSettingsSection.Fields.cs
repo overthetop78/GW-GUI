@@ -47,9 +47,31 @@ internal sealed partial class EmulationModuleSettingsSection
         return control;
     }
 
-    private ComboBox CreateSelection(EmulationSettingsField field)
+    private FrameworkElement CreateSelection(EmulationSettingsField field)
     {
         var choices = SelectionChoices(field);
+        if (choices.Count == 2 && field.ChoiceSource == EmulationSettingsChoiceSource.Declared)
+        {
+            var radios = new WrapPanel();
+            var group = Guid.NewGuid().ToString();
+            var selected = choices.FirstOrDefault(choice => choice.Choice.Id == field.Value) ?? choices[0];
+            foreach (var choice in choices)
+            {
+                var radio = new RadioButton { Content = choice.DisplayName, Tag = choice,
+                    GroupName = group, IsChecked = choice.Choice.Id == selected.Choice.Id,
+                    Margin = new Thickness(0, 4, 18, 4) };
+                radio.Checked += async (_, _) =>
+                {
+                    if (_applyingSettingsRule) return;
+                    if (field.RefreshSettingsOnChange) RefreshSettingsDescription();
+                    await ExecuteUserChangeAsync();
+                };
+                radios.Children.Add(radio);
+            }
+            radios.Tag = (Func<string>)(() => radios.Children.OfType<RadioButton>()
+                .Where(radio => radio.IsChecked == true).Select(radio => ((EmulationSettingsChoiceView)radio.Tag).Choice.Id).FirstOrDefault() ?? field.Value ?? string.Empty);
+            return radios;
+        }
         var selection = new ComboBox
         {
             ItemsSource = choices,

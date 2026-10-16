@@ -7,4 +7,5 @@
   <data name="Emulation.Sony.Cpu.EffectiveFrequency"><value>효과적인 CPU 빈도</value></data>
   <data name="Emulation.Sony.Video.Chip"><value>영상 칩</value></data>
   <data name="Emulation.Sony.Audio.Chip"><value>오디오 칩</value></data>
+  <data name="Emulation.Sony.Storage.MemoryCard"><value>메모리 카드</value></data>
 </root>

@@ -7,4 +7,5 @@
   <data name="Emulation.Sony.Cpu.EffectiveFrequency"><value>Fréquence effective du CPU</value></data>
   <data name="Emulation.Sony.Video.Chip"><value>Puce vidéo</value></data>
   <data name="Emulation.Sony.Audio.Chip"><value>Puce audio</value></data>
+  <data name="Emulation.Sony.Storage.MemoryCard"><value>Carte mémoire</value></data>
 </root>

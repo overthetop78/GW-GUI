@@ -71,6 +71,7 @@ public static class EmulationControllerVisualIds
     public const string SonyDualShock4 = "sony-dualshock-4";
     public const string SonyDualSense = "sony-dualsense";
     public const string SonyPsp1000 = "sony-psp-1000";
+    public const string SonyPocketStation = "sony-pocketstation";
     public const string NintendoNesPad = "nintendo-nes-pad";
     public const string NintendoNesMax = "nintendo-nes-max";
     public const string NintendoNesAdvantage = "nintendo-nes-advantage";

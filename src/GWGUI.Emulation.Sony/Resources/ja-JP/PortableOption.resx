@@ -5,7 +5,7 @@
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Option.pcsx2.pcsx2_fastboot.Label"><value>速いブーツ</value></data>
-  <data name="Emulation.Option.pcsx2.pcsx2_fastboot.Help"><value>BIOSの起動画面をスキップし、ゲームに直進します。 PS2 システム設定にアクセスしたり、Memory Card マネージャにアクセスしたい場合は、これを無効にします。</value></data>
+  <data name="Emulation.Option.pcsx2.pcsx2_fastboot.Help"><value>ミッション BIOS 起動画面でゲームを直接開始します。 コンソール設定またはメモリカードマネージャを開くためにこれを無効にします。</value></data>
   <data name="Emulation.Option.pcsx2.pcsx2_renderer.Value.0"><value>自動</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_cpu_core.Label"><value>CPUコア</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_fast_memory.Label"><value>速い記憶</value></data>

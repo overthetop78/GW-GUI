@@ -5,7 +5,7 @@
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Option.pcsx2.pcsx2_fastboot.Label"><value>บูตแบบเร็ว</value></data>
-  <data name="Emulation.Option.pcsx2.pcsx2_fastboot.Help"><value>ข้ามหน้าจอเริ่มต้น BIOS และบูตตรงกับเกม ปิดการใช้งานตัวเลือกนี้ หากคุณต้องการเข้าใช้งานการตั้งค่าระบบPS2หรือเข้าถึงตัวจัดการMemory Card</value></data>
+  <data name="Emulation.Option.pcsx2.pcsx2_fastboot.Help"><value>ข้าม BIOS เริ่มการทํางานหน้าจอและเริ่มเกมโดยตรง ปิดการใช้งานตัวเลือกนี้เพื่อเปิดการตั้งค่าคอนโซลหรือตัวจัดการการ์ดหน่วยความจํา</value></data>
   <data name="Emulation.Option.pcsx2.pcsx2_renderer.Value.0"><value>อัตโนมัติ</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_cpu_core.Label"><value>แกน CPU</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_fast_memory.Label"><value>หน่วยความจําด่วน</value></data>

@@ -24,4 +24,6 @@ public sealed record EmulationSettingsField(
     int? ControllerPortNumber = null,
     string? FrequencyScaleFieldId = null,
     bool IsGlobalControllerOption = false,
-    EmulationVideoSettingsSection VideoSection = EmulationVideoSettingsSection.Display);
+    EmulationVideoSettingsSection VideoSection = EmulationVideoSettingsSection.Display,
+    string? AutomaticValue = null,
+    bool UseChoiceLabelsForSlider = false);

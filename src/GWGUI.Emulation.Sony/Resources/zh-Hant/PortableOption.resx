@@ -5,7 +5,7 @@
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Option.pcsx2.pcsx2_fastboot.Label"><value>快速啟動</value></data>
-  <data name="Emulation.Option.pcsx2.pcsx2_fastboot.Help"><value>跳過 BIOS 啟動屏幕并直接將靴子拖入游戲. 如果您想要訪問PS2系統設置或訪問Memory Card管理器,則禁用此選項 。</value></data>
+  <data name="Emulation.Option.pcsx2.pcsx2_fastboot.Help"><value>跳过 BIOS 启动屏幕并直接启动游戏。 禁用此功能打开控制台设置或内存卡管理器 。</value></data>
   <data name="Emulation.Option.pcsx2.pcsx2_renderer.Value.0"><value>自動的</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_cpu_core.Label"><value>CPU 核心</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_fast_memory.Label"><value>快速內存</value></data>

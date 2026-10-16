@@ -33,7 +33,7 @@ public sealed class CompactDiscDriveConfigurationDialog : Window
         Owner = Application.Current.Windows.OfType<Window>().FirstOrDefault(window => window.IsActive);
         ShowInTaskbar = false;
         WindowStartupLocation = WindowStartupLocation.CenterOwner;
-        Width = 720;
+        Width = 920;
         MaxHeight = SystemParameters.WorkArea.Height * 0.85;
         SizeToContent = SizeToContent.Height;
         ResizeMode = ResizeMode.NoResize;
@@ -44,9 +44,9 @@ public sealed class CompactDiscDriveConfigurationDialog : Window
         var entries = new List<(string Label, FrameworkElement Control)>
         {
             (LocExtension.Get(EmulationResourceKeys.DeviceIdentifier),
-                new TextBox { Text = identifier, IsReadOnly = true }),
+                new TextBlock { Text = identifier, VerticalAlignment = VerticalAlignment.Center }),
             (LocExtension.Get(EmulationResourceKeys.Model),
-                new TextBox { Text = modelName, IsReadOnly = true })
+                new TextBlock { Text = modelName, VerticalAlignment = VerticalAlignment.Center })
         };
         if (speeds is { Count: > 0 })
             entries.Add((LocExtension.Get(EmulationResourceKeys.CompactDiscSpeed), _speed));
@@ -56,12 +56,17 @@ public sealed class CompactDiscDriveConfigurationDialog : Window
         var fields = StorageDialogUi.TwoColumnFields(entries.ToArray());
         var body = new StackPanel();
         body.Children.Add(fields);
+        var optionsPanel = new WrapPanel();
         foreach (var field in configurationFields ?? [])
         {
             var control = StorageConfigurationFieldFunctions.Create(field, moduleId, settings.Options);
             _options[field.Id] = control;
-            body.Children.Add(StorageConfigurationFieldFunctions.Present(field, control, moduleId));
+            var presentation = StorageConfigurationFieldFunctions.Present(field, control, moduleId);
+            presentation.Width = 400;
+            presentation.Margin = new Thickness(0, 4, 14, 4);
+            optionsPanel.Children.Add(presentation);
         }
+        body.Children.Add(optionsPanel);
         body.Children.Add(StorageDialogUi.Info(LocExtension.Get(EmulationResourceKeys.StorageRuntimeHint)));
         Content = StorageDialogUi.DialogLayout(
             StorageDialogUi.DialogHeader(IconGlyphs.OpticalDisc, Title, $"{LocExtension.Get(EmulationResourceKeys.CompactDiscDevice)} · {machineName}"),

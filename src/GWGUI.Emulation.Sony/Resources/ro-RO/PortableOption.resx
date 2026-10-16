@@ -5,7 +5,7 @@
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Option.pcsx2.pcsx2_fastboot.Label"><value>Boot rapid</value></data>
-  <data name="Emulation.Option.pcsx2.pcsx2_fastboot.Help"><value>Skings BIOS startup ecran și cizme direct la joc. Dezactivează acest lucru dacă doriți să accesați setările de sistem PS2 sau accesează managerul Memory Card.</value></data>
+  <data name="Emulation.Option.pcsx2.pcsx2_fastboot.Help"><value>Sare BIOS Startup ecran și începe jocul direct. Dezactivează acest lucru pentru a deschide setările consolei sau managerul cardului de memorie.</value></data>
   <data name="Emulation.Option.pcsx2.pcsx2_renderer.Value.0"><value>Automat</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_cpu_core.Label"><value>CPU Nucleu</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_fast_memory.Label"><value>Memorie rapidă</value></data>

@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
+  <data name="Emulation.Controller.Visual.Model.sony-pocketstation"><value>PocketStation</value></data>
+  <data name="Emulation.Controller.Visual.Model.watara-supervision-controls"><value>Supervision</value></data>
+  <data name="Emulation.Controller.Visual.Model.thomson-mj90-102"><value>Thomson MJ 90-102</value></data>
+  <data name="Emulation.Controller.Visual.Model.snk-neo-geo-arcade-stick"><value>Neo Geo Arcade Stick</value></data>
+  <data name="Emulation.Controller.Visual.Model.snk-neo-geo-cd-pad"><value>Neo Geo CD</value></data>
+  <data name="Emulation.Controller.Visual.Model.snk-neo-geo-pocket"><value>Neo Geo Pocket</value></data>
+  <data name="Emulation.Controller.Visual.Model.snk-neo-geo-pocket-color"><value>Neo Geo Pocket Color</value></data>
+  <data name="Emulation.Controller.Visual.Model.sharp-cyberstick"><value>Sharp Cyber Stick</value></data>
+  <data name="Emulation.Controller.Visual.Model.mattel-intellivision-controller"><value>Intellivision</value></data>
   <data name="Emulation.Controller.Visual.Model.bandai-wonderswan"><value>WonderSwan</value></data>
   <data name="Emulation.Controller.Visual.Model.bandai-wonderswan-color"><value>WonderSwan Color</value></data>
   <data name="Emulation.Controller.Visual.Model.bandai-swancrystal"><value>SwanCrystal</value></data>

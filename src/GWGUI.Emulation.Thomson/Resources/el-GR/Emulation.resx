@@ -11,4 +11,6 @@
   <data name="Emulation.Thomson.Start.ShowHint" xml:space="preserve"><value>Εμφάνιση οδηγιών για την έναρξη του προγράμματος</value></data>
   <data name="Emulation.Thomson.Printer" xml:space="preserve"><value>Εκτυπωτής</value></data>
   <data name="Emulation.Thomson.Printer.SaveOutput" xml:space="preserve"><value>Αποθήκευση εξόδου εκτυπωτή σε ένα αρχείο</value></data>
+  <data name="Emulation.Thomson.LightPen"><value>Φωτογραφίδα</value></data>
+  <data name="Emulation.Thomson.LightPen.Contact"><value>Επαφή φωτογραφίδας</value></data>
 </root>

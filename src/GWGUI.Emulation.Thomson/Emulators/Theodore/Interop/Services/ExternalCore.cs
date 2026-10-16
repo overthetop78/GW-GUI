@@ -78,7 +78,7 @@ internal sealed class ExternalCore : IEmulatorCore
                 saveDirectory ?? Path.Combine(sessionDirectory, "Saves"),
                 Path.Combine(sessionDirectory, "Assets")
             );
-            _input = new InputCallbackHost(configuration.Model, _environment, _video);
+            _input = new InputCallbackHost(configuration, _environment, _video);
             _exports.SetEnvironment(_environment.Callback);
             _exports.SetVideo(_video.Callback);
             _exports.SetAudioSample(_audio.SampleCallback);

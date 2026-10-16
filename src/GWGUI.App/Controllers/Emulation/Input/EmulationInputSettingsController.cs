@@ -237,6 +237,7 @@ internal sealed class EmulationInputSettingsController
         item.AppendChild(image);
         var name = new FrameworkElementFactory(typeof(TextBlock));
         name.SetValue(FrameworkElement.VerticalAlignmentProperty, VerticalAlignment.Center);
+        name.SetBinding(FrameworkElement.ToolTipProperty, new Binding(nameof(EmulationControllerVisualChoiceView.Value)));
         name.SetBinding(TextBlock.TextProperty, new Binding(nameof(EmulationControllerVisualChoiceView.Value)));
         item.AppendChild(name);
         editor.Visual.DisplayMemberPath = string.Empty;

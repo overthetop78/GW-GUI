@@ -43,7 +43,7 @@
   <data name="Emulation.Storage.HardDisk.Device"><value>דיסק קשיח</value></data>
   <data name="Emulation.Storage.Device.Interface"><value>ממשק</value></data>
   <data name="Emulation.Storage.File.Preallocate"><value>הקצאה מוקדמת של הקובץ</value></data>
-  <data name="Emulation.Storage.Media.RemovableRuntimeHint"><value>תקליטונים ותקליטורים מוכנסים או מוחלפים מתוך המכונה הפועלת.</value></data>
+  <data name="Emulation.Storage.Media.RemovableRuntimeHint"><value>השתמש בתצוגת החיקוי כדי להוסיף או לשנות את המדיה.</value></data>
   <data name="Emulation.Storage.Media.Remove"><value>הסרת מדיה</value></data>
   <data name="Emulation.Storage.Disk.ReplaceExisting"><value>תמונת הדיסק כבר קיימת: {0}\nהאם להחליף אותה?</value></data>
   <data name="Emulation.Storage.Device.CapabilitiesHint"><value>הסוגים, הדגמים והמזהים הזמינים תלויים במכונה שנבחרה.</value></data>
@@ -82,4 +82,6 @@
   <data name="Emulation.Storage.MemoryCard.InvalidFormat"><value>בחר פורמט קובץ נתמך על ידי מכשיר זה.</value></data>
   <data name="Emulation.Storage.Cache.Unlimited"><value>ללא הגבלה</value></data>
   <data name="Emulation.Storage.Cache.ClearOnGameClose"><value>ניקוי בעת סגירת המשחק</value></data>
+  <data name="Emulation.Storage.MemoryCard.Device"><value>כרטיס זיכרון</value></data>
+  <data name="Emulation.Storage.MemoryCard.Name"><value>שם כרטיס</value></data>
 </root>

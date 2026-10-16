@@ -11,4 +11,6 @@
   <data name="Emulation.Thomson.Start.ShowHint" xml:space="preserve"><value>اظهروا التعليمات لبدء البرنامج</value></data>
   <data name="Emulation.Thomson.Printer" xml:space="preserve"><value>Printer</value></data>
   <data name="Emulation.Thomson.Printer.SaveOutput" xml:space="preserve"><value>انقذوا نتاج الطابعات إلى ملف</value></data>
+  <data name="Emulation.Thomson.LightPen"><value>قلم ضوئي</value></data>
+  <data name="Emulation.Thomson.LightPen.Contact"><value>ملامسة القلم الضوئي</value></data>
 </root>

@@ -11,4 +11,6 @@
   <data name="Emulation.Thomson.Start.ShowHint" xml:space="preserve"><value>Показати інструкції для запуску програми</value></data>
   <data name="Emulation.Thomson.Printer" xml:space="preserve"><value>Принтери</value></data>
   <data name="Emulation.Thomson.Printer.SaveOutput" xml:space="preserve"><value>Збережіть вихід принтера в файл</value></data>
+  <data name="Emulation.Thomson.LightPen"><value>Світлове перо</value></data>
+  <data name="Emulation.Thomson.LightPen.Contact"><value>Дотик світлового пера</value></data>
 </root>

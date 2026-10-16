@@ -153,6 +153,7 @@ internal static class StorageDialogUi
             {
                 Text = fields[index].Label,
                 VerticalAlignment = VerticalAlignment.Center,
+                TextWrapping = TextWrapping.Wrap,
                 Margin = new Thickness(column == 0 ? 0 : 18, 6, 8, 6)
             };
             Grid.SetRow(label, row);

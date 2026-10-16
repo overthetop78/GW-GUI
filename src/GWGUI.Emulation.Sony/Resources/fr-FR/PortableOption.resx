@@ -5,7 +5,7 @@
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Option.pcsx2.pcsx2_fastboot.Label"><value>Démarrer rapidement</value></data>
-  <data name="Emulation.Option.pcsx2.pcsx2_fastboot.Help"><value>Passer l'écran de démarrage BIOS et les bottes directement au jeu. Désactivez cela si vous voulez accéder aux paramètres du système PS2 ou accéder au gestionnaire Memory Card.</value></data>
+  <data name="Emulation.Option.pcsx2.pcsx2_fastboot.Help"><value>Ignore l’écran de démarrage du BIOS et lance directement le jeu. Désactivez cette option pour ouvrir les paramètres de la console ou le gestionnaire de cartes mémoire.</value></data>
   <data name="Emulation.Option.pcsx2.pcsx2_renderer.Value.0"><value>Automatique</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_cpu_core.Label"><value>Moteur CPU</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_fast_memory.Label"><value>Accès mémoire rapide</value></data>

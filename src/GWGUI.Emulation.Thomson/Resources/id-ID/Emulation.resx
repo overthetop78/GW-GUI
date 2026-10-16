@@ -11,4 +11,6 @@
   <data name="Emulation.Thomson.Start.ShowHint" xml:space="preserve"><value>Tampilkan instruksi untuk memulai program</value></data>
   <data name="Emulation.Thomson.Printer" xml:space="preserve"><value>Pencetak</value></data>
   <data name="Emulation.Thomson.Printer.SaveOutput" xml:space="preserve"><value>Simpan keluaran pencetak ke suatu berkas</value></data>
+  <data name="Emulation.Thomson.LightPen"><value>Pena cahaya</value></data>
+  <data name="Emulation.Thomson.LightPen.Contact"><value>Kontak pena cahaya</value></data>
 </root>

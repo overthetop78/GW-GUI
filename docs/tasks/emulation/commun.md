@@ -1,5 +1,34 @@
 # Travaux communs restants
 
+## Lecteur Data Pack d'origine ADAM
+
+- [x] Rendre cohérente la permanence du lecteur intégré, sans build.
+  - [x] Modifier `src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/StorageFunctions.Settings.cs` : déclarer le premier lecteur Data Pack permanent, garder le second lecteur et les disquettes ajoutables et supprimables.
+  - [x] Modifier `docs/tasks/emulation/commun.md` : consigner le raccordement de la permanence à la corbeille et les commandes réellement disponibles pour les lecteurs, sans compilation.
+
+Le premier Data Pack était requis par DefaultSlots et la validation, mais son EmulationMediaDevice ne déclarait pas IsPermanent. La déclaration est corrigée pour le seul index zéro. Le contrôleur commun calcule CanRemove avec !IsPermanent, la liste désactive la corbeille avec CanRemove et RemoveDevice refuse aussi la suppression d'un périphérique permanent. Le second Data Pack et les lecteurs de disquettes restent amovibles. Vérification du code et du diff uniquement ; aucun build ni test compilé.
+
+Options natives des lecteurs GearColeco : choix du lecteur ciblé par Disk Control, insertion/éjection/changement d'image et protection en écriture ou copie de travail dans le dossier de sauvegarde. L'adaptateur sélectionne automatiquement le lecteur ciblé et traduit IsReadOnly en mode d'écriture ; le mélange de médias protégés et inscriptibles est rejeté, car cette option native est globale. Aucun réglage natif de vitesse ou de géométrie du lecteur déclaré. Formats documentés : Data Pack 256 KiB, disquettes 160/320 KiB. Les dialogues matériels de ces lecteurs ne sont pas exposés actuellement, à la différence de la cartouche.
+
+## Visuels et périphériques Thomson, sans build
+
+- [x] Compléter les noms de visuels communs.
+  - [x] Modifier `src/GWGUI.App/Resources/00-Base/Emulation/EmulationController.resx` : ajouter les huit noms de produits invariants manquants (Watara, Thomson, SNK, Sharp et Mattel), sans les dupliquer dans les langues.
+- [x] Rétablir les périphériques de stockage Thomson avant le choix du moteur.
+  - [x] Modifier `src/GWGUI.Emulation.Thomson/Common/Machines/Common/Functions/StorageFunctions.Settings.cs` : décrire les périphériques du moteur disponible lorsque le brouillon ne possède pas encore de moteur, sans changer le moteur choisi ni les capacités natives.
+- [x] Identifier le crayon optique dans l'onglet Souris et permettre de désactiver son entrée.
+  - [x] Modifier `src/GWGUI.Emulation.Thomson/Common/Machines/Common/Constants/SettingsConstants.cs`, `Functions/SettingsFunctions.cs` et `Functions/InputFunctions.Settings.cs` : nommer le crayon, exposer son activation et son contact, retirer le clic droit sans effet de la liste affichée.
+  - [x] Modifier `src/GWGUI.Emulation.Thomson/Emulators/Theodore/Interop/Services/InputCallbackHost.cs` et `ExternalCore.cs` : transmettre l'activation et neutraliser les déplacements et le contact quand elle est désactivée, sans consommer un port joystick.
+  - [x] Modifier `src/GWGUI.Emulation.Thomson/Resources/*/Emulation.resx` : ajouter les noms du crayon et de son contact dans la base et toutes les langues avec Argos, puis relire les résultats.
+- [x] Consigner le contrôle des périphériques de pointage.
+  - [x] Modifier `docs/tasks/emulation/commun.md` : préciser le raccordement réel du crayon optique, du clic gauche et des deux joysticks, ainsi que les limites constatées et les vérifications statiques sans build.
+
+Les huit noms invariants manquants sont ajoutés dans la seule base App. Audit statique : tous les profils enregistrés possèdent désormais un nom dans cette base. Stockage Thomson : le brouillon Core=None ne déclarait aucun périphérique, ce qui masquait aussi le bouton d'ajout. La description utilise maintenant les capacités du moteur disponible pour la machine, sans sélectionner ni installer ce moteur ; les trois possibilités natives existantes (cassette, disquette, cartouche) redeviennent ajoutables.
+
+Pointage : le code natif Theodore src/libretro.c lit deux joysticks et un RETRO_DEVICE_POINTER sur le port 2 pour le crayon optique, sans entrée RETRO_DEVICE_MOUSE. L'adaptateur transmettait déjà les coordonnées et le clic gauche à ce crayon. Le bloc de l'onglet Souris le nomme maintenant explicitement et permet de désactiver ses déplacements et son contact ; il reste activé par défaut. L'association du contact accepte toujours clavier, souris et manette. Le clic droit sans effet n'est plus proposé comme action de sortie ; il reste utilisable comme source pour le contact du crayon. Aucun port joystick supplémentaire ni fausse souris Thomson ajouté. Les vraies souris et le lecteur de code-barres documentés pour le matériel ne sont pas exposés par cette interface native.
+
+Sources consultées : https://raw.githubusercontent.com/Zlika/theodore/master/src/libretro.c et https://dcmoto.pages-perso.free.fr/documentation/faq/connecteurs.html. Argos exécuté pour les deux nouveaux libellés, puis correction terminologique dans les 28 langues. Validation XML et présence unique des deux clés dans les 30 catalogues Thomson réussies. Contrôle du raccordement de l'activation au callback, des noms de visuels et du diff uniquement ; aucun build, aucun test compilé, aucune validation à l'exécution.
+
 ## Aides du saut d'images et des cartouches, sans build
 
 - [x] Corriger les deux réglages et leurs traductions.
@@ -486,3 +515,56 @@ Contrôles : seize cas vérifient les valeurs, défauts, libellés et ordre exac
 Livraison regroupée vérifiée : build complet terminé code zéro ; application présente, SDK dans lib et Updater et 23 modules identiques par SHA256 aux compilations, staging absent. Les étapes terminées sont retirées du suivi. Ce regroupement complète le même commit local de quantités Sony, sans nouvelle publication ni push ; les autres limites du suivi restent ouvertes.
 
 Qualification NC3000 complémentaire : trois parcours avec le même binaire officiel ont essayé la validation du menu et ses touches de fonction (Entrée, chiffres 0/1, Espace, F1/F2 et directions). Les LCD 160 × 80 montrent toujours des écrans de sélection de jeux ; aucun démarrage de jeu n’est prouvé. Le mappage local Entrée transmet 13, conforme à RETROK_RETURN et HostKey::Return/ENT dans la source officielle inspectée ; aucune preuve ne justifie de remplacer ce code dans l’adaptateur. La cause de ce comportement n’est pas attribuée sans preuve au firmware ou au binaire. Aucun PCM reçu. Hôtes PID 43048, 35324 et 49872 observés terminés, mappings vidéo absents après Dispose et SHA256 des trois firmwares originaux inchangés. Fixture externe et dossier temporaire gwgui-nc3000-game-20261016 supprimés ; reconstruction des seuls tests puis douze contrôles permanents Wenquxing réussis. Ce complément de qualification est regroupé avec le correctif fonctionnel Coleco, sans commit documentaire isolé.
+
+## Révision des réglages et cartes mémoire Sony demandée le 16 octobre
+
+- [x] Visuel PocketStation et sélecteurs des manettes.
+  - [x] Modifier les fichiers Sony de `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/` et les ressources du visuel : raccorder une vue de face et les cinq zones PocketStation.
+  - [x] Modifier `src/GWGUI.App/Functions/Views/Emulation/Settings/EmulationControllerSettingsLayout.cs` et le modèle des sélecteurs : rapprocher les légendes, laisser la place aux noms et aux visuels.
+- [x] Valeurs et disposition des réglages Sony.
+  - [x] Modifier `src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Functions/CoreSettingsFunctions.cs`, ses constantes et les métadonnées d'options concernées : respecter les valeurs natives, afficher unités et multiplicateurs, réunir les champs ROM et classer les champs vidéo.
+  - [x] Modifier les contrats de champs et les composants de réglages existants dans `src/GWGUI.Emulation/Contracts/` et `src/GWGUI.App/Views/Controls/Emulation/Options/ModuleSettings/` : boutons radio pour deux valeurs exclusives, graduations et orientation verticale des bornes NTSC/PAL, mode automatique de fréquence avec curseur désactivé.
+  - [x] Modifier les fonctions de disposition de réglages sous `src/GWGUI.App/Functions/Views/Emulation/Settings/` : cadres lisibles, champs dimensionnés selon leur contenu et bornes NTSC/PAL regroupées.
+- [x] Cartes mémoire et dialogues de stockage.
+  - [x] Modifier `src/GWGUI.App/Views/Dialogs/Emulation/Storage/CompactDiscDriveConfigurationDialog.cs`, `HardDiskDriveConfigurationDialog.cs` et les fonctions de présentation sous `src/GWGUI.App/Functions/Views/Emulation/Storage/` : informations fixes en texte, champs compacts, destination entière, nom de carte sans extension.
+  - [x] Modifier `src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/StorageFunctions.cs` et le contrôleur de stockage App : conserver les cartes associées aux ports temporairement masqués et utiliser le dossier propre à la machine.
+  - [x] Modifier les commandes de supports en exécution et leur raccordement aux dialogues existants : choisir ou créer plusieurs cartes puis les changer depuis Émulation, selon les capacités du cœur.
+- [x] Compléter la commande multitap et les unités.
+  - [x] Modifier `src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Functions/CoreSettingsFunctions.cs` et `Modules/SonyEmulationModule.cs` : présenter le multitap SwanStation par deux cases pour les ports et recomposer sa valeur native.
+  - [x] Modifier les métadonnées et les composants de champs déjà concernés : grouper aussi les bornes NTSC sans suffixe et afficher les multiplicateurs des lecteurs CD.
+- [x] Traductions des réglages Sony signalés et des aides liées.
+  - [x] Modifier les catalogues concernés de `src/GWGUI.Emulation.Sony/Resources/` et `src/GWGUI.App/Resources/` : corriger avec Argos puis relire les libellés, valeurs et aides dans toutes les langues ; conserver les noms invariants dans la base.
+- [x] Terminer les valeurs présentées par les curseurs Sony.
+  - [x] Modifier `src/GWGUI.Emulation/Contracts/EmulationSettingsField.cs`, `CoreSettingsFunctions.cs` et les deux composants App des curseurs : afficher les dimensions de référence du curseur de résolution et le cas instantané de la recherche CD, sans changer les valeurs natives.
+  - [x] Modifier `src/GWGUI.Emulation.Sony/Resources/*/Option.resx` : traduire le libellé du délai nul avec Argos dans toutes les langues.
+- [x] Séparer les fonctions de rendu et préciser les dimensions.
+  - [x] Modifier `src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Functions/CoreSettingsFunctions.cs` et `Resources/00-Base/Option.resx` : répartir les réglages de couleurs et HDR dans leurs cadres, garder le matériel dans Affichage.
+  - [ ] Modifier `src/GWGUI.Emulation.Sony/Resources/*/Option.resx` : traduire le titre du cadre des couleurs, les valeurs HDR des captures et préciser la référence 320 × 240 des dimensions avec Argos dans toutes les langues.
+- [x] Vérifications sans build.
+  - [x] Modifier `docs/tasks/emulation/commun.md` : consigner les valeurs vérifiées dans les sources natives, les audits de traductions et de raccordement, et les limites de validation sans compilation.
+
+Résultat dans les sources : PocketStation utilise la photo de face existante, copiée sans transformation (SHA256 identique), avec quatre directions et le bouton A. Le profil, son identifiant, le catalogue et les noms invariants sont raccordés. Sélecteurs de manette rapprochés de leurs légendes, noms accompagnés d'une infobulle, libellés des formulaires repliables sur plusieurs lignes.
+
+Deux valeurs exclusives : boutons radio, avec restitution de leur identifiant natif et prise en compte des règles et des totaux mémoire. Les états activé/désactivé restent des cases. Le multitap SwanStation présente deux cases et recompose Disabled, Port1Only, Port2Only ou BothPorts sans transmettre les identifiants de présentation au cœur. Les options ROM rejoignent le bloc firmware. Affichage conserve la puce vidéo, la résolution, le format et le recadrage ; Rendu est divisé en cadres de rendu, couleurs, HDR, géométrie, textures et lignes NTSC/PAL selon les options présentes.
+
+Valeurs natives vérifiées : Beetle propose 128, 256, 384, puis chaque multiple de 128 jusqu'à 2048. Le curseur respecte déjà le pas et affiche maintenant ses graduations. PCSX-ReARMed propose auto puis chaque entier de 30 à 100 : il s'agit du réglage temporel du CPU en pourcentage, sans ajout de 100, ni accélération globale de la lecture. La case automatique désactive le curseur ; l'aide explique la compensation des délais matériels et la fréquence calculée simpliste est retirée pour ce cœur. Référence : https://raw.githubusercontent.com/libretro/pcsx_rearmed/master/frontend/libretro_core_options.h.
+
+Dimensions : les facteurs de résolution restent leurs valeurs natives. La référence 320 × 240 est explicitée dans les aides PS1 (la taille réelle varie selon le jeu et le mode vidéo), avec dimensions multipliées dans les choix et sous le curseur SwanStation. Les facteurs de résolution et de vitesse CD portent × ; les quantités d'anticipation portent secteurs dans leur libellé. Le zéro de recherche SwanStation est affiché comme absence de délai, conformément au cœur. Références : https://raw.githubusercontent.com/libretro/beetle-psx-libretro/master/libretro_core_options.h et https://raw.githubusercontent.com/libretro/swanstation/master/src/libretro/libretro_core_options.h.
+
+Cartes mémoire : nom saisi sans extension, extension ajoutée à la création, initialiseur natif du format appelé après création du fichier (en-tête et répertoire PS1 ; flash effacée PS2). Identifiant et modèle fixes en texte dans la même ligne ; dossier de destination complet, sans cadre de saisie. Nouvelles cartes dans Storage/Sony/PlayStation/Memory Cards ou Storage/Sony/PlayStation2/Memory Cards ; Memory Stick dans Storage/Sony/PSP/Memory Stick. Les fichiers existants sont conservés à leur emplacement. Les chemins et activations des ports masqués par le multitap ne sont plus effacés lors du rétablissement des ports.
+
+Depuis Émulation, les cartes gérées par fichiers ou dossiers disposent du même dialogue de sélection/création ; les cartes sélectionnées sont ajoutées aux supports de session puis retranscrites dans les options de carte du cœur, sans être envoyées comme images de jeu. Le retrait désactive la carte de session. La recréation de machine suit RequiresMachineRecreation, comme les autres supports qui l'exigent ; cela ne prétend pas fournir un échange sans redémarrage du jeu. Play conserve ses répertoires de cartes fixes, sans choix de fichier inventé. Les fenêtres ajoutées au parcours sont fermées dans finally.
+
+Argos exécuté sur les libellés, valeurs et aides concernés dans les 28 langues, puis corrections manuelles des textes français et des termes de compilation/interprétation, couleurs et recherche dans toutes les langues. Les noms PocketStation et les titres NTSC/PAL/HDR restent dans la base. Audit : 151 RESX modifiés valides, sans clé supprimée, dupliquée ou vide ; nouveaux libellés présents dans les 30 catalogues Sony. Diff sans erreur. Aucun build, aucune compilation de tests, aucun lancement de cœur ou de fenêtre nouvelle, aucun média de test créé. Les raccordements sont contrôlés dans les sources ; le comportement réel et la mise en page après compilation restent à valider.
+
+## Commit et build Debug demandés le 16 octobre
+
+- [x] Corriger la compilation du dialogue de stockage.
+  - [x] Modifier `src/GWGUI.App/Functions/Views/Emulation/Storage/StorageDialogUi.cs` : supprimer la seconde initialisation identique de TextWrapping dans CompactFields.
+- [x] Regrouper les corrections et livrer le build.
+  - [x] Modifier `docs/tasks/emulation/commun.md` : consigner le commit regroupé de toutes les modifications présentes, puis le résultat du build Debug application et tous les modules par `scripts/local-building.cmd --building=debug --modules=A`.
+  - [x] Modifier `docs/tasks/emulation/commun.md` : consigner la présence de `build/Debug/GW GUI/gwgui.exe`, les 23 modules livrés et leur concordance avec les DLL compilées.
+
+Résultat du build : commit regroupé créé, puis correction de la propriété TextWrapping ajoutée en double dans CompactFields, intégrée au même commit. Le lanceur CMD a échoué sur son chemin PowerShell fixé ; le même script a été exécuté par `pwsh -NoProfile -File scripts/local-building/build.ps1 -Configuration Debug -AllModules`. Construction complète terminée avec code zéro. Avertissements CA1416 dans plusieurs modules et CS8602 dans SNK, sans erreur finale.
+
+Livraison vérifiée : `build/Debug/GW GUI/gwgui.exe` présent ; DLL App identique par SHA256 à la compilation ; SDK identique dans lib et Updater ; manifestes et DLL des 23 modules présents et identiques aux compilations ; staging Debug absent. Aucun test supplémentaire ni lancement de fenêtre pour cette demande de commit et build. Validation visuelle et essais interactifs à effectuer avec cette livraison.

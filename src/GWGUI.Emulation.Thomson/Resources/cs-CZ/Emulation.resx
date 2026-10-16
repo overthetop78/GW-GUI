@@ -11,4 +11,6 @@
   <data name="Emulation.Thomson.Start.ShowHint" xml:space="preserve"><value>Zobrazit pokyny pro spuštění programu</value></data>
   <data name="Emulation.Thomson.Printer" xml:space="preserve"><value>Tiskárna</value></data>
   <data name="Emulation.Thomson.Printer.SaveOutput" xml:space="preserve"><value>Uložit výstup tiskárny do souboru</value></data>
+  <data name="Emulation.Thomson.LightPen"><value>Světelné pero</value></data>
+  <data name="Emulation.Thomson.LightPen.Contact"><value>Kontakt světelného pera</value></data>
 </root>

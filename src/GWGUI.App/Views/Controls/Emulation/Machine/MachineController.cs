@@ -18,6 +18,8 @@ using System.Windows.Media;
 using GWGUI.Emulation;
 using GWGUI.App.Views.Dialogs.Emulation;
 using Microsoft.Win32;
+using GWGUI.App.Views.Dialogs.Emulation.Storage;
+using GWGUI.App.Services.Storage;
 
 namespace GWGUI.App.Views.Controls.Emulation.Machine;
 
@@ -295,7 +297,8 @@ internal sealed class MachineController : UserControl, IAsyncDisposable
     {
         _view.SetDevices(_mediaDevices.Select(device =>
         {
-            var canOpenMedia = device.IsRemovable && device.MediaType != EmulationMediaType.MemoryCard;
+            var canOpenMedia = device.IsRemovable && (device.MediaType != EmulationMediaType.MemoryCard
+                || device.ConfigurationKind == EmulationStorageConfigurationKind.MemoryCard);
             var mounted = _session.MountedMedia.FirstOrDefault(media => media.Slot == device.Slot);
             var cassette = device.MediaType == EmulationMediaType.Cassette ? _session.Machine.CassetteTransport : null;
             var state = cassette?.State ?? EmulationCassetteState.Empty;
@@ -322,6 +325,11 @@ internal sealed class MachineController : UserControl, IAsyncDisposable
 
     private async Task InsertMediaAsync(EmulationMediaDevice device)
     {
+        if (device.ConfigurationKind == EmulationStorageConfigurationKind.MemoryCard)
+        {
+            await ConfigureMemoryCardAsync(device);
+            return;
+        }
         var extensions = device.AcceptedExtensions.Select(extension => $"*{extension}").ToArray();
         var dialog = new OpenFileDialog
         {
@@ -336,6 +344,36 @@ internal sealed class MachineController : UserControl, IAsyncDisposable
         if (_prepareMediaAsync is not null)
             media = await _prepareMediaAsync(media, CancellationToken.None);
         await _session.InsertAsync(media, device.RequiresMachineRecreation);
+        RebuildMediaDevices();
+    }
+
+    private async Task ConfigureMemoryCardAsync(EmulationMediaDevice device)
+    {
+        var current = _session.MountedMedia.FirstOrDefault(media => media.Slot == device.Slot)?.Path;
+        var folder = device.ImageDirectory ?? (device.DefaultImageSubdirectory is { } subdirectory
+            ? Path.Combine(StoragePaths.EmulationStorageDirectory, subdirectory)
+            : _options.InitialMediaDirectory(device) ?? StoragePaths.EmulationStorageDirectory);
+        string? selected;
+        if (device.UsesDirectory)
+        {
+            var dialog = new MemoryCardDirectoryConfigurationDialog(device.DisplayLabel ?? device.Slot.ToString(), current, folder);
+            try { if (dialog.ShowDialog() != true) return; selected = dialog.SupportPath; }
+            finally { dialog.Close(); }
+        }
+        else
+        {
+            var dialog = new HardDiskDriveConfigurationDialog(device.DisplayLabel ?? device.Slot.ToString(),
+                _options.MachineId, current, folder, device.HardDiskFormats ?? [],
+                EmulationMediaDialogFunctions.ClientGuid(_options.ModuleId, _options.MachineId, device.Slot),
+                fixedImageSizeBytes: device.FixedImageSizeBytes, defaultImageFileName: device.DefaultImageFileName,
+                presentation: device.DialogPresentation);
+            try { if (dialog.ShowDialog() != true) return; selected = dialog.SupportPath; }
+            finally { dialog.Close(); }
+        }
+        if (string.IsNullOrWhiteSpace(selected))
+            await _session.EjectAsync(device.Slot, device.RequiresMachineRecreation);
+        else
+            await _session.InsertAsync(new EmulationMedia(selected, device.Slot, EmulationMediaType.MemoryCard, false, true), device.RequiresMachineRecreation);
         RebuildMediaDevices();
     }
 

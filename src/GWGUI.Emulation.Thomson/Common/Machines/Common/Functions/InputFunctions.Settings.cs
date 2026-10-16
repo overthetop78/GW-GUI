@@ -4,8 +4,7 @@ internal static class InputSettingsFunctions
     internal static IReadOnlyDictionary<string, string> KeyboardBindings(InputConfiguration input, MachineModel model) => KeyboardDictionary.Bindings(input, model);
     internal static bool SupportsPeripheral(MachineConfiguration configuration, int port, PeripheralCategory peripheral) => Enum.IsDefined(configuration.Model) && port >= ControllerConstants.FirstPort && port < ControllerConstants.PortCount && Enum.IsDefined(peripheral);
     private static IReadOnlyList<InputBindingDefinition> MouseDefinitions() => [
-        new(InputMappingConstants.MouseLeft, "Emulation.Mouse.Button.Left", InputMappingConstants.MousePrefix + InputMappingConstants.MouseLeft),
-        new(InputMappingConstants.MouseRight, "Emulation.Mouse.Button.Right", InputMappingConstants.MousePrefix + InputMappingConstants.MouseRight)
+        new(InputMappingConstants.MouseLeft, SettingsConstants.ResourceLightPenContact, InputMappingConstants.MousePrefix + InputMappingConstants.MouseLeft)
     ];
     internal static EmulationInputSettings Describe(MachineConfiguration configuration)
     {
@@ -77,6 +76,7 @@ internal static class InputSettingsFunctions
     {
         _ = KeyboardBindings(configuration.Input, configuration.Model);
         var mouseIds = MouseDefinitions().Select(definition => definition.Id).ToHashSet(StringComparer.Ordinal);
+        mouseIds.Add(InputMappingConstants.MouseRight);
         if (configuration.Input.Mouse?.Any(pair => !mouseIds.Contains(pair.Key) || !IsSource(pair.Value)) == true)
             throw new ArgumentException(nameof(configuration.Input));
         var ids = ControllerCatalog.Definitions(PeripheralCategory.Joystick).Select(definition => definition.Id).ToHashSet(StringComparer.Ordinal);

@@ -5,7 +5,7 @@
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Option.pcsx2.pcsx2_fastboot.Label"><value>Snel opstarten</value></data>
-  <data name="Emulation.Option.pcsx2.pcsx2_fastboot.Help"><value>Skipt BIOS opstartscherm en laarzen rechtstreeks naar het spel. Schakel dit uit als u toegang wilt krijgen tot de PS2 systeeminstellingen of de Memory Card manager.</value></data>
+  <data name="Emulation.Option.pcsx2.pcsx2_fastboot.Help"><value>Overslaan van de BIOS start het scherm op en start het spel direct. Schakel dit uit om de console-instellingen of de geheugenkaartbeheerder te openen.</value></data>
   <data name="Emulation.Option.pcsx2.pcsx2_renderer.Value.0"><value>Automatisch</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_cpu_core.Label"><value>CPU-kern</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_fast_memory.Label"><value>Snel geheugen</value></data>

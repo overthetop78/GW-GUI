@@ -11,4 +11,6 @@
   <data name="Emulation.Thomson.Start.ShowHint" xml:space="preserve"><value>Arată instrucțiunile pentru începerea programului</value></data>
   <data name="Emulation.Thomson.Printer" xml:space="preserve"><value>Imprimantă</value></data>
   <data name="Emulation.Thomson.Printer.SaveOutput" xml:space="preserve"><value>Salvează ieşirea imprimantei într-un fișier</value></data>
+  <data name="Emulation.Thomson.LightPen"><value>Creion optic</value></data>
+  <data name="Emulation.Thomson.LightPen.Contact"><value>Contactul creionului optic</value></data>
 </root>

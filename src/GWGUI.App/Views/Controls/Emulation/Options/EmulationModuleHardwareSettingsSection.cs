@@ -32,7 +32,8 @@ internal sealed partial class EmulationModuleSettingsSection
                 {
                     var selected = ReadValue(source);
                     var scaled = EmulationSettingsValuePresentationFunctions.ScaledFrequency(field.NumericValue, selected);
-                    frequency.Text = scaled ?? (source is ComboBox { SelectedItem: EmulationSettingsChoiceView choice } ? choice.DisplayName : field.Value);
+                    frequency.Text = selected == "auto" ? LocExtension.Get("Visual.Automatic")
+                        : scaled ?? (source is ComboBox { SelectedItem: EmulationSettingsChoiceView choice } ? choice.DisplayName : field.Value);
                 }
                 AttachValueChanged(source, UpdateFrequency);
                 if (source is Grid { Tag: Slider slider }) slider.ValueChanged += (_, _) => UpdateFrequency();
@@ -164,6 +165,10 @@ internal sealed partial class EmulationModuleSettingsSection
             toggle.Checked += (_, _) => action();
             toggle.Unchecked += (_, _) => action();
         }
+        else if (control is Slider slider) slider.ValueChanged += (_, _) => action();
+        else if (control is RadioButton radio) radio.Checked += (_, _) => action();
+        else if (control is Panel panel)
+            foreach (var child in panel.Children.OfType<FrameworkElement>()) AttachValueChanged(child, action);
     }
 
     private static void SelectValue(FrameworkElement control, string value)
@@ -172,6 +177,9 @@ internal sealed partial class EmulationModuleSettingsSection
             selection.SelectedItem = selection.Items.Cast<EmulationSettingsChoiceView>().FirstOrDefault(item => item.Choice.Id == value);
         else if (control is CheckBox toggle && toggle.Tag is EmulationSettingsField field)
             toggle.IsChecked = value == field.EnabledValue;
+        else if (control is Panel panel)
+            foreach (var radio in panel.Children.OfType<RadioButton>())
+                radio.IsChecked = radio.Tag is EmulationSettingsChoiceView choice && choice.Choice.Id == value;
     }
 
     private static IReadOnlyList<EmulationSettingsField> VisibleFields(EmulationMachineSettings settings, EmulationMachineTab tab) => settings.Blocks.Where(block => block.Tab == tab && block.IsVisible).SelectMany(block => block.Fields).Where(field => field.IsVisible).ToArray();
@@ -185,6 +193,11 @@ internal sealed partial class EmulationModuleSettingsSection
             return EmulationSettingsValuePresentationFunctions.MemoryBytes(selected.Choice.InvariantDisplayValue) ?? selected.Choice.NumericValue ?? 0;
         if (control is CheckBox toggle)
             return toggle.IsChecked == true ? field.NumericValue ?? 0 : 0;
+        if (control is Panel { Tag: Func<string> read })
+        {
+            var choice = field.Choices?.FirstOrDefault(item => item.Id == read());
+            return choice?.NumericValue ?? EmulationSettingsValuePresentationFunctions.MemoryBytes(choice?.InvariantDisplayValue) ?? 0;
+        }
         return EmulationSettingsValuePresentationFunctions.DefaultNumericValue(field);
     }
 

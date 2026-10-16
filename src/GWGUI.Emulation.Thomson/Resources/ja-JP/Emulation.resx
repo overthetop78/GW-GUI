@@ -11,4 +11,6 @@
   <data name="Emulation.Thomson.Start.ShowHint" xml:space="preserve"><value>プログラムを始めるための指示を表示する</value></data>
   <data name="Emulation.Thomson.Printer" xml:space="preserve"><value>プリンター</value></data>
   <data name="Emulation.Thomson.Printer.SaveOutput" xml:space="preserve"><value>プリンター出力をファイルに保存する</value></data>
+  <data name="Emulation.Thomson.LightPen"><value>ライトペン</value></data>
+  <data name="Emulation.Thomson.LightPen.Contact"><value>ライトペンの接触</value></data>
 </root>

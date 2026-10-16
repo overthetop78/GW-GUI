@@ -11,4 +11,6 @@
   <data name="Emulation.Thomson.Start.ShowHint" xml:space="preserve"><value>Anweisungen zum Starten des Programms anzeigen</value></data>
   <data name="Emulation.Thomson.Printer" xml:space="preserve"><value>Drucker</value></data>
   <data name="Emulation.Thomson.Printer.SaveOutput" xml:space="preserve"><value>Speichern Sie die Druckerausgabe in einer Datei</value></data>
+  <data name="Emulation.Thomson.LightPen"><value>Lichtgriffel</value></data>
+  <data name="Emulation.Thomson.LightPen.Contact"><value>Kontakt des Lichtgriffels</value></data>
 </root>

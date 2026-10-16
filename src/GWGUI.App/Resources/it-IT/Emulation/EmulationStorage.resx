@@ -43,7 +43,7 @@
   <data name="Emulation.Storage.HardDisk.Device"><value>Disco rigido</value></data>
   <data name="Emulation.Storage.Device.Interface"><value>Interfaccia</value></data>
   <data name="Emulation.Storage.File.Preallocate"><value>Prealloca il file</value></data>
-  <data name="Emulation.Storage.Media.RemovableRuntimeHint"><value>Floppies e CD sono inseriti o sostituiti dalla macchina da corsa.</value></data>
+  <data name="Emulation.Storage.Media.RemovableRuntimeHint"><value>Utilizzare la vista di emulazione per inserire o modificare i supporti.</value></data>
   <data name="Emulation.Storage.Media.Remove"><value>Rimuovi supporto</value></data>
   <data name="Emulation.Storage.Disk.ReplaceExisting"><value>L'immagine disco esiste già: {0}\nSostituirla?</value></data>
   <data name="Emulation.Storage.Device.CapabilitiesHint"><value>I tipi, i modelli e gli identificatori disponibili dipendono dalla macchina selezionata.</value></data>
@@ -82,4 +82,6 @@
   <data name="Emulation.Storage.MemoryCard.InvalidFormat"><value>Scegli un formato di file supportato da questo dispositivo.</value></data>
   <data name="Emulation.Storage.Cache.Unlimited"><value>Illimitata</value></data>
   <data name="Emulation.Storage.Cache.ClearOnGameClose"><value>Svuota alla chiusura del gioco</value></data>
+  <data name="Emulation.Storage.MemoryCard.Device"><value>Scheda di memoria</value></data>
+  <data name="Emulation.Storage.MemoryCard.Name"><value>Nome della carta</value></data>
 </root>

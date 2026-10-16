@@ -89,6 +89,7 @@ internal sealed partial class EmulationModuleSettingsSection
 
     private static string? ReadValue(FrameworkElement control) => control switch
     {
+        Panel { Tag: Func<string> read } => read(),
         ComboBox { SelectedItem: EmulationSettingsChoiceView selected } => selected.Choice.Id,
         CheckBox { Tag: EmulationSettingsField field } toggle => toggle.IsChecked == true ? field.EnabledValue : field.DisabledValue,
         TextBox text => text.Text,

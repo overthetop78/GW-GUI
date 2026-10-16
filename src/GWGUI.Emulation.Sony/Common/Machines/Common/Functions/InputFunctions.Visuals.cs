@@ -21,7 +21,7 @@ internal static partial class InputSettingsFunctions
             ModelConstants.PlayStation => type == ControllerType.DualShock ? [EmulationControllerVisualIds.SonyDualShock1] : [EmulationControllerVisualIds.SonyPlayStationController],
             ModelConstants.PlayStation2 => [EmulationControllerVisualIds.SonyDualShock2],
             ModelConstants.PlayStation3 => [EmulationControllerVisualIds.SonyDualShock3],
-            ModelConstants.PocketStation => null,
+            ModelConstants.PocketStation => [EmulationControllerVisualIds.SonyPocketStation],
             ModelConstants.Psp => [EmulationControllerVisualIds.SonyPsp1000],
             ModelConstants.PlayStation4 => [EmulationControllerVisualIds.SonyDualShock4],
             ModelConstants.PlayStation5 => [EmulationControllerVisualIds.SonyDualSense],
@@ -65,7 +65,14 @@ internal static partial class InputSettingsFunctions
                 [EmulationControllerVisualControl.Start] = EmulationControllerCommandIds.Start
             } : type is not (ControllerType.Joystick or ControllerType.DualShock
                 or ControllerType.AnalogController or ControllerType.AnalogJoystick)
-            ? null : model.Id == ModelConstants.PocketStation ? null
+            ? null : model.Id == ModelConstants.PocketStation ? new Dictionary<EmulationControllerVisualControl, string>
+            {
+                [EmulationControllerVisualControl.DirectionUp] = EmulationControllerCommandIds.Up,
+                [EmulationControllerVisualControl.DirectionDown] = EmulationControllerCommandIds.Down,
+                [EmulationControllerVisualControl.DirectionLeft] = EmulationControllerCommandIds.Left,
+                [EmulationControllerVisualControl.DirectionRight] = EmulationControllerCommandIds.Right,
+                [EmulationControllerVisualControl.PrimaryAction] = EmulationControllerCommandIds.A
+            }
             : model.Id == ModelConstants.Psp
             ? new Dictionary<EmulationControllerVisualControl, string>
             {

@@ -44,7 +44,7 @@
   <data name="Emulation.Sony.Machine.ZN2"><value>Sony ZN-2</value></data>
   <data name="Emulation.Sony.Machine.PS3ExtraSlim"><value>Sony PS3 Extra Slim</value></data>
   <data name="Emulation.Sony.Storage.CD"><value>CD</value></data>
-  <data name="Emulation.Sony.Storage.MemoryCard"><value>Memory Card</value></data>
+  <data name="Emulation.Sony.Storage.MemoryCard"><value>Memory card</value></data>
   <data name="Emulation.Sony.Cpu.EffectiveFrequency"><value>Effective CPU frequency</value></data>
   <data name="Emulation.Sony.Video.Chip"><value>Video chip</value></data>
   <data name="Emulation.Sony.Audio.Chip"><value>Audio chip</value></data>

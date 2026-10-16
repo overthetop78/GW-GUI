@@ -5,7 +5,7 @@
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Option.pcsx2.pcsx2_fastboot.Label"><value>Nopea saapas</value></data>
-  <data name="Emulation.Option.pcsx2.pcsx2_fastboot.Help"><value>Ohittaa BIOS- käynnistysnäytön ja saappaat suoraan peliin. Poista tämä käytöstä, jos haluat käyttää PS2:n järjestelmäasetuksia tai päästä käsiksi Memory Card Manageriin.</value></data>
+  <data name="Emulation.Option.pcsx2.pcsx2_fastboot.Help"><value>Jättää BIOS Käynnistä näyttö ja käynnistää pelin suoraan. Poista tämä avata konsoli asetukset tai muistikortin hallinta.</value></data>
   <data name="Emulation.Option.pcsx2.pcsx2_renderer.Value.0"><value>Automaattinen</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_cpu_core.Label"><value>CPU Ydin</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_fast_memory.Label"><value>Nopea muisti</value></data>

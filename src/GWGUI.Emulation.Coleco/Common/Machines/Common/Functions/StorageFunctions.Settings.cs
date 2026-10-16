@@ -19,7 +19,9 @@ internal static class StorageSettingsFunctions
             for (var index = 0; index < StorageConstants.DriveCount; index++)
             {
                 devices.Add(new(new(EmulationMediaCategory.FloppyDrive, index), EmulationMediaType.Floppy, SettingsConstants.FloppyExtensions, ImageDirectory: configuration.Folders.Floppies, ModelResourceKey: "Emulation.Coleco.Storage.Disk"));
-                devices.Add(new(new(EmulationMediaCategory.CassetteDrive, index), EmulationMediaType.Cassette, SettingsConstants.DataPackExtensions, ImageDirectory: configuration.Folders.DataPacks, ModelResourceKey: "Emulation.Coleco.Storage.DataPack"));
+                devices.Add(new(new(EmulationMediaCategory.CassetteDrive, index), EmulationMediaType.Cassette, SettingsConstants.DataPackExtensions,
+                    ImageDirectory: configuration.Folders.DataPacks, IsPermanent: index == StorageConstants.FirstDriveIndex,
+                    ModelResourceKey: "Emulation.Coleco.Storage.DataPack"));
             }
         }
         return new(devices, configuration.ConfiguredSlots,

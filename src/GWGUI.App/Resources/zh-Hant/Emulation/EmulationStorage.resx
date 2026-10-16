@@ -43,7 +43,7 @@
   <data name="Emulation.Storage.HardDisk.Device"><value>硬碟</value></data>
   <data name="Emulation.Storage.Device.Interface"><value>介面</value></data>
   <data name="Emulation.Storage.File.Preallocate"><value>預先配置檔案</value></data>
-  <data name="Emulation.Storage.Media.RemovableRuntimeHint"><value>从运行的机器上插入或替换了花式和CD.</value></data>
+  <data name="Emulation.Storage.Media.RemovableRuntimeHint"><value>使用模拟视图来插入或更改介质。</value></data>
   <data name="Emulation.Storage.Media.Remove"><value>移除媒體</value></data>
   <data name="Emulation.Storage.Disk.ReplaceExisting"><value>磁碟映像已存在：{0}\n是否取代？</value></data>
   <data name="Emulation.Storage.Device.CapabilitiesHint"><value>可用類型、型號與識別碼取決於所選電腦。</value></data>
@@ -82,4 +82,6 @@
   <data name="Emulation.Storage.MemoryCard.InvalidFormat"><value>选择由此设备支持的文件格式 。</value></data>
   <data name="Emulation.Storage.Cache.Unlimited"><value>無限制</value></data>
   <data name="Emulation.Storage.Cache.ClearOnGameClose"><value>關閉遊戲時清空</value></data>
+  <data name="Emulation.Storage.MemoryCard.Device"><value>记忆卡</value></data>
+  <data name="Emulation.Storage.MemoryCard.Name"><value>名牌名称</value></data>
 </root>

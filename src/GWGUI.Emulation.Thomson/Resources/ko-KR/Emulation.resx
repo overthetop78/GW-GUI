@@ -11,4 +11,6 @@
   <data name="Emulation.Thomson.Start.ShowHint" xml:space="preserve"><value>프로그램 시작 지침</value></data>
   <data name="Emulation.Thomson.Printer" xml:space="preserve"><value>의 특징</value></data>
   <data name="Emulation.Thomson.Printer.SaveOutput" xml:space="preserve"><value>파일로 프린터 출력을 저장</value></data>
+  <data name="Emulation.Thomson.LightPen"><value>라이트 펜</value></data>
+  <data name="Emulation.Thomson.LightPen.Contact"><value>라이트 펜 접촉</value></data>
 </root>

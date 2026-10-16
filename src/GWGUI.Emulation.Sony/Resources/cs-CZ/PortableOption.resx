@@ -5,7 +5,7 @@
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Option.pcsx2.pcsx2_fastboot.Label"><value>Rychlá bota</value></data>
-  <data name="Emulation.Option.pcsx2.pcsx2_fastboot.Help"><value>Přeskočí BIOS spuštění obrazovky a boty přímo do hry. Zakázat to, pokud chcete přístup k nastavení systému PS2 nebo k správci Memory Card.</value></data>
+  <data name="Emulation.Option.pcsx2.pcsx2_fastboot.Help"><value>Přeskočí to. BIOS spusťte obrazovku a spusťte hru přímo. Vypněte toto pro otevření nastavení konzole nebo správce paměťových karet.</value></data>
   <data name="Emulation.Option.pcsx2.pcsx2_renderer.Value.0"><value>Automatický</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_cpu_core.Label"><value>Jádro CPU</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_fast_memory.Label"><value>Rychlá paměť</value></data>

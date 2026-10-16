@@ -43,7 +43,7 @@
   <data name="Emulation.Storage.HardDisk.Device"><value>Harddisk</value></data>
   <data name="Emulation.Storage.Device.Interface"><value>Grensesnitt</value></data>
   <data name="Emulation.Storage.File.Preallocate"><value>Forhåndstildel filen</value></data>
-  <data name="Emulation.Storage.Media.RemovableRuntimeHint"><value>Flopper og CDer settes inn eller erstattes fra kjøremaskinen.</value></data>
+  <data name="Emulation.Storage.Media.RemovableRuntimeHint"><value>Bruk emuleringsvisningen til å sette inn eller endre media.</value></data>
   <data name="Emulation.Storage.Media.Remove"><value>Fjern medium</value></data>
   <data name="Emulation.Storage.Disk.ReplaceExisting"><value>Diskavbildningen finnes allerede: {0}\nVil du erstatte den?</value></data>
   <data name="Emulation.Storage.Device.CapabilitiesHint"><value>Tilgjengelige typer, modeller og identifikatorer avhenger av den valgte maskinen.</value></data>
@@ -82,4 +82,6 @@
   <data name="Emulation.Storage.MemoryCard.InvalidFormat"><value>Velg et filformat som støttes av denne enheten.</value></data>
   <data name="Emulation.Storage.Cache.Unlimited"><value>Ubegrenset</value></data>
   <data name="Emulation.Storage.Cache.ClearOnGameClose"><value>Tøm når spillet lukkes</value></data>
+  <data name="Emulation.Storage.MemoryCard.Device"><value>Minnekort</value></data>
+  <data name="Emulation.Storage.MemoryCard.Name"><value>Kortnavn</value></data>
 </root>

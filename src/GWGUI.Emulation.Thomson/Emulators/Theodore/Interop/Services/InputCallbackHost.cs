@@ -21,9 +21,18 @@ internal sealed class InputCallbackHost
     private readonly EnvironmentCallbackHost _environment;
     private readonly VideoCallbackHost _video;
     private readonly KeyboardState _keyboard;
+    private readonly bool _lightPenEnabled;
     private EmulationInputSnapshot _input = EmulationInputSnapshot.Empty;
     private int _x, _y;
-    internal InputCallbackHost(MachineModel model, EnvironmentCallbackHost environment, VideoCallbackHost video) { _environment = environment; _video = video; _keyboard = new KeyboardState(model); PollCallback = OnPoll; StateCallback = OnState; }
+    internal InputCallbackHost(MachineConfiguration configuration, EnvironmentCallbackHost environment, VideoCallbackHost video)
+    {
+        _environment = environment;
+        _video = video;
+        _keyboard = new KeyboardState(configuration.Model);
+        _lightPenEnabled = configuration.Options.GetValueOrDefault(SettingsConstants.LightPenEnabled, EmulationSettingConstants.Enabled) == EmulationSettingConstants.Enabled;
+        PollCallback = OnPoll;
+        StateCallback = OnState;
+    }
     internal ExternalCoreApi.InputPollCallback PollCallback { get; }
     internal ExternalCoreApi.InputStateCallback StateCallback { get; }
     internal Exception? Failure { get; private set; }
@@ -34,7 +43,7 @@ internal sealed class InputCallbackHost
         try
         {
             _keyboard.Publish(_input.Keys, _environment.Keyboard);
-            if (_video.LatestFrame is { } frame)
+            if (_lightPenEnabled && _video.LatestFrame is { } frame)
             {
                 _x = (int)Math.Clamp(_x + Math.Round((double)_input.Pointer.DeltaX * PointerRange / frame.Width), PointerMinimum, PointerMaximum);
                 _y = (int)Math.Clamp(_y + Math.Round((double)_input.Pointer.DeltaY * PointerRange / frame.Height), PointerMinimum, PointerMaximum);
@@ -47,7 +56,14 @@ internal sealed class InputCallbackHost
     private short OnState(uint port, uint device, uint index, uint id)
     {
         device &= DeviceMask;
-        if (device == PointerDevice && port == ControllerConstants.PortCount) return id switch { PointerHorizontal => (short)_x, PointerVertical => (short)_y, PointerPressed => _input.Pointer.Left ? (short)1 : (short)0, _ => 0 };
+        if (device == PointerDevice && port == ControllerConstants.PortCount)
+            return id switch
+            {
+                PointerHorizontal => (short)_x,
+                PointerVertical => (short)_y,
+                PointerPressed => _lightPenEnabled && _input.Pointer.Left ? (short)1 : (short)0,
+                _ => 0
+            };
         if (device != JoypadDevice || port >= _input.Controllers.Count) return 0;
         var controller = _input.Controllers[(int)port];
         var pressed = id switch { FireButton => (controller.Buttons & ControllerConstants.FireButtonMask) != 0, UpButton => controller.LeftY < 0, DownButton => controller.LeftY > 0, LeftButton => controller.LeftX < 0, RightButton => controller.LeftX > 0, _ => false };

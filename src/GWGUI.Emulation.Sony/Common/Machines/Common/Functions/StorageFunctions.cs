@@ -111,6 +111,7 @@ internal static class StorageSettingsFunctions
             for (var index = 0; index < MemoryCardCount(configuration, mediaAdapter); index++)
             {
                 var slot = new EmulationMediaSlot(EmulationMediaCategory.MemoryCard, index);
+                if (!settings.AvailableDevices.Any(device => device.Slot == slot)) continue;
                 var path = settings.DeviceSettings?.FirstOrDefault(item => item.Slot == slot)?.MemoryCardPath;
                 options[StorageSettingsFunctionsConstants.MemoryCardEnabledOptionPrefix + index] = settings.ConfiguredSlots.Contains(slot).ToString();
                 if (string.IsNullOrWhiteSpace(path))
@@ -165,7 +166,8 @@ internal static class StorageSettingsFunctions
         {
             MinimumBytes = size,
             InitializeBlankImage = ps2 ? InitializeBlankPs2Card : PlayStationMemoryCard.InitializeBlank
-        }).ToArray());
+        }).ToArray(),
+        DefaultImageSubdirectory: Path.Combine("Sony", ps2 ? ModelConstants.PlayStation2 : ModelConstants.PlayStation, "Memory Cards"));
     }
 
     internal static void InitializeBlankPs2Card(Stream image)

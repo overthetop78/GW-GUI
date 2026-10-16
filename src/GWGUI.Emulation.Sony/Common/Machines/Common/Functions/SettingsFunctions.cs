@@ -81,7 +81,7 @@ internal static partial class SettingsDescriptionFunctions
             if (model.Id == ModelConstants.PlayStation)
             {
                 var clock = blocks.SelectMany(block => block.Fields).FirstOrDefault(field => settingsAdapter?.IsCpuClock(field.Id) == true);
-                if (clock is not null)
+                if (clock is not null && clock.AutomaticValue is null)
                 {
                     var index = blocks.FindIndex(block => block.Id == SettingsDescriptionFunctionsConstants.Acceleration);
                     blocks[index] = blocks[index] with { Fields = [.. blocks[index].Fields,
@@ -95,14 +95,6 @@ internal static partial class SettingsDescriptionFunctions
                             FrequencyScaleFieldId: clock.Id)] };
                 }
             }
-        }
-        var hardwareVideo = blocks.FindIndex(block => block.Id == SettingsDescriptionFunctionsConstants.Video);
-        var renderingVideo = blocks.FindIndex(block => block.Tab == EmulationMachineTab.Video && block.IsCollapsible);
-        if (hardwareVideo >= 0 && renderingVideo >= 0)
-        {
-            var rendering = blocks[renderingVideo];
-            blocks[renderingVideo] = rendering with { Fields = [.. blocks[hardwareVideo].Fields.Select(field => field with { BlockId = rendering.Id }), .. rendering.Fields] };
-            blocks.RemoveAt(hardwareVideo);
         }
         var audioBlock = blocks.FindIndex(block => block.Id == SettingsDescriptionFunctionsConstants.Audio);
         var nativeAudio = blocks.FindIndex(block => block.Id == SettingsDescriptionFunctionsConstants.EmulatorAudioOptionsBlock);

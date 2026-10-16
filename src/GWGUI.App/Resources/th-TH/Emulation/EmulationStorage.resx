@@ -43,7 +43,7 @@
   <data name="Emulation.Storage.HardDisk.Device"><value>ฮาร์ดดิสก์</value></data>
   <data name="Emulation.Storage.Device.Interface"><value>อินเทอร์เฟซ</value></data>
   <data name="Emulation.Storage.File.Preallocate"><value>จัดสรรไฟล์ล่วงหน้า</value></data>
-  <data name="Emulation.Storage.Media.RemovableRuntimeHint"><value>ใส่หรือเปลี่ยนฟลอปปีดิสก์และซีดีจากเครื่องที่กำลังทำงาน</value></data>
+  <data name="Emulation.Storage.Media.RemovableRuntimeHint"><value>ใช้มุมมองการจําลองเพื่อแทรกหรือเปลี่ยนสื่อ</value></data>
   <data name="Emulation.Storage.Media.Remove"><value>นำสื่อออก</value></data>
   <data name="Emulation.Storage.Disk.ReplaceExisting"><value>อิมเมจดิสก์มีอยู่แล้ว: {0}\nต้องการแทนที่หรือไม่</value></data>
   <data name="Emulation.Storage.Device.CapabilitiesHint"><value>ชนิด รุ่น และตัวระบุที่ใช้ได้ขึ้นอยู่กับเครื่องที่เลือก</value></data>
@@ -82,4 +82,6 @@
   <data name="Emulation.Storage.MemoryCard.InvalidFormat"><value>เลือกรูปแบบแฟ้มที่อุปกรณ์นี้รองรับ</value></data>
   <data name="Emulation.Storage.Cache.Unlimited"><value>ไม่จำกัด</value></data>
   <data name="Emulation.Storage.Cache.ClearOnGameClose"><value>ล้างเมื่อปิดเกม</value></data>
+  <data name="Emulation.Storage.MemoryCard.Device"><value>เมมโมรี่การ์ด</value></data>
+  <data name="Emulation.Storage.MemoryCard.Name"><value>ชื่อไพ่</value></data>
 </root>

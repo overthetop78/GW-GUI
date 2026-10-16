@@ -5,7 +5,7 @@
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Option.pcsx2.pcsx2_fastboot.Label"><value>מהיר Boot</value></data>
-  <data name="Emulation.Option.pcsx2.pcsx2_fastboot.Help"><value>דלג מסך הסטארט-אפ של BIOS ומגפיים ישירות למשחק. להשבית את זה אם אתה רוצה לגשת PS2 הגדרות מערכת או גישה Memory Card מנהל המנהל.</value></data>
+  <data name="Emulation.Option.pcsx2.pcsx2_fastboot.Help"><value>מלגלגלגים BIOS הצג סטארט-אפ מתחיל את המשחק ישירות. Disable זה כדי לפתוח את הגדרות הקונסולה או את מנהל כרטיס הזיכרון.</value></data>
   <data name="Emulation.Option.pcsx2.pcsx2_renderer.Value.0"><value>אוֹטוֹמָטִי</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_cpu_core.Label"><value>CPU הליבה Core</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_fast_memory.Label"><value>זיכרון מהיר</value></data>

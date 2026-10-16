@@ -5,7 +5,7 @@
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Option.pcsx2.pcsx2_fastboot.Label"><value>빠른 부팅</value></data>
-  <data name="Emulation.Option.pcsx2.pcsx2_fastboot.Help"><value>BIOS 시작 화면을 건너 뛰고 게임을 곧 부츠. PS2 시스템 설정에 액세스하거나 Memory Card 관리자에 접근하려는 경우 이것을 비활성화하십시오.</value></data>
+  <data name="Emulation.Option.pcsx2.pcsx2_fastboot.Help"><value>의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 BIOS 시작 화면을 시작하고 직접 게임을 시작합니다. 콘솔 설정 또는 메모리 카드 관리자를 열려면이를 비활성화하십시오.</value></data>
   <data name="Emulation.Option.pcsx2.pcsx2_renderer.Value.0"><value>오토매틱</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_cpu_core.Label"><value>CPU 핵심</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_fast_memory.Label"><value>빠른 기억</value></data>

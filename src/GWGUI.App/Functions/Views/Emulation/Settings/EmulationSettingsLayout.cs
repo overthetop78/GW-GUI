@@ -95,7 +95,8 @@ internal static partial class EmulationSettingsLayout
             var label = new EmulationSettingsFieldLabel(field.Label, field.Explanation,
                 field.DetailedExplanation, field.Control)
             {
-                Margin = new Thickness(column == 0 ? 0 : 18, 7, 10, 7)
+                Margin = new Thickness(column == 0 ? 0 : 18, 7, 10, 7),
+                TextWrapping = TextWrapping.Wrap
             };
             Grid.SetRow(label, row); Grid.SetColumn(label, column); form.Children.Add(label);
             var control = field.Control;

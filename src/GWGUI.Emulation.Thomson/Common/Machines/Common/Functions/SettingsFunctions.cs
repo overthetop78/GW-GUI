@@ -44,13 +44,20 @@ internal static class SettingsDescriptionFunctions
             (InputMappingConstants.MaximumMouseSpeedPercent - InputMappingConstants.MinimumMouseSpeedPercent) / SettingsConstants.MouseSpeedStepPercent + 1
         ).Select(step => step * SettingsConstants.MouseSpeedStepPercent).Select(value => new EmulationSettingsChoice(value.ToString(CultureInfo.InvariantCulture), string.Empty, $"{value} {SettingsConstants.PercentUnit}")).ToArray();
         blocks.Add(new(
-                SettingsConstants.ResourceMouse,
+                SettingsConstants.ResourceLightPen,
                 EmulationMachineTab.Mouse,
-                SettingsConstants.ResourceMouse,
+                SettingsConstants.ResourceLightPen,
                 [new(
+                        SettingsConstants.LightPenEnabled,
+                        EmulationMachineTab.Mouse,
+                        SettingsConstants.ResourceLightPen,
+                        SettingsConstants.ResourceLightPen,
+                        EmulationSettingsEditor.Toggle,
+                        configuration.Options.GetValueOrDefault(SettingsConstants.LightPenEnabled, EmulationSettingConstants.Enabled)
+                    ), new(
                         SettingsConstants.MouseSpeed,
                         EmulationMachineTab.Mouse,
-                        SettingsConstants.ResourceMouse,
+                        SettingsConstants.ResourceLightPen,
                         SettingsConstants.ResourceMouseSpeed,
                         EmulationSettingsEditor.Selection,
                         configuration.Input.MouseSpeedPercent.ToString(CultureInfo.InvariantCulture),

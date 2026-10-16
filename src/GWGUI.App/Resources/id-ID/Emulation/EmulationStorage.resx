@@ -43,7 +43,7 @@
   <data name="Emulation.Storage.HardDisk.Device"><value>Hard disk</value></data>
   <data name="Emulation.Storage.Device.Interface"><value>Antarmuka</value></data>
   <data name="Emulation.Storage.File.Preallocate"><value>Alokasikan berkas di muka</value></data>
-  <data name="Emulation.Storage.Media.RemovableRuntimeHint"><value>Floppies dan CD dimasukkan atau diganti dari mesin yang sedang berjalan.</value></data>
+  <data name="Emulation.Storage.Media.RemovableRuntimeHint"><value>Gunakan tilikan emulasi untuk menyisipkan atau mengubah media.</value></data>
   <data name="Emulation.Storage.Media.Remove"><value>Lepas media</value></data>
   <data name="Emulation.Storage.Disk.ReplaceExisting"><value>Citra disk sudah ada: {0}\nApakah Anda ingin menggantinya?</value></data>
   <data name="Emulation.Storage.Device.CapabilitiesHint"><value>Jenis, model, dan pengenal yang tersedia bergantung pada mesin yang dipilih.</value></data>
@@ -82,4 +82,6 @@
   <data name="Emulation.Storage.MemoryCard.InvalidFormat"><value>Pilih suatu format berkas yang didukung oleh perangkat ini.</value></data>
   <data name="Emulation.Storage.Cache.Unlimited"><value>Tanpa batas</value></data>
   <data name="Emulation.Storage.Cache.ClearOnGameClose"><value>Kosongkan saat gim ditutup</value></data>
+  <data name="Emulation.Storage.MemoryCard.Device"><value>Kartu memori</value></data>
+  <data name="Emulation.Storage.MemoryCard.Name"><value>Nama kartu</value></data>
 </root>

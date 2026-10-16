@@ -85,6 +85,20 @@ public sealed class SonyEmulationModule : IEmulationModule, IEmulationEmulatorMa
             else options[item.Key] = item.Value;
         }
         var audio = adapter is IEmulatorSettingsAdapter audioAdapter ? audioAdapter.GetAudioConfiguration(sony) : sony.Audio ?? new AudioConfiguration();
+        const string multitap = Emulators.SwanStation.Constants.OptionConstants.ControllerPortsMultitapModeKey;
+        if (sony.EmulatorId == Emulators.SwanStation.Constants.CoreConstants.Id
+            && (values.ContainsKey(multitap + ".port1") || values.ContainsKey(multitap + ".port2")))
+        {
+            var previous = options.GetValueOrDefault(multitap, "Disabled");
+            bool Enabled(int port) => values.TryGetValue(multitap + ".port" + port, out var selected)
+                ? selected == EmulationSettingConstants.Enabled : previous == "BothPorts" || previous == $"Port{port}Only";
+            options[multitap] = (Enabled(1), Enabled(2)) switch
+            {
+                (true, true) => "BothPorts", (true, false) => "Port1Only", (false, true) => "Port2Only", _ => "Disabled"
+            };
+            options.Remove(multitap + ".port1");
+            options.Remove(multitap + ".port2");
+        }
         var updated = (adapter is null ? sony : FirmwareConfigurationFunctions.Apply(sony, values, adapter)) with
         {
             Options = options,
@@ -220,7 +234,12 @@ public sealed class SonyEmulationModule : IEmulationModule, IEmulationEmulatorMa
             () => services.CreateAudioOutput(audio.OutputDeviceId, audio.LatencyMilliseconds),
             value => Path.Combine(services.StatesDirectory, value.Id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat), CoreDirectoryConstants.SavesDirectoryName));
         var storage = StorageSettingsFunctions.Describe(sony);
-        var mounted = adapter.ResolveConfiguredMedia(sony);
+        var mounted = adapter.ResolveConfiguredMedia(sony).Concat(storage.AvailableDevices
+            .Where(device => device.ConfigurationKind == EmulationStorageConfigurationKind.MemoryCard && storage.ConfiguredSlots.Contains(device.Slot))
+            .Select(device => (device, path: storage.DeviceSettings?.FirstOrDefault(item => item.Slot == device.Slot)?.MemoryCardPath))
+            .Where(item => !string.IsNullOrWhiteSpace(item.path))
+            .Select(item => new EmulationMedia(item.path!, item.device.Slot, EmulationMediaType.MemoryCard, false, true)))
+            .DistinctBy(media => media.Slot).ToArray();
         return new EmulationMachineRuntime(sony,
             media => _engine.CreateMachine(EmulationMediaConversionFunctions.WithMedia(sony, media), context),
             storage.AvailableDevices.Where(device => storage.ConfiguredSlots.Contains(device.Slot)).ToArray(), mounted,

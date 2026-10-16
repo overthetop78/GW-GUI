@@ -11,4 +11,6 @@
   <data name="Emulation.Thomson.Start.ShowHint" xml:space="preserve"><value>Show instructions for starting the program</value></data>
   <data name="Emulation.Thomson.Printer" xml:space="preserve"><value>Printer</value></data>
   <data name="Emulation.Thomson.Printer.SaveOutput" xml:space="preserve"><value>Save printer output to a file</value></data>
+  <data name="Emulation.Thomson.LightPen"><value>Light pen</value></data>
+  <data name="Emulation.Thomson.LightPen.Contact"><value>Light pen contact</value></data>
 </root>

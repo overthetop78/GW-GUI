@@ -11,4 +11,6 @@
   <data name="Emulation.Thomson.Start.ShowHint" xml:space="preserve"><value>הצג הוראות לפתיחת התוכנית</value></data>
   <data name="Emulation.Thomson.Printer" xml:space="preserve"><value>Printer</value></data>
   <data name="Emulation.Thomson.Printer.SaveOutput" xml:space="preserve"><value>שמור את הפלט המדפסת לקובץ</value></data>
+  <data name="Emulation.Thomson.LightPen"><value>עט אור</value></data>
+  <data name="Emulation.Thomson.LightPen.Contact"><value>מגע עט האור</value></data>
 </root>

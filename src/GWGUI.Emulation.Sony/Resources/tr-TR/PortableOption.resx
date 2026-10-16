@@ -5,7 +5,7 @@
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Option.pcsx2.pcsx2_fastboot.Label"><value>Hızlı Parmak</value></data>
-  <data name="Emulation.Option.pcsx2.pcsx2_fastboot.Help"><value>BIOS başlangıç ekranını girin ve doğrudan oyuna gidin. Bunu PS2 sistem ayarlarına erişmek veya Memory Card yöneticisine erişmek istiyorsanız.</value></data>
+  <data name="Emulation.Option.pcsx2.pcsx2_fastboot.Help"><value>Skips the the Skips the BIOS Başlangıç ekranı ve oyunu doğrudan başlatır. konsol ayarlarını veya hafıza kartı yöneticisini açmak için bunu ayırt edin.</value></data>
   <data name="Emulation.Option.pcsx2.pcsx2_renderer.Value.0"><value>Otomatik</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_cpu_core.Label"><value>CPU Core Core Core</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_fast_memory.Label"><value>Hızlı bellek</value></data>

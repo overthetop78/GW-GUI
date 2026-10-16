@@ -5,7 +5,7 @@
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Option.pcsx2.pcsx2_fastboot.Label"><value>Fast Boot</value></data>
-  <data name="Emulation.Option.pcsx2.pcsx2_fastboot.Help"><value>Skips BIOS start skærm og støvler lige til spillet. Deaktivér dette, hvis du ønsker at få adgang til PS2 systemindstillingerne eller adgang til 9Memory Card manager.</value></data>
+  <data name="Emulation.Option.pcsx2.pcsx2_fastboot.Help"><value>Skips BIOS Start skærmen og starter spillet direkte. Deaktivér dette for at åbne konsolindstillinger eller hukommelseskortet manager.</value></data>
   <data name="Emulation.Option.pcsx2.pcsx2_renderer.Value.0"><value>Automatisk</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_cpu_core.Label"><value>CPU-kerne</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_fast_memory.Label"><value>Hurtig hukommelse</value></data>

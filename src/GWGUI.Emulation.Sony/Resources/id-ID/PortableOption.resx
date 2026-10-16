@@ -5,7 +5,7 @@
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Option.pcsx2.pcsx2_fastboot.Label"><value>Boot Cepat</value></data>
-  <data name="Emulation.Option.pcsx2.pcsx2_fastboot.Help"><value>Melewatkan layar awal BIOS dan sepatu bot langsung ke permainan. Nonaktifkan ini jika Anda ingin mengakses pengaturan sistem PS2 atau akses manajer Memory Card.</value></data>
+  <data name="Emulation.Option.pcsx2.pcsx2_fastboot.Help"><value>Melewati BIOS Mulakan layar dan mulai permainan secara langsung. Nonaktifkan ini untuk membuka pengaturan konsol atau manajer kartu memori.</value></data>
   <data name="Emulation.Option.pcsx2.pcsx2_renderer.Value.0"><value>Otomatis</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_cpu_core.Label"><value>Inti CPU</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_fast_memory.Label"><value>Memori Cepat</value></data>

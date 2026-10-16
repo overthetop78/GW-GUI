@@ -43,7 +43,7 @@
   <data name="Emulation.Storage.HardDisk.Device"><value>Жорсткий диск</value></data>
   <data name="Emulation.Storage.Device.Interface"><value>Інтерфейс</value></data>
   <data name="Emulation.Storage.File.Preallocate"><value>Попередньо виділити файл</value></data>
-  <data name="Emulation.Storage.Media.RemovableRuntimeHint"><value>Floppies і CD вставляються або замінені на запущену машину.</value></data>
+  <data name="Emulation.Storage.Media.RemovableRuntimeHint"><value>Використовуйте емуляцію для вставки або зміни медіа.</value></data>
   <data name="Emulation.Storage.Media.Remove"><value>Вилучити носій</value></data>
   <data name="Emulation.Storage.Disk.ReplaceExisting"><value>Образ диска вже існує: {0}\nЗамінити його?</value></data>
   <data name="Emulation.Storage.Device.CapabilitiesHint"><value>Доступні типи, моделі та ідентифікатори залежать від вибраної машини.</value></data>
@@ -82,4 +82,6 @@
   <data name="Emulation.Storage.MemoryCard.InvalidFormat"><value>Виберіть формат файлу, який підтримується цим пристроєм.</value></data>
   <data name="Emulation.Storage.Cache.Unlimited"><value>Без обмежень</value></data>
   <data name="Emulation.Storage.Cache.ClearOnGameClose"><value>Очищати під час закриття гри</value></data>
+  <data name="Emulation.Storage.MemoryCard.Device"><value>Карта пам'яті</value></data>
+  <data name="Emulation.Storage.MemoryCard.Name"><value>Назва картки</value></data>
 </root>

@@ -11,6 +11,20 @@ namespace GWGUI.App.Functions.Views.Emulation.Settings;
 
 internal static partial class EmulationSettingsLayout
 {
+    private static FrameworkElement ControllerSelector(string resource, FrameworkElement control)
+    {
+        var row = new DockPanel { Margin = new Thickness(0, 0, 18, 8), LastChildFill = true };
+        row.Children.Add(new TextBlock
+        {
+            Text = LocExtension.Get(resource), VerticalAlignment = VerticalAlignment.Center,
+            Margin = new Thickness(0, 0, 12, 0), TextWrapping = TextWrapping.Wrap
+        });
+        control.MinWidth = resource == "Emulation.Controller.Visual" ? 300 : 240;
+        control.HorizontalAlignment = HorizontalAlignment.Stretch;
+        row.Children.Add(control);
+        return row;
+    }
+
     internal static ScrollViewer ControllerSettingsPage(
         IReadOnlyList<EmulationControllerPortSettings> ports,
         EmulationSettingsControlField? behavior = null,
@@ -40,7 +54,9 @@ internal static partial class EmulationSettingsLayout
             var legacyContent = new Grid();
             legacyContent.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
             legacyContent.RowDefinitions.Add(new RowDefinition());
-            var selectors = SettingsFields(2, (LocExtension.Get("Emulation.Controller.Type"), port.Type), (LocExtension.Get("Emulation.Controller.Visual"), port.Visual));
+            var selectors = new WrapPanel();
+            selectors.Children.Add(ControllerSelector("Emulation.Controller.Type", port.Type));
+            selectors.Children.Add(ControllerSelector("Emulation.Controller.Visual", port.Visual));
             selectors.Margin = new Thickness(10, 10, 10, 4);
             legacyContent.Children.Add(selectors);
             var portContent = new Grid { ClipToBounds = true };
@@ -73,7 +89,7 @@ internal static partial class EmulationSettingsLayout
             content.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(3, GridUnitType.Star) });
             content.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(2, GridUnitType.Star) });
             var left = new StackPanel { Margin = new Thickness(10, 10, 6, 4) };
-            left.Children.Add(BoundedForm(1, (LocExtension.Get("Emulation.Controller.Type"), port.Type)));
+            left.Children.Add(ControllerSelector("Emulation.Controller.Type", port.Type));
             if (deviceOptionsFactory is not null) left.Children.Add(deviceOptionsFactory(port));
             port.Bindings.Height = EmulationControllerSettingsConstants.MappingHeight;
             port.Bindings.HorizontalAlignment = HorizontalAlignment.Stretch;
@@ -83,7 +99,7 @@ internal static partial class EmulationSettingsLayout
             var right = new Grid { Margin = new Thickness(6, 10, 10, 4) };
             right.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
             right.RowDefinitions.Add(new RowDefinition());
-            right.Children.Add(BoundedForm(1, (LocExtension.Get("Emulation.Controller.Visual"), port.Visual)));
+            right.Children.Add(ControllerSelector("Emulation.Controller.Visual", port.Visual));
             port.Visualizer.MinWidth = 0;
             port.Visualizer.HorizontalAlignment = HorizontalAlignment.Stretch;
             port.Visualizer.VerticalAlignment = VerticalAlignment.Top;

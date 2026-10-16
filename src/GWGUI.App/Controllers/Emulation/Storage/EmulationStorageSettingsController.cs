@@ -8,6 +8,7 @@ using GWGUI.Emulation;
 using GWGUI.App.Services.Emulation;
 using GWGUI.App.Functions.Emulation.Storage;
 using GWGUI.App.Constants.Localization;
+using GWGUI.App.Services.Storage;
 
 
 namespace GWGUI.App.Controllers.Emulation.Storage;
@@ -64,7 +65,10 @@ internal sealed class EmulationStorageSettingsController
         return _manager.ApplyStorageSettings(configuration, _settings);
     }
 
-    private string ImageDirectory(EmulationMediaDevice device) => device.ImageDirectory ?? (device.DefaultImageSubdirectory is { } subdirectory ? Path.Combine(_defaultFolder(EmulationDefaultFolderCategory.HardDisk), subdirectory) : _defaultFolder(EmulationDefaultFolderCategory.HardDisk));
+    private string ImageDirectory(EmulationMediaDevice device) => device.ImageDirectory
+        ?? (device.DefaultImageSubdirectory is { } subdirectory
+            ? Path.Combine(device.MediaType == EmulationMediaType.MemoryCard ? StoragePaths.EmulationStorageDirectory : _defaultFolder(EmulationDefaultFolderCategory.HardDisk), subdirectory)
+            : _defaultFolder(EmulationDefaultFolderCategory.HardDisk));
 
     private void AddDevice(object? sender, EventArgs args)
     {
@@ -147,7 +151,7 @@ internal sealed class EmulationStorageSettingsController
         var dialog = new HardDiskDriveConfigurationDialog(
             DeviceLabel(device),
             _configuration?.MachineId ?? string.Empty, current,
-            device.ImageDirectory ?? _defaultFolder(EmulationDefaultFolderCategory.HardDisk),
+            ImageDirectory(device),
             device.HardDiskFormats ?? throw new InvalidOperationException(),
             EmulationMediaDialogFunctions.ClientGuid(_moduleId, _configuration?.MachineId ?? string.Empty, device.Slot),
             fixedImageSizeBytes: device.FixedImageSizeBytes ?? throw new InvalidOperationException(),

@@ -11,4 +11,6 @@
   <data name="Emulation.Thomson.Start.ShowHint" xml:space="preserve"><value>Mostrar instruções para iniciar o programa</value></data>
   <data name="Emulation.Thomson.Printer" xml:space="preserve"><value>Impressora</value></data>
   <data name="Emulation.Thomson.Printer.SaveOutput" xml:space="preserve"><value>Gravar a saída da impressora num ficheiro</value></data>
+  <data name="Emulation.Thomson.LightPen"><value>Caneta ótica</value></data>
+  <data name="Emulation.Thomson.LightPen.Contact"><value>Contacto da caneta ótica</value></data>
 </root>

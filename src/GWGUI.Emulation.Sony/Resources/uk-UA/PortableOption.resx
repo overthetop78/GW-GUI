@@ -5,7 +5,7 @@
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Option.pcsx2.pcsx2_fastboot.Label"><value>Швидке завантаження</value></data>
-  <data name="Emulation.Option.pcsx2.pcsx2_fastboot.Help"><value>Скіпси BIOS запускає екран і черевики прямо до гри. Увімкніть це, якщо ви хочете отримати доступ до параметрів системи PS2 або доступу до менеджера Memory Card.</value></data>
+  <data name="Emulation.Option.pcsx2.pcsx2_fastboot.Help"><value>СПИСАТИ BIOS Запуск екрана і починається гру безпосередньо. Вимкніть це, щоб відкрити налаштування консолі або менеджера карт пам'яті.</value></data>
   <data name="Emulation.Option.pcsx2.pcsx2_renderer.Value.0"><value>Автоматичний</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_cpu_core.Label"><value>CPU Ядра</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_fast_memory.Label"><value>Швидка пам'ять</value></data>

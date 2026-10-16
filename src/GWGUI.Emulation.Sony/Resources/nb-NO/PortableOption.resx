@@ -5,7 +5,7 @@
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Option.pcsx2.pcsx2_fastboot.Label"><value>Fast Boot</value></data>
-  <data name="Emulation.Option.pcsx2.pcsx2_fastboot.Help"><value>Hopper BIOS oppstartsskjerm og støvler rett til spillet. Deaktiver dette hvis du vil få tilgang til PS2 systeminnstillingene eller komme i kontakt med sjefen Memory Card.</value></data>
+  <data name="Emulation.Option.pcsx2.pcsx2_fastboot.Help"><value>Hopper over BIOS oppstartsskjermen og starter spillet direkte. Deaktiver dette for å åpne konsollinnstillingene eller minnekorthåndtereren.</value></data>
   <data name="Emulation.Option.pcsx2.pcsx2_renderer.Value.0"><value>Automatisk</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_cpu_core.Label"><value>CPU-kjerne</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_fast_memory.Label"><value>Rask hukommelse</value></data>

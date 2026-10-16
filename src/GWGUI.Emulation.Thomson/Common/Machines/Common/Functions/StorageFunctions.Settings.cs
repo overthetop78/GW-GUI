@@ -5,7 +5,13 @@ internal static class StorageSettingsFunctions
 {
     internal static EmulationStorageSettings Describe(MachineConfiguration configuration)
     {
-        var devices = configuration.Core != Emulator.None && new Engine().Adapter(configuration)is IEmulatorMediaCapabilities capabilities ? capabilities.DescribeMediaDevices(configuration) : [];
+        var engine = new Engine();
+        var adapter = configuration.Core == Emulator.None
+            ? engine.Adapters(configuration.MachineId).FirstOrDefault()
+            : engine.Adapter(configuration);
+        var devices = adapter is IEmulatorMediaCapabilities capabilities
+            ? capabilities.DescribeMediaDevices(configuration)
+            : [];
         return new(devices, configuration.ConfiguredSlots, configuration.Media.Select(EmulationMediaConversionFunctions.ToCommon).ToArray());
     }
 

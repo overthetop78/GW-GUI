@@ -11,4 +11,6 @@
   <data name="Emulation.Thomson.Start.ShowHint" xml:space="preserve"><value>Näytä ohjelman aloitusohjeet</value></data>
   <data name="Emulation.Thomson.Printer" xml:space="preserve"><value>Tulostin</value></data>
   <data name="Emulation.Thomson.Printer.SaveOutput" xml:space="preserve"><value>Tallenna tulostimen tulostus tiedostoon</value></data>
+  <data name="Emulation.Thomson.LightPen"><value>Valokynä</value></data>
+  <data name="Emulation.Thomson.LightPen.Contact"><value>Valokynän kosketus</value></data>
 </root>

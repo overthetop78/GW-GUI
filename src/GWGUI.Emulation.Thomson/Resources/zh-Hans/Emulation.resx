@@ -11,4 +11,6 @@
   <data name="Emulation.Thomson.Start.ShowHint" xml:space="preserve"><value>显示启动程序的指示</value></data>
   <data name="Emulation.Thomson.Printer" xml:space="preserve"><value>打印机</value></data>
   <data name="Emulation.Thomson.Printer.SaveOutput" xml:space="preserve"><value>将打印机输出保存到文件</value></data>
+  <data name="Emulation.Thomson.LightPen"><value>光笔</value></data>
+  <data name="Emulation.Thomson.LightPen.Contact"><value>光笔接触</value></data>
 </root>

@@ -7,4 +7,5 @@
   <data name="Emulation.Sony.Cpu.EffectiveFrequency"><value>Hatékony CPU-frekvencia</value></data>
   <data name="Emulation.Sony.Video.Chip"><value>Videóchip</value></data>
   <data name="Emulation.Sony.Audio.Chip"><value>Hangchip</value></data>
+  <data name="Emulation.Sony.Storage.MemoryCard"><value>Memóriakártya</value></data>
 </root>

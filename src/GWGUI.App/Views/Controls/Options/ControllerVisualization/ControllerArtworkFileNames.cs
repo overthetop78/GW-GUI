@@ -2,6 +2,7 @@ namespace GWGUI.App.Views.Controls.Options.ControllerVisualization;
 
 internal static class ControllerArtworkFileNames
 {
+    internal const string SonyPocketStation = "sony-pocketstation.png";
     internal const string AppleStandardJ665 = "apple-standard-j665.png";
     internal const string AppleA2M2002 = "apple-a2m2002.png";
     internal const string AppleChMachII = "apple-ch-mach-ii.png";

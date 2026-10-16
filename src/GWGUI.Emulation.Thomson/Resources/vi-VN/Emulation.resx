@@ -11,4 +11,6 @@
   <data name="Emulation.Thomson.Start.ShowHint" xml:space="preserve"><value>Hiển thị hướng dẫn để khởi chạy chương trình</value></data>
   <data name="Emulation.Thomson.Printer" xml:space="preserve"><value>Máy in</value></data>
   <data name="Emulation.Thomson.Printer.SaveOutput" xml:space="preserve"><value>Lưu kết xuất máy in vào tập tin</value></data>
+  <data name="Emulation.Thomson.LightPen"><value>Bút quang</value></data>
+  <data name="Emulation.Thomson.LightPen.Contact"><value>Tiếp xúc của bút quang</value></data>
 </root>

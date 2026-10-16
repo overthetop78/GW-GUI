@@ -43,7 +43,7 @@
   <data name="Emulation.Storage.HardDisk.Device"><value>Hard disk</value></data>
   <data name="Emulation.Storage.Device.Interface"><value>Interface</value></data>
   <data name="Emulation.Storage.File.Preallocate"><value>Preallocate the file</value></data>
-  <data name="Emulation.Storage.Media.RemovableRuntimeHint"><value>Floppies and CDs are inserted or replaced from the running machine.</value></data>
+  <data name="Emulation.Storage.Media.RemovableRuntimeHint"><value>Use the emulation view to insert or change media.</value></data>
   <data name="Emulation.Storage.Media.Remove"><value>Remove media</value></data>
   <data name="Emulation.Storage.Disk.ReplaceExisting"><value>The disk image already exists: {0}\nDo you want to replace it?</value></data>
   <data name="Emulation.Storage.Device.CapabilitiesHint"><value>The available types, models and identifiers depend on the selected machine.</value></data>
@@ -82,4 +82,6 @@
   <data name="Emulation.Storage.MemoryCard.InvalidFormat"><value>Choose a file format supported by this device.</value></data>
   <data name="Emulation.Storage.Cache.Unlimited"><value>Unlimited</value></data>
   <data name="Emulation.Storage.Cache.ClearOnGameClose"><value>Clear when the game closes</value></data>
+  <data name="Emulation.Storage.MemoryCard.Device"><value>Memory card</value></data>
+  <data name="Emulation.Storage.MemoryCard.Name"><value>Card name</value></data>
 </root>

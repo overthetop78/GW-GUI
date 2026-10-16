@@ -11,4 +11,6 @@
   <data name="Emulation.Thomson.Start.ShowHint" xml:space="preserve"><value>แสดงคําแนะนําสําหรับเริ่มโปรแกรม</value></data>
   <data name="Emulation.Thomson.Printer" xml:space="preserve"><value>เครื่องพิมพ์</value></data>
   <data name="Emulation.Thomson.Printer.SaveOutput" xml:space="preserve"><value>บันทึกการแสดงผลของเครื่องพิมพ์เป็นแฟ้ม</value></data>
+  <data name="Emulation.Thomson.LightPen"><value>ปากกาแสง</value></data>
+  <data name="Emulation.Thomson.LightPen.Contact"><value>การสัมผัสของปากกาแสง</value></data>
 </root>

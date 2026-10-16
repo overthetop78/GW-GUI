@@ -43,7 +43,7 @@
   <data name="Emulation.Storage.HardDisk.Device"><value>Festplatte</value></data>
   <data name="Emulation.Storage.Device.Interface"><value>Schnittstelle</value></data>
   <data name="Emulation.Storage.File.Preallocate"><value>Datei vorab zuweisen</value></data>
-  <data name="Emulation.Storage.Media.RemovableRuntimeHint"><value>Disketten und CDs werden im laufenden Rechner eingelegt oder gewechselt.</value></data>
+  <data name="Emulation.Storage.Media.RemovableRuntimeHint"><value>Verwenden Sie die Emulationsansicht, um Medien einzufügen oder zu ändern.</value></data>
   <data name="Emulation.Storage.Media.Remove"><value>Medium entfernen</value></data>
   <data name="Emulation.Storage.Disk.ReplaceExisting"><value>Das Festplattenabbild ist bereits vorhanden: {0}\nMöchten Sie es ersetzen?</value></data>
   <data name="Emulation.Storage.Device.CapabilitiesHint"><value>Die verfügbaren Typen, Modelle und Kennungen hängen vom ausgewählten Rechner ab.</value></data>
@@ -82,4 +82,6 @@
   <data name="Emulation.Storage.MemoryCard.InvalidFormat"><value>Wählen Sie ein Dateiformat, das von diesem Gerät unterstützt wird.</value></data>
   <data name="Emulation.Storage.Cache.Unlimited"><value>Unbegrenzt</value></data>
   <data name="Emulation.Storage.Cache.ClearOnGameClose"><value>Beim Schließen des Spiels leeren</value></data>
+  <data name="Emulation.Storage.MemoryCard.Device"><value>Speicherkarte</value></data>
+  <data name="Emulation.Storage.MemoryCard.Name"><value>Kartenname</value></data>
 </root>
