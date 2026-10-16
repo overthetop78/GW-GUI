@@ -148,6 +148,18 @@ Asset: `src/GWGUI.Emulation.Sinclair/Assets/Machines/SpectrumSe.png`.
 Source: the prototype photograph published in ZX Shed issue 2, preserved by World of Spectrum: https://worldofspectrum.org/files/large/6b6c3ef9a7a2c60 (ZXShedIssue02.pdf).
 Adaptation: lossless assembly of the two embedded JPEG strips into the original 2048 x 653 photograph, classical silhouette alpha masking and proportional resizing to 512 pixels wide with transparent padding. The photographed rack enclosure, Cherry keyboard, connectors and controls are retained. The original photograph crops the top edge of the equipment; no missing parts or lettering have been generated or reconstructed. No open license is asserted for this source photograph.
 
+## Sony PSP-1000 controller photograph
+
+Asset: `src/GWGUI.App/Assets/Controllers/sony-psp-1000.png`.
+Photograph by Evan-Amos, released into the public domain: https://commons.wikimedia.org/wiki/File:Sony-PSP-1000-Body.png . Original: https://upload.wikimedia.org/wikipedia/commons/5/5d/Sony-PSP-1000-Body.png .
+Adaptation: manual exterior silhouette mask, rotation by -8.5 degrees, proportional resizing and transparent padding to 512 x 240 pixels with ImageMagick. The photographed PSP-1000, screen, controls, markings and upper buttons are preserved without generated or reconstructed parts.
+
+## Sony original DualShock controller photographs
+
+Asset: `src/GWGUI.App/Assets/Controllers/sony-dualshock-1.png`.
+Source: PiXEL-RETRO, Sony PlayStation original grey DualShock SCPH-1200 product photographs, https://pixel-retro.com/products/sony-playstation-manette-originale-grise-gray-joystick-controller . Original files: `IMG_5546.jpg` (front) and `IMG_5547.jpg` (upper buttons). No specific reuse license is stated by the source.
+Adaptation: classical manual silhouette masks and proportional resizing with ImageMagick, composed on a transparent 512 x 512 canvas. The main front photograph and a separate rotated detail of the upper buttons retain the original hardware and markings; no generated or reconstructed controls. The four upper-button interaction zones are placed on the separate photographic detail.
+
 ## Sony DualShock 3 controller photograph
 
 Asset: `src/GWGUI.App/Assets/Controllers/sony-dualshock-3.png`.

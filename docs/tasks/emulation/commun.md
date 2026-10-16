@@ -8,6 +8,8 @@ Historique détaillé disponible localement : `git show 9694f5147:docs/tasks/emu
 
 ## controller-artwork
 
+Lot visuels Sony : DualShock originale et PSP-1000 remplacées par des photographies identifiées, masques classiques et PNG transparents de 512 px. Les 25 et 16 zones ont été examinées par superposition ; 165 contrôles ciblés réussis. Build Debug complet terminé, exécutable, deux copies du SDK et 23 modules vérifiés, staging et sources temporaires supprimés.
+
 Lot Apple : Kraft Premium II ajouté aux cinq visuels Apple II, avec quatre directions analogiques et un seul bouton de tir ; PNG transparent 512 × 504. Les 46 contrôles Apple et catalogue passent avec les DLL du build Debug ; exécutable, deux copies du SDK et 23 modules vérifiés, staging et fichiers temporaires supprimés.
 
 - [ ] Réaliser les profils NEC
@@ -149,10 +151,6 @@ Lot Apple : Kraft Premium II ajouté aux cinq visuels Apple II, avec quatre dire
       - [ ] Modifier `docs/tasks/emulation/commun.md` : consigner pour `sega-sg1000-ii.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
     - [ ] sega-sg1000-joystick.png
       - [ ] Modifier `docs/tasks/emulation/commun.md` : consigner pour `sega-sg1000-joystick.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
-    - [ ] sony-dualshock-1.png
-      - [ ] Modifier `docs/tasks/emulation/commun.md` : consigner pour `sony-dualshock-1.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
-    - [ ] sony-psp-1000.png
-      - [ ] Modifier `docs/tasks/emulation/commun.md` : consigner pour `sony-psp-1000.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
     - [ ] super-nes-controller.png
       - [ ] Modifier `docs/tasks/emulation/commun.md` : consigner pour `super-nes-controller.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
     - [ ] super-nintendo.png
@@ -201,10 +199,6 @@ Lot Apple : Kraft Premium II ajouté aux cinq visuels Apple II, avec quatre dire
   - [ ] Modifier `src/GWGUI.App/Assets/Controllers/xbox-chatpad.png` : remplacer les touches inventées par les pixels de la photographie, avec détourage du fond uniquement.
   - [ ] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerArtworkCatalog.cs` : recalculer les zones du Chatpad d'après les touches réelles.
   - [ ] Modifier `docs/tasks/emulation/commun.md` : créditer et vérifier le Chatpad Xbox One.
-  - [ ] Créer `artifacts/controller-sources/sony-dualshock-1-original.jpg` : conserver une photo de face de la DualShock d'origine.
-  - [ ] Modifier `src/GWGUI.App/Assets/Controllers/sony-dualshock-1.png` : remplacer l'image oblique par la photo de face du modèle exact, détourée sans reconstruire les commandes.
-  - [ ] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerArtworkCatalog.cs` : replacer les halos de la DualShock d'origine.
-  - [ ] Modifier `docs/tasks/emulation/commun.md` : créditer et vérifier la DualShock d'origine.
   - [ ] Créer `artifacts/controller-sources/sega-sg1000-joystick-original.jpg` : conserver une photo de dessus droite du joystick Sega SG-1000 exact.
   - [ ] Modifier `src/GWGUI.App/Assets/Controllers/sega-sg1000-joystick.png` : remplacer la vue fausse ou inclinée par la photo du vrai joystick, détourée uniquement.
   - [ ] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerArtworkCatalog.cs` : replacer les halos du joystick SG-1000.
