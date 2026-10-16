@@ -6,7 +6,7 @@ internal static partial class ConfigurationFunctions
     {
         MachineModel.PhilipsCdi => MachineFamily.Cdi,
         MachineModel.P2000T => MachineFamily.P2000,
-        MachineModel.Odyssey2 or MachineModel.VideopacG7000 => MachineFamily.Videopac,
+        MachineModel.Odyssey2 or MachineModel.VideopacG7000 or MachineModel.VideopacG7400 or MachineModel.JopacJo7400 => MachineFamily.Videopac,
         _ => throw new ArgumentOutOfRangeException(nameof(model))
     };
 

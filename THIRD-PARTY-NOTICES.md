@@ -148,6 +148,14 @@ Asset: `src/GWGUI.Emulation.Sinclair/Assets/Machines/SpectrumSe.png`.
 Source: the prototype photograph published in ZX Shed issue 2, preserved by World of Spectrum: https://worldofspectrum.org/files/large/6b6c3ef9a7a2c60 (ZXShedIssue02.pdf).
 Adaptation: lossless assembly of the two embedded JPEG strips into the original 2048 x 653 photograph, classical silhouette alpha masking and proportional resizing to 512 pixels wide with transparent padding. The photographed rack enclosure, Cherry keyboard, connectors and controls are retained. The original photograph crops the top edge of the equipment; no missing parts or lettering have been generated or reconstructed. No open license is asserted for this source photograph.
 
+## Philips Videopac+ G7400 and Brandt Jopac JO7400 photographs
+
+Asset: `src/GWGUI.Emulation.Philips/Assets/Machines/VideopacG7400.png`.
+Photograph by Marco van den Hout, 27 August 2004, licensed under CC BY-SA 3.0: https://creativecommons.org/licenses/by-sa/3.0/ . Source: https://commons.wikimedia.org/wiki/File:Philips_Videopac_G7400.jpg . Original: https://upload.wikimedia.org/wikipedia/commons/3/3d/Philips_Videopac_G7400.jpg . Manual exterior silhouette alpha mask and proportional resizing with ImageMagick to 512 x 382 pixels; keyboard, case, branding and controls preserved. The adapted photograph remains under CC BY-SA 3.0.
+
+Asset: `src/GWGUI.Emulation.Philips/Assets/Machines/JopacJo7400.png`.
+Source photograph preserved by the Videopac.org Jopac archive: http://videopac.org/jopac/ , image http://videopac.org/jopac/p1010004.jpg (1600 x 1200). No photographer or specific reuse license is identified by the source. Manual silhouette alpha mask, removal of the exterior shadow and proportional resizing with ImageMagick to 512 x 393 pixels. The entire photographed console, membrane keyboard and original markings are retained; no generated or reconstructed parts.
+
 ## Sony PSP-1000 controller photograph
 
 Asset: `src/GWGUI.App/Assets/Controllers/sony-psp-1000.png`.

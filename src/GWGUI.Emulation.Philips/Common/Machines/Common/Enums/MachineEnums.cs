@@ -5,7 +5,9 @@ public enum MachineModel
     PhilipsCdi,
     P2000T,
     Odyssey2,
-    VideopacG7000
+    VideopacG7000,
+    VideopacG7400,
+    JopacJo7400
 }
 
 public enum MachineFamily

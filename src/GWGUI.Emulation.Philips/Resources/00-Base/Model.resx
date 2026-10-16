@@ -11,4 +11,6 @@
   <data name="Emulation.Philips.Model.P2000T" xml:space="preserve"><value>Philips P2000T</value></data>
   <data name="Emulation.Philips.Model.PhilipsCdi" xml:space="preserve"><value>Philips CD-i</value></data>
   <data name="Emulation.Philips.Model.VideopacG7000" xml:space="preserve"><value>Philips Videopac G7000</value></data>
+  <data name="Emulation.Philips.Model.VideopacG7400" xml:space="preserve"><value>Philips Videopac+ G7400</value></data>
+  <data name="Emulation.Philips.Model.JopacJo7400" xml:space="preserve"><value>Brandt Jopac JO7400</value></data>
 </root>

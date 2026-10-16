@@ -10,6 +10,7 @@ internal static class EmulatorConstants
     internal const string SourceUri = "https://github.com/libretro/libretro-o2em";
     internal const string InspectedRevision = "679d6fec04963f6e70a7ec217e3d0ebb1fe472fc";
     internal const string DescriptionResourceKey = "Emulation.Emulator.o2em.Description";
-    internal static readonly EmulatorCatalogEntry Entry = EmulatorCatalogFunctions.Create(Emulator.O2em, Id, LibraryName, DllName, SourceUri, InspectedRevision, MachineModel.Odyssey2, MachineModel.VideopacG7000)
+    internal static readonly EmulatorCatalogEntry Entry = EmulatorCatalogFunctions.Create(Emulator.O2em, Id, LibraryName, DllName, SourceUri, InspectedRevision,
+        MachineModel.Odyssey2, MachineModel.VideopacG7000, MachineModel.VideopacG7400, MachineModel.JopacJo7400)
         with { DescriptionResourceKey = DescriptionResourceKey };
 }

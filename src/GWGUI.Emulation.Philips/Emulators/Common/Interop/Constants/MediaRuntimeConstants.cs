@@ -5,8 +5,12 @@ internal static class MediaRuntimeConstants
     internal const int VideopacBiosBytes = 1024;
     internal const string OdysseyBiosFileName = "o2rom.bin";
     internal const string VideopacBiosFileName = "c52.bin";
+    internal const string VideopacPlusBiosFileName = "g7400.bin";
+    internal const string JopacBiosFileName = "jopac.bin";
     internal const string OdysseyBiosMd5 = "562d5ebf9e030a40d6fabfc2f33139fd";
     internal const string VideopacBiosMd5 = "f1071cdb0b6b10dde94d3bc8a6146387";
+    internal const string VideopacPlusBiosMd5 = "c500ff71236068e0dc0d0603d265ae76";
+    internal const string JopacBiosMd5 = "279008e4a0db2dc5f1c048853b033828";
     internal const string CdiBiosFileName = "cdimono1.zip";
     internal const string SameCdiDirectoryName = "same_cdi";
     internal const string CdiBiosDirectoryName = "bios";
@@ -30,6 +34,8 @@ internal static class MediaRuntimeConstants
     {
         MachineModel.Odyssey2 => OdysseyBiosFileName,
         MachineModel.VideopacG7000 => VideopacBiosFileName,
+        MachineModel.VideopacG7400 => VideopacPlusBiosFileName,
+        MachineModel.JopacJo7400 => JopacBiosFileName,
         MachineModel.PhilipsCdi => CdiBiosFileName,
         _ => throw new ArgumentOutOfRangeException(nameof(model))
     };
@@ -38,6 +44,8 @@ internal static class MediaRuntimeConstants
     {
         MachineModel.Odyssey2 => OdysseyBiosMd5,
         MachineModel.VideopacG7000 => VideopacBiosMd5,
+        MachineModel.VideopacG7400 => VideopacPlusBiosMd5,
+        MachineModel.JopacJo7400 => JopacBiosMd5,
         _ => throw new ArgumentOutOfRangeException(nameof(model))
     };
 }

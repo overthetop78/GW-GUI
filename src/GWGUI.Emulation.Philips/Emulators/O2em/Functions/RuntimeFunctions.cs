@@ -12,6 +12,8 @@ internal static class O2emRuntimeFunctions
         {
             MachineModel.Odyssey2 => OptionConstants.O2romBin,
             MachineModel.VideopacG7000 => OptionConstants.C52Bin,
+            MachineModel.VideopacG7400 => OptionConstants.G7400Bin,
+            MachineModel.JopacJo7400 => OptionConstants.JopacBin,
             _ => throw new ArgumentOutOfRangeException(nameof(configuration))
         };
         return options;
