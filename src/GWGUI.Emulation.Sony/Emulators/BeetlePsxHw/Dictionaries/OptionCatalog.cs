@@ -3,8 +3,6 @@ using BlackSetup = GWGUI.Emulation.Sony.Emulators.BeetlePsxHw.Enums.BlackSetup;
 using ColorFormat = GWGUI.Emulation.Sony.Emulators.BeetlePsxHw.Enums.ColorFormat;
 using Depth = GWGUI.Emulation.Sony.Emulators.BeetlePsxHw.Enums.Depth;
 using Filter = GWGUI.Emulation.Sony.Emulators.BeetlePsxHw.Enums.Filter;
-using HdCacheRamBudget = GWGUI.Emulation.Sony.Emulators.BeetlePsxHw.Enums.HdCacheRamBudget;
-using HdCacheVramBudget = GWGUI.Emulation.Sony.Emulators.BeetlePsxHw.Enums.HdCacheVramBudget;
 using HdCachingMethod = GWGUI.Emulation.Sony.Emulators.BeetlePsxHw.Enums.HdCachingMethod;
 using HdDumpMode = GWGUI.Emulation.Sony.Emulators.BeetlePsxHw.Enums.HdDumpMode;
 using HdReplacementMode = GWGUI.Emulation.Sony.Emulators.BeetlePsxHw.Enums.HdReplacementMode;
@@ -12,7 +10,6 @@ using HdrOverbright = GWGUI.Emulation.Sony.Emulators.BeetlePsxHw.Enums.HdrOverbr
 using HdrSdrGamma = GWGUI.Emulation.Sony.Emulators.BeetlePsxHw.Enums.HdrSdrGamma;
 using HdrShoulder = GWGUI.Emulation.Sony.Emulators.BeetlePsxHw.Enums.HdrShoulder;
 using Msaa = GWGUI.Emulation.Sony.Emulators.BeetlePsxHw.Enums.Msaa;
-using PhaseError = GWGUI.Emulation.Sony.Emulators.BeetlePsxHw.Enums.PhaseError;
 using Renderer = GWGUI.Emulation.Sony.Emulators.BeetlePsxHw.Enums.Renderer;
 using SrcPrimaries = GWGUI.Emulation.Sony.Emulators.BeetlePsxHw.Enums.SrcPrimaries;
 using TextureDirectory = GWGUI.Emulation.Sony.Emulators.BeetlePsxHw.Enums.TextureDirectory;
@@ -141,13 +138,15 @@ internal static class OptionCatalog
         ], IsVisible: true, Tab: EmulationMachineTab.Video, RequiresRestart: false),
         new(OptionConstants.PhaseErrorKey, OptionConstants.PhaseErrorLabelResource, OptionConstants.PhaseErrorHelpResource, null,
             OptionConstants.PhaseErrorDefaultValue, OptionConstants.PhaseErrorDefaultValue,
-        [
-            new(OptionValueFunctions.ToNative(PhaseError._0), OptionValueResourceConstants.DisabledLabelResource),
-            new(OptionValueFunctions.ToNative(PhaseError._5), OptionValueResourceConstants._5DegreesLabelResource),
-            new(OptionValueFunctions.ToNative(PhaseError._10), OptionValueResourceConstants._10DegreesLabelResource),
-            new(OptionValueFunctions.ToNative(PhaseError._25), OptionValueResourceConstants._25DegreesLabelResource),
-            new(OptionValueFunctions.ToNative(PhaseError._45), OptionValueResourceConstants._45DegreesLabelResource),
-        ], IsVisible: true, Tab: EmulationMachineTab.Video, RequiresRestart: false),
+            NumericOptionValueFunctions.Choices(OptionConstants.PhaseErrorDegrees, string.Empty,
+                new Dictionary<string, string>
+                {
+                    ["0"] = OptionValueResourceConstants.DisabledLabelResource,
+                    ["5"] = OptionValueResourceConstants._5DegreesLabelResource,
+                    ["10"] = OptionValueResourceConstants._10DegreesLabelResource,
+                    ["25"] = OptionValueResourceConstants._25DegreesLabelResource,
+                    ["45"] = OptionValueResourceConstants._45DegreesLabelResource
+                }), IsVisible: true, Tab: EmulationMachineTab.Video, RequiresRestart: false),
         new(OptionConstants.VideoCableKey, OptionConstants.VideoCableLabelResource, OptionConstants.VideoCableHelpResource, null,
             OptionConstants.VideoCableDefaultValue, OptionConstants.VideoCableDefaultValue,
         [
@@ -311,27 +310,10 @@ internal static class OptionCatalog
         ], IsVisible: true, Tab: EmulationMachineTab.Video, RequiresRestart: false),
         new(OptionConstants.HdCacheVramBudgetKey, OptionConstants.HdCacheVramBudgetLabelResource, OptionConstants.HdCacheVramBudgetHelpResource, null,
             OptionConstants.HdCacheVramBudgetDefaultValue, OptionConstants.HdCacheVramBudgetDefaultValue,
-        [
-            new(OptionValueFunctions.ToNative(HdCacheVramBudget._256), OptionConstants.HdCacheVramBudget256DisplayName),
-            new(OptionValueFunctions.ToNative(HdCacheVramBudget._512), OptionConstants.HdCacheVramBudget512DisplayName),
-            new(OptionValueFunctions.ToNative(HdCacheVramBudget._1024), OptionConstants.HdCacheVramBudget1024DisplayName),
-            new(OptionValueFunctions.ToNative(HdCacheVramBudget._1536), OptionConstants.HdCacheVramBudget1536DisplayName),
-            new(OptionValueFunctions.ToNative(HdCacheVramBudget._2048), OptionConstants.HdCacheVramBudget2048DisplayName),
-            new(OptionValueFunctions.ToNative(HdCacheVramBudget._3072), OptionConstants.HdCacheVramBudget3072DisplayName),
-            new(OptionValueFunctions.ToNative(HdCacheVramBudget._4096), OptionConstants.HdCacheVramBudget4096DisplayName),
-            new(OptionValueFunctions.ToNative(HdCacheVramBudget._6144), OptionConstants.HdCacheVramBudget6144DisplayName),
-            new(OptionValueFunctions.ToNative(HdCacheVramBudget._8192), OptionConstants.HdCacheVramBudget8192DisplayName),
-        ], IsVisible: true, Tab: EmulationMachineTab.Video, RequiresRestart: false),
+            NumericOptionValueFunctions.MemoryBudgetChoices(OptionConstants.HdCacheVramBudgetMegabytes), IsVisible: true, Tab: EmulationMachineTab.Video, RequiresRestart: false),
         new(OptionConstants.HdCacheRamBudgetKey, OptionConstants.HdCacheRamBudgetLabelResource, OptionConstants.HdCacheRamBudgetHelpResource, null,
             OptionConstants.HdCacheRamBudgetDefaultValue, OptionConstants.HdCacheRamBudgetDefaultValue,
-        [
-            new(OptionValueFunctions.ToNative(HdCacheRamBudget._256), OptionConstants.HdCacheRamBudget256DisplayName),
-            new(OptionValueFunctions.ToNative(HdCacheRamBudget._512), OptionConstants.HdCacheRamBudget512DisplayName),
-            new(OptionValueFunctions.ToNative(HdCacheRamBudget._1024), OptionConstants.HdCacheRamBudget1024DisplayName),
-            new(OptionValueFunctions.ToNative(HdCacheRamBudget._2048), OptionConstants.HdCacheRamBudget2048DisplayName),
-            new(OptionValueFunctions.ToNative(HdCacheRamBudget._4096), OptionConstants.HdCacheRamBudget4096DisplayName),
-            new(OptionValueFunctions.ToNative(HdCacheRamBudget._8192), OptionConstants.HdCacheRamBudget8192DisplayName),
-        ], IsVisible: true, Tab: EmulationMachineTab.Video, RequiresRestart: false),
+            NumericOptionValueFunctions.MemoryBudgetChoices(OptionConstants.HdCacheRamBudgetMegabytes), IsVisible: true, Tab: EmulationMachineTab.Video, RequiresRestart: false),
         new(OptionConstants.PgxpModeKey, OptionConstants.PgxpModeLabelResource, OptionConstants.PgxpModeHelpResource, null,
             OptionConstants.PgxpModeDefaultValue, OptionConstants.PgxpModeDefaultValue,
         [
@@ -546,20 +528,19 @@ internal static class OptionCatalog
         ], IsVisible: true, Tab: EmulationMachineTab.Cpu, RequiresRestart: false),
         new(OptionConstants.DynarecOpCyclesKey, OptionConstants.DynarecOpCyclesLabelResource, OptionConstants.DynarecOpCyclesHelpResource, null,
             OptionConstants.DynarecOpCyclesDefaultValue, OptionConstants.DynarecOpCyclesDefaultValue,
-        [
-            new(OptionValueFunctions.ToNative(DynarecOpCycles._2), OptionValueResourceConstants._2DefaultLabelResource),
-            new(OptionValueFunctions.ToNative(DynarecOpCycles._1), OptionValueResourceConstants._1AccurateFixesParasiteEve2EtcPointLabelResource),
-        ], IsVisible: true, Tab: EmulationMachineTab.Cpu, RequiresRestart: false),
+            NumericOptionValueFunctions.Choices(OptionNumericConstants.DynarecOperationCycleCounts, string.Empty,
+                new Dictionary<string, string>
+                {
+                    ["2"] = OptionValueResourceConstants._2DefaultLabelResource,
+                    ["1"] = OptionValueResourceConstants._1AccurateFixesParasiteEve2EtcPointLabelResource
+                }), IsVisible: true, Tab: EmulationMachineTab.Cpu, RequiresRestart: false),
         new(OptionConstants.DynarecEventcyclesKey, OptionConstants.DynarecEventcyclesLabelResource, OptionConstants.DynarecEventcyclesHelpResource, null,
             OptionConstants.DynarecEventcyclesDefaultValue, OptionConstants.DynarecEventcyclesDefaultValue, [], Tab: EmulationMachineTab.Cpu, RequiresRestart: false,
             NumericRange: OptionConstants.DynarecEventcyclesRange, NativeNumericFormat: OptionNumericConstants.IntegerFormat, NativeZeroValue: null),
         new(OptionConstants.DynarecSpuSamplesKey, OptionConstants.DynarecSpuSamplesLabelResource, OptionConstants.DynarecSpuSamplesHelpResource, null,
             OptionConstants.DynarecSpuSamplesDefaultValue, OptionConstants.DynarecSpuSamplesDefaultValue,
-        [
-            new(OptionValueFunctions.ToNative(DynarecSpuSamples._1), OptionValueResourceConstants._1DefaultLabelResource),
-            new(OptionValueFunctions.ToNative(DynarecSpuSamples._4), OptionValueFunctions.ToNative(DynarecSpuSamples._4)),
-            new(OptionValueFunctions.ToNative(DynarecSpuSamples._16), OptionValueFunctions.ToNative(DynarecSpuSamples._16)),
-        ], IsVisible: true, Tab: EmulationMachineTab.Audio, RequiresRestart: false),
+            NumericOptionValueFunctions.Choices(OptionNumericConstants.DynarecSpuSampleCounts, string.Empty,
+                new Dictionary<string, string> { [OptionConstants.DynarecSpuSamplesDefaultValue] = OptionValueResourceConstants._1DefaultLabelResource }), IsVisible: true, Tab: EmulationMachineTab.Audio, RequiresRestart: false),
         new(OptionConstants.DynarecSpgpOptKey, OptionConstants.DynarecSpgpOptLabelResource, OptionConstants.DynarecSpgpOptHelpResource, null,
             ToggleValueConstants.Disabled, ToggleValueConstants.Disabled,
         [

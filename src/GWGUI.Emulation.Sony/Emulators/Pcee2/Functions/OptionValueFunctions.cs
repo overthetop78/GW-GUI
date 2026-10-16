@@ -1,10 +1,6 @@
 using System.Globalization;
 using CrosshairColor = GWGUI.Emulation.Sony.Emulators.Pcee2.Enums.CrosshairColor;
-using AnisotropicFiltering = GWGUI.Emulation.Sony.Emulators.Pcee2.Enums.AnisotropicFiltering;
 using AspectRatio = GWGUI.Emulation.Sony.Emulators.Pcee2.Enums.AspectRatio;
-using AudioBufferMs = GWGUI.Emulation.Sony.Emulators.Pcee2.Enums.AudioBufferMs;
-using AxisDeadzone = GWGUI.Emulation.Sony.Emulators.Pcee2.Enums.AxisDeadzone;
-using AxisScale = GWGUI.Emulation.Sony.Emulators.Pcee2.Enums.AxisScale;
 using BlendingAccuracy = GWGUI.Emulation.Sony.Emulators.Pcee2.Enums.BlendingAccuracy;
 using CasMode = GWGUI.Emulation.Sony.Emulators.Pcee2.Enums.CasMode;
 using FrameLimiter = GWGUI.Emulation.Sony.Emulators.Pcee2.Enums.FrameLimiter;
@@ -78,22 +74,10 @@ internal static class OptionValueFunctions
         _ => throw new ArgumentOutOfRangeException(nameof(value), value, null),
     };
 
-    internal static string ToNative(AnisotropicFiltering value) => value switch
-    {
-        _ when Enum.IsDefined(value) => ((decimal)value).ToString(OptionNumericConstants.IntegerFormat, CultureInfo.InvariantCulture),
-        _ => throw new ArgumentOutOfRangeException(nameof(value), value, null),
-    };
-
     internal static string ToNative(CasMode value) => value switch
     {
         CasMode.Disabled => OptionConstants.CasModeDisabled,
         CasMode.Sharpen => OptionConstants.CasModeSharpen,
-        _ => throw new ArgumentOutOfRangeException(nameof(value), value, null),
-    };
-
-    internal static string ToNative(AudioBufferMs value) => value switch
-    {
-        _ when Enum.IsDefined(value) => ((decimal)value).ToString(OptionNumericConstants.IntegerFormat, CultureInfo.InvariantCulture),
         _ => throw new ArgumentOutOfRangeException(nameof(value), value, null),
     };
 
@@ -130,15 +114,4 @@ internal static class OptionValueFunctions
         _ => throw new ArgumentOutOfRangeException(nameof(value), value, null),
     };
 
-    internal static string ToNative(AxisScale value) => value switch
-    {
-        _ when Enum.IsDefined(value) => ((decimal)value).ToString(OptionNumericConstants.IntegerFormat, CultureInfo.InvariantCulture),
-        _ => throw new ArgumentOutOfRangeException(nameof(value), value, null),
-    };
-
-    internal static string ToNative(AxisDeadzone value) => value switch
-    {
-        _ when Enum.IsDefined(value) => ((decimal)value).ToString(OptionNumericConstants.IntegerFormat, CultureInfo.InvariantCulture),
-        _ => throw new ArgumentOutOfRangeException(nameof(value), value, null),
-    };
 }

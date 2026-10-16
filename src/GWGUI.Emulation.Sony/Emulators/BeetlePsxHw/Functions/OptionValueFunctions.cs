@@ -3,8 +3,6 @@ using BlackSetup = GWGUI.Emulation.Sony.Emulators.BeetlePsxHw.Enums.BlackSetup;
 using ColorFormat = GWGUI.Emulation.Sony.Emulators.BeetlePsxHw.Enums.ColorFormat;
 using Depth = GWGUI.Emulation.Sony.Emulators.BeetlePsxHw.Enums.Depth;
 using Filter = GWGUI.Emulation.Sony.Emulators.BeetlePsxHw.Enums.Filter;
-using HdCacheRamBudget = GWGUI.Emulation.Sony.Emulators.BeetlePsxHw.Enums.HdCacheRamBudget;
-using HdCacheVramBudget = GWGUI.Emulation.Sony.Emulators.BeetlePsxHw.Enums.HdCacheVramBudget;
 using HdCachingMethod = GWGUI.Emulation.Sony.Emulators.BeetlePsxHw.Enums.HdCachingMethod;
 using HdDumpMode = GWGUI.Emulation.Sony.Emulators.BeetlePsxHw.Enums.HdDumpMode;
 using HdReplacementMode = GWGUI.Emulation.Sony.Emulators.BeetlePsxHw.Enums.HdReplacementMode;
@@ -12,7 +10,6 @@ using HdrOverbright = GWGUI.Emulation.Sony.Emulators.BeetlePsxHw.Enums.HdrOverbr
 using HdrSdrGamma = GWGUI.Emulation.Sony.Emulators.BeetlePsxHw.Enums.HdrSdrGamma;
 using HdrShoulder = GWGUI.Emulation.Sony.Emulators.BeetlePsxHw.Enums.HdrShoulder;
 using Msaa = GWGUI.Emulation.Sony.Emulators.BeetlePsxHw.Enums.Msaa;
-using PhaseError = GWGUI.Emulation.Sony.Emulators.BeetlePsxHw.Enums.PhaseError;
 using Renderer = GWGUI.Emulation.Sony.Emulators.BeetlePsxHw.Enums.Renderer;
 using SrcPrimaries = GWGUI.Emulation.Sony.Emulators.BeetlePsxHw.Enums.SrcPrimaries;
 using TextureDirectory = GWGUI.Emulation.Sony.Emulators.BeetlePsxHw.Enums.TextureDirectory;
@@ -103,12 +100,6 @@ internal static class OptionValueFunctions
         BlackSetup.Off => OptionConstants.BlackSetupOff,
         BlackSetup.Lifted => OptionConstants.BlackSetupLifted,
         BlackSetup.Crushed => OptionConstants.BlackSetupCrushed,
-        _ => throw new ArgumentOutOfRangeException(nameof(value), value, null),
-    };
-
-    internal static string ToNative(PhaseError value) => value switch
-    {
-        _ when Enum.IsDefined(value) => ((decimal)value).ToString(OptionNumericConstants.IntegerFormat, CultureInfo.InvariantCulture),
         _ => throw new ArgumentOutOfRangeException(nameof(value), value, null),
     };
 
@@ -205,18 +196,6 @@ internal static class OptionValueFunctions
         HdCachingMethod.Eager => OptionConstants.HdCachingMethodEager,
         HdCachingMethod.Lazy => OptionConstants.HdCachingMethodLazy,
         HdCachingMethod.LazySync => OptionConstants.HdCachingMethodLazySync,
-        _ => throw new ArgumentOutOfRangeException(nameof(value), value, null),
-    };
-
-    internal static string ToNative(HdCacheVramBudget value) => value switch
-    {
-        _ when Enum.IsDefined(value) => ((decimal)value).ToString(OptionNumericConstants.IntegerFormat, CultureInfo.InvariantCulture),
-        _ => throw new ArgumentOutOfRangeException(nameof(value), value, null),
-    };
-
-    internal static string ToNative(HdCacheRamBudget value) => value switch
-    {
-        _ when Enum.IsDefined(value) => ((decimal)value).ToString(OptionNumericConstants.IntegerFormat, CultureInfo.InvariantCulture),
         _ => throw new ArgumentOutOfRangeException(nameof(value), value, null),
     };
 
@@ -328,18 +307,6 @@ internal static class OptionValueFunctions
     {
         DynarecInvalidate.Full => OptionConstants.DynarecInvalidateFull,
         DynarecInvalidate.Dma => OptionConstants.DynarecInvalidateDma,
-        _ => throw new ArgumentOutOfRangeException(nameof(value), value, null),
-    };
-
-    internal static string ToNative(DynarecOpCycles value) => value switch
-    {
-        _ when Enum.IsDefined(value) => ((decimal)value).ToString(OptionNumericConstants.IntegerFormat, CultureInfo.InvariantCulture),
-        _ => throw new ArgumentOutOfRangeException(nameof(value), value, null),
-    };
-
-    internal static string ToNative(DynarecSpuSamples value) => value switch
-    {
-        _ when Enum.IsDefined(value) => ((decimal)value).ToString(OptionNumericConstants.IntegerFormat, CultureInfo.InvariantCulture),
         _ => throw new ArgumentOutOfRangeException(nameof(value), value, null),
     };
 

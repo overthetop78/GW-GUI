@@ -1,9 +1,5 @@
 using GWGUI.Emulation.Sony.Emulators.Common.Constants;
-using AnisotropicFiltering = GWGUI.Emulation.Sony.Emulators.Pcee2.Enums.AnisotropicFiltering;
 using AspectRatio = GWGUI.Emulation.Sony.Emulators.Pcee2.Enums.AspectRatio;
-using AudioBufferMs = GWGUI.Emulation.Sony.Emulators.Pcee2.Enums.AudioBufferMs;
-using AxisDeadzone = GWGUI.Emulation.Sony.Emulators.Pcee2.Enums.AxisDeadzone;
-using AxisScale = GWGUI.Emulation.Sony.Emulators.Pcee2.Enums.AxisScale;
 using BlendingAccuracy = GWGUI.Emulation.Sony.Emulators.Pcee2.Enums.BlendingAccuracy;
 using CasMode = GWGUI.Emulation.Sony.Emulators.Pcee2.Enums.CasMode;
 using FrameLimiter = GWGUI.Emulation.Sony.Emulators.Pcee2.Enums.FrameLimiter;
@@ -83,13 +79,8 @@ internal static class OptionCatalog
         ], IsVisible: true, Tab: EmulationMachineTab.Video, RequiresRestart: false),
         new(OptionConstants.AnisotropicFilteringKey, OptionConstants.AnisotropicFilteringLabelResource, OptionConstants.AnisotropicFilteringHelpResource, null,
             OptionConstants.AnisotropicFilteringDefaultValue, OptionConstants.AnisotropicFilteringDefaultValue,
-        [
-            new(OptionValueFunctions.ToNative(AnisotropicFiltering._0), OptionValueResourceConstants.DisabledLabelResource),
-            new(OptionValueFunctions.ToNative(AnisotropicFiltering._2), OptionConstants.AnisotropicFiltering2DisplayName),
-            new(OptionValueFunctions.ToNative(AnisotropicFiltering._4), OptionConstants.AnisotropicFiltering4DisplayName),
-            new(OptionValueFunctions.ToNative(AnisotropicFiltering._8), OptionConstants.AnisotropicFiltering8DisplayName),
-            new(OptionValueFunctions.ToNative(AnisotropicFiltering._16), OptionConstants.AnisotropicFiltering16DisplayName),
-        ], IsVisible: true, Tab: EmulationMachineTab.Video, RequiresRestart: false),
+            NumericOptionValueFunctions.Choices(OptionConstants.AnisotropicFilteringFactors, OptionNumericConstants.MultiplierSuffix,
+                new Dictionary<string, string> { [OptionConstants.AnisotropicFilteringDefaultValue] = OptionValueResourceConstants.DisabledLabelResource }), IsVisible: true, Tab: EmulationMachineTab.Video, RequiresRestart: false),
         new(OptionConstants.DitheringKey, OptionConstants.DitheringLabelResource, OptionConstants.DitheringHelpResource, null,
             OptionConstants.DitheringDefaultValue, OptionConstants.DitheringDefaultValue, NumericOptionValueFunctions.Choices(OptionConstants.DitheringRanges, OptionNumericConstants.IntegerFormat),
             Tab: EmulationMachineTab.Video, RequiresRestart: false),
@@ -117,13 +108,8 @@ internal static class OptionCatalog
         new(OptionConstants.AudioBufferMsKey, SettingsDescriptionFunctionsConstants.ResourceAudioLatency,
             "Emulation.Help.Audio.Latency.Short", null,
             OptionConstants.AudioBufferMsDefaultValue, OptionConstants.AudioBufferMsDefaultValue,
-        [
-            new(OptionValueFunctions.ToNative(AudioBufferMs._50), OptionConstants.AudioBufferMs50DisplayName),
-            new(OptionValueFunctions.ToNative(AudioBufferMs._75), OptionConstants.AudioBufferMs75DisplayName),
-            new(OptionValueFunctions.ToNative(AudioBufferMs._100), OptionConstants.AudioBufferMs100DisplayName),
-            new(OptionValueFunctions.ToNative(AudioBufferMs._150), OptionConstants.AudioBufferMs150DisplayName),
-            new(OptionValueFunctions.ToNative(AudioBufferMs._200), OptionConstants.AudioBufferMs200DisplayName),
-        ], IsVisible: false, CategorizedDescription: "Emulation.Help.Audio.Latency.Detailed", Tab: EmulationMachineTab.Audio, RequiresRestart: false),
+            NumericOptionValueFunctions.Choices(OptionConstants.AudioBufferMillisecondsChoices, OptionNumericConstants.MillisecondsSuffix),
+            IsVisible: false, CategorizedDescription: "Emulation.Help.Audio.Latency.Detailed", Tab: EmulationMachineTab.Audio, RequiresRestart: false),
         new(OptionConstants.FrameLimiterKey, OptionConstants.FrameLimiterLabelResource, OptionConstants.FrameLimiterHelpResource, null,
             OptionConstants.FrameLimiterDefaultValue, OptionConstants.FrameLimiterDefaultValue,
         [
@@ -180,22 +166,14 @@ internal static class OptionCatalog
         ], Tab: EmulationMachineTab.Controllers, RequiresRestart: false),
         new(OptionConstants.AxisScaleKey, OptionConstants.AxisScaleLabelResource, OptionConstants.AxisScaleHelpResource, null,
             OptionConstants.AxisScaleDefaultValue, OptionConstants.AxisScaleDefaultValue,
-        [
-            new(OptionValueFunctions.ToNative(AxisScale._100), OptionConstants.AxisScale100DisplayName),
-            new(OptionValueFunctions.ToNative(AxisScale._115), OptionConstants.AxisScale115DisplayName),
-            new(OptionValueFunctions.ToNative(AxisScale._133), OptionValueResourceConstants._133PercentDefaultLabelResource),
-            new(OptionValueFunctions.ToNative(AxisScale._150), OptionConstants.AxisScale150DisplayName),
-        ], IsVisible: true, Tab: EmulationMachineTab.Controllers, RequiresRestart: false),
+            NumericOptionValueFunctions.Choices(OptionConstants.AxisScalePercentages, OptionNumericConstants.PercentageSuffix,
+                new Dictionary<string, string> { [OptionConstants.AxisScaleDefaultValue] = OptionValueResourceConstants._133PercentDefaultLabelResource }),
+            IsVisible: true, Tab: EmulationMachineTab.Controllers, RequiresRestart: false),
         new(OptionConstants.AxisDeadzoneKey, OptionConstants.AxisDeadzoneLabelResource, OptionConstants.AxisDeadzoneHelpResource, null,
             OptionConstants.AxisDeadzoneDefaultValue, OptionConstants.AxisDeadzoneDefaultValue,
-        [
-            new(OptionValueFunctions.ToNative(AxisDeadzone._0), OptionValueResourceConstants._0PercentDefaultLabelResource),
-            new(OptionValueFunctions.ToNative(AxisDeadzone._5), OptionConstants.AxisDeadzone5DisplayName),
-            new(OptionValueFunctions.ToNative(AxisDeadzone._10), OptionConstants.AxisDeadzone10DisplayName),
-            new(OptionValueFunctions.ToNative(AxisDeadzone._15), OptionConstants.AxisDeadzone15DisplayName),
-            new(OptionValueFunctions.ToNative(AxisDeadzone._20), OptionConstants.AxisDeadzone20DisplayName),
-            new(OptionValueFunctions.ToNative(AxisDeadzone._30), OptionConstants.AxisDeadzone30DisplayName),
-        ], IsVisible: true, Tab: EmulationMachineTab.Controllers, RequiresRestart: false),
+            NumericOptionValueFunctions.Choices(OptionConstants.AxisDeadzonePercentages, OptionNumericConstants.PercentageSuffix,
+                new Dictionary<string, string> { [OptionConstants.AxisDeadzoneDefaultValue] = OptionValueResourceConstants._0PercentDefaultLabelResource }),
+            IsVisible: true, Tab: EmulationMachineTab.Controllers, RequiresRestart: false),
         new(OptionConstants.CheatsKey, OptionConstants.CheatsLabelResource, OptionConstants.CheatsHelpResource, null,
             ToggleValueConstants.Disabled, ToggleValueConstants.Disabled,
         [

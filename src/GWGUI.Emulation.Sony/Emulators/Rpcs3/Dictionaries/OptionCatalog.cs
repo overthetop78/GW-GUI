@@ -1,19 +1,14 @@
 using GWGUI.Emulation.Sony.Emulators.Common.Constants;
 using AnisotropicFilter = GWGUI.Emulation.Sony.Emulators.Rpcs3.Enums.AnisotropicFilter;
 using AudioFormat = GWGUI.Emulation.Sony.Emulators.Rpcs3.Enums.AudioFormat;
-using ClocksScale = GWGUI.Emulation.Sony.Emulators.Rpcs3.Enums.ClocksScale;
 using DefaultResolution = GWGUI.Emulation.Sony.Emulators.Rpcs3.Enums.DefaultResolution;
 using Dns = GWGUI.Emulation.Sony.Emulators.Rpcs3.Enums.Dns;
-using DriverRecoveryTimeout = GWGUI.Emulation.Sony.Emulators.Rpcs3.Enums.DriverRecoveryTimeout;
-using DriverWakeupDelay = GWGUI.Emulation.Sony.Emulators.Rpcs3.Enums.DriverWakeupDelay;
 using EnterButton = GWGUI.Emulation.Sony.Emulators.Rpcs3.Enums.EnterButton;
 using FbAliasingBias = GWGUI.Emulation.Sony.Emulators.Rpcs3.Enums.FbAliasingBias;
 using FrameLimit = GWGUI.Emulation.Sony.Emulators.Rpcs3.Enums.FrameLimit;
 using FramePacing = GWGUI.Emulation.Sony.Emulators.Rpcs3.Enums.FramePacing;
 using Language = GWGUI.Emulation.Sony.Emulators.Rpcs3.Enums.Language;
 using LicenseArea = GWGUI.Emulation.Sony.Emulators.Rpcs3.Enums.LicenseArea;
-using LlvmThreads = GWGUI.Emulation.Sony.Emulators.Rpcs3.Enums.LlvmThreads;
-using MaxPreemptCount = GWGUI.Emulation.Sony.Emulators.Rpcs3.Enums.MaxPreemptCount;
 using Msaa = GWGUI.Emulation.Sony.Emulators.Rpcs3.Enums.Msaa;
 using PerfOverlay = GWGUI.Emulation.Sony.Emulators.Rpcs3.Enums.PerfOverlay;
 using PpuDecoder = GWGUI.Emulation.Sony.Emulators.Rpcs3.Enums.PpuDecoder;
@@ -165,14 +160,7 @@ internal static class OptionCatalog
         ], IsVisible: true, Tab: EmulationMachineTab.Cpu, RequiresRestart: false),
         new(OptionConstants.ClocksScaleKey, OptionConstants.ClocksScaleLabelResource, OptionConstants.ClocksScaleHelpResource, null,
             OptionConstants.ClocksScaleDefaultValue, OptionConstants.ClocksScaleDefaultValue,
-        [
-            new(OptionValueFunctions.ToNative(ClocksScale._50), OptionConstants.ClocksScale50DisplayName),
-            new(OptionValueFunctions.ToNative(ClocksScale._75), OptionConstants.ClocksScale75DisplayName),
-            new(OptionValueFunctions.ToNative(ClocksScale._100), OptionConstants.ClocksScale100DisplayName),
-            new(OptionValueFunctions.ToNative(ClocksScale._150), OptionConstants.ClocksScale150DisplayName),
-            new(OptionValueFunctions.ToNative(ClocksScale._200), OptionConstants.ClocksScale200DisplayName),
-            new(OptionValueFunctions.ToNative(ClocksScale._300), OptionConstants.ClocksScale300DisplayName),
-        ], IsVisible: true, Tab: EmulationMachineTab.Cpu, RequiresRestart: false),
+            NumericOptionValueFunctions.Choices(OptionConstants.ClockScalePercentages, OptionNumericConstants.PercentageSuffix), IsVisible: true, Tab: EmulationMachineTab.Cpu, RequiresRestart: false),
         new(OptionConstants.RendererKey, GraphicsSettingsConstants.ModeLabel, GraphicsSettingsConstants.ModeHelp, null,
             OptionConstants.RendererDefaultValue, OptionConstants.RendererDefaultValue,
         [
@@ -356,15 +344,8 @@ internal static class OptionCatalog
         ], IsVisible: true, Tab: EmulationMachineTab.Video, RequiresRestart: false),
         new(OptionConstants.DriverWakeupDelayKey, OptionConstants.DriverWakeupDelayLabelResource, OptionConstants.DriverWakeupDelayHelpResource, null,
             OptionConstants.DriverWakeupDelayDefaultValue, OptionConstants.DriverWakeupDelayDefaultValue,
-        [
-            new(OptionValueFunctions.ToNative(DriverWakeupDelay._0), OptionValueResourceConstants._0DefaultLabelResource),
-            new(OptionValueFunctions.ToNative(DriverWakeupDelay._20), OptionValueFunctions.ToNative(DriverWakeupDelay._20)),
-            new(OptionValueFunctions.ToNative(DriverWakeupDelay._50), OptionValueFunctions.ToNative(DriverWakeupDelay._50)),
-            new(OptionValueFunctions.ToNative(DriverWakeupDelay._100), OptionValueFunctions.ToNative(DriverWakeupDelay._100)),
-            new(OptionValueFunctions.ToNative(DriverWakeupDelay._200), OptionValueFunctions.ToNative(DriverWakeupDelay._200)),
-            new(OptionValueFunctions.ToNative(DriverWakeupDelay._400), OptionValueFunctions.ToNative(DriverWakeupDelay._400)),
-            new(OptionValueFunctions.ToNative(DriverWakeupDelay._800), OptionValueFunctions.ToNative(DriverWakeupDelay._800)),
-        ], IsVisible: true, Tab: EmulationMachineTab.Video, RequiresRestart: false),
+            NumericOptionValueFunctions.Choices(OptionConstants.DriverWakeupDelayChoices, string.Empty,
+                new Dictionary<string, string> { [OptionConstants.DriverWakeupDelayDefaultValue] = OptionValueResourceConstants._0DefaultLabelResource }), IsVisible: true, Tab: EmulationMachineTab.Video, RequiresRestart: false),
         new(OptionConstants.VblankRateKey, OptionConstants.VblankRateLabelResource, OptionConstants.VblankRateHelpResource, null,
             OptionConstants.VblankRateDefaultValue, OptionConstants.VblankRateDefaultValue,
         [
@@ -393,15 +374,8 @@ internal static class OptionCatalog
         ], Tab: EmulationMachineTab.Cpu, RequiresRestart: false),
         new(OptionConstants.LlvmThreadsKey, OptionConstants.LlvmThreadsLabelResource, OptionConstants.LlvmThreadsHelpResource, null,
             OptionConstants.LlvmThreadsDefaultValue, OptionConstants.LlvmThreadsDefaultValue,
-        [
-            new(OptionValueFunctions.ToNative(LlvmThreads._0), OptionValueResourceConstants.AutomaticLabelResource),
-            new(OptionValueFunctions.ToNative(LlvmThreads._1), OptionValueFunctions.ToNative(LlvmThreads._1)),
-            new(OptionValueFunctions.ToNative(LlvmThreads._2), OptionValueFunctions.ToNative(LlvmThreads._2)),
-            new(OptionValueFunctions.ToNative(LlvmThreads._3), OptionValueFunctions.ToNative(LlvmThreads._3)),
-            new(OptionValueFunctions.ToNative(LlvmThreads._4), OptionValueFunctions.ToNative(LlvmThreads._4)),
-            new(OptionValueFunctions.ToNative(LlvmThreads._6), OptionValueFunctions.ToNative(LlvmThreads._6)),
-            new(OptionValueFunctions.ToNative(LlvmThreads._8), OptionValueFunctions.ToNative(LlvmThreads._8)),
-        ], IsVisible: true, Tab: EmulationMachineTab.Cpu, RequiresRestart: false),
+            NumericOptionValueFunctions.Choices(OptionConstants.LlvmThreadCounts, string.Empty,
+                new Dictionary<string, string> { [OptionConstants.LlvmThreadsDefaultValue] = OptionValueResourceConstants.AutomaticLabelResource }), IsVisible: true, Tab: EmulationMachineTab.Cpu, RequiresRestart: false),
         new(OptionConstants.ShaderCompilerThreadsKey, OptionConstants.ShaderCompilerThreadsLabelResource, OptionConstants.ShaderCompilerThreadsHelpResource, null,
             OptionConstants.ShaderCompilerThreadsDefaultValue, OptionConstants.ShaderCompilerThreadsDefaultValue,
         [
@@ -424,15 +398,8 @@ internal static class OptionCatalog
             Tab: EmulationMachineTab.Cpu, RequiresRestart: false),
         new(OptionConstants.MaxPreemptCountKey, OptionConstants.MaxPreemptCountLabelResource, OptionConstants.MaxPreemptCountHelpResource, null,
             OptionConstants.MaxPreemptCountDefaultValue, OptionConstants.MaxPreemptCountDefaultValue,
-        [
-            new(OptionValueFunctions.ToNative(MaxPreemptCount._0), OptionValueResourceConstants._0DisabledLabelResource),
-            new(OptionValueFunctions.ToNative(MaxPreemptCount._10), OptionValueFunctions.ToNative(MaxPreemptCount._10)),
-            new(OptionValueFunctions.ToNative(MaxPreemptCount._20), OptionValueFunctions.ToNative(MaxPreemptCount._20)),
-            new(OptionValueFunctions.ToNative(MaxPreemptCount._50), OptionValueFunctions.ToNative(MaxPreemptCount._50)),
-            new(OptionValueFunctions.ToNative(MaxPreemptCount._100), OptionValueFunctions.ToNative(MaxPreemptCount._100)),
-            new(OptionValueFunctions.ToNative(MaxPreemptCount._200), OptionValueFunctions.ToNative(MaxPreemptCount._200)),
-            new(OptionValueFunctions.ToNative(MaxPreemptCount._400), OptionValueFunctions.ToNative(MaxPreemptCount._400)),
-        ], IsVisible: true, Tab: EmulationMachineTab.Cpu, RequiresRestart: false),
+            NumericOptionValueFunctions.Choices(OptionConstants.MaximumPreemptionCounts, string.Empty,
+                new Dictionary<string, string> { [OptionConstants.MaxPreemptCountDefaultValue] = OptionValueResourceConstants._0DisabledLabelResource }), IsVisible: true, Tab: EmulationMachineTab.Cpu, RequiresRestart: false),
         new(OptionConstants.NetworkEnabledKey, OptionConstants.NetworkEnabledLabelResource, OptionConstants.NetworkEnabledHelpResource, null,
             ToggleValueConstants.Disabled, ToggleValueConstants.Disabled,
         [
@@ -659,13 +626,15 @@ internal static class OptionCatalog
         ], Tab: EmulationMachineTab.Cpu, RequiresRestart: false),
         new(OptionConstants.DriverRecoveryTimeoutKey, OptionConstants.DriverRecoveryTimeoutLabelResource, OptionConstants.DriverRecoveryTimeoutHelpResource, null,
             OptionConstants.DriverRecoveryTimeoutDefaultValue, OptionConstants.DriverRecoveryTimeoutDefaultValue,
-        [
-            new(OptionValueFunctions.ToNative(DriverRecoveryTimeout._0), OptionValueResourceConstants.DisabledLabelResource),
-            new(OptionValueFunctions.ToNative(DriverRecoveryTimeout._1000), OptionValueResourceConstants._1SecondLabelResource),
-            new(OptionValueFunctions.ToNative(DriverRecoveryTimeout._2000), OptionValueResourceConstants._2SecondsLabelResource),
-            new(OptionValueFunctions.ToNative(DriverRecoveryTimeout._5000), OptionValueResourceConstants._5SecondsLabelResource),
-            new(OptionValueFunctions.ToNative(DriverRecoveryTimeout._10000), OptionValueResourceConstants._10SecondsLabelResource),
-        ], IsVisible: true, Tab: EmulationMachineTab.General, RequiresRestart: false),
+            NumericOptionValueFunctions.Choices(OptionConstants.DriverRecoveryTimeoutMilliseconds, string.Empty,
+                new Dictionary<string, string>
+                {
+                    ["0"] = OptionValueResourceConstants.DisabledLabelResource,
+                    ["1000"] = OptionValueResourceConstants._1SecondLabelResource,
+                    ["2000"] = OptionValueResourceConstants._2SecondsLabelResource,
+                    ["5000"] = OptionValueResourceConstants._5SecondsLabelResource,
+                    ["10000"] = OptionValueResourceConstants._10SecondsLabelResource
+                }), IsVisible: true, Tab: EmulationMachineTab.General, RequiresRestart: false),
         new(OptionConstants.MfcShufflingKey, OptionConstants.MfcShufflingLabelResource, OptionConstants.MfcShufflingHelpResource, null,
             ToggleValueConstants.Disabled, ToggleValueConstants.Disabled,
         [

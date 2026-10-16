@@ -166,18 +166,6 @@ internal static class OptionValueFunctions
         _ => throw new ArgumentOutOfRangeException(nameof(value), value, null),
     };
 
-    internal static string ToNative(DynarecOpCycles value) => value switch
-    {
-        _ when Enum.IsDefined(value) => ((decimal)value).ToString(OptionNumericConstants.IntegerFormat, CultureInfo.InvariantCulture),
-        _ => throw new ArgumentOutOfRangeException(nameof(value), value, null),
-    };
-
-    internal static string ToNative(DynarecSpuSamples value) => value switch
-    {
-        _ when Enum.IsDefined(value) => ((decimal)value).ToString(OptionNumericConstants.IntegerFormat, CultureInfo.InvariantCulture),
-        _ => throw new ArgumentOutOfRangeException(nameof(value), value, null),
-    };
-
     internal static string ToNative(CoreTimingFps value) => value switch
     {
         CoreTimingFps.AutoToggle => OptionConstants.CoreTimingFpsAutoToggle,

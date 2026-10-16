@@ -1,12 +1,11 @@
 using System.Globalization;
 using GWGUI.Emulation.Sony.Emulators.Pcee2.Constants;
-using GWGUI.Emulation.Sony.Emulators.Pcee2.Enums;
 
 namespace GWGUI.Emulation.Sony.Emulators.Pcee2.Functions;
 
 internal static class AudioConfigurationFunctions
 {
-    internal static IReadOnlyList<int> Latencies { get; } = Enum.GetValues<AudioBufferMs>().Select(value => (int)value).ToArray();
+    internal static IReadOnlyList<int> Latencies => OptionConstants.AudioBufferMillisecondsChoices;
 
     internal static AudioConfiguration Resolve(MachineConfiguration configuration)
     {
@@ -23,7 +22,7 @@ internal static class AudioConfigurationFunctions
         var audio = Resolve(configuration);
         var options = new Dictionary<string, string>(configuration.Options ?? new Dictionary<string, string>(), StringComparer.Ordinal)
         {
-            [OptionConstants.AudioBufferMsKey] = OptionValueFunctions.ToNative((AudioBufferMs)audio.LatencyMilliseconds)
+            [OptionConstants.AudioBufferMsKey] = audio.LatencyMilliseconds.ToString(CultureInfo.InvariantCulture)
         };
         return configuration with { Audio = audio, Options = options };
     }

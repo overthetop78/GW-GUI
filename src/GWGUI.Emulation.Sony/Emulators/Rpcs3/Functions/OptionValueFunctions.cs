@@ -1,19 +1,14 @@
 using System.Globalization;
 using AudioFormat = GWGUI.Emulation.Sony.Emulators.Rpcs3.Enums.AudioFormat;
 using AnisotropicFilter = GWGUI.Emulation.Sony.Emulators.Rpcs3.Enums.AnisotropicFilter;
-using ClocksScale = GWGUI.Emulation.Sony.Emulators.Rpcs3.Enums.ClocksScale;
 using DefaultResolution = GWGUI.Emulation.Sony.Emulators.Rpcs3.Enums.DefaultResolution;
 using Dns = GWGUI.Emulation.Sony.Emulators.Rpcs3.Enums.Dns;
-using DriverRecoveryTimeout = GWGUI.Emulation.Sony.Emulators.Rpcs3.Enums.DriverRecoveryTimeout;
-using DriverWakeupDelay = GWGUI.Emulation.Sony.Emulators.Rpcs3.Enums.DriverWakeupDelay;
 using EnterButton = GWGUI.Emulation.Sony.Emulators.Rpcs3.Enums.EnterButton;
 using FbAliasingBias = GWGUI.Emulation.Sony.Emulators.Rpcs3.Enums.FbAliasingBias;
 using FrameLimit = GWGUI.Emulation.Sony.Emulators.Rpcs3.Enums.FrameLimit;
 using FramePacing = GWGUI.Emulation.Sony.Emulators.Rpcs3.Enums.FramePacing;
 using Language = GWGUI.Emulation.Sony.Emulators.Rpcs3.Enums.Language;
 using LicenseArea = GWGUI.Emulation.Sony.Emulators.Rpcs3.Enums.LicenseArea;
-using LlvmThreads = GWGUI.Emulation.Sony.Emulators.Rpcs3.Enums.LlvmThreads;
-using MaxPreemptCount = GWGUI.Emulation.Sony.Emulators.Rpcs3.Enums.MaxPreemptCount;
 using Msaa = GWGUI.Emulation.Sony.Emulators.Rpcs3.Enums.Msaa;
 using PerfOverlay = GWGUI.Emulation.Sony.Emulators.Rpcs3.Enums.PerfOverlay;
 using PpuDecoder = GWGUI.Emulation.Sony.Emulators.Rpcs3.Enums.PpuDecoder;
@@ -107,12 +102,6 @@ internal static class OptionValueFunctions
         _ => throw new ArgumentOutOfRangeException(nameof(value), value, null),
     };
 
-    internal static string ToNative(ClocksScale value) => value switch
-    {
-        _ when Enum.IsDefined(value) => ((decimal)value).ToString(OptionNumericConstants.IntegerFormat, CultureInfo.InvariantCulture),
-        _ => throw new ArgumentOutOfRangeException(nameof(value), value, null),
-    };
-
     internal static string ToNative(Renderer value) => value switch
     {
         Renderer.Opengl => OptionConstants.RendererOpengl,
@@ -200,12 +189,6 @@ internal static class OptionValueFunctions
         _ => throw new ArgumentOutOfRangeException(nameof(value), value, null),
     };
 
-    internal static string ToNative(DriverWakeupDelay value) => value switch
-    {
-        _ when Enum.IsDefined(value) => ((decimal)value).ToString(OptionNumericConstants.IntegerFormat, CultureInfo.InvariantCulture),
-        _ => throw new ArgumentOutOfRangeException(nameof(value), value, null),
-    };
-
     internal static string ToNative(VblankRate value) => value switch
     {
         VblankRate.FromCompatibilityList => OptionConstants.VblankRateList,
@@ -221,21 +204,9 @@ internal static class OptionValueFunctions
         _ => throw new ArgumentOutOfRangeException(nameof(value), value, null),
     };
 
-    internal static string ToNative(LlvmThreads value) => value switch
-    {
-        _ when Enum.IsDefined(value) => ((decimal)value).ToString(OptionNumericConstants.IntegerFormat, CultureInfo.InvariantCulture),
-        _ => throw new ArgumentOutOfRangeException(nameof(value), value, null),
-    };
-
     internal static string ToNative(ShaderCompilerThreads value) => value switch
     {
         ShaderCompilerThreads.Auto => OptionConstants.ShaderCompilerThreadsAuto,
-        _ when Enum.IsDefined(value) => ((decimal)value).ToString(OptionNumericConstants.IntegerFormat, CultureInfo.InvariantCulture),
-        _ => throw new ArgumentOutOfRangeException(nameof(value), value, null),
-    };
-
-    internal static string ToNative(MaxPreemptCount value) => value switch
-    {
         _ when Enum.IsDefined(value) => ((decimal)value).ToString(OptionNumericConstants.IntegerFormat, CultureInfo.InvariantCulture),
         _ => throw new ArgumentOutOfRangeException(nameof(value), value, null),
     };
@@ -316,9 +287,4 @@ internal static class OptionValueFunctions
         _ => throw new ArgumentOutOfRangeException(nameof(value), value, null),
     };
 
-    internal static string ToNative(DriverRecoveryTimeout value) => value switch
-    {
-        _ when Enum.IsDefined(value) => ((decimal)value).ToString(OptionNumericConstants.IntegerFormat, CultureInfo.InvariantCulture),
-        _ => throw new ArgumentOutOfRangeException(nameof(value), value, null),
-    };
 }

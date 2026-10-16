@@ -243,7 +243,7 @@ internal static class OptionConstants
     internal const string DynarecOpCyclesKey = "beetle_psx_dynarec_op_cycles";
     internal const string DynarecOpCyclesLabelResource = "Emulation.Option.mednafen_psx.beetle_psx_dynarec_op_cycles.Label";
     internal const string DynarecOpCyclesHelpResource = "Emulation.Option.mednafen_psx.beetle_psx_dynarec_op_cycles.Help";
-    internal static readonly string DynarecOpCyclesDefaultValue = OptionValueFunctions.ToNative(DynarecOpCycles._2);
+    internal const string DynarecOpCyclesDefaultValue = "2";
     internal const string DynarecEventcyclesKey = "beetle_psx_dynarec_eventcycles";
     internal const string DynarecEventcyclesLabelResource = OptionTextResourceConstants.DynarecEventCyclesLabel;
     internal const string DynarecEventcyclesHelpResource = OptionTextResourceConstants.DynarecEventCyclesHelp;
@@ -252,7 +252,7 @@ internal static class OptionConstants
     internal const string DynarecSpuSamplesKey = "beetle_psx_dynarec_spu_samples";
     internal const string DynarecSpuSamplesLabelResource = "Emulation.Option.mednafen_psx.beetle_psx_dynarec_spu_samples.Label";
     internal const string DynarecSpuSamplesHelpResource = "Emulation.Option.mednafen_psx.beetle_psx_dynarec_spu_samples.Help";
-    internal static readonly string DynarecSpuSamplesDefaultValue = OptionValueFunctions.ToNative(DynarecSpuSamples._1);
+    internal const string DynarecSpuSamplesDefaultValue = "1";
     internal const string DynarecSpgpOptKey = "beetle_psx_dynarec_spgp_opt";
     internal const string DynarecSpgpOptLabelResource = "Emulation.Option.mednafen_psx.beetle_psx_dynarec_spgp_opt.Label";
     internal const string DynarecSpgpOptHelpResource = "Emulation.Option.mednafen_psx.beetle_psx_dynarec_spgp_opt.Help";

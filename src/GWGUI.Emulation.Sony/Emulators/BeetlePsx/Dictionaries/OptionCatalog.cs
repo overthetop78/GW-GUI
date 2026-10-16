@@ -282,20 +282,19 @@ internal static class OptionCatalog
         ], IsVisible: true, Tab: EmulationMachineTab.Cpu, RequiresRestart: false),
         new(OptionConstants.DynarecOpCyclesKey, OptionConstants.DynarecOpCyclesLabelResource, OptionConstants.DynarecOpCyclesHelpResource, null,
             OptionConstants.DynarecOpCyclesDefaultValue, OptionConstants.DynarecOpCyclesDefaultValue,
-        [
-            new(OptionValueFunctions.ToNative(DynarecOpCycles._2), OptionValueResourceConstants._2DefaultLabelResource),
-            new(OptionValueFunctions.ToNative(DynarecOpCycles._1), OptionValueResourceConstants._1AccurateFixesParasiteEve2EtcPointLabelResource),
-        ], IsVisible: true, Tab: EmulationMachineTab.Cpu, RequiresRestart: false),
+            NumericOptionValueFunctions.Choices(OptionNumericConstants.DynarecOperationCycleCounts, string.Empty,
+                new Dictionary<string, string>
+                {
+                    ["2"] = OptionValueResourceConstants._2DefaultLabelResource,
+                    ["1"] = OptionValueResourceConstants._1AccurateFixesParasiteEve2EtcPointLabelResource
+                }), IsVisible: true, Tab: EmulationMachineTab.Cpu, RequiresRestart: false),
         new(OptionConstants.DynarecEventcyclesKey, OptionConstants.DynarecEventcyclesLabelResource, OptionConstants.DynarecEventcyclesHelpResource, null,
             OptionConstants.DynarecEventcyclesDefaultValue, OptionConstants.DynarecEventcyclesDefaultValue, [], Tab: EmulationMachineTab.Cpu, RequiresRestart: false,
             NumericRange: OptionConstants.DynarecEventcyclesRange, NativeNumericFormat: OptionNumericConstants.IntegerFormat, NativeZeroValue: null),
         new(OptionConstants.DynarecSpuSamplesKey, OptionConstants.DynarecSpuSamplesLabelResource, OptionConstants.DynarecSpuSamplesHelpResource, null,
             OptionConstants.DynarecSpuSamplesDefaultValue, OptionConstants.DynarecSpuSamplesDefaultValue,
-        [
-            new(OptionValueFunctions.ToNative(DynarecSpuSamples._1), OptionValueResourceConstants._1DefaultLabelResource),
-            new(OptionValueFunctions.ToNative(DynarecSpuSamples._4), OptionValueFunctions.ToNative(DynarecSpuSamples._4)),
-            new(OptionValueFunctions.ToNative(DynarecSpuSamples._16), OptionValueFunctions.ToNative(DynarecSpuSamples._16)),
-        ], IsVisible: true, Tab: EmulationMachineTab.Audio, RequiresRestart: false),
+            NumericOptionValueFunctions.Choices(OptionNumericConstants.DynarecSpuSampleCounts, string.Empty,
+                new Dictionary<string, string> { [OptionConstants.DynarecSpuSamplesDefaultValue] = OptionValueResourceConstants._1DefaultLabelResource }), IsVisible: true, Tab: EmulationMachineTab.Audio, RequiresRestart: false),
         new(OptionConstants.DynarecSpgpOptKey, OptionConstants.DynarecSpgpOptLabelResource, OptionConstants.DynarecSpgpOptHelpResource, null,
             ToggleValueConstants.Disabled, ToggleValueConstants.Disabled,
         [
