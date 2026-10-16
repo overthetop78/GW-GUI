@@ -5,6 +5,37 @@ namespace GWGUI.Tests.Interface.EmulationViews;
 [Collection("WPF")]
 public class EmulationViewsTests(GWGUI.Tests.Application.TestInfrastructure.StaExecutionScenarios sta)
 {
+    [Theory]
+    [InlineData(false)]
+    [InlineData(true)]
+    public Task GlobalControllerOptionsUseTheBehaviorTitleAndAppearOnce(bool customTitle) => sta.Run(() =>
+    {
+        var ports = Enumerable.Range(1, 2).Select(number =>
+            GWGUI.App.Views.Controls.Emulation.Options.EmulationControllerSettingsSection.CreatePort(
+                number, GWGUI.App.Enums.Input.InputCaptureSources.Keyboard, false, "Actions", "Search", "philips", "Odyssey2").Settings).ToArray();
+        var toggle = new System.Windows.Controls.CheckBox();
+        var definition = new GWGUI.Emulation.Contracts.EmulationSettingsField(
+            "o2em_swap_gamepads", GWGUI.Emulation.Enums.EmulationMachineTab.Controllers, "controllers", "swap",
+            GWGUI.Emulation.Enums.EmulationSettingsEditor.Toggle, "disabled", IsGlobalControllerOption: true);
+        var field = new GWGUI.App.Contracts.Emulation.Settings.EmulationSettingsControlField("Swap ports", toggle, Definition: definition);
+        var title = customTitle ? "Shared controller behavior" : null;
+        var page = GWGUI.App.Functions.Views.Emulation.Settings.EmulationSettingsLayout.ControllerSettingsPage(ports, [field], title);
+        try
+        {
+            var descendants = Descendants(page).ToArray();
+            var expectedTitle = title ?? GWGUI.App.Localization.Extensions.LocExtension.Get("Emulation.Input.Behavior");
+            Assert.Contains(descendants.OfType<System.Windows.Controls.TextBlock>(), block => block.Text == expectedTitle);
+            Assert.DoesNotContain(descendants.OfType<System.Windows.Controls.TextBlock>(), block => block.Text == GWGUI.App.Localization.Extensions.LocExtension.Get("Emulation.Controller.Multitap"));
+            Assert.Single(descendants, element => ReferenceEquals(element, toggle));
+            Assert.Equal(2, descendants.OfType<System.Windows.Controls.TabItem>().Count());
+        }
+        finally
+        {
+            if (page.Content is System.Windows.Controls.Panel root) root.Children.Clear();
+            page.Content = null;
+        }
+    });
+
     [Fact]
     public Task HardwarePortNamesAreUsedWithoutRenumberingTheBindings() => sta.Run(() =>
     {

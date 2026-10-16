@@ -95,16 +95,16 @@ internal static partial class EmulationSettingsLayout
             Grid.SetColumn(right, 1); content.Children.Add(right);
             mappingTabs.Items.Add(new TabItem { Header = portLabel, Content = content });
         }
-        var hasMultitap = globalOptions is { Count: > 0 };
-        if (hasMultitap)
+        var hasGlobalOptions = globalOptions is { Count: > 0 };
+        if (hasGlobalOptions)
         {
             root.RowDefinitions.Insert(0, new RowDefinition { Height = GridLength.Auto });
-            var multitap = IconCard(BoundedForm(2, globalOptions!.ToArray()), LocExtension.Get(EmulationControllerSettingsConstants.MultitapResourceKey), IconGlyphs.Controller);
-            multitap.Margin = new Thickness(0, 0, 0, 10);
-            root.Children.Add(multitap);
+            var globalOptionsCard = IconCard(BoundedForm(2, globalOptions!.ToArray()), behaviorTitle ?? LocExtension.Get(EmulationControllerSettingsConstants.BehaviorResourceKey), IconGlyphs.Controller);
+            globalOptionsCard.Margin = new Thickness(0, 0, 0, 10);
+            root.Children.Add(globalOptionsCard);
         }
         var mappings = ActionCard(mappingTabs, LocExtension.Get("Emulation.Controller.Mappings"));
-        Grid.SetRow(mappings, hasMultitap ? 1 : 0);
+        Grid.SetRow(mappings, hasGlobalOptions ? 1 : 0);
         root.Children.Add(mappings);
         if (behavior is not null)
         {
@@ -124,7 +124,7 @@ internal static partial class EmulationSettingsLayout
             behaviorGrid.Children.Add(behavior.Control);
             var behaviorCard = IconCard(behaviorGrid, behaviorTitle ?? string.Empty, behaviorGlyph ?? string.Empty);
             behaviorCard.Margin = new Thickness(0, 10, 0, 0);
-            Grid.SetRow(behaviorCard, hasMultitap ? 2 : 1);
+            Grid.SetRow(behaviorCard, hasGlobalOptions ? 2 : 1);
             root.Children.Add(behaviorCard);
         }
         return ScrollPage(root);
@@ -133,7 +133,7 @@ internal static partial class EmulationSettingsLayout
     internal static ScrollViewer ControllerSettingsPage(IReadOnlyList<EmulationControllerPortSettings> ports, IReadOnlyList<EmulationSettingsControlField> behaviors, string? behaviorTitle = null, string? behaviorGlyph = null)
     {
         if (behaviors.Any(field => field.Definition?.AppliesToControllerIds is not null || field.Definition?.IsGlobalControllerOption == true))
-            return ControllerSettingsPage(ports, deviceOptionsFactory: port => DeviceOptions(port, behaviors.Where(field => field.Definition?.IsGlobalControllerOption != true).ToArray()),
+            return ControllerSettingsPage(ports, behaviorTitle: behaviorTitle, deviceOptionsFactory: port => DeviceOptions(port, behaviors.Where(field => field.Definition?.IsGlobalControllerOption != true).ToArray()),
                 globalOptions: behaviors.Where(field => field.Definition?.IsGlobalControllerOption == true).ToArray());
         var panel = new StackPanel();
         foreach (var behavior in behaviors)
