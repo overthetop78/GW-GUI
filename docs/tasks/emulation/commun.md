@@ -28,6 +28,9 @@ Quatre parcours natifs réussis avec O2EM 1.18 679d6fe, SHA256 B0EEB891041FAA1BE
 
 Fixture externe, archive, DLL et tout le dossier de photos/sessions temporaires supprimés ; reconstruction des seuls tests après retrait et onze contrôles Philips permanents réussis. Build Debug complet réussi : exécutable, deux copies du SDK et 23 modules vérifiés par empreinte, staging absent. Aucun cœur natif modifié ni recompilé. Les autres limites de l'objectif restent ouvertes.
 ## controller-artwork
+
+Lot Philips : 84 constantes textuelles numériques remplacées par des plages de pourcentages et des dimensions de résolution. Les six options O2EM/SAME CDi conservent leurs valeurs natives, défauts, ordre et libellés ; filtre O2EM limité à 5–95 %, volumes à 0–100 %, pas CPU CD-i préservés. Les 17 contrôles Philips passent. Build Debug complet réussi, exécutable, deux copies du SDK et 23 modules vérifiés ; staging absent. Aucun cœur natif ni ressource graphique lancé pour ce lot.
+## Visuels restants
 Lot visuels Sony : DualShock originale et PSP-1000 remplacées par des photographies identifiées, masques classiques et PNG transparents de 512 px. Les 25 et 16 zones ont été examinées par superposition ; 165 contrôles ciblés réussis. Build Debug complet terminé, exécutable, deux copies du SDK et 23 modules vérifiés, staging et sources temporaires supprimés.
 
 Lot Apple : Kraft Premium II ajouté aux cinq visuels Apple II, avec quatre directions analogiques et un seul bouton de tir ; PNG transparent 512 × 504. Les 46 contrôles Apple et catalogue passent avec les DLL du build Debug ; exécutable, deux copies du SDK et 23 modules vérifiés, staging et fichiers temporaires supprimés.

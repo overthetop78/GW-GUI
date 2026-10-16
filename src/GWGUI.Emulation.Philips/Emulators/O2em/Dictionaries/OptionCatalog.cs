@@ -1,8 +1,12 @@
+using System.Globalization;
+using GWGUI.Emulation.Philips.Emulators.Common.Functions;
 using GWGUI.Emulation.Philips.Emulators.O2em.Constants;
 
 namespace GWGUI.Emulation.Philips.Emulators.O2em.Dictionaries;
 internal static class O2emOptionCatalog
 {
+    private static readonly IReadOnlyList<CoreOptionValue> VolumeChoices = NumericOptionValueFunctions.IntegerChoices(OptionConstants.VolumePercentRanges, true);
+
     internal static IReadOnlyList<CoreOption> All { get; } = [
         new(
             OptionConstants.Bios,
@@ -45,9 +49,9 @@ internal static class O2emOptionCatalog
             "Virtual KBD Transparency",
             "Set transparency level of the virtual on-screen keyboard.",
             null,
-            OptionConstants.Value0,
-            OptionConstants.Value0,
-            [new(OptionConstants.Value0, "0%", InvariantDisplayValue: "0%"), new(OptionConstants.Value25, "25%", InvariantDisplayValue: "25%"), new(OptionConstants.Value50, "50%", InvariantDisplayValue: "50%"), new(OptionConstants.Value75, "75%", InvariantDisplayValue: "75%")],
+            OptionConstants.DefaultKeyboardTransparencyPercent.ToString(CultureInfo.InvariantCulture),
+            OptionConstants.DefaultKeyboardTransparencyPercent.ToString(CultureInfo.InvariantCulture),
+            NumericOptionValueFunctions.IntegerChoices(OptionConstants.KeyboardTransparencyPercentRanges, true),
             IsVisible: false
         ),
         new(
@@ -84,31 +88,9 @@ internal static class O2emOptionCatalog
             "Audio Volume",
             "Set output audio volume level.",
             null,
-            OptionConstants.Value50,
-            OptionConstants.Value50,
-            [
-                new(OptionConstants.Value0, "0%", InvariantDisplayValue: "0%"),
-                new(OptionConstants.Value5, "5%", InvariantDisplayValue: "5%"),
-                new(OptionConstants.Value10, "10%", InvariantDisplayValue: "10%"),
-                new(OptionConstants.Value15, "15%", InvariantDisplayValue: "15%"),
-                new(OptionConstants.Value20, "20%", InvariantDisplayValue: "20%"),
-                new(OptionConstants.Value25, "25%", InvariantDisplayValue: "25%"),
-                new(OptionConstants.Value30, "30%", InvariantDisplayValue: "30%"),
-                new(OptionConstants.Value35, "35%", InvariantDisplayValue: "35%"),
-                new(OptionConstants.Value40, "40%", InvariantDisplayValue: "40%"),
-                new(OptionConstants.Value45, "45%", InvariantDisplayValue: "45%"),
-                new(OptionConstants.Value50, "50%", InvariantDisplayValue: "50%"),
-                new(OptionConstants.Value55, "55%", InvariantDisplayValue: "55%"),
-                new(OptionConstants.Value60, "60%", InvariantDisplayValue: "60%"),
-                new(OptionConstants.Value65, "65%", InvariantDisplayValue: "65%"),
-                new(OptionConstants.Value70, "70%", InvariantDisplayValue: "70%"),
-                new(OptionConstants.Value75, "75%", InvariantDisplayValue: "75%"),
-                new(OptionConstants.Value80, "80%", InvariantDisplayValue: "80%"),
-                new(OptionConstants.Value85, "85%", InvariantDisplayValue: "85%"),
-                new(OptionConstants.Value90, "90%", InvariantDisplayValue: "90%"),
-                new(OptionConstants.Value95, "95%", InvariantDisplayValue: "95%"),
-                new(OptionConstants.Value100, "100%", InvariantDisplayValue: "100%")
-            ],
+            OptionConstants.DefaultAudioVolumePercent.ToString(CultureInfo.InvariantCulture),
+            OptionConstants.DefaultAudioVolumePercent.ToString(CultureInfo.InvariantCulture),
+            VolumeChoices,
             ResourceKey: SettingsTextConstants.AudioVolume,
             ExplanationResourceKey: SettingsTextConstants.AudioVolumeHelp
         ),
@@ -117,31 +99,9 @@ internal static class O2emOptionCatalog
             "Voice Volume",
             "Set output volume level of 'The Voice' speech samples. The voice sampleset WAV files must be placed in the frontend 'system/voice' directory.",
             null,
-            OptionConstants.Value70,
-            OptionConstants.Value70,
-            [
-                new(OptionConstants.Value0, "0%", InvariantDisplayValue: "0%"),
-                new(OptionConstants.Value5, "5%", InvariantDisplayValue: "5%"),
-                new(OptionConstants.Value10, "10%", InvariantDisplayValue: "10%"),
-                new(OptionConstants.Value15, "15%", InvariantDisplayValue: "15%"),
-                new(OptionConstants.Value20, "20%", InvariantDisplayValue: "20%"),
-                new(OptionConstants.Value25, "25%", InvariantDisplayValue: "25%"),
-                new(OptionConstants.Value30, "30%", InvariantDisplayValue: "30%"),
-                new(OptionConstants.Value35, "35%", InvariantDisplayValue: "35%"),
-                new(OptionConstants.Value40, "40%", InvariantDisplayValue: "40%"),
-                new(OptionConstants.Value45, "45%", InvariantDisplayValue: "45%"),
-                new(OptionConstants.Value50, "50%", InvariantDisplayValue: "50%"),
-                new(OptionConstants.Value55, "55%", InvariantDisplayValue: "55%"),
-                new(OptionConstants.Value60, "60%", InvariantDisplayValue: "60%"),
-                new(OptionConstants.Value65, "65%", InvariantDisplayValue: "65%"),
-                new(OptionConstants.Value70, "70%", InvariantDisplayValue: "70%"),
-                new(OptionConstants.Value75, "75%", InvariantDisplayValue: "75%"),
-                new(OptionConstants.Value80, "80%", InvariantDisplayValue: "80%"),
-                new(OptionConstants.Value85, "85%", InvariantDisplayValue: "85%"),
-                new(OptionConstants.Value90, "90%", InvariantDisplayValue: "90%"),
-                new(OptionConstants.Value95, "95%", InvariantDisplayValue: "95%"),
-                new(OptionConstants.Value100, "100%", InvariantDisplayValue: "100%")
-            ],
+            OptionConstants.DefaultVoiceVolumePercent.ToString(CultureInfo.InvariantCulture),
+            OptionConstants.DefaultVoiceVolumePercent.ToString(CultureInfo.InvariantCulture),
+            VolumeChoices,
             ResourceKey: SettingsTextConstants.VoiceVolume,
             ExplanationResourceKey: SettingsTextConstants.VoiceVolumeHelp
         ),
@@ -161,29 +121,9 @@ internal static class O2emOptionCatalog
             "Audio Filter Level",
             "Specify the cut-off frequency of the low pass audio filter. A higher value increases the perceived 'strength' of the filter, since a wider range of the high frequency spectrum is attenuated.",
             null,
-            OptionConstants.Value60,
-            OptionConstants.Value60,
-            [
-                new(OptionConstants.Value5, "5%", InvariantDisplayValue: "5%"),
-                new(OptionConstants.Value10, "10%", InvariantDisplayValue: "10%"),
-                new(OptionConstants.Value15, "15%", InvariantDisplayValue: "15%"),
-                new(OptionConstants.Value20, "20%", InvariantDisplayValue: "20%"),
-                new(OptionConstants.Value25, "25%", InvariantDisplayValue: "25%"),
-                new(OptionConstants.Value30, "30%", InvariantDisplayValue: "30%"),
-                new(OptionConstants.Value35, "35%", InvariantDisplayValue: "35%"),
-                new(OptionConstants.Value40, "40%", InvariantDisplayValue: "40%"),
-                new(OptionConstants.Value45, "45%", InvariantDisplayValue: "45%"),
-                new(OptionConstants.Value50, "50%", InvariantDisplayValue: "50%"),
-                new(OptionConstants.Value55, "55%", InvariantDisplayValue: "55%"),
-                new(OptionConstants.Value60, "60%", InvariantDisplayValue: "60%"),
-                new(OptionConstants.Value65, "65%", InvariantDisplayValue: "65%"),
-                new(OptionConstants.Value70, "70%", InvariantDisplayValue: "70%"),
-                new(OptionConstants.Value75, "75%", InvariantDisplayValue: "75%"),
-                new(OptionConstants.Value80, "80%", InvariantDisplayValue: "80%"),
-                new(OptionConstants.Value85, "85%", InvariantDisplayValue: "85%"),
-                new(OptionConstants.Value90, "90%", InvariantDisplayValue: "90%"),
-                new(OptionConstants.Value95, "95%", InvariantDisplayValue: "95%")
-            ],
+            OptionConstants.DefaultLowPassRangePercent.ToString(CultureInfo.InvariantCulture),
+            OptionConstants.DefaultLowPassRangePercent.ToString(CultureInfo.InvariantCulture),
+            NumericOptionValueFunctions.IntegerChoices(OptionConstants.LowPassPercentRanges, true),
             ResourceKey: SettingsTextConstants.LowPassRange,
             ExplanationResourceKey: SettingsTextConstants.LowPassRangeHelp
         )

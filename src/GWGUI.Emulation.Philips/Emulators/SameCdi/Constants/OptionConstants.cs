@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Contracts;
+
 namespace GWGUI.Emulation.Philips.Emulators.SameCdi.Constants;
 
 internal static class OptionConstants
@@ -25,24 +27,6 @@ internal static class OptionConstants
     internal const string Disabled = "disabled";
     internal const string Game = "game";
     internal const string System = "system";
-    internal const string Value640x360 = "640x360";
-    internal const string Value640x480 = "640x480";
-    internal const string Value800x600 = "800x600";
-    internal const string Value800x450 = "800x450";
-    internal const string Value960x720 = "960x720";
-    internal const string Value960x540 = "960x540";
-    internal const string Value1024x768 = "1024x768";
-    internal const string Value1024x576 = "1024x576";
-    internal const string Value1280x960 = "1280x960";
-    internal const string Value1280x720 = "1280x720";
-    internal const string Value1600x1200 = "1600x1200";
-    internal const string Value1600x900 = "1600x900";
-    internal const string Value1440x1080 = "1440x1080";
-    internal const string Value1920x1080 = "1920x1080";
-    internal const string Value1920x1440 = "1920x1440";
-    internal const string Value2560x1440 = "2560x1440";
-    internal const string Value2880x2160 = "2880x2160";
-    internal const string Value3840x2160 = "3840x2160";
     internal const string None = "none";
     internal const string Touchscreen = "touchscreen";
     internal const string Lightgun = "lightgun";
@@ -50,49 +34,14 @@ internal static class OptionConstants
     internal const string Strict = "strict";
     internal const string Qbert = "qbert";
     internal const string Default = "default";
-    internal const string Value30 = "30";
-    internal const string Value31 = "31";
-    internal const string Value32 = "32";
-    internal const string Value33 = "33";
-    internal const string Value34 = "34";
-    internal const string Value35 = "35";
-    internal const string Value36 = "36";
-    internal const string Value37 = "37";
-    internal const string Value38 = "38";
-    internal const string Value39 = "39";
-    internal const string Value40 = "40";
-    internal const string Value41 = "41";
-    internal const string Value42 = "42";
-    internal const string Value43 = "43";
-    internal const string Value44 = "44";
-    internal const string Value45 = "45";
-    internal const string Value46 = "46";
-    internal const string Value47 = "47";
-    internal const string Value48 = "48";
-    internal const string Value49 = "49";
-    internal const string Value50 = "50";
-    internal const string Value51 = "51";
-    internal const string Value52 = "52";
-    internal const string Value53 = "53";
-    internal const string Value54 = "54";
-    internal const string Value55 = "55";
-    internal const string Value60 = "60";
-    internal const string Value65 = "65";
-    internal const string Value70 = "70";
-    internal const string Value75 = "75";
-    internal const string Value80 = "80";
-    internal const string Value85 = "85";
-    internal const string Value90 = "90";
-    internal const string Value95 = "95";
-    internal const string Value100 = "100";
-    internal const string Value105 = "105";
-    internal const string Value110 = "110";
-    internal const string Value115 = "115";
-    internal const string Value120 = "120";
-    internal const string Value125 = "125";
-    internal const string Value130 = "130";
-    internal const string Value135 = "135";
-    internal const string Value140 = "140";
-    internal const string Value145 = "145";
-    internal const string Value150 = "150";
+    internal const int DefaultResolutionWidth = 640;
+    internal const int DefaultResolutionHeight = 480;
+
+    internal static IReadOnlyList<EmulationSettingsNumericRange> CpuPercentRanges { get; } = [new(30, 54, 1, " %"), new(55, 150, 5, " %")];
+    internal static IReadOnlyList<(int Width, int Height)> Resolutions { get; } =
+    [
+        (640, 360), (640, 480), (800, 600), (800, 450), (960, 720), (960, 540),
+        (1024, 768), (1024, 576), (1280, 960), (1280, 720), (1600, 1200), (1600, 900),
+        (1440, 1080), (1920, 1080), (1920, 1440), (2560, 1440), (2880, 2160), (3840, 2160)
+    ];
 }
