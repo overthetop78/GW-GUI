@@ -19,6 +19,52 @@ public sealed class WenquxingInputSettingsTests
     [InlineData(MachineModel.CC800)]
     [InlineData(MachineModel.NC2000)]
     [InlineData(MachineModel.NC3000)]
+    public void ModelHotkeysMatchTheNativeHardwareLayout(MachineModel model)
+    {
+        using var http = new HttpClient();
+        var module = new WenquxingEmulationModule("unused", "unused", http, "unused");
+        var settings = module.DescribeInputSettings(new MachineConfiguration(model)).Keyboard!;
+        var native = KeyboardFunctions.CreateKeyMap(model);
+        (EmulationKey Key, string Source, uint Code)[] expected = model == MachineModel.NC3000 ?
+        [
+            (EmulationKey.WenquxingGame, "F5", 286),
+            (EmulationKey.WenquxingCalculator, "F6", 287),
+            (EmulationKey.WenquxingClock, "F7", 288),
+            (EmulationKey.WenquxingDictionary, "F9", 290),
+            (EmulationKey.WenquxingLexicon, "F10", 291),
+            (EmulationKey.WenquxingStudy, "F11", 292)
+        ] :
+        [
+            (EmulationKey.WenquxingDictionary, "F5", 286),
+            (EmulationKey.WenquxingCard, "F6", 287),
+            (EmulationKey.WenquxingCalculator, "F7", 288),
+            (EmulationKey.WenquxingMemo, "F8", 289),
+            (EmulationKey.WenquxingData, "F9", 290),
+            (EmulationKey.WenquxingClock, "F10", 291),
+            (EmulationKey.WenquxingNetwork, "F11", 292)
+        ];
+        var ids = expected.Select(item => item.Key.ToString()).Concat(new[]
+        {
+            nameof(EmulationKey.WenquxingPower), nameof(EmulationKey.WenquxingInputMethod), nameof(EmulationKey.WenquxingHelp)
+        }).ToHashSet(StringComparer.Ordinal);
+        Assert.True(ids.SetEquals(settings.Definitions.Select(definition => definition.Id)));
+        foreach (var (key, source, code) in expected)
+        {
+            Assert.Equal(source, settings.Values[key.ToString()]);
+            Assert.Equal(code, native[key]);
+        }
+        var unsupported = model == MachineModel.NC3000
+            ? new[] { EmulationKey.WenquxingCard, EmulationKey.WenquxingMemo, EmulationKey.WenquxingData, EmulationKey.WenquxingNetwork }
+            : new[] { EmulationKey.WenquxingGame, EmulationKey.WenquxingLexicon, EmulationKey.WenquxingStudy };
+        foreach (var key in unsupported) Assert.False(native.ContainsKey(key));
+    }
+
+    [Theory]
+    [InlineData(MachineModel.NC1020)]
+    [InlineData(MachineModel.PC1000)]
+    [InlineData(MachineModel.CC800)]
+    [InlineData(MachineModel.NC2000)]
+    [InlineData(MachineModel.NC3000)]
     public void MixedDictionaryBindingPersistsAndReachesNativeKeyboard(MachineModel model)
     {
         using var http = new HttpClient();

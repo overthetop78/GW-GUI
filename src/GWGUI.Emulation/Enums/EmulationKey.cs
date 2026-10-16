@@ -314,4 +314,7 @@ public enum EmulationKey
     WenquxingPower = 186,
     WenquxingInputMethod = 187,
     WenquxingHelp = 188,
+    WenquxingGame = 259,
+    WenquxingLexicon = 260,
+    WenquxingStudy = 261,
 }

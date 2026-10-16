@@ -22,17 +22,29 @@ internal static class KeyboardFunctions
             [EmulationKey.Period] = '.',
             [EmulationKey.LeftShift] = KeyboardConstants.NativeShift,
             [EmulationKey.RightShift] = KeyboardConstants.NativeShift,
-            [EmulationKey.WenquxingDictionary] = KeyboardConstants.FirstFunctionKey + 4,
-            [EmulationKey.WenquxingCard] = KeyboardConstants.FirstFunctionKey + 5,
-            [EmulationKey.WenquxingCalculator] = KeyboardConstants.FirstFunctionKey + 6,
-            [EmulationKey.WenquxingMemo] = KeyboardConstants.FirstFunctionKey + 7,
-            [EmulationKey.WenquxingData] = KeyboardConstants.FirstFunctionKey + 8,
-            [EmulationKey.WenquxingClock] = KeyboardConstants.FirstFunctionKey + 9,
-            [EmulationKey.WenquxingNetwork] = KeyboardConstants.FirstFunctionKey + 10,
-            [EmulationKey.WenquxingPower] = model == MachineModel.NC1020 ? KeyboardConstants.Delete : KeyboardConstants.FirstFunctionKey + 11,
+            [EmulationKey.WenquxingPower] = model == MachineModel.NC1020 ? KeyboardConstants.Delete : KeyboardConstants.NativeF12,
             [EmulationKey.WenquxingInputMethod] = KeyboardConstants.NativeInputMethod,
             [EmulationKey.WenquxingHelp] = KeyboardConstants.NativeHelp
         };
+        if (model == MachineModel.NC3000)
+        {
+            map[EmulationKey.WenquxingGame] = KeyboardConstants.NativeF5;
+            map[EmulationKey.WenquxingCalculator] = KeyboardConstants.NativeF6;
+            map[EmulationKey.WenquxingClock] = KeyboardConstants.NativeF7;
+            map[EmulationKey.WenquxingDictionary] = KeyboardConstants.NativeF9;
+            map[EmulationKey.WenquxingLexicon] = KeyboardConstants.NativeF10;
+            map[EmulationKey.WenquxingStudy] = KeyboardConstants.NativeF11;
+        }
+        else
+        {
+            map[EmulationKey.WenquxingDictionary] = KeyboardConstants.NativeF5;
+            map[EmulationKey.WenquxingCard] = KeyboardConstants.NativeF6;
+            map[EmulationKey.WenquxingCalculator] = KeyboardConstants.NativeF7;
+            map[EmulationKey.WenquxingMemo] = KeyboardConstants.NativeF8;
+            map[EmulationKey.WenquxingData] = KeyboardConstants.NativeF9;
+            map[EmulationKey.WenquxingClock] = KeyboardConstants.NativeF10;
+            map[EmulationKey.WenquxingNetwork] = KeyboardConstants.NativeF11;
+        }
         AddRange(map, EmulationKey.A, KeyboardConstants.FirstLetter, KeyboardConstants.LetterCount);
         AddRange(map, EmulationKey.D0, KeyboardConstants.FirstDigit, KeyboardConstants.DigitCount);
         AddRange(map, EmulationKey.F1, KeyboardConstants.FirstFunctionKey, KeyboardConstants.CommonFunctionKeyCount);

@@ -10,6 +10,9 @@ internal static class KeyboardDictionary
         [EmulationKey.WenquxingData] = "DATA",
         [EmulationKey.WenquxingClock] = "TIME",
         [EmulationKey.WenquxingNetwork] = "NET",
+        [EmulationKey.WenquxingGame] = "GAME",
+        [EmulationKey.WenquxingLexicon] = "LEX",
+        [EmulationKey.WenquxingStudy] = "STUDY",
         [EmulationKey.WenquxingPower] = "ON",
         [EmulationKey.WenquxingInputMethod] = "IME",
         [EmulationKey.WenquxingHelp] = "HELP"
@@ -18,7 +21,15 @@ internal static class KeyboardDictionary
     {
         if (!Enum.IsDefined(model))
             throw new ArgumentOutOfRangeException(nameof(model));
-        return new Dictionary<EmulationKey, EmulationKey>
+        var defaults = model == MachineModel.NC3000 ? new Dictionary<EmulationKey, EmulationKey>
+        {
+            [EmulationKey.WenquxingGame] = EmulationKey.F5,
+            [EmulationKey.WenquxingCalculator] = EmulationKey.F6,
+            [EmulationKey.WenquxingClock] = EmulationKey.F7,
+            [EmulationKey.WenquxingDictionary] = EmulationKey.F9,
+            [EmulationKey.WenquxingLexicon] = EmulationKey.F10,
+            [EmulationKey.WenquxingStudy] = EmulationKey.F11
+        } : new Dictionary<EmulationKey, EmulationKey>
         {
             [EmulationKey.WenquxingDictionary] = EmulationKey.F5,
             [EmulationKey.WenquxingCard] = EmulationKey.F6,
@@ -26,11 +37,12 @@ internal static class KeyboardDictionary
             [EmulationKey.WenquxingMemo] = EmulationKey.F8,
             [EmulationKey.WenquxingData] = EmulationKey.F9,
             [EmulationKey.WenquxingClock] = EmulationKey.F10,
-            [EmulationKey.WenquxingNetwork] = EmulationKey.F11,
-            [EmulationKey.WenquxingPower] = model == MachineModel.NC1020 ? EmulationKey.Delete : EmulationKey.F12,
-            [EmulationKey.WenquxingInputMethod] = EmulationKey.Backslash,
-            [EmulationKey.WenquxingHelp] = EmulationKey.LeftBracket
+            [EmulationKey.WenquxingNetwork] = EmulationKey.F11
         };
+        defaults[EmulationKey.WenquxingPower] = model == MachineModel.NC1020 ? EmulationKey.Delete : EmulationKey.F12;
+        defaults[EmulationKey.WenquxingInputMethod] = EmulationKey.Backslash;
+        defaults[EmulationKey.WenquxingHelp] = EmulationKey.LeftBracket;
+        return defaults;
     }
 
     internal static IReadOnlyList<InputBindingDefinition> Definitions(MachineModel model) => Defaults(model).Select(pair => new InputBindingDefinition(pair.Key.ToString(), string.Empty, pair.Value.ToString(), Labels[pair.Key])).ToArray();
