@@ -13,4 +13,5 @@
   <data name="Emulation.Philips.Input.Fire" xml:space="preserve"><value>Зйомка</value></data>
   <data name="Emulation.Philips.Input.Reload" xml:space="preserve"><value>Перевантаження</value></data>
   <data name="Emulation.Philips.Input.Trigger" xml:space="preserve"><value>Зброя пусконасоса</value></data>
+  <data name="Emulation.Philips.Setting.SwapGamepads"><value>Поміняти місцями порти контролерів 1 і 2</value></data>
 </root>

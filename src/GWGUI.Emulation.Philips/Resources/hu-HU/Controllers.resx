@@ -13,4 +13,5 @@
   <data name="Emulation.Philips.Input.Fire" xml:space="preserve"><value>Lőj!</value></data>
   <data name="Emulation.Philips.Input.Reload" xml:space="preserve"><value>Újratöltés</value></data>
   <data name="Emulation.Philips.Input.Trigger" xml:space="preserve"><value>A fegyver kioldója</value></data>
+  <data name="Emulation.Philips.Setting.SwapGamepads"><value>Az 1. és 2. vezérlőport felcserélése</value></data>
 </root>

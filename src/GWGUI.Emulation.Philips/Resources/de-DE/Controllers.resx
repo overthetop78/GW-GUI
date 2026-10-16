@@ -13,4 +13,5 @@
   <data name="Emulation.Philips.Input.Fire" xml:space="preserve"><value>Schießen</value></data>
   <data name="Emulation.Philips.Input.Reload" xml:space="preserve"><value>Beladung</value></data>
   <data name="Emulation.Philips.Input.Trigger" xml:space="preserve"><value>Waffenauslöser</value></data>
+  <data name="Emulation.Philips.Setting.SwapGamepads"><value>Controller-Anschlüsse 1 und 2 vertauschen</value></data>
 </root>

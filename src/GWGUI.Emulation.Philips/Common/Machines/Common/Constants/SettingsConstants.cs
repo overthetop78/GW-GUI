@@ -26,6 +26,7 @@ internal static class SettingsConstants
     internal const string ResourceNativeKeyboard = "Emulation.Philips.Keyboard.Native";
     internal const string ResourceNativeVideo = "Emulation.Philips.Video.Native";
     internal const string ResourceNativeSystem = "Emulation.Philips.System.Native";
+    internal const string ResourceControllerMappings = "Emulation.Controller.Mappings";
     internal const string ResourceAudio = "Emulation.Audio";
     internal const string ResourceAudioEnabled = "Emulation.Audio.Enabled";
     internal const string ResourceAudioOutput = "Emulation.Audio.Output";

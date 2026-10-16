@@ -2,6 +2,7 @@ namespace GWGUI.Emulation.Philips.Common.Machines.Common.Constants;
 
 internal static class SettingsTextConstants
 {
+    internal const string SwapGamepads = "Emulation.Philips.Setting.SwapGamepads";
     internal const string KeyboardMapping = "Emulation.Philips.Setting.KeyboardMapping";
     internal const string KeyboardMappingHelp = "Emulation.Philips.Help.KeyboardMapping";
     internal const string VideoStandard = "Emulation.Video.Standard";

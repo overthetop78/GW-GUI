@@ -13,4 +13,5 @@
   <data name="Emulation.Philips.Input.Fire" xml:space="preserve"><value>ยิง</value></data>
   <data name="Emulation.Philips.Input.Reload" xml:space="preserve"><value>เรียกใหม่</value></data>
   <data name="Emulation.Philips.Input.Trigger" xml:space="preserve"><value>ลั่นไก</value></data>
+  <data name="Emulation.Philips.Setting.SwapGamepads"><value>สลับพอร์ตคอนโทรลเลอร์ 1 และ 2</value></data>
 </root>

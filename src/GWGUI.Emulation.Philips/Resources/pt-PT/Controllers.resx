@@ -13,4 +13,5 @@
   <data name="Emulation.Philips.Input.Fire" xml:space="preserve"><value>Atirar</value></data>
   <data name="Emulation.Philips.Input.Reload" xml:space="preserve"><value>Recarregar</value></data>
   <data name="Emulation.Philips.Input.Trigger" xml:space="preserve"><value>Disparador de arma</value></data>
+  <data name="Emulation.Philips.Setting.SwapGamepads"><value>Trocar as portas dos comandos 1 e 2</value></data>
 </root>

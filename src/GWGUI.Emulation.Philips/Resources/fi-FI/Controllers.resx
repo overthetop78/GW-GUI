@@ -13,4 +13,5 @@
   <data name="Emulation.Philips.Input.Fire" xml:space="preserve"><value>Ammu.</value></data>
   <data name="Emulation.Philips.Input.Reload" xml:space="preserve"><value>Lataa uudelleen</value></data>
   <data name="Emulation.Philips.Input.Trigger" xml:space="preserve"><value>Aseen laukaisin</value></data>
+  <data name="Emulation.Philips.Setting.SwapGamepads"><value>Vaihda ohjainportit 1 ja 2 keskenään</value></data>
 </root>

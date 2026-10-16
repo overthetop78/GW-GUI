@@ -13,4 +13,5 @@
   <data name="Emulation.Philips.Input.Fire" xml:space="preserve"><value>أطلق النار</value></data>
   <data name="Emulation.Philips.Input.Reload" xml:space="preserve"><value>إعادة تحميل</value></data>
   <data name="Emulation.Philips.Input.Trigger" xml:space="preserve"><value>مدفع</value></data>
+  <data name="Emulation.Philips.Setting.SwapGamepads"><value>تبديل منفذي التحكم 1 و2</value></data>
 </root>

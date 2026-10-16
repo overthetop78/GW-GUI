@@ -13,4 +13,5 @@
   <data name="Emulation.Philips.Input.Fire" xml:space="preserve"><value>Bắn</value></data>
   <data name="Emulation.Philips.Input.Reload" xml:space="preserve"><value>Nạp lại</value></data>
   <data name="Emulation.Philips.Input.Trigger" xml:space="preserve"><value>Súng gây nên</value></data>
+  <data name="Emulation.Philips.Setting.SwapGamepads"><value>Hoán đổi cổng tay cầm 1 và 2</value></data>
 </root>

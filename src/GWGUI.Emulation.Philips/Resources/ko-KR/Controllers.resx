@@ -13,4 +13,5 @@
   <data name="Emulation.Philips.Input.Fire" xml:space="preserve"><value>뚱 베어</value></data>
   <data name="Emulation.Philips.Input.Reload" xml:space="preserve"><value>의 확장</value></data>
   <data name="Emulation.Philips.Input.Trigger" xml:space="preserve"><value>총 트리거</value></data>
+  <data name="Emulation.Philips.Setting.SwapGamepads"><value>컨트롤러 포트 1과 2 바꾸기</value></data>
 </root>

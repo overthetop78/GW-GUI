@@ -38,7 +38,7 @@ internal static class O2emOptionCatalog
             OptionConstants.Disabled,
             OptionConstants.Disabled,
             [new(OptionConstants.Disabled, "disabled", ResourceKey: SettingsChoiceConstants.Disabled), new(OptionConstants.Enabled, "enabled", ResourceKey: SettingsChoiceConstants.Enabled)],
-            IsVisible: false
+            ResourceKey: SettingsTextConstants.SwapGamepads
         ),
         new(
             OptionConstants.VkbdTransparency,

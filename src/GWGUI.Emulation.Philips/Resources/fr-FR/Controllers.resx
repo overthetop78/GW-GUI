@@ -13,4 +13,5 @@
   <data name="Emulation.Philips.Input.Fire" xml:space="preserve"><value>Tirer</value></data>
   <data name="Emulation.Philips.Input.Reload" xml:space="preserve"><value>Recharger</value></data>
   <data name="Emulation.Philips.Input.Trigger" xml:space="preserve"><value>Gâchette</value></data>
+  <data name="Emulation.Philips.Setting.SwapGamepads"><value>Permuter les ports de manette 1 et 2</value></data>
 </root>

@@ -13,4 +13,5 @@
   <data name="Emulation.Philips.Input.Fire" xml:space="preserve"><value>Vurt</value></data>
   <data name="Emulation.Philips.Input.Reload" xml:space="preserve"><value>Reload</value></data>
   <data name="Emulation.Philips.Input.Trigger" xml:space="preserve"><value>Gun tetikleyici</value></data>
+  <data name="Emulation.Philips.Setting.SwapGamepads"><value>1 ve 2 numaralı denetleyici bağlantı noktalarını birbiriyle değiştir</value></data>
 </root>

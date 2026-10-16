@@ -19,4 +19,5 @@
   <data name="Emulation.Philips.Keyboard.PhilipsP2000Start" xml:space="preserve"><value>START</value></data>
   <data name="Emulation.Philips.Keyboard.PhilipsP2000Stop" xml:space="preserve"><value>STOP</value></data>
   <data name="Emulation.Philips.Keyboard.PhilipsP2000Zoek" xml:space="preserve"><value>ZOEK</value></data>
+  <data name="Emulation.Philips.Setting.SwapGamepads"><value>Swap controller ports 1 and 2</value></data>
 </root>

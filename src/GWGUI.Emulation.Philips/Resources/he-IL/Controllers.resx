@@ -13,4 +13,5 @@
   <data name="Emulation.Philips.Input.Fire" xml:space="preserve"><value>לירות יורה</value></data>
   <data name="Emulation.Philips.Input.Reload" xml:space="preserve"><value>Reload</value></data>
   <data name="Emulation.Philips.Input.Trigger" xml:space="preserve"><value>אקדח גורם</value></data>
+  <data name="Emulation.Philips.Setting.SwapGamepads"><value>החלפה בין חיבורי הבקרים 1 ו־2</value></data>
 </root>

@@ -13,4 +13,5 @@
   <data name="Emulation.Philips.Input.Fire" xml:space="preserve"><value>Skjut</value></data>
   <data name="Emulation.Philips.Input.Reload" xml:space="preserve"><value>Reload</value></data>
   <data name="Emulation.Philips.Input.Trigger" xml:space="preserve"><value>Gun trigger</value></data>
+  <data name="Emulation.Philips.Setting.SwapGamepads"><value>Byt plats på handkontrollport 1 och 2</value></data>
 </root>

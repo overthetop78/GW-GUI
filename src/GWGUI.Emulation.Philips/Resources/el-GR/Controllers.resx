@@ -13,4 +13,5 @@
   <data name="Emulation.Philips.Input.Fire" xml:space="preserve"><value>Ρίξε.</value></data>
   <data name="Emulation.Philips.Input.Reload" xml:space="preserve"><value>Επαναφόρτωση</value></data>
   <data name="Emulation.Philips.Input.Trigger" xml:space="preserve"><value>Πυροκροτητής όπλου</value></data>
+  <data name="Emulation.Philips.Setting.SwapGamepads"><value>Εναλλαγή θυρών χειριστηρίων 1 και 2</value></data>
 </root>

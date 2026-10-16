@@ -18,6 +18,21 @@ Comparaison avec libretro/opera-libretro 684926fe2079ba12b59d99082291c0a8fe780c6
 
 Qualification avec la DLL officielle Opera 1.0.0 684926f, SHA256 8B4BCD8677E6D275784656777C62E506A4E54EBED6709C11A2314602A95F2E20 : démarrage sans fichier dans System, 180 trames 320 × 240, processus hôte PID 49660 observé terminé et mapping vidéo absent après fermeture. Fixture externe, archive, DLL et sessions temporaires supprimées ; les seuls tests ont été reconstruits après retrait. Dix contrôles Panasonic permanents réussis, dont quatre nouveaux scénarios du choix de firmware. Build Debug complet réussi ; exécutable, deux copies du SDK et 23 modules vérifiés par empreinte, staging absent. Les autres limites de l'objectif restent ouvertes.
 
+## Philips : options et matériels O2EM
+
+Comparaison officielle : libretro/libretro-o2em 679d6fec04963f6e70a7ec217e3d0ebb1fe472fc, dix clés d'options présentes. L'option native `o2em_swap_gamepads` était masquée ; elle est maintenant exposée une seule fois dans Manettes, comme réglage global, avec défaut disabled et valeurs enabled/disabled inchangés. Les 28 traductions ont été produites avec Argos puis relues et corrigées ; audit des quatre catalogues traduit réussi. Neuf contrôles Philips réussis, dont quatre nouveaux cas vérifiant l'emplacement, l'unicité, le défaut, la sauvegarde et la transmission native de la permutation sans altérer les affectations. Aucun cœur natif ni fichier temporaire utilisé par ce lot. Build Debug complet réussi, exécutable, deux copies du SDK et 23 modules vérifiés par empreinte, staging absent.
+
+La même source expose les BIOS g7400.bin et jopac.bin, mais les deux machines correspondantes ne figurent pas encore dans le module ; leur intégration et leur fonctionnement natif ne sont pas déclarés terminés.
+
+- [ ] Compléter les matériels Videopac+ déjà émulés par O2EM
+  - [ ] Modifier `src/GWGUI.Emulation.Philips/Common/Machines/Common/Enums/MachineEnums.cs`, `Common/Machines/Common/Functions/ConfigurationFunctions.cs`, `Common/Machines/Common/Dictionaries/HardwareModelCatalog.cs` et `Emulators/O2em/Constants/EmulatorConstants.cs` : ajouter VideopacG7400 et JopacJo7400 comme machines distinctes de la famille Videopac, avec uniquement les caractéristiques établies et le moteur O2EM existant.
+  - [ ] Modifier `src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Constants/MediaRuntimeConstants.cs` et `Emulators/O2em/Functions/RuntimeFunctions.cs` : associer chaque nouvelle machine à son BIOS, son empreinte officielle et sa valeur native, sans réutiliser le BIOS G7000.
+  - [ ] Créer `src/GWGUI.Emulation.Philips/Assets/Machines/VideopacG7400.png` et `Assets/Machines/JopacJo7400.png` : photographies des deux matériels exacts, PNG de 512 px à fond transparent avec traitement classique et fichiers de travail dans le temporaire Windows.
+  - [ ] Modifier `src/GWGUI.Emulation.Philips/Resources/00-Base/Model.resx` et `THIRD-PARTY-NOTICES.md` : noms invariants des machines dans la base commune et crédits exacts des deux photographies, sans recopier les noms dans les cultures.
+  - [ ] Créer `tests/GWGUI.Tests/Emulation/Philips/O2emModelTests.cs` : contrôler sans dépendance externe les machines, le choix du moteur, les BIOS transmis, les champs et les images embarquées.
+  - [ ] Créer `tests/GWGUI.Tests/Emulation/Philips/TemporaryO2emModelTests.cs` : qualifier les deux machines avec leurs BIOS et cartouches compatibles, dans des processus hôtes possédés et arrêtés en finally, en utilisant les originaux de F:/Retro et des sessions temporaires possédées.
+  - [ ] Supprimer `tests/GWGUI.Tests/Emulation/Philips/TemporaryO2emModelTests.cs` et ses sessions/fichiers temporaires après usage, puis modifier `docs/tasks/emulation/commun.md` pour consigner les résultats réels et le build Debug des 23 modules avant un seul commit du lot.
+
 ## controller-artwork
 Lot visuels Sony : DualShock originale et PSP-1000 remplacées par des photographies identifiées, masques classiques et PNG transparents de 512 px. Les 25 et 16 zones ont été examinées par superposition ; 165 contrôles ciblés réussis. Build Debug complet terminé, exécutable, deux copies du SDK et 23 modules vérifiés, staging et sources temporaires supprimés.
 

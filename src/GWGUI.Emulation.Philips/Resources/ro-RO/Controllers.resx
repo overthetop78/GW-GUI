@@ -13,4 +13,5 @@
   <data name="Emulation.Philips.Input.Fire" xml:space="preserve"><value>Trage.</value></data>
   <data name="Emulation.Philips.Input.Reload" xml:space="preserve"><value>Reîncarcă</value></data>
   <data name="Emulation.Philips.Input.Trigger" xml:space="preserve"><value>Declanşator pistol</value></data>
+  <data name="Emulation.Philips.Setting.SwapGamepads"><value>Inversează porturile controlerelor 1 și 2</value></data>
 </root>

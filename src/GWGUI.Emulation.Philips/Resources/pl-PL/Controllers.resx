@@ -13,4 +13,5 @@
   <data name="Emulation.Philips.Input.Fire" xml:space="preserve"><value>Strzelaj</value></data>
   <data name="Emulation.Philips.Input.Reload" xml:space="preserve"><value>Wczytaj ponownie</value></data>
   <data name="Emulation.Philips.Input.Trigger" xml:space="preserve"><value>Wyłącznik do broni</value></data>
+  <data name="Emulation.Philips.Setting.SwapGamepads"><value>Zamień porty kontrolerów 1 i 2</value></data>
 </root>
