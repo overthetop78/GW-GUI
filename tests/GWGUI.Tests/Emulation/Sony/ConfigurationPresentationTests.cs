@@ -471,26 +471,29 @@ public sealed class ConfigurationPresentationTests
     }
 
     [Theory]
-    [InlineData("Native PS2", "1x (Native)")]
-    [InlineData("2x Native ~720p", "2x")]
-    [InlineData("4x Native ~1440p 2K", "4x")]
-    [InlineData("8x Native ~2880p 5K", "8x")]
-    [InlineData("3x Native ~1080p", "3x Native ~1080p")]
-    public void Pcsx2LegacySettingsArePresentedAndConvertedWithoutRewritingTheConfiguration(string previousResolution, string currentResolution)
+    [InlineData("1x (Native)", "Software (HW)")]
+    [InlineData("2x", "Software (HW)")]
+    [InlineData("4x", "Software (HW)")]
+    [InlineData("8x", "Software (HW)")]
+    [InlineData("1x (Native)", "Software (SW)")]
+    [InlineData("2x", "Software (SW)")]
+    [InlineData("4x", "Software (SW)")]
+    [InlineData("8x", "Software (SW)")]
+    public void Pcsx2NativeSelectionsStayUnchangedThroughPresentationAndRuntime(string resolution, string renderer)
     {
         var configuration = new MachineConfiguration(ModelConstants.PlayStation2, "pcsx2", Options: new Dictionary<string, string>
         {
-            ["pcsx2_upscale_multiplier"] = previousResolution,
-            ["pcsx2_renderer"] = "Software"
+            ["pcsx2_upscale_multiplier"] = resolution,
+            ["pcsx2_renderer"] = renderer
         });
         var native = GWGUI.Emulation.Sony.Emulators.Pcsx2.Functions.Pcsx2OptionFunctions.ToNative(configuration);
-        Assert.Equal(currentResolution, native.Options!["pcsx2_upscale_multiplier"]);
-        Assert.Equal("Software (HW)", native.Options["pcsx2_renderer"]);
-        Assert.Equal(previousResolution, configuration.Options!["pcsx2_upscale_multiplier"]);
-        Assert.Equal("Software", configuration.Options["pcsx2_renderer"]);
+        Assert.Equal(resolution, native.Options!["pcsx2_upscale_multiplier"]);
+        Assert.Equal(renderer, native.Options["pcsx2_renderer"]);
+        Assert.Equal(resolution, configuration.Options!["pcsx2_upscale_multiplier"]);
+        Assert.Equal(renderer, configuration.Options["pcsx2_renderer"]);
         var fields = SettingsDescriptionFunctions.Create(configuration).SelectMany(block => block.Fields).ToArray();
-        Assert.Equal(currentResolution, fields.Single(field => field.Id == "pcsx2_upscale_multiplier").Value);
-        Assert.Equal("Software (HW)", fields.Single(field => field.Id == "pcsx2_renderer").Value);
+        Assert.Equal(resolution, fields.Single(field => field.Id == "pcsx2_upscale_multiplier").Value);
+        Assert.Equal(renderer, fields.Single(field => field.Id == "pcsx2_renderer").Value);
     }
 
     [Fact]
@@ -675,7 +678,6 @@ public sealed class ConfigurationPresentationTests
     [InlineData(ModelConstants.PlayStation, "swanstation", "swanstation_GPU_Renderer", "Software", "Software")]
     [InlineData(ModelConstants.PlayStation, "mednafen_psx_hw", "beetle_psx_hw_renderer", "software", "software")]
     [InlineData(ModelConstants.PlayStation2, "pcee2", "pcsx2_renderer", "software", "software")]
-    [InlineData(ModelConstants.PlayStation2, "pcsx2", "pcsx2_renderer", "Software", "Software (HW)")]
     [InlineData(ModelConstants.PlayStation2, "pcsx2", "pcsx2_renderer", "Software (HW)", "Software (HW)")]
     [InlineData(ModelConstants.PlayStation2, "pcsx2", "pcsx2_renderer", "Software (SW)", "Software (SW)")]
     [InlineData(ModelConstants.PlayStation2, "pcsx2", "pcsx2_renderer", "paraLLEl-GS", "paraLLEl-GS")]

@@ -25,17 +25,4 @@ internal static partial class OptionCatalog
             RequiresRestart: restart, NumericRange: range, NativeNumericFormat: range is null ? null : "0", NativeZeroValue: nativeZero,
             GraphicsApiValues: graphicsApis, RetainedRendererValues: rendererModes);
 
-    internal static IReadOnlyDictionary<string, IReadOnlyDictionary<string, string>> LegacyValues { get; } =
-        new Dictionary<string, IReadOnlyDictionary<string, string>>(StringComparer.Ordinal)
-        {
-            [OptionConstants.RendererKey] = new Dictionary<string, string>(StringComparer.Ordinal) { ["Software"] = "Software (HW)" },
-            [OptionConstants.UpscaleMultiplierKey] = new Dictionary<string, string>(StringComparer.Ordinal)
-            {
-                ["Native PS2"] = "1x (Native)",
-                ["2x Native ~720p"] = "2x",
-                ["4x Native ~1440p 2K"] = "4x",
-                ["8x Native ~2880p 5K"] = "8x"
-            }
-        };
-
 }
