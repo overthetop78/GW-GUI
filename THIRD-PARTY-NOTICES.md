@@ -1,5 +1,13 @@
 # Third-party notices
 
+## Intellivision controller photographs
+
+Asset: `src/GWGUI.App/Assets/Controllers/mattel-intellivision-controller.png`.
+Photographs by Evan-Amos, 2 January 2012, provided by Video Games New York.
+Sources: https://commons.wikimedia.org/wiki/File:Intellivision-Controller.jpg and https://commons.wikimedia.org/wiki/File:Intellivision-Console-Set.png.
+License for both photographs and this adaptation: Creative Commons Attribution-ShareAlike 3.0 Unported, https://creativecommons.org/licenses/by-sa/3.0/.
+Adaptation: manual exterior alpha masks, controller crop from the console photograph, rotations of -35 and +27 degrees respectively, proportional resizing and composition of two complementary views on a transparent 512 x 512 canvas using ImageMagick. The opposite sides make all three side-button actions visible; both photographed keypads and directional discs are preserved. External cables and the console are excluded. No generated or reconstructed parts.
+
 ## Thomson TO8D photograph
 
 Asset: `src/GWGUI.Emulation.Thomson/Assets/Machines/To8D.png`.
