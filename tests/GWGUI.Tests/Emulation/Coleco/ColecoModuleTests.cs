@@ -15,6 +15,32 @@ namespace GWGUI.Tests.Emulation.Coleco;
 public sealed class ColecoModuleTests
 {
     [Theory]
+    [InlineData("enabled")]
+    [InlineData("disabled")]
+    public void BlueMsxFastBootIsInGeneralAndRetainsItsNativeValue(string value)
+    {
+        using var http = new HttpClient();
+        var path = Path.GetTempPath();
+        var module = new ColecoEmulationModule(path, path, http, path);
+        var configuration = new MachineConfiguration(MachineModel.ColecoVision, core: Emulator.BlueMSX);
+        var settings = module.Describe(configuration.MachineId, configuration);
+        var fields = settings.Blocks.SelectMany(block => block.Fields).ToArray();
+        var boot = Assert.Single(fields, field => field.Id == "patch_coleco_rom");
+        Assert.Equal(EmulationMachineTab.General, boot.Tab);
+        Assert.Equal(EmulationSettingsEditor.Toggle, boot.Editor);
+        Assert.Equal("disabled", boot.Value);
+        Assert.Equal("enabled", boot.EnabledValue);
+        Assert.Equal("disabled", boot.DisabledValue);
+        Assert.True(module.TryGetString(boot.LabelResourceKey, CultureInfo.GetCultureInfo("fr-FR"), out _));
+        foreach (var key in new[] { "bluemsx_overscan", "bluemsx_vdp_synctype", "bluemsx_nospritelimits" })
+            Assert.Equal(EmulationMachineTab.Video, Assert.Single(fields, field => field.Id == key).Tab);
+        var changed = Assert.IsType<MachineConfiguration>(module.ApplySettings(configuration, new Dictionary<string, string?> { [boot.Id] = value }));
+        var restored = JsonSerializer.Deserialize<MachineConfiguration>(JsonSerializer.Serialize(changed))!;
+        Assert.Equal(value, restored.Options[boot.Id]);
+        Assert.Equal(value, module.RuntimeOptions(restored)[boot.Id]);
+    }
+
+    [Theory]
     [InlineData(Emulator.GearColeco)]
     [InlineData(Emulator.JollyCV)]
     [InlineData(Emulator.BlueMSX)]

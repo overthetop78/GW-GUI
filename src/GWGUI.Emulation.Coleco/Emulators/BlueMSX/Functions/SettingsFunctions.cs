@@ -13,8 +13,13 @@ internal static class SettingsDescriptionFunctions
     }).ToArray();
 
     internal static IReadOnlyList<EmulationSettingsBlock> Create(MachineConfiguration configuration) =>
-        [new(SettingsConstants.ResourceNativeVideo, EmulationMachineTab.Video, SettingsConstants.ResourceNativeVideo,
-            GetOptions().Where(option => option.IsVisible).Select(option => CommonSettings.Native(configuration, option, EmulationMachineTab.Video, SettingsConstants.ResourceNativeVideo)).ToArray())];
+        GetOptions().Where(option => option.IsVisible).GroupBy(option => option.Key == OptionConstants.OptionPatchColecoRom ? EmulationMachineTab.General : EmulationMachineTab.Video)
+            .Select(group =>
+            {
+                var resource = group.Key == EmulationMachineTab.General ? SettingsConstants.ResourceNativeSystem : SettingsConstants.ResourceNativeVideo;
+                return new EmulationSettingsBlock(resource, group.Key, resource,
+                    group.Select(option => CommonSettings.Native(configuration, option, group.Key, resource)).ToArray());
+            }).ToArray();
 
     internal static void Validate(MachineConfiguration configuration)
     {
