@@ -9,9 +9,10 @@
   <data name="Emulation.Bandai.Setting.MonochromePalette.Help" xml:space="preserve"><value>选择单色游戏所用的颜色。</value></data>
   <data name="Emulation.Bandai.Setting.ColorDepth.Help" xml:space="preserve"><value>选择输出颜色深度。 24 位模式需要更多的处理功率 。</value></data>
   <data name="Emulation.Bandai.Setting.FrameSkipping.Help" xml:space="preserve"><value>跳过视频帧以减少音频裂缝。自动模式遵循音频缓冲。手工模式使用选定的阈值。</value></data>
-  <data name="Emulation.Bandai.Setting.FrameSkipThreshold.Help" xml:space="preserve"><value>在手动模式下,当音频缓冲器低于此百分比时跳过帧 。</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipThreshold.Help"><value>手动模式下，音频缓冲区填充率低于所选阈值时跳过视频帧。</value></data>
   <data name="Emulation.Bandai.Setting.FixedRefreshRate.Help" xml:space="preserve"><value>跳过每第五帧显示在 60 Hz 。 这会降低运动平滑度 。</value></data>
   <data name="Emulation.Bandai.Setting.AudioSampleRate.Help" xml:space="preserve"><value>较高的采样率会稍有提高音频质量,需要更多的处理功率.</value></data>
   <data name="Emulation.Bandai.Setting.AudioFilter.Help" xml:space="preserve"><value>应用低通滤波器来软化声音.</value></data>
   <data name="Emulation.Bandai.Setting.SwapButtons.Help" xml:space="preserve"><value>交换按钮 A 和 的动作 B.</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipThreshold.DetailedHelp"><value>设为33%时，音频缓冲区填充率低于33%便跳过视频帧，以减少杂音。数值越高，越早触发跳帧。此设置不会改变音频延迟或缓冲区大小。</value></data>
 </root>

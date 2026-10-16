@@ -15,7 +15,7 @@
   <data name="Emulation.Bandai.Setting.DisplayRotation" xml:space="preserve"><value>Дисплей орієнта</value></data>
   <data name="Emulation.Bandai.Setting.ControlOrientation" xml:space="preserve"><value>Контролююча спрямованість</value></data>
   <data name="Emulation.Bandai.Setting.MonochromePalette" xml:space="preserve"><value>Монохромна палітра</value></data>
-  <data name="Emulation.Bandai.Setting.FrameSkipThreshold" xml:space="preserve"><value>Аудіо буферний поріг</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipThreshold"><value>Поріг спрацьовування пропуску кадрів</value></data>
   <data name="Emulation.Bandai.Setting.FixedRefreshRate" xml:space="preserve"><value>60 Гц режим</value></data>
   <data name="Emulation.Bandai.Setting.AudioSampleRate" xml:space="preserve"><value>Швидкість відбору аудіо</value></data>
   <data name="Emulation.Bandai.Setting.AudioFilter" xml:space="preserve"><value>Фільтри</value></data>

@@ -18,5 +18,6 @@
   <data name="Emulation.Coleco.Help.CropRightBorderHelp" xml:space="preserve"><value>画面の境界線を非表示にします。</value></data>
   <data name="Emulation.Coleco.Help.CropScreenBordersHelp" xml:space="preserve"><value>表示される画像のエッジでピクセルを非表示にします。</value></data>
   <data name="Emulation.Coleco.Help.FastBootHelp" xml:space="preserve"><value>起動遅延をスキップします。</value></data>
-  <data name="Emulation.Coleco.Help.CartridgeTypeHelp" xml:space="preserve"><value>カートリッジメモリバンクの制御方法を選択します。</value></data>
+  <data name="Emulation.Coleco.Help.CartridgeTypeHelp"><value>カートリッジのメモリー回路です。ROMが誤認識される場合を除き、自動のままにしてください。</value></data>
+  <data name="Emulation.Coleco.Help.CartridgeTypeDetails"><value>標準：最大32 KiB。MegaCartとActivision：異なるROMバンク切り替え回路。OCM：バンク切り替えとEEPROMへのセーブ。Activisionはゲームの発売元ではなく、回路の名称です。種類を誤ると、起動できない場合や不具合が発生する場合があります。</value></data>
 </root>

@@ -15,7 +15,7 @@
   <data name="Emulation.Bandai.Setting.DisplayRotation" xml:space="preserve"><value>التوجه</value></data>
   <data name="Emulation.Bandai.Setting.ControlOrientation" xml:space="preserve"><value>التوجه نحو الرقابة</value></data>
   <data name="Emulation.Bandai.Setting.MonochromePalette" xml:space="preserve"><value>شلل مونكرومي</value></data>
-  <data name="Emulation.Bandai.Setting.FrameSkipThreshold" xml:space="preserve"><value>عتبة عازلة الصوت</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipThreshold"><value>عتبة بدء تخطي الإطارات</value></data>
   <data name="Emulation.Bandai.Setting.FixedRefreshRate" xml:space="preserve"><value>60 Hz</value></data>
   <data name="Emulation.Bandai.Setting.AudioSampleRate" xml:space="preserve"><value>معدل أخذ العينات الصوتية</value></data>
   <data name="Emulation.Bandai.Setting.AudioFilter" xml:space="preserve"><value>مرشح الصوت</value></data>

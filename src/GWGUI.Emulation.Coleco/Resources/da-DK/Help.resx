@@ -18,5 +18,6 @@
   <data name="Emulation.Coleco.Help.CropRightBorderHelp" xml:space="preserve"><value>Skjul den højre skærmkant.</value></data>
   <data name="Emulation.Coleco.Help.CropScreenBordersHelp" xml:space="preserve"><value>Skjul pixels i kanterne af det viste billede.</value></data>
   <data name="Emulation.Coleco.Help.FastBootHelp" xml:space="preserve"><value>Spring støvleforsinkelsen over.</value></data>
-  <data name="Emulation.Coleco.Help.CartridgeTypeHelp" xml:space="preserve"><value>Vælg hvordan patronens hukommelsesbanker kontrolleres.</value></data>
+  <data name="Emulation.Coleco.Help.CartridgeTypeHelp"><value>Spilkassettens hukommelseskredsløb. Behold Automatisk, medmindre ROM-filen registreres forkert.</value></data>
+  <data name="Emulation.Coleco.Help.CartridgeTypeDetails"><value>Standard: op til 32 KiB. MegaCart og Activision: forskellige kredsløb til skift mellem ROM-banker. OCM: bankskift og lagring i EEPROM. Activision betegner et kredsløb, ikke spillets udgiver. En forkert type kan forhindre opstart eller give fejl.</value></data>
 </root>

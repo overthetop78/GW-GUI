@@ -20,7 +20,9 @@ internal static class SettingsDescriptionFunctions
             blocks.Add(new(resource, group.Key, resource, group.Select(option => CommonSettings.Native(configuration, option, group.Key, resource)).ToArray()));
         }
         var cartridge = GearColecoOptionCatalog.All.Single(option => option.Key == OptionConstants.OptionMapper);
-        blocks.Add(new("Emulation.Storage.Cartridges", EmulationMachineTab.Storage, "Emulation.Storage.Cartridges", [CommonSettings.Native(configuration, cartridge, EmulationMachineTab.Storage, "Emulation.Storage.Cartridges")]));
+        var cartridgeField = CommonSettings.Native(configuration, cartridge, EmulationMachineTab.Storage, "Emulation.Storage.Cartridges")
+            with { DetailedExplanationResourceKey = SettingsTextConstants.CartridgeTypeDetails };
+        blocks.Add(new("Emulation.Storage.Cartridges", EmulationMachineTab.Storage, "Emulation.Storage.Cartridges", [cartridgeField]));
         return blocks;
     }
 

@@ -15,7 +15,7 @@
   <data name="Emulation.Bandai.Setting.DisplayRotation" xml:space="preserve"><value>ディスプレイの向き</value></data>
   <data name="Emulation.Bandai.Setting.ControlOrientation" xml:space="preserve"><value>制御のオリエンテーション</value></data>
   <data name="Emulation.Bandai.Setting.MonochromePalette" xml:space="preserve"><value>モノクロパレット</value></data>
-  <data name="Emulation.Bandai.Setting.FrameSkipThreshold" xml:space="preserve"><value>可聴周波緩衝しきい値</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipThreshold"><value>フレームスキップの開始しきい値</value></data>
   <data name="Emulation.Bandai.Setting.FixedRefreshRate" xml:space="preserve"><value>60のHzモード</value></data>
   <data name="Emulation.Bandai.Setting.AudioSampleRate" xml:space="preserve"><value>可聴周波見本抽出率</value></data>
   <data name="Emulation.Bandai.Setting.AudioFilter" xml:space="preserve"><value>可聴周波フィルター</value></data>

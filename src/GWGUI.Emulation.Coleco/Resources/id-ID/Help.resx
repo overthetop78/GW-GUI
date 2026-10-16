@@ -18,5 +18,6 @@
   <data name="Emulation.Coleco.Help.CropRightBorderHelp" xml:space="preserve"><value>Sembunyikan layar kanan perbatasan.</value></data>
   <data name="Emulation.Coleco.Help.CropScreenBordersHelp" xml:space="preserve"><value>Sembunyikan piksel di tepi gambar yang ditampilkan.</value></data>
   <data name="Emulation.Coleco.Help.FastBootHelp" xml:space="preserve"><value>Lewati delay boot.</value></data>
-  <data name="Emulation.Coleco.Help.CartridgeTypeHelp" xml:space="preserve"><value>Pilih bagaimana bank memori cartridge dikendalikan.</value></data>
+  <data name="Emulation.Coleco.Help.CartridgeTypeHelp"><value>Sirkuit memori kartrid. Biarkan Otomatis kecuali ROM salah terdeteksi.</value></data>
+  <data name="Emulation.Coleco.Help.CartridgeTypeDetails"><value>Standar: hingga 32 KiB. MegaCart dan Activision: sirkuit berbeda untuk mengganti bank ROM. OCM: pergantian bank dan penyimpanan EEPROM. Activision menamai sirkuit, bukan penerbit gim. Jenis yang salah dapat menghalangi gim berjalan atau menyebabkan kesalahan.</value></data>
 </root>

@@ -9,9 +9,10 @@
   <data name="Emulation.Bandai.Setting.MonochromePalette.Help" xml:space="preserve"><value>Seleccione los colores utilizados para los juegos monocromáticos.</value></data>
   <data name="Emulation.Bandai.Setting.ColorDepth.Help" xml:space="preserve"><value>Seleccione la profundidad de color de salida. El modo 24-bit requiere más potencia de procesamiento.</value></data>
   <data name="Emulation.Bandai.Setting.FrameSkipping.Help" xml:space="preserve"><value>Saltar los marcos de vídeo para reducir el crackling de audio. El modo automático sigue el buffer de audio. El modo manual utiliza el umbral seleccionado.</value></data>
-  <data name="Emulation.Bandai.Setting.FrameSkipThreshold.Help" xml:space="preserve"><value>En modo manual, salta los marcos cuando el amortiguador de audio cae por debajo de este porcentaje.</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipThreshold.Help"><value>Modo manual: omitir fotogramas cuando el búfer de audio baje del nivel de llenado seleccionado.</value></data>
   <data name="Emulation.Bandai.Setting.FixedRefreshRate.Help" xml:space="preserve"><value>Saltar cada quinto cuadro para mostrar a 60 Hz. Esto reduce la suavidad del movimiento.</value></data>
   <data name="Emulation.Bandai.Setting.AudioSampleRate.Help" xml:space="preserve"><value>Las tasas de muestreo más altas mejoran ligeramente la calidad de audio y requieren más potencia de procesamiento.</value></data>
   <data name="Emulation.Bandai.Setting.AudioFilter.Help" xml:space="preserve"><value>Aplica un filtro de baja velocidad para suavizar el sonido.</value></data>
   <data name="Emulation.Bandai.Setting.SwapButtons.Help" xml:space="preserve"><value>Trae las acciones de los botones A y B.</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipThreshold.DetailedHelp"><value>Con el 33 %, se omiten fotogramas cuando el búfer de audio está lleno a menos del 33 %, para reducir los chasquidos. Los valores más altos activan la omisión antes. La latencia de audio y el tamaño del búfer no cambian.</value></data>
 </root>

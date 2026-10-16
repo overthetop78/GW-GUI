@@ -18,5 +18,6 @@
   <data name="Emulation.Coleco.Help.CropRightBorderHelp" xml:space="preserve"><value>הסתר את גבול המסך הנכון</value></data>
   <data name="Emulation.Coleco.Help.CropScreenBordersHelp" xml:space="preserve"><value>הסתר פיקסלים בשולי התמונה המוצגת.</value></data>
   <data name="Emulation.Coleco.Help.FastBootHelp" xml:space="preserve"><value>עזוב את העיכוב.</value></data>
-  <data name="Emulation.Coleco.Help.CartridgeTypeHelp" xml:space="preserve"><value>בחרו כיצד נשלטים בנקים בזיכרון מחסנית.</value></data>
+  <data name="Emulation.Coleco.Help.CartridgeTypeHelp"><value>מעגל הזיכרון של המחסנית. השאירו זיהוי אוטומטי, אלא אם ה־ROM מזוהה באופן שגוי.</value></data>
+  <data name="Emulation.Coleco.Help.CartridgeTypeDetails"><value>רגיל: עד 32 KiB. MegaCart ו־Activision: מעגלים שונים להחלפת בנקי ROM. OCM: החלפת בנקים ושמירות ב־EEPROM. Activision מציין מעגל, לא את מפיצת המשחק. סוג שגוי עלול למנוע הפעלה או לגרום לשגיאות.</value></data>
 </root>

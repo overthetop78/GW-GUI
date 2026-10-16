@@ -9,9 +9,10 @@
   <data name="Emulation.Bandai.Setting.MonochromePalette.Help" xml:space="preserve"><value>Velg fargene som brukes til monokrome spill.</value></data>
   <data name="Emulation.Bandai.Setting.ColorDepth.Help" xml:space="preserve"><value>Velg utgangsfargedybde. 24-bits modus krever mer prosessorkraft.</value></data>
   <data name="Emulation.Bandai.Setting.FrameSkipping.Help" xml:space="preserve"><value>Hopp over videorammer for å redusere lydsprekkering. Automatisk modus følger lydbufferen. Manuell modus bruker den valgte terskelen.</value></data>
-  <data name="Emulation.Bandai.Setting.FrameSkipThreshold.Help" xml:space="preserve"><value>I manuell modus, hopp over rammer når lydbufferen faller under denne prosentdelen.</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipThreshold.Help"><value>Manuell modus: hopp over videobilder når lydbufferens fyllingsgrad faller under det valgte nivået.</value></data>
   <data name="Emulation.Bandai.Setting.FixedRefreshRate.Help" xml:space="preserve"><value>Hopp over hver femte ramme for å vise ved 60 Hz. Dette reduserer bevegelsessimheten.</value></data>
   <data name="Emulation.Bandai.Setting.AudioSampleRate.Help" xml:space="preserve"><value>Høyere prøvetakingshastigheter forbedre lydkvaliteten litt og krever mer prosessorkraft.</value></data>
   <data name="Emulation.Bandai.Setting.AudioFilter.Help" xml:space="preserve"><value>Påfør et lavt pass filter for å myke lyden.</value></data>
   <data name="Emulation.Bandai.Setting.SwapButtons.Help" xml:space="preserve"><value>Bytt handlingene til knappene A og B.</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipThreshold.DetailedHelp"><value>Ved 33 % hoppes videobilder over når lydbufferen er mindre enn 33 % full, for å redusere knitring. Høyere verdier utløser hoppingen tidligere. Lydforsinkelsen og bufferstørrelsen endres ikke.</value></data>
 </root>

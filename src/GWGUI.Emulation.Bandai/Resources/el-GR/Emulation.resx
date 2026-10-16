@@ -15,7 +15,7 @@
   <data name="Emulation.Bandai.Setting.DisplayRotation" xml:space="preserve"><value>Απεικόνιση προσανατολισμού</value></data>
   <data name="Emulation.Bandai.Setting.ControlOrientation" xml:space="preserve"><value>Προσανατολισμός ελέγχου</value></data>
   <data name="Emulation.Bandai.Setting.MonochromePalette" xml:space="preserve"><value>Μονόχρωμη παλέτα</value></data>
-  <data name="Emulation.Bandai.Setting.FrameSkipThreshold" xml:space="preserve"><value>Κατώφλι ρύθμισης ήχου</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipThreshold"><value>Όριο ενεργοποίησης παράλειψης καρέ</value></data>
   <data name="Emulation.Bandai.Setting.FixedRefreshRate" xml:space="preserve"><value>Λειτουργία 60 Hz</value></data>
   <data name="Emulation.Bandai.Setting.AudioSampleRate" xml:space="preserve"><value>Ρυθμός δειγματοληψίας ήχου</value></data>
   <data name="Emulation.Bandai.Setting.AudioFilter" xml:space="preserve"><value>Φίλτρο ήχου</value></data>

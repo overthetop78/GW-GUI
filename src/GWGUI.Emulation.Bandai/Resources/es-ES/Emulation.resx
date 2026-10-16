@@ -15,7 +15,7 @@
   <data name="Emulation.Bandai.Setting.DisplayRotation" xml:space="preserve"><value>Orientación de visualización</value></data>
   <data name="Emulation.Bandai.Setting.ControlOrientation" xml:space="preserve"><value>Orientación de control</value></data>
   <data name="Emulation.Bandai.Setting.MonochromePalette" xml:space="preserve"><value>Paleta monocromo</value></data>
-  <data name="Emulation.Bandai.Setting.FrameSkipThreshold" xml:space="preserve"><value>umbral de amortiguación</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipThreshold"><value>Umbral de activación de la omisión de fotogramas</value></data>
   <data name="Emulation.Bandai.Setting.FixedRefreshRate" xml:space="preserve"><value>Modo de 60 Hz</value></data>
   <data name="Emulation.Bandai.Setting.AudioSampleRate" xml:space="preserve"><value>Tasa de muestreo de audio</value></data>
   <data name="Emulation.Bandai.Setting.AudioFilter" xml:space="preserve"><value>Filtro de audio</value></data>

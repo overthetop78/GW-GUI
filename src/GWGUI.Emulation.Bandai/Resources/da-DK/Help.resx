@@ -9,9 +9,10 @@
   <data name="Emulation.Bandai.Setting.MonochromePalette.Help" xml:space="preserve"><value>Vælg de farver der bruges til monokrome spil.</value></data>
   <data name="Emulation.Bandai.Setting.ColorDepth.Help" xml:space="preserve"><value>Vælg output farve dybde. 24-bit tilstand kræver mere processor magt.</value></data>
   <data name="Emulation.Bandai.Setting.FrameSkipping.Help" xml:space="preserve"><value>Spring videobilleder over for at reducere lydknitring. Automatisk tilstand følger lydbufferen. Manuel tilstand bruger den valgte tærskel.</value></data>
-  <data name="Emulation.Bandai.Setting.FrameSkipThreshold.Help" xml:space="preserve"><value>I manuel tilstand, springe rammer, når lydbufferen falder under denne procentdel.</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipThreshold.Help"><value>Manuel tilstand: spring videobilleder over, når lydbufferens fyldningsgrad falder under det valgte niveau.</value></data>
   <data name="Emulation.Bandai.Setting.FixedRefreshRate.Help" xml:space="preserve"><value>Spring hver femte ramme over for at vise ved 60 Hz. Dette reducerer bevægelsesglathed.</value></data>
   <data name="Emulation.Bandai.Setting.AudioSampleRate.Help" xml:space="preserve"><value>Højere prøvetagningshastigheder forbedrer lydkvaliteten en smule og kræver mere proceskraft.</value></data>
   <data name="Emulation.Bandai.Setting.AudioFilter.Help" xml:space="preserve"><value>Påfør et lavpasfilter for at blødgøre lyden.</value></data>
   <data name="Emulation.Bandai.Setting.SwapButtons.Help" xml:space="preserve"><value>Swape handlinger af knapper A og B.</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipThreshold.DetailedHelp"><value>Ved 33 % springes videobilleder over, når lydbufferen er mindre end 33 % fuld, for at mindske knitren. Højere værdier starter overspringningen tidligere. Lydforsinkelsen og bufferstørrelsen ændres ikke.</value></data>
 </root>

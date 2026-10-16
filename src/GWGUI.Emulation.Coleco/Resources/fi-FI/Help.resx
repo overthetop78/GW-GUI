@@ -18,5 +18,6 @@
   <data name="Emulation.Coleco.Help.CropRightBorderHelp" xml:space="preserve"><value>Piilota oikea näyttöraja.</value></data>
   <data name="Emulation.Coleco.Help.CropScreenBordersHelp" xml:space="preserve"><value>Piilota pikselit näytöllä olevan kuvan reunoille.</value></data>
   <data name="Emulation.Coleco.Help.FastBootHelp" xml:space="preserve"><value>Jätä saappaan viive väliin.</value></data>
-  <data name="Emulation.Coleco.Help.CartridgeTypeHelp" xml:space="preserve"><value>Valitse, miten patruunan muistipankkeja ohjataan.</value></data>
+  <data name="Emulation.Coleco.Help.CartridgeTypeHelp"><value>Pelikasetin muistipiiri. Käytä automaattista tunnistusta, ellei ROM-tiedostoa tunnisteta väärin.</value></data>
+  <data name="Emulation.Coleco.Help.CartridgeTypeDetails"><value>Vakio: enintään 32 KiB. MegaCart ja Activision: erilaiset ROM-muistipankkien vaihtopiirit. OCM: muistipankkien vaihto ja EEPROM-tallennus. Activision tarkoittaa piiriä, ei pelin julkaisijaa. Väärä tyyppi voi estää käynnistyksen tai aiheuttaa virheitä.</value></data>
 </root>

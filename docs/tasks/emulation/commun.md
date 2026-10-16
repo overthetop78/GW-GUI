@@ -1,5 +1,20 @@
 # Travaux communs restants
 
+## Aides du saut d'images et des cartouches, sans build
+
+- [x] Corriger les deux réglages et leurs traductions.
+  - [x] Modifier `src/GWGUI.Emulation.Bandai/Emulators/BeetleWonderSwan/Functions/SettingsFunctions.cs` et `Common/Machines/Common/Constants/SettingsTextConstants.cs` : montrer le seuil uniquement en mode manuel, actualiser après changement du mode et fournir la clé d'aide détaillée.
+  - [x] Modifier `src/GWGUI.Emulation.Coleco/Emulators/GearColeco/Functions/SettingsFunctions.cs`, `Common/Machines/Common/Constants/SettingsTextConstants.cs` et `src/GWGUI.App/Views/Dialogs/Emulation/Storage/CartridgeSlotConfigurationDialog.cs` : fournir et afficher les deux niveaux d'aide du type de cartouche via le composant existant.
+  - [x] Modifier `src/GWGUI.Emulation.Bandai/Resources/*/Emulation.resx` : traduire le libellé Seuil de déclenchement du saut d'images avec Argos dans toutes les langues.
+  - [x] Modifier `src/GWGUI.Emulation.Bandai/Resources/*/Help.resx` : traduire les aides courte et détaillée du seuil avec Argos dans toutes les langues.
+  - [x] Modifier `src/GWGUI.Emulation.Coleco/Resources/*/Help.resx` : traduire les aides courte et détaillée des circuits de cartouche et du choix Automatique avec Argos dans toutes les langues.
+  - [x] Modifier les cinq entrées concernées dans `src/GWGUI.Emulation.Bandai/Resources/*/{Emulation,Help}.resx` et `src/GWGUI.Emulation.Coleco/Resources/*/Help.resx` : corriger après Argos les erreurs de terminologie et les phrases perdues dans toutes les langues, sans modifier les autres ressources.
+- [x] Terminer sans compilation.
+  - [x] Modifier `docs/tasks/emulation/commun.md` : consigner la validation XML, la présence des cinq textes dans toutes les cultures, les raccordements d'aide et l'absence de build demandé par l'utilisateur.
+
+Résultat : libellé du seuil de saut d'images corrigé ; champ visible uniquement avec le mode manuel et description reconstruite après changement de mode. Aides courte et détaillée raccordées au seuil vidéo et au type de cartouche GearColeco ; le dialogue cartouche transmet désormais aussi l'aide détaillée au composant existant, condition nécessaire à son icône (i). Les circuits natifs, leurs valeurs et le choix Automatique sont inchangés.
+
+Argos utilisé pour les cinq textes, puis relecture et corrections dans les 28 traductions, la base et l'anglais. Contrôle statique réussi : 90 fichiers RESX valides et 150 entrées attendues présentes, sans autre clé modifiée ni supprimée ; diff sans erreur. Les deux niveaux d'aide ont été suivis jusqu'aux libellés de l'interface. Aucun build, aucune compilation de tests ni exécution de l'application ; l'exécutable existant ne contient pas encore ce lot, conformément à la demande utilisateur.
 ## Passage à Aucun dans tous les modules
 
 - [x] Reproduire puis corriger la notification intermédiaire du port.

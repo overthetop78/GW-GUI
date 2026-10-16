@@ -26,6 +26,14 @@ internal static class SettingsDescriptionFunctions
             blocks.Add(Block(group.Key, resource, group.Select(option =>
             {
                 var field = Native(configuration, option, group.Key, resource);
+                if (option.Key == OptionConstants.OptionFrameskip)
+                    return field with { RefreshSettingsOnChange = true };
+                if (option.Key == OptionConstants.OptionFrameskipThreshold)
+                    return field with
+                    {
+                        IsVisible = configuration.Options.GetValueOrDefault(OptionConstants.OptionFrameskip, "disabled") == "manual",
+                        DetailedExplanationResourceKey = SettingsTextConstants.FrameSkipThresholdDetails
+                    };
                 return option.Key == OptionConstants.OptionMonoPalette
                     ? field with
                     {

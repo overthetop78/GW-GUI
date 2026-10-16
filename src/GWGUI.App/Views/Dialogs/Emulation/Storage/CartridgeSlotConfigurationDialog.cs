@@ -48,7 +48,8 @@ public sealed class CartridgeSlotConfigurationDialog : Window
             _options[field.Id] = control;
             body.Children.Add(EmulationSettingsLayout.BoundedForm(1, new EmulationSettingsControlField(
                 LocExtension.GetForModule(moduleId ?? string.Empty, field.LabelResourceKey), control,
-                field.ExplanationResourceKey is null ? null : LocExtension.GetForModule(moduleId ?? string.Empty, field.ExplanationResourceKey))));
+                field.ExplanationResourceKey is null ? null : LocExtension.GetForModule(moduleId ?? string.Empty, field.ExplanationResourceKey),
+                field.DetailedExplanationResourceKey is null ? null : LocExtension.GetForModule(moduleId ?? string.Empty, field.DetailedExplanationResourceKey))));
         }
         Content = StorageDialogUi.DialogLayout(
             StorageDialogUi.DialogHeader(IconGlyphs.Controller, Title, $"{LocExtension.Get(EmulationResourceKeys.CartridgeDevice)} · {machineName}"),

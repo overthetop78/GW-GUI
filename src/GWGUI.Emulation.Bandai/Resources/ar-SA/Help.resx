@@ -9,9 +9,10 @@
   <data name="Emulation.Bandai.Setting.MonochromePalette.Help" xml:space="preserve"><value>إختار الألوان المستخدمة في ألعاب الأوكروم</value></data>
   <data name="Emulation.Bandai.Setting.ColorDepth.Help" xml:space="preserve"><value>اختيار عمق لون الناتج، وأسلوب الـ 24 يتطلّب المزيد من القدرة على المعالجة.</value></data>
   <data name="Emulation.Bandai.Setting.FrameSkipping.Help" xml:space="preserve"><value>أُطر فيديو للتزلج على الجليد لتقليل التشقق الصوتي، وأسلوب التشغيل الآلي يتبع العازلة الصوتية، ويستخدم النموذج اليدوي عتبة مختارة.</value></data>
-  <data name="Emulation.Bandai.Setting.FrameSkipThreshold.Help" xml:space="preserve"><value>في طريقة يدوية، تفوت الإطارات عندما تنخفض الحاجزة الصوتية إلى ما دون هذه النسبة.</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipThreshold.Help"><value>الوضع اليدوي: تخطي إطارات الفيديو عندما ينخفض امتلاء مخزن الصوت المؤقت عن المستوى المحدد.</value></data>
   <data name="Emulation.Bandai.Setting.FixedRefreshRate.Help" xml:space="preserve"><value>تزلج كل إطار خامس للعرض في 60 هرتز هذا يقلل من سلاسة الحركة</value></data>
   <data name="Emulation.Bandai.Setting.AudioSampleRate.Help" xml:space="preserve"><value>وتحسن معدلات أخذ العينات المرتفعة قليلا من نوعية الصوت وتتطلب مزيدا من القدرة على التجهيز.</value></data>
   <data name="Emulation.Bandai.Setting.AudioFilter.Help" xml:space="preserve"><value>تطبيق تصفية سحاب منخفضة لتهدئة الصوت</value></data>
   <data name="Emulation.Bandai.Setting.SwapButtons.Help" xml:space="preserve"><value>امسحي أزرارك B.</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipThreshold.DetailedHelp"><value>عند 33%، تُتخطى إطارات الفيديو إذا كان مخزن الصوت المؤقت ممتلئًا بنسبة تقل عن 33%، لتقليل الطقطقة. تؤدي القيم الأعلى إلى بدء التخطي مبكرًا. لا يتغير تأخير الصوت ولا حجم المخزن المؤقت.</value></data>
 </root>

@@ -9,9 +9,10 @@
   <data name="Emulation.Bandai.Setting.MonochromePalette.Help" xml:space="preserve"><value>בחרו את הצבעים המשמשים למשחקים מונוכרום.</value></data>
   <data name="Emulation.Bandai.Setting.ColorDepth.Help" xml:space="preserve"><value>בחר את עומק צבע הפלט.מצב 24bit דורש יותר כוח עיבוד.</value></data>
   <data name="Emulation.Bandai.Setting.FrameSkipping.Help" xml:space="preserve"><value>דלג מסגרות וידאו כדי להפחית את סדקים אודיו.מצב אוטומטי עוקב אחר מצב השמע buffer. Manual משתמש סף שנבחר.</value></data>
-  <data name="Emulation.Bandai.Setting.FrameSkipThreshold.Help" xml:space="preserve"><value>במצב ידני, לדלג על מסגרות כאשר buffer אודיו נופל מתחת אחוז זה.</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipThreshold.Help"><value>מצב ידני: דילוג על פריימים כשהמילוי של מאגר השמע יורד מתחת לרמה שנבחרה.</value></data>
   <data name="Emulation.Bandai.Setting.FixedRefreshRate.Help" xml:space="preserve"><value>דלג כל מסגרת חמישית להציג ב 60 הרץ.זה מקטין את חלקה התנועה.</value></data>
   <data name="Emulation.Bandai.Setting.AudioSampleRate.Help" xml:space="preserve"><value>שיעורי הדגימה גבוהים יותר לשפר מעט את איכות השמע ודורשים יותר כוח עיבוד.</value></data>
   <data name="Emulation.Bandai.Setting.AudioFilter.Help" xml:space="preserve"><value>השתמש מסנן נמוך כדי לרכך את הקול.</value></data>
   <data name="Emulation.Bandai.Setting.SwapButtons.Help" xml:space="preserve"><value>עקבו אחרי A and B.</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipThreshold.DetailedHelp"><value>בערך 33%, פריימים מדולגים כשהמאגר מלא בפחות מ־33%, כדי לצמצם פצפוצי שמע. ערכים גבוהים יותר מפעילים את הדילוג מוקדם יותר. השהיית השמע וגודל המאגר אינם משתנים.</value></data>
 </root>

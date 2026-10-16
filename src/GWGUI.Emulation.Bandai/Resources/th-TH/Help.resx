@@ -9,9 +9,10 @@
   <data name="Emulation.Bandai.Setting.MonochromePalette.Help" xml:space="preserve"><value>เลือกสีที่จะใช้ในเกมสีเดียว</value></data>
   <data name="Emulation.Bandai.Setting.ColorDepth.Help" xml:space="preserve"><value>เลือกความลึกสีผลลัพธ์ โหมด 24 บิต ต้องการพลังงานประมวลผลมากขึ้น</value></data>
   <data name="Emulation.Bandai.Setting.FrameSkipping.Help" xml:space="preserve"><value>ข้ามเฟรมวิดีโอเพื่อลดเสียงแตก โหมดโดยอัตโนมัติจะตามตลับเสียง โหมดด้วยตนเองจะใช้การเปิดรับเสียง</value></data>
-  <data name="Emulation.Bandai.Setting.FrameSkipThreshold.Help" xml:space="preserve"><value>ในโหมดด้วยตนเอง, ข้ามเฟรมเมื่อบัฟเฟอร์เสียงอยู่ใต้เปอร์เซ็นต์นี้</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipThreshold.Help"><value>โหมดกำหนดเอง: ข้ามเฟรมวิดีโอเมื่อระดับข้อมูลในบัฟเฟอร์เสียงลดต่ำกว่าเกณฑ์ที่เลือก</value></data>
   <data name="Emulation.Bandai.Setting.FixedRefreshRate.Help" xml:space="preserve"><value>ข้ามทุกเฟรมที่ห้าเพื่อแสดงเมื่อ 60 เอชซี นี้จะช่วยลดความเรียบในการเคลื่อนที่</value></data>
   <data name="Emulation.Bandai.Setting.AudioSampleRate.Help" xml:space="preserve"><value>อัตรา การ สุ่ม ตัว อย่าง สูง ขึ้น ช่วย ปรับ ปรุง คุณภาพ เสียง และ ต้อง ใช้ พลัง ใน การ ประมวล ผล มาก ขึ้น.</value></data>
   <data name="Emulation.Bandai.Setting.AudioFilter.Help" xml:space="preserve"><value>ใช้ตัวกรองแบบ Light-pass เพื่อลดเสียง</value></data>
   <data name="Emulation.Bandai.Setting.SwapButtons.Help" xml:space="preserve"><value>สลับการกระทําของปุ่ม A และ B.</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipThreshold.DetailedHelp"><value>ที่ 33% ระบบจะข้ามเฟรมเมื่อบัฟเฟอร์เสียงมีข้อมูลน้อยกว่า 33% เพื่อลดเสียงแตก ค่าที่สูงขึ้นจะเริ่มข้ามเฟรมเร็วขึ้น โดยไม่เปลี่ยนความหน่วงเสียงหรือขนาดบัฟเฟอร์</value></data>
 </root>

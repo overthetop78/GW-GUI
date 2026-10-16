@@ -18,5 +18,6 @@
   <data name="Emulation.Coleco.Help.CropRightBorderHelp" xml:space="preserve"><value>Ẩn biên giới màn hình bên phải.</value></data>
   <data name="Emulation.Coleco.Help.CropScreenBordersHelp" xml:space="preserve"><value>Ẩn điểm ảnh ở cạnh của ảnh đã hiển thị.</value></data>
   <data name="Emulation.Coleco.Help.FastBootHelp" xml:space="preserve"><value>Bỏ qua việc trì hoãn khởi động.</value></data>
-  <data name="Emulation.Coleco.Help.CartridgeTypeHelp" xml:space="preserve"><value>Hãy chọn cách kiểm soát các ngân hàng bộ nhớ đạn.</value></data>
+  <data name="Emulation.Coleco.Help.CartridgeTypeHelp"><value>Mạch bộ nhớ của băng trò chơi. Giữ Tự động trừ khi ROM bị nhận diện sai.</value></data>
+  <data name="Emulation.Coleco.Help.CartridgeTypeDetails"><value>Tiêu chuẩn: tối đa 32 KiB. MegaCart và Activision: các mạch chuyển ngân hàng ROM khác nhau. OCM: chuyển ngân hàng và lưu dữ liệu EEPROM. Activision là tên mạch, không phải nhà phát hành trò chơi. Chọn sai loại có thể khiến trò chơi không khởi động hoặc phát sinh lỗi.</value></data>
 </root>

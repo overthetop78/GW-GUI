@@ -15,7 +15,7 @@
   <data name="Emulation.Bandai.Setting.DisplayRotation" xml:space="preserve"><value>显示方向</value></data>
   <data name="Emulation.Bandai.Setting.ControlOrientation" xml:space="preserve"><value>控制方向</value></data>
   <data name="Emulation.Bandai.Setting.MonochromePalette" xml:space="preserve"><value>单色调色板</value></data>
-  <data name="Emulation.Bandai.Setting.FrameSkipThreshold" xml:space="preserve"><value>音频缓冲阈值</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipThreshold"><value>跳幀觸發閾值</value></data>
   <data name="Emulation.Bandai.Setting.FixedRefreshRate" xml:space="preserve"><value>60赫兹模式</value></data>
   <data name="Emulation.Bandai.Setting.AudioSampleRate" xml:space="preserve"><value>音频采样率</value></data>
   <data name="Emulation.Bandai.Setting.AudioFilter" xml:space="preserve"><value>音频过滤器</value></data>

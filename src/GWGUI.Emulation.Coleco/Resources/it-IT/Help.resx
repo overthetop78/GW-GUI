@@ -18,5 +18,6 @@
   <data name="Emulation.Coleco.Help.CropRightBorderHelp" xml:space="preserve"><value>Nascondete il bordo dello schermo destro.</value></data>
   <data name="Emulation.Coleco.Help.CropScreenBordersHelp" xml:space="preserve"><value>Nascondi pixel ai bordi dell'immagine visualizzata.</value></data>
   <data name="Emulation.Coleco.Help.FastBootHelp" xml:space="preserve"><value>Salta il ritardo di avvio.</value></data>
-  <data name="Emulation.Coleco.Help.CartridgeTypeHelp" xml:space="preserve"><value>Scegliere come le banche di memoria della cartuccia sono controllate.</value></data>
+  <data name="Emulation.Coleco.Help.CartridgeTypeHelp"><value>Circuito di memoria della cartuccia. Lasciare Automatico salvo un rilevamento errato della ROM.</value></data>
+  <data name="Emulation.Coleco.Help.CartridgeTypeDetails"><value>Standard: fino a 32 KiB. MegaCart e Activision: circuiti diversi per commutare i banchi ROM. OCM: commutazione dei banchi e salvataggi EEPROM. Activision indica un circuito, non l’editore del gioco. Un tipo errato può impedire l’avvio o causare errori.</value></data>
 </root>

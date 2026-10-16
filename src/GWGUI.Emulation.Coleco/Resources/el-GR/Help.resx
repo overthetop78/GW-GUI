@@ -18,5 +18,6 @@
   <data name="Emulation.Coleco.Help.CropRightBorderHelp" xml:space="preserve"><value>Απόκρυψη του δεξιού περιγράμματος οθόνης.</value></data>
   <data name="Emulation.Coleco.Help.CropScreenBordersHelp" xml:space="preserve"><value>Απόκρυψη εικονοστοιχείων στις άκρες της εμφανιζόμενης εικόνας.</value></data>
   <data name="Emulation.Coleco.Help.FastBootHelp" xml:space="preserve"><value>Παράλειψε την καθυστέρηση της εκκίνησης.</value></data>
-  <data name="Emulation.Coleco.Help.CartridgeTypeHelp" xml:space="preserve"><value>Επιλέξτε πώς ελέγχονται οι τράπεζες μνήμης φυσιγγίων.</value></data>
+  <data name="Emulation.Coleco.Help.CartridgeTypeHelp"><value>Κύκλωμα μνήμης της κασέτας. Διατηρήστε την αυτόματη ανίχνευση, εκτός αν η ROM αναγνωρίζεται λανθασμένα.</value></data>
+  <data name="Emulation.Coleco.Help.CartridgeTypeDetails"><value>Τυπική: έως 32 KiB. MegaCart και Activision: διαφορετικά κυκλώματα εναλλαγής τραπεζών ROM. OCM: εναλλαγή τραπεζών και αποθήκευση EEPROM. Το Activision δηλώνει κύκλωμα, όχι τον εκδότη του παιχνιδιού. Λανθασμένος τύπος μπορεί να εμποδίσει την εκκίνηση ή να προκαλέσει σφάλματα.</value></data>
 </root>

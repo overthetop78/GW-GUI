@@ -18,5 +18,6 @@
   <data name="Emulation.Coleco.Help.CropRightBorderHelp" xml:space="preserve"><value>Спрячьте правую границу экрана.</value></data>
   <data name="Emulation.Coleco.Help.CropScreenBordersHelp" xml:space="preserve"><value>Спрячьте пиксели по краям отображаемого изображения.</value></data>
   <data name="Emulation.Coleco.Help.FastBootHelp" xml:space="preserve"><value>Пропустите задержку загрузки.</value></data>
-  <data name="Emulation.Coleco.Help.CartridgeTypeHelp" xml:space="preserve"><value>Выберите, как контролируются банки памяти картриджей.</value></data>
+  <data name="Emulation.Coleco.Help.CartridgeTypeHelp"><value>Схема памяти картриджа. Оставьте автоматическое определение, если ROM распознаётся правильно.</value></data>
+  <data name="Emulation.Coleco.Help.CartridgeTypeDetails"><value>Стандартный: до 32 KiB. MegaCart и Activision: разные схемы переключения банков ROM. OCM: переключение банков и сохранения в EEPROM. Activision обозначает схему, а не издателя игры. Неверный тип может помешать запуску или вызвать ошибки.</value></data>
 </root>

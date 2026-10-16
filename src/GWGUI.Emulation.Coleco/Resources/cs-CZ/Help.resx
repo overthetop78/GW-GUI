@@ -18,5 +18,6 @@
   <data name="Emulation.Coleco.Help.CropRightBorderHelp" xml:space="preserve"><value>Schovej pravou obrazovku.</value></data>
   <data name="Emulation.Coleco.Help.CropScreenBordersHelp" xml:space="preserve"><value>Skrýt pixely na okrajích zobrazeného obrazu.</value></data>
   <data name="Emulation.Coleco.Help.FastBootHelp" xml:space="preserve"><value>Přeskočte zpoždění.</value></data>
-  <data name="Emulation.Coleco.Help.CartridgeTypeHelp" xml:space="preserve"><value>Vyberte si, jak jsou ovládány paměťové schránky.</value></data>
+  <data name="Emulation.Coleco.Help.CartridgeTypeHelp"><value>Paměťový obvod kazety. Ponechte automatickou detekci, pokud není ROM rozpoznána chybně.</value></data>
+  <data name="Emulation.Coleco.Help.CartridgeTypeDetails"><value>Standard: až 32 KiB. MegaCart a Activision: různé obvody pro přepínání bank ROM. OCM: přepínání bank a ukládání do EEPROM. Activision označuje obvod, nikoli vydavatele hry. Chybný typ může zabránit spuštění nebo způsobit chyby.</value></data>
 </root>

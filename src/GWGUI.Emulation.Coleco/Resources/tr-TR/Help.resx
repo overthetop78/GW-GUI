@@ -18,5 +18,6 @@
   <data name="Emulation.Coleco.Help.CropRightBorderHelp" xml:space="preserve"><value>Doğru ekran sınırının üzerinde Gizlen.</value></data>
   <data name="Emulation.Coleco.Help.CropScreenBordersHelp" xml:space="preserve"><value>Ekran görüntüsü kenarlarında Hide piksel.</value></data>
   <data name="Emulation.Coleco.Help.FastBootHelp" xml:space="preserve"><value>Önyükleme gecikmesine izin verin.</value></data>
-  <data name="Emulation.Coleco.Help.CartridgeTypeHelp" xml:space="preserve"><value>kartuş hafıza bankalarının nasıl kontrol edildiğini seçin.</value></data>
+  <data name="Emulation.Coleco.Help.CartridgeTypeHelp"><value>Kartuşun bellek devresi. ROM yanlış algılanmadığı sürece Otomatik seçeneğini koruyun.</value></data>
+  <data name="Emulation.Coleco.Help.CartridgeTypeDetails"><value>Standart: en fazla 32 KiB. MegaCart ve Activision: ROM bankalarını değiştiren farklı devreler. OCM: banka değiştirme ve EEPROM kayıtları. Activision, oyun yayıncısını değil bir devreyi belirtir. Yanlış tür, oyunun başlamasını engelleyebilir veya hatalara yol açabilir.</value></data>
 </root>

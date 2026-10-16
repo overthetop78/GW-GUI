@@ -15,7 +15,7 @@
   <data name="Emulation.Bandai.Setting.DisplayRotation" xml:space="preserve"><value>המונחים</value></data>
   <data name="Emulation.Bandai.Setting.ControlOrientation" xml:space="preserve"><value>המונחים:</value></data>
   <data name="Emulation.Bandai.Setting.MonochromePalette" xml:space="preserve"><value>המונחים: Monochrome</value></data>
-  <data name="Emulation.Bandai.Setting.FrameSkipThreshold" xml:space="preserve"><value>המונחים: buffer סף</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipThreshold"><value>סף הפעלת דילוג על פריימים</value></data>
   <data name="Emulation.Bandai.Setting.FixedRefreshRate" xml:space="preserve"><value>מצב 60 הרץ</value></data>
   <data name="Emulation.Bandai.Setting.AudioSampleRate" xml:space="preserve"><value>אחוזי דגימת אודיו</value></data>
   <data name="Emulation.Bandai.Setting.AudioFilter" xml:space="preserve"><value>פילטר Audio</value></data>

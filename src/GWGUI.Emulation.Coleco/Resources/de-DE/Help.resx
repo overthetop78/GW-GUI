@@ -18,5 +18,6 @@
   <data name="Emulation.Coleco.Help.CropRightBorderHelp" xml:space="preserve"><value>Verstecken Sie den rechten Bildschirmrand.</value></data>
   <data name="Emulation.Coleco.Help.CropScreenBordersHelp" xml:space="preserve"><value>Verstecken Sie Pixel an den Rändern des angezeigten Bildes.</value></data>
   <data name="Emulation.Coleco.Help.FastBootHelp" xml:space="preserve"><value>Überspringen Sie die Boot-Verzögerung.</value></data>
-  <data name="Emulation.Coleco.Help.CartridgeTypeHelp" xml:space="preserve"><value>Wählen Sie, wie Patronenspeicherbanken gesteuert werden.</value></data>
+  <data name="Emulation.Coleco.Help.CartridgeTypeHelp"><value>Speicherschaltung des Moduls. Automatisch beibehalten, sofern die ROM-Erkennung korrekt ist.</value></data>
+  <data name="Emulation.Coleco.Help.CartridgeTypeDetails"><value>Standard: bis zu 32 KiB. MegaCart und Activision: unterschiedliche Schaltungen zur Umschaltung von ROM-Bänken. OCM: Bankumschaltung und EEPROM-Spielstände. Activision bezeichnet eine Schaltung, nicht den Spielehersteller. Ein falscher Typ kann den Start verhindern oder Fehler verursachen.</value></data>
 </root>

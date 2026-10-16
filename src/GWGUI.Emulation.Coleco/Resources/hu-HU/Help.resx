@@ -18,5 +18,6 @@
   <data name="Emulation.Coleco.Help.CropRightBorderHelp" xml:space="preserve"><value>Rejtsd el a megfelelő képernyőhatárt.</value></data>
   <data name="Emulation.Coleco.Help.CropScreenBordersHelp" xml:space="preserve"><value>A képpontok elrejtése a megjelenített kép szélein.</value></data>
   <data name="Emulation.Coleco.Help.FastBootHelp" xml:space="preserve"><value>Hagyjuk a csizma késleltetést.</value></data>
-  <data name="Emulation.Coleco.Help.CartridgeTypeHelp" xml:space="preserve"><value>Válassza ki, hogyan szabályozzák a patron memóriabankjait.</value></data>
+  <data name="Emulation.Coleco.Help.CartridgeTypeHelp"><value>A játékkazetta memóriaáramköre. Maradjon automatikus, kivéve hibás ROM-felismerés esetén.</value></data>
+  <data name="Emulation.Coleco.Help.CartridgeTypeDetails"><value>Normál: legfeljebb 32 KiB. MegaCart és Activision: eltérő áramkörök a ROM-bankok váltásához. OCM: bankváltás és EEPROM-mentések. Az Activision áramkört jelöl, nem a játék kiadóját. Hibás típus esetén a játék nem indulhat el, vagy hibásan működhet.</value></data>
 </root>

@@ -15,7 +15,7 @@
   <data name="Emulation.Bandai.Setting.DisplayRotation" xml:space="preserve"><value>전시 방향</value></data>
   <data name="Emulation.Bandai.Setting.ControlOrientation" xml:space="preserve"><value>제어 방향</value></data>
   <data name="Emulation.Bandai.Setting.MonochromePalette" xml:space="preserve"><value>Monochrome 팔레트</value></data>
-  <data name="Emulation.Bandai.Setting.FrameSkipThreshold" xml:space="preserve"><value>오디오 버퍼 임계값</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipThreshold"><value>프레임 건너뛰기 시작 임계값</value></data>
   <data name="Emulation.Bandai.Setting.FixedRefreshRate" xml:space="preserve"><value>60 Hz 모드</value></data>
   <data name="Emulation.Bandai.Setting.AudioSampleRate" xml:space="preserve"><value>오디오 샘플링 속도</value></data>
   <data name="Emulation.Bandai.Setting.AudioFilter" xml:space="preserve"><value>오디오 필터</value></data>

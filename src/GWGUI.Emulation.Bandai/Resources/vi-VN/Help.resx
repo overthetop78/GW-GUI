@@ -9,9 +9,10 @@
   <data name="Emulation.Bandai.Setting.MonochromePalette.Help" xml:space="preserve"><value>Chọn màu dùng cho trò chơi đơn sắc.</value></data>
   <data name="Emulation.Bandai.Setting.ColorDepth.Help" xml:space="preserve"><value>Chọn độ sâu màu xuất. Chế độ 24 bit cần thiết thêm năng lượng xử lý.</value></data>
   <data name="Emulation.Bandai.Setting.FrameSkipping.Help" xml:space="preserve"><value>Bỏ qua khung phim để giảm nhiễu. Chế độ tự động theo bộ đệm âm thanh. Chế độ thủ công sử dụng ngưỡng đã chọn.</value></data>
-  <data name="Emulation.Bandai.Setting.FrameSkipThreshold.Help" xml:space="preserve"><value>Trong chế độ thủ công, bỏ qua khung khi bộ đệm âm thanh nằm dưới tỷ lệ này.</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipThreshold.Help"><value>Chế độ thủ công: bỏ khung hình khi mức đầy của bộ đệm âm thanh xuống dưới ngưỡng đã chọn.</value></data>
   <data name="Emulation.Bandai.Setting.FixedRefreshRate.Help" xml:space="preserve"><value>Nhảy qua mỗi khung thứ năm để hiển thị tại 60 Hz. Nó làm cho chuyển động trở nên mịn.</value></data>
   <data name="Emulation.Bandai.Setting.AudioSampleRate.Help" xml:space="preserve"><value>Tốc độ mẫu cao hơn một chút cải thiện chất lượng âm thanh và yêu cầu thêm năng lượng xử lý.</value></data>
   <data name="Emulation.Bandai.Setting.AudioFilter.Help" xml:space="preserve"><value>Dùng bộ lọc nhập thấp để làm dịu âm thanh.</value></data>
   <data name="Emulation.Bandai.Setting.SwapButtons.Help" xml:space="preserve"><value>Đổi hành động của nút A và B.</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipThreshold.DetailedHelp"><value>Ở mức 33%, khung hình bị bỏ khi bộ đệm âm thanh đầy dưới 33%, nhằm giảm tiếng rè. Giá trị cao hơn kích hoạt việc bỏ khung hình sớm hơn. Độ trễ âm thanh và kích thước bộ đệm không thay đổi.</value></data>
 </root>

@@ -18,5 +18,6 @@
   <data name="Emulation.Coleco.Help.CropRightBorderHelp" xml:space="preserve"><value>Ascundeţi graniţa cu ecranul din dreapta.</value></data>
   <data name="Emulation.Coleco.Help.CropScreenBordersHelp" xml:space="preserve"><value>Ascunde pixeli la marginile imaginii afișate.</value></data>
   <data name="Emulation.Coleco.Help.FastBootHelp" xml:space="preserve"><value>Sări peste întârziere.</value></data>
-  <data name="Emulation.Coleco.Help.CartridgeTypeHelp" xml:space="preserve"><value>Alegeţi cum sunt controlate băncile de memorie a cartuşelor.</value></data>
+  <data name="Emulation.Coleco.Help.CartridgeTypeHelp"><value>Circuitul de memorie al cartușului. Păstrați Automat dacă ROM-ul este detectat corect.</value></data>
+  <data name="Emulation.Coleco.Help.CartridgeTypeDetails"><value>Standard: până la 32 KiB. MegaCart și Activision: circuite diferite de comutare a băncilor ROM. OCM: comutare de bănci și salvări EEPROM. Activision desemnează un circuit, nu editorul jocului. Un tip greșit poate împiedica pornirea sau provoca erori.</value></data>
 </root>

@@ -5,7 +5,7 @@
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Coleco.Help.RefreshRateHelp" xml:space="preserve"><value>Select automatic timing or the video standard.</value></data>
-  <data name="Emulation.Coleco.Help.CartridgeTypeHelp" xml:space="preserve"><value>Choose how cartridge memory banks are controlled.</value></data>
+  <data name="Emulation.Coleco.Help.CartridgeTypeHelp"><value>Cartridge memory circuit. Leave Automatic unless ROM detection is wrong.</value></data>
   <data name="Emulation.Coleco.Help.VideoChipHelp" xml:space="preserve"><value>Select the emulated video chip.</value></data>
   <data name="Emulation.Coleco.Help.AspectRatioHelp" xml:space="preserve"><value>Select the image aspect ratio. Automatic selection uses the game region.</value></data>
   <data name="Emulation.Coleco.Help.ScreenBordersHelp" xml:space="preserve"><value>Select the visible screen borders.</value></data>
@@ -19,4 +19,5 @@
   <data name="Emulation.Coleco.Help.CropRightBorderHelp" xml:space="preserve"><value>Hide the right screen border.</value></data>
   <data name="Emulation.Coleco.Help.CropScreenBordersHelp" xml:space="preserve"><value>Hide pixels at the edges of the displayed image.</value></data>
   <data name="Emulation.Coleco.Help.FastBootHelp" xml:space="preserve"><value>Skip the boot delay.</value></data>
+  <data name="Emulation.Coleco.Help.CartridgeTypeDetails"><value>Standard: up to 32 KiB. MegaCart and Activision: different circuits for switching ROM banks. OCM: bank switching and EEPROM saves. Activision names a circuit, not the publisher. A wrong type can prevent startup or cause errors.</value></data>
 </root>

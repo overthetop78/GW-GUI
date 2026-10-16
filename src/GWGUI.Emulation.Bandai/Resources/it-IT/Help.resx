@@ -9,9 +9,10 @@
   <data name="Emulation.Bandai.Setting.MonochromePalette.Help" xml:space="preserve"><value>Selezionare i colori utilizzati per i giochi monocromatici.</value></data>
   <data name="Emulation.Bandai.Setting.ColorDepth.Help" xml:space="preserve"><value>Seleziona la profondità di colore di uscita. La modalità a 24 bit richiede una maggiore potenza di elaborazione.</value></data>
   <data name="Emulation.Bandai.Setting.FrameSkipping.Help" xml:space="preserve"><value>Salta i video frame per ridurre il cracking audio. La modalità automatica segue il buffer audio. La modalità manuale utilizza la soglia selezionata.</value></data>
-  <data name="Emulation.Bandai.Setting.FrameSkipThreshold.Help" xml:space="preserve"><value>In modalità manuale, saltare i frame quando il buffer audio scende sotto questa percentuale.</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipThreshold.Help"><value>Modalità manuale: saltare fotogrammi quando il buffer audio scende sotto il livello di riempimento selezionato.</value></data>
   <data name="Emulation.Bandai.Setting.FixedRefreshRate.Help" xml:space="preserve"><value>Salta ogni quinta cornice da visualizzare a 60 Hz. Questo riduce la scorrevolezza del movimento.</value></data>
   <data name="Emulation.Bandai.Setting.AudioSampleRate.Help" xml:space="preserve"><value>Le velocità di campionamento più elevate migliorano leggermente la qualità audio e richiedono una maggiore potenza di elaborazione.</value></data>
   <data name="Emulation.Bandai.Setting.AudioFilter.Help" xml:space="preserve"><value>Applicare un filtro a basso passaggio per ammorbidire il suono.</value></data>
   <data name="Emulation.Bandai.Setting.SwapButtons.Help" xml:space="preserve"><value>Scorrere le azioni dei pulsanti A e B.</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipThreshold.DetailedHelp"><value>Al 33 %, i fotogrammi vengono saltati quando il buffer audio è pieno per meno del 33 %, per ridurre i crepitii. Valori più alti attivano il salto prima. La latenza audio e la dimensione del buffer non cambiano.</value></data>
 </root>

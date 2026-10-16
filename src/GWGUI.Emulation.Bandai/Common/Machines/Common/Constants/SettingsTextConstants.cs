@@ -14,6 +14,7 @@ internal static class SettingsTextConstants
     internal const string FrameSkippingHelp = "Emulation.Bandai.Setting.FrameSkipping.Help";
     internal const string FrameSkipThreshold = "Emulation.Bandai.Setting.FrameSkipThreshold";
     internal const string FrameSkipThresholdHelp = "Emulation.Bandai.Setting.FrameSkipThreshold.Help";
+    internal const string FrameSkipThresholdDetails = "Emulation.Bandai.Setting.FrameSkipThreshold.DetailedHelp";
     internal const string FixedRefreshRate = "Emulation.Bandai.Setting.FixedRefreshRate";
     internal const string FixedRefreshRateHelp = "Emulation.Bandai.Setting.FixedRefreshRate.Help";
     internal const string AudioSampleRate = "Emulation.Bandai.Setting.AudioSampleRate";

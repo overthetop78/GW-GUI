@@ -9,9 +9,10 @@
   <data name="Emulation.Bandai.Setting.MonochromePalette.Help" xml:space="preserve"><value>Válassza ki a monokróm játékok színeit.</value></data>
   <data name="Emulation.Bandai.Setting.ColorDepth.Help" xml:space="preserve"><value>Válassza ki a kimeneti színmélységet. A 24 bites üzemmódhoz több feldolgozási teljesítmény szükséges.</value></data>
   <data name="Emulation.Bandai.Setting.FrameSkipping.Help" xml:space="preserve"><value>Kihagyja a videó keretek csökkentésére audio repedés. Automatikus mód követi a hangpuffer. Kézi módban használja a kiválasztott küszöbértéket.</value></data>
-  <data name="Emulation.Bandai.Setting.FrameSkipThreshold.Help" xml:space="preserve"><value>Kézi módban, ugorjuk át a képkockákat, amikor a hangpuffer ez alá a százalék alá esik.</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipThreshold.Help"><value>Kézi mód: képkockák kihagyása, ha a hangpuffer telítettsége a választott szint alá csökken.</value></data>
   <data name="Emulation.Bandai.Setting.FixedRefreshRate.Help" xml:space="preserve"><value>Minden ötödik képkockát kihagyjuk 60 Hz-en. Ez csökkenti a mozgás simaságát.</value></data>
   <data name="Emulation.Bandai.Setting.AudioSampleRate.Help" xml:space="preserve"><value>A magasabb mintavételi arány némileg javítja az audió minőségét, és több feldolgozási energiát igényel.</value></data>
   <data name="Emulation.Bandai.Setting.AudioFilter.Help" xml:space="preserve"><value>Alkalmazzon egy alacsony áthaladású szűrőt a hang megpuhítására.</value></data>
   <data name="Emulation.Bandai.Setting.SwapButtons.Help" xml:space="preserve"><value>A gombok és B.</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipThreshold.DetailedHelp"><value>33% esetén a képkockák kihagyása akkor indul, ha a hangpuffer telítettsége 33% alá esik, a recsegés csökkentésére. Nagyobb érték korábban indítja a kihagyást. A hang késleltetése és a puffer mérete nem változik.</value></data>
 </root>

@@ -15,7 +15,7 @@
   <data name="Emulation.Bandai.Setting.DisplayRotation" xml:space="preserve"><value>แสดงทิศทางการทํางาน</value></data>
   <data name="Emulation.Bandai.Setting.ControlOrientation" xml:space="preserve"><value>ทิศทางการวางจอภาพ</value></data>
   <data name="Emulation.Bandai.Setting.MonochromePalette" xml:space="preserve"><value>จานสีเดียว</value></data>
-  <data name="Emulation.Bandai.Setting.FrameSkipThreshold" xml:space="preserve"><value>แปรงทาสี</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipThreshold"><value>เกณฑ์เริ่มข้ามเฟรม</value></data>
   <data name="Emulation.Bandai.Setting.FixedRefreshRate" xml:space="preserve"><value>60 โหมด Hz</value></data>
   <data name="Emulation.Bandai.Setting.AudioSampleRate" xml:space="preserve"><value>อัตราสุ่มเสียง</value></data>
   <data name="Emulation.Bandai.Setting.AudioFilter" xml:space="preserve"><value>ตัวกรองเสียง</value></data>

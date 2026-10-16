@@ -18,5 +18,6 @@
   <data name="Emulation.Coleco.Help.CropRightBorderHelp" xml:space="preserve"><value>اخفي الحدود اليمنى</value></data>
   <data name="Emulation.Coleco.Help.CropScreenBordersHelp" xml:space="preserve"><value>اخفي البكسل على حواف الصورة المُعرضة</value></data>
   <data name="Emulation.Coleco.Help.FastBootHelp" xml:space="preserve"><value>اضغط على التأخير في الأحذية</value></data>
-  <data name="Emulation.Coleco.Help.CartridgeTypeHelp" xml:space="preserve"><value>اختر كيف يتم التحكم في مصارف ذاكرة خرطوشة</value></data>
+  <data name="Emulation.Coleco.Help.CartridgeTypeHelp"><value>دائرة ذاكرة الخرطوشة. اترك الاختيار تلقائيًا ما لم يكن اكتشاف ROM خاطئًا.</value></data>
+  <data name="Emulation.Coleco.Help.CartridgeTypeDetails"><value>القياسي: حتى 32 KiB. تستخدم MegaCart وActivision دوائر مختلفة لتبديل بنوك ROM. يوفر OCM تبديل البنوك وحفظ البيانات في EEPROM. يشير Activision إلى دائرة، وليس إلى ناشر اللعبة. قد يمنع النوع الخاطئ بدء اللعبة أو يسبب أخطاء.</value></data>
 </root>

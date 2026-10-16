@@ -9,9 +9,10 @@
   <data name="Emulation.Bandai.Setting.MonochromePalette.Help" xml:space="preserve"><value>Виберіть кольори, які використовуються для монохромних ігор.</value></data>
   <data name="Emulation.Bandai.Setting.ColorDepth.Help" xml:space="preserve"><value>Виберіть глибину кольору виходу. Режим 24-біту вимагає більшої потужності обробки.</value></data>
   <data name="Emulation.Bandai.Setting.FrameSkipping.Help" xml:space="preserve"><value>Пропустити відеорамки для зменшення потокового відео. Автоматичний режим слідувати буферу аудіо. Ручний режим використовує вибраний поріг.</value></data>
-  <data name="Emulation.Bandai.Setting.FrameSkipThreshold.Help" xml:space="preserve"><value>У ручному режимі пропускаємо кадри при буфері аудіо нижче цього відсотка.</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipThreshold.Help"><value>Ручний режим: пропускати відеокадри, коли заповнення звукового буфера опускається нижче вибраного рівня.</value></data>
   <data name="Emulation.Bandai.Setting.FixedRefreshRate.Help" xml:space="preserve"><value>Пропустити кожну п'яту раму для відображення на 60 Гц. Це зменшує гладкість руху.</value></data>
   <data name="Emulation.Bandai.Setting.AudioSampleRate.Help" xml:space="preserve"><value>Вищевизначні ціни трохи покращують якість звуку і вимагають більшої кількості переробної потужності.</value></data>
   <data name="Emulation.Bandai.Setting.AudioFilter.Help" xml:space="preserve"><value>Наносити низькопрозорий фільтр для розм'якшення звуку.</value></data>
   <data name="Emulation.Bandai.Setting.SwapButtons.Help" xml:space="preserve"><value>Обмін діями кнопок А і B.</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipThreshold.DetailedHelp"><value>За 33% відеокадри пропускаються, коли звуковий буфер заповнений менш ніж на 33%, щоб зменшити потріскування. Вищі значення запускають пропуск раніше. Затримка звуку та розмір буфера не змінюються.</value></data>
 </root>

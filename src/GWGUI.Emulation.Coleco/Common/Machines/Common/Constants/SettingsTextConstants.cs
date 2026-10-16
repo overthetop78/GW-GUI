@@ -6,6 +6,7 @@ internal static class SettingsTextConstants
     internal const string RefreshRateHelp = "Emulation.Coleco.Help.RefreshRateHelp";
     internal const string CartridgeType = "Emulation.Coleco.Setting.CartridgeType";
     internal const string CartridgeTypeHelp = "Emulation.Coleco.Help.CartridgeTypeHelp";
+    internal const string CartridgeTypeDetails = "Emulation.Coleco.Help.CartridgeTypeDetails";
     internal const string VideoChip = "Emulation.Coleco.Setting.VideoChip";
     internal const string VideoChipHelp = "Emulation.Coleco.Help.VideoChipHelp";
     internal const string AspectRatio = "Emulation.Video.AspectRatio";

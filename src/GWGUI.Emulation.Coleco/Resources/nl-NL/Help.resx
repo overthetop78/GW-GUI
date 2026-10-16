@@ -18,5 +18,6 @@
   <data name="Emulation.Coleco.Help.CropRightBorderHelp" xml:space="preserve"><value>Verberg de rechter schermrand.</value></data>
   <data name="Emulation.Coleco.Help.CropScreenBordersHelp" xml:space="preserve"><value>Beeldpunten verbergen aan de randen van de afbeelding.</value></data>
   <data name="Emulation.Coleco.Help.FastBootHelp" xml:space="preserve"><value>Sla de opstartvertraging over.</value></data>
-  <data name="Emulation.Coleco.Help.CartridgeTypeHelp" xml:space="preserve"><value>Kies hoe cartridge geheugenbanken worden gecontroleerd.</value></data>
+  <data name="Emulation.Coleco.Help.CartridgeTypeHelp"><value>Geheugencircuit van de cartridge. Automatisch behouden, tenzij de ROM verkeerd wordt herkend.</value></data>
+  <data name="Emulation.Coleco.Help.CartridgeTypeDetails"><value>Standaard: maximaal 32 KiB. MegaCart en Activision: verschillende circuits om ROM-banken te schakelen. OCM: bankschakeling en EEPROM-opslag. Activision duidt een circuit aan, niet de uitgever van het spel. Een verkeerd type kan het opstarten verhinderen of fouten veroorzaken.</value></data>
 </root>

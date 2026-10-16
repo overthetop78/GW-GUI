@@ -18,5 +18,6 @@
   <data name="Emulation.Coleco.Help.CropRightBorderHelp" xml:space="preserve"><value>隐藏右屏边框 。</value></data>
   <data name="Emulation.Coleco.Help.CropScreenBordersHelp" xml:space="preserve"><value>将像素隐藏在显示图像的边缘。</value></data>
   <data name="Emulation.Coleco.Help.FastBootHelp" xml:space="preserve"><value>跳过拖后腿。</value></data>
-  <data name="Emulation.Coleco.Help.CartridgeTypeHelp" xml:space="preserve"><value>选择墨盒内存库的控制方式 。</value></data>
+  <data name="Emulation.Coleco.Help.CartridgeTypeHelp"><value>卡带的存储电路。除非ROM识别有误，否则请保留自动模式。</value></data>
+  <data name="Emulation.Coleco.Help.CartridgeTypeDetails"><value>标准：最大32 KiB。MegaCart和Activision：使用不同的ROM存储体切换电路。OCM：支持存储体切换和EEPROM存档。Activision在此是电路名称，并非游戏发行商。选错类型可能导致无法启动或运行出错。</value></data>
 </root>
