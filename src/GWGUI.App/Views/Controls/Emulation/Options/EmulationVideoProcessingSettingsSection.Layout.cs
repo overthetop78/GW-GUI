@@ -41,7 +41,7 @@ internal sealed partial class EmulationVideoProcessingSettingsSection : UserCont
     }
 
     private FrameworkElement CreateImageGroups() => SideBySideGroups(
-        FramedSection(EmulationImageParametersSettingsBlock.Create(_configuration.Adjustments, update => SetAdjustments(update(_configuration.Adjustments)))),
+        FramedSection(EmulationImageParametersSettingsBlock.Create(_configuration.Adjustments, update => SetAdjustments(update(_configuration.Adjustments)), _imageSettings)),
         FramedSection(EmulationImageRestorationSettingsBlock.Create(_configuration.Restoration, update => SetRestoration(update(_configuration.Restoration)))));
 
     private FrameworkElement CreateEffectGroups()
@@ -54,7 +54,7 @@ internal sealed partial class EmulationVideoProcessingSettingsSection : UserCont
         {
             FramedSection(EmulationTemporalEffectsSettingsBlock.Create(_configuration.Temporal, update => SetTemporal(update(_configuration.Temporal)))),
             FramedSection(CreateSignalSimulation()),
-            FramedSection(CreateStylistic())
+            FramedSection(AppendModuleSettings(CreateStylistic(), _effectSettings))
         };
         for (var index = 0; index < groups.Length; index++)
         {
@@ -76,6 +76,15 @@ internal sealed partial class EmulationVideoProcessingSettingsSection : UserCont
         Grid.SetColumn(right, 1);
         grid.Children.Add(right);
         return grid;
+    }
+
+    private static FrameworkElement AppendModuleSettings(FrameworkElement common, FrameworkElement? additional)
+    {
+        if (additional is null) return common;
+        var panel = new StackPanel();
+        panel.Children.Add(common);
+        panel.Children.Add(additional);
+        return panel;
     }
 
     private FrameworkElement CreateSelectors()

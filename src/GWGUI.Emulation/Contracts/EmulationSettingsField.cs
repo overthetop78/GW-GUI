@@ -23,4 +23,5 @@ public sealed record EmulationSettingsField(
     IReadOnlyList<string>? AppliesToControllerIds = null,
     int? ControllerPortNumber = null,
     string? FrequencyScaleFieldId = null,
-    bool IsGlobalControllerOption = false);
+    bool IsGlobalControllerOption = false,
+    EmulationVideoSettingsSection VideoSection = EmulationVideoSettingsSection.Display);

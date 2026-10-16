@@ -22,6 +22,8 @@ internal sealed partial class EmulationVideoProcessingSettingsSection : UserCont
     private FrameworkElement? _displaySettings;
     private FrameworkElement? _rendererChoice;
     private FrameworkElement? _nativeSettings;
+    private FrameworkElement? _imageSettings;
+    private FrameworkElement? _effectSettings;
     private bool _displayOwnsFrames;
     private bool _loading;
     private Slider? _activeSliderEdit;
@@ -53,13 +55,16 @@ internal sealed partial class EmulationVideoProcessingSettingsSection : UserCont
         RebuildContent();
     }
 
-    internal void SetConfiguration(EmulationVideoProcessingConfiguration? configuration, FrameworkElement? displaySettings, FrameworkElement? rendererChoice, bool displayOwnsFrames = false, FrameworkElement? nativeSettings = null)
+    internal void SetConfiguration(EmulationVideoProcessingConfiguration? configuration, FrameworkElement? displaySettings, FrameworkElement? rendererChoice, bool displayOwnsFrames = false,
+        FrameworkElement? nativeSettings = null, FrameworkElement? imageSettings = null, FrameworkElement? effectSettings = null)
     {
         _configuration = EmulationVideoProcessingConfigurationFunctions.Normalize(configuration);
         _displaySettings = displaySettings;
         _rendererChoice = rendererChoice;
         _displayOwnsFrames = displayOwnsFrames;
         _nativeSettings = nativeSettings;
+        _imageSettings = imageSettings;
+        _effectSettings = effectSettings;
         RebuildContent();
     }
 
@@ -78,6 +83,10 @@ internal sealed partial class EmulationVideoProcessingSettingsSection : UserCont
                 EmulationSettingsLayout.DetachReusableElement(_rendererChoice);
             if (_nativeSettings is not null)
                 EmulationSettingsLayout.DetachReusableElement(_nativeSettings);
+            if (_imageSettings is not null)
+                EmulationSettingsLayout.DetachReusableElement(_imageSettings);
+            if (_effectSettings is not null)
+                EmulationSettingsLayout.DetachReusableElement(_effectSettings);
             var tabs = new TabControl { Margin = new Thickness(12) };
             tabs.Items.Add(Tab(EmulationVideoSettingsLayoutConstants.DisplayTabId,
                 EmulationResourceKeys.VideoTabDisplay,

@@ -90,7 +90,11 @@ internal sealed partial class EmulationModuleSettingsSection
     {
         const string rendererResourceKey = EmulationResourceKeys.VideoRenderingSettings;
         var fields = settings.Blocks.Where(block => block.Tab == EmulationMachineTab.Video && block.IsVisible).SelectMany(block => block.Fields).Where(field => field.IsVisible).ToArray();
-        var blocks = settings.Blocks.Where(block => block.Tab == EmulationMachineTab.Video && block.IsVisible).ToArray();
+        var imageSettings = EmulationSettingsLayout.VideoSettingsFields(fields.Where(field => field.VideoSection == EmulationVideoSettingsSection.Image).Select(CreateVideoSettingsField).ToArray());
+        var effectSettings = EmulationSettingsLayout.VideoSettingsFields(fields.Where(field => field.VideoSection == EmulationVideoSettingsSection.Effects).Select(CreateVideoSettingsField).ToArray());
+        var blocks = settings.Blocks.Where(block => block.Tab == EmulationMachineTab.Video && block.IsVisible)
+            .Select(block => block with { Fields = block.Fields.Where(field => field.VideoSection == EmulationVideoSettingsSection.Display).ToArray() }).ToArray();
+        fields = fields.Where(field => field.VideoSection == EmulationVideoSettingsSection.Display).ToArray();
         FrameworkElement? nativeSettings = null;
         FrameworkElement display;
         if (blocks.Any(block => block.IsCompact))
@@ -152,7 +156,8 @@ internal sealed partial class EmulationModuleSettingsSection
         });
         var rendererChoice = EmulationSettingsLayout.VideoSettingsChoice(
             new EmulationVideoSettingsField(LocExtension.Get(rendererResourceKey), renderer, Explanation: LocExtension.Get("Emulation.Help.Video.Rendering.Short"), DetailedExplanation: LocExtension.Get("Emulation.Help.Video.Rendering.Detailed")));
-        _videoProcessing.SetConfiguration(profile.Processing, display, rendererChoice, nativeSettings: nativeSettings);
+        _videoProcessing.SetConfiguration(profile.Processing, display, rendererChoice, nativeSettings: nativeSettings,
+            imageSettings: imageSettings, effectSettings: effectSettings);
         _videoProcessing.SetShaderLoading(EmulationVideoShaderLoadingStatus.IsLoading(_module.Id, _configuration.Id));
         ApplySettingsRules(settings);
         return EmulationSettingsLayout.VideoSettingsPage(_videoProcessing);

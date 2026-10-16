@@ -1,5 +1,34 @@
 # Travaux communs restants
 
+## Palettes WonderSwan dans Image
+
+- [x] Déplacer les préréglages sans dupliquer les réglages communs.
+  - [x] Créer `src/GWGUI.Emulation/Enums/EmulationVideoSettingsSection.cs` et modifier `Contracts/EmulationSettingsField.cs` : déclarer la destination Affichage/Image/Effets des champs vidéo, Affichage par défaut.
+  - [x] Modifier `src/GWGUI.App/Views/Controls/Emulation/Options/ModuleSettings/EmulationModuleSettingsSection.Layout.cs`, `EmulationVideoProcessingSettingsSection.cs`, `EmulationVideoProcessingSettingsSection.Layout.cs` et `EmulationImageParametersSettingsBlock.cs` : présenter les champs Image dans le bloc de paramètres existant et les exclure d'Affichage.
+  - [x] Créer `src/GWGUI.Emulation.Bandai/Emulators/BeetleWonderSwan/Functions/PaletteFunctions.cs` et modifier sa fabrique et `Functions/SettingsFunctions.cs`, ainsi que `Emulators/Common/Interop/Factories/MachineFactory.cs` et `Emulators/Common/Interop/Services/ExternalCore.cs` : fournir les palettes uniquement aux trois WonderSwan dans Image et appliquer au cœur le défaut du modèle sans écraser un choix explicite.
+- [x] Vérifier et livrer le lot.
+  - [x] Créer `tests/GWGUI.Tests/Emulation/Bandai/MonochromePaletteTests.cs` : vérifier les trois défauts, le choix explicite et la portée des champs Image.
+  - [x] Modifier `tests/GWGUI.Tests/Interface/SettingsViews/EmulationModuleSettingsNavigationScenarios.cs` : étendre le contrôle existant aux champs Image/Effets et à leur conservation après reconstruction du panneau.
+  - [x] Mettre à jour `docs/tasks/emulation/commun.md` après les tests ciblés et le build Debug de l'application et des 23 modules ; consigner le résultat sans déclarer Pippin raccordé.
+
+Résultat : palette monochrome déplacée dans le bloc Image existant, uniquement pour WonderSwan, WonderSwan Color et SwanCrystal. Les réglages communs restent accessibles. Défauts transmis au cœur : wonderswan, wondeswan_color (orthographe native), swancrystal ; les choix explicites sont conservés. Aucun nouveau libellé, aucune traduction dupliquée ni migration. Le contrat commun indique seulement la section vidéo ; l'application ne connaît aucun identifiant Bandai.
+
+34 contrôles ciblés réussis : 32 Bandai, dont huit nouveaux cas de palettes, et deux contrôles existants d'interface vidéo, dont celui étendu aux champs Image/Effets après reconstruction. Build Debug complet réussi ; exécutable présent, 23 modules et deux copies du SDK vérifiés par empreinte, staging absent. Aucun cœur natif ni fixture externe lancé pour ce lot. Pippin conserve son libellé corrigé, sans raccordement de MAME Libretro : l'utilisateur a choisi d'attendre une DLL fonctionnelle.
+## Correction du libellé Pippin
+
+- [x] Documenter les vérifications demandées avant le raccordement.
+  - [x] Modifier `docs/tasks/emulation/commun.md` : distinguer le pilote MAME officiel du pilote Libretro du catalogue et expliquer la palette monochrome WonderSwan sans changer les modèles ni retirer leurs options.
+
+Vérification du 16 octobre : `libretro/mame`, révision `5f5a07748ce5c239c4118463ce8e6473743d4859`, conserve `MACHINE_NOT_WORKING` dans `src/mame/apple/pippin.cpp`. Le constat sur `mamedev/mame` ci-dessous ne vaut donc pas pour le port Libretro. Décision utilisateur : attendre une DLL fonctionnelle, sans raccordement expérimental ; aucun moteur supplémentaire ni compatibilité fonctionnelle déclarés.
+
+Beetle WonderSwan : `wswan_mono_palette` concerne uniquement la colorisation des jeux monochromes. Les valeurs WonderSwan, WonderSwan Color et SwanCrystal imitent les teintes de leurs écrans, sans sélectionner le matériel et sans transformer un jeu monochrome en jeu couleur. La palette reste utile sur une machine couleur pour les jeux monochromes compatibles. Aucun choix retiré ni modèle modifié pour cette question explicative.
+
+- [x] Corriger le nom et consigner la cause du sélecteur vide.
+  - [x] Modifier `src/GWGUI.Emulation.Apple/Resources/00-Base/Model.resx` : remplacer « Apple / Bandai Pippin @mark » par « Pippin » dans la ressource invariante.
+  - [x] Modifier `docs/tasks/emulation/commun.md` : consigner que le catalogue Pippin déclare `Emulator.None` et aucune fabrique compatible ; distinguer cette absence de raccordement du pilote existant dans MAME.
+
+Le sélecteur vide provient du catalogue local : `PippinModelCatalog` déclare `Emulator.None` et une liste de moteurs vide. Le module Apple ne possède que les adaptateurs AppleWin et Mini vMac. Le pilote Pippin existe dans MAME ; sa source officielle actuelle (`src/mame/apple/pippin.cpp`) enregistre la machine avec `MACHINE_SUPPORTS_SAVE`, sans `MACHINE_NOT_WORKING`. L'absence de raccordement local ne permet donc pas de conclure que MAME ne sait pas émuler Pippin. Le raccordement et la qualification de la DLL Libretro restent à réaliser ; aucune compatibilité native n'est déclarée par ce changement de libellé.
+
 Suivi des demandes encore ouvertes. Les étapes terminées et leurs journaux détaillés ont été retirés. Le catalogue `liste-emulateur-libretro.md`, la méthode `methode-modules.md`, le chronomètre et les suivis Atari/Commodore/NEC sont conservés.
 
 Dernière livraison vérifiée : correctif LRPS2 sans conversion des anciens libellés, build Debug réussi, application, SDK et 23 modules vérifiés par empreinte. Exécutable : `F:/GW GUI/build/Debug/GW GUI/gwgui.exe`. Les 390 contrôles Sony du lot LRPS2 sont réussis ; les 152 contrôles des entrées communes restent consignés dans `9694f5147`. Le lot précédent de constantes audio communes a passé 287 contrôles des quinze familles (`d37efb8d5`). Ces résultats ne valent pas qualification native exhaustive des cinquante DLL du catalogue.

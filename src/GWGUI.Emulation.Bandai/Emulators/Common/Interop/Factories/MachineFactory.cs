@@ -68,7 +68,7 @@ internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmu
 
     public IReadOnlyList<EmulationMedia> ResolveConfiguredMedia(MachineConfiguration configuration) => configuration.Media.Select(EmulationMediaConversionFunctions.ToCommon).ToArray();
 
-    public IReadOnlyDictionary<string, string> GetRuntimeOptions(MachineConfiguration configuration) => configuration.Options;
+    public virtual IReadOnlyDictionary<string, string> GetRuntimeOptions(MachineConfiguration configuration) => configuration.Options;
 
     public Machine Create(MachineConfiguration configuration, EmulatorCreationContext context)
     {

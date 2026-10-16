@@ -25,15 +25,20 @@ internal static class EmulationModuleSettingsNavigationScenarios
         var section = new EmulationVideoProcessingSettingsSection();
         var display = new TextBlock { Text = "Display" };
         var renderer = new ComboBox();
+        var image = new ComboBox();
+        var effects = new ComboBox();
         var native = new StackPanel();
         native.Children.Add(new Expander { Header = "PGXP", Content = new CheckBox() });
         try
         {
-            section.SetConfiguration(new(), display, renderer, nativeSettings: native);
+            section.SetConfiguration(new(), display, renderer, nativeSettings: native, imageSettings: image, effectSettings: effects);
             for (var pass = 0; pass < 2; pass++)
             {
                 var tabs = Assert.IsType<TabControl>(section.Content);
                 Assert.Equal(4, tabs.Items.Count);
+                Assert.Contains(image, MachineConfigurationScenarios.Controls<ComboBox>((DependencyObject)((TabItem)tabs.Items[1]).Content));
+                Assert.Contains(effects, MachineConfigurationScenarios.Controls<ComboBox>((DependencyObject)((TabItem)tabs.Items[2]).Content));
+                Assert.DoesNotContain(image, MachineConfigurationScenarios.Controls<ComboBox>((DependencyObject)((TabItem)tabs.Items[0]).Content));
                 Assert.Contains(MachineConfigurationScenarios.Controls<Expander>((DependencyObject)((TabItem)tabs.Items[3]).Content), item => Equals(item.Header, "PGXP"));
                 FrameworkElement current = renderer;
                 while (current.Parent is FrameworkElement parent)
@@ -56,6 +61,8 @@ internal static class EmulationModuleSettingsNavigationScenarios
             EmulationSettingsLayout.DetachReusableElement(display);
             EmulationSettingsLayout.DetachReusableElement(renderer);
             EmulationSettingsLayout.DetachReusableElement(native);
+            EmulationSettingsLayout.DetachReusableElement(image);
+            EmulationSettingsLayout.DetachReusableElement(effects);
             section.Content = null;
         }
     }

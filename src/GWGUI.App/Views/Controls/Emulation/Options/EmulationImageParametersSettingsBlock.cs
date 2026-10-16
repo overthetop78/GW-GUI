@@ -13,7 +13,7 @@ namespace GWGUI.App.Views.Controls.Emulation.Options;
 
 internal static class EmulationImageParametersSettingsBlock
 {
-    internal static FrameworkElement Create(EmulationImageAdjustments adjustments, Action<Func<EmulationImageAdjustments, EmulationImageAdjustments>> changed)
+    internal static FrameworkElement Create(EmulationImageAdjustments adjustments, Action<Func<EmulationImageAdjustments, EmulationImageAdjustments>> changed, FrameworkElement? additionalSettings = null)
     {
         var block = new StackPanel { Margin = new Thickness(0, 0, 0, 12) };
         block.Children.Add(new TextBlock
@@ -29,6 +29,7 @@ internal static class EmulationImageParametersSettingsBlock
         sliders.Children.Add(VerticalSlider(EmulationVideoProcessingCatalog.Saturation, adjustments.Saturation, value => changed(current => current with { Saturation = value })));
         sliders.Children.Add(VerticalSlider(EmulationVideoProcessingCatalog.Sharpness, adjustments.Sharpness, value => changed(current => current with { Sharpness = value })));
         block.Children.Add(sliders);
+        if (additionalSettings is not null) block.Children.Add(additionalSettings);
         return block;
 
     }

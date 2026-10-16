@@ -73,7 +73,7 @@ internal sealed partial class ExternalCore : IEmulatorCore
             Directory.CreateDirectory(systemDirectory);
             _library = new ExternalCoreLibrary(_corePath);
             _exports = CoreFunctions.ResolveExports(_library);
-            var runtimeOptions = new Dictionary<string, string>(configuration.Options, StringComparer.Ordinal);
+            var runtimeOptions = new Dictionary<string, string>(new Engine().Adapter(configuration).GetRuntimeOptions(configuration), StringComparer.Ordinal);
             _callbacks = new ExternalHostCallbacks(Emulator,
                 systemDirectory,
                 Path.Combine(_sessionDirectory, CoreDirectoryConstants.ContentDirectoryName),

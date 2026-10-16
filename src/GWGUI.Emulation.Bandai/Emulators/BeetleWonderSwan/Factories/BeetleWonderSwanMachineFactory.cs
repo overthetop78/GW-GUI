@@ -5,6 +5,9 @@ namespace GWGUI.Emulation.Bandai.Emulators.BeetleWonderSwan.Factories;
 
 internal sealed class BeetleWonderSwanMachineFactory() : MachineFactory(EmulatorConstants.Entry), IEmulatorSettings, IEmulatorContentFormats
 {
+    public override IReadOnlyDictionary<string, string> GetRuntimeOptions(MachineConfiguration configuration) =>
+        GWGUI.Emulation.Bandai.Emulators.BeetleWonderSwan.Functions.PaletteFunctions.RuntimeOptions(configuration);
+
     public IReadOnlySet<string> SupportedContentExtensions(IReadOnlySet<string> declaredExtensions, bool requiresFilePath)
     {
         var extensions = new HashSet<string>(declaredExtensions, StringComparer.OrdinalIgnoreCase);

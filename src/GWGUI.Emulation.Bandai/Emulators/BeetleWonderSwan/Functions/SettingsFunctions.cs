@@ -23,7 +23,17 @@ internal static class SettingsDescriptionFunctions
                 EmulationMachineTab.Controllers => SettingsConstants.ResourceNativeControls,
                 _ => throw new InvalidOperationException()
             };
-            blocks.Add(Block(group.Key, resource, group.Select(option => Native(configuration, option, group.Key, resource)).ToArray())with { IsCompact = group.Key == EmulationMachineTab.Audio });
+            blocks.Add(Block(group.Key, resource, group.Select(option =>
+            {
+                var field = Native(configuration, option, group.Key, resource);
+                return option.Key == OptionConstants.OptionMonoPalette
+                    ? field with
+                    {
+                        VideoSection = EmulationVideoSettingsSection.Image,
+                        Value = configuration.Options.GetValueOrDefault(option.Key, PaletteFunctions.Default(configuration.Model))
+                    }
+                    : field;
+            }).ToArray())with { IsCompact = group.Key == EmulationMachineTab.Audio });
         }
 
         return blocks;
