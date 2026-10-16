@@ -1,13 +1,5 @@
 # Third-party notices
 
-## Intellivision controller photographs
-
-Asset: `src/GWGUI.App/Assets/Controllers/mattel-intellivision-controller.png`.
-Photographs by Evan-Amos, 2 January 2012, provided by Video Games New York.
-Sources: https://commons.wikimedia.org/wiki/File:Intellivision-Controller.jpg and https://commons.wikimedia.org/wiki/File:Intellivision-Console-Set.png.
-License for both photographs and this adaptation: Creative Commons Attribution-ShareAlike 3.0 Unported, https://creativecommons.org/licenses/by-sa/3.0/.
-Adaptation: manual exterior alpha masks, controller crop from the console photograph, rotations of -35 and +27 degrees respectively, proportional resizing and composition of two complementary views on a transparent 512 x 512 canvas using ImageMagick. The opposite sides make all three side-button actions visible; both photographed keypads and directional discs are preserved. External cables and the console are excluded. No generated or reconstructed parts.
-
 ## Thomson TO8D photograph
 
 Asset: `src/GWGUI.Emulation.Thomson/Assets/Machines/To8D.png`.
@@ -172,12 +164,6 @@ Photograph by Marco van den Hout, 27 August 2004, licensed under CC BY-SA 3.0: h
 
 Asset: `src/GWGUI.Emulation.Philips/Assets/Machines/JopacJo7400.png`.
 Source photograph preserved by the Videopac.org Jopac archive: http://videopac.org/jopac/ , image http://videopac.org/jopac/p1010004.jpg (1600 x 1200). No photographer or specific reuse license is identified by the source. Manual silhouette alpha mask, removal of the exterior shadow and proportional resizing with ImageMagick to 512 x 393 pixels. The entire photographed console, membrane keyboard and original markings are retained; no generated or reconstructed parts.
-
-## Sony PSP-1000 controller photograph
-
-Asset: `src/GWGUI.App/Assets/Controllers/sony-psp-1000.png`.
-Photograph by Evan-Amos, released into the public domain: https://commons.wikimedia.org/wiki/File:Sony-PSP-1000-Body.png . Original: https://upload.wikimedia.org/wikipedia/commons/5/5d/Sony-PSP-1000-Body.png .
-Adaptation: manual exterior silhouette mask, rotation by -8.5 degrees, proportional resizing and transparent padding to 512 x 240 pixels with ImageMagick. The photographed PSP-1000, screen, controls, markings and upper buttons are preserved without generated or reconstructed parts.
 
 ## Sony original DualShock controller photographs
 
