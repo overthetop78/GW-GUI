@@ -95,7 +95,8 @@ internal static class InputSettingsFunctions
             EmulationControllerVisualIds.AppleStandardJ665,
             EmulationControllerVisualIds.AppleA2M2002,
             EmulationControllerVisualIds.AppleChMachII,
-            EmulationControllerVisualIds.AppleChMachIII
+            EmulationControllerVisualIds.AppleChMachIII,
+            EmulationControllerVisualIds.AppleKraftPremiumII
         ] : null,
         DefaultVisualId: category == PeripheralCategory.AnalogJoystick ? EmulationControllerVisualIds.AppleStandardJ665 : null,
         VisualCommandIds: category == PeripheralCategory.AnalogJoystick ? new Dictionary<EmulationControllerVisualControl, string>
@@ -106,6 +107,10 @@ internal static class InputSettingsFunctions
             [EmulationControllerVisualControl.DirectionRight] = EmulationControllerCommandIds.Right,
             [EmulationControllerVisualControl.PrimaryAction] = EmulationControllerCommandIds.Fire1,
             [EmulationControllerVisualControl.SecondaryAction] = EmulationControllerCommandIds.Fire2
+        } : null,
+        VisualBindingDefinitions: category == PeripheralCategory.AnalogJoystick ? new Dictionary<string, IReadOnlyList<InputBindingDefinition>>
+        {
+            [EmulationControllerVisualIds.AppleKraftPremiumII] = ControllerDefinitions(category).Where(definition => definition.Id != EmulationControllerCommandIds.Fire2).ToArray()
         } : null
     ) { Category = category == PeripheralCategory.None ? EmulationControllerCategory.None : EmulationControllerCategory.Joystick };
     private static IReadOnlyList<InputBindingDefinition> ControllerDefinitions(PeripheralCategory category) => category == PeripheralCategory.None 

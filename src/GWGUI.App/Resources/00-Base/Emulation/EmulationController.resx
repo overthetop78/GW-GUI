@@ -158,4 +158,5 @@
   <data name="Emulation.Controller.Visual.Model.apple-pippin-applejack-wired" xml:space="preserve"><value>Pippin Applejack P-ADB</value></data>
   <data name="Emulation.Controller.Visual.Model.apple-ch-mach-ii" xml:space="preserve"><value>CH Products Mach II</value></data>
   <data name="Emulation.Controller.Visual.Model.apple-ch-mach-iii" xml:space="preserve"><value>CH Products Mach III</value></data>
+  <data name="Emulation.Controller.Visual.Model.apple-kraft-premium-ii" xml:space="preserve"><value>Kraft Premium II</value></data>
 </root>

@@ -8,6 +8,8 @@ Historique détaillé disponible localement : `git show 9694f5147:docs/tasks/emu
 
 ## controller-artwork
 
+Lot Apple : Kraft Premium II ajouté aux cinq visuels Apple II, avec quatre directions analogiques et un seul bouton de tir ; PNG transparent 512 × 504. Les 46 contrôles Apple et catalogue passent avec les DLL du build Debug ; exécutable, deux copies du SDK et 23 modules vérifiés, staging et fichiers temporaires supprimés.
+
 - [ ] Réaliser les profils NEC
 - [ ] Réaliser les profils Microsoft
 - [ ] Réaliser les profils Sony

@@ -13,6 +13,7 @@ internal static partial class ControllerArtworkCatalog
         profiles[EmulationControllerVisualIds.AppleA2M2002] = CreateAppleA2M2002();
         profiles[EmulationControllerVisualIds.AppleChMachII] = CreateAppleChMachII();
         profiles[EmulationControllerVisualIds.AppleChMachIII] = CreateAppleChMachIII();
+        profiles[EmulationControllerVisualIds.AppleKraftPremiumII] = CreateAppleKraftPremiumII();
         profiles[EmulationControllerVisualIds.PippinApplejack] = CreatePippinApplejack();
         profiles[EmulationControllerVisualIds.PippinApplejackWired] = CreatePippinApplejackWired();
         profiles[EmulationControllerVisualIds.AmstradGx4000Controller] = CreateAmstradGx4000Controller();

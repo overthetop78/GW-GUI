@@ -323,10 +323,16 @@ public sealed class AppleModuleTests
         Assert.Contains(EmulationControllerVisualIds.AppleA2M2002, joystick.CompatibleVisualIds!);
         Assert.Contains(EmulationControllerVisualIds.AppleChMachII, joystick.CompatibleVisualIds!);
         Assert.Contains(EmulationControllerVisualIds.AppleChMachIII, joystick.CompatibleVisualIds!);
-        Assert.Equal(4, joystick.CompatibleVisualIds!.Count);
+        Assert.Contains(EmulationControllerVisualIds.AppleKraftPremiumII, joystick.CompatibleVisualIds!);
+        Assert.Equal(5, joystick.CompatibleVisualIds!.Count);
         Assert.Equal(6, joystick.VisualCommandIds!.Count);
         Assert.Equal(EmulationControllerCommandIds.Fire1, joystick.VisualCommandIds[EmulationControllerVisualControl.PrimaryAction]);
         Assert.Empty(port.Bindings.Values);
+        var kraftBindings = joystick.VisualBindingDefinitions![EmulationControllerVisualIds.AppleKraftPremiumII];
+        Assert.Equal(5, kraftBindings.Count);
+        Assert.Contains(kraftBindings, definition => definition.Id == EmulationControllerCommandIds.Fire1);
+        Assert.DoesNotContain(kraftBindings, definition => definition.Id == EmulationControllerCommandIds.Fire2);
+        Assert.All(kraftBindings.Take(4), definition => Assert.NotNull(definition.OppositeDirectionId));
         Assert.All(port.Bindings.Definitions.Take(4), definition => Assert.NotNull(definition.OppositeDirectionId));
         foreach (var visualId in joystick.CompatibleVisualIds)
         {

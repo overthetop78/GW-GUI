@@ -185,6 +185,12 @@ Pippin wired Applejack controller photograph: Evan-Amos, public domain, https://
 
 CH Products Mach II and Mach III Apple II joystick photographs: Apple II Documentation Project, https://mirrors.apple2.org.za/Apple%20II%20Documentation%20Project/Peripherals/Digitizers/CH%20Products%20Mach%20II/Photos/CH%20Products%20Mach%20II.JPG and https://mirrors.apple2.org.za/Apple%20II%20Documentation%20Project/Peripherals/Digitizers/CH%20Products%20Mach%20III/Photos/CH%20Products%20Mach%20III.JPG . The archive does not identify a photographer or a specific license. The Mach III photograph contains two controllers; the Apple II controller with the 16-pin connector is the left-hand one retained here. Manual silhouette masks and proportional resizing with ImageMagick only, with no generated content. The shaft-top button duplicates button 0, as documented in Apple II/IIe/IIc Expansion Guide (1985), https://vintageapple.org/apple_ii/pdf/Apple_II-IIe-IIc_Expansion_Guide_1985.pdf .
 
+## Kraft Premium II Apple joystick photograph
+
+Asset: `src/GWGUI.App/Assets/Controllers/apple-kraft-premium-ii.png`.
+Source: owen2471, https://www.amibay.com/threads/vintage-kraft-premium-ii-joystick-apple.2455381/ , attachment `IMG_5396.webp` (2550363). The seller identifies the Apple version and reports using it on an Apple IIc. No specific reuse license is stated by the source.
+Adaptation: manual silhouette alpha mask and proportional resizing to a maximum dimension of 512 pixels with ImageMagick. The original casing, analog stick, single fire button and mechanical centering controls are preserved; cable and background removed. No generated content.
+
 ## Sinclair ZX Spectrum 128K photograph
 
 Asset: `src/GWGUI.Emulation.Sinclair/Assets/Machines/Spectrum128K.png`.
