@@ -1,4 +1,5 @@
 using System.Reflection;
+using System.Diagnostics;
 using GWGUI.Emulation.Contracts;
 using GWGUI.Emulation.Enums;
 using GWGUI.Emulation.Sony.Common.Contracts;
@@ -11,6 +12,29 @@ namespace GWGUI.Tests.Emulation.Sony;
 
 public sealed class NativeShutdownTests
 {
+    [Theory]
+    [InlineData("Pcsx2", false)]
+    [InlineData("Pcsx2", true)]
+    [InlineData("Ppsspp", false)]
+    [InlineData("Ppsspp", true)]
+    public void HostExitObservationFailureIsReportedInsteadOfHidden(string adapter, bool terminate)
+    {
+        using IDisposable core = adapter == "Pcsx2"
+            ? new GWGUI.Emulation.Sony.Emulators.Pcsx2.Services.ProcessCore("unused-host")
+            : new GWGUI.Emulation.Sony.Emulators.Ppsspp.Services.ProcessCore("unused-host");
+        using var unassociatedProcess = new Process();
+        var processField = core.GetType().GetField("_process", BindingFlags.Instance | BindingFlags.NonPublic)!;
+        processField.SetValue(core, unassociatedProcess);
+        if (terminate)
+        {
+            var method = core.GetType().GetMethod("TerminateProcess", BindingFlags.Instance | BindingFlags.NonPublic)!;
+            var error = Assert.Throws<TargetInvocationException>(() => method.Invoke(core, null));
+            Assert.IsType<InvalidOperationException>(error.InnerException);
+        }
+        else Assert.Throws<InvalidOperationException>(core.Dispose);
+        Assert.Null(processField.GetValue(core));
+    }
+
     [Theory]
     [InlineData("Common", "Stop", false)]
     [InlineData("Common", "Stop", true)]

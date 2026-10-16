@@ -236,28 +236,26 @@ internal sealed class ProcessCore : IEmulatorCore
             DisposeSafely(_videoMemory); _videoMemory = null;
             var process = _process;
             _process = null;
-            if (process is not null)
+            try
             {
-                try
-                {
-                    if (!process.WaitForExit(5_000)) process.Kill(true);
-                    process.WaitForExit(5_000);
-                }
-                catch (Exception) { }
-                finally { DisposeSafely(process); }
+                if (process is not null) WaitForProcessExit(process, graceful: true);
             }
-            while (_audio.TryDequeue(out _)) { }
-            LatestVideoFrame = null;
-            LatestAudioChunk = null;
-            Options = [];
-            Diagnostics = [];
-            ShutdownRequested = false;
-            LedStates = new Dictionary<int, bool>();
-            DiskCount = 0;
-            CurrentDiskIndex = -1;
-            _input.Reset();
-            _initialized = false;
-            _connectionFailed = false;
+            finally
+            {
+                DisposeSafely(process);
+                while (_audio.TryDequeue(out _)) { }
+                LatestVideoFrame = null;
+                LatestAudioChunk = null;
+                Options = [];
+                Diagnostics = [];
+                ShutdownRequested = false;
+                LedStates = new Dictionary<int, bool>();
+                DiskCount = 0;
+                CurrentDiskIndex = -1;
+                _input.Reset();
+                _initialized = false;
+                _connectionFailed = false;
+            }
         }
     }
 
@@ -322,13 +320,21 @@ internal sealed class ProcessCore : IEmulatorCore
         var process = _process;
         _process = null;
         if (process is null) return;
-        try
-        {
-            if (!process.HasExited) process.Kill(true);
-            process.WaitForExit(5_000);
-        }
-        catch (Exception) { }
+        try { WaitForProcessExit(process, graceful: false); }
         finally { DisposeSafely(process); }
+    }
+
+    private static void WaitForProcessExit(Process process, bool graceful)
+    {
+        if (!graceful || !process.WaitForExit(ProcessCoreConstants.GracefulShutdownTimeoutMilliseconds))
+        {
+            if (!process.HasExited)
+            {
+                try { process.Kill(entireProcessTree: true); }
+                catch (InvalidOperationException) when (process.HasExited) { }
+            }
+        }
+        process.WaitForExit();
     }
 
     private static void DisposeSafely(IDisposable? value)
