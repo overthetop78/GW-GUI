@@ -1,6 +1,7 @@
 using GWGUI.App.Constants.Controls.Visual;
 using GWGUI.App.Contracts.Emulation.Configurations;
 using GWGUI.App.Functions.Views.Common;
+using GWGUI.App.Functions.Views.Emulation.Machine;
 using GWGUI.App.Localization.Extensions;
 using GWGUI.App.Views.Controls.Common;
 using System.Windows;
@@ -153,7 +154,7 @@ public sealed partial class EmulationSection
     {
         var image = EmulationAssetFunctions.Load(module, module.BrandImageResourceName);
         if (image is null) return null;
-        var button = CreateSelectorButton(displayName, image, ReferenceEquals(_selectedModule, module));
+        var button = EmulationSelectorButtonFunctions.Create(displayName, image, ReferenceEquals(_selectedModule, module));
         button.Click += (_, _) => SelectModule(module);
         return button;
     }
@@ -162,7 +163,7 @@ public sealed partial class EmulationSection
     {
         var image = EmulationAssetFunctions.Load(module, definition.ImageResourceName);
         if (image is null) return null;
-        var button = CreateSelectorButton(displayName, image, ReferenceEquals(_selectedModule, module) && _selectedMachineId == definition.Id);
+        var button = EmulationSelectorButtonFunctions.Create(displayName, image, ReferenceEquals(_selectedModule, module) && _selectedMachineId == definition.Id);
         button.Click += (_, _) => SelectMachine(module, definition);
         button.MouseDoubleClick += (_, args) =>
         {
@@ -175,40 +176,6 @@ public sealed partial class EmulationSection
             RefreshSelector();
             OpenSelectedMachine(button, new RoutedEventArgs());
         };
-        return button;
-    }
-
-    private static Button CreateSelectorButton(string displayName, ImageSource image, bool selected)
-    {
-        var button = new Button
-        {
-            Content = new Image
-            {
-                Source = image,
-                Width = 42,
-                Height = 26,
-                Stretch = Stretch.Uniform
-            },
-            Padding = new Thickness(4),
-            Margin = new Thickness(0, 2, 6, 2),
-            Width = 60,
-            Height = 40,
-            MinWidth = 60,
-            MaxWidth = 60,
-            MinHeight = 40,
-            MaxHeight = 40,
-            HorizontalContentAlignment = HorizontalAlignment.Center,
-            VerticalContentAlignment = VerticalAlignment.Center,
-            ToolTip = displayName,
-            BorderThickness = new Thickness(1)
-        };
-        button.Background = selected ? new SolidColorBrush(Color.FromArgb(64, 77, 118, 232)) : Brushes.Transparent;
-        if (selected)
-            button.BorderBrush = new SolidColorBrush(Color.FromRgb(77, 118, 232));
-        else
-            button.BorderBrush = new SolidColorBrush(Color.FromRgb(155, 165, 180));
-        button.SetResourceReference(ForegroundProperty, ControlVisualConstants.TextBrushResource);
-        AutomationProperties.SetName(button, displayName);
         return button;
     }
 

@@ -1,4 +1,4 @@
-﻿using GWGUI.App.Functions.Views.Emulation.Settings;
+using GWGUI.App.Functions.Views.Emulation.Settings;
 using GWGUI.App.Localization.Extensions;
 using GWGUI.App.Views.Controls.Common;
 using System.Windows;
@@ -36,11 +36,11 @@ public sealed partial class EmulationPreferencesSection
     private Grid BuildConfigurationsTab()
     {
         _configurationBrandLabel.Text = LocExtension.Get("Emulation.Configuration.Brand");
-        _configurationBrand.MinWidth = 300;
+        _configurationBrand.Orientation = Orientation.Horizontal;
 
         var filter = new Grid { Margin = new Thickness(0, 0, 0, 12) };
         filter.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
-        filter.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(300) });
+        filter.ColumnDefinitions.Add(new ColumnDefinition());
         _configurationBrandLabel.VerticalAlignment = VerticalAlignment.Center;
         _configurationBrandLabel.Margin = new Thickness(0, 0, 12, 0);
         filter.Children.Add(_configurationBrandLabel);

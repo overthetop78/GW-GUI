@@ -7,7 +7,6 @@ using GWGUI.App.Services.Emulation;
 using GWGUI.App.Services.Storage;
 using GWGUI.App.Views.Controls.Emulation.Input;
 using GWGUI.App.Views.Controls.Common;
-using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
 using GWGUI.Emulation;
@@ -20,12 +19,13 @@ public sealed partial class EmulationPreferencesSection : UserControl
 {
     public static event EventHandler<EmulationConfigurationSavedEventArgs>? ConfigurationSaved;
     public static event EventHandler<EmulationConfigurationSavedEventArgs>? VideoConfigurationChanged;
+    internal static event Func<Task>? ConfigurationDeleted;
     internal event Func<IEmulationModule, IEmulationConfiguration, Task>? EditConfigurationRequested;
 
     private readonly IReadOnlyList<IEmulationModule> _modules = EmulationModuleRegistry.Modules;
     private readonly TextBlock _configurationBrandLabel = new();
-    private readonly ComboBox _configurationBrand = new();
-    private readonly ObservableCollection<EmulationModuleListItem> _configurationBrands = [];
+    private readonly WrapPanel _configurationBrand = new();
+    private IEmulationModule? _selectedConfigurationModule;
     private IReadOnlyList<EmulationConfigurationTableRow> _configurationRows = [];
     private readonly EmulationConfigurationTable _configurationTable = new();
     private readonly InputBindingEditor _shortcuts = new();
@@ -51,7 +51,6 @@ public sealed partial class EmulationPreferencesSection : UserControl
             VerticalContentAlignment = VerticalAlignment.Stretch
         };
         _shortcuts.BindingsChanged += async (_, _) => await SaveShortcutsAsync();
-        _configurationBrand.SelectionChanged += (_, _) => FilterConfigurationTable();
         _configurationTable.EditRequested += async row => await EditConfigurationAsync(row);
         _configurationTable.DeleteRequested += async row => await DeleteConfigurationAsync(row);
         _storageFolder.LostKeyboardFocus += async (_, _) => await SaveFoldersAsync();

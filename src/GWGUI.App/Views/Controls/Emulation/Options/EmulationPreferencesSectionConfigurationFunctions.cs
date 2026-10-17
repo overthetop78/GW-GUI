@@ -1,5 +1,7 @@
-﻿using GWGUI.App.Constants.Emulation.Errors;
+using GWGUI.App.Constants.Emulation.Errors;
 using GWGUI.App.Presenters.Common;
+using GWGUI.App.Functions.Views.Emulation.Machine;
+using GWGUI.App.Views.Controls.Emulation.Machine;
 using GWGUI.App.Contracts.Emulation.Configurations;
 using GWGUI.App.Localization.Extensions;
 using GWGUI.App.Presenters.Emulation.Configurations;
@@ -32,6 +34,8 @@ public sealed partial class EmulationPreferencesSection
             await row.Module.DeleteConfigurationAsync(row.Configuration.Id);
             GWGUI.App.Services.Emulation.EmulationVideoPresentationProfiles.Store.Delete(row.Module.Id, row.Configuration.Id);
             await ReloadConfigurationsAsync();
+            foreach (Func<Task> refresh in ConfigurationDeleted?.GetInvocationList() ?? [])
+                await refresh();
         }
         catch (Exception error)
         {
@@ -47,19 +51,30 @@ public sealed partial class EmulationPreferencesSection
 
     private void FilterConfigurationTable()
     {
-        var selectedModule = (_configurationBrand.SelectedItem as EmulationModuleListItem)?.Module;
+        var selectedModule = _selectedConfigurationModule;
         _configurationTable.SetRows(selectedModule is null ? [] : _configurationRows.Where(row => ReferenceEquals(row.Module, selectedModule)).ToArray());
     }
 
     private void RebuildConfigurationBrands()
     {
-        var selectedModule = (_configurationBrand.SelectedItem as EmulationModuleListItem)?.Module;
-        _configurationBrand.ItemsSource = _configurationBrands;
-        _configurationBrand.DisplayMemberPath = nameof(EmulationModuleListItem.DisplayName);
-        _configurationBrands.Clear();
-        foreach (var module in _modules.Where(module => _configurationRows.Any(row => ReferenceEquals(row.Module, module))))
-            _configurationBrands.Add(new EmulationModuleListItem(module, LocExtension.GetForModule(module, module.DisplayResourceKey)));
-        _configurationBrand.SelectedItem = selectedModule is null ? null : _configurationBrands.FirstOrDefault(item => ReferenceEquals(item.Module, selectedModule));
+        var configuredModules = _modules.Where(module => _configurationRows.Any(row => row.Module.Id == module.Id)).ToArray();
+        _selectedConfigurationModule = configuredModules.FirstOrDefault(module => module.Id == _selectedConfigurationModule?.Id)
+            ?? configuredModules.FirstOrDefault();
+        _configurationBrand.Children.Clear();
+        foreach (var module in configuredModules)
+        {
+            var image = EmulationAssetFunctions.Load(module, module.BrandImageResourceName);
+            if (image is null) continue;
+            var button = EmulationSelectorButtonFunctions.Create(
+                LocExtension.GetForModule(module, module.DisplayResourceKey), image, module.Id == _selectedConfigurationModule?.Id);
+            button.Click += (_, _) =>
+            {
+                _selectedConfigurationModule = module;
+                RebuildConfigurationBrands();
+                FilterConfigurationTable();
+            };
+            _configurationBrand.Children.Add(button);
+        }
     }
 
 }
