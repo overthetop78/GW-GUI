@@ -71,7 +71,7 @@ internal static class FileSystemFunctions
         var available = !database || GameIndexAvailable(configuration);
         yield return database || cheats ? field with { RefreshSettingsOnChange = true, IsEnabled = field.IsEnabled && available }
             : field.Id is OptionConstants.EnableHwHacksKey or OptionConstants.RendererKey ? field with { RefreshSettingsOnChange = true } : field;
-        if (!database && !cheats) yield break;
+        if (!field.IsVisible || !database && !cheats) yield break;
         var key = database ? FileSystemConstants.GameIndexPathKey : FileSystemConstants.CheatsDirectoryKey;
         yield return new EmulationSettingsField(key, field.Tab, field.BlockId,
             database ? FileSystemConstants.GameIndexLabel : FileSystemConstants.CheatsDirectoryLabel,

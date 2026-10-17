@@ -27,7 +27,7 @@ internal static partial class InputSettingsFunctions
                 EmulationControllerVisualIds.SonyPlayStationController, EmulationControllerVisualIds.SonyDualAnalog],
             ModelConstants.PlayStation3 => [EmulationControllerVisualIds.SonyDualShock3],
             ModelConstants.PocketStation => [EmulationControllerVisualIds.SonyPocketStation],
-            ModelConstants.Psp => [EmulationControllerVisualIds.SonyPsp1000],
+            ModelConstants.Psp => [EmulationControllerVisualIds.SonyPsp1000, EmulationControllerVisualIds.SonyPsp2000, EmulationControllerVisualIds.SonyPsp3000, EmulationControllerVisualIds.SonyPspGo],
             ModelConstants.PlayStation4 => [EmulationControllerVisualIds.SonyDualShock4],
             ModelConstants.PlayStation5 => [EmulationControllerVisualIds.SonyDualSense],
             _ => null

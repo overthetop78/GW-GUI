@@ -46,6 +46,9 @@ internal static partial class InputSettingsFunctions
                 port.Bindings.Values.Where(item => !string.IsNullOrWhiteSpace(item.Key) && !string.IsNullOrWhiteSpace(item.Value)).ToDictionary(item => item.Key, item => item.Value, StringComparer.Ordinal),
                 port.VisualId, ValidOutputBindings(configuration, type, port.VisualId, port.OutputBindings));
         }).ToArray();
+        if (configuration.Model == ModelConstants.PlayStation3)
+            controllers = controllers.Concat((current.ControllerBindings ?? [])
+                .Where(binding => controllers.All(selected => selected.Port != binding.Port))).ToArray();
         return configuration with
         {
             Input = current with

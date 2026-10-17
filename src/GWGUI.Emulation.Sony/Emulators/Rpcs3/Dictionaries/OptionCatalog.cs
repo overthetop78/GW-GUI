@@ -60,7 +60,7 @@ internal static class OptionCatalog
             new(OptionValueFunctions.ToNative(DiskCachePolicy.OneGigabyte), OptionConstants.DiskCacheOneGigabyteDisplayName),
             new(OptionValueFunctions.ToNative(DiskCachePolicy.FiveGigabytes), OptionConstants.DiskCacheFiveGigabytesDisplayName),
             new(OptionValueFunctions.ToNative(DiskCachePolicy.ClearOnGameClose), OptionConstants.DiskCacheClearOnGameCloseLabelResource)
-        ], Tab: EmulationMachineTab.Storage, IsGlobalStorageOption: true),
+        ], Tab: EmulationMachineTab.Storage),
         new(OptionConstants.PpuDecoderKey, OptionConstants.PpuDecoderLabelResource, OptionConstants.PpuDecoderHelpResource, null,
             OptionConstants.PpuDecoderDefaultValue, OptionConstants.PpuDecoderDefaultValue,
         [

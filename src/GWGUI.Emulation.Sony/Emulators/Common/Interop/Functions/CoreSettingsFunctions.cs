@@ -43,10 +43,36 @@ internal static class CoreSettingsFunctions
             var option = GraphicsSettingsFunctions.Present(source, configuration.Options?.GetValueOrDefault(source.Key) ?? source.DefaultValue, configuration.GraphicsApi);
             var tab = option.Tab == EmulationMachineTab.General && configuration.Model is not (ModelConstants.PlayStation2 or ModelConstants.Psp) ? EmulationMachineTab.Cpu : option.Tab;
             if (CoreSettingsConstants.IsCdAudio(option.Key)) tab = EmulationMachineTab.Storage;
+            if (configuration.Model == ModelConstants.PlayStation3)
+            {
+                if (option.Key is Emulators.Rpcs3.Constants.OptionConstants.LanguageKey
+                    or Emulators.Rpcs3.Constants.OptionConstants.LicenseAreaKey
+                    or Emulators.Rpcs3.Constants.OptionConstants.EnterButtonKey
+                    or Emulators.Rpcs3.Constants.OptionConstants.DatabaseOverrideKey
+                    or Emulators.Rpcs3.Constants.OptionConstants.ShowTrophyPopupsKey
+                    or Emulators.Rpcs3.Constants.OptionConstants.ShowPpuCompilationHintKey
+                    or Emulators.Rpcs3.Constants.OptionConstants.ShowShaderCompilationHintKey)
+                    tab = EmulationMachineTab.General;
+                if (option.Key is Emulators.Rpcs3.Constants.OptionConstants.DisableFifoReorderingKey
+                    or Emulators.Rpcs3.Constants.OptionConstants.DisableHwBlendingKey
+                    or Emulators.Rpcs3.Constants.OptionConstants.DisableHwColorspaceKey
+                    or Emulators.Rpcs3.Constants.OptionConstants.DisableZcullQueriesKey
+                    or Emulators.Rpcs3.Constants.OptionConstants.CpuBlitKey
+                    or Emulators.Rpcs3.Constants.OptionConstants.GpuTextureScalingKey
+                    or Emulators.Rpcs3.Constants.OptionConstants.FbAliasingBiasKey
+                    or Emulators.Rpcs3.Constants.OptionConstants.DriverRecoveryTimeoutKey)
+                    tab = EmulationMachineTab.Video;
+            }
             if (option.Key == Emulators.Pcee2.Constants.OptionConstants.CheatsKey
-                || option.Key == Emulators.Pcsx2.Constants.OptionConstants.EnableCheatsKey)
+                || option.Key == Emulators.Pcsx2.Constants.OptionConstants.EnableCheatsKey
+                || option.Key == Emulators.Ppsspp.Constants.OptionConstants.CheatsKey)
                 tab = EmulationMachineTab.Cheats;
             if (option.Key == Emulators.Pcsx2.Constants.OptionConstants.Dev9EthKey)
+                tab = EmulationMachineTab.Ethernet;
+            if (configuration.Model == ModelConstants.PlayStation3 && option.Key is
+                Emulators.Rpcs3.Constants.OptionConstants.NetworkEnabledKey or Emulators.Rpcs3.Constants.OptionConstants.PsnStatusKey
+                or Emulators.Rpcs3.Constants.OptionConstants.UpnpKey or Emulators.Rpcs3.Constants.OptionConstants.DnsKey
+                or Emulators.Rpcs3.Constants.OptionConstants.ShowRpcnPopupsKey)
                 tab = EmulationMachineTab.Ethernet;
             if (configuration.Model == ModelConstants.PlayStation2 && option.Key.Contains("crosshair", StringComparison.OrdinalIgnoreCase))
                 tab = EmulationMachineTab.Controllers;
@@ -125,11 +151,23 @@ internal static class CoreSettingsFunctions
                     ? CoreSettingsConstants.TextureGroup
                 : CoreSettingsConstants.IsScreenOption(option.Key) ? CoreSettingsConstants.ScreenGroup
                 : option.Key.Contains(CoreSettingsConstants.FrameKeyword, StringComparison.OrdinalIgnoreCase) || option.Key.Contains(CoreSettingsConstants.TimingKeyword, StringComparison.OrdinalIgnoreCase) ? CoreSettingsConstants.TimingGroup : string.Empty;
-            var blockId = tab == EmulationMachineTab.Audio ? CoreSettingsConstants.AudioOptionsBlock
+            var blockId = option.Key is Emulators.Pcsx2.Constants.OptionConstants.HintLanguageUnlockKey
+                or Emulators.Pcsx2.Constants.OptionConstants.UseExternalGameindexKey
+                or Emulators.Pcsx2.Constants.OptionConstants.GameEnhancementsHintKey
+                ? CoreSettingsConstants.OptionsBlock + "GamePatches" + CoreSettingsConstants.CompatibilityGroup
+                : tab == EmulationMachineTab.Audio ? CoreSettingsConstants.AudioOptionsBlock
                 : tab == EmulationMachineTab.Ram ? SettingsDescriptionFunctionsConstants.Memory
                 : tab == EmulationMachineTab.Cpu ? CoreSettingsConstants.IsCpuClock(option.Key)
                     || option.Key == Emulators.Ppsspp.Constants.OptionConstants.LockedCpuSpeedKey
                     ? CoreSettingsConstants.AccelerationBlock
+                    : configuration.Model == ModelConstants.PlayStation3
+                        ? CoreSettingsConstants.OptionsBlock + (option.Key.Contains("decoder", StringComparison.OrdinalIgnoreCase)
+                            || option.Key.Contains("llvm", StringComparison.OrdinalIgnoreCase) ? "Recompilation"
+                            : option.Key.Contains("clock", StringComparison.OrdinalIgnoreCase)
+                                || option.Key.Contains("timer", StringComparison.OrdinalIgnoreCase)
+                                || option.Key.Contains("scheduler", StringComparison.OrdinalIgnoreCase) ? "CpuTiming"
+                            : option.Key.Contains("spu", StringComparison.OrdinalIgnoreCase)
+                                || option.Key.Contains("mfc", StringComparison.OrdinalIgnoreCase) ? "VectorUnits" : "Compatibility")
                     : configuration.Model == ModelConstants.PlayStation2 && (option.Key.Contains("_rec_", StringComparison.OrdinalIgnoreCase) || option.Key.Contains("cpu_recompiler", StringComparison.OrdinalIgnoreCase))
                         ? CoreSettingsConstants.OptionsBlock + "Recompilation"
                     : configuration.Model == ModelConstants.PlayStation2 && (option.Key.Contains("vu1", StringComparison.OrdinalIgnoreCase) || option.Key.Contains("mtvu", StringComparison.OrdinalIgnoreCase))
@@ -241,6 +279,13 @@ internal static class CoreSettingsFunctions
         if (option.Key.Contains("cd_fastload", StringComparison.OrdinalIgnoreCase)
             && int.TryParse(value.Value.TrimEnd('x'), out var speed))
             return new(value.Value, string.Empty, speed + "×");
+        if (model == ModelConstants.Psp && option.Key == Emulators.Ppsspp.Constants.OptionConstants.InternalResolutionKey)
+        {
+            var dimensions = value.Value.Split('x');
+            if (dimensions.Length == 2 && int.TryParse(dimensions[0], out var width)
+                && int.TryParse(dimensions[1], out var height) && width > 0 && height > 0)
+                return new(value.Value, string.Empty, $"{width / 480}× ({width} × {height} px)");
+        }
         if (option.Key.Contains("internal_resolution", StringComparison.OrdinalIgnoreCase)
             || option.Key.Contains("GPU_ResolutionScale", StringComparison.OrdinalIgnoreCase))
         {
@@ -252,7 +297,7 @@ internal static class CoreSettingsFunctions
                 return new(value.Value, string.Empty, $"{scale}× ({width * scale} × {height * scale} px)");
             }
         }
-        return value.Label.StartsWith(CoreSettingsConstants.OptionResourcePrefix, StringComparison.Ordinal)
+        return value.Label.StartsWith("Emulation.", StringComparison.Ordinal)
             ? new(value.Value, value.Label) : new(value.Value, string.Empty, value.Label);
     }
 

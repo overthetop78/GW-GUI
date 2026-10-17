@@ -10,6 +10,7 @@ public sealed class SonyEmulationModule : IEmulationModule, IEmulationEmulatorMa
     private readonly HttpClient _httpClient;
     private readonly string _coreDirectory;
     private readonly string _firmwareDirectory;
+    private readonly string _memoryStickDirectory;
     private readonly Engine _engine = new();
     private EmulatorManagementContext EmulatorManagement(IEmulatorAdapter adapter) => new(_httpClient, Path.Combine(_coreDirectory, adapter.EmulatorId));
 
@@ -18,6 +19,7 @@ public sealed class SonyEmulationModule : IEmulationModule, IEmulationEmulatorMa
         _store = new ConfigurationStore(configurationDirectory, pathBase);
         _httpClient = httpClient;
         _coreDirectory = coreDirectory;
+        _memoryStickDirectory = Path.Combine(pathBase, "Emulation", "Storage", StorageSettingsFunctionsConstants.MemoryStickSubdirectory);
         _firmwareDirectory = Path.Combine(pathBase, EmulationPathConstants.RootDirectoryName, EmulationPathConstants.MachinesDirectoryName, EmulationModuleConstants.ModuleId, EmulationPathConstants.FirmwareDirectoryName);
     }
 
@@ -57,7 +59,9 @@ public sealed class SonyEmulationModule : IEmulationModule, IEmulationEmulatorMa
     {
         var model = ModelCatalog.Get(machineId);
         return new MachineConfiguration(model.Id, DefaultEmulatorId(model.Id),
-            Options: new Dictionary<string, string>(StringComparer.Ordinal), Id: Guid.NewGuid(),
+            Options: model.Id == ModelConstants.Psp ? new Dictionary<string, string>(StringComparer.Ordinal)
+            { [StorageSettingsFunctionsConstants.MemoryCardPathOptionPrefix + 0] = _memoryStickDirectory }
+                : new Dictionary<string, string>(StringComparer.Ordinal), Id: Guid.NewGuid(),
             Input: new InputConfiguration(), Media: []);
     }
 
@@ -77,6 +81,8 @@ public sealed class SonyEmulationModule : IEmulationModule, IEmulationEmulatorMa
         var adapter = EmulatorCatalog.CreateAdapters().FirstOrDefault(item => item.EmulatorId == sony.EmulatorId);
         var firmwareFields = (adapter is null ? [] : FirmwareConfigurationFunctions.Slots(sony, adapter)).Select(slot => slot.FieldId).ToHashSet(StringComparer.Ordinal);
         var options = new Dictionary<string, string>(sony.Options ?? new Dictionary<string, string>(), StringComparer.Ordinal);
+        if (sony.Model == ModelConstants.Psp && string.IsNullOrWhiteSpace(options.GetValueOrDefault(StorageSettingsFunctionsConstants.MemoryCardPathOptionPrefix + 0)))
+            options[StorageSettingsFunctionsConstants.MemoryCardPathOptionPrefix + 0] = _memoryStickDirectory;
         foreach (var item in values)
         {
             if (firmwareFields.Contains(item.Key) || item.Key is SettingsConstants.Model or SettingsConstants.Emulator

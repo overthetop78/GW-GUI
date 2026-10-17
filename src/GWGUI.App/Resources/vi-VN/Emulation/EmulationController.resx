@@ -50,4 +50,13 @@
   <data name="Emulation.Controller.ConfigureInKeyboardTab"><value>Cấu hình bàn phím trên thanh bàn phím.</value></data>
   <data name="Emulation.Controller.ConfigureInMouseTab"><value>Cấu hình chuột trong thẻ chuột.</value></data>
   <data name="Emulation.Controller.PeripheralType"><value>Kiểu thiết bị</value></data>
+  <data name="Emulation.Controller.Feedback.Device"><value>Điều khiển dùng cho rung động</value></data>
+  <data name="Emulation.Input.Analog.Title"><value>Cột và Nhiệm vụ trục</value></data>
+  <data name="Emulation.Input.Analog.Stick"><value>Dính {0}</value></data>
+  <data name="Emulation.Input.Analog.Custom"><value>Bàn phím hay bài tập riêng</value></data>
+  <data name="Emulation.Input.Analog.Left"><value>Sang trái</value></data>
+  <data name="Emulation.Input.Analog.Right"><value>Sang phải</value></data>
+  <data name="Emulation.Input.Analog.Axis"><value>Trục {0}</value></data>
+  <data name="Emulation.Input.Analog.Axes"><value>Trục {0} / {1}</value></data>
+  <data name="Emulation.Input.Analog.Saved"><value>Đã lưu tác vụ</value></data>
 </root>

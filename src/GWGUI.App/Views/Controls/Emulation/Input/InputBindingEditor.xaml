@@ -22,8 +22,9 @@
  </UserControl.Resources>
 
  <Grid Margin="10,4,10,8" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-  <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/></Grid.RowDefinitions>
-  <Grid Margin="0,0,0,6">
+  <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="*"/></Grid.RowDefinitions>
+  <StackPanel x:Name="AnalogBindings" Margin="0,0,0,8"/>
+  <Grid Grid.Row="1" Margin="0,0,0,6">
    <Grid.ColumnDefinitions><ColumnDefinition Width="2*" MaxWidth="340"/><ColumnDefinition Width="3*"/></Grid.ColumnDefinitions>
    <Grid>
     <TextBox x:Name="SearchBox" Height="36" Padding="38,5,10,5" VerticalContentAlignment="Center" TextChanged="SearchChanged"/>
@@ -42,7 +43,7 @@
    </WrapPanel>
   </Grid>
 
-  <Border Grid.Row="1" BorderBrush="#D8DEE8" BorderThickness="1" CornerRadius="7" ClipToBounds="True" Background="White" VerticalAlignment="Stretch">
+  <Border Grid.Row="2" BorderBrush="#D8DEE8" BorderThickness="1" CornerRadius="7" ClipToBounds="True" Background="White" VerticalAlignment="Stretch">
    <Grid>
     <Grid.RowDefinitions><RowDefinition Height="38"/><RowDefinition Height="*"/></Grid.RowDefinitions>
     <Grid Background="#FAFBFD">

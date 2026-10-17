@@ -29,6 +29,7 @@ public partial class InputBindingEditor : UserControl
     private ModifierKeys _captureModifiers;
     private InputCaptureSources _captureSources = InputCaptureSources.Keyboard;
     private bool _prefixKeyboardSource;
+    private bool _allowIdentityKeyboardBindings;
     private readonly DispatcherTimer _controllerCaptureTimer;
     private IReadOnlyList<EmulationControllerState> _controllerBaseline = [];
     private IReadOnlyList<GameInputLiveState> _controllerDetailedBaseline = [];
@@ -65,15 +66,17 @@ public partial class InputBindingEditor : UserControl
         SearchPlaceholder.Text = searchPlaceholder;
     }
 
-    public void ConfigureCaptureSources(InputCaptureSources sources, bool prefixKeyboardSource = false)
+    public void ConfigureCaptureSources(InputCaptureSources sources, bool prefixKeyboardSource = false, bool allowIdentityKeyboardBindings = false)
     {
         _captureSources = sources;
+        _allowIdentityKeyboardBindings = allowIdentityKeyboardBindings;
         _prefixKeyboardSource = prefixKeyboardSource;
         ValidateBindings();
     }
 
     public void SetRows(IEnumerable<InputBindingDefinition> definitions, IReadOnlyDictionary<string, string>? values, string? moduleId = null)
     {
+        _analogSelectors.Clear();
         _rows.Clear();
         foreach (var definition in definitions)
             _rows.Add(new InputBindingRow(definition.Id,
@@ -81,6 +84,7 @@ public partial class InputBindingEditor : UserControl
                 values?.GetValueOrDefault(definition.Id) ?? definition.DefaultBinding, definition.DefaultBinding)
             { OppositeDirectionId = definition.OppositeDirectionId });
         ValidateBindings();
+        RebuildAnalogBindings();
     }
 
     internal bool SelectAndStartCapture(string bindingId, Button? button = null)

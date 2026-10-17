@@ -6,4 +6,5 @@ public sealed record EmulationStorageDeviceSettings(
     string? InterfaceId = null,
     CartridgeSlotSettings? Cartridge = null,
     EmulationCompactDiscDriveSettings? CompactDisc = null,
-    string? MemoryCardPath = null);
+    string? MemoryCardPath = null,
+    IReadOnlyDictionary<string, string>? Options = null);

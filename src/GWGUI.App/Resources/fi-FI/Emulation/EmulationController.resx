@@ -50,4 +50,13 @@
   <data name="Emulation.Controller.ConfigureInKeyboardTab"><value>Näppäimistön asetukset näppäimistövälilehdessä.</value></data>
   <data name="Emulation.Controller.ConfigureInMouseTab"><value>Muokkaa hiiren välilehteä.</value></data>
   <data name="Emulation.Controller.PeripheralType"><value>Laitetyyppi</value></data>
+  <data name="Emulation.Controller.Feedback.Device"><value>Tärinässä käytettävä kontrolleri</value></data>
+  <data name="Emulation.Input.Analog.Title"><value>Työntö- ja akselitehtävät</value></data>
+  <data name="Emulation.Input.Analog.Stick"><value>Tarttuva {0}</value></data>
+  <data name="Emulation.Input.Analog.Custom"><value>Näppäimistön tai mukautettujen toimeksiantojen</value></data>
+  <data name="Emulation.Input.Analog.Left"><value>Vasen tikku</value></data>
+  <data name="Emulation.Input.Analog.Right"><value>Oikea kiinni</value></data>
+  <data name="Emulation.Input.Analog.Axis"><value>Toimintalinja {0}</value></data>
+  <data name="Emulation.Input.Analog.Axes"><value>Kirveet {0} / {1}</value></data>
+  <data name="Emulation.Input.Analog.Saved"><value>Tallennettu tehtävä</value></data>
 </root>

@@ -25,7 +25,7 @@ internal static partial class OptionCatalog
             "disabled", EmulationMachineTab.General,
             ToggleChoices),
         Define(OptionConstants.HintLanguageUnlockKey, OptionConstants.HintLanguageUnlockLabel, OptionConstants.HintLanguageUnlockHelp,
-            "disabled", EmulationMachineTab.General,
+            "disabled", EmulationMachineTab.Cheats,
             ToggleChoices, restart: true),
         Define(OptionConstants.Dev9HddKey, OptionConstants.Dev9HddLabel, OptionConstants.Dev9HddHelp,
             "disabled", EmulationMachineTab.Storage,
@@ -41,7 +41,7 @@ internal static partial class OptionCatalog
             "disabled", EmulationMachineTab.General,
             ToggleChoices),
         Define(OptionConstants.UseExternalGameindexKey, OptionConstants.UseExternalGameindexLabel, OptionConstants.UseExternalGameindexHelp,
-            "disabled", EmulationMachineTab.General,
+            "disabled", EmulationMachineTab.Cheats,
             ToggleChoices, restart: true),
     ];
 }

@@ -1,4 +1,5 @@
 using System.Net.Http;
+using System.IO;
 using GWGUI.Emulation.Constants;
 using GWGUI.Emulation.Enums;
 using GWGUI.Emulation.Sony.Common.Machines.Common.Constants;
@@ -10,6 +11,134 @@ namespace GWGUI.Tests.Emulation.Sony;
 
 public sealed class SettingsPresentationTests
 {
+    [Fact]
+    public void PspUsesNativeResolutionDimensionsAndDedicatedCheatsTab()
+    {
+        var configuration = new MachineConfiguration(ModelConstants.Psp, "ppsspp");
+        var fields = SettingsDescriptionFunctions.Create(configuration).SelectMany(block => block.Fields).ToArray();
+        var resolution = Assert.Single(fields, field => field.Id == "ppsspp_internal_resolution");
+        Assert.Equal("1× (480 × 272 px)", Assert.Single(resolution.Choices!, choice => choice.Id == "480x272").InvariantDisplayValue);
+        Assert.Equal("2× (960 × 544 px)", Assert.Single(resolution.Choices!, choice => choice.Id == "960x544").InvariantDisplayValue);
+        Assert.Equal(EmulationMachineTab.Cheats, Assert.Single(fields, field => field.Id == "ppsspp_cheats").Tab);
+        var port = Assert.Single(InputSettingsFunctions.Describe(configuration).ControllerPorts);
+        Assert.Equal(16, port.Bindings.Definitions.Count);
+        Assert.Equal(new[] { EmulationControllerVisualIds.SonyPsp1000, EmulationControllerVisualIds.SonyPsp2000,
+            EmulationControllerVisualIds.SonyPsp3000, EmulationControllerVisualIds.SonyPspGo }, port.Bindings.CompatibleVisualIds);
+    }
+
+    [Fact]
+    public void MemoryStickRemovalKeepsItsDirectoryAndUpdatesTheNativeInsertionFlag()
+    {
+        var directory = Path.GetTempPath();
+        var configuration = new MachineConfiguration(ModelConstants.Psp, "ppsspp", Options: new Dictionary<string, string>
+        { [StorageSettingsFunctionsConstants.MemoryCardPathOptionPrefix + 0] = directory });
+        var storage = StorageSettingsFunctions.Describe(configuration);
+        var stick = Assert.Single(storage.AvailableDevices, device => device.MediaType == EmulationMediaType.MemoryCard);
+        Assert.False(stick.IsPermanent);
+        Assert.Equal(EmulationStorageConfigurationKind.None, stick.ConfigurationKind);
+        Assert.Contains(stick.Slot, storage.ConfiguredSlots);
+        var removed = StorageSettingsFunctions.Apply(configuration, storage with
+        { ConfiguredSlots = storage.ConfiguredSlots.Where(slot => slot != stick.Slot).ToArray(), DeviceSettings = [] });
+        Assert.Equal("disabled", removed.Options!["ppsspp_memstick_inserted"]);
+        Assert.Equal(directory, removed.Options[StorageSettingsFunctionsConstants.MemoryCardPathOptionPrefix + 0]);
+        Assert.Equal(directory, GWGUI.Emulation.Sony.Emulators.Ppsspp.Services.ExternalCore.ResolveSaveDirectory(removed, "fallback"));
+        var restored = StorageSettingsFunctions.Apply(removed, storage);
+        Assert.Equal("enabled", restored.Options!["ppsspp_memstick_inserted"]);
+        Assert.Equal(directory, restored.Options[StorageSettingsFunctionsConstants.MemoryCardPathOptionPrefix + 0]);
+    }
+
+    [Fact]
+    public void Rpcs3SeparatesBluRayInternalStorageNetworkAndSystemOptions()
+    {
+        var configuration = new MachineConfiguration(ModelConstants.PlayStation3, "rpcs3");
+        var storage = StorageSettingsFunctions.Describe(configuration);
+        var disc = Assert.Single(storage.AvailableDevices, device => device.MediaType == EmulationMediaType.CompactDisc);
+        Assert.Equal("Blu-ray", disc.DisplayLabel);
+        Assert.Equal("rpcs3_emulate_bdvd_speed", Assert.Single(disc.ConfigurationFields!).Id);
+        var hdd = Assert.Single(storage.AvailableDevices, device => device.MediaType == EmulationMediaType.HardDisk);
+        Assert.True(hdd.IsPermanent);
+        Assert.Contains(hdd.Slot, storage.ConfiguredSlots);
+        Assert.Equal(EmulationStorageConfigurationKind.ManagedStorage, hdd.ConfigurationKind);
+        Assert.Null(hdd.HardDiskFormats);
+        Assert.Equal(new[] { "rpcs3_disk_cache_size", "rpcs3_emulate_hdd_speed" }, hdd.ConfigurationFields!.Select(field => field.Id).Order());
+        var cache = hdd.ConfigurationFields.Single(field => field.Id == "rpcs3_disk_cache_size");
+        Assert.Equal("Emulation.Storage.Cache.Unlimited", cache.Choices![0].DisplayResourceKey);
+        Assert.Null(cache.Choices[0].InvariantDisplayValue);
+        var fields = SettingsDescriptionFunctions.Create(configuration).SelectMany(block => block.Fields).ToArray();
+        Assert.DoesNotContain(fields, field => field.Id is "rpcs3_disk_cache_size" or "rpcs3_emulate_hdd_speed" or "rpcs3_emulate_bdvd_speed");
+        Assert.Equal(EmulationMachineTab.Ethernet, Assert.Single(fields, field => field.Id == "rpcs3_network_enabled").Tab);
+        Assert.Equal(EmulationMachineTab.General, Assert.Single(fields, field => field.Id == "rpcs3_language").Tab);
+        Assert.Equal(EmulationMachineTab.Video, Assert.Single(fields, field => field.Id == "rpcs3_disable_hw_blending").Tab);
+        var selected = StorageSettingsFunctions.Apply(configuration, storage with
+        { DeviceSettings = [new(hdd.Slot, Options: new Dictionary<string, string> { ["rpcs3_disk_cache_size"] = "wipe" })] });
+        Assert.Equal("wipe", selected.Options!["rpcs3_disk_cache_size"]);
+    }
+
+    [Fact]
+    public void Rpcs3ControllerCountPreservesHiddenAssignments()
+    {
+        var configuration = new MachineConfiguration(ModelConstants.PlayStation3, "rpcs3",
+            Input: new InputConfiguration(ControllerBindings: [new ControllerBinding(6, ControllerType.Joystick,
+                ButtonMappings: new Dictionary<string, string> { ["B"] = "Keyboard:A" })]));
+        var one = InputSettingsFunctions.Describe(configuration);
+        Assert.Single(one.ControllerPorts);
+        var smaller = InputSettingsFunctions.Apply(configuration, one);
+        Assert.Equal("Keyboard:A", smaller.Input!.ControllerBindings!.Single(binding => binding.Port == 6).ButtonMappings!["B"]);
+        var expanded = smaller with { Options = new Dictionary<string, string> { ["input.controllerCount"] = "7" } };
+        var seven = InputSettingsFunctions.Describe(expanded);
+        Assert.Equal(7, seven.ControllerPorts.Count);
+        Assert.Equal("Keyboard:A", seven.ControllerPorts[6].Bindings.Values["B"]);
+        var selector = Assert.Single(SettingsDescriptionFunctions.Create(expanded).SelectMany(block => block.Fields), field => field.Id == "input.controllerCount");
+        Assert.True(selector.IsGlobalControllerOption);
+        Assert.True(selector.RefreshSettingsOnChange);
+    }
+
+    [Theory]
+    [InlineData("disabled", "0,1")]
+    [InlineData("port1", "0,1,2,3,4")]
+    [InlineData("port2", "0,1,5,6,7")]
+    [InlineData("both", "0,1,2,3,4,5,6,7")]
+    public void Pcee2MultitapExposesThePhysicalMemoryCardSlots(string mode, string indexes)
+    {
+        var configuration = new MachineConfiguration(ModelConstants.PlayStation2, "pcee2",
+            Options: new Dictionary<string, string> { ["pcsx2_multitap"] = mode });
+        var expected = indexes.Split(',').Select(int.Parse).ToArray();
+        var cards = StorageSettingsFunctions.Describe(configuration).AvailableDevices
+            .Where(device => device.MediaType == EmulationMediaType.MemoryCard).ToArray();
+        Assert.Equal(expected, cards.Select(card => card.Slot.Index));
+        Assert.Equal(expected.Select(GWGUI.Emulation.Sony.Emulators.Pcee2.Functions.MemoryCardFunctions.NativeFileName),
+            GWGUI.Emulation.Sony.Emulators.Common.Interop.Functions.MemoryCardFunctions.NativeFileNames(configuration));
+        Assert.All(cards, card => Assert.Equal(
+            GWGUI.Emulation.Sony.Emulators.Pcee2.Functions.MemoryCardFunctions.DisplayLabel(card.Slot.Index), card.DisplayLabel));
+        Assert.All(cards, card => Assert.Null(card.DisplayLabelResourceKey));
+    }
+
+    [Fact]
+    public void Pcee2MultitapCardsUseTheMatchingIniKeysAndKeepUnrelatedSettings()
+    {
+        var configuration = new MachineConfiguration(ModelConstants.PlayStation2, "pcee2",
+            Options: new Dictionary<string, string>
+            {
+                ["pcsx2_multitap"] = "port2",
+                [StorageSettingsFunctionsConstants.MemoryCardEnabledOptionPrefix + 5] = "True",
+                [StorageSettingsFunctionsConstants.MemoryCardPathOptionPrefix + 5] = "selected.ps2"
+            });
+        var lines = GWGUI.Emulation.Sony.Emulators.Pcee2.Functions.MemoryCardFunctions.BuildSettings(configuration,
+            ["[MemoryCards]", "Slot1_Enable = true", "Multitap2_Slot2_Enable = false", "[Other]", "Keep = yes"]);
+        Assert.Contains("Slot1_Enable = true", lines);
+        Assert.Contains("[Other]", lines);
+        Assert.Contains("Keep = yes", lines);
+        Assert.Contains("Multitap2_Slot2_Enable = true", lines);
+        Assert.Contains("Multitap2_Slot2_Filename = Mcd-Multitap2-Slot02.ps2", lines);
+        Assert.Contains("Multitap1_Slot2_Enable = false", lines);
+        Assert.Contains("Multitap2_Slot3_Enable = false", lines);
+        Assert.Single(lines, line => line.StartsWith("Multitap2_Slot2_Enable =", StringComparison.Ordinal));
+        var disabled = configuration with { Options = new Dictionary<string, string> { ["pcsx2_multitap"] = "disabled" } };
+        var cleared = GWGUI.Emulation.Sony.Emulators.Pcee2.Functions.MemoryCardFunctions.BuildSettings(disabled, lines);
+        Assert.Contains("Multitap2_Slot2_Enable = false", cleared);
+        Assert.DoesNotContain("Multitap2_Slot2_Enable = true", cleared);
+    }
+
     [Theory]
     [InlineData("pcsx2")]
     [InlineData("pcee2")]

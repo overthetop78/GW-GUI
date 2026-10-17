@@ -128,10 +128,33 @@ internal sealed class EmulationStorageSettingsController
             case EmulationStorageConfigurationKind.CompactDiscDrive:
                 ConfigureCompactDisc(device);
                 break;
+            case EmulationStorageConfigurationKind.ManagedStorage:
+                ConfigureManagedStorage(device);
+                break;
             case EmulationStorageConfigurationKind.MemoryCard:
                 ConfigureMemoryCard(device);
                 break;
         }
+    }
+
+    private void ConfigureManagedStorage(EmulationMediaDevice device)
+    {
+        var current = (_settings.DeviceSettings ?? []).FirstOrDefault(item => item.Slot == device.Slot);
+        var dialog = new ManagedStorageConfigurationDialog(DeviceLabel(device), DeviceModel(device, device.Slot),
+            _moduleId, device.ConfigurationFields ?? [], current?.Options);
+        IReadOnlyDictionary<string, string> selected;
+        try
+        {
+            if (dialog.ShowDialog() != true) return;
+            selected = dialog.Options;
+        }
+        finally { dialog.Close(); }
+        _settings = _settings with
+        {
+            DeviceSettings = (_settings.DeviceSettings ?? []).Where(item => item.Slot != device.Slot)
+                .Append(new EmulationStorageDeviceSettings(device.Slot, Options: selected)).ToArray()
+        };
+        SettingsChanged?.Invoke(this, EventArgs.Empty);
     }
 
     private void ConfigureMemoryCard(EmulationMediaDevice device)
@@ -299,7 +322,8 @@ internal sealed class EmulationStorageSettingsController
             var associatedPath = device.MediaType == EmulationMediaType.MemoryCard ? (_settings.DeviceSettings ?? []).FirstOrDefault(item => item.Slot == slot)?.MemoryCardPath : media?.Path;
             var model = DeviceModel(device, slot);
             return new EmulationStorageDeviceItem(slot, DeviceLabel(device), device.MediaType, model, associatedPath, !device.IsPermanent, device.ConfigurationKind != EmulationStorageConfigurationKind.None,
-                device.TypeResourceKey is { } typeKey ? LocExtension.GetForModule(_moduleId, typeKey) : null);
+                device.TypeResourceKey is { } typeKey ? LocExtension.GetForModule(_moduleId, typeKey) : null,
+                device.ConfigurationKind == EmulationStorageConfigurationKind.ManagedStorage ? LocExtension.Get("Visual.Automatic") : null);
         }).ToArray();
         _view.SetDevices(rows);
         _view.SetCanAdd(_settings.AvailableDevices.Any(device => !_settings.ConfiguredSlots.Contains(device.Slot)));

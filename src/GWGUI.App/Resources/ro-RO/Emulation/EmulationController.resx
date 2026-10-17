@@ -50,4 +50,13 @@
   <data name="Emulation.Controller.ConfigureInKeyboardTab"><value>Configurează tastatura din tastatura tastatură.</value></data>
   <data name="Emulation.Controller.ConfigureInMouseTab"><value>Configurați mouse-ul în fila mouse-ului.</value></data>
   <data name="Emulation.Controller.PeripheralType"><value>Tip dispozitiv</value></data>
+  <data name="Emulation.Controller.Feedback.Device"><value>Controlor utilizat pentru vibraţii</value></data>
+  <data name="Emulation.Input.Analog.Title"><value>Atribuții pe stick și axe</value></data>
+  <data name="Emulation.Input.Analog.Stick"><value>Stick {0}</value></data>
+  <data name="Emulation.Input.Analog.Custom"><value>Tastatură sau misiuni personalizate</value></data>
+  <data name="Emulation.Input.Analog.Left"><value>Stick-ul stâng</value></data>
+  <data name="Emulation.Input.Analog.Right"><value>Băţul drept.</value></data>
+  <data name="Emulation.Input.Analog.Axis"><value>Axă {0}</value></data>
+  <data name="Emulation.Input.Analog.Axes"><value>Axe {0} / {1}</value></data>
+  <data name="Emulation.Input.Analog.Saved"><value>Misiune salvată</value></data>
 </root>

@@ -143,7 +143,7 @@ internal sealed class ExternalCore : IEmulatorCore
         }
     }
 
-    internal static string? ResolveSaveDirectory(MachineConfiguration configuration, string? fallback) => Emulators.Common.Interop.Functions.MemoryCardFunctions.SelectedPath(configuration, 0) ?? fallback;
+    internal static string? ResolveSaveDirectory(MachineConfiguration configuration, string? fallback) => configuration.Options?.GetValueOrDefault(StorageSettingsFunctionsConstants.MemoryCardPathOptionPrefix + 0) is { Length: > 0 } directory ? directory : fallback;
 
     internal static IReadOnlyList<MediaConfiguration> ResolveConfiguredMedia(MachineConfiguration configuration) => (configuration.Media ?? []).Where(item => item.IsInserted).OrderBy(item => item.MountOrder).ToArray();
 

@@ -50,4 +50,13 @@
   <data name="Emulation.Controller.ConfigureInKeyboardTab"><value>ปรับแต่งแป้นพิมพ์ในแท็บของแป้นพิมพ์</value></data>
   <data name="Emulation.Controller.ConfigureInMouseTab"><value>ปรับแต่งเมาส์ในแท็บของเมาส์</value></data>
   <data name="Emulation.Controller.PeripheralType"><value>ชนิดอุปกรณ์</value></data>
+  <data name="Emulation.Controller.Feedback.Device"><value>ตัวควบคุมที่จะใช้แรงสั่นสะเทือน</value></data>
+  <data name="Emulation.Input.Analog.Title"><value>การ มอบ หมาย ให้ ทํา แบบ แท่ง และ แกน</value></data>
+  <data name="Emulation.Input.Analog.Stick"><value>ไม้บรรทัด {0}</value></data>
+  <data name="Emulation.Input.Analog.Custom"><value>แป้นพิมพ์หรืองานกําหนดเอง</value></data>
+  <data name="Emulation.Input.Analog.Left"><value>แท่งด้านซ้าย</value></data>
+  <data name="Emulation.Input.Analog.Right"><value>แท่งขวา</value></data>
+  <data name="Emulation.Input.Analog.Axis"><value>แว่นขยาย {0}</value></data>
+  <data name="Emulation.Input.Analog.Axes"><value>แกน {0} / {1}</value></data>
+  <data name="Emulation.Input.Analog.Saved"><value>บันทึกภารกิจ</value></data>
 </root>

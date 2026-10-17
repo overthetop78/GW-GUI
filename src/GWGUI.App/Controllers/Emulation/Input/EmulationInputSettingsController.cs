@@ -86,7 +86,7 @@ internal sealed class EmulationInputSettingsController
 
     private UIElement CreateKeyboardView()
     {
-        _keyboard = CreateEditor(_settings.Keyboard);
+        _keyboard = CreateEditor(_settings.Keyboard, allowIdentityKeyboardBindings: true);
         ImageSource? artwork = null;
         if (_settings.Keyboard?.DefaultVisualId is { } visualId
             && ControllerArtworkCatalog.TryGetProfile(visualId, out var profile)) artwork = profile.Artwork;
@@ -131,14 +131,14 @@ internal sealed class EmulationInputSettingsController
         return view;
     }
 
-    private InputBindingEditor CreateEditor(EmulationInputBindingSet? set)
+    private InputBindingEditor CreateEditor(EmulationInputBindingSet? set, bool allowIdentityKeyboardBindings = false)
     {
         var editor = new InputBindingEditor();
         editor.SetReservedBindings(_reservedBindings);
         editor.BindingsChanged += (_, _) => SettingsChanged?.Invoke(this, EventArgs.Empty);
         editor.ConfigurePresentation(LocExtension.Get("Emulation.Input.Actions"), LocExtension.Get("Emulation.Input.Binding.Search"));
         if (set is null) return editor;
-        editor.ConfigureCaptureSources(InputCaptureSources.Keyboard | InputCaptureSources.Mouse | InputCaptureSources.Controller, set.PrefixKeyboardSource);
+        editor.ConfigureCaptureSources(InputCaptureSources.Keyboard | InputCaptureSources.Mouse | InputCaptureSources.Controller, set.PrefixKeyboardSource, allowIdentityKeyboardBindings);
         editor.SetRows(set.Definitions, set.Values, _moduleId);
         return editor;
     }

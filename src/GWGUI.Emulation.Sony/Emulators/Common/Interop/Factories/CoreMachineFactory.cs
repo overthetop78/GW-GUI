@@ -27,7 +27,7 @@ internal abstract class CoreMachineFactory : IEmulatorAdapter, IEmulatorFirmware
             ? block with { Fields = block.Fields.Where(field => globalStorage.Contains(field.Id)).ToArray() }
             : block).Where(block => block.Fields.Count > 0).ToArray();
     }
-    public IReadOnlyList<EmulationSettingsField> GetStorageDeviceConfigurationFields(MachineConfiguration configuration, EmulationMediaCategory category) =>
+    public virtual IReadOnlyList<EmulationSettingsField> GetStorageDeviceConfigurationFields(MachineConfiguration configuration, EmulationMediaCategory category) =>
         category == EmulationMediaCategory.CompactDiscDrive
             ? CoreSettingsFunctions.Blocks(CoreDefinition.Options.Where(option => !option.IsGlobalStorageOption).ToArray(), configuration).Where(block => block.Tab == EmulationMachineTab.Storage).SelectMany(block => block.Fields).ToArray()
             : [];

@@ -230,6 +230,12 @@ internal sealed partial class ExternalCore : IEmulatorCore
                 continue;
             SetControllerPortDevice(port, type);
         }
+        if (configuration.EmulatorId == Emulators.Rpcs3.Constants.CoreConstants.Id)
+            for (var port = SemanticControllerFunctions.PortCount(configuration); port < 7; port++)
+            {
+                _setControllerPortDevice!((uint)port, 0u);
+                _host!.SetControllerType(port, ControllerType.None);
+            }
     }
     public void InsertMedia(string path) => (_host ?? throw new InvalidOperationException(CoreExceptions.CoreNotInitialized())).DiskControl.Insert(path);
     public void EjectMedia() => (_host ?? throw new InvalidOperationException(CoreExceptions.CoreNotInitialized())).DiskControl.Eject();

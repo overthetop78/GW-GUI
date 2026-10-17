@@ -2,6 +2,7 @@ namespace GWGUI.Emulation.Sony.Emulators.Ppsspp.Constants;
 
 internal static class OptionConstants
 {
+    internal const string MemstickInsertedKey = "ppsspp_memstick_inserted";
     internal const string VulkanBackend = "vulkan";
     internal const string AutomaticBackend = "auto";
     internal const string OpenGlBackend = "opengl";

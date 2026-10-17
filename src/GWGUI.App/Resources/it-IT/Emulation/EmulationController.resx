@@ -50,4 +50,13 @@
   <data name="Emulation.Controller.ConfigureInKeyboardTab"><value>Configurare la tastiera nella scheda tastiera.</value></data>
   <data name="Emulation.Controller.ConfigureInMouseTab"><value>Configurare il mouse nella scheda Mouse.</value></data>
   <data name="Emulation.Controller.PeripheralType"><value>Tipo di dispositivo</value></data>
+  <data name="Emulation.Controller.Feedback.Device"><value>Controller utilizzato per le vibrazioni</value></data>
+  <data name="Emulation.Input.Analog.Title"><value>Assegnazioni di bastone e asse</value></data>
+  <data name="Emulation.Input.Analog.Stick"><value>Stick Stick {0}</value></data>
+  <data name="Emulation.Input.Analog.Custom"><value>Tastiera o assegnazioni personalizzate</value></data>
+  <data name="Emulation.Input.Analog.Left"><value>bastone sinistro</value></data>
+  <data name="Emulation.Input.Analog.Right"><value>Braccio destro</value></data>
+  <data name="Emulation.Input.Analog.Axis"><value>Asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse {0}</value></data>
+  <data name="Emulation.Input.Analog.Axes"><value>Assi {0} / {1}</value></data>
+  <data name="Emulation.Input.Analog.Saved"><value>Incarico salvato</value></data>
 </root>

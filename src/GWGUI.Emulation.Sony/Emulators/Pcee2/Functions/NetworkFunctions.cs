@@ -26,8 +26,8 @@ internal static class NetworkFunctions
         var directory = Path.Combine(systemDirectory, "pcsx2", "inis");
         Directory.CreateDirectory(directory);
         var path = Path.Combine(directory, "PCSX2.ini");
-        var lines = BuildSettings(File.Exists(path) ? File.ReadAllLines(path) : [],
-            configuration.Options?.GetValueOrDefault(EnabledKey) == EmulationSettingConstants.Enabled);
+        var lines = MemoryCardFunctions.BuildSettings(configuration, BuildSettings(File.Exists(path) ? File.ReadAllLines(path) : [],
+            configuration.Options?.GetValueOrDefault(EnabledKey) == EmulationSettingConstants.Enabled));
         var temporary = path + "." + Guid.NewGuid().ToString("N") + ".tmp";
         try
         {

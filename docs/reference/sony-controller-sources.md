@@ -344,3 +344,19 @@ Les périphériques non pris en charge ne sont plus proposés. Le catalogue phot
 Les tapis et sticks arcade utilisent leur protocole JOYPAD déjà raccordé ; les sticks arcade sont désormais initialisés aussi avant le chargement lorsque le cœur n’a pas encore publié ses descriptions. Aucun protocole spécifique supplémentaire n’est annoncé compatible par simple ressemblance du visuel.
 
 Scénarios de tests sources adaptés/ajoutés pour les choix USB propres aux trois cœurs PS2, l’option GunCon 2 PCEE2, les identifiants natifs clavier/souris LRPS2 et la résolution JOYPAD des tapis/sticks. Contrôle statique des appels et `git diff --check` ; aucun build, aucun test exécuté ni validation en application.
+
+
+## Audit multitap PS2 et cartes mémoire — 17 octobre 2026
+
+Play! libretro : `Source/ui_libretro/PH_Libretro_Input.cpp` interroge exclusivement le port libretro 0 et transmet les entrées à `SetButtonState(0, ...)` / `SetAxisState(0, ...)`. Un seul joueur est raccordé dans cette interface, indépendamment du matériel PS2. https://github.com/jpd002/Play-/blob/master/Source/ui_libretro/PH_Libretro_Input.cpp .
+
+LRPS2 : `PAD::LoadConfig()` dans `pcsx2/PAD/PAD.cpp` force `MultitapPort0_Enabled` et `MultitapPort1_Enabled` à false ; aucune option multitap dans `libretro/libretro_core_options.h`. Le nombre théorique de structures de pad (8) ne constitue pas une prise en charge activable. https://github.com/libretro/ps2/blob/master/pcsx2/PAD/PAD.cpp .
+
+PCEE2 : le multitap natif expose les modes disabled/port1/port2/both. La couche charge aussi la section `[MemoryCards]` de `pcsx2/inis/PCSX2.ini` avant les options libretro. Ces dernières écrasent uniquement Slot1/Slot2. Le moteur lit les six autres emplacements via `Multitap1_Slot2_Enable/Filename` jusqu’à `Multitap2_Slot4_Enable/Filename`. Cela permet de raccorder les cartes supplémentaires via l’INI déjà géré par GW GUI. Sources : https://github.com/WizzardSK/pcee2-libretro/blob/libretro/pcee2-libretro/Libretro.cpp et https://github.com/WizzardSK/pcee2-libretro/blob/libretro/pcsx2/Pcsx2Config.cpp . Le catalogue GW GUI était limité à deux cartes, raccordement complémentaire nécessaire.
+
+
+Raccordement réalisé : les cartes PCEE2 conservent les indices physiques 0/1, 2–4 (multitap 1) et 5–7 (multitap 2). Le catalogue expose 2, 5, 5 ou 8 emplacements selon le mode, identifiés MC 1/2 puis MC 1B–1D et MC 2B–2D. Les fichiers natifs reprennent les noms du moteur `Mcd-Multitap1-Slot02.ps2`, etc. Les six clés Enable/Filename sont écrites dans l’INI, les emplacements désactivés sont explicitement désactivés sans effacer les autres sections. Préparation et persistance utilisent les chemins de cartes choisis avec leurs indices physiques, y compris lorsque seul le second multitap est actif. Aucun multitap fictif ajouté à LRPS2 ou Play!.
+
+Correction USB de la même reprise : les affectations identiques des touches d’un clavier émulé ne sont plus traitées comme des remappages réservés, ce qui bloquait l’application des sélections USB après l’apparition de l’onglet Clavier. Les remappages vers un raccourci réservé et les conflits non identiques restent contrôlés. Scénario de régression ajouté : clavier → souris → aucun, visibilité des onglets et retour après changement de machine. Le dernier cadre Général LRPS2 signalé (langues, base GameIndex externe, améliorations propres aux jeux) est masqué ; les valeurs internes existantes sont conservées.
+
+Vérifications : analyse syntaxique Roslyn sans compilation sur les treize fichiers C# modifiés/créés ; `git diff --check` réussi. Scénarios de tests sources ajoutés/adaptés, non exécutés. Aucun nouveau build, commit ou lancement de l’application pour cette reprise.

@@ -8,5 +8,6 @@ public enum EmulationStorageConfigurationKind
     CassetteDrive,
     CartridgeSlot,
     CompactDiscDrive,
-    MemoryCard
+    MemoryCard,
+    ManagedStorage
 }

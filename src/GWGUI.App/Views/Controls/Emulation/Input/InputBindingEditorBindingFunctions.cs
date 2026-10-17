@@ -45,16 +45,25 @@ public partial class InputBindingEditor
     private void ValidateBindings()
     {
         var duplicates = _rows.Where(row => !string.IsNullOrWhiteSpace(row.Binding) && _rows.Any(other => !ReferenceEquals(row, other)
-            && !string.IsNullOrWhiteSpace(other.Binding) && InputBindingSyntax.Conflicts(row.Binding, other.Binding))).ToHashSet();
+            && !string.IsNullOrWhiteSpace(other.Binding)
+            && !(IsIdentityKeyboardBinding(row) && IsIdentityKeyboardBinding(other))
+            && InputBindingSyntax.Conflicts(row.Binding, other.Binding))).ToHashSet();
         foreach (var row in _rows)
         {
             if (string.IsNullOrWhiteSpace(row.Binding)) row.SetState(InputBindingState.Unassigned);
-            else if (!TryValidateBinding(row.Binding, out var reserved) || reserved) row.SetState(InputBindingState.Reserved);
+            else if (!IsIdentityKeyboardBinding(row) && (!TryValidateBinding(row.Binding, out var reserved) || reserved)) row.SetState(InputBindingState.Reserved);
             else if (duplicates.Contains(row)) row.SetState(InputBindingState.Conflict);
             else row.SetState(InputBindingState.Valid);
         }
         BindingsList.Items.Refresh();
+        RefreshAnalogSelections();
     }
+
+    private bool IsIdentityKeyboardBinding(InputBindingRow row) =>
+        _allowIdentityKeyboardBindings && _captureSources.HasFlag(InputCaptureSources.Keyboard)
+        && Enum.TryParse<GWGUI.Emulation.Enums.EmulationKey>(row.Id, out var key)
+        && key != GWGUI.Emulation.Enums.EmulationKey.Unknown
+        && InputBindingSyntax.Conflicts(row.Binding, row.Id);
 
     private bool TryValidateBinding(string value, out bool reserved)
     {

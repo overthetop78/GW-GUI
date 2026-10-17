@@ -94,9 +94,9 @@ public sealed class EmulationStorageDeviceList : UserControl
             row.Children.Add(Cell(device.Identifier, FontWeights.SemiBold));
             AddCell(row, device.TypeDisplayName ?? TypeLabel(device.Type), 1);
             AddCell(row, device.Model, 2);
-            var support = string.IsNullOrWhiteSpace(device.SupportPath) ? LocExtension.Get(EmulationResourceKeys.NotUsed) : SupportSummary(device.SupportPath);
+            var support = device.SupportDisplayName ?? (string.IsNullOrWhiteSpace(device.SupportPath) ? LocExtension.Get(EmulationResourceKeys.NotUsed) : SupportSummary(device.SupportPath));
             var supportText = Cell(support);
-            if (string.IsNullOrWhiteSpace(device.SupportPath))
+            if (string.IsNullOrWhiteSpace(device.SupportPath) && device.SupportDisplayName is null)
                 supportText.SetResourceReference(ForegroundProperty, "MutedTextBrush");
             Grid.SetColumn(supportText, 3);
             row.Children.Add(supportText);

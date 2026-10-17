@@ -157,6 +157,9 @@ internal static class ControllerArtworkFileNames
     internal const string SonyGunCon2 = "sony-guncon2.png";
     internal const string SonyJustifier = "sony-justifier.png";
     internal const string SonyPsp1000 = "sony-psp-1000.png";
+    internal const string SonyPsp2000 = "sony-psp-2000.png";
+    internal const string SonyPsp3000 = "sony-psp-3000.png";
+    internal const string SonyPspGo = "sony-psp-go.png";
     internal const string SuncomTac2 = "suncom-tac-2.png";
     internal const string SuperNesController = "super-nes-controller.png";
     internal const string SuperNintendo = "super-nintendo.png";

@@ -65,7 +65,7 @@ internal static partial class OptionCatalog
                 new(OptionValueFunctions.ToNative(CycleSkipping.Maximum), "Emulation.Option.Sony.Value.Maximum"),
             ]),
         Define(OptionConstants.GameEnhancementsHintKey, OptionConstants.GameEnhancementsHintLabel, OptionConstants.GameEnhancementsHintHelp,
-            "disabled", EmulationMachineTab.General,
+            "disabled", EmulationMachineTab.Cheats,
             ToggleChoices, restart: true),
         Define(OptionConstants.UncappedFramerateHintKey, OptionConstants.UncappedFramerateHintLabel, OptionConstants.UncappedFramerateHintHelp,
             "disabled", EmulationMachineTab.Video,

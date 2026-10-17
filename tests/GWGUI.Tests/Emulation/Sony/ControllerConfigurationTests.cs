@@ -63,7 +63,7 @@ public sealed class ControllerConfigurationTests
     [Theory]
     [InlineData(ModelConstants.PlayStation2, PlayCore.Id, PortCounts.OneControllerPort)]
     [InlineData(ModelConstants.PlayStation2, Pcsx2Core.Id, PortCounts.TwoControllerPorts)]
-    [InlineData(ModelConstants.PlayStation3, Rpcs3Core.Id, Ps3Hardware.ControllerPortCount)]
+    [InlineData(ModelConstants.PlayStation3, Rpcs3Core.Id, PortCounts.OneControllerPort)]
     public void ControllerSettingsRespectTheEmulatorPortCapacity(string model, string emulator, int count)
     {
         AssertPortCapacity(new MachineConfiguration(model, emulator), count);
@@ -143,9 +143,10 @@ public sealed class ControllerConfigurationTests
     }
 
     [Fact]
-    public void Ps3ExposesSevenPortsWithCompleteButtonsAndBothSticks()
+    public void Ps3CanExposeSevenControllersWithCompleteButtonsAndBothSticks()
     {
-        var settings = InputSettingsFunctions.Describe(new MachineConfiguration(ModelConstants.PlayStation3, Rpcs3Core.Id));
+        var settings = InputSettingsFunctions.Describe(new MachineConfiguration(ModelConstants.PlayStation3, Rpcs3Core.Id,
+            Options: new Dictionary<string, string> { ["input.controllerCount"] = "7" }));
         Assert.Equal(Ps3Hardware.ControllerPortCount, settings.ControllerPorts.Count);
         Assert.All(settings.ControllerPorts, port =>
         {

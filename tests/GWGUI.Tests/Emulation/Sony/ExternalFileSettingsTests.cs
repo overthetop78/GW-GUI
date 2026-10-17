@@ -16,25 +16,32 @@ public sealed class ExternalFileSettingsTests
     [Theory]
     [InlineData(false)]
     [InlineData(true)]
-    public void FileSelectorsFollowTheirOptionsWithoutDiscardingSelections(bool enabled)
+    public void GamePatchSettingsAreVisibleOutsideGeneralWithoutDiscardingSelections(bool enabled)
     {
         var configuration = Configuration(enabled);
         var fields = new Pcsx2MachineFactory().GetSettingsBlocks(configuration).SelectMany(block => block.Fields).ToArray();
         Assert.Equal(fields.Length, fields.Select(field => field.Id).Distinct().Count());
-        var database = fields.Single(field => field.Id == FileSystemConstants.GameIndexPathKey);
+        var patchIds = new[] { FileSystemConstants.GameIndexPathKey, OptionConstants.UseExternalGameindexKey,
+            OptionConstants.HintLanguageUnlockKey, OptionConstants.GameEnhancementsHintKey };
+        var patches = patchIds.Select(id => Assert.Single(fields, field => field.Id == id)).ToArray();
+        Assert.All(patches, field =>
+        {
+            Assert.Equal(EmulationMachineTab.Cheats, field.Tab);
+            Assert.True(field.IsVisible);
+        });
+        Assert.Single(patches.Select(field => field.BlockId).Distinct());
+        Assert.NotEqual(fields.Single(field => field.Id == OptionConstants.EnableCheatsKey).BlockId, patches[0].BlockId);
+        var database = patches.Single(field => field.Id == FileSystemConstants.GameIndexPathKey);
         Assert.Equal(EmulationSettingsEditor.Path, database.Editor);
         Assert.Equal(enabled, database.IsEnabled);
-        Assert.Equal(configuration.Options![database.Id], database.Value);
-        Assert.True(database.RequiresRestart);
+        Assert.Equal(@"C:\databases\selected.yaml", configuration.Options![FileSystemConstants.GameIndexPathKey]);
         var folder = fields.Single(field => field.Id == FileSystemConstants.CheatsDirectoryKey);
         Assert.Equal(EmulationSettingsEditor.OpenDirectory, folder.Editor);
         Assert.True(folder.IsEnabled);
         Assert.Equal(EmulationDefaultFolderCategory.Cheats, folder.DefaultFolderCategory);
         Assert.Equal(configuration.Options[folder.Id], folder.Value);
         Assert.True(folder.RequiresRestart);
-        Assert.True(fields.Single(field => field.Id == OptionConstants.UseExternalGameindexKey).RequiresRestart);
         Assert.True(fields.Single(field => field.Id == OptionConstants.EnableCheatsKey).RefreshSettingsOnChange);
-        Assert.Equal(EmulationMachineTab.General, database.Tab);
         Assert.Equal(EmulationMachineTab.Cheats, folder.Tab);
     }
 
