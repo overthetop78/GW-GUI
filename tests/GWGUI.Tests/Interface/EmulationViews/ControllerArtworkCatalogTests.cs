@@ -1,6 +1,7 @@
 using GWGUI.App.Views.Controls.Options.ControllerVisualization;
 using System.Collections;
 using System.Reflection;
+using GWGUI.Emulation.Constants;
 
 namespace GWGUI.Tests.Interface.EmulationViews;
 
@@ -30,7 +31,14 @@ public sealed class ControllerArtworkCatalogTests
             Assert.NotNull(definition);
             var zones = definition.GetType().GetProperty(ZonesPropertyName)?.GetValue(definition) as IEnumerable;
             Assert.NotNull(zones);
-            Assert.NotEmpty(zones);
+            var key = entry.GetType().GetProperty("Key")?.GetValue(entry) as string;
+            if (key is EmulationControllerVisualIds.SonyEyeToy or EmulationControllerVisualIds.SonySingStar or EmulationControllerVisualIds.SonyUsbKeyboard
+                or EmulationControllerVisualIds.SonySingStarWireless or EmulationControllerVisualIds.SonySocomHeadset
+                or EmulationControllerVisualIds.SonyLogitechVantage or EmulationControllerVisualIds.SonyRockBandMicrophone
+                or EmulationControllerVisualIds.SonyGuitarHeroMicrophone)
+                Assert.Empty(zones);
+            else
+                Assert.NotEmpty(zones);
         }
     }
 }

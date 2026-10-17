@@ -46,4 +46,9 @@
   <data name="Emulation.Controller.Feedback.Weak"><value>Getaran lemah</value></data>
   <data name="Emulation.Controller.Action.Reload"><value>Isi ulang peluru</value></data>
   <data name="Emulation.Controller.CrosshairColor"><value>Warna bidikan</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-dance-mat"><value>Matras tari</value></data>
+  <data name="Emulation.Controller.NotSupportedByEmulator"><value>Belum didukung oleh emulator ini.</value></data>
+  <data name="Emulation.Controller.ConfigureInKeyboardTab"><value>Atur papan ketik pada tab Keyboard.</value></data>
+  <data name="Emulation.Controller.ConfigureInMouseTab"><value>Atur tetikus di tab tetikus.</value></data>
+  <data name="Emulation.Controller.PeripheralType"><value>Tipe perangkat</value></data>
 </root>

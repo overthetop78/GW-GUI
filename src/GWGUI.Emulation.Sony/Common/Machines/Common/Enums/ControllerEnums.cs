@@ -1,4 +1,4 @@
-namespace GWGUI.Emulation.Sony.Common.Machines.Common.Enums;
+﻿namespace GWGUI.Emulation.Sony.Common.Machines.Common.Enums;
 
 public enum ControllerType
 {
@@ -15,7 +15,49 @@ public enum ControllerType
     Mouse,
     Keyboard,
     KeyboardAndMouse,
-    GunCon2
+    GunCon2,
+    DanceMat,
+    ArcadeStick,
+    JogCon,
+    VolumeController,
+    Guitar,
+    Beatmania,
+    BeatmaniaIidx,
+    PopnMusic,
+    TaikoDrum,
+    TrainController,
+    JetController,
+    FishingController,
+    KidsStation,
+    MaestroBaton,
+    Tambourine,
+    DvdRemote,
+    EyeToy,
+    SingStarMicrophones,
+    BuzzBuzzers,
+    UsbHeadset,
+    UsbMicrophone,
+    UsbWheel,
+    UsbFlightStick,
+    UsbTrainController,
+    KeyboardMania,
+    DrumMania,
+    ParaParaController,
+    RockBandGuitar,
+    RockBandDrums,
+    GameTrak,
+    SerialMouse,
+    SphereController,
+    Glove,
+    Katana,
+    Chainsaw,
+    SerialWheel,
+    NetPlayController,
+    Seamic,
+    GuitarHeroDrums,
+    DjHero,
+    Grip,
+    BiohazardPad
 }
 
 public enum MouseAction { None, LeftButton, RightButton, MiddleButton }

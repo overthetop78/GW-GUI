@@ -9,5 +9,6 @@ public sealed record InputConfiguration(
     EmulationKey ReleaseMouseKey = EmulationKey.Escape,
     IReadOnlyDictionary<string, string>? KeyboardBindings = null,
     string? ReleaseMouseBinding = null,
-    bool ParallelJoystickAdapterEnabled = false);
+    bool ParallelJoystickAdapterEnabled = false,
+    IReadOnlyList<ControllerBinding>? UsbBindings = null);
 

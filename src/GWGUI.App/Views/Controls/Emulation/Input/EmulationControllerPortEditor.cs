@@ -20,6 +20,7 @@ internal sealed class EmulationControllerPortEditor
         ModuleId = moduleId;
         MachineId = machineId;
         Type = new ComboBox();
+        Availability = new TextBlock { TextWrapping = TextWrapping.Wrap, Visibility = Visibility.Collapsed, Margin = new Thickness(0, 8, 0, 10) };
         Visual = new ComboBox
         {
             DisplayMemberPath = nameof(KeyValuePair<string, string>.Value),
@@ -46,6 +47,9 @@ internal sealed class EmulationControllerPortEditor
 
     internal int Number { get; }
     internal string? DisplayName { get; set; }
+    internal int? DisplayNumber { get; set; }
+    internal bool IsUsb { get; set; }
+    internal TextBlock Availability { get; }
     internal string ModuleId { get; }
     internal string MachineId { get; }
     internal ComboBox Type { get; }
@@ -69,5 +73,5 @@ internal sealed class EmulationControllerPortEditor
         Visualizer.Visibility = profile is null ? Visibility.Collapsed : Visibility.Visible;
     }
 
-    internal EmulationControllerPortSettings Settings => new(Number, Type, Visual, Visualizer, Bindings, Outputs) { DisplayName = DisplayName };
+    internal EmulationControllerPortSettings Settings => new(Number, Type, Visual, Visualizer, Bindings, Outputs) { DisplayName = DisplayName, DisplayNumber = DisplayNumber, IsUsb = IsUsb, Availability = Availability };
 }

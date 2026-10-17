@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using GWGUI.App.Constants.Views.Emulation;
+using GWGUI.App.Functions.Views.Emulation.Settings;
 
 namespace GWGUI.App.Views.Controls.Emulation.Options;
 
@@ -23,7 +24,7 @@ internal sealed partial class EmulationModuleSettingsSection
             TickPlacement = range.Step > 1 && (range.Maximum - range.Minimum) / range.Step <= 32 ? TickPlacement.BottomRight : TickPlacement.None,
             Orientation = range.IsVertical ? Orientation.Vertical : Orientation.Horizontal,
             IsDirectionReversed = range.IsVertical,
-            Height = range.IsVertical ? 180 : double.NaN,
+            Height = range.IsVertical ? 128 : double.NaN,
             Value = Math.Clamp(value, range.Minimum, range.Maximum),
             VerticalAlignment = VerticalAlignment.Center,
         };
@@ -49,7 +50,7 @@ internal sealed partial class EmulationModuleSettingsSection
         row.Children.Add(slider);
         Grid.SetColumn(label, 1);
         row.Children.Add(label);
-        if (field.UseChoiceLabelsForSlider)
+        if (range.IsVertical || field.UseChoiceLabelsForSlider)
         {
             row.ColumnDefinitions.Clear();
             row.ColumnDefinitions.Add(new ColumnDefinition());
@@ -60,6 +61,14 @@ internal sealed partial class EmulationModuleSettingsSection
             label.Margin = new Thickness(0, 6, 0, 0);
             label.TextAlignment = TextAlignment.Left;
             label.TextWrapping = TextWrapping.Wrap;
+            if (range.IsVertical)
+            {
+                slider.HorizontalAlignment = HorizontalAlignment.Center;
+                slider.Width = 30;
+                label.HorizontalAlignment = HorizontalAlignment.Center;
+                label.TextAlignment = TextAlignment.Center;
+                label.MinWidth = 0;
+            }
         }
         if (field.AutomaticValue is { } automaticValue)
         {
@@ -83,8 +92,8 @@ internal sealed partial class EmulationModuleSettingsSection
         void UpdateLabel()
         {
             var choice = field.UseChoiceLabelsForSlider ? field.Choices?.FirstOrDefault(item => item.Id == slider.Value.ToString(EmulationSliderConstants.NumericFormat, CultureInfo.InvariantCulture)) : null;
-            label.Text = choice is not null ? ChoiceView(choice).DisplayName
-                : slider.Value.ToString(EmulationSliderConstants.NumericFormat, CultureInfo.CurrentCulture) + range.UnitSuffix;
+            label.Text = choice is not null ? ChoiceView(choice, field.ValueUnitResourceKey).DisplayName
+                : EmulationSettingsValuePresentationFunctions.WithUnit(slider.Value.ToString(EmulationSliderConstants.NumericFormat, CultureInfo.InvariantCulture), field.ValueUnitResourceKey) + range.UnitSuffix;
         }
 
         async Task SaveValueAsync()

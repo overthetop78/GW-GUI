@@ -46,4 +46,9 @@
   <data name="Emulation.Controller.Feedback.Weak"><value>Heikko tärinä</value></data>
   <data name="Emulation.Controller.Action.Reload"><value>Lataa ase</value></data>
   <data name="Emulation.Controller.CrosshairColor"><value>Tähtäimen väri</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-dance-mat"><value>Tanssimatto</value></data>
+  <data name="Emulation.Controller.NotSupportedByEmulator"><value>Ei vielä tämän emulaattorin tukemana.</value></data>
+  <data name="Emulation.Controller.ConfigureInKeyboardTab"><value>Näppäimistön asetukset näppäimistövälilehdessä.</value></data>
+  <data name="Emulation.Controller.ConfigureInMouseTab"><value>Muokkaa hiiren välilehteä.</value></data>
+  <data name="Emulation.Controller.PeripheralType"><value>Laitetyyppi</value></data>
 </root>

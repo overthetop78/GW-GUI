@@ -8,4 +8,5 @@
   <data name="Emulation.Sony.Video.Chip"><value>Videóchip</value></data>
   <data name="Emulation.Sony.Audio.Chip"><value>Hangchip</value></data>
   <data name="Emulation.Sony.Storage.MemoryCard"><value>Memóriakártya</value></data>
+  <data name="Emulation.Sony.Storage.DVD.Device"><value>DVD-meghajtó</value></data>
 </root>

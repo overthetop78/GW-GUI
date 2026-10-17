@@ -191,9 +191,10 @@ internal sealed class ExternalCore : IEmulatorCore
         var setter = _setControllerPortDevice ?? throw new InvalidOperationException(Pcsx2Exceptions.CoreNotInitialized());
         ControllerFunctions.Validate(configuration, port, type);
         var nativePorts = host.ControllerPorts.Select(devices => (IReadOnlyList<NativeControllerDevice>)devices.Select(device => new NativeControllerDevice(device.Name, device.Id)).ToArray()).ToArray();
-        var nativeId = NativeControllerFunctions.Resolve(type, port, nativePorts);
+        var nativeType = InputSettingsFunctions.NativeUsbType(configuration, port, type);
+        var nativeId = NativeControllerFunctions.Resolve(nativeType, port, nativePorts);
         setter((uint)port, nativeId);
-        host.SetControllerType(port, type);
+        host.SetControllerType(port, nativeType);
         host.Feedback.ResetPort(port);
         _configuration = ControllerFunctions.WithControllerType(configuration, port, type);
     }
@@ -206,7 +207,7 @@ internal sealed class ExternalCore : IEmulatorCore
         {
             var type = ControllerFunctions.Resolve(configuration, port);
             if (!requireAdvertised && !_host!.ControllerPorts.Any()
-                && type is not (ControllerType.Joystick or ControllerType.None)) continue;
+                && type is not (ControllerType.Joystick or ControllerType.DanceMat or ControllerType.None)) continue;
             SetControllerPortDevice(port, type);
         }
     }

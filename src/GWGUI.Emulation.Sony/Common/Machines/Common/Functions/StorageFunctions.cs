@@ -34,14 +34,18 @@ internal static class StorageSettingsFunctions
         if (model.HasBuiltInMemoryCard)
             devices.Add(new EmulationMediaDevice(EmulationMediaSlot.MemoryCard0, EmulationMediaType.MemoryCard, Machines.PocketStation.Constants.MediaConstants.FlashImageExtensions, RequiresMachineRecreation: true, IsPermanent: true));
         if (model.SupportsCompactDiscDrive && adapter is not null)
+        {
+            var discFields = (adapter as IEmulatorSettingsAdapter)?.GetStorageDeviceConfigurationFields(configuration, EmulationMediaCategory.CompactDiscDrive) ?? [];
             devices.Add(new EmulationMediaDevice(EmulationMediaSlot.Cd0, EmulationMediaType.CompactDisc,
                 mediaAdapter?.SupportedContentExtensions ?? [],
                 RequiresMachineRecreation: true,
-                DisplayLabel: model.Id == ModelConstants.Psp ? "UMD" : StorageSettingsFunctionsConstants.CompactDiscDriveLabel,
-                ModelResourceKey: model.Id == ModelConstants.Psp ? StorageSettingsFunctionsConstants.UmdModelResource : StorageSettingsFunctionsConstants.CdModelResource,
+                DisplayLabel: model.Id == ModelConstants.Psp ? "UMD" : model.Id == ModelConstants.PlayStation2 ? "DVD" : StorageSettingsFunctionsConstants.CompactDiscDriveLabel,
+                ModelResourceKey: model.Id == ModelConstants.Psp ? StorageSettingsFunctionsConstants.UmdModelResource : model.Id == ModelConstants.PlayStation2 ? "Emulation.Sony.Storage.DVD" : StorageSettingsFunctionsConstants.CdModelResource,
                 IsPermanent: model.HasBuiltInCompactDiscDrive,
-                ConfigurationKind: EmulationStorageConfigurationKind.CompactDiscDrive,
-                ConfigurationFields: (adapter as IEmulatorSettingsAdapter)?.GetStorageDeviceConfigurationFields(configuration, EmulationMediaCategory.CompactDiscDrive) ?? []));
+                ConfigurationKind: discFields.Count > 0 ? EmulationStorageConfigurationKind.CompactDiscDrive : EmulationStorageConfigurationKind.None,
+                ConfigurationFields: discFields,
+                TypeResourceKey: model.Id == ModelConstants.PlayStation2 ? "Emulation.Sony.Storage.DVD.Device" : null));
+        }
         devices.AddRange(mediaAdapter?.GetStorageDevices(configuration) ?? []);
         devices = devices.OrderByDescending(device => device.Slot.Category == EmulationMediaCategory.CompactDiscDrive).ThenByDescending(device => device.IsPermanent).ThenBy(device => device.Slot.Index).ToList();
         var mounted = EmulationMediaConversionFunctions.ToCommon(configuration.Media ?? []);
@@ -167,7 +171,7 @@ internal static class StorageSettingsFunctions
             MinimumBytes = size,
             InitializeBlankImage = ps2 ? InitializeBlankPs2Card : PlayStationMemoryCard.InitializeBlank
         }).ToArray(),
-        DefaultImageSubdirectory: Path.Combine("Sony", ps2 ? ModelConstants.PlayStation2 : ModelConstants.PlayStation, "Memory Cards"));
+        DefaultImageSubdirectory: Path.Combine("Memory Card", "Sony", ps2 ? ModelConstants.PlayStation2 : ModelConstants.PlayStation));
     }
 
     internal static void InitializeBlankPs2Card(Stream image)

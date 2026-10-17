@@ -13,13 +13,26 @@ internal static partial class EmulationSettingsLayout
 {
     private static FrameworkElement ControllerSelector(string resource, FrameworkElement control)
     {
+        if (resource == "Emulation.Controller.Visual")
+        {
+            var column = new StackPanel { Margin = new Thickness(0, 0, 0, 8) };
+            column.Children.Add(new TextBlock
+            {
+                Text = LocExtension.Get(resource), Margin = new Thickness(0, 0, 0, 6),
+                TextWrapping = TextWrapping.Wrap
+            });
+            control.MinWidth = 0;
+            control.HorizontalAlignment = HorizontalAlignment.Stretch;
+            column.Children.Add(control);
+            return column;
+        }
         var row = new DockPanel { Margin = new Thickness(0, 0, 18, 8), LastChildFill = true };
         row.Children.Add(new TextBlock
         {
             Text = LocExtension.Get(resource), VerticalAlignment = VerticalAlignment.Center,
             Margin = new Thickness(0, 0, 12, 0), TextWrapping = TextWrapping.Wrap
         });
-        control.MinWidth = resource == "Emulation.Controller.Visual" ? 300 : 240;
+        control.MinWidth = 240;
         control.HorizontalAlignment = HorizontalAlignment.Stretch;
         row.Children.Add(control);
         return row;
@@ -47,23 +60,24 @@ internal static partial class EmulationSettingsLayout
             DetachForReuse(port.Visual);
             DetachForReuse(port.Visualizer);
             DetachForReuse(port.Bindings);
+            if (port.Availability is not null) DetachForReuse(port.Availability);
             if (port.Outputs is not null) DetachForReuse(port.Outputs);
-            var portLabel = port.DisplayName ?? LocExtension.Get("Emulation.Controller.Port", port.Number);
+            var portLabel = port.DisplayName ?? LocExtension.Get("Emulation.Controller.Port", port.DisplayNumber ?? port.Number);
             if (deviceOptionsFactory is null)
             {
             var legacyContent = new Grid();
             legacyContent.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
             legacyContent.RowDefinitions.Add(new RowDefinition());
-            var selectors = new WrapPanel();
-            selectors.Children.Add(ControllerSelector("Emulation.Controller.Type", port.Type));
-            selectors.Children.Add(ControllerSelector("Emulation.Controller.Visual", port.Visual));
-            selectors.Margin = new Thickness(10, 10, 10, 4);
-            legacyContent.Children.Add(selectors);
+            legacyContent.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(3, GridUnitType.Star) });
+            legacyContent.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(2, GridUnitType.Star) });
+            var typeSelector = new StackPanel();
+            typeSelector.Children.Add(ControllerSelector(port.IsUsb ? "Emulation.Controller.PeripheralType" : "Emulation.Controller.Type", port.Type));
+            if (port.Availability is not null) typeSelector.Children.Add(port.Availability);
+            typeSelector.Margin = new Thickness(10, 10, 6, 4);
+            legacyContent.Children.Add(typeSelector);
             var portContent = new Grid { ClipToBounds = true };
             portContent.RowDefinitions.Add(new RowDefinition());
             portContent.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
-            portContent.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(3, GridUnitType.Star) });
-            portContent.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(2, GridUnitType.Star) });
             port.Bindings.HorizontalAlignment = HorizontalAlignment.Stretch;
             portContent.Children.Add(port.Bindings);
             if (port.Outputs is not null)
@@ -76,11 +90,17 @@ internal static partial class EmulationSettingsLayout
             port.Visualizer.VerticalAlignment = VerticalAlignment.Stretch;
             port.Visualizer.Margin = new Thickness(8, 4, 10, 8);
             port.Visualizer.ClipToBounds = true;
-            Grid.SetColumn(port.Visualizer, 1);
-            Grid.SetRowSpan(port.Visualizer, 2);
-            portContent.Children.Add(port.Visualizer);
             Grid.SetRow(portContent, 1);
             legacyContent.Children.Add(portContent);
+            var visualColumn = new Grid { Margin = new Thickness(6, 10, 10, 4) };
+            visualColumn.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+            visualColumn.RowDefinitions.Add(new RowDefinition());
+            visualColumn.Children.Add(ControllerSelector("Emulation.Controller.Visual", port.Visual));
+            Grid.SetRow(port.Visualizer, 1);
+            visualColumn.Children.Add(port.Visualizer);
+            Grid.SetColumn(visualColumn, 1);
+            Grid.SetRowSpan(visualColumn, 2);
+            legacyContent.Children.Add(visualColumn);
             mappingTabs.Items.Add(new TabItem { Header = portLabel, Content = legacyContent });
 
                 continue;
@@ -89,7 +109,8 @@ internal static partial class EmulationSettingsLayout
             content.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(3, GridUnitType.Star) });
             content.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(2, GridUnitType.Star) });
             var left = new StackPanel { Margin = new Thickness(10, 10, 6, 4) };
-            left.Children.Add(ControllerSelector("Emulation.Controller.Type", port.Type));
+            left.Children.Add(ControllerSelector(port.IsUsb ? "Emulation.Controller.PeripheralType" : "Emulation.Controller.Type", port.Type));
+            if (port.Availability is not null) left.Children.Add(port.Availability);
             if (deviceOptionsFactory is not null) left.Children.Add(deviceOptionsFactory(port));
             port.Bindings.Height = EmulationControllerSettingsConstants.MappingHeight;
             port.Bindings.HorizontalAlignment = HorizontalAlignment.Stretch;

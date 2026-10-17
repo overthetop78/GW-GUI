@@ -7,6 +7,9 @@ namespace GWGUI.App.Functions.Views.Emulation.Settings;
 
 internal static class EmulationSettingsValuePresentationFunctions
 {
+    internal static string WithUnit(string value, string? resourceKey) => resourceKey is not null
+        && double.TryParse(value, NumberStyles.Float, CultureInfo.InvariantCulture, out _)
+            ? value + " " + LocExtension.Get(resourceKey) : value;
     internal static string? ScaledFrequency(long? nominalHz, string? scale)
     {
         if (nominalHz is null || !double.TryParse(scale?.TrimEnd('%'), NumberStyles.Float, CultureInfo.InvariantCulture, out var percentage) || !double.IsFinite(percentage)) return null;
@@ -15,7 +18,7 @@ internal static class EmulationSettingsValuePresentationFunctions
     internal static string DisplayValue(EmulationSettingsField field, IEmulationModule? module = null)
     {
         var choice = field.Choices?.FirstOrDefault(value => value.Id == field.Value) ?? field.Choices?.FirstOrDefault();
-        return choice?.InvariantDisplayValue ?? (choice is null ? field.Value ?? string.Empty : (module is null ? LocExtension.Get(choice.DisplayResourceKey) : LocExtension.GetForModule(module, choice.DisplayResourceKey)));
+        return WithUnit(choice?.InvariantDisplayValue ?? (choice is null ? field.Value ?? string.Empty : (module is null ? LocExtension.Get(choice.DisplayResourceKey) : LocExtension.GetForModule(module, choice.DisplayResourceKey))), field.ValueUnitResourceKey);
     }
     internal static long DefaultNumericValue(EmulationSettingsField field)
     {

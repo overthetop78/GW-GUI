@@ -24,5 +24,5 @@ internal static class CoreConstants
         FeedbackControllerTypes: [ControllerType.Joystick],
         CreateControllerPorts: ControllerConfigurationFunctions.CreatePorts,
         FirmwarePersistence: FirmwareConstants.Persistence,
-        PrepareSystemFiles: CheatFunctions.Prepare);
+        PrepareSystemFiles: NetworkFunctions.Prepare);
 }

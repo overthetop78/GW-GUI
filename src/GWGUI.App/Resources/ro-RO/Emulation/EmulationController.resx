@@ -46,4 +46,9 @@
   <data name="Emulation.Controller.Feedback.Weak"><value>Vibrație slabă</value></data>
   <data name="Emulation.Controller.Action.Reload"><value>Reîncarcă</value></data>
   <data name="Emulation.Controller.CrosshairColor"><value>Culoarea reticulului</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-dance-mat"><value>Covoraș de dans</value></data>
+  <data name="Emulation.Controller.NotSupportedByEmulator"><value>Nu este susţinut de acest emulator încă.</value></data>
+  <data name="Emulation.Controller.ConfigureInKeyboardTab"><value>Configurează tastatura din tastatura tastatură.</value></data>
+  <data name="Emulation.Controller.ConfigureInMouseTab"><value>Configurați mouse-ul în fila mouse-ului.</value></data>
+  <data name="Emulation.Controller.PeripheralType"><value>Tip dispozitiv</value></data>
 </root>

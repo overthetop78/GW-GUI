@@ -16,9 +16,9 @@ internal static class ControllerConfigurationFunctions
         _ => Ports.TwoControllerPorts
     };
 
-    internal static string DisplayName(int port) => port < Controllers.UsbPortCount
+    internal static string? DisplayName(int port) => port < Controllers.UsbPortCount
         ? Controllers.UsbPortPrefix + (port + 1).ToString(CultureInfo.InvariantCulture)
-        : Controllers.GamepadPortPrefix + (port - Controllers.UsbPortCount + 1).ToString(CultureInfo.InvariantCulture);
+        : null;
 
     internal static ControllerType UsbType(MachineConfiguration configuration, int port)
     {

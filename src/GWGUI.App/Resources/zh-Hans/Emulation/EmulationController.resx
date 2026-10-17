@@ -46,4 +46,9 @@
   <data name="Emulation.Controller.Feedback.Weak"><value>弱振动</value></data>
   <data name="Emulation.Controller.Action.Reload"><value>重新装弹</value></data>
   <data name="Emulation.Controller.CrosshairColor"><value>准星颜色</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-dance-mat"><value>跳舞毯</value></data>
+  <data name="Emulation.Controller.NotSupportedByEmulator"><value>此模拟器尚未支持 。</value></data>
+  <data name="Emulation.Controller.ConfigureInKeyboardTab"><value>配置键盘标签中的键盘 。</value></data>
+  <data name="Emulation.Controller.ConfigureInMouseTab"><value>配置鼠标标签中的鼠标 。</value></data>
+  <data name="Emulation.Controller.PeripheralType"><value>设备类型</value></data>
 </root>

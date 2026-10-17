@@ -8,4 +8,5 @@
   <data name="Emulation.Sony.Video.Chip"><value>Videosiru</value></data>
   <data name="Emulation.Sony.Audio.Chip"><value>Audiosiru</value></data>
   <data name="Emulation.Sony.Storage.MemoryCard"><value>Muistikortti</value></data>
+  <data name="Emulation.Sony.Storage.DVD.Device"><value>DVD-asema</value></data>
 </root>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
   <resheader name="version"><value>2.0</value></resheader>
@@ -46,4 +46,9 @@
   <data name="Emulation.Controller.Feedback.Weak"><value>Vibrations faibles</value></data>
   <data name="Emulation.Controller.Action.Reload"><value>Recharger</value></data>
   <data name="Emulation.Controller.CrosshairColor"><value>Couleur du réticule</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-dance-mat"><value>Tapis de danse</value></data>
+  <data name="Emulation.Controller.NotSupportedByEmulator"><value>Pas encore pris en charge par cet émulateur.</value></data>
+  <data name="Emulation.Controller.ConfigureInKeyboardTab"><value>Configurez le clavier dans l’onglet Clavier.</value></data>
+  <data name="Emulation.Controller.ConfigureInMouseTab"><value>Configurez la souris dans l’onglet Souris.</value></data>
+  <data name="Emulation.Controller.PeripheralType"><value>Type de périphérique</value></data>
 </root>

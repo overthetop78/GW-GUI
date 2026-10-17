@@ -8,25 +8,20 @@ internal static partial class InputSettingsFunctions
         if (!EmulatorCatalog.GetAll(model.Id).Any(adapter => adapter.Id == configuration.EmulatorId))
             return new EmulationInputSettings(null, null, []);
         var input = configuration.Input ?? new InputConfiguration();
-        var types = ControllerCatalog.Types(configuration);
-        var keyboard = model.HasKeyboard || types.Any(type => type is ControllerType.Keyboard or ControllerType.KeyboardAndMouse) ? new EmulationInputBindingSet([], input.KeyboardBindings ?? ToStrings(input.KeyboardMappings), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller) : null;
-        var mouse = model.MouseButtonCount > 0 ? new EmulationInputBindingSet(MouseDefinitions(), MouseValues(input), EmulationInputSource.Mouse | EmulationInputSource.Keyboard | EmulationInputSource.Controller, true) : null;
-        var configured = input.ControllerBindings ?? [];
-        var ports = Enumerable.Range(ControllerPortConstants.MinimumControllerPort, ControllerFunctions.PortCount(configuration)).Select(index =>
+        var usbKeyboard = HasUsbKeyboard(configuration);
+        var usbMouse = HasUsbMouse(configuration);
+        var keyboard = model.HasKeyboard || usbKeyboard ? new EmulationInputBindingSet(usbKeyboard ? UsbKeyboardDefinitions() : [], input.KeyboardBindings ?? ToStrings(input.KeyboardMappings), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller,
+            CompatibleVisualIds: usbKeyboard ? [UsbKeyboardVisualId(configuration)] : null, DefaultVisualId: usbKeyboard ? UsbKeyboardVisualId(configuration) : null) : null;
+        var mouse = model.MouseButtonCount > 0 || usbMouse ? new EmulationInputBindingSet(usbMouse ? [.. MouseDefinitions(), Definition(nameof(MouseAction.MiddleButton), "Emulation.Mouse.Button.Middle", "Mouse:Middle")] : MouseDefinitions(), MouseValues(input), EmulationInputSource.Mouse | EmulationInputSource.Keyboard | EmulationInputSource.Controller, true) : null;
+        if (usbMouse && mouse is not null) mouse = mouse with
         {
-            var current = configured.FirstOrDefault(item => item.Port == index);
-            var type = ControllerFunctions.Resolve(configuration, index);
-            return new EmulationControllerPort(index + 1,
-                ControllerFunctions.Supported(configuration, index).Select(choice => Choice(choice, model, configuration, index)).ToArray(),
-                type.ToString(),
-                current?.DeviceId,
-                new EmulationInputBindingSet(ControllerDefinitions(type, model, configuration, index), current?.ButtonMappings ?? new Dictionary<string, string>(), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller, true),
-                VisualId: current?.VisualId)
-            {
-                DisplayName = (new Engine().Adapter(configuration) as IEmulatorControllerAdapter)?.GetControllerPortDisplayName(configuration, index),
-                OutputBindings = ValidOutputBindings(configuration, type, current?.VisualId, current?.OutputBindings)
-            };
-        }).ToArray();
+            CompatibleVisualIds = [EmulationControllerVisualIds.SonyUsbMouse],
+            DefaultVisualId = EmulationControllerVisualIds.SonyUsbMouse,
+            VisualCommandIds = UsbMouseVisualCommands()
+        };
+        var indexes = Enumerable.Range(ControllerPortConstants.MinimumControllerPort, ControllerFunctions.PortCount(configuration));
+        if (model.Id == ModelConstants.PlayStation2 && configuration.EmulatorId != "pcee2") indexes = new[] { 8, 9 }.Concat(indexes);
+        var ports = indexes.Select(index => DescribePort(configuration, model, index)).ToArray();
         return new EmulationInputSettings(keyboard, mouse, ports);
     }
 
@@ -35,16 +30,18 @@ internal static partial class InputSettingsFunctions
         if (!EmulatorCatalog.GetAll(configuration.Model).Any(adapter => adapter.Id == configuration.EmulatorId))
             return configuration;
         var current = configuration.Input ?? new InputConfiguration();
-        var keyboard = settings.Keyboard?.Values ?? new Dictionary<string, string>();
+        var keyboard = settings.Keyboard?.Values ?? current.KeyboardBindings ?? ToStrings(current.KeyboardMappings);
         var mouse = settings.Mouse?.Values.Where(item => !string.IsNullOrWhiteSpace(item.Value) && Enum.TryParse<MouseAction>(item.Key, true, out var action) && action != MouseAction.None)
             .ToDictionary(item => item.Value, item => Enum.Parse<MouseAction>(item.Key, true),
-                StringComparer.OrdinalIgnoreCase) ?? new Dictionary<string, MouseAction>();
+                StringComparer.OrdinalIgnoreCase) ?? current.MouseButtonMappings ?? new Dictionary<string, MouseAction>();
         var controllers = settings.ControllerPorts.Where(port => port.Number <= ControllerFunctions.PortCount(configuration)).Select(port =>
         {
             var index = port.Number - ControllerPortConstants.OneControllerPort;
             if (!Enum.TryParse<ControllerType>(port.SelectedControllerId, true, out var type))
                 throw new ArgumentOutOfRangeException(nameof(port.SelectedControllerId), port.SelectedControllerId, null);
-            ControllerFunctions.Validate(configuration, index, type);
+            var usb = ControllerCatalog.IsUsbPort(configuration, index);
+            if (!ControllerCatalog.Available(configuration, index, usb).Contains(type))
+                throw new ArgumentOutOfRangeException(nameof(port.SelectedControllerId), port.SelectedControllerId, null);
             return new ControllerBinding(index, type, port.PhysicalDeviceId,
                 port.Bindings.Values.Where(item => !string.IsNullOrWhiteSpace(item.Key) && !string.IsNullOrWhiteSpace(item.Value)).ToDictionary(item => item.Key, item => item.Value, StringComparer.Ordinal),
                 port.VisualId, ValidOutputBindings(configuration, type, port.VisualId, port.OutputBindings));
@@ -56,7 +53,18 @@ internal static partial class InputSettingsFunctions
                 KeyboardBindings = keyboard,
                 KeyboardMappings = ToKeys(keyboard),
                 MouseButtonMappings = mouse,
-                ControllerBindings = controllers
+                ControllerBindings = controllers,
+                UsbBindings = configuration.Model == ModelConstants.PlayStation2 && configuration.EmulatorId != "pcee2"
+                    ? settings.ControllerPorts.Where(port => port.IsUsb).Select(port =>
+                    {
+                        if (!Enum.TryParse<ControllerType>(port.SelectedControllerId, out var type)
+                            || !ControllerCatalog.Available(configuration, port.Number - 1, true).Contains(type))
+                            throw new ArgumentOutOfRangeException(nameof(port.SelectedControllerId));
+                        return new ControllerBinding(port.Number - 9, type, port.PhysicalDeviceId,
+                            port.Bindings.Values.Where(item => !string.IsNullOrWhiteSpace(item.Key) && !string.IsNullOrWhiteSpace(item.Value))
+                                .ToDictionary(item => item.Key, item => item.Value, StringComparer.Ordinal),
+                            port.VisualId, ValidOutputBindings(configuration, type, port.VisualId, port.OutputBindings));
+                    }).ToArray() : current.UsbBindings
             }
         };
     }
@@ -112,6 +120,14 @@ internal static partial class InputSettingsFunctions
     private static IReadOnlyList<InputBindingDefinition> PlayStationControllerDefinitions(ControllerType type, Model model)
     {
         var buttons = PlayStationButtonDefinitions();
+        if (type == ControllerType.DanceMat)
+            return buttons.Where(definition => definition.Id is EmulationControllerCommandIds.Up or EmulationControllerCommandIds.Down
+                or EmulationControllerCommandIds.Left or EmulationControllerCommandIds.Right
+                or EmulationControllerCommandIds.Start or EmulationControllerCommandIds.Select
+                or EmulationControllerCommandIds.B or EmulationControllerCommandIds.A
+                or EmulationControllerCommandIds.Y or EmulationControllerCommandIds.X).ToArray();
+        if (type == ControllerType.ArcadeStick)
+            return buttons.Where(definition => definition.Id is not (EmulationControllerCommandIds.L3 or EmulationControllerCommandIds.R3)).ToArray();
         if (type is ControllerType.GunCon or ControllerType.Justifier)
             return
             [
@@ -198,7 +214,9 @@ internal static partial class InputSettingsFunctions
         };
 
     private static EmulationControllerChoice Choice(ControllerType type, Model model, MachineConfiguration configuration, int port) => new(
-        type.ToString(), ControllerResourceKey(type, model),
+        type.ToString(), ControllerCatalog.IsUsbPort(configuration, port) && type == ControllerType.Mouse ? "Emulation.Sony.Controller.UsbMouse"
+            : ControllerCatalog.IsUsbPort(configuration, port) && type == ControllerType.Keyboard ? "Emulation.Sony.Controller.UsbKeyboard"
+            : ControllerResourceKey(type, model),
         InvariantDisplayValue: type switch
         {
             ControllerType.NeGcon => InputSettingsFunctionsConstants.NeGcon,
@@ -206,21 +224,31 @@ internal static partial class InputSettingsFunctions
             ControllerType.KeyboardAndMouse => InputSettingsFunctionsConstants.KeyboardAndMouseGlyphs,
             _ => null
         },
-        BindingDefinitions: ControllerDefinitions(type, model, configuration, port),
-        CompatibleVisualIds: CompatibleVisualIds(type, model),
-        DefaultVisualId: DefaultVisualId(type, model),
-        VisualCommandIds: VisualCommandIds(type, model))
+        BindingDefinitions: PortDefinitions(type, model, configuration, port),
+        CompatibleVisualIds: ChoiceVisuals(type, model, configuration, port),
+        DefaultVisualId: ChoiceVisuals(type, model, configuration, port)?.FirstOrDefault(),
+        VisualCommandIds: ControllerCatalog.IsUsbPort(configuration, port) && type is ControllerType.Keyboard or ControllerType.Mouse or ControllerType.NetPlayController ? null : VisualCommandIds(type, model),
+        VisualBindingDefinitions: PeripheralVisualDefinitions(type))
     {
+        IsSupportedByEmulator = ControllerCatalog.IsSupported(configuration, type, port, ControllerCatalog.IsUsbPort(configuration, port)),
         VisualOutputDefinitions = VisualOutputs(configuration, type, model),
         Category = type switch
         {
             ControllerType.None => EmulationControllerCategory.None,
             ControllerType.Automatic => EmulationControllerCategory.Unspecified,
             ControllerType.AnalogJoystick => EmulationControllerCategory.Joystick,
+            ControllerType.DanceMat => EmulationControllerCategory.DanceSimulation,
+            ControllerType.ArcadeStick => EmulationControllerCategory.Joystick,
             ControllerType.NeGcon or ControllerType.NeGconRumble => EmulationControllerCategory.RacingSimulation,
             ControllerType.GunCon or ControllerType.GunCon2 or ControllerType.Justifier or ControllerType.Mouse => EmulationControllerCategory.PointingDevice,
             ControllerType.Keyboard or ControllerType.KeyboardAndMouse => EmulationControllerCategory.OtherSimulation,
-            _ => EmulationControllerCategory.Gamepad
+            _ => ControllerCatalog.Visuals(type, model.Id == ModelConstants.PlayStation2) is not null
+                ? EmulationControllerCategory.Unspecified : EmulationControllerCategory.Gamepad
         }
     };
+
+    private static IReadOnlyList<string>? ChoiceVisuals(ControllerType type, Model model, MachineConfiguration configuration, int port) =>
+        ControllerCatalog.IsUsbPort(configuration, port) && type == ControllerType.Keyboard ? [EmulationControllerVisualIds.SonyUsbKeyboard]
+        : ControllerCatalog.IsUsbPort(configuration, port) && type == ControllerType.Mouse ? [EmulationControllerVisualIds.SonyUsbMouse]
+        : ControllerCatalog.Visuals(type, model.Id == ModelConstants.PlayStation2) ?? CompatibleVisualIds(type, model);
 }

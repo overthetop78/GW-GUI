@@ -9,5 +9,6 @@ public enum EmulationDefaultFolderCategory
     Cassette,
     State,
     Capture,
-    Firmware
+    Firmware,
+    Cheats
 }

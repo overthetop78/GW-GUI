@@ -12,7 +12,7 @@ internal static class ControllerPortFunctions
             || port >= SemanticPortConstants.MaximumGamepadPortCount)
             throw new ArgumentOutOfRangeException(nameof(port), port, null);
         if (type == ControllerType.None) return NativeControllerConstants.NoneDevice;
-        if (type == ControllerType.Joystick)
+        if (type is ControllerType.Joystick or ControllerType.DanceMat or ControllerType.ArcadeStick)
         {
             if (!ports.Any()) return NativeControllerConstants.JoypadDevice;
             if (port >= ports.Count)

@@ -41,8 +41,9 @@ public sealed class SonyEmulationModule : IEmulationModule, IEmulationEmulatorMa
         var tabs = DefaultVisibility.Tabs.ToDictionary(item => item.Key, item => item.Key switch
         {
             EmulationMachineTab.Rom => populatedTabs.Contains(EmulationMachineTab.Rom),
-            EmulationMachineTab.Keyboard => hasAdapter && model.HasKeyboard,
-            EmulationMachineTab.Mouse => hasAdapter && model.MouseButtonCount > 0,
+            EmulationMachineTab.Cheats or EmulationMachineTab.Ethernet => populatedTabs.Contains(item.Key),
+            EmulationMachineTab.Keyboard => hasAdapter && (model.HasKeyboard || InputSettingsFunctions.HasUsbKeyboard(current)),
+            EmulationMachineTab.Mouse => hasAdapter && (model.MouseButtonCount > 0 || InputSettingsFunctions.HasUsbMouse(current)),
             EmulationMachineTab.Controllers => hasAdapter,
             EmulationMachineTab.Storage => model.MaximumFloppyDriveCount > 0
                 || model.SupportsCassetteDrive || model.SupportsCartridgeSlot
@@ -85,16 +86,15 @@ public sealed class SonyEmulationModule : IEmulationModule, IEmulationEmulatorMa
             else options[item.Key] = item.Value;
         }
         var audio = adapter is IEmulatorSettingsAdapter audioAdapter ? audioAdapter.GetAudioConfiguration(sony) : sony.Audio ?? new AudioConfiguration();
-        const string multitap = Emulators.SwanStation.Constants.OptionConstants.ControllerPortsMultitapModeKey;
-        if (sony.EmulatorId == Emulators.SwanStation.Constants.CoreConstants.Id
-            && (values.ContainsKey(multitap + ".port1") || values.ContainsKey(multitap + ".port2")))
+        foreach (var (multitap, mode) in Emulators.Common.Interop.Constants.ControllerOptionConstants.MultitapModes)
         {
-            var previous = options.GetValueOrDefault(multitap, "Disabled");
+            if (!values.ContainsKey(multitap + ".port1") && !values.ContainsKey(multitap + ".port2")) continue;
+            var previous = options.GetValueOrDefault(multitap, mode.Disabled);
             bool Enabled(int port) => values.TryGetValue(multitap + ".port" + port, out var selected)
-                ? selected == EmulationSettingConstants.Enabled : previous == "BothPorts" || previous == $"Port{port}Only";
+                ? selected == EmulationSettingConstants.Enabled : previous == mode.Both || previous == (port == 1 ? mode.Port1 : mode.Port2);
             options[multitap] = (Enabled(1), Enabled(2)) switch
             {
-                (true, true) => "BothPorts", (true, false) => "Port1Only", (false, true) => "Port2Only", _ => "Disabled"
+                (true, true) => mode.Both, (true, false) => mode.Port1, (false, true) => mode.Port2, _ => mode.Disabled
             };
             options.Remove(multitap + ".port1");
             options.Remove(multitap + ".port2");

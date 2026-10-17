@@ -51,7 +51,10 @@ internal sealed partial class EmulationModuleSettingsSection
         _userChangeHandlers.Clear();
         _configuration = EmulationVideoConfigurationFunctions.Apply(_module, _configuration, _profiles.Get(_module.Id, _configuration.Id).Renderer);
         var settings = _module.Describe(_configuration.MachineId, _configuration);
-        var tabs = EmulationMachineTabs.Create(tab => settings.Visibility.Tabs.GetValueOrDefault(tab) ? BuildTab(settings, tab) : null, $"{_module.Id}:{_configuration.MachineId}", TabActivatedAsync, _selectedTab);
+        var tabs = EmulationMachineTabs.Create(tab => settings.Visibility.Tabs.GetValueOrDefault(tab)
+            && (tab is not (EmulationMachineTab.Cheats or EmulationMachineTab.Ethernet)
+                || settings.Blocks.Any(block => block.Tab == tab && block.IsVisible && block.Fields.Any(field => field.IsVisible)))
+            ? BuildTab(settings, tab) : null, $"{_module.Id}:{_configuration.MachineId}", TabActivatedAsync, _selectedTab);
         AttachUserChangeHandlers();
         return tabs;
     }
@@ -100,13 +103,7 @@ internal sealed partial class EmulationModuleSettingsSection
         if (blocks.Any(block => block.IsCompact))
         {
             display = EmulationSettingsLayout.VideoSettingsFields(blocks.Where(block => !block.IsCollapsible).SelectMany(block => block.Fields).Where(field => field.IsVisible && field.LabelResourceKey != rendererResourceKey).Select(CreateVideoSettingsField).ToArray());
-            var groups = new StackPanel();
-            foreach (var block in blocks.Where(block => block.IsCollapsible))
-            {
-                groups.Children.Add(EmulationSettingsLayout.IconCard(
-                    EmulationSettingsLayout.VideoSettingsFields(block.Fields.Where(field => field.IsVisible && field.LabelResourceKey != rendererResourceKey).Select(CreateVideoSettingsField).ToArray()),
-                    LocExtension.GetForModule(_module, block.TitleResourceKey), block.Icon ?? IconGlyphs.Visualization));
-            }
+            var groups = CreateRenderingGroups(blocks.Where(block => block.IsCollapsible));
             if (groups.Children.Count > 0) nativeSettings = groups;
         }
         else if (!blocks.Any(block => block.IsCollapsible))
@@ -165,9 +162,48 @@ internal sealed partial class EmulationModuleSettingsSection
             Explanation: field.ExplanationResourceKey is null ? null : LocExtension.GetForModule(_module, field.ExplanationResourceKey),
             DetailedExplanation: field.DetailedExplanationResourceKey is null ? null : LocExtension.GetForModule(_module, field.DetailedExplanationResourceKey));
 
+    private StackPanel CreateRenderingGroups(IEnumerable<EmulationSettingsBlock> blocks)
+    {
+        var groups = new StackPanel();
+        var visible = blocks.Select(block => block with
+        {
+            Fields = block.Fields.Where(field => field.IsVisible && field.LabelResourceKey != EmulationResourceKeys.VideoRenderingSettings).ToArray()
+        }).Where(block => block.Fields.Count > 0).ToArray();
+        bool IsScan(EmulationSettingsBlock block) => block.Fields.All(field => field.NumericRange?.IsVertical == true);
+        FrameworkElement Card(EmulationSettingsBlock block, bool paired)
+        {
+            var columns = paired && !IsScan(block) ? 1 : 2;
+            return EmulationSettingsLayout.IconCard(
+                EmulationSettingsLayout.VideoSettingsFields(columns, block.Fields.Select(CreateVideoSettingsField).ToArray()),
+                LocExtension.GetForModule(_module, block.TitleResourceKey), block.Icon ?? IconGlyphs.Visualization);
+        }
+        for (var index = 0; index < visible.Length; index++)
+        {
+            var block = visible[index];
+            if (index + 1 < visible.Length && block.Fields.Count <= 2 && visible[index + 1].Fields.Count <= 2
+                && IsScan(block) == IsScan(visible[index + 1]))
+            {
+                groups.Children.Add(EmulationSettingsLayout.VideoSettingsCardRow(Card(block, true), Card(visible[++index], true)));
+                continue;
+            }
+            var card = Card(block, false);
+            card.Margin = new Thickness(0, 0, 0, 18);
+            groups.Children.Add(card);
+        }
+        return groups;
+    }
+
     private void AddBlocks(Panel panel, EmulationMachineSettings settings, EmulationMachineTab tab)
     {
         bool IsDisplayed(EmulationSettingsField field) => field.IsVisible && !(tab == EmulationMachineTab.General && field.Editor == EmulationSettingsEditor.DirectoryPath && field.DefaultFolderCategory is not null);
+        if (tab == EmulationMachineTab.Rom)
+        {
+            foreach (var block in settings.Blocks.Where(block => block.Tab == tab && block.IsVisible && block.Fields.Any(IsDisplayed)))
+                panel.Children.Add(EmulationSettingsLayout.IconCard(
+                    EmulationSettingsLayout.VideoSettingsFields(1, block.Fields.Where(IsDisplayed).Select(CreateVideoSettingsField).ToArray()),
+                    LocExtension.GetForModule(_module, block.TitleResourceKey), block.Icon ?? IconGlyphs.Settings));
+            return;
+        }
         if (tab == EmulationMachineTab.Audio)
         {
             var blocks = settings.Blocks.Where(block => block.Tab == tab && block.IsVisible && block.Fields.Any(IsDisplayed))

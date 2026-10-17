@@ -63,10 +63,11 @@ public sealed class HardDiskDriveConfigurationDialog : Window
         Owner = Application.Current.Windows.OfType<Window>().FirstOrDefault(window => window.IsActive);
         ShowInTaskbar = false;
         WindowStartupLocation = WindowStartupLocation.CenterOwner;
-        Width = 980;
-        Height = 760;
-        MinWidth = 820;
-        MinHeight = 620;
+        Width = fixedImageSizeBytes is null ? 980 : 760;
+        Height = fixedImageSizeBytes is null ? 760 : double.NaN;
+        MinWidth = fixedImageSizeBytes is null ? 820 : 620;
+        MinHeight = fixedImageSizeBytes is null ? 620 : 0;
+        SizeToContent = fixedImageSizeBytes is null ? SizeToContent.Manual : SizeToContent.Height;
         MaxHeight = SystemParameters.WorkArea.Height;
         ResizeMode = ResizeMode.CanResize;
 
@@ -169,7 +170,7 @@ public sealed class HardDiskDriveConfigurationDialog : Window
         }
         else destinationAndAllocation.Children.Add(StorageDialogUi.Info(StorageSizeFormatter.FormatCapacity(_fixedImageSizeBytes.Value)));
         FrameworkElement createTop = _fixedImageSizeBytes is not null
-            ? StorageDialogUi.IconCard(IconGlyphs.Memory, LocExtension.Get(_presentation?.ImageResourceKey ?? "Emulation.Storage.Disk.Image"), image)
+            ? image
             : StorageDialogUi.SideBySide(
             StorageDialogUi.IconCard(IconGlyphs.File, LocExtension.Get(_presentation?.ImageResourceKey ?? "Emulation.Storage.Disk.Image"), image),
             StorageDialogUi.IconCard(IconGlyphs.OpenFolder, LocExtension.Get(_presentation?.DestinationFolderResourceKey ?? "Emulation.Storage.File.DestinationFolder"), destinationAndAllocation));
@@ -211,7 +212,7 @@ public sealed class HardDiskDriveConfigurationDialog : Window
         footer.Children.Insert(0, remove);
 
         var body = new StackPanel();
-        body.Children.Add(reader);
+        if (_fixedImageSizeBytes is null) body.Children.Add(reader);
         body.Children.Add(StorageDialogUi.Card(LocExtension.Get(_presentation?.AssociatedResourceKey ?? "Emulation.Storage.Media.Associated"), support));
 
         var root = new Grid { Margin = new Thickness(18) };

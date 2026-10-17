@@ -46,4 +46,9 @@
   <data name="Emulation.Controller.Feedback.Weak"><value>Schwache Vibration</value></data>
   <data name="Emulation.Controller.Action.Reload"><value>Nachladen</value></data>
   <data name="Emulation.Controller.CrosshairColor"><value>Farbe des Fadenkreuzes</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-dance-mat"><value>Tanzmatte</value></data>
+  <data name="Emulation.Controller.NotSupportedByEmulator"><value>Von diesem Emulator noch nicht unterstützt.</value></data>
+  <data name="Emulation.Controller.ConfigureInKeyboardTab"><value>Konfigurieren Sie die Tastatur im Tab Tastatur.</value></data>
+  <data name="Emulation.Controller.ConfigureInMouseTab"><value>Konfigurieren Sie die Maus im Maus-Tab.</value></data>
+  <data name="Emulation.Controller.PeripheralType"><value>Art des Produkts</value></data>
 </root>

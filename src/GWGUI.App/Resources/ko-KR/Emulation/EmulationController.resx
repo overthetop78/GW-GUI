@@ -46,4 +46,9 @@
   <data name="Emulation.Controller.Feedback.Weak"><value>약한 진동</value></data>
   <data name="Emulation.Controller.Action.Reload"><value>재장전</value></data>
   <data name="Emulation.Controller.CrosshairColor"><value>조준선 색상</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-dance-mat"><value>댄스 매트</value></data>
+  <data name="Emulation.Controller.NotSupportedByEmulator"><value>아직이 에뮬레이터에 의해 지원되지 않습니다.</value></data>
+  <data name="Emulation.Controller.ConfigureInKeyboardTab"><value>키보드 탭에서 구성.</value></data>
+  <data name="Emulation.Controller.ConfigureInMouseTab"><value>마우스 탭에서 마우스를 구성합니다.</value></data>
+  <data name="Emulation.Controller.PeripheralType"><value>장치 유형</value></data>
 </root>

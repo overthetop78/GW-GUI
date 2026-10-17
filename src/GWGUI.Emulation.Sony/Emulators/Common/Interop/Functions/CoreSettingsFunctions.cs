@@ -43,6 +43,13 @@ internal static class CoreSettingsFunctions
             var option = GraphicsSettingsFunctions.Present(source, configuration.Options?.GetValueOrDefault(source.Key) ?? source.DefaultValue, configuration.GraphicsApi);
             var tab = option.Tab == EmulationMachineTab.General && configuration.Model is not (ModelConstants.PlayStation2 or ModelConstants.Psp) ? EmulationMachineTab.Cpu : option.Tab;
             if (CoreSettingsConstants.IsCdAudio(option.Key)) tab = EmulationMachineTab.Storage;
+            if (option.Key == Emulators.Pcee2.Constants.OptionConstants.CheatsKey
+                || option.Key == Emulators.Pcsx2.Constants.OptionConstants.EnableCheatsKey)
+                tab = EmulationMachineTab.Cheats;
+            if (option.Key == Emulators.Pcsx2.Constants.OptionConstants.Dev9EthKey)
+                tab = EmulationMachineTab.Ethernet;
+            if (configuration.Model == ModelConstants.PlayStation2 && option.Key.Contains("crosshair", StringComparison.OrdinalIgnoreCase))
+                tab = EmulationMachineTab.Controllers;
             if (option.Key == Emulators.Pcee2.Constants.OptionConstants.FastBootKey)
                 tab = EmulationMachineTab.Rom;
             if (option.Key.EndsWith("skip_bios", StringComparison.Ordinal)
@@ -54,12 +61,16 @@ internal static class CoreSettingsFunctions
                 || option.Key == Emulators.BeetlePsx.Constants.OptionConstants.LineRenderKey
                 || option.Key == Emulators.BeetlePsxHw.Constants.OptionConstants.LineRenderKey)
                 tab = EmulationMachineTab.Video;
-            var enabled = option.Values.FirstOrDefault(value => CoreSettingsConstants.EnabledLabels.Contains(value.Label));
-            var disabled = option.Values.FirstOrDefault(value => CoreSettingsConstants.DisabledLabels.Contains(value.Label));
+            var enabled = option.Values.FirstOrDefault(value => CoreSettingsConstants.EnabledLabels.Contains(value.Label))
+                ?? option.Values.FirstOrDefault(value => value.Value == EmulationSettingConstants.Enabled);
+            var disabled = option.Values.FirstOrDefault(value => CoreSettingsConstants.DisabledLabels.Contains(value.Label))
+                ?? option.Values.FirstOrDefault(value => value.Value == EmulationSettingConstants.Disabled);
             var toggle = enabled is not null && disabled is not null && (option.Values.Count == 2 || option.Key == Emulators.PcsxRearmed.Constants.OptionConstants.ShowBiosBootlogoKey);
             var selectedValue = configuration.Options?.GetValueOrDefault(option.Key) ?? option.DefaultValue;
             var automaticClock = option.Key == Emulators.PcsxRearmed.Constants.OptionConstants.PsxclockKey;
             var range = automaticClock ? new EmulationSettingsNumericRange(30, 100, 1, " %") : option.NumericRange;
+            if (option.Key == Emulators.Pcee2.Constants.OptionConstants.DeinterlaceModeKey)
+                range = null;
             if (range is not null && option.Key.Contains("scanline", StringComparison.OrdinalIgnoreCase))
                 range = range with { IsVertical = true };
             if (range is not null && (option.Key == Emulators.SwanStation.Constants.OptionConstants.GPUResolutionScaleKey
@@ -74,7 +85,23 @@ internal static class CoreSettingsFunctions
             var choices = dimensionChoices
                 ? Enumerable.Range(1, 16).Select(scale => PresentChoice(option, new CoreOptionValue(scale.ToString(CultureInfo.InvariantCulture), string.Empty), configuration.Model)).ToArray()
                 : option.Values.Select(value => PresentChoice(option, value, configuration.Model)).ToArray();
+            if (option.Key == Emulators.Pcee2.Constants.OptionConstants.DeinterlaceModeKey && option.NumericRange is not null)
+                choices = Enumerable.Range(0, 10).Select(mode => new EmulationSettingsChoice(mode.ToString(CultureInfo.InvariantCulture), "Emulation.Sony.Video.Deinterlace." + mode)).ToArray();
             if (instantaneousChoice) choices = [new("0", "Emulation.Option.Sony.Value.Instantaneous"), .. choices.Where(choice => choice.Id != "0")];
+            var sectorCount = option.Key == Emulators.PcsxRearmed.Constants.OptionConstants.CdReadaheadKey
+                || option.Key == Emulators.SwanStation.Constants.OptionConstants.CDROMReadaheadSectorsKey;
+            if (sectorCount)
+            {
+                if (range is not null)
+                    choices = Enumerable.Range((int)range.Minimum, (int)(range.Maximum - range.Minimum) + 1)
+                        .Select(number => new EmulationSettingsChoice(number.ToString(CultureInfo.InvariantCulture), string.Empty, number.ToString(CultureInfo.InvariantCulture))).ToArray();
+                choices = choices.Select(choice => choice.Id switch
+                {
+                    "0" => new EmulationSettingsChoice("0", "Emulation.Option.Sony.Value.Disabled"),
+                    "333000" => new EmulationSettingsChoice("333000", "Emulation.Sony.CD.ReadWholeDisc"),
+                    _ => choice
+                }).ToArray();
+            }
             var group = tab != EmulationMachineTab.Video ? string.Empty
                 : option.Key.Contains("scanline", StringComparison.OrdinalIgnoreCase)
                     && !option.Key.Contains("pal", StringComparison.OrdinalIgnoreCase) ? "ScanNTSC"
@@ -83,8 +110,16 @@ internal static class CoreSettingsFunctions
                 : CoreSettingsConstants.IsBasicVideo(option.Key) ? CoreSettingsConstants.DisplayGroup
                 : option.Key.Contains(CoreSettingsConstants.GeometryGroup, StringComparison.OrdinalIgnoreCase)
                     ? CoreSettingsConstants.GeometryGroup
+                : option.Key.Contains("hd_cache", StringComparison.OrdinalIgnoreCase)
+                    || option.Key.Contains("hd_caching", StringComparison.OrdinalIgnoreCase) ? "TextureCache"
+                : option.Key.Contains("_hd_", StringComparison.OrdinalIgnoreCase)
+                    || new[] { "track_textures", "dump_textures", "replace_textures", "texture_directory", "reduce_palette_range" }
+                        .Any(part => option.Key.Contains(part, StringComparison.OrdinalIgnoreCase)) ? "TexturePacks"
+                : option.Key.Contains("hw_download", StringComparison.OrdinalIgnoreCase) ? "Transfers"
+                : new[] { "filter", "msaa", "supersampl", "super_sampling", "smoothing", "mdec", "_fxaa", "_cas_", "mipmapping" }
+                    .Any(part => option.Key.Contains(part, StringComparison.OrdinalIgnoreCase)) ? "ImageFilters"
                 : option.Key.Contains("hdr", StringComparison.OrdinalIgnoreCase) ? "HDR"
-                : new[] { "color", "dither", "depth", "black_setup", "phase_error", "primaries", "analog" }
+                : new[] { "color", "dither", "depth", "black_setup", "phase_error", "primaries", "analog", "video_cable", "blending" }
                     .Any(part => option.Key.Contains(part, StringComparison.OrdinalIgnoreCase)) ? "Color"
                 : option.Key.Contains(CoreSettingsConstants.TextureGroup, StringComparison.OrdinalIgnoreCase)
                     ? CoreSettingsConstants.TextureGroup
@@ -95,6 +130,12 @@ internal static class CoreSettingsFunctions
                 : tab == EmulationMachineTab.Cpu ? CoreSettingsConstants.IsCpuClock(option.Key)
                     || option.Key == Emulators.Ppsspp.Constants.OptionConstants.LockedCpuSpeedKey
                     ? CoreSettingsConstants.AccelerationBlock
+                    : configuration.Model == ModelConstants.PlayStation2 && (option.Key.Contains("_rec_", StringComparison.OrdinalIgnoreCase) || option.Key.Contains("cpu_recompiler", StringComparison.OrdinalIgnoreCase))
+                        ? CoreSettingsConstants.OptionsBlock + "Recompilation"
+                    : configuration.Model == ModelConstants.PlayStation2 && (option.Key.Contains("vu1", StringComparison.OrdinalIgnoreCase) || option.Key.Contains("mtvu", StringComparison.OrdinalIgnoreCase))
+                        ? CoreSettingsConstants.OptionsBlock + "VectorUnits"
+                    : configuration.Model == ModelConstants.PlayStation2 && option.Key.Contains("cycle_", StringComparison.OrdinalIgnoreCase)
+                        ? CoreSettingsConstants.OptionsBlock + "CpuTiming"
                     : option.Key.Contains(CoreSettingsConstants.CompatibilityKeyword, StringComparison.OrdinalIgnoreCase)
                         || option.Key.Contains(CoreSettingsConstants.DynarecKeyword, StringComparison.OrdinalIgnoreCase)
                         ? CoreSettingsConstants.OptionsBlock + CoreSettingsConstants.CompatibilityGroup
@@ -114,27 +155,32 @@ internal static class CoreSettingsFunctions
                 NumericValue: option.Key == Emulators.SwanStation.Constants.OptionConstants.ConsoleEnable8MBRAMKey ? CoreSettingsConstants.DevelopmentRamExtensionBytes : null,
                 EnabledValue: enabled?.Value ?? EmulationSettingConstants.Enabled,
                 DisabledValue: disabled?.Value ?? EmulationSettingConstants.Disabled,
-                AppliesToControllerIds: ControllerOptionFunctions.Types(option),
+                AppliesToControllerIds: configuration.Model == ModelConstants.PlayStation2 && option.Key.Contains("crosshair", StringComparison.OrdinalIgnoreCase)
+                    ? [ControllerType.GunCon2.ToString()] : ControllerOptionFunctions.Types(option),
                 ControllerPortNumber: ControllerOptionFunctions.PortNumber(option),
                 RefreshSettingsOnChange: option.Key.Contains(ControllerOptionConstants.Multitap, StringComparison.OrdinalIgnoreCase)
                     || option.Key == Emulators.Ppsspp.Constants.OptionConstants.PspModelKey || option.GraphicsApiValues is not null,
                 IsGlobalControllerOption: option.Key.Contains(ControllerOptionConstants.Multitap, StringComparison.OrdinalIgnoreCase),
                 AutomaticValue: automaticClock ? Emulators.PcsxRearmed.Constants.OptionConstants.PsxclockAuto : null,
-                UseChoiceLabelsForSlider: dimensionChoices || instantaneousChoice);
+                UseChoiceLabelsForSlider: dimensionChoices || instantaneousChoice || sectorCount,
+                ValueUnitResourceKey: sectorCount ? "Visual.SectorsUnit" : null);
         }).ToArray();
-        fields = fields.SelectMany(field => field.Id == Emulators.SwanStation.Constants.OptionConstants.ControllerPortsMultitapModeKey
+        fields = fields.SelectMany(field => ControllerOptionConstants.MultitapModes.TryGetValue(field.Id, out var mode)
             ? Enumerable.Range(1, 2).Select(port => field with
             {
                 Id = field.Id + ".port" + port,
                 LabelResourceKey = "Emulation.Sony.Multitap.Port" + port,
                 Editor = EmulationSettingsEditor.Toggle,
-                Value = field.Value == "BothPorts" || field.Value == $"Port{port}Only" ? EmulationSettingConstants.Enabled : EmulationSettingConstants.Disabled,
+                Value = field.Value == mode.Both || field.Value == (port == 1 ? mode.Port1 : mode.Port2) ? EmulationSettingConstants.Enabled : EmulationSettingConstants.Disabled,
                 EnabledValue = EmulationSettingConstants.Enabled, DisabledValue = EmulationSettingConstants.Disabled,
                 Choices = null
             }) : new[] { field }).ToArray();
         return fields.GroupBy(field => (field.Tab, field.BlockId)).Select(group => new EmulationSettingsBlock(
             group.Key.BlockId, group.Key.Tab,
             group.Key.BlockId == CoreSettingsConstants.AccelerationBlock ? CoreSettingsConstants.AccelerationTitle
+                : group.Key.BlockId.EndsWith("Recompilation", StringComparison.Ordinal) ? "Emulation.Sony.Cpu.Recompilation"
+                : group.Key.BlockId.EndsWith("VectorUnits", StringComparison.Ordinal) ? "Emulation.Sony.Cpu.VectorUnits"
+                : group.Key.BlockId.EndsWith("CpuTiming", StringComparison.Ordinal) ? "Emulation.Sony.Cpu.Timing"
                 : group.Key.BlockId.EndsWith(CoreSettingsConstants.CompatibilityGroup, StringComparison.Ordinal)
                     ? CoreSettingsConstants.CompatibilityTitle
                 : group.Key.Tab == EmulationMachineTab.Audio ? CoreSettingsConstants.AudioOptionsTitle
@@ -143,6 +189,10 @@ internal static class CoreSettingsFunctions
                 : group.Key.BlockId.EndsWith("ScanPAL", StringComparison.Ordinal) ? "Emulation.Sony.Video.PAL"
                 : group.Key.BlockId.EndsWith("HDR", StringComparison.Ordinal) ? "Emulation.Sony.Video.HDR"
                 : group.Key.BlockId.EndsWith("Color", StringComparison.Ordinal) ? "Emulation.Sony.Video.Color"
+                : group.Key.BlockId.EndsWith("TextureCache", StringComparison.Ordinal) ? "Emulation.Sony.Video.TextureCache"
+                : group.Key.BlockId.EndsWith("TexturePacks", StringComparison.Ordinal) ? "Emulation.Sony.Video.TexturePacks"
+                : group.Key.BlockId.EndsWith("ImageFilters", StringComparison.Ordinal) ? "Emulation.Sony.Video.ImageFilters"
+                : group.Key.BlockId.EndsWith("Transfers", StringComparison.Ordinal) ? "Emulation.Sony.Video.Transfers"
                 : group.Key.BlockId.EndsWith(CoreSettingsConstants.DisplayGroup, StringComparison.Ordinal)
                     || group.Key.BlockId.EndsWith(CoreSettingsConstants.ScreenGroup, StringComparison.Ordinal)
                     ? SettingsDescriptionFunctionsConstants.ResourceVideo
@@ -174,6 +224,20 @@ internal static class CoreSettingsFunctions
 
     private static EmulationSettingsChoice PresentChoice(CoreOption option, CoreOptionValue value, string model)
     {
+        if (model == ModelConstants.PlayStation2 && option.Key == Emulators.Pcee2.Constants.OptionConstants.DitheringKey
+            && int.TryParse(value.Value, out var dither))
+            return new(value.Value, "Emulation.Sony.Video.Dithering." + dither);
+        if (model == ModelConstants.PlayStation2 && option.Key == Emulators.Pcee2.Constants.OptionConstants.EeCycleRateKey)
+        {
+            var percentage = value.Value switch { "-3" => 50, "-2" => 60, "-1" => 75, "0" => 100, "1" => 130, "2" => 180, "3" => 300, _ => 100 };
+            return new(value.Value, string.Empty, percentage.ToString(CultureInfo.InvariantCulture) + " %");
+        }
+        if (model == ModelConstants.PlayStation2 && option.Key == Emulators.Pcee2.Constants.OptionConstants.BlendingAccuracyKey)
+            return new(value.Value, "Emulation.Sony.Video.Blending." + value.Value);
+        if (model == ModelConstants.PlayStation2 && option.Key == Emulators.Pcee2.Constants.OptionConstants.EeCycleSkipKey)
+            return new(value.Value, "Emulation.Sony.Cpu.CycleSkip." + value.Value);
+        if (option.Key.Contains("upscale_multiplier", StringComparison.OrdinalIgnoreCase))
+            return new(value.Value, string.Empty, value.Value + "×");
         if (option.Key.Contains("cd_fastload", StringComparison.OrdinalIgnoreCase)
             && int.TryParse(value.Value.TrimEnd('x'), out var speed))
             return new(value.Value, string.Empty, speed + "×");
@@ -185,7 +249,7 @@ internal static class CoreSettingsFunctions
             {
                 var width = model == ModelConstants.Psp ? 480 : 320;
                 var height = model == ModelConstants.Psp ? 272 : 240;
-                return new(value.Value, string.Empty, $"{scale}× ({width} × {height} → {width * scale} × {height * scale} px)");
+                return new(value.Value, string.Empty, $"{scale}× ({width * scale} × {height * scale} px)");
             }
         }
         return value.Label.StartsWith(CoreSettingsConstants.OptionResourcePrefix, StringComparison.Ordinal)

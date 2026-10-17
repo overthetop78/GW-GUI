@@ -21,6 +21,8 @@ internal static class EmulationMachineTabConstants
         new(EmulationMachineTab.Storage, IconGlyphs.HardDisk, "Emulation.Tab.Storage"),
         new(EmulationMachineTab.Keyboard, EmulationInputSettingsConstants.KeyboardIcon, "Emulation.Tab.Keyboard"),
         new(EmulationMachineTab.Mouse, IconGlyphs.Mouse, "Emulation.Tab.Mouse"),
-        new(EmulationMachineTab.Controllers, IconGlyphs.Controller, "Emulation.Tab.Controller")
+        new(EmulationMachineTab.Controllers, IconGlyphs.Controller, "Emulation.Tab.Controller"),
+        new(EmulationMachineTab.Cheats, IconGlyphs.Settings, "Emulation.Tab.Cheats"),
+        new(EmulationMachineTab.Ethernet, IconGlyphs.Connection, "Emulation.Tab.Ethernet")
     ];
 }

@@ -46,4 +46,9 @@
   <data name="Emulation.Controller.Feedback.Weak"><value>רטט חלש</value></data>
   <data name="Emulation.Controller.Action.Reload"><value>טעינה מחדש</value></data>
   <data name="Emulation.Controller.CrosshairColor"><value>צבע הכוונת</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-dance-mat"><value>משטח ריקוד</value></data>
+  <data name="Emulation.Controller.NotSupportedByEmulator"><value>עדיין לא נתמך על ידי החיקוי הזה.</value></data>
+  <data name="Emulation.Controller.ConfigureInKeyboardTab"><value>הגדר את המקלדת בכרטיסיה Keyboard.</value></data>
+  <data name="Emulation.Controller.ConfigureInMouseTab"><value>הגדר את העכבר בכרטיסיה העכבר.</value></data>
+  <data name="Emulation.Controller.PeripheralType"><value>סוג התקן</value></data>
 </root>

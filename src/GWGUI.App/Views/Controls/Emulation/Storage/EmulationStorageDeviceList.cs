@@ -92,7 +92,7 @@ public sealed class EmulationStorageDeviceList : UserControl
             var row = CreateColumns();
             row.MinHeight = EmulationStorageDeviceListConstants.RowMinimumHeight;
             row.Children.Add(Cell(device.Identifier, FontWeights.SemiBold));
-            AddCell(row, TypeLabel(device.Type), 1);
+            AddCell(row, device.TypeDisplayName ?? TypeLabel(device.Type), 1);
             AddCell(row, device.Model, 2);
             var support = string.IsNullOrWhiteSpace(device.SupportPath) ? LocExtension.Get(EmulationResourceKeys.NotUsed) : SupportSummary(device.SupportPath);
             var supportText = Cell(support);

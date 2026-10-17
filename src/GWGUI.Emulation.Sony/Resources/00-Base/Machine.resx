@@ -51,4 +51,6 @@
   <data name="Emulation.Sony.Storage.MemoryCardSlot"><value>MC {0}</value></data>
   <data name="Emulation.Sony.Storage.MemoryStick"><value>Memory Stick</value></data>
   <data name="Emulation.Sony.Storage.UMD"><value>UMD</value></data>
+  <data name="Emulation.Sony.Storage.DVD.Device"><value>DVD drive</value></data>
+  <data name="Emulation.Sony.Storage.DVD"><value>DVD</value></data>
 </root>

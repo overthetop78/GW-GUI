@@ -46,4 +46,9 @@
   <data name="Emulation.Controller.Feedback.Weak"><value>Weak vibration</value></data>
   <data name="Emulation.Controller.Action.Reload"><value>Reload</value></data>
   <data name="Emulation.Controller.CrosshairColor"><value>Crosshair colour</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-dance-mat"><value>Dance mat</value></data>
+  <data name="Emulation.Controller.NotSupportedByEmulator"><value>Not supported by this emulator yet.</value></data>
+  <data name="Emulation.Controller.ConfigureInKeyboardTab"><value>Configure the keyboard in the Keyboard tab.</value></data>
+  <data name="Emulation.Controller.ConfigureInMouseTab"><value>Configure the mouse in the Mouse tab.</value></data>
+  <data name="Emulation.Controller.PeripheralType"><value>Device type</value></data>
 </root>

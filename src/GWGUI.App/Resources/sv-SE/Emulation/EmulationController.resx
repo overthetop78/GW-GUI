@@ -46,4 +46,9 @@
   <data name="Emulation.Controller.Feedback.Weak"><value>Svag vibration</value></data>
   <data name="Emulation.Controller.Action.Reload"><value>Ladda om</value></data>
   <data name="Emulation.Controller.CrosshairColor"><value>Siktets färg</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-dance-mat"><value>Dansmatta</value></data>
+  <data name="Emulation.Controller.NotSupportedByEmulator"><value>Inte stöds av denna emulator ännu.</value></data>
+  <data name="Emulation.Controller.ConfigureInKeyboardTab"><value>Konfigurera tangentbordet i tangentbordet.</value></data>
+  <data name="Emulation.Controller.ConfigureInMouseTab"><value>Konfigurera musen i fliken Musa.</value></data>
+  <data name="Emulation.Controller.PeripheralType"><value>Enhetstyp</value></data>
 </root>

@@ -189,7 +189,8 @@ internal sealed class EmulationStorageSettingsController
             DeviceLabel(device),
             _configuration?.MachineId ?? string.Empty,
             DeviceModel(device, device.Slot), current,
-            device.CompactDiscSpeeds, cacheLabel, ignoreErrorsLabel, _moduleId, device.ConfigurationFields);
+            device.CompactDiscSpeeds, cacheLabel, ignoreErrorsLabel, _moduleId, device.ConfigurationFields,
+            device.TypeResourceKey is { } typeKey ? LocExtension.GetForModule(_moduleId, typeKey) : null);
         EmulationCompactDiscDriveSettings selected;
         try
         {
@@ -297,7 +298,8 @@ internal sealed class EmulationStorageSettingsController
             var media = _settings.MountedMedia.FirstOrDefault(item => item.Slot == slot);
             var associatedPath = device.MediaType == EmulationMediaType.MemoryCard ? (_settings.DeviceSettings ?? []).FirstOrDefault(item => item.Slot == slot)?.MemoryCardPath : media?.Path;
             var model = DeviceModel(device, slot);
-            return new EmulationStorageDeviceItem(slot, DeviceLabel(device), device.MediaType, model, associatedPath, !device.IsPermanent, device.ConfigurationKind != EmulationStorageConfigurationKind.None);
+            return new EmulationStorageDeviceItem(slot, DeviceLabel(device), device.MediaType, model, associatedPath, !device.IsPermanent, device.ConfigurationKind != EmulationStorageConfigurationKind.None,
+                device.TypeResourceKey is { } typeKey ? LocExtension.GetForModule(_moduleId, typeKey) : null);
         }).ToArray();
         _view.SetDevices(rows);
         _view.SetCanAdd(_settings.AvailableDevices.Any(device => !_settings.ConfiguredSlots.Contains(device.Slot)));

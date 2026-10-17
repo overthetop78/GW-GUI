@@ -226,7 +226,7 @@ internal sealed partial class ExternalCore : IEmulatorCore
         {
             var type = SemanticControllerFunctions.Resolve(configuration, port);
             if (!requireAdvertised && !_host!.ControllerPorts.Any()
-                && type is not (ControllerType.Joystick or ControllerType.None))
+                && type is not (ControllerType.Joystick or ControllerType.DanceMat or ControllerType.None))
                 continue;
             SetControllerPortDevice(port, type);
         }

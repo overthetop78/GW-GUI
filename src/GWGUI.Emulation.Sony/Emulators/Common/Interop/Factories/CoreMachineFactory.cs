@@ -40,6 +40,7 @@ internal abstract class CoreMachineFactory : IEmulatorAdapter, IEmulatorFirmware
     public virtual IReadOnlyList<ControllerType> GetControllerTypes(MachineConfiguration configuration, int port) => GetControllerTypes(configuration);
     public virtual int GetControllerPortCount(MachineConfiguration configuration) => ModelCatalog.Get(configuration.Model).ControllerPortCount;
     public virtual string? GetControllerPortDisplayName(MachineConfiguration configuration, int port) => null;
+    public virtual int? GetControllerPortDisplayNumber(MachineConfiguration configuration, int port) => null;
     public IReadOnlyList<EmulationControllerOutputDefinition> GetControllerOutputs(MachineConfiguration configuration, ControllerType type) =>
         CoreDefinition.FeedbackControllerTypes?.Contains(type) == true ? InputSettingsFunctions.RumbleOutputs : [];
     public IReadOnlyList<string> SupportedContentExtensions => CoreDefinition.Extensions;

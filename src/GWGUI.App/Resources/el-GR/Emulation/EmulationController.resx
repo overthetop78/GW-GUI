@@ -46,4 +46,9 @@
   <data name="Emulation.Controller.Feedback.Weak"><value>Ασθενής δόνηση</value></data>
   <data name="Emulation.Controller.Action.Reload"><value>Επαναγέμιση</value></data>
   <data name="Emulation.Controller.CrosshairColor"><value>Χρώμα σταυρονήματος</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-dance-mat"><value>Χαλάκι χορού</value></data>
+  <data name="Emulation.Controller.NotSupportedByEmulator"><value>Δεν υποστηρίζεται από αυτόν τον εξομοιωτή ακόμα.</value></data>
+  <data name="Emulation.Controller.ConfigureInKeyboardTab"><value>⁇  του πληκτρολογίου στην καρτέλα πληκτρολογίου.</value></data>
+  <data name="Emulation.Controller.ConfigureInMouseTab"><value>⁇  του ποντικιού στην καρτέλα Ποντίκι.</value></data>
+  <data name="Emulation.Controller.PeripheralType"><value>Τύπος συσκευής</value></data>
 </root>

@@ -46,4 +46,9 @@
   <data name="Emulation.Controller.Feedback.Weak"><value>Zayıf titreşim</value></data>
   <data name="Emulation.Controller.Action.Reload"><value>Yeniden doldur</value></data>
   <data name="Emulation.Controller.CrosshairColor"><value>Nişangâh rengi</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-dance-mat"><value>Dans matı</value></data>
+  <data name="Emulation.Controller.NotSupportedByEmulator"><value>Bu emülatör tarafından henüz desteklenmedi.</value></data>
+  <data name="Emulation.Controller.ConfigureInKeyboardTab"><value>Klavye sekmesinde klavyeyi yapılandırın.</value></data>
+  <data name="Emulation.Controller.ConfigureInMouseTab"><value>Mouse sekmede fareyi yapılandırın.</value></data>
+  <data name="Emulation.Controller.PeripheralType"><value>Device type</value></data>
 </root>

@@ -46,4 +46,9 @@
   <data name="Emulation.Controller.Feedback.Weak"><value>การสั่นเบา</value></data>
   <data name="Emulation.Controller.Action.Reload"><value>บรรจุกระสุนใหม่</value></data>
   <data name="Emulation.Controller.CrosshairColor"><value>สีเป้าเล็ง</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-dance-mat"><value>แผ่นเต้น</value></data>
+  <data name="Emulation.Controller.NotSupportedByEmulator"><value>ยังไม่รองรับนักจําลองคนนี้</value></data>
+  <data name="Emulation.Controller.ConfigureInKeyboardTab"><value>ปรับแต่งแป้นพิมพ์ในแท็บของแป้นพิมพ์</value></data>
+  <data name="Emulation.Controller.ConfigureInMouseTab"><value>ปรับแต่งเมาส์ในแท็บของเมาส์</value></data>
+  <data name="Emulation.Controller.PeripheralType"><value>ชนิดอุปกรณ์</value></data>
 </root>

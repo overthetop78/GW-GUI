@@ -30,6 +30,7 @@ internal sealed partial class EmulationModuleSettingsSection
             EmulationSettingsEditor.Toggle => CreateToggle(field),
             EmulationSettingsEditor.Path => CreatePath(field),
             EmulationSettingsEditor.DirectoryPath => CreateDirectoryPath(field),
+            EmulationSettingsEditor.OpenDirectory => CreateOpenDirectory(field),
             EmulationSettingsEditor.Slider => CreateSlider(field),
             EmulationSettingsEditor.Information => new TextBlock
             {
@@ -57,9 +58,11 @@ internal sealed partial class EmulationModuleSettingsSection
             var selected = choices.FirstOrDefault(choice => choice.Choice.Id == field.Value) ?? choices[0];
             foreach (var choice in choices)
             {
-                var radio = new RadioButton { Content = choice.DisplayName, Tag = choice,
+                var radio = new RadioButton { Content = new TextBlock { Text = choice.DisplayName, TextWrapping = TextWrapping.Wrap }, Tag = choice,
                     GroupName = group, IsChecked = choice.Choice.Id == selected.Choice.Id,
+                    HorizontalContentAlignment = HorizontalAlignment.Stretch,
                     Margin = new Thickness(0, 4, 18, 4) };
+                System.Windows.Automation.AutomationProperties.SetName(radio, choice.DisplayName);
                 radio.Checked += async (_, _) =>
                 {
                     if (_applyingSettingsRule) return;
@@ -77,6 +80,10 @@ internal sealed partial class EmulationModuleSettingsSection
             ItemsSource = choices,
             SelectedItem = choices.FirstOrDefault(choice => choice.Choice.Id == field.Value) ?? choices.FirstOrDefault()
         };
+        var choiceText = new FrameworkElementFactory(typeof(TextBlock));
+        choiceText.SetBinding(TextBlock.TextProperty, new System.Windows.Data.Binding(nameof(EmulationSettingsChoiceView.DisplayName)));
+        choiceText.SetValue(TextBlock.TextWrappingProperty, TextWrapping.Wrap);
+        selection.ItemTemplate = new DataTemplate { VisualTree = choiceText };
         _userChangeHandlers[selection] = async () =>
         {
             if (field.RefreshSettingsOnChange)
@@ -91,14 +98,15 @@ internal sealed partial class EmulationModuleSettingsSection
 
     private IReadOnlyList<EmulationSettingsChoiceView> SelectionChoices(EmulationSettingsField field)
     {
-        var declared = field.Choices?.Select(ChoiceView) ?? Enumerable.Empty<EmulationSettingsChoiceView>();
+        var declared = field.Choices?.Select(choice => ChoiceView(choice, field.ValueUnitResourceKey)) ?? Enumerable.Empty<EmulationSettingsChoiceView>();
         if (field.ChoiceSource != EmulationSettingsChoiceSource.AudioOutputDevices)
             return declared.ToArray();
         var devices = WasapiAudioOutput.GetOutputDevices().Select(device => new EmulationSettingsChoiceView(new EmulationSettingsChoice(device.Id, string.Empty, device.Name), device.Name));
         return declared.Concat(devices).DistinctBy(choice => choice.Choice.Id).ToArray();
     }
 
-    private EmulationSettingsChoiceView ChoiceView(EmulationSettingsChoice choice) => new(choice, choice.InvariantDisplayValue ?? LocExtension.GetForModule(_module, choice.DisplayResourceKey));
+    private EmulationSettingsChoiceView ChoiceView(EmulationSettingsChoice choice, string? unitResourceKey = null) => new(choice,
+        EmulationSettingsValuePresentationFunctions.WithUnit(choice.InvariantDisplayValue ?? LocExtension.GetForModule(_module, choice.DisplayResourceKey), unitResourceKey));
 
     private CheckBox CreateToggle(EmulationSettingsField field)
     {
@@ -159,6 +167,33 @@ internal sealed partial class EmulationModuleSettingsSection
         return PathRow(path, browse);
     }
 
+    private FrameworkElement CreateOpenDirectory(EmulationSettingsField field)
+    {
+        var directory = DefaultFolder(field.DefaultFolderCategory);
+        Directory.CreateDirectory(directory);
+        var open = new Button
+        {
+            Content = LocExtension.Get("Common.OpenFolder"), Tag = directory,
+            HorizontalAlignment = HorizontalAlignment.Left, MinWidth = 140
+        };
+        open.Click += async (_, _) => await ExecuteAsync(() =>
+        {
+            System.Diagnostics.Process? shellRequest = null;
+            try
+            {
+                Directory.CreateDirectory(directory);
+                shellRequest = System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(directory) { UseShellExecute = true });
+            }
+            finally
+            {
+                // Explorer belongs to the desktop shell; release only our request handle.
+                shellRequest?.Dispose();
+            }
+            return Task.CompletedTask;
+        });
+        return open;
+    }
+
     private static Grid PathRow(TextBox path, Button browse)
     {
         var row = new Grid { Tag = path };
@@ -182,6 +217,7 @@ internal sealed partial class EmulationModuleSettingsSection
             EmulationDefaultFolderCategory.Cassette => Path.Combine(StoragePaths.EmulationStorageDirectory, StoragePathConstants.CassettesDirectory, moduleFolder),
             EmulationDefaultFolderCategory.State => Path.Combine(StoragePaths.EmulationStateDirectory, moduleFolder),
             EmulationDefaultFolderCategory.Capture => Path.Combine(StoragePaths.EmulationCaptureDirectory, moduleFolder),
+            EmulationDefaultFolderCategory.Cheats => Path.Combine(StoragePaths.EmulationStorageDirectory, "Cheats", moduleFolder, _configuration.MachineId),
             EmulationDefaultFolderCategory.Firmware => _firmwareManagement?.GetFirmwareDirectory()
                 ?? Path.Combine(StoragePaths.EmulationStorageDirectory, StoragePathConstants.RomsDirectory, moduleFolder),
             _ => StoragePaths.EmulationStorageDirectory

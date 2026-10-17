@@ -26,4 +26,5 @@ public sealed record EmulationSettingsField(
     bool IsGlobalControllerOption = false,
     EmulationVideoSettingsSection VideoSection = EmulationVideoSettingsSection.Display,
     string? AutomaticValue = null,
-    bool UseChoiceLabelsForSlider = false);
+    bool UseChoiceLabelsForSlider = false,
+    string? ValueUnitResourceKey = null);

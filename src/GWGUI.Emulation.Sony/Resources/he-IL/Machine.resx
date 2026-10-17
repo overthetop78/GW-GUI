@@ -8,4 +8,5 @@
   <data name="Emulation.Sony.Video.Chip"><value>וידאו שבב</value></data>
   <data name="Emulation.Sony.Audio.Chip"><value>השבב Audio</value></data>
   <data name="Emulation.Sony.Storage.MemoryCard"><value>כרטיס זיכרון</value></data>
+  <data name="Emulation.Sony.Storage.DVD.Device"><value>כונן DVD</value></data>
 </root>

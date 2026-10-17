@@ -92,6 +92,8 @@ internal static class CoreSettingsConstants
             [EmulationMachineTab.Audio] = (SettingsDescriptionFunctionsConstants.ResourceAudio, SettingsDescriptionFunctionsConstants.IconAudio),
             [EmulationMachineTab.Storage] = (StorageTitleResource, StorageIcon),
             [EmulationMachineTab.Mouse] = (MouseTitleResource, MouseIcon),
-            [EmulationMachineTab.Controllers] = (ControllersTitleResource, ControllersIcon)
+            [EmulationMachineTab.Controllers] = (ControllersTitleResource, ControllersIcon),
+            [EmulationMachineTab.Cheats] = ("Emulation.Tab.Cheats", SettingsDescriptionFunctionsConstants.IconGeneral),
+            [EmulationMachineTab.Ethernet] = ("Emulation.Tab.Ethernet", SettingsDescriptionFunctionsConstants.IconGeneral)
         };
 }

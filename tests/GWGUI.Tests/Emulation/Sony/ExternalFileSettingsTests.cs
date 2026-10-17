@@ -27,13 +27,15 @@ public sealed class ExternalFileSettingsTests
         Assert.Equal(configuration.Options![database.Id], database.Value);
         Assert.True(database.RequiresRestart);
         var folder = fields.Single(field => field.Id == FileSystemConstants.CheatsDirectoryKey);
-        Assert.Equal(EmulationSettingsEditor.DirectoryPath, folder.Editor);
-        Assert.Equal(enabled, folder.IsEnabled);
+        Assert.Equal(EmulationSettingsEditor.OpenDirectory, folder.Editor);
+        Assert.True(folder.IsEnabled);
+        Assert.Equal(EmulationDefaultFolderCategory.Cheats, folder.DefaultFolderCategory);
         Assert.Equal(configuration.Options[folder.Id], folder.Value);
         Assert.True(folder.RequiresRestart);
         Assert.True(fields.Single(field => field.Id == OptionConstants.UseExternalGameindexKey).RequiresRestart);
         Assert.True(fields.Single(field => field.Id == OptionConstants.EnableCheatsKey).RefreshSettingsOnChange);
-        Assert.All(new[] { database, folder }, field => Assert.Equal(EmulationMachineTab.General, field.Tab));
+        Assert.Equal(EmulationMachineTab.General, database.Tab);
+        Assert.Equal(EmulationMachineTab.Cheats, folder.Tab);
     }
 
     [Fact]
@@ -63,12 +65,13 @@ public sealed class ExternalFileSettingsTests
         var toggle = Assert.Single(fields, field => field.Id == GWGUI.Emulation.Sony.Emulators.Pcee2.Constants.OptionConstants.CheatsKey);
         var folder = Assert.Single(fields, field => field.Id == GWGUI.Emulation.Sony.Emulators.Pcee2.Constants.CheatConstants.DirectoryKey);
         Assert.True(toggle.RefreshSettingsOnChange);
-        Assert.Equal(EmulationSettingsEditor.DirectoryPath, folder.Editor);
-        Assert.Equal(enabled, folder.IsEnabled);
+        Assert.Equal(EmulationSettingsEditor.OpenDirectory, folder.Editor);
+        Assert.True(folder.IsEnabled);
+        Assert.Equal(EmulationDefaultFolderCategory.Cheats, folder.DefaultFolderCategory);
         Assert.Equal(@"C:\codes", folder.Value);
         Assert.Equal(toggle.Tab, folder.Tab);
         Assert.Equal(toggle.BlockId, folder.BlockId);
-        Assert.Equal(EmulationMachineTab.General, folder.Tab);
+        Assert.Equal(EmulationMachineTab.Cheats, folder.Tab);
         Assert.Equal(GWGUI.Emulation.Sony.Emulators.Pcee2.Constants.OptionConstants.CheatsHelpResource, folder.ExplanationResourceKey);
         Assert.Equal(enabled ? "enabled" : "disabled", ((GWGUI.Emulation.Sony.Common.Interfaces.IEmulatorSettingsAdapter)adapter).GetRuntimeOptions(restored)[toggle.Id]);
         Assert.Equal("disabled", Assert.Single(new GWGUI.Emulation.Sony.Emulators.Pcee2.Factories.Pcee2MachineFactory()

@@ -75,7 +75,8 @@ internal static class FileSystemFunctions
         var key = database ? FileSystemConstants.GameIndexPathKey : FileSystemConstants.CheatsDirectoryKey;
         yield return new EmulationSettingsField(key, field.Tab, field.BlockId,
             database ? FileSystemConstants.GameIndexLabel : FileSystemConstants.CheatsDirectoryLabel,
-            database ? EmulationSettingsEditor.Path : EmulationSettingsEditor.DirectoryPath,
-            configuration.Options?.GetValueOrDefault(key), IsEnabled: available && field.Value == field.EnabledValue, RequiresRestart: true);
+            database ? EmulationSettingsEditor.Path : EmulationSettingsEditor.OpenDirectory,
+            configuration.Options?.GetValueOrDefault(key), IsEnabled: cheats || available && field.Value == field.EnabledValue, RequiresRestart: true,
+            DefaultFolderCategory: cheats ? EmulationDefaultFolderCategory.Cheats : null);
     }
 }

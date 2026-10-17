@@ -13,6 +13,7 @@ using GWGUI.App.Views.Controls.Options.ControllerVisualization;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows.Media;
 using GWGUI.Emulation;
 using GWGUI.Emulation.Enums;
 
@@ -86,7 +87,10 @@ internal sealed class EmulationInputSettingsController
     private UIElement CreateKeyboardView()
     {
         _keyboard = CreateEditor(_settings.Keyboard);
-        return EmulationSettingsLayout.KeyboardSettingsPage(_keyboard, LocExtension.Get("Emulation.Keyboard.SpecialKeysOnlyHint"));
+        ImageSource? artwork = null;
+        if (_settings.Keyboard?.DefaultVisualId is { } visualId
+            && ControllerArtworkCatalog.TryGetProfile(visualId, out var profile)) artwork = profile.Artwork;
+        return EmulationSettingsLayout.KeyboardSettingsPage(_keyboard, _settings.Keyboard?.Definitions.Count > 0 ? string.Empty : LocExtension.Get("Emulation.Keyboard.SpecialKeysOnlyHint"), keyboardArtwork: artwork);
     }
 
     private UIElement CreateMouseView(IReadOnlyList<EmulationSettingsControlField> fields)
@@ -167,6 +171,8 @@ internal sealed class EmulationInputSettingsController
             editor.Type.SelectedItem = choices.FirstOrDefault(choice => choice.Choice.Id == port.SelectedControllerId) ?? choices.FirstOrDefault();
         }
         editor.DisplayName = port.DisplayName;
+        editor.DisplayNumber = port.DisplayNumber;
+        editor.IsUsb = port.IsUsb;
         editor.PhysicalDeviceId = port.PhysicalDeviceId;
         editor.Outputs.SetBindings(port.OutputBindings);
         editor.Bindings.SetReservedBindings(_reservedBindings);
@@ -205,7 +211,11 @@ internal sealed class EmulationInputSettingsController
         if (editor.Type.SelectedItem is not EmulationControllerChoiceView selected
             || selected.Choice.BindingDefinitions is null) return;
         var current = preserveCurrentBindings ? editor.Bindings.Rows.ToDictionary(row => row.Id, row => row.Binding, StringComparer.Ordinal) : new Dictionary<string, string>(StringComparer.Ordinal);
-        editor.Bindings.SetRows(selected.Choice.BindingDefinitions, current, _moduleId);
+        var definitions = selected.Choice.BindingDefinitions;
+        var visualId = preferredVisualId ?? editor.SelectedVisualId ?? selected.Choice.DefaultVisualId;
+        if (visualId is not null && selected.Choice.VisualBindingDefinitions?.TryGetValue(visualId, out var visualDefinitions) == true)
+            definitions = visualDefinitions;
+        editor.Bindings.SetRows(definitions, current, _moduleId);
         UpdateControllerVisuals(editor, preferredVisualId);
         UpdateControllerVisualProfile(editor);
     }
@@ -262,6 +272,15 @@ internal sealed class EmulationInputSettingsController
     private void UpdateControllerVisualProfile(EmulationControllerPortEditor editor)
     {
         var selectedChoice = editor.SelectedControllerChoice;
+        var unavailable = selectedChoice?.IsSupportedByEmulator == false;
+        var separateTab = editor.IsUsb && selectedChoice?.Id is "Keyboard" or "Mouse" or "NetPlayController";
+        var availability = new List<string>();
+        if (unavailable) availability.Add(LocExtension.Get("Emulation.Controller.NotSupportedByEmulator"));
+        if (separateTab) availability.Add(LocExtension.Get(selectedChoice!.Id == "Mouse" ? "Emulation.Controller.ConfigureInMouseTab" : "Emulation.Controller.ConfigureInKeyboardTab"));
+        editor.Availability.Text = string.Join(Environment.NewLine, availability);
+        editor.Availability.Visibility = editor.Availability.Text.Length > 0 ? Visibility.Visible : Visibility.Collapsed;
+        editor.Bindings.IsEnabled = true;
+        editor.Bindings.Visibility = separateTab || selectedChoice?.BindingDefinitions?.Count is not > 0 ? Visibility.Collapsed : Visibility.Visible;
         var outputs = editor.SelectedVisualId is { } outputVisual && selectedChoice?.VisualOutputDefinitions?.TryGetValue(outputVisual, out var definitionsForOutput) == true
             ? definitionsForOutput : null;
         editor.Outputs.SetDefinitions(outputs, _moduleId);

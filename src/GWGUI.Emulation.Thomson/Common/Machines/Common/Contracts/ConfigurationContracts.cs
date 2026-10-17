@@ -68,7 +68,8 @@ public sealed record MachineConfiguration : IEmulationConfiguration
         Id = id == Guid.Empty ? Guid.NewGuid() : id;
         SchemaVersion = schemaVersion;
         AudioEnabled = audioEnabled;
-        ConfiguredSlots = configuredSlots?.ToArray() ?? Media.Select(item => item.Slot).Distinct().ToArray();
+        var slots = configuredSlots?.ToArray() ?? Media.Select(item => item.Slot).Distinct().ToArray();
+        ConfiguredSlots = slots.Concat(ConfigurationFunctions.IntegratedStorageSlots(model).Except(slots)).ToArray();
         InitialContent = string.IsNullOrWhiteSpace(initialContent) ? null : initialContent;
         ConfigurationFunctions.Validate(this);
     }

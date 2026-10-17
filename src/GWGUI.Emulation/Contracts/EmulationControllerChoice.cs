@@ -13,5 +13,6 @@ public sealed record EmulationControllerChoice(
     IReadOnlyDictionary<string, IReadOnlyList<InputBindingDefinition>>? VisualBindingDefinitions = null)
 {
     public EmulationControllerCategory Category { get; init; }
+    public bool IsSupportedByEmulator { get; init; } = true;
     public IReadOnlyDictionary<string, IReadOnlyList<EmulationControllerOutputDefinition>>? VisualOutputDefinitions { get; init; }
 }

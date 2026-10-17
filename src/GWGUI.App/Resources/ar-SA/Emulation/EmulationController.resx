@@ -46,4 +46,9 @@
   <data name="Emulation.Controller.Feedback.Weak"><value>اهتزاز ضعيف</value></data>
   <data name="Emulation.Controller.Action.Reload"><value>إعادة التلقيم</value></data>
   <data name="Emulation.Controller.CrosshairColor"><value>لون مؤشر التصويب</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-dance-mat"><value>بساط الرقص</value></data>
+  <data name="Emulation.Controller.NotSupportedByEmulator"><value>لم يدعمه هذا الناقل بعد</value></data>
+  <data name="Emulation.Controller.ConfigureInKeyboardTab"><value>نثق باللوحة في لوحة المفاتيح</value></data>
+  <data name="Emulation.Controller.ConfigureInMouseTab"><value>نعترف بالفئران في حانة الفأر</value></data>
+  <data name="Emulation.Controller.PeripheralType"><value>نوع النبض</value></data>
 </root>

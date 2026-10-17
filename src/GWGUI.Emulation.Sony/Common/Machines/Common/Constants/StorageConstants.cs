@@ -13,7 +13,7 @@ internal static class StorageSettingsFunctionsConstants
     internal const int Ps2MemoryCardSize = 8 * 1024 * 1024 / 512 * 528;
     internal const string Ps2MemoryCardExtension = ".ps2";
     internal const string MemoryStickModelResource = "Emulation.Sony.Storage.MemoryStick";
-    internal static readonly string MemoryStickSubdirectory = System.IO.Path.Combine("Sony", "PSP", "Memory Stick");
+    internal static readonly string MemoryStickSubdirectory = System.IO.Path.Combine("Memory Stick", "Sony", "PSP");
     internal const string UmdModelResource = "Emulation.Sony.Storage.UMD";
     internal const string MemoryCardSlotPrefix = "MC";
     internal const string MemoryCardModel = "Memory Card";

@@ -25,4 +25,5 @@ public sealed record EmulationMediaDevice(
     IReadOnlyList<EmulationSettingsField>? ConfigurationFields = null,
     string? DisplayLabelResourceKey = null,
     bool UsesDirectory = false,
-    string? DefaultImageSubdirectory = null);
+    string? DefaultImageSubdirectory = null,
+    string? TypeResourceKey = null);

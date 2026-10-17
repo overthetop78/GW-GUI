@@ -46,4 +46,9 @@
   <data name="Emulation.Controller.Feedback.Weak"><value>Słabe wibracje</value></data>
   <data name="Emulation.Controller.Action.Reload"><value>Przeładuj</value></data>
   <data name="Emulation.Controller.CrosshairColor"><value>Kolor celownika</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-dance-mat"><value>Mata do tańca</value></data>
+  <data name="Emulation.Controller.NotSupportedByEmulator"><value>Nie jest jeszcze obsługiwany przez ten emulator.</value></data>
+  <data name="Emulation.Controller.ConfigureInKeyboardTab"><value>Konfiguracja klawiatury w zakładce Keyboard.</value></data>
+  <data name="Emulation.Controller.ConfigureInMouseTab"><value>Konfiguracja myszy w zakładce Mysz.</value></data>
+  <data name="Emulation.Controller.PeripheralType"><value>Typ urządzenia</value></data>
 </root>

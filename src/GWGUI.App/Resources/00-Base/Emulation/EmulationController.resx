@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <data name="Emulation.Controller.Visual.Model.sony-pocketstation"><value>PocketStation</value></data>
   <data name="Emulation.Controller.Visual.Model.watara-supervision-controls"><value>Supervision</value></data>
@@ -168,4 +168,84 @@
   <data name="Emulation.Controller.Visual.Model.apple-ch-mach-ii" xml:space="preserve"><value>CH Products Mach II</value></data>
   <data name="Emulation.Controller.Visual.Model.apple-ch-mach-iii" xml:space="preserve"><value>CH Products Mach III</value></data>
   <data name="Emulation.Controller.Visual.Model.apple-kraft-premium-ii" xml:space="preserve"><value>Kraft Premium II</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-dance-mat"><value>Dance mat</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-buzz"><value>Buzz! ×4</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-jogcon"><value>Namco JogCon NPC-105</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-guitar-hero-sg"><value>RedOctane Guitar Hero Gibson SG</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-hori-fighting-stick-ps"><value>HORI Fighting Stick PS</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-eyetoy"><value>Sony EyeToy</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-singstar"><value>Sony SingStar ×2</value></data>
+  <data name="Emulation.Controller.NotSupportedByEmulator"><value>Not supported by this emulator yet.</value></data>
+  <data name="Emulation.Controller.ConfigureInKeyboardTab"><value>Configure the keyboard in the Keyboard tab.</value></data>
+  <data name="Emulation.Controller.ConfigureInMouseTab"><value>Configure the mouse in the Mouse tab.</value></data>
+  <data name="Emulation.Controller.PeripheralType"><value>Device type</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-volume-controller"><value>Namco Volume Controller SLPH-00015</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-ascii-specialized-pad"><value>ASCIIWARE Specialized Control Pad</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-ascii-arcade-stick"><value>ASCIIWARE Specialized Arcade Stick</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-namco-arcade-stick"><value>Namco Arcade Stick NPC-102</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-hori-fighting-commander-2way"><value>HORI Fighting Commander 2Way</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-hori-fighting-commander-10b"><value>HORI Fighting Commander 10B</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-ascii-enhanced-pad"><value>ASCIIWARE Enhanced Pad 8180E</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-ascii-grip"><value>ASCII Grip SLEH-00008</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-biohazard-pad"><value>ASCII Biohazard / Resident Evil Pad</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-ascii-sphere-360"><value>ASCII Sphere 360</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-reality-quest-glove"><value>Reality Quest The Glove</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-ascii-fighter-stick-v"><value>ASCII Fighter Stick V</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-beatmania"><value>ASCII / Konami beatmania Controller</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-guitar-freaks"><value>Konami GuitarFreaks Controller</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-beatmania-iidx"><value>Konami beatmania IIDX RU029</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-beatmania-iidx-arcade"><value>Konami beatmania IIDX Arcade Style RU038</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-popn-music"><value>Konami pop’n music RU014-J2</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-popn-music-arcade"><value>Konami pop’n music Arcade Style RU036</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-taiko-drum"><value>Namco TaTaCon NPC-107AB</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-konami-ddr"><value>Konami Dance Dance Revolution — Stay Cool!</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-usb-keyboard"><value>Sony USB Keyboard SCPH-10240</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-usb-mouse"><value>Sony USB Mouse SCPH-10230</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-netplay"><value>Logitech / Logicool NetPlay LPKC-40000</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-logitech-cordless"><value>Logitech Cordless Controller</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-logitech-cordless-action"><value>Logitech Cordless Action Controller</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-sega-saturn-ps2"><value>Sega Saturn Control Pad for PlayStation 2</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-hori-fighting-stick-2"><value>HORI Fighting Stick 2 HP2-135</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-hori-real-arcade-pro"><value>HORI Real Arcade Pro (PS2)</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-gt-force"><value>Logitech / Logicool GT Force</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-driving-force"><value>Logitech Driving Force</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-driving-force-pro"><value>Logitech / Logicool Driving Force Pro</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-driving-force-gt"><value>Logitech Driving Force GT</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-buzz-wireless"><value>Buzz! Wireless (PS2 / PS3)</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-singstar-wireless"><value>Sony SingStar Wireless</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-socom-headset"><value>Logitech / Sony SOCOM USB Headset</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-logitech-vantage"><value>Logitech Vantage USB Microphone</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-rock-band-microphone"><value>Rock Band USB Microphone</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-guitar-hero-microphone"><value>Guitar Hero USB Microphone</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-seamic"><value>ASCII / Sega SeaMic ASC-1606SM</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-kramer-striker"><value>RedOctane Kramer Striker (PS2)</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-onimusha-katana"><value>HORI Onimusha 3 Katana / Soul Controller</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-re4-chainsaw"><value>NubyTech Resident Evil 4 Chainsaw (PS2)</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-dvd-remote"><value>Sony DVD Remote Control SCPH-10150</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-fishing-controller"><value>ASCII Tsuricon / Agetec Bass Landing SLPH-00100 / SLUH-00063</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-densha-controller"><value>Taito Densha de GO! SLPH-00051</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-densha-one-handle"><value>Taito Densha de GO! One Handle TCPP-20001</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-densha-mamecon"><value>Taito / HORI Densha de GO! Mamecon TCPP-20002 HPS-55</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-jet-controller"><value>Taito Jet de GO! TCPP-20005</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-densha-usb"><value>Taito Densha de GO! Type 2 TCPP-20009</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-densha-shinkansen"><value>Taito Densha de GO! Shinkansen TCPP-20011</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-densha-ryojohen"><value>Taito Densha de GO! Ryojōhen TCPP-20014</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-train-mascon"><value>Collection Train Mascon COTM-02001</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-multi-train"><value>Multi Train Controller SOTP-031201</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-kids-station"><value>Bandai Kids Station BANC-0002</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-maestro-baton"><value>The Maestromusic GAE001</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-tambourine"><value>ASCII Tambourine ASC-0528T</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-hori-flight-stick-2"><value>HORI Flight Stick 2</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-keyboardmania"><value>Konami KeyboardMania RU025</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-drummania"><value>Konami DrumMania RU021</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-parapara"><value>Konami ParaParaParadise RU034</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-rock-band-guitar"><value>Harmonix Rock Band Fender Stratocaster</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-rock-band-drums"><value>Harmonix Rock Band Drum Kit</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-guitar-hero-drums"><value>Guitar Hero World Tour Drum Kit</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-dj-hero"><value>DJ Hero Turntable Controller</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-gametrak"><value>In2Games GameTrak</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-mad-catz-wheel"><value>Mad Catz Analog / Digital Steering Wheel</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-interact-v3"><value>InterAct V3 Racing Wheel SV-1118</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-fanatec-speedster-2"><value>Fanatec Speedster 2</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-fanatec-speedster-3"><value>Fanatec Speedster 3</value></data>
 </root>

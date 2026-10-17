@@ -43,7 +43,8 @@ internal static class CheatFunctions
         }
         yield return field with { RefreshSettingsOnChange = true };
         yield return new(CheatConstants.DirectoryKey, field.Tab, field.BlockId, CheatConstants.DirectoryLabelResource,
-            EmulationSettingsEditor.DirectoryPath, SelectedDirectory(configuration), IsEnabled: Enabled(configuration),
-            ExplanationResourceKey: OptionConstants.CheatsHelpResource, RequiresRestart: true);
+            EmulationSettingsEditor.OpenDirectory, SelectedDirectory(configuration),
+            ExplanationResourceKey: OptionConstants.CheatsHelpResource, RequiresRestart: true,
+            DefaultFolderCategory: EmulationDefaultFolderCategory.Cheats);
     }
 }

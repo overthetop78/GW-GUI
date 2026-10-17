@@ -6,6 +6,7 @@ using GWGUI.App.Views.Controls.Emulation.Input;
 using GWGUI.App.Views.Controls.Options;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 
 namespace GWGUI.App.Functions.Views.Emulation.Settings;
@@ -33,7 +34,7 @@ internal static partial class EmulationSettingsLayout
         return card;
     }
 
-    internal static Grid KeyboardSettingsPage(InputBindingEditor editor, string? hint = null, Border? unavailable = null)
+    internal static Grid KeyboardSettingsPage(InputBindingEditor editor, string? hint = null, Border? unavailable = null, ImageSource? keyboardArtwork = null)
     {
         var page = new Grid { Margin = new Thickness(12) };
         page.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
@@ -43,8 +44,15 @@ internal static partial class EmulationSettingsLayout
             unavailable.Margin = new Thickness(0, 0, 0, 10);
             page.Children.Add(unavailable);
         }
+        if (keyboardArtwork is not null)
+        {
+            page.RowDefinitions.Insert(1, new RowDefinition { Height = GridLength.Auto });
+            var artwork = new Image { Source = keyboardArtwork, MaxHeight = 170, Stretch = Stretch.Uniform, Margin = new Thickness(8, 0, 8, 12) };
+            Grid.SetRow(artwork, 1);
+            page.Children.Add(artwork);
+        }
         var bindings = InputBindings(editor, LocExtension.Get("Emulation.Input.Actions"), hint);
-        Grid.SetRow(bindings, 1);
+        Grid.SetRow(bindings, keyboardArtwork is null ? 1 : 2);
         page.Children.Add(bindings);
         return page;
     }

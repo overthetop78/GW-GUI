@@ -16,5 +16,5 @@ internal static class MediaRuntimeFunctions
     }
 
     internal static IReadOnlyList<string> InitialContentPaths(MachineConfiguration configuration) => configuration.Media.Where(media => media.IsInserted).Select(media => Path.GetFullPath(media.Path)).ToArray();
-    internal static IReadOnlyList<EmulationMediaDevice> Devices(MachineConfiguration configuration) => [new(EmulationMediaSlot.Cartridge0, EmulationMediaType.Cartridge, [BinExtension, SupervisionExtension], RequiresMachineRecreation: true)];
+    internal static IReadOnlyList<EmulationMediaDevice> Devices(MachineConfiguration configuration) => [new(EmulationMediaSlot.Cartridge0, EmulationMediaType.Cartridge, [BinExtension, SupervisionExtension], RequiresMachineRecreation: true, IsPermanent: true)];
 }

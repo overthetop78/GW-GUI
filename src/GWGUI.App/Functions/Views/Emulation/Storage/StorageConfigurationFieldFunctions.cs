@@ -35,20 +35,28 @@ internal static class StorageConfigurationFieldFunctions
         else
         {
             var choices = (field.Choices ?? []).Select(choice => new EmulationSettingsChoiceView(choice,
-                choice.InvariantDisplayValue ?? LocExtension.GetForModule(moduleId ?? string.Empty, choice.DisplayResourceKey))).ToArray();
+                EmulationSettingsValuePresentationFunctions.WithUnit(choice.InvariantDisplayValue ?? LocExtension.GetForModule(moduleId ?? string.Empty, choice.DisplayResourceKey), field.ValueUnitResourceKey))).ToArray();
             if (choices.Length == 2)
             {
                 var radios = new WrapPanel();
                 var group = Guid.NewGuid().ToString();
                 var selected = choices.FirstOrDefault(choice => choice.Choice.Id == value) ?? choices[0];
                 foreach (var choice in choices)
-                    radios.Children.Add(new RadioButton { Content = choice.DisplayName, Tag = choice,
+                    radios.Children.Add(new RadioButton { Content = new TextBlock { Text = choice.DisplayName, TextWrapping = TextWrapping.Wrap }, Tag = choice,
                         GroupName = group, IsChecked = choice.Choice.Id == selected.Choice.Id, Margin = new Thickness(0, 4, 14, 4) });
                 radios.Tag = (Func<string>)(() => radios.Children.OfType<RadioButton>()
                     .Where(radio => radio.IsChecked == true).Select(radio => ((EmulationSettingsChoiceView)radio.Tag).Choice.Id).FirstOrDefault() ?? value ?? string.Empty);
                 control = radios;
             }
-            else control = new ComboBox { ItemsSource = choices, SelectedItem = choices.FirstOrDefault(choice => choice.Choice.Id == value) ?? choices.FirstOrDefault() };
+            else
+            {
+                var selection = new ComboBox { ItemsSource = choices, SelectedItem = choices.FirstOrDefault(choice => choice.Choice.Id == value) ?? choices.FirstOrDefault() };
+                var text = new FrameworkElementFactory(typeof(TextBlock));
+                text.SetBinding(TextBlock.TextProperty, new System.Windows.Data.Binding(nameof(EmulationSettingsChoiceView.DisplayName)));
+                text.SetValue(TextBlock.TextWrappingProperty, TextWrapping.Wrap);
+                selection.ItemTemplate = new DataTemplate { VisualTree = text };
+                control = selection;
+            }
         }
         control.IsEnabled = field.IsEnabled;
         return control;
@@ -63,8 +71,8 @@ internal static class StorageConfigurationFieldFunctions
             void UpdateNumber()
             {
                 var choice = field.UseChoiceLabelsForSlider ? field.Choices?.FirstOrDefault(item => item.Id == slider.Value.ToString(CultureInfo.InvariantCulture)) : null;
-                number.Text = choice is not null ? choice.InvariantDisplayValue ?? LocExtension.GetForModule(moduleId ?? string.Empty, choice.DisplayResourceKey)
-                    : slider.Value.ToString(CultureInfo.CurrentCulture) + field.NumericRange!.UnitSuffix;
+                number.Text = choice is not null ? EmulationSettingsValuePresentationFunctions.WithUnit(choice.InvariantDisplayValue ?? LocExtension.GetForModule(moduleId ?? string.Empty, choice.DisplayResourceKey), field.ValueUnitResourceKey)
+                    : EmulationSettingsValuePresentationFunctions.WithUnit(slider.Value.ToString(CultureInfo.InvariantCulture), field.ValueUnitResourceKey) + field.NumericRange!.UnitSuffix;
             }
             UpdateNumber();
             slider.ValueChanged += (_, _) => UpdateNumber();
@@ -75,9 +83,10 @@ internal static class StorageConfigurationFieldFunctions
             Grid.SetColumn(number, 1); row.Children.Add(number);
             presentation = row;
         }
-        return EmulationSettingsLayout.BoundedForm(1, new EmulationSettingsControlField(
+        return EmulationSettingsLayout.VideoSettingsChoice(new GWGUI.App.Contracts.Views.Emulation.Settings.EmulationVideoSettingsField(
             LocExtension.GetForModule(moduleId ?? string.Empty, field.LabelResourceKey), presentation,
-            field.ExplanationResourceKey is null ? null : LocExtension.GetForModule(moduleId ?? string.Empty, field.ExplanationResourceKey),
-            field.DetailedExplanationResourceKey is null ? null : LocExtension.GetForModule(moduleId ?? string.Empty, field.DetailedExplanationResourceKey)));
+            IsTrailingCheckBox: control is CheckBox,
+            Explanation: field.ExplanationResourceKey is null ? null : LocExtension.GetForModule(moduleId ?? string.Empty, field.ExplanationResourceKey),
+            DetailedExplanation: field.DetailedExplanationResourceKey is null ? null : LocExtension.GetForModule(moduleId ?? string.Empty, field.DetailedExplanationResourceKey)));
     }
 }

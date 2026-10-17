@@ -568,3 +568,346 @@ Argos exécuté sur les libellés, valeurs et aides concernés dans les 28 langu
 Résultat du build : commit regroupé créé, puis correction de la propriété TextWrapping ajoutée en double dans CompactFields, intégrée au même commit. Le lanceur CMD a échoué sur son chemin PowerShell fixé ; le même script a été exécuté par `pwsh -NoProfile -File scripts/local-building/build.ps1 -Configuration Debug -AllModules`. Construction complète terminée avec code zéro. Avertissements CA1416 dans plusieurs modules et CS8602 dans SNK, sans erreur finale.
 
 Livraison vérifiée : `build/Debug/GW GUI/gwgui.exe` présent ; DLL App identique par SHA256 à la compilation ; SDK identique dans lib et Updater ; manifestes et DLL des 23 modules présents et identiques aux compilations ; staging Debug absent. Aucun test supplémentaire ni lancement de fenêtre pour cette demande de commit et build. Validation visuelle et essais interactifs à effectuer avec cette livraison.
+
+## Emplacement cartouche intégré de la Watara Supervision
+
+- [x] Empêcher la suppression du connecteur intégré.
+  - [x] Modifier `src/GWGUI.Emulation.Watara/Emulators/Potator/Functions/MediaRuntimeFunctions.cs` : déclarer Cartridge0 permanent avec IsPermanent, utilisé par la liste et la protection de suppression existantes ; conserver le retrait de la cartouche en exécution.
+  - [x] Modifier `docs/tasks/emulation/commun.md` : consigner le contrôle du raccordement et la vérification du diff.
+
+Cause : le descripteur Cartridge0 omettait IsPermanent, dont le défaut est false. Le contrôleur commun fournit CanRemove = !IsPermanent et refuse déjà RemoveDevice pour un périphérique permanent ; la liste désactive le bouton selon CanRemove. Le descripteur Watara utilise maintenant cette protection existante. IsRemovable reste inchangé : la cartouche peut toujours être retirée ou remplacée depuis Émulation. Diff vérifié sans erreur. Aucun build ni commit supplémentaire pour cette correction.
+
+## Périphériques Thomson intégrés et disposition des visuels
+
+- [x] Rétablir le matériel intégré selon le modèle Thomson.
+  - [x] Modifier `src/GWGUI.Emulation.Thomson/Common/Machines/Common/Functions/ConfigurationFunctions.cs` : définir les emplacements intégrés (cartouche sur tous les modèles, cassette MO6, disquette TO8D/TO9/TO9+) et refuser leur suppression lors de la validation.
+  - [x] Modifier `src/GWGUI.Emulation.Thomson/Common/Machines/Common/Contracts/ConfigurationContracts.cs` : inclure ces emplacements même sans support inséré, en conservant les périphériques externes configurés et les associations existantes.
+  - [x] Modifier `src/GWGUI.Emulation.Thomson/Emulators/Theodore/Functions/MediaRuntimeFunctions.cs` : déclarer permanents uniquement les périphériques intégrés du modèle.
+- [x] Placer le choix du visuel au-dessus de son image.
+  - [x] Modifier `src/GWGUI.App/Functions/Views/Emulation/Settings/EmulationControllerSettingsLayout.cs` : retirer le choix du visuel de la ligne commune et le placer dans la colonne de droite, au-dessus de son image, dans les deux parcours existants.
+- [x] Vérifier et documenter les corrections.
+  - [x] Modifier `docs/tasks/emulation/commun.md` : consigner les modèles concernés, les protections existantes et les contrôles du diff, sans annoncer de nouvelle livraison compilée.
+
+Corrections dans les sources : les emplacements intégrés sont ajoutés au constructeur, y compris au chargement des configurations existantes ; les lecteurs externes et supports associés sont conservés. La validation refuse de retirer un emplacement intégré et IsPermanent désactive sa suppression dans la liste existante. Cartouche sur les huit modèles ; cassette intégrée au MO6 ; disquette intégrée aux TO8D, TO9 et TO9+. Le MO5, TO7, TO7/70 et TO8 conservent leurs lecteurs externes facultatifs. Références : documentation Theodore (https://raw.githubusercontent.com/Zlika/theodore/master/README.md), guide Thomson MO6 (https://www.retronik.fr/DOCUMENTS/Info/Thomson_MOTO/Thomson%20MO6%20Guide%20%28Thomson%201986%29.pdf), pilote de son auteur MESS TO9 (https://mine.perso.lip6.fr/mess/to9.html.fr).
+
+Disposition des manettes : sélecteur du visuel dans sa propre colonne, au-dessus de la photo, légende au-dessus du sélecteur ; type de manette conservé avec les associations à gauche. Les deux parcours de construction emploient cette disposition. Diff vérifié sans erreur ; pas de build ni de lancement graphique supplémentaire.
+
+## Halos PocketStation et largeur du cadre CPU
+
+- [x] Recaler les halos PocketStation.
+  - [x] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Sony/PocketStation/SonyPocketStation.cs` : corriger les cinq centres en tenant compte de la photo entière de 346 × 512 pixels et des coordonnées de rectangles utilisées par le moteur.
+- [x] Déployer les réglages CPU sur la largeur disponible.
+  - [x] Modifier `src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleHardwareSettingsSection.cs` : présenter les cadres CPU en pleine largeur.
+  - [x] Modifier `src/GWGUI.App/Views/Controls/Emulation/Options/ModuleSettings/EmulationModuleSettingsSection.Fields.cs` : rendre les textes des boutons radio repliables pour ne pas couper les choix longs.
+- [x] Consigner les contrôles.
+  - [x] Modifier `docs/tasks/emulation/commun.md` : consigner le recalage et la disposition vérifiés dans les sources, sans annoncer de validation graphique.
+
+Halos : photo PocketStation examinée, dimensions PNG vérifiées à 346 × 512 ; rectangles recentrés sur les cinq boutons (centres de référence en pixels : haut 114/304, bas 108/378, gauche 64/336, droite 160/346, action 257/335). Le moteur positionne les halos au centre des rectangles et conserve le rapport de la photo ; tailles existantes conservées, photo inchangée.
+
+CPU : suppression de la répartition des cadres compacts dans deux colonnes ; les cadres CPU occupent maintenant toute la largeur, les uns sous les autres. Les choix binaires disposent de TextBlock avec retour à la ligne et nom accessible entier. Valeurs natives et actions inchangées. Diff vérifié sans erreur. Pas de nouveau build, de commit, ni de validation graphique pour ce lot ; la livraison précédente ne contient pas encore ces corrections.
+
+## Ajustements ROM, Rendu et rangement des cartes demandés sur captures
+
+- [x] Simplifier les dimensions affichées.
+  - [x] Modifier `src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Functions/CoreSettingsFunctions.cs` : afficher facteur et dimensions résultantes, sans résolution source ni flèche.
+- [x] Corriger les formulaires ROM et Rendu.
+  - [x] Modifier `src/GWGUI.App/Functions/Views/Emulation/Settings/EmulationVideoSettingsLayout.cs` : permettre des champs sur une ou deux colonnes et des rangées de cadres adaptatives espacées.
+  - [x] Modifier `src/GWGUI.App/Views/Controls/Emulation/Options/ModuleSettings/EmulationModuleSettingsSection.Layout.cs` : étendre les champs BIOS, espacer les cadres Rendu, rapprocher les petits groupes et placer NTSC/PAL côte à côte avec leurs curseurs regroupés.
+  - [x] Modifier `src/GWGUI.App/Views/Controls/Emulation/Options/ModuleSettings/EmulationModuleSettingsSection.Slider.cs` : centrer les curseurs verticaux avec leur valeur juste en dessous et une hauteur proportionnée.
+- [x] Redimensionner le dialogue et organiser les dossiers par type.
+  - [x] Modifier `src/GWGUI.App/Views/Dialogs/Emulation/Storage/HardDiskDriveConfigurationDialog.cs` : adapter la fenêtre carte mémoire à son contenu, enlever les répétitions et le cadre imbriqué, garder le chemin entier lisible.
+  - [x] Modifier `src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/StorageFunctions.cs` et `Common/Machines/Common/Constants/StorageConstants.cs` : fournir les destinations Storage/Memory Card/Sony/<Machine> et Storage/Memory Stick/Sony/PSP aux parcours existants, sans déplacer les fichiers associés.
+- [x] Vérifier le lot.
+  - [x] Modifier `docs/tasks/emulation/commun.md` : consigner le contrôle du diff et des raccordements, ainsi que les limites sans nouveau build ni lancement graphique.
+
+Résultat dans les sources : libellés de résolution réduits à « facteur (largeur × hauteur px) », sans flèche ni dimensions initiales ajoutées. Le formulaire ROM place la légende au-dessus du champ complet, évitant que la longue légende de la case BIOS réduise la largeur du chemin. Cadres Rendu espacés de 18 unités ; petits cadres consécutifs compatibles et cadres NTSC/PAL réunis par deux, avec repli vertical sous 760 unités. Les groupes plus fournis gardent la largeur complète. Curseurs verticaux ramenés à 128 unités, centrés, avec valeur immédiatement en dessous.
+
+Dialogue de carte mémoire : largeur 760, hauteur selon le contenu, suppression des métadonnées répétées déjà présentes dans le titre et sous-titre, suppression du cadre carte mémoire imbriqué. Destination conservée en texte entier repliable. Création de nouvelles cartes par défaut dans Storage/Memory Card/Sony/PlayStation et Storage/Memory Card/Sony/PlayStation2 ; nouveau dossier Memory Stick dans Storage/Memory Stick/Sony/PSP, au même niveau que HDD. Ces sous-chemins sont utilisés par les réglages et le dialogue de supports en exécution. Les chemins des supports déjà associés et les fichiers utilisateurs existants ne sont pas déplacés.
+
+Contrôles : raccordements des champs, lectures des valeurs et chemins communs relus ; aucun nouveau texte traduisible, noms et valeurs invariants conservés hors catalogues de langue ; diff sans erreur. Aucun nouveau build, lancement graphique ou test interactif ; ces modifications restent à compiler et vérifier à l’écran.
+
+## Reprise complète des captures multitap, valeurs CD et rendu Sony
+
+- [x] Uniformiser les multitaps Sony.
+  - [x] Modifier `src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Constants/ControllerOptionConstants.cs`, `Functions/CoreSettingsFunctions.cs` et `src/GWGUI.Emulation.Sony/Modules/SonyEmulationModule.cs` : présenter les modes combinés SwanStation, PCSX-ReARMed et PCEE2 par les deux cases de port existantes et recomposer chaque valeur native.
+- [x] Donner une unité et un nom aux valeurs CD.
+  - [x] Modifier `src/GWGUI.Emulation/Contracts/EmulationSettingsField.cs`, les fonctions de présentation App et les composants de sélection/curseur sous `src/GWGUI.App/` : transmettre et afficher une unité localisée commune avec les valeurs, sans dupliquer les nombres dans les langues.
+  - [x] Modifier `src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Functions/CoreSettingsFunctions.cs` : présenter les anticipations CD en secteurs, zéro désactivé et 333000 comme disque entier, en conservant les valeurs natives.
+- [x] Structurer le rendu et le dialogue CD.
+  - [x] Modifier `src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Functions/CoreSettingsFunctions.cs` : classer séparément filtres/anticrénelage, outils de textures HD, caches, couleurs et géométrie.
+  - [x] Modifier `src/GWGUI.App/Functions/Views/Emulation/Settings/EmulationVideoSettingsLayout.cs` et les sélecteurs de réglages : placer les cases près de leur légende et rendre les choix longs lisibles.
+  - [x] Modifier `src/GWGUI.App/Views/Dialogs/Emulation/Storage/CompactDiscDriveConfigurationDialog.cs` et `src/GWGUI.App/Functions/Views/Emulation/Storage/StorageConfigurationFieldFunctions.cs` : enlever les métadonnées répétées, séparer cases et réglages de vitesse/cache, remplacer les largeurs arbitraires par une grille lisible.
+- [x] Traduire les textes concernés.
+  - [x] Modifier `src/GWGUI.Emulation.Sony/Resources/*/Option.resx` : ajouter les noms de groupes et du disque entier, raccourcir les choix et corriger les libellés HD des captures avec Argos dans toutes les langues, puis relire le français.
+- [x] Compléter le classement après contrôle des clés natives.
+  - [x] Modifier `src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Functions/CoreSettingsFunctions.cs` : reconnaître la clé super_sampling et le câble vidéo dans les groupes déjà définis.
+- [x] Vérifier et compiler.
+  - [x] Créer `tests/GWGUI.Tests/Emulation/Sony/SettingsPresentationTests.cs` : vérifier les quatre états natifs des multitaps, les unités et le choix disque entier, ainsi que la séparation des groupes vidéo, sans ressources externes.
+  - [x] Modifier `tests/GWGUI.Tests/Emulation/Sony/SettingsPresentationTests.cs` : employer l’identifiant réel mednafen_psx_hw et lire les champs CD dans le descripteur du lecteur, puis exécuter les tests ciblés contre les bibliothèques compilées.
+  - [x] Modifier `docs/tasks/emulation/commun.md` : consigner les tests ciblés, le build Debug complet et les fichiers livrés effectivement vérifiés, ou les limites rencontrées.
+
+Résultat : modes multitap combinés SwanStation, PCSX-ReARMed et PCEE2 remplacés par deux interrupteurs de port ; les modes natifs propres à chaque cœur sont recomposés et les clés de présentation ne sont pas transmises. Beetle conserve ses deux options natives déjà indépendantes. Douze états des trois modes combinés vérifiés par aller-retour dans les tests.
+
+Anticipation CD : chaque choix numérique et la valeur du curseur portent l’unité commune Visual.SectorsUnit, déjà traduite dans App. Zéro affiche Désactivé ; la valeur native 333000 affiche Disque entier (environ 750 Mo de RAM). Le nombre natif et le défaut 12 ne changent pas. Source PCSX-ReARMed : https://raw.githubusercontent.com/libretro/pcsx_rearmed/master/frontend/libretro_core_options.h. Les champs sont vérifiés dans le descripteur de configuration du lecteur, qui alimente le dialogue CD.
+
+Rendu : filtres/anticrénelage, remplacement des textures HD et caches HD séparés, géométrie et couleurs conservées dans leurs groupes. Cases à gauche de la légende, textes de choix repliables. Les libellés HD incorrects des captures et les choix trop longs ont été réécrits avec Argos dans les 28 langues puis le français relu. Trente catalogues XML valides, nouveaux groupes et choix disque entier présents, sans doublons. Aucune duplication des nombres en ressources linguistiques : l’unité commune est ajoutée à la valeur lors de la présentation.
+
+Dialogue CD : suppression de l’identifiant déjà donné dans le titre et du modèle identique, cases regroupées avant les réglages de vitesse/cache, grille à largeur partagée à la place des blocs de largeur 400. Légendes au-dessus des listes et curseurs, unité dans les valeurs, fenêtre redimensionnable. Pas de nouveau fichier de données utilisateur créé par ces vérifications.
+
+Vérification finale : build Debug application et 23 modules terminé avec code zéro. Le lanceur CMD a échoué sur son ancien chemin PowerShell ; son script a été lancé avec pwsh du PATH et -AllModules. Avertissements CA1416 et CS8602 déjà observés au build précédent. Exécutable build/Debug/GW GUI/gwgui.exe présent ; App, SDK dans lib/Updater et 23 DLL de modules identiques par SHA256 aux compilations, manifestes présents, staging absent.
+
+Tests compilés sans avertissement ni erreur ; anciennes copies de modules du dossier de tests remplacées par les DLL de la livraison pour éviter les incompatibilités de signature. Résultat final : 74 réussites, aucun échec (SettingsPresentationTests, ControllerConfigurationTests, NumericOptionRangeTests et ControllerArtworkCatalogTests). Les tests ajoutés n’utilisent ni fichiers externes, ni cœur natif, ni fenêtre ; aucun test temporaire créé. Aucune validation graphique ou partie de jeu effectuée. Diff vérifié sans erreur. Aucun commit ou push supplémentaire demandé ou effectué.
+
+## Révision PS2 demandée : Cheats, DVD, présentation et périphériques
+
+- [x] Qualifier les capacités des trois cœurs PS2 livrés.
+  - [x] Modifier `docs/tasks/emulation/commun.md` : consigner pour PCSX2/LRPS2, PCEE2 et Play les interfaces réellement exposées pour DVD, ports manettes, USB, IR et Ethernet, avec références de sources natives ; identifier les fichiers de raccordement avant modification.
+
+Audit des interfaces effectivement livrées (16 octobre) : PCSX2 est le cœur libretro LRPS2, pas l’exécutable autonome. PAD.cpp annonce DualShock 2, clavier USB, souris USB et combinaison clavier+souris ; les autres périphériques USB du PCSX2 autonome ne sont pas exposés par cette interface. DEV9 Ethernet est piloté par pcsx2_dev9_eth, avec Sockets et interface Auto imposés par le cœur. PCEE2 expose DualShock 2, multitaps et GunCon 2 USB ; son README indique explicitement que volants, micros et EyeToy ne sont pas raccordés. Il importe DEV9/Eth depuis pcsx2/inis/PCSX2.ini, donc GW GUI peut configurer son réseau natif. Ses seuls champs Storage déclarés sont les cartes mémoire gérées séparément : aucun réglage DVD exposé. Play libretro fournit ses manettes DualShock 2, sans commandes USB/IR/Ethernet dans main_libretro.cpp et son hôte d’entrée ; pas de nouveaux onglets sans interface de contrôle vérifiée.
+
+Aucun des trois hôtes examinés ne fournit de contrôle IR. Les manettes spécifiques PS1 (GunCon, Justifier, neGcon, souris, etc.) ne deviennent pas des protocoles PS2 en changeant leur image : seules les dispositions PS1 compatibles avec la commande numérique/analogique déjà exposée seront proposées. Un tapis de danse numérique peut utiliser les boutons directionnels indépendants du joypad ; il doit conserver les appuis opposés simultanés.
+
+Sources : https://github.com/WizzardSK/pcee2-libretro ; https://raw.githubusercontent.com/WizzardSK/pcee2-libretro/libretro/pcee2-libretro/Libretro.cpp ; https://raw.githubusercontent.com/WizzardSK/pcee2-libretro/libretro/pcsx2/Pcsx2Config.cpp ; https://raw.githubusercontent.com/libretro/ps2/master/pcsx2/PAD/PAD.cpp ; https://raw.githubusercontent.com/libretro/ps2/master/libretro/main.cpp ; https://raw.githubusercontent.com/jpd002/Play-/master/Source/ui_libretro/main_libretro.cpp.
+
+- [x] Déplacer les triches et exposer Ethernet selon les capacités.
+  - [x] Modifier `src/GWGUI.Emulation/Enums/EmulationMachineTab.cs`, `EmulationSettingsEditor.cs`, `EmulationDefaultFolderCategory.cs`, `src/GWGUI.App/Constants/Emulation/EmulationMachineTabConstants.cs` et `Views/Controls/Emulation/Options/ModuleSettings/EmulationModuleSettingsSection.Layout.cs` : ajouter les onglets Cheats/Ethernet conditionnels et l’action de dossier imposé dans le contrat commun.
+  - [x] Modifier `src/GWGUI.App/Views/Controls/Emulation/Options/ModuleSettings/EmulationModuleSettingsSection.Fields.cs` et `.Persistence.cs` : créer le dossier Storage/Cheats/<Marque>/<Machine>, fournir uniquement son bouton d’ouverture et persister le chemin imposé par le contrat générique.
+  - [x] Modifier `src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Functions/CoreSettingsFunctions.cs`, `Emulators/Pcee2/Functions/CheatFunctions.cs`, `Emulators/Pcsx2/Functions/FileSystemFunctions.cs` et `Modules/SonyEmulationModule.cs` : isoler les triches dans leur onglet et router le réseau LRPS2 dans Ethernet.
+  - [x] Créer `src/GWGUI.Emulation.Sony/Emulators/Pcee2/Functions/NetworkFunctions.cs` et modifier sa fabrique/son initialisation : décrire l’activation Ethernet et écrire les clés DEV9/Eth Sockets/Auto dans le fichier natif de préparation, sans remplacer les autres sections.
+- [x] Corriger le lecteur DVD.
+  - [x] Modifier `src/GWGUI.Emulation/Contracts/EmulationMediaDevice.cs`, `src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/StorageFunctions.cs`, les contrats/liste/contrôleur de stockage App et `CompactDiscDriveConfigurationDialog.cs` : afficher DVD pour PS2 et transmettre le type descriptif ; ne proposer Configurer que si des champs natifs existent.
+- [x] Refaire la présentation CPU/vidéo PS2 et ses valeurs.
+  - [x] Modifier `src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Functions/CoreSettingsFunctions.cs` : répartir unités vectorielles, recompilation, compatibilité, filtres, synchronisation et affichage ; remplacer les nombres de mode par leurs vrais libellés et expliciter les multiplicateurs.
+  - [x] Modifier `src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleHardwareSettingsSection.cs` et les dispositions communes concernées : rapprocher les légendes et contrôles, placer les cases et réglages dans des cadres cohérents avec des espacements lisibles.
+- [x] Compléter les commandes et visuels compatibles.
+  - [x] Modifier `src/GWGUI.Emulation.Sony/Emulators/Pcee2/Functions/ControllerConfigurationFunctions.cs`, sa fabrique, `Emulators/Common/Interop/Factories/CoreMachineFactory.cs`, `Common/Interfaces/IEmulatorControllerAdapter.cs`, `Common/Machines/Common/Functions/InputFunctions.Settings.cs`, `src/GWGUI.Emulation/Contracts/EmulationControllerPort.cs`, le contrat/contrôleur App de ports et `EmulationControllerSettingsLayout.cs` : transmettre un numéro d’affichage pour nommer les connecteurs manette Port 1/Port 2 avec la ressource commune, conserver USB 1/USB 2.
+  - [x] Modifier les enums, fonctions Controller/Input et le résolveur natif Sony : ajouter le tapis numérique sur PS1/PS2 via les commandes joypad indépendantes, sans inventer un périphérique natif non exposé ; proposer les dispositions PS1 compatibles sur les manettes PS2.
+  - [x] Créer le profil vectoriel `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Sony/PlayStation/SonyDanceMat.cs` et modifier les identifiants/catalogues communs : raccorder son visuel et ses six zones de commande.
+- [x] Finaliser les raccordements après relecture.
+  - [x] Modifier `src/GWGUI.App/Views/Controls/Emulation/Options/ModuleSettings/EmulationModuleSettingsSection.Fields.cs`, `src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Functions/CoreSettingsFunctions.cs`, `Constants/CoreSettingsConstants.cs`, le profil `SonyDanceMat.cs` et `Emulators/Pcee2/Functions/NetworkFunctions.cs` : employer la ressource commune du bouton, préciser les pourcentages et choix de mélange, fixer les bornes vectorielles, nettoyer les constantes et isoler la préparation INI pure pour vérification sans fichier externe.
+- [ ] Traduire et vérifier.
+  - [x] Modifier les catalogues App/Sony concernés dans toutes les langues avec Argos : onglets/actions nouveaux, Ethernet, lecteur DVD, tapis et libellés/aides CPU et vidéo des captures ; garder les valeurs invariantes dans la base.
+  - [ ] Modifier/créer les tests Sony utiles sous `tests/GWGUI.Tests/Emulation/Sony/` : capacités des trois cœurs, dossier Cheats imposé, lecteur DVD et absence de configuration vide, Ethernet, tapis et préservation des valeurs natives ; aucun nouveau test externe permanent.
+  - [ ] Modifier `docs/tasks/emulation/commun.md` : consigner les contrôles, la compilation et les limites prouvées des interfaces USB/IR, avec résultats effectivement obtenus.
+- [ ] Reprendre les traductions techniques et intégrer le périmètre précisé.
+  - [x] Modifier `src/GWGUI.App/Resources/*/Emulation/EmulationTab.resx` et les catalogues Sony `Resources/*/Option.resx`, `Machine.resx`, `Controller.resx` : corriger les contresens de toutes les langues sur les ajouts PS2, relire les légendes et aides françaises concernées, supprimer les doublons et conserver Ethernet/DVD en base commune.
+  - [x] Créer puis supprimer `artifacts/review-ps2-translations.py` : appliquer les corrections linguistiques contrôlées et vérifier XML, clés et paramètres sans laisser cet outil temporaire.
+  - [x] Modifier `docs/tasks/emulation/commun.md` : consigner la vérification linguistique et ajouter les actions du catalogue Sony/licenciés PS1/PS2 et des onglets clavier/souris USB, y compris les périphériques non émulés.
+
+Relecture linguistique (16 octobre) : conformément à la précision utilisateur, le titre Cheats reste invariant pour toutes les langues et n’existe que dans la base commune App. Ethernet et le nom DVD sont aussi dans la base ; les légendes traduisibles de lecteur DVD restent localisées. Suppression du doublon DanceMat créé dans Controller.resx. Corrections manuelles après Argos dans les 28 langues : niveaux de précision, cycles omis, recompilation, unités vectorielles, fréquence de l’Emotion Engine, transferts GPU, tramage, accentuation CAS, réseau, ordre des trames et noms de périphériques. Relecture de toutes les légendes et aides PCEE2 françaises. L’outil ponctuel de correction a été supprimé après usage. Les catalogues modifiés ont été analysés XML : aucune clé en double ni valeur vide ; titre Cheats présent uniquement en base et noms Emotion Engine conservés. Cette vérification ne prétend pas valider les traductions historiques étrangères non modifiées.
+
+Périmètre des périphériques confirmé : appareils Sony et modèles officiellement associés ou mis en avant pour PS1/PS2 ; pas de copies génériques. Le catalogue doit inclure les appareils non émulés avec leurs images et leur disponibilité réelle. Les associations clavier/souris USB doivent être exclusivement dans les onglets Clavier/Souris, affichés selon le choix USB.
+
+- [ ] Corriger le visuel de tapis selon le raccordement existant.
+  - [ ] Créer `src/GWGUI.App/Assets/Controllers/sony-dance-mat.png` à partir de l’image Amazon fournie par l’utilisateur : supprimer câble/prise USB et détourer le seul fond extérieur, garder les blancs internes et inscriptions ; supprimer le JPG intermédiaire après contrôle du PNG transparent.
+  - [ ] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerArtworkFileNames.cs`, `ControllerArtworkCatalog.cs` et `Profiles/Sony/PlayStation/SonyDanceMat.cs` : remplacer le faux fichier .vector par l’image réelle, supprimer le générateur et son branchement spécial, ajuster les zones aux boutons photographiés.
+  - [ ] Modifier `docs/tasks/emulation/commun.md` : consigner la vérification de l’image et du chargement commun, puis recompiler après la correction.
+
+Précision sur le tapis : image finale expressément choisie par l’utilisateur : https://m.media-amazon.com/images/I/71taHKzVsvL._AC_UF894,1000_QL80_.jpg ; autorisation explicite de retirer le câble/prise USB et de rendre le fond extérieur transparent. Il s’agit du visuel générique choisi, pas d’une identification Konami ou Sony.
+
+- [ ] Raccorder les commandes visibles sur le tapis choisi.
+  - [ ] Modifier `src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/InputFunctions.Settings.cs`, `InputFunctions.Visuals.cs` et `tests/GWGUI.Tests/Emulation/Sony/SettingsPresentationTests.cs` : conserver les quatre directions indépendantes, Start/Select et ajouter les quatre boutons de face visibles sur l’image fournie ; vérifier leurs définitions sans ressource externe.
+  - [ ] Modifier `docs/reference/sony-controller-sources.md` : consigner l’image fournie, le détourage demandé et l’absence d’identification fabricant, sans présenter ce visuel comme un nouveau modèle matériel Sony.
+
+- [ ] Compléter le catalogue physique PS1/PS2 demandé, indépendamment des capacités des cœurs.
+  - [ ] Modifier `docs/reference/sony-controller-sources.md` : lister les familles Sony et partenaires retenues, leurs connecteurs PS1/PS2, les sources primaires et les photos exactes ; exclure les clones génériques supplémentaires.
+  - [ ] Modifier `src/GWGUI.Emulation/Contracts/EmulationControllerChoice.cs`, `src/GWGUI.Emulation.Sony/Common/Machines/Common/Enums/ControllerEnums.cs`, `Dictionaries/ControllerCatalog.cs` et `Functions/ControllerFunctions.cs` : étendre le catalogue existant aux familles officielles/licenciées et distinguer disponibilité physique et prise en charge réelle, sans faire passer un protocole inconnu pour un joypad natif.
+  - [ ] Modifier `src/GWGUI.Emulation.Sony/Common/Machines/Common/Contracts/InputContracts.cs`, `Functions/InputFunctions.Settings.cs`, `InputFunctions.Visuals.cs`, `Modules/SonyEmulationModule.cs` et `Emulators/Pcsx2/Services/ExternalCore.cs` : présenter les deux USB PS2, conserver les identifiants existants PCEE2, isoler les associations clavier/souris dans leurs onglets conditionnels et transmettre seulement les types USB natifs connus à LRPS2.
+  - [ ] Modifier `src/GWGUI.App/Views/Controls/Emulation/Input/EmulationControllerPortEditor.cs`, `Contracts/Emulation/Controllers/EmulationControllerPortSettings.cs`, `Controllers/Emulation/Input/EmulationInputSettingsController.cs`, `Functions/Views/Emulation/Settings/EmulationControllerSettingsLayout.cs` et `Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs` : afficher les limites de prise en charge et actualiser les onglets clavier/souris après choix USB.
+  - [ ] Créer les photographies des nouveaux périphériques sous `src/GWGUI.App/Assets/Controllers/sony-*.png` ou `.jpg` selon le format source, puis modifier `GWGUI.App.csproj` si nécessaire, `ControllerArtworkFileNames.cs`, `Profiles/Sony/SonyProfileRegistry.cs`, les profils Sony de `ControllerVisualization`, `src/GWGUI.Emulation/Constants/EmulationControllerVisualIds.cs` et les ressources de base : charger chaque image par la voie commune avec son nom de modèle invariant.
+  - [ ] Modifier les catalogues App/Sony traduisibles concernés dans les 28 langues avec Argos puis relecture : noms de familles, indications de prise en charge et onglets, sans retraduire les noms propres.
+  - [ ] Modifier les tests Sony utiles sous `tests/GWGUI.Tests/Emulation/Sony/` et `docs/tasks/emulation/commun.md` : vérifier aller-retour des appareils du catalogue, disponibilité native par cœur et séparation USB/clavier/souris ; compiler l’application et tous les modules, contrôler les fichiers livrés et consigner les limites restantes.
+
+- [ ] Compléter les fichiers de raccordement nécessaires au catalogue validé.
+  - [ ] Créer `src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/InputFunctions.Usb.cs` : décrire les deux USB physiques PS2, migrer les anciens choix clavier/souris LRPS2 sans modifier les ports manette natifs et fournir les associations exclusives des onglets Clavier/Souris.
+  - [ ] Modifier `src/GWGUI.Emulation/Contracts/EmulationControllerPort.cs` et les contrats/éditeur/disposition App déjà listés : transmettre le type de connecteur USB pour adapter la légende du sélecteur de périphérique, sans déduire la connectique du texte affiché.
+
+- [ ] Normaliser les images conformément à la demande de cadrage et de poids.
+  - [ ] Modifier `src/GWGUI.App/Assets/Controllers/sony-dance-mat.png` : exporter le détourage validé à 512 pixels maximum en conservant l’alpha, contrôler le poids inférieur à 1 Mo et recalculer les zones si le cadrage change.
+  - [ ] Modifier les nouvelles images `src/GWGUI.App/Assets/Controllers/sony-*` : retenir des vues de face réelles, détourer les fonds non transparents avec l’outil d’image et exporter les PNG à 512 pixels maximum et moins de 1 Mo ; supprimer les fichiers source intermédiaires après contrôle du résultat.
+
+- [ ] Présenter le groupe Buzz! complet demandé.
+  - [ ] Modifier `src/GWGUI.App/Assets/Controllers/sony-buzz.png` : détourer la photo de face `https://upload.wikimedia.org/wikipedia/commons/c/c8/Buzz_Buzzer.jpg`, composer quatre copies identiques alignées sans câble ni fond, exporter le PNG final à 512 pixels maximum et moins de 1 Mo ; supprimer le JPEG source après contrôle.
+  - [ ] Modifier `src/GWGUI.Emulation/Enums/EmulationControllerVisualControl.cs`, les définitions et commandes Sony sous `Common/Machines/Common/Functions/InputFunctions.*.cs`, les profils Sony et `Resources/00-Base/Controller.resx` : créer vingt identifiants/halos distincts, rouge/bleu/orange/vert/jaune pour chacun des quatre joueurs ; permettre la préparation des associations même si un cœur ne les émule pas encore.
+  - [ ] Modifier `docs/reference/sony-controller-sources.md` et `docs/tasks/emulation/commun.md` : consigner la photographie retenue, la composition des quatre joueurs, le poids et les contrôles effectués.
+
+- [ ] Exporter les détourages sans surpoids.
+  - [ ] Créer `artifacts/export-controller-artwork.ps1` : exporter les résultats de détourage en PNG alpha de 512 pixels maximum, rogner les seules marges transparentes lorsque demandé et libérer Bitmap/Graphics/Stream dans finally ; refuser un fichier final de 1 Mo ou plus.
+  - [ ] Modifier les nouveaux PNG `src/GWGUI.App/Assets/Controllers/sony-*` avec cet export après chaque détourage, contrôler les dimensions et recalculer les zones sur le cadrage final ; supprimer `artifacts/export-controller-artwork.ps1` une fois tous les fichiers terminés.
+
+- [ ] Définir les commandes physiques indépendamment des cœurs.
+  - [ ] Créer `src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/InputFunctions.Peripherals.cs` : déclarer les commandes et correspondances des périphériques spécialisés, en commençant par les vingt boutons distincts du groupe Buzz! ; stocker leurs associations sans exiger une implémentation native préalable.
+
+## Reprise après arrêt prématuré : terminer les images et associations demandées
+
+- [ ] Corriger les quatre détourages en attente.
+  - [x] Modifier `src/GWGUI.App/Assets/Controllers/sony-jogcon.png` et `sony-guitar-hero-sg.png` : exporter les détourages de face contrôlés, alpha extérieur, maximum 512 pixels et moins de 1 Mo.
+  - [x] Modifier `src/GWGUI.App/Assets/Controllers/sony-eyetoy.png` et créer `sony-hori-fighting-stick-ps.png` : refaire les détourages dont le résultat comporte encore un fond opaque ; contrôler le PNG final.
+- [ ] Raccorder les images contrôlées et les commandes physiques.
+  - [x] Modifier `ControllerArtworkFileNames.cs`, `Profiles/Sony/SonyProfileRegistry.cs` et créer les profils sous `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Sony/` : JogCon, Guitar Hero SG, Hori Fighting Stick PS, EyeToy et SingStar avec uniquement leurs commandes réelles.
+  - [ ] Modifier `src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/InputFunctions.Peripherals.cs`, `.Visuals.cs`, `.Usb.cs`, `Dictionaries/ControllerCatalog.cs` et les ressources de base : associations indépendantes des cœurs pour les profils ajoutés, noms exacts des modèles.
+- [ ] Poursuivre les modèles manquants et corriger les sources refusées.
+  - [ ] Modifier `docs/reference/sony-controller-sources.md` : inventaire précis des modèles encore sans image, sources remplacées et raccordements réellement terminés.
+  - [ ] Modifier les images sous `src/GWGUI.App/Assets/Controllers/`, profils Sony, catalogue et commandes : remplacer les photos ASCII, Namco et Hori refusées puis ajouter les modèles approuvés encore manquants, sans les annoncer terminés auparavant.
+- [ ] Vérifier le résultat complet.
+  - [ ] Modifier les tests Sony et `docs/tasks/emulation/commun.md` : contrôler catalogue, associations et zones, consigner le build Debug application et tous les modules et le contrôle des fichiers livrés.
+
+- [ ] Corriger les associations USB constatées pendant le raccordement.
+  - [ ] Modifier `src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/InputFunctions.Settings.cs` : conserver ButtonMappings et OutputBindings des deux USB synthétiques à la sauvegarde, comme pour les ports physiques.
+  - [ ] Modifier `src/GWGUI.Emulation.Sony/Resources/*/Controller.resx` et `src/GWGUI.App/Resources/*/Emulation/EmulationController.resx` : traduire avec Argos les commandes de guitare et les indications USB nouvellement introduites, relire le français.
+
+## Nettoyage demandé des images inutilisées (priorité en cours)
+
+- [x] Retirer les images hors catalogue et les sources remplacées.
+  - [x] Modifier `docs/tasks/emulation/commun.md` : consigner la liste vérifiée des fichiers sans référence de code et les photos encore nécessaires aux détourages.
+  - [x] Supprimer sous `src/GWGUI.App/Assets/Controllers/` les anciens fichiers Sony refusés/remplacés : `sony-ascii-arcade-stick.jpg`, `sony-ascii-enhanced-pad.jpg`, `sony-ascii-specialized-pad.jpg`, `sony-eyetoy-source.png`, `sony-guitar-hero-sg-source.jpg`, `sony-hori-fighting-commander-2way.jpg`, `sony-hori-fighting-commander.jpg`, `sony-hori-fighting-stick-ps.jpg`, `sony-hori-fighting-stick.jpg`, `sony-jogcon.jpg`, `sony-namco-arcade-stick.jpg`, `sony-volume-controller-source.jpg`, `sony-volume-controller.jpg`.
+  - [x] Déplacer les trois sources encore nécessaires `sony-ascii-specialized-pad-source.jpg`, `sony-ascii-arcade-stick-source.jpg`, `sony-namco-arcade-stick-source.jpg` de `src/GWGUI.App/Assets/Controllers/` vers `artifacts/controller-artwork-sources/` ; les supprimer après leurs exports finaux.
+  - [x] Supprimer sous `src/GWGUI.App/Assets/Controllers/` les quatorze PNG sans aucune référence de code : `advanced-gravis-gamepad.png`, `atari-5200-trak-ball.png`, `bally-astrocade-controller.png`, `commodore-vc-1312-paddles.png`, `emerson-arcadia-2001-controller.png`, `fairchild-channel-f.png`, `gce-vectrex-controller.png`, `interton-vc-4000-controller.png`, `magnavox-odyssey-controller.png`, `mattel-hyperscan-controller.png`, `philips-cdi-paddle-controller.png`, `philips-cdi-remote-control.png`, `philips-cdi-roller-controller.png`, `philips-cdi-trackerball.png`.
+  - [x] Modifier `docs/tasks/emulation/commun.md` : consigner le nombre de fichiers retirés, le poids libéré et le contrôle des références encore présentes ; conserver le nouveau Volume Controller en attente de raccordement.
+
+Nettoyage initial trop large, corrigé : les 14 images non Sony sont restaurées à l’identique de HEAD. Les 4 photos Sony sans remplacement final sont également restaurées depuis leurs URL originales (tailles identiques à celles relevées avant suppression). Il reste uniquement 9 anciens fichiers Sony remplacés supprimés. Trois photographies de travail déplacées dans artifacts/controller-artwork-sources pour les détourages en cours ; elles ne sont plus dans les assets. Le PNG Volume Controller est conservé car son raccordement est la prochaine action. La suppression des 14 PNG non Sony listée ci-dessus a été annulée ; ne pas la reproduire. Une absence de référence ne suffit pas à autoriser un nettoyage hors du périmètre Sony demandé.
+
+## Correction immédiate du nettoyage trop large
+
+- [x] Rétablir le périmètre demandé : uniquement les doublons Sony remplacés.
+  - [x] Restaurer depuis Git les quatorze PNG non Sony supprimés sous `src/GWGUI.App/Assets/Controllers/` : Gravis, Atari, Bally, Commodore, Emerson, Fairchild, Vectrex, Interton, Magnavox, Mattel et quatre Philips ; vérifier chaque fichier contre HEAD.
+  - [x] Restaurer les photos Sony sans remplacement final encore contrôlé : `src/GWGUI.App/Assets/Controllers/sony-ascii-enhanced-pad.jpg`, `sony-hori-fighting-commander-2way.jpg`, `sony-hori-fighting-commander.jpg` et `sony-namco-arcade-stick.jpg`, depuis leurs URL originales.
+  - [x] Modifier `docs/tasks/emulation/commun.md` : corriger le bilan du nettoyage et indiquer précisément les seuls doublons Sony supprimés ; ne supprimer aucune autre image non Sony.
+
+Restauration contrôlée : 14/14 PNG non Sony présents et identiques à HEAD par identifiant de contenu Git. Photos Sony rétablies : ASCII Enhanced Pad (63 442 octets), Hori Commander 2Way (238 405), Hori Commander (25 728), Namco Arcade Stick (47 574). Les neuf suppressions Sony conservées correspondent aux anciens ASCII Arcade/Specialized, EyeToy source, Guitar Hero source, deux Hori Stick, JogCon JPG, Volume source et Volume JPG, tous remplacés par leurs PNG contrôlés.
+
+## Suite après restauration : seuls les remplacements Sony
+
+- [ ] Finaliser les trois remplacements Sony en cours.
+  - [ ] Modifier `src/GWGUI.App/Assets/Controllers/sony-namco-arcade-stick.png` : exporter le détourage de face contrôlé ; après contrôle alpha et dimensions, supprimer uniquement `sony-namco-arcade-stick.jpg` et `artifacts/controller-artwork-sources/sony-namco-arcade-stick-source.jpg`.
+  - [ ] Créer les profils `Profiles/Sony/PlayStation/SonyAsciiSpecializedPad.cs`, `SonyAsciiArcadeStick.cs`, `SonyNamcoArcadeStick.cs` et modifier les constantes, le registre, les ressources de base et les fonctions d’entrée Sony existantes : placer les zones sur leurs boutons et conserver les associations propres aux modèles.
+  - [ ] Modifier `src/GWGUI.App/Controllers/Emulation/Input/EmulationInputSettingsController.cs` et les fonctions d’entrée Sony : préserver les commandes propres au visuel lors du rechargement de la configuration.
+- [ ] Contrôler la compilation du travail en cours.
+  - [ ] Modifier les tests Sony et `ControllerArtworkCatalogTests.cs` : vérifier les vingt commandes Buzz!, la sauvegarde des USB et les profils sans boutons EyeToy/SingStar, sans fichier externe de test.
+  - [ ] Modifier `docs/tasks/emulation/commun.md` : consigner le build Debug complet, les tests ciblés et les modèles restant à réaliser ; ne pas annoncer le catalogue complet avant sa réalisation.
+
+## Restaurer le build précédent sans compilation
+
+- [x] Remettre les binaires existants dans `build/Debug/GW GUI/`.
+  - [x] Copier l’application et ses dépendances déjà présentes, en remettant les DLL et traductions précédentes de `tests/GWGUI.Tests/bin/Debug/net10.0-windows10.0.19041.0/win-x64/`.
+  - [x] Copier les 23 modules précédents et leurs métadonnées dans `build/Debug/GW GUI/Modules/`, puis le lanceur et Updater précédents depuis leurs sorties binaires.
+  - [x] Modifier `docs/tasks/emulation/commun.md` : consigner le contrôle SHA256 des anciens binaires, la présence de l’exécutable et des 23 modules, sans exécuter de build.
+
+## Reprise des images fausses et des périphériques manquants — aucun build
+
+- [x] Remplacer les photos Hori et ASCII restantes.
+  - [x] Créer `artifacts/controller-artwork-sources/sony-hori-fighting-commander-2way.jpg`, `sony-hori-fighting-commander-10b.jpg` et `sony-ascii-enhanced-pad.jpg` depuis les photographies frontales identifiées ; conserver les anciens assets jusqu’au contrôle de leurs remplacements.
+  - [x] Créer les PNG transparents `src/GWGUI.App/Assets/Controllers/sony-hori-fighting-commander-2way.png`, `sony-hori-fighting-commander-10b.png`, `sony-ascii-enhanced-pad.png`, maximum 512 pixels et moins de 1 Mo ; supprimer uniquement les anciennes photos Sony correspondantes après contrôle.
+  - [x] Créer les profils Sony correspondants sous `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Sony/PlayStation/`, modifier le registre, les constantes, le catalogue et les associations propres aux visuels ainsi que les noms invariants en base.
+- [x] Ajouter les périphériques manquants de la liste validée.
+  - [x] Modifier `docs/reference/sony-controller-sources.md` : suivre chaque modèle approuvé avec son image et ses commandes réellement raccordées ; conserver explicitement les appareils restant à faire.
+  - [x] Créer les photographies PNG et profils sous `src/GWGUI.App/Assets/Controllers/` et `Profiles/Sony/`, modifier le catalogue Sony existant, les commandes et les ressources pour les modèles validés encore absents, indépendamment de leur prise en charge native ; aucune compilation.
+
+- [x] Normaliser l’export alpha des détourages Sony.
+  - [x] Modifier `artifacts/export-controller-artwork.ps1` : exporter en pixels prémultipliés et composer sur une surface transparente pour ne pas conserver de couleurs RGB cachées sous alpha nul, sans modifier le masque ni les commandes du périphérique ; réexporter le Hori 2Way.
+
+- [x] Ajouter les modèles PS1 spécialisés encore absents.
+  - [x] Créer les photos sources dans `artifacts/controller-artwork-sources/` pour ASCII Grip, Biohazard Pad, Sphere 360, Reality Quest Glove et Fighter Stick V ; contrôler le modèle avant détourage.
+  - [x] Créer les PNG correspondants sous `src/GWGUI.App/Assets/Controllers/sony-*.png`, maximum 512 pixels, fond transparent et moins de 1 Mo ; supprimer leurs seules sources de travail après contrôle.
+  - [x] Créer leurs profils Sony PS1 et modifier les identifiants visuels, le registre, les noms de base, le catalogue et les commandes Sony : toutes les commandes physiques visibles, associations conservées indépendamment de la prise en charge native.
+
+- [x] Raccorder les commandes exactes du Sphere 360.
+  - [x] Créer `artifacts/controller-artwork-sources/sony-sphere-manual.jpg` avec le scan du manuel d’origine `https://www.game-rave.com/wp-content/uploads/2024/10/PSX-Demo-360-Controller-Demo-Manual-1-web.jpg` pour définir les boutons et les six axes physiques sans inventer de commandes ; supprimer ce scan de travail après raccordement.
+
+- [x] Nommer les six axes physiques du Sphere 360.
+  - [x] Modifier `src/GWGUI.Emulation.Sony/Resources/*/Option.resx` : ajouter avec Argos les douze libellés des translations et rotations X/Y/Z dans toutes les langues ; relire les termes français, conserver les coordonnées comme valeurs mathématiques invariantes.
+
+Instruction utilisateur actuelle : AUCUN BUILD, REBUILD ou test imposant une compilation sans nouvelle demande explicite. La compilation lancée prématurément a été arrêtée. Ancien build rétabli par copie uniquement : application du 16 octobre à 23:01 et 23 modules, DLL App/SDK/modules comparées par SHA256 aux copies précédentes. Les travaux actuels concernent les sources, images et halos, et ne sont pas présents dans cet ancien exécutable.
+
+Point de contrôle : 34 profils Sony enregistrés, tous leurs fichiers et identifiants présents ; douze libellés des six axes du Sphere vérifiés dans tous les catalogues Option. Nouveaux périphériques Grip, Biohazard, Sphere, Glove et Fighter Stick V raccordés dans les sources ; compatibilité native ultérieure selon la demande utilisateur. Pas de catalogue complet annoncé.
+
+- [x] Ajouter les périphériques musicaux validés.
+  - [x] Créer les photographies sources dans `artifacts/controller-artwork-sources/` : `sony-beatmania.jpg`, `sony-guitar-freaks.jpg`, `sony-beatmania-iidx.jpg`, `sony-beatmania-iidx-arcade.jpg`, `sony-popn-music.jpg`, `sony-popn-music-arcade.jpg`, `sony-tatacon.jpg`, `sony-konami-ddr.jpg` ; retenir les modèles Konami/Namco d’origine, pas les copies modernes.
+  - [x] Créer les PNG transparents correspondants sous `src/GWGUI.App/Assets/Controllers/`, maximum 512 pixels et moins de 1 Mo ; supprimer les seules photos de travail après contrôle.
+  - [x] Créer leurs profils sous `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Sony/`, modifier les identifiants, le registre, le catalogue, les définitions des commandes musicales et les ressources de base : touches, disques, frettes, tambour et tapis selon leurs commandes réelles.
+
+- [x] Consigner le lot musical et poursuivre les périphériques USB.
+  - [x] Modifier `docs/reference/sony-controller-sources.md` : ajouter les huit sources, dimensions, poids et commandes ; corriger la mention obsolète de compilation en cours et consigner les contrôles statiques sans compilation.
+  - [x] Créer dans `artifacts/controller-artwork-sources/` les photos `sony-usb-keyboard.jpg`, `sony-usb-mouse.jpg`, `sony-netplay.jpg` : Sony SCPH-10240, SCPH-10230 et Logitech NetPlay, vérifier les vraies prises et commandes.
+  - [x] Créer `src/GWGUI.App/Assets/Controllers/sony-usb-keyboard.png`, `sony-usb-mouse.png`, `sony-netplay.png` : détourages transparents de face, maximum 512 pixels et moins de 1 Mo ; supprimer leurs seules photos temporaires après contrôle.
+  - [x] Créer les profils `Profiles/Sony/PlayStation2/SonyUsbKeyboard.cs`, `SonyUsbMouse.cs`, `SonyNetPlay.cs` et modifier le catalogue, les identifiants, les ressources et les fonctions d'entrée Sony existantes : clavier dans son seul onglet, souris dans son seul onglet ; NetPlay réellement double connexion (clavier USB, manette sur port manette), conserver les deux fonctions sans inventer une manette USB.
+
+  - [x] Modifier `src/GWGUI.App/Controllers/Emulation/Input/EmulationInputSettingsController.cs` et `src/GWGUI.App/Functions/Views/Emulation/Settings/EmulationInputSettingsLayout.cs` : afficher la photo du clavier dans son onglet, réserver les associations USB clavier/souris à leurs onglets dédiés, maintenir l'indication d'onglet même si l'émulateur ne prend pas encore le périphérique en charge.
+  - [x] Modifier `tests/GWGUI.Tests/Interface/EmulationViews/ControllerArtworkCatalogTests.cs` : tenir compte du visuel de clavier dont les touches se configurent dans l'onglet Clavier, sans lancer de compilation ; modifier `docs/reference/sony-controller-sources.md` pour consigner les trois photos et le raccordement.
+
+- [x] Ajouter les manettes et sticks PS2 sélectionnés.
+  - [x] Créer dans `artifacts/controller-artwork-sources/` les photos `sony-logitech-cordless.jpg`, `sony-logitech-cordless-action.jpg`, `sony-sega-saturn-ps2.jpg`, `sony-hori-fighting-stick-2.jpg`, `sony-hori-real-arcade-pro.jpg` : contrôler le vrai modèle PS2, exclure les pads Saturn d’origine et les variantes Hori PS3/PS4.
+  - [x] Créer les cinq PNG transparents sous `src/GWGUI.App/Assets/Controllers/sony-*.png`, maximum 512 pixels et moins de 1 Mo ; supprimer seulement leurs photos de travail après contrôle.
+  - [x] Créer les profils `Profiles/Sony/PlayStation2/SonyLogitechCordless.cs`, `SonyLogitechCordlessAction.cs`, `SonySegaSaturnPs2.cs`, `SonyHoriFightingStick2.cs`, `SonyHoriRealArcadePro.cs` ; modifier les constantes, le registre, le catalogue, les associations propres au modèle et les ressources de base, avec les fonctions physiques réellement présentes (MODE/VIBRATION Logitech, six boutons Sega et leurs correspondances imprimées, L3/R3 et SPEED/STICK du Hori Stick 2, huit sélecteurs turbo du Real Arcade Pro) ; créer `src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/InputFunctions.Gamepads.cs` pour ces définitions, ajouter les contrôles visuels RepeatRate/StickMode dans `src/GWGUI.Emulation/Enums/EmulationControllerVisualControl.cs` et traduire les deux libellés Hori et les huit sélecteurs turbo numérotés de gauche à droite dans `src/GWGUI.Emulation.Sony/Resources/*/Option.resx` avec Argos.
+  - [x] Modifier `docs/reference/sony-controller-sources.md` : consigner les cinq sources, poids et commandes, ainsi que les contrôles statiques sans compilation.
+
+- [x] Ajouter les quatre volants USB Logitech PS2.
+  - [x] Créer les photos sources `artifacts/controller-artwork-sources/sony-gt-force.jpg`, `sony-driving-force.jpg`, `sony-driving-force-pro.jpg`, `sony-driving-force-gt.jpg` : contrôler chaque modèle et son pédalier, retenir des vues permettant les halos de toutes les commandes visibles.
+  - [x] Créer les quatre PNG transparents correspondants sous `src/GWGUI.App/Assets/Controllers/`, maximum 512 pixels et moins de 1 Mo ; supprimer leurs seules photos temporaires après contrôle.
+  - [x] Créer les profils `Profiles/Sony/PlayStation2/SonyGtForce.cs`, `SonyDrivingForce.cs`, `SonyDrivingForcePro.cs`, `SonyDrivingForceGt.cs` et `src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/InputFunctions.Wheels.cs` ; modifier les identifiants, le registre, les fonctions d'entrée et le catalogue existants : direction, pédales, boutons, palettes, levier et molette selon les vrais modèles, noms en base et nouveaux libellés traduits avec Argos dans toutes les langues ; déplacer les deux libellés SteeringLeft/SteeringRight non traduits de `src/GWGUI.Emulation.Sony/Resources/00-Base/Controller.resx` vers les catalogues Option et réutiliser les libellés communs Accélérateur/Frein existants. Ajouter les contrôles Accelerator, BrakePedal, GearUp/GearDown, DialLeft/DialRight/DialPress dans `src/GWGUI.Emulation/Enums/EmulationControllerVisualControl.cs` ; corriger le nouveau contrôle VIBRATION Logitech par un contrôle distinct VibrationMode dans cette énumération, les deux profils Logitech et `InputFunctions.Visuals.cs`, pour préserver le contrôle Guide des autres machines Sony.
+  - [x] Modifier `docs/reference/sony-controller-sources.md` : consigner les quatre sources, dimensions, poids et commandes raccordées, ainsi que les contrôles statiques sans compilation.
+
+- [x] Ajouter les variantes musicales, audio et SeaMic encore manquantes.
+  - [x] Créer dans `artifacts/controller-artwork-sources/` les photos `sony-buzz-wireless.jpg`, `sony-singstar-wireless.jpg`, `sony-socom-headset.jpg`, `sony-logitech-vantage.jpg`, `sony-rock-band-microphone.jpg`, `sony-guitar-hero-microphone.jpg`, `sony-seamic.png`, `sony-kramer-striker.jpg` : vérifier les appareils PS2 d’origine ; SeaMic est une manette USB avec microphone, pas un simple micro sans boutons.
+  - [x] Créer les huit PNG transparents correspondants sous `src/GWGUI.App/Assets/Controllers/` : Buzz! sans fil en quatre unités de face, SingStar sans fil par paire, autres périphériques complets sans câbles ; guitare Kramer dans sa finition d’origine sans les autocollants ajoutés sur l’exemplaire photographié ; maximum 512 pixels et moins de 1 Mo ; supprimer les seules sources temporaires après contrôle.
+  - [x] Créer les profils `SonyBuzzWireless.cs`, `SonySingStarWireless.cs`, `SonySocomHeadset.cs`, `SonyLogitechVantage.cs`, `SonyRockBandMicrophone.cs`, `SonyGuitarHeroMicrophone.cs`, `SonySeamic.cs`, `SonyKramerStriker.cs` sous `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Sony/PlayStation2/` et `src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/InputFunctions.Seamic.cs` ; modifier `ControllerArtworkFileNames.cs`, `SonyProfileRegistry.cs`, `EmulationControllerVisualIds.cs`, `ControllerCatalog.cs`, `InputFunctions.Usb.cs`, `InputFunctions.Visuals.cs` et `InputFunctions.Peripherals.cs` : vingt boutons Buzz!, guitare Kramer et commandes réelles du SeaMic ; aucun faux bouton de jeu sur les appareils audio qui n’en possèdent pas. Ajouter les noms invariants dans `src/GWGUI.App/Resources/00-Base/Emulation/EmulationController.resx`. Modifier aussi `src/GWGUI.App/Resources/*/Emulation/EmulationController.resx` avec Argos et relire le français : conserver une indication de non-compatibilité générale sans promettre des associations de boutons aux appareils audio qui n’en possèdent pas.
+  - [x] Modifier `tests/GWGUI.Tests/Interface/EmulationViews/ControllerArtworkCatalogTests.cs` pour les appareils sans bouton de jeu et `docs/reference/sony-controller-sources.md` pour les huit sources, poids et commandes ; consigner les contrôles statiques, sans compilation.
+
+
+- [x] Ajouter les deux périphériques PS2 Onimusha et Resident Evil.
+  - [x] Créer `artifacts/controller-artwork-sources/sony-onimusha-katana.jpg`, `sony-onimusha-katana-back.jpg` et `sony-re4-chainsaw.jpg` depuis les références originales : HORI Soul Controller PS2 avec vues avant/arrière de la poignée démontable et texte du manuel consultable en ligne, NubyTech Resident Evil 4 PS2 rouge ; exclure la version GameCube jaune et identifier les vrais boutons. Le téléchargement du PDF est bloqué par le site et le rendu local n’a pas été exécuté (PyMuPDF absent) ; ne pas déclarer ces fichiers créés.
+  - [x] Créer `src/GWGUI.App/Assets/Controllers/sony-onimusha-katana.png` et `sony-re4-chainsaw.png` : photos détourées complètes, contrôles de face lisibles, sans câbles, maximum 512 pixels, moins de 1 Mio ; supprimer seulement les deux sources après contrôle.
+  - [x] Créer `Profiles/Sony/PlayStation2/SonyOnimushaKatana.cs` et `SonyRe4Chainsaw.cs` sous `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/` ainsi que `src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/InputFunctions.SpecialControllers.cs` ; modifier `src/GWGUI.Emulation/Constants/EmulationControllerVisualIds.cs`, `ControllerArtworkFileNames.cs`, `Profiles/Sony/SonyProfileRegistry.cs`, `Common/Machines/Common/Dictionaries/ControllerCatalog.cs`, `InputFunctions.Usb.cs` et `InputFunctions.Visuals.cs` pour raccorder les boutons/axes réels et les gestes du modèle, indépendamment du support natif. Ajouter les noms dans `src/GWGUI.App/Resources/00-Base/Emulation/EmulationController.resx` et traduire les deux libellés de mouvement avec Argos dans `src/GWGUI.Emulation.Sony/Resources/*/Option.resx`.
+  - [x] Modifier `docs/reference/sony-controller-sources.md` pour consigner les deux photos, exports, commandes et vérifications statiques, sans compilation.
+
+
+- [x] Ajouter la télécommande DVD Sony et la canne ASCII Bass Landing.
+  - [x] Créer `artifacts/controller-artwork-sources/sony-dvd-remote.jpg` et `sony-fishing-controller.png` : Sony SCPH-10150 et canne ASCII originale avec vue des commandes ; vérifier leurs boutons, stick et capteurs.
+  - [x] Créer `src/GWGUI.App/Assets/Controllers/sony-dvd-remote.png` et `sony-fishing-controller.png` : détourage sans câbles, maximum 512 pixels et moins de 1 Mio ; supprimer seulement les deux sources après contrôle.
+  - [x] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Sony/PlayStation2/SonyDvdRemote.cs`, `Profiles/Sony/PlayStation/SonyFishingController.cs` et `src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/InputFunctions.RemoteAndFishing.cs` ; modifier `src/GWGUI.Emulation/Enums/EmulationControllerVisualControl.cs` (18 contrôles DVD distincts), `src/GWGUI.Emulation/Constants/EmulationControllerVisualIds.cs`, `ControllerArtworkFileNames.cs`, `Profiles/Sony/SonyProfileRegistry.cs`, `InputFunctions.Usb.cs` et `InputFunctions.Visuals.cs` pour les 49 touches DVD et les commandes de la canne ; les deux identifiants sont déjà prévus dans `ControllerCatalog.cs`. Ajouter les noms dans `src/GWGUI.App/Resources/00-Base/Emulation/EmulationController.resx` et vingt et un libellés traduits via Argos dans `src/GWGUI.Emulation.Sony/Resources/*/Option.resx`, en réutilisant les traductions de lecture/pause/arrêt/recherche existantes.
+  - [x] Modifier `docs/reference/sony-controller-sources.md` pour consigner les sources, dimensions, poids, commandes et contrôles statiques sans compilation.
+
+
+- [x] Ajouter les commandes Taito PS1 Densha de GO! et Jet de GO!.
+  - [x] Créer dans `artifacts/controller-artwork-sources/` les photos `sony-densha-two-handle.jpg`, `sony-densha-one-handle.jpg`, `sony-densha-mamecon.jpg`, `sony-jet-controller.jpg` : vérifier les modèles PS1 Taito et les dispositions de leurs leviers/boutons.
+  - [x] Créer les quatre PNG transparents correspondants dans `src/GWGUI.App/Assets/Controllers/`, maximum 512 pixels et moins de 1 Mio ; supprimer leurs seules photos temporaires après contrôle.
+  - [x] Créer `SonyDenshaController.cs`, `SonyDenshaOneHandle.cs`, `SonyDenshaMamecon.cs`, `SonyJetController.cs` sous `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Sony/PlayStation/` et `src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/InputFunctions.TrainAndJet.cs` ; modifier `EmulationControllerVisualIds.cs`, `ControllerArtworkFileNames.cs`, `SonyProfileRegistry.cs`, `ControllerCatalog.cs`, `InputFunctions.Peripherals.cs`, `InputFunctions.Usb.cs` et `InputFunctions.Visuals.cs` pour les leviers et boutons réellement présents, avec définitions propres au visuel. Ajouter six contrôles explicites de leviers dans `src/GWGUI.Emulation/Enums/EmulationControllerVisualControl.cs`, les noms dans `src/GWGUI.App/Resources/00-Base/Emulation/EmulationController.resx` et douze libellés traduits dans `src/GWGUI.Emulation.Sony/Resources/*/Option.resx` via Argos.
+  - [x] Modifier `docs/reference/sony-controller-sources.md` : consigner références, exports et commandes, avec contrôles statiques sans compilation.
+
+
+- [x] Ajouter les cinq commandes de train USB PS2 validées.
+  - [x] Créer dans `artifacts/controller-artwork-sources/` les photos `sony-densha-usb.jpg`, `sony-densha-shinkansen.jpg`, `sony-densha-ryojohen.jpg`, `sony-train-mascon.jpg`, `sony-multi-train.jpg` : Type 2 TCPP-20009, Shinkansen TCPP-20011, Ryojōhen TCPP-20014, Train Mascon et Multi Train Controller PS2 ; vérifier chaque disposition et accessoire d’entrée.
+  - [x] Créer les cinq PNG transparents correspondants sous `src/GWGUI.App/Assets/Controllers/`, maximum 512 pixels, moins de 1 Mio, sans câbles ; supprimer seulement leurs photos sources de travail après contrôle.
+  - [x] Créer les cinq profils `SonyDenshaUsb.cs`, `SonyDenshaShinkansen.cs`, `SonyDenshaRyojohen.cs`, `SonyTrainMascon.cs`, `SonyMultiTrain.cs` sous `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Sony/PlayStation2/` et `src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/InputFunctions.UsbTrains.cs` ; modifier `EmulationControllerVisualIds.cs`, `ControllerArtworkFileNames.cs`, `SonyProfileRegistry.cs`, `ControllerCatalog.cs`, `InputFunctions.TrainAndJet.cs`, `InputFunctions.Peripherals.cs`, `InputFunctions.Usb.cs` et `InputFunctions.Visuals.cs` pour les boutons et leviers réels de chaque modèle USB, avec définitions propres au visuel. Ajouter les douze contrôles physiques distincts dans `src/GWGUI.Emulation/Enums/EmulationControllerVisualControl.cs`, les noms dans `src/GWGUI.App/Resources/00-Base/Emulation/EmulationController.resx` et douze nouveaux libellés traduits avec Argos dans `src/GWGUI.Emulation.Sony/Resources/*/Option.resx` ; conserver ATS et A/B/C/D en valeurs invariantes.
+  - [x] Modifier `docs/reference/sony-controller-sources.md` pour consigner les cinq sources, tailles, commandes et contrôles statiques, sans compilation.
+
+
+- [x] Ajouter Flight Stick 2, Kids Station, Maestro et Tambourine.
+  - [x] Créer dans `artifacts/controller-artwork-sources/` les photos `sony-hori-flight-stick-2.jpg`, `sony-kids-station.jpg`, `sony-maestro-baton.jpg`, `sony-tambourine.jpg` : modèles originaux/licenciés PS1/PS2, vérifier leurs commandes réelles.
+  - [x] Créer les quatre PNG transparents correspondants sous `src/GWGUI.App/Assets/Controllers/`, maximum 512 pixels et moins de 1 Mio, sans câbles ; créer les vues de contrôle `artifacts/controller-artwork-sources/sony-flight-detail-1.jpg` et `sony-flight-detail-8.jpg`, puis supprimer seulement ces six photos de travail après contrôle.
+  - [x] Créer `PlayStation/SonyKidsStation.cs`, `PlayStation/SonyMaestroBaton.cs`, `PlayStation/SonyTambourine.cs`, `PlayStation2/SonyHoriFlightStick2.cs` sous `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Sony/` et `src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/InputFunctions.RarePeripherals.cs` ; modifier `ControllerArtworkFileNames.cs`, `SonyProfileRegistry.cs`, `InputFunctions.Usb.cs` et `InputFunctions.Visuals.cs` pour les touches, gestes et commandes de vol du modèle réel, en conservant les identifiants/catalogue déjà présents. Ajouter les quatre noms dans `src/GWGUI.App/Resources/00-Base/Emulation/EmulationController.resx` et les libellés dans toutes les langues `src/GWGUI.Emulation.Sony/Resources/*/Option.resx` avec Argos ; garder les inscriptions invariantes en commun.
+  - [x] Modifier `docs/reference/sony-controller-sources.md` pour les quatre références, exports et contrôles statiques, sans compilation.
+
+
+- [x] Ajouter les instruments PS2 restants et GameTrak (connexion réelle : DrumMania au port manette, autres modèles USB).
+  - [x] Créer dans `artifacts/controller-artwork-sources/` les photos `sony-keyboardmania.jpg`, `sony-drummania.jpg`, `sony-parapara.jpg`, `sony-rock-band-guitar.jpg`, `sony-rock-band-drums.jpg`, `sony-guitar-hero-drums.jpg`, `sony-dj-hero.jpg`, `sony-gametrak.jpg` : références réelles des éditions PS2, commandes vérifiées.
+  - [x] Créer les huit PNG correspondants sous `src/GWGUI.App/Assets/Controllers/`, détourés, sans câbles, maximum 512 pixels et moins de 1 Mio ; supprimer seulement leurs photos de travail après contrôle.
+  - [x] Créer `SonyKeyboardMania.cs`, `SonyDrumMania.cs`, `SonyParaPara.cs`, `SonyRockBandGuitar.cs`, `SonyRockBandDrums.cs`, `SonyGuitarHeroDrums.cs`, `SonyDjHero.cs`, `SonyGameTrak.cs` sous `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Sony/PlayStation2/` et `src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/InputFunctions.UsbInstruments.cs` ; modifier `ControllerCatalog.cs` (DrumMania au port manette PS2, visuels GuitarHeroDrums/DjHero), `EmulationControllerVisualIds.cs`, `ControllerArtworkFileNames.cs`, `SonyProfileRegistry.cs`, `InputFunctions.Usb.cs`, `InputFunctions.Visuals.cs` et `EmulationControllerVisualControl.cs` (touches musicales 10–24, cinq capteurs optiques, cinq frettes solo, cinq positions d’effet, onze surfaces de batterie, directions des fils GameTrak et deux directions du crossfader DJ Hero) pour les vrais boutons et capteurs. Ajouter les noms en base commune et traduire les nouveaux libellés dans tous les `src/GWGUI.Emulation.Sony/Resources/*/Option.resx` via Argos.
+  - [x] Modifier `docs/reference/sony-controller-sources.md` avec références, dimensions, commandes et contrôles statiques sans compilation.
+
+
+- [x] Terminer les quatre volants à port manette de la liste approuvée.
+  - [x] Créer `artifacts/controller-artwork-sources/sony-mad-catz-wheel.jpg`, `sony-interact-v3.jpg`, `sony-fanatec-speedster-2.jpg` et `sony-fanatec-speedster-3.jpg`, plus `sony-speedster-2-detail.jpg` et `sony-speedster-3-detail.jpg`, plus `sony-mad-catz-pedals.jpg` : vues originales et commandes réelles, avec pédales correspondantes.
+  - [x] Créer les quatre PNG transparents correspondants dans `src/GWGUI.App/Assets/Controllers/`, maximum 512 pixels et moins de 1 Mio, sans câbles ; supprimer seulement les sept photos de travail après contrôle.
+  - [x] Créer `PlayStation/SonyMadCatzWheel.cs`, `PlayStation/SonyInteractV3.cs`, `PlayStation/SonyFanatecSpeedster2.cs`, `PlayStation2/SonyFanatecSpeedster3.cs` sous `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Sony/` et `src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/InputFunctions.SerialWheels.cs` ; modifier `EmulationControllerVisualIds.cs`, `ControllerArtworkFileNames.cs`, `SonyProfileRegistry.cs`, `ControllerCatalog.cs`, `InputFunctions.Peripherals.cs`, `InputFunctions.Usb.cs` et `InputFunctions.Visuals.cs` pour les vraies commandes, avec définitions propres au modèle. Ajouter quatre noms dans `src/GWGUI.App/Resources/00-Base/Emulation/EmulationController.resx` ; réutiliser les traductions existantes des axes et leviers, garder MODE/SET/TUNING en inscriptions invariantes sans les dupliquer par langue.
+  - [x] Modifier `docs/reference/sony-controller-sources.md` avec les quatre références et les contrôles statiques ; vérifier la liste approuvée contre les profils enregistrés, sans compilation.
+
+
+- [x] Clôturer la vérification des périphériques et nettoyer les seuls fichiers de travail.
+  - [x] Créer `artifacts/controller-artwork-sources/sony-sphere-manual.jpg` depuis le manuel original déjà référencé, maintenant accessible ; comparer les commandes au profil `Profiles/Sony/PlayStation/SonyAsciiSphere360.cs` et aux définitions de `InputFunctions.Peripherals.cs`, les modifier seulement si le manuel impose une correction ; modifier aussi `src/GWGUI.App/Assets/Controllers/sony-ascii-sphere-360.png` pour rétablir les quatre inscriptions 0/1/2/3 du sélecteur si la retouche les a tronquées.
+  - [x] Modifier `docs/reference/sony-controller-sources.md` : consigner le résultat du manuel, la couverture de la liste approuvée, les contrôles finaux d’assets/registre/ressources et les limites de vérification sans compilation ; mettre à jour `docs/tasks/emulation/commun.md` en distinguant l’ancien suivi et l’interdiction de build actuelle.
+  - [x] Supprimer seulement `artifacts/controller-artwork-sources/sony-sphere-manual.jpg` et `artifacts/export-controller-artwork.ps1` après leur dernier usage ; conserver toutes les images finales et les fichiers des autres fabricants.
+  - [x] Modifier `docs/reference/sony-controller-sources.md` pour consigner le retrait effectif des deux derniers fichiers temporaires.
+
+
+État de clôture : les reprises détaillées ci-dessus du catalogue Sony sont réalisées et vérifiées statiquement. Les anciennes entrées de suivi prévoyant une compilation avant l’instruction « AUCUN BUILD » sont historiques et annulées par cette instruction ; elles ne constituent pas des builds restant à lancer. Aucun test compilé n’est déclaré passé pour ces modifications. La compatibilité native sera traitée séparément, comme demandé.

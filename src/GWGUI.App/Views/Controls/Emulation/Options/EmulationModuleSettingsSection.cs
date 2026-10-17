@@ -22,6 +22,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Globalization;
 using GWGUI.Emulation;
+using GWGUI.Emulation.Enums;
 using Microsoft.Win32;
 using System.IO;
 
@@ -79,7 +80,14 @@ internal sealed partial class EmulationModuleSettingsSection : UserControl, IAsy
         if (module is IEmulationInputSettingsManager inputManager)
         {
             _inputSettings = new EmulationInputSettingsController(inputManager, reservedBindings);
-            _inputSettings.SettingsChanged += async (_, _) => await ExecuteUserChangeAsync();
+            _inputSettings.SettingsChanged += async (_, _) =>
+            {
+                var before = _module.Describe(_configuration.MachineId, _configuration).Visibility.Tabs;
+                await ExecuteUserChangeAsync();
+                var after = _module.Describe(_configuration.MachineId, _configuration).Visibility.Tabs;
+                if (before.GetValueOrDefault(EmulationMachineTab.Keyboard) != after.GetValueOrDefault(EmulationMachineTab.Keyboard)
+                    || before.GetValueOrDefault(EmulationMachineTab.Mouse) != after.GetValueOrDefault(EmulationMachineTab.Mouse)) RebuildEditor();
+            };
         }
         if (module is IEmulationStorageSettingsManager storageManager)
         {

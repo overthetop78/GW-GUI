@@ -46,4 +46,9 @@
   <data name="Emulation.Controller.Feedback.Weak"><value>弱い振動</value></data>
   <data name="Emulation.Controller.Action.Reload"><value>リロード</value></data>
   <data name="Emulation.Controller.CrosshairColor"><value>照準の色</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-dance-mat"><value>ダンスマット</value></data>
+  <data name="Emulation.Controller.NotSupportedByEmulator"><value>未対応のエミュレータではまだ対応していません。</value></data>
+  <data name="Emulation.Controller.ConfigureInKeyboardTab"><value>キーボードタブのキーボードを構成します。</value></data>
+  <data name="Emulation.Controller.ConfigureInMouseTab"><value>マウスタブのマウスを構成します。</value></data>
+  <data name="Emulation.Controller.PeripheralType"><value>デバイスタイプ</value></data>
 </root>

@@ -1,4 +1,4 @@
-using GWGUI.Emulation.Constants;
+﻿using GWGUI.Emulation.Constants;
 
 namespace GWGUI.App.Views.Controls.Options.ControllerVisualization;
 
@@ -6,6 +6,43 @@ internal static partial class ControllerArtworkCatalog
 {
     private static void AddSonyProfiles(Dictionary<string, ProfileDefinition> profiles)
     {
+        profiles[EmulationControllerVisualIds.SonyMadCatzWheel] = CreateSonyMadCatzWheel();
+        profiles[EmulationControllerVisualIds.SonyInteractV3] = CreateSonyInteractV3();
+        profiles[EmulationControllerVisualIds.SonyFanatecSpeedster2] = CreateSonyFanatecSpeedster2();
+        profiles[EmulationControllerVisualIds.SonyFanatecSpeedster3] = CreateSonyFanatecSpeedster3();
+        profiles[EmulationControllerVisualIds.SonyKeyboardMania] = CreateSonyKeyboardMania();
+        profiles[EmulationControllerVisualIds.SonyDrumMania] = CreateSonyDrumMania();
+        profiles[EmulationControllerVisualIds.SonyParaPara] = CreateSonyParaPara();
+        profiles[EmulationControllerVisualIds.SonyRockBandGuitar] = CreateSonyRockBandGuitar();
+        profiles[EmulationControllerVisualIds.SonyRockBandDrums] = CreateSonyRockBandDrums();
+        profiles[EmulationControllerVisualIds.SonyGuitarHeroDrums] = CreateSonyGuitarHeroDrums();
+        profiles[EmulationControllerVisualIds.SonyDjHero] = CreateSonyDjHero();
+        profiles[EmulationControllerVisualIds.SonyGameTrak] = CreateSonyGameTrak();
+        profiles[EmulationControllerVisualIds.SonyKidsStation] = CreateSonyKidsStation();
+        profiles[EmulationControllerVisualIds.SonyMaestroBaton] = CreateSonyMaestroBaton();
+        profiles[EmulationControllerVisualIds.SonyTambourine] = CreateSonyTambourine();
+        profiles[EmulationControllerVisualIds.SonyHoriFlightStick2] = CreateSonyHoriFlightStick2();
+        profiles[EmulationControllerVisualIds.SonyDenshaUsb] = CreateSonyDenshaUsb();
+        profiles[EmulationControllerVisualIds.SonyDenshaShinkansen] = CreateSonyDenshaShinkansen();
+        profiles[EmulationControllerVisualIds.SonyDenshaRyojohen] = CreateSonyDenshaRyojohen();
+        profiles[EmulationControllerVisualIds.SonyTrainMascon] = CreateSonyTrainMascon();
+        profiles[EmulationControllerVisualIds.SonyMultiTrain] = CreateSonyMultiTrain();
+        profiles[EmulationControllerVisualIds.SonyDenshaController] = CreateSonyDenshaController();
+        profiles[EmulationControllerVisualIds.SonyDenshaOneHandle] = CreateSonyDenshaOneHandle();
+        profiles[EmulationControllerVisualIds.SonyDenshaMamecon] = CreateSonyDenshaMamecon();
+        profiles[EmulationControllerVisualIds.SonyJetController] = CreateSonyJetController();
+        profiles[EmulationControllerVisualIds.SonyDvdRemote] = CreateSonyDvdRemote();
+        profiles[EmulationControllerVisualIds.SonyFishingController] = CreateSonyFishingController();
+        profiles[EmulationControllerVisualIds.SonyOnimushaKatana] = CreateSonyOnimushaKatana();
+        profiles[EmulationControllerVisualIds.SonyRe4Chainsaw] = CreateSonyRe4Chainsaw();
+        profiles[EmulationControllerVisualIds.SonyBuzzWireless] = CreateSonyBuzzWireless();
+        profiles[EmulationControllerVisualIds.SonySingStarWireless] = CreateSonySingStarWireless();
+        profiles[EmulationControllerVisualIds.SonySocomHeadset] = CreateSonySocomHeadset();
+        profiles[EmulationControllerVisualIds.SonyLogitechVantage] = CreateSonyLogitechVantage();
+        profiles[EmulationControllerVisualIds.SonyRockBandMicrophone] = CreateSonyRockBandMicrophone();
+        profiles[EmulationControllerVisualIds.SonyGuitarHeroMicrophone] = CreateSonyGuitarHeroMicrophone();
+        profiles[EmulationControllerVisualIds.SonySeamic] = CreateSonySeamic();
+        profiles[EmulationControllerVisualIds.SonyKramerStriker] = CreateSonyKramerStriker();
         profiles[EmulationControllerVisualIds.SonyPlayStationController] = CreateSonyPlayStationController();
         profiles[EmulationControllerVisualIds.SonyDualShock1] = CreateSonyDualShock1();
         profiles[EmulationControllerVisualIds.SonyDualAnalog] = CreateSonyDualAnalog();
@@ -21,5 +58,44 @@ internal static partial class ControllerArtworkCatalog
         profiles[EmulationControllerVisualIds.SonyDualSense] = CreateSonyDualSense();
         profiles[EmulationControllerVisualIds.SonyPsp1000] = CreateSonyPsp1000();
         profiles[EmulationControllerVisualIds.SonyPocketStation] = CreateSonyPocketStation();
+        profiles[EmulationControllerVisualIds.SonyDanceMat] = CreateSonyDanceMat();
+        profiles[EmulationControllerVisualIds.SonyBeatmania] = CreateSonyBeatmania();
+        profiles[EmulationControllerVisualIds.SonyGuitarFreaks] = CreateSonyGuitarFreaks();
+        profiles[EmulationControllerVisualIds.SonyBeatmaniaIidx] = CreateSonyBeatmaniaIidx();
+        profiles[EmulationControllerVisualIds.SonyBeatmaniaIidxArcade] = CreateSonyBeatmaniaIidxArcade();
+        profiles[EmulationControllerVisualIds.SonyPopnMusic] = CreateSonyPopnMusic();
+        profiles[EmulationControllerVisualIds.SonyPopnMusicArcade] = CreateSonyPopnMusicArcade();
+        profiles[EmulationControllerVisualIds.SonyTaikoDrum] = CreateSonyTaikoDrum();
+        profiles[EmulationControllerVisualIds.SonyKonamiDdr] = CreateSonyKonamiDdr();
+        profiles[EmulationControllerVisualIds.SonyUsbKeyboard] = CreateSonyUsbKeyboard();
+        profiles[EmulationControllerVisualIds.SonyUsbMouse] = CreateSonyUsbMouse();
+        profiles[EmulationControllerVisualIds.SonyNetPlay] = CreateSonyNetPlay();
+        profiles[EmulationControllerVisualIds.SonyLogitechCordless] = CreateSonyLogitechCordless();
+        profiles[EmulationControllerVisualIds.SonyLogitechCordlessAction] = CreateSonyLogitechCordlessAction();
+        profiles[EmulationControllerVisualIds.SonySegaSaturnPs2] = CreateSonySegaSaturnPs2();
+        profiles[EmulationControllerVisualIds.SonyHoriFightingStick2] = CreateSonyHoriFightingStick2();
+        profiles[EmulationControllerVisualIds.SonyHoriRealArcadePro] = CreateSonyHoriRealArcadePro();
+        profiles[EmulationControllerVisualIds.SonyGtForce] = CreateSonyGtForce();
+        profiles[EmulationControllerVisualIds.SonyDrivingForce] = CreateSonyDrivingForce();
+        profiles[EmulationControllerVisualIds.SonyDrivingForcePro] = CreateSonyDrivingForcePro();
+        profiles[EmulationControllerVisualIds.SonyDrivingForceGt] = CreateSonyDrivingForceGt();
+        profiles[EmulationControllerVisualIds.SonyHoriFightingCommander2Way] = CreateSonyHoriFightingCommander2Way();
+        profiles[EmulationControllerVisualIds.SonyHoriFightingCommander10B] = CreateSonyHoriFightingCommander10B();
+        profiles[EmulationControllerVisualIds.SonyAsciiEnhancedPad] = CreateSonyAsciiEnhancedPad();
+        profiles[EmulationControllerVisualIds.SonyAsciiGrip] = CreateSonyAsciiGrip();
+        profiles[EmulationControllerVisualIds.SonyBiohazardPad] = CreateSonyBiohazardPad();
+        profiles[EmulationControllerVisualIds.SonyAsciiSphere360] = CreateSonyAsciiSphere360();
+        profiles[EmulationControllerVisualIds.SonyRealityQuestGlove] = CreateSonyRealityQuestGlove();
+        profiles[EmulationControllerVisualIds.SonyAsciiFighterStickV] = CreateSonyAsciiFighterStickV();
+        profiles[EmulationControllerVisualIds.SonyBuzz] = CreateSonyBuzz();
+        profiles[EmulationControllerVisualIds.SonyJogCon] = CreateSonyJogCon();
+        profiles[EmulationControllerVisualIds.SonyGuitarHeroSg] = CreateSonyGuitarHeroSg();
+        profiles[EmulationControllerVisualIds.SonyHoriFightingStickPs] = CreateSonyHoriFightingStickPs();
+        profiles[EmulationControllerVisualIds.SonyEyeToy] = new(ControllerArtworkFileNames.SonyEyeToy, []);
+        profiles[EmulationControllerVisualIds.SonySingStar] = new(ControllerArtworkFileNames.SonySingStar, []);
+        profiles[EmulationControllerVisualIds.SonyVolumeController] = CreateSonyVolumeController();
+        profiles[EmulationControllerVisualIds.SonyAsciiSpecializedPad] = CreateSonyAsciiSpecializedPad();
+        profiles[EmulationControllerVisualIds.SonyAsciiArcadeStick] = CreateSonyAsciiArcadeStick();
+        profiles[EmulationControllerVisualIds.SonyNamcoArcadeStick] = CreateSonyNamcoArcadeStick();
     }
 }

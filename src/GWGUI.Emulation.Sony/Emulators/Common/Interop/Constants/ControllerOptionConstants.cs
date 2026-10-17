@@ -2,6 +2,13 @@ namespace GWGUI.Emulation.Sony.Emulators.Common.Interop.Constants;
 
 internal static class ControllerOptionConstants
 {
+    internal static IReadOnlyDictionary<string, (string Disabled, string Port1, string Port2, string Both)> MultitapModes { get; } =
+        new Dictionary<string, (string, string, string, string)>(StringComparer.Ordinal)
+        {
+            [Emulators.SwanStation.Constants.OptionConstants.ControllerPortsMultitapModeKey] = ("Disabled", "Port1Only", "Port2Only", "BothPorts"),
+            [Emulators.PcsxRearmed.Constants.OptionConstants.MultitapKey] = ("disabled", "port 1", "port 2", "ports 1 and 2"),
+            [Emulators.Pcee2.Constants.OptionConstants.MultitapKey] = ("disabled", "port1", "port2", "both")
+        };
     internal static IReadOnlyDictionary<string, string> LabelsBySuffix { get; } = new Dictionary<string, string>
     {
         ["_ForceAnalog"] = "Emulation.Option.Sony.Controller.ForceAnalog",
