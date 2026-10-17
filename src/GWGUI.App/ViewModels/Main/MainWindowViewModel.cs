@@ -1,13 +1,12 @@
+using GWGUI.App.ViewModels;
 using GWGUI.App.ViewModels.Conversion;
 using GWGUI.App.ViewModels.Operations;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Media;
 
 namespace GWGUI.App.ViewModels.Main;
 
-public sealed class MainWindowViewModel(string hardwareText, string operationText) : INotifyPropertyChanged
+public sealed class MainWindowViewModel(string hardwareText, string operationText) : ObservableObject
 {
     private string _hardwareText = hardwareText;
     private Brush _hardwareBrush = Brushes.Gray;
@@ -48,13 +47,4 @@ public sealed class MainWindowViewModel(string hardwareText, string operationTex
     public string HostToolsUpdateText { get => _hostToolsUpdateText; set => Set(ref _hostToolsUpdateText, value); }
     public Visibility TimerVisibility { get => _timerVisibility; set => Set(ref _timerVisibility, value); }
     public string ElapsedText { get => _elapsedText; set => Set(ref _elapsedText, value); }
-
-    public event PropertyChangedEventHandler? PropertyChanged;
-
-    private void Set<T>(ref T field, T value, [CallerMemberName] string? propertyName = null)
-    {
-        if (EqualityComparer<T>.Default.Equals(field, value)) return;
-        field = value;
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-    }
 }

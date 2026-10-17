@@ -266,21 +266,7 @@ internal sealed class OpenGlVideoSurface : HwndHost, IEmulationVideoSurface
     }
 
     private BitmapSource? EnsureSnapshot()
-    {
-        if (_snapshot is not null) return _snapshot;
-        var frame = _snapshotSourceFrame;
-        if (frame is null) return null;
-        var snapshotFrame = _snapshotPipeline.Process(_snapshotConfiguration, frame, new EmulationVideoProcessingSize(frame.Width, frame.Height), _snapshotOutputSize);
-        UpdateSnapshot(EmulationVideoPixelFunctions.ToBgra32(snapshotFrame), snapshotFrame.Width, snapshotFrame.Height);
-        return _snapshot;
-    }
-
-    private void UpdateSnapshot(byte[] pixels, int width, int height)
-    {
-        if (_snapshot is null || _snapshot.PixelWidth != width || _snapshot.PixelHeight != height)
-            _snapshot = new WriteableBitmap(width, height, 96, 96, PixelFormats.Bgra32, null);
-        _snapshot.WritePixels(new Int32Rect(0, 0, width, height), pixels, width * 4, 0);
-    }
+        => EmulationVideoSnapshotFunctions.Ensure(ref _snapshot, _snapshotSourceFrame, _snapshotPipeline, _snapshotConfiguration, _snapshotOutputSize);
 
     private static ActiveTextureDelegate LoadActiveTexture()
     {

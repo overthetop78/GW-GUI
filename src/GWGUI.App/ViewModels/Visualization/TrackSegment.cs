@@ -1,11 +1,10 @@
+using GWGUI.App.ViewModels;
 using GWGUI.App.Contracts.Progress;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using System.Windows.Media;
 
 namespace GWGUI.App.ViewModels.Visualization;
 
-public sealed class TrackSegment(long position, int surface, Brush brush) : INotifyPropertyChanged
+public sealed class TrackSegment(long position, int surface, Brush brush) : ObservableObject
 {
     private Brush _brush = brush;
     private bool _isSelected;
@@ -41,8 +40,4 @@ public sealed class TrackSegment(long position, int surface, Brush brush) : INot
     }
 
     public void SetSelected(bool selected) => IsSelected = selected;
-
-    public event PropertyChangedEventHandler? PropertyChanged;
-
-    private void OnPropertyChanged([CallerMemberName] string? name = null) => PropertyChanged?.Invoke(this, new(name));
 }

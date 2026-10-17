@@ -1,3 +1,4 @@
+using GWGUI.App.ViewModels;
 using GWGUI.App.Constants.Input.Bindings;
 using GWGUI.App.Contracts.Input;
 using GWGUI.App.Enums.Input;
@@ -5,8 +6,6 @@ using GWGUI.App.Functions.Input.Bindings;
 using GWGUI.App.Localization.Extensions;
 using GWGUI.App.Services.Input.GameInput;
 using GWGUI.Emulation;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Input;
@@ -14,7 +13,7 @@ using System.Windows.Input;
 
 namespace GWGUI.App.ViewModels.Input;
 
-public sealed class InputBindingRow(string id, string label, string binding, string defaultBinding) : INotifyPropertyChanged
+public sealed class InputBindingRow(string id, string label, string binding, string defaultBinding) : ObservableObject
 {
     private string _binding = binding;
     private InputBindingState _state;
@@ -29,10 +28,10 @@ public sealed class InputBindingRow(string id, string label, string binding, str
         set
         {
             _binding = value;
-            OnChanged();
-            OnChanged(nameof(BindingParts));
-            OnChanged(nameof(ControllerDeviceName));
-            OnChanged(nameof(ControllerDeviceNameVisibility));
+            OnPropertyChanged();
+            OnPropertyChanged(nameof(BindingParts));
+            OnPropertyChanged(nameof(ControllerDeviceName));
+            OnPropertyChanged(nameof(ControllerDeviceNameVisibility));
         }
     }
     public string ControllerDeviceName
@@ -56,7 +55,7 @@ public sealed class InputBindingRow(string id, string label, string binding, str
         }
     }
 
-    public InputBindingState State { get => _state; private set { _state = value; OnChanged(); } }
+    public InputBindingState State { get => _state; private set { _state = value; OnPropertyChanged(); } }
     public string StateText => LocExtension.Get(State switch
     {
         InputBindingState.Valid => "Emulation.Input.Binding.LabelValid",
@@ -86,15 +85,13 @@ public sealed class InputBindingRow(string id, string label, string binding, str
         _ => "−"
     };
 
-    public event PropertyChangedEventHandler? PropertyChanged;
-
     internal void SetState(InputBindingState state)
     {
         State = state;
-        OnChanged(nameof(StateText));
-        OnChanged(nameof(StateForeground));
-        OnChanged(nameof(StateBackground));
-        OnChanged(nameof(StateIcon));
+        OnPropertyChanged(nameof(StateText));
+        OnPropertyChanged(nameof(StateForeground));
+        OnPropertyChanged(nameof(StateBackground));
+        OnPropertyChanged(nameof(StateIcon));
     }
 
     private static string DisplayPart(string part)
@@ -166,6 +163,4 @@ public sealed class InputBindingRow(string id, string label, string binding, str
         };
         return device is null ? inputName : $"{device}{separator}{inputName}";
     }
-
-    private void OnChanged([CallerMemberName] string? property = null) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
 }

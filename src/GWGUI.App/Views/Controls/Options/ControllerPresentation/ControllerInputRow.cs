@@ -1,10 +1,9 @@
+using GWGUI.App.ViewModels;
 using GWGUI.App.Services.Input.GameInput;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 
 namespace GWGUI.App.Views.Controls.Options.ControllerPresentation;
 
-internal sealed class ControllerInputRow(GameInputControlValue control) : INotifyPropertyChanged
+internal sealed class ControllerInputRow(GameInputControlValue control) : ObservableObject
 {
     internal (GameInputControlType Type, int Index) Key { get; } = (control.Type, control.Index);
     public string Name { get; private set; } = GameInputDisplayFormatter.ControlName(control);
@@ -33,7 +32,4 @@ internal sealed class ControllerInputRow(GameInputControlValue control) : INotif
             OnPropertyChanged(nameof(Active));
         }
     }
-
-    public event PropertyChangedEventHandler? PropertyChanged;
-    private void OnPropertyChanged([CallerMemberName] string? propertyName = null) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 }

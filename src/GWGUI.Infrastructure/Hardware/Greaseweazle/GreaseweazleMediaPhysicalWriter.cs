@@ -42,7 +42,7 @@ public sealed class GreaseweazleMediaPhysicalWriter(Func<IGreaseweazleWriteDevic
         if (!CanWrite(plan, deviceId))
             throw new NotSupportedException("Greaseweazle requires a neutral floppy flux write plan.");
         ArgumentNullException.ThrowIfNull(options);
-        var busType = ReadEnum<GreaseweazleBusType>(options, GreaseweazleMediaOptionKeys.BusType);
+        var busType = GreaseweazleMediaOptionFunctions.ReadEnum<GreaseweazleBusType>(options, GreaseweazleMediaOptionKeys.BusType);
         var driveUnit = checked((byte)ReadInt(options, GreaseweazleMediaOptionKeys.DriveUnit));
         var cueAtIndex = ReadBool(options, GreaseweazleMediaOptionKeys.CueAtIndex, true);
         var terminateAtIndex = ReadBool(options, GreaseweazleMediaOptionKeys.TerminateAtIndex, true);
@@ -115,16 +115,12 @@ public sealed class GreaseweazleMediaPhysicalWriter(Func<IGreaseweazleWriteDevic
     private static int ReadMetadataInt(MediaPhysicalDataUnit unit, string key) =>
         unit.Metadata.TryGetValue(key, out var value) && int.TryParse(value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var parsed) ? parsed : throw new InvalidDataException($"Physical write metadata '{key}' is missing or invalid.");
 
-    private static string ReadRequired(IReadOnlyDictionary<string, string> options, string key) => options.TryGetValue(key, out var value) && !string.IsNullOrWhiteSpace(value) ? value : throw new ArgumentException($"Required Greaseweazle option '{key}' is missing.", nameof(options));
-
     private static int ReadInt(IReadOnlyDictionary<string, string> options, string key) =>
-        int.TryParse(ReadRequired(options, key), NumberStyles.Integer, CultureInfo.InvariantCulture, out var parsed) ? parsed : throw new ArgumentException($"Invalid integer value for option '{key}'.", nameof(options));
+        int.TryParse(GreaseweazleMediaOptionFunctions.ReadRequired(options, key), NumberStyles.Integer, CultureInfo.InvariantCulture, out var parsed) ? parsed : throw new ArgumentException($"Invalid integer value for option '{key}'.", nameof(options));
 
     private static long ReadLong(IReadOnlyDictionary<string, string> options, string key, long defaultValue) =>
         !options.TryGetValue(key, out var value) ? defaultValue : long.TryParse(value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var parsed) ? parsed : throw new ArgumentException($"Invalid integer value for option '{key}'.", nameof(options));
 
     private static bool ReadBool(IReadOnlyDictionary<string, string> options, string key, bool defaultValue) =>
         !options.TryGetValue(key, out var value) ? defaultValue : bool.TryParse(value, out var parsed) ? parsed : throw new ArgumentException($"Invalid Boolean value for option '{key}'.", nameof(options));
-
-    private static T ReadEnum<T>(IReadOnlyDictionary<string, string> options, string key) where T : struct, Enum => Enum.TryParse<T>(ReadRequired(options, key), true, out var parsed) ? parsed : throw new ArgumentException($"Invalid {typeof(T).Name} value for option '{key}'.", nameof(options));
 }

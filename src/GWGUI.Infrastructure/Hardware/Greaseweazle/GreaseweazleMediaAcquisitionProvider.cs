@@ -38,9 +38,9 @@ public sealed class GreaseweazleMediaAcquisitionProvider(Func<IGreaseweazleReadD
         if (!CanAcquire(mediaKind, deviceId))
             throw new NotSupportedException($"Greaseweazle cannot acquire media family '{mediaKind}' from device '{deviceId}'.");
         ArgumentNullException.ThrowIfNull(options);
-        var busType = ReadEnum<GreaseweazleBusType>(options, GreaseweazleMediaOptionKeys.BusType);
+        var busType = GreaseweazleMediaOptionFunctions.ReadEnum<GreaseweazleBusType>(options, GreaseweazleMediaOptionKeys.BusType);
         var driveUnit = checked((byte)ReadInt(options, GreaseweazleMediaOptionKeys.DriveUnit));
-        var tracks = ParseTracks(ReadRequired(options, GreaseweazleMediaOptionKeys.Tracks));
+        var tracks = ParseTracks(GreaseweazleMediaOptionFunctions.ReadRequired(options, GreaseweazleMediaOptionKeys.Tracks));
         var revolutions = ReadInt(options, GreaseweazleMediaOptionKeys.Revolutions);
         var overflowRetries = ReadInt(options, GreaseweazleMediaOptionKeys.FluxOverflowRetries);
         var seekRetries = ReadInt(options, GreaseweazleMediaOptionKeys.SeekRetries);
@@ -233,9 +233,7 @@ public sealed class GreaseweazleMediaAcquisitionProvider(Func<IGreaseweazleReadD
             throw new ArgumentException("A logical track is selected more than once.", nameof(tracks));
     }
 
-    private static string ReadRequired(IReadOnlyDictionary<string, string> options, string key) => options.TryGetValue(key, out var value) && !string.IsNullOrWhiteSpace(value) ? value : throw new ArgumentException($"Required Greaseweazle option '{key}' is missing.", nameof(options));
-
-    private static int ReadInt(IReadOnlyDictionary<string, string> options, string key) => ParseInt(ReadRequired(options, key));
+    private static int ReadInt(IReadOnlyDictionary<string, string> options, string key) => ParseInt(GreaseweazleMediaOptionFunctions.ReadRequired(options, key));
 
     private static int ParseInt(string value) => int.TryParse(value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var parsed) ? parsed : throw new ArgumentException($"Invalid invariant integer '{value}'.");
 
@@ -249,6 +247,4 @@ public sealed class GreaseweazleMediaAcquisitionProvider(Func<IGreaseweazleReadD
             throw new ArgumentException($"Invalid positive duration '{value}' for option '{key}'.", nameof(options));
         return TimeSpan.FromMilliseconds(milliseconds);
     }
-
-    private static T ReadEnum<T>(IReadOnlyDictionary<string, string> options, string key) where T : struct, Enum => Enum.TryParse<T>(ReadRequired(options, key), true, out var parsed) ? parsed : throw new ArgumentException($"Invalid {typeof(T).Name} value for option '{key}'.", nameof(options));
 }

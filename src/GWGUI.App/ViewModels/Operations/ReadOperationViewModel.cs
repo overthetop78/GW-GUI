@@ -1,13 +1,12 @@
+using GWGUI.App.ViewModels;
 using EnabledOption = global::GWGUI.MediaEngine.Contracts.Options.EnabledOption;
 using GWGUI.Infrastructure.Naming;
 using GWGUI.App.ViewModels.Operations.Options;
-using System.ComponentModel;
 using System.IO;
-using System.Runtime.CompilerServices;
 
 namespace GWGUI.App.ViewModels.Operations;
 
-public sealed class ReadOperationViewModel : INotifyPropertyChanged
+public sealed class ReadOperationViewModel : ObservableObject
 {
     private string _fileName = "";
     private string _folder = "";
@@ -55,7 +54,7 @@ public sealed class ReadOperationViewModel : INotifyPropertyChanged
         return true;
     }
 
-    public IReadOnlyList<EnabledOption> BuildOptions() => AllOptions().Where(option => option.Enabled).Select(option => option.ToEnabledOption()).ToArray();
+    public IReadOnlyList<EnabledOption> BuildOptions() => OperationOptionViewModelBase.BuildOptions(AllOptions());
 
     public void ResetOptionalSettings()
     {
@@ -70,34 +69,19 @@ public sealed class ReadOperationViewModel : INotifyPropertyChanged
     public void EnableTg43() { Tg43.Enabled = true; Densel.Enabled = false; }
 
     public void ApplyOptions(IReadOnlySet<string> enabled, IReadOnlyDictionary<string, string> values)
-    {
-        foreach (var option in AllOptions())
-        {
-            var key = option.Argument.TrimStart('-');
-            option.Enabled = enabled.Contains(key);
-            if (option is ValueOptionViewModel valueOption && values.TryGetValue(key, out var value)) valueOption.Value = value;
-        }
-        ExpertArguments = values.GetValueOrDefault("expert", "");
-    }
+        => ExpertArguments = OperationOptionViewModelBase.ApplyOptions(AllOptions(), enabled, values);
 
-    public HashSet<string> CaptureEnabledOptions() => AllOptions().Where(option => option.Enabled).Select(option => option.Argument.TrimStart('-')).ToHashSet();
+    public HashSet<string> CaptureEnabledOptions() => OperationOptionViewModelBase.CaptureEnabledOptions(AllOptions());
 
     public Dictionary<string, string> CaptureValues()
-    {
-        var values = AllOptions().OfType<ValueOptionViewModel>().ToDictionary(option => option.Argument.TrimStart('-'), option => option.Value);
-        values["expert"] = ExpertArguments;
-        return values;
-    }
+        => OperationOptionViewModelBase.CaptureValues(AllOptions(), ExpertArguments);
 
     private IEnumerable<OperationOptionViewModelBase> AllOptions() => [Revs, Retries, Tracks, SeekRetries, FakeIndex, HardSectors, AdjustSpeed, Pll, Reverse, Densel, Tg43, DiskDefs];
 
-    public event PropertyChangedEventHandler? PropertyChanged;
-
-    private void Set<T>(ref T field, T value, [CallerMemberName] string? propertyName = null)
+    protected override void OnPropertyChanged(string? propertyName)
     {
-        if (EqualityComparer<T>.Default.Equals(field, value)) return;
-        field = value;
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        if (propertyName == nameof(SequenceKindIndex)) PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SequenceKind)));
+        base.OnPropertyChanged(propertyName);
+        if (propertyName == nameof(SequenceKindIndex))
+            base.OnPropertyChanged(nameof(SequenceKind));
     }
 }

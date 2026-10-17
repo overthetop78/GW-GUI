@@ -14,19 +14,14 @@ public static class CoreHost
     {
         ArgumentNullException.ThrowIfNull(createCore);
         using var video = new SharedVideoWriter(videoMapName);
-        using var pipe = new NamedPipeClientStream(CoreHostConstants.LocalPipeServerName, pipeName, PipeDirection.InOut, PipeOptions.None);
-        pipe.Connect(CoreHostConstants.ConnectionTimeoutMilliseconds);
-        using var reader = new BinaryReader(pipe, Encoding.UTF8, leaveOpen: true);
-        using var transportWriter = new BinaryWriter(pipe, Encoding.UTF8, leaveOpen: true);
-        IEmulatorCore? core = null;
-        var lastVideoSequence = CoreHostConstants.InitialVideoSequence;
-        var lastDiagnosticCount = CoreHostConstants.InitialDiagnosticCount;
-        try
+        EmulationHostProtocolFunctions.RunConnectedSession(pipeName, CoreHostConstants.LocalPipeServerName, CoreHostConstants.ConnectionTimeoutMilliseconds, (reader, transportWriter) =>
         {
-            while (TryReadCommand(reader, out var command))
+            IEmulatorCore? core = null;
+            var lastVideoSequence = CoreHostConstants.InitialVideoSequence;
+            var lastDiagnosticCount = CoreHostConstants.InitialDiagnosticCount;
+            try
             {
-                var exit = command == HostCommand.Dispose;
-                EmulationHostProtocolFunctions.WriteResponse(transportWriter, writer =>
+                EmulationHostProtocolFunctions.RunCommandLoop<HostCommand>(reader, transportWriter, static commandReader => CoreHostFunctions.ReadRequestHeader(commandReader), HostCommand.Dispose, (command, writer) =>
                 {
                     CoreHostFunctions.WriteResponseHeader(writer, HostResponseStatus.Success);
                     switch (command)
@@ -80,28 +75,12 @@ public static class CoreHost
                     CoreHostFunctions.WriteResponseHeader(writer, HostResponseStatus.Failure);
                     CoreHostFunctions.WriteError(writer, error);
                 });
-                if (exit)
-                    break;
             }
-        }
-        finally
-        {
-            core?.Dispose();
-        }
-    }
-
-    private static bool TryReadCommand(BinaryReader reader, out HostCommand command)
-    {
-        try
-        {
-            command = CoreHostFunctions.ReadRequestHeader(reader);
-            return true;
-        }
-        catch (EndOfStreamException)
-        {
-            command = default;
-            return false;
-        }
+            finally
+            {
+                core?.Dispose();
+            }
+        });
     }
 
     private static void Initialize(BinaryReader reader, BinaryWriter writer, Func<string, Emulator, IEmulatorCore> createCore, ref IEmulatorCore? core, ref int lastDiagnosticCount)

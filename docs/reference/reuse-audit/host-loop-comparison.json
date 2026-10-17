@@ -1,0 +1,481 @@
+{
+  "baseline": "f312811bc",
+  "hosts": [
+    {
+      "path": "src/GWGUI.Emulation.Acorn/Common/Services/CoreHost.cs",
+      "commandHash": "B318DEA5CE3E908F30F17341F566539DCE018986D826C450B69E08FB2E10A929",
+      "failureHash": "B48EF7C71D87F91D0B868D8F47DD6F5971D909D34C872F00DD9F6968F4D577DF",
+      "coreFinallyHash": "2038A9013BA8ED015EEC9A3AF3090B2B421E0F7F1466D6D62B9C05C07DB311D4",
+      "checks": {
+        "commands": true,
+        "failure": true,
+        "coreFinally": true,
+        "videoPrefix": true,
+        "server": true,
+        "timeout": true,
+        "commandReader": true,
+        "disposeCommand": true,
+        "utf8Reader": true,
+        "utf8Writer": true,
+        "coreFinallyBeforeChannelClose": true
+      }
+    },
+    {
+      "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/CoreHost.cs",
+      "commandHash": "34E5E4FF97F015B1BBA5A3A9251418361EFA78405AECD68D04718DA565386309",
+      "failureHash": "B3D19C7FE5BD9F446D78AA2828505DAA57DE53EEA4212F6D43C1B5A4E2052D27",
+      "coreFinallyHash": "2038A9013BA8ED015EEC9A3AF3090B2B421E0F7F1466D6D62B9C05C07DB311D4",
+      "checks": {
+        "commands": true,
+        "failure": true,
+        "coreFinally": true,
+        "videoPrefix": true,
+        "server": true,
+        "timeout": true,
+        "commandReader": true,
+        "disposeCommand": true,
+        "utf8Reader": true,
+        "utf8Writer": true,
+        "coreFinallyBeforeChannelClose": true
+      }
+    },
+    {
+      "path": "src/GWGUI.Emulation.Apple/Common/Services/CoreHost.cs",
+      "commandHash": "B318DEA5CE3E908F30F17341F566539DCE018986D826C450B69E08FB2E10A929",
+      "failureHash": "B48EF7C71D87F91D0B868D8F47DD6F5971D909D34C872F00DD9F6968F4D577DF",
+      "coreFinallyHash": "2038A9013BA8ED015EEC9A3AF3090B2B421E0F7F1466D6D62B9C05C07DB311D4",
+      "checks": {
+        "commands": true,
+        "failure": true,
+        "coreFinally": true,
+        "videoPrefix": true,
+        "server": true,
+        "timeout": true,
+        "commandReader": true,
+        "disposeCommand": true,
+        "utf8Reader": true,
+        "utf8Writer": true,
+        "coreFinallyBeforeChannelClose": true
+      }
+    },
+    {
+      "path": "src/GWGUI.Emulation.Atari/Common/Services/CoreHost.cs",
+      "commandHash": "B318DEA5CE3E908F30F17341F566539DCE018986D826C450B69E08FB2E10A929",
+      "failureHash": "B48EF7C71D87F91D0B868D8F47DD6F5971D909D34C872F00DD9F6968F4D577DF",
+      "coreFinallyHash": "2038A9013BA8ED015EEC9A3AF3090B2B421E0F7F1466D6D62B9C05C07DB311D4",
+      "checks": {
+        "commands": true,
+        "failure": true,
+        "coreFinally": true,
+        "videoPrefix": true,
+        "server": true,
+        "timeout": true,
+        "commandReader": true,
+        "disposeCommand": true,
+        "utf8Reader": true,
+        "utf8Writer": true,
+        "coreFinallyBeforeChannelClose": true
+      }
+    },
+    {
+      "path": "src/GWGUI.Emulation.Bandai/Common/Services/CoreHost.cs",
+      "commandHash": "B318DEA5CE3E908F30F17341F566539DCE018986D826C450B69E08FB2E10A929",
+      "failureHash": "B48EF7C71D87F91D0B868D8F47DD6F5971D909D34C872F00DD9F6968F4D577DF",
+      "coreFinallyHash": "2038A9013BA8ED015EEC9A3AF3090B2B421E0F7F1466D6D62B9C05C07DB311D4",
+      "checks": {
+        "commands": true,
+        "failure": true,
+        "coreFinally": true,
+        "videoPrefix": true,
+        "server": true,
+        "timeout": true,
+        "commandReader": true,
+        "disposeCommand": true,
+        "utf8Reader": true,
+        "utf8Writer": true,
+        "coreFinallyBeforeChannelClose": true
+      }
+    },
+    {
+      "path": "src/GWGUI.Emulation.Coleco/Common/Services/CoreHost.cs",
+      "commandHash": "B318DEA5CE3E908F30F17341F566539DCE018986D826C450B69E08FB2E10A929",
+      "failureHash": "B48EF7C71D87F91D0B868D8F47DD6F5971D909D34C872F00DD9F6968F4D577DF",
+      "coreFinallyHash": "2038A9013BA8ED015EEC9A3AF3090B2B421E0F7F1466D6D62B9C05C07DB311D4",
+      "checks": {
+        "commands": true,
+        "failure": true,
+        "coreFinally": true,
+        "videoPrefix": true,
+        "server": true,
+        "timeout": true,
+        "commandReader": true,
+        "disposeCommand": true,
+        "utf8Reader": true,
+        "utf8Writer": true,
+        "coreFinallyBeforeChannelClose": true
+      }
+    },
+    {
+      "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/CoreHost.cs",
+      "commandHash": "1787ED891FBF08949EC8425611D35EE2C9203F59B0DB56254803EB2D628F17CE",
+      "failureHash": "B3D19C7FE5BD9F446D78AA2828505DAA57DE53EEA4212F6D43C1B5A4E2052D27",
+      "coreFinallyHash": "2038A9013BA8ED015EEC9A3AF3090B2B421E0F7F1466D6D62B9C05C07DB311D4",
+      "checks": {
+        "commands": true,
+        "failure": true,
+        "coreFinally": true,
+        "videoPrefix": true,
+        "server": true,
+        "timeout": true,
+        "commandReader": true,
+        "disposeCommand": true,
+        "utf8Reader": true,
+        "utf8Writer": true,
+        "coreFinallyBeforeChannelClose": true
+      }
+    },
+    {
+      "path": "src/GWGUI.Emulation.Epoch/Common/Services/CoreHost.cs",
+      "commandHash": "B318DEA5CE3E908F30F17341F566539DCE018986D826C450B69E08FB2E10A929",
+      "failureHash": "B48EF7C71D87F91D0B868D8F47DD6F5971D909D34C872F00DD9F6968F4D577DF",
+      "coreFinallyHash": "2038A9013BA8ED015EEC9A3AF3090B2B421E0F7F1466D6D62B9C05C07DB311D4",
+      "checks": {
+        "commands": true,
+        "failure": true,
+        "coreFinally": true,
+        "videoPrefix": true,
+        "server": true,
+        "timeout": true,
+        "commandReader": true,
+        "disposeCommand": true,
+        "utf8Reader": true,
+        "utf8Writer": true,
+        "coreFinallyBeforeChannelClose": true
+      }
+    },
+    {
+      "path": "src/GWGUI.Emulation.Fairchild/Common/Services/CoreHost.cs",
+      "commandHash": "B318DEA5CE3E908F30F17341F566539DCE018986D826C450B69E08FB2E10A929",
+      "failureHash": "B48EF7C71D87F91D0B868D8F47DD6F5971D909D34C872F00DD9F6968F4D577DF",
+      "coreFinallyHash": "2038A9013BA8ED015EEC9A3AF3090B2B421E0F7F1466D6D62B9C05C07DB311D4",
+      "checks": {
+        "commands": true,
+        "failure": true,
+        "coreFinally": true,
+        "videoPrefix": true,
+        "server": true,
+        "timeout": true,
+        "commandReader": true,
+        "disposeCommand": true,
+        "utf8Reader": true,
+        "utf8Writer": true,
+        "coreFinallyBeforeChannelClose": true
+      }
+    },
+    {
+      "path": "src/GWGUI.Emulation.Mattel/Common/Services/CoreHost.cs",
+      "commandHash": "B318DEA5CE3E908F30F17341F566539DCE018986D826C450B69E08FB2E10A929",
+      "failureHash": "B48EF7C71D87F91D0B868D8F47DD6F5971D909D34C872F00DD9F6968F4D577DF",
+      "coreFinallyHash": "2038A9013BA8ED015EEC9A3AF3090B2B421E0F7F1466D6D62B9C05C07DB311D4",
+      "checks": {
+        "commands": true,
+        "failure": true,
+        "coreFinally": true,
+        "videoPrefix": true,
+        "server": true,
+        "timeout": true,
+        "commandReader": true,
+        "disposeCommand": true,
+        "utf8Reader": true,
+        "utf8Writer": true,
+        "coreFinallyBeforeChannelClose": true
+      }
+    },
+    {
+      "path": "src/GWGUI.Emulation.Nec/Emulators/BeetlePcfx/Services/CoreHost.cs",
+      "commandHash": "A33377CBFA08DB45A353794D31B368FA720FCF970FAAAF07E4FD47965D50278B",
+      "failureHash": "495862377A85A206293FE814A3B49A9551720C208D45E8B7BB3EC1D8356C2780",
+      "coreFinallyHash": "2038A9013BA8ED015EEC9A3AF3090B2B421E0F7F1466D6D62B9C05C07DB311D4",
+      "checks": {
+        "commands": true,
+        "failure": true,
+        "coreFinally": true,
+        "videoPrefix": true,
+        "server": true,
+        "timeout": true,
+        "commandReader": true,
+        "disposeCommand": true,
+        "utf8Reader": true,
+        "utf8Writer": true,
+        "coreFinallyBeforeChannelClose": true
+      }
+    },
+    {
+      "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/CoreHost.cs",
+      "commandHash": "656B762F7129BE03C0FBC94ACB62F505BD010A483DAF892AAFD93650E349C145",
+      "failureHash": "495862377A85A206293FE814A3B49A9551720C208D45E8B7BB3EC1D8356C2780",
+      "coreFinallyHash": "2038A9013BA8ED015EEC9A3AF3090B2B421E0F7F1466D6D62B9C05C07DB311D4",
+      "checks": {
+        "commands": true,
+        "failure": true,
+        "coreFinally": true,
+        "videoPrefix": true,
+        "server": true,
+        "timeout": true,
+        "commandReader": true,
+        "disposeCommand": true,
+        "utf8Reader": true,
+        "utf8Writer": true,
+        "coreFinallyBeforeChannelClose": true
+      }
+    },
+    {
+      "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/CoreHost.cs",
+      "commandHash": "656B762F7129BE03C0FBC94ACB62F505BD010A483DAF892AAFD93650E349C145",
+      "failureHash": "B3D19C7FE5BD9F446D78AA2828505DAA57DE53EEA4212F6D43C1B5A4E2052D27",
+      "coreFinallyHash": "2038A9013BA8ED015EEC9A3AF3090B2B421E0F7F1466D6D62B9C05C07DB311D4",
+      "checks": {
+        "commands": true,
+        "failure": true,
+        "coreFinally": true,
+        "videoPrefix": true,
+        "server": true,
+        "timeout": true,
+        "commandReader": true,
+        "disposeCommand": true,
+        "utf8Reader": true,
+        "utf8Writer": true,
+        "coreFinallyBeforeChannelClose": true
+      }
+    },
+    {
+      "path": "src/GWGUI.Emulation.Panasonic/Common/Services/CoreHost.cs",
+      "commandHash": "4829B8B12DC43CE3EE16F15130928C19D34BE13A7BB94B617B6125C2DAC543B7",
+      "failureHash": "B48EF7C71D87F91D0B868D8F47DD6F5971D909D34C872F00DD9F6968F4D577DF",
+      "coreFinallyHash": "2038A9013BA8ED015EEC9A3AF3090B2B421E0F7F1466D6D62B9C05C07DB311D4",
+      "checks": {
+        "commands": true,
+        "failure": true,
+        "coreFinally": true,
+        "videoPrefix": true,
+        "server": true,
+        "timeout": true,
+        "commandReader": true,
+        "disposeCommand": true,
+        "utf8Reader": true,
+        "utf8Writer": true,
+        "coreFinallyBeforeChannelClose": true
+      }
+    },
+    {
+      "path": "src/GWGUI.Emulation.Philips/Common/Services/CoreHost.cs",
+      "commandHash": "B318DEA5CE3E908F30F17341F566539DCE018986D826C450B69E08FB2E10A929",
+      "failureHash": "B48EF7C71D87F91D0B868D8F47DD6F5971D909D34C872F00DD9F6968F4D577DF",
+      "coreFinallyHash": "2038A9013BA8ED015EEC9A3AF3090B2B421E0F7F1466D6D62B9C05C07DB311D4",
+      "checks": {
+        "commands": true,
+        "failure": true,
+        "coreFinally": true,
+        "videoPrefix": true,
+        "server": true,
+        "timeout": true,
+        "commandReader": true,
+        "disposeCommand": true,
+        "utf8Reader": true,
+        "utf8Writer": true,
+        "coreFinallyBeforeChannelClose": true
+      }
+    },
+    {
+      "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/CoreHost.cs",
+      "commandHash": "656B762F7129BE03C0FBC94ACB62F505BD010A483DAF892AAFD93650E349C145",
+      "failureHash": "B3D19C7FE5BD9F446D78AA2828505DAA57DE53EEA4212F6D43C1B5A4E2052D27",
+      "coreFinallyHash": "2038A9013BA8ED015EEC9A3AF3090B2B421E0F7F1466D6D62B9C05C07DB311D4",
+      "checks": {
+        "commands": true,
+        "failure": true,
+        "coreFinally": true,
+        "videoPrefix": true,
+        "server": true,
+        "timeout": true,
+        "commandReader": true,
+        "disposeCommand": true,
+        "utf8Reader": true,
+        "utf8Writer": true,
+        "coreFinallyBeforeChannelClose": true
+      }
+    },
+    {
+      "path": "src/GWGUI.Emulation.Sharp/Common/Services/CoreHost.cs",
+      "commandHash": "B318DEA5CE3E908F30F17341F566539DCE018986D826C450B69E08FB2E10A929",
+      "failureHash": "B48EF7C71D87F91D0B868D8F47DD6F5971D909D34C872F00DD9F6968F4D577DF",
+      "coreFinallyHash": "2038A9013BA8ED015EEC9A3AF3090B2B421E0F7F1466D6D62B9C05C07DB311D4",
+      "checks": {
+        "commands": true,
+        "failure": true,
+        "coreFinally": true,
+        "videoPrefix": true,
+        "server": true,
+        "timeout": true,
+        "commandReader": true,
+        "disposeCommand": true,
+        "utf8Reader": true,
+        "utf8Writer": true,
+        "coreFinallyBeforeChannelClose": true
+      }
+    },
+    {
+      "path": "src/GWGUI.Emulation.Sinclair/Common/Services/CoreHost.cs",
+      "commandHash": "4829B8B12DC43CE3EE16F15130928C19D34BE13A7BB94B617B6125C2DAC543B7",
+      "failureHash": "B48EF7C71D87F91D0B868D8F47DD6F5971D909D34C872F00DD9F6968F4D577DF",
+      "coreFinallyHash": "2038A9013BA8ED015EEC9A3AF3090B2B421E0F7F1466D6D62B9C05C07DB311D4",
+      "checks": {
+        "commands": true,
+        "failure": true,
+        "coreFinally": true,
+        "videoPrefix": true,
+        "server": true,
+        "timeout": true,
+        "commandReader": true,
+        "disposeCommand": true,
+        "utf8Reader": true,
+        "utf8Writer": true,
+        "coreFinallyBeforeChannelClose": true
+      }
+    },
+    {
+      "path": "src/GWGUI.Emulation.Snk/Common/Services/CoreHost.cs",
+      "commandHash": "4829B8B12DC43CE3EE16F15130928C19D34BE13A7BB94B617B6125C2DAC543B7",
+      "failureHash": "B48EF7C71D87F91D0B868D8F47DD6F5971D909D34C872F00DD9F6968F4D577DF",
+      "coreFinallyHash": "2038A9013BA8ED015EEC9A3AF3090B2B421E0F7F1466D6D62B9C05C07DB311D4",
+      "checks": {
+        "commands": true,
+        "failure": true,
+        "coreFinally": true,
+        "videoPrefix": true,
+        "server": true,
+        "timeout": true,
+        "commandReader": true,
+        "disposeCommand": true,
+        "utf8Reader": true,
+        "utf8Writer": true,
+        "coreFinallyBeforeChannelClose": true
+      }
+    },
+    {
+      "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/CoreHost.cs",
+      "commandHash": "94A5741F73BEC75DB320A44AECBA19E52163162C145586789B78362F3130ADED",
+      "failureHash": "C4E9A7F8FB5EB23226B901DC243585D66A122ABD3222C12890D0A449F033D503",
+      "coreFinallyHash": "2038A9013BA8ED015EEC9A3AF3090B2B421E0F7F1466D6D62B9C05C07DB311D4",
+      "checks": {
+        "commands": true,
+        "failure": true,
+        "coreFinally": true,
+        "videoPrefix": true,
+        "server": true,
+        "timeout": true,
+        "commandReader": true,
+        "disposeCommand": true,
+        "utf8Reader": true,
+        "utf8Writer": true,
+        "coreFinallyBeforeChannelClose": true
+      }
+    },
+    {
+      "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/CoreHost.cs",
+      "commandHash": "1ACF6CF7084DA2A7B619956469823DCFDFD7B7FD32C1522C9047F30360988C3D",
+      "failureHash": "B3D19C7FE5BD9F446D78AA2828505DAA57DE53EEA4212F6D43C1B5A4E2052D27",
+      "coreFinallyHash": "2038A9013BA8ED015EEC9A3AF3090B2B421E0F7F1466D6D62B9C05C07DB311D4",
+      "checks": {
+        "commands": true,
+        "failure": true,
+        "coreFinally": true,
+        "videoPrefix": true,
+        "server": true,
+        "timeout": true,
+        "commandReader": true,
+        "disposeCommand": true,
+        "utf8Reader": true,
+        "utf8Writer": true,
+        "coreFinallyBeforeChannelClose": true
+      }
+    },
+    {
+      "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/CoreHost.cs",
+      "commandHash": "8FFE00EEEA0AEFC14CB0608BE9BE39DA22DDDC95296D5989E43D648C9FE95FD6",
+      "failureHash": "B3D19C7FE5BD9F446D78AA2828505DAA57DE53EEA4212F6D43C1B5A4E2052D27",
+      "coreFinallyHash": "2038A9013BA8ED015EEC9A3AF3090B2B421E0F7F1466D6D62B9C05C07DB311D4",
+      "checks": {
+        "commands": true,
+        "failure": true,
+        "coreFinally": true,
+        "videoPrefix": true,
+        "server": true,
+        "timeout": true,
+        "commandReader": true,
+        "disposeCommand": true,
+        "utf8Reader": true,
+        "utf8Writer": true,
+        "coreFinallyBeforeChannelClose": true
+      }
+    },
+    {
+      "path": "src/GWGUI.Emulation.Thomson/Common/Services/CoreHost.cs",
+      "commandHash": "4829B8B12DC43CE3EE16F15130928C19D34BE13A7BB94B617B6125C2DAC543B7",
+      "failureHash": "B48EF7C71D87F91D0B868D8F47DD6F5971D909D34C872F00DD9F6968F4D577DF",
+      "coreFinallyHash": "2038A9013BA8ED015EEC9A3AF3090B2B421E0F7F1466D6D62B9C05C07DB311D4",
+      "checks": {
+        "commands": true,
+        "failure": true,
+        "coreFinally": true,
+        "videoPrefix": true,
+        "server": true,
+        "timeout": true,
+        "commandReader": true,
+        "disposeCommand": true,
+        "utf8Reader": true,
+        "utf8Writer": true,
+        "coreFinallyBeforeChannelClose": true
+      }
+    },
+    {
+      "path": "src/GWGUI.Emulation.Watara/Common/Services/CoreHost.cs",
+      "commandHash": "4829B8B12DC43CE3EE16F15130928C19D34BE13A7BB94B617B6125C2DAC543B7",
+      "failureHash": "B48EF7C71D87F91D0B868D8F47DD6F5971D909D34C872F00DD9F6968F4D577DF",
+      "coreFinallyHash": "2038A9013BA8ED015EEC9A3AF3090B2B421E0F7F1466D6D62B9C05C07DB311D4",
+      "checks": {
+        "commands": true,
+        "failure": true,
+        "coreFinally": true,
+        "videoPrefix": true,
+        "server": true,
+        "timeout": true,
+        "commandReader": true,
+        "disposeCommand": true,
+        "utf8Reader": true,
+        "utf8Writer": true,
+        "coreFinallyBeforeChannelClose": true
+      }
+    },
+    {
+      "path": "src/GWGUI.Emulation.Wenquxing/Common/Services/CoreHost.cs",
+      "commandHash": "C34FFF2585470FD55A25B7A3C23AB5D7EAB96413A44330B7D229B96C6413BEEF",
+      "failureHash": "B48EF7C71D87F91D0B868D8F47DD6F5971D909D34C872F00DD9F6968F4D577DF",
+      "coreFinallyHash": "2038A9013BA8ED015EEC9A3AF3090B2B421E0F7F1466D6D62B9C05C07DB311D4",
+      "checks": {
+        "commands": true,
+        "failure": true,
+        "coreFinally": true,
+        "videoPrefix": true,
+        "server": true,
+        "timeout": true,
+        "commandReader": true,
+        "disposeCommand": true,
+        "utf8Reader": true,
+        "utf8Writer": true,
+        "coreFinallyBeforeChannelClose": true
+      }
+    }
+  ],
+  "scope": "Token comparison ignores formatting only. Typed command execution, failure response, core finally, video prefix, server and timeout are preserved. Source analysis, not runtime execution. Read-command expressions (reader variable rename only), Dispose values, UTF8 leaveOpen streams and placement of core finally inside connected callback are also preserved."
+}

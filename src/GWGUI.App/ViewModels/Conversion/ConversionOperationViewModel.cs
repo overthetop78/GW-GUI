@@ -1,13 +1,12 @@
+using GWGUI.App.ViewModels;
 using EnabledOption = global::GWGUI.MediaEngine.Contracts.Options.EnabledOption;
 using ConversionSelection = global::GWGUI.MediaEngine.Images.Conversion.ConversionSelection;
 using GWGUI.MediaEngine.Images.Formats;
 using GWGUI.App.ViewModels.Operations.Options;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 
 namespace GWGUI.App.ViewModels.Conversion;
 
-public sealed class ConversionOperationViewModel : INotifyPropertyChanged
+public sealed class ConversionOperationViewModel : ObservableObject
 {
     private string _sourcePath = "";
     private string _outputName = "";
@@ -30,7 +29,7 @@ public sealed class ConversionOperationViewModel : INotifyPropertyChanged
     public IReadOnlySet<string> SelectedFormats => _selectedFormats;
     public IReadOnlyDictionary<string, HashSet<string>> ExplicitExtensions => _explicitExtensions;
 
-    public IReadOnlyList<EnabledOption> BuildOptions() => AllOptions().Where(x => x.Enabled).Select(x => x.ToEnabledOption()).ToArray();
+    public IReadOnlyList<EnabledOption> BuildOptions() => OperationOptionViewModelBase.BuildOptions(AllOptions());
 
     public void SetFormat(string formatId, bool selected, IEnumerable<string>? extensions)
     {
@@ -80,6 +79,4 @@ public sealed class ConversionOperationViewModel : INotifyPropertyChanged
         => ExpertArguments = OperationOptionViewModelBase.ApplyOptions(AllOptions(), enabled, values);
 
     private IEnumerable<OperationOptionViewModelBase> AllOptions() => [Tracks, OutputTracks, AdjustSpeed, Pll, HardSectors, Reverse, DiskDefs];
-    public event PropertyChangedEventHandler? PropertyChanged;
-    private void Set<T>(ref T field, T value, [CallerMemberName] string? name = null) { if (EqualityComparer<T>.Default.Equals(field, value)) return; field = value; PropertyChanged?.Invoke(this, new(name)); }
 }

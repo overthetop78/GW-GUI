@@ -31,22 +31,14 @@ public static class CoreHost
     {
         using var videoMemory = MemoryMappedFile.OpenExisting(videoMapName, MemoryMappedFileRights.ReadWrite);
         using var videoMap = videoMemory.CreateViewAccessor(0, EmulationHostProtocolConstants.VideoMapCapacity, MemoryMappedFileAccess.ReadWrite);
-        using var pipe = new NamedPipeClientStream(CoreHostConstants.LocalPipeServer, pipeName, PipeDirection.InOut, PipeOptions.None);
-        pipe.Connect(CoreHostConstants.ConnectionTimeoutMilliseconds);
-        using var reader = new BinaryReader(pipe, System.Text.Encoding.UTF8, true);
-        using var transportWriter = new BinaryWriter(pipe, System.Text.Encoding.UTF8, true);
-        ExternalCore? core = null;
-        var lastVideoSequence = 0L;
-        var lastDiagnosticCount = 0;
-        try
+        EmulationHostProtocolFunctions.RunConnectedSession(pipeName, CoreHostConstants.LocalPipeServer, CoreHostConstants.ConnectionTimeoutMilliseconds, (reader, transportWriter) =>
         {
-            while (true)
+            ExternalCore? core = null;
+            var lastVideoSequence = 0L;
+            var lastDiagnosticCount = 0;
+            try
             {
-                HostCommand command;
-                try { command = (HostCommand)reader.ReadByte(); }
-                catch (EndOfStreamException) { break; }
-                var exit = command == HostCommand.Dispose;
-                EmulationHostProtocolFunctions.WriteResponse(transportWriter, writer =>
+                EmulationHostProtocolFunctions.RunCommandLoop<HostCommand>(reader, transportWriter, static commandReader => (HostCommand)commandReader.ReadByte(), HostCommand.Dispose, (command, writer) =>
                 {
                     switch (command)
                     {
@@ -58,13 +50,17 @@ public static class CoreHost
                             core = new ExternalCore(corePath);
                             core.Initialize(configuration, session, saves);
                             writer.Write(true);
-                            writer.Write(core.CoreSha256); writer.Write(core.FramesPerSecond); writer.Write(core.SampleRate);
+                            writer.Write(core.CoreSha256);
+                            writer.Write(core.FramesPerSecond);
+                            writer.Write(core.SampleRate);
                             writer.Write(JsonSerializer.Serialize(core.Options, CoreHostProtocol.JsonOptions));
                             writer.Write(JsonSerializer.Serialize(core.Diagnostics, CoreHostProtocol.JsonOptions));
                             lastDiagnosticCount = core.Diagnostics.Count;
-                            writer.Write(core.CoreName); writer.Write(core.CoreVersion);
+                            writer.Write(core.CoreName);
+                            writer.Write(core.CoreVersion);
                             writer.Write(string.Join('|', core.SupportedContentExtensions.Order(StringComparer.OrdinalIgnoreCase)));
-                            writer.Write(core.DiskCount); writer.Write(core.CurrentDiskIndex);
+                            writer.Write(core.DiskCount);
+                            writer.Write(core.CurrentDiskIndex);
                             CoreHostProtocol.WriteLedStates(writer, core.LedStates);
                             break;
                         case HostCommand.RunFrame:
@@ -74,12 +70,16 @@ public static class CoreHost
                             writer.Write(true);
                             var frame = activeCore.LatestVideoFrame;
                             CoreHostProtocol.WriteSharedFrame(writer, frame?.Sequence == lastVideoSequence ? null : frame, videoMap);
-                            if (frame is not null) lastVideoSequence = frame.Sequence;
+                            if (frame is not null)
+                                lastVideoSequence = frame.Sequence;
                             var audio = new List<AudioChunk>();
-                            while (activeCore.TryDequeueAudio(out var chunk) && chunk is not null) audio.Add(chunk);
+                            while (activeCore.TryDequeueAudio(out var chunk) && chunk is not null)
+                                audio.Add(chunk);
                             CoreHostProtocol.WriteAudio(writer, audio);
-                            writer.Write(activeCore.FramesPerSecond); writer.Write(activeCore.SampleRate);
-                            writer.Write(activeCore.DiskCount); writer.Write(activeCore.CurrentDiskIndex);
+                            writer.Write(activeCore.FramesPerSecond);
+                            writer.Write(activeCore.SampleRate);
+                            writer.Write(activeCore.DiskCount);
+                            writer.Write(activeCore.CurrentDiskIndex);
                             var diagnostics = activeCore.Diagnostics;
                             var diagnosticsChanged = diagnostics.Count != lastDiagnosticCount;
                             writer.Write(diagnosticsChanged);
@@ -88,30 +88,65 @@ public static class CoreHost
                                 writer.Write(JsonSerializer.Serialize(diagnostics, CoreHostProtocol.JsonOptions));
                                 lastDiagnosticCount = diagnostics.Count;
                             }
+
                             CoreHostProtocol.WriteLedStates(writer, activeCore.LedStates);
                             break;
-                        case HostCommand.HardReset: EnsureCore(core).HardReset(); WriteSuccess(writer); break;
-                        case HostCommand.SoftReset: EnsureCore(core).SoftReset(); WriteSuccess(writer); break;
-                        case HostCommand.Stop: EnsureCore(core).Stop(); WriteSuccess(writer); break;
-                        case HostCommand.InsertMedia: EnsureCore(core).InsertMedia(reader.ReadString()); WriteSuccess(writer); break;
-                        case HostCommand.EjectMedia: EnsureCore(core).EjectMedia(); WriteSuccess(writer); break;
+                        case HostCommand.HardReset:
+                            EnsureCore(core).HardReset();
+                            WriteSuccess(writer);
+                            break;
+                        case HostCommand.SoftReset:
+                            EnsureCore(core).SoftReset();
+                            WriteSuccess(writer);
+                            break;
+                        case HostCommand.Stop:
+                            EnsureCore(core).Stop();
+                            WriteSuccess(writer);
+                            break;
+                        case HostCommand.InsertMedia:
+                            EnsureCore(core).InsertMedia(reader.ReadString());
+                            WriteSuccess(writer);
+                            break;
+                        case HostCommand.EjectMedia:
+                            EnsureCore(core).EjectMedia();
+                            WriteSuccess(writer);
+                            break;
                         case HostCommand.SaveState:
-                            var state = EnsureCore(core).SaveState(); writer.Write(true); CoreHostProtocol.WriteBytes(writer, state); break;
-                        case HostCommand.LoadState: EnsureCore(core).LoadState(CoreHostProtocol.ReadBytes(reader)); WriteSuccess(writer); break;
-                        case HostCommand.SetOption: EnsureCore(core).SetOption(reader.ReadString(), reader.ReadString()); WriteSuccess(writer); break;
-                        case HostCommand.SelectDisk: EnsureCore(core).SelectDisk(reader.ReadInt32()); WriteSuccess(writer); break;
-                        case HostCommand.Dispose: core?.Dispose(); core = null; WriteSuccess(writer); break;
-                        default: throw new InvalidDataException(CoreExceptions.UnknownHostCommand((byte)command));
+                            var state = EnsureCore(core).SaveState();
+                            writer.Write(true);
+                            CoreHostProtocol.WriteBytes(writer, state);
+                            break;
+                        case HostCommand.LoadState:
+                            EnsureCore(core).LoadState(CoreHostProtocol.ReadBytes(reader));
+                            WriteSuccess(writer);
+                            break;
+                        case HostCommand.SetOption:
+                            EnsureCore(core).SetOption(reader.ReadString(), reader.ReadString());
+                            WriteSuccess(writer);
+                            break;
+                        case HostCommand.SelectDisk:
+                            EnsureCore(core).SelectDisk(reader.ReadInt32());
+                            WriteSuccess(writer);
+                            break;
+                        case HostCommand.Dispose:
+                            core?.Dispose();
+                            core = null;
+                            WriteSuccess(writer);
+                            break;
+                        default:
+                            throw new InvalidDataException(CoreExceptions.UnknownHostCommand((byte)command));
                     }
                 }, (writer, error) =>
                 {
                     writer.Write(false);
                     writer.Write(error.ToString());
                 });
-                if (exit) break;
             }
-        }
-        finally { core?.Dispose(); }
+            finally
+            {
+                core?.Dispose();
+            }
+        });
     }
 
     private static ExternalCore EnsureCore(ExternalCore? core) => core ?? throw new InvalidOperationException(CoreExceptions.HostNotInitialized());

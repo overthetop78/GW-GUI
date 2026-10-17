@@ -1,11 +1,10 @@
+using GWGUI.App.ViewModels;
 using EnabledOption = global::GWGUI.MediaEngine.Contracts.Options.EnabledOption;
 using GWGUI.App.ViewModels.Operations.Options;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 
 namespace GWGUI.App.ViewModels.Operations;
 
-public sealed class WriteOperationViewModel : INotifyPropertyChanged
+public sealed class WriteOperationViewModel : ObservableObject
 {
     private string _sourcePath = "";
     private string _expertArguments = "";
@@ -26,7 +25,7 @@ public sealed class WriteOperationViewModel : INotifyPropertyChanged
     public ValueOptionViewModel DiskDefs { get; } = new("--diskdefs", "");
 
     public bool DisableVerification => NoVerify.Enabled;
-    public IReadOnlyList<EnabledOption> BuildOptions() => AllOptions().Where(x => x.Enabled && x != NoVerify).Select(x => x.ToEnabledOption()).ToArray();
+    public IReadOnlyList<EnabledOption> BuildOptions() => OperationOptionViewModelBase.BuildOptions(AllOptions(), NoVerify);
     public void EnableFakeIndex() { FakeIndex.Enabled = true; HardSectors.Enabled = false; }
     public void EnableHardSectors() { HardSectors.Enabled = true; FakeIndex.Enabled = false; }
     public void EnableDensel() { Densel.Enabled = true; Tg43.Enabled = false; }
@@ -40,6 +39,4 @@ public sealed class WriteOperationViewModel : INotifyPropertyChanged
         => OperationOptionViewModelBase.CaptureValues(AllOptions(), ExpertArguments);
 
     private IEnumerable<OperationOptionViewModelBase> AllOptions() => [NoVerify, EraseEmpty, Retries, Tracks, PreErase, FakeIndex, HardSectors, Precomp, Reverse, Densel, Tg43, DiskDefs];
-    public event PropertyChangedEventHandler? PropertyChanged;
-    private void Set<T>(ref T field, T value, [CallerMemberName] string? name = null) { if (EqualityComparer<T>.Default.Equals(field, value)) return; field = value; PropertyChanged?.Invoke(this, new(name)); }
 }
