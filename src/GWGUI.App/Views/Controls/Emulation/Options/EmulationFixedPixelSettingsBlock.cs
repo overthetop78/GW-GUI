@@ -1,3 +1,4 @@
+using GWGUI.App.Functions.Views.Emulation.Settings;
 using System.Globalization;
 using System.Windows;
 using System.Windows.Automation;
@@ -79,83 +80,11 @@ internal static class EmulationFixedPixelSettingsBlock
     }
 
     private static void AddGroup(Grid grid, FrameworkElement content, int row, int column)
-    {
-
-        var card = new Border
-        {
-            Child = content,
-            Margin = new Thickness(column == 0 ? 0 : 6, row == 0 ? 0 : 6, column == 0 ? 6 : 0, row == 0 ? 6 : 0)
-        };
-        card.SetResourceReference(FrameworkElement.StyleProperty, ControlVisualConstants.CardStyleResource);
-        Grid.SetRow(card, row);
-        Grid.SetColumn(card, column);
-        grid.Children.Add(card);
-    }
+        => EmulationSettingsLayout.AddVideoProcessingGroup(grid, null, row, column, 1, new Thickness(column == 0 ? 0 : 6, row == 0 ? 0 : 6, column == 0 ? 6 : 0, row == 0 ? 6 : 0), content);
 
     private static FrameworkElement Choice<T>(string id, IReadOnlyDictionary<T, string> resources, T selected, Action<T> changed) where T : struct, Enum
-    {
-        var choices = resources.Select(item => new ChoiceValue<T>(item.Key, LocExtension.Get(item.Value))).ToArray();
-        var selector = new ComboBox
-        {
-            ItemsSource = choices,
-            DisplayMemberPath = nameof(ChoiceValue<T>.DisplayName),
-            SelectedItem = choices.First(item => EqualityComparer<T>.Default.Equals(item.Value, selected)),
-            MinWidth = 180
-        };
-        AutomationProperties.SetAutomationId(selector, id);
-        selector.SelectionChanged += (_, _) =>
-        {
-            if (selector.SelectedItem is ChoiceValue<T> choice) changed(choice.Value);
-        };
-        return Field(id, selector);
-    }
+        => EmulationSettingsFieldControlFunctions.CreateVideoChoice(id, resources, selected, changed, 180, new Thickness(0, 2, 0, 8));
 
     private static FrameworkElement Slider(string id, int value, int minimum, int maximum, Action<int> changed)
-    {
-        var grid = new Grid();
-        grid.ColumnDefinitions.Add(new ColumnDefinition());
-        grid.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
-        var slider = new Slider
-        {
-            Minimum = minimum,
-            Maximum = maximum,
-            Value = Math.Clamp(value, minimum, maximum),
-            TickFrequency = 1,
-            IsSnapToTickEnabled = true
-        };
-        AutomationProperties.SetAutomationId(slider, id);
-        var number = new TextBlock
-        {
-            Text = value.ToString(CultureInfo.CurrentCulture),
-            MinWidth = 38,
-            TextAlignment = TextAlignment.Right,
-            VerticalAlignment = VerticalAlignment.Center,
-            Margin = new Thickness(8, 0, 0, 0)
-        };
-        slider.ValueChanged += (_, _) =>
-        {
-            var current = (int)slider.Value;
-            number.Text = current.ToString(CultureInfo.CurrentCulture);
-            changed(current);
-        };
-        grid.Children.Add(slider);
-        Grid.SetColumn(number, 1);
-        grid.Children.Add(number);
-        return Field(id, grid);
-    }
-
-    private static FrameworkElement Field(string id, FrameworkElement control)
-    {
-        var panel = new StackPanel { Margin = new Thickness(0, 2, 0, 8) };
-        panel.Children.Add(new TextBlock
-        {
-            Text = LocExtension.Get(EmulationVideoProcessingCatalog.ParameterResourceKeys[id]),
-            Margin = new Thickness(0, 0, 0, 4),
-            TextWrapping = TextWrapping.Wrap
-        });
-        panel.Children.Add(control);
-        return panel;
-    }
-
-    private sealed record ChoiceValue<T>(T Value, string DisplayName) where T : struct, Enum;
+        => EmulationSettingsFieldControlFunctions.CreateVideoSlider(id, value, minimum, maximum, changed, 1, 38, new Thickness(0, 2, 0, 8));
 }

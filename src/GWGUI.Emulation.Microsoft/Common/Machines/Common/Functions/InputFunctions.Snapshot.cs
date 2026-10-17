@@ -70,19 +70,7 @@ internal static class InputSnapshotFunctions
         return result;
     }
 
-    private static IReadOnlyDictionary<string, bool> PhysicalMouse(EmulationPointerState pointer) => new Dictionary<string, bool>(
-            StringComparer.OrdinalIgnoreCase)
-        {
-            [InputSnapshotFunctionsConstants.Left] = pointer.Left,
-            [InputSnapshotFunctionsConstants.Right] = pointer.Right,
-            [InputSnapshotFunctionsConstants.Middle] = pointer.Middle,
-            [InputSnapshotFunctionsConstants.XButton1] = pointer.ExtendedButton1,
-            [InputSnapshotFunctionsConstants.XButton2] = pointer.ExtendedButton2,
-            [InputSnapshotFunctionsConstants.WheelUp] = pointer.Wheel > 0,
-            [InputSnapshotFunctionsConstants.WheelDown] = pointer.Wheel < 0,
-            [InputSnapshotFunctionsConstants.WheelLeft] = pointer.HorizontalWheel < 0,
-            [InputSnapshotFunctionsConstants.WheelRight] = pointer.HorizontalWheel > 0
-        };
+    private static IReadOnlyDictionary<string, bool> PhysicalMouse(EmulationPointerState pointer) => GWGUI.Emulation.Functions.EmulationInputMappingFunctions.PhysicalMouse(pointer);
 
     private static bool IsSourcePressed(string sourceName, EmulationControllerState controller, IReadOnlySet<EmulationKey> keys, IReadOnlyDictionary<string, bool> mouse)
     {
@@ -101,17 +89,8 @@ internal static class InputSnapshotFunctions
     }
 
     private static EmulationControllerState ControllerForSource(string source, IReadOnlyList<EmulationControllerState> controllers, EmulationControllerState fallback)
-    {
-        var deviceId = EmulationInputMappingFunctions.ParseControllerDeviceId(source);
-        return deviceId is null ? fallback : controllers.FirstOrDefault(controller => string.Equals(controller.DeviceId, deviceId, StringComparison.OrdinalIgnoreCase)) ?? fallback;
-    }
+    => GWGUI.Emulation.Functions.EmulationInputMappingFunctions.ResolveSourceController(source, controllers, fallback, fallbackWhenMissing: true);
 
     private static bool TryRemovePrefix(string? value, string prefix, out string source)
-    {
-        source = string.Empty;
-        if (string.IsNullOrWhiteSpace(value)
-            || !value.StartsWith(prefix, StringComparison.OrdinalIgnoreCase)) return false;
-        source = value[prefix.Length..];
-        return source.Length > 0;
-    }
+    => GWGUI.Emulation.Functions.EmulationInputMappingFunctions.TryRemovePrefix(value, prefix, out source);
 }

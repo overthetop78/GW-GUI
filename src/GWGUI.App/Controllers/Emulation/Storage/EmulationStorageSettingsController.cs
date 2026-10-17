@@ -141,7 +141,9 @@ internal sealed class EmulationStorageSettingsController
     {
         var current = (_settings.DeviceSettings ?? []).FirstOrDefault(item => item.Slot == device.Slot);
         var dialog = new ManagedStorageConfigurationDialog(DeviceLabel(device), DeviceModel(device, device.Slot),
-            _moduleId, device.ConfigurationFields ?? [], current?.Options);
+            _moduleId, device.ConfigurationFields ?? [], current?.Options,
+            device.ConfigurationOptionDetailedResourceKey is { Length: > 0 } helpKey
+                ? LocExtension.GetForModule(_moduleId, helpKey) : null);
         IReadOnlyDictionary<string, string> selected;
         try
         {

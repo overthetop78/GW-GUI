@@ -1,0 +1,152 @@
+{
+  "sourceFiles": 7104,
+  "baselineFiles": 2981,
+  "methodBodies": 11452,
+  "baselineMethodBodies": 5308,
+  "minimumTokens": 30,
+  "exactGroups": 727,
+  "classification": {
+    "period-candidate": 671,
+    "preexisting-candidate": 56
+  },
+  "projects": {
+    "GWGUI.App": {
+      "methods": 2083,
+      "candidateGroups": 29
+    },
+    "GWGUI.Emulation": {
+      "methods": 722,
+      "candidateGroups": 3
+    },
+    "GWGUI.Emulation.Acorn": {
+      "methods": 257,
+      "candidateGroups": 194
+    },
+    "GWGUI.Emulation.Amstrad": {
+      "methods": 181,
+      "candidateGroups": 72
+    },
+    "GWGUI.Emulation.Apple": {
+      "methods": 283,
+      "candidateGroups": 205
+    },
+    "GWGUI.Emulation.Atari": {
+      "methods": 462,
+      "candidateGroups": 176
+    },
+    "GWGUI.Emulation.Bandai": {
+      "methods": 248,
+      "candidateGroups": 193
+    },
+    "GWGUI.Emulation.Coleco": {
+      "methods": 286,
+      "candidateGroups": 217
+    },
+    "GWGUI.Emulation.Commodore": {
+      "methods": 261,
+      "candidateGroups": 58
+    },
+    "GWGUI.Emulation.Epoch": {
+      "methods": 268,
+      "candidateGroups": 224
+    },
+    "GWGUI.Emulation.Fairchild": {
+      "methods": 248,
+      "candidateGroups": 223
+    },
+    "GWGUI.Emulation.Mattel": {
+      "methods": 253,
+      "candidateGroups": 226
+    },
+    "GWGUI.Emulation.Microsoft": {
+      "methods": 80,
+      "candidateGroups": 60
+    },
+    "GWGUI.Emulation.Nec": {
+      "methods": 308,
+      "candidateGroups": 122
+    },
+    "GWGUI.Emulation.Nintendo": {
+      "methods": 195,
+      "candidateGroups": 144
+    },
+    "GWGUI.Emulation.Panasonic": {
+      "methods": 195,
+      "candidateGroups": 132
+    },
+    "GWGUI.Emulation.Philips": {
+      "methods": 288,
+      "candidateGroups": 224
+    },
+    "GWGUI.Emulation.Sega": {
+      "methods": 208,
+      "candidateGroups": 142
+    },
+    "GWGUI.Emulation.Sharp": {
+      "methods": 284,
+      "candidateGroups": 229
+    },
+    "GWGUI.Emulation.Sinclair": {
+      "methods": 292,
+      "candidateGroups": 232
+    },
+    "GWGUI.Emulation.Snk": {
+      "methods": 456,
+      "candidateGroups": 234
+    },
+    "GWGUI.Emulation.Sony": {
+      "methods": 709,
+      "candidateGroups": 143
+    },
+    "GWGUI.Emulation.Thomson": {
+      "methods": 184,
+      "candidateGroups": 139
+    },
+    "GWGUI.Emulation.Watara": {
+      "methods": 167,
+      "candidateGroups": 129
+    },
+    "GWGUI.Emulation.Wenquxing": {
+      "methods": 166,
+      "candidateGroups": 131
+    },
+    "GWGUI.Infrastructure": {
+      "methods": 147,
+      "candidateGroups": 3
+    },
+    "GWGUI.Launcher": {
+      "methods": 5,
+      "candidateGroups": 0
+    },
+    "GWGUI.MediaAnalysis": {
+      "methods": 15,
+      "candidateGroups": 0
+    },
+    "GWGUI.MediaEngine": {
+      "methods": 1641,
+      "candidateGroups": 29
+    },
+    "GWGUI.MediaFileSystems": {
+      "methods": 502,
+      "candidateGroups": 7
+    },
+    "GWGUI.Updater": {
+      "methods": 20,
+      "candidateGroups": 1
+    },
+    "GWGUI.Updates": {
+      "methods": 19,
+      "candidateGroups": 0
+    },
+    "GWGUI.VideoPresentation": {
+      "methods": 19,
+      "candidateGroups": 0
+    }
+  },
+  "details": "clone-groups.json",
+  "limitations": [
+    "Methods and constructors with at least 30 tokens; property accessors and local functions not indexed",
+    "Identifier-normalized matches require manual confirmation",
+    "No runtime behavior test; no production code changed by audit"
+  ]
+}

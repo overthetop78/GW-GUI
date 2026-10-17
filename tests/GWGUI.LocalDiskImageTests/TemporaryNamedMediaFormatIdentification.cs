@@ -15,7 +15,7 @@ internal static class TemporaryNamedMediaFormatIdentification
         if (provisionalRule is null)
             return;
 
-        var internalFiles = explored.Volumes.Where(volume => volume.FileSystem is not null).SelectMany(volume => Flatten(volume.FileSystem!.Entries)).Where(entry => entry.Kind == FileSystemEntryKind.File).Select(entry => entry.Name)
+        var internalFiles = explored.Volumes.Where(volume => volume.FileSystem is not null).SelectMany(volume => GWGUI.MediaAudit.MediaAuditTree.Flatten(volume.FileSystem!.Entries, entry => entry.Children)).Where(entry => entry.Kind == FileSystemEntryKind.File).Select(entry => entry.Name)
             .Distinct(StringComparer.Ordinal)
             .Order(StringComparer.Ordinal)
             .ToArray();
@@ -23,15 +23,5 @@ internal static class TemporaryNamedMediaFormatIdentification
             $"Temporary media-format identification required: media='{document.Source.PrimaryPath}', " +
             $"format='{document.FormatId}', provisionalRule='{provisionalRule}', " +
             $"internalFiles=[{string.Join(", ", internalFiles)}].");
-    }
-
-    private static IEnumerable<FileSystemEntry> Flatten(IEnumerable<FileSystemEntry> entries)
-    {
-        foreach (var entry in entries)
-        {
-            yield return entry;
-            foreach (var child in Flatten(entry.Children))
-                yield return child;
-        }
     }
 }

@@ -10,6 +10,41 @@ public static class EmulationChildProcessLifetime
     private static readonly EmulationChildProcessJob Job = new();
 
     public static void Attach(Process process) => Job.Attach(process);
+
+    public static Process Start(ProcessStartInfo startInfo, Func<Exception> startFailed)
+    {
+        var process = Process.Start(startInfo) ?? throw startFailed();
+        var transferred = false;
+        try
+        {
+            Attach(process);
+            transferred = true;
+            return process;
+        }
+        finally
+        {
+            if (!transferred)
+            {
+                try
+                {
+                    if (!process.HasExited) process.Kill(entireProcessTree: true);
+                    process.WaitForExit();
+                }
+                finally { process.Dispose(); }
+            }
+        }
+    }
+
+    public static void WaitForExit(Process process, bool graceful, int gracefulTimeoutMilliseconds)
+    {
+        if (graceful && process.WaitForExit(gracefulTimeoutMilliseconds)) return;
+        if (!process.HasExited)
+        {
+            try { process.Kill(entireProcessTree: true); }
+            catch (InvalidOperationException) when (process.HasExited) { }
+        }
+        process.WaitForExit();
+    }
 }
 
 internal sealed class EmulationChildProcessJob : IDisposable

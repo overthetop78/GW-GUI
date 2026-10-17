@@ -1,5 +1,6 @@
 using System.Security.Cryptography;
 using System.Text;
+using System.IO;
 
 namespace GWGUI.Emulation.Functions;
 
@@ -7,6 +8,24 @@ public static class ConfigurationFileAccessFunctions
 {
     private const int DefaultReplacementRetryCount = 5;
     private const int DefaultReplacementRetryDelayMilliseconds = 25;
+
+    internal static async Task WriteAtomicallyAsync(string target, string temporary, Func<string, Task> write,
+        Action<string, string>? replace = null)
+    {
+        Directory.CreateDirectory(Path.GetDirectoryName(target)!);
+        try
+        {
+            await write(temporary).ConfigureAwait(false);
+            if (replace is null) ReplaceFile(temporary, target);
+            else replace(temporary, target);
+        }
+        finally { DeleteIfExists(temporary); }
+    }
+
+    internal static void DeleteIfExists(string path)
+    {
+        if (File.Exists(path)) File.Delete(path);
+    }
 
     public static string ReadAllText(string path) => WithFileLock(path, () => File.ReadAllText(path));
 

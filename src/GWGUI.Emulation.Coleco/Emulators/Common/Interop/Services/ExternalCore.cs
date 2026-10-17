@@ -101,7 +101,7 @@ internal sealed partial class ExternalCore : IEmulatorCore
             PrepareInitialMedia(configuration);
             if (_content is null && _subsystem is null && !_callbacks.SupportsNoGame)
                 throw new EmulationException(ErrorCategory.Content, ErrorCode.ContentRequired, ErrorMessages.ContentRequired);
-            var loaded = _subsystem is not null ? _exports.LoadGameSpecial(GWGUI.Emulation.Coleco.Emulators.GearColeco.Constants.SubsystemConstants.Adam, _subsystem.GameInfos, _subsystem.Count) : _exports.LoadGame(_content?.GameInfo ?? nint.Zero);
+            var loaded = _subsystem is not null ? _exports.LoadGameSpecial!(GWGUI.Emulation.Coleco.Emulators.GearColeco.Constants.SubsystemConstants.Adam, _subsystem.GameInfos, _subsystem.Count) : _exports.LoadGame(_content?.GameInfo ?? nint.Zero);
             if (!loaded)
                 throw new EmulationException(ErrorCategory.Content, ErrorCode.ContentUnsupported, ErrorMessages.ContentLoadFailed);
             _gameLoaded = true;

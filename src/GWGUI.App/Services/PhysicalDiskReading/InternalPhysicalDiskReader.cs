@@ -28,7 +28,7 @@ public sealed class InternalPhysicalDiskReader(Func<IGreaseweazleReadDevice> dev
 
     public static InternalPhysicalDiskReader CreateDefault() => new(() => new GreaseweazleProtocolClient(new WindowsGreaseweazleSerialTransport()));
 
-    private static IReadOnlyDictionary<string, string> CreateOptions(PhysicalDiskReadOptions options)
+    internal static IReadOnlyDictionary<string, string> CreateOptions(PhysicalDiskReadOptions options)
     {
         var values = new Dictionary<string, string>(StringComparer.Ordinal)
         {

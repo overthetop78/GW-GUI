@@ -20,7 +20,7 @@ internal sealed class Mame2016MachineFactory() : LibretroMachineFactory(Emulator
     internal override void PrepareFirmware(MachineConfiguration configuration, string systemDirectory) => NativeFirmware.Prepare(configuration, systemDirectory);
     internal override LoadedContent? PrepareContent(MachineConfiguration configuration, string sessionDirectory, IReadOnlySet<string> supportedExtensions) => NativeMedia.Prepare(configuration, sessionDirectory, supportedExtensions);
     internal override object? PreparePersistentMedia(MachineConfiguration configuration, string saveDirectory, LoadedContent? content) => NativeMedia.PrepareMemoryCard(configuration, content);
-    internal override void CompletePersistentMedia(object? state) => NativeMedia.CompleteMemoryCard(state as NativeMedia.PreparedMemoryCard);
+    internal override void CompletePersistentMedia(object? state) => NativeMedia.CompleteMemoryCard(state as GWGUI.Emulation.Snk.Emulators.Common.Interop.Functions.MameMediaFunctions.PreparedMemoryCard);
     protected override bool RequiresMediaRestart(MachineConfiguration configuration, EmulationMediaSlot slot, string? path) => true;
     public override IReadOnlyList<EmulationMediaDevice> DescribeMediaDevices(MachineConfiguration configuration) => NativeMedia.Devices(configuration.Model);
     public override IReadOnlyList<string> ResolveInitialContentPaths(MachineConfiguration configuration) => NativeMedia.InitialContentPaths(configuration);

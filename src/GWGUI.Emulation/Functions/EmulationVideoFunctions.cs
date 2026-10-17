@@ -1,10 +1,22 @@
 using System.Globalization;
+using System.Diagnostics;
+using System.Runtime.InteropServices;
 using GWGUI.Emulation.Enums;
 
 namespace GWGUI.Emulation.Functions;
 
 public static class EmulationVideoFunctions
 {
+    internal static int FrameLength(uint height, nuint pitch) => checked((int)(pitch * height));
+
+    internal static void CopyRows(nint source, byte[] destination, int height, int pitch)
+    {
+        for (var row = 0; row < height; row++)
+            Marshal.Copy(nint.Add(source, checked(row * pitch)), destination, checked(row * pitch), pitch);
+    }
+
+    internal static TimeSpan Timestamp(long startTimestamp) => Stopwatch.GetElapsedTime(startTimestamp);
+
     public static string FormatStandard(EmulationVideoStandard standard) => standard switch
     {
         EmulationVideoStandard.Ntsc => "NTSC",

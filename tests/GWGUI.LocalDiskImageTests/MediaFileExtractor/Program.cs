@@ -25,7 +25,7 @@ internal static class Program
             var source = new MediaSourceDescriptor(Path.GetFullPath(imagePath), []);
             var recognized = await engine.Recognition.Registry.RecognizeAsync(new MediaRecognitionContext(source));
             var explored = await engine.Explorer.ExploreAsync(recognized.Document);
-            var entries = explored.Volumes.Where(volume => volume.FileSystem is not null).SelectMany(volume => Flatten(volume.FileSystem!.Entries)).Where(entry => entry.Kind == FileSystemEntryKind.File).ToArray();
+            var entries = explored.Volumes.Where(volume => volume.FileSystem is not null).SelectMany(volume => GWGUI.MediaAudit.MediaAuditTree.Flatten(volume.FileSystem!.Entries, entry => entry.Children)).Where(entry => entry.Kind == FileSystemEntryKind.File).ToArray();
 
             Directory.CreateDirectory(outputDirectory);
             var manifest = new List<object>();
@@ -76,16 +76,6 @@ internal static class Program
         {
             Console.Error.WriteLine(exception.Message);
             return 1;
-        }
-    }
-
-    private static IEnumerable<FileSystemEntry> Flatten(IEnumerable<FileSystemEntry> entries)
-    {
-        foreach (var entry in entries)
-        {
-            yield return entry;
-            foreach (var child in Flatten(entry.Children))
-                yield return child;
         }
     }
 

@@ -25,44 +25,24 @@ internal sealed partial class ProcessCore : IEmulatorCore
             FailConnection(new OperationCanceledException(_cancellationToken));
         if (!allowUninitialized && !_initialized)
             throw new InvalidOperationException(CoreHostErrors.ProcessNotInitialized);
-        _requestGate.Wait();
-        try
-        {
-            var writer = _writer ?? throw new InvalidOperationException(CoreHostErrors.ProcessUnavailable);
-            CoreHostFunctions.WriteRequestHeader(writer, command);
-            write?.Invoke(writer);
-            writer.Flush();
-            using var reader = new BinaryReader(new MemoryStream(ReadResponse(), writable: false), Encoding.UTF8, leaveOpen: false);
-            var status = CoreHostFunctions.ReadResponseHeader(reader);
-            if (status == HostResponseStatus.Failure) ThrowRemoteError(CoreHostFunctions.ReadError(reader));
-            if (status != HostResponseStatus.Success)
-                throw new InvalidDataException(CoreHostErrors.CommunicationFailed);
-            read?.Invoke(reader);
-        }
-        catch (Exception error) when (error is IOException or EndOfStreamException or OperationCanceledException
-                                      or InvalidDataException)
-        {
-            FailConnection(error);
-        }
-        finally
-        {
-            _requestGate.Release();
-        }
+        EmulationHostProtocolFunctions.ExecuteRequest(_requestGate,
+            () => _writer ?? throw new InvalidOperationException(CoreHostErrors.ProcessUnavailable), ReadResponse,
+            writer =>
+            {
+                CoreHostFunctions.WriteRequestHeader(writer, command);
+                write?.Invoke(writer);
+            }, reader =>
+            {
+                var status = CoreHostFunctions.ReadResponseHeader(reader);
+                if (status == HostResponseStatus.Failure) ThrowRemoteError(CoreHostFunctions.ReadError(reader));
+                if (status != HostResponseStatus.Success) throw new InvalidDataException(CoreHostErrors.CommunicationFailed);
+                read?.Invoke(reader);
+            }, FailConnection);
     }
 
-    private byte[] ReadResponse()
-    {
-        using var timeout = CancellationTokenSource.CreateLinkedTokenSource(_cancellationToken);
-        timeout.CancelAfter(_responseTimeout);
-        var header = new byte[sizeof(int)];
-        _pipe!.ReadExactlyAsync(header, timeout.Token).AsTask().GetAwaiter().GetResult();
-        var length = BinaryPrimitives.ReadInt32LittleEndian(header);
-        if (length is < 0 or > EmulationHostProtocolConstants.MaximumBlobLength)
-            throw new InvalidDataException(string.Format(CultureInfo.InvariantCulture, CoreHostErrors.InvalidResponseLengthFormat, length));
-        var response = GC.AllocateUninitializedArray<byte>(length);
-        _pipe.ReadExactlyAsync(response, timeout.Token).AsTask().GetAwaiter().GetResult();
-        return response;
-    }
+    private byte[] ReadResponse() => EmulationHostProtocolFunctions.ReadResponseAsync(_pipe!, _responseTimeout,
+        _cancellationToken, length => string.Format(CultureInfo.InvariantCulture, CoreHostErrors.InvalidResponseLengthFormat, length))
+        .GetAwaiter().GetResult();
 
     private static void ThrowRemoteError(HostError error)
     {
@@ -90,15 +70,8 @@ internal sealed partial class ProcessCore : IEmulatorCore
 
     private void WaitForHostExit(bool graceful)
     {
-        var process = _process;
-        if (process is null) return;
-        if (graceful && process.WaitForExit(CoreHostConstants.GracefulExitTimeoutMilliseconds)) return;
-        if (!process.HasExited)
-        {
-            try { process.Kill(entireProcessTree: true); }
-            catch (InvalidOperationException) when (process.HasExited) { }
-        }
-        process.WaitForExit();
+        if (_process is { } process)
+            EmulationChildProcessLifetime.WaitForExit(process, graceful, CoreHostConstants.GracefulExitTimeoutMilliseconds);
     }
 
     public void Dispose()

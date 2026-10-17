@@ -99,10 +99,39 @@ public static class EmulationInputMappingFunctions
     }
 
     public static EmulationControllerState ResolveSourceController(string source, IReadOnlyList<EmulationControllerState> controllers, EmulationControllerState fallback)
+        => ResolveSourceController(source, controllers, fallback, fallbackWhenMissing: false);
+
+    public static EmulationControllerState ResolveSourceController(string source, IReadOnlyList<EmulationControllerState> controllers,
+        EmulationControllerState fallback, bool fallbackWhenMissing)
     {
         var deviceId = ParseControllerDeviceId(source);
-        return deviceId is null ? fallback : ResolveController(deviceId, controllers, -1);
+        if (deviceId is null) return fallback;
+        if (!fallbackWhenMissing) return ResolveController(deviceId, controllers, -1);
+        return controllers.FirstOrDefault(controller => string.Equals(controller.DeviceId, deviceId, StringComparison.OrdinalIgnoreCase))
+            ?? fallback;
     }
+
+    internal static short ApplyDeadZone(short value, int percent)
+    {
+        var threshold = short.MaxValue * percent / 100;
+        return Math.Abs((int)value) <= threshold ? (short)0 : value;
+    }
+
+    internal static bool TryRemovePrefix(string? value, string prefix, out string source)
+    {
+        source = string.Empty;
+        if (string.IsNullOrWhiteSpace(value) || !value.StartsWith(prefix, StringComparison.OrdinalIgnoreCase)) return false;
+        source = value[prefix.Length..];
+        return source.Length > 0;
+    }
+
+    internal static IReadOnlyDictionary<string, bool> PhysicalMouse(EmulationPointerState pointer) => new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase)
+    {
+        ["Left"] = pointer.Left, ["Right"] = pointer.Right, ["Middle"] = pointer.Middle,
+        ["XButton1"] = pointer.ExtendedButton1, ["XButton2"] = pointer.ExtendedButton2,
+        ["WheelUp"] = pointer.Wheel > 0, ["WheelDown"] = pointer.Wheel < 0,
+        ["WheelLeft"] = pointer.HorizontalWheel < 0, ["WheelRight"] = pointer.HorizontalWheel > 0
+    };
 
     public static float ControllerSourceValue(string source, EmulationControllerState controller)
     {
@@ -196,13 +225,7 @@ public static class EmulationInputMappingFunctions
 
     public static float InputSourcePressure(string source, EmulationControllerState controller, EmulationInputSnapshot snapshot) => SourcePressure(
         source.Contains(':') ? source : EmulationInputMappingConstants.KeyboardPrefix + source, controller, snapshot.Controllers, snapshot.Keys,
-        new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase)
-        {
-            ["Left"] = snapshot.Pointer.Left, ["Right"] = snapshot.Pointer.Right, ["Middle"] = snapshot.Pointer.Middle,
-            ["XButton1"] = snapshot.Pointer.ExtendedButton1, ["XButton2"] = snapshot.Pointer.ExtendedButton2,
-            ["WheelUp"] = snapshot.Pointer.Wheel > 0, ["WheelDown"] = snapshot.Pointer.Wheel < 0,
-            ["WheelLeft"] = snapshot.Pointer.HorizontalWheel < 0, ["WheelRight"] = snapshot.Pointer.HorizontalWheel > 0
-        });
+        PhysicalMouse(snapshot.Pointer));
 
     public static float InputSourcePressure(string source, EmulationControllerState controller, IReadOnlyList<EmulationControllerState> physical,
         IReadOnlySet<EmulationKey> keys, IReadOnlyDictionary<string, bool> mouse) => SourcePressure(source, controller, physical, keys, mouse);

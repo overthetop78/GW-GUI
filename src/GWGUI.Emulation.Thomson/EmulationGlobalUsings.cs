@@ -19,3 +19,7 @@ global using GWGUI.Emulation.Thomson.Common.Machines.Common.Dictionaries;
 global using GWGUI.Emulation.Thomson.Common.Exceptions;
 global using GWGUI.Emulation.Thomson.Common.Enums;
 global using GWGUI.Emulation.Thomson.Common.Functions;
+
+global using FrameTimer = GWGUI.Emulation.Services.EmulationFrameTimer;
+
+global using ExternalCoreExports = GWGUI.Emulation.Contracts.ExternalCoreExports;

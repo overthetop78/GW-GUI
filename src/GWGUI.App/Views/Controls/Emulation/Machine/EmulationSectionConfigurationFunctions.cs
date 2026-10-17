@@ -143,25 +143,11 @@ public sealed partial class EmulationSection
         _selectorRendering = true;
         try
         {
-            _brandPanel.Children.Clear();
-            _machinePanel.Children.Clear();
             var configuredModules = _modules.Where(module => _configurations.Any(item => item.Module.Id == module.Id)).ToArray();
-            foreach (var module in configuredModules)
-            {
-                if (CreateBrandButton(module, LocExtension.GetForModule(module, module.DisplayResourceKey)) is { } button)
-                    _brandPanel.Children.Add(button);
-            }
-            _machinePanel.Visibility = _selectedModule is null ? Visibility.Collapsed : Visibility.Visible;
-            if (_selectedModule is not null)
-            {
-                var machineIds = _configurations.Where(item => item.Module.Id == _selectedModule.Id).Select(item => item.Configuration.MachineId).Distinct(StringComparer.Ordinal).ToHashSet(StringComparer.Ordinal);
-                foreach (var definition in _selectedModule.Machines.Where(item => machineIds.Contains(item.Id)))
-                {
-                    if (CreateMachineButton(_selectedModule, definition, LocExtension.GetForModule(_selectedModule, definition.DisplayResourceKey))
-                        is { } button)
-                        _machinePanel.Children.Add(button);
-                }
-            }
+            var machineIds = _configurations.Where(item => item.Module.Id == _selectedModule?.Id)
+                .Select(item => item.Configuration.MachineId).ToHashSet(StringComparer.Ordinal);
+            _selectorRows.SetItems(configuredModules, _selectedModule,
+                _selectedModule?.Machines.Where(machine => machineIds.Contains(machine.Id)).ToArray() ?? [], _selectedMachineId);
             RefreshOpenButtonVisibility();
         }
         finally

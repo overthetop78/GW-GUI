@@ -22,7 +22,7 @@ internal static class MediaAuditValidatorSelfTests
     private static VolumeAudit Volume(long capacity, long freeBytes = 0, long start = 0, long? length = null, IReadOnlyList<FileEntryAudit>? entries = null, string fileSystemId = "self-test-fs")
     {
         entries ??= [];
-        var flattened = Flatten(entries).ToArray();
+        var flattened = GWGUI.MediaAudit.MediaAuditTree.Flatten(entries, entry => entry.Children).ToArray();
         var files = flattened.Where(entry => entry.Kind == FileSystemEntryKind.File.ToString()).ToArray();
         return new VolumeAudit(
             start, length ?? capacity, "self-test", null, null, null, null, null, null, "TEST",
@@ -41,15 +41,6 @@ internal static class MediaAuditValidatorSelfTests
         size, size, null, null, null, string.Empty, 0, 1, true, true, false, null, null,
         [], [], new Dictionary<string, string>(), "HASH", null, null, null,
         contentLength ?? size, true, []);
-
-    private static IEnumerable<FileEntryAudit> Flatten(IEnumerable<FileEntryAudit> entries)
-    {
-        foreach (var entry in entries)
-        {
-            yield return entry;
-            foreach (var child in Flatten(entry.Children)) yield return child;
-        }
-    }
 
     private static void ExpectPassed(ValidationAudit result, string message)
     {

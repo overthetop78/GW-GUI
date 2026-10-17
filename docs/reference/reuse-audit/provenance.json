@@ -1,0 +1,152 @@
+[
+  {
+    "path": "src/GWGUI.App/Views/Controls/Emulation/Options/EmulationVectorSettingsBlock.cs",
+    "origin": "41038682f6dcc6f1747fe67862a9533f90906276\t2026-09-04\tfeat: improve video effects, controllers, and localization",
+    "periodChange": "M\tsrc/GWGUI.App/Views/Controls/Emulation/Options/EmulationVectorSettingsBlock.cs"
+  },
+  {
+    "path": "src/GWGUI.App/Views/Controls/Emulation/Options/EmulationPlasmaSettingsBlock.cs",
+    "origin": "41038682f6dcc6f1747fe67862a9533f90906276\t2026-09-04\tfeat: improve video effects, controllers, and localization",
+    "periodChange": "M\tsrc/GWGUI.App/Views/Controls/Emulation/Options/EmulationPlasmaSettingsBlock.cs"
+  },
+  {
+    "path": "src/GWGUI.App/Views/Controls/Emulation/Options/EmulationDotMatrixSettingsBlock.cs",
+    "origin": "41038682f6dcc6f1747fe67862a9533f90906276\t2026-09-04\tfeat: improve video effects, controllers, and localization",
+    "periodChange": "M\tsrc/GWGUI.App/Views/Controls/Emulation/Options/EmulationDotMatrixSettingsBlock.cs"
+  },
+  {
+    "path": "src/GWGUI.App/Views/Controls/Emulation/Options/EmulationVfdSettingsBlock.cs",
+    "origin": "41038682f6dcc6f1747fe67862a9533f90906276\t2026-09-04\tfeat: improve video effects, controllers, and localization",
+    "periodChange": "M\tsrc/GWGUI.App/Views/Controls/Emulation/Options/EmulationVfdSettingsBlock.cs"
+  },
+  {
+    "path": "src/GWGUI.Emulation.Nec/Emulators/NP2Kai/Functions/ContentFunctions.cs",
+    "origin": "2a9191065af9378c06ac39dc30093cafa4d4958b\t2026-10-07\tAdd NEC machines, emulator cores and transparent machine images",
+    "periodChange": "A\tsrc/GWGUI.Emulation.Nec/Emulators/NP2Kai/Functions/ContentFunctions.cs"
+  },
+  {
+    "path": "src/GWGUI.Emulation.Nec/Emulators/NekoProjectII/Functions/ContentFunctions.cs",
+    "origin": "2a9191065af9378c06ac39dc30093cafa4d4958b\t2026-10-07\tAdd NEC machines, emulator cores and transparent machine images",
+    "periodChange": "A\tsrc/GWGUI.Emulation.Nec/Emulators/NekoProjectII/Functions/ContentFunctions.cs"
+  },
+  {
+    "path": "src/GWGUI.Emulation.Nec/Emulators/BeetlePcfx/Services/ExternalHostCallbacks.Input.cs",
+    "origin": "cf174afc673115f80d13fb1302115724d0b6ef49\t2026-09-16\tRefactor large sources and filesystem type names",
+    "periodChange": "A\tsrc/GWGUI.Emulation.Nec/Emulators/BeetlePcfx/Services/ExternalHostCallbacks.Input.cs"
+  },
+  {
+    "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.Input.cs",
+    "origin": "cf174afc673115f80d13fb1302115724d0b6ef49\t2026-09-16\tRefactor large sources and filesystem type names",
+    "periodChange": "A\tsrc/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.Input.cs"
+  },
+  {
+    "path": "src/GWGUI.Emulation.Snk/Emulators/Mame/Functions/MediaRuntimeFunctions.cs",
+    "origin": "a1f460542957c7ce1720ca88d44f3efc719936ef\t2026-10-11\tAdd SNK emulation module and clean completed task documents",
+    "periodChange": "A\tsrc/GWGUI.Emulation.Snk/Emulators/Mame/Functions/MediaRuntimeFunctions.cs"
+  },
+  {
+    "path": "src/GWGUI.Emulation.Snk/Emulators/Mame2016/Functions/MediaRuntimeFunctions.cs",
+    "origin": "a1f460542957c7ce1720ca88d44f3efc719936ef\t2026-10-11\tAdd SNK emulation module and clean completed task documents",
+    "periodChange": "A\tsrc/GWGUI.Emulation.Snk/Emulators/Mame2016/Functions/MediaRuntimeFunctions.cs"
+  },
+  {
+    "path": "src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/ConfigurationFunctions.cs",
+    "origin": "ac7292d86fb15262c228f240cd42f99b96e61a97\t2026-09-25\tRéorganiser les modules d'émulation par domaines et familles",
+    "periodChange": "A\tsrc/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/ConfigurationFunctions.cs"
+  },
+  {
+    "path": "src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/StorageFunctions.Configuration.cs",
+    "origin": "ac7292d86fb15262c228f240cd42f99b96e61a97\t2026-09-25\tRéorganiser les modules d'émulation par domaines et familles",
+    "periodChange": "A\tsrc/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/StorageFunctions.Configuration.cs"
+  },
+  {
+    "path": "src/GWGUI.MediaEngine/Contracts/Explorer/FileSystemEntry.cs",
+    "origin": "755549b0e31abe663164bbba11352961e7083518\t2026-08-12\tSplit and harden filesystem models",
+    "periodChange": "M\tsrc/GWGUI.MediaEngine/Contracts/Explorer/FileSystemEntry.cs"
+  },
+  {
+    "path": "src/GWGUI.MediaFileSystems/Contracts/FileSystemEntry.cs",
+    "origin": "755549b0e31abe663164bbba11352961e7083518\t2026-08-12\tSplit and harden filesystem models",
+    "periodChange": "M\tsrc/GWGUI.MediaFileSystems/Contracts/FileSystemEntry.cs"
+  },
+  {
+    "path": "src/GWGUI.MediaEngine/Images/Formats/HardDisk/Chd/ChdHardDiskReader.cs",
+    "origin": "8ea7337600fb7c2e72cd3863a45c95f9774237a7\t2026-09-11\tComplete media support foundations",
+    "periodChange": "M\tsrc/GWGUI.MediaEngine/Images/Formats/HardDisk/Chd/ChdHardDiskReader.cs"
+  },
+  {
+    "path": "src/GWGUI.MediaEngine/Images/Formats/HardDisk/Vdi/VdiReader.cs",
+    "origin": "8ea7337600fb7c2e72cd3863a45c95f9774237a7\t2026-09-11\tComplete media support foundations",
+    "periodChange": "M\tsrc/GWGUI.MediaEngine/Images/Formats/HardDisk/Vdi/VdiReader.cs"
+  },
+  {
+    "path": "src/GWGUI.MediaEngine/Images/Formats/Tape/Tzx/TzxWriter.cs",
+    "origin": "8ea7337600fb7c2e72cd3863a45c95f9774237a7\t2026-09-11\tComplete media support foundations",
+    "periodChange": "M\tsrc/GWGUI.MediaEngine/Images/Formats/Tape/Tzx/TzxWriter.cs"
+  },
+  {
+    "path": "src/GWGUI.MediaEngine/Images/Formats/Tape/Uef/UefWriter.cs",
+    "origin": "8ea7337600fb7c2e72cd3863a45c95f9774237a7\t2026-09-11\tComplete media support foundations",
+    "periodChange": "M\tsrc/GWGUI.MediaEngine/Images/Formats/Tape/Uef/UefWriter.cs"
+  },
+  {
+    "path": "src/GWGUI.Emulation.Sharp/Emulators/Px68k/Functions/SettingsFunctions.cs",
+    "pathIntroduction": "4d2df31ae339691ece6318aa15f3c2c91e33a841\t2026-10-13\tfix(sharp): separate adapter capabilities and semantic resources",
+    "note": "Exact current path creation; older algorithm can predate move or rename"
+  },
+  {
+    "path": "src/GWGUI.Emulation.Sharp/Emulators/X1/Functions/SettingsFunctions.cs",
+    "pathIntroduction": "4d2df31ae339691ece6318aa15f3c2c91e33a841\t2026-10-13\tfix(sharp): separate adapter capabilities and semantic resources",
+    "note": "Exact current path creation; older algorithm can predate move or rename"
+  },
+  {
+    "path": "src/GWGUI.Emulation.Sinclair/Emulators/EightyOne/Functions/SettingsFunctions.cs",
+    "pathIntroduction": "033f73ce2e8ed8166b01bb8e11f3a859606e8f02\t2026-10-13\tfix(sinclair): isolate native adapters and share semantic settings",
+    "note": "Exact current path creation; older algorithm can predate move or rename"
+  },
+  {
+    "path": "src/GWGUI.Emulation.Sinclair/Emulators/Fuse/Functions/SettingsFunctions.cs",
+    "pathIntroduction": "033f73ce2e8ed8166b01bb8e11f3a859606e8f02\t2026-10-13\tfix(sinclair): isolate native adapters and share semantic settings",
+    "note": "Exact current path creation; older algorithm can predate move or rename"
+  },
+  {
+    "path": "src/GWGUI.Emulation.Nec/Emulators/BeetlePcfx/Services/ExternalHostCallbacks.Input.cs",
+    "pathIntroduction": "62fe7071b45235364d74a93f0752ba961174fef2\t2026-09-28\tFlatten console emulator adapter layout",
+    "note": "Exact current path creation; older algorithm can predate move or rename"
+  },
+  {
+    "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.Input.cs",
+    "pathIntroduction": "2a9191065af9378c06ac39dc30093cafa4d4958b\t2026-10-07\tAdd NEC machines, emulator cores and transparent machine images",
+    "note": "Exact current path creation; older algorithm can predate move or rename"
+  },
+  {
+    "path": "src/GWGUI.App/Functions/Views/Emulation/Storage/StorageConfigurationFieldFunctions.cs",
+    "pathIntroduction": "bdff8d10c0190db30a55aabff8cb7bb3e02dc41a\t2026-10-13\tFix shared input bindings and Acorn device settings",
+    "note": "Exact current path creation; older algorithm can predate move or rename"
+  },
+  {
+    "path": "src/GWGUI.App/Views/Controls/Emulation/Options/ModuleSettings/EmulationModuleSettingsSection.Fields.cs",
+    "pathIntroduction": "cf174afc673115f80d13fb1302115724d0b6ef49\t2026-09-16\tRefactor large sources and filesystem type names",
+    "note": "Exact current path creation; older algorithm can predate move or rename"
+  },
+  {
+    "path": "src/GWGUI.App/Views/Controls/Emulation/Options/ModuleSettings/EmulationModuleSettingsSection.Slider.cs",
+    "pathIntroduction": "e07e6b99e76a4be4cc764aa581c6e972d5c2d6ca\t2026-10-09\tComplete Sony emulator integration and configuration",
+    "note": "Exact current path creation; older algorithm can predate move or rename"
+  },
+  {
+    "path": "src/GWGUI.App/Views/Dialogs/Emulation/Storage/ManagedStorageConfigurationDialog.cs",
+    "pathIntroduction": "329fdaec46cd25a1b263ab16954875ebed08ff0a\t2026-10-17\tFix Sony settings, storage and shared stick assignments",
+    "note": "Exact current path creation; older algorithm can predate move or rename"
+  },
+  {
+    "path": "src/GWGUI.Emulation.Sony/Emulators/Pcee2/Functions/NetworkFunctions.cs",
+    "pathIntroduction": "403ce5836989f02be07b4f4ee8af2c6c7de74a1d\t2026-10-17\tComplete Sony peripheral catalogue and improve emulation settings",
+    "note": "Exact current path creation; older algorithm can predate move or rename"
+  },
+  {
+    "path": "src/GWGUI.Emulation.Sony/Emulators/Pcee2/Functions/MemoryCardFunctions.cs",
+    "pathIntroduction": "329fdaec46cd25a1b263ab16954875ebed08ff0a\t2026-10-17\tFix Sony settings, storage and shared stick assignments",
+    "note": "Exact current path creation; older algorithm can predate move or rename"
+  }
+]

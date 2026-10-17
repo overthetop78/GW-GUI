@@ -56,10 +56,9 @@ internal static class CoreExceptions
     internal static string InvalidStateSize(nuint size) => Text("Emulation.Error.Core.InvalidStateSize", size);
     internal static string UnknownHostCommand(byte command) => Text("Emulation.Error.Core.UnknownHostCommand", command);
 
-    private static string Text(string key, params object[] arguments)
+    internal static string Text(string key, params object[] arguments)
     {
         if (!Localization.TryGetString(key, CultureInfo.CurrentUICulture, out var value)) value = key;
         return arguments.Length == 0 ? value : string.Format(CultureInfo.CurrentCulture, value, arguments);
     }
 }
-

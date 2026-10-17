@@ -20,3 +20,7 @@ global using GWGUI.Emulation.Wenquxing.Common.Exceptions;
 global using GWGUI.Emulation.Wenquxing.Common.Functions;
 global using KeyboardDictionary = GWGUI.Emulation.Wenquxing.Common.Machines.ElectronicDictionaries.Dictionaries.KeyboardDictionary;
 global using GWGUI.Emulation.Wenquxing.Common.Machines.Common.Dictionaries;
+
+global using FrameTimer = GWGUI.Emulation.Services.EmulationFrameTimer;
+
+global using ExternalCoreExports = GWGUI.Emulation.Contracts.ExternalCoreExports;

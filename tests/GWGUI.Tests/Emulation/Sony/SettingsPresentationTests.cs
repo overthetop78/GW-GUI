@@ -5,6 +5,7 @@ using GWGUI.Emulation.Constants;
 using GWGUI.Emulation.Enums;
 using GWGUI.Emulation.Sony.Common.Machines.Common.Constants;
 using GWGUI.Emulation.Sony.Common.Machines.Common.Contracts;
+using GWGUI.Emulation.Sony.Common.Machines.Common.Enums;
 using GWGUI.Emulation.Sony.Common.Machines.Common.Functions;
 using GWGUI.Emulation.Sony.Modules;
 

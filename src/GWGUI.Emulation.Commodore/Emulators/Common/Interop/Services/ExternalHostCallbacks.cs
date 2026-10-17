@@ -15,7 +15,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
     private readonly string? _pathOption;
     private readonly Dictionary<string, string> _options = new(StringComparer.Ordinal);
     private readonly HashSet<string> _configuredOptionKeys = new(StringComparer.Ordinal);
-    private readonly Dictionary<string, nint> _nativeStrings = new(StringComparer.Ordinal);
+    private readonly Dictionary<string, ExternalCoreUtf8String> _nativeStrings = new(StringComparer.Ordinal);
     private readonly Stopwatch _clock = Stopwatch.StartNew();
     private EmulationPixelFormat _pixelFormat = EmulationPixelFormat.Rgb565;
     private float _aspectRatio;
@@ -152,18 +152,27 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
 
     public void Dispose()
     {
-        if (_disposed)
-            return;
-        foreach (var pointer in _nativeStrings.Values)
-            Marshal.FreeCoTaskMem(pointer);
-        _nativeStrings.Clear();
-        lock (_inputGate)
+        if (_disposed) return;
+        Exception? failure = null;
+        try
         {
-            _activeKeyboardToggles.Clear();
-            _previousKeyboardToggleSources.Clear();
-            _previousKeys = new HashSet<EmulationKey>();
+            foreach (var text in _nativeStrings.Values)
+            {
+                try { text.Dispose(); }
+                catch (Exception error) { failure ??= error; }
+            }
         }
-
-        _disposed = true;
+        finally
+        {
+            _nativeStrings.Clear();
+            lock (_inputGate)
+            {
+                _activeKeyboardToggles.Clear();
+                _previousKeyboardToggleSources.Clear();
+                _previousKeys = new HashSet<EmulationKey>();
+            }
+            _disposed = true;
+        }
+        if (failure is not null) System.Runtime.ExceptionServices.ExceptionDispatchInfo.Capture(failure).Throw();
     }
 }

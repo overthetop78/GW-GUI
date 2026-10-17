@@ -13,6 +13,25 @@ namespace GWGUI.Emulation.Nec.Emulators.Common.Interop.Functions;
 
 internal static class CoreStorageSettingsFunctions
 {
+    internal static IReadOnlyList<EmulationMediaDevice> ComputerDevices(Model model, int firstDriveIndex, int hardDiskCount,
+        IReadOnlyList<string> floppyExtensions, IReadOnlyList<string> hardDiskExtensions,
+        string floppyLabelPrefix, string hardDiskLabelPrefix)
+    {
+        var devices = Enumerable.Range(firstDriveIndex, model.MaximumFloppyDriveCount)
+            .Select(index => new EmulationMediaDevice(new EmulationMediaSlot(
+                EmulationMediaCategory.FloppyDrive, index), EmulationMediaType.Floppy,
+                floppyExtensions, RequiresMachineRecreation: true,
+                DisplayLabel: floppyLabelPrefix + index, IsPermanent: true)).ToList();
+        if (model.SupportsHardDrives)
+            devices.AddRange(Enumerable.Range(firstDriveIndex, hardDiskCount)
+                .Select(index => new EmulationMediaDevice(new EmulationMediaSlot(
+                    EmulationMediaCategory.HardDisk, index), EmulationMediaType.HardDisk,
+                    hardDiskExtensions, IsRemovable: false,
+                    RequiresMachineRecreation: true,
+                    DisplayLabel: hardDiskLabelPrefix + index, IsPermanent: true)));
+        return devices;
+    }
+
     internal static EmulationStorageSettings Describe(MachineConfiguration configuration)
     {
         var model = ModelCatalog.Get(configuration.Model);

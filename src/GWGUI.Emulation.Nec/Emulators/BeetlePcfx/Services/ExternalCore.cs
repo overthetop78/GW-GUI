@@ -1,3 +1,5 @@
+using ExternalHostCallbacksConstants = GWGUI.Emulation.Nec.Emulators.Common.Interop.Constants.ExternalHostCallbacksConstants;
+using ExternalHostCallbacks = GWGUI.Emulation.Nec.Emulators.Common.Interop.Services.ExternalHostCallbacks;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
@@ -80,7 +82,7 @@ internal sealed class ExternalCore : IEmulatorCore
         var isolatedCorePath = Path.Combine(isolatedCoreDirectory, ExternalCoreConstants.LibraryName);
         File.Copy(sourceCorePath, isolatedCorePath, true);
         var contentPath = PrepareContentPath(media, contentDirectory);
-        _host = new ExternalHostCallbacks(systemDirectory, contentDirectory, saveDirectory, configuration.Options ?? new Dictionary<string, string>());
+        _host = new ExternalHostCallbacks(systemDirectory, contentDirectory, saveDirectory, configuration.Options ?? new Dictionary<string, string>(), "Emulation.Error.BeetlePcfx");
 
         try
         {
@@ -287,5 +289,3 @@ internal sealed class ExternalCore : IEmulatorCore
         }
     }
 }
-
-

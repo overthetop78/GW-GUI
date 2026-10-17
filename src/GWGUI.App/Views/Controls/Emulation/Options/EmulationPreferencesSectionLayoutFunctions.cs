@@ -35,22 +35,12 @@ public sealed partial class EmulationPreferencesSection
 
     private Grid BuildConfigurationsTab()
     {
-        _configurationBrandLabel.Text = LocExtension.Get("Emulation.Configuration.Brand");
-        _configurationBrand.Orientation = Orientation.Horizontal;
-
-        var filter = new Grid { Margin = new Thickness(0, 0, 0, 12) };
-        filter.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
-        filter.ColumnDefinitions.Add(new ColumnDefinition());
-        _configurationBrandLabel.VerticalAlignment = VerticalAlignment.Center;
-        _configurationBrandLabel.Margin = new Thickness(0, 0, 12, 0);
-        filter.Children.Add(_configurationBrandLabel);
-        Grid.SetColumn(_configurationBrand, 1);
-        filter.Children.Add(_configurationBrand);
+        _configurationSelector.Margin = new Thickness(0, 0, 0, 12);
 
         var content = new Grid { Margin = new Thickness(12) };
         content.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
         content.RowDefinitions.Add(new RowDefinition());
-        content.Children.Add(filter);
+        content.Children.Add(_configurationSelector);
         Grid.SetRow(_configurationTable, 1);
         content.Children.Add(_configurationTable);
         return content;
@@ -95,4 +85,3 @@ public sealed partial class EmulationPreferencesSection
         return tab;
     }
 }
-

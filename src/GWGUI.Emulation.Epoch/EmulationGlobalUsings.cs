@@ -21,3 +21,12 @@ global using GWGUI.Emulation.Epoch.Common.Services;
 global using GWGUI.Emulation.Epoch.Common.Enums;
 global using GWGUI.Emulation.Epoch.Common.Exceptions;
 global using GWGUI.Emulation.Epoch.Common.Functions;
+
+global using FrameTimer = GWGUI.Emulation.Services.EmulationFrameTimer;
+
+global using LoadedContent = GWGUI.Emulation.Services.ExternalCoreLoadedContent;
+
+global using ExternalCoreExports = GWGUI.Emulation.Contracts.ExternalCoreExports;
+
+global using VideoFunctions = GWGUI.Emulation.Functions.EmulationVideoFunctions;
+global using NativeAudioFunctions = GWGUI.Emulation.Functions.EmulationAudioFunctions;

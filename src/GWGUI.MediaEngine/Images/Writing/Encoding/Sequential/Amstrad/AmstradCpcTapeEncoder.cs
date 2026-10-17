@@ -157,20 +157,13 @@ public sealed class AmstradCpcTapeEncoder : ISequentialMediaEncoder
         BinaryPrimitives.WriteUInt16LittleEndian(payload.AsSpan(10), AmstradCpcTapeConstants.PilotPulseCount);
         payload[12] = AmstradCpcTapeConstants.UsedBitsInLastByte;
         BinaryPrimitives.WriteUInt16LittleEndian(payload.AsSpan(13), AmstradCpcTapeConstants.PauseMilliseconds);
-        WriteUInt24(payload.AsSpan(15), data.Length);
+        GWGUI.MediaEngine.Functions.BitPrimitives.WriteUInt24LittleEndian(payload.AsSpan(15), data.Length);
         data.CopyTo(payload.AsSpan(18));
         return payload;
     }
 
     private static void AddPulses(List<short> samples, ref short level, ushort tStates, int count, int sampleRate)
-    {
-        var sampleCount = Math.Max(1, (int)Math.Round(tStates * sampleRate / (double)TzxConstants.TStatesPerSecond));
-        for (var pulse = 0; pulse < count; pulse++)
-        {
-            for (var sample = 0; sample < sampleCount; sample++) samples.Add(level);
-            level = (short)-level;
-        }
-    }
+    => GWGUI.MediaEngine.Functions.PcmSampleFunctions.AppendPulses(samples, ref level, tStates, count, sampleRate, TzxConstants.TStatesPerSecond);
 
     private static void WriteName(Span<byte> header, string name)
     {
@@ -179,16 +172,7 @@ public sealed class AmstradCpcTapeEncoder : ISequentialMediaEncoder
     }
 
     private static ushort ComputeCrc(ReadOnlySpan<byte> data)
-    {
-        var crc = AmstradCpcTapeConstants.CrcSeed;
-        foreach (var value in data)
-        {
-            crc ^= (ushort)(value << 8);
-            for (var bit = 0; bit < 8; bit++)
-                crc = (ushort)((crc & 0x8000) != 0 ? (crc << 1) ^ AmstradCpcTapeConstants.CrcPolynomial : crc << 1);
-        }
-        return crc;
-    }
+    => GWGUI.MediaEngine.Functions.Crc16Calculator.ComputeSpan(data, AmstradCpcTapeConstants.CrcPolynomial, AmstradCpcTapeConstants.CrcSeed);
 
     private static int ReadSampleRate(IReadOnlyDictionary<string, string> metadata) =>
         metadata.TryGetValue("sampleRate", out var value) && int.TryParse(value, System.Globalization.NumberStyles.None, System.Globalization.CultureInfo.InvariantCulture, out var sampleRate) && sampleRate >= 8000 ? sampleRate : DefaultSampleRate;
@@ -202,11 +186,4 @@ public sealed class AmstradCpcTapeEncoder : ISequentialMediaEncoder
         metadata.TryGetValue(key, out var value) && ushort.TryParse(value, System.Globalization.NumberStyles.None, System.Globalization.CultureInfo.InvariantCulture, out var parsed) ? parsed : defaultValue;
 
     private static bool ReadBoolean(IReadOnlyDictionary<string, string> metadata, string key, bool defaultValue) => metadata.TryGetValue(key, out var value) && bool.TryParse(value, out var parsed) ? parsed : defaultValue;
-
-    private static void WriteUInt24(Span<byte> destination, int value)
-    {
-        destination[0] = (byte)value;
-        destination[1] = (byte)(value >> 8);
-        destination[2] = (byte)(value >> 16);
-    }
 }

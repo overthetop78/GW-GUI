@@ -31,29 +31,10 @@ internal static class MemoryCardFunctions
         {
             var prefix = "Multitap" + (slot < 5 ? "1" : "2") + "_Slot"
                 + (slot < 5 ? slot : slot - 3).ToString(CultureInfo.InvariantCulture);
-            Set(prefix + "_Enable", active.Contains(slot) && !string.IsNullOrWhiteSpace(CommonCards.SelectedPath(configuration, slot)) ? "true" : "false");
-            Set(prefix + "_Filename", NativeFileName(slot));
+            IniSettingsFunctions.Set(lines, "MemoryCards", prefix + "_Enable", active.Contains(slot) && !string.IsNullOrWhiteSpace(CommonCards.SelectedPath(configuration, slot)) ? "true" : "false");
+            IniSettingsFunctions.Set(lines, "MemoryCards", prefix + "_Filename", NativeFileName(slot));
         }
         return lines;
 
-        void Set(string key, string value)
-        {
-            var start = lines.FindIndex(line => line.Trim().Equals("[MemoryCards]", StringComparison.OrdinalIgnoreCase));
-            if (start < 0)
-            {
-                lines.Add("[MemoryCards]");
-                start = lines.Count - 1;
-            }
-            var end = lines.FindIndex(start + 1, line => line.TrimStart().StartsWith('['));
-            if (end < 0) end = lines.Count;
-            for (var index = start + 1; index < end; index++)
-            {
-                var separator = lines[index].IndexOf('=');
-                if (separator < 0 || !lines[index][..separator].Trim().Equals(key, StringComparison.OrdinalIgnoreCase)) continue;
-                lines[index] = key + " = " + value;
-                return;
-            }
-            lines.Insert(end, key + " = " + value);
-        }
     }
 }

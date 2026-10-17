@@ -15,7 +15,6 @@ namespace GWGUI.App.Views.Controls.Emulation.Machine;
 
 public sealed partial class EmulationSection
 {
-    private const double SelectorRowHeight = 56;
     private const double ExpandedSelectorFrameHeight = 124;
 
     private UIElement BuildContent()
@@ -24,10 +23,6 @@ public sealed partial class EmulationSection
         root.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
         root.RowDefinitions.Add(new RowDefinition());
         var selector = new DockPanel();
-        ConfigureSelectorLabel(_brandLabel, ControlVisualConstants.ConfigurationBrandResource);
-        ConfigureSelectorLabel(_machineLabel, ControlVisualConstants.ConfigurationMachineResource);
-        ConfigureSelectorPanel(_brandPanel);
-        ConfigureSelectorPanel(_machinePanel);
         _open.Margin = new Thickness(12, 4, 0, 4);
         _open.VerticalAlignment = VerticalAlignment.Stretch;
         _open.Visibility = Visibility.Collapsed;
@@ -39,18 +34,6 @@ public sealed partial class EmulationSection
         ConfigureSelectorCollapsedText();
         DockPanel.SetDock(_selectorCollapsedText, Dock.Left);
         selector.Children.Add(_selectorCollapsedText);
-        _selectorRows.Orientation = Orientation.Vertical;
-        _selectorRows.Height = SelectorRowHeight * 2;
-        var brandRow = new DockPanel { Height = SelectorRowHeight };
-        DockPanel.SetDock(_brandLabel, Dock.Left);
-        brandRow.Children.Add(_brandLabel);
-        brandRow.Children.Add(_brandPanel);
-        _selectorRows.Children.Add(brandRow);
-        var machineRow = new DockPanel { Height = SelectorRowHeight };
-        DockPanel.SetDock(_machineLabel, Dock.Left);
-        machineRow.Children.Add(_machineLabel);
-        machineRow.Children.Add(_machinePanel);
-        _selectorRows.Children.Add(machineRow);
         selector.Children.Add(_selectorRows);
         _selectorFrame.Child = selector;
         _selectorFrame.BorderThickness = new Thickness(1);
@@ -134,49 +117,6 @@ public sealed partial class EmulationSection
         var name = LocExtension.Get(ControlVisualConstants.ConfigurationResource);
         _selectorToggle.ToolTip = name;
         AutomationProperties.SetName(_selectorToggle, name);
-    }
-
-    private static void ConfigureSelectorLabel(TextBlock label, string resourceKey)
-    {
-        label.Text = LocExtension.Get(resourceKey);
-        label.VerticalAlignment = VerticalAlignment.Top;
-        label.Margin = new Thickness(0, 11, 12, 5);
-        label.FontWeight = FontWeights.SemiBold;
-    }
-
-    private static void ConfigureSelectorPanel(WrapPanel panel)
-    {
-        panel.Orientation = Orientation.Horizontal;
-        panel.Margin = new Thickness(0, 2, 0, 2);
-    }
-
-    private Button? CreateBrandButton(IEmulationModule module, string displayName)
-    {
-        var image = EmulationAssetFunctions.Load(module, module.BrandImageResourceName);
-        if (image is null) return null;
-        var button = EmulationSelectorButtonFunctions.Create(displayName, image, ReferenceEquals(_selectedModule, module));
-        button.Click += (_, _) => SelectModule(module);
-        return button;
-    }
-
-    private Button? CreateMachineButton(IEmulationModule module, EmulationMachineDefinition definition, string displayName)
-    {
-        var image = EmulationAssetFunctions.Load(module, definition.ImageResourceName);
-        if (image is null) return null;
-        var button = EmulationSelectorButtonFunctions.Create(displayName, image, ReferenceEquals(_selectedModule, module) && _selectedMachineId == definition.Id);
-        button.Click += (_, _) => SelectMachine(module, definition);
-        button.MouseDoubleClick += (_, args) =>
-        {
-            args.Handled = true;
-            var selected = FindConfiguration(module.Id, definition.Id);
-            if (selected is null) return;
-            _selectedModule = module;
-            _selectedMachineId = definition.Id;
-            _selectedConfigurationId = selected.Configuration.Id;
-            RefreshSelector();
-            OpenSelectedMachine(button, new RoutedEventArgs());
-        };
-        return button;
     }
 
     private static FrameworkElement CreateMachineTabHeader(string title, string description, Func<Task> close)

@@ -300,18 +300,9 @@ internal sealed class ProcessCore : IEmulatorCore
         }
     }
 
-    private async Task<byte[]> ReadResponseAsync()
-    {
-        using var timeout = new CancellationTokenSource(TimeSpan.FromSeconds(30));
-        var header = new byte[sizeof(int)];
-        await _pipe!.ReadExactlyAsync(header, timeout.Token).ConfigureAwait(false);
-        var length = BinaryPrimitives.ReadInt32LittleEndian(header);
-        if (length is < 0 or > EmulationHostProtocolConstants.MaximumBlobLength)
-            throw new InvalidDataException(PpssppExceptions.InvalidResponseLength(length));
-        var response = GC.AllocateUninitializedArray<byte>(length);
-        await _pipe.ReadExactlyAsync(response, timeout.Token).ConfigureAwait(false);
-        return response;
-    }
+    private Task<byte[]> ReadResponseAsync() =>
+        EmulationHostProtocolFunctions.ReadResponseAsync(_pipe!, TimeSpan.FromSeconds(30),
+            CancellationToken.None, length => PpssppExceptions.InvalidResponseLength(length));
 
     private void TerminateProcess()
     {
@@ -346,5 +337,3 @@ internal sealed class ProcessCore : IEmulatorCore
     private BinaryReader Response => _responseReader ?? throw new InvalidOperationException(PpssppExceptions.HostResponseUnavailable());
 
 }
-
-

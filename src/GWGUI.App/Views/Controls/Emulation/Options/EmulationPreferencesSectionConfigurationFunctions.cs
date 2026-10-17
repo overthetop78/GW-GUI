@@ -1,7 +1,5 @@
 using GWGUI.App.Constants.Emulation.Errors;
 using GWGUI.App.Presenters.Common;
-using GWGUI.App.Functions.Views.Emulation.Machine;
-using GWGUI.App.Views.Controls.Emulation.Machine;
 using GWGUI.App.Contracts.Emulation.Configurations;
 using GWGUI.App.Localization.Extensions;
 using GWGUI.App.Presenters.Emulation.Configurations;
@@ -52,7 +50,8 @@ public sealed partial class EmulationPreferencesSection
     private void FilterConfigurationTable()
     {
         var selectedModule = _selectedConfigurationModule;
-        _configurationTable.SetRows(selectedModule is null ? [] : _configurationRows.Where(row => ReferenceEquals(row.Module, selectedModule)).ToArray());
+        _configurationTable.SetRows(selectedModule is null ? [] : _configurationRows.Where(row => row.Module.Id == selectedModule.Id
+            && (_selectedConfigurationMachineId is null || row.Configuration.MachineId == _selectedConfigurationMachineId)).ToArray());
     }
 
     private void RebuildConfigurationBrands()
@@ -60,22 +59,13 @@ public sealed partial class EmulationPreferencesSection
         var configuredModules = _modules.Where(module => _configurationRows.Any(row => row.Module.Id == module.Id)).ToArray();
         _selectedConfigurationModule = configuredModules.FirstOrDefault(module => module.Id == _selectedConfigurationModule?.Id)
             ?? configuredModules.FirstOrDefault();
-        _configurationBrand.Children.Clear();
-        foreach (var module in configuredModules)
-        {
-            var image = EmulationAssetFunctions.Load(module, module.BrandImageResourceName);
-            if (image is null) continue;
-            var button = EmulationSelectorButtonFunctions.Create(
-                LocExtension.GetForModule(module, module.DisplayResourceKey), image, module.Id == _selectedConfigurationModule?.Id);
-            button.Click += (_, _) =>
-            {
-                _selectedConfigurationModule = module;
-                RebuildConfigurationBrands();
-                FilterConfigurationTable();
-            };
-            _configurationBrand.Children.Add(button);
-        }
+        var machineIds = _configurationRows.Where(row => row.Module.Id == _selectedConfigurationModule?.Id)
+            .Select(row => row.Configuration.MachineId).ToHashSet(StringComparer.Ordinal);
+        if (_selectedConfigurationMachineId is not null && !machineIds.Contains(_selectedConfigurationMachineId))
+            _selectedConfigurationMachineId = null;
+        _configurationSelector.SetItems(configuredModules, _selectedConfigurationModule,
+            _selectedConfigurationModule?.Machines.Where(machine => machineIds.Contains(machine.Id)).ToArray() ?? [],
+            _selectedConfigurationMachineId);
     }
 
 }
-

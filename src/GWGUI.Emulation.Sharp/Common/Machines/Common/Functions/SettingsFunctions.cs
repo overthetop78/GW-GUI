@@ -3,6 +3,32 @@ using System.Globalization;
 namespace GWGUI.Emulation.Sharp.Common.Machines.Common.Functions;
 internal static class SettingsDescriptionFunctions
 {
+    internal static IReadOnlyList<CoreOption> NativeOptions(MachineConfiguration? configuration, IReadOnlyList<CoreOption> options,
+        Func<MachineModel, IReadOnlyDictionary<string, string>> defaults)
+    {
+        if (configuration is null) return options;
+        return EmulationCoreOptionFunctions.WithDefaults(options, defaults(configuration.Model), configuration.Options,
+            static option => option.Key, static option => option.DefaultValue,
+            (option, defaultValue, currentValue) => option with
+            {
+                DefaultValue = defaultValue, CurrentValue = currentValue
+            });
+    }
+
+    internal static IReadOnlyList<EmulationSettingsBlock> NativeBlocks(MachineConfiguration configuration, IReadOnlyList<CoreOption> options) =>
+        EmulationCoreOptionFunctions.CreateSettingsBlocks(options, static option => option.IsVisible,
+            static option => option.Category, NativeResource,
+            (option, tab, resource) => Native(configuration, option, tab, resource));
+
+    private static string NativeResource(EmulationMachineTab tab) => tab switch
+                {
+                    EmulationMachineTab.Controllers => SettingsConstants.ResourceNativeControls,
+                    EmulationMachineTab.Audio => SettingsConstants.ResourceNativeAudio,
+                    EmulationMachineTab.Cpu => SettingsConstants.ResourceCpuAcceleration,
+                    EmulationMachineTab.Ram => SettingsConstants.ResourceMemoryMain,
+                    _ => SettingsConstants.ResourceNativeVideo
+                };
+
     internal static IReadOnlyList<EmulationSettingsBlock> Create(MachineConfiguration configuration)
     {
         var blocks = new List<EmulationSettingsBlock>

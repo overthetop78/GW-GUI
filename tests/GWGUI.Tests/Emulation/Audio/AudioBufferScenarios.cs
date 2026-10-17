@@ -46,7 +46,7 @@ internal static class AudioBufferScenarios
     }
     public static void ControlledAudio()
     {
-        var sink = new Sink(); using var audio = new GWGUI.Emulation.Atari.Common.Services.AudioOutputController(sink);
+        using var sink = new Sink(); using var audio = new GWGUI.Emulation.Atari.Common.Services.AudioOutputController(sink);
         short[] samples = [1000,-1000,32766,-32768];
         var chunk = new GWGUI.Emulation.Contracts.AudioChunk(samples,48000,2,1,TimeSpan.Zero);
         audio.Start(48000); audio.SetVolume(.5f); audio.Write(chunk);
@@ -59,17 +59,19 @@ internal static class AudioBufferScenarios
         audio.Pause(); audio.Write(chunk); Assert.Equal(3,sink.Samples.Count); Assert.Equal(1,sink.Stops); Assert.Equal(2,sink.Flushes);
         audio.Resume(); audio.Write(chunk with {SampleRate=44100}); Assert.Equal(new[]{48000,48000,44100},sink.Rates); Assert.Equal(4,sink.Samples.Count);
         audio.Reset(); Assert.Equal(3,sink.Flushes); audio.Stop(); audio.Write(chunk); Assert.Equal(4,sink.Samples.Count);
-        audio.Dispose(); Assert.Equal(1,sink.Disposals);
+        audio.Dispose(); Assert.Equal(0,sink.Disposals);
     }
     public static void OutputRecovery(bool available)
     {
-        var first = new Sink { FailWrite = true }; var second = new Sink(); var created=0;
+        using var first = new Sink { FailWrite = true }; var second = new Sink(); var created=0;
         using var audio = new GWGUI.Emulation.Atari.Common.Services.AudioOutputController(first,()=>{created++;return available?second:throw new IOException("synthetic unavailable output");});
         audio.Start(44100); audio.Write(new(new short[]{12,-34},44100,1,0,TimeSpan.Zero));
-        Assert.Equal(1,first.Disposals); Assert.Equal(1,created); Assert.Equal(available?1:0,second.Samples.Count);
+        Assert.Equal(0,first.Disposals); Assert.Equal(1,created); Assert.Equal(available?1:0,second.Samples.Count);
         if(available) Assert.Equal(new short[]{12,-34},second.Samples[0]);
         audio.ReplaceFactory(()=>second); audio.Write(new(new short[]{56,-78},48000,1,1,TimeSpan.Zero));
         Assert.Equal(new short[]{56,-78},second.Samples[^1]); Assert.Equal(48000,second.Rates[^1]);
+        var disposals=second.Disposals;
+        audio.Dispose(); Assert.Equal(disposals+1,second.Disposals);
     }
     public static void UnavailableOutputIsNotRetriedForEveryChunk()
     {

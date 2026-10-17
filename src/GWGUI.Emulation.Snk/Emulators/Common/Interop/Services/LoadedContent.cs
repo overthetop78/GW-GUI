@@ -1,49 +1,48 @@
-using System.IO;
-using System.Runtime.InteropServices;
+using GWGUI.Emulation.Services;
 
 namespace GWGUI.Emulation.Snk.Emulators.Common.Interop.Services;
 
 internal sealed class LoadedContent : IDisposable
 {
-    private ContentPath? _path;
-    private nint _data;
+    private ExternalCoreLoadedContent? _content;
+    private readonly string _contentFilePath;
     private SessionContentDirectory? _contentDirectory;
 
-    internal LoadedContent(nint gameInfo, ContentPath path, nint data)
+    private LoadedContent(ExternalCoreLoadedContent content, string contentFilePath)
     {
-        GameInfo = gameInfo;
-        _path = path;
-        _data = data;
+        _content = content;
+        _contentFilePath = contentFilePath;
     }
 
-    internal nint GameInfo { get; private set; }
-    internal string? ContentFilePath => _path?.Value;
+    internal nint GameInfo => _content?.GameInfo ?? nint.Zero;
+    internal string? ContentFilePath => _content is null ? null : _contentFilePath;
+
+    internal static LoadedContent Create(string absolutePath, bool needsFullPath, bool useWindowsAnsiPath)
+    {
+        var content = ExternalCoreLoadedContent.Create(absolutePath, needsFullPath, useWindowsAnsiPath);
+        var transferred = false;
+        try
+        {
+            var result = new LoadedContent(content, absolutePath);
+            transferred = true;
+            return result;
+        }
+        finally { if (!transferred) content.Dispose(); }
+    }
 
     internal void OwnContentDirectory(SessionContentDirectory directory)
     {
-        if (GameInfo == 0 || _contentDirectory is not null) throw new InvalidOperationException(nameof(OwnContentDirectory));
+        if (GameInfo == nint.Zero || _contentDirectory is not null) throw new InvalidOperationException(nameof(OwnContentDirectory));
         _contentDirectory = directory;
     }
 
     public void Dispose()
     {
-        var gameInfo = GameInfo;
-        var data = _data;
-        var path = _path;
+        var content = _content;
         var contentDirectory = _contentDirectory;
-        GameInfo = 0;
-        _data = 0;
-        _path = null;
+        _content = null;
         _contentDirectory = null;
-        try { if (gameInfo != 0) Marshal.FreeHGlobal(gameInfo); }
-        finally
-        {
-            try { if (data != 0) Marshal.FreeHGlobal(data); }
-            finally
-            {
-                try { path?.Dispose(); }
-                finally { contentDirectory?.Dispose(); }
-            }
-        }
+        try { content?.Dispose(); }
+        finally { contentDirectory?.Dispose(); }
     }
 }

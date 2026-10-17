@@ -13,23 +13,10 @@ namespace GWGUI.Emulation.Sony.Emulators.Pcsx2.Services;
 
 internal sealed partial class ExternalHostCallbacks
 {
-    private void HandleVideo(nint data, uint width, uint height, nuint pitch)
-    {
-        if (data == nint.Zero || width == ExternalCoreInteropConstants.EmptyFrameDimension
-            || height == ExternalCoreInteropConstants.EmptyFrameDimension) return;
-        if (data == HardwareRenderConstants.HardwareFramebuffer)
-        {
-            if (!HardwareRender.TryReadFramebuffer(checked((int)width), checked((int)height), out var frame)) return;
-            LatestVideoFrame = new VideoFrame(frame, checked((int)width), checked((int)height),
-                checked((int)width * HardwareRenderConstants.PixelByteCount), EmulationPixelFormat.Xrgb8888,
-                _aspectRatio > 0 ? _aspectRatio : width / (float)height, ++_videoSequence, _clock.Elapsed);
-            return;
-        }
-        var byteCount = checked((int)(pitch * height));
-        var pixels = new byte[byteCount];
-        Marshal.Copy(data, pixels, BufferConstants.FirstBufferIndex, byteCount);
-        LatestVideoFrame = new VideoFrame(pixels, checked((int)width), checked((int)height), checked((int)pitch), _pixelFormat, _aspectRatio > 0 ? _aspectRatio : width / (float)height, ++_videoSequence, _clock.Elapsed);
-    }
+    private void HandleVideo(nint data, uint width, uint height, nuint pitch) =>
+        LatestVideoFrame = GWGUI.Emulation.Sony.Emulators.Common.Interop.Functions.CoreVideoFunctions.Read(
+            data, width, height, pitch, HardwareRender, _pixelFormat, _aspectRatio,
+            ref _videoSequence, _clock.Elapsed) ?? LatestVideoFrame;
 
     internal void ApplyInitialAvInfo(ExternalCoreApi.SystemAvInfo info)
     {
@@ -110,6 +97,3 @@ internal sealed partial class ExternalHostCallbacks
     }
 
 }
-
-
-

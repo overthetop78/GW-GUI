@@ -24,3 +24,12 @@ global using GWGUI.Emulation.Acorn.Common.Dictionaries;
 global using GWGUI.Emulation.Acorn.Common.Interfaces;
 global using GWGUI.Emulation.Acorn.Common.Exceptions;
 global using GWGUI.Emulation.Acorn.Common.Functions;
+
+global using FrameTimer = GWGUI.Emulation.Services.EmulationFrameTimer;
+
+global using LoadedContent = GWGUI.Emulation.Services.ExternalCoreLoadedContent;
+
+global using ExternalCoreExports = GWGUI.Emulation.Contracts.ExternalCoreExports;
+
+global using VideoFunctions = GWGUI.Emulation.Functions.EmulationVideoFunctions;
+global using NativeAudioFunctions = GWGUI.Emulation.Functions.EmulationAudioFunctions;

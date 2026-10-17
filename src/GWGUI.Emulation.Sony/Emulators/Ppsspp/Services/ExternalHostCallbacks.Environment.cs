@@ -139,57 +139,11 @@ internal sealed partial class ExternalHostCallbacks
         }
     }
 
-    private void RegisterLegacyOptions(nint data)
-    {
-        var size = Marshal.SizeOf<ExternalCoreApi.Variable>();
-        var catalog = new List<CoreOption>();
-        for (var current = data; current != 0; current += size)
-        {
-            var variable = Marshal.PtrToStructure<ExternalCoreApi.Variable>(current);
-            if (variable.Key == 0) break;
-            var key = Marshal.PtrToStringUTF8(variable.Key)!;
-            var definition = Marshal.PtrToStringUTF8(variable.Value);
-            var parts = definition?.Split(';', 2) ?? [];
-            var name = parts.ElementAtOrDefault(0)?.Trim() ?? key;
-            var values = parts.ElementAtOrDefault(1)?.Trim().Split('|', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries).Select(value => new CoreOptionValue(value, value)).ToArray() ?? [];
-            var defaultValue = values.FirstOrDefault()?.Value ?? string.Empty;
-            if (!_options.ContainsKey(key) && defaultValue.Length > 0) _options[key] = defaultValue;
-            catalog.Add(new CoreOption(key, name, null, null, defaultValue, defaultValue, values, !_optionVisibility.TryGetValue(key, out var visible) || visible));
-        }
-        OptionCatalog = CoreOptionMetadataFunctions.WithCurrentValues(catalog, _options);
-    }
+    private void RegisterLegacyOptions(nint data) => OptionCatalog = CoreOptionMetadataFunctions.ReadLegacy(data, _options, _optionVisibility);
 
     private void RegisterVersionTwoOptions(nint options)
     {
-        if (options == 0) return;
-        var definitions = Marshal.ReadIntPtr(options, IntPtr.Size);
-        var definitionSize = (CoreOptionPointerFieldsBeforeValues + MaximumCoreOptionValues * CoreOptionValueFieldCount + CoreOptionTerminatorFieldCount) * IntPtr.Size;
-        var valuesOffset = CoreOptionPointerFieldsBeforeValues * IntPtr.Size;
-        var defaultOffset = valuesOffset + MaximumCoreOptionValues * CoreOptionValueFieldCount * IntPtr.Size;
-        var catalog = new List<CoreOption>();
-
-        for (var optionIndex = 0; optionIndex < MaximumCoreOptionDefinitions; optionIndex++)
-        {
-            var definition = definitions + optionIndex * definitionSize;
-            var keyPointer = Marshal.ReadIntPtr(definition);
-            if (keyPointer == 0) break;
-            var key = Marshal.PtrToStringUTF8(keyPointer)!;
-            var name = StringAt(definition, IntPtr.Size) ?? key;
-            var description = StringAt(definition, CoreOptionDescriptionPointerIndex * IntPtr.Size);
-            var category = StringAt(definition, CoreOptionCategoryPointerIndex * IntPtr.Size);
-            var defaultValue = StringAt(definition, defaultOffset) ?? string.Empty;
-            var values = new List<CoreOptionValue>();
-            for (var valueIndex = 0; valueIndex < MaximumCoreOptionValues; valueIndex++)
-            {
-                var valueOffset = valuesOffset + valueIndex * CoreOptionValueFieldCount * IntPtr.Size;
-                var value = StringAt(definition, valueOffset);
-                if (value is null) break;
-                values.Add(new CoreOptionValue(value, StringAt(definition, valueOffset + IntPtr.Size) ?? value));
-            }
-            catalog.Add(new CoreOption(key, name, description, category, defaultValue, defaultValue, values, !_optionVisibility.TryGetValue(key, out var visible) || visible));
-            if (!_options.ContainsKey(key) && defaultValue.Length > 0) _options[key] = defaultValue;
-        }
-        OptionCatalog = CoreOptionMetadataFunctions.WithCurrentValues(catalog, _options);
+        if (CoreOptionMetadataFunctions.ReadVersionTwo(options, _options, _optionVisibility) is { } catalog) OptionCatalog = catalog;
     }
 
     private bool ApplyOptionVisibility(nint data)
@@ -211,11 +165,7 @@ internal sealed partial class ExternalHostCallbacks
         return true;
     }
 
-    private static string? StringAt(nint structure, int offset)
-    {
-        var pointer = Marshal.ReadIntPtr(structure, offset);
-        return pointer == 0 ? null : Marshal.PtrToStringUTF8(pointer);
-    }
+
 
     private bool ReturnOption(nint data)
     {
@@ -260,40 +210,17 @@ internal sealed partial class ExternalHostCallbacks
 
     private bool CaptureControllerInfo(nint data)
     {
-        if (data == 0)
-        {
-            ControllerPorts = [];
-            return true;
-        }
-        var ports = new List<IReadOnlyList<ControllerDevice>>();
-        var infoSize = Marshal.SizeOf<ExternalCoreApi.ControllerInfo>();
-        var descriptionSize = Marshal.SizeOf<ExternalCoreApi.ControllerDescription>();
-        for (var port = 0; port < 16; port++)
-        {
-            var info = Marshal.PtrToStructure<ExternalCoreApi.ControllerInfo>(data + port * infoSize);
-            if (info.Types == 0 || info.Count == 0) break;
-            if (info.Count > 64) return false;
-            var devices = new List<ControllerDevice>(checked((int)info.Count));
-            for (var index = 0; index < info.Count; index++)
-            {
-                var description = Marshal.PtrToStructure<ExternalCoreApi.ControllerDescription>(info.Types + checked((int)index) * descriptionSize);
-                var name = description.Description == 0 ? null : Marshal.PtrToStringUTF8(description.Description);
-                if (!string.IsNullOrWhiteSpace(name)) devices.Add(new ControllerDevice(name, description.Id));
-            }
-            ports.Add(devices);
-        }
+        if (!GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.TryCopyControllerPorts<IReadOnlyList<ControllerDevice>, ControllerDevice>(
+            data, 16, 64, static (name, id) => new(name, id), static devices => devices,
+            rejectOverflow: true, skipEmptyNames: true, out var ports)) return false;
         ControllerPorts = ports;
         return true;
     }
 
     private nint NativeString(string value)
     {
-        if (_nativeStrings.TryGetValue(value, out var existing)) return existing;
-        var pointer = Marshal.StringToCoTaskMemUTF8(value);
-        _nativeStrings.Add(value, pointer);
-        return pointer;
+        if (_nativeStrings.TryGetValue(value, out var existing)) return existing.Pointer;
+        return ExternalCoreUtf8String.AddTo(_nativeStrings, value, value).Pointer;
     }
 
 }
-
-

@@ -17,7 +17,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
     private static readonly IReadOnlyDictionary<uint, EmulationKey> KeyboardMap = CreateKeyboardMap();
     private readonly Dictionary<string, string> _options = new(StringComparer.Ordinal);
     private readonly HashSet<string> _configuredOptionKeys = new(StringComparer.Ordinal);
-    private readonly Dictionary<string, nint> _nativeStrings = new(StringComparer.Ordinal);
+    private readonly Dictionary<string, ExternalCoreUtf8String> _nativeStrings = new(StringComparer.Ordinal);
     private readonly Stopwatch _clock = Stopwatch.StartNew();
     private EmulationPixelFormat _pixelFormat = EmulationPixelFormat.Rgb565;
     private float _aspectRatio;
@@ -137,7 +137,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
             {
             foreach (var pointer in _nativeStrings.Values)
             {
-                try { Marshal.FreeCoTaskMem(pointer); }
+                try { pointer.Dispose(); }
                 catch (Exception) { }
             }
             }

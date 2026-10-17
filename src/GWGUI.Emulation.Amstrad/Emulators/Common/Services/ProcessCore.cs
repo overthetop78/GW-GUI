@@ -291,18 +291,9 @@ internal sealed class ProcessCore : IEmulatorCore
         }
     }
 
-    private async Task<byte[]> ReadResponseAsync()
-    {
-        using var timeout = new CancellationTokenSource(TimeSpan.FromSeconds(ProcessCoreConstants.HostResponseTimeoutSeconds));
-        var header = new byte[sizeof(int)];
-        await _pipe!.ReadExactlyAsync(header, timeout.Token).ConfigureAwait(false);
-        var length = BinaryPrimitives.ReadInt32LittleEndian(header);
-        if (length is < BufferConstants.EmptyCollectionCount or > EmulationHostProtocolConstants.MaximumBlobLength)
-            throw new InvalidDataException(CommonExceptions.InvalidResponseLength(length));
-        var response = GC.AllocateUninitializedArray<byte>(length);
-        await _pipe.ReadExactlyAsync(response, timeout.Token).ConfigureAwait(false);
-        return response;
-    }
+    private Task<byte[]> ReadResponseAsync() =>
+        EmulationHostProtocolFunctions.ReadResponseAsync(_pipe!, TimeSpan.FromSeconds(ProcessCoreConstants.HostResponseTimeoutSeconds),
+            CancellationToken.None, length => CommonExceptions.InvalidResponseLength(length));
 
     private void TerminateProcess()
     {

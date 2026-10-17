@@ -1,4 +1,4 @@
-﻿namespace GWGUI.Emulation.Sony.Common.Machines.Common.Functions;
+namespace GWGUI.Emulation.Sony.Common.Machines.Common.Functions;
 
 internal static partial class InputSettingsFunctions
 {
@@ -17,14 +17,9 @@ internal static partial class InputSettingsFunctions
             ControllerType.GunCon => [EmulationControllerVisualIds.SonyGunCon],
             ControllerType.Justifier => [EmulationControllerVisualIds.SonyJustifier],
             _ => null
-        } : type == ControllerType.GunCon2 && model.Id == ModelConstants.PlayStation2
-            ? [EmulationControllerVisualIds.SonyGunCon2]
-            : type is not (ControllerType.Joystick or ControllerType.DualShock)
+        } : type is not (ControllerType.Joystick or ControllerType.DualShock)
             ? null : model.Id switch
         {
-            ModelConstants.PlayStation => type == ControllerType.DualShock ? [EmulationControllerVisualIds.SonyDualShock1] : [EmulationControllerVisualIds.SonyPlayStationController],
-            ModelConstants.PlayStation2 => [EmulationControllerVisualIds.SonyDualShock2, EmulationControllerVisualIds.SonyDualShock1,
-                EmulationControllerVisualIds.SonyPlayStationController, EmulationControllerVisualIds.SonyDualAnalog],
             ModelConstants.PlayStation3 => [EmulationControllerVisualIds.SonyDualShock3],
             ModelConstants.PocketStation => [EmulationControllerVisualIds.SonyPocketStation],
             ModelConstants.Psp => [EmulationControllerVisualIds.SonyPsp1000, EmulationControllerVisualIds.SonyPsp2000, EmulationControllerVisualIds.SonyPsp3000, EmulationControllerVisualIds.SonyPspGo],

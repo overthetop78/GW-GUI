@@ -43,30 +43,11 @@ internal static class NetworkFunctions
     internal static IReadOnlyList<string> BuildSettings(IEnumerable<string> existing, bool enabled)
     {
         var lines = existing.ToList();
-        Set("EthEnable", enabled ? "true" : "false");
-        Set("EthApi", "Sockets");
-        Set("EthDevice", "Auto");
-        Set("InterceptDHCP", "true");
+        IniSettingsFunctions.Set(lines, "DEV9/Eth", "EthEnable", enabled ? "true" : "false");
+        IniSettingsFunctions.Set(lines, "DEV9/Eth", "EthApi", "Sockets");
+        IniSettingsFunctions.Set(lines, "DEV9/Eth", "EthDevice", "Auto");
+        IniSettingsFunctions.Set(lines, "DEV9/Eth", "InterceptDHCP", "true");
         return lines;
 
-        void Set(string key, string value)
-        {
-            var start = lines.FindIndex(line => line.Trim().Equals("[DEV9/Eth]", StringComparison.OrdinalIgnoreCase));
-            if (start < 0)
-            {
-                lines.Add("[DEV9/Eth]");
-                start = lines.Count - 1;
-            }
-            var end = lines.FindIndex(start + 1, line => line.TrimStart().StartsWith('['));
-            if (end < 0) end = lines.Count;
-            for (var index = start + 1; index < end; index++)
-            {
-                var separator = lines[index].IndexOf('=');
-                if (separator < 0 || !lines[index][..separator].Trim().Equals(key, StringComparison.OrdinalIgnoreCase)) continue;
-                lines[index] = key + " = " + value;
-                return;
-            }
-            lines.Insert(end, key + " = " + value);
-        }
     }
 }

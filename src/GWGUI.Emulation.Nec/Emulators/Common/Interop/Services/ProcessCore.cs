@@ -4,6 +4,7 @@ using GWGUI.Emulation.Nec.Emulators.Common.Interop.Constants;
 using GWGUI.Emulation.Nec.Emulators.Common.Interop.Contracts;
 using GWGUI.Emulation.Nec.Emulators.Common.Interop.Functions;
 using GWGUI.Emulation.Nec.Emulators.Common.Interop.Services;
+
 using System.IO;
 using System.Collections.Concurrent;
 using System.Buffers.Binary;
@@ -14,13 +15,18 @@ using System.Text.Json;
 using GWGUI.Emulation;
 using GWGUI.Emulation.Functions;
 
-
 namespace GWGUI.Emulation.Nec.Emulators.Common.Interop.Services;
 
 internal sealed class ProcessCore : IEmulatorCore
 {
     private readonly string _hostExecutablePath;
     private readonly string? _corePath;
+    private readonly string _hostCommand;
+    private readonly string _pipePrefix;
+    private readonly string _videoMapPrefix;
+    private readonly string _displayName;
+    private readonly string _errorPrefix;
+    private string Error(string name, params object[] arguments) => CoreExceptions.Text(_errorPrefix + "." + name, arguments);
     private readonly ConcurrentQueue<AudioChunk> _audio = new();
     private NamedPipeServerStream? _pipe;
     private BinaryReader? _responseReader;
@@ -36,11 +42,18 @@ internal sealed class ProcessCore : IEmulatorCore
     private string? _sessionDirectory;
     private string? _saveDirectory;
 
-    internal ProcessCore(string hostExecutablePath, string? corePath = null)
+    internal ProcessCore(string hostExecutablePath, string? corePath = null,
+        string? hostCommand = null, string? pipePrefix = null, string? videoMapPrefix = null,
+        string? displayName = null, string errorPrefix = "Emulation.Error.Core")
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(hostExecutablePath);
         _hostExecutablePath = Path.GetFullPath(hostExecutablePath);
         _corePath = corePath;
+        _hostCommand = hostCommand ?? ProcessCoreConstants.CoreHost;
+        _pipePrefix = pipePrefix ?? ProcessCoreConstants.PipePrefix;
+        _videoMapPrefix = videoMapPrefix ?? ProcessCoreConstants.VideoMapPrefix;
+        _displayName = displayName ?? CoreHostConstants.DisplayName;
+        _errorPrefix = errorPrefix;
     }
 
     public VideoFrame? LatestVideoFrame { get; private set; }
@@ -71,15 +84,15 @@ internal sealed class ProcessCore : IEmulatorCore
     public void Initialize(MachineConfiguration configuration, string sessionDirectory, string? saveDirectory = null)
     {
         ObjectDisposedException.ThrowIf(_disposed, this);
-        if (_initialized) throw new InvalidOperationException(CoreExceptions.ProcessAlreadyInitialized());
+        if (_initialized) throw new InvalidOperationException(Error("ProcessAlreadyInitialized"));
         if (!File.Exists(_hostExecutablePath))
-            throw new FileNotFoundException(CoreExceptions.HostExecutableNotFound(), _hostExecutablePath);
+            throw new FileNotFoundException(Error("HostExecutableNotFound"), _hostExecutablePath);
 
         _configuration = configuration;
         _sessionDirectory = Path.GetFullPath(sessionDirectory);
         _saveDirectory = saveDirectory is null ? null : Path.GetFullPath(saveDirectory);
-        var pipeName = $"{ProcessCoreConstants.PipePrefix}{Guid.NewGuid():N}";
-        var videoMapName = $"{ProcessCoreConstants.VideoMapPrefix}{Guid.NewGuid():N}";
+        var pipeName = $"{_pipePrefix}{Guid.NewGuid():N}";
+        var videoMapName = $"{_videoMapPrefix}{Guid.NewGuid():N}";
         _videoMemory = MemoryMappedFile.CreateNew(videoMapName, EmulationHostProtocolConstants.VideoMapCapacity, MemoryMappedFileAccess.ReadWrite);
         try
         {
@@ -91,10 +104,10 @@ internal sealed class ProcessCore : IEmulatorCore
                 CreateNoWindow = true,
                 WorkingDirectory = Path.GetDirectoryName(_hostExecutablePath)!
             };
-            startInfo.ArgumentList.Add(ProcessCoreConstants.CoreHost);
+            startInfo.ArgumentList.Add(_hostCommand);
             startInfo.ArgumentList.Add(pipeName);
             startInfo.ArgumentList.Add(videoMapName);
-            _process = Process.Start(startInfo) ?? throw new InvalidOperationException(CoreExceptions.ProcessStartFailed());
+            _process = Process.Start(startInfo) ?? throw new InvalidOperationException(Error("ProcessStartFailed"));
             EmulationChildProcessLifetime.Attach(_process);
             using var timeout = new CancellationTokenSource(TimeSpan.FromSeconds(15));
             _pipe.WaitForConnectionAsync(timeout.Token).GetAwaiter().GetResult();
@@ -115,7 +128,7 @@ internal sealed class ProcessCore : IEmulatorCore
             SupportedContentExtensions = Response.ReadString().Split('|', StringSplitOptions.RemoveEmptyEntries).ToHashSet(StringComparer.OrdinalIgnoreCase);
             DiskCount = Response.ReadInt32();
             CurrentDiskIndex = Response.ReadInt32();
-            LedStates = CoreHostProtocol.ReadLedStates(Response);
+            LedStates = EmulationHostProtocolFunctions.ReadLedStates(Response, _displayName);
             _initialized = true;
         }
         catch
@@ -130,8 +143,9 @@ internal sealed class ProcessCore : IEmulatorCore
         Begin(HostCommand.RunFrame);
         CoreHostProtocol.WriteInput(_writer!, _input.Consume());
         CompleteRequest();
-        LatestVideoFrame = CoreHostProtocol.ReadSharedFrame(Response, _videoMap ?? throw new InvalidOperationException(CoreExceptions.VideoBufferUnavailable())) ?? LatestVideoFrame;
-        foreach (var chunk in CoreHostProtocol.ReadAudio(Response))
+        LatestVideoFrame = EmulationHostProtocolFunctions.ReadSharedFrame(Response,
+            _videoMap ?? throw new InvalidOperationException(Error("VideoBufferUnavailable")), _displayName) ?? LatestVideoFrame;
+        foreach (var chunk in EmulationHostProtocolFunctions.ReadAudio(Response, _displayName))
         {
             LatestAudioChunk = chunk;
             _audio.Enqueue(chunk);
@@ -142,13 +156,13 @@ internal sealed class ProcessCore : IEmulatorCore
         CurrentDiskIndex = Response.ReadInt32();
         if (Response.ReadBoolean())
             Diagnostics = JsonSerializer.Deserialize<IReadOnlyList<string>>(Response.ReadString(), CoreHostProtocol.JsonOptions) ?? [];
-        LedStates = CoreHostProtocol.ReadLedStates(Response);
+        LedStates = EmulationHostProtocolFunctions.ReadLedStates(Response, _displayName);
     }
 
     public void HardReset()
     {
-        var configuration = _configuration ?? throw new InvalidOperationException(CoreExceptions.ProcessNotInitialized());
-        var sessionDirectory = _sessionDirectory ?? throw new InvalidOperationException(CoreExceptions.ProcessNotInitialized());
+        var configuration = _configuration ?? throw new InvalidOperationException(Error("ProcessNotInitialized"));
+        var sessionDirectory = _sessionDirectory ?? throw new InvalidOperationException(Error("ProcessNotInitialized"));
         var saveDirectory = _saveDirectory;
         ReleaseHost();
         Initialize(configuration, sessionDirectory, saveDirectory);
@@ -171,7 +185,7 @@ internal sealed class ProcessCore : IEmulatorCore
     {
         Begin(HostCommand.SaveState);
         CompleteRequest();
-        return CoreHostProtocol.ReadBytes(Response);
+        return EmulationHostProtocolFunctions.ReadBytes(Response, _displayName);
     }
 
     public void LoadState(ReadOnlySpan<byte> state)
@@ -259,9 +273,9 @@ internal sealed class ProcessCore : IEmulatorCore
     private void Begin(HostCommand command)
     {
         ObjectDisposedException.ThrowIf(_disposed, this);
-        if (_connectionFailed) throw new InvalidOperationException(CoreExceptions.ProcessUnavailable());
+        if (_connectionFailed) throw new InvalidOperationException(Error("ProcessUnavailable"));
         if (command != HostCommand.Initialize && !_initialized)
-            throw new InvalidOperationException(CoreExceptions.ProcessNotInitialized());
+            throw new InvalidOperationException(Error("ProcessNotInitialized"));
         _writer!.Write((byte)command);
     }
 
@@ -285,22 +299,13 @@ internal sealed class ProcessCore : IEmulatorCore
             var exit = _process is { HasExited: true } ? $" It exited with code {_process.ExitCode}." : string.Empty;
             _connectionFailed = true;
             TerminateProcess();
-            throw new InvalidOperationException(timedOut ? CoreExceptions.ProcessTimeout() : CoreExceptions.ProcessCommunicationFailed(exit), error);
+            throw new InvalidOperationException(timedOut ? Error("ProcessTimeout") : Error("ProcessCommunicationFailed", exit), error);
         }
     }
 
-    private async Task<byte[]> ReadResponseAsync()
-    {
-        using var timeout = new CancellationTokenSource(TimeSpan.FromSeconds(30));
-        var header = new byte[sizeof(int)];
-        await _pipe!.ReadExactlyAsync(header, timeout.Token).ConfigureAwait(false);
-        var length = BinaryPrimitives.ReadInt32LittleEndian(header);
-        if (length is < 0 or > EmulationHostProtocolConstants.MaximumBlobLength)
-            throw new InvalidDataException(CoreExceptions.InvalidResponseLength(length));
-        var response = GC.AllocateUninitializedArray<byte>(length);
-        await _pipe.ReadExactlyAsync(response, timeout.Token).ConfigureAwait(false);
-        return response;
-    }
+    private Task<byte[]> ReadResponseAsync() =>
+        EmulationHostProtocolFunctions.ReadResponseAsync(_pipe!, TimeSpan.FromSeconds(30),
+            CancellationToken.None, length => Error("InvalidResponseLength", length));
 
     private void TerminateProcess()
     {
@@ -324,7 +329,6 @@ internal sealed class ProcessCore : IEmulatorCore
         catch (Exception) { }
     }
 
-    private BinaryReader Response => _responseReader ?? throw new InvalidOperationException(CoreExceptions.HostResponseUnavailable());
+    private BinaryReader Response => _responseReader ?? throw new InvalidOperationException(Error("HostResponseUnavailable"));
 
 }
-

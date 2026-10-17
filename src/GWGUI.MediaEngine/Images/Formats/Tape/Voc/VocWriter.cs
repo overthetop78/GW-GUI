@@ -80,7 +80,7 @@ public sealed class VocWriter : IMediaImageWriter
         await output.WriteAsync(header, cancellationToken).ConfigureAwait(false);
         await output.WriteAsync(new[] { (byte)1 }, cancellationToken).ConfigureAwait(false);
         var blockLength = new byte[3];
-        WriteUInt24(blockLength, pcm.Length + 2);
+        GWGUI.MediaEngine.Functions.BitPrimitives.WriteUInt24LittleEndian(blockLength, pcm.Length + 2);
         await output.WriteAsync(blockLength, cancellationToken).ConfigureAwait(false);
         await output.WriteAsync(new[] { timeConstant, (byte)0 }, cancellationToken).ConfigureAwait(false);
         await output.WriteAsync(pcm, cancellationToken).ConfigureAwait(false);
@@ -95,12 +95,5 @@ public sealed class VocWriter : IMediaImageWriter
         if (selected.Length == 0 || selected.Any(range => range is not { Kind: MediaDataRangeKind.Stored, Source: not null })) return false;
         ranges = selected.Select(range => range!).ToArray();
         return true;
-    }
-
-    private static void WriteUInt24(Span<byte> destination, int value)
-    {
-        destination[0] = (byte)value;
-        destination[1] = (byte)(value >> 8);
-        destination[2] = (byte)(value >> 16);
     }
 }

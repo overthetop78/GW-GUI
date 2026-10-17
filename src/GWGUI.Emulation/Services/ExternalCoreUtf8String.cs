@@ -8,9 +8,24 @@ internal sealed class ExternalCoreUtf8String : IDisposable
     internal nint Pointer { get; private set; }
 
     internal ExternalCoreUtf8String(string value, int minimumByteCapacity = 0)
+        : this(value, minimumByteCapacity, useWindowsAnsi: false)
+    {
+    }
+
+    internal ExternalCoreUtf8String(string value, bool useWindowsAnsi)
+        : this(value, 0, useWindowsAnsi)
+    {
+    }
+
+    private ExternalCoreUtf8String(string value, int minimumByteCapacity, bool useWindowsAnsi)
     {
         ArgumentNullException.ThrowIfNull(value);
         ArgumentOutOfRangeException.ThrowIfNegative(minimumByteCapacity);
+        if (useWindowsAnsi && OperatingSystem.IsWindows())
+        {
+            Pointer = Marshal.StringToCoTaskMemAnsi(value);
+            return;
+        }
         var encoded = Encoding.UTF8.GetBytes(value);
         var buffer = new byte[Math.Max(checked(encoded.Length + 1), minimumByteCapacity)];
         encoded.CopyTo(buffer, 0);

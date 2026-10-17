@@ -27,26 +27,7 @@ internal sealed partial class ProcessCore : IEmulatorCore
         startInfo.ArgumentList.Add(_hostCommand);
         startInfo.ArgumentList.Add(pipeName);
         startInfo.ArgumentList.Add(videoMapName);
-        var process = Process.Start(startInfo) ?? throw new InvalidOperationException(CoreHostErrors.ProcessStartFailed);
-        var transferred = false;
-        try
-        {
-            EmulationChildProcessLifetime.Attach(process);
-            transferred = true;
-            return process;
-        }
-        finally
-        {
-            if (!transferred)
-            {
-                try
-                {
-                    if (!process.HasExited) process.Kill(true);
-                    process.WaitForExit();
-                }
-                finally { process.Dispose(); }
-            }
-        }
+        return EmulationChildProcessLifetime.Start(startInfo, static () => new InvalidOperationException(CoreHostErrors.ProcessStartFailed));
     }
 
     private void ReadInitialization(BinaryReader reader)

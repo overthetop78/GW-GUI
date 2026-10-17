@@ -110,14 +110,7 @@ public sealed class SpectrumTapeEncoder : ISequentialMediaEncoder
     }
 
     private static void AddPulses(List<short> samples, ref short level, ushort tStates, int count, int sampleRate)
-    {
-        var sampleCount = Math.Max(1, (int)Math.Round(tStates * sampleRate / (double)TzxConstants.TStatesPerSecond));
-        for (var pulse = 0; pulse < count; pulse++)
-        {
-            for (var sample = 0; sample < sampleCount; sample++) samples.Add(level);
-            level = (short)-level;
-        }
-    }
+    => GWGUI.MediaEngine.Functions.PcmSampleFunctions.AppendPulses(samples, ref level, tStates, count, sampleRate, TzxConstants.TStatesPerSecond);
 
     private static bool TryReadSampleRate(IReadOnlyDictionary<string, string> parameters, out int sampleRate)
     {

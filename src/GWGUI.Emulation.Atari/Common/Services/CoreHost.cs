@@ -9,7 +9,7 @@ using GWGUI.Emulation;
 namespace GWGUI.Emulation.Atari.Common.Services;
 
 public static class CoreHost
-{
+                {
     [SupportedOSPlatform(CoreHostValues.Windows)]
     internal static void Run(string pipeName, string videoMapName, Func<string, Emulator, IEmulatorCore> createCore)
     {
@@ -27,9 +27,7 @@ public static class CoreHost
             while (TryReadCommand(reader, out var command))
             {
                 var exit = command == HostCommand.Dispose;
-                using var responseStream = new MemoryStream();
-                using var writer = new BinaryWriter(responseStream, Encoding.UTF8, leaveOpen: true);
-                try
+                EmulationHostProtocolFunctions.WriteResponse(transportWriter, writer =>
                 {
                     CoreHostFunctions.WriteResponseHeader(writer, HostResponseStatus.Success);
                     switch (command)
@@ -84,16 +82,11 @@ public static class CoreHost
                         default:
                             throw new InvalidDataException(string.Format(CultureInfo.InvariantCulture, CoreHostErrors.UnknownCommandFormat, (byte)command));
                     }
-                }
-                catch (Exception error)
+                }, (writer, error) =>
                 {
-                    responseStream.SetLength(0);
-                    responseStream.Position = BufferConstants.FirstBufferIndex;
                     CoreHostFunctions.WriteResponseHeader(writer, HostResponseStatus.Failure);
                     CoreHostFunctions.WriteError(writer, error);
-                }
-                writer.Flush();
-                CoreHostFunctions.WriteBytes(transportWriter, responseStream.GetBuffer().AsSpan(BufferConstants.FirstBufferIndex, checked((int)responseStream.Length)));
+                });
                 if (exit) break;
             }
         }

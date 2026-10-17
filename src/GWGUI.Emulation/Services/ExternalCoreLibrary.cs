@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Contracts;
+using GWGUI.Emulation.Interop;
 using System.Runtime.InteropServices;
 
 namespace GWGUI.Emulation.Services;
@@ -27,4 +29,28 @@ internal sealed class ExternalCoreLibrary : IDisposable
         NativeLibrary.Free(_handle);
         _handle = 0;
     }
+
+    internal ExternalCoreExports ResolveExports(bool requireLoadGameSpecial) => new(
+        Resolve<ExternalCoreApi.SetEnvironment>(ExternalCoreExportNames.SetEnvironment),
+        Resolve<ExternalCoreApi.SetVideo>(ExternalCoreExportNames.SetVideoRefresh),
+        Resolve<ExternalCoreApi.SetAudioSample>(ExternalCoreExportNames.SetAudioSample),
+        Resolve<ExternalCoreApi.SetAudioBatch>(ExternalCoreExportNames.SetAudioSampleBatch),
+        Resolve<ExternalCoreApi.SetInputPoll>(ExternalCoreExportNames.SetInputPoll),
+        Resolve<ExternalCoreApi.SetInputState>(ExternalCoreExportNames.SetInputState),
+        Resolve<ExternalCoreApi.VoidCall>(ExternalCoreExportNames.Initialize),
+        Resolve<ExternalCoreApi.VoidCall>(ExternalCoreExportNames.Deinitialize),
+        Resolve<ExternalCoreApi.GetSystemInfo>(ExternalCoreExportNames.GetSystemInfo),
+        Resolve<ExternalCoreApi.GetSystemAvInfo>(ExternalCoreExportNames.GetSystemAvInfo),
+        Resolve<ExternalCoreApi.SetControllerPortDevice>(ExternalCoreExportNames.SetControllerPortDevice),
+        Resolve<ExternalCoreApi.VoidCall>(ExternalCoreExportNames.Reset),
+        Resolve<ExternalCoreApi.VoidCall>(ExternalCoreExportNames.Run),
+        Resolve<ExternalCoreApi.LoadGame>(ExternalCoreExportNames.LoadGame),
+        Resolve<ExternalCoreApi.VoidCall>(ExternalCoreExportNames.UnloadGame),
+        Resolve<ExternalCoreApi.GetRegion>(ExternalCoreExportNames.GetRegion),
+        Resolve<ExternalCoreApi.GetMemoryData>(ExternalCoreExportNames.GetMemoryData),
+        Resolve<ExternalCoreApi.GetMemorySize>(ExternalCoreExportNames.GetMemorySize),
+        Resolve<ExternalCoreApi.GetSerializedSize>(ExternalCoreExportNames.GetSerializedSize),
+        Resolve<ExternalCoreApi.Serialize>(ExternalCoreExportNames.Serialize),
+        Resolve<ExternalCoreApi.Serialize>(ExternalCoreExportNames.Unserialize),
+        requireLoadGameSpecial ? Resolve<ExternalCoreApi.LoadGameSpecial>(ExternalCoreExportNames.LoadGameSpecial) : null);
 }

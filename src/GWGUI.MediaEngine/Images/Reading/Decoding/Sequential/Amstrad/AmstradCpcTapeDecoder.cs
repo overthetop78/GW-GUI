@@ -274,16 +274,7 @@ public sealed class AmstradCpcTapeDecoder : ISequentialMediaDecoder
     private static int ReadUInt24(ReadOnlySpan<byte> bytes) => bytes[0] | bytes[1] << 8 | bytes[2] << 16;
 
     private static ushort ComputeCrc(ReadOnlySpan<byte> data)
-    {
-        var crc = AmstradCpcTapeConstants.CrcSeed;
-        foreach (var value in data)
-        {
-            crc ^= (ushort)(value << 8);
-            for (var bit = 0; bit < 8; bit++)
-                crc = (ushort)((crc & 0x8000) != 0 ? (crc << 1) ^ AmstradCpcTapeConstants.CrcPolynomial : crc << 1);
-        }
-        return crc;
-    }
+    => GWGUI.MediaEngine.Functions.Crc16Calculator.ComputeSpan(data, AmstradCpcTapeConstants.CrcPolynomial, AmstradCpcTapeConstants.CrcSeed);
 
     private static bool Close(double actual, double expected) => Math.Abs(actual - expected) <= expected * AmstradCpcTapeConstants.PulseToleranceRatio;
 

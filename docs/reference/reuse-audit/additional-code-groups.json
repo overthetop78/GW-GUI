@@ -1,0 +1,303 @@
+{
+  "baseline": "ac7292d86^",
+  "currentCSharpFiles": 7273,
+  "outsideSrcCSharpFiles": 248,
+  "baselineMethodCount": 5848,
+  "currentMethodCount": 11923,
+  "powerShellFunctionCount": 17,
+  "groups": [
+    {
+      "language": "CSharp",
+      "hash": "096E8A3219284AD4B13347C392C3A5939BE87725DBD8D7D07436D0D5F58933F6",
+      "method": "Flatten",
+      "tokens": 31,
+      "current": [
+        {
+          "path": "tests/GWGUI.LocalDiskImageTests/TemporaryNamedMediaFormatIdentification.cs",
+          "name": "Flatten",
+          "line": 28,
+          "tokens": 31,
+          "hash": "096E8A3219284AD4B13347C392C3A5939BE87725DBD8D7D07436D0D5F58933F6",
+          "shape": "BB28C79102BB6E3EC56C522B50156C25E7C77AA3822525C51D4E79A240684172"
+        },
+        {
+          "path": "tests/GWGUI.LocalDiskImageTests/TemporaryMediaSignatureCatalog.cs",
+          "name": "Flatten",
+          "line": 73,
+          "tokens": 31,
+          "hash": "096E8A3219284AD4B13347C392C3A5939BE87725DBD8D7D07436D0D5F58933F6",
+          "shape": "BB28C79102BB6E3EC56C522B50156C25E7C77AA3822525C51D4E79A240684172"
+        },
+        {
+          "path": "tests/GWGUI.LocalDiskImageTests/Program.cs",
+          "name": "Flatten",
+          "line": 511,
+          "tokens": 31,
+          "hash": "096E8A3219284AD4B13347C392C3A5939BE87725DBD8D7D07436D0D5F58933F6",
+          "shape": "BB28C79102BB6E3EC56C522B50156C25E7C77AA3822525C51D4E79A240684172"
+        },
+        {
+          "path": "tests/GWGUI.LocalDiskImageTests/MediaFileExtractor/Program.cs",
+          "name": "Flatten",
+          "line": 82,
+          "tokens": 31,
+          "hash": "096E8A3219284AD4B13347C392C3A5939BE87725DBD8D7D07436D0D5F58933F6",
+          "shape": "BB28C79102BB6E3EC56C522B50156C25E7C77AA3822525C51D4E79A240684172"
+        },
+        {
+          "path": "tests/GWGUI.LocalDiskImageTests/MediaAuditValidatorSelfTests.cs",
+          "name": "Flatten",
+          "line": 45,
+          "tokens": 31,
+          "hash": "096E8A3219284AD4B13347C392C3A5939BE87725DBD8D7D07436D0D5F58933F6",
+          "shape": "BB28C79102BB6E3EC56C522B50156C25E7C77AA3822525C51D4E79A240684172"
+        },
+        {
+          "path": "tests/GWGUI.LocalDiskImageTests/MediaAuditValidator.cs",
+          "name": "Flatten",
+          "line": 205,
+          "tokens": 31,
+          "hash": "096E8A3219284AD4B13347C392C3A5939BE87725DBD8D7D07436D0D5F58933F6",
+          "shape": "BB28C79102BB6E3EC56C522B50156C25E7C77AA3822525C51D4E79A240684172"
+        }
+      ],
+      "predecessors": [
+        {
+          "path": "tests/GWGUI.LocalDiskImageTests/MediaAuditValidator.cs",
+          "name": "Flatten",
+          "line": 228,
+          "tokens": 31,
+          "hash": "096E8A3219284AD4B13347C392C3A5939BE87725DBD8D7D07436D0D5F58933F6",
+          "shape": "BB28C79102BB6E3EC56C522B50156C25E7C77AA3822525C51D4E79A240684172"
+        },
+        {
+          "path": "tests/GWGUI.LocalDiskImageTests/MediaAuditValidatorSelfTests.cs",
+          "name": "Flatten",
+          "line": 76,
+          "tokens": 31,
+          "hash": "096E8A3219284AD4B13347C392C3A5939BE87725DBD8D7D07436D0D5F58933F6",
+          "shape": "BB28C79102BB6E3EC56C522B50156C25E7C77AA3822525C51D4E79A240684172"
+        },
+        {
+          "path": "tests/GWGUI.LocalDiskImageTests/Program.cs",
+          "name": "Flatten",
+          "line": 365,
+          "tokens": 31,
+          "hash": "096E8A3219284AD4B13347C392C3A5939BE87725DBD8D7D07436D0D5F58933F6",
+          "shape": "BB28C79102BB6E3EC56C522B50156C25E7C77AA3822525C51D4E79A240684172"
+        },
+        {
+          "path": "tests/GWGUI.LocalDiskImageTests/TemporaryMediaSignatureCatalog.cs",
+          "name": "Flatten",
+          "line": 75,
+          "tokens": 31,
+          "hash": "096E8A3219284AD4B13347C392C3A5939BE87725DBD8D7D07436D0D5F58933F6",
+          "shape": "BB28C79102BB6E3EC56C522B50156C25E7C77AA3822525C51D4E79A240684172"
+        },
+        {
+          "path": "tests/GWGUI.LocalDiskImageTests/TemporaryNamedMediaFormatIdentification.cs",
+          "name": "Flatten",
+          "line": 35,
+          "tokens": 31,
+          "hash": "096E8A3219284AD4B13347C392C3A5939BE87725DBD8D7D07436D0D5F58933F6",
+          "shape": "BB28C79102BB6E3EC56C522B50156C25E7C77AA3822525C51D4E79A240684172"
+        },
+        {
+          "path": "tests/GWGUI.LocalDiskImageTests/MediaFileExtractor/Program.cs",
+          "name": "Flatten",
+          "line": 88,
+          "tokens": 31,
+          "hash": "096E8A3219284AD4B13347C392C3A5939BE87725DBD8D7D07436D0D5F58933F6",
+          "shape": "BB28C79102BB6E3EC56C522B50156C25E7C77AA3822525C51D4E79A240684172"
+        }
+      ],
+      "shapePredecessors": [
+        {
+          "path": "src/GWGUI.MediaFileSystems/Exploration/Interpretation/FileSystemAlternativePolicy.cs",
+          "name": "Enumerate",
+          "line": 22,
+          "tokens": 31,
+          "hash": "B11C9D5084E293C1C3F277163DC19EBD40B2542D463D98BE13D151C76BAFCC8A",
+          "shape": "BB28C79102BB6E3EC56C522B50156C25E7C77AA3822525C51D4E79A240684172"
+        },
+        {
+          "path": "tests/GWGUI.LocalDiskImageTests/MediaAuditValidator.cs",
+          "name": "Flatten",
+          "line": 228,
+          "tokens": 31,
+          "hash": "096E8A3219284AD4B13347C392C3A5939BE87725DBD8D7D07436D0D5F58933F6",
+          "shape": "BB28C79102BB6E3EC56C522B50156C25E7C77AA3822525C51D4E79A240684172"
+        },
+        {
+          "path": "tests/GWGUI.LocalDiskImageTests/MediaAuditValidatorSelfTests.cs",
+          "name": "Flatten",
+          "line": 76,
+          "tokens": 31,
+          "hash": "096E8A3219284AD4B13347C392C3A5939BE87725DBD8D7D07436D0D5F58933F6",
+          "shape": "BB28C79102BB6E3EC56C522B50156C25E7C77AA3822525C51D4E79A240684172"
+        },
+        {
+          "path": "tests/GWGUI.LocalDiskImageTests/Program.cs",
+          "name": "Flatten",
+          "line": 365,
+          "tokens": 31,
+          "hash": "096E8A3219284AD4B13347C392C3A5939BE87725DBD8D7D07436D0D5F58933F6",
+          "shape": "BB28C79102BB6E3EC56C522B50156C25E7C77AA3822525C51D4E79A240684172"
+        },
+        {
+          "path": "tests/GWGUI.LocalDiskImageTests/TemporaryMediaSignatureCatalog.cs",
+          "name": "Flatten",
+          "line": 75,
+          "tokens": 31,
+          "hash": "096E8A3219284AD4B13347C392C3A5939BE87725DBD8D7D07436D0D5F58933F6",
+          "shape": "BB28C79102BB6E3EC56C522B50156C25E7C77AA3822525C51D4E79A240684172"
+        },
+        {
+          "path": "tests/GWGUI.LocalDiskImageTests/TemporaryNamedMediaFormatIdentification.cs",
+          "name": "Flatten",
+          "line": 35,
+          "tokens": 31,
+          "hash": "096E8A3219284AD4B13347C392C3A5939BE87725DBD8D7D07436D0D5F58933F6",
+          "shape": "BB28C79102BB6E3EC56C522B50156C25E7C77AA3822525C51D4E79A240684172"
+        },
+        {
+          "path": "tests/GWGUI.LocalDiskImageTests/MediaFileExtractor/Program.cs",
+          "name": "Flatten",
+          "line": 88,
+          "tokens": 31,
+          "hash": "096E8A3219284AD4B13347C392C3A5939BE87725DBD8D7D07436D0D5F58933F6",
+          "shape": "BB28C79102BB6E3EC56C522B50156C25E7C77AA3822525C51D4E79A240684172"
+        }
+      ],
+      "qualification": "preexisting-no-new-occurrence"
+    },
+    {
+      "language": "CSharp",
+      "hash": "BCE09FE00EEDC9CDA01BC26E95B496F7264922A19E409841CF7A755B18FD2047",
+      "method": "RequestedMachinesExposeExactlyTheirEmulators",
+      "tokens": 69,
+      "current": [
+        {
+          "path": "tests/GWGUI.Tests/Emulation/Nintendo/NintendoEmulatorCatalogTests.cs",
+          "name": "RequestedMachinesExposeExactlyTheirEmulators",
+          "line": 74,
+          "tokens": 69,
+          "hash": "BCE09FE00EEDC9CDA01BC26E95B496F7264922A19E409841CF7A755B18FD2047",
+          "shape": "371D29865E4EFDEFDEFDB731DFD4BA852366EF890B7FD11BEA4EC9419F529156"
+        },
+        {
+          "path": "tests/GWGUI.Tests/Emulation/Nec/NecEmulatorCatalogTests.cs",
+          "name": "RequestedMachinesExposeExactlyTheirEmulators",
+          "line": 13,
+          "tokens": 69,
+          "hash": "BCE09FE00EEDC9CDA01BC26E95B496F7264922A19E409841CF7A755B18FD2047",
+          "shape": "371D29865E4EFDEFDEFDB731DFD4BA852366EF890B7FD11BEA4EC9419F529156"
+        }
+      ],
+      "predecessors": [],
+      "shapePredecessors": [],
+      "qualification": "retained-distinct-domain-catalog-tests"
+    },
+    {
+      "language": "CSharp",
+      "hash": "CF1D878FE672BCC370505EAFD2658D95952D49187711607B518A40A0B30255A3",
+      "method": "CreateProviderOptions",
+      "tokens": 222,
+      "current": [
+        {
+          "path": "tests/GWGUI.Tests/Hardware/PhysicalReading/ReadAcquisitionScenarios.cs",
+          "name": "CreateProviderOptions",
+          "line": 60,
+          "tokens": 222,
+          "hash": "CF1D878FE672BCC370505EAFD2658D95952D49187711607B518A40A0B30255A3",
+          "shape": "67D9684C7C8C96D2B3BDCFC7435D40ED30732532F28D771894A86A84C12460CE"
+        },
+        {
+          "path": "src/GWGUI.App/Services/PhysicalDiskReading/InternalPhysicalDiskReader.cs",
+          "name": "CreateOptions",
+          "line": 31,
+          "tokens": 222,
+          "hash": "CF1D878FE672BCC370505EAFD2658D95952D49187711607B518A40A0B30255A3",
+          "shape": "67D9684C7C8C96D2B3BDCFC7435D40ED30732532F28D771894A86A84C12460CE"
+        }
+      ],
+      "predecessors": [
+        {
+          "path": "src/GWGUI.App/Services/PhysicalDiskReading/InternalPhysicalDiskReader.cs",
+          "name": "CreateOptions",
+          "line": 45,
+          "tokens": 222,
+          "hash": "CF1D878FE672BCC370505EAFD2658D95952D49187711607B518A40A0B30255A3",
+          "shape": "67D9684C7C8C96D2B3BDCFC7435D40ED30732532F28D771894A86A84C12460CE"
+        },
+        {
+          "path": "tests/GWGUI.Tests/Hardware/PhysicalReading/ReadAcquisitionScenarios.cs",
+          "name": "CreateProviderOptions",
+          "line": 78,
+          "tokens": 222,
+          "hash": "CF1D878FE672BCC370505EAFD2658D95952D49187711607B518A40A0B30255A3",
+          "shape": "67D9684C7C8C96D2B3BDCFC7435D40ED30732532F28D771894A86A84C12460CE"
+        }
+      ],
+      "shapePredecessors": [
+        {
+          "path": "src/GWGUI.App/Services/PhysicalDiskReading/InternalPhysicalDiskReader.cs",
+          "name": "CreateOptions",
+          "line": 45,
+          "tokens": 222,
+          "hash": "CF1D878FE672BCC370505EAFD2658D95952D49187711607B518A40A0B30255A3",
+          "shape": "67D9684C7C8C96D2B3BDCFC7435D40ED30732532F28D771894A86A84C12460CE"
+        },
+        {
+          "path": "tests/GWGUI.Tests/Hardware/PhysicalReading/ReadAcquisitionScenarios.cs",
+          "name": "CreateProviderOptions",
+          "line": 78,
+          "tokens": 222,
+          "hash": "CF1D878FE672BCC370505EAFD2658D95952D49187711607B518A40A0B30255A3",
+          "shape": "67D9684C7C8C96D2B3BDCFC7435D40ED30732532F28D771894A86A84C12460CE"
+        }
+      ],
+      "qualification": "preexisting-no-new-occurrence"
+    },
+    {
+      "language": "PowerShell",
+      "hash": "5C10F82EC5B165083A4A31BEAC9BA3B769B55FF5FA9A3BFBBBE9AB8C7F7EA46E",
+      "method": "Invoke-DotNetProcess",
+      "tokens": 219,
+      "current": [
+        {
+          "path": "scripts/temp/read-media-with-libretro.ps1",
+          "name": "Invoke-DotNetProcess",
+          "line": 30,
+          "tokens": 219,
+          "hash": "5C10F82EC5B165083A4A31BEAC9BA3B769B55FF5FA9A3BFBBBE9AB8C7F7EA46E"
+        },
+        {
+          "path": "scripts/temp/extract-media-files.ps1",
+          "name": "Invoke-DotNetProcess",
+          "line": 20,
+          "tokens": 219,
+          "hash": "5C10F82EC5B165083A4A31BEAC9BA3B769B55FF5FA9A3BFBBBE9AB8C7F7EA46E"
+        }
+      ],
+      "predecessors": [
+        {
+          "path": "scripts/temp/extract-media-files.ps1",
+          "name": "Invoke-DotNetProcess",
+          "line": 20,
+          "tokens": 219,
+          "hash": "5C10F82EC5B165083A4A31BEAC9BA3B769B55FF5FA9A3BFBBBE9AB8C7F7EA46E"
+        },
+        {
+          "path": "scripts/temp/read-media-with-libretro.ps1",
+          "name": "Invoke-DotNetProcess",
+          "line": 30,
+          "tokens": 219,
+          "hash": "5C10F82EC5B165083A4A31BEAC9BA3B769B55FF5FA9A3BFBBBE9AB8C7F7EA46E"
+        }
+      ],
+      "shapePredecessors": [],
+      "qualification": "preexisting-no-new-occurrence"
+    }
+  ]
+}

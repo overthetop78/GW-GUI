@@ -3,12 +3,12 @@ using GWGUI.Emulation.Nec.Emulators.Common.Interop.Constants;
 using GWGUI.Emulation.Nec.Emulators.Common.Interop.Contracts;
 using GWGUI.Emulation.Nec.Emulators.Common.Interop.Functions;
 using GWGUI.Emulation.Nec.Emulators.Common.Interop.Services;
+
 using System.IO;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Collections.Concurrent;
 using GWGUI.Emulation;
-
 
 namespace GWGUI.Emulation.Nec.Emulators.Common.Interop.Services;
 
@@ -17,7 +17,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
     private static readonly IReadOnlyDictionary<uint, EmulationKey> KeyboardMap = CreateKeyboardMap();
     private readonly Dictionary<string, string> _options = new(StringComparer.Ordinal);
     private readonly HashSet<string> _configuredOptionKeys = new(StringComparer.Ordinal);
-    private readonly Dictionary<string, nint> _nativeStrings = new(StringComparer.Ordinal);
+    private readonly Dictionary<string, ExternalCoreUtf8String> _nativeStrings = new(StringComparer.Ordinal);
     private readonly Stopwatch _clock = Stopwatch.StartNew();
     private EmulationPixelFormat _pixelFormat = EmulationPixelFormat.Rgb565;
     private float _aspectRatio;
@@ -35,10 +35,15 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
     private ExternalCoreApi.UpdateCoreOptionsDisplay? _updateOptionsDisplay;
     private bool _suppressFullscreenChord;
     private readonly Dictionary<string, bool> _optionVisibility = new(StringComparer.Ordinal);
-    internal ExternalDiskControl DiskControl { get; } = new();
+    internal ExternalDiskControl DiskControl { get; }
+    private readonly string _errorPrefix;
+    private string Error(string name, params object[] arguments) => CoreExceptions.Text(_errorPrefix + "." + name, arguments);
 
-    internal ExternalHostCallbacks(string systemDirectory, string contentDirectory, string saveDirectory, IReadOnlyDictionary<string, string>? options)
+    internal ExternalHostCallbacks(string systemDirectory, string contentDirectory, string saveDirectory, IReadOnlyDictionary<string, string>? options,
+        string errorPrefix = "Emulation.Error.Core")
     {
+        _errorPrefix = errorPrefix;
+        DiskControl = new ExternalDiskControl(errorPrefix);
         Directory.CreateDirectory(systemDirectory);
         Directory.CreateDirectory(contentDirectory);
         Directory.CreateDirectory(saveDirectory);
@@ -118,10 +123,10 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
     internal void SetOption(string key, string value)
     {
         if (!OptionCatalog.Any(option => option.Key.Equals(key, StringComparison.Ordinal)))
-            throw new ArgumentOutOfRangeException(nameof(key), key, CoreExceptions.UnknownCoreOption());
+            throw new ArgumentOutOfRangeException(nameof(key), key, Error("UnknownCoreOption"));
         var option = OptionCatalog.First(item => item.Key.Equals(key, StringComparison.Ordinal));
         if (option.Values.Count > 0 && !option.Values.Any(item => item.Value.Equals(value, StringComparison.Ordinal)))
-            throw new ArgumentOutOfRangeException(nameof(value), value, CoreExceptions.InvalidOptionValue(value, key));
+            throw new ArgumentOutOfRangeException(nameof(value), value, Error("InvalidOptionValue", value, key));
         _options[key] = value;
         Interlocked.Exchange(ref _optionsUpdated, 1);
         _updateOptionsDisplay?.Invoke();
@@ -134,7 +139,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
         {
             foreach (var pointer in _nativeStrings.Values)
             {
-                try { Marshal.FreeCoTaskMem(pointer); }
+                try { pointer.Dispose(); }
                 catch (Exception) { }
             }
         }
@@ -160,4 +165,3 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
         }
     }
 }
-

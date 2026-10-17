@@ -12,7 +12,7 @@ using System.Text.Json;
 namespace GWGUI.Emulation.Amstrad.Emulators.Common.Services;
 
 public static class CoreHost
-{
+                {
     [SupportedOSPlatform(CoreHostConstants.Windows)]
     internal static void Run(string pipeName, string videoMapName, Func<string, IEmulatorCore> createCore)
     {
@@ -34,9 +34,7 @@ public static class CoreHost
                 try { command = (HostCommand)reader.ReadByte(); }
                 catch (EndOfStreamException) { break; }
                 var exit = command == HostCommand.Dispose;
-                using var responseStream = new MemoryStream();
-                using var writer = new BinaryWriter(responseStream, System.Text.Encoding.UTF8, true);
-                try
+                EmulationHostProtocolFunctions.WriteResponse(transportWriter, writer =>
                 {
                     switch (command)
                     {
@@ -97,16 +95,11 @@ public static class CoreHost
                         case HostCommand.Dispose: core?.Dispose(); core = null; WriteSuccess(writer); break;
                         default: throw new InvalidDataException(CommonExceptions.UnknownHostCommand((byte)command));
                     }
-                }
-                catch (Exception error)
+                }, (writer, error) =>
                 {
-                    responseStream.SetLength(BufferConstants.EmptyCollectionCount);
-                    responseStream.Position = BufferConstants.FirstStreamPosition;
                     writer.Write(false);
                     writer.Write(error.ToString());
-                }
-                writer.Flush();
-                CoreHostProtocol.WriteBytes(transportWriter, responseStream.GetBuffer().AsSpan(BufferConstants.FirstBufferIndex, checked((int)responseStream.Length)));
+                });
                 if (exit) break;
             }
         }

@@ -6,6 +6,7 @@ using GWGUI.App.Presenters.Emulation.Configurations;
 using GWGUI.App.Services.Emulation;
 using GWGUI.App.Services.Storage;
 using GWGUI.App.Views.Controls.Emulation.Input;
+using GWGUI.App.Views.Controls.Emulation.Machine;
 using GWGUI.App.Views.Controls.Common;
 using System.Windows;
 using System.Windows.Controls;
@@ -23,8 +24,8 @@ public sealed partial class EmulationPreferencesSection : UserControl
     internal event Func<IEmulationModule, IEmulationConfiguration, Task>? EditConfigurationRequested;
 
     private readonly IReadOnlyList<IEmulationModule> _modules = EmulationModuleRegistry.Modules;
-    private readonly TextBlock _configurationBrandLabel = new();
-    private readonly WrapPanel _configurationBrand = new();
+    private readonly EmulationConfigurationSelector _configurationSelector = new();
+    private string? _selectedConfigurationMachineId;
     private IEmulationModule? _selectedConfigurationModule;
     private IReadOnlyList<EmulationConfigurationTableRow> _configurationRows = [];
     private readonly EmulationConfigurationTable _configurationTable = new();
@@ -51,6 +52,19 @@ public sealed partial class EmulationPreferencesSection : UserControl
             VerticalContentAlignment = VerticalAlignment.Stretch
         };
         _shortcuts.BindingsChanged += async (_, _) => await SaveShortcutsAsync();
+        _configurationSelector.BrandSelected += module =>
+        {
+            _selectedConfigurationModule = module;
+            _selectedConfigurationMachineId = null;
+            RebuildConfigurationBrands();
+            FilterConfigurationTable();
+        };
+        _configurationSelector.MachineSelected += (_, machine) =>
+        {
+            _selectedConfigurationMachineId = _selectedConfigurationMachineId == machine.Id ? null : machine.Id;
+            RebuildConfigurationBrands();
+            FilterConfigurationTable();
+        };
         _configurationTable.EditRequested += async row => await EditConfigurationAsync(row);
         _configurationTable.DeleteRequested += async row => await DeleteConfigurationAsync(row);
         _storageFolder.LostKeyboardFocus += async (_, _) => await SaveFoldersAsync();
@@ -105,7 +119,6 @@ public sealed partial class EmulationPreferencesSection : UserControl
         }
         _shortcuts.SetRows(GlobalShortcutDefinitions(), shortcutValues);
         _shortcuts.ConfigurePresentation(LocExtension.Get("Emulation.Input.Actions"), LocExtension.Get("Emulation.Input.Binding.Search"));
-        _configurationBrandLabel.Text = LocExtension.Get("Emulation.Configuration.Brand");
         _configurationTable.RefreshLocalizedContent();
         if (_configurationsLoaded)
         {
@@ -117,4 +130,3 @@ public sealed partial class EmulationPreferencesSection : UserControl
     }
 
 }
-

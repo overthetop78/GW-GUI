@@ -65,33 +65,25 @@ internal static class ConfigurationStoreFunctions
     internal static async Task WriteDocumentAtomicallyAsync(string path, ConfigurationDocument document, CancellationToken cancellationToken)
     {
         var fullPath = Path.GetFullPath(path);
-        Directory.CreateDirectory(Path.GetDirectoryName(fullPath)!);
         var temporaryPath = fullPath + ConfigurationStoreConstants.TemporaryNameSeparator + Guid.NewGuid().ToString(ConfigurationStoreConstants.MachineIdentifierFormat) + ConfigurationStoreConstants.TemporaryFileSuffix;
-        try
+        await ConfigurationFileAccessFunctions.WriteAtomicallyAsync(fullPath, temporaryPath, async temporary =>
         {
-            await using (var stream = new FileStream(temporaryPath, FileMode.Create, FileAccess.Write, FileShare.None, ConfigurationStoreConstants.WriteBufferSize, FileOptions.Asynchronous | FileOptions.WriteThrough))
+            await using (var stream = new FileStream(temporary, FileMode.Create, FileAccess.Write, FileShare.None, ConfigurationStoreConstants.WriteBufferSize, FileOptions.Asynchronous | FileOptions.WriteThrough))
             {
                 await JsonSerializer.SerializeAsync(stream, document, JsonOptions, cancellationToken).ConfigureAwait(false);
                 await stream.FlushAsync(cancellationToken).ConfigureAwait(false);
             }
-
-            ConfigurationFileAccessFunctions.ReplaceFile(temporaryPath, fullPath);
-        }
-        finally
-        {
-            if (File.Exists(temporaryPath))
-                File.Delete(temporaryPath);
-        }
+        }).ConfigureAwait(false);
     }
 
-    private static bool IsInsideBase(string relative) => !Path.IsPathFullyQualified(relative) 
+    private static bool IsInsideBase(string relative) => !Path.IsPathFullyQualified(relative)
         && !string.Equals(relative,
         ConfigurationStoreConstants.ParentDirectoryName,
-        StringComparison.Ordinal) 
-        && !relative.StartsWith(ConfigurationStoreConstants.ParentDirectoryName 
+        StringComparison.Ordinal)
+        && !relative.StartsWith(ConfigurationStoreConstants.ParentDirectoryName
         + Path.DirectorySeparatorChar,
-        StringComparison.Ordinal) 
-        && !relative.StartsWith(ConfigurationStoreConstants.ParentDirectoryName 
+        StringComparison.Ordinal)
+        && !relative.StartsWith(ConfigurationStoreConstants.ParentDirectoryName
         + Path.AltDirectorySeparatorChar,
         StringComparison.Ordinal);
 }

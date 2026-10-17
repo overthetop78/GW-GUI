@@ -416,7 +416,7 @@ public sealed class ConfigurationPresentationTests
         Assert.Contains(storage.AvailableDevices[0].ConfigurationFields!, field => field.Id == "ppsspp_cache_iso" && field.Editor == EmulationSettingsEditor.Toggle);
         var stick = Assert.Single(storage.AvailableDevices, device => device.MediaType == EmulationMediaType.MemoryCard);
         Assert.True(stick.UsesDirectory);
-        Assert.Equal(Path.Combine("Sony", "PSP", "Memory Stick"), stick.DefaultImageSubdirectory);
+        Assert.Equal(Path.Combine("Memory Stick", "Sony", "PSP"), stick.DefaultImageSubdirectory);
     }
 
     [Theory]

@@ -1,3 +1,4 @@
+using GWGUI.App.Functions.Views.Emulation.Settings;
 using System.Globalization;
 using System.Windows;
 using System.Windows.Automation;
@@ -36,66 +37,8 @@ internal static class EmulationPlasmaSettingsBlock
     }
 
     private static void AddGroup(Grid groups, string titleResourceKey, int row, int column, params FrameworkElement[] fields)
-    {
-        var content = new StackPanel();
-        content.Children.Add(new TextBlock
-        {
-            Text = LocExtension.Get(titleResourceKey),
-            FontWeight = FontWeights.SemiBold,
-            Margin = new Thickness(0, 0, 0, 8)
-        });
-        foreach (var field in fields) content.Children.Add(field);
-        var card = new Border
-        {
-            Child = content,
-            Margin = new Thickness(column == 0 ? 0 : 6, row == 0 ? 0 : 6, column == 0 ? 6 : 0, row == 0 ? 6 : 0)
-        };
-        AutomationProperties.SetAutomationId(card, titleResourceKey);
-        card.SetResourceReference(FrameworkElement.StyleProperty, ControlVisualConstants.CardStyleResource);
-        Grid.SetRow(card, row);
-        Grid.SetColumn(card, column);
-        groups.Children.Add(card);
-    }
+        => EmulationSettingsLayout.AddVideoProcessingGroup(groups, titleResourceKey, row, column, 1, new Thickness(column == 0 ? 0 : 6, row == 0 ? 0 : 6, column == 0 ? 6 : 0, row == 0 ? 6 : 0), fields);
 
     private static FrameworkElement Slider(string id, int value, Action<int> changed)
-    {
-        var row = new Grid();
-        row.ColumnDefinitions.Add(new ColumnDefinition());
-        row.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
-        var slider = new Slider
-        {
-            Minimum = 0,
-            Maximum = 100,
-            Value = Math.Clamp(value, 0, 100),
-            TickFrequency = 1,
-            IsSnapToTickEnabled = true
-        };
-        AutomationProperties.SetAutomationId(slider, id);
-        var number = new TextBlock
-        {
-            Text = value.ToString(CultureInfo.CurrentCulture),
-            MinWidth = 36,
-            TextAlignment = TextAlignment.Right,
-            VerticalAlignment = VerticalAlignment.Center,
-            Margin = new Thickness(8, 0, 0, 0)
-        };
-        slider.ValueChanged += (_, _) =>
-        {
-            var current = (int)slider.Value;
-            number.Text = current.ToString(CultureInfo.CurrentCulture);
-            changed(current);
-        };
-        row.Children.Add(slider);
-        Grid.SetColumn(number, 1);
-        row.Children.Add(number);
-        var field = new StackPanel { Margin = new Thickness(0, 3, 0, 9) };
-        field.Children.Add(new TextBlock
-        {
-            Text = LocExtension.Get(EmulationVideoProcessingCatalog.ParameterResourceKeys[id]),
-            Margin = new Thickness(0, 0, 0, 4),
-            TextWrapping = TextWrapping.Wrap
-        });
-        field.Children.Add(row);
-        return field;
-    }
+        => EmulationSettingsFieldControlFunctions.CreateVideoSlider(id, value, 0, 100, changed, 1, 36, new Thickness(0, 3, 0, 9));
 }

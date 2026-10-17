@@ -2,9 +2,9 @@ using GWGUI.Emulation.Nec.Emulators.Common.Interop.Constants;
 using GWGUI.Emulation.Nec.Emulators.Common.Interop.Contracts;
 using GWGUI.Emulation.Nec.Emulators.Common.Interop.Functions;
 using GWGUI.Emulation.Nec.Emulators.Common.Interop.Services;
+
 using System.Runtime.InteropServices;
 using GWGUI.Emulation;
-
 
 namespace GWGUI.Emulation.Nec.Emulators.Common.Interop.Services;
 
@@ -98,5 +98,3 @@ internal sealed partial class ExternalHostCallbacks
     }
 
 }
-
-

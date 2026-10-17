@@ -5,6 +5,13 @@ namespace GWGUI.MediaEngine.Functions;
 /// <summary>Fournit les constantes et opérations élémentaires communes aux traitements de bits.</summary>
 public static class BitPrimitives
 {
+    internal static void WriteUInt24LittleEndian(Span<byte> destination, int value)
+    {
+        destination[0] = (byte)value;
+        destination[1] = (byte)(value >> BitsPerByte);
+        destination[2] = (byte)(value >> (2 * BitsPerByte));
+    }
+
     /// <summary>Nombre de bits contenus dans un octet.</summary>
     public const int BitsPerByte = BitConstants.BitsPerByte;
     /// <summary>Masque sélectionnant le bit de poids faible d'une valeur.</summary>

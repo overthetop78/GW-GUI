@@ -3,6 +3,33 @@ using System.Globalization;
 namespace GWGUI.Emulation.Sinclair.Common.Machines.Common.Functions;
 internal static class SettingsDescriptionFunctions
 {
+    internal static IReadOnlyList<CoreOption> NativeOptions(MachineConfiguration? configuration, IReadOnlyList<CoreOption> options,
+        Func<MachineModel, IReadOnlyDictionary<string, string>> defaults, Func<MachineConfiguration, string, bool> available)
+    {
+        if (configuration is null) return options;
+        return EmulationCoreOptionFunctions.WithDefaults(options, defaults(configuration.Model), configuration.Options,
+            static option => option.Key, static option => option.DefaultValue,
+            (option, defaultValue, currentValue) => option with
+            {
+                DefaultValue = defaultValue, CurrentValue = currentValue, IsEnabled = available(configuration, option.Key)
+            });
+    }
+
+    internal static IReadOnlyList<EmulationSettingsBlock> NativeBlocks(MachineConfiguration configuration, IReadOnlyList<CoreOption> options) =>
+        EmulationCoreOptionFunctions.CreateSettingsBlocks(options, static option => option.IsVisible,
+            static option => option.Category, NativeResource,
+            (option, tab, resource) => Native(configuration, option, tab, resource));
+
+    private static string NativeResource(EmulationMachineTab tab) => tab switch
+                {
+                    EmulationMachineTab.Audio => SettingsConstants.ResourceNativeAudio,
+                    EmulationMachineTab.Keyboard => SettingsConstants.ResourceNativeKeyboard,
+                    EmulationMachineTab.Storage => SettingsConstants.ResourceNativeStorage,
+                    EmulationMachineTab.Cpu => SettingsConstants.ResourceCpuAcceleration,
+                    EmulationMachineTab.Ram => SettingsConstants.ResourceMemoryMain,
+                    _ => SettingsConstants.ResourceNativeVideo
+                };
+
     internal static IReadOnlyList<EmulationSettingsBlock> Create(MachineConfiguration configuration)
     {
         var blocks = new List<EmulationSettingsBlock>

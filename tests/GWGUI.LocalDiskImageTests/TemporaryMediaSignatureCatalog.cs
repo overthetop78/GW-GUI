@@ -17,7 +17,7 @@ internal static class TemporaryMediaSignatureCatalog
         if (!state.ProcessedSources.Add(report.Source.Sha256)) return;
 
         AddObservedEdges(state, "Média", report.Source.ContentStartHex, report.Source.ContentEndHex, report.Source.Extension);
-        foreach (var entry in report.Volumes.SelectMany(volume => Flatten(volume.Entries)))
+        foreach (var entry in report.Volumes.SelectMany(volume => GWGUI.MediaAudit.MediaAuditTree.Flatten(volume.Entries, entry => entry.Children)))
         {
             if (entry.Kind == "File" && entry.ContentExtracted && !entry.SyntheticName)
             {
@@ -68,15 +68,6 @@ internal static class TemporaryMediaSignatureCatalog
     {
         var extension = Path.GetExtension(name);
         return string.IsNullOrWhiteSpace(extension) ? NoExtension : extension;
-    }
-
-    private static IEnumerable<FileEntryAudit> Flatten(IEnumerable<FileEntryAudit> entries)
-    {
-        foreach (var entry in entries)
-        {
-            yield return entry;
-            foreach (var child in Flatten(entry.Children)) yield return child;
-        }
     }
 
     private static SignatureState ReadState(string path)

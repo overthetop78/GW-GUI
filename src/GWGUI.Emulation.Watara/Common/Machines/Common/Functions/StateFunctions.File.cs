@@ -9,28 +9,8 @@ internal static class StateFileFunctions
     internal static void Write(string path, SavedStateHeader header, ReadOnlySpan<byte> state)
     {
         SavedStateFunctions.ValidatePayloadSize(state.Length);
-        var fullPath = Path.GetFullPath(path);
-        Directory.CreateDirectory(Path.GetDirectoryName(fullPath)!);
-        var temporaryPath = fullPath + "." + Guid.NewGuid().ToString("N") + StateConstants.TemporaryFileSuffix;
-        var headerBytes = JsonSerializer.SerializeToUtf8Bytes(header, StateConstants.JsonOptions);
-        try
-        {
-            using (var stream = new FileStream(temporaryPath, FileMode.Create, FileAccess.Write, FileShare.None))
-            {
-                stream.Write(StateConstants.Magic);
-                Span<byte> headerLength = stackalloc byte[StateConstants.HeaderLengthSize];
-                BinaryPrimitives.WriteInt32LittleEndian(headerLength, headerBytes.Length);
-                stream.Write(headerLength);
-                stream.Write(headerBytes);
-                stream.Write(state);
-                stream.Flush(flushToDisk: true);
-            }
-            ConfigurationFileAccessFunctions.ReplaceFile(temporaryPath, fullPath);
-        }
-        finally
-        {
-            if (File.Exists(temporaryPath)) File.Delete(temporaryPath);
-        }
+        EmulationStateFileFunctions.WriteFile(path, header, state, StateConstants.Magic, "." + Guid.NewGuid().ToString("N") + StateConstants.TemporaryFileSuffix,
+            StateConstants.JsonOptions, useFileReplace: false);
     }
 
     internal static StateFile Read(string path)
@@ -63,22 +43,10 @@ internal static class StateFileFunctions
     private static StateFile ReadOnce(string path)
     {
         using var stream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite | FileShare.Delete);
-        Span<byte> magic = stackalloc byte[StateConstants.Magic.Length];
-        stream.ReadExactly(magic);
-        if (!magic.SequenceEqual(StateConstants.Magic)) throw SavedStateFunctions.Invalid(EmulationMessageCode.SavedStateInvalid, ErrorMessages.StateInvalid);
-        Span<byte> headerLengthBytes = stackalloc byte[StateConstants.HeaderLengthSize];
-        stream.ReadExactly(headerLengthBytes);
-        var headerLength = BinaryPrimitives.ReadInt32LittleEndian(headerLengthBytes);
-        if (headerLength is <= StateConstants.EmptyLength or > StateConstants.MaximumHeaderLength) throw SavedStateFunctions.Invalid(EmulationMessageCode.SavedStateInvalid, ErrorMessages.StateInvalid);
-        var headerBytes = GC.AllocateUninitializedArray<byte>(headerLength);
-        stream.ReadExactly(headerBytes);
-        var header = JsonSerializer.Deserialize<SavedStateHeader>(headerBytes, StateConstants.JsonOptions);
-        if (header is null || !SavedStateFunctions.IsHeaderValid(header)) throw SavedStateFunctions.Invalid(EmulationMessageCode.SavedStateInvalid, ErrorMessages.StateInvalid);
-        var payloadLength = stream.Length - stream.Position;
-        if (payloadLength <= StateConstants.EmptyLength || payloadLength > Array.MaxLength) throw SavedStateFunctions.Invalid(EmulationMessageCode.SavedStateInvalid, ErrorMessages.StateInvalid);
-        var state = GC.AllocateUninitializedArray<byte>((int)payloadLength);
-        stream.ReadExactly(state);
-        if (!string.Equals(header.StateSha256, SavedStateFunctions.HashBytes(state), StringComparison.OrdinalIgnoreCase)) throw SavedStateFunctions.Invalid(EmulationMessageCode.SavedStateInvalid, ErrorMessages.StateInvalid);
-        return new StateFile(header, state);
+        var result = EmulationStateFileFunctions.Read<SavedStateHeader>(stream, StateConstants.Magic,
+            StateConstants.MaximumHeaderLength, StateConstants.JsonOptions, static header => header.StateSha256,
+            static () => SavedStateFunctions.Invalid(EmulationMessageCode.SavedStateInvalid, ErrorMessages.StateInvalid),
+            SavedStateFunctions.IsHeaderValid, SavedStateFunctions.ValidatePayloadSize);
+        return new StateFile(result.Header, result.State);
     }
 }

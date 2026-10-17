@@ -9,10 +9,6 @@ internal static class FirmwareRuntimeFunctions
     internal const string BiosDirectory = "bios";
     private const int CartridgeBiosBytes = 131072;
     private const int LargeBiosBytes = 524288;
-    private const int PocketBiosBytes = 65536;
-    private const string ZoomRom = "000-lo.lo";
-    private const string FixedRom = "sfix.sfix";
-    private const string SoundRom = "sm1.sm1";
     private const string ArchiveExtension = ".zip";
     private static readonly IReadOnlyList<(string Id, string FileName, int Length)> MvsBios = Array.AsReadOnly(new (string Id, string FileName, int Length)[] { ("unibios40", "uni-bios_4_0.rom", CartridgeBiosBytes),
         ("unibios33", "uni-bios_3_3.rom", CartridgeBiosBytes),
@@ -67,61 +63,19 @@ internal static class FirmwareRuntimeFunctions
         MachineModel.NeoGeoCdz => "neocdz",
         _ => throw new ArgumentOutOfRangeException(nameof(model))
     };
-    private static string? SelectBios(ZipArchive archive, MachineModel model)
-    {
-        if (model is MachineModel.NeoGeoPocket or MachineModel.NeoGeoPocketColor)
-            return archive.GetEntry(model == MachineModel.NeoGeoPocket ? "ngp_bios.ngp" : "ngpcbios.rom")?.Length == PocketBiosBytes ? string.Empty : null;
-        if (archive.GetEntry(ZoomRom)?.Length != CartridgeBiosBytes)
-            return null;
-        if (model == MachineModel.NeoGeoMvs && (archive.GetEntry(FixedRom)?.Length != CartridgeBiosBytes || archive.GetEntry(SoundRom)?.Length != CartridgeBiosBytes))
-            return null;
-        IEnumerable<(string Id, string FileName, int Length)> alternatives = model switch
-        {
-            MachineModel.NeoGeoAes => AesBios.Concat(MvsBios.Where(bios => bios.Id.StartsWith("unibios", StringComparison.Ordinal))),
-            MachineModel.NeoGeoMvs => MvsBios,
-            MachineModel.NeoGeoCd => CdBios,
-            MachineModel.NeoGeoCdz => CdzBios,
-            _ => []
-        };
-        return alternatives.FirstOrDefault(bios => archive.GetEntry(bios.FileName)?.Length == bios.Length).Id;
-    }
+    private static string? SelectBios(ZipArchive archive, MachineModel model) =>
+        FirmwareCopy.SelectModelBios(archive, model, MvsBios, AesBios, CdBios, CdzBios);
 
-    internal static ValueTask<EmulationFirmwareCandidate> Inspect(string path, MachineModel model, CancellationToken cancellationToken)
-    {
-        cancellationToken.ThrowIfCancellationRequested();
-        var absolute = Path.GetFullPath(path);
-        var compatibility = EmulationFirmwareCompatibility.Incompatible;
-        try
-        {
-            using var archive = ZipFile.OpenRead(absolute);
-            if (SelectBios(archive, model)is not null)
-                compatibility = EmulationFirmwareCompatibility.PartiallyCompatible;
-        }
-        catch (InvalidDataException)
-        {
-        }
-        catch (IOException)
-        {
-        }
-
-        return ValueTask.FromResult(new EmulationFirmwareCandidate(absolute, absolute, Path.GetFileName(absolute), null, compatibility, compatibility == EmulationFirmwareCompatibility.Incompatible ? null : FirmwareFunctions.Field(FirmwareCategory.SystemBios)));
-    }
+    internal static ValueTask<EmulationFirmwareCandidate> Inspect(string path, MachineModel model, CancellationToken cancellationToken) =>
+        FirmwareCopy.InspectArchive(path, model, cancellationToken, static (archive, model) => SelectBios(archive, model) is not null);
 
     internal static void Prepare(MachineConfiguration configuration, string systemDirectory)
     {
         var directory = Path.Combine(systemDirectory, RuntimeOptionConstants.NativeSystemDirectory, BiosDirectory);
-        Directory.CreateDirectory(directory);
         var destination = Path.Combine(directory, Driver(configuration.Model) + ArchiveExtension);
-        FirmwareCopy.CopyVerified(configuration, FirmwareCategory.SystemBios, destination);
-        using var archive = ZipFile.OpenRead(destination);
-        if (SelectBios(archive, configuration.Model)is null)
-            throw new EmulationException(ErrorCategory.Firmware, ErrorCode.FirmwareInvalid, ErrorMessages.FirmwareFileUnreadable);
+        FirmwareCopy.PrepareArchive(configuration, destination, archive => SelectBios(archive, configuration.Model) is not null);
     }
 
-    internal static string SelectedBios(MachineConfiguration configuration)
-    {
-        var firmware = configuration.Firmwares.SingleOrDefault(item => item.Category == FirmwareCategory.SystemBios) ?? throw new EmulationException(ErrorCategory.Firmware, ErrorCode.FirmwareInvalid, ErrorMessages.FirmwareFileUnreadable);
-        using var archive = ZipFile.OpenRead(firmware.Path);
-        return SelectBios(archive, configuration.Model) ?? throw new EmulationException(ErrorCategory.Firmware, ErrorCode.FirmwareInvalid, ErrorMessages.FirmwareFileUnreadable);
-    }
+    internal static string SelectedBios(MachineConfiguration configuration) =>
+        FirmwareCopy.SelectedArchiveBios(configuration, archive => SelectBios(archive, configuration.Model));
 }

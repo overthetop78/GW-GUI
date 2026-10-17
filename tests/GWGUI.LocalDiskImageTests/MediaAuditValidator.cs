@@ -142,7 +142,7 @@ internal static class MediaAuditValidator
                     errors.Add($"{identity} files occupy {occupied} bytes, exceeding capacity {capacity} bytes.");
             }
 
-            var flattened = Flatten(volume.Entries).ToArray();
+            var flattened = GWGUI.MediaAudit.MediaAuditTree.Flatten(volume.Entries, entry => entry.Children).ToArray();
             var directories = flattened.Count(entry => entry.Kind == FileSystemEntryKind.Directory.ToString());
             var files = flattened.Where(entry => entry.Kind == FileSystemEntryKind.File.ToString()).ToArray();
             if (directories != volume.DirectoryCount)
@@ -200,15 +200,6 @@ internal static class MediaAuditValidator
             && entry.Category == GWGUI.App.Enums.Explorer.ExplorerFileCategory.File.ToString()
             && entry.ContentFormat == GWGUI.App.Enums.Explorer.ExplorerContentFormat.Unknown.ToString())
             errors.Add($"{identity} content type remains unknown.");
-    }
-
-    private static IEnumerable<FileEntryAudit> Flatten(IEnumerable<FileEntryAudit> entries)
-    {
-        foreach (var entry in entries)
-        {
-            yield return entry;
-            foreach (var child in Flatten(entry.Children)) yield return child;
-        }
     }
 
     private static ValidationAudit Result(IEnumerable<string> errors, IEnumerable<string> warnings)

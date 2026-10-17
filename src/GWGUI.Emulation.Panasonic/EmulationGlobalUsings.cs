@@ -19,3 +19,7 @@ global using GWGUI.Emulation.Panasonic.Common.Enums;
 global using GWGUI.Emulation.Panasonic.Common.Exceptions;
 global using GWGUI.Emulation.Panasonic.Common.Functions;
 global using GWGUI.Emulation.Panasonic.Common.Machines.Common.Dictionaries;
+
+global using FrameTimer = GWGUI.Emulation.Services.EmulationFrameTimer;
+
+global using ExternalCoreExports = GWGUI.Emulation.Contracts.ExternalCoreExports;

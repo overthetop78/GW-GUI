@@ -11,10 +11,7 @@ namespace GWGUI.Emulation.Watara.Emulators.Potator.Functions;
 
 internal static class CoreReleaseFunctions
 {
-    private static readonly JsonSerializerOptions ManifestJsonOptions = new(JsonSerializerDefaults.Web)
-    {
-        WriteIndented = true
-    };
+
 
     internal static CoreRelease ParseRelease(EmulatorCatalogEntry entry, HttpResponseMessage response)
     {
@@ -23,74 +20,25 @@ internal static class CoreReleaseFunctions
         return new CoreRelease(entry.Emulator, CoreReleaseConstants.ReleaseIdPrefix + version, version, entry.ArchiveUri, published, response.Content.Headers.ContentLength);
     }
 
-    internal static async Task<long> DownloadAsync(HttpClient client, Uri source, string destination, IProgress<CoreInstallProgress>? progress, CancellationToken cancellationToken)
-    {
-        using var response = await client.GetAsync(source, HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
-        response.EnsureSuccessStatusCode();
-        var total = response.Content.Headers.ContentLength;
-        long written = 0;
-        await using var input = await response.Content.ReadAsStreamAsync(cancellationToken).ConfigureAwait(false);
-        await using var output = new FileStream(destination, FileMode.Create, FileAccess.Write, FileShare.None, CoreReleaseConstants.DownloadBufferSize, FileOptions.Asynchronous);
-        var buffer = new byte[CoreReleaseConstants.DownloadBufferSize];
-        int read;
-        while ((read = await input.ReadAsync(buffer, cancellationToken).ConfigureAwait(false)) > 0)
-        {
-            await output.WriteAsync(buffer.AsMemory(0, read), cancellationToken).ConfigureAwait(false);
-            written += read;
-            progress?.Report(new CoreInstallProgress(written, total));
-        }
-        return written;
-    }
+    internal static Task<long> DownloadAsync(HttpClient client, Uri source, string destination, IProgress<CoreInstallProgress>? progress, CancellationToken cancellationToken) =>
+        EmulationCoreReleaseFunctions.DownloadAsync(client, source, destination,
+            progress is null ? null : (written, total) => progress.Report(new CoreInstallProgress(written, total)), cancellationToken);
 
-    internal static void ExtractExpectedLibrary(string archivePath, string expectedName, string destination)
-    {
-        using var archive = ZipFile.OpenRead(archivePath);
-        var entry = archive.Entries.FirstOrDefault(item => Path.GetFileName(item.FullName).Equals(expectedName, StringComparison.OrdinalIgnoreCase)) ?? throw new InvalidDataException(string.Format(CultureInfo.InvariantCulture, CoreReleaseErrors.MissingExpectedLibraryFormat, expectedName));
-        using var input = entry.Open();
-        using var output = new FileStream(destination, FileMode.Create, FileAccess.Write, FileShare.None);
-        input.CopyTo(output);
-    }
+    internal static void ExtractExpectedLibrary(string archivePath, string expectedName, string destination) =>
+        EmulationCoreReleaseFunctions.ExtractExpectedLibrary(archivePath, expectedName, destination,
+            name => string.Format(CultureInfo.InvariantCulture, CoreReleaseErrors.MissingExpectedLibraryFormat, name));
 
     internal static Task WriteManifestAtomicallyAsync(string manifestPath, CoreDiagnosticManifest manifest, CancellationToken cancellationToken) => WriteJsonAtomicallyAsync(manifestPath, manifest, cancellationToken);
 
     internal static Task WriteActiveInstallationAtomicallyAsync(string manifestPath, CoreActiveInstallation installation, CancellationToken cancellationToken) => WriteJsonAtomicallyAsync(manifestPath, installation, cancellationToken);
 
-    internal static async Task<T?> ReadJsonAsync<T>(string path, CancellationToken cancellationToken)
-    {
-        if (!File.Exists(path)) return default;
-        await using var stream = File.OpenRead(path);
-        return await JsonSerializer.DeserializeAsync<T>(stream, ManifestJsonOptions, cancellationToken) .ConfigureAwait(false);
-    }
+    internal static Task<T?> ReadJsonAsync<T>(string path, CancellationToken cancellationToken) => EmulationCoreReleaseFunctions.ReadJsonAsync<T>(path, cancellationToken);
 
-    private static async Task WriteJsonAtomicallyAsync<T>(string manifestPath, T value, CancellationToken cancellationToken)
-    {
-        Directory.CreateDirectory(Path.GetDirectoryName(manifestPath)!);
-        var temporary = manifestPath + CoreReleaseConstants.TemporaryManifestExtension;
-        try
-        {
-            await File.WriteAllTextAsync(temporary, JsonSerializer.Serialize(value, ManifestJsonOptions), cancellationToken).ConfigureAwait(false);
-            File.Move(temporary, manifestPath, overwrite: true);
-        }
-        finally
-        {
-            DeleteIfExists(temporary);
-        }
-    }
+    private static Task WriteJsonAtomicallyAsync<T>(string manifestPath, T value, CancellationToken cancellationToken) => EmulationCoreReleaseFunctions.WriteJsonAtomicallyAsync(manifestPath, value, cancellationToken);
 
-    internal static void ReplaceLibraryAtomically(string source, string destination)
-    {
-        try
-        {
-            File.Move(source, destination, overwrite: true);
-        }
-        catch (UnauthorizedAccessException error)
-        {
-            throw new IOException(string.Format(CultureInfo.InvariantCulture, CoreReleaseErrors.InstalledLibraryLockedFormat, destination), error);
-        }
-    }
+    internal static void ReplaceLibraryAtomically(string source, string destination) =>
+        EmulationCoreReleaseFunctions.ReplaceLibraryAtomically(source, destination,
+            path => string.Format(CultureInfo.InvariantCulture, CoreReleaseErrors.InstalledLibraryLockedFormat, path));
 
-    internal static void DeleteIfExists(string path)
-    {
-        if (File.Exists(path)) File.Delete(path);
-    }
+    internal static void DeleteIfExists(string path) => ConfigurationFileAccessFunctions.DeleteIfExists(path);
 }

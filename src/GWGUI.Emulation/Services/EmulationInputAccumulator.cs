@@ -42,5 +42,10 @@ internal sealed class EmulationInputAccumulator
         }
     }
 
+    internal void Reset()
+    {
+        lock (_gate) _current = EmulationInputSnapshot.Empty;
+    }
+
     private static int SaturatingAdd(int left, int right) => (int)Math.Clamp((long)left + right, int.MinValue, int.MaxValue);
 }

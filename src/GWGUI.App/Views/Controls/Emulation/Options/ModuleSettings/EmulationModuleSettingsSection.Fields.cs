@@ -50,40 +50,19 @@ internal sealed partial class EmulationModuleSettingsSection
 
     private FrameworkElement CreateSelection(EmulationSettingsField field)
     {
-        var choices = SelectionChoices(field);
-        if (choices.Count == 2 && field.ChoiceSource == EmulationSettingsChoiceSource.Declared)
+        var control = EmulationSettingsFieldControlFunctions.CreateSelection(field, SelectionChoices(field));
+        if (control is WrapPanel radios)
         {
-            var radios = new WrapPanel();
-            var group = Guid.NewGuid().ToString();
-            var selected = choices.FirstOrDefault(choice => choice.Choice.Id == field.Value) ?? choices[0];
-            foreach (var choice in choices)
-            {
-                var radio = new RadioButton { Content = new TextBlock { Text = choice.DisplayName, TextWrapping = TextWrapping.Wrap }, Tag = choice,
-                    GroupName = group, IsChecked = choice.Choice.Id == selected.Choice.Id,
-                    HorizontalContentAlignment = HorizontalAlignment.Stretch,
-                    Margin = new Thickness(0, 4, 18, 4) };
-                System.Windows.Automation.AutomationProperties.SetName(radio, choice.DisplayName);
+            foreach (var radio in radios.Children.OfType<RadioButton>())
                 radio.Checked += async (_, _) =>
                 {
                     if (_applyingSettingsRule) return;
                     if (field.RefreshSettingsOnChange) RefreshSettingsDescription();
                     await ExecuteUserChangeAsync();
                 };
-                radios.Children.Add(radio);
-            }
-            radios.Tag = (Func<string>)(() => radios.Children.OfType<RadioButton>()
-                .Where(radio => radio.IsChecked == true).Select(radio => ((EmulationSettingsChoiceView)radio.Tag).Choice.Id).FirstOrDefault() ?? field.Value ?? string.Empty);
             return radios;
         }
-        var selection = new ComboBox
-        {
-            ItemsSource = choices,
-            SelectedItem = choices.FirstOrDefault(choice => choice.Choice.Id == field.Value) ?? choices.FirstOrDefault()
-        };
-        var choiceText = new FrameworkElementFactory(typeof(TextBlock));
-        choiceText.SetBinding(TextBlock.TextProperty, new System.Windows.Data.Binding(nameof(EmulationSettingsChoiceView.DisplayName)));
-        choiceText.SetValue(TextBlock.TextWrappingProperty, TextWrapping.Wrap);
-        selection.ItemTemplate = new DataTemplate { VisualTree = choiceText };
+        var selection = (ComboBox)control;
         _userChangeHandlers[selection] = async () =>
         {
             if (field.RefreshSettingsOnChange)
@@ -110,7 +89,7 @@ internal sealed partial class EmulationModuleSettingsSection
 
     private CheckBox CreateToggle(EmulationSettingsField field)
     {
-        var toggle = new CheckBox { IsChecked = field.Value == field.EnabledValue, Tag = field };
+        var toggle = EmulationSettingsFieldControlFunctions.CreateToggle(field);
         _userChangeHandlers[toggle] = async () =>
         {
             if (field.RefreshSettingsOnChange) RefreshSettingsDescription();

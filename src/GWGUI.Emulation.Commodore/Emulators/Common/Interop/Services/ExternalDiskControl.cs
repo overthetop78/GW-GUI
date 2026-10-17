@@ -88,21 +88,7 @@ internal sealed class ExternalDiskControl
     internal string? GetLabel(int index) => ReadText(_getImageLabel, index);
 
     private static string? ReadText<T>(T? getter, int index) where T : Delegate
-    {
-        if (getter is null || index < BufferConstants.FirstCollectionIndex) return null;
-        var buffer = Marshal.AllocHGlobal(ExternalCoreConstants.ImageTextBufferSize);
-        try
-        {
-            var success = getter switch
-            {
-                ExternalCoreApi.GetImagePath path => path((uint)index, buffer, ExternalCoreConstants.ImageTextBufferSize),
-                ExternalCoreApi.GetImageLabel label => label((uint)index, buffer, ExternalCoreConstants.ImageTextBufferSize),
-                _ => false
-            };
-            return success ? Marshal.PtrToStringUTF8(buffer) : null;
-        }
-        finally { Marshal.FreeHGlobal(buffer); }
-    }
+    => GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.ReadDiskText(getter, index, ExternalCoreConstants.ImageTextBufferSize);
 
     internal void Insert(string path)
     {

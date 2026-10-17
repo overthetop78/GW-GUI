@@ -21,7 +21,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
     private static readonly IReadOnlyDictionary<uint, EmulationKey> KeyboardMap = CreateKeyboardMap();
     private readonly Dictionary<string, string> _options = new(StringComparer.Ordinal);
     private readonly HashSet<string> _configuredOptionKeys = new(StringComparer.Ordinal);
-    private readonly Dictionary<string, nint> _nativeStrings = new(StringComparer.Ordinal);
+    private readonly Dictionary<string, ExternalCoreUtf8String> _nativeStrings = new(StringComparer.Ordinal);
     private readonly Stopwatch _clock = Stopwatch.StartNew();
     private EmulationPixelFormat _pixelFormat = EmulationPixelFormat.Rgb565;
     private float _aspectRatio;
@@ -33,7 +33,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
     private int _optionsUpdated;
     private readonly object _inputGate = new();
     private readonly int[] _controllerTypes = Enumerable.Repeat((int)ControllerType.None, ControllerPortConstants.MaximumControllerPortCount).ToArray();
-    private EmulationInputSnapshot _pendingInput = EmulationInputSnapshot.Empty;
+    private readonly InputAccumulator _input = new();
     private EmulationInputSnapshot _polledInput = EmulationInputSnapshot.Empty;
     private int _pointerX = ExternalHostCallbacksConstants.PointerCoordinateCenter;
     private int _pointerY = ExternalHostCallbacksConstants.PointerCoordinateCenter;
@@ -83,19 +83,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
     private readonly HashSet<uint> _unknownEnvironmentCommands = [];
     internal EmulationInputSnapshot Input
     {
-        set
-        {
-            lock (_inputGate)
-            {
-                var pointer = value.Pointer with
-                {
-                    DeltaX = SaturatingAdd(_pendingInput.Pointer.DeltaX, value.Pointer.DeltaX),
-                    DeltaY = SaturatingAdd(_pendingInput.Pointer.DeltaY, value.Pointer.DeltaY),
-                    Wheel = SaturatingAdd(_pendingInput.Pointer.Wheel, value.Pointer.Wheel)
-                };
-                _pendingInput = value with { Pointer = pointer };
-            }
-        }
+        set { lock (_inputGate) _input.Update(value); }
     }
     internal ExternalCoreApi.EnvironmentCallback Environment { get; }
     internal void SetControllerType(int port, ControllerType type)
@@ -151,7 +139,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
             {
                 foreach (var pointer in _nativeStrings.Values)
                 {
-                    try { Marshal.FreeCoTaskMem(pointer); }
+                    try { pointer.Dispose(); }
                     catch (Exception) { }
                 }
             }
@@ -170,7 +158,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
             }
             lock (_inputGate)
             {
-                _pendingInput = EmulationInputSnapshot.Empty;
+                _input.Reset();
                 _polledInput = EmulationInputSnapshot.Empty;
                 _previousKeys = new HashSet<EmulationKey>();
             }
@@ -178,5 +166,3 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
         }
     }
 }
-
-

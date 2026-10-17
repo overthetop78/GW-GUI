@@ -14,7 +14,8 @@ internal sealed class ManagedStorageConfigurationDialog : Window
         item => item.Key, item => StorageConfigurationFieldFunctions.Read(item.Value), StringComparer.Ordinal);
 
     internal ManagedStorageConfigurationDialog(string identifier, string model, string moduleId,
-        IReadOnlyList<EmulationSettingsField> fields, IReadOnlyDictionary<string, string>? values)
+        IReadOnlyList<EmulationSettingsField> fields, IReadOnlyDictionary<string, string>? values,
+        string? explanation = null)
     {
         Title = LocExtension.Get(EmulationResourceKeys.StorageDeviceConfigure) + " " + identifier;
         Owner = Application.Current?.Windows.OfType<Window>().FirstOrDefault(window => window.IsActive);
@@ -25,7 +26,7 @@ internal sealed class ManagedStorageConfigurationDialog : Window
         MaxHeight = SystemParameters.WorkArea.Height * 0.85;
         SizeToContent = SizeToContent.Height;
         var body = new StackPanel();
-        body.Children.Add(StorageDialogUi.Info(LocExtension.GetForModule(moduleId, "Emulation.Sony.Storage.ManagedDirectory.Help")));
+        if (!string.IsNullOrWhiteSpace(explanation)) body.Children.Add(StorageDialogUi.Info(explanation));
         foreach (var field in fields)
         {
             var control = StorageConfigurationFieldFunctions.Create(field, moduleId, values);

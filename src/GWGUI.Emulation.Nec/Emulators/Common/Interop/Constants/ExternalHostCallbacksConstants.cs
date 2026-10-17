@@ -29,4 +29,3 @@ internal static class ExternalHostCallbacksConstants
     internal const int MaximumCoreOptionDefinitions = 1024;
     internal const int MaximumCoreOptionValues = 128;
 }
-

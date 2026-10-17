@@ -55,31 +55,11 @@ internal sealed class CoreOptionHost : IDisposable
         ReplaceCatalog(CoreOptionFunctions.MergeLocalizedDefinitions(english, local), CoreOptionFunctions.MergeLocalizedCategories(englishCategories, localCategories));
     }
 
-    internal bool ReturnValue(nint data)
-    {
-        if (data == nint.Zero) return true;
-        var variable = Marshal.PtrToStructure<ExternalCoreApi.Variable>(data);
-        var key = variable.Key == nint.Zero ? null : Marshal.PtrToStringUTF8(variable.Key);
-        variable.Value = key is not null && _values.TryGetValue(key, out var value) ? NativeValue(key, value) : nint.Zero;
-        Marshal.StructureToPtr(variable, data, false);
-        return true;
-    }
+    internal bool ReturnValue(nint data) => EmulationCoreOptionFunctions.ReturnNativeValue(data, _values, NativeValue);
 
-    internal bool SetNativeValue(nint data)
-    {
-        if (data == nint.Zero) return false;
-        var variable = Marshal.PtrToStructure<ExternalCoreApi.Variable>(data);
-        var key = variable.Key == nint.Zero ? null : Marshal.PtrToStringUTF8(variable.Key);
-        var value = variable.Value == nint.Zero ? null : Marshal.PtrToStringUTF8(variable.Value);
-        if (string.IsNullOrWhiteSpace(key) || value is null) return false;
-        return SetValue(key, value, requireAnnouncedKey: true);
-    }
+    internal bool SetNativeValue(nint data) => EmulationCoreOptionFunctions.SetNativeValue(data, (key, value) => SetValue(key, value, requireAnnouncedKey: true));
 
-    internal bool GetAndClearUpdated(nint data)
-    {
-        if (data == nint.Zero) return false;
-        return CoreFunctions.WriteBoolean(data, Interlocked.Exchange(ref _updated, CoreOptionConstants.NoEntries) != CoreOptionConstants.NoEntries);
-    }
+    internal bool GetAndClearUpdated(nint data) => EmulationCoreOptionFunctions.GetAndClearUpdated(data, ref _updated);
 
     internal void SetValue(string key, string value)
     {
@@ -89,33 +69,24 @@ internal sealed class CoreOptionHost : IDisposable
 
     internal bool ApplyVisibility(nint data)
     {
-        if (data == nint.Zero) return false;
-        var display = Marshal.PtrToStructure<ExternalCoreApi.CoreOptionDisplay>(data);
-        var key = display.Key == nint.Zero ? null : Marshal.PtrToStringUTF8(display.Key);
-        if (string.IsNullOrWhiteSpace(key)) return false;
-        _visibility[key] = display.Visible;
-        Catalog = Catalog.Select(option => option.Key.Equals(key, StringComparison.Ordinal) ? option with { IsVisible = display.Visible && IsExposed(key) } : option).ToArray();
+        if (!EmulationCoreOptionFunctions.ApplyNativeVisibility(data, _visibility, Catalog, static option => option.Key,
+            (option, visible) => option with { IsVisible = visible && IsExposed(option.Key) }, out var catalog)) return false;
+        Catalog = catalog;
         return true;
     }
 
     internal bool CaptureDisplayUpdate(nint data)
     {
-        if (data == nint.Zero) return false;
-        var pointer = Marshal.PtrToStructure<ExternalCoreApi.CoreOptionsUpdateDisplayCallback>(data).Callback;
-        _displayUpdate = pointer == nint.Zero ? null : Marshal.GetDelegateForFunctionPointer<ExternalCoreApi.UpdateCoreOptionsDisplay>(pointer);
+        if (!EmulationCoreOptionFunctions.TryGetDisplayCallback(data, out var callback)) return false;
+        _displayUpdate = callback;
         return true;
     }
 
-    internal void ValidateConfiguredValues()
-    {
-        foreach (var key in _configuredKeys)
-        {
-            var option = Catalog.FirstOrDefault(item => item.Key.Equals(key, StringComparison.Ordinal));
-            if (option is null || option.Values.Count == CoreOptionConstants.NoEntries) continue;
-            if (!option.Values.Any(item => item.Value.Equals(_values[key], StringComparison.Ordinal)))
-                throw new EmulationException(ErrorCategory.Option, ErrorCode.OptionInvalid, CoreFunctions.CreateInvalidOptionValueMessage(key, _values[key]));
-        }
-    }
+    internal void ValidateConfiguredValues() =>
+        EmulationCoreOptionFunctions.ValidateConfiguredValues(_configuredKeys, _values, Catalog,
+            static option => option.Key, static option => option.Values, static value => value.Value,
+            static (key, value) => throw new EmulationException(ErrorCategory.Option, ErrorCode.OptionInvalid,
+                CoreFunctions.CreateInvalidOptionValueMessage(key, value)));
 
     private bool SetValue(string key, string value, bool requireAnnouncedKey)
     {
@@ -183,4 +154,3 @@ internal sealed class CoreOptionHost : IDisposable
         _nativeValues.Clear();
     }
 }
-

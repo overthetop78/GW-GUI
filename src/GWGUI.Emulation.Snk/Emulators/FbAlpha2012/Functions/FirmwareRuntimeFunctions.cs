@@ -6,13 +6,6 @@ using GWGUI.Emulation.Snk.Emulators.FbAlpha2012.Constants;
 namespace GWGUI.Emulation.Snk.Emulators.FbAlpha2012.Functions;
 internal static class FirmwareRuntimeFunctions
 {
-    private const string ZoomRom = "000-lo.lo";
-    private const string FixedRom = "sfix.sfix";
-    private const string SoundRom = "sm1.sm1";
-    private const string JapanAesRom = "neo-po.bin";
-    private const string AsiaAesRom = "neo-epo.bin";
-    private const string UniverseBiosPrefix = "uni-bios_";
-    private const int RomBankBytes = 131072;
     private static readonly IReadOnlyDictionary<string, int> BiosAlternatives = new Dictionary<string, int>(StringComparer.Ordinal)
     {
         ["asia-s3.rom"] = 131072,
@@ -48,53 +41,21 @@ internal static class FirmwareRuntimeFunctions
     };
     internal static IReadOnlyList<FirmwareCategory> Roles => [FirmwareCategory.SystemBios];
 
-    internal static ValueTask<EmulationFirmwareCandidate> Inspect(string path, MachineModel model, CancellationToken cancellationToken)
-    {
-        cancellationToken.ThrowIfCancellationRequested();
-        var absolute = Path.GetFullPath(path);
-        var compatibility = EmulationFirmwareCompatibility.Incompatible;
-        try
-        {
-            using var archive = ZipFile.OpenRead(absolute);
-            if (Valid(archive, model, null))
-                compatibility = EmulationFirmwareCompatibility.PartiallyCompatible;
-        }
-        catch (InvalidDataException)
-        {
-        }
-        catch (IOException)
-        {
-        }
-
-        return ValueTask.FromResult(new EmulationFirmwareCandidate(absolute, absolute, Path.GetFileName(absolute), null, compatibility, compatibility == EmulationFirmwareCompatibility.Incompatible ? null : FirmwareFunctions.Field(FirmwareCategory.SystemBios)));
-    }
+    internal static ValueTask<EmulationFirmwareCandidate> Inspect(string path, MachineModel model, CancellationToken cancellationToken) =>
+        FirmwareCopy.InspectArchive(path, model, cancellationToken, static (archive, model) => Valid(archive, model, null));
 
     internal static void Prepare(MachineConfiguration configuration, string systemDirectory)
     {
         var directory = systemDirectory;
-        Directory.CreateDirectory(directory);
         var archiveName = RuntimeOptionConstants.SystemArchive;
         var destination = Path.Combine(directory, archiveName);
-        FirmwareCopy.CopyVerified(configuration, FirmwareCategory.SystemBios, destination);
-        using var archive = ZipFile.OpenRead(destination);
-        var mode = RuntimeOptionFunctions.Prepare(configuration).GetValueOrDefault(RuntimeOptionConstants.NeoGeoMode);
-        if (!Valid(archive, configuration.Model, mode))
-            throw new EmulationException(ErrorCategory.Firmware, ErrorCode.FirmwareInvalid, ErrorMessages.FirmwareFileUnreadable);
+        FirmwareCopy.PrepareArchive(configuration, destination, archive => {
+            var mode = RuntimeOptionFunctions.Prepare(configuration).GetValueOrDefault(RuntimeOptionConstants.NeoGeoMode);
+            return Valid(archive, configuration.Model, mode);
+        });
     }
 
-    private static bool Valid(ZipArchive archive, MachineModel model, string? mode)
-    {
-        bool Has(string name, int length) => archive.GetEntry(name)?.Length == length;
-        if (!Has(ZoomRom, RomBankBytes))
-            return false;
-        if (model is not (MachineModel.NeoGeoAes or MachineModel.NeoGeoMvs) || !Has(FixedRom, RomBankBytes) || !Has(SoundRom, RomBankBytes))
-            return false;
-        return BiosAlternatives.Any(bios => Has(bios.Key, bios.Value) && (mode switch
-        {
-            RuntimeOptionConstants.Aes => bios.Key is JapanAesRom or AsiaAesRom,
-            RuntimeOptionConstants.Mvs => bios.Key is not (JapanAesRom or AsiaAesRom) && !bios.Key.StartsWith(UniverseBiosPrefix, StringComparison.Ordinal),
-            RuntimeOptionConstants.UniverseBios => bios.Key.StartsWith(UniverseBiosPrefix, StringComparison.Ordinal),
-            _ => model != MachineModel.NeoGeoAes || bios.Key is JapanAesRom or AsiaAesRom || bios.Key.StartsWith(UniverseBiosPrefix, StringComparison.Ordinal)
-        }));
-    }
+    private static bool Valid(ZipArchive archive, MachineModel model, string? mode) =>
+        FirmwareCopy.ValidCartridgeArchive(archive, model, mode, BiosAlternatives,
+            RuntimeOptionConstants.Aes, RuntimeOptionConstants.Mvs, RuntimeOptionConstants.UniverseBios);
 }

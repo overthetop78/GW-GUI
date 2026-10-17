@@ -5,6 +5,18 @@ namespace GWGUI.MediaEngine.Functions;
 /// <summary>Shares integer PCM profile validation and channel extraction between sequential media decoders.</summary>
 internal static class PcmSampleFunctions
 {
+
+    internal static void AppendPulses(List<short> samples, ref short level, ushort tStates, int count, int sampleRate, int tStatesPerSecond)
+    {
+        var sampleCount = Math.Max(1, (int)Math.Round(tStates * sampleRate / (double)tStatesPerSecond));
+        for (var pulse = 0; pulse < count; pulse++)
+        {
+            for (var sample = 0; sample < sampleCount; sample++) samples.Add(level);
+            level = (short)-level;
+        }
+    }
+
+
     public static void AppendSilence(List<short> samples, int sampleRate, double durationSeconds)
     {
         ArgumentNullException.ThrowIfNull(samples);

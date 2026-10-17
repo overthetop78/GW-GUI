@@ -33,7 +33,7 @@ internal static class SavedStateFunctions
     internal static EmulationMessageException Invalid(EmulationMessageCode code,
         string message,
         Exception? innerException = null) => new(new EmulationMessage(EmulationMessageCategory.SavedState, code, EmulationMessageSeverity.Error, EmulationMessageTarget.Dialog), innerException ?? new InvalidDataException(message));
-    internal static string HashBytes(ReadOnlySpan<byte> value) => Convert.ToHexString(SHA256.HashData(value));
+    internal static string HashBytes(ReadOnlySpan<byte> bytes) => EmulationStateFileFunctions.HashBytes(bytes);
     internal static string ConfigurationHash(MachineConfiguration configuration)
     {
         var fingerprint = new StateConfigurationFingerprint(
@@ -64,9 +64,6 @@ internal static class SavedStateFunctions
         && !string.IsNullOrWhiteSpace(header.ContentSha256)
         && !string.IsNullOrWhiteSpace(header.StateSha256);
     private static StateInputFingerprint InputFingerprint(InputConfiguration input, MachineModel model) => new(KeyboardDictionary.Bindings(input, model).OrderBy(pair => pair.Key, StringComparer.Ordinal).ToArray());
-    private static string HashFile(string path)
-    {
-        using var stream = File.OpenRead(path);
-        return Convert.ToHexString(SHA256.HashData(stream));
-    }
+
+    private static string HashFile(string path) => EmulationCoreDiagnosticFunctions.CalculateSha256(path);
 }

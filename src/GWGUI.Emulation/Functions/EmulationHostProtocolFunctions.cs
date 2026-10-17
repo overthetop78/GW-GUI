@@ -1,10 +1,66 @@
 using System.IO.MemoryMappedFiles;
 using System.Runtime.InteropServices;
+using System.Buffers.Binary;
+using System.IO;
+using System.Text;
 
 namespace GWGUI.Emulation.Functions;
 
-internal static class EmulationHostProtocolFunctions
+internal static partial class EmulationHostProtocolFunctions
 {
+    internal static void WriteResponse(BinaryWriter transportWriter, Action<BinaryWriter> execute,
+        Action<BinaryWriter, Exception> writeFailure)
+    {
+        using var responseStream = new MemoryStream();
+        using var writer = new BinaryWriter(responseStream, Encoding.UTF8, leaveOpen: true);
+        try
+        {
+            execute(writer);
+        }
+        catch (Exception error)
+        {
+            responseStream.SetLength(0);
+            responseStream.Position = 0;
+            writeFailure(writer, error);
+        }
+        writer.Flush();
+        WriteBytes(transportWriter, responseStream.GetBuffer().AsSpan(0, checked((int)responseStream.Length)));
+    }
+
+    internal static void ExecuteRequest(SemaphoreSlim gate, Func<BinaryWriter> getWriter, Func<byte[]> getResponse,
+        Action<BinaryWriter> write, Action<BinaryReader> read, Action<Exception> failConnection)
+    {
+        gate.Wait();
+        try
+        {
+            var writer = getWriter();
+            write(writer);
+            writer.Flush();
+            using var reader = new BinaryReader(new MemoryStream(getResponse(), writable: false), Encoding.UTF8, leaveOpen: false);
+            read(reader);
+        }
+        catch (Exception error) when (error is IOException or EndOfStreamException or OperationCanceledException or InvalidDataException)
+        {
+            failConnection(error);
+        }
+        finally { gate.Release(); }
+    }
+
+    internal static async Task<byte[]> ReadResponseAsync(Stream pipe, TimeSpan responseTimeout,
+        CancellationToken cancellationToken, Func<int, string> invalidLength)
+    {
+        using var timeout = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
+        timeout.CancelAfter(responseTimeout);
+        var header = new byte[sizeof(int)];
+        await pipe.ReadExactlyAsync(header, timeout.Token).ConfigureAwait(false);
+        var length = BinaryPrimitives.ReadInt32LittleEndian(header);
+        if (length is < 0 or > EmulationHostProtocolConstants.MaximumBlobLength)
+            throw new InvalidDataException(invalidLength(length));
+        var response = GC.AllocateUninitializedArray<byte>(length);
+        await pipe.ReadExactlyAsync(response, timeout.Token).ConfigureAwait(false);
+        return response;
+    }
+
     internal static void WriteString(BinaryWriter writer, string? value)
     {
         writer.Write(value is not null);

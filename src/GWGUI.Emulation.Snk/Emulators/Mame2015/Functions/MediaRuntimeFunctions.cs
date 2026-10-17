@@ -1,3 +1,4 @@
+using PreparedMemoryCard = GWGUI.Emulation.Snk.Emulators.Common.Interop.Functions.MameMediaFunctions.PreparedMemoryCard;
 using GWGUI.Emulation.Snk.Emulators.Common.Interop.Services;
 using GWGUI.Emulation.Snk.Emulators.Common.Interop.Functions;
 using System.IO;
@@ -8,7 +9,6 @@ namespace GWGUI.Emulation.Snk.Emulators.Mame2015.Functions;
 internal static class MediaRuntimeFunctions
 {
     private const int MemoryCardBytes = 2048;
-    private const int NativeArgumentCapacity = 1024;
     private const int NativeCommandCapacity = 512;
     private const string NativeMemoryCardFile = "memory-card.neo";
     private const string CommandFile = "launch.cmd";
@@ -117,7 +117,6 @@ internal static class MediaRuntimeFunctions
         ["jockeygpa"] = "jockeygp",
         ["vlinero"] = "vliner"
     };
-    internal sealed record PreparedMemoryCard(string SourcePath, string RuntimePath, bool IsReadOnly);
     internal static IReadOnlyList<EmulationMediaDevice> Devices(MachineModel model) => model == MachineModel.NeoGeoMvs 
         ? [
         new(EmulationMediaSlot.Cartridge0, EmulationMediaType.Cartridge, RuntimeOptionConstants.CartridgeExtensions, RequiresMachineRecreation: true),
@@ -137,13 +136,6 @@ internal static class MediaRuntimeFunctions
         if (new FileInfo(path).Length != MemoryCardBytes)
             throw new InvalidDataException(ErrorMessages.IncompatibleMedia);
         return path;
-    }
-
-    private static string Argument(string value)
-    {
-        if (value.IndexOfAny(['"', '\r', '\n', '\0']) >= 0 || Encoding.UTF8.GetByteCount(value) >= NativeArgumentCapacity)
-            throw new ArgumentException(ErrorMessages.IncompatibleMedia, nameof(value));
-        return "\"" + value + "\"";
     }
 
     internal static LoadedContent? Prepare(MachineConfiguration configuration, string sessionDirectory, IReadOnlySet<string> supportedExtensions)
@@ -186,10 +178,10 @@ internal static class MediaRuntimeFunctions
             {
                 var nativeCard = directory.AddFile(ValidateCard(card), NativeMemoryCardFile);
                 File.SetAttributes(nativeCard, FileAttributes.Normal);
-                command += " -memc " + Argument(nativeCard);
+                command += " -memc " + MameMediaFunctions.Argument(nativeCard);
             }
 
-            command += " -rompath " + Argument(Path.GetDirectoryName(stagedSource)!);
+            command += " -rompath " + MameMediaFunctions.Argument(Path.GetDirectoryName(stagedSource)!);
             if (Encoding.UTF8.GetByteCount(command) >= NativeCommandCapacity)
                 throw new ArgumentException(ErrorMessages.IncompatibleMedia, nameof(configuration));
             var commandPath = directory.AddText(CommandFile, command);
@@ -215,25 +207,8 @@ internal static class MediaRuntimeFunctions
     }
 
     internal static PreparedMemoryCard? PrepareMemoryCard(MachineConfiguration configuration, LoadedContent? content)
-    {
-        var card = InsertedCard(configuration);
-        if (card is null)
-            return null;
-        var source = ValidateCard(card);
-        var contentPath = content?.ContentFilePath ?? throw new InvalidOperationException(ErrorMessages.ContentRequired);
-        var runtime = Path.Combine(Path.GetDirectoryName(contentPath)!, NativeMemoryCardFile);
-        if (!File.Exists(runtime) || new FileInfo(runtime).Length != MemoryCardBytes)
-            throw new InvalidDataException(ErrorMessages.IncompatibleMedia);
-        return new(source, runtime, card.IsReadOnly);
-    }
+    => MameMediaFunctions.PrepareMemoryCard(InsertedCard(configuration), content, ValidateCard);
 
     internal static void CompleteMemoryCard(PreparedMemoryCard? card)
-    {
-        if (card is null || card.IsReadOnly)
-            return;
-        var bytes = File.ReadAllBytes(card.RuntimePath);
-        if (bytes.Length != MemoryCardBytes)
-            throw new InvalidDataException(ErrorMessages.IncompatibleMedia);
-        File.WriteAllBytes(card.SourcePath, bytes);
-    }
+    => MameMediaFunctions.CompleteMemoryCard(card);
 }

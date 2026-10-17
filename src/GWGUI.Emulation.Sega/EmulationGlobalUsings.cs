@@ -18,3 +18,5 @@ global using GWGUI.Emulation.Sega.Common.Machines.Common.Enums;
 global using GWGUI.Emulation.Sega.Common.Machines.Common.Exceptions;
 global using GWGUI.Emulation.Sega.Common.Machines.Common.Functions;
 global using GWGUI.Emulation.Sega.Common.Services;
+
+global using InputAccumulator = GWGUI.Emulation.Services.EmulationInputAccumulator;

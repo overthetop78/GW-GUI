@@ -97,4 +97,34 @@ internal static partial class EmulationSettingsLayout
             VerticalAlignment = VerticalAlignment.Center, Margin = new Thickness(0, 4, 0, 4) });
         return row;
     }
+    internal static void AddVideoProcessingGroup(Grid groups, string? titleResourceKey,
+        int row, int column, int columnSpan, Thickness margin, params FrameworkElement[] fields)
+    {
+        FrameworkElement content;
+        if (titleResourceKey is null)
+        {
+            content = fields.Single();
+        }
+        else
+        {
+            var panel = new StackPanel();
+            panel.Children.Add(new TextBlock
+            {
+                Text = LocExtension.Get(titleResourceKey),
+                FontWeight = FontWeights.SemiBold,
+                Margin = new Thickness(0, 0, 0, 8)
+            });
+            foreach (var field in fields) panel.Children.Add(field);
+            content = panel;
+        }
+        var card = new Border { Child = content, Margin = margin };
+        if (titleResourceKey is not null)
+            System.Windows.Automation.AutomationProperties.SetAutomationId(card, titleResourceKey);
+        card.SetResourceReference(FrameworkElement.StyleProperty,
+            GWGUI.App.Constants.Controls.Visual.ControlVisualConstants.CardStyleResource);
+        Grid.SetRow(card, row);
+        Grid.SetColumn(card, column);
+        Grid.SetColumnSpan(card, columnSpan);
+        groups.Children.Add(card);
+    }
 }

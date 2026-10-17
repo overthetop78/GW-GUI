@@ -6,10 +6,7 @@ namespace GWGUI.Emulation.Acorn.Common.Machines.Common.Functions;
 internal static class ControllerFunctions
 {
     internal static short ApplyDeadZone(short value, int percent)
-    {
-        var threshold = ControllerConstants.MaximumAxisMagnitude * percent / ControllerConstants.PercentageDivisor;
-        return Math.Abs((int)value) <= threshold ? ControllerConstants.NeutralAxis : value;
-    }
+    => GWGUI.Emulation.Functions.EmulationInputMappingFunctions.ApplyDeadZone(value, percent);
 
     internal static EmulationInputSnapshot ApplyDeadZones(EmulationInputSnapshot snapshot, IReadOnlyList<ControllerBinding>? bindings)
     {

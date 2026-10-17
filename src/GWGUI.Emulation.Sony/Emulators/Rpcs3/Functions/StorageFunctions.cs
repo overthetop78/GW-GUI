@@ -14,6 +14,7 @@ internal static class StorageFunctions
             ModelResourceKey: "Emulation.Sony.Storage.InternalHdd",
             TypeResourceKey: "Emulation.Sony.Storage.InternalHdd",
             ConfigurationKind: EmulationStorageConfigurationKind.ManagedStorage,
+            ConfigurationOptionDetailedResourceKey: "Emulation.Sony.Storage.ManagedDirectory.Help",
             ConfigurationFields: Fields(configuration, false))
     ];
 

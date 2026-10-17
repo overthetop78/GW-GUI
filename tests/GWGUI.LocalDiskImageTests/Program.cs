@@ -370,7 +370,7 @@ internal static partial class Program
     {
         var fileSystem = volume.FileSystem;
         var entries = fileSystem is null ? [] : CreateEntries(fileSystem.Entries);
-        var flattened = Flatten(entries).ToArray();
+        var flattened = GWGUI.MediaAudit.MediaAuditTree.Flatten(entries, entry => entry.Children).ToArray();
         var files = flattened.Where(entry => entry.Kind == FileSystemEntryKind.File.ToString()).ToArray();
         var occupiedSizes = files.Select(entry => entry.OccupiedSize).ToArray();
         return new VolumeAudit(
@@ -507,15 +507,6 @@ internal static partial class Program
         },
         _ => new { kind = document.Representation.RepresentationKind.ToString(), document.Representation.LogicalLength }
     };
-
-    private static IEnumerable<FileEntryAudit> Flatten(IEnumerable<FileEntryAudit> entries)
-    {
-        foreach (var entry in entries)
-        {
-            yield return entry;
-            foreach (var child in Flatten(entry.Children)) yield return child;
-        }
-    }
 
     private static async Task<string> HashFileAsync(string sourcePath)
     {

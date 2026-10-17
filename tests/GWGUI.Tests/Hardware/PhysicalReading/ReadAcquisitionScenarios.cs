@@ -1,4 +1,5 @@
 using System.Globalization;
+using GWGUI.App.Services.PhysicalDiskReading;
 using GWGUI.App.Contracts.Services.PhysicalDiskReading;
 using MediaAcquisitionProgress = global::GWGUI.MediaEngine.Contracts.MediaAcquisitionProgress;
 using MediaAcquisitionResult = global::GWGUI.MediaEngine.Contracts.MediaAcquisitionResult;
@@ -58,29 +59,7 @@ internal static class ReadAcquisitionScenarios
         new GreaseweazleMediaAcquisitionProvider(() => device).AcquireAsync(MediaKind.Floppy, options.PortName, CreateProviderOptions(options), progress, cancellationToken);
 
     internal static IReadOnlyDictionary<string, string> CreateProviderOptions(PhysicalDiskReadOptions options)
-    {
-        var values = new Dictionary<string, string>(StringComparer.Ordinal)
-        {
-            [GreaseweazleMediaOptionKeys.BusType] = options.BusType.ToString(),
-            [GreaseweazleMediaOptionKeys.DriveUnit] = options.DriveUnit.ToString(CultureInfo.InvariantCulture),
-            [GreaseweazleMediaOptionKeys.Tracks] = string.Join(';', options.Tracks.Select(track => $"{track.Cylinder}:{track.Head}:{track.DriveCylinder}:{track.DriveHead}")),
-            [GreaseweazleMediaOptionKeys.DiskType] = options.DiskType.ToString(),
-            [GreaseweazleMediaOptionKeys.Revolutions] = options.Revolutions.ToString(CultureInfo.InvariantCulture),
-            [GreaseweazleMediaOptionKeys.FluxOverflowRetries] = options.FluxOverflowRetries.ToString(CultureInfo.InvariantCulture),
-            [GreaseweazleMediaOptionKeys.SeekRetries] = options.SeekRetries.ToString(CultureInfo.InvariantCulture),
-            [GreaseweazleMediaOptionKeys.HardSectors] = options.HardSectors.ToString(CultureInfo.InvariantCulture)
-        };
-        AddMilliseconds(values, GreaseweazleMediaOptionKeys.FakeIndexMilliseconds, options.FakeIndexPeriod);
-        AddMilliseconds(values, GreaseweazleMediaOptionKeys.MotorSpinUpMilliseconds, options.MotorSpinUpDelay);
-        AddMilliseconds(values, GreaseweazleMediaOptionKeys.TrackSettleMilliseconds, options.TrackSettleDelay);
-        return values;
-    }
-
-    private static void AddMilliseconds(IDictionary<string, string> values, string key, TimeSpan? duration)
-    {
-        if (duration is { } present)
-            values[key] = present.TotalMilliseconds.ToString(CultureInfo.InvariantCulture);
-    }
+    => InternalPhysicalDiskReader.CreateOptions(options);
 
     internal sealed class Reports : IProgress<MediaAcquisitionProgress>
     {

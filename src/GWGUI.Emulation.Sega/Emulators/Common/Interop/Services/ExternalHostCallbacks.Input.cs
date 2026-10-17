@@ -56,20 +56,7 @@ internal sealed partial class ExternalHostCallbacks
     }
 
     private static uint CharacterFor(uint code, IReadOnlySet<EmulationKey> keys)
-    {
-        var shifted = keys.Contains(EmulationKey.LeftShift) || keys.Contains(EmulationKey.RightShift);
-        var caps = keys.Contains(EmulationKey.CapsLock);
-        if (code is >= (uint)'a' and <= (uint)'z') return shifted ^ caps ? code - 32 : code;
-        if (!shifted) return code is >= 32 and <= 126 ? code : 0;
-        return code switch
-        {
-            (uint)'0' => ')', (uint)'1' => '!', (uint)'2' => '@', (uint)'3' => '#', (uint)'4' => '$',
-            (uint)'5' => '%', (uint)'6' => '^', (uint)'7' => '&', (uint)'8' => '*', (uint)'9' => '(',
-            (uint)'-' => '_', (uint)'=' => '+', (uint)'[' => '{', (uint)']' => '}', (uint)'\\' => '|',
-            (uint)';' => ':', (uint)'\'' => '"', (uint)',' => '<', (uint)'.' => '>', (uint)'/' => '?',
-            (uint)'`' => '~', _ => code is >= 32 and <= 126 ? code : 0
-        };
-    }
+    => GWGUI.Emulation.Functions.ExternalCoreKeyboardFunctions.Character(code, keys);
 
     private static bool IsModifier(EmulationKey key) => key is EmulationKey.LeftShift or EmulationKey.RightShift or EmulationKey.LeftControl or EmulationKey.RightControl or EmulationKey.LeftAlt or EmulationKey.RightAlt;
 
@@ -175,32 +162,6 @@ internal sealed partial class ExternalHostCallbacks
     private static int SaturatingAdd(int left, int right) => (int)Math.Clamp((long)left + right, int.MinValue, int.MaxValue);
 
     private static IReadOnlyDictionary<uint, EmulationKey> CreateKeyboardMap()
-    {
-        var map = new Dictionary<uint, EmulationKey>
-        {
-            [8] = EmulationKey.Backspace, [9] = EmulationKey.Tab, [13] = EmulationKey.Return,
-            [27] = EmulationKey.Escape, [32] = EmulationKey.Space, [44] = EmulationKey.Comma,
-            [45] = EmulationKey.Minus, [46] = EmulationKey.Period, [47] = EmulationKey.Slash,
-            [59] = EmulationKey.Semicolon, [61] = EmulationKey.Equals, [91] = EmulationKey.LeftBracket,
-            [92] = EmulationKey.Backslash, [93] = EmulationKey.RightBracket, [39] = EmulationKey.Quote,
-            [96] = EmulationKey.Backquote, [127] = EmulationKey.Delete,
-            [273] = EmulationKey.Up, [274] = EmulationKey.Down, [275] = EmulationKey.Right,
-            [276] = EmulationKey.Left, [277] = EmulationKey.Insert, [278] = EmulationKey.Home,
-            [279] = EmulationKey.End, [280] = EmulationKey.PageUp, [281] = EmulationKey.PageDown,
-            [301] = EmulationKey.CapsLock, [303] = EmulationKey.RightShift, [304] = EmulationKey.LeftShift,
-            [305] = EmulationKey.RightControl, [306] = EmulationKey.LeftControl,
-            [307] = EmulationKey.RightAlt, [308] = EmulationKey.LeftAlt, [315] = EmulationKey.Help
-        };
-        for (var index = 0; index < 26; index++) map[(uint)('a' + index)] = (EmulationKey)((int)EmulationKey.A + index);
-        for (var index = 0; index < 10; index++) map[(uint)('0' + index)] = (EmulationKey)((int)EmulationKey.D0 + index);
-        for (var index = 0; index < 10; index++) map[(uint)(282 + index)] = (EmulationKey)((int)EmulationKey.F1 + index);
-        for (var index = 0; index < 10; index++) map[(uint)(256 + index)] = (EmulationKey)((int)EmulationKey.Numpad0 + index);
-        map[266] = EmulationKey.NumpadPeriod; map[267] = EmulationKey.NumpadDivide;
-        map[268] = EmulationKey.NumpadMultiply; map[269] = EmulationKey.NumpadMinus;
-        map[270] = EmulationKey.NumpadPlus; map[271] = EmulationKey.NumpadEnter;
-        return map;
-    }
+    => GWGUI.Emulation.Functions.ExternalCoreKeyboardFunctions.CreateKeyMap().Where(pair => pair.Key is not (EmulationKey.LeftAmiga or EmulationKey.RightAmiga or EmulationKey.Break or EmulationKey.Undo)).ToDictionary(pair => pair.Value, pair => pair.Key);
 
 }
-
-

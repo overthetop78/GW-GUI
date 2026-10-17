@@ -1,3 +1,4 @@
+using ProcessCore = GWGUI.Emulation.Nec.Emulators.Common.Interop.Services.ProcessCore;
 using GWGUI.Emulation.Nec.Emulators.BeetlePcfx.Functions;
 using GWGUI.Emulation.Nec.Emulators.BeetlePcfx.Contracts;
 using GWGUI.Emulation.Nec.Emulators.BeetlePcfx.Constants;
@@ -70,7 +71,9 @@ internal sealed class BeetlePcfxMachineFactory : IEmulatorAdapter, IEmulatorPers
         var machineId = Guid.NewGuid();
         var native = BeetlePcfxOptionFunctions.ToNative(configuration.EnsureId());
         return new Machine(machineId, native,
-            new ProcessCore(context.HostExecutablePath, context.CorePath),
+            new ProcessCore(context.HostExecutablePath, context.CorePath,
+                ProcessCoreConstants.CoreHost, ProcessCoreConstants.PipePrefix, ProcessCoreConstants.VideoMapPrefix,
+                BeetlePcfxConstants.DisplayName, "Emulation.Error.BeetlePcfx"),
             native.Media ?? [], Path.Combine(context.SessionsDirectory, machineId.ToString(ConfigurationStoreConstants.MachineIdentifierFormat)),
             native.AudioEnabled ? context.AudioOutputFactory?.Invoke() : null,
             context.SaveDirectoryResolver?.Invoke(configuration));

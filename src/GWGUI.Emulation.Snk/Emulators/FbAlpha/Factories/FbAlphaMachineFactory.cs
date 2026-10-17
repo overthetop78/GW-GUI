@@ -34,7 +34,7 @@ internal sealed class FbAlphaMachineFactory() : LibretroMachineFactory(EmulatorC
 
     internal override bool LoadContent(MachineConfiguration configuration, ExternalCoreExports exports, LoadedContent? content)
     {
-        var loaded = configuration.Model == MachineModel.NeoGeoCdz ? content is not null && exports.LoadGameSpecial(RuntimeOptionConstants.CdSubsystem, content.GameInfo, RuntimeOptionConstants.CdContentCount) : exports.LoadGame(content?.GameInfo ?? nint.Zero);
+        var loaded = configuration.Model == MachineModel.NeoGeoCdz ? content is not null && exports.LoadGameSpecial!(RuntimeOptionConstants.CdSubsystem, content.GameInfo, RuntimeOptionConstants.CdContentCount) : exports.LoadGame(content?.GameInfo ?? nint.Zero);
         if (loaded)
             ControllerPortFunctions.Configure(exports, configuration);
         return loaded;

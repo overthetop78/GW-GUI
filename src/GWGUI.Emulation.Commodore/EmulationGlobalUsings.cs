@@ -37,3 +37,5 @@ global using GWGUI.Emulation.Commodore.Common.Machines.AmigaComputers.Enums;
 global using GWGUI.Emulation.Commodore.Emulators.UAE.Common.Interop.Factories;
 global using GWGUI.Emulation.Commodore.Emulators.UAE.Common.Interop.Functions;
 global using GWGUI.Emulation.Commodore.Emulators.UAE.Common.Interop.Constants;
+
+global using InputAccumulator = GWGUI.Emulation.Services.EmulationInputAccumulator;

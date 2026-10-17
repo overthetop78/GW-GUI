@@ -15,11 +15,7 @@ namespace GWGUI.App.Views.Controls.Emulation.Machine;
 
 public sealed partial class EmulationSection : UserControl
 {
-    private readonly TextBlock _brandLabel = new();
-    private readonly TextBlock _machineLabel = new();
-    private readonly WrapPanel _brandPanel = new();
-    private readonly WrapPanel _machinePanel = new();
-    private readonly StackPanel _selectorRows = new();
+    private readonly EmulationConfigurationSelector _selectorRows = new();
     private readonly TextBlock _selectorCollapsedText = new();
     private readonly Border _selectorFrame = new();
     private readonly Button _selectorToggle = new();
@@ -47,6 +43,18 @@ public sealed partial class EmulationSection : UserControl
         AutomationProperties.SetName(_machines, LocExtension.Get(ControlVisualConstants.MachinesResource));
         _open.Content = LocExtension.Get(ControlVisualConstants.OpenMachineResource);
         _open.Click += OpenSelectedMachine;
+        _selectorRows.BrandSelected += SelectModule;
+        _selectorRows.MachineSelected += SelectMachine;
+        _selectorRows.MachineOpened += (module, definition) =>
+        {
+            var selected = FindConfiguration(module.Id, definition.Id);
+            if (selected is null) return;
+            _selectedModule = module;
+            _selectedMachineId = definition.Id;
+            _selectedConfigurationId = selected.Configuration.Id;
+            RefreshSelector();
+            OpenSelectedMachine(_selectorRows, new RoutedEventArgs());
+        };
         _selectorToggle.Click += ToggleSelector;
         _machines.SelectionChanged += ActiveMachineTabChanged;
         _machines.AllowDrop = true;
@@ -54,21 +62,30 @@ public sealed partial class EmulationSection : UserControl
         _machines.PreviewMouseMove += MachineTabMouseMove;
         _machines.DragOver += MachineTabDragOver;
         _machines.Drop += MachineTabDrop;
-        EmulationPreferencesSection.ConfigurationSaved += ConfigurationSaved;
-        EmulationPreferencesSection.VideoConfigurationChanged += VideoConfigurationChanged;
         Content = BuildContent();
-        Loaded += async (_, _) => await ReloadConfigurationsAsync();
+        Loaded += async (_, _) =>
+        {
+            DetachConfigurationEvents();
+            EmulationPreferencesSection.ConfigurationSaved += ConfigurationSaved;
+            EmulationPreferencesSection.VideoConfigurationChanged += VideoConfigurationChanged;
+            EmulationPreferencesSection.ConfigurationDeleted += ReloadConfigurationsAsync;
+            await ReloadConfigurationsAsync();
+        };
+        Unloaded += (_, _) => DetachConfigurationEvents();
+    }
+
+    private void DetachConfigurationEvents()
+    {
+        EmulationPreferencesSection.ConfigurationSaved -= ConfigurationSaved;
+        EmulationPreferencesSection.VideoConfigurationChanged -= VideoConfigurationChanged;
+        EmulationPreferencesSection.ConfigurationDeleted -= ReloadConfigurationsAsync;
     }
 
     public void Configure(AppSettings settings) => _settings = settings;
 
     internal void RefreshLocalizedContent()
     {
-        _brandLabel.Text = LocExtension.Get(ControlVisualConstants.ConfigurationBrandResource);
-        _machineLabel.Text = LocExtension.Get(ControlVisualConstants.ConfigurationMachineResource);
         _selectorCollapsedText.Text = LocExtension.Get(ControlVisualConstants.ConfigurationSelectorResource);
-        AutomationProperties.SetName(_brandPanel, _brandLabel.Text);
-        AutomationProperties.SetName(_machinePanel, _machineLabel.Text);
         var openText = LocExtension.Get(ControlVisualConstants.OpenMachineResource);
         _open.Content = openText;
         AutomationProperties.SetName(_open, openText);

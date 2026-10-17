@@ -8,7 +8,7 @@ using System.Text.Json;
 namespace GWGUI.Emulation.Commodore.Emulators.Common.Interop.Services;
 
 public static class CoreHost
-{
+            {
     [SupportedOSPlatform(CoreHostConstants.Windows)]
     public static void Run(string pipeName, string videoMapName)
     {
@@ -29,9 +29,7 @@ public static class CoreHost
             try { command = (HostCommand)reader.ReadByte(); }
             catch (EndOfStreamException) { break; }
             var exit = command == HostCommand.Dispose;
-            using var responseStream = new MemoryStream();
-            using var writer = new BinaryWriter(responseStream, System.Text.Encoding.UTF8, true);
-            try
+            EmulationHostProtocolFunctions.WriteResponse(transportWriter, writer =>
             {
                 switch (command)
                 {
@@ -88,16 +86,11 @@ public static class CoreHost
                     case HostCommand.Dispose: core?.Dispose(); core = null; WriteSuccess(writer); break;
                     default: throw new InvalidDataException(CoreExceptions.UnknownHostCommand((byte)command));
                 }
-            }
-            catch (Exception error)
+            }, (writer, error) =>
             {
-                responseStream.SetLength(BufferConstants.EmptyStreamLength);
-                responseStream.Position = BufferConstants.EmptyStreamLength;
                 writer.Write(false);
                 writer.Write(error.ToString());
-            }
-            writer.Flush();
-            CoreHostProtocol.WriteBytes(transportWriter, responseStream.GetBuffer().AsSpan(BufferConstants.FirstBufferIndex, checked((int)responseStream.Length)));
+            });
             if (exit) break;
         }
         }

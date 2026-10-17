@@ -35,7 +35,7 @@ internal static class SavedStateFunctions
     internal static EmulationMessageException Invalid(EmulationMessageCode code,
         string message,
         Exception? innerException = null) => new(new EmulationMessage(EmulationMessageCategory.SavedState, code, EmulationMessageSeverity.Error, EmulationMessageTarget.Dialog), innerException ?? new InvalidDataException(message));
-    internal static string HashBytes(ReadOnlySpan<byte> value) => Convert.ToHexString(SHA256.HashData(value));
+    internal static string HashBytes(ReadOnlySpan<byte> bytes) => EmulationStateFileFunctions.HashBytes(bytes);
     internal static string ConfigurationHash(MachineConfiguration configuration)
     {
         var fingerprint = new StateConfigurationFingerprint(
@@ -71,34 +71,8 @@ internal static class SavedStateFunctions
         controller.DeviceId,
         controller.DeadZonePercent,
         (controller.Mappings ?? new Dictionary<string, string>()).OrderBy(pair => pair.Key, StringComparer.Ordinal).ToArray())).ToArray());
-    private static string HashPath(string path)
-    {
-        if (File.Exists(path))
-            return HashFile(path);
-        if (!Directory.Exists(path))
-            throw new FileNotFoundException(ErrorMessages.ContentFileMissing, path);
-        using var hash = IncrementalHash.CreateHash(HashAlgorithmName.SHA256);
-        Span<byte> length = stackalloc byte[sizeof(int)];
-        foreach (var file in Directory.EnumerateFiles(path, StateConstants.AllFilesSearchPattern, SearchOption.AllDirectories).Order(StringComparer.OrdinalIgnoreCase))
-        {
-            var relative = Path.GetRelativePath(path, file).Replace(Path.DirectorySeparatorChar, StateConstants.CanonicalDirectorySeparator);
-            var name = Encoding.UTF8.GetBytes(relative);
-            BinaryPrimitives.WriteInt32LittleEndian(length, name.Length);
-            hash.AppendData(length);
-            hash.AppendData(name);
-            using var stream = File.OpenRead(file);
-            var buffer = new byte[StateConstants.HashBufferSize];
-            int read;
-            while ((read = stream.Read(buffer)) > StateConstants.EmptyLength)
-                hash.AppendData(buffer.AsSpan(0, read));
-        }
+    private static string HashPath(string path) =>
+        EmulationStateFileFunctions.HashPath(path, StateConstants.AllFilesSearchPattern, StateConstants.CanonicalDirectorySeparator, StateConstants.HashBufferSize, () => new FileNotFoundException(ErrorMessages.ContentFileMissing, path));
 
-        return Convert.ToHexString(hash.GetHashAndReset());
-    }
 
-    private static string HashFile(string path)
-    {
-        using var stream = File.OpenRead(path);
-        return Convert.ToHexString(SHA256.HashData(stream));
-    }
 }

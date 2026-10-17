@@ -41,37 +41,18 @@ internal static class FirmwareRuntimeFunctions
 
     internal static IReadOnlyList<FirmwareCategory> Roles => [FirmwareCategory.SystemBios];
 
-    internal static ValueTask<EmulationFirmwareCandidate> Inspect(string path, MachineModel model, CancellationToken cancellationToken)
-    {
-        cancellationToken.ThrowIfCancellationRequested();
-        var absolute = Path.GetFullPath(path);
-        var compatibility = EmulationFirmwareCompatibility.Incompatible;
-        try
-        {
-            using var archive = ZipFile.OpenRead(absolute);
-            if (model == MachineModel.NeoGeoMvs && SelectBios(archive) is not null) compatibility = EmulationFirmwareCompatibility.PartiallyCompatible;
-        }
-        catch (InvalidDataException) { }
-        catch (IOException) { }
-        return ValueTask.FromResult(new EmulationFirmwareCandidate(absolute, absolute, Path.GetFileName(absolute), null, compatibility, compatibility == EmulationFirmwareCompatibility.Incompatible ? null : FirmwareFunctions.Field(FirmwareCategory.SystemBios)));
-    }
+    internal static ValueTask<EmulationFirmwareCandidate> Inspect(string path, MachineModel model, CancellationToken cancellationToken) =>
+        FirmwareCopy.InspectArchive(path, model, cancellationToken, static (archive, model) => model == MachineModel.NeoGeoMvs && SelectBios(archive) is not null);
 
     internal static void Prepare(MachineConfiguration configuration, string systemDirectory)
     {
         var directory = Path.Combine(systemDirectory, RuntimeOptionConstants.NativeSystemDirectory, BiosDirectory);
-        Directory.CreateDirectory(directory);
         var destination = Path.Combine(directory, RuntimeOptionConstants.SystemArchive);
-        FirmwareCopy.CopyVerified(configuration, FirmwareCategory.SystemBios, destination);
-        using var archive = ZipFile.OpenRead(destination);
-        if (SelectBios(archive) is null) throw new EmulationException(ErrorCategory.Firmware, ErrorCode.FirmwareInvalid, ErrorMessages.FirmwareFileUnreadable);
+        FirmwareCopy.PrepareArchive(configuration, destination, archive => SelectBios(archive) is not null);
     }
 
-    internal static string SelectedBios(MachineConfiguration configuration)
-    {
-        var firmware = configuration.Firmwares.SingleOrDefault(item => item.Category == FirmwareCategory.SystemBios) ?? throw new EmulationException(ErrorCategory.Firmware, ErrorCode.FirmwareInvalid, ErrorMessages.FirmwareFileUnreadable);
-        using var archive = ZipFile.OpenRead(firmware.Path);
-        return SelectBios(archive) ?? throw new EmulationException(ErrorCategory.Firmware, ErrorCode.FirmwareInvalid, ErrorMessages.FirmwareFileUnreadable);
-    }
+    internal static string SelectedBios(MachineConfiguration configuration) =>
+        FirmwareCopy.SelectedArchiveBios(configuration, archive => SelectBios(archive));
 
     private static string? SelectBios(ZipArchive archive)
     {

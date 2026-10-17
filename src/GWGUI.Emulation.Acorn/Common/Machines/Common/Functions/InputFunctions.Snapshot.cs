@@ -103,10 +103,5 @@ internal static class InputSnapshotFunctions
     }
 
     private static bool TryRemovePrefix(string value, string prefix, out string source)
-    {
-        source = string.Empty;
-        if (!value.StartsWith(prefix, StringComparison.OrdinalIgnoreCase)) return false;
-        source = value[prefix.Length..];
-        return source.Length > 0;
-    }
+    => GWGUI.Emulation.Functions.EmulationInputMappingFunctions.TryRemovePrefix(value, prefix, out source);
 }
