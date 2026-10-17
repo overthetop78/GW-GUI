@@ -8,8 +8,6 @@ using GWGUI.Emulation.Nec.Emulators.Common.Interop.Functions;
 using GWGUI.Emulation.Nec.Emulators.BeetlePceFast.Services;
 using GWGUI.Emulation.Nec.Emulators.Common.Interop.Services;
 using System.IO;
-using System.IO.Compression;
-using System.Security.Cryptography;
 using System.Text.Json;
 
 
@@ -54,13 +52,10 @@ public sealed class ExternalCoreInstaller
             await using (var destination = new FileStream(package, FileMode.Create, FileAccess.Write, FileShare.None, 81920, FileOptions.Asynchronous))
                 await source.CopyToAsync(destination, cancellationToken).ConfigureAwait(false);
 
-            using (var archive = ZipFile.OpenRead(package))
-            {
-                var entry = archive.Entries.FirstOrDefault(item => Path.GetFileName(item.FullName).Equals(ReleaseConstants.ArchiveLibraryName, StringComparison.OrdinalIgnoreCase)) ?? throw new InvalidDataException(CoreExceptions.ArchiveMissingLibrary());
-                entry.ExtractToFile(extracted, true);
-            }
+            EmulationCoreReleaseFunctions.ExtractExpectedLibrary(package, ReleaseConstants.ArchiveLibraryName, extracted,
+                static _ => CoreExceptions.ArchiveMissingLibrary(), preserveLastWriteTime: true);
             CoreReleaseService.VerifyWindowsX64Library(extracted);
-            var sha256 = Hash(extracted);
+            var sha256 = EmulationCoreDiagnosticFunctions.CalculateSha256(extracted);
             File.Move(extracted, LibraryPath, true);
             await CoreManifestFunctions.WriteManifestAsync(CoreRevision, DownloadUrl, LibraryPath, sha256, cancellationToken).ConfigureAwait(false);
             return LibraryPath;
@@ -70,12 +65,6 @@ public sealed class ExternalCoreInstaller
             if (File.Exists(package)) File.Delete(package);
             if (File.Exists(extracted)) File.Delete(extracted);
         }
-    }
-
-    internal static string Hash(string path)
-    {
-        using var stream = File.OpenRead(path);
-        return Convert.ToHexString(SHA256.HashData(stream));
     }
 }
 

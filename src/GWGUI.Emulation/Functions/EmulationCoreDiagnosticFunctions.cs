@@ -7,6 +7,22 @@ namespace GWGUI.Emulation.Functions;
 
 internal static class EmulationCoreDiagnosticFunctions
 {
+    internal static void VerifyWindowsX64Library(string path, Func<string> notPe,
+        Func<string> invalidPe, Func<string> wrongArchitecture)
+    {
+        using var stream = File.OpenRead(path);
+        using var reader = new BinaryReader(stream);
+        if (stream.Length < 0x40 || reader.ReadUInt16() != 0x5A4D)
+            throw new InvalidDataException(notPe());
+        stream.Position = 0x3c;
+        var peOffset = reader.ReadInt32();
+        if (peOffset < 0x40 || peOffset > stream.Length - 6)
+            throw new InvalidDataException(invalidPe());
+        stream.Position = peOffset;
+        if (reader.ReadUInt32() != 0x00004550 || reader.ReadUInt16() != 0x8664)
+            throw new InvalidDataException(wrongArchitecture());
+    }
+
     internal static string CalculateSha256(string path)
     {
         using var stream = File.OpenRead(path);

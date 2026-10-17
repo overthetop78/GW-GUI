@@ -50,32 +50,16 @@ internal static class CoreFunctions
     }
 
     internal static bool WritePointer(nint destination, nint value)
-    {
-        if (destination == nint.Zero) return false;
-        Marshal.WriteIntPtr(destination, value);
-        return true;
-    }
+        => ExternalCoreEnvironmentFunctions.WritePointer(destination, value);
 
     internal static bool WriteBoolean(nint destination, bool value)
-    {
-        if (destination == nint.Zero) return false;
-        Marshal.WriteByte(destination, value ? ExternalCoreInteropConstants.NativeBooleanTrue : ExternalCoreInteropConstants.NativeBooleanFalse);
-        return true;
-    }
+        => ExternalCoreEnvironmentFunctions.WriteBoolean(destination, value);
 
     internal static bool WriteInteger(nint destination, int value)
-    {
-        if (destination == nint.Zero) return false;
-        Marshal.WriteInt32(destination, value);
-        return true;
-    }
+        => ExternalCoreEnvironmentFunctions.WriteInteger(destination, value);
 
-    internal static bool WriteInteger(nint destination, uint value) => WriteInteger(destination, checked((int)value));
+    internal static bool WriteInteger(nint destination, uint value) => ExternalCoreEnvironmentFunctions.WriteInteger(destination, value);
 
     internal static bool WriteUnsignedLong(nint destination, ulong value)
-    {
-        if (destination == nint.Zero) return false;
-        Marshal.WriteInt64(destination, unchecked((long)value));
-        return true;
-    }
+        => ExternalCoreEnvironmentFunctions.WriteUnsignedLong(destination, value);
 }

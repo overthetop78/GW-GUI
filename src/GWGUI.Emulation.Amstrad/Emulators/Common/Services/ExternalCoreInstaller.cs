@@ -3,8 +3,6 @@ using GWGUI.Emulation.Amstrad.Emulators.Common.Contracts;
 using GWGUI.Emulation.Amstrad.Emulators.Common.Services;
 
 using System.IO;
-using System.IO.Compression;
-using System.Security.Cryptography;
 using System.Text.Json;
 
 namespace GWGUI.Emulation.Amstrad.Emulators.Common.Services;
@@ -46,11 +44,5 @@ public sealed class ExternalCoreInstaller
     {
         var manifest = new { version, source, librarySize = new FileInfo(libraryPath).Length, librarySha256 = sha256, architecture, installedUtc = DateTimeOffset.UtcNow };
         await File.WriteAllTextAsync(Path.Combine(Path.GetDirectoryName(libraryPath)!, CoreReleaseConstants.CoreJson), JsonSerializer.Serialize(manifest, new JsonSerializerOptions { WriteIndented = true }), cancellationToken).ConfigureAwait(false);
-    }
-
-    internal static string Hash(string path)
-    {
-        using var stream = File.OpenRead(path);
-        return Convert.ToHexString(SHA256.HashData(stream));
     }
 }

@@ -1,7 +1,5 @@
 using System.IO;
 
-using System.IO.Compression;
-using System.Security.Cryptography;
 using System.Text.Json;
 
 namespace GWGUI.Emulation.Commodore.Emulators.Common.Interop.Services;
@@ -75,33 +73,21 @@ public sealed class CoreReleaseService
         var extracted = destination + CoreReleaseConstants.Extract;
         try
         {
-            using var response = await _httpClient.GetAsync(release.DownloadUri, HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
-            response.EnsureSuccessStatusCode();
-            var total = response.Content.Headers.ContentLength;
-            await using (var source = await response.Content.ReadAsStreamAsync(cancellationToken).ConfigureAwait(false))
-            await using (var target = new FileStream(download, FileMode.Create, FileAccess.Write, FileShare.None, BufferConstants.FileTransferBufferSize, FileOptions.Asynchronous))
-            {
-                var buffer = new byte[BufferConstants.FileTransferBufferSize];
-                long written = BufferConstants.EmptyStreamLength;
-                int read;
-                while ((read = await source.ReadAsync(buffer, cancellationToken).ConfigureAwait(false)) > BufferConstants.EndOfStreamByteCount)
+            await EmulationCoreReleaseFunctions.DownloadAsync(_httpClient, release.DownloadUri, download,
+                (written, total) =>
                 {
-                    await target.WriteAsync(buffer.AsMemory(BufferConstants.FirstBufferIndex, read), cancellationToken).ConfigureAwait(false);
-                    written += read;
-                    if (total > BufferConstants.EmptyStreamLength) progress?.Report(written / (double)total.Value);
-                }
-            }
+                    if (total > 0) progress?.Report(written / (double)total.Value);
+                }, cancellationToken).ConfigureAwait(false);
 
             if (release.IsZip)
             {
-                using var archive = ZipFile.OpenRead(download);
-                var entry = archive.Entries.FirstOrDefault(item => Path.GetFileName(item.FullName).Equals(_definition.LibraryFile, StringComparison.OrdinalIgnoreCase)) ?? throw new InvalidDataException(CoreExceptions.ArchiveMissingLibrary());
-                entry.ExtractToFile(extracted, true);
+                EmulationCoreReleaseFunctions.ExtractExpectedLibrary(download, _definition.LibraryFile, extracted,
+                    static _ => CoreExceptions.ArchiveMissingLibrary(), preserveLastWriteTime: true);
             }
             else File.Copy(download, extracted, true);
 
             VerifyWindowsX64Library(extracted);
-            var sha256 = Hash(extracted);
+            var sha256 = EmulationCoreDiagnosticFunctions.CalculateSha256(extracted);
             File.Move(extracted, destination, true);
             await ExternalCoreInstaller.WriteManifestAsync(release.Id, release.DownloadUri.AbsoluteUri, destination, sha256, cancellationToken).ConfigureAwait(false);
             progress?.Report(CoreReleaseConstants.CompletedDownloadProgress);
@@ -115,23 +101,7 @@ public sealed class CoreReleaseService
     }
 
     internal static void VerifyWindowsX64Library(string path)
-    {
-        using var stream = File.OpenRead(path);
-        using var reader = new BinaryReader(stream);
-        if (stream.Length < CoreReleaseConstants.DosHeaderSize || reader.ReadUInt16() != CoreReleaseConstants.DosHeaderSignature)
-            throw new InvalidDataException(CoreExceptions.DownloadedCoreNotPe());
-        stream.Position = CoreReleaseConstants.PeHeaderOffsetPosition;
-        var peOffset = reader.ReadInt32();
-        if (peOffset < CoreReleaseConstants.DosHeaderSize || peOffset > stream.Length - CoreReleaseConstants.PeSignatureAndMachineSize)
-            throw new InvalidDataException(CoreExceptions.DownloadedCoreInvalidPe());
-        stream.Position = peOffset;
-        if (reader.ReadUInt32() != CoreReleaseConstants.PeHeaderSignature || reader.ReadUInt16() != CoreReleaseConstants.Amd64Machine)
-            throw new InvalidDataException(CoreExceptions.DownloadedCoreWrongArchitecture());
-    }
-
-    private static string Hash(string path)
-    {
-        using var stream = File.OpenRead(path);
-        return Convert.ToHexString(SHA256.HashData(stream));
-    }
+        =>
+        EmulationCoreDiagnosticFunctions.VerifyWindowsX64Library(path,
+            CoreExceptions.DownloadedCoreNotPe, CoreExceptions.DownloadedCoreInvalidPe, CoreExceptions.DownloadedCoreWrongArchitecture);
 }

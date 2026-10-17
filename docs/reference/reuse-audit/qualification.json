@@ -669,8 +669,56 @@
   ],
   "currentProjectReport": "current-project-groups.json",
   "currentReportScope": "All current repository CSharp and PowerShell files; no age filter; candidates require semantic review",
-  "currentExactCandidateGroups": 585,
-  "currentRenamedIdentifierCandidateGroups": 220,
+  "currentExactCandidateGroups": 580,
+  "currentRenamedIdentifierCandidateGroups": 219,
   "currentQualificationStatus": "Manual semantic qualification remains incomplete. remaining-groups.json is the earlier historical checkpoint; current-project-groups.json covers all current CSharp and PowerShell files regardless of age.",
-  "hostLoopComparison": "host-loop-comparison.json"
+  "hostLoopComparison": "host-loop-comparison.json",
+  "installationReuse": {
+    "origin": "aa0ef2450 Amiga release service, 2026-08-14; Atari adaptation 444ea3273, 2026-08-16",
+    "files": [
+      "src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/CoreReleaseService.cs",
+      "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+      "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+      "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+      "src/GWGUI.Emulation.Nec/Emulators/BeetlePcfx/Services/CoreReleaseService.cs",
+      "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+      "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/CoreReleaseService.cs",
+      "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+      "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/CoreReleaseService.cs",
+      "src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/ExternalCoreInstaller.cs",
+      "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalCoreInstaller.cs",
+      "src/GWGUI.Emulation.Nec/Emulators/BeetlePceFast/Services/ExternalCoreInstaller.cs",
+      "src/GWGUI.Emulation.Nec/Emulators/BeetlePcfx/Services/ExternalCoreInstaller.cs",
+      "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalCoreInstaller.cs",
+      "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalCoreInstaller.cs"
+    ],
+    "reused": "SDK download, ZIP entry lookup, SHA256 and PE validation; ExtractToFile timestamp mode retained",
+    "preserved": "Typed manifests, module messages, cleanup, progress only for positive Content-Length, optional Amstrad verifier; CopyToAsync installers unchanged",
+    "verification": "SDK and six modules: zero semantic errors without Emit; diff --check passes; no runtime tests or build",
+    "reportSnapshot": "Updated current-project-groups.json after installation and callback primitives; remaining candidates still require manual review"
+  },
+  "environmentPrimitiveReuse": {
+    "origin": "Atari 2a145e278, with existing RGB1555 support retained",
+    "modules": 12,
+    "operations": [
+      "SetPixelFormat",
+      "SetLogInterface"
+    ],
+    "preserved": "Null pointer and invalid pixel format return false without state change; log delegate remains rooted and owned by caller",
+    "verification": "SDK and twelve consumers: zero semantic errors without Emit; diff --check passes",
+    "remaining": "Environment command switches, typed states and initialization still under manual review"
+  },
+  "nativeWriteReuse": {
+    "origin": "Atari CoreFunctions, initial 2a145e278 and subsequent overloads present in ac7292d86^",
+    "modules": 12,
+    "operations": [
+      "WritePointer",
+      "WriteBoolean",
+      "WriteInteger(int)",
+      "WriteInteger(uint)",
+      "WriteUnsignedLong"
+    ],
+    "preserved": "Null pointer rejection, native boolean 0/1, checked uint conversion before pointer check, unchecked ulong conversion",
+    "verification": "SDK and twelve consumers: zero semantic errors without Emit; diff --check passes; no runtime tests or build"
+  }
 }

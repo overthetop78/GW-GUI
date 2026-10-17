@@ -6,6 +6,65 @@ using GWGUI.Emulation.Interop;
 namespace GWGUI.Emulation.Functions;
 internal static class ExternalCoreEnvironmentFunctions
 {
+    internal static bool WritePointer(nint destination, nint value)
+    {
+        if (destination == nint.Zero) return false;
+        Marshal.WriteIntPtr(destination, value);
+        return true;
+    }
+
+    internal static bool WriteBoolean(nint destination, bool value)
+    {
+        if (destination == nint.Zero) return false;
+        Marshal.WriteByte(destination, value ? (byte)1 : (byte)0);
+        return true;
+    }
+
+    internal static bool WriteInteger(nint destination, int value)
+    {
+        if (destination == nint.Zero) return false;
+        Marshal.WriteInt32(destination, value);
+        return true;
+    }
+
+    internal static bool WriteInteger(nint destination, uint value) => WriteInteger(destination, checked((int)value));
+
+    internal static bool WriteUnsignedLong(nint destination, ulong value)
+    {
+        if (destination == nint.Zero) return false;
+        Marshal.WriteInt64(destination, unchecked((long)value));
+        return true;
+    }
+
+    internal static bool SetPixelFormat(nint data, ref EmulationPixelFormat pixelFormat)
+    {
+        if (data == nint.Zero) return false;
+        switch (Marshal.ReadInt32(data))
+        {
+            case 1:
+                pixelFormat = EmulationPixelFormat.Xrgb8888;
+                return true;
+            case 2:
+                pixelFormat = EmulationPixelFormat.Rgb565;
+                return true;
+            case 0:
+                pixelFormat = EmulationPixelFormat.Rgb1555;
+                return true;
+            default:
+                return false;
+        }
+    }
+
+    internal static bool SetLogInterface(nint data, ExternalCoreApi.LogCallback log)
+    {
+        if (data == nint.Zero) return false;
+        Marshal.StructureToPtr(new ExternalCoreApi.LogInterface
+        {
+            Log = Marshal.GetFunctionPointerForDelegate(log)
+        }, data, false);
+        return true;
+    }
+
     internal static IReadOnlyList<T> CopyInputDescriptors<T>(nint data, int maximumCount, Func<uint, uint, uint, uint, string, T> create)
     {
         if (data == nint.Zero)

@@ -33,23 +33,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
     }
 
     private bool SetPixelFormat(nint data)
-    {
-        if (data == nint.Zero) return false;
-        switch (Marshal.ReadInt32(data))
-        {
-            case ExternalCoreInteropConstants.PixelFormatXrgb8888:
-                _pixelFormat = EmulationPixelFormat.Xrgb8888;
-                return true;
-            case ExternalCoreInteropConstants.PixelFormatRgb565:
-                _pixelFormat = EmulationPixelFormat.Rgb565;
-                return true;
-            case ExternalCoreInteropConstants.PixelFormat0Rgb1555:
-                _pixelFormat = EmulationPixelFormat.Rgb1555;
-                return true;
-            default:
-                return false;
-        }
-    }
+        => ExternalCoreEnvironmentFunctions.SetPixelFormat(data, ref _pixelFormat);
 
     private bool SetSystemAvInfo(nint data)
     {
@@ -93,14 +77,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
     }
 
     private bool SetLogInterface(nint data)
-    {
-        if (data == nint.Zero) return false;
-        Marshal.StructureToPtr(new ExternalCoreApi.LogInterface
-        {
-            Log = Marshal.GetFunctionPointerForDelegate(Log)
-        }, data, false);
-        return true;
-    }
+        => ExternalCoreEnvironmentFunctions.SetLogInterface(data, Log);
 
     private bool SetLedInterface(nint data)
     {

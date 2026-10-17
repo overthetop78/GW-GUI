@@ -38,12 +38,18 @@ internal static class EmulationCoreReleaseFunctions
         return written;
     }
 
-    internal static void ExtractExpectedLibrary(string archivePath, string expectedName, string destination, Func<string, string> missingExpectedLibrary)
+    internal static void ExtractExpectedLibrary(string archivePath, string expectedName, string destination,
+        Func<string, string> missingExpectedLibrary, bool preserveLastWriteTime = false)
     {
         using var archive = ZipFile.OpenRead(archivePath);
         var entry = archive.Entries.FirstOrDefault(item =>
             Path.GetFileName(item.FullName).Equals(expectedName, StringComparison.OrdinalIgnoreCase))
             ?? throw new InvalidDataException(missingExpectedLibrary(expectedName));
+        if (preserveLastWriteTime)
+        {
+            entry.ExtractToFile(destination, overwrite: true);
+            return;
+        }
         using var input = entry.Open();
         using var output = new FileStream(destination, FileMode.Create, FileAccess.Write, FileShare.None);
         input.CopyTo(output);

@@ -3,8 +3,6 @@ using GWGUI.Emulation.Amstrad.Emulators.Common.Contracts;
 using GWGUI.Emulation.Amstrad.Emulators.Common.Services;
 
 using System.IO;
-using System.IO.Compression;
-using System.Security.Cryptography;
 using System.Text.Json;
 
 namespace GWGUI.Emulation.Amstrad.Emulators.Common.Services;
@@ -69,33 +67,21 @@ public sealed class CoreReleaseService
         var extracted = destination + CoreReleaseConstants.Extract;
         try
         {
-            using var response = await _httpClient.GetAsync(release.DownloadUri, HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
-            response.EnsureSuccessStatusCode();
-            var total = response.Content.Headers.ContentLength;
-            await using (var source = await response.Content.ReadAsStreamAsync(cancellationToken).ConfigureAwait(false))
-            await using (var target = new FileStream(download, FileMode.Create, FileAccess.Write, FileShare.None, CoreReleaseConstants.DownloadBufferSize, FileOptions.Asynchronous))
-            {
-                var buffer = new byte[CoreReleaseConstants.DownloadBufferSize];
-                long written = BufferConstants.EmptyCollectionCount;
-                int read;
-                while ((read = await source.ReadAsync(buffer, cancellationToken).ConfigureAwait(false)) > BufferConstants.EmptyCollectionCount)
+            await EmulationCoreReleaseFunctions.DownloadAsync(_httpClient, release.DownloadUri, download,
+                (written, total) =>
                 {
-                    await target.WriteAsync(buffer.AsMemory(BufferConstants.FirstBufferIndex, read), cancellationToken).ConfigureAwait(false);
-                    written += read;
-                    if (total > BufferConstants.EmptyCollectionCount) progress?.Report(written / (double)total.Value);
-                }
-            }
+                    if (total > 0) progress?.Report(written / (double)total.Value);
+                }, cancellationToken).ConfigureAwait(false);
 
             if (release.IsZip)
             {
-                using var archive = ZipFile.OpenRead(download);
-                var entry = archive.Entries.FirstOrDefault(item => Path.GetFileName(item.FullName).Equals(_definition.LibraryFile, StringComparison.OrdinalIgnoreCase)) ?? throw new InvalidDataException(CommonExceptions.ArchiveMissingLibrary());
-                entry.ExtractToFile(extracted, true);
+                EmulationCoreReleaseFunctions.ExtractExpectedLibrary(download, _definition.LibraryFile, extracted,
+                    static _ => CommonExceptions.ArchiveMissingLibrary(), preserveLastWriteTime: true);
             }
             else File.Copy(download, extracted, true);
 
             _definition.VerifyInstallation?.Invoke(extracted);
-            var sha256 = Hash(extracted);
+            var sha256 = EmulationCoreDiagnosticFunctions.CalculateSha256(extracted);
             File.Move(extracted, destination, true);
             await ExternalCoreInstaller.WriteManifestAsync(release.Id, release.DownloadUri.AbsoluteUri, destination, sha256, _definition.Architecture, cancellationToken).ConfigureAwait(false);
             progress?.Report(CoreReleaseConstants.CompletedDownloadProgress);
@@ -106,11 +92,5 @@ public sealed class CoreReleaseService
             if (File.Exists(download)) File.Delete(download);
             if (File.Exists(extracted)) File.Delete(extracted);
         }
-    }
-
-    private static string Hash(string path)
-    {
-        using var stream = File.OpenRead(path);
-        return Convert.ToHexString(SHA256.HashData(stream));
     }
 }

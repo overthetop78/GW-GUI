@@ -6,8 +6,6 @@ using GWGUI.Emulation.Nec.Emulators.BeetlePcfx.Functions;
 using GWGUI.Emulation.Nec.Emulators.BeetlePcfx.Services;
 
 using System.IO;
-using System.IO.Compression;
-using System.Security.Cryptography;
 using System.Text.Json;
 
 namespace GWGUI.Emulation.Nec.Emulators.BeetlePcfx.Services;
@@ -51,14 +49,10 @@ public sealed class ExternalCoreInstaller
             await using (var destination = new FileStream(package, FileMode.Create, FileAccess.Write, FileShare.None, 81920, FileOptions.Asynchronous))
                 await source.CopyToAsync(destination, cancellationToken).ConfigureAwait(false);
 
-            using (var archive = ZipFile.OpenRead(package))
-            {
-                var entry = archive.Entries.FirstOrDefault(item => Path.GetFileName(item.FullName).Equals(CoreReleaseConstants.ArchiveLibraryName, StringComparison.OrdinalIgnoreCase))
-                    ?? throw new InvalidDataException(BeetlePcfxExceptions.ArchiveMissingLibrary());
-                entry.ExtractToFile(extracted, true);
-            }
+            EmulationCoreReleaseFunctions.ExtractExpectedLibrary(package, CoreReleaseConstants.ArchiveLibraryName, extracted,
+                static _ => BeetlePcfxExceptions.ArchiveMissingLibrary(), preserveLastWriteTime: true);
             CoreReleaseService.VerifyWindowsX64Library(extracted);
-            var sha256 = Hash(extracted);
+            var sha256 = EmulationCoreDiagnosticFunctions.CalculateSha256(extracted);
             File.Move(extracted, LibraryPath, true);
             await WriteManifestAsync(CoreRevision, DownloadUrl, LibraryPath, sha256, cancellationToken).ConfigureAwait(false);
             return LibraryPath;
@@ -74,12 +68,6 @@ public sealed class ExternalCoreInstaller
     {
         var manifest = new { version, source, librarySize = new FileInfo(libraryPath).Length, librarySha256 = sha256, architecture = CoreReleaseConstants.X64, installedUtc = DateTimeOffset.UtcNow };
         await File.WriteAllTextAsync(Path.Combine(Path.GetDirectoryName(libraryPath)!, CoreReleaseConstants.CoreJson), JsonSerializer.Serialize(manifest, new JsonSerializerOptions { WriteIndented = true }), cancellationToken).ConfigureAwait(false);
-    }
-
-    internal static string Hash(string path)
-    {
-        using var stream = File.OpenRead(path);
-        return Convert.ToHexString(SHA256.HashData(stream));
     }
 }
 

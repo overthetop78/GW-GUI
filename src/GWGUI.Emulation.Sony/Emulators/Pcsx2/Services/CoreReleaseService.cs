@@ -6,8 +6,6 @@ using GWGUI.Emulation.Sony.Emulators.Pcsx2.Functions;
 using GWGUI.Emulation.Sony.Emulators.Pcsx2.Services;
 
 using System.IO;
-using System.IO.Compression;
-using System.Security.Cryptography;
 using System.Text.Json;
 
 namespace GWGUI.Emulation.Sony.Emulators.Pcsx2.Services;
@@ -71,33 +69,21 @@ public sealed class CoreReleaseService
         var extracted = destination + CoreReleaseConstants.Extract;
         try
         {
-            using var response = await _httpClient.GetAsync(release.DownloadUri, HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
-            response.EnsureSuccessStatusCode();
-            var total = response.Content.Headers.ContentLength;
-            await using (var source = await response.Content.ReadAsStreamAsync(cancellationToken).ConfigureAwait(false))
-            await using (var target = new FileStream(download, FileMode.Create, FileAccess.Write, FileShare.None, 81920, FileOptions.Asynchronous))
-            {
-                var buffer = new byte[81920];
-                long written = 0;
-                int read;
-                while ((read = await source.ReadAsync(buffer, cancellationToken).ConfigureAwait(false)) > 0)
+            await EmulationCoreReleaseFunctions.DownloadAsync(_httpClient, release.DownloadUri, download,
+                (written, total) =>
                 {
-                    await target.WriteAsync(buffer.AsMemory(BufferConstants.FirstBufferIndex, read), cancellationToken).ConfigureAwait(false);
-                    written += read;
                     if (total > 0) progress?.Report(written / (double)total.Value);
-                }
-            }
+                }, cancellationToken).ConfigureAwait(false);
 
             if (release.IsZip)
             {
-                using var archive = ZipFile.OpenRead(download);
-                var entry = archive.Entries.FirstOrDefault(item => Path.GetFileName(item.FullName).Equals(CoreReleaseConstants.OptionLibretroDll, StringComparison.OrdinalIgnoreCase)) ?? throw new InvalidDataException(Pcsx2Exceptions.ArchiveMissingLibrary());
-                entry.ExtractToFile(extracted, true);
+                EmulationCoreReleaseFunctions.ExtractExpectedLibrary(download, CoreReleaseConstants.OptionLibretroDll, extracted,
+                    static _ => Pcsx2Exceptions.ArchiveMissingLibrary(), preserveLastWriteTime: true);
             }
             else File.Copy(download, extracted, true);
 
             VerifyWindowsX64Library(extracted);
-            var sha256 = Hash(extracted);
+            var sha256 = EmulationCoreDiagnosticFunctions.CalculateSha256(extracted);
             File.Move(extracted, destination, true);
             await ExternalCoreInstaller.WriteManifestAsync(release.Id, release.DownloadUri.AbsoluteUri, destination, sha256, cancellationToken).ConfigureAwait(false);
             progress?.Report(1);
@@ -111,23 +97,7 @@ public sealed class CoreReleaseService
     }
 
     internal static void VerifyWindowsX64Library(string path)
-    {
-        using var stream = File.OpenRead(path);
-        using var reader = new BinaryReader(stream);
-        if (stream.Length < 0x40 || reader.ReadUInt16() != 0x5A4D)
-            throw new InvalidDataException(Pcsx2Exceptions.DownloadedCoreNotPe());
-        stream.Position = 0x3c;
-        var peOffset = reader.ReadInt32();
-        if (peOffset < 0x40 || peOffset > stream.Length - 6)
-            throw new InvalidDataException(Pcsx2Exceptions.DownloadedCoreInvalidPe());
-        stream.Position = peOffset;
-        if (reader.ReadUInt32() != 0x00004550 || reader.ReadUInt16() != 0x8664)
-            throw new InvalidDataException(Pcsx2Exceptions.DownloadedCoreWrongArchitecture());
-    }
-
-    private static string Hash(string path)
-    {
-        using var stream = File.OpenRead(path);
-        return Convert.ToHexString(SHA256.HashData(stream));
-    }
+        =>
+        EmulationCoreDiagnosticFunctions.VerifyWindowsX64Library(path,
+            Pcsx2Exceptions.DownloadedCoreNotPe, Pcsx2Exceptions.DownloadedCoreInvalidPe, Pcsx2Exceptions.DownloadedCoreWrongArchitecture);
 }
