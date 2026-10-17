@@ -1,3 +1,4 @@
+using GWGUI.MediaEngine.Functions;
 using System.Buffers.Binary;
 using System.Collections.Frozen;
 using System.Globalization;
@@ -28,7 +29,7 @@ public sealed class CommodoreTapeEncoder : ISequentialMediaEncoder
         && request.Blocks.All(block => block.IntegrityValid == true && block.Data.Length > 0)
         && request.RetainedSegments.Count == 0
         && (!request.TargetFormatId.Equals(TapeImageFormatIds.Wav, StringComparison.OrdinalIgnoreCase)
-            || TryReadSampleRate(request.Parameters, out _));
+            || PcmSampleFunctions.TryReadSampleRate(request.Parameters, out _));
 
     public Task<SequentialMediaImageRepresentation> EncodeAsync(SequentialEncodeRequest request, CancellationToken cancellationToken = default)
     {
@@ -88,7 +89,7 @@ public sealed class CommodoreTapeEncoder : ISequentialMediaEncoder
 
     private static SequentialMediaImageRepresentation EncodeWave(IReadOnlyList<int> cycles, IReadOnlyDictionary<string, string> parameters)
     {
-        TryReadSampleRate(parameters, out var sampleRate);
+        PcmSampleFunctions.TryReadSampleRate(parameters, out var sampleRate);
         var samples = new List<short>();
         var level = CommodoreTapConstants.PcmAmplitude;
         foreach (var pulseCycles in cycles)
@@ -127,11 +128,5 @@ public sealed class CommodoreTapeEncoder : ISequentialMediaEncoder
     {
         pulses.Add(value ? CommodoreTapConstants.MediumPulseCycles : CommodoreTapConstants.ShortPulseCycles);
         pulses.Add(value ? CommodoreTapConstants.ShortPulseCycles : CommodoreTapConstants.MediumPulseCycles);
-    }
-
-    private static bool TryReadSampleRate(IReadOnlyDictionary<string, string> parameters, out int sampleRate)
-    {
-        sampleRate = 0;
-        return parameters.TryGetValue("sampleRate", out var text) && int.TryParse(text, NumberStyles.None, CultureInfo.InvariantCulture, out sampleRate) && sampleRate >= 8000;
     }
 }

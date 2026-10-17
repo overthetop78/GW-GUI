@@ -2,7 +2,6 @@ using System.IO;
 using System.Net.Http;
 using System.Reflection;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 using GWGUI.App.Services.Emulation;
 using GWGUI.Emulation.Constants;
 using GWGUI.Updates.Contracts;
@@ -12,7 +11,7 @@ namespace GWGUI.App.Services.Updates;
 
 internal sealed class ModuleUpdateService
 {
-    private static readonly JsonSerializerOptions JsonOptions = CreateJsonOptions();
+    private static readonly JsonSerializerOptions JsonOptions = UpdateJsonOptions.Create();
     private readonly HttpClient _httpClient;
     private readonly Func<IReadOnlyList<LoadedEmulationModule>> _installedModules;
     private readonly ModuleUpdateCatalogValidator _catalogValidator;
@@ -93,12 +92,5 @@ internal sealed class ModuleUpdateService
     {
         var version = Assembly.GetEntryAssembly()?.GetName().Version ?? new Version(0, 0, 0);
         return $"{version.Major}.{version.Minor}.{Math.Max(version.Build, 0)}";
-    }
-
-    private static JsonSerializerOptions CreateJsonOptions()
-    {
-        var options = new JsonSerializerOptions(JsonSerializerDefaults.Web);
-        options.Converters.Add(new JsonStringEnumConverter(JsonNamingPolicy.CamelCase));
-        return options;
     }
 }

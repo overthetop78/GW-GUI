@@ -38,7 +38,7 @@ public sealed class Qcow2Writer : IMediaImageWriter
             && document.Representation is BlockMediaImageRepresentation blocks
             && blocks.Capacity > 0
             && blocks.LogicalBlockSize == HardDiskFormatConstants.LegacyLogicalSectorSize
-            && HasCompleteReadableCoverage(blocks);
+            && blocks.HasCompleteReadableCoverage();
     }
 
     public async Task<IReadOnlyList<string>> WriteAsync(MediaImageDocument document, string outputPath, string targetFormatId, CancellationToken cancellationToken = default)
@@ -176,16 +176,5 @@ public sealed class Qcow2Writer : IMediaImageWriter
     {
         output.Position = offset;
         await output.WriteAsync(data, cancellationToken).ConfigureAwait(false);
-    }
-
-    private static bool HasCompleteReadableCoverage(BlockMediaImageRepresentation blocks)
-    {
-        long cursor = 0;
-        foreach (var range in blocks.Ranges)
-        {
-            if (range.Address != cursor || range.Kind == MediaDataRangeKind.Unavailable) return false;
-            cursor = checked(cursor + range.Length);
-        }
-        return cursor == blocks.Capacity;
     }
 }

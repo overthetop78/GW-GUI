@@ -68,7 +68,7 @@ public sealed class Qcow2Reader : IMediaImageReader
             var length = Math.Min((long)header.ClusterSize, header.VirtualSize - address);
             if (l1Entry == 0)
             {
-                AddRange(ranges, address, length, MediaDataRangeKind.Unallocated);
+                BlockMediaImageRepresentation.AddRange(ranges, address, length, MediaDataRangeKind.Unallocated);
                 continue;
             }
             var l2Offset = GetClusterOffset(l1Entry, header.ClusterSize, "L1");
@@ -84,18 +84,18 @@ public sealed class Qcow2Reader : IMediaImageReader
                 throw new NotSupportedException("Compressed QCOW2 clusters are not supported.");
             if ((l2Entry & HardDiskFormatConstants.Qcow2ZeroFlag) != 0)
             {
-                AddRange(ranges, address, length, MediaDataRangeKind.Zero);
+                BlockMediaImageRepresentation.AddRange(ranges, address, length, MediaDataRangeKind.Zero);
                 continue;
             }
             var dataOffset = (long)(l2Entry & HardDiskFormatConstants.Qcow2ClusterOffsetMask);
             if (dataOffset == 0)
             {
-                AddRange(ranges, address, length, MediaDataRangeKind.Unallocated);
+                BlockMediaImageRepresentation.AddRange(ranges, address, length, MediaDataRangeKind.Unallocated);
                 continue;
             }
             ValidateClusterOffset(dataOffset, header.ClusterSize, context.Length, "L2 data");
             await refcounts.RequireAllocatedAsync(dataOffset, cancellationToken).ConfigureAwait(false);
-            AddRange(ranges, address, length, includeRanges ? MediaDataRangeKind.Stored : MediaDataRangeKind.Unavailable, source, includeRanges ? dataOffset : 0);
+            BlockMediaImageRepresentation.AddRange(ranges, address, length, includeRanges ? MediaDataRangeKind.Stored : MediaDataRangeKind.Unavailable, source, includeRanges ? dataOffset : 0);
         }
 
         return new MediaImageDocument(
@@ -191,21 +191,6 @@ public sealed class Qcow2Reader : IMediaImageReader
     {
         if (offset < 0 || offset % clusterSize != 0 || offset > fileLength - clusterSize)
             throw new InvalidDataException($"The QCOW2 {structure} cluster is outside the file.");
-    }
-
-    private static void AddRange(List<MediaDataRange> ranges, long address, long length, MediaDataRangeKind kind, FileRandomAccessData? source = null, long sourceOffset = 0)
-    {
-        if (ranges.Count > 0)
-        {
-            var previous = ranges[^1];
-            var sourceContinues = kind != MediaDataRangeKind.Stored || ReferenceEquals(previous.Source, source) && previous.SourceOffset + previous.Length == sourceOffset;
-            if (previous.Kind == kind && previous.Address + previous.Length == address && sourceContinues)
-            {
-                ranges[^1] = new MediaDataRange(previous.Address, previous.Length + length, kind, previous.Source, previous.SourceOffset);
-                return;
-            }
-        }
-        ranges.Add(new MediaDataRange(address, length, kind, source, sourceOffset));
     }
 
     private sealed record Qcow2Header(uint Version, int ClusterSize, long VirtualSize, uint L1Size, long L1TableOffset, long RefcountTableOffset, uint RefcountTableClusters);

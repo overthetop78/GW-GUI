@@ -1,4 +1,4 @@
-﻿using System.Buffers.Binary;
+using System.Buffers.Binary;
 using System.Collections.Frozen;
 using System.Globalization;
 using GWGUI.MediaEngine.Constants;
@@ -32,7 +32,7 @@ public sealed class AcornTapeEncoder : ISequentialMediaEncoder
             && request.RetainedSegments.Count == 0
             && request.Blocks.All(block => block.IntegrityValid == true && TryBuildBlock(block, out _))
             && (!request.TargetFormatId.Equals(TapeImageFormatIds.Wav, StringComparison.OrdinalIgnoreCase)
-                || TryReadSampleRate(request.Parameters, out _));
+                || PcmSampleFunctions.TryReadSampleRate(request.Parameters, out _));
     }
 
     public Task<SequentialMediaImageRepresentation> EncodeAsync(SequentialEncodeRequest request, CancellationToken cancellationToken = default)
@@ -77,7 +77,7 @@ public sealed class AcornTapeEncoder : ISequentialMediaEncoder
 
     private static SequentialMediaImageRepresentation EncodeWave(IReadOnlyList<byte[]> blocks, IReadOnlyDictionary<string, string> parameters)
     {
-        TryReadSampleRate(parameters, out var sampleRate);
+        PcmSampleFunctions.TryReadSampleRate(parameters, out var sampleRate);
         var samples = new List<short>();
         var level = UefConstants.PcmAmplitude;
         for (var index = 0; index < blocks.Count; index++)
@@ -166,12 +166,6 @@ public sealed class AcornTapeEncoder : ISequentialMediaEncoder
         var dataChecksum = Crc16Calculator.Compute(block.Data.ToArray(), UefConstants.AcornChecksumPolynomial, UefConstants.AcornChecksumInitialValue);
         BinaryPrimitives.WriteUInt16BigEndian(bytes.AsSpan(cursor + block.Data.Length), dataChecksum);
         return true;
-    }
-
-    private static bool TryReadSampleRate(IReadOnlyDictionary<string, string> parameters, out int sampleRate)
-    {
-        sampleRate = 0;
-        return parameters.TryGetValue("sampleRate", out var text) && int.TryParse(text, NumberStyles.None, CultureInfo.InvariantCulture, out sampleRate) && sampleRate >= 8000;
     }
 
     private static bool TryReadHexUInt32(IReadOnlyDictionary<string, string> metadata, string key, out uint value)

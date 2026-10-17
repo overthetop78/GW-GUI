@@ -59,12 +59,12 @@ public sealed class VdiReader : IMediaImageReader
             var length = Math.Min((long)header.BlockSize, header.DiskSize - address);
             if (entry == HardDiskFormatConstants.VdiUnallocatedBlock)
             {
-                AddRange(ranges, address, length, MediaDataRangeKind.Unallocated);
+                BlockMediaImageRepresentation.AddRange(ranges, address, length, MediaDataRangeKind.Unallocated);
                 continue;
             }
             if (entry == HardDiskFormatConstants.VdiDiscardedBlock)
             {
-                AddRange(ranges, address, length, MediaDataRangeKind.Zero);
+                BlockMediaImageRepresentation.AddRange(ranges, address, length, MediaDataRangeKind.Zero);
                 continue;
             }
             if (entry >= header.BlocksAllocated || !seenAllocatedBlocks.Add(entry))
@@ -72,7 +72,7 @@ public sealed class VdiReader : IMediaImageReader
             var sourceOffset = checked((long)header.DataOffset + (long)entry * (header.BlockSize + header.BlockExtra) + header.BlockExtra);
             if (sourceOffset > context.Length - length)
                 throw new InvalidDataException($"VDI block map entry {logicalBlock} points outside the file.");
-            AddRange(ranges, address, length, MediaDataRangeKind.Stored, source, sourceOffset);
+            BlockMediaImageRepresentation.AddRange(ranges, address, length, MediaDataRangeKind.Stored, source, sourceOffset);
         }
 
         HardDiskGeometry? geometry = null;
@@ -150,21 +150,6 @@ public sealed class VdiReader : IMediaImageReader
             checked((int)blocksInImage),
             blocksAllocated,
             new Guid(header[0x188..0x198]));
-    }
-
-    private static void AddRange(List<MediaDataRange> ranges, long address, long length, MediaDataRangeKind kind, FileRandomAccessData? source = null, long sourceOffset = 0)
-    {
-        if (ranges.Count > 0)
-        {
-            var previous = ranges[^1];
-            var sourceContinues = kind != MediaDataRangeKind.Stored || ReferenceEquals(previous.Source, source) && previous.SourceOffset + previous.Length == sourceOffset;
-            if (previous.Kind == kind && previous.Address + previous.Length == address && sourceContinues)
-            {
-                ranges[^1] = new MediaDataRange(previous.Address, previous.Length + length, kind, previous.Source, previous.SourceOffset);
-                return;
-            }
-        }
-        ranges.Add(new MediaDataRange(address, length, kind, source, sourceOffset));
     }
 
     private sealed record VdiHeader(

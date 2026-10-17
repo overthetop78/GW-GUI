@@ -38,7 +38,7 @@ public sealed class VdiWriter : IMediaImageWriter
             && document.Representation is BlockMediaImageRepresentation blocks
             && blocks.Capacity > 0
             && blocks.LogicalBlockSize == HardDiskFormatConstants.LegacyLogicalSectorSize
-            && HasCompleteReadableCoverage(blocks);
+            && blocks.HasCompleteReadableCoverage();
     }
 
     public async Task<IReadOnlyList<string>> WriteAsync(MediaImageDocument document, string outputPath, string targetFormatId, CancellationToken cancellationToken = default)
@@ -127,17 +127,6 @@ public sealed class VdiWriter : IMediaImageWriter
             && variant is HardDiskImageVariant.Fixed or HardDiskImageVariant.Dynamic)
             return variant;
         return blocks.Ranges.Any(range => range.Kind is MediaDataRangeKind.Zero or MediaDataRangeKind.Unallocated) ? HardDiskImageVariant.Dynamic : HardDiskImageVariant.Fixed;
-    }
-
-    private static bool HasCompleteReadableCoverage(BlockMediaImageRepresentation blocks)
-    {
-        long cursor = 0;
-        foreach (var range in blocks.Ranges)
-        {
-            if (range.Address != cursor || range.Kind == MediaDataRangeKind.Unavailable) return false;
-            cursor = checked(cursor + range.Length);
-        }
-        return cursor == blocks.Capacity;
     }
 
     private static int Align(int value, int alignment) => checked((value + alignment - 1) / alignment * alignment);

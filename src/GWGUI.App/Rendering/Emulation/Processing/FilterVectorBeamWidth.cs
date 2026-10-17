@@ -23,11 +23,9 @@ internal static class FilterVectorBeamWidth
             for (var offsetY = -radius; offsetY <= radius; offsetY++)
             for (var offsetX = -radius; offsetX <= radius; offsetX++)
                 if (offsetX * offsetX + offsetY * offsetY <= radius * radius)
-                    maximum = MathF.Max(maximum, Sample(emission, width, height, x + offsetX, y + offsetY));
+                    maximum = MathF.Max(maximum, FilterSampling.ReadScalar(emission, width, height, x + offsetX, y + offsetY));
             result[y * width + x] = emission[y * width + x] + (maximum - emission[y * width + x]) * amount;
         }
         return result;
     }
-
-    private static float Sample(float[] values, int width, int height, int x, int y) => values[Math.Clamp(y, 0, height - 1) * width + Math.Clamp(x, 0, width - 1)];
 }

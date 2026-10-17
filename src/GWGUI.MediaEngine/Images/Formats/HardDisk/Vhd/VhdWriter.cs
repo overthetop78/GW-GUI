@@ -48,7 +48,7 @@ public sealed class VhdWriter : IMediaImageWriter
             && document.Representation is BlockMediaImageRepresentation blocks
             && blocks.Capacity > 0
             && blocks.LogicalBlockSize == HardDiskFormatConstants.LegacyLogicalSectorSize
-            && HasCompleteReadableCoverage(blocks);
+            && blocks.HasCompleteReadableCoverage();
     }
 
     public async Task<IReadOnlyList<string>> WriteAsync(MediaImageDocument document, string outputPath, string targetFormatId, CancellationToken cancellationToken = default)
@@ -76,7 +76,7 @@ public sealed class VhdWriter : IMediaImageWriter
 
     private static async Task WriteFixedAsync(BlockMediaImageRepresentation blocks, Stream output, CancellationToken cancellationToken)
     {
-        await WriteLogicalDataAsync(blocks, output, cancellationToken).ConfigureAwait(false);
+        await BlockMediaDataReader.CopyToAsync(blocks, output, cancellationToken).ConfigureAwait(false);
         var footer = CreateFooter(blocks, HardDiskFormatConstants.VhdFixedDiskType, ulong.MaxValue, Guid.NewGuid());
         await output.WriteAsync(footer, cancellationToken).ConfigureAwait(false);
     }
@@ -138,19 +138,6 @@ public sealed class VhdWriter : IMediaImageWriter
             BinaryPrimitives.WriteUInt32BigEndian(batBytes.AsSpan(index * sizeof(uint), sizeof(uint)), bat[index]);
         await output.WriteAsync(batBytes, cancellationToken).ConfigureAwait(false);
         output.Position = end;
-    }
-
-    private static async Task WriteLogicalDataAsync(BlockMediaImageRepresentation blocks, Stream output, CancellationToken cancellationToken)
-    {
-        var buffer = new byte[64 * DataSizeConstants.BytesPerKibibyte];
-        long address = 0;
-        while (address < blocks.Capacity)
-        {
-            var count = (int)Math.Min(buffer.Length, blocks.Capacity - address);
-            await BlockMediaDataReader.ReadExactlyAsync(blocks, address, buffer.AsMemory(0, count), cancellationToken).ConfigureAwait(false);
-            await output.WriteAsync(buffer.AsMemory(0, count), cancellationToken).ConfigureAwait(false);
-            address += count;
-        }
     }
 
     private static byte[] CreateFooter(BlockMediaImageRepresentation blocks, uint diskType, ulong dataOffset, Guid uniqueId)
@@ -224,17 +211,6 @@ public sealed class VhdWriter : IMediaImageWriter
 
         var cylinders = Math.Min(cylindersTimesHeads / heads, ushort.MaxValue);
         return ((ushort)cylinders, (byte)heads, (byte)sectorsPerTrack);
-    }
-
-    private static bool HasCompleteReadableCoverage(BlockMediaImageRepresentation blocks)
-    {
-        long cursor = 0;
-        foreach (var range in blocks.Ranges)
-        {
-            if (range.Address != cursor || range.Kind == MediaDataRangeKind.Unavailable) return false;
-            cursor = checked(cursor + range.Length);
-        }
-        return cursor == blocks.Capacity;
     }
 
     private static void WriteChecksum(Span<byte> data, int checksumOffset)

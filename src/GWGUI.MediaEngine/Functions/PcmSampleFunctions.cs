@@ -73,4 +73,7 @@ internal static class PcmSampleFunctions
         value = 0;
         return metadata.TryGetValue(key, out var text) && int.TryParse(text, System.Globalization.NumberStyles.None, System.Globalization.CultureInfo.InvariantCulture, out value);
     }
+
+    internal static bool TryReadSampleRate(IReadOnlyDictionary<string, string> parameters, out int sampleRate) =>
+        TryReadInt(parameters, "sampleRate", out sampleRate) && sampleRate >= 8000;
 }

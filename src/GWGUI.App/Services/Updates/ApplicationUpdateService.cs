@@ -2,7 +2,6 @@ using System.IO;
 using System.Net.Http;
 using System.Reflection;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 using GWGUI.App.Constants.Updates;
 using GWGUI.App.Services.Emulation;
 using GWGUI.Emulation.Constants;
@@ -13,7 +12,7 @@ namespace GWGUI.App.Services.Updates;
 
 internal sealed class ApplicationUpdateService
 {
-    private static readonly JsonSerializerOptions JsonOptions = CreateJsonOptions();
+    private static readonly JsonSerializerOptions JsonOptions = UpdateJsonOptions.Create();
     private readonly HttpClient _httpClient;
     private readonly Uri _catalogUri;
     private readonly Func<InstalledUpdateState> _installedState;
@@ -69,12 +68,5 @@ internal sealed class ApplicationUpdateService
         if (string.IsNullOrWhiteSpace(value) || !Version.TryParse(value, out var version))
             throw new InvalidDataException($"Invalid installed application version '{value}'.");
         return version.ToString(3);
-    }
-
-    private static JsonSerializerOptions CreateJsonOptions()
-    {
-        var options = new JsonSerializerOptions(JsonSerializerDefaults.Web);
-        options.Converters.Add(new JsonStringEnumConverter(JsonNamingPolicy.CamelCase));
-        return options;
     }
 }

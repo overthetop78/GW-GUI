@@ -45,7 +45,7 @@ internal static class FilterDotMatrix
             var localX = logicalX / pitch - MathF.Floor(logicalX / pitch) - .5f;
             var localY = logicalY / pitch - MathF.Floor(logicalY / pitch) - .5f;
             var distance = FilterDotMatrixShape.Distance(localX, localY, configuration.Shape);
-            var core = SmoothStep(radius + edge, radius - edge, distance);
+            var core = FilterSampling.SmoothStep(radius + edge, radius - edge, distance);
             var halo = FilterDotMatrixHalo.Apply(distance, radius, configuration.HaloIntensity) * (1f - core);
             var average = (cellY * columns + cellX) * 3;
             var palette = FilterDotMatrixPalette.Apply(averages[average], averages[average + 1], averages[average + 2], configuration.Palette);
@@ -57,12 +57,6 @@ internal static class FilterDotMatrix
             colors[index + 1] = Math.Clamp(Lerp(palette.Background.G, palette.Foreground.G, light), 0f, 1f);
             colors[index + 2] = Math.Clamp(Lerp(palette.Background.B, palette.Foreground.B, light), 0f, 1f);
         }
-    }
-
-    private static float SmoothStep(float edge0, float edge1, float value)
-    {
-        var position = Math.Clamp((value - edge0) / (edge1 - edge0), 0f, 1f);
-        return position * position * (3f - 2f * position);
     }
 
     private static float Lerp(float start, float end, float amount) => start + (end - start) * amount;

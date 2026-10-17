@@ -11,7 +11,7 @@ internal static class FilterXbr
         var centerY = (int)MathF.Floor(sourcePositionY);
         var fractionX = sourcePositionX - MathF.Floor(sourcePositionX);
         var fractionY = sourcePositionY - MathF.Floor(sourcePositionY);
-        var center = Read(source, width, height, centerX, centerY);
+        var center = FilterSampling.ReadSrgbColor(source, width, height, centerX, centerY);
 
         var candidate = center;
         var bestBlend = 0f;
@@ -24,8 +24,8 @@ internal static class FilterXbr
 
         void EvaluateCorner(int directionX, int directionY, float fx, float fy)
         {
-            var f = Read(source, width, height, centerX + directionX, centerY);
-            var h = Read(source, width, height, centerX, centerY + directionY);
+            var f = FilterSampling.ReadSrgbColor(source, width, height, centerX + directionX, centerY);
+            var h = FilterSampling.ReadSrgbColor(source, width, height, centerX, centerY + directionY);
             var e = Luma(center);
             var fl = Luma(f);
             var hl = Luma(h);
@@ -50,15 +50,7 @@ internal static class FilterXbr
             candidate = MathF.Abs(e - fl) <= MathF.Abs(e - hl) ? f : h;
         }
 
-        float LumaAt(int offsetX, int offsetY) => Luma(Read(source, width, height, centerX + offsetX, centerY + offsetY));
-    }
-
-    private static FilterColor Read(float[] source, int width, int height, int x, int y)
-    {
-        x = Math.Clamp(x, 0, width - 1);
-        y = Math.Clamp(y, 0, height - 1);
-        var offset = (y * width + x) * 3;
-        return new FilterColor( SoftwareEmulationVideoProcessingPipeline.LinearToSrgb(source[offset]), SoftwareEmulationVideoProcessingPipeline.LinearToSrgb(source[offset + 1]), SoftwareEmulationVideoProcessingPipeline.LinearToSrgb(source[offset + 2]));
+        float LumaAt(int offsetX, int offsetY) => Luma(FilterSampling.ReadSrgbColor(source, width, height, centerX + offsetX, centerY + offsetY));
     }
 
     private static float Luma(FilterColor color) => YWeight * (0.299f * color[0] + 0.587f * color[1] + 0.114f * color[2]);

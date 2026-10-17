@@ -1,3 +1,4 @@
+using GWGUI.MediaEngine.Images.Reading.Blocks;
 using System.Buffers.Binary;
 using System.Collections.Frozen;
 using System.Globalization;
@@ -70,7 +71,7 @@ public sealed class UefWriter : IMediaImageWriter
             BinaryPrimitives.WriteUInt16LittleEndian(chunkHeader, chunk.Id);
             BinaryPrimitives.WriteUInt32LittleEndian(chunkHeader.AsSpan(2), checked((uint)(chunk.Range?.Length ?? 0)));
             await output.WriteAsync(chunkHeader, cancellationToken).ConfigureAwait(false);
-            if (chunk.Range is not null) await CopyAsync(chunk.Range, output, cancellationToken).ConfigureAwait(false);
+            if (chunk.Range is not null) await BlockMediaDataReader.CopyToAsync(chunk.Range, output, cancellationToken).ConfigureAwait(false);
         }
     }
 
@@ -116,19 +117,6 @@ public sealed class UefWriter : IMediaImageWriter
         }
         chunks = selected;
         return true;
-    }
-
-    private static async Task CopyAsync(MediaDataRange range, Stream output, CancellationToken cancellationToken)
-    {
-        var buffer = new byte[64 * 1024];
-        var completed = 0L;
-        while (completed < range.Length)
-        {
-            var count = (int)Math.Min(buffer.Length, range.Length - completed);
-            await range.Source!.ReadExactlyAsync(range.SourceOffset + completed, buffer.AsMemory(0, count), cancellationToken).ConfigureAwait(false);
-            await output.WriteAsync(buffer.AsMemory(0, count), cancellationToken).ConfigureAwait(false);
-            completed += count;
-        }
     }
 
     private readonly record struct UefProfile(bool Gzip, byte MajorVersion, byte MinorVersion);

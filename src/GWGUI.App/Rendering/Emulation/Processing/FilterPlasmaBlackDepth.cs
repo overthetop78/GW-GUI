@@ -19,17 +19,11 @@ internal static class FilterPlasmaBlackDepth
         for (var index = 0; index < colors.Length; index += 3)
         {
             var luminance = colors[index] * 0.2126f + colors[index + 1] * 0.7152f + colors[index + 2] * 0.0722f;
-            var shadow = SmoothStep(0f, 0.24f, luminance);
+            var shadow = FilterSampling.SmoothStep(0f, 0.24f, luminance);
             var factor = 1f + (0.28f + 0.72f * shadow - 1f) * intensity;
             colors[index] *= factor;
             colors[index + 1] *= factor;
             colors[index + 2] *= factor;
         }
-    }
-
-    private static float SmoothStep(float low, float high, float value)
-    {
-        var position = Math.Clamp((value - low) / (high - low), 0f, 1f);
-        return position * position * (3f - 2f * position);
     }
 }

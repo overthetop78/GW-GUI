@@ -1,3 +1,4 @@
+using GWGUI.MediaEngine.Functions;
 using System.Buffers.Binary;
 using System.Collections.Frozen;
 using GWGUI.MediaEngine.Constants;
@@ -28,7 +29,7 @@ public sealed class SpectrumTapeEncoder : ISequentialMediaEncoder
         && request.Blocks.All(block => block.IntegrityValid == true && block.Data.Length is >= 2 and <= ushort.MaxValue)
         && request.RetainedSegments.Count == 0
         && (!request.TargetFormatId.Equals(TapeImageFormatIds.Wav, StringComparison.OrdinalIgnoreCase)
-            || TryReadSampleRate(request.Parameters, out _));
+            || PcmSampleFunctions.TryReadSampleRate(request.Parameters, out _));
 
     public Task<SequentialMediaImageRepresentation> EncodeAsync(SequentialEncodeRequest request, CancellationToken cancellationToken = default)
     {
@@ -46,7 +47,7 @@ public sealed class SpectrumTapeEncoder : ISequentialMediaEncoder
 
     private static SequentialMediaImageRepresentation EncodeWave(SequentialEncodeRequest request)
     {
-        TryReadSampleRate(request.Parameters, out var sampleRate);
+        PcmSampleFunctions.TryReadSampleRate(request.Parameters, out var sampleRate);
         var samples = new List<short>();
         var level = SpectrumTapConstants.PcmAmplitude;
         foreach (var block in request.Blocks)
@@ -110,11 +111,5 @@ public sealed class SpectrumTapeEncoder : ISequentialMediaEncoder
     }
 
     private static void AddPulses(List<short> samples, ref short level, ushort tStates, int count, int sampleRate)
-    => GWGUI.MediaEngine.Functions.PcmSampleFunctions.AppendPulses(samples, ref level, tStates, count, sampleRate, TzxConstants.TStatesPerSecond);
-
-    private static bool TryReadSampleRate(IReadOnlyDictionary<string, string> parameters, out int sampleRate)
-    {
-        sampleRate = 0;
-        return parameters.TryGetValue("sampleRate", out var text) && int.TryParse(text, System.Globalization.NumberStyles.None, System.Globalization.CultureInfo.InvariantCulture, out sampleRate) && sampleRate >= 8000;
-    }
+        => GWGUI.MediaEngine.Functions.PcmSampleFunctions.AppendPulses(samples, ref level, tStates, count, sampleRate, TzxConstants.TStatesPerSecond);
 }

@@ -1,12 +1,12 @@
+using GWGUI.Updates.Services;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 using GWGUI.Updates.Contracts;
 
 namespace GWGUI.Updater;
 
 internal static class UpdatePlanReader
 {
-    internal static readonly JsonSerializerOptions JsonOptions = CreateJsonOptions();
+    internal static readonly JsonSerializerOptions JsonOptions = UpdateJsonOptions.Create();
 
     internal static UpdateExecutionPlan Read(string planPath)
     {
@@ -61,12 +61,5 @@ internal static class UpdatePlanReader
         var full = Path.GetFullPath(value);
         if (!full.StartsWith(root.TrimEnd(Path.DirectorySeparatorChar) + Path.DirectorySeparatorChar, StringComparison.OrdinalIgnoreCase))
             throw new InvalidDataException($"The {field} path is outside the update work directory.");
-    }
-
-    private static JsonSerializerOptions CreateJsonOptions()
-    {
-        var options = new JsonSerializerOptions(JsonSerializerDefaults.Web);
-        options.Converters.Add(new JsonStringEnumConverter(JsonNamingPolicy.CamelCase));
-        return options;
     }
 }

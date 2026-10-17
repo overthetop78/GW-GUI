@@ -30,8 +30,8 @@ internal static class FilterPlasmaCellStructure
         var pixelScaleY = outputHeight / (float)sourceHeight;
         var scaleX = MathF.Max(pixelScaleX, 1f);
         var scaleY = MathF.Max(pixelScaleY, 1f);
-        var resolvable = SmoothStep(1f, 2.5f, MathF.Min(scaleX, scaleY));
-        var subpixels = SmoothStep(2.4f, 4f, scaleX);
+        var resolvable = FilterSampling.SmoothStep(1f, 2.5f, MathF.Min(scaleX, scaleY));
+        var subpixels = FilterSampling.SmoothStep(2.4f, 4f, scaleX);
         var sourcePerOutputX = sourceWidth / (float)outputWidth;
         var sourcePerOutputY = sourceHeight / (float)outputHeight;
         for (var y = 0; y < outputHeight; y++)
@@ -57,12 +57,7 @@ internal static class FilterPlasmaCellStructure
         }
     }
 
-    private static float Edge(float fraction, float scale) => 1f - SmoothStep(0.08f, 0.65f, MathF.Min(fraction, 1f - fraction) * scale);
+    private static float Edge(float fraction, float scale) => 1f - FilterSampling.SmoothStep(0.08f, 0.65f, MathF.Min(fraction, 1f - fraction) * scale);
 
     private static float Fraction(float value) => value - MathF.Floor(value);
-    private static float SmoothStep(float low, float high, float value)
-    {
-        var position = Math.Clamp((value - low) / (high - low), 0f, 1f);
-        return position * position * (3f - 2f * position);
-    }
 }

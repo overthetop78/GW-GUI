@@ -67,4 +67,31 @@ public sealed class BlockMediaImageRepresentation : IMediaBlockRepresentation, I
     public HardDiskGeometry? Geometry { get; }
 
     ValueTask IMediaBlockRepresentation.ReadExactlyAsync(long address, Memory<byte> destination, CancellationToken cancellationToken) => BlockMediaDataReader.ReadExactlyAsync(this, address, destination, cancellationToken);
+
+    internal static void AddRange(List<MediaDataRange> ranges, long address, long length, MediaDataRangeKind kind, GWGUI.MediaFileSystems.Interfaces.IMediaRandomAccessData? source = null, long sourceOffset = 0, bool checkedLength = false)
+    {
+        if (ranges.Count > 0)
+        {
+            var previous = ranges[^1];
+            var sourcesContinue = kind != MediaDataRangeKind.Stored || ReferenceEquals(previous.Source, source) && previous.SourceOffset + previous.Length == sourceOffset;
+            if (previous.Kind == kind && previous.Address + previous.Length == address && sourcesContinue)
+            {
+                ranges[^1] = new MediaDataRange(previous.Address, (checkedLength ? checked(previous.Length + length) : unchecked(previous.Length + length)), kind, previous.Source, previous.SourceOffset);
+                return;
+            }
+        }
+
+        ranges.Add(new MediaDataRange(address, length, kind, source, sourceOffset));
+    }
+
+    internal bool HasCompleteReadableCoverage()
+    {
+        long cursor = 0;
+        foreach (var range in Ranges)
+        {
+            if (range.Address != cursor || range.Kind == MediaDataRangeKind.Unavailable) return false;
+            cursor = checked(cursor + range.Length);
+        }
+        return cursor == Capacity;
+    }
 }

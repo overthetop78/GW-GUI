@@ -1,3 +1,4 @@
+using GWGUI.MediaEngine.Images.Reading.Blocks;
 using System.Collections.Frozen;
 using GWGUI.MediaEngine.Enums;
 using GWGUI.MediaEngine.Constants;
@@ -51,7 +52,7 @@ public sealed class TzxWriter : IMediaImageWriter
             foreach (var block in blocks)
             {
                 await output.WriteAsync(new[] { block.Id }, token).ConfigureAwait(false);
-                if (block.Range is not null) await CopyAsync(block.Range, output, token).ConfigureAwait(false);
+                if (block.Range is not null) await BlockMediaDataReader.CopyToAsync(block.Range, output, token).ConfigureAwait(false);
             }
         }, cancellationToken).ConfigureAwait(false);
         return [outputPath];
@@ -80,19 +81,6 @@ public sealed class TzxWriter : IMediaImageWriter
         }
         blocks = selected;
         return true;
-    }
-
-    private static async Task CopyAsync(MediaDataRange range, Stream output, CancellationToken cancellationToken)
-    {
-        var buffer = new byte[64 * 1024];
-        var completed = 0L;
-        while (completed < range.Length)
-        {
-            var count = (int)Math.Min(buffer.Length, range.Length - completed);
-            await range.Source!.ReadExactlyAsync(range.SourceOffset + completed, buffer.AsMemory(0, count), cancellationToken).ConfigureAwait(false);
-            await output.WriteAsync(buffer.AsMemory(0, count), cancellationToken).ConfigureAwait(false);
-            completed += count;
-        }
     }
 
     private static byte ReadVersion(IReadOnlyDictionary<string, string> metadata, string key, byte defaultValue) =>

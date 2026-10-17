@@ -38,7 +38,7 @@ public sealed class AtariCassetteEncoder : ISequentialMediaEncoder
         var marker = retained.FirstOrDefault(IsFileMarker);
         if (marker is not null)
         {
-            output.Add(Clone(marker, output.Count));
+            output.Add(marker.AtPosition(output.Count));
             retained.Remove(marker);
         }
         else
@@ -56,7 +56,7 @@ public sealed class AtariCassetteEncoder : ISequentialMediaEncoder
             cancellationToken.ThrowIfCancellationRequested();
             if (item.Segment is not null)
             {
-                output.Add(Clone(item.Segment, output.Count));
+                output.Add(item.Segment.AtPosition(output.Count));
                 continue;
             }
 
@@ -83,8 +83,6 @@ public sealed class AtariCassetteEncoder : ISequentialMediaEncoder
     }
 
     private static bool IsFileMarker(SequentialMediaSegment segment) => segment.Metadata.TryGetValue(AtariCasConstants.ChunkIdMetadataKey, out var chunkId) && chunkId == AtariCasConstants.FileMarkerChunk;
-
-    private static SequentialMediaSegment Clone(SequentialMediaSegment source, long position) => new(position, source.Kind, source.Length, source.Start, source.Duration, source.FaceNumber, source.TrackNumber, source.ChannelNumber, source.Direction, source.DataRange, source.Metadata);
 
     private static IReadOnlyDictionary<string, string> ChunkMetadata(string chunkId, int auxiliary, int? baudRate = null)
     {

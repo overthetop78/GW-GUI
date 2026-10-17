@@ -1,3 +1,4 @@
+using GWGUI.MediaEngine.Images.Reading.Blocks;
 using System.Buffers.Binary;
 using System.Collections.Frozen;
 using GWGUI.MediaEngine.Enums;
@@ -41,11 +42,11 @@ public sealed class SpectrumTapeDecoder : ISequentialMediaDecoder
             byte[]? data = null;
             if (formatId.Equals(TapeImageFormatIds.SpectrumTap, StringComparison.OrdinalIgnoreCase)
                 && segment.Metadata.ContainsKey(SpectrumTapConstants.BlockMetadataKey))
-                data = await ReadRangeAsync(segment.DataRange, 0, segment.DataRange?.Length ?? 0, cancellationToken).ConfigureAwait(false);
+                data = await BlockMediaDataReader.ReadRangeAsync(segment.DataRange, 0, segment.DataRange?.Length ?? 0, cancellationToken).ConfigureAwait(false);
             else if (formatId.Equals(TapeImageFormatIds.Tzx, StringComparison.OrdinalIgnoreCase)
                 && segment.DataRange is { Length: <= int.MaxValue })
             {
-                var payload = await ReadRangeAsync(segment.DataRange, 0, segment.DataRange.Length, cancellationToken).ConfigureAwait(false);
+                var payload = await BlockMediaDataReader.ReadRangeAsync(segment.DataRange, 0, segment.DataRange.Length, cancellationToken).ConfigureAwait(false);
                 if (payload is not null && TryTzxData(segment, payload, out var dataOffset, out var dataLength))
                     data = payload.AsSpan(dataOffset, dataLength).ToArray();
             }
@@ -67,7 +68,7 @@ public sealed class SpectrumTapeDecoder : ISequentialMediaDecoder
         foreach (var segment in (representation.Segments ?? []).Where(segment => segment.Kind == SequentialSegmentKind.Samples && segment.ChannelNumber == 0))
         {
             cancellationToken.ThrowIfCancellationRequested();
-            var pcm = await ReadRangeAsync(segment.DataRange, 0, segment.DataRange?.Length ?? 0, cancellationToken).ConfigureAwait(false);
+            var pcm = await BlockMediaDataReader.ReadRangeAsync(segment.DataRange, 0, segment.DataRange?.Length ?? 0, cancellationToken).ConfigureAwait(false);
             if (pcm is null) continue;
             var samples = PcmSampleFunctions.ExtractChannel(pcm, channels, bitsPerSample, blockAlign, 0);
             var detected = DetectWaveBlocks(samples, sampleRate);
@@ -155,15 +156,6 @@ public sealed class SpectrumTapeDecoder : ISequentialMediaDecoder
         };
         offset = prefixLength;
         return length >= 2 && offset + (long)length <= payload.Length;
-    }
-
-    private static async Task<byte[]?> ReadRangeAsync(MediaDataRange? range, long relativeOffset, long length, CancellationToken cancellationToken)
-    {
-        if (range is not { Source: not null } || length <= 0 || length > int.MaxValue || relativeOffset < 0 || relativeOffset + length > range.Length)
-            return null;
-        var data = new byte[checked((int)length)];
-        await range.Source.ReadExactlyAsync(range.SourceOffset + relativeOffset, data, cancellationToken).ConfigureAwait(false);
-        return data;
     }
 
     private static SequentialDecodedBlock CreateBlock(long position, byte[] data, IReadOnlyList<long> sourcePositions, string sourceFormat) =>

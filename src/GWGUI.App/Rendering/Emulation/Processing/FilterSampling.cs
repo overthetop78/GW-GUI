@@ -35,4 +35,29 @@ internal static class FilterSampling
     }
 
     internal static float Jinc(float value) => MathF.Abs(value) < .0001f ? .5f : BesselJ1(value) / value;
+
+    internal static FilterColor ReadSrgbColor(float[] source, int width, int height, int x, int y)
+    {
+        x = Math.Clamp(x, 0, width - 1);
+        y = Math.Clamp(y, 0, height - 1);
+        var offset = (y * width + x) * 3;
+        return new FilterColor( SoftwareEmulationVideoProcessingPipeline.LinearToSrgb(source[offset]), SoftwareEmulationVideoProcessingPipeline.LinearToSrgb(source[offset + 1]), SoftwareEmulationVideoProcessingPipeline.LinearToSrgb(source[offset + 2]));
+    }
+
+    internal static float ReadScalar(float[] values, int width, int height, int x, int y) => values[Math.Clamp(y, 0, height - 1) * width + Math.Clamp(x, 0, width - 1)];
+
+    internal static float SmoothStep(float low, float high, float value)
+    {
+        var position = Math.Clamp((value - low) / (high - low), 0f, 1f);
+        return position * position * (3f - 2f * position);
+    }
+
+    internal static float Distance(float firstRed, float firstGreen, float firstBlue, float secondRed, float secondGreen, float secondBlue)
+    {
+        var redMean = 0.5f * (firstRed + secondRed);
+        var red = firstRed - secondRed;
+        var green = firstGreen - secondGreen;
+        var blue = firstBlue - secondBlue;
+        return MathF.Sqrt((2f + redMean) * red * red + 4f * green * green + (3f - redMean) * blue * blue) / 3f;
+    }
 }

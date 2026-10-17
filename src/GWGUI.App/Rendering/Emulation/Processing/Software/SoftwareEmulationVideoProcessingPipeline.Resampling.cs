@@ -107,15 +107,6 @@ internal sealed partial class SoftwareEmulationVideoProcessingPipeline : IEmulat
         return output;
     }
 
-
-
-    private static float Sample(float[] source, int width, int height, int x, int y, int channel)
-    {
-        x = Math.Clamp(x, 0, width - 1);
-        y = Math.Clamp(y, 0, height - 1);
-        return source[(y * width + x) * 3 + channel];
-    }
-
     private static float Lerp(float first, float second, float amount) => first + (second - first) * amount;
 
 }

@@ -33,21 +33,11 @@ public sealed class WriteOperationViewModel : INotifyPropertyChanged
     public void EnableTg43() { Tg43.Enabled = true; Densel.Enabled = false; }
 
     public void ApplyOptions(IReadOnlySet<string> enabled, IReadOnlyDictionary<string, string> values)
-    {
-        foreach (var option in AllOptions())
-        {
-            var key = option.Argument.TrimStart('-'); option.Enabled = enabled.Contains(key);
-            if (option is ValueOptionViewModel valued && values.TryGetValue(key, out var value)) valued.Value = value;
-        }
-        ExpertArguments = values.GetValueOrDefault("expert", "");
-    }
+        => ExpertArguments = OperationOptionViewModelBase.ApplyOptions(AllOptions(), enabled, values);
 
-    public HashSet<string> CaptureEnabledOptions() => AllOptions().Where(x => x.Enabled).Select(x => x.Argument.TrimStart('-')).ToHashSet();
+    public HashSet<string> CaptureEnabledOptions() => OperationOptionViewModelBase.CaptureEnabledOptions(AllOptions());
     public Dictionary<string, string> CaptureValues()
-    {
-        var result = AllOptions().OfType<ValueOptionViewModel>().ToDictionary(x => x.Argument.TrimStart('-'), x => x.Value);
-        result["expert"] = ExpertArguments; return result;
-    }
+        => OperationOptionViewModelBase.CaptureValues(AllOptions(), ExpertArguments);
 
     private IEnumerable<OperationOptionViewModelBase> AllOptions() => [NoVerify, EraseEmpty, Retries, Tracks, PreErase, FakeIndex, HardSectors, Precomp, Reverse, Densel, Tg43, DiskDefs];
     public event PropertyChangedEventHandler? PropertyChanged;

@@ -61,7 +61,7 @@ internal static class FilterLedMatrixCellStructure
             var localY = sourceY / pitch - MathF.Floor(sourceY / pitch) - .5f;
             var distance = shape == EmulationLedMatrixShape.Round ? MathF.Sqrt(localX * localX + localY * localY) : MathF.Max(MathF.Abs(localX), MathF.Abs(localY));
             var pixelIndex = y * outputWidth + x;
-            core[pixelIndex] = SmoothStep(radius + edge, radius - edge, distance);
+            core[pixelIndex] = FilterSampling.SmoothStep(radius + edge, radius - edge, distance);
             var outside = MathF.Max(0f, distance - radius);
             halo[pixelIndex] = MathF.Exp(-outside * 4f / haloExtent) * (1f - core[pixelIndex]);
             var average = (cellY * columns + cellX) * 3;
@@ -71,11 +71,5 @@ internal static class FilterLedMatrixCellStructure
             emission[pixel + 2] = averages[average + 2];
         }
         return new(emission, core, halo);
-    }
-
-    private static float SmoothStep(float edge0, float edge1, float value)
-    {
-        var position = Math.Clamp((value - edge0) / (edge1 - edge0), 0f, 1f);
-        return position * position * (3f - 2f * position);
     }
 }

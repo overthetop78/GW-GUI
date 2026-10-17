@@ -232,18 +232,18 @@ public sealed class VhdxReader : IMediaImageReader
             switch (state)
             {
                 case HardDiskFormatConstants.VhdxBatZero:
-                    AddRange(ranges, address, length, MediaDataRangeKind.Zero);
+                    BlockMediaImageRepresentation.AddRange(ranges, address, length, MediaDataRangeKind.Zero);
                     break;
                 case HardDiskFormatConstants.VhdxBatNotPresent:
                 case HardDiskFormatConstants.VhdxBatUndefined:
                 case HardDiskFormatConstants.VhdxBatUnmapped:
-                    AddRange(ranges, address, length, MediaDataRangeKind.Unallocated);
+                    BlockMediaImageRepresentation.AddRange(ranges, address, length, MediaDataRangeKind.Unallocated);
                     break;
                 case HardDiskFormatConstants.VhdxBatFullyPresent:
                     var fileOffset = checked((long)(entry & HardDiskFormatConstants.VhdxBatFileOffsetMask));
                     if (fileOffset > context.Length - length)
                         throw new InvalidDataException($"VHDX BAT entry {batIndex} points outside the file.");
-                    AddRange(ranges, address, length, MediaDataRangeKind.Stored, source, fileOffset);
+                    BlockMediaImageRepresentation.AddRange(ranges, address, length, MediaDataRangeKind.Stored, source, fileOffset);
                     break;
                 case HardDiskFormatConstants.VhdxBatPartiallyPresent:
                     throw new NotSupportedException("Partially present VHDX payload blocks require sector bitmap resolution.");
@@ -263,21 +263,6 @@ public sealed class VhdxReader : IMediaImageReader
     }
 
     private static bool IsPowerOfTwo(uint value) => value != 0 && (value & (value - 1)) == 0;
-
-    private static void AddRange(List<MediaDataRange> ranges, long address, long length, MediaDataRangeKind kind, FileRandomAccessData? source = null, long sourceOffset = 0)
-    {
-        if (ranges.Count > 0)
-        {
-            var previous = ranges[^1];
-            var sourceContinues = kind != MediaDataRangeKind.Stored || ReferenceEquals(previous.Source, source) && previous.SourceOffset + previous.Length == sourceOffset;
-            if (previous.Kind == kind && previous.Address + previous.Length == address && sourceContinues)
-            {
-                ranges[^1] = new MediaDataRange(previous.Address, previous.Length + length, kind, previous.Source, previous.SourceOffset);
-                return;
-            }
-        }
-        ranges.Add(new MediaDataRange(address, length, kind, source, sourceOffset));
-    }
 
     private sealed record VhdxHeader(ulong SequenceNumber, Guid LogGuid);
     private sealed record VhdxRegion(long Offset, uint Length);

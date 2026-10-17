@@ -1,4 +1,5 @@
-﻿using System.Buffers.Binary;
+using GWGUI.MediaEngine.Images.Reading.Blocks;
+using System.Buffers.Binary;
 using System.Collections.Frozen;
 using System.Globalization;
 using System.Text;
@@ -47,7 +48,7 @@ public sealed class AcornTapeDecoder : ISequentialMediaDecoder
             cancellationToken.ThrowIfCancellationRequested();
             if (segment.Kind != SequentialSegmentKind.DataBlock
                 || !IsImplicitData(segment)
-                || await ReadRangeAsync(segment.DataRange, cancellationToken).ConfigureAwait(false) is not { } bytes)
+                || await BlockMediaDataReader.ReadRangeAsync(segment.DataRange, cancellationToken).ConfigureAwait(false) is not { } bytes)
                 continue;
             var decoded = DecodeBlocks(bytes, segment.Position, "uef-implicit", blocks.Count);
             if (decoded.Count == 0) continue;
@@ -69,7 +70,7 @@ public sealed class AcornTapeDecoder : ISequentialMediaDecoder
         foreach (var segment in (representation.Segments ?? []).Where(segment => segment.Kind == SequentialSegmentKind.Samples && segment.ChannelNumber == 0).OrderBy(segment => segment.Position))
         {
             cancellationToken.ThrowIfCancellationRequested();
-            var pcm = await ReadRangeAsync(segment.DataRange, cancellationToken).ConfigureAwait(false);
+            var pcm = await BlockMediaDataReader.ReadRangeAsync(segment.DataRange, cancellationToken).ConfigureAwait(false);
             if (pcm is null) continue;
             var samples = PcmSampleFunctions.ExtractChannel(pcm, channels, bitsPerSample, blockAlign, 0);
             var serial = FskSerialFunctions.Decode(
@@ -170,14 +171,6 @@ public sealed class AcornTapeDecoder : ISequentialMediaDecoder
     }
 
     private static bool IsImplicitData(SequentialMediaSegment segment) => segment.Metadata.TryGetValue(UefConstants.ChunkIdMetadataKey, out var chunkId) && ushort.TryParse(chunkId, NumberStyles.HexNumber, CultureInfo.InvariantCulture, out var parsed) && parsed == UefConstants.ImplicitData;
-
-    private static async Task<byte[]?> ReadRangeAsync(MediaDataRange? range, CancellationToken cancellationToken)
-    {
-        if (range is not { Source: not null, Length: > 0 and <= int.MaxValue }) return null;
-        var data = new byte[checked((int)range.Length)];
-        await range.Source.ReadExactlyAsync(range.SourceOffset, data, cancellationToken).ConfigureAwait(false);
-        return data;
-    }
 
     private static byte[] Copy(IReadOnlyList<byte> source, int offset, int length)
     {

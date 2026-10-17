@@ -43,7 +43,7 @@ public sealed class ChdHardDiskWriter : IMediaImageWriter
             && blocks.Geometry.SectorSize == blocks.LogicalBlockSize
             && blocks.LogicalBlockSize > 0
             && ChdConstants.DefaultHunkSize % blocks.LogicalBlockSize == 0
-            && HasCompleteReadableCoverage(blocks);
+            && blocks.HasCompleteReadableCoverage();
     }
 
     public async Task<IReadOnlyList<string>> WriteAsync(MediaImageDocument document, string outputPath, string targetFormatId, CancellationToken cancellationToken = default)
@@ -125,15 +125,4 @@ public sealed class ChdHardDiskWriter : IMediaImageWriter
     }
 
     private static long Align(long value, int alignment) => checked((value + alignment - 1) / alignment * alignment);
-
-    private static bool HasCompleteReadableCoverage(BlockMediaImageRepresentation blocks)
-    {
-        long cursor = 0;
-        foreach (var range in blocks.Ranges)
-        {
-            if (range.Address != cursor || range.Kind == MediaDataRangeKind.Unavailable) return false;
-            cursor = checked(cursor + range.Length);
-        }
-        return cursor == blocks.Capacity;
-    }
 }

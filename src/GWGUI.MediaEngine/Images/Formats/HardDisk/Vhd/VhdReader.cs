@@ -160,7 +160,7 @@ public sealed class VhdReader : IMediaImageReader
             var batEntry = BinaryPrimitives.ReadUInt32BigEndian(bat.Span.Slice(blockIndex * sizeof(uint), sizeof(uint)));
             if (batEntry == HardDiskFormatConstants.VhdUnusedBatEntry)
             {
-                AddRange(ranges, logicalBlockStart, logicalBlockLength, MediaDataRangeKind.Unallocated);
+                BlockMediaImageRepresentation.AddRange(ranges, logicalBlockStart, logicalBlockLength, MediaDataRangeKind.Unallocated, checkedLength: true);
                 continue;
             }
 
@@ -178,11 +178,11 @@ public sealed class VhdReader : IMediaImageReader
                 if (allocated)
                 {
                     var sourceOffset = checked(dataStart + sectorIndex * (long)HardDiskFormatConstants.LegacyLogicalSectorSize);
-                    AddRange(ranges, logicalAddress, length, MediaDataRangeKind.Stored, source, sourceOffset);
+                    BlockMediaImageRepresentation.AddRange(ranges, logicalAddress, length, MediaDataRangeKind.Stored, source, sourceOffset, checkedLength: true);
                 }
                 else
                 {
-                    AddRange(ranges, logicalAddress, length, MediaDataRangeKind.Zero);
+                    BlockMediaImageRepresentation.AddRange(ranges, logicalAddress, length, MediaDataRangeKind.Zero, checkedLength: true);
                 }
             }
         }
@@ -209,22 +209,6 @@ public sealed class VhdReader : IMediaImageReader
     }
 
     private static int Align(int value, int alignment) => checked((value + alignment - 1) / alignment * alignment);
-
-    private static void AddRange(List<MediaDataRange> ranges, long address, long length, MediaDataRangeKind kind, FileRandomAccessData? source = null, long sourceOffset = 0)
-    {
-        if (ranges.Count > 0)
-        {
-            var previous = ranges[^1];
-            var sourcesContinue = kind != MediaDataRangeKind.Stored || ReferenceEquals(previous.Source, source) && previous.SourceOffset + previous.Length == sourceOffset;
-            if (previous.Kind == kind && previous.Address + previous.Length == address && sourcesContinue)
-            {
-                ranges[^1] = new MediaDataRange(previous.Address, checked(previous.Length + length), kind, previous.Source, previous.SourceOffset);
-                return;
-            }
-        }
-
-        ranges.Add(new MediaDataRange(address, length, kind, source, sourceOffset));
-    }
 
     private sealed record VhdFooter(ulong DataOffset, long CurrentSize, ushort Cylinders, byte Heads, byte SectorsPerTrack, uint DiskType, Guid UniqueId);
 }

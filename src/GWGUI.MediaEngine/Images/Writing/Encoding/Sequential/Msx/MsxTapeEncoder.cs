@@ -29,7 +29,7 @@ public sealed class MsxTapeEncoder : ISequentialMediaEncoder
         && request.Blocks.All(block => block.IntegrityValid == true && block.Data.Length > 0)
         && request.RetainedSegments.Count == 0
         && (!request.TargetFormatId.Equals(TapeImageFormatIds.Wav, StringComparison.OrdinalIgnoreCase)
-            || TryReadSampleRate(request.Parameters, out _));
+            || PcmSampleFunctions.TryReadSampleRate(request.Parameters, out _));
 
     public Task<SequentialMediaImageRepresentation> EncodeAsync(SequentialEncodeRequest request, CancellationToken cancellationToken = default)
     {
@@ -77,7 +77,7 @@ public sealed class MsxTapeEncoder : ISequentialMediaEncoder
 
     private static SequentialMediaImageRepresentation EncodeWave(IReadOnlyList<SequentialDecodedBlock> blocks, IReadOnlyDictionary<string, string> parameters)
     {
-        TryReadSampleRate(parameters, out var sampleRate);
+        PcmSampleFunctions.TryReadSampleRate(parameters, out var sampleRate);
         var samples = new List<short>();
         var level = MsxCasConstants.PcmAmplitude;
         for (var blockIndex = 0; blockIndex < blocks.Count; blockIndex++)
@@ -120,11 +120,5 @@ public sealed class MsxTapeEncoder : ISequentialMediaEncoder
                 [MsxCasConstants.ReconstructionMetadataKey] = bool.TrueString
             });
         return new SequentialMediaImageRepresentation(pcm.Length, duration, [segment]);
-    }
-
-    private static bool TryReadSampleRate(IReadOnlyDictionary<string, string> parameters, out int sampleRate)
-    {
-        sampleRate = 0;
-        return parameters.TryGetValue("sampleRate", out var text) && int.TryParse(text, NumberStyles.None, CultureInfo.InvariantCulture, out sampleRate) && sampleRate >= 8000;
     }
 }

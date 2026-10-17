@@ -146,18 +146,18 @@ public sealed class VmdkReader : IMediaImageReader
                 var length = Math.Min(grainSize, capacity - address);
                 if (grainSector == 0)
                 {
-                    AddRange(ranges, address, length, MediaDataRangeKind.Unallocated);
+                    BlockMediaImageRepresentation.AddRange(ranges, address, length, MediaDataRangeKind.Unallocated);
                     continue;
                 }
                 if (grainSector == 1 && (flags & HardDiskFormatConstants.VmdkSparseZeroedGrainFlag) != 0)
                 {
-                    AddRange(ranges, address, length, MediaDataRangeKind.Zero);
+                    BlockMediaImageRepresentation.AddRange(ranges, address, length, MediaDataRangeKind.Zero);
                     continue;
                 }
                 var sourceOffset = checked((long)grainSector * HardDiskFormatConstants.LegacyLogicalSectorSize);
                 if (sourceOffset > context.Length - length)
                     throw new InvalidDataException($"VMDK grain {grainIndex} points outside the file.");
-                AddRange(ranges, address, length, includeRanges ? MediaDataRangeKind.Stored : MediaDataRangeKind.Unavailable, source, includeRanges ? sourceOffset : 0);
+                BlockMediaImageRepresentation.AddRange(ranges, address, length, includeRanges ? MediaDataRangeKind.Stored : MediaDataRangeKind.Unavailable, source, includeRanges ? sourceOffset : 0);
             }
         }
         return CreateDocument(context.Source, capacity, ranges, HardDiskImageVariant.Sparse, null);
@@ -209,21 +209,6 @@ public sealed class VmdkReader : IMediaImageReader
         var line = descriptor.Split(['\r', '\n'], StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries).FirstOrDefault(candidate => candidate.StartsWith(prefix, StringComparison.OrdinalIgnoreCase));
         if (line is null) throw new InvalidDataException($"The VMDK descriptor has no {name} value.");
         return line[prefix.Length..].Trim().Trim('"');
-    }
-
-    private static void AddRange(List<MediaDataRange> ranges, long address, long length, MediaDataRangeKind kind, FileRandomAccessData? source = null, long sourceOffset = 0)
-    {
-        if (ranges.Count > 0)
-        {
-            var previous = ranges[^1];
-            var sourceContinues = kind != MediaDataRangeKind.Stored || ReferenceEquals(previous.Source, source) && previous.SourceOffset + previous.Length == sourceOffset;
-            if (previous.Kind == kind && previous.Address + previous.Length == address && sourceContinues)
-            {
-                ranges[^1] = new MediaDataRange(previous.Address, previous.Length + length, kind, previous.Source, previous.SourceOffset);
-                return;
-            }
-        }
-        ranges.Add(new MediaDataRange(address, length, kind, source, sourceOffset));
     }
 
     private sealed record VmdkExtent(string Access, long Sectors, string Type, string FileName, long OffsetSectors);

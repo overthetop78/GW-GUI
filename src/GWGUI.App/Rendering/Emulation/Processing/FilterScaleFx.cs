@@ -86,13 +86,7 @@ internal static class FilterScaleFx
 
     // Compuphase perceptual RGB metric used by ScaleFX pass 0.
     private static float Distance(Color first, Color second)
-    {
-        var redMean = 0.5f * (first.Red + second.Red);
-        var red = first.Red - second.Red;
-        var green = first.Green - second.Green;
-        var blue = first.Blue - second.Blue;
-        return MathF.Sqrt((2f + redMean) * red * red + 4f * green * green + (3f - redMean) * blue * blue) / 3f;
-    }
+        => FilterSampling.Distance(first.Red, first.Green, first.Blue, second.Red, second.Green, second.Blue);
 
     private readonly record struct Color(float Red, float Green, float Blue);
     private readonly record struct Corner(Color Color, float Strength, bool Active);

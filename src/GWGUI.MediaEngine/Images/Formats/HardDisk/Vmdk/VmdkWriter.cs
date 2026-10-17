@@ -46,7 +46,7 @@ public sealed class VmdkWriter : IMediaImageWriter
             > 0 
             && blocks.LogicalBlockSize 
             == HardDiskFormatConstants.LegacyLogicalSectorSize 
-            && HasCompleteReadableCoverage(blocks);
+            && blocks.HasCompleteReadableCoverage();
     }
 
     public async Task<IReadOnlyList<string>> WriteAsync(MediaImageDocument document, string outputPath, string targetFormatId, CancellationToken cancellationToken = default)
@@ -63,7 +63,7 @@ public sealed class VmdkWriter : IMediaImageWriter
         var flatPath = Path.Combine(Path.GetDirectoryName(Path.GetFullPath(outputPath)) ?? Directory.GetCurrentDirectory(), Path.GetFileNameWithoutExtension(outputPath) + "-flat" + DiskImageFileExtensions.Vmdk);
         var descriptor = CreateDescriptor(blocks, "monolithicFlat", "FLAT", Path.GetFileName(flatPath), " 0");
         await AtomicMediaFileSetWriter.WriteAsync(
-            new Dictionary<string, Func<Stream, CancellationToken, Task>>(StringComparer.OrdinalIgnoreCase) { [flatPath] = (output, token) => WriteLogicalDataAsync(blocks, output, token), [outputPath] = (output, token) => output.WriteAsync(descriptor, token).AsTask() },
+            new Dictionary<string, Func<Stream, CancellationToken, Task>>(StringComparer.OrdinalIgnoreCase) { [flatPath] = (output, token) => BlockMediaDataReader.CopyToAsync(blocks, output, token), [outputPath] = (output, token) => output.WriteAsync(descriptor, token).AsTask() },
             cancellationToken
         ).ConfigureAwait(false);
         return[outputPath, flatPath];
@@ -168,19 +168,6 @@ public sealed class VmdkWriter : IMediaImageWriter
         return System.Text.Encoding.UTF8.GetBytes(text);
     }
 
-    private static async Task WriteLogicalDataAsync(BlockMediaImageRepresentation blocks, Stream output, CancellationToken cancellationToken)
-    {
-        var buffer = new byte[64 * DataSizeConstants.BytesPerKibibyte];
-        long address = 0;
-        while (address < blocks.Capacity)
-        {
-            var count = (int)Math.Min(buffer.Length, blocks.Capacity - address);
-            await BlockMediaDataReader.ReadExactlyAsync(blocks, address, buffer.AsMemory(0, count), cancellationToken).ConfigureAwait(false);
-            await output.WriteAsync(buffer.AsMemory(0, count), cancellationToken).ConfigureAwait(false);
-            address += count;
-        }
-    }
-
     private static HardDiskImageVariant SelectVariant(MediaImageDocument document, BlockMediaImageRepresentation blocks)
     {
         if (document.FormatId.Equals(HardDiskImageFormatIds.Vmdk,
@@ -193,19 +180,6 @@ public sealed class VmdkWriter : IMediaImageWriter
             && variant is HardDiskImageVariant.Fixed or HardDiskImageVariant.Sparse)
             return variant;
         return blocks.Ranges.Any(range => range.Kind is MediaDataRangeKind.Zero or MediaDataRangeKind.Unallocated) ? HardDiskImageVariant.Sparse : HardDiskImageVariant.Fixed;
-    }
-
-    private static bool HasCompleteReadableCoverage(BlockMediaImageRepresentation blocks)
-    {
-        long cursor = 0;
-        foreach (var range in blocks.Ranges)
-        {
-            if (range.Address != cursor || range.Kind == MediaDataRangeKind.Unavailable)
-                return false;
-            cursor = checked(cursor + range.Length);
-        }
-
-        return cursor == blocks.Capacity;
     }
 
     private static int Align(int value, int alignment) => checked((value + alignment - 1) / alignment * alignment);

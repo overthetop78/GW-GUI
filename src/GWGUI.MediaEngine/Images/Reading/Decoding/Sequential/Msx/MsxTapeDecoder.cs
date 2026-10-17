@@ -1,3 +1,4 @@
+using GWGUI.MediaEngine.Images.Reading.Blocks;
 using System.Collections.Frozen;
 using System.Globalization;
 using GWGUI.MediaEngine.Enums;
@@ -62,7 +63,7 @@ public sealed class MsxTapeDecoder : ISequentialMediaDecoder
                 continue;
             }
             if (segment.Kind != SequentialSegmentKind.DataBlock) continue;
-            var data = await ReadRangeAsync(segment.DataRange, cancellationToken).ConfigureAwait(false);
+            var data = await BlockMediaDataReader.ReadRangeAsync(segment.DataRange, cancellationToken).ConfigureAwait(false);
             if (data is null) continue;
             if (segment.Metadata.TryGetValue(MsxCasConstants.FileTypeMetadataKey, out var fileType))
                 currentFileType = fileType;
@@ -82,7 +83,7 @@ public sealed class MsxTapeDecoder : ISequentialMediaDecoder
         {
             cancellationToken.ThrowIfCancellationRequested();
             if (segment.Kind != SequentialSegmentKind.DataBlock) continue;
-            var data = await ReadRangeAsync(segment.DataRange, cancellationToken).ConfigureAwait(false);
+            var data = await BlockMediaDataReader.ReadRangeAsync(segment.DataRange, cancellationToken).ConfigureAwait(false);
             if (data is null) continue;
             var sourcePosition = TryReadLong(segment.Metadata, "sourceSegmentPosition", out var parsedPosition) ? parsedPosition : segment.Position;
             var fileType = IdentifyFileType(data);
@@ -105,7 +106,7 @@ public sealed class MsxTapeDecoder : ISequentialMediaDecoder
         foreach (var segment in (representation.Segments ?? []).Where(segment => segment.Kind == SequentialSegmentKind.Samples && segment.ChannelNumber == 0).OrderBy(segment => segment.Position))
         {
             cancellationToken.ThrowIfCancellationRequested();
-            var pcm = await ReadRangeAsync(segment.DataRange, cancellationToken).ConfigureAwait(false);
+            var pcm = await BlockMediaDataReader.ReadRangeAsync(segment.DataRange, cancellationToken).ConfigureAwait(false);
             if (pcm is null) continue;
             var samples = PcmSampleFunctions.ExtractChannel(pcm, channels, bitsPerSample, blockAlign, 0);
             var decoded = FskSerialFunctions.Decode(
@@ -161,14 +162,6 @@ public sealed class MsxTapeDecoder : ISequentialMediaDecoder
             MsxCasConstants.AsciiFileMarker => "ascii",
             _ => null
         };
-    }
-
-    private static async Task<byte[]?> ReadRangeAsync(MediaDataRange? range, CancellationToken cancellationToken)
-    {
-        if (range is not { Source: not null, Length: > 0 and <= int.MaxValue }) return null;
-        var data = new byte[checked((int)range.Length)];
-        await range.Source.ReadExactlyAsync(range.SourceOffset, data, cancellationToken).ConfigureAwait(false);
-        return data;
     }
 
     private static bool TryReadLong(IReadOnlyDictionary<string, string> metadata, string key, out long value)

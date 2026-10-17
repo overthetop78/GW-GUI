@@ -48,7 +48,7 @@ public sealed class TzxSignalEncoder : ISequentialMediaEncoder
             var source = item.Segment!;
             if (source.Metadata.ContainsKey(TzxConstants.BlockIdMetadataKey))
             {
-                output.Add(Clone(source, output.Count));
+                output.Add(source.AtPosition(output.Count));
                 continue;
             }
             if (source.Kind == SequentialSegmentKind.Pulse)
@@ -119,8 +119,6 @@ public sealed class TzxSignalEncoder : ISequentialMediaEncoder
         BinaryPrimitives.WriteUInt16LittleEndian(payload, milliseconds);
         return payload;
     }
-
-    private static SequentialMediaSegment Clone(SequentialMediaSegment source, long position) => new(position, source.Kind, source.Length, source.Start, source.Duration, source.FaceNumber, source.TrackNumber, source.ChannelNumber, source.Direction, source.DataRange, source.Metadata);
 
     private static ushort ReadUInt16(IReadOnlyDictionary<string, string> metadata, string key, ushort defaultValue = 0) =>
         metadata.TryGetValue(key, out var text) && ushort.TryParse(text, System.Globalization.NumberStyles.None, System.Globalization.CultureInfo.InvariantCulture, out var value) ? value : defaultValue;

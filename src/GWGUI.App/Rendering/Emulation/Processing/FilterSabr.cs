@@ -59,13 +59,7 @@ internal static class FilterSabr
     private static Color Mix(Color first, Color second, float weight) => new(first.Red + (second.Red - first.Red) * weight, first.Green + (second.Green - first.Green) * weight, first.Blue + (second.Blue - first.Blue) * weight);
 
     private static float Distance(Color first, Color second)
-    {
-        var redMean = 0.5f * (first.Red + second.Red);
-        var red = first.Red - second.Red;
-        var green = first.Green - second.Green;
-        var blue = first.Blue - second.Blue;
-        return MathF.Sqrt((2f + redMean) * red * red + 4f * green * green + (3f - redMean) * blue * blue) / 3f;
-    }
+        => FilterSampling.Distance(first.Red, first.Green, first.Blue, second.Red, second.Green, second.Blue);
 
     private readonly record struct Color(float Red, float Green, float Blue);
     private readonly record struct Candidate(Color Color, float Strength);

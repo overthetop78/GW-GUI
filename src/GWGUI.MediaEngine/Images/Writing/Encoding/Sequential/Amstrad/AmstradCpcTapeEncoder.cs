@@ -163,7 +163,7 @@ public sealed class AmstradCpcTapeEncoder : ISequentialMediaEncoder
     }
 
     private static void AddPulses(List<short> samples, ref short level, ushort tStates, int count, int sampleRate)
-    => GWGUI.MediaEngine.Functions.PcmSampleFunctions.AppendPulses(samples, ref level, tStates, count, sampleRate, TzxConstants.TStatesPerSecond);
+        => GWGUI.MediaEngine.Functions.PcmSampleFunctions.AppendPulses(samples, ref level, tStates, count, sampleRate, TzxConstants.TStatesPerSecond);
 
     private static void WriteName(Span<byte> header, string name)
     {
@@ -172,10 +172,9 @@ public sealed class AmstradCpcTapeEncoder : ISequentialMediaEncoder
     }
 
     private static ushort ComputeCrc(ReadOnlySpan<byte> data)
-    => GWGUI.MediaEngine.Functions.Crc16Calculator.ComputeSpan(data, AmstradCpcTapeConstants.CrcPolynomial, AmstradCpcTapeConstants.CrcSeed);
+        => GWGUI.MediaEngine.Functions.Crc16Calculator.ComputeSpan(data, AmstradCpcTapeConstants.CrcPolynomial, AmstradCpcTapeConstants.CrcSeed);
 
-    private static int ReadSampleRate(IReadOnlyDictionary<string, string> metadata) =>
-        metadata.TryGetValue("sampleRate", out var value) && int.TryParse(value, System.Globalization.NumberStyles.None, System.Globalization.CultureInfo.InvariantCulture, out var sampleRate) && sampleRate >= 8000 ? sampleRate : DefaultSampleRate;
+    private static int ReadSampleRate(IReadOnlyDictionary<string, string> metadata) => GWGUI.MediaEngine.Functions.PcmSampleFunctions.TryReadSampleRate(metadata, out var sampleRate) ? sampleRate : DefaultSampleRate;
 
     private static string ReadText(IReadOnlyDictionary<string, string> metadata, string key, string defaultValue) => metadata.TryGetValue(key, out var value) && !string.IsNullOrWhiteSpace(value) ? value : defaultValue;
 

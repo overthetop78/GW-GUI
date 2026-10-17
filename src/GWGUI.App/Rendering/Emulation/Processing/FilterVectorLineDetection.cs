@@ -27,25 +27,23 @@ internal static class FilterVectorLineDetection
         for (var y = 0; y < height; y++)
         for (var x = 0; x < width; x++)
         {
-            var gradientX = -Sample(luminance, width, height, x - 1, y - 1)
-                - 2f * Sample(luminance, width, height, x - 1, y)
-                - Sample(luminance, width, height, x - 1, y + 1)
-                + Sample(luminance, width, height, x + 1, y - 1)
-                + 2f * Sample(luminance, width, height, x + 1, y)
-                + Sample(luminance, width, height, x + 1, y + 1);
-            var gradientY = -Sample(luminance, width, height, x - 1, y - 1)
-                - 2f * Sample(luminance, width, height, x, y - 1)
-                - Sample(luminance, width, height, x + 1, y - 1)
-                + Sample(luminance, width, height, x - 1, y + 1)
-                + 2f * Sample(luminance, width, height, x, y + 1)
-                + Sample(luminance, width, height, x + 1, y + 1);
+            var gradientX = -FilterSampling.ReadScalar(luminance, width, height, x - 1, y - 1)
+                - 2f * FilterSampling.ReadScalar(luminance, width, height, x - 1, y)
+                - FilterSampling.ReadScalar(luminance, width, height, x - 1, y + 1)
+                + FilterSampling.ReadScalar(luminance, width, height, x + 1, y - 1)
+                + 2f * FilterSampling.ReadScalar(luminance, width, height, x + 1, y)
+                + FilterSampling.ReadScalar(luminance, width, height, x + 1, y + 1);
+            var gradientY = -FilterSampling.ReadScalar(luminance, width, height, x - 1, y - 1)
+                - 2f * FilterSampling.ReadScalar(luminance, width, height, x, y - 1)
+                - FilterSampling.ReadScalar(luminance, width, height, x + 1, y - 1)
+                + FilterSampling.ReadScalar(luminance, width, height, x - 1, y + 1)
+                + 2f * FilterSampling.ReadScalar(luminance, width, height, x, y + 1)
+                + FilterSampling.ReadScalar(luminance, width, height, x + 1, y + 1);
             var magnitude = Math.Clamp(MathF.Sqrt(gradientX * gradientX + gradientY * gradientY) / 4f, 0f, 1f);
             emission[y * width + x] = SmoothStep(threshold, Math.Min(1f, threshold + 0.1f), magnitude);
         }
         return emission;
     }
-
-    private static float Sample(float[] values, int width, int height, int x, int y) => values[Math.Clamp(y, 0, height - 1) * width + Math.Clamp(x, 0, width - 1)];
 
     private static float SmoothStep(float start, float end, float value)
     {

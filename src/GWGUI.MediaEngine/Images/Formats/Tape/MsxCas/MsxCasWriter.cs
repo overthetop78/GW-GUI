@@ -1,3 +1,4 @@
+using GWGUI.MediaEngine.Images.Reading.Blocks;
 using System.Collections.Frozen;
 using GWGUI.MediaEngine.Enums;
 using GWGUI.MediaEngine.Constants;
@@ -43,7 +44,7 @@ public sealed class MsxCasWriter : IMediaImageWriter
                     }
                     else
                     {
-                        await CopyAsync(part.Range!, output, token).ConfigureAwait(false);
+                        await BlockMediaDataReader.CopyToAsync(part.Range!, output, token).ConfigureAwait(false);
                     }
                 }
             },
@@ -72,19 +73,6 @@ public sealed class MsxCasWriter : IMediaImageWriter
         if (separatorCount == 0) return false;
         parts = selected;
         return true;
-    }
-
-    private static async Task CopyAsync(MediaDataRange range, Stream output, CancellationToken cancellationToken)
-    {
-        var buffer = new byte[64 * 1024];
-        var completed = 0L;
-        while (completed < range.Length)
-        {
-            var count = (int)Math.Min(buffer.Length, range.Length - completed);
-            await range.Source!.ReadExactlyAsync(range.SourceOffset + completed, buffer.AsMemory(0, count), cancellationToken).ConfigureAwait(false);
-            await output.WriteAsync(buffer.AsMemory(0, count), cancellationToken).ConfigureAwait(false);
-            completed += count;
-        }
     }
 
     private sealed record CasPart(bool IsSeparator, MediaDataRange? Range);

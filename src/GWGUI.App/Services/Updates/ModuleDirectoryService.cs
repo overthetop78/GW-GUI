@@ -1,7 +1,6 @@
 using System.IO;
 using System.Net.Http;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 using GWGUI.App.Constants.Updates;
 using GWGUI.App.Services.Emulation;
 using GWGUI.Emulation.Constants;
@@ -12,7 +11,7 @@ namespace GWGUI.App.Services.Updates;
 
 internal sealed class ModuleDirectoryService
 {
-    private static readonly JsonSerializerOptions JsonOptions = CreateJsonOptions();
+    private static readonly JsonSerializerOptions JsonOptions = UpdateJsonOptions.Create();
     private readonly HttpClient _httpClient;
     private readonly Uri _directoryUri;
     private readonly ModuleDirectoryCatalogValidator _directoryValidator;
@@ -64,13 +63,6 @@ internal sealed class ModuleDirectoryService
     }
 
     private static IReadOnlyDictionary<string, string> GetInstalledVersions() => EmulationModuleRegistry.Packages.ToDictionary(module => module.Manifest.Id, module => module.Manifest.ModuleVersion, StringComparer.OrdinalIgnoreCase);
-
-    private static JsonSerializerOptions CreateJsonOptions()
-    {
-        var options = new JsonSerializerOptions(JsonSerializerDefaults.Web);
-        options.Converters.Add(new JsonStringEnumConverter(JsonNamingPolicy.CamelCase));
-        return options;
-    }
 }
 
 internal sealed record AvailableModuleDirectoryItem(string Id, string DisplayName, string CatalogUrl, string? AvailableVersion, string? InstalledVersion)

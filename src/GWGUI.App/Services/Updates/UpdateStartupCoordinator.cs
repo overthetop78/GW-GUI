@@ -1,13 +1,13 @@
+using GWGUI.Updates.Services;
 using System.IO;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 using GWGUI.Updates.Contracts;
 
 namespace GWGUI.App.Services.Updates;
 
 internal sealed class UpdateStartupCoordinator
 {
-    private static readonly JsonSerializerOptions JsonOptions = CreateJsonOptions();
+    private static readonly JsonSerializerOptions JsonOptions = UpdateJsonOptions.Create();
     private readonly string? _signalPath;
     private readonly string _resultPath;
     private readonly string _workDirectory;
@@ -78,12 +78,5 @@ internal sealed class UpdateStartupCoordinator
         if (!full.StartsWith(root + Path.DirectorySeparatorChar, StringComparison.OrdinalIgnoreCase))
             throw new InvalidDataException("The update startup path is outside its work directory.");
         return full;
-    }
-
-    private static JsonSerializerOptions CreateJsonOptions()
-    {
-        var options = new JsonSerializerOptions(JsonSerializerDefaults.Web);
-        options.Converters.Add(new JsonStringEnumConverter(JsonNamingPolicy.CamelCase));
-        return options;
     }
 }

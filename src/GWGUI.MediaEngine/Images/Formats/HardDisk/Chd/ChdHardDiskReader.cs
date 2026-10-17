@@ -60,14 +60,14 @@ public sealed partial class ChdHardDiskReader : IMediaImageReader
             var length = Math.Min((long)layout.HunkBytes, layout.LogicalBytes - logicalOffset);
             if (storedHunk == 0)
             {
-                AddRange(ranges, logicalOffset, length, MediaDataRangeKind.Zero);
+                BlockMediaImageRepresentation.AddRange(ranges, logicalOffset, length, MediaDataRangeKind.Zero);
                 continue;
             }
 
             var sourceOffset = checked((long)storedHunk * layout.HunkBytes);
             if (sourceOffset > context.Length - layout.HunkBytes)
                 throw new InvalidDataException($"CHD hunk {hunkIndex} points outside the file.");
-            AddRange(ranges, logicalOffset, length, MediaDataRangeKind.Stored, source, sourceOffset);
+            BlockMediaImageRepresentation.AddRange(ranges, logicalOffset, length, MediaDataRangeKind.Stored, source, sourceOffset);
         }
 
         return new MediaImageDocument(
@@ -170,21 +170,6 @@ public sealed partial class ChdHardDiskReader : IMediaImageReader
             offset = (long)nextUnsigned;
         }
         throw new InvalidDataException("The CHD metadata does not classify the image as a hard disk.");
-    }
-
-    private static void AddRange(List<MediaDataRange> ranges, long address, long length, MediaDataRangeKind kind, FileRandomAccessData? source = null, long sourceOffset = 0)
-    {
-        if (ranges.Count > 0)
-        {
-            var previous = ranges[^1];
-            var sourceContinues = kind != MediaDataRangeKind.Stored || ReferenceEquals(previous.Source, source) && previous.SourceOffset + previous.Length == sourceOffset;
-            if (previous.Kind == kind && previous.Address + previous.Length == address && sourceContinues)
-            {
-                ranges[^1] = new MediaDataRange(previous.Address, previous.Length + length, kind, previous.Source, previous.SourceOffset);
-                return;
-            }
-        }
-        ranges.Add(new MediaDataRange(address, length, kind, source, sourceOffset));
     }
 
     [GeneratedRegex(@"^CYLS:(\d+),HEADS:(\d+),SECS:(\d+),BPS:(\d+)$", RegexOptions.CultureInvariant)]

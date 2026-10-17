@@ -1,7 +1,6 @@
 using System.IO;
 using System.Net.Http;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 using GWGUI.App.Services.Emulation;
 using GWGUI.Emulation.Constants;
 using GWGUI.Updates.Contracts;
@@ -12,7 +11,7 @@ namespace GWGUI.App.Services.Updates;
 
 internal sealed class ModuleInstallationService
 {
-    private static readonly JsonSerializerOptions JsonOptions = CreateJsonOptions();
+    private static readonly JsonSerializerOptions JsonOptions = UpdateJsonOptions.Create();
     private readonly HttpClient _httpClient;
     private readonly UpdatePackagePreparationService _packagePreparation;
     private readonly ModuleUpdateCatalogValidator _catalogValidator;
@@ -76,12 +75,5 @@ internal sealed class ModuleInstallationService
         if (!uri.AbsolutePath.EndsWith(".json", StringComparison.OrdinalIgnoreCase))
             throw new ArgumentException("Enter a direct machine-readable module catalog URL ending in .json, not a repository or web page.", nameof(value));
         return uri;
-    }
-
-    private static JsonSerializerOptions CreateJsonOptions()
-    {
-        var options = new JsonSerializerOptions(JsonSerializerDefaults.Web);
-        options.Converters.Add(new JsonStringEnumConverter(JsonNamingPolicy.CamelCase));
-        return options;
     }
 }

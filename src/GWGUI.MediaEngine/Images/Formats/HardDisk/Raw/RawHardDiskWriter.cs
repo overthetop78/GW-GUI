@@ -40,7 +40,7 @@ public sealed class RawHardDiskWriter : IMediaImageWriter
             || document.Representation is not BlockMediaImageRepresentation blocks)
             return false;
 
-        return HasCompleteReadableCoverage(blocks);
+        return blocks.Capacity > 0 && RawHardDiskFormat.IsLengthCompatible(blocks.Capacity, blocks.LogicalBlockSize) && blocks.HasCompleteReadableCoverage();
     }
 
     public async Task<IReadOnlyList<string>> WriteAsync(MediaImageDocument document, string outputPath, string targetFormatId, CancellationToken cancellationToken = default)
@@ -52,22 +52,6 @@ public sealed class RawHardDiskWriter : IMediaImageWriter
 
         await files.WriteAsync(outputPath, (output, token) => WriteRangesAsync(blocks, output, token), cancellationToken).ConfigureAwait(false);
         return [outputPath];
-    }
-
-    private static bool HasCompleteReadableCoverage(BlockMediaImageRepresentation blocks)
-    {
-        if (blocks.Capacity <= 0 || !RawHardDiskFormat.IsLengthCompatible(blocks.Capacity, blocks.LogicalBlockSize))
-            return false;
-
-        long cursor = 0;
-        foreach (var range in blocks.Ranges.OrderBy(range => range.Address))
-        {
-            if (range.Address != cursor || range.Kind == MediaDataRangeKind.Unavailable)
-                return false;
-            cursor = checked(cursor + range.Length);
-        }
-
-        return cursor == blocks.Capacity;
     }
 
     private static async Task WriteRangesAsync(BlockMediaImageRepresentation blocks, Stream output, CancellationToken cancellationToken)

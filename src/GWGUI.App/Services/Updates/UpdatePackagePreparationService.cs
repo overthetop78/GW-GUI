@@ -3,7 +3,6 @@ using System.IO;
 using System.Net.Http;
 using System.Security.Cryptography;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 using GWGUI.Updates.Contracts;
 using GWGUI.Updates.Services;
 using GWGUI.App.Contracts.Updates;
@@ -12,7 +11,7 @@ namespace GWGUI.App.Services.Updates;
 
 internal sealed class UpdatePackagePreparationService
 {
-    private static readonly JsonSerializerOptions JsonOptions = CreateJsonOptions();
+    private static readonly JsonSerializerOptions JsonOptions = UpdateJsonOptions.Create();
     private readonly HttpClient _httpClient;
     private readonly Func<InstalledUpdateState> _installedState;
     private readonly string _applicationDirectory;
@@ -277,13 +276,6 @@ internal sealed class UpdatePackagePreparationService
     {
         try { if (Directory.Exists(path)) Directory.Delete(path, recursive: true); }
         catch { }
-    }
-
-    private static JsonSerializerOptions CreateJsonOptions()
-    {
-        var options = new JsonSerializerOptions(JsonSerializerDefaults.Web);
-        options.Converters.Add(new JsonStringEnumConverter(JsonNamingPolicy.CamelCase));
-        return options;
     }
 }
 

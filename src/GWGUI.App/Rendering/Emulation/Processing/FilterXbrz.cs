@@ -9,7 +9,7 @@ internal static class FilterXbrz
         var centerY = (int)MathF.Floor(sourcePositionY);
         var fractionX = sourcePositionX - MathF.Floor(sourcePositionX);
         var fractionY = sourcePositionY - MathF.Floor(sourcePositionY);
-        var center = Read(source, width, height, centerX, centerY);
+        var center = FilterSampling.ReadSrgbColor(source, width, height, centerX, centerY);
         var candidate = center;
         var bestBlend = 0f;
         EvaluateCorner(1, 1, fractionX + fractionY);
@@ -41,15 +41,7 @@ internal static class FilterXbrz
             candidate = centerHorizontal <= centerVertical ? horizontal : vertical;
         }
 
-        FilterColor At(int offsetX, int offsetY) => Read(source, width, height, centerX + offsetX, centerY + offsetY);
-    }
-
-    private static FilterColor Read(float[] source, int width, int height, int x, int y)
-    {
-        x = Math.Clamp(x, 0, width - 1);
-        y = Math.Clamp(y, 0, height - 1);
-        var offset = (y * width + x) * 3;
-        return new FilterColor( SoftwareEmulationVideoProcessingPipeline.LinearToSrgb(source[offset]), SoftwareEmulationVideoProcessingPipeline.LinearToSrgb(source[offset + 1]), SoftwareEmulationVideoProcessingPipeline.LinearToSrgb(source[offset + 2]) );
+        FilterColor At(int offsetX, int offsetY) => FilterSampling.ReadSrgbColor(source, width, height, centerX + offsetX, centerY + offsetY);
     }
 
     private static float ColorDistance(FilterColor first, FilterColor second)

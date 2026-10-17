@@ -51,4 +51,6 @@ public sealed class SequentialMediaSegment
     public SequentialTravelDirection Direction { get; }
     public MediaDataRange? DataRange { get; }
     public IReadOnlyDictionary<string, string> Metadata { get; }
+
+    internal SequentialMediaSegment AtPosition(long position) => new(position, Kind, Length, Start, Duration, FaceNumber, TrackNumber, ChannelNumber, Direction, DataRange, Metadata);
 }
