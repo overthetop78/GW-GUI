@@ -1,6 +1,7 @@
 namespace GWGUI.Tests.Emulation.EmulationContracts;
 public class EmulationContractsTests
 {
+    [Fact] public Task StoppedMediaChangesWaitForPowerOnAndCanRecoverFromValidationFailure() => SessionLifecycleScenarios.StoppedMediaValidationCanBeRetriedAfterEjection();
     [Fact] public Task CancelledSessionDoesNotAffectOtherSessionAndCanRetry() => SessionLifecycleScenarios.CancellationAndIsolation();
     [Theory]
     [InlineData(false,false,false)] [InlineData(false,false,true)] [InlineData(true,false,false)] [InlineData(true,false,true)]

@@ -29,16 +29,52 @@ internal static class SessionLifecycleScenarios
         var next=Disk with{Path="replacement"};
         if(eject) await session.EjectAsync(Disk.Slot,recreate); else await session.InsertAsync(next,recreate);
         Assert.Equal(powered,session.IsPowered);
-        if(!powered || recreate)
+        if (!powered)
+        {
+            Assert.Equal(0, calls); Assert.Same(first.Value, session.Machine);
+            Assert.Empty(first.Calls); Assert.Empty(replacement.Calls);
+            await session.PowerOnAsync();
+            Assert.Equal(1, calls); Assert.Same(replacement.Value, session.Machine);
+            Assert.Equal(new[] { "StopAsync", "DisposeAsync" }, first.Calls);
+            Assert.Equal(new[] { "StartAsync" }, replacement.Calls);
+            Assert.Equal(session.MountedMedia, supplied);
+        }
+        else if (recreate)
         {
             Assert.Equal(1,calls); Assert.Same(replacement.Value,session.Machine);
-            Assert.Equal(powered?new[]{"StartAsync"}:Array.Empty<string>(),replacement.Calls);
-            Assert.Equal(powered?new[]{"StartAsync","StopAsync","DisposeAsync"}:new[]{"StopAsync","DisposeAsync"},first.Calls);
+            Assert.Equal(new[]{"StartAsync"},replacement.Calls);
+            Assert.Equal(new[]{"StartAsync","StopAsync","DisposeAsync"},first.Calls);
             Assert.Equal(session.MountedMedia,supplied);
         }
         else { Assert.Equal(0,calls); Assert.Same(first.Value,session.Machine); Assert.Equal(eject?"EjectAsync":"InsertAsync",first.Calls[^1]); }
         if(eject) Assert.Empty(session.MountedMedia); else Assert.Equal(next,Assert.Single(session.MountedMedia));
     }
+    public static async Task StoppedMediaValidationCanBeRetriedAfterEjection()
+    {
+        var first = new Machine(); var replacement = new Machine(); var calls = 0;
+        var disk = new EmulationMedia("hard-disk", EmulationMediaSlot.HardDisk0, EmulationMediaType.HardDisk, false, true);
+        await using var session = new MachineSession(first.Value, media =>
+        {
+            calls++;
+            if (media.Count > 1) throw new ArgumentException("synthetic single-disk frontend");
+            Assert.Equal(Disk, Assert.Single(media));
+            return replacement.Value;
+        }, [Disk]);
+        await session.InsertAsync(disk, true);
+        Assert.Equal(2, session.MountedMedia.Count);
+        Assert.Equal(0, calls); Assert.Empty(first.Calls);
+        await Assert.ThrowsAsync<ArgumentException>(session.PowerOnAsync);
+        Assert.False(session.IsPowered);
+        Assert.Equal(new[] { "StopAsync", "DisposeAsync" }, first.Calls);
+        await session.EjectAsync(disk.Slot, true);
+        Assert.Equal(1, calls);
+        await session.PowerOnAsync();
+        Assert.True(session.IsPowered); Assert.Equal(2, calls);
+        Assert.Same(replacement.Value, session.Machine);
+        Assert.Equal(new[] { "StartAsync" }, replacement.Calls);
+        Assert.Equal(new[] { "StopAsync", "DisposeAsync" }, first.Calls);
+    }
+
     public static async Task UpdatedConfigurationIsUsedOnNextStart(bool powered)
     {
         var original = new Machine();
@@ -61,7 +97,12 @@ internal static class SessionLifecycleScenarios
             await session.PowerOffAsync();
             await session.PowerOnAsync();
         }
-        else await session.PowerOnAsync();
+        else
+        {
+            Assert.Equal(0, factoryCalls);
+            Assert.Empty(original.Calls);
+            await session.PowerOnAsync();
+        }
 
         Assert.Same(updated.Value, session.Machine);
         Assert.Equal(1, factoryCalls);
