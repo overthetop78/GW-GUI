@@ -1008,3 +1008,28 @@ Résultat du build demandé le 17 octobre : premier appel arrêté sur l’argum
   - [x] Modifier `docs/tasks/emulation/commun.md` pour consigner le résultat effectif du build, puis intégrer ce suivi au commit local.
 
   Résultat : script terminé avec le code 0 ; exécutable et manifestes/DLL des 23 modules vérifiés. Avertissements CA1416 et CS8602 dans SNK ; aucun contrôle visuel effectué.
+
+
+- [x] Différer le chargement des supports tant que la machine est arrêtée.
+  - [x] Modifier `src/GWGUI.App/Services/Emulation/MachineSession.cs` pour conserver les insertions/éjections à l’arrêt dans la session, différer la recréation et sa validation au prochain allumage, et conserver la libération de la machine précédente.
+  - [x] Modifier `tests/GWGUI.Tests/Emulation/EmulationContracts/SessionLifecycleScenarios.cs` et `EmulationContractsTests.cs` pour couvrir les changements hors tension, leur transmission à l’allumage et la reprise après rejet d’une combinaison de supports.
+  - [x] Modifier `docs/tasks/emulation/commun.md` avec le diagnostic confirmé par le journal et les vérifications statiques ; ne pas lancer de nouveau build non demandé.
+
+  Diagnostic : le journal du 17 octobre 2026 à 19:29 confirme le rejet de `Media` par
+  la validation MiniVMac. La configuration enregistrée contient HD0 inséré ; l’ajout
+  d’une disquette fournit deux supports au validateur. La session recréait la machine
+  lors de chaque insertion/éjection hors tension. Elle conserve désormais cette sélection
+  et diffère la recréation au prochain allumage, y compris après une mise à jour de sa
+  fabrique hors tension. La limite MiniVMac existante n’est pas supprimée : cette
+  correction ne prétend pas ajouter le chargement simultané de deux disques au cœur.
+  Les scénarios existants vérifient le chargement différé pour les deux valeurs de
+  RequiresMachineRecreation et l’absence d’appel natif hors tension ; un scénario
+  couvre le rejet à l’allumage, l’éjection puis une nouvelle tentative réussie.
+  Vérifications effectuées : syntaxe Roslyn des trois fichiers C#, `git diff --check`.
+  Tests modifiés mais non exécutés ; aucun nouveau build ni modification des fichiers
+  de configuration ou des images personnelles.
+
+
+- [ ] Commit de la correction des supports hors tension.
+  - [x] Modifier `docs/tasks/emulation/commun.md` pour consigner la demande de commit sans build.
+  - [ ] Enregistrer les quatre fichiers modifiés dans les objets Git et `.git/index`, puis intégrer le suivi terminé au commit.
