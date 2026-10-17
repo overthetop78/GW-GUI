@@ -47,7 +47,6 @@
   <data name="Emulation.Controller.Action.Reload"><value>Herladen</value></data>
   <data name="Emulation.Controller.CrosshairColor"><value>Kleur van het dradenkruis</value></data>
   <data name="Emulation.Controller.Visual.Model.sony-dance-mat"><value>Dansmat</value></data>
-  <data name="Emulation.Controller.NotSupportedByEmulator"><value>Nog niet ondersteund door deze emulator.</value></data>
   <data name="Emulation.Controller.ConfigureInKeyboardTab"><value>Het toetsenbord instellen in het tabblad Toetsenbord.</value></data>
   <data name="Emulation.Controller.ConfigureInMouseTab"><value>De muis instellen in het tabblad Muis.</value></data>
   <data name="Emulation.Controller.PeripheralType"><value>Apparaattype</value></data>

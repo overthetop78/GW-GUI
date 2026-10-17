@@ -10,7 +10,8 @@ internal static partial class InputSettingsFunctions
 
     private static IEnumerable<ControllerType> UsbTypes(MachineConfiguration configuration) =>
         configuration.Model == ModelConstants.PlayStation2
-            ? Enumerable.Range(0, 2).Select(index => UsbBinding(configuration, index).Type) : [];
+            ? Enumerable.Range(0, 2).Select(index => UsbBinding(configuration, index).Type)
+                .Where(type => ControllerCatalog.IsSupported(configuration, type, 0, true)) : [];
 
     private static ControllerBinding UsbBinding(MachineConfiguration configuration, int index)
     {
@@ -52,12 +53,18 @@ internal static partial class InputSettingsFunctions
         if (!usb && configuration.Model == ModelConstants.PlayStation2 && configuration.EmulatorId == "pcsx2"
             && type is ControllerType.Keyboard or ControllerType.Mouse or ControllerType.KeyboardAndMouse)
             type = ControllerType.Joystick;
+        var available = ControllerCatalog.Available(configuration, index, usb);
+        if (!available.Contains(type))
+        {
+            type = available.Contains(ControllerType.None) ? ControllerType.None : available.FirstOrDefault();
+            current = null;
+        }
         var adapter = new Engine().Adapter(configuration) as IEmulatorControllerAdapter;
         var definitions = current?.VisualId is { } visualId
             && PeripheralVisualDefinitions(type)?.TryGetValue(visualId, out var visualDefinitions) == true
                 ? visualDefinitions : PortDefinitions(type, model, configuration, index);
         return new EmulationControllerPort(index + 1,
-            ControllerCatalog.Available(configuration, index, usb).Select(choice => Choice(choice, model, configuration, index)).ToArray(),
+            available.Select(choice => Choice(choice, model, configuration, index)).ToArray(),
             type.ToString(), current?.DeviceId,
             new EmulationInputBindingSet(definitions,
                 current?.ButtonMappings ?? new Dictionary<string, string>(),

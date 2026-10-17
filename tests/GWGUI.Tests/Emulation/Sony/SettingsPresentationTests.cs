@@ -1,4 +1,4 @@
-﻿using System.Net.Http;
+using System.Net.Http;
 using GWGUI.Emulation.Constants;
 using GWGUI.Emulation.Enums;
 using GWGUI.Emulation.Sony.Common.Machines.Common.Constants;
@@ -14,34 +14,66 @@ public sealed class SettingsPresentationTests
     [InlineData("pcsx2")]
     [InlineData("pcee2")]
     [InlineData("play")]
-    public void UnsupportedBuzzKeepsTwentyIndependentAssignmentsAfterSaving(string emulator)
+    public void ControllerChoicesContainOnlySupportedDevices(string emulator)
     {
         var configuration = new MachineConfiguration(ModelConstants.PlayStation2, emulator);
         var settings = InputSettingsFunctions.Describe(configuration);
-        var usb = settings.ControllerPorts.First(port => port.IsUsb);
-        var buzz = Assert.Single(usb.ControllerChoices, choice => choice.Id == "BuzzBuzzers");
-        Assert.False(buzz.IsSupportedByEmulator);
-        Assert.Equal(20, buzz.BindingDefinitions!.Count);
-        Assert.Equal(20, buzz.BindingDefinitions.Select(definition => definition.Id).Distinct().Count());
-        Assert.Equal(20, buzz.VisualCommandIds!.Values.Distinct().Count());
-        Assert.All(buzz.VisualCommandIds.Values, command => Assert.Contains(buzz.BindingDefinitions, definition => definition.Id == command));
-        var values = buzz.BindingDefinitions.Select((definition, index) => (definition.Id, Binding: "Keyboard:F" + (index + 1)))
-            .ToDictionary(item => item.Id, item => item.Binding);
-        var edited = usb with { SelectedControllerId = buzz.Id, VisualId = EmulationControllerVisualIds.SonyBuzz,
-            Bindings = usb.Bindings with { Values = values } };
-        var saved = InputSettingsFunctions.Apply(configuration, settings with
-        { ControllerPorts = settings.ControllerPorts.Select(port => port.Number == usb.Number ? edited : port).ToArray() });
-        var restored = Assert.Single(InputSettingsFunctions.Describe(saved).ControllerPorts, port => port.Number == usb.Number);
-        Assert.Equal(buzz.Id, restored.SelectedControllerId);
-        Assert.Equal(EmulationControllerVisualIds.SonyBuzz, restored.VisualId);
-        Assert.Equal(20, restored.Bindings.Values.Count);
-        Assert.All(values, mapping => Assert.Equal(mapping.Value, restored.Bindings.Values[mapping.Key]));
+        Assert.All(settings.ControllerPorts, port =>
+        {
+            Assert.DoesNotContain(port.ControllerChoices, choice => choice.Id == "BuzzBuzzers");
+            Assert.All(port.ControllerChoices, choice => Assert.True(
+                GWGUI.Emulation.Sony.Common.Machines.Common.Dictionaries.ControllerCatalog.IsSupported(
+                    configuration, Enum.Parse<GWGUI.Emulation.Sony.Common.Machines.Common.Enums.ControllerType>(choice.Id),
+                    port.Number - 1, port.IsUsb)));
+            Assert.Contains(port.ControllerChoices, choice => choice.Id == port.SelectedControllerId);
+        });
+    }
+
+    [Theory]
+    [InlineData("pcsx2", "None,Keyboard,Mouse")]
+    [InlineData("pcee2", "None,GunCon2")]
+    [InlineData("play", "None")]
+    public void UsbChoicesComeFromTheEmulatorAdapter(string emulator, string expected)
+    {
+        var settings = InputSettingsFunctions.Describe(new MachineConfiguration(ModelConstants.PlayStation2, emulator));
+        Assert.All(settings.ControllerPorts.Where(port => port.IsUsb),
+            port => Assert.Equal(expected.Split(','), port.ControllerChoices.Select(choice => choice.Id)));
+    }
+
+    [Fact]
+    public void SelectedPcee2GunConIsSentThroughTheNativeLightgunOption()
+    {
+        var configuration = new MachineConfiguration(ModelConstants.PlayStation2, "pcee2",
+            Input: new InputConfiguration(ControllerBindings:
+                [new ControllerBinding(0, GWGUI.Emulation.Sony.Common.Machines.Common.Enums.ControllerType.GunCon2),
+                 new ControllerBinding(1, GWGUI.Emulation.Sony.Common.Machines.Common.Enums.ControllerType.None)]));
+        var native = GWGUI.Emulation.Sony.Emulators.Pcee2.Functions.ControllerConfigurationFunctions.Configure(configuration);
+        Assert.Equal(GWGUI.Emulation.Sony.Emulators.Pcee2.Constants.OptionConstants.LightgunUsb1,
+            native.Options![GWGUI.Emulation.Sony.Emulators.Pcee2.Constants.OptionConstants.LightgunKey]);
+        var route = Assert.Single(GWGUI.Emulation.Sony.Emulators.Pcee2.Functions.ControllerConfigurationFunctions.CreatePorts(native),
+            port => port.ConfigurationPort == 0);
+        Assert.Equal(0u, route.NativePort);
+        Assert.False(route.CanChangeWhileRunning);
+    }
+
+    [Theory]
+    [InlineData(GWGUI.Emulation.Sony.Common.Machines.Common.Enums.ControllerType.Keyboard, "USB Keyboard", 3u)]
+    [InlineData(GWGUI.Emulation.Sony.Common.Machines.Common.Enums.ControllerType.Mouse, "USB Mouse", 2u)]
+    public void SelectedLrps2UsbDeviceIsSentAsTheAdvertisedNativeType(
+        GWGUI.Emulation.Sony.Common.Machines.Common.Enums.ControllerType type, string name, uint id)
+    {
+        var configuration = new MachineConfiguration(ModelConstants.PlayStation2, "pcsx2",
+            Input: new InputConfiguration(UsbBindings: [new ControllerBinding(0, type)]));
+        var native = InputSettingsFunctions.NativeUsbType(configuration, 0,
+            GWGUI.Emulation.Sony.Common.Machines.Common.Enums.ControllerType.Joystick);
+        Assert.Equal(type, native);
+        IReadOnlyList<IReadOnlyList<GWGUI.Emulation.Sony.Emulators.Common.Interop.Contracts.ControllerDevice>> devices =
+            [[new GWGUI.Emulation.Sony.Emulators.Common.Interop.Contracts.ControllerDevice(name, id)]];
+        Assert.Equal(id, GWGUI.Emulation.Sony.Emulators.Common.Interop.Functions.ControllerPortFunctions.Resolve(native, 0, devices));
     }
 
     [Theory]
     [InlineData("pcsx2")]
-    [InlineData("pcee2")]
-    [InlineData("play")]
     public void UsbKeyboardAndMouseUseTheirDedicatedTabs(string emulator)
     {
         var configuration = new MachineConfiguration(ModelConstants.PlayStation2, emulator);

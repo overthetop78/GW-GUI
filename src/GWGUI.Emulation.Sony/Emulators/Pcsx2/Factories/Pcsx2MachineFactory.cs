@@ -22,6 +22,8 @@ internal sealed class Pcsx2MachineFactory : IEmulatorAdapter, IEmulatorFirmwareA
     public IReadOnlyList<ControllerType> GetControllerTypes(MachineConfiguration configuration) =>
         [ControllerType.Joystick, ControllerType.Keyboard, ControllerType.Mouse,
             ControllerType.KeyboardAndMouse, ControllerType.None];
+    public IReadOnlyList<ControllerType> GetUsbControllerTypes(MachineConfiguration configuration, int port) =>
+        port is 0 or 1 ? [ControllerType.None, ControllerType.Keyboard, ControllerType.Mouse] : [ControllerType.None];
     public IReadOnlyList<EmulationControllerOutputDefinition> GetControllerOutputs(MachineConfiguration configuration, ControllerType type) =>
         type == ControllerType.Joystick ? InputSettingsFunctions.RumbleOutputs : [];
     public IReadOnlyList<string> SupportedContentExtensions => FirmwareConstants.ContentExtensions;

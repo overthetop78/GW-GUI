@@ -272,10 +272,8 @@ internal sealed class EmulationInputSettingsController
     private void UpdateControllerVisualProfile(EmulationControllerPortEditor editor)
     {
         var selectedChoice = editor.SelectedControllerChoice;
-        var unavailable = selectedChoice?.IsSupportedByEmulator == false;
         var separateTab = editor.IsUsb && selectedChoice?.Id is "Keyboard" or "Mouse" or "NetPlayController";
         var availability = new List<string>();
-        if (unavailable) availability.Add(LocExtension.Get("Emulation.Controller.NotSupportedByEmulator"));
         if (separateTab) availability.Add(LocExtension.Get(selectedChoice!.Id == "Mouse" ? "Emulation.Controller.ConfigureInMouseTab" : "Emulation.Controller.ConfigureInKeyboardTab"));
         editor.Availability.Text = string.Join(Environment.NewLine, availability);
         editor.Availability.Visibility = editor.Availability.Text.Length > 0 ? Visibility.Visible : Visibility.Collapsed;

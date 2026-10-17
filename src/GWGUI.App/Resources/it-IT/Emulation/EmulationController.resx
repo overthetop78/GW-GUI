@@ -47,7 +47,6 @@
   <data name="Emulation.Controller.Action.Reload"><value>Ricarica</value></data>
   <data name="Emulation.Controller.CrosshairColor"><value>Colore del mirino</value></data>
   <data name="Emulation.Controller.Visual.Model.sony-dance-mat"><value>Tappetino da ballo</value></data>
-  <data name="Emulation.Controller.NotSupportedByEmulator"><value>Non supportata da questo emulatore ancora.</value></data>
   <data name="Emulation.Controller.ConfigureInKeyboardTab"><value>Configurare la tastiera nella scheda tastiera.</value></data>
   <data name="Emulation.Controller.ConfigureInMouseTab"><value>Configurare il mouse nella scheda Mouse.</value></data>
   <data name="Emulation.Controller.PeripheralType"><value>Tipo di dispositivo</value></data>

@@ -14,6 +14,16 @@ public sealed class ControllerPortResolutionTests
     private const string DigitalName = "Digital Controller";
     private const string AlternativeName = "Alternative Joypad";
 
+    [Theory]
+    [InlineData(ControllerType.DanceMat)]
+    [InlineData(ControllerType.ArcadeStick)]
+    public void CompatibleDevicesUseTheAdvertisedJoypadProtocol(ControllerType type)
+    {
+        IReadOnlyList<IReadOnlyList<ControllerDevice>> devices = [[new ControllerDevice(DualShock2Name, DualShock2Device)]];
+        Assert.Equal(DualShock2Device, ControllerPortFunctions.Resolve(type, Ports.MinimumControllerPort, devices));
+        Assert.Equal(Native.JoypadDevice, ControllerPortFunctions.Resolve(type, Ports.MinimumControllerPort, []));
+    }
+
     [Fact]
     public void UsesTheOnlyAdvertisedJoypadSubclass()
     {

@@ -47,7 +47,6 @@
   <data name="Emulation.Controller.Action.Reload"><value>Újratöltés</value></data>
   <data name="Emulation.Controller.CrosshairColor"><value>Célkereszt színe</value></data>
   <data name="Emulation.Controller.Visual.Model.sony-dance-mat"><value>Táncszőnyeg</value></data>
-  <data name="Emulation.Controller.NotSupportedByEmulator"><value>Még nem támogatja ez az emulátor.</value></data>
   <data name="Emulation.Controller.ConfigureInKeyboardTab"><value>A billentyűzet beállítása a billentyűzet fülén.</value></data>
   <data name="Emulation.Controller.ConfigureInMouseTab"><value>Az egér beállítása az egér fülben.</value></data>
   <data name="Emulation.Controller.PeripheralType"><value>A készülék típusa</value></data>

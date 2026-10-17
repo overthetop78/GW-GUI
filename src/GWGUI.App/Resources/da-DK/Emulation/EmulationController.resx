@@ -47,7 +47,6 @@
   <data name="Emulation.Controller.Action.Reload"><value>Genlad</value></data>
   <data name="Emulation.Controller.CrosshairColor"><value>Sigtekornets farve</value></data>
   <data name="Emulation.Controller.Visual.Model.sony-dance-mat"><value>Dansemåtte</value></data>
-  <data name="Emulation.Controller.NotSupportedByEmulator"><value>Ikke understøttet af denne emulator endnu.</value></data>
   <data name="Emulation.Controller.ConfigureInKeyboardTab"><value>Indstil tastaturet i fanebladet Tastatur.</value></data>
   <data name="Emulation.Controller.ConfigureInMouseTab"><value>Indstil musen i fanebladet mus.</value></data>
   <data name="Emulation.Controller.PeripheralType"><value>Enhedstype</value></data>

@@ -47,7 +47,6 @@
   <data name="Emulation.Controller.Action.Reload"><value>Nạp lại đạn</value></data>
   <data name="Emulation.Controller.CrosshairColor"><value>Màu tâm ngắm</value></data>
   <data name="Emulation.Controller.Visual.Model.sony-dance-mat"><value>Thảm nhảy</value></data>
-  <data name="Emulation.Controller.NotSupportedByEmulator"><value>Chưa được hỗ trợ bởi trình giả lập này.</value></data>
   <data name="Emulation.Controller.ConfigureInKeyboardTab"><value>Cấu hình bàn phím trên thanh bàn phím.</value></data>
   <data name="Emulation.Controller.ConfigureInMouseTab"><value>Cấu hình chuột trong thẻ chuột.</value></data>
   <data name="Emulation.Controller.PeripheralType"><value>Kiểu thiết bị</value></data>

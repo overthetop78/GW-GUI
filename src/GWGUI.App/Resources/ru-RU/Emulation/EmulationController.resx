@@ -47,7 +47,6 @@
   <data name="Emulation.Controller.Action.Reload"><value>Перезарядить</value></data>
   <data name="Emulation.Controller.CrosshairColor"><value>Цвет прицела</value></data>
   <data name="Emulation.Controller.Visual.Model.sony-dance-mat"><value>Танцевальный коврик</value></data>
-  <data name="Emulation.Controller.NotSupportedByEmulator"><value>Пока что этот эмулятор не поддерживается.</value></data>
   <data name="Emulation.Controller.ConfigureInKeyboardTab"><value>Настройка клавиатуры во вкладке Keyboard.</value></data>
   <data name="Emulation.Controller.ConfigureInMouseTab"><value>Настройте мышь на вкладке Мышь.</value></data>
   <data name="Emulation.Controller.PeripheralType"><value>Тип устройства</value></data>

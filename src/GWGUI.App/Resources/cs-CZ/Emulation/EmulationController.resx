@@ -47,7 +47,6 @@
   <data name="Emulation.Controller.Action.Reload"><value>Přebít</value></data>
   <data name="Emulation.Controller.CrosshairColor"><value>Barva zaměřovače</value></data>
   <data name="Emulation.Controller.Visual.Model.sony-dance-mat"><value>Taneční podložka</value></data>
-  <data name="Emulation.Controller.NotSupportedByEmulator"><value>Ještě není podporován tímto emulátorem.</value></data>
   <data name="Emulation.Controller.ConfigureInKeyboardTab"><value>Nastavit klávesnici v záložce Klávesnice.</value></data>
   <data name="Emulation.Controller.ConfigureInMouseTab"><value>Nastavit myš v záložce Mouse.</value></data>
   <data name="Emulation.Controller.PeripheralType"><value>Typ zařízení</value></data>

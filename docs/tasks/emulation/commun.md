@@ -911,3 +911,16 @@ Point de contrôle : 34 profils Sony enregistrés, tous leurs fichiers et identi
 
 
 État de clôture : les reprises détaillées ci-dessus du catalogue Sony sont réalisées et vérifiées statiquement. Les anciennes entrées de suivi prévoyant une compilation avant l’instruction « AUCUN BUILD » sont historiques et annulées par cette instruction ; elles ne constituent pas des builds restant à lancer. Aucun test compilé n’est déclaré passé pour ces modifications. La compatibilité native sera traitée séparément, comme demandé.
+
+
+- [x] Masquer les périphériques non acceptés par l’émulateur sélectionné, sans build.
+  - [x] Modifier `src/GWGUI.Emulation.Sony/Common/Machines/Common/Dictionaries/ControllerCatalog.cs` et `Functions/InputFunctions.Usb.cs` dans le même dossier Common/Machines/Common : filtrer les choix par les capacités existantes, ne pas afficher une ancienne sélection incompatible ni ses onglets clavier/souris.
+  - [x] Modifier `src/GWGUI.App/Controllers/Emulation/Input/EmulationInputSettingsController.cs` et les trente `src/GWGUI.App/Resources/*/Emulation/EmulationController.resx` : retirer le message NotSupportedByEmulator et conserver les indications des onglets dédiés.
+  - [x] Modifier `tests/GWGUI.Tests/Emulation/Sony/SettingsPresentationTests.cs` : remplacer le scénario autorisant Buzz non pris en charge, limiter le scénario clavier/souris à l’émulateur qui les accepte ; contrôler statiquement les modifications sans exécuter de compilation.
+
+
+- [x] Raccorder les capacités USB déclarées par chaque adaptateur Sony à la sélection et à la transmission native, sans build.
+  - [x] Modifier `src/GWGUI.Emulation.Sony/Common/Interfaces/IEmulatorControllerAdapter.cs`, `Emulators/Common/Interop/Factories/CoreMachineFactory.cs`, `Emulators/Pcsx2/Factories/Pcsx2MachineFactory.cs` et `Emulators/Pcee2/Factories/Pcee2MachineFactory.cs` : déclarer les types USB acceptés par chaque cœur (LRPS2 clavier/souris, PCEE2 GunCon 2, aucun pour les autres adaptateurs sans prise en charge).
+  - [x] Modifier `src/GWGUI.Emulation.Sony/Common/Machines/Common/Dictionaries/ControllerCatalog.cs` : utiliser les déclarations de l’adaptateur pour les choix et leur validation, retirer la liste USB indépendante. Modifier les deux `Emulators/Common/Interop/Services/ExternalCore.cs` et `Emulators/Pcsx2/Services/ExternalCore.cs` : initialiser également ArcadeStick avant chargement comme les autres périphériques utilisant JOYPAD.
+  - [x] Modifier `tests/GWGUI.Tests/Emulation/Sony/ControllerPortResolutionTests.cs` et `SettingsPresentationTests.cs` : couvrir les identifiants natifs des périphériques compatibles JOYPAD et les choix USB propres à chaque cœur ; vérifier les sources sans compiler.
+  - [x] Modifier `docs/reference/sony-controller-sources.md` : consigner les capacités des interfaces libretro vérifiées et les chemins de transmission existants, sans prétendre avoir exécuté les émulateurs.

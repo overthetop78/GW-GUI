@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <data name="Emulation.Controller.Visual.Model.sony-pocketstation"><value>PocketStation</value></data>
   <data name="Emulation.Controller.Visual.Model.watara-supervision-controls"><value>Supervision</value></data>
@@ -175,7 +175,6 @@
   <data name="Emulation.Controller.Visual.Model.sony-hori-fighting-stick-ps"><value>HORI Fighting Stick PS</value></data>
   <data name="Emulation.Controller.Visual.Model.sony-eyetoy"><value>Sony EyeToy</value></data>
   <data name="Emulation.Controller.Visual.Model.sony-singstar"><value>Sony SingStar ×2</value></data>
-  <data name="Emulation.Controller.NotSupportedByEmulator"><value>Not supported by this emulator yet.</value></data>
   <data name="Emulation.Controller.ConfigureInKeyboardTab"><value>Configure the keyboard in the Keyboard tab.</value></data>
   <data name="Emulation.Controller.ConfigureInMouseTab"><value>Configure the mouse in the Mouse tab.</value></data>
   <data name="Emulation.Controller.PeripheralType"><value>Device type</value></data>

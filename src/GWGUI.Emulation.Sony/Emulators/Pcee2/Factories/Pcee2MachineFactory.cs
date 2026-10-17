@@ -18,6 +18,8 @@ internal sealed class Pcee2MachineFactory : CoreMachineFactory
     public override int? GetControllerPortDisplayNumber(MachineConfiguration configuration, int port) => port >= Controllers.UsbPortCount ? port - Controllers.UsbPortCount + 1 : null;
     public override IReadOnlyList<ControllerType> GetControllerTypes(MachineConfiguration configuration, int port) => port >= Controllers.UsbPortCount ? Controllers.GamepadTypes
         : ControllerConfigurationFunctions.UsbType(configuration, port) == ControllerType.GunCon2 ? Controllers.EnabledUsbTypes : Controllers.DisabledUsbTypes;
+    public override IReadOnlyList<ControllerType> GetUsbControllerTypes(MachineConfiguration configuration, int port) =>
+        port is Controllers.FirstUsbPort or Controllers.SecondUsbPort ? GetControllerTypes(configuration, port) : [ControllerType.None];
     public override IReadOnlyList<InputBindingDefinition>? GetControllerBindingDefinitions(MachineConfiguration configuration, ControllerType type, int port) =>
         type == ControllerType.GunCon2 ? ControllerConfigurationFunctions.GunCommands : null;
     public override IReadOnlyList<EmulationSettingsBlock> GetSettingsBlocks(MachineConfiguration configuration) => NetworkFunctions.Describe(configuration, CheatFunctions.Describe(configuration, base.GetSettingsBlocks(configuration)

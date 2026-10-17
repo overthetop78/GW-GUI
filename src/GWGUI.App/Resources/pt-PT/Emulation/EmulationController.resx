@@ -47,7 +47,6 @@
   <data name="Emulation.Controller.Action.Reload"><value>Recarregar</value></data>
   <data name="Emulation.Controller.CrosshairColor"><value>Cor da mira</value></data>
   <data name="Emulation.Controller.Visual.Model.sony-dance-mat"><value>Tapete de dança</value></data>
-  <data name="Emulation.Controller.NotSupportedByEmulator"><value>Ainda não é suportado por este emulador.</value></data>
   <data name="Emulation.Controller.ConfigureInKeyboardTab"><value>Configure o teclado na aba Teclado.</value></data>
   <data name="Emulation.Controller.ConfigureInMouseTab"><value>Configurar o rato na página do rato.</value></data>
   <data name="Emulation.Controller.PeripheralType"><value>Tipo de dispositivo</value></data>

@@ -1,4 +1,4 @@
-﻿namespace GWGUI.Emulation.Sony.Common.Machines.Common.Dictionaries;
+namespace GWGUI.Emulation.Sony.Common.Machines.Common.Dictionaries;
 
 public static class ControllerCatalog
 {
@@ -6,24 +6,11 @@ public static class ControllerCatalog
     {
         if (configuration.Model is not (ModelConstants.PlayStation or ModelConstants.PlayStation2))
             return ControllerFunctions.Supported(configuration, port);
-        if (usb) return [ControllerType.None, ControllerType.Keyboard, ControllerType.Mouse, ControllerType.GunCon2,
-            ControllerType.EyeToy, ControllerType.SingStarMicrophones, ControllerType.BuzzBuzzers,
-            ControllerType.UsbHeadset, ControllerType.UsbMicrophone, ControllerType.UsbWheel,
-            ControllerType.UsbFlightStick, ControllerType.UsbTrainController, ControllerType.KeyboardMania,
-            ControllerType.ParaParaController, ControllerType.RockBandGuitar,
-            ControllerType.RockBandDrums, ControllerType.GameTrak, ControllerType.NetPlayController,
-            ControllerType.Seamic, ControllerType.GuitarHeroDrums, ControllerType.DjHero];
+        if (usb) return UsbTypes(configuration, port);
         var native = ControllerFunctions.Supported(configuration, port)
             .Where(type => configuration.Model != ModelConstants.PlayStation2
                 || type is not (ControllerType.Keyboard or ControllerType.Mouse or ControllerType.KeyboardAndMouse or ControllerType.GunCon2));
-        ControllerType[] common = [configuration.Model == ModelConstants.PlayStation2 ? ControllerType.SerialMouse : ControllerType.Mouse, ControllerType.NeGcon, ControllerType.JogCon,
-            ControllerType.VolumeController, ControllerType.Grip, ControllerType.BiohazardPad, ControllerType.GunCon, ControllerType.Justifier,
-            ControllerType.ArcadeStick, ControllerType.DanceMat, ControllerType.Guitar, ControllerType.Beatmania,
-            ControllerType.PopnMusic, ControllerType.TrainController, ControllerType.JetController,
-            ControllerType.FishingController, ControllerType.KidsStation, ControllerType.MaestroBaton, ControllerType.Tambourine,
-            ControllerType.SphereController, ControllerType.Glove, ControllerType.SerialWheel];
-        return native.Concat(common).Concat(configuration.Model == ModelConstants.PlayStation2
-            ? [ControllerType.DrumMania, ControllerType.BeatmaniaIidx, ControllerType.TaikoDrum, ControllerType.DvdRemote, ControllerType.Katana, ControllerType.Chainsaw, ControllerType.NetPlayController] : Array.Empty<ControllerType>()).Distinct().ToArray();
+        return native.ToArray();
     }
 
     internal static bool IsUsbPort(MachineConfiguration configuration, int port) =>
@@ -33,13 +20,13 @@ public static class ControllerCatalog
     internal static bool IsSupported(MachineConfiguration configuration, ControllerType type, int port, bool usb)
     {
         if (!usb) return ControllerFunctions.Supported(configuration, port).Contains(type);
-        return type == ControllerType.None || (configuration.EmulatorId switch
-        {
-            "pcsx2" => type is ControllerType.Keyboard or ControllerType.Mouse,
-            "pcee2" => type == ControllerType.GunCon2,
-            _ => false
-        });
+        return UsbTypes(configuration, port).Contains(type);
     }
+
+    private static IReadOnlyList<ControllerType> UsbTypes(MachineConfiguration configuration, int port) =>
+        (new Engine().Adapter(configuration) as IEmulatorControllerAdapter)?.GetUsbControllerTypes(configuration,
+            configuration.EmulatorId == "pcee2" ? port : port is 8 or 9 ? port - 8 : port)
+            ?? [ControllerType.None];
 
     internal static IReadOnlyList<string>? Visuals(ControllerType type, bool ps2) => type switch
     {

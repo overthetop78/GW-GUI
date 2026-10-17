@@ -207,7 +207,7 @@ internal sealed class ExternalCore : IEmulatorCore
         {
             var type = ControllerFunctions.Resolve(configuration, port);
             if (!requireAdvertised && !_host!.ControllerPorts.Any()
-                && type is not (ControllerType.Joystick or ControllerType.DanceMat or ControllerType.None)) continue;
+                && type is not (ControllerType.Joystick or ControllerType.DanceMat or ControllerType.ArcadeStick or ControllerType.None)) continue;
             SetControllerPortDevice(port, type);
         }
     }

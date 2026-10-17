@@ -38,6 +38,7 @@ internal abstract class CoreMachineFactory : IEmulatorAdapter, IEmulatorFirmware
         GraphicsSettingsFunctions.Configure(configuration with { GraphicsApi = graphicsApi }, CoreDefinition.Options);
     public virtual IReadOnlyList<ControllerType> GetControllerTypes(MachineConfiguration configuration) => CoreDefinition.ControllerTypes;
     public virtual IReadOnlyList<ControllerType> GetControllerTypes(MachineConfiguration configuration, int port) => GetControllerTypes(configuration);
+    public virtual IReadOnlyList<ControllerType> GetUsbControllerTypes(MachineConfiguration configuration, int port) => [ControllerType.None];
     public virtual int GetControllerPortCount(MachineConfiguration configuration) => ModelCatalog.Get(configuration.Model).ControllerPortCount;
     public virtual string? GetControllerPortDisplayName(MachineConfiguration configuration, int port) => null;
     public virtual int? GetControllerPortDisplayNumber(MachineConfiguration configuration, int port) => null;
