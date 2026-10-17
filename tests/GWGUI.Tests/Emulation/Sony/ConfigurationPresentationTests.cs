@@ -407,7 +407,7 @@ public sealed class ConfigurationPresentationTests
         Assert.Equal(EmulationMachineTab.Ram, fields.Single(field => field.Id == "ppsspp_psp_model").Tab);
         Assert.True(fields.Single(field => field.Id == "ppsspp_psp_model").RefreshSettingsOnChange);
         Assert.Equal("acceleration", fields.Single(field => field.Id == "ppsspp_locked_cpu_speed").BlockId);
-        Assert.Equal(EmulationMachineTab.General, fields.Single(field => field.Id == "ppsspp_language").Tab);
+        Assert.DoesNotContain(fields, field => field.Id == "ppsspp_language");
         Assert.Equal(EmulationMachineTab.Controllers, fields.Single(field => field.Id == "ppsspp_analog_deadzone").Tab);
         Assert.Equal(EmulationSettingsEditor.Toggle, fields.Single(field => field.Id == "ppsspp_fast_memory").Editor);
         Assert.DoesNotContain(fields, field => field.Id == "ppsspp_texture_shader");

@@ -1476,4 +1476,9 @@
   <data name="Emulation.Sony.Controller.Count"><value>Valvojien lukumäärä</value></data>
   <data name="Emulation.Storage.Cache.Unlimited"><value>Rajoittamaton</value></data>
   <data name="Emulation.Storage.Cache.ClearOnGameClose"><value>Tyhjennä kun peli sulkeutuu</value></data>
+  <data name="Emulation.Sony.Video.Notifications"><value>Näytöllä tehtävät ilmoitukset</value></data>
+  <data name="Emulation.Sony.Cpu.PpuAccuracy"><value>PPU tarkkuus</value></data>
+  <data name="Emulation.Sony.Cpu.SpuAccuracy"><value>SPU tarkkuus</value></data>
+  <data name="Emulation.Sony.Cpu.SpuExecution"><value>SPU Toteutus</value></data>
+  <data name="Emulation.Sony.Cpu.Scheduling"><value>Kellot ja aikataulu</value></data>
 </root>

@@ -21,3 +21,8 @@ L’éditeur reste commun à toutes les familles : l’audit des conversions `Ma
 Traductions des huit libellés : Argos dans les 30 catalogues App, relecture française, unicité des clés et conservation des paramètres {0}/{1} vérifiées. Analyse syntaxique Roslyn de 40 fichiers C# modifiés/nouveaux et analyse XML du XAML : sans erreur. `git diff --check` : sans erreur.
 
 Scénarios ajoutés dans les tests sources existants : conservation du clavier, affectation complète du stick droit d’un autre périphérique, conservation d’une amplitude intermédiaire via le convertisseur commun, relecture et appareil hors ligne, axes bruts non consécutifs 2/7, effacement du groupe et disparition des sélecteurs après retrait des définitions. Ces tests n’ont pas été compilés ni exécutés. Aucun build n’a été lancé. Le seul script temporaire de traduction a été supprimé après usage.
+
+
+## Simplification des manettes reconnues
+
+Lorsqu’un appareil fournit une vue gamepad standard, seuls ses sticks gauche/droit (ou leurs axes X/Y pour une paire isolée) sont proposés. Les combinaisons d’axes bruts ne doublonnent plus ces choix. Elles restent proposées pour les périphériques sans vue gamepad standard, à partir de leurs véritables indices. Le scénario source des manettes standard inclut désormais des axes bruts pour vérifier leur exclusion ; celui des axes non consécutifs 2/7 reste conservé. Vérification syntaxique effectuée, sans nouveau build.

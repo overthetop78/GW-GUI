@@ -982,3 +982,29 @@ Point de contrôle : 34 profils Sony enregistrés, tous leurs fichiers et identi
 
 
 Résultat du build demandé le 17 octobre : premier appel arrêté sur l’argument surnuméraire du dialogue optique, corrigé dans le contrôleur. Second appel `scripts/local-building.cmd --building=debug --modules=A` terminé avec code 0 ; application, lanceur, updater et 23 modules compilés. Vérification effective de `build/Debug/GW GUI/gwgui.exe` et de l’assembly d’entrée et du manifeste des 23/23 modules sous `Modules/<id>/`. Avertissements CA1416 et CS8602 signalés dans les modules ; aucune erreur au second appel. Les tests automatisés n’ont pas été exécutés par cette commande.
+
+
+- [x] Suivre la langue de l’application et retirer les axes bruts redondants des manettes reconnues.
+  - [x] Adapter la langue du système émulé.
+    - [x] Créer `src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Functions/SystemLanguageFunctions.cs` : convertir la culture d’interface de l’application vers les valeurs natives PPSSPP/RPCS3, avec repli anglais pour une langue non prise en charge ; modifier `CoreSettingsFunctions.cs` et `Emulators/Ppsspp/Functions/PpssppOptionFunctions.cs` pour appliquer cette valeur à l’exécution et retirer son sélecteur des paramètres utilisateur.
+    - [x] Modifier `src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Functions/CoreSettingsFunctions.cs` : déplacer les notifications RPCS3 dans Vidéo, la compatibilité des jeux dans Cheats, la région dans ROM et le bouton de confirmation dans les options globales Manettes. Modifier les 30 `src/GWGUI.Emulation.Sony/Resources/*/Option.resx` avec Argos pour le cadre Notifications.
+    - [x] Modifier `tests/GWGUI.Tests/Emulation/Sony/SettingsPresentationTests.cs` et `ConfigurationPresentationTests.cs` pour couvrir les langues natives, la priorité sur les anciennes sélections et l’absence de sélecteur.
+  - [x] Retirer les choix d’axes bruts qui doublonnent les sticks standard.
+    - [x] Modifier `src/GWGUI.App/Views/Controls/Emulation/Input/InputBindingEditorAnalogFunctions.cs` : proposer uniquement les sticks gauche/droit pour une manette reconnue, conserver les axes réellement déclarés pour les appareils sans vue gamepad standard.
+    - [x] Modifier `tests/GWGUI.Tests/Interface/EmulationViews/ControllerNoneSelectionTests.cs` : vérifier qu’une manette standard avec axes bruts n’affiche pas les combinaisons redondantes, en conservant le cas des axes non standard 2/7.
+  - [x] Modifier `docs/reference/sony-psp-rpcs3-capabilities.md` et `docs/reference/emulation-analog-bindings.md` avec le raccordement et les contrôles statiques effectifs ; ne pas lancer de build non demandé.
+
+
+- [x] Réorganiser les cadres CPU RPCS3.
+  - [x] Modifier `src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Functions/CoreSettingsFunctions.cs` pour séparer précision PPU, précision SPU, exécution SPU, recompilation, compatibilité et synchronisation ; modifier les 30 `src/GWGUI.Emulation.Sony/Resources/*/Option.resx` avec Argos pour les intitulés propres à la PS3, sans référence à l’Emotion Engine.
+  - [x] Modifier `src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleHardwareSettingsSection.cs` pour présenter les petits cadres CPU par deux avec le conteneur adaptatif existant, et conserver la largeur entière des cadres qui ont besoin de place ; modifier `tests/GWGUI.Tests/Emulation/Sony/SettingsPresentationTests.cs` pour vérifier le classement et les titres.
+  - [x] Modifier `docs/reference/sony-psp-rpcs3-capabilities.md` et `docs/tasks/emulation/commun.md` avec les vérifications statiques, sans build non demandé.
+
+
+- [x] Commit et build Debug des corrections de langue, de manettes et de présentation CPU.
+  - [x] Modifier `docs/tasks/emulation/commun.md` pour consigner la demande de commit et de build Debug de l’application et de tous les modules.
+  - [x] Enregistrer les fichiers modifiés dans un commit Git local (`.git/index` et objets Git).
+  - [x] Créer ou mettre à jour `build/Debug/GW GUI/gwgui.exe` et `build/Debug/GW GUI/Modules/*` avec `scripts/local-building.cmd --building=debug --modules=A`, puis vérifier l’exécutable et chaque module.
+  - [x] Modifier `docs/tasks/emulation/commun.md` pour consigner le résultat effectif du build, puis intégrer ce suivi au commit local.
+
+  Résultat : script terminé avec le code 0 ; exécutable et manifestes/DLL des 23 modules vérifiés. Avertissements CA1416 et CS8602 dans SNK ; aucun contrôle visuel effectué.

@@ -1476,4 +1476,9 @@
   <data name="Emulation.Sony.Controller.Count"><value>Kontrol sayısı</value></data>
   <data name="Emulation.Storage.Cache.Unlimited"><value>Sınırsız Sınırsız Sınırsız Sınırsız Sınırsız Sınırsız</value></data>
   <data name="Emulation.Storage.Cache.ClearOnGameClose"><value>Oyun kapandığında açık</value></data>
+  <data name="Emulation.Sony.Video.Notifications"><value>Ekranda Bildirim</value></data>
+  <data name="Emulation.Sony.Cpu.PpuAccuracy"><value>PPU Hassas hassas hassas hassas</value></data>
+  <data name="Emulation.Sony.Cpu.SpuAccuracy"><value>SPU Hassas hassas hassas hassas</value></data>
+  <data name="Emulation.Sony.Cpu.SpuExecution"><value>SPU Yürütme yürütme</value></data>
+  <data name="Emulation.Sony.Cpu.Scheduling"><value>Saatler ve zamanlama</value></data>
 </root>

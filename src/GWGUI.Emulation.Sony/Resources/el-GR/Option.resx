@@ -1476,4 +1476,9 @@
   <data name="Emulation.Sony.Controller.Count"><value>Αριθμός ελεγκτών</value></data>
   <data name="Emulation.Storage.Cache.Unlimited"><value>Απεριόριστα</value></data>
   <data name="Emulation.Storage.Cache.ClearOnGameClose"><value>Καθαρισμός όταν το παιχνίδι κλείνει</value></data>
+  <data name="Emulation.Sony.Video.Notifications"><value>Κοινοποιήσεις στην οθόνη</value></data>
+  <data name="Emulation.Sony.Cpu.PpuAccuracy"><value>PPU ακρίβεια</value></data>
+  <data name="Emulation.Sony.Cpu.SpuAccuracy"><value>SPU ακρίβεια</value></data>
+  <data name="Emulation.Sony.Cpu.SpuExecution"><value>SPU εκτέλεση</value></data>
+  <data name="Emulation.Sony.Cpu.Scheduling"><value>Ρολόγια και προγραμματισμός</value></data>
 </root>

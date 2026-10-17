@@ -1,6 +1,7 @@
 using GWGUI.Emulation.Sony.Emulators.Common.Interop.Constants;
 using GWGUI.Emulation.Sony.Emulators.Common.Interop.Contracts;
 using System.Globalization;
+using Rpcs3Options = GWGUI.Emulation.Sony.Emulators.Rpcs3.Constants.OptionConstants;
 using GWGUI.Emulation.Sony.Emulators.Common.Functions;
 
 namespace GWGUI.Emulation.Sony.Emulators.Common.Interop.Functions;
@@ -25,7 +26,7 @@ internal static class CoreSettingsFunctions
             else if (definition.Id == Emulators.BeetlePsxHw.Constants.CoreConstants.Id)
                 options[Emulators.BeetlePsxHw.Constants.OptionConstants.OverrideBiosKey] = Emulators.BeetlePsxHw.Constants.OptionConstants.OverrideBiosDisabled;
         }
-        return AnalogToggleFunctions.Configure(MemoryCardFunctions.Configure(GraphicsSettingsFunctions.Configure(configuration with { Options = options }, definition.Options)));
+        return SystemLanguageFunctions.Configure(AnalogToggleFunctions.Configure(MemoryCardFunctions.Configure(GraphicsSettingsFunctions.Configure(configuration with { Options = options }, definition.Options))));
     }
 
     internal static IReadOnlyList<EmulationSettingsBlock> Blocks(CoreDefinition definition, MachineConfiguration configuration) => Blocks(definition.Options, configuration);
@@ -33,6 +34,7 @@ internal static class CoreSettingsFunctions
     internal static bool IsVisible(CoreOption option) => option.IsVisible
         && !CoreSettingsConstants.HiddenOptions.Contains(option.Key)
         && !MemoryCardFunctions.IsManagedOption(option.Key)
+        && !SystemLanguageFunctions.IsManagedOption(option.Key)
         && !AnalogToggleFunctions.IsManagedOption(option.Key);
 
     internal static IReadOnlyList<EmulationSettingsBlock> Blocks(IReadOnlyList<CoreOption> options, MachineConfiguration configuration)
@@ -45,14 +47,16 @@ internal static class CoreSettingsFunctions
             if (CoreSettingsConstants.IsCdAudio(option.Key)) tab = EmulationMachineTab.Storage;
             if (configuration.Model == ModelConstants.PlayStation3)
             {
-                if (option.Key is Emulators.Rpcs3.Constants.OptionConstants.LanguageKey
-                    or Emulators.Rpcs3.Constants.OptionConstants.LicenseAreaKey
-                    or Emulators.Rpcs3.Constants.OptionConstants.EnterButtonKey
-                    or Emulators.Rpcs3.Constants.OptionConstants.DatabaseOverrideKey
-                    or Emulators.Rpcs3.Constants.OptionConstants.ShowTrophyPopupsKey
+                if (option.Key == Emulators.Rpcs3.Constants.OptionConstants.LicenseAreaKey)
+                    tab = EmulationMachineTab.Rom;
+                if (option.Key == Emulators.Rpcs3.Constants.OptionConstants.EnterButtonKey)
+                    tab = EmulationMachineTab.Controllers;
+                if (option.Key == Emulators.Rpcs3.Constants.OptionConstants.DatabaseOverrideKey)
+                    tab = EmulationMachineTab.Cheats;
+                if (option.Key is Emulators.Rpcs3.Constants.OptionConstants.ShowTrophyPopupsKey
                     or Emulators.Rpcs3.Constants.OptionConstants.ShowPpuCompilationHintKey
                     or Emulators.Rpcs3.Constants.OptionConstants.ShowShaderCompilationHintKey)
-                    tab = EmulationMachineTab.General;
+                    tab = EmulationMachineTab.Video;
                 if (option.Key is Emulators.Rpcs3.Constants.OptionConstants.DisableFifoReorderingKey
                     or Emulators.Rpcs3.Constants.OptionConstants.DisableHwBlendingKey
                     or Emulators.Rpcs3.Constants.OptionConstants.DisableHwColorspaceKey
@@ -133,6 +137,9 @@ internal static class CoreSettingsFunctions
                     && !option.Key.Contains("pal", StringComparison.OrdinalIgnoreCase) ? "ScanNTSC"
                 : option.Key.Contains("scanline", StringComparison.OrdinalIgnoreCase)
                     && option.Key.Contains("pal", StringComparison.OrdinalIgnoreCase) ? "ScanPAL"
+                : option.Key is Emulators.Rpcs3.Constants.OptionConstants.ShowTrophyPopupsKey
+                    or Emulators.Rpcs3.Constants.OptionConstants.ShowPpuCompilationHintKey
+                    or Emulators.Rpcs3.Constants.OptionConstants.ShowShaderCompilationHintKey ? "Notifications"
                 : CoreSettingsConstants.IsBasicVideo(option.Key) ? CoreSettingsConstants.DisplayGroup
                 : option.Key.Contains(CoreSettingsConstants.GeometryGroup, StringComparison.OrdinalIgnoreCase)
                     ? CoreSettingsConstants.GeometryGroup
@@ -154,6 +161,7 @@ internal static class CoreSettingsFunctions
             var blockId = option.Key is Emulators.Pcsx2.Constants.OptionConstants.HintLanguageUnlockKey
                 or Emulators.Pcsx2.Constants.OptionConstants.UseExternalGameindexKey
                 or Emulators.Pcsx2.Constants.OptionConstants.GameEnhancementsHintKey
+                or Emulators.Rpcs3.Constants.OptionConstants.DatabaseOverrideKey
                 ? CoreSettingsConstants.OptionsBlock + "GamePatches" + CoreSettingsConstants.CompatibilityGroup
                 : tab == EmulationMachineTab.Audio ? CoreSettingsConstants.AudioOptionsBlock
                 : tab == EmulationMachineTab.Ram ? SettingsDescriptionFunctionsConstants.Memory
@@ -161,13 +169,7 @@ internal static class CoreSettingsFunctions
                     || option.Key == Emulators.Ppsspp.Constants.OptionConstants.LockedCpuSpeedKey
                     ? CoreSettingsConstants.AccelerationBlock
                     : configuration.Model == ModelConstants.PlayStation3
-                        ? CoreSettingsConstants.OptionsBlock + (option.Key.Contains("decoder", StringComparison.OrdinalIgnoreCase)
-                            || option.Key.Contains("llvm", StringComparison.OrdinalIgnoreCase) ? "Recompilation"
-                            : option.Key.Contains("clock", StringComparison.OrdinalIgnoreCase)
-                                || option.Key.Contains("timer", StringComparison.OrdinalIgnoreCase)
-                                || option.Key.Contains("scheduler", StringComparison.OrdinalIgnoreCase) ? "CpuTiming"
-                            : option.Key.Contains("spu", StringComparison.OrdinalIgnoreCase)
-                                || option.Key.Contains("mfc", StringComparison.OrdinalIgnoreCase) ? "VectorUnits" : "Compatibility")
+                        ? CoreSettingsConstants.OptionsBlock + Rpcs3CpuGroup(option.Key)
                     : configuration.Model == ModelConstants.PlayStation2 && (option.Key.Contains("_rec_", StringComparison.OrdinalIgnoreCase) || option.Key.Contains("cpu_recompiler", StringComparison.OrdinalIgnoreCase))
                         ? CoreSettingsConstants.OptionsBlock + "Recompilation"
                     : configuration.Model == ModelConstants.PlayStation2 && (option.Key.Contains("vu1", StringComparison.OrdinalIgnoreCase) || option.Key.Contains("mtvu", StringComparison.OrdinalIgnoreCase))
@@ -198,7 +200,8 @@ internal static class CoreSettingsFunctions
                 ControllerPortNumber: ControllerOptionFunctions.PortNumber(option),
                 RefreshSettingsOnChange: option.Key.Contains(ControllerOptionConstants.Multitap, StringComparison.OrdinalIgnoreCase)
                     || option.Key == Emulators.Ppsspp.Constants.OptionConstants.PspModelKey || option.GraphicsApiValues is not null,
-                IsGlobalControllerOption: option.Key.Contains(ControllerOptionConstants.Multitap, StringComparison.OrdinalIgnoreCase),
+                IsGlobalControllerOption: option.Key.Contains(ControllerOptionConstants.Multitap, StringComparison.OrdinalIgnoreCase)
+                    || option.Key == Emulators.Rpcs3.Constants.OptionConstants.EnterButtonKey,
                 AutomaticValue: automaticClock ? Emulators.PcsxRearmed.Constants.OptionConstants.PsxclockAuto : null,
                 UseChoiceLabelsForSlider: dimensionChoices || instantaneousChoice || sectorCount,
                 ValueUnitResourceKey: sectorCount ? "Visual.SectorsUnit" : null);
@@ -217,12 +220,17 @@ internal static class CoreSettingsFunctions
             group.Key.BlockId, group.Key.Tab,
             group.Key.BlockId == CoreSettingsConstants.AccelerationBlock ? CoreSettingsConstants.AccelerationTitle
                 : group.Key.BlockId.EndsWith("Recompilation", StringComparison.Ordinal) ? "Emulation.Sony.Cpu.Recompilation"
+                : group.Key.BlockId.EndsWith("Rpcs3PpuAccuracy", StringComparison.Ordinal) ? "Emulation.Sony.Cpu.PpuAccuracy"
+                : group.Key.BlockId.EndsWith("Rpcs3SpuAccuracy", StringComparison.Ordinal) ? "Emulation.Sony.Cpu.SpuAccuracy"
+                : group.Key.BlockId.EndsWith("Rpcs3SpuExecution", StringComparison.Ordinal) ? "Emulation.Sony.Cpu.SpuExecution"
+                : group.Key.BlockId.EndsWith("Rpcs3Timing", StringComparison.Ordinal) ? "Emulation.Sony.Cpu.Scheduling"
                 : group.Key.BlockId.EndsWith("VectorUnits", StringComparison.Ordinal) ? "Emulation.Sony.Cpu.VectorUnits"
                 : group.Key.BlockId.EndsWith("CpuTiming", StringComparison.Ordinal) ? "Emulation.Sony.Cpu.Timing"
                 : group.Key.BlockId.EndsWith(CoreSettingsConstants.CompatibilityGroup, StringComparison.Ordinal)
                     ? CoreSettingsConstants.CompatibilityTitle
                 : group.Key.Tab == EmulationMachineTab.Audio ? CoreSettingsConstants.AudioOptionsTitle
                 : group.Key.Tab != EmulationMachineTab.Video ? CoreSettingsConstants.Sections[group.Key.Tab].Title
+                : group.Key.BlockId.EndsWith("Notifications", StringComparison.Ordinal) ? "Emulation.Sony.Video.Notifications"
                 : group.Key.BlockId.EndsWith("ScanNTSC", StringComparison.Ordinal) ? "Emulation.Sony.Video.NTSC"
                 : group.Key.BlockId.EndsWith("ScanPAL", StringComparison.Ordinal) ? "Emulation.Sony.Video.PAL"
                 : group.Key.BlockId.EndsWith("HDR", StringComparison.Ordinal) ? "Emulation.Sony.Video.HDR"
@@ -300,6 +308,24 @@ internal static class CoreSettingsFunctions
         return value.Label.StartsWith("Emulation.", StringComparison.Ordinal)
             ? new(value.Value, value.Label) : new(value.Value, string.Empty, value.Label);
     }
+
+    private static string Rpcs3CpuGroup(string key) => key switch
+    {
+        Rpcs3Options.SpuXfloatAccuracyKey or Rpcs3Options.SpuBlockSizeKey
+            or Rpcs3Options.SpuAccurateDmaKey or Rpcs3Options.SpuAccurateReservationsKey
+            or Rpcs3Options.DisableGetllarSpinOptKey or Rpcs3Options.SpuCacheLineStoresKey => "Rpcs3SpuAccuracy",
+        Rpcs3Options.SetDazFtzKey or Rpcs3Options.PpuSetFpccKey or Rpcs3Options.PpuSetSatBitKey
+            or Rpcs3Options.PpuNjModeKey or Rpcs3Options.PpuAccurateVectorNanKey
+            or Rpcs3Options.AccuratePpu128Key or Rpcs3Options.AccurateDfmaKey => "Rpcs3PpuAccuracy",
+        Rpcs3Options.SleepTimersAccuracyKey or Rpcs3Options.ClocksScaleKey
+            or Rpcs3Options.ThreadSchedulerKey or Rpcs3Options.PpuThreadsKey
+            or Rpcs3Options.MaxPreemptCountKey => "Rpcs3Timing",
+        _ when key.Contains("decoder", StringComparison.OrdinalIgnoreCase)
+            || key.Contains("llvm", StringComparison.OrdinalIgnoreCase) => "Recompilation",
+        _ when key.Contains("spu", StringComparison.OrdinalIgnoreCase)
+            || key.Contains("mfc", StringComparison.OrdinalIgnoreCase) => "Rpcs3SpuExecution",
+        _ => "Compatibility"
+    };
 
     internal static string NativeNumber(CoreOption option, string selected)
     {

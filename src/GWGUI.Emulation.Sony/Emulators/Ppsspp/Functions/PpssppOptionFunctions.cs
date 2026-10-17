@@ -1,6 +1,7 @@
 using GWGUI.Emulation.Sony.Emulators.Ppsspp.Constants;
 using GWGUI.Emulation.Sony.Emulators.Ppsspp.Dictionaries;
 using GWGUI.Emulation.Sony.Emulators.Common.Functions;
+using GWGUI.Emulation.Sony.Emulators.Common.Interop.Functions;
 
 namespace GWGUI.Emulation.Sony.Emulators.Ppsspp.Functions;
 
@@ -19,10 +20,10 @@ internal static class PpssppOptionFunctions
 
     internal static MachineConfiguration ToNative(MachineConfiguration configuration)
     {
-        return GraphicsSettingsFunctions.Configure(configuration with
+        return SystemLanguageFunctions.Configure(GraphicsSettingsFunctions.Configure(configuration with
         {
             Options = new Dictionary<string, string>(configuration.Options ?? new Dictionary<string, string>(), StringComparer.Ordinal)
-        }, OptionCatalog.All);
+        }, OptionCatalog.All));
     }
 }
 

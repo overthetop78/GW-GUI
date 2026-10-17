@@ -1476,4 +1476,9 @@
   <data name="Emulation.Sony.Controller.Count"><value>Aantal controleurs</value></data>
   <data name="Emulation.Storage.Cache.Unlimited"><value>Onbeperkt</value></data>
   <data name="Emulation.Storage.Cache.ClearOnGameClose"><value>Wissen wanneer het spel sluit</value></data>
+  <data name="Emulation.Sony.Video.Notifications"><value>Meldingen op het scherm</value></data>
+  <data name="Emulation.Sony.Cpu.PpuAccuracy"><value>PPU precisie</value></data>
+  <data name="Emulation.Sony.Cpu.SpuAccuracy"><value>SPU precisie</value></data>
+  <data name="Emulation.Sony.Cpu.SpuExecution"><value>SPU uitvoering</value></data>
+  <data name="Emulation.Sony.Cpu.Scheduling"><value>Klokken en planning</value></data>
 </root>

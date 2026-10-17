@@ -1476,4 +1476,9 @@
   <data name="Emulation.Sony.Controller.Count"><value>Số bộ điều khiển</value></data>
   <data name="Emulation.Storage.Cache.Unlimited"><value>Vô hạn</value></data>
   <data name="Emulation.Storage.Cache.ClearOnGameClose"><value>&amp; Xoá khi trò chơi kết thúc</value></data>
+  <data name="Emulation.Sony.Video.Notifications"><value>Thông báo trên màn hình</value></data>
+  <data name="Emulation.Sony.Cpu.PpuAccuracy"><value>PPU độ chính xác</value></data>
+  <data name="Emulation.Sony.Cpu.SpuAccuracy"><value>SPU độ chính xác</value></data>
+  <data name="Emulation.Sony.Cpu.SpuExecution"><value>SPU thực hiện</value></data>
+  <data name="Emulation.Sony.Cpu.Scheduling"><value>Đồng hồ và lịch trình</value></data>
 </root>

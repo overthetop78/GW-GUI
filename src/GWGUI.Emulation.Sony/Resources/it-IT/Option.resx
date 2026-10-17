@@ -1476,4 +1476,9 @@
   <data name="Emulation.Sony.Controller.Count"><value>Numero di controller</value></data>
   <data name="Emulation.Storage.Cache.Unlimited"><value>Illimitata</value></data>
   <data name="Emulation.Storage.Cache.ClearOnGameClose"><value>Cancella quando il gioco si chiude</value></data>
+  <data name="Emulation.Sony.Video.Notifications"><value>Notifiche sullo schermo</value></data>
+  <data name="Emulation.Sony.Cpu.PpuAccuracy"><value>PPU precisione</value></data>
+  <data name="Emulation.Sony.Cpu.SpuAccuracy"><value>SPU precisione</value></data>
+  <data name="Emulation.Sony.Cpu.SpuExecution"><value>SPU esecuzione</value></data>
+  <data name="Emulation.Sony.Cpu.Scheduling"><value>Orologi e scheduling</value></data>
 </root>

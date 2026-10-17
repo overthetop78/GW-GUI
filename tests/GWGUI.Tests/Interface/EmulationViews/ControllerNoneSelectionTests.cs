@@ -220,6 +220,12 @@ public sealed class ControllerNoneSelectionTests(StaExecutionScenarios sta, ITes
     public Task GroupedStickSelectionRetainsKeyboardRowsAndRoundTripsPhysicalDevice() => sta.RunAsync(() =>
     {
         var source = new DeviceSettingsViews.DeviceListScenarios.Source();
+        source.Devices = source.Devices.Select(device => device with
+        {
+            Controls = [new(GWGUI.App.Services.Input.GameInput.GameInputControlType.Axis, 0, default),
+                new(GWGUI.App.Services.Input.GameInput.GameInputControlType.Axis, 1, default),
+                new(GWGUI.App.Services.Input.GameInput.GameInputControlType.Axis, 2, default)]
+        }).ToArray();
         var editor = new InputBindingEditor { AnalogControllerSource = source };
         var changes = 0;
         void Changed(object? sender, EventArgs args) => changes++;
@@ -233,6 +239,7 @@ public sealed class ControllerNoneSelectionTests(StaExecutionScenarios sta, ITes
             editor.SetRows(definitions, keyboard);
             Assert.Equal(keyboard.OrderBy(item => item.Key), editor.Rows.ToDictionary(row => row.Id, row => row.Binding).OrderBy(item => item.Key));
             var selector = Assert.Single(Descendants(editor).OfType<ComboBox>());
+            Assert.Equal(6, selector.Items.Count); // Custom/None and only two sticks per standard gamepad.
             Assert.Equal(0, selector.SelectedIndex);
             selector.SelectedIndex = 5; // Second controller, right stick.
             Assert.Equal(1, changes);

@@ -1,5 +1,6 @@
 using System.Net.Http;
 using System.IO;
+using System.Globalization;
 using GWGUI.Emulation.Constants;
 using GWGUI.Emulation.Enums;
 using GWGUI.Emulation.Sony.Common.Machines.Common.Constants;
@@ -11,6 +12,56 @@ namespace GWGUI.Tests.Emulation.Sony;
 
 public sealed class SettingsPresentationTests
 {
+    [Theory]
+    [InlineData("fr-FR", "French", "french")]
+    [InlineData("fr-CA", "French", "french")]
+    [InlineData("en-US", "English", "english")]
+    [InlineData("pt-BR", "Portuguese", "portuguese")]
+    [InlineData("ja-JP", "Japanese", "japanese")]
+    [InlineData("zh-Hant", "Chinese Traditional", "chinese_trad")]
+    [InlineData("zh-TW", "Chinese Traditional", "chinese_trad")]
+    [InlineData("zh-HK", "Chinese Traditional", "chinese_trad")]
+    [InlineData("zh-Hans", "Chinese Simplified", "chinese_simp")]
+    [InlineData("ar-SA", "English", "english")]
+    public void SystemLanguageUsesApplicationCultureInsteadOfSavedManualChoice(string culture, string psp, string ps3)
+    {
+        foreach (var (model, emulator, key, expected) in new[]
+        {
+            (ModelConstants.Psp, "ppsspp", "ppsspp_language", psp),
+            (ModelConstants.PlayStation3, "rpcs3", "rpcs3_language", ps3)
+        })
+        {
+            var original = new MachineConfiguration(model, emulator, Options: new Dictionary<string, string> { [key] = "old-manual-selection" });
+            var native = GWGUI.Emulation.Sony.Emulators.Common.Interop.Functions.SystemLanguageFunctions.Configure(original, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expected, native.Options![key]);
+            Assert.Equal("old-manual-selection", original.Options![key]);
+            Assert.DoesNotContain(SettingsDescriptionFunctions.Create(original).SelectMany(block => block.Fields), field => field.Id == key);
+        }
+    }
+
+    [Fact]
+    public void Rpcs3CpuGroupsSeparatePrecisionExecutionAndScheduling()
+    {
+        var blocks = SettingsDescriptionFunctions.Create(new MachineConfiguration(ModelConstants.PlayStation3, "rpcs3"))
+            .Where(block => block.Tab == EmulationMachineTab.Cpu).ToArray();
+        foreach (var (title, ids) in new[]
+        {
+            ("Recompilation", new[] { "rpcs3_ppu_decoder", "rpcs3_spu_decoder" }),
+            ("PpuAccuracy", new[] { "rpcs3_ppu_set_fpcc", "rpcs3_accurate_dfma" }),
+            ("SpuAccuracy", new[] { "rpcs3_spu_xfloat_accuracy", "rpcs3_spu_accurate_dma" }),
+            ("SpuExecution", new[] { "rpcs3_spu_loop_detection", "rpcs3_spu_cache", "rpcs3_preferred_spu_threads" }),
+            ("Scheduling", new[] { "rpcs3_clocks_scale", "rpcs3_thread_scheduler", "rpcs3_ppu_threads" })
+        })
+        {
+            var block = Assert.Single(blocks, block => block.TitleResourceKey == "Emulation.Sony.Cpu." + title);
+            Assert.True(block.IsCompact);
+            foreach (var id in ids) Assert.Contains(block.Fields, field => field.Id == id);
+        }
+        Assert.DoesNotContain(blocks, block => block.TitleResourceKey is "Emulation.Sony.Cpu.Timing" or "Emulation.Sony.Cpu.VectorUnits");
+        var fields = blocks.SelectMany(block => block.Fields).ToArray();
+        Assert.Equal(fields.Length, fields.Select(field => field.Id).Distinct().Count());
+    }
+
     [Fact]
     public void PspUsesNativeResolutionDimensionsAndDedicatedCheatsTab()
     {
@@ -67,7 +118,13 @@ public sealed class SettingsPresentationTests
         var fields = SettingsDescriptionFunctions.Create(configuration).SelectMany(block => block.Fields).ToArray();
         Assert.DoesNotContain(fields, field => field.Id is "rpcs3_disk_cache_size" or "rpcs3_emulate_hdd_speed" or "rpcs3_emulate_bdvd_speed");
         Assert.Equal(EmulationMachineTab.Ethernet, Assert.Single(fields, field => field.Id == "rpcs3_network_enabled").Tab);
-        Assert.Equal(EmulationMachineTab.General, Assert.Single(fields, field => field.Id == "rpcs3_language").Tab);
+        Assert.DoesNotContain(fields, field => field.Id == "rpcs3_language");
+        Assert.Equal(EmulationMachineTab.Cheats, Assert.Single(fields, field => field.Id == "rpcs3_database_override").Tab);
+        Assert.Equal(EmulationMachineTab.Rom, Assert.Single(fields, field => field.Id == "rpcs3_license_area").Tab);
+        Assert.True(Assert.Single(fields, field => field.Id == "rpcs3_enter_button").IsGlobalControllerOption);
+        Assert.Equal(EmulationMachineTab.Controllers, Assert.Single(fields, field => field.Id == "rpcs3_enter_button").Tab);
+        foreach (var key in new[] { "rpcs3_show_trophy_popups", "rpcs3_show_ppu_compilation_hint", "rpcs3_show_shader_compilation_hint" })
+            Assert.Equal(EmulationMachineTab.Video, Assert.Single(fields, field => field.Id == key).Tab);
         Assert.Equal(EmulationMachineTab.Video, Assert.Single(fields, field => field.Id == "rpcs3_disable_hw_blending").Tab);
         var selected = StorageSettingsFunctions.Apply(configuration, storage with
         { DeviceSettings = [new(hdd.Slot, Options: new Dictionary<string, string> { ["rpcs3_disk_cache_size"] = "wipe" })] });

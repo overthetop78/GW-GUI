@@ -1476,4 +1476,9 @@
   <data name="Emulation.Sony.Controller.Count"><value>Кількість контролерів</value></data>
   <data name="Emulation.Storage.Cache.Unlimited"><value>Без категорії</value></data>
   <data name="Emulation.Storage.Cache.ClearOnGameClose"><value>Очистити, коли гра закривається</value></data>
+  <data name="Emulation.Sony.Video.Notifications"><value>Ознайомитися з повідомленнями</value></data>
+  <data name="Emulation.Sony.Cpu.PpuAccuracy"><value>PPU точне</value></data>
+  <data name="Emulation.Sony.Cpu.SpuAccuracy"><value>SPU точне</value></data>
+  <data name="Emulation.Sony.Cpu.SpuExecution"><value>SPU верстка</value></data>
+  <data name="Emulation.Sony.Cpu.Scheduling"><value>Годинники та розклад</value></data>
 </root>

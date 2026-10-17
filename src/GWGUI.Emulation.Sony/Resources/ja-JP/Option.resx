@@ -1476,4 +1476,9 @@
   <data name="Emulation.Sony.Controller.Count"><value>コントローラの数</value></data>
   <data name="Emulation.Storage.Cache.Unlimited"><value>無制限</value></data>
   <data name="Emulation.Storage.Cache.ClearOnGameClose"><value>ゲームが閉じるときにクリア</value></data>
+  <data name="Emulation.Sony.Video.Notifications"><value>画面上の通知</value></data>
+  <data name="Emulation.Sony.Cpu.PpuAccuracy"><value>PPU 精密精密精密</value></data>
+  <data name="Emulation.Sony.Cpu.SpuAccuracy"><value>SPU 精密精密精密</value></data>
+  <data name="Emulation.Sony.Cpu.SpuExecution"><value>SPU 実行結果</value></data>
+  <data name="Emulation.Sony.Cpu.Scheduling"><value>時計とスケジューリング</value></data>
 </root>

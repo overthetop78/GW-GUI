@@ -1476,4 +1476,9 @@
   <data name="Emulation.Sony.Controller.Count"><value>จํานวนของตัวควบคุม</value></data>
   <data name="Emulation.Storage.Cache.Unlimited"><value>ไม่จํากัด</value></data>
   <data name="Emulation.Storage.Cache.ClearOnGameClose"><value>ล้างเมื่อเกมยุติ</value></data>
+  <data name="Emulation.Sony.Video.Notifications"><value>การแจ้งให้ทราบทางหน้าจอ</value></data>
+  <data name="Emulation.Sony.Cpu.PpuAccuracy"><value>PPU ความแม่นยํา</value></data>
+  <data name="Emulation.Sony.Cpu.SpuAccuracy"><value>SPU ความแม่นยํา</value></data>
+  <data name="Emulation.Sony.Cpu.SpuExecution"><value>SPU การประมวลผล</value></data>
+  <data name="Emulation.Sony.Cpu.Scheduling"><value>นาฬิกาและตาราง</value></data>
 </root>

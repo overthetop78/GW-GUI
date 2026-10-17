@@ -1476,4 +1476,9 @@
   <data name="Emulation.Sony.Controller.Count"><value>관제사의 수</value></data>
   <data name="Emulation.Storage.Cache.Unlimited"><value>무제한</value></data>
   <data name="Emulation.Storage.Cache.ClearOnGameClose"><value>게임이 닫을 때 지우십시오.</value></data>
+  <data name="Emulation.Sony.Video.Notifications"><value>화면 알림</value></data>
+  <data name="Emulation.Sony.Cpu.PpuAccuracy"><value>PPU 의 특징</value></data>
+  <data name="Emulation.Sony.Cpu.SpuAccuracy"><value>SPU 의 특징</value></data>
+  <data name="Emulation.Sony.Cpu.SpuExecution"><value>SPU 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의</value></data>
+  <data name="Emulation.Sony.Cpu.Scheduling"><value>시계 및 스케줄링</value></data>
 </root>

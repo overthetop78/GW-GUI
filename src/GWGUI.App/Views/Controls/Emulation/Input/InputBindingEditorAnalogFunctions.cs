@@ -115,6 +115,7 @@ public partial class InputBindingEditor
                             Add(name + LocExtension.Get("Controllers." + stick + "StickY"), device.Id, direction => stick + "Stick" + (direction == "Left" ? "Up" : "Down"));
                         }
                     }
+                if (device.StandardCapabilities.HasGamepad) continue;
                 var axes = device.Controls.Where(control => control.Type == GameInputControlType.Axis).Select(control => control.Index).Distinct().Order().ToArray();
                 foreach (var x in axes)
                 {

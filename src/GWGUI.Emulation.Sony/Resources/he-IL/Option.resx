@@ -1476,4 +1476,9 @@
   <data name="Emulation.Sony.Controller.Count"><value>מספר בקרים</value></data>
   <data name="Emulation.Storage.Cache.Unlimited"><value>בלתי מוגבל</value></data>
   <data name="Emulation.Storage.Cache.ClearOnGameClose"><value>ברור מתי המשחק נסגר</value></data>
+  <data name="Emulation.Sony.Video.Notifications"><value>הודעות על המסך</value></data>
+  <data name="Emulation.Sony.Cpu.PpuAccuracy"><value>PPU דיוק</value></data>
+  <data name="Emulation.Sony.Cpu.SpuAccuracy"><value>SPU דיוק</value></data>
+  <data name="Emulation.Sony.Cpu.SpuExecution"><value>SPU הוצאה להורג</value></data>
+  <data name="Emulation.Sony.Cpu.Scheduling"><value>שעונים ותזמון</value></data>
 </root>

@@ -1529,4 +1529,9 @@
   <data name="Emulation.Storage.Cache.Unlimited"><value>Unlimited</value></data>
   <data name="Emulation.Storage.Cache.ClearOnGameClose"><value>Clear when the game closes</value></data>
   <data name="Emulation.Sony.Storage.BluRay"><value>Blu-ray</value></data>
+  <data name="Emulation.Sony.Video.Notifications"><value>On-screen notifications</value></data>
+  <data name="Emulation.Sony.Cpu.PpuAccuracy"><value>PPU precision</value></data>
+  <data name="Emulation.Sony.Cpu.SpuAccuracy"><value>SPU precision</value></data>
+  <data name="Emulation.Sony.Cpu.SpuExecution"><value>SPU execution</value></data>
+  <data name="Emulation.Sony.Cpu.Scheduling"><value>Clocks and scheduling</value></data>
 </root>

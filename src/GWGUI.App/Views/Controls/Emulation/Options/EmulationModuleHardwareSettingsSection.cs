@@ -22,7 +22,7 @@ internal sealed partial class EmulationModuleSettingsSection
         {
             var blocks = settings.Blocks.Where(block => block.Tab == EmulationMachineTab.Cpu && block.IsVisible).ToArray();
             var cards = blocks.ToDictionary(block => block.Id, block => EmulationSettingsLayout.IconCard(
-                EmulationSettingsLayout.CompactForm(1, block.Fields.Where(field => field.IsVisible).Select(CreateControlField).ToArray()),
+                EmulationSettingsLayout.BoundedForm(1, block.Fields.Where(field => field.IsVisible).Select(CreateControlField).ToArray()),
                 LocExtension.GetForModule(_module, block.TitleResourceKey), block.Icon ?? string.Empty));
             foreach (var field in VisibleFields(settings, EmulationMachineTab.Cpu).Where(field => field.FrequencyScaleFieldId is not null))
             {
@@ -41,12 +41,28 @@ internal sealed partial class EmulationModuleSettingsSection
             }
             ApplySettingsRules(settings);
             var cpuCards = new StackPanel { Margin = new Thickness(12) };
+            var compactCards = new List<FrameworkElement>();
+            void AddCompactCards()
+            {
+                if (compactCards.Count == 0) return;
+                var group = EmulationSettingsLayout.CompactCards(compactCards);
+                group.Margin = new Thickness(0);
+                cpuCards.Children.Add(group);
+                compactCards.Clear();
+            }
             foreach (var block in blocks)
             {
                 var card = cards[block.Id];
+                if (block.IsCompact && block.Fields.Count(field => field.IsVisible) <= 8)
+                {
+                    compactCards.Add(card);
+                    continue;
+                }
+                AddCompactCards();
                 card.Margin = new Thickness(0, 0, 0, 12);
                 cpuCards.Children.Add(card);
             }
+            AddCompactCards();
             return EmulationSettingsLayout.ScrollPage(cpuCards);
         }
         var fields = VisibleFields(settings, EmulationMachineTab.Cpu);

@@ -1476,4 +1476,9 @@
   <data name="Emulation.Sony.Controller.Count"><value>Počet regulátorů</value></data>
   <data name="Emulation.Storage.Cache.Unlimited"><value>Neomezené</value></data>
   <data name="Emulation.Storage.Cache.ClearOnGameClose"><value>Vyčistit, když hra zavře</value></data>
+  <data name="Emulation.Sony.Video.Notifications"><value>Oznámení na obrazovce</value></data>
+  <data name="Emulation.Sony.Cpu.PpuAccuracy"><value>PPU přesnost</value></data>
+  <data name="Emulation.Sony.Cpu.SpuAccuracy"><value>SPU přesnost</value></data>
+  <data name="Emulation.Sony.Cpu.SpuExecution"><value>SPU provedení</value></data>
+  <data name="Emulation.Sony.Cpu.Scheduling"><value>Hodiny a harmonogram</value></data>
 </root>

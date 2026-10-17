@@ -1476,4 +1476,9 @@
   <data name="Emulation.Sony.Controller.Count"><value>عدد المتحكمين</value></data>
   <data name="Emulation.Storage.Cache.Unlimited"><value>غير محدود</value></data>
   <data name="Emulation.Storage.Cache.ClearOnGameClose"><value>واضح عندما تغلق اللعبة</value></data>
+  <data name="Emulation.Sony.Video.Notifications"><value>الإخطارات بالشاشة</value></data>
+  <data name="Emulation.Sony.Cpu.PpuAccuracy"><value>PPU الدقة</value></data>
+  <data name="Emulation.Sony.Cpu.SpuAccuracy"><value>SPU الدقة</value></data>
+  <data name="Emulation.Sony.Cpu.SpuExecution"><value>SPU الإعدام</value></data>
+  <data name="Emulation.Sony.Cpu.Scheduling"><value>القفل والبرمجة</value></data>
 </root>

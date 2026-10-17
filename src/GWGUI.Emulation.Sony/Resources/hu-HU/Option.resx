@@ -1476,4 +1476,9 @@
   <data name="Emulation.Sony.Controller.Count"><value>A kezelők száma</value></data>
   <data name="Emulation.Storage.Cache.Unlimited"><value>Korlátlan</value></data>
   <data name="Emulation.Storage.Cache.ClearOnGameClose"><value>A játék zárásakor</value></data>
+  <data name="Emulation.Sony.Video.Notifications"><value>Képernyőnkénti értesítések</value></data>
+  <data name="Emulation.Sony.Cpu.PpuAccuracy"><value>PPU pontosság</value></data>
+  <data name="Emulation.Sony.Cpu.SpuAccuracy"><value>SPU pontosság</value></data>
+  <data name="Emulation.Sony.Cpu.SpuExecution"><value>SPU végrehajtás</value></data>
+  <data name="Emulation.Sony.Cpu.Scheduling"><value>Órák és ütemezés</value></data>
 </root>

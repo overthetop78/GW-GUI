@@ -53,3 +53,31 @@ Le stockage RPCS3 reste fixe pour l’instant, sans sélecteur de dossier. `Core
 Sources vérifiées : https://github.com/WizzardSK/rpcs3-libretro/blob/libretro/rpcs3/libretro/libretro_core.cpp (initialisation du répertoire RPCS3) et https://github.com/WizzardSK/rpcs3-libretro/blob/libretro/rpcs3/Emu/System.cpp (création de dev_hdd0/dev_hdd1 dans Emulator::Init).
 
 Correction du traitement du dernier cadre Général LRPS2 : les trois options n’ont plus de masquage. Le déblocage des langues, les améliorations des jeux et la base GameIndex externe sont visibles dans une section Compatibilité de Cheats, distincte des codes de triche. Le chemin GameIndex reste dans leur section avec ses conditions de disponibilité existantes. Les clés et traductions existantes sont réutilisées.
+
+
+## Ajustement de la langue et déplacement du cadre Général RPCS3
+
+PPSSPP et RPCS3 reçoivent désormais au lancement une langue native calculée depuis `CultureInfo.DefaultThreadCurrentUICulture`, définie par `App.SetLanguage` (ou `CurrentUICulture` en dehors de l’application). Les anciens choix enregistrés ne prennent plus priorité ; aucun sélecteur de langue du système émulé n’est présenté. Les variantes régionales partagent la langue prise en charge par la console, avec distinction chinois simplifié/traditionnel ; une langue non prise en charge par le système émulé utilise l’anglais.
+
+Les notifications de trophées et de compilation PPU/shaders sont déplacées dans Vidéo, cadre Notifications à l’écran. La base de compatibilité des jeux passe dans Cheats/Compatibilité ; la région dans ROM ; le bouton de confirmation dans les réglages globaux Manettes. Le dernier cadre Général ne contient donc plus ces réglages.
+
+Contrôle syntaxique et diff effectués ; scénarios sources adaptés pour les langues, la priorité sur les anciennes sélections et le classement. Aucun nouveau build ni test exécuté pour cette reprise.
+
+
+### Cadres CPU RPCS3 compacts
+
+Les options CPU sont réparties entre recompilation, précision PPU, précision SPU,
+exécution SPU, compatibilité, et horloges/ordonnancement. Les titres PS3 ne reprennent
+plus les unités vectorielles ni l’Emotion Engine de la PS2. Les quatre nouveaux titres
+sont présents dans les 30 catalogues, avec traduction Argos et libellés français relus.
+
+Le rendu CPU compact utilise le conteneur adaptatif existant : deux colonnes à partir
+de 760 pixels de contenu, une seule en dessous. Les cadres compacts contenant au plus
+huit champs visibles occupent une demi-largeur ; les autres et le résumé matériel
+restent en pleine largeur. Les libellés utilisent un formulaire borné avec retour à
+la ligne pour ne pas imposer leur longueur aux colonnes.
+
+Validation effectuée : analyse syntaxique Roslyn des huit fichiers C# modifiés,
+lecture XML des 30 catalogues, présence et unicité des clés, et `git diff --check`.
+Le test source de classement CPU a été ajouté. Aucun build, exécution des tests ni
+contrôle visuel dans l’application n’a été lancé pour cette demande.

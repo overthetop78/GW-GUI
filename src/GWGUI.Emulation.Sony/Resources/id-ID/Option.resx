@@ -1476,4 +1476,9 @@
   <data name="Emulation.Sony.Controller.Count"><value>Jumlah pengontrol</value></data>
   <data name="Emulation.Storage.Cache.Unlimited"><value>Tak terbatas</value></data>
   <data name="Emulation.Storage.Cache.ClearOnGameClose"><value>Hapus ketika permainan ditutup</value></data>
+  <data name="Emulation.Sony.Video.Notifications"><value>Pemberitahuan layar on-</value></data>
+  <data name="Emulation.Sony.Cpu.PpuAccuracy"><value>PPU presisi</value></data>
+  <data name="Emulation.Sony.Cpu.SpuAccuracy"><value>SPU presisi</value></data>
+  <data name="Emulation.Sony.Cpu.SpuExecution"><value>SPU eksekusi</value></data>
+  <data name="Emulation.Sony.Cpu.Scheduling"><value>Jam dan penjadwalan</value></data>
 </root>

@@ -1476,4 +1476,9 @@
   <data name="Emulation.Sony.Controller.Count"><value>Antal styrenheter</value></data>
   <data name="Emulation.Storage.Cache.Unlimited"><value>Obegränsad</value></data>
   <data name="Emulation.Storage.Cache.ClearOnGameClose"><value>Tydligt när spelet stängs</value></data>
+  <data name="Emulation.Sony.Video.Notifications"><value>On-screen-meddelanden</value></data>
+  <data name="Emulation.Sony.Cpu.PpuAccuracy"><value>PPU precision</value></data>
+  <data name="Emulation.Sony.Cpu.SpuAccuracy"><value>SPU precision</value></data>
+  <data name="Emulation.Sony.Cpu.SpuExecution"><value>SPU utförande</value></data>
+  <data name="Emulation.Sony.Cpu.Scheduling"><value>Klockor och schemaläggning</value></data>
 </root>
