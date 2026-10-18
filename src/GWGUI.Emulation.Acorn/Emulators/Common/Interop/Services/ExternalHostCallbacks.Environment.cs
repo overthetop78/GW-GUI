@@ -13,12 +13,14 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
     private bool OnEnvironment(uint command, nint data)
     {
         _environmentCommands.Add(command);
+        if (ExternalCoreEnvironmentFunctions.TryHandleStatelessCommand(command, data,
+                CoreOptionConstants.SupportedInterfaceVersion, ExternalCoreInteropConstants.MessageInterfaceVersion,
+                EnvironmentConstants.JoypadCapability | EnvironmentConstants.MouseCapability | EnvironmentConstants.KeyboardCapability | EnvironmentConstants.AnalogCapability, out var commonResult))
+            return commonResult;
         switch (command)
         {
             case ExternalCoreApiConstants.SetRotation:
                 return SetRotation(data);
-            case ExternalCoreApiConstants.GetOverscan:
-                return CoreFunctions.WriteBoolean(data, false);
             case ExternalCoreApiConstants.SetPerformanceLevel:
                 return CapturePerformanceLevel(data);
             case ExternalCoreApiConstants.GetSystemDirectory:
@@ -39,19 +41,12 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
             case ExternalCoreApiConstants.SetSupportNoGame:
                 SupportsNoGame = data != nint.Zero && Marshal.ReadByte(data) != ExternalCoreInteropConstants.NativeBooleanFalse;
                 return data != nint.Zero;
-            case ExternalCoreApiConstants.GetCanDuplicateFrames:
-            case ExternalCoreApiConstants.GetInputBitmasks:
-                return CoreFunctions.WriteBoolean(data, true);
-            case ExternalCoreApiConstants.GetCoreOptionsVersion:
-                return CoreFunctions.WriteInteger(data, CoreOptionConstants.SupportedInterfaceVersion);
             case ExternalCoreApiConstants.SetCoreOptions:
                 _optionHost.RegisterVersionOne(data);
                 return data != nint.Zero;
             case ExternalCoreApiConstants.SetCoreOptionsInternational:
                 _optionHost.RegisterVersionOneInternational(data);
                 return data != nint.Zero;
-            case ExternalCoreApiConstants.GetMessageInterfaceVersion:
-                return CoreFunctions.WriteInteger(data, ExternalCoreInteropConstants.MessageInterfaceVersion);
             case ExternalCoreApiConstants.SetSystemAvInfo:
                 return SetSystemAvInfo(data);
             case ExternalCoreApiConstants.SetGeometry:
@@ -62,20 +57,12 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
                 return ReadExtendedMessage(data);
             case ExternalCoreApiConstants.GetLogInterface:
                 return SetLogInterface(data);
-            case ExternalCoreApiConstants.GetPerformanceInterface:
-                return false;
             case ExternalCoreApiConstants.GetLedInterface:
                 return SetLedInterface(data);
             case ExternalCoreApiConstants.GetRumbleInterface:
                 return SetRumbleInterface(data);
             case ExternalCoreApiConstants.GetSensorInterface:
                 return SetSensorInterface(data);
-            case ExternalCoreApiConstants.GetInputDeviceCapabilities:
-                return CoreFunctions.WriteUnsignedLong(data, EnvironmentConstants.JoypadCapability | EnvironmentConstants.MouseCapability | EnvironmentConstants.KeyboardCapability | EnvironmentConstants.AnalogCapability);
-            case ExternalCoreApiConstants.GetLanguage:
-                return CoreFunctions.WriteInteger(data, EnvironmentFunctions.CurrentLanguage());
-            case ExternalCoreApiConstants.GetFastForwarding:
-                return CoreFunctions.WriteBoolean(data, false);
             case ExternalCoreApiConstants.SetInputDescriptors:
                 InputDescriptors = EnvironmentFunctions.CopyInputDescriptors(data);
                 return data != nint.Zero;

@@ -2,10 +2,46 @@ using System.Text;
 using System.Globalization;
 using System.Runtime.InteropServices;
 using GWGUI.Emulation.Interop;
+using GWGUI.Emulation.Constants;
 
 namespace GWGUI.Emulation.Functions;
 internal static class ExternalCoreEnvironmentFunctions
 {
+    internal static bool TryHandleStatelessCommand(uint command, nint data, uint coreOptionsVersion,
+        uint messageInterfaceVersion, ulong inputCapabilities, out bool result)
+    {
+        switch (command)
+        {
+            case ExternalCoreApiConstants.GetOverscan:
+            case ExternalCoreApiConstants.GetFastForwarding:
+                result = WriteBoolean(data, false);
+                break;
+            case ExternalCoreApiConstants.GetCanDuplicateFrames:
+            case ExternalCoreApiConstants.GetInputBitmasks:
+                result = WriteBoolean(data, true);
+                break;
+            case ExternalCoreApiConstants.GetCoreOptionsVersion:
+                result = WriteInteger(data, coreOptionsVersion);
+                break;
+            case ExternalCoreApiConstants.GetMessageInterfaceVersion:
+                result = WriteInteger(data, messageInterfaceVersion);
+                break;
+            case ExternalCoreApiConstants.GetPerformanceInterface:
+                result = false;
+                break;
+            case ExternalCoreApiConstants.GetInputDeviceCapabilities:
+                result = WriteUnsignedLong(data, inputCapabilities);
+                break;
+            case ExternalCoreApiConstants.GetLanguage:
+                result = WriteInteger(data, CurrentLanguage());
+                break;
+            default:
+                result = false;
+                return false;
+        }
+        return true;
+    }
+
     internal static bool WritePointer(nint destination, nint value)
     {
         if (destination == nint.Zero) return false;

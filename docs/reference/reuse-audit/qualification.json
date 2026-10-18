@@ -4122,5 +4122,212 @@
     "undefinedValueExceptionPreserved": true,
     "compilation": "SDK, App and all 23 referenced modules compiled by targeted dotnet test",
     "afterProductBuild": "06a31980a"
+  },
+  "statelessEnvironmentCommandReuse": [
+    {
+      "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+      "commandRegistrationUnchanged": true,
+      "otherSectionsAndDiagnosticsUnchanged": true,
+      "coreVersionUnchanged": true,
+      "messageVersionUnchanged": true,
+      "capabilitiesUnchanged": true,
+      "handledResultReturned": true,
+      "remainingSectionCount": 36,
+      "sharedOwner": "Atari OnEnvironment before ac7292d86",
+      "parameters": [
+        "CoreOptionConstants.SupportedInterfaceVersion",
+        "ExternalCoreInteropConstants.MessageInterfaceVersion",
+        "EnvironmentConstants.JoypadCapability | EnvironmentConstants.MouseCapability | EnvironmentConstants.KeyboardCapability | EnvironmentConstants.AnalogCapability"
+      ]
+    },
+    {
+      "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+      "commandRegistrationUnchanged": true,
+      "otherSectionsAndDiagnosticsUnchanged": true,
+      "coreVersionUnchanged": true,
+      "messageVersionUnchanged": true,
+      "capabilitiesUnchanged": true,
+      "handledResultReturned": true,
+      "remainingSectionCount": 36,
+      "sharedOwner": "Atari OnEnvironment before ac7292d86",
+      "parameters": [
+        "CoreOptionConstants.SupportedInterfaceVersion",
+        "ExternalCoreInteropConstants.MessageInterfaceVersion",
+        "EnvironmentConstants.SupportedInputCapabilities"
+      ]
+    },
+    {
+      "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+      "commandRegistrationUnchanged": true,
+      "otherSectionsAndDiagnosticsUnchanged": true,
+      "coreVersionUnchanged": true,
+      "messageVersionUnchanged": true,
+      "capabilitiesUnchanged": true,
+      "handledResultReturned": true,
+      "remainingSectionCount": 36,
+      "sharedOwner": "Atari OnEnvironment before ac7292d86",
+      "parameters": [
+        "CoreOptionConstants.SupportedInterfaceVersion",
+        "ExternalCoreInteropConstants.MessageInterfaceVersion",
+        "EnvironmentConstants.JoypadCapability"
+      ]
+    },
+    {
+      "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+      "commandRegistrationUnchanged": true,
+      "otherSectionsAndDiagnosticsUnchanged": true,
+      "coreVersionUnchanged": true,
+      "messageVersionUnchanged": true,
+      "capabilitiesUnchanged": true,
+      "handledResultReturned": true,
+      "remainingSectionCount": 36,
+      "sharedOwner": "Atari OnEnvironment before ac7292d86",
+      "parameters": [
+        "CoreOptionConstants.SupportedInterfaceVersion",
+        "ExternalCoreInteropConstants.MessageInterfaceVersion",
+        "EnvironmentConstants.JoypadCapability | EnvironmentConstants.MouseCapability | EnvironmentConstants.KeyboardCapability | EnvironmentConstants.AnalogCapability"
+      ]
+    },
+    {
+      "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+      "commandRegistrationUnchanged": true,
+      "otherSectionsAndDiagnosticsUnchanged": true,
+      "coreVersionUnchanged": true,
+      "messageVersionUnchanged": true,
+      "capabilitiesUnchanged": true,
+      "handledResultReturned": true,
+      "remainingSectionCount": 38,
+      "sharedOwner": "Atari OnEnvironment before ac7292d86",
+      "parameters": [
+        "CoreOptionConstants.SupportedInterfaceVersion",
+        "ExternalCoreInteropConstants.MessageInterfaceVersion",
+        "_inputCapabilities"
+      ]
+    },
+    {
+      "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+      "commandRegistrationUnchanged": true,
+      "otherSectionsAndDiagnosticsUnchanged": true,
+      "coreVersionUnchanged": true,
+      "messageVersionUnchanged": true,
+      "capabilitiesUnchanged": true,
+      "handledResultReturned": true,
+      "remainingSectionCount": 36,
+      "sharedOwner": "Atari OnEnvironment before ac7292d86",
+      "parameters": [
+        "CoreOptionConstants.SupportedInterfaceVersion",
+        "ExternalCoreInteropConstants.MessageInterfaceVersion",
+        "EnvironmentConstants.JoypadCapability | EnvironmentConstants.MouseCapability | EnvironmentConstants.KeyboardCapability | EnvironmentConstants.AnalogCapability"
+      ]
+    },
+    {
+      "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+      "commandRegistrationUnchanged": true,
+      "otherSectionsAndDiagnosticsUnchanged": true,
+      "coreVersionUnchanged": true,
+      "messageVersionUnchanged": true,
+      "capabilitiesUnchanged": true,
+      "handledResultReturned": true,
+      "remainingSectionCount": 36,
+      "sharedOwner": "Atari OnEnvironment before ac7292d86",
+      "parameters": [
+        "CoreOptionConstants.SupportedInterfaceVersion",
+        "ExternalCoreInteropConstants.MessageInterfaceVersion",
+        "EnvironmentConstants.JoypadCapability | EnvironmentConstants.MouseCapability\n                    | EnvironmentConstants.KeyboardCapability | EnvironmentConstants.LightGunCapability\n                    | EnvironmentConstants.AnalogCapability"
+      ]
+    },
+    {
+      "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+      "commandRegistrationUnchanged": true,
+      "otherSectionsAndDiagnosticsUnchanged": true,
+      "coreVersionUnchanged": true,
+      "messageVersionUnchanged": true,
+      "capabilitiesUnchanged": true,
+      "handledResultReturned": true,
+      "remainingSectionCount": 36,
+      "sharedOwner": "Atari OnEnvironment before ac7292d86",
+      "parameters": [
+        "CoreOptionConstants.SupportedInterfaceVersion",
+        "ExternalCoreInteropConstants.MessageInterfaceVersion",
+        "EnvironmentConstants.SupportedInputCapabilities"
+      ]
+    },
+    {
+      "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+      "commandRegistrationUnchanged": true,
+      "otherSectionsAndDiagnosticsUnchanged": true,
+      "coreVersionUnchanged": true,
+      "messageVersionUnchanged": true,
+      "capabilitiesUnchanged": true,
+      "handledResultReturned": true,
+      "remainingSectionCount": 36,
+      "sharedOwner": "Atari OnEnvironment before ac7292d86",
+      "parameters": [
+        "CoreOptionConstants.SupportedInterfaceVersion",
+        "ExternalCoreInteropConstants.MessageInterfaceVersion",
+        "EnvironmentConstants.SupportedInputCapabilities"
+      ]
+    },
+    {
+      "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+      "commandRegistrationUnchanged": true,
+      "otherSectionsAndDiagnosticsUnchanged": true,
+      "coreVersionUnchanged": true,
+      "messageVersionUnchanged": true,
+      "capabilitiesUnchanged": true,
+      "handledResultReturned": true,
+      "remainingSectionCount": 36,
+      "sharedOwner": "Atari OnEnvironment before ac7292d86",
+      "parameters": [
+        "CoreOptionConstants.SupportedInterfaceVersion",
+        "ExternalCoreInteropConstants.MessageInterfaceVersion",
+        "EnvironmentConstants.SupportedInputCapabilities"
+      ]
+    },
+    {
+      "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+      "commandRegistrationUnchanged": true,
+      "otherSectionsAndDiagnosticsUnchanged": true,
+      "coreVersionUnchanged": true,
+      "messageVersionUnchanged": true,
+      "capabilitiesUnchanged": true,
+      "handledResultReturned": true,
+      "remainingSectionCount": 36,
+      "sharedOwner": "Atari OnEnvironment before ac7292d86",
+      "parameters": [
+        "CoreOptionConstants.SupportedInterfaceVersion",
+        "ExternalCoreInteropConstants.MessageInterfaceVersion",
+        "EnvironmentConstants.JoypadCapability | EnvironmentConstants.MouseCapability | EnvironmentConstants.KeyboardCapability | EnvironmentConstants.AnalogCapability"
+      ]
+    },
+    {
+      "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+      "commandRegistrationUnchanged": true,
+      "otherSectionsAndDiagnosticsUnchanged": true,
+      "coreVersionUnchanged": true,
+      "messageVersionUnchanged": true,
+      "capabilitiesUnchanged": true,
+      "handledResultReturned": true,
+      "remainingSectionCount": 34,
+      "sharedOwner": "Atari OnEnvironment before ac7292d86",
+      "parameters": [
+        "CoreOptionConstants.SupportedInterfaceVersion",
+        "ExternalCoreInteropConstants.MessageInterfaceVersion",
+        "EnvironmentConstants.JoypadCapability"
+      ]
+    }
+  ],
+  "statelessEnvironmentCommandVerification": {
+    "source": "fc25eaa16",
+    "owner": "Atari OnEnvironment before ac7292d86",
+    "sharedCommands": 9,
+    "modules": 12,
+    "testsPassed": 12,
+    "bandaiDiskRefusalUnchanged": true,
+    "statefulCasesAndDiagnosticsUnchanged": true,
+    "snkCapabilitiesFieldReadonly": true,
+    "compilation": "SDK, App and all 23 referenced modules compiled by targeted dotnet test",
+    "ownedTestBuffers": "freed in finally",
+    "afterProductBuild": "fc25eaa16"
   }
 }
