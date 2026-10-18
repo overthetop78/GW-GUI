@@ -8249,13 +8249,13 @@
     "afterProductBuild": "005e3c677"
   },
   "shortMethodInventory": {
-    "snapshot": "deed2f10e50fbaa643f43b061f080a5b3a803a34",
-    "files": 7317,
-    "bodyCount": 9475,
-    "exactGroups": 771,
-    "renamedGroups": 364,
+    "snapshot": "014f6e998ea3f423868044f06a27e76a6e0703cd",
+    "files": 7318,
+    "bodyCount": 9481,
+    "exactGroups": 773,
+    "renamedGroups": 365,
     "status": "Incomplete; existing queue/empty-method qualifications retained; 29 factory selections now shared and verified; sector source reader-selection stage shared, remaining typed writer ownership pending.",
-    "trackedCSharpCoverage": "Full current scan includes new MediaMetadataFunctions file; source file count 7315, hidden paths included."
+    "trackedCSharpCoverage": "Full current source scan, including the extracted original visualization pan functions: 7318 C# files. Counts are candidates, not proven defects."
   },
   "hardwareIdentityComparisonReuse": {
     "snapshot": "a4760e868",
@@ -10783,5 +10783,78 @@
     "semanticAfter": "App without semantic errors. 21 Slider and 5 Choice calls resolve to expected shared overloads. LED maximum=100 yields existing tick 1/width 42; fixed 36-width overload reaches original nine-parameter creator, enabled default true.",
     "tests": "Same two existing WPF scenarios passed again after these additional changes, exit 0; no new redundant test. Original style expressions, callbacks and distinct profiles also checked by AST/source symbols.",
     "resources": "No lifetime code changed; same original shared UI creators and existing fixture cleanup in finally/Shutdown/Join."
+  },
+  "visualizationPanReuse": {
+    "state": "verified",
+    "before": [
+      {
+        "path": "src/GWGUI.App/Views/Controls/Visualization/ScpDiskView.xaml.cs",
+        "method": "Canvas_MouseDown",
+        "origin": "e31ed0251",
+        "tokensUnchanged": true,
+        "coordinateSpace": "Canvas"
+      },
+      {
+        "path": "src/GWGUI.App/Views/Controls/Visualization/ScpDiskView.xaml.cs",
+        "method": "Canvas_MouseUp",
+        "origin": "e31ed0251",
+        "tokensUnchanged": true,
+        "coordinateSpace": "Canvas"
+      },
+      {
+        "path": "src/GWGUI.App/Views/Controls/Visualization/OpticalMediaView.xaml.cs",
+        "method": "Canvas_MouseDown",
+        "origin": "e31ed0251",
+        "tokensUnchanged": true,
+        "coordinateSpace": "Canvas"
+      },
+      {
+        "path": "src/GWGUI.App/Views/Controls/Visualization/OpticalMediaView.xaml.cs",
+        "method": "Canvas_MouseUp",
+        "origin": "e31ed0251",
+        "tokensUnchanged": true,
+        "coordinateSpace": "Canvas"
+      },
+      {
+        "path": "src/GWGUI.App/Views/Controls/Visualization/SequentialMediaView.xaml.cs",
+        "method": "Canvas_MouseDown",
+        "origin": "e31ed0251",
+        "tokensUnchanged": true,
+        "coordinateSpace": "TimelineScrollViewer"
+      },
+      {
+        "path": "src/GWGUI.App/Views/Controls/Visualization/SequentialMediaView.xaml.cs",
+        "method": "Canvas_MouseUp",
+        "origin": "e31ed0251",
+        "tokensUnchanged": true,
+        "coordinateSpace": "TimelineScrollViewer"
+      }
+    ],
+    "origin": "Middle-button policy appears together in e31ed0251 in all three views; no claim that one of these three implementations predates the others. Reuse that original policy, not a later copy.",
+    "decision": "Extract the original two handlers into stateless functions; retain Point? state and surface ownership in each view, Canvas coordinate space for SCP/optical and TimelineScrollViewer for sequential. Keep MouseMove and all other methods untouched.",
+    "excluded": "BlockMediaView and SectorMediaView have additional sender/surface identity state and guards; not folded into this extraction. RelativeMouseCaptureFunctions concerns emulator relative input; VisualizationCursors owns cursor loading, neither owns these gestures.",
+    "after": [
+      {
+        "path": "src/GWGUI.App/Views/Controls/Visualization/ScpDiskView.xaml.cs",
+        "sha256": "9243B458ADAD7D5E4F808773722CA037B00DE595FFF409833072FF484C21A48C",
+        "allOtherTokensIdentical": true,
+        "expandedOriginalBodiesIdentical": true
+      },
+      {
+        "path": "src/GWGUI.App/Views/Controls/Visualization/OpticalMediaView.xaml.cs",
+        "sha256": "A1DA13EFE0657A60AB4E259B3687A2FF2C6BD709F51A1F58264D504AB59D06C5",
+        "allOtherTokensIdentical": true,
+        "expandedOriginalBodiesIdentical": true
+      },
+      {
+        "path": "src/GWGUI.App/Views/Controls/Visualization/SequentialMediaView.xaml.cs",
+        "sha256": "24362638C56A4555E1C2C74425487AE3AD64DDC7773E4A4378C64C0ADE6CB6FA",
+        "allOtherTokensIdentical": true,
+        "expandedOriginalBodiesIdentical": true
+      }
+    ],
+    "ast": "Six calls preserve exact original e31ed0251 bodies after parameter substitution; all other tokens of the three views are identical to 014f6e998.",
+    "semantic": "App: zero semantic errors; six calls resolve to GWGUI.App.Functions.Views.Visualization.VisualizationPanFunctions. Same FrameworkElement capture/cursor operations and ref Point? state; no canvas or dispatcher ownership transferred.",
+    "tests": "Existing GeometryAndTrackHitTesting and two LinkedZoomAndReset cases passed: 3, exit 0. General geometry/zoom regression coverage; exact handler preservation separately checked by historical body expansion, not claimed as real pointer interaction test. Existing WPF fixture cleanup uses finally/Shutdown/Join."
   }
 }

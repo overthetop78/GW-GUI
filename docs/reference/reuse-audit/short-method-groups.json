@@ -1,16 +1,14 @@
 {
-  "snapshot": "deed2f10e50fbaa643f43b061f080a5b3a803a34",
+  "snapshot": "014f6e998ea3f423868044f06a27e76a6e0703cd",
   "snapshotState": "Current worktree based on snapshot",
   "worktreeSourceChanges": [
-    "src/GWGUI.App/Functions/Views/Emulation/Settings/EmulationSettingsFieldControlFunctions.Video.cs",
-    "src/GWGUI.App/Views/Controls/Emulation/Options/EmulationLedMatrixSettingsBlock.cs",
-    "src/GWGUI.App/Views/Controls/Emulation/Options/EmulationPlasmaSettingsBlock.cs",
-    "src/GWGUI.App/Views/Controls/Emulation/Options/EmulationSegmentDisplaySettingsBlock.cs",
-    "src/GWGUI.App/Views/Controls/Emulation/Options/EmulationVectorSettingsBlock.cs"
+    "src/GWGUI.App/Views/Controls/Visualization/OpticalMediaView.xaml.cs",
+    "src/GWGUI.App/Views/Controls/Visualization/ScpDiskView.xaml.cs",
+    "src/GWGUI.App/Views/Controls/Visualization/SequentialMediaView.xaml.cs"
   ],
   "scope": "All current non-ignored repository CSharp files, including hidden paths; BaseMethodDeclaration bodies with fewer than 30 tokens. Candidate presence is not a defect or a completion claim.",
-  "fileCount": 7317,
-  "methodBodyCount": 9475,
+  "fileCount": 7318,
+  "methodBodyCount": 9481,
   "exactGroups": [
     {
       "hash": "0017F14C61995D644C52FF90F094E4708DC2CA772615CF2F5DD41E74BD202ECA",
@@ -10523,7 +10521,7 @@
           "name": "ScpDiskView",
           "owner": "ScpDiskView",
           "kind": "ConstructorDeclaration",
-          "line": 37,
+          "line": 38,
           "parameters": "()",
           "tokens": 2,
           "bodyTokens": "{ }",
@@ -20572,7 +20570,7 @@
           "name": "ZoomOutButton_Click",
           "owner": "OpticalMediaView",
           "kind": "MethodDeclaration",
-          "line": 125,
+          "line": 114,
           "parameters": "(object sender, RoutedEventArgs e)",
           "tokens": 7,
           "bodyTokens": "=> SetZoom ( _zoom * .89f )",
@@ -20912,7 +20910,7 @@
           "name": "ResetZoomButton_Click",
           "owner": "OpticalMediaView",
           "kind": "MethodDeclaration",
-          "line": 127,
+          "line": 116,
           "parameters": "(object sender, RoutedEventArgs e)",
           "tokens": 5,
           "bodyTokens": "=> SetZoom ( 1 )",
@@ -20924,7 +20922,7 @@
           "name": "ResetZoomButton_Click",
           "owner": "SequentialMediaView",
           "kind": "MethodDeclaration",
-          "line": 128,
+          "line": 117,
           "parameters": "(object sender, RoutedEventArgs e)",
           "tokens": 5,
           "bodyTokens": "=> SetZoom ( 1 )",
@@ -25967,6 +25965,38 @@
       "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
+      "hash": "50D1C71846013138C5A387EFA5A8EB0EE7987A3E532B1326129067A43699D7E1",
+      "tokens": 16,
+      "bodyTokens": "=> VisualizationPanFunctions . Begin ( Canvas , Canvas , _zoom , ref _panDragLast , e )",
+      "current": [
+        {
+          "path": "src/GWGUI.App/Views/Controls/Visualization/OpticalMediaView.xaml.cs",
+          "name": "Canvas_MouseDown",
+          "owner": "OpticalMediaView",
+          "kind": "MethodDeclaration",
+          "line": 69,
+          "parameters": "(object sender, MouseButtonEventArgs e)",
+          "tokens": 16,
+          "bodyTokens": "=> VisualizationPanFunctions . Begin ( Canvas , Canvas , _zoom , ref _panDragLast , e )",
+          "hash": "50D1C71846013138C5A387EFA5A8EB0EE7987A3E532B1326129067A43699D7E1",
+          "shape": "69E14545FBB8545B9B5218848E1C0D0E5576D38C39020F8CAC13F6E0E21214BE"
+        },
+        {
+          "path": "src/GWGUI.App/Views/Controls/Visualization/ScpDiskView.xaml.cs",
+          "name": "Canvas_MouseDown",
+          "owner": "ScpDiskView",
+          "kind": "MethodDeclaration",
+          "line": 94,
+          "parameters": "(object sender, MouseButtonEventArgs e)",
+          "tokens": 16,
+          "bodyTokens": "=> VisualizationPanFunctions . Begin ( Canvas , Canvas , _zoom , ref _panDragLast , e )",
+          "hash": "50D1C71846013138C5A387EFA5A8EB0EE7987A3E532B1326129067A43699D7E1",
+          "shape": "69E14545FBB8545B9B5218848E1C0D0E5576D38C39020F8CAC13F6E0E21214BE"
+        }
+      ],
+      "qualification": "pending-symbol-and-ownership-comparison"
+    },
+    {
       "hash": "51154855154C4D7D54E4FFA02D169AF1F65AC95A799C3EBCEE8EE5ACD3C3DF5F",
       "tokens": 22,
       "bodyTokens": "=> ( _host ?? throw new InvalidOperationException ( CoreExceptions . CoreNotInitialized ( ) ) ) . DiskControl . Select ( index )",
@@ -30072,7 +30102,7 @@
           "name": "ZoomInButton_Click",
           "owner": "OpticalMediaView",
           "kind": "MethodDeclaration",
-          "line": 126,
+          "line": 115,
           "parameters": "(object sender, RoutedEventArgs e)",
           "tokens": 7,
           "bodyTokens": "=> SetZoom ( _zoom * 1.12f )",
@@ -52332,7 +52362,7 @@
           "name": "Canvas_MouseLeftButtonDown",
           "owner": "OpticalMediaView",
           "kind": "MethodDeclaration",
-          "line": 66,
+          "line": 67,
           "parameters": "(object sender, MouseButtonEventArgs e)",
           "tokens": 10,
           "bodyTokens": "=> SelectAt ( e . GetPosition ( Canvas ) )",
@@ -52344,7 +52374,7 @@
           "name": "Canvas_MouseLeftButtonDown",
           "owner": "SequentialMediaView",
           "kind": "MethodDeclaration",
-          "line": 75,
+          "line": 76,
           "parameters": "(object sender, MouseButtonEventArgs e)",
           "tokens": 10,
           "bodyTokens": "=> SelectAt ( e . GetPosition ( Canvas ) )",
@@ -54098,6 +54128,50 @@
           "bodyTokens": "=> Text ( \"Emulation.Error.Core.DiskControlIncomplete\" )",
           "hash": "BDEA6171861B3D9E8CF4271BDE58AFA060887FA39780D4707EF9BEEB98A747B6",
           "shape": "2342AFEF856B4B668BF687F2B6BA70F4F1F0BB0A243E7D0FD14CE567778FEF1C"
+        }
+      ],
+      "qualification": "pending-symbol-and-ownership-comparison"
+    },
+    {
+      "hash": "BDEF2FF05DC67E01A2AE3CF8DB0290ED9FD516A99B361B31F100A9360F12EAF3",
+      "tokens": 12,
+      "bodyTokens": "=> VisualizationPanFunctions . End ( Canvas , ref _panDragLast , e )",
+      "current": [
+        {
+          "path": "src/GWGUI.App/Views/Controls/Visualization/OpticalMediaView.xaml.cs",
+          "name": "Canvas_MouseUp",
+          "owner": "OpticalMediaView",
+          "kind": "MethodDeclaration",
+          "line": 83,
+          "parameters": "(object sender, MouseButtonEventArgs e)",
+          "tokens": 12,
+          "bodyTokens": "=> VisualizationPanFunctions . End ( Canvas , ref _panDragLast , e )",
+          "hash": "BDEF2FF05DC67E01A2AE3CF8DB0290ED9FD516A99B361B31F100A9360F12EAF3",
+          "shape": "A87656442C98C1EC3889DD96A210C6B87E8E503AB894A36BAB65788B28805351"
+        },
+        {
+          "path": "src/GWGUI.App/Views/Controls/Visualization/ScpDiskView.xaml.cs",
+          "name": "Canvas_MouseUp",
+          "owner": "ScpDiskView",
+          "kind": "MethodDeclaration",
+          "line": 97,
+          "parameters": "(object sender, MouseButtonEventArgs e)",
+          "tokens": 12,
+          "bodyTokens": "=> VisualizationPanFunctions . End ( Canvas , ref _panDragLast , e )",
+          "hash": "BDEF2FF05DC67E01A2AE3CF8DB0290ED9FD516A99B361B31F100A9360F12EAF3",
+          "shape": "A87656442C98C1EC3889DD96A210C6B87E8E503AB894A36BAB65788B28805351"
+        },
+        {
+          "path": "src/GWGUI.App/Views/Controls/Visualization/SequentialMediaView.xaml.cs",
+          "name": "Canvas_MouseUp",
+          "owner": "SequentialMediaView",
+          "kind": "MethodDeclaration",
+          "line": 90,
+          "parameters": "(object sender, MouseButtonEventArgs e)",
+          "tokens": 12,
+          "bodyTokens": "=> VisualizationPanFunctions . End ( Canvas , ref _panDragLast , e )",
+          "hash": "BDEF2FF05DC67E01A2AE3CF8DB0290ED9FD516A99B361B31F100A9360F12EAF3",
+          "shape": "A87656442C98C1EC3889DD96A210C6B87E8E503AB894A36BAB65788B28805351"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -60168,7 +60242,7 @@
           "name": "SelectedValue",
           "owner": "OpticalMediaView",
           "kind": "MethodDeclaration",
-          "line": 137,
+          "line": 126,
           "parameters": "(ComboBox selector)",
           "tokens": 19,
           "bodyTokens": "=> selector . SelectedItem is KeyValuePair < int ? , string > choice ? choice . Key : null",
@@ -60180,7 +60254,7 @@
           "name": "SelectedValue",
           "owner": "SequentialMediaView",
           "kind": "MethodDeclaration",
-          "line": 174,
+          "line": 163,
           "parameters": "(ComboBox selector)",
           "tokens": 19,
           "bodyTokens": "=> selector . SelectedItem is KeyValuePair < int ? , string > choice ? choice . Key : null",
@@ -73154,7 +73228,7 @@
           "name": "RefreshPreparedTracks",
           "owner": "ScpDiskView",
           "kind": "MethodDeclaration",
-          "line": 59,
+          "line": 60,
           "parameters": "()",
           "tokens": 6,
           "bodyTokens": "=> Canvas . InvalidateVisual ( )",
@@ -94914,7 +94988,7 @@
           "name": "ResetZoomButton_Click",
           "owner": "ScpDiskView",
           "kind": "MethodDeclaration",
-          "line": 137,
+          "line": 126,
           "parameters": "(object sender, RoutedEventArgs e)",
           "tokens": 4,
           "bodyTokens": "=> ResetView ( )",
@@ -94926,7 +95000,7 @@
           "name": "TimelineScrollViewer_SizeChanged",
           "owner": "SequentialMediaView",
           "kind": "MethodDeclaration",
-          "line": 136,
+          "line": 125,
           "parameters": "(object sender, SizeChangedEventArgs e)",
           "tokens": 4,
           "bodyTokens": "=> UpdateCanvasWidth ( )",
@@ -108920,6 +108994,49 @@
       "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
+      "shape": "69E14545FBB8545B9B5218848E1C0D0E5576D38C39020F8CAC13F6E0E21214BE",
+      "tokens": 16,
+      "current": [
+        {
+          "path": "src/GWGUI.App/Views/Controls/Visualization/OpticalMediaView.xaml.cs",
+          "name": "Canvas_MouseDown",
+          "owner": "OpticalMediaView",
+          "kind": "MethodDeclaration",
+          "line": 69,
+          "parameters": "(object sender, MouseButtonEventArgs e)",
+          "tokens": 16,
+          "bodyTokens": "=> VisualizationPanFunctions . Begin ( Canvas , Canvas , _zoom , ref _panDragLast , e )",
+          "hash": "50D1C71846013138C5A387EFA5A8EB0EE7987A3E532B1326129067A43699D7E1",
+          "shape": "69E14545FBB8545B9B5218848E1C0D0E5576D38C39020F8CAC13F6E0E21214BE"
+        },
+        {
+          "path": "src/GWGUI.App/Views/Controls/Visualization/ScpDiskView.xaml.cs",
+          "name": "Canvas_MouseDown",
+          "owner": "ScpDiskView",
+          "kind": "MethodDeclaration",
+          "line": 94,
+          "parameters": "(object sender, MouseButtonEventArgs e)",
+          "tokens": 16,
+          "bodyTokens": "=> VisualizationPanFunctions . Begin ( Canvas , Canvas , _zoom , ref _panDragLast , e )",
+          "hash": "50D1C71846013138C5A387EFA5A8EB0EE7987A3E532B1326129067A43699D7E1",
+          "shape": "69E14545FBB8545B9B5218848E1C0D0E5576D38C39020F8CAC13F6E0E21214BE"
+        },
+        {
+          "path": "src/GWGUI.App/Views/Controls/Visualization/SequentialMediaView.xaml.cs",
+          "name": "Canvas_MouseDown",
+          "owner": "SequentialMediaView",
+          "kind": "MethodDeclaration",
+          "line": 78,
+          "parameters": "(object sender, MouseButtonEventArgs e)",
+          "tokens": 16,
+          "bodyTokens": "=> VisualizationPanFunctions . Begin ( Canvas , TimelineScrollViewer , _zoom , ref _panDragLast , e )",
+          "hash": "BA51FB8D9C2822CC607EA155EB0A166C340A5CDBCAFEA4844636E1853D7D08DE",
+          "shape": "69E14545FBB8545B9B5218848E1C0D0E5576D38C39020F8CAC13F6E0E21214BE"
+        }
+      ],
+      "qualification": "pending-symbol-and-ownership-comparison"
+    },
+    {
       "shape": "6A90460D7B8A7BE21D1079578F523E829DAD239366493C48D83E3FBFEF02B28A",
       "tokens": 11,
       "current": [
@@ -116844,7 +116961,7 @@
           "name": "Canvas_MouseLeftButtonDown",
           "owner": "OpticalMediaView",
           "kind": "MethodDeclaration",
-          "line": 66,
+          "line": 67,
           "parameters": "(object sender, MouseButtonEventArgs e)",
           "tokens": 10,
           "bodyTokens": "=> SelectAt ( e . GetPosition ( Canvas ) )",
@@ -116856,7 +116973,7 @@
           "name": "Canvas_MouseLeftButtonDown",
           "owner": "ScpDiskView",
           "kind": "MethodDeclaration",
-          "line": 91,
+          "line": 92,
           "parameters": "(object sender, MouseButtonEventArgs e)",
           "tokens": 10,
           "bodyTokens": "=> SelectTrackAt ( e . GetPosition ( Canvas ) )",
@@ -116868,7 +116985,7 @@
           "name": "Canvas_MouseLeftButtonDown",
           "owner": "SequentialMediaView",
           "kind": "MethodDeclaration",
-          "line": 75,
+          "line": 76,
           "parameters": "(object sender, MouseButtonEventArgs e)",
           "tokens": 10,
           "bodyTokens": "=> SelectAt ( e . GetPosition ( Canvas ) )",
@@ -122261,7 +122378,7 @@
           "name": "SetRevolution",
           "owner": "ScpDiskView",
           "kind": "MethodDeclaration",
-          "line": 56,
+          "line": 57,
           "parameters": "(int? revolutionIndex)",
           "tokens": 12,
           "bodyTokens": "{ SelectedRevolutionIndex = revolutionIndex ; Canvas . InvalidateVisual ( ) ; }",
@@ -122273,7 +122390,7 @@
           "name": "SetMediaCategory",
           "owner": "ScpDiskView",
           "kind": "MethodDeclaration",
-          "line": 57,
+          "line": 58,
           "parameters": "(DiskMediaCategory mediaKind)",
           "tokens": 12,
           "bodyTokens": "{ _mediaCategory = mediaKind ; Canvas . InvalidateVisual ( ) ; }",

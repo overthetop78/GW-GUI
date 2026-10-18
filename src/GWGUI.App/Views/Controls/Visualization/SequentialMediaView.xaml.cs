@@ -1,3 +1,4 @@
+using GWGUI.App.Functions.Views.Visualization;
 using GWGUI.App.Constants.Rendering.Sequential;
 using GWGUI.App.Contracts.Rendering.Sequential;
 using GWGUI.App.Contracts.Views.Visualization;
@@ -75,13 +76,7 @@ public partial class SequentialMediaView : UserControl, IMediaVisualizationView
     private void Canvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) => SelectAt(e.GetPosition(Canvas));
 
     private void Canvas_MouseDown(object sender, MouseButtonEventArgs e)
-    {
-        if (e.ChangedButton != MouseButton.Middle || _zoom <= 1) return;
-        _panDragLast = e.GetPosition(TimelineScrollViewer);
-        Canvas.Cursor = VisualizationCursors.Grabbing;
-        Canvas.CaptureMouse();
-        e.Handled = true;
-    }
+        => VisualizationPanFunctions.Begin(Canvas, TimelineScrollViewer, _zoom, ref _panDragLast, e);
 
     private void Canvas_MouseMove(object sender, MouseEventArgs e)
     {
@@ -93,13 +88,7 @@ public partial class SequentialMediaView : UserControl, IMediaVisualizationView
     }
 
     private void Canvas_MouseUp(object sender, MouseButtonEventArgs e)
-    {
-        if (e.ChangedButton != MouseButton.Middle || _panDragLast is null) return;
-        _panDragLast = null;
-        Canvas.ReleaseMouseCapture();
-        Canvas.ClearValue(CursorProperty);
-        e.Handled = true;
-    }
+        => VisualizationPanFunctions.End(Canvas, ref _panDragLast, e);
 
     private void SelectAt(Point pointer)
     {
