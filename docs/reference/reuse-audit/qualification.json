@@ -735,7 +735,8 @@
         ],
         "decision": "shared SDK target verified; argument adapters still require review"
       }
-    ]
+    ],
+    "snapshot": "After HEAD refactor, before complete-option-host extraction; retained historical symbol evidence, not a completion claim for current arguments"
   },
   "start": "ac7292d86",
   "baseline": "ac7292d86^",
@@ -1407,7 +1408,7 @@
   ],
   "currentProjectReport": "current-project-groups.json",
   "currentReportScope": "All current repository CSharp and PowerShell files; no age filter; candidates require semantic review",
-  "currentExactCandidateGroups": 574,
+  "currentExactCandidateGroups": 567,
   "currentRenamedIdentifierCandidateGroups": 219,
   "currentQualificationStatus": "Manual semantic qualification remains incomplete. remaining-groups.json is the earlier historical checkpoint; current-project-groups.json covers all current CSharp and PowerShell files regardless of age.",
   "hostLoopComparison": "host-loop-comparison.json",
@@ -1838,5 +1839,245 @@
     "preserved": "ResponseHeadersRead, EnsureSuccessStatusCode, cancellation; typed metadata, URI, cultures and required release list remain module-owned",
     "verification": "AST tokens compared to e3e236524; SDK and modules checked without Emit",
     "runtime": "No emulator server queried"
+  },
+  "fullOptionHostReuse": {
+    "origin": "AtariCoreOptionHost 275db0cae",
+    "owner": "EmulationCoreOptionHost<TOption,TValue> retains state and native values",
+    "modules": 12,
+    "comparisons": [
+      {
+        "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/CoreOptionHost.cs",
+        "readers": [
+          "RegisterLegacyVariables",
+          "RegisterVersionOne",
+          "RegisterVersionOneInternational",
+          "RegisterVersionTwo",
+          "RegisterVersionTwoInternational",
+          "IsExposed",
+          "ApplyPresentation"
+        ],
+        "readerAndPresentationTokensUnchanged": true,
+        "constructorSignatureUnchanged": true,
+        "presentation": true,
+        "presentationBeforeState": true,
+        "visibilityCallbackUnchanged": true,
+        "initialVisibilityPolicyUnchanged": true,
+        "invalidValueErrorUnchanged": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/CoreOptionHost.cs",
+        "readers": [
+          "RegisterLegacyVariables",
+          "RegisterVersionOne",
+          "RegisterVersionOneInternational",
+          "RegisterVersionTwo",
+          "RegisterVersionTwoInternational",
+          "IsExposed",
+          "ApplyPresentation"
+        ],
+        "readerAndPresentationTokensUnchanged": true,
+        "constructorSignatureUnchanged": true,
+        "presentation": true,
+        "presentationBeforeState": false,
+        "visibilityCallbackUnchanged": true,
+        "initialVisibilityPolicyUnchanged": true,
+        "invalidValueErrorUnchanged": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/CoreOptionHost.cs",
+        "readers": [
+          "RegisterLegacyVariables",
+          "RegisterVersionOne",
+          "RegisterVersionOneInternational",
+          "RegisterVersionTwo",
+          "RegisterVersionTwoInternational",
+          "IsExposed",
+          "ApplyPresentation"
+        ],
+        "readerAndPresentationTokensUnchanged": true,
+        "constructorSignatureUnchanged": true,
+        "presentation": true,
+        "presentationBeforeState": false,
+        "visibilityCallbackUnchanged": true,
+        "initialVisibilityPolicyUnchanged": true,
+        "invalidValueErrorUnchanged": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/CoreOptionHost.cs",
+        "readers": [
+          "RegisterLegacyVariables",
+          "RegisterVersionOne",
+          "RegisterVersionOneInternational",
+          "RegisterVersionTwo",
+          "RegisterVersionTwoInternational"
+        ],
+        "readerAndPresentationTokensUnchanged": true,
+        "constructorSignatureUnchanged": true,
+        "presentation": false,
+        "presentationBeforeState": false,
+        "visibilityCallbackUnchanged": true,
+        "initialVisibilityPolicyUnchanged": true,
+        "invalidValueErrorUnchanged": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/CoreOptionHost.cs",
+        "readers": [
+          "RegisterLegacyVariables",
+          "RegisterVersionOne",
+          "RegisterVersionOneInternational",
+          "RegisterVersionTwo",
+          "RegisterVersionTwoInternational"
+        ],
+        "readerAndPresentationTokensUnchanged": true,
+        "constructorSignatureUnchanged": true,
+        "presentation": false,
+        "presentationBeforeState": false,
+        "visibilityCallbackUnchanged": true,
+        "initialVisibilityPolicyUnchanged": true,
+        "invalidValueErrorUnchanged": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/CoreOptionHost.cs",
+        "readers": [
+          "RegisterLegacyVariables",
+          "RegisterVersionOne",
+          "RegisterVersionOneInternational",
+          "RegisterVersionTwo",
+          "RegisterVersionTwoInternational"
+        ],
+        "readerAndPresentationTokensUnchanged": true,
+        "constructorSignatureUnchanged": true,
+        "presentation": false,
+        "presentationBeforeState": false,
+        "visibilityCallbackUnchanged": true,
+        "initialVisibilityPolicyUnchanged": true,
+        "invalidValueErrorUnchanged": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/CoreOptionHost.cs",
+        "readers": [
+          "RegisterLegacyVariables",
+          "RegisterVersionOne",
+          "RegisterVersionOneInternational",
+          "RegisterVersionTwo",
+          "RegisterVersionTwoInternational",
+          "IsExposed",
+          "ApplyPresentation"
+        ],
+        "readerAndPresentationTokensUnchanged": true,
+        "constructorSignatureUnchanged": true,
+        "presentation": true,
+        "presentationBeforeState": false,
+        "visibilityCallbackUnchanged": true,
+        "initialVisibilityPolicyUnchanged": true,
+        "invalidValueErrorUnchanged": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/CoreOptionHost.cs",
+        "readers": [
+          "RegisterLegacyVariables",
+          "RegisterVersionOne",
+          "RegisterVersionOneInternational",
+          "RegisterVersionTwo",
+          "RegisterVersionTwoInternational",
+          "IsExposed",
+          "ApplyPresentation"
+        ],
+        "readerAndPresentationTokensUnchanged": true,
+        "constructorSignatureUnchanged": true,
+        "presentation": true,
+        "presentationBeforeState": false,
+        "visibilityCallbackUnchanged": true,
+        "initialVisibilityPolicyUnchanged": true,
+        "invalidValueErrorUnchanged": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/CoreOptionHost.cs",
+        "readers": [
+          "RegisterLegacyVariables",
+          "RegisterVersionOne",
+          "RegisterVersionOneInternational",
+          "RegisterVersionTwo",
+          "RegisterVersionTwoInternational",
+          "IsExposed",
+          "ApplyPresentation"
+        ],
+        "readerAndPresentationTokensUnchanged": true,
+        "constructorSignatureUnchanged": true,
+        "presentation": true,
+        "presentationBeforeState": true,
+        "visibilityCallbackUnchanged": true,
+        "initialVisibilityPolicyUnchanged": true,
+        "invalidValueErrorUnchanged": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/CoreOptionHost.cs",
+        "readers": [
+          "RegisterLegacyVariables",
+          "RegisterVersionOne",
+          "RegisterVersionOneInternational",
+          "RegisterVersionTwo",
+          "RegisterVersionTwoInternational",
+          "IsExposed",
+          "ApplyPresentation"
+        ],
+        "readerAndPresentationTokensUnchanged": true,
+        "constructorSignatureUnchanged": true,
+        "presentation": true,
+        "presentationBeforeState": true,
+        "visibilityCallbackUnchanged": true,
+        "initialVisibilityPolicyUnchanged": true,
+        "invalidValueErrorUnchanged": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/CoreOptionHost.cs",
+        "readers": [
+          "RegisterLegacyVariables",
+          "RegisterVersionOne",
+          "RegisterVersionOneInternational",
+          "RegisterVersionTwo",
+          "RegisterVersionTwoInternational",
+          "IsExposed",
+          "ApplyPresentation"
+        ],
+        "readerAndPresentationTokensUnchanged": true,
+        "constructorSignatureUnchanged": true,
+        "presentation": true,
+        "presentationBeforeState": false,
+        "visibilityCallbackUnchanged": true,
+        "initialVisibilityPolicyUnchanged": true,
+        "invalidValueErrorUnchanged": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services/CoreOptionHost.cs",
+        "readers": [
+          "RegisterLegacyVariables",
+          "RegisterVersionOne",
+          "RegisterVersionOneInternational",
+          "RegisterVersionTwo",
+          "RegisterVersionTwoInternational",
+          "IsExposed",
+          "ApplyPresentation"
+        ],
+        "readerAndPresentationTokensUnchanged": true,
+        "constructorSignatureUnchanged": true,
+        "presentation": true,
+        "presentationBeforeState": false,
+        "visibilityCallbackUnchanged": true,
+        "initialVisibilityPolicyUnchanged": true,
+        "invalidValueErrorUnchanged": true
+      }
+    ],
+    "legacy": "Four strict legacy hosts kept distinct: their invalid/default/catalog policy differs",
+    "cleanup": "Native strings use ExternalCoreUtf8String.AddTo; all allocations attempted during Dispose, dictionary cleared in finally, first error rethrown",
+    "verification": "SDK and twelve modules: zero semantic errors without Emit; real targeted test run compiles all project references and passes 8/8; diff --check passes",
+    "tests": {
+      "class": "CoreOptionHostStateTests",
+      "passed": 8,
+      "failed": 0,
+      "ignored": 0,
+      "command": "dotnet test tests/GWGUI.Tests/GWGUI.Tests.csproj -c Debug --no-restore --filter FullyQualifiedName~CoreOptionHostStateTests --disable-build-servers",
+      "resources": "No emulator files, windows or external core DLLs; native allocations protected by finally"
+    }
   }
 }

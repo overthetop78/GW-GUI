@@ -6,24 +6,31 @@ namespace GWGUI.Emulation.Coleco.Emulators.Common.Interop.Services;
 
 internal sealed class CoreOptionHost : IDisposable
 {
-    private readonly Dictionary<string, string> _values;
-    private readonly HashSet<string> _configuredKeys;
+    private readonly EmulationCoreOptionHost<CoreOption, CoreOptionValue> _host;
     private readonly IReadOnlyDictionary<string, CoreOption> _presentation;
-    private readonly Dictionary<string, ExternalCoreUtf8String> _nativeValues = new(StringComparer.Ordinal);
-    private readonly Dictionary<string, bool> _visibility = new(StringComparer.Ordinal);
-    private ExternalCoreApi.UpdateCoreOptionsDisplay? _displayUpdate;
-    private int _updated;
 
     internal CoreOptionHost(IReadOnlyDictionary<string, string> configured, IReadOnlyList<CoreOption>? presentation = null)
     {
-        _values = new(configured, StringComparer.Ordinal);
-        _configuredKeys = configured.Keys.ToHashSet(StringComparer.Ordinal);
+        _host = new EmulationCoreOptionHost<CoreOption, CoreOptionValue>(
+            configured,
+            keyFor: static option => option.Key,
+            defaultFor: static option => option.DefaultValue,
+            choicesFor: static option => option.Values,
+            valueFor: static value => value.Value,
+            withCurrent: static (option, value) => option with { CurrentValue = value },
+            withVisibility: (option, visible) => option with { IsVisible = visible && IsExposed(option.Key) },
+            initialize: (option, selected, nativeVisible) => option with
+            {
+                CurrentValue = selected,
+                IsVisible = option.IsVisible && IsExposed(option.Key) && (nativeVisible)
+            },
+            present: ApplyPresentation);
         _presentation = (presentation ?? []).ToDictionary(option => option.Key, StringComparer.Ordinal);
     }
 
-    internal IReadOnlyList<CoreOption> Catalog { get; private set; } = [];
+    internal IReadOnlyList<CoreOption> Catalog => _host.Catalog;
     internal IReadOnlyList<CoreOptionCategory> Categories { get; private set; } = [];
-    internal IReadOnlyDictionary<string, string> DocumentValues => _values;
+    internal IReadOnlyDictionary<string, string> DocumentValues => _host.DocumentValues;
 
     internal void RegisterLegacyVariables(nint data) => ReplaceCatalog(CoreOptionFunctions.CopyLegacyVariables(data), []);
 
@@ -55,67 +62,31 @@ internal sealed class CoreOptionHost : IDisposable
         ReplaceCatalog(CoreOptionFunctions.MergeLocalizedDefinitions(english, local), CoreOptionFunctions.MergeLocalizedCategories(englishCategories, localCategories));
     }
 
-    internal bool ReturnValue(nint data) => EmulationCoreOptionFunctions.ReturnNativeValue(data, _values, NativeValue);
+    internal bool ReturnValue(nint data) => _host.ReturnValue(data);
 
-    internal bool SetNativeValue(nint data) => EmulationCoreOptionFunctions.SetNativeValue(data, (key, value) => SetValue(key, value, requireAnnouncedKey: true));
+    internal bool SetNativeValue(nint data) => _host.SetNativeValue(data);
 
-    internal bool GetAndClearUpdated(nint data) => EmulationCoreOptionFunctions.GetAndClearUpdated(data, ref _updated);
+    internal bool GetAndClearUpdated(nint data) => _host.GetAndClearUpdated(data);
 
     internal void SetValue(string key, string value)
     {
-        if (!SetValue(key, value, requireAnnouncedKey: true))
+        if (!_host.TrySetValue(key, value))
             throw new EmulationException(ErrorCategory.Option, ErrorCode.OptionInvalid, CoreFunctions.CreateInvalidOptionValueMessage(key, value));
     }
 
     internal bool ApplyVisibility(nint data)
-    {
-        if (!EmulationCoreOptionFunctions.ApplyNativeVisibility(data, _visibility, Catalog, static option => option.Key,
-            (option, visible) => option with { IsVisible = visible && IsExposed(option.Key) }, out var catalog)) return false;
-        Catalog = catalog;
-        return true;
-    }
+        => _host.ApplyVisibility(data);
 
     internal bool CaptureDisplayUpdate(nint data)
-    {
-        if (!EmulationCoreOptionFunctions.TryGetDisplayCallback(data, out var callback)) return false;
-        _displayUpdate = callback;
-        return true;
-    }
+        => _host.CaptureDisplayUpdate(data);
 
-    internal void ValidateConfiguredValues() =>
-        EmulationCoreOptionFunctions.ValidateConfiguredValues(_configuredKeys, _values, Catalog,
-            static option => option.Key, static option => option.Values, static value => value.Value,
-            static (key, value) => throw new EmulationException(ErrorCategory.Option, ErrorCode.OptionInvalid,
+    internal void ValidateConfiguredValues() => _host.ValidateConfiguredValues(static (key, value) => throw new EmulationException(ErrorCategory.Option, ErrorCode.OptionInvalid,
                 CoreFunctions.CreateInvalidOptionValueMessage(key, value)));
-
-    private bool SetValue(string key, string value, bool requireAnnouncedKey)
-    {
-        var option = Catalog.FirstOrDefault(item => item.Key.Equals(key, StringComparison.Ordinal));
-        if (requireAnnouncedKey && option is null) return false;
-        if (option is not null && option.Values.Count != CoreOptionConstants.NoEntries &&
-            !option.Values.Any(item => item.Value.Equals(value, StringComparison.Ordinal))) return false;
-        _values[key] = value;
-        ReplaceNativeValue(key, value);
-        Catalog = Catalog.Select(item => item.Key.Equals(key, StringComparison.Ordinal) ? item with { CurrentValue = value } : item).ToArray();
-        Interlocked.Exchange(ref _updated, CoreOptionConstants.DefaultValuePointerCount);
-        _displayUpdate?.Invoke();
-        return true;
-    }
 
     private void ReplaceCatalog(IReadOnlyList<CoreOption> options, IReadOnlyList<CoreOptionCategory> categories)
     {
         Categories = categories;
-        Catalog = options.Select(option =>
-        {
-            var selected = _values.TryGetValue(option.Key, out var configured) ? configured : option.DefaultValue;
-            if (!_values.ContainsKey(option.Key)) _values[option.Key] = selected;
-            ReplaceNativeValue(option.Key, selected);
-            return option with
-            {
-                CurrentValue = selected,
-                IsVisible = option.IsVisible && IsExposed(option.Key) && (!_visibility.TryGetValue(option.Key, out var visible) || visible)
-            };
-        }).Select(ApplyPresentation).ToArray();
+        _host.ReplaceCatalog(options);
     }
 
     private bool IsExposed(string key) => !_presentation.TryGetValue(key, out var presentation) || presentation.IsVisible;
@@ -143,22 +114,6 @@ internal sealed class CoreOptionHost : IDisposable
         };
     }
 
-    private nint NativeValue(string key, string value)
-    {
-        if (_nativeValues.TryGetValue(key, out var native)) return native.Pointer;
-        ReplaceNativeValue(key, value);
-        return _nativeValues[key].Pointer;
-    }
-
-    private void ReplaceNativeValue(string key, string value)
-    {
-        if (_nativeValues.Remove(key, out var previous)) previous.Dispose();
-        ExternalCoreUtf8String.AddTo(_nativeValues, key, value);
-    }
-
     public void Dispose()
-    {
-        foreach (var value in _nativeValues.Values) value.Dispose();
-        _nativeValues.Clear();
-    }
+        => _host.Dispose();
 }
