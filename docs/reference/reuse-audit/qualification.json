@@ -1408,8 +1408,8 @@
   ],
   "currentProjectReport": "current-project-groups.json",
   "currentReportScope": "All current repository CSharp and PowerShell files; no age filter; candidates require semantic review",
-  "currentExactCandidateGroups": 539,
-  "currentRenamedIdentifierCandidateGroups": 219,
+  "currentExactCandidateGroups": 525,
+  "currentRenamedIdentifierCandidateGroups": 215,
   "currentQualificationStatus": "Manual semantic qualification remains incomplete. remaining-groups.json is the earlier historical checkpoint; current-project-groups.json covers all current CSharp and PowerShell files regardless of age.",
   "hostLoopComparison": "host-loop-comparison.json",
   "installationReuse": {
@@ -7901,5 +7901,114 @@
     "resources": "Managed fake callbacks only for new tests; no native core, file, process, window or owned resource added",
     "report": "11677 CSharp method bodies >= 30 tokens; 528 exact candidate groups; global qualification incomplete",
     "afterProductBuild": "5744eb10a"
+  },
+  "nativeOptionVisibilityReuse": {
+    "snapshot": "6a5d6d8eb",
+    "origin": "AtariCoreOptionHost 275db0cae, ApplyVisibility and CaptureDisplayUpdate, present in ac7292d86^ before all eight native copies",
+    "owner": "Existing SDK EmulationCoreOptionFunctions.ApplyNativeVisibility and TryGetDisplayCallback; SDK source unchanged",
+    "comparisons": [
+      {
+        "module": "Amstrad",
+        "expandedOperationsEqual": true,
+        "assignOnlyOnSuccess": true,
+        "otherMembersUnchanged": true,
+        "catalogAutoProperty": true,
+        "ordinalDictionary": true
+      },
+      {
+        "module": "Commodore",
+        "expandedOperationsEqual": true,
+        "assignOnlyOnSuccess": true,
+        "otherMembersUnchanged": true,
+        "catalogAutoProperty": true,
+        "ordinalDictionary": true
+      },
+      {
+        "module": "Nec",
+        "expandedOperationsEqual": true,
+        "assignOnlyOnSuccess": true,
+        "otherMembersUnchanged": true,
+        "catalogAutoProperty": true,
+        "ordinalDictionary": true
+      },
+      {
+        "module": "Nintendo",
+        "expandedOperationsEqual": true,
+        "assignOnlyOnSuccess": true,
+        "otherMembersUnchanged": true,
+        "catalogAutoProperty": true,
+        "ordinalDictionary": true
+      },
+      {
+        "module": "Sega",
+        "expandedOperationsEqual": true,
+        "assignOnlyOnSuccess": true,
+        "otherMembersUnchanged": true,
+        "catalogAutoProperty": true,
+        "ordinalDictionary": true
+      },
+      {
+        "module": "Sony",
+        "expandedOperationsEqual": true,
+        "assignOnlyOnSuccess": true,
+        "otherMembersUnchanged": true,
+        "catalogAutoProperty": true,
+        "ordinalDictionary": true
+      },
+      {
+        "module": "Pcsx2",
+        "expandedOperationsEqual": true,
+        "assignOnlyOnSuccess": true,
+        "otherMembersUnchanged": true,
+        "catalogAutoProperty": true,
+        "ordinalDictionary": true
+      },
+      {
+        "module": "Ppsspp",
+        "expandedOperationsEqual": true,
+        "assignOnlyOnSuccess": true,
+        "otherMembersUnchanged": true,
+        "catalogAutoProperty": true,
+        "ordinalDictionary": true
+      }
+    ],
+    "verification": "Both old bodies matched historical Atari after field aliases and pointer-zero spelling normalization; expanded SDK operations matched all eight old bodies; typed static projections and success-only assignments verified; eight complete state files and all other environment members unchanged",
+    "state": "Catalog getters are side-effect-free auto-properties and visibility fields concrete ordinal Dictionary instances; native structure/string reads and dictionary write introduce no managed callback before projection",
+    "tests": "CoreOptionHostStateTests: eight existing tests passed, exit 0; SDK/App/all 23 module references compiled",
+    "resources": "No new tests, native core, downloaded DLL, user files, process or window; existing managed option tests release their native buffers and strings",
+    "report": "11669 CSharp method bodies >= 30 tokens; 525 exact candidate groups; global qualification incomplete",
+    "afterProductBuild": "5744eb10a"
+  },
+  "appleSectorOrderReuse": {
+    "snapshot": "797a4c2",
+    "originalForward": "2ed3bb006",
+    "laterInverse": "68c255cc3",
+    "permutation": [
+      0,
+      14,
+      13,
+      12,
+      11,
+      10,
+      9,
+      8,
+      7,
+      6,
+      5,
+      4,
+      3,
+      2,
+      1,
+      15
+    ],
+    "involutionForAll16": true,
+    "otherMembersAndSignaturesUnchanged": true,
+    "geometryReaderWriterExceptionsUnchanged": true,
+    "owner": "Existing DosToProDos method retained unchanged; later ProDosToDos delegates directly without a new helper or architecture",
+    "verification": "Historical forward body matches 2ed3bb006 after normalization of the two existing sector accessors; later inverse matches 68c255cc3; all other converter members and signatures, geometry, reader, writer and errors unchanged by token comparisons",
+    "tests": "AppleSectorOrderReuseTests: twelve passed on original code before editing, then the same twelve passed after reuse (zero/one/three/35 tracks in both directions, all bytes checked against a fixed independent 16-sector map, input unchanged, four malformed lengths)",
+    "resources": "Memory arrays only; explicit System.IO import for InvalidDataException, no temporary image or external program",
+    "scope": "Whole-project review continues. Outside emulation/tests, the pre-edit report had 31 exact and 57 normalized-identifier groups; those are candidates, not validated defects or a completion claim.",
+    "afterProductBuild": "797a4c2"
   }
 }
