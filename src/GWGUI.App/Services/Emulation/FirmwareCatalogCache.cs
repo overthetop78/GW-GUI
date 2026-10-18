@@ -12,13 +12,7 @@ internal static class FirmwareCatalogCache
     };
 
     internal static void Write<T>(string platform, IReadOnlyList<T> entries)
-    {
-        Directory.CreateDirectory(StoragePaths.FirmwareCatalogDirectory);
-        var path = StoragePaths.FirmwareCatalogPath(platform);
-        var temporaryPath = path + ".tmp";
-        File.WriteAllText(temporaryPath, JsonSerializer.Serialize(entries, JsonOptions));
-        File.Move(temporaryPath, path, true);
-    }
+    => GWGUI.Emulation.Functions.ConfigurationFileAccessFunctions.WriteDocumentAtomically(StoragePaths.FirmwareCatalogPath(platform), entries, JsonOptions, ".tmp");
 
     internal static IReadOnlyList<T> Read<T>(string platform)
     {

@@ -30,6 +30,14 @@ public static class ConfigurationFileAccessFunctions
         && !relative.StartsWith(".." + Path.DirectorySeparatorChar, StringComparison.Ordinal)
         && !relative.StartsWith(".." + Path.AltDirectorySeparatorChar, StringComparison.Ordinal);
 
+    public static void WriteDocumentAtomically<T>(string path, T document,
+        JsonSerializerOptions options, string temporarySuffix) =>
+        WriteAtomicallyAsync(path, path + temporarySuffix, temporary =>
+        {
+            File.WriteAllText(temporary, JsonSerializer.Serialize(document, options));
+            return Task.CompletedTask;
+        }, static (source, target) => File.Move(source, target, overwrite: true)).GetAwaiter().GetResult();
+
     internal static async Task WriteDocumentAtomicallyAsync<T>(string path, T document,
         JsonSerializerOptions options, CancellationToken cancellationToken)
     {

@@ -1408,7 +1408,7 @@
   ],
   "currentProjectReport": "current-project-groups.json",
   "currentReportScope": "All current repository CSharp and PowerShell files; no age filter; candidates require semantic review",
-  "currentExactCandidateGroups": 565,
+  "currentExactCandidateGroups": 564,
   "currentRenamedIdentifierCandidateGroups": 219,
   "currentQualificationStatus": "Manual semantic qualification remains incomplete. remaining-groups.json is the earlier historical checkpoint; current-project-groups.json covers all current CSharp and PowerShell files regardless of age.",
   "hostLoopComparison": "host-loop-comparison.json",
@@ -3095,5 +3095,37 @@
     "ownedNativeMemory": "test pointer tables freed in finally; SDK reads borrowed pointers only",
     "existingSelectInternationalDefinitionsUnchanged": true,
     "afterProductBuild": "f325df945"
-  }
+  },
+  "appJsonSaveReuse": [
+    {
+      "path": "src/GWGUI.App/Services/Input/GameInput/ControllerVisualProfileStore.cs",
+      "method": "Save",
+      "targetUnchanged": true,
+      "documentUnchanged": true,
+      "serializerOptionsUnchanged": true,
+      "temporarySuffixUnchanged": true,
+      "owner": "ControllerVisualProfileStore.Save b983fbf2a",
+      "replacement": "File.Move overwrite true, synchronous text JSON; shared finally deletes temporary on failure"
+    },
+    {
+      "path": "src/GWGUI.App/Services/Input/GameInput/ControllerAnalogDeadZoneProfileStore.cs",
+      "method": "SaveProfiles",
+      "targetUnchanged": true,
+      "documentUnchanged": true,
+      "serializerOptionsUnchanged": true,
+      "temporarySuffixUnchanged": true,
+      "owner": "ControllerVisualProfileStore.Save b983fbf2a",
+      "replacement": "File.Move overwrite true, synchronous text JSON; shared finally deletes temporary on failure"
+    },
+    {
+      "path": "src/GWGUI.App/Services/Emulation/FirmwareCatalogCache.cs",
+      "method": "Write",
+      "targetUnchanged": true,
+      "documentUnchanged": true,
+      "serializerOptionsUnchanged": true,
+      "temporarySuffixUnchanged": true,
+      "owner": "ControllerVisualProfileStore.Save b983fbf2a",
+      "replacement": "File.Move overwrite true, synchronous text JSON; shared finally deletes temporary on failure"
+    }
+  ]
 }
