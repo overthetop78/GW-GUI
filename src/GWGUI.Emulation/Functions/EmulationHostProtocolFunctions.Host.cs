@@ -7,6 +7,25 @@ namespace GWGUI.Emulation.Functions;
 
 internal static partial class EmulationHostProtocolFunctions
 {
+    internal static void WriteRuntimeStatus(BinaryWriter writer, EmulationVideoStandard? region,
+        int bufferedAudioFrames, long audioOverrunCount, long audioUnderrunCount)
+    {
+        writer.Write(RegionValue(region));
+        writer.Write(bufferedAudioFrames);
+        writer.Write(audioOverrunCount);
+        writer.Write(audioUnderrunCount);
+    }
+
+    internal static void ReadRuntimeStatus(BinaryReader reader, Action<int> setRegion,
+        Action<int> setBufferedAudioFrames, Action<long> setAudioOverrunCount, Action<long> setAudioUnderrunCount)
+    {
+        setRegion(reader.ReadInt32());
+        setBufferedAudioFrames(reader.ReadInt32());
+        setAudioOverrunCount(reader.ReadInt64());
+        setAudioUnderrunCount(reader.ReadInt64());
+    }
+
+
     internal static void WriteFrameIfChanged(BinaryWriter writer, VideoFrame? frame,
         ref long lastVideoSequence, Action<BinaryWriter, VideoFrame?> writeFrame)
     {

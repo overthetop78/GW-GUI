@@ -63,10 +63,9 @@ internal sealed partial class ProcessCore : IEmulatorCore, IEmulatorAudioBufferF
     }
 
     private void ReadRuntimeStatus(BinaryReader reader)
-    {
-        Region = RuntimeFunctions.ReadRegion(reader.ReadInt32());
-        BufferedAudioFrames = reader.ReadInt32();
-        AudioOverrunCount = reader.ReadInt64();
-        AudioUnderrunCount = reader.ReadInt64();
-    }
+    => EmulationHostProtocolFunctions.ReadRuntimeStatus(reader,
+        value => Region = RuntimeFunctions.ReadRegion(value),
+        value => BufferedAudioFrames = value,
+        value => AudioOverrunCount = value,
+        value => AudioUnderrunCount = value);
 }

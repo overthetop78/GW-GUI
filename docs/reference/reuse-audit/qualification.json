@@ -5885,5 +5885,167 @@
     "originalVideoConditionAndCounterTokensUnchanged": true,
     "diagnosticMapping": "Counter getter, serializer argument list/options and counter reference preserved in each caller. Native captured lists stay captured; rich host getters stay deferred.",
     "tests": "Repeated/null video and write failure without sequence advance or borrowed writer disposal; mono/stereo audio order and wire metadata, empty/null termination, dequeue failure before any write; unchanged/changed diagnostic packets and counter commit only after successful serialization. Memory streams only."
+  },
+  "runtimeStatusProtocolReuse": {
+    "profiles": [
+      {
+        "sender": "src/GWGUI.Emulation.Apple/Common/Services/CoreHost.cs",
+        "receiver": "src/GWGUI.Emulation.Apple/Common/Services/ProcessCore.Host.cs",
+        "sharedWriterMatchesPreviousPacket": true,
+        "senderCallsAndOtherTokensUnchanged": true,
+        "orderedReadTypesAndImmediateAssignmentTargetsUnchanged": true,
+        "regionDecoder": "Existing RuntimeFunctions.ReadRegion retained in its first setter callback",
+        "otherReceiverTokensUnchanged": true
+      },
+      {
+        "sender": "src/GWGUI.Emulation.Fairchild/Common/Services/CoreHost.cs",
+        "receiver": "src/GWGUI.Emulation.Fairchild/Common/Services/ProcessCore.Host.cs",
+        "sharedWriterMatchesPreviousPacket": true,
+        "senderCallsAndOtherTokensUnchanged": true,
+        "orderedReadTypesAndImmediateAssignmentTargetsUnchanged": true,
+        "regionDecoder": "Existing RuntimeFunctions.ReadRegion retained in its first setter callback",
+        "otherReceiverTokensUnchanged": true
+      },
+      {
+        "sender": "src/GWGUI.Emulation.Acorn/Common/Services/CoreHost.cs",
+        "receiver": "src/GWGUI.Emulation.Acorn/Common/Services/ProcessCore.Host.cs",
+        "sharedWriterMatchesPreviousPacket": true,
+        "senderCallsAndOtherTokensUnchanged": true,
+        "orderedReadTypesAndImmediateAssignmentTargetsUnchanged": true,
+        "regionDecoder": "Existing RuntimeFunctions.ReadRegion retained in its first setter callback",
+        "otherReceiverTokensUnchanged": true
+      },
+      {
+        "sender": "src/GWGUI.Emulation.Thomson/Common/Services/CoreHost.cs",
+        "receiver": "src/GWGUI.Emulation.Thomson/Common/Services/ProcessCore.Host.cs",
+        "sharedWriterMatchesPreviousPacket": true,
+        "senderCallsAndOtherTokensUnchanged": true,
+        "orderedReadTypesAndImmediateAssignmentTargetsUnchanged": true,
+        "regionDecoder": "Existing RuntimeFunctions.ReadRegion retained in its first setter callback",
+        "otherReceiverTokensUnchanged": true
+      },
+      {
+        "sender": "src/GWGUI.Emulation.Epoch/Common/Services/CoreHost.cs",
+        "receiver": "src/GWGUI.Emulation.Epoch/Common/Services/ProcessCore.Host.cs",
+        "sharedWriterMatchesPreviousPacket": true,
+        "senderCallsAndOtherTokensUnchanged": true,
+        "orderedReadTypesAndImmediateAssignmentTargetsUnchanged": true,
+        "regionDecoder": "Existing RuntimeFunctions.ReadRegion retained in its first setter callback",
+        "otherReceiverTokensUnchanged": true
+      },
+      {
+        "sender": "src/GWGUI.Emulation.Atari/Common/Services/CoreHost.cs",
+        "receiver": "src/GWGUI.Emulation.Atari/Common/Services/ProcessCore.Host.cs",
+        "sharedWriterMatchesPreviousPacket": true,
+        "senderCallsAndOtherTokensUnchanged": true,
+        "orderedReadTypesAndImmediateAssignmentTargetsUnchanged": true,
+        "regionDecoder": "Existing RuntimeFunctions.ReadRegion retained in its first setter callback",
+        "otherReceiverTokensUnchanged": true
+      },
+      {
+        "sender": "src/GWGUI.Emulation.Coleco/Common/Services/CoreHost.cs",
+        "receiver": "src/GWGUI.Emulation.Coleco/Common/Services/ProcessCore.Host.cs",
+        "sharedWriterMatchesPreviousPacket": true,
+        "senderCallsAndOtherTokensUnchanged": true,
+        "orderedReadTypesAndImmediateAssignmentTargetsUnchanged": true,
+        "regionDecoder": "Existing RuntimeFunctions.ReadRegion retained in its first setter callback",
+        "otherReceiverTokensUnchanged": true
+      },
+      {
+        "sender": "src/GWGUI.Emulation.Bandai/Common/Services/CoreHost.cs",
+        "receiver": "src/GWGUI.Emulation.Bandai/Common/Services/ProcessCore.Host.cs",
+        "sharedWriterMatchesPreviousPacket": true,
+        "senderCallsAndOtherTokensUnchanged": true,
+        "orderedReadTypesAndImmediateAssignmentTargetsUnchanged": true,
+        "regionDecoder": "Existing RuntimeFunctions.ReadRegion retained in its first setter callback",
+        "otherReceiverTokensUnchanged": true
+      },
+      {
+        "sender": "src/GWGUI.Emulation.Wenquxing/Common/Services/CoreHost.cs",
+        "receiver": "src/GWGUI.Emulation.Wenquxing/Common/Services/ProcessCore.Host.cs",
+        "sharedWriterMatchesPreviousPacket": true,
+        "senderCallsAndOtherTokensUnchanged": true,
+        "orderedReadTypesAndImmediateAssignmentTargetsUnchanged": true,
+        "regionDecoder": "Existing RuntimeFunctions.ReadRegion retained in its first setter callback",
+        "otherReceiverTokensUnchanged": true
+      },
+      {
+        "sender": "src/GWGUI.Emulation.Watara/Common/Services/CoreHost.cs",
+        "receiver": "src/GWGUI.Emulation.Watara/Common/Services/ProcessCore.Host.cs",
+        "sharedWriterMatchesPreviousPacket": true,
+        "senderCallsAndOtherTokensUnchanged": true,
+        "orderedReadTypesAndImmediateAssignmentTargetsUnchanged": true,
+        "regionDecoder": "Existing RuntimeFunctions.ReadRegion retained in its first setter callback",
+        "otherReceiverTokensUnchanged": true
+      },
+      {
+        "sender": "src/GWGUI.Emulation.Mattel/Common/Services/CoreHost.cs",
+        "receiver": "src/GWGUI.Emulation.Mattel/Common/Services/ProcessCore.Host.cs",
+        "sharedWriterMatchesPreviousPacket": true,
+        "senderCallsAndOtherTokensUnchanged": true,
+        "orderedReadTypesAndImmediateAssignmentTargetsUnchanged": true,
+        "regionDecoder": "Existing RuntimeFunctions.ReadRegion retained in its first setter callback",
+        "otherReceiverTokensUnchanged": true
+      },
+      {
+        "sender": "src/GWGUI.Emulation.Philips/Common/Services/CoreHost.cs",
+        "receiver": "src/GWGUI.Emulation.Philips/Common/Services/ProcessCore.Host.cs",
+        "sharedWriterMatchesPreviousPacket": true,
+        "senderCallsAndOtherTokensUnchanged": true,
+        "orderedReadTypesAndImmediateAssignmentTargetsUnchanged": true,
+        "regionDecoder": "Existing RuntimeFunctions.ReadRegion retained in its first setter callback",
+        "otherReceiverTokensUnchanged": true
+      },
+      {
+        "sender": "src/GWGUI.Emulation.Panasonic/Common/Services/CoreHost.cs",
+        "receiver": "src/GWGUI.Emulation.Panasonic/Common/Services/ProcessCore.Host.cs",
+        "sharedWriterMatchesPreviousPacket": true,
+        "senderCallsAndOtherTokensUnchanged": true,
+        "orderedReadTypesAndImmediateAssignmentTargetsUnchanged": true,
+        "regionDecoder": "Existing RuntimeFunctions.ReadRegion retained in its first setter callback",
+        "otherReceiverTokensUnchanged": true
+      },
+      {
+        "sender": "src/GWGUI.Emulation.Sinclair/Common/Services/CoreHost.cs",
+        "receiver": "src/GWGUI.Emulation.Sinclair/Common/Services/ProcessCore.Host.cs",
+        "sharedWriterMatchesPreviousPacket": true,
+        "senderCallsAndOtherTokensUnchanged": true,
+        "orderedReadTypesAndImmediateAssignmentTargetsUnchanged": true,
+        "regionDecoder": "Existing RuntimeFunctions.ReadRegion retained in its first setter callback",
+        "otherReceiverTokensUnchanged": true
+      },
+      {
+        "sender": "src/GWGUI.Emulation.Snk/Common/Services/CoreHost.cs",
+        "receiver": "src/GWGUI.Emulation.Snk/Common/Services/ProcessCore.Host.cs",
+        "sharedWriterMatchesPreviousPacket": true,
+        "senderCallsAndOtherTokensUnchanged": true,
+        "orderedReadTypesAndImmediateAssignmentTargetsUnchanged": true,
+        "regionDecoder": "Existing RuntimeFunctions.ReadRegion retained in its first setter callback",
+        "otherReceiverTokensUnchanged": true
+      },
+      {
+        "sender": "src/GWGUI.Emulation.Sharp/Common/Services/CoreHost.cs",
+        "receiver": "src/GWGUI.Emulation.Sharp/Common/Services/ProcessCore.Host.cs",
+        "sharedWriterMatchesPreviousPacket": true,
+        "senderCallsAndOtherTokensUnchanged": true,
+        "orderedReadTypesAndImmediateAssignmentTargetsUnchanged": true,
+        "regionDecoder": "Existing RuntimeFunctions.ReadRegion retained in its first setter callback",
+        "otherReceiverTokensUnchanged": true
+      }
+    ],
+    "methods": [
+      "WriteRuntimeStatus",
+      "ReadRuntimeStatus"
+    ],
+    "sourceCommit": "84d73e4e6",
+    "layout": "Int32 region, Int32 buffered frames, Int64 overrun count, Int64 underrun count; 24 bytes",
+    "sdkOwner": "src/GWGUI.Emulation/Functions/EmulationHostProtocolFunctions.Host.cs",
+    "statePolicy": "Apply each field callback immediately after its read, before reading the next field; partial-state and stream position on truncation/callback error preserved. No tuple/DTO/state object introduced.",
+    "originalOwners": [
+      "187dc9329:src/GWGUI.Emulation.Atari/Cores/AtariCoreHost.cs",
+      "187dc9329:src/GWGUI.Emulation.Atari/Cores/AtariProcessCore.cs"
+    ],
+    "verification": "Sixteen complete sender/receiver AST comparisons and original Atari writer packet passed; sixteen RegionValue adapters forward their original parameter to the existing SDK converter; previous SDK methods unchanged; 11 targeted tests pass; SDK/App/23 module references compile; diff --check passes.",
+    "tests": "Independent little-endian 24-byte packet fixture, null/NTSC/PAL region, positive 64-bit counters beyond Int32, seven truncation boundaries preserving prior assignments, callback error before next read and borrowed reader remains open. Managed streams only."
   }
 }

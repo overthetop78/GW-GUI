@@ -88,7 +88,7 @@ public static class CoreHost
         writer.Write(core.FramesPerSecond);
         writer.Write(core.SampleRate);
         writer.Write(core.SupportsSaveStates);
-        WriteRuntimeStatus(writer, core.Region, core.BufferedAudioFrames, core.AudioOverrunCount, core.AudioUnderrunCount);
+        EmulationHostProtocolFunctions.WriteRuntimeStatus(writer, core.Region, core.BufferedAudioFrames, core.AudioOverrunCount, core.AudioUnderrunCount);
         writer.Write(JsonSerializer.Serialize(core.Options, CoreHostFunctions.JsonOptions));
         writer.Write(JsonSerializer.Serialize(core.Diagnostics, CoreHostFunctions.JsonOptions));
         lastDiagnosticCount = core.Diagnostics.Count;
@@ -111,20 +111,12 @@ public static class CoreHost
         EmulationHostProtocolFunctions.WriteQueuedAudio(writer, () => core.TryDequeueAudio(out var chunk) ? chunk : null);
         writer.Write(core.FramesPerSecond);
         writer.Write(core.SampleRate);
-        WriteRuntimeStatus(writer, core.Region, bufferedAudioFrames, audioOverrunCount, audioUnderrunCount);
+        EmulationHostProtocolFunctions.WriteRuntimeStatus(writer, core.Region, bufferedAudioFrames, audioOverrunCount, audioUnderrunCount);
         writer.Write(core.SupportsSaveStates);
         EmulationHostProtocolFunctions.WriteChangedDiagnostics(writer, () => core.Diagnostics.Count,
             diagnosticWriter => diagnosticWriter.Write(JsonSerializer.Serialize(core.Diagnostics, CoreHostFunctions.JsonOptions)), ref lastDiagnosticCount);
 
         CoreHostFunctions.WriteLedStates(writer, core.LedStates);
-    }
-
-    private static void WriteRuntimeStatus(BinaryWriter writer, EmulationVideoStandard? region, int bufferedAudioFrames, long audioOverrunCount, long audioUnderrunCount)
-    {
-        writer.Write(RuntimeFunctions.RegionValue(region));
-        writer.Write(bufferedAudioFrames);
-        writer.Write(audioOverrunCount);
-        writer.Write(audioUnderrunCount);
     }
 
     private static MediaConfiguration ReadMedia(BinaryReader reader) => JsonSerializer.Deserialize<MediaConfiguration>(reader.ReadString(), CoreHostFunctions.JsonOptions) ?? throw new InvalidDataException(CoreHostErrors.InvalidConfiguration);
