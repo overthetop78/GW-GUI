@@ -9,12 +9,20 @@ internal static class AtomicFileWriter
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(path);
         var fullPath = Path.GetFullPath(path);
+        await WriteTemporaryAsync(fullPath,
+            temporaryPath => File.WriteAllBytesAsync(temporaryPath, content.ToArray(), cancellationToken)).ConfigureAwait(false);
+    }
+
+    internal static async Task WriteTemporaryAsync(string fullPath, Func<string, Task> writeTemporary,
+        CancellationToken publishCancellationToken = default)
+    {
         var directory = Path.GetDirectoryName(fullPath) ?? Directory.GetCurrentDirectory();
         Directory.CreateDirectory(directory);
         var temporaryPath = Path.Combine(directory, $".{Path.GetFileName(fullPath)}.{Guid.NewGuid():N}.tmp");
         try
         {
-            await File.WriteAllBytesAsync(temporaryPath, content.ToArray(), cancellationToken).ConfigureAwait(false);
+            await writeTemporary(temporaryPath).ConfigureAwait(false);
+            publishCancellationToken.ThrowIfCancellationRequested();
             File.Move(temporaryPath, fullPath, true);
         }
         finally

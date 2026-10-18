@@ -115469,5 +115469,1212 @@
     "changedSourcesExcluded": [
       "src/GWGUI.MediaEngine/Images/Models/Flux/FluxTransitionDecoder.cs"
     ]
+  },
+  "asyncMediaAdapterQualification": {
+    "state": "verified",
+    "commonOwners": [
+      "src/GWGUI.MediaEngine/Images/Reading/Recognition/MediaRecognitionContext.cs",
+      "src/GWGUI.MediaEngine/Images/Reading/MediaImageDocumentFactory.cs",
+      "src/GWGUI.MediaEngine/Interfaces/IAtomicImageFileWriter.cs",
+      "src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/ScpReader.cs"
+    ],
+    "snapshot": "f6bca74cba8d81bc5d7691000ca86b5fbb495141",
+    "occurrences": [
+      {
+        "bodyHash": "2424806932341803602B738C7B83C4242D2D4C1507DC5997A02CD43C17CA8C58",
+        "text": "public async Task WriteAsync(CpcDskImage image, string path, CancellationToken cancellationToken = default)\r\n    {\r\n        var bytes = Build(image);\r\n        await files.WriteAsync(path, (stream, token) => stream.WriteAsync(bytes, token).AsTask(), cancellationToken).ConfigureAwait(false);\r\n    }",
+        "line": 9,
+        "tokens": 44,
+        "method": "WriteAsync",
+        "sourceSha256": "C759FBCD93E9AA57DD8986AEDEC7FD22F4403C8C77F763A1C8058764146F6A04",
+        "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/CpcDsk/CpcDskWriter.cs",
+        "signature": "(CpcDskImage image, string path, CancellationToken cancellationToken = default)",
+        "bindings": [
+          {
+            "target": "GWGUI.MediaEngine.Images.Formats.Floppy.CpcDsk.CpcDskWriter.Build(GWGUI.MediaEngine.Images.Formats.Floppy.CpcDsk.CpcDskImage)",
+            "assembly": "gwgui.mediaengine",
+            "call": "Build"
+          },
+          {
+            "target": "System.Threading.Tasks.Task.ConfigureAwait(bool)",
+            "assembly": "System.Runtime",
+            "call": "files.WriteAsync(path, (stream, token) => stream.WriteAsync(bytes, token).AsTask(), cancellationToken).ConfigureAwait"
+          },
+          {
+            "target": "GWGUI.MediaEngine.Interfaces.IAtomicImageFileWriter.WriteAsync(string, System.Func<System.IO.Stream, System.Threading.CancellationToken, System.Threading.Tasks.Task>, System.Threading.CancellationToken)",
+            "assembly": "gwgui.mediaengine",
+            "call": "files.WriteAsync"
+          },
+          {
+            "target": "System.Threading.Tasks.ValueTask.AsTask()",
+            "assembly": "System.Runtime",
+            "call": "stream.WriteAsync(bytes, token).AsTask"
+          },
+          {
+            "target": "System.IO.Stream.WriteAsync(System.ReadOnlyMemory<byte>, System.Threading.CancellationToken)",
+            "assembly": "System.Runtime",
+            "call": "stream.WriteAsync"
+          }
+        ],
+        "decision": "Retain typed adapter; asynchronous source/atomic operation and format-specific parse/build target already owned separately; no reusable parsing algorithm duplicated in this wrapper",
+        "policy": "Build CpcDskImage or ImdImage before invoking injected IAtomicImageFileWriter; stream ownership and atomic publish remain in writer implementation"
+      },
+      {
+        "bodyHash": "2424806932341803602B738C7B83C4242D2D4C1507DC5997A02CD43C17CA8C58",
+        "text": "public async Task WriteAsync(ImdImage image, string path, CancellationToken cancellationToken = default)\r\n    {\r\n        var bytes = Build(image);\r\n        await files.WriteAsync(path, (stream, token) => stream.WriteAsync(bytes, token).AsTask(), cancellationToken).ConfigureAwait(false);\r\n    }",
+        "line": 10,
+        "tokens": 44,
+        "method": "WriteAsync",
+        "sourceSha256": "3CDA491B0C13B69716D3B7BAD60F51ADCAAB3E63617D6EC1A313A03021DAE337",
+        "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/ImageDisk/ImdWriter.cs",
+        "signature": "(ImdImage image, string path, CancellationToken cancellationToken = default)",
+        "bindings": [
+          {
+            "target": "GWGUI.MediaEngine.Images.Formats.Floppy.ImageDisk.ImdWriter.Build(GWGUI.MediaEngine.Images.Formats.Floppy.ImageDisk.ImdImage)",
+            "assembly": "gwgui.mediaengine",
+            "call": "Build"
+          },
+          {
+            "target": "System.Threading.Tasks.Task.ConfigureAwait(bool)",
+            "assembly": "System.Runtime",
+            "call": "files.WriteAsync(path, (stream, token) => stream.WriteAsync(bytes, token).AsTask(), cancellationToken).ConfigureAwait"
+          },
+          {
+            "target": "GWGUI.MediaEngine.Interfaces.IAtomicImageFileWriter.WriteAsync(string, System.Func<System.IO.Stream, System.Threading.CancellationToken, System.Threading.Tasks.Task>, System.Threading.CancellationToken)",
+            "assembly": "gwgui.mediaengine",
+            "call": "files.WriteAsync"
+          },
+          {
+            "target": "System.Threading.Tasks.ValueTask.AsTask()",
+            "assembly": "System.Runtime",
+            "call": "stream.WriteAsync(bytes, token).AsTask"
+          },
+          {
+            "target": "System.IO.Stream.WriteAsync(System.ReadOnlyMemory<byte>, System.Threading.CancellationToken)",
+            "assembly": "System.Runtime",
+            "call": "stream.WriteAsync"
+          }
+        ],
+        "decision": "Retain typed adapter; asynchronous source/atomic operation and format-specific parse/build target already owned separately; no reusable parsing algorithm duplicated in this wrapper",
+        "policy": "Build CpcDskImage or ImdImage before invoking injected IAtomicImageFileWriter; stream ownership and atomic publish remain in writer implementation"
+      },
+      {
+        "bodyHash": "326C906E4DFA7AA160E572783FCF3F9F7C3C99615AD6EDC8D160F2DE18C77217",
+        "text": "async Task<MediaImageDocument> IMediaImageReader.ReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken)\r\n    {\r\n        var data = await context.ReadBytesAsync(cancellationToken).ConfigureAwait(false);\r\n        return MediaImageDocumentFactory.CreateFloppySector(context.Source, Read(data.ToArray(), cancellationToken));\r\n    }",
+        "line": 72,
+        "tokens": 39,
+        "method": "ReadAsync",
+        "sourceSha256": "D89C08666D47A4CFC7B1E95DA52781601C0908EF7345CD2A5FCB4E0CF7193325",
+        "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/St/AtariStReader.cs",
+        "signature": "(MediaRecognitionContext context, CancellationToken cancellationToken)",
+        "bindings": [
+          {
+            "target": "System.Threading.Tasks.Task<System.ReadOnlyMemory<byte>>.ConfigureAwait(bool)",
+            "assembly": "System.Runtime",
+            "call": "context.ReadBytesAsync(cancellationToken).ConfigureAwait"
+          },
+          {
+            "target": "GWGUI.MediaEngine.Images.Reading.Recognition.MediaRecognitionContext.ReadBytesAsync(System.Threading.CancellationToken)",
+            "assembly": "gwgui.mediaengine",
+            "call": "context.ReadBytesAsync"
+          },
+          {
+            "target": "GWGUI.MediaEngine.Images.Reading.MediaImageDocumentFactory.CreateFloppySector(GWGUI.MediaEngine.Contracts.MediaSourceDescriptor, GWGUI.MediaEngine.Images.Models.Sectors.SectorImage, System.Collections.Generic.IReadOnlyDictionary<string, string>?)",
+            "assembly": "gwgui.mediaengine",
+            "call": "MediaImageDocumentFactory.CreateFloppySector"
+          },
+          {
+            "target": "GWGUI.MediaEngine.Images.Formats.Floppy.St.AtariStReader.Read(byte[], System.Threading.CancellationToken)",
+            "assembly": "gwgui.mediaengine",
+            "call": "Read"
+          },
+          {
+            "target": "System.ReadOnlyMemory<byte>.ToArray()",
+            "assembly": "System.Runtime",
+            "call": "data.ToArray"
+          }
+        ],
+        "decision": "Retain typed adapter; asynchronous source/atomic operation and format-specific parse/build target already owned separately; no reusable parsing algorithm duplicated in this wrapper",
+        "policy": "Shared MediaRecognitionContext byte cache and MediaImageDocumentFactory; distinct format-specific Read/ReadAsync without resource ownership"
+      },
+      {
+        "bodyHash": "326C906E4DFA7AA160E572783FCF3F9F7C3C99615AD6EDC8D160F2DE18C77217",
+        "text": "async Task<MediaImageDocument> IMediaImageReader.ReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken)\r\n    {\r\n        var data = await context.ReadBytesAsync(cancellationToken).ConfigureAwait(false);\r\n        return MediaImageDocumentFactory.CreateFloppySector(context.Source, Read(data.ToArray(), cancellationToken));\r\n    }",
+        "line": 55,
+        "tokens": 39,
+        "method": "ReadAsync",
+        "sourceSha256": "31F02F150713EEAE9FF644BFA8FC40FB2D4512F6C0D3BFDE8B2B0D151BF88E9E",
+        "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/AcornAtom/AcornAtomDskReader.cs",
+        "signature": "(MediaRecognitionContext context, CancellationToken cancellationToken)",
+        "bindings": [
+          {
+            "target": "System.Threading.Tasks.Task<System.ReadOnlyMemory<byte>>.ConfigureAwait(bool)",
+            "assembly": "System.Runtime",
+            "call": "context.ReadBytesAsync(cancellationToken).ConfigureAwait"
+          },
+          {
+            "target": "GWGUI.MediaEngine.Images.Reading.Recognition.MediaRecognitionContext.ReadBytesAsync(System.Threading.CancellationToken)",
+            "assembly": "gwgui.mediaengine",
+            "call": "context.ReadBytesAsync"
+          },
+          {
+            "target": "GWGUI.MediaEngine.Images.Reading.MediaImageDocumentFactory.CreateFloppySector(GWGUI.MediaEngine.Contracts.MediaSourceDescriptor, GWGUI.MediaEngine.Images.Models.Sectors.SectorImage, System.Collections.Generic.IReadOnlyDictionary<string, string>?)",
+            "assembly": "gwgui.mediaengine",
+            "call": "MediaImageDocumentFactory.CreateFloppySector"
+          },
+          {
+            "target": "GWGUI.MediaEngine.Images.Formats.Floppy.AcornAtom.AcornAtomDskReader.Read(byte[], System.Threading.CancellationToken)",
+            "assembly": "gwgui.mediaengine",
+            "call": "Read"
+          },
+          {
+            "target": "System.ReadOnlyMemory<byte>.ToArray()",
+            "assembly": "System.Runtime",
+            "call": "data.ToArray"
+          }
+        ],
+        "decision": "Retain typed adapter; asynchronous source/atomic operation and format-specific parse/build target already owned separately; no reusable parsing algorithm duplicated in this wrapper",
+        "policy": "Shared MediaRecognitionContext byte cache and MediaImageDocumentFactory; distinct format-specific Read/ReadAsync without resource ownership"
+      },
+      {
+        "bodyHash": "326C906E4DFA7AA160E572783FCF3F9F7C3C99615AD6EDC8D160F2DE18C77217",
+        "text": "async Task<MediaImageDocument> IMediaImageReader.ReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken)\r\n    {\r\n        var data = await context.ReadBytesAsync(cancellationToken).ConfigureAwait(false);\r\n        return MediaImageDocumentFactory.CreateFloppySector(context.Source, Read(data.ToArray(), cancellationToken));\r\n    }",
+        "line": 52,
+        "tokens": 39,
+        "method": "ReadAsync",
+        "sourceSha256": "CDC355257A73529AA06FE9FC1036C891C7A19F36F78FBD0E997BDBF1AD6DF53B",
+        "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/D81/D81Reader.cs",
+        "signature": "(MediaRecognitionContext context, CancellationToken cancellationToken)",
+        "bindings": [
+          {
+            "target": "System.Threading.Tasks.Task<System.ReadOnlyMemory<byte>>.ConfigureAwait(bool)",
+            "assembly": "System.Runtime",
+            "call": "context.ReadBytesAsync(cancellationToken).ConfigureAwait"
+          },
+          {
+            "target": "GWGUI.MediaEngine.Images.Reading.Recognition.MediaRecognitionContext.ReadBytesAsync(System.Threading.CancellationToken)",
+            "assembly": "gwgui.mediaengine",
+            "call": "context.ReadBytesAsync"
+          },
+          {
+            "target": "GWGUI.MediaEngine.Images.Reading.MediaImageDocumentFactory.CreateFloppySector(GWGUI.MediaEngine.Contracts.MediaSourceDescriptor, GWGUI.MediaEngine.Images.Models.Sectors.SectorImage, System.Collections.Generic.IReadOnlyDictionary<string, string>?)",
+            "assembly": "gwgui.mediaengine",
+            "call": "MediaImageDocumentFactory.CreateFloppySector"
+          },
+          {
+            "target": "GWGUI.MediaEngine.Images.Formats.Floppy.D81.D81Reader.Read(byte[], System.Threading.CancellationToken)",
+            "assembly": "gwgui.mediaengine",
+            "call": "Read"
+          },
+          {
+            "target": "System.ReadOnlyMemory<byte>.ToArray()",
+            "assembly": "System.Runtime",
+            "call": "data.ToArray"
+          }
+        ],
+        "decision": "Retain typed adapter; asynchronous source/atomic operation and format-specific parse/build target already owned separately; no reusable parsing algorithm duplicated in this wrapper",
+        "policy": "Shared MediaRecognitionContext byte cache and MediaImageDocumentFactory; distinct format-specific Read/ReadAsync without resource ownership"
+      },
+      {
+        "bodyHash": "326C906E4DFA7AA160E572783FCF3F9F7C3C99615AD6EDC8D160F2DE18C77217",
+        "text": "async Task<MediaImageDocument> IMediaImageReader.ReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken)\r\n    {\r\n        var data = await context.ReadBytesAsync(cancellationToken).ConfigureAwait(false);\r\n        return MediaImageDocumentFactory.CreateFloppySector(context.Source, Read(data.ToArray(), cancellationToken));\r\n    }",
+        "line": 52,
+        "tokens": 39,
+        "method": "ReadAsync",
+        "sourceSha256": "611A5FAEA5C961A5B3D330F776F79C10E7744EACA592CF328D39246FD9E762D7",
+        "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/D71/D71Reader.cs",
+        "signature": "(MediaRecognitionContext context, CancellationToken cancellationToken)",
+        "bindings": [
+          {
+            "target": "System.Threading.Tasks.Task<System.ReadOnlyMemory<byte>>.ConfigureAwait(bool)",
+            "assembly": "System.Runtime",
+            "call": "context.ReadBytesAsync(cancellationToken).ConfigureAwait"
+          },
+          {
+            "target": "GWGUI.MediaEngine.Images.Reading.Recognition.MediaRecognitionContext.ReadBytesAsync(System.Threading.CancellationToken)",
+            "assembly": "gwgui.mediaengine",
+            "call": "context.ReadBytesAsync"
+          },
+          {
+            "target": "GWGUI.MediaEngine.Images.Reading.MediaImageDocumentFactory.CreateFloppySector(GWGUI.MediaEngine.Contracts.MediaSourceDescriptor, GWGUI.MediaEngine.Images.Models.Sectors.SectorImage, System.Collections.Generic.IReadOnlyDictionary<string, string>?)",
+            "assembly": "gwgui.mediaengine",
+            "call": "MediaImageDocumentFactory.CreateFloppySector"
+          },
+          {
+            "target": "GWGUI.MediaEngine.Images.Formats.Floppy.D71.D71Reader.Read(byte[], System.Threading.CancellationToken)",
+            "assembly": "gwgui.mediaengine",
+            "call": "Read"
+          },
+          {
+            "target": "System.ReadOnlyMemory<byte>.ToArray()",
+            "assembly": "System.Runtime",
+            "call": "data.ToArray"
+          }
+        ],
+        "decision": "Retain typed adapter; asynchronous source/atomic operation and format-specific parse/build target already owned separately; no reusable parsing algorithm duplicated in this wrapper",
+        "policy": "Shared MediaRecognitionContext byte cache and MediaImageDocumentFactory; distinct format-specific Read/ReadAsync without resource ownership"
+      },
+      {
+        "bodyHash": "326C906E4DFA7AA160E572783FCF3F9F7C3C99615AD6EDC8D160F2DE18C77217",
+        "text": "async Task<MediaImageDocument> IMediaImageReader.ReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken)\r\n    {\r\n        var data = await context.ReadBytesAsync(cancellationToken).ConfigureAwait(false);\r\n        return MediaImageDocumentFactory.CreateFloppySector(context.Source, Read(data.ToArray(), cancellationToken));\r\n    }",
+        "line": 58,
+        "tokens": 39,
+        "method": "ReadAsync",
+        "sourceSha256": "782A2AE3593B0CAF539A73FF421659AF4E02726A0CAC29AE9835384646075C1C",
+        "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/D64/D64Reader.cs",
+        "signature": "(MediaRecognitionContext context, CancellationToken cancellationToken)",
+        "bindings": [
+          {
+            "target": "System.Threading.Tasks.Task<System.ReadOnlyMemory<byte>>.ConfigureAwait(bool)",
+            "assembly": "System.Runtime",
+            "call": "context.ReadBytesAsync(cancellationToken).ConfigureAwait"
+          },
+          {
+            "target": "GWGUI.MediaEngine.Images.Reading.Recognition.MediaRecognitionContext.ReadBytesAsync(System.Threading.CancellationToken)",
+            "assembly": "gwgui.mediaengine",
+            "call": "context.ReadBytesAsync"
+          },
+          {
+            "target": "GWGUI.MediaEngine.Images.Reading.MediaImageDocumentFactory.CreateFloppySector(GWGUI.MediaEngine.Contracts.MediaSourceDescriptor, GWGUI.MediaEngine.Images.Models.Sectors.SectorImage, System.Collections.Generic.IReadOnlyDictionary<string, string>?)",
+            "assembly": "gwgui.mediaengine",
+            "call": "MediaImageDocumentFactory.CreateFloppySector"
+          },
+          {
+            "target": "GWGUI.MediaEngine.Images.Formats.Floppy.D64.D64Reader.Read(byte[], System.Threading.CancellationToken)",
+            "assembly": "gwgui.mediaengine",
+            "call": "Read"
+          },
+          {
+            "target": "System.ReadOnlyMemory<byte>.ToArray()",
+            "assembly": "System.Runtime",
+            "call": "data.ToArray"
+          }
+        ],
+        "decision": "Retain typed adapter; asynchronous source/atomic operation and format-specific parse/build target already owned separately; no reusable parsing algorithm duplicated in this wrapper",
+        "policy": "Shared MediaRecognitionContext byte cache and MediaImageDocumentFactory; distinct format-specific Read/ReadAsync without resource ownership"
+      },
+      {
+        "bodyHash": "326C906E4DFA7AA160E572783FCF3F9F7C3C99615AD6EDC8D160F2DE18C77217",
+        "text": "async Task<MediaImageDocument> IMediaImageReader.ReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken)\r\n    {\r\n        var data = await context.ReadBytesAsync(cancellationToken).ConfigureAwait(false);\r\n        return MediaImageDocumentFactory.CreateFloppySector(context.Source, Read(data.ToArray(), cancellationToken));\r\n    }",
+        "line": 52,
+        "tokens": 39,
+        "method": "ReadAsync",
+        "sourceSha256": "8E098BA297EDF5E53AB46ADF65F58F27CF6A6D12BFE3A1FB00AAF9053A2DAECB",
+        "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/UcsdRawImageReader.cs",
+        "signature": "(MediaRecognitionContext context, CancellationToken cancellationToken)",
+        "bindings": [
+          {
+            "target": "System.Threading.Tasks.Task<System.ReadOnlyMemory<byte>>.ConfigureAwait(bool)",
+            "assembly": "System.Runtime",
+            "call": "context.ReadBytesAsync(cancellationToken).ConfigureAwait"
+          },
+          {
+            "target": "GWGUI.MediaEngine.Images.Reading.Recognition.MediaRecognitionContext.ReadBytesAsync(System.Threading.CancellationToken)",
+            "assembly": "gwgui.mediaengine",
+            "call": "context.ReadBytesAsync"
+          },
+          {
+            "target": "GWGUI.MediaEngine.Images.Reading.MediaImageDocumentFactory.CreateFloppySector(GWGUI.MediaEngine.Contracts.MediaSourceDescriptor, GWGUI.MediaEngine.Images.Models.Sectors.SectorImage, System.Collections.Generic.IReadOnlyDictionary<string, string>?)",
+            "assembly": "gwgui.mediaengine",
+            "call": "MediaImageDocumentFactory.CreateFloppySector"
+          },
+          {
+            "target": "GWGUI.MediaEngine.Images.Formats.Floppy.Raw.UcsdRawImageReader.Read(byte[], System.Threading.CancellationToken)",
+            "assembly": "gwgui.mediaengine",
+            "call": "Read"
+          },
+          {
+            "target": "System.ReadOnlyMemory<byte>.ToArray()",
+            "assembly": "System.Runtime",
+            "call": "data.ToArray"
+          }
+        ],
+        "decision": "Retain typed adapter; asynchronous source/atomic operation and format-specific parse/build target already owned separately; no reusable parsing algorithm duplicated in this wrapper",
+        "policy": "Shared MediaRecognitionContext byte cache and MediaImageDocumentFactory; distinct format-specific Read/ReadAsync without resource ownership"
+      },
+      {
+        "bodyHash": "326C906E4DFA7AA160E572783FCF3F9F7C3C99615AD6EDC8D160F2DE18C77217",
+        "text": "async Task<MediaImageDocument> IMediaImageReader.ReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken)\r\n    {\r\n        var data = await context.ReadBytesAsync(cancellationToken).ConfigureAwait(false);\r\n        return MediaImageDocumentFactory.CreateFloppySector(context.Source, Read(data.ToArray(), cancellationToken));\r\n    }",
+        "line": 60,
+        "tokens": 39,
+        "method": "ReadAsync",
+        "sourceSha256": "A42F716592CB1E1E0C61D6228B8234E5B21944E42634243A83E5FC358EDF2343",
+        "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/MsxRawImageReader.cs",
+        "signature": "(MediaRecognitionContext context, CancellationToken cancellationToken)",
+        "bindings": [
+          {
+            "target": "System.Threading.Tasks.Task<System.ReadOnlyMemory<byte>>.ConfigureAwait(bool)",
+            "assembly": "System.Runtime",
+            "call": "context.ReadBytesAsync(cancellationToken).ConfigureAwait"
+          },
+          {
+            "target": "GWGUI.MediaEngine.Images.Reading.Recognition.MediaRecognitionContext.ReadBytesAsync(System.Threading.CancellationToken)",
+            "assembly": "gwgui.mediaengine",
+            "call": "context.ReadBytesAsync"
+          },
+          {
+            "target": "GWGUI.MediaEngine.Images.Reading.MediaImageDocumentFactory.CreateFloppySector(GWGUI.MediaEngine.Contracts.MediaSourceDescriptor, GWGUI.MediaEngine.Images.Models.Sectors.SectorImage, System.Collections.Generic.IReadOnlyDictionary<string, string>?)",
+            "assembly": "gwgui.mediaengine",
+            "call": "MediaImageDocumentFactory.CreateFloppySector"
+          },
+          {
+            "target": "GWGUI.MediaEngine.Images.Formats.Floppy.Raw.MsxRawImageReader.Read(byte[], System.Threading.CancellationToken)",
+            "assembly": "gwgui.mediaengine",
+            "call": "Read"
+          },
+          {
+            "target": "System.ReadOnlyMemory<byte>.ToArray()",
+            "assembly": "System.Runtime",
+            "call": "data.ToArray"
+          }
+        ],
+        "decision": "Retain typed adapter; asynchronous source/atomic operation and format-specific parse/build target already owned separately; no reusable parsing algorithm duplicated in this wrapper",
+        "policy": "Shared MediaRecognitionContext byte cache and MediaImageDocumentFactory; distinct format-specific Read/ReadAsync without resource ownership"
+      },
+      {
+        "bodyHash": "326C906E4DFA7AA160E572783FCF3F9F7C3C99615AD6EDC8D160F2DE18C77217",
+        "text": "async Task<MediaImageDocument> IMediaImageReader.ReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken)\r\n    {\r\n        var data = await context.ReadBytesAsync(cancellationToken).ConfigureAwait(false);\r\n        return MediaImageDocumentFactory.CreateFloppySector(context.Source, Read(data.ToArray(), cancellationToken));\r\n    }",
+        "line": 60,
+        "tokens": 39,
+        "method": "ReadAsync",
+        "sourceSha256": "DB8618D24548C6907D847B0F73101D2366A04C2D498DE255BD4CF531A03C9B4E",
+        "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/IbmRawImageReader.cs",
+        "signature": "(MediaRecognitionContext context, CancellationToken cancellationToken)",
+        "bindings": [
+          {
+            "target": "System.Threading.Tasks.Task<System.ReadOnlyMemory<byte>>.ConfigureAwait(bool)",
+            "assembly": "System.Runtime",
+            "call": "context.ReadBytesAsync(cancellationToken).ConfigureAwait"
+          },
+          {
+            "target": "GWGUI.MediaEngine.Images.Reading.Recognition.MediaRecognitionContext.ReadBytesAsync(System.Threading.CancellationToken)",
+            "assembly": "gwgui.mediaengine",
+            "call": "context.ReadBytesAsync"
+          },
+          {
+            "target": "GWGUI.MediaEngine.Images.Reading.MediaImageDocumentFactory.CreateFloppySector(GWGUI.MediaEngine.Contracts.MediaSourceDescriptor, GWGUI.MediaEngine.Images.Models.Sectors.SectorImage, System.Collections.Generic.IReadOnlyDictionary<string, string>?)",
+            "assembly": "gwgui.mediaengine",
+            "call": "MediaImageDocumentFactory.CreateFloppySector"
+          },
+          {
+            "target": "GWGUI.MediaEngine.Images.Formats.Floppy.Raw.IbmRawImageReader.Read(byte[], System.Threading.CancellationToken)",
+            "assembly": "gwgui.mediaengine",
+            "call": "Read"
+          },
+          {
+            "target": "System.ReadOnlyMemory<byte>.ToArray()",
+            "assembly": "System.Runtime",
+            "call": "data.ToArray"
+          }
+        ],
+        "decision": "Retain typed adapter; asynchronous source/atomic operation and format-specific parse/build target already owned separately; no reusable parsing algorithm duplicated in this wrapper",
+        "policy": "Shared MediaRecognitionContext byte cache and MediaImageDocumentFactory; distinct format-specific Read/ReadAsync without resource ownership"
+      },
+      {
+        "bodyHash": "6F152D6879CCE1F6974A2FF3D6EB04D53A03D5688BA68D4D9930D7A04910092E",
+        "text": "public async Task<GdiDescriptor> ReadAsync(string path, CancellationToken cancellationToken = default)\n    {\n        ArgumentException.ThrowIfNullOrWhiteSpace(path);\n        var lines = await File.ReadAllLinesAsync(path, cancellationToken).ConfigureAwait(false);\n        return Parse(lines);\n    }",
+        "line": 9,
+        "tokens": 33,
+        "method": "ReadAsync",
+        "sourceSha256": "7EFD87A2F252A0FA79B7A43B150F4D44D26EF73E8180BD2B957724EC99761E1F",
+        "path": "src/GWGUI.MediaEngine/Images/Formats/Optical/Gdi/GdiDescriptorReader.cs",
+        "signature": "(string path, CancellationToken cancellationToken = default)",
+        "bindings": [
+          {
+            "target": "System.ArgumentException.ThrowIfNullOrWhiteSpace(string?, string?)",
+            "assembly": "System.Runtime",
+            "call": "ArgumentException.ThrowIfNullOrWhiteSpace"
+          },
+          {
+            "target": "System.Threading.Tasks.Task<string[]>.ConfigureAwait(bool)",
+            "assembly": "System.Runtime",
+            "call": "File.ReadAllLinesAsync(path, cancellationToken).ConfigureAwait"
+          },
+          {
+            "target": "System.IO.File.ReadAllLinesAsync(string, System.Threading.CancellationToken)",
+            "assembly": "System.Runtime",
+            "call": "File.ReadAllLinesAsync"
+          },
+          {
+            "target": "GWGUI.MediaEngine.Images.Formats.Optical.Gdi.GdiDescriptorReader.Parse(System.Collections.Generic.IEnumerable<string>)",
+            "assembly": "gwgui.mediaengine",
+            "call": "Parse"
+          }
+        ],
+        "decision": "Retain typed adapter; asynchronous source/atomic operation and format-specific parse/build target already owned separately; no reusable parsing algorithm duplicated in this wrapper",
+        "policy": "BCL validates/reads text lines, then distinct descriptor parser; no shared parser and no owned stream in wrapper"
+      },
+      {
+        "bodyHash": "6F152D6879CCE1F6974A2FF3D6EB04D53A03D5688BA68D4D9930D7A04910092E",
+        "text": "public async Task<CloneCdDescriptor> ReadAsync(string path, CancellationToken cancellationToken = default)\r\n    {\r\n        ArgumentException.ThrowIfNullOrWhiteSpace(path);\r\n        var lines = await File.ReadAllLinesAsync(path, cancellationToken).ConfigureAwait(false);\r\n        return Parse(lines);\r\n    }",
+        "line": 11,
+        "tokens": 33,
+        "method": "ReadAsync",
+        "sourceSha256": "3CB8838C5B1C621FE8A8E3BEE27DC2A56B40752F436B1867E935F78899A75389",
+        "path": "src/GWGUI.MediaEngine/Images/Formats/Optical/CloneCd/CloneCdDescriptorReader.cs",
+        "signature": "(string path, CancellationToken cancellationToken = default)",
+        "bindings": [
+          {
+            "target": "System.ArgumentException.ThrowIfNullOrWhiteSpace(string?, string?)",
+            "assembly": "System.Runtime",
+            "call": "ArgumentException.ThrowIfNullOrWhiteSpace"
+          },
+          {
+            "target": "System.Threading.Tasks.Task<string[]>.ConfigureAwait(bool)",
+            "assembly": "System.Runtime",
+            "call": "File.ReadAllLinesAsync(path, cancellationToken).ConfigureAwait"
+          },
+          {
+            "target": "System.IO.File.ReadAllLinesAsync(string, System.Threading.CancellationToken)",
+            "assembly": "System.Runtime",
+            "call": "File.ReadAllLinesAsync"
+          },
+          {
+            "target": "GWGUI.MediaEngine.Images.Formats.Optical.CloneCd.CloneCdDescriptorReader.Parse(System.Collections.Generic.IEnumerable<string>)",
+            "assembly": "gwgui.mediaengine",
+            "call": "Parse"
+          }
+        ],
+        "decision": "Retain typed adapter; asynchronous source/atomic operation and format-specific parse/build target already owned separately; no reusable parsing algorithm duplicated in this wrapper",
+        "policy": "BCL validates/reads text lines, then distinct descriptor parser; no shared parser and no owned stream in wrapper"
+      },
+      {
+        "bodyHash": "6F152D6879CCE1F6974A2FF3D6EB04D53A03D5688BA68D4D9930D7A04910092E",
+        "text": "public async Task<CueSheetDocument> ReadAsync(string path, CancellationToken cancellationToken = default)\r\n    {\r\n        ArgumentException.ThrowIfNullOrWhiteSpace(path);\r\n        var lines = await File.ReadAllLinesAsync(path, cancellationToken).ConfigureAwait(false);\r\n        return Parse(lines);\r\n    }",
+        "line": 11,
+        "tokens": 33,
+        "method": "ReadAsync",
+        "sourceSha256": "7760B78324F770FAE54A07388B59823693BDB554F5B66901EDB0D3F985C11770",
+        "path": "src/GWGUI.MediaEngine/Images/Formats/Optical/BinCue/CueSheetReader.cs",
+        "signature": "(string path, CancellationToken cancellationToken = default)",
+        "bindings": [
+          {
+            "target": "System.ArgumentException.ThrowIfNullOrWhiteSpace(string?, string?)",
+            "assembly": "System.Runtime",
+            "call": "ArgumentException.ThrowIfNullOrWhiteSpace"
+          },
+          {
+            "target": "System.Threading.Tasks.Task<string[]>.ConfigureAwait(bool)",
+            "assembly": "System.Runtime",
+            "call": "File.ReadAllLinesAsync(path, cancellationToken).ConfigureAwait"
+          },
+          {
+            "target": "System.IO.File.ReadAllLinesAsync(string, System.Threading.CancellationToken)",
+            "assembly": "System.Runtime",
+            "call": "File.ReadAllLinesAsync"
+          },
+          {
+            "target": "GWGUI.MediaEngine.Images.Formats.Optical.BinCue.CueSheetReader.Parse(System.Collections.Generic.IEnumerable<string>)",
+            "assembly": "gwgui.mediaengine",
+            "call": "Parse"
+          }
+        ],
+        "decision": "Retain typed adapter; asynchronous source/atomic operation and format-specific parse/build target already owned separately; no reusable parsing algorithm duplicated in this wrapper",
+        "policy": "BCL validates/reads text lines, then distinct descriptor parser; no shared parser and no owned stream in wrapper"
+      },
+      {
+        "bodyHash": "C2D5615FA80002F69D8F5BB351D422E21996D859A4AF57D5558C961407AC0F16",
+        "text": "public async Task<SectorImage> ReadAsync(string path, IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>? progress, CancellationToken cancellationToken = default)\r\n    {\r\n        var scp = await scpReader.ReadAsync(path, cancellationToken).ConfigureAwait(false);\r\n        return Read(scp, progress, cancellationToken);\r\n    }",
+        "line": 31,
+        "tokens": 30,
+        "method": "ReadAsync",
+        "sourceSha256": "4D5C51EFC40150695BCF4905A34E65913FC15D8C8861A369E164530FCF3E984A",
+        "path": "src/GWGUI.MediaEngine/Images/Reading/Reconstruction/DecRx02ScpSectorImageReader.cs",
+        "signature": "(string path, IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>? progress, CancellationToken cancellationToken = default)",
+        "bindings": [
+          {
+            "target": "System.Threading.Tasks.Task<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.ScpImage>.ConfigureAwait(bool)",
+            "assembly": "System.Runtime",
+            "call": "scpReader.ReadAsync(path, cancellationToken).ConfigureAwait"
+          },
+          {
+            "target": "GWGUI.MediaEngine.Images.Formats.Floppy.Scp.IScpReader.ReadAsync(string, System.Threading.CancellationToken)",
+            "assembly": "gwgui.mediaengine",
+            "call": "scpReader.ReadAsync"
+          },
+          {
+            "target": "GWGUI.MediaEngine.Images.Reading.Reconstruction.DecRx02ScpSectorImageReader.Read(GWGUI.MediaEngine.Images.Formats.Floppy.Scp.ScpImage, System.IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>?, System.Threading.CancellationToken)",
+            "assembly": "gwgui.mediaengine",
+            "call": "Read"
+          }
+        ],
+        "decision": "Retain typed adapter; asynchronous source/atomic operation and format-specific parse/build target already owned separately; no reusable parsing algorithm duplicated in this wrapper",
+        "policy": "Same injected IScpReader; distinct RX02/Amiga sector reconstruction with same borrowed progress/token"
+      },
+      {
+        "bodyHash": "C2D5615FA80002F69D8F5BB351D422E21996D859A4AF57D5558C961407AC0F16",
+        "text": "public async Task<SectorImage> ReadAsync(string path, IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>? progress, CancellationToken cancellationToken = default)\r\n    {\r\n        var scp = await scpReader.ReadAsync(path, cancellationToken).ConfigureAwait(false);\r\n        return Read(scp, progress, cancellationToken);\r\n    }",
+        "line": 25,
+        "tokens": 30,
+        "method": "ReadAsync",
+        "sourceSha256": "3E4B9428B068A2995B1999C4D046A48F90CBF2B122ACC2E0267CAFDB6D4618BC",
+        "path": "src/GWGUI.MediaEngine/Images/Reading/Reconstruction/AmigaScpSectorImageReader.cs",
+        "signature": "(string path, IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>? progress, CancellationToken cancellationToken = default)",
+        "bindings": [
+          {
+            "target": "System.Threading.Tasks.Task<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.ScpImage>.ConfigureAwait(bool)",
+            "assembly": "System.Runtime",
+            "call": "scpReader.ReadAsync(path, cancellationToken).ConfigureAwait"
+          },
+          {
+            "target": "GWGUI.MediaEngine.Images.Formats.Floppy.Scp.IScpReader.ReadAsync(string, System.Threading.CancellationToken)",
+            "assembly": "gwgui.mediaengine",
+            "call": "scpReader.ReadAsync"
+          },
+          {
+            "target": "GWGUI.MediaEngine.Images.Reading.Reconstruction.AmigaScpSectorImageReader.Read(GWGUI.MediaEngine.Images.Formats.Floppy.Scp.ScpImage, System.IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>?, System.Threading.CancellationToken)",
+            "assembly": "gwgui.mediaengine",
+            "call": "Read"
+          }
+        ],
+        "decision": "Retain typed adapter; asynchronous source/atomic operation and format-specific parse/build target already owned separately; no reusable parsing algorithm duplicated in this wrapper",
+        "policy": "Same injected IScpReader; distinct RX02/Amiga sector reconstruction with same borrowed progress/token"
+      },
+      {
+        "bodyHash": "CF97DF89D5260F9CCB017D805AEC501801A3D7EA1757C6206468B31955C93DE2",
+        "text": "async Task<MediaImageDocument> IMediaImageReader.ReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken)\r\n    {\r\n        var bytes = await context.ReadBytesAsync(cancellationToken).ConfigureAwait(false);\r\n        var image = await ReadAsync(bytes, cancellationToken).ConfigureAwait(false);\r\n        return MediaImageDocumentFactory.CreateFloppySector(context.Source, image);\r\n    }",
+        "line": 60,
+        "tokens": 46,
+        "method": "ReadAsync",
+        "sourceSha256": "32FD695146B46CC87DF7C47F88C3351DF92C8D47B388C84628D3BEF487B196E6",
+        "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/CpcDsk/CpcDskReader.cs",
+        "signature": "(MediaRecognitionContext context, CancellationToken cancellationToken)",
+        "bindings": [
+          {
+            "target": "System.Threading.Tasks.Task<System.ReadOnlyMemory<byte>>.ConfigureAwait(bool)",
+            "assembly": "System.Runtime",
+            "call": "context.ReadBytesAsync(cancellationToken).ConfigureAwait"
+          },
+          {
+            "target": "GWGUI.MediaEngine.Images.Reading.Recognition.MediaRecognitionContext.ReadBytesAsync(System.Threading.CancellationToken)",
+            "assembly": "gwgui.mediaengine",
+            "call": "context.ReadBytesAsync"
+          },
+          {
+            "target": "System.Threading.Tasks.Task<GWGUI.MediaEngine.Images.Models.Sectors.SectorImage>.ConfigureAwait(bool)",
+            "assembly": "System.Runtime",
+            "call": "ReadAsync(bytes, cancellationToken).ConfigureAwait"
+          },
+          {
+            "target": "GWGUI.MediaEngine.Images.Formats.Floppy.CpcDsk.CpcDskReader.ReadAsync(System.ReadOnlyMemory<byte>, System.Threading.CancellationToken)",
+            "assembly": "gwgui.mediaengine",
+            "call": "ReadAsync"
+          },
+          {
+            "target": "GWGUI.MediaEngine.Images.Reading.MediaImageDocumentFactory.CreateFloppySector(GWGUI.MediaEngine.Contracts.MediaSourceDescriptor, GWGUI.MediaEngine.Images.Models.Sectors.SectorImage, System.Collections.Generic.IReadOnlyDictionary<string, string>?)",
+            "assembly": "gwgui.mediaengine",
+            "call": "MediaImageDocumentFactory.CreateFloppySector"
+          }
+        ],
+        "decision": "Retain typed adapter; asynchronous source/atomic operation and format-specific parse/build target already owned separately; no reusable parsing algorithm duplicated in this wrapper",
+        "policy": "Shared MediaRecognitionContext byte cache and MediaImageDocumentFactory; distinct format-specific Read/ReadAsync without resource ownership"
+      },
+      {
+        "bodyHash": "CF97DF89D5260F9CCB017D805AEC501801A3D7EA1757C6206468B31955C93DE2",
+        "text": "async Task<MediaImageDocument> IMediaImageReader.ReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken)\r\n    {\r\n        var bytes = await context.ReadBytesAsync(cancellationToken).ConfigureAwait(false);\r\n        var image = await ReadAsync(bytes, cancellationToken).ConfigureAwait(false);\r\n        return MediaImageDocumentFactory.CreateFloppySector(context.Source, image);\r\n    }",
+        "line": 41,
+        "tokens": 46,
+        "method": "ReadAsync",
+        "sourceSha256": "2C0DADE45544A409257049926C4B101F9882D13B380E2943C04129AE40297FF7",
+        "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/Rx02/DecRx02Reader.cs",
+        "signature": "(MediaRecognitionContext context, CancellationToken cancellationToken)",
+        "bindings": [
+          {
+            "target": "System.Threading.Tasks.Task<System.ReadOnlyMemory<byte>>.ConfigureAwait(bool)",
+            "assembly": "System.Runtime",
+            "call": "context.ReadBytesAsync(cancellationToken).ConfigureAwait"
+          },
+          {
+            "target": "GWGUI.MediaEngine.Images.Reading.Recognition.MediaRecognitionContext.ReadBytesAsync(System.Threading.CancellationToken)",
+            "assembly": "gwgui.mediaengine",
+            "call": "context.ReadBytesAsync"
+          },
+          {
+            "target": "System.Threading.Tasks.Task<GWGUI.MediaEngine.Images.Models.Sectors.SectorImage>.ConfigureAwait(bool)",
+            "assembly": "System.Runtime",
+            "call": "ReadAsync(bytes, cancellationToken).ConfigureAwait"
+          },
+          {
+            "target": "GWGUI.MediaEngine.Images.Formats.Floppy.Rx02.DecRx02Reader.ReadAsync(System.ReadOnlyMemory<byte>, System.Threading.CancellationToken)",
+            "assembly": "gwgui.mediaengine",
+            "call": "ReadAsync"
+          },
+          {
+            "target": "GWGUI.MediaEngine.Images.Reading.MediaImageDocumentFactory.CreateFloppySector(GWGUI.MediaEngine.Contracts.MediaSourceDescriptor, GWGUI.MediaEngine.Images.Models.Sectors.SectorImage, System.Collections.Generic.IReadOnlyDictionary<string, string>?)",
+            "assembly": "gwgui.mediaengine",
+            "call": "MediaImageDocumentFactory.CreateFloppySector"
+          }
+        ],
+        "decision": "Retain typed adapter; asynchronous source/atomic operation and format-specific parse/build target already owned separately; no reusable parsing algorithm duplicated in this wrapper",
+        "policy": "Shared MediaRecognitionContext byte cache and MediaImageDocumentFactory; distinct format-specific Read/ReadAsync without resource ownership"
+      },
+      {
+        "bodyHash": "CF97DF89D5260F9CCB017D805AEC501801A3D7EA1757C6206468B31955C93DE2",
+        "text": "async Task<MediaImageDocument> IMediaImageReader.ReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken)\r\n    {\r\n        var bytes = await context.ReadBytesAsync(cancellationToken).ConfigureAwait(false);\r\n        var image = await ReadAsync(bytes, cancellationToken).ConfigureAwait(false);\r\n        return MediaImageDocumentFactory.CreateFloppySector(context.Source, image);\r\n    }",
+        "line": 50,
+        "tokens": 46,
+        "method": "ReadAsync",
+        "sourceSha256": "BE7D1EA0C9924D2689A1D010B4407623780799AC71E6AA35C892F94784936BB2",
+        "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/CoherentRawImageReader.cs",
+        "signature": "(MediaRecognitionContext context, CancellationToken cancellationToken)",
+        "bindings": [
+          {
+            "target": "System.Threading.Tasks.Task<System.ReadOnlyMemory<byte>>.ConfigureAwait(bool)",
+            "assembly": "System.Runtime",
+            "call": "context.ReadBytesAsync(cancellationToken).ConfigureAwait"
+          },
+          {
+            "target": "GWGUI.MediaEngine.Images.Reading.Recognition.MediaRecognitionContext.ReadBytesAsync(System.Threading.CancellationToken)",
+            "assembly": "gwgui.mediaengine",
+            "call": "context.ReadBytesAsync"
+          },
+          {
+            "target": "System.Threading.Tasks.Task<GWGUI.MediaEngine.Images.Models.Sectors.SectorImage>.ConfigureAwait(bool)",
+            "assembly": "System.Runtime",
+            "call": "ReadAsync(bytes, cancellationToken).ConfigureAwait"
+          },
+          {
+            "target": "GWGUI.MediaEngine.Images.Formats.Floppy.Raw.CoherentRawImageReader.ReadAsync(System.ReadOnlyMemory<byte>, System.Threading.CancellationToken)",
+            "assembly": "gwgui.mediaengine",
+            "call": "ReadAsync"
+          },
+          {
+            "target": "GWGUI.MediaEngine.Images.Reading.MediaImageDocumentFactory.CreateFloppySector(GWGUI.MediaEngine.Contracts.MediaSourceDescriptor, GWGUI.MediaEngine.Images.Models.Sectors.SectorImage, System.Collections.Generic.IReadOnlyDictionary<string, string>?)",
+            "assembly": "gwgui.mediaengine",
+            "call": "MediaImageDocumentFactory.CreateFloppySector"
+          }
+        ],
+        "decision": "Retain typed adapter; asynchronous source/atomic operation and format-specific parse/build target already owned separately; no reusable parsing algorithm duplicated in this wrapper",
+        "policy": "Shared MediaRecognitionContext byte cache and MediaImageDocumentFactory; distinct format-specific Read/ReadAsync without resource ownership"
+      },
+      {
+        "bodyHash": "E8FA1E8D947A08B4CCD557601576A834273701FCAAB3E290112CF9C249AB8035",
+        "text": "async Task<MediaImageDocument> IMediaImageReader.ReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken)\r\n    {\r\n        var bytes = await context.ReadBytesAsync(cancellationToken).ConfigureAwait(false);\r\n        return MediaImageDocumentFactory.CreateFloppySector(context.Source, Read(bytes.ToArray(), cancellationToken));\r\n    }",
+        "line": 40,
+        "tokens": 39,
+        "method": "ReadAsync",
+        "sourceSha256": "7A73A978D5DB4BA17054DD415F1B54512F8E6C5DEFC908E158A46E36E82F6755",
+        "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/Atx/AtxReader.cs",
+        "signature": "(MediaRecognitionContext context, CancellationToken cancellationToken)",
+        "bindings": [
+          {
+            "target": "System.Threading.Tasks.Task<System.ReadOnlyMemory<byte>>.ConfigureAwait(bool)",
+            "assembly": "System.Runtime",
+            "call": "context.ReadBytesAsync(cancellationToken).ConfigureAwait"
+          },
+          {
+            "target": "GWGUI.MediaEngine.Images.Reading.Recognition.MediaRecognitionContext.ReadBytesAsync(System.Threading.CancellationToken)",
+            "assembly": "gwgui.mediaengine",
+            "call": "context.ReadBytesAsync"
+          },
+          {
+            "target": "GWGUI.MediaEngine.Images.Reading.MediaImageDocumentFactory.CreateFloppySector(GWGUI.MediaEngine.Contracts.MediaSourceDescriptor, GWGUI.MediaEngine.Images.Models.Sectors.SectorImage, System.Collections.Generic.IReadOnlyDictionary<string, string>?)",
+            "assembly": "gwgui.mediaengine",
+            "call": "MediaImageDocumentFactory.CreateFloppySector"
+          },
+          {
+            "target": "GWGUI.MediaEngine.Images.Formats.Floppy.Atx.AtxReader.Read(byte[], System.Threading.CancellationToken)",
+            "assembly": "gwgui.mediaengine",
+            "call": "Read"
+          },
+          {
+            "target": "System.ReadOnlyMemory<byte>.ToArray()",
+            "assembly": "System.Runtime",
+            "call": "bytes.ToArray"
+          }
+        ],
+        "decision": "Retain typed adapter; asynchronous source/atomic operation and format-specific parse/build target already owned separately; no reusable parsing algorithm duplicated in this wrapper",
+        "policy": "Shared MediaRecognitionContext byte cache and MediaImageDocumentFactory; distinct format-specific Read/ReadAsync without resource ownership"
+      },
+      {
+        "bodyHash": "E8FA1E8D947A08B4CCD557601576A834273701FCAAB3E290112CF9C249AB8035",
+        "text": "async Task<MediaImageDocument> IMediaImageReader.ReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken)\r\n    {\r\n        var bytes = await context.ReadBytesAsync(cancellationToken).ConfigureAwait(false);\r\n        return MediaImageDocumentFactory.CreateFloppySector(context.Source, Read(bytes.ToArray(), cancellationToken));\r\n    }",
+        "line": 65,
+        "tokens": 39,
+        "method": "ReadAsync",
+        "sourceSha256": "E1FAFCFF381630CBC53798082F004BB2476E05B48E51DAF0B58815BE7E31D004",
+        "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/RawImgReader.cs",
+        "signature": "(MediaRecognitionContext context, CancellationToken cancellationToken)",
+        "bindings": [
+          {
+            "target": "System.Threading.Tasks.Task<System.ReadOnlyMemory<byte>>.ConfigureAwait(bool)",
+            "assembly": "System.Runtime",
+            "call": "context.ReadBytesAsync(cancellationToken).ConfigureAwait"
+          },
+          {
+            "target": "GWGUI.MediaEngine.Images.Reading.Recognition.MediaRecognitionContext.ReadBytesAsync(System.Threading.CancellationToken)",
+            "assembly": "gwgui.mediaengine",
+            "call": "context.ReadBytesAsync"
+          },
+          {
+            "target": "GWGUI.MediaEngine.Images.Reading.MediaImageDocumentFactory.CreateFloppySector(GWGUI.MediaEngine.Contracts.MediaSourceDescriptor, GWGUI.MediaEngine.Images.Models.Sectors.SectorImage, System.Collections.Generic.IReadOnlyDictionary<string, string>?)",
+            "assembly": "gwgui.mediaengine",
+            "call": "MediaImageDocumentFactory.CreateFloppySector"
+          },
+          {
+            "target": "GWGUI.MediaEngine.Images.Formats.Floppy.Raw.RawImgReader.Read(byte[], System.Threading.CancellationToken)",
+            "assembly": "gwgui.mediaengine",
+            "call": "Read"
+          },
+          {
+            "target": "System.ReadOnlyMemory<byte>.ToArray()",
+            "assembly": "System.Runtime",
+            "call": "bytes.ToArray"
+          }
+        ],
+        "decision": "Retain typed adapter; asynchronous source/atomic operation and format-specific parse/build target already owned separately; no reusable parsing algorithm duplicated in this wrapper",
+        "policy": "Shared MediaRecognitionContext byte cache and MediaImageDocumentFactory; distinct format-specific Read/ReadAsync without resource ownership"
+      }
+    ],
+    "preliminaryDecision": "Keep typed format dispatch; shared byte reads, document construction and injected atomic output already delegate to existing owners. Independently qualify duplicate atomic owner implementations in the next registered task.",
+    "scope": "Only twenty typed async entry adapters; excludes their recognition and parsing algorithms",
+    "semanticErrors": 0,
+    "commonOwnerHashes": [
+      {
+        "path": "src/GWGUI.MediaEngine/Images/Reading/Recognition/MediaRecognitionContext.cs",
+        "sha256": "D874610C326037F9DBCBC703D42D28A10E49C233D0A9570438372D8E36155766"
+      },
+      {
+        "path": "src/GWGUI.MediaEngine/Images/Reading/MediaImageDocumentFactory.cs",
+        "sha256": "8FBBD8C6AFA33AE482302182737DDC5A687E145E4856A857A609CF4415857892"
+      },
+      {
+        "path": "src/GWGUI.MediaEngine/Interfaces/IAtomicImageFileWriter.cs",
+        "sha256": "5253C470122A806C01A84BAED695EDFA086CBFD32F60F3AB86153DBE2EBE5498"
+      },
+      {
+        "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/ScpReader.cs",
+        "sha256": "F4ED7E00032240024A858DEA492B462593206DEFECC565D2C45C0D247BE27DFA"
+      }
+    ]
+  },
+  "atomicPublicationReuse": {
+    "consumers": [
+      "src/GWGUI.MediaEngine\\Images\\Conversion\\Flux\\FluxContainerConversionService.cs",
+      "src/GWGUI.MediaEngine\\Images\\Formats\\Cartridge\\Console\\ConsoleCartridgeWriter.cs",
+      "src/GWGUI.MediaEngine\\Images\\Formats\\Cartridge\\AmstradRom\\AmstradRomWriter.cs",
+      "src/GWGUI.MediaEngine\\Images\\Formats\\Cartridge\\AmstradCpr\\AmstradCprWriter.cs",
+      "src/GWGUI.MediaEngine\\Images\\Formats\\HardDisk\\Chd\\ChdHardDiskWriter.cs",
+      "src/GWGUI.MediaEngine\\Images\\Formats\\HardDisk\\Raw\\RawHardDiskWriter.cs",
+      "src/GWGUI.MediaEngine\\Images\\Formats\\HardDisk\\Vmdk\\VmdkWriter.cs",
+      "src/GWGUI.MediaEngine\\Images\\Formats\\Tape\\Wav\\WavTapeWriter.cs",
+      "src/GWGUI.MediaEngine\\Images\\Formats\\HardDisk\\Vhdx\\VhdxWriter.cs",
+      "src/GWGUI.MediaEngine\\Images\\Formats\\HardDisk\\Qcow2\\Qcow2Writer.cs",
+      "src/GWGUI.MediaEngine\\Images\\Formats\\Tape\\Voc\\VocWriter.cs",
+      "src/GWGUI.MediaEngine\\Images\\Formats\\HardDisk\\Vhd\\VhdWriter.cs",
+      "src/GWGUI.MediaEngine\\Images\\Formats\\Tape\\AtariCas\\AtariCasWriter.cs",
+      "src/GWGUI.MediaEngine\\Images\\Formats\\HardDisk\\Vdi\\VdiWriter.cs",
+      "src/GWGUI.MediaEngine\\Images\\Formats\\Tape\\MsxCas\\MsxCasWriter.cs",
+      "src/GWGUI.MediaEngine\\Images\\Formats\\Tape\\Uef\\UefWriter.cs",
+      "src/GWGUI.MediaEngine\\Images\\Formats\\Floppy\\Apridisk\\ApridiskWriter.cs",
+      "src/GWGUI.MediaEngine\\Images\\Formats\\Tape\\CommodoreTap\\CommodoreTapWriter.cs",
+      "src/GWGUI.MediaEngine\\Images\\Formats\\Tape\\Tzx\\TzxWriter.cs",
+      "src/GWGUI.MediaEngine\\Images\\Formats\\Optical\\Xdvdfs\\XdvdfsWriter.cs",
+      "src/GWGUI.MediaEngine\\Images\\Formats\\Tape\\SpectrumTap\\SpectrumTapWriter.cs",
+      "src/GWGUI.MediaEngine\\Images\\Formats\\Tape\\Simh\\SimhTapeWriter.cs",
+      "src/GWGUI.MediaEngine\\Images\\Formats\\Optical\\WiiU\\WiiUWriter.cs",
+      "src/GWGUI.MediaEngine\\Images\\Formats\\Optical\\Iso\\IsoWriter.cs",
+      "src/GWGUI.MediaEngine\\Images\\Formats\\Floppy\\TwoImg\\TwoImgWriter.cs",
+      "src/GWGUI.MediaEngine\\Images\\Formats\\Floppy\\FamicomFds\\FamicomFdsWriter.cs",
+      "src/GWGUI.MediaEngine\\Images\\Formats\\Floppy\\CommodoreDos\\CommodoreDosContainerWriter.cs",
+      "src/GWGUI.MediaEngine\\Images\\Formats\\Floppy\\Raw\\LinearSectorImageWriter.cs",
+      "src/GWGUI.MediaEngine\\Images\\Formats\\Floppy\\Raw\\DefinedRawImageWriter.cs",
+      "src/GWGUI.MediaEngine\\Images\\Formats\\Floppy\\Raw\\CoherentRawImageWriter.cs",
+      "src/GWGUI.MediaEngine\\Images\\Formats\\Floppy\\Raw\\AppleRawImageWriter.cs",
+      "src/GWGUI.MediaEngine\\Images\\Formats\\Floppy\\Rx02\\DecRx02Writer.cs"
+    ],
+    "originalPath": "src/GWGUI.MediaEngine/Containers/Apple/Raw/AppleRawImageWriter.cs",
+    "laterCopyRevision": "b6a95fd67",
+    "originalSource": "using GWGUI.MediaEngine.Conversion.Apple;\r\nusing GWGUI.MediaEngine.Definitions;\r\nusing GWGUI.MediaEngine.Geometries.Apple;\r\nusing GWGUI.MediaEngine.SectorImages;\r\n\r\nnamespace GWGUI.MediaEngine.Containers.Apple.Raw;\r\n\r\n/// <summary>Écrit les images Apple sectorielles brutes en ordre DOS ou ProDOS explicite.</summary>\r\npublic sealed class AppleRawImageWriter\r\n{\r\n    /// <summary>Valide la cible, construit sa charge utile puis remplace atomiquement le fichier de destination.</summary>\r\n    public async Task WriteAsync(SectorImage image, string path, string targetFormatId, CancellationToken cancellationToken = default)\r\n    {\r\n        var payload = BuildPayload(image, targetFormatId, Path.GetExtension(path));\r\n        await WriteAtomicallyAsync(path, payload, cancellationToken).ConfigureAwait(false);\r\n    }\r\n\r\n    /// <summary>Construit la charge utile sectorielle correspondant au format et au conteneur demandés.</summary>\r\n    internal static byte[] BuildPayload(SectorImage image, string targetFormatId, string extension)\r\n    {\r\n        if (targetFormatId.Equals(DiskImageFormatIds.AppleIIAppleDos113, StringComparison.OrdinalIgnoreCase) && extension.Equals(DiskImageFileExtensions.D13, StringComparison.OrdinalIgnoreCase))\r\n            return BuildLinear(image, AppleIIGeometry.SectorSize, AppleIIGeometry.TrackCount * AppleIIGeometry.Dos32SectorsPerTrack, AppleIIGeometry.Dos32Capacity);\r\n        if (targetFormatId.Equals(DiskImageFormatIds.AppleIIAppleDos140, StringComparison.OrdinalIgnoreCase) && (extension.Equals(DiskImageFileExtensions.Do, StringComparison.OrdinalIgnoreCase) || extension.Equals(DiskImageFileExtensions.Dsk, StringComparison.OrdinalIgnoreCase)))\r\n            return BuildLinear(image, AppleIIGeometry.SectorSize, AppleIIGeometry.TrackCount * AppleIIGeometry.SectorsPerTrack, AppleIIGeometry.Capacity);\r\n        if (IsProDos140(targetFormatId) && extension.Equals(DiskImageFileExtensions.Po, StringComparison.OrdinalIgnoreCase))\r\n            return BuildLinear(image, AppleIIGeometry.ProDosBlockSize, AppleIIGeometry.TrackCount * AppleIIGeometry.ProDosBlocksPerTrack, AppleIIGeometry.Capacity);\r\n        if (IsProDos140(targetFormatId) && (extension.Equals(DiskImageFileExtensions.Do, StringComparison.OrdinalIgnoreCase) || extension.Equals(DiskImageFileExtensions.Dsk, StringComparison.OrdinalIgnoreCase)))\r\n            return AppleIISectorOrderConverter.ProDosToDos(BuildLinear(image, AppleIIGeometry.ProDosBlockSize, AppleIIGeometry.TrackCount * AppleIIGeometry.ProDosBlocksPerTrack, AppleIIGeometry.Capacity));\r\n        if (targetFormatId.Equals(DiskImageFormatIds.AppleIIProDos800, StringComparison.OrdinalIgnoreCase) && extension.Equals(DiskImageFileExtensions.Po, StringComparison.OrdinalIgnoreCase))\r\n            return BuildLinear(image, MacintoshGcrGeometry.BlockSize, MacintoshGcrGeometry.SingleSidedBlockCount * MacintoshGcrGeometry.DoubleSidedHeadCount, MacintoshGcrGeometry.Capacity800K);\r\n        throw AppleRawImageWriterExceptions.UnsupportedTarget(targetFormatId, extension);\r\n    }\r\n\r\n    /// <summary>Construit une charge utile 2IMG dans l'ordre imposé par son type d'image.</summary>\r\n    internal static byte[] BuildTwoImgPayload(SectorImage image, string targetFormatId)\r\n    {\r\n        if (targetFormatId.Equals(DiskImageFormatIds.AppleIIAppleDos113, StringComparison.OrdinalIgnoreCase)) return BuildLinear(image, AppleIIGeometry.SectorSize, AppleIIGeometry.TrackCount * AppleIIGeometry.Dos32SectorsPerTrack, AppleIIGeometry.Dos32Capacity);\r\n        if (targetFormatId.Equals(DiskImageFormatIds.AppleIIAppleDos140, StringComparison.OrdinalIgnoreCase)) return BuildLinear(image, AppleIIGeometry.SectorSize, AppleIIGeometry.TrackCount * AppleIIGeometry.SectorsPerTrack, AppleIIGeometry.Capacity);\r\n        if (IsProDos140(targetFormatId)) return BuildLinear(image, AppleIIGeometry.ProDosBlockSize, AppleIIGeometry.TrackCount * AppleIIGeometry.ProDosBlocksPerTrack, AppleIIGeometry.Capacity);\r\n        if (targetFormatId.Equals(DiskImageFormatIds.AppleIIProDos800, StringComparison.OrdinalIgnoreCase)) return BuildLinear(image, MacintoshGcrGeometry.BlockSize, MacintoshGcrGeometry.SingleSidedBlockCount * MacintoshGcrGeometry.DoubleSidedHeadCount, MacintoshGcrGeometry.Capacity800K);\r\n        throw AppleRawImageWriterExceptions.UnsupportedTarget(targetFormatId, DiskImageFileExtensions.TwoMg);\r\n    }\r\n\r\n    /// <summary>Indique si la cible utilise 280 blocs ProDOS de 512 octets.</summary>\r\n    internal static bool IsProDos140(string formatId) => formatId.Equals(DiskImageFormatIds.AppleIIProDos140, StringComparison.OrdinalIgnoreCase) || formatId.Equals(DiskImageFormatIds.AppleIIISos, StringComparison.OrdinalIgnoreCase);\r\n\r\n    /// <summary>Concatène tous les blocs après validation stricte de leur géométrie et de leur taille.</summary>\r\n    private static byte[] BuildLinear(SectorImage image, int blockSize, int blockCount, int capacity)\r\n    {\r\n        if (image.BlockSize != blockSize || image.BlockCount != blockCount || image.Capacity != capacity) throw AppleRawImageWriterExceptions.InvalidGeometry(image.FormatId, image.BlockSize, image.BlockCount, image.Capacity, blockSize, blockCount, capacity);\r\n        var output = new byte[capacity];\r\n        for (var logicalBlock = 0; logicalBlock < blockCount; logicalBlock++)\r\n        {\r\n            if (!image.TryGetBlock(logicalBlock, out var block)) throw AppleRawImageWriterExceptions.MissingBlock(logicalBlock);\r\n            if (block.Data.Count != blockSize) throw AppleRawImageWriterExceptions.InvalidBlockSize(logicalBlock, block.Data.Count, blockSize);\r\n            block.Data.ToArray().CopyTo(output, logicalBlock * blockSize);\r\n        }\r\n        return output;\r\n    }\r\n\r\n    /// <summary>Écrit dans un fichier temporaire local puis remplace la destination terminée.</summary>\r\n    internal static async Task WriteAtomicallyAsync(string path, ReadOnlyMemory<byte> bytes, CancellationToken cancellationToken)\r\n    {\r\n        var fullPath = Path.GetFullPath(path);\r\n        var directory = Path.GetDirectoryName(fullPath) ?? Directory.GetCurrentDirectory();\r\n        Directory.CreateDirectory(directory);\r\n        var temporaryPath = Path.Combine(directory, $\".{Path.GetFileName(fullPath)}.{Guid.NewGuid():N}.tmp\");\r\n        try\r\n        {\r\n            await File.WriteAllBytesAsync(temporaryPath, bytes.ToArray(), cancellationToken).ConfigureAwait(false);\r\n            File.Move(temporaryPath, fullPath, true);\r\n        }\r\n        finally\r\n        {\r\n            if (File.Exists(temporaryPath)) File.Delete(temporaryPath);\r\n        }\r\n    }\r\n}",
+    "policies": {
+      "common": "Original full-path directory/create/temp-name/overwrite-move/finally-delete sequence",
+      "memory": "Guard blank path first; no early cancellation; copy content inside temporary write; no cancellation check between completed write and rename",
+      "stream": "Cancellation before path normalization; CreateNew exclusive async stream; dispose stream before cancellation before rename"
+    },
+    "sources": [
+      {
+        "text": "using System.IO;\r\n\r\nnamespace GWGUI.MediaEngine.Images.Writing;\r\n\r\n/// <summary>Remplace atomiquement un fichier par un contenu entièrement préparé en mémoire.</summary>\r\ninternal static class AtomicFileWriter\r\n{\r\n    public static async Task WriteAsync(string path, ReadOnlyMemory<byte> content, CancellationToken cancellationToken = default)\r\n    {\r\n        ArgumentException.ThrowIfNullOrWhiteSpace(path);\r\n        var fullPath = Path.GetFullPath(path);\r\n        var directory = Path.GetDirectoryName(fullPath) ?? Directory.GetCurrentDirectory();\r\n        Directory.CreateDirectory(directory);\r\n        var temporaryPath = Path.Combine(directory, $\".{Path.GetFileName(fullPath)}.{Guid.NewGuid():N}.tmp\");\r\n        try\r\n        {\r\n            await File.WriteAllBytesAsync(temporaryPath, content.ToArray(), cancellationToken).ConfigureAwait(false);\r\n            File.Move(temporaryPath, fullPath, true);\r\n        }\r\n        finally\r\n        {\r\n            if (File.Exists(temporaryPath))\r\n                File.Delete(temporaryPath);\r\n        }\r\n    }\r\n}\r\n",
+        "path": "src/GWGUI.MediaEngine/Images/Writing/AtomicFileWriter.cs",
+        "sha256": "B4E4CF0AF2A9CCEB513AD22866E1F8734E53364CBDF3322F1B75E134F59CB3E0"
+      },
+      {
+        "text": "namespace GWGUI.MediaEngine.Interfaces;\r\n\r\n/// <summary>Publie une image seulement lorsque son écriture complète a réussi.</summary>\r\npublic interface IAtomicImageFileWriter\r\n{\r\n    /// <summary>Fournit un flux de sortie isolé et conserve la destination précédente en cas d'échec.</summary>\r\n    Task WriteAsync(string path, Func<Stream, CancellationToken, Task> write, CancellationToken cancellationToken = default);\r\n}\r\n\r\ninternal sealed class AtomicImageFileWriter : IAtomicImageFileWriter\r\n{\r\n    public async Task WriteAsync(string path, Func<Stream, CancellationToken, Task> write, CancellationToken cancellationToken = default)\r\n    {\r\n        cancellationToken.ThrowIfCancellationRequested();\r\n        var fullPath = Path.GetFullPath(path);\r\n        var directory = Path.GetDirectoryName(fullPath) ?? Directory.GetCurrentDirectory();\r\n        Directory.CreateDirectory(directory);\r\n        var temporaryPath = Path.Combine(directory, $\".{Path.GetFileName(fullPath)}.{Guid.NewGuid():N}.tmp\");\r\n        try\r\n        {\r\n            await using (var output = new FileStream(temporaryPath, FileMode.CreateNew, FileAccess.Write, FileShare.None, 4096, FileOptions.Asynchronous))\r\n                await write(output, cancellationToken).ConfigureAwait(false);\r\n            cancellationToken.ThrowIfCancellationRequested();\r\n            File.Move(temporaryPath, fullPath, true);\r\n        }\r\n        finally\r\n        {\r\n            if (File.Exists(temporaryPath)) File.Delete(temporaryPath);\r\n        }\r\n    }\r\n}\r\n",
+        "path": "src/GWGUI.MediaEngine/Interfaces/IAtomicImageFileWriter.cs",
+        "sha256": "5253C470122A806C01A84BAED695EDFA086CBFD32F60F3AB86153DBE2EBE5498"
+      }
+    ],
+    "state": "verified",
+    "originalRevision": "68c255cc3",
+    "baselineTests": {
+      "filter": "TemporaryAtomicPublicationAuditTests",
+      "failed": 0,
+      "passed": 10
+    },
+    "verification": {
+      "entryGuardTokensUnchanged": true,
+      "hashes": [
+        {
+          "path": "src/GWGUI.MediaEngine/Images/Writing/AtomicFileWriter.cs",
+          "sha256": "6CD75FDE84DF454DB5825071CB59AE9578F7C5D807B63DC5050215AB07D607A6"
+        },
+        {
+          "path": "src/GWGUI.MediaEngine/Interfaces/IAtomicImageFileWriter.cs",
+          "sha256": "25BC32D2E164D2B00C6CCF5121F6798CF6964B32ADC62CD211315EE3BD330FBE"
+        }
+      ],
+      "ownedStreamUsingUnchanged": true,
+      "state": "verified; original sequences, semantic calls and regressions passed; temporary test and fixtures removed; clean test assembly rebuilt",
+      "bindings": [
+        {
+          "target": "GWGUI.MediaEngine.Images.Writing.AtomicFileWriter.WriteTemporaryAsync(string, System.Func<string, System.Threading.Tasks.Task>, System.Threading.CancellationToken)",
+          "call": "AtomicFileWriter.WriteTemporaryAsync(fullPath, async temporaryPath =>\r\n        {\r\n            await using (var output = new FileStream(temporaryPath, FileMode.CreateNew, FileAccess.Write, FileShare.None, 4096, FileOptions.Asynchronous))\r\n                await write(output, cancellationToken).ConfigureAwait(false);\r\n        }, cancellationToken)",
+          "path": "F:\\GW GUI\\src\\GWGUI.MediaEngine\\Interfaces\\IAtomicImageFileWriter.cs"
+        },
+        {
+          "target": "GWGUI.MediaEngine.Images.Writing.AtomicFileWriter.WriteTemporaryAsync(string, System.Func<string, System.Threading.Tasks.Task>, System.Threading.CancellationToken)",
+          "call": "WriteTemporaryAsync(fullPath,\r\n            temporaryPath => File.WriteAllBytesAsync(temporaryPath, content.ToArray(), cancellationToken))",
+          "path": "F:\\GW GUI\\src\\GWGUI.MediaEngine\\Images\\Writing\\AtomicFileWriter.cs"
+        },
+        {
+          "target": "GWGUI.MediaEngine.Images.Writing.AtomicFileWriter.WriteTemporaryAsync(string, System.Func<string, System.Threading.Tasks.Task>, System.Threading.CancellationToken)",
+          "call": "AtomicFileWriter.WriteTemporaryAsync(fullPath,\r\n            temporaryPath => WriteTemporaryAsync(temporaryPath, image, cancellationToken))",
+          "path": "F:\\GW GUI\\src\\GWGUI.MediaEngine\\Images\\Formats\\Floppy\\Scp\\ScpWriter.cs"
+        }
+      ],
+      "streamExpansionTokensUnchanged": true,
+      "semanticErrors": 0,
+      "originalPublicationTokensUnchanged": true,
+      "earliestAppleAlgorithmRetained": true,
+      "scpGuardsAndExpandedSequenceUnchanged": true,
+      "scpWholeFileOnlyPublicationChanged": true,
+      "appleWholeFileOnlyUnusedMethodRemoved": true,
+      "additionalHashes": [
+        {
+          "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/ScpWriter.cs",
+          "sha256": "095ABE552EE092ECB5541178D24BB8B8E1AC33F2C2252076B57F85B68901317D"
+        },
+        {
+          "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/AppleRawImageWriter.cs",
+          "sha256": "982679ABD8B65D83BC59A49AD28A322E38A2F0F91845F3B188C5337010F26217"
+        }
+      ],
+      "regressionTests": {
+        "temporaryCases": 12,
+        "filter": "TemporaryAtomicPublicationAuditTests|AmstradCpcMediaFormatTests|FluxSectorReadRegressionTests|ImageFormatCatalogReuseTests",
+        "failed": 0,
+        "existingCases": 45,
+        "passed": 57
+      },
+      "temporaryTestSha256": "5B0040F3D7B4AEA7778F10BCC99C1B81FD6474F0CAB3006C203F0818140315CE",
+      "temporaryTestRemoved": true,
+      "residualFixtureDirectories": 0,
+      "postCleanupTests": {
+        "filter": "AmstradCpcMediaFormatTests|FluxSectorReadRegressionTests|ImageFormatCatalogReuseTests",
+        "temporarySourceAbsent": true,
+        "failed": 0,
+        "passed": 45
+      }
+    },
+    "earliestOrigin": {
+      "text": "using GWGUI.MediaEngine.Conversion.Apple;\r\nusing GWGUI.MediaEngine.Definitions;\r\nusing GWGUI.MediaEngine.Geometries.Apple;\r\nusing GWGUI.MediaEngine.SectorImages;\r\n\r\nnamespace GWGUI.MediaEngine.Containers.Apple.Raw;\r\n\r\n/// <summary>Écrit les images Apple sectorielles brutes en ordre DOS ou ProDOS explicite.</summary>\r\npublic sealed class AppleRawImageWriter\r\n{\r\n    /// <summary>Valide la cible, construit sa charge utile puis remplace atomiquement le fichier de destination.</summary>\r\n    public async Task WriteAsync(SectorImage image, string path, string targetFormatId, CancellationToken cancellationToken = default)\r\n    {\r\n        var payload = BuildPayload(image, targetFormatId, Path.GetExtension(path));\r\n        await WriteAtomicallyAsync(path, payload, cancellationToken).ConfigureAwait(false);\r\n    }\r\n\r\n    /// <summary>Construit la charge utile sectorielle correspondant au format et au conteneur demandés.</summary>\r\n    internal static byte[] BuildPayload(SectorImage image, string targetFormatId, string extension)\r\n    {\r\n        if (targetFormatId.Equals(DiskImageFormatIds.AppleIIAppleDos113, StringComparison.OrdinalIgnoreCase) && extension.Equals(DiskImageFileExtensions.D13, StringComparison.OrdinalIgnoreCase))\r\n            return BuildLinear(image, AppleIIGeometry.SectorSize, AppleIIGeometry.TrackCount * AppleIIGeometry.Dos32SectorsPerTrack, AppleIIGeometry.Dos32Capacity);\r\n        if (targetFormatId.Equals(DiskImageFormatIds.AppleIIAppleDos140, StringComparison.OrdinalIgnoreCase) && (extension.Equals(DiskImageFileExtensions.Do, StringComparison.OrdinalIgnoreCase) || extension.Equals(DiskImageFileExtensions.Dsk, StringComparison.OrdinalIgnoreCase)))\r\n            return BuildLinear(image, AppleIIGeometry.SectorSize, AppleIIGeometry.TrackCount * AppleIIGeometry.SectorsPerTrack, AppleIIGeometry.Capacity);\r\n        if (IsProDos140(targetFormatId) && extension.Equals(DiskImageFileExtensions.Po, StringComparison.OrdinalIgnoreCase))\r\n            return BuildLinear(image, AppleIIGeometry.ProDosBlockSize, AppleIIGeometry.TrackCount * AppleIIGeometry.ProDosBlocksPerTrack, AppleIIGeometry.Capacity);\r\n        if (IsProDos140(targetFormatId) && (extension.Equals(DiskImageFileExtensions.Do, StringComparison.OrdinalIgnoreCase) || extension.Equals(DiskImageFileExtensions.Dsk, StringComparison.OrdinalIgnoreCase)))\r\n            return AppleIISectorOrderConverter.ProDosToDos(BuildLinear(image, AppleIIGeometry.ProDosBlockSize, AppleIIGeometry.TrackCount * AppleIIGeometry.ProDosBlocksPerTrack, AppleIIGeometry.Capacity));\r\n        if (targetFormatId.Equals(DiskImageFormatIds.AppleIIProDos800, StringComparison.OrdinalIgnoreCase) && extension.Equals(DiskImageFileExtensions.Po, StringComparison.OrdinalIgnoreCase))\r\n            return BuildLinear(image, MacintoshGcrGeometry.BlockSize, MacintoshGcrGeometry.SingleSidedBlockCount * MacintoshGcrGeometry.DoubleSidedHeadCount, MacintoshGcrGeometry.Capacity800K);\r\n        throw AppleRawImageWriterExceptions.UnsupportedTarget(targetFormatId, extension);\r\n    }\r\n\r\n    /// <summary>Construit une charge utile 2IMG dans l'ordre imposé par son type d'image.</summary>\r\n    internal static byte[] BuildTwoImgPayload(SectorImage image, string targetFormatId)\r\n    {\r\n        if (targetFormatId.Equals(DiskImageFormatIds.AppleIIAppleDos113, StringComparison.OrdinalIgnoreCase)) return BuildLinear(image, AppleIIGeometry.SectorSize, AppleIIGeometry.TrackCount * AppleIIGeometry.Dos32SectorsPerTrack, AppleIIGeometry.Dos32Capacity);\r\n        if (targetFormatId.Equals(DiskImageFormatIds.AppleIIAppleDos140, StringComparison.OrdinalIgnoreCase)) return BuildLinear(image, AppleIIGeometry.SectorSize, AppleIIGeometry.TrackCount * AppleIIGeometry.SectorsPerTrack, AppleIIGeometry.Capacity);\r\n        if (IsProDos140(targetFormatId)) return BuildLinear(image, AppleIIGeometry.ProDosBlockSize, AppleIIGeometry.TrackCount * AppleIIGeometry.ProDosBlocksPerTrack, AppleIIGeometry.Capacity);\r\n        if (targetFormatId.Equals(DiskImageFormatIds.AppleIIProDos800, StringComparison.OrdinalIgnoreCase)) return BuildLinear(image, MacintoshGcrGeometry.BlockSize, MacintoshGcrGeometry.SingleSidedBlockCount * MacintoshGcrGeometry.DoubleSidedHeadCount, MacintoshGcrGeometry.Capacity800K);\r\n        throw AppleRawImageWriterExceptions.UnsupportedTarget(targetFormatId, DiskImageFileExtensions.TwoMg);\r\n    }\r\n\r\n    /// <summary>Indique si la cible utilise 280 blocs ProDOS de 512 octets.</summary>\r\n    internal static bool IsProDos140(string formatId) => formatId.Equals(DiskImageFormatIds.AppleIIProDos140, StringComparison.OrdinalIgnoreCase) || formatId.Equals(DiskImageFormatIds.AppleIIISos, StringComparison.OrdinalIgnoreCase);\r\n\r\n    /// <summary>Concatène tous les blocs après validation stricte de leur géométrie et de leur taille.</summary>\r\n    private static byte[] BuildLinear(SectorImage image, int blockSize, int blockCount, int capacity)\r\n    {\r\n        if (image.BlockSize != blockSize || image.BlockCount != blockCount || image.Capacity != capacity) throw AppleRawImageWriterExceptions.InvalidGeometry(image.FormatId, image.BlockSize, image.BlockCount, image.Capacity, blockSize, blockCount, capacity);\r\n        var output = new byte[capacity];\r\n        for (var logicalBlock = 0; logicalBlock < blockCount; logicalBlock++)\r\n        {\r\n            if (!image.TryGetBlock(logicalBlock, out var block)) throw AppleRawImageWriterExceptions.MissingBlock(logicalBlock);\r\n            if (block.Data.Count != blockSize) throw AppleRawImageWriterExceptions.InvalidBlockSize(logicalBlock, block.Data.Count, blockSize);\r\n            block.Data.ToArray().CopyTo(output, logicalBlock * blockSize);\r\n        }\r\n        return output;\r\n    }\r\n\r\n    /// <summary>Écrit dans un fichier temporaire local puis remplace la destination terminée.</summary>\r\n    internal static async Task WriteAtomicallyAsync(string path, ReadOnlyMemory<byte> bytes, CancellationToken cancellationToken)\r\n    {\r\n        var fullPath = Path.GetFullPath(path);\r\n        var directory = Path.GetDirectoryName(fullPath) ?? Directory.GetCurrentDirectory();\r\n        Directory.CreateDirectory(directory);\r\n        var temporaryPath = Path.Combine(directory, $\".{Path.GetFileName(fullPath)}.{Guid.NewGuid():N}.tmp\");\r\n        try\r\n        {\r\n            await File.WriteAllBytesAsync(temporaryPath, bytes.ToArray(), cancellationToken).ConfigureAwait(false);\r\n            File.Move(temporaryPath, fullPath, true);\r\n        }\r\n        finally\r\n        {\r\n            if (File.Exists(temporaryPath)) File.Delete(temporaryPath);\r\n        }\r\n    }\r\n}",
+      "path": "src/GWGUI.MediaEngine/Containers/Apple/Raw/AppleRawImageWriter.cs",
+      "revision": "68c255cc3"
+    },
+    "additionalSources": [
+      {
+        "text": "using System.Buffers.Binary;\r\n\r\nnamespace GWGUI.MediaEngine.Images.Formats.Floppy.Scp;\r\n\r\n/// <summary>Écrit atomiquement un conteneur SCP standard à partir de son modèle de pistes et de révolutions.</summary>\r\npublic sealed class ScpWriter : IScpWriter\r\n{\r\n    /// <summary>Écrit l'image dans un fichier temporaire, finalise sa table et sa somme de contrôle, puis remplace la destination.</summary>\r\n    public async Task WriteAsync(string path, ScpImage image, CancellationToken cancellationToken = default)\r\n    {\r\n        ArgumentException.ThrowIfNullOrWhiteSpace(path);\r\n        ArgumentNullException.ThrowIfNull(image);\r\n        Validate(image);\r\n        var fullPath = Path.GetFullPath(path);\r\n        var directory = Path.GetDirectoryName(fullPath) ?? Directory.GetCurrentDirectory();\r\n        Directory.CreateDirectory(directory);\r\n        var temporaryPath = Path.Combine(directory, $\".{Path.GetFileName(fullPath)}.{Guid.NewGuid():N}.tmp\");\r\n        try\r\n        {\r\n            await WriteTemporaryAsync(temporaryPath, image, cancellationToken).ConfigureAwait(false);\r\n            File.Move(temporaryPath, fullPath, true);\r\n        }\r\n        finally\r\n        {\r\n            if (File.Exists(temporaryPath)) File.Delete(temporaryPath);\r\n        }\r\n    }\r\n\r\n    /// <summary>Écrit le corps, puis revient compléter les offsets et le checksum avant fermeture.</summary>\r\n    private static async Task WriteTemporaryAsync(string path, ScpImage image, CancellationToken cancellationToken)\r\n    {\r\n        await using var output = new FileStream(path, FileMode.CreateNew, FileAccess.ReadWrite, FileShare.None, 4096, FileOptions.Asynchronous);\r\n        await WriteAsync(output, image, cancellationToken).ConfigureAwait(false);\r\n    }\r\n\r\n    /// <summary>Écrit un conteneur dans un flux lisible, inscriptible et repositionnable, sans fermer ce flux.</summary>\r\n    public static async Task WriteAsync(Stream output, ScpImage image, CancellationToken cancellationToken = default)\r\n    {\r\n        ArgumentNullException.ThrowIfNull(output);\r\n        ArgumentNullException.ThrowIfNull(image);\r\n        if (!output.CanRead || !output.CanWrite || !output.CanSeek)\r\n            throw new ArgumentException(\"The SCP output must support reading, writing and seeking.\", nameof(output));\r\n        Validate(image);\r\n        cancellationToken.ThrowIfCancellationRequested();\r\n        output.Position = 0;\r\n        output.SetLength(0);\r\n        var prefixLength = ScpFormatConstants.TrackTableOffset + ScpFormatConstants.FloppyTrackSlots * ScpFormatConstants.TrackTableEntrySize;\r\n        await output.WriteAsync(new byte[prefixLength], cancellationToken).ConfigureAwait(false);\r\n        var offsets = new uint[ScpFormatConstants.FloppyTrackSlots];\r\n        foreach (var track in image.Tracks.OrderBy(track => track.TrackNumber))\r\n        {\r\n            cancellationToken.ThrowIfCancellationRequested();\r\n            offsets[track.TrackNumber] = checked((uint)output.Position);\r\n            var bytes = BuildTrack(track);\r\n            await output.WriteAsync(bytes, cancellationToken).ConfigureAwait(false);\r\n        }\r\n\r\n        var header = BuildHeader(image.Header);\r\n        output.Position = ScpFormatConstants.FileStartOffset;\r\n        await output.WriteAsync(header, cancellationToken).ConfigureAwait(false);\r\n        var table = BuildTrackTable(offsets);\r\n        await output.WriteAsync(table, cancellationToken).ConfigureAwait(false);\r\n        await output.FlushAsync(cancellationToken).ConfigureAwait(false);\r\n        var checksum = await ComputeChecksumAsync(output, cancellationToken).ConfigureAwait(false);\r\n        BinaryPrimitives.WriteUInt32LittleEndian(header.AsSpan(ScpFormatConstants.ChecksumOffset, ScpFormatConstants.ChecksumLength), checksum);\r\n        output.Position = ScpFormatConstants.FileStartOffset;\r\n        await output.WriteAsync(header, cancellationToken).ConfigureAwait(false);\r\n        await output.FlushAsync(cancellationToken).ConfigureAwait(false);\r\n    }\r\n\r\n    /// <summary>Construit l'en-tête fixe sans reprendre un checksum devenu obsolète.</summary>\r\n    private static byte[] BuildHeader(ScpHeader source)\r\n    {\r\n        var header = new byte[ScpFormatConstants.HeaderLength];\r\n        ScpFormatConstants.FileSignature.CopyTo(header);\r\n        header[ScpFormatConstants.VersionOffset] = source.Version;\r\n        header[ScpFormatConstants.DiskTypeOffset] = source.DiskType;\r\n        header[ScpFormatConstants.RevolutionCountOffset] = source.Revolutions;\r\n        header[ScpFormatConstants.StartTrackOffset] = source.StartTrack;\r\n        header[ScpFormatConstants.EndTrackOffset] = source.EndTrack;\r\n        header[ScpFormatConstants.FlagsOffset] = (byte)source.Flags;\r\n        header[ScpFormatConstants.BitCellWidthOffset] = (byte)source.BitCellEncoding;\r\n        header[ScpFormatConstants.HeadsOffset] = (byte)source.Heads;\r\n        header[ScpFormatConstants.ResolutionOffset] = source.Resolution;\r\n        return header;\r\n    }\r\n\r\n    /// <summary>Encode les 168 offsets de pistes en little-endian.</summary>\r\n    private static byte[] BuildTrackTable(IReadOnlyList<uint> offsets)\r\n    {\r\n        var table = new byte[ScpFormatConstants.FloppyTrackSlots * ScpFormatConstants.TrackTableEntrySize];\r\n        for (var index = 0; index < offsets.Count; index++) BinaryPrimitives.WriteUInt32LittleEndian(table.AsSpan(index * ScpFormatConstants.TrackTableEntrySize, ScpFormatConstants.TrackTableEntrySize), offsets[index]);\r\n        return table;\r\n    }\r\n\r\n    /// <summary>Encode les descripteurs et les mots de flux d'une piste.</summary>\r\n    private static byte[] BuildTrack(ScpTrack track)\r\n    {\r\n        var words = track.Revolutions.Select(EncodeIntervals).ToArray();\r\n        var descriptorLength = checked(ScpFormatConstants.TrackDescriptorHeaderSize + words.Length * ScpFormatConstants.RevolutionDescriptorSize);\r\n        var length = checked(descriptorLength + words.Sum(values => values.Length * ScpFormatConstants.FluxIntervalSize));\r\n        var data = new byte[length];\r\n        ScpFormatConstants.TrackSignature.CopyTo(data);\r\n        data[ScpFormatConstants.TrackNumberOffset] = track.TrackNumber;\r\n        var dataOffset = descriptorLength;\r\n        for (var index = 0; index < track.Revolutions.Count; index++)\r\n        {\r\n            var descriptorOffset = ScpFormatConstants.TrackDescriptorHeaderSize + index * ScpFormatConstants.RevolutionDescriptorSize;\r\n            BinaryPrimitives.WriteUInt32LittleEndian(data.AsSpan(descriptorOffset + ScpFormatConstants.RevolutionIndexTimeOffset, sizeof(uint)), track.Revolutions[index].IndexTimeTicks);\r\n            BinaryPrimitives.WriteUInt32LittleEndian(data.AsSpan(descriptorOffset + ScpFormatConstants.RevolutionFluxCountOffset, sizeof(uint)), checked((uint)words[index].Length));\r\n            BinaryPrimitives.WriteUInt32LittleEndian(data.AsSpan(descriptorOffset + ScpFormatConstants.RevolutionDataOffset, sizeof(uint)), checked((uint)dataOffset));\r\n            foreach (var word in words[index])\r\n            {\r\n                BinaryPrimitives.WriteUInt16BigEndian(data.AsSpan(dataOffset, ScpFormatConstants.FluxIntervalSize), word);\r\n                dataOffset += ScpFormatConstants.FluxIntervalSize;\r\n            }\r\n        }\r\n\r\n        return data;\r\n    }\r\n\r\n    /// <summary>Découpe les grands intervalles avec les marqueurs de débordement définis par SCP.</summary>\r\n    private static ushort[] EncodeIntervals(ScpRevolution revolution)\r\n    {\r\n        var words = new List<ushort>();\r\n        uint carry = 0;\r\n        for (var index = 0; index < revolution.FluxIntervals.Count; index++)\r\n        {\r\n            var remaining = checked(revolution.FluxIntervals[index] + carry);\r\n            carry = 0;\r\n            if (index + 1 < revolution.FluxIntervals.Count && remaining % ScpFormatConstants.ZeroFluxIntervalOverflow == 0)\r\n            {\r\n                remaining--;\r\n                carry = 1;\r\n            }\r\n            while (remaining >= ScpFormatConstants.ZeroFluxIntervalOverflow)\r\n            {\r\n                words.Add(ScpFormatConstants.FluxOverflowMarker);\r\n                remaining -= ScpFormatConstants.ZeroFluxIntervalOverflow;\r\n            }\r\n            if (remaining > 0) words.Add(checked((ushort)remaining));\r\n        }\r\n\r\n        return words.ToArray();\r\n    }\r\n\r\n    /// <summary>Calcule la somme des octets depuis la table jusqu'à la fin du fichier temporaire.</summary>\r\n    private static async Task<uint> ComputeChecksumAsync(Stream stream, CancellationToken cancellationToken)\r\n    {\r\n        stream.Position = ScpFormatConstants.TrackTableOffset;\r\n        var buffer = new byte[81920];\r\n        var checksum = ScpFormatConstants.InitialChecksum;\r\n        int read;\r\n        while ((read = await stream.ReadAsync(buffer, cancellationToken).ConfigureAwait(false)) > 0) checksum = ScpFormatAlgorithms.UpdateChecksum(checksum, buffer.AsSpan(0, read));\r\n        return checksum;\r\n    }\r\n\r\n    /// <summary>Valide les invariants nécessaires à une table SCP non ambiguë.</summary>\r\n    private static void Validate(ScpImage image)\r\n    {\r\n        var header = image.Header;\r\n        if (header.Revolutions is < ScpFormatConstants.MinimumRevolutionCount or > ScpFormatConstants.MaximumRevolutionCount) throw ScpWriterExceptions.InvalidRevolutionCount(header.Revolutions);\r\n        if (header.EndTrack < header.StartTrack || header.EndTrack >= ScpFormatConstants.FloppyTrackSlots) throw ScpWriterExceptions.InvalidTrackRange(header.StartTrack, header.EndTrack);\r\n        _ = ScpReader.ReadHeader(BuildHeader(header));\r\n        if ((header.Flags & ScpFlags.Extended) != ScpFlags.None) throw ScpWriterExceptions.ExtendedMedia();\r\n        var seen = new HashSet<byte>();\r\n        foreach (var track in image.Tracks)\r\n        {\r\n            if (!seen.Add(track.TrackNumber)) throw ScpWriterExceptions.DuplicateTrack(track.TrackNumber);\r\n            if (track.TrackNumber < header.StartTrack || track.TrackNumber > header.EndTrack) throw ScpWriterExceptions.TrackOutsideRange(track.TrackNumber, header.StartTrack, header.EndTrack);\r\n            var address = ScpFormatAlgorithms.ToTrackAddress(track.TrackNumber);\r\n            if (track.Cylinder != address.Cylinder || track.Head != address.Head) throw ScpWriterExceptions.TrackAddressMismatch(track.TrackNumber, track.Cylinder, track.Head);\r\n            if (track.Revolutions.Count != header.Revolutions) throw ScpWriterExceptions.RevolutionCountMismatch(track.TrackNumber, header.Revolutions, track.Revolutions.Count);\r\n            for (var index = 0; index < track.Revolutions.Count; index++) if (track.Revolutions[index].FluxIntervals.Any(interval => interval == 0)) throw ScpWriterExceptions.EmptyFluxInterval(track.TrackNumber, index + ScpFormatConstants.RevolutionNumberOffset);\r\n        }\r\n    }\r\n}\r\n",
+        "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/ScpWriter.cs",
+        "sha256": "1A8A3FFBA291C91BB8E95A2A825F7383FD926AAF4BC066E4BB60BBC574E146DD"
+      },
+      {
+        "text": "using GWGUI.MediaEngine.Images.Conversion.Apple;\r\nusing GWGUI.MediaEngine.Constants;\r\n\r\nusing GWGUI.MediaEngine.Interfaces;\r\n\r\nusing GWGUI.MediaEngine.Images.Models.Sectors;\r\n\r\nnamespace GWGUI.MediaEngine.Images.Formats.Floppy.Raw;\r\n\r\n/// <summary>Écrit les images Apple sectorielles brutes en ordre DOS ou ProDOS explicite.</summary>\r\npublic sealed class AppleRawImageWriter(IAtomicImageFileWriter? fileWriter = null)\r\n{\r\n    private readonly IAtomicImageFileWriter files = fileWriter ?? new AtomicImageFileWriter();\r\n    /// <summary>Valide la cible, construit sa charge utile puis remplace atomiquement le fichier de destination.</summary>\r\n    public async Task WriteAsync(SectorImage image, string path, string targetFormatId, CancellationToken cancellationToken = default)\r\n    {\r\n        var payload = BuildPayload(image, targetFormatId, Path.GetExtension(path));\r\n        await files.WriteAsync(path, (output, token) => output.WriteAsync(payload, token).AsTask(), cancellationToken).ConfigureAwait(false);\r\n    }\r\n\r\n    /// <summary>Construit la charge utile sectorielle correspondant au format et au conteneur demandés.</summary>\r\n    internal static byte[] BuildPayload(SectorImage image, string targetFormatId, string extension)\r\n    {\r\n        if (targetFormatId.Equals(DiskImageFormatIds.AppleIIAppleDos113, StringComparison.OrdinalIgnoreCase) && extension.Equals(DiskImageFileExtensions.D13, StringComparison.OrdinalIgnoreCase))\r\n            return BuildLinear(image, AppleIIGeometry.SectorSize, AppleIIGeometry.TrackCount * AppleIIGeometry.Dos32SectorsPerTrack, AppleIIGeometry.Dos32Capacity);\r\n        if (targetFormatId.Equals(DiskImageFormatIds.AppleIIAppleDos140, StringComparison.OrdinalIgnoreCase) && (extension.Equals(DiskImageFileExtensions.Do, StringComparison.OrdinalIgnoreCase) || extension.Equals(DiskImageFileExtensions.Dsk, StringComparison.OrdinalIgnoreCase)))\r\n            return BuildLinear(image, AppleIIGeometry.SectorSize, AppleIIGeometry.TrackCount * AppleIIGeometry.SectorsPerTrack, AppleIIGeometry.Capacity);\r\n        if (IsProDos140(targetFormatId) && extension.Equals(DiskImageFileExtensions.Po, StringComparison.OrdinalIgnoreCase))\r\n            return BuildLinear(image, AppleIIGeometry.ProDosBlockSize, AppleIIGeometry.TrackCount * AppleIIGeometry.ProDosBlocksPerTrack, AppleIIGeometry.Capacity);\r\n        if (IsProDos140(targetFormatId) && (extension.Equals(DiskImageFileExtensions.Do, StringComparison.OrdinalIgnoreCase) || extension.Equals(DiskImageFileExtensions.Dsk, StringComparison.OrdinalIgnoreCase)))\r\n            return AppleIISectorOrderConverter.ProDosToDos(BuildLinear(image, AppleIIGeometry.ProDosBlockSize, AppleIIGeometry.TrackCount * AppleIIGeometry.ProDosBlocksPerTrack, AppleIIGeometry.Capacity));\r\n        if (targetFormatId.Equals(DiskImageFormatIds.AppleIIProDos800, StringComparison.OrdinalIgnoreCase) && extension.Equals(DiskImageFileExtensions.Po, StringComparison.OrdinalIgnoreCase))\r\n            return BuildLinear(image, MacintoshGcrGeometry.BlockSize, MacintoshGcrGeometry.SingleSidedBlockCount * MacintoshGcrGeometry.DoubleSidedHeadCount, MacintoshGcrGeometry.Capacity800K);\r\n        throw AppleRawImageWriterExceptions.UnsupportedTarget(targetFormatId, extension);\r\n    }\r\n\r\n    /// <summary>Construit une charge utile 2IMG dans l'ordre imposé par son type d'image.</summary>\r\n    internal static byte[] BuildTwoImgPayload(SectorImage image, string targetFormatId)\r\n    {\r\n        if (targetFormatId.Equals(DiskImageFormatIds.AppleIIAppleDos113, StringComparison.OrdinalIgnoreCase)) return BuildLinear(image, AppleIIGeometry.SectorSize, AppleIIGeometry.TrackCount * AppleIIGeometry.Dos32SectorsPerTrack, AppleIIGeometry.Dos32Capacity);\r\n        if (targetFormatId.Equals(DiskImageFormatIds.AppleIIAppleDos140, StringComparison.OrdinalIgnoreCase)) return BuildLinear(image, AppleIIGeometry.SectorSize, AppleIIGeometry.TrackCount * AppleIIGeometry.SectorsPerTrack, AppleIIGeometry.Capacity);\r\n        if (IsProDos140(targetFormatId)) return BuildLinear(image, AppleIIGeometry.ProDosBlockSize, AppleIIGeometry.TrackCount * AppleIIGeometry.ProDosBlocksPerTrack, AppleIIGeometry.Capacity);\r\n        if (targetFormatId.Equals(DiskImageFormatIds.AppleIIProDos800, StringComparison.OrdinalIgnoreCase)) return BuildLinear(image, MacintoshGcrGeometry.BlockSize, MacintoshGcrGeometry.SingleSidedBlockCount * MacintoshGcrGeometry.DoubleSidedHeadCount, MacintoshGcrGeometry.Capacity800K);\r\n        throw AppleRawImageWriterExceptions.UnsupportedTarget(targetFormatId, DiskImageFileExtensions.TwoMg);\r\n    }\r\n\r\n    /// <summary>Indique si la cible utilise 280 blocs ProDOS de 512 octets.</summary>\r\n    internal static bool IsProDos140(string formatId) => formatId.Equals(DiskImageFormatIds.AppleIIProDos140, StringComparison.OrdinalIgnoreCase) || formatId.Equals(DiskImageFormatIds.AppleIIISos, StringComparison.OrdinalIgnoreCase);\r\n\r\n    /// <summary>Concatène tous les blocs après validation stricte de leur géométrie et de leur taille.</summary>\r\n    private static byte[] BuildLinear(SectorImage image, int blockSize, int blockCount, int capacity)\r\n    {\r\n        if (image.BlockSize != blockSize || image.BlockCount != blockCount || image.Capacity != capacity) throw AppleRawImageWriterExceptions.InvalidGeometry(image.FormatId, image.BlockSize, image.BlockCount, image.Capacity, blockSize, blockCount, capacity);\r\n        var output = new byte[capacity];\r\n        for (var logicalBlock = 0; logicalBlock < blockCount; logicalBlock++)\r\n        {\r\n            if (!image.TryGetBlock(logicalBlock, out var block)) throw AppleRawImageWriterExceptions.MissingBlock(logicalBlock);\r\n            if (block.Data.Count != blockSize) throw AppleRawImageWriterExceptions.InvalidBlockSize(logicalBlock, block.Data.Count, blockSize);\r\n            block.Data.ToArray().CopyTo(output, logicalBlock * blockSize);\r\n        }\r\n        return output;\r\n    }\r\n\r\n    /// <summary>Écrit dans un fichier temporaire local puis remplace la destination terminée.</summary>\r\n    internal static async Task WriteAtomicallyAsync(string path, ReadOnlyMemory<byte> bytes, CancellationToken cancellationToken)\r\n    {\r\n        var fullPath = Path.GetFullPath(path);\r\n        var directory = Path.GetDirectoryName(fullPath) ?? Directory.GetCurrentDirectory();\r\n        Directory.CreateDirectory(directory);\r\n        var temporaryPath = Path.Combine(directory, $\".{Path.GetFileName(fullPath)}.{Guid.NewGuid():N}.tmp\");\r\n        try\r\n        {\r\n            await File.WriteAllBytesAsync(temporaryPath, bytes.ToArray(), cancellationToken).ConfigureAwait(false);\r\n            File.Move(temporaryPath, fullPath, true);\r\n        }\r\n        finally\r\n        {\r\n            if (File.Exists(temporaryPath)) File.Delete(temporaryPath);\r\n        }\r\n    }\r\n}\r\n",
+        "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/AppleRawImageWriter.cs",
+        "sha256": "50DA98521D1FAC719DD154602A173AC8B7F58D952CDFD1C74406D8FA1BF18ABA"
+      }
+    ],
+    "appleCopyReferences": 0,
+    "multiFileDecision": "AtomicMediaFileSetWriter is a multi-output transaction: backs up prior destinations, rolls back publications in reverse, preserves backups on failure; do not substitute single-file overwrite helper",
+    "beforeScpTests": {
+      "failed": 0,
+      "passed": 12,
+      "phase": "Shared memory/stream implementation in place; SCP implementation still original",
+      "filter": "TemporaryAtomicPublicationAuditTests"
+    },
+    "removedAppleSpan": {
+      "start": 5905,
+      "length": 871,
+      "text": "\r\n    /// <summary>Écrit dans un fichier temporaire local puis remplace la destination terminée.</summary>\r\n    internal static async Task WriteAtomicallyAsync(string path, ReadOnlyMemory<byte> bytes, CancellationToken cancellationToken)\r\n    {\r\n        var fullPath = Path.GetFullPath(path);\r\n        var directory = Path.GetDirectoryName(fullPath) ?? Directory.GetCurrentDirectory();\r\n        Directory.CreateDirectory(directory);\r\n        var temporaryPath = Path.Combine(directory, $\".{Path.GetFileName(fullPath)}.{Guid.NewGuid():N}.tmp\");\r\n        try\r\n        {\r\n            await File.WriteAllBytesAsync(temporaryPath, bytes.ToArray(), cancellationToken).ConfigureAwait(false);\r\n            File.Move(temporaryPath, fullPath, true);\r\n        }\r\n        finally\r\n        {\r\n            if (File.Exists(temporaryPath)) File.Delete(temporaryPath);\r\n        }\r\n    }\r\n"
+    },
+    "firstCommonOwner": {
+      "revision": "9df6a84d5",
+      "text": "namespace GWGUI.MediaEngine.Primitives;\r\n\r\n/// <summary>Remplace atomiquement un fichier par un contenu entièrement préparé en mémoire.</summary>\r\ninternal static class AtomicFileWriter\r\n{\r\n    public static async Task WriteAsync(\r\n        string path,\r\n        ReadOnlyMemory<byte> content,\r\n        CancellationToken cancellationToken = default)\r\n    {\r\n        ArgumentException.ThrowIfNullOrWhiteSpace(path);\r\n        var fullPath = Path.GetFullPath(path);\r\n        var directory = Path.GetDirectoryName(fullPath) ?? Directory.GetCurrentDirectory();\r\n        Directory.CreateDirectory(directory);\r\n        var temporaryPath = Path.Combine(\r\n            directory,\r\n            $\".{Path.GetFileName(fullPath)}.{Guid.NewGuid():N}.tmp\");\r\n        try\r\n        {\r\n            await File.WriteAllBytesAsync(temporaryPath, content.ToArray(), cancellationToken)\r\n                .ConfigureAwait(false);\r\n            File.Move(temporaryPath, fullPath, true);\r\n        }\r\n        finally\r\n        {\r\n            if (File.Exists(temporaryPath))\r\n                File.Delete(temporaryPath);\r\n        }\r\n    }\r\n}",
+      "path": "src/GWGUI.MediaEngine/Primitives/AtomicFileWriter.cs"
+    },
+    "reports": {
+      "long": {
+        "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical",
+        "occurrences": 93
+      },
+      "short": {
+        "occurrences": 395,
+        "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical"
+      }
+    }
+  },
+  "atomicNrziBuild": {
+    "state": "verified",
+    "sourceHashes": [
+      {
+        "path": "src/GWGUI.MediaEngine/Images/Models/Flux/FluxTransitionDecoder.cs",
+        "sha256": "1D35CF8E36B6231120BF6D44BB3503E450E3AE43C02F67932EC8D1C3B95A55AA"
+      },
+      {
+        "path": "src/GWGUI.MediaEngine/Images/Writing/AtomicFileWriter.cs",
+        "sha256": "6CD75FDE84DF454DB5825071CB59AE9578F7C5D807B63DC5050215AB07D607A6"
+      },
+      {
+        "path": "src/GWGUI.MediaEngine/Interfaces/IAtomicImageFileWriter.cs",
+        "sha256": "25BC32D2E164D2B00C6CCF5121F6798CF6964B32ADC62CD211315EE3BD330FBE"
+      },
+      {
+        "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/ScpWriter.cs",
+        "sha256": "095ABE552EE092ECB5541178D24BB8B8E1AC33F2C2252076B57F85B68901317D"
+      },
+      {
+        "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/AppleRawImageWriter.cs",
+        "sha256": "982679ABD8B65D83BC59A49AD28A322E38A2F0F91845F3B188C5337010F26217"
+      },
+      {
+        "path": "src/GWGUI.MediaEngine/GWGUI.MediaEngine.csproj",
+        "sha256": "6FC69ADED68A62955EDBA36042EDE78967E7BD915453BE31A8EF57BE59976A39"
+      },
+      {
+        "path": "scripts/local-building.cmd",
+        "sha256": "06027F2C20CB4CD2231BB9247B6CFAF23B60CE4E896103A76042EC3D2F30FF4B"
+      },
+      {
+        "path": "scripts/local-building/build.ps1",
+        "sha256": "EAEF2EAE65381132F9E5AE8F73CDACAA01755AACAD2F334714352785CC82C700"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Acorn/module.json",
+        "sha256": "5D1361DF84F667F12B408B9CA08E982E037C4C9D65D3AE020C87DB86450F29DB"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Amstrad/module.json",
+        "sha256": "0685C64F7DBFA038CDCEC72E0407222B33BD1147B842E6ECCD08072A92A30047"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Apple/module.json",
+        "sha256": "FBE09CFCB4F6A08E589D10464AD6741B26B145BCFAF296154A57C7A698AF1163"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Atari/module.json",
+        "sha256": "51CC891084CC5412C7D00BF348F710FD5DE995C24EE67A606337BF1FE842306F"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Bandai/module.json",
+        "sha256": "F6F87EA0A37548B557A4C12127904D272C80C4EE75B2CEC5653FDFB5DFFBFD82"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Coleco/module.json",
+        "sha256": "EE3B477DB0CCEEDD0C02D2C4548ED4E5B44D56EBA689195557DB607DF9218B14"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Commodore/module.json",
+        "sha256": "715A8D7E88A5371FE1E576185FE0F2388F8CF19D29C42BCF9DA9FF4E48839A22"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Epoch/module.json",
+        "sha256": "4F9BE08D73FEB957D482FACD353D3DE33FACFE3EB811CDB760A0C43039FA3982"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Fairchild/module.json",
+        "sha256": "2A189DF8B8D6ECA422D9A557E3543CC1BEB26795076B565DCB61A5CB3252E4B5"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Mattel/module.json",
+        "sha256": "F47DC3DB92E381580877689A2486482966240DAF8FF5E8D2FE10D9D693D6EF5A"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Microsoft/module.json",
+        "sha256": "43D19332331FCAA8F42C6B8CD1F7DF144606E3A988C21A997407AEF76BC19CC5"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nec/module.json",
+        "sha256": "418AB9A38DE74CB5003E3F5F343B90AEE5F9ADDDCAB4BC4257F16C018E112F32"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nintendo/module.json",
+        "sha256": "788A3664E12FF76C48BD1DC889037A4A949495669F8593DC2E1A5F873679F619"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Panasonic/module.json",
+        "sha256": "EA9A3616D39CD4D1F5E30E9976F5068D53ED1FFF6045385D768D7C90BB507BEE"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Philips/module.json",
+        "sha256": "6EB25C1487B811A43F9D3A47CBEE2CAE00037733C012977E4F6524EBBB456D1E"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sega/module.json",
+        "sha256": "5365B31349DE22D838CB7B2A8C539559C4A63BD88E69E29A270191EA81AA2577"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sharp/module.json",
+        "sha256": "D53D6EC4BEBA44812044807AFAC9BCB72DFF2610C4EF6B756F68BD8273962CA0"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sinclair/module.json",
+        "sha256": "9B470D469CEEA3E635CBA07A802BEF90B7B219FF0EA1A472D92AF8720EC659CB"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Snk/module.json",
+        "sha256": "F01DB0F0477C9E3396953A6E5F4C038664D443D8A8438190C090A203C752A3E1"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sony/module.json",
+        "sha256": "2D42F1C300CF0AF603AC2F173E733190938222A97AD4C90EFDACEDC6EEC5A0D2"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Thomson/module.json",
+        "sha256": "73607D4205DE7D262CE05C177098DA420502B7D0D5FCDBD27C83D43B436BAA9E"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Watara/module.json",
+        "sha256": "13EB5DAC82C5FAFAFA194447193A6A02EC755A4A4A083D43D73A25A2FEBEEC5D"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Wenquxing/module.json",
+        "sha256": "911CC9E4D67C1C8BFB3D5E9D7133EEDF03F801CD769C2299155A994A7E544991"
+      }
+    ],
+    "command": "scripts/local-building.cmd --building=debug --modules=A",
+    "exitCode": 0,
+    "sourceHashesUnchanged": 31,
+    "executable": {
+      "path": "build/Debug/GW GUI/gwgui.exe",
+      "sha256": "9CBDDE1B4DF7552BEFD342E4273E2575C62414D62A6461DDF4CD9EA559837DFD"
+    },
+    "modules": [
+      {
+        "path": "build\\Debug\\GW GUI\\Modules\\acorn\\gwgui.emulation.acorn.dll",
+        "id": "acorn",
+        "sha256": "3889AA0C5D6B25E9C1AB2A11BF689684A092154921B1920AADDF3A8286BDDB4A"
+      },
+      {
+        "path": "build\\Debug\\GW GUI\\Modules\\amstrad\\gwgui.emulation.amstrad.dll",
+        "id": "amstrad",
+        "sha256": "20657FD576948FAD7000378F4694F878C45E7BFF06C3D1B97CB71D750792D597"
+      },
+      {
+        "path": "build\\Debug\\GW GUI\\Modules\\apple\\gwgui.emulation.apple.dll",
+        "id": "apple",
+        "sha256": "B40248427BCD958C6351E004A566B66005D30FF1095C182E4703D54BAEA4196A"
+      },
+      {
+        "path": "build\\Debug\\GW GUI\\Modules\\atari\\gwgui.emulation.atari.dll",
+        "id": "atari",
+        "sha256": "8D40504CE6BE63330A5AFA7F3AAA5B21225BC19AF51EB004A1E4C525542E6455"
+      },
+      {
+        "path": "build\\Debug\\GW GUI\\Modules\\bandai\\gwgui.emulation.bandai.dll",
+        "id": "bandai",
+        "sha256": "B02439CE0040CD5C77C29C737351C77866A688BE3DA0BF3C0596916995DC0829"
+      },
+      {
+        "path": "build\\Debug\\GW GUI\\Modules\\coleco\\gwgui.emulation.coleco.dll",
+        "id": "coleco",
+        "sha256": "A52C53B8013EE9227811DA8EBBE40B116DA330F2608A9A1E5E6B131A93D2685B"
+      },
+      {
+        "path": "build\\Debug\\GW GUI\\Modules\\commodore\\gwgui.emulation.commodore.dll",
+        "id": "commodore",
+        "sha256": "CF1BFE51A1AD886677EB60F09F2AA65810F6C6520EAB79D9F850B23BBD59600E"
+      },
+      {
+        "path": "build\\Debug\\GW GUI\\Modules\\epoch\\gwgui.emulation.epoch.dll",
+        "id": "epoch",
+        "sha256": "11C78A25D1435F95B487A1B31F01ABF16B04D10A76297419787ADA8CD3D49F82"
+      },
+      {
+        "path": "build\\Debug\\GW GUI\\Modules\\fairchild\\gwgui.emulation.fairchild.dll",
+        "id": "fairchild",
+        "sha256": "A4A092781FCF57A1457EB491F72E5462043205CA2FE0A59E701FEA16334A55B1"
+      },
+      {
+        "path": "build\\Debug\\GW GUI\\Modules\\mattel\\gwgui.emulation.mattel.dll",
+        "id": "mattel",
+        "sha256": "9EC602D04FE695D0379DFBB45B6BB80438F15710C7C5083BA8F38A4BA7AE078E"
+      },
+      {
+        "path": "build\\Debug\\GW GUI\\Modules\\microsoft\\gwgui.emulation.microsoft.dll",
+        "id": "microsoft",
+        "sha256": "2786D12E56D523FE900A2D4A98CDAF0DAF9963C15164276322D64AE8AC8AC91C"
+      },
+      {
+        "path": "build\\Debug\\GW GUI\\Modules\\nec\\gwgui.emulation.nec.dll",
+        "id": "nec",
+        "sha256": "7A47446388306B216337A2D8ED3DE777C766D7C8FB7F09AFF4B098BA465146BA"
+      },
+      {
+        "path": "build\\Debug\\GW GUI\\Modules\\nintendo\\gwgui.emulation.nintendo.dll",
+        "id": "nintendo",
+        "sha256": "1E761828D40DF34BAC332ABE60ECACEE93E4586BE237084E9644C5F3A262758D"
+      },
+      {
+        "path": "build\\Debug\\GW GUI\\Modules\\panasonic\\gwgui.emulation.panasonic.dll",
+        "id": "panasonic",
+        "sha256": "9D97E2BE170885E69BEFAC3A5AF33C55E90D6253C97FC855AAEF00420FB891EE"
+      },
+      {
+        "path": "build\\Debug\\GW GUI\\Modules\\philips\\gwgui.emulation.philips.dll",
+        "id": "philips",
+        "sha256": "9458C55BFDA8CDB40D80DE8AF198130E8D527BA2DB18FE5FEA42589BAAC0150E"
+      },
+      {
+        "path": "build\\Debug\\GW GUI\\Modules\\sega\\gwgui.emulation.sega.dll",
+        "id": "sega",
+        "sha256": "8FBFA73164C218591A227E55DFF63FD223A38D8856AC99AA17F0D90FBAA31FAF"
+      },
+      {
+        "path": "build\\Debug\\GW GUI\\Modules\\sharp\\gwgui.emulation.sharp.dll",
+        "id": "sharp",
+        "sha256": "A7D0E2DAF1F3C06D6E1CBE8584C578F98D0A9AD109BEE51471127F66BE2B32BB"
+      },
+      {
+        "path": "build\\Debug\\GW GUI\\Modules\\sinclair\\gwgui.emulation.sinclair.dll",
+        "id": "sinclair",
+        "sha256": "E79245F954A3A981F83CEF9B26516C6906A72AB9E9848EF96EF6D7D6AC01BF93"
+      },
+      {
+        "path": "build\\Debug\\GW GUI\\Modules\\snk\\gwgui.emulation.snk.dll",
+        "id": "snk",
+        "sha256": "7EE633398D7739B5221A719AF3918912EB48D1B99C6DDA9837DC29E5F9AC0F08"
+      },
+      {
+        "path": "build\\Debug\\GW GUI\\Modules\\sony\\gwgui.emulation.sony.dll",
+        "id": "sony",
+        "sha256": "EB145D76EDBE24B97C49A1789333F3C9FD218EB5A9239F334CA0A79E26B8406D"
+      },
+      {
+        "path": "build\\Debug\\GW GUI\\Modules\\thomson\\gwgui.emulation.thomson.dll",
+        "id": "thomson",
+        "sha256": "CB380153556CF6E3F29F184AA0305304FC8D07164BBD5EF12775851D6E4A9100"
+      },
+      {
+        "path": "build\\Debug\\GW GUI\\Modules\\watara\\gwgui.emulation.watara.dll",
+        "id": "watara",
+        "sha256": "EE854A40CB48F84B069CAF19DD56EF3FA2B558AF18FDEF40E371FF4ABF92DF1D"
+      },
+      {
+        "path": "build\\Debug\\GW GUI\\Modules\\wenquxing\\gwgui.emulation.wenquxing.dll",
+        "id": "wenquxing",
+        "sha256": "77DA0699A1F0DDA57608F52A63B870F6D5B3BD80F81A64E3546E4F3AFB8E0ED0"
+      }
+    ],
+    "updaterAssemblies": [
+      "gwgui.updater.dll"
+    ]
   }
 }

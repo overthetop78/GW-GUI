@@ -1,8 +1,11 @@
 {
-  "snapshot": "0743f66422c971556defc9be98b6e07d41d3c0f1",
+  "snapshot": "f6bca74cba8d81bc5d7691000ca86b5fbb495141",
   "snapshotState": "Current worktree based on snapshot",
   "worktreeSourceChanges": [
-    "src/GWGUI.MediaEngine/Images/Models/Flux/FluxTransitionDecoder.cs"
+    "src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/AppleRawImageWriter.cs",
+    "src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/ScpWriter.cs",
+    "src/GWGUI.MediaEngine/Images/Writing/AtomicFileWriter.cs",
+    "src/GWGUI.MediaEngine/Interfaces/IAtomicImageFileWriter.cs"
   ],
   "scope": "All current non-ignored repository CSharp files, including hidden paths; BaseMethodDeclaration bodies with fewer than 30 tokens. Candidate presence is not a defect or a completion claim.",
   "fileCount": 7328,
@@ -135067,5 +135070,9 @@
       ],
       "qualification": "Qualified typed adapters to shared SDK interface publication"
     }
-  ]
+  ],
+  "qualificationCarryForward": {
+    "occurrences": 395,
+    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical"
+  }
 }

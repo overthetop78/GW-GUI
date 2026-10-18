@@ -3571,7 +3571,9 @@
           "line": 9,
           "tokens": 44,
           "hash": "2424806932341803602B738C7B83C4242D2D4C1507DC5997A02CD43C17CA8C58",
-          "shape": "066B1E453F846342F43AC82C6E872C8E0A4E682B1343EEA09336B7F0619003C1"
+          "shape": "066B1E453F846342F43AC82C6E872C8E0A4E682B1343EEA09336B7F0619003C1",
+          "qualification": "Typed async format adapter; semantic calls verified in asyncMediaAdapterQualification; existing common read/document/atomic owners retained",
+          "qualificationSourceSha256": "C759FBCD93E9AA57DD8986AEDEC7FD22F4403C8C77F763A1C8058764146F6A04"
         },
         {
           "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/ImageDisk/ImdWriter.cs",
@@ -3579,7 +3581,9 @@
           "line": 10,
           "tokens": 44,
           "hash": "2424806932341803602B738C7B83C4242D2D4C1507DC5997A02CD43C17CA8C58",
-          "shape": "066B1E453F846342F43AC82C6E872C8E0A4E682B1343EEA09336B7F0619003C1"
+          "shape": "066B1E453F846342F43AC82C6E872C8E0A4E682B1343EEA09336B7F0619003C1",
+          "qualification": "Typed async format adapter; semantic calls verified in asyncMediaAdapterQualification; existing common read/document/atomic owners retained",
+          "qualificationSourceSha256": "3CDA491B0C13B69716D3B7BAD60F51ADCAAB3E63617D6EC1A313A03021DAE337"
         }
       ],
       "predecessors": [
@@ -3626,7 +3630,7 @@
           "shape": "066B1E453F846342F43AC82C6E872C8E0A4E682B1343EEA09336B7F0619003C1"
         }
       ],
-      "qualification": "pending"
+      "qualification": "Qualified typed async adapters; no format parsing/build algorithm duplicated in these wrappers"
     },
     {
       "language": "CSharp",
@@ -5363,7 +5367,9 @@
           "line": 72,
           "tokens": 39,
           "hash": "326C906E4DFA7AA160E572783FCF3F9F7C3C99615AD6EDC8D160F2DE18C77217",
-          "shape": "489DE7290C222DA7AA1CA260B6BEF458208D6C2B2C31D13565600232515212AE"
+          "shape": "489DE7290C222DA7AA1CA260B6BEF458208D6C2B2C31D13565600232515212AE",
+          "qualification": "Typed async format adapter; semantic calls verified in asyncMediaAdapterQualification; existing common read/document/atomic owners retained",
+          "qualificationSourceSha256": "D89C08666D47A4CFC7B1E95DA52781601C0908EF7345CD2A5FCB4E0CF7193325"
         },
         {
           "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/AcornAtom/AcornAtomDskReader.cs",
@@ -5371,7 +5377,9 @@
           "line": 55,
           "tokens": 39,
           "hash": "326C906E4DFA7AA160E572783FCF3F9F7C3C99615AD6EDC8D160F2DE18C77217",
-          "shape": "489DE7290C222DA7AA1CA260B6BEF458208D6C2B2C31D13565600232515212AE"
+          "shape": "489DE7290C222DA7AA1CA260B6BEF458208D6C2B2C31D13565600232515212AE",
+          "qualification": "Typed async format adapter; semantic calls verified in asyncMediaAdapterQualification; existing common read/document/atomic owners retained",
+          "qualificationSourceSha256": "31F02F150713EEAE9FF644BFA8FC40FB2D4512F6C0D3BFDE8B2B0D151BF88E9E"
         },
         {
           "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/D81/D81Reader.cs",
@@ -5379,7 +5387,9 @@
           "line": 52,
           "tokens": 39,
           "hash": "326C906E4DFA7AA160E572783FCF3F9F7C3C99615AD6EDC8D160F2DE18C77217",
-          "shape": "489DE7290C222DA7AA1CA260B6BEF458208D6C2B2C31D13565600232515212AE"
+          "shape": "489DE7290C222DA7AA1CA260B6BEF458208D6C2B2C31D13565600232515212AE",
+          "qualification": "Typed async format adapter; semantic calls verified in asyncMediaAdapterQualification; existing common read/document/atomic owners retained",
+          "qualificationSourceSha256": "CDC355257A73529AA06FE9FC1036C891C7A19F36F78FBD0E997BDBF1AD6DF53B"
         },
         {
           "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/D71/D71Reader.cs",
@@ -5387,7 +5397,9 @@
           "line": 52,
           "tokens": 39,
           "hash": "326C906E4DFA7AA160E572783FCF3F9F7C3C99615AD6EDC8D160F2DE18C77217",
-          "shape": "489DE7290C222DA7AA1CA260B6BEF458208D6C2B2C31D13565600232515212AE"
+          "shape": "489DE7290C222DA7AA1CA260B6BEF458208D6C2B2C31D13565600232515212AE",
+          "qualification": "Typed async format adapter; semantic calls verified in asyncMediaAdapterQualification; existing common read/document/atomic owners retained",
+          "qualificationSourceSha256": "611A5FAEA5C961A5B3D330F776F79C10E7744EACA592CF328D39246FD9E762D7"
         },
         {
           "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/D64/D64Reader.cs",
@@ -5395,7 +5407,9 @@
           "line": 58,
           "tokens": 39,
           "hash": "326C906E4DFA7AA160E572783FCF3F9F7C3C99615AD6EDC8D160F2DE18C77217",
-          "shape": "489DE7290C222DA7AA1CA260B6BEF458208D6C2B2C31D13565600232515212AE"
+          "shape": "489DE7290C222DA7AA1CA260B6BEF458208D6C2B2C31D13565600232515212AE",
+          "qualification": "Typed async format adapter; semantic calls verified in asyncMediaAdapterQualification; existing common read/document/atomic owners retained",
+          "qualificationSourceSha256": "782A2AE3593B0CAF539A73FF421659AF4E02726A0CAC29AE9835384646075C1C"
         },
         {
           "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/UcsdRawImageReader.cs",
@@ -5403,7 +5417,9 @@
           "line": 52,
           "tokens": 39,
           "hash": "326C906E4DFA7AA160E572783FCF3F9F7C3C99615AD6EDC8D160F2DE18C77217",
-          "shape": "489DE7290C222DA7AA1CA260B6BEF458208D6C2B2C31D13565600232515212AE"
+          "shape": "489DE7290C222DA7AA1CA260B6BEF458208D6C2B2C31D13565600232515212AE",
+          "qualification": "Typed async format adapter; semantic calls verified in asyncMediaAdapterQualification; existing common read/document/atomic owners retained",
+          "qualificationSourceSha256": "8E098BA297EDF5E53AB46ADF65F58F27CF6A6D12BFE3A1FB00AAF9053A2DAECB"
         },
         {
           "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/MsxRawImageReader.cs",
@@ -5411,7 +5427,9 @@
           "line": 60,
           "tokens": 39,
           "hash": "326C906E4DFA7AA160E572783FCF3F9F7C3C99615AD6EDC8D160F2DE18C77217",
-          "shape": "489DE7290C222DA7AA1CA260B6BEF458208D6C2B2C31D13565600232515212AE"
+          "shape": "489DE7290C222DA7AA1CA260B6BEF458208D6C2B2C31D13565600232515212AE",
+          "qualification": "Typed async format adapter; semantic calls verified in asyncMediaAdapterQualification; existing common read/document/atomic owners retained",
+          "qualificationSourceSha256": "A42F716592CB1E1E0C61D6228B8234E5B21944E42634243A83E5FC358EDF2343"
         },
         {
           "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/IbmRawImageReader.cs",
@@ -5419,7 +5437,9 @@
           "line": 60,
           "tokens": 39,
           "hash": "326C906E4DFA7AA160E572783FCF3F9F7C3C99615AD6EDC8D160F2DE18C77217",
-          "shape": "489DE7290C222DA7AA1CA260B6BEF458208D6C2B2C31D13565600232515212AE"
+          "shape": "489DE7290C222DA7AA1CA260B6BEF458208D6C2B2C31D13565600232515212AE",
+          "qualification": "Typed async format adapter; semantic calls verified in asyncMediaAdapterQualification; existing common read/document/atomic owners retained",
+          "qualificationSourceSha256": "DB8618D24548C6907D847B0F73101D2366A04C2D498DE255BD4CF531A03C9B4E"
         }
       ],
       "predecessors": [
@@ -5578,7 +5598,7 @@
           "shape": "489DE7290C222DA7AA1CA260B6BEF458208D6C2B2C31D13565600232515212AE"
         }
       ],
-      "qualification": "pending"
+      "qualification": "Qualified typed async adapters; no format parsing/build algorithm duplicated in these wrappers"
     },
     {
       "language": "CSharp",
@@ -8624,7 +8644,7 @@
     {
       "language": "CSharp",
       "hash": "4F02DAEAE45311749016D72F2B39A384D73ACFDBC8EAA2D267B0BE4556421ABB",
-      "method": "AdaptOptions",
+      "method": "Adapt",
       "tokens": 68,
       "current": [
         {
@@ -12772,7 +12792,9 @@
           "line": 9,
           "tokens": 33,
           "hash": "6F152D6879CCE1F6974A2FF3D6EB04D53A03D5688BA68D4D9930D7A04910092E",
-          "shape": "3E7455D4DF45F757D3CB06090D1DD34CD09983A2453BA7C11E5E5B87D25D02A5"
+          "shape": "3E7455D4DF45F757D3CB06090D1DD34CD09983A2453BA7C11E5E5B87D25D02A5",
+          "qualification": "Typed async format adapter; semantic calls verified in asyncMediaAdapterQualification; existing common read/document/atomic owners retained",
+          "qualificationSourceSha256": "7EFD87A2F252A0FA79B7A43B150F4D44D26EF73E8180BD2B957724EC99761E1F"
         },
         {
           "path": "src/GWGUI.MediaEngine/Images/Formats/Optical/CloneCd/CloneCdDescriptorReader.cs",
@@ -12780,7 +12802,9 @@
           "line": 11,
           "tokens": 33,
           "hash": "6F152D6879CCE1F6974A2FF3D6EB04D53A03D5688BA68D4D9930D7A04910092E",
-          "shape": "3E7455D4DF45F757D3CB06090D1DD34CD09983A2453BA7C11E5E5B87D25D02A5"
+          "shape": "3E7455D4DF45F757D3CB06090D1DD34CD09983A2453BA7C11E5E5B87D25D02A5",
+          "qualification": "Typed async format adapter; semantic calls verified in asyncMediaAdapterQualification; existing common read/document/atomic owners retained",
+          "qualificationSourceSha256": "3CB8838C5B1C621FE8A8E3BEE27DC2A56B40752F436B1867E935F78899A75389"
         },
         {
           "path": "src/GWGUI.MediaEngine/Images/Formats/Optical/BinCue/CueSheetReader.cs",
@@ -12788,7 +12812,9 @@
           "line": 11,
           "tokens": 33,
           "hash": "6F152D6879CCE1F6974A2FF3D6EB04D53A03D5688BA68D4D9930D7A04910092E",
-          "shape": "3E7455D4DF45F757D3CB06090D1DD34CD09983A2453BA7C11E5E5B87D25D02A5"
+          "shape": "3E7455D4DF45F757D3CB06090D1DD34CD09983A2453BA7C11E5E5B87D25D02A5",
+          "qualification": "Typed async format adapter; semantic calls verified in asyncMediaAdapterQualification; existing common read/document/atomic owners retained",
+          "qualificationSourceSha256": "7760B78324F770FAE54A07388B59823693BDB554F5B66901EDB0D3F985C11770"
         }
       ],
       "predecessors": [
@@ -12827,7 +12853,7 @@
           "shape": "3E7455D4DF45F757D3CB06090D1DD34CD09983A2453BA7C11E5E5B87D25D02A5"
         }
       ],
-      "qualification": "pending"
+      "qualification": "Qualified typed async adapters; no format parsing/build algorithm duplicated in these wrappers"
     },
     {
       "language": "CSharp",
@@ -19243,7 +19269,7 @@
     {
       "language": "CSharp",
       "hash": "A61349BFDFFA5D404CE7D0D458204D435194B5E4D84870DF4F9FBE26A86A9946",
-      "method": "ToEpoch",
+      "method": "ToFairchild",
       "tokens": 36,
       "current": [
         {
@@ -20441,7 +20467,7 @@
     {
       "language": "CSharp",
       "hash": "B053A3AB4F0B78A37DED57B2D744801187AED6EC54FEEAFE4B1AA9C454D6F48C",
-      "method": "PanasonicEmulationModule",
+      "method": "PhilipsEmulationModule",
       "tokens": 47,
       "current": [
         {
@@ -21947,7 +21973,9 @@
           "line": 31,
           "tokens": 30,
           "hash": "C2D5615FA80002F69D8F5BB351D422E21996D859A4AF57D5558C961407AC0F16",
-          "shape": "1CA73B4FCA9CB1D543AF925F33E944DEF0C8207A0840CA6797DB1475919644C1"
+          "shape": "1CA73B4FCA9CB1D543AF925F33E944DEF0C8207A0840CA6797DB1475919644C1",
+          "qualification": "Typed async format adapter; semantic calls verified in asyncMediaAdapterQualification; existing common read/document/atomic owners retained",
+          "qualificationSourceSha256": "4D5C51EFC40150695BCF4905A34E65913FC15D8C8861A369E164530FCF3E984A"
         },
         {
           "path": "src/GWGUI.MediaEngine/Images/Reading/Reconstruction/AmigaScpSectorImageReader.cs",
@@ -21955,12 +21983,14 @@
           "line": 25,
           "tokens": 30,
           "hash": "C2D5615FA80002F69D8F5BB351D422E21996D859A4AF57D5558C961407AC0F16",
-          "shape": "1CA73B4FCA9CB1D543AF925F33E944DEF0C8207A0840CA6797DB1475919644C1"
+          "shape": "1CA73B4FCA9CB1D543AF925F33E944DEF0C8207A0840CA6797DB1475919644C1",
+          "qualification": "Typed async format adapter; semantic calls verified in asyncMediaAdapterQualification; existing common read/document/atomic owners retained",
+          "qualificationSourceSha256": "3E4B9428B068A2995B1999C4D046A48F90CBF2B122ACC2E0267CAFDB6D4618BC"
         }
       ],
       "predecessors": [],
       "shapePredecessors": [],
-      "qualification": "pending"
+      "qualification": "Qualified typed async adapters; no format parsing/build algorithm duplicated in these wrappers"
     },
     {
       "language": "CSharp",
@@ -23354,7 +23384,9 @@
           "line": 60,
           "tokens": 46,
           "hash": "CF97DF89D5260F9CCB017D805AEC501801A3D7EA1757C6206468B31955C93DE2",
-          "shape": "3993AA3BDB07E91CA8546A44D0DF7B7695460A9C5D52BF9700F5BF94DCC4F30E"
+          "shape": "3993AA3BDB07E91CA8546A44D0DF7B7695460A9C5D52BF9700F5BF94DCC4F30E",
+          "qualification": "Typed async format adapter; semantic calls verified in asyncMediaAdapterQualification; existing common read/document/atomic owners retained",
+          "qualificationSourceSha256": "32FD695146B46CC87DF7C47F88C3351DF92C8D47B388C84628D3BEF487B196E6"
         },
         {
           "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/Rx02/DecRx02Reader.cs",
@@ -23362,7 +23394,9 @@
           "line": 41,
           "tokens": 46,
           "hash": "CF97DF89D5260F9CCB017D805AEC501801A3D7EA1757C6206468B31955C93DE2",
-          "shape": "3993AA3BDB07E91CA8546A44D0DF7B7695460A9C5D52BF9700F5BF94DCC4F30E"
+          "shape": "3993AA3BDB07E91CA8546A44D0DF7B7695460A9C5D52BF9700F5BF94DCC4F30E",
+          "qualification": "Typed async format adapter; semantic calls verified in asyncMediaAdapterQualification; existing common read/document/atomic owners retained",
+          "qualificationSourceSha256": "2C0DADE45544A409257049926C4B101F9882D13B380E2943C04129AE40297FF7"
         },
         {
           "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/CoherentRawImageReader.cs",
@@ -23370,7 +23404,9 @@
           "line": 50,
           "tokens": 46,
           "hash": "CF97DF89D5260F9CCB017D805AEC501801A3D7EA1757C6206468B31955C93DE2",
-          "shape": "3993AA3BDB07E91CA8546A44D0DF7B7695460A9C5D52BF9700F5BF94DCC4F30E"
+          "shape": "3993AA3BDB07E91CA8546A44D0DF7B7695460A9C5D52BF9700F5BF94DCC4F30E",
+          "qualification": "Typed async format adapter; semantic calls verified in asyncMediaAdapterQualification; existing common read/document/atomic owners retained",
+          "qualificationSourceSha256": "BE7D1EA0C9924D2689A1D010B4407623780799AC71E6AA35C892F94784936BB2"
         }
       ],
       "predecessors": [
@@ -23433,7 +23469,7 @@
           "shape": "3993AA3BDB07E91CA8546A44D0DF7B7695460A9C5D52BF9700F5BF94DCC4F30E"
         }
       ],
-      "qualification": "pending"
+      "qualification": "Qualified typed async adapters; no format parsing/build algorithm duplicated in these wrappers"
     },
     {
       "language": "CSharp",
@@ -26313,7 +26349,9 @@
           "line": 40,
           "tokens": 39,
           "hash": "E8FA1E8D947A08B4CCD557601576A834273701FCAAB3E290112CF9C249AB8035",
-          "shape": "489DE7290C222DA7AA1CA260B6BEF458208D6C2B2C31D13565600232515212AE"
+          "shape": "489DE7290C222DA7AA1CA260B6BEF458208D6C2B2C31D13565600232515212AE",
+          "qualification": "Typed async format adapter; semantic calls verified in asyncMediaAdapterQualification; existing common read/document/atomic owners retained",
+          "qualificationSourceSha256": "7A73A978D5DB4BA17054DD415F1B54512F8E6C5DEFC908E158A46E36E82F6755"
         },
         {
           "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/RawImgReader.cs",
@@ -26321,7 +26359,9 @@
           "line": 65,
           "tokens": 39,
           "hash": "E8FA1E8D947A08B4CCD557601576A834273701FCAAB3E290112CF9C249AB8035",
-          "shape": "489DE7290C222DA7AA1CA260B6BEF458208D6C2B2C31D13565600232515212AE"
+          "shape": "489DE7290C222DA7AA1CA260B6BEF458208D6C2B2C31D13565600232515212AE",
+          "qualification": "Typed async format adapter; semantic calls verified in asyncMediaAdapterQualification; existing common read/document/atomic owners retained",
+          "qualificationSourceSha256": "E1FAFCFF381630CBC53798082F004BB2476E05B48E51DAF0B58815BE7E31D004"
         }
       ],
       "predecessors": [
@@ -26432,7 +26472,7 @@
           "shape": "489DE7290C222DA7AA1CA260B6BEF458208D6C2B2C31D13565600232515212AE"
         }
       ],
-      "qualification": "pending"
+      "qualification": "Qualified typed async adapters; no format parsing/build algorithm duplicated in these wrappers"
     },
     {
       "language": "CSharp",
@@ -29001,7 +29041,9 @@
           "line": 9,
           "tokens": 44,
           "hash": "2424806932341803602B738C7B83C4242D2D4C1507DC5997A02CD43C17CA8C58",
-          "shape": "066B1E453F846342F43AC82C6E872C8E0A4E682B1343EEA09336B7F0619003C1"
+          "shape": "066B1E453F846342F43AC82C6E872C8E0A4E682B1343EEA09336B7F0619003C1",
+          "qualification": "Typed async format adapter; semantic calls verified in asyncMediaAdapterQualification; existing common read/document/atomic owners retained",
+          "qualificationSourceSha256": "C759FBCD93E9AA57DD8986AEDEC7FD22F4403C8C77F763A1C8058764146F6A04"
         },
         {
           "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/ImageDisk/ImdWriter.cs",
@@ -29009,7 +29051,9 @@
           "line": 10,
           "tokens": 44,
           "hash": "2424806932341803602B738C7B83C4242D2D4C1507DC5997A02CD43C17CA8C58",
-          "shape": "066B1E453F846342F43AC82C6E872C8E0A4E682B1343EEA09336B7F0619003C1"
+          "shape": "066B1E453F846342F43AC82C6E872C8E0A4E682B1343EEA09336B7F0619003C1",
+          "qualification": "Typed async format adapter; semantic calls verified in asyncMediaAdapterQualification; existing common read/document/atomic owners retained",
+          "qualificationSourceSha256": "3CDA491B0C13B69716D3B7BAD60F51ADCAAB3E63617D6EC1A313A03021DAE337"
         },
         {
           "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/MacintoshRawImageWriter.cs",
@@ -30424,7 +30468,9 @@
           "line": 60,
           "tokens": 46,
           "hash": "CF97DF89D5260F9CCB017D805AEC501801A3D7EA1757C6206468B31955C93DE2",
-          "shape": "3993AA3BDB07E91CA8546A44D0DF7B7695460A9C5D52BF9700F5BF94DCC4F30E"
+          "shape": "3993AA3BDB07E91CA8546A44D0DF7B7695460A9C5D52BF9700F5BF94DCC4F30E",
+          "qualification": "Typed async format adapter; semantic calls verified in asyncMediaAdapterQualification; existing common read/document/atomic owners retained",
+          "qualificationSourceSha256": "32FD695146B46CC87DF7C47F88C3351DF92C8D47B388C84628D3BEF487B196E6"
         },
         {
           "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/Rx02/DecRx02Reader.cs",
@@ -30432,7 +30478,9 @@
           "line": 41,
           "tokens": 46,
           "hash": "CF97DF89D5260F9CCB017D805AEC501801A3D7EA1757C6206468B31955C93DE2",
-          "shape": "3993AA3BDB07E91CA8546A44D0DF7B7695460A9C5D52BF9700F5BF94DCC4F30E"
+          "shape": "3993AA3BDB07E91CA8546A44D0DF7B7695460A9C5D52BF9700F5BF94DCC4F30E",
+          "qualification": "Typed async format adapter; semantic calls verified in asyncMediaAdapterQualification; existing common read/document/atomic owners retained",
+          "qualificationSourceSha256": "2C0DADE45544A409257049926C4B101F9882D13B380E2943C04129AE40297FF7"
         },
         {
           "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/CoherentRawImageReader.cs",
@@ -30440,7 +30488,9 @@
           "line": 50,
           "tokens": 46,
           "hash": "CF97DF89D5260F9CCB017D805AEC501801A3D7EA1757C6206468B31955C93DE2",
-          "shape": "3993AA3BDB07E91CA8546A44D0DF7B7695460A9C5D52BF9700F5BF94DCC4F30E"
+          "shape": "3993AA3BDB07E91CA8546A44D0DF7B7695460A9C5D52BF9700F5BF94DCC4F30E",
+          "qualification": "Typed async format adapter; semantic calls verified in asyncMediaAdapterQualification; existing common read/document/atomic owners retained",
+          "qualificationSourceSha256": "BE7D1EA0C9924D2689A1D010B4407623780799AC71E6AA35C892F94784936BB2"
         }
       ],
       "qualification": "pending-symbol-and-policy-comparison"
@@ -31163,7 +31213,9 @@
           "line": 40,
           "tokens": 39,
           "hash": "E8FA1E8D947A08B4CCD557601576A834273701FCAAB3E290112CF9C249AB8035",
-          "shape": "489DE7290C222DA7AA1CA260B6BEF458208D6C2B2C31D13565600232515212AE"
+          "shape": "489DE7290C222DA7AA1CA260B6BEF458208D6C2B2C31D13565600232515212AE",
+          "qualification": "Typed async format adapter; semantic calls verified in asyncMediaAdapterQualification; existing common read/document/atomic owners retained",
+          "qualificationSourceSha256": "7A73A978D5DB4BA17054DD415F1B54512F8E6C5DEFC908E158A46E36E82F6755"
         },
         {
           "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/St/AtariStReader.cs",
@@ -31171,7 +31223,9 @@
           "line": 72,
           "tokens": 39,
           "hash": "326C906E4DFA7AA160E572783FCF3F9F7C3C99615AD6EDC8D160F2DE18C77217",
-          "shape": "489DE7290C222DA7AA1CA260B6BEF458208D6C2B2C31D13565600232515212AE"
+          "shape": "489DE7290C222DA7AA1CA260B6BEF458208D6C2B2C31D13565600232515212AE",
+          "qualification": "Typed async format adapter; semantic calls verified in asyncMediaAdapterQualification; existing common read/document/atomic owners retained",
+          "qualificationSourceSha256": "D89C08666D47A4CFC7B1E95DA52781601C0908EF7345CD2A5FCB4E0CF7193325"
         },
         {
           "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/AcornAtom/AcornAtomDskReader.cs",
@@ -31179,7 +31233,9 @@
           "line": 55,
           "tokens": 39,
           "hash": "326C906E4DFA7AA160E572783FCF3F9F7C3C99615AD6EDC8D160F2DE18C77217",
-          "shape": "489DE7290C222DA7AA1CA260B6BEF458208D6C2B2C31D13565600232515212AE"
+          "shape": "489DE7290C222DA7AA1CA260B6BEF458208D6C2B2C31D13565600232515212AE",
+          "qualification": "Typed async format adapter; semantic calls verified in asyncMediaAdapterQualification; existing common read/document/atomic owners retained",
+          "qualificationSourceSha256": "31F02F150713EEAE9FF644BFA8FC40FB2D4512F6C0D3BFDE8B2B0D151BF88E9E"
         },
         {
           "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/Msa/MsaReader.cs",
@@ -31195,7 +31251,9 @@
           "line": 52,
           "tokens": 39,
           "hash": "326C906E4DFA7AA160E572783FCF3F9F7C3C99615AD6EDC8D160F2DE18C77217",
-          "shape": "489DE7290C222DA7AA1CA260B6BEF458208D6C2B2C31D13565600232515212AE"
+          "shape": "489DE7290C222DA7AA1CA260B6BEF458208D6C2B2C31D13565600232515212AE",
+          "qualification": "Typed async format adapter; semantic calls verified in asyncMediaAdapterQualification; existing common read/document/atomic owners retained",
+          "qualificationSourceSha256": "CDC355257A73529AA06FE9FC1036C891C7A19F36F78FBD0E997BDBF1AD6DF53B"
         },
         {
           "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/D71/D71Reader.cs",
@@ -31203,7 +31261,9 @@
           "line": 52,
           "tokens": 39,
           "hash": "326C906E4DFA7AA160E572783FCF3F9F7C3C99615AD6EDC8D160F2DE18C77217",
-          "shape": "489DE7290C222DA7AA1CA260B6BEF458208D6C2B2C31D13565600232515212AE"
+          "shape": "489DE7290C222DA7AA1CA260B6BEF458208D6C2B2C31D13565600232515212AE",
+          "qualification": "Typed async format adapter; semantic calls verified in asyncMediaAdapterQualification; existing common read/document/atomic owners retained",
+          "qualificationSourceSha256": "611A5FAEA5C961A5B3D330F776F79C10E7744EACA592CF328D39246FD9E762D7"
         },
         {
           "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/D64/D64Reader.cs",
@@ -31211,7 +31271,9 @@
           "line": 58,
           "tokens": 39,
           "hash": "326C906E4DFA7AA160E572783FCF3F9F7C3C99615AD6EDC8D160F2DE18C77217",
-          "shape": "489DE7290C222DA7AA1CA260B6BEF458208D6C2B2C31D13565600232515212AE"
+          "shape": "489DE7290C222DA7AA1CA260B6BEF458208D6C2B2C31D13565600232515212AE",
+          "qualification": "Typed async format adapter; semantic calls verified in asyncMediaAdapterQualification; existing common read/document/atomic owners retained",
+          "qualificationSourceSha256": "782A2AE3593B0CAF539A73FF421659AF4E02726A0CAC29AE9835384646075C1C"
         },
         {
           "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/UcsdRawImageReader.cs",
@@ -31219,7 +31281,9 @@
           "line": 52,
           "tokens": 39,
           "hash": "326C906E4DFA7AA160E572783FCF3F9F7C3C99615AD6EDC8D160F2DE18C77217",
-          "shape": "489DE7290C222DA7AA1CA260B6BEF458208D6C2B2C31D13565600232515212AE"
+          "shape": "489DE7290C222DA7AA1CA260B6BEF458208D6C2B2C31D13565600232515212AE",
+          "qualification": "Typed async format adapter; semantic calls verified in asyncMediaAdapterQualification; existing common read/document/atomic owners retained",
+          "qualificationSourceSha256": "8E098BA297EDF5E53AB46ADF65F58F27CF6A6D12BFE3A1FB00AAF9053A2DAECB"
         },
         {
           "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/RawImgReader.cs",
@@ -31227,7 +31291,9 @@
           "line": 65,
           "tokens": 39,
           "hash": "E8FA1E8D947A08B4CCD557601576A834273701FCAAB3E290112CF9C249AB8035",
-          "shape": "489DE7290C222DA7AA1CA260B6BEF458208D6C2B2C31D13565600232515212AE"
+          "shape": "489DE7290C222DA7AA1CA260B6BEF458208D6C2B2C31D13565600232515212AE",
+          "qualification": "Typed async format adapter; semantic calls verified in asyncMediaAdapterQualification; existing common read/document/atomic owners retained",
+          "qualificationSourceSha256": "E1FAFCFF381630CBC53798082F004BB2476E05B48E51DAF0B58815BE7E31D004"
         },
         {
           "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/MsxRawImageReader.cs",
@@ -31235,7 +31301,9 @@
           "line": 60,
           "tokens": 39,
           "hash": "326C906E4DFA7AA160E572783FCF3F9F7C3C99615AD6EDC8D160F2DE18C77217",
-          "shape": "489DE7290C222DA7AA1CA260B6BEF458208D6C2B2C31D13565600232515212AE"
+          "shape": "489DE7290C222DA7AA1CA260B6BEF458208D6C2B2C31D13565600232515212AE",
+          "qualification": "Typed async format adapter; semantic calls verified in asyncMediaAdapterQualification; existing common read/document/atomic owners retained",
+          "qualificationSourceSha256": "A42F716592CB1E1E0C61D6228B8234E5B21944E42634243A83E5FC358EDF2343"
         },
         {
           "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/IbmRawImageReader.cs",
@@ -31243,7 +31311,9 @@
           "line": 60,
           "tokens": 39,
           "hash": "326C906E4DFA7AA160E572783FCF3F9F7C3C99615AD6EDC8D160F2DE18C77217",
-          "shape": "489DE7290C222DA7AA1CA260B6BEF458208D6C2B2C31D13565600232515212AE"
+          "shape": "489DE7290C222DA7AA1CA260B6BEF458208D6C2B2C31D13565600232515212AE",
+          "qualification": "Typed async format adapter; semantic calls verified in asyncMediaAdapterQualification; existing common read/document/atomic owners retained",
+          "qualificationSourceSha256": "DB8618D24548C6907D847B0F73101D2366A04C2D498DE255BD4CF531A03C9B4E"
         }
       ],
       "qualification": "pending-symbol-and-policy-comparison"
@@ -37747,5 +37817,9 @@
       "qualification": "pending-symbol-and-policy-comparison"
     }
   ],
-  "scope": "All current repository CSharp and PowerShell files; no age filter; candidates require semantic review"
+  "scope": "All current repository CSharp and PowerShell files; no age filter; candidates require semantic review",
+  "qualificationCarryForward": {
+    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical",
+    "occurrences": 93
+  }
 }
