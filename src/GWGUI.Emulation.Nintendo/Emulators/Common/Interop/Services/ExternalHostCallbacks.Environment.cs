@@ -34,7 +34,9 @@ internal sealed partial class ExternalHostCallbacks
                     return ExternalCoreEnvironmentFunctions.WritePointer(data, NativeString(SaveDirectory));
                 case ExternalCoreApiConstants.GetCanDuplicateFrames:
                 case ExternalCoreApiConstants.GetInputBitmasks:
-                    _ = ExternalCoreEnvironmentFunctions.WriteBoolean(data, true);
+                case ExternalCoreApiConstants.GetCoreOptionsVersion:
+                    _ = ExternalCoreEnvironmentFunctions.TryHandleStatelessCommand(command, data,
+                        2, ExternalCoreInteropConstants.MessageInterfaceVersion, 0, out _);
                     return true;
                 case ExternalCoreApiConstants.SetMessage:
                     return CaptureMessage(data, extended: false);
@@ -45,9 +47,6 @@ internal sealed partial class ExternalHostCallbacks
                         ExternalCoreInteropConstants.PixelFormatRgb565 => EmulationPixelFormat.Rgb565,
                     var value => throw new NotSupportedException(CoreExceptions.UnsupportedPixelFormat(value))
                     };
-                    return true;
-                case ExternalCoreApiConstants.GetCoreOptionsVersion:
-                    _ = ExternalCoreEnvironmentFunctions.WriteInteger(data, 2);
                     return true;
                 case ExternalCoreApiConstants.SetCoreOptions:
                     RegisterVersionOneOptions(data);
@@ -97,7 +96,9 @@ internal sealed partial class ExternalHostCallbacks
                     SupportsNoGame = data != nint.Zero && Marshal.ReadByte(data) != ExternalCoreInteropConstants.NativeBooleanFalse;
                     return true;
                 case ExternalCoreApiConstants.GetMessageInterfaceVersion:
-                    return ExternalCoreEnvironmentFunctions.WriteInteger(data, ExternalCoreInteropConstants.MessageInterfaceVersion);
+                    _ = ExternalCoreEnvironmentFunctions.TryHandleStatelessCommand(command, data,
+                        2, ExternalCoreInteropConstants.MessageInterfaceVersion, 0, out var queryResult);
+                    return queryResult;
                 case ExternalCoreApiConstants.SetMessageExtended:
                     return CaptureMessage(data, extended: true);
                 case ExternalCoreApiConstants.SetFastForwardingOverride:
