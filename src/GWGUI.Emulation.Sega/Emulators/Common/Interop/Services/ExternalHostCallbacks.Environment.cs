@@ -180,24 +180,7 @@ internal sealed partial class ExternalHostCallbacks
             option.Values.Select(value => new CoreOptionValue(value.Value, value.Label)).ToArray(), option.IsVisible)).ToArray();
 
     private bool ReturnOption(nint data)
-    {
-        if (data == nint.Zero) return false;
-        var variable = Marshal.PtrToStructure<ExternalCoreApi.Variable>(data);
-        var key = Marshal.PtrToStringUTF8(variable.Key);
-        if (key is not null && _options.TryGetValue(key, out var value))
-        {
-            variable.Value = NativeString(value);
-            Marshal.StructureToPtr(variable, data, false);
-            return true;
-        }
-
-        if (data != 0)
-        {
-            variable.Value = 0;
-            Marshal.StructureToPtr(variable, data, false);
-        }
-        return false;
-    }
+    => EmulationCoreOptionFunctions.ReturnNativeValue(data, _options, (_, value) => NativeString(value), unavailableResult: false);
 
     internal void ValidateConfiguredOptions()
     {

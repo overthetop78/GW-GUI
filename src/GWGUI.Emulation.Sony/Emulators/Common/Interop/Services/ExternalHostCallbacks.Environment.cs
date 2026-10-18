@@ -174,24 +174,7 @@ internal sealed partial class ExternalHostCallbacks
 
 
     private bool ReturnOption(nint data)
-    {
-        if (data == 0) return true;
-        var variable = Marshal.PtrToStructure<ExternalCoreApi.Variable>(data);
-        var key = Marshal.PtrToStringUTF8(variable.Key);
-        if (key is not null && _options.TryGetValue(key, out var value))
-        {
-            variable.Value = NativeString(value);
-            Marshal.StructureToPtr(variable, data, false);
-            return true;
-        }
-
-        if (data != 0)
-        {
-            variable.Value = 0;
-            Marshal.StructureToPtr(variable, data, false);
-        }
-        return true;
-    }
+    => EmulationCoreOptionFunctions.ReturnNativeValue(data, _options, (_, value) => NativeString(value));
 
     internal void ValidateConfiguredOptions()
     {

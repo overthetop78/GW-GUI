@@ -57,14 +57,21 @@ public static partial class EmulationCoreOptionFunctions
         return english.Select(item => localByKey.TryGetValue(key(item), out var local) ? merge(item, local) : item).ToArray();
     }
 
-    internal static bool ReturnNativeValue(nint data, IReadOnlyDictionary<string, string> values, Func<string, string, nint> nativeValue)
+    internal static bool ReturnNativeValue(nint data, IReadOnlyDictionary<string, string> values,
+        Func<string, string, nint> nativeValue, bool unavailableResult = true)
     {
-        if (data == nint.Zero) return true;
+        if (data == nint.Zero) return unavailableResult;
         var variable = Marshal.PtrToStructure<ExternalCoreApi.Variable>(data);
         var key = NativeOptionCopyString(variable.Key);
-        variable.Value = key is not null && values.TryGetValue(key, out var value) ? nativeValue(key, value) : nint.Zero;
+        if (key is not null && values.TryGetValue(key, out var value))
+        {
+            variable.Value = nativeValue(key, value);
+            Marshal.StructureToPtr(variable, data, false);
+            return true;
+        }
+        variable.Value = nint.Zero;
         Marshal.StructureToPtr(variable, data, false);
-        return true;
+        return unavailableResult;
     }
 
     internal static bool SetNativeValue(nint data, Func<string, string, bool> setValue)

@@ -5463,5 +5463,76 @@
     ],
     "restartPolicy": "RequiresRestart=false retained from all three current consumers; original 23d3b9896 policy evolved before this extraction and is not reapplied.",
     "testFixtureCorrection": "The first Sharp fixture used a synthetic configuration option and was rejected before reaching Native. The corrected fixture obtains a real key and two values from the existing Sharp catalogue. No production validation changed."
+  },
+  "nativeOptionReturnReuse": {
+    "verification": "Eight adapter-policy AST comparisons, original Amiga found-key branch and all unrelated members unchanged; existing SDK EmulationCoreOptionHost consumer unchanged; 15 targeted native-buffer tests pass; SDK/App/23 module references compile.",
+    "profiles": [
+      {
+        "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "nullDataResult": "true",
+        "missingKeyResult": "true",
+        "nativeStringOwnerUnchanged": true,
+        "otherCallbackMembersUnchanged": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Environment.cs",
+        "nullDataResult": "true",
+        "missingKeyResult": "true",
+        "nativeStringOwnerUnchanged": true,
+        "otherCallbackMembersUnchanged": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "nullDataResult": "true",
+        "missingKeyResult": "true",
+        "nativeStringOwnerUnchanged": true,
+        "otherCallbackMembersUnchanged": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Environment.cs",
+        "nullDataResult": "true",
+        "missingKeyResult": "true",
+        "nativeStringOwnerUnchanged": true,
+        "otherCallbackMembersUnchanged": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "nullDataResult": "false",
+        "missingKeyResult": "false",
+        "nativeStringOwnerUnchanged": true,
+        "otherCallbackMembersUnchanged": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "nullDataResult": "true",
+        "missingKeyResult": "true",
+        "nativeStringOwnerUnchanged": true,
+        "otherCallbackMembersUnchanged": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "nullDataResult": "false",
+        "missingKeyResult": "false",
+        "nativeStringOwnerUnchanged": true,
+        "otherCallbackMembersUnchanged": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "nullDataResult": "true",
+        "missingKeyResult": "true",
+        "nativeStringOwnerUnchanged": true,
+        "otherCallbackMembersUnchanged": true
+      }
+    ],
+    "originalOwner": "b1cacbe75:src/GWGUI.Emulation.Amiga/Cores/AmigaExternalHostCallbacks.cs",
+    "absencePolicy": "Default true preserves existing SDK consumers and six native adapters; Nintendo/Sega explicitly use false. One unavailableResult parameter, no additional support advertised.",
+    "method": "ReturnNativeValue",
+    "existingSdkCallersUnchanged": [
+      "src/GWGUI.Emulation/Services/EmulationCoreOptionHost.cs"
+    ],
+    "sourceCommit": "eceb965c1",
+    "algorithm": "Original Amiga found-key/write-pointer branch matches AST after dictionary and borrowed string-factory parameterization; unknown key zeroes Value. Nullable native key decoding remains the existing SDK helper.",
+    "sdkOwner": "src/GWGUI.Emulation/Functions/EmulationCoreOptionFunctions.Native.cs",
+    "tests": "Two absence profiles across known/missing/null/empty/Unicode/case-sensitive keys, null data and throwing value factory; key pointer retained, missing value cleared, factory invoked only for known keys. All allocated buffers freed in finally."
   }
 }
