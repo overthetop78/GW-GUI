@@ -1,3 +1,4 @@
+global using AudioBuffer = GWGUI.Emulation.Services.EmulationAudioBuffer;
 global using MachineCommand = GWGUI.Emulation.Contracts.EmulationMachineCommand;
 global using GWGUI.Emulation.Constants;
 global using GWGUI.Emulation.Contracts;

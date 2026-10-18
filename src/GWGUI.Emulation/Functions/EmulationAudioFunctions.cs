@@ -4,6 +4,18 @@ namespace GWGUI.Emulation.Functions;
 
 internal static class EmulationAudioFunctions
 {
+    internal static int MaximumBufferedFrames(int sampleRate) => Math.Max(1, sampleRate / 5);
+
+    internal static AudioChunk RetainNativeNewestFrames(AudioChunk chunk, int maximumFrames, bool multichannel)
+    {
+        if (chunk.FrameCount <= maximumFrames) return chunk;
+        var retainedSamples = chunk.InterleavedSamples.Slice(
+            (chunk.FrameCount - maximumFrames) * (multichannel ? chunk.ChannelCount : 2)).ToArray();
+        return multichannel
+            ? chunk with { InterleavedSamples = retainedSamples, FrameCount = maximumFrames }
+            : new AudioChunk(retainedSamples, chunk.SampleRate, maximumFrames, chunk.Sequence, chunk.Timestamp);
+    }
+
     internal static short[] CopyBatch(nint data, int frameCount)
     {
         var samples = GC.AllocateUninitializedArray<short>(checked(frameCount * 2));

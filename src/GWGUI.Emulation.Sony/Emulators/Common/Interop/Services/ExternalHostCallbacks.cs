@@ -77,9 +77,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
     internal string SaveDirectory { get; }
     internal VideoFrame? LatestVideoFrame { get; private set; }
     internal AudioChunk? LatestAudioChunk { get; private set; }
-    private readonly Queue<AudioChunk> _audioChunks = new();
-    private readonly object _audioGate = new();
-    private int _bufferedAudioFrames;
+    private readonly GWGUI.Emulation.Services.EmulationAudioBuffer _audioBuffer = new();
     private readonly ConcurrentQueue<string> _diagnostics = new();
     private readonly ConcurrentDictionary<int, bool> _ledStates = new();
     private readonly ConcurrentDictionary<int, long> _ledActivityUntil = new();
@@ -118,8 +116,8 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
             return _ledStates.Keys.Concat(_ledActivityUntil.Keys).Distinct().ToDictionary(key => key, key => _ledStates.GetValueOrDefault(key) || _ledActivityUntil.GetValueOrDefault(key) > now);
         }
     }
-    internal int BufferedAudioFrames { get { lock (_audioGate) return _bufferedAudioFrames; } }
-    internal long AudioOverrunCount { get; private set; }
+    internal int BufferedAudioFrames => _audioBuffer.BufferedFrames;
+    internal long AudioOverrunCount => _audioBuffer.NativeOverrunCount;
 
     internal void SetOption(string key, string value)
     {
@@ -156,12 +154,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
             _keyboardEvent = null;
             _updateOptionsDisplay = null;
             LatestVideoFrame = null;
-            lock (_audioGate)
-            {
-                _audioChunks.Clear();
-                _bufferedAudioFrames = 0;
-                LatestAudioChunk = null;
-            }
+            _audioBuffer.ClearNative(() => LatestAudioChunk = null);
             lock (_inputGate)
             {
                 _input.Reset();

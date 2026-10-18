@@ -1,9 +1,9 @@
 {
   "baseline": "ac7292d86^",
-  "currentCSharpFiles": 7324,
-  "outsideSrcCSharpFiles": 290,
+  "currentCSharpFiles": 7314,
+  "outsideSrcCSharpFiles": 291,
   "baselineMethodCount": 5848,
-  "currentMethodCount": 11611,
+  "currentMethodCount": 11589,
   "powerShellFunctionCount": 17,
   "groups": [
     {
@@ -1265,7 +1265,7 @@
     {
       "language": "CSharp",
       "hash": "0A9D4012A0EEF58659F6F622D06187BDA6844EE126F30B196EAE963950A66758",
-      "method": "AtariEmulationModule",
+      "method": "NecEmulationModule",
       "tokens": 45,
       "current": [
         {
@@ -1485,33 +1485,6 @@
           "tokens": 103,
           "hash": "0C0E476CA2568F3D679C330AF126D6371523DE944CBA887FA4AF717BF183B80A",
           "shape": "DF69A3D842592F5DD6A4E6DAD215D8400A711743968FD4B4AD7A3EA4BBEDBF91"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
-      "hash": "0C9ED2C4DF268F37E489788C6556777A24D5A3F716090D17F4553CF295B67EF0",
-      "method": "Dispose",
-      "tokens": 130,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
-          "name": "Dispose",
-          "line": 130,
-          "tokens": 130,
-          "hash": "0C9ED2C4DF268F37E489788C6556777A24D5A3F716090D17F4553CF295B67EF0",
-          "shape": "BFBC4EC3FC546F58D210ED2EC6BC371E48641285383B5BA53291001FA2B4FC16"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
-          "name": "Dispose",
-          "line": 130,
-          "tokens": 130,
-          "hash": "0C9ED2C4DF268F37E489788C6556777A24D5A3F716090D17F4553CF295B67EF0",
-          "shape": "BFBC4EC3FC546F58D210ED2EC6BC371E48641285383B5BA53291001FA2B4FC16"
         }
       ],
       "predecessors": [],
@@ -3889,7 +3862,7 @@
         {
           "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
           "name": "SetOption",
-          "line": 118,
+          "line": 116,
           "tokens": 144,
           "hash": "256745C9280719FE9666031C5D64DE75215FD6B2867B4D0CB083C91B3353A2F7",
           "shape": "9D4FB831778280C5022C8C0F0183BCB91517C274DDD8BE0B40BCEB32C9829E00"
@@ -3897,7 +3870,7 @@
         {
           "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
           "name": "SetOption",
-          "line": 118,
+          "line": 116,
           "tokens": 144,
           "hash": "256745C9280719FE9666031C5D64DE75215FD6B2867B4D0CB083C91B3353A2F7",
           "shape": "9D4FB831778280C5022C8C0F0183BCB91517C274DDD8BE0B40BCEB32C9829E00"
@@ -4455,7 +4428,7 @@
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.cs",
           "name": "SetControllerType",
-          "line": 89,
+          "line": 87,
           "tokens": 46,
           "hash": "2B981952FD479021B0D0193AE12D0756983F9EAA8A31F5AA5D54B8E92FB69229",
           "shape": "D7C5142D9DBF8314EA9F93E75B4D7A9776BECB69A71B9F0F50EE10F0C4321737"
@@ -4463,7 +4436,7 @@
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.cs",
           "name": "SetControllerType",
-          "line": 95,
+          "line": 93,
           "tokens": 46,
           "hash": "2B981952FD479021B0D0193AE12D0756983F9EAA8A31F5AA5D54B8E92FB69229",
           "shape": "D7C5142D9DBF8314EA9F93E75B4D7A9776BECB69A71B9F0F50EE10F0C4321737"
@@ -6941,6 +6914,33 @@
     },
     {
       "language": "CSharp",
+      "hash": "3D09BF6BBC6233EB4FCA0806ACBCB0E9C03835481D56052E4AEF3A1C91B26CA3",
+      "method": "Dispose",
+      "tokens": 102,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+          "name": "Dispose",
+          "line": 132,
+          "tokens": 102,
+          "hash": "3D09BF6BBC6233EB4FCA0806ACBCB0E9C03835481D56052E4AEF3A1C91B26CA3",
+          "shape": "B6C42CA6973DFBF52305261F992706003D3389A8335B4906D75B3B2D1CDC99CE"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+          "name": "Dispose",
+          "line": 133,
+          "tokens": 102,
+          "hash": "3D09BF6BBC6233EB4FCA0806ACBCB0E9C03835481D56052E4AEF3A1C91B26CA3",
+          "shape": "B6C42CA6973DFBF52305261F992706003D3389A8335B4906D75B3B2D1CDC99CE"
+        }
+      ],
+      "predecessors": [],
+      "shapePredecessors": [],
+      "qualification": "pending"
+    },
+    {
+      "language": "CSharp",
       "hash": "3D15FC007ECDDB2C3E0BEA696142CA5CEC556BDD710644E4E88DC3E5B1B19D90",
       "method": "SaveStateAsync",
       "tokens": 68,
@@ -7548,99 +7548,6 @@
       ],
       "predecessors": [],
       "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
-      "hash": "42B04FACCB00094FC7115BD35FA9826AF3B55526D963DFABCD2C9C4B094B0423",
-      "method": "TryDequeueAudio",
-      "tokens": 31,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
-          "name": "TryDequeueAudio",
-          "line": 79,
-          "tokens": 31,
-          "hash": "42B04FACCB00094FC7115BD35FA9826AF3B55526D963DFABCD2C9C4B094B0423",
-          "shape": "A46BC45F9A728F36DA06F6D30CB98F83EC1D79844D77E98F0A1DA566572F2884"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
-          "name": "TryDequeueAudio",
-          "line": 90,
-          "tokens": 31,
-          "hash": "42B04FACCB00094FC7115BD35FA9826AF3B55526D963DFABCD2C9C4B094B0423",
-          "shape": "A46BC45F9A728F36DA06F6D30CB98F83EC1D79844D77E98F0A1DA566572F2884"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
-          "name": "TryDequeueAudio",
-          "line": 80,
-          "tokens": 31,
-          "hash": "42B04FACCB00094FC7115BD35FA9826AF3B55526D963DFABCD2C9C4B094B0423",
-          "shape": "A46BC45F9A728F36DA06F6D30CB98F83EC1D79844D77E98F0A1DA566572F2884"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.AudioVideo.cs",
-          "name": "TryDequeueAudio",
-          "line": 79,
-          "tokens": 31,
-          "hash": "42B04FACCB00094FC7115BD35FA9826AF3B55526D963DFABCD2C9C4B094B0423",
-          "shape": "A46BC45F9A728F36DA06F6D30CB98F83EC1D79844D77E98F0A1DA566572F2884"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
-          "name": "TryDequeueAudio",
-          "line": 90,
-          "tokens": 31,
-          "hash": "42B04FACCB00094FC7115BD35FA9826AF3B55526D963DFABCD2C9C4B094B0423",
-          "shape": "A46BC45F9A728F36DA06F6D30CB98F83EC1D79844D77E98F0A1DA566572F2884"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.AudioVideo.cs",
-          "name": "TryDequeueAudio",
-          "line": 79,
-          "tokens": 31,
-          "hash": "42B04FACCB00094FC7115BD35FA9826AF3B55526D963DFABCD2C9C4B094B0423",
-          "shape": "A46BC45F9A728F36DA06F6D30CB98F83EC1D79844D77E98F0A1DA566572F2884"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
-          "name": "TryDequeueAudio",
-          "line": 87,
-          "tokens": 31,
-          "hash": "42B04FACCB00094FC7115BD35FA9826AF3B55526D963DFABCD2C9C4B094B0423",
-          "shape": "A46BC45F9A728F36DA06F6D30CB98F83EC1D79844D77E98F0A1DA566572F2884"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
-          "name": "TryDequeueAudio",
-          "line": 78,
-          "tokens": 31,
-          "hash": "42B04FACCB00094FC7115BD35FA9826AF3B55526D963DFABCD2C9C4B094B0423",
-          "shape": "A46BC45F9A728F36DA06F6D30CB98F83EC1D79844D77E98F0A1DA566572F2884"
-        }
-      ],
-      "predecessors": [
-        {
-          "path": "src/GWGUI.Emulation.Amiga/Emulators/PUAE/Services/ExternalHostCallbacks/AmigaExternalHostCallbacks.AudioVideo.cs",
-          "name": "TryDequeueAudio",
-          "line": 88,
-          "tokens": 31,
-          "hash": "42B04FACCB00094FC7115BD35FA9826AF3B55526D963DFABCD2C9C4B094B0423",
-          "shape": "A46BC45F9A728F36DA06F6D30CB98F83EC1D79844D77E98F0A1DA566572F2884"
-        }
-      ],
-      "shapePredecessors": [
-        {
-          "path": "src/GWGUI.Emulation.Amiga/Emulators/PUAE/Services/ExternalHostCallbacks/AmigaExternalHostCallbacks.AudioVideo.cs",
-          "name": "TryDequeueAudio",
-          "line": 88,
-          "tokens": 31,
-          "hash": "42B04FACCB00094FC7115BD35FA9826AF3B55526D963DFABCD2C9C4B094B0423",
-          "shape": "A46BC45F9A728F36DA06F6D30CB98F83EC1D79844D77E98F0A1DA566572F2884"
-        }
-      ],
       "qualification": "pending"
     },
     {
@@ -8460,66 +8367,6 @@
     },
     {
       "language": "CSharp",
-      "hash": "4B8CC82C8ABFC110FCE5BA2619FA03BB9C7938497DBF4DAB2E769B6C635F73FB",
-      "method": "PublishAudio",
-      "tokens": 125,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
-          "name": "PublishAudio",
-          "line": 68,
-          "tokens": 125,
-          "hash": "4B8CC82C8ABFC110FCE5BA2619FA03BB9C7938497DBF4DAB2E769B6C635F73FB",
-          "shape": "BD25C9808BC150985D894E867F22DCF9261380660B26077BDFBEDEDF0701FBF9"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
-          "name": "PublishAudio",
-          "line": 58,
-          "tokens": 125,
-          "hash": "4B8CC82C8ABFC110FCE5BA2619FA03BB9C7938497DBF4DAB2E769B6C635F73FB",
-          "shape": "BD25C9808BC150985D894E867F22DCF9261380660B26077BDFBEDEDF0701FBF9"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.AudioVideo.cs",
-          "name": "PublishAudio",
-          "line": 57,
-          "tokens": 125,
-          "hash": "4B8CC82C8ABFC110FCE5BA2619FA03BB9C7938497DBF4DAB2E769B6C635F73FB",
-          "shape": "BD25C9808BC150985D894E867F22DCF9261380660B26077BDFBEDEDF0701FBF9"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
-          "name": "PublishAudio",
-          "line": 68,
-          "tokens": 125,
-          "hash": "4B8CC82C8ABFC110FCE5BA2619FA03BB9C7938497DBF4DAB2E769B6C635F73FB",
-          "shape": "BD25C9808BC150985D894E867F22DCF9261380660B26077BDFBEDEDF0701FBF9"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.AudioVideo.cs",
-          "name": "PublishAudio",
-          "line": 57,
-          "tokens": 125,
-          "hash": "4B8CC82C8ABFC110FCE5BA2619FA03BB9C7938497DBF4DAB2E769B6C635F73FB",
-          "shape": "BD25C9808BC150985D894E867F22DCF9261380660B26077BDFBEDEDF0701FBF9"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [
-        {
-          "path": "src/GWGUI.Emulation.Amiga/Emulators/PUAE/Services/ExternalHostCallbacks/AmigaExternalHostCallbacks.AudioVideo.cs",
-          "name": "PublishAudio",
-          "line": 66,
-          "tokens": 125,
-          "hash": "66B52FA6A9B994D80A3A077DF7B6E98982C8A9DFB19370417A920432C57F95D7",
-          "shape": "BD25C9808BC150985D894E867F22DCF9261380660B26077BDFBEDEDF0701FBF9"
-        }
-      ],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
       "hash": "4B91FB6CEC709B51377400D864584DB15E09963AA54AC5F12AC50F506C4DBF82",
       "method": "Dispose",
       "tokens": 71,
@@ -8703,6 +8550,33 @@
           "tokens": 140,
           "hash": "4E4B45F06037E58BED2FBFE912AD62DA719AE9C15D2DFEF78EB501969E1707E9",
           "shape": "A338415D06D41668513B9AFC2DBA54E52AF2C56E69D4014EF6328C835724BB94"
+        }
+      ],
+      "predecessors": [],
+      "shapePredecessors": [],
+      "qualification": "pending"
+    },
+    {
+      "language": "CSharp",
+      "hash": "4E5A723F10F25B6784EFB7BF97E370733A483DFC91F2543737CA7122C2D62994",
+      "method": "Dispose",
+      "tokens": 122,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+          "name": "Dispose",
+          "line": 128,
+          "tokens": 122,
+          "hash": "4E5A723F10F25B6784EFB7BF97E370733A483DFC91F2543737CA7122C2D62994",
+          "shape": "CB9A9A25DF4ADA7368BE75836CF56032E4F5C0B536564F307BCCDF5F27233F1D"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+          "name": "Dispose",
+          "line": 128,
+          "tokens": 122,
+          "hash": "4E5A723F10F25B6784EFB7BF97E370733A483DFC91F2543737CA7122C2D62994",
+          "shape": "CB9A9A25DF4ADA7368BE75836CF56032E4F5C0B536564F307BCCDF5F27233F1D"
         }
       ],
       "predecessors": [],
@@ -9159,122 +9033,6 @@
       ],
       "predecessors": [],
       "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
-      "hash": "52EBB64D42E86A2BA00348BFDC1DE66831CF70EE6585C96EE6610D239BD5FF65",
-      "method": "Enqueue",
-      "tokens": 87,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Apple/Common/Services/AudioBuffer.cs",
-          "name": "Enqueue",
-          "line": 15,
-          "tokens": 87,
-          "hash": "52EBB64D42E86A2BA00348BFDC1DE66831CF70EE6585C96EE6610D239BD5FF65",
-          "shape": "9CA5B9C0204848C56997BE7AE8C8C0A63362ECE3199819F8B204CEE48CF3D55F"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Acorn/Common/Services/AudioBuffer.cs",
-          "name": "Enqueue",
-          "line": 15,
-          "tokens": 87,
-          "hash": "52EBB64D42E86A2BA00348BFDC1DE66831CF70EE6585C96EE6610D239BD5FF65",
-          "shape": "9CA5B9C0204848C56997BE7AE8C8C0A63362ECE3199819F8B204CEE48CF3D55F"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sinclair/Common/Services/AudioBuffer.cs",
-          "name": "Enqueue",
-          "line": 15,
-          "tokens": 87,
-          "hash": "52EBB64D42E86A2BA00348BFDC1DE66831CF70EE6585C96EE6610D239BD5FF65",
-          "shape": "9CA5B9C0204848C56997BE7AE8C8C0A63362ECE3199819F8B204CEE48CF3D55F"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sharp/Common/Services/AudioBuffer.cs",
-          "name": "Enqueue",
-          "line": 15,
-          "tokens": 87,
-          "hash": "52EBB64D42E86A2BA00348BFDC1DE66831CF70EE6585C96EE6610D239BD5FF65",
-          "shape": "9CA5B9C0204848C56997BE7AE8C8C0A63362ECE3199819F8B204CEE48CF3D55F"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Snk/Common/Services/AudioBuffer.cs",
-          "name": "Enqueue",
-          "line": 15,
-          "tokens": 87,
-          "hash": "52EBB64D42E86A2BA00348BFDC1DE66831CF70EE6585C96EE6610D239BD5FF65",
-          "shape": "9CA5B9C0204848C56997BE7AE8C8C0A63362ECE3199819F8B204CEE48CF3D55F"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Philips/Common/Services/AudioBuffer.cs",
-          "name": "Enqueue",
-          "line": 15,
-          "tokens": 87,
-          "hash": "52EBB64D42E86A2BA00348BFDC1DE66831CF70EE6585C96EE6610D239BD5FF65",
-          "shape": "9CA5B9C0204848C56997BE7AE8C8C0A63362ECE3199819F8B204CEE48CF3D55F"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Atari/Common/Services/AudioBuffer.cs",
-          "name": "Enqueue",
-          "line": 15,
-          "tokens": 87,
-          "hash": "52EBB64D42E86A2BA00348BFDC1DE66831CF70EE6585C96EE6610D239BD5FF65",
-          "shape": "9CA5B9C0204848C56997BE7AE8C8C0A63362ECE3199819F8B204CEE48CF3D55F"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Mattel/Common/Services/AudioBuffer.cs",
-          "name": "Enqueue",
-          "line": 15,
-          "tokens": 87,
-          "hash": "52EBB64D42E86A2BA00348BFDC1DE66831CF70EE6585C96EE6610D239BD5FF65",
-          "shape": "9CA5B9C0204848C56997BE7AE8C8C0A63362ECE3199819F8B204CEE48CF3D55F"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Coleco/Common/Services/AudioBuffer.cs",
-          "name": "Enqueue",
-          "line": 15,
-          "tokens": 87,
-          "hash": "52EBB64D42E86A2BA00348BFDC1DE66831CF70EE6585C96EE6610D239BD5FF65",
-          "shape": "9CA5B9C0204848C56997BE7AE8C8C0A63362ECE3199819F8B204CEE48CF3D55F"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Fairchild/Common/Services/AudioBuffer.cs",
-          "name": "Enqueue",
-          "line": 15,
-          "tokens": 87,
-          "hash": "52EBB64D42E86A2BA00348BFDC1DE66831CF70EE6585C96EE6610D239BD5FF65",
-          "shape": "9CA5B9C0204848C56997BE7AE8C8C0A63362ECE3199819F8B204CEE48CF3D55F"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Epoch/Common/Services/AudioBuffer.cs",
-          "name": "Enqueue",
-          "line": 15,
-          "tokens": 87,
-          "hash": "52EBB64D42E86A2BA00348BFDC1DE66831CF70EE6585C96EE6610D239BD5FF65",
-          "shape": "9CA5B9C0204848C56997BE7AE8C8C0A63362ECE3199819F8B204CEE48CF3D55F"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Bandai/Common/Services/AudioBuffer.cs",
-          "name": "Enqueue",
-          "line": 15,
-          "tokens": 87,
-          "hash": "52EBB64D42E86A2BA00348BFDC1DE66831CF70EE6585C96EE6610D239BD5FF65",
-          "shape": "9CA5B9C0204848C56997BE7AE8C8C0A63362ECE3199819F8B204CEE48CF3D55F"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [
-        {
-          "path": "src/GWGUI.Emulation.Atari/Services/AtariAudioBuffer.cs",
-          "name": "Enqueue",
-          "line": 15,
-          "tokens": 87,
-          "hash": "07DF7D57BC188228E1DEB5B02BE82CE028577354EB5AAC8455146975E220F22B",
-          "shape": "9CA5B9C0204848C56997BE7AE8C8C0A63362ECE3199819F8B204CEE48CF3D55F"
-        }
-      ],
       "qualification": "pending"
     },
     {
@@ -12351,7 +12109,7 @@
     {
       "language": "CSharp",
       "hash": "68386C818382BCE400A3EDE65411B5CBD9D6A87F6D88FAF6501028CE28C38965",
-      "method": "ToModule",
+      "method": "ToSinclair",
       "tokens": 148,
       "current": [
         {
@@ -13849,33 +13607,6 @@
     },
     {
       "language": "CSharp",
-      "hash": "76B8CC0B6367D655A6AACA31AF24FAE19BC2EBD2EFC5FF3A76D3687FF0D43A19",
-      "method": "PublishAudio",
-      "tokens": 133,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
-          "name": "PublishAudio",
-          "line": 57,
-          "tokens": 133,
-          "hash": "76B8CC0B6367D655A6AACA31AF24FAE19BC2EBD2EFC5FF3A76D3687FF0D43A19",
-          "shape": "60059D665D2BB12C3AE7549C8A491225DAA06699F87A558BF04A6502BD17C24F"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
-          "name": "PublishAudio",
-          "line": 56,
-          "tokens": 133,
-          "hash": "76B8CC0B6367D655A6AACA31AF24FAE19BC2EBD2EFC5FF3A76D3687FF0D43A19",
-          "shape": "60059D665D2BB12C3AE7549C8A491225DAA06699F87A558BF04A6502BD17C24F"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
       "hash": "76D499856596216CBB66C640A5B3BDAF4BC518F1C045950E9EDCAD4EB41573BF",
       "method": "EjectMediaAsync",
       "tokens": 77,
@@ -14607,131 +14338,6 @@
       ],
       "predecessors": [],
       "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
-      "hash": "7F4C01F758D47D9EA8D77F2839845526C0CF78F44B2D92CC3DE296F72AAC1F46",
-      "method": "TryDequeue",
-      "tokens": 36,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Apple/Common/Services/AudioBuffer.cs",
-          "name": "TryDequeue",
-          "line": 32,
-          "tokens": 36,
-          "hash": "7F4C01F758D47D9EA8D77F2839845526C0CF78F44B2D92CC3DE296F72AAC1F46",
-          "shape": "FECD424F4CFC3A4C632EE7F35E264AC814B191B99D5AA0FC3EAEFCB2222369B0"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Acorn/Common/Services/AudioBuffer.cs",
-          "name": "TryDequeue",
-          "line": 32,
-          "tokens": 36,
-          "hash": "7F4C01F758D47D9EA8D77F2839845526C0CF78F44B2D92CC3DE296F72AAC1F46",
-          "shape": "FECD424F4CFC3A4C632EE7F35E264AC814B191B99D5AA0FC3EAEFCB2222369B0"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sinclair/Common/Services/AudioBuffer.cs",
-          "name": "TryDequeue",
-          "line": 32,
-          "tokens": 36,
-          "hash": "7F4C01F758D47D9EA8D77F2839845526C0CF78F44B2D92CC3DE296F72AAC1F46",
-          "shape": "FECD424F4CFC3A4C632EE7F35E264AC814B191B99D5AA0FC3EAEFCB2222369B0"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sharp/Common/Services/AudioBuffer.cs",
-          "name": "TryDequeue",
-          "line": 32,
-          "tokens": 36,
-          "hash": "7F4C01F758D47D9EA8D77F2839845526C0CF78F44B2D92CC3DE296F72AAC1F46",
-          "shape": "FECD424F4CFC3A4C632EE7F35E264AC814B191B99D5AA0FC3EAEFCB2222369B0"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Snk/Common/Services/AudioBuffer.cs",
-          "name": "TryDequeue",
-          "line": 32,
-          "tokens": 36,
-          "hash": "7F4C01F758D47D9EA8D77F2839845526C0CF78F44B2D92CC3DE296F72AAC1F46",
-          "shape": "FECD424F4CFC3A4C632EE7F35E264AC814B191B99D5AA0FC3EAEFCB2222369B0"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Philips/Common/Services/AudioBuffer.cs",
-          "name": "TryDequeue",
-          "line": 32,
-          "tokens": 36,
-          "hash": "7F4C01F758D47D9EA8D77F2839845526C0CF78F44B2D92CC3DE296F72AAC1F46",
-          "shape": "FECD424F4CFC3A4C632EE7F35E264AC814B191B99D5AA0FC3EAEFCB2222369B0"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Atari/Common/Services/AudioBuffer.cs",
-          "name": "TryDequeue",
-          "line": 32,
-          "tokens": 36,
-          "hash": "7F4C01F758D47D9EA8D77F2839845526C0CF78F44B2D92CC3DE296F72AAC1F46",
-          "shape": "FECD424F4CFC3A4C632EE7F35E264AC814B191B99D5AA0FC3EAEFCB2222369B0"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Mattel/Common/Services/AudioBuffer.cs",
-          "name": "TryDequeue",
-          "line": 32,
-          "tokens": 36,
-          "hash": "7F4C01F758D47D9EA8D77F2839845526C0CF78F44B2D92CC3DE296F72AAC1F46",
-          "shape": "FECD424F4CFC3A4C632EE7F35E264AC814B191B99D5AA0FC3EAEFCB2222369B0"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Coleco/Common/Services/AudioBuffer.cs",
-          "name": "TryDequeue",
-          "line": 32,
-          "tokens": 36,
-          "hash": "7F4C01F758D47D9EA8D77F2839845526C0CF78F44B2D92CC3DE296F72AAC1F46",
-          "shape": "FECD424F4CFC3A4C632EE7F35E264AC814B191B99D5AA0FC3EAEFCB2222369B0"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Fairchild/Common/Services/AudioBuffer.cs",
-          "name": "TryDequeue",
-          "line": 32,
-          "tokens": 36,
-          "hash": "7F4C01F758D47D9EA8D77F2839845526C0CF78F44B2D92CC3DE296F72AAC1F46",
-          "shape": "FECD424F4CFC3A4C632EE7F35E264AC814B191B99D5AA0FC3EAEFCB2222369B0"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Epoch/Common/Services/AudioBuffer.cs",
-          "name": "TryDequeue",
-          "line": 32,
-          "tokens": 36,
-          "hash": "7F4C01F758D47D9EA8D77F2839845526C0CF78F44B2D92CC3DE296F72AAC1F46",
-          "shape": "FECD424F4CFC3A4C632EE7F35E264AC814B191B99D5AA0FC3EAEFCB2222369B0"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Bandai/Common/Services/AudioBuffer.cs",
-          "name": "TryDequeue",
-          "line": 32,
-          "tokens": 36,
-          "hash": "7F4C01F758D47D9EA8D77F2839845526C0CF78F44B2D92CC3DE296F72AAC1F46",
-          "shape": "FECD424F4CFC3A4C632EE7F35E264AC814B191B99D5AA0FC3EAEFCB2222369B0"
-        }
-      ],
-      "predecessors": [
-        {
-          "path": "src/GWGUI.Emulation.Atari/Services/AtariAudioBuffer.cs",
-          "name": "TryDequeue",
-          "line": 32,
-          "tokens": 36,
-          "hash": "7F4C01F758D47D9EA8D77F2839845526C0CF78F44B2D92CC3DE296F72AAC1F46",
-          "shape": "FECD424F4CFC3A4C632EE7F35E264AC814B191B99D5AA0FC3EAEFCB2222369B0"
-        }
-      ],
-      "shapePredecessors": [
-        {
-          "path": "src/GWGUI.Emulation.Atari/Services/AtariAudioBuffer.cs",
-          "name": "TryDequeue",
-          "line": 32,
-          "tokens": 36,
-          "hash": "7F4C01F758D47D9EA8D77F2839845526C0CF78F44B2D92CC3DE296F72AAC1F46",
-          "shape": "FECD424F4CFC3A4C632EE7F35E264AC814B191B99D5AA0FC3EAEFCB2222369B0"
-        }
-      ],
       "qualification": "pending"
     },
     {
@@ -19873,7 +19479,7 @@
     {
       "language": "CSharp",
       "hash": "A1E03750FEB3292ACEB41656386F4A8AA8B05077D9ABFB7DA103AA3D71320B9F",
-      "method": "ToEpoch",
+      "method": "ToFairchild",
       "tokens": 103,
       "current": [
         {
@@ -20108,7 +19714,7 @@
     {
       "language": "CSharp",
       "hash": "A61349BFDFFA5D404CE7D0D458204D435194B5E4D84870DF4F9FBE26A86A9946",
-      "method": "ToEpoch",
+      "method": "ToFairchild",
       "tokens": 36,
       "current": [
         {
@@ -21301,7 +20907,7 @@
     {
       "language": "CSharp",
       "hash": "B053A3AB4F0B78A37DED57B2D744801187AED6EC54FEEAFE4B1AA9C454D6F48C",
-      "method": "ColecoEmulationModule",
+      "method": "FairchildEmulationModule",
       "tokens": 47,
       "current": [
         {
@@ -28180,7 +27786,7 @@
     {
       "language": "CSharp",
       "hash": "F107F4D7D97C4E9F797468C991DF2090B47DF6E3F6F74E56044EFF0C28CAA51D",
-      "method": "NotifyDestroy",
+      "method": "NotifyHardwareContextDestroy",
       "tokens": 31,
       "current": [
         {
@@ -36365,7 +35971,7 @@
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.cs",
           "name": "SetOption",
-          "line": 119,
+          "line": 117,
           "tokens": 155,
           "hash": "F3CFF6A31B8D3134AF16ADA7789ED6E6CD851F53CF357E665BBB2C7484A069F5",
           "shape": "C8EB29902334C059DF1B6016B5329A782E5E7EDCF653E71B75FCA8FA326FB5C3"
@@ -36373,7 +35979,7 @@
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.cs",
           "name": "SetOption",
-          "line": 125,
+          "line": 123,
           "tokens": 155,
           "hash": "047CCDE4743CAC1EDEA30F69146DF51879ED3A9F75BAA122B499F44D35F22A56",
           "shape": "C8EB29902334C059DF1B6016B5329A782E5E7EDCF653E71B75FCA8FA326FB5C3"
@@ -36381,7 +35987,7 @@
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
           "name": "SetOption",
-          "line": 124,
+          "line": 122,
           "tokens": 155,
           "hash": "C7CAE4314A93FE84810058F475E23E4956E5747F80AB0250E4A08A83B0BDC09C",
           "shape": "C8EB29902334C059DF1B6016B5329A782E5E7EDCF653E71B75FCA8FA326FB5C3"
@@ -38837,7 +38443,7 @@
         {
           "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
           "name": "SetOption",
-          "line": 122,
+          "line": 120,
           "tokens": 148,
           "hash": "EA989942C23907F83705CD87691F5284CD914E98450821B2D3ED6999DF426F17",
           "shape": "FFA94B7978EC23B5D795C20E91010610A7D57602AE38C1F0B37E29CB43CBE8C3"
@@ -38845,7 +38451,7 @@
         {
           "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
           "name": "SetOption",
-          "line": 141,
+          "line": 131,
           "tokens": 148,
           "hash": "7F4B69F9494A8FCC382691DC0B13E2C19366E6D710E2B222A5696C3911A61104",
           "shape": "FFA94B7978EC23B5D795C20E91010610A7D57602AE38C1F0B37E29CB43CBE8C3"

@@ -3,7 +3,6 @@ namespace GWGUI.Emulation.Coleco.Common.Functions;
 
 internal static class AudioFunctions
 {
-    internal static int MaximumBufferedFrames(int sampleRate) => Math.Max(AudioConstants.MinimumBufferedFrameCount, sampleRate / AudioConstants.BufferDurationDivisor);
 
     internal static short[] SingleFrame(short left, short right) => EmulationAudioFunctions.SingleFrame(left, right);
 

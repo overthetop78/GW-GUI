@@ -56,33 +56,12 @@ internal sealed partial class ExternalHostCallbacks
     private void PublishAudio(AudioChunk chunk)
     {
         LatestAudioChunk = chunk;
-        lock (_audioGate)
-        {
-            var maximumFrames = Math.Max(AudioConstants.MinimumBufferedFrameCount, SampleRate / AudioConstants.BufferDurationDivisor);
-            if (chunk.FrameCount > maximumFrames)
-            {
-                var retainedSamples = chunk.InterleavedSamples.Slice((chunk.FrameCount - maximumFrames) * AudioConstants.StereoChannelCount).ToArray();
-                chunk = new AudioChunk(retainedSamples, chunk.SampleRate, maximumFrames, chunk.Sequence, chunk.Timestamp);
-                AudioOverrunCount++;
-            }
-            _audioChunks.Enqueue(chunk);
-            _bufferedAudioFrames += chunk.FrameCount;
-            while (_bufferedAudioFrames > maximumFrames && _audioChunks.Count > AudioConstants.MinimumBufferedFrameCount)
-            {
-                _bufferedAudioFrames -= _audioChunks.Dequeue().FrameCount;
-                AudioOverrunCount++;
-            }
-        }
+        _audioBuffer.EnqueueNative(chunk, this, static owner => owner.SampleRate);
     }
 
     internal bool TryDequeueAudio(out AudioChunk? chunk)
     {
-        lock (_audioGate)
-        {
-            if (!_audioChunks.TryDequeue(out chunk)) return false;
-            _bufferedAudioFrames -= chunk.FrameCount;
-            return true;
-        }
+        return _audioBuffer.TryDequeueNative(out chunk);
     }
 
 }
