@@ -293,7 +293,7 @@ internal sealed class DiskImageWorkspaceController : IDisposable
 
     internal static string LoadFailureMessageKey(bool newImage, string? requestedFormat) => !newImage && !string.IsNullOrWhiteSpace(requestedFormat) ? DiskImageResourceKeys.ExplorerSelectedFormatUnsupported : DiskImageResourceKeys.ExplorerLoadFailed;
 
-    private string FormatName(string formatId) => new BuiltInImageFormatCatalog(key => _localize(key, [])).Formats.FirstOrDefault(format => format.Id.Equals(formatId, StringComparison.OrdinalIgnoreCase))?.DisplayName ?? formatId;
+    internal static string FormatName(string formatId, Func<string, object[], string> localize) => new BuiltInImageFormatCatalog(key => localize(key, [])).Formats.FirstOrDefault(format => format.Id.Equals(formatId, StringComparison.OrdinalIgnoreCase))?.DisplayName ?? formatId;
 
     internal sealed class SelectedFormatUnsupportedException(string formatName, string fileName, Exception innerException) : Exception(innerException.Message, innerException)
     {
@@ -348,7 +348,7 @@ internal sealed class DiskImageWorkspaceController : IDisposable
         {
             if (string.IsNullOrWhiteSpace(formatId)) return;
             var sourcePath = VisualizerSourcePath();
-            var presentedException = new SelectedFormatUnsupportedException(FormatName(formatId), Path.GetFileName(sourcePath ?? string.Empty), exception);
+            var presentedException = new SelectedFormatUnsupportedException(FormatName(formatId, _localize), Path.GetFileName(sourcePath ?? string.Empty), exception);
             _showError(presentedException, $"Selecting Visualizer format {formatId} for disk image: {sourcePath}", "Explorer.SelectedFormatUnsupportedTitle", "Explorer.SelectedFormatUnsupported");
         }
     }

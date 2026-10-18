@@ -9521,5 +9521,29 @@
         "sha256": "93E442D47F43CC96FB949DA77A631F96A4A9C71C95220749F4A5679FD83291C2"
       }
     ]
+  },
+  "formatNameReuse": {
+    "originCommit": "dfdddf168",
+    "copyCommit": "2bf15b134",
+    "baseline": "2cf79fbfc",
+    "owner": "src/GWGUI.App/Services/DiskImages/DiskImageWorkspaceController.cs",
+    "removedCopy": "src/GWGUI.App/Services/DiskImages/Exploration/ExplorerPresentationController.cs",
+    "operation": "Original FormatName expression retained in original owner; localization delegate passed explicitly to internal static method.",
+    "preserved": "Full catalog construction, localization callback and empty argument array, OrdinalIgnoreCase lookup, DisplayName and fallback formatId; no cache or locale change.",
+    "ast": "Original expression tokens match after field-to-parameter normalization; all other tokens in both files identical after normalizing the two call sites and original signature.",
+    "semantic": "App zero semantic errors; both calls resolve to DiskImageWorkspaceController.FormatName(string,Func<string,object[],string>).",
+    "tests": "Existing ManualFormatFailureUsesInformationalDialog passed (1 test), exit 0. This scenario checks presentation and resources; source equivalence and symbol resolution separately cover shared lookup.",
+    "resources": "Existing WPF fixture releases windows/application/dispatcher in finally and joins dispatcher thread; no ownership code changed, test process exited 0.",
+    "sourceHashes": [
+      {
+        "path": "src/GWGUI.App/Services/DiskImages/DiskImageWorkspaceController.cs",
+        "sha256": "BB9D19C241B77A756883238D649271086B0CDA108F569B5F6A33B68FC5B3804A"
+      },
+      {
+        "path": "src/GWGUI.App/Services/DiskImages/Exploration/ExplorerPresentationController.cs",
+        "sha256": "1B157C92103E69BDC6C4C8EA5CD0EA6A2981D010D5A2F93D184D1BD6BA3E6269"
+      }
+    ],
+    "status": "verified"
   }
 }

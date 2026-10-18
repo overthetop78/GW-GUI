@@ -102,7 +102,7 @@ internal sealed class ExplorerPresentationController
             if (!_cancellation.IsCurrentExplorer(cancellation) || cancellationToken.IsCancellationRequested) return null;
             var messageKey = DiskImageWorkspaceController.LoadFailureMessageKey(newImage, requestedFormat);
             var titleKey = messageKey == DiskImageResourceKeys.ExplorerSelectedFormatUnsupported ? DiskImageResourceKeys.ExplorerSelectedFormatUnsupportedTitle : DiskImageResourceKeys.TabExplorer;
-            var presentedException = messageKey == DiskImageResourceKeys.ExplorerSelectedFormatUnsupported ? new DiskImageWorkspaceController.SelectedFormatUnsupportedException(FormatName(requestedFormat!), System.IO.Path.GetFileName(path), exception) : exception;
+            var presentedException = messageKey == DiskImageResourceKeys.ExplorerSelectedFormatUnsupported ? new DiskImageWorkspaceController.SelectedFormatUnsupportedException(DiskImageWorkspaceController.FormatName(requestedFormat!, _localize), System.IO.Path.GetFileName(path), exception) : exception;
             _showError(presentedException, $"Opening disk image in Explorer: {path}", titleKey, messageKey);
             return null;
         }
@@ -187,6 +187,4 @@ internal sealed class ExplorerPresentationController
                 _ => DiskImageResourceKeys.ExplorerLoadingRecognition
             },
             []);
-
-    private string FormatName(string formatId) => new BuiltInImageFormatCatalog(key => _localize(key, [])).Formats.FirstOrDefault(format => format.Id.Equals(formatId, StringComparison.OrdinalIgnoreCase))?.DisplayName ?? formatId;
 }

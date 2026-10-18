@@ -1,11 +1,9 @@
 {
-  "snapshot": "2a51d33a4faba3952b8dc6baccc12f1659579a71",
+  "snapshot": "2cf79fbfc37058caf05e17828fd5913401ae16d7",
   "snapshotState": "Current worktree based on snapshot",
   "worktreeSourceChanges": [
-    "src/GWGUI.MediaEngine/Functions/PcmSampleFunctions.cs",
-    "src/GWGUI.MediaFileSystems/FileSystems/Amstrad/Cartridge/AmstradCartridgeFileSystemReader.cs",
-    "src/GWGUI.MediaFileSystems/FileSystems/Console/Cartridge/ConsoleCartridgeFileSystemReader.cs",
-    "src/GWGUI.MediaFileSystems/FileSystems/Nintendo/FamicomDisk/FamicomDiskFileSystemReader.cs"
+    "src/GWGUI.App/Services/DiskImages/DiskImageWorkspaceController.cs",
+    "src/GWGUI.App/Services/DiskImages/Exploration/ExplorerPresentationController.cs"
   ],
   "scope": "All current non-ignored repository CSharp files, including hidden paths; BaseMethodDeclaration bodies with fewer than 30 tokens. Candidate presence is not a defect or a completion claim.",
   "fileCount": 7315,
