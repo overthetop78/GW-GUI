@@ -22,37 +22,27 @@ internal static class EmulationVfdSettingsBlock
         groups.ColumnDefinitions.Add(new ColumnDefinition());
         groups.ColumnDefinitions.Add(new ColumnDefinition());
 
-        AddGroup(groups, EmulationResourceKeys.VideoVfdGroupPhosphorAndGlass, 0,
-            Choice(EmulationVideoProcessingCatalog.VfdColor, EmulationVideoProcessingCatalog.VfdColorResourceKeys, value.Color, color => changed(current => current with { Color = color })),
-            Slider(EmulationVideoProcessingCatalog.VfdPhosphorIntensity, value.PhosphorIntensity, 100, number => changed(current => current with { PhosphorIntensity = number })),
-            Slider(EmulationVideoProcessingCatalog.VfdEmissionThreshold, value.EmissionThreshold, 100, number => changed(current => current with { EmissionThreshold = number })),
-            Slider(EmulationVideoProcessingCatalog.VfdGlassDarkening, value.GlassDarkening, 100, number => changed(current => current with { GlassDarkening = number })));
+        EmulationSettingsLayout.AddVideoProcessingGroup(groups, EmulationResourceKeys.VideoVfdGroupPhosphorAndGlass, 0,
+            EmulationSettingsFieldControlFunctions.CreateVideoChoice(EmulationVideoProcessingCatalog.VfdColor, EmulationVideoProcessingCatalog.VfdColorResourceKeys, value.Color, color => changed(current => current with { Color = color })),
+            EmulationSettingsFieldControlFunctions.CreateVideoSlider(EmulationVideoProcessingCatalog.VfdPhosphorIntensity, value.PhosphorIntensity, 100, number => changed(current => current with { PhosphorIntensity = number })),
+            EmulationSettingsFieldControlFunctions.CreateVideoSlider(EmulationVideoProcessingCatalog.VfdEmissionThreshold, value.EmissionThreshold, 100, number => changed(current => current with { EmissionThreshold = number })),
+            EmulationSettingsFieldControlFunctions.CreateVideoSlider(EmulationVideoProcessingCatalog.VfdGlassDarkening, value.GlassDarkening, 100, number => changed(current => current with { GlassDarkening = number })));
 
-        AddGroup(groups, EmulationResourceKeys.VideoVfdGroupAnodes, 1,
-            Choice(EmulationVideoProcessingCatalog.VfdStructure,
+        EmulationSettingsLayout.AddVideoProcessingGroup(groups, EmulationResourceKeys.VideoVfdGroupAnodes, 1,
+            EmulationSettingsFieldControlFunctions.CreateVideoChoice(EmulationVideoProcessingCatalog.VfdStructure,
                 EmulationVideoProcessingCatalog.VfdStructureResourceKeys, value.Structure,
                 structure =>
                 {
                     changed(current => current with { Structure = structure });
                     rebuild();
                 }),
-            Slider(EmulationVideoProcessingCatalog.VfdCellSize, value.CellSize, 100, number => changed(current => current with { CellSize = number }), value.Structure == EmulationVfdStructure.DotMatrix),
-            Slider(EmulationVideoProcessingCatalog.VfdCellGap, value.CellGap, 100, number => changed(current => current with { CellGap = number }), value.Structure == EmulationVfdStructure.DotMatrix));
+            EmulationSettingsFieldControlFunctions.CreateVideoSlider(EmulationVideoProcessingCatalog.VfdCellSize, value.CellSize, 100, number => changed(current => current with { CellSize = number }), value.Structure == EmulationVfdStructure.DotMatrix),
+            EmulationSettingsFieldControlFunctions.CreateVideoSlider(EmulationVideoProcessingCatalog.VfdCellGap, value.CellGap, 100, number => changed(current => current with { CellGap = number }), value.Structure == EmulationVfdStructure.DotMatrix));
 
-        AddGroup(groups, EmulationResourceKeys.VideoVfdGroupGlowAndResponse, 2,
-            Slider(EmulationVideoProcessingCatalog.VfdHaloIntensity, value.HaloIntensity, 100, number => changed(current => current with { HaloIntensity = number })),
-            Slider(EmulationVideoProcessingCatalog.VfdHaloRadius, value.HaloRadius, 100, number => changed(current => current with { HaloRadius = number })),
-            Slider(EmulationVideoProcessingCatalog.VfdPersistence, value.PersistenceMilliseconds, EmulationVideoProcessingLimits.DurationMaximumMilliseconds, number => changed(current => current with { PersistenceMilliseconds = number })));
+        EmulationSettingsLayout.AddVideoProcessingGroup(groups, EmulationResourceKeys.VideoVfdGroupGlowAndResponse, 2,
+            EmulationSettingsFieldControlFunctions.CreateVideoSlider(EmulationVideoProcessingCatalog.VfdHaloIntensity, value.HaloIntensity, 100, number => changed(current => current with { HaloIntensity = number })),
+            EmulationSettingsFieldControlFunctions.CreateVideoSlider(EmulationVideoProcessingCatalog.VfdHaloRadius, value.HaloRadius, 100, number => changed(current => current with { HaloRadius = number })),
+            EmulationSettingsFieldControlFunctions.CreateVideoSlider(EmulationVideoProcessingCatalog.VfdPersistence, value.PersistenceMilliseconds, EmulationVideoProcessingLimits.DurationMaximumMilliseconds, number => changed(current => current with { PersistenceMilliseconds = number })));
         return groups;
     }
-
-    private static void AddGroup(Grid groups, string titleResourceKey, int column, params FrameworkElement[] fields)
-        => EmulationSettingsLayout.AddVideoProcessingGroup(groups, titleResourceKey, 0, column, 1, new Thickness(column == 0 ? 0 : 6, 0, column == 2 ? 0 : 6, 0), fields);
-
-    private static FrameworkElement Slider(string id, int value, int maximum, Action<int> changed, bool enabled = true)
-        => EmulationSettingsFieldControlFunctions.CreateVideoSlider(id, value, 0, maximum, changed, maximum == 100 ? 1 : 5, 42, new Thickness(0, 3, 0, 9), enabled);
-
-    private static FrameworkElement Choice<T>(string id, IReadOnlyDictionary<T, string> resources, T selected, Action<T> changed)
-        where T : struct, Enum
-        => EmulationSettingsFieldControlFunctions.CreateVideoChoice(id, resources, selected, changed, 160, new Thickness(0, 3, 0, 9));
 }

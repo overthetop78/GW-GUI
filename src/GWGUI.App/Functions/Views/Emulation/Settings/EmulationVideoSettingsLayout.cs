@@ -97,6 +97,21 @@ internal static partial class EmulationSettingsLayout
             VerticalAlignment = VerticalAlignment.Center, Margin = new Thickness(0, 4, 0, 4) });
         return row;
     }
+    internal static void AddVideoProcessingGroup(Grid groups, string titleResourceKey,
+        int column, params FrameworkElement[] fields)
+        => AddVideoProcessingGroup(groups, titleResourceKey, 0, column, 1,
+            new Thickness(column == 0 ? 0 : 6, 0, column == 2 ? 0 : 6, 0), fields);
+
+    internal static void AddVideoProcessingGroup(Grid groups, string titleResourceKey,
+        int row, int column, params FrameworkElement[] fields)
+        => AddVideoProcessingGroup(groups, titleResourceKey, row, column, 1,
+            new Thickness(column == 0 ? 0 : 6, row == 0 ? 0 : 6, column == 0 ? 6 : 0, row == 0 ? 6 : 0), fields);
+
+    internal static void AddVideoProcessingGroup(Grid groups, string titleResourceKey,
+        int row, int column, int columnSpan, params FrameworkElement[] fields)
+        => AddVideoProcessingGroup(groups, titleResourceKey, row, column, columnSpan,
+            new Thickness(column == 0 ? 0 : 6, row == 0 ? 0 : 6, column + columnSpan >= 2 ? 0 : 6, row == 0 ? 6 : 0), fields);
+
     internal static void AddVideoProcessingGroup(Grid groups, string? titleResourceKey,
         int row, int column, int columnSpan, Thickness margin, params FrameworkElement[] fields)
     {

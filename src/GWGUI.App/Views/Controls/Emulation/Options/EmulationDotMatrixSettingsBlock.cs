@@ -20,35 +20,25 @@ internal static class EmulationDotMatrixSettingsBlock
         groups.ColumnDefinitions.Add(new ColumnDefinition());
         groups.ColumnDefinitions.Add(new ColumnDefinition());
         groups.ColumnDefinitions.Add(new ColumnDefinition());
-        AddGroup(groups, EmulationResourceKeys.VideoDotMatrixGroupCells, 0,
-            Choice(EmulationVideoProcessingCatalog.DotMatrixShape, EmulationVideoProcessingCatalog.DotMatrixShapeResourceKeys, value.Shape, shape => changed(current => current with { Shape = shape })),
-            Slider(EmulationVideoProcessingCatalog.DotMatrixCellSize, value.CellSize, 100, number => changed(current => current with { CellSize = number })),
-            Slider(EmulationVideoProcessingCatalog.DotMatrixDotSize, value.DotSize, 100, number => changed(current => current with { DotSize = number })),
-            Slider(EmulationVideoProcessingCatalog.DotMatrixCellGap, value.CellGap, 100, number => changed(current => current with { CellGap = number })));
-        AddGroup(groups, EmulationResourceKeys.VideoDotMatrixGroupLight, 1,
-            Choice(EmulationVideoProcessingCatalog.DotMatrixPalette, EmulationVideoProcessingCatalog.DotMatrixPaletteResourceKeys, value.Palette, palette => changed(current => current with { Palette = palette })),
-            Slider(EmulationVideoProcessingCatalog.DotMatrixBrightness, value.Brightness, 100, number => changed(current => current with { Brightness = number })),
-            Slider(EmulationVideoProcessingCatalog.DotMatrixContrast, value.Contrast, 100, number => changed(current => current with { Contrast = number })),
-            Slider(EmulationVideoProcessingCatalog.DotMatrixHaloIntensity, value.HaloIntensity, 100, number => changed(current => current with { HaloIntensity = number })));
-        AddGroup(groups, EmulationResourceKeys.VideoDotMatrixGroupTemporal, 2,
-            Slider(EmulationVideoProcessingCatalog.DotMatrixResponseTime,
+        EmulationSettingsLayout.AddVideoProcessingGroup(groups, EmulationResourceKeys.VideoDotMatrixGroupCells, 0,
+            EmulationSettingsFieldControlFunctions.CreateVideoChoice(EmulationVideoProcessingCatalog.DotMatrixShape, EmulationVideoProcessingCatalog.DotMatrixShapeResourceKeys, value.Shape, shape => changed(current => current with { Shape = shape })),
+            EmulationSettingsFieldControlFunctions.CreateVideoSlider(EmulationVideoProcessingCatalog.DotMatrixCellSize, value.CellSize, 100, number => changed(current => current with { CellSize = number })),
+            EmulationSettingsFieldControlFunctions.CreateVideoSlider(EmulationVideoProcessingCatalog.DotMatrixDotSize, value.DotSize, 100, number => changed(current => current with { DotSize = number })),
+            EmulationSettingsFieldControlFunctions.CreateVideoSlider(EmulationVideoProcessingCatalog.DotMatrixCellGap, value.CellGap, 100, number => changed(current => current with { CellGap = number })));
+        EmulationSettingsLayout.AddVideoProcessingGroup(groups, EmulationResourceKeys.VideoDotMatrixGroupLight, 1,
+            EmulationSettingsFieldControlFunctions.CreateVideoChoice(EmulationVideoProcessingCatalog.DotMatrixPalette, EmulationVideoProcessingCatalog.DotMatrixPaletteResourceKeys, value.Palette, palette => changed(current => current with { Palette = palette })),
+            EmulationSettingsFieldControlFunctions.CreateVideoSlider(EmulationVideoProcessingCatalog.DotMatrixBrightness, value.Brightness, 100, number => changed(current => current with { Brightness = number })),
+            EmulationSettingsFieldControlFunctions.CreateVideoSlider(EmulationVideoProcessingCatalog.DotMatrixContrast, value.Contrast, 100, number => changed(current => current with { Contrast = number })),
+            EmulationSettingsFieldControlFunctions.CreateVideoSlider(EmulationVideoProcessingCatalog.DotMatrixHaloIntensity, value.HaloIntensity, 100, number => changed(current => current with { HaloIntensity = number })));
+        EmulationSettingsLayout.AddVideoProcessingGroup(groups, EmulationResourceKeys.VideoDotMatrixGroupTemporal, 2,
+            EmulationSettingsFieldControlFunctions.CreateVideoSlider(EmulationVideoProcessingCatalog.DotMatrixResponseTime,
                 value.ResponseTimeMilliseconds,
                 EmulationVideoProcessingLimits.DurationMaximumMilliseconds,
                 number => changed(current => current with { ResponseTimeMilliseconds = number })),
-            Slider(EmulationVideoProcessingCatalog.DotMatrixPersistence,
+            EmulationSettingsFieldControlFunctions.CreateVideoSlider(EmulationVideoProcessingCatalog.DotMatrixPersistence,
                 value.PersistenceMilliseconds,
                 EmulationVideoProcessingLimits.DurationMaximumMilliseconds,
                 number => changed(current => current with { PersistenceMilliseconds = number })));
         return groups;
     }
-
-    private static void AddGroup(Grid groups, string titleResourceKey, int column, params FrameworkElement[] fields)
-        => EmulationSettingsLayout.AddVideoProcessingGroup(groups, titleResourceKey, 0, column, 1, new Thickness(column == 0 ? 0 : 6, 0, column == 2 ? 0 : 6, 0), fields);
-
-    private static FrameworkElement Slider(string id, int value, int maximum, Action<int> changed)
-        => EmulationSettingsFieldControlFunctions.CreateVideoSlider(id, value, 0, maximum, changed, maximum == 100 ? 1 : 5, 42, new Thickness(0, 3, 0, 9));
-
-    private static FrameworkElement Choice<T>(string id, IReadOnlyDictionary<T, string> resources, T selected, Action<T> changed)
-        where T : struct, Enum
-        => EmulationSettingsFieldControlFunctions.CreateVideoChoice(id, resources, selected, changed, 160, new Thickness(0, 3, 0, 9));
 }

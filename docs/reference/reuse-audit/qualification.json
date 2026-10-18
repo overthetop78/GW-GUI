@@ -8249,9 +8249,9 @@
     "afterProductBuild": "005e3c677"
   },
   "shortMethodInventory": {
-    "snapshot": "9e020e20c1f1a5497ac25aeb85e705140631ae88",
+    "snapshot": "344734196bcfd65788d864bf6dd352a047ad6adc",
     "files": 7317,
-    "bodyCount": 9478,
+    "bodyCount": 9476,
     "exactGroups": 772,
     "renamedGroups": 364,
     "status": "Incomplete; existing queue/empty-method qualifications retained; 29 factory selections now shared and verified; sector source reader-selection stage shared, remaining typed writer ownership pending.",
@@ -10427,5 +10427,260 @@
     "testCorrection": "First compilation rejected the synchronous-failure assertion as obsolete xUnit Func<Task> overload. Replaced with explicit void lambda Action; production unchanged.",
     "resources": "Tests instantiate only in-memory SectorImage/Task values; controlled TaskCompletionSource released and awaited in finally. No file, window, process, thread, native DLL or emulator created. Reader/writer instances borrowed from callers remain under original ownership.",
     "stageScope": "Shared reader-selection stage verified. Remaining typed writer/projection ownership still part of general audit; no whole-project completion claim."
+  },
+  "videoPresentationAliasReuse": {
+    "baseline": "344734196",
+    "before": [
+      {
+        "path": "src/GWGUI.App/Views/Controls/Emulation/Options/EmulationProjectionSettingsBlock.cs",
+        "method": "AddGroup",
+        "parameters": "(Grid groups, string titleResourceKey, int row, int column, int columnSpan, params FrameworkElement[] fields)",
+        "typeParameters": "",
+        "constraints": "",
+        "line": 33,
+        "group": "span",
+        "expression": "EmulationSettingsLayout.AddVideoProcessingGroup(groups, titleResourceKey, row, column, columnSpan, new Thickness(column == 0 ? 0 : 6, row == 0 ? 0 : 6, column + columnSpan >= 2 ? 0 : 6, row == 0 ? 6 : 0), fields)",
+        "tokens": "EmulationSettingsLayout . AddVideoProcessingGroup ( groups , titleResourceKey , row , column , columnSpan , new Thickness ( column == 0 ? 0 : 6 , row == 0 ? 0 : 6 , column + columnSpan >= 2 ? 0 : 6 , row == 0 ? 6 : 0 ) , fields )",
+        "target": "GWGUI.App.Functions.Views.Emulation.Settings.EmulationSettingsLayout.AddVideoProcessingGroup(System.Windows.Controls.Grid, string?, int, int, int, System.Windows.Thickness, params System.Windows.FrameworkElement[])",
+        "sha256": "854DF8AE89317519F67668D3E26AE48D69F4CAB29955E03D1D689911EB629A31"
+      },
+      {
+        "path": "src/GWGUI.App/Views/Controls/Emulation/Options/EmulationProjectionSettingsBlock.cs",
+        "method": "Slider",
+        "parameters": "(string id, int value, int maximum, Action<int> changed)",
+        "typeParameters": "",
+        "constraints": "",
+        "line": 36,
+        "group": "span",
+        "expression": "EmulationSettingsFieldControlFunctions.CreateVideoSlider(id, value, 0, maximum, changed, maximum == 100 ? 1 : 5, 42, new Thickness(0, 3, 0, 9))",
+        "tokens": "EmulationSettingsFieldControlFunctions . CreateVideoSlider ( id , value , 0 , maximum , changed , maximum == 100 ? 1 : 5 , 42 , new Thickness ( 0 , 3 , 0 , 9 ) )",
+        "target": "GWGUI.App.Functions.Views.Emulation.Settings.EmulationSettingsFieldControlFunctions.CreateVideoSlider(string, int, int, int, System.Action<int>, double, double, System.Windows.Thickness, bool)",
+        "sha256": "854DF8AE89317519F67668D3E26AE48D69F4CAB29955E03D1D689911EB629A31"
+      },
+      {
+        "path": "src/GWGUI.App/Views/Controls/Emulation/Options/EmulationEPaperSettingsBlock.cs",
+        "method": "AddGroup",
+        "parameters": "(Grid groups, string titleResourceKey, int row, int column, int columnSpan, params FrameworkElement[] fields)",
+        "typeParameters": "",
+        "constraints": "",
+        "line": 58,
+        "group": "span",
+        "expression": "EmulationSettingsLayout.AddVideoProcessingGroup(groups, titleResourceKey, row, column, columnSpan, new Thickness(column == 0 ? 0 : 6, row == 0 ? 0 : 6, column + columnSpan >= 2 ? 0 : 6, row == 0 ? 6 : 0), fields)",
+        "tokens": "EmulationSettingsLayout . AddVideoProcessingGroup ( groups , titleResourceKey , row , column , columnSpan , new Thickness ( column == 0 ? 0 : 6 , row == 0 ? 0 : 6 , column + columnSpan >= 2 ? 0 : 6 , row == 0 ? 6 : 0 ) , fields )",
+        "target": "GWGUI.App.Functions.Views.Emulation.Settings.EmulationSettingsLayout.AddVideoProcessingGroup(System.Windows.Controls.Grid, string?, int, int, int, System.Windows.Thickness, params System.Windows.FrameworkElement[])",
+        "sha256": "9AE723CAA31F8DF94B342951C6C0A20EEF92217A3644BC19304D6722B5997B1B"
+      },
+      {
+        "path": "src/GWGUI.App/Views/Controls/Emulation/Options/EmulationEPaperSettingsBlock.cs",
+        "method": "Slider",
+        "parameters": "(string id, int value, int maximum, Action<int> changed)",
+        "typeParameters": "",
+        "constraints": "",
+        "line": 61,
+        "group": "span",
+        "expression": "EmulationSettingsFieldControlFunctions.CreateVideoSlider(id, value, 0, maximum, changed, maximum == 100 ? 1 : 5, 42, new Thickness(0, 3, 0, 9))",
+        "tokens": "EmulationSettingsFieldControlFunctions . CreateVideoSlider ( id , value , 0 , maximum , changed , maximum == 100 ? 1 : 5 , 42 , new Thickness ( 0 , 3 , 0 , 9 ) )",
+        "target": "GWGUI.App.Functions.Views.Emulation.Settings.EmulationSettingsFieldControlFunctions.CreateVideoSlider(string, int, int, int, System.Action<int>, double, double, System.Windows.Thickness, bool)",
+        "sha256": "9AE723CAA31F8DF94B342951C6C0A20EEF92217A3644BC19304D6722B5997B1B"
+      },
+      {
+        "path": "src/GWGUI.App/Views/Controls/Emulation/Options/EmulationEPaperSettingsBlock.cs",
+        "method": "Choice",
+        "parameters": "(string id, IReadOnlyDictionary<T, string> resources, T selected, Action<T> changed)",
+        "typeParameters": "<T>",
+        "constraints": "where T : struct, Enum",
+        "line": 64,
+        "group": "span",
+        "expression": "EmulationSettingsFieldControlFunctions.CreateVideoChoice(id, resources, selected, changed, 160, new Thickness(0, 3, 0, 9))",
+        "tokens": "EmulationSettingsFieldControlFunctions . CreateVideoChoice ( id , resources , selected , changed , 160 , new Thickness ( 0 , 3 , 0 , 9 ) )",
+        "target": "GWGUI.App.Functions.Views.Emulation.Settings.EmulationSettingsFieldControlFunctions.CreateVideoChoice<T>(string, System.Collections.Generic.IReadOnlyDictionary<T, string>, T, System.Action<T>, double, System.Windows.Thickness)",
+        "sha256": "9AE723CAA31F8DF94B342951C6C0A20EEF92217A3644BC19304D6722B5997B1B"
+      },
+      {
+        "path": "src/GWGUI.App/Views/Controls/Emulation/Options/EmulationSegmentDisplaySettingsBlock.cs",
+        "method": "AddGroup",
+        "parameters": "(Grid groups, string titleResourceKey, int row, int column, params FrameworkElement[] fields)",
+        "typeParameters": "",
+        "constraints": "",
+        "line": 60,
+        "group": "grid",
+        "expression": "EmulationSettingsLayout.AddVideoProcessingGroup(groups, titleResourceKey, row, column, 1, new Thickness(column == 0 ? 0 : 6, row == 0 ? 0 : 6, column == 0 ? 6 : 0, row == 0 ? 6 : 0), fields)",
+        "tokens": "EmulationSettingsLayout . AddVideoProcessingGroup ( groups , titleResourceKey , row , column , 1 , new Thickness ( column == 0 ? 0 : 6 , row == 0 ? 0 : 6 , column == 0 ? 6 : 0 , row == 0 ? 6 : 0 ) , fields )",
+        "target": "GWGUI.App.Functions.Views.Emulation.Settings.EmulationSettingsLayout.AddVideoProcessingGroup(System.Windows.Controls.Grid, string?, int, int, int, System.Windows.Thickness, params System.Windows.FrameworkElement[])",
+        "sha256": "0A53B301D5D51DA351F7901EA8AE726B40483EBB1E3ABF664FA5F46C544F7950"
+      },
+      {
+        "path": "src/GWGUI.App/Views/Controls/Emulation/Options/EmulationSegmentDisplaySettingsBlock.cs",
+        "method": "Slider",
+        "parameters": "(string id, int value, int maximum, Action<int> changed)",
+        "typeParameters": "",
+        "constraints": "",
+        "line": 63,
+        "group": "grid",
+        "expression": "EmulationSettingsFieldControlFunctions.CreateVideoSlider(id, value, 0, maximum, changed, maximum == 100 ? 1 : 5, 42, new Thickness(0, 3, 0, 9))",
+        "tokens": "EmulationSettingsFieldControlFunctions . CreateVideoSlider ( id , value , 0 , maximum , changed , maximum == 100 ? 1 : 5 , 42 , new Thickness ( 0 , 3 , 0 , 9 ) )",
+        "target": "GWGUI.App.Functions.Views.Emulation.Settings.EmulationSettingsFieldControlFunctions.CreateVideoSlider(string, int, int, int, System.Action<int>, double, double, System.Windows.Thickness, bool)",
+        "sha256": "0A53B301D5D51DA351F7901EA8AE726B40483EBB1E3ABF664FA5F46C544F7950"
+      },
+      {
+        "path": "src/GWGUI.App/Views/Controls/Emulation/Options/EmulationPlasmaSettingsBlock.cs",
+        "method": "AddGroup",
+        "parameters": "(Grid groups, string titleResourceKey, int row, int column, params FrameworkElement[] fields)",
+        "typeParameters": "",
+        "constraints": "",
+        "line": 39,
+        "group": "grid",
+        "expression": "EmulationSettingsLayout.AddVideoProcessingGroup(groups, titleResourceKey, row, column, 1, new Thickness(column == 0 ? 0 : 6, row == 0 ? 0 : 6, column == 0 ? 6 : 0, row == 0 ? 6 : 0), fields)",
+        "tokens": "EmulationSettingsLayout . AddVideoProcessingGroup ( groups , titleResourceKey , row , column , 1 , new Thickness ( column == 0 ? 0 : 6 , row == 0 ? 0 : 6 , column == 0 ? 6 : 0 , row == 0 ? 6 : 0 ) , fields )",
+        "target": "GWGUI.App.Functions.Views.Emulation.Settings.EmulationSettingsLayout.AddVideoProcessingGroup(System.Windows.Controls.Grid, string?, int, int, int, System.Windows.Thickness, params System.Windows.FrameworkElement[])",
+        "sha256": "51D3118488319A5BB3B08FB0655E2B4BD1E1100197E11C9F90FB4D31CB7DFB01"
+      },
+      {
+        "path": "src/GWGUI.App/Views/Controls/Emulation/Options/EmulationDotMatrixSettingsBlock.cs",
+        "method": "AddGroup",
+        "parameters": "(Grid groups, string titleResourceKey, int column, params FrameworkElement[] fields)",
+        "typeParameters": "",
+        "constraints": "",
+        "line": 45,
+        "group": "column",
+        "expression": "EmulationSettingsLayout.AddVideoProcessingGroup(groups, titleResourceKey, 0, column, 1, new Thickness(column == 0 ? 0 : 6, 0, column == 2 ? 0 : 6, 0), fields)",
+        "tokens": "EmulationSettingsLayout . AddVideoProcessingGroup ( groups , titleResourceKey , 0 , column , 1 , new Thickness ( column == 0 ? 0 : 6 , 0 , column == 2 ? 0 : 6 , 0 ) , fields )",
+        "target": "GWGUI.App.Functions.Views.Emulation.Settings.EmulationSettingsLayout.AddVideoProcessingGroup(System.Windows.Controls.Grid, string?, int, int, int, System.Windows.Thickness, params System.Windows.FrameworkElement[])",
+        "sha256": "DE1C8824CAE00F4FC8780C92C680D19DB931E81A03E6E383BDCE59303B205CB1"
+      },
+      {
+        "path": "src/GWGUI.App/Views/Controls/Emulation/Options/EmulationDotMatrixSettingsBlock.cs",
+        "method": "Slider",
+        "parameters": "(string id, int value, int maximum, Action<int> changed)",
+        "typeParameters": "",
+        "constraints": "",
+        "line": 48,
+        "group": "column",
+        "expression": "EmulationSettingsFieldControlFunctions.CreateVideoSlider(id, value, 0, maximum, changed, maximum == 100 ? 1 : 5, 42, new Thickness(0, 3, 0, 9))",
+        "tokens": "EmulationSettingsFieldControlFunctions . CreateVideoSlider ( id , value , 0 , maximum , changed , maximum == 100 ? 1 : 5 , 42 , new Thickness ( 0 , 3 , 0 , 9 ) )",
+        "target": "GWGUI.App.Functions.Views.Emulation.Settings.EmulationSettingsFieldControlFunctions.CreateVideoSlider(string, int, int, int, System.Action<int>, double, double, System.Windows.Thickness, bool)",
+        "sha256": "DE1C8824CAE00F4FC8780C92C680D19DB931E81A03E6E383BDCE59303B205CB1"
+      },
+      {
+        "path": "src/GWGUI.App/Views/Controls/Emulation/Options/EmulationDotMatrixSettingsBlock.cs",
+        "method": "Choice",
+        "parameters": "(string id, IReadOnlyDictionary<T, string> resources, T selected, Action<T> changed)",
+        "typeParameters": "<T>",
+        "constraints": "where T : struct, Enum",
+        "line": 51,
+        "group": "column",
+        "expression": "EmulationSettingsFieldControlFunctions.CreateVideoChoice(id, resources, selected, changed, 160, new Thickness(0, 3, 0, 9))",
+        "tokens": "EmulationSettingsFieldControlFunctions . CreateVideoChoice ( id , resources , selected , changed , 160 , new Thickness ( 0 , 3 , 0 , 9 ) )",
+        "target": "GWGUI.App.Functions.Views.Emulation.Settings.EmulationSettingsFieldControlFunctions.CreateVideoChoice<T>(string, System.Collections.Generic.IReadOnlyDictionary<T, string>, T, System.Action<T>, double, System.Windows.Thickness)",
+        "sha256": "DE1C8824CAE00F4FC8780C92C680D19DB931E81A03E6E383BDCE59303B205CB1"
+      },
+      {
+        "path": "src/GWGUI.App/Views/Controls/Emulation/Options/EmulationVfdSettingsBlock.cs",
+        "method": "AddGroup",
+        "parameters": "(Grid groups, string titleResourceKey, int column, params FrameworkElement[] fields)",
+        "typeParameters": "",
+        "constraints": "",
+        "line": 49,
+        "group": "column",
+        "expression": "EmulationSettingsLayout.AddVideoProcessingGroup(groups, titleResourceKey, 0, column, 1, new Thickness(column == 0 ? 0 : 6, 0, column == 2 ? 0 : 6, 0), fields)",
+        "tokens": "EmulationSettingsLayout . AddVideoProcessingGroup ( groups , titleResourceKey , 0 , column , 1 , new Thickness ( column == 0 ? 0 : 6 , 0 , column == 2 ? 0 : 6 , 0 ) , fields )",
+        "target": "GWGUI.App.Functions.Views.Emulation.Settings.EmulationSettingsLayout.AddVideoProcessingGroup(System.Windows.Controls.Grid, string?, int, int, int, System.Windows.Thickness, params System.Windows.FrameworkElement[])",
+        "sha256": "4FE8DB009A00E742B86FC61D54E25DF2E823AB64C0A68282DDC5554B6DDD6DA5"
+      },
+      {
+        "path": "src/GWGUI.App/Views/Controls/Emulation/Options/EmulationVfdSettingsBlock.cs",
+        "method": "Slider",
+        "parameters": "(string id, int value, int maximum, Action<int> changed, bool enabled = true)",
+        "typeParameters": "",
+        "constraints": "",
+        "line": 52,
+        "group": "column",
+        "expression": "EmulationSettingsFieldControlFunctions.CreateVideoSlider(id, value, 0, maximum, changed, maximum == 100 ? 1 : 5, 42, new Thickness(0, 3, 0, 9), enabled)",
+        "tokens": "EmulationSettingsFieldControlFunctions . CreateVideoSlider ( id , value , 0 , maximum , changed , maximum == 100 ? 1 : 5 , 42 , new Thickness ( 0 , 3 , 0 , 9 ) , enabled )",
+        "target": "GWGUI.App.Functions.Views.Emulation.Settings.EmulationSettingsFieldControlFunctions.CreateVideoSlider(string, int, int, int, System.Action<int>, double, double, System.Windows.Thickness, bool)",
+        "sha256": "4FE8DB009A00E742B86FC61D54E25DF2E823AB64C0A68282DDC5554B6DDD6DA5"
+      },
+      {
+        "path": "src/GWGUI.App/Views/Controls/Emulation/Options/EmulationVfdSettingsBlock.cs",
+        "method": "Choice",
+        "parameters": "(string id, IReadOnlyDictionary<T, string> resources, T selected, Action<T> changed)",
+        "typeParameters": "<T>",
+        "constraints": "where T : struct, Enum",
+        "line": 55,
+        "group": "column",
+        "expression": "EmulationSettingsFieldControlFunctions.CreateVideoChoice(id, resources, selected, changed, 160, new Thickness(0, 3, 0, 9))",
+        "tokens": "EmulationSettingsFieldControlFunctions . CreateVideoChoice ( id , resources , selected , changed , 160 , new Thickness ( 0 , 3 , 0 , 9 ) )",
+        "target": "GWGUI.App.Functions.Views.Emulation.Settings.EmulationSettingsFieldControlFunctions.CreateVideoChoice<T>(string, System.Collections.Generic.IReadOnlyDictionary<T, string>, T, System.Action<T>, double, System.Windows.Thickness)",
+        "sha256": "4FE8DB009A00E742B86FC61D54E25DF2E823AB64C0A68282DDC5554B6DDD6DA5"
+      }
+    ],
+    "groupOrigins": [
+      {
+        "kind": "column",
+        "commit": "41038682f",
+        "path": "src/GWGUI.App/Views/Controls/Emulation/Options/EmulationVfdSettingsBlock.cs",
+        "marginTokens": "new Thickness ( column == 0 ? 0 : 6 , 0 , column == 2 ? 0 : 6 , 0 )"
+      },
+      {
+        "kind": "grid",
+        "commit": "41038682f",
+        "path": "src/GWGUI.App/Views/Controls/Emulation/Options/EmulationPlasmaSettingsBlock.cs",
+        "marginTokens": "new Thickness ( column == 0 ? 0 : 6 , row == 0 ? 0 : 6 , column == 0 ? 6 : 0 , row == 0 ? 6 : 0 )"
+      },
+      {
+        "kind": "span",
+        "commit": "619a6dfc6",
+        "path": "src/GWGUI.App/Views/Controls/Emulation/Options/EmulationProjectionSettingsBlock.cs",
+        "marginTokens": "new Thickness ( column == 0 ? 0 : 6 , row == 0 ? 0 : 6 , column + columnSpan >= 2 ? 0 : 6 , row == 0 ? 6 : 0 )"
+      }
+    ],
+    "controlOrigin": {
+      "commit": "41038682f",
+      "path": "src/GWGUI.App/Views/Controls/Emulation/Options/EmulationVfdSettingsBlock.cs",
+      "tickTokens": "maximum == 100 ? 1 : 5",
+      "sliderLabelWidth": 42,
+      "choiceMinimumWidth": 160,
+      "fieldMarginTokens": "new Thickness ( 0 , 3 , 0 , 9 )",
+      "enabledDefault": true
+    },
+    "semantic": "App source compilation without errors; fourteen aliases resolve to existing EmulationSettingsLayout.AddVideoProcessingGroup or EmulationSettingsFieldControlFunctions.CreateVideoSlider/CreateVideoChoice.",
+    "decision": "Move only original margin and control-profile forwarding into overloads of existing shared owners. Remove fourteen local aliases and directly call shared owners. Retain all existing widget construction, fields, callbacks, resources and profile differences.",
+    "state": "verified",
+    "after": [
+      {
+        "path": "src/GWGUI.App/Views/Controls/Emulation/Options/EmulationDotMatrixSettingsBlock.cs",
+        "sha256": "13ACCFD9DB952CABF27986A9FFBD7A048432821B53AE7546EC30F818DA39670D",
+        "allOtherTokensIdentical": true
+      },
+      {
+        "path": "src/GWGUI.App/Views/Controls/Emulation/Options/EmulationEPaperSettingsBlock.cs",
+        "sha256": "3AEBB8DDE28B7723F4F8B641921F8FF5C18CD380EDBD9B0AD4DBA56DF6A68214",
+        "allOtherTokensIdentical": true
+      },
+      {
+        "path": "src/GWGUI.App/Views/Controls/Emulation/Options/EmulationPlasmaSettingsBlock.cs",
+        "sha256": "8AD071FA9572CF8BCEA905DE1594A249CD8266ABFE0A06E36D90A2AE0480ED50",
+        "allOtherTokensIdentical": true
+      },
+      {
+        "path": "src/GWGUI.App/Views/Controls/Emulation/Options/EmulationProjectionSettingsBlock.cs",
+        "sha256": "426187E92D7D7A043512E08D1C6D77950A7219AF98CD18021764D7EC637BA23D",
+        "allOtherTokensIdentical": true
+      },
+      {
+        "path": "src/GWGUI.App/Views/Controls/Emulation/Options/EmulationSegmentDisplaySettingsBlock.cs",
+        "sha256": "815CF7078F198FF1CA9AD5D179F9A12F2428E662C82BFC811E9F1AD172B88DCF",
+        "allOtherTokensIdentical": true
+      },
+      {
+        "path": "src/GWGUI.App/Views/Controls/Emulation/Options/EmulationVfdSettingsBlock.cs",
+        "sha256": "76FA03D26B3D35A121068892486769EF24AEAC038B6774B8D417578F37186E5A",
+        "allOtherTokensIdentical": true
+      }
+    ],
+    "ast": "Fourteen local aliases removed; reversing the 71 call-name changes restores every other token in six blocks. Five shared overload bodies retain original policy expressions; existing shared widget-construction members unchanged.",
+    "semanticAfter": "App compilation without semantic errors; 71 calls resolve to intended shared overloads, all five overloads resolve to original constructors. Slider default enabled=true preserved, generic Choice constraints preserved.",
+    "tests": "Two existing WPF scenarios passed, exit 0: NativeVideoOptionsPreserveTheProcessingPosition and VideoFieldsKeepTheirHelpContent. Numeric/style equivalence separately established by complete AST expansion and original policy checks; no mirror test added.",
+    "resources": "No new widget owner or lifetime code. Existing WPF fixture closes windows/application/dispatcher in finally and joins thread; native-video scenario detaches reusable controls and clears Content in finally; test process exited successfully."
   }
 }

@@ -21,23 +21,20 @@ internal static class EmulationPlasmaSettingsBlock
         groups.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
         groups.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
 
-        AddGroup(groups, EmulationResourceKeys.VideoPlasmaGroupPanelAndCells, 0, 0,
+        EmulationSettingsLayout.AddVideoProcessingGroup(groups, EmulationResourceKeys.VideoPlasmaGroupPanelAndCells, 0, 0,
             Slider(EmulationVideoProcessingCatalog.PlasmaCellStructure, value.CellStructure, number => changed(current => current with { CellStructure = number })),
             Slider(EmulationVideoProcessingCatalog.PlasmaBlackDepth, value.BlackDepth, number => changed(current => current with { BlackDepth = number })));
-        AddGroup(groups, EmulationResourceKeys.VideoPlasmaGroupPhosphors, 0, 1,
+        EmulationSettingsLayout.AddVideoProcessingGroup(groups, EmulationResourceKeys.VideoPlasmaGroupPhosphors, 0, 1,
             Slider(EmulationVideoProcessingCatalog.PlasmaPhosphorIntensity, value.PhosphorIntensity, number => changed(current => current with { PhosphorIntensity = number })),
             Slider(EmulationVideoProcessingCatalog.PlasmaGammaResponse, value.GammaResponse, number => changed(current => current with { GammaResponse = number })));
-        AddGroup(groups, EmulationResourceKeys.VideoPlasmaGroupLight, 1, 0,
+        EmulationSettingsLayout.AddVideoProcessingGroup(groups, EmulationResourceKeys.VideoPlasmaGroupLight, 1, 0,
             Slider(EmulationVideoProcessingCatalog.PlasmaAutomaticBrightnessLimiter, value.AutomaticBrightnessLimiter, number => changed(current => current with { AutomaticBrightnessLimiter = number })),
             Slider(EmulationVideoProcessingCatalog.PlasmaDiffusion, value.Diffusion, number => changed(current => current with { Diffusion = number })));
-        AddGroup(groups, EmulationResourceKeys.VideoPlasmaGroupTemporal, 1, 1,
+        EmulationSettingsLayout.AddVideoProcessingGroup(groups, EmulationResourceKeys.VideoPlasmaGroupTemporal, 1, 1,
             Slider(EmulationVideoProcessingCatalog.PlasmaTemporalDithering, value.TemporalDithering, number => changed(current => current with { TemporalDithering = number })),
             Slider(EmulationVideoProcessingCatalog.PlasmaPersistence, value.PersistenceIntensity, number => changed(current => current with { PersistenceIntensity = number })));
         return groups;
     }
-
-    private static void AddGroup(Grid groups, string titleResourceKey, int row, int column, params FrameworkElement[] fields)
-        => EmulationSettingsLayout.AddVideoProcessingGroup(groups, titleResourceKey, row, column, 1, new Thickness(column == 0 ? 0 : 6, row == 0 ? 0 : 6, column == 0 ? 6 : 0, row == 0 ? 6 : 0), fields);
 
     private static FrameworkElement Slider(string id, int value, Action<int> changed)
         => EmulationSettingsFieldControlFunctions.CreateVideoSlider(id, value, 0, 100, changed, 1, 36, new Thickness(0, 3, 0, 9));

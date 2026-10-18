@@ -1,21 +1,19 @@
 {
-  "snapshot": "9e020e20c1f1a5497ac25aeb85e705140631ae88",
+  "snapshot": "344734196bcfd65788d864bf6dd352a047ad6adc",
   "snapshotState": "Current worktree based on snapshot",
   "worktreeSourceChanges": [
-    "src/GWGUI.MediaEngine/Images/Conversion/Acorn/AcornAdfConversionService.cs",
-    "src/GWGUI.MediaEngine/Images/Conversion/Acorn/BbcDfsConversionService.cs",
-    "src/GWGUI.MediaEngine/Images/Conversion/AmigaAdfConversionService.cs",
-    "src/GWGUI.MediaEngine/Images/Conversion/Atari/AtrConversionService.cs",
-    "src/GWGUI.MediaEngine/Images/Conversion/Commodore/CoherentConversionService.cs",
-    "src/GWGUI.MediaEngine/Images/Conversion/Commodore/D81ConversionService.cs",
-    "src/GWGUI.MediaEngine/Images/Conversion/DecRx02ConversionService.cs",
-    "src/GWGUI.MediaEngine/Images/Conversion/IbmRawConversionService.cs",
-    "src/GWGUI.MediaEngine/Images/Conversion/MediaConversionService.cs",
-    "src/GWGUI.MediaEngine/Images/Conversion/MsxRawConversionService.cs"
+    "src/GWGUI.App/Functions/Views/Emulation/Settings/EmulationSettingsFieldControlFunctions.Video.cs",
+    "src/GWGUI.App/Functions/Views/Emulation/Settings/EmulationVideoSettingsLayout.cs",
+    "src/GWGUI.App/Views/Controls/Emulation/Options/EmulationDotMatrixSettingsBlock.cs",
+    "src/GWGUI.App/Views/Controls/Emulation/Options/EmulationEPaperSettingsBlock.cs",
+    "src/GWGUI.App/Views/Controls/Emulation/Options/EmulationPlasmaSettingsBlock.cs",
+    "src/GWGUI.App/Views/Controls/Emulation/Options/EmulationProjectionSettingsBlock.cs",
+    "src/GWGUI.App/Views/Controls/Emulation/Options/EmulationSegmentDisplaySettingsBlock.cs",
+    "src/GWGUI.App/Views/Controls/Emulation/Options/EmulationVfdSettingsBlock.cs"
   ],
   "scope": "All current non-ignored repository CSharp files, including hidden paths; BaseMethodDeclaration bodies with fewer than 30 tokens. Candidate presence is not a defect or a completion claim.",
   "fileCount": 7317,
-  "methodBodyCount": 9478,
+  "methodBodyCount": 9476,
   "exactGroups": [
     {
       "hash": "0017F14C61995D644C52FF90F094E4708DC2CA772615CF2F5DD41E74BD202ECA",
@@ -4083,30 +4081,6 @@
       "bodyTokens": "=> EmulationSettingsFieldControlFunctions . CreateVideoChoice ( id , resources , selected , changed , 160 , new Thickness ( 0 , 3 , 0 , 9 ) )",
       "current": [
         {
-          "path": "src/GWGUI.App/Views/Controls/Emulation/Options/EmulationDotMatrixSettingsBlock.cs",
-          "name": "Choice",
-          "owner": "EmulationDotMatrixSettingsBlock",
-          "kind": "MethodDeclaration",
-          "line": 51,
-          "parameters": "(string id, IReadOnlyDictionary<T, string> resources, T selected, Action<T> changed)",
-          "tokens": 27,
-          "bodyTokens": "=> EmulationSettingsFieldControlFunctions . CreateVideoChoice ( id , resources , selected , changed , 160 , new Thickness ( 0 , 3 , 0 , 9 ) )",
-          "hash": "0F9E91539E4766D61FFD58D3DAF0CA05CE5AE7732BFC89D8552B1635FB4D697D",
-          "shape": "519128CDC3FEAFEDDEC05B188BE51F212A150ED384D70904B17FF6601832D17A"
-        },
-        {
-          "path": "src/GWGUI.App/Views/Controls/Emulation/Options/EmulationEPaperSettingsBlock.cs",
-          "name": "Choice",
-          "owner": "EmulationEPaperSettingsBlock",
-          "kind": "MethodDeclaration",
-          "line": 64,
-          "parameters": "(string id, IReadOnlyDictionary<T, string> resources, T selected, Action<T> changed)",
-          "tokens": 27,
-          "bodyTokens": "=> EmulationSettingsFieldControlFunctions . CreateVideoChoice ( id , resources , selected , changed , 160 , new Thickness ( 0 , 3 , 0 , 9 ) )",
-          "hash": "0F9E91539E4766D61FFD58D3DAF0CA05CE5AE7732BFC89D8552B1635FB4D697D",
-          "shape": "519128CDC3FEAFEDDEC05B188BE51F212A150ED384D70904B17FF6601832D17A"
-        },
-        {
           "path": "src/GWGUI.App/Views/Controls/Emulation/Options/EmulationLedMatrixSettingsBlock.cs",
           "name": "Choice",
           "owner": "EmulationLedMatrixSettingsBlock",
@@ -4123,19 +4097,7 @@
           "name": "Choice",
           "owner": "EmulationSegmentDisplaySettingsBlock",
           "kind": "MethodDeclaration",
-          "line": 75,
-          "parameters": "(string id, IReadOnlyDictionary<T, string> resources, T selected, Action<T> changed)",
-          "tokens": 27,
-          "bodyTokens": "=> EmulationSettingsFieldControlFunctions . CreateVideoChoice ( id , resources , selected , changed , 160 , new Thickness ( 0 , 3 , 0 , 9 ) )",
-          "hash": "0F9E91539E4766D61FFD58D3DAF0CA05CE5AE7732BFC89D8552B1635FB4D697D",
-          "shape": "519128CDC3FEAFEDDEC05B188BE51F212A150ED384D70904B17FF6601832D17A"
-        },
-        {
-          "path": "src/GWGUI.App/Views/Controls/Emulation/Options/EmulationVfdSettingsBlock.cs",
-          "name": "Choice",
-          "owner": "EmulationVfdSettingsBlock",
-          "kind": "MethodDeclaration",
-          "line": 55,
+          "line": 69,
           "parameters": "(string id, IReadOnlyDictionary<T, string> resources, T selected, Action<T> changed)",
           "tokens": 27,
           "bodyTokens": "=> EmulationSettingsFieldControlFunctions . CreateVideoChoice ( id , resources , selected , changed , 160 , new Thickness ( 0 , 3 , 0 , 9 ) )",

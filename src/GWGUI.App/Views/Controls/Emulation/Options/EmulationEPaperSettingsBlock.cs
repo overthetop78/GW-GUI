@@ -25,43 +25,33 @@ internal static class EmulationEPaperSettingsBlock
 
         var ink = new List<FrameworkElement>
         {
-            Choice(EmulationVideoProcessingCatalog.EPaperColorMode,
+            EmulationSettingsFieldControlFunctions.CreateVideoChoice(EmulationVideoProcessingCatalog.EPaperColorMode,
                 EmulationVideoProcessingCatalog.EPaperColorModeResourceKeys, value.ColorMode,
                 choice =>
                 {
                     changed(current => current with { ColorMode = choice });
                     rebuild();
                 }),
-            Slider(EmulationVideoProcessingCatalog.EPaperInkDensity, value.InkDensity, 100, number => changed(current => current with { InkDensity = number })),
-            Slider(EmulationVideoProcessingCatalog.EPaperContrast, value.Contrast, 100, number => changed(current => current with { Contrast = number })),
-            Slider(EmulationVideoProcessingCatalog.EPaperDithering, value.Dithering, 100, number => changed(current => current with { Dithering = number }))
+            EmulationSettingsFieldControlFunctions.CreateVideoSlider(EmulationVideoProcessingCatalog.EPaperInkDensity, value.InkDensity, 100, number => changed(current => current with { InkDensity = number })),
+            EmulationSettingsFieldControlFunctions.CreateVideoSlider(EmulationVideoProcessingCatalog.EPaperContrast, value.Contrast, 100, number => changed(current => current with { Contrast = number })),
+            EmulationSettingsFieldControlFunctions.CreateVideoSlider(EmulationVideoProcessingCatalog.EPaperDithering, value.Dithering, 100, number => changed(current => current with { Dithering = number }))
         };
         if (value.ColorMode == EmulationEPaperColorMode.Color4096)
-            ink.Add(Slider(EmulationVideoProcessingCatalog.EPaperColorSaturation, value.ColorSaturation, 100, number => changed(current => current with { ColorSaturation = number })));
-        AddGroup(groups, EmulationResourceKeys.VideoEPaperGroupInkAndColor, 0, 0, 1, ink.ToArray());
+            ink.Add(EmulationSettingsFieldControlFunctions.CreateVideoSlider(EmulationVideoProcessingCatalog.EPaperColorSaturation, value.ColorSaturation, 100, number => changed(current => current with { ColorSaturation = number })));
+        EmulationSettingsLayout.AddVideoProcessingGroup(groups, EmulationResourceKeys.VideoEPaperGroupInkAndColor, 0, 0, 1, ink.ToArray());
 
-        AddGroup(groups, EmulationResourceKeys.VideoEPaperGroupPaperSurface, 0, 1, 1,
-            Slider(EmulationVideoProcessingCatalog.EPaperPaperBrightness, value.PaperBrightness, 100, number => changed(current => current with { PaperBrightness = number })),
-            Slider(EmulationVideoProcessingCatalog.EPaperPaperWarmth, value.PaperWarmth, 100, number => changed(current => current with { PaperWarmth = number })),
-            Slider(EmulationVideoProcessingCatalog.EPaperSurfaceTexture, value.SurfaceTexture, 100, number => changed(current => current with { SurfaceTexture = number })),
-            Slider(EmulationVideoProcessingCatalog.EPaperEdgeSoftness, value.EdgeSoftness, 100, number => changed(current => current with { EdgeSoftness = number })));
+        EmulationSettingsLayout.AddVideoProcessingGroup(groups, EmulationResourceKeys.VideoEPaperGroupPaperSurface, 0, 1, 1,
+            EmulationSettingsFieldControlFunctions.CreateVideoSlider(EmulationVideoProcessingCatalog.EPaperPaperBrightness, value.PaperBrightness, 100, number => changed(current => current with { PaperBrightness = number })),
+            EmulationSettingsFieldControlFunctions.CreateVideoSlider(EmulationVideoProcessingCatalog.EPaperPaperWarmth, value.PaperWarmth, 100, number => changed(current => current with { PaperWarmth = number })),
+            EmulationSettingsFieldControlFunctions.CreateVideoSlider(EmulationVideoProcessingCatalog.EPaperSurfaceTexture, value.SurfaceTexture, 100, number => changed(current => current with { SurfaceTexture = number })),
+            EmulationSettingsFieldControlFunctions.CreateVideoSlider(EmulationVideoProcessingCatalog.EPaperEdgeSoftness, value.EdgeSoftness, 100, number => changed(current => current with { EdgeSoftness = number })));
 
-        AddGroup(groups, EmulationResourceKeys.VideoEPaperGroupRefresh, 1, 0, 2,
-            Slider(EmulationVideoProcessingCatalog.EPaperRefreshTime,
+        EmulationSettingsLayout.AddVideoProcessingGroup(groups, EmulationResourceKeys.VideoEPaperGroupRefresh, 1, 0, 2,
+            EmulationSettingsFieldControlFunctions.CreateVideoSlider(EmulationVideoProcessingCatalog.EPaperRefreshTime,
                 value.RefreshTimeMilliseconds,
                 EmulationVideoProcessingLimits.DurationMaximumMilliseconds,
                 number => changed(current => current with { RefreshTimeMilliseconds = number })),
-            Slider(EmulationVideoProcessingCatalog.EPaperGhosting, value.Ghosting, 100, number => changed(current => current with { Ghosting = number })));
+            EmulationSettingsFieldControlFunctions.CreateVideoSlider(EmulationVideoProcessingCatalog.EPaperGhosting, value.Ghosting, 100, number => changed(current => current with { Ghosting = number })));
         return groups;
     }
-
-    private static void AddGroup(Grid groups, string titleResourceKey, int row, int column, int columnSpan, params FrameworkElement[] fields)
-        => EmulationSettingsLayout.AddVideoProcessingGroup(groups, titleResourceKey, row, column, columnSpan, new Thickness(column == 0 ? 0 : 6, row == 0 ? 0 : 6, column + columnSpan >= 2 ? 0 : 6, row == 0 ? 6 : 0), fields);
-
-    private static FrameworkElement Slider(string id, int value, int maximum, Action<int> changed)
-        => EmulationSettingsFieldControlFunctions.CreateVideoSlider(id, value, 0, maximum, changed, maximum == 100 ? 1 : 5, 42, new Thickness(0, 3, 0, 9));
-
-    private static FrameworkElement Choice<T>(string id, IReadOnlyDictionary<T, string> resources, T selected, Action<T> changed)
-        where T : struct, Enum
-        => EmulationSettingsFieldControlFunctions.CreateVideoChoice(id, resources, selected, changed, 160, new Thickness(0, 3, 0, 9));
 }

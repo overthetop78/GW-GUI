@@ -9,6 +9,15 @@ namespace GWGUI.App.Functions.Views.Emulation.Settings;
 
 internal static partial class EmulationSettingsFieldControlFunctions
 {
+    internal static FrameworkElement CreateVideoSlider(string id, int value, int maximum,
+        Action<int> changed, bool enabled = true)
+        => CreateVideoSlider(id, value, 0, maximum, changed, maximum == 100 ? 1 : 5,
+            42, new Thickness(0, 3, 0, 9), enabled);
+
+    internal static FrameworkElement CreateVideoChoice<T>(string id,
+        IReadOnlyDictionary<T, string> resources, T selected, Action<T> changed) where T : struct, Enum
+        => CreateVideoChoice(id, resources, selected, changed, 160, new Thickness(0, 3, 0, 9));
+
     internal static FrameworkElement CreateVideoSlider(string id, int value, int minimum, int maximum, Action<int> changed, double tickFrequency, double labelMinimumWidth, Thickness fieldMargin, bool enabled = true)
     {
         var grid = new Grid();
