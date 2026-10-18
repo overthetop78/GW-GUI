@@ -1,3 +1,4 @@
+global using AudioCallbackHost = GWGUI.Emulation.Services.ExternalCoreAudioCallbackHost;
 global using MachineCommand = GWGUI.Emulation.Contracts.EmulationMachineCommand;
 global using GWGUI.Emulation;
 global using GWGUI.Emulation.Constants;

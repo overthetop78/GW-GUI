@@ -1,15 +1,16 @@
-using System.Runtime.InteropServices;
+using GWGUI.Emulation.Functions;
 using GWGUI.Emulation.Interop;
 
-namespace GWGUI.Emulation.Panasonic.Emulators.Opera.Interop.Services;
+namespace GWGUI.Emulation.Services;
 
-internal sealed class AudioCallbackHost : IDisposable
+internal sealed class ExternalCoreAudioCallbackHost : IDisposable
 {
+    private const int MaximumFramesPerBatch = 64 * 1024;
     private readonly Queue<AudioChunk> _chunks = new();
     private int _bufferedFrames;
     private long _sequence;
     private bool _disposed;
-    internal AudioCallbackHost() { SampleCallback = OnSample; BatchCallback = OnBatch; }
+    internal ExternalCoreAudioCallbackHost() { SampleCallback = OnSample; BatchCallback = OnBatch; }
     internal ExternalCoreApi.AudioSampleCallback SampleCallback { get; }
     internal ExternalCoreApi.AudioBatchCallback BatchCallback { get; }
     internal int SampleRate { get; set; }
@@ -22,18 +23,17 @@ internal sealed class AudioCallbackHost : IDisposable
     private void OnSample(short left, short right)
     {
         if (_disposed) return;
-        try { Enqueue([left, right], AudioConstants.SingleFrameCount); }
+        try { Enqueue(EmulationAudioFunctions.SingleFrame(left, right), 1); }
         catch (Exception error) { Failure ??= error; }
     }
 
     private nuint OnBatch(nint data, nuint frames)
     {
-        if (_disposed || data == nint.Zero || frames == 0 || frames > AudioConstants.MaximumFramesPerBatch) return 0;
+        if (_disposed || data == nint.Zero || frames == 0 || frames > MaximumFramesPerBatch) return 0;
         try
         {
             var count = checked((int)frames);
-            var samples = GC.AllocateUninitializedArray<short>(checked(count * AudioConstants.StereoChannelCount));
-            Marshal.Copy(data, samples, 0, samples.Length);
+            var samples = EmulationAudioFunctions.CopyBatch(data, count);
             Enqueue(samples, count);
             return frames;
         }
@@ -43,8 +43,8 @@ internal sealed class AudioCallbackHost : IDisposable
     private void Enqueue(short[] samples, int frames)
     {
         var chunk = new AudioChunk(samples, SampleRate, frames, ++_sequence, TimeSpan.Zero);
-        var maximum = AudioFunctions.MaximumBufferedFrames(SampleRate);
-        chunk = AudioFunctions.RetainNewestFrames(chunk, maximum);
+        var maximum = EmulationAudioFunctions.MaximumBufferedFrames(SampleRate);
+        chunk = EmulationAudioFunctions.RetainNewestFrames(chunk, maximum);
         LatestChunk = chunk;
         while (_chunks.Count > 0 && _bufferedFrames + chunk.FrameCount > maximum) { _bufferedFrames -= _chunks.Dequeue().FrameCount; OverrunCount++; }
         _chunks.Enqueue(chunk);

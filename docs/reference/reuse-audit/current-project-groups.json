@@ -1,9 +1,9 @@
 {
   "baseline": "ac7292d86^",
-  "currentCSharpFiles": 7314,
-  "outsideSrcCSharpFiles": 291,
+  "currentCSharpFiles": 7312,
+  "outsideSrcCSharpFiles": 292,
   "baselineMethodCount": 5848,
-  "currentMethodCount": 11589,
+  "currentMethodCount": 11587,
   "powerShellFunctionCount": 17,
   "groups": [
     {
@@ -1265,7 +1265,7 @@
     {
       "language": "CSharp",
       "hash": "0A9D4012A0EEF58659F6F622D06187BDA6844EE126F30B196EAE963950A66758",
-      "method": "NecEmulationModule",
+      "method": "AtariEmulationModule",
       "tokens": 45,
       "current": [
         {
@@ -12109,7 +12109,7 @@
     {
       "language": "CSharp",
       "hash": "68386C818382BCE400A3EDE65411B5CBD9D6A87F6D88FAF6501028CE28C38965",
-      "method": "ToSinclair",
+      "method": "ToModule",
       "tokens": 148,
       "current": [
         {
@@ -20863,51 +20863,8 @@
     },
     {
       "language": "CSharp",
-      "hash": "AFC4BF58C97C08989DA7BF92B86A037873E13569DA225172AD7823F70932A1AA",
-      "method": "Enqueue",
-      "tokens": 91,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Watara/Emulators/Potator/Interop/Services/AudioCallbackHost.cs",
-          "name": "Enqueue",
-          "line": 43,
-          "tokens": 91,
-          "hash": "AFC4BF58C97C08989DA7BF92B86A037873E13569DA225172AD7823F70932A1AA",
-          "shape": "F5BD2555D1CD829CD915AF45C6300C807D34A76EABF17B9CF386526C97A9A05E"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Interop/Services/AudioCallbackHost.cs",
-          "name": "Enqueue",
-          "line": 43,
-          "tokens": 91,
-          "hash": "AFC4BF58C97C08989DA7BF92B86A037873E13569DA225172AD7823F70932A1AA",
-          "shape": "F5BD2555D1CD829CD915AF45C6300C807D34A76EABF17B9CF386526C97A9A05E"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Interop/Services/AudioCallbackHost.cs",
-          "name": "Enqueue",
-          "line": 43,
-          "tokens": 91,
-          "hash": "AFC4BF58C97C08989DA7BF92B86A037873E13569DA225172AD7823F70932A1AA",
-          "shape": "F5BD2555D1CD829CD915AF45C6300C807D34A76EABF17B9CF386526C97A9A05E"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Panasonic/Emulators/Opera/Interop/Services/AudioCallbackHost.cs",
-          "name": "Enqueue",
-          "line": 43,
-          "tokens": 91,
-          "hash": "AFC4BF58C97C08989DA7BF92B86A037873E13569DA225172AD7823F70932A1AA",
-          "shape": "F5BD2555D1CD829CD915AF45C6300C807D34A76EABF17B9CF386526C97A9A05E"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
       "hash": "B053A3AB4F0B78A37DED57B2D744801187AED6EC54FEEAFE4B1AA9C454D6F48C",
-      "method": "FairchildEmulationModule",
+      "method": "MattelEmulationModule",
       "tokens": 47,
       "current": [
         {
@@ -25235,49 +25192,6 @@
     },
     {
       "language": "CSharp",
-      "hash": "D6D86596604C6382B3D19CAA727CE0BA11AA773465EB76C1F924681E5E13B0E8",
-      "method": "OnBatch",
-      "tokens": 98,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Watara/Emulators/Potator/Interop/Services/AudioCallbackHost.cs",
-          "name": "OnBatch",
-          "line": 29,
-          "tokens": 98,
-          "hash": "D6D86596604C6382B3D19CAA727CE0BA11AA773465EB76C1F924681E5E13B0E8",
-          "shape": "1786FB607FD9CB531B5009FF0EDD409227EFAD8EB106C665D7237EDEB7F53493"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Interop/Services/AudioCallbackHost.cs",
-          "name": "OnBatch",
-          "line": 29,
-          "tokens": 98,
-          "hash": "D6D86596604C6382B3D19CAA727CE0BA11AA773465EB76C1F924681E5E13B0E8",
-          "shape": "1786FB607FD9CB531B5009FF0EDD409227EFAD8EB106C665D7237EDEB7F53493"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Interop/Services/AudioCallbackHost.cs",
-          "name": "OnBatch",
-          "line": 29,
-          "tokens": 98,
-          "hash": "D6D86596604C6382B3D19CAA727CE0BA11AA773465EB76C1F924681E5E13B0E8",
-          "shape": "1786FB607FD9CB531B5009FF0EDD409227EFAD8EB106C665D7237EDEB7F53493"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Panasonic/Emulators/Opera/Interop/Services/AudioCallbackHost.cs",
-          "name": "OnBatch",
-          "line": 29,
-          "tokens": 98,
-          "hash": "D6D86596604C6382B3D19CAA727CE0BA11AA773465EB76C1F924681E5E13B0E8",
-          "shape": "1786FB607FD9CB531B5009FF0EDD409227EFAD8EB106C665D7237EDEB7F53493"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
       "hash": "D6EF59451558CDFC4314BAD3171BE67B2ECA92E5572A325DF370603B0CF46D6C",
       "method": "Create",
       "tokens": 49,
@@ -27786,7 +27700,7 @@
     {
       "language": "CSharp",
       "hash": "F107F4D7D97C4E9F797468C991DF2090B47DF6E3F6F74E56044EFF0C28CAA51D",
-      "method": "NotifyHardwareContextDestroy",
+      "method": "NotifyDestroy",
       "tokens": 31,
       "current": [
         {
@@ -28909,49 +28823,6 @@
           "tokens": 79,
           "hash": "FB0B2B668820795063B8FC3ABEE6C153BFCBB68A95DB10FCD26B1B2C1C92957C",
           "shape": "72AEF698AC27235FB927DCF8A7A19930381F34A5640B7015952416879D05007D"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
-      "hash": "FBA0F7AEDDC93DEE7559A39305AD79DC49C123B2DA3FCC5A30C287C8BEAC8C78",
-      "method": "OnSample",
-      "tokens": 35,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Watara/Emulators/Potator/Interop/Services/AudioCallbackHost.cs",
-          "name": "OnSample",
-          "line": 22,
-          "tokens": 35,
-          "hash": "FBA0F7AEDDC93DEE7559A39305AD79DC49C123B2DA3FCC5A30C287C8BEAC8C78",
-          "shape": "97FC9837E60601D3F3520881DE90A44E3D39DF7DA5725870D4D5B9DE4816006A"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Interop/Services/AudioCallbackHost.cs",
-          "name": "OnSample",
-          "line": 22,
-          "tokens": 35,
-          "hash": "FBA0F7AEDDC93DEE7559A39305AD79DC49C123B2DA3FCC5A30C287C8BEAC8C78",
-          "shape": "97FC9837E60601D3F3520881DE90A44E3D39DF7DA5725870D4D5B9DE4816006A"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Interop/Services/AudioCallbackHost.cs",
-          "name": "OnSample",
-          "line": 22,
-          "tokens": 35,
-          "hash": "FBA0F7AEDDC93DEE7559A39305AD79DC49C123B2DA3FCC5A30C287C8BEAC8C78",
-          "shape": "97FC9837E60601D3F3520881DE90A44E3D39DF7DA5725870D4D5B9DE4816006A"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Panasonic/Emulators/Opera/Interop/Services/AudioCallbackHost.cs",
-          "name": "OnSample",
-          "line": 22,
-          "tokens": 35,
-          "hash": "FBA0F7AEDDC93DEE7559A39305AD79DC49C123B2DA3FCC5A30C287C8BEAC8C78",
-          "shape": "97FC9837E60601D3F3520881DE90A44E3D39DF7DA5725870D4D5B9DE4816006A"
         }
       ],
       "predecessors": [],

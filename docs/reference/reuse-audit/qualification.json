@@ -58857,5 +58857,1604 @@
       "scope": "Audio queue adapters only; prior AV methods bridged through whole-file proof and disk projections revalidated",
       "files": 7314
     }
+  },
+  "legacyAudioCallbackComparison": {
+    "decision": "Move original complete Thomson callback owner into SDK, reusing existing SingleFrame/CopyBatch/MaximumBufferedFrames/RetainNewestFrames primitives; alias four modules. Do not impose the locked twenty-buffer queue policy.",
+    "snapshot": "42b0b92bc48f3225afd3269fa6480625eccaa8c6",
+    "existingSdkInputs": [
+      {
+        "path": "src/GWGUI.Emulation/Functions/EmulationAudioFunctions.cs",
+        "sha256": "ABBD50B2BEBB1DA589B20A0C84092305D54064C96E1F37AAC5ED6DDAFEA3A00B"
+      },
+      {
+        "path": "src/GWGUI.Emulation/Interop/ExternalCoreApi.cs",
+        "sha256": "05E32C021EDC30BE4BD88BE5848715D8CE091D775CE88BBF0AF534653C8D6647"
+      }
+    ],
+    "state": "verified",
+    "origin": {
+      "text": "using System.Runtime.InteropServices;\nusing GWGUI.Emulation.Interop;\n\nnamespace GWGUI.Emulation.Thomson.Emulators.Theodore.Interop.Services;\n\ninternal sealed class AudioCallbackHost : IDisposable\n{\n    private readonly Queue<AudioChunk> _chunks = new();\n    private int _bufferedFrames;\n    private long _sequence;\n    private bool _disposed;\n    internal AudioCallbackHost() { SampleCallback = OnSample; BatchCallback = OnBatch; }\n    internal ExternalCoreApi.AudioSampleCallback SampleCallback { get; }\n    internal ExternalCoreApi.AudioBatchCallback BatchCallback { get; }\n    internal int SampleRate { get; set; }\n    internal AudioChunk? LatestChunk { get; private set; }\n    internal Exception? Failure { get; private set; }\n    internal int BufferedFrames => _bufferedFrames;\n    internal long OverrunCount { get; private set; }\n    internal long UnderrunCount => 0;\n\n    private void OnSample(short left, short right)\n    {\n        if (_disposed) return;\n        try { Enqueue([left, right], AudioConstants.SingleFrameCount); }\n        catch (Exception error) { Failure ??= error; }\n    }\n\n    private nuint OnBatch(nint data, nuint frames)\n    {\n        if (_disposed || data == nint.Zero || frames == 0 || frames > AudioConstants.MaximumFramesPerBatch) return 0;\n        try\n        {\n            var count = checked((int)frames);\n            var samples = GC.AllocateUninitializedArray<short>(checked(count * AudioConstants.StereoChannelCount));\n            Marshal.Copy(data, samples, 0, samples.Length);\n            Enqueue(samples, count);\n            return frames;\n        }\n        catch (Exception error) { Failure ??= error; return 0; }\n    }\n\n    private void Enqueue(short[] samples, int frames)\n    {\n        var chunk = new AudioChunk(samples, SampleRate, frames, ++_sequence, TimeSpan.Zero);\n        var maximum = AudioFunctions.MaximumBufferedFrames(SampleRate);\n        chunk = AudioFunctions.RetainNewestFrames(chunk, maximum);\n        LatestChunk = chunk;\n        while (_chunks.Count > 0 && _bufferedFrames + chunk.FrameCount > maximum) { _bufferedFrames -= _chunks.Dequeue().FrameCount; OverrunCount++; }\n        _chunks.Enqueue(chunk);\n        _bufferedFrames += chunk.FrameCount;\n    }\n\n    internal bool TryDequeue(out AudioChunk? chunk)\n    {\n        if (!_chunks.TryDequeue(out chunk)) return false;\n        _bufferedFrames -= chunk.FrameCount;\n        return true;\n    }\n\n    public void Dispose()\n    {\n        _disposed = true;\n        _chunks.Clear();\n        _bufferedFrames = 0;\n        LatestChunk = null;\n        Failure = null;\n    }\n}",
+      "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Interop/Services/AudioCallbackHost.cs",
+      "commit": "f22f8e913"
+    },
+    "sources": [
+      {
+        "channelCount": 2,
+        "members": [
+          {
+            "calls": [],
+            "type": "System.Collections.Generic.Queue<GWGUI.Emulation.Contracts.AudioChunk>",
+            "constants": [],
+            "assembly": "System.Collections",
+            "text": "private readonly Queue<AudioChunk> _chunks = new();",
+            "kind": "FieldDeclarationSyntax"
+          },
+          {
+            "calls": [],
+            "type": "int",
+            "constants": [],
+            "assembly": "System.Runtime",
+            "text": "private int _bufferedFrames;",
+            "kind": "FieldDeclarationSyntax"
+          },
+          {
+            "calls": [],
+            "type": "long",
+            "constants": [],
+            "assembly": "System.Runtime",
+            "text": "private long _sequence;",
+            "kind": "FieldDeclarationSyntax"
+          },
+          {
+            "calls": [],
+            "type": "bool",
+            "constants": [],
+            "assembly": "System.Runtime",
+            "text": "private bool _disposed;",
+            "kind": "FieldDeclarationSyntax"
+          },
+          {
+            "calls": [],
+            "type": null,
+            "constants": [],
+            "assembly": null,
+            "text": "internal AudioCallbackHost() { SampleCallback = OnSample; BatchCallback = OnBatch; }",
+            "kind": "ConstructorDeclarationSyntax"
+          },
+          {
+            "calls": [],
+            "type": "GWGUI.Emulation.Interop.ExternalCoreApi.AudioSampleCallback",
+            "constants": [],
+            "assembly": "gwgui.emulation",
+            "text": "internal ExternalCoreApi.AudioSampleCallback SampleCallback { get; }",
+            "kind": "PropertyDeclarationSyntax"
+          },
+          {
+            "calls": [],
+            "type": "GWGUI.Emulation.Interop.ExternalCoreApi.AudioBatchCallback",
+            "constants": [],
+            "assembly": "gwgui.emulation",
+            "text": "internal ExternalCoreApi.AudioBatchCallback BatchCallback { get; }",
+            "kind": "PropertyDeclarationSyntax"
+          },
+          {
+            "calls": [],
+            "type": "int",
+            "constants": [],
+            "assembly": "System.Runtime",
+            "text": "internal int SampleRate { get; set; }",
+            "kind": "PropertyDeclarationSyntax"
+          },
+          {
+            "calls": [],
+            "type": "GWGUI.Emulation.Contracts.AudioChunk",
+            "constants": [],
+            "assembly": "gwgui.emulation",
+            "text": "internal AudioChunk? LatestChunk { get; private set; }",
+            "kind": "PropertyDeclarationSyntax"
+          },
+          {
+            "calls": [],
+            "type": "System.Exception",
+            "constants": [],
+            "assembly": "System.Runtime",
+            "text": "internal Exception? Failure { get; private set; }",
+            "kind": "PropertyDeclarationSyntax"
+          },
+          {
+            "calls": [],
+            "type": "int",
+            "constants": [],
+            "assembly": "System.Runtime",
+            "text": "internal int BufferedFrames => _bufferedFrames;",
+            "kind": "PropertyDeclarationSyntax"
+          },
+          {
+            "calls": [],
+            "type": "long",
+            "constants": [],
+            "assembly": "System.Runtime",
+            "text": "internal long OverrunCount { get; private set; }",
+            "kind": "PropertyDeclarationSyntax"
+          },
+          {
+            "calls": [],
+            "type": "long",
+            "constants": [
+              {
+                "expression": "0",
+                "value": 0
+              }
+            ],
+            "assembly": "System.Runtime",
+            "text": "internal long UnderrunCount => 0;",
+            "kind": "PropertyDeclarationSyntax"
+          },
+          {
+            "calls": [
+              {
+                "symbol": "GWGUI.Emulation.Panasonic.Emulators.Opera.Interop.Services.AudioCallbackHost.Enqueue(short[], int)",
+                "expression": "Enqueue([left, right], AudioConstants.SingleFrameCount)",
+                "assembly": "gwgui.emulation.panasonic"
+              }
+            ],
+            "type": null,
+            "constants": [
+              {
+                "expression": "AudioConstants.SingleFrameCount",
+                "value": 1
+              },
+              {
+                "expression": "SingleFrameCount",
+                "value": 1
+              }
+            ],
+            "assembly": null,
+            "text": "private void OnSample(short left, short right)\n    {\n        if (_disposed) return;\n        try { Enqueue([left, right], AudioConstants.SingleFrameCount); }\n        catch (Exception error) { Failure ??= error; }\n    }",
+            "kind": "MethodDeclarationSyntax"
+          },
+          {
+            "calls": [
+              {
+                "symbol": "System.GC.AllocateUninitializedArray<short>(int, bool)",
+                "expression": "GC.AllocateUninitializedArray<short>(checked(count * AudioConstants.StereoChannelCount))",
+                "assembly": "System.Runtime"
+              },
+              {
+                "symbol": "System.Runtime.InteropServices.Marshal.Copy(nint, short[], int, int)",
+                "expression": "Marshal.Copy(data, samples, 0, samples.Length)",
+                "assembly": "System.Runtime.InteropServices"
+              },
+              {
+                "symbol": "GWGUI.Emulation.Panasonic.Emulators.Opera.Interop.Services.AudioCallbackHost.Enqueue(short[], int)",
+                "expression": "Enqueue(samples, count)",
+                "assembly": "gwgui.emulation.panasonic"
+              }
+            ],
+            "type": null,
+            "constants": [
+              {
+                "expression": "0",
+                "value": 0
+              },
+              {
+                "expression": "AudioConstants.MaximumFramesPerBatch",
+                "value": 65536
+              },
+              {
+                "expression": "MaximumFramesPerBatch",
+                "value": 65536
+              },
+              {
+                "expression": "0",
+                "value": 0
+              },
+              {
+                "expression": "AudioConstants.StereoChannelCount",
+                "value": 2
+              },
+              {
+                "expression": "StereoChannelCount",
+                "value": 2
+              },
+              {
+                "expression": "0",
+                "value": 0
+              },
+              {
+                "expression": "0",
+                "value": 0
+              }
+            ],
+            "assembly": null,
+            "text": "private nuint OnBatch(nint data, nuint frames)\n    {\n        if (_disposed || data == nint.Zero || frames == 0 || frames > AudioConstants.MaximumFramesPerBatch) return 0;\n        try\n        {\n            var count = checked((int)frames);\n            var samples = GC.AllocateUninitializedArray<short>(checked(count * AudioConstants.StereoChannelCount));\n            Marshal.Copy(data, samples, 0, samples.Length);\n            Enqueue(samples, count);\n            return frames;\n        }\n        catch (Exception error) { Failure ??= error; return 0; }\n    }",
+            "kind": "MethodDeclarationSyntax"
+          },
+          {
+            "calls": [
+              {
+                "symbol": "GWGUI.Emulation.Panasonic.Common.Machines.Common.Functions.AudioFunctions.MaximumBufferedFrames(int)",
+                "expression": "AudioFunctions.MaximumBufferedFrames(SampleRate)",
+                "assembly": "gwgui.emulation.panasonic"
+              },
+              {
+                "symbol": "GWGUI.Emulation.Panasonic.Common.Machines.Common.Functions.AudioFunctions.RetainNewestFrames(GWGUI.Emulation.Contracts.AudioChunk, int)",
+                "expression": "AudioFunctions.RetainNewestFrames(chunk, maximum)",
+                "assembly": "gwgui.emulation.panasonic"
+              },
+              {
+                "symbol": "System.Collections.Generic.Queue<GWGUI.Emulation.Contracts.AudioChunk>.Dequeue()",
+                "expression": "_chunks.Dequeue()",
+                "assembly": "System.Collections"
+              },
+              {
+                "symbol": "System.Collections.Generic.Queue<GWGUI.Emulation.Contracts.AudioChunk>.Enqueue(GWGUI.Emulation.Contracts.AudioChunk)",
+                "expression": "_chunks.Enqueue(chunk)",
+                "assembly": "System.Collections"
+              }
+            ],
+            "type": null,
+            "constants": [
+              {
+                "expression": "0",
+                "value": 0
+              }
+            ],
+            "assembly": null,
+            "text": "private void Enqueue(short[] samples, int frames)\n    {\n        var chunk = new AudioChunk(samples, SampleRate, frames, ++_sequence, TimeSpan.Zero);\n        var maximum = AudioFunctions.MaximumBufferedFrames(SampleRate);\n        chunk = AudioFunctions.RetainNewestFrames(chunk, maximum);\n        LatestChunk = chunk;\n        while (_chunks.Count > 0 && _bufferedFrames + chunk.FrameCount > maximum) { _bufferedFrames -= _chunks.Dequeue().FrameCount; OverrunCount++; }\n        _chunks.Enqueue(chunk);\n        _bufferedFrames += chunk.FrameCount;\n    }",
+            "kind": "MethodDeclarationSyntax"
+          },
+          {
+            "calls": [
+              {
+                "symbol": "System.Collections.Generic.Queue<GWGUI.Emulation.Contracts.AudioChunk>.TryDequeue(out GWGUI.Emulation.Contracts.AudioChunk)",
+                "expression": "_chunks.TryDequeue(out chunk)",
+                "assembly": "System.Collections"
+              }
+            ],
+            "type": null,
+            "constants": [
+              {
+                "expression": "false",
+                "value": false
+              },
+              {
+                "expression": "true",
+                "value": true
+              }
+            ],
+            "assembly": null,
+            "text": "internal bool TryDequeue(out AudioChunk? chunk)\n    {\n        if (!_chunks.TryDequeue(out chunk)) return false;\n        _bufferedFrames -= chunk.FrameCount;\n        return true;\n    }",
+            "kind": "MethodDeclarationSyntax"
+          },
+          {
+            "calls": [
+              {
+                "symbol": "System.Collections.Generic.Queue<GWGUI.Emulation.Contracts.AudioChunk>.Clear()",
+                "expression": "_chunks.Clear()",
+                "assembly": "System.Collections"
+              }
+            ],
+            "type": null,
+            "constants": [
+              {
+                "expression": "true",
+                "value": true
+              },
+              {
+                "expression": "0",
+                "value": 0
+              }
+            ],
+            "assembly": null,
+            "text": "public void Dispose()\n    {\n        _disposed = true;\n        _chunks.Clear();\n        _bufferedFrames = 0;\n        LatestChunk = null;\n        Failure = null;\n    }",
+            "kind": "MethodDeclarationSyntax"
+          }
+        ],
+        "helper": {
+          "calls": [
+            {
+              "symbol": "System.Math.Max(int, int)",
+              "expression": "Math.Max(AudioConstants.MinimumBufferedFrameCount, sampleRate / AudioConstants.BufferDurationDivisor)",
+              "assembly": "System.Runtime"
+            },
+            {
+              "symbol": "GWGUI.Emulation.Functions.EmulationAudioFunctions.RetainNewestFrames(GWGUI.Emulation.Contracts.AudioChunk, int)",
+              "expression": "EmulationAudioFunctions.RetainNewestFrames(chunk, maximumFrames)",
+              "assembly": "gwgui.emulation"
+            },
+            {
+              "symbol": "GWGUI.Emulation.Functions.EmulationAudioFunctions.NormalizeVolume(float)",
+              "expression": "EmulationAudioFunctions.NormalizeVolume(volume)",
+              "assembly": "gwgui.emulation"
+            },
+            {
+              "symbol": "GWGUI.Emulation.Functions.EmulationAudioFunctions.ApplyVolume(System.ReadOnlySpan<short>, float, ref short[])",
+              "expression": "EmulationAudioFunctions.ApplyVolume(samples, volume, ref buffer)",
+              "assembly": "gwgui.emulation"
+            }
+          ],
+          "text": "\r\nnamespace GWGUI.Emulation.Panasonic.Common.Machines.Common.Functions;\r\n\r\ninternal static class AudioFunctions\r\n{\r\n    internal static int MaximumBufferedFrames(int sampleRate) => Math.Max(AudioConstants.MinimumBufferedFrameCount, sampleRate / AudioConstants.BufferDurationDivisor);\r\n\r\n\r\n    internal static AudioChunk RetainNewestFrames(AudioChunk chunk, int maximumFrames)\r\n    => EmulationAudioFunctions.RetainNewestFrames(chunk, maximumFrames);\r\n}\r\n\r\ninternal static class AudioOutputFunctions\r\n{\r\n    internal static float NormalizeVolume(float volume) => EmulationAudioFunctions.NormalizeVolume(volume);\r\n\r\n    internal static ReadOnlySpan<short> ApplyVolume(ReadOnlySpan<short> samples, float volume, ref short[] buffer) =>\n        EmulationAudioFunctions.ApplyVolume(samples, volume, ref buffer);\r\n}\r\n",
+          "path": "src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Functions/AudioFunctions.cs",
+          "sha256": "129EF9F298BF954935027C9F5822E8497BB2295683D849AFD4E18E4F7EECDB1E"
+        },
+        "singleFrameCount": 1,
+        "path": "src/GWGUI.Emulation.Panasonic/Emulators/Opera/Interop/Services/AudioCallbackHost.cs",
+        "wholeOriginalClassTokensIdentical": true,
+        "maximumFramesPerBatch": 65536,
+        "sha256": "042B24109EDD454B8779E73A3D1FB57C7C7DD5A07FA23E544287C09226AB2171",
+        "globalPath": "src/GWGUI.Emulation.Panasonic/EmulationGlobalUsings.cs"
+      },
+      {
+        "channelCount": 2,
+        "members": [
+          {
+            "calls": [],
+            "type": "System.Collections.Generic.Queue<GWGUI.Emulation.Contracts.AudioChunk>",
+            "constants": [],
+            "assembly": "System.Collections",
+            "text": "private readonly Queue<AudioChunk> _chunks = new();",
+            "kind": "FieldDeclarationSyntax"
+          },
+          {
+            "calls": [],
+            "type": "int",
+            "constants": [],
+            "assembly": "System.Runtime",
+            "text": "private int _bufferedFrames;",
+            "kind": "FieldDeclarationSyntax"
+          },
+          {
+            "calls": [],
+            "type": "long",
+            "constants": [],
+            "assembly": "System.Runtime",
+            "text": "private long _sequence;",
+            "kind": "FieldDeclarationSyntax"
+          },
+          {
+            "calls": [],
+            "type": "bool",
+            "constants": [],
+            "assembly": "System.Runtime",
+            "text": "private bool _disposed;",
+            "kind": "FieldDeclarationSyntax"
+          },
+          {
+            "calls": [],
+            "type": null,
+            "constants": [],
+            "assembly": null,
+            "text": "internal AudioCallbackHost() { SampleCallback = OnSample; BatchCallback = OnBatch; }",
+            "kind": "ConstructorDeclarationSyntax"
+          },
+          {
+            "calls": [],
+            "type": "GWGUI.Emulation.Interop.ExternalCoreApi.AudioSampleCallback",
+            "constants": [],
+            "assembly": "gwgui.emulation",
+            "text": "internal ExternalCoreApi.AudioSampleCallback SampleCallback { get; }",
+            "kind": "PropertyDeclarationSyntax"
+          },
+          {
+            "calls": [],
+            "type": "GWGUI.Emulation.Interop.ExternalCoreApi.AudioBatchCallback",
+            "constants": [],
+            "assembly": "gwgui.emulation",
+            "text": "internal ExternalCoreApi.AudioBatchCallback BatchCallback { get; }",
+            "kind": "PropertyDeclarationSyntax"
+          },
+          {
+            "calls": [],
+            "type": "int",
+            "constants": [],
+            "assembly": "System.Runtime",
+            "text": "internal int SampleRate { get; set; }",
+            "kind": "PropertyDeclarationSyntax"
+          },
+          {
+            "calls": [],
+            "type": "GWGUI.Emulation.Contracts.AudioChunk",
+            "constants": [],
+            "assembly": "gwgui.emulation",
+            "text": "internal AudioChunk? LatestChunk { get; private set; }",
+            "kind": "PropertyDeclarationSyntax"
+          },
+          {
+            "calls": [],
+            "type": "System.Exception",
+            "constants": [],
+            "assembly": "System.Runtime",
+            "text": "internal Exception? Failure { get; private set; }",
+            "kind": "PropertyDeclarationSyntax"
+          },
+          {
+            "calls": [],
+            "type": "int",
+            "constants": [],
+            "assembly": "System.Runtime",
+            "text": "internal int BufferedFrames => _bufferedFrames;",
+            "kind": "PropertyDeclarationSyntax"
+          },
+          {
+            "calls": [],
+            "type": "long",
+            "constants": [],
+            "assembly": "System.Runtime",
+            "text": "internal long OverrunCount { get; private set; }",
+            "kind": "PropertyDeclarationSyntax"
+          },
+          {
+            "calls": [],
+            "type": "long",
+            "constants": [
+              {
+                "expression": "0",
+                "value": 0
+              }
+            ],
+            "assembly": "System.Runtime",
+            "text": "internal long UnderrunCount => 0;",
+            "kind": "PropertyDeclarationSyntax"
+          },
+          {
+            "calls": [
+              {
+                "symbol": "GWGUI.Emulation.Thomson.Emulators.Theodore.Interop.Services.AudioCallbackHost.Enqueue(short[], int)",
+                "expression": "Enqueue([left, right], AudioConstants.SingleFrameCount)",
+                "assembly": "gwgui.emulation.thomson"
+              }
+            ],
+            "type": null,
+            "constants": [
+              {
+                "expression": "AudioConstants.SingleFrameCount",
+                "value": 1
+              },
+              {
+                "expression": "SingleFrameCount",
+                "value": 1
+              }
+            ],
+            "assembly": null,
+            "text": "private void OnSample(short left, short right)\n    {\n        if (_disposed) return;\n        try { Enqueue([left, right], AudioConstants.SingleFrameCount); }\n        catch (Exception error) { Failure ??= error; }\n    }",
+            "kind": "MethodDeclarationSyntax"
+          },
+          {
+            "calls": [
+              {
+                "symbol": "System.GC.AllocateUninitializedArray<short>(int, bool)",
+                "expression": "GC.AllocateUninitializedArray<short>(checked(count * AudioConstants.StereoChannelCount))",
+                "assembly": "System.Runtime"
+              },
+              {
+                "symbol": "System.Runtime.InteropServices.Marshal.Copy(nint, short[], int, int)",
+                "expression": "Marshal.Copy(data, samples, 0, samples.Length)",
+                "assembly": "System.Runtime.InteropServices"
+              },
+              {
+                "symbol": "GWGUI.Emulation.Thomson.Emulators.Theodore.Interop.Services.AudioCallbackHost.Enqueue(short[], int)",
+                "expression": "Enqueue(samples, count)",
+                "assembly": "gwgui.emulation.thomson"
+              }
+            ],
+            "type": null,
+            "constants": [
+              {
+                "expression": "0",
+                "value": 0
+              },
+              {
+                "expression": "AudioConstants.MaximumFramesPerBatch",
+                "value": 65536
+              },
+              {
+                "expression": "MaximumFramesPerBatch",
+                "value": 65536
+              },
+              {
+                "expression": "0",
+                "value": 0
+              },
+              {
+                "expression": "AudioConstants.StereoChannelCount",
+                "value": 2
+              },
+              {
+                "expression": "StereoChannelCount",
+                "value": 2
+              },
+              {
+                "expression": "0",
+                "value": 0
+              },
+              {
+                "expression": "0",
+                "value": 0
+              }
+            ],
+            "assembly": null,
+            "text": "private nuint OnBatch(nint data, nuint frames)\n    {\n        if (_disposed || data == nint.Zero || frames == 0 || frames > AudioConstants.MaximumFramesPerBatch) return 0;\n        try\n        {\n            var count = checked((int)frames);\n            var samples = GC.AllocateUninitializedArray<short>(checked(count * AudioConstants.StereoChannelCount));\n            Marshal.Copy(data, samples, 0, samples.Length);\n            Enqueue(samples, count);\n            return frames;\n        }\n        catch (Exception error) { Failure ??= error; return 0; }\n    }",
+            "kind": "MethodDeclarationSyntax"
+          },
+          {
+            "calls": [
+              {
+                "symbol": "GWGUI.Emulation.Thomson.Common.Machines.Common.Functions.AudioFunctions.MaximumBufferedFrames(int)",
+                "expression": "AudioFunctions.MaximumBufferedFrames(SampleRate)",
+                "assembly": "gwgui.emulation.thomson"
+              },
+              {
+                "symbol": "GWGUI.Emulation.Thomson.Common.Machines.Common.Functions.AudioFunctions.RetainNewestFrames(GWGUI.Emulation.Contracts.AudioChunk, int)",
+                "expression": "AudioFunctions.RetainNewestFrames(chunk, maximum)",
+                "assembly": "gwgui.emulation.thomson"
+              },
+              {
+                "symbol": "System.Collections.Generic.Queue<GWGUI.Emulation.Contracts.AudioChunk>.Dequeue()",
+                "expression": "_chunks.Dequeue()",
+                "assembly": "System.Collections"
+              },
+              {
+                "symbol": "System.Collections.Generic.Queue<GWGUI.Emulation.Contracts.AudioChunk>.Enqueue(GWGUI.Emulation.Contracts.AudioChunk)",
+                "expression": "_chunks.Enqueue(chunk)",
+                "assembly": "System.Collections"
+              }
+            ],
+            "type": null,
+            "constants": [
+              {
+                "expression": "0",
+                "value": 0
+              }
+            ],
+            "assembly": null,
+            "text": "private void Enqueue(short[] samples, int frames)\n    {\n        var chunk = new AudioChunk(samples, SampleRate, frames, ++_sequence, TimeSpan.Zero);\n        var maximum = AudioFunctions.MaximumBufferedFrames(SampleRate);\n        chunk = AudioFunctions.RetainNewestFrames(chunk, maximum);\n        LatestChunk = chunk;\n        while (_chunks.Count > 0 && _bufferedFrames + chunk.FrameCount > maximum) { _bufferedFrames -= _chunks.Dequeue().FrameCount; OverrunCount++; }\n        _chunks.Enqueue(chunk);\n        _bufferedFrames += chunk.FrameCount;\n    }",
+            "kind": "MethodDeclarationSyntax"
+          },
+          {
+            "calls": [
+              {
+                "symbol": "System.Collections.Generic.Queue<GWGUI.Emulation.Contracts.AudioChunk>.TryDequeue(out GWGUI.Emulation.Contracts.AudioChunk)",
+                "expression": "_chunks.TryDequeue(out chunk)",
+                "assembly": "System.Collections"
+              }
+            ],
+            "type": null,
+            "constants": [
+              {
+                "expression": "false",
+                "value": false
+              },
+              {
+                "expression": "true",
+                "value": true
+              }
+            ],
+            "assembly": null,
+            "text": "internal bool TryDequeue(out AudioChunk? chunk)\n    {\n        if (!_chunks.TryDequeue(out chunk)) return false;\n        _bufferedFrames -= chunk.FrameCount;\n        return true;\n    }",
+            "kind": "MethodDeclarationSyntax"
+          },
+          {
+            "calls": [
+              {
+                "symbol": "System.Collections.Generic.Queue<GWGUI.Emulation.Contracts.AudioChunk>.Clear()",
+                "expression": "_chunks.Clear()",
+                "assembly": "System.Collections"
+              }
+            ],
+            "type": null,
+            "constants": [
+              {
+                "expression": "true",
+                "value": true
+              },
+              {
+                "expression": "0",
+                "value": 0
+              }
+            ],
+            "assembly": null,
+            "text": "public void Dispose()\n    {\n        _disposed = true;\n        _chunks.Clear();\n        _bufferedFrames = 0;\n        LatestChunk = null;\n        Failure = null;\n    }",
+            "kind": "MethodDeclarationSyntax"
+          }
+        ],
+        "helper": {
+          "calls": [
+            {
+              "symbol": "System.Math.Max(int, int)",
+              "expression": "Math.Max(AudioConstants.MinimumBufferedFrameCount, sampleRate / AudioConstants.BufferDurationDivisor)",
+              "assembly": "System.Runtime"
+            },
+            {
+              "symbol": "GWGUI.Emulation.Functions.EmulationAudioFunctions.SingleFrame(short, short)",
+              "expression": "EmulationAudioFunctions.SingleFrame(left, right)",
+              "assembly": "gwgui.emulation"
+            },
+            {
+              "symbol": "GWGUI.Emulation.Functions.EmulationAudioFunctions.RetainNewestFrames(GWGUI.Emulation.Contracts.AudioChunk, int)",
+              "expression": "EmulationAudioFunctions.RetainNewestFrames(chunk, maximumFrames)",
+              "assembly": "gwgui.emulation"
+            },
+            {
+              "symbol": "GWGUI.Emulation.Functions.EmulationAudioFunctions.NormalizeVolume(float)",
+              "expression": "EmulationAudioFunctions.NormalizeVolume(volume)",
+              "assembly": "gwgui.emulation"
+            },
+            {
+              "symbol": "GWGUI.Emulation.Functions.EmulationAudioFunctions.ApplyVolume(System.ReadOnlySpan<short>, float, ref short[])",
+              "expression": "EmulationAudioFunctions.ApplyVolume(samples, volume, ref buffer)",
+              "assembly": "gwgui.emulation"
+            }
+          ],
+          "text": "\r\nnamespace GWGUI.Emulation.Thomson.Common.Machines.Common.Functions;\r\n\r\ninternal static class AudioFunctions\r\n{\r\n    internal static int MaximumBufferedFrames(int sampleRate) => Math.Max(AudioConstants.MinimumBufferedFrameCount, sampleRate / AudioConstants.BufferDurationDivisor);\r\n\r\n    internal static short[] SingleFrame(short left, short right) => EmulationAudioFunctions.SingleFrame(left, right);\r\n\r\n    internal static AudioChunk RetainNewestFrames(AudioChunk chunk, int maximumFrames)\r\n    => EmulationAudioFunctions.RetainNewestFrames(chunk, maximumFrames);\r\n}\r\n\r\ninternal static class AudioOutputFunctions\r\n{\r\n    internal static float NormalizeVolume(float volume) => EmulationAudioFunctions.NormalizeVolume(volume);\r\n\r\n    internal static ReadOnlySpan<short> ApplyVolume(ReadOnlySpan<short> samples, float volume, ref short[] buffer) =>\n        EmulationAudioFunctions.ApplyVolume(samples, volume, ref buffer);\r\n}\r\n",
+          "path": "src/GWGUI.Emulation.Thomson/Common/Machines/Common/Functions/AudioFunctions.cs",
+          "sha256": "6A61EA21B3F34B7470EFF87E8E9D7B7A9949699354B72714E11195975A3A442B"
+        },
+        "singleFrameCount": 1,
+        "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Interop/Services/AudioCallbackHost.cs",
+        "wholeOriginalClassTokensIdentical": true,
+        "maximumFramesPerBatch": 65536,
+        "sha256": "4066BC692683D327C83FAEAACC71DDA21574079E643EB1B76EE76B5DF3FF9572",
+        "globalPath": "src/GWGUI.Emulation.Thomson/EmulationGlobalUsings.cs"
+      },
+      {
+        "channelCount": 2,
+        "members": [
+          {
+            "calls": [],
+            "type": "System.Collections.Generic.Queue<GWGUI.Emulation.Contracts.AudioChunk>",
+            "constants": [],
+            "assembly": "System.Collections",
+            "text": "private readonly Queue<AudioChunk> _chunks = new();",
+            "kind": "FieldDeclarationSyntax"
+          },
+          {
+            "calls": [],
+            "type": "int",
+            "constants": [],
+            "assembly": "System.Runtime",
+            "text": "private int _bufferedFrames;",
+            "kind": "FieldDeclarationSyntax"
+          },
+          {
+            "calls": [],
+            "type": "long",
+            "constants": [],
+            "assembly": "System.Runtime",
+            "text": "private long _sequence;",
+            "kind": "FieldDeclarationSyntax"
+          },
+          {
+            "calls": [],
+            "type": "bool",
+            "constants": [],
+            "assembly": "System.Runtime",
+            "text": "private bool _disposed;",
+            "kind": "FieldDeclarationSyntax"
+          },
+          {
+            "calls": [],
+            "type": null,
+            "constants": [],
+            "assembly": null,
+            "text": "internal AudioCallbackHost() { SampleCallback = OnSample; BatchCallback = OnBatch; }",
+            "kind": "ConstructorDeclarationSyntax"
+          },
+          {
+            "calls": [],
+            "type": "GWGUI.Emulation.Interop.ExternalCoreApi.AudioSampleCallback",
+            "constants": [],
+            "assembly": "gwgui.emulation",
+            "text": "internal ExternalCoreApi.AudioSampleCallback SampleCallback { get; }",
+            "kind": "PropertyDeclarationSyntax"
+          },
+          {
+            "calls": [],
+            "type": "GWGUI.Emulation.Interop.ExternalCoreApi.AudioBatchCallback",
+            "constants": [],
+            "assembly": "gwgui.emulation",
+            "text": "internal ExternalCoreApi.AudioBatchCallback BatchCallback { get; }",
+            "kind": "PropertyDeclarationSyntax"
+          },
+          {
+            "calls": [],
+            "type": "int",
+            "constants": [],
+            "assembly": "System.Runtime",
+            "text": "internal int SampleRate { get; set; }",
+            "kind": "PropertyDeclarationSyntax"
+          },
+          {
+            "calls": [],
+            "type": "GWGUI.Emulation.Contracts.AudioChunk",
+            "constants": [],
+            "assembly": "gwgui.emulation",
+            "text": "internal AudioChunk? LatestChunk { get; private set; }",
+            "kind": "PropertyDeclarationSyntax"
+          },
+          {
+            "calls": [],
+            "type": "System.Exception",
+            "constants": [],
+            "assembly": "System.Runtime",
+            "text": "internal Exception? Failure { get; private set; }",
+            "kind": "PropertyDeclarationSyntax"
+          },
+          {
+            "calls": [],
+            "type": "int",
+            "constants": [],
+            "assembly": "System.Runtime",
+            "text": "internal int BufferedFrames => _bufferedFrames;",
+            "kind": "PropertyDeclarationSyntax"
+          },
+          {
+            "calls": [],
+            "type": "long",
+            "constants": [],
+            "assembly": "System.Runtime",
+            "text": "internal long OverrunCount { get; private set; }",
+            "kind": "PropertyDeclarationSyntax"
+          },
+          {
+            "calls": [],
+            "type": "long",
+            "constants": [
+              {
+                "expression": "0",
+                "value": 0
+              }
+            ],
+            "assembly": "System.Runtime",
+            "text": "internal long UnderrunCount => 0;",
+            "kind": "PropertyDeclarationSyntax"
+          },
+          {
+            "calls": [
+              {
+                "symbol": "GWGUI.Emulation.Watara.Emulators.Potator.Interop.Services.AudioCallbackHost.Enqueue(short[], int)",
+                "expression": "Enqueue([left, right], AudioConstants.SingleFrameCount)",
+                "assembly": "gwgui.emulation.watara"
+              }
+            ],
+            "type": null,
+            "constants": [
+              {
+                "expression": "AudioConstants.SingleFrameCount",
+                "value": 1
+              },
+              {
+                "expression": "SingleFrameCount",
+                "value": 1
+              }
+            ],
+            "assembly": null,
+            "text": "private void OnSample(short left, short right)\n    {\n        if (_disposed) return;\n        try { Enqueue([left, right], AudioConstants.SingleFrameCount); }\n        catch (Exception error) { Failure ??= error; }\n    }",
+            "kind": "MethodDeclarationSyntax"
+          },
+          {
+            "calls": [
+              {
+                "symbol": "System.GC.AllocateUninitializedArray<short>(int, bool)",
+                "expression": "GC.AllocateUninitializedArray<short>(checked(count * AudioConstants.StereoChannelCount))",
+                "assembly": "System.Runtime"
+              },
+              {
+                "symbol": "System.Runtime.InteropServices.Marshal.Copy(nint, short[], int, int)",
+                "expression": "Marshal.Copy(data, samples, 0, samples.Length)",
+                "assembly": "System.Runtime.InteropServices"
+              },
+              {
+                "symbol": "GWGUI.Emulation.Watara.Emulators.Potator.Interop.Services.AudioCallbackHost.Enqueue(short[], int)",
+                "expression": "Enqueue(samples, count)",
+                "assembly": "gwgui.emulation.watara"
+              }
+            ],
+            "type": null,
+            "constants": [
+              {
+                "expression": "0",
+                "value": 0
+              },
+              {
+                "expression": "AudioConstants.MaximumFramesPerBatch",
+                "value": 65536
+              },
+              {
+                "expression": "MaximumFramesPerBatch",
+                "value": 65536
+              },
+              {
+                "expression": "0",
+                "value": 0
+              },
+              {
+                "expression": "AudioConstants.StereoChannelCount",
+                "value": 2
+              },
+              {
+                "expression": "StereoChannelCount",
+                "value": 2
+              },
+              {
+                "expression": "0",
+                "value": 0
+              },
+              {
+                "expression": "0",
+                "value": 0
+              }
+            ],
+            "assembly": null,
+            "text": "private nuint OnBatch(nint data, nuint frames)\n    {\n        if (_disposed || data == nint.Zero || frames == 0 || frames > AudioConstants.MaximumFramesPerBatch) return 0;\n        try\n        {\n            var count = checked((int)frames);\n            var samples = GC.AllocateUninitializedArray<short>(checked(count * AudioConstants.StereoChannelCount));\n            Marshal.Copy(data, samples, 0, samples.Length);\n            Enqueue(samples, count);\n            return frames;\n        }\n        catch (Exception error) { Failure ??= error; return 0; }\n    }",
+            "kind": "MethodDeclarationSyntax"
+          },
+          {
+            "calls": [
+              {
+                "symbol": "GWGUI.Emulation.Watara.Common.Machines.Common.Functions.AudioFunctions.MaximumBufferedFrames(int)",
+                "expression": "AudioFunctions.MaximumBufferedFrames(SampleRate)",
+                "assembly": "gwgui.emulation.watara"
+              },
+              {
+                "symbol": "GWGUI.Emulation.Watara.Common.Machines.Common.Functions.AudioFunctions.RetainNewestFrames(GWGUI.Emulation.Contracts.AudioChunk, int)",
+                "expression": "AudioFunctions.RetainNewestFrames(chunk, maximum)",
+                "assembly": "gwgui.emulation.watara"
+              },
+              {
+                "symbol": "System.Collections.Generic.Queue<GWGUI.Emulation.Contracts.AudioChunk>.Dequeue()",
+                "expression": "_chunks.Dequeue()",
+                "assembly": "System.Collections"
+              },
+              {
+                "symbol": "System.Collections.Generic.Queue<GWGUI.Emulation.Contracts.AudioChunk>.Enqueue(GWGUI.Emulation.Contracts.AudioChunk)",
+                "expression": "_chunks.Enqueue(chunk)",
+                "assembly": "System.Collections"
+              }
+            ],
+            "type": null,
+            "constants": [
+              {
+                "expression": "0",
+                "value": 0
+              }
+            ],
+            "assembly": null,
+            "text": "private void Enqueue(short[] samples, int frames)\n    {\n        var chunk = new AudioChunk(samples, SampleRate, frames, ++_sequence, TimeSpan.Zero);\n        var maximum = AudioFunctions.MaximumBufferedFrames(SampleRate);\n        chunk = AudioFunctions.RetainNewestFrames(chunk, maximum);\n        LatestChunk = chunk;\n        while (_chunks.Count > 0 && _bufferedFrames + chunk.FrameCount > maximum) { _bufferedFrames -= _chunks.Dequeue().FrameCount; OverrunCount++; }\n        _chunks.Enqueue(chunk);\n        _bufferedFrames += chunk.FrameCount;\n    }",
+            "kind": "MethodDeclarationSyntax"
+          },
+          {
+            "calls": [
+              {
+                "symbol": "System.Collections.Generic.Queue<GWGUI.Emulation.Contracts.AudioChunk>.TryDequeue(out GWGUI.Emulation.Contracts.AudioChunk)",
+                "expression": "_chunks.TryDequeue(out chunk)",
+                "assembly": "System.Collections"
+              }
+            ],
+            "type": null,
+            "constants": [
+              {
+                "expression": "false",
+                "value": false
+              },
+              {
+                "expression": "true",
+                "value": true
+              }
+            ],
+            "assembly": null,
+            "text": "internal bool TryDequeue(out AudioChunk? chunk)\n    {\n        if (!_chunks.TryDequeue(out chunk)) return false;\n        _bufferedFrames -= chunk.FrameCount;\n        return true;\n    }",
+            "kind": "MethodDeclarationSyntax"
+          },
+          {
+            "calls": [
+              {
+                "symbol": "System.Collections.Generic.Queue<GWGUI.Emulation.Contracts.AudioChunk>.Clear()",
+                "expression": "_chunks.Clear()",
+                "assembly": "System.Collections"
+              }
+            ],
+            "type": null,
+            "constants": [
+              {
+                "expression": "true",
+                "value": true
+              },
+              {
+                "expression": "0",
+                "value": 0
+              }
+            ],
+            "assembly": null,
+            "text": "public void Dispose()\n    {\n        _disposed = true;\n        _chunks.Clear();\n        _bufferedFrames = 0;\n        LatestChunk = null;\n        Failure = null;\n    }",
+            "kind": "MethodDeclarationSyntax"
+          }
+        ],
+        "helper": {
+          "calls": [
+            {
+              "symbol": "System.Math.Max(int, int)",
+              "expression": "Math.Max(AudioConstants.MinimumBufferedFrameCount, sampleRate / AudioConstants.BufferDurationDivisor)",
+              "assembly": "System.Runtime"
+            },
+            {
+              "symbol": "GWGUI.Emulation.Functions.EmulationAudioFunctions.SingleFrame(short, short)",
+              "expression": "EmulationAudioFunctions.SingleFrame(left, right)",
+              "assembly": "gwgui.emulation"
+            },
+            {
+              "symbol": "GWGUI.Emulation.Functions.EmulationAudioFunctions.RetainNewestFrames(GWGUI.Emulation.Contracts.AudioChunk, int)",
+              "expression": "EmulationAudioFunctions.RetainNewestFrames(chunk, maximumFrames)",
+              "assembly": "gwgui.emulation"
+            },
+            {
+              "symbol": "GWGUI.Emulation.Functions.EmulationAudioFunctions.NormalizeVolume(float)",
+              "expression": "EmulationAudioFunctions.NormalizeVolume(volume)",
+              "assembly": "gwgui.emulation"
+            },
+            {
+              "symbol": "GWGUI.Emulation.Functions.EmulationAudioFunctions.ApplyVolume(System.ReadOnlySpan<short>, float, ref short[])",
+              "expression": "EmulationAudioFunctions.ApplyVolume(samples, volume, ref buffer)",
+              "assembly": "gwgui.emulation"
+            }
+          ],
+          "text": "\r\nnamespace GWGUI.Emulation.Watara.Common.Machines.Common.Functions;\r\n\r\ninternal static class AudioFunctions\r\n{\r\n    internal static int MaximumBufferedFrames(int sampleRate) => Math.Max(AudioConstants.MinimumBufferedFrameCount, sampleRate / AudioConstants.BufferDurationDivisor);\r\n\r\n    internal static short[] SingleFrame(short left, short right) => EmulationAudioFunctions.SingleFrame(left, right);\r\n\r\n    internal static AudioChunk RetainNewestFrames(AudioChunk chunk, int maximumFrames)\r\n    => EmulationAudioFunctions.RetainNewestFrames(chunk, maximumFrames);\r\n}\r\n\r\ninternal static class AudioOutputFunctions\r\n{\r\n    internal static float NormalizeVolume(float volume) => EmulationAudioFunctions.NormalizeVolume(volume);\r\n\r\n    internal static ReadOnlySpan<short> ApplyVolume(ReadOnlySpan<short> samples, float volume, ref short[] buffer) =>\n        EmulationAudioFunctions.ApplyVolume(samples, volume, ref buffer);\r\n}\r\n",
+          "path": "src/GWGUI.Emulation.Watara/Common/Machines/Common/Functions/AudioFunctions.cs",
+          "sha256": "4DEA566573324E116083B4E5B9B3737E8B8F49FE869E0852BDF377A687A64CAB"
+        },
+        "singleFrameCount": 1,
+        "path": "src/GWGUI.Emulation.Watara/Emulators/Potator/Interop/Services/AudioCallbackHost.cs",
+        "wholeOriginalClassTokensIdentical": true,
+        "maximumFramesPerBatch": 65536,
+        "sha256": "A2C13473E8EBBC7676FE3668F6B090BA09D53150C79BB4DC49FC76A18D6B8F26",
+        "globalPath": "src/GWGUI.Emulation.Watara/EmulationGlobalUsings.cs"
+      },
+      {
+        "channelCount": 2,
+        "members": [
+          {
+            "calls": [],
+            "type": "System.Collections.Generic.Queue<GWGUI.Emulation.Contracts.AudioChunk>",
+            "constants": [],
+            "assembly": "System.Collections",
+            "text": "private readonly Queue<AudioChunk> _chunks = new();",
+            "kind": "FieldDeclarationSyntax"
+          },
+          {
+            "calls": [],
+            "type": "int",
+            "constants": [],
+            "assembly": "System.Runtime",
+            "text": "private int _bufferedFrames;",
+            "kind": "FieldDeclarationSyntax"
+          },
+          {
+            "calls": [],
+            "type": "long",
+            "constants": [],
+            "assembly": "System.Runtime",
+            "text": "private long _sequence;",
+            "kind": "FieldDeclarationSyntax"
+          },
+          {
+            "calls": [],
+            "type": "bool",
+            "constants": [],
+            "assembly": "System.Runtime",
+            "text": "private bool _disposed;",
+            "kind": "FieldDeclarationSyntax"
+          },
+          {
+            "calls": [],
+            "type": null,
+            "constants": [],
+            "assembly": null,
+            "text": "internal AudioCallbackHost() { SampleCallback = OnSample; BatchCallback = OnBatch; }",
+            "kind": "ConstructorDeclarationSyntax"
+          },
+          {
+            "calls": [],
+            "type": "GWGUI.Emulation.Interop.ExternalCoreApi.AudioSampleCallback",
+            "constants": [],
+            "assembly": "gwgui.emulation",
+            "text": "internal ExternalCoreApi.AudioSampleCallback SampleCallback { get; }",
+            "kind": "PropertyDeclarationSyntax"
+          },
+          {
+            "calls": [],
+            "type": "GWGUI.Emulation.Interop.ExternalCoreApi.AudioBatchCallback",
+            "constants": [],
+            "assembly": "gwgui.emulation",
+            "text": "internal ExternalCoreApi.AudioBatchCallback BatchCallback { get; }",
+            "kind": "PropertyDeclarationSyntax"
+          },
+          {
+            "calls": [],
+            "type": "int",
+            "constants": [],
+            "assembly": "System.Runtime",
+            "text": "internal int SampleRate { get; set; }",
+            "kind": "PropertyDeclarationSyntax"
+          },
+          {
+            "calls": [],
+            "type": "GWGUI.Emulation.Contracts.AudioChunk",
+            "constants": [],
+            "assembly": "gwgui.emulation",
+            "text": "internal AudioChunk? LatestChunk { get; private set; }",
+            "kind": "PropertyDeclarationSyntax"
+          },
+          {
+            "calls": [],
+            "type": "System.Exception",
+            "constants": [],
+            "assembly": "System.Runtime",
+            "text": "internal Exception? Failure { get; private set; }",
+            "kind": "PropertyDeclarationSyntax"
+          },
+          {
+            "calls": [],
+            "type": "int",
+            "constants": [],
+            "assembly": "System.Runtime",
+            "text": "internal int BufferedFrames => _bufferedFrames;",
+            "kind": "PropertyDeclarationSyntax"
+          },
+          {
+            "calls": [],
+            "type": "long",
+            "constants": [],
+            "assembly": "System.Runtime",
+            "text": "internal long OverrunCount { get; private set; }",
+            "kind": "PropertyDeclarationSyntax"
+          },
+          {
+            "calls": [],
+            "type": "long",
+            "constants": [
+              {
+                "expression": "0",
+                "value": 0
+              }
+            ],
+            "assembly": "System.Runtime",
+            "text": "internal long UnderrunCount => 0;",
+            "kind": "PropertyDeclarationSyntax"
+          },
+          {
+            "calls": [
+              {
+                "symbol": "GWGUI.Emulation.Wenquxing.Emulators.Wqxemu.Interop.Services.AudioCallbackHost.Enqueue(short[], int)",
+                "expression": "Enqueue([left, right], AudioConstants.SingleFrameCount)",
+                "assembly": "gwgui.emulation.wenquxing"
+              }
+            ],
+            "type": null,
+            "constants": [
+              {
+                "expression": "AudioConstants.SingleFrameCount",
+                "value": 1
+              },
+              {
+                "expression": "SingleFrameCount",
+                "value": 1
+              }
+            ],
+            "assembly": null,
+            "text": "private void OnSample(short left, short right)\n    {\n        if (_disposed) return;\n        try { Enqueue([left, right], AudioConstants.SingleFrameCount); }\n        catch (Exception error) { Failure ??= error; }\n    }",
+            "kind": "MethodDeclarationSyntax"
+          },
+          {
+            "calls": [
+              {
+                "symbol": "System.GC.AllocateUninitializedArray<short>(int, bool)",
+                "expression": "GC.AllocateUninitializedArray<short>(checked(count * AudioConstants.StereoChannelCount))",
+                "assembly": "System.Runtime"
+              },
+              {
+                "symbol": "System.Runtime.InteropServices.Marshal.Copy(nint, short[], int, int)",
+                "expression": "Marshal.Copy(data, samples, 0, samples.Length)",
+                "assembly": "System.Runtime.InteropServices"
+              },
+              {
+                "symbol": "GWGUI.Emulation.Wenquxing.Emulators.Wqxemu.Interop.Services.AudioCallbackHost.Enqueue(short[], int)",
+                "expression": "Enqueue(samples, count)",
+                "assembly": "gwgui.emulation.wenquxing"
+              }
+            ],
+            "type": null,
+            "constants": [
+              {
+                "expression": "0",
+                "value": 0
+              },
+              {
+                "expression": "AudioConstants.MaximumFramesPerBatch",
+                "value": 65536
+              },
+              {
+                "expression": "MaximumFramesPerBatch",
+                "value": 65536
+              },
+              {
+                "expression": "0",
+                "value": 0
+              },
+              {
+                "expression": "AudioConstants.StereoChannelCount",
+                "value": 2
+              },
+              {
+                "expression": "StereoChannelCount",
+                "value": 2
+              },
+              {
+                "expression": "0",
+                "value": 0
+              },
+              {
+                "expression": "0",
+                "value": 0
+              }
+            ],
+            "assembly": null,
+            "text": "private nuint OnBatch(nint data, nuint frames)\n    {\n        if (_disposed || data == nint.Zero || frames == 0 || frames > AudioConstants.MaximumFramesPerBatch) return 0;\n        try\n        {\n            var count = checked((int)frames);\n            var samples = GC.AllocateUninitializedArray<short>(checked(count * AudioConstants.StereoChannelCount));\n            Marshal.Copy(data, samples, 0, samples.Length);\n            Enqueue(samples, count);\n            return frames;\n        }\n        catch (Exception error) { Failure ??= error; return 0; }\n    }",
+            "kind": "MethodDeclarationSyntax"
+          },
+          {
+            "calls": [
+              {
+                "symbol": "GWGUI.Emulation.Wenquxing.Common.Machines.Common.Functions.AudioFunctions.MaximumBufferedFrames(int)",
+                "expression": "AudioFunctions.MaximumBufferedFrames(SampleRate)",
+                "assembly": "gwgui.emulation.wenquxing"
+              },
+              {
+                "symbol": "GWGUI.Emulation.Wenquxing.Common.Machines.Common.Functions.AudioFunctions.RetainNewestFrames(GWGUI.Emulation.Contracts.AudioChunk, int)",
+                "expression": "AudioFunctions.RetainNewestFrames(chunk, maximum)",
+                "assembly": "gwgui.emulation.wenquxing"
+              },
+              {
+                "symbol": "System.Collections.Generic.Queue<GWGUI.Emulation.Contracts.AudioChunk>.Dequeue()",
+                "expression": "_chunks.Dequeue()",
+                "assembly": "System.Collections"
+              },
+              {
+                "symbol": "System.Collections.Generic.Queue<GWGUI.Emulation.Contracts.AudioChunk>.Enqueue(GWGUI.Emulation.Contracts.AudioChunk)",
+                "expression": "_chunks.Enqueue(chunk)",
+                "assembly": "System.Collections"
+              }
+            ],
+            "type": null,
+            "constants": [
+              {
+                "expression": "0",
+                "value": 0
+              }
+            ],
+            "assembly": null,
+            "text": "private void Enqueue(short[] samples, int frames)\n    {\n        var chunk = new AudioChunk(samples, SampleRate, frames, ++_sequence, TimeSpan.Zero);\n        var maximum = AudioFunctions.MaximumBufferedFrames(SampleRate);\n        chunk = AudioFunctions.RetainNewestFrames(chunk, maximum);\n        LatestChunk = chunk;\n        while (_chunks.Count > 0 && _bufferedFrames + chunk.FrameCount > maximum) { _bufferedFrames -= _chunks.Dequeue().FrameCount; OverrunCount++; }\n        _chunks.Enqueue(chunk);\n        _bufferedFrames += chunk.FrameCount;\n    }",
+            "kind": "MethodDeclarationSyntax"
+          },
+          {
+            "calls": [
+              {
+                "symbol": "System.Collections.Generic.Queue<GWGUI.Emulation.Contracts.AudioChunk>.TryDequeue(out GWGUI.Emulation.Contracts.AudioChunk)",
+                "expression": "_chunks.TryDequeue(out chunk)",
+                "assembly": "System.Collections"
+              }
+            ],
+            "type": null,
+            "constants": [
+              {
+                "expression": "false",
+                "value": false
+              },
+              {
+                "expression": "true",
+                "value": true
+              }
+            ],
+            "assembly": null,
+            "text": "internal bool TryDequeue(out AudioChunk? chunk)\n    {\n        if (!_chunks.TryDequeue(out chunk)) return false;\n        _bufferedFrames -= chunk.FrameCount;\n        return true;\n    }",
+            "kind": "MethodDeclarationSyntax"
+          },
+          {
+            "calls": [
+              {
+                "symbol": "System.Collections.Generic.Queue<GWGUI.Emulation.Contracts.AudioChunk>.Clear()",
+                "expression": "_chunks.Clear()",
+                "assembly": "System.Collections"
+              }
+            ],
+            "type": null,
+            "constants": [
+              {
+                "expression": "true",
+                "value": true
+              },
+              {
+                "expression": "0",
+                "value": 0
+              }
+            ],
+            "assembly": null,
+            "text": "public void Dispose()\n    {\n        _disposed = true;\n        _chunks.Clear();\n        _bufferedFrames = 0;\n        LatestChunk = null;\n        Failure = null;\n    }",
+            "kind": "MethodDeclarationSyntax"
+          }
+        ],
+        "helper": {
+          "calls": [
+            {
+              "symbol": "System.Math.Max(int, int)",
+              "expression": "Math.Max(AudioConstants.MinimumBufferedFrameCount, sampleRate / AudioConstants.BufferDurationDivisor)",
+              "assembly": "System.Runtime"
+            },
+            {
+              "symbol": "GWGUI.Emulation.Functions.EmulationAudioFunctions.SingleFrame(short, short)",
+              "expression": "EmulationAudioFunctions.SingleFrame(left, right)",
+              "assembly": "gwgui.emulation"
+            },
+            {
+              "symbol": "GWGUI.Emulation.Functions.EmulationAudioFunctions.RetainNewestFrames(GWGUI.Emulation.Contracts.AudioChunk, int)",
+              "expression": "EmulationAudioFunctions.RetainNewestFrames(chunk, maximumFrames)",
+              "assembly": "gwgui.emulation"
+            },
+            {
+              "symbol": "GWGUI.Emulation.Functions.EmulationAudioFunctions.NormalizeVolume(float)",
+              "expression": "EmulationAudioFunctions.NormalizeVolume(volume)",
+              "assembly": "gwgui.emulation"
+            },
+            {
+              "symbol": "GWGUI.Emulation.Functions.EmulationAudioFunctions.ApplyVolume(System.ReadOnlySpan<short>, float, ref short[])",
+              "expression": "EmulationAudioFunctions.ApplyVolume(samples, volume, ref buffer)",
+              "assembly": "gwgui.emulation"
+            }
+          ],
+          "text": "\r\nnamespace GWGUI.Emulation.Wenquxing.Common.Machines.Common.Functions;\r\n\r\ninternal static class AudioFunctions\r\n{\r\n    internal static int MaximumBufferedFrames(int sampleRate) => Math.Max(AudioConstants.MinimumBufferedFrameCount, sampleRate / AudioConstants.BufferDurationDivisor);\r\n\r\n    internal static short[] SingleFrame(short left, short right) => EmulationAudioFunctions.SingleFrame(left, right);\r\n\r\n    internal static AudioChunk RetainNewestFrames(AudioChunk chunk, int maximumFrames)\r\n    => EmulationAudioFunctions.RetainNewestFrames(chunk, maximumFrames);\r\n}\r\n\r\ninternal static class AudioOutputFunctions\r\n{\r\n    internal static float NormalizeVolume(float volume) => EmulationAudioFunctions.NormalizeVolume(volume);\r\n\r\n    internal static ReadOnlySpan<short> ApplyVolume(ReadOnlySpan<short> samples, float volume, ref short[] buffer) =>\n        EmulationAudioFunctions.ApplyVolume(samples, volume, ref buffer);\r\n}\r\n",
+          "path": "src/GWGUI.Emulation.Wenquxing/Common/Machines/Common/Functions/AudioFunctions.cs",
+          "sha256": "240795E610B0DFB05848A53EB74B00FC0806B7D6A52DEEFCB5C318D60ED8AC4B"
+        },
+        "singleFrameCount": 1,
+        "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Interop/Services/AudioCallbackHost.cs",
+        "wholeOriginalClassTokensIdentical": true,
+        "maximumFramesPerBatch": 65536,
+        "sha256": "EB0DFC3D642D65D04AF9C7517025487D2F096FFA5DF7D322DC17BB5AB8CB2BDC",
+        "globalPath": "src/GWGUI.Emulation.Wenquxing/EmulationGlobalUsings.cs"
+      }
+    ],
+    "policy": "No lock; trim before publishing LatestChunk; evict before enqueue; trimming itself does not increment overrun; underrun getter is always zero; callbacks catch the first exception into Failure; Dispose sets disposed first and clears queue/latest/failure.",
+    "semanticProjects": [
+      "GWGUI.Emulation",
+      "GWGUI.Emulation.Panasonic",
+      "GWGUI.Emulation.Thomson",
+      "GWGUI.Emulation.Watara",
+      "GWGUI.Emulation.Wenquxing"
+    ],
+    "unusedAdditionalAdapters": {
+      "decision": "Remove the entire unused AudioFunctions class, retaining AudioOutputFunctions",
+      "modules": [
+        "Thomson",
+        "Watara",
+        "Wenquxing"
+      ],
+      "references": "No AudioFunctions references remain after callback move except each unused declaration",
+      "method": "AudioFunctions.SingleFrame"
+    },
+    "verification": {
+      "copyAndSingleFrameExpansionsIdentical": true,
+      "catchAndDisposeTokensUnchanged": true,
+      "primitiveFileUnchanged": true,
+      "sdk": {
+        "sha256": "221050564E6192961B10DDE888AA06BDB5C6EE403376077D3B507CDBE9253EEE",
+        "path": "src/GWGUI.Emulation/Services/ExternalCoreAudioCallbackHost.cs"
+      },
+      "state": "verified: whole owner, primitive expansions, original/current bindings and 158 tests",
+      "primitiveBindings": [
+        {
+          "assembly": "gwgui.emulation",
+          "symbol": "GWGUI.Emulation.Functions.EmulationAudioFunctions.SingleFrame(short, short)",
+          "expression": "EmulationAudioFunctions.SingleFrame(left, right)"
+        },
+        {
+          "assembly": "gwgui.emulation",
+          "symbol": "GWGUI.Emulation.Functions.EmulationAudioFunctions.CopyBatch(nint, int)",
+          "expression": "EmulationAudioFunctions.CopyBatch(data, count)"
+        },
+        {
+          "assembly": "gwgui.emulation",
+          "symbol": "GWGUI.Emulation.Functions.EmulationAudioFunctions.MaximumBufferedFrames(int)",
+          "expression": "EmulationAudioFunctions.MaximumBufferedFrames(SampleRate)"
+        },
+        {
+          "assembly": "gwgui.emulation",
+          "symbol": "GWGUI.Emulation.Functions.EmulationAudioFunctions.RetainNewestFrames(GWGUI.Emulation.Contracts.AudioChunk, int)",
+          "expression": "EmulationAudioFunctions.RetainNewestFrames(chunk, maximum)"
+        }
+      ],
+      "projects": [
+        "GWGUI.Emulation",
+        "GWGUI.Emulation.Panasonic",
+        "GWGUI.Emulation.Thomson",
+        "GWGUI.Emulation.Watara",
+        "GWGUI.Emulation.Wenquxing"
+      ],
+      "sources": [
+        {
+          "removedPath": "src/GWGUI.Emulation.Panasonic/Emulators/Opera/Interop/Services/AudioCallbackHost.cs",
+          "before": [
+            {
+              "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Panasonic\\Emulators\\Opera\\Interop\\Services\\ExternalCore.cs",
+              "position": 1434,
+              "target": "GWGUI.Emulation.Panasonic.Emulators.Opera.Interop.Services.AudioCallbackHost"
+            },
+            {
+              "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Panasonic\\Emulators\\Opera\\Interop\\Services\\ExternalCore.cs",
+              "position": 4383,
+              "target": "GWGUI.Emulation.Panasonic.Emulators.Opera.Interop.Services.AudioCallbackHost"
+            },
+            {
+              "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Panasonic\\Emulators\\Opera\\Interop\\Services\\EnvironmentCallbackHost.cs",
+              "position": 478,
+              "target": "GWGUI.Emulation.Panasonic.Emulators.Opera.Interop.Services.AudioCallbackHost"
+            },
+            {
+              "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Panasonic\\Emulators\\Opera\\Interop\\Services\\EnvironmentCallbackHost.cs",
+              "position": 839,
+              "target": "GWGUI.Emulation.Panasonic.Emulators.Opera.Interop.Services.AudioCallbackHost"
+            }
+          ],
+          "capacityDivisor": 5,
+          "retainer": "GWGUI.Emulation.Functions.EmulationAudioFunctions.RetainNewestFrames(GWGUI.Emulation.Contracts.AudioChunk, int)",
+          "capacityMinimum": 1,
+          "originalAndCurrentCompilationsValid": true,
+          "helper": {
+            "sha256": "F78F7388CD39CBFF2851959F69F24489B38BBE78A800E1BAC8669D641DD1ECAC",
+            "path": "src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Functions/AudioFunctions.cs"
+          },
+          "otherAliasAndOutputTokensUnchanged": true,
+          "global": {
+            "sha256": "42167ADE100897AA8BAD9CD99633BE72C1C659614BFAAFD8AD5FE0AF8599A4D6",
+            "path": "src/GWGUI.Emulation.Panasonic/EmulationGlobalUsings.cs"
+          },
+          "after": [
+            {
+              "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Panasonic\\Emulators\\Opera\\Interop\\Services\\ExternalCore.cs",
+              "position": 1434,
+              "target": "GWGUI.Emulation.Services.ExternalCoreAudioCallbackHost"
+            },
+            {
+              "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Panasonic\\Emulators\\Opera\\Interop\\Services\\ExternalCore.cs",
+              "position": 4383,
+              "target": "GWGUI.Emulation.Services.ExternalCoreAudioCallbackHost"
+            },
+            {
+              "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Panasonic\\Emulators\\Opera\\Interop\\Services\\EnvironmentCallbackHost.cs",
+              "position": 478,
+              "target": "GWGUI.Emulation.Services.ExternalCoreAudioCallbackHost"
+            },
+            {
+              "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Panasonic\\Emulators\\Opera\\Interop\\Services\\EnvironmentCallbackHost.cs",
+              "position": 839,
+              "target": "GWGUI.Emulation.Services.ExternalCoreAudioCallbackHost"
+            }
+          ]
+        },
+        {
+          "removedPath": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Interop/Services/AudioCallbackHost.cs",
+          "before": [
+            {
+              "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Thomson\\Emulators\\Theodore\\Interop\\Services\\ExternalCore.cs",
+              "position": 1433,
+              "target": "GWGUI.Emulation.Thomson.Emulators.Theodore.Interop.Services.AudioCallbackHost"
+            },
+            {
+              "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Thomson\\Emulators\\Theodore\\Interop\\Services\\ExternalCore.cs",
+              "position": 4156,
+              "target": "GWGUI.Emulation.Thomson.Emulators.Theodore.Interop.Services.AudioCallbackHost"
+            },
+            {
+              "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Thomson\\Emulators\\Theodore\\Interop\\Services\\EnvironmentCallbackHost.cs",
+              "position": 479,
+              "target": "GWGUI.Emulation.Thomson.Emulators.Theodore.Interop.Services.AudioCallbackHost"
+            },
+            {
+              "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Thomson\\Emulators\\Theodore\\Interop\\Services\\EnvironmentCallbackHost.cs",
+              "position": 840,
+              "target": "GWGUI.Emulation.Thomson.Emulators.Theodore.Interop.Services.AudioCallbackHost"
+            }
+          ],
+          "capacityDivisor": 5,
+          "retainer": "GWGUI.Emulation.Functions.EmulationAudioFunctions.RetainNewestFrames(GWGUI.Emulation.Contracts.AudioChunk, int)",
+          "capacityMinimum": 1,
+          "originalAndCurrentCompilationsValid": true,
+          "helper": {
+            "sha256": "D5FBDD12B3E02B06A0CE26549B103602A6F0B8B8BE917ADBBE2AE972A4533930",
+            "path": "src/GWGUI.Emulation.Thomson/Common/Machines/Common/Functions/AudioFunctions.cs"
+          },
+          "otherAliasAndOutputTokensUnchanged": true,
+          "global": {
+            "sha256": "8068093C01B8017CE0272A7DBCFDE288335D4B07AE1609AD863734618AE180D6",
+            "path": "src/GWGUI.Emulation.Thomson/EmulationGlobalUsings.cs"
+          },
+          "after": [
+            {
+              "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Thomson\\Emulators\\Theodore\\Interop\\Services\\ExternalCore.cs",
+              "position": 1433,
+              "target": "GWGUI.Emulation.Services.ExternalCoreAudioCallbackHost"
+            },
+            {
+              "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Thomson\\Emulators\\Theodore\\Interop\\Services\\ExternalCore.cs",
+              "position": 4156,
+              "target": "GWGUI.Emulation.Services.ExternalCoreAudioCallbackHost"
+            },
+            {
+              "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Thomson\\Emulators\\Theodore\\Interop\\Services\\EnvironmentCallbackHost.cs",
+              "position": 479,
+              "target": "GWGUI.Emulation.Services.ExternalCoreAudioCallbackHost"
+            },
+            {
+              "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Thomson\\Emulators\\Theodore\\Interop\\Services\\EnvironmentCallbackHost.cs",
+              "position": 840,
+              "target": "GWGUI.Emulation.Services.ExternalCoreAudioCallbackHost"
+            }
+          ]
+        },
+        {
+          "removedPath": "src/GWGUI.Emulation.Watara/Emulators/Potator/Interop/Services/AudioCallbackHost.cs",
+          "before": [
+            {
+              "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Watara\\Emulators\\Potator\\Interop\\Services\\ExternalCore.cs",
+              "position": 1341,
+              "target": "GWGUI.Emulation.Watara.Emulators.Potator.Interop.Services.AudioCallbackHost"
+            },
+            {
+              "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Watara\\Emulators\\Potator\\Interop\\Services\\ExternalCore.cs",
+              "position": 4145,
+              "target": "GWGUI.Emulation.Watara.Emulators.Potator.Interop.Services.AudioCallbackHost"
+            },
+            {
+              "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Watara\\Emulators\\Potator\\Interop\\Services\\EnvironmentCallbackHost.cs",
+              "position": 1487,
+              "target": "GWGUI.Emulation.Watara.Emulators.Potator.Interop.Services.AudioCallbackHost"
+            },
+            {
+              "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Watara\\Emulators\\Potator\\Interop\\Services\\EnvironmentCallbackHost.cs",
+              "position": 1848,
+              "target": "GWGUI.Emulation.Watara.Emulators.Potator.Interop.Services.AudioCallbackHost"
+            }
+          ],
+          "capacityDivisor": 5,
+          "retainer": "GWGUI.Emulation.Functions.EmulationAudioFunctions.RetainNewestFrames(GWGUI.Emulation.Contracts.AudioChunk, int)",
+          "capacityMinimum": 1,
+          "originalAndCurrentCompilationsValid": true,
+          "helper": {
+            "sha256": "51356E7B87AA73515C89A3BED1D550240A6A7602B005C4839AA5F3F0DA1FEEEE",
+            "path": "src/GWGUI.Emulation.Watara/Common/Machines/Common/Functions/AudioFunctions.cs"
+          },
+          "otherAliasAndOutputTokensUnchanged": true,
+          "global": {
+            "sha256": "3533F6B85E60BD7BE5817D76128EB331216C49C4E7AF8609F81A4B08EA835F8A",
+            "path": "src/GWGUI.Emulation.Watara/EmulationGlobalUsings.cs"
+          },
+          "after": [
+            {
+              "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Watara\\Emulators\\Potator\\Interop\\Services\\ExternalCore.cs",
+              "position": 1341,
+              "target": "GWGUI.Emulation.Services.ExternalCoreAudioCallbackHost"
+            },
+            {
+              "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Watara\\Emulators\\Potator\\Interop\\Services\\ExternalCore.cs",
+              "position": 4145,
+              "target": "GWGUI.Emulation.Services.ExternalCoreAudioCallbackHost"
+            },
+            {
+              "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Watara\\Emulators\\Potator\\Interop\\Services\\EnvironmentCallbackHost.cs",
+              "position": 1487,
+              "target": "GWGUI.Emulation.Services.ExternalCoreAudioCallbackHost"
+            },
+            {
+              "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Watara\\Emulators\\Potator\\Interop\\Services\\EnvironmentCallbackHost.cs",
+              "position": 1848,
+              "target": "GWGUI.Emulation.Services.ExternalCoreAudioCallbackHost"
+            }
+          ]
+        },
+        {
+          "removedPath": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Interop/Services/AudioCallbackHost.cs",
+          "before": [
+            {
+              "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Wenquxing\\Emulators\\Wqxemu\\Interop\\Services\\ExternalCore.cs",
+              "position": 1439,
+              "target": "GWGUI.Emulation.Wenquxing.Emulators.Wqxemu.Interop.Services.AudioCallbackHost"
+            },
+            {
+              "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Wenquxing\\Emulators\\Wqxemu\\Interop\\Services\\ExternalCore.cs",
+              "position": 4216,
+              "target": "GWGUI.Emulation.Wenquxing.Emulators.Wqxemu.Interop.Services.AudioCallbackHost"
+            },
+            {
+              "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Wenquxing\\Emulators\\Wqxemu\\Interop\\Services\\EnvironmentCallbackHost.cs",
+              "position": 479,
+              "target": "GWGUI.Emulation.Wenquxing.Emulators.Wqxemu.Interop.Services.AudioCallbackHost"
+            },
+            {
+              "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Wenquxing\\Emulators\\Wqxemu\\Interop\\Services\\EnvironmentCallbackHost.cs",
+              "position": 840,
+              "target": "GWGUI.Emulation.Wenquxing.Emulators.Wqxemu.Interop.Services.AudioCallbackHost"
+            }
+          ],
+          "capacityDivisor": 5,
+          "retainer": "GWGUI.Emulation.Functions.EmulationAudioFunctions.RetainNewestFrames(GWGUI.Emulation.Contracts.AudioChunk, int)",
+          "capacityMinimum": 1,
+          "originalAndCurrentCompilationsValid": true,
+          "helper": {
+            "sha256": "44DFEE3D8BB236F801B2C28775C52650CFDF360BE60C211E296845FDD0B25CE1",
+            "path": "src/GWGUI.Emulation.Wenquxing/Common/Machines/Common/Functions/AudioFunctions.cs"
+          },
+          "otherAliasAndOutputTokensUnchanged": true,
+          "global": {
+            "sha256": "D953CDEFFEDCFB8CB19569CAD0BBE8A3E8172688A8D955948BC5AA4BF43D213C",
+            "path": "src/GWGUI.Emulation.Wenquxing/EmulationGlobalUsings.cs"
+          },
+          "after": [
+            {
+              "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Wenquxing\\Emulators\\Wqxemu\\Interop\\Services\\ExternalCore.cs",
+              "position": 1439,
+              "target": "GWGUI.Emulation.Services.ExternalCoreAudioCallbackHost"
+            },
+            {
+              "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Wenquxing\\Emulators\\Wqxemu\\Interop\\Services\\ExternalCore.cs",
+              "position": 4216,
+              "target": "GWGUI.Emulation.Services.ExternalCoreAudioCallbackHost"
+            },
+            {
+              "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Wenquxing\\Emulators\\Wqxemu\\Interop\\Services\\EnvironmentCallbackHost.cs",
+              "position": 479,
+              "target": "GWGUI.Emulation.Services.ExternalCoreAudioCallbackHost"
+            },
+            {
+              "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Wenquxing\\Emulators\\Wqxemu\\Interop\\Services\\EnvironmentCallbackHost.cs",
+              "position": 840,
+              "target": "GWGUI.Emulation.Services.ExternalCoreAudioCallbackHost"
+            }
+          ]
+        }
+      ],
+      "tests": {
+        "externalFilesOrCore": false,
+        "exitCode": 0,
+        "newMemoryCases": 11,
+        "passed": 158,
+        "path": "tests/GWGUI.Tests/Emulation/CoreAudioCallbackHostTests.cs",
+        "sha256": "2F6E183445BE9C2B3EF371DAF1D803E6157F72806680F12631CC532852E7E929",
+        "cleanup": "Host using/finally and native input buffers freed in finally"
+      }
+    },
+    "constantFollowup": {
+      "scope": "Qualified production references searched; semantic confirmation including test consumers required before any constant deletion",
+      "names": [
+        "MaximumFramesPerBatch",
+        "MinimumBufferedFrameCount",
+        "BufferDurationDivisor",
+        "SingleFrameCount",
+        "StereoChannelCount"
+      ],
+      "modules": [
+        "Panasonic",
+        "Thomson",
+        "Watara",
+        "Wenquxing"
+      ],
+      "qualifiedProductionReferencesAfterMove": 0
+    },
+    "reports": {
+      "shortNormalized": 365,
+      "longBodies": 11587,
+      "scope": "Audio queue adapters only; prior AV methods bridged through whole-file proof and disk projections revalidated",
+      "longGroups": 486,
+      "shortBodies": 9516,
+      "shortExact": 773,
+      "files": 7312
+    }
   }
 }

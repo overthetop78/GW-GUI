@@ -1,16 +1,6 @@
 
 namespace GWGUI.Emulation.Thomson.Common.Machines.Common.Functions;
 
-internal static class AudioFunctions
-{
-    internal static int MaximumBufferedFrames(int sampleRate) => Math.Max(AudioConstants.MinimumBufferedFrameCount, sampleRate / AudioConstants.BufferDurationDivisor);
-
-    internal static short[] SingleFrame(short left, short right) => EmulationAudioFunctions.SingleFrame(left, right);
-
-    internal static AudioChunk RetainNewestFrames(AudioChunk chunk, int maximumFrames)
-    => EmulationAudioFunctions.RetainNewestFrames(chunk, maximumFrames);
-}
-
 internal static class AudioOutputFunctions
 {
     internal static float NormalizeVolume(float volume) => EmulationAudioFunctions.NormalizeVolume(volume);
