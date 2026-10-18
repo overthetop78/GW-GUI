@@ -49,4 +49,58 @@ public sealed class CoreInstallationFlowTests
         Assert.Same(error, observed);
         Assert.Equal(Enumerable.Range(0, failureStage + 1), visited);
     }
+
+    [Fact]
+    public async Task WaitsForPreparationAfterValidationAndBeforeReplacement()
+    {
+        var events = new List<string>();
+        var entered = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
+        var release = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
+        var installation = EmulationCoreReleaseFunctions.InstallLibraryAsync(
+            () => { events.Add("download"); return Task.FromResult(123L); },
+            () => events.Add("extract"),
+            size => { events.Add("validate"); return "sha256"; },
+            () => events.Add("replace"),
+            hash => { Assert.Equal("sha256", hash); events.Add("manifest"); return Task.CompletedTask; },
+            () => { events.Add("activate"); return Task.CompletedTask; },
+            size => events.Add("complete"),
+            prepareReplacement: async () =>
+            {
+                events.Add("prepare");
+                entered.SetResult();
+                await release.Task;
+                events.Add("prepared");
+            });
+        try
+        {
+            await entered.Task;
+            Assert.False(installation.IsCompleted);
+            Assert.Equal(new[] { "download", "extract", "validate", "prepare" }, events);
+        }
+        finally
+        {
+            release.TrySetResult();
+            await installation;
+        }
+        Assert.Equal(new[] { "download", "extract", "validate", "prepare", "prepared", "replace", "manifest", "activate", "complete" }, events);
+    }
+
+    [Fact]
+    public async Task PreparationFailureStopsReplacementAndPropagatesTheOriginalError()
+    {
+        var error = new InvalidOperationException("preparation failed");
+        var events = new List<string>();
+        var observed = await Assert.ThrowsAsync<InvalidOperationException>(() =>
+            EmulationCoreReleaseFunctions.InstallLibraryAsync(
+                () => { events.Add("download"); return Task.FromResult(123L); },
+                () => events.Add("extract"),
+                size => { events.Add("validate"); return "sha256"; },
+                () => events.Add("replace"),
+                hash => { events.Add("manifest"); return Task.CompletedTask; },
+                () => { events.Add("activate"); return Task.CompletedTask; },
+                size => events.Add("complete"),
+                prepareReplacement: () => { events.Add("prepare"); return Task.FromException(error); }));
+        Assert.Same(error, observed);
+        Assert.Equal(new[] { "download", "extract", "validate", "prepare" }, events);
+    }
 }

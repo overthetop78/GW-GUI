@@ -7679,5 +7679,17 @@
       "report": "11671 CSharp methods, 529 raw exact candidate groups; adapter matches remain candidates until full qualification",
       "afterProductBuild": "372e42eff"
     }
+  },
+  "ppssppInstallationFlowReuse": {
+    "snapshot": "fc5a57dd4",
+    "owner": "AtariCoreReleaseService before Amstrad (ac7292d86^), reused in existing SDK InstallLibraryAsync",
+    "localPreparation": "PPSSPP 0c88a652b: SystemFilesFunctions.InstallAsync after SHA-256 and before File.Move",
+    "sdk": "Original seven-parameter binary signature retained as forwarding overload; new eight-parameter overload awaits optional preparation at exactly that boundary",
+    "preserved": "Seven original stage statements and parameter types; all other SDK members; PPSSPP download, extraction/copy, verifier, hash, system files arguments, replacement, manifest, progress, return, cleanup and all other members compared by AST tokens",
+    "existingCalls": "Twenty-three other installer call sites retain their seven-argument overload; SDK/App/all 23 module references compiled successfully",
+    "tests": "CoreInstallationFlowTests: 10 passed, exit 0 (8 original + awaiting a controlled preparation task + preparation exception)",
+    "resources": "Task released and awaited in finally; managed events only, no external DLL, download, user storage, process or window",
+    "report": "11673 CSharp method bodies >= 30 tokens, 529 exact candidate groups; whole-project qualification remains incomplete",
+    "afterProductBuild": "372e42eff"
   }
 }
