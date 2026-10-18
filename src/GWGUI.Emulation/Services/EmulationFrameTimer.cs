@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using System.Collections.Concurrent;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using Microsoft.Win32.SafeHandles;
@@ -7,6 +8,27 @@ namespace GWGUI.Emulation.Services;
 
 internal sealed class EmulationFrameTimer : IDisposable
 {
+    internal static void RunLoop(long nextFrame, object gate, ConcurrentQueue<EmulationMachineCommand> commands,
+        Func<bool> isPaused, Action runFrame, Func<double> framesPerSecond,
+        Func<long, double, long> nextFrameTimestamp, Action<long, CancellationToken> waitUntil,
+        CancellationToken cancellationToken, int pauseWaitMilliseconds)
+    {
+        while (!cancellationToken.IsCancellationRequested)
+        {
+            lock (gate)
+                while (isPaused() && commands.IsEmpty && !cancellationToken.IsCancellationRequested)
+                    Monitor.Wait(gate, TimeSpan.FromMilliseconds(pauseWaitMilliseconds));
+            if (cancellationToken.IsCancellationRequested) break;
+            while (commands.TryDequeue(out var command)) command.Execute(rethrow: true);
+            lock (gate)
+                if (isPaused()) continue;
+            runFrame();
+            nextFrame = nextFrameTimestamp(nextFrame, framesPerSecond());
+            waitUntil(nextFrame, cancellationToken);
+            if (nextFrame < Stopwatch.GetTimestamp()) nextFrame = Stopwatch.GetTimestamp();
+        }
+    }
+
     private const uint TimerAllAccess = 0x001F0003;
     private const uint HighResolution = 0x00000002;
     private readonly EventWaitHandle _timer = new(false, EventResetMode.AutoReset);

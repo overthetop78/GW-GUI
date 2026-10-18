@@ -38,19 +38,14 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
             var nextFrame = Stopwatch.GetTimestamp();
             using var frameTimer = new FrameTimer(cancellationToken);
             long videoSequence = default;
-            while (!cancellationToken.IsCancellationRequested)
-            {
-                lock (_gate) while (_pauseRequested && _commands.IsEmpty && !cancellationToken.IsCancellationRequested) Monitor.Wait(_gate, TimeSpan.FromMilliseconds(MachineConstants.PauseWaitMilliseconds));
-                if (cancellationToken.IsCancellationRequested) break;
-                while (_commands.TryDequeue(out var command)) command.Execute(rethrow: true);
-                lock (_gate) if (_pauseRequested) continue;
-                _core.SetInput(_input.Consume());
-                _core.RunFrame();
-                PublishOutputs(ref videoSequence);
-                nextFrame = MachineFunctions.NextFrameTimestamp(nextFrame, _core.FramesPerSecond);
-                frameTimer.WaitUntil(nextFrame, cancellationToken);
-                if (nextFrame < Stopwatch.GetTimestamp()) nextFrame = Stopwatch.GetTimestamp();
-            }
+            EmulationFrameTimer.RunLoop(nextFrame, _gate, _commands, () => _pauseRequested,
+                () => {
+                    _core.SetInput(_input.Consume());
+                    _core.RunFrame();
+                    PublishOutputs(ref videoSequence);
+                },
+                () => _core.FramesPerSecond, MachineFunctions.NextFrameTimestamp, frameTimer.WaitUntil,
+                cancellationToken, MachineConstants.PauseWaitMilliseconds);
         }
         catch (OperationCanceledException) when (cancellationToken.IsCancellationRequested)
         {

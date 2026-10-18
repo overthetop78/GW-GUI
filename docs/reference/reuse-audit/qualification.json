@@ -2349,5 +2349,135 @@
       "command": "dotnet test tests/GWGUI.Tests/GWGUI.Tests.csproj -c Debug --no-restore --filter FullyQualifiedName~MachineCommandTests --disable-build-servers",
       "resources": "No core, window, thread, file or external DLL launched by the test cases"
     }
-  }
+  },
+  "frameLoopReuse": [
+    {
+      "path": "src/GWGUI.Emulation.Acorn/Common/Services/Machine.Commands.cs",
+      "prefixAndTimerUnchanged": true,
+      "frameAndAudioUnchanged": true,
+      "argumentsUnchanged": true,
+      "catchesUnchanged": true,
+      "finallyUnchanged": true
+    },
+    {
+      "path": "src/GWGUI.Emulation.Apple/Common/Services/Machine.Commands.cs",
+      "prefixAndTimerUnchanged": true,
+      "frameAndAudioUnchanged": true,
+      "argumentsUnchanged": true,
+      "catchesUnchanged": true,
+      "finallyUnchanged": true
+    },
+    {
+      "path": "src/GWGUI.Emulation.Atari/Common/Services/Machine.Commands.cs",
+      "prefixAndTimerUnchanged": true,
+      "frameAndAudioUnchanged": true,
+      "argumentsUnchanged": true,
+      "catchesUnchanged": true,
+      "finallyUnchanged": true
+    },
+    {
+      "path": "src/GWGUI.Emulation.Bandai/Common/Services/Machine.Commands.cs",
+      "prefixAndTimerUnchanged": true,
+      "frameAndAudioUnchanged": true,
+      "argumentsUnchanged": true,
+      "catchesUnchanged": true,
+      "finallyUnchanged": true
+    },
+    {
+      "path": "src/GWGUI.Emulation.Coleco/Common/Services/Machine.Commands.cs",
+      "prefixAndTimerUnchanged": true,
+      "frameAndAudioUnchanged": true,
+      "argumentsUnchanged": true,
+      "catchesUnchanged": true,
+      "finallyUnchanged": true
+    },
+    {
+      "path": "src/GWGUI.Emulation.Epoch/Common/Services/Machine.Commands.cs",
+      "prefixAndTimerUnchanged": true,
+      "frameAndAudioUnchanged": true,
+      "argumentsUnchanged": true,
+      "catchesUnchanged": true,
+      "finallyUnchanged": true
+    },
+    {
+      "path": "src/GWGUI.Emulation.Fairchild/Common/Services/Machine.Commands.cs",
+      "prefixAndTimerUnchanged": true,
+      "frameAndAudioUnchanged": true,
+      "argumentsUnchanged": true,
+      "catchesUnchanged": true,
+      "finallyUnchanged": true
+    },
+    {
+      "path": "src/GWGUI.Emulation.Mattel/Common/Services/Machine.Commands.cs",
+      "prefixAndTimerUnchanged": true,
+      "frameAndAudioUnchanged": true,
+      "argumentsUnchanged": true,
+      "catchesUnchanged": true,
+      "finallyUnchanged": true
+    },
+    {
+      "path": "src/GWGUI.Emulation.Panasonic/Common/Services/Machine.Commands.cs",
+      "prefixAndTimerUnchanged": true,
+      "frameAndAudioUnchanged": true,
+      "argumentsUnchanged": true,
+      "catchesUnchanged": true,
+      "finallyUnchanged": true
+    },
+    {
+      "path": "src/GWGUI.Emulation.Philips/Common/Services/Machine.Commands.cs",
+      "prefixAndTimerUnchanged": true,
+      "frameAndAudioUnchanged": true,
+      "argumentsUnchanged": true,
+      "catchesUnchanged": true,
+      "finallyUnchanged": true
+    },
+    {
+      "path": "src/GWGUI.Emulation.Sharp/Common/Services/Machine.Commands.cs",
+      "prefixAndTimerUnchanged": true,
+      "frameAndAudioUnchanged": true,
+      "argumentsUnchanged": true,
+      "catchesUnchanged": true,
+      "finallyUnchanged": true
+    },
+    {
+      "path": "src/GWGUI.Emulation.Sinclair/Common/Services/Machine.Commands.cs",
+      "prefixAndTimerUnchanged": true,
+      "frameAndAudioUnchanged": true,
+      "argumentsUnchanged": true,
+      "catchesUnchanged": true,
+      "finallyUnchanged": true
+    },
+    {
+      "path": "src/GWGUI.Emulation.Snk/Common/Services/Machine.Commands.cs",
+      "prefixAndTimerUnchanged": true,
+      "frameAndAudioUnchanged": true,
+      "argumentsUnchanged": true,
+      "catchesUnchanged": true,
+      "finallyUnchanged": true
+    },
+    {
+      "path": "src/GWGUI.Emulation.Thomson/Common/Services/Machine.Commands.cs",
+      "prefixAndTimerUnchanged": true,
+      "frameAndAudioUnchanged": true,
+      "argumentsUnchanged": true,
+      "catchesUnchanged": true,
+      "finallyUnchanged": true
+    },
+    {
+      "path": "src/GWGUI.Emulation.Watara/Common/Services/Machine.Commands.cs",
+      "prefixAndTimerUnchanged": true,
+      "frameAndAudioUnchanged": true,
+      "argumentsUnchanged": true,
+      "catchesUnchanged": true,
+      "finallyUnchanged": true
+    },
+    {
+      "path": "src/GWGUI.Emulation.Wenquxing/Common/Services/Machine.Commands.cs",
+      "prefixAndTimerUnchanged": true,
+      "frameAndAudioUnchanged": true,
+      "argumentsUnchanged": true,
+      "catchesUnchanged": true,
+      "finallyUnchanged": true
+    }
+  ]
 }
