@@ -1,6 +1,6 @@
 {
   "baseline": "ac7292d86^",
-  "currentCSharpFiles": 7315,
+  "currentCSharpFiles": 7316,
   "outsideSrcCSharpFiles": 295,
   "baselineMethodCount": 5848,
   "currentMethodCount": 11587,
@@ -38054,5 +38054,12 @@
       "qualification": "pending-symbol-and-policy-comparison"
     }
   ],
-  "scope": "All current repository CSharp and PowerShell files; no age filter; candidates require semantic review"
+  "scope": "All current repository CSharp and PowerShell files; no age filter; candidates require semantic review",
+  "declarationOnlyRefresh": {
+    "newInterfaceFiles": 1,
+    "owner": "coreRuntimeContractReuse",
+    "checkedSourceFiles": 24,
+    "unchangedBodyInventory": true,
+    "reason": "Only abstract declarations and base lists changed. All 23 old/current interface files and the new SDK interface have no scanned method bodies; no other source/test files changed."
+  }
 }

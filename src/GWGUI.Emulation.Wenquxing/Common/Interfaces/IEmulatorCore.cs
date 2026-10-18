@@ -7,39 +7,14 @@ using GWGUI.Emulation;
 
 namespace GWGUI.Emulation.Wenquxing.Common.Interfaces;
 
-internal interface IEmulatorCore : IDisposable
+internal interface IEmulatorCore : GWGUI.Emulation.Interfaces.IEmulationCoreRuntime<MachineConfiguration, CoreOption>, GWGUI.Emulation.Interfaces.IEmulationCoreCommands<MediaConfiguration, EmulationPeripheralCategory, DiskStatus>
 {
     Emulator Emulator { get; }
-    VideoFrame? LatestVideoFrame { get; }
-    AudioChunk? LatestAudioChunk { get; }
-    bool TryDequeueAudio(out AudioChunk? chunk);
-    IReadOnlyList<CoreOption> Options { get; }
-    IReadOnlyList<string> Diagnostics { get; }
-    IReadOnlyDictionary<int, bool> LedStates { get; }
-    string CoreName { get; }
-    string CoreVersion { get; }
-    string CoreSha256 { get; }
-    IReadOnlySet<string> SupportedContentExtensions { get; }
     bool SupportsSaveStates { get; }
-    double FramesPerSecond { get; }
-    int SampleRate { get; }
     EmulationVideoStandard? Region { get; }
     int BufferedAudioFrames { get; }
     long AudioOverrunCount { get; }
     long AudioUnderrunCount { get; }
     HostProcessState HostProcessState { get; }
     int? HostProcessId { get; }
-    void Initialize(MachineConfiguration configuration, string sessionDirectory, string? saveDirectory = null);
-    void RunFrame();
-    void HardReset();
-    void Stop();
-    void SetInput(EmulationInputSnapshot snapshot);
-    void SetControllerPortDevice(int port, EmulationPeripheralCategory peripheral);
-    void InsertMedia(MediaConfiguration media);
-    void EjectMedia(EmulationMediaSlot slot);
-    void SelectDisk(int index);
-    DiskStatus GetDiskStatus();
-    byte[] SaveState();
-    void LoadState(ReadOnlySpan<byte> state);
-    void SetOption(string key, string value);
 }

@@ -1,31 +1,9 @@
 {
-  "snapshot": "4e6b9aee2eea70aad6197cba9abfb207bc5bc3e1",
+  "snapshot": "3a6c14f6075be96dbcaf12b28c926cc28044ad3c",
   "snapshotState": "Current worktree based on snapshot",
-  "worktreeSourceChanges": [
-    "src/GWGUI.Emulation.Acorn/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
-    "src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
-    "src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Functions/InputFunctions.Visuals.cs",
-    "src/GWGUI.Emulation.Apple/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
-    "src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
-    "src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/InputFunctions.Visuals.cs",
-    "src/GWGUI.Emulation.Commodore/Common/Machines/Common/Functions/InputFunctions.Keyboard.cs",
-    "src/GWGUI.Emulation.Commodore/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
-    "src/GWGUI.Emulation.Commodore/Common/Machines/Common/Functions/InputFunctions.Visuals.cs",
-    "src/GWGUI.Emulation.Microsoft/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
-    "src/GWGUI.Emulation.Microsoft/Common/Machines/Common/Functions/InputFunctions.Visuals.cs",
-    "src/GWGUI.Emulation.Nec/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
-    "src/GWGUI.Emulation.Nec/Common/Machines/Common/Functions/InputFunctions.Visuals.cs",
-    "src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
-    "src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Functions/InputFunctions.Visuals.cs",
-    "src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
-    "src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/InputFunctions.Visuals.cs",
-    "src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
-    "src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/InputFunctions.Visuals.cs",
-    "src/GWGUI.Emulation/Functions/EmulationInputMappingFunctions.cs",
-    "src/GWGUI.Emulation/Functions/EmulationKeyboardBindingFunctions.cs"
-  ],
+  "worktreeSourceChanges": true,
   "scope": "All current non-ignored repository CSharp files, including hidden paths; BaseMethodDeclaration bodies with fewer than 30 tokens. Candidate presence is not a defect or a completion claim.",
-  "fileCount": 7315,
+  "fileCount": 7316,
   "methodBodyCount": 9518,
   "exactGroups": [
     {
@@ -134868,5 +134846,12 @@
       ],
       "qualification": "Qualified typed adapters to shared SDK interface publication"
     }
-  ]
+  ],
+  "declarationOnlyRefresh": {
+    "newInterfaceFiles": 1,
+    "owner": "coreRuntimeContractReuse",
+    "checkedSourceFiles": 24,
+    "unchangedBodyInventory": true,
+    "reason": "Only abstract declarations and base lists changed. All 23 old/current interface files and the new SDK interface have no scanned method bodies; no other source/test files changed."
+  }
 }
