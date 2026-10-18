@@ -4,18 +4,14 @@ namespace GWGUI.Emulation.Bandai.Common.Machines.Common.Functions;
 
 internal static class RuntimeFunctions
 {
-    internal static int RegionValue(EmulationVideoStandard? region) => region is null ? RuntimeConstants.MissingRegionValue : (int)region.Value;
+    internal static int RegionValue(EmulationVideoStandard? region) => EmulationHostProtocolFunctions.RegionValue(region);
 
-    internal static EmulationVideoStandard? ReadRegion(int value) => value == RuntimeConstants.MissingRegionValue || value is not ((int)EmulationVideoStandard.Ntsc) and not ((int)EmulationVideoStandard.Pal) ? null : (EmulationVideoStandard)value;
+    internal static EmulationVideoStandard? ReadRegion(int value) => EmulationHostProtocolFunctions.ReadRegion(value, allowAllDefinedStandards: false);
 
     internal static HostProcessState ProcessState(Process? process, bool connectionFailed, bool disposed)
-    {
-        if (connectionFailed) return HostProcessState.Faulted;
-        if (process is null) return HostProcessState.NotStarted;
-        if (disposed) return HostProcessState.Exited;
-        try { return process.HasExited ? HostProcessState.Exited : HostProcessState.Running; }
-        catch (InvalidOperationException) { return HostProcessState.Exited; }
-    }
+        =>
+            EmulationHostProtocolFunctions.GetProcessState(process, connectionFailed, disposed,
+                HostProcessState.Faulted, HostProcessState.NotStarted, HostProcessState.Exited, HostProcessState.Running);
 
     internal static RuntimeStatus Status(MachineConfiguration configuration, IEmulatorCore core)
     {
