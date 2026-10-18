@@ -8249,13 +8249,13 @@
     "afterProductBuild": "005e3c677"
   },
   "shortMethodInventory": {
-    "snapshot": "a574c205dc8da8d675cfca591e7e718dff9468e7",
-    "files": 7319,
-    "bodyCount": 9481,
-    "exactGroups": 773,
+    "snapshot": "b59b43218d59a1ec7da59c51824fae843fbcf50b",
+    "files": 7321,
+    "bodyCount": 9484,
+    "exactGroups": 774,
     "renamedGroups": 365,
     "status": "Incomplete; existing queue/empty-method qualifications retained; 29 factory selections now shared and verified; sector source reader-selection stage shared, remaining typed writer ownership pending.",
-    "trackedCSharpCoverage": "Full current source scan: 7319 C# files, including file enumeration tests. Candidate counts are not confirmed defects."
+    "trackedCSharpCoverage": "Full current C# scan, 7321 source files, including original cassette validation extraction and managed compatibility tests. Candidate counts are not proven defects."
   },
   "hardwareIdentityComparisonReuse": {
     "snapshot": "a4760e868",
@@ -10887,7 +10887,7 @@
     "tests": "Six tests passed, exit 0: four new managed iterator cases (order/identity including children of files, deferred evaluation/early disposal, predicate and children failures) plus two existing ISO and GameCube exploration boundary tests. No external files, DLL fixtures, windows, processes or cores; enumerators disposed in finally."
   },
   "tapeEncodingCompatibilityReuse": {
-    "state": "qualified-before-correction",
+    "state": "verified",
     "before": [
       {
         "path": "src/GWGUI.MediaEngine/Images/Writing/Encoding/Sequential/Msx/MsxTapeEncoder.cs",
@@ -10916,6 +10916,23 @@
     "identical": "MSX/Commodore expressions identical including evaluation order: supported format, machine, at least one block, all integrity true and nonempty data, no retained segments, WAV sample-rate check. Their supported format/machine sets remain encoder-specific.",
     "distinct": "Spectrum requires length 2..65535 and remains unchanged. Acorn TryBuildBlock, Atari size/retained-segment policy and TZX CanRetain differ; no common acceptance rule imposed on them.",
     "owners": "SequentialEncodeRequest owns immutable request data; SequentialEncoderRegistry routes encoders and explicitly contains no format algorithm. PcmSampleFunctions owns PCM validation already reused by all three. No existing function owns the duplicated entire byte-block compatibility policy.",
-    "decision": "Extract only the original MSX/Commodore policy into a static SequentialEncodeFunctions function, receiving the original request and existing encoder sets. Preserve all encoders and their waveform/byte serialization; no new registry, request contract, format table or base class."
+    "decision": "Extract only the original MSX/Commodore policy into a static SequentialEncodeFunctions function, receiving the original request and existing encoder sets. Preserve all encoders and their waveform/byte serialization; no new registry, request contract, format table or base class.",
+    "after": [
+      {
+        "path": "src/GWGUI.MediaEngine/Images/Writing/Encoding/Sequential/Msx/MsxTapeEncoder.cs",
+        "sha256": "32D0BEBB7DB7CD03AD12B1574BF542DFAC30F06A8F0047551C0B4D08764E8791",
+        "expandedPolicyIdentical": true,
+        "allOtherTokensIdentical": true
+      },
+      {
+        "path": "src/GWGUI.MediaEngine/Images/Writing/Encoding/Sequential/Commodore/CommodoreTapeEncoder.cs",
+        "sha256": "07004ADCAC9064AF4FAAA1BDFA719C7F03C591BECE22ADB025AAC458E45C259A",
+        "expandedPolicyIdentical": true,
+        "allOtherTokensIdentical": true
+      }
+    ],
+    "ast": "Shared expression exactly restores both original policies by substituting their existing format/machine fields. All other tokens of both files identical to b59b43218; Spectrum source SHA-256 unchanged.",
+    "semanticAfter": "MediaEngine zero semantic errors; both CanEncode calls resolve to SequentialEncodeFunctions.CanEncodeValidatedBytes with original request and original field sets.",
+    "tests": "Eight managed tests passed, exit 0: two encoder profiles for invalid blocks/format/machine/retained segments, two WAV sample-rate profiles including strict integer syntax and boundary 8000, and four Spectrum distinct size boundaries. No media files, native core, window, process or external fixture created."
   }
 }

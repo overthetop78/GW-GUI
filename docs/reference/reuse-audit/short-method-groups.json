@@ -1,13 +1,13 @@
 {
-  "snapshot": "a574c205dc8da8d675cfca591e7e718dff9468e7",
+  "snapshot": "b59b43218d59a1ec7da59c51824fae843fbcf50b",
   "snapshotState": "Current worktree based on snapshot",
   "worktreeSourceChanges": [
-    "src/GWGUI.App/Services/DiskImages/Visualization/CassetteLoadingPresenter.cs",
-    "src/GWGUI.MediaFileSystems/Exploration/MediaExplorer.cs"
+    "src/GWGUI.MediaEngine/Images/Writing/Encoding/Sequential/Commodore/CommodoreTapeEncoder.cs",
+    "src/GWGUI.MediaEngine/Images/Writing/Encoding/Sequential/Msx/MsxTapeEncoder.cs"
   ],
   "scope": "All current non-ignored repository CSharp files, including hidden paths; BaseMethodDeclaration bodies with fewer than 30 tokens. Candidate presence is not a defect or a completion claim.",
-  "fileCount": 7319,
-  "methodBodyCount": 9481,
+  "fileCount": 7321,
+  "methodBodyCount": 9484,
   "exactGroups": [
     {
       "hash": "0017F14C61995D644C52FF90F094E4708DC2CA772615CF2F5DD41E74BD202ECA",
@@ -48791,6 +48791,38 @@
           "bodyTokens": "=> ( _host ?? throw new InvalidOperationException ( CoreExceptions . CoreNotInitialized ( ) ) ) . DiskControl . Insert ( path )",
           "hash": "A610C53D3B540A4D8BAFCC792BC38E2EACA4772DF8F2396FE7E36639C77CB2CC",
           "shape": "2BEDF28CF2FCB03E2733CB9F0365930830156C990716A0F9CB330B0033063C7B"
+        }
+      ],
+      "qualification": "pending-symbol-and-ownership-comparison"
+    },
+    {
+      "hash": "A614716C0F854939F4A39317EE8E459E5DE2F3473FFCC9AEC3303FF41CA72F6F",
+      "tokens": 11,
+      "bodyTokens": "=> SequentialEncodeFunctions . CanEncodeValidatedBytes ( request , SupportedFormats , SupportedMachines )",
+      "current": [
+        {
+          "path": "src/GWGUI.MediaEngine/Images/Writing/Encoding/Sequential/Commodore/CommodoreTapeEncoder.cs",
+          "name": "CanEncode",
+          "owner": "CommodoreTapeEncoder",
+          "kind": "MethodDeclaration",
+          "line": 25,
+          "parameters": "(SequentialEncodeRequest request)",
+          "tokens": 11,
+          "bodyTokens": "=> SequentialEncodeFunctions . CanEncodeValidatedBytes ( request , SupportedFormats , SupportedMachines )",
+          "hash": "A614716C0F854939F4A39317EE8E459E5DE2F3473FFCC9AEC3303FF41CA72F6F",
+          "shape": "BC9FFBF62DFD416470CF1FBB8DDC76B277F7F31C6D3C158F74FC005B806169F1"
+        },
+        {
+          "path": "src/GWGUI.MediaEngine/Images/Writing/Encoding/Sequential/Msx/MsxTapeEncoder.cs",
+          "name": "CanEncode",
+          "owner": "MsxTapeEncoder",
+          "kind": "MethodDeclaration",
+          "line": 25,
+          "parameters": "(SequentialEncodeRequest request)",
+          "tokens": 11,
+          "bodyTokens": "=> SequentialEncodeFunctions . CanEncodeValidatedBytes ( request , SupportedFormats , SupportedMachines )",
+          "hash": "A614716C0F854939F4A39317EE8E459E5DE2F3473FFCC9AEC3303FF41CA72F6F",
+          "shape": "BC9FFBF62DFD416470CF1FBB8DDC76B277F7F31C6D3C158F74FC005B806169F1"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -124195,6 +124227,30 @@
           "tokens": 11,
           "bodyTokens": "=> MicropolisMfmRecord . Create ( cylinder , sector , data )",
           "hash": "20F6E8D5C931AA39B755DC36AF65EDDFF5F84D8D540B09CD89F2D83A9D89D1A8",
+          "shape": "BC9FFBF62DFD416470CF1FBB8DDC76B277F7F31C6D3C158F74FC005B806169F1"
+        },
+        {
+          "path": "src/GWGUI.MediaEngine/Images/Writing/Encoding/Sequential/Commodore/CommodoreTapeEncoder.cs",
+          "name": "CanEncode",
+          "owner": "CommodoreTapeEncoder",
+          "kind": "MethodDeclaration",
+          "line": 25,
+          "parameters": "(SequentialEncodeRequest request)",
+          "tokens": 11,
+          "bodyTokens": "=> SequentialEncodeFunctions . CanEncodeValidatedBytes ( request , SupportedFormats , SupportedMachines )",
+          "hash": "A614716C0F854939F4A39317EE8E459E5DE2F3473FFCC9AEC3303FF41CA72F6F",
+          "shape": "BC9FFBF62DFD416470CF1FBB8DDC76B277F7F31C6D3C158F74FC005B806169F1"
+        },
+        {
+          "path": "src/GWGUI.MediaEngine/Images/Writing/Encoding/Sequential/Msx/MsxTapeEncoder.cs",
+          "name": "CanEncode",
+          "owner": "MsxTapeEncoder",
+          "kind": "MethodDeclaration",
+          "line": 25,
+          "parameters": "(SequentialEncodeRequest request)",
+          "tokens": 11,
+          "bodyTokens": "=> SequentialEncodeFunctions . CanEncodeValidatedBytes ( request , SupportedFormats , SupportedMachines )",
+          "hash": "A614716C0F854939F4A39317EE8E459E5DE2F3473FFCC9AEC3303FF41CA72F6F",
           "shape": "BC9FFBF62DFD416470CF1FBB8DDC76B277F7F31C6D3C158F74FC005B806169F1"
         },
         {

@@ -22,14 +22,8 @@ public sealed class CommodoreTapeEncoder : ISequentialMediaEncoder
     public IReadOnlySet<string> FormatIds => SupportedFormats;
     public IReadOnlySet<string> MachineIds => SupportedMachines;
 
-    public bool CanEncode(SequentialEncodeRequest request) =>
-        SupportedFormats.Contains(request.TargetFormatId)
-        && SupportedMachines.Contains(request.MachineId)
-        && request.Blocks.Count > 0
-        && request.Blocks.All(block => block.IntegrityValid == true && block.Data.Length > 0)
-        && request.RetainedSegments.Count == 0
-        && (!request.TargetFormatId.Equals(TapeImageFormatIds.Wav, StringComparison.OrdinalIgnoreCase)
-            || PcmSampleFunctions.TryReadSampleRate(request.Parameters, out _));
+    public bool CanEncode(SequentialEncodeRequest request)
+        => SequentialEncodeFunctions.CanEncodeValidatedBytes(request, SupportedFormats, SupportedMachines);
 
     public Task<SequentialMediaImageRepresentation> EncodeAsync(SequentialEncodeRequest request, CancellationToken cancellationToken = default)
     {
