@@ -35,3 +35,7 @@ global using ExternalCoreExports = GWGUI.Emulation.Contracts.ExternalCoreExports
 
 global using VideoFunctions = GWGUI.Emulation.Functions.EmulationVideoFunctions;
 global using NativeAudioFunctions = GWGUI.Emulation.Functions.EmulationAudioFunctions;
+global using CoreActiveInstallation = global::GWGUI.Emulation.Contracts.EmulationCoreActiveInstallation;
+global using CoreDiagnosticManifest = global::GWGUI.Emulation.Contracts.EmulationCoreDiagnosticManifest;
+global using CoreInstallationPaths = global::GWGUI.Emulation.Contracts.EmulationCoreInstallationPaths;
+global using CoreInstallProgress = global::GWGUI.Emulation.Contracts.EmulationCoreInstallProgress;

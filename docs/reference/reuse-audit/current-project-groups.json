@@ -1,9 +1,9 @@
 {
   "baseline": "ac7292d86^",
-  "currentCSharpFiles": 7324,
+  "currentCSharpFiles": 7328,
   "outsideSrcCSharpFiles": 299,
   "baselineMethodCount": 5848,
-  "currentMethodCount": 11619,
+  "currentMethodCount": 11620,
   "powerShellFunctionCount": 17,
   "groups": [
     {
@@ -1198,7 +1198,7 @@
     {
       "language": "CSharp",
       "hash": "0A9D4012A0EEF58659F6F622D06187BDA6844EE126F30B196EAE963950A66758",
-      "method": "NecEmulationModule",
+      "method": "SegaEmulationModule",
       "tokens": 45,
       "current": [
         {
@@ -4019,6 +4019,73 @@
     },
     {
       "language": "CSharp",
+      "hash": "2730DCCD601AAB74E1DA6F473097003384A3A062EB9E10BDC51AD7ED6382B0AE",
+      "method": "InstallAsync",
+      "tokens": 288,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+          "name": "InstallAsync",
+          "line": 33,
+          "tokens": 288,
+          "hash": "2730DCCD601AAB74E1DA6F473097003384A3A062EB9E10BDC51AD7ED6382B0AE",
+          "shape": "9F3F9DD834C32ED1827B583C3A5D3E2584C700670DB1A7BB905A23675E7E4456"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+          "name": "InstallAsync",
+          "line": 33,
+          "tokens": 288,
+          "hash": "2730DCCD601AAB74E1DA6F473097003384A3A062EB9E10BDC51AD7ED6382B0AE",
+          "shape": "9F3F9DD834C32ED1827B583C3A5D3E2584C700670DB1A7BB905A23675E7E4456"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+          "name": "InstallAsync",
+          "line": 33,
+          "tokens": 288,
+          "hash": "2730DCCD601AAB74E1DA6F473097003384A3A062EB9E10BDC51AD7ED6382B0AE",
+          "shape": "9F3F9DD834C32ED1827B583C3A5D3E2584C700670DB1A7BB905A23675E7E4456"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+          "name": "InstallAsync",
+          "line": 33,
+          "tokens": 288,
+          "hash": "2730DCCD601AAB74E1DA6F473097003384A3A062EB9E10BDC51AD7ED6382B0AE",
+          "shape": "9F3F9DD834C32ED1827B583C3A5D3E2584C700670DB1A7BB905A23675E7E4456"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+          "name": "InstallAsync",
+          "line": 32,
+          "tokens": 288,
+          "hash": "2730DCCD601AAB74E1DA6F473097003384A3A062EB9E10BDC51AD7ED6382B0AE",
+          "shape": "9F3F9DD834C32ED1827B583C3A5D3E2584C700670DB1A7BB905A23675E7E4456"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+          "name": "InstallAsync",
+          "line": 33,
+          "tokens": 288,
+          "hash": "2730DCCD601AAB74E1DA6F473097003384A3A062EB9E10BDC51AD7ED6382B0AE",
+          "shape": "9F3F9DD834C32ED1827B583C3A5D3E2584C700670DB1A7BB905A23675E7E4456"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+          "name": "InstallAsync",
+          "line": 32,
+          "tokens": 288,
+          "hash": "2730DCCD601AAB74E1DA6F473097003384A3A062EB9E10BDC51AD7ED6382B0AE",
+          "shape": "9F3F9DD834C32ED1827B583C3A5D3E2584C700670DB1A7BB905A23675E7E4456"
+        }
+      ],
+      "predecessors": [],
+      "shapePredecessors": [],
+      "qualification": "pending"
+    },
+    {
+      "language": "CSharp",
       "hash": "28C57645ED91D76709D5D894343C56545CD9AF059D3312D6F07EA99422FDC8F2",
       "method": "SaveState",
       "tokens": 118,
@@ -6611,6 +6678,73 @@
     },
     {
       "language": "CSharp",
+      "hash": "3BF8B10BDEDE16F24F3AA5B7BA94CC6612D097BAA436952CF7C42CBF014BB501",
+      "method": "InstallAsync",
+      "tokens": 294,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Panasonic/Emulators/Opera/Services/CoreReleaseService.cs",
+          "name": "InstallAsync",
+          "line": 31,
+          "tokens": 294,
+          "hash": "3BF8B10BDEDE16F24F3AA5B7BA94CC6612D097BAA436952CF7C42CBF014BB501",
+          "shape": "34AD368703F881904891FBDA17C2D5BA8136E379BDAF1264224CDB6B1784FE99"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Watara/Emulators/Potator/Services/CoreReleaseService.cs",
+          "name": "InstallAsync",
+          "line": 31,
+          "tokens": 294,
+          "hash": "3BF8B10BDEDE16F24F3AA5B7BA94CC6612D097BAA436952CF7C42CBF014BB501",
+          "shape": "34AD368703F881904891FBDA17C2D5BA8136E379BDAF1264224CDB6B1784FE99"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+          "name": "InstallAsync",
+          "line": 32,
+          "tokens": 294,
+          "hash": "3BF8B10BDEDE16F24F3AA5B7BA94CC6612D097BAA436952CF7C42CBF014BB501",
+          "shape": "34AD368703F881904891FBDA17C2D5BA8136E379BDAF1264224CDB6B1784FE99"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+          "name": "InstallAsync",
+          "line": 32,
+          "tokens": 294,
+          "hash": "3BF8B10BDEDE16F24F3AA5B7BA94CC6612D097BAA436952CF7C42CBF014BB501",
+          "shape": "34AD368703F881904891FBDA17C2D5BA8136E379BDAF1264224CDB6B1784FE99"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Services/CoreReleaseService.cs",
+          "name": "InstallAsync",
+          "line": 31,
+          "tokens": 294,
+          "hash": "3BF8B10BDEDE16F24F3AA5B7BA94CC6612D097BAA436952CF7C42CBF014BB501",
+          "shape": "34AD368703F881904891FBDA17C2D5BA8136E379BDAF1264224CDB6B1784FE99"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Services/CoreReleaseService.cs",
+          "name": "InstallAsync",
+          "line": 31,
+          "tokens": 294,
+          "hash": "3BF8B10BDEDE16F24F3AA5B7BA94CC6612D097BAA436952CF7C42CBF014BB501",
+          "shape": "34AD368703F881904891FBDA17C2D5BA8136E379BDAF1264224CDB6B1784FE99"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+          "name": "InstallAsync",
+          "line": 32,
+          "tokens": 294,
+          "hash": "3BF8B10BDEDE16F24F3AA5B7BA94CC6612D097BAA436952CF7C42CBF014BB501",
+          "shape": "34AD368703F881904891FBDA17C2D5BA8136E379BDAF1264224CDB6B1784FE99"
+        }
+      ],
+      "predecessors": [],
+      "shapePredecessors": [],
+      "qualification": "pending"
+    },
+    {
+      "language": "CSharp",
       "hash": "3C93B1D308E80D70F3D6087E118268455789298C98981A373EF6253FF94187CB",
       "method": "MouseDefinitions",
       "tokens": 38,
@@ -7586,73 +7720,6 @@
           "tokens": 35,
           "hash": "433513A0B841FB10EF84CA5E62991ECA0FE0EC0A4A84464ACBA09C720E25E0D5",
           "shape": "DA6B302254CFEC4240CCA3C23E4C376F9CD252DF43B67CD8DCC56C048EBF32CD"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
-      "hash": "4469CE4C3DC4093D39728A630B31370400978F20AECE3267EAFB47983026D860",
-      "method": "InstallAsync",
-      "tokens": 335,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/CoreReleaseService.cs",
-          "name": "InstallAsync",
-          "line": 32,
-          "tokens": 335,
-          "hash": "4469CE4C3DC4093D39728A630B31370400978F20AECE3267EAFB47983026D860",
-          "shape": "572628FC0BC40679A857A05C23C33904CBBDE02879B746B0F4C6224EF15D7BF3"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/CoreReleaseService.cs",
-          "name": "InstallAsync",
-          "line": 33,
-          "tokens": 335,
-          "hash": "4469CE4C3DC4093D39728A630B31370400978F20AECE3267EAFB47983026D860",
-          "shape": "572628FC0BC40679A857A05C23C33904CBBDE02879B746B0F4C6224EF15D7BF3"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/CoreReleaseService.cs",
-          "name": "InstallAsync",
-          "line": 33,
-          "tokens": 335,
-          "hash": "4469CE4C3DC4093D39728A630B31370400978F20AECE3267EAFB47983026D860",
-          "shape": "572628FC0BC40679A857A05C23C33904CBBDE02879B746B0F4C6224EF15D7BF3"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/CoreReleaseService.cs",
-          "name": "InstallAsync",
-          "line": 33,
-          "tokens": 335,
-          "hash": "4469CE4C3DC4093D39728A630B31370400978F20AECE3267EAFB47983026D860",
-          "shape": "572628FC0BC40679A857A05C23C33904CBBDE02879B746B0F4C6224EF15D7BF3"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/CoreReleaseService.cs",
-          "name": "InstallAsync",
-          "line": 33,
-          "tokens": 335,
-          "hash": "4469CE4C3DC4093D39728A630B31370400978F20AECE3267EAFB47983026D860",
-          "shape": "572628FC0BC40679A857A05C23C33904CBBDE02879B746B0F4C6224EF15D7BF3"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/CoreReleaseService.cs",
-          "name": "InstallAsync",
-          "line": 33,
-          "tokens": 335,
-          "hash": "4469CE4C3DC4093D39728A630B31370400978F20AECE3267EAFB47983026D860",
-          "shape": "572628FC0BC40679A857A05C23C33904CBBDE02879B746B0F4C6224EF15D7BF3"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services/CoreReleaseService.cs",
-          "name": "InstallAsync",
-          "line": 32,
-          "tokens": 335,
-          "hash": "4469CE4C3DC4093D39728A630B31370400978F20AECE3267EAFB47983026D860",
-          "shape": "572628FC0BC40679A857A05C23C33904CBBDE02879B746B0F4C6224EF15D7BF3"
         }
       ],
       "predecessors": [],
@@ -11765,7 +11832,7 @@
     {
       "language": "CSharp",
       "hash": "68386C818382BCE400A3EDE65411B5CBD9D6A87F6D88FAF6501028CE28C38965",
-      "method": "ToModule",
+      "method": "ToSinclair",
       "tokens": 148,
       "current": [
         {
@@ -15350,6 +15417,33 @@
     },
     {
       "language": "CSharp",
+      "hash": "8A925D976FDEF13CF167DBEDA76128752F146A42A3DA23319734A98AEB814201",
+      "method": "InstallAsync",
+      "tokens": 267,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+          "name": "InstallAsync",
+          "line": 31,
+          "tokens": 267,
+          "hash": "8A925D976FDEF13CF167DBEDA76128752F146A42A3DA23319734A98AEB814201",
+          "shape": "24E247F779BFF2F2848FC8371686E129043FC90A785CFAB6AE7A9CADF2C6E42C"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+          "name": "InstallAsync",
+          "line": 25,
+          "tokens": 267,
+          "hash": "8A925D976FDEF13CF167DBEDA76128752F146A42A3DA23319734A98AEB814201",
+          "shape": "24E247F779BFF2F2848FC8371686E129043FC90A785CFAB6AE7A9CADF2C6E42C"
+        }
+      ],
+      "predecessors": [],
+      "shapePredecessors": [],
+      "qualification": "pending"
+    },
+    {
+      "language": "CSharp",
       "hash": "8BEE1D8BBCBBCC8305C8F485239A07286758D9D7D38A8714A591F3BB42E44E81",
       "method": "Request",
       "tokens": 161,
@@ -18885,7 +18979,7 @@
     {
       "language": "CSharp",
       "hash": "A1E03750FEB3292ACEB41656386F4A8AA8B05077D9ABFB7DA103AA3D71320B9F",
-      "method": "ToEpoch",
+      "method": "ToModule",
       "tokens": 103,
       "current": [
         {
@@ -19392,7 +19486,7 @@
         {
           "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/CoreReleaseService.cs",
           "name": "GetActiveInstallationAsync",
-          "line": 65,
+          "line": 63,
           "tokens": 78,
           "hash": "A932980C09120298785927D71317AF131473AA16FB6D21CCC5170E60E619C747",
           "shape": "251D4024965374BA0A89D3479DF00FB7DC55541BBBD858069DE54405C4288B87"
@@ -19400,7 +19494,7 @@
         {
           "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/CoreReleaseService.cs",
           "name": "GetActiveInstallationAsync",
-          "line": 62,
+          "line": 60,
           "tokens": 78,
           "hash": "A932980C09120298785927D71317AF131473AA16FB6D21CCC5170E60E619C747",
           "shape": "251D4024965374BA0A89D3479DF00FB7DC55541BBBD858069DE54405C4288B87"
@@ -19408,7 +19502,7 @@
         {
           "path": "src/GWGUI.Emulation.Watara/Emulators/Potator/Services/CoreReleaseService.cs",
           "name": "GetActiveInstallationAsync",
-          "line": 70,
+          "line": 68,
           "tokens": 78,
           "hash": "A932980C09120298785927D71317AF131473AA16FB6D21CCC5170E60E619C747",
           "shape": "251D4024965374BA0A89D3479DF00FB7DC55541BBBD858069DE54405C4288B87"
@@ -19416,7 +19510,7 @@
         {
           "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/CoreReleaseService.cs",
           "name": "GetActiveInstallationAsync",
-          "line": 71,
+          "line": 69,
           "tokens": 78,
           "hash": "A932980C09120298785927D71317AF131473AA16FB6D21CCC5170E60E619C747",
           "shape": "251D4024965374BA0A89D3479DF00FB7DC55541BBBD858069DE54405C4288B87"
@@ -19424,7 +19518,7 @@
         {
           "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/CoreReleaseService.cs",
           "name": "GetActiveInstallationAsync",
-          "line": 71,
+          "line": 69,
           "tokens": 78,
           "hash": "A932980C09120298785927D71317AF131473AA16FB6D21CCC5170E60E619C747",
           "shape": "251D4024965374BA0A89D3479DF00FB7DC55541BBBD858069DE54405C4288B87"
@@ -19432,7 +19526,7 @@
         {
           "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/CoreReleaseService.cs",
           "name": "GetActiveInstallationAsync",
-          "line": 66,
+          "line": 64,
           "tokens": 78,
           "hash": "A932980C09120298785927D71317AF131473AA16FB6D21CCC5170E60E619C747",
           "shape": "251D4024965374BA0A89D3479DF00FB7DC55541BBBD858069DE54405C4288B87"
@@ -19440,7 +19534,7 @@
         {
           "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Services/CoreReleaseService.cs",
           "name": "GetActiveInstallationAsync",
-          "line": 70,
+          "line": 68,
           "tokens": 78,
           "hash": "A932980C09120298785927D71317AF131473AA16FB6D21CCC5170E60E619C747",
           "shape": "251D4024965374BA0A89D3479DF00FB7DC55541BBBD858069DE54405C4288B87"
@@ -19448,7 +19542,7 @@
         {
           "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/CoreReleaseService.cs",
           "name": "GetActiveInstallationAsync",
-          "line": 71,
+          "line": 69,
           "tokens": 78,
           "hash": "A932980C09120298785927D71317AF131473AA16FB6D21CCC5170E60E619C747",
           "shape": "251D4024965374BA0A89D3479DF00FB7DC55541BBBD858069DE54405C4288B87"
@@ -19456,7 +19550,7 @@
         {
           "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Services/CoreReleaseService.cs",
           "name": "GetActiveInstallationAsync",
-          "line": 70,
+          "line": 68,
           "tokens": 78,
           "hash": "A932980C09120298785927D71317AF131473AA16FB6D21CCC5170E60E619C747",
           "shape": "251D4024965374BA0A89D3479DF00FB7DC55541BBBD858069DE54405C4288B87"
@@ -19464,7 +19558,7 @@
         {
           "path": "src/GWGUI.Emulation.Panasonic/Emulators/Opera/Services/CoreReleaseService.cs",
           "name": "GetActiveInstallationAsync",
-          "line": 70,
+          "line": 68,
           "tokens": 78,
           "hash": "A932980C09120298785927D71317AF131473AA16FB6D21CCC5170E60E619C747",
           "shape": "251D4024965374BA0A89D3479DF00FB7DC55541BBBD858069DE54405C4288B87"
@@ -19472,7 +19566,7 @@
         {
           "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/CoreReleaseService.cs",
           "name": "GetActiveInstallationAsync",
-          "line": 66,
+          "line": 64,
           "tokens": 78,
           "hash": "A932980C09120298785927D71317AF131473AA16FB6D21CCC5170E60E619C747",
           "shape": "251D4024965374BA0A89D3479DF00FB7DC55541BBBD858069DE54405C4288B87"
@@ -19480,7 +19574,7 @@
         {
           "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/CoreReleaseService.cs",
           "name": "GetActiveInstallationAsync",
-          "line": 66,
+          "line": 64,
           "tokens": 78,
           "hash": "A932980C09120298785927D71317AF131473AA16FB6D21CCC5170E60E619C747",
           "shape": "251D4024965374BA0A89D3479DF00FB7DC55541BBBD858069DE54405C4288B87"
@@ -19488,7 +19582,7 @@
         {
           "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/CoreReleaseService.cs",
           "name": "GetActiveInstallationAsync",
-          "line": 56,
+          "line": 54,
           "tokens": 78,
           "hash": "A932980C09120298785927D71317AF131473AA16FB6D21CCC5170E60E619C747",
           "shape": "251D4024965374BA0A89D3479DF00FB7DC55541BBBD858069DE54405C4288B87"
@@ -19496,7 +19590,7 @@
         {
           "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/CoreReleaseService.cs",
           "name": "GetActiveInstallationAsync",
-          "line": 66,
+          "line": 64,
           "tokens": 78,
           "hash": "A932980C09120298785927D71317AF131473AA16FB6D21CCC5170E60E619C747",
           "shape": "251D4024965374BA0A89D3479DF00FB7DC55541BBBD858069DE54405C4288B87"
@@ -19504,7 +19598,7 @@
         {
           "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/CoreReleaseService.cs",
           "name": "GetActiveInstallationAsync",
-          "line": 66,
+          "line": 64,
           "tokens": 78,
           "hash": "A932980C09120298785927D71317AF131473AA16FB6D21CCC5170E60E619C747",
           "shape": "251D4024965374BA0A89D3479DF00FB7DC55541BBBD858069DE54405C4288B87"
@@ -19512,7 +19606,7 @@
         {
           "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services/CoreReleaseService.cs",
           "name": "GetActiveInstallationAsync",
-          "line": 65,
+          "line": 63,
           "tokens": 78,
           "hash": "A932980C09120298785927D71317AF131473AA16FB6D21CCC5170E60E619C747",
           "shape": "251D4024965374BA0A89D3479DF00FB7DC55541BBBD858069DE54405C4288B87"
@@ -20385,7 +20479,7 @@
     {
       "language": "CSharp",
       "hash": "B053A3AB4F0B78A37DED57B2D744801187AED6EC54FEEAFE4B1AA9C454D6F48C",
-      "method": "PanasonicEmulationModule",
+      "method": "PhilipsEmulationModule",
       "tokens": 47,
       "current": [
         {
@@ -21402,73 +21496,6 @@
           "shape": "A84EA531149E443A129284683B2CB90C58FF06675230FDB6F46EF90BE2D77082"
         }
       ],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
-      "hash": "BB91D650617A46E7701FE6898777B798BAD609CEF7123B7222E4C29918CCCCAC",
-      "method": "InstallAsync",
-      "tokens": 341,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Watara/Emulators/Potator/Services/CoreReleaseService.cs",
-          "name": "InstallAsync",
-          "line": 31,
-          "tokens": 341,
-          "hash": "BB91D650617A46E7701FE6898777B798BAD609CEF7123B7222E4C29918CCCCAC",
-          "shape": "4933B6D7918CCC18810597D5BB270EACCDCE8BB24D1080BDBB137E209C41E032"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/CoreReleaseService.cs",
-          "name": "InstallAsync",
-          "line": 32,
-          "tokens": 341,
-          "hash": "BB91D650617A46E7701FE6898777B798BAD609CEF7123B7222E4C29918CCCCAC",
-          "shape": "4933B6D7918CCC18810597D5BB270EACCDCE8BB24D1080BDBB137E209C41E032"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/CoreReleaseService.cs",
-          "name": "InstallAsync",
-          "line": 32,
-          "tokens": 341,
-          "hash": "BB91D650617A46E7701FE6898777B798BAD609CEF7123B7222E4C29918CCCCAC",
-          "shape": "4933B6D7918CCC18810597D5BB270EACCDCE8BB24D1080BDBB137E209C41E032"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Services/CoreReleaseService.cs",
-          "name": "InstallAsync",
-          "line": 31,
-          "tokens": 341,
-          "hash": "BB91D650617A46E7701FE6898777B798BAD609CEF7123B7222E4C29918CCCCAC",
-          "shape": "4933B6D7918CCC18810597D5BB270EACCDCE8BB24D1080BDBB137E209C41E032"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/CoreReleaseService.cs",
-          "name": "InstallAsync",
-          "line": 32,
-          "tokens": 341,
-          "hash": "BB91D650617A46E7701FE6898777B798BAD609CEF7123B7222E4C29918CCCCAC",
-          "shape": "4933B6D7918CCC18810597D5BB270EACCDCE8BB24D1080BDBB137E209C41E032"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Services/CoreReleaseService.cs",
-          "name": "InstallAsync",
-          "line": 31,
-          "tokens": 341,
-          "hash": "BB91D650617A46E7701FE6898777B798BAD609CEF7123B7222E4C29918CCCCAC",
-          "shape": "4933B6D7918CCC18810597D5BB270EACCDCE8BB24D1080BDBB137E209C41E032"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Panasonic/Emulators/Opera/Services/CoreReleaseService.cs",
-          "name": "InstallAsync",
-          "line": 31,
-          "tokens": 341,
-          "hash": "BB91D650617A46E7701FE6898777B798BAD609CEF7123B7222E4C29918CCCCAC",
-          "shape": "4933B6D7918CCC18810597D5BB270EACCDCE8BB24D1080BDBB137E209C41E032"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
       "qualification": "pending"
     },
     {
@@ -28018,33 +28045,6 @@
           "tokens": 40,
           "hash": "F95FD04A01C0AF11C002FFA997FDE74E70A59EC4E169CAA262C92FA037080147",
           "shape": "59C0B6C25698C4DE794952D1F8FB2F79824B1752B649D5511F1A860AA491E4E8"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
-      "hash": "FA8162F66CD4431F49B8CE6B64B2D45CE9E857FE520A3DE92A32DD47E5141B35",
-      "method": "InstallAsync",
-      "tokens": 314,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/CoreReleaseService.cs",
-          "name": "InstallAsync",
-          "line": 31,
-          "tokens": 314,
-          "hash": "FA8162F66CD4431F49B8CE6B64B2D45CE9E857FE520A3DE92A32DD47E5141B35",
-          "shape": "B461B1266A079203F78AF78A0AA548AA5F26AFC6FC7EDBF96C9A33CF840A08BF"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/CoreReleaseService.cs",
-          "name": "InstallAsync",
-          "line": 25,
-          "tokens": 314,
-          "hash": "FA8162F66CD4431F49B8CE6B64B2D45CE9E857FE520A3DE92A32DD47E5141B35",
-          "shape": "B461B1266A079203F78AF78A0AA548AA5F26AFC6FC7EDBF96C9A33CF840A08BF"
         }
       ],
       "predecessors": [],

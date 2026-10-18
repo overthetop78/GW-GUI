@@ -13,6 +13,13 @@ internal static class EmulationCoreDiagnosticFunctions
             throw new InvalidDataException(error());
     }
 
+    internal static EmulationCoreDiagnosticManifest CreateManifest(string releaseId, string releaseVersion, string downloadUrl,
+        long archiveSize, string libraryPath)
+        => CreateManifest(releaseId, releaseVersion, downloadUrl, archiveSize, libraryPath,
+            static (id, version, url, downloadedUtc, downloadedSize, librarySize, sha256, architecture, declaredVersion, exports)
+                => new EmulationCoreDiagnosticManifest(id, version, url, downloadedUtc, downloadedSize, librarySize,
+                    sha256, architecture, declaredVersion, exports));
+
     internal static T CreateManifest<T>(string releaseId, string releaseVersion, string downloadUrl,
         long archiveSize, string libraryPath,
         Func<string, string, string, DateTimeOffset, long, long, string, string, string, IReadOnlyList<string>, T> create)
