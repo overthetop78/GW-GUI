@@ -97,8 +97,7 @@ internal sealed class ProcessCore : IEmulatorCore
             startInfo.ArgumentList.Add(ProcessCoreConstants.CoreHost);
             startInfo.ArgumentList.Add(pipeName);
             startInfo.ArgumentList.Add(videoMapName);
-            _process = Process.Start(startInfo) ?? throw new InvalidOperationException(PpssppExceptions.ProcessStartFailed());
-            EmulationChildProcessLifetime.Attach(_process);
+            _process = EmulationChildProcessLifetime.Start(startInfo, () => new InvalidOperationException(PpssppExceptions.ProcessStartFailed()));
             using var timeout = new CancellationTokenSource(TimeSpan.FromSeconds(15));
             _pipe.WaitForConnectionAsync(timeout.Token).GetAwaiter().GetResult();
             _writer = new BinaryWriter(_pipe, System.Text.Encoding.UTF8, true);
@@ -316,17 +315,7 @@ internal sealed class ProcessCore : IEmulatorCore
     }
 
     private static void WaitForProcessExit(Process process, bool graceful)
-    {
-        if (!graceful || !process.WaitForExit(ProcessCoreConstants.GracefulShutdownTimeoutMilliseconds))
-        {
-            if (!process.HasExited)
-            {
-                try { process.Kill(entireProcessTree: true); }
-                catch (InvalidOperationException) when (process.HasExited) { }
-            }
-        }
-        process.WaitForExit();
-    }
+    => EmulationChildProcessLifetime.WaitForExit(process, graceful, ProcessCoreConstants.GracefulShutdownTimeoutMilliseconds);
 
     private static void DisposeSafely(IDisposable? value)
     {

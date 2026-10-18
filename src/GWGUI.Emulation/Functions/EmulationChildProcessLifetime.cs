@@ -27,8 +27,7 @@ public static class EmulationChildProcessLifetime
             {
                 try
                 {
-                    if (!process.HasExited) process.Kill(entireProcessTree: true);
-                    process.WaitForExit();
+                    WaitForExit(process, graceful: false, gracefulTimeoutMilliseconds: 0);
                 }
                 finally { process.Dispose(); }
             }
@@ -37,13 +36,16 @@ public static class EmulationChildProcessLifetime
 
     public static void WaitForExit(Process process, bool graceful, int gracefulTimeoutMilliseconds)
     {
-        if (graceful && process.WaitForExit(gracefulTimeoutMilliseconds)) return;
-        if (!process.HasExited)
+        try
         {
-            try { process.Kill(entireProcessTree: true); }
-            catch (InvalidOperationException) when (process.HasExited) { }
+            if (graceful && process.WaitForExit(gracefulTimeoutMilliseconds)) return;
+            if (!process.HasExited)
+            {
+                try { process.Kill(entireProcessTree: true); }
+                catch (InvalidOperationException) when (process.HasExited) { }
+            }
         }
-        process.WaitForExit();
+        finally { process.WaitForExit(); }
     }
 }
 

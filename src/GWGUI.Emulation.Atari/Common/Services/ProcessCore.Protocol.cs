@@ -67,8 +67,7 @@ internal sealed partial class ProcessCore : IEmulatorCore
         if (_process is null) return;
         try
         {
-            if (!_process.HasExited) _process.Kill(entireProcessTree: true);
-            _process.WaitForExit();
+            EmulationChildProcessLifetime.WaitForExit(_process, graceful: false, CoreHostConstants.GracefulExitTimeoutMilliseconds);
         }
         catch (Exception)
         {
@@ -102,9 +101,7 @@ internal sealed partial class ProcessCore : IEmulatorCore
             {
                 try
                 {
-                    if (!_process.WaitForExit(CoreHostConstants.GracefulExitTimeoutMilliseconds))
-                        _process.Kill(entireProcessTree: true);
-                    _process.WaitForExit();
+                    EmulationChildProcessLifetime.WaitForExit(_process, graceful: true, CoreHostConstants.GracefulExitTimeoutMilliseconds);
                 }
                 catch (Exception)
                 {

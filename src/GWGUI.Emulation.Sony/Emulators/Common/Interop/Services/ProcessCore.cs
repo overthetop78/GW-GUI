@@ -98,8 +98,7 @@ internal sealed class ProcessCore : IEmulatorCore
             startInfo.ArgumentList.Add(ProcessCoreConstants.CoreHost);
             startInfo.ArgumentList.Add(pipeName);
             startInfo.ArgumentList.Add(videoMapName);
-            _process = Process.Start(startInfo) ?? throw new InvalidOperationException(CoreExceptions.ProcessStartFailed());
-            EmulationChildProcessLifetime.Attach(_process);
+            _process = EmulationChildProcessLifetime.Start(startInfo, () => new InvalidOperationException(CoreExceptions.ProcessStartFailed()));
             using var timeout = new CancellationTokenSource(TimeSpan.FromSeconds(ProcessCoreConstants.ConnectionTimeoutSeconds));
             _pipe.WaitForConnectionAsync(timeout.Token).GetAwaiter().GetResult();
             _writer = new BinaryWriter(_pipe, System.Text.Encoding.UTF8, true);
@@ -244,8 +243,7 @@ internal sealed class ProcessCore : IEmulatorCore
             {
                 try
                 {
-                    if (!process.WaitForExit(ProcessCoreConstants.GracefulShutdownTimeoutMilliseconds)) process.Kill(true);
-                    process.WaitForExit();
+                    EmulationChildProcessLifetime.WaitForExit(process, graceful: true, ProcessCoreConstants.GracefulShutdownTimeoutMilliseconds);
                 }
                 finally { DisposeSafely(process); }
             }
@@ -322,8 +320,7 @@ internal sealed class ProcessCore : IEmulatorCore
         if (process is null) return;
         try
         {
-            if (!process.HasExited) process.Kill(true);
-            process.WaitForExit();
+            EmulationChildProcessLifetime.WaitForExit(process, graceful: false, ProcessCoreConstants.GracefulShutdownTimeoutMilliseconds);
         }
         finally { DisposeSafely(process); }
     }

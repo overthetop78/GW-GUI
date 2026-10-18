@@ -94,8 +94,7 @@ internal sealed class ProcessCore : IEmulatorCore
             startInfo.ArgumentList.Add(ProcessCoreConstants.CoreHost);
             startInfo.ArgumentList.Add(pipeName);
             startInfo.ArgumentList.Add(videoMapName);
-            _process = Process.Start(startInfo) ?? throw new InvalidOperationException(CoreExceptions.ProcessStartFailed());
-            EmulationChildProcessLifetime.Attach(_process);
+            _process = EmulationChildProcessLifetime.Start(startInfo, () => new InvalidOperationException(CoreExceptions.ProcessStartFailed()));
             using var timeout = new CancellationTokenSource(TimeSpan.FromSeconds(15));
             _pipe.WaitForConnectionAsync(timeout.Token).GetAwaiter().GetResult();
             _writer = new BinaryWriter(_pipe, System.Text.Encoding.UTF8, true);
@@ -223,13 +222,9 @@ internal sealed class ProcessCore : IEmulatorCore
             {
                 try
                 {
-                    if (!process.WaitForExit(ProcessCoreConstants.GracefulExitTimeoutMilliseconds)) process.Kill(true);
+                    EmulationChildProcessLifetime.WaitForExit(process, graceful: true, ProcessCoreConstants.GracefulExitTimeoutMilliseconds);
                 }
-                finally
-                {
-                    try { process.WaitForExit(); }
-                    finally { process.Dispose(); }
-                }
+                finally { process.Dispose(); }
             }
             while (_audio.TryDequeue(out _)) { }
             LatestVideoFrame = null;
@@ -297,15 +292,8 @@ internal sealed class ProcessCore : IEmulatorCore
         var process = _process;
         _process = null;
         if (process is null) return;
-        try
-        {
-            if (!process.HasExited) process.Kill(true);
-        }
-        finally
-        {
-            try { process.WaitForExit(); }
-            finally { process.Dispose(); }
-        }
+        try { EmulationChildProcessLifetime.WaitForExit(process, graceful: false, ProcessCoreConstants.GracefulExitTimeoutMilliseconds); }
+        finally { process.Dispose(); }
     }
 
     private static void DisposeSafely(IDisposable? value)

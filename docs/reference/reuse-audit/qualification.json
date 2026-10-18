@@ -1408,7 +1408,7 @@
   ],
   "currentProjectReport": "current-project-groups.json",
   "currentReportScope": "All current repository CSharp and PowerShell files; no age filter; candidates require semantic review",
-  "currentExactCandidateGroups": 566,
+  "currentExactCandidateGroups": 565,
   "currentRenamedIdentifierCandidateGroups": 219,
   "currentQualificationStatus": "Manual semantic qualification remains incomplete. remaining-groups.json is the earlier historical checkpoint; current-project-groups.json covers all current CSharp and PowerShell files regardless of age.",
   "hostLoopComparison": "host-loop-comparison.json",
@@ -2707,5 +2707,104 @@
     "testsPassed": 8,
     "compilation": "SDK, App, and all 23 module references compiled by targeted dotnet test",
     "afterProductBuild": "b078968e7"
+  },
+  "childProcessLifetimeReuse": [
+    {
+      "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/ProcessCore.cs",
+      "initializationArgumentsProtocolAndGuardsUnchanged": true,
+      "startFailureFactoryUnchanged": true,
+      "commonStartCalls": 1,
+      "commonWaitCalls": 2,
+      "timeoutUnchanged": true,
+      "unrelatedMethodsCompared": 18,
+      "ownership": "Start owns until Attach succeeds; Wait borrows Process; module keeps Dispose and catch policy",
+      "cleanupDifference": "Always wait in finally; tolerate exit race through older common owner; NEC final wait is no longer limited to 5000ms"
+    },
+    {
+      "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ProcessCore.cs",
+      "initializationArgumentsProtocolAndGuardsUnchanged": true,
+      "startFailureFactoryUnchanged": true,
+      "commonStartCalls": 1,
+      "commonWaitCalls": 2,
+      "timeoutUnchanged": true,
+      "unrelatedMethodsCompared": 16,
+      "ownership": "Start owns until Attach succeeds; Wait borrows Process; module keeps Dispose and catch policy",
+      "cleanupDifference": "Always wait in finally; tolerate exit race through older common owner; NEC final wait is no longer limited to 5000ms"
+    },
+    {
+      "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ProcessCore.cs",
+      "initializationArgumentsProtocolAndGuardsUnchanged": true,
+      "startFailureFactoryUnchanged": true,
+      "commonStartCalls": 1,
+      "commonWaitCalls": 2,
+      "timeoutUnchanged": true,
+      "unrelatedMethodsCompared": 19,
+      "ownership": "Start owns until Attach succeeds; Wait borrows Process; module keeps Dispose and catch policy",
+      "cleanupDifference": "Always wait in finally; tolerate exit race through older common owner; NEC final wait is no longer limited to 5000ms"
+    },
+    {
+      "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ProcessCore.cs",
+      "initializationArgumentsProtocolAndGuardsUnchanged": true,
+      "startFailureFactoryUnchanged": true,
+      "commonStartCalls": 1,
+      "commonWaitCalls": 2,
+      "timeoutUnchanged": true,
+      "unrelatedMethodsCompared": 18,
+      "ownership": "Start owns until Attach succeeds; Wait borrows Process; module keeps Dispose and catch policy",
+      "cleanupDifference": "Always wait in finally; tolerate exit race through older common owner; NEC final wait is no longer limited to 5000ms"
+    },
+    {
+      "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ProcessCore.cs",
+      "initializationArgumentsProtocolAndGuardsUnchanged": true,
+      "startFailureFactoryUnchanged": true,
+      "commonStartCalls": 1,
+      "commonWaitCalls": 2,
+      "timeoutUnchanged": true,
+      "unrelatedMethodsCompared": 18,
+      "ownership": "Start owns until Attach succeeds; Wait borrows Process; module keeps Dispose and catch policy",
+      "cleanupDifference": "Always wait in finally; tolerate exit race through older common owner; NEC final wait is no longer limited to 5000ms"
+    },
+    {
+      "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ProcessCore.cs",
+      "initializationArgumentsProtocolAndGuardsUnchanged": true,
+      "startFailureFactoryUnchanged": true,
+      "commonStartCalls": 1,
+      "commonWaitCalls": 1,
+      "timeoutUnchanged": true,
+      "unrelatedMethodsCompared": 19,
+      "ownership": "Start owns until Attach succeeds; Wait borrows Process; module keeps Dispose and catch policy",
+      "cleanupDifference": "Always wait in finally; tolerate exit race through older common owner; NEC final wait is no longer limited to 5000ms"
+    },
+    {
+      "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ProcessCore.cs",
+      "initializationArgumentsProtocolAndGuardsUnchanged": true,
+      "startFailureFactoryUnchanged": true,
+      "commonStartCalls": 1,
+      "commonWaitCalls": 1,
+      "timeoutUnchanged": true,
+      "unrelatedMethodsCompared": 19,
+      "ownership": "Start owns until Attach succeeds; Wait borrows Process; module keeps Dispose and catch policy",
+      "cleanupDifference": "Always wait in finally; tolerate exit race through older common owner; NEC final wait is no longer limited to 5000ms"
+    },
+    {
+      "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ProcessCore.cs",
+      "initializationArgumentsProtocolAndGuardsUnchanged": true,
+      "startFailureFactoryUnchanged": true,
+      "commonStartCalls": 1,
+      "commonWaitCalls": 2,
+      "timeoutUnchanged": true,
+      "unrelatedMethodsCompared": 20,
+      "ownership": "Start owns until Attach succeeds; Wait borrows Process; module keeps Dispose and catch policy",
+      "cleanupDifference": "Always wait in finally; tolerate exit race through older common owner; NEC final wait is no longer limited to 5000ms"
+    }
+  ],
+  "childProcessLifetimeVerification": {
+    "compilation": "SDK and all 23 modules, zero semantic errors; SDK rechecked after final cleanup reuse",
+    "nativeProcessesStarted": 0,
+    "source": "734fbce43",
+    "commonOwner": "EmulationChildProcessLifetime already shared in b96c7629b from earlier Atari",
+    "atariWaits": 2,
+    "cleanup": "SDK WaitForExit always waits in finally; Start disposes rejected child in its own finally; module disposes transferred child",
+    "manualDiffReview": "arguments and working directory unchanged, catch and owner Dispose retained"
   }
 }
