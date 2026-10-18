@@ -2,6 +2,15 @@ namespace GWGUI.Emulation.Functions;
 
 public static class EmulationKeyboardBindingFunctions
 {
+    internal static IReadOnlyDictionary<string, EmulationKey> ToKeys(this IReadOnlyDictionary<string, string> values) =>
+        values.Where(item => Enum.TryParse<EmulationKey>(item.Value, true, out _)).ToDictionary(item => item.Key,
+            item => Enum.Parse<EmulationKey>(item.Value, true), StringComparer.Ordinal);
+
+    internal static IReadOnlyDictionary<string, string> ToStrings(IReadOnlyDictionary<string, EmulationKey>? values,
+        IEqualityComparer<string>? emptyComparer = null) =>
+        values?.ToDictionary(item => item.Key, item => item.Value.ToString(), StringComparer.Ordinal)
+        ?? (emptyComparer is null ? new Dictionary<string, string>() : new Dictionary<string, string>(emptyComparer));
+
     public static bool IsValid(string? binding)
     {
         if (string.IsNullOrWhiteSpace(binding)) return true;

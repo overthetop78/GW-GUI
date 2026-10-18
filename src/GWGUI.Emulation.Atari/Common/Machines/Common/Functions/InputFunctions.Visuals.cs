@@ -130,6 +130,4 @@ internal static partial class InputSettingsFunctions
     };
 
     private static string DefaultKey(EmulationKey key, IReadOnlyDictionary<EmulationKey, EmulationKey> defaults) => defaults.TryGetValue(key, out var defaultKey) ? defaultKey.ToString() : key.ToString();
-
-    private static IReadOnlyDictionary<string, string> ToStrings(IReadOnlyDictionary<string, EmulationKey>? values) => values?.ToDictionary(item => item.Key, item => item.Value.ToString(), StringComparer.Ordinal) ?? new Dictionary<string, string>();
 }

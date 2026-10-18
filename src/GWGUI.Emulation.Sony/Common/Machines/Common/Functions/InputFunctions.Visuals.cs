@@ -199,8 +199,4 @@ internal static partial class InputSettingsFunctions
         ControllerType.SerialMouse => InputSettingsFunctionsConstants.ResourcePlayStationMouse,
         _ => "Emulation.Sony.Controller." + type
     };
-
-    private static IReadOnlyDictionary<string, string> ToStrings(IReadOnlyDictionary<string, EmulationKey>? values) => values?.ToDictionary(item => item.Key, item => item.Value.ToString(), StringComparer.Ordinal) ?? new Dictionary<string, string>();
-
-    private static IReadOnlyDictionary<string, EmulationKey> ToKeys(IReadOnlyDictionary<string, string> values) => values.Where(item => Enum.TryParse<EmulationKey>(item.Value, true, out _)).ToDictionary(item => item.Key, item => Enum.Parse<EmulationKey>(item.Value, true), StringComparer.Ordinal);
 }

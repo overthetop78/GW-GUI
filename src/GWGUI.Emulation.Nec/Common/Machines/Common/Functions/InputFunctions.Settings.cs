@@ -9,10 +9,10 @@ internal static partial class InputSettingsFunctions
         var model = ModelCatalog.Get(configuration.Model);
         var input = configuration.Input ?? new InputConfiguration();
         var mouseType = model.Id == PcFxMachineConstants.Id ? ControllerType.PcFxMouse : ControllerType.PcEngineMouse;
-        var keyboard = model.HasKeyboard ? new EmulationInputBindingSet(KeyboardDefinitions(model), input.KeyboardBindings ?? ToStrings(input.KeyboardMappings), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller) : null;
+        var keyboard = model.HasKeyboard ? new EmulationInputBindingSet(KeyboardDefinitions(model), input.KeyboardBindings ?? GWGUI.Emulation.Functions.EmulationKeyboardBindingFunctions.ToStrings(input.KeyboardMappings), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller) : null;
         var mouse = model.MouseButtonCount > InputSettingsFunctionsConstants.FirstPortIndex
             ? new EmulationInputBindingSet(
-            MouseDefinitions(), MouseValues(input), EmulationInputSource.Mouse
+            MouseDefinitions(), GWGUI.Emulation.Functions.EmulationInputMappingFunctions.MouseBindings(input.MouseButtonMappings, MouseAction.None), EmulationInputSource.Mouse
                 | EmulationInputSource.Keyboard | EmulationInputSource.Controller, true,
             CompatibleVisualIds(mouseType), DefaultVisualId(mouseType),
             VisualCommandIds(mouseType)) : null;
@@ -35,23 +35,21 @@ internal static partial class InputSettingsFunctions
     {
         var current = configuration.Input ?? new InputConfiguration();
         var keyboard = settings.Keyboard?.Values ?? new Dictionary<string, string>();
-        var mouse = settings.Mouse?.Values.Where(item => !string.IsNullOrWhiteSpace(item.Value) && Enum.TryParse<MouseAction>(item.Key, true, out var action) && action != MouseAction.None)
-            .ToDictionary(item => item.Value, item => Enum.Parse<MouseAction>(item.Key, true),
-                StringComparer.OrdinalIgnoreCase) ?? new Dictionary<string, MouseAction>();
+        var mouse = GWGUI.Emulation.Functions.EmulationInputMappingFunctions.CreateMouseMappings(settings.Mouse, MouseAction.None) ?? new Dictionary<string, MouseAction>();
         var controllers = settings.ControllerPorts.Select(port => new ControllerBinding(
             port.Number - InputSettingsFunctionsConstants.FirstPortNumber,
             Enum.TryParse<ControllerType>(port.SelectedControllerId, true, out var type)
                 ? ControllerCatalog.Normalize(ModelCatalog.Get(configuration.Model), type)
                 : port.Number == InputSettingsFunctionsConstants.FirstPortNumber ? ControllerCatalog.Default(ModelCatalog.Get(configuration.Model)) : ControllerType.None,
             port.PhysicalDeviceId,
-            port.Bindings.Values.Where(item => !string.IsNullOrWhiteSpace(item.Key) && !string.IsNullOrWhiteSpace(item.Value)).ToDictionary(item => item.Key, item => item.Value, StringComparer.Ordinal),
+            GWGUI.Emulation.Functions.EmulationInputMappingFunctions.CopyNonEmptyBindings(port.Bindings.Values),
             port.VisualId)).ToArray();
         return configuration with
         {
             Input = current with
             {
                 KeyboardBindings = keyboard,
-                KeyboardMappings = ToKeys(keyboard),
+                KeyboardMappings = GWGUI.Emulation.Functions.EmulationKeyboardBindingFunctions.ToKeys(keyboard),
                 MouseButtonMappings = mouse,
                 ControllerBindings = controllers
             }
@@ -65,8 +63,6 @@ internal static partial class InputSettingsFunctions
         Definition(nameof(MouseAction.LeftButton), InputSettingsFunctionsConstants.ResourceMouseButtonLeft, InputSettingsFunctionsConstants.MouseLeft),
         Definition(nameof(MouseAction.RightButton), InputSettingsFunctionsConstants.ResourceMouseButtonRight, InputSettingsFunctionsConstants.MouseRight)
     ];
-
-    private static IReadOnlyDictionary<string, string> MouseValues(InputConfiguration input) => (input.MouseButtonMappings ?? new Dictionary<string, MouseAction>()).Where(item => item.Value != MouseAction.None).ToDictionary(item => item.Value.ToString(), item => item.Key, StringComparer.Ordinal);
 
     private static IReadOnlyList<InputBindingDefinition> ControllerDefinitions(ControllerType type)
     {

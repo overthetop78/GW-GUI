@@ -1,9 +1,9 @@
 {
   "baseline": "ac7292d86^",
-  "currentCSharpFiles": 7314,
-  "outsideSrcCSharpFiles": 294,
+  "currentCSharpFiles": 7315,
+  "outsideSrcCSharpFiles": 295,
   "baselineMethodCount": 5848,
-  "currentMethodCount": 11594,
+  "currentMethodCount": 11587,
   "powerShellFunctionCount": 17,
   "groups": [
     {
@@ -1265,7 +1265,7 @@
     {
       "language": "CSharp",
       "hash": "0A9D4012A0EEF58659F6F622D06187BDA6844EE126F30B196EAE963950A66758",
-      "method": "NecEmulationModule",
+      "method": "CommodoreEmulationModule",
       "tokens": 45,
       "current": [
         {
@@ -4093,33 +4093,6 @@
     },
     {
       "language": "CSharp",
-      "hash": "26C81511FDD56A0878934C3F24CD0A6B8008C0EA2593CEC409135C26DC286323",
-      "method": "ToStrings",
-      "tokens": 39,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Acorn/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
-          "name": "ToStrings",
-          "line": 98,
-          "tokens": 39,
-          "hash": "26C81511FDD56A0878934C3F24CD0A6B8008C0EA2593CEC409135C26DC286323",
-          "shape": "7887664536AB2CF97F841AF9DA83B8FDED2D2F19AE297E00207A74737CF48793"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Apple/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
-          "name": "ToStrings",
-          "line": 129,
-          "tokens": 39,
-          "hash": "26C81511FDD56A0878934C3F24CD0A6B8008C0EA2593CEC409135C26DC286323",
-          "shape": "7887664536AB2CF97F841AF9DA83B8FDED2D2F19AE297E00207A74737CF48793"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
       "hash": "2712E51490EA8FB96752470197E9790C49E3FA0154852AE4B01DCE50447D41B2",
       "method": "IsDeferredOption",
       "tokens": 75,
@@ -6775,7 +6748,7 @@
         {
           "path": "src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
           "name": "MouseDefinitions",
-          "line": 52,
+          "line": 50,
           "tokens": 38,
           "hash": "3C93B1D308E80D70F3D6087E118268455789298C98981A373EF6253FF94187CB",
           "shape": "27CB97C3BFFD901561F8C62D3D83B419EC22796119F4B38BC5471BD4D02D78EF"
@@ -6783,7 +6756,7 @@
         {
           "path": "src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
           "name": "MouseDefinitions",
-          "line": 54,
+          "line": 52,
           "tokens": 38,
           "hash": "3C93B1D308E80D70F3D6087E118268455789298C98981A373EF6253FF94187CB",
           "shape": "27CB97C3BFFD901561F8C62D3D83B419EC22796119F4B38BC5471BD4D02D78EF"
@@ -6791,7 +6764,7 @@
         {
           "path": "src/GWGUI.Emulation.Nec/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
           "name": "MouseDefinitions",
-          "line": 63,
+          "line": 61,
           "tokens": 38,
           "hash": "3C93B1D308E80D70F3D6087E118268455789298C98981A373EF6253FF94187CB",
           "shape": "27CB97C3BFFD901561F8C62D3D83B419EC22796119F4B38BC5471BD4D02D78EF"
@@ -6799,7 +6772,7 @@
         {
           "path": "src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
           "name": "MouseDefinitions",
-          "line": 53,
+          "line": 51,
           "tokens": 38,
           "hash": "3C93B1D308E80D70F3D6087E118268455789298C98981A373EF6253FF94187CB",
           "shape": "27CB97C3BFFD901561F8C62D3D83B419EC22796119F4B38BC5471BD4D02D78EF"
@@ -6807,7 +6780,7 @@
         {
           "path": "src/GWGUI.Emulation.Microsoft/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
           "name": "MouseDefinitions",
-          "line": 52,
+          "line": 50,
           "tokens": 38,
           "hash": "3C93B1D308E80D70F3D6087E118268455789298C98981A373EF6253FF94187CB",
           "shape": "27CB97C3BFFD901561F8C62D3D83B419EC22796119F4B38BC5471BD4D02D78EF"
@@ -6815,7 +6788,7 @@
         {
           "path": "src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
           "name": "MouseDefinitions",
-          "line": 75,
+          "line": 72,
           "tokens": 38,
           "hash": "3C93B1D308E80D70F3D6087E118268455789298C98981A373EF6253FF94187CB",
           "shape": "27CB97C3BFFD901561F8C62D3D83B419EC22796119F4B38BC5471BD4D02D78EF"
@@ -9072,115 +9045,6 @@
     },
     {
       "language": "CSharp",
-      "hash": "53263AA45F1611FF70CFABC5290FF1A6F644A0675CEB72126DA04683D5C4D7F9",
-      "method": "ToStrings",
-      "tokens": 36,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Functions/InputFunctions.Visuals.cs",
-          "name": "ToStrings",
-          "line": 40,
-          "tokens": 36,
-          "hash": "53263AA45F1611FF70CFABC5290FF1A6F644A0675CEB72126DA04683D5C4D7F9",
-          "shape": "B0711246A391F67FF527FEB3C85D5A4577E704FDB640745B99A0D32B5D75E94A"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/InputFunctions.Visuals.cs",
-          "name": "ToStrings",
-          "line": 152,
-          "tokens": 36,
-          "hash": "53263AA45F1611FF70CFABC5290FF1A6F644A0675CEB72126DA04683D5C4D7F9",
-          "shape": "B0711246A391F67FF527FEB3C85D5A4577E704FDB640745B99A0D32B5D75E94A"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Common/Machines/Common/Functions/InputFunctions.Visuals.cs",
-          "name": "ToStrings",
-          "line": 106,
-          "tokens": 36,
-          "hash": "53263AA45F1611FF70CFABC5290FF1A6F644A0675CEB72126DA04683D5C4D7F9",
-          "shape": "B0711246A391F67FF527FEB3C85D5A4577E704FDB640745B99A0D32B5D75E94A"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/InputFunctions.Visuals.cs",
-          "name": "ToStrings",
-          "line": 134,
-          "tokens": 36,
-          "hash": "53263AA45F1611FF70CFABC5290FF1A6F644A0675CEB72126DA04683D5C4D7F9",
-          "shape": "B0711246A391F67FF527FEB3C85D5A4577E704FDB640745B99A0D32B5D75E94A"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Functions/InputFunctions.Visuals.cs",
-          "name": "ToStrings",
-          "line": 148,
-          "tokens": 36,
-          "hash": "53263AA45F1611FF70CFABC5290FF1A6F644A0675CEB72126DA04683D5C4D7F9",
-          "shape": "B0711246A391F67FF527FEB3C85D5A4577E704FDB640745B99A0D32B5D75E94A"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Microsoft/Common/Machines/Common/Functions/InputFunctions.Visuals.cs",
-          "name": "ToStrings",
-          "line": 29,
-          "tokens": 36,
-          "hash": "53263AA45F1611FF70CFABC5290FF1A6F644A0675CEB72126DA04683D5C4D7F9",
-          "shape": "B0711246A391F67FF527FEB3C85D5A4577E704FDB640745B99A0D32B5D75E94A"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/InputFunctions.Visuals.cs",
-          "name": "ToStrings",
-          "line": 203,
-          "tokens": 36,
-          "hash": "53263AA45F1611FF70CFABC5290FF1A6F644A0675CEB72126DA04683D5C4D7F9",
-          "shape": "B0711246A391F67FF527FEB3C85D5A4577E704FDB640745B99A0D32B5D75E94A"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Commodore/Common/Machines/Common/Functions/InputFunctions.Visuals.cs",
-          "name": "ToStrings",
-          "line": 92,
-          "tokens": 36,
-          "hash": "53263AA45F1611FF70CFABC5290FF1A6F644A0675CEB72126DA04683D5C4D7F9",
-          "shape": "B0711246A391F67FF527FEB3C85D5A4577E704FDB640745B99A0D32B5D75E94A"
-        }
-      ],
-      "predecessors": [
-        {
-          "path": "src/GWGUI.Emulation.Amiga/Functions/AmigaInputSettingsFunctions.cs",
-          "name": "ToStrings",
-          "line": 209,
-          "tokens": 36,
-          "hash": "53263AA45F1611FF70CFABC5290FF1A6F644A0675CEB72126DA04683D5C4D7F9",
-          "shape": "B0711246A391F67FF527FEB3C85D5A4577E704FDB640745B99A0D32B5D75E94A"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Atari/Functions/AtariInputSettingsFunctions.cs",
-          "name": "ToStrings",
-          "line": 343,
-          "tokens": 36,
-          "hash": "53263AA45F1611FF70CFABC5290FF1A6F644A0675CEB72126DA04683D5C4D7F9",
-          "shape": "B0711246A391F67FF527FEB3C85D5A4577E704FDB640745B99A0D32B5D75E94A"
-        }
-      ],
-      "shapePredecessors": [
-        {
-          "path": "src/GWGUI.Emulation.Amiga/Functions/AmigaInputSettingsFunctions.cs",
-          "name": "ToStrings",
-          "line": 209,
-          "tokens": 36,
-          "hash": "53263AA45F1611FF70CFABC5290FF1A6F644A0675CEB72126DA04683D5C4D7F9",
-          "shape": "B0711246A391F67FF527FEB3C85D5A4577E704FDB640745B99A0D32B5D75E94A"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Atari/Functions/AtariInputSettingsFunctions.cs",
-          "name": "ToStrings",
-          "line": 343,
-          "tokens": 36,
-          "hash": "53263AA45F1611FF70CFABC5290FF1A6F644A0675CEB72126DA04683D5C4D7F9",
-          "shape": "B0711246A391F67FF527FEB3C85D5A4577E704FDB640745B99A0D32B5D75E94A"
-        }
-      ],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
       "hash": "53AEEB9E694B34D82230952C556AC2F8229DA476735EAAA9C33E764AB3C24A88",
       "method": "Read",
       "tokens": 114,
@@ -11027,6 +10891,33 @@
     },
     {
       "language": "CSharp",
+      "hash": "5DFED0430E0A4DD9C831B6BA524202A9C3ECAF731E6EE8A7633C68D4C060E61F",
+      "method": "Apply",
+      "tokens": 179,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
+          "name": "Apply",
+          "line": 26,
+          "tokens": 179,
+          "hash": "5DFED0430E0A4DD9C831B6BA524202A9C3ECAF731E6EE8A7633C68D4C060E61F",
+          "shape": "68A773051556F4F18E3069AAD8257707E5FCAEF9D88CAA0C1EC6BE59054A0C64"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Microsoft/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
+          "name": "Apply",
+          "line": 25,
+          "tokens": 179,
+          "hash": "5DFED0430E0A4DD9C831B6BA524202A9C3ECAF731E6EE8A7633C68D4C060E61F",
+          "shape": "68A773051556F4F18E3069AAD8257707E5FCAEF9D88CAA0C1EC6BE59054A0C64"
+        }
+      ],
+      "predecessors": [],
+      "shapePredecessors": [],
+      "qualification": "pending"
+    },
+    {
+      "language": "CSharp",
       "hash": "5E41B8E6BA64FCBA1E07049FEE804449442712123C0582A02BF64109180A8E92",
       "method": "CreateAdapters",
       "tokens": 32,
@@ -12144,7 +12035,7 @@
     {
       "language": "CSharp",
       "hash": "68386C818382BCE400A3EDE65411B5CBD9D6A87F6D88FAF6501028CE28C38965",
-      "method": "ToModule",
+      "method": "ToSinclair",
       "tokens": 148,
       "current": [
         {
@@ -16242,91 +16133,6 @@
     },
     {
       "language": "CSharp",
-      "hash": "8F440851248598B3BB1D1AAC54724FC81803088B1FF9A31C8477E89A64811C43",
-      "method": "ToKeys",
-      "tokens": 53,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Functions/InputFunctions.Visuals.cs",
-          "name": "ToKeys",
-          "line": 42,
-          "tokens": 53,
-          "hash": "8F440851248598B3BB1D1AAC54724FC81803088B1FF9A31C8477E89A64811C43",
-          "shape": "E2D5BD9511E9FECE4409243ECE061CFEFCDD2BD8708DC6366BA0DA60B3880402"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/InputFunctions.Visuals.cs",
-          "name": "ToKeys",
-          "line": 154,
-          "tokens": 53,
-          "hash": "8F440851248598B3BB1D1AAC54724FC81803088B1FF9A31C8477E89A64811C43",
-          "shape": "E2D5BD9511E9FECE4409243ECE061CFEFCDD2BD8708DC6366BA0DA60B3880402"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Common/Machines/Common/Functions/InputFunctions.Visuals.cs",
-          "name": "ToKeys",
-          "line": 108,
-          "tokens": 53,
-          "hash": "8F440851248598B3BB1D1AAC54724FC81803088B1FF9A31C8477E89A64811C43",
-          "shape": "E2D5BD9511E9FECE4409243ECE061CFEFCDD2BD8708DC6366BA0DA60B3880402"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Functions/InputFunctions.Visuals.cs",
-          "name": "ToKeys",
-          "line": 150,
-          "tokens": 53,
-          "hash": "8F440851248598B3BB1D1AAC54724FC81803088B1FF9A31C8477E89A64811C43",
-          "shape": "E2D5BD9511E9FECE4409243ECE061CFEFCDD2BD8708DC6366BA0DA60B3880402"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Microsoft/Common/Machines/Common/Functions/InputFunctions.Visuals.cs",
-          "name": "ToKeys",
-          "line": 31,
-          "tokens": 53,
-          "hash": "8F440851248598B3BB1D1AAC54724FC81803088B1FF9A31C8477E89A64811C43",
-          "shape": "E2D5BD9511E9FECE4409243ECE061CFEFCDD2BD8708DC6366BA0DA60B3880402"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/InputFunctions.Visuals.cs",
-          "name": "ToKeys",
-          "line": 205,
-          "tokens": 53,
-          "hash": "8F440851248598B3BB1D1AAC54724FC81803088B1FF9A31C8477E89A64811C43",
-          "shape": "E2D5BD9511E9FECE4409243ECE061CFEFCDD2BD8708DC6366BA0DA60B3880402"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Commodore/Common/Machines/Common/Functions/InputFunctions.Visuals.cs",
-          "name": "ToKeys",
-          "line": 94,
-          "tokens": 53,
-          "hash": "8F440851248598B3BB1D1AAC54724FC81803088B1FF9A31C8477E89A64811C43",
-          "shape": "E2D5BD9511E9FECE4409243ECE061CFEFCDD2BD8708DC6366BA0DA60B3880402"
-        }
-      ],
-      "predecessors": [
-        {
-          "path": "src/GWGUI.Emulation.Amiga/Functions/AmigaInputSettingsFunctions.cs",
-          "name": "ToKeys",
-          "line": 213,
-          "tokens": 53,
-          "hash": "8F440851248598B3BB1D1AAC54724FC81803088B1FF9A31C8477E89A64811C43",
-          "shape": "E2D5BD9511E9FECE4409243ECE061CFEFCDD2BD8708DC6366BA0DA60B3880402"
-        }
-      ],
-      "shapePredecessors": [
-        {
-          "path": "src/GWGUI.Emulation.Amiga/Functions/AmigaInputSettingsFunctions.cs",
-          "name": "ToKeys",
-          "line": 213,
-          "tokens": 53,
-          "hash": "8F440851248598B3BB1D1AAC54724FC81803088B1FF9A31C8477E89A64811C43",
-          "shape": "E2D5BD9511E9FECE4409243ECE061CFEFCDD2BD8708DC6366BA0DA60B3880402"
-        }
-      ],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
       "hash": "8F534F4150DDB02AD5C73BA430871EF0AB983F4166AB51757AFFB06535907A51",
       "method": "CopyMemoryMap",
       "tokens": 58,
@@ -19399,7 +19205,7 @@
     {
       "language": "CSharp",
       "hash": "A1E03750FEB3292ACEB41656386F4A8AA8B05077D9ABFB7DA103AA3D71320B9F",
-      "method": "ToModule",
+      "method": "ToFairchild",
       "tokens": 103,
       "current": [
         {
@@ -19717,7 +19523,7 @@
     {
       "language": "CSharp",
       "hash": "A61349BFDFFA5D404CE7D0D458204D435194B5E4D84870DF4F9FBE26A86A9946",
-      "method": "ToEpoch",
+      "method": "ToFairchild",
       "tokens": 36,
       "current": [
         {
@@ -19820,7 +19626,7 @@
         {
           "path": "src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
           "name": "ControllerDefinitions",
-          "line": 60,
+          "line": 56,
           "tokens": 101,
           "hash": "A854379670413DCD473ADF343CCFFC243CA6A012416BBA742321EA7686787764",
           "shape": "B3B08D6A8600CA2F642BC006BC2CA778E39B0404C904C371C010999E2BDEC15D"
@@ -19828,7 +19634,7 @@
         {
           "path": "src/GWGUI.Emulation.Microsoft/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
           "name": "ControllerDefinitions",
-          "line": 60,
+          "line": 56,
           "tokens": 101,
           "hash": "A854379670413DCD473ADF343CCFFC243CA6A012416BBA742321EA7686787764",
           "shape": "B3B08D6A8600CA2F642BC006BC2CA778E39B0404C904C371C010999E2BDEC15D"
@@ -20867,7 +20673,7 @@
     {
       "language": "CSharp",
       "hash": "B053A3AB4F0B78A37DED57B2D744801187AED6EC54FEEAFE4B1AA9C454D6F48C",
-      "method": "EpochEmulationModule",
+      "method": "PanasonicEmulationModule",
       "tokens": 47,
       "current": [
         {
@@ -23245,33 +23051,6 @@
     },
     {
       "language": "CSharp",
-      "hash": "C6BF50F2B453892C412A853405D8A0797624A0C56AF3E7912F321061AB75CCEB",
-      "method": "Apply",
-      "tokens": 260,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
-          "name": "Apply",
-          "line": 26,
-          "tokens": 260,
-          "hash": "C6BF50F2B453892C412A853405D8A0797624A0C56AF3E7912F321061AB75CCEB",
-          "shape": "07B8DEAFFD3B6317ACDFEB31DD39D355F79B5B4134CA1B2C5C2BC5FAF676EE24"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Microsoft/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
-          "name": "Apply",
-          "line": 25,
-          "tokens": 260,
-          "hash": "C6BF50F2B453892C412A853405D8A0797624A0C56AF3E7912F321061AB75CCEB",
-          "shape": "07B8DEAFFD3B6317ACDFEB31DD39D355F79B5B4134CA1B2C5C2BC5FAF676EE24"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
       "hash": "C71AB6F7BB749137FA86CDE1648D58721B3C97DAE396674E771A36C51620526C",
       "method": "OptionCallbackHost",
       "tokens": 92,
@@ -25273,65 +25052,6 @@
           "tokens": 152,
           "hash": "D711A46956C05ED61ACE13A8081E0EE6176CD3BB5ACB8BCB37D7ED12AC686A09",
           "shape": "8D520E8CDCDEB31E8915EE2EB5BFC8F94376841AA63A08E82D3EFB5052A56D6A"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
-      "hash": "D735DA30CBFFF9A3446058D6123282C5854C1DECE3E00EA8E3E7DD3F43393ED3",
-      "method": "MouseValues",
-      "tokens": 52,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
-          "name": "MouseValues",
-          "line": 58,
-          "tokens": 52,
-          "hash": "D735DA30CBFFF9A3446058D6123282C5854C1DECE3E00EA8E3E7DD3F43393ED3",
-          "shape": "EE345955140F96A20328F97D50F791F2D0D28DF65ABC3BB81F514EE7579384EB"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
-          "name": "MouseValues",
-          "line": 60,
-          "tokens": 52,
-          "hash": "D735DA30CBFFF9A3446058D6123282C5854C1DECE3E00EA8E3E7DD3F43393ED3",
-          "shape": "EE345955140F96A20328F97D50F791F2D0D28DF65ABC3BB81F514EE7579384EB"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
-          "name": "MouseValues",
-          "line": 69,
-          "tokens": 52,
-          "hash": "D735DA30CBFFF9A3446058D6123282C5854C1DECE3E00EA8E3E7DD3F43393ED3",
-          "shape": "EE345955140F96A20328F97D50F791F2D0D28DF65ABC3BB81F514EE7579384EB"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
-          "name": "MouseValues",
-          "line": 59,
-          "tokens": 52,
-          "hash": "D735DA30CBFFF9A3446058D6123282C5854C1DECE3E00EA8E3E7DD3F43393ED3",
-          "shape": "EE345955140F96A20328F97D50F791F2D0D28DF65ABC3BB81F514EE7579384EB"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Microsoft/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
-          "name": "MouseValues",
-          "line": 58,
-          "tokens": 52,
-          "hash": "D735DA30CBFFF9A3446058D6123282C5854C1DECE3E00EA8E3E7DD3F43393ED3",
-          "shape": "EE345955140F96A20328F97D50F791F2D0D28DF65ABC3BB81F514EE7579384EB"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
-          "name": "MouseValues",
-          "line": 81,
-          "tokens": 52,
-          "hash": "D735DA30CBFFF9A3446058D6123282C5854C1DECE3E00EA8E3E7DD3F43393ED3",
-          "shape": "EE345955140F96A20328F97D50F791F2D0D28DF65ABC3BB81F514EE7579384EB"
         }
       ],
       "predecessors": [],
@@ -29539,7 +29259,7 @@
         {
           "path": "src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
           "name": "PspControllerDefinitions",
-          "line": 103,
+          "line": 98,
           "tokens": 242,
           "hash": "EFB9113D4BE1AABC32E608000891BBBA6186990D27CD3267CD14B519285C3FB1",
           "shape": "06153092A85684BA5230E35B71B6AD1C11EB267E4420EEBB84E2DC5628E2BCC5"
@@ -29547,7 +29267,7 @@
         {
           "path": "src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
           "name": "PlayStationButtonDefinitions",
-          "line": 178,
+          "line": 173,
           "tokens": 242,
           "hash": "CE26839C5EB3EEED864B2FCEA0BD2A863A45141B9DEC9B9E703DDD91F831489E",
           "shape": "06153092A85684BA5230E35B71B6AD1C11EB267E4420EEBB84E2DC5628E2BCC5"
@@ -32028,7 +31748,7 @@
         {
           "path": "src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
           "name": "Definition",
-          "line": 158,
+          "line": 154,
           "tokens": 131,
           "hash": "FF4472CA7CCFFF384D3EB20CE0D567FD22881848ECF69766E174BCCD4B09DA44",
           "shape": "5414D418DB1C9BF1831B7C1B5678922E694D6A37EACDD97C99D72303472FEF87"
@@ -32036,7 +31756,7 @@
         {
           "path": "src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
           "name": "Definition",
-          "line": 198,
+          "line": 193,
           "tokens": 131,
           "hash": "69D7E0D87B9564ACAED230F2CF07F4D91ED631C975B46B826DD852004400E5F1",
           "shape": "5414D418DB1C9BF1831B7C1B5678922E694D6A37EACDD97C99D72303472FEF87"
@@ -33085,7 +32805,7 @@
         {
           "path": "src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
           "name": "AnalogStickDefinitions",
-          "line": 166,
+          "line": 161,
           "tokens": 122,
           "hash": "389DC2B210759B424A5FCEAF52FBA6DC66027AAB8FF3A241F3745FB562822C44",
           "shape": "7B8AC9BF72477E3F765168A728D3A216FAC97600BB157272ADF18CEB03D81B8B"
@@ -33944,7 +33664,7 @@
         {
           "path": "src/GWGUI.Emulation/Functions/EmulationInputMappingFunctions.cs",
           "name": "TryRemovePrefix",
-          "line": 120,
+          "line": 135,
           "tokens": 49,
           "hash": "BA9AD9B4A071A397D6AA5DA269AD309318AAAFA9AEFBC283716FD07B0487765E",
           "shape": "8EB0DB36964E4C010361878FB2B3A491187182692E9DF4D1CE6E894BF28987C7"

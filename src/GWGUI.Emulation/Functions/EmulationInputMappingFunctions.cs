@@ -46,6 +46,21 @@ public static class EmulationInputMappingFunctions
             [EmulationInputMappingConstants.PaddleRight2] = EmulationInputMappingConstants.PaddleRight2Index
         };
 
+    internal static Dictionary<string, string> MouseBindings<TAction>(IReadOnlyDictionary<string, TAction>? mappings,
+        TAction none) where TAction : struct, Enum =>
+        (mappings ?? new Dictionary<string, TAction>()).Where(item => !EqualityComparer<TAction>.Default.Equals(item.Value, none))
+            .ToDictionary(item => item.Value.ToString(), item => item.Key, StringComparer.Ordinal);
+
+    internal static Dictionary<string, TAction>? CreateMouseMappings<TAction>(EmulationInputBindingSet? bindings,
+        TAction none) where TAction : struct, Enum =>
+        bindings?.Values.Where(item => !string.IsNullOrWhiteSpace(item.Value)
+                && Enum.TryParse<TAction>(item.Key, true, out var action) && !EqualityComparer<TAction>.Default.Equals(action, none))
+            .ToDictionary(item => item.Value, item => Enum.Parse<TAction>(item.Key, true), StringComparer.OrdinalIgnoreCase);
+
+    internal static Dictionary<string, string> CopyNonEmptyBindings(IReadOnlyDictionary<string, string> values) =>
+        values.Where(item => !string.IsNullOrWhiteSpace(item.Key) && !string.IsNullOrWhiteSpace(item.Value))
+            .ToDictionary(item => item.Key, item => item.Value, StringComparer.Ordinal);
+
     public static IReadOnlySet<EmulationKey> MapKeyboard(IReadOnlySet<EmulationKey> keys, IReadOnlyDictionary<string, EmulationKey>? mappings)
     {
         if (mappings is null || mappings.Count == 0) return new HashSet<EmulationKey>(keys);

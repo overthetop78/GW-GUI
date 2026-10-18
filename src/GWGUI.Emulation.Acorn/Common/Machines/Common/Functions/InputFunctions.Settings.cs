@@ -7,7 +7,7 @@ internal static class InputSettingsFunctions
     {
         var input = configuration.Input;
         var definitions = BbcMicroInputSettingsFunctions.KeyboardDefinitions(configuration);
-        var keyboard = new EmulationInputBindingSet(definitions, input.KeyboardBindings ?? ToStrings(input.KeyboardMappings), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller);
+        var keyboard = new EmulationInputBindingSet(definitions, input.KeyboardBindings ?? GWGUI.Emulation.Functions.EmulationKeyboardBindingFunctions.ToStrings(input.KeyboardMappings, StringComparer.Ordinal), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller);
         var configured = input.Controllers ?? [];
         var choices = ControllerFunctions.Peripherals(configuration.Model).Where(category => category != PeripheralCategory.Automatic).OrderBy(category => category).Select(Choice).ToArray();
         var ports = Enumerable.Range(ControllerPortConstants.MinimumControllerPort, ConfigurationFunctions.ControllerPortCount(configuration.Model)).Select(index =>
@@ -32,11 +32,11 @@ internal static class InputSettingsFunctions
     {
         var allowedKeys = BbcMicroInputSettingsFunctions.KeyboardDefinitions(configuration).Select(definition => definition.Id).ToHashSet(StringComparer.Ordinal);
         var keyboardBindings = settings.Keyboard is null 
-            ? configuration.Input.KeyboardBindings ?? ToStrings(configuration.Input.KeyboardMappings) 
+            ? configuration.Input.KeyboardBindings ?? GWGUI.Emulation.Functions.EmulationKeyboardBindingFunctions.ToStrings(configuration.Input.KeyboardMappings, StringComparer.Ordinal)
             : settings.Keyboard.Values.Where(item => allowedKeys.Contains(item.Key) && EmulationKeyboardBindingFunctions.IsValid(item.Value)).ToDictionary(item => item.Key,
                 item => string.IsNullOrWhiteSpace(item.Value) ? string.Empty : item.Value,
                 StringComparer.Ordinal);
-        var keyboard = keyboardBindings.Where(item => Enum.TryParse<EmulationKey>(item.Value, true, out _)).ToDictionary(item => item.Key, item => Enum.Parse<EmulationKey>(item.Value, true), StringComparer.Ordinal);
+        var keyboard = keyboardBindings.ToKeys();
         var controllers = settings.ControllerPorts.Select(port =>
         {
             if (!Enum.TryParse<PeripheralCategory>(port.SelectedControllerId, true, out var peripheral) || !Enum.IsDefined(peripheral))
@@ -95,5 +95,4 @@ internal static class InputSettingsFunctions
                 _ => null
             } : null
         }).ToArray();
-    private static IReadOnlyDictionary<string, string> ToStrings(IReadOnlyDictionary<string, EmulationKey>? mappings) => mappings?.ToDictionary(item => item.Key, item => item.Value.ToString(), StringComparer.Ordinal) ?? new Dictionary<string, string>(StringComparer.Ordinal);
 }

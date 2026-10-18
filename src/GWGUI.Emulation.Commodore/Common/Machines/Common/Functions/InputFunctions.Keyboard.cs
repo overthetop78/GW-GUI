@@ -41,7 +41,7 @@ internal static class KeyboardBindingFunctions
                 result[target] = item.Value;
             }
 
-        var mappings = result.Where(item => Enum.TryParse<EmulationKey>(item.Value, true, out _)).ToDictionary(item => item.Key, item => Enum.Parse<EmulationKey>(item.Value, true), StringComparer.Ordinal);
+        var mappings = result.ToKeys();
         return input with
         {
             KeyboardBindings = result,

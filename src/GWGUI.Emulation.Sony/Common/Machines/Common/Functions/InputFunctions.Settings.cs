@@ -10,9 +10,9 @@ internal static partial class InputSettingsFunctions
         var input = configuration.Input ?? new InputConfiguration();
         var usbKeyboard = HasUsbKeyboard(configuration);
         var usbMouse = HasUsbMouse(configuration);
-        var keyboard = model.HasKeyboard || usbKeyboard ? new EmulationInputBindingSet(usbKeyboard ? UsbKeyboardDefinitions() : [], input.KeyboardBindings ?? ToStrings(input.KeyboardMappings), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller,
+        var keyboard = model.HasKeyboard || usbKeyboard ? new EmulationInputBindingSet(usbKeyboard ? UsbKeyboardDefinitions() : [], input.KeyboardBindings ?? GWGUI.Emulation.Functions.EmulationKeyboardBindingFunctions.ToStrings(input.KeyboardMappings), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller,
             CompatibleVisualIds: usbKeyboard ? [UsbKeyboardVisualId(configuration)] : null, DefaultVisualId: usbKeyboard ? UsbKeyboardVisualId(configuration) : null) : null;
-        var mouse = model.MouseButtonCount > 0 || usbMouse ? new EmulationInputBindingSet(usbMouse ? [.. MouseDefinitions(), Definition(nameof(MouseAction.MiddleButton), "Emulation.Mouse.Button.Middle", "Mouse:Middle")] : MouseDefinitions(), MouseValues(input), EmulationInputSource.Mouse | EmulationInputSource.Keyboard | EmulationInputSource.Controller, true) : null;
+        var mouse = model.MouseButtonCount > 0 || usbMouse ? new EmulationInputBindingSet(usbMouse ? [.. MouseDefinitions(), Definition(nameof(MouseAction.MiddleButton), "Emulation.Mouse.Button.Middle", "Mouse:Middle")] : MouseDefinitions(), GWGUI.Emulation.Functions.EmulationInputMappingFunctions.MouseBindings(input.MouseButtonMappings, MouseAction.None), EmulationInputSource.Mouse | EmulationInputSource.Keyboard | EmulationInputSource.Controller, true) : null;
         if (usbMouse && mouse is not null) mouse = mouse with
         {
             CompatibleVisualIds = [EmulationControllerVisualIds.SonyUsbMouse],
@@ -30,10 +30,8 @@ internal static partial class InputSettingsFunctions
         if (!EmulatorCatalog.GetAll(configuration.Model).Any(adapter => adapter.Id == configuration.EmulatorId))
             return configuration;
         var current = configuration.Input ?? new InputConfiguration();
-        var keyboard = settings.Keyboard?.Values ?? current.KeyboardBindings ?? ToStrings(current.KeyboardMappings);
-        var mouse = settings.Mouse?.Values.Where(item => !string.IsNullOrWhiteSpace(item.Value) && Enum.TryParse<MouseAction>(item.Key, true, out var action) && action != MouseAction.None)
-            .ToDictionary(item => item.Value, item => Enum.Parse<MouseAction>(item.Key, true),
-                StringComparer.OrdinalIgnoreCase) ?? current.MouseButtonMappings ?? new Dictionary<string, MouseAction>();
+        var keyboard = settings.Keyboard?.Values ?? current.KeyboardBindings ?? GWGUI.Emulation.Functions.EmulationKeyboardBindingFunctions.ToStrings(current.KeyboardMappings);
+        var mouse = GWGUI.Emulation.Functions.EmulationInputMappingFunctions.CreateMouseMappings(settings.Mouse, MouseAction.None) ?? current.MouseButtonMappings ?? new Dictionary<string, MouseAction>();
         var controllers = settings.ControllerPorts.Where(port => port.Number <= ControllerFunctions.PortCount(configuration)).Select(port =>
         {
             var index = port.Number - ControllerPortConstants.OneControllerPort;
@@ -43,7 +41,7 @@ internal static partial class InputSettingsFunctions
             if (!ControllerCatalog.Available(configuration, index, usb).Contains(type))
                 throw new ArgumentOutOfRangeException(nameof(port.SelectedControllerId), port.SelectedControllerId, null);
             return new ControllerBinding(index, type, port.PhysicalDeviceId,
-                port.Bindings.Values.Where(item => !string.IsNullOrWhiteSpace(item.Key) && !string.IsNullOrWhiteSpace(item.Value)).ToDictionary(item => item.Key, item => item.Value, StringComparer.Ordinal),
+                GWGUI.Emulation.Functions.EmulationInputMappingFunctions.CopyNonEmptyBindings(port.Bindings.Values),
                 port.VisualId, ValidOutputBindings(configuration, type, port.VisualId, port.OutputBindings));
         }).ToArray();
         if (configuration.Model == ModelConstants.PlayStation3)
@@ -54,7 +52,7 @@ internal static partial class InputSettingsFunctions
             Input = current with
             {
                 KeyboardBindings = keyboard,
-                KeyboardMappings = ToKeys(keyboard),
+                KeyboardMappings = GWGUI.Emulation.Functions.EmulationKeyboardBindingFunctions.ToKeys(keyboard),
                 MouseButtonMappings = mouse,
                 ControllerBindings = controllers,
                 UsbBindings = configuration.Model == ModelConstants.PlayStation2 && configuration.EmulatorId != "pcee2"
@@ -64,8 +62,7 @@ internal static partial class InputSettingsFunctions
                             || !ControllerCatalog.Available(configuration, port.Number - 1, true).Contains(type))
                             throw new ArgumentOutOfRangeException(nameof(port.SelectedControllerId));
                         return new ControllerBinding(port.Number - 9, type, port.PhysicalDeviceId,
-                            port.Bindings.Values.Where(item => !string.IsNullOrWhiteSpace(item.Key) && !string.IsNullOrWhiteSpace(item.Value))
-                                .ToDictionary(item => item.Key, item => item.Value, StringComparer.Ordinal),
+                            GWGUI.Emulation.Functions.EmulationInputMappingFunctions.CopyNonEmptyBindings(port.Bindings.Values),
                             port.VisualId, ValidOutputBindings(configuration, type, port.VisualId, port.OutputBindings));
                     }).ToArray() : current.UsbBindings
             }
@@ -77,8 +74,6 @@ internal static partial class InputSettingsFunctions
         Definition(nameof(MouseAction.LeftButton), InputSettingsFunctionsConstants.ResourceMouseButtonLeft, InputSettingsFunctionsConstants.MouseLeft),
         Definition(nameof(MouseAction.RightButton), InputSettingsFunctionsConstants.ResourceMouseButtonRight, InputSettingsFunctionsConstants.MouseRight)
     ];
-
-    private static IReadOnlyDictionary<string, string> MouseValues(InputConfiguration input) => (input.MouseButtonMappings ?? new Dictionary<string, MouseAction>()).Where(item => item.Value != MouseAction.None).ToDictionary(item => item.Value.ToString(), item => item.Key, StringComparer.Ordinal);
 
     private static IReadOnlyList<InputBindingDefinition> ControllerDefinitions(ControllerType type, Model model) => type is ControllerType.None ? []
         : type == ControllerType.Mouse ? MouseDefinitions()
