@@ -1,3 +1,4 @@
+using GWGUI.MediaFileSystems.Functions;
 using System.Buffers.Binary;
 using System.Collections.Frozen;
 using System.IO;
@@ -81,7 +82,7 @@ public sealed class AmstradCprWriter : IMediaImageWriter
                 || range.Address % BankLength != 0 || range.Length is <= 0 or > BankLength)
                 return false;
             var number = checked((int)(range.Address / BankLength));
-            var length = document.Metadata.TryGetValue($"bank.{number}.length", out var text) && int.TryParse(text, System.Globalization.NumberStyles.None, System.Globalization.CultureInfo.InvariantCulture, out var storedLength) ? storedLength : checked((int)range.Length);
+            var length = MediaMetadataFunctions.TryReadInt(document.Metadata, $"bank.{number}.length", out var storedLength) ? storedLength : checked((int)range.Length);
             if (length <= 0 || length > range.Length) return false;
             selected.Add(new Bank(number, length, range));
         }

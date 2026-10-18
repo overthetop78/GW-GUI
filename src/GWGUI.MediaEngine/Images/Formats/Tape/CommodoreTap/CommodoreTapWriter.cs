@@ -1,3 +1,4 @@
+using GWGUI.MediaFileSystems.Functions;
 using System.Buffers.Binary;
 using System.Collections.Frozen;
 using System.Globalization;
@@ -85,8 +86,7 @@ public sealed class CommodoreTapWriter : IMediaImageWriter
         foreach (var segment in segments.OrderBy(segment => segment.Position))
         {
             if (segment.Kind != SequentialSegmentKind.Pulse
-                || !segment.Metadata.TryGetValue(CommodoreTapConstants.CycleCountMetadataKey, out var cycleText)
-                || !int.TryParse(cycleText, NumberStyles.None, CultureInfo.InvariantCulture, out var cycles)
+                || !MediaMetadataFunctions.TryReadInt(segment.Metadata, CommodoreTapConstants.CycleCountMetadataKey, out var cycles)
                 || cycles <= 0)
                 return false;
             if (cycles % CommodoreTapConstants.ShortPulseCycleMultiplier == 0

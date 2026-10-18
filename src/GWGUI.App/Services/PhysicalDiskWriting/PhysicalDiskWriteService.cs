@@ -1,3 +1,4 @@
+using GWGUI.MediaFileSystems.Functions;
 using System.Globalization;
 using System.IO;
 using GWGUI.App.Contracts.Services.PhysicalDiskWriting;
@@ -40,16 +41,15 @@ public sealed class PhysicalDiskWriteService(MediaPhysicalWriterRegistry writers
     private static void ReportProgress(MediaWritePlan plan, MediaPhysicalWriteProgress value, IProgress<PhysicalTrackWriteProgress>? progress)
     {
         var unit = plan.DataUnits.FirstOrDefault(item => item.Position == value.Position);
-        var cylinder = unit is null ? 0 : ReadPosition(unit.Metadata, MediaPhysicalMetadataKeys.Cylinder);
-        var head = unit is null ? 0 : ReadPosition(unit.Metadata, MediaPhysicalMetadataKeys.Head);
-        var tracks = plan.DataUnits.Select(item => new PhysicalTrackWriteAddress(ReadPosition(item.Metadata, MediaPhysicalMetadataKeys.Cylinder), ReadPosition(item.Metadata, MediaPhysicalMetadataKeys.Head))).Distinct()
+        var cylinder = unit is null ? 0 : MediaMetadataFunctions.ReadIntOrDefault(unit.Metadata, MediaPhysicalMetadataKeys.Cylinder);
+        var head = unit is null ? 0 : MediaMetadataFunctions.ReadIntOrDefault(unit.Metadata, MediaPhysicalMetadataKeys.Head);
+        var tracks = plan.DataUnits.Select(item => new PhysicalTrackWriteAddress(MediaMetadataFunctions.ReadIntOrDefault(item.Metadata, MediaPhysicalMetadataKeys.Cylinder), MediaMetadataFunctions.ReadIntOrDefault(item.Metadata, MediaPhysicalMetadataKeys.Head))).Distinct()
             .OrderBy(item => item.Cylinder)
             .ThenBy(item => item.Head)
             .ToArray();
         progress?.Report(new PhysicalTrackWriteProgress(value.CompletedUnits, value.TotalUnits, cylinder, head, value.Verifying, tracks));
     }
 
-    private static int ReadPosition(IReadOnlyDictionary<string, string> metadata, string key) => metadata.TryGetValue(key, out var value) && int.TryParse(value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var parsed) ? parsed : 0;
 
     private static PhysicalTrackWriteFailure MapFailure(string diagnostic)
     {

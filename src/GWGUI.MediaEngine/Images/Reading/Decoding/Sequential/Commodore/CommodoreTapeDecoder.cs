@@ -1,3 +1,4 @@
+using GWGUI.MediaFileSystems.Functions;
 using System.Collections.Frozen;
 using System.Globalization;
 using GWGUI.MediaEngine.Enums;
@@ -180,8 +181,7 @@ public sealed class CommodoreTapeDecoder : ISequentialMediaDecoder
 
     private static bool TryReadInt(IReadOnlyDictionary<string, string> metadata, string key, out int value)
     {
-        value = 0;
-        return metadata.TryGetValue(key, out var text) && int.TryParse(text, NumberStyles.None, CultureInfo.InvariantCulture, out value) && value > 0;
+        return MediaMetadataFunctions.TryReadInt(metadata, key, out value) && value > 0;
     }
 
     private readonly record struct Pulse(int Cycles, long SourcePosition);

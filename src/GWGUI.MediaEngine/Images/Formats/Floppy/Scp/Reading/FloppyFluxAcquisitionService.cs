@@ -1,3 +1,4 @@
+using GWGUI.MediaFileSystems.Functions;
 using System.Globalization;
 using MediaPhysicalEncodingIds = global::GWGUI.MediaEngine.Constants.MediaPhysicalEncodingIds;
 using MediaPhysicalMetadataKeys = global::GWGUI.MediaEngine.Constants.MediaPhysicalMetadataKeys;
@@ -81,7 +82,7 @@ public sealed class FloppyFluxAcquisitionService
     private static uint ConvertNanoseconds(uint nanoseconds, int resolutionNanoseconds) => checked((uint)Math.Max(1, Math.Round(nanoseconds / (double)resolutionNanoseconds)));
 
     private static int ReadInt(IReadOnlyDictionary<string, string> metadata, string key) =>
-        metadata.TryGetValue(key, out var value) && int.TryParse(value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var parsed) ? parsed : throw new InvalidDataException($"Physical acquisition metadata '{key}' is missing or invalid.");
+        MediaMetadataFunctions.TryReadInt(metadata, key, NumberStyles.Integer, out var parsed) ? parsed : throw new InvalidDataException($"Physical acquisition metadata '{key}' is missing or invalid.");
 
     private static ScpDiskType ReadDiskType(IReadOnlyDictionary<string, string> metadata)
     {

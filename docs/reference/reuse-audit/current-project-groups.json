@@ -1,9 +1,9 @@
 {
   "baseline": "ac7292d86^",
-  "currentCSharpFiles": 7313,
-  "outsideSrcCSharpFiles": 293,
+  "currentCSharpFiles": 7314,
+  "outsideSrcCSharpFiles": 294,
   "baselineMethodCount": 5848,
-  "currentMethodCount": 11595,
+  "currentMethodCount": 11594,
   "powerShellFunctionCount": 17,
   "groups": [
     {
@@ -1265,7 +1265,7 @@
     {
       "language": "CSharp",
       "hash": "0A9D4012A0EEF58659F6F622D06187BDA6844EE126F30B196EAE963950A66758",
-      "method": "CommodoreEmulationModule",
+      "method": "NecEmulationModule",
       "tokens": 45,
       "current": [
         {
@@ -12144,7 +12144,7 @@
     {
       "language": "CSharp",
       "hash": "68386C818382BCE400A3EDE65411B5CBD9D6A87F6D88FAF6501028CE28C38965",
-      "method": "ToSinclair",
+      "method": "ToModule",
       "tokens": 148,
       "current": [
         {
@@ -16587,67 +16587,6 @@
     },
     {
       "language": "CSharp",
-      "hash": "9130272DA076D53998DFFC203E1DA8806604EA060DEF0B09C8806AB3E17E4DFA",
-      "method": "ReadPosition",
-      "tokens": 34,
-      "current": [
-        {
-          "path": "src/GWGUI.App/Services/PhysicalDiskWriting/PhysicalDiskWriteService.cs",
-          "name": "ReadPosition",
-          "line": 52,
-          "tokens": 34,
-          "hash": "9130272DA076D53998DFFC203E1DA8806604EA060DEF0B09C8806AB3E17E4DFA",
-          "shape": "9BF00B505D7D8AFB39ECAB66EC998457AC2ACE345819DD9856D5AE0BF4728EB6"
-        },
-        {
-          "path": "src/GWGUI.App/Services/PhysicalDiskReading/InternalPhysicalDiskReader.cs",
-          "name": "ReadPosition",
-          "line": 69,
-          "tokens": 34,
-          "hash": "9130272DA076D53998DFFC203E1DA8806604EA060DEF0B09C8806AB3E17E4DFA",
-          "shape": "9BF00B505D7D8AFB39ECAB66EC998457AC2ACE345819DD9856D5AE0BF4728EB6"
-        }
-      ],
-      "predecessors": [
-        {
-          "path": "src/GWGUI.App/Services/PhysicalDiskReading/InternalPhysicalDiskReader.cs",
-          "name": "ReadPosition",
-          "line": 102,
-          "tokens": 34,
-          "hash": "9130272DA076D53998DFFC203E1DA8806604EA060DEF0B09C8806AB3E17E4DFA",
-          "shape": "9BF00B505D7D8AFB39ECAB66EC998457AC2ACE345819DD9856D5AE0BF4728EB6"
-        },
-        {
-          "path": "src/GWGUI.App/Services/PhysicalDiskWriting/PhysicalDiskWriteService.cs",
-          "name": "ReadPosition",
-          "line": 73,
-          "tokens": 34,
-          "hash": "9130272DA076D53998DFFC203E1DA8806604EA060DEF0B09C8806AB3E17E4DFA",
-          "shape": "9BF00B505D7D8AFB39ECAB66EC998457AC2ACE345819DD9856D5AE0BF4728EB6"
-        }
-      ],
-      "shapePredecessors": [
-        {
-          "path": "src/GWGUI.App/Services/PhysicalDiskReading/InternalPhysicalDiskReader.cs",
-          "name": "ReadPosition",
-          "line": 102,
-          "tokens": 34,
-          "hash": "9130272DA076D53998DFFC203E1DA8806604EA060DEF0B09C8806AB3E17E4DFA",
-          "shape": "9BF00B505D7D8AFB39ECAB66EC998457AC2ACE345819DD9856D5AE0BF4728EB6"
-        },
-        {
-          "path": "src/GWGUI.App/Services/PhysicalDiskWriting/PhysicalDiskWriteService.cs",
-          "name": "ReadPosition",
-          "line": 73,
-          "tokens": 34,
-          "hash": "9130272DA076D53998DFFC203E1DA8806604EA060DEF0B09C8806AB3E17E4DFA",
-          "shape": "9BF00B505D7D8AFB39ECAB66EC998457AC2ACE345819DD9856D5AE0BF4728EB6"
-        }
-      ],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
       "hash": "91542207321A8287B4E9060EA27C385DAD11BE031F7A7E3B3C4EAB4D9ED4BC88",
       "method": "CopyVersionTwoDefinitions",
       "tokens": 65,
@@ -18742,7 +18681,7 @@
         {
           "path": "src/GWGUI.MediaEngine/Images/Reading/Decoding/Sequential/Commodore/CommodoreTapeDecoder.cs",
           "name": "CanDecode",
-          "line": 24,
+          "line": 25,
           "tokens": 36,
           "hash": "9B6A72A5D10356534461A411AF81E0672551CAB20A6089EBAC63C8914001AD29",
           "shape": "458C988E88A8079E6934A403CC293AFD2C6F751A1ADBDE7CCCC901C93703E864"
@@ -19460,7 +19399,7 @@
     {
       "language": "CSharp",
       "hash": "A1E03750FEB3292ACEB41656386F4A8AA8B05077D9ABFB7DA103AA3D71320B9F",
-      "method": "ToEpoch",
+      "method": "ToModule",
       "tokens": 103,
       "current": [
         {

@@ -1,3 +1,4 @@
+using GWGUI.MediaFileSystems.Functions;
 using System.Globalization;
 using GWGUI.App.Constants.Services.PhysicalDiskReading;
 using GWGUI.App.Contracts.Services.PhysicalDiskReading;
@@ -55,8 +56,8 @@ public sealed class InternalPhysicalDiskReader(Func<IGreaseweazleReadDevice> dev
 
     private static void ReportProgress(MediaAcquisitionProgress value, IReadOnlyList<PhysicalDiskTrackAddress> tracks, FloppyFluxAcquisitionService fluxService, IProgress<PhysicalDiskReadOperationProgress>? progress)
     {
-        var cylinder = ReadPosition(value.Metadata, MediaPhysicalMetadataKeys.Cylinder);
-        var head = ReadPosition(value.Metadata, MediaPhysicalMetadataKeys.Head);
+        var cylinder = MediaMetadataFunctions.ReadIntOrDefault(value.Metadata, MediaPhysicalMetadataKeys.Cylinder);
+        var head = MediaMetadataFunctions.ReadIntOrDefault(value.Metadata, MediaPhysicalMetadataKeys.Head);
         IPiste? acquiredTrack = null;
         if (value.AcquiredUnit is not null)
         {
@@ -66,5 +67,4 @@ public sealed class InternalPhysicalDiskReader(Func<IGreaseweazleReadDevice> dev
         progress?.Report(new PhysicalDiskReadOperationProgress(PhysicalDiskReadStage.Acquiring, value.CompletedUnits, value.TotalUnits, cylinder, head, value.Attempt, tracks, acquiredTrack));
     }
 
-    private static int ReadPosition(IReadOnlyDictionary<string, string> metadata, string key) => metadata.TryGetValue(key, out var value) && int.TryParse(value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var parsed) ? parsed : 0;
 }

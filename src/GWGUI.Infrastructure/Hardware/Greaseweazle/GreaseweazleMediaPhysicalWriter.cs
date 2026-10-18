@@ -1,3 +1,4 @@
+using GWGUI.MediaFileSystems.Functions;
 using System.Collections.Frozen;
 using System.Globalization;
 using MediaPhysicalEncodingIds = global::GWGUI.MediaEngine.Constants.MediaPhysicalEncodingIds;
@@ -113,7 +114,7 @@ public sealed class GreaseweazleMediaPhysicalWriter(Func<IGreaseweazleWriteDevic
     }
 
     private static int ReadMetadataInt(MediaPhysicalDataUnit unit, string key) =>
-        unit.Metadata.TryGetValue(key, out var value) && int.TryParse(value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var parsed) ? parsed : throw new InvalidDataException($"Physical write metadata '{key}' is missing or invalid.");
+        MediaMetadataFunctions.TryReadInt(unit.Metadata, key, NumberStyles.Integer, out var parsed) ? parsed : throw new InvalidDataException($"Physical write metadata '{key}' is missing or invalid.");
 
     private static int ReadInt(IReadOnlyDictionary<string, string> options, string key) =>
         int.TryParse(GreaseweazleMediaOptionFunctions.ReadRequired(options, key), NumberStyles.Integer, CultureInfo.InvariantCulture, out var parsed) ? parsed : throw new ArgumentException($"Invalid integer value for option '{key}'.", nameof(options));
