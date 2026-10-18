@@ -11551,5 +11551,114 @@
     "ast": "All ten shared expressions expand to original constructor fields in sixteen consumers after replacing already-verified primitive adapters with their SDK targets. Static factories forward ten parameters in unchanged order to the exact original public record. All other tokens, architecture guards and finally blocks unchanged; all pre-existing SDK diagnostic members unchanged.",
     "semantic": "Current SDK and all 23 modules: zero semantic errors. Sixteen CreateManifest calls return their original public manifest type; all ten factory parameter types match its original constructor. Four diagnostic primitives resolve to their original SDK owners.",
     "tests": "Same ten existing CoreInstallationFlowTests passed again, exit 0. They cover pipeline ordering/failures and preparation, not direct file metadata output. Exact collection expressions, ordering and field mapping separately verified by AST and symbols. No redundant mirror test or external DLL fixture added; pre-existing resource-owning primitive methods unchanged."
+  },
+  "diagnosticArchitectureGuardReuse": {
+    "state": "qualified-before-correction",
+    "snapshot": "7e1736bb3",
+    "before": [
+      {
+        "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+        "sha256": "B2989FAF5437F8B9413F30DDF991CDD5F45C7479D68A47AD40A90C54930795BA",
+        "provider": "GWGUI.Emulation.Apple.Emulators.Common.Exceptions.CoreReleaseErrors.InvalidArchitecture",
+        "providerKind": "Property",
+        "originalGuardTokensIdentical": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+        "sha256": "78319434058A704150A0502843F9CCA92C89C094C8122338AD7B95EFEC245E8E",
+        "provider": "GWGUI.Emulation.Mattel.Emulators.Common.Exceptions.CoreReleaseErrors.InvalidArchitecture",
+        "providerKind": "Property",
+        "originalGuardTokensIdentical": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Watara/Emulators/Potator/Services/CoreReleaseService.cs",
+        "sha256": "A143143C4E34140B503620816B479C3724C5A10E06EE8F2ABED43F531B28262D",
+        "provider": "GWGUI.Emulation.Watara.Emulators.Potator.Exceptions.CoreReleaseErrors.InvalidArchitecture",
+        "providerKind": "Field",
+        "originalGuardTokensIdentical": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+        "sha256": "FA9A7576F3E47346B3EA1B9DFE8B7656B0B1477987B58F8ABE9878EDA1E1AC96",
+        "provider": "GWGUI.Emulation.Coleco.Emulators.Common.Exceptions.CoreReleaseErrors.InvalidArchitecture",
+        "providerKind": "Property",
+        "originalGuardTokensIdentical": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+        "sha256": "FA18AECFF43661819178F291D68A23E5CC1090F8300B5AF060E39A00DAF343EA",
+        "provider": "GWGUI.Emulation.Philips.Emulators.Common.Exceptions.CoreReleaseErrors.InvalidArchitecture",
+        "providerKind": "Property",
+        "originalGuardTokensIdentical": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+        "sha256": "03296D586AAEC55745DF7AE824039ABF12A52B4EC505FACD629D62E83364F7B4",
+        "provider": "GWGUI.Emulation.Fairchild.Emulators.Common.Exceptions.CoreReleaseErrors.InvalidArchitecture",
+        "providerKind": "Property",
+        "originalGuardTokensIdentical": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Services/CoreReleaseService.cs",
+        "sha256": "72E40C1F03EF441DD317FA6278D60BC93C92C2C93F957F5B82613800D221524B",
+        "provider": "GWGUI.Emulation.Wenquxing.Emulators.Wqxemu.Exceptions.CoreReleaseErrors.InvalidArchitecture",
+        "providerKind": "Field",
+        "originalGuardTokensIdentical": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+        "sha256": "ED9C3CBA5F810706AFF6905B23FF9F78E7B0BBD4848CC3AD6A53D3FBB8A44677",
+        "provider": "GWGUI.Emulation.Sinclair.Emulators.Common.Exceptions.CoreReleaseErrors.InvalidArchitecture",
+        "providerKind": "Property",
+        "originalGuardTokensIdentical": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+        "sha256": "D04AEBC65E3747D8039A3E22120153A1C930C9261EBC4ADF50919284DA356B39",
+        "provider": "GWGUI.Emulation.Bandai.Emulators.Common.Exceptions.CoreReleaseErrors.InvalidArchitecture",
+        "providerKind": "Property",
+        "originalGuardTokensIdentical": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Services/CoreReleaseService.cs",
+        "sha256": "B30586406CBB3AAC5AE90CBED822C56AEFEB9B3E4E13CF4AFE4D3F1CDFAD0AEA",
+        "provider": "GWGUI.Emulation.Thomson.Emulators.Theodore.Exceptions.CoreReleaseErrors.InvalidArchitecture",
+        "providerKind": "Field",
+        "originalGuardTokensIdentical": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Panasonic/Emulators/Opera/Services/CoreReleaseService.cs",
+        "sha256": "90E2043A2836163264D95FEAE7FF876728767ABA30652C7ED3637AD9DFA4B6EA",
+        "provider": "GWGUI.Emulation.Panasonic.Emulators.Opera.Exceptions.CoreReleaseErrors.InvalidArchitecture",
+        "providerKind": "Field",
+        "originalGuardTokensIdentical": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+        "sha256": "D880FDE9CD14698FE8457DD9B7C5918ECEFC506E5879C695C27469C76D7F2686",
+        "provider": "GWGUI.Emulation.Sharp.Emulators.Common.Exceptions.CoreReleaseErrors.InvalidArchitecture",
+        "providerKind": "Property",
+        "originalGuardTokensIdentical": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+        "sha256": "AFBF877F82212940775383438596057E11340D2B49368CEF5958274CB83A0F4E",
+        "provider": "GWGUI.Emulation.Epoch.Emulators.Common.Exceptions.CoreReleaseErrors.InvalidArchitecture",
+        "providerKind": "Property",
+        "originalGuardTokensIdentical": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+        "sha256": "1287803261D305E2D2E9485B33D54E7BA3A19BFAC0C157569D1C566AC03CF051",
+        "provider": "GWGUI.Emulation.Snk.Emulators.Common.Exceptions.CoreReleaseErrors.InvalidArchitecture",
+        "providerKind": "Property",
+        "originalGuardTokensIdentical": true
+      }
+    ],
+    "origin": "110352a56:src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/CoreReleaseService.cs. Its exact guard tokens match all fourteen current guards. This commit precedes the later Sharp template 23d3b9896 by verified ancestry.",
+    "semantic": "SDK and 23 modules zero semantic errors. All guards resolve string.Equals(string,string,StringComparison), constant x64, StringComparison.Ordinal, System.IO.InvalidDataException(string). Message symbols are ten properties and four constant fields.",
+    "existing": "EmulationCoreDiagnosticFunctions already owns architecture diagnostics and lazy message factories in VerifyWindowsX64Library. That PE-reading validation performs different checks and must not replace this scalar post-manifest condition. No existing RequireArchitecture/EnsureArchitecture function found.",
+    "decision": "Extract only original scalar comparison into RequireArchitecture in existing diagnostic owner; pass actual and expected values unchanged and a Func<string> so localized message properties are never read on success. Invoke after manifest construction. Atari/Acorn continue without a guard.",
+    "validation": "Compare expanded original condition/throw and all other members; resolve each message property/field before/after. Managed tests cover ordinal comparison and deferred provider behavior, with no files or external DLL fixture. Translation resources remain in their current owners."
   }
 }
