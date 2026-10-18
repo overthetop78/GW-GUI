@@ -669,7 +669,7 @@
   ],
   "currentProjectReport": "current-project-groups.json",
   "currentReportScope": "All current repository CSharp and PowerShell files; no age filter; candidates require semantic review",
-  "currentExactCandidateGroups": 580,
+  "currentExactCandidateGroups": 576,
   "currentRenamedIdentifierCandidateGroups": 219,
   "currentQualificationStatus": "Manual semantic qualification remains incomplete. remaining-groups.json is the earlier historical checkpoint; current-project-groups.json covers all current CSharp and PowerShell files regardless of age.",
   "hostLoopComparison": "host-loop-comparison.json",
@@ -720,5 +720,144 @@
     ],
     "preserved": "Null pointer rejection, native boolean 0/1, checked uint conversion before pointer check, unchecked ulong conversion",
     "verification": "SDK and twelve consumers: zero semantic errors without Emit; diff --check passes; no runtime tests or build"
+  },
+  "configurationPersistenceReuse": {
+    "origin": "Atari 9a104458f; unique temporary name and replacement policy from the same owner before Amstrad",
+    "modules": 16,
+    "operations": [
+      "StorePath",
+      "ResolvePath",
+      "IsInsideBase",
+      "WriteDocumentAtomicallyAsync<T>"
+    ],
+    "constants": {
+      "parent": "..",
+      "storedSeparator": "/",
+      "bufferSize": 4096,
+      "guidFormat": "N",
+      "temporarySuffix": ".tmp",
+      "temporarySeparator": "."
+    },
+    "preserved": "Typed document and JSON options stay in each module; paths outside base stay absolute; WriteThrough, FlushAsync, locked replacement and finally cleanup preserved",
+    "verification": "SDK and sixteen modules: zero semantic errors without Emit; diff --check passes; not in Debug build ac627b1bc",
+    "report": "Global scan updated after persistence and native probe groups"
+  },
+  "nativeProbeReuse": {
+    "origin": "Atari 2a145e278, Cores/AtariExternalCoreProbe.cs",
+    "owner": "ExternalCoreLibrary.Inspect<T>; owns the library through using/finally",
+    "modules": 12,
+    "verification": "Zero semantic errors in SDK and twelve modules without Emit; token comparisons against ac627b1bc",
+    "preserved": "Path guards, catches, exports profile, API version/error, typed metadata; metadata copied while native library is loaded",
+    "comparisons": [
+      {
+        "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Functions/CoreFunctions.ExternalProbe.cs",
+        "guards": true,
+        "catches": true,
+        "exports": true,
+        "apiVersion": true,
+        "apiError": true,
+        "metadata": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Functions/CoreFunctions.ExternalProbe.cs",
+        "guards": true,
+        "catches": true,
+        "exports": true,
+        "apiVersion": true,
+        "apiError": true,
+        "metadata": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Functions/CoreFunctions.ExternalProbe.cs",
+        "guards": true,
+        "catches": true,
+        "exports": true,
+        "apiVersion": true,
+        "apiError": true,
+        "metadata": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Functions/CoreFunctions.ExternalProbe.cs",
+        "guards": true,
+        "catches": true,
+        "exports": true,
+        "apiVersion": true,
+        "apiError": true,
+        "metadata": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Functions/CoreFunctions.ExternalProbe.cs",
+        "guards": true,
+        "catches": true,
+        "exports": true,
+        "apiVersion": true,
+        "apiError": true,
+        "metadata": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Functions/CoreFunctions.ExternalProbe.cs",
+        "guards": true,
+        "catches": true,
+        "exports": true,
+        "apiVersion": true,
+        "apiError": true,
+        "metadata": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Functions/CoreFunctions.ExternalProbe.cs",
+        "guards": true,
+        "catches": true,
+        "exports": true,
+        "apiVersion": true,
+        "apiError": true,
+        "metadata": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Functions/CoreFunctions.ExternalProbe.cs",
+        "guards": true,
+        "catches": true,
+        "exports": true,
+        "apiVersion": true,
+        "apiError": true,
+        "metadata": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Functions/CoreFunctions.ExternalProbe.cs",
+        "guards": true,
+        "catches": true,
+        "exports": true,
+        "apiVersion": true,
+        "apiError": true,
+        "metadata": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Functions/CoreFunctions.ExternalProbe.cs",
+        "guards": true,
+        "catches": true,
+        "exports": true,
+        "apiVersion": true,
+        "apiError": true,
+        "metadata": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Functions/CoreFunctions.ExternalProbe.cs",
+        "guards": true,
+        "catches": true,
+        "exports": true,
+        "apiVersion": true,
+        "apiError": true,
+        "metadata": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Functions/CoreFunctions.ExternalProbe.cs",
+        "guards": true,
+        "catches": true,
+        "exports": true,
+        "apiVersion": true,
+        "apiError": true,
+        "metadata": true
+      }
+    ],
+    "runtime": "No native library loaded for verification"
   }
 }

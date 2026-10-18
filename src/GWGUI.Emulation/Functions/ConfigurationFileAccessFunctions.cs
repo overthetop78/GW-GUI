@@ -1,6 +1,7 @@
 using System.Security.Cryptography;
 using System.Text;
 using System.IO;
+using System.Text.Json;
 
 namespace GWGUI.Emulation.Functions;
 
@@ -8,6 +9,42 @@ public static class ConfigurationFileAccessFunctions
 {
     private const int DefaultReplacementRetryCount = 5;
     private const int DefaultReplacementRetryDelayMilliseconds = 25;
+
+    internal static string? StorePath(string? path, string pathBase)
+    {
+        if (string.IsNullOrWhiteSpace(path)) return path;
+        var fullPath = Path.GetFullPath(path);
+        var relative = Path.GetRelativePath(pathBase, fullPath);
+        return IsInsideBase(relative) ? relative.Replace(Path.DirectorySeparatorChar, '/') : fullPath;
+    }
+
+    internal static string? ResolvePath(string? path, string pathBase)
+    {
+        if (string.IsNullOrWhiteSpace(path) || Path.IsPathFullyQualified(path)) return path;
+        return Path.GetFullPath(Path.Combine(pathBase, path.Replace('/', Path.DirectorySeparatorChar)));
+    }
+
+    private static bool IsInsideBase(string relative) =>
+        !Path.IsPathFullyQualified(relative)
+        && !string.Equals(relative, "..", StringComparison.Ordinal)
+        && !relative.StartsWith(".." + Path.DirectorySeparatorChar, StringComparison.Ordinal)
+        && !relative.StartsWith(".." + Path.AltDirectorySeparatorChar, StringComparison.Ordinal);
+
+    internal static async Task WriteDocumentAtomicallyAsync<T>(string path, T document,
+        JsonSerializerOptions options, CancellationToken cancellationToken)
+    {
+        var fullPath = Path.GetFullPath(path);
+        var temporaryPath = fullPath + "." + Guid.NewGuid().ToString("N") + ".tmp";
+        await WriteAtomicallyAsync(fullPath, temporaryPath, async temporary =>
+        {
+            await using (var stream = new FileStream(temporary, FileMode.Create, FileAccess.Write,
+                             FileShare.None, 4096, FileOptions.Asynchronous | FileOptions.WriteThrough))
+            {
+                await JsonSerializer.SerializeAsync(stream, document, options, cancellationToken).ConfigureAwait(false);
+                await stream.FlushAsync(cancellationToken).ConfigureAwait(false);
+            }
+        }).ConfigureAwait(false);
+    }
 
     internal static async Task WriteAtomicallyAsync(string target, string temporary, Func<string, Task> write,
         Action<string, string>? replace = null)

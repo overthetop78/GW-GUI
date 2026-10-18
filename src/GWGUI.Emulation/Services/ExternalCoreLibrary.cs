@@ -1,5 +1,6 @@
 using GWGUI.Emulation.Contracts;
 using GWGUI.Emulation.Interop;
+using System.IO;
 using System.Runtime.InteropServices;
 
 namespace GWGUI.Emulation.Services;
@@ -7,6 +8,20 @@ namespace GWGUI.Emulation.Services;
 internal sealed class ExternalCoreLibrary : IDisposable
 {
     private nint _handle;
+
+    internal static T Inspect<T>(string absolutePath, uint expectedApiVersion,
+        Action<ExternalCoreLibrary> validateExports, Func<uint, Exception> unsupportedApi,
+        Func<ExternalCoreApi.SystemInfo, T> readInfo)
+    {
+        using var library = new ExternalCoreLibrary(absolutePath);
+        var getApiVersion = library.Resolve<ExternalCoreApi.GetApiVersion>(ExternalCoreExportNames.ApiVersion);
+        var getSystemInfo = library.Resolve<ExternalCoreApi.GetSystemInfo>(ExternalCoreExportNames.GetSystemInfo);
+        validateExports(library);
+        var apiVersion = getApiVersion();
+        if (apiVersion != expectedApiVersion) throw unsupportedApi(apiVersion);
+        getSystemInfo(out var nativeInfo);
+        return readInfo(nativeInfo);
+    }
 
     internal ExternalCoreLibrary(string absolutePath)
     {

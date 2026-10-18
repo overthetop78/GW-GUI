@@ -61,38 +61,14 @@ internal static class ConfigurationStoreFunctions
     }
 
     internal static string? StorePath(string? path, string pathBase)
-    {
-        if (string.IsNullOrWhiteSpace(path)) return path;
-        var fullPath = Path.GetFullPath(path);
-        var relative = Path.GetRelativePath(pathBase, fullPath);
-        return IsInsideBase(relative) ? relative.Replace(Path.DirectorySeparatorChar, ConfigurationStoreConstants.StoredDirectorySeparator) : fullPath;
-    }
+        => ConfigurationFileAccessFunctions.StorePath(path, pathBase);
 
     internal static string? ResolvePath(string? path, string pathBase)
-    {
-        if (string.IsNullOrWhiteSpace(path) || Path.IsPathFullyQualified(path)) return path;
-        return Path.GetFullPath(Path.Combine(pathBase, path.Replace(ConfigurationStoreConstants.StoredDirectorySeparator, Path.DirectorySeparatorChar)));
-    }
+        => ConfigurationFileAccessFunctions.ResolvePath(path, pathBase);
 
-    internal static async Task WriteDocumentAtomicallyAsync(string path, ConfigurationDocument document, CancellationToken cancellationToken)
-    {
-        var fullPath = Path.GetFullPath(path);
-        var temporaryPath = fullPath + ConfigurationStoreConstants.TemporaryNameSeparator + Guid.NewGuid().ToString(ConfigurationStoreConstants.MachineIdentifierFormat) + ConfigurationStoreConstants.TemporaryFileSuffix;
-        await ConfigurationFileAccessFunctions.WriteAtomicallyAsync(fullPath, temporaryPath, async temporary =>
-        {
-            await using (var stream = new FileStream(temporary, FileMode.Create, FileAccess.Write, FileShare.None, ConfigurationStoreConstants.WriteBufferSize, FileOptions.Asynchronous | FileOptions.WriteThrough))
-            {
-                await JsonSerializer.SerializeAsync(stream, document, JsonOptions, cancellationToken).ConfigureAwait(false);
-                await stream.FlushAsync(cancellationToken).ConfigureAwait(false);
-            }
-        }).ConfigureAwait(false);
-    }
-
-    private static bool IsInsideBase(string relative) =>
-        !Path.IsPathFullyQualified(relative)
-        && !string.Equals(relative, ConfigurationStoreConstants.ParentDirectoryName, StringComparison.Ordinal)
-        && !relative.StartsWith(ConfigurationStoreConstants.ParentDirectoryName + Path.DirectorySeparatorChar, StringComparison.Ordinal)
-        && !relative.StartsWith(ConfigurationStoreConstants.ParentDirectoryName + Path.AltDirectorySeparatorChar, StringComparison.Ordinal);
+    internal static Task WriteDocumentAtomicallyAsync(string path, ConfigurationDocument document, CancellationToken cancellationToken)
+        =>
+            ConfigurationFileAccessFunctions.WriteDocumentAtomicallyAsync(path, document, JsonOptions, cancellationToken);
 
     private static FolderConfiguration StoreFolders(FolderConfiguration folders, string pathBase) => new(StorePath(folders.Shared, pathBase), StorePath(folders.Floppies, pathBase), StorePath(folders.States, pathBase), StorePath(folders.Captures, pathBase));
 

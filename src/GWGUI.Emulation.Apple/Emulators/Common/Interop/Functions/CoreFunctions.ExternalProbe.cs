@@ -18,33 +18,17 @@ internal static class ExternalCoreProbe
 
         try
         {
-            using var library = new ExternalCoreLibrary(absolutePath);
-            var getApiVersion = library.Resolve<ExternalCoreApi.GetApiVersion>(ExternalCoreExportNames.ApiVersion);
-            var getSystemInfo = library.Resolve<ExternalCoreApi.GetSystemInfo>(ExternalCoreExportNames.GetSystemInfo);
-            _ = CoreFunctions.ResolveExports(library);
-
-            var apiVersion = getApiVersion();
-            if (apiVersion != ExternalCoreInteropConstants.ApiVersion)
-                throw new EmulationException(ErrorCategory.Core, ErrorCode.CoreRejected,
-                    ErrorMessages.CoreApiVersionUnsupported,
-                    new Dictionary<string, string>
-                    {
-                        [ErrorContextConstants.Version] = apiVersion.ToString(System.Globalization.CultureInfo.InvariantCulture)
-                    });
-
-            getSystemInfo(out var nativeInfo);
-            var libraryName = Marshal.PtrToStringUTF8(nativeInfo.LibraryName) ?? string.Empty;
-            var expectedName = CoreFunctions.ExpectedLibraryName(expectedEmulator);
-            if (!string.Equals(libraryName, expectedName, StringComparison.OrdinalIgnoreCase))
-                throw new EmulationException(ErrorCategory.Core, ErrorCode.CoreRejected,
-                    ErrorMessages.CoreIdentityMismatch,
-                    new Dictionary<string, string>
-                    {
-                        [ErrorContextConstants.Expected] = expectedName,
-                        [ErrorContextConstants.Actual] = libraryName
-                    });
-
-            return new ExternalCoreInfo(expectedEmulator, libraryName, Marshal.PtrToStringUTF8(nativeInfo.LibraryVersion) ?? string.Empty, CoreFunctions.ParseExtensions(nativeInfo.ValidExtensions), nativeInfo.NeedFullPath, nativeInfo.BlockExtract);
+            return ExternalCoreLibrary.Inspect(absolutePath, ExternalCoreInteropConstants.ApiVersion, static library =>
+            {
+                _ = CoreFunctions.ResolveExports(library);
+            }, static apiVersion => new EmulationException(ErrorCategory.Core, ErrorCode.CoreRejected, ErrorMessages.CoreApiVersionUnsupported, new Dictionary<string, string> { [ErrorContextConstants.Version] = apiVersion.ToString(System.Globalization.CultureInfo.InvariantCulture) }), nativeInfo =>
+            {
+                var libraryName = Marshal.PtrToStringUTF8(nativeInfo.LibraryName) ?? string.Empty;
+                var expectedName = CoreFunctions.ExpectedLibraryName(expectedEmulator);
+                if (!string.Equals(libraryName, expectedName, StringComparison.OrdinalIgnoreCase))
+                    throw new EmulationException(ErrorCategory.Core, ErrorCode.CoreRejected, ErrorMessages.CoreIdentityMismatch, new Dictionary<string, string> { [ErrorContextConstants.Expected] = expectedName, [ErrorContextConstants.Actual] = libraryName });
+                return new ExternalCoreInfo(expectedEmulator, libraryName, Marshal.PtrToStringUTF8(nativeInfo.LibraryVersion) ?? string.Empty, CoreFunctions.ParseExtensions(nativeInfo.ValidExtensions), nativeInfo.NeedFullPath, nativeInfo.BlockExtract);
+            });
         }
         catch (EmulationException)
         {
