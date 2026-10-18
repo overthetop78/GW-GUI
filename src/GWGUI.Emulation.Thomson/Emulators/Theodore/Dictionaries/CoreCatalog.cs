@@ -25,8 +25,8 @@ internal static class CoreCatalog
         ArgumentException.ThrowIfNullOrWhiteSpace(version);
         if (version != Path.GetFileName(version) || version is "." or ".." || version.IndexOfAny(Path.GetInvalidFileNameChars()) >= 0)
             throw new ArgumentException(nameof(version));
-        var directory = Path.Combine(Path.GetFullPath(installationRoot), Entry.Id, version);
-        return new CoreInstallationPaths(directory, Path.Combine(directory, Entry.DllName), Path.Combine(directory, EmulatorCatalogConstants.ManifestFileName));
+        return EmulationCoreReleaseFunctions.CreateInstallationPaths(Path.GetFullPath(installationRoot), Entry.Id,
+            version, Entry.DllName, EmulatorCatalogConstants.ManifestFileName);
     }
 
     internal static string GetActiveManifestPath(Emulator emulator, string installationRoot)

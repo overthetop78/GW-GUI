@@ -3,7 +3,7 @@
   "currentCSharpFiles": 7328,
   "outsideSrcCSharpFiles": 299,
   "baselineMethodCount": 5848,
-  "currentMethodCount": 11620,
+  "currentMethodCount": 11621,
   "powerShellFunctionCount": 17,
   "groups": [
     {
@@ -1198,7 +1198,7 @@
     {
       "language": "CSharp",
       "hash": "0A9D4012A0EEF58659F6F622D06187BDA6844EE126F30B196EAE963950A66758",
-      "method": "SegaEmulationModule",
+      "method": "AtariEmulationModule",
       "tokens": 45,
       "current": [
         {
@@ -7488,6 +7488,49 @@
     },
     {
       "language": "CSharp",
+      "hash": "41BE31E1F1F1A1A6BF871B1008C22263B5B33C10375277951C5F6CF6B8E273BC",
+      "method": "GetInstallationPaths",
+      "tokens": 88,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Panasonic/Emulators/Opera/Dictionaries/CoreCatalog.cs",
+          "name": "GetInstallationPaths",
+          "line": 21,
+          "tokens": 88,
+          "hash": "41BE31E1F1F1A1A6BF871B1008C22263B5B33C10375277951C5F6CF6B8E273BC",
+          "shape": "9663AA36D5045F541427C6D13D69A9FC1CBDF1966A046B3E14874552AC508D91"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Dictionaries/CoreCatalog.cs",
+          "name": "GetInstallationPaths",
+          "line": 21,
+          "tokens": 88,
+          "hash": "41BE31E1F1F1A1A6BF871B1008C22263B5B33C10375277951C5F6CF6B8E273BC",
+          "shape": "9663AA36D5045F541427C6D13D69A9FC1CBDF1966A046B3E14874552AC508D91"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Watara/Emulators/Potator/Dictionaries/CoreCatalog.cs",
+          "name": "GetInstallationPaths",
+          "line": 21,
+          "tokens": 88,
+          "hash": "41BE31E1F1F1A1A6BF871B1008C22263B5B33C10375277951C5F6CF6B8E273BC",
+          "shape": "9663AA36D5045F541427C6D13D69A9FC1CBDF1966A046B3E14874552AC508D91"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Dictionaries/CoreCatalog.cs",
+          "name": "GetInstallationPaths",
+          "line": 21,
+          "tokens": 88,
+          "hash": "41BE31E1F1F1A1A6BF871B1008C22263B5B33C10375277951C5F6CF6B8E273BC",
+          "shape": "9663AA36D5045F541427C6D13D69A9FC1CBDF1966A046B3E14874552AC508D91"
+        }
+      ],
+      "predecessors": [],
+      "shapePredecessors": [],
+      "qualification": "pending"
+    },
+    {
+      "language": "CSharp",
       "hash": "41C88CBFD256E5F2464B34626A08D4B80B52F3F2820548F0CF7E02A9186EFABC",
       "method": "UseEmulatorAsync",
       "tokens": 91,
@@ -8835,6 +8878,113 @@
           "tokens": 106,
           "hash": "50E56A87A6DB3CC8F1A7428E4CCC84266D9439F0C232E872ED862AF8A5A36AC4",
           "shape": "C86155135EEEDED524D4CE3D1F88321CACC471FD0C5A112056BFA805A4BB0A93"
+        }
+      ],
+      "predecessors": [],
+      "shapePredecessors": [],
+      "qualification": "pending"
+    },
+    {
+      "language": "CSharp",
+      "hash": "50FA18BF5E000768A9A8C7444A1827CC8FB8EE62F6EEA7089D2089834285BB3C",
+      "method": "GetInstallationPaths",
+      "tokens": 75,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Functions/CoreFunctions.Catalog.cs",
+          "name": "GetInstallationPaths",
+          "line": 15,
+          "tokens": 75,
+          "hash": "50FA18BF5E000768A9A8C7444A1827CC8FB8EE62F6EEA7089D2089834285BB3C",
+          "shape": "761E67B0A6DABC72CA5986E0E50EEC95FE5B7CC7A31D16DF9776512C2B53A8ED"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Functions/CoreFunctions.Catalog.cs",
+          "name": "GetInstallationPaths",
+          "line": 15,
+          "tokens": 75,
+          "hash": "50FA18BF5E000768A9A8C7444A1827CC8FB8EE62F6EEA7089D2089834285BB3C",
+          "shape": "761E67B0A6DABC72CA5986E0E50EEC95FE5B7CC7A31D16DF9776512C2B53A8ED"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Functions/CoreFunctions.Catalog.cs",
+          "name": "GetInstallationPaths",
+          "line": 12,
+          "tokens": 75,
+          "hash": "50FA18BF5E000768A9A8C7444A1827CC8FB8EE62F6EEA7089D2089834285BB3C",
+          "shape": "761E67B0A6DABC72CA5986E0E50EEC95FE5B7CC7A31D16DF9776512C2B53A8ED"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Functions/CoreFunctions.Catalog.cs",
+          "name": "GetInstallationPaths",
+          "line": 15,
+          "tokens": 75,
+          "hash": "50FA18BF5E000768A9A8C7444A1827CC8FB8EE62F6EEA7089D2089834285BB3C",
+          "shape": "761E67B0A6DABC72CA5986E0E50EEC95FE5B7CC7A31D16DF9776512C2B53A8ED"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Functions/CoreFunctions.Catalog.cs",
+          "name": "GetInstallationPaths",
+          "line": 14,
+          "tokens": 75,
+          "hash": "50FA18BF5E000768A9A8C7444A1827CC8FB8EE62F6EEA7089D2089834285BB3C",
+          "shape": "761E67B0A6DABC72CA5986E0E50EEC95FE5B7CC7A31D16DF9776512C2B53A8ED"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Functions/CoreFunctions.Catalog.cs",
+          "name": "GetInstallationPaths",
+          "line": 15,
+          "tokens": 75,
+          "hash": "50FA18BF5E000768A9A8C7444A1827CC8FB8EE62F6EEA7089D2089834285BB3C",
+          "shape": "761E67B0A6DABC72CA5986E0E50EEC95FE5B7CC7A31D16DF9776512C2B53A8ED"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Functions/CoreFunctions.Catalog.cs",
+          "name": "GetInstallationPaths",
+          "line": 15,
+          "tokens": 75,
+          "hash": "50FA18BF5E000768A9A8C7444A1827CC8FB8EE62F6EEA7089D2089834285BB3C",
+          "shape": "761E67B0A6DABC72CA5986E0E50EEC95FE5B7CC7A31D16DF9776512C2B53A8ED"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Functions/CoreFunctions.Catalog.cs",
+          "name": "GetInstallationPaths",
+          "line": 15,
+          "tokens": 75,
+          "hash": "50FA18BF5E000768A9A8C7444A1827CC8FB8EE62F6EEA7089D2089834285BB3C",
+          "shape": "761E67B0A6DABC72CA5986E0E50EEC95FE5B7CC7A31D16DF9776512C2B53A8ED"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Functions/CoreFunctions.Catalog.cs",
+          "name": "GetInstallationPaths",
+          "line": 15,
+          "tokens": 75,
+          "hash": "50FA18BF5E000768A9A8C7444A1827CC8FB8EE62F6EEA7089D2089834285BB3C",
+          "shape": "761E67B0A6DABC72CA5986E0E50EEC95FE5B7CC7A31D16DF9776512C2B53A8ED"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Functions/CoreFunctions.Catalog.cs",
+          "name": "GetInstallationPaths",
+          "line": 15,
+          "tokens": 75,
+          "hash": "50FA18BF5E000768A9A8C7444A1827CC8FB8EE62F6EEA7089D2089834285BB3C",
+          "shape": "761E67B0A6DABC72CA5986E0E50EEC95FE5B7CC7A31D16DF9776512C2B53A8ED"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Functions/CoreFunctions.Catalog.cs",
+          "name": "GetInstallationPaths",
+          "line": 15,
+          "tokens": 75,
+          "hash": "50FA18BF5E000768A9A8C7444A1827CC8FB8EE62F6EEA7089D2089834285BB3C",
+          "shape": "761E67B0A6DABC72CA5986E0E50EEC95FE5B7CC7A31D16DF9776512C2B53A8ED"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Functions/CoreFunctions.Catalog.cs",
+          "name": "GetInstallationPaths",
+          "line": 15,
+          "tokens": 75,
+          "hash": "50FA18BF5E000768A9A8C7444A1827CC8FB8EE62F6EEA7089D2089834285BB3C",
+          "shape": "761E67B0A6DABC72CA5986E0E50EEC95FE5B7CC7A31D16DF9776512C2B53A8ED"
         }
       ],
       "predecessors": [],
@@ -11832,7 +11982,7 @@
     {
       "language": "CSharp",
       "hash": "68386C818382BCE400A3EDE65411B5CBD9D6A87F6D88FAF6501028CE28C38965",
-      "method": "ToSinclair",
+      "method": "ToModule",
       "tokens": 148,
       "current": [
         {
@@ -13017,7 +13167,9 @@
           "line": 24,
           "tokens": 46,
           "hash": "73D571249AAE98CC011166462CA2EEDD34459D651D7B72395A2FC49B0C04E47A",
-          "shape": "871D56BB33D1AFF8213D2A830026AF0A97CA167DDCEED2CF6CE03E472FAA97D7"
+          "shape": "871D56BB33D1AFF8213D2A830026AF0A97CA167DDCEED2CF6CE03E472FAA97D7",
+          "qualification": "Local validation and typed entry access; shared System.IO.Path.Combine primitive; 524 before/after outcomes in coreInstallationPathConstructionReuse",
+          "qualificationSourceSha256": "A285B900846B4512419F4EEDD7984140B30AB6C8B1B84D815338DD7F11EE06EA"
         },
         {
           "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Functions/CoreFunctions.Catalog.cs",
@@ -13025,7 +13177,9 @@
           "line": 25,
           "tokens": 46,
           "hash": "73D571249AAE98CC011166462CA2EEDD34459D651D7B72395A2FC49B0C04E47A",
-          "shape": "871D56BB33D1AFF8213D2A830026AF0A97CA167DDCEED2CF6CE03E472FAA97D7"
+          "shape": "871D56BB33D1AFF8213D2A830026AF0A97CA167DDCEED2CF6CE03E472FAA97D7",
+          "qualification": "Local validation and typed entry access; shared System.IO.Path.Combine primitive; 524 before/after outcomes in coreInstallationPathConstructionReuse",
+          "qualificationSourceSha256": "C5D982A84F7EAF5C43E57370DB148011987A58B6534BCDD0B0C389AC388F3A92"
         },
         {
           "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Functions/CoreFunctions.Catalog.cs",
@@ -13033,7 +13187,9 @@
           "line": 23,
           "tokens": 46,
           "hash": "73D571249AAE98CC011166462CA2EEDD34459D651D7B72395A2FC49B0C04E47A",
-          "shape": "871D56BB33D1AFF8213D2A830026AF0A97CA167DDCEED2CF6CE03E472FAA97D7"
+          "shape": "871D56BB33D1AFF8213D2A830026AF0A97CA167DDCEED2CF6CE03E472FAA97D7",
+          "qualification": "Local validation and typed entry access; shared System.IO.Path.Combine primitive; 524 before/after outcomes in coreInstallationPathConstructionReuse",
+          "qualificationSourceSha256": "2A9B8B0269D83B02EF5B749C13EEBCED5F771C900882DBFEF68AFB7FA4621E74"
         },
         {
           "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Functions/CoreFunctions.Catalog.cs",
@@ -13041,7 +13197,9 @@
           "line": 23,
           "tokens": 46,
           "hash": "73D571249AAE98CC011166462CA2EEDD34459D651D7B72395A2FC49B0C04E47A",
-          "shape": "871D56BB33D1AFF8213D2A830026AF0A97CA167DDCEED2CF6CE03E472FAA97D7"
+          "shape": "871D56BB33D1AFF8213D2A830026AF0A97CA167DDCEED2CF6CE03E472FAA97D7",
+          "qualification": "Local validation and typed entry access; shared System.IO.Path.Combine primitive; 524 before/after outcomes in coreInstallationPathConstructionReuse",
+          "qualificationSourceSha256": "BFAB9946B96C13CF641180E957B137791B7470AD7525479A729EE94974B018E4"
         },
         {
           "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Functions/CoreFunctions.Catalog.cs",
@@ -13049,7 +13207,9 @@
           "line": 25,
           "tokens": 46,
           "hash": "73D571249AAE98CC011166462CA2EEDD34459D651D7B72395A2FC49B0C04E47A",
-          "shape": "871D56BB33D1AFF8213D2A830026AF0A97CA167DDCEED2CF6CE03E472FAA97D7"
+          "shape": "871D56BB33D1AFF8213D2A830026AF0A97CA167DDCEED2CF6CE03E472FAA97D7",
+          "qualification": "Local validation and typed entry access; shared System.IO.Path.Combine primitive; 524 before/after outcomes in coreInstallationPathConstructionReuse",
+          "qualificationSourceSha256": "B584B2F0B6759937379EA23F0283701A097FB062468DBCD858AF2A5FDCEF1343"
         },
         {
           "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Functions/CoreFunctions.Catalog.cs",
@@ -13057,7 +13217,9 @@
           "line": 23,
           "tokens": 46,
           "hash": "73D571249AAE98CC011166462CA2EEDD34459D651D7B72395A2FC49B0C04E47A",
-          "shape": "871D56BB33D1AFF8213D2A830026AF0A97CA167DDCEED2CF6CE03E472FAA97D7"
+          "shape": "871D56BB33D1AFF8213D2A830026AF0A97CA167DDCEED2CF6CE03E472FAA97D7",
+          "qualification": "Local validation and typed entry access; shared System.IO.Path.Combine primitive; 524 before/after outcomes in coreInstallationPathConstructionReuse",
+          "qualificationSourceSha256": "BD84C377D470292ED6A7D0591530FC84FD1F25BC9CC38192B40E2D021572735A"
         },
         {
           "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Functions/CoreFunctions.Catalog.cs",
@@ -13065,7 +13227,9 @@
           "line": 25,
           "tokens": 46,
           "hash": "73D571249AAE98CC011166462CA2EEDD34459D651D7B72395A2FC49B0C04E47A",
-          "shape": "871D56BB33D1AFF8213D2A830026AF0A97CA167DDCEED2CF6CE03E472FAA97D7"
+          "shape": "871D56BB33D1AFF8213D2A830026AF0A97CA167DDCEED2CF6CE03E472FAA97D7",
+          "qualification": "Local validation and typed entry access; shared System.IO.Path.Combine primitive; 524 before/after outcomes in coreInstallationPathConstructionReuse",
+          "qualificationSourceSha256": "156C6EAB09857D6194B11F1AEA7728D4D0F8916C008EAEE3B56D71ED9D93FEB6"
         },
         {
           "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Functions/CoreFunctions.Catalog.cs",
@@ -13073,7 +13237,9 @@
           "line": 25,
           "tokens": 46,
           "hash": "73D571249AAE98CC011166462CA2EEDD34459D651D7B72395A2FC49B0C04E47A",
-          "shape": "871D56BB33D1AFF8213D2A830026AF0A97CA167DDCEED2CF6CE03E472FAA97D7"
+          "shape": "871D56BB33D1AFF8213D2A830026AF0A97CA167DDCEED2CF6CE03E472FAA97D7",
+          "qualification": "Local validation and typed entry access; shared System.IO.Path.Combine primitive; 524 before/after outcomes in coreInstallationPathConstructionReuse",
+          "qualificationSourceSha256": "3C40C95F07753E58FF89DCABA8D615EBB839FF54F55A4216FDE84605B4EBCA36"
         },
         {
           "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Functions/CoreFunctions.Catalog.cs",
@@ -13081,7 +13247,9 @@
           "line": 22,
           "tokens": 46,
           "hash": "73D571249AAE98CC011166462CA2EEDD34459D651D7B72395A2FC49B0C04E47A",
-          "shape": "871D56BB33D1AFF8213D2A830026AF0A97CA167DDCEED2CF6CE03E472FAA97D7"
+          "shape": "871D56BB33D1AFF8213D2A830026AF0A97CA167DDCEED2CF6CE03E472FAA97D7",
+          "qualification": "Local validation and typed entry access; shared System.IO.Path.Combine primitive; 524 before/after outcomes in coreInstallationPathConstructionReuse",
+          "qualificationSourceSha256": "55FCC9681E0AC5C321067545F928BC6A52176299AEB08D1F4BC2F944A15FAAD0"
         },
         {
           "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Functions/CoreFunctions.Catalog.cs",
@@ -13089,7 +13257,9 @@
           "line": 25,
           "tokens": 46,
           "hash": "73D571249AAE98CC011166462CA2EEDD34459D651D7B72395A2FC49B0C04E47A",
-          "shape": "871D56BB33D1AFF8213D2A830026AF0A97CA167DDCEED2CF6CE03E472FAA97D7"
+          "shape": "871D56BB33D1AFF8213D2A830026AF0A97CA167DDCEED2CF6CE03E472FAA97D7",
+          "qualification": "Local validation and typed entry access; shared System.IO.Path.Combine primitive; 524 before/after outcomes in coreInstallationPathConstructionReuse",
+          "qualificationSourceSha256": "A5C112C82A7D16280E9890B5892066552D8A860BCD4A73053BA211D1347D3926"
         },
         {
           "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Functions/CoreFunctions.Catalog.cs",
@@ -13097,7 +13267,9 @@
           "line": 25,
           "tokens": 46,
           "hash": "73D571249AAE98CC011166462CA2EEDD34459D651D7B72395A2FC49B0C04E47A",
-          "shape": "871D56BB33D1AFF8213D2A830026AF0A97CA167DDCEED2CF6CE03E472FAA97D7"
+          "shape": "871D56BB33D1AFF8213D2A830026AF0A97CA167DDCEED2CF6CE03E472FAA97D7",
+          "qualification": "Local validation and typed entry access; shared System.IO.Path.Combine primitive; 524 before/after outcomes in coreInstallationPathConstructionReuse",
+          "qualificationSourceSha256": "451DF418042EF225F81C991C3B409EB06F47384860E1F0636F0AABA9C9E9CB96"
         },
         {
           "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Functions/CoreFunctions.Catalog.cs",
@@ -13105,7 +13277,9 @@
           "line": 25,
           "tokens": 46,
           "hash": "73D571249AAE98CC011166462CA2EEDD34459D651D7B72395A2FC49B0C04E47A",
-          "shape": "871D56BB33D1AFF8213D2A830026AF0A97CA167DDCEED2CF6CE03E472FAA97D7"
+          "shape": "871D56BB33D1AFF8213D2A830026AF0A97CA167DDCEED2CF6CE03E472FAA97D7",
+          "qualification": "Local validation and typed entry access; shared System.IO.Path.Combine primitive; 524 before/after outcomes in coreInstallationPathConstructionReuse",
+          "qualificationSourceSha256": "462A7370BB5B0309F20BECEA92E875573FE72D980F23EE7A5D07394006A90888"
         }
       ],
       "predecessors": [],
@@ -13119,7 +13293,7 @@
           "shape": "871D56BB33D1AFF8213D2A830026AF0A97CA167DDCEED2CF6CE03E472FAA97D7"
         }
       ],
-      "qualification": "pending"
+      "qualification": "Qualified local validation adapters over System.IO.Path.Combine; no duplicate path algorithm"
     },
     {
       "language": "CSharp",
@@ -15087,49 +15261,6 @@
           "tokens": 59,
           "hash": "868C9CC8C3155D98EA72ADFB3C5A69A4114238AC3A4342EA21ED3B5F0190BBE2",
           "shape": "74712BD6EA9734E52E7C00E2817661152ACC969D1D46BAE7F030BCD1DA82AFFD"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
-      "hash": "87E26C27AB36DF268A329697C564F9CF89A6255B6D40839DC1E08E1C2150482E",
-      "method": "GetInstallationPaths",
-      "tokens": 111,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Watara/Emulators/Potator/Dictionaries/CoreCatalog.cs",
-          "name": "GetInstallationPaths",
-          "line": 21,
-          "tokens": 111,
-          "hash": "87E26C27AB36DF268A329697C564F9CF89A6255B6D40839DC1E08E1C2150482E",
-          "shape": "B04DA6E3EE253E1ACC41B55C7BE45CB7EDEA0DC586293733B9A1E600ED9987C0"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Dictionaries/CoreCatalog.cs",
-          "name": "GetInstallationPaths",
-          "line": 21,
-          "tokens": 111,
-          "hash": "87E26C27AB36DF268A329697C564F9CF89A6255B6D40839DC1E08E1C2150482E",
-          "shape": "B04DA6E3EE253E1ACC41B55C7BE45CB7EDEA0DC586293733B9A1E600ED9987C0"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Dictionaries/CoreCatalog.cs",
-          "name": "GetInstallationPaths",
-          "line": 21,
-          "tokens": 111,
-          "hash": "87E26C27AB36DF268A329697C564F9CF89A6255B6D40839DC1E08E1C2150482E",
-          "shape": "B04DA6E3EE253E1ACC41B55C7BE45CB7EDEA0DC586293733B9A1E600ED9987C0"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Panasonic/Emulators/Opera/Dictionaries/CoreCatalog.cs",
-          "name": "GetInstallationPaths",
-          "line": 21,
-          "tokens": 111,
-          "hash": "87E26C27AB36DF268A329697C564F9CF89A6255B6D40839DC1E08E1C2150482E",
-          "shape": "B04DA6E3EE253E1ACC41B55C7BE45CB7EDEA0DC586293733B9A1E600ED9987C0"
         }
       ],
       "predecessors": [],
@@ -17943,122 +18074,6 @@
     },
     {
       "language": "CSharp",
-      "hash": "9A9378E2A9C12D0201FEBBBC3FDB79AB4801B3A0BC1E5ECD0D85C17416B3477E",
-      "method": "GetInstallationPaths",
-      "tokens": 98,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Functions/CoreFunctions.Catalog.cs",
-          "name": "GetInstallationPaths",
-          "line": 14,
-          "tokens": 98,
-          "hash": "9A9378E2A9C12D0201FEBBBC3FDB79AB4801B3A0BC1E5ECD0D85C17416B3477E",
-          "shape": "D67A91F07ECAB0714B54853716517A69C94A7DE3B5DF0DBE364A56AD90B12AD0"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Functions/CoreFunctions.Catalog.cs",
-          "name": "GetInstallationPaths",
-          "line": 15,
-          "tokens": 98,
-          "hash": "9A9378E2A9C12D0201FEBBBC3FDB79AB4801B3A0BC1E5ECD0D85C17416B3477E",
-          "shape": "D67A91F07ECAB0714B54853716517A69C94A7DE3B5DF0DBE364A56AD90B12AD0"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Functions/CoreFunctions.Catalog.cs",
-          "name": "GetInstallationPaths",
-          "line": 15,
-          "tokens": 98,
-          "hash": "9A9378E2A9C12D0201FEBBBC3FDB79AB4801B3A0BC1E5ECD0D85C17416B3477E",
-          "shape": "D67A91F07ECAB0714B54853716517A69C94A7DE3B5DF0DBE364A56AD90B12AD0"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Functions/CoreFunctions.Catalog.cs",
-          "name": "GetInstallationPaths",
-          "line": 15,
-          "tokens": 98,
-          "hash": "9A9378E2A9C12D0201FEBBBC3FDB79AB4801B3A0BC1E5ECD0D85C17416B3477E",
-          "shape": "D67A91F07ECAB0714B54853716517A69C94A7DE3B5DF0DBE364A56AD90B12AD0"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Functions/CoreFunctions.Catalog.cs",
-          "name": "GetInstallationPaths",
-          "line": 15,
-          "tokens": 98,
-          "hash": "9A9378E2A9C12D0201FEBBBC3FDB79AB4801B3A0BC1E5ECD0D85C17416B3477E",
-          "shape": "D67A91F07ECAB0714B54853716517A69C94A7DE3B5DF0DBE364A56AD90B12AD0"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Functions/CoreFunctions.Catalog.cs",
-          "name": "GetInstallationPaths",
-          "line": 15,
-          "tokens": 98,
-          "hash": "9A9378E2A9C12D0201FEBBBC3FDB79AB4801B3A0BC1E5ECD0D85C17416B3477E",
-          "shape": "D67A91F07ECAB0714B54853716517A69C94A7DE3B5DF0DBE364A56AD90B12AD0"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Functions/CoreFunctions.Catalog.cs",
-          "name": "GetInstallationPaths",
-          "line": 15,
-          "tokens": 98,
-          "hash": "9A9378E2A9C12D0201FEBBBC3FDB79AB4801B3A0BC1E5ECD0D85C17416B3477E",
-          "shape": "D67A91F07ECAB0714B54853716517A69C94A7DE3B5DF0DBE364A56AD90B12AD0"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Functions/CoreFunctions.Catalog.cs",
-          "name": "GetInstallationPaths",
-          "line": 15,
-          "tokens": 98,
-          "hash": "9A9378E2A9C12D0201FEBBBC3FDB79AB4801B3A0BC1E5ECD0D85C17416B3477E",
-          "shape": "D67A91F07ECAB0714B54853716517A69C94A7DE3B5DF0DBE364A56AD90B12AD0"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Functions/CoreFunctions.Catalog.cs",
-          "name": "GetInstallationPaths",
-          "line": 12,
-          "tokens": 98,
-          "hash": "9A9378E2A9C12D0201FEBBBC3FDB79AB4801B3A0BC1E5ECD0D85C17416B3477E",
-          "shape": "D67A91F07ECAB0714B54853716517A69C94A7DE3B5DF0DBE364A56AD90B12AD0"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Functions/CoreFunctions.Catalog.cs",
-          "name": "GetInstallationPaths",
-          "line": 15,
-          "tokens": 98,
-          "hash": "9A9378E2A9C12D0201FEBBBC3FDB79AB4801B3A0BC1E5ECD0D85C17416B3477E",
-          "shape": "D67A91F07ECAB0714B54853716517A69C94A7DE3B5DF0DBE364A56AD90B12AD0"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Functions/CoreFunctions.Catalog.cs",
-          "name": "GetInstallationPaths",
-          "line": 15,
-          "tokens": 98,
-          "hash": "9A9378E2A9C12D0201FEBBBC3FDB79AB4801B3A0BC1E5ECD0D85C17416B3477E",
-          "shape": "D67A91F07ECAB0714B54853716517A69C94A7DE3B5DF0DBE364A56AD90B12AD0"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Functions/CoreFunctions.Catalog.cs",
-          "name": "GetInstallationPaths",
-          "line": 15,
-          "tokens": 98,
-          "hash": "9A9378E2A9C12D0201FEBBBC3FDB79AB4801B3A0BC1E5ECD0D85C17416B3477E",
-          "shape": "D67A91F07ECAB0714B54853716517A69C94A7DE3B5DF0DBE364A56AD90B12AD0"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [
-        {
-          "path": "src/GWGUI.Emulation.Atari/Functions/AtariCoreCatalogFunctions.cs",
-          "name": "GetInstallationPaths",
-          "line": 14,
-          "tokens": 98,
-          "hash": "BB25CD3B7228D012757669EB542A87DF6FB25B2696E15106FD4C47BCFA0D7FD0",
-          "shape": "D67A91F07ECAB0714B54853716517A69C94A7DE3B5DF0DBE364A56AD90B12AD0"
-        }
-      ],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
       "hash": "9AB85EAB2A72E3E3F5BD16225FDEBE6E9DD99D9AF06116DF58D92D07F7C023E2",
       "method": "SetGeometry",
       "tokens": 36,
@@ -19289,7 +19304,7 @@
     {
       "language": "CSharp",
       "hash": "A61349BFDFFA5D404CE7D0D458204D435194B5E4D84870DF4F9FBE26A86A9946",
-      "method": "ToEpoch",
+      "method": "ToFairchild",
       "tokens": 36,
       "current": [
         {
@@ -19392,7 +19407,9 @@
           "line": 32,
           "tokens": 35,
           "hash": "A79C9B47DA7C85FC6CC894883221938C19716DAF0938D613663A73A3953E41C8",
-          "shape": "B31A6D176BD30854FD3F9107B653835582C19CAEC96C4A5AB6E3BFF031CCE76A"
+          "shape": "B31A6D176BD30854FD3F9107B653835582C19CAEC96C4A5AB6E3BFF031CCE76A",
+          "qualification": "Local validation and typed entry access; shared System.IO.Path.Combine primitive; 524 before/after outcomes in coreInstallationPathConstructionReuse",
+          "qualificationSourceSha256": "8661EA155535961BFB4A6A227DB4C84142935C2CE408A568E7478FEEA86B9C9D"
         },
         {
           "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Dictionaries/CoreCatalog.cs",
@@ -19400,7 +19417,9 @@
           "line": 32,
           "tokens": 35,
           "hash": "A79C9B47DA7C85FC6CC894883221938C19716DAF0938D613663A73A3953E41C8",
-          "shape": "B31A6D176BD30854FD3F9107B653835582C19CAEC96C4A5AB6E3BFF031CCE76A"
+          "shape": "B31A6D176BD30854FD3F9107B653835582C19CAEC96C4A5AB6E3BFF031CCE76A",
+          "qualification": "Local validation and typed entry access; shared System.IO.Path.Combine primitive; 524 before/after outcomes in coreInstallationPathConstructionReuse",
+          "qualificationSourceSha256": "3CE4ABA9AED48CBE392979DBA32ED7E30A35C65EE288952B67A1DC0B88536861"
         },
         {
           "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Dictionaries/CoreCatalog.cs",
@@ -19408,7 +19427,9 @@
           "line": 32,
           "tokens": 35,
           "hash": "A79C9B47DA7C85FC6CC894883221938C19716DAF0938D613663A73A3953E41C8",
-          "shape": "B31A6D176BD30854FD3F9107B653835582C19CAEC96C4A5AB6E3BFF031CCE76A"
+          "shape": "B31A6D176BD30854FD3F9107B653835582C19CAEC96C4A5AB6E3BFF031CCE76A",
+          "qualification": "Local validation and typed entry access; shared System.IO.Path.Combine primitive; 524 before/after outcomes in coreInstallationPathConstructionReuse",
+          "qualificationSourceSha256": "9C956A368818BD7EC2C2048D3EB3BAD05B4CFE668DCFB225C36C8BE6C8FBE60B"
         },
         {
           "path": "src/GWGUI.Emulation.Panasonic/Emulators/Opera/Dictionaries/CoreCatalog.cs",
@@ -19416,12 +19437,14 @@
           "line": 32,
           "tokens": 35,
           "hash": "A79C9B47DA7C85FC6CC894883221938C19716DAF0938D613663A73A3953E41C8",
-          "shape": "B31A6D176BD30854FD3F9107B653835582C19CAEC96C4A5AB6E3BFF031CCE76A"
+          "shape": "B31A6D176BD30854FD3F9107B653835582C19CAEC96C4A5AB6E3BFF031CCE76A",
+          "qualification": "Local validation and typed entry access; shared System.IO.Path.Combine primitive; 524 before/after outcomes in coreInstallationPathConstructionReuse",
+          "qualificationSourceSha256": "2AE5FD205C06DA9FF9957DC0B4F6D9A26C0CFA297797DE79AF27BEB8050559CD"
         }
       ],
       "predecessors": [],
       "shapePredecessors": [],
-      "qualification": "pending"
+      "qualification": "Qualified local validation adapters over System.IO.Path.Combine; no duplicate path algorithm"
     },
     {
       "language": "CSharp",
@@ -20479,7 +20502,7 @@
     {
       "language": "CSharp",
       "hash": "B053A3AB4F0B78A37DED57B2D744801187AED6EC54FEEAFE4B1AA9C454D6F48C",
-      "method": "PhilipsEmulationModule",
+      "method": "PanasonicEmulationModule",
       "tokens": 47,
       "current": [
         {

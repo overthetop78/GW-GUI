@@ -16,8 +16,8 @@ internal static class EmulatorCatalogFunctions
     {
         if (string.IsNullOrWhiteSpace(installationRoot)) throw new ArgumentException(EmulatorCatalogErrors.EmptyInstallationRoot, nameof(installationRoot));
         if (string.IsNullOrWhiteSpace(version)) throw new ArgumentException(EmulatorCatalogErrors.EmptyVersion, nameof(version));
-        var versionDirectory = Path.Combine(Path.GetFullPath(installationRoot), entry.Id, version);
-        return new CoreInstallationPaths(versionDirectory, Path.Combine(versionDirectory, entry.DllName), Path.Combine(versionDirectory, EmulatorCatalogConstants.ManifestFileName));
+        return EmulationCoreReleaseFunctions.CreateInstallationPaths(Path.GetFullPath(installationRoot), entry.Id,
+            version, entry.DllName, EmulatorCatalogConstants.ManifestFileName);
     }
 
     internal static string GetActiveManifestPath(EmulatorCatalogEntry entry, string installationRoot)

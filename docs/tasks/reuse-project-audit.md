@@ -3213,9 +3213,9 @@ Build groupé options edb4917a4, lecture physique ee80713e6 et compatibilité ca
 
 Contrats des installations : quatre contrats Atari originaux 1b6c2d19a/444ea3273 repris dans le SDK ; 64 copies retirées des seize modules par alias directs. Les types publics des installations deviennent partagés avec le SDK, sans changement de champs, de Fraction ou de JSON. Seize fabriques locales de manifeste retirées au profit de une fabrique typée commune ; surcharge générique SDK originale conservée exactement pour les modules déjà compilés. Contrats spécialisés de catalogue et de release, validations x64 et trois politiques de finally restent dans leurs modules. Cinquante-trois comparaisons intégrales/originales, 256 liaisons de types et 16 constructions typées vérifiées ; SDK et seize modules sans erreur sémantique ; 144 profils JSON standard/Web et leurs aller-retours identiques. Quarante-trois tests existants installation/sélection/diagnostic réussis ; aucune nouvelle fixture, aucun téléchargement. Relevés : 7328 fichiers C#, 11620 grands corps/478 groupes ; 9533 petits corps/775 exacts/368 normalisés. Bloc postérieur au build groupé 6c0de22fe ; prochain build produit après plusieurs blocs, audit général ouvert.
 
-- [ ] Qualifier les constructions répétées des chemins des installations
-  - [ ] Retrouver le propriétaire original et les différences de contexte
-    - [ ] Modifier `docs/reference/reuse-audit/qualification.json` et `docs/tasks/reuse-project-audit.md` : consigner les seize GetInstallationPaths des groupes 98/111 tokens, retrouver leur antériorité et les primitives SDK applicables ; comparer les validations, les accès à entry, Path.GetFullPath et les noms de fichiers avant de définir une correction, sans ajouter un routeur générique.
+- [x] Qualifier les constructions répétées des chemins des installations
+  - [x] Retrouver le propriétaire original et les différences de contexte
+    - [x] Modifier `docs/reference/reuse-audit/qualification.json` et `docs/tasks/reuse-project-audit.md` : consigner les seize GetInstallationPaths des groupes 98/111 tokens, retrouver leur antériorité et les primitives SDK applicables ; comparer les validations, les accès à entry, Path.GetFullPath et les noms de fichiers avant de définir une correction, sans ajouter un routeur générique.
     Périmètre confirmé :
     src/GWGUI.Emulation.Acorn/Emulators/Common/Functions/CoreFunctions.Catalog.cs
     src/GWGUI.Emulation.Apple/Emulators/Common/Functions/CoreFunctions.Catalog.cs
@@ -3233,3 +3233,45 @@ Contrats des installations : quatre contrats Atari originaux 1b6c2d19a/444ea3273
     src/GWGUI.Emulation.Thomson/Emulators/Theodore/Dictionaries/CoreCatalog.cs
     src/GWGUI.Emulation.Watara/Emulators/Potator/Dictionaries/CoreCatalog.cs
     src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Dictionaries/CoreCatalog.cs
+
+Les seize constructeurs reprennent la composition de chemins Atari 1b6c2d19a. Les douze validations traduites et les quatre validations strictes restent locales ; les accès aux entrées ont des getters automatiques de records scellés. GetActiveManifestPath garde ses contrôles locaux et la primitive System.IO.Path.Combine existante.
+
+- [x] Réutiliser la composition originale des chemins des installations
+  - [x] Partager la construction en conservant les contrôles locaux
+    - [x] Modifier `src/GWGUI.Emulation/Functions/EmulationCoreReleaseFunctions.cs` : reprendre les trois Path.Combine et la construction du contrat original dans CreateInstallationPaths, avec racine déjà normalisée, identifiant, version, DLL et nom du manifeste en paramètres ; ne modifier aucun membre préexistant.
+    - [x] Modifier `src/GWGUI.Emulation.Acorn/Emulators/Common/Functions/CoreFunctions.Catalog.cs` : remplacer uniquement les deux dernières instructions par la composition commune ; conserver les gardes, Get(emulator), le contrôle de version et GetActiveManifestPath.
+    - [x] Modifier `src/GWGUI.Emulation.Apple/Emulators/Common/Functions/CoreFunctions.Catalog.cs` : remplacer uniquement les deux dernières instructions par la composition commune ; conserver les gardes, Get(emulator), le contrôle de version et GetActiveManifestPath.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Emulators/Common/Functions/CoreFunctions.Catalog.cs` : remplacer uniquement les deux dernières instructions par la composition commune ; conserver les gardes, Get(emulator), le contrôle de version et GetActiveManifestPath.
+    - [x] Modifier `src/GWGUI.Emulation.Bandai/Emulators/Common/Functions/CoreFunctions.Catalog.cs` : remplacer uniquement les deux dernières instructions par la composition commune ; conserver les gardes, Get(emulator), le contrôle de version et GetActiveManifestPath.
+    - [x] Modifier `src/GWGUI.Emulation.Coleco/Emulators/Common/Functions/CoreFunctions.Catalog.cs` : remplacer uniquement les deux dernières instructions par la composition commune ; conserver les gardes, Get(emulator), le contrôle de version et GetActiveManifestPath.
+    - [x] Modifier `src/GWGUI.Emulation.Epoch/Emulators/Common/Functions/CoreFunctions.Catalog.cs` : remplacer uniquement les deux dernières instructions par la composition commune ; conserver les gardes, Get(emulator), le contrôle de version et GetActiveManifestPath.
+    - [x] Modifier `src/GWGUI.Emulation.Fairchild/Emulators/Common/Functions/CoreFunctions.Catalog.cs` : remplacer uniquement les deux dernières instructions par la composition commune ; conserver les gardes, Get(emulator), le contrôle de version et GetActiveManifestPath.
+    - [x] Modifier `src/GWGUI.Emulation.Mattel/Emulators/Common/Functions/CoreFunctions.Catalog.cs` : remplacer uniquement les deux dernières instructions par la composition commune ; conserver les gardes, Get(emulator), le contrôle de version et GetActiveManifestPath.
+    - [x] Modifier `src/GWGUI.Emulation.Panasonic/Emulators/Opera/Dictionaries/CoreCatalog.cs` : remplacer uniquement les deux dernières instructions par la composition commune ; conserver les gardes, Get(emulator), le contrôle de version et GetActiveManifestPath.
+    - [x] Modifier `src/GWGUI.Emulation.Philips/Emulators/Common/Functions/CoreFunctions.Catalog.cs` : remplacer uniquement les deux dernières instructions par la composition commune ; conserver les gardes, Get(emulator), le contrôle de version et GetActiveManifestPath.
+    - [x] Modifier `src/GWGUI.Emulation.Sharp/Emulators/Common/Functions/CoreFunctions.Catalog.cs` : remplacer uniquement les deux dernières instructions par la composition commune ; conserver les gardes, Get(emulator), le contrôle de version et GetActiveManifestPath.
+    - [x] Modifier `src/GWGUI.Emulation.Sinclair/Emulators/Common/Functions/CoreFunctions.Catalog.cs` : remplacer uniquement les deux dernières instructions par la composition commune ; conserver les gardes, Get(emulator), le contrôle de version et GetActiveManifestPath.
+    - [x] Modifier `src/GWGUI.Emulation.Snk/Emulators/Common/Functions/CoreFunctions.Catalog.cs` : remplacer uniquement les deux dernières instructions par la composition commune ; conserver les gardes, Get(emulator), le contrôle de version et GetActiveManifestPath.
+    - [x] Modifier `src/GWGUI.Emulation.Thomson/Emulators/Theodore/Dictionaries/CoreCatalog.cs` : remplacer uniquement les deux dernières instructions par la composition commune ; conserver les gardes, Get(emulator), le contrôle de version et GetActiveManifestPath.
+    - [x] Modifier `src/GWGUI.Emulation.Watara/Emulators/Potator/Dictionaries/CoreCatalog.cs` : remplacer uniquement les deux dernières instructions par la composition commune ; conserver les gardes, Get(emulator), le contrôle de version et GetActiveManifestPath.
+    - [x] Modifier `src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Dictionaries/CoreCatalog.cs` : remplacer uniquement les deux dernières instructions par la composition commune ; conserver les gardes, Get(emulator), le contrôle de version et GetActiveManifestPath.
+  - [x] Vérifier les chemins et les priorités des erreurs
+    - [x] Modifier `docs/reference/reuse-audit/qualification.json` : consigner les comparaisons intégrales, les liaisons SDK, les chemins et exceptions avant/après pour les seize profils et les tests existants.
+    - [x] Modifier `docs/reference/reuse-audit/current-project-groups.json` et `docs/reference/reuse-audit/short-method-groups.json` : actualiser les relevés et qualifier les adaptateurs de manifeste actif conservés.
+    - [x] Modifier `docs/tasks/reuse-project-audit.md` : cocher les actions réalisées et consigner le résultat du bloc complet.
+
+- [x] Construire ensemble les blocs contrats et chemins des installations
+  - [x] Vérifier le produit Debug avec tous les modules
+    - [x] Modifier `docs/reference/reuse-audit/qualification.json` : enregistrer les empreintes des sources avant/après, le résultat de scripts/local-building.cmd --building=debug --modules=A, la présence de gwgui.exe et des 23 assemblies de modules déclarés.
+    - [x] Modifier `docs/tasks/reuse-project-audit.md` : consigner le build groupé vérifié pour le commit du bloc complet sans publication.
+
+Chemins des installations : composition Atari originale 1b6c2d19a reprise dans le propriétaire SDK existant ; seize copies remplacées. Seize fichiers comparés intégralement, seize liaisons SDK et zéro erreur sémantique SDK/modules. Les 524 cas avant/après sont identiques, y compris messages et priorités des exceptions ; 43 tests existants réussis. Relevés actualisés : 7328 fichiers, 11621 grands corps/478 groupes, 9533 petits corps/775 exacts/368 normalisés. Les validations locales du manifeste actif et leur unique Path.Combine restent qualifiées. Audit général ouvert.
+
+- [ ] Rétablir dans le relevé les qualifications des contrats de exploration déjà vérifiés
+  - [ ] Conserver la décision existante lorsque ses preuves restent valides
+    - [ ] Modifier `docs/reference/reuse-audit/qualification.json` et `docs/reference/reuse-audit/current-project-groups.json` : vérifier les empreintes de fileSystemTypedConstructorRevalidation, comparer le seul changement de csproj et reporter la décision existante sur les quatre constructeurs sans refaire leur refactorisation ; consigner ce résultat dans `docs/tasks/reuse-project-audit.md`.
+- [ ] Qualifier la reconstruction NRZI fixe dupliquée
+  - [ ] Déterminer le propriétaire et les appels existants
+    - [ ] Modifier `docs/reference/reuse-audit/qualification.json` et `docs/tasks/reuse-project-audit.md` : comparer les deux corps identiques DecodeNrzi/DecodeDoubledNrzi de `src/GWGUI.MediaEngine/Images/Models/Flux/FluxTransitionDecoder.cs` ; retrouver la méthode antérieure et vérifier les références dans tous les projets avant de retirer la copie inutilisée ou de la raccorder au propriétaire existant ; conserver la variante adaptative Victor.
+
+Build groupé contrats/chemins : scripts/local-building.cmd --building=debug --modules=A terminé avec code 0 ; application build/Debug/GW GUI/gwgui.exe et les 23 assemblies déclarées présents. 11851 empreintes src/scripts inchangées ; DLL Updater unique gwgui.updater.dll. Empreinte agrégée du relevé complet et empreintes individuelles des fichiers des deux blocs conservées dans installationContractsPathsBuild. Avertissements de compilation présents ; aucune erreur bloquante.

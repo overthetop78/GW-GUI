@@ -24,6 +24,16 @@ internal static class EmulationCoreReleaseFunctions
         return selected;
     }
 
+    internal static EmulationCoreInstallationPaths CreateInstallationPaths(string fullRoot, string coreId,
+        string version, string libraryName, string manifestFileName)
+    {
+        var versionDirectory = Path.Combine(fullRoot, coreId, version);
+        return new EmulationCoreInstallationPaths(versionDirectory,
+            Path.Combine(versionDirectory, libraryName),
+            Path.Combine(versionDirectory, manifestFileName));
+    }
+
+
     internal static IProgress<TProgress>? CreateInstallProgress<TProgress>(IProgress<double>? progress,
         Func<TProgress, double?> fraction)
         => progress is null ? null : new Progress<TProgress>(value => progress.Report(fraction(value) ?? 0));
