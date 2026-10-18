@@ -156,13 +156,7 @@ internal static class OptionValueFunctions
         _ => throw new ArgumentOutOfRangeException(nameof(value), value, null),
     };
 
-    internal static string ToNative(AnalogResponseCurve value) => value switch
-    {
-        AnalogResponseCurve.Linear => OptionConstants.NegconResponseLinear,
-        AnalogResponseCurve.Quadratic => OptionConstants.NegconResponseQuadratic,
-        AnalogResponseCurve.Cubic => OptionConstants.NegconResponseCubic,
-        _ => throw new ArgumentOutOfRangeException(nameof(value), value, null),
-    };
+    internal static string ToNative(AnalogResponseCurve value) => global::GWGUI.Emulation.Sony.Emulators.BeetlePsx.Functions.OptionValueFunctions.ToNative(value);
 
     internal static string ToNative(CrosshairVisibility value) => value switch
     {

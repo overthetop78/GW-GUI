@@ -1408,7 +1408,7 @@
   ],
   "currentProjectReport": "current-project-groups.json",
   "currentReportScope": "All current repository CSharp and PowerShell files; no age filter; candidates require semantic review",
-  "currentExactCandidateGroups": 561,
+  "currentExactCandidateGroups": 539,
   "currentRenamedIdentifierCandidateGroups": 219,
   "currentQualificationStatus": "Manual semantic qualification remains incomplete. remaining-groups.json is the earlier historical checkpoint; current-project-groups.json covers all current CSharp and PowerShell files regardless of age.",
   "hostLoopComparison": "host-loop-comparison.json",
@@ -3358,6 +3358,769 @@
     "hashImplementationUnchanged": true,
     "otherDirectoryMethodsUnchanged": true,
     "compilation": "SDK, App and all referenced modules compiled by targeted dotnet test",
+    "afterProductBuild": "06a31980a"
+  },
+  "beetleNativeOptionBaseline": [
+    {
+      "hash": "010FCF8FA8697F38BBF448EF475C4B0A35318E6EBC42F1F9B54B39ED40B112E9",
+      "enum": "GWGUI.Emulation.Sony.Emulators.Common.Interop.Enums.LineRender",
+      "paths": [
+        "src/GWGUI.Emulation.Sony/Emulators/BeetlePsx/Functions/OptionValueFunctions.cs",
+        "src/GWGUI.Emulation.Sony/Emulators/BeetlePsxHw/Functions/OptionValueFunctions.cs"
+      ],
+      "cases": [
+        {
+          "member": "Aggressive",
+          "numeric": 0,
+          "native": "aggressive"
+        },
+        {
+          "member": "Default",
+          "numeric": 1,
+          "native": "default"
+        },
+        {
+          "member": "Disabled",
+          "numeric": 2,
+          "native": "disabled"
+        }
+      ],
+      "source": "f7aac0788"
+    },
+    {
+      "hash": "052619105FB3C1985279400C74A2E5671736490821EA43E0104405759C643B44",
+      "enum": "GWGUI.Emulation.Sony.Emulators.Common.Interop.Enums.AnalogResponseCurve",
+      "paths": [
+        "src/GWGUI.Emulation.Sony/Emulators/BeetlePsx/Functions/OptionValueFunctions.cs",
+        "src/GWGUI.Emulation.Sony/Emulators/PcsxRearmed/Functions/OptionValueFunctions.cs",
+        "src/GWGUI.Emulation.Sony/Emulators/BeetlePsxHw/Functions/OptionValueFunctions.cs"
+      ],
+      "cases": [
+        {
+          "member": "Cubic",
+          "numeric": 0,
+          "native": "cubic"
+        },
+        {
+          "member": "Linear",
+          "numeric": 1,
+          "native": "linear"
+        },
+        {
+          "member": "Quadratic",
+          "numeric": 2,
+          "native": "quadratic"
+        }
+      ],
+      "source": "f7aac0788"
+    },
+    {
+      "hash": "1BC06ED21EE9FE0D3B0BE0598633AAEA8A7EA05E3EBD3967219D91CB896804A1",
+      "enum": "GWGUI.Emulation.Sony.Emulators.Common.Interop.Enums.CrosshairColor",
+      "paths": [
+        "src/GWGUI.Emulation.Sony/Emulators/BeetlePsx/Functions/OptionValueFunctions.cs",
+        "src/GWGUI.Emulation.Sony/Emulators/BeetlePsxHw/Functions/OptionValueFunctions.cs"
+      ],
+      "cases": [
+        {
+          "member": "Black",
+          "numeric": 0,
+          "native": "black"
+        },
+        {
+          "member": "Blue",
+          "numeric": 1,
+          "native": "blue"
+        },
+        {
+          "member": "Cyan",
+          "numeric": 2,
+          "native": "cyan"
+        },
+        {
+          "member": "Green",
+          "numeric": 3,
+          "native": "green"
+        },
+        {
+          "member": "Orange",
+          "numeric": 4,
+          "native": "orange"
+        },
+        {
+          "member": "Pink",
+          "numeric": 5,
+          "native": "pink"
+        },
+        {
+          "member": "Purple",
+          "numeric": 6,
+          "native": "purple"
+        },
+        {
+          "member": "Red",
+          "numeric": 7,
+          "native": "red"
+        },
+        {
+          "member": "White",
+          "numeric": 8,
+          "native": "white"
+        },
+        {
+          "member": "Yellow",
+          "numeric": 9,
+          "native": "yellow"
+        }
+      ],
+      "source": "f7aac0788"
+    },
+    {
+      "hash": "3232EB9BCC85960650761CD9E90F61BED2C9D38FDCEC43C17C3311484C40FE19",
+      "enum": "GWGUI.Emulation.Sony.Emulators.Common.Interop.Enums.OverrideBios",
+      "paths": [
+        "src/GWGUI.Emulation.Sony/Emulators/BeetlePsx/Functions/OptionValueFunctions.cs",
+        "src/GWGUI.Emulation.Sony/Emulators/BeetlePsxHw/Functions/OptionValueFunctions.cs"
+      ],
+      "cases": [
+        {
+          "member": "Disabled",
+          "numeric": 0,
+          "native": "disabled"
+        },
+        {
+          "member": "Openbios",
+          "numeric": 1,
+          "native": "openbios"
+        },
+        {
+          "member": "Ps1Rom",
+          "numeric": 2,
+          "native": "ps1_rom"
+        },
+        {
+          "member": "Psxonpsp",
+          "numeric": 3,
+          "native": "psxonpsp"
+        }
+      ],
+      "source": "f7aac0788"
+    },
+    {
+      "hash": "35CC47CDBB5C722F848D3847DB80F467C683D91FFE9CBDBCD3DF72470229E5E6",
+      "enum": "GWGUI.Emulation.Sony.Emulators.Common.Interop.Enums.DitherMode",
+      "paths": [
+        "src/GWGUI.Emulation.Sony/Emulators/BeetlePsx/Functions/OptionValueFunctions.cs",
+        "src/GWGUI.Emulation.Sony/Emulators/BeetlePsxHw/Functions/OptionValueFunctions.cs"
+      ],
+      "cases": [
+        {
+          "member": "_1xNative",
+          "numeric": 0,
+          "native": "1x(native)"
+        },
+        {
+          "member": "Disabled",
+          "numeric": 1,
+          "native": "disabled"
+        },
+        {
+          "member": "InternalResolution",
+          "numeric": 2,
+          "native": "internal resolution"
+        }
+      ],
+      "source": "f7aac0788"
+    },
+    {
+      "hash": "3AEA9286F67F5348580E36E00BDF74E991E2A3D2166459F8E453EBDA90BE52EE",
+      "enum": "GWGUI.Emulation.Sony.Emulators.Common.Interop.Enums.AspectRatio",
+      "paths": [
+        "src/GWGUI.Emulation.Sony/Emulators/BeetlePsx/Functions/OptionValueFunctions.cs",
+        "src/GWGUI.Emulation.Sony/Emulators/BeetlePsxHw/Functions/OptionValueFunctions.cs"
+      ],
+      "cases": [
+        {
+          "member": "_169",
+          "numeric": 0,
+          "native": "16:9"
+        },
+        {
+          "member": "_43",
+          "numeric": 1,
+          "native": "4:3"
+        },
+        {
+          "member": "Corrected",
+          "numeric": 2,
+          "native": "corrected"
+        },
+        {
+          "member": "Ntsc",
+          "numeric": 3,
+          "native": "ntsc"
+        },
+        {
+          "member": "Uncorrected",
+          "numeric": 4,
+          "native": "uncorrected"
+        }
+      ],
+      "source": "f7aac0788"
+    },
+    {
+      "hash": "41ACF256340A9AA7C7807DDD41E1B5BB157FA9DBA51DDAE47B33E16EAB2DB42B",
+      "enum": "GWGUI.Emulation.Sony.Emulators.Common.Interop.Enums.AnalogToggleCombo",
+      "paths": [
+        "src/GWGUI.Emulation.Sony/Emulators/BeetlePsx/Functions/OptionValueFunctions.cs",
+        "src/GWGUI.Emulation.Sony/Emulators/BeetlePsxHw/Functions/OptionValueFunctions.cs"
+      ],
+      "cases": [
+        {
+          "member": "L1PlusL2PlusR1PlusR2PlusStartPlusSelect",
+          "numeric": 0,
+          "native": "l1+l2+r1+r2+start+select"
+        },
+        {
+          "member": "L1PlusR1PlusL3",
+          "numeric": 1,
+          "native": "l1+r1+l3"
+        },
+        {
+          "member": "L1PlusR1PlusR3",
+          "numeric": 2,
+          "native": "l1+r1+r3"
+        },
+        {
+          "member": "L1PlusR1PlusSelect",
+          "numeric": 3,
+          "native": "l1+r1+select"
+        },
+        {
+          "member": "L1PlusR1PlusStart",
+          "numeric": 4,
+          "native": "l1+r1+start"
+        },
+        {
+          "member": "L2PlusR2PlusL3",
+          "numeric": 5,
+          "native": "l2+r2+l3"
+        },
+        {
+          "member": "L2PlusR2PlusR3",
+          "numeric": 6,
+          "native": "l2+r2+r3"
+        },
+        {
+          "member": "L2PlusR2PlusSelect",
+          "numeric": 7,
+          "native": "l2+r2+select"
+        },
+        {
+          "member": "L2PlusR2PlusStart",
+          "numeric": 8,
+          "native": "l2+r2+start"
+        },
+        {
+          "member": "L3PlusR3",
+          "numeric": 9,
+          "native": "l3+r3"
+        }
+      ],
+      "source": "f7aac0788"
+    },
+    {
+      "hash": "4589204A110FDAF14CD5075E74D40B7BDB4F009A8181EE7023C36ADBBE9455D4",
+      "enum": "GWGUI.Emulation.Sony.Emulators.Common.Interop.Enums.GpuOverclock",
+      "paths": [
+        "src/GWGUI.Emulation.Sony/Emulators/BeetlePsx/Functions/OptionValueFunctions.cs",
+        "src/GWGUI.Emulation.Sony/Emulators/BeetlePsxHw/Functions/OptionValueFunctions.cs"
+      ],
+      "cases": [
+        {
+          "member": "_2X",
+          "numeric": 2,
+          "native": "2x"
+        },
+        {
+          "member": "_4X",
+          "numeric": 4,
+          "native": "4x"
+        },
+        {
+          "member": "_8X",
+          "numeric": 8,
+          "native": "8x"
+        },
+        {
+          "member": "_16X",
+          "numeric": 16,
+          "native": "16x"
+        },
+        {
+          "member": "_32X",
+          "numeric": 32,
+          "native": "32x"
+        },
+        {
+          "member": "_1xNative",
+          "numeric": -1,
+          "native": "1x(native)"
+        }
+      ],
+      "source": "f7aac0788"
+    },
+    {
+      "hash": "4D21980116D0464ED3F502DACAFDD3EE8DFCADCBD1D9DF25BD6A76A4AB2D9EB9",
+      "enum": "GWGUI.Emulation.Sony.Emulators.Common.Interop.Enums.CdAccessMethod",
+      "paths": [
+        "src/GWGUI.Emulation.Sony/Emulators/BeetlePsx/Functions/OptionValueFunctions.cs",
+        "src/GWGUI.Emulation.Sony/Emulators/BeetlePsxHw/Functions/OptionValueFunctions.cs"
+      ],
+      "cases": [
+        {
+          "member": "Async",
+          "numeric": 0,
+          "native": "async"
+        },
+        {
+          "member": "Precache",
+          "numeric": 1,
+          "native": "precache"
+        },
+        {
+          "member": "Sync",
+          "numeric": 2,
+          "native": "sync"
+        }
+      ],
+      "source": "f7aac0788"
+    },
+    {
+      "hash": "58AA4412B50958FF8694DF7794589026CE4DCA95C3EC36BD4FD71A4E2E2B7C8E",
+      "enum": "GWGUI.Emulation.Sony.Emulators.Common.Interop.Enums.Deinterlacer",
+      "paths": [
+        "src/GWGUI.Emulation.Sony/Emulators/BeetlePsx/Functions/OptionValueFunctions.cs",
+        "src/GWGUI.Emulation.Sony/Emulators/BeetlePsxHw/Functions/OptionValueFunctions.cs"
+      ],
+      "cases": [
+        {
+          "member": "Bob",
+          "numeric": 0,
+          "native": "bob"
+        },
+        {
+          "member": "BobOffset",
+          "numeric": 1,
+          "native": "bob_offset"
+        },
+        {
+          "member": "Fastmad",
+          "numeric": 2,
+          "native": "fastmad"
+        },
+        {
+          "member": "Off",
+          "numeric": 3,
+          "native": "off"
+        },
+        {
+          "member": "Weave",
+          "numeric": 4,
+          "native": "weave"
+        }
+      ],
+      "source": "f7aac0788"
+    },
+    {
+      "hash": "6B9CB47C955B67E94D81C643CF8BA34FFBA5CEEAD66D11AA3219325E91523E1F",
+      "enum": "GWGUI.Emulation.Sony.Emulators.Common.Interop.Enums.CpuDynarec",
+      "paths": [
+        "src/GWGUI.Emulation.Sony/Emulators/BeetlePsx/Functions/OptionValueFunctions.cs",
+        "src/GWGUI.Emulation.Sony/Emulators/BeetlePsxHw/Functions/OptionValueFunctions.cs"
+      ],
+      "cases": [
+        {
+          "member": "Disabled",
+          "numeric": 0,
+          "native": "disabled"
+        },
+        {
+          "member": "Execute",
+          "numeric": 1,
+          "native": "execute"
+        },
+        {
+          "member": "RunInterpreter",
+          "numeric": 2,
+          "native": "run_interpreter"
+        }
+      ],
+      "source": "f7aac0788"
+    },
+    {
+      "hash": "831BFBE2E589214DBE65E23E50D629C52DA9B673766856F18ACD56F6B9ECD2C2",
+      "enum": "GWGUI.Emulation.Sony.Emulators.Common.Interop.Enums.PgxpMode",
+      "paths": [
+        "src/GWGUI.Emulation.Sony/Emulators/BeetlePsx/Functions/OptionValueFunctions.cs",
+        "src/GWGUI.Emulation.Sony/Emulators/BeetlePsxHw/Functions/OptionValueFunctions.cs"
+      ],
+      "cases": [
+        {
+          "member": "Disabled",
+          "numeric": 0,
+          "native": "disabled"
+        },
+        {
+          "member": "MemoryPlusCPU",
+          "numeric": 1,
+          "native": "memory + CPU"
+        },
+        {
+          "member": "MemoryOnly",
+          "numeric": 2,
+          "native": "memory only"
+        }
+      ],
+      "source": "f7aac0788"
+    },
+    {
+      "hash": "83A2A42B3EFBD3D002C5786F9B2866819898F7515B36F2B6F8D1A1CB11A1D1DB",
+      "enum": "GWGUI.Emulation.Sony.Emulators.Common.Interop.Enums.UseMednafenMemcard0Method",
+      "paths": [
+        "src/GWGUI.Emulation.Sony/Emulators/BeetlePsx/Functions/OptionValueFunctions.cs",
+        "src/GWGUI.Emulation.Sony/Emulators/BeetlePsxHw/Functions/OptionValueFunctions.cs"
+      ],
+      "cases": [
+        {
+          "member": "Libretro",
+          "numeric": 0,
+          "native": "libretro"
+        },
+        {
+          "member": "Mednafen",
+          "numeric": 1,
+          "native": "mednafen"
+        }
+      ],
+      "source": "f7aac0788"
+    },
+    {
+      "hash": "955906BAEBDF9D0E839BE55B9C78937BFF61CA4C12B8C0CAE767B3D5313E076E",
+      "enum": "GWGUI.Emulation.Sony.Emulators.Common.Interop.Enums.GunInputMode",
+      "paths": [
+        "src/GWGUI.Emulation.Sony/Emulators/BeetlePsx/Functions/OptionValueFunctions.cs",
+        "src/GWGUI.Emulation.Sony/Emulators/BeetlePsxHw/Functions/OptionValueFunctions.cs"
+      ],
+      "cases": [
+        {
+          "member": "Lightgun",
+          "numeric": 0,
+          "native": "lightgun"
+        },
+        {
+          "member": "Touchscreen",
+          "numeric": 1,
+          "native": "touchscreen"
+        }
+      ],
+      "source": "f7aac0788"
+    },
+    {
+      "hash": "9DB67ACB451EE575DAC27E37CFB666AF8FA8FC20FDFA9AFE94EA93CC64727587",
+      "enum": "GWGUI.Emulation.Sony.Emulators.Common.Interop.Enums.InternalResolution",
+      "paths": [
+        "src/GWGUI.Emulation.Sony/Emulators/BeetlePsx/Functions/OptionValueFunctions.cs",
+        "src/GWGUI.Emulation.Sony/Emulators/BeetlePsxHw/Functions/OptionValueFunctions.cs"
+      ],
+      "cases": [
+        {
+          "member": "_2X",
+          "numeric": 2,
+          "native": "2x"
+        },
+        {
+          "member": "_4X",
+          "numeric": 4,
+          "native": "4x"
+        },
+        {
+          "member": "_8X",
+          "numeric": 8,
+          "native": "8x"
+        },
+        {
+          "member": "_16X",
+          "numeric": 16,
+          "native": "16x"
+        },
+        {
+          "member": "_1xNative",
+          "numeric": -1,
+          "native": "1x(native)"
+        }
+      ],
+      "source": "f7aac0788"
+    },
+    {
+      "hash": "A6FC09D547BC5456736B6410CD3F841673E3DC39C685481B008488837BA92C9B",
+      "enum": "GWGUI.Emulation.Sony.Emulators.Common.Interop.Enums.WidescreenHackAspectRatio",
+      "paths": [
+        "src/GWGUI.Emulation.Sony/Emulators/BeetlePsx/Functions/OptionValueFunctions.cs",
+        "src/GWGUI.Emulation.Sony/Emulators/BeetlePsxHw/Functions/OptionValueFunctions.cs"
+      ],
+      "cases": [
+        {
+          "member": "_1610",
+          "numeric": 0,
+          "native": "16:10"
+        },
+        {
+          "member": "_169",
+          "numeric": 1,
+          "native": "16:9"
+        },
+        {
+          "member": "_189",
+          "numeric": 2,
+          "native": "18:9"
+        },
+        {
+          "member": "_199",
+          "numeric": 3,
+          "native": "19:9"
+        },
+        {
+          "member": "_209",
+          "numeric": 4,
+          "native": "20:9"
+        },
+        {
+          "member": "_219",
+          "numeric": 5,
+          "native": "21:9"
+        },
+        {
+          "member": "_329",
+          "numeric": 6,
+          "native": "32:9"
+        }
+      ],
+      "source": "f7aac0788"
+    },
+    {
+      "hash": "AF107428EFFE55888CD6365F94AF6BAD4E69A8A7C875EE6AEC439047A41A5F8C",
+      "enum": "GWGUI.Emulation.Sony.Emulators.Common.Interop.Enums.CoreTimingFps",
+      "paths": [
+        "src/GWGUI.Emulation.Sony/Emulators/BeetlePsx/Functions/OptionValueFunctions.cs",
+        "src/GWGUI.Emulation.Sony/Emulators/BeetlePsxHw/Functions/OptionValueFunctions.cs"
+      ],
+      "cases": [
+        {
+          "member": "AutoToggle",
+          "numeric": 0,
+          "native": "auto_toggle"
+        },
+        {
+          "member": "ForceInterlaced",
+          "numeric": 1,
+          "native": "force_interlaced"
+        },
+        {
+          "member": "ForceProgressive",
+          "numeric": 2,
+          "native": "force_progressive"
+        }
+      ],
+      "source": "f7aac0788"
+    },
+    {
+      "hash": "B7A1254B7F23876F8B8CF1E040315F28A8041680A662311824384AAD3B7745EB",
+      "enum": "GWGUI.Emulation.Sony.Emulators.Common.Interop.Enums.GunCursor",
+      "paths": [
+        "src/GWGUI.Emulation.Sony/Emulators/BeetlePsx/Functions/OptionValueFunctions.cs",
+        "src/GWGUI.Emulation.Sony/Emulators/BeetlePsxHw/Functions/OptionValueFunctions.cs"
+      ],
+      "cases": [
+        {
+          "member": "Cross",
+          "numeric": 0,
+          "native": "cross"
+        },
+        {
+          "member": "Dot",
+          "numeric": 1,
+          "native": "dot"
+        },
+        {
+          "member": "Off",
+          "numeric": 2,
+          "native": "off"
+        }
+      ],
+      "source": "f7aac0788"
+    },
+    {
+      "hash": "C6971185FFA7F6B209F1894BAE62A4A942BADBD6E1E6E6E24BBA721F070D3872",
+      "enum": "GWGUI.Emulation.Sony.Emulators.Common.Interop.Enums.CropOverscan",
+      "paths": [
+        "src/GWGUI.Emulation.Sony/Emulators/BeetlePsx/Functions/OptionValueFunctions.cs",
+        "src/GWGUI.Emulation.Sony/Emulators/BeetlePsxHw/Functions/OptionValueFunctions.cs"
+      ],
+      "cases": [
+        {
+          "member": "Disabled",
+          "numeric": 0,
+          "native": "disabled"
+        },
+        {
+          "member": "Smart",
+          "numeric": 1,
+          "native": "smart"
+        },
+        {
+          "member": "Static",
+          "numeric": 2,
+          "native": "static"
+        }
+      ],
+      "source": "f7aac0788"
+    },
+    {
+      "hash": "CE15AA1577A761C6CEBF4A026752EE579BEEC1594F32786728EBD5FACB2D813A",
+      "enum": "GWGUI.Emulation.Sony.Emulators.Common.Interop.Enums.DynarecInvalidate",
+      "paths": [
+        "src/GWGUI.Emulation.Sony/Emulators/BeetlePsx/Functions/OptionValueFunctions.cs",
+        "src/GWGUI.Emulation.Sony/Emulators/BeetlePsxHw/Functions/OptionValueFunctions.cs"
+      ],
+      "cases": [
+        {
+          "member": "Dma",
+          "numeric": 0,
+          "native": "dma"
+        },
+        {
+          "member": "Full",
+          "numeric": 1,
+          "native": "full"
+        }
+      ],
+      "source": "f7aac0788"
+    },
+    {
+      "hash": "F0F14CC0A4A8FA27065786094092CAA4A7D2561475F14C4D5D63E1CFB1570E1C",
+      "enum": "GWGUI.Emulation.Sony.Emulators.Common.Interop.Enums.Region",
+      "paths": [
+        "src/GWGUI.Emulation.Sony/Emulators/BeetlePsx/Functions/OptionValueFunctions.cs",
+        "src/GWGUI.Emulation.Sony/Emulators/BeetlePsxHw/Functions/OptionValueFunctions.cs"
+      ],
+      "cases": [
+        {
+          "member": "Auto",
+          "numeric": 0,
+          "native": "auto"
+        },
+        {
+          "member": "NtscJ",
+          "numeric": 1,
+          "native": "ntsc-j"
+        },
+        {
+          "member": "NtscU",
+          "numeric": 2,
+          "native": "ntsc-u"
+        },
+        {
+          "member": "Pal",
+          "numeric": 3,
+          "native": "pal"
+        }
+      ],
+      "source": "f7aac0788"
+    },
+    {
+      "hash": "F117A46BC6742CC260B24098B75C478CA2A5D971CF0A38B0E528AE19A82BF751",
+      "enum": "GWGUI.Emulation.Sony.Emulators.Common.Interop.Enums.AnalogToggle",
+      "paths": [
+        "src/GWGUI.Emulation.Sony/Emulators/BeetlePsx/Functions/OptionValueFunctions.cs",
+        "src/GWGUI.Emulation.Sony/Emulators/BeetlePsxHw/Functions/OptionValueFunctions.cs"
+      ],
+      "cases": [
+        {
+          "member": "Disabled",
+          "numeric": 0,
+          "native": "disabled"
+        },
+        {
+          "member": "Enabled",
+          "numeric": 1,
+          "native": "enabled"
+        },
+        {
+          "member": "EnabledAnalog",
+          "numeric": 2,
+          "native": "enabled-analog"
+        }
+      ],
+      "source": "f7aac0788"
+    }
+  ],
+  "beetleNativeOptionReuse": [
+    {
+      "path": "src/GWGUI.Emulation.Sony/Emulators/BeetlePsxHw/Functions/OptionValueFunctions.cs",
+      "overloads": [
+        "GpuOverclock",
+        "CdAccessMethod",
+        "OverrideBios",
+        "Region",
+        "InternalResolution",
+        "DitherMode",
+        "PgxpMode",
+        "AnalogToggle",
+        "AnalogToggleCombo",
+        "GunInputMode",
+        "GunCursor",
+        "CrosshairColor",
+        "AnalogResponseCurve",
+        "UseMednafenMemcard0Method",
+        "LineRender",
+        "WidescreenHackAspectRatio",
+        "CpuDynarec",
+        "DynarecInvalidate",
+        "CoreTimingFps",
+        "Deinterlacer",
+        "AspectRatio",
+        "CropOverscan"
+      ],
+      "publicTypesUnchanged": true,
+      "otherMethodsUnchanged": true,
+      "sharedOwner": "BeetlePsx.OptionValueFunctions already present in e07e6b99e",
+      "source": "f7aac0788",
+      "nativeConstantValues": "All 92 defined values compared on old managed overloads before modification"
+    },
+    {
+      "path": "src/GWGUI.Emulation.Sony/Emulators/PcsxRearmed/Functions/OptionValueFunctions.cs",
+      "overloads": [
+        "AnalogResponseCurve"
+      ],
+      "publicTypesUnchanged": true,
+      "otherMethodsUnchanged": true,
+      "sharedOwner": "BeetlePsx.OptionValueFunctions already present in e07e6b99e",
+      "source": "f7aac0788",
+      "nativeConstantValues": "All 92 defined values compared on old managed overloads before modification"
+    }
+  ],
+  "beetleNativeOptionVerification": {
+    "testsPassed": 1,
+    "definedEnumValuesVerified": 92,
+    "enumTypes": 22,
+    "overloadsReused": 23,
+    "reference": "beetleNativeOptionBaseline",
+    "source": "f7aac0788",
+    "softwareOwnerUnchanged": true,
+    "variantSpecificMethodsUnchanged": true,
+    "undefinedValueExceptionPreserved": true,
+    "compilation": "SDK, App and all 23 referenced modules compiled by targeted dotnet test",
     "afterProductBuild": "06a31980a"
   }
 }
