@@ -87,14 +87,16 @@ public sealed class MediaExplorer
         return new MediaFileSystemExplorationResult(detection.Volumes, explored, detection.Diagnostics, FirstFileName(explored));
     }
 
-    private static string? FirstFileName(IEnumerable<ExploredFileSystemVolume> volumes) => volumes.SelectMany(volume => volume.FileSystem?.Entries ?? []).SelectMany(EnumerateFiles).Select(entry => entry.Name).FirstOrDefault();
+    private static string? FirstFileName(IEnumerable<ExploredFileSystemVolume> volumes) => volumes.SelectMany(volume => volume.FileSystem?.Entries ?? []).SelectMany(entry => EnumerateFiles(entry, static item => item.Kind == FileSystemEntryKind.File, static item => item.Children)).Select(entry => entry.Name).FirstOrDefault();
 
-    private static IEnumerable<FileSystemEntry> EnumerateFiles(FileSystemEntry entry)
+    /// <summary>Énumère les fichiers dans l'ordre de l'arbre, sans matérialiser les descendants.</summary>
+    public static IEnumerable<TEntry> EnumerateFiles<TEntry>(TEntry entry,
+        Func<TEntry, bool> isFile, Func<TEntry, IReadOnlyList<TEntry>> children)
     {
-        if (entry.Kind == FileSystemEntryKind.File) yield return entry;
-        foreach (var child in entry.Children)
+        if (isFile(entry)) yield return entry;
+        foreach (var child in children(entry))
         {
-            foreach (var descendant in EnumerateFiles(child)) yield return descendant;
+            foreach (var descendant in EnumerateFiles(child, isFile, children)) yield return descendant;
         }
     }
 

@@ -7,6 +7,7 @@ using GWGUI.App.Views.Controls.Explorer;
 using GWGUI.App.Views.Controls.Visualization;
 using GWGUI.MediaEngine.Enums;
 using GWGUI.MediaEngine.Contracts.Explorer;
+using GWGUI.MediaFileSystems.Exploration;
 using System.Windows.Media;
 
 namespace GWGUI.App.Services.DiskImages.Visualization;
@@ -68,15 +69,6 @@ internal sealed class CassetteLoadingPresenter(
     private static IReadOnlyList<string> FileDescriptions(ExploredMediaImage? explored)
     {
         if (explored?.Document.MediaKind != MediaKind.Tape) return [];
-        return explored.Volumes.SelectMany(volume => volume.FileSystem?.Entries ?? []).SelectMany(EnumerateFiles).Select(entry => new ExplorerContentItem(entry)).Select(item => $"{item.Name} — {item.TypeText}").ToArray();
-    }
-
-    private static IEnumerable<FileSystemEntry> EnumerateFiles(FileSystemEntry entry)
-    {
-        if (entry.Kind == FileSystemEntryKind.File) yield return entry;
-        foreach (var child in entry.Children)
-        {
-            foreach (var descendant in EnumerateFiles(child)) yield return descendant;
-        }
+        return explored.Volumes.SelectMany(volume => volume.FileSystem?.Entries ?? []).SelectMany(entry => MediaExplorer.EnumerateFiles(entry, static item => item.Kind == FileSystemEntryKind.File, static item => item.Children)).Select(entry => new ExplorerContentItem(entry)).Select(item => $"{item.Name} — {item.TypeText}").ToArray();
     }
 }

@@ -8249,13 +8249,13 @@
     "afterProductBuild": "005e3c677"
   },
   "shortMethodInventory": {
-    "snapshot": "014f6e998ea3f423868044f06a27e76a6e0703cd",
-    "files": 7318,
+    "snapshot": "a574c205dc8da8d675cfca591e7e718dff9468e7",
+    "files": 7319,
     "bodyCount": 9481,
     "exactGroups": 773,
     "renamedGroups": 365,
     "status": "Incomplete; existing queue/empty-method qualifications retained; 29 factory selections now shared and verified; sector source reader-selection stage shared, remaining typed writer ownership pending.",
-    "trackedCSharpCoverage": "Full current source scan, including the extracted original visualization pan functions: 7318 C# files. Counts are candidates, not proven defects."
+    "trackedCSharpCoverage": "Full current source scan: 7319 C# files, including file enumeration tests. Candidate counts are not confirmed defects."
   },
   "hardwareIdentityComparisonReuse": {
     "snapshot": "a4760e868",
@@ -10856,5 +10856,34 @@
     "ast": "Six calls preserve exact original e31ed0251 bodies after parameter substitution; all other tokens of the three views are identical to 014f6e998.",
     "semantic": "App: zero semantic errors; six calls resolve to GWGUI.App.Functions.Views.Visualization.VisualizationPanFunctions. Same FrameworkElement capture/cursor operations and ref Point? state; no canvas or dispatcher ownership transferred.",
     "tests": "Existing GeometryAndTrackHitTesting and two LinkedZoomAndReset cases passed: 3, exit 0. General geometry/zoom regression coverage; exact handler preservation separately checked by historical body expansion, not claimed as real pointer interaction test. Existing WPF fixture cleanup uses finally/Shutdown/Join."
+  },
+  "fileEnumerationReuse": {
+    "state": "verified",
+    "origin": "App DiskImageWorkspaceController.EnumerateFiles in e31ed0251; ancestor of f785cabea, which introduces the copy in the MediaExplorer reader. The original App algorithm is the source of the extraction.",
+    "before": [
+      "src/GWGUI.App/Services/DiskImages/Visualization/CassetteLoadingPresenter.cs",
+      "src/GWGUI.MediaFileSystems/Exploration/MediaExplorer.cs"
+    ],
+    "preflight": "Both current iterator bodies have the same statement tokens as original e31ed0251 after removal of redundant loop block braces only.",
+    "contracts": "Engine and MediaFileSystems FileSystemEntry/Kind are distinct public types. Shared IFileSystemEntryView.Children loses concrete entry type; ExplorerContentItem requires the Engine entry. Keep typed selector delegates rather than casts or merged DTOs.",
+    "existing": "ExplorerTreeNavigator.Flatten traverses visible expanded folders, Find searches reference identity; neither implements file enumeration and neither is a lower-level dependency of MediaFileSystems.",
+    "decision": "Promote original App preorder/lazy iterator into generic EnumerateFiles<TEntry> on existing MediaExplorer in shared lower dependency. Each consumer supplies its unchanged typed Kind==File and Children expressions. No new traversal service, DTO, base class or interface.",
+    "after": [
+      {
+        "path": "src/GWGUI.MediaFileSystems/Exploration/MediaExplorer.cs",
+        "sha256": "0A0CCBD9BCA721A487E1DB6922E5DD152A9E71FFFC2D24CF7C568C79E4ECB9BD",
+        "allOtherTokensIdentical": true,
+        "expandedIteratorIdentical": true
+      },
+      {
+        "path": "src/GWGUI.App/Services/DiskImages/Visualization/CassetteLoadingPresenter.cs",
+        "sha256": "CBD280A23C7BCFA9F42964695F4782E33576785D6BD7F09B7D3F5087C7EECE08",
+        "allOtherTokensIdentical": true,
+        "expandedIteratorIdentical": true
+      }
+    ],
+    "ast": "Original App e31ed0251 iterator promoted with typed selectors; substituting both typed original expressions and the recursive selector arguments restores both old iterator bodies. All other source tokens in the two consumers identical to a574c205d after call normalization.",
+    "semantic": "MediaFileSystems, MediaEngine and App: zero semantic errors. Three calls resolve to MediaFileSystems.MediaExplorer.EnumerateFiles<TEntry>: recursive generic, concrete MediaFileSystems.FileSystemEntry, concrete Engine.Contracts.Explorer.FileSystemEntry. Original predicates/children and downstream presentation types retained.",
+    "tests": "Six tests passed, exit 0: four new managed iterator cases (order/identity including children of files, deferred evaluation/early disposal, predicate and children failures) plus two existing ISO and GameCube exploration boundary tests. No external files, DLL fixtures, windows, processes or cores; enumerators disposed in finally."
   }
 }

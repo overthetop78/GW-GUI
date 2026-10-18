@@ -1,13 +1,12 @@
 {
-  "snapshot": "014f6e998ea3f423868044f06a27e76a6e0703cd",
+  "snapshot": "a574c205dc8da8d675cfca591e7e718dff9468e7",
   "snapshotState": "Current worktree based on snapshot",
   "worktreeSourceChanges": [
-    "src/GWGUI.App/Views/Controls/Visualization/OpticalMediaView.xaml.cs",
-    "src/GWGUI.App/Views/Controls/Visualization/ScpDiskView.xaml.cs",
-    "src/GWGUI.App/Views/Controls/Visualization/SequentialMediaView.xaml.cs"
+    "src/GWGUI.App/Services/DiskImages/Visualization/CassetteLoadingPresenter.cs",
+    "src/GWGUI.MediaFileSystems/Exploration/MediaExplorer.cs"
   ],
   "scope": "All current non-ignored repository CSharp files, including hidden paths; BaseMethodDeclaration bodies with fewer than 30 tokens. Candidate presence is not a defect or a completion claim.",
-  "fileCount": 7318,
+  "fileCount": 7319,
   "methodBodyCount": 9481,
   "exactGroups": [
     {
