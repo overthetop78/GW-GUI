@@ -231,6 +231,9 @@ internal static class ExternalCoreEnvironmentFunctions
     }
 
     internal static bool SetLogInterface(nint data, ExternalCoreApi.LogCallback log)
+        => SetLogInterface<ExternalCoreApi.LogCallback>(data, log);
+
+    internal static bool SetLogInterface<TLog>(nint data, TLog log) where TLog : Delegate
         => InstallInterface(data, () => new ExternalCoreApi.LogInterface
         {
             Log = Marshal.GetFunctionPointerForDelegate(log)

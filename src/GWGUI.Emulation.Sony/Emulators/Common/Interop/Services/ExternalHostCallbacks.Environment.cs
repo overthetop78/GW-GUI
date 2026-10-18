@@ -113,11 +113,7 @@ internal sealed partial class ExternalHostCallbacks
                 case ExternalCoreApiConstants.SetSystemAvInfo:
                     return ApplySystemAvInfo(data);
                 case ExternalCoreApiConstants.GetLogInterface:
-                    Marshal.StructureToPtr(new ExternalCoreApi.LogInterface
-                    {
-                        Log = Marshal.GetFunctionPointerForDelegate(Log)
-                    }, data, false);
-                    return true;
+                    return ExternalCoreEnvironmentFunctions.SetLogInterface(data, Log);
                 case ExternalCoreApiConstants.GetVfsInterface:
                     return false;
                 case ExternalCoreApiConstants.GetLedInterface:

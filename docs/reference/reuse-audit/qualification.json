@@ -25856,5 +25856,516 @@
       ],
       "executable": "build/Debug/GW GUI/gwgui.exe"
     }
+  },
+  "remainingLogInterfaceReuse": {
+    "state": "verified",
+    "sources": [
+      {
+        "rootDeclarations": [
+          {
+            "declaration": "internal ExternalCoreApi.LogCallback Log { get; }",
+            "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Amstrad\\Emulators\\Common\\Interop\\Services\\ExternalHostCallbacks.cs"
+          }
+        ],
+        "managedRoot": "GWGUI.Emulation.Amstrad.Emulators.Common.Interop.Services.ExternalHostCallbacks.Log",
+        "nullPolicy": "Conversion then StructureToPtr on null throws and existing catch returns false; no callback invocation or error publication",
+        "decision": "Delegate to existing SDK SetLogInterface, adapted with a constrained generic overload for Sony four-argument delegates; same one-pointer interface ABI and same managed root. Null returns false, non-null publishes same pointer; keep catch and all other branches",
+        "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "legacy": false,
+        "sha256": "F28313CB0240A8700F122F58B77CA6787BF12D50EE443EE13BCBB376850E2A61",
+        "delegateType": "GWGUI.Emulation.Interop.ExternalCoreApi.LogCallback",
+        "section": "case ExternalCoreApiConstants.GetLogInterface:\r\n                    Marshal.StructureToPtr(new ExternalCoreApi.LogInterface\r\n                    {\r\n                        Log = Marshal.GetFunctionPointerForDelegate(Log)\r\n                    }, data, false);\r\n                    return true;",
+        "sectionTokens": "case ExternalCoreApiConstants . GetLogInterface : Marshal . StructureToPtr ( new ExternalCoreApi . LogInterface { Log = Marshal . GetFunctionPointerForDelegate ( Log ) } , data , false ) ; return true ;",
+        "delegate": "Log"
+      },
+      {
+        "rootDeclarations": [
+          {
+            "declaration": "internal ExternalCoreApi.LogCallback Log { get; }",
+            "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Commodore\\Emulators\\Common\\Interop\\Services\\ExternalHostCallbacks.cs"
+          }
+        ],
+        "managedRoot": "GWGUI.Emulation.Commodore.Emulators.Common.Interop.Services.ExternalHostCallbacks.Log",
+        "nullPolicy": "Conversion then StructureToPtr on null throws and existing catch returns false; no callback invocation or error publication",
+        "decision": "Delegate to existing SDK SetLogInterface, adapted with a constrained generic overload for Sony four-argument delegates; same one-pointer interface ABI and same managed root. Null returns false, non-null publishes same pointer; keep catch and all other branches",
+        "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "legacy": false,
+        "sha256": "02E1DDAEEA2F3D7661053CD0D54CCA437BAC652CB8F8838BCB44DC62417806A9",
+        "delegateType": "GWGUI.Emulation.Interop.ExternalCoreApi.LogCallback",
+        "section": "case ExternalCoreApiConstants.GetLogInterface:\r\n                    Marshal.StructureToPtr(new ExternalCoreApi.LogInterface\r\n                    {\r\n                        Log = Marshal.GetFunctionPointerForDelegate(Log)\r\n                    }, data, false);\r\n                    return true;",
+        "sectionTokens": "case ExternalCoreApiConstants . GetLogInterface : Marshal . StructureToPtr ( new ExternalCoreApi . LogInterface { Log = Marshal . GetFunctionPointerForDelegate ( Log ) } , data , false ) ; return true ;",
+        "delegate": "Log"
+      },
+      {
+        "rootDeclarations": [
+          {
+            "declaration": "internal ExternalCoreApi.LogCallback Log { get; }",
+            "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Nec\\Emulators\\Common\\Interop\\Services\\ExternalHostCallbacks.cs"
+          }
+        ],
+        "managedRoot": "GWGUI.Emulation.Nec.Emulators.Common.Interop.Services.ExternalHostCallbacks.Log",
+        "nullPolicy": "Conversion then StructureToPtr on null throws and existing catch returns false; no callback invocation or error publication",
+        "decision": "Delegate to existing SDK SetLogInterface, adapted with a constrained generic overload for Sony four-argument delegates; same one-pointer interface ABI and same managed root. Null returns false, non-null publishes same pointer; keep catch and all other branches",
+        "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "legacy": false,
+        "sha256": "AEE97FE6EFD5FDE94871108AD497D845DF95945B9491AAE1E594A21FE23B97ED",
+        "delegateType": "GWGUI.Emulation.Interop.ExternalCoreApi.LogCallback",
+        "section": "case ExternalCoreApiConstants.GetLogInterface:\n                    Marshal.StructureToPtr(new ExternalCoreApi.LogInterface\n                    {\n                        Log = Marshal.GetFunctionPointerForDelegate(Log)\n                    }, data, false);\n                    return true;",
+        "sectionTokens": "case ExternalCoreApiConstants . GetLogInterface : Marshal . StructureToPtr ( new ExternalCoreApi . LogInterface { Log = Marshal . GetFunctionPointerForDelegate ( Log ) } , data , false ) ; return true ;",
+        "delegate": "Log"
+      },
+      {
+        "rootDeclarations": [
+          {
+            "declaration": "internal ExternalCoreApi.LogCallback Log { get; }",
+            "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Nintendo\\Emulators\\Common\\Interop\\Services\\ExternalHostCallbacks.cs"
+          }
+        ],
+        "managedRoot": "GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Services.ExternalHostCallbacks.Log",
+        "nullPolicy": "Conversion then StructureToPtr on null throws and existing catch returns false; no callback invocation or error publication",
+        "decision": "Delegate to existing SDK SetLogInterface, adapted with a constrained generic overload for Sony four-argument delegates; same one-pointer interface ABI and same managed root. Null returns false, non-null publishes same pointer; keep catch and all other branches",
+        "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "legacy": false,
+        "sha256": "E8604DF6987AEDFE927F52C43621A3CFA319A715E68CB889D3DA71849A8C3E89",
+        "delegateType": "GWGUI.Emulation.Interop.ExternalCoreApi.LogCallback",
+        "section": "case ExternalCoreApiConstants.GetLogInterface:\r\n                    Marshal.StructureToPtr(new ExternalCoreApi.LogInterface\r\n                    {\r\n                        Log = Marshal.GetFunctionPointerForDelegate(Log)\r\n                    }, data, false);\r\n                    return true;",
+        "sectionTokens": "case ExternalCoreApiConstants . GetLogInterface : Marshal . StructureToPtr ( new ExternalCoreApi . LogInterface { Log = Marshal . GetFunctionPointerForDelegate ( Log ) } , data , false ) ; return true ;",
+        "delegate": "Log"
+      },
+      {
+        "rootDeclarations": [
+          {
+            "declaration": "_log",
+            "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Panasonic\\Emulators\\Opera\\Interop\\Services\\EnvironmentCallbackHost.cs"
+          }
+        ],
+        "managedRoot": "GWGUI.Emulation.Panasonic.Emulators.Opera.Interop.Services.EnvironmentCallbackHost._log",
+        "nullPolicy": "Explicit null guard returns false before conversion; Failure unchanged",
+        "decision": "Delegate to existing SDK SetLogInterface, adapted with a constrained generic overload for Sony four-argument delegates; same one-pointer interface ABI and same managed root. Null returns false, non-null publishes same pointer; keep catch and all other branches",
+        "path": "src/GWGUI.Emulation.Panasonic/Emulators/Opera/Interop/Services/EnvironmentCallbackHost.cs",
+        "legacy": true,
+        "sha256": "F0837C8C492678CD7781F2EF8D3E47423965430A89960283B92A5872A8E864BF",
+        "delegateType": "GWGUI.Emulation.Interop.ExternalCoreApi.LogCallback",
+        "section": "case ExternalCoreApiConstants.GetLogInterface: if (data == nint.Zero) return false; Marshal.WriteIntPtr(data, Marshal.GetFunctionPointerForDelegate(_log)); return true;",
+        "sectionTokens": "case ExternalCoreApiConstants . GetLogInterface : if ( data == nint . Zero ) return false ; Marshal . WriteIntPtr ( data , Marshal . GetFunctionPointerForDelegate ( _log ) ) ; return true ;",
+        "delegate": "_log"
+      },
+      {
+        "rootDeclarations": [
+          {
+            "declaration": "internal ExternalCoreApi.LogCallback Log { get; }",
+            "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Sega\\Emulators\\Common\\Interop\\Services\\ExternalHostCallbacks.cs"
+          }
+        ],
+        "managedRoot": "GWGUI.Emulation.Sega.Emulators.Common.Interop.Services.ExternalHostCallbacks.Log",
+        "nullPolicy": "Conversion then StructureToPtr on null throws and existing catch returns false; no callback invocation or error publication",
+        "decision": "Delegate to existing SDK SetLogInterface, adapted with a constrained generic overload for Sony four-argument delegates; same one-pointer interface ABI and same managed root. Null returns false, non-null publishes same pointer; keep catch and all other branches",
+        "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "legacy": false,
+        "sha256": "7ABF37AFE450BF37D8F1257FDDEE26B76F5AB5C2A174BCF5C17E0BB2A8D353BD",
+        "delegateType": "GWGUI.Emulation.Interop.ExternalCoreApi.LogCallback",
+        "section": "case ExternalCoreApiConstants.GetLogInterface:\r\n                    Marshal.StructureToPtr(new ExternalCoreApi.LogInterface\r\n                    {\r\n                        Log = Marshal.GetFunctionPointerForDelegate(Log)\r\n                    }, data, false);\r\n                    return true;",
+        "sectionTokens": "case ExternalCoreApiConstants . GetLogInterface : Marshal . StructureToPtr ( new ExternalCoreApi . LogInterface { Log = Marshal . GetFunctionPointerForDelegate ( Log ) } , data , false ) ; return true ;",
+        "delegate": "Log"
+      },
+      {
+        "rootDeclarations": [
+          {
+            "declaration": "internal NativeLogFunctions.WindowsX64Callback Log { get; }",
+            "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Sony\\Emulators\\Common\\Interop\\Services\\ExternalHostCallbacks.cs"
+          }
+        ],
+        "managedRoot": "GWGUI.Emulation.Sony.Emulators.Common.Interop.Services.ExternalHostCallbacks.Log",
+        "nullPolicy": "Conversion then StructureToPtr on null throws and existing catch returns false; no callback invocation or error publication",
+        "decision": "Delegate to existing SDK SetLogInterface, adapted with a constrained generic overload for Sony four-argument delegates; same one-pointer interface ABI and same managed root. Null returns false, non-null publishes same pointer; keep catch and all other branches",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "legacy": false,
+        "sha256": "41A7D1AEC7F749BE4FA8335962AAE1E2F2A1405E6E3E45AED4432F8E91229D7A",
+        "delegateType": "GWGUI.Emulation.Sony.Emulators.Common.Interop.Functions.NativeLogFunctions.WindowsX64Callback",
+        "section": "case ExternalCoreApiConstants.GetLogInterface:\r\n                    Marshal.StructureToPtr(new ExternalCoreApi.LogInterface\r\n                    {\r\n                        Log = Marshal.GetFunctionPointerForDelegate(Log)\r\n                    }, data, false);\r\n                    return true;",
+        "sectionTokens": "case ExternalCoreApiConstants . GetLogInterface : Marshal . StructureToPtr ( new ExternalCoreApi . LogInterface { Log = Marshal . GetFunctionPointerForDelegate ( Log ) } , data , false ) ; return true ;",
+        "delegate": "Log"
+      },
+      {
+        "rootDeclarations": [
+          {
+            "declaration": "internal NativeLogFunctions.WindowsX64Callback Log { get; }",
+            "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Sony\\Emulators\\Pcsx2\\Services\\ExternalHostCallbacks.cs"
+          }
+        ],
+        "managedRoot": "GWGUI.Emulation.Sony.Emulators.Pcsx2.Services.ExternalHostCallbacks.Log",
+        "nullPolicy": "Conversion then StructureToPtr on null throws and existing catch returns false; no callback invocation or error publication",
+        "decision": "Delegate to existing SDK SetLogInterface, adapted with a constrained generic overload for Sony four-argument delegates; same one-pointer interface ABI and same managed root. Null returns false, non-null publishes same pointer; keep catch and all other branches",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Environment.cs",
+        "legacy": false,
+        "sha256": "0C517A2E300AE4E3B00C6C99DF51AE29D3CF1020D8F653088EB5FA28E227296E",
+        "delegateType": "GWGUI.Emulation.Sony.Emulators.Common.Interop.Functions.NativeLogFunctions.WindowsX64Callback",
+        "section": "case ExternalCoreApiConstants.GetLogInterface:\r\n                    Marshal.StructureToPtr(new ExternalCoreApi.LogInterface\r\n                    {\r\n                        Log = Marshal.GetFunctionPointerForDelegate(Log)\r\n                    }, data, false);\r\n                    return true;",
+        "sectionTokens": "case ExternalCoreApiConstants . GetLogInterface : Marshal . StructureToPtr ( new ExternalCoreApi . LogInterface { Log = Marshal . GetFunctionPointerForDelegate ( Log ) } , data , false ) ; return true ;",
+        "delegate": "Log"
+      },
+      {
+        "rootDeclarations": [
+          {
+            "declaration": "internal NativeLogFunctions.WindowsX64Callback Log { get; }",
+            "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Sony\\Emulators\\Ppsspp\\Services\\ExternalHostCallbacks.cs"
+          }
+        ],
+        "managedRoot": "GWGUI.Emulation.Sony.Emulators.Ppsspp.Services.ExternalHostCallbacks.Log",
+        "nullPolicy": "Conversion then StructureToPtr on null throws and existing catch returns false; no callback invocation or error publication",
+        "decision": "Delegate to existing SDK SetLogInterface, adapted with a constrained generic overload for Sony four-argument delegates; same one-pointer interface ABI and same managed root. Null returns false, non-null publishes same pointer; keep catch and all other branches",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Environment.cs",
+        "legacy": false,
+        "sha256": "33A19DD20B50E65A797627722DB2AE22BD4654B86319BCED9582245AD35DC361",
+        "delegateType": "GWGUI.Emulation.Sony.Emulators.Common.Interop.Functions.NativeLogFunctions.WindowsX64Callback",
+        "section": "case ExternalCoreApiConstants.GetLogInterface:\r\n                    Marshal.StructureToPtr(new ExternalCoreApi.LogInterface\r\n                    {\r\n                        Log = Marshal.GetFunctionPointerForDelegate(Log)\r\n                    }, data, false);\r\n                    return true;",
+        "sectionTokens": "case ExternalCoreApiConstants . GetLogInterface : Marshal . StructureToPtr ( new ExternalCoreApi . LogInterface { Log = Marshal . GetFunctionPointerForDelegate ( Log ) } , data , false ) ; return true ;",
+        "delegate": "Log"
+      },
+      {
+        "rootDeclarations": [
+          {
+            "declaration": "_log",
+            "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Thomson\\Emulators\\Theodore\\Interop\\Services\\EnvironmentCallbackHost.cs"
+          }
+        ],
+        "managedRoot": "GWGUI.Emulation.Thomson.Emulators.Theodore.Interop.Services.EnvironmentCallbackHost._log",
+        "nullPolicy": "Explicit null guard returns false before conversion; Failure unchanged",
+        "decision": "Delegate to existing SDK SetLogInterface, adapted with a constrained generic overload for Sony four-argument delegates; same one-pointer interface ABI and same managed root. Null returns false, non-null publishes same pointer; keep catch and all other branches",
+        "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Interop/Services/EnvironmentCallbackHost.cs",
+        "legacy": true,
+        "sha256": "7AE7A2ABD869A7416D81E82B20086807ACB925CE2D4F1AAEF1EE0ECA36A149E2",
+        "delegateType": "GWGUI.Emulation.Interop.ExternalCoreApi.LogCallback",
+        "section": "case ExternalCoreApiConstants.GetLogInterface: if (data == nint.Zero) return false; Marshal.WriteIntPtr(data, Marshal.GetFunctionPointerForDelegate(_log)); return true;",
+        "sectionTokens": "case ExternalCoreApiConstants . GetLogInterface : if ( data == nint . Zero ) return false ; Marshal . WriteIntPtr ( data , Marshal . GetFunctionPointerForDelegate ( _log ) ) ; return true ;",
+        "delegate": "_log"
+      },
+      {
+        "rootDeclarations": [
+          {
+            "declaration": "_log",
+            "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Watara\\Emulators\\Potator\\Interop\\Services\\EnvironmentCallbackHost.cs"
+          }
+        ],
+        "managedRoot": "GWGUI.Emulation.Watara.Emulators.Potator.Interop.Services.EnvironmentCallbackHost._log",
+        "nullPolicy": "Explicit null guard returns false before conversion; Failure unchanged",
+        "decision": "Delegate to existing SDK SetLogInterface, adapted with a constrained generic overload for Sony four-argument delegates; same one-pointer interface ABI and same managed root. Null returns false, non-null publishes same pointer; keep catch and all other branches",
+        "path": "src/GWGUI.Emulation.Watara/Emulators/Potator/Interop/Services/EnvironmentCallbackHost.cs",
+        "legacy": true,
+        "sha256": "894448913EA018B23B77D214AA899736BB4416E488009B350CB1D73F88755FAE",
+        "delegateType": "GWGUI.Emulation.Interop.ExternalCoreApi.LogCallback",
+        "section": "case ExternalCoreApiConstants.GetLogInterface: if (data == nint.Zero) return false; Marshal.WriteIntPtr(data, Marshal.GetFunctionPointerForDelegate(_log)); return true;",
+        "sectionTokens": "case ExternalCoreApiConstants . GetLogInterface : if ( data == nint . Zero ) return false ; Marshal . WriteIntPtr ( data , Marshal . GetFunctionPointerForDelegate ( _log ) ) ; return true ;",
+        "delegate": "_log"
+      },
+      {
+        "rootDeclarations": [
+          {
+            "declaration": "_log",
+            "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Wenquxing\\Emulators\\Wqxemu\\Interop\\Services\\EnvironmentCallbackHost.cs"
+          }
+        ],
+        "managedRoot": "GWGUI.Emulation.Wenquxing.Emulators.Wqxemu.Interop.Services.EnvironmentCallbackHost._log",
+        "nullPolicy": "Explicit null guard returns false before conversion; Failure unchanged",
+        "decision": "Delegate to existing SDK SetLogInterface, adapted with a constrained generic overload for Sony four-argument delegates; same one-pointer interface ABI and same managed root. Null returns false, non-null publishes same pointer; keep catch and all other branches",
+        "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Interop/Services/EnvironmentCallbackHost.cs",
+        "legacy": true,
+        "sha256": "C57CB970DAF2A0B968EED9CD0834AFE2645611EA6C39D22E97D0371A0D4055B1",
+        "delegateType": "GWGUI.Emulation.Interop.ExternalCoreApi.LogCallback",
+        "section": "case ExternalCoreApiConstants.GetLogInterface: if (data == nint.Zero) return false; Marshal.WriteIntPtr(data, Marshal.GetFunctionPointerForDelegate(_log)); return true;",
+        "sectionTokens": "case ExternalCoreApiConstants . GetLogInterface : if ( data == nint . Zero ) return false ; Marshal . WriteIntPtr ( data , Marshal . GetFunctionPointerForDelegate ( _log ) ) ; return true ;",
+        "delegate": "_log"
+      }
+    ],
+    "projects": [
+      "GWGUI.Emulation",
+      "GWGUI.Emulation.Amstrad",
+      "GWGUI.Emulation.Commodore",
+      "GWGUI.Emulation.Nec",
+      "GWGUI.Emulation.Nintendo",
+      "GWGUI.Emulation.Panasonic",
+      "GWGUI.Emulation.Sega",
+      "GWGUI.Emulation.Sony",
+      "GWGUI.Emulation.Thomson",
+      "GWGUI.Emulation.Watara",
+      "GWGUI.Emulation.Wenquxing"
+    ],
+    "scope": "Only twelve log interface publication branches, not full environment dispatch or host lifecycle",
+    "sdk": {
+      "origin": "ac627b1bc existing SetLogInterface; deferred publisher expansion already verified in callbackInterfaceInstallReuse",
+      "sha256": "53F8E900298B2AA65E67CB69293E3D1FDB463E5DF718FC620CA0006F14E74A04",
+      "path": "src/GWGUI.Emulation/Functions/ExternalCoreEnvironmentFunctions.cs"
+    },
+    "nativeOrigin": "c2d674be4:src/GWGUI.Emulation.Amiga/Cores/AmigaExternalHostCallbacks.cs GetLogInterface",
+    "api": {
+      "layout": "[StructLayout(LayoutKind.Sequential)]\r\n    internal struct LogInterface\r\n    {\r\n        internal nint Log;\r\n    }",
+      "sha256": "05E32C021EDC30BE4BD88BE5848715D8CE091D775CE88BBF0AF534653C8D6647",
+      "path": "src/GWGUI.Emulation/Interop/ExternalCoreApi.cs"
+    },
+    "beforeHead": "de8d92922c186c5c8c4205232c863be4a4f46d7b",
+    "verification": {
+      "semanticErrors": 0,
+      "standardCallbacks": 9,
+      "nullPolicy": "Standard native branches still return false on null within same catch; legacy explicit guard folded into identical SDK guard. No callback execution or Failure mutation. Native conversion allocation on null is skipped; rooted delegate preserved.",
+      "allOtherSdkTokensUnchanged": true,
+      "semanticProjects": [
+        "GWGUI.Emulation",
+        "GWGUI.Emulation.Amstrad",
+        "GWGUI.Emulation.Commodore",
+        "GWGUI.Emulation.Nec",
+        "GWGUI.Emulation.Nintendo",
+        "GWGUI.Emulation.Panasonic",
+        "GWGUI.Emulation.Sega",
+        "GWGUI.Emulation.Sony",
+        "GWGUI.Emulation.Thomson",
+        "GWGUI.Emulation.Watara",
+        "GWGUI.Emulation.Wenquxing"
+      ],
+      "sdkSha256": "92CBEB9E8C194A24BA5B4BBB8F19AB73902D03915B16EEBE9FE20F3292D798C7",
+      "sourceChecks": [
+        {
+          "otherTokensUnchanged": true,
+          "sha256": "93265B5213C1F8409F03F59449C5CBA2E850616320260A19A634E95E3854A7BE",
+          "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "managedRootUnchanged": true
+        },
+        {
+          "otherTokensUnchanged": true,
+          "sha256": "F184AB5A6412A2BEEEC02151A3AFC9EA8A6DD2ED9C8CF2FA2F95112D07FF17E7",
+          "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "managedRootUnchanged": true
+        },
+        {
+          "otherTokensUnchanged": true,
+          "sha256": "C38FBE5D0C0835D27E0A58BF2DE154A76C3C6777187582C12289B9EFD439730A",
+          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "managedRootUnchanged": true
+        },
+        {
+          "otherTokensUnchanged": true,
+          "sha256": "6B1871EB418A248160F8B8AF40BAC18F5E8B9FC7FAE51E095D209F6A5DC03DC3",
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "managedRootUnchanged": true
+        },
+        {
+          "otherTokensUnchanged": true,
+          "sha256": "A88E6EB71CE6997E655EC1097209D3A94C382653AABDF231CE817A690867A906",
+          "path": "src/GWGUI.Emulation.Panasonic/Emulators/Opera/Interop/Services/EnvironmentCallbackHost.cs",
+          "managedRootUnchanged": true
+        },
+        {
+          "otherTokensUnchanged": true,
+          "sha256": "CE829A0BA15BF4C687B3347ADF86619F1DB9F97733242F69610050F874E5929F",
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "managedRootUnchanged": true
+        },
+        {
+          "otherTokensUnchanged": true,
+          "sha256": "FA94466A73B0BCBD42567300A92D5919BF60CBB4E6E677FBAA6A51657CA33A78",
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "managedRootUnchanged": true
+        },
+        {
+          "otherTokensUnchanged": true,
+          "sha256": "1410B0FC1AA129A93220668D7134E1F1BEF3C39C11A8D7CD8471B2C601F69C69",
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Environment.cs",
+          "managedRootUnchanged": true
+        },
+        {
+          "otherTokensUnchanged": true,
+          "sha256": "D165FCFF3E97E98D8C71487F9B5DF784215579A00425434D619DFAD30920205B",
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Environment.cs",
+          "managedRootUnchanged": true
+        },
+        {
+          "otherTokensUnchanged": true,
+          "sha256": "7FB4BB6CA01A397F6BE83B6CF8D99CA25F82716A9F0C2C2B048325FBC0FB75F2",
+          "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Interop/Services/EnvironmentCallbackHost.cs",
+          "managedRootUnchanged": true
+        },
+        {
+          "otherTokensUnchanged": true,
+          "sha256": "E9242294449477A3E02C64D6DB3A47B55F1B36851E6D93F54F15ACC18875A3A6",
+          "path": "src/GWGUI.Emulation.Watara/Emulators/Potator/Interop/Services/EnvironmentCallbackHost.cs",
+          "managedRootUnchanged": true
+        },
+        {
+          "otherTokensUnchanged": true,
+          "sha256": "5F4DB5726FBCF8E6675874313D72ACFB402D55BD26D8C34B44E30FC3C1F02984",
+          "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Interop/Services/EnvironmentCallbackHost.cs",
+          "managedRootUnchanged": true
+        }
+      ],
+      "abiUnchanged": true,
+      "bindings": [
+        {
+          "callbackType": "GWGUI.Emulation.Interop.ExternalCoreApi.LogCallback",
+          "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.SetLogInterface(nint, GWGUI.Emulation.Interop.ExternalCoreApi.LogCallback)",
+          "generic": false
+        },
+        {
+          "callbackType": "GWGUI.Emulation.Interop.ExternalCoreApi.LogCallback",
+          "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.SetLogInterface(nint, GWGUI.Emulation.Interop.ExternalCoreApi.LogCallback)",
+          "generic": false
+        },
+        {
+          "callbackType": "GWGUI.Emulation.Interop.ExternalCoreApi.LogCallback",
+          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.SetLogInterface(nint, GWGUI.Emulation.Interop.ExternalCoreApi.LogCallback)",
+          "generic": false
+        },
+        {
+          "callbackType": "GWGUI.Emulation.Interop.ExternalCoreApi.LogCallback",
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.SetLogInterface(nint, GWGUI.Emulation.Interop.ExternalCoreApi.LogCallback)",
+          "generic": false
+        },
+        {
+          "callbackType": "GWGUI.Emulation.Interop.ExternalCoreApi.LogCallback",
+          "path": "src/GWGUI.Emulation.Panasonic/Emulators/Opera/Interop/Services/EnvironmentCallbackHost.cs",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.SetLogInterface(nint, GWGUI.Emulation.Interop.ExternalCoreApi.LogCallback)",
+          "generic": false
+        },
+        {
+          "callbackType": "GWGUI.Emulation.Interop.ExternalCoreApi.LogCallback",
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.SetLogInterface(nint, GWGUI.Emulation.Interop.ExternalCoreApi.LogCallback)",
+          "generic": false
+        },
+        {
+          "callbackType": "GWGUI.Emulation.Sony.Emulators.Common.Interop.Functions.NativeLogFunctions.WindowsX64Callback",
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.SetLogInterface<GWGUI.Emulation.Sony.Emulators.Common.Interop.Functions.NativeLogFunctions.WindowsX64Callback>(nint, GWGUI.Emulation.Sony.Emulators.Common.Interop.Functions.NativeLogFunctions.WindowsX64Callback)",
+          "generic": true
+        },
+        {
+          "callbackType": "GWGUI.Emulation.Sony.Emulators.Common.Interop.Functions.NativeLogFunctions.WindowsX64Callback",
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Environment.cs",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.SetLogInterface<GWGUI.Emulation.Sony.Emulators.Common.Interop.Functions.NativeLogFunctions.WindowsX64Callback>(nint, GWGUI.Emulation.Sony.Emulators.Common.Interop.Functions.NativeLogFunctions.WindowsX64Callback)",
+          "generic": true
+        },
+        {
+          "callbackType": "GWGUI.Emulation.Sony.Emulators.Common.Interop.Functions.NativeLogFunctions.WindowsX64Callback",
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Environment.cs",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.SetLogInterface<GWGUI.Emulation.Sony.Emulators.Common.Interop.Functions.NativeLogFunctions.WindowsX64Callback>(nint, GWGUI.Emulation.Sony.Emulators.Common.Interop.Functions.NativeLogFunctions.WindowsX64Callback)",
+          "generic": true
+        },
+        {
+          "callbackType": "GWGUI.Emulation.Interop.ExternalCoreApi.LogCallback",
+          "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Interop/Services/EnvironmentCallbackHost.cs",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.SetLogInterface(nint, GWGUI.Emulation.Interop.ExternalCoreApi.LogCallback)",
+          "generic": false
+        },
+        {
+          "callbackType": "GWGUI.Emulation.Interop.ExternalCoreApi.LogCallback",
+          "path": "src/GWGUI.Emulation.Watara/Emulators/Potator/Interop/Services/EnvironmentCallbackHost.cs",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.SetLogInterface(nint, GWGUI.Emulation.Interop.ExternalCoreApi.LogCallback)",
+          "generic": false
+        },
+        {
+          "callbackType": "GWGUI.Emulation.Interop.ExternalCoreApi.LogCallback",
+          "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Interop/Services/EnvironmentCallbackHost.cs",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.SetLogInterface(nint, GWGUI.Emulation.Interop.ExternalCoreApi.LogCallback)",
+          "generic": false
+        }
+      ],
+      "customCallbacks": 3,
+      "tests": {
+        "passed": 46,
+        "scope": "Existing native buffer guards and callbacks; standard and custom four-argument ABI, null destination, routing and diagnostics",
+        "command": "dotnet test --no-restore --filter CoreCallbackInterfaceTests|EnvironmentCallbackCommandTests|CoreDiagnosticTextTests",
+        "failed": 0,
+        "newCases": 2,
+        "resources": "Buffers freed in finally, delegate roots kept alive; no external core, file, process or window"
+      },
+      "managedRoots": [
+        {
+          "root": "GWGUI.Emulation.Amstrad.Emulators.Common.Interop.Services.ExternalHostCallbacks.Log",
+          "sha256": "67B1E5C081F964C3B48CA69D8C8E6916B1779027C5D03B7E983BDF592AE0659B",
+          "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+          "unchanged": true
+        },
+        {
+          "root": "GWGUI.Emulation.Commodore.Emulators.Common.Interop.Services.ExternalHostCallbacks.Log",
+          "sha256": "4E8EF4D0A674D0D1092332C3D686FC9B27F5C40B867732CBCA661D9881499B24",
+          "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+          "unchanged": true
+        },
+        {
+          "root": "GWGUI.Emulation.Nec.Emulators.Common.Interop.Services.ExternalHostCallbacks.Log",
+          "sha256": "2A4E149EDE0C7B068D13BE8F7477088A00D192DF1FCF414614BBC899C9DF0655",
+          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+          "unchanged": true
+        },
+        {
+          "root": "GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Services.ExternalHostCallbacks.Log",
+          "sha256": "318C42B71AC0D6877501EF3DE0EC22D6665FFBD4A142A1A6384811EE93323DB0",
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+          "unchanged": true
+        },
+        {
+          "root": "GWGUI.Emulation.Panasonic.Emulators.Opera.Interop.Services.EnvironmentCallbackHost._log",
+          "sha256": "A88E6EB71CE6997E655EC1097209D3A94C382653AABDF231CE817A690867A906",
+          "path": "src/GWGUI.Emulation.Panasonic/Emulators/Opera/Interop/Services/EnvironmentCallbackHost.cs",
+          "unchanged": true
+        },
+        {
+          "root": "GWGUI.Emulation.Sega.Emulators.Common.Interop.Services.ExternalHostCallbacks.Log",
+          "sha256": "72F41186FCB18622C8A35F2B193F24245CDB3D3F383E71B0486904164F0939A2",
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+          "unchanged": true
+        },
+        {
+          "root": "GWGUI.Emulation.Sony.Emulators.Common.Interop.Services.ExternalHostCallbacks.Log",
+          "sha256": "E230A4DDA0DB84876AC76A7C54CAD590CA1D53363E52C5741C69E54D8DCC8969",
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+          "unchanged": true
+        },
+        {
+          "root": "GWGUI.Emulation.Sony.Emulators.Pcsx2.Services.ExternalHostCallbacks.Log",
+          "sha256": "25F6B1A2B15F2BC93976EA900A400AC0C76A5807C994FE5D660E674435103433",
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.cs",
+          "unchanged": true
+        },
+        {
+          "root": "GWGUI.Emulation.Sony.Emulators.Ppsspp.Services.ExternalHostCallbacks.Log",
+          "sha256": "30587EFBCF35B44DE48F234966EAFF41540D9497BA69143AB0E2D1892B3AAFFA",
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.cs",
+          "unchanged": true
+        },
+        {
+          "root": "GWGUI.Emulation.Thomson.Emulators.Theodore.Interop.Services.EnvironmentCallbackHost._log",
+          "sha256": "7FB4BB6CA01A397F6BE83B6CF8D99CA25F82716A9F0C2C2B048325FBC0FB75F2",
+          "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Interop/Services/EnvironmentCallbackHost.cs",
+          "unchanged": true
+        },
+        {
+          "root": "GWGUI.Emulation.Watara.Emulators.Potator.Interop.Services.EnvironmentCallbackHost._log",
+          "sha256": "E9242294449477A3E02C64D6DB3A47B55F1B36851E6D93F54F15ACC18875A3A6",
+          "path": "src/GWGUI.Emulation.Watara/Emulators/Potator/Interop/Services/EnvironmentCallbackHost.cs",
+          "unchanged": true
+        },
+        {
+          "root": "GWGUI.Emulation.Wenquxing.Emulators.Wqxemu.Interop.Services.EnvironmentCallbackHost._log",
+          "sha256": "5F4DB5726FBCF8E6675874313D72ACFB402D55BD26D8C34B44E30FC3C1F02984",
+          "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Interop/Services/EnvironmentCallbackHost.cs",
+          "unchanged": true
+        }
+      ],
+      "genericBodyIdenticalToPreviousTypedPublisher": true,
+      "typedSignaturePreserved": true
+    },
+    "productBuild": "After grouped build recorded in indexedBytePrimitiveReuse; included in test-project compilation, next product build due after additional completed block",
+    "report": {
+      "shortExactGroups": 780,
+      "scope": "Candidates retained; no full OnEnvironment, Initialize, Run or installation lifecycle qualified from this branch extraction",
+      "longMethodCount": 11662,
+      "longCandidateGroups": 506,
+      "shortRenamedGroups": 365,
+      "shortMethodCount": 9566,
+      "files": 7331
+    }
   }
 }

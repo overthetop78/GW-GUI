@@ -71,7 +71,7 @@ internal sealed class EnvironmentCallbackHost : IDisposable
                 case ExternalCoreApiConstants.GetCanDuplicateFrames: if (data == nint.Zero) return false; Marshal.WriteByte(data, 1); return true;
                 case ExternalCoreApiConstants.GetLanguage: if (data == nint.Zero) return false; Marshal.WriteInt32(data, CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == "fr" ? FrenchLanguage : EnglishLanguage); return true;
                 case ExternalCoreApiConstants.SetKeyboardCallback: if (data == nint.Zero) return false; var pointer = Marshal.ReadIntPtr(data); Keyboard = pointer == nint.Zero ? null : Marshal.GetDelegateForFunctionPointer<ExternalCoreApi.KeyboardEvent>(pointer); return true;
-                case ExternalCoreApiConstants.GetLogInterface: if (data == nint.Zero) return false; Marshal.WriteIntPtr(data, Marshal.GetFunctionPointerForDelegate(_log)); return true;
+                case ExternalCoreApiConstants.GetLogInterface: return ExternalCoreEnvironmentFunctions.SetLogInterface(data, _log);
                 case ExternalCoreApiConstants.SetMessage: if (data == nint.Zero) return false; ExternalCoreEnvironmentFunctions.CopyDiagnostic(Marshal.ReadIntPtr(data), Diagnostics.Add, allowWhitespace: true); return true;
                 case ExternalCoreApiConstants.SetPixelFormat:
                     if (data == nint.Zero) return false;

@@ -30,6 +30,28 @@ public sealed class CoreCallbackInterfaceTests
             }, callback);
     }
 
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+    private delegate void FourArgumentLogCallback(int level, nint format, nint firstArgument, nint secondArgument);
+
+    [Fact]
+    public void LogInterfacePreservesTheFourArgumentCallbackSignature()
+    {
+        (int Level, nint Format, nint First, nint Second)? observed = null;
+        FourArgumentLogCallback callback = (level, format, first, second) => observed = (level, format, first, second);
+        WithGuardedBuffer<ExternalCoreApi.LogInterface>(
+            pointer => ExternalCoreEnvironmentFunctions.SetLogInterface(pointer, callback),
+            native =>
+            {
+                Assert.Equal(Marshal.GetFunctionPointerForDelegate(callback), native.Log);
+                Marshal.GetDelegateForFunctionPointer<FourArgumentLogCallback>(native.Log)(3, (nint)123, (nint)456, (nint)789);
+                Assert.Equal((3, (nint)123, (nint)456, (nint)789), observed);
+            }, callback);
+    }
+
+    [Fact]
+    public void NullDestinationDoesNotConvertAFourArgumentCallback()
+        => Assert.False(ExternalCoreEnvironmentFunctions.SetLogInterface<FourArgumentLogCallback>(nint.Zero, null!));
+
     [Fact]
     public void LedInterfacePublishesTheBorrowedCallback()
     {
