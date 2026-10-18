@@ -13,4 +13,3 @@ public sealed record CoreOption(
     bool RequiresRestart = false,
     bool IsEnabled = true
 );
-public sealed record CoreOptionValue(string Value, string Label);

@@ -19,6 +19,3 @@ public sealed record CoreOption(
     IReadOnlyDictionary<EmulationGraphicsApi, string>? GraphicsApiValues = null,
     IReadOnlyList<string>? RetainedRendererValues = null,
     bool IsGlobalStorageOption = false);
-
-public sealed record CoreOptionValue(string Value, string Label);
-

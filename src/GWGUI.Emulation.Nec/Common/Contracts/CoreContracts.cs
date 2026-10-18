@@ -11,6 +11,3 @@ public sealed record CoreOption(
     bool IsVisible = true,
     string? CategorizedName = null,
     string? CategorizedDescription = null);
-
-public sealed record CoreOptionValue(string Value, string Label);
-

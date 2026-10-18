@@ -94750,5 +94750,661 @@
     ],
     "inputsUnchanged": 16,
     "updater": "Only gwgui.updater.dll installed"
+  },
+  "simpleOptionValueReuse": {
+    "state": "verified",
+    "owner": "src/GWGUI.Emulation/Contracts/EmulationOptionValue.cs",
+    "ownerSha256": "97C53050D80AA7CF1B07410A55B4A501ABB78A614898F9EBA3ACC0CD7B45D125",
+    "originalRevision": "5a7b3a6ce",
+    "original": "namespace GWGUI.Emulation;\n\npublic sealed record EmulationOptionValue(string Value, string Label);",
+    "sources": [
+      {
+        "module": "Amstrad",
+        "path": "src/GWGUI.Emulation.Amstrad/Common/Contracts/CoreContracts.cs",
+        "sha256": "38DA38D5F6859CA204880CFE63CB9AA8D2131CF0A873E9D4793AD4B19381E612",
+        "text": "namespace GWGUI.Emulation.Amstrad.Common.Contracts;\r\n\r\npublic sealed record CoreOption(\r\n    string Key,\r\n    string Name,\r\n    string? Description,\r\n    string? Category,\r\n    string DefaultValue,\r\n    string CurrentValue,\r\n    IReadOnlyList<CoreOptionValue> Values,\r\n    bool IsVisible = true,\r\n    string? CategorizedName = null,\r\n    string? CategorizedDescription = null);\r\n\r\npublic sealed record CoreOptionValue(string Value, string Label);\r\n\r\n",
+        "declaration": "public sealed record CoreOptionValue(string Value, string Label);",
+        "aliasPath": "src/GWGUI.Emulation.Amstrad/EmulationGlobalUsings.cs",
+        "aliasBefore": "global using PendingCommand = GWGUI.Emulation.Contracts.EmulationMachineCommand;\r\nglobal using GWGUI.Emulation.Amstrad.Emulators.Common.Functions;\r\nglobal using GWGUI.Emulation.Constants;\r\nglobal using GWGUI.Emulation.Contracts;\r\nglobal using GWGUI.Emulation.Dictionaries;\r\nglobal using GWGUI.Emulation.Enums;\r\nglobal using GWGUI.Emulation.Exceptions;\r\nglobal using GWGUI.Emulation.Functions;\r\nglobal using GWGUI.Emulation.Interfaces;\r\nglobal using GWGUI.Emulation.Interop;\r\nglobal using GWGUI.Emulation.Services;\r\nglobal using GWGUI.Emulation.Amstrad.Common.Contracts;\r\nglobal using GWGUI.Emulation.Amstrad.Common.Dictionaries;\r\nglobal using GWGUI.Emulation.Amstrad.Common.Interfaces;\r\nglobal using GWGUI.Emulation.Amstrad.Common.Machines.Common.Contracts;\r\nglobal using GWGUI.Emulation.Amstrad.Common.Machines.Common.Dictionaries;\r\nglobal using GWGUI.Emulation.Amstrad.Common.Machines.Common.Enums;\r\nglobal using GWGUI.Emulation.Amstrad.Common.Machines.Common.Exceptions;\r\nglobal using GWGUI.Emulation.Amstrad.Common.Machines.Common.Functions;\r\nglobal using GWGUI.Emulation.Amstrad.Modules;\r\nglobal using GWGUI.Emulation.Amstrad.Common.Services;\r\nglobal using GWGUI.Emulation.Amstrad.Emulators.Common.Contracts;\r\nglobal using GWGUI.Emulation.Amstrad.Emulators.Common.Enums;\r\nglobal using GWGUI.Emulation.Amstrad.Emulators.Common.Exceptions;\r\nglobal using GWGUI.Emulation.Amstrad.Emulators.Caprice32.Factories;\r\nglobal using GWGUI.Emulation.Amstrad.Emulators.Caprice32.Functions;\r\nglobal using GWGUI.Emulation.Amstrad.Emulators.Common.Interfaces;\r\nglobal using GWGUI.Emulation.Amstrad.Emulators.Common.Services;\r\nglobal using GWGUI.Emulation.Amstrad.Common.Constants;\r\nglobal using GWGUI.Emulation.Amstrad.Common.Machines.Common.Constants;\r\nglobal using GWGUI.Emulation.Amstrad.Emulators.Common.Constants;\r\n\r\nglobal using InputAccumulator = GWGUI.Emulation.Services.EmulationInputAccumulator;\r\n"
+      },
+      {
+        "module": "Commodore",
+        "path": "src/GWGUI.Emulation.Commodore/Common/Contracts/CoreContracts.cs",
+        "sha256": "6750AA46B9DC8DB52523AAF270E6F5E3799700BEC77F281C2130E61B9433DD48",
+        "text": "namespace GWGUI.Emulation.Commodore.Common.Contracts;\r\n\r\npublic sealed record CoreOption(\r\n    string Key,\r\n    string Name,\r\n    string? Description,\r\n    string? Category,\r\n    string DefaultValue,\r\n    string CurrentValue,\r\n    IReadOnlyList<CoreOptionValue> Values,\r\n    bool IsVisible = true,\r\n    string? CategorizedName = null,\r\n    string? CategorizedDescription = null);\r\n\r\npublic sealed record CoreOptionValue(string Value, string Label);\r\n",
+        "declaration": "public sealed record CoreOptionValue(string Value, string Label);",
+        "aliasPath": "src/GWGUI.Emulation.Commodore/EmulationGlobalUsings.cs",
+        "aliasBefore": "global using PendingCommand = GWGUI.Emulation.Contracts.EmulationMachineCommand;\r\nglobal using GWGUI.Emulation.Constants;\r\nglobal using GWGUI.Emulation.Contracts;\r\nglobal using GWGUI.Emulation.Dictionaries;\r\nglobal using GWGUI.Emulation.Enums;\r\nglobal using GWGUI.Emulation.Exceptions;\r\nglobal using GWGUI.Emulation.Functions;\r\nglobal using GWGUI.Emulation.Interfaces;\r\nglobal using GWGUI.Emulation.Interop;\r\nglobal using GWGUI.Emulation.Services;\r\nglobal using GWGUI.Emulation.Commodore.Common.Constants;\r\nglobal using GWGUI.Emulation.Commodore.Common.Contracts;\r\nglobal using GWGUI.Emulation.Commodore.Common.Dictionaries;\r\nglobal using GWGUI.Emulation.Commodore.Common.Interfaces;\r\nglobal using GWGUI.Emulation.Commodore.Common.Machines.Common.Constants;\r\nglobal using GWGUI.Emulation.Commodore.Common.Machines.Common.Contracts;\r\nglobal using GWGUI.Emulation.Commodore.Common.Machines.Common.Dictionaries;\r\nglobal using GWGUI.Emulation.Commodore.Common.Machines.Common.Enums;\r\nglobal using GWGUI.Emulation.Commodore.Common.Machines.Common.Exceptions;\r\nglobal using GWGUI.Emulation.Commodore.Common.Machines.Common.Functions;\r\nglobal using GWGUI.Emulation.Commodore.Modules;\r\nglobal using GWGUI.Emulation.Commodore.Common.Services;\r\nglobal using GWGUI.Emulation.Commodore.Emulators.Common.Interop.Contracts;\r\nglobal using GWGUI.Emulation.Commodore.Emulators.Common.Interop.Enums;\r\nglobal using GWGUI.Emulation.Commodore.Emulators.Common.Interfaces;\r\n\r\nglobal using GWGUI.Emulation.Commodore.Emulators.Common.Interop.Constants;\r\nglobal using GWGUI.Emulation.Commodore.Emulators.Common.Interop.Services;\r\nglobal using GWGUI.Emulation.Commodore.Emulators.Common.Interop.Functions;\r\nglobal using GWGUI.Emulation.Commodore.Emulators.Common.Interop.Factories;\r\nglobal using GWGUI.Emulation.Commodore.Emulators.Common.Interop.Exceptions;\r\nglobal using GWGUI.Emulation.Commodore.Common.Machines.AmigaComputers.Contracts;\r\nglobal using GWGUI.Emulation.Commodore.Common.Machines.AmigaComputers.Constants;\r\nglobal using GWGUI.Emulation.Commodore.Common.Machines.AmigaComputers.Functions;\r\nglobal using AmigaFirmwareCatalog = GWGUI.Emulation.Commodore.Common.Machines.AmigaComputers.Dictionaries.AmigaFirmwareCatalog;\r\nglobal using AmigaSettingsHelpDictionary = GWGUI.Emulation.Commodore.Common.Machines.AmigaComputers.Dictionaries.AmigaSettingsHelpDictionary;\r\nglobal using GWGUI.Emulation.Commodore.Common.Machines.AmigaComputers.Enums;\r\nglobal using GWGUI.Emulation.Commodore.Emulators.UAE.Common.Interop.Factories;\r\nglobal using GWGUI.Emulation.Commodore.Emulators.UAE.Common.Interop.Functions;\r\nglobal using GWGUI.Emulation.Commodore.Emulators.UAE.Common.Interop.Constants;\r\n\r\nglobal using InputAccumulator = GWGUI.Emulation.Services.EmulationInputAccumulator;\r\n"
+      },
+      {
+        "module": "Wenquxing",
+        "path": "src/GWGUI.Emulation.Wenquxing/Common/Contracts/CoreContracts.cs",
+        "sha256": "2777CC88F8ABDFAFF22A8FC24A698EC6E5614878979768227F1D890238A8762F",
+        "text": "namespace GWGUI.Emulation.Wenquxing.Common.Contracts;\r\npublic sealed record CoreOption(\r\n    string Key,\r\n    string Name,\r\n    string? Description,\r\n    string? Category,\r\n    string DefaultValue,\r\n    string CurrentValue,\r\n    IReadOnlyList<CoreOptionValue> Values,\r\n    bool IsVisible = true,\r\n    string? CategorizedName = null,\r\n    string? CategorizedDescription = null,\r\n    bool RequiresRestart = false,\r\n    bool IsEnabled = true\r\n);\r\npublic sealed record CoreOptionValue(string Value, string Label);",
+        "declaration": "public sealed record CoreOptionValue(string Value, string Label);",
+        "aliasPath": "src/GWGUI.Emulation.Wenquxing/EmulationGlobalUsings.cs",
+        "aliasBefore": "global using VideoCallbackHost = GWGUI.Emulation.Services.ExternalCoreVideoCallbackHost;\r\nglobal using AudioCallbackHost = GWGUI.Emulation.Services.ExternalCoreAudioCallbackHost;\r\nglobal using MachineCommand = GWGUI.Emulation.Contracts.EmulationMachineCommand;\r\nglobal using GWGUI.Emulation;\nglobal using GWGUI.Emulation.Constants;\nglobal using GWGUI.Emulation.Contracts;\nglobal using GWGUI.Emulation.Dictionaries;\nglobal using GWGUI.Emulation.Enums;\nglobal using GWGUI.Emulation.Exceptions;\nglobal using GWGUI.Emulation.Functions;\nglobal using GWGUI.Emulation.Interfaces;\nglobal using GWGUI.Emulation.Services;\nglobal using GWGUI.Emulation.Wenquxing.Common.Machines.Common.Enums;\r\nglobal using GWGUI.Emulation.Wenquxing.Common.Constants;\r\nglobal using GWGUI.Emulation.Wenquxing.Common.Contracts;\r\nglobal using GWGUI.Emulation.Wenquxing.Common.Interfaces;\r\nglobal using GWGUI.Emulation.Wenquxing.Common.Machines.Common.Constants;\r\nglobal using GWGUI.Emulation.Wenquxing.Common.Machines.Common.Contracts;\r\nglobal using GWGUI.Emulation.Wenquxing.Common.Machines.Common.Functions;\r\nglobal using GWGUI.Emulation.Wenquxing.Common.Services;\r\nglobal using GWGUI.Emulation.Wenquxing.Common.Enums;\r\nglobal using GWGUI.Emulation.Wenquxing.Common.Exceptions;\r\nglobal using GWGUI.Emulation.Wenquxing.Common.Functions;\r\nglobal using KeyboardDictionary = GWGUI.Emulation.Wenquxing.Common.Machines.ElectronicDictionaries.Dictionaries.KeyboardDictionary;\r\nglobal using GWGUI.Emulation.Wenquxing.Common.Machines.Common.Dictionaries;\r\n\r\nglobal using FrameTimer = GWGUI.Emulation.Services.EmulationFrameTimer;\r\n\r\nglobal using ExternalCoreExports = GWGUI.Emulation.Contracts.ExternalCoreExports;\r\n"
+      },
+      {
+        "module": "Panasonic",
+        "path": "src/GWGUI.Emulation.Panasonic/Common/Contracts/CoreContracts.cs",
+        "sha256": "A1740C5E941133FBF96D67A1DEBA50B10A6F1FB0B64CE84F8C01C047527DE4A2",
+        "text": "namespace GWGUI.Emulation.Panasonic.Common.Contracts;\r\npublic sealed record CoreOption(\r\n    string Key,\r\n    string Name,\r\n    string? Description,\r\n    string? Category,\r\n    string DefaultValue,\r\n    string CurrentValue,\r\n    IReadOnlyList<CoreOptionValue> Values,\r\n    bool IsVisible = true,\r\n    string? CategorizedName = null,\r\n    string? CategorizedDescription = null,\r\n    bool RequiresRestart = false,\r\n    bool IsEnabled = true\r\n);\r\npublic sealed record CoreOptionValue(string Value, string Label);",
+        "declaration": "public sealed record CoreOptionValue(string Value, string Label);",
+        "aliasPath": "src/GWGUI.Emulation.Panasonic/EmulationGlobalUsings.cs",
+        "aliasBefore": "global using VideoCallbackHost = GWGUI.Emulation.Services.ExternalCoreVideoCallbackHost;\r\nglobal using AudioCallbackHost = GWGUI.Emulation.Services.ExternalCoreAudioCallbackHost;\r\nglobal using MachineCommand = GWGUI.Emulation.Contracts.EmulationMachineCommand;\r\nglobal using GWGUI.Emulation;\nglobal using GWGUI.Emulation.Constants;\nglobal using GWGUI.Emulation.Contracts;\nglobal using GWGUI.Emulation.Dictionaries;\nglobal using GWGUI.Emulation.Enums;\nglobal using GWGUI.Emulation.Exceptions;\nglobal using GWGUI.Emulation.Functions;\nglobal using GWGUI.Emulation.Interfaces;\nglobal using GWGUI.Emulation.Services;\nglobal using GWGUI.Emulation.Panasonic.Common.Machines.Common.Enums;\r\nglobal using GWGUI.Emulation.Panasonic.Common.Constants;\r\nglobal using GWGUI.Emulation.Panasonic.Common.Contracts;\r\nglobal using GWGUI.Emulation.Panasonic.Common.Interfaces;\r\nglobal using GWGUI.Emulation.Panasonic.Common.Machines.Common.Constants;\r\nglobal using GWGUI.Emulation.Panasonic.Common.Machines.Common.Contracts;\r\nglobal using GWGUI.Emulation.Panasonic.Common.Machines.Common.Functions;\r\nglobal using GWGUI.Emulation.Panasonic.Common.Services;\r\nglobal using GWGUI.Emulation.Panasonic.Common.Enums;\r\nglobal using GWGUI.Emulation.Panasonic.Common.Exceptions;\r\nglobal using GWGUI.Emulation.Panasonic.Common.Functions;\r\nglobal using GWGUI.Emulation.Panasonic.Common.Machines.Common.Dictionaries;\r\n\r\nglobal using FrameTimer = GWGUI.Emulation.Services.EmulationFrameTimer;\r\n\r\nglobal using ExternalCoreExports = GWGUI.Emulation.Contracts.ExternalCoreExports;\r\n"
+      },
+      {
+        "module": "Sony",
+        "path": "src/GWGUI.Emulation.Sony/Common/Contracts/CoreContracts.cs",
+        "sha256": "D949EA03804CE8BBDEC2050758F102AB9515A66AFBF1A68C62AF20A913D88357",
+        "text": "namespace GWGUI.Emulation.Sony.Common.Contracts;\r\n\r\npublic sealed record CoreOption(\r\n    string Key,\r\n    string Name,\r\n    string? Description,\r\n    string? Category,\r\n    string DefaultValue,\r\n    string CurrentValue,\r\n    IReadOnlyList<CoreOptionValue> Values,\r\n    bool IsVisible = true,\r\n    string? CategorizedName = null,\r\n    string? CategorizedDescription = null,\r\n    EmulationMachineTab Tab = EmulationMachineTab.General,\r\n    bool RequiresRestart = false,\r\n    EmulationSettingsNumericRange? NumericRange = null,\r\n    string? NativeNumericFormat = null,\r\n    string? NativeZeroValue = null,\r\n    IReadOnlyDictionary<EmulationGraphicsApi, string>? GraphicsApiValues = null,\r\n    IReadOnlyList<string>? RetainedRendererValues = null,\r\n    bool IsGlobalStorageOption = false);\r\n\r\npublic sealed record CoreOptionValue(string Value, string Label);\r\n\r\n",
+        "declaration": "public sealed record CoreOptionValue(string Value, string Label);",
+        "aliasPath": "src/GWGUI.Emulation.Sony/EmulationGlobalUsings.cs",
+        "aliasBefore": "global using PendingCommand = GWGUI.Emulation.Contracts.EmulationMachineCommand;\r\nglobal using GWGUI.Emulation.Constants;\nglobal using GWGUI.Emulation.Contracts;\nglobal using GWGUI.Emulation.Dictionaries;\nglobal using GWGUI.Emulation.Enums;\nglobal using GWGUI.Emulation.Exceptions;\nglobal using GWGUI.Emulation.Functions;\nglobal using GWGUI.Emulation.Interfaces;\nglobal using GWGUI.Emulation.Interop;\nglobal using GWGUI.Emulation.Services;\nglobal using GWGUI.Emulation.Sony.Common.Contracts;\nglobal using GWGUI.Emulation.Sony.Common.Constants;\nglobal using GWGUI.Emulation.Sony.Common.Dictionaries;\nglobal using GWGUI.Emulation.Sony.Common.Interfaces;\nglobal using GWGUI.Emulation.Sony.Common.Machines.Common.Constants;\nglobal using GWGUI.Emulation.Sony.Common.Machines.Common.Contracts;\nglobal using GWGUI.Emulation.Sony.Common.Machines.Common.Dictionaries;\nglobal using GWGUI.Emulation.Sony.Common.Machines.Common.Enums;\nglobal using GWGUI.Emulation.Sony.Common.Machines.Common.Exceptions;\nglobal using GWGUI.Emulation.Sony.Common.Machines.Common.Functions;\nglobal using GWGUI.Emulation.Sony.Common.Services;\n\r\nglobal using InputAccumulator = GWGUI.Emulation.Services.EmulationInputAccumulator;\r\n"
+      },
+      {
+        "module": "Watara",
+        "path": "src/GWGUI.Emulation.Watara/Common/Contracts/CoreContracts.cs",
+        "sha256": "F32E8A935FF99FF8D6E154A4ECDC3E143927EEE0E824D53860B1C21186C5189F",
+        "text": "namespace GWGUI.Emulation.Watara.Common.Contracts;\r\npublic sealed record CoreOption(\r\n    string Key,\r\n    string Name,\r\n    string? Description,\r\n    string? Category,\r\n    string DefaultValue,\r\n    string CurrentValue,\r\n    IReadOnlyList<CoreOptionValue> Values,\r\n    bool IsVisible = true,\r\n    string? CategorizedName = null,\r\n    string? CategorizedDescription = null,\r\n    bool RequiresRestart = false,\r\n    bool IsEnabled = true\r\n);\r\npublic sealed record CoreOptionValue(string Value, string Label);",
+        "declaration": "public sealed record CoreOptionValue(string Value, string Label);",
+        "aliasPath": "src/GWGUI.Emulation.Watara/EmulationGlobalUsings.cs",
+        "aliasBefore": "global using VideoCallbackHost = GWGUI.Emulation.Services.ExternalCoreVideoCallbackHost;\r\nglobal using AudioCallbackHost = GWGUI.Emulation.Services.ExternalCoreAudioCallbackHost;\r\nglobal using MachineCommand = GWGUI.Emulation.Contracts.EmulationMachineCommand;\r\nglobal using GWGUI.Emulation;\nglobal using GWGUI.Emulation.Constants;\nglobal using GWGUI.Emulation.Contracts;\nglobal using GWGUI.Emulation.Dictionaries;\nglobal using GWGUI.Emulation.Enums;\nglobal using GWGUI.Emulation.Exceptions;\nglobal using GWGUI.Emulation.Functions;\nglobal using GWGUI.Emulation.Interfaces;\nglobal using GWGUI.Emulation.Services;\nglobal using GWGUI.Emulation.Watara.Common.Constants;\nglobal using GWGUI.Emulation.Watara.Common.Contracts;\nglobal using GWGUI.Emulation.Watara.Common.Interfaces;\nglobal using GWGUI.Emulation.Watara.Common.Machines.Common.Contracts;\nglobal using GWGUI.Emulation.Watara.Common.Machines.Common.Enums;\r\nglobal using GWGUI.Emulation.Watara.Common.Machines.Common.Constants;\r\nglobal using GWGUI.Emulation.Watara.Common.Machines.Common.Functions;\r\nglobal using GWGUI.Emulation.Watara.Common.Enums;\r\nglobal using GWGUI.Emulation.Watara.Common.Exceptions;\r\nglobal using GWGUI.Emulation.Watara.Common.Functions;\r\nglobal using GWGUI.Emulation.Watara.Common.Services;\r\nglobal using GWGUI.Emulation.Watara.Common.Machines.Common.Dictionaries;\r\n\r\nglobal using FrameTimer = GWGUI.Emulation.Services.EmulationFrameTimer;\r\n\r\nglobal using ExternalCoreExports = GWGUI.Emulation.Contracts.ExternalCoreExports;\r\n"
+      },
+      {
+        "module": "Nec",
+        "path": "src/GWGUI.Emulation.Nec/Common/Contracts/CoreContracts.cs",
+        "sha256": "7943FC54B36944D508ACE92EFB2B6AAD3E0E52343EEC4DB45C024EAE2C9B85C3",
+        "text": "namespace GWGUI.Emulation.Nec.Common.Contracts;\r\n\r\npublic sealed record CoreOption(\r\n    string Key,\r\n    string Name,\r\n    string? Description,\r\n    string? Category,\r\n    string DefaultValue,\r\n    string CurrentValue,\r\n    IReadOnlyList<CoreOptionValue> Values,\r\n    bool IsVisible = true,\r\n    string? CategorizedName = null,\r\n    string? CategorizedDescription = null);\r\n\r\npublic sealed record CoreOptionValue(string Value, string Label);\r\n\r\n",
+        "declaration": "public sealed record CoreOptionValue(string Value, string Label);",
+        "aliasPath": "src/GWGUI.Emulation.Nec/EmulationGlobalUsings.cs",
+        "aliasBefore": "global using PendingCommand = GWGUI.Emulation.Contracts.EmulationMachineCommand;\r\nglobal using GWGUI.Emulation.Constants;\nglobal using GWGUI.Emulation.Contracts;\nglobal using GWGUI.Emulation.Dictionaries;\nglobal using GWGUI.Emulation.Enums;\nglobal using GWGUI.Emulation.Exceptions;\nglobal using GWGUI.Emulation.Functions;\nglobal using GWGUI.Emulation.Interfaces;\nglobal using GWGUI.Emulation.Interop;\nglobal using GWGUI.Emulation.Services;\nglobal using GWGUI.Emulation.Nec.Common.Contracts;\nglobal using GWGUI.Emulation.Nec.Common.Constants;\nglobal using GWGUI.Emulation.Nec.Common.Dictionaries;\nglobal using GWGUI.Emulation.Nec.Common.Interfaces;\nglobal using GWGUI.Emulation.Nec.Common.Machines.Common.Constants;\nglobal using GWGUI.Emulation.Nec.Common.Machines.Common.Contracts;\nglobal using GWGUI.Emulation.Nec.Common.Machines.Common.Dictionaries;\nglobal using GWGUI.Emulation.Nec.Common.Machines.Common.Enums;\nglobal using GWGUI.Emulation.Nec.Common.Machines.Common.Exceptions;\nglobal using GWGUI.Emulation.Nec.Common.Machines.Common.Functions;\nglobal using GWGUI.Emulation.Nec.Common.Services;\n\r\nglobal using InputAccumulator = GWGUI.Emulation.Services.EmulationInputAccumulator;\r\n"
+      },
+      {
+        "module": "Thomson",
+        "path": "src/GWGUI.Emulation.Thomson/Common/Contracts/CoreContracts.cs",
+        "sha256": "94659D9A7A4CBAB2D62678FAD8A9B9CA296B169D5BBB1B1E0E4E426EB0EAB7DF",
+        "text": "namespace GWGUI.Emulation.Thomson.Common.Contracts;\r\npublic sealed record CoreOption(\r\n    string Key,\r\n    string Name,\r\n    string? Description,\r\n    string? Category,\r\n    string DefaultValue,\r\n    string CurrentValue,\r\n    IReadOnlyList<CoreOptionValue> Values,\r\n    bool IsVisible = true,\r\n    string? CategorizedName = null,\r\n    string? CategorizedDescription = null,\r\n    bool RequiresRestart = false,\r\n    bool IsEnabled = true\r\n);\r\npublic sealed record CoreOptionValue(string Value, string Label);",
+        "declaration": "public sealed record CoreOptionValue(string Value, string Label);",
+        "aliasPath": "src/GWGUI.Emulation.Thomson/EmulationGlobalUsings.cs",
+        "aliasBefore": "global using VideoCallbackHost = GWGUI.Emulation.Services.ExternalCoreVideoCallbackHost;\r\nglobal using AudioCallbackHost = GWGUI.Emulation.Services.ExternalCoreAudioCallbackHost;\r\nglobal using MachineCommand = GWGUI.Emulation.Contracts.EmulationMachineCommand;\r\nglobal using GWGUI.Emulation;\nglobal using GWGUI.Emulation.Constants;\nglobal using GWGUI.Emulation.Contracts;\nglobal using GWGUI.Emulation.Dictionaries;\nglobal using GWGUI.Emulation.Enums;\nglobal using GWGUI.Emulation.Exceptions;\nglobal using GWGUI.Emulation.Functions;\nglobal using GWGUI.Emulation.Interfaces;\nglobal using GWGUI.Emulation.Services;\nglobal using GWGUI.Emulation.Thomson.Common.Constants;\nglobal using GWGUI.Emulation.Thomson.Common.Contracts;\nglobal using GWGUI.Emulation.Thomson.Common.Interfaces;\nglobal using GWGUI.Emulation.Thomson.Common.Services;\nglobal using GWGUI.Emulation.Thomson.Common.Machines.Common.Constants;\nglobal using GWGUI.Emulation.Thomson.Common.Machines.Common.Contracts;\nglobal using GWGUI.Emulation.Thomson.Common.Machines.Common.Enums;\nglobal using GWGUI.Emulation.Thomson.Common.Machines.Common.Functions;\r\nglobal using GWGUI.Emulation.Thomson.Common.Machines.Common.Dictionaries;\r\nglobal using GWGUI.Emulation.Thomson.Common.Exceptions;\r\nglobal using GWGUI.Emulation.Thomson.Common.Enums;\r\nglobal using GWGUI.Emulation.Thomson.Common.Functions;\r\n\r\nglobal using FrameTimer = GWGUI.Emulation.Services.EmulationFrameTimer;\r\n\r\nglobal using ExternalCoreExports = GWGUI.Emulation.Contracts.ExternalCoreExports;\r\n"
+      },
+      {
+        "module": "Atari",
+        "path": "src/GWGUI.Emulation.Atari/Common/Contracts/CoreContracts.cs",
+        "sha256": "2A385F16B81111E1269F0449892C4D398F0C72C2F62964B77CFD5DC4B2763426",
+        "text": "namespace GWGUI.Emulation.Atari.Common.Contracts;\r\n\r\npublic sealed record CoreOption(\r\n    string Key,\r\n    string Name,\r\n    string? Description,\r\n    string? Category,\r\n    string DefaultValue,\r\n    string CurrentValue,\r\n    IReadOnlyList<CoreOptionValue> Values,\r\n    bool IsVisible = true,\r\n    string? CategorizedName = null,\r\n    string? CategorizedDescription = null);\r\n\r\npublic sealed record CoreOptionValue(string Value, string Label);\r\n",
+        "declaration": "public sealed record CoreOptionValue(string Value, string Label);",
+        "aliasPath": "src/GWGUI.Emulation.Atari/EmulationGlobalUsings.cs",
+        "aliasBefore": "global using AudioBuffer = GWGUI.Emulation.Services.EmulationAudioBuffer;\r\nglobal using MachineCommand = GWGUI.Emulation.Contracts.EmulationMachineCommand;\r\nglobal using GWGUI.Emulation.Constants;\r\nglobal using GWGUI.Emulation.Contracts;\r\nglobal using GWGUI.Emulation.Dictionaries;\r\nglobal using GWGUI.Emulation.Enums;\r\nglobal using GWGUI.Emulation.Exceptions;\r\nglobal using GWGUI.Emulation.Functions;\r\nglobal using GWGUI.Emulation.Interfaces;\r\nglobal using GWGUI.Emulation.Interop;\r\nglobal using GWGUI.Emulation.Services;\r\nglobal using GWGUI.Emulation.Atari.Common.Constants;\r\nglobal using GWGUI.Emulation.Atari.Common.Contracts;\r\nglobal using GWGUI.Emulation.Atari.Common.Dictionaries;\r\nglobal using GWGUI.Emulation.Atari.Common.Interfaces;\r\nglobal using GWGUI.Emulation.Atari.Common.Machines.Common.Constants;\r\nglobal using GWGUI.Emulation.Atari.Common.Machines.Common.Contracts;\r\nglobal using GWGUI.Emulation.Atari.Common.Machines.Common.Dictionaries;\r\nglobal using GWGUI.Emulation.Atari.Common.Machines.Common.Enums;\r\nglobal using GWGUI.Emulation.Atari.Common.Machines.Common.Functions;\r\nglobal using GWGUI.Emulation.Atari.Common.Machines.Atari8Bit.Constants;\r\nglobal using GWGUI.Emulation.Atari.Common.Machines.Atari8Bit.Contracts;\r\nglobal using GWGUI.Emulation.Atari.Common.Machines.Atari8Bit.Dictionaries;\r\nglobal using GWGUI.Emulation.Atari.Common.Machines.Atari8Bit.Enums;\r\nglobal using GWGUI.Emulation.Atari.Common.Machines.Atari8Bit.Functions;\r\nglobal using GWGUI.Emulation.Atari.Common.Machines.Atari2600.Constants;\r\nglobal using GWGUI.Emulation.Atari.Common.Machines.Atari2600.Dictionaries;\r\nglobal using GWGUI.Emulation.Atari.Common.Machines.Atari5200.Constants;\r\nglobal using GWGUI.Emulation.Atari.Common.Machines.Atari5200.Dictionaries;\r\nglobal using GWGUI.Emulation.Atari.Common.Machines.Atari7800.Constants;\r\nglobal using GWGUI.Emulation.Atari.Common.Machines.Atari7800.Dictionaries;\r\nglobal using GWGUI.Emulation.Atari.Common.Machines.AtariJaguar.Constants;\r\nglobal using GWGUI.Emulation.Atari.Common.Machines.AtariJaguar.Dictionaries;\r\nglobal using GWGUI.Emulation.Atari.Common.Machines.AtariLynx.Constants;\r\nglobal using GWGUI.Emulation.Atari.Common.Machines.AtariLynx.Dictionaries;\r\nglobal using GWGUI.Emulation.Atari.Common.Machines.AtariST.Constants;\r\nglobal using GWGUI.Emulation.Atari.Common.Machines.AtariST.Contracts;\r\nglobal using GWGUI.Emulation.Atari.Common.Machines.AtariST.Dictionaries;\r\nglobal using GWGUI.Emulation.Atari.Common.Machines.AtariST.Enums;\r\nglobal using GWGUI.Emulation.Atari.Common.Machines.AtariST.Functions;\r\nglobal using GWGUI.Emulation.Atari.Modules;\r\nglobal using GWGUI.Emulation.Atari.Common.Services;\r\nglobal using GWGUI.Emulation.Atari.Emulators.Common.Constants;\r\nglobal using GWGUI.Emulation.Atari.Emulators.Common.Contracts;\r\nglobal using GWGUI.Emulation.Atari.Emulators.Common.Enums;\r\nglobal using GWGUI.Emulation.Atari.Emulators.Common.Exceptions;\r\nglobal using GWGUI.Emulation.Atari.Emulators.Common.Functions;\r\nglobal using GWGUI.Emulation.Atari.Emulators.Common.Interfaces;\r\n\r\nglobal using GWGUI.Emulation.Atari.Emulators.Common.Interop.Constants;\r\nglobal using GWGUI.Emulation.Atari.Emulators.Common.Interop.Contracts;\r\nglobal using GWGUI.Emulation.Atari.Emulators.Common.Interop.Dictionaries;\r\nglobal using GWGUI.Emulation.Atari.Emulators.Common.Interop.Factories;\r\nglobal using GWGUI.Emulation.Atari.Emulators.Common.Interop.Functions;\r\nglobal using GWGUI.Emulation.Atari.Emulators.Common.Interop.Interfaces;\r\nglobal using GWGUI.Emulation.Atari.Emulators.Common.Interop.Services;\r\nglobal using GWGUI.Emulation.Atari.Emulators.Common.Interop.Exceptions;\r\n\r\nglobal using FrameTimer = GWGUI.Emulation.Services.EmulationFrameTimer;\r\n\r\nglobal using LoadedContent = GWGUI.Emulation.Services.ExternalCoreLoadedContent;\r\n\r\nglobal using ExternalCoreExports = GWGUI.Emulation.Contracts.ExternalCoreExports;\r\n\r\nglobal using VideoFunctions = GWGUI.Emulation.Functions.EmulationVideoFunctions;\r\nglobal using NativeAudioFunctions = GWGUI.Emulation.Functions.EmulationAudioFunctions;\r\n"
+      },
+      {
+        "module": "Microsoft",
+        "path": "src/GWGUI.Emulation.Microsoft/Common/Contracts/CoreContracts.cs",
+        "sha256": "9EEFB9C23E9FD508DC793D51A02EC859AE07510B3616CAB5837A9B1ACCBA1F57",
+        "text": "namespace GWGUI.Emulation.Microsoft.Common.Contracts;\r\n\r\npublic sealed record CoreOption(\r\n    string Key,\r\n    string Name,\r\n    string? Description,\r\n    string? Category,\r\n    string DefaultValue,\r\n    string CurrentValue,\r\n    IReadOnlyList<CoreOptionValue> Values,\r\n    bool IsVisible = true,\r\n    string? CategorizedName = null,\r\n    string? CategorizedDescription = null);\r\n\r\npublic sealed record CoreOptionValue(string Value, string Label);\r\n\r\n",
+        "declaration": "public sealed record CoreOptionValue(string Value, string Label);",
+        "aliasPath": "src/GWGUI.Emulation.Microsoft/EmulationGlobalUsings.cs",
+        "aliasBefore": "global using PendingCommand = GWGUI.Emulation.Contracts.EmulationMachineCommand;\r\nglobal using GWGUI.Emulation.Constants;\nglobal using GWGUI.Emulation.Contracts;\nglobal using GWGUI.Emulation.Dictionaries;\nglobal using GWGUI.Emulation.Enums;\nglobal using GWGUI.Emulation.Exceptions;\nglobal using GWGUI.Emulation.Functions;\nglobal using GWGUI.Emulation.Interfaces;\nglobal using GWGUI.Emulation.Interop;\nglobal using GWGUI.Emulation.Services;\nglobal using GWGUI.Emulation.Microsoft.Common.Contracts;\nglobal using GWGUI.Emulation.Microsoft.Common.Constants;\nglobal using GWGUI.Emulation.Microsoft.Common.Dictionaries;\nglobal using GWGUI.Emulation.Microsoft.Common.Interfaces;\nglobal using GWGUI.Emulation.Microsoft.Common.Machines.Common.Constants;\nglobal using GWGUI.Emulation.Microsoft.Common.Machines.Common.Contracts;\nglobal using GWGUI.Emulation.Microsoft.Common.Machines.Common.Dictionaries;\nglobal using GWGUI.Emulation.Microsoft.Common.Machines.Common.Enums;\nglobal using GWGUI.Emulation.Microsoft.Common.Machines.Common.Exceptions;\nglobal using GWGUI.Emulation.Microsoft.Common.Machines.Common.Functions;\nglobal using GWGUI.Emulation.Microsoft.Common.Services;\n\r\nglobal using InputAccumulator = GWGUI.Emulation.Services.EmulationInputAccumulator;\r\n"
+      }
+    ],
+    "references": [
+      {
+        "module": "Amstrad",
+        "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Amstrad\\Emulators\\Common\\Interop\\Services\\ExternalHostCallbacks.Environment.cs",
+        "position": 7690,
+        "target": "GWGUI.Emulation.Amstrad.Common.Contracts.CoreOptionValue"
+      },
+      {
+        "module": "Amstrad",
+        "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Amstrad\\Common\\Contracts\\CoreContracts.cs",
+        "position": 243,
+        "target": "GWGUI.Emulation.Amstrad.Common.Contracts.CoreOptionValue"
+      },
+      {
+        "module": "Commodore",
+        "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Commodore\\Common\\Contracts\\CoreContracts.cs",
+        "position": 245,
+        "target": "GWGUI.Emulation.Commodore.Common.Contracts.CoreOptionValue"
+      },
+      {
+        "module": "Commodore",
+        "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Commodore\\Emulators\\Common\\Interop\\Services\\ExternalHostCallbacks.Environment.cs",
+        "position": 7357,
+        "target": "GWGUI.Emulation.Commodore.Common.Contracts.CoreOptionValue"
+      },
+      {
+        "module": "Wenquxing",
+        "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Wenquxing\\Common\\Contracts\\CoreContracts.cs",
+        "position": 243,
+        "target": "GWGUI.Emulation.Wenquxing.Common.Contracts.CoreOptionValue"
+      },
+      {
+        "module": "Wenquxing",
+        "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Wenquxing\\Emulators\\Wqxemu\\Interop\\Services\\OptionCallbackHost.cs",
+        "position": 479,
+        "target": "GWGUI.Emulation.Wenquxing.Common.Contracts.CoreOptionValue"
+      },
+      {
+        "module": "Panasonic",
+        "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Panasonic\\Emulators\\Opera\\Interop\\Services\\OptionCallbackHost.cs",
+        "position": 598,
+        "target": "GWGUI.Emulation.Panasonic.Common.Contracts.CoreOptionValue"
+      },
+      {
+        "module": "Panasonic",
+        "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Panasonic\\Common\\Contracts\\CoreContracts.cs",
+        "position": 243,
+        "target": "GWGUI.Emulation.Panasonic.Common.Contracts.CoreOptionValue"
+      },
+      {
+        "module": "Sony",
+        "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Sony\\Common\\Contracts\\CoreContracts.cs",
+        "position": 240,
+        "target": "GWGUI.Emulation.Sony.Common.Contracts.CoreOptionValue"
+      },
+      {
+        "module": "Sony",
+        "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Sony\\Emulators\\Play\\Dictionaries\\OptionCatalog.cs",
+        "position": 727,
+        "target": "GWGUI.Emulation.Sony.Common.Contracts.CoreOptionValue"
+      },
+      {
+        "module": "Sony",
+        "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Sony\\Emulators\\Pcsx2\\Dictionaries\\OptionCatalog.System.cs",
+        "position": 2274,
+        "target": "GWGUI.Emulation.Sony.Common.Contracts.CoreOptionValue"
+      },
+      {
+        "module": "Sony",
+        "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Sony\\Emulators\\Pcsx2\\Dictionaries\\OptionCatalog.cs",
+        "position": 718,
+        "target": "GWGUI.Emulation.Sony.Common.Contracts.CoreOptionValue"
+      },
+      {
+        "module": "Sony",
+        "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Sony\\Emulators\\Pcsx2\\Dictionaries\\OptionCatalog.cs",
+        "position": 1099,
+        "target": "GWGUI.Emulation.Sony.Common.Contracts.CoreOptionValue"
+      },
+      {
+        "module": "Sony",
+        "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Sony\\Emulators\\Common\\Interop\\Functions\\CoreOptionMetadataFunctions.cs",
+        "position": 1181,
+        "target": "GWGUI.Emulation.Sony.Common.Contracts.CoreOptionValue"
+      },
+      {
+        "module": "Sony",
+        "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Sony\\Emulators\\Common\\Interop\\Functions\\CoreSettingsFunctions.cs",
+        "position": 9445,
+        "target": "GWGUI.Emulation.Sony.Common.Contracts.CoreOptionValue"
+      },
+      {
+        "module": "Sony",
+        "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Sony\\Emulators\\Common\\Interop\\Functions\\CoreSettingsFunctions.cs",
+        "position": 24822,
+        "target": "GWGUI.Emulation.Sony.Common.Contracts.CoreOptionValue"
+      },
+      {
+        "module": "Sony",
+        "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Sony\\Emulators\\Common\\Interop\\Functions\\NumericOptionValueFunctions.cs",
+        "position": 246,
+        "target": "GWGUI.Emulation.Sony.Common.Contracts.CoreOptionValue"
+      },
+      {
+        "module": "Sony",
+        "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Sony\\Emulators\\Common\\Interop\\Functions\\NumericOptionValueFunctions.cs",
+        "position": 755,
+        "target": "GWGUI.Emulation.Sony.Common.Contracts.CoreOptionValue"
+      },
+      {
+        "module": "Sony",
+        "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Sony\\Emulators\\Common\\Interop\\Functions\\NumericOptionValueFunctions.cs",
+        "position": 844,
+        "target": "GWGUI.Emulation.Sony.Common.Contracts.CoreOptionValue"
+      },
+      {
+        "module": "Sony",
+        "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Sony\\Emulators\\Common\\Interop\\Functions\\NumericOptionValueFunctions.cs",
+        "position": 1116,
+        "target": "GWGUI.Emulation.Sony.Common.Contracts.CoreOptionValue"
+      },
+      {
+        "module": "Sony",
+        "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Sony\\Emulators\\Common\\Interop\\Functions\\NumericOptionValueFunctions.cs",
+        "position": 1267,
+        "target": "GWGUI.Emulation.Sony.Common.Contracts.CoreOptionValue"
+      },
+      {
+        "module": "Sony",
+        "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Sony\\Emulators\\Common\\Interop\\Functions\\NumericOptionValueFunctions.cs",
+        "position": 1697,
+        "target": "GWGUI.Emulation.Sony.Common.Contracts.CoreOptionValue"
+      },
+      {
+        "module": "Watara",
+        "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Watara\\Emulators\\Potator\\Interop\\Services\\OptionCallbackHost.cs",
+        "position": 477,
+        "target": "GWGUI.Emulation.Watara.Common.Contracts.CoreOptionValue"
+      },
+      {
+        "module": "Watara",
+        "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Watara\\Common\\Contracts\\CoreContracts.cs",
+        "position": 240,
+        "target": "GWGUI.Emulation.Watara.Common.Contracts.CoreOptionValue"
+      },
+      {
+        "module": "Nec",
+        "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Nec\\Common\\Contracts\\CoreContracts.cs",
+        "position": 239,
+        "target": "GWGUI.Emulation.Nec.Common.Contracts.CoreOptionValue"
+      },
+      {
+        "module": "Nec",
+        "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Nec\\Emulators\\Common\\Interop\\Services\\ExternalHostCallbacks.Environment.cs",
+        "position": 7505,
+        "target": "GWGUI.Emulation.Nec.Common.Contracts.CoreOptionValue"
+      },
+      {
+        "module": "Thomson",
+        "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Thomson\\Common\\Contracts\\CoreContracts.cs",
+        "position": 241,
+        "target": "GWGUI.Emulation.Thomson.Common.Contracts.CoreOptionValue"
+      },
+      {
+        "module": "Thomson",
+        "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Thomson\\Emulators\\Theodore\\Interop\\Services\\OptionCallbackHost.cs",
+        "position": 479,
+        "target": "GWGUI.Emulation.Thomson.Common.Contracts.CoreOptionValue"
+      },
+      {
+        "module": "Atari",
+        "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Atari\\Common\\Contracts\\CoreContracts.cs",
+        "position": 241,
+        "target": "GWGUI.Emulation.Atari.Common.Contracts.CoreOptionValue"
+      },
+      {
+        "module": "Atari",
+        "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Atari\\Emulators\\Common\\Interop\\Services\\CoreOptionHost.cs",
+        "position": 253,
+        "target": "GWGUI.Emulation.Atari.Common.Contracts.CoreOptionValue"
+      },
+      {
+        "module": "Atari",
+        "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Atari\\Emulators\\Common\\Interop\\Services\\CoreOptionHost.cs",
+        "position": 420,
+        "target": "GWGUI.Emulation.Atari.Common.Contracts.CoreOptionValue"
+      },
+      {
+        "module": "Atari",
+        "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Atari\\Emulators\\Common\\Interop\\Functions\\CoreFunctions.Options.cs",
+        "position": 263,
+        "target": "GWGUI.Emulation.Atari.Common.Contracts.CoreOptionValue"
+      },
+      {
+        "module": "Atari",
+        "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Atari\\Emulators\\Common\\Interop\\Functions\\CoreFunctions.Options.cs",
+        "position": 632,
+        "target": "GWGUI.Emulation.Atari.Common.Contracts.CoreOptionValue"
+      },
+      {
+        "module": "Atari",
+        "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Atari\\Emulators\\Common\\Interop\\Functions\\CoreFunctions.Options.cs",
+        "position": 905,
+        "target": "GWGUI.Emulation.Atari.Common.Contracts.CoreOptionValue"
+      },
+      {
+        "module": "Atari",
+        "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Atari\\Emulators\\Common\\Interop\\Functions\\CoreFunctions.Options.cs",
+        "position": 1240,
+        "target": "GWGUI.Emulation.Atari.Common.Contracts.CoreOptionValue"
+      },
+      {
+        "module": "Microsoft",
+        "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Microsoft\\Common\\Contracts\\CoreContracts.cs",
+        "position": 245,
+        "target": "GWGUI.Emulation.Microsoft.Common.Contracts.CoreOptionValue"
+      }
+    ],
+    "wire": [
+      {
+        "module": "Amstrad",
+        "profile": "default",
+        "json": "{\"Key\":\"Key \\u00E9\",\"Name\":\"Name \\u00E9\",\"Description\":\"Description \\u00E9\",\"Category\":\"Category \\u00E9\",\"DefaultValue\":\"DefaultValue \\u00E9\",\"CurrentValue\":\"CurrentValue \\u00E9\",\"Values\":[{\"Value\":\"one\",\"Label\":\"First \\u0022label\\u0022\"},{\"Value\":\"\\u00E9\\u0000\",\"Label\":\"Deuxi\\u00E8me\"}],\"IsVisible\":true,\"CategorizedName\":null,\"CategorizedDescription\":null}",
+        "roundtrip": "{\"Key\":\"Key \\u00E9\",\"Name\":\"Name \\u00E9\",\"Description\":\"Description \\u00E9\",\"Category\":\"Category \\u00E9\",\"DefaultValue\":\"DefaultValue \\u00E9\",\"CurrentValue\":\"CurrentValue \\u00E9\",\"Values\":[{\"Value\":\"one\",\"Label\":\"First \\u0022label\\u0022\"},{\"Value\":\"\\u00E9\\u0000\",\"Label\":\"Deuxi\\u00E8me\"}],\"IsVisible\":true,\"CategorizedName\":null,\"CategorizedDescription\":null}"
+      },
+      {
+        "module": "Amstrad",
+        "profile": "GWGUI.Emulation.Amstrad.Emulators.Common.Functions.CoreHostProtocol",
+        "json": "{\"key\":\"Key \\u00E9\",\"name\":\"Name \\u00E9\",\"description\":\"Description \\u00E9\",\"category\":\"Category \\u00E9\",\"defaultValue\":\"DefaultValue \\u00E9\",\"currentValue\":\"CurrentValue \\u00E9\",\"values\":[{\"value\":\"one\",\"label\":\"First \\u0022label\\u0022\"},{\"value\":\"\\u00E9\\u0000\",\"label\":\"Deuxi\\u00E8me\"}],\"isVisible\":true,\"categorizedName\":null,\"categorizedDescription\":null}",
+        "roundtrip": "{\"key\":\"Key \\u00E9\",\"name\":\"Name \\u00E9\",\"description\":\"Description \\u00E9\",\"category\":\"Category \\u00E9\",\"defaultValue\":\"DefaultValue \\u00E9\",\"currentValue\":\"CurrentValue \\u00E9\",\"values\":[{\"value\":\"one\",\"label\":\"First \\u0022label\\u0022\"},{\"value\":\"\\u00E9\\u0000\",\"label\":\"Deuxi\\u00E8me\"}],\"isVisible\":true,\"categorizedName\":null,\"categorizedDescription\":null}"
+      },
+      {
+        "module": "Commodore",
+        "profile": "default",
+        "json": "{\"Key\":\"Key \\u00E9\",\"Name\":\"Name \\u00E9\",\"Description\":\"Description \\u00E9\",\"Category\":\"Category \\u00E9\",\"DefaultValue\":\"DefaultValue \\u00E9\",\"CurrentValue\":\"CurrentValue \\u00E9\",\"Values\":[{\"Value\":\"one\",\"Label\":\"First \\u0022label\\u0022\"},{\"Value\":\"\\u00E9\\u0000\",\"Label\":\"Deuxi\\u00E8me\"}],\"IsVisible\":true,\"CategorizedName\":null,\"CategorizedDescription\":null}",
+        "roundtrip": "{\"Key\":\"Key \\u00E9\",\"Name\":\"Name \\u00E9\",\"Description\":\"Description \\u00E9\",\"Category\":\"Category \\u00E9\",\"DefaultValue\":\"DefaultValue \\u00E9\",\"CurrentValue\":\"CurrentValue \\u00E9\",\"Values\":[{\"Value\":\"one\",\"Label\":\"First \\u0022label\\u0022\"},{\"Value\":\"\\u00E9\\u0000\",\"Label\":\"Deuxi\\u00E8me\"}],\"IsVisible\":true,\"CategorizedName\":null,\"CategorizedDescription\":null}"
+      },
+      {
+        "module": "Commodore",
+        "profile": "GWGUI.Emulation.Commodore.Emulators.Common.Interop.Functions.CoreHostProtocol",
+        "json": "{\"key\":\"Key \\u00E9\",\"name\":\"Name \\u00E9\",\"description\":\"Description \\u00E9\",\"category\":\"Category \\u00E9\",\"defaultValue\":\"DefaultValue \\u00E9\",\"currentValue\":\"CurrentValue \\u00E9\",\"values\":[{\"value\":\"one\",\"label\":\"First \\u0022label\\u0022\"},{\"value\":\"\\u00E9\\u0000\",\"label\":\"Deuxi\\u00E8me\"}],\"isVisible\":true,\"categorizedName\":null,\"categorizedDescription\":null}",
+        "roundtrip": "{\"key\":\"Key \\u00E9\",\"name\":\"Name \\u00E9\",\"description\":\"Description \\u00E9\",\"category\":\"Category \\u00E9\",\"defaultValue\":\"DefaultValue \\u00E9\",\"currentValue\":\"CurrentValue \\u00E9\",\"values\":[{\"value\":\"one\",\"label\":\"First \\u0022label\\u0022\"},{\"value\":\"\\u00E9\\u0000\",\"label\":\"Deuxi\\u00E8me\"}],\"isVisible\":true,\"categorizedName\":null,\"categorizedDescription\":null}"
+      },
+      {
+        "module": "Wenquxing",
+        "profile": "default",
+        "json": "{\"Key\":\"Key \\u00E9\",\"Name\":\"Name \\u00E9\",\"Description\":\"Description \\u00E9\",\"Category\":\"Category \\u00E9\",\"DefaultValue\":\"DefaultValue \\u00E9\",\"CurrentValue\":\"CurrentValue \\u00E9\",\"Values\":[{\"Value\":\"one\",\"Label\":\"First \\u0022label\\u0022\"},{\"Value\":\"\\u00E9\\u0000\",\"Label\":\"Deuxi\\u00E8me\"}],\"IsVisible\":true,\"CategorizedName\":null,\"CategorizedDescription\":null,\"RequiresRestart\":false,\"IsEnabled\":true}",
+        "roundtrip": "{\"Key\":\"Key \\u00E9\",\"Name\":\"Name \\u00E9\",\"Description\":\"Description \\u00E9\",\"Category\":\"Category \\u00E9\",\"DefaultValue\":\"DefaultValue \\u00E9\",\"CurrentValue\":\"CurrentValue \\u00E9\",\"Values\":[{\"Value\":\"one\",\"Label\":\"First \\u0022label\\u0022\"},{\"Value\":\"\\u00E9\\u0000\",\"Label\":\"Deuxi\\u00E8me\"}],\"IsVisible\":true,\"CategorizedName\":null,\"CategorizedDescription\":null,\"RequiresRestart\":false,\"IsEnabled\":true}"
+      },
+      {
+        "module": "Wenquxing",
+        "profile": "GWGUI.Emulation.Wenquxing.Common.Functions.CoreHostFunctions",
+        "json": "{\"key\":\"Key \\u00E9\",\"name\":\"Name \\u00E9\",\"description\":\"Description \\u00E9\",\"category\":\"Category \\u00E9\",\"defaultValue\":\"DefaultValue \\u00E9\",\"currentValue\":\"CurrentValue \\u00E9\",\"values\":[{\"value\":\"one\",\"label\":\"First \\u0022label\\u0022\"},{\"value\":\"\\u00E9\\u0000\",\"label\":\"Deuxi\\u00E8me\"}],\"isVisible\":true,\"categorizedName\":null,\"categorizedDescription\":null,\"requiresRestart\":false,\"isEnabled\":true}",
+        "roundtrip": "{\"key\":\"Key \\u00E9\",\"name\":\"Name \\u00E9\",\"description\":\"Description \\u00E9\",\"category\":\"Category \\u00E9\",\"defaultValue\":\"DefaultValue \\u00E9\",\"currentValue\":\"CurrentValue \\u00E9\",\"values\":[{\"value\":\"one\",\"label\":\"First \\u0022label\\u0022\"},{\"value\":\"\\u00E9\\u0000\",\"label\":\"Deuxi\\u00E8me\"}],\"isVisible\":true,\"categorizedName\":null,\"categorizedDescription\":null,\"requiresRestart\":false,\"isEnabled\":true}"
+      },
+      {
+        "module": "Panasonic",
+        "profile": "default",
+        "json": "{\"Key\":\"Key \\u00E9\",\"Name\":\"Name \\u00E9\",\"Description\":\"Description \\u00E9\",\"Category\":\"Category \\u00E9\",\"DefaultValue\":\"DefaultValue \\u00E9\",\"CurrentValue\":\"CurrentValue \\u00E9\",\"Values\":[{\"Value\":\"one\",\"Label\":\"First \\u0022label\\u0022\"},{\"Value\":\"\\u00E9\\u0000\",\"Label\":\"Deuxi\\u00E8me\"}],\"IsVisible\":true,\"CategorizedName\":null,\"CategorizedDescription\":null,\"RequiresRestart\":false,\"IsEnabled\":true}",
+        "roundtrip": "{\"Key\":\"Key \\u00E9\",\"Name\":\"Name \\u00E9\",\"Description\":\"Description \\u00E9\",\"Category\":\"Category \\u00E9\",\"DefaultValue\":\"DefaultValue \\u00E9\",\"CurrentValue\":\"CurrentValue \\u00E9\",\"Values\":[{\"Value\":\"one\",\"Label\":\"First \\u0022label\\u0022\"},{\"Value\":\"\\u00E9\\u0000\",\"Label\":\"Deuxi\\u00E8me\"}],\"IsVisible\":true,\"CategorizedName\":null,\"CategorizedDescription\":null,\"RequiresRestart\":false,\"IsEnabled\":true}"
+      },
+      {
+        "module": "Panasonic",
+        "profile": "GWGUI.Emulation.Panasonic.Common.Functions.CoreHostFunctions",
+        "json": "{\"key\":\"Key \\u00E9\",\"name\":\"Name \\u00E9\",\"description\":\"Description \\u00E9\",\"category\":\"Category \\u00E9\",\"defaultValue\":\"DefaultValue \\u00E9\",\"currentValue\":\"CurrentValue \\u00E9\",\"values\":[{\"value\":\"one\",\"label\":\"First \\u0022label\\u0022\"},{\"value\":\"\\u00E9\\u0000\",\"label\":\"Deuxi\\u00E8me\"}],\"isVisible\":true,\"categorizedName\":null,\"categorizedDescription\":null,\"requiresRestart\":false,\"isEnabled\":true}",
+        "roundtrip": "{\"key\":\"Key \\u00E9\",\"name\":\"Name \\u00E9\",\"description\":\"Description \\u00E9\",\"category\":\"Category \\u00E9\",\"defaultValue\":\"DefaultValue \\u00E9\",\"currentValue\":\"CurrentValue \\u00E9\",\"values\":[{\"value\":\"one\",\"label\":\"First \\u0022label\\u0022\"},{\"value\":\"\\u00E9\\u0000\",\"label\":\"Deuxi\\u00E8me\"}],\"isVisible\":true,\"categorizedName\":null,\"categorizedDescription\":null,\"requiresRestart\":false,\"isEnabled\":true}"
+      },
+      {
+        "module": "Sony",
+        "profile": "default",
+        "json": "{\"Key\":\"Key \\u00E9\",\"Name\":\"Name \\u00E9\",\"Description\":\"Description \\u00E9\",\"Category\":\"Category \\u00E9\",\"DefaultValue\":\"DefaultValue \\u00E9\",\"CurrentValue\":\"CurrentValue \\u00E9\",\"Values\":[{\"Value\":\"one\",\"Label\":\"First \\u0022label\\u0022\"},{\"Value\":\"\\u00E9\\u0000\",\"Label\":\"Deuxi\\u00E8me\"}],\"IsVisible\":true,\"CategorizedName\":null,\"CategorizedDescription\":null,\"Tab\":0,\"RequiresRestart\":false,\"NumericRange\":null,\"NativeNumericFormat\":null,\"NativeZeroValue\":null,\"GraphicsApiValues\":null,\"RetainedRendererValues\":null,\"IsGlobalStorageOption\":false}",
+        "roundtrip": "{\"Key\":\"Key \\u00E9\",\"Name\":\"Name \\u00E9\",\"Description\":\"Description \\u00E9\",\"Category\":\"Category \\u00E9\",\"DefaultValue\":\"DefaultValue \\u00E9\",\"CurrentValue\":\"CurrentValue \\u00E9\",\"Values\":[{\"Value\":\"one\",\"Label\":\"First \\u0022label\\u0022\"},{\"Value\":\"\\u00E9\\u0000\",\"Label\":\"Deuxi\\u00E8me\"}],\"IsVisible\":true,\"CategorizedName\":null,\"CategorizedDescription\":null,\"Tab\":0,\"RequiresRestart\":false,\"NumericRange\":null,\"NativeNumericFormat\":null,\"NativeZeroValue\":null,\"GraphicsApiValues\":null,\"RetainedRendererValues\":null,\"IsGlobalStorageOption\":false}"
+      },
+      {
+        "module": "Sony",
+        "profile": "GWGUI.Emulation.Sony.Emulators.Ppsspp.Functions.CoreHostProtocol",
+        "json": "{\"key\":\"Key \\u00E9\",\"name\":\"Name \\u00E9\",\"description\":\"Description \\u00E9\",\"category\":\"Category \\u00E9\",\"defaultValue\":\"DefaultValue \\u00E9\",\"currentValue\":\"CurrentValue \\u00E9\",\"values\":[{\"value\":\"one\",\"label\":\"First \\u0022label\\u0022\"},{\"value\":\"\\u00E9\\u0000\",\"label\":\"Deuxi\\u00E8me\"}],\"isVisible\":true,\"categorizedName\":null,\"categorizedDescription\":null,\"tab\":0,\"requiresRestart\":false,\"numericRange\":null,\"nativeNumericFormat\":null,\"nativeZeroValue\":null,\"graphicsApiValues\":null,\"retainedRendererValues\":null,\"isGlobalStorageOption\":false}",
+        "roundtrip": "{\"key\":\"Key \\u00E9\",\"name\":\"Name \\u00E9\",\"description\":\"Description \\u00E9\",\"category\":\"Category \\u00E9\",\"defaultValue\":\"DefaultValue \\u00E9\",\"currentValue\":\"CurrentValue \\u00E9\",\"values\":[{\"value\":\"one\",\"label\":\"First \\u0022label\\u0022\"},{\"value\":\"\\u00E9\\u0000\",\"label\":\"Deuxi\\u00E8me\"}],\"isVisible\":true,\"categorizedName\":null,\"categorizedDescription\":null,\"tab\":0,\"requiresRestart\":false,\"numericRange\":null,\"nativeNumericFormat\":null,\"nativeZeroValue\":null,\"graphicsApiValues\":null,\"retainedRendererValues\":null,\"isGlobalStorageOption\":false}"
+      },
+      {
+        "module": "Sony",
+        "profile": "GWGUI.Emulation.Sony.Emulators.Pcsx2.Functions.CoreHostProtocol",
+        "json": "{\"key\":\"Key \\u00E9\",\"name\":\"Name \\u00E9\",\"description\":\"Description \\u00E9\",\"category\":\"Category \\u00E9\",\"defaultValue\":\"DefaultValue \\u00E9\",\"currentValue\":\"CurrentValue \\u00E9\",\"values\":[{\"value\":\"one\",\"label\":\"First \\u0022label\\u0022\"},{\"value\":\"\\u00E9\\u0000\",\"label\":\"Deuxi\\u00E8me\"}],\"isVisible\":true,\"categorizedName\":null,\"categorizedDescription\":null,\"tab\":0,\"requiresRestart\":false,\"numericRange\":null,\"nativeNumericFormat\":null,\"nativeZeroValue\":null,\"graphicsApiValues\":null,\"retainedRendererValues\":null,\"isGlobalStorageOption\":false}",
+        "roundtrip": "{\"key\":\"Key \\u00E9\",\"name\":\"Name \\u00E9\",\"description\":\"Description \\u00E9\",\"category\":\"Category \\u00E9\",\"defaultValue\":\"DefaultValue \\u00E9\",\"currentValue\":\"CurrentValue \\u00E9\",\"values\":[{\"value\":\"one\",\"label\":\"First \\u0022label\\u0022\"},{\"value\":\"\\u00E9\\u0000\",\"label\":\"Deuxi\\u00E8me\"}],\"isVisible\":true,\"categorizedName\":null,\"categorizedDescription\":null,\"tab\":0,\"requiresRestart\":false,\"numericRange\":null,\"nativeNumericFormat\":null,\"nativeZeroValue\":null,\"graphicsApiValues\":null,\"retainedRendererValues\":null,\"isGlobalStorageOption\":false}"
+      },
+      {
+        "module": "Sony",
+        "profile": "GWGUI.Emulation.Sony.Emulators.Common.Interop.Functions.CoreHostProtocol",
+        "json": "{\"key\":\"Key \\u00E9\",\"name\":\"Name \\u00E9\",\"description\":\"Description \\u00E9\",\"category\":\"Category \\u00E9\",\"defaultValue\":\"DefaultValue \\u00E9\",\"currentValue\":\"CurrentValue \\u00E9\",\"values\":[{\"value\":\"one\",\"label\":\"First \\u0022label\\u0022\"},{\"value\":\"\\u00E9\\u0000\",\"label\":\"Deuxi\\u00E8me\"}],\"isVisible\":true,\"categorizedName\":null,\"categorizedDescription\":null,\"tab\":0,\"requiresRestart\":false,\"numericRange\":null,\"nativeNumericFormat\":null,\"nativeZeroValue\":null,\"graphicsApiValues\":null,\"retainedRendererValues\":null,\"isGlobalStorageOption\":false}",
+        "roundtrip": "{\"key\":\"Key \\u00E9\",\"name\":\"Name \\u00E9\",\"description\":\"Description \\u00E9\",\"category\":\"Category \\u00E9\",\"defaultValue\":\"DefaultValue \\u00E9\",\"currentValue\":\"CurrentValue \\u00E9\",\"values\":[{\"value\":\"one\",\"label\":\"First \\u0022label\\u0022\"},{\"value\":\"\\u00E9\\u0000\",\"label\":\"Deuxi\\u00E8me\"}],\"isVisible\":true,\"categorizedName\":null,\"categorizedDescription\":null,\"tab\":0,\"requiresRestart\":false,\"numericRange\":null,\"nativeNumericFormat\":null,\"nativeZeroValue\":null,\"graphicsApiValues\":null,\"retainedRendererValues\":null,\"isGlobalStorageOption\":false}"
+      },
+      {
+        "module": "Watara",
+        "profile": "default",
+        "json": "{\"Key\":\"Key \\u00E9\",\"Name\":\"Name \\u00E9\",\"Description\":\"Description \\u00E9\",\"Category\":\"Category \\u00E9\",\"DefaultValue\":\"DefaultValue \\u00E9\",\"CurrentValue\":\"CurrentValue \\u00E9\",\"Values\":[{\"Value\":\"one\",\"Label\":\"First \\u0022label\\u0022\"},{\"Value\":\"\\u00E9\\u0000\",\"Label\":\"Deuxi\\u00E8me\"}],\"IsVisible\":true,\"CategorizedName\":null,\"CategorizedDescription\":null,\"RequiresRestart\":false,\"IsEnabled\":true}",
+        "roundtrip": "{\"Key\":\"Key \\u00E9\",\"Name\":\"Name \\u00E9\",\"Description\":\"Description \\u00E9\",\"Category\":\"Category \\u00E9\",\"DefaultValue\":\"DefaultValue \\u00E9\",\"CurrentValue\":\"CurrentValue \\u00E9\",\"Values\":[{\"Value\":\"one\",\"Label\":\"First \\u0022label\\u0022\"},{\"Value\":\"\\u00E9\\u0000\",\"Label\":\"Deuxi\\u00E8me\"}],\"IsVisible\":true,\"CategorizedName\":null,\"CategorizedDescription\":null,\"RequiresRestart\":false,\"IsEnabled\":true}"
+      },
+      {
+        "module": "Watara",
+        "profile": "GWGUI.Emulation.Watara.Common.Functions.CoreHostFunctions",
+        "json": "{\"key\":\"Key \\u00E9\",\"name\":\"Name \\u00E9\",\"description\":\"Description \\u00E9\",\"category\":\"Category \\u00E9\",\"defaultValue\":\"DefaultValue \\u00E9\",\"currentValue\":\"CurrentValue \\u00E9\",\"values\":[{\"value\":\"one\",\"label\":\"First \\u0022label\\u0022\"},{\"value\":\"\\u00E9\\u0000\",\"label\":\"Deuxi\\u00E8me\"}],\"isVisible\":true,\"categorizedName\":null,\"categorizedDescription\":null,\"requiresRestart\":false,\"isEnabled\":true}",
+        "roundtrip": "{\"key\":\"Key \\u00E9\",\"name\":\"Name \\u00E9\",\"description\":\"Description \\u00E9\",\"category\":\"Category \\u00E9\",\"defaultValue\":\"DefaultValue \\u00E9\",\"currentValue\":\"CurrentValue \\u00E9\",\"values\":[{\"value\":\"one\",\"label\":\"First \\u0022label\\u0022\"},{\"value\":\"\\u00E9\\u0000\",\"label\":\"Deuxi\\u00E8me\"}],\"isVisible\":true,\"categorizedName\":null,\"categorizedDescription\":null,\"requiresRestart\":false,\"isEnabled\":true}"
+      },
+      {
+        "module": "Nec",
+        "profile": "default",
+        "json": "{\"Key\":\"Key \\u00E9\",\"Name\":\"Name \\u00E9\",\"Description\":\"Description \\u00E9\",\"Category\":\"Category \\u00E9\",\"DefaultValue\":\"DefaultValue \\u00E9\",\"CurrentValue\":\"CurrentValue \\u00E9\",\"Values\":[{\"Value\":\"one\",\"Label\":\"First \\u0022label\\u0022\"},{\"Value\":\"\\u00E9\\u0000\",\"Label\":\"Deuxi\\u00E8me\"}],\"IsVisible\":true,\"CategorizedName\":null,\"CategorizedDescription\":null}",
+        "roundtrip": "{\"Key\":\"Key \\u00E9\",\"Name\":\"Name \\u00E9\",\"Description\":\"Description \\u00E9\",\"Category\":\"Category \\u00E9\",\"DefaultValue\":\"DefaultValue \\u00E9\",\"CurrentValue\":\"CurrentValue \\u00E9\",\"Values\":[{\"Value\":\"one\",\"Label\":\"First \\u0022label\\u0022\"},{\"Value\":\"\\u00E9\\u0000\",\"Label\":\"Deuxi\\u00E8me\"}],\"IsVisible\":true,\"CategorizedName\":null,\"CategorizedDescription\":null}"
+      },
+      {
+        "module": "Nec",
+        "profile": "GWGUI.Emulation.Nec.Emulators.Common.Interop.Functions.CoreHostProtocol",
+        "json": "{\"key\":\"Key \\u00E9\",\"name\":\"Name \\u00E9\",\"description\":\"Description \\u00E9\",\"category\":\"Category \\u00E9\",\"defaultValue\":\"DefaultValue \\u00E9\",\"currentValue\":\"CurrentValue \\u00E9\",\"values\":[{\"value\":\"one\",\"label\":\"First \\u0022label\\u0022\"},{\"value\":\"\\u00E9\\u0000\",\"label\":\"Deuxi\\u00E8me\"}],\"isVisible\":true,\"categorizedName\":null,\"categorizedDescription\":null}",
+        "roundtrip": "{\"key\":\"Key \\u00E9\",\"name\":\"Name \\u00E9\",\"description\":\"Description \\u00E9\",\"category\":\"Category \\u00E9\",\"defaultValue\":\"DefaultValue \\u00E9\",\"currentValue\":\"CurrentValue \\u00E9\",\"values\":[{\"value\":\"one\",\"label\":\"First \\u0022label\\u0022\"},{\"value\":\"\\u00E9\\u0000\",\"label\":\"Deuxi\\u00E8me\"}],\"isVisible\":true,\"categorizedName\":null,\"categorizedDescription\":null}"
+      },
+      {
+        "module": "Nec",
+        "profile": "GWGUI.Emulation.Nec.Emulators.BeetlePcfx.Functions.CoreHostProtocol",
+        "json": "{\"key\":\"Key \\u00E9\",\"name\":\"Name \\u00E9\",\"description\":\"Description \\u00E9\",\"category\":\"Category \\u00E9\",\"defaultValue\":\"DefaultValue \\u00E9\",\"currentValue\":\"CurrentValue \\u00E9\",\"values\":[{\"value\":\"one\",\"label\":\"First \\u0022label\\u0022\"},{\"value\":\"\\u00E9\\u0000\",\"label\":\"Deuxi\\u00E8me\"}],\"isVisible\":true,\"categorizedName\":null,\"categorizedDescription\":null}",
+        "roundtrip": "{\"key\":\"Key \\u00E9\",\"name\":\"Name \\u00E9\",\"description\":\"Description \\u00E9\",\"category\":\"Category \\u00E9\",\"defaultValue\":\"DefaultValue \\u00E9\",\"currentValue\":\"CurrentValue \\u00E9\",\"values\":[{\"value\":\"one\",\"label\":\"First \\u0022label\\u0022\"},{\"value\":\"\\u00E9\\u0000\",\"label\":\"Deuxi\\u00E8me\"}],\"isVisible\":true,\"categorizedName\":null,\"categorizedDescription\":null}"
+      },
+      {
+        "module": "Thomson",
+        "profile": "default",
+        "json": "{\"Key\":\"Key \\u00E9\",\"Name\":\"Name \\u00E9\",\"Description\":\"Description \\u00E9\",\"Category\":\"Category \\u00E9\",\"DefaultValue\":\"DefaultValue \\u00E9\",\"CurrentValue\":\"CurrentValue \\u00E9\",\"Values\":[{\"Value\":\"one\",\"Label\":\"First \\u0022label\\u0022\"},{\"Value\":\"\\u00E9\\u0000\",\"Label\":\"Deuxi\\u00E8me\"}],\"IsVisible\":true,\"CategorizedName\":null,\"CategorizedDescription\":null,\"RequiresRestart\":false,\"IsEnabled\":true}",
+        "roundtrip": "{\"Key\":\"Key \\u00E9\",\"Name\":\"Name \\u00E9\",\"Description\":\"Description \\u00E9\",\"Category\":\"Category \\u00E9\",\"DefaultValue\":\"DefaultValue \\u00E9\",\"CurrentValue\":\"CurrentValue \\u00E9\",\"Values\":[{\"Value\":\"one\",\"Label\":\"First \\u0022label\\u0022\"},{\"Value\":\"\\u00E9\\u0000\",\"Label\":\"Deuxi\\u00E8me\"}],\"IsVisible\":true,\"CategorizedName\":null,\"CategorizedDescription\":null,\"RequiresRestart\":false,\"IsEnabled\":true}"
+      },
+      {
+        "module": "Thomson",
+        "profile": "GWGUI.Emulation.Thomson.Common.Functions.CoreHostFunctions",
+        "json": "{\"key\":\"Key \\u00E9\",\"name\":\"Name \\u00E9\",\"description\":\"Description \\u00E9\",\"category\":\"Category \\u00E9\",\"defaultValue\":\"DefaultValue \\u00E9\",\"currentValue\":\"CurrentValue \\u00E9\",\"values\":[{\"value\":\"one\",\"label\":\"First \\u0022label\\u0022\"},{\"value\":\"\\u00E9\\u0000\",\"label\":\"Deuxi\\u00E8me\"}],\"isVisible\":true,\"categorizedName\":null,\"categorizedDescription\":null,\"requiresRestart\":false,\"isEnabled\":true}",
+        "roundtrip": "{\"key\":\"Key \\u00E9\",\"name\":\"Name \\u00E9\",\"description\":\"Description \\u00E9\",\"category\":\"Category \\u00E9\",\"defaultValue\":\"DefaultValue \\u00E9\",\"currentValue\":\"CurrentValue \\u00E9\",\"values\":[{\"value\":\"one\",\"label\":\"First \\u0022label\\u0022\"},{\"value\":\"\\u00E9\\u0000\",\"label\":\"Deuxi\\u00E8me\"}],\"isVisible\":true,\"categorizedName\":null,\"categorizedDescription\":null,\"requiresRestart\":false,\"isEnabled\":true}"
+      },
+      {
+        "module": "Atari",
+        "profile": "default",
+        "json": "{\"Key\":\"Key \\u00E9\",\"Name\":\"Name \\u00E9\",\"Description\":\"Description \\u00E9\",\"Category\":\"Category \\u00E9\",\"DefaultValue\":\"DefaultValue \\u00E9\",\"CurrentValue\":\"CurrentValue \\u00E9\",\"Values\":[{\"Value\":\"one\",\"Label\":\"First \\u0022label\\u0022\"},{\"Value\":\"\\u00E9\\u0000\",\"Label\":\"Deuxi\\u00E8me\"}],\"IsVisible\":true,\"CategorizedName\":null,\"CategorizedDescription\":null}",
+        "roundtrip": "{\"Key\":\"Key \\u00E9\",\"Name\":\"Name \\u00E9\",\"Description\":\"Description \\u00E9\",\"Category\":\"Category \\u00E9\",\"DefaultValue\":\"DefaultValue \\u00E9\",\"CurrentValue\":\"CurrentValue \\u00E9\",\"Values\":[{\"Value\":\"one\",\"Label\":\"First \\u0022label\\u0022\"},{\"Value\":\"\\u00E9\\u0000\",\"Label\":\"Deuxi\\u00E8me\"}],\"IsVisible\":true,\"CategorizedName\":null,\"CategorizedDescription\":null}"
+      },
+      {
+        "module": "Atari",
+        "profile": "GWGUI.Emulation.Atari.Emulators.Common.Functions.CoreHostFunctions",
+        "json": "{\"key\":\"Key \\u00E9\",\"name\":\"Name \\u00E9\",\"description\":\"Description \\u00E9\",\"category\":\"Category \\u00E9\",\"defaultValue\":\"DefaultValue \\u00E9\",\"currentValue\":\"CurrentValue \\u00E9\",\"values\":[{\"value\":\"one\",\"label\":\"First \\u0022label\\u0022\"},{\"value\":\"\\u00E9\\u0000\",\"label\":\"Deuxi\\u00E8me\"}],\"isVisible\":true,\"categorizedName\":null,\"categorizedDescription\":null}",
+        "roundtrip": "{\"key\":\"Key \\u00E9\",\"name\":\"Name \\u00E9\",\"description\":\"Description \\u00E9\",\"category\":\"Category \\u00E9\",\"defaultValue\":\"DefaultValue \\u00E9\",\"currentValue\":\"CurrentValue \\u00E9\",\"values\":[{\"value\":\"one\",\"label\":\"First \\u0022label\\u0022\"},{\"value\":\"\\u00E9\\u0000\",\"label\":\"Deuxi\\u00E8me\"}],\"isVisible\":true,\"categorizedName\":null,\"categorizedDescription\":null}"
+      },
+      {
+        "module": "Microsoft",
+        "profile": "default",
+        "json": "{\"Key\":\"Key \\u00E9\",\"Name\":\"Name \\u00E9\",\"Description\":\"Description \\u00E9\",\"Category\":\"Category \\u00E9\",\"DefaultValue\":\"DefaultValue \\u00E9\",\"CurrentValue\":\"CurrentValue \\u00E9\",\"Values\":[{\"Value\":\"one\",\"Label\":\"First \\u0022label\\u0022\"},{\"Value\":\"\\u00E9\\u0000\",\"Label\":\"Deuxi\\u00E8me\"}],\"IsVisible\":true,\"CategorizedName\":null,\"CategorizedDescription\":null}",
+        "roundtrip": "{\"Key\":\"Key \\u00E9\",\"Name\":\"Name \\u00E9\",\"Description\":\"Description \\u00E9\",\"Category\":\"Category \\u00E9\",\"DefaultValue\":\"DefaultValue \\u00E9\",\"CurrentValue\":\"CurrentValue \\u00E9\",\"Values\":[{\"Value\":\"one\",\"Label\":\"First \\u0022label\\u0022\"},{\"Value\":\"\\u00E9\\u0000\",\"Label\":\"Deuxi\\u00E8me\"}],\"IsVisible\":true,\"CategorizedName\":null,\"CategorizedDescription\":null}"
+      }
+    ],
+    "scope": "Ten exact two-string value records. Thirteen enriched records remain local. Public value type identity intentionally moves to the existing SDK contract; no JSON property, option field or allocation pipeline is changed.",
+    "runtimeTypes": [
+      {
+        "module": "Amstrad",
+        "valuesElement": "GWGUI.Emulation.Contracts.EmulationOptionValue"
+      },
+      {
+        "module": "Commodore",
+        "valuesElement": "GWGUI.Emulation.Contracts.EmulationOptionValue"
+      },
+      {
+        "module": "Wenquxing",
+        "valuesElement": "GWGUI.Emulation.Contracts.EmulationOptionValue"
+      },
+      {
+        "module": "Panasonic",
+        "valuesElement": "GWGUI.Emulation.Contracts.EmulationOptionValue"
+      },
+      {
+        "module": "Sony",
+        "valuesElement": "GWGUI.Emulation.Contracts.EmulationOptionValue"
+      },
+      {
+        "module": "Watara",
+        "valuesElement": "GWGUI.Emulation.Contracts.EmulationOptionValue"
+      },
+      {
+        "module": "Nec",
+        "valuesElement": "GWGUI.Emulation.Contracts.EmulationOptionValue"
+      },
+      {
+        "module": "Thomson",
+        "valuesElement": "GWGUI.Emulation.Contracts.EmulationOptionValue"
+      },
+      {
+        "module": "Atari",
+        "valuesElement": "GWGUI.Emulation.Contracts.EmulationOptionValue"
+      },
+      {
+        "module": "Microsoft",
+        "valuesElement": "GWGUI.Emulation.Contracts.EmulationOptionValue"
+      }
+    ],
+    "wireAfter": [
+      {
+        "module": "Amstrad",
+        "profile": "default",
+        "json": "{\"Key\":\"Key \\u00E9\",\"Name\":\"Name \\u00E9\",\"Description\":\"Description \\u00E9\",\"Category\":\"Category \\u00E9\",\"DefaultValue\":\"DefaultValue \\u00E9\",\"CurrentValue\":\"CurrentValue \\u00E9\",\"Values\":[{\"Value\":\"one\",\"Label\":\"First \\u0022label\\u0022\"},{\"Value\":\"\\u00E9\\u0000\",\"Label\":\"Deuxi\\u00E8me\"}],\"IsVisible\":true,\"CategorizedName\":null,\"CategorizedDescription\":null}",
+        "roundtrip": "{\"Key\":\"Key \\u00E9\",\"Name\":\"Name \\u00E9\",\"Description\":\"Description \\u00E9\",\"Category\":\"Category \\u00E9\",\"DefaultValue\":\"DefaultValue \\u00E9\",\"CurrentValue\":\"CurrentValue \\u00E9\",\"Values\":[{\"Value\":\"one\",\"Label\":\"First \\u0022label\\u0022\"},{\"Value\":\"\\u00E9\\u0000\",\"Label\":\"Deuxi\\u00E8me\"}],\"IsVisible\":true,\"CategorizedName\":null,\"CategorizedDescription\":null}"
+      },
+      {
+        "module": "Amstrad",
+        "profile": "GWGUI.Emulation.Amstrad.Emulators.Common.Functions.CoreHostProtocol",
+        "json": "{\"key\":\"Key \\u00E9\",\"name\":\"Name \\u00E9\",\"description\":\"Description \\u00E9\",\"category\":\"Category \\u00E9\",\"defaultValue\":\"DefaultValue \\u00E9\",\"currentValue\":\"CurrentValue \\u00E9\",\"values\":[{\"value\":\"one\",\"label\":\"First \\u0022label\\u0022\"},{\"value\":\"\\u00E9\\u0000\",\"label\":\"Deuxi\\u00E8me\"}],\"isVisible\":true,\"categorizedName\":null,\"categorizedDescription\":null}",
+        "roundtrip": "{\"key\":\"Key \\u00E9\",\"name\":\"Name \\u00E9\",\"description\":\"Description \\u00E9\",\"category\":\"Category \\u00E9\",\"defaultValue\":\"DefaultValue \\u00E9\",\"currentValue\":\"CurrentValue \\u00E9\",\"values\":[{\"value\":\"one\",\"label\":\"First \\u0022label\\u0022\"},{\"value\":\"\\u00E9\\u0000\",\"label\":\"Deuxi\\u00E8me\"}],\"isVisible\":true,\"categorizedName\":null,\"categorizedDescription\":null}"
+      },
+      {
+        "module": "Commodore",
+        "profile": "default",
+        "json": "{\"Key\":\"Key \\u00E9\",\"Name\":\"Name \\u00E9\",\"Description\":\"Description \\u00E9\",\"Category\":\"Category \\u00E9\",\"DefaultValue\":\"DefaultValue \\u00E9\",\"CurrentValue\":\"CurrentValue \\u00E9\",\"Values\":[{\"Value\":\"one\",\"Label\":\"First \\u0022label\\u0022\"},{\"Value\":\"\\u00E9\\u0000\",\"Label\":\"Deuxi\\u00E8me\"}],\"IsVisible\":true,\"CategorizedName\":null,\"CategorizedDescription\":null}",
+        "roundtrip": "{\"Key\":\"Key \\u00E9\",\"Name\":\"Name \\u00E9\",\"Description\":\"Description \\u00E9\",\"Category\":\"Category \\u00E9\",\"DefaultValue\":\"DefaultValue \\u00E9\",\"CurrentValue\":\"CurrentValue \\u00E9\",\"Values\":[{\"Value\":\"one\",\"Label\":\"First \\u0022label\\u0022\"},{\"Value\":\"\\u00E9\\u0000\",\"Label\":\"Deuxi\\u00E8me\"}],\"IsVisible\":true,\"CategorizedName\":null,\"CategorizedDescription\":null}"
+      },
+      {
+        "module": "Commodore",
+        "profile": "GWGUI.Emulation.Commodore.Emulators.Common.Interop.Functions.CoreHostProtocol",
+        "json": "{\"key\":\"Key \\u00E9\",\"name\":\"Name \\u00E9\",\"description\":\"Description \\u00E9\",\"category\":\"Category \\u00E9\",\"defaultValue\":\"DefaultValue \\u00E9\",\"currentValue\":\"CurrentValue \\u00E9\",\"values\":[{\"value\":\"one\",\"label\":\"First \\u0022label\\u0022\"},{\"value\":\"\\u00E9\\u0000\",\"label\":\"Deuxi\\u00E8me\"}],\"isVisible\":true,\"categorizedName\":null,\"categorizedDescription\":null}",
+        "roundtrip": "{\"key\":\"Key \\u00E9\",\"name\":\"Name \\u00E9\",\"description\":\"Description \\u00E9\",\"category\":\"Category \\u00E9\",\"defaultValue\":\"DefaultValue \\u00E9\",\"currentValue\":\"CurrentValue \\u00E9\",\"values\":[{\"value\":\"one\",\"label\":\"First \\u0022label\\u0022\"},{\"value\":\"\\u00E9\\u0000\",\"label\":\"Deuxi\\u00E8me\"}],\"isVisible\":true,\"categorizedName\":null,\"categorizedDescription\":null}"
+      },
+      {
+        "module": "Wenquxing",
+        "profile": "default",
+        "json": "{\"Key\":\"Key \\u00E9\",\"Name\":\"Name \\u00E9\",\"Description\":\"Description \\u00E9\",\"Category\":\"Category \\u00E9\",\"DefaultValue\":\"DefaultValue \\u00E9\",\"CurrentValue\":\"CurrentValue \\u00E9\",\"Values\":[{\"Value\":\"one\",\"Label\":\"First \\u0022label\\u0022\"},{\"Value\":\"\\u00E9\\u0000\",\"Label\":\"Deuxi\\u00E8me\"}],\"IsVisible\":true,\"CategorizedName\":null,\"CategorizedDescription\":null,\"RequiresRestart\":false,\"IsEnabled\":true}",
+        "roundtrip": "{\"Key\":\"Key \\u00E9\",\"Name\":\"Name \\u00E9\",\"Description\":\"Description \\u00E9\",\"Category\":\"Category \\u00E9\",\"DefaultValue\":\"DefaultValue \\u00E9\",\"CurrentValue\":\"CurrentValue \\u00E9\",\"Values\":[{\"Value\":\"one\",\"Label\":\"First \\u0022label\\u0022\"},{\"Value\":\"\\u00E9\\u0000\",\"Label\":\"Deuxi\\u00E8me\"}],\"IsVisible\":true,\"CategorizedName\":null,\"CategorizedDescription\":null,\"RequiresRestart\":false,\"IsEnabled\":true}"
+      },
+      {
+        "module": "Wenquxing",
+        "profile": "GWGUI.Emulation.Wenquxing.Common.Functions.CoreHostFunctions",
+        "json": "{\"key\":\"Key \\u00E9\",\"name\":\"Name \\u00E9\",\"description\":\"Description \\u00E9\",\"category\":\"Category \\u00E9\",\"defaultValue\":\"DefaultValue \\u00E9\",\"currentValue\":\"CurrentValue \\u00E9\",\"values\":[{\"value\":\"one\",\"label\":\"First \\u0022label\\u0022\"},{\"value\":\"\\u00E9\\u0000\",\"label\":\"Deuxi\\u00E8me\"}],\"isVisible\":true,\"categorizedName\":null,\"categorizedDescription\":null,\"requiresRestart\":false,\"isEnabled\":true}",
+        "roundtrip": "{\"key\":\"Key \\u00E9\",\"name\":\"Name \\u00E9\",\"description\":\"Description \\u00E9\",\"category\":\"Category \\u00E9\",\"defaultValue\":\"DefaultValue \\u00E9\",\"currentValue\":\"CurrentValue \\u00E9\",\"values\":[{\"value\":\"one\",\"label\":\"First \\u0022label\\u0022\"},{\"value\":\"\\u00E9\\u0000\",\"label\":\"Deuxi\\u00E8me\"}],\"isVisible\":true,\"categorizedName\":null,\"categorizedDescription\":null,\"requiresRestart\":false,\"isEnabled\":true}"
+      },
+      {
+        "module": "Panasonic",
+        "profile": "default",
+        "json": "{\"Key\":\"Key \\u00E9\",\"Name\":\"Name \\u00E9\",\"Description\":\"Description \\u00E9\",\"Category\":\"Category \\u00E9\",\"DefaultValue\":\"DefaultValue \\u00E9\",\"CurrentValue\":\"CurrentValue \\u00E9\",\"Values\":[{\"Value\":\"one\",\"Label\":\"First \\u0022label\\u0022\"},{\"Value\":\"\\u00E9\\u0000\",\"Label\":\"Deuxi\\u00E8me\"}],\"IsVisible\":true,\"CategorizedName\":null,\"CategorizedDescription\":null,\"RequiresRestart\":false,\"IsEnabled\":true}",
+        "roundtrip": "{\"Key\":\"Key \\u00E9\",\"Name\":\"Name \\u00E9\",\"Description\":\"Description \\u00E9\",\"Category\":\"Category \\u00E9\",\"DefaultValue\":\"DefaultValue \\u00E9\",\"CurrentValue\":\"CurrentValue \\u00E9\",\"Values\":[{\"Value\":\"one\",\"Label\":\"First \\u0022label\\u0022\"},{\"Value\":\"\\u00E9\\u0000\",\"Label\":\"Deuxi\\u00E8me\"}],\"IsVisible\":true,\"CategorizedName\":null,\"CategorizedDescription\":null,\"RequiresRestart\":false,\"IsEnabled\":true}"
+      },
+      {
+        "module": "Panasonic",
+        "profile": "GWGUI.Emulation.Panasonic.Common.Functions.CoreHostFunctions",
+        "json": "{\"key\":\"Key \\u00E9\",\"name\":\"Name \\u00E9\",\"description\":\"Description \\u00E9\",\"category\":\"Category \\u00E9\",\"defaultValue\":\"DefaultValue \\u00E9\",\"currentValue\":\"CurrentValue \\u00E9\",\"values\":[{\"value\":\"one\",\"label\":\"First \\u0022label\\u0022\"},{\"value\":\"\\u00E9\\u0000\",\"label\":\"Deuxi\\u00E8me\"}],\"isVisible\":true,\"categorizedName\":null,\"categorizedDescription\":null,\"requiresRestart\":false,\"isEnabled\":true}",
+        "roundtrip": "{\"key\":\"Key \\u00E9\",\"name\":\"Name \\u00E9\",\"description\":\"Description \\u00E9\",\"category\":\"Category \\u00E9\",\"defaultValue\":\"DefaultValue \\u00E9\",\"currentValue\":\"CurrentValue \\u00E9\",\"values\":[{\"value\":\"one\",\"label\":\"First \\u0022label\\u0022\"},{\"value\":\"\\u00E9\\u0000\",\"label\":\"Deuxi\\u00E8me\"}],\"isVisible\":true,\"categorizedName\":null,\"categorizedDescription\":null,\"requiresRestart\":false,\"isEnabled\":true}"
+      },
+      {
+        "module": "Sony",
+        "profile": "default",
+        "json": "{\"Key\":\"Key \\u00E9\",\"Name\":\"Name \\u00E9\",\"Description\":\"Description \\u00E9\",\"Category\":\"Category \\u00E9\",\"DefaultValue\":\"DefaultValue \\u00E9\",\"CurrentValue\":\"CurrentValue \\u00E9\",\"Values\":[{\"Value\":\"one\",\"Label\":\"First \\u0022label\\u0022\"},{\"Value\":\"\\u00E9\\u0000\",\"Label\":\"Deuxi\\u00E8me\"}],\"IsVisible\":true,\"CategorizedName\":null,\"CategorizedDescription\":null,\"Tab\":0,\"RequiresRestart\":false,\"NumericRange\":null,\"NativeNumericFormat\":null,\"NativeZeroValue\":null,\"GraphicsApiValues\":null,\"RetainedRendererValues\":null,\"IsGlobalStorageOption\":false}",
+        "roundtrip": "{\"Key\":\"Key \\u00E9\",\"Name\":\"Name \\u00E9\",\"Description\":\"Description \\u00E9\",\"Category\":\"Category \\u00E9\",\"DefaultValue\":\"DefaultValue \\u00E9\",\"CurrentValue\":\"CurrentValue \\u00E9\",\"Values\":[{\"Value\":\"one\",\"Label\":\"First \\u0022label\\u0022\"},{\"Value\":\"\\u00E9\\u0000\",\"Label\":\"Deuxi\\u00E8me\"}],\"IsVisible\":true,\"CategorizedName\":null,\"CategorizedDescription\":null,\"Tab\":0,\"RequiresRestart\":false,\"NumericRange\":null,\"NativeNumericFormat\":null,\"NativeZeroValue\":null,\"GraphicsApiValues\":null,\"RetainedRendererValues\":null,\"IsGlobalStorageOption\":false}"
+      },
+      {
+        "module": "Sony",
+        "profile": "GWGUI.Emulation.Sony.Emulators.Ppsspp.Functions.CoreHostProtocol",
+        "json": "{\"key\":\"Key \\u00E9\",\"name\":\"Name \\u00E9\",\"description\":\"Description \\u00E9\",\"category\":\"Category \\u00E9\",\"defaultValue\":\"DefaultValue \\u00E9\",\"currentValue\":\"CurrentValue \\u00E9\",\"values\":[{\"value\":\"one\",\"label\":\"First \\u0022label\\u0022\"},{\"value\":\"\\u00E9\\u0000\",\"label\":\"Deuxi\\u00E8me\"}],\"isVisible\":true,\"categorizedName\":null,\"categorizedDescription\":null,\"tab\":0,\"requiresRestart\":false,\"numericRange\":null,\"nativeNumericFormat\":null,\"nativeZeroValue\":null,\"graphicsApiValues\":null,\"retainedRendererValues\":null,\"isGlobalStorageOption\":false}",
+        "roundtrip": "{\"key\":\"Key \\u00E9\",\"name\":\"Name \\u00E9\",\"description\":\"Description \\u00E9\",\"category\":\"Category \\u00E9\",\"defaultValue\":\"DefaultValue \\u00E9\",\"currentValue\":\"CurrentValue \\u00E9\",\"values\":[{\"value\":\"one\",\"label\":\"First \\u0022label\\u0022\"},{\"value\":\"\\u00E9\\u0000\",\"label\":\"Deuxi\\u00E8me\"}],\"isVisible\":true,\"categorizedName\":null,\"categorizedDescription\":null,\"tab\":0,\"requiresRestart\":false,\"numericRange\":null,\"nativeNumericFormat\":null,\"nativeZeroValue\":null,\"graphicsApiValues\":null,\"retainedRendererValues\":null,\"isGlobalStorageOption\":false}"
+      },
+      {
+        "module": "Sony",
+        "profile": "GWGUI.Emulation.Sony.Emulators.Pcsx2.Functions.CoreHostProtocol",
+        "json": "{\"key\":\"Key \\u00E9\",\"name\":\"Name \\u00E9\",\"description\":\"Description \\u00E9\",\"category\":\"Category \\u00E9\",\"defaultValue\":\"DefaultValue \\u00E9\",\"currentValue\":\"CurrentValue \\u00E9\",\"values\":[{\"value\":\"one\",\"label\":\"First \\u0022label\\u0022\"},{\"value\":\"\\u00E9\\u0000\",\"label\":\"Deuxi\\u00E8me\"}],\"isVisible\":true,\"categorizedName\":null,\"categorizedDescription\":null,\"tab\":0,\"requiresRestart\":false,\"numericRange\":null,\"nativeNumericFormat\":null,\"nativeZeroValue\":null,\"graphicsApiValues\":null,\"retainedRendererValues\":null,\"isGlobalStorageOption\":false}",
+        "roundtrip": "{\"key\":\"Key \\u00E9\",\"name\":\"Name \\u00E9\",\"description\":\"Description \\u00E9\",\"category\":\"Category \\u00E9\",\"defaultValue\":\"DefaultValue \\u00E9\",\"currentValue\":\"CurrentValue \\u00E9\",\"values\":[{\"value\":\"one\",\"label\":\"First \\u0022label\\u0022\"},{\"value\":\"\\u00E9\\u0000\",\"label\":\"Deuxi\\u00E8me\"}],\"isVisible\":true,\"categorizedName\":null,\"categorizedDescription\":null,\"tab\":0,\"requiresRestart\":false,\"numericRange\":null,\"nativeNumericFormat\":null,\"nativeZeroValue\":null,\"graphicsApiValues\":null,\"retainedRendererValues\":null,\"isGlobalStorageOption\":false}"
+      },
+      {
+        "module": "Sony",
+        "profile": "GWGUI.Emulation.Sony.Emulators.Common.Interop.Functions.CoreHostProtocol",
+        "json": "{\"key\":\"Key \\u00E9\",\"name\":\"Name \\u00E9\",\"description\":\"Description \\u00E9\",\"category\":\"Category \\u00E9\",\"defaultValue\":\"DefaultValue \\u00E9\",\"currentValue\":\"CurrentValue \\u00E9\",\"values\":[{\"value\":\"one\",\"label\":\"First \\u0022label\\u0022\"},{\"value\":\"\\u00E9\\u0000\",\"label\":\"Deuxi\\u00E8me\"}],\"isVisible\":true,\"categorizedName\":null,\"categorizedDescription\":null,\"tab\":0,\"requiresRestart\":false,\"numericRange\":null,\"nativeNumericFormat\":null,\"nativeZeroValue\":null,\"graphicsApiValues\":null,\"retainedRendererValues\":null,\"isGlobalStorageOption\":false}",
+        "roundtrip": "{\"key\":\"Key \\u00E9\",\"name\":\"Name \\u00E9\",\"description\":\"Description \\u00E9\",\"category\":\"Category \\u00E9\",\"defaultValue\":\"DefaultValue \\u00E9\",\"currentValue\":\"CurrentValue \\u00E9\",\"values\":[{\"value\":\"one\",\"label\":\"First \\u0022label\\u0022\"},{\"value\":\"\\u00E9\\u0000\",\"label\":\"Deuxi\\u00E8me\"}],\"isVisible\":true,\"categorizedName\":null,\"categorizedDescription\":null,\"tab\":0,\"requiresRestart\":false,\"numericRange\":null,\"nativeNumericFormat\":null,\"nativeZeroValue\":null,\"graphicsApiValues\":null,\"retainedRendererValues\":null,\"isGlobalStorageOption\":false}"
+      },
+      {
+        "module": "Watara",
+        "profile": "default",
+        "json": "{\"Key\":\"Key \\u00E9\",\"Name\":\"Name \\u00E9\",\"Description\":\"Description \\u00E9\",\"Category\":\"Category \\u00E9\",\"DefaultValue\":\"DefaultValue \\u00E9\",\"CurrentValue\":\"CurrentValue \\u00E9\",\"Values\":[{\"Value\":\"one\",\"Label\":\"First \\u0022label\\u0022\"},{\"Value\":\"\\u00E9\\u0000\",\"Label\":\"Deuxi\\u00E8me\"}],\"IsVisible\":true,\"CategorizedName\":null,\"CategorizedDescription\":null,\"RequiresRestart\":false,\"IsEnabled\":true}",
+        "roundtrip": "{\"Key\":\"Key \\u00E9\",\"Name\":\"Name \\u00E9\",\"Description\":\"Description \\u00E9\",\"Category\":\"Category \\u00E9\",\"DefaultValue\":\"DefaultValue \\u00E9\",\"CurrentValue\":\"CurrentValue \\u00E9\",\"Values\":[{\"Value\":\"one\",\"Label\":\"First \\u0022label\\u0022\"},{\"Value\":\"\\u00E9\\u0000\",\"Label\":\"Deuxi\\u00E8me\"}],\"IsVisible\":true,\"CategorizedName\":null,\"CategorizedDescription\":null,\"RequiresRestart\":false,\"IsEnabled\":true}"
+      },
+      {
+        "module": "Watara",
+        "profile": "GWGUI.Emulation.Watara.Common.Functions.CoreHostFunctions",
+        "json": "{\"key\":\"Key \\u00E9\",\"name\":\"Name \\u00E9\",\"description\":\"Description \\u00E9\",\"category\":\"Category \\u00E9\",\"defaultValue\":\"DefaultValue \\u00E9\",\"currentValue\":\"CurrentValue \\u00E9\",\"values\":[{\"value\":\"one\",\"label\":\"First \\u0022label\\u0022\"},{\"value\":\"\\u00E9\\u0000\",\"label\":\"Deuxi\\u00E8me\"}],\"isVisible\":true,\"categorizedName\":null,\"categorizedDescription\":null,\"requiresRestart\":false,\"isEnabled\":true}",
+        "roundtrip": "{\"key\":\"Key \\u00E9\",\"name\":\"Name \\u00E9\",\"description\":\"Description \\u00E9\",\"category\":\"Category \\u00E9\",\"defaultValue\":\"DefaultValue \\u00E9\",\"currentValue\":\"CurrentValue \\u00E9\",\"values\":[{\"value\":\"one\",\"label\":\"First \\u0022label\\u0022\"},{\"value\":\"\\u00E9\\u0000\",\"label\":\"Deuxi\\u00E8me\"}],\"isVisible\":true,\"categorizedName\":null,\"categorizedDescription\":null,\"requiresRestart\":false,\"isEnabled\":true}"
+      },
+      {
+        "module": "Nec",
+        "profile": "default",
+        "json": "{\"Key\":\"Key \\u00E9\",\"Name\":\"Name \\u00E9\",\"Description\":\"Description \\u00E9\",\"Category\":\"Category \\u00E9\",\"DefaultValue\":\"DefaultValue \\u00E9\",\"CurrentValue\":\"CurrentValue \\u00E9\",\"Values\":[{\"Value\":\"one\",\"Label\":\"First \\u0022label\\u0022\"},{\"Value\":\"\\u00E9\\u0000\",\"Label\":\"Deuxi\\u00E8me\"}],\"IsVisible\":true,\"CategorizedName\":null,\"CategorizedDescription\":null}",
+        "roundtrip": "{\"Key\":\"Key \\u00E9\",\"Name\":\"Name \\u00E9\",\"Description\":\"Description \\u00E9\",\"Category\":\"Category \\u00E9\",\"DefaultValue\":\"DefaultValue \\u00E9\",\"CurrentValue\":\"CurrentValue \\u00E9\",\"Values\":[{\"Value\":\"one\",\"Label\":\"First \\u0022label\\u0022\"},{\"Value\":\"\\u00E9\\u0000\",\"Label\":\"Deuxi\\u00E8me\"}],\"IsVisible\":true,\"CategorizedName\":null,\"CategorizedDescription\":null}"
+      },
+      {
+        "module": "Nec",
+        "profile": "GWGUI.Emulation.Nec.Emulators.Common.Interop.Functions.CoreHostProtocol",
+        "json": "{\"key\":\"Key \\u00E9\",\"name\":\"Name \\u00E9\",\"description\":\"Description \\u00E9\",\"category\":\"Category \\u00E9\",\"defaultValue\":\"DefaultValue \\u00E9\",\"currentValue\":\"CurrentValue \\u00E9\",\"values\":[{\"value\":\"one\",\"label\":\"First \\u0022label\\u0022\"},{\"value\":\"\\u00E9\\u0000\",\"label\":\"Deuxi\\u00E8me\"}],\"isVisible\":true,\"categorizedName\":null,\"categorizedDescription\":null}",
+        "roundtrip": "{\"key\":\"Key \\u00E9\",\"name\":\"Name \\u00E9\",\"description\":\"Description \\u00E9\",\"category\":\"Category \\u00E9\",\"defaultValue\":\"DefaultValue \\u00E9\",\"currentValue\":\"CurrentValue \\u00E9\",\"values\":[{\"value\":\"one\",\"label\":\"First \\u0022label\\u0022\"},{\"value\":\"\\u00E9\\u0000\",\"label\":\"Deuxi\\u00E8me\"}],\"isVisible\":true,\"categorizedName\":null,\"categorizedDescription\":null}"
+      },
+      {
+        "module": "Nec",
+        "profile": "GWGUI.Emulation.Nec.Emulators.BeetlePcfx.Functions.CoreHostProtocol",
+        "json": "{\"key\":\"Key \\u00E9\",\"name\":\"Name \\u00E9\",\"description\":\"Description \\u00E9\",\"category\":\"Category \\u00E9\",\"defaultValue\":\"DefaultValue \\u00E9\",\"currentValue\":\"CurrentValue \\u00E9\",\"values\":[{\"value\":\"one\",\"label\":\"First \\u0022label\\u0022\"},{\"value\":\"\\u00E9\\u0000\",\"label\":\"Deuxi\\u00E8me\"}],\"isVisible\":true,\"categorizedName\":null,\"categorizedDescription\":null}",
+        "roundtrip": "{\"key\":\"Key \\u00E9\",\"name\":\"Name \\u00E9\",\"description\":\"Description \\u00E9\",\"category\":\"Category \\u00E9\",\"defaultValue\":\"DefaultValue \\u00E9\",\"currentValue\":\"CurrentValue \\u00E9\",\"values\":[{\"value\":\"one\",\"label\":\"First \\u0022label\\u0022\"},{\"value\":\"\\u00E9\\u0000\",\"label\":\"Deuxi\\u00E8me\"}],\"isVisible\":true,\"categorizedName\":null,\"categorizedDescription\":null}"
+      },
+      {
+        "module": "Thomson",
+        "profile": "default",
+        "json": "{\"Key\":\"Key \\u00E9\",\"Name\":\"Name \\u00E9\",\"Description\":\"Description \\u00E9\",\"Category\":\"Category \\u00E9\",\"DefaultValue\":\"DefaultValue \\u00E9\",\"CurrentValue\":\"CurrentValue \\u00E9\",\"Values\":[{\"Value\":\"one\",\"Label\":\"First \\u0022label\\u0022\"},{\"Value\":\"\\u00E9\\u0000\",\"Label\":\"Deuxi\\u00E8me\"}],\"IsVisible\":true,\"CategorizedName\":null,\"CategorizedDescription\":null,\"RequiresRestart\":false,\"IsEnabled\":true}",
+        "roundtrip": "{\"Key\":\"Key \\u00E9\",\"Name\":\"Name \\u00E9\",\"Description\":\"Description \\u00E9\",\"Category\":\"Category \\u00E9\",\"DefaultValue\":\"DefaultValue \\u00E9\",\"CurrentValue\":\"CurrentValue \\u00E9\",\"Values\":[{\"Value\":\"one\",\"Label\":\"First \\u0022label\\u0022\"},{\"Value\":\"\\u00E9\\u0000\",\"Label\":\"Deuxi\\u00E8me\"}],\"IsVisible\":true,\"CategorizedName\":null,\"CategorizedDescription\":null,\"RequiresRestart\":false,\"IsEnabled\":true}"
+      },
+      {
+        "module": "Thomson",
+        "profile": "GWGUI.Emulation.Thomson.Common.Functions.CoreHostFunctions",
+        "json": "{\"key\":\"Key \\u00E9\",\"name\":\"Name \\u00E9\",\"description\":\"Description \\u00E9\",\"category\":\"Category \\u00E9\",\"defaultValue\":\"DefaultValue \\u00E9\",\"currentValue\":\"CurrentValue \\u00E9\",\"values\":[{\"value\":\"one\",\"label\":\"First \\u0022label\\u0022\"},{\"value\":\"\\u00E9\\u0000\",\"label\":\"Deuxi\\u00E8me\"}],\"isVisible\":true,\"categorizedName\":null,\"categorizedDescription\":null,\"requiresRestart\":false,\"isEnabled\":true}",
+        "roundtrip": "{\"key\":\"Key \\u00E9\",\"name\":\"Name \\u00E9\",\"description\":\"Description \\u00E9\",\"category\":\"Category \\u00E9\",\"defaultValue\":\"DefaultValue \\u00E9\",\"currentValue\":\"CurrentValue \\u00E9\",\"values\":[{\"value\":\"one\",\"label\":\"First \\u0022label\\u0022\"},{\"value\":\"\\u00E9\\u0000\",\"label\":\"Deuxi\\u00E8me\"}],\"isVisible\":true,\"categorizedName\":null,\"categorizedDescription\":null,\"requiresRestart\":false,\"isEnabled\":true}"
+      },
+      {
+        "module": "Atari",
+        "profile": "default",
+        "json": "{\"Key\":\"Key \\u00E9\",\"Name\":\"Name \\u00E9\",\"Description\":\"Description \\u00E9\",\"Category\":\"Category \\u00E9\",\"DefaultValue\":\"DefaultValue \\u00E9\",\"CurrentValue\":\"CurrentValue \\u00E9\",\"Values\":[{\"Value\":\"one\",\"Label\":\"First \\u0022label\\u0022\"},{\"Value\":\"\\u00E9\\u0000\",\"Label\":\"Deuxi\\u00E8me\"}],\"IsVisible\":true,\"CategorizedName\":null,\"CategorizedDescription\":null}",
+        "roundtrip": "{\"Key\":\"Key \\u00E9\",\"Name\":\"Name \\u00E9\",\"Description\":\"Description \\u00E9\",\"Category\":\"Category \\u00E9\",\"DefaultValue\":\"DefaultValue \\u00E9\",\"CurrentValue\":\"CurrentValue \\u00E9\",\"Values\":[{\"Value\":\"one\",\"Label\":\"First \\u0022label\\u0022\"},{\"Value\":\"\\u00E9\\u0000\",\"Label\":\"Deuxi\\u00E8me\"}],\"IsVisible\":true,\"CategorizedName\":null,\"CategorizedDescription\":null}"
+      },
+      {
+        "module": "Atari",
+        "profile": "GWGUI.Emulation.Atari.Emulators.Common.Functions.CoreHostFunctions",
+        "json": "{\"key\":\"Key \\u00E9\",\"name\":\"Name \\u00E9\",\"description\":\"Description \\u00E9\",\"category\":\"Category \\u00E9\",\"defaultValue\":\"DefaultValue \\u00E9\",\"currentValue\":\"CurrentValue \\u00E9\",\"values\":[{\"value\":\"one\",\"label\":\"First \\u0022label\\u0022\"},{\"value\":\"\\u00E9\\u0000\",\"label\":\"Deuxi\\u00E8me\"}],\"isVisible\":true,\"categorizedName\":null,\"categorizedDescription\":null}",
+        "roundtrip": "{\"key\":\"Key \\u00E9\",\"name\":\"Name \\u00E9\",\"description\":\"Description \\u00E9\",\"category\":\"Category \\u00E9\",\"defaultValue\":\"DefaultValue \\u00E9\",\"currentValue\":\"CurrentValue \\u00E9\",\"values\":[{\"value\":\"one\",\"label\":\"First \\u0022label\\u0022\"},{\"value\":\"\\u00E9\\u0000\",\"label\":\"Deuxi\\u00E8me\"}],\"isVisible\":true,\"categorizedName\":null,\"categorizedDescription\":null}"
+      },
+      {
+        "module": "Microsoft",
+        "profile": "default",
+        "json": "{\"Key\":\"Key \\u00E9\",\"Name\":\"Name \\u00E9\",\"Description\":\"Description \\u00E9\",\"Category\":\"Category \\u00E9\",\"DefaultValue\":\"DefaultValue \\u00E9\",\"CurrentValue\":\"CurrentValue \\u00E9\",\"Values\":[{\"Value\":\"one\",\"Label\":\"First \\u0022label\\u0022\"},{\"Value\":\"\\u00E9\\u0000\",\"Label\":\"Deuxi\\u00E8me\"}],\"IsVisible\":true,\"CategorizedName\":null,\"CategorizedDescription\":null}",
+        "roundtrip": "{\"Key\":\"Key \\u00E9\",\"Name\":\"Name \\u00E9\",\"Description\":\"Description \\u00E9\",\"Category\":\"Category \\u00E9\",\"DefaultValue\":\"DefaultValue \\u00E9\",\"CurrentValue\":\"CurrentValue \\u00E9\",\"Values\":[{\"Value\":\"one\",\"Label\":\"First \\u0022label\\u0022\"},{\"Value\":\"\\u00E9\\u0000\",\"Label\":\"Deuxi\\u00E8me\"}],\"IsVisible\":true,\"CategorizedName\":null,\"CategorizedDescription\":null}"
+      }
+    ],
+    "verification": {
+      "wholeFiles": "Ten complete contracts differ only by removal of the exact two-field record. Ten global-using files differ only by direct SDK alias.",
+      "existingOwner": "SDK file unchanged, record matches original 5a7b3a6ce after namespace change only.",
+      "bindings": "36 source type references resolve directly to SDK EmulationOptionValue.",
+      "semantic": "SDK, ten affected modules and tests: zero semantic errors.",
+      "wire": "22 default/host JSON profiles byte-for-byte identical before/after; all typed roundtrips identical.",
+      "policy": "Thirteen enriched record definitions unchanged; constructors, two string properties, property order and default option fields conserved. Runtime value type identity now belongs to SDK.",
+      "tests": "213 existing protocol, lifecycle and option tests passed, exit 0; references SDK/App/23 modules compiled. No new mirror test or fixture.",
+      "reports": {
+        "state": "Preserved: 20 changed declaration files contain no scanned method/constructor/local-function/property bodies. All other source and tests unchanged.",
+        "files": 7315,
+        "longBodies": 11588,
+        "longGroups": 479,
+        "shortBodies": 9525,
+        "shortGroups": 773,
+        "renamedShortGroups": 368,
+        "inputs": [
+          {
+            "path": "docs/reference/reuse-audit/current-project-groups.json",
+            "sha256": "970E127B5F9F2FBA7D832AD44E0731F4338A3A36ED9848A9B25F5E223A1A7764"
+          },
+          {
+            "path": "docs/reference/reuse-audit/short-method-groups.json",
+            "sha256": "364CA47B76EED82BCEF10293897089A74E4BD4B1336EC056FB743B3CFEE4CAC4"
+          }
+        ]
+      }
+    }
   }
 }
