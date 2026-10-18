@@ -8249,12 +8249,22 @@
     "afterProductBuild": "005e3c677"
   },
   "shortMethodInventory": {
-    "snapshot": "005e3c6772a77d1060a2b285ea22b09ad8b865f4",
+    "snapshot": "a4760e868d2594a5bb37ae0fbdeb1b5349792cd9",
     "files": 7314,
-    "bodyCount": 9472,
-    "exactGroups": 773,
+    "bodyCount": 9471,
+    "exactGroups": 772,
     "renamedGroups": 363,
-    "status": "Incomplete; 24 ConcurrentQueue forwarding occurrences verified, other groups pending",
+    "status": "Incomplete; 24 queue occurrences verified, hardware identity predicate reused; other groups pending",
     "trackedCSharpCoverage": "7314 tracked and listed files, no tracked CSharp file omitted by rg, hidden paths included"
+  },
+  "hardwareIdentityComparisonReuse": {
+    "snapshot": "a4760e868",
+    "origin": "GreaseweazleHardwareRegistry.EqualsId 993d1bb76 (2026-08-06 00:32), ancestor of StartupHardwareMonitor SameController/Same 85c669da1 (01:02)",
+    "owner": "Existing GreaseweazleHardwareScanFunctions; original predicate public static, both consumers use its static import",
+    "verification": "Original expression, parameters and return type preserved. Both private copies removed; all other tokens in three files match a4760e868 after normalizing three startup call names and two static imports.",
+    "preserved": "Whitespace rejection, short circuit and OrdinalIgnoreCase; registry branches and startup UsbId/UsbSerialNumber/PnpDeviceId; CloneUnavailable and CanUseInfo unchanged",
+    "tests": "Eight existing HardwareSelectionTests cases passed, exit 0; SDK/App/all 23 module references compiled",
+    "resources": "Discovery, command runner, file existence and settings store simulated; no real executable/device or new test. Existing WPF fixture closes resources in finally and joins its thread, verified in source.",
+    "afterProductBuild": "005e3c677"
   }
 }

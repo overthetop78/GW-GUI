@@ -4,6 +4,7 @@ using GWGUI.Infrastructure.Hardware;
 using GWGUI.Infrastructure.Hardware.Parsing;
 using GWGUI.Infrastructure.Settings.Hardware;
 using GWGUI.Infrastructure.Functions.Hardware;
+using static GWGUI.Infrastructure.Functions.Hardware.GreaseweazleHardwareScanFunctions;
 namespace GWGUI.Infrastructure.Hardware;
 
 public sealed class GreaseweazleHardwareRegistry(ISerialDeviceDiscovery discovery, IGreaseweazleRunner runner, IGwCommandBuilder? commandBuilder = null) : IHardwareRegistry
@@ -52,8 +53,6 @@ public sealed class GreaseweazleHardwareRegistry(ISerialDeviceDiscovery discover
 
         return EqualsId(controller.UsbId, serial.StableId) || EqualsId(controller.LastUsbLocation, serial.UsbLocation);
     }
-
-    private static bool EqualsId(string? left, string? right) => !string.IsNullOrWhiteSpace(left) && !string.IsNullOrWhiteSpace(right) && string.Equals(left, right, StringComparison.OrdinalIgnoreCase);
 
     private static string? NullIfWhiteSpace(string? value) => string.IsNullOrWhiteSpace(value) ? null : value;
 }

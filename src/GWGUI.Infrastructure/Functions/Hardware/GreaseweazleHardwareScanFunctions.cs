@@ -6,6 +6,8 @@ namespace GWGUI.Infrastructure.Functions.Hardware;
 
 public static class GreaseweazleHardwareScanFunctions
 {
+    public static bool EqualsId(string? left, string? right) => !string.IsNullOrWhiteSpace(left) && !string.IsNullOrWhiteSpace(right) && string.Equals(left, right, StringComparison.OrdinalIgnoreCase);
+
     public static ControllerSettings CloneUnavailable(ControllerSettings source) => new()
     {
         UsbId = source.UsbId,
