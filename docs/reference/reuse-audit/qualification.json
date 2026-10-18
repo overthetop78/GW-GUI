@@ -6637,5 +6637,602 @@
         "callbacksRemainOwnedByExistingFields": true
       }
     ]
+  },
+  "hardwareSettingsConstructionReuse": {
+    "constantEvidence": [
+      {
+        "module": "Bandai",
+        "prefix": "bandai",
+        "values": {
+          "ResourceMemoryMain": "Emulation.Memory.Main",
+          "ResourceCpuSpeedOriginal": "Emulation.Cpu.SpeedOriginal",
+          "DisplayMemory": "bandai_display_memory",
+          "MainMemory": "bandai_main_memory",
+          "HertzPerMegahertz": 1000000,
+          "KilohertzUnit": "kHz",
+          "ByteUnit": "B",
+          "ResourceCpuModel": "Emulation.Cpu.Model",
+          "HertzPerKilohertz": 1000,
+          "ResourceDisplayMemory": "Emulation.Bandai.Memory.Display",
+          "DisplayResolution": "bandai_display_resolution",
+          "BytesPerKibibyte": 1024,
+          "ResourceCpuProcessor": "Emulation.Cpu.Processor",
+          "KibibyteUnit": "KiB",
+          "MegahertzUnit": "MHz",
+          "CpuModel": "bandai_cpu_model",
+          "CpuFrequency": "bandai_cpu_frequency",
+          "ResourceVideoResolution": "Emulation.Video.Resolution"
+        }
+      },
+      {
+        "module": "Coleco",
+        "prefix": "coleco",
+        "values": {
+          "ResourceMemoryMain": "Emulation.Memory.Main",
+          "ResourceCpuSpeedOriginal": "Emulation.Cpu.SpeedOriginal",
+          "DisplayMemory": "coleco_display_memory",
+          "MainMemory": "coleco_main_memory",
+          "HertzPerMegahertz": 1000000,
+          "KilohertzUnit": "kHz",
+          "HertzPerKilohertz": 1000,
+          "ResourceDisplayMemory": "Emulation.Coleco.Memory.Display",
+          "DisplayResolution": "coleco_display_resolution",
+          "ByteUnit": "B",
+          "CpuFrequency": "coleco_cpu_frequency",
+          "BytesPerKibibyte": 1024,
+          "MegahertzUnit": "MHz",
+          "ResourceCpuModel": "Emulation.Cpu.Model",
+          "KibibyteUnit": "KiB",
+          "CpuModel": "coleco_cpu_model",
+          "ResourceCpuProcessor": "Emulation.Cpu.Processor",
+          "ResourceVideoResolution": "Emulation.Video.Resolution"
+        }
+      },
+      {
+        "module": "Sharp",
+        "prefix": "sharp",
+        "values": {
+          "ResourceMemoryMain": "Emulation.Memory.Main",
+          "ResourceCpuSpeedOriginal": "Emulation.Cpu.SpeedOriginal",
+          "DisplayMemory": "sharp_display_memory",
+          "MainMemory": "sharp_main_memory",
+          "HertzPerMegahertz": 1000000,
+          "ResourceCpuProcessor": "Emulation.Cpu.Processor",
+          "KilohertzUnit": "kHz",
+          "ResourceDisplayMemory": "Emulation.Sharp.Memory.Display",
+          "DisplayResolution": "sharp_display_resolution",
+          "ByteUnit": "B",
+          "BytesPerKibibyte": 1024,
+          "MegahertzUnit": "MHz",
+          "ResourceCpuModel": "Emulation.Cpu.Model",
+          "KibibyteUnit": "KiB",
+          "CpuModel": "sharp_cpu_model",
+          "CpuFrequency": "sharp_cpu_frequency",
+          "ResourceVideoResolution": "Emulation.Video.Resolution"
+        }
+      },
+      {
+        "module": "Sinclair",
+        "prefix": "sinclair",
+        "values": {
+          "ResourceMemoryMain": "Emulation.Memory.Main",
+          "ResourceCpuSpeedOriginal": "Emulation.Cpu.SpeedOriginal",
+          "DisplayMemory": "sinclair_display_memory",
+          "MainMemory": "sinclair_main_memory",
+          "CpuFrequency": "sinclair_cpu_frequency",
+          "HertzPerMegahertz": 1000000,
+          "KilohertzUnit": "kHz",
+          "HertzPerKilohertz": 1000,
+          "ResourceDisplayMemory": "Emulation.Sinclair.Memory.Display",
+          "DisplayResolution": "sinclair_display_resolution",
+          "ByteUnit": "B",
+          "BytesPerKibibyte": 1024,
+          "ResourceCpuModel": "Emulation.Cpu.Model",
+          "KibibyteUnit": "KiB",
+          "MegahertzUnit": "MHz",
+          "CpuModel": "sinclair_cpu_model",
+          "ResourceCpuProcessor": "Emulation.Cpu.Processor",
+          "ResourceVideoResolution": "Emulation.Video.Resolution"
+        }
+      },
+      {
+        "module": "Snk",
+        "prefix": "snk",
+        "values": {
+          "ResourceMemoryMain": "Emulation.Memory.Main",
+          "ResourceCpuSpeedOriginal": "Emulation.Cpu.SpeedOriginal",
+          "DisplayMemory": "snk_display_memory",
+          "MainMemory": "snk_main_memory",
+          "HertzPerMegahertz": 1000000,
+          "ResourceCpuProcessor": "Emulation.Cpu.Processor",
+          "KilohertzUnit": "kHz",
+          "HertzPerKilohertz": 1000,
+          "ResourceDisplayMemory": "Emulation.Snk.Memory.Display",
+          "DisplayResolution": "snk_display_resolution",
+          "ByteUnit": "B",
+          "BytesPerKibibyte": 1024,
+          "MegahertzUnit": "MHz",
+          "ResourceCpuModel": "Emulation.Cpu.Model",
+          "KibibyteUnit": "KiB",
+          "CpuModel": "snk_cpu_model",
+          "CpuFrequency": "snk_cpu_frequency",
+          "ResourceVideoResolution": "Emulation.Video.Resolution"
+        }
+      },
+      {
+        "module": "Mattel",
+        "prefix": "mattel",
+        "values": {
+          "ResourceMemoryMain": "Emulation.Memory.Main",
+          "ResourceCpuSpeedOriginal": "Emulation.Cpu.SpeedOriginal",
+          "DisplayMemory": "mattel_display_memory",
+          "MainMemory": "mattel_main_memory",
+          "CpuFrequency": "mattel_cpu_frequency",
+          "HertzPerMegahertz": 1000000,
+          "KilohertzUnit": "kHz",
+          "ResourceDisplayMemory": "Emulation.Mattel.Memory.Display",
+          "DisplayResolution": "mattel_display_resolution",
+          "ByteUnit": "B",
+          "BytesPerKibibyte": 1024,
+          "MegahertzUnit": "MHz",
+          "ResourceCpuModel": "Emulation.Cpu.Model",
+          "KibibyteUnit": "KiB",
+          "CpuModel": "mattel_cpu_model",
+          "ResourceCpuProcessor": "Emulation.Cpu.Processor",
+          "ResourceVideoResolution": "Emulation.Video.Resolution"
+        }
+      },
+      {
+        "module": "Philips",
+        "prefix": "philips",
+        "values": {
+          "ResourceMemoryMain": "Emulation.Memory.Main",
+          "ResourceCpuSpeedOriginal": "Emulation.Cpu.SpeedOriginal",
+          "DisplayMemory": "philips_display_memory",
+          "MainMemory": "philips_main_memory",
+          "HertzPerMegahertz": 1000000,
+          "ResourceCpuProcessor": "Emulation.Cpu.Processor",
+          "KilohertzUnit": "kHz",
+          "ResourceDisplayMemory": "Emulation.Philips.Memory.Display",
+          "DisplayResolution": "philips_display_resolution",
+          "ByteUnit": "B",
+          "BytesPerKibibyte": 1024,
+          "MegahertzUnit": "MHz",
+          "ResourceCpuModel": "Emulation.Cpu.Model",
+          "KibibyteUnit": "KiB",
+          "CpuModel": "philips_cpu_model",
+          "CpuFrequency": "philips_cpu_frequency",
+          "ResourceVideoResolution": "Emulation.Video.Resolution"
+        }
+      },
+      {
+        "module": "Fairchild",
+        "prefix": "fairchild",
+        "values": {
+          "ResourceMemoryMain": "Emulation.Memory.Main",
+          "ResourceCpuSpeedOriginal": "Emulation.Cpu.SpeedOriginal",
+          "DisplayMemory": "fairchild_display_memory",
+          "MainMemory": "fairchild_main_memory",
+          "HertzPerMegahertz": 1000000,
+          "KilohertzUnit": "kHz",
+          "HertzPerKilohertz": 1000,
+          "ResourceDisplayMemory": "Emulation.Fairchild.Memory.Display",
+          "DisplayResolution": "fairchild_display_resolution",
+          "ByteUnit": "B",
+          "CpuFrequency": "fairchild_cpu_frequency",
+          "BytesPerKibibyte": 1024,
+          "MegahertzUnit": "MHz",
+          "ResourceCpuModel": "Emulation.Cpu.Model",
+          "KibibyteUnit": "KiB",
+          "CpuModel": "fairchild_cpu_model",
+          "ResourceCpuProcessor": "Emulation.Cpu.Processor",
+          "ResourceVideoResolution": "Emulation.Video.Resolution"
+        }
+      },
+      {
+        "module": "Epoch",
+        "prefix": "epoch",
+        "values": {
+          "ResourceMemoryMain": "Emulation.Memory.Main",
+          "ResourceCpuSpeedOriginal": "Emulation.Cpu.SpeedOriginal",
+          "DisplayMemory": "epoch_display_memory",
+          "MainMemory": "epoch_main_memory",
+          "HertzPerMegahertz": 1000000,
+          "KilohertzUnit": "kHz",
+          "HertzPerKilohertz": 1000,
+          "ResourceDisplayMemory": "Emulation.Epoch.Memory.Display",
+          "DisplayResolution": "epoch_display_resolution",
+          "ByteUnit": "B",
+          "CpuFrequency": "epoch_cpu_frequency",
+          "BytesPerKibibyte": 1024,
+          "MegahertzUnit": "MHz",
+          "ResourceCpuModel": "Emulation.Cpu.Model",
+          "KibibyteUnit": "KiB",
+          "CpuModel": "epoch_cpu_model",
+          "ResourceCpuProcessor": "Emulation.Cpu.Processor",
+          "ResourceVideoResolution": "Emulation.Video.Resolution"
+        }
+      }
+    ],
+    "sourceCommit": "98d310526",
+    "verification": "Original Bandai CPU field/choice, Information, memory 1499a40f7 and frequency fb9f31179 branches; nine complete settings/constant token comparisons and exact policies/IDs checked. Nine fixed pre-change fr-FR JSON hashes validated before modification and match after for all 51 models. 29 final targeted tests pass; SDK/App/23 module references compile. Current scan: 11666 bodies, 529 exact candidate groups.",
+    "ownership": "Borrowed target list and deferred formatting/resolution callbacks; immutable settings data only, no files/native cores/windows.",
+    "consumers": [
+      {
+        "module": "Bandai",
+        "settings": "src/GWGUI.Emulation.Bandai/Common/Machines/Common/Functions/SettingsFunctions.cs",
+        "constants": "src/GWGUI.Emulation.Bandai/Common/Machines/Common/Constants/SettingsConstants.cs",
+        "prefix": "bandai",
+        "compact": "false",
+        "frequencyPolicy": "() => EmulationHardwareSettingsFunctions.FormatFrequency(hardware.CpuFrequencyHz, useKilohertz: true)",
+        "mainMemoryPolicy": "() => EmulationHardwareSettingsFunctions.FormatMemory(hardware.MainMemoryBytes)",
+        "displayMemoryPolicy": "() => hardware.DisplayMemoryBytes > 0 ? EmulationHardwareSettingsFunctions.FormatMemory(hardware.DisplayMemoryBytes) : null",
+        "resolutionPolicy": "() => $\"{hardware.DisplayWidth} × {hardware.DisplayHeight}\"",
+        "nullHardwareGuard": "if (hardware is null)\r\n            return;",
+        "removedHelpers": [
+          "Memory"
+        ],
+        "removedConstants": [
+          "KibibyteUnit",
+          "ByteUnit",
+          "MegahertzUnit",
+          "HertzPerMegahertz",
+          "BytesPerKibibyte",
+          "DisplayResolution",
+          "DisplayMemory",
+          "MainMemory",
+          "CpuModel",
+          "ResourceVideoResolution",
+          "ResourceMemoryMain",
+          "ResourceCpuSpeedOriginal",
+          "ResourceCpuModel",
+          "ResourceCpuProcessor",
+          "CpuFrequency"
+        ],
+        "otherMembersUnchanged": true
+      },
+      {
+        "module": "Coleco",
+        "settings": "src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/SettingsFunctions.cs",
+        "constants": "src/GWGUI.Emulation.Coleco/Common/Machines/Common/Constants/SettingsConstants.cs",
+        "prefix": "coleco",
+        "compact": "false",
+        "frequencyPolicy": "() => EmulationHardwareSettingsFunctions.FormatFrequency(hardware.CpuFrequencyHz, useKilohertz: true)",
+        "mainMemoryPolicy": "() => EmulationHardwareSettingsFunctions.FormatMemory(hardware.MainMemoryBytes)",
+        "displayMemoryPolicy": "() => hardware.DisplayMemoryBytes > 0 ? EmulationHardwareSettingsFunctions.FormatMemory(hardware.DisplayMemoryBytes) : null",
+        "resolutionPolicy": "() => $\"{hardware.DisplayWidth} × {hardware.DisplayHeight}\"",
+        "nullHardwareGuard": "",
+        "removedHelpers": [
+          "Memory",
+          "Information"
+        ],
+        "removedConstants": [
+          "MegahertzUnit",
+          "KilohertzUnit",
+          "ByteUnit",
+          "KibibyteUnit",
+          "HertzPerKilohertz",
+          "HertzPerMegahertz",
+          "BytesPerKibibyte",
+          "DisplayResolution",
+          "DisplayMemory",
+          "MainMemory",
+          "CpuModel",
+          "ResourceVideoResolution",
+          "ResourceMemoryMain",
+          "ResourceCpuSpeedOriginal",
+          "ResourceCpuModel",
+          "ResourceCpuProcessor",
+          "CpuFrequency"
+        ],
+        "otherMembersUnchanged": true
+      },
+      {
+        "module": "Sharp",
+        "settings": "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/SettingsFunctions.cs",
+        "constants": "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Constants/SettingsConstants.cs",
+        "prefix": "sharp",
+        "compact": "hardware.CpuFrequencyHz is null",
+        "frequencyPolicy": "() => hardware.CpuFrequencyHz is long frequency ? EmulationHardwareSettingsFunctions.FormatFrequency(frequency) : null",
+        "mainMemoryPolicy": "() => hardware.MainMemoryBytes is long main ? EmulationHardwareSettingsFunctions.FormatMemory(main) : null",
+        "displayMemoryPolicy": "() => hardware.DisplayMemoryBytes is long display ? EmulationHardwareSettingsFunctions.FormatMemory(display) : null",
+        "resolutionPolicy": "() => { if (hardware.DisplayWidth is int width && hardware.DisplayHeight is int height) {  return $\"{width} × {height}\"; } return null; }",
+        "nullHardwareGuard": "",
+        "removedHelpers": [
+          "Memory",
+          "Information"
+        ],
+        "removedConstants": [
+          "MegahertzUnit",
+          "KilohertzUnit",
+          "ByteUnit",
+          "KibibyteUnit",
+          "HertzPerMegahertz",
+          "BytesPerKibibyte",
+          "DisplayResolution",
+          "DisplayMemory",
+          "MainMemory",
+          "CpuModel",
+          "ResourceVideoResolution",
+          "ResourceCpuSpeedOriginal",
+          "ResourceCpuModel",
+          "ResourceCpuProcessor",
+          "CpuFrequency"
+        ],
+        "otherMembersUnchanged": true
+      },
+      {
+        "module": "Sinclair",
+        "settings": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/SettingsFunctions.cs",
+        "constants": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Constants/SettingsConstants.cs",
+        "prefix": "sinclair",
+        "compact": "true",
+        "frequencyPolicy": "() => hardware.CpuFrequencyHz is long frequency ? EmulationHardwareSettingsFunctions.FormatFrequency(frequency) : null",
+        "mainMemoryPolicy": "() => hardware.MainMemoryBytes is long main ? EmulationHardwareSettingsFunctions.FormatMemory(main) : null",
+        "displayMemoryPolicy": "() => hardware.DisplayMemoryBytes is long display ? EmulationHardwareSettingsFunctions.FormatMemory(display) : null",
+        "resolutionPolicy": "() => { if (hardware.DisplayWidth is int width && hardware.DisplayHeight is int height) {  return $\"{width} × {height}\"; } return null; }",
+        "nullHardwareGuard": "",
+        "removedHelpers": [
+          "Memory",
+          "Information"
+        ],
+        "removedConstants": [
+          "MegahertzUnit",
+          "KilohertzUnit",
+          "ByteUnit",
+          "KibibyteUnit",
+          "HertzPerKilohertz",
+          "HertzPerMegahertz",
+          "BytesPerKibibyte",
+          "DisplayResolution",
+          "DisplayMemory",
+          "MainMemory",
+          "CpuModel",
+          "ResourceVideoResolution",
+          "ResourceCpuSpeedOriginal",
+          "ResourceCpuModel",
+          "ResourceCpuProcessor",
+          "CpuFrequency"
+        ],
+        "otherMembersUnchanged": true
+      },
+      {
+        "module": "Snk",
+        "settings": "src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/SettingsFunctions.cs",
+        "constants": "src/GWGUI.Emulation.Snk/Common/Machines/Common/Constants/SettingsConstants.cs",
+        "prefix": "snk",
+        "compact": "true",
+        "frequencyPolicy": "() => hardware.CpuFrequencyHz is long frequency ? EmulationHardwareSettingsFunctions.FormatFrequency(frequency) : null",
+        "mainMemoryPolicy": "() => hardware.MainMemoryBytes is long main ? EmulationHardwareSettingsFunctions.FormatMemory(main) : null",
+        "displayMemoryPolicy": "() => hardware.DisplayMemoryBytes is long display ? EmulationHardwareSettingsFunctions.FormatMemory(display) : null",
+        "resolutionPolicy": "() => { if (hardware.DisplayWidth is int width && hardware.DisplayHeight is int height) {  return $\"{width} × {height}\"; } return null; }",
+        "nullHardwareGuard": "",
+        "removedHelpers": [
+          "Memory",
+          "Information"
+        ],
+        "removedConstants": [
+          "MegahertzUnit",
+          "KilohertzUnit",
+          "ByteUnit",
+          "KibibyteUnit",
+          "HertzPerKilohertz",
+          "HertzPerMegahertz",
+          "BytesPerKibibyte",
+          "DisplayResolution",
+          "DisplayMemory",
+          "MainMemory",
+          "CpuModel",
+          "ResourceVideoResolution",
+          "ResourceCpuSpeedOriginal",
+          "ResourceCpuModel",
+          "ResourceCpuProcessor",
+          "CpuFrequency"
+        ],
+        "otherMembersUnchanged": true
+      },
+      {
+        "module": "Mattel",
+        "settings": "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/SettingsFunctions.cs",
+        "constants": "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Constants/SettingsConstants.cs",
+        "prefix": "mattel",
+        "compact": "hardware.CpuFrequencyHz is null",
+        "frequencyPolicy": "() => hardware.CpuFrequencyHz is long frequency ? EmulationHardwareSettingsFunctions.FormatFrequency(frequency) : null",
+        "mainMemoryPolicy": "() => hardware.MainMemoryBytes is long main ? EmulationHardwareSettingsFunctions.FormatMemory(main) : null",
+        "displayMemoryPolicy": "() => hardware.DisplayMemoryBytes is long display ? EmulationHardwareSettingsFunctions.FormatMemory(display) : null",
+        "resolutionPolicy": "() => { if (hardware.DisplayWidth is int width && hardware.DisplayHeight is int height) {  return $\"{width} × {height}\"; } return null; }",
+        "nullHardwareGuard": "",
+        "removedHelpers": [
+          "Memory",
+          "Information"
+        ],
+        "removedConstants": [
+          "MegahertzUnit",
+          "KilohertzUnit",
+          "ByteUnit",
+          "KibibyteUnit",
+          "HertzPerMegahertz",
+          "BytesPerKibibyte",
+          "DisplayResolution",
+          "DisplayMemory",
+          "MainMemory",
+          "CpuModel",
+          "ResourceVideoResolution",
+          "ResourceMemoryMain",
+          "ResourceCpuSpeedOriginal",
+          "ResourceCpuModel",
+          "ResourceCpuProcessor",
+          "CpuFrequency"
+        ],
+        "otherMembersUnchanged": true
+      },
+      {
+        "module": "Philips",
+        "settings": "src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/SettingsFunctions.cs",
+        "constants": "src/GWGUI.Emulation.Philips/Common/Machines/Common/Constants/SettingsConstants.cs",
+        "prefix": "philips",
+        "compact": "hardware.CpuFrequencyHz is null",
+        "frequencyPolicy": "() => hardware.CpuFrequencyHz is long frequency ? EmulationHardwareSettingsFunctions.FormatFrequency(frequency) : null",
+        "mainMemoryPolicy": "() => hardware.MainMemoryBytes is long main ? EmulationHardwareSettingsFunctions.FormatMemory(main) : null",
+        "displayMemoryPolicy": "() => hardware.DisplayMemoryBytes is long display ? EmulationHardwareSettingsFunctions.FormatMemory(display) : null",
+        "resolutionPolicy": "() => { if (hardware.DisplayWidth is int width && hardware.DisplayHeight is int height) { if (new Engine().Adapter(configuration) is IEmulatorVideoSettings video && video.GetOutputResolution(configuration) is { } resolution)\n            {\n                width = resolution.Width;\n                height = resolution.Height;\n            } return $\"{width} × {height}\"; } return null; }",
+        "nullHardwareGuard": "",
+        "removedHelpers": [
+          "Memory",
+          "Information"
+        ],
+        "removedConstants": [
+          "MegahertzUnit",
+          "KilohertzUnit",
+          "ByteUnit",
+          "KibibyteUnit",
+          "HertzPerMegahertz",
+          "BytesPerKibibyte",
+          "DisplayResolution",
+          "DisplayMemory",
+          "MainMemory",
+          "CpuModel",
+          "ResourceVideoResolution",
+          "ResourceMemoryMain",
+          "ResourceCpuSpeedOriginal",
+          "ResourceCpuModel",
+          "ResourceCpuProcessor",
+          "CpuFrequency"
+        ],
+        "otherMembersUnchanged": true
+      },
+      {
+        "module": "Fairchild",
+        "settings": "src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Functions/SettingsFunctions.cs",
+        "constants": "src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Constants/SettingsConstants.cs",
+        "prefix": "fairchild",
+        "compact": "hardware.CpuFrequencyHz is null",
+        "frequencyPolicy": "() => hardware.CpuFrequencyHz is long frequency ? EmulationHardwareSettingsFunctions.FormatFrequency(frequency) : null",
+        "mainMemoryPolicy": "() => hardware.MainMemoryBytes is long main ? EmulationHardwareSettingsFunctions.FormatMemory(main) : null",
+        "displayMemoryPolicy": "() => hardware.DisplayMemoryBytes is long display ? EmulationHardwareSettingsFunctions.FormatMemory(display) : null",
+        "resolutionPolicy": "() => $\"{hardware.DisplayWidth} × {hardware.DisplayHeight}\"",
+        "nullHardwareGuard": "",
+        "removedHelpers": [
+          "Memory",
+          "Information"
+        ],
+        "removedConstants": [
+          "MegahertzUnit",
+          "KilohertzUnit",
+          "ByteUnit",
+          "KibibyteUnit",
+          "HertzPerKilohertz",
+          "HertzPerMegahertz",
+          "BytesPerKibibyte",
+          "DisplayResolution",
+          "DisplayMemory",
+          "MainMemory",
+          "CpuModel",
+          "ResourceVideoResolution",
+          "ResourceMemoryMain",
+          "ResourceCpuSpeedOriginal",
+          "ResourceCpuModel",
+          "ResourceCpuProcessor",
+          "CpuFrequency"
+        ],
+        "otherMembersUnchanged": true
+      },
+      {
+        "module": "Epoch",
+        "settings": "src/GWGUI.Emulation.Epoch/Common/Machines/Common/Functions/SettingsFunctions.cs",
+        "constants": "src/GWGUI.Emulation.Epoch/Common/Machines/Common/Constants/SettingsConstants.cs",
+        "prefix": "epoch",
+        "compact": "false",
+        "frequencyPolicy": "() => hardware.CpuFrequencyHz is long frequency ? EmulationHardwareSettingsFunctions.FormatFrequency(frequency) : null",
+        "mainMemoryPolicy": "() => hardware.MainMemoryBytes is long main ? EmulationHardwareSettingsFunctions.FormatMemory(main) : null",
+        "displayMemoryPolicy": "() => hardware.DisplayMemoryBytes is long display ? EmulationHardwareSettingsFunctions.FormatMemory(display) : null",
+        "resolutionPolicy": "() => $\"{hardware.DisplayWidth} × {hardware.DisplayHeight}\"",
+        "nullHardwareGuard": "",
+        "removedHelpers": [
+          "Memory",
+          "Information"
+        ],
+        "removedConstants": [
+          "MegahertzUnit",
+          "KilohertzUnit",
+          "ByteUnit",
+          "KibibyteUnit",
+          "HertzPerKilohertz",
+          "HertzPerMegahertz",
+          "BytesPerKibibyte",
+          "DisplayResolution",
+          "DisplayMemory",
+          "MainMemory",
+          "CpuModel",
+          "ResourceVideoResolution",
+          "ResourceMemoryMain",
+          "ResourceCpuSpeedOriginal",
+          "ResourceCpuModel",
+          "ResourceCpuProcessor",
+          "CpuFrequency"
+        ],
+        "otherMembersUnchanged": true
+      }
+    ],
+    "originalOwners": [
+      "1499a40f7:src/GWGUI.Emulation.Bandai/Common/Machines/Common/Functions/SettingsFunctions.cs",
+      "fb9f31179:src/GWGUI.Emulation.Bandai/Common/Machines/Common/Functions/SettingsFunctions.cs"
+    ],
+    "scope": "Nine AddHardware descriptions; public model/configuration contracts and catalogs stay in their existing modules. Other inline hardware descriptions are not covered by this proof.",
+    "methods": [
+      "AddBlocks",
+      "FormatFrequency",
+      "FormatMemory"
+    ],
+    "sdkOwner": "src/GWGUI.Emulation/Functions/EmulationHardwareSettingsFunctions.cs",
+    "snapshotEvidence": [
+      {
+        "module": "Fairchild",
+        "hash": "73EFFC9CAC5BB7825B6D89DF933CA6B2708A08B56884817EBADEE40AE814FD4E",
+        "models": 2
+      },
+      {
+        "module": "Epoch",
+        "hash": "F51E93946F74C74BD4EDFFE50BB6CADE3265F62E79917DC2B8C66A13FDC051AD",
+        "models": 5
+      },
+      {
+        "module": "Coleco",
+        "hash": "0260B88CF4A277186CB770D418D86216ADC8BBA7CA1D15633DC921277094EAED",
+        "models": 2
+      },
+      {
+        "module": "Bandai",
+        "hash": "AD5872E59466B051E32965E301E1B187CFB8289AAEDA4B450FE29B61677B45DC",
+        "models": 5
+      },
+      {
+        "module": "Snk",
+        "hash": "E454262203C0DD57C8B0641671EFDC46703B539ED41209ACD5C03C2831BCE1C2",
+        "models": 6
+      },
+      {
+        "module": "Sinclair",
+        "hash": "ACCC2A9E86BA80C1812B96CC13FD9D057100BDBA8B9C433508E39B7DC3AEE4CA",
+        "models": 18
+      },
+      {
+        "module": "Mattel",
+        "hash": "66098D986C1031461DAC25D2F83565C1C3D1CA47C2C9768058C234A4CFE8144F",
+        "models": 1
+      },
+      {
+        "module": "Sharp",
+        "hash": "0AA2331CD87EE35BE98C069854518F7C9446E6FC7705EAB8CAE25F93495D03B1",
+        "models": 6
+      },
+      {
+        "module": "Philips",
+        "hash": "384EDE9BF1CF061E49E44541A0DC504D8A123F7D15E88C0497E56293DD88F4DD",
+        "models": 6
+      }
+    ],
+    "removedHelperCount": 17,
+    "removedConstantCount": 145
   }
 }

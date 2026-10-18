@@ -72,44 +72,21 @@ internal static class SettingsDescriptionFunctions
     private static void AddHardware(List<EmulationSettingsBlock> blocks, MachineConfiguration configuration)
     {
         var hardware = HardwareModelCatalog.Get(configuration.Model);
-        var cpu = new List<EmulationSettingsField>
-        {
-            new(
-                SettingsConstants.CpuModel,
-                EmulationMachineTab.Cpu,
-                SettingsConstants.ResourceCpuProcessor,
-                SettingsConstants.ResourceCpuModel,
-                EmulationSettingsEditor.Information,
-                hardware.CpuResourceKey,
-                [new(hardware.CpuResourceKey, hardware.CpuResourceKey)]
-            )
-        };
-        if (hardware.CpuFrequencyHz is long frequency)
-            cpu.Add(Information(
-                    SettingsConstants.CpuFrequency,
-                    EmulationMachineTab.Cpu,
-                    SettingsConstants.ResourceCpuProcessor,
-                    SettingsConstants.ResourceCpuSpeedOriginal,
-                    $"{(frequency / SettingsConstants.HertzPerMegahertz).ToString("0.######", CultureInfo.CurrentCulture)} {SettingsConstants.MegahertzUnit}"
-                ));
-        blocks.Add(Block(EmulationMachineTab.Cpu, SettingsConstants.ResourceCpuProcessor, cpu.ToArray())with { IsCompact = hardware.CpuFrequencyHz is null });
-        var memory = new List<EmulationSettingsField>();
-        if (hardware.MainMemoryBytes is long main)
-            memory.Add(Information(SettingsConstants.MainMemory, EmulationMachineTab.Ram, SettingsConstants.ResourceMemoryMain, SettingsConstants.ResourceMemoryMain, Memory(main)));
-        if (hardware.DisplayMemoryBytes is long display)
-            memory.Add(Information(SettingsConstants.DisplayMemory, EmulationMachineTab.Ram, SettingsConstants.ResourceMemoryMain, SettingsConstants.ResourceDisplayMemory, Memory(display)));
-        if (memory.Count > 0)
-            blocks.Add(Block(EmulationMachineTab.Ram, SettingsConstants.ResourceMemoryMain, memory.ToArray()));
-        if (hardware.DisplayWidth is int width && hardware.DisplayHeight is int height)
-            blocks.Add(Block(
-                    EmulationMachineTab.Video,
-                    SettingsConstants.ResourceVideoResolution,
-                    Information(SettingsConstants.DisplayResolution, EmulationMachineTab.Video, SettingsConstants.ResourceVideoResolution, SettingsConstants.ResourceVideoResolution, $"{width} × {height}")
-                ));
+        EmulationHardwareSettingsFunctions.AddBlocks(blocks, "sharp", hardware.CpuResourceKey,
+            () => hardware.CpuFrequencyHz is long frequency ? EmulationHardwareSettingsFunctions.FormatFrequency(frequency) : null,
+            () => hardware.MainMemoryBytes is long main ? EmulationHardwareSettingsFunctions.FormatMemory(main) : null,
+            () => hardware.DisplayMemoryBytes is long display ? EmulationHardwareSettingsFunctions.FormatMemory(display) : null,
+            SettingsConstants.ResourceDisplayMemory,
+            () =>
+            {
+                if (hardware.DisplayWidth is int width && hardware.DisplayHeight is int height)
+                {
+                    return $"{width} × {height}";
+                }
+                return null;
+            },
+            isCompactCpu: hardware.CpuFrequencyHz is null);
     }
-
-    private static string Memory(long bytes) => bytes >= SettingsConstants.BytesPerKibibyte ? $"{(bytes / SettingsConstants.BytesPerKibibyte).ToString(CultureInfo.InvariantCulture)} {SettingsConstants.KibibyteUnit}" : $"{bytes.ToString(CultureInfo.InvariantCulture)} {SettingsConstants.ByteUnit}";
-    private static EmulationSettingsField Information(string id, EmulationMachineTab tab, string block, string label, string value) => new(id, tab, block, label, EmulationSettingsEditor.Information, value);
     internal static EmulationSettingsField Native(MachineConfiguration configuration, CoreOption option, EmulationMachineTab tab, string block)
     => EmulationCoreOptionFunctions.CreateSettingsField(option.Key, tab, block,
         () => option.ResourceKey ?? throw new InvalidOperationException(option.Key), option.Values,

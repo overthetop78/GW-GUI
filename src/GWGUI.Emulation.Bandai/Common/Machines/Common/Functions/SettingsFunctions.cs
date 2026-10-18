@@ -20,43 +20,13 @@ internal static class SettingsDescriptionFunctions
         var hardware = HardwareModelCatalog.Get(configuration.Model);
         if (hardware is null)
             return;
-        blocks.Add(Block(
-                EmulationMachineTab.Cpu,
-                SettingsConstants.ResourceCpuProcessor,
-                new(
-                    SettingsConstants.CpuModel,
-                    EmulationMachineTab.Cpu,
-                    SettingsConstants.ResourceCpuProcessor,
-                    SettingsConstants.ResourceCpuModel,
-                    EmulationSettingsEditor.Information,
-                    hardware.CpuResourceKey,
-                    [new(hardware.CpuResourceKey, hardware.CpuResourceKey)]
-                ),
-                Information(
-                    SettingsConstants.CpuFrequency,
-                    EmulationMachineTab.Cpu,
-                    SettingsConstants.ResourceCpuProcessor,
-                    SettingsConstants.ResourceCpuSpeedOriginal,
-                    hardware.CpuFrequencyHz >= SettingsConstants.HertzPerMegahertz
-                        ? $"{(hardware.CpuFrequencyHz / SettingsConstants.HertzPerMegahertz).ToString("0.######", CultureInfo.CurrentCulture)} {SettingsConstants.MegahertzUnit}"
-                        : $"{(hardware.CpuFrequencyHz / SettingsConstants.HertzPerKilohertz).ToString("0.###", CultureInfo.CurrentCulture)} {SettingsConstants.KilohertzUnit}"
-                )
-            ));
-        var memoryFields = new List<EmulationSettingsField>
-        {
-            Information(SettingsConstants.MainMemory, EmulationMachineTab.Ram, SettingsConstants.ResourceMemoryMain, SettingsConstants.ResourceMemoryMain, Memory(hardware.MainMemoryBytes))
-        };
-        if (hardware.DisplayMemoryBytes > 0)
-            memoryFields.Add(Information(SettingsConstants.DisplayMemory, EmulationMachineTab.Ram, SettingsConstants.ResourceMemoryMain, SettingsConstants.ResourceDisplayMemory, Memory(hardware.DisplayMemoryBytes)));
-        blocks.Add(Block(EmulationMachineTab.Ram, SettingsConstants.ResourceMemoryMain, memoryFields.ToArray()));
-        blocks.Add(Block(
-                EmulationMachineTab.Video,
-                SettingsConstants.ResourceVideoResolution,
-                Information(SettingsConstants.DisplayResolution, EmulationMachineTab.Video, SettingsConstants.ResourceVideoResolution, SettingsConstants.ResourceVideoResolution, $"{hardware.DisplayWidth} × {hardware.DisplayHeight}")
-            ));
+        EmulationHardwareSettingsFunctions.AddBlocks(blocks, "bandai", hardware.CpuResourceKey,
+            () => EmulationHardwareSettingsFunctions.FormatFrequency(hardware.CpuFrequencyHz, useKilohertz: true),
+            () => EmulationHardwareSettingsFunctions.FormatMemory(hardware.MainMemoryBytes),
+            () => hardware.DisplayMemoryBytes > 0 ? EmulationHardwareSettingsFunctions.FormatMemory(hardware.DisplayMemoryBytes) : null,
+            SettingsConstants.ResourceDisplayMemory, () => $"{hardware.DisplayWidth} × {hardware.DisplayHeight}",
+            isCompactCpu: false);
     }
-
-    private static string Memory(long bytes) => bytes >= SettingsConstants.BytesPerKibibyte ? $"{(bytes / SettingsConstants.BytesPerKibibyte).ToString(CultureInfo.InvariantCulture)} {SettingsConstants.KibibyteUnit}" : $"{bytes.ToString(CultureInfo.InvariantCulture)} {SettingsConstants.ByteUnit}";
     internal static EmulationSettingsField Information(string id, EmulationMachineTab tab, string block, string label, string value) => new(id, tab, block, label, EmulationSettingsEditor.Information, value);
     internal static EmulationSettingsField Native(MachineConfiguration configuration, CoreOption option, EmulationMachineTab tab, string blockId)
     {
