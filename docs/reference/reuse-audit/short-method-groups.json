@@ -1,14 +1,41 @@
 {
-  "snapshot": "f6bca74cba8d81bc5d7691000ca86b5fbb495141",
+  "snapshot": "37e25b3030dd8aab952607d8834c8e8f5cc8f474",
   "snapshotState": "Current worktree based on snapshot",
   "worktreeSourceChanges": [
-    "src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/AppleRawImageWriter.cs",
-    "src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/ScpWriter.cs",
-    "src/GWGUI.MediaEngine/Images/Writing/AtomicFileWriter.cs",
-    "src/GWGUI.MediaEngine/Interfaces/IAtomicImageFileWriter.cs"
+    "src/GWGUI.Emulation.Acorn/Common/Contracts/CoreContracts.cs",
+    "src/GWGUI.Emulation.Acorn/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Apple/Common/Contracts/CoreContracts.cs",
+    "src/GWGUI.Emulation.Apple/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Apple/Emulators/Common/Contracts/CoreContracts.cs",
+    "src/GWGUI.Emulation.Atari/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Atari/Emulators/Common/Contracts/CoreContracts.cs",
+    "src/GWGUI.Emulation.Bandai/Common/Contracts/CoreContracts.cs",
+    "src/GWGUI.Emulation.Bandai/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Coleco/Common/Contracts/CoreContracts.cs",
+    "src/GWGUI.Emulation.Coleco/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Epoch/Common/Contracts/CoreContracts.cs",
+    "src/GWGUI.Emulation.Epoch/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Fairchild/Common/Contracts/CoreContracts.cs",
+    "src/GWGUI.Emulation.Fairchild/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Mattel/Common/Contracts/CoreContracts.cs",
+    "src/GWGUI.Emulation.Mattel/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Nintendo/Common/Contracts/CoreContracts.cs",
+    "src/GWGUI.Emulation.Nintendo/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Philips/Common/Contracts/CoreContracts.cs",
+    "src/GWGUI.Emulation.Philips/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Sega/Common/Contracts/CoreContracts.cs",
+    "src/GWGUI.Emulation.Sega/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Sharp/Common/Contracts/CoreContracts.cs",
+    "src/GWGUI.Emulation.Sharp/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Sinclair/Common/Contracts/CoreContracts.cs",
+    "src/GWGUI.Emulation.Sinclair/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Snk/Common/Contracts/CoreContracts.cs",
+    "src/GWGUI.Emulation.Snk/EmulationGlobalUsings.cs",
+    "tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs",
+    "tests/GWGUI.Tests/Emulation/NativeOptionFieldTests.cs"
   ],
   "scope": "All current non-ignored repository CSharp files, including hidden paths; BaseMethodDeclaration bodies with fewer than 30 tokens. Candidate presence is not a defect or a completion claim.",
-  "fileCount": 7328,
+  "fileCount": 7332,
   "methodBodyCount": 9533,
   "exactGroups": [
     {
@@ -135072,7 +135099,7 @@
     }
   ],
   "qualificationCarryForward": {
-    "occurrences": 395,
-    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical"
+    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical",
+    "occurrences": 395
   }
 }

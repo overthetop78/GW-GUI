@@ -39,3 +39,6 @@ global using CoreActiveInstallation = global::GWGUI.Emulation.Contracts.Emulatio
 global using CoreDiagnosticManifest = global::GWGUI.Emulation.Contracts.EmulationCoreDiagnosticManifest;
 global using CoreInstallationPaths = global::GWGUI.Emulation.Contracts.EmulationCoreInstallationPaths;
 global using CoreInstallProgress = global::GWGUI.Emulation.Contracts.EmulationCoreInstallProgress;
+
+global using CoreOptionCategory = GWGUI.Emulation.Contracts.EmulationOptionCategory;
+global using CoreOptionValue = GWGUI.Emulation.Contracts.EmulationResourceOptionValue;

@@ -24,7 +24,7 @@ public sealed class NativeOptionFieldTests
             .ForConfiguration(initial).First(option => option.Values.Count >= 2);
         var onValue = declared.Values[0].Value;
         var offValue = declared.Values[1].Value;
-        var values = new List<SharpOptions.CoreOptionValue>
+        var values = new List<EmulationResourceOptionValue>
         {
             new(onValue, "On", "Emulation.Value.Enabled", "YES"),
             new(offValue, "Off", "Emulation.Value.Disabled", "NO")

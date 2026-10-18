@@ -14,6 +14,3 @@ public sealed record CoreOption(
     EmulationMachineTab Tab = EmulationMachineTab.General,
     bool RequiresRestart = false,
     IReadOnlySet<string>? MachineIds = null);
-
-public sealed record CoreOptionValue(string Value, string Label, IReadOnlySet<string>? MachineIds = null);
-
