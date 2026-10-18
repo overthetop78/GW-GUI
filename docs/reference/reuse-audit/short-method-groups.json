@@ -10642,7 +10642,9 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
+          "verifiedSourceSha256": "CBE7DFFAFE14EB9C1C77EFC9E38A89D501E324BAA20A87E666D962672C48209B"
         },
         {
           "path": "src/GWGUI.App/Services/Input/GameInput/GameInputControllerSource.cs",
@@ -10654,7 +10656,9 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
+          "verifiedSourceSha256": "4DB7BBE6F98403AD3A89C1145FAFC937EB76B0D3D11C973E428C3D27C23CD662"
         },
         {
           "path": "src/GWGUI.App/Services/Windows/WpfWindowNavigationService.cs",
@@ -10666,7 +10670,9 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
+          "verifiedSourceSha256": "75F40F50B19B5699ADF3E8D00B6B23EC929918F554B9B9A4C1B7635208E0596E"
         },
         {
           "path": "src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerVisualInput.cs",
@@ -10678,7 +10684,9 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
+          "verifiedSourceSha256": "F64A60199BB87CE9CAF6E6525C95F6BCD1713A338AE8D5711F158D177DEDA136"
         },
         {
           "path": "src/GWGUI.App/Views/Controls/Options/OptionsControllersSection.xaml.cs",
@@ -10690,7 +10698,9 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
+          "verifiedSourceSha256": "31D4A4E94A203424DE9DCAF89AD899E95BF9C6A9BEEEB2EACFA72CCA35853D8E"
         },
         {
           "path": "src/GWGUI.App/Views/Controls/Visualization/ScpDiskView.xaml.cs",
@@ -10702,7 +10712,9 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
+          "verifiedSourceSha256": "9243B458ADAD7D5E4F808773722CA037B00DE595FFF409833072FF484C21A48C"
         },
         {
           "path": "src/GWGUI.App/Views/Dialogs/Profiles/ProfileNameWindow.xaml.cs",
@@ -10714,7 +10726,9 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
+          "verifiedSourceSha256": "7941E61B8529EC7869BC284FCBA4363044027B248FB5D513D35A91C0BFF4F1F8"
         },
         {
           "path": "src/GWGUI.App/Views/Windows/Shell/MainWindow.xaml.cs",
@@ -10726,7 +10740,9 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
+          "verifiedSourceSha256": "41A2E37BBF2598552AA1B4EE1C4FD5DBA25684FCA4E0D62E86C2086B1D75C9EF"
         },
         {
           "path": "src/GWGUI.App/Views/Windows/Updates/UpdatesWindow.xaml.cs",
@@ -10738,7 +10754,9 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
+          "verifiedSourceSha256": "7DD4B4A262D6D211B1E83844264E64BCB4E597D61E8D6B86A5FBE914069A59C8"
         },
         {
           "path": "src/GWGUI.Emulation.Acorn/Common/Machines/Common/Contracts/ConfigurationContracts.cs",
@@ -10750,7 +10768,9 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
+          "verifiedSourceSha256": "84E858873D3B502106265BD7E0577E60EC680081B8F0057944CC303EAF61F6E3"
         },
         {
           "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
@@ -10775,7 +10795,9 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
+          "verifiedSourceSha256": "B193182C7085EB187EA610E8010CB83D2196915288CE3E0195C008D4018FFF5E"
         },
         {
           "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
@@ -10813,7 +10835,9 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
+          "verifiedSourceSha256": "AA845952BEA9F9BBFB7C6AE1F5A8F22A91F64616CAEEAA1E9E7D0F0D5B9D945D"
         },
         {
           "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Factories/MachineFactory.cs",
@@ -10864,7 +10888,9 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
+          "verifiedSourceSha256": "3C3AD9A466D02DE591BD255145E5DFEDE6928FD0816807020F111E01A262AD0F"
         },
         {
           "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
@@ -10889,7 +10915,9 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
+          "verifiedSourceSha256": "A0CE564FE43CC4B746A6B7E93C43BBA7F0AD6CECC400D022F326F033933044F9"
         },
         {
           "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
@@ -10927,7 +10955,9 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
+          "verifiedSourceSha256": "48B9A85053AE849FC82515160FFB108166C5598E21FBE8B795613A9F8FE95077"
         },
         {
           "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
@@ -10952,7 +10982,9 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
+          "verifiedSourceSha256": "84822A5461A7258716918430DE6B360FE1B7DA6DCC7076D1A6E4D18C3E1C939E"
         },
         {
           "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
@@ -10977,7 +11009,9 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
+          "verifiedSourceSha256": "66C18E0D1E77D97E3C86DE68B4FA7A7869CF08622EE13F93548B93F268F9249E"
         },
         {
           "path": "src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Contracts/ConfigurationContracts.cs",
@@ -10989,7 +11023,9 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
+          "verifiedSourceSha256": "7D62AC90B7A38959BA13D70EFF72F7625A4308CDCC35E9446163189CAB6E6C51"
         },
         {
           "path": "src/GWGUI.Emulation.Philips/Common/Machines/Common/Contracts/ConfigurationContracts.cs",
@@ -11001,7 +11037,9 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
+          "verifiedSourceSha256": "463762AF23B03C1880FA84B2630026C7D5B7A9883248F2924B5AD2990B4301B3"
         },
         {
           "path": "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Contracts/ConfigurationContracts.cs",
@@ -11013,7 +11051,9 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
+          "verifiedSourceSha256": "85FA1F23B0F53B78FF341B206FF1140F86768D70B19F53D7AEE212ED03F2D482"
         },
         {
           "path": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Contracts/ConfigurationContracts.cs",
@@ -11025,7 +11065,9 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
+          "verifiedSourceSha256": "674279892D0B36507F20EF8623084ED80D04242FBB64605621EA42EE1E11A636"
         },
         {
           "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Factories/LibretroMachineFactory.cs",
@@ -11063,7 +11105,9 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
+          "verifiedSourceSha256": "BFF365C22FEB927573A5DE18929A9F64DA0EAF4012E68EF2A0C2A73334562385"
         },
         {
           "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Factories/LibretroMachineFactory.cs",
@@ -11101,7 +11145,9 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
+          "verifiedSourceSha256": "403ACF5E1F9039FCE26E380B2CA8938BEBDDA448695AB77275DE5ECF8A63A1E3"
         },
         {
           "path": "src/GWGUI.Emulation.Snk/Emulators/MednafenNgp/Factories/MednafenNgpMachineFactory.cs",
@@ -11165,7 +11211,9 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
+          "verifiedSourceSha256": "4D58AB577C1055C65DA85CF91533CA583116D06D4CEB96A1DBC1A03BF41F06B3"
         },
         {
           "path": "src/GWGUI.Emulation.Watara/Common/Machines/Common/Contracts/ConfigurationContracts.cs",
@@ -11177,7 +11225,9 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
+          "verifiedSourceSha256": "9CEACFB4EB35CB55F3B04E6257F3B89D3FE39E2F6F3E8DCCBA6B3B5EA0A922E1"
         },
         {
           "path": "src/GWGUI.Emulation.Watara/Emulators/Potator/Interop/Services/InputCallbackHost.cs",
@@ -11202,7 +11252,9 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
+          "verifiedSourceSha256": "F5E02DC4A354B78A48E6F78973BC3ED278E3052E198183FBBA64E1194071158F"
         },
         {
           "path": "src/GWGUI.Emulation/Contracts/EmulationControllerControls.cs",
@@ -11214,7 +11266,9 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
+          "verifiedSourceSha256": "F5415B44ECA621F3AB9D9B46802193D51E36DD6FCCDDC9DBFF3E4A780F25D6D6"
         },
         {
           "path": "src/GWGUI.Emulation/Contracts/EmulationEmulatorInstallation.cs",
@@ -11226,7 +11280,9 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
+          "verifiedSourceSha256": "F6E6E64879300BCCA5E80170E57AE204B8DEC044681066BDC5D7BCE76AA96DB5"
         },
         {
           "path": "src/GWGUI.Emulation/HardDisks/Containers/DifferencingImageStreams.cs",
@@ -11264,7 +11320,9 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
+          "verifiedSourceSha256": "AFE44E5747BDA9800DF1F205162CFEC31EC58B609F1D14639C86CA6D683558BF"
         },
         {
           "path": "src/GWGUI.Emulation/HardDisks/FileSystems/Amiga/Pfs3/Blocks/Pfs3DirEntry.cs",
@@ -11276,7 +11334,9 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
+          "verifiedSourceSha256": "AFE44E5747BDA9800DF1F205162CFEC31EC58B609F1D14639C86CA6D683558BF"
         },
         {
           "path": "src/GWGUI.Emulation/HardDisks/FileSystems/Amiga/Pfs3/Blocks/Pfs3RootBlockIndex.cs",
@@ -11288,7 +11348,9 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
+          "verifiedSourceSha256": "9114E2DB845B1F7344500C59C4289D9F23D767A8827EB81EE5FCF4A942CF400D"
         },
         {
           "path": "src/GWGUI.Emulation/HardDisks/FileSystems/Amiga/Pfs3/Doctor/Pfs3DoctorStandardScan.cs",
@@ -11326,7 +11388,9 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
+          "verifiedSourceSha256": "610F573A3494A3E89592063E5DBCD1874398CB9C5C4BE8FB0AE570DC7A9C3CA1"
         },
         {
           "path": "src/GWGUI.Emulation/HardDisks/FileSystems/Amiga/Pfs3/Pfs3ExtraFields.cs",
@@ -11338,7 +11402,9 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
+          "verifiedSourceSha256": "610F573A3494A3E89592063E5DBCD1874398CB9C5C4BE8FB0AE570DC7A9C3CA1"
         },
         {
           "path": "src/GWGUI.Emulation/HardDisks/FileSystems/Amiga/Pfs3/Pfs3FileEntry.cs",
@@ -11350,7 +11416,9 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
+          "verifiedSourceSha256": "AE06E24A8504BB50FC3DED190A3D8ED419922072F7F1BFDD39B1957E82D0EE86"
         },
         {
           "path": "src/GWGUI.Emulation/HardDisks/FileSystems/Amiga/Shared/Exceptions/DirectoryNotEmptyException.cs",
@@ -11362,7 +11430,9 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
+          "verifiedSourceSha256": "3D5AA108A3A2B4C8E64F0BE5C0346EEF6B10913C126BA2E52AC70EF06BB3C4E9"
         },
         {
           "path": "src/GWGUI.Emulation/HardDisks/FileSystems/Amiga/Shared/Exceptions/DiskFullException.cs",
@@ -11374,7 +11444,9 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
+          "verifiedSourceSha256": "C04DEC58EC83EBD553C2BD1487E2795C492271D680963C3B701B5A35F7626869"
         },
         {
           "path": "src/GWGUI.Emulation/HardDisks/FileSystems/Amiga/Shared/Exceptions/FileSystemException.cs",
@@ -11386,7 +11458,9 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
+          "verifiedSourceSha256": "C86FD1458D1C1FB94F37B48A4E322F61CA44F0FC81E9BA0E97F4842C1222B046"
         },
         {
           "path": "src/GWGUI.Emulation/HardDisks/FileSystems/Amiga/Shared/Exceptions/FileSystemException.cs",
@@ -11398,7 +11472,9 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
+          "verifiedSourceSha256": "C86FD1458D1C1FB94F37B48A4E322F61CA44F0FC81E9BA0E97F4842C1222B046"
         },
         {
           "path": "src/GWGUI.Emulation/HardDisks/FileSystems/Amiga/Shared/Exceptions/NotAFileException.cs",
@@ -11410,7 +11486,9 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
+          "verifiedSourceSha256": "3E5734E70A433260593A54A5E7161B34BFA84FAEC41E6241209D9EB8DE584B85"
         },
         {
           "path": "src/GWGUI.Emulation/HardDisks/FileSystems/Amiga/Shared/Exceptions/PathAlreadyExistsException.cs",
@@ -11422,7 +11500,9 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
+          "verifiedSourceSha256": "12570EF07B0421EBAE8D1DCF01ECFC5F930385B9A6C84F2F723FF06293446849"
         },
         {
           "path": "src/GWGUI.Emulation/HardDisks/FileSystems/Amiga/Shared/Exceptions/PathNotFoundException.cs",
@@ -11434,7 +11514,9 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
+          "verifiedSourceSha256": "0DCBB1335FF548C7DC593BB7692B7C06F012D5AD98CED91A5FCEB0FC685AC1CF"
         },
         {
           "path": "src/GWGUI.Emulation/Services/EmulationAudioOutputController.cs",
@@ -11459,7 +11541,9 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
+          "verifiedSourceSha256": "32B6C406AAE60D459C889FAC356BC4DE306FFBD89B8F77C316070E2A22CFA408"
         },
         {
           "path": "src/GWGUI.Emulation/Services/ExternalCoreUtf8String.cs",
@@ -11471,7 +11555,9 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
+          "verifiedSourceSha256": "32B6C406AAE60D459C889FAC356BC4DE306FFBD89B8F77C316070E2A22CFA408"
         },
         {
           "path": "src/GWGUI.Emulation/Services/ExternalCoreVirtualFileSystem.cs",
@@ -11483,7 +11569,9 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
+          "verifiedSourceSha256": "64FC4E6167DC8D14EBDDF225E275EAD2C45B14569B54147867362D659C5F6CBF"
         },
         {
           "path": "src/GWGUI.Infrastructure/Processes/GreaseweazleRunner.cs",
@@ -11495,7 +11583,9 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
+          "verifiedSourceSha256": "A108AE3BE5D7BE2D709A19C842ABAE8AFDB741DFBD6726C4FBB01C1E380B9BD3"
         },
         {
           "path": "src/GWGUI.Infrastructure/Settings/JsonSettingsStore.cs",
@@ -11507,7 +11597,9 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
+          "verifiedSourceSha256": "F5934C2543AB7B52A34AB976AABFCC85C9451B4586FBC3E3763AAEA022FA9DCE"
         },
         {
           "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/AcornAtom/AcornAtomDskReader.cs",
@@ -11519,7 +11611,9 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
+          "verifiedSourceSha256": "31F02F150713EEAE9FF644BFA8FC40FB2D4512F6C0D3BFDE8B2B0D151BF88E9E"
         },
         {
           "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/Adf/AcornAdfWriter.cs",
@@ -11531,7 +11625,9 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
+          "verifiedSourceSha256": "0DC39C3A43770895C6FA011EBDB07085F58485048E4CCA1E4B84390FC5036F81"
         },
         {
           "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/Adf/AdfReader.cs",
@@ -11543,7 +11639,9 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
+          "verifiedSourceSha256": "79886B5A74F59004C1664D36B76FC9D0CDDD30C01F069C043F209AE269952AFA"
         },
         {
           "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/Adf/AmigaAdfWriter.cs",
@@ -11555,7 +11653,9 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
+          "verifiedSourceSha256": "9369C43F299A6BEE985E6FE6EED212740E497F4E12FB90A19C9C1463A94DA1F1"
         },
         {
           "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/Apridisk/ApridiskReader.cs",
@@ -11567,7 +11667,9 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
+          "verifiedSourceSha256": "5EE25ED6FB1442E55E80603D5011B4BD9E0B18E8B10E8C6861ED35555140DDFB"
         },
         {
           "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/Atr/AtrReader.cs",
@@ -11579,7 +11681,9 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
+          "verifiedSourceSha256": "B239FA94676C27B14ACC36317B2FB6233AF17C3D01D3C23056BB04651EB3ACDE"
         },
         {
           "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/BbcDfs/BbcDfsImageWriter.cs",
@@ -11591,7 +11695,9 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
+          "verifiedSourceSha256": "C5574B973C0953B2538736373B4BC09899EF93CA2FB98377CD153C1DE6078BCA"
         },
         {
           "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/BbcDfs/BbcDfsReader.cs",
@@ -11603,7 +11709,9 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
+          "verifiedSourceSha256": "CED30DD41058CC0DBF62C07E88F74608E54EF8710BBC9F8BB3581E71D1D2199B"
         },
         {
           "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/D64/D64Reader.cs",
@@ -11615,7 +11723,9 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
+          "verifiedSourceSha256": "782A2AE3593B0CAF539A73FF421659AF4E02726A0CAC29AE9835384646075C1C"
         },
         {
           "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/D71/D71Reader.cs",
@@ -11627,7 +11737,9 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
+          "verifiedSourceSha256": "611A5FAEA5C961A5B3D330F776F79C10E7744EACA592CF328D39246FD9E762D7"
         },
         {
           "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/D81/D81Reader.cs",
@@ -11639,7 +11751,9 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
+          "verifiedSourceSha256": "CDC355257A73529AA06FE9FC1036C891C7A19F36F78FBD0E997BDBF1AD6DF53B"
         },
         {
           "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/Hfe/HfeTrack.cs",
@@ -11651,7 +11765,9 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
+          "verifiedSourceSha256": "C83FB1B51EB1DA5D7B8C5674F22E59D762684CC92CEB0A1D10F39EF72E36E419"
         },
         {
           "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/Msa/MsaReader.cs",
@@ -11663,7 +11779,9 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
+          "verifiedSourceSha256": "516A2E71A20947DA55F09A12DBE220A3A4DE383F4E23235F0B909714C4C2F9D2"
         },
         {
           "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/EpsonQx10RawImageReader.cs",
@@ -11675,7 +11793,9 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
+          "verifiedSourceSha256": "89DE4A25D2A4E126C30FBC55B2F756A45696808E13AB0B4F0D386FD577C9ED1A"
         },
         {
           "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/IbmRawImageReader.cs",
@@ -11687,7 +11807,9 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
+          "verifiedSourceSha256": "DB8618D24548C6907D847B0F73101D2366A04C2D498DE255BD4CF531A03C9B4E"
         },
         {
           "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/IbmRawImageWriter.cs",
@@ -11699,7 +11821,9 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
+          "verifiedSourceSha256": "68A05BC74A3196AB92B35C4C4462CC0A27DC480E6F57994F952ED6EABA4CFEA4"
         },
         {
           "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/MsxRawImageReader.cs",
@@ -11711,7 +11835,9 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
+          "verifiedSourceSha256": "A42F716592CB1E1E0C61D6228B8234E5B21944E42634243A83E5FC358EDF2343"
         },
         {
           "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/MsxRawImageWriter.cs",
@@ -11723,7 +11849,9 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
+          "verifiedSourceSha256": "11BD1F14EB8655EB18578FDA781B4F7C7354DB483D29F52293BBDAACFD2C27DC"
         },
         {
           "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/RawImgReader.cs",
@@ -11735,7 +11863,9 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
+          "verifiedSourceSha256": "E1FAFCFF381630CBC53798082F004BB2476E05B48E51DAF0B58815BE7E31D004"
         },
         {
           "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/UcsdRawImageReader.cs",
@@ -11747,7 +11877,9 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
+          "verifiedSourceSha256": "8E098BA297EDF5E53AB46ADF65F58F27CF6A6D12BFE3A1FB00AAF9053A2DAECB"
         },
         {
           "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/ScpRevolution.cs",
@@ -11759,7 +11891,9 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
+          "verifiedSourceSha256": "7E461A6E2278ADE9D796B8ED047CDDB4B8D098DCD6651CD35A18C1123994944C"
         },
         {
           "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/ScpRevolution.cs",
@@ -11771,7 +11905,9 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
+          "verifiedSourceSha256": "7E461A6E2278ADE9D796B8ED047CDDB4B8D098DCD6651CD35A18C1123994944C"
         },
         {
           "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/St/AtariStReader.cs",
@@ -11783,7 +11919,9 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
+          "verifiedSourceSha256": "D89C08666D47A4CFC7B1E95DA52781601C0908EF7345CD2A5FCB4E0CF7193325"
         },
         {
           "path": "src/GWGUI.MediaEngine/Images/Formats/Optical/Gdi/GdiReader.cs",
@@ -11795,7 +11933,9 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
+          "verifiedSourceSha256": "B63BE6C8A679223C4B0C11A514339129052711CC01E7205A932DA51278946926"
         },
         {
           "path": "src/GWGUI.MediaEngine/Images/Models/Blocks/BlockMediaImageRepresentation.cs",
@@ -11807,7 +11947,9 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
+          "verifiedSourceSha256": "0180A0861298A8AE1EEB175FA364026531298C9CDB9E64FCEA9C927707359CA1"
         },
         {
           "path": "src/GWGUI.MediaEngine/Images/Reading/Decoding/FluxDecoderRegistry.cs",
@@ -11819,7 +11961,9 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
+          "verifiedSourceSha256": "290D7568680D430D4B87F5B9FFE8001446B74BBE5B28F1EC63C91C6D693DE9C9"
         },
         {
           "path": "src/GWGUI.MediaEngine/Images/Reading/Recognition/Policies/MsxImageRecognitionPolicy.cs",
@@ -11831,7 +11975,9 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
+          "verifiedSourceSha256": "C2BCEF681365F0DCEA9F3DE4A6F9D4356BB45FD4187A8559A810B68DCC3A59BD"
         },
         {
           "path": "src/GWGUI.MediaEngine/Images/Reading/Recognition/Policies/RawImgRecognitionPolicy.cs",
@@ -11843,7 +11989,9 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
+          "verifiedSourceSha256": "C74E143654D6A7BE74D83F6D174EDC1DA529899EB2C07F07F50F778A39394839"
         },
         {
           "path": "src/GWGUI.MediaEngine/Images/Visualization/SectorImageFluxVisualizer.cs",
@@ -11855,7 +12003,9 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
+          "verifiedSourceSha256": "0F4D2908FF0BAB91F261010B5F897161C37BC0278568737DFDA6ECBD8249484B"
         },
         {
           "path": "src/GWGUI.MediaEngine/Images/Visualization/SectorImageVisualizationPolicyRegistry.cs",
@@ -11867,7 +12017,9 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
+          "verifiedSourceSha256": "1DC1008EE5E77F3545BA58985BE64E0EF3F4A98EA03BD2F74E8D59AB5FDABE96"
         },
         {
           "path": "src/GWGUI.MediaEngine/Images/Writing/Encoding/FluxEncoderRegistry.cs",
@@ -11879,7 +12031,9 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
+          "verifiedSourceSha256": "37CB5E54E10B96DB68309DC936BA0CE2914325F3778A79884BD46169DB351040"
         },
         {
           "path": "src/GWGUI.MediaEngine/Images/Writing/Encoding/SectorImageTrackEncoder.cs",
@@ -11891,7 +12045,9 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
+          "verifiedSourceSha256": "06ADE73DE9104C454308A2E820D31CBC633D7E4DD6401C5DB1E97E0163636407"
         },
         {
           "path": "src/GWGUI.MediaEngine/Images/Writing/FluxMediaImageWriterAdapter.cs",
@@ -11903,7 +12059,9 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
+          "verifiedSourceSha256": "98A629AAD66D414EBADF67D955912605034494E1389599D0B02D555F7E141102"
         },
         {
           "path": "src/GWGUI.MediaEngine/Images/Writing/SectorMediaImageWriterAdapter.cs",
@@ -11915,7 +12073,9 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
+          "verifiedSourceSha256": "3954074C35BF7FCC0EB0BB207B277394BB403954E528E5064F56D311F3D54D2A"
         },
         {
           "path": "src/GWGUI.MediaEngine/Interfaces/Formats/Floppy/Scp/IScpReader.cs",
@@ -11940,7 +12100,9 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "typed-constructor-composition; emptyConstructorQualification",
+          "verifiedSourceSha256": "C050CB3929EB000B77A23C3742889600ADFBB1321C93681F10AE3CCD81D8BC3E"
         },
         {
           "path": "tests/GWGUI.LocalDiskImageTests/LocalExplorerOpeningCheck.cs",
@@ -12606,7 +12768,7 @@
           "qualification": "empty-void-method-no-algorithm"
         }
       ],
-      "qualification": "Partial empty-method qualification; constructors and unannotated members remain pending"
+      "qualification": "Empty method/constructor occurrences qualified only within their recorded scopes; any unannotated member and called implementation remains pending"
     },
     {
       "hash": "26400A65D37A9AF373A217903DE3BDDC19845DABB020EF2FB3623606AAB8546C",
