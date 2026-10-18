@@ -7,6 +7,18 @@ namespace GWGUI.Emulation.Functions;
 
 internal static class EmulationCoreReleaseFunctions
 {
+    internal static TRelease SelectRelease<TRelease>(IReadOnlyDictionary<string, TRelease> availableReleases,
+        EmulationEmulatorRelease release, Func<TRelease, bool> matchesEmulator)
+    {
+        if (!availableReleases.TryGetValue(release.Id, out var selected) || !matchesEmulator(selected))
+            throw new ArgumentException(nameof(release));
+        return selected;
+    }
+
+    internal static IProgress<TProgress>? CreateInstallProgress<TProgress>(IProgress<double>? progress,
+        Func<TProgress, double?> fraction)
+        => progress is null ? null : new Progress<TProgress>(value => progress.Report(fraction(value) ?? 0));
+
     internal static Task InstallLibraryAsync<TManifest>(Func<Task<long>> downloadArchive,
         Action extractLibrary, Func<long, TManifest> createManifest, Action replaceLibrary,
         Func<TManifest, Task> writeManifest, Func<Task> activateInstallation, Action<long> reportProgress)
