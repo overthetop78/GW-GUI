@@ -1,24 +1,8 @@
 {
-  "snapshot": "56fa0d2182f8c0db0b85c9561590af4b1855e8fc",
+  "snapshot": "0743f66422c971556defc9be98b6e07d41d3c0f1",
   "snapshotState": "Current worktree based on snapshot",
   "worktreeSourceChanges": [
-    "src/GWGUI.Emulation.Acorn/Emulators/Common/Functions/CoreFunctions.Catalog.cs",
-    "src/GWGUI.Emulation.Apple/Emulators/Common/Functions/CoreFunctions.Catalog.cs",
-    "src/GWGUI.Emulation.Atari/Emulators/Common/Functions/CoreFunctions.Catalog.cs",
-    "src/GWGUI.Emulation.Bandai/Emulators/Common/Functions/CoreFunctions.Catalog.cs",
-    "src/GWGUI.Emulation.Coleco/Emulators/Common/Functions/CoreFunctions.Catalog.cs",
-    "src/GWGUI.Emulation.Epoch/Emulators/Common/Functions/CoreFunctions.Catalog.cs",
-    "src/GWGUI.Emulation.Fairchild/Emulators/Common/Functions/CoreFunctions.Catalog.cs",
-    "src/GWGUI.Emulation.Mattel/Emulators/Common/Functions/CoreFunctions.Catalog.cs",
-    "src/GWGUI.Emulation.Panasonic/Emulators/Opera/Dictionaries/CoreCatalog.cs",
-    "src/GWGUI.Emulation.Philips/Emulators/Common/Functions/CoreFunctions.Catalog.cs",
-    "src/GWGUI.Emulation.Sharp/Emulators/Common/Functions/CoreFunctions.Catalog.cs",
-    "src/GWGUI.Emulation.Sinclair/Emulators/Common/Functions/CoreFunctions.Catalog.cs",
-    "src/GWGUI.Emulation.Snk/Emulators/Common/Functions/CoreFunctions.Catalog.cs",
-    "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Dictionaries/CoreCatalog.cs",
-    "src/GWGUI.Emulation.Watara/Emulators/Potator/Dictionaries/CoreCatalog.cs",
-    "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Dictionaries/CoreCatalog.cs",
-    "src/GWGUI.Emulation/Functions/EmulationCoreReleaseFunctions.cs"
+    "src/GWGUI.MediaEngine/Images/Models/Flux/FluxTransitionDecoder.cs"
   ],
   "scope": "All current non-ignored repository CSharp files, including hidden paths; BaseMethodDeclaration bodies with fewer than 30 tokens. Candidate presence is not a defect or a completion claim.",
   "fileCount": 7328,

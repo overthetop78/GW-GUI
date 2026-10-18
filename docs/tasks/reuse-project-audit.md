@@ -3267,11 +3267,21 @@ Les seize constructeurs reprennent la composition de chemins Atari 1b6c2d19a. Le
 
 Chemins des installations : composition Atari originale 1b6c2d19a reprise dans le propriétaire SDK existant ; seize copies remplacées. Seize fichiers comparés intégralement, seize liaisons SDK et zéro erreur sémantique SDK/modules. Les 524 cas avant/après sont identiques, y compris messages et priorités des exceptions ; 43 tests existants réussis. Relevés actualisés : 7328 fichiers, 11621 grands corps/478 groupes, 9533 petits corps/775 exacts/368 normalisés. Les validations locales du manifeste actif et leur unique Path.Combine restent qualifiées. Audit général ouvert.
 
-- [ ] Rétablir dans le relevé les qualifications des contrats de exploration déjà vérifiés
-  - [ ] Conserver la décision existante lorsque ses preuves restent valides
-    - [ ] Modifier `docs/reference/reuse-audit/qualification.json` et `docs/reference/reuse-audit/current-project-groups.json` : vérifier les empreintes de fileSystemTypedConstructorRevalidation, comparer le seul changement de csproj et reporter la décision existante sur les quatre constructeurs sans refaire leur refactorisation ; consigner ce résultat dans `docs/tasks/reuse-project-audit.md`.
-- [ ] Qualifier la reconstruction NRZI fixe dupliquée
-  - [ ] Déterminer le propriétaire et les appels existants
-    - [ ] Modifier `docs/reference/reuse-audit/qualification.json` et `docs/tasks/reuse-project-audit.md` : comparer les deux corps identiques DecodeNrzi/DecodeDoubledNrzi de `src/GWGUI.MediaEngine/Images/Models/Flux/FluxTransitionDecoder.cs` ; retrouver la méthode antérieure et vérifier les références dans tous les projets avant de retirer la copie inutilisée ou de la raccorder au propriétaire existant ; conserver la variante adaptative Victor.
+- [x] Rétablir dans le relevé les qualifications des contrats de exploration déjà vérifiés
+  - [x] Conserver la décision existante lorsque ses preuves restent valides
+    - [x] Modifier `docs/reference/reuse-audit/qualification.json` et `docs/reference/reuse-audit/current-project-groups.json` : vérifier les empreintes de fileSystemTypedConstructorRevalidation, comparer le seul changement de csproj et reporter la décision existante sur les quatre constructeurs sans refaire leur refactorisation ; consigner ce résultat dans `docs/tasks/reuse-project-audit.md`.
+- [x] Qualifier la reconstruction NRZI fixe dupliquée
+  - [x] Déterminer le propriétaire et les appels existants
+    - [x] Modifier `docs/reference/reuse-audit/qualification.json` et `docs/tasks/reuse-project-audit.md` : comparer les deux corps identiques DecodeNrzi/DecodeDoubledNrzi de `src/GWGUI.MediaEngine/Images/Models/Flux/FluxTransitionDecoder.cs` ; retrouver la méthode antérieure et vérifier les références dans tous les projets avant de retirer la copie inutilisée ou de la raccorder au propriétaire existant ; conserver la variante adaptative Victor.
 
 Build groupé contrats/chemins : scripts/local-building.cmd --building=debug --modules=A terminé avec code 0 ; application build/Debug/GW GUI/gwgui.exe et les 23 assemblies déclarées présents. 11851 empreintes src/scripts inchangées ; DLL Updater unique gwgui.updater.dll. Empreinte agrégée du relevé complet et empreintes individuelles des fichiers des deux blocs conservées dans installationContractsPathsBuild. Avertissements de compilation présents ; aucune erreur bloquante.
+
+Qualifications exploration rétablies : quatre fichiers de contrats et mapper identiques aux empreintes de la preuve existante ; seul ajout dans le csproj MediaEngine : ressources natives cfg. Types et dépendances inchangés ; aucun code de contrat refactorisé de nouveau.
+
+- [x] Retirer la copie NRZI fixe inutilisée et vérifier le propriétaire conservé
+  - [x] Supprimer uniquement la fabrique inutilisée
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Models/Flux/FluxTransitionDecoder.cs` : supprimer DecodeDoubledNrzi(intervals, double) et sa documentation ; conserver intégralement DecodeNrzi, DecodeAdaptiveDoubledNrzi, Reconstruct et leurs appels.
+  - [x] Vérifier la suppression et les codecs existants
+    - [x] Modifier `docs/reference/reuse-audit/qualification.json` : comparer le fichier intégral à la seule suppression prévue, vérifier les références et les erreurs sémantiques du moteur et de ses tests ; consigner les tests existants de flux, sans nouvelle fixture.
+    - [x] Modifier `docs/reference/reuse-audit/current-project-groups.json` et `docs/reference/reuse-audit/short-method-groups.json` : actualiser les relevés, conserver les qualifications déjà vérifiées et consigner le résultat dans `docs/tasks/reuse-project-audit.md`.
+NRZI fixe : méthode antérieure 135fb26e4 conservée intégralement ; suppression de la seule fabrique interne doublée inutilisée et de sa documentation. Comparaison intégrale du fichier exacte, corps fixes initialement identiques, aucune référence restante à la copie, variante adaptative Victor inchangée. Compilation des références du test réussie ; 29 tests existants réussis, aucune nouvelle fixture. Relevés : 11620 grands corps et 477 groupes ; 9533 petits corps, 775 exacts et 368 normalisés. Qualifications recopiées depuis 0743f6642 uniquement pour mêmes chemin/nom/hash et fichiers intégralement inchangés : 54 occurrences longues et 395 courtes, plus les quatre constructeurs de exploration justifiés par leur preuve existante. Aucun autre candidat qualifié par ces validations. Bloc NRZI postérieur au build produit ; prochain build groupé après plusieurs blocs.

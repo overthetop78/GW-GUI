@@ -3,7 +3,7 @@
   "currentCSharpFiles": 7328,
   "outsideSrcCSharpFiles": 299,
   "baselineMethodCount": 5848,
-  "currentMethodCount": 11621,
+  "currentMethodCount": 11620,
   "powerShellFunctionCount": 17,
   "groups": [
     {
@@ -9285,67 +9285,6 @@
           "tokens": 42,
           "hash": "7C7279523C7BEB1C0A5AEAE7ACF302509CD43322BBD4B61B8B840C6D954F660B",
           "shape": "45F5EEA8EFF82C23D45FD4B0F20E8CD9300051C9C25612AA687FFC8D438681F7"
-        }
-      ],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
-      "hash": "5444A4C71389867BDCCAF20E4111CF3A5FF7DEFE4C467C53DE1AB696E9FEC563",
-      "method": "DecodeNrzi",
-      "tokens": 34,
-      "current": [
-        {
-          "path": "src/GWGUI.MediaEngine/Images/Models/Flux/FluxTransitionDecoder.cs",
-          "name": "DecodeNrzi",
-          "line": 67,
-          "tokens": 34,
-          "hash": "5444A4C71389867BDCCAF20E4111CF3A5FF7DEFE4C467C53DE1AB696E9FEC563",
-          "shape": "DCE363588BFD7B06C16A919BF371937C4A7328BF5EFEC0DF32280CA82A4AA528"
-        },
-        {
-          "path": "src/GWGUI.MediaEngine/Images/Models/Flux/FluxTransitionDecoder.cs",
-          "name": "DecodeDoubledNrzi",
-          "line": 86,
-          "tokens": 34,
-          "hash": "5444A4C71389867BDCCAF20E4111CF3A5FF7DEFE4C467C53DE1AB696E9FEC563",
-          "shape": "DCE363588BFD7B06C16A919BF371937C4A7328BF5EFEC0DF32280CA82A4AA528"
-        }
-      ],
-      "predecessors": [
-        {
-          "path": "src/GWGUI.MediaEngine/Images/Models/Flux/FluxTransitionDecoder.cs",
-          "name": "DecodeNrzi",
-          "line": 67,
-          "tokens": 34,
-          "hash": "5444A4C71389867BDCCAF20E4111CF3A5FF7DEFE4C467C53DE1AB696E9FEC563",
-          "shape": "DCE363588BFD7B06C16A919BF371937C4A7328BF5EFEC0DF32280CA82A4AA528"
-        },
-        {
-          "path": "src/GWGUI.MediaEngine/Images/Models/Flux/FluxTransitionDecoder.cs",
-          "name": "DecodeDoubledNrzi",
-          "line": 86,
-          "tokens": 34,
-          "hash": "5444A4C71389867BDCCAF20E4111CF3A5FF7DEFE4C467C53DE1AB696E9FEC563",
-          "shape": "DCE363588BFD7B06C16A919BF371937C4A7328BF5EFEC0DF32280CA82A4AA528"
-        }
-      ],
-      "shapePredecessors": [
-        {
-          "path": "src/GWGUI.MediaEngine/Images/Models/Flux/FluxTransitionDecoder.cs",
-          "name": "DecodeNrzi",
-          "line": 67,
-          "tokens": 34,
-          "hash": "5444A4C71389867BDCCAF20E4111CF3A5FF7DEFE4C467C53DE1AB696E9FEC563",
-          "shape": "DCE363588BFD7B06C16A919BF371937C4A7328BF5EFEC0DF32280CA82A4AA528"
-        },
-        {
-          "path": "src/GWGUI.MediaEngine/Images/Models/Flux/FluxTransitionDecoder.cs",
-          "name": "DecodeDoubledNrzi",
-          "line": 86,
-          "tokens": 34,
-          "hash": "5444A4C71389867BDCCAF20E4111CF3A5FF7DEFE4C467C53DE1AB696E9FEC563",
-          "shape": "DCE363588BFD7B06C16A919BF371937C4A7328BF5EFEC0DF32280CA82A4AA528"
         }
       ],
       "qualification": "pending"
@@ -19304,7 +19243,7 @@
     {
       "language": "CSharp",
       "hash": "A61349BFDFFA5D404CE7D0D458204D435194B5E4D84870DF4F9FBE26A86A9946",
-      "method": "ToFairchild",
+      "method": "ToEpoch",
       "tokens": 36,
       "current": [
         {
@@ -23323,7 +23262,9 @@
           "line": 9,
           "tokens": 103,
           "hash": "CD8906CDB323F9FC13FC90049964CECF57F1CD558E065973392B971E6A3F4A4B",
-          "shape": "70E231C2692F1E011E9FB6483E1E2327740442B43EC9930C374055C7DC25AFE1"
+          "shape": "70E231C2692F1E011E9FB6483E1E2327740442B43EC9930C374055C7DC25AFE1",
+          "qualification": "Typed public contract initialization; distinct enum/entry/analysis types and defensive BCL copies; existing fileSystemTypedConstructorRevalidation proof unchanged",
+          "qualificationSourceSha256": "AF02E31D87390D5A9BBAD899AEB07AE0CFD16C047DECB935CECA3A963EFEF441"
         },
         {
           "path": "src/GWGUI.MediaEngine/Contracts/Explorer/FileSystemVolume.cs",
@@ -23331,7 +23272,9 @@
           "line": 9,
           "tokens": 103,
           "hash": "CD8906CDB323F9FC13FC90049964CECF57F1CD558E065973392B971E6A3F4A4B",
-          "shape": "70E231C2692F1E011E9FB6483E1E2327740442B43EC9930C374055C7DC25AFE1"
+          "shape": "70E231C2692F1E011E9FB6483E1E2327740442B43EC9930C374055C7DC25AFE1",
+          "qualification": "Typed public contract initialization; distinct enum/entry/analysis types and defensive BCL copies; existing fileSystemTypedConstructorRevalidation proof unchanged",
+          "qualificationSourceSha256": "6B50D69A5C4250879F0B127D36DB510ACE4BBF12EA8FBC43D37997C7CFEEC7B3"
         }
       ],
       "predecessors": [
@@ -27955,7 +27898,9 @@
           "line": 10,
           "tokens": 172,
           "hash": "F928600A8786776D9F646245A1902529A7051F2CD06EDC205C46B96000DA686F",
-          "shape": "C8FD14FDF6AE57B3DE90D73A0F3394C726C36FE24589A75C60D8284A759FBFD8"
+          "shape": "C8FD14FDF6AE57B3DE90D73A0F3394C726C36FE24589A75C60D8284A759FBFD8",
+          "qualification": "Typed public contract initialization; distinct enum/entry/analysis types and defensive BCL copies; existing fileSystemTypedConstructorRevalidation proof unchanged",
+          "qualificationSourceSha256": "5A4F02E50F10C4ADCC491B08DF5E844A198D7A0F61E6246DD3DF872A89F221B5"
         },
         {
           "path": "src/GWGUI.MediaEngine/Contracts/Explorer/FileSystemEntry.cs",
@@ -27963,7 +27908,9 @@
           "line": 10,
           "tokens": 172,
           "hash": "F928600A8786776D9F646245A1902529A7051F2CD06EDC205C46B96000DA686F",
-          "shape": "C8FD14FDF6AE57B3DE90D73A0F3394C726C36FE24589A75C60D8284A759FBFD8"
+          "shape": "C8FD14FDF6AE57B3DE90D73A0F3394C726C36FE24589A75C60D8284A759FBFD8",
+          "qualification": "Typed public contract initialization; distinct enum/entry/analysis types and defensive BCL copies; existing fileSystemTypedConstructorRevalidation proof unchanged",
+          "qualificationSourceSha256": "400B89636F2F8CA1A259D824EDA95CE8035A831472C1E55D0219550E033D9BE0"
         }
       ],
       "predecessors": [
