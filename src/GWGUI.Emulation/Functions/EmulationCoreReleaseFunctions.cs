@@ -7,6 +7,19 @@ namespace GWGUI.Emulation.Functions;
 
 internal static class EmulationCoreReleaseFunctions
 {
+    internal static async Task InstallLibraryAsync<TManifest>(Func<Task<long>> downloadArchive,
+        Action extractLibrary, Func<long, TManifest> createManifest, Action replaceLibrary,
+        Func<TManifest, Task> writeManifest, Func<Task> activateInstallation, Action<long> reportProgress)
+    {
+        var archiveSize = await downloadArchive().ConfigureAwait(false);
+        extractLibrary();
+        var manifest = createManifest(archiveSize);
+        replaceLibrary();
+        await writeManifest(manifest).ConfigureAwait(false);
+        await activateInstallation().ConfigureAwait(false);
+        reportProgress(archiveSize);
+    }
+
     internal static async Task<T> QueryReleaseAsync<T>(HttpClient client, Uri archiveUri,
         Func<HttpResponseMessage, T> readResponse, CancellationToken cancellationToken)
     {

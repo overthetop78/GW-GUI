@@ -39,27 +39,17 @@ public sealed class CoreReleaseService : ICoreReleaseService
         var extracted = paths.LibraryPath + CoreReleaseConstants.TemporaryExtractExtension;
         try
         {
-            var archiveSize = await CoreReleaseFunctions.DownloadAsync(_httpClient, release.DownloadUri, download, progress, cancellationToken).ConfigureAwait(false);
-            CoreReleaseFunctions.ExtractExpectedLibrary(download, entry.DllName, extracted);
-            var manifest = new CoreDiagnosticManifest(
-                release.Id,
-                release.DeclaredVersion,
-                release.DownloadUri.AbsoluteUri,
-                DateTimeOffset.UtcNow,
-                archiveSize,
-                new FileInfo(extracted).Length,
-                CoreDiagnosticFunctions.CalculateSha256(extracted),
-                CoreDiagnosticFunctions.ReadArchitecture(extracted),
-                CoreDiagnosticFunctions.ReadDeclaredVersion(extracted),
-                CoreDiagnosticFunctions.ReadExports(extracted)
-            );
-            if (!string.Equals(manifest.Architecture, EmulatorCatalogConstants.WindowsX64Architecture, StringComparison.Ordinal))
-                throw new InvalidDataException(CoreReleaseErrors.InvalidArchitecture);
-            CoreReleaseFunctions.ReplaceLibraryAtomically(extracted, paths.LibraryPath);
-            await CoreReleaseFunctions.WriteManifestAtomicallyAsync(paths.ManifestPath, manifest, cancellationToken).ConfigureAwait(false);
-            var activeManifestPath = CoreCatalog.GetActiveManifestPath(release.Emulator, _installationRoot);
-            await CoreReleaseFunctions.WriteActiveInstallationAtomicallyAsync(activeManifestPath, new CoreActiveInstallation(release.Id, release.DeclaredVersion), cancellationToken).ConfigureAwait(false);
-            progress?.Report(new CoreInstallProgress(archiveSize, archiveSize));
+            await EmulationCoreReleaseFunctions.InstallLibraryAsync(() => CoreReleaseFunctions.DownloadAsync(_httpClient, release.DownloadUri, download, progress, cancellationToken), () => CoreReleaseFunctions.ExtractExpectedLibrary(download, entry.DllName, extracted), archiveSize =>
+            {
+                var manifest = new CoreDiagnosticManifest(release.Id, release.DeclaredVersion, release.DownloadUri.AbsoluteUri, DateTimeOffset.UtcNow, archiveSize, new FileInfo(extracted).Length, CoreDiagnosticFunctions.CalculateSha256(extracted), CoreDiagnosticFunctions.ReadArchitecture(extracted), CoreDiagnosticFunctions.ReadDeclaredVersion(extracted), CoreDiagnosticFunctions.ReadExports(extracted));
+                if (!string.Equals(manifest.Architecture, EmulatorCatalogConstants.WindowsX64Architecture, StringComparison.Ordinal))
+                    throw new InvalidDataException(CoreReleaseErrors.InvalidArchitecture);
+                return manifest;
+            }, () => CoreReleaseFunctions.ReplaceLibraryAtomically(extracted, paths.LibraryPath), manifest => CoreReleaseFunctions.WriteManifestAtomicallyAsync(paths.ManifestPath, manifest, cancellationToken), async () =>
+            {
+                var activeManifestPath = CoreCatalog.GetActiveManifestPath(release.Emulator, _installationRoot);
+                await CoreReleaseFunctions.WriteActiveInstallationAtomicallyAsync(activeManifestPath, new CoreActiveInstallation(release.Id, release.DeclaredVersion), cancellationToken).ConfigureAwait(false);
+            }, archiveSize => progress?.Report(new CoreInstallProgress(archiveSize, archiveSize))).ConfigureAwait(false);
             return paths;
         }
         finally
