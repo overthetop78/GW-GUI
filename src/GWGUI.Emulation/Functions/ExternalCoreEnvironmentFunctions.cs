@@ -243,7 +243,11 @@ internal static class ExternalCoreEnvironmentFunctions
     }
 
     internal static T? OptionalDelegate<T>(nint pointer) where T : Delegate
-        => pointer == 0 ? null : Marshal.GetDelegateForFunctionPointer<T>(pointer);
+        => OptionalDelegate<T, nint>(pointer, static value => value);
+
+    // Garder deux lectures distinctes pour une source qui peut changer entre les lectures.
+    internal static T? OptionalDelegate<T, TSource>(TSource source, Func<TSource, nint> readPointer) where T : Delegate
+        => readPointer(source) == 0 ? null : Marshal.GetDelegateForFunctionPointer<T>(readPointer(source));
 
     internal static T RequiredDelegate<T>(nint pointer, Func<Exception> createError) where T : Delegate
     {

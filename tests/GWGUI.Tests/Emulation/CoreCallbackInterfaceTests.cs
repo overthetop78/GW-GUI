@@ -7,6 +7,91 @@ namespace GWGUI.Tests.Emulation;
 public sealed class CoreCallbackInterfaceTests
 {
     [Fact]
+    public void OptionalSourceStopsAfterTheFirstNullReadAndKeepsTheSourceAlive()
+    {
+        var source = new PointerSource(read => read == 1 ? nint.Zero : throw new InvalidOperationException("unexpected second read"));
+        try
+        {
+            Assert.Null(ExternalCoreEnvironmentFunctions.OptionalDelegate<ExternalCoreApi.KeyboardEvent, PointerSource>(source, static owner => owner.Read()));
+            Assert.Equal(1, source.Reads);
+            Assert.False(source.Disposed);
+        }
+        finally { source.Dispose(); }
+    }
+
+    [Fact]
+    public void OptionalSourceConvertsTheSecondPointerRatherThanTheFirst()
+    {
+        var firstCalls = 0;
+        var secondCalls = 0;
+        ExternalCoreApi.KeyboardEvent first = (_, _, _, _) => firstCalls++;
+        ExternalCoreApi.KeyboardEvent second = (_, _, _, _) => secondCalls++;
+        PointerSource? source = null;
+        try
+        {
+            var firstPointer = Marshal.GetFunctionPointerForDelegate(first);
+            var secondPointer = Marshal.GetFunctionPointerForDelegate(second);
+            source = new PointerSource(read => read == 1 ? firstPointer : secondPointer);
+            var converted = ExternalCoreEnvironmentFunctions.OptionalDelegate<ExternalCoreApi.KeyboardEvent, PointerSource>(source, static owner => owner.Read());
+            Assert.NotNull(converted);
+            Assert.Equal(secondPointer, Marshal.GetFunctionPointerForDelegate(converted));
+            converted(true, 0, 0, 0);
+            Assert.Equal(0, firstCalls);
+            Assert.Equal(1, secondCalls);
+            Assert.Equal(2, source.Reads);
+            Assert.False(source.Disposed);
+        }
+        finally
+        {
+            source?.Dispose();
+            GC.KeepAlive(first);
+            GC.KeepAlive(second);
+        }
+    }
+
+    [Fact]
+    public void OptionalSourceKeepsTheOriginalFailureWhenTheSecondReadIsNull()
+    {
+        var source = new PointerSource(read => read == 1 ? (nint)1 : nint.Zero);
+        try
+        {
+            var expected = Assert.Throws<ArgumentNullException>(() => Marshal.GetDelegateForFunctionPointer<ExternalCoreApi.KeyboardEvent>(nint.Zero));
+            var actual = Assert.Throws<ArgumentNullException>(() =>
+                ExternalCoreEnvironmentFunctions.OptionalDelegate<ExternalCoreApi.KeyboardEvent, PointerSource>(source, static owner => owner.Read()));
+            Assert.Equal(expected.ParamName, actual.ParamName);
+            Assert.Equal(2, source.Reads);
+            Assert.False(source.Disposed);
+        }
+        finally { source.Dispose(); }
+    }
+
+    [Theory]
+    [InlineData(1)]
+    [InlineData(2)]
+    public void OptionalSourcePropagatesEitherReadFailure(int failingRead)
+    {
+        var expected = new InvalidOperationException("read failed");
+        var source = new PointerSource(read => read == failingRead ? throw expected : (nint)1);
+        try
+        {
+            var actual = Assert.Throws<InvalidOperationException>(() =>
+                ExternalCoreEnvironmentFunctions.OptionalDelegate<ExternalCoreApi.KeyboardEvent, PointerSource>(source, static owner => owner.Read()));
+            Assert.Same(expected, actual);
+            Assert.Equal(failingRead, source.Reads);
+            Assert.False(source.Disposed);
+        }
+        finally { source.Dispose(); }
+    }
+
+    private sealed class PointerSource(Func<int, nint> read) : IDisposable
+    {
+        public int Reads { get; private set; }
+        public bool Disposed { get; private set; }
+        public nint Read() => read(++Reads);
+        public void Dispose() => Disposed = true;
+    }
+
+    [Fact]
     public void RequiredDelegateThrowsTheDeferredErrorExactlyOnce()
     {
         var expected = new InvalidOperationException("incomplete interface");

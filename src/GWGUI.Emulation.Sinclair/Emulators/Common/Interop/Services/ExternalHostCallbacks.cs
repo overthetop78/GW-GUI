@@ -137,6 +137,6 @@ internal sealed partial class ExternalHostCallbacks : IDisposable, IEmulationCor
     internal void ValidateConfiguredOptions() => _optionHost.ValidateConfiguredValues();
     internal void BeginFrame()
     {
-        _keyboard.Publish(_input.Polled.Keys, KeyboardCallbackPointer == nint.Zero ? null : Marshal.GetDelegateForFunctionPointer<ExternalCoreApi.KeyboardEvent>(KeyboardCallbackPointer));
+        _keyboard.Publish(_input.Polled.Keys, GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.OptionalDelegate<ExternalCoreApi.KeyboardEvent, ExternalHostCallbacks>(this, static callbackOwner => callbackOwner.KeyboardCallbackPointer));
     }
 }

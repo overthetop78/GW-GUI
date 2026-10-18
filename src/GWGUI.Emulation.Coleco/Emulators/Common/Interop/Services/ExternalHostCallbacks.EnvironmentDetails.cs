@@ -29,7 +29,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
     {
         if (data == nint.Zero) return false;
         KeyboardCallbackPointer = Marshal.PtrToStructure<ExternalCoreApi.KeyboardCallback>(data).Callback;
-        _keyboardEvent = KeyboardCallbackPointer == nint.Zero ? null : Marshal.GetDelegateForFunctionPointer<ExternalCoreApi.KeyboardEvent>(KeyboardCallbackPointer);
+        _keyboardEvent = GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.OptionalDelegate<ExternalCoreApi.KeyboardEvent, ExternalHostCallbacks>(this, static callbackOwner => callbackOwner.KeyboardCallbackPointer);
         return true;
     }
 

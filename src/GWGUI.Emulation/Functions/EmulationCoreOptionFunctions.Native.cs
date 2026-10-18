@@ -108,7 +108,7 @@ public static partial class EmulationCoreOptionFunctions
         callback = null;
         if (data == nint.Zero) return false;
         var pointer = Marshal.PtrToStructure<ExternalCoreApi.CoreOptionsUpdateDisplayCallback>(data).Callback;
-        callback = pointer == nint.Zero ? null : Marshal.GetDelegateForFunctionPointer<ExternalCoreApi.UpdateCoreOptionsDisplay>(pointer);
+        callback = GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.OptionalDelegate<ExternalCoreApi.UpdateCoreOptionsDisplay>(pointer);
         return true;
     }
 

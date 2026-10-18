@@ -79,7 +79,7 @@ internal sealed partial class ExternalHostCallbacks
                     return true;
                 case ExternalCoreApiConstants.SetKeyboardCallback:
                     var keyboard = Marshal.PtrToStructure<ExternalCoreApi.KeyboardCallback>(data);
-                    _keyboardEvent = keyboard.Callback == 0 ? null : Marshal.GetDelegateForFunctionPointer<ExternalCoreApi.KeyboardEvent>(keyboard.Callback);
+                    _keyboardEvent = GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.OptionalDelegate<ExternalCoreApi.KeyboardEvent>(keyboard.Callback);
                     return true;
                 case ExternalCoreApiConstants.SetDiskControl:
                     DiskControl.Capture(data);

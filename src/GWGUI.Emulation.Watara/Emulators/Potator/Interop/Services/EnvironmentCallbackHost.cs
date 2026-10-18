@@ -75,7 +75,7 @@ internal sealed class EnvironmentCallbackHost : IDisposable
             {
                 case SetAudioBufferStatusCallback:
                     var callback = data == nint.Zero ? nint.Zero : Marshal.ReadIntPtr(data);
-                    _audioBufferStatus = callback == nint.Zero ? null : Marshal.GetDelegateForFunctionPointer<AudioBufferStatusCallback>(callback);
+                    _audioBufferStatus = GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.OptionalDelegate<AudioBufferStatusCallback>(callback);
                     return true;
                 case SetMinimumAudioLatency:
                     MinimumAudioLatencyMilliseconds = data == nint.Zero ? 0 : Math.Clamp(Marshal.ReadInt32(data), 0, 512);

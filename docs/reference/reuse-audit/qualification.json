@@ -33548,7 +33548,11 @@
         }
       ]
     },
-    "productBuild": "After grouped Debug build in optionalNativeDelegateReuse.productBuild; compiled through test-project references, next product build after another completed block",
+    "productBuild": {
+      "verification": "inlineOptionalDelegateReuse.productBuild",
+      "deferredFactoriesAndSdkVerified": true,
+      "included": true
+    },
     "report": {
       "files": 7331,
       "verifiedAdapters": 19,
@@ -33559,6 +33563,1493 @@
       "shortMethodCount": 9601,
       "longMethodCount": 11672,
       "qualifiedCandidateAdapters": 18
+    },
+    "subsequentInlineOptionalValidation": {
+      "beforeSdkSha256": "581BA199386DC5D746903EE4DD9B1AA1F1F1B666FA4DB3DD9BB119AA0A7955CE",
+      "otherSdkTokensUnchanged": true,
+      "existingOptionalValueExpansionUnchanged": true,
+      "scope": "Only optional conversion family adapted; required guard, module factories and caller bindings unchanged",
+      "afterSdkSha256": "BC8F8404CF50C7AE3319AC6E2ECD0EE82F4A73E65ED3A271D42E99828EE87FCA"
+    }
+  },
+  "inlineOptionalDelegateReuse": {
+    "sources": [
+      {
+        "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+        "sha256": "148268E7557E6D46F6B99A20232CB67AE303F0D41F39913B9CA8CFBD394AD65C",
+        "items": [
+          {
+            "start": 1093,
+            "conversionTarget": "System.Runtime.InteropServices.Marshal.GetDelegateForFunctionPointer<GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardEvent>(nint)",
+            "pointerSymbol": "GWGUI.Emulation.Acorn.Emulators.Common.Interop.Services.ExternalHostCallbacks.KeyboardCallbackPointer",
+            "delegateType": "GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardEvent",
+            "typeSyntax": "ExternalCoreApi.KeyboardEvent",
+            "pointerKind": "Property",
+            "baseType": null,
+            "baseSymbol": null,
+            "policy": "owner reread",
+            "reason": "Original property getter once on null, twice otherwise; second value remains the Marshal argument",
+            "pointer": "KeyboardCallbackPointer",
+            "length": 139,
+            "before": "KeyboardCallbackPointer == nint.Zero ? null : Marshal.GetDelegateForFunctionPointer<ExternalCoreApi.KeyboardEvent>(KeyboardCallbackPointer)",
+            "after": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.OptionalDelegate<ExternalCoreApi.KeyboardEvent, ExternalHostCallbacks>(this, static callbackOwner => callbackOwner.KeyboardCallbackPointer)"
+          }
+        ]
+      },
+      {
+        "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "sha256": "1C3095A849C3A7C992C686A52CDD5F5B237828CD41D06DCFF4CA007EA2DB60C0",
+        "items": [
+          {
+            "start": 3712,
+            "conversionTarget": "System.Runtime.InteropServices.Marshal.GetDelegateForFunctionPointer<GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardEvent>(nint)",
+            "pointerSymbol": "GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardCallback.Callback",
+            "delegateType": "GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardEvent",
+            "typeSyntax": "ExternalCoreApi.KeyboardEvent",
+            "pointerKind": "Field",
+            "baseType": "GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardCallback",
+            "baseSymbol": "keyboard",
+            "policy": "local struct snapshot",
+            "reason": "Field of non-ref local struct copied from native ABI, stable value across null test/conversion; no accessor",
+            "pointer": "keyboard.Callback",
+            "length": 127,
+            "before": "keyboard.Callback == nint.Zero ? null : Marshal.GetDelegateForFunctionPointer<ExternalCoreApi.KeyboardEvent>(keyboard.Callback)",
+            "after": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.OptionalDelegate<ExternalCoreApi.KeyboardEvent>(keyboard.Callback)"
+          }
+        ]
+      },
+      {
+        "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+        "sha256": "29E95F4BF562E57EF3BBA62FB552883DC9AAD8D6F4612EA70E763BC7091D7DB9",
+        "items": [
+          {
+            "start": 1156,
+            "conversionTarget": "System.Runtime.InteropServices.Marshal.GetDelegateForFunctionPointer<GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardEvent>(nint)",
+            "pointerSymbol": "GWGUI.Emulation.Apple.Emulators.Common.Interop.Services.ExternalHostCallbacks.KeyboardCallbackPointer",
+            "delegateType": "GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardEvent",
+            "typeSyntax": "ExternalCoreApi.KeyboardEvent",
+            "pointerKind": "Property",
+            "baseType": null,
+            "baseSymbol": null,
+            "policy": "owner reread",
+            "reason": "Original property getter once on null, twice otherwise; second value remains the Marshal argument",
+            "pointer": "KeyboardCallbackPointer",
+            "length": 139,
+            "before": "KeyboardCallbackPointer == nint.Zero ? null : Marshal.GetDelegateForFunctionPointer<ExternalCoreApi.KeyboardEvent>(KeyboardCallbackPointer)",
+            "after": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.OptionalDelegate<ExternalCoreApi.KeyboardEvent, ExternalHostCallbacks>(this, static callbackOwner => callbackOwner.KeyboardCallbackPointer)"
+          }
+        ]
+      },
+      {
+        "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+        "sha256": "AB0315D0281126B89A83E555C48D0490CFFC4C037720416970A444A94A0F09BE",
+        "items": [
+          {
+            "start": 1059,
+            "conversionTarget": "System.Runtime.InteropServices.Marshal.GetDelegateForFunctionPointer<GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardEvent>(nint)",
+            "pointerSymbol": "GWGUI.Emulation.Atari.Emulators.Common.Interop.Services.ExternalHostCallbacks.KeyboardCallbackPointer",
+            "delegateType": "GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardEvent",
+            "typeSyntax": "ExternalCoreApi.KeyboardEvent",
+            "pointerKind": "Property",
+            "baseType": null,
+            "baseSymbol": null,
+            "policy": "owner reread",
+            "reason": "Original property getter once on null, twice otherwise; second value remains the Marshal argument",
+            "pointer": "KeyboardCallbackPointer",
+            "length": 139,
+            "before": "KeyboardCallbackPointer == nint.Zero ? null : Marshal.GetDelegateForFunctionPointer<ExternalCoreApi.KeyboardEvent>(KeyboardCallbackPointer)",
+            "after": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.OptionalDelegate<ExternalCoreApi.KeyboardEvent, ExternalHostCallbacks>(this, static callbackOwner => callbackOwner.KeyboardCallbackPointer)"
+          }
+        ]
+      },
+      {
+        "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+        "sha256": "99701F288AD15F6DE3A67AE0294F598139A7B4882C84851C7B7FCE7B4640E174",
+        "items": [
+          {
+            "start": 1095,
+            "conversionTarget": "System.Runtime.InteropServices.Marshal.GetDelegateForFunctionPointer<GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardEvent>(nint)",
+            "pointerSymbol": "GWGUI.Emulation.Coleco.Emulators.Common.Interop.Services.ExternalHostCallbacks.KeyboardCallbackPointer",
+            "delegateType": "GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardEvent",
+            "typeSyntax": "ExternalCoreApi.KeyboardEvent",
+            "pointerKind": "Property",
+            "baseType": null,
+            "baseSymbol": null,
+            "policy": "owner reread",
+            "reason": "Original property getter once on null, twice otherwise; second value remains the Marshal argument",
+            "pointer": "KeyboardCallbackPointer",
+            "length": 139,
+            "before": "KeyboardCallbackPointer == nint.Zero ? null : Marshal.GetDelegateForFunctionPointer<ExternalCoreApi.KeyboardEvent>(KeyboardCallbackPointer)",
+            "after": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.OptionalDelegate<ExternalCoreApi.KeyboardEvent, ExternalHostCallbacks>(this, static callbackOwner => callbackOwner.KeyboardCallbackPointer)"
+          }
+        ]
+      },
+      {
+        "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "sha256": "D1D2068A3BA7F78E9F5FBDB195B4ADBB0EC591AAAF9B44D4B4F07EE91E03950A",
+        "items": [
+          {
+            "start": 3394,
+            "conversionTarget": "System.Runtime.InteropServices.Marshal.GetDelegateForFunctionPointer<GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardEvent>(nint)",
+            "pointerSymbol": "GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardCallback.Callback",
+            "delegateType": "GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardEvent",
+            "typeSyntax": "ExternalCoreApi.KeyboardEvent",
+            "pointerKind": "Field",
+            "baseType": "GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardCallback",
+            "baseSymbol": "keyboard",
+            "policy": "local struct snapshot",
+            "reason": "Field of non-ref local struct copied from native ABI, stable value across null test/conversion; no accessor",
+            "pointer": "keyboard.Callback",
+            "length": 127,
+            "before": "keyboard.Callback == nint.Zero ? null : Marshal.GetDelegateForFunctionPointer<ExternalCoreApi.KeyboardEvent>(keyboard.Callback)",
+            "after": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.OptionalDelegate<ExternalCoreApi.KeyboardEvent>(keyboard.Callback)"
+          }
+        ]
+      },
+      {
+        "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+        "sha256": "9DABBA3FB7215BB283A08A1E77B07782A3C25C9C0899D64A65F362A55D714A0C",
+        "items": [
+          {
+            "start": 1093,
+            "conversionTarget": "System.Runtime.InteropServices.Marshal.GetDelegateForFunctionPointer<GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardEvent>(nint)",
+            "pointerSymbol": "GWGUI.Emulation.Epoch.Emulators.Common.Interop.Services.ExternalHostCallbacks.KeyboardCallbackPointer",
+            "delegateType": "GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardEvent",
+            "typeSyntax": "ExternalCoreApi.KeyboardEvent",
+            "pointerKind": "Property",
+            "baseType": null,
+            "baseSymbol": null,
+            "policy": "owner reread",
+            "reason": "Original property getter once on null, twice otherwise; second value remains the Marshal argument",
+            "pointer": "KeyboardCallbackPointer",
+            "length": 139,
+            "before": "KeyboardCallbackPointer == nint.Zero ? null : Marshal.GetDelegateForFunctionPointer<ExternalCoreApi.KeyboardEvent>(KeyboardCallbackPointer)",
+            "after": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.OptionalDelegate<ExternalCoreApi.KeyboardEvent, ExternalHostCallbacks>(this, static callbackOwner => callbackOwner.KeyboardCallbackPointer)"
+          }
+        ]
+      },
+      {
+        "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+        "sha256": "09C3440FCCA15897BFF9FB2D516B3630C0F7A65F6B55025498DD0C84D031E4E6",
+        "items": [
+          {
+            "start": 7511,
+            "conversionTarget": "System.Runtime.InteropServices.Marshal.GetDelegateForFunctionPointer<GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardEvent>(nint)",
+            "pointerSymbol": "GWGUI.Emulation.Mattel.Emulators.Common.Interop.Services.ExternalHostCallbacks.KeyboardCallbackPointer",
+            "delegateType": "GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardEvent",
+            "typeSyntax": "ExternalCoreApi.KeyboardEvent",
+            "pointerKind": "Property",
+            "baseType": null,
+            "baseSymbol": null,
+            "policy": "owner reread",
+            "reason": "Original property getter once on null, twice otherwise; second value remains the Marshal argument",
+            "pointer": "KeyboardCallbackPointer",
+            "length": 139,
+            "before": "KeyboardCallbackPointer == nint.Zero ? null : Marshal.GetDelegateForFunctionPointer<ExternalCoreApi.KeyboardEvent>(KeyboardCallbackPointer)",
+            "after": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.OptionalDelegate<ExternalCoreApi.KeyboardEvent, ExternalHostCallbacks>(this, static callbackOwner => callbackOwner.KeyboardCallbackPointer)"
+          }
+        ]
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "sha256": "E45CF2F1453636FD342277C06C2308E1FFCD5D56C2AF22AD338E4AD3908E1888",
+        "items": [
+          {
+            "start": 3613,
+            "conversionTarget": "System.Runtime.InteropServices.Marshal.GetDelegateForFunctionPointer<GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardEvent>(nint)",
+            "pointerSymbol": "GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardCallback.Callback",
+            "delegateType": "GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardEvent",
+            "typeSyntax": "ExternalCoreApi.KeyboardEvent",
+            "pointerKind": "Field",
+            "baseType": "GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardCallback",
+            "baseSymbol": "keyboard",
+            "policy": "local struct snapshot",
+            "reason": "Field of non-ref local struct copied from native ABI, stable value across null test/conversion; no accessor",
+            "pointer": "keyboard.Callback",
+            "length": 119,
+            "before": "keyboard.Callback == 0 ? null : Marshal.GetDelegateForFunctionPointer<ExternalCoreApi.KeyboardEvent>(keyboard.Callback)",
+            "after": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.OptionalDelegate<ExternalCoreApi.KeyboardEvent>(keyboard.Callback)"
+          }
+        ]
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "sha256": "0859FA9F3A9A55FAA36E86DAE5D79D78B5DDE7D12B0F79A9B44CA8F72E36CD67",
+        "items": [
+          {
+            "start": 4570,
+            "conversionTarget": "System.Runtime.InteropServices.Marshal.GetDelegateForFunctionPointer<GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardEvent>(nint)",
+            "pointerSymbol": "GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardCallback.Callback",
+            "delegateType": "GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardEvent",
+            "typeSyntax": "ExternalCoreApi.KeyboardEvent",
+            "pointerKind": "Field",
+            "baseType": "GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardCallback",
+            "baseSymbol": "keyboard",
+            "policy": "local struct snapshot",
+            "reason": "Field of non-ref local struct copied from native ABI, stable value across null test/conversion; no accessor",
+            "pointer": "keyboard.Callback",
+            "length": 119,
+            "before": "keyboard.Callback == 0 ? null : Marshal.GetDelegateForFunctionPointer<ExternalCoreApi.KeyboardEvent>(keyboard.Callback)",
+            "after": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.OptionalDelegate<ExternalCoreApi.KeyboardEvent>(keyboard.Callback)"
+          }
+        ]
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Hardware.cs",
+        "sha256": "898685DC0AEFCF0116315DFD70FF0B2060E71786E83924366140AC63ED0E6ECD",
+        "items": [
+          {
+            "start": 1107,
+            "conversionTarget": "System.Runtime.InteropServices.Marshal.GetDelegateForFunctionPointer<GWGUI.Emulation.Interop.ExternalCoreApi.HardwareContextReset>(nint)",
+            "pointerSymbol": "GWGUI.Emulation.Interop.ExternalCoreApi.HardwareRenderCallback.ContextReset",
+            "delegateType": "GWGUI.Emulation.Interop.ExternalCoreApi.HardwareContextReset",
+            "typeSyntax": "ExternalCoreApi.HardwareContextReset",
+            "pointerKind": "Field",
+            "baseType": "GWGUI.Emulation.Interop.ExternalCoreApi.HardwareRenderCallback",
+            "baseSymbol": "callback",
+            "policy": "local struct snapshot",
+            "reason": "Field of non-ref local struct copied from native ABI, stable value across null test/conversion; no accessor",
+            "pointer": "callback.ContextReset",
+            "length": 142,
+            "before": "callback.ContextReset == nint.Zero ? null : Marshal.GetDelegateForFunctionPointer<ExternalCoreApi.HardwareContextReset>(callback.ContextReset)",
+            "after": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.OptionalDelegate<ExternalCoreApi.HardwareContextReset>(callback.ContextReset)"
+          },
+          {
+            "start": 1286,
+            "conversionTarget": "System.Runtime.InteropServices.Marshal.GetDelegateForFunctionPointer<GWGUI.Emulation.Interop.ExternalCoreApi.HardwareContextReset>(nint)",
+            "pointerSymbol": "GWGUI.Emulation.Interop.ExternalCoreApi.HardwareRenderCallback.ContextDestroy",
+            "delegateType": "GWGUI.Emulation.Interop.ExternalCoreApi.HardwareContextReset",
+            "typeSyntax": "ExternalCoreApi.HardwareContextReset",
+            "pointerKind": "Field",
+            "baseType": "GWGUI.Emulation.Interop.ExternalCoreApi.HardwareRenderCallback",
+            "baseSymbol": "callback",
+            "policy": "local struct snapshot",
+            "reason": "Field of non-ref local struct copied from native ABI, stable value across null test/conversion; no accessor",
+            "pointer": "callback.ContextDestroy",
+            "length": 146,
+            "before": "callback.ContextDestroy == nint.Zero ? null : Marshal.GetDelegateForFunctionPointer<ExternalCoreApi.HardwareContextReset>(callback.ContextDestroy)",
+            "after": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.OptionalDelegate<ExternalCoreApi.HardwareContextReset>(callback.ContextDestroy)"
+          }
+        ]
+      },
+      {
+        "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+        "sha256": "A6FC66F725D436F93778941AF4BAABF950D1F2E52DB178F1EECA62AE6ACDCB27",
+        "items": [
+          {
+            "start": 7807,
+            "conversionTarget": "System.Runtime.InteropServices.Marshal.GetDelegateForFunctionPointer<GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardEvent>(nint)",
+            "pointerSymbol": "GWGUI.Emulation.Philips.Emulators.Common.Interop.Services.ExternalHostCallbacks.KeyboardCallbackPointer",
+            "delegateType": "GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardEvent",
+            "typeSyntax": "ExternalCoreApi.KeyboardEvent",
+            "pointerKind": "Property",
+            "baseType": null,
+            "baseSymbol": null,
+            "policy": "owner reread",
+            "reason": "Original property getter once on null, twice otherwise; second value remains the Marshal argument",
+            "pointer": "KeyboardCallbackPointer",
+            "length": 139,
+            "before": "KeyboardCallbackPointer == nint.Zero ? null : Marshal.GetDelegateForFunctionPointer<ExternalCoreApi.KeyboardEvent>(KeyboardCallbackPointer)",
+            "after": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.OptionalDelegate<ExternalCoreApi.KeyboardEvent, ExternalHostCallbacks>(this, static callbackOwner => callbackOwner.KeyboardCallbackPointer)"
+          }
+        ]
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "sha256": "B4547E751C3F9DB444C1960E2CD0D1034F21DC433A127764A64BDA091483AC45",
+        "items": [
+          {
+            "start": 4542,
+            "conversionTarget": "System.Runtime.InteropServices.Marshal.GetDelegateForFunctionPointer<GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardEvent>(nint)",
+            "pointerSymbol": "GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardCallback.Callback",
+            "delegateType": "GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardEvent",
+            "typeSyntax": "ExternalCoreApi.KeyboardEvent",
+            "pointerKind": "Field",
+            "baseType": "GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardCallback",
+            "baseSymbol": "keyboard",
+            "policy": "local struct snapshot",
+            "reason": "Field of non-ref local struct copied from native ABI, stable value across null test/conversion; no accessor",
+            "pointer": "keyboard.Callback",
+            "length": 119,
+            "before": "keyboard.Callback == 0 ? null : Marshal.GetDelegateForFunctionPointer<ExternalCoreApi.KeyboardEvent>(keyboard.Callback)",
+            "after": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.OptionalDelegate<ExternalCoreApi.KeyboardEvent>(keyboard.Callback)"
+          }
+        ]
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Hardware.cs",
+        "sha256": "37547D112D4AC933A06EECB44B83436E878FEF734FFC600F2D2BAA8EDA574C09",
+        "items": [
+          {
+            "start": 1099,
+            "conversionTarget": "System.Runtime.InteropServices.Marshal.GetDelegateForFunctionPointer<GWGUI.Emulation.Interop.ExternalCoreApi.HardwareContextReset>(nint)",
+            "pointerSymbol": "GWGUI.Emulation.Interop.ExternalCoreApi.HardwareRenderCallback.ContextReset",
+            "delegateType": "GWGUI.Emulation.Interop.ExternalCoreApi.HardwareContextReset",
+            "typeSyntax": "ExternalCoreApi.HardwareContextReset",
+            "pointerKind": "Field",
+            "baseType": "GWGUI.Emulation.Interop.ExternalCoreApi.HardwareRenderCallback",
+            "baseSymbol": "callback",
+            "policy": "local struct snapshot",
+            "reason": "Field of non-ref local struct copied from native ABI, stable value across null test/conversion; no accessor",
+            "pointer": "callback.ContextReset",
+            "length": 142,
+            "before": "callback.ContextReset == nint.Zero ? null : Marshal.GetDelegateForFunctionPointer<ExternalCoreApi.HardwareContextReset>(callback.ContextReset)",
+            "after": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.OptionalDelegate<ExternalCoreApi.HardwareContextReset>(callback.ContextReset)"
+          },
+          {
+            "start": 1278,
+            "conversionTarget": "System.Runtime.InteropServices.Marshal.GetDelegateForFunctionPointer<GWGUI.Emulation.Interop.ExternalCoreApi.HardwareContextReset>(nint)",
+            "pointerSymbol": "GWGUI.Emulation.Interop.ExternalCoreApi.HardwareRenderCallback.ContextDestroy",
+            "delegateType": "GWGUI.Emulation.Interop.ExternalCoreApi.HardwareContextReset",
+            "typeSyntax": "ExternalCoreApi.HardwareContextReset",
+            "pointerKind": "Field",
+            "baseType": "GWGUI.Emulation.Interop.ExternalCoreApi.HardwareRenderCallback",
+            "baseSymbol": "callback",
+            "policy": "local struct snapshot",
+            "reason": "Field of non-ref local struct copied from native ABI, stable value across null test/conversion; no accessor",
+            "pointer": "callback.ContextDestroy",
+            "length": 146,
+            "before": "callback.ContextDestroy == nint.Zero ? null : Marshal.GetDelegateForFunctionPointer<ExternalCoreApi.HardwareContextReset>(callback.ContextDestroy)",
+            "after": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.OptionalDelegate<ExternalCoreApi.HardwareContextReset>(callback.ContextDestroy)"
+          }
+        ]
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+        "sha256": "4F3467706CFD9B009FD478152E07BC88F2C37D6AD3383E0A5B52DA94D6E1AF80",
+        "items": [
+          {
+            "start": 7392,
+            "conversionTarget": "System.Runtime.InteropServices.Marshal.GetDelegateForFunctionPointer<GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardEvent>(nint)",
+            "pointerSymbol": "GWGUI.Emulation.Sharp.Emulators.Common.Interop.Services.ExternalHostCallbacks.KeyboardCallbackPointer",
+            "delegateType": "GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardEvent",
+            "typeSyntax": "ExternalCoreApi.KeyboardEvent",
+            "pointerKind": "Property",
+            "baseType": null,
+            "baseSymbol": null,
+            "policy": "owner reread",
+            "reason": "Original property getter once on null, twice otherwise; second value remains the Marshal argument",
+            "pointer": "KeyboardCallbackPointer",
+            "length": 139,
+            "before": "KeyboardCallbackPointer == nint.Zero ? null : Marshal.GetDelegateForFunctionPointer<ExternalCoreApi.KeyboardEvent>(KeyboardCallbackPointer)",
+            "after": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.OptionalDelegate<ExternalCoreApi.KeyboardEvent, ExternalHostCallbacks>(this, static callbackOwner => callbackOwner.KeyboardCallbackPointer)"
+          }
+        ]
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+        "sha256": "E98E531DA0896A485A249941946C72C3D5D35AEBD3208356DCFE75A372D2F91D",
+        "items": [
+          {
+            "start": 7366,
+            "conversionTarget": "System.Runtime.InteropServices.Marshal.GetDelegateForFunctionPointer<GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardEvent>(nint)",
+            "pointerSymbol": "GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Services.ExternalHostCallbacks.KeyboardCallbackPointer",
+            "delegateType": "GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardEvent",
+            "typeSyntax": "ExternalCoreApi.KeyboardEvent",
+            "pointerKind": "Property",
+            "baseType": null,
+            "baseSymbol": null,
+            "policy": "owner reread",
+            "reason": "Original property getter once on null, twice otherwise; second value remains the Marshal argument",
+            "pointer": "KeyboardCallbackPointer",
+            "length": 139,
+            "before": "KeyboardCallbackPointer == nint.Zero ? null : Marshal.GetDelegateForFunctionPointer<ExternalCoreApi.KeyboardEvent>(KeyboardCallbackPointer)",
+            "after": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.OptionalDelegate<ExternalCoreApi.KeyboardEvent, ExternalHostCallbacks>(this, static callbackOwner => callbackOwner.KeyboardCallbackPointer)"
+          }
+        ]
+      },
+      {
+        "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioStatus.cs",
+        "sha256": "DCAD842FF8B3229B81E781B0E688D218CDB4E69241DA6F792924A52597BEBDDD",
+        "items": [
+          {
+            "start": 838,
+            "conversionTarget": "System.Runtime.InteropServices.Marshal.GetDelegateForFunctionPointer<GWGUI.Emulation.Snk.Emulators.Common.Interop.Services.ExternalHostCallbacks.NativeAudioBufferStatusCallback>(nint)",
+            "pointerSymbol": "pointer",
+            "delegateType": "GWGUI.Emulation.Snk.Emulators.Common.Interop.Services.ExternalHostCallbacks.NativeAudioBufferStatusCallback",
+            "typeSyntax": "NativeAudioBufferStatusCallback",
+            "pointerKind": "Local",
+            "baseType": null,
+            "baseSymbol": null,
+            "policy": "local snapshot",
+            "reason": "Non-ref local native pointer value, no getter or shared location in the conditional",
+            "pointer": "pointer",
+            "length": 109,
+            "before": "pointer == nint.Zero ? null : Marshal.GetDelegateForFunctionPointer<NativeAudioBufferStatusCallback>(pointer)",
+            "after": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.OptionalDelegate<NativeAudioBufferStatusCallback>(pointer)"
+          }
+        ]
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "sha256": "20AF8D1A65F9E507DA63B0D5A08138A4E999BF3D9225052D4C8A461331A959D7",
+        "items": [
+          {
+            "start": 4699,
+            "conversionTarget": "System.Runtime.InteropServices.Marshal.GetDelegateForFunctionPointer<GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardEvent>(nint)",
+            "pointerSymbol": "GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardCallback.Callback",
+            "delegateType": "GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardEvent",
+            "typeSyntax": "ExternalCoreApi.KeyboardEvent",
+            "pointerKind": "Field",
+            "baseType": "GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardCallback",
+            "baseSymbol": "keyboard",
+            "policy": "local struct snapshot",
+            "reason": "Field of non-ref local struct copied from native ABI, stable value across null test/conversion; no accessor",
+            "pointer": "keyboard.Callback",
+            "length": 119,
+            "before": "keyboard.Callback == 0 ? null : Marshal.GetDelegateForFunctionPointer<ExternalCoreApi.KeyboardEvent>(keyboard.Callback)",
+            "after": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.OptionalDelegate<ExternalCoreApi.KeyboardEvent>(keyboard.Callback)"
+          }
+        ]
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/HardwareRenderSession.cs",
+        "sha256": "E258F3FE36587ADB2356496EB0C22B19DE3FBF4F0439B2EDFBC8CBD95D10B3AC",
+        "items": [
+          {
+            "start": 1077,
+            "conversionTarget": "System.Runtime.InteropServices.Marshal.GetDelegateForFunctionPointer<GWGUI.Emulation.Interop.ExternalCoreApi.HardwareContextReset>(nint)",
+            "pointerSymbol": "GWGUI.Emulation.Interop.ExternalCoreApi.HardwareRenderCallback.ContextReset",
+            "delegateType": "GWGUI.Emulation.Interop.ExternalCoreApi.HardwareContextReset",
+            "typeSyntax": "ExternalCoreApi.HardwareContextReset",
+            "pointerKind": "Field",
+            "baseType": "GWGUI.Emulation.Interop.ExternalCoreApi.HardwareRenderCallback",
+            "baseSymbol": "callback",
+            "policy": "local struct snapshot",
+            "reason": "Field of non-ref local struct copied from native ABI, stable value across null test/conversion; no accessor",
+            "pointer": "callback.ContextReset",
+            "length": 142,
+            "before": "callback.ContextReset == nint.Zero ? null : Marshal.GetDelegateForFunctionPointer<ExternalCoreApi.HardwareContextReset>(callback.ContextReset)",
+            "after": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.OptionalDelegate<ExternalCoreApi.HardwareContextReset>(callback.ContextReset)"
+          },
+          {
+            "start": 1256,
+            "conversionTarget": "System.Runtime.InteropServices.Marshal.GetDelegateForFunctionPointer<GWGUI.Emulation.Interop.ExternalCoreApi.HardwareContextReset>(nint)",
+            "pointerSymbol": "GWGUI.Emulation.Interop.ExternalCoreApi.HardwareRenderCallback.ContextDestroy",
+            "delegateType": "GWGUI.Emulation.Interop.ExternalCoreApi.HardwareContextReset",
+            "typeSyntax": "ExternalCoreApi.HardwareContextReset",
+            "pointerKind": "Field",
+            "baseType": "GWGUI.Emulation.Interop.ExternalCoreApi.HardwareRenderCallback",
+            "baseSymbol": "callback",
+            "policy": "local struct snapshot",
+            "reason": "Field of non-ref local struct copied from native ABI, stable value across null test/conversion; no accessor",
+            "pointer": "callback.ContextDestroy",
+            "length": 146,
+            "before": "callback.ContextDestroy == nint.Zero ? null : Marshal.GetDelegateForFunctionPointer<ExternalCoreApi.HardwareContextReset>(callback.ContextDestroy)",
+            "after": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.OptionalDelegate<ExternalCoreApi.HardwareContextReset>(callback.ContextDestroy)"
+          }
+        ]
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Environment.cs",
+        "sha256": "3F0BD6202B95A0F0344C30F9B858C29766848AC9EDF8CF0D5B59454B69B56FC5",
+        "items": [
+          {
+            "start": 4506,
+            "conversionTarget": "System.Runtime.InteropServices.Marshal.GetDelegateForFunctionPointer<GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardEvent>(nint)",
+            "pointerSymbol": "GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardCallback.Callback",
+            "delegateType": "GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardEvent",
+            "typeSyntax": "ExternalCoreApi.KeyboardEvent",
+            "pointerKind": "Field",
+            "baseType": "GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardCallback",
+            "baseSymbol": "keyboard",
+            "policy": "local struct snapshot",
+            "reason": "Field of non-ref local struct copied from native ABI, stable value across null test/conversion; no accessor",
+            "pointer": "keyboard.Callback",
+            "length": 119,
+            "before": "keyboard.Callback == 0 ? null : Marshal.GetDelegateForFunctionPointer<ExternalCoreApi.KeyboardEvent>(keyboard.Callback)",
+            "after": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.OptionalDelegate<ExternalCoreApi.KeyboardEvent>(keyboard.Callback)"
+          }
+        ]
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Environment.cs",
+        "sha256": "1C79B6177309D1E39718848726531D4D7D64FDBA58A120F9438DD1F444813F2B",
+        "items": [
+          {
+            "start": 4395,
+            "conversionTarget": "System.Runtime.InteropServices.Marshal.GetDelegateForFunctionPointer<GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardEvent>(nint)",
+            "pointerSymbol": "GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardCallback.Callback",
+            "delegateType": "GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardEvent",
+            "typeSyntax": "ExternalCoreApi.KeyboardEvent",
+            "pointerKind": "Field",
+            "baseType": "GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardCallback",
+            "baseSymbol": "keyboard",
+            "policy": "local struct snapshot",
+            "reason": "Field of non-ref local struct copied from native ABI, stable value across null test/conversion; no accessor",
+            "pointer": "keyboard.Callback",
+            "length": 119,
+            "before": "keyboard.Callback == 0 ? null : Marshal.GetDelegateForFunctionPointer<ExternalCoreApi.KeyboardEvent>(keyboard.Callback)",
+            "after": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.OptionalDelegate<ExternalCoreApi.KeyboardEvent>(keyboard.Callback)"
+          }
+        ]
+      },
+      {
+        "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Interop/Services/EnvironmentCallbackHost.cs",
+        "sha256": "2929279E8764B5918B6FB9FC9E6FB5FF64F5E59591908AC75F10620000C96C8E",
+        "items": [
+          {
+            "start": 4470,
+            "conversionTarget": "System.Runtime.InteropServices.Marshal.GetDelegateForFunctionPointer<GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardEvent>(nint)",
+            "pointerSymbol": "pointer",
+            "delegateType": "GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardEvent",
+            "typeSyntax": "ExternalCoreApi.KeyboardEvent",
+            "pointerKind": "Local",
+            "baseType": null,
+            "baseSymbol": null,
+            "policy": "local snapshot",
+            "reason": "Non-ref local native pointer value, no getter or shared location in the conditional",
+            "pointer": "pointer",
+            "length": 107,
+            "before": "pointer == nint.Zero ? null : Marshal.GetDelegateForFunctionPointer<ExternalCoreApi.KeyboardEvent>(pointer)",
+            "after": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.OptionalDelegate<ExternalCoreApi.KeyboardEvent>(pointer)"
+          }
+        ]
+      },
+      {
+        "path": "src/GWGUI.Emulation.Watara/Emulators/Potator/Interop/Services/EnvironmentCallbackHost.cs",
+        "sha256": "9FDBF0F8CEFCD753AAD7D2BCBBA21E0AB6F1AF6ECA70CFE8375E8B1C33267B6E",
+        "items": [
+          {
+            "start": 4190,
+            "conversionTarget": "System.Runtime.InteropServices.Marshal.GetDelegateForFunctionPointer<GWGUI.Emulation.Watara.Emulators.Potator.Interop.Services.EnvironmentCallbackHost.AudioBufferStatusCallback>(nint)",
+            "pointerSymbol": "callback",
+            "delegateType": "GWGUI.Emulation.Watara.Emulators.Potator.Interop.Services.EnvironmentCallbackHost.AudioBufferStatusCallback",
+            "typeSyntax": "AudioBufferStatusCallback",
+            "pointerKind": "Local",
+            "baseType": null,
+            "baseSymbol": null,
+            "policy": "local snapshot",
+            "reason": "Non-ref local native pointer value, no getter or shared location in the conditional",
+            "pointer": "callback",
+            "length": 105,
+            "before": "callback == nint.Zero ? null : Marshal.GetDelegateForFunctionPointer<AudioBufferStatusCallback>(callback)",
+            "after": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.OptionalDelegate<AudioBufferStatusCallback>(callback)"
+          }
+        ]
+      },
+      {
+        "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Interop/Services/EnvironmentCallbackHost.cs",
+        "sha256": "115EACDB57958D68737C5D5E51F68B7109B9775FE4304629A4C2D7657BD5A569",
+        "items": [
+          {
+            "start": 4470,
+            "conversionTarget": "System.Runtime.InteropServices.Marshal.GetDelegateForFunctionPointer<GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardEvent>(nint)",
+            "pointerSymbol": "pointer",
+            "delegateType": "GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardEvent",
+            "typeSyntax": "ExternalCoreApi.KeyboardEvent",
+            "pointerKind": "Local",
+            "baseType": null,
+            "baseSymbol": null,
+            "policy": "local snapshot",
+            "reason": "Non-ref local native pointer value, no getter or shared location in the conditional",
+            "pointer": "pointer",
+            "length": 107,
+            "before": "pointer == nint.Zero ? null : Marshal.GetDelegateForFunctionPointer<ExternalCoreApi.KeyboardEvent>(pointer)",
+            "after": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.OptionalDelegate<ExternalCoreApi.KeyboardEvent>(pointer)"
+          }
+        ]
+      },
+      {
+        "path": "src/GWGUI.Emulation/Functions/EmulationCoreOptionFunctions.Native.cs",
+        "sha256": "8457A01C66038E61576C00362571AB3E780B9869A9F9F6A40279E509D1E3B424",
+        "items": [
+          {
+            "start": 5362,
+            "conversionTarget": "System.Runtime.InteropServices.Marshal.GetDelegateForFunctionPointer<GWGUI.Emulation.Interop.ExternalCoreApi.UpdateCoreOptionsDisplay>(nint)",
+            "pointerSymbol": "pointer",
+            "delegateType": "GWGUI.Emulation.Interop.ExternalCoreApi.UpdateCoreOptionsDisplay",
+            "typeSyntax": "ExternalCoreApi.UpdateCoreOptionsDisplay",
+            "pointerKind": "Local",
+            "baseType": null,
+            "baseSymbol": null,
+            "policy": "local snapshot",
+            "reason": "Non-ref local native pointer value, no getter or shared location in the conditional",
+            "pointer": "pointer",
+            "length": 118,
+            "before": "pointer == nint.Zero ? null : Marshal.GetDelegateForFunctionPointer<ExternalCoreApi.UpdateCoreOptionsDisplay>(pointer)",
+            "after": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.OptionalDelegate<ExternalCoreApi.UpdateCoreOptionsDisplay>(pointer)"
+          }
+        ]
+      }
+    ],
+    "invariants": [
+      "Property values read once for null, twice for non-null; second value passed directly to Marshal, including a second zero causing original failure",
+      "Local native pointer and local struct fields use stable by-value snapshots",
+      "Static reader delegates avoid capturing a frame owner per call; SDK borrows source and reader synchronously",
+      "No lifecycle, native payload read, field assignment order or callback rooting moved"
+    ],
+    "beforeHead": "db63aca33a22e826d96a4a1f4edec224a52904ba",
+    "sdk": {
+      "path": "src/GWGUI.Emulation/Functions/ExternalCoreEnvironmentFunctions.cs",
+      "sha256": "581BA199386DC5D746903EE4DD9B1AA1F1F1B666FA4DB3DD9BB119AA0A7955CE"
+    },
+    "decision": "Keep existing OptionalDelegate<T>(nint) signature as a value adapter to the same original guard/conversion through a statically typed source reader. Add one generic source-reader overload preserving first null check and second conversion read. Use it for nine automatic property sources; nineteen local values use existing value signature. No new state, class, interface or stored delegate.",
+    "state": "verified",
+    "counts": {
+      "ownerReread": 9,
+      "valueSnapshot": 19,
+      "total": 28
+    },
+    "projects": [
+      "GWGUI.Emulation",
+      "GWGUI.Emulation.Acorn",
+      "GWGUI.Emulation.Amstrad",
+      "GWGUI.Emulation.Apple",
+      "GWGUI.Emulation.Atari",
+      "GWGUI.Emulation.Coleco",
+      "GWGUI.Emulation.Commodore",
+      "GWGUI.Emulation.Epoch",
+      "GWGUI.Emulation.Mattel",
+      "GWGUI.Emulation.Nec",
+      "GWGUI.Emulation.Nintendo",
+      "GWGUI.Emulation.Philips",
+      "GWGUI.Emulation.Sega",
+      "GWGUI.Emulation.Sharp",
+      "GWGUI.Emulation.Sinclair",
+      "GWGUI.Emulation.Snk",
+      "GWGUI.Emulation.Sony",
+      "GWGUI.Emulation.Thomson",
+      "GWGUI.Emulation.Watara",
+      "GWGUI.Emulation.Wenquxing"
+    ],
+    "verification": {
+      "sourceChecks": [
+        {
+          "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "changedMethods": [
+            "CaptureKeyboardCallback"
+          ],
+          "sha256": "656E4ECE80057411032AEEA2111B60A0FD926EE776412E5FDE2CB0D9405ED631",
+          "otherTokensUnchanged": true,
+          "guardAssignmentsAndOwnersUnchanged": true,
+          "beforeSha256": "148268E7557E6D46F6B99A20232CB67AE303F0D41F39913B9CA8CFBD394AD65C"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "changedMethods": [
+            "HandleEnvironment"
+          ],
+          "sha256": "DF3FE814285A5118102C74F341917468794DD04492C4453C7D9A6A0D756AA14F",
+          "otherTokensUnchanged": true,
+          "guardAssignmentsAndOwnersUnchanged": true,
+          "beforeSha256": "1C3095A849C3A7C992C686A52CDD5F5B237828CD41D06DCFF4CA007EA2DB60C0"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "changedMethods": [
+            "CaptureKeyboardCallback"
+          ],
+          "sha256": "26E3EDDD1E0585A9EBE85896CEFEA64624D732628B2D7146F98063F695527D39",
+          "otherTokensUnchanged": true,
+          "guardAssignmentsAndOwnersUnchanged": true,
+          "beforeSha256": "29E95F4BF562E57EF3BBA62FB552883DC9AAD8D6F4612EA70E763BC7091D7DB9"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "changedMethods": [
+            "CaptureKeyboardCallback"
+          ],
+          "sha256": "A72C0167457F53F8F2B108AE989681B3ACAFDF53281D1D9427E87A2732438002",
+          "otherTokensUnchanged": true,
+          "guardAssignmentsAndOwnersUnchanged": true,
+          "beforeSha256": "AB0315D0281126B89A83E555C48D0490CFFC4C037720416970A444A94A0F09BE"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "changedMethods": [
+            "CaptureKeyboardCallback"
+          ],
+          "sha256": "BB5383450BE45F44DC16A3889C35E1672B8DE12E39489375A81F8513C8025D82",
+          "otherTokensUnchanged": true,
+          "guardAssignmentsAndOwnersUnchanged": true,
+          "beforeSha256": "99701F288AD15F6DE3A67AE0294F598139A7B4882C84851C7B7FCE7B4640E174"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "changedMethods": [
+            "HandleEnvironment"
+          ],
+          "sha256": "56AFF378002637236FC415ADF0DC8E274AA1B3F90D630C6A4AA9997010C6913D",
+          "otherTokensUnchanged": true,
+          "guardAssignmentsAndOwnersUnchanged": true,
+          "beforeSha256": "D1D2068A3BA7F78E9F5FBDB195B4ADBB0EC591AAAF9B44D4B4F07EE91E03950A"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "changedMethods": [
+            "CaptureKeyboardCallback"
+          ],
+          "sha256": "03FA0D46DA3C68B3345655D3E7A6C645FC06E2A8A4257B4438F01014256F9E44",
+          "otherTokensUnchanged": true,
+          "guardAssignmentsAndOwnersUnchanged": true,
+          "beforeSha256": "9DABBA3FB7215BB283A08A1E77B07782A3C25C9C0899D64A65F362A55D714A0C"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+          "changedMethods": [
+            "BeginFrame"
+          ],
+          "sha256": "03466CB5FDD18869C4D7E88DD976FE899181B44AA34DE684D1398366FA6CCE05",
+          "otherTokensUnchanged": true,
+          "guardAssignmentsAndOwnersUnchanged": true,
+          "beforeSha256": "09C3440FCCA15897BFF9FB2D516B3630C0F7A65F6B55025498DD0C84D031E4E6"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "changedMethods": [
+            "HandleEnvironment"
+          ],
+          "sha256": "979AD1D9B5B7DE5FF662117576D55773B797D8F1D04851131B7F202C1AA8016D",
+          "otherTokensUnchanged": true,
+          "guardAssignmentsAndOwnersUnchanged": true,
+          "beforeSha256": "E45CF2F1453636FD342277C06C2308E1FFCD5D56C2AF22AD338E4AD3908E1888"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "changedMethods": [
+            "HandleEnvironment"
+          ],
+          "sha256": "559F6CF2230130DA6A7DD0D4C9E93B252A1009A8783644F1ABEB8412F63D01DF",
+          "otherTokensUnchanged": true,
+          "guardAssignmentsAndOwnersUnchanged": true,
+          "beforeSha256": "0859FA9F3A9A55FAA36E86DAE5D79D78B5DDE7D12B0F79A9B44CA8F72E36CD67"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Hardware.cs",
+          "changedMethods": [
+            "ConfigureHardwareRender"
+          ],
+          "sha256": "0AB1E6CBEB2854B948A7AD6C2995E68333151C3CDA26942E710301EF5A0D2B76",
+          "otherTokensUnchanged": true,
+          "guardAssignmentsAndOwnersUnchanged": true,
+          "beforeSha256": "898685DC0AEFCF0116315DFD70FF0B2060E71786E83924366140AC63ED0E6ECD"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+          "changedMethods": [
+            "BeginFrame"
+          ],
+          "sha256": "5C36E30F0A6DA06E28484321077D4D4918B03B15B3FBF7FC4786CA7A98BA8E4C",
+          "otherTokensUnchanged": true,
+          "guardAssignmentsAndOwnersUnchanged": true,
+          "beforeSha256": "A6FC66F725D436F93778941AF4BAABF950D1F2E52DB178F1EECA62AE6ACDCB27"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "changedMethods": [
+            "HandleEnvironment"
+          ],
+          "sha256": "111BFC7F623E68DCF73EA02828DFA10787DBA467ADBA1DDEB97438E509D44A94",
+          "otherTokensUnchanged": true,
+          "guardAssignmentsAndOwnersUnchanged": true,
+          "beforeSha256": "B4547E751C3F9DB444C1960E2CD0D1034F21DC433A127764A64BDA091483AC45"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Hardware.cs",
+          "changedMethods": [
+            "ConfigureHardwareRender"
+          ],
+          "sha256": "4BB8D09EA2150A568622928DB81497E78511AC384FCB0115306B2EC0F876C425",
+          "otherTokensUnchanged": true,
+          "guardAssignmentsAndOwnersUnchanged": true,
+          "beforeSha256": "37547D112D4AC933A06EECB44B83436E878FEF734FFC600F2D2BAA8EDA574C09"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+          "changedMethods": [
+            "BeginFrame"
+          ],
+          "sha256": "1C0FA67EA236A4EACE79C698D97DCF3A7EE2C7BB4EF9DF77EE1F747F324EEE76",
+          "otherTokensUnchanged": true,
+          "guardAssignmentsAndOwnersUnchanged": true,
+          "beforeSha256": "4F3467706CFD9B009FD478152E07BC88F2C37D6AD3383E0A5B52DA94D6E1AF80"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+          "changedMethods": [
+            "BeginFrame"
+          ],
+          "sha256": "D0E7682E32A8102EDEB76AA0AA43B4A51F72EEC36AE899BF1699612298F7DC5D",
+          "otherTokensUnchanged": true,
+          "guardAssignmentsAndOwnersUnchanged": true,
+          "beforeSha256": "E98E531DA0896A485A249941946C72C3D5D35AEBD3208356DCFE75A372D2F91D"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioStatus.cs",
+          "changedMethods": [
+            "CaptureAudioBufferStatus"
+          ],
+          "sha256": "5E78EBE034077B0C99943B6BE3711DACCCD3DD03D69F6E7E664A541BBAC94939",
+          "otherTokensUnchanged": true,
+          "guardAssignmentsAndOwnersUnchanged": true,
+          "beforeSha256": "DCAD842FF8B3229B81E781B0E688D218CDB4E69241DA6F792924A52597BEBDDD"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "changedMethods": [
+            "HandleEnvironment"
+          ],
+          "sha256": "DC53B3D0936CB9C389D1C9E3E763558F83BA759D0FA17FCC359B5FCA83FF9F9B",
+          "otherTokensUnchanged": true,
+          "guardAssignmentsAndOwnersUnchanged": true,
+          "beforeSha256": "20AF8D1A65F9E507DA63B0D5A08138A4E999BF3D9225052D4C8A461331A959D7"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/HardwareRenderSession.cs",
+          "changedMethods": [
+            "Configure"
+          ],
+          "sha256": "EF425B7F0844BAC08F7058D24B4AA05B2FD29C34FBC01D6267DB7EF2C987B6AB",
+          "otherTokensUnchanged": true,
+          "guardAssignmentsAndOwnersUnchanged": true,
+          "beforeSha256": "E258F3FE36587ADB2356496EB0C22B19DE3FBF4F0439B2EDFBC8CBD95D10B3AC"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Environment.cs",
+          "changedMethods": [
+            "HandleEnvironment"
+          ],
+          "sha256": "5074FAF02CC5E5B72DC5ECA027C621CCB2FF6DB9BADF84BAFF9D5E067B4FC8AD",
+          "otherTokensUnchanged": true,
+          "guardAssignmentsAndOwnersUnchanged": true,
+          "beforeSha256": "3F0BD6202B95A0F0344C30F9B858C29766848AC9EDF8CF0D5B59454B69B56FC5"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Environment.cs",
+          "changedMethods": [
+            "HandleEnvironment"
+          ],
+          "sha256": "48A20EEE63608F5C918C9EE988C4F49065D47A86730DA348F558670611F1CA2C",
+          "otherTokensUnchanged": true,
+          "guardAssignmentsAndOwnersUnchanged": true,
+          "beforeSha256": "1C79B6177309D1E39718848726531D4D7D64FDBA58A120F9438DD1F444813F2B"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Interop/Services/EnvironmentCallbackHost.cs",
+          "changedMethods": [
+            "OnEnvironment"
+          ],
+          "sha256": "318A4BE95A34F53232D62579EA5DF6F0104E56726FA40CAE66DED41415683D69",
+          "otherTokensUnchanged": true,
+          "guardAssignmentsAndOwnersUnchanged": true,
+          "beforeSha256": "2929279E8764B5918B6FB9FC9E6FB5FF64F5E59591908AC75F10620000C96C8E"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Watara/Emulators/Potator/Interop/Services/EnvironmentCallbackHost.cs",
+          "changedMethods": [
+            "OnEnvironment"
+          ],
+          "sha256": "F305AAB495E703DB8BFD74CA522028C227863CA1831810219F5BE49BB8476E7B",
+          "otherTokensUnchanged": true,
+          "guardAssignmentsAndOwnersUnchanged": true,
+          "beforeSha256": "9FDBF0F8CEFCD753AAD7D2BCBBA21E0AB6F1AF6ECA70CFE8375E8B1C33267B6E"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Interop/Services/EnvironmentCallbackHost.cs",
+          "changedMethods": [
+            "OnEnvironment"
+          ],
+          "sha256": "6321056DE9431B517D9B550E6884B2F24DE0548FCB5C3E138C72047ACAF6D44E",
+          "otherTokensUnchanged": true,
+          "guardAssignmentsAndOwnersUnchanged": true,
+          "beforeSha256": "115EACDB57958D68737C5D5E51F68B7109B9775FE4304629A4C2D7657BD5A569"
+        },
+        {
+          "path": "src/GWGUI.Emulation/Functions/EmulationCoreOptionFunctions.Native.cs",
+          "changedMethods": [
+            "TryGetDisplayCallback"
+          ],
+          "sha256": "1B6DB678D8AE219EF9A624C48641477BEF472F2F80DB98E48A6C9C59DEC5D4B8",
+          "otherTokensUnchanged": true,
+          "guardAssignmentsAndOwnersUnchanged": true,
+          "beforeSha256": "8457A01C66038E61576C00362571AB3E780B9869A9F9F6A40279E509D1E3B424"
+        }
+      ],
+      "oneSharedConversionBody": true,
+      "propertyReadPolicy": "One source read for null, two otherwise; second pointer passed directly to Marshal, without a second optional guard",
+      "existingValueExpansionUnchanged": true,
+      "bindings": [
+        {
+          "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "policy": "owner reread",
+          "delegateType": "GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardEvent",
+          "source": "GWGUI.Emulation.Acorn.Emulators.Common.Interop.Services.ExternalHostCallbacks.KeyboardCallbackPointer",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.OptionalDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardEvent, GWGUI.Emulation.Acorn.Emulators.Common.Interop.Services.ExternalHostCallbacks>(GWGUI.Emulation.Acorn.Emulators.Common.Interop.Services.ExternalHostCallbacks, System.Func<GWGUI.Emulation.Acorn.Emulators.Common.Interop.Services.ExternalHostCallbacks, nint>)",
+          "staticReader": true
+        },
+        {
+          "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "policy": "local struct snapshot",
+          "delegateType": "GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardEvent",
+          "source": "GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardCallback.Callback",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.OptionalDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardEvent>(nint)",
+          "staticReader": false
+        },
+        {
+          "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "policy": "owner reread",
+          "delegateType": "GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardEvent",
+          "source": "GWGUI.Emulation.Apple.Emulators.Common.Interop.Services.ExternalHostCallbacks.KeyboardCallbackPointer",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.OptionalDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardEvent, GWGUI.Emulation.Apple.Emulators.Common.Interop.Services.ExternalHostCallbacks>(GWGUI.Emulation.Apple.Emulators.Common.Interop.Services.ExternalHostCallbacks, System.Func<GWGUI.Emulation.Apple.Emulators.Common.Interop.Services.ExternalHostCallbacks, nint>)",
+          "staticReader": true
+        },
+        {
+          "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "policy": "owner reread",
+          "delegateType": "GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardEvent",
+          "source": "GWGUI.Emulation.Atari.Emulators.Common.Interop.Services.ExternalHostCallbacks.KeyboardCallbackPointer",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.OptionalDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardEvent, GWGUI.Emulation.Atari.Emulators.Common.Interop.Services.ExternalHostCallbacks>(GWGUI.Emulation.Atari.Emulators.Common.Interop.Services.ExternalHostCallbacks, System.Func<GWGUI.Emulation.Atari.Emulators.Common.Interop.Services.ExternalHostCallbacks, nint>)",
+          "staticReader": true
+        },
+        {
+          "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "policy": "owner reread",
+          "delegateType": "GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardEvent",
+          "source": "GWGUI.Emulation.Coleco.Emulators.Common.Interop.Services.ExternalHostCallbacks.KeyboardCallbackPointer",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.OptionalDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardEvent, GWGUI.Emulation.Coleco.Emulators.Common.Interop.Services.ExternalHostCallbacks>(GWGUI.Emulation.Coleco.Emulators.Common.Interop.Services.ExternalHostCallbacks, System.Func<GWGUI.Emulation.Coleco.Emulators.Common.Interop.Services.ExternalHostCallbacks, nint>)",
+          "staticReader": true
+        },
+        {
+          "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "policy": "local struct snapshot",
+          "delegateType": "GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardEvent",
+          "source": "GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardCallback.Callback",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.OptionalDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardEvent>(nint)",
+          "staticReader": false
+        },
+        {
+          "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "policy": "owner reread",
+          "delegateType": "GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardEvent",
+          "source": "GWGUI.Emulation.Epoch.Emulators.Common.Interop.Services.ExternalHostCallbacks.KeyboardCallbackPointer",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.OptionalDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardEvent, GWGUI.Emulation.Epoch.Emulators.Common.Interop.Services.ExternalHostCallbacks>(GWGUI.Emulation.Epoch.Emulators.Common.Interop.Services.ExternalHostCallbacks, System.Func<GWGUI.Emulation.Epoch.Emulators.Common.Interop.Services.ExternalHostCallbacks, nint>)",
+          "staticReader": true
+        },
+        {
+          "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+          "policy": "owner reread",
+          "delegateType": "GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardEvent",
+          "source": "GWGUI.Emulation.Mattel.Emulators.Common.Interop.Services.ExternalHostCallbacks.KeyboardCallbackPointer",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.OptionalDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardEvent, GWGUI.Emulation.Mattel.Emulators.Common.Interop.Services.ExternalHostCallbacks>(GWGUI.Emulation.Mattel.Emulators.Common.Interop.Services.ExternalHostCallbacks, System.Func<GWGUI.Emulation.Mattel.Emulators.Common.Interop.Services.ExternalHostCallbacks, nint>)",
+          "staticReader": true
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "policy": "local struct snapshot",
+          "delegateType": "GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardEvent",
+          "source": "GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardCallback.Callback",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.OptionalDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardEvent>(nint)",
+          "staticReader": false
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "policy": "local struct snapshot",
+          "delegateType": "GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardEvent",
+          "source": "GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardCallback.Callback",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.OptionalDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardEvent>(nint)",
+          "staticReader": false
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Hardware.cs",
+          "policy": "local struct snapshot",
+          "delegateType": "GWGUI.Emulation.Interop.ExternalCoreApi.HardwareContextReset",
+          "source": "GWGUI.Emulation.Interop.ExternalCoreApi.HardwareRenderCallback.ContextReset",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.OptionalDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.HardwareContextReset>(nint)",
+          "staticReader": false
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Hardware.cs",
+          "policy": "local struct snapshot",
+          "delegateType": "GWGUI.Emulation.Interop.ExternalCoreApi.HardwareContextReset",
+          "source": "GWGUI.Emulation.Interop.ExternalCoreApi.HardwareRenderCallback.ContextDestroy",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.OptionalDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.HardwareContextReset>(nint)",
+          "staticReader": false
+        },
+        {
+          "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+          "policy": "owner reread",
+          "delegateType": "GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardEvent",
+          "source": "GWGUI.Emulation.Philips.Emulators.Common.Interop.Services.ExternalHostCallbacks.KeyboardCallbackPointer",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.OptionalDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardEvent, GWGUI.Emulation.Philips.Emulators.Common.Interop.Services.ExternalHostCallbacks>(GWGUI.Emulation.Philips.Emulators.Common.Interop.Services.ExternalHostCallbacks, System.Func<GWGUI.Emulation.Philips.Emulators.Common.Interop.Services.ExternalHostCallbacks, nint>)",
+          "staticReader": true
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "policy": "local struct snapshot",
+          "delegateType": "GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardEvent",
+          "source": "GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardCallback.Callback",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.OptionalDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardEvent>(nint)",
+          "staticReader": false
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Hardware.cs",
+          "policy": "local struct snapshot",
+          "delegateType": "GWGUI.Emulation.Interop.ExternalCoreApi.HardwareContextReset",
+          "source": "GWGUI.Emulation.Interop.ExternalCoreApi.HardwareRenderCallback.ContextReset",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.OptionalDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.HardwareContextReset>(nint)",
+          "staticReader": false
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Hardware.cs",
+          "policy": "local struct snapshot",
+          "delegateType": "GWGUI.Emulation.Interop.ExternalCoreApi.HardwareContextReset",
+          "source": "GWGUI.Emulation.Interop.ExternalCoreApi.HardwareRenderCallback.ContextDestroy",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.OptionalDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.HardwareContextReset>(nint)",
+          "staticReader": false
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+          "policy": "owner reread",
+          "delegateType": "GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardEvent",
+          "source": "GWGUI.Emulation.Sharp.Emulators.Common.Interop.Services.ExternalHostCallbacks.KeyboardCallbackPointer",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.OptionalDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardEvent, GWGUI.Emulation.Sharp.Emulators.Common.Interop.Services.ExternalHostCallbacks>(GWGUI.Emulation.Sharp.Emulators.Common.Interop.Services.ExternalHostCallbacks, System.Func<GWGUI.Emulation.Sharp.Emulators.Common.Interop.Services.ExternalHostCallbacks, nint>)",
+          "staticReader": true
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+          "policy": "owner reread",
+          "delegateType": "GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardEvent",
+          "source": "GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Services.ExternalHostCallbacks.KeyboardCallbackPointer",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.OptionalDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardEvent, GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Services.ExternalHostCallbacks>(GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Services.ExternalHostCallbacks, System.Func<GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Services.ExternalHostCallbacks, nint>)",
+          "staticReader": true
+        },
+        {
+          "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioStatus.cs",
+          "policy": "local snapshot",
+          "delegateType": "GWGUI.Emulation.Snk.Emulators.Common.Interop.Services.ExternalHostCallbacks.NativeAudioBufferStatusCallback",
+          "source": "pointer",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.OptionalDelegate<GWGUI.Emulation.Snk.Emulators.Common.Interop.Services.ExternalHostCallbacks.NativeAudioBufferStatusCallback>(nint)",
+          "staticReader": false
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "policy": "local struct snapshot",
+          "delegateType": "GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardEvent",
+          "source": "GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardCallback.Callback",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.OptionalDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardEvent>(nint)",
+          "staticReader": false
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/HardwareRenderSession.cs",
+          "policy": "local struct snapshot",
+          "delegateType": "GWGUI.Emulation.Interop.ExternalCoreApi.HardwareContextReset",
+          "source": "GWGUI.Emulation.Interop.ExternalCoreApi.HardwareRenderCallback.ContextReset",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.OptionalDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.HardwareContextReset>(nint)",
+          "staticReader": false
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/HardwareRenderSession.cs",
+          "policy": "local struct snapshot",
+          "delegateType": "GWGUI.Emulation.Interop.ExternalCoreApi.HardwareContextReset",
+          "source": "GWGUI.Emulation.Interop.ExternalCoreApi.HardwareRenderCallback.ContextDestroy",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.OptionalDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.HardwareContextReset>(nint)",
+          "staticReader": false
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Environment.cs",
+          "policy": "local struct snapshot",
+          "delegateType": "GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardEvent",
+          "source": "GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardCallback.Callback",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.OptionalDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardEvent>(nint)",
+          "staticReader": false
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Environment.cs",
+          "policy": "local struct snapshot",
+          "delegateType": "GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardEvent",
+          "source": "GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardCallback.Callback",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.OptionalDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardEvent>(nint)",
+          "staticReader": false
+        },
+        {
+          "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Interop/Services/EnvironmentCallbackHost.cs",
+          "policy": "local snapshot",
+          "delegateType": "GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardEvent",
+          "source": "pointer",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.OptionalDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardEvent>(nint)",
+          "staticReader": false
+        },
+        {
+          "path": "src/GWGUI.Emulation.Watara/Emulators/Potator/Interop/Services/EnvironmentCallbackHost.cs",
+          "policy": "local snapshot",
+          "delegateType": "GWGUI.Emulation.Watara.Emulators.Potator.Interop.Services.EnvironmentCallbackHost.AudioBufferStatusCallback",
+          "source": "callback",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.OptionalDelegate<GWGUI.Emulation.Watara.Emulators.Potator.Interop.Services.EnvironmentCallbackHost.AudioBufferStatusCallback>(nint)",
+          "staticReader": false
+        },
+        {
+          "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Interop/Services/EnvironmentCallbackHost.cs",
+          "policy": "local snapshot",
+          "delegateType": "GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardEvent",
+          "source": "pointer",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.OptionalDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.KeyboardEvent>(nint)",
+          "staticReader": false
+        },
+        {
+          "path": "src/GWGUI.Emulation/Functions/EmulationCoreOptionFunctions.Native.cs",
+          "policy": "local snapshot",
+          "delegateType": "GWGUI.Emulation.Interop.ExternalCoreApi.UpdateCoreOptionsDisplay",
+          "source": "pointer",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.OptionalDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.UpdateCoreOptionsDisplay>(nint)",
+          "staticReader": false
+        }
+      ],
+      "tests": {
+        "scope": "One read on null, two reads otherwise, changed second pointer, null second pointer preserves Marshal error, either read failure propagated; borrowed source not disposed",
+        "newCases": 5,
+        "passed": 70,
+        "failed": 0,
+        "command": "dotnet test --no-restore --filter CoreCallbackInterfaceTests|EnvironmentCallbackCommandTests|OptionEnvironmentCommandTests",
+        "resources": "Managed fake sources disposed in finally, callback delegates kept alive; no external core/DLL/file/process/window fixture"
+      },
+      "semanticErrors": 0,
+      "semanticProjects": [
+        "GWGUI.Emulation",
+        "GWGUI.Emulation.Acorn",
+        "GWGUI.Emulation.Amstrad",
+        "GWGUI.Emulation.Apple",
+        "GWGUI.Emulation.Atari",
+        "GWGUI.Emulation.Coleco",
+        "GWGUI.Emulation.Commodore",
+        "GWGUI.Emulation.Epoch",
+        "GWGUI.Emulation.Mattel",
+        "GWGUI.Emulation.Nec",
+        "GWGUI.Emulation.Nintendo",
+        "GWGUI.Emulation.Philips",
+        "GWGUI.Emulation.Sega",
+        "GWGUI.Emulation.Sharp",
+        "GWGUI.Emulation.Sinclair",
+        "GWGUI.Emulation.Snk",
+        "GWGUI.Emulation.Sony",
+        "GWGUI.Emulation.Thomson",
+        "GWGUI.Emulation.Watara",
+        "GWGUI.Emulation.Wenquxing"
+      ],
+      "otherSdkTokensUnchanged": true,
+      "scope": "Only qualified optional conditions shared, complete files otherwise unchanged; resource owners and field assignment order retained",
+      "sdkSha256": "BC8F8404CF50C7AE3319AC6E2ECD0EE82F4A73E65ED3A271D42E99828EE87FCA"
+    },
+    "report": {
+      "scope": "All 28 qualified inline optional conversions replaced; only shared reader body retains the original optional branch; full host/lifecycle candidates remain pending",
+      "shortRenamedGroups": 365,
+      "shortMethodCount": 9604,
+      "files": 7331,
+      "longCandidateGroups": 506,
+      "shortExactGroups": 784,
+      "longMethodCount": 11676
+    },
+    "preBuildSourceChecks": [
+      {
+        "sha256": "AE0DA1B6733DB68C0125CE842583D7B450E3AAC025FA82AB34FABA0AE61EE21D",
+        "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs"
+      },
+      {
+        "sha256": "656E4ECE80057411032AEEA2111B60A0FD926EE776412E5FDE2CB0D9405ED631",
+        "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs"
+      },
+      {
+        "sha256": "7B0CF26EDC65A83774379AAA8E248A112EE02A5BDDBDC2180CF5473BF7D0101E",
+        "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+      },
+      {
+        "sha256": "DF3FE814285A5118102C74F341917468794DD04492C4453C7D9A6A0D756AA14F",
+        "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs"
+      },
+      {
+        "sha256": "20EA32BDB580AE7CF69937789EF01E58CDB4A56E06E23ED005D198E4C6187AE0",
+        "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs"
+      },
+      {
+        "sha256": "26E3EDDD1E0585A9EBE85896CEFEA64624D732628B2D7146F98063F695527D39",
+        "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs"
+      },
+      {
+        "sha256": "64555AD4444FB123015296F344C476222811367ED542970EA78660D85648B04F",
+        "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs"
+      },
+      {
+        "sha256": "A72C0167457F53F8F2B108AE989681B3ACAFDF53281D1D9427E87A2732438002",
+        "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs"
+      },
+      {
+        "sha256": "3CD29BC96750A3A5F686658E763D54A5B5D1B5AE069245B0AB53708C9A4985BF",
+        "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs"
+      },
+      {
+        "sha256": "BB5383450BE45F44DC16A3889C35E1672B8DE12E39489375A81F8513C8025D82",
+        "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs"
+      },
+      {
+        "sha256": "338CFE00B576CFA9F0B48AEBAAA41A7A0FC544917921A12AEC0E13671DBEA177",
+        "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+      },
+      {
+        "sha256": "56AFF378002637236FC415ADF0DC8E274AA1B3F90D630C6A4AA9997010C6913D",
+        "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs"
+      },
+      {
+        "sha256": "5B411B2DAE78FF2F08019A56C8EBB1A9FDFD5AAF5D89A2612F1A7EB5FBE568E0",
+        "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs"
+      },
+      {
+        "sha256": "03FA0D46DA3C68B3345655D3E7A6C645FC06E2A8A4257B4438F01014256F9E44",
+        "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs"
+      },
+      {
+        "sha256": "F3996B94202DF57E5E628F88430923EFD8DDAB09B2EDE8EEEC14B5C9C61D450E",
+        "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs"
+      },
+      {
+        "sha256": "22F45BCEC579C09258342C3AB64DB4F1307F61506AA48F949EBE3ABC4428EDEF",
+        "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs"
+      },
+      {
+        "sha256": "03466CB5FDD18869C4D7E88DD976FE899181B44AA34DE684D1398366FA6CCE05",
+        "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs"
+      },
+      {
+        "sha256": "C6442EE71CAACD61D304B221A5BCB80F8FD5F79DAEDAF250A4E099188AE690E2",
+        "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+      },
+      {
+        "sha256": "979AD1D9B5B7DE5FF662117576D55773B797D8F1D04851131B7F202C1AA8016D",
+        "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs"
+      },
+      {
+        "sha256": "256310F1BE0504E4B8DE27E45C041FBB6E3DF7B231E7D9F463E818AE9D77E52D",
+        "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+      },
+      {
+        "sha256": "559F6CF2230130DA6A7DD0D4C9E93B252A1009A8783644F1ABEB8412F63D01DF",
+        "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs"
+      },
+      {
+        "sha256": "0AB1E6CBEB2854B948A7AD6C2995E68333151C3CDA26942E710301EF5A0D2B76",
+        "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Hardware.cs"
+      },
+      {
+        "sha256": "BE5B32342EA6701C1E061882AF98D8BA419CFDFE3D032C0D7D2BC8F187BB5038",
+        "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs"
+      },
+      {
+        "sha256": "5C36E30F0A6DA06E28484321077D4D4918B03B15B3FBF7FC4786CA7A98BA8E4C",
+        "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs"
+      },
+      {
+        "sha256": "4E6F05E890A6ED2EE2FBA732DEA87EC159A95F4C995B5AF57B8FE73CB081A52D",
+        "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+      },
+      {
+        "sha256": "111BFC7F623E68DCF73EA02828DFA10787DBA467ADBA1DDEB97438E509D44A94",
+        "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs"
+      },
+      {
+        "sha256": "4BB8D09EA2150A568622928DB81497E78511AC384FCB0115306B2EC0F876C425",
+        "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Hardware.cs"
+      },
+      {
+        "sha256": "19525D34886629A937F4C1FC0063E8C212BDB1C519CA83C02CF3DD3FC135B895",
+        "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs"
+      },
+      {
+        "sha256": "1C0FA67EA236A4EACE79C698D97DCF3A7EE2C7BB4EF9DF77EE1F747F324EEE76",
+        "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs"
+      },
+      {
+        "sha256": "019DF737B16BEAAF749F0A7CD75AF7EB470B43B544A907EAEC8E062E08CE4090",
+        "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs"
+      },
+      {
+        "sha256": "D0E7682E32A8102EDEB76AA0AA43B4A51F72EEC36AE899BF1699612298F7DC5D",
+        "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs"
+      },
+      {
+        "sha256": "922F6F42786A9D2D1D859802488F47326FE04755370FA3E74C91DB98FF380E64",
+        "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs"
+      },
+      {
+        "sha256": "5E78EBE034077B0C99943B6BE3711DACCCD3DD03D69F6E7E664A541BBAC94939",
+        "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioStatus.cs"
+      },
+      {
+        "sha256": "31A254DC7662F0EF05542EDD8D933F9E609B4DE6904B5FE921BA709DC3497FA5",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+      },
+      {
+        "sha256": "DC53B3D0936CB9C389D1C9E3E763558F83BA759D0FA17FCC359B5FCA83FF9F9B",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs"
+      },
+      {
+        "sha256": "EF425B7F0844BAC08F7058D24B4AA05B2FD29C34FBC01D6267DB7EF2C987B6AB",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/HardwareRenderSession.cs"
+      },
+      {
+        "sha256": "E95CD22F1F2B516AC20C9B2F8FCD970885A677D5ACE7BD17B840C99B0A1F147C",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalDiskControl.cs"
+      },
+      {
+        "sha256": "5074FAF02CC5E5B72DC5ECA027C621CCB2FF6DB9BADF84BAFF9D5E067B4FC8AD",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Environment.cs"
+      },
+      {
+        "sha256": "47540358C069C9EF9A4A8CFFA9D7734C92457D346CF480539081595F8DA882F4",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalDiskControl.cs"
+      },
+      {
+        "sha256": "48A20EEE63608F5C918C9EE988C4F49065D47A86730DA348F558670611F1CA2C",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Environment.cs"
+      },
+      {
+        "sha256": "318A4BE95A34F53232D62579EA5DF6F0104E56726FA40CAE66DED41415683D69",
+        "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Interop/Services/EnvironmentCallbackHost.cs"
+      },
+      {
+        "sha256": "F305AAB495E703DB8BFD74CA522028C227863CA1831810219F5BE49BB8476E7B",
+        "path": "src/GWGUI.Emulation.Watara/Emulators/Potator/Interop/Services/EnvironmentCallbackHost.cs"
+      },
+      {
+        "sha256": "6321056DE9431B517D9B550E6884B2F24DE0548FCB5C3E138C72047ACAF6D44E",
+        "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Interop/Services/EnvironmentCallbackHost.cs"
+      },
+      {
+        "sha256": "1B6DB678D8AE219EF9A624C48641477BEF472F2F80DB98E48A6C9C59DEC5D4B8",
+        "path": "src/GWGUI.Emulation/Functions/EmulationCoreOptionFunctions.Native.cs"
+      },
+      {
+        "sha256": "BC8F8404CF50C7AE3319AC6E2ECD0EE82F4A73E65ED3A271D42E99828EE87FCA",
+        "path": "src/GWGUI.Emulation/Functions/ExternalCoreEnvironmentFunctions.cs"
+      }
+    ],
+    "productBuild": {
+      "command": "scripts/local-building.cmd --building=debug --modules=A",
+      "executableSha256": "E29B8306610124D080BEB809A250281B8C941B1BB7158B0F36183541ED03F12E",
+      "executable": "build/Debug/GW GUI/gwgui.exe",
+      "sourceChecksReference": "inlineOptionalDelegateReuse.preBuildSourceChecks",
+      "installedSdkMatchesCompiledSource": true,
+      "modules": [
+        {
+          "id": "acorn",
+          "sha256": "6CB1229B26DEDB7D4CAD038AD36852E8B1AB8A0BE8E4677401ACF8D5E1EC3507",
+          "entryAssembly": "gwgui.emulation.acorn.dll"
+        },
+        {
+          "id": "amstrad",
+          "sha256": "7A48307D59CCD8AA3FE6E955CB4688BFD9BD7B25A81FF397FEF7296605602A6A",
+          "entryAssembly": "gwgui.emulation.amstrad.dll"
+        },
+        {
+          "id": "apple",
+          "sha256": "C24C17FF27D1DFE741B7A88928AC2F8B904B9CF95423DC464A3DF542E3ADD4F2",
+          "entryAssembly": "gwgui.emulation.apple.dll"
+        },
+        {
+          "id": "atari",
+          "sha256": "C58D1668D1F372AD7E038F81A540A3DD23919186369E1D05A9DC1BF7FFAB4307",
+          "entryAssembly": "gwgui.emulation.atari.dll"
+        },
+        {
+          "id": "bandai",
+          "sha256": "F31FD60054819628A8CDA615E1398A8F9BA501297615B283A01E19ACEAF65EE1",
+          "entryAssembly": "gwgui.emulation.bandai.dll"
+        },
+        {
+          "id": "coleco",
+          "sha256": "3E84B3FB9377DCB5699061A110735A18075D7979765EA00F4C147BB635EA339D",
+          "entryAssembly": "gwgui.emulation.coleco.dll"
+        },
+        {
+          "id": "commodore",
+          "sha256": "1A227E120434B5BC32B394F945D6B993A78A4B67713668CA100AFE668E16EA48",
+          "entryAssembly": "gwgui.emulation.commodore.dll"
+        },
+        {
+          "id": "epoch",
+          "sha256": "7F3516CB67D1CC8CFE050E01567DF5C1BC1CC1E987A6047488170C77E2A37F93",
+          "entryAssembly": "gwgui.emulation.epoch.dll"
+        },
+        {
+          "id": "fairchild",
+          "sha256": "FBB82D3B1B71072C1A9F9E8EDA9635509142EC1EAA548A28355036782DDDEACA",
+          "entryAssembly": "gwgui.emulation.fairchild.dll"
+        },
+        {
+          "id": "mattel",
+          "sha256": "53D0F77CDD40C20ED81CC4150134932D30F3916BEC44B2B83AAA2D4FDBA69D9B",
+          "entryAssembly": "gwgui.emulation.mattel.dll"
+        },
+        {
+          "id": "microsoft",
+          "sha256": "99CA6C69D034F0B2A767A7A226DACB269D8894D3703E7D3BCD7304C55E26731F",
+          "entryAssembly": "gwgui.emulation.microsoft.dll"
+        },
+        {
+          "id": "nec",
+          "sha256": "77AA4772153D039C578163A4F871F74FD4B85C87C3E393173F52FF2CB86CA839",
+          "entryAssembly": "gwgui.emulation.nec.dll"
+        },
+        {
+          "id": "nintendo",
+          "sha256": "A851F155114699DECEB5F0B51B3E85D4820B25B1427EF20FECE89051B86D2280",
+          "entryAssembly": "gwgui.emulation.nintendo.dll"
+        },
+        {
+          "id": "panasonic",
+          "sha256": "80D301539CD20209893EB2F7709A75FF98F8AD0B5E8F898ACEDA1AB5BA7EBBF3",
+          "entryAssembly": "gwgui.emulation.panasonic.dll"
+        },
+        {
+          "id": "philips",
+          "sha256": "7FFF429D609A61E50B206AEB2F1A439AE94A81E0250F2A0D054FA91BCA0D8CC2",
+          "entryAssembly": "gwgui.emulation.philips.dll"
+        },
+        {
+          "id": "sega",
+          "sha256": "13DA3FD7F190EEF4AE0B08636A9C5F33C19AA257F219D2A91A58E5981A3D8DEE",
+          "entryAssembly": "gwgui.emulation.sega.dll"
+        },
+        {
+          "id": "sharp",
+          "sha256": "A5A477CC9E709F9242645D4B40EC2831BAFF4BD0CEAC94479048B01274F1DF7C",
+          "entryAssembly": "gwgui.emulation.sharp.dll"
+        },
+        {
+          "id": "sinclair",
+          "sha256": "699843018839A05B1C510405376BEAA6BC437E66C657BB41E14DC14845D77514",
+          "entryAssembly": "gwgui.emulation.sinclair.dll"
+        },
+        {
+          "id": "snk",
+          "sha256": "5D78E6098A2ED82E66A239DB504E55D72D9479F3A1CBF9E3E244827AEBB88CC7",
+          "entryAssembly": "gwgui.emulation.snk.dll"
+        },
+        {
+          "id": "sony",
+          "sha256": "93BD952BF5AA923F26692D0D5CE6DDAB80AB61BD53C07C10069D87C3605067B2",
+          "entryAssembly": "gwgui.emulation.sony.dll"
+        },
+        {
+          "id": "thomson",
+          "sha256": "5C2A335D10567818A0C29DE1C6C08FE72DB8208E03CAF4DADE17C07E4561EE27",
+          "entryAssembly": "gwgui.emulation.thomson.dll"
+        },
+        {
+          "id": "watara",
+          "sha256": "E20473D3C1598D14BCF8C2DF0496FDDDECA63C85A8ADDE4D1A5DB2C931A6487A",
+          "entryAssembly": "gwgui.emulation.watara.dll"
+        },
+        {
+          "id": "wenquxing",
+          "sha256": "0478C9C8CE2BAF84858BD74010BB6706EC07446F12F895C05F2104300126F973",
+          "entryAssembly": "gwgui.emulation.wenquxing.dll"
+        }
+      ],
+      "updaterPrivateDlls": [
+        "gwgui.updater.dll"
+      ],
+      "exitCode": 0,
+      "sourceIntegrity": "45 source hashes match pre-build values",
+      "installedSdkSha256": "47578398348F1EC20E76CBBACABF7B16B8A7C3221164D8C2E39BFA3028DF7153"
     }
   }
 }

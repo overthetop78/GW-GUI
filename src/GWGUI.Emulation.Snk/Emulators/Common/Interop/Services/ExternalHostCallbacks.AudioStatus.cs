@@ -15,7 +15,7 @@ internal sealed partial class ExternalHostCallbacks
     private bool CaptureAudioBufferStatus(nint data)
     {
         var pointer = data == nint.Zero ? nint.Zero : Marshal.ReadIntPtr(data);
-        _audioBufferStatusCallback = pointer == nint.Zero ? null : Marshal.GetDelegateForFunctionPointer<NativeAudioBufferStatusCallback>(pointer);
+        _audioBufferStatusCallback = GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.OptionalDelegate<NativeAudioBufferStatusCallback>(pointer);
         return true;
     }
 
