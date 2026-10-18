@@ -25,9 +25,7 @@ internal sealed partial class ExternalHostCallbacks
                 case HardwareRenderConstants.SetHardwareRender:
                     return ConfigureHardwareRender(data);
                 case HardwareRenderConstants.GetPreferredHardwareRender:
-                    if (data == nint.Zero) return false;
-                    Marshal.WriteInt32(data, OpenGlHardwareRenderContext.OpenGlCoreContextType);
-                    return true;
+                    return ExternalCoreEnvironmentFunctions.WriteInteger(data, OpenGlHardwareRenderContext.OpenGlCoreContextType);
                 case ExternalCoreApiConstants.GetSystemDirectory:
                     Marshal.WriteIntPtr(data, NativeString(SystemDirectory));
                     return true;
@@ -39,8 +37,7 @@ internal sealed partial class ExternalHostCallbacks
                     return true;
                 case ExternalCoreApiConstants.GetCanDuplicateFrames:
                 case ExternalCoreApiConstants.GetInputBitmasks:
-                    if (data != nint.Zero)
-                        Marshal.WriteByte(data, ExternalCoreInteropConstants.NativeBooleanTrue);
+                    _ = ExternalCoreEnvironmentFunctions.WriteBoolean(data, true);
                     return true;
                 case ExternalCoreApiConstants.SetMessage:
                     return CaptureMessage(data, extended: false);
@@ -53,7 +50,7 @@ internal sealed partial class ExternalHostCallbacks
                     };
                     return true;
                 case ExternalCoreApiConstants.GetCoreOptionsVersion:
-                    if (data != 0) Marshal.WriteInt32(data, 2);
+                    _ = ExternalCoreEnvironmentFunctions.WriteInteger(data, 2);
                     return true;
                 case ExternalCoreApiConstants.SetCoreOptions:
                     RegisterVersionOneOptions(data);
@@ -76,7 +73,7 @@ internal sealed partial class ExternalHostCallbacks
                     _ = EmulationCoreOptionFunctions.GetAndClearUpdated(data, ref _optionsUpdated);
                     return true;
                 case ExternalCoreApiConstants.GetDiskControlVersion:
-                    if (data != 0) Marshal.WriteInt32(data, 1);
+                    _ = ExternalCoreEnvironmentFunctions.WriteInteger(data, 1);
                     return true;
                 case ExternalCoreApiConstants.SetInputDescriptors:
                     return true;
@@ -103,9 +100,7 @@ internal sealed partial class ExternalHostCallbacks
                     SupportsNoGame = data != nint.Zero && Marshal.ReadByte(data) != ExternalCoreInteropConstants.NativeBooleanFalse;
                     return true;
                 case ExternalCoreApiConstants.GetMessageInterfaceVersion:
-                    if (data != nint.Zero)
-                        Marshal.WriteInt32(data, ExternalCoreInteropConstants.MessageInterfaceVersion);
-                    return data != nint.Zero;
+                    return ExternalCoreEnvironmentFunctions.WriteInteger(data, ExternalCoreInteropConstants.MessageInterfaceVersion);
                 case ExternalCoreApiConstants.SetMessageExtended:
                     return CaptureMessage(data, extended: true);
                 case ExternalCoreApiConstants.SetFastForwardingOverride:

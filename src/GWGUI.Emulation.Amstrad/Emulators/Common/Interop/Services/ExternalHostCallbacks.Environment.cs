@@ -28,8 +28,7 @@ internal sealed partial class ExternalHostCallbacks
                     return true;
                 case ExternalCoreApiConstants.GetCanDuplicateFrames:
                 case ExternalCoreApiConstants.GetInputBitmasks:
-                    if (data != nint.Zero)
-                        Marshal.WriteByte(data, ExternalCoreInteropConstants.NativeBooleanTrue);
+                    _ = ExternalCoreEnvironmentFunctions.WriteBoolean(data, true);
                     return true;
                 case ExternalCoreApiConstants.SetMessage:
                     return CaptureMessage(data, extended: false);
@@ -42,7 +41,7 @@ internal sealed partial class ExternalHostCallbacks
                     };
                     return true;
                 case ExternalCoreApiConstants.GetCoreOptionsVersion:
-                    if (data != nint.Zero) Marshal.WriteInt32(data, ExternalCoreInteropConstants.CoreOptionsInterfaceVersion);
+                    _ = ExternalCoreEnvironmentFunctions.WriteInteger(data, ExternalCoreInteropConstants.CoreOptionsInterfaceVersion);
                     return true;
                 case ExternalCoreApiConstants.SetCoreOptionsV2:
                     RegisterVersionTwoOptions(data);
@@ -59,7 +58,7 @@ internal sealed partial class ExternalHostCallbacks
                     _ = EmulationCoreOptionFunctions.GetAndClearUpdated(data, ref _optionsUpdated);
                     return true;
                 case ExternalCoreApiConstants.GetDiskControlVersion:
-                    if (data != nint.Zero) Marshal.WriteInt32(data, ExternalCoreInteropConstants.DiskControlInterfaceVersion);
+                    _ = ExternalCoreEnvironmentFunctions.WriteInteger(data, ExternalCoreInteropConstants.DiskControlInterfaceVersion);
                     return true;
                 case ExternalCoreApiConstants.SetInputDescriptors:
                     return true;
@@ -86,9 +85,7 @@ internal sealed partial class ExternalHostCallbacks
                     SupportsNoGame = data != nint.Zero && Marshal.ReadByte(data) != ExternalCoreInteropConstants.NativeBooleanFalse;
                     return true;
                 case ExternalCoreApiConstants.GetMessageInterfaceVersion:
-                    if (data != nint.Zero)
-                        Marshal.WriteInt32(data, ExternalCoreInteropConstants.MessageInterfaceVersion);
-                    return data != nint.Zero;
+                    return ExternalCoreEnvironmentFunctions.WriteInteger(data, ExternalCoreInteropConstants.MessageInterfaceVersion);
                 case ExternalCoreApiConstants.SetMessageExtended:
                     return CaptureMessage(data, extended: true);
                 case ExternalCoreApiConstants.SetFastForwardingOverride:

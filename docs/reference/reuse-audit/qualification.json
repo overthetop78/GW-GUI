@@ -8250,13 +8250,13 @@
     "afterProductBuild": "005e3c677"
   },
   "shortMethodInventory": {
-    "snapshot": "6361448582375b6cec35980ea185055fb6a0f621",
+    "snapshot": "b655f12c226cd0ed6a9f02eb0baa684f8be51fd0",
     "files": 7325,
     "bodyCount": 9501,
     "exactGroups": 775,
     "renamedGroups": 365,
     "status": "Incomplete; existing queue/empty-method qualifications retained; 29 factory selections now shared and verified; sector source reader-selection stage shared, remaining typed writer ownership pending.",
-    "trackedCSharpCoverage": "Full current C# scan: 7325 files. 81 constructor initializer compositions qualified, and eight native updated-query branches now reuse existing SDK primitive. All other environment branches, lifecycle groups and residual candidates remain under review."
+    "trackedCSharpCoverage": "Full current C# scan: 7325 files. 81 constructor compositions, eight native updated-query branches and 37 scalar output sections qualified; broader environment and lifecycle responsibilities remain under review."
   },
   "hardwareIdentityComparisonReuse": {
     "snapshot": "a4760e868",
@@ -21167,8 +21167,1132 @@
       ],
       "verification": "Original Amiga 535a9dd84 branch exact; all eight source branches match after numeric constant normalization. Existing SDK null guard preserves flag on null, exchange then byte write matches original non-null path; caller ignores helper return and retains true. Restoring only that first statement makes all eight full files token-identical to HEAD, including other cases, catches, fields and callbacks. SDK primitive source hash unchanged.",
       "semanticAfter": "SDK and six changed modules zero semantic errors; eight calls resolve to existing GetAndClearUpdated(nint, ref int), with the same original module-owned fields. No field or native-resource ownership moved.",
-      "tests": "28 targeted cases passed, exit 0: CoreOptionHostStateTests and OptionEnvironmentCommandTests. Four new cases verify null-query flag retention for 0, 1, -1 and int.MaxValue, one real byte write then consumed state on second query. Existing WithByte frees memory in finally. No file/native DLL/core/process/window fixture used."
+      "tests": "28 targeted cases passed, exit 0: CoreOptionHostStateTests and OptionEnvironmentCommandTests. Four new cases verify null-query flag retention for 0, 1, -1 and int.MaxValue, one real byte write then consumed state on second query. Existing WithByte frees memory in finally. No file/native DLL/core/process/window fixture used.",
+      "subsequentScalarValidation": "Updated-query after hashes describe commit 40b354f12. nativeScalarQueryReuse records the subsequent 37 scalar replacements with all other tokens preserved, including the updated-query branches."
     },
-    "remaining": "All other native/legacy branches and rich residual switches still require per-responsibility extraction/qualification. This is not completion of environment dispatch or global audit."
+    "remaining": "All other native/legacy branches and rich residual switches still require per-responsibility extraction/qualification. This is not completion of environment dispatch or global audit.",
+    "subsequentValidations": [
+      "nativeUpdatedQuery",
+      "nativeScalarQueryReuse"
+    ]
+  },
+  "nativeScalarQueryReuse": {
+    "state": "verified; 37 scalar query sections only",
+    "snapshot": "b655f12c226cd0ed6a9f02eb0baa684f8be51fd0",
+    "before": [
+      {
+        "convertedType": "byte",
+        "kind": "boolean-always-accepted",
+        "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "helper": "WriteBoolean",
+        "original": "if (data != nint.Zero)\r\n                        Marshal.WriteByte(data, ExternalCoreInteropConstants.NativeBooleanTrue);\r\n                    return true;",
+        "sourceType": "byte",
+        "valueExpression": "ExternalCoreInteropConstants.NativeBooleanTrue",
+        "replacement": "_ = ExternalCoreEnvironmentFunctions.WriteBoolean(data, true); return true;",
+        "labels": [
+          "ExternalCoreApiConstants.GetCanDuplicateFrames",
+          "ExternalCoreApiConstants.GetInputBitmasks"
+        ],
+        "sourceSha256": "1CB96EB13129D6007D05856BCB5B9278C887D126589BD077D717DB07D384E4E2",
+        "value": 1,
+        "commands": [
+          3,
+          65587
+        ]
+      },
+      {
+        "convertedType": "int",
+        "kind": "integer-always-accepted",
+        "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "helper": "WriteInteger",
+        "original": "if (data != nint.Zero) Marshal.WriteInt32(data, ExternalCoreInteropConstants.CoreOptionsInterfaceVersion);\r\n                    return true;",
+        "sourceType": "int",
+        "valueExpression": "ExternalCoreInteropConstants.CoreOptionsInterfaceVersion",
+        "replacement": "_ = ExternalCoreEnvironmentFunctions.WriteInteger(data, ExternalCoreInteropConstants.CoreOptionsInterfaceVersion); return true;",
+        "labels": [
+          "ExternalCoreApiConstants.GetCoreOptionsVersion"
+        ],
+        "sourceSha256": "1CB96EB13129D6007D05856BCB5B9278C887D126589BD077D717DB07D384E4E2",
+        "value": 2,
+        "commands": [
+          52
+        ]
+      },
+      {
+        "convertedType": "int",
+        "kind": "integer-always-accepted",
+        "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "helper": "WriteInteger",
+        "original": "if (data != nint.Zero) Marshal.WriteInt32(data, ExternalCoreInteropConstants.DiskControlInterfaceVersion);\r\n                    return true;",
+        "sourceType": "int",
+        "valueExpression": "ExternalCoreInteropConstants.DiskControlInterfaceVersion",
+        "replacement": "_ = ExternalCoreEnvironmentFunctions.WriteInteger(data, ExternalCoreInteropConstants.DiskControlInterfaceVersion); return true;",
+        "labels": [
+          "ExternalCoreApiConstants.GetDiskControlVersion"
+        ],
+        "sourceSha256": "1CB96EB13129D6007D05856BCB5B9278C887D126589BD077D717DB07D384E4E2",
+        "value": 1,
+        "commands": [
+          57
+        ]
+      },
+      {
+        "convertedType": "int",
+        "kind": "integer-null-refused-after",
+        "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "helper": "WriteInteger",
+        "original": "if (data != nint.Zero)\r\n                        Marshal.WriteInt32(data, ExternalCoreInteropConstants.MessageInterfaceVersion);\r\n                    return data != nint.Zero;",
+        "sourceType": "int",
+        "valueExpression": "ExternalCoreInteropConstants.MessageInterfaceVersion",
+        "replacement": "return ExternalCoreEnvironmentFunctions.WriteInteger(data, ExternalCoreInteropConstants.MessageInterfaceVersion);",
+        "labels": [
+          "ExternalCoreApiConstants.GetMessageInterfaceVersion"
+        ],
+        "sourceSha256": "1CB96EB13129D6007D05856BCB5B9278C887D126589BD077D717DB07D384E4E2",
+        "value": 1,
+        "commands": [
+          59
+        ]
+      },
+      {
+        "convertedType": "byte",
+        "kind": "boolean-always-accepted",
+        "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "helper": "WriteBoolean",
+        "original": "if (data != nint.Zero)\r\n                        Marshal.WriteByte(data, ExternalCoreInteropConstants.NativeBooleanTrue);\r\n                    return true;",
+        "sourceType": "byte",
+        "valueExpression": "ExternalCoreInteropConstants.NativeBooleanTrue",
+        "replacement": "_ = ExternalCoreEnvironmentFunctions.WriteBoolean(data, true); return true;",
+        "labels": [
+          "ExternalCoreApiConstants.GetCanDuplicateFrames",
+          "ExternalCoreApiConstants.GetInputBitmasks"
+        ],
+        "sourceSha256": "9DF0CD5E332C00FD596823C5D9B7B6215ED76875F4A162B51471540854D8E61C",
+        "value": 1,
+        "commands": [
+          3,
+          65587
+        ]
+      },
+      {
+        "convertedType": "int",
+        "kind": "integer-always-accepted",
+        "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "helper": "WriteInteger",
+        "original": "if (data != nint.Zero) Marshal.WriteInt32(data, CoreOptionsVersion);\r\n                    return true;",
+        "sourceType": "int",
+        "valueExpression": "CoreOptionsVersion",
+        "replacement": "_ = ExternalCoreEnvironmentFunctions.WriteInteger(data, CoreOptionsVersion); return true;",
+        "labels": [
+          "ExternalCoreApiConstants.GetCoreOptionsVersion"
+        ],
+        "sourceSha256": "9DF0CD5E332C00FD596823C5D9B7B6215ED76875F4A162B51471540854D8E61C",
+        "value": 2,
+        "commands": [
+          52
+        ]
+      },
+      {
+        "convertedType": "int",
+        "kind": "integer-always-accepted",
+        "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "helper": "WriteInteger",
+        "original": "if (data != nint.Zero) Marshal.WriteInt32(data, DiskControlVersion);\r\n                    return true;",
+        "sourceType": "int",
+        "valueExpression": "DiskControlVersion",
+        "replacement": "_ = ExternalCoreEnvironmentFunctions.WriteInteger(data, DiskControlVersion); return true;",
+        "labels": [
+          "ExternalCoreApiConstants.GetDiskControlVersion"
+        ],
+        "sourceSha256": "9DF0CD5E332C00FD596823C5D9B7B6215ED76875F4A162B51471540854D8E61C",
+        "value": 1,
+        "commands": [
+          57
+        ]
+      },
+      {
+        "convertedType": "int",
+        "kind": "integer-null-refused-after",
+        "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "helper": "WriteInteger",
+        "original": "if (data != nint.Zero)\r\n                        Marshal.WriteInt32(data, ExternalCoreInteropConstants.MessageInterfaceVersion);\r\n                    return data != nint.Zero;",
+        "sourceType": "int",
+        "valueExpression": "ExternalCoreInteropConstants.MessageInterfaceVersion",
+        "replacement": "return ExternalCoreEnvironmentFunctions.WriteInteger(data, ExternalCoreInteropConstants.MessageInterfaceVersion);",
+        "labels": [
+          "ExternalCoreApiConstants.GetMessageInterfaceVersion"
+        ],
+        "sourceSha256": "9DF0CD5E332C00FD596823C5D9B7B6215ED76875F4A162B51471540854D8E61C",
+        "value": 1,
+        "commands": [
+          59
+        ]
+      },
+      {
+        "convertedType": "byte",
+        "kind": "boolean-always-accepted",
+        "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "helper": "WriteBoolean",
+        "original": "if (data != nint.Zero)\n                        Marshal.WriteByte(data, ExternalCoreInteropConstants.NativeBooleanTrue);\n                    return true;",
+        "sourceType": "byte",
+        "valueExpression": "ExternalCoreInteropConstants.NativeBooleanTrue",
+        "replacement": "_ = ExternalCoreEnvironmentFunctions.WriteBoolean(data, true); return true;",
+        "labels": [
+          "ExternalCoreApiConstants.GetCanDuplicateFrames",
+          "ExternalCoreApiConstants.GetInputBitmasks"
+        ],
+        "sourceSha256": "D9BA85418BFF679E64E432D44D69C0DC17BBE6366891FFEFDEDB6C8639D7BA2C",
+        "value": 1,
+        "commands": [
+          3,
+          65587
+        ]
+      },
+      {
+        "convertedType": "int",
+        "kind": "integer-always-accepted",
+        "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "helper": "WriteInteger",
+        "original": "if (data != 0) Marshal.WriteInt32(data, 2);\n                    return true;",
+        "sourceType": "int",
+        "valueExpression": "2",
+        "replacement": "_ = ExternalCoreEnvironmentFunctions.WriteInteger(data, 2); return true;",
+        "labels": [
+          "ExternalCoreApiConstants.GetCoreOptionsVersion"
+        ],
+        "sourceSha256": "D9BA85418BFF679E64E432D44D69C0DC17BBE6366891FFEFDEDB6C8639D7BA2C",
+        "value": 2,
+        "commands": [
+          52
+        ]
+      },
+      {
+        "convertedType": "int",
+        "kind": "integer-always-accepted",
+        "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "helper": "WriteInteger",
+        "original": "if (data != 0) Marshal.WriteInt32(data, 1);\n                    return true;",
+        "sourceType": "int",
+        "valueExpression": "1",
+        "replacement": "_ = ExternalCoreEnvironmentFunctions.WriteInteger(data, 1); return true;",
+        "labels": [
+          "ExternalCoreApiConstants.GetDiskControlVersion"
+        ],
+        "sourceSha256": "D9BA85418BFF679E64E432D44D69C0DC17BBE6366891FFEFDEDB6C8639D7BA2C",
+        "value": 1,
+        "commands": [
+          57
+        ]
+      },
+      {
+        "convertedType": "int",
+        "kind": "integer-null-refused-after",
+        "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "helper": "WriteInteger",
+        "original": "if (data != nint.Zero)\n                        Marshal.WriteInt32(data, ExternalCoreInteropConstants.MessageInterfaceVersion);\n                    return data != nint.Zero;",
+        "sourceType": "int",
+        "valueExpression": "ExternalCoreInteropConstants.MessageInterfaceVersion",
+        "replacement": "return ExternalCoreEnvironmentFunctions.WriteInteger(data, ExternalCoreInteropConstants.MessageInterfaceVersion);",
+        "labels": [
+          "ExternalCoreApiConstants.GetMessageInterfaceVersion"
+        ],
+        "sourceSha256": "D9BA85418BFF679E64E432D44D69C0DC17BBE6366891FFEFDEDB6C8639D7BA2C",
+        "value": 1,
+        "commands": [
+          59
+        ]
+      },
+      {
+        "convertedType": "int",
+        "kind": "integer-null-refused-early",
+        "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "helper": "WriteInteger",
+        "original": "if (data == nint.Zero) return false;\r\n                    Marshal.WriteInt32(data, OpenGlHardwareRenderContext.OpenGlCoreContextType);\r\n                    return true;",
+        "sourceType": "int",
+        "valueExpression": "OpenGlHardwareRenderContext.OpenGlCoreContextType",
+        "replacement": "return ExternalCoreEnvironmentFunctions.WriteInteger(data, OpenGlHardwareRenderContext.OpenGlCoreContextType);",
+        "labels": [
+          "HardwareRenderConstants.GetPreferredHardwareRender"
+        ],
+        "sourceSha256": "938905656F6EC3449B7A7C1C62EE3E2DE5A7FA0C8E49B6633FBA2CC1173885AE",
+        "value": 3,
+        "commands": [
+          65592
+        ]
+      },
+      {
+        "convertedType": "byte",
+        "kind": "boolean-always-accepted",
+        "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "helper": "WriteBoolean",
+        "original": "if (data != nint.Zero)\r\n                        Marshal.WriteByte(data, ExternalCoreInteropConstants.NativeBooleanTrue);\r\n                    return true;",
+        "sourceType": "byte",
+        "valueExpression": "ExternalCoreInteropConstants.NativeBooleanTrue",
+        "replacement": "_ = ExternalCoreEnvironmentFunctions.WriteBoolean(data, true); return true;",
+        "labels": [
+          "ExternalCoreApiConstants.GetCanDuplicateFrames",
+          "ExternalCoreApiConstants.GetInputBitmasks"
+        ],
+        "sourceSha256": "938905656F6EC3449B7A7C1C62EE3E2DE5A7FA0C8E49B6633FBA2CC1173885AE",
+        "value": 1,
+        "commands": [
+          3,
+          65587
+        ]
+      },
+      {
+        "convertedType": "int",
+        "kind": "integer-always-accepted",
+        "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "helper": "WriteInteger",
+        "original": "if (data != 0) Marshal.WriteInt32(data, 2);\r\n                    return true;",
+        "sourceType": "int",
+        "valueExpression": "2",
+        "replacement": "_ = ExternalCoreEnvironmentFunctions.WriteInteger(data, 2); return true;",
+        "labels": [
+          "ExternalCoreApiConstants.GetCoreOptionsVersion"
+        ],
+        "sourceSha256": "938905656F6EC3449B7A7C1C62EE3E2DE5A7FA0C8E49B6633FBA2CC1173885AE",
+        "value": 2,
+        "commands": [
+          52
+        ]
+      },
+      {
+        "convertedType": "int",
+        "kind": "integer-always-accepted",
+        "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "helper": "WriteInteger",
+        "original": "if (data != 0) Marshal.WriteInt32(data, 1);\r\n                    return true;",
+        "sourceType": "int",
+        "valueExpression": "1",
+        "replacement": "_ = ExternalCoreEnvironmentFunctions.WriteInteger(data, 1); return true;",
+        "labels": [
+          "ExternalCoreApiConstants.GetDiskControlVersion"
+        ],
+        "sourceSha256": "938905656F6EC3449B7A7C1C62EE3E2DE5A7FA0C8E49B6633FBA2CC1173885AE",
+        "value": 1,
+        "commands": [
+          57
+        ]
+      },
+      {
+        "convertedType": "int",
+        "kind": "integer-null-refused-after",
+        "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "helper": "WriteInteger",
+        "original": "if (data != nint.Zero)\r\n                        Marshal.WriteInt32(data, ExternalCoreInteropConstants.MessageInterfaceVersion);\r\n                    return data != nint.Zero;",
+        "sourceType": "int",
+        "valueExpression": "ExternalCoreInteropConstants.MessageInterfaceVersion",
+        "replacement": "return ExternalCoreEnvironmentFunctions.WriteInteger(data, ExternalCoreInteropConstants.MessageInterfaceVersion);",
+        "labels": [
+          "ExternalCoreApiConstants.GetMessageInterfaceVersion"
+        ],
+        "sourceSha256": "938905656F6EC3449B7A7C1C62EE3E2DE5A7FA0C8E49B6633FBA2CC1173885AE",
+        "value": 1,
+        "commands": [
+          59
+        ]
+      },
+      {
+        "convertedType": "int",
+        "kind": "integer-null-refused-early",
+        "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "helper": "WriteInteger",
+        "original": "if (data == nint.Zero) return false;\r\n                    Marshal.WriteInt32(data, OpenGlHardwareRenderContext.OpenGlCoreContextType);\r\n                    return true;",
+        "sourceType": "int",
+        "valueExpression": "OpenGlHardwareRenderContext.OpenGlCoreContextType",
+        "replacement": "return ExternalCoreEnvironmentFunctions.WriteInteger(data, OpenGlHardwareRenderContext.OpenGlCoreContextType);",
+        "labels": [
+          "HardwareRenderConstants.GetPreferredHardwareRender"
+        ],
+        "sourceSha256": "3E6CE644170B0821EABC4DCBC2B600300FA2C85C54AFBB9D6A8F7C728DE36B63",
+        "value": 3,
+        "commands": [
+          65592
+        ]
+      },
+      {
+        "convertedType": "byte",
+        "kind": "boolean-always-accepted",
+        "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "helper": "WriteBoolean",
+        "original": "if (data != nint.Zero)\r\n                        Marshal.WriteByte(data, ExternalCoreInteropConstants.NativeBooleanTrue);\r\n                    return true;",
+        "sourceType": "byte",
+        "valueExpression": "ExternalCoreInteropConstants.NativeBooleanTrue",
+        "replacement": "_ = ExternalCoreEnvironmentFunctions.WriteBoolean(data, true); return true;",
+        "labels": [
+          "ExternalCoreApiConstants.GetCanDuplicateFrames",
+          "ExternalCoreApiConstants.GetInputBitmasks"
+        ],
+        "sourceSha256": "3E6CE644170B0821EABC4DCBC2B600300FA2C85C54AFBB9D6A8F7C728DE36B63",
+        "value": 1,
+        "commands": [
+          3,
+          65587
+        ]
+      },
+      {
+        "convertedType": "int",
+        "kind": "integer-always-accepted",
+        "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "helper": "WriteInteger",
+        "original": "if (data != 0) Marshal.WriteInt32(data, 2);\r\n                    return true;",
+        "sourceType": "int",
+        "valueExpression": "2",
+        "replacement": "_ = ExternalCoreEnvironmentFunctions.WriteInteger(data, 2); return true;",
+        "labels": [
+          "ExternalCoreApiConstants.GetCoreOptionsVersion"
+        ],
+        "sourceSha256": "3E6CE644170B0821EABC4DCBC2B600300FA2C85C54AFBB9D6A8F7C728DE36B63",
+        "value": 2,
+        "commands": [
+          52
+        ]
+      },
+      {
+        "convertedType": "int",
+        "kind": "integer-always-accepted",
+        "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "helper": "WriteInteger",
+        "original": "if (data != 0) Marshal.WriteInt32(data, 1);\r\n                    return true;",
+        "sourceType": "int",
+        "valueExpression": "1",
+        "replacement": "_ = ExternalCoreEnvironmentFunctions.WriteInteger(data, 1); return true;",
+        "labels": [
+          "ExternalCoreApiConstants.GetDiskControlVersion"
+        ],
+        "sourceSha256": "3E6CE644170B0821EABC4DCBC2B600300FA2C85C54AFBB9D6A8F7C728DE36B63",
+        "value": 1,
+        "commands": [
+          57
+        ]
+      },
+      {
+        "convertedType": "int",
+        "kind": "integer-null-refused-after",
+        "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "helper": "WriteInteger",
+        "original": "if (data != nint.Zero)\r\n                        Marshal.WriteInt32(data, ExternalCoreInteropConstants.MessageInterfaceVersion);\r\n                    return data != nint.Zero;",
+        "sourceType": "int",
+        "valueExpression": "ExternalCoreInteropConstants.MessageInterfaceVersion",
+        "replacement": "return ExternalCoreEnvironmentFunctions.WriteInteger(data, ExternalCoreInteropConstants.MessageInterfaceVersion);",
+        "labels": [
+          "ExternalCoreApiConstants.GetMessageInterfaceVersion"
+        ],
+        "sourceSha256": "3E6CE644170B0821EABC4DCBC2B600300FA2C85C54AFBB9D6A8F7C728DE36B63",
+        "value": 1,
+        "commands": [
+          59
+        ]
+      },
+      {
+        "convertedType": "int",
+        "kind": "integer-null-refused-early",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Environment.cs",
+        "helper": "WriteInteger",
+        "original": "if (data == nint.Zero) return false;\r\n                    Marshal.WriteInt32(data, OpenGlHardwareRenderContext.OpenGlCoreContextType);\r\n                    return true;",
+        "sourceType": "int",
+        "valueExpression": "OpenGlHardwareRenderContext.OpenGlCoreContextType",
+        "replacement": "return ExternalCoreEnvironmentFunctions.WriteInteger(data, OpenGlHardwareRenderContext.OpenGlCoreContextType);",
+        "labels": [
+          "ExternalCoreApiConstants.GetPreferredHardwareRender"
+        ],
+        "sourceSha256": "31B881B2ECB4F2A498520B6B6C6D1DCDBBA996BD2FFE4D08C2950A161A68EFCA",
+        "value": 3,
+        "commands": [
+          56
+        ]
+      },
+      {
+        "convertedType": "byte",
+        "kind": "boolean-always-accepted",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Environment.cs",
+        "helper": "WriteBoolean",
+        "original": "if (data != nint.Zero)\r\n                        Marshal.WriteByte(data, ExternalCoreInteropConstants.NativeBooleanTrue);\r\n                    return true;",
+        "sourceType": "byte",
+        "valueExpression": "ExternalCoreInteropConstants.NativeBooleanTrue",
+        "replacement": "_ = ExternalCoreEnvironmentFunctions.WriteBoolean(data, true); return true;",
+        "labels": [
+          "ExternalCoreApiConstants.GetCanDuplicateFrames",
+          "ExternalCoreApiConstants.GetInputBitmasks"
+        ],
+        "sourceSha256": "31B881B2ECB4F2A498520B6B6C6D1DCDBBA996BD2FFE4D08C2950A161A68EFCA",
+        "value": 1,
+        "commands": [
+          3,
+          65587
+        ]
+      },
+      {
+        "convertedType": "int",
+        "kind": "integer-always-accepted",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Environment.cs",
+        "helper": "WriteInteger",
+        "original": "if (data != 0) Marshal.WriteInt32(data, 2);\r\n                    return true;",
+        "sourceType": "int",
+        "valueExpression": "2",
+        "replacement": "_ = ExternalCoreEnvironmentFunctions.WriteInteger(data, 2); return true;",
+        "labels": [
+          "ExternalCoreApiConstants.GetCoreOptionsVersion"
+        ],
+        "sourceSha256": "31B881B2ECB4F2A498520B6B6C6D1DCDBBA996BD2FFE4D08C2950A161A68EFCA",
+        "value": 2,
+        "commands": [
+          52
+        ]
+      },
+      {
+        "convertedType": "int",
+        "kind": "integer-always-accepted",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Environment.cs",
+        "helper": "WriteInteger",
+        "original": "if (data != 0) Marshal.WriteInt32(data, 1);\r\n                    return true;",
+        "sourceType": "int",
+        "valueExpression": "1",
+        "replacement": "_ = ExternalCoreEnvironmentFunctions.WriteInteger(data, 1); return true;",
+        "labels": [
+          "ExternalCoreApiConstants.GetDiskControlVersion"
+        ],
+        "sourceSha256": "31B881B2ECB4F2A498520B6B6C6D1DCDBBA996BD2FFE4D08C2950A161A68EFCA",
+        "value": 1,
+        "commands": [
+          57
+        ]
+      },
+      {
+        "convertedType": "int",
+        "kind": "integer-null-refused-after",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Environment.cs",
+        "helper": "WriteInteger",
+        "original": "if (data != nint.Zero)\r\n                        Marshal.WriteInt32(data, ExternalCoreInteropConstants.MessageInterfaceVersion);\r\n                    return data != nint.Zero;",
+        "sourceType": "int",
+        "valueExpression": "ExternalCoreInteropConstants.MessageInterfaceVersion",
+        "replacement": "return ExternalCoreEnvironmentFunctions.WriteInteger(data, ExternalCoreInteropConstants.MessageInterfaceVersion);",
+        "labels": [
+          "ExternalCoreApiConstants.GetMessageInterfaceVersion"
+        ],
+        "sourceSha256": "31B881B2ECB4F2A498520B6B6C6D1DCDBBA996BD2FFE4D08C2950A161A68EFCA",
+        "value": 1,
+        "commands": [
+          59
+        ]
+      },
+      {
+        "convertedType": "int",
+        "kind": "integer-null-refused-early",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "helper": "WriteInteger",
+        "original": "if (data == nint.Zero) return false;\r\n                    Marshal.WriteInt32(data, OpenGlHardwareRenderContext.OpenGlCoreContextType);\r\n                    return true;",
+        "sourceType": "int",
+        "valueExpression": "OpenGlHardwareRenderContext.OpenGlCoreContextType",
+        "replacement": "return ExternalCoreEnvironmentFunctions.WriteInteger(data, OpenGlHardwareRenderContext.OpenGlCoreContextType);",
+        "labels": [
+          "ExternalCoreApiConstants.GetPreferredHardwareRender"
+        ],
+        "sourceSha256": "0363F38E41FEEE3761990D5208AF80E6F3220145B2C119F796F320B8357EAC5F",
+        "value": 3,
+        "commands": [
+          56
+        ]
+      },
+      {
+        "convertedType": "byte",
+        "kind": "boolean-always-accepted",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "helper": "WriteBoolean",
+        "original": "if (data != nint.Zero)\r\n                        Marshal.WriteByte(data, ExternalCoreInteropConstants.NativeBooleanTrue);\r\n                    return true;",
+        "sourceType": "byte",
+        "valueExpression": "ExternalCoreInteropConstants.NativeBooleanTrue",
+        "replacement": "_ = ExternalCoreEnvironmentFunctions.WriteBoolean(data, true); return true;",
+        "labels": [
+          "ExternalCoreApiConstants.GetCanDuplicateFrames",
+          "ExternalCoreApiConstants.GetInputBitmasks"
+        ],
+        "sourceSha256": "0363F38E41FEEE3761990D5208AF80E6F3220145B2C119F796F320B8357EAC5F",
+        "value": 1,
+        "commands": [
+          3,
+          65587
+        ]
+      },
+      {
+        "convertedType": "int",
+        "kind": "integer-always-accepted",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "helper": "WriteInteger",
+        "original": "if (data != 0) Marshal.WriteInt32(data, 2);\r\n                    return true;",
+        "sourceType": "int",
+        "valueExpression": "2",
+        "replacement": "_ = ExternalCoreEnvironmentFunctions.WriteInteger(data, 2); return true;",
+        "labels": [
+          "ExternalCoreApiConstants.GetCoreOptionsVersion"
+        ],
+        "sourceSha256": "0363F38E41FEEE3761990D5208AF80E6F3220145B2C119F796F320B8357EAC5F",
+        "value": 2,
+        "commands": [
+          52
+        ]
+      },
+      {
+        "convertedType": "int",
+        "kind": "integer-always-accepted",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "helper": "WriteInteger",
+        "original": "if (data != 0) Marshal.WriteInt32(data, 1);\r\n                    return true;",
+        "sourceType": "int",
+        "valueExpression": "1",
+        "replacement": "_ = ExternalCoreEnvironmentFunctions.WriteInteger(data, 1); return true;",
+        "labels": [
+          "ExternalCoreApiConstants.GetDiskControlVersion"
+        ],
+        "sourceSha256": "0363F38E41FEEE3761990D5208AF80E6F3220145B2C119F796F320B8357EAC5F",
+        "value": 1,
+        "commands": [
+          57
+        ]
+      },
+      {
+        "convertedType": "int",
+        "kind": "integer-null-refused-after",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "helper": "WriteInteger",
+        "original": "if (data != nint.Zero)\r\n                        Marshal.WriteInt32(data, ExternalCoreInteropConstants.MessageInterfaceVersion);\r\n                    return data != nint.Zero;",
+        "sourceType": "int",
+        "valueExpression": "ExternalCoreInteropConstants.MessageInterfaceVersion",
+        "replacement": "return ExternalCoreEnvironmentFunctions.WriteInteger(data, ExternalCoreInteropConstants.MessageInterfaceVersion);",
+        "labels": [
+          "ExternalCoreApiConstants.GetMessageInterfaceVersion"
+        ],
+        "sourceSha256": "0363F38E41FEEE3761990D5208AF80E6F3220145B2C119F796F320B8357EAC5F",
+        "value": 1,
+        "commands": [
+          59
+        ]
+      },
+      {
+        "convertedType": "int",
+        "kind": "integer-null-refused-early",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Environment.cs",
+        "helper": "WriteInteger",
+        "original": "if (data == nint.Zero) return false;\r\n                    Marshal.WriteInt32(data, OpenGlHardwareRenderContext.OpenGlCoreContextType);\r\n                    return true;",
+        "sourceType": "int",
+        "valueExpression": "OpenGlHardwareRenderContext.OpenGlCoreContextType",
+        "replacement": "return ExternalCoreEnvironmentFunctions.WriteInteger(data, OpenGlHardwareRenderContext.OpenGlCoreContextType);",
+        "labels": [
+          "ExternalCoreApiConstants.GetPreferredHardwareRender"
+        ],
+        "sourceSha256": "5CC1631BD3A87FCFE2BB09F8CB6066BCCBB5F7990C0D7A6BD47C6A2BF20B76CE",
+        "value": 3,
+        "commands": [
+          56
+        ]
+      },
+      {
+        "convertedType": "byte",
+        "kind": "boolean-always-accepted",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Environment.cs",
+        "helper": "WriteBoolean",
+        "original": "if (data != nint.Zero)\r\n                        Marshal.WriteByte(data, ExternalCoreInteropConstants.NativeBooleanTrue);\r\n                    return true;",
+        "sourceType": "byte",
+        "valueExpression": "ExternalCoreInteropConstants.NativeBooleanTrue",
+        "replacement": "_ = ExternalCoreEnvironmentFunctions.WriteBoolean(data, true); return true;",
+        "labels": [
+          "ExternalCoreApiConstants.GetCanDuplicateFrames",
+          "ExternalCoreApiConstants.GetInputBitmasks"
+        ],
+        "sourceSha256": "5CC1631BD3A87FCFE2BB09F8CB6066BCCBB5F7990C0D7A6BD47C6A2BF20B76CE",
+        "value": 1,
+        "commands": [
+          3,
+          65587
+        ]
+      },
+      {
+        "convertedType": "int",
+        "kind": "integer-always-accepted",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Environment.cs",
+        "helper": "WriteInteger",
+        "original": "if (data != 0) Marshal.WriteInt32(data, 2);\r\n                    return true;",
+        "sourceType": "int",
+        "valueExpression": "2",
+        "replacement": "_ = ExternalCoreEnvironmentFunctions.WriteInteger(data, 2); return true;",
+        "labels": [
+          "ExternalCoreApiConstants.GetCoreOptionsVersion"
+        ],
+        "sourceSha256": "5CC1631BD3A87FCFE2BB09F8CB6066BCCBB5F7990C0D7A6BD47C6A2BF20B76CE",
+        "value": 2,
+        "commands": [
+          52
+        ]
+      },
+      {
+        "convertedType": "int",
+        "kind": "integer-always-accepted",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Environment.cs",
+        "helper": "WriteInteger",
+        "original": "if (data != 0) Marshal.WriteInt32(data, 1);\r\n                    return true;",
+        "sourceType": "int",
+        "valueExpression": "1",
+        "replacement": "_ = ExternalCoreEnvironmentFunctions.WriteInteger(data, 1); return true;",
+        "labels": [
+          "ExternalCoreApiConstants.GetDiskControlVersion"
+        ],
+        "sourceSha256": "5CC1631BD3A87FCFE2BB09F8CB6066BCCBB5F7990C0D7A6BD47C6A2BF20B76CE",
+        "value": 1,
+        "commands": [
+          57
+        ]
+      },
+      {
+        "convertedType": "int",
+        "kind": "integer-null-refused-after",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Environment.cs",
+        "helper": "WriteInteger",
+        "original": "if (data != nint.Zero)\r\n                        Marshal.WriteInt32(data, ExternalCoreInteropConstants.MessageInterfaceVersion);\r\n                    return data != nint.Zero;",
+        "sourceType": "int",
+        "valueExpression": "ExternalCoreInteropConstants.MessageInterfaceVersion",
+        "replacement": "return ExternalCoreEnvironmentFunctions.WriteInteger(data, ExternalCoreInteropConstants.MessageInterfaceVersion);",
+        "labels": [
+          "ExternalCoreApiConstants.GetMessageInterfaceVersion"
+        ],
+        "sourceSha256": "5CC1631BD3A87FCFE2BB09F8CB6066BCCBB5F7990C0D7A6BD47C6A2BF20B76CE",
+        "value": 1,
+        "commands": [
+          59
+        ]
+      }
+    ],
+    "owner": "src/GWGUI.Emulation/Functions/ExternalCoreEnvironmentFunctions.cs",
+    "sdkSha256": "24566FEB38036A105CCE9C393E78A70CE56C4C217582C327AAC27A263149E036",
+    "origin": "Existing SDK WriteBoolean/WriteInteger bodies match pre-Amstrad AtariCoreFunctions in ac7292d86^ after byte constant substitution. Original native Amiga 535a9dd84 already uses guarded byte/integer writes with unconditional acceptance for capability/core/disk queries; current profile values must remain current, including later disk version.",
+    "semantic": "SDK and six native modules zero errors. All 37 value expressions are compile-time constants, Boolean values equal one with byte destination; integer expressions and Marshal destinations are Int32. Command labels, current values and source hashes recorded.",
+    "decision": "Use existing primitives at original case positions. For 24 always-accepted sections ignore primitive result then return true; for eight message-version and five preferred-renderer sections return primitive result. Keep every original label/value expression and all other branches. Do not call a broader stateless dispatcher because supported command subsets and null acceptance differ.",
+    "remaining": "Only scalar output writes qualified here; other environment branches, callback ownership and lifecycle behavior remain under review.",
+    "after": [
+      {
+        "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "sha256": "9703F8A07E4548F928B9BFE43DE864539713B6340677571CE9D6C878B6077232",
+        "otherTokensUnchanged": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "sha256": "1B78CF3497132462138342E88976B0108F52F91C2CF4A4C60AF9991805AD7351",
+        "otherTokensUnchanged": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "sha256": "C9AF8CB6D54B35F23408EE0EC72A5681C8D8A7179463A57B94BF26D54528E124",
+        "otherTokensUnchanged": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "sha256": "89EE0D11F52F8FA8B020F133BDCD86EDBA2BABE773AD9B2FEE39A09005612376",
+        "otherTokensUnchanged": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "sha256": "C17C911640523DE91FFB2D82609111E831DF6BDE95BD2DD9FA6B3A698E4A081F",
+        "otherTokensUnchanged": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "sha256": "25BA3C95F2529595F7BB8A09B70B2CFF816C4F8A3CBD258D9A2E86DBE0AD92CE",
+        "otherTokensUnchanged": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Environment.cs",
+        "sha256": "B055AFBD5B68D0AFA60AD5E9658F6612FFB29036CE07402823EE5AE7906BEDBC",
+        "otherTokensUnchanged": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Environment.cs",
+        "sha256": "078B08B1C8CCECA8E37F39B0AA4B9DB11F43B7B8C73ED1C3DBD15680227C61B2",
+        "otherTokensUnchanged": true
+      }
+    ],
+    "bindings": [
+      {
+        "kind": "boolean-always-accepted",
+        "label": "ExternalCoreApiConstants.GetCanDuplicateFrames",
+        "value": true,
+        "commands": [
+          3,
+          65587
+        ],
+        "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.WriteBoolean(nint, bool)",
+        "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs"
+      },
+      {
+        "kind": "integer-always-accepted",
+        "label": "ExternalCoreApiConstants.GetCoreOptionsVersion",
+        "value": 2,
+        "commands": [
+          52
+        ],
+        "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.WriteInteger(nint, int)",
+        "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs"
+      },
+      {
+        "kind": "integer-always-accepted",
+        "label": "ExternalCoreApiConstants.GetDiskControlVersion",
+        "value": 1,
+        "commands": [
+          57
+        ],
+        "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.WriteInteger(nint, int)",
+        "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs"
+      },
+      {
+        "kind": "integer-null-refused-after",
+        "label": "ExternalCoreApiConstants.GetMessageInterfaceVersion",
+        "value": 1,
+        "commands": [
+          59
+        ],
+        "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.WriteInteger(nint, int)",
+        "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs"
+      },
+      {
+        "kind": "boolean-always-accepted",
+        "label": "ExternalCoreApiConstants.GetCanDuplicateFrames",
+        "value": true,
+        "commands": [
+          3,
+          65587
+        ],
+        "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.WriteBoolean(nint, bool)",
+        "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs"
+      },
+      {
+        "kind": "integer-always-accepted",
+        "label": "ExternalCoreApiConstants.GetCoreOptionsVersion",
+        "value": 2,
+        "commands": [
+          52
+        ],
+        "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.WriteInteger(nint, int)",
+        "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs"
+      },
+      {
+        "kind": "integer-always-accepted",
+        "label": "ExternalCoreApiConstants.GetDiskControlVersion",
+        "value": 1,
+        "commands": [
+          57
+        ],
+        "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.WriteInteger(nint, int)",
+        "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs"
+      },
+      {
+        "kind": "integer-null-refused-after",
+        "label": "ExternalCoreApiConstants.GetMessageInterfaceVersion",
+        "value": 1,
+        "commands": [
+          59
+        ],
+        "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.WriteInteger(nint, int)",
+        "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs"
+      },
+      {
+        "kind": "boolean-always-accepted",
+        "label": "ExternalCoreApiConstants.GetCanDuplicateFrames",
+        "value": true,
+        "commands": [
+          3,
+          65587
+        ],
+        "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.WriteBoolean(nint, bool)",
+        "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs"
+      },
+      {
+        "kind": "integer-always-accepted",
+        "label": "ExternalCoreApiConstants.GetCoreOptionsVersion",
+        "value": 2,
+        "commands": [
+          52
+        ],
+        "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.WriteInteger(nint, int)",
+        "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs"
+      },
+      {
+        "kind": "integer-always-accepted",
+        "label": "ExternalCoreApiConstants.GetDiskControlVersion",
+        "value": 1,
+        "commands": [
+          57
+        ],
+        "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.WriteInteger(nint, int)",
+        "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs"
+      },
+      {
+        "kind": "integer-null-refused-after",
+        "label": "ExternalCoreApiConstants.GetMessageInterfaceVersion",
+        "value": 1,
+        "commands": [
+          59
+        ],
+        "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.WriteInteger(nint, int)",
+        "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs"
+      },
+      {
+        "kind": "integer-null-refused-early",
+        "label": "HardwareRenderConstants.GetPreferredHardwareRender",
+        "value": 3,
+        "commands": [
+          65592
+        ],
+        "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.WriteInteger(nint, int)",
+        "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs"
+      },
+      {
+        "kind": "boolean-always-accepted",
+        "label": "ExternalCoreApiConstants.GetCanDuplicateFrames",
+        "value": true,
+        "commands": [
+          3,
+          65587
+        ],
+        "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.WriteBoolean(nint, bool)",
+        "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs"
+      },
+      {
+        "kind": "integer-always-accepted",
+        "label": "ExternalCoreApiConstants.GetCoreOptionsVersion",
+        "value": 2,
+        "commands": [
+          52
+        ],
+        "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.WriteInteger(nint, int)",
+        "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs"
+      },
+      {
+        "kind": "integer-always-accepted",
+        "label": "ExternalCoreApiConstants.GetDiskControlVersion",
+        "value": 1,
+        "commands": [
+          57
+        ],
+        "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.WriteInteger(nint, int)",
+        "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs"
+      },
+      {
+        "kind": "integer-null-refused-after",
+        "label": "ExternalCoreApiConstants.GetMessageInterfaceVersion",
+        "value": 1,
+        "commands": [
+          59
+        ],
+        "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.WriteInteger(nint, int)",
+        "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs"
+      },
+      {
+        "kind": "integer-null-refused-early",
+        "label": "HardwareRenderConstants.GetPreferredHardwareRender",
+        "value": 3,
+        "commands": [
+          65592
+        ],
+        "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.WriteInteger(nint, int)",
+        "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs"
+      },
+      {
+        "kind": "boolean-always-accepted",
+        "label": "ExternalCoreApiConstants.GetCanDuplicateFrames",
+        "value": true,
+        "commands": [
+          3,
+          65587
+        ],
+        "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.WriteBoolean(nint, bool)",
+        "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs"
+      },
+      {
+        "kind": "integer-always-accepted",
+        "label": "ExternalCoreApiConstants.GetCoreOptionsVersion",
+        "value": 2,
+        "commands": [
+          52
+        ],
+        "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.WriteInteger(nint, int)",
+        "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs"
+      },
+      {
+        "kind": "integer-always-accepted",
+        "label": "ExternalCoreApiConstants.GetDiskControlVersion",
+        "value": 1,
+        "commands": [
+          57
+        ],
+        "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.WriteInteger(nint, int)",
+        "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs"
+      },
+      {
+        "kind": "integer-null-refused-after",
+        "label": "ExternalCoreApiConstants.GetMessageInterfaceVersion",
+        "value": 1,
+        "commands": [
+          59
+        ],
+        "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.WriteInteger(nint, int)",
+        "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs"
+      },
+      {
+        "kind": "integer-null-refused-early",
+        "label": "ExternalCoreApiConstants.GetPreferredHardwareRender",
+        "value": 3,
+        "commands": [
+          56
+        ],
+        "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.WriteInteger(nint, int)",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs"
+      },
+      {
+        "kind": "boolean-always-accepted",
+        "label": "ExternalCoreApiConstants.GetCanDuplicateFrames",
+        "value": true,
+        "commands": [
+          3,
+          65587
+        ],
+        "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.WriteBoolean(nint, bool)",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs"
+      },
+      {
+        "kind": "integer-always-accepted",
+        "label": "ExternalCoreApiConstants.GetCoreOptionsVersion",
+        "value": 2,
+        "commands": [
+          52
+        ],
+        "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.WriteInteger(nint, int)",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs"
+      },
+      {
+        "kind": "integer-always-accepted",
+        "label": "ExternalCoreApiConstants.GetDiskControlVersion",
+        "value": 1,
+        "commands": [
+          57
+        ],
+        "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.WriteInteger(nint, int)",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs"
+      },
+      {
+        "kind": "integer-null-refused-after",
+        "label": "ExternalCoreApiConstants.GetMessageInterfaceVersion",
+        "value": 1,
+        "commands": [
+          59
+        ],
+        "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.WriteInteger(nint, int)",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs"
+      },
+      {
+        "kind": "integer-null-refused-early",
+        "label": "ExternalCoreApiConstants.GetPreferredHardwareRender",
+        "value": 3,
+        "commands": [
+          56
+        ],
+        "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.WriteInteger(nint, int)",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Environment.cs"
+      },
+      {
+        "kind": "boolean-always-accepted",
+        "label": "ExternalCoreApiConstants.GetCanDuplicateFrames",
+        "value": true,
+        "commands": [
+          3,
+          65587
+        ],
+        "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.WriteBoolean(nint, bool)",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Environment.cs"
+      },
+      {
+        "kind": "integer-always-accepted",
+        "label": "ExternalCoreApiConstants.GetCoreOptionsVersion",
+        "value": 2,
+        "commands": [
+          52
+        ],
+        "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.WriteInteger(nint, int)",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Environment.cs"
+      },
+      {
+        "kind": "integer-always-accepted",
+        "label": "ExternalCoreApiConstants.GetDiskControlVersion",
+        "value": 1,
+        "commands": [
+          57
+        ],
+        "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.WriteInteger(nint, int)",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Environment.cs"
+      },
+      {
+        "kind": "integer-null-refused-after",
+        "label": "ExternalCoreApiConstants.GetMessageInterfaceVersion",
+        "value": 1,
+        "commands": [
+          59
+        ],
+        "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.WriteInteger(nint, int)",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Environment.cs"
+      },
+      {
+        "kind": "integer-null-refused-early",
+        "label": "ExternalCoreApiConstants.GetPreferredHardwareRender",
+        "value": 3,
+        "commands": [
+          56
+        ],
+        "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.WriteInteger(nint, int)",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Environment.cs"
+      },
+      {
+        "kind": "boolean-always-accepted",
+        "label": "ExternalCoreApiConstants.GetCanDuplicateFrames",
+        "value": true,
+        "commands": [
+          3,
+          65587
+        ],
+        "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.WriteBoolean(nint, bool)",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Environment.cs"
+      },
+      {
+        "kind": "integer-always-accepted",
+        "label": "ExternalCoreApiConstants.GetCoreOptionsVersion",
+        "value": 2,
+        "commands": [
+          52
+        ],
+        "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.WriteInteger(nint, int)",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Environment.cs"
+      },
+      {
+        "kind": "integer-always-accepted",
+        "label": "ExternalCoreApiConstants.GetDiskControlVersion",
+        "value": 1,
+        "commands": [
+          57
+        ],
+        "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.WriteInteger(nint, int)",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Environment.cs"
+      },
+      {
+        "kind": "integer-null-refused-after",
+        "label": "ExternalCoreApiConstants.GetMessageInterfaceVersion",
+        "value": 1,
+        "commands": [
+          59
+        ],
+        "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.WriteInteger(nint, int)",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Environment.cs"
+      }
+    ],
+    "verification": "All 37 statement sequences match mapped original branches and labels, with original constant expressions/current values. Restoring those sequences makes all eight complete files token-identical to HEAD; all other cases, catches, fields and callback ownership unchanged. Existing SDK primitives source hash unchanged. For 24 accepted-null sections the ignored primitive refusal is followed by true; remaining 13 sections return its same null-refusal/write result.",
+    "semanticAfter": "SDK and six changed modules zero errors. 37 calls resolve to existing WriteBoolean(nint,bool) or WriteInteger(nint,int), never the checked uint overload. All original native command ids and reply constants preserved.",
+    "tests": "24 existing tests passed, exit 0: StatelessEnvironmentCommandTests and CoreOptionHostStateTests. Boolean native byte values, configured interface versions, null-output refusal and unhandled command boundaries covered by existing SDK tests; atomic option-state regressions retained. No mirror test or new fixture added. Native accept-null profiles separately verified by AST ignored-result/true mapping."
   }
 }
