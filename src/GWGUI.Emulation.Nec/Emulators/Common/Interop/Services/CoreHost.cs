@@ -40,15 +40,8 @@ public static class CoreHost
                             core = new ExternalCore(corePath);
                             core.Initialize(configuration, session, saves);
                             writer.Write(true);
-                            writer.Write(core.CoreSha256);
-                            writer.Write(core.FramesPerSecond);
-                            writer.Write(core.SampleRate);
-                            writer.Write(JsonSerializer.Serialize(core.Options, CoreHostProtocol.JsonOptions));
-                            writer.Write(JsonSerializer.Serialize(core.Diagnostics, CoreHostProtocol.JsonOptions));
-                            lastDiagnosticCount = core.Diagnostics.Count;
-                            writer.Write(core.CoreName);
-                            writer.Write(core.CoreVersion);
-                            writer.Write(string.Join('|', core.SupportedContentExtensions.Order(StringComparer.OrdinalIgnoreCase)));
+                            EmulationHostProtocolFunctions.WriteCoreInitialization<ExternalCore, MachineConfiguration, CoreOption>(
+                                writer, core, CoreHostProtocol.JsonOptions, ref lastDiagnosticCount, '|');
                             writer.Write(core.DiskCount);
                             writer.Write(core.CurrentDiskIndex);
                             CoreHostProtocol.WriteLedStates(writer, core.LedStates);
@@ -60,9 +53,7 @@ public static class CoreHost
                             writer.Write(true);
                             EmulationHostProtocolFunctions.WriteFrameIfChanged(writer, activeCore.LatestVideoFrame, ref lastVideoSequence,
                                 (frameWriter, pendingFrame) => CoreHostProtocol.WriteSharedFrame(frameWriter, pendingFrame, videoMap));
-                            EmulationHostProtocolFunctions.WriteQueuedAudio(writer, () => activeCore.TryDequeueAudio(out var chunk) ? chunk : null);
-                            writer.Write(activeCore.FramesPerSecond);
-                            writer.Write(activeCore.SampleRate);
+                            EmulationHostProtocolFunctions.WriteCoreAudio(writer, activeCore);
                             writer.Write(activeCore.DiskCount);
                             writer.Write(activeCore.CurrentDiskIndex);
                             var diagnostics = activeCore.Diagnostics;

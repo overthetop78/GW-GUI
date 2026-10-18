@@ -2,11 +2,37 @@ using System.IO;
 using System.Diagnostics;
 using System.IO.Pipes;
 using System.Text;
+using System.Text.Json;
 
 namespace GWGUI.Emulation.Functions;
 
 internal static partial class EmulationHostProtocolFunctions
 {
+    internal static void WriteCoreInitialization<TCore, TConfiguration, TOption>(BinaryWriter writer, TCore core,
+        JsonSerializerOptions jsonOptions, ref int lastDiagnosticCount, char extensionSeparator,
+        Action<BinaryWriter, TCore>? writeStatus = null)
+        where TCore : IEmulationCoreRuntime<TConfiguration, TOption>
+    {
+        writer.Write(core.CoreSha256);
+        writer.Write(core.FramesPerSecond);
+        writer.Write(core.SampleRate);
+        writeStatus?.Invoke(writer, core);
+        writer.Write(JsonSerializer.Serialize(core.Options, jsonOptions));
+        writer.Write(JsonSerializer.Serialize(core.Diagnostics, jsonOptions));
+        lastDiagnosticCount = core.Diagnostics.Count;
+        writer.Write(core.CoreName);
+        writer.Write(core.CoreVersion);
+        writer.Write(string.Join(extensionSeparator, core.SupportedContentExtensions.Order(StringComparer.OrdinalIgnoreCase)));
+    }
+
+    internal static void WriteCoreAudio<TConfiguration, TOption>(BinaryWriter writer,
+        IEmulationCoreRuntime<TConfiguration, TOption> core)
+    {
+        WriteQueuedAudio(writer, () => core.TryDequeueAudio(out var chunk) ? chunk : null);
+        writer.Write(core.FramesPerSecond);
+        writer.Write(core.SampleRate);
+    }
+
     internal static bool TryExecuteCoreStateCommand(byte command, BinaryReader reader, BinaryWriter writer,
         Func<IEmulationCoreStateCommands> ensureCore, Func<BinaryReader, byte[]> readBytes,
         Action<BinaryWriter>? writeSuccess = null)

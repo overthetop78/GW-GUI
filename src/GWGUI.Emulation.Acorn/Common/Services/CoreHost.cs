@@ -78,17 +78,13 @@ public static class CoreHost
         var configuration = JsonSerializer.Deserialize<MachineConfiguration>(reader.ReadString(), CoreHostFunctions.JsonOptions) ?? throw new InvalidDataException(CoreHostErrors.InvalidConfiguration);
         core = createCore(corePath, emulator);
         core.Initialize(configuration, session, saves);
-        writer.Write(core.CoreSha256);
-        writer.Write(core.FramesPerSecond);
-        writer.Write(core.SampleRate);
-        writer.Write(core.SupportsSaveStates);
-        EmulationHostProtocolFunctions.WriteRuntimeStatus(writer, core.Region, core.BufferedAudioFrames, core.AudioOverrunCount, core.AudioUnderrunCount);
-        writer.Write(JsonSerializer.Serialize(core.Options, CoreHostFunctions.JsonOptions));
-        writer.Write(JsonSerializer.Serialize(core.Diagnostics, CoreHostFunctions.JsonOptions));
-        lastDiagnosticCount = core.Diagnostics.Count;
-        writer.Write(core.CoreName);
-        writer.Write(core.CoreVersion);
-        writer.Write(string.Join(CoreHostConstants.ExtensionListSeparator, core.SupportedContentExtensions.Order(StringComparer.OrdinalIgnoreCase)));
+        EmulationHostProtocolFunctions.WriteCoreInitialization<IEmulatorCore, MachineConfiguration, CoreOption>(
+            writer, core, CoreHostFunctions.JsonOptions, ref lastDiagnosticCount, CoreHostConstants.ExtensionListSeparator,
+            static (statusWriter, currentCore) =>
+            {
+                statusWriter.Write(currentCore.SupportsSaveStates);
+                EmulationHostProtocolFunctions.WriteRuntimeStatus(statusWriter, currentCore.Region, currentCore.BufferedAudioFrames, currentCore.AudioOverrunCount, currentCore.AudioUnderrunCount);
+            });
         CoreHostFunctions.WriteLedStates(writer, core.LedStates);
     }
 
@@ -102,9 +98,7 @@ public static class CoreHost
         var bufferedAudioFrames = core.BufferedAudioFrames;
         var audioOverrunCount = core.AudioOverrunCount;
         var audioUnderrunCount = core.AudioUnderrunCount;
-        EmulationHostProtocolFunctions.WriteQueuedAudio(writer, () => core.TryDequeueAudio(out var chunk) ? chunk : null);
-        writer.Write(core.FramesPerSecond);
-        writer.Write(core.SampleRate);
+        EmulationHostProtocolFunctions.WriteCoreAudio(writer, core);
         EmulationHostProtocolFunctions.WriteRuntimeStatus(writer, core.Region, bufferedAudioFrames, audioOverrunCount, audioUnderrunCount);
         EmulationHostProtocolFunctions.WriteChangedDiagnostics(writer, () => core.Diagnostics.Count,
             diagnosticWriter => diagnosticWriter.Write(JsonSerializer.Serialize(core.Diagnostics, CoreHostFunctions.JsonOptions)), ref lastDiagnosticCount);
