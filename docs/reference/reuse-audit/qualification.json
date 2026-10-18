@@ -11029,5 +11029,291 @@
     "ast": "Shared body expands exactly to each of five original bodies; callbacks preserve parser, context, token and false includeRanges. The async ValueTask implementation moved into common method; adapters return that ValueTask directly, retaining fault timing. Task parsers wrapped in ValueTask<T>, ValueTask parsers supplied as method groups. All other tokens of all five readers and registry unchanged; VHD/RAW tokens unchanged.",
     "semanticAfter": "MediaEngine zero semantic errors; five calls resolve to common generic CanReadAsync with the exact original parser return types: three Task<T> wrapped in ValueTask<T>, two ValueTask<T> method groups. Parser declarations, bodies and all other members unchanged.",
     "tests": "Fifteen managed tests passed, exit 0: requested formats/null/case/empty, pre-cancelled token forwarding and early refusal, controlled pending validator completed/awaited in finally, synchronous/asynchronous InvalidDataException and NotSupportedException refusal, other IOException propagation, both cancellation paths with token, and null-context asynchronous fault timing. Context KnownLength=0 avoids FileInfo and no reads are invoked; no media files, external DLL fixtures, windows, processes or cores."
+  },
+  "installationTemporaryScopeReview": {
+    "state": "partial; Sony common pipeline correction pending; full manifest callback review pending",
+    "snapshot": "121ea9865",
+    "profiles": [
+      {
+        "path": "src/GWGUI.Emulation.Panasonic/Emulators/Opera/Services/CoreReleaseService.cs",
+        "method": "InstallAsync",
+        "line": 31,
+        "sha256": "41F463F621746ABA24FCDB53F2E3385E57C5EC35323EEB8AD6A45A299F115213",
+        "returnType": "Task<CoreInstallationPaths>",
+        "sharedPipeline": true,
+        "pipelineParameters": 7,
+        "manifestType": "GWGUI.Emulation.Panasonic.Emulators.Opera.Contracts.CoreDiagnosticManifest",
+        "cleanupProfile": "two deletes with nested finally"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/CoreReleaseService.cs",
+        "method": "InstallAsync",
+        "line": 63,
+        "sha256": "E0FD01A4A974AD93954E933C739D9C7DA741A772D53EC6293C30CF256D0EAE73",
+        "returnType": "Task<string>",
+        "sharedPipeline": true,
+        "pipelineParameters": 7,
+        "manifestType": "string",
+        "cleanupProfile": "two guarded File.Delete calls in sequence"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+        "method": "InstallAsync",
+        "line": 62,
+        "sha256": "43231DCF8C46F1F0A9FB87C5F1DE58959848647E2D6CACA46CDA1154B2A12B96",
+        "returnType": "Task<string>",
+        "sharedPipeline": false,
+        "pipelineParameters": 0,
+        "manifestType": null,
+        "cleanupProfile": "two guarded File.Delete calls in sequence"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/CoreReleaseService.cs",
+        "method": "InstallAsync",
+        "line": 63,
+        "sha256": "16B9C1FE329D8ACDB8F2B944617DE2B982DDF5D9D779DA097AE904F842454681",
+        "returnType": "Task<string>",
+        "sharedPipeline": true,
+        "pipelineParameters": 8,
+        "manifestType": "string",
+        "cleanupProfile": "two guarded File.Delete calls in sequence"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Watara/Emulators/Potator/Services/CoreReleaseService.cs",
+        "method": "InstallAsync",
+        "line": 31,
+        "sha256": "70D283A991313689539A96ADAF2BB7596FF9DF85730FA4E5D73961EB5CFF5981",
+        "returnType": "Task<CoreInstallationPaths>",
+        "sharedPipeline": true,
+        "pipelineParameters": 7,
+        "manifestType": "GWGUI.Emulation.Watara.Emulators.Potator.Contracts.CoreDiagnosticManifest",
+        "cleanupProfile": "two deletes with nested finally"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+        "method": "InstallAsync",
+        "line": 32,
+        "sha256": "8502D718DD30AFF2F9F4163C3B50C4AE2C62028FCB1934066E343ED9AA63FAB7",
+        "returnType": "Task<CoreInstallationPaths>",
+        "sharedPipeline": true,
+        "pipelineParameters": 7,
+        "manifestType": "GWGUI.Emulation.Bandai.Emulators.Common.Contracts.CoreDiagnosticManifest",
+        "cleanupProfile": "two module DeleteIfExists calls in sequence"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+        "method": "InstallAsync",
+        "line": 62,
+        "sha256": "576FAFA0A275BA47E53D7B834B44FA4E37E84E6056AD4E5FE06D363527CCC2AB",
+        "returnType": "Task<string>",
+        "sharedPipeline": true,
+        "pipelineParameters": 7,
+        "manifestType": "string",
+        "cleanupProfile": "two guarded File.Delete calls in sequence"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+        "method": "InstallAsync",
+        "line": 62,
+        "sha256": "2909911145E60E1206A5C8B35E88C08B17CB45E02F17EB0E771845C7FE823CE5",
+        "returnType": "Task<string>",
+        "sharedPipeline": true,
+        "pipelineParameters": 7,
+        "manifestType": "string",
+        "cleanupProfile": "two guarded File.Delete calls in sequence"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+        "method": "InstallAsync",
+        "line": 25,
+        "sha256": "F7E637934DE916EFF370F73B40C6EA3322BDC15DC714C83996A5461C9B24110E",
+        "returnType": "Task<CoreInstallationPaths>",
+        "sharedPipeline": true,
+        "pipelineParameters": 7,
+        "manifestType": "GWGUI.Emulation.Atari.Emulators.Common.Contracts.CoreDiagnosticManifest",
+        "cleanupProfile": "two module DeleteIfExists calls in sequence"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Services/CoreReleaseService.cs",
+        "method": "InstallAsync",
+        "line": 31,
+        "sha256": "A1956DE3725B14182CC9D7F4BE2509B8EF63A2AA293574416CC8F5F88414B7AF",
+        "returnType": "Task<CoreInstallationPaths>",
+        "sharedPipeline": true,
+        "pipelineParameters": 7,
+        "manifestType": "GWGUI.Emulation.Thomson.Emulators.Theodore.Contracts.CoreDiagnosticManifest",
+        "cleanupProfile": "two deletes with nested finally"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+        "method": "InstallAsync",
+        "line": 32,
+        "sha256": "FCB6AADF8D1FEBDAB8A914024B5220621DBF08F159E1BD56894A324BEBE258D1",
+        "returnType": "Task<CoreInstallationPaths>",
+        "sharedPipeline": true,
+        "pipelineParameters": 7,
+        "manifestType": "GWGUI.Emulation.Snk.Emulators.Common.Contracts.CoreDiagnosticManifest",
+        "cleanupProfile": "two deletes with nested finally"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+        "method": "InstallAsync",
+        "line": 33,
+        "sha256": "BE65D4AD4B2C96588A92292AFF9D5376E819242B253D0CBBA2CBB4D4AD726841",
+        "returnType": "Task<CoreInstallationPaths>",
+        "sharedPipeline": true,
+        "pipelineParameters": 7,
+        "manifestType": "GWGUI.Emulation.Mattel.Emulators.Common.Contracts.CoreDiagnosticManifest",
+        "cleanupProfile": "two module DeleteIfExists calls in sequence"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+        "method": "InstallAsync",
+        "line": 33,
+        "sha256": "180054AF04CD704A8E1B0CF3DF41AC4B429C8C2FDAFA826C809D0157B09ECADC",
+        "returnType": "Task<CoreInstallationPaths>",
+        "sharedPipeline": true,
+        "pipelineParameters": 7,
+        "manifestType": "GWGUI.Emulation.Coleco.Emulators.Common.Contracts.CoreDiagnosticManifest",
+        "cleanupProfile": "two module DeleteIfExists calls in sequence"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+        "method": "InstallAsync",
+        "line": 33,
+        "sha256": "90B0DA2C6F54A03CBA21FC29CD9584FAAFFFCDB278CB021CF9C41B21A6285F7B",
+        "returnType": "Task<CoreInstallationPaths>",
+        "sharedPipeline": true,
+        "pipelineParameters": 7,
+        "manifestType": "GWGUI.Emulation.Philips.Emulators.Common.Contracts.CoreDiagnosticManifest",
+        "cleanupProfile": "two module DeleteIfExists calls in sequence"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+        "method": "InstallAsync",
+        "line": 33,
+        "sha256": "B8E8C831BE539F3CAAB0F6E7F8BAAED8BDF10493111F9FBDCA8FAFDB8AF3690D",
+        "returnType": "Task<CoreInstallationPaths>",
+        "sharedPipeline": true,
+        "pipelineParameters": 7,
+        "manifestType": "GWGUI.Emulation.Fairchild.Emulators.Common.Contracts.CoreDiagnosticManifest",
+        "cleanupProfile": "two module DeleteIfExists calls in sequence"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+        "method": "InstallAsync",
+        "line": 31,
+        "sha256": "9ABB0FBAA3809EE8D81EBE8D1C2A274C35DE8595A3CB720C03021EA479952751",
+        "returnType": "Task<CoreInstallationPaths>",
+        "sharedPipeline": true,
+        "pipelineParameters": 7,
+        "manifestType": "GWGUI.Emulation.Acorn.Emulators.Common.Contracts.CoreDiagnosticManifest",
+        "cleanupProfile": "two module DeleteIfExists calls in sequence"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/CoreReleaseService.cs",
+        "method": "InstallAsync",
+        "line": 59,
+        "sha256": "EC7528E7191D7166E868D8EB7A7ECFA68943B67250E51CD8ABAD240049265F8F",
+        "returnType": "Task<string>",
+        "sharedPipeline": true,
+        "pipelineParameters": 7,
+        "manifestType": "string",
+        "cleanupProfile": "two guarded File.Delete calls in sequence"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+        "method": "InstallAsync",
+        "line": 64,
+        "sha256": "CD5CA962014E1BBCA6412C1772DBCB19F228C61E8A3920792E7BA8DBFD86D4EE",
+        "returnType": "Task<string>",
+        "sharedPipeline": true,
+        "pipelineParameters": 7,
+        "manifestType": "string",
+        "cleanupProfile": "two guarded File.Delete calls in sequence"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+        "method": "InstallAsync",
+        "line": 32,
+        "sha256": "5B7755D21CC02ED50375015B25F4FDFCD5F11FA38D466AFBB503D941441D81B5",
+        "returnType": "Task<CoreInstallationPaths>",
+        "sharedPipeline": true,
+        "pipelineParameters": 7,
+        "manifestType": "GWGUI.Emulation.Sharp.Emulators.Common.Contracts.CoreDiagnosticManifest",
+        "cleanupProfile": "two deletes with nested finally"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nec/Emulators/BeetlePcfx/Services/CoreReleaseService.cs",
+        "method": "InstallAsync",
+        "line": 63,
+        "sha256": "3360D44FA3F33EDD291CC94669B00E03FC0270D53DA33338BFA49AF2ED22FF4D",
+        "returnType": "Task<string>",
+        "sharedPipeline": true,
+        "pipelineParameters": 7,
+        "manifestType": "string",
+        "cleanupProfile": "two guarded File.Delete calls in sequence"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+        "method": "InstallAsync",
+        "line": 62,
+        "sha256": "2C808DC5F63F2DDEF71E5EED648ED517EA41063F0C76AC23A246C9A8A03DE2FE",
+        "returnType": "Task<string>",
+        "sharedPipeline": true,
+        "pipelineParameters": 7,
+        "manifestType": "string",
+        "cleanupProfile": "two guarded File.Delete calls in sequence"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+        "method": "InstallAsync",
+        "line": 32,
+        "sha256": "3A92384DD8F83B362A13E34635039E91CDB09C50B13BB302A3E404FBCA53C623",
+        "returnType": "Task<CoreInstallationPaths>",
+        "sharedPipeline": true,
+        "pipelineParameters": 7,
+        "manifestType": "GWGUI.Emulation.Apple.Emulators.Common.Contracts.CoreDiagnosticManifest",
+        "cleanupProfile": "two module DeleteIfExists calls in sequence"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Services/CoreReleaseService.cs",
+        "method": "InstallAsync",
+        "line": 31,
+        "sha256": "F0D84882F6FC26E72DF89185A7578C9F80D58E79B8B2C8CE1204E9C808A58AF7",
+        "returnType": "Task<CoreInstallationPaths>",
+        "sharedPipeline": true,
+        "pipelineParameters": 7,
+        "manifestType": "GWGUI.Emulation.Wenquxing.Emulators.Wqxemu.Contracts.CoreDiagnosticManifest",
+        "cleanupProfile": "two deletes with nested finally"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+        "method": "InstallAsync",
+        "line": 33,
+        "sha256": "618ECDE19647D281330A5BE0B0FCD146BD050A6E4D932E2CA37DAA826C764EFF",
+        "returnType": "Task<CoreInstallationPaths>",
+        "sharedPipeline": true,
+        "pipelineParameters": 7,
+        "manifestType": "GWGUI.Emulation.Epoch.Emulators.Common.Contracts.CoreDiagnosticManifest",
+        "cleanupProfile": "two module DeleteIfExists calls in sequence"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+        "method": "InstallAsync",
+        "line": 32,
+        "sha256": "0DD0F01C8CC4E9535FA02290FF513E6D7A09A0030352314696F74685BAF5124E",
+        "returnType": "Task<CoreInstallationPaths>",
+        "sharedPipeline": true,
+        "pipelineParameters": 7,
+        "manifestType": "GWGUI.Emulation.Sinclair.Emulators.Common.Contracts.CoreDiagnosticManifest",
+        "cleanupProfile": "two deletes with nested finally"
+      }
+    ],
+    "semantic": "SDK and all 23 modules: zero semantic errors without Emit. Twenty-four InstallAsync methods resolve existing SDK InstallLibraryAsync (seven parameters, eight for PPSSPP preparation); manifest substitutions and cleanup symbols resolved in every scope.",
+    "origin": "Existing SDK 734fbce43 reuses Atari installation before Amstrad: ac7292d86^:src/GWGUI.Emulation.Atari/Services/AtariCoreReleaseService.cs. Ancestry before Sony adapter 4e48b9b7d verified.",
+    "ownership": "Modules create/name temporary files before the try and own the finally. Nine scopes use sequential DeleteIfExists, seven nested finally to guarantee the second delete, nine sequential guarded File.Delete. Keep cleanup order and exception behavior in the resource owner; no cleanup-policy flag or ownership transfer to collapse syntax.",
+    "finding": "Sony/Emulators/Common/Interop/Services/CoreReleaseService.InstallAsync still duplicates download, extraction/raw copy, validation/hash, replacement, manifest write and completion. CoreMachineFactory.ReleaseService actively constructs it. CompletedProgress const double is 1d. Reconnect only the central sequence to the existing original SDK pipeline.",
+    "pending": "Sony wiring, before/after comparison and regression validation. Typed diagnostic-manifest construction remains under review; scope evidence does not qualify whole InstallAsync bodies or remaining metadata callbacks."
   }
 }
