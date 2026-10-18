@@ -20,33 +20,23 @@ internal sealed partial class ExternalHostCallbacks
 
     internal void ApplyInitialAvInfo(ExternalCoreApi.SystemAvInfo info)
     {
-        ApplyGeometry(info.Geometry);
-        if (double.IsFinite(info.Timing.FramesPerSecond) && info.Timing.FramesPerSecond > MinimumFrameRate)
-            FramesPerSecond = info.Timing.FramesPerSecond;
-        if (double.IsFinite(info.Timing.SampleRate) && info.Timing.SampleRate is > MinimumSampleRate and <= int.MaxValue)
-            SampleRate = checked((int)Math.Round(info.Timing.SampleRate));
+        GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.ApplySystemAvInfo(info,
+            ApplyGeometry, value => FramesPerSecond = value, value => SampleRate = value);
     }
 
     private bool ApplyGeometry(nint data)
     {
-        if (data == nint.Zero) return false;
-        ApplyGeometry(Marshal.PtrToStructure<ExternalCoreApi.Geometry>(data));
-        return true;
+        return GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.ApplyStructure<ExternalCoreApi.Geometry>(data, ApplyGeometry);
     }
 
     private void ApplyGeometry(ExternalCoreApi.Geometry geometry)
     {
-        if (float.IsFinite(geometry.AspectRatio) && geometry.AspectRatio > MinimumAspectRatio)
-            _aspectRatio = geometry.AspectRatio;
-        else if (geometry.BaseHeight > ExternalCoreInteropConstants.EmptyFrameDimension)
-            _aspectRatio = geometry.BaseWidth / (float)geometry.BaseHeight;
+        GWGUI.Emulation.Functions.EmulationVideoFunctions.ApplyGeometry(geometry, ref _aspectRatio);
     }
 
     private bool ApplySystemAvInfo(nint data)
     {
-        if (data == nint.Zero) return false;
-        ApplyInitialAvInfo(Marshal.PtrToStructure<ExternalCoreApi.SystemAvInfo>(data));
-        return true;
+        return GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.ApplyStructure<ExternalCoreApi.SystemAvInfo>(data, ApplyInitialAvInfo);
     }
 
     private void HandleAudioSample(short left, short right)

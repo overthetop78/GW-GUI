@@ -7,6 +7,23 @@ using GWGUI.Emulation.Constants;
 namespace GWGUI.Emulation.Functions;
 internal static class ExternalCoreEnvironmentFunctions
 {
+    internal static void ApplySystemAvInfo(ExternalCoreApi.SystemAvInfo info,
+        Action<ExternalCoreApi.Geometry> applyGeometry, Action<double> setFramesPerSecond, Action<int> setSampleRate)
+    {
+        applyGeometry(info.Geometry);
+        if (double.IsFinite(info.Timing.FramesPerSecond) && info.Timing.FramesPerSecond > 0)
+            setFramesPerSecond(info.Timing.FramesPerSecond);
+        if (double.IsFinite(info.Timing.SampleRate) && info.Timing.SampleRate is > 0 and <= int.MaxValue)
+            setSampleRate(checked((int)Math.Round(info.Timing.SampleRate)));
+    }
+
+    internal static bool ApplyStructure<T>(nint data, Action<T> apply) where T : struct
+    {
+        if (data == 0) return false;
+        apply(Marshal.PtrToStructure<T>(data));
+        return true;
+    }
+
     internal static string? CopyDiagnostic(nint textPointer, Action<string> publish, bool allowWhitespace = false)
     {
         var text = textPointer == nint.Zero ? null : Marshal.PtrToStringUTF8(textPointer);

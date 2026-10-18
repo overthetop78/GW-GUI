@@ -2,11 +2,20 @@ using System.Globalization;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using GWGUI.Emulation.Enums;
+using GWGUI.Emulation.Interop;
 
 namespace GWGUI.Emulation.Functions;
 
 public static class EmulationVideoFunctions
 {
+    internal static void ApplyGeometry(ExternalCoreApi.Geometry geometry, ref float aspectRatio)
+    {
+        if (float.IsFinite(geometry.AspectRatio) && geometry.AspectRatio > 0)
+            aspectRatio = geometry.AspectRatio;
+        else if (geometry.BaseHeight > 0)
+            aspectRatio = geometry.BaseWidth / (float)geometry.BaseHeight;
+    }
+
     internal static int FrameLength(uint height, nuint pitch) => checked((int)(pitch * height));
 
     internal static void CopyRows(nint source, byte[] destination, int height, int pitch)

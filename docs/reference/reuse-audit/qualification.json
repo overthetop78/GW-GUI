@@ -49041,5 +49041,1981 @@
         ]
       }
     }
+  },
+  "nativeAvUpdateComparison": {
+    "state": "verified",
+    "snapshot": "c035efc0c2e1b52e23236a18c761db84aadc9d3d",
+    "origin": {
+      "commit": "c2d674be4",
+      "methods": [
+        "internal void ApplyInitialAvInfo(AmigaExternalApi.SystemAvInfo info)\n    {\n        ApplyGeometry(info.Geometry);\n        if (double.IsFinite(info.Timing.FramesPerSecond) && info.Timing.FramesPerSecond > 0)\n            FramesPerSecond = info.Timing.FramesPerSecond;\n        if (double.IsFinite(info.Timing.SampleRate) && info.Timing.SampleRate is > 0 and <= int.MaxValue)\n            SampleRate = checked((int)Math.Round(info.Timing.SampleRate));\n    }",
+        "private bool ApplyGeometry(nint data)\n    {\n        if (data == 0) return false;\n        ApplyGeometry(Marshal.PtrToStructure<AmigaExternalApi.Geometry>(data));\n        return true;\n    }",
+        "private void ApplyGeometry(AmigaExternalApi.Geometry geometry)\n    {\n        if (float.IsFinite(geometry.AspectRatio) && geometry.AspectRatio > 0)\n            _aspectRatio = geometry.AspectRatio;\n        else if (geometry.BaseHeight > 0)\n            _aspectRatio = geometry.BaseWidth / (float)geometry.BaseHeight;\n    }",
+        "private bool ApplySystemAvInfo(nint data)\n    {\n        if (data == 0) return false;\n        ApplyInitialAvInfo(Marshal.PtrToStructure<AmigaExternalApi.SystemAvInfo>(data));\n        return true;\n    }"
+      ],
+      "path": "src/GWGUI.Emulation.Amiga/Cores/AmigaExternalHostCallbacks.cs"
+    },
+    "sources": [
+      {
+        "sha256": "861AECAFFB92AB1961AD9E6FC879F17413630C24E8BBF9ACD715A32B273C1FD6",
+        "hardwarePolicy": "software geometry only",
+        "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+        "operations": [
+          {
+            "calls": [
+              {
+                "expression": "ApplyGeometry(info.Geometry)",
+                "assembly": "gwgui.emulation.amstrad",
+                "symbol": "GWGUI.Emulation.Amstrad.Emulators.Common.Interop.Services.ExternalHostCallbacks.ApplyGeometry(GWGUI.Emulation.Interop.ExternalCoreApi.Geometry)"
+              },
+              {
+                "expression": "double.IsFinite(info.Timing.FramesPerSecond)",
+                "assembly": "System.Runtime",
+                "symbol": "double.IsFinite(double)"
+              },
+              {
+                "expression": "double.IsFinite(info.Timing.SampleRate)",
+                "assembly": "System.Runtime",
+                "symbol": "double.IsFinite(double)"
+              },
+              {
+                "expression": "Math.Round(info.Timing.SampleRate)",
+                "assembly": "System.Runtime",
+                "symbol": "System.Math.Round(double)"
+              }
+            ],
+            "text": "internal void ApplyInitialAvInfo(ExternalCoreApi.SystemAvInfo info)\r\n    {\r\n        ApplyGeometry(info.Geometry);\r\n        if (double.IsFinite(info.Timing.FramesPerSecond) && info.Timing.FramesPerSecond > VideoConstants.FrameRateValidityThreshold)\r\n            FramesPerSecond = info.Timing.FramesPerSecond;\r\n        if (double.IsFinite(info.Timing.SampleRate) && info.Timing.SampleRate is > AudioConstants.UninitializedSampleRate and <= int.MaxValue)\r\n            SampleRate = checked((int)Math.Round(info.Timing.SampleRate));\r\n    }",
+            "assignments": [
+              {
+                "expression": "FramesPerSecond = info.Timing.FramesPerSecond",
+                "assembly": "gwgui.emulation.amstrad",
+                "symbol": "GWGUI.Emulation.Amstrad.Emulators.Common.Interop.Services.ExternalHostCallbacks.FramesPerSecond"
+              },
+              {
+                "expression": "SampleRate = checked((int)Math.Round(info.Timing.SampleRate))",
+                "assembly": "gwgui.emulation.amstrad",
+                "symbol": "GWGUI.Emulation.Amstrad.Emulators.Common.Interop.Services.ExternalHostCallbacks.SampleRate"
+              }
+            ],
+            "name": "ApplyInitialAvInfo",
+            "parameters": "(ExternalCoreApi.SystemAvInfo info)",
+            "constants": [
+              {
+                "value": 0.0,
+                "expression": "VideoConstants.FrameRateValidityThreshold"
+              },
+              {
+                "value": 0.0,
+                "expression": "FrameRateValidityThreshold"
+              },
+              {
+                "value": 0,
+                "expression": "AudioConstants.UninitializedSampleRate"
+              },
+              {
+                "value": 0,
+                "expression": "UninitializedSampleRate"
+              },
+              {
+                "value": 2147483647,
+                "expression": "int.MaxValue"
+              },
+              {
+                "value": 2147483647,
+                "expression": "MaxValue"
+              }
+            ]
+          },
+          {
+            "calls": [
+              {
+                "expression": "ApplyGeometry(Marshal.PtrToStructure<ExternalCoreApi.Geometry>(data))",
+                "assembly": "gwgui.emulation.amstrad",
+                "symbol": "GWGUI.Emulation.Amstrad.Emulators.Common.Interop.Services.ExternalHostCallbacks.ApplyGeometry(GWGUI.Emulation.Interop.ExternalCoreApi.Geometry)"
+              },
+              {
+                "expression": "Marshal.PtrToStructure<ExternalCoreApi.Geometry>(data)",
+                "assembly": "System.Runtime.InteropServices",
+                "symbol": "System.Runtime.InteropServices.Marshal.PtrToStructure<GWGUI.Emulation.Interop.ExternalCoreApi.Geometry>(nint)"
+              }
+            ],
+            "text": "private bool ApplyGeometry(nint data)\r\n    {\r\n        if (data == nint.Zero) return false;\r\n        ApplyGeometry(Marshal.PtrToStructure<ExternalCoreApi.Geometry>(data));\r\n        return true;\r\n    }",
+            "assignments": [],
+            "name": "ApplyGeometry",
+            "parameters": "(nint data)",
+            "constants": [
+              {
+                "value": false,
+                "expression": "false"
+              },
+              {
+                "value": true,
+                "expression": "true"
+              }
+            ]
+          },
+          {
+            "calls": [
+              {
+                "expression": "float.IsFinite(geometry.AspectRatio)",
+                "assembly": "System.Runtime",
+                "symbol": "float.IsFinite(float)"
+              }
+            ],
+            "text": "private void ApplyGeometry(ExternalCoreApi.Geometry geometry)\r\n    {\r\n        if (float.IsFinite(geometry.AspectRatio) && geometry.AspectRatio > VideoConstants.UnspecifiedAspectRatio)\r\n            _aspectRatio = geometry.AspectRatio;\r\n        else if (geometry.BaseHeight > ExternalCoreInteropConstants.EmptyFrameDimension)\r\n            _aspectRatio = geometry.BaseWidth / (float)geometry.BaseHeight;\r\n    }",
+            "assignments": [
+              {
+                "expression": "_aspectRatio = geometry.AspectRatio",
+                "assembly": "gwgui.emulation.amstrad",
+                "symbol": "GWGUI.Emulation.Amstrad.Emulators.Common.Interop.Services.ExternalHostCallbacks._aspectRatio"
+              },
+              {
+                "expression": "_aspectRatio = geometry.BaseWidth / (float)geometry.BaseHeight",
+                "assembly": "gwgui.emulation.amstrad",
+                "symbol": "GWGUI.Emulation.Amstrad.Emulators.Common.Interop.Services.ExternalHostCallbacks._aspectRatio"
+              }
+            ],
+            "name": "ApplyGeometry",
+            "parameters": "(ExternalCoreApi.Geometry geometry)",
+            "constants": [
+              {
+                "value": 0.0,
+                "expression": "VideoConstants.UnspecifiedAspectRatio"
+              },
+              {
+                "value": 0.0,
+                "expression": "UnspecifiedAspectRatio"
+              },
+              {
+                "value": 0,
+                "expression": "ExternalCoreInteropConstants.EmptyFrameDimension"
+              },
+              {
+                "value": 0,
+                "expression": "EmptyFrameDimension"
+              }
+            ]
+          },
+          {
+            "calls": [
+              {
+                "expression": "ApplyInitialAvInfo(Marshal.PtrToStructure<ExternalCoreApi.SystemAvInfo>(data))",
+                "assembly": "gwgui.emulation.amstrad",
+                "symbol": "GWGUI.Emulation.Amstrad.Emulators.Common.Interop.Services.ExternalHostCallbacks.ApplyInitialAvInfo(GWGUI.Emulation.Interop.ExternalCoreApi.SystemAvInfo)"
+              },
+              {
+                "expression": "Marshal.PtrToStructure<ExternalCoreApi.SystemAvInfo>(data)",
+                "assembly": "System.Runtime.InteropServices",
+                "symbol": "System.Runtime.InteropServices.Marshal.PtrToStructure<GWGUI.Emulation.Interop.ExternalCoreApi.SystemAvInfo>(nint)"
+              }
+            ],
+            "text": "private bool ApplySystemAvInfo(nint data)\r\n    {\r\n        if (data == nint.Zero) return false;\r\n        ApplyInitialAvInfo(Marshal.PtrToStructure<ExternalCoreApi.SystemAvInfo>(data));\r\n        return true;\r\n    }",
+            "assignments": [],
+            "name": "ApplySystemAvInfo",
+            "parameters": "(nint data)",
+            "constants": [
+              {
+                "value": false,
+                "expression": "false"
+              },
+              {
+                "value": true,
+                "expression": "true"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "sha256": "42E3844F28D94383EFDE204EB2F0B6C4B5DC051A861885FB81E3B9757A044259",
+        "hardwarePolicy": "software geometry only",
+        "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+        "operations": [
+          {
+            "calls": [
+              {
+                "expression": "ApplyGeometry(info.Geometry)",
+                "assembly": "gwgui.emulation.commodore",
+                "symbol": "GWGUI.Emulation.Commodore.Emulators.Common.Interop.Services.ExternalHostCallbacks.ApplyGeometry(GWGUI.Emulation.Interop.ExternalCoreApi.Geometry)"
+              },
+              {
+                "expression": "double.IsFinite(info.Timing.FramesPerSecond)",
+                "assembly": "System.Runtime",
+                "symbol": "double.IsFinite(double)"
+              },
+              {
+                "expression": "double.IsFinite(info.Timing.SampleRate)",
+                "assembly": "System.Runtime",
+                "symbol": "double.IsFinite(double)"
+              },
+              {
+                "expression": "Math.Round(info.Timing.SampleRate)",
+                "assembly": "System.Runtime",
+                "symbol": "System.Math.Round(double)"
+              }
+            ],
+            "text": "internal void ApplyInitialAvInfo(ExternalCoreApi.SystemAvInfo info)\r\n    {\r\n        ApplyGeometry(info.Geometry);\r\n        if (double.IsFinite(info.Timing.FramesPerSecond) && info.Timing.FramesPerSecond > MinimumFrameRate)\r\n            FramesPerSecond = info.Timing.FramesPerSecond;\r\n        if (double.IsFinite(info.Timing.SampleRate) && info.Timing.SampleRate is > MinimumSampleRate and <= int.MaxValue)\r\n            SampleRate = checked((int)Math.Round(info.Timing.SampleRate));\r\n    }",
+            "assignments": [
+              {
+                "expression": "FramesPerSecond = info.Timing.FramesPerSecond",
+                "assembly": "gwgui.emulation.commodore",
+                "symbol": "GWGUI.Emulation.Commodore.Emulators.Common.Interop.Services.ExternalHostCallbacks.FramesPerSecond"
+              },
+              {
+                "expression": "SampleRate = checked((int)Math.Round(info.Timing.SampleRate))",
+                "assembly": "gwgui.emulation.commodore",
+                "symbol": "GWGUI.Emulation.Commodore.Emulators.Common.Interop.Services.ExternalHostCallbacks.SampleRate"
+              }
+            ],
+            "name": "ApplyInitialAvInfo",
+            "parameters": "(ExternalCoreApi.SystemAvInfo info)",
+            "constants": [
+              {
+                "value": 0.0,
+                "expression": "MinimumFrameRate"
+              },
+              {
+                "value": 0.0,
+                "expression": "MinimumSampleRate"
+              },
+              {
+                "value": 2147483647,
+                "expression": "int.MaxValue"
+              },
+              {
+                "value": 2147483647,
+                "expression": "MaxValue"
+              }
+            ]
+          },
+          {
+            "calls": [
+              {
+                "expression": "ApplyGeometry(Marshal.PtrToStructure<ExternalCoreApi.Geometry>(data))",
+                "assembly": "gwgui.emulation.commodore",
+                "symbol": "GWGUI.Emulation.Commodore.Emulators.Common.Interop.Services.ExternalHostCallbacks.ApplyGeometry(GWGUI.Emulation.Interop.ExternalCoreApi.Geometry)"
+              },
+              {
+                "expression": "Marshal.PtrToStructure<ExternalCoreApi.Geometry>(data)",
+                "assembly": "System.Runtime.InteropServices",
+                "symbol": "System.Runtime.InteropServices.Marshal.PtrToStructure<GWGUI.Emulation.Interop.ExternalCoreApi.Geometry>(nint)"
+              }
+            ],
+            "text": "private bool ApplyGeometry(nint data)\r\n    {\r\n        if (data == nint.Zero) return false;\r\n        ApplyGeometry(Marshal.PtrToStructure<ExternalCoreApi.Geometry>(data));\r\n        return true;\r\n    }",
+            "assignments": [],
+            "name": "ApplyGeometry",
+            "parameters": "(nint data)",
+            "constants": [
+              {
+                "value": false,
+                "expression": "false"
+              },
+              {
+                "value": true,
+                "expression": "true"
+              }
+            ]
+          },
+          {
+            "calls": [
+              {
+                "expression": "float.IsFinite(geometry.AspectRatio)",
+                "assembly": "System.Runtime",
+                "symbol": "float.IsFinite(float)"
+              }
+            ],
+            "text": "private void ApplyGeometry(ExternalCoreApi.Geometry geometry)\r\n    {\r\n        if (float.IsFinite(geometry.AspectRatio) && geometry.AspectRatio > MinimumAspectRatio)\r\n            _aspectRatio = geometry.AspectRatio;\r\n        else if (geometry.BaseHeight > ExternalCoreInteropConstants.EmptyFrameDimension)\r\n            _aspectRatio = geometry.BaseWidth / (float)geometry.BaseHeight;\r\n    }",
+            "assignments": [
+              {
+                "expression": "_aspectRatio = geometry.AspectRatio",
+                "assembly": "gwgui.emulation.commodore",
+                "symbol": "GWGUI.Emulation.Commodore.Emulators.Common.Interop.Services.ExternalHostCallbacks._aspectRatio"
+              },
+              {
+                "expression": "_aspectRatio = geometry.BaseWidth / (float)geometry.BaseHeight",
+                "assembly": "gwgui.emulation.commodore",
+                "symbol": "GWGUI.Emulation.Commodore.Emulators.Common.Interop.Services.ExternalHostCallbacks._aspectRatio"
+              }
+            ],
+            "name": "ApplyGeometry",
+            "parameters": "(ExternalCoreApi.Geometry geometry)",
+            "constants": [
+              {
+                "value": 0.0,
+                "expression": "MinimumAspectRatio"
+              },
+              {
+                "value": 0,
+                "expression": "ExternalCoreInteropConstants.EmptyFrameDimension"
+              },
+              {
+                "value": 0,
+                "expression": "EmptyFrameDimension"
+              }
+            ]
+          },
+          {
+            "calls": [
+              {
+                "expression": "ApplyInitialAvInfo(Marshal.PtrToStructure<ExternalCoreApi.SystemAvInfo>(data))",
+                "assembly": "gwgui.emulation.commodore",
+                "symbol": "GWGUI.Emulation.Commodore.Emulators.Common.Interop.Services.ExternalHostCallbacks.ApplyInitialAvInfo(GWGUI.Emulation.Interop.ExternalCoreApi.SystemAvInfo)"
+              },
+              {
+                "expression": "Marshal.PtrToStructure<ExternalCoreApi.SystemAvInfo>(data)",
+                "assembly": "System.Runtime.InteropServices",
+                "symbol": "System.Runtime.InteropServices.Marshal.PtrToStructure<GWGUI.Emulation.Interop.ExternalCoreApi.SystemAvInfo>(nint)"
+              }
+            ],
+            "text": "private bool ApplySystemAvInfo(nint data)\r\n    {\r\n        if (data == nint.Zero) return false;\r\n        ApplyInitialAvInfo(Marshal.PtrToStructure<ExternalCoreApi.SystemAvInfo>(data));\r\n        return true;\r\n    }",
+            "assignments": [],
+            "name": "ApplySystemAvInfo",
+            "parameters": "(nint data)",
+            "constants": [
+              {
+                "value": false,
+                "expression": "false"
+              },
+              {
+                "value": true,
+                "expression": "true"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "sha256": "B826CD3E2EBE2A7177642169D64A410FE1FCCB38E123E47267A0033F4CBA2EE1",
+        "hardwarePolicy": "software geometry only",
+        "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+        "operations": [
+          {
+            "calls": [
+              {
+                "expression": "ApplyGeometry(info.Geometry)",
+                "assembly": "gwgui.emulation.nec",
+                "symbol": "GWGUI.Emulation.Nec.Emulators.Common.Interop.Services.ExternalHostCallbacks.ApplyGeometry(GWGUI.Emulation.Interop.ExternalCoreApi.Geometry)"
+              },
+              {
+                "expression": "double.IsFinite(info.Timing.FramesPerSecond)",
+                "assembly": "System.Runtime",
+                "symbol": "double.IsFinite(double)"
+              },
+              {
+                "expression": "double.IsFinite(info.Timing.SampleRate)",
+                "assembly": "System.Runtime",
+                "symbol": "double.IsFinite(double)"
+              },
+              {
+                "expression": "Math.Round(info.Timing.SampleRate)",
+                "assembly": "System.Runtime",
+                "symbol": "System.Math.Round(double)"
+              }
+            ],
+            "text": "internal void ApplyInitialAvInfo(ExternalCoreApi.SystemAvInfo info)\n    {\n        ApplyGeometry(info.Geometry);\n        if (double.IsFinite(info.Timing.FramesPerSecond) && info.Timing.FramesPerSecond > 0)\n            FramesPerSecond = info.Timing.FramesPerSecond;\n        if (double.IsFinite(info.Timing.SampleRate) && info.Timing.SampleRate is > 0 and <= int.MaxValue)\n            SampleRate = checked((int)Math.Round(info.Timing.SampleRate));\n    }",
+            "assignments": [
+              {
+                "expression": "FramesPerSecond = info.Timing.FramesPerSecond",
+                "assembly": "gwgui.emulation.nec",
+                "symbol": "GWGUI.Emulation.Nec.Emulators.Common.Interop.Services.ExternalHostCallbacks.FramesPerSecond"
+              },
+              {
+                "expression": "SampleRate = checked((int)Math.Round(info.Timing.SampleRate))",
+                "assembly": "gwgui.emulation.nec",
+                "symbol": "GWGUI.Emulation.Nec.Emulators.Common.Interop.Services.ExternalHostCallbacks.SampleRate"
+              }
+            ],
+            "name": "ApplyInitialAvInfo",
+            "parameters": "(ExternalCoreApi.SystemAvInfo info)",
+            "constants": [
+              {
+                "value": 0,
+                "expression": "0"
+              },
+              {
+                "value": 0,
+                "expression": "0"
+              },
+              {
+                "value": 2147483647,
+                "expression": "int.MaxValue"
+              },
+              {
+                "value": 2147483647,
+                "expression": "MaxValue"
+              }
+            ]
+          },
+          {
+            "calls": [
+              {
+                "expression": "ApplyGeometry(Marshal.PtrToStructure<ExternalCoreApi.Geometry>(data))",
+                "assembly": "gwgui.emulation.nec",
+                "symbol": "GWGUI.Emulation.Nec.Emulators.Common.Interop.Services.ExternalHostCallbacks.ApplyGeometry(GWGUI.Emulation.Interop.ExternalCoreApi.Geometry)"
+              },
+              {
+                "expression": "Marshal.PtrToStructure<ExternalCoreApi.Geometry>(data)",
+                "assembly": "System.Runtime.InteropServices",
+                "symbol": "System.Runtime.InteropServices.Marshal.PtrToStructure<GWGUI.Emulation.Interop.ExternalCoreApi.Geometry>(nint)"
+              }
+            ],
+            "text": "private bool ApplyGeometry(nint data)\n    {\n        if (data == 0) return false;\n        ApplyGeometry(Marshal.PtrToStructure<ExternalCoreApi.Geometry>(data));\n        return true;\n    }",
+            "assignments": [],
+            "name": "ApplyGeometry",
+            "parameters": "(nint data)",
+            "constants": [
+              {
+                "value": 0,
+                "expression": "0"
+              },
+              {
+                "value": false,
+                "expression": "false"
+              },
+              {
+                "value": true,
+                "expression": "true"
+              }
+            ]
+          },
+          {
+            "calls": [
+              {
+                "expression": "float.IsFinite(geometry.AspectRatio)",
+                "assembly": "System.Runtime",
+                "symbol": "float.IsFinite(float)"
+              }
+            ],
+            "text": "private void ApplyGeometry(ExternalCoreApi.Geometry geometry)\n    {\n        if (float.IsFinite(geometry.AspectRatio) && geometry.AspectRatio > 0)\n            _aspectRatio = geometry.AspectRatio;\n        else if (geometry.BaseHeight > 0)\n            _aspectRatio = geometry.BaseWidth / (float)geometry.BaseHeight;\n    }",
+            "assignments": [
+              {
+                "expression": "_aspectRatio = geometry.AspectRatio",
+                "assembly": "gwgui.emulation.nec",
+                "symbol": "GWGUI.Emulation.Nec.Emulators.Common.Interop.Services.ExternalHostCallbacks._aspectRatio"
+              },
+              {
+                "expression": "_aspectRatio = geometry.BaseWidth / (float)geometry.BaseHeight",
+                "assembly": "gwgui.emulation.nec",
+                "symbol": "GWGUI.Emulation.Nec.Emulators.Common.Interop.Services.ExternalHostCallbacks._aspectRatio"
+              }
+            ],
+            "name": "ApplyGeometry",
+            "parameters": "(ExternalCoreApi.Geometry geometry)",
+            "constants": [
+              {
+                "value": 0,
+                "expression": "0"
+              },
+              {
+                "value": 0,
+                "expression": "0"
+              }
+            ]
+          },
+          {
+            "calls": [
+              {
+                "expression": "ApplyInitialAvInfo(Marshal.PtrToStructure<ExternalCoreApi.SystemAvInfo>(data))",
+                "assembly": "gwgui.emulation.nec",
+                "symbol": "GWGUI.Emulation.Nec.Emulators.Common.Interop.Services.ExternalHostCallbacks.ApplyInitialAvInfo(GWGUI.Emulation.Interop.ExternalCoreApi.SystemAvInfo)"
+              },
+              {
+                "expression": "Marshal.PtrToStructure<ExternalCoreApi.SystemAvInfo>(data)",
+                "assembly": "System.Runtime.InteropServices",
+                "symbol": "System.Runtime.InteropServices.Marshal.PtrToStructure<GWGUI.Emulation.Interop.ExternalCoreApi.SystemAvInfo>(nint)"
+              }
+            ],
+            "text": "private bool ApplySystemAvInfo(nint data)\n    {\n        if (data == 0) return false;\n        ApplyInitialAvInfo(Marshal.PtrToStructure<ExternalCoreApi.SystemAvInfo>(data));\n        return true;\n    }",
+            "assignments": [],
+            "name": "ApplySystemAvInfo",
+            "parameters": "(nint data)",
+            "constants": [
+              {
+                "value": 0,
+                "expression": "0"
+              },
+              {
+                "value": false,
+                "expression": "false"
+              },
+              {
+                "value": true,
+                "expression": "true"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "sha256": "A4300FA04E013EB6FEFF404AF24F9EDFE59ABA89B182A5AE98711A5E573BE2F6",
+        "hardwarePolicy": "nullable EnsureFramebuffer before ratio",
+        "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+        "operations": [
+          {
+            "calls": [
+              {
+                "expression": "ApplyGeometry(info.Geometry)",
+                "assembly": "gwgui.emulation.nintendo",
+                "symbol": "GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Services.ExternalHostCallbacks.ApplyGeometry(GWGUI.Emulation.Interop.ExternalCoreApi.Geometry)"
+              },
+              {
+                "expression": "double.IsFinite(info.Timing.FramesPerSecond)",
+                "assembly": "System.Runtime",
+                "symbol": "double.IsFinite(double)"
+              },
+              {
+                "expression": "double.IsFinite(info.Timing.SampleRate)",
+                "assembly": "System.Runtime",
+                "symbol": "double.IsFinite(double)"
+              },
+              {
+                "expression": "Math.Round(info.Timing.SampleRate)",
+                "assembly": "System.Runtime",
+                "symbol": "System.Math.Round(double)"
+              }
+            ],
+            "text": "internal void ApplyInitialAvInfo(ExternalCoreApi.SystemAvInfo info)\r\n    {\r\n        ApplyGeometry(info.Geometry);\r\n        if (double.IsFinite(info.Timing.FramesPerSecond) && info.Timing.FramesPerSecond > 0)\r\n            FramesPerSecond = info.Timing.FramesPerSecond;\r\n        if (double.IsFinite(info.Timing.SampleRate) && info.Timing.SampleRate is > 0 and <= int.MaxValue)\r\n            SampleRate = checked((int)Math.Round(info.Timing.SampleRate));\r\n    }",
+            "assignments": [
+              {
+                "expression": "FramesPerSecond = info.Timing.FramesPerSecond",
+                "assembly": "gwgui.emulation.nintendo",
+                "symbol": "GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Services.ExternalHostCallbacks.FramesPerSecond"
+              },
+              {
+                "expression": "SampleRate = checked((int)Math.Round(info.Timing.SampleRate))",
+                "assembly": "gwgui.emulation.nintendo",
+                "symbol": "GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Services.ExternalHostCallbacks.SampleRate"
+              }
+            ],
+            "name": "ApplyInitialAvInfo",
+            "parameters": "(ExternalCoreApi.SystemAvInfo info)",
+            "constants": [
+              {
+                "value": 0,
+                "expression": "0"
+              },
+              {
+                "value": 0,
+                "expression": "0"
+              },
+              {
+                "value": 2147483647,
+                "expression": "int.MaxValue"
+              },
+              {
+                "value": 2147483647,
+                "expression": "MaxValue"
+              }
+            ]
+          },
+          {
+            "calls": [
+              {
+                "expression": "ApplyGeometry(Marshal.PtrToStructure<ExternalCoreApi.Geometry>(data))",
+                "assembly": "gwgui.emulation.nintendo",
+                "symbol": "GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Services.ExternalHostCallbacks.ApplyGeometry(GWGUI.Emulation.Interop.ExternalCoreApi.Geometry)"
+              },
+              {
+                "expression": "Marshal.PtrToStructure<ExternalCoreApi.Geometry>(data)",
+                "assembly": "System.Runtime.InteropServices",
+                "symbol": "System.Runtime.InteropServices.Marshal.PtrToStructure<GWGUI.Emulation.Interop.ExternalCoreApi.Geometry>(nint)"
+              }
+            ],
+            "text": "private bool ApplyGeometry(nint data)\r\n    {\r\n        if (data == 0) return false;\r\n        ApplyGeometry(Marshal.PtrToStructure<ExternalCoreApi.Geometry>(data));\r\n        return true;\r\n    }",
+            "assignments": [],
+            "name": "ApplyGeometry",
+            "parameters": "(nint data)",
+            "constants": [
+              {
+                "value": 0,
+                "expression": "0"
+              },
+              {
+                "value": false,
+                "expression": "false"
+              },
+              {
+                "value": true,
+                "expression": "true"
+              }
+            ]
+          },
+          {
+            "calls": [
+              {
+                "expression": ".EnsureFramebuffer(checked((int)geometry.MaximumWidth), checked((int)geometry.MaximumHeight))",
+                "assembly": "gwgui.emulation",
+                "symbol": "GWGUI.Emulation.Services.EmulationOpenGlHardwareRenderContext.EnsureFramebuffer(int, int)"
+              },
+              {
+                "expression": "float.IsFinite(geometry.AspectRatio)",
+                "assembly": "System.Runtime",
+                "symbol": "float.IsFinite(float)"
+              }
+            ],
+            "text": "private void ApplyGeometry(ExternalCoreApi.Geometry geometry)\r\n    {\r\n        _hardwareRenderContext?.EnsureFramebuffer(checked((int)geometry.MaximumWidth), checked((int)geometry.MaximumHeight));\r\n        if (float.IsFinite(geometry.AspectRatio) && geometry.AspectRatio > 0)\r\n            _aspectRatio = geometry.AspectRatio;\r\n        else if (geometry.BaseHeight > 0)\r\n            _aspectRatio = geometry.BaseWidth / (float)geometry.BaseHeight;\r\n    }",
+            "assignments": [
+              {
+                "expression": "_aspectRatio = geometry.AspectRatio",
+                "assembly": "gwgui.emulation.nintendo",
+                "symbol": "GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Services.ExternalHostCallbacks._aspectRatio"
+              },
+              {
+                "expression": "_aspectRatio = geometry.BaseWidth / (float)geometry.BaseHeight",
+                "assembly": "gwgui.emulation.nintendo",
+                "symbol": "GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Services.ExternalHostCallbacks._aspectRatio"
+              }
+            ],
+            "name": "ApplyGeometry",
+            "parameters": "(ExternalCoreApi.Geometry geometry)",
+            "constants": [
+              {
+                "value": 0,
+                "expression": "0"
+              },
+              {
+                "value": 0,
+                "expression": "0"
+              }
+            ]
+          },
+          {
+            "calls": [
+              {
+                "expression": "ApplyInitialAvInfo(Marshal.PtrToStructure<ExternalCoreApi.SystemAvInfo>(data))",
+                "assembly": "gwgui.emulation.nintendo",
+                "symbol": "GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Services.ExternalHostCallbacks.ApplyInitialAvInfo(GWGUI.Emulation.Interop.ExternalCoreApi.SystemAvInfo)"
+              },
+              {
+                "expression": "Marshal.PtrToStructure<ExternalCoreApi.SystemAvInfo>(data)",
+                "assembly": "System.Runtime.InteropServices",
+                "symbol": "System.Runtime.InteropServices.Marshal.PtrToStructure<GWGUI.Emulation.Interop.ExternalCoreApi.SystemAvInfo>(nint)"
+              }
+            ],
+            "text": "private bool ApplySystemAvInfo(nint data)\r\n    {\r\n        if (data == 0) return false;\r\n        ApplyInitialAvInfo(Marshal.PtrToStructure<ExternalCoreApi.SystemAvInfo>(data));\r\n        return true;\r\n    }",
+            "assignments": [],
+            "name": "ApplySystemAvInfo",
+            "parameters": "(nint data)",
+            "constants": [
+              {
+                "value": 0,
+                "expression": "0"
+              },
+              {
+                "value": false,
+                "expression": "false"
+              },
+              {
+                "value": true,
+                "expression": "true"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "sha256": "9B5ED13D13AE8C04B0C7A67510A99F9E48925084C7D8999118802DDC6BEF8CD2",
+        "hardwarePolicy": "nullable EnsureFramebuffer before ratio",
+        "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+        "operations": [
+          {
+            "calls": [
+              {
+                "expression": "ApplyGeometry(info.Geometry)",
+                "assembly": "gwgui.emulation.sega",
+                "symbol": "GWGUI.Emulation.Sega.Emulators.Common.Interop.Services.ExternalHostCallbacks.ApplyGeometry(GWGUI.Emulation.Interop.ExternalCoreApi.Geometry)"
+              },
+              {
+                "expression": "double.IsFinite(info.Timing.FramesPerSecond)",
+                "assembly": "System.Runtime",
+                "symbol": "double.IsFinite(double)"
+              },
+              {
+                "expression": "double.IsFinite(info.Timing.SampleRate)",
+                "assembly": "System.Runtime",
+                "symbol": "double.IsFinite(double)"
+              },
+              {
+                "expression": "Math.Round(info.Timing.SampleRate)",
+                "assembly": "System.Runtime",
+                "symbol": "System.Math.Round(double)"
+              }
+            ],
+            "text": "internal void ApplyInitialAvInfo(ExternalCoreApi.SystemAvInfo info)\r\n    {\r\n        ApplyGeometry(info.Geometry);\r\n        if (double.IsFinite(info.Timing.FramesPerSecond) && info.Timing.FramesPerSecond > 0)\r\n            FramesPerSecond = info.Timing.FramesPerSecond;\r\n        if (double.IsFinite(info.Timing.SampleRate) && info.Timing.SampleRate is > 0 and <= int.MaxValue)\r\n            SampleRate = checked((int)Math.Round(info.Timing.SampleRate));\r\n    }",
+            "assignments": [
+              {
+                "expression": "FramesPerSecond = info.Timing.FramesPerSecond",
+                "assembly": "gwgui.emulation.sega",
+                "symbol": "GWGUI.Emulation.Sega.Emulators.Common.Interop.Services.ExternalHostCallbacks.FramesPerSecond"
+              },
+              {
+                "expression": "SampleRate = checked((int)Math.Round(info.Timing.SampleRate))",
+                "assembly": "gwgui.emulation.sega",
+                "symbol": "GWGUI.Emulation.Sega.Emulators.Common.Interop.Services.ExternalHostCallbacks.SampleRate"
+              }
+            ],
+            "name": "ApplyInitialAvInfo",
+            "parameters": "(ExternalCoreApi.SystemAvInfo info)",
+            "constants": [
+              {
+                "value": 0,
+                "expression": "0"
+              },
+              {
+                "value": 0,
+                "expression": "0"
+              },
+              {
+                "value": 2147483647,
+                "expression": "int.MaxValue"
+              },
+              {
+                "value": 2147483647,
+                "expression": "MaxValue"
+              }
+            ]
+          },
+          {
+            "calls": [
+              {
+                "expression": "ApplyGeometry(Marshal.PtrToStructure<ExternalCoreApi.Geometry>(data))",
+                "assembly": "gwgui.emulation.sega",
+                "symbol": "GWGUI.Emulation.Sega.Emulators.Common.Interop.Services.ExternalHostCallbacks.ApplyGeometry(GWGUI.Emulation.Interop.ExternalCoreApi.Geometry)"
+              },
+              {
+                "expression": "Marshal.PtrToStructure<ExternalCoreApi.Geometry>(data)",
+                "assembly": "System.Runtime.InteropServices",
+                "symbol": "System.Runtime.InteropServices.Marshal.PtrToStructure<GWGUI.Emulation.Interop.ExternalCoreApi.Geometry>(nint)"
+              }
+            ],
+            "text": "private bool ApplyGeometry(nint data)\r\n    {\r\n        if (data == 0) return false;\r\n        ApplyGeometry(Marshal.PtrToStructure<ExternalCoreApi.Geometry>(data));\r\n        return true;\r\n    }",
+            "assignments": [],
+            "name": "ApplyGeometry",
+            "parameters": "(nint data)",
+            "constants": [
+              {
+                "value": 0,
+                "expression": "0"
+              },
+              {
+                "value": false,
+                "expression": "false"
+              },
+              {
+                "value": true,
+                "expression": "true"
+              }
+            ]
+          },
+          {
+            "calls": [
+              {
+                "expression": ".EnsureFramebuffer(checked((int)geometry.MaximumWidth), checked((int)geometry.MaximumHeight))",
+                "assembly": "gwgui.emulation",
+                "symbol": "GWGUI.Emulation.Services.EmulationOpenGlHardwareRenderContext.EnsureFramebuffer(int, int)"
+              },
+              {
+                "expression": "float.IsFinite(geometry.AspectRatio)",
+                "assembly": "System.Runtime",
+                "symbol": "float.IsFinite(float)"
+              }
+            ],
+            "text": "private void ApplyGeometry(ExternalCoreApi.Geometry geometry)\r\n    {\r\n        _hardwareRenderContext?.EnsureFramebuffer(checked((int)geometry.MaximumWidth), checked((int)geometry.MaximumHeight));\r\n        if (float.IsFinite(geometry.AspectRatio) && geometry.AspectRatio > 0)\r\n            _aspectRatio = geometry.AspectRatio;\r\n        else if (geometry.BaseHeight > 0)\r\n            _aspectRatio = geometry.BaseWidth / (float)geometry.BaseHeight;\r\n    }",
+            "assignments": [
+              {
+                "expression": "_aspectRatio = geometry.AspectRatio",
+                "assembly": "gwgui.emulation.sega",
+                "symbol": "GWGUI.Emulation.Sega.Emulators.Common.Interop.Services.ExternalHostCallbacks._aspectRatio"
+              },
+              {
+                "expression": "_aspectRatio = geometry.BaseWidth / (float)geometry.BaseHeight",
+                "assembly": "gwgui.emulation.sega",
+                "symbol": "GWGUI.Emulation.Sega.Emulators.Common.Interop.Services.ExternalHostCallbacks._aspectRatio"
+              }
+            ],
+            "name": "ApplyGeometry",
+            "parameters": "(ExternalCoreApi.Geometry geometry)",
+            "constants": [
+              {
+                "value": 0,
+                "expression": "0"
+              },
+              {
+                "value": 0,
+                "expression": "0"
+              }
+            ]
+          },
+          {
+            "calls": [
+              {
+                "expression": "ApplyInitialAvInfo(Marshal.PtrToStructure<ExternalCoreApi.SystemAvInfo>(data))",
+                "assembly": "gwgui.emulation.sega",
+                "symbol": "GWGUI.Emulation.Sega.Emulators.Common.Interop.Services.ExternalHostCallbacks.ApplyInitialAvInfo(GWGUI.Emulation.Interop.ExternalCoreApi.SystemAvInfo)"
+              },
+              {
+                "expression": "Marshal.PtrToStructure<ExternalCoreApi.SystemAvInfo>(data)",
+                "assembly": "System.Runtime.InteropServices",
+                "symbol": "System.Runtime.InteropServices.Marshal.PtrToStructure<GWGUI.Emulation.Interop.ExternalCoreApi.SystemAvInfo>(nint)"
+              }
+            ],
+            "text": "private bool ApplySystemAvInfo(nint data)\r\n    {\r\n        if (data == 0) return false;\r\n        ApplyInitialAvInfo(Marshal.PtrToStructure<ExternalCoreApi.SystemAvInfo>(data));\r\n        return true;\r\n    }",
+            "assignments": [],
+            "name": "ApplySystemAvInfo",
+            "parameters": "(nint data)",
+            "constants": [
+              {
+                "value": 0,
+                "expression": "0"
+              },
+              {
+                "value": false,
+                "expression": "false"
+              },
+              {
+                "value": true,
+                "expression": "true"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "sha256": "427B8ABDF7269CDA6F93EF067B23F79144175E4BDB9808B8DE4CC21DA5242E01",
+        "hardwarePolicy": "HardwareRender.Resize before ratio",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+        "operations": [
+          {
+            "calls": [
+              {
+                "expression": "ApplyGeometry(info.Geometry)",
+                "assembly": "gwgui.emulation.sony",
+                "symbol": "GWGUI.Emulation.Sony.Emulators.Common.Interop.Services.ExternalHostCallbacks.ApplyGeometry(GWGUI.Emulation.Interop.ExternalCoreApi.Geometry)"
+              },
+              {
+                "expression": "double.IsFinite(info.Timing.FramesPerSecond)",
+                "assembly": "System.Runtime",
+                "symbol": "double.IsFinite(double)"
+              },
+              {
+                "expression": "double.IsFinite(info.Timing.SampleRate)",
+                "assembly": "System.Runtime",
+                "symbol": "double.IsFinite(double)"
+              },
+              {
+                "expression": "Math.Round(info.Timing.SampleRate)",
+                "assembly": "System.Runtime",
+                "symbol": "System.Math.Round(double)"
+              }
+            ],
+            "text": "internal void ApplyInitialAvInfo(ExternalCoreApi.SystemAvInfo info)\r\n    {\r\n        ApplyGeometry(info.Geometry);\r\n        if (double.IsFinite(info.Timing.FramesPerSecond) && info.Timing.FramesPerSecond > 0)\r\n            FramesPerSecond = info.Timing.FramesPerSecond;\r\n        if (double.IsFinite(info.Timing.SampleRate) && info.Timing.SampleRate is > 0 and <= int.MaxValue)\r\n            SampleRate = checked((int)Math.Round(info.Timing.SampleRate));\r\n    }",
+            "assignments": [
+              {
+                "expression": "FramesPerSecond = info.Timing.FramesPerSecond",
+                "assembly": "gwgui.emulation.sony",
+                "symbol": "GWGUI.Emulation.Sony.Emulators.Common.Interop.Services.ExternalHostCallbacks.FramesPerSecond"
+              },
+              {
+                "expression": "SampleRate = checked((int)Math.Round(info.Timing.SampleRate))",
+                "assembly": "gwgui.emulation.sony",
+                "symbol": "GWGUI.Emulation.Sony.Emulators.Common.Interop.Services.ExternalHostCallbacks.SampleRate"
+              }
+            ],
+            "name": "ApplyInitialAvInfo",
+            "parameters": "(ExternalCoreApi.SystemAvInfo info)",
+            "constants": [
+              {
+                "value": 0,
+                "expression": "0"
+              },
+              {
+                "value": 0,
+                "expression": "0"
+              },
+              {
+                "value": 2147483647,
+                "expression": "int.MaxValue"
+              },
+              {
+                "value": 2147483647,
+                "expression": "MaxValue"
+              }
+            ]
+          },
+          {
+            "calls": [
+              {
+                "expression": "ApplyGeometry(Marshal.PtrToStructure<ExternalCoreApi.Geometry>(data))",
+                "assembly": "gwgui.emulation.sony",
+                "symbol": "GWGUI.Emulation.Sony.Emulators.Common.Interop.Services.ExternalHostCallbacks.ApplyGeometry(GWGUI.Emulation.Interop.ExternalCoreApi.Geometry)"
+              },
+              {
+                "expression": "Marshal.PtrToStructure<ExternalCoreApi.Geometry>(data)",
+                "assembly": "System.Runtime.InteropServices",
+                "symbol": "System.Runtime.InteropServices.Marshal.PtrToStructure<GWGUI.Emulation.Interop.ExternalCoreApi.Geometry>(nint)"
+              }
+            ],
+            "text": "private bool ApplyGeometry(nint data)\r\n    {\r\n        if (data == 0) return false;\r\n        ApplyGeometry(Marshal.PtrToStructure<ExternalCoreApi.Geometry>(data));\r\n        return true;\r\n    }",
+            "assignments": [],
+            "name": "ApplyGeometry",
+            "parameters": "(nint data)",
+            "constants": [
+              {
+                "value": 0,
+                "expression": "0"
+              },
+              {
+                "value": false,
+                "expression": "false"
+              },
+              {
+                "value": true,
+                "expression": "true"
+              }
+            ]
+          },
+          {
+            "calls": [
+              {
+                "expression": "HardwareRender.Resize(checked((int)geometry.MaximumWidth), checked((int)geometry.MaximumHeight))",
+                "assembly": "gwgui.emulation.sony",
+                "symbol": "GWGUI.Emulation.Sony.Emulators.Common.Interop.Services.HardwareRenderSession.Resize(int, int)"
+              },
+              {
+                "expression": "float.IsFinite(geometry.AspectRatio)",
+                "assembly": "System.Runtime",
+                "symbol": "float.IsFinite(float)"
+              }
+            ],
+            "text": "private void ApplyGeometry(ExternalCoreApi.Geometry geometry)\r\n    {\r\n        HardwareRender.Resize(checked((int)geometry.MaximumWidth), checked((int)geometry.MaximumHeight));\r\n        if (float.IsFinite(geometry.AspectRatio) && geometry.AspectRatio > 0)\r\n            _aspectRatio = geometry.AspectRatio;\r\n        else if (geometry.BaseHeight > 0)\r\n            _aspectRatio = geometry.BaseWidth / (float)geometry.BaseHeight;\r\n    }",
+            "assignments": [
+              {
+                "expression": "_aspectRatio = geometry.AspectRatio",
+                "assembly": "gwgui.emulation.sony",
+                "symbol": "GWGUI.Emulation.Sony.Emulators.Common.Interop.Services.ExternalHostCallbacks._aspectRatio"
+              },
+              {
+                "expression": "_aspectRatio = geometry.BaseWidth / (float)geometry.BaseHeight",
+                "assembly": "gwgui.emulation.sony",
+                "symbol": "GWGUI.Emulation.Sony.Emulators.Common.Interop.Services.ExternalHostCallbacks._aspectRatio"
+              }
+            ],
+            "name": "ApplyGeometry",
+            "parameters": "(ExternalCoreApi.Geometry geometry)",
+            "constants": [
+              {
+                "value": 0,
+                "expression": "0"
+              },
+              {
+                "value": 0,
+                "expression": "0"
+              }
+            ]
+          },
+          {
+            "calls": [
+              {
+                "expression": "ApplyInitialAvInfo(Marshal.PtrToStructure<ExternalCoreApi.SystemAvInfo>(data))",
+                "assembly": "gwgui.emulation.sony",
+                "symbol": "GWGUI.Emulation.Sony.Emulators.Common.Interop.Services.ExternalHostCallbacks.ApplyInitialAvInfo(GWGUI.Emulation.Interop.ExternalCoreApi.SystemAvInfo)"
+              },
+              {
+                "expression": "Marshal.PtrToStructure<ExternalCoreApi.SystemAvInfo>(data)",
+                "assembly": "System.Runtime.InteropServices",
+                "symbol": "System.Runtime.InteropServices.Marshal.PtrToStructure<GWGUI.Emulation.Interop.ExternalCoreApi.SystemAvInfo>(nint)"
+              }
+            ],
+            "text": "private bool ApplySystemAvInfo(nint data)\r\n    {\r\n        if (data == 0) return false;\r\n        ApplyInitialAvInfo(Marshal.PtrToStructure<ExternalCoreApi.SystemAvInfo>(data));\r\n        return true;\r\n    }",
+            "assignments": [],
+            "name": "ApplySystemAvInfo",
+            "parameters": "(nint data)",
+            "constants": [
+              {
+                "value": 0,
+                "expression": "0"
+              },
+              {
+                "value": false,
+                "expression": "false"
+              },
+              {
+                "value": true,
+                "expression": "true"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "sha256": "EFFB062AA581EAC8DB851F24938550E9BED560C1923CA5AAE79B69930A0DD7D7",
+        "hardwarePolicy": "HardwareRender.Resize before ratio",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.AudioVideo.cs",
+        "operations": [
+          {
+            "calls": [
+              {
+                "expression": "ApplyGeometry(info.Geometry)",
+                "assembly": "gwgui.emulation.sony",
+                "symbol": "GWGUI.Emulation.Sony.Emulators.Pcsx2.Services.ExternalHostCallbacks.ApplyGeometry(GWGUI.Emulation.Interop.ExternalCoreApi.Geometry)"
+              },
+              {
+                "expression": "double.IsFinite(info.Timing.FramesPerSecond)",
+                "assembly": "System.Runtime",
+                "symbol": "double.IsFinite(double)"
+              },
+              {
+                "expression": "double.IsFinite(info.Timing.SampleRate)",
+                "assembly": "System.Runtime",
+                "symbol": "double.IsFinite(double)"
+              },
+              {
+                "expression": "Math.Round(info.Timing.SampleRate)",
+                "assembly": "System.Runtime",
+                "symbol": "System.Math.Round(double)"
+              }
+            ],
+            "text": "internal void ApplyInitialAvInfo(ExternalCoreApi.SystemAvInfo info)\r\n    {\r\n        ApplyGeometry(info.Geometry);\r\n        if (double.IsFinite(info.Timing.FramesPerSecond) && info.Timing.FramesPerSecond > 0)\r\n            FramesPerSecond = info.Timing.FramesPerSecond;\r\n        if (double.IsFinite(info.Timing.SampleRate) && info.Timing.SampleRate is > 0 and <= int.MaxValue)\r\n            SampleRate = checked((int)Math.Round(info.Timing.SampleRate));\r\n    }",
+            "assignments": [
+              {
+                "expression": "FramesPerSecond = info.Timing.FramesPerSecond",
+                "assembly": "gwgui.emulation.sony",
+                "symbol": "GWGUI.Emulation.Sony.Emulators.Pcsx2.Services.ExternalHostCallbacks.FramesPerSecond"
+              },
+              {
+                "expression": "SampleRate = checked((int)Math.Round(info.Timing.SampleRate))",
+                "assembly": "gwgui.emulation.sony",
+                "symbol": "GWGUI.Emulation.Sony.Emulators.Pcsx2.Services.ExternalHostCallbacks.SampleRate"
+              }
+            ],
+            "name": "ApplyInitialAvInfo",
+            "parameters": "(ExternalCoreApi.SystemAvInfo info)",
+            "constants": [
+              {
+                "value": 0,
+                "expression": "0"
+              },
+              {
+                "value": 0,
+                "expression": "0"
+              },
+              {
+                "value": 2147483647,
+                "expression": "int.MaxValue"
+              },
+              {
+                "value": 2147483647,
+                "expression": "MaxValue"
+              }
+            ]
+          },
+          {
+            "calls": [
+              {
+                "expression": "ApplyGeometry(Marshal.PtrToStructure<ExternalCoreApi.Geometry>(data))",
+                "assembly": "gwgui.emulation.sony",
+                "symbol": "GWGUI.Emulation.Sony.Emulators.Pcsx2.Services.ExternalHostCallbacks.ApplyGeometry(GWGUI.Emulation.Interop.ExternalCoreApi.Geometry)"
+              },
+              {
+                "expression": "Marshal.PtrToStructure<ExternalCoreApi.Geometry>(data)",
+                "assembly": "System.Runtime.InteropServices",
+                "symbol": "System.Runtime.InteropServices.Marshal.PtrToStructure<GWGUI.Emulation.Interop.ExternalCoreApi.Geometry>(nint)"
+              }
+            ],
+            "text": "private bool ApplyGeometry(nint data)\r\n    {\r\n        if (data == 0) return false;\r\n        ApplyGeometry(Marshal.PtrToStructure<ExternalCoreApi.Geometry>(data));\r\n        return true;\r\n    }",
+            "assignments": [],
+            "name": "ApplyGeometry",
+            "parameters": "(nint data)",
+            "constants": [
+              {
+                "value": 0,
+                "expression": "0"
+              },
+              {
+                "value": false,
+                "expression": "false"
+              },
+              {
+                "value": true,
+                "expression": "true"
+              }
+            ]
+          },
+          {
+            "calls": [
+              {
+                "expression": "HardwareRender.Resize(checked((int)geometry.MaximumWidth), checked((int)geometry.MaximumHeight))",
+                "assembly": "gwgui.emulation.sony",
+                "symbol": "GWGUI.Emulation.Sony.Emulators.Common.Interop.Services.HardwareRenderSession.Resize(int, int)"
+              },
+              {
+                "expression": "float.IsFinite(geometry.AspectRatio)",
+                "assembly": "System.Runtime",
+                "symbol": "float.IsFinite(float)"
+              }
+            ],
+            "text": "private void ApplyGeometry(ExternalCoreApi.Geometry geometry)\r\n    {\r\n        HardwareRender.Resize(checked((int)geometry.MaximumWidth), checked((int)geometry.MaximumHeight));\r\n        if (float.IsFinite(geometry.AspectRatio) && geometry.AspectRatio > 0)\r\n            _aspectRatio = geometry.AspectRatio;\r\n        else if (geometry.BaseHeight > 0)\r\n            _aspectRatio = geometry.BaseWidth / (float)geometry.BaseHeight;\r\n    }",
+            "assignments": [
+              {
+                "expression": "_aspectRatio = geometry.AspectRatio",
+                "assembly": "gwgui.emulation.sony",
+                "symbol": "GWGUI.Emulation.Sony.Emulators.Pcsx2.Services.ExternalHostCallbacks._aspectRatio"
+              },
+              {
+                "expression": "_aspectRatio = geometry.BaseWidth / (float)geometry.BaseHeight",
+                "assembly": "gwgui.emulation.sony",
+                "symbol": "GWGUI.Emulation.Sony.Emulators.Pcsx2.Services.ExternalHostCallbacks._aspectRatio"
+              }
+            ],
+            "name": "ApplyGeometry",
+            "parameters": "(ExternalCoreApi.Geometry geometry)",
+            "constants": [
+              {
+                "value": 0,
+                "expression": "0"
+              },
+              {
+                "value": 0,
+                "expression": "0"
+              }
+            ]
+          },
+          {
+            "calls": [
+              {
+                "expression": "ApplyInitialAvInfo(Marshal.PtrToStructure<ExternalCoreApi.SystemAvInfo>(data))",
+                "assembly": "gwgui.emulation.sony",
+                "symbol": "GWGUI.Emulation.Sony.Emulators.Pcsx2.Services.ExternalHostCallbacks.ApplyInitialAvInfo(GWGUI.Emulation.Interop.ExternalCoreApi.SystemAvInfo)"
+              },
+              {
+                "expression": "Marshal.PtrToStructure<ExternalCoreApi.SystemAvInfo>(data)",
+                "assembly": "System.Runtime.InteropServices",
+                "symbol": "System.Runtime.InteropServices.Marshal.PtrToStructure<GWGUI.Emulation.Interop.ExternalCoreApi.SystemAvInfo>(nint)"
+              }
+            ],
+            "text": "private bool ApplySystemAvInfo(nint data)\r\n    {\r\n        if (data == 0) return false;\r\n        ApplyInitialAvInfo(Marshal.PtrToStructure<ExternalCoreApi.SystemAvInfo>(data));\r\n        return true;\r\n    }",
+            "assignments": [],
+            "name": "ApplySystemAvInfo",
+            "parameters": "(nint data)",
+            "constants": [
+              {
+                "value": 0,
+                "expression": "0"
+              },
+              {
+                "value": false,
+                "expression": "false"
+              },
+              {
+                "value": true,
+                "expression": "true"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "sha256": "8521090A6FB5D7E6464A138E4D1E5ED5B67D50532EE2E7E0323611803E155E54",
+        "hardwarePolicy": "HardwareRender.Resize before ratio",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.AudioVideo.cs",
+        "operations": [
+          {
+            "calls": [
+              {
+                "expression": "ApplyGeometry(info.Geometry)",
+                "assembly": "gwgui.emulation.sony",
+                "symbol": "GWGUI.Emulation.Sony.Emulators.Ppsspp.Services.ExternalHostCallbacks.ApplyGeometry(GWGUI.Emulation.Interop.ExternalCoreApi.Geometry)"
+              },
+              {
+                "expression": "double.IsFinite(info.Timing.FramesPerSecond)",
+                "assembly": "System.Runtime",
+                "symbol": "double.IsFinite(double)"
+              },
+              {
+                "expression": "double.IsFinite(info.Timing.SampleRate)",
+                "assembly": "System.Runtime",
+                "symbol": "double.IsFinite(double)"
+              },
+              {
+                "expression": "Math.Round(info.Timing.SampleRate)",
+                "assembly": "System.Runtime",
+                "symbol": "System.Math.Round(double)"
+              }
+            ],
+            "text": "internal void ApplyInitialAvInfo(ExternalCoreApi.SystemAvInfo info)\n    {\n        ApplyGeometry(info.Geometry);\n        if (double.IsFinite(info.Timing.FramesPerSecond) && info.Timing.FramesPerSecond > 0)\n            FramesPerSecond = info.Timing.FramesPerSecond;\n        if (double.IsFinite(info.Timing.SampleRate) && info.Timing.SampleRate is > 0 and <= int.MaxValue)\n            SampleRate = checked((int)Math.Round(info.Timing.SampleRate));\n    }",
+            "assignments": [
+              {
+                "expression": "FramesPerSecond = info.Timing.FramesPerSecond",
+                "assembly": "gwgui.emulation.sony",
+                "symbol": "GWGUI.Emulation.Sony.Emulators.Ppsspp.Services.ExternalHostCallbacks.FramesPerSecond"
+              },
+              {
+                "expression": "SampleRate = checked((int)Math.Round(info.Timing.SampleRate))",
+                "assembly": "gwgui.emulation.sony",
+                "symbol": "GWGUI.Emulation.Sony.Emulators.Ppsspp.Services.ExternalHostCallbacks.SampleRate"
+              }
+            ],
+            "name": "ApplyInitialAvInfo",
+            "parameters": "(ExternalCoreApi.SystemAvInfo info)",
+            "constants": [
+              {
+                "value": 0,
+                "expression": "0"
+              },
+              {
+                "value": 0,
+                "expression": "0"
+              },
+              {
+                "value": 2147483647,
+                "expression": "int.MaxValue"
+              },
+              {
+                "value": 2147483647,
+                "expression": "MaxValue"
+              }
+            ]
+          },
+          {
+            "calls": [
+              {
+                "expression": "ApplyGeometry(Marshal.PtrToStructure<ExternalCoreApi.Geometry>(data))",
+                "assembly": "gwgui.emulation.sony",
+                "symbol": "GWGUI.Emulation.Sony.Emulators.Ppsspp.Services.ExternalHostCallbacks.ApplyGeometry(GWGUI.Emulation.Interop.ExternalCoreApi.Geometry)"
+              },
+              {
+                "expression": "Marshal.PtrToStructure<ExternalCoreApi.Geometry>(data)",
+                "assembly": "System.Runtime.InteropServices",
+                "symbol": "System.Runtime.InteropServices.Marshal.PtrToStructure<GWGUI.Emulation.Interop.ExternalCoreApi.Geometry>(nint)"
+              }
+            ],
+            "text": "private bool ApplyGeometry(nint data)\n    {\n        if (data == 0) return false;\n        ApplyGeometry(Marshal.PtrToStructure<ExternalCoreApi.Geometry>(data));\n        return true;\n    }",
+            "assignments": [],
+            "name": "ApplyGeometry",
+            "parameters": "(nint data)",
+            "constants": [
+              {
+                "value": 0,
+                "expression": "0"
+              },
+              {
+                "value": false,
+                "expression": "false"
+              },
+              {
+                "value": true,
+                "expression": "true"
+              }
+            ]
+          },
+          {
+            "calls": [
+              {
+                "expression": "HardwareRender.Resize(checked((int)geometry.MaximumWidth), checked((int)geometry.MaximumHeight))",
+                "assembly": "gwgui.emulation.sony",
+                "symbol": "GWGUI.Emulation.Sony.Emulators.Common.Interop.Services.HardwareRenderSession.Resize(int, int)"
+              },
+              {
+                "expression": "float.IsFinite(geometry.AspectRatio)",
+                "assembly": "System.Runtime",
+                "symbol": "float.IsFinite(float)"
+              }
+            ],
+            "text": "private void ApplyGeometry(ExternalCoreApi.Geometry geometry)\n    {\n        HardwareRender.Resize(checked((int)geometry.MaximumWidth), checked((int)geometry.MaximumHeight));\r\n        if (float.IsFinite(geometry.AspectRatio) && geometry.AspectRatio > 0)\n            _aspectRatio = geometry.AspectRatio;\n        else if (geometry.BaseHeight > 0)\n            _aspectRatio = geometry.BaseWidth / (float)geometry.BaseHeight;\n    }",
+            "assignments": [
+              {
+                "expression": "_aspectRatio = geometry.AspectRatio",
+                "assembly": "gwgui.emulation.sony",
+                "symbol": "GWGUI.Emulation.Sony.Emulators.Ppsspp.Services.ExternalHostCallbacks._aspectRatio"
+              },
+              {
+                "expression": "_aspectRatio = geometry.BaseWidth / (float)geometry.BaseHeight",
+                "assembly": "gwgui.emulation.sony",
+                "symbol": "GWGUI.Emulation.Sony.Emulators.Ppsspp.Services.ExternalHostCallbacks._aspectRatio"
+              }
+            ],
+            "name": "ApplyGeometry",
+            "parameters": "(ExternalCoreApi.Geometry geometry)",
+            "constants": [
+              {
+                "value": 0,
+                "expression": "0"
+              },
+              {
+                "value": 0,
+                "expression": "0"
+              }
+            ]
+          },
+          {
+            "calls": [
+              {
+                "expression": "ApplyInitialAvInfo(Marshal.PtrToStructure<ExternalCoreApi.SystemAvInfo>(data))",
+                "assembly": "gwgui.emulation.sony",
+                "symbol": "GWGUI.Emulation.Sony.Emulators.Ppsspp.Services.ExternalHostCallbacks.ApplyInitialAvInfo(GWGUI.Emulation.Interop.ExternalCoreApi.SystemAvInfo)"
+              },
+              {
+                "expression": "Marshal.PtrToStructure<ExternalCoreApi.SystemAvInfo>(data)",
+                "assembly": "System.Runtime.InteropServices",
+                "symbol": "System.Runtime.InteropServices.Marshal.PtrToStructure<GWGUI.Emulation.Interop.ExternalCoreApi.SystemAvInfo>(nint)"
+              }
+            ],
+            "text": "private bool ApplySystemAvInfo(nint data)\n    {\n        if (data == 0) return false;\n        ApplyInitialAvInfo(Marshal.PtrToStructure<ExternalCoreApi.SystemAvInfo>(data));\n        return true;\n    }",
+            "assignments": [],
+            "name": "ApplySystemAvInfo",
+            "parameters": "(nint data)",
+            "constants": [
+              {
+                "value": 0,
+                "expression": "0"
+              },
+              {
+                "value": false,
+                "expression": "false"
+              },
+              {
+                "value": true,
+                "expression": "true"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "semanticProjects": [
+      "GWGUI.Emulation",
+      "GWGUI.Emulation.Amstrad",
+      "GWGUI.Emulation.Commodore",
+      "GWGUI.Emulation.Nec",
+      "GWGUI.Emulation.Nintendo",
+      "GWGUI.Emulation.Sega",
+      "GWGUI.Emulation.Sony"
+    ],
+    "existingSdkOwners": {
+      "videoFunctions": "src/GWGUI.Emulation/Functions/EmulationVideoFunctions.cs",
+      "environmentFunctions": "src/GWGUI.Emulation/Functions/ExternalCoreEnvironmentFunctions.cs"
+    },
+    "summary": {
+      "hardwarePolicies": [
+        {
+          "count": 3,
+          "policy": "HardwareRender.Resize before ratio"
+        },
+        {
+          "count": 2,
+          "policy": "nullable EnsureFramebuffer before ratio"
+        },
+        {
+          "count": 3,
+          "policy": "software geometry only"
+        }
+      ],
+      "richProfiles": "Atari rich ApplySystemAvInfo stores the raw structure, dimensions and timing without native finite/positive guards; do not apply native policy to rich profiles.",
+      "scope": "AV update operations only; frame/audio ownership and other callback operations remain unqualified",
+      "profiles": 8,
+      "operations": 32
+    },
+    "verification": {
+      "projects": [
+        "GWGUI.Emulation",
+        "GWGUI.Emulation.Amstrad",
+        "GWGUI.Emulation.Commodore",
+        "GWGUI.Emulation.Nec",
+        "GWGUI.Emulation.Nintendo",
+        "GWGUI.Emulation.Sega",
+        "GWGUI.Emulation.Sony"
+      ],
+      "sharedBindings": 32,
+      "sourceChecks": [
+        {
+          "bindings": [
+            {
+              "method": "ApplyInitialAvInfo",
+              "setters": [
+                "GWGUI.Emulation.Amstrad.Emulators.Common.Interop.Services.ExternalHostCallbacks.FramesPerSecond",
+                "GWGUI.Emulation.Amstrad.Emulators.Common.Interop.Services.ExternalHostCallbacks.SampleRate"
+              ],
+              "assembly": "gwgui.emulation",
+              "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.ApplySystemAvInfo(GWGUI.Emulation.Interop.ExternalCoreApi.SystemAvInfo, System.Action<GWGUI.Emulation.Interop.ExternalCoreApi.Geometry>, System.Action<double>, System.Action<int>)",
+              "parameters": "(ExternalCoreApi.SystemAvInfo info)",
+              "hardwarePrefixPreserved": true
+            },
+            {
+              "method": "ApplyGeometry",
+              "setters": [],
+              "assembly": "gwgui.emulation",
+              "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.ApplyStructure<GWGUI.Emulation.Interop.ExternalCoreApi.Geometry>(nint, System.Action<GWGUI.Emulation.Interop.ExternalCoreApi.Geometry>)",
+              "parameters": "(nint data)",
+              "hardwarePrefixPreserved": true
+            },
+            {
+              "method": "ApplyGeometry",
+              "setters": [],
+              "assembly": "gwgui.emulation",
+              "target": "GWGUI.Emulation.Functions.EmulationVideoFunctions.ApplyGeometry(GWGUI.Emulation.Interop.ExternalCoreApi.Geometry, ref float)",
+              "parameters": "(ExternalCoreApi.Geometry geometry)",
+              "hardwarePrefixPreserved": true
+            },
+            {
+              "method": "ApplySystemAvInfo",
+              "setters": [],
+              "assembly": "gwgui.emulation",
+              "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.ApplyStructure<GWGUI.Emulation.Interop.ExternalCoreApi.SystemAvInfo>(nint, System.Action<GWGUI.Emulation.Interop.ExternalCoreApi.SystemAvInfo>)",
+              "parameters": "(nint data)",
+              "hardwarePrefixPreserved": true
+            }
+          ],
+          "otherWholeFileTokensUnchanged": true,
+          "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+          "sha256": "387F36601933489324AB1CAF1A068F2287FDEB0A23E5847FFEAB6CE4FE397203",
+          "beforeSha256": "861AECAFFB92AB1961AD9E6FC879F17413630C24E8BBF9ACD715A32B273C1FD6"
+        },
+        {
+          "bindings": [
+            {
+              "method": "ApplyInitialAvInfo",
+              "setters": [
+                "GWGUI.Emulation.Commodore.Emulators.Common.Interop.Services.ExternalHostCallbacks.FramesPerSecond",
+                "GWGUI.Emulation.Commodore.Emulators.Common.Interop.Services.ExternalHostCallbacks.SampleRate"
+              ],
+              "assembly": "gwgui.emulation",
+              "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.ApplySystemAvInfo(GWGUI.Emulation.Interop.ExternalCoreApi.SystemAvInfo, System.Action<GWGUI.Emulation.Interop.ExternalCoreApi.Geometry>, System.Action<double>, System.Action<int>)",
+              "parameters": "(ExternalCoreApi.SystemAvInfo info)",
+              "hardwarePrefixPreserved": true
+            },
+            {
+              "method": "ApplyGeometry",
+              "setters": [],
+              "assembly": "gwgui.emulation",
+              "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.ApplyStructure<GWGUI.Emulation.Interop.ExternalCoreApi.Geometry>(nint, System.Action<GWGUI.Emulation.Interop.ExternalCoreApi.Geometry>)",
+              "parameters": "(nint data)",
+              "hardwarePrefixPreserved": true
+            },
+            {
+              "method": "ApplyGeometry",
+              "setters": [],
+              "assembly": "gwgui.emulation",
+              "target": "GWGUI.Emulation.Functions.EmulationVideoFunctions.ApplyGeometry(GWGUI.Emulation.Interop.ExternalCoreApi.Geometry, ref float)",
+              "parameters": "(ExternalCoreApi.Geometry geometry)",
+              "hardwarePrefixPreserved": true
+            },
+            {
+              "method": "ApplySystemAvInfo",
+              "setters": [],
+              "assembly": "gwgui.emulation",
+              "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.ApplyStructure<GWGUI.Emulation.Interop.ExternalCoreApi.SystemAvInfo>(nint, System.Action<GWGUI.Emulation.Interop.ExternalCoreApi.SystemAvInfo>)",
+              "parameters": "(nint data)",
+              "hardwarePrefixPreserved": true
+            }
+          ],
+          "otherWholeFileTokensUnchanged": true,
+          "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+          "sha256": "B14E3AB8E4FB5D3E0C002CE33C7D3BAEE6B8370526CDEFF34B7D379082D0635F",
+          "beforeSha256": "42E3844F28D94383EFDE204EB2F0B6C4B5DC051A861885FB81E3B9757A044259"
+        },
+        {
+          "bindings": [
+            {
+              "method": "ApplyInitialAvInfo",
+              "setters": [
+                "GWGUI.Emulation.Nec.Emulators.Common.Interop.Services.ExternalHostCallbacks.FramesPerSecond",
+                "GWGUI.Emulation.Nec.Emulators.Common.Interop.Services.ExternalHostCallbacks.SampleRate"
+              ],
+              "assembly": "gwgui.emulation",
+              "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.ApplySystemAvInfo(GWGUI.Emulation.Interop.ExternalCoreApi.SystemAvInfo, System.Action<GWGUI.Emulation.Interop.ExternalCoreApi.Geometry>, System.Action<double>, System.Action<int>)",
+              "parameters": "(ExternalCoreApi.SystemAvInfo info)",
+              "hardwarePrefixPreserved": true
+            },
+            {
+              "method": "ApplyGeometry",
+              "setters": [],
+              "assembly": "gwgui.emulation",
+              "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.ApplyStructure<GWGUI.Emulation.Interop.ExternalCoreApi.Geometry>(nint, System.Action<GWGUI.Emulation.Interop.ExternalCoreApi.Geometry>)",
+              "parameters": "(nint data)",
+              "hardwarePrefixPreserved": true
+            },
+            {
+              "method": "ApplyGeometry",
+              "setters": [],
+              "assembly": "gwgui.emulation",
+              "target": "GWGUI.Emulation.Functions.EmulationVideoFunctions.ApplyGeometry(GWGUI.Emulation.Interop.ExternalCoreApi.Geometry, ref float)",
+              "parameters": "(ExternalCoreApi.Geometry geometry)",
+              "hardwarePrefixPreserved": true
+            },
+            {
+              "method": "ApplySystemAvInfo",
+              "setters": [],
+              "assembly": "gwgui.emulation",
+              "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.ApplyStructure<GWGUI.Emulation.Interop.ExternalCoreApi.SystemAvInfo>(nint, System.Action<GWGUI.Emulation.Interop.ExternalCoreApi.SystemAvInfo>)",
+              "parameters": "(nint data)",
+              "hardwarePrefixPreserved": true
+            }
+          ],
+          "otherWholeFileTokensUnchanged": true,
+          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+          "sha256": "888C121C53AF9A61A392788C27BEF91F06135D01B4E8A425D098A15DA912830A",
+          "beforeSha256": "B826CD3E2EBE2A7177642169D64A410FE1FCCB38E123E47267A0033F4CBA2EE1"
+        },
+        {
+          "bindings": [
+            {
+              "method": "ApplyInitialAvInfo",
+              "setters": [
+                "GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Services.ExternalHostCallbacks.FramesPerSecond",
+                "GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Services.ExternalHostCallbacks.SampleRate"
+              ],
+              "assembly": "gwgui.emulation",
+              "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.ApplySystemAvInfo(GWGUI.Emulation.Interop.ExternalCoreApi.SystemAvInfo, System.Action<GWGUI.Emulation.Interop.ExternalCoreApi.Geometry>, System.Action<double>, System.Action<int>)",
+              "parameters": "(ExternalCoreApi.SystemAvInfo info)",
+              "hardwarePrefixPreserved": true
+            },
+            {
+              "method": "ApplyGeometry",
+              "setters": [],
+              "assembly": "gwgui.emulation",
+              "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.ApplyStructure<GWGUI.Emulation.Interop.ExternalCoreApi.Geometry>(nint, System.Action<GWGUI.Emulation.Interop.ExternalCoreApi.Geometry>)",
+              "parameters": "(nint data)",
+              "hardwarePrefixPreserved": true
+            },
+            {
+              "method": "ApplyGeometry",
+              "setters": [],
+              "assembly": "gwgui.emulation",
+              "target": "GWGUI.Emulation.Functions.EmulationVideoFunctions.ApplyGeometry(GWGUI.Emulation.Interop.ExternalCoreApi.Geometry, ref float)",
+              "parameters": "(ExternalCoreApi.Geometry geometry)",
+              "hardwarePrefixPreserved": true
+            },
+            {
+              "method": "ApplySystemAvInfo",
+              "setters": [],
+              "assembly": "gwgui.emulation",
+              "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.ApplyStructure<GWGUI.Emulation.Interop.ExternalCoreApi.SystemAvInfo>(nint, System.Action<GWGUI.Emulation.Interop.ExternalCoreApi.SystemAvInfo>)",
+              "parameters": "(nint data)",
+              "hardwarePrefixPreserved": true
+            }
+          ],
+          "otherWholeFileTokensUnchanged": true,
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+          "sha256": "F4F5ED98AF0E1E33FEFF8681473D7DE345FEEE021B2CEDEAABDAE993D9A27805",
+          "beforeSha256": "A4300FA04E013EB6FEFF404AF24F9EDFE59ABA89B182A5AE98711A5E573BE2F6"
+        },
+        {
+          "bindings": [
+            {
+              "method": "ApplyInitialAvInfo",
+              "setters": [
+                "GWGUI.Emulation.Sega.Emulators.Common.Interop.Services.ExternalHostCallbacks.FramesPerSecond",
+                "GWGUI.Emulation.Sega.Emulators.Common.Interop.Services.ExternalHostCallbacks.SampleRate"
+              ],
+              "assembly": "gwgui.emulation",
+              "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.ApplySystemAvInfo(GWGUI.Emulation.Interop.ExternalCoreApi.SystemAvInfo, System.Action<GWGUI.Emulation.Interop.ExternalCoreApi.Geometry>, System.Action<double>, System.Action<int>)",
+              "parameters": "(ExternalCoreApi.SystemAvInfo info)",
+              "hardwarePrefixPreserved": true
+            },
+            {
+              "method": "ApplyGeometry",
+              "setters": [],
+              "assembly": "gwgui.emulation",
+              "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.ApplyStructure<GWGUI.Emulation.Interop.ExternalCoreApi.Geometry>(nint, System.Action<GWGUI.Emulation.Interop.ExternalCoreApi.Geometry>)",
+              "parameters": "(nint data)",
+              "hardwarePrefixPreserved": true
+            },
+            {
+              "method": "ApplyGeometry",
+              "setters": [],
+              "assembly": "gwgui.emulation",
+              "target": "GWGUI.Emulation.Functions.EmulationVideoFunctions.ApplyGeometry(GWGUI.Emulation.Interop.ExternalCoreApi.Geometry, ref float)",
+              "parameters": "(ExternalCoreApi.Geometry geometry)",
+              "hardwarePrefixPreserved": true
+            },
+            {
+              "method": "ApplySystemAvInfo",
+              "setters": [],
+              "assembly": "gwgui.emulation",
+              "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.ApplyStructure<GWGUI.Emulation.Interop.ExternalCoreApi.SystemAvInfo>(nint, System.Action<GWGUI.Emulation.Interop.ExternalCoreApi.SystemAvInfo>)",
+              "parameters": "(nint data)",
+              "hardwarePrefixPreserved": true
+            }
+          ],
+          "otherWholeFileTokensUnchanged": true,
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+          "sha256": "E442EC6EFD9E4854E9F1283A5F6BCBF745D53BDE10BEF5216F53E0010FFB0489",
+          "beforeSha256": "9B5ED13D13AE8C04B0C7A67510A99F9E48925084C7D8999118802DDC6BEF8CD2"
+        },
+        {
+          "bindings": [
+            {
+              "method": "ApplyInitialAvInfo",
+              "setters": [
+                "GWGUI.Emulation.Sony.Emulators.Common.Interop.Services.ExternalHostCallbacks.FramesPerSecond",
+                "GWGUI.Emulation.Sony.Emulators.Common.Interop.Services.ExternalHostCallbacks.SampleRate"
+              ],
+              "assembly": "gwgui.emulation",
+              "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.ApplySystemAvInfo(GWGUI.Emulation.Interop.ExternalCoreApi.SystemAvInfo, System.Action<GWGUI.Emulation.Interop.ExternalCoreApi.Geometry>, System.Action<double>, System.Action<int>)",
+              "parameters": "(ExternalCoreApi.SystemAvInfo info)",
+              "hardwarePrefixPreserved": true
+            },
+            {
+              "method": "ApplyGeometry",
+              "setters": [],
+              "assembly": "gwgui.emulation",
+              "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.ApplyStructure<GWGUI.Emulation.Interop.ExternalCoreApi.Geometry>(nint, System.Action<GWGUI.Emulation.Interop.ExternalCoreApi.Geometry>)",
+              "parameters": "(nint data)",
+              "hardwarePrefixPreserved": true
+            },
+            {
+              "method": "ApplyGeometry",
+              "setters": [],
+              "assembly": "gwgui.emulation",
+              "target": "GWGUI.Emulation.Functions.EmulationVideoFunctions.ApplyGeometry(GWGUI.Emulation.Interop.ExternalCoreApi.Geometry, ref float)",
+              "parameters": "(ExternalCoreApi.Geometry geometry)",
+              "hardwarePrefixPreserved": true
+            },
+            {
+              "method": "ApplySystemAvInfo",
+              "setters": [],
+              "assembly": "gwgui.emulation",
+              "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.ApplyStructure<GWGUI.Emulation.Interop.ExternalCoreApi.SystemAvInfo>(nint, System.Action<GWGUI.Emulation.Interop.ExternalCoreApi.SystemAvInfo>)",
+              "parameters": "(nint data)",
+              "hardwarePrefixPreserved": true
+            }
+          ],
+          "otherWholeFileTokensUnchanged": true,
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+          "sha256": "19758BB35ADD17A05C349DF49A47364A7D016EC27B5892E013B0D97BCAEDA80F",
+          "beforeSha256": "427B8ABDF7269CDA6F93EF067B23F79144175E4BDB9808B8DE4CC21DA5242E01"
+        },
+        {
+          "bindings": [
+            {
+              "method": "ApplyInitialAvInfo",
+              "setters": [
+                "GWGUI.Emulation.Sony.Emulators.Pcsx2.Services.ExternalHostCallbacks.FramesPerSecond",
+                "GWGUI.Emulation.Sony.Emulators.Pcsx2.Services.ExternalHostCallbacks.SampleRate"
+              ],
+              "assembly": "gwgui.emulation",
+              "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.ApplySystemAvInfo(GWGUI.Emulation.Interop.ExternalCoreApi.SystemAvInfo, System.Action<GWGUI.Emulation.Interop.ExternalCoreApi.Geometry>, System.Action<double>, System.Action<int>)",
+              "parameters": "(ExternalCoreApi.SystemAvInfo info)",
+              "hardwarePrefixPreserved": true
+            },
+            {
+              "method": "ApplyGeometry",
+              "setters": [],
+              "assembly": "gwgui.emulation",
+              "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.ApplyStructure<GWGUI.Emulation.Interop.ExternalCoreApi.Geometry>(nint, System.Action<GWGUI.Emulation.Interop.ExternalCoreApi.Geometry>)",
+              "parameters": "(nint data)",
+              "hardwarePrefixPreserved": true
+            },
+            {
+              "method": "ApplyGeometry",
+              "setters": [],
+              "assembly": "gwgui.emulation",
+              "target": "GWGUI.Emulation.Functions.EmulationVideoFunctions.ApplyGeometry(GWGUI.Emulation.Interop.ExternalCoreApi.Geometry, ref float)",
+              "parameters": "(ExternalCoreApi.Geometry geometry)",
+              "hardwarePrefixPreserved": true
+            },
+            {
+              "method": "ApplySystemAvInfo",
+              "setters": [],
+              "assembly": "gwgui.emulation",
+              "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.ApplyStructure<GWGUI.Emulation.Interop.ExternalCoreApi.SystemAvInfo>(nint, System.Action<GWGUI.Emulation.Interop.ExternalCoreApi.SystemAvInfo>)",
+              "parameters": "(nint data)",
+              "hardwarePrefixPreserved": true
+            }
+          ],
+          "otherWholeFileTokensUnchanged": true,
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.AudioVideo.cs",
+          "sha256": "7C7333D59FDB3E0165536C8DC9D78E4B4886E8E19661B2C6F282D40E21C743B6",
+          "beforeSha256": "EFFB062AA581EAC8DB851F24938550E9BED560C1923CA5AAE79B69930A0DD7D7"
+        },
+        {
+          "bindings": [
+            {
+              "method": "ApplyInitialAvInfo",
+              "setters": [
+                "GWGUI.Emulation.Sony.Emulators.Ppsspp.Services.ExternalHostCallbacks.FramesPerSecond",
+                "GWGUI.Emulation.Sony.Emulators.Ppsspp.Services.ExternalHostCallbacks.SampleRate"
+              ],
+              "assembly": "gwgui.emulation",
+              "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.ApplySystemAvInfo(GWGUI.Emulation.Interop.ExternalCoreApi.SystemAvInfo, System.Action<GWGUI.Emulation.Interop.ExternalCoreApi.Geometry>, System.Action<double>, System.Action<int>)",
+              "parameters": "(ExternalCoreApi.SystemAvInfo info)",
+              "hardwarePrefixPreserved": true
+            },
+            {
+              "method": "ApplyGeometry",
+              "setters": [],
+              "assembly": "gwgui.emulation",
+              "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.ApplyStructure<GWGUI.Emulation.Interop.ExternalCoreApi.Geometry>(nint, System.Action<GWGUI.Emulation.Interop.ExternalCoreApi.Geometry>)",
+              "parameters": "(nint data)",
+              "hardwarePrefixPreserved": true
+            },
+            {
+              "method": "ApplyGeometry",
+              "setters": [],
+              "assembly": "gwgui.emulation",
+              "target": "GWGUI.Emulation.Functions.EmulationVideoFunctions.ApplyGeometry(GWGUI.Emulation.Interop.ExternalCoreApi.Geometry, ref float)",
+              "parameters": "(ExternalCoreApi.Geometry geometry)",
+              "hardwarePrefixPreserved": true
+            },
+            {
+              "method": "ApplySystemAvInfo",
+              "setters": [],
+              "assembly": "gwgui.emulation",
+              "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.ApplyStructure<GWGUI.Emulation.Interop.ExternalCoreApi.SystemAvInfo>(nint, System.Action<GWGUI.Emulation.Interop.ExternalCoreApi.SystemAvInfo>)",
+              "parameters": "(nint data)",
+              "hardwarePrefixPreserved": true
+            }
+          ],
+          "otherWholeFileTokensUnchanged": true,
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.AudioVideo.cs",
+          "sha256": "685B17B69F48F07897EF31E6D4395FDB37CE01634C8AC72329933FE630678658",
+          "beforeSha256": "8521090A6FB5D7E6464A138E4D1E5ED5B67D50532EE2E7E0323611803E155E54"
+        }
+      ],
+      "state": "verified: 32 original expansions, 32 bindings, ten whole files and 114 tests",
+      "sdkChecks": [
+        {
+          "addedMethods": [
+            "ApplySystemAvInfo",
+            "ApplyStructure"
+          ],
+          "path": "src/GWGUI.Emulation/Functions/ExternalCoreEnvironmentFunctions.cs",
+          "otherSdkTokensUnchanged": true,
+          "sha256": "F451838198B54FB9E9ACB11AF807FF9D6D57268B4AD645954B6B4AE07648A478",
+          "beforeGitBlob": "60c0ee15bf47c0884f1ee131f3a24661d21f1a36"
+        },
+        {
+          "addedMethods": "ApplyGeometry",
+          "path": "src/GWGUI.Emulation/Functions/EmulationVideoFunctions.cs",
+          "otherSdkTokensUnchanged": true,
+          "sha256": "63959F2B2BFA39636D31A2941811F0DB798186DC9CEA8E9A8DE946398A891087",
+          "beforeGitBlob": "0699db628086f968d63608b379bf8d5a18c4af97"
+        }
+      ],
+      "otherSdkTokensUnchanged": true,
+      "richPolicyUnchanged": true,
+      "originExpansionsIdentical": true,
+      "originalClientExpansions": [
+        {
+          "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+          "operations": [
+            {
+              "method": "ApplyInitialAvInfo",
+              "normalizedOriginalBodyIdentical": true,
+              "parameters": "(ExternalCoreApi.SystemAvInfo info)"
+            },
+            {
+              "method": "ApplyGeometry",
+              "normalizedOriginalBodyIdentical": true,
+              "parameters": "(nint data)"
+            },
+            {
+              "method": "ApplyGeometry",
+              "normalizedOriginalBodyIdentical": true,
+              "parameters": "(ExternalCoreApi.Geometry geometry)"
+            },
+            {
+              "method": "ApplySystemAvInfo",
+              "normalizedOriginalBodyIdentical": true,
+              "parameters": "(nint data)"
+            }
+          ]
+        },
+        {
+          "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+          "operations": [
+            {
+              "method": "ApplyInitialAvInfo",
+              "normalizedOriginalBodyIdentical": true,
+              "parameters": "(ExternalCoreApi.SystemAvInfo info)"
+            },
+            {
+              "method": "ApplyGeometry",
+              "normalizedOriginalBodyIdentical": true,
+              "parameters": "(nint data)"
+            },
+            {
+              "method": "ApplyGeometry",
+              "normalizedOriginalBodyIdentical": true,
+              "parameters": "(ExternalCoreApi.Geometry geometry)"
+            },
+            {
+              "method": "ApplySystemAvInfo",
+              "normalizedOriginalBodyIdentical": true,
+              "parameters": "(nint data)"
+            }
+          ]
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+          "operations": [
+            {
+              "method": "ApplyInitialAvInfo",
+              "normalizedOriginalBodyIdentical": true,
+              "parameters": "(ExternalCoreApi.SystemAvInfo info)"
+            },
+            {
+              "method": "ApplyGeometry",
+              "normalizedOriginalBodyIdentical": true,
+              "parameters": "(nint data)"
+            },
+            {
+              "method": "ApplyGeometry",
+              "normalizedOriginalBodyIdentical": true,
+              "parameters": "(ExternalCoreApi.Geometry geometry)"
+            },
+            {
+              "method": "ApplySystemAvInfo",
+              "normalizedOriginalBodyIdentical": true,
+              "parameters": "(nint data)"
+            }
+          ]
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+          "operations": [
+            {
+              "method": "ApplyInitialAvInfo",
+              "normalizedOriginalBodyIdentical": true,
+              "parameters": "(ExternalCoreApi.SystemAvInfo info)"
+            },
+            {
+              "method": "ApplyGeometry",
+              "normalizedOriginalBodyIdentical": true,
+              "parameters": "(nint data)"
+            },
+            {
+              "method": "ApplyGeometry",
+              "normalizedOriginalBodyIdentical": true,
+              "parameters": "(ExternalCoreApi.Geometry geometry)"
+            },
+            {
+              "method": "ApplySystemAvInfo",
+              "normalizedOriginalBodyIdentical": true,
+              "parameters": "(nint data)"
+            }
+          ]
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+          "operations": [
+            {
+              "method": "ApplyInitialAvInfo",
+              "normalizedOriginalBodyIdentical": true,
+              "parameters": "(ExternalCoreApi.SystemAvInfo info)"
+            },
+            {
+              "method": "ApplyGeometry",
+              "normalizedOriginalBodyIdentical": true,
+              "parameters": "(nint data)"
+            },
+            {
+              "method": "ApplyGeometry",
+              "normalizedOriginalBodyIdentical": true,
+              "parameters": "(ExternalCoreApi.Geometry geometry)"
+            },
+            {
+              "method": "ApplySystemAvInfo",
+              "normalizedOriginalBodyIdentical": true,
+              "parameters": "(nint data)"
+            }
+          ]
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+          "operations": [
+            {
+              "method": "ApplyInitialAvInfo",
+              "normalizedOriginalBodyIdentical": true,
+              "parameters": "(ExternalCoreApi.SystemAvInfo info)"
+            },
+            {
+              "method": "ApplyGeometry",
+              "normalizedOriginalBodyIdentical": true,
+              "parameters": "(nint data)"
+            },
+            {
+              "method": "ApplyGeometry",
+              "normalizedOriginalBodyIdentical": true,
+              "parameters": "(ExternalCoreApi.Geometry geometry)"
+            },
+            {
+              "method": "ApplySystemAvInfo",
+              "normalizedOriginalBodyIdentical": true,
+              "parameters": "(nint data)"
+            }
+          ]
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.AudioVideo.cs",
+          "operations": [
+            {
+              "method": "ApplyInitialAvInfo",
+              "normalizedOriginalBodyIdentical": true,
+              "parameters": "(ExternalCoreApi.SystemAvInfo info)"
+            },
+            {
+              "method": "ApplyGeometry",
+              "normalizedOriginalBodyIdentical": true,
+              "parameters": "(nint data)"
+            },
+            {
+              "method": "ApplyGeometry",
+              "normalizedOriginalBodyIdentical": true,
+              "parameters": "(ExternalCoreApi.Geometry geometry)"
+            },
+            {
+              "method": "ApplySystemAvInfo",
+              "normalizedOriginalBodyIdentical": true,
+              "parameters": "(nint data)"
+            }
+          ]
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.AudioVideo.cs",
+          "operations": [
+            {
+              "method": "ApplyInitialAvInfo",
+              "normalizedOriginalBodyIdentical": true,
+              "parameters": "(ExternalCoreApi.SystemAvInfo info)"
+            },
+            {
+              "method": "ApplyGeometry",
+              "normalizedOriginalBodyIdentical": true,
+              "parameters": "(nint data)"
+            },
+            {
+              "method": "ApplyGeometry",
+              "normalizedOriginalBodyIdentical": true,
+              "parameters": "(ExternalCoreApi.Geometry geometry)"
+            },
+            {
+              "method": "ApplySystemAvInfo",
+              "normalizedOriginalBodyIdentical": true,
+              "parameters": "(nint data)"
+            }
+          ]
+        }
+      ],
+      "sdkBeforeSha256": "BC8F8404CF50C7AE3319AC6E2ECD0EE82F4A73E65ED3A271D42E99828EE87FCA",
+      "sdkSha256": "F451838198B54FB9E9ACB11AF807FF9D6D57268B4AD645954B6B4AE07648A478",
+      "tests": {
+        "exitCode": 0,
+        "passed": 114,
+        "newMemoryCases": 29,
+        "path": "tests/GWGUI.Tests/Emulation/CoreAvUpdateTests.cs",
+        "externalFilesOrCore": false,
+        "sha256": "1A22DFBFAFFAE21DD69E1412190EF9523966789FC101983968260B6892F9E58E"
+      }
+    },
+    "reports": {
+      "files": 7324,
+      "shortNormalized": 364,
+      "shortExact": 775,
+      "longBodies": 11611,
+      "scope": "Native AV methods only; previous disk projections revalidated against their current hashes",
+      "shortBodies": 9525,
+      "longGroups": 493
+    }
   }
 }

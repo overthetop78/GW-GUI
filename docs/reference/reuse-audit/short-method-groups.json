@@ -1,41 +1,21 @@
 {
-  "snapshot": "fc79bfbe3469b5cca7ec4958ac9d0c97bfacfd2c",
+  "snapshot": "c035efc0c2e1b52e23236a18c761db84aadc9d3d",
   "snapshotState": "Current worktree based on snapshot",
   "worktreeSourceChanges": [
-    "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
-    "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/DiskControl.cs",
-    "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
-    "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
-    "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/DiskControl.cs",
-    "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
-    "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/DiskControl.cs",
-    "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
-    "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/DiskControl.cs",
-    "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
-    "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
-    "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/DiskControl.cs",
-    "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
-    "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/DiskControl.cs",
-    "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
-    "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/DiskControl.cs",
-    "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
-    "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
-    "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
-    "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/DiskControl.cs",
-    "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
-    "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
-    "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/DiskControl.cs",
-    "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
-    "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/DiskControl.cs",
-    "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
-    "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/DiskControl.cs",
-    "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
-    "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalDiskControl.cs",
-    "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalDiskControl.cs"
+    "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+    "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+    "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+    "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+    "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+    "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+    "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.AudioVideo.cs",
+    "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.AudioVideo.cs",
+    "src/GWGUI.Emulation/Functions/EmulationVideoFunctions.cs",
+    "src/GWGUI.Emulation/Functions/ExternalCoreEnvironmentFunctions.cs"
   ],
   "scope": "All current non-ignored repository CSharp files, including hidden paths; BaseMethodDeclaration bodies with fewer than 30 tokens. Candidate presence is not a defect or a completion claim.",
-  "fileCount": 7323,
-  "methodBodyCount": 9509,
+  "fileCount": 7324,
+  "methodBodyCount": 9525,
   "exactGroups": [
     {
       "hash": "0017F14C61995D644C52FF90F094E4708DC2CA772615CF2F5DD41E74BD202ECA",
@@ -4236,6 +4216,118 @@
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
+    },
+    {
+      "hash": "10A097D804C5AAA3388F5957E18FBF680988DF6BFE5D8AF21FD16FDC005CA046",
+      "tokens": 23,
+      "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . Geometry > ( data , ApplyGeometry ) ; }",
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+          "name": "ApplyGeometry",
+          "owner": "ExternalHostCallbacks",
+          "kind": "MethodDeclaration",
+          "line": 28,
+          "parameters": "(nint data)",
+          "tokens": 23,
+          "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . Geometry > ( data , ApplyGeometry ) ; }",
+          "hash": "10A097D804C5AAA3388F5957E18FBF680988DF6BFE5D8AF21FD16FDC005CA046",
+          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40",
+          "qualification": "Native AV adapter to original Amiga operations; constants, 32 bindings, hardware prefixes and whole files verified in nativeAvUpdateComparison; other host responsibilities remain open"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+          "name": "ApplyGeometry",
+          "owner": "ExternalHostCallbacks",
+          "kind": "MethodDeclaration",
+          "line": 27,
+          "parameters": "(nint data)",
+          "tokens": 23,
+          "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . Geometry > ( data , ApplyGeometry ) ; }",
+          "hash": "10A097D804C5AAA3388F5957E18FBF680988DF6BFE5D8AF21FD16FDC005CA046",
+          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40",
+          "qualification": "Native AV adapter to original Amiga operations; constants, 32 bindings, hardware prefixes and whole files verified in nativeAvUpdateComparison; other host responsibilities remain open"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+          "name": "ApplyGeometry",
+          "owner": "ExternalHostCallbacks",
+          "kind": "MethodDeclaration",
+          "line": 29,
+          "parameters": "(nint data)",
+          "tokens": 23,
+          "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . Geometry > ( data , ApplyGeometry ) ; }",
+          "hash": "10A097D804C5AAA3388F5957E18FBF680988DF6BFE5D8AF21FD16FDC005CA046",
+          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40",
+          "qualification": "Native AV adapter to original Amiga operations; constants, 32 bindings, hardware prefixes and whole files verified in nativeAvUpdateComparison; other host responsibilities remain open"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+          "name": "ApplyGeometry",
+          "owner": "ExternalHostCallbacks",
+          "kind": "MethodDeclaration",
+          "line": 38,
+          "parameters": "(nint data)",
+          "tokens": 23,
+          "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . Geometry > ( data , ApplyGeometry ) ; }",
+          "hash": "10A097D804C5AAA3388F5957E18FBF680988DF6BFE5D8AF21FD16FDC005CA046",
+          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40",
+          "qualification": "Native AV adapter to original Amiga operations; constants, 32 bindings, hardware prefixes and whole files verified in nativeAvUpdateComparison; other host responsibilities remain open"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+          "name": "ApplyGeometry",
+          "owner": "ExternalHostCallbacks",
+          "kind": "MethodDeclaration",
+          "line": 38,
+          "parameters": "(nint data)",
+          "tokens": 23,
+          "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . Geometry > ( data , ApplyGeometry ) ; }",
+          "hash": "10A097D804C5AAA3388F5957E18FBF680988DF6BFE5D8AF21FD16FDC005CA046",
+          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40",
+          "qualification": "Native AV adapter to original Amiga operations; constants, 32 bindings, hardware prefixes and whole files verified in nativeAvUpdateComparison; other host responsibilities remain open"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+          "name": "ApplyGeometry",
+          "owner": "ExternalHostCallbacks",
+          "kind": "MethodDeclaration",
+          "line": 24,
+          "parameters": "(nint data)",
+          "tokens": 23,
+          "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . Geometry > ( data , ApplyGeometry ) ; }",
+          "hash": "10A097D804C5AAA3388F5957E18FBF680988DF6BFE5D8AF21FD16FDC005CA046",
+          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40",
+          "qualification": "Native AV adapter to original Amiga operations; constants, 32 bindings, hardware prefixes and whole files verified in nativeAvUpdateComparison; other host responsibilities remain open"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.AudioVideo.cs",
+          "name": "ApplyGeometry",
+          "owner": "ExternalHostCallbacks",
+          "kind": "MethodDeclaration",
+          "line": 27,
+          "parameters": "(nint data)",
+          "tokens": 23,
+          "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . Geometry > ( data , ApplyGeometry ) ; }",
+          "hash": "10A097D804C5AAA3388F5957E18FBF680988DF6BFE5D8AF21FD16FDC005CA046",
+          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40",
+          "qualification": "Native AV adapter to original Amiga operations; constants, 32 bindings, hardware prefixes and whole files verified in nativeAvUpdateComparison; other host responsibilities remain open"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.AudioVideo.cs",
+          "name": "ApplyGeometry",
+          "owner": "ExternalHostCallbacks",
+          "kind": "MethodDeclaration",
+          "line": 27,
+          "parameters": "(nint data)",
+          "tokens": 23,
+          "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . Geometry > ( data , ApplyGeometry ) ; }",
+          "hash": "10A097D804C5AAA3388F5957E18FBF680988DF6BFE5D8AF21FD16FDC005CA046",
+          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40",
+          "qualification": "Native AV adapter to original Amiga operations; constants, 32 bindings, hardware prefixes and whole files verified in nativeAvUpdateComparison; other host responsibilities remain open"
+        }
+      ],
+      "qualification": "Qualified typed projections to verified shared operations"
     },
     {
       "hash": "110ED191B8AC068C2089B94E02CBC1988F9C501D752E137DC816CC3F59E84F25",
@@ -13994,7 +14086,7 @@
           "name": "HandleAudioSample",
           "owner": "ExternalHostCallbacks",
           "kind": "MethodDeclaration",
-          "line": 54,
+          "line": 44,
           "parameters": "(short left, short right)",
           "tokens": 29,
           "bodyTokens": "{ PublishAudio ( new AudioChunk ( new [ ] { left , right } , SampleRate , 1 , ++ _audioSequence , _clock . Elapsed ) ) ; }",
@@ -14006,7 +14098,7 @@
           "name": "HandleAudioSample",
           "owner": "ExternalHostCallbacks",
           "kind": "MethodDeclaration",
-          "line": 64,
+          "line": 54,
           "parameters": "(short left, short right)",
           "tokens": 29,
           "bodyTokens": "{ PublishAudio ( new AudioChunk ( new [ ] { left , right } , SampleRate , 1 , ++ _audioSequence , _clock . Elapsed ) ) ; }",
@@ -14018,7 +14110,7 @@
           "name": "HandleAudioSample",
           "owner": "ExternalHostCallbacks",
           "kind": "MethodDeclaration",
-          "line": 64,
+          "line": 54,
           "parameters": "(short left, short right)",
           "tokens": 29,
           "bodyTokens": "{ PublishAudio ( new AudioChunk ( new [ ] { left , right } , SampleRate , 1 , ++ _audioSequence , _clock . Elapsed ) ) ; }",
@@ -14030,7 +14122,7 @@
           "name": "HandleAudioSample",
           "owner": "ExternalHostCallbacks",
           "kind": "MethodDeclaration",
-          "line": 50,
+          "line": 40,
           "parameters": "(short left, short right)",
           "tokens": 29,
           "bodyTokens": "{ PublishAudio ( new AudioChunk ( new [ ] { left , right } , SampleRate , 1 , ++ _audioSequence , _clock . Elapsed ) ) ; }",
@@ -14042,7 +14134,7 @@
           "name": "HandleAudioSample",
           "owner": "ExternalHostCallbacks",
           "kind": "MethodDeclaration",
-          "line": 53,
+          "line": 43,
           "parameters": "(short left, short right)",
           "tokens": 29,
           "bodyTokens": "{ PublishAudio ( new AudioChunk ( new [ ] { left , right } , SampleRate , 1 , ++ _audioSequence , _clock . Elapsed ) ) ; }",
@@ -14054,7 +14146,7 @@
           "name": "HandleAudioSample",
           "owner": "ExternalHostCallbacks",
           "kind": "MethodDeclaration",
-          "line": 53,
+          "line": 43,
           "parameters": "(short left, short right)",
           "tokens": 29,
           "bodyTokens": "{ PublishAudio ( new AudioChunk ( new [ ] { left , right } , SampleRate , 1 , ++ _audioSequence , _clock . Elapsed ) ) ; }",
@@ -19767,86 +19859,6 @@
           "bodyTokens": "{ Calls . Add ( $\" bus: { ( int ) busType } \" ) ; return ValueTask . CompletedTask ; }",
           "hash": "3F57E3039A76AF32D25574AD3ADD735D1D10287F7DC029D81D683ED5BD33C58C",
           "shape": "5165E2617A7DF88A8EB2C54737F1644FE9C5A97DB85C9D2D4F086456B4870678"
-        }
-      ],
-      "qualification": "pending-symbol-and-ownership-comparison"
-    },
-    {
-      "hash": "3F72D35EA36AB55CF9A9EE7DD0859C4CEE745797D63B383E93BE6E91B752D206",
-      "tokens": 29,
-      "bodyTokens": "{ if ( data == 0 ) return false ; ApplyGeometry ( Marshal . PtrToStructure < ExternalCoreApi . Geometry > ( data ) ) ; return true ; }",
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
-          "name": "ApplyGeometry",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 32,
-          "parameters": "(nint data)",
-          "tokens": 29,
-          "bodyTokens": "{ if ( data == 0 ) return false ; ApplyGeometry ( Marshal . PtrToStructure < ExternalCoreApi . Geometry > ( data ) ) ; return true ; }",
-          "hash": "3F72D35EA36AB55CF9A9EE7DD0859C4CEE745797D63B383E93BE6E91B752D206",
-          "shape": "8B8AF5F092EFC780E93DCFDCDD4755C6F38D9F9688050D4841FB6659212AF224"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
-          "name": "ApplyGeometry",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 41,
-          "parameters": "(nint data)",
-          "tokens": 29,
-          "bodyTokens": "{ if ( data == 0 ) return false ; ApplyGeometry ( Marshal . PtrToStructure < ExternalCoreApi . Geometry > ( data ) ) ; return true ; }",
-          "hash": "3F72D35EA36AB55CF9A9EE7DD0859C4CEE745797D63B383E93BE6E91B752D206",
-          "shape": "8B8AF5F092EFC780E93DCFDCDD4755C6F38D9F9688050D4841FB6659212AF224"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
-          "name": "ApplyGeometry",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 41,
-          "parameters": "(nint data)",
-          "tokens": 29,
-          "bodyTokens": "{ if ( data == 0 ) return false ; ApplyGeometry ( Marshal . PtrToStructure < ExternalCoreApi . Geometry > ( data ) ) ; return true ; }",
-          "hash": "3F72D35EA36AB55CF9A9EE7DD0859C4CEE745797D63B383E93BE6E91B752D206",
-          "shape": "8B8AF5F092EFC780E93DCFDCDD4755C6F38D9F9688050D4841FB6659212AF224"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
-          "name": "ApplyGeometry",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 27,
-          "parameters": "(nint data)",
-          "tokens": 29,
-          "bodyTokens": "{ if ( data == 0 ) return false ; ApplyGeometry ( Marshal . PtrToStructure < ExternalCoreApi . Geometry > ( data ) ) ; return true ; }",
-          "hash": "3F72D35EA36AB55CF9A9EE7DD0859C4CEE745797D63B383E93BE6E91B752D206",
-          "shape": "8B8AF5F092EFC780E93DCFDCDD4755C6F38D9F9688050D4841FB6659212AF224"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.AudioVideo.cs",
-          "name": "ApplyGeometry",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 30,
-          "parameters": "(nint data)",
-          "tokens": 29,
-          "bodyTokens": "{ if ( data == 0 ) return false ; ApplyGeometry ( Marshal . PtrToStructure < ExternalCoreApi . Geometry > ( data ) ) ; return true ; }",
-          "hash": "3F72D35EA36AB55CF9A9EE7DD0859C4CEE745797D63B383E93BE6E91B752D206",
-          "shape": "8B8AF5F092EFC780E93DCFDCDD4755C6F38D9F9688050D4841FB6659212AF224"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.AudioVideo.cs",
-          "name": "ApplyGeometry",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 30,
-          "parameters": "(nint data)",
-          "tokens": 29,
-          "bodyTokens": "{ if ( data == 0 ) return false ; ApplyGeometry ( Marshal . PtrToStructure < ExternalCoreApi . Geometry > ( data ) ) ; return true ; }",
-          "hash": "3F72D35EA36AB55CF9A9EE7DD0859C4CEE745797D63B383E93BE6E91B752D206",
-          "shape": "8B8AF5F092EFC780E93DCFDCDD4755C6F38D9F9688050D4841FB6659212AF224"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -44141,86 +44153,6 @@
       "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
-      "hash": "950328D9D1AF74F3DCFDAFCEEFD294C8CFED666279C3BCC8185BC0882667B36C",
-      "tokens": 29,
-      "bodyTokens": "{ if ( data == 0 ) return false ; ApplyInitialAvInfo ( Marshal . PtrToStructure < ExternalCoreApi . SystemAvInfo > ( data ) ) ; return true ; }",
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
-          "name": "ApplySystemAvInfo",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 47,
-          "parameters": "(nint data)",
-          "tokens": 29,
-          "bodyTokens": "{ if ( data == 0 ) return false ; ApplyInitialAvInfo ( Marshal . PtrToStructure < ExternalCoreApi . SystemAvInfo > ( data ) ) ; return true ; }",
-          "hash": "950328D9D1AF74F3DCFDAFCEEFD294C8CFED666279C3BCC8185BC0882667B36C",
-          "shape": "8B8AF5F092EFC780E93DCFDCDD4755C6F38D9F9688050D4841FB6659212AF224"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
-          "name": "ApplySystemAvInfo",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 57,
-          "parameters": "(nint data)",
-          "tokens": 29,
-          "bodyTokens": "{ if ( data == 0 ) return false ; ApplyInitialAvInfo ( Marshal . PtrToStructure < ExternalCoreApi . SystemAvInfo > ( data ) ) ; return true ; }",
-          "hash": "950328D9D1AF74F3DCFDAFCEEFD294C8CFED666279C3BCC8185BC0882667B36C",
-          "shape": "8B8AF5F092EFC780E93DCFDCDD4755C6F38D9F9688050D4841FB6659212AF224"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
-          "name": "ApplySystemAvInfo",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 57,
-          "parameters": "(nint data)",
-          "tokens": 29,
-          "bodyTokens": "{ if ( data == 0 ) return false ; ApplyInitialAvInfo ( Marshal . PtrToStructure < ExternalCoreApi . SystemAvInfo > ( data ) ) ; return true ; }",
-          "hash": "950328D9D1AF74F3DCFDAFCEEFD294C8CFED666279C3BCC8185BC0882667B36C",
-          "shape": "8B8AF5F092EFC780E93DCFDCDD4755C6F38D9F9688050D4841FB6659212AF224"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
-          "name": "ApplySystemAvInfo",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 43,
-          "parameters": "(nint data)",
-          "tokens": 29,
-          "bodyTokens": "{ if ( data == 0 ) return false ; ApplyInitialAvInfo ( Marshal . PtrToStructure < ExternalCoreApi . SystemAvInfo > ( data ) ) ; return true ; }",
-          "hash": "950328D9D1AF74F3DCFDAFCEEFD294C8CFED666279C3BCC8185BC0882667B36C",
-          "shape": "8B8AF5F092EFC780E93DCFDCDD4755C6F38D9F9688050D4841FB6659212AF224"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.AudioVideo.cs",
-          "name": "ApplySystemAvInfo",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 46,
-          "parameters": "(nint data)",
-          "tokens": 29,
-          "bodyTokens": "{ if ( data == 0 ) return false ; ApplyInitialAvInfo ( Marshal . PtrToStructure < ExternalCoreApi . SystemAvInfo > ( data ) ) ; return true ; }",
-          "hash": "950328D9D1AF74F3DCFDAFCEEFD294C8CFED666279C3BCC8185BC0882667B36C",
-          "shape": "8B8AF5F092EFC780E93DCFDCDD4755C6F38D9F9688050D4841FB6659212AF224"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.AudioVideo.cs",
-          "name": "ApplySystemAvInfo",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 46,
-          "parameters": "(nint data)",
-          "tokens": 29,
-          "bodyTokens": "{ if ( data == 0 ) return false ; ApplyInitialAvInfo ( Marshal . PtrToStructure < ExternalCoreApi . SystemAvInfo > ( data ) ) ; return true ; }",
-          "hash": "950328D9D1AF74F3DCFDAFCEEFD294C8CFED666279C3BCC8185BC0882667B36C",
-          "shape": "8B8AF5F092EFC780E93DCFDCDD4755C6F38D9F9688050D4841FB6659212AF224"
-        }
-      ],
-      "qualification": "pending-symbol-and-ownership-comparison"
-    },
-    {
       "hash": "95124278230A034C631CDADB2A7991E6CFDF39C43CBB081EA7F689AA42F1A11D",
       "tokens": 18,
       "bodyTokens": "=> _engine . Adapter ( Require ( configuration ) ) . GetRuntimeOptions ( Require ( configuration ) )",
@@ -49537,6 +49469,118 @@
       "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
+      "hash": "A71878BE281E480439721CAB75D0D79DFFC435DA73DC13933B3737B0088F09DB",
+      "tokens": 23,
+      "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . SystemAvInfo > ( data , ApplyInitialAvInfo ) ; }",
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+          "name": "ApplySystemAvInfo",
+          "owner": "ExternalHostCallbacks",
+          "kind": "MethodDeclaration",
+          "line": 38,
+          "parameters": "(nint data)",
+          "tokens": 23,
+          "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . SystemAvInfo > ( data , ApplyInitialAvInfo ) ; }",
+          "hash": "A71878BE281E480439721CAB75D0D79DFFC435DA73DC13933B3737B0088F09DB",
+          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40",
+          "qualification": "Native AV adapter to original Amiga operations; constants, 32 bindings, hardware prefixes and whole files verified in nativeAvUpdateComparison; other host responsibilities remain open"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+          "name": "ApplySystemAvInfo",
+          "owner": "ExternalHostCallbacks",
+          "kind": "MethodDeclaration",
+          "line": 37,
+          "parameters": "(nint data)",
+          "tokens": 23,
+          "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . SystemAvInfo > ( data , ApplyInitialAvInfo ) ; }",
+          "hash": "A71878BE281E480439721CAB75D0D79DFFC435DA73DC13933B3737B0088F09DB",
+          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40",
+          "qualification": "Native AV adapter to original Amiga operations; constants, 32 bindings, hardware prefixes and whole files verified in nativeAvUpdateComparison; other host responsibilities remain open"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+          "name": "ApplySystemAvInfo",
+          "owner": "ExternalHostCallbacks",
+          "kind": "MethodDeclaration",
+          "line": 39,
+          "parameters": "(nint data)",
+          "tokens": 23,
+          "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . SystemAvInfo > ( data , ApplyInitialAvInfo ) ; }",
+          "hash": "A71878BE281E480439721CAB75D0D79DFFC435DA73DC13933B3737B0088F09DB",
+          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40",
+          "qualification": "Native AV adapter to original Amiga operations; constants, 32 bindings, hardware prefixes and whole files verified in nativeAvUpdateComparison; other host responsibilities remain open"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+          "name": "ApplySystemAvInfo",
+          "owner": "ExternalHostCallbacks",
+          "kind": "MethodDeclaration",
+          "line": 49,
+          "parameters": "(nint data)",
+          "tokens": 23,
+          "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . SystemAvInfo > ( data , ApplyInitialAvInfo ) ; }",
+          "hash": "A71878BE281E480439721CAB75D0D79DFFC435DA73DC13933B3737B0088F09DB",
+          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40",
+          "qualification": "Native AV adapter to original Amiga operations; constants, 32 bindings, hardware prefixes and whole files verified in nativeAvUpdateComparison; other host responsibilities remain open"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+          "name": "ApplySystemAvInfo",
+          "owner": "ExternalHostCallbacks",
+          "kind": "MethodDeclaration",
+          "line": 49,
+          "parameters": "(nint data)",
+          "tokens": 23,
+          "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . SystemAvInfo > ( data , ApplyInitialAvInfo ) ; }",
+          "hash": "A71878BE281E480439721CAB75D0D79DFFC435DA73DC13933B3737B0088F09DB",
+          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40",
+          "qualification": "Native AV adapter to original Amiga operations; constants, 32 bindings, hardware prefixes and whole files verified in nativeAvUpdateComparison; other host responsibilities remain open"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+          "name": "ApplySystemAvInfo",
+          "owner": "ExternalHostCallbacks",
+          "kind": "MethodDeclaration",
+          "line": 35,
+          "parameters": "(nint data)",
+          "tokens": 23,
+          "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . SystemAvInfo > ( data , ApplyInitialAvInfo ) ; }",
+          "hash": "A71878BE281E480439721CAB75D0D79DFFC435DA73DC13933B3737B0088F09DB",
+          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40",
+          "qualification": "Native AV adapter to original Amiga operations; constants, 32 bindings, hardware prefixes and whole files verified in nativeAvUpdateComparison; other host responsibilities remain open"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.AudioVideo.cs",
+          "name": "ApplySystemAvInfo",
+          "owner": "ExternalHostCallbacks",
+          "kind": "MethodDeclaration",
+          "line": 38,
+          "parameters": "(nint data)",
+          "tokens": 23,
+          "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . SystemAvInfo > ( data , ApplyInitialAvInfo ) ; }",
+          "hash": "A71878BE281E480439721CAB75D0D79DFFC435DA73DC13933B3737B0088F09DB",
+          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40",
+          "qualification": "Native AV adapter to original Amiga operations; constants, 32 bindings, hardware prefixes and whole files verified in nativeAvUpdateComparison; other host responsibilities remain open"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.AudioVideo.cs",
+          "name": "ApplySystemAvInfo",
+          "owner": "ExternalHostCallbacks",
+          "kind": "MethodDeclaration",
+          "line": 38,
+          "parameters": "(nint data)",
+          "tokens": 23,
+          "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . SystemAvInfo > ( data , ApplyInitialAvInfo ) ; }",
+          "hash": "A71878BE281E480439721CAB75D0D79DFFC435DA73DC13933B3737B0088F09DB",
+          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40",
+          "qualification": "Native AV adapter to original Amiga operations; constants, 32 bindings, hardware prefixes and whole files verified in nativeAvUpdateComparison; other host responsibilities remain open"
+        }
+      ],
+      "qualification": "Qualified typed projections to verified shared operations"
+    },
+    {
       "hash": "A7237BE81063AD64FAAAA6FCB2614D6E89F21BC6A58D44A9BDE6C2A3426923C7",
       "tokens": 17,
       "bodyTokens": "=> FirmwareCopy . SelectModelBios ( archive , model , MvsBios , AesBios , CdBios , CdzBios )",
@@ -53717,6 +53761,53 @@
       "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
+      "hash": "B907F9F622E3B24ACCF775DF1E9FC453005A3DFC0D273420231E988E66C28125",
+      "tokens": 18,
+      "bodyTokens": "{ GWGUI . Emulation . Functions . EmulationVideoFunctions . ApplyGeometry ( geometry , ref _aspectRatio ) ; }",
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+          "name": "ApplyGeometry",
+          "owner": "ExternalHostCallbacks",
+          "kind": "MethodDeclaration",
+          "line": 33,
+          "parameters": "(ExternalCoreApi.Geometry geometry)",
+          "tokens": 18,
+          "bodyTokens": "{ GWGUI . Emulation . Functions . EmulationVideoFunctions . ApplyGeometry ( geometry , ref _aspectRatio ) ; }",
+          "hash": "B907F9F622E3B24ACCF775DF1E9FC453005A3DFC0D273420231E988E66C28125",
+          "shape": "8FF3EC20E6F210EB9FFC9B0BF6E35C37DA4A19DC49926C77D8A934DB044A6043",
+          "qualification": "Native AV adapter to original Amiga operations; constants, 32 bindings, hardware prefixes and whole files verified in nativeAvUpdateComparison; other host responsibilities remain open"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+          "name": "ApplyGeometry",
+          "owner": "ExternalHostCallbacks",
+          "kind": "MethodDeclaration",
+          "line": 32,
+          "parameters": "(ExternalCoreApi.Geometry geometry)",
+          "tokens": 18,
+          "bodyTokens": "{ GWGUI . Emulation . Functions . EmulationVideoFunctions . ApplyGeometry ( geometry , ref _aspectRatio ) ; }",
+          "hash": "B907F9F622E3B24ACCF775DF1E9FC453005A3DFC0D273420231E988E66C28125",
+          "shape": "8FF3EC20E6F210EB9FFC9B0BF6E35C37DA4A19DC49926C77D8A934DB044A6043",
+          "qualification": "Native AV adapter to original Amiga operations; constants, 32 bindings, hardware prefixes and whole files verified in nativeAvUpdateComparison; other host responsibilities remain open"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+          "name": "ApplyGeometry",
+          "owner": "ExternalHostCallbacks",
+          "kind": "MethodDeclaration",
+          "line": 34,
+          "parameters": "(ExternalCoreApi.Geometry geometry)",
+          "tokens": 18,
+          "bodyTokens": "{ GWGUI . Emulation . Functions . EmulationVideoFunctions . ApplyGeometry ( geometry , ref _aspectRatio ) ; }",
+          "hash": "B907F9F622E3B24ACCF775DF1E9FC453005A3DFC0D273420231E988E66C28125",
+          "shape": "8FF3EC20E6F210EB9FFC9B0BF6E35C37DA4A19DC49926C77D8A934DB044A6043",
+          "qualification": "Native AV adapter to original Amiga operations; constants, 32 bindings, hardware prefixes and whole files verified in nativeAvUpdateComparison; other host responsibilities remain open"
+        }
+      ],
+      "qualification": "Qualified typed projections to verified shared operations"
+    },
+    {
       "hash": "B93622EEA2A367CFFA8AABFDF4FE2E51D2C11DC849FDB0487044CCE3DED3DE97",
       "tokens": 13,
       "bodyTokens": "=> choice . ResourceKey ?? InvariantChoice ( choice ) ?? choice . Label",
@@ -54456,7 +54547,7 @@
           "bodyTokens": "=> content . GameInfo",
           "hash": "BC2CB21C5340481CC091ECD859B3F59734434A30BC7913409890F619159DADC7",
           "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E",
-          "qualification": "Typed profile/content/status projection to original shared disk-control component; exact message/factory/DTO bindings verified in completeDiskControlComparison, 399 identical traces; unrelated members not qualified"
+          "qualification": "Typed profile/content/status projection to original shared disk-control component; bindings and 399 traces verified in completeDiskControlComparison"
         },
         {
           "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/DiskControl.cs",
@@ -54469,7 +54560,7 @@
           "bodyTokens": "=> content . GameInfo",
           "hash": "BC2CB21C5340481CC091ECD859B3F59734434A30BC7913409890F619159DADC7",
           "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E",
-          "qualification": "Typed profile/content/status projection to original shared disk-control component; exact message/factory/DTO bindings verified in completeDiskControlComparison, 399 identical traces; unrelated members not qualified"
+          "qualification": "Typed profile/content/status projection to original shared disk-control component; bindings and 399 traces verified in completeDiskControlComparison"
         },
         {
           "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/DiskControl.cs",
@@ -54482,7 +54573,7 @@
           "bodyTokens": "=> content . GameInfo",
           "hash": "BC2CB21C5340481CC091ECD859B3F59734434A30BC7913409890F619159DADC7",
           "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E",
-          "qualification": "Typed profile/content/status projection to original shared disk-control component; exact message/factory/DTO bindings verified in completeDiskControlComparison, 399 identical traces; unrelated members not qualified"
+          "qualification": "Typed profile/content/status projection to original shared disk-control component; bindings and 399 traces verified in completeDiskControlComparison"
         },
         {
           "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/DiskControl.cs",
@@ -54495,7 +54586,7 @@
           "bodyTokens": "=> content . GameInfo",
           "hash": "BC2CB21C5340481CC091ECD859B3F59734434A30BC7913409890F619159DADC7",
           "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E",
-          "qualification": "Typed profile/content/status projection to original shared disk-control component; exact message/factory/DTO bindings verified in completeDiskControlComparison, 399 identical traces; unrelated members not qualified"
+          "qualification": "Typed profile/content/status projection to original shared disk-control component; bindings and 399 traces verified in completeDiskControlComparison"
         },
         {
           "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/DiskControl.cs",
@@ -54508,7 +54599,7 @@
           "bodyTokens": "=> content . GameInfo",
           "hash": "BC2CB21C5340481CC091ECD859B3F59734434A30BC7913409890F619159DADC7",
           "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E",
-          "qualification": "Typed profile/content/status projection to original shared disk-control component; exact message/factory/DTO bindings verified in completeDiskControlComparison, 399 identical traces; unrelated members not qualified"
+          "qualification": "Typed profile/content/status projection to original shared disk-control component; bindings and 399 traces verified in completeDiskControlComparison"
         },
         {
           "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/DiskControl.cs",
@@ -54521,7 +54612,7 @@
           "bodyTokens": "=> content . GameInfo",
           "hash": "BC2CB21C5340481CC091ECD859B3F59734434A30BC7913409890F619159DADC7",
           "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E",
-          "qualification": "Typed profile/content/status projection to original shared disk-control component; exact message/factory/DTO bindings verified in completeDiskControlComparison, 399 identical traces; unrelated members not qualified"
+          "qualification": "Typed profile/content/status projection to original shared disk-control component; bindings and 399 traces verified in completeDiskControlComparison"
         },
         {
           "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/DiskControl.cs",
@@ -54534,7 +54625,7 @@
           "bodyTokens": "=> content . GameInfo",
           "hash": "BC2CB21C5340481CC091ECD859B3F59734434A30BC7913409890F619159DADC7",
           "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E",
-          "qualification": "Typed profile/content/status projection to original shared disk-control component; exact message/factory/DTO bindings verified in completeDiskControlComparison, 399 identical traces; unrelated members not qualified"
+          "qualification": "Typed profile/content/status projection to original shared disk-control component; bindings and 399 traces verified in completeDiskControlComparison"
         },
         {
           "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/DiskControl.cs",
@@ -54547,7 +54638,7 @@
           "bodyTokens": "=> content . GameInfo",
           "hash": "BC2CB21C5340481CC091ECD859B3F59734434A30BC7913409890F619159DADC7",
           "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E",
-          "qualification": "Typed profile/content/status projection to original shared disk-control component; exact message/factory/DTO bindings verified in completeDiskControlComparison, 399 identical traces; unrelated members not qualified"
+          "qualification": "Typed profile/content/status projection to original shared disk-control component; bindings and 399 traces verified in completeDiskControlComparison"
         },
         {
           "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/DiskControl.cs",
@@ -54560,7 +54651,7 @@
           "bodyTokens": "=> content . GameInfo",
           "hash": "BC2CB21C5340481CC091ECD859B3F59734434A30BC7913409890F619159DADC7",
           "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E",
-          "qualification": "Typed profile/content/status projection to original shared disk-control component; exact message/factory/DTO bindings verified in completeDiskControlComparison, 399 identical traces; unrelated members not qualified"
+          "qualification": "Typed profile/content/status projection to original shared disk-control component; bindings and 399 traces verified in completeDiskControlComparison"
         },
         {
           "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/DiskControl.cs",
@@ -54573,7 +54664,7 @@
           "bodyTokens": "=> content . GameInfo",
           "hash": "BC2CB21C5340481CC091ECD859B3F59734434A30BC7913409890F619159DADC7",
           "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E",
-          "qualification": "Typed profile/content/status projection to original shared disk-control component; exact message/factory/DTO bindings verified in completeDiskControlComparison, 399 identical traces; unrelated members not qualified"
+          "qualification": "Typed profile/content/status projection to original shared disk-control component; bindings and 399 traces verified in completeDiskControlComparison"
         },
         {
           "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/DiskControl.cs",
@@ -54586,7 +54677,7 @@
           "bodyTokens": "=> content . GameInfo",
           "hash": "BC2CB21C5340481CC091ECD859B3F59734434A30BC7913409890F619159DADC7",
           "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E",
-          "qualification": "Typed profile/content/status projection to original shared disk-control component; exact message/factory/DTO bindings verified in completeDiskControlComparison, 399 identical traces; unrelated members not qualified"
+          "qualification": "Typed profile/content/status projection to original shared disk-control component; bindings and 399 traces verified in completeDiskControlComparison"
         },
         {
           "path": "tests/GWGUI.Tests/Emulation/CoreDiskControlTests.cs",
@@ -67198,6 +67289,118 @@
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
+    },
+    {
+      "hash": "EF57C40E23D6C718452FFE4D07BF63E284BA5BCC557C7DC7ECF9B28D9C8559FA",
+      "tokens": 29,
+      "bodyTokens": "{ GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplySystemAvInfo ( info , ApplyGeometry , value => FramesPerSecond = value , value => SampleRate = value ) ; }",
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+          "name": "ApplyInitialAvInfo",
+          "owner": "ExternalHostCallbacks",
+          "kind": "MethodDeclaration",
+          "line": 22,
+          "parameters": "(ExternalCoreApi.SystemAvInfo info)",
+          "tokens": 29,
+          "bodyTokens": "{ GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplySystemAvInfo ( info , ApplyGeometry , value => FramesPerSecond = value , value => SampleRate = value ) ; }",
+          "hash": "EF57C40E23D6C718452FFE4D07BF63E284BA5BCC557C7DC7ECF9B28D9C8559FA",
+          "shape": "9C9B6A573CB72084B5D3A1DB25C956190DFEAD4F51F9E056ACA89B04A55E75A8",
+          "qualification": "Native AV adapter to original Amiga operations; constants, 32 bindings, hardware prefixes and whole files verified in nativeAvUpdateComparison; other host responsibilities remain open"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+          "name": "ApplyInitialAvInfo",
+          "owner": "ExternalHostCallbacks",
+          "kind": "MethodDeclaration",
+          "line": 21,
+          "parameters": "(ExternalCoreApi.SystemAvInfo info)",
+          "tokens": 29,
+          "bodyTokens": "{ GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplySystemAvInfo ( info , ApplyGeometry , value => FramesPerSecond = value , value => SampleRate = value ) ; }",
+          "hash": "EF57C40E23D6C718452FFE4D07BF63E284BA5BCC557C7DC7ECF9B28D9C8559FA",
+          "shape": "9C9B6A573CB72084B5D3A1DB25C956190DFEAD4F51F9E056ACA89B04A55E75A8",
+          "qualification": "Native AV adapter to original Amiga operations; constants, 32 bindings, hardware prefixes and whole files verified in nativeAvUpdateComparison; other host responsibilities remain open"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+          "name": "ApplyInitialAvInfo",
+          "owner": "ExternalHostCallbacks",
+          "kind": "MethodDeclaration",
+          "line": 23,
+          "parameters": "(ExternalCoreApi.SystemAvInfo info)",
+          "tokens": 29,
+          "bodyTokens": "{ GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplySystemAvInfo ( info , ApplyGeometry , value => FramesPerSecond = value , value => SampleRate = value ) ; }",
+          "hash": "EF57C40E23D6C718452FFE4D07BF63E284BA5BCC557C7DC7ECF9B28D9C8559FA",
+          "shape": "9C9B6A573CB72084B5D3A1DB25C956190DFEAD4F51F9E056ACA89B04A55E75A8",
+          "qualification": "Native AV adapter to original Amiga operations; constants, 32 bindings, hardware prefixes and whole files verified in nativeAvUpdateComparison; other host responsibilities remain open"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+          "name": "ApplyInitialAvInfo",
+          "owner": "ExternalHostCallbacks",
+          "kind": "MethodDeclaration",
+          "line": 32,
+          "parameters": "(ExternalCoreApi.SystemAvInfo info)",
+          "tokens": 29,
+          "bodyTokens": "{ GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplySystemAvInfo ( info , ApplyGeometry , value => FramesPerSecond = value , value => SampleRate = value ) ; }",
+          "hash": "EF57C40E23D6C718452FFE4D07BF63E284BA5BCC557C7DC7ECF9B28D9C8559FA",
+          "shape": "9C9B6A573CB72084B5D3A1DB25C956190DFEAD4F51F9E056ACA89B04A55E75A8",
+          "qualification": "Native AV adapter to original Amiga operations; constants, 32 bindings, hardware prefixes and whole files verified in nativeAvUpdateComparison; other host responsibilities remain open"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+          "name": "ApplyInitialAvInfo",
+          "owner": "ExternalHostCallbacks",
+          "kind": "MethodDeclaration",
+          "line": 32,
+          "parameters": "(ExternalCoreApi.SystemAvInfo info)",
+          "tokens": 29,
+          "bodyTokens": "{ GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplySystemAvInfo ( info , ApplyGeometry , value => FramesPerSecond = value , value => SampleRate = value ) ; }",
+          "hash": "EF57C40E23D6C718452FFE4D07BF63E284BA5BCC557C7DC7ECF9B28D9C8559FA",
+          "shape": "9C9B6A573CB72084B5D3A1DB25C956190DFEAD4F51F9E056ACA89B04A55E75A8",
+          "qualification": "Native AV adapter to original Amiga operations; constants, 32 bindings, hardware prefixes and whole files verified in nativeAvUpdateComparison; other host responsibilities remain open"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+          "name": "ApplyInitialAvInfo",
+          "owner": "ExternalHostCallbacks",
+          "kind": "MethodDeclaration",
+          "line": 18,
+          "parameters": "(ExternalCoreApi.SystemAvInfo info)",
+          "tokens": 29,
+          "bodyTokens": "{ GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplySystemAvInfo ( info , ApplyGeometry , value => FramesPerSecond = value , value => SampleRate = value ) ; }",
+          "hash": "EF57C40E23D6C718452FFE4D07BF63E284BA5BCC557C7DC7ECF9B28D9C8559FA",
+          "shape": "9C9B6A573CB72084B5D3A1DB25C956190DFEAD4F51F9E056ACA89B04A55E75A8",
+          "qualification": "Native AV adapter to original Amiga operations; constants, 32 bindings, hardware prefixes and whole files verified in nativeAvUpdateComparison; other host responsibilities remain open"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.AudioVideo.cs",
+          "name": "ApplyInitialAvInfo",
+          "owner": "ExternalHostCallbacks",
+          "kind": "MethodDeclaration",
+          "line": 21,
+          "parameters": "(ExternalCoreApi.SystemAvInfo info)",
+          "tokens": 29,
+          "bodyTokens": "{ GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplySystemAvInfo ( info , ApplyGeometry , value => FramesPerSecond = value , value => SampleRate = value ) ; }",
+          "hash": "EF57C40E23D6C718452FFE4D07BF63E284BA5BCC557C7DC7ECF9B28D9C8559FA",
+          "shape": "9C9B6A573CB72084B5D3A1DB25C956190DFEAD4F51F9E056ACA89B04A55E75A8",
+          "qualification": "Native AV adapter to original Amiga operations; constants, 32 bindings, hardware prefixes and whole files verified in nativeAvUpdateComparison; other host responsibilities remain open"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.AudioVideo.cs",
+          "name": "ApplyInitialAvInfo",
+          "owner": "ExternalHostCallbacks",
+          "kind": "MethodDeclaration",
+          "line": 21,
+          "parameters": "(ExternalCoreApi.SystemAvInfo info)",
+          "tokens": 29,
+          "bodyTokens": "{ GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplySystemAvInfo ( info , ApplyGeometry , value => FramesPerSecond = value , value => SampleRate = value ) ; }",
+          "hash": "EF57C40E23D6C718452FFE4D07BF63E284BA5BCC557C7DC7ECF9B28D9C8559FA",
+          "shape": "9C9B6A573CB72084B5D3A1DB25C956190DFEAD4F51F9E056ACA89B04A55E75A8",
+          "qualification": "Native AV adapter to original Amiga operations; constants, 32 bindings, hardware prefixes and whole files verified in nativeAvUpdateComparison; other host responsibilities remain open"
+        }
+      ],
+      "qualification": "Qualified typed projections to verified shared operations"
     },
     {
       "hash": "EFD334E521A4B01CD1BE892050DCAE043E2D1575BECAB06D16F2DBA6A423850A",
@@ -102757,7 +102960,7 @@
           "name": "Timestamp",
           "owner": "EmulationVideoFunctions",
           "kind": "MethodDeclaration",
-          "line": 18,
+          "line": 27,
           "parameters": "(long startTimestamp)",
           "tokens": 7,
           "bodyTokens": "=> Stopwatch . GetElapsedTime ( startTimestamp )",
@@ -105149,7 +105352,7 @@
           "name": "WritePointer",
           "owner": "ExternalCoreEnvironmentFunctions",
           "kind": "MethodDeclaration",
-          "line": 196,
+          "line": 213,
           "parameters": "(nint destination, nint value)",
           "tokens": 25,
           "bodyTokens": "{ if ( destination == nint . Zero ) return false ; Marshal . WriteIntPtr ( destination , value ) ; return true ; }",
@@ -105161,7 +105364,7 @@
           "name": "WriteInteger",
           "owner": "ExternalCoreEnvironmentFunctions",
           "kind": "MethodDeclaration",
-          "line": 210,
+          "line": 227,
           "parameters": "(nint destination, int value)",
           "tokens": 25,
           "bodyTokens": "{ if ( destination == nint . Zero ) return false ; Marshal . WriteInt32 ( destination , value ) ; return true ; }",
@@ -113468,157 +113671,6 @@
           "bodyTokens": "{ Calls . Add ( nameof ( SetControllerPortDevice ) ) ; Controller = ( port , peripheral ) ; }",
           "hash": "01FA6CC1B4C577385ECEE1B65BA9EEBC0B6E939F7C458C8356792C06F5D43D99",
           "shape": "89A5C341FB0BA588A970A48A439CEEE76AA5E12F62B769A8FA3AC3717332A220"
-        }
-      ],
-      "qualification": "pending-symbol-and-ownership-comparison"
-    },
-    {
-      "shape": "8B8AF5F092EFC780E93DCFDCDD4755C6F38D9F9688050D4841FB6659212AF224",
-      "tokens": 29,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
-          "name": "ApplyGeometry",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 32,
-          "parameters": "(nint data)",
-          "tokens": 29,
-          "bodyTokens": "{ if ( data == 0 ) return false ; ApplyGeometry ( Marshal . PtrToStructure < ExternalCoreApi . Geometry > ( data ) ) ; return true ; }",
-          "hash": "3F72D35EA36AB55CF9A9EE7DD0859C4CEE745797D63B383E93BE6E91B752D206",
-          "shape": "8B8AF5F092EFC780E93DCFDCDD4755C6F38D9F9688050D4841FB6659212AF224"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
-          "name": "ApplySystemAvInfo",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 47,
-          "parameters": "(nint data)",
-          "tokens": 29,
-          "bodyTokens": "{ if ( data == 0 ) return false ; ApplyInitialAvInfo ( Marshal . PtrToStructure < ExternalCoreApi . SystemAvInfo > ( data ) ) ; return true ; }",
-          "hash": "950328D9D1AF74F3DCFDAFCEEFD294C8CFED666279C3BCC8185BC0882667B36C",
-          "shape": "8B8AF5F092EFC780E93DCFDCDD4755C6F38D9F9688050D4841FB6659212AF224"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
-          "name": "ApplyGeometry",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 41,
-          "parameters": "(nint data)",
-          "tokens": 29,
-          "bodyTokens": "{ if ( data == 0 ) return false ; ApplyGeometry ( Marshal . PtrToStructure < ExternalCoreApi . Geometry > ( data ) ) ; return true ; }",
-          "hash": "3F72D35EA36AB55CF9A9EE7DD0859C4CEE745797D63B383E93BE6E91B752D206",
-          "shape": "8B8AF5F092EFC780E93DCFDCDD4755C6F38D9F9688050D4841FB6659212AF224"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
-          "name": "ApplySystemAvInfo",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 57,
-          "parameters": "(nint data)",
-          "tokens": 29,
-          "bodyTokens": "{ if ( data == 0 ) return false ; ApplyInitialAvInfo ( Marshal . PtrToStructure < ExternalCoreApi . SystemAvInfo > ( data ) ) ; return true ; }",
-          "hash": "950328D9D1AF74F3DCFDAFCEEFD294C8CFED666279C3BCC8185BC0882667B36C",
-          "shape": "8B8AF5F092EFC780E93DCFDCDD4755C6F38D9F9688050D4841FB6659212AF224"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
-          "name": "ApplyGeometry",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 41,
-          "parameters": "(nint data)",
-          "tokens": 29,
-          "bodyTokens": "{ if ( data == 0 ) return false ; ApplyGeometry ( Marshal . PtrToStructure < ExternalCoreApi . Geometry > ( data ) ) ; return true ; }",
-          "hash": "3F72D35EA36AB55CF9A9EE7DD0859C4CEE745797D63B383E93BE6E91B752D206",
-          "shape": "8B8AF5F092EFC780E93DCFDCDD4755C6F38D9F9688050D4841FB6659212AF224"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
-          "name": "ApplySystemAvInfo",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 57,
-          "parameters": "(nint data)",
-          "tokens": 29,
-          "bodyTokens": "{ if ( data == 0 ) return false ; ApplyInitialAvInfo ( Marshal . PtrToStructure < ExternalCoreApi . SystemAvInfo > ( data ) ) ; return true ; }",
-          "hash": "950328D9D1AF74F3DCFDAFCEEFD294C8CFED666279C3BCC8185BC0882667B36C",
-          "shape": "8B8AF5F092EFC780E93DCFDCDD4755C6F38D9F9688050D4841FB6659212AF224"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
-          "name": "ApplyGeometry",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 27,
-          "parameters": "(nint data)",
-          "tokens": 29,
-          "bodyTokens": "{ if ( data == 0 ) return false ; ApplyGeometry ( Marshal . PtrToStructure < ExternalCoreApi . Geometry > ( data ) ) ; return true ; }",
-          "hash": "3F72D35EA36AB55CF9A9EE7DD0859C4CEE745797D63B383E93BE6E91B752D206",
-          "shape": "8B8AF5F092EFC780E93DCFDCDD4755C6F38D9F9688050D4841FB6659212AF224"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
-          "name": "ApplySystemAvInfo",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 43,
-          "parameters": "(nint data)",
-          "tokens": 29,
-          "bodyTokens": "{ if ( data == 0 ) return false ; ApplyInitialAvInfo ( Marshal . PtrToStructure < ExternalCoreApi . SystemAvInfo > ( data ) ) ; return true ; }",
-          "hash": "950328D9D1AF74F3DCFDAFCEEFD294C8CFED666279C3BCC8185BC0882667B36C",
-          "shape": "8B8AF5F092EFC780E93DCFDCDD4755C6F38D9F9688050D4841FB6659212AF224"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.AudioVideo.cs",
-          "name": "ApplyGeometry",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 30,
-          "parameters": "(nint data)",
-          "tokens": 29,
-          "bodyTokens": "{ if ( data == 0 ) return false ; ApplyGeometry ( Marshal . PtrToStructure < ExternalCoreApi . Geometry > ( data ) ) ; return true ; }",
-          "hash": "3F72D35EA36AB55CF9A9EE7DD0859C4CEE745797D63B383E93BE6E91B752D206",
-          "shape": "8B8AF5F092EFC780E93DCFDCDD4755C6F38D9F9688050D4841FB6659212AF224"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.AudioVideo.cs",
-          "name": "ApplySystemAvInfo",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 46,
-          "parameters": "(nint data)",
-          "tokens": 29,
-          "bodyTokens": "{ if ( data == 0 ) return false ; ApplyInitialAvInfo ( Marshal . PtrToStructure < ExternalCoreApi . SystemAvInfo > ( data ) ) ; return true ; }",
-          "hash": "950328D9D1AF74F3DCFDAFCEEFD294C8CFED666279C3BCC8185BC0882667B36C",
-          "shape": "8B8AF5F092EFC780E93DCFDCDD4755C6F38D9F9688050D4841FB6659212AF224"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.AudioVideo.cs",
-          "name": "ApplyGeometry",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 30,
-          "parameters": "(nint data)",
-          "tokens": 29,
-          "bodyTokens": "{ if ( data == 0 ) return false ; ApplyGeometry ( Marshal . PtrToStructure < ExternalCoreApi . Geometry > ( data ) ) ; return true ; }",
-          "hash": "3F72D35EA36AB55CF9A9EE7DD0859C4CEE745797D63B383E93BE6E91B752D206",
-          "shape": "8B8AF5F092EFC780E93DCFDCDD4755C6F38D9F9688050D4841FB6659212AF224"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.AudioVideo.cs",
-          "name": "ApplySystemAvInfo",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 46,
-          "parameters": "(nint data)",
-          "tokens": 29,
-          "bodyTokens": "{ if ( data == 0 ) return false ; ApplyInitialAvInfo ( Marshal . PtrToStructure < ExternalCoreApi . SystemAvInfo > ( data ) ) ; return true ; }",
-          "hash": "950328D9D1AF74F3DCFDAFCEEFD294C8CFED666279C3BCC8185BC0882667B36C",
-          "shape": "8B8AF5F092EFC780E93DCFDCDD4755C6F38D9F9688050D4841FB6659212AF224"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -124666,6 +124718,221 @@
       "qualification": "Partial occurrence qualification; unannotated members pending"
     },
     {
+      "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40",
+      "tokens": 23,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+          "name": "ApplyGeometry",
+          "owner": "ExternalHostCallbacks",
+          "kind": "MethodDeclaration",
+          "line": 28,
+          "parameters": "(nint data)",
+          "tokens": 23,
+          "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . Geometry > ( data , ApplyGeometry ) ; }",
+          "hash": "10A097D804C5AAA3388F5957E18FBF680988DF6BFE5D8AF21FD16FDC005CA046",
+          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40",
+          "qualification": "Native AV adapter to original Amiga operations; constants, 32 bindings, hardware prefixes and whole files verified in nativeAvUpdateComparison; other host responsibilities remain open"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+          "name": "ApplySystemAvInfo",
+          "owner": "ExternalHostCallbacks",
+          "kind": "MethodDeclaration",
+          "line": 38,
+          "parameters": "(nint data)",
+          "tokens": 23,
+          "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . SystemAvInfo > ( data , ApplyInitialAvInfo ) ; }",
+          "hash": "A71878BE281E480439721CAB75D0D79DFFC435DA73DC13933B3737B0088F09DB",
+          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40",
+          "qualification": "Native AV adapter to original Amiga operations; constants, 32 bindings, hardware prefixes and whole files verified in nativeAvUpdateComparison; other host responsibilities remain open"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+          "name": "ApplyGeometry",
+          "owner": "ExternalHostCallbacks",
+          "kind": "MethodDeclaration",
+          "line": 27,
+          "parameters": "(nint data)",
+          "tokens": 23,
+          "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . Geometry > ( data , ApplyGeometry ) ; }",
+          "hash": "10A097D804C5AAA3388F5957E18FBF680988DF6BFE5D8AF21FD16FDC005CA046",
+          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40",
+          "qualification": "Native AV adapter to original Amiga operations; constants, 32 bindings, hardware prefixes and whole files verified in nativeAvUpdateComparison; other host responsibilities remain open"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+          "name": "ApplySystemAvInfo",
+          "owner": "ExternalHostCallbacks",
+          "kind": "MethodDeclaration",
+          "line": 37,
+          "parameters": "(nint data)",
+          "tokens": 23,
+          "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . SystemAvInfo > ( data , ApplyInitialAvInfo ) ; }",
+          "hash": "A71878BE281E480439721CAB75D0D79DFFC435DA73DC13933B3737B0088F09DB",
+          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40",
+          "qualification": "Native AV adapter to original Amiga operations; constants, 32 bindings, hardware prefixes and whole files verified in nativeAvUpdateComparison; other host responsibilities remain open"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+          "name": "ApplyGeometry",
+          "owner": "ExternalHostCallbacks",
+          "kind": "MethodDeclaration",
+          "line": 29,
+          "parameters": "(nint data)",
+          "tokens": 23,
+          "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . Geometry > ( data , ApplyGeometry ) ; }",
+          "hash": "10A097D804C5AAA3388F5957E18FBF680988DF6BFE5D8AF21FD16FDC005CA046",
+          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40",
+          "qualification": "Native AV adapter to original Amiga operations; constants, 32 bindings, hardware prefixes and whole files verified in nativeAvUpdateComparison; other host responsibilities remain open"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+          "name": "ApplySystemAvInfo",
+          "owner": "ExternalHostCallbacks",
+          "kind": "MethodDeclaration",
+          "line": 39,
+          "parameters": "(nint data)",
+          "tokens": 23,
+          "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . SystemAvInfo > ( data , ApplyInitialAvInfo ) ; }",
+          "hash": "A71878BE281E480439721CAB75D0D79DFFC435DA73DC13933B3737B0088F09DB",
+          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40",
+          "qualification": "Native AV adapter to original Amiga operations; constants, 32 bindings, hardware prefixes and whole files verified in nativeAvUpdateComparison; other host responsibilities remain open"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+          "name": "ApplyGeometry",
+          "owner": "ExternalHostCallbacks",
+          "kind": "MethodDeclaration",
+          "line": 38,
+          "parameters": "(nint data)",
+          "tokens": 23,
+          "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . Geometry > ( data , ApplyGeometry ) ; }",
+          "hash": "10A097D804C5AAA3388F5957E18FBF680988DF6BFE5D8AF21FD16FDC005CA046",
+          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40",
+          "qualification": "Native AV adapter to original Amiga operations; constants, 32 bindings, hardware prefixes and whole files verified in nativeAvUpdateComparison; other host responsibilities remain open"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+          "name": "ApplySystemAvInfo",
+          "owner": "ExternalHostCallbacks",
+          "kind": "MethodDeclaration",
+          "line": 49,
+          "parameters": "(nint data)",
+          "tokens": 23,
+          "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . SystemAvInfo > ( data , ApplyInitialAvInfo ) ; }",
+          "hash": "A71878BE281E480439721CAB75D0D79DFFC435DA73DC13933B3737B0088F09DB",
+          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40",
+          "qualification": "Native AV adapter to original Amiga operations; constants, 32 bindings, hardware prefixes and whole files verified in nativeAvUpdateComparison; other host responsibilities remain open"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+          "name": "ApplyGeometry",
+          "owner": "ExternalHostCallbacks",
+          "kind": "MethodDeclaration",
+          "line": 38,
+          "parameters": "(nint data)",
+          "tokens": 23,
+          "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . Geometry > ( data , ApplyGeometry ) ; }",
+          "hash": "10A097D804C5AAA3388F5957E18FBF680988DF6BFE5D8AF21FD16FDC005CA046",
+          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40",
+          "qualification": "Native AV adapter to original Amiga operations; constants, 32 bindings, hardware prefixes and whole files verified in nativeAvUpdateComparison; other host responsibilities remain open"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+          "name": "ApplySystemAvInfo",
+          "owner": "ExternalHostCallbacks",
+          "kind": "MethodDeclaration",
+          "line": 49,
+          "parameters": "(nint data)",
+          "tokens": 23,
+          "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . SystemAvInfo > ( data , ApplyInitialAvInfo ) ; }",
+          "hash": "A71878BE281E480439721CAB75D0D79DFFC435DA73DC13933B3737B0088F09DB",
+          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40",
+          "qualification": "Native AV adapter to original Amiga operations; constants, 32 bindings, hardware prefixes and whole files verified in nativeAvUpdateComparison; other host responsibilities remain open"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+          "name": "ApplyGeometry",
+          "owner": "ExternalHostCallbacks",
+          "kind": "MethodDeclaration",
+          "line": 24,
+          "parameters": "(nint data)",
+          "tokens": 23,
+          "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . Geometry > ( data , ApplyGeometry ) ; }",
+          "hash": "10A097D804C5AAA3388F5957E18FBF680988DF6BFE5D8AF21FD16FDC005CA046",
+          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40",
+          "qualification": "Native AV adapter to original Amiga operations; constants, 32 bindings, hardware prefixes and whole files verified in nativeAvUpdateComparison; other host responsibilities remain open"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+          "name": "ApplySystemAvInfo",
+          "owner": "ExternalHostCallbacks",
+          "kind": "MethodDeclaration",
+          "line": 35,
+          "parameters": "(nint data)",
+          "tokens": 23,
+          "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . SystemAvInfo > ( data , ApplyInitialAvInfo ) ; }",
+          "hash": "A71878BE281E480439721CAB75D0D79DFFC435DA73DC13933B3737B0088F09DB",
+          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40",
+          "qualification": "Native AV adapter to original Amiga operations; constants, 32 bindings, hardware prefixes and whole files verified in nativeAvUpdateComparison; other host responsibilities remain open"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.AudioVideo.cs",
+          "name": "ApplyGeometry",
+          "owner": "ExternalHostCallbacks",
+          "kind": "MethodDeclaration",
+          "line": 27,
+          "parameters": "(nint data)",
+          "tokens": 23,
+          "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . Geometry > ( data , ApplyGeometry ) ; }",
+          "hash": "10A097D804C5AAA3388F5957E18FBF680988DF6BFE5D8AF21FD16FDC005CA046",
+          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40",
+          "qualification": "Native AV adapter to original Amiga operations; constants, 32 bindings, hardware prefixes and whole files verified in nativeAvUpdateComparison; other host responsibilities remain open"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.AudioVideo.cs",
+          "name": "ApplySystemAvInfo",
+          "owner": "ExternalHostCallbacks",
+          "kind": "MethodDeclaration",
+          "line": 38,
+          "parameters": "(nint data)",
+          "tokens": 23,
+          "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . SystemAvInfo > ( data , ApplyInitialAvInfo ) ; }",
+          "hash": "A71878BE281E480439721CAB75D0D79DFFC435DA73DC13933B3737B0088F09DB",
+          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40",
+          "qualification": "Native AV adapter to original Amiga operations; constants, 32 bindings, hardware prefixes and whole files verified in nativeAvUpdateComparison; other host responsibilities remain open"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.AudioVideo.cs",
+          "name": "ApplyGeometry",
+          "owner": "ExternalHostCallbacks",
+          "kind": "MethodDeclaration",
+          "line": 27,
+          "parameters": "(nint data)",
+          "tokens": 23,
+          "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . Geometry > ( data , ApplyGeometry ) ; }",
+          "hash": "10A097D804C5AAA3388F5957E18FBF680988DF6BFE5D8AF21FD16FDC005CA046",
+          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40",
+          "qualification": "Native AV adapter to original Amiga operations; constants, 32 bindings, hardware prefixes and whole files verified in nativeAvUpdateComparison; other host responsibilities remain open"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.AudioVideo.cs",
+          "name": "ApplySystemAvInfo",
+          "owner": "ExternalHostCallbacks",
+          "kind": "MethodDeclaration",
+          "line": 38,
+          "parameters": "(nint data)",
+          "tokens": 23,
+          "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . SystemAvInfo > ( data , ApplyInitialAvInfo ) ; }",
+          "hash": "A71878BE281E480439721CAB75D0D79DFFC435DA73DC13933B3737B0088F09DB",
+          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40",
+          "qualification": "Native AV adapter to original Amiga operations; constants, 32 bindings, hardware prefixes and whole files verified in nativeAvUpdateComparison; other host responsibilities remain open"
+        }
+      ],
+      "qualification": "Qualified typed projections to verified shared operations"
+    },
+    {
       "shape": "BDC0E37F77A48E079D369D6AAFDC19B435CD8827599EC067AAB6FC77E60E4EFD",
       "tokens": 23,
       "current": [
@@ -125044,7 +125311,7 @@
           "bodyTokens": "=> content . GameInfo",
           "hash": "BC2CB21C5340481CC091ECD859B3F59734434A30BC7913409890F619159DADC7",
           "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E",
-          "qualification": "Typed profile/content/status projection to original shared disk-control component; exact message/factory/DTO bindings verified in completeDiskControlComparison, 399 identical traces; unrelated members not qualified"
+          "qualification": "Typed profile/content/status projection to original shared disk-control component; bindings and 399 traces verified in completeDiskControlComparison"
         },
         {
           "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs",
@@ -125093,7 +125360,7 @@
           "bodyTokens": "=> content . GameInfo",
           "hash": "BC2CB21C5340481CC091ECD859B3F59734434A30BC7913409890F619159DADC7",
           "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E",
-          "qualification": "Typed profile/content/status projection to original shared disk-control component; exact message/factory/DTO bindings verified in completeDiskControlComparison, 399 identical traces; unrelated members not qualified"
+          "qualification": "Typed profile/content/status projection to original shared disk-control component; bindings and 399 traces verified in completeDiskControlComparison"
         },
         {
           "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs",
@@ -125154,7 +125421,7 @@
           "bodyTokens": "=> content . GameInfo",
           "hash": "BC2CB21C5340481CC091ECD859B3F59734434A30BC7913409890F619159DADC7",
           "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E",
-          "qualification": "Typed profile/content/status projection to original shared disk-control component; exact message/factory/DTO bindings verified in completeDiskControlComparison, 399 identical traces; unrelated members not qualified"
+          "qualification": "Typed profile/content/status projection to original shared disk-control component; bindings and 399 traces verified in completeDiskControlComparison"
         },
         {
           "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs",
@@ -125239,7 +125506,7 @@
           "bodyTokens": "=> content . GameInfo",
           "hash": "BC2CB21C5340481CC091ECD859B3F59734434A30BC7913409890F619159DADC7",
           "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E",
-          "qualification": "Typed profile/content/status projection to original shared disk-control component; exact message/factory/DTO bindings verified in completeDiskControlComparison, 399 identical traces; unrelated members not qualified"
+          "qualification": "Typed profile/content/status projection to original shared disk-control component; bindings and 399 traces verified in completeDiskControlComparison"
         },
         {
           "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs",
@@ -125312,7 +125579,7 @@
           "bodyTokens": "=> content . GameInfo",
           "hash": "BC2CB21C5340481CC091ECD859B3F59734434A30BC7913409890F619159DADC7",
           "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E",
-          "qualification": "Typed profile/content/status projection to original shared disk-control component; exact message/factory/DTO bindings verified in completeDiskControlComparison, 399 identical traces; unrelated members not qualified"
+          "qualification": "Typed profile/content/status projection to original shared disk-control component; bindings and 399 traces verified in completeDiskControlComparison"
         },
         {
           "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs",
@@ -125385,7 +125652,7 @@
           "bodyTokens": "=> content . GameInfo",
           "hash": "BC2CB21C5340481CC091ECD859B3F59734434A30BC7913409890F619159DADC7",
           "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E",
-          "qualification": "Typed profile/content/status projection to original shared disk-control component; exact message/factory/DTO bindings verified in completeDiskControlComparison, 399 identical traces; unrelated members not qualified"
+          "qualification": "Typed profile/content/status projection to original shared disk-control component; bindings and 399 traces verified in completeDiskControlComparison"
         },
         {
           "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs",
@@ -125482,7 +125749,7 @@
           "bodyTokens": "=> content . GameInfo",
           "hash": "BC2CB21C5340481CC091ECD859B3F59734434A30BC7913409890F619159DADC7",
           "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E",
-          "qualification": "Typed profile/content/status projection to original shared disk-control component; exact message/factory/DTO bindings verified in completeDiskControlComparison, 399 identical traces; unrelated members not qualified"
+          "qualification": "Typed profile/content/status projection to original shared disk-control component; bindings and 399 traces verified in completeDiskControlComparison"
         },
         {
           "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs",
@@ -125567,7 +125834,7 @@
           "bodyTokens": "=> content . GameInfo",
           "hash": "BC2CB21C5340481CC091ECD859B3F59734434A30BC7913409890F619159DADC7",
           "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E",
-          "qualification": "Typed profile/content/status projection to original shared disk-control component; exact message/factory/DTO bindings verified in completeDiskControlComparison, 399 identical traces; unrelated members not qualified"
+          "qualification": "Typed profile/content/status projection to original shared disk-control component; bindings and 399 traces verified in completeDiskControlComparison"
         },
         {
           "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs",
@@ -125652,7 +125919,7 @@
           "bodyTokens": "=> content . GameInfo",
           "hash": "BC2CB21C5340481CC091ECD859B3F59734434A30BC7913409890F619159DADC7",
           "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E",
-          "qualification": "Typed profile/content/status projection to original shared disk-control component; exact message/factory/DTO bindings verified in completeDiskControlComparison, 399 identical traces; unrelated members not qualified"
+          "qualification": "Typed profile/content/status projection to original shared disk-control component; bindings and 399 traces verified in completeDiskControlComparison"
         },
         {
           "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs",
@@ -125701,7 +125968,7 @@
           "bodyTokens": "=> content . GameInfo",
           "hash": "BC2CB21C5340481CC091ECD859B3F59734434A30BC7913409890F619159DADC7",
           "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E",
-          "qualification": "Typed profile/content/status projection to original shared disk-control component; exact message/factory/DTO bindings verified in completeDiskControlComparison, 399 identical traces; unrelated members not qualified"
+          "qualification": "Typed profile/content/status projection to original shared disk-control component; bindings and 399 traces verified in completeDiskControlComparison"
         },
         {
           "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs",
@@ -125750,7 +126017,7 @@
           "bodyTokens": "=> content . GameInfo",
           "hash": "BC2CB21C5340481CC091ECD859B3F59734434A30BC7913409890F619159DADC7",
           "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E",
-          "qualification": "Typed profile/content/status projection to original shared disk-control component; exact message/factory/DTO bindings verified in completeDiskControlComparison, 399 identical traces; unrelated members not qualified"
+          "qualification": "Typed profile/content/status projection to original shared disk-control component; bindings and 399 traces verified in completeDiskControlComparison"
         },
         {
           "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs",
@@ -134927,7 +135194,7 @@
           "name": "SetLogInterface",
           "owner": "ExternalCoreEnvironmentFunctions",
           "kind": "MethodDeclaration",
-          "line": 261,
+          "line": 278,
           "parameters": "(nint data, TLog log)",
           "tokens": 23,
           "bodyTokens": "=> InstallInterface ( data , ( ) => new ExternalCoreApi . LogInterface { Log = Marshal . GetFunctionPointerForDelegate ( log ) } )",
@@ -134940,7 +135207,7 @@
           "name": "SetLedInterface",
           "owner": "ExternalCoreEnvironmentFunctions",
           "kind": "MethodDeclaration",
-          "line": 267,
+          "line": 284,
           "parameters": "(nint data, ExternalCoreApi.SetLedState setState)",
           "tokens": 23,
           "bodyTokens": "=> InstallInterface ( data , ( ) => new ExternalCoreApi . LedInterface { SetLedState = Marshal . GetFunctionPointerForDelegate ( setState ) } )",
@@ -134953,7 +135220,7 @@
           "name": "SetRumbleInterface",
           "owner": "ExternalCoreEnvironmentFunctions",
           "kind": "MethodDeclaration",
-          "line": 273,
+          "line": 290,
           "parameters": "(nint data, ExternalCoreApi.SetRumbleState setState)",
           "tokens": 23,
           "bodyTokens": "=> InstallInterface ( data , ( ) => new ExternalCoreApi . RumbleInterface { SetState = Marshal . GetFunctionPointerForDelegate ( setState ) } )",
