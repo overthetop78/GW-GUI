@@ -184,8 +184,8 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
             if (saved.Header.FormatVersion != StateStoreConstants.CurrentFormatVersion
                 || saved.Header.Model != Configuration.Model
                 || saved.Header.CoreSha256 != _core.CoreSha256
-                || !OptionsEqual(saved.Header.FirmwareSha256s, FirmwareHashes())
-                || !OptionsEqual(saved.Header.Options, _currentOptions)
+                || !EmulationStateFileFunctions.IdentityValuesEqual(saved.Header.FirmwareSha256s, FirmwareHashes())
+                || !EmulationStateFileFunctions.IdentityValuesEqual(saved.Header.Options, _currentOptions)
                 || !(saved.Header.MediaSha256s ?? []).SequenceEqual(_mediaPaths.Select(StateStore.HashPath), StringComparer.OrdinalIgnoreCase))
                 throw MachineExceptions.SavedStateIncompatible();
             _core.LoadState(saved.State);

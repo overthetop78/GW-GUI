@@ -6226,5 +6226,71 @@
     "richPolicy": "Existing outer rich response header unchanged; typed handler uses the shared state operations without a success callback",
     "nativePolicy": "Existing bool success callback after successful operation and before SaveState bytes",
     "tests": "21 native cases and 23 existing rich cases; memory streams only, no external core, file, process or window. Native success order, payload, missing core before argument reads, unknown commands and operation failure verified."
+  },
+  "savedStateIdentityComparisonReuse": {
+    "method": "IdentityValuesEqual",
+    "sourceCommit": "bca8558e0",
+    "consumers": [
+      {
+        "module": "Amstrad",
+        "removedCopy": "src/GWGUI.Emulation.Amstrad/Common/Services/Machine.Commands.cs",
+        "consumer": "src/GWGUI.Emulation.Amstrad/Common/Services/Machine.Lifecycle.cs",
+        "comparisonMatchesOriginalAmiga": true,
+        "otherCommandMembersAndLifecycleTokensUnchanged": true,
+        "callCount": 1
+      },
+      {
+        "module": "Commodore",
+        "removedCopy": "src/GWGUI.Emulation.Commodore/Common/Services/Machine.Commands.cs",
+        "consumer": "src/GWGUI.Emulation.Commodore/Common/Services/Machine.Lifecycle.cs",
+        "comparisonMatchesOriginalAmiga": true,
+        "otherCommandMembersAndLifecycleTokensUnchanged": true,
+        "callCount": 2
+      },
+      {
+        "module": "Microsoft",
+        "removedCopy": "src/GWGUI.Emulation.Microsoft/Common/Services/Machine.Commands.cs",
+        "consumer": "src/GWGUI.Emulation.Microsoft/Common/Services/Machine.Lifecycle.cs",
+        "comparisonMatchesOriginalAmiga": true,
+        "otherCommandMembersAndLifecycleTokensUnchanged": true,
+        "callCount": 1
+      },
+      {
+        "module": "Nec",
+        "removedCopy": "src/GWGUI.Emulation.Nec/Common/Services/Machine.Commands.cs",
+        "consumer": "src/GWGUI.Emulation.Nec/Common/Services/Machine.Lifecycle.cs",
+        "comparisonMatchesOriginalAmiga": true,
+        "otherCommandMembersAndLifecycleTokensUnchanged": true,
+        "callCount": 1
+      },
+      {
+        "module": "Nintendo",
+        "removedCopy": "src/GWGUI.Emulation.Nintendo/Common/Services/Machine.Commands.cs",
+        "consumer": "src/GWGUI.Emulation.Nintendo/Common/Services/Machine.Lifecycle.cs",
+        "comparisonMatchesOriginalAmiga": true,
+        "otherCommandMembersAndLifecycleTokensUnchanged": true,
+        "callCount": 1
+      },
+      {
+        "module": "Sega",
+        "removedCopy": "src/GWGUI.Emulation.Sega/Common/Services/Machine.Commands.cs",
+        "consumer": "src/GWGUI.Emulation.Sega/Common/Services/Machine.Lifecycle.cs",
+        "comparisonMatchesOriginalAmiga": true,
+        "otherCommandMembersAndLifecycleTokensUnchanged": true,
+        "callCount": 1
+      },
+      {
+        "module": "Sony",
+        "removedCopy": "src/GWGUI.Emulation.Sony/Common/Services/Machine.Commands.cs",
+        "consumer": "src/GWGUI.Emulation.Sony/Common/Services/Machine.Lifecycle.cs",
+        "comparisonMatchesOriginalAmiga": true,
+        "otherCommandMembersAndLifecycleTokensUnchanged": true,
+        "callCount": 1
+      }
+    ],
+    "originalOwner": "87a09639d:src/GWGUI.Emulation.Amiga/AmigaMachine.cs",
+    "sdkOwner": "src/GWGUI.Emulation/Functions/EmulationStateFileFunctions.cs",
+    "verification": "Seven original comparison bodies and other Commands/Lifecycle tokens checked; previous SDK state methods unchanged; 8 targeted tests pass, SDK/App/23 module references compile. Current scan: 11672 bodies, 532 exact candidate groups.",
+    "semantics": "Null left matches only empty right; right comparer drives lookup, values compare ordinally; dictionaries borrowed without mutation. Same existing validations and short-circuit order, including Commodore firmware hashes."
   }
 }

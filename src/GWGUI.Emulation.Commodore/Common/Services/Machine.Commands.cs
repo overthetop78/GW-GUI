@@ -10,12 +10,6 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     private IReadOnlyDictionary<string, string> FirmwareHashes() => (Configuration.FirmwarePaths ?? new Dictionary<string, string>()).ToDictionary(pair => pair.Key, pair => StateStore.HashFile(pair.Value), StringComparer.Ordinal);
     private static string? HashOptionalPath(string? path) => path is null ? null : StateStore.HashPath(path);
 
-    private static bool OptionsEqual(IReadOnlyDictionary<string, string>? left, IReadOnlyDictionary<string, string> right)
-    {
-        if ((left?.Count ?? BufferConstants.EmptyCollectionCount) != right.Count) return false;
-        return left is null ? right.Count == BufferConstants.EmptyCollectionCount : left.All(pair => right.TryGetValue(pair.Key, out var value) && value == pair.Value);
-    }
-
     private ValueTask QueueCommand(Action action, CancellationToken cancellationToken, EmulationMessageCategory category = EmulationMessageCategory.Machine, EmulationMessageCode code = EmulationMessageCode.MachineStartFailed)
     {
         cancellationToken.ThrowIfCancellationRequested();

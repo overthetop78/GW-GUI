@@ -8,6 +8,12 @@ namespace GWGUI.Emulation.Functions;
 
 internal static class EmulationStateFileFunctions
 {
+    internal static bool IdentityValuesEqual(IReadOnlyDictionary<string, string>? left, IReadOnlyDictionary<string, string> right)
+    {
+        if ((left?.Count ?? 0) != right.Count) return false;
+        return left is null ? right.Count == 0 : left.All(pair => right.TryGetValue(pair.Key, out var value) && value == pair.Value);
+    }
+
     internal static void WriteFile<THeader>(string path, THeader header, ReadOnlySpan<byte> state, ReadOnlySpan<byte> magic,
         string temporarySuffix, JsonSerializerOptions options, bool useFileReplace)
     {
