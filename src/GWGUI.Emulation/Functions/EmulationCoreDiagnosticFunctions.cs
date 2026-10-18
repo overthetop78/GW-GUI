@@ -7,6 +7,13 @@ namespace GWGUI.Emulation.Functions;
 
 internal static class EmulationCoreDiagnosticFunctions
 {
+    internal static T CreateManifest<T>(string releaseId, string releaseVersion, string downloadUrl,
+        long archiveSize, string libraryPath,
+        Func<string, string, string, DateTimeOffset, long, long, string, string, string, IReadOnlyList<string>, T> create)
+        => create(releaseId, releaseVersion, downloadUrl, DateTimeOffset.UtcNow, archiveSize,
+            new FileInfo(libraryPath).Length, CalculateSha256(libraryPath), ReadArchitecture(libraryPath),
+            ReadDeclaredVersion(libraryPath), ReadExports(libraryPath));
+
     internal static void VerifyWindowsX64Library(string path, Func<string> notPe,
         Func<string> invalidPe, Func<string> wrongArchitecture)
     {

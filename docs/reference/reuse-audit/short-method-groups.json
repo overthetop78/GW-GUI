@@ -1,8 +1,24 @@
 {
-  "snapshot": "e3b237e15525f39c29887ab33dceeeddc0d8ddc0",
+  "snapshot": "6ec7d371e7a8e8c3641fbf636d3f3d5d1c881ebf",
   "snapshotState": "Current worktree based on snapshot",
   "worktreeSourceChanges": [
-    "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/CoreReleaseService.cs"
+    "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+    "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+    "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+    "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+    "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+    "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+    "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+    "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+    "src/GWGUI.Emulation.Panasonic/Emulators/Opera/Services/CoreReleaseService.cs",
+    "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+    "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+    "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+    "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+    "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Services/CoreReleaseService.cs",
+    "src/GWGUI.Emulation.Watara/Emulators/Potator/Services/CoreReleaseService.cs",
+    "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Services/CoreReleaseService.cs",
+    "src/GWGUI.Emulation/Functions/EmulationCoreDiagnosticFunctions.cs"
   ],
   "scope": "All current non-ignored repository CSharp files, including hidden paths; BaseMethodDeclaration bodies with fewer than 30 tokens. Candidate presence is not a defect or a completion claim.",
   "fileCount": 7322,

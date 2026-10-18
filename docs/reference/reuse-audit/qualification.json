@@ -8249,13 +8249,13 @@
     "afterProductBuild": "005e3c677"
   },
   "shortMethodInventory": {
-    "snapshot": "e3b237e15525f39c29887ab33dceeeddc0d8ddc0",
+    "snapshot": "6ec7d371e7a8e8c3641fbf636d3f3d5d1c881ebf",
     "files": 7322,
     "bodyCount": 9487,
     "exactGroups": 774,
     "renamedGroups": 365,
     "status": "Incomplete; existing queue/empty-method qualifications retained; 29 factory selections now shared and verified; sector source reader-selection stage shared, remaining typed writer ownership pending.",
-    "trackedCSharpCoverage": "Full current C# scan: 7322 files. Sony common installer now uses existing SDK pipeline; remaining InstallAsync callback/manifest ownership review is incomplete."
+    "trackedCSharpCoverage": "Full current C# scan: 7322 files. Original manifest collection now shared across sixteen installation adapters; remaining architecture guards and whole-project groups still require qualification."
   },
   "hardwareIdentityComparisonReuse": {
     "snapshot": "a4760e868",
@@ -11031,7 +11031,7 @@
     "tests": "Fifteen managed tests passed, exit 0: requested formats/null/case/empty, pre-cancelled token forwarding and early refusal, controlled pending validator completed/awaited in finally, synchronous/asynchronous InvalidDataException and NotSupportedException refusal, other IOException propagation, both cancellation paths with token, and null-context asynchronous fault timing. Context KnownLength=0 avoids FileInfo and no reads are invoked; no media files, external DLL fixtures, windows, processes or cores."
   },
   "installationTemporaryScopeReview": {
-    "state": "partial; Sony common central sequence now shared and verified; typed manifest construction review pending",
+    "state": "scope review and Sony wiring verified; sixteen ordered manifest collections now shared; remaining repeated architecture guard comparison scheduled separately",
     "snapshot": "121ea9865",
     "profiles": [
       {
@@ -11314,7 +11314,7 @@
     "origin": "Existing SDK 734fbce43 reuses Atari installation before Amstrad: ac7292d86^:src/GWGUI.Emulation.Atari/Services/AtariCoreReleaseService.cs. Ancestry before Sony adapter 4e48b9b7d verified.",
     "ownership": "Modules create/name temporary files before the try and own the finally. Nine scopes use sequential DeleteIfExists, seven nested finally to guarantee the second delete, nine sequential guarded File.Delete. Keep cleanup order and exception behavior in the resource owner; no cleanup-policy flag or ownership transfer to collapse syntax.",
     "finding": "Sony/Emulators/Common/Interop/Services/CoreReleaseService.InstallAsync still duplicates download, extraction/raw copy, validation/hash, replacement, manifest write and completion. CoreMachineFactory.ReleaseService actively constructs it. CompletedProgress const double is 1d. Reconnect only the central sequence to the existing original SDK pipeline.",
-    "pending": "Sony wiring, before/after comparison and regression validation. Typed diagnostic-manifest construction remains under review; scope evidence does not qualify whole InstallAsync bodies or remaining metadata callbacks.",
+    "pending": "Architecture guard comparison is a separate next audit action; this record does not claim the whole-project or all remaining InstallAsync groups complete.",
     "sonyFollowup": "sonyCommonInstallationFlowReuse records the later correction; original 121ea9865 scope evidence remains historical. Manifest callback review still incomplete."
   },
   "sonyCommonInstallationFlowReuse": {
@@ -11327,5 +11327,229 @@
     "abi": "Seven-parameter SDK overload reused unchanged; no SDK edit or new helper.",
     "semantic": "SDK and Sony: zero semantic errors. Existing seven-parameter InstallLibraryAsync selected with string manifest/hash. Six original overloads (download, extraction, x64 verification, hash, File.Move, Sony manifest) resolve identically before/after.",
     "tests": "Ten existing CoreInstallationFlowTests passed, exit 0. Covers ordering, each failing stage, preparation wait/failure. No new mirror test, real download, module process or DLL/file fixture. Controlled tasks in existing tests completed and awaited in finally."
+  },
+  "diagnosticManifestCollectionReuse": {
+    "state": "verified",
+    "snapshot": "6ec7d371e",
+    "before": [
+      {
+        "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+        "sha256": "BE65D4AD4B2C96588A92292AFF9D5376E819242B253D0CBBA2CBB4D4AD726841",
+        "contract": "GWGUI.Emulation.Mattel.Emulators.Common.Contracts.CoreDiagnosticManifest",
+        "guard": "if ( ! string . Equals ( manifest . Architecture , EmulatorCatalogConstants . WindowsX64Architecture , StringComparison . Ordinal ) ) throw new InvalidDataException ( CoreReleaseErrors . InvalidArchitecture ) ; return manifest ;"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+        "sha256": "0DD0F01C8CC4E9535FA02290FF513E6D7A09A0030352314696F74685BAF5124E",
+        "contract": "GWGUI.Emulation.Sinclair.Emulators.Common.Contracts.CoreDiagnosticManifest",
+        "guard": "if ( ! string . Equals ( manifest . Architecture , EmulatorCatalogConstants . WindowsX64Architecture , StringComparison . Ordinal ) ) throw new InvalidDataException ( CoreReleaseErrors . InvalidArchitecture ) ; return manifest ;"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+        "sha256": "F7E637934DE916EFF370F73B40C6EA3322BDC15DC714C83996A5461C9B24110E",
+        "contract": "GWGUI.Emulation.Atari.Emulators.Common.Contracts.CoreDiagnosticManifest",
+        "guard": "return manifest ;"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+        "sha256": "9ABB0FBAA3809EE8D81EBE8D1C2A274C35DE8595A3CB720C03021EA479952751",
+        "contract": "GWGUI.Emulation.Acorn.Emulators.Common.Contracts.CoreDiagnosticManifest",
+        "guard": "return manifest ;"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+        "sha256": "5B7755D21CC02ED50375015B25F4FDFCD5F11FA38D466AFBB503D941441D81B5",
+        "contract": "GWGUI.Emulation.Sharp.Emulators.Common.Contracts.CoreDiagnosticManifest",
+        "guard": "if ( ! string . Equals ( manifest . Architecture , EmulatorCatalogConstants . WindowsX64Architecture , StringComparison . Ordinal ) ) throw new InvalidDataException ( CoreReleaseErrors . InvalidArchitecture ) ; return manifest ;"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+        "sha256": "8502D718DD30AFF2F9F4163C3B50C4AE2C62028FCB1934066E343ED9AA63FAB7",
+        "contract": "GWGUI.Emulation.Bandai.Emulators.Common.Contracts.CoreDiagnosticManifest",
+        "guard": "if ( ! string . Equals ( manifest . Architecture , EmulatorCatalogConstants . WindowsX64Architecture , StringComparison . Ordinal ) ) throw new InvalidDataException ( CoreReleaseErrors . InvalidArchitecture ) ; return manifest ;"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Panasonic/Emulators/Opera/Services/CoreReleaseService.cs",
+        "sha256": "41F463F621746ABA24FCDB53F2E3385E57C5EC35323EEB8AD6A45A299F115213",
+        "contract": "GWGUI.Emulation.Panasonic.Emulators.Opera.Contracts.CoreDiagnosticManifest",
+        "guard": "if ( ! string . Equals ( manifest . Architecture , EmulatorCatalogConstants . WindowsX64Architecture , StringComparison . Ordinal ) ) throw new InvalidDataException ( CoreReleaseErrors . InvalidArchitecture ) ; return manifest ;"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+        "sha256": "618ECDE19647D281330A5BE0B0FCD146BD050A6E4D932E2CA37DAA826C764EFF",
+        "contract": "GWGUI.Emulation.Epoch.Emulators.Common.Contracts.CoreDiagnosticManifest",
+        "guard": "if ( ! string . Equals ( manifest . Architecture , EmulatorCatalogConstants . WindowsX64Architecture , StringComparison . Ordinal ) ) throw new InvalidDataException ( CoreReleaseErrors . InvalidArchitecture ) ; return manifest ;"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Services/CoreReleaseService.cs",
+        "sha256": "A1956DE3725B14182CC9D7F4BE2509B8EF63A2AA293574416CC8F5F88414B7AF",
+        "contract": "GWGUI.Emulation.Thomson.Emulators.Theodore.Contracts.CoreDiagnosticManifest",
+        "guard": "if ( ! string . Equals ( manifest . Architecture , EmulatorCatalogConstants . WindowsX64Architecture , StringComparison . Ordinal ) ) throw new InvalidDataException ( CoreReleaseErrors . InvalidArchitecture ) ; return manifest ;"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+        "sha256": "180054AF04CD704A8E1B0CF3DF41AC4B429C8C2FDAFA826C809D0157B09ECADC",
+        "contract": "GWGUI.Emulation.Coleco.Emulators.Common.Contracts.CoreDiagnosticManifest",
+        "guard": "if ( ! string . Equals ( manifest . Architecture , EmulatorCatalogConstants . WindowsX64Architecture , StringComparison . Ordinal ) ) throw new InvalidDataException ( CoreReleaseErrors . InvalidArchitecture ) ; return manifest ;"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Services/CoreReleaseService.cs",
+        "sha256": "F0D84882F6FC26E72DF89185A7578C9F80D58E79B8B2C8CE1204E9C808A58AF7",
+        "contract": "GWGUI.Emulation.Wenquxing.Emulators.Wqxemu.Contracts.CoreDiagnosticManifest",
+        "guard": "if ( ! string . Equals ( manifest . Architecture , EmulatorCatalogConstants . WindowsX64Architecture , StringComparison . Ordinal ) ) throw new InvalidDataException ( CoreReleaseErrors . InvalidArchitecture ) ; return manifest ;"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Watara/Emulators/Potator/Services/CoreReleaseService.cs",
+        "sha256": "70D283A991313689539A96ADAF2BB7596FF9DF85730FA4E5D73961EB5CFF5981",
+        "contract": "GWGUI.Emulation.Watara.Emulators.Potator.Contracts.CoreDiagnosticManifest",
+        "guard": "if ( ! string . Equals ( manifest . Architecture , EmulatorCatalogConstants . WindowsX64Architecture , StringComparison . Ordinal ) ) throw new InvalidDataException ( CoreReleaseErrors . InvalidArchitecture ) ; return manifest ;"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+        "sha256": "FCB6AADF8D1FEBDAB8A914024B5220621DBF08F159E1BD56894A324BEBE258D1",
+        "contract": "GWGUI.Emulation.Snk.Emulators.Common.Contracts.CoreDiagnosticManifest",
+        "guard": "if ( ! string . Equals ( manifest . Architecture , EmulatorCatalogConstants . WindowsX64Architecture , StringComparison . Ordinal ) ) throw new InvalidDataException ( CoreReleaseErrors . InvalidArchitecture ) ; return manifest ;"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+        "sha256": "90B0DA2C6F54A03CBA21FC29CD9584FAAFFFCDB278CB021CF9C41B21A6285F7B",
+        "contract": "GWGUI.Emulation.Philips.Emulators.Common.Contracts.CoreDiagnosticManifest",
+        "guard": "if ( ! string . Equals ( manifest . Architecture , EmulatorCatalogConstants . WindowsX64Architecture , StringComparison . Ordinal ) ) throw new InvalidDataException ( CoreReleaseErrors . InvalidArchitecture ) ; return manifest ;"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+        "sha256": "3A92384DD8F83B362A13E34635039E91CDB09C50B13BB302A3E404FBCA53C623",
+        "contract": "GWGUI.Emulation.Apple.Emulators.Common.Contracts.CoreDiagnosticManifest",
+        "guard": "if ( ! string . Equals ( manifest . Architecture , EmulatorCatalogConstants . WindowsX64Architecture , StringComparison . Ordinal ) ) throw new InvalidDataException ( CoreReleaseErrors . InvalidArchitecture ) ; return manifest ;"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+        "sha256": "B8E8C831BE539F3CAAB0F6E7F8BAAED8BDF10493111F9FBDCA8FAFDB8AF3690D",
+        "contract": "GWGUI.Emulation.Fairchild.Emulators.Common.Contracts.CoreDiagnosticManifest",
+        "guard": "if ( ! string . Equals ( manifest . Architecture , EmulatorCatalogConstants . WindowsX64Architecture , StringComparison . Ordinal ) ) throw new InvalidDataException ( CoreReleaseErrors . InvalidArchitecture ) ; return manifest ;"
+      }
+    ],
+    "owner": "Original ac7292d86^:src/GWGUI.Emulation.Atari/Services/AtariCoreReleaseService.cs, existing SDK EmulationCoreDiagnosticFunctions for the four primitive file operations.",
+    "preflight": "SDK and all 23 modules zero semantic errors; all sixteen constructor argument lists identical and match original Atari after its type-owner rename. Ten constructor parameter types identical. Public positional records have no custom members/constructor behavior; retain their distinct types.",
+    "primitives": "Every module CalculateSha256/ReadArchitecture/ReadDeclaredVersion/ReadExports adapter is a direct one-argument call to the matching existing SDK function, with path unchanged. All target symbols resolved.",
+    "decision": "Share the ordered data collection with a generic factory in the existing diagnostic owner. Preserve the sixteen public manifest contracts, all constructor field positions and their architecture guards: fourteen check x64 after construction, Atari and Acorn do not.",
+    "validation": "Compare expanded source expressions and factory positions, all remaining members, overload targets and generic result types. Existing pipeline regression tests cover sequencing/failures; exact metadata mapping is separately verified by AST. No new mirror test or external DLL fixture.",
+    "after": [
+      {
+        "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+        "sha256": "78319434058A704150A0502843F9CCA92C89C094C8122338AD7B95EFEC245E8E",
+        "expandedCollectionIdentical": true,
+        "factoryFieldPositionsIdentical": true,
+        "allOtherTokensIdentical": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+        "sha256": "ED9C3CBA5F810706AFF6905B23FF9F78E7B0BBD4848CC3AD6A53D3FBB8A44677",
+        "expandedCollectionIdentical": true,
+        "factoryFieldPositionsIdentical": true,
+        "allOtherTokensIdentical": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+        "sha256": "6A2F92A010B03282F8381E19BD8DECF3E6AA8CABD9F2B8CA18758B57E005B0AF",
+        "expandedCollectionIdentical": true,
+        "factoryFieldPositionsIdentical": true,
+        "allOtherTokensIdentical": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+        "sha256": "E0A3FBC10D3F142B436A364954F148182405938E3E85901574FFC1DF75498832",
+        "expandedCollectionIdentical": true,
+        "factoryFieldPositionsIdentical": true,
+        "allOtherTokensIdentical": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+        "sha256": "D880FDE9CD14698FE8457DD9B7C5918ECEFC506E5879C695C27469C76D7F2686",
+        "expandedCollectionIdentical": true,
+        "factoryFieldPositionsIdentical": true,
+        "allOtherTokensIdentical": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+        "sha256": "D04AEBC65E3747D8039A3E22120153A1C930C9261EBC4ADF50919284DA356B39",
+        "expandedCollectionIdentical": true,
+        "factoryFieldPositionsIdentical": true,
+        "allOtherTokensIdentical": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Panasonic/Emulators/Opera/Services/CoreReleaseService.cs",
+        "sha256": "90E2043A2836163264D95FEAE7FF876728767ABA30652C7ED3637AD9DFA4B6EA",
+        "expandedCollectionIdentical": true,
+        "factoryFieldPositionsIdentical": true,
+        "allOtherTokensIdentical": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+        "sha256": "AFBF877F82212940775383438596057E11340D2B49368CEF5958274CB83A0F4E",
+        "expandedCollectionIdentical": true,
+        "factoryFieldPositionsIdentical": true,
+        "allOtherTokensIdentical": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Services/CoreReleaseService.cs",
+        "sha256": "B30586406CBB3AAC5AE90CBED822C56AEFEB9B3E4E13CF4AFE4D3F1CDFAD0AEA",
+        "expandedCollectionIdentical": true,
+        "factoryFieldPositionsIdentical": true,
+        "allOtherTokensIdentical": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+        "sha256": "FA9A7576F3E47346B3EA1B9DFE8B7656B0B1477987B58F8ABE9878EDA1E1AC96",
+        "expandedCollectionIdentical": true,
+        "factoryFieldPositionsIdentical": true,
+        "allOtherTokensIdentical": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Services/CoreReleaseService.cs",
+        "sha256": "72E40C1F03EF441DD317FA6278D60BC93C92C2C93F957F5B82613800D221524B",
+        "expandedCollectionIdentical": true,
+        "factoryFieldPositionsIdentical": true,
+        "allOtherTokensIdentical": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Watara/Emulators/Potator/Services/CoreReleaseService.cs",
+        "sha256": "A143143C4E34140B503620816B479C3724C5A10E06EE8F2ABED43F531B28262D",
+        "expandedCollectionIdentical": true,
+        "factoryFieldPositionsIdentical": true,
+        "allOtherTokensIdentical": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+        "sha256": "1287803261D305E2D2E9485B33D54E7BA3A19BFAC0C157569D1C566AC03CF051",
+        "expandedCollectionIdentical": true,
+        "factoryFieldPositionsIdentical": true,
+        "allOtherTokensIdentical": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+        "sha256": "FA18AECFF43661819178F291D68A23E5CC1090F8300B5AF060E39A00DAF343EA",
+        "expandedCollectionIdentical": true,
+        "factoryFieldPositionsIdentical": true,
+        "allOtherTokensIdentical": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+        "sha256": "B2989FAF5437F8B9413F30DDF991CDD5F45C7479D68A47AD40A90C54930795BA",
+        "expandedCollectionIdentical": true,
+        "factoryFieldPositionsIdentical": true,
+        "allOtherTokensIdentical": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+        "sha256": "03296D586AAEC55745DF7AE824039ABF12A52B4EC505FACD629D62E83364F7B4",
+        "expandedCollectionIdentical": true,
+        "factoryFieldPositionsIdentical": true,
+        "allOtherTokensIdentical": true
+      }
+    ],
+    "ast": "All ten shared expressions expand to original constructor fields in sixteen consumers after replacing already-verified primitive adapters with their SDK targets. Static factories forward ten parameters in unchanged order to the exact original public record. All other tokens, architecture guards and finally blocks unchanged; all pre-existing SDK diagnostic members unchanged.",
+    "semantic": "Current SDK and all 23 modules: zero semantic errors. Sixteen CreateManifest calls return their original public manifest type; all ten factory parameter types match its original constructor. Four diagnostic primitives resolve to their original SDK owners.",
+    "tests": "Same ten existing CoreInstallationFlowTests passed again, exit 0. They cover pipeline ordering/failures and preparation, not direct file metadata output. Exact collection expressions, ordering and field mapping separately verified by AST and symbols. No redundant mirror test or external DLL fixture added; pre-existing resource-owning primitive methods unchanged."
   }
 }

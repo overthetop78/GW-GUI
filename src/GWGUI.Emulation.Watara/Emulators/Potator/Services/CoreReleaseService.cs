@@ -40,7 +40,10 @@ internal sealed class CoreReleaseService
         {
             await EmulationCoreReleaseFunctions.InstallLibraryAsync(() => CoreReleaseFunctions.DownloadAsync(_httpClient, release.DownloadUri, download, progress, cancellationToken), () => CoreReleaseFunctions.ExtractExpectedLibrary(download, entry.DllName, extracted), archiveSize =>
             {
-                var manifest = new CoreDiagnosticManifest(release.Id, release.DeclaredVersion, release.DownloadUri.AbsoluteUri, DateTimeOffset.UtcNow, archiveSize, new FileInfo(extracted).Length, CoreDiagnosticFunctions.CalculateSha256(extracted), CoreDiagnosticFunctions.ReadArchitecture(extracted), CoreDiagnosticFunctions.ReadDeclaredVersion(extracted), CoreDiagnosticFunctions.ReadExports(extracted));
+                var manifest = EmulationCoreDiagnosticFunctions.CreateManifest(release.Id, release.DeclaredVersion, release.DownloadUri.AbsoluteUri,
+                    archiveSize, extracted,
+                    static (id, version, url, downloadedUtc, downloadedSize, librarySize, sha256, architecture, declaredVersion, exports)
+                        => new CoreDiagnosticManifest(id, version, url, downloadedUtc, downloadedSize, librarySize, sha256, architecture, declaredVersion, exports));
                 if (!string.Equals(manifest.Architecture, EmulatorCatalogConstants.WindowsX64Architecture, StringComparison.Ordinal))
                     throw new InvalidDataException(CoreReleaseErrors.InvalidArchitecture);
                 return manifest;
