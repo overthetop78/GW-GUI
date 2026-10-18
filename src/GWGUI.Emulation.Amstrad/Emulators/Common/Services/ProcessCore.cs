@@ -61,15 +61,7 @@ internal sealed class ProcessCore : IEmulatorCore
     public int CurrentDiskIndex { get; private set; } = ProcessCoreConstants.NoSelectedDiskIndex;
 
     public bool TryDequeueAudio(out AudioChunk? chunk)
-    {
-        if (_audio.TryDequeue(out var value))
-        {
-            chunk = value;
-            return true;
-        }
-        chunk = null;
-        return false;
-    }
+    => _audio.TryDequeue(out chunk);
 
     public void Initialize(MachineConfiguration configuration, string sessionDirectory, string? saveDirectory = null)
     {

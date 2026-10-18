@@ -8039,5 +8039,222 @@
     "resources": "Float arrays, byte arrays and static hashing only; no graphic surface, native core, file, process or thread created by the new test",
     "report": "11669 CSharp method bodies >=30 tokens, 524 exact candidate groups; whole-project qualification remains incomplete",
     "afterProductBuild": "797a4c2e7"
+  },
+  "shortAudioDequeueReuse": {
+    "profiles": [
+      {
+        "path": "src/GWGUI.Emulation.Acorn/Common/Services/ProcessCore.cs",
+        "field": "System.Collections.Concurrent.ConcurrentQueue`1[[GWGUI.Emulation.Contracts.AudioChunk, gwgui.emulation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "returnType": "System.Boolean",
+        "outType": "GWGUI.Emulation.Contracts.AudioChunk",
+        "borrowedPlatformQueue": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/ProcessCore.cs",
+        "field": "System.Collections.Concurrent.ConcurrentQueue`1[[GWGUI.Emulation.Contracts.AudioChunk, gwgui.emulation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "returnType": "System.Boolean",
+        "outType": "GWGUI.Emulation.Contracts.AudioChunk",
+        "borrowedPlatformQueue": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Apple/Common/Services/ProcessCore.cs",
+        "field": "System.Collections.Concurrent.ConcurrentQueue`1[[GWGUI.Emulation.Contracts.AudioChunk, gwgui.emulation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "returnType": "System.Boolean",
+        "outType": "GWGUI.Emulation.Contracts.AudioChunk",
+        "borrowedPlatformQueue": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Atari/Common/Services/ProcessCore.cs",
+        "field": "System.Collections.Concurrent.ConcurrentQueue`1[[GWGUI.Emulation.Contracts.AudioChunk, gwgui.emulation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "returnType": "System.Boolean",
+        "outType": "GWGUI.Emulation.Contracts.AudioChunk",
+        "borrowedPlatformQueue": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Bandai/Common/Services/ProcessCore.cs",
+        "field": "System.Collections.Concurrent.ConcurrentQueue`1[[GWGUI.Emulation.Contracts.AudioChunk, gwgui.emulation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "returnType": "System.Boolean",
+        "outType": "GWGUI.Emulation.Contracts.AudioChunk",
+        "borrowedPlatformQueue": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Coleco/Common/Services/ProcessCore.cs",
+        "field": "System.Collections.Concurrent.ConcurrentQueue`1[[GWGUI.Emulation.Contracts.AudioChunk, gwgui.emulation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "returnType": "System.Boolean",
+        "outType": "GWGUI.Emulation.Contracts.AudioChunk",
+        "borrowedPlatformQueue": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ProcessCore.cs",
+        "field": "System.Collections.Concurrent.ConcurrentQueue`1[[GWGUI.Emulation.Contracts.AudioChunk, gwgui.emulation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "returnType": "System.Boolean",
+        "outType": "GWGUI.Emulation.Contracts.AudioChunk",
+        "borrowedPlatformQueue": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Epoch/Common/Services/ProcessCore.cs",
+        "field": "System.Collections.Concurrent.ConcurrentQueue`1[[GWGUI.Emulation.Contracts.AudioChunk, gwgui.emulation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "returnType": "System.Boolean",
+        "outType": "GWGUI.Emulation.Contracts.AudioChunk",
+        "borrowedPlatformQueue": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Fairchild/Common/Services/ProcessCore.cs",
+        "field": "System.Collections.Concurrent.ConcurrentQueue`1[[GWGUI.Emulation.Contracts.AudioChunk, gwgui.emulation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "returnType": "System.Boolean",
+        "outType": "GWGUI.Emulation.Contracts.AudioChunk",
+        "borrowedPlatformQueue": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Mattel/Common/Services/ProcessCore.cs",
+        "field": "System.Collections.Concurrent.ConcurrentQueue`1[[GWGUI.Emulation.Contracts.AudioChunk, gwgui.emulation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "returnType": "System.Boolean",
+        "outType": "GWGUI.Emulation.Contracts.AudioChunk",
+        "borrowedPlatformQueue": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ProcessCore.cs",
+        "field": "System.Collections.Concurrent.ConcurrentQueue`1[[GWGUI.Emulation.Contracts.AudioChunk, gwgui.emulation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "returnType": "System.Boolean",
+        "outType": "GWGUI.Emulation.Contracts.AudioChunk",
+        "borrowedPlatformQueue": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ProcessCore.cs",
+        "field": "System.Collections.Concurrent.ConcurrentQueue`1[[GWGUI.Emulation.Contracts.AudioChunk, gwgui.emulation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "returnType": "System.Boolean",
+        "outType": "GWGUI.Emulation.Contracts.AudioChunk",
+        "borrowedPlatformQueue": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Panasonic/Common/Services/ProcessCore.cs",
+        "field": "System.Collections.Concurrent.ConcurrentQueue`1[[GWGUI.Emulation.Contracts.AudioChunk, gwgui.emulation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "returnType": "System.Boolean",
+        "outType": "GWGUI.Emulation.Contracts.AudioChunk",
+        "borrowedPlatformQueue": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Philips/Common/Services/ProcessCore.cs",
+        "field": "System.Collections.Concurrent.ConcurrentQueue`1[[GWGUI.Emulation.Contracts.AudioChunk, gwgui.emulation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "returnType": "System.Boolean",
+        "outType": "GWGUI.Emulation.Contracts.AudioChunk",
+        "borrowedPlatformQueue": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ProcessCore.cs",
+        "field": "System.Collections.Concurrent.ConcurrentQueue`1[[GWGUI.Emulation.Contracts.AudioChunk, gwgui.emulation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "returnType": "System.Boolean",
+        "outType": "GWGUI.Emulation.Contracts.AudioChunk",
+        "borrowedPlatformQueue": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sharp/Common/Services/ProcessCore.cs",
+        "field": "System.Collections.Concurrent.ConcurrentQueue`1[[GWGUI.Emulation.Contracts.AudioChunk, gwgui.emulation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "returnType": "System.Boolean",
+        "outType": "GWGUI.Emulation.Contracts.AudioChunk",
+        "borrowedPlatformQueue": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sinclair/Common/Services/ProcessCore.cs",
+        "field": "System.Collections.Concurrent.ConcurrentQueue`1[[GWGUI.Emulation.Contracts.AudioChunk, gwgui.emulation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "returnType": "System.Boolean",
+        "outType": "GWGUI.Emulation.Contracts.AudioChunk",
+        "borrowedPlatformQueue": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Snk/Common/Services/ProcessCore.cs",
+        "field": "System.Collections.Concurrent.ConcurrentQueue`1[[GWGUI.Emulation.Contracts.AudioChunk, gwgui.emulation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "returnType": "System.Boolean",
+        "outType": "GWGUI.Emulation.Contracts.AudioChunk",
+        "borrowedPlatformQueue": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ProcessCore.cs",
+        "field": "System.Collections.Concurrent.ConcurrentQueue`1[[GWGUI.Emulation.Contracts.AudioChunk, gwgui.emulation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "returnType": "System.Boolean",
+        "outType": "GWGUI.Emulation.Contracts.AudioChunk",
+        "borrowedPlatformQueue": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ProcessCore.cs",
+        "field": "System.Collections.Concurrent.ConcurrentQueue`1[[GWGUI.Emulation.Contracts.AudioChunk, gwgui.emulation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "returnType": "System.Boolean",
+        "outType": "GWGUI.Emulation.Contracts.AudioChunk",
+        "borrowedPlatformQueue": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ProcessCore.cs",
+        "field": "System.Collections.Concurrent.ConcurrentQueue`1[[GWGUI.Emulation.Contracts.AudioChunk, gwgui.emulation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "returnType": "System.Boolean",
+        "outType": "GWGUI.Emulation.Contracts.AudioChunk",
+        "borrowedPlatformQueue": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Thomson/Common/Services/ProcessCore.cs",
+        "field": "System.Collections.Concurrent.ConcurrentQueue`1[[GWGUI.Emulation.Contracts.AudioChunk, gwgui.emulation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "returnType": "System.Boolean",
+        "outType": "GWGUI.Emulation.Contracts.AudioChunk",
+        "borrowedPlatformQueue": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Watara/Common/Services/ProcessCore.cs",
+        "field": "System.Collections.Concurrent.ConcurrentQueue`1[[GWGUI.Emulation.Contracts.AudioChunk, gwgui.emulation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "returnType": "System.Boolean",
+        "outType": "GWGUI.Emulation.Contracts.AudioChunk",
+        "borrowedPlatformQueue": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Wenquxing/Common/Services/ProcessCore.cs",
+        "field": "System.Collections.Concurrent.ConcurrentQueue`1[[GWGUI.Emulation.Contracts.AudioChunk, gwgui.emulation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "returnType": "System.Boolean",
+        "outType": "GWGUI.Emulation.Contracts.AudioChunk",
+        "borrowedPlatformQueue": true
+      }
+    ],
+    "emptyReturnsFalseAndNull": true,
+    "queuedReferencePreserved": true,
+    "queuedNullReturnsTrue": true,
+    "sourceSnapshot": "005e3c677",
+    "scope": "Concurrent dequeue cohort only; all other short-method candidate groups remain under review",
+    "existingOwner": "System.Collections.Concurrent.ConcurrentQueue<GWGUI.Emulation.Contracts.AudioChunk>.TryDequeue; existing queue operation already used by the old conditional",
+    "decision": "Reuse the queue result and out value directly; do not introduce a new SDK helper or state owner",
+    "verifiedSources": {
+      "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ProcessCore.cs": "1BDE7B50EEC7F50FBEFC2A9B0656D985B83A532055E18385110E41FA209F03F1",
+      "src/GWGUI.Emulation.Epoch/Common/Services/ProcessCore.cs": "BE53437DF8AEA5CC380F3EA818E78F2EBB45C375A41342CB26C9BE46C6B4CA25",
+      "src/GWGUI.Emulation.Apple/Common/Services/ProcessCore.cs": "5DDE137EC9C25400F6195EEBFE6213A41D9107F36827399866A1D848E2B79600",
+      "src/GWGUI.Emulation.Panasonic/Common/Services/ProcessCore.cs": "1B0C724FE860BF08E3E88E50E6EB36C1B78D9E13DA0944CF690EB2B9007A3022",
+      "src/GWGUI.Emulation.Acorn/Common/Services/ProcessCore.cs": "40D9B86EB45DE9BF36A2FB981C7B8E9C752FC15460BF79D8B2142DF4B853D561",
+      "src/GWGUI.Emulation.Atari/Common/Services/ProcessCore.cs": "DDFF466765DBEF7B9730B81B65E451C911571EFBC132757B9AEFBD4A03F8247E",
+      "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ProcessCore.cs": "1371574A4072E82DA09FF8C4CCF8A4EFFD55FB44F197D471CA3BF75AFAFE89E8",
+      "src/GWGUI.Emulation.Snk/Common/Services/ProcessCore.cs": "F1E1771439D942FB8A831131175DB3A35DF31EB14B962D0A8F67C7C1F8AD8004",
+      "src/GWGUI.Emulation.Wenquxing/Common/Services/ProcessCore.cs": "832DDF2CF196F0E8C7064AE3A2460609B4A1222E1B6DE9BE7C766D9AE68BA05A",
+      "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ProcessCore.cs": "E7255908B892A42C57A5CF209474E8021D80518C29EAE21798321598BC9202A0",
+      "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ProcessCore.cs": "20232A829B7E361EF28458F1D7B8291E831500ADBD536D4619CFA640CE089E1E",
+      "src/GWGUI.Emulation.Bandai/Common/Services/ProcessCore.cs": "8606FE1DAE062009618694B92DEC715C75C997C57070CBA5C2CA591FDB418DC8",
+      "src/GWGUI.Emulation.Thomson/Common/Services/ProcessCore.cs": "EE2E015A5C4EABB0FC76F53B771F934E2BA4524EEC892188F74221CF8D2C8CC0",
+      "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ProcessCore.cs": "A56C0F2F6B7D5E4273B5743493C85902C36E60FF7360F986107E054E51EEF011",
+      "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ProcessCore.cs": "8DAA84630FE360E943554130DD10B8AE4391C28021794D8A7B20665AC3D5917C",
+      "src/GWGUI.Emulation.Mattel/Common/Services/ProcessCore.cs": "47D8493DACF80FF44453D47BC168C1E35A98F81B876646AFFA0AE5A8823D9E1B",
+      "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ProcessCore.cs": "E9F721B507857984220A96C87ED36BA9B0ED5A3ECDF2F99F8397C3DA0685104F",
+      "src/GWGUI.Emulation.Sinclair/Common/Services/ProcessCore.cs": "EB316E45B4D8F98B54BC53EDF9F7202C6015DF2129B9D83E903BE36A2B988AF7",
+      "src/GWGUI.Emulation.Sharp/Common/Services/ProcessCore.cs": "A96AB5BCC5B3D0CFCF67664C9381FCB763665E1CD7BA8C6E553B158E816E6075",
+      "src/GWGUI.Emulation.Philips/Common/Services/ProcessCore.cs": "25F6FE95FE14ECA590AA4105DDCC55DEFD3FED8C6748FD9CD8E151DDCFB2F67D",
+      "src/GWGUI.Emulation.Watara/Common/Services/ProcessCore.cs": "3DE497575D18D8677C6E673E6C20E10F2D33049DD26882504B1479D677C668D6",
+      "src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/ProcessCore.cs": "FE23AA230B1AA413C08E144C9EA29F662CBDAF035107D22D3D04CFC814669CD8",
+      "src/GWGUI.Emulation.Fairchild/Common/Services/ProcessCore.cs": "1A541B1036262301F070443D8021678A87DD402FA1D85355C8395B27AB83DC52",
+      "src/GWGUI.Emulation.Coleco/Common/Services/ProcessCore.cs": "A58154D59A16CAAD63EEFCD0E9408BB7CF7EF9D0A6A1F7461CFE62DED6EF5D5D"
+    },
+    "verification": "All 24 old bodies and current direct expressions checked by AST; restoring each old method reproduces every other token, signature, field and lifecycle member of its complete source file.",
+    "tests": "FrameTransmissionTests: 9 passed, exit 0; SDK, App and all 23 module references compiled. No new test or native core introduced.",
+    "afterProductBuild": "005e3c677"
+  },
+  "shortMethodInventory": {
+    "snapshot": "005e3c6772a77d1060a2b285ea22b09ad8b865f4",
+    "files": 7314,
+    "bodyCount": 9472,
+    "exactGroups": 773,
+    "renamedGroups": 363,
+    "status": "Incomplete; 24 ConcurrentQueue forwarding occurrences verified, other groups pending",
+    "trackedCSharpCoverage": "7314 tracked and listed files, no tracked CSharp file omitted by rg, hidden paths included"
   }
 }

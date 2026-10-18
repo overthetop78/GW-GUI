@@ -76,15 +76,7 @@ internal sealed partial class ProcessCore : IEmulatorCore
     internal string? VideoMapName => _activeVideoMapName ?? _videoMapName;
 
     public bool TryDequeueAudio(out AudioChunk? chunk)
-    {
-        if (_audio.TryDequeue(out var value))
-        {
-            chunk = value;
-            return true;
-        }
-        chunk = null;
-        return false;
-    }
+    => _audio.TryDequeue(out chunk);
 
     public void Initialize(MachineConfiguration configuration, string sessionDirectory, string? saveDirectory = null)
     {
