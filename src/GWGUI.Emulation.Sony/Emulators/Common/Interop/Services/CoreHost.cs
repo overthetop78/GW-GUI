@@ -77,16 +77,8 @@ public static class CoreHost
                             writer.Write(activeCore.ShutdownRequested);
                             ControllerFeedbackProtocol.Write(writer, activeCore.ControllerFeedback);
                             break;
-                        case HostCommand.HardReset:
-                            EnsureCore(core).HardReset();
-                            WriteSuccess(writer);
-                            break;
                         case HostCommand.SoftReset:
                             EnsureCore(core).SoftReset();
-                            WriteSuccess(writer);
-                            break;
-                        case HostCommand.Stop:
-                            EnsureCore(core).Stop();
                             WriteSuccess(writer);
                             break;
                         case HostCommand.InsertMedia:
@@ -97,25 +89,8 @@ public static class CoreHost
                             EnsureCore(core).EjectMedia();
                             WriteSuccess(writer);
                             break;
-                        case HostCommand.SaveState:
-                            var state = EnsureCore(core).SaveState();
-                            writer.Write(true);
-                            CoreHostProtocol.WriteBytes(writer, state);
-                            break;
-                        case HostCommand.LoadState:
-                            EnsureCore(core).LoadState(CoreHostProtocol.ReadBytes(reader));
-                            WriteSuccess(writer);
-                            break;
-                        case HostCommand.SetOption:
-                            EnsureCore(core).SetOption(reader.ReadString(), reader.ReadString());
-                            WriteSuccess(writer);
-                            break;
                         case HostCommand.SetControllerPortDevice:
                             EnsureCore(core).SetControllerPortDevice(reader.ReadInt32(), (ControllerType)reader.ReadInt32());
-                            WriteSuccess(writer);
-                            break;
-                        case HostCommand.SelectDisk:
-                            EnsureCore(core).SelectDisk(reader.ReadInt32());
                             WriteSuccess(writer);
                             break;
                         case HostCommand.Dispose:
@@ -124,7 +99,10 @@ public static class CoreHost
                             WriteSuccess(writer);
                             break;
                         default:
-                            throw new InvalidDataException(CoreExceptions.UnknownHostCommand((byte)command));
+                            if (!EmulationHostProtocolFunctions.TryExecuteCoreStateCommand((byte)command, reader, writer,
+                                    () => EnsureCore(core), CoreHostProtocol.ReadBytes, WriteSuccess))
+                                throw new InvalidDataException(CoreExceptions.UnknownHostCommand((byte)command));
+                            break;
                     }
                 }, (writer, error) =>
                 {

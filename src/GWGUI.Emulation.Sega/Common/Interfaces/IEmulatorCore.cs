@@ -2,7 +2,7 @@ using GWGUI.Emulation;
 
 namespace GWGUI.Emulation.Sega.Common.Interfaces;
 
-internal interface IEmulatorCore : IDisposable
+internal interface IEmulatorCore : IDisposable, GWGUI.Emulation.Interfaces.IEmulationCoreStateCommands
 {
     VideoFrame? LatestVideoFrame { get; }
     AudioChunk? LatestAudioChunk { get; }
@@ -20,14 +20,8 @@ internal interface IEmulatorCore : IDisposable
     int CurrentDiskIndex { get; }
     void Initialize(MachineConfiguration configuration, string sessionDirectory, string? saveDirectory = null);
     void RunFrame();
-    void HardReset();
     void SoftReset();
-    void Stop();
     void SetInput(EmulationInputSnapshot snapshot);
     void InsertMedia(string path);
     void EjectMedia();
-    void SelectDisk(int index);
-    byte[] SaveState();
-    void LoadState(ReadOnlySpan<byte> state);
-    void SetOption(string key, string value);
 }

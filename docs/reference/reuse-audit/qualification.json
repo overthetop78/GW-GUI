@@ -6047,5 +6047,184 @@
     ],
     "verification": "Sixteen complete sender/receiver AST comparisons and original Atari writer packet passed; sixteen RegionValue adapters forward their original parameter to the existing SDK converter; previous SDK methods unchanged; 11 targeted tests pass; SDK/App/23 module references compile; diff --check passes.",
     "tests": "Independent little-endian 24-byte packet fixture, null/NTSC/PAL region, positive 64-bit counters beyond Int32, seven truncation boundaries preserving prior assignments, callback error before next read and borrowed reader remains open. Managed streams only."
+  },
+  "coreStateCommandReuse": {
+    "ownership": "Core, reader/writer and codecs borrowed; no disposal or support for media/ports added to the state contract",
+    "originalOwners": [
+      "23ce0f650:src/GWGUI.Emulation.Amiga/Cores/IAmigaCore.cs",
+      "23ce0f650:src/GWGUI.Emulation.Amiga/Cores/AmigaCoreHostProtocol.cs"
+    ],
+    "method": "TryExecuteCoreStateCommand",
+    "contracts": [
+      "src/GWGUI.Emulation/Interfaces/IEmulationCoreCommands.cs",
+      "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interfaces/IEmulatorCore.cs",
+      "src/GWGUI.Emulation.Commodore/Emulators/Common/Interfaces/IEmulatorCore.cs",
+      "src/GWGUI.Emulation.Microsoft/Common/Interfaces/IEmulatorCore.cs",
+      "src/GWGUI.Emulation.Nec/Common/Interfaces/IEmulatorCore.cs",
+      "src/GWGUI.Emulation.Nintendo/Common/Interfaces/IEmulatorCore.cs",
+      "src/GWGUI.Emulation.Sega/Common/Interfaces/IEmulatorCore.cs",
+      "src/GWGUI.Emulation.Sony/Common/Interfaces/IEmulatorCore.cs"
+    ],
+    "sourceCommit": "14ece2735",
+    "sdkOwner": "src/GWGUI.Emulation/Functions/EmulationHostProtocolFunctions.Host.cs",
+    "nativeProfiles": [
+      {
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/CoreHost.cs",
+        "enumPath": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Enums/HostEnums.cs",
+        "operationIds": [
+          3,
+          4,
+          7,
+          8,
+          9,
+          10
+        ],
+        "originalAmigaBranchesUnchangedBeforeExtraction": true,
+        "remainingCommandsInitializationUnknownErrorAndFinallyUnchanged": true,
+        "nativeSuccess": "Existing WriteSuccess runs after operation and before SaveState payload",
+        "readBytes": "Existing CoreHostProtocol.ReadBytes retained",
+        "writeBytesCodec": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Functions/CoreHostProtocol.cs"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/CoreHost.cs",
+        "enumPath": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Enums/HostEnums.cs",
+        "operationIds": [
+          3,
+          4,
+          7,
+          8,
+          9,
+          10
+        ],
+        "originalAmigaBranchesUnchangedBeforeExtraction": true,
+        "remainingCommandsInitializationUnknownErrorAndFinallyUnchanged": true,
+        "nativeSuccess": "Existing WriteSuccess runs after operation and before SaveState payload",
+        "readBytes": "Existing CoreHostProtocol.ReadBytes retained",
+        "writeBytesCodec": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Functions/CoreHostProtocol.cs"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/CoreHost.cs",
+        "enumPath": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Enums/HostEnums.cs",
+        "operationIds": [
+          3,
+          4,
+          7,
+          8,
+          9,
+          10
+        ],
+        "originalAmigaBranchesUnchangedBeforeExtraction": true,
+        "remainingCommandsInitializationUnknownErrorAndFinallyUnchanged": true,
+        "nativeSuccess": "Existing WriteSuccess runs after operation and before SaveState payload",
+        "readBytes": "Existing CoreHostProtocol.ReadBytes retained",
+        "writeBytesCodec": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Functions/CoreHostProtocol.cs"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nec/Emulators/BeetlePcfx/Services/CoreHost.cs",
+        "enumPath": "src/GWGUI.Emulation.Nec/Emulators/BeetlePcfx/Enums/HostEnums.cs",
+        "operationIds": [
+          3,
+          4,
+          7,
+          8,
+          9,
+          10
+        ],
+        "originalAmigaBranchesUnchangedBeforeExtraction": true,
+        "remainingCommandsInitializationUnknownErrorAndFinallyUnchanged": true,
+        "nativeSuccess": "Existing WriteSuccess runs after operation and before SaveState payload",
+        "readBytes": "Existing CoreHostProtocol.ReadBytes retained",
+        "writeBytesCodec": "src/GWGUI.Emulation.Nec/Emulators/BeetlePcfx/Functions/CoreHostProtocol.cs"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/CoreHost.cs",
+        "enumPath": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Enums/HostEnums.cs",
+        "operationIds": [
+          3,
+          4,
+          7,
+          8,
+          9,
+          10
+        ],
+        "originalAmigaBranchesUnchangedBeforeExtraction": true,
+        "remainingCommandsInitializationUnknownErrorAndFinallyUnchanged": true,
+        "nativeSuccess": "Existing WriteSuccess runs after operation and before SaveState payload",
+        "readBytes": "Existing CoreHostProtocol.ReadBytes retained",
+        "writeBytesCodec": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Functions/CoreHostProtocol.cs"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/CoreHost.cs",
+        "enumPath": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Enums/HostEnums.cs",
+        "operationIds": [
+          3,
+          4,
+          7,
+          8,
+          9,
+          10
+        ],
+        "originalAmigaBranchesUnchangedBeforeExtraction": true,
+        "remainingCommandsInitializationUnknownErrorAndFinallyUnchanged": true,
+        "nativeSuccess": "Existing WriteSuccess runs after operation and before SaveState payload",
+        "readBytes": "Existing CoreHostProtocol.ReadBytes retained",
+        "writeBytesCodec": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Functions/CoreHostProtocol.cs"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/CoreHost.cs",
+        "enumPath": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Enums/HostEnums.cs",
+        "operationIds": [
+          3,
+          4,
+          7,
+          8,
+          9,
+          10
+        ],
+        "originalAmigaBranchesUnchangedBeforeExtraction": true,
+        "remainingCommandsInitializationUnknownErrorAndFinallyUnchanged": true,
+        "nativeSuccess": "Existing WriteSuccess runs after operation and before SaveState payload",
+        "readBytes": "Existing CoreHostProtocol.ReadBytes retained",
+        "writeBytesCodec": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Functions/CoreHostProtocol.cs"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/CoreHost.cs",
+        "enumPath": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Enums/HostEnums.cs",
+        "operationIds": [
+          3,
+          4,
+          7,
+          8,
+          9,
+          10
+        ],
+        "originalAmigaBranchesUnchangedBeforeExtraction": true,
+        "remainingCommandsInitializationUnknownErrorAndFinallyUnchanged": true,
+        "nativeSuccess": "Existing WriteSuccess runs after operation and before SaveState payload",
+        "readBytes": "Existing CoreHostProtocol.ReadBytes retained",
+        "writeBytesCodec": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Functions/CoreHostProtocol.cs"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/CoreHost.cs",
+        "enumPath": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Enums/HostEnums.cs",
+        "operationIds": [
+          3,
+          4,
+          7,
+          8,
+          9,
+          10
+        ],
+        "originalAmigaBranchesUnchangedBeforeExtraction": true,
+        "remainingCommandsInitializationUnknownErrorAndFinallyUnchanged": true,
+        "nativeSuccess": "Existing WriteSuccess runs after operation and before SaveState payload",
+        "readBytes": "Existing CoreHostProtocol.ReadBytes retained",
+        "writeBytesCodec": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Functions/CoreHostProtocol.cs"
+      }
+    ],
+    "verification": "Nine original Amiga branch sets, eight contracts, native remaining host tokens, typed SDK media/port operations and previous SDK methods unchanged; 44 targeted tests pass; SDK/App/23 module references compile.",
+    "richPolicy": "Existing outer rich response header unchanged; typed handler uses the shared state operations without a success callback",
+    "nativePolicy": "Existing bool success callback after successful operation and before SaveState bytes",
+    "tests": "21 native cases and 23 existing rich cases; memory streams only, no external core, file, process or window. Native success order, payload, missing core before argument reads, unknown commands and operation failure verified."
   }
 }

@@ -7,6 +7,40 @@ namespace GWGUI.Emulation.Functions;
 
 internal static partial class EmulationHostProtocolFunctions
 {
+    internal static bool TryExecuteCoreStateCommand(byte command, BinaryReader reader, BinaryWriter writer,
+        Func<IEmulationCoreStateCommands> ensureCore, Func<BinaryReader, byte[]> readBytes,
+        Action<BinaryWriter>? writeSuccess = null)
+    {
+        switch (command)
+        {
+            case EmulationHostProtocolConstants.HardResetCommand:
+                ensureCore().HardReset();
+                break;
+            case EmulationHostProtocolConstants.StopCommand:
+                ensureCore().Stop();
+                break;
+            case EmulationHostProtocolConstants.SaveStateCommand:
+                var state = ensureCore().SaveState();
+                writeSuccess?.Invoke(writer);
+                WriteBytes(writer, state);
+                return true;
+            case EmulationHostProtocolConstants.LoadStateCommand:
+                ensureCore().LoadState(readBytes(reader));
+                break;
+            case EmulationHostProtocolConstants.SetOptionCommand:
+                ensureCore().SetOption(reader.ReadString(), reader.ReadString());
+                break;
+            case EmulationHostProtocolConstants.SelectDiskCommand:
+                ensureCore().SelectDisk(reader.ReadInt32());
+                break;
+            default:
+                return false;
+        }
+        writeSuccess?.Invoke(writer);
+        return true;
+    }
+
+
     internal static void WriteRuntimeStatus(BinaryWriter writer, EmulationVideoStandard? region,
         int bufferedAudioFrames, long audioOverrunCount, long audioUnderrunCount)
     {
@@ -63,29 +97,11 @@ internal static partial class EmulationHostProtocolFunctions
     {
         switch (command)
         {
-            case EmulationHostProtocolConstants.HardResetCommand:
-                ensureCore().HardReset();
-                break;
-            case EmulationHostProtocolConstants.StopCommand:
-                ensureCore().Stop();
-                break;
             case EmulationHostProtocolConstants.InsertMediaCommand:
                 ensureCore().InsertMedia(readMedia(reader));
                 break;
             case EmulationHostProtocolConstants.EjectMediaCommand:
                 ensureCore().EjectMedia(EmulationMediaSlot.FromProtocolValue(reader.ReadInt32()));
-                break;
-            case EmulationHostProtocolConstants.SaveStateCommand:
-                WriteBytes(writer, ensureCore().SaveState());
-                break;
-            case EmulationHostProtocolConstants.LoadStateCommand:
-                ensureCore().LoadState(readBytes(reader));
-                break;
-            case EmulationHostProtocolConstants.SetOptionCommand:
-                ensureCore().SetOption(reader.ReadString(), reader.ReadString());
-                break;
-            case EmulationHostProtocolConstants.SelectDiskCommand:
-                ensureCore().SelectDisk(reader.ReadInt32());
                 break;
             case EmulationHostProtocolConstants.GetDiskStatusCommand:
                 writeDiskStatus(writer, ensureCore().GetDiskStatus());
@@ -94,7 +110,7 @@ internal static partial class EmulationHostProtocolFunctions
                 ensureCore().SetControllerPortDevice(reader.ReadInt32(), decodePeripheral(reader.ReadInt32()));
                 break;
             default:
-                return false;
+                return TryExecuteCoreStateCommand(command, reader, writer, ensureCore, readBytes);
         }
         return true;
     }
