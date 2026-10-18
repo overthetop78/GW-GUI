@@ -99,12 +99,7 @@ internal sealed partial class ExternalHostCallbacks
                 case ExternalCoreApiConstants.GetVfsInterface:
                     return false;
                 case ExternalCoreApiConstants.GetLedInterface:
-                    if (data == nint.Zero) return false;
-                    Marshal.StructureToPtr(new ExternalCoreApi.LedInterface
-                    {
-                        SetLedState = Marshal.GetFunctionPointerForDelegate(Led)
-                    }, data, false);
-                    return true;
+                    return ExternalCoreEnvironmentFunctions.SetLedInterface(data, Led);
                 default:
                     if (_unknownEnvironmentCommands.Add(command)) AddDiagnostic(string.Format(UnsupportedEnvironmentCommandFormat, command));
                     return false;

@@ -231,12 +231,34 @@ internal static class ExternalCoreEnvironmentFunctions
     }
 
     internal static bool SetLogInterface(nint data, ExternalCoreApi.LogCallback log)
-    {
-        if (data == nint.Zero) return false;
-        Marshal.StructureToPtr(new ExternalCoreApi.LogInterface
+        => InstallInterface(data, () => new ExternalCoreApi.LogInterface
         {
             Log = Marshal.GetFunctionPointerForDelegate(log)
-        }, data, false);
+        });
+
+    internal static bool SetLedInterface(nint data, ExternalCoreApi.SetLedState setState)
+        => InstallInterface(data, () => new ExternalCoreApi.LedInterface
+        {
+            SetLedState = Marshal.GetFunctionPointerForDelegate(setState)
+        });
+
+    internal static bool SetRumbleInterface(nint data, ExternalCoreApi.SetRumbleState setState)
+        => InstallInterface(data, () => new ExternalCoreApi.RumbleInterface
+        {
+            SetState = Marshal.GetFunctionPointerForDelegate(setState)
+        });
+
+    internal static bool SetSensorInterface(nint data, ExternalCoreApi.SetSensorState setState, ExternalCoreApi.GetSensorInput getInput)
+        => InstallInterface(data, () => new ExternalCoreApi.SensorInterface
+        {
+            SetState = Marshal.GetFunctionPointerForDelegate(setState),
+            GetInput = Marshal.GetFunctionPointerForDelegate(getInput)
+        });
+
+    private static bool InstallInterface<T>(nint data, Func<T> create) where T : struct
+    {
+        if (data == nint.Zero) return false;
+        Marshal.StructureToPtr(create(), data, false);
         return true;
     }
 

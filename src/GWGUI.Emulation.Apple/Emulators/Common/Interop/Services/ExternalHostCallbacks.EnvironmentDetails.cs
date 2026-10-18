@@ -78,33 +78,11 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
         => ExternalCoreEnvironmentFunctions.SetLogInterface(data, Log);
 
     public bool SetLedInterface(nint data)
-    {
-        if (data == nint.Zero) return false;
-        Marshal.StructureToPtr(new ExternalCoreApi.LedInterface
-        {
-            SetLedState = Marshal.GetFunctionPointerForDelegate(SetLedState)
-        }, data, false);
-        return true;
-    }
+        => ExternalCoreEnvironmentFunctions.SetLedInterface(data, SetLedState);
 
     public bool SetRumbleInterface(nint data)
-    {
-        if (data == nint.Zero) return false;
-        Marshal.StructureToPtr(new ExternalCoreApi.RumbleInterface
-        {
-            SetState = Marshal.GetFunctionPointerForDelegate(SetRumbleState)
-        }, data, false);
-        return true;
-    }
+        => ExternalCoreEnvironmentFunctions.SetRumbleInterface(data, SetRumbleState);
 
     public bool SetSensorInterface(nint data)
-    {
-        if (data == nint.Zero) return false;
-        Marshal.StructureToPtr(new ExternalCoreApi.SensorInterface
-        {
-            SetState = Marshal.GetFunctionPointerForDelegate(SetSensorState),
-            GetInput = Marshal.GetFunctionPointerForDelegate(GetSensorInput)
-        }, data, false);
-        return true;
-    }
+        => ExternalCoreEnvironmentFunctions.SetSensorInterface(data, SetSensorState, GetSensorInput);
 }

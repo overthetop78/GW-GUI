@@ -23251,6 +23251,1211 @@
         "externalFilesOrCores": false,
         "allAllocatedMemoryFreedInFinally": true
       }
+    },
+    "subsequentInterfaceValidation": {
+      "proof": "callbackInterfaceInstallReuse.verification",
+      "beforeHashesMatch": true,
+      "after": [
+        {
+          "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "afterSha256": "F28313CB0240A8700F122F58B77CA6787BF12D50EE443EE13BCBB376850E2A61"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "afterSha256": "02E1DDAEEA2F3D7661053CD0D54CCA437BAC652CB8F8838BCB44DC62417806A9"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "afterSha256": "E8604DF6987AEDFE927F52C43621A3CFA319A715E68CB889D3DA71849A8C3E89"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Environment.cs",
+          "afterSha256": "33A19DD20B50E65A797627722DB2AE22BD4654B86319BCED9582245AD35DC361"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Environment.cs",
+          "afterSha256": "0C517A2E300AE4E3B00C6C99DF51AE29D3CF1020D8F653088EB5FA28E227296E"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "afterSha256": "AEE97FE6EFD5FDE94871108AD497D845DF95945B9491AAE1E594A21FE23B97ED"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "afterSha256": "41A7D1AEC7F749BE4FA8335962AAE1E2F2A1405E6E3E45AED4432F8E91229D7A"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "afterSha256": "7ABF37AFE450BF37D8F1257FDDEE26B76F5AB5C2A174BCF5C17E0BB2A8D353BD"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "afterSha256": "29E95F4BF562E57EF3BBA62FB552883DC9AAD8D6F4612EA70E763BC7091D7DB9"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "afterSha256": "9DABBA3FB7215BB283A08A1E77B07782A3C25C9C0899D64A65F362A55D714A0C"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "afterSha256": "1C0C41249598C0C23E26646027948FBD0EA35DC52620CB0A0E4BAC5A28BD538D"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "afterSha256": "A52AE7CB333C6771999D3B71A574911471F53DB737CA6D82A8A15FACB82AB38B"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "afterSha256": "148268E7557E6D46F6B99A20232CB67AE303F0D41F39913B9CA8CFBD394AD65C"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "afterSha256": "99701F288AD15F6DE3A67AE0294F598139A7B4882C84851C7B7FCE7B4640E174"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "afterSha256": "AB0315D0281126B89A83E555C48D0490CFFC4C037720416970A444A94A0F09BE"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "afterSha256": "C17503B55A90895971277AB390FCF56FB3DACDD04091F10C1807C4F991E5F89E"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "afterSha256": "D4EC76B99AF2C388BF11B9905DE6BA8E0F9E2FCEBF18D9DA678129DB47D26DFD"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "afterSha256": "21E0221C199C8496D9AF22C3104F3773C1A95556A00ECA9FFDBC85FBAD5BF056"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "afterSha256": "630BF4828C713B09153118C870421B95140109C74B3B090EAFEAED634C5C134B"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "afterSha256": "99BFEB838A95CA6BF18754E4115D4727E14423C9D48B64E90F4721AB9B59CF5E"
+        }
+      ],
+      "decision": "Only interface installation fragments changed; diagnostic methods remain identical; existing SDK log publication expands to its previous body through the common original publisher"
+    },
+    "productBuild": {
+      "proof": "callbackInterfaceInstallReuse.productBuild",
+      "included": true
+    }
+  },
+  "callbackInterfaceInstallReuse": {
+    "state": "verified",
+    "beforeHead": "b5114ff1abd5492c8d08180ae902252d65f7caed",
+    "origins": {
+      "led": {
+        "commit": "c2d674be4",
+        "path": "src/GWGUI.Emulation.Amiga/Cores/AmigaExternalHostCallbacks.cs",
+        "tokens": "case AmigaExternalApi . GetLedInterface : if ( data == 0 ) return false ; Marshal . StructureToPtr ( new AmigaExternalApi . LedInterface { SetLedState = Marshal . GetFunctionPointerForDelegate ( Led ) } , data , false ) ; return true ;"
+      },
+      "rumble": {
+        "commit": "5c43ca75e",
+        "tokens": "private bool SetRumbleInterface ( nint data ) { if ( data == nint . Zero ) return false ; Marshal . StructureToPtr ( new ExternalCoreApi . RumbleInterface { SetState = Marshal . GetFunctionPointerForDelegate ( SetRumbleState ) } , data , false ) ; return true ; }"
+      },
+      "sensor": {
+        "commit": "5c43ca75e",
+        "tokens": "private bool SetSensorInterface ( nint data ) { if ( data == nint . Zero ) return false ; Marshal . StructureToPtr ( new ExternalCoreApi . SensorInterface { SetState = Marshal . GetFunctionPointerForDelegate ( SetSensorState ) , GetInput = Marshal . GetFunctionPointerForDelegate ( GetSensorInput ) } , data , false ) ; return true ; }"
+      }
+    },
+    "hosts": [
+      {
+        "ownerSha256": "67B1E5C081F964C3B48CA69D8C8E6916B1779027C5D03B7E983BDF592AE0659B",
+        "fragments": [
+          {
+            "nativeStatementTokens": [
+              "if ( data == nint . Zero ) return false ;",
+              "Marshal . StructureToPtr ( new ExternalCoreApi . LedInterface { SetLedState = Marshal . GetFunctionPointerForDelegate ( Led ) } , data , false ) ;",
+              "return true ;"
+            ],
+            "tokens": "case ExternalCoreApiConstants . GetLedInterface : if ( data == nint . Zero ) return false ; Marshal . StructureToPtr ( new ExternalCoreApi . LedInterface { SetLedState = Marshal . GetFunctionPointerForDelegate ( Led ) } , data , false ) ; return true ;",
+            "method": "GetLedInterface"
+          }
+        ],
+        "ownerPath": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+        "kind": "native",
+        "beforeSha256": "AF8E1B1BFA7E0287D3554ED88BC0F56B105E10DD720650362F47E0AC118100A8",
+        "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs"
+      },
+      {
+        "ownerSha256": "4E8EF4D0A674D0D1092332C3D686FC9B27F5C40B867732CBCA661D9881499B24",
+        "fragments": [
+          {
+            "nativeStatementTokens": [
+              "if ( data == nint . Zero ) return false ;",
+              "Marshal . StructureToPtr ( new ExternalCoreApi . LedInterface { SetLedState = Marshal . GetFunctionPointerForDelegate ( Led ) } , data , false ) ;",
+              "return true ;"
+            ],
+            "tokens": "case ExternalCoreApiConstants . GetLedInterface : if ( data == nint . Zero ) return false ; Marshal . StructureToPtr ( new ExternalCoreApi . LedInterface { SetLedState = Marshal . GetFunctionPointerForDelegate ( Led ) } , data , false ) ; return true ;",
+            "method": "GetLedInterface"
+          }
+        ],
+        "ownerPath": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+        "kind": "native",
+        "beforeSha256": "A09CAA40607937C100346DAEA17F1B93EA545FC7D98DC07E37A389CE65B962C1",
+        "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs"
+      },
+      {
+        "ownerSha256": "318C42B71AC0D6877501EF3DE0EC22D6665FFBD4A142A1A6384811EE93323DB0",
+        "fragments": [
+          {
+            "nativeStatementTokens": [
+              "if ( data == 0 ) return false ;",
+              "Marshal . StructureToPtr ( new ExternalCoreApi . LedInterface { SetLedState = Marshal . GetFunctionPointerForDelegate ( Led ) } , data , false ) ;",
+              "return true ;"
+            ],
+            "tokens": "case ExternalCoreApiConstants . GetLedInterface : if ( data == 0 ) return false ; Marshal . StructureToPtr ( new ExternalCoreApi . LedInterface { SetLedState = Marshal . GetFunctionPointerForDelegate ( Led ) } , data , false ) ; return true ;",
+            "method": "GetLedInterface"
+          }
+        ],
+        "ownerPath": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+        "kind": "native",
+        "beforeSha256": "2BA9D12875623FA429969325C201306373DC21D47DD948D4BEB553BCACA32BB9",
+        "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs"
+      },
+      {
+        "ownerSha256": "30587EFBCF35B44DE48F234966EAFF41540D9497BA69143AB0E2D1892B3AAFFA",
+        "fragments": [
+          {
+            "nativeStatementTokens": [
+              "if ( data == 0 ) return false ;",
+              "Marshal . StructureToPtr ( new ExternalCoreApi . LedInterface { SetLedState = Marshal . GetFunctionPointerForDelegate ( Led ) } , data , false ) ;",
+              "return true ;"
+            ],
+            "tokens": "case ExternalCoreApiConstants . GetLedInterface : if ( data == 0 ) return false ; Marshal . StructureToPtr ( new ExternalCoreApi . LedInterface { SetLedState = Marshal . GetFunctionPointerForDelegate ( Led ) } , data , false ) ; return true ;",
+            "method": "GetLedInterface"
+          }
+        ],
+        "ownerPath": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.cs",
+        "kind": "native",
+        "beforeSha256": "9A7548C0262882AAF721B5B80E599909AA7439BEDE4E2116D0A9AC9FD85752FF",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Environment.cs"
+      },
+      {
+        "ownerSha256": "25F6B1A2B15F2BC93976EA900A400AC0C76A5807C994FE5D660E674435103433",
+        "fragments": [
+          {
+            "nativeStatementTokens": [
+              "if ( data == 0 ) return false ;",
+              "Marshal . StructureToPtr ( new ExternalCoreApi . LedInterface { SetLedState = Marshal . GetFunctionPointerForDelegate ( Led ) } , data , false ) ;",
+              "return true ;"
+            ],
+            "tokens": "case ExternalCoreApiConstants . GetLedInterface : if ( data == 0 ) return false ; Marshal . StructureToPtr ( new ExternalCoreApi . LedInterface { SetLedState = Marshal . GetFunctionPointerForDelegate ( Led ) } , data , false ) ; return true ;",
+            "method": "GetLedInterface"
+          }
+        ],
+        "ownerPath": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.cs",
+        "kind": "native",
+        "beforeSha256": "0DDABD0CD119D33DDC146D33C4E0BF4C21419C3B5A284ADCF797E1A25F76E524",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Environment.cs"
+      },
+      {
+        "ownerSha256": "2A4E149EDE0C7B068D13BE8F7477088A00D192DF1FCF414614BBC899C9DF0655",
+        "fragments": [
+          {
+            "nativeStatementTokens": [
+              "if ( data == 0 ) return false ;",
+              "Marshal . StructureToPtr ( new ExternalCoreApi . LedInterface { SetLedState = Marshal . GetFunctionPointerForDelegate ( Led ) } , data , false ) ;",
+              "return true ;"
+            ],
+            "tokens": "case ExternalCoreApiConstants . GetLedInterface : if ( data == 0 ) return false ; Marshal . StructureToPtr ( new ExternalCoreApi . LedInterface { SetLedState = Marshal . GetFunctionPointerForDelegate ( Led ) } , data , false ) ; return true ;",
+            "method": "GetLedInterface"
+          }
+        ],
+        "ownerPath": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+        "kind": "native",
+        "beforeSha256": "8B130872D2EAA8DC4951D99F4EBFD6DFE51E453DC1A09F03CC60537746D69956",
+        "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs"
+      },
+      {
+        "ownerSha256": "E230A4DDA0DB84876AC76A7C54CAD590CA1D53363E52C5741C69E54D8DCC8969",
+        "fragments": [
+          {
+            "nativeStatementTokens": [
+              "if ( data == 0 ) return false ;",
+              "Marshal . StructureToPtr ( new ExternalCoreApi . LedInterface { SetLedState = Marshal . GetFunctionPointerForDelegate ( Led ) } , data , false ) ;",
+              "return true ;"
+            ],
+            "tokens": "case ExternalCoreApiConstants . GetLedInterface : if ( data == 0 ) return false ; Marshal . StructureToPtr ( new ExternalCoreApi . LedInterface { SetLedState = Marshal . GetFunctionPointerForDelegate ( Led ) } , data , false ) ; return true ;",
+            "method": "GetLedInterface"
+          }
+        ],
+        "ownerPath": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+        "kind": "native",
+        "beforeSha256": "20D1B684B58882EF2B545F8AEF1E0485D5B1B54E9C40D48C5B1BB9CCD3BF7596",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs"
+      },
+      {
+        "ownerSha256": "72F41186FCB18622C8A35F2B193F24245CDB3D3F383E71B0486904164F0939A2",
+        "fragments": [
+          {
+            "nativeStatementTokens": [
+              "if ( data == 0 ) return false ;",
+              "Marshal . StructureToPtr ( new ExternalCoreApi . LedInterface { SetLedState = Marshal . GetFunctionPointerForDelegate ( Led ) } , data , false ) ;",
+              "return true ;"
+            ],
+            "tokens": "case ExternalCoreApiConstants . GetLedInterface : if ( data == 0 ) return false ; Marshal . StructureToPtr ( new ExternalCoreApi . LedInterface { SetLedState = Marshal . GetFunctionPointerForDelegate ( Led ) } , data , false ) ; return true ;",
+            "method": "GetLedInterface"
+          }
+        ],
+        "ownerPath": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+        "kind": "native",
+        "beforeSha256": "0944215FC5B5BAE9D488866B127618CB4F2A6E87F5F0911DCAF8234294F2F22B",
+        "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs"
+      },
+      {
+        "ownerSha256": "AFB805DDE3694BCD4D05EE0DD8E460757D68EB3C794AFF37FEE7D1CAAFF7E2FE",
+        "fragments": [
+          {
+            "body": "{\r\n        if (data == nint.Zero) return false;\r\n        Marshal.StructureToPtr(new ExternalCoreApi.LedInterface\r\n        {\r\n            SetLedState = Marshal.GetFunctionPointerForDelegate(SetLedState)\r\n        }, data, false);\r\n        return true;\r\n    }",
+            "tokens": "public bool SetLedInterface ( nint data ) { if ( data == nint . Zero ) return false ; Marshal . StructureToPtr ( new ExternalCoreApi . LedInterface { SetLedState = Marshal . GetFunctionPointerForDelegate ( SetLedState ) } , data , false ) ; return true ; }",
+            "method": "SetLedInterface"
+          },
+          {
+            "body": "{\r\n        if (data == nint.Zero) return false;\r\n        Marshal.StructureToPtr(new ExternalCoreApi.RumbleInterface\r\n        {\r\n            SetState = Marshal.GetFunctionPointerForDelegate(SetRumbleState)\r\n        }, data, false);\r\n        return true;\r\n    }",
+            "tokens": "public bool SetRumbleInterface ( nint data ) { if ( data == nint . Zero ) return false ; Marshal . StructureToPtr ( new ExternalCoreApi . RumbleInterface { SetState = Marshal . GetFunctionPointerForDelegate ( SetRumbleState ) } , data , false ) ; return true ; }",
+            "method": "SetRumbleInterface"
+          },
+          {
+            "body": "{\r\n        if (data == nint.Zero) return false;\r\n        Marshal.StructureToPtr(new ExternalCoreApi.SensorInterface\r\n        {\r\n            SetState = Marshal.GetFunctionPointerForDelegate(SetSensorState),\r\n            GetInput = Marshal.GetFunctionPointerForDelegate(GetSensorInput)\r\n        }, data, false);\r\n        return true;\r\n    }",
+            "tokens": "public bool SetSensorInterface ( nint data ) { if ( data == nint . Zero ) return false ; Marshal . StructureToPtr ( new ExternalCoreApi . SensorInterface { SetState = Marshal . GetFunctionPointerForDelegate ( SetSensorState ) , GetInput = Marshal . GetFunctionPointerForDelegate ( GetSensorInput ) } , data , false ) ; return true ; }",
+            "method": "SetSensorInterface"
+          }
+        ],
+        "ownerPath": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+        "kind": "rich",
+        "beforeSha256": "C64468728C5B2769BA2013CD8F3B9283298398FEDC12BFEADF6133D3C58A0CDA",
+        "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs"
+      },
+      {
+        "ownerSha256": "60A69AC70E895DB4A4CFB7411DBBE2FDB238D5123CF770DF1AC90B45148CF3DB",
+        "fragments": [
+          {
+            "body": "{\n        if (data == nint.Zero) return false;\n        Marshal.StructureToPtr(new ExternalCoreApi.LedInterface\n        {\n            SetLedState = Marshal.GetFunctionPointerForDelegate(SetLedState)\n        }, data, false);\n        return true;\n    }",
+            "tokens": "public bool SetLedInterface ( nint data ) { if ( data == nint . Zero ) return false ; Marshal . StructureToPtr ( new ExternalCoreApi . LedInterface { SetLedState = Marshal . GetFunctionPointerForDelegate ( SetLedState ) } , data , false ) ; return true ; }",
+            "method": "SetLedInterface"
+          },
+          {
+            "body": "{\n        if (data == nint.Zero) return false;\n        Marshal.StructureToPtr(new ExternalCoreApi.RumbleInterface\n        {\n            SetState = Marshal.GetFunctionPointerForDelegate(SetRumbleState)\n        }, data, false);\n        return true;\n    }",
+            "tokens": "public bool SetRumbleInterface ( nint data ) { if ( data == nint . Zero ) return false ; Marshal . StructureToPtr ( new ExternalCoreApi . RumbleInterface { SetState = Marshal . GetFunctionPointerForDelegate ( SetRumbleState ) } , data , false ) ; return true ; }",
+            "method": "SetRumbleInterface"
+          },
+          {
+            "body": "{\n        if (data == nint.Zero) return false;\n        Marshal.StructureToPtr(new ExternalCoreApi.SensorInterface\n        {\n            SetState = Marshal.GetFunctionPointerForDelegate(SetSensorState),\n            GetInput = Marshal.GetFunctionPointerForDelegate(GetSensorInput)\n        }, data, false);\n        return true;\n    }",
+            "tokens": "public bool SetSensorInterface ( nint data ) { if ( data == nint . Zero ) return false ; Marshal . StructureToPtr ( new ExternalCoreApi . SensorInterface { SetState = Marshal . GetFunctionPointerForDelegate ( SetSensorState ) , GetInput = Marshal . GetFunctionPointerForDelegate ( GetSensorInput ) } , data , false ) ; return true ; }",
+            "method": "SetSensorInterface"
+          }
+        ],
+        "ownerPath": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+        "kind": "rich",
+        "beforeSha256": "AD4793076866D09D379DA0A28FE3073750CDA1FA98D2E5E3E16E1D693AEB5C51",
+        "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs"
+      },
+      {
+        "ownerSha256": "09EC0DF6B575B283D4116014462CC3D2FEB9B08A309926F33A70FC9DB7245445",
+        "fragments": [
+          {
+            "body": "{\n        if (data == nint.Zero) return false;\n        Marshal.StructureToPtr(new ExternalCoreApi.LedInterface\n        {\n            SetLedState = Marshal.GetFunctionPointerForDelegate(SetLedState)\n        }, data, false);\n        return true;\n    }",
+            "tokens": "public bool SetLedInterface ( nint data ) { if ( data == nint . Zero ) return false ; Marshal . StructureToPtr ( new ExternalCoreApi . LedInterface { SetLedState = Marshal . GetFunctionPointerForDelegate ( SetLedState ) } , data , false ) ; return true ; }",
+            "method": "SetLedInterface"
+          },
+          {
+            "body": "{\n        if (data == nint.Zero) return false;\n        Marshal.StructureToPtr(new ExternalCoreApi.RumbleInterface\n        {\n            SetState = Marshal.GetFunctionPointerForDelegate(SetRumbleState)\n        }, data, false);\n        return true;\n    }",
+            "tokens": "public bool SetRumbleInterface ( nint data ) { if ( data == nint . Zero ) return false ; Marshal . StructureToPtr ( new ExternalCoreApi . RumbleInterface { SetState = Marshal . GetFunctionPointerForDelegate ( SetRumbleState ) } , data , false ) ; return true ; }",
+            "method": "SetRumbleInterface"
+          },
+          {
+            "body": "{\n        if (data == nint.Zero) return false;\n        Marshal.StructureToPtr(new ExternalCoreApi.SensorInterface\n        {\n            SetState = Marshal.GetFunctionPointerForDelegate(SetSensorState),\n            GetInput = Marshal.GetFunctionPointerForDelegate(GetSensorInput)\n        }, data, false);\n        return true;\n    }",
+            "tokens": "public bool SetSensorInterface ( nint data ) { if ( data == nint . Zero ) return false ; Marshal . StructureToPtr ( new ExternalCoreApi . SensorInterface { SetState = Marshal . GetFunctionPointerForDelegate ( SetSensorState ) , GetInput = Marshal . GetFunctionPointerForDelegate ( GetSensorInput ) } , data , false ) ; return true ; }",
+            "method": "SetSensorInterface"
+          }
+        ],
+        "ownerPath": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+        "kind": "rich",
+        "beforeSha256": "9EB673C72AA8BA430B675B2BA2A1178DBE20E97B28D4AE50CB8B699762D5E6B0",
+        "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs"
+      },
+      {
+        "ownerSha256": "4F3467706CFD9B009FD478152E07BC88F2C37D6AD3383E0A5B52DA94D6E1AF80",
+        "fragments": [
+          {
+            "body": "{\n        if (data == nint.Zero)\n            return false;\n        Marshal.StructureToPtr(new ExternalCoreApi.LedInterface { SetLedState = Marshal.GetFunctionPointerForDelegate(SetLedState) }, data, false);\n        return true;\n    }",
+            "tokens": "public bool SetLedInterface ( nint data ) { if ( data == nint . Zero ) return false ; Marshal . StructureToPtr ( new ExternalCoreApi . LedInterface { SetLedState = Marshal . GetFunctionPointerForDelegate ( SetLedState ) } , data , false ) ; return true ; }",
+            "method": "SetLedInterface"
+          },
+          {
+            "body": "{\n        if (data == nint.Zero)\n            return false;\n        Marshal.StructureToPtr(new ExternalCoreApi.RumbleInterface { SetState = Marshal.GetFunctionPointerForDelegate(SetRumbleState) }, data, false);\n        return true;\n    }",
+            "tokens": "public bool SetRumbleInterface ( nint data ) { if ( data == nint . Zero ) return false ; Marshal . StructureToPtr ( new ExternalCoreApi . RumbleInterface { SetState = Marshal . GetFunctionPointerForDelegate ( SetRumbleState ) } , data , false ) ; return true ; }",
+            "method": "SetRumbleInterface"
+          },
+          {
+            "body": "{\n        if (data == nint.Zero)\n            return false;\n        Marshal.StructureToPtr(new ExternalCoreApi.SensorInterface { SetState = Marshal.GetFunctionPointerForDelegate(SetSensorState), GetInput = Marshal.GetFunctionPointerForDelegate(GetSensorInput) }, data, false);\n        return true;\n    }",
+            "tokens": "public bool SetSensorInterface ( nint data ) { if ( data == nint . Zero ) return false ; Marshal . StructureToPtr ( new ExternalCoreApi . SensorInterface { SetState = Marshal . GetFunctionPointerForDelegate ( SetSensorState ) , GetInput = Marshal . GetFunctionPointerForDelegate ( GetSensorInput ) } , data , false ) ; return true ; }",
+            "method": "SetSensorInterface"
+          }
+        ],
+        "ownerPath": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+        "kind": "rich",
+        "beforeSha256": "820BDB87C50E1B20FD534F8A2BBE3F36CFFF7E5FADB89A1AD3FF6557D22A6B07",
+        "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs"
+      },
+      {
+        "ownerSha256": "E8B6D9120B19ED61697C8EE80639BD000EADB2688A9166091E1C58C61218EBBD",
+        "fragments": [
+          {
+            "body": "{\n        if (data == nint.Zero) return false;\n        Marshal.StructureToPtr(new ExternalCoreApi.LedInterface\n        {\n            SetLedState = Marshal.GetFunctionPointerForDelegate(SetLedState)\n        }, data, false);\n        return true;\n    }",
+            "tokens": "public bool SetLedInterface ( nint data ) { if ( data == nint . Zero ) return false ; Marshal . StructureToPtr ( new ExternalCoreApi . LedInterface { SetLedState = Marshal . GetFunctionPointerForDelegate ( SetLedState ) } , data , false ) ; return true ; }",
+            "method": "SetLedInterface"
+          },
+          {
+            "body": "{\n        if (data == nint.Zero) return false;\n        Marshal.StructureToPtr(new ExternalCoreApi.RumbleInterface\n        {\n            SetState = Marshal.GetFunctionPointerForDelegate(SetRumbleState)\n        }, data, false);\n        return true;\n    }",
+            "tokens": "public bool SetRumbleInterface ( nint data ) { if ( data == nint . Zero ) return false ; Marshal . StructureToPtr ( new ExternalCoreApi . RumbleInterface { SetState = Marshal . GetFunctionPointerForDelegate ( SetRumbleState ) } , data , false ) ; return true ; }",
+            "method": "SetRumbleInterface"
+          },
+          {
+            "body": "{\n        if (data == nint.Zero) return false;\n        Marshal.StructureToPtr(new ExternalCoreApi.SensorInterface\n        {\n            SetState = Marshal.GetFunctionPointerForDelegate(SetSensorState),\n            GetInput = Marshal.GetFunctionPointerForDelegate(GetSensorInput)\n        }, data, false);\n        return true;\n    }",
+            "tokens": "public bool SetSensorInterface ( nint data ) { if ( data == nint . Zero ) return false ; Marshal . StructureToPtr ( new ExternalCoreApi . SensorInterface { SetState = Marshal . GetFunctionPointerForDelegate ( SetSensorState ) , GetInput = Marshal . GetFunctionPointerForDelegate ( GetSensorInput ) } , data , false ) ; return true ; }",
+            "method": "SetSensorInterface"
+          }
+        ],
+        "ownerPath": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+        "kind": "rich",
+        "beforeSha256": "FB6927BE2E72CEF0B59125C4B049F0037541A5718DB3BC3BA54C8C8D065D4B09",
+        "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs"
+      },
+      {
+        "ownerSha256": "18282C60EE725F5ECC964F40CB18CED109A3CBCAD3FACE81CDB1D53D9225A758",
+        "fragments": [
+          {
+            "body": "{\n        if (data == nint.Zero) return false;\n        Marshal.StructureToPtr(new ExternalCoreApi.LedInterface\n        {\n            SetLedState = Marshal.GetFunctionPointerForDelegate(SetLedState)\n        }, data, false);\n        return true;\n    }",
+            "tokens": "public bool SetLedInterface ( nint data ) { if ( data == nint . Zero ) return false ; Marshal . StructureToPtr ( new ExternalCoreApi . LedInterface { SetLedState = Marshal . GetFunctionPointerForDelegate ( SetLedState ) } , data , false ) ; return true ; }",
+            "method": "SetLedInterface"
+          },
+          {
+            "body": "{\n        if (data == nint.Zero) return false;\n        Marshal.StructureToPtr(new ExternalCoreApi.RumbleInterface\n        {\n            SetState = Marshal.GetFunctionPointerForDelegate(SetRumbleState)\n        }, data, false);\n        return true;\n    }",
+            "tokens": "public bool SetRumbleInterface ( nint data ) { if ( data == nint . Zero ) return false ; Marshal . StructureToPtr ( new ExternalCoreApi . RumbleInterface { SetState = Marshal . GetFunctionPointerForDelegate ( SetRumbleState ) } , data , false ) ; return true ; }",
+            "method": "SetRumbleInterface"
+          },
+          {
+            "body": "{\n        if (data == nint.Zero) return false;\n        Marshal.StructureToPtr(new ExternalCoreApi.SensorInterface\n        {\n            SetState = Marshal.GetFunctionPointerForDelegate(SetSensorState),\n            GetInput = Marshal.GetFunctionPointerForDelegate(GetSensorInput)\n        }, data, false);\n        return true;\n    }",
+            "tokens": "public bool SetSensorInterface ( nint data ) { if ( data == nint . Zero ) return false ; Marshal . StructureToPtr ( new ExternalCoreApi . SensorInterface { SetState = Marshal . GetFunctionPointerForDelegate ( SetSensorState ) , GetInput = Marshal . GetFunctionPointerForDelegate ( GetSensorInput ) } , data , false ) ; return true ; }",
+            "method": "SetSensorInterface"
+          }
+        ],
+        "ownerPath": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+        "kind": "rich",
+        "beforeSha256": "13577BF44E971009450D3C95BE69B9596069CD058634E596465BADF688F1FC10",
+        "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs"
+      },
+      {
+        "ownerSha256": "352475712665D0935EC37714E411E96CFFABB031CFF69F33BF84DDD2FCF6D528",
+        "fragments": [
+          {
+            "body": "{\r\n        if (data == nint.Zero) return false;\r\n        Marshal.StructureToPtr(new ExternalCoreApi.LedInterface\r\n        {\r\n            SetLedState = Marshal.GetFunctionPointerForDelegate(SetLedState)\r\n        }, data, false);\r\n        _usesNativeLedInterface = true;\r\n        return true;\r\n    }",
+            "tokens": "public bool SetLedInterface ( nint data ) { if ( data == nint . Zero ) return false ; Marshal . StructureToPtr ( new ExternalCoreApi . LedInterface { SetLedState = Marshal . GetFunctionPointerForDelegate ( SetLedState ) } , data , false ) ; _usesNativeLedInterface = true ; return true ; }",
+            "method": "SetLedInterface"
+          },
+          {
+            "body": "{\r\n        if (data == nint.Zero) return false;\r\n        Marshal.StructureToPtr(new ExternalCoreApi.RumbleInterface\r\n        {\r\n            SetState = Marshal.GetFunctionPointerForDelegate(SetRumbleState)\r\n        }, data, false);\r\n        return true;\r\n    }",
+            "tokens": "public bool SetRumbleInterface ( nint data ) { if ( data == nint . Zero ) return false ; Marshal . StructureToPtr ( new ExternalCoreApi . RumbleInterface { SetState = Marshal . GetFunctionPointerForDelegate ( SetRumbleState ) } , data , false ) ; return true ; }",
+            "method": "SetRumbleInterface"
+          },
+          {
+            "body": "{\r\n        if (data == nint.Zero) return false;\r\n        Marshal.StructureToPtr(new ExternalCoreApi.SensorInterface\r\n        {\r\n            SetState = Marshal.GetFunctionPointerForDelegate(SetSensorState),\r\n            GetInput = Marshal.GetFunctionPointerForDelegate(GetSensorInput)\r\n        }, data, false);\r\n        return true;\r\n    }",
+            "tokens": "public bool SetSensorInterface ( nint data ) { if ( data == nint . Zero ) return false ; Marshal . StructureToPtr ( new ExternalCoreApi . SensorInterface { SetState = Marshal . GetFunctionPointerForDelegate ( SetSensorState ) , GetInput = Marshal . GetFunctionPointerForDelegate ( GetSensorInput ) } , data , false ) ; return true ; }",
+            "method": "SetSensorInterface"
+          }
+        ],
+        "ownerPath": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+        "kind": "rich",
+        "beforeSha256": "6C8EC3523A4A1CF0CB2EFA323ABA4264E4E3CDD94F4B181A62759AFA3B5DFFE5",
+        "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs"
+      },
+      {
+        "ownerSha256": "A6FC66F725D436F93778941AF4BAABF950D1F2E52DB178F1EECA62AE6ACDCB27",
+        "fragments": [
+          {
+            "body": "{\n        if (data == nint.Zero) return false;\n        Marshal.StructureToPtr(new ExternalCoreApi.LedInterface\n        {\n            SetLedState = Marshal.GetFunctionPointerForDelegate(SetLedState)\n        }, data, false);\n        return true;\n    }",
+            "tokens": "public bool SetLedInterface ( nint data ) { if ( data == nint . Zero ) return false ; Marshal . StructureToPtr ( new ExternalCoreApi . LedInterface { SetLedState = Marshal . GetFunctionPointerForDelegate ( SetLedState ) } , data , false ) ; return true ; }",
+            "method": "SetLedInterface"
+          },
+          {
+            "body": "{\n        if (data == nint.Zero) return false;\n        Marshal.StructureToPtr(new ExternalCoreApi.RumbleInterface\n        {\n            SetState = Marshal.GetFunctionPointerForDelegate(SetRumbleState)\n        }, data, false);\n        return true;\n    }",
+            "tokens": "public bool SetRumbleInterface ( nint data ) { if ( data == nint . Zero ) return false ; Marshal . StructureToPtr ( new ExternalCoreApi . RumbleInterface { SetState = Marshal . GetFunctionPointerForDelegate ( SetRumbleState ) } , data , false ) ; return true ; }",
+            "method": "SetRumbleInterface"
+          },
+          {
+            "body": "{\n        if (data == nint.Zero) return false;\n        Marshal.StructureToPtr(new ExternalCoreApi.SensorInterface\n        {\n            SetState = Marshal.GetFunctionPointerForDelegate(SetSensorState),\n            GetInput = Marshal.GetFunctionPointerForDelegate(GetSensorInput)\n        }, data, false);\n        return true;\n    }",
+            "tokens": "public bool SetSensorInterface ( nint data ) { if ( data == nint . Zero ) return false ; Marshal . StructureToPtr ( new ExternalCoreApi . SensorInterface { SetState = Marshal . GetFunctionPointerForDelegate ( SetSensorState ) , GetInput = Marshal . GetFunctionPointerForDelegate ( GetSensorInput ) } , data , false ) ; return true ; }",
+            "method": "SetSensorInterface"
+          }
+        ],
+        "ownerPath": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+        "kind": "rich",
+        "beforeSha256": "8F22F5DED2DA81F9CFA0B9EC6632E7672268F6F27C9D4FD765F5D7FEFBCE40A7",
+        "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs"
+      },
+      {
+        "ownerSha256": "E98E531DA0896A485A249941946C72C3D5D35AEBD3208356DCFE75A372D2F91D",
+        "fragments": [
+          {
+            "body": "{\n        if (data == nint.Zero)\n            return false;\n        Marshal.StructureToPtr(new ExternalCoreApi.LedInterface { SetLedState = Marshal.GetFunctionPointerForDelegate(SetLedState) }, data, false);\n        return true;\n    }",
+            "tokens": "public bool SetLedInterface ( nint data ) { if ( data == nint . Zero ) return false ; Marshal . StructureToPtr ( new ExternalCoreApi . LedInterface { SetLedState = Marshal . GetFunctionPointerForDelegate ( SetLedState ) } , data , false ) ; return true ; }",
+            "method": "SetLedInterface"
+          },
+          {
+            "body": "{\n        if (data == nint.Zero)\n            return false;\n        Marshal.StructureToPtr(new ExternalCoreApi.RumbleInterface { SetState = Marshal.GetFunctionPointerForDelegate(SetRumbleState) }, data, false);\n        return true;\n    }",
+            "tokens": "public bool SetRumbleInterface ( nint data ) { if ( data == nint . Zero ) return false ; Marshal . StructureToPtr ( new ExternalCoreApi . RumbleInterface { SetState = Marshal . GetFunctionPointerForDelegate ( SetRumbleState ) } , data , false ) ; return true ; }",
+            "method": "SetRumbleInterface"
+          },
+          {
+            "body": "{\n        if (data == nint.Zero)\n            return false;\n        Marshal.StructureToPtr(new ExternalCoreApi.SensorInterface { SetState = Marshal.GetFunctionPointerForDelegate(SetSensorState), GetInput = Marshal.GetFunctionPointerForDelegate(GetSensorInput) }, data, false);\n        return true;\n    }",
+            "tokens": "public bool SetSensorInterface ( nint data ) { if ( data == nint . Zero ) return false ; Marshal . StructureToPtr ( new ExternalCoreApi . SensorInterface { SetState = Marshal . GetFunctionPointerForDelegate ( SetSensorState ) , GetInput = Marshal . GetFunctionPointerForDelegate ( GetSensorInput ) } , data , false ) ; return true ; }",
+            "method": "SetSensorInterface"
+          }
+        ],
+        "ownerPath": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+        "kind": "rich",
+        "beforeSha256": "179D7935D931BC7F11ADABBD6B13FC79DE68399C7846D66FB864A99D2B2C462A",
+        "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs"
+      },
+      {
+        "ownerSha256": "403ACF5E1F9039FCE26E380B2CA8938BEBDDA448695AB77275DE5ECF8A63A1E3",
+        "fragments": [
+          {
+            "body": "{\n        if (data == nint.Zero)\n            return false;\n        Marshal.StructureToPtr(new ExternalCoreApi.LedInterface { SetLedState = Marshal.GetFunctionPointerForDelegate(SetLedState) }, data, false);\n        return true;\n    }",
+            "tokens": "public bool SetLedInterface ( nint data ) { if ( data == nint . Zero ) return false ; Marshal . StructureToPtr ( new ExternalCoreApi . LedInterface { SetLedState = Marshal . GetFunctionPointerForDelegate ( SetLedState ) } , data , false ) ; return true ; }",
+            "method": "SetLedInterface"
+          },
+          {
+            "body": "{\n        if (data == nint.Zero)\n            return false;\n        Marshal.StructureToPtr(new ExternalCoreApi.RumbleInterface { SetState = Marshal.GetFunctionPointerForDelegate(SetRumbleState) }, data, false);\n        return true;\n    }",
+            "tokens": "public bool SetRumbleInterface ( nint data ) { if ( data == nint . Zero ) return false ; Marshal . StructureToPtr ( new ExternalCoreApi . RumbleInterface { SetState = Marshal . GetFunctionPointerForDelegate ( SetRumbleState ) } , data , false ) ; return true ; }",
+            "method": "SetRumbleInterface"
+          },
+          {
+            "body": "{\n        if (data == nint.Zero)\n            return false;\n        Marshal.StructureToPtr(new ExternalCoreApi.SensorInterface { SetState = Marshal.GetFunctionPointerForDelegate(SetSensorState), GetInput = Marshal.GetFunctionPointerForDelegate(GetSensorInput) }, data, false);\n        return true;\n    }",
+            "tokens": "public bool SetSensorInterface ( nint data ) { if ( data == nint . Zero ) return false ; Marshal . StructureToPtr ( new ExternalCoreApi . SensorInterface { SetState = Marshal . GetFunctionPointerForDelegate ( SetSensorState ) , GetInput = Marshal . GetFunctionPointerForDelegate ( GetSensorInput ) } , data , false ) ; return true ; }",
+            "method": "SetSensorInterface"
+          }
+        ],
+        "ownerPath": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+        "kind": "rich",
+        "beforeSha256": "981801929EB5BDE655DCB5ECD76F26BDE84B1F89E56A14F3D60C67816687BD8C",
+        "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs"
+      },
+      {
+        "ownerSha256": "9DC4808816D0507DE4AABF22B56C04E84BE90206E79D31F4901008EF445C285B",
+        "fragments": [
+          {
+            "body": "{\n        if (data == nint.Zero) return false;\n        Marshal.StructureToPtr(new ExternalCoreApi.LedInterface\n        {\n            SetLedState = Marshal.GetFunctionPointerForDelegate(SetLedState)\n        }, data, false);\n        return true;\n    }",
+            "tokens": "public bool SetLedInterface ( nint data ) { if ( data == nint . Zero ) return false ; Marshal . StructureToPtr ( new ExternalCoreApi . LedInterface { SetLedState = Marshal . GetFunctionPointerForDelegate ( SetLedState ) } , data , false ) ; return true ; }",
+            "method": "SetLedInterface"
+          },
+          {
+            "body": "{\n        if (data == nint.Zero) return false;\n        Marshal.StructureToPtr(new ExternalCoreApi.RumbleInterface\n        {\n            SetState = Marshal.GetFunctionPointerForDelegate(SetRumbleState)\n        }, data, false);\n        return true;\n    }",
+            "tokens": "public bool SetRumbleInterface ( nint data ) { if ( data == nint . Zero ) return false ; Marshal . StructureToPtr ( new ExternalCoreApi . RumbleInterface { SetState = Marshal . GetFunctionPointerForDelegate ( SetRumbleState ) } , data , false ) ; return true ; }",
+            "method": "SetRumbleInterface"
+          },
+          {
+            "body": "{\n        if (data == nint.Zero) return false;\n        Marshal.StructureToPtr(new ExternalCoreApi.SensorInterface\n        {\n            SetState = Marshal.GetFunctionPointerForDelegate(SetSensorState),\n            GetInput = Marshal.GetFunctionPointerForDelegate(GetSensorInput)\n        }, data, false);\n        return true;\n    }",
+            "tokens": "public bool SetSensorInterface ( nint data ) { if ( data == nint . Zero ) return false ; Marshal . StructureToPtr ( new ExternalCoreApi . SensorInterface { SetState = Marshal . GetFunctionPointerForDelegate ( SetSensorState ) , GetInput = Marshal . GetFunctionPointerForDelegate ( GetSensorInput ) } , data , false ) ; return true ; }",
+            "method": "SetSensorInterface"
+          }
+        ],
+        "ownerPath": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+        "kind": "rich",
+        "beforeSha256": "585374C18EA1CA6EE0051FE5B5E4630F113E2F776A325D364153804A8ACB1865",
+        "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs"
+      },
+      {
+        "ownerSha256": "09C3440FCCA15897BFF9FB2D516B3630C0F7A65F6B55025498DD0C84D031E4E6",
+        "fragments": [
+          {
+            "body": "{\n        if (data == nint.Zero) return false;\n        Marshal.StructureToPtr(new ExternalCoreApi.LedInterface\n        {\n            SetLedState = Marshal.GetFunctionPointerForDelegate(SetLedState)\n        }, data, false);\n        return true;\n    }",
+            "tokens": "public bool SetLedInterface ( nint data ) { if ( data == nint . Zero ) return false ; Marshal . StructureToPtr ( new ExternalCoreApi . LedInterface { SetLedState = Marshal . GetFunctionPointerForDelegate ( SetLedState ) } , data , false ) ; return true ; }",
+            "method": "SetLedInterface"
+          },
+          {
+            "body": "{\n        if (data == nint.Zero) return false;\n        Marshal.StructureToPtr(new ExternalCoreApi.RumbleInterface\n        {\n            SetState = Marshal.GetFunctionPointerForDelegate(SetRumbleState)\n        }, data, false);\n        return true;\n    }",
+            "tokens": "public bool SetRumbleInterface ( nint data ) { if ( data == nint . Zero ) return false ; Marshal . StructureToPtr ( new ExternalCoreApi . RumbleInterface { SetState = Marshal . GetFunctionPointerForDelegate ( SetRumbleState ) } , data , false ) ; return true ; }",
+            "method": "SetRumbleInterface"
+          },
+          {
+            "body": "{\n        if (data == nint.Zero) return false;\n        Marshal.StructureToPtr(new ExternalCoreApi.SensorInterface\n        {\n            SetState = Marshal.GetFunctionPointerForDelegate(SetSensorState),\n            GetInput = Marshal.GetFunctionPointerForDelegate(GetSensorInput)\n        }, data, false);\n        return true;\n    }",
+            "tokens": "public bool SetSensorInterface ( nint data ) { if ( data == nint . Zero ) return false ; Marshal . StructureToPtr ( new ExternalCoreApi . SensorInterface { SetState = Marshal . GetFunctionPointerForDelegate ( SetSensorState ) , GetInput = Marshal . GetFunctionPointerForDelegate ( GetSensorInput ) } , data , false ) ; return true ; }",
+            "method": "SetSensorInterface"
+          }
+        ],
+        "ownerPath": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+        "kind": "rich",
+        "beforeSha256": "7EE2CAC192462142F0DEFFDFD4A3A5A7A695DA9C9E59EE752D2561774E47A884",
+        "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs"
+      }
+    ],
+    "invariants": [
+      "All callbacks remain owned and rooted by their existing host; SDK only borrows them",
+      "Null destination is rejected before native function pointer conversion",
+      "Native structure fields, order and StructureToPtr false stay unchanged",
+      "Atari LED flag changes only after successful installation",
+      "No log, keyboard, VFS or other environment branch is included"
+    ],
+    "qualification": {
+      "normalizedStatementModelsMatch": 44,
+      "atariFlagCount": 1,
+      "normalizations": [
+        "AmigaExternalApi to shared SDK ABI type",
+        "nint.Zero and zero pointer are the same sentinel",
+        "whitespace trivia only"
+      ]
+    },
+    "verification": {
+      "sources": [
+        {
+          "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "callbackOwnerUnchanged": true,
+          "otherTokensUnchanged": true,
+          "sha256": "F28313CB0240A8700F122F58B77CA6787BF12D50EE443EE13BCBB376850E2A61"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "callbackOwnerUnchanged": true,
+          "otherTokensUnchanged": true,
+          "sha256": "02E1DDAEEA2F3D7661053CD0D54CCA437BAC652CB8F8838BCB44DC62417806A9"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "callbackOwnerUnchanged": true,
+          "otherTokensUnchanged": true,
+          "sha256": "E8604DF6987AEDFE927F52C43621A3CFA319A715E68CB889D3DA71849A8C3E89"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Environment.cs",
+          "callbackOwnerUnchanged": true,
+          "otherTokensUnchanged": true,
+          "sha256": "33A19DD20B50E65A797627722DB2AE22BD4654B86319BCED9582245AD35DC361"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Environment.cs",
+          "callbackOwnerUnchanged": true,
+          "otherTokensUnchanged": true,
+          "sha256": "0C517A2E300AE4E3B00C6C99DF51AE29D3CF1020D8F653088EB5FA28E227296E"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "callbackOwnerUnchanged": true,
+          "otherTokensUnchanged": true,
+          "sha256": "AEE97FE6EFD5FDE94871108AD497D845DF95945B9491AAE1E594A21FE23B97ED"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "callbackOwnerUnchanged": true,
+          "otherTokensUnchanged": true,
+          "sha256": "41A7D1AEC7F749BE4FA8335962AAE1E2F2A1405E6E3E45AED4432F8E91229D7A"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "callbackOwnerUnchanged": true,
+          "otherTokensUnchanged": true,
+          "sha256": "7ABF37AFE450BF37D8F1257FDDEE26B76F5AB5C2A174BCF5C17E0BB2A8D353BD"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "callbackOwnerUnchanged": true,
+          "otherTokensUnchanged": true,
+          "sha256": "29E95F4BF562E57EF3BBA62FB552883DC9AAD8D6F4612EA70E763BC7091D7DB9"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "callbackOwnerUnchanged": true,
+          "otherTokensUnchanged": true,
+          "sha256": "9DABBA3FB7215BB283A08A1E77B07782A3C25C9C0899D64A65F362A55D714A0C"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "callbackOwnerUnchanged": true,
+          "otherTokensUnchanged": true,
+          "sha256": "1C0C41249598C0C23E26646027948FBD0EA35DC52620CB0A0E4BAC5A28BD538D"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "callbackOwnerUnchanged": true,
+          "otherTokensUnchanged": true,
+          "sha256": "A52AE7CB333C6771999D3B71A574911471F53DB737CA6D82A8A15FACB82AB38B"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "callbackOwnerUnchanged": true,
+          "otherTokensUnchanged": true,
+          "sha256": "148268E7557E6D46F6B99A20232CB67AE303F0D41F39913B9CA8CFBD394AD65C"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "callbackOwnerUnchanged": true,
+          "otherTokensUnchanged": true,
+          "sha256": "99701F288AD15F6DE3A67AE0294F598139A7B4882C84851C7B7FCE7B4640E174"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "callbackOwnerUnchanged": true,
+          "otherTokensUnchanged": true,
+          "sha256": "AB0315D0281126B89A83E555C48D0490CFFC4C037720416970A444A94A0F09BE"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "callbackOwnerUnchanged": true,
+          "otherTokensUnchanged": true,
+          "sha256": "C17503B55A90895971277AB390FCF56FB3DACDD04091F10C1807C4F991E5F89E"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "callbackOwnerUnchanged": true,
+          "otherTokensUnchanged": true,
+          "sha256": "D4EC76B99AF2C388BF11B9905DE6BA8E0F9E2FCEBF18D9DA678129DB47D26DFD"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "callbackOwnerUnchanged": true,
+          "otherTokensUnchanged": true,
+          "sha256": "21E0221C199C8496D9AF22C3104F3773C1A95556A00ECA9FFDBC85FBAD5BF056"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "callbackOwnerUnchanged": true,
+          "otherTokensUnchanged": true,
+          "sha256": "630BF4828C713B09153118C870421B95140109C74B3B090EAFEAED634C5C134B"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "callbackOwnerUnchanged": true,
+          "otherTokensUnchanged": true,
+          "sha256": "99BFEB838A95CA6BF18754E4115D4727E14423C9D48B64E90F4721AB9B59CF5E"
+        }
+      ],
+      "otherSdkTokensUnchanged": true,
+      "existingLogExpansionUnchanged": true,
+      "sdkBodiesMatchOrigins": true,
+      "sharedPublisher": "{ if ( data == nint . Zero ) return false ; Marshal . StructureToPtr ( create ( ) , data , false ) ; return true ; }",
+      "typedFactoryCount": 4,
+      "publisherBindings": [
+        "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.InstallInterface<GWGUI.Emulation.Interop.ExternalCoreApi.LogInterface>(nint, System.Func<GWGUI.Emulation.Interop.ExternalCoreApi.LogInterface>)",
+        "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.InstallInterface<GWGUI.Emulation.Interop.ExternalCoreApi.LedInterface>(nint, System.Func<GWGUI.Emulation.Interop.ExternalCoreApi.LedInterface>)",
+        "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.InstallInterface<GWGUI.Emulation.Interop.ExternalCoreApi.RumbleInterface>(nint, System.Func<GWGUI.Emulation.Interop.ExternalCoreApi.RumbleInterface>)",
+        "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.InstallInterface<GWGUI.Emulation.Interop.ExternalCoreApi.SensorInterface>(nint, System.Func<GWGUI.Emulation.Interop.ExternalCoreApi.SensorInterface>)"
+      ],
+      "ledAbiUnchanged": true,
+      "bindings": [
+        {
+          "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.SetLedInterface(nint, GWGUI.Emulation.Interop.ExternalCoreApi.SetLedState)"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.SetLedInterface(nint, GWGUI.Emulation.Interop.ExternalCoreApi.SetLedState)"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.SetLedInterface(nint, GWGUI.Emulation.Interop.ExternalCoreApi.SetLedState)"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Environment.cs",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.SetLedInterface(nint, GWGUI.Emulation.Interop.ExternalCoreApi.SetLedState)"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Environment.cs",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.SetLedInterface(nint, GWGUI.Emulation.Interop.ExternalCoreApi.SetLedState)"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.SetLedInterface(nint, GWGUI.Emulation.Interop.ExternalCoreApi.SetLedState)"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.SetLedInterface(nint, GWGUI.Emulation.Interop.ExternalCoreApi.SetLedState)"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.SetLedInterface(nint, GWGUI.Emulation.Interop.ExternalCoreApi.SetLedState)"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.SetLedInterface(nint, GWGUI.Emulation.Interop.ExternalCoreApi.SetLedState)"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.SetRumbleInterface(nint, GWGUI.Emulation.Interop.ExternalCoreApi.SetRumbleState)"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.SetSensorInterface(nint, GWGUI.Emulation.Interop.ExternalCoreApi.SetSensorState, GWGUI.Emulation.Interop.ExternalCoreApi.GetSensorInput)"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.SetLedInterface(nint, GWGUI.Emulation.Interop.ExternalCoreApi.SetLedState)"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.SetRumbleInterface(nint, GWGUI.Emulation.Interop.ExternalCoreApi.SetRumbleState)"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.SetSensorInterface(nint, GWGUI.Emulation.Interop.ExternalCoreApi.SetSensorState, GWGUI.Emulation.Interop.ExternalCoreApi.GetSensorInput)"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.SetLedInterface(nint, GWGUI.Emulation.Interop.ExternalCoreApi.SetLedState)"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.SetRumbleInterface(nint, GWGUI.Emulation.Interop.ExternalCoreApi.SetRumbleState)"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.SetSensorInterface(nint, GWGUI.Emulation.Interop.ExternalCoreApi.SetSensorState, GWGUI.Emulation.Interop.ExternalCoreApi.GetSensorInput)"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.SetLedInterface(nint, GWGUI.Emulation.Interop.ExternalCoreApi.SetLedState)"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.SetRumbleInterface(nint, GWGUI.Emulation.Interop.ExternalCoreApi.SetRumbleState)"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.SetSensorInterface(nint, GWGUI.Emulation.Interop.ExternalCoreApi.SetSensorState, GWGUI.Emulation.Interop.ExternalCoreApi.GetSensorInput)"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.SetLedInterface(nint, GWGUI.Emulation.Interop.ExternalCoreApi.SetLedState)"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.SetRumbleInterface(nint, GWGUI.Emulation.Interop.ExternalCoreApi.SetRumbleState)"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.SetSensorInterface(nint, GWGUI.Emulation.Interop.ExternalCoreApi.SetSensorState, GWGUI.Emulation.Interop.ExternalCoreApi.GetSensorInput)"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.SetLedInterface(nint, GWGUI.Emulation.Interop.ExternalCoreApi.SetLedState)"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.SetRumbleInterface(nint, GWGUI.Emulation.Interop.ExternalCoreApi.SetRumbleState)"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.SetSensorInterface(nint, GWGUI.Emulation.Interop.ExternalCoreApi.SetSensorState, GWGUI.Emulation.Interop.ExternalCoreApi.GetSensorInput)"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.SetLedInterface(nint, GWGUI.Emulation.Interop.ExternalCoreApi.SetLedState)"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.SetRumbleInterface(nint, GWGUI.Emulation.Interop.ExternalCoreApi.SetRumbleState)"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.SetSensorInterface(nint, GWGUI.Emulation.Interop.ExternalCoreApi.SetSensorState, GWGUI.Emulation.Interop.ExternalCoreApi.GetSensorInput)"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.SetLedInterface(nint, GWGUI.Emulation.Interop.ExternalCoreApi.SetLedState)"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.SetRumbleInterface(nint, GWGUI.Emulation.Interop.ExternalCoreApi.SetRumbleState)"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.SetSensorInterface(nint, GWGUI.Emulation.Interop.ExternalCoreApi.SetSensorState, GWGUI.Emulation.Interop.ExternalCoreApi.GetSensorInput)"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.SetLedInterface(nint, GWGUI.Emulation.Interop.ExternalCoreApi.SetLedState)"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.SetRumbleInterface(nint, GWGUI.Emulation.Interop.ExternalCoreApi.SetRumbleState)"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.SetSensorInterface(nint, GWGUI.Emulation.Interop.ExternalCoreApi.SetSensorState, GWGUI.Emulation.Interop.ExternalCoreApi.GetSensorInput)"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.SetLedInterface(nint, GWGUI.Emulation.Interop.ExternalCoreApi.SetLedState)"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.SetRumbleInterface(nint, GWGUI.Emulation.Interop.ExternalCoreApi.SetRumbleState)"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.SetSensorInterface(nint, GWGUI.Emulation.Interop.ExternalCoreApi.SetSensorState, GWGUI.Emulation.Interop.ExternalCoreApi.GetSensorInput)"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.SetLedInterface(nint, GWGUI.Emulation.Interop.ExternalCoreApi.SetLedState)"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.SetRumbleInterface(nint, GWGUI.Emulation.Interop.ExternalCoreApi.SetRumbleState)"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.SetSensorInterface(nint, GWGUI.Emulation.Interop.ExternalCoreApi.SetSensorState, GWGUI.Emulation.Interop.ExternalCoreApi.GetSensorInput)"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.SetLedInterface(nint, GWGUI.Emulation.Interop.ExternalCoreApi.SetLedState)"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.SetRumbleInterface(nint, GWGUI.Emulation.Interop.ExternalCoreApi.SetRumbleState)"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.SetSensorInterface(nint, GWGUI.Emulation.Interop.ExternalCoreApi.SetSensorState, GWGUI.Emulation.Interop.ExternalCoreApi.GetSensorInput)"
+        }
+      ],
+      "semanticProjects": [
+        "GWGUI.Emulation",
+        "GWGUI.Emulation.Acorn",
+        "GWGUI.Emulation.Amstrad",
+        "GWGUI.Emulation.Apple",
+        "GWGUI.Emulation.Atari",
+        "GWGUI.Emulation.Bandai",
+        "GWGUI.Emulation.Coleco",
+        "GWGUI.Emulation.Commodore",
+        "GWGUI.Emulation.Epoch",
+        "GWGUI.Emulation.Fairchild",
+        "GWGUI.Emulation.Mattel",
+        "GWGUI.Emulation.Nec",
+        "GWGUI.Emulation.Nintendo",
+        "GWGUI.Emulation.Philips",
+        "GWGUI.Emulation.Sega",
+        "GWGUI.Emulation.Sharp",
+        "GWGUI.Emulation.Sinclair",
+        "GWGUI.Emulation.Snk",
+        "GWGUI.Emulation.Sony"
+      ],
+      "tests": {
+        "exitCode": 0,
+        "passed": 44,
+        "newAbiMemoryCases": 6,
+        "classes": [
+          "CoreCallbackInterfaceTests",
+          "EnvironmentCallbackCommandTests",
+          "CoreDiagnosticTextTests"
+        ],
+        "externalFilesOrCores": false,
+        "buffersFreedAndDelegatesKeptAliveInFinally": true
+      },
+      "sdkSha256": "53F8E900298B2AA65E67CB69293E3D1FDB463E5DF718FC620CA0006F14E74A04"
+    },
+    "productBuild": {
+      "command": "scripts/local-building.cmd --building=debug --modules=A",
+      "exitCode": 0,
+      "sourceSnapshotHead": "b5114ff1abd5492c8d08180ae902252d65f7caed",
+      "executable": "build/Debug/GW GUI/gwgui.exe",
+      "executableSha256": "77341C6DFE7775EDF6630C299C1440141FBE2CD00F3D2E6FFDFF975B7690AB7D",
+      "sdkSha256": "99F0F11206EA5A62B2135B123AE84E77172C8C497195C8CD967E3022844BD4A1",
+      "sourceInputs": [
+        {
+          "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+          "sha256": "E8B6D9120B19ED61697C8EE80639BD000EADB2688A9166091E1C58C61218EBBD"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "sha256": "148268E7557E6D46F6B99A20232CB67AE303F0D41F39913B9CA8CFBD394AD65C"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+          "sha256": "67B1E5C081F964C3B48CA69D8C8E6916B1779027C5D03B7E983BDF592AE0659B"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "sha256": "F28313CB0240A8700F122F58B77CA6787BF12D50EE443EE13BCBB376850E2A61"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+          "sha256": "AFB805DDE3694BCD4D05EE0DD8E460757D68EB3C794AFF37FEE7D1CAAFF7E2FE"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "sha256": "29E95F4BF562E57EF3BBA62FB552883DC9AAD8D6F4612EA70E763BC7091D7DB9"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+          "sha256": "352475712665D0935EC37714E411E96CFFABB031CFF69F33BF84DDD2FCF6D528"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "sha256": "AB0315D0281126B89A83E555C48D0490CFFC4C037720416970A444A94A0F09BE"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+          "sha256": "09EC0DF6B575B283D4116014462CC3D2FEB9B08A309926F33A70FC9DB7245445"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "sha256": "1C0C41249598C0C23E26646027948FBD0EA35DC52620CB0A0E4BAC5A28BD538D"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+          "sha256": "18282C60EE725F5ECC964F40CB18CED109A3CBCAD3FACE81CDB1D53D9225A758"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "sha256": "99701F288AD15F6DE3A67AE0294F598139A7B4882C84851C7B7FCE7B4640E174"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+          "sha256": "4E8EF4D0A674D0D1092332C3D686FC9B27F5C40B867732CBCA661D9881499B24"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "sha256": "02E1DDAEEA2F3D7661053CD0D54CCA437BAC652CB8F8838BCB44DC62417806A9"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+          "sha256": "60A69AC70E895DB4A4CFB7411DBBE2FDB238D5123CF770DF1AC90B45148CF3DB"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "sha256": "9DABBA3FB7215BB283A08A1E77B07782A3C25C9C0899D64A65F362A55D714A0C"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+          "sha256": "9DC4808816D0507DE4AABF22B56C04E84BE90206E79D31F4901008EF445C285B"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "sha256": "630BF4828C713B09153118C870421B95140109C74B3B090EAFEAED634C5C134B"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+          "sha256": "09C3440FCCA15897BFF9FB2D516B3630C0F7A65F6B55025498DD0C84D031E4E6"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "sha256": "99BFEB838A95CA6BF18754E4115D4727E14423C9D48B64E90F4721AB9B59CF5E"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+          "sha256": "2A4E149EDE0C7B068D13BE8F7477088A00D192DF1FCF414614BBC899C9DF0655"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "sha256": "AEE97FE6EFD5FDE94871108AD497D845DF95945B9491AAE1E594A21FE23B97ED"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+          "sha256": "318C42B71AC0D6877501EF3DE0EC22D6665FFBD4A142A1A6384811EE93323DB0"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "sha256": "E8604DF6987AEDFE927F52C43621A3CFA319A715E68CB889D3DA71849A8C3E89"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+          "sha256": "A6FC66F725D436F93778941AF4BAABF950D1F2E52DB178F1EECA62AE6ACDCB27"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "sha256": "C17503B55A90895971277AB390FCF56FB3DACDD04091F10C1807C4F991E5F89E"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+          "sha256": "72F41186FCB18622C8A35F2B193F24245CDB3D3F383E71B0486904164F0939A2"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "sha256": "7ABF37AFE450BF37D8F1257FDDEE26B76F5AB5C2A174BCF5C17E0BB2A8D353BD"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+          "sha256": "4F3467706CFD9B009FD478152E07BC88F2C37D6AD3383E0A5B52DA94D6E1AF80"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "sha256": "A52AE7CB333C6771999D3B71A574911471F53DB737CA6D82A8A15FACB82AB38B"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+          "sha256": "E98E531DA0896A485A249941946C72C3D5D35AEBD3208356DCFE75A372D2F91D"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "sha256": "D4EC76B99AF2C388BF11B9905DE6BA8E0F9E2FCEBF18D9DA678129DB47D26DFD"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+          "sha256": "403ACF5E1F9039FCE26E380B2CA8938BEBDDA448695AB77275DE5ECF8A63A1E3"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "sha256": "21E0221C199C8496D9AF22C3104F3773C1A95556A00ECA9FFDBC85FBAD5BF056"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+          "sha256": "E230A4DDA0DB84876AC76A7C54CAD590CA1D53363E52C5741C69E54D8DCC8969"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "sha256": "41A7D1AEC7F749BE4FA8335962AAE1E2F2A1405E6E3E45AED4432F8E91229D7A"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.cs",
+          "sha256": "25F6B1A2B15F2BC93976EA900A400AC0C76A5807C994FE5D660E674435103433"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Environment.cs",
+          "sha256": "0C517A2E300AE4E3B00C6C99DF51AE29D3CF1020D8F653088EB5FA28E227296E"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.cs",
+          "sha256": "30587EFBCF35B44DE48F234966EAFF41540D9497BA69143AB0E2D1892B3AAFFA"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Environment.cs",
+          "sha256": "33A19DD20B50E65A797627722DB2AE22BD4654B86319BCED9582245AD35DC361"
+        },
+        {
+          "path": "src/GWGUI.Emulation/Functions/ExternalCoreEnvironmentFunctions.cs",
+          "sha256": "53F8E900298B2AA65E67CB69293E3D1FDB463E5DF718FC620CA0006F14E74A04"
+        }
+      ],
+      "sourceInputsUnchanged": true,
+      "modules": [
+        {
+          "id": "acorn",
+          "entryAssembly": "gwgui.emulation.acorn.dll",
+          "sha256": "D561D9A728E681EF82896A6F0EAC9876EFD51497620EC5C4FA44558E1507CA36"
+        },
+        {
+          "id": "amstrad",
+          "entryAssembly": "gwgui.emulation.amstrad.dll",
+          "sha256": "6CE1422241E684120C46104D806D980892D9121034B4F1C1543210764217DFCB"
+        },
+        {
+          "id": "apple",
+          "entryAssembly": "gwgui.emulation.apple.dll",
+          "sha256": "438840F546530576BA3542DFA69443AFE16E1521D34112380500C4675B3874DB"
+        },
+        {
+          "id": "atari",
+          "entryAssembly": "gwgui.emulation.atari.dll",
+          "sha256": "2FD3F23B3C3A42FDC0BD4A3C56BE2C6A6E79938CC8DC8DA07C326F7255F7E556"
+        },
+        {
+          "id": "bandai",
+          "entryAssembly": "gwgui.emulation.bandai.dll",
+          "sha256": "5817374008FCFB83FD75351C9BA18941E06710D58AE35E53330E727EB7A707B5"
+        },
+        {
+          "id": "coleco",
+          "entryAssembly": "gwgui.emulation.coleco.dll",
+          "sha256": "F460CDAE948CC64C173A4C333D650958BC5FC15D6925F41CCB276079D0365B2C"
+        },
+        {
+          "id": "commodore",
+          "entryAssembly": "gwgui.emulation.commodore.dll",
+          "sha256": "96E5CDD4AF1D81DC14B10C3781294B28256C14E127B1D70129E4CA0081546E2E"
+        },
+        {
+          "id": "epoch",
+          "entryAssembly": "gwgui.emulation.epoch.dll",
+          "sha256": "9B0BD62693B7CF9CA7FEB957B6F2CA3051F34ABB7BC482C17B8656682216A3A0"
+        },
+        {
+          "id": "fairchild",
+          "entryAssembly": "gwgui.emulation.fairchild.dll",
+          "sha256": "C706ED853FEFA8C583D517061A930EE735B04B9913CA9DE0CEF32A4127F7ABAD"
+        },
+        {
+          "id": "mattel",
+          "entryAssembly": "gwgui.emulation.mattel.dll",
+          "sha256": "CA57748BDA712A4BC6ECDE9E7AD730556F2094F0C2784A25F08022B838F20453"
+        },
+        {
+          "id": "microsoft",
+          "entryAssembly": "gwgui.emulation.microsoft.dll",
+          "sha256": "F822086775C793396311D6366C132226B5C8563DF9DF21A6A1EE412542EDC7E3"
+        },
+        {
+          "id": "nec",
+          "entryAssembly": "gwgui.emulation.nec.dll",
+          "sha256": "9D5CBAFA3426BD10658FA8778A395E38BEEAA62BA1134B55C9160D0F1C284A53"
+        },
+        {
+          "id": "nintendo",
+          "entryAssembly": "gwgui.emulation.nintendo.dll",
+          "sha256": "6455345279DD2211787ED175F809057E4F55DAF9A44B6EF01317C9009ECEDD62"
+        },
+        {
+          "id": "panasonic",
+          "entryAssembly": "gwgui.emulation.panasonic.dll",
+          "sha256": "B1DFA485F8B8BBD907EF784D8C8A6872ED79BC8A960F84BB864147FB0D9CEF8E"
+        },
+        {
+          "id": "philips",
+          "entryAssembly": "gwgui.emulation.philips.dll",
+          "sha256": "1758EC386E6B56F9470229982F602E69C2FF576C6C5D7010904F1B14CC9B04C8"
+        },
+        {
+          "id": "sega",
+          "entryAssembly": "gwgui.emulation.sega.dll",
+          "sha256": "52B4788DDF425842DBA229AADD30337EA4D1543AF38CBD954750CF1A540BA038"
+        },
+        {
+          "id": "sharp",
+          "entryAssembly": "gwgui.emulation.sharp.dll",
+          "sha256": "B86DCE32280B286DD7645209ACEE704393AFD5F1A0512251EE14F28E008E133E"
+        },
+        {
+          "id": "sinclair",
+          "entryAssembly": "gwgui.emulation.sinclair.dll",
+          "sha256": "B3F6D42C608D1A90856DD5FDC10CB6E48F8962E49D242892F4D0E2F9CF6554B4"
+        },
+        {
+          "id": "snk",
+          "entryAssembly": "gwgui.emulation.snk.dll",
+          "sha256": "42CD2F14C7C43E889BDBC36F46A688B2E511F861E5BFD056BEB4CFE0DF5A1B40"
+        },
+        {
+          "id": "sony",
+          "entryAssembly": "gwgui.emulation.sony.dll",
+          "sha256": "38678E7111AAD7038E2CB19036CC23CA660DAA817F7B94E0B8F4BF71202215C2"
+        },
+        {
+          "id": "thomson",
+          "entryAssembly": "gwgui.emulation.thomson.dll",
+          "sha256": "89FF4DD81E1D23BC0C145672F013167CAE33E110158B783EAACB84CF851725EA"
+        },
+        {
+          "id": "watara",
+          "entryAssembly": "gwgui.emulation.watara.dll",
+          "sha256": "471B59C28A629474868411BEF7F09A783ED6772B6A3EBEF13557D71EEC2632C1"
+        },
+        {
+          "id": "wenquxing",
+          "entryAssembly": "gwgui.emulation.wenquxing.dll",
+          "sha256": "1F3D7A8E1FA4E34D5BF6AE831DA3F717DB783A94AF6EE5AA3001163C2A2E9CC4"
+        }
+      ],
+      "updaterOnlyOwnDll": true,
+      "includedBlocks": [
+        "diagnosticUtf8Reuse",
+        "callbackInterfaceInstallReuse"
+      ]
     }
   }
 }

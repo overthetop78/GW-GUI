@@ -1,0 +1,144 @@
+using System.Runtime.InteropServices;
+using GWGUI.Emulation.Functions;
+using GWGUI.Emulation.Interop;
+
+namespace GWGUI.Tests.Emulation;
+
+public sealed class CoreCallbackInterfaceTests
+{
+    [Fact]
+    public void NullDestinationsDoNotConvertOrPublishCallbacks()
+    {
+        Assert.False(ExternalCoreEnvironmentFunctions.SetLogInterface(nint.Zero, null!));
+        Assert.False(ExternalCoreEnvironmentFunctions.SetLedInterface(nint.Zero, null!));
+        Assert.False(ExternalCoreEnvironmentFunctions.SetRumbleInterface(nint.Zero, null!));
+        Assert.False(ExternalCoreEnvironmentFunctions.SetSensorInterface(nint.Zero, null!, null!));
+    }
+
+    [Fact]
+    public void LogInterfacePublishesTheBorrowedCallback()
+    {
+        (int Level, nint Format)? observed = null;
+        ExternalCoreApi.LogCallback callback = (level, format) => observed = (level, format);
+        WithGuardedBuffer<ExternalCoreApi.LogInterface>(
+            pointer => ExternalCoreEnvironmentFunctions.SetLogInterface(pointer, callback),
+            native =>
+            {
+                Assert.Equal(Marshal.GetFunctionPointerForDelegate(callback), native.Log);
+                Marshal.GetDelegateForFunctionPointer<ExternalCoreApi.LogCallback>(native.Log)(2, (nint)123);
+                Assert.Equal((2, (nint)123), observed);
+            }, callback);
+    }
+
+    [Fact]
+    public void LedInterfacePublishesTheBorrowedCallback()
+    {
+        (int Led, int State)? observed = null;
+        ExternalCoreApi.SetLedState callback = (led, state) => observed = (led, state);
+        WithGuardedBuffer<ExternalCoreApi.LedInterface>(
+            pointer => ExternalCoreEnvironmentFunctions.SetLedInterface(pointer, callback),
+            native =>
+            {
+                Assert.Equal(Marshal.GetFunctionPointerForDelegate(callback), native.SetLedState);
+                Marshal.GetDelegateForFunctionPointer<ExternalCoreApi.SetLedState>(native.SetLedState)(7, 1);
+                Assert.Equal((7, 1), observed);
+            }, callback);
+    }
+
+    [Fact]
+    public void RumbleInterfacePreservesPortEffectStrengthAndResult()
+    {
+        (uint Port, uint Effect, ushort Strength)? observed = null;
+        ExternalCoreApi.SetRumbleState callback = (port, effect, strength) =>
+        {
+            observed = (port, effect, strength);
+            return port == 3;
+        };
+        WithGuardedBuffer<ExternalCoreApi.RumbleInterface>(
+            pointer => ExternalCoreEnvironmentFunctions.SetRumbleInterface(pointer, callback),
+            native =>
+            {
+                Assert.Equal(Marshal.GetFunctionPointerForDelegate(callback), native.SetState);
+                var published = Marshal.GetDelegateForFunctionPointer<ExternalCoreApi.SetRumbleState>(native.SetState);
+                Assert.True(published(3, 1, ushort.MaxValue));
+                Assert.Equal((3u, 1u, ushort.MaxValue), observed);
+                Assert.False(published(4, 0, 0));
+                Assert.Equal((4u, 0u, (ushort)0), observed);
+            }, callback);
+    }
+
+    [Fact]
+    public void SensorInterfaceKeepsBothCallbackSlotsAndTheirResults()
+    {
+        (uint Port, uint Action, uint Rate)? state = null;
+        (uint Port, uint Id)? input = null;
+        ExternalCoreApi.SetSensorState setState = (port, action, rate) =>
+        {
+            state = (port, action, rate);
+            return true;
+        };
+        ExternalCoreApi.GetSensorInput getInput = (port, id) =>
+        {
+            input = (port, id);
+            return 0.75f;
+        };
+        WithGuardedBuffer<ExternalCoreApi.SensorInterface>(
+            pointer => ExternalCoreEnvironmentFunctions.SetSensorInterface(pointer, setState, getInput),
+            native =>
+            {
+                Assert.Equal(Marshal.GetFunctionPointerForDelegate(setState), native.SetState);
+                Assert.Equal(Marshal.GetFunctionPointerForDelegate(getInput), native.GetInput);
+                Assert.Equal(nint.Zero, Marshal.OffsetOf<ExternalCoreApi.SensorInterface>(nameof(ExternalCoreApi.SensorInterface.SetState)));
+                Assert.Equal((nint)IntPtr.Size, Marshal.OffsetOf<ExternalCoreApi.SensorInterface>(nameof(ExternalCoreApi.SensorInterface.GetInput)));
+                Assert.True(Marshal.GetDelegateForFunctionPointer<ExternalCoreApi.SetSensorState>(native.SetState)(2, 5, 60));
+                Assert.Equal((2u, 5u, 60u), state);
+                Assert.Equal(0.75f, Marshal.GetDelegateForFunctionPointer<ExternalCoreApi.GetSensorInput>(native.GetInput)(2, 9));
+                Assert.Equal((2u, 9u), input);
+            }, setState, getInput);
+    }
+
+    [Fact]
+    public void FailedSecondConversionDoesNotWriteAPartialInterface()
+    {
+        ExternalCoreApi.SetSensorState callback = (_, _, _) => true;
+        var expected = Enumerable.Repeat((byte)0x4a, Marshal.SizeOf<ExternalCoreApi.SensorInterface>()).ToArray();
+        var allocation = Marshal.AllocHGlobal(expected.Length);
+        try
+        {
+            Marshal.Copy(expected, 0, allocation, expected.Length);
+            Assert.Throws<ArgumentNullException>(() =>
+                ExternalCoreEnvironmentFunctions.SetSensorInterface(allocation, callback, null!));
+            var actual = new byte[expected.Length];
+            Marshal.Copy(allocation, actual, 0, actual.Length);
+            Assert.Equal(expected, actual);
+        }
+        finally
+        {
+            Marshal.FreeHGlobal(allocation);
+            GC.KeepAlive(callback);
+        }
+    }
+
+    private static void WithGuardedBuffer<T>(Func<nint, bool> install, Action<T> verify, params Delegate[] roots)
+        where T : struct
+    {
+        var size = Marshal.SizeOf<T>();
+        var bytes = Enumerable.Repeat((byte)0xa5, size + 2 * IntPtr.Size).ToArray();
+        var allocation = Marshal.AllocHGlobal(bytes.Length);
+        try
+        {
+            Marshal.Copy(bytes, 0, allocation, bytes.Length);
+            var pointer = allocation + IntPtr.Size;
+            Assert.True(install(pointer));
+            verify(Marshal.PtrToStructure<T>(pointer));
+            Marshal.Copy(allocation, bytes, 0, bytes.Length);
+            Assert.All(bytes.Take(IntPtr.Size), value => Assert.Equal((byte)0xa5, value));
+            Assert.All(bytes.Skip(IntPtr.Size + size), value => Assert.Equal((byte)0xa5, value));
+        }
+        finally
+        {
+            Marshal.FreeHGlobal(allocation);
+            GC.KeepAlive(roots);
+        }
+    }
+}
