@@ -7,6 +7,52 @@ namespace GWGUI.Emulation.Functions;
 
 internal static partial class EmulationHostProtocolFunctions
 {
+    // The caller owns the core and codecs. Unknown commands must not acquire a core
+    // or consume a payload; initialization, frames and disposal stay in their host.
+    internal static bool TryExecuteCoreCommand<TMedia, TPeripheral, TDiskStatus>(
+        byte command, BinaryReader reader, BinaryWriter writer,
+        Func<IEmulationCoreCommands<TMedia, TPeripheral, TDiskStatus>> ensureCore,
+        Func<BinaryReader, TMedia> readMedia, Func<BinaryReader, byte[]> readBytes,
+        Action<BinaryWriter, TDiskStatus> writeDiskStatus, Func<int, TPeripheral> decodePeripheral)
+    {
+        switch (command)
+        {
+            case EmulationHostProtocolConstants.HardResetCommand:
+                ensureCore().HardReset();
+                break;
+            case EmulationHostProtocolConstants.StopCommand:
+                ensureCore().Stop();
+                break;
+            case EmulationHostProtocolConstants.InsertMediaCommand:
+                ensureCore().InsertMedia(readMedia(reader));
+                break;
+            case EmulationHostProtocolConstants.EjectMediaCommand:
+                ensureCore().EjectMedia(EmulationMediaSlot.FromProtocolValue(reader.ReadInt32()));
+                break;
+            case EmulationHostProtocolConstants.SaveStateCommand:
+                WriteBytes(writer, ensureCore().SaveState());
+                break;
+            case EmulationHostProtocolConstants.LoadStateCommand:
+                ensureCore().LoadState(readBytes(reader));
+                break;
+            case EmulationHostProtocolConstants.SetOptionCommand:
+                ensureCore().SetOption(reader.ReadString(), reader.ReadString());
+                break;
+            case EmulationHostProtocolConstants.SelectDiskCommand:
+                ensureCore().SelectDisk(reader.ReadInt32());
+                break;
+            case EmulationHostProtocolConstants.GetDiskStatusCommand:
+                writeDiskStatus(writer, ensureCore().GetDiskStatus());
+                break;
+            case EmulationHostProtocolConstants.SetControllerPortDeviceCommand:
+                ensureCore().SetControllerPortDevice(reader.ReadInt32(), decodePeripheral(reader.ReadInt32()));
+                break;
+            default:
+                return false;
+        }
+        return true;
+    }
+
     internal static TState GetProcessState<TState>(Process? process, bool connectionFailed, bool disposed,
         TState faulted, TState notStarted, TState exited, TState running)
         where TState : struct, Enum

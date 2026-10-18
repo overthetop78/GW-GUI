@@ -33,42 +33,17 @@ public static class CoreHost
                         case HostCommand.RunFrame:
                             RunFrame(reader, writer, video, EnsureCore(core), ref lastVideoSequence, ref lastDiagnosticCount);
                             break;
-                        case HostCommand.HardReset:
-                            EnsureCore(core).HardReset();
-                            break;
-                        case HostCommand.Stop:
-                            EnsureCore(core).Stop();
-                            break;
-                        case HostCommand.InsertMedia:
-                            EnsureCore(core).InsertMedia(ReadMedia(reader));
-                            break;
-                        case HostCommand.EjectMedia:
-                            EnsureCore(core).EjectMedia(EmulationMediaSlot.FromProtocolValue(reader.ReadInt32()));
-                            break;
-                        case HostCommand.SaveState:
-                            CoreHostFunctions.WriteBytes(writer, EnsureCore(core).SaveState());
-                            break;
-                        case HostCommand.LoadState:
-                            EnsureCore(core).LoadState(CoreHostFunctions.ReadBytes(reader));
-                            break;
-                        case HostCommand.SetOption:
-                            EnsureCore(core).SetOption(reader.ReadString(), reader.ReadString());
-                            break;
-                        case HostCommand.SelectDisk:
-                            EnsureCore(core).SelectDisk(reader.ReadInt32());
-                            break;
-                        case HostCommand.GetDiskStatus:
-                            CoreHostFunctions.WriteDiskStatus(writer, EnsureCore(core).GetDiskStatus());
-                            break;
-                        case HostCommand.SetControllerPortDevice:
-                            EnsureCore(core).SetControllerPortDevice(reader.ReadInt32(), (PeripheralCategory)reader.ReadInt32());
-                            break;
                         case HostCommand.Dispose:
                             core?.Dispose();
                             core = null;
                             break;
                         default:
-                            throw new InvalidDataException(string.Format(CultureInfo.InvariantCulture, CoreHostErrors.UnknownCommandFormat, (byte)command));
+                            if (!EmulationHostProtocolFunctions.TryExecuteCoreCommand<MediaConfiguration, PeripheralCategory, DiskStatus>(
+                                (byte)command, reader, writer, () => EnsureCore(core), ReadMedia,
+                                CoreHostFunctions.ReadBytes, CoreHostFunctions.WriteDiskStatus,
+                                static value => (PeripheralCategory)value))
+                                throw new InvalidDataException(string.Format(CultureInfo.InvariantCulture, CoreHostErrors.UnknownCommandFormat, (byte)command));
+                            break;
                     }
                 }, (writer, error) =>
                 {

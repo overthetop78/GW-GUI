@@ -2,7 +2,7 @@ using GWGUI.Emulation;
 
 namespace GWGUI.Emulation.Philips.Common.Interfaces;
 
-internal interface IEmulatorCore : IDisposable
+internal interface IEmulatorCore : IDisposable, GWGUI.Emulation.Interfaces.IEmulationCoreCommands<MediaConfiguration, PeripheralCategory, DiskStatus>
 {
     Emulator Emulator { get; }
     VideoFrame? LatestVideoFrame { get; }
@@ -26,17 +26,7 @@ internal interface IEmulatorCore : IDisposable
     int? HostProcessId { get; }
     void Initialize(MachineConfiguration configuration, string sessionDirectory, string? saveDirectory = null);
     void RunFrame();
-    void HardReset();
-    void Stop();
     void SetInput(EmulationInputSnapshot snapshot);
-    void SetControllerPortDevice(int port, PeripheralCategory peripheral);
-    void InsertMedia(MediaConfiguration media);
-    void EjectMedia(EmulationMediaSlot slot);
-    void SelectDisk(int index);
     void SaveMediaChanges(EmulationMediaSlot slot);
-    DiskStatus GetDiskStatus();
     bool HasUnsavedMediaChanges(EmulationMediaSlot slot);
-    byte[] SaveState();
-    void LoadState(ReadOnlySpan<byte> state);
-    void SetOption(string key, string value);
 }

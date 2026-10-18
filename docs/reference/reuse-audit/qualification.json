@@ -4343,5 +4343,151 @@
     ],
     "laterCopyCommit": "2a9191065",
     "comparisons": "Original PC-FX and both prechange ToNative bodies have identical AST tokens. Every existing CoreSettings method is unchanged except Configure first dictionary initializer; its loop and final record clone are token-identical."
+  },
+  "coreCommandDispatchReuse": {
+    "laterOwnerOperations": [
+      "1c3d1c277 disk control",
+      "997ae2f34 controller device"
+    ],
+    "originalOwner": "d6277ffa1:src/GWGUI.Emulation.Atari/Cores/AtariCoreHost.cs",
+    "status": "15 host/interface AST comparisons passed; 23 targeted managed tests passed; SDK, App and 23 module references compiled; diff --check passes.",
+    "sourceCommit": "1d19c2a82",
+    "precheck": "All ten command bodies identical across fifteen hosts and all numeric IDs checked before modification. WriteBytes delegates directly to SDK in every profile.",
+    "profiles": [
+      {
+        "host": "src/GWGUI.Emulation.Bandai/Common/Services/CoreHost.cs",
+        "interface": "src/GWGUI.Emulation.Bandai/Common/Interfaces/IEmulatorCore.cs",
+        "commonCommandCount": 10,
+        "remainingHostAndInterfaceTokensUnchanged": true,
+        "codecs": "ReadMedia, CoreHostFunctions.ReadBytes and WriteDiskStatus remain module-owned",
+        "lifetime": "Initialize, RunFrame, Dispose, optional SaveMediaChanges/HasUnsavedMediaChanges, headers, failures and finally unchanged"
+      },
+      {
+        "host": "src/GWGUI.Emulation.Sharp/Common/Services/CoreHost.cs",
+        "interface": "src/GWGUI.Emulation.Sharp/Common/Interfaces/IEmulatorCore.cs",
+        "commonCommandCount": 10,
+        "remainingHostAndInterfaceTokensUnchanged": true,
+        "codecs": "ReadMedia, CoreHostFunctions.ReadBytes and WriteDiskStatus remain module-owned",
+        "lifetime": "Initialize, RunFrame, Dispose, optional SaveMediaChanges/HasUnsavedMediaChanges, headers, failures and finally unchanged"
+      },
+      {
+        "host": "src/GWGUI.Emulation.Atari/Common/Services/CoreHost.cs",
+        "interface": "src/GWGUI.Emulation.Atari/Emulators/Common/Interfaces/IEmulatorCore.cs",
+        "commonCommandCount": 10,
+        "remainingHostAndInterfaceTokensUnchanged": true,
+        "codecs": "ReadMedia, CoreHostFunctions.ReadBytes and WriteDiskStatus remain module-owned",
+        "lifetime": "Initialize, RunFrame, Dispose, optional SaveMediaChanges/HasUnsavedMediaChanges, headers, failures and finally unchanged"
+      },
+      {
+        "host": "src/GWGUI.Emulation.Apple/Common/Services/CoreHost.cs",
+        "interface": "src/GWGUI.Emulation.Apple/Common/Interfaces/IEmulatorCore.cs",
+        "commonCommandCount": 10,
+        "remainingHostAndInterfaceTokensUnchanged": true,
+        "codecs": "ReadMedia, CoreHostFunctions.ReadBytes and WriteDiskStatus remain module-owned",
+        "lifetime": "Initialize, RunFrame, Dispose, optional SaveMediaChanges/HasUnsavedMediaChanges, headers, failures and finally unchanged"
+      },
+      {
+        "host": "src/GWGUI.Emulation.Mattel/Common/Services/CoreHost.cs",
+        "interface": "src/GWGUI.Emulation.Mattel/Common/Interfaces/IEmulatorCore.cs",
+        "commonCommandCount": 10,
+        "remainingHostAndInterfaceTokensUnchanged": true,
+        "codecs": "ReadMedia, CoreHostFunctions.ReadBytes and WriteDiskStatus remain module-owned",
+        "lifetime": "Initialize, RunFrame, Dispose, optional SaveMediaChanges/HasUnsavedMediaChanges, headers, failures and finally unchanged"
+      },
+      {
+        "host": "src/GWGUI.Emulation.Fairchild/Common/Services/CoreHost.cs",
+        "interface": "src/GWGUI.Emulation.Fairchild/Common/Interfaces/IEmulatorCore.cs",
+        "commonCommandCount": 10,
+        "remainingHostAndInterfaceTokensUnchanged": true,
+        "codecs": "ReadMedia, CoreHostFunctions.ReadBytes and WriteDiskStatus remain module-owned",
+        "lifetime": "Initialize, RunFrame, Dispose, optional SaveMediaChanges/HasUnsavedMediaChanges, headers, failures and finally unchanged"
+      },
+      {
+        "host": "src/GWGUI.Emulation.Philips/Common/Services/CoreHost.cs",
+        "interface": "src/GWGUI.Emulation.Philips/Common/Interfaces/IEmulatorCore.cs",
+        "commonCommandCount": 10,
+        "remainingHostAndInterfaceTokensUnchanged": true,
+        "codecs": "ReadMedia, CoreHostFunctions.ReadBytes and WriteDiskStatus remain module-owned",
+        "lifetime": "Initialize, RunFrame, Dispose, optional SaveMediaChanges/HasUnsavedMediaChanges, headers, failures and finally unchanged"
+      },
+      {
+        "host": "src/GWGUI.Emulation.Acorn/Common/Services/CoreHost.cs",
+        "interface": "src/GWGUI.Emulation.Acorn/Common/Interfaces/IEmulatorCore.cs",
+        "commonCommandCount": 10,
+        "remainingHostAndInterfaceTokensUnchanged": true,
+        "codecs": "ReadMedia, CoreHostFunctions.ReadBytes and WriteDiskStatus remain module-owned",
+        "lifetime": "Initialize, RunFrame, Dispose, optional SaveMediaChanges/HasUnsavedMediaChanges, headers, failures and finally unchanged"
+      },
+      {
+        "host": "src/GWGUI.Emulation.Epoch/Common/Services/CoreHost.cs",
+        "interface": "src/GWGUI.Emulation.Epoch/Common/Interfaces/IEmulatorCore.cs",
+        "commonCommandCount": 10,
+        "remainingHostAndInterfaceTokensUnchanged": true,
+        "codecs": "ReadMedia, CoreHostFunctions.ReadBytes and WriteDiskStatus remain module-owned",
+        "lifetime": "Initialize, RunFrame, Dispose, optional SaveMediaChanges/HasUnsavedMediaChanges, headers, failures and finally unchanged"
+      },
+      {
+        "host": "src/GWGUI.Emulation.Coleco/Common/Services/CoreHost.cs",
+        "interface": "src/GWGUI.Emulation.Coleco/Common/Interfaces/IEmulatorCore.cs",
+        "commonCommandCount": 10,
+        "remainingHostAndInterfaceTokensUnchanged": true,
+        "codecs": "ReadMedia, CoreHostFunctions.ReadBytes and WriteDiskStatus remain module-owned",
+        "lifetime": "Initialize, RunFrame, Dispose, optional SaveMediaChanges/HasUnsavedMediaChanges, headers, failures and finally unchanged"
+      },
+      {
+        "host": "src/GWGUI.Emulation.Thomson/Common/Services/CoreHost.cs",
+        "interface": "src/GWGUI.Emulation.Thomson/Common/Interfaces/IEmulatorCore.cs",
+        "commonCommandCount": 10,
+        "remainingHostAndInterfaceTokensUnchanged": true,
+        "codecs": "ReadMedia, CoreHostFunctions.ReadBytes and WriteDiskStatus remain module-owned",
+        "lifetime": "Initialize, RunFrame, Dispose, optional SaveMediaChanges/HasUnsavedMediaChanges, headers, failures and finally unchanged"
+      },
+      {
+        "host": "src/GWGUI.Emulation.Watara/Common/Services/CoreHost.cs",
+        "interface": "src/GWGUI.Emulation.Watara/Common/Interfaces/IEmulatorCore.cs",
+        "commonCommandCount": 10,
+        "remainingHostAndInterfaceTokensUnchanged": true,
+        "codecs": "ReadMedia, CoreHostFunctions.ReadBytes and WriteDiskStatus remain module-owned",
+        "lifetime": "Initialize, RunFrame, Dispose, optional SaveMediaChanges/HasUnsavedMediaChanges, headers, failures and finally unchanged"
+      },
+      {
+        "host": "src/GWGUI.Emulation.Snk/Common/Services/CoreHost.cs",
+        "interface": "src/GWGUI.Emulation.Snk/Common/Interfaces/IEmulatorCore.cs",
+        "commonCommandCount": 10,
+        "remainingHostAndInterfaceTokensUnchanged": true,
+        "codecs": "ReadMedia, CoreHostFunctions.ReadBytes and WriteDiskStatus remain module-owned",
+        "lifetime": "Initialize, RunFrame, Dispose, optional SaveMediaChanges/HasUnsavedMediaChanges, headers, failures and finally unchanged"
+      },
+      {
+        "host": "src/GWGUI.Emulation.Sinclair/Common/Services/CoreHost.cs",
+        "interface": "src/GWGUI.Emulation.Sinclair/Common/Interfaces/IEmulatorCore.cs",
+        "commonCommandCount": 10,
+        "remainingHostAndInterfaceTokensUnchanged": true,
+        "codecs": "ReadMedia, CoreHostFunctions.ReadBytes and WriteDiskStatus remain module-owned",
+        "lifetime": "Initialize, RunFrame, Dispose, optional SaveMediaChanges/HasUnsavedMediaChanges, headers, failures and finally unchanged"
+      },
+      {
+        "host": "src/GWGUI.Emulation.Panasonic/Common/Services/CoreHost.cs",
+        "interface": "src/GWGUI.Emulation.Panasonic/Common/Interfaces/IEmulatorCore.cs",
+        "commonCommandCount": 10,
+        "remainingHostAndInterfaceTokensUnchanged": true,
+        "codecs": "ReadMedia, CoreHostFunctions.ReadBytes and WriteDiskStatus remain module-owned",
+        "lifetime": "Initialize, RunFrame, Dispose, optional SaveMediaChanges/HasUnsavedMediaChanges, headers, failures and finally unchanged"
+      }
+    ],
+    "numericCommands": [
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      13,
+      15
+    ],
+    "sdkOwner": "src/GWGUI.Emulation/Functions/EmulationHostProtocolFunctions.Host.cs",
+    "tests": "Ten native commands, six host-owned/unknown commands, six missing-core argument-order cases and truncated binary state. Memory streams only, no external core, process or file."
   }
 }

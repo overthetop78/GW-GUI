@@ -2,6 +2,17 @@ namespace GWGUI.Emulation.Constants;
 
 internal static class EmulationHostProtocolConstants
 {
+    internal const byte HardResetCommand = 3;
+    internal const byte StopCommand = 4;
+    internal const byte InsertMediaCommand = 5;
+    internal const byte EjectMediaCommand = 6;
+    internal const byte SaveStateCommand = 7;
+    internal const byte LoadStateCommand = 8;
+    internal const byte SetOptionCommand = 9;
+    internal const byte SelectDiskCommand = 10;
+    internal const byte GetDiskStatusCommand = 13;
+    internal const byte SetControllerPortDeviceCommand = 15;
+
     internal const int EmptyPointerDelta = 0;
     internal const string InvalidVideoFrameLengthFormat = "The {0} video frame requires {1} bytes; the shared slot supports {2}.";
     internal const string InvalidSharedVideoMetadata = "The host sent invalid shared video metadata.";
