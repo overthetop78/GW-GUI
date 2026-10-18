@@ -9928,5 +9928,120 @@
     "semantic": "SDK and four module source compilations: zero semantic errors; eight calls resolved to original shared SDK operations with local types.",
     "tests": "Shared SDK and test source hashes identical to first block with 21 passed tests. No redundant test added; fixed enum symbols/constants resolved before and after. Full product build follows both blocks.",
     "resources": "No resource owner or lifetime statement modified; all other members preserved."
+  },
+  "simpleFactoryReleaseSelectionReuse": {
+    "baseline": "ebc8b9f32",
+    "originCommit": "5a7b3a6ce",
+    "originPath": "src/GWGUI.Emulation.Amiga/Modules/AmigaEmulationModule.cs",
+    "originalGuardTokens": "if ( ! _availableReleases . TryGetValue ( release . Id , out var selected ) ) throw new ArgumentException ( nameof ( release ) ) ;",
+    "before": [
+      {
+        "path": "src/GWGUI.Emulation.Amstrad/Emulators/Caprice32/Factories/Caprice32MachineFactory.cs",
+        "project": "GWGUI.Emulation.Amstrad",
+        "line": 52,
+        "fieldType": "System.Collections.Generic.IReadOnlyDictionary<string, GWGUI.Emulation.Amstrad.Emulators.Common.Contracts.CoreRelease>",
+        "guardTokens": "if ( ! _availableReleases . TryGetValue ( release . Id , out var selected ) ) throw new ArgumentException ( nameof ( release ) ) ;",
+        "sourceSha256": "E811E83FA890A387B35202C4FED3A1B6676D104721F3FB8987ABC426B43ECF51"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Amstrad/Emulators/CrocoDS/Factories/CrocoDSMachineFactory.cs",
+        "project": "GWGUI.Emulation.Amstrad",
+        "line": 74,
+        "fieldType": "System.Collections.Generic.IReadOnlyDictionary<string, GWGUI.Emulation.Amstrad.Emulators.Common.Contracts.CoreRelease>",
+        "guardTokens": "if ( ! _availableReleases . TryGetValue ( release . Id , out var selected ) ) throw new ArgumentException ( nameof ( release ) ) ;",
+        "sourceSha256": "DA2F3E5A8F4F4BC20DFECBD6655D51FD52F75FCF2248945B4A7094161F731495"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Factories/MachineFactory.cs",
+        "project": "GWGUI.Emulation.Commodore",
+        "line": 94,
+        "fieldType": "System.Collections.Generic.IReadOnlyDictionary<string, GWGUI.Emulation.Commodore.Emulators.Common.Interop.Contracts.CoreRelease>",
+        "guardTokens": "if ( ! _availableReleases . TryGetValue ( release . Id , out var selected ) ) throw new ArgumentException ( nameof ( release ) ) ;",
+        "sourceSha256": "55EA31D5B6541C6300CCA9C5426C1F66BA842AD6CE009AACD80AA20BD393041D"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nec/Emulators/BeetlePceFast/Factories/BeetlePceFastMachineFactory.cs",
+        "project": "GWGUI.Emulation.Nec",
+        "line": 66,
+        "fieldType": "System.Collections.Generic.IReadOnlyDictionary<string, GWGUI.Emulation.Nec.Emulators.Common.Interop.Contracts.CoreRelease>",
+        "guardTokens": "if ( ! _availableReleases . TryGetValue ( release . Id , out var selected ) ) throw new ArgumentException ( nameof ( release ) ) ;",
+        "sourceSha256": "0231A4F9A31B5706F04C408CC297A2008277ABA486E094D1DE4B48FCFA6CE1A8"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nec/Emulators/BeetlePcfx/Factories/BeetlePcfxMachineFactory.cs",
+        "project": "GWGUI.Emulation.Nec",
+        "line": 58,
+        "fieldType": "System.Collections.Generic.IReadOnlyDictionary<string, GWGUI.Emulation.Nec.Emulators.BeetlePcfx.Contracts.CoreRelease>",
+        "guardTokens": "if ( ! _availableReleases . TryGetValue ( release . Id , out var selected ) ) throw new ArgumentException ( nameof ( release ) ) ;",
+        "sourceSha256": "4D605B8AB5CF1A8D9220228348273692E7E0E2B0D0E7BE25AD6AF8121D979D72"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nec/Emulators/BeetleSgx/Factories/BeetleSgxMachineFactory.cs",
+        "project": "GWGUI.Emulation.Nec",
+        "line": 47,
+        "fieldType": "System.Collections.Generic.IReadOnlyDictionary<string, GWGUI.Emulation.Nec.Emulators.Common.Interop.Contracts.CoreRelease>",
+        "guardTokens": "if ( ! _availableReleases . TryGetValue ( release . Id , out var selected ) ) throw new ArgumentException ( nameof ( release ) ) ;",
+        "sourceSha256": "472F04B3308804C80AE05D749ADAFC1FFA24A0D9B6E1BBCC46E88BDBB8AF274E"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Factories/CoreMachineFactory.cs",
+        "project": "GWGUI.Emulation.Nec",
+        "line": 41,
+        "fieldType": "System.Collections.Generic.IReadOnlyDictionary<string, GWGUI.Emulation.Nec.Emulators.Common.Interop.Contracts.CoreRelease>",
+        "guardTokens": "if ( ! _availableReleases . TryGetValue ( release . Id , out var selected ) ) throw new ArgumentException ( nameof ( release ) ) ;",
+        "sourceSha256": "A8C65D4C01C590C133A94F4376BBD4CAFE43A5EE4CCAB2304765E54393AE408A"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nec/Emulators/Geargrafx/Factories/GeargrafxMachineFactory.cs",
+        "project": "GWGUI.Emulation.Nec",
+        "line": 62,
+        "fieldType": "System.Collections.Generic.IReadOnlyDictionary<string, GWGUI.Emulation.Nec.Emulators.Common.Interop.Contracts.CoreRelease>",
+        "guardTokens": "if ( ! _availableReleases . TryGetValue ( release . Id , out var selected ) ) throw new ArgumentException ( nameof ( release ) ) ;",
+        "sourceSha256": "EF9A3F57D32B316B0510CAA5B10E8942882F1F37C314D37B8BF4A75B10007253"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Factories/CoreMachineFactory.cs",
+        "project": "GWGUI.Emulation.Nintendo",
+        "line": 44,
+        "fieldType": "System.Collections.Generic.IReadOnlyDictionary<string, GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Contracts.CoreRelease>",
+        "guardTokens": "if ( ! _availableReleases . TryGetValue ( release . Id , out var selected ) ) throw new ArgumentException ( nameof ( release ) ) ;",
+        "sourceSha256": "F33922C4BDE810EF2DB8BC41123D3705879F7354C3B57CEDC88310CFE5D92B0B"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Factories/CoreMachineFactory.cs",
+        "project": "GWGUI.Emulation.Sega",
+        "line": 44,
+        "fieldType": "System.Collections.Generic.IReadOnlyDictionary<string, GWGUI.Emulation.Sega.Emulators.Common.Interop.Contracts.CoreRelease>",
+        "guardTokens": "if ( ! _availableReleases . TryGetValue ( release . Id , out var selected ) ) throw new ArgumentException ( nameof ( release ) ) ;",
+        "sourceSha256": "76EEDB3230AC1AC19DB3254B15945EFC479BEAB4ECA8359D4D5307829BB3E8B5"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Factories/CoreMachineFactory.cs",
+        "project": "GWGUI.Emulation.Sony",
+        "line": 78,
+        "fieldType": "System.Collections.Generic.IReadOnlyDictionary<string, GWGUI.Emulation.Sony.Emulators.Common.Interop.Contracts.CoreRelease>",
+        "guardTokens": "if ( ! _availableReleases . TryGetValue ( release . Id , out var selected ) ) throw new ArgumentException ( nameof ( release ) ) ;",
+        "sourceSha256": "9A7C6FB25A2EE2300D0F50F9231D8FE3286B360F14046BCE5B7C21F0A7E5DA67"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Factories/Pcsx2MachineFactory.cs",
+        "project": "GWGUI.Emulation.Sony",
+        "line": 60,
+        "fieldType": "System.Collections.Generic.IReadOnlyDictionary<string, GWGUI.Emulation.Sony.Emulators.Pcsx2.Contracts.CoreRelease>",
+        "guardTokens": "if ( ! _availableReleases . TryGetValue ( release . Id , out var selected ) ) throw new ArgumentException ( nameof ( release ) ) ;",
+        "sourceSha256": "E6EE74C58F0A772C44747CCAA537D8EED1445D453EDF304F7229C21700D0BC19"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Factories/PpssppMachineFactory.cs",
+        "project": "GWGUI.Emulation.Sony",
+        "line": 51,
+        "fieldType": "System.Collections.Generic.IReadOnlyDictionary<string, GWGUI.Emulation.Sony.Emulators.Ppsspp.Contracts.CoreRelease>",
+        "guardTokens": "if ( ! _availableReleases . TryGetValue ( release . Id , out var selected ) ) throw new ArgumentException ( nameof ( release ) ) ;",
+        "sourceSha256": "6F5CDD6A7773387AD4602916D74F6F8FDF8C9D8EECC31C540975663947FA6BD7"
+      }
+    ],
+    "semantic": "SDK plus Amstrad, Commodore, NEC, Nintendo, Sega and Sony source compilations: zero errors; thirteen original dictionary types resolved.",
+    "decision": "Retain original Amiga guard in a two-argument SelectRelease overload in existing SDK owner. Existing three-argument Atari overload reuses lookup then applies original emulator predicate; native factories use no emulator predicate.",
+    "state": "planned-before-source-edits"
   }
 }
