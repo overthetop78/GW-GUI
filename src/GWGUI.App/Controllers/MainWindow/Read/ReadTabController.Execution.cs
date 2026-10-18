@@ -76,7 +76,7 @@ internal sealed partial class ReadTabController
                 if (advanced.AutoNumberCheckBox.IsChecked != true) advanced.AutoNumberCheckBox.IsChecked = true;
                 var sequenceKind = advanced.SequenceKindComboBox.SelectedIndex == 1 ? SequenceKind.Alphabetic : SequenceKind.Numeric;
                 if (!SequenceFormatter.TryParse(advanced.SequenceValueTextBox.Text, sequenceKind, out var next)) next = sequenceKind == SequenceKind.Alphabetic ? 0 : 1;
-                var available = OutputConflictResolver.FindNextAvailableWithValue(view.FolderBlock.Input.Text, fileName.Text.Trim(), extension, sequenceKind, advanced.SequenceWidthComboBox.SelectedIndex + 1, next, exists);
+                var available = OutputConflictResolver.FindNextAvailableWithValue(view.FolderBlock.Input.Text, GetOutputBaseName(extension), extension, sequenceKind, advanced.SequenceWidthComboBox.SelectedIndex + 1, next, exists);
                 target = available.Path;
                 viewModel.Read.SequenceValue = sequenceKind == SequenceKind.Numeric ? available.Value.ToString() : SequenceFormatter.Format(available.Value, sequenceKind, 1);
             }
@@ -158,7 +158,14 @@ internal sealed partial class ReadTabController
         {
             var reader = createInternalReader();
             var readProgress = new Progress<PhysicalDiskReadOperationProgress>(ReportInternalProgress);
-            capture = await reader.ReadAsync(options, target, readProgress, token, targetFormatId);
+            try
+            {
+                capture = await reader.ReadAsync(options, target, readProgress, token, targetFormatId);
+            }
+            catch (OperationCanceledException) when (token.IsCancellationRequested)
+            {
+                return new GwExecutionResult(1, true, stopwatch.Elapsed, []);
+            }
             return new GwExecutionResult(0, false, stopwatch.Elapsed, []);
         });
         await operation.FlushPendingAsync();

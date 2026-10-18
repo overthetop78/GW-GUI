@@ -107,11 +107,12 @@ internal sealed class MainWindowLifecycleController(
 
     internal async Task ShowPreferencesAsync()
     {
+        captureRead(); captureWrite(); captureConversion();
         captureProfiles();
         if (!navigation.ShowPreferences(settings())) return;
-        captureRead(); captureWrite(); captureConversion(); captureWindow();
+        captureWindow();
         loadProfiles(); refreshReadProfiles(); refreshWriteProfiles(); refreshConvertProfiles();
-        restoreReadSettings(); refreshHardware(); applyTheme();
+        restoreReadSettings(); restoreWriteSettings(); restoreConversionSettings(); refreshHardware(); applyTheme();
         await settingsStore.SaveAsync(settings());
         updateReadCommand(); updateWriteCommand(); updateConvertCommand();
     }

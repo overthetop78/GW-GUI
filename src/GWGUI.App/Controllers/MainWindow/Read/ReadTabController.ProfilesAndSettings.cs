@@ -38,11 +38,16 @@ namespace GWGUI.App.Controllers.MainWindow;
 
 internal sealed partial class ReadTabController
 {
-    internal void RefreshProfiles(string? selectedId = null) => profileController.Refresh(ProfileCombo, OperationKind.Read, selectedId);
+    internal void RefreshProfiles(string? selectedId = null)
+    {
+        refreshingProfiles = true;
+        try { profileController.Refresh(ProfileCombo, OperationKind.Read, selectedId); }
+        finally { refreshingProfiles = false; }
+    }
 
     internal void ProfileChanged()
     {
-        if (ProfileCombo.SelectedItem is not OperationProfile profile || view.AdvancedBlock.RevsEnabledCheckBox is null)
+        if (refreshingProfiles || ProfileCombo.SelectedItem is not OperationProfile profile || view.AdvancedBlock.RevsEnabledCheckBox is null)
             return;
 
         ApplyProfile(profile);
@@ -118,7 +123,17 @@ internal sealed partial class ReadTabController
         }
     }
 
-    internal string GetTarget(string extension) => viewModel.Read.BuildTarget(extension, ReadTabConstants.ExampleFallbackName);
+    internal string GetTarget(string extension) => viewModel.Read.BuildTarget(extension, ReadTabConstants.ExampleFallbackName, GetOutputBaseName(extension));
+
+    private string GetOutputBaseName(string extension)
+    {
+        var name = string.IsNullOrWhiteSpace(viewModel.Read.FileName) ? ReadTabConstants.ExampleFallbackName : viewModel.Read.FileName.Trim();
+        var naming = settings().Conversion;
+        var format = RawScpRadio.IsChecked == true ? formatCatalog().Formats.FirstOrDefault(item => item.Id == "raw.scp") : FormatCombo.SelectedItem as DiskFormat;
+        if (!naming.AddTags || format is null) return name;
+        var tag = GWGUI.MediaEngine.Images.Conversion.ConversionPlanner.FormatTag(naming.TagPattern, format, extension, name, DateTime.Now);
+        return naming.TagPattern.Contains("{NAME}", StringComparison.OrdinalIgnoreCase) ? tag : tag + name;
+    }
 
     internal string GetExtension() => RawScpRadio.IsChecked == true ? ReadTabConstants.ScpExtension : (ExtensionCombo.SelectedItem as ImageExtension)?.Extension ?? string.Empty;
 

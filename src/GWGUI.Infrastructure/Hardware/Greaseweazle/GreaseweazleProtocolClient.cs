@@ -114,6 +114,11 @@ public sealed class GreaseweazleProtocolClient(IGreaseweazleSerialTransport tran
                 await SendCommandAsync(new byte[] { (byte)GreaseweazleCommand.GetFluxStatus, 2 }, cancellationToken);
                 return GreaseweazleFluxStreamDecoder.Decode(stream, Firmware.SampleFrequency);
             }
+            catch (OperationCanceledException) when (cancellationToken.IsCancellationRequested)
+            {
+                await ResetCommunicationAsync(CancellationToken.None);
+                throw;
+            }
             catch (GreaseweazleProtocolException exception) when (
                 exception.Acknowledgement == GreaseweazleAcknowledgement.FluxOverflow &&
                 attempt < retries)

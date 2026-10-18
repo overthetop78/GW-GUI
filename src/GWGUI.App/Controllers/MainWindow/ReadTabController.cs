@@ -83,6 +83,7 @@ internal sealed partial class ReadTabController(
 
     private bool UsesInternalPhysicalRead => settings().Engines.PhysicalRead == OperationEngine.Internal;
     private string? lastInternalReadProgressLine;
+    private bool refreshingProfiles;
 
     internal void UpdateExtension()
     {

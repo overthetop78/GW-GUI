@@ -39,9 +39,9 @@ public sealed class ReadOperationViewModel : ObservableObject
 
     public SequenceKind SequenceKind => SequenceKindIndex == 1 ? SequenceKind.Alphabetic : SequenceKind.Numeric;
 
-    public string BuildTarget(string extension, string exampleName)
+    public string BuildTarget(string extension, string exampleName, string? outputName = null)
     {
-        var name = string.IsNullOrWhiteSpace(FileName) ? exampleName : FileName.Trim();
+        var name = outputName ?? (string.IsNullOrWhiteSpace(FileName) ? exampleName : FileName.Trim());
         if (AutoNumber && SequenceFormatter.TryParse(SequenceValue, SequenceKind, out var sequence))
             name += " " + SequenceFormatter.Format(sequence, SequenceKind, SequenceWidthIndex + 1);
         return Path.Combine(Folder, name + extension);
