@@ -177,14 +177,10 @@ namespace Hst.Amiga.FileSystems.FastFileSystem
         }
 
         public static char ToUpper(char c)
-        {
-            return (char)(c >= 'a' && c <= 'z' ? c - ('a' - 'A') : c);
-        }
+        => global::Hst.Amiga.AmigaTextHelper.ToUpper(c);
 
         public static char IntlToUpper(char c)
-        {
-            return (char)((c >= 'a' && c <= 'z') || (c >= 224 && c <= 254 && c != 247) ? c - ('a' - 'A') : c);
-        }
+        => global::Hst.Amiga.AmigaTextHelper.InternationalToUpper(c);
 
         private static string TrimName(FastFileSystemVolumeState volume, string name)
         {
@@ -206,15 +202,7 @@ namespace Hst.Amiga.FileSystems.FastFileSystem
         }
 
         public static string MyToUpper(string str, bool intl)
-        {
-            var nstr = str.ToCharArray();
-            for (var i = 0; i < str.Length; i++)
-            {
-                nstr[i] = intl ? IntlToUpper(str[i]) : ToUpper(str[i]);
-            }
-
-            return new string(nstr);
-        }
+        => global::Hst.Amiga.AmigaTextHelper.ToUpper(str, intl);
 
         public static async Task<FastFileSystemNameToEntryBlockResult> GetEntryBlock(FastFileSystemVolumeState volume, uint[] ht, string name, bool nUpdSect)
         {
