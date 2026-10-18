@@ -10885,5 +10885,37 @@
     "ast": "Original App e31ed0251 iterator promoted with typed selectors; substituting both typed original expressions and the recursive selector arguments restores both old iterator bodies. All other source tokens in the two consumers identical to a574c205d after call normalization.",
     "semantic": "MediaFileSystems, MediaEngine and App: zero semantic errors. Three calls resolve to MediaFileSystems.MediaExplorer.EnumerateFiles<TEntry>: recursive generic, concrete MediaFileSystems.FileSystemEntry, concrete Engine.Contracts.Explorer.FileSystemEntry. Original predicates/children and downstream presentation types retained.",
     "tests": "Six tests passed, exit 0: four new managed iterator cases (order/identity including children of files, deferred evaluation/early disposal, predicate and children failures) plus two existing ISO and GameCube exploration boundary tests. No external files, DLL fixtures, windows, processes or cores; enumerators disposed in finally."
+  },
+  "tapeEncodingCompatibilityReuse": {
+    "state": "qualified-before-correction",
+    "before": [
+      {
+        "path": "src/GWGUI.MediaEngine/Images/Writing/Encoding/Sequential/Msx/MsxTapeEncoder.cs",
+        "sha256": "69406395686768B8273FE7342CCFD94A68026BA5583BCCF4838531C3A000E1FF",
+        "origin": "8ea733760",
+        "originalPolicyUnchanged": true,
+        "profile": "Integrity true; nonempty data"
+      },
+      {
+        "path": "src/GWGUI.MediaEngine/Images/Writing/Encoding/Sequential/Commodore/CommodoreTapeEncoder.cs",
+        "sha256": "25A97E3D2EF716FB23D66CD76CF2A9D16DC91A7EE42441A80F77872DCECDBA74",
+        "origin": "8ea733760",
+        "originalPolicyUnchanged": true,
+        "profile": "Integrity true; nonempty data"
+      },
+      {
+        "path": "src/GWGUI.MediaEngine/Images/Writing/Encoding/Sequential/Spectrum/SpectrumTapeEncoder.cs",
+        "sha256": "11B857899E87D81CFBE4BD6B3F7C679147BC1EEBE42CB98E5CAB325B32B2EBBE",
+        "origin": "8ea733760",
+        "originalPolicyUnchanged": true,
+        "profile": "Integrity true; data length 2..65535"
+      }
+    ],
+    "origin": "Both MSX and Commodore policies appear in 8ea733760 under Encoding/Sequential; current source matches that policy after the already-completed relocation of TryReadSampleRate to PcmSampleFunctions.",
+    "semantic": "MediaEngine zero semantic errors. The three methods resolve IReadOnlySet<string>.Contains, Enumerable.All<SequentialDecodedBlock>, string.Equals(OrdinalIgnoreCase), PcmSampleFunctions.TryReadSampleRate on the same SequentialEncodeRequest contract.",
+    "identical": "MSX/Commodore expressions identical including evaluation order: supported format, machine, at least one block, all integrity true and nonempty data, no retained segments, WAV sample-rate check. Their supported format/machine sets remain encoder-specific.",
+    "distinct": "Spectrum requires length 2..65535 and remains unchanged. Acorn TryBuildBlock, Atari size/retained-segment policy and TZX CanRetain differ; no common acceptance rule imposed on them.",
+    "owners": "SequentialEncodeRequest owns immutable request data; SequentialEncoderRegistry routes encoders and explicitly contains no format algorithm. PcmSampleFunctions owns PCM validation already reused by all three. No existing function owns the duplicated entire byte-block compatibility policy.",
+    "decision": "Extract only the original MSX/Commodore policy into a static SequentialEncodeFunctions function, receiving the original request and existing encoder sets. Preserve all encoders and their waveform/byte serialization; no new registry, request contract, format table or base class."
   }
 }
