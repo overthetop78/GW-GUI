@@ -8,7 +8,7 @@ namespace GWGUI.Emulation.Bandai.Emulators.Common.Interop.Services;
 
 internal sealed partial class ExternalHostCallbacks : IDisposable
 {
-    private bool SetRotation(nint data)
+    public bool SetRotation(nint data)
     {
         if (data == nint.Zero) return false;
         var rotation = unchecked((uint)Marshal.ReadInt32(data));
@@ -18,7 +18,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
         return true;
     }
 
-    private bool CapturePerformanceLevel(nint data)
+    public bool CapturePerformanceLevel(nint data)
     {
         if (data == nint.Zero) return false;
         PerformanceLevel = unchecked((uint)Marshal.ReadInt32(data));
@@ -30,10 +30,10 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
         return false;
     }
 
-    private bool SetPixelFormat(nint data)
+    public bool SetPixelFormat(nint data)
         => ExternalCoreEnvironmentFunctions.SetPixelFormat(data, ref _pixelFormat);
 
-    private bool SetSystemAvInfo(nint data)
+    public bool SetSystemAvInfo(nint data)
     {
         if (data == nint.Zero) return false;
         var info = Marshal.PtrToStructure<ExternalCoreApi.SystemAvInfo>(data);
@@ -41,7 +41,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
         return true;
     }
 
-    private bool SetGeometry(nint data)
+    public bool SetGeometry(nint data)
     {
         if (data == nint.Zero) return false;
         Geometry = Marshal.PtrToStructure<ExternalCoreApi.Geometry>(data);
@@ -49,7 +49,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
         return true;
     }
 
-    private bool ReadMessage(nint data)
+    public bool ReadMessage(nint data)
     {
         if (data == nint.Zero) return false;
         var message = Marshal.PtrToStructure<ExternalCoreApi.Message>(data);
@@ -58,7 +58,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
         return true;
     }
 
-    private bool ReadExtendedMessage(nint data)
+    public bool ReadExtendedMessage(nint data)
     {
         if (data == nint.Zero) return false;
         var message = Marshal.PtrToStructure<ExternalCoreApi.MessageExtended>(data);
@@ -74,10 +74,10 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
         return string.IsNullOrWhiteSpace(text) ? null : text;
     }
 
-    private bool SetLogInterface(nint data)
+    public bool SetLogInterface(nint data)
         => ExternalCoreEnvironmentFunctions.SetLogInterface(data, Log);
 
-    private bool SetLedInterface(nint data)
+    public bool SetLedInterface(nint data)
     {
         if (data == nint.Zero) return false;
         Marshal.StructureToPtr(new ExternalCoreApi.LedInterface
@@ -87,7 +87,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
         return true;
     }
 
-    private bool SetRumbleInterface(nint data)
+    public bool SetRumbleInterface(nint data)
     {
         if (data == nint.Zero) return false;
         Marshal.StructureToPtr(new ExternalCoreApi.RumbleInterface
@@ -97,7 +97,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
         return true;
     }
 
-    private bool SetSensorInterface(nint data)
+    public bool SetSensorInterface(nint data)
     {
         if (data == nint.Zero) return false;
         Marshal.StructureToPtr(new ExternalCoreApi.SensorInterface

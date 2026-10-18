@@ -7,6 +7,78 @@ using GWGUI.Emulation.Constants;
 namespace GWGUI.Emulation.Functions;
 internal static class ExternalCoreEnvironmentFunctions
 {
+    internal static bool TryHandleCallbackCommand(uint command, nint data,
+        IEmulationCoreEnvironmentCommands callbacks, out bool result)
+    {
+        switch (command)
+        {
+            case ExternalCoreApiConstants.SetRotation:
+                result = callbacks.SetRotation(data);
+                break;
+            case ExternalCoreApiConstants.SetPerformanceLevel:
+                result = callbacks.CapturePerformanceLevel(data);
+                break;
+            case ExternalCoreApiConstants.SetPixelFormat:
+                result = callbacks.SetPixelFormat(data);
+                break;
+            case ExternalCoreApiConstants.SetSystemAvInfo:
+                result = callbacks.SetSystemAvInfo(data);
+                break;
+            case ExternalCoreApiConstants.SetGeometry:
+                result = callbacks.SetGeometry(data);
+                break;
+            case ExternalCoreApiConstants.SetMessage:
+                result = callbacks.ReadMessage(data);
+                break;
+            case ExternalCoreApiConstants.SetMessageExtended:
+                result = callbacks.ReadExtendedMessage(data);
+                break;
+            case ExternalCoreApiConstants.GetLogInterface:
+                result = callbacks.SetLogInterface(data);
+                break;
+            case ExternalCoreApiConstants.GetLedInterface:
+                result = callbacks.SetLedInterface(data);
+                break;
+            case ExternalCoreApiConstants.GetRumbleInterface:
+                result = callbacks.SetRumbleInterface(data);
+                break;
+            case ExternalCoreApiConstants.GetSensorInterface:
+                result = callbacks.SetSensorInterface(data);
+                break;
+            case ExternalCoreApiConstants.GetSystemDirectory:
+                result = callbacks.WriteSystemDirectory(data);
+                break;
+            case ExternalCoreApiConstants.GetContentDirectory:
+                result = callbacks.WriteContentDirectory(data);
+                break;
+            case ExternalCoreApiConstants.GetSaveDirectory:
+                result = callbacks.WriteSaveDirectory(data);
+                break;
+            case ExternalCoreApiConstants.SetSupportNoGame:
+                result = callbacks.SetSupportNoGame(data);
+                break;
+            case ExternalCoreApiConstants.SetInputDescriptors:
+                result = callbacks.CaptureInputDescriptors(data);
+                break;
+            case ExternalCoreApiConstants.SetControllerInfo:
+                result = callbacks.CaptureControllerInfo(data);
+                break;
+            case ExternalCoreApiConstants.SetMemoryMaps:
+                result = callbacks.CaptureMemoryMaps(data);
+                break;
+            case ExternalCoreApiConstants.SetSupportAchievements:
+                result = callbacks.SetSupportAchievements(data);
+                break;
+            case ExternalCoreApiConstants.GetVfsInterface:
+                result = callbacks.ProvideVfs(data);
+                break;
+            default:
+                result = false;
+                return false;
+        }
+        return true;
+    }
+
     internal static void InstallCallbacks(ExternalCoreExports exports, IEmulationCoreCallbacks callbacks)
     {
         exports.SetEnvironment(callbacks.Environment);

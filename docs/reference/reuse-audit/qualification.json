@@ -7691,5 +7691,215 @@
     "resources": "Task released and awaited in finally; managed events only, no external DLL, download, user storage, process or window",
     "report": "11673 CSharp method bodies >= 30 tokens, 529 exact candidate groups; whole-project qualification remains incomplete",
     "afterProductBuild": "372e42eff"
+  },
+  "environmentCallbackDispatchReuse": {
+    "snapshot": "939f0c365",
+    "origin": "ac7292d86^:src/GWGUI.Emulation.Atari/Services/AtariExternalHostCallbacks.cs, OnEnvironment before Amstrad",
+    "owner": "Existing ExternalCoreEnvironmentFunctions; borrowed interface IEmulationCoreEnvironmentCommands, no state or native resource ownership",
+    "commands": [
+      {
+        "command": "SetRotation",
+        "method": "SetRotation",
+        "direct": true
+      },
+      {
+        "command": "SetPerformanceLevel",
+        "method": "CapturePerformanceLevel",
+        "direct": true
+      },
+      {
+        "command": "SetPixelFormat",
+        "method": "SetPixelFormat",
+        "direct": true
+      },
+      {
+        "command": "SetSystemAvInfo",
+        "method": "SetSystemAvInfo",
+        "direct": true
+      },
+      {
+        "command": "SetGeometry",
+        "method": "SetGeometry",
+        "direct": true
+      },
+      {
+        "command": "SetMessage",
+        "method": "ReadMessage",
+        "direct": true
+      },
+      {
+        "command": "SetMessageExtended",
+        "method": "ReadExtendedMessage",
+        "direct": true
+      },
+      {
+        "command": "GetLogInterface",
+        "method": "SetLogInterface",
+        "direct": true
+      },
+      {
+        "command": "GetLedInterface",
+        "method": "SetLedInterface",
+        "direct": true
+      },
+      {
+        "command": "GetRumbleInterface",
+        "method": "SetRumbleInterface",
+        "direct": true
+      },
+      {
+        "command": "GetSensorInterface",
+        "method": "SetSensorInterface",
+        "direct": true
+      },
+      {
+        "command": "GetSystemDirectory",
+        "method": "WriteSystemDirectory",
+        "direct": false
+      },
+      {
+        "command": "GetContentDirectory",
+        "method": "WriteContentDirectory",
+        "direct": false
+      },
+      {
+        "command": "GetSaveDirectory",
+        "method": "WriteSaveDirectory",
+        "direct": false
+      },
+      {
+        "command": "SetSupportNoGame",
+        "method": "SetSupportNoGame",
+        "direct": false
+      },
+      {
+        "command": "SetInputDescriptors",
+        "method": "CaptureInputDescriptors",
+        "direct": false
+      },
+      {
+        "command": "SetControllerInfo",
+        "method": "CaptureControllerInfo",
+        "direct": false
+      },
+      {
+        "command": "SetMemoryMaps",
+        "method": "CaptureMemoryMaps",
+        "direct": false
+      },
+      {
+        "command": "SetSupportAchievements",
+        "method": "SetSupportAchievements",
+        "direct": false
+      },
+      {
+        "command": "GetVfsInterface",
+        "method": "ProvideVfs",
+        "direct": false
+      }
+    ],
+    "comparisons": [
+      {
+        "module": "Acorn",
+        "routes": 20,
+        "localProjections": 9,
+        "callbacks": 11,
+        "otherMembersUnchanged": true,
+        "keyboardDiskCapabilitiesOptionsDiagnosticsUnchanged": true
+      },
+      {
+        "module": "Apple",
+        "routes": 20,
+        "localProjections": 9,
+        "callbacks": 11,
+        "otherMembersUnchanged": true,
+        "keyboardDiskCapabilitiesOptionsDiagnosticsUnchanged": true
+      },
+      {
+        "module": "Atari",
+        "routes": 20,
+        "localProjections": 9,
+        "callbacks": 11,
+        "otherMembersUnchanged": true,
+        "keyboardDiskCapabilitiesOptionsDiagnosticsUnchanged": true
+      },
+      {
+        "module": "Bandai",
+        "routes": 20,
+        "localProjections": 9,
+        "callbacks": 11,
+        "otherMembersUnchanged": true,
+        "keyboardDiskCapabilitiesOptionsDiagnosticsUnchanged": true
+      },
+      {
+        "module": "Coleco",
+        "routes": 20,
+        "localProjections": 9,
+        "callbacks": 11,
+        "otherMembersUnchanged": true,
+        "keyboardDiskCapabilitiesOptionsDiagnosticsUnchanged": true
+      },
+      {
+        "module": "Epoch",
+        "routes": 20,
+        "localProjections": 9,
+        "callbacks": 11,
+        "otherMembersUnchanged": true,
+        "keyboardDiskCapabilitiesOptionsDiagnosticsUnchanged": true
+      },
+      {
+        "module": "Fairchild",
+        "routes": 20,
+        "localProjections": 9,
+        "callbacks": 11,
+        "otherMembersUnchanged": true,
+        "keyboardDiskCapabilitiesOptionsDiagnosticsUnchanged": true
+      },
+      {
+        "module": "Mattel",
+        "routes": 20,
+        "localProjections": 9,
+        "callbacks": 11,
+        "otherMembersUnchanged": true,
+        "keyboardDiskCapabilitiesOptionsDiagnosticsUnchanged": true
+      },
+      {
+        "module": "Philips",
+        "routes": 20,
+        "localProjections": 9,
+        "callbacks": 11,
+        "otherMembersUnchanged": true,
+        "keyboardDiskCapabilitiesOptionsDiagnosticsUnchanged": true
+      },
+      {
+        "module": "Sharp",
+        "routes": 20,
+        "localProjections": 9,
+        "callbacks": 11,
+        "otherMembersUnchanged": true,
+        "keyboardDiskCapabilitiesOptionsDiagnosticsUnchanged": true
+      },
+      {
+        "module": "Sinclair",
+        "routes": 20,
+        "localProjections": 9,
+        "callbacks": 11,
+        "otherMembersUnchanged": true,
+        "keyboardDiskCapabilitiesOptionsDiagnosticsUnchanged": true
+      },
+      {
+        "module": "Snk",
+        "routes": 20,
+        "localProjections": 9,
+        "callbacks": 11,
+        "otherMembersUnchanged": true,
+        "keyboardDiskCapabilitiesOptionsDiagnosticsUnchanged": true
+      }
+    ],
+    "verification": "Historical twenty Atari branches matched after three documented module-name aliases; SDK route targets and interface signatures checked; every old branch/callback/projection and all other tokens in 24 caller files preserved except eleven private-to-public members inside each internal class; previous SDK members unchanged",
+    "tests": "53 passed, exit 0: 25 callback routing tests (40 accepted/refused paths, four unhandled commands, original exception), 12 stateless and 16 option-command tests",
+    "resources": "Managed fake callbacks only for new tests; no native core, file, process, window or owned resource added",
+    "report": "11677 CSharp method bodies >= 30 tokens; 528 exact candidate groups; global qualification incomplete",
+    "afterProductBuild": "5744eb10a"
   }
 }

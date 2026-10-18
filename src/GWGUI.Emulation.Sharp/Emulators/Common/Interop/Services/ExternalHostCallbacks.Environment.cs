@@ -7,7 +7,7 @@ using GWGUI.Emulation;
 using GWGUI.Emulation.Services;
 
 namespace GWGUI.Emulation.Sharp.Emulators.Common.Interop.Services;
-internal sealed partial class ExternalHostCallbacks : IDisposable
+internal sealed partial class ExternalHostCallbacks : IDisposable, IEmulationCoreEnvironmentCommands
 {
     private bool OnEnvironment(uint command, nint data)
     {
@@ -16,56 +16,15 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
                 CoreOptionConstants.SupportedInterfaceVersion, ExternalCoreInteropConstants.MessageInterfaceVersion,
                 EnvironmentConstants.SupportedInputCapabilities, out var commonResult))
             return commonResult;
+        if (ExternalCoreEnvironmentFunctions.TryHandleCallbackCommand(command, data, this, out var callbackResult))
+            return callbackResult;
         switch (command)
         {
-            case ExternalCoreApiConstants.SetRotation:
-                return SetRotation(data);
-            case ExternalCoreApiConstants.SetPerformanceLevel:
-                return CapturePerformanceLevel(data);
-            case ExternalCoreApiConstants.GetSystemDirectory:
-                return CoreFunctions.WritePointer(data, _systemDirectory.Pointer);
-            case ExternalCoreApiConstants.GetContentDirectory:
-                return CoreFunctions.WritePointer(data, _contentDirectory.Pointer);
-            case ExternalCoreApiConstants.GetSaveDirectory:
-                return CoreFunctions.WritePointer(data, _saveDirectory.Pointer);
-            case ExternalCoreApiConstants.SetPixelFormat:
-                return SetPixelFormat(data);
-            case ExternalCoreApiConstants.SetSupportNoGame:
-                SupportsNoGame = data != nint.Zero && Marshal.ReadByte(data) != ExternalCoreInteropConstants.NativeBooleanFalse;
-                return data != nint.Zero;
-            case ExternalCoreApiConstants.SetSystemAvInfo:
-                return SetSystemAvInfo(data);
-            case ExternalCoreApiConstants.SetGeometry:
-                return SetGeometry(data);
-            case ExternalCoreApiConstants.SetMessage:
-                return ReadMessage(data);
-            case ExternalCoreApiConstants.SetMessageExtended:
-                return ReadExtendedMessage(data);
-            case ExternalCoreApiConstants.GetLogInterface:
-                return SetLogInterface(data);
-            case ExternalCoreApiConstants.GetLedInterface:
-                return SetLedInterface(data);
-            case ExternalCoreApiConstants.GetRumbleInterface:
-                return SetRumbleInterface(data);
-            case ExternalCoreApiConstants.GetSensorInterface:
-                return SetSensorInterface(data);
-            case ExternalCoreApiConstants.SetInputDescriptors:
-                InputDescriptors = EnvironmentFunctions.CopyInputDescriptors(data, _inputDescriptorLimit);
-                return data != nint.Zero;
             case ExternalCoreApiConstants.SetKeyboardCallback:
                 if (data == nint.Zero)
                     return false;
                 KeyboardCallbackPointer = Marshal.ReadIntPtr(data);
                 return true;
-            case ExternalCoreApiConstants.SetControllerInfo:
-                ControllerPorts = EnvironmentFunctions.CopyControllerPorts(data);
-                return data != nint.Zero;
-            case ExternalCoreApiConstants.SetMemoryMaps:
-                MemoryDescriptors = EnvironmentFunctions.CopyMemoryMap(data);
-                return data != nint.Zero;
-            case ExternalCoreApiConstants.SetSupportAchievements:
-                SupportsAchievements = data != nint.Zero && Marshal.ReadByte(data) != ExternalCoreInteropConstants.NativeBooleanFalse;
-                return data != nint.Zero;
             case ExternalCoreApiConstants.SetDiskControl:
                 if (data == nint.Zero)
                     return false;
@@ -78,8 +37,6 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
                 return true;
             case ExternalCoreApiConstants.GetDiskControlVersion:
                 return CoreFunctions.WriteInteger(data, DiskControlConstants.InterfaceVersion);
-            case ExternalCoreApiConstants.GetVfsInterface:
-                return _virtualFileSystem.Provide(data);
             case ExternalCoreApiConstants.GetMidiInterface:
             case ExternalCoreApiConstants.SetFastForwardingOverride:
             case ExternalCoreApiConstants.SetContentInfoOverride:
@@ -93,5 +50,55 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
                     Diagnostics.Add(EnvironmentFunctions.CreateUnknownCommandDiagnostic(command));
                 return false;
         }
+    }
+
+    bool IEmulationCoreEnvironmentCommands.WriteSystemDirectory(nint data)
+    {
+        return CoreFunctions.WritePointer(data, _systemDirectory.Pointer);
+    }
+
+    bool IEmulationCoreEnvironmentCommands.WriteContentDirectory(nint data)
+    {
+        return CoreFunctions.WritePointer(data, _contentDirectory.Pointer);
+    }
+
+    bool IEmulationCoreEnvironmentCommands.WriteSaveDirectory(nint data)
+    {
+        return CoreFunctions.WritePointer(data, _saveDirectory.Pointer);
+    }
+
+    bool IEmulationCoreEnvironmentCommands.SetSupportNoGame(nint data)
+    {
+        SupportsNoGame = data != nint.Zero && Marshal.ReadByte(data) != ExternalCoreInteropConstants.NativeBooleanFalse;
+        return data != nint.Zero;
+    }
+
+    bool IEmulationCoreEnvironmentCommands.CaptureInputDescriptors(nint data)
+    {
+        InputDescriptors = EnvironmentFunctions.CopyInputDescriptors(data, _inputDescriptorLimit);
+        return data != nint.Zero;
+    }
+
+    bool IEmulationCoreEnvironmentCommands.CaptureControllerInfo(nint data)
+    {
+        ControllerPorts = EnvironmentFunctions.CopyControllerPorts(data);
+        return data != nint.Zero;
+    }
+
+    bool IEmulationCoreEnvironmentCommands.CaptureMemoryMaps(nint data)
+    {
+        MemoryDescriptors = EnvironmentFunctions.CopyMemoryMap(data);
+        return data != nint.Zero;
+    }
+
+    bool IEmulationCoreEnvironmentCommands.SetSupportAchievements(nint data)
+    {
+        SupportsAchievements = data != nint.Zero && Marshal.ReadByte(data) != ExternalCoreInteropConstants.NativeBooleanFalse;
+        return data != nint.Zero;
+    }
+
+    bool IEmulationCoreEnvironmentCommands.ProvideVfs(nint data)
+    {
+        return _virtualFileSystem.Provide(data);
     }
 }
