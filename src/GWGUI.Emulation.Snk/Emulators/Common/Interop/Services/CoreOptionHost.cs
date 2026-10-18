@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 
 namespace GWGUI.Emulation.Snk.Emulators.Common.Interop.Services;
 
-internal sealed class CoreOptionHost : IDisposable
+internal sealed class CoreOptionHost : IDisposable, IEmulationCoreOptionCommands
 {
     private readonly EmulationCoreOptionHost<CoreOption, CoreOptionValue> _host;
 
@@ -29,22 +29,22 @@ internal sealed class CoreOptionHost : IDisposable
     internal IReadOnlyList<CoreOptionCategory> Categories { get; private set; } = [];
     internal IReadOnlyDictionary<string, string> DocumentValues => _host.DocumentValues;
 
-    internal void RegisterLegacyVariables(nint data) => ReplaceCatalog(CoreOptionFunctions.CopyLegacyVariables(data), []);
+    public void RegisterLegacyVariables(nint data) => ReplaceCatalog(CoreOptionFunctions.CopyLegacyVariables(data), []);
 
-    internal void RegisterVersionOne(nint data) => ReplaceCatalog(CoreOptionFunctions.CopyLegacyDefinitions(data), []);
+    public void RegisterVersionOne(nint data) => ReplaceCatalog(CoreOptionFunctions.CopyLegacyDefinitions(data), []);
 
-    internal void RegisterVersionOneInternational(nint data)
+    public void RegisterVersionOneInternational(nint data)
     => ReplaceCatalog(EmulationCoreOptionFunctions.CopyInternationalDefinitions<CoreOption>(data,
         CoreOptionConstants.EnglishPointerIndex, CoreOptionConstants.LocalPointerIndex,
         CoreOptionFunctions.CopyLegacyDefinitions, CoreOptionFunctions.MergeLocalizedDefinitions), []);
 
-    internal void RegisterVersionTwo(nint data)
+    public void RegisterVersionTwo(nint data)
     {
         var options = CoreOptionFunctions.CopyVersionTwoDefinitions(data, out var categories);
         ReplaceCatalog(options, categories);
     }
 
-    internal void RegisterVersionTwoInternational(nint data)
+    public void RegisterVersionTwoInternational(nint data)
     {
         var options = EmulationCoreOptionFunctions.CopyInternationalDefinitions<CoreOption, CoreOptionCategory>(data,
             CoreOptionConstants.EnglishPointerIndex, CoreOptionConstants.LocalPointerIndex,
@@ -53,11 +53,11 @@ internal sealed class CoreOptionHost : IDisposable
         ReplaceCatalog(options, categories);
     }
 
-    internal bool ReturnValue(nint data) => _host.ReturnValue(data);
+    public bool ReturnValue(nint data) => _host.ReturnValue(data);
 
-    internal bool SetNativeValue(nint data) => _host.SetNativeValue(data);
+    public bool SetNativeValue(nint data) => _host.SetNativeValue(data);
 
-    internal bool GetAndClearUpdated(nint data) => _host.GetAndClearUpdated(data);
+    public bool GetAndClearUpdated(nint data) => _host.GetAndClearUpdated(data);
 
     internal void SetValue(string key, string value)
     {
@@ -65,10 +65,10 @@ internal sealed class CoreOptionHost : IDisposable
             throw new EmulationException(ErrorCategory.Option, ErrorCode.OptionInvalid, CoreFunctions.CreateInvalidOptionValueMessage(key, value));
     }
 
-    internal bool ApplyVisibility(nint data)
+    public bool ApplyVisibility(nint data)
         => _host.ApplyVisibility(data);
 
-    internal bool CaptureDisplayUpdate(nint data)
+    public bool CaptureDisplayUpdate(nint data)
         => _host.CaptureDisplayUpdate(data);
 
     internal void ValidateConfiguredValues() => _host.ValidateConfiguredValues(static (key, value) => throw new EmulationException(ErrorCategory.Option, ErrorCode.OptionInvalid,

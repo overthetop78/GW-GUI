@@ -5534,5 +5534,113 @@
     "algorithm": "Original Amiga found-key/write-pointer branch matches AST after dictionary and borrowed string-factory parameterization; unknown key zeroes Value. Nullable native key decoding remains the existing SDK helper.",
     "sdkOwner": "src/GWGUI.Emulation/Functions/EmulationCoreOptionFunctions.Native.cs",
     "tests": "Two absence profiles across known/missing/null/empty/Unicode/case-sensitive keys, null data and throwing value factory; key pointer retained, missing value cleared, factory invoked only for known keys. All allocated buffers freed in finally."
+  },
+  "optionEnvironmentCommandReuse": {
+    "verification": "Twelve callback/option-host preservation comparisons and ten original Atari sections passed; 24 targeted tests pass (16 command cases and 8 existing option-state cases); SDK/App/23 module references compile; diff --check passes.",
+    "interface": "src/GWGUI.Emulation/Interfaces/IEmulationCoreOptionCommands.cs",
+    "method": "TryHandleOptionCommand",
+    "sdkOwner": "src/GWGUI.Emulation/Functions/ExternalCoreEnvironmentFunctions.cs",
+    "sourceCommit": "5ffc64e13",
+    "originalOwner": "275db0cae:src/GWGUI.Emulation.Atari/Cores/AtariExternalHostCallbacks.cs",
+    "profiles": [
+      {
+        "callback": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "optionHost": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/CoreOptionHost.cs",
+        "commandCount": 10,
+        "optionMethodBodiesAndOtherMembersUnchanged": true,
+        "registrationStatelessOtherCasesAndDiagnosticsUnchanged": true,
+        "lifetime": "Existing SDK option state, module presentation and Dispose remain unchanged; interface and dispatcher borrow the host."
+      },
+      {
+        "callback": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "optionHost": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/CoreOptionHost.cs",
+        "commandCount": 10,
+        "optionMethodBodiesAndOtherMembersUnchanged": true,
+        "registrationStatelessOtherCasesAndDiagnosticsUnchanged": true,
+        "lifetime": "Existing SDK option state, module presentation and Dispose remain unchanged; interface and dispatcher borrow the host."
+      },
+      {
+        "callback": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "optionHost": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/CoreOptionHost.cs",
+        "commandCount": 10,
+        "optionMethodBodiesAndOtherMembersUnchanged": true,
+        "registrationStatelessOtherCasesAndDiagnosticsUnchanged": true,
+        "lifetime": "Existing SDK option state, module presentation and Dispose remain unchanged; interface and dispatcher borrow the host."
+      },
+      {
+        "callback": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "optionHost": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/CoreOptionHost.cs",
+        "commandCount": 10,
+        "optionMethodBodiesAndOtherMembersUnchanged": true,
+        "registrationStatelessOtherCasesAndDiagnosticsUnchanged": true,
+        "lifetime": "Existing SDK option state, module presentation and Dispose remain unchanged; interface and dispatcher borrow the host."
+      },
+      {
+        "callback": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "optionHost": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/CoreOptionHost.cs",
+        "commandCount": 10,
+        "optionMethodBodiesAndOtherMembersUnchanged": true,
+        "registrationStatelessOtherCasesAndDiagnosticsUnchanged": true,
+        "lifetime": "Existing SDK option state, module presentation and Dispose remain unchanged; interface and dispatcher borrow the host."
+      },
+      {
+        "callback": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "optionHost": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/CoreOptionHost.cs",
+        "commandCount": 10,
+        "optionMethodBodiesAndOtherMembersUnchanged": true,
+        "registrationStatelessOtherCasesAndDiagnosticsUnchanged": true,
+        "lifetime": "Existing SDK option state, module presentation and Dispose remain unchanged; interface and dispatcher borrow the host."
+      },
+      {
+        "callback": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "optionHost": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/CoreOptionHost.cs",
+        "commandCount": 10,
+        "optionMethodBodiesAndOtherMembersUnchanged": true,
+        "registrationStatelessOtherCasesAndDiagnosticsUnchanged": true,
+        "lifetime": "Existing SDK option state, module presentation and Dispose remain unchanged; interface and dispatcher borrow the host."
+      },
+      {
+        "callback": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "optionHost": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/CoreOptionHost.cs",
+        "commandCount": 10,
+        "optionMethodBodiesAndOtherMembersUnchanged": true,
+        "registrationStatelessOtherCasesAndDiagnosticsUnchanged": true,
+        "lifetime": "Existing SDK option state, module presentation and Dispose remain unchanged; interface and dispatcher borrow the host."
+      },
+      {
+        "callback": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "optionHost": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/CoreOptionHost.cs",
+        "commandCount": 10,
+        "optionMethodBodiesAndOtherMembersUnchanged": true,
+        "registrationStatelessOtherCasesAndDiagnosticsUnchanged": true,
+        "lifetime": "Existing SDK option state, module presentation and Dispose remain unchanged; interface and dispatcher borrow the host."
+      },
+      {
+        "callback": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "optionHost": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/CoreOptionHost.cs",
+        "commandCount": 10,
+        "optionMethodBodiesAndOtherMembersUnchanged": true,
+        "registrationStatelessOtherCasesAndDiagnosticsUnchanged": true,
+        "lifetime": "Existing SDK option state, module presentation and Dispose remain unchanged; interface and dispatcher borrow the host."
+      },
+      {
+        "callback": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "optionHost": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/CoreOptionHost.cs",
+        "commandCount": 10,
+        "optionMethodBodiesAndOtherMembersUnchanged": true,
+        "registrationStatelessOtherCasesAndDiagnosticsUnchanged": true,
+        "lifetime": "Existing SDK option state, module presentation and Dispose remain unchanged; interface and dispatcher borrow the host."
+      },
+      {
+        "callback": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "optionHost": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services/CoreOptionHost.cs",
+        "commandCount": 10,
+        "optionMethodBodiesAndOtherMembersUnchanged": true,
+        "registrationStatelessOtherCasesAndDiagnosticsUnchanged": true,
+        "lifetime": "Existing SDK option state, module presentation and Dispose remain unchanged; interface and dispatcher borrow the host."
+      }
+    ],
+    "originalTenSectionsMatch": true,
+    "tests": "All ten commands; registration called with null data before false result; delegated true/false kept distinct from unknown command; unknown/stateless commands leave host untouched; registration exception propagates. Managed fake host only, no core/window/file."
   }
 }

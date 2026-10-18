@@ -42,6 +42,54 @@ internal static class ExternalCoreEnvironmentFunctions
         return true;
     }
 
+
+    internal static bool TryHandleOptionCommand(uint command, nint data,
+        IEmulationCoreOptionCommands options, out bool result)
+    {
+        switch (command)
+        {
+            case ExternalCoreApiConstants.GetVariable:
+                result = options.ReturnValue(data);
+                break;
+            case ExternalCoreApiConstants.SetVariables:
+                options.RegisterLegacyVariables(data);
+                result = data != nint.Zero;
+                break;
+            case ExternalCoreApiConstants.GetVariableUpdate:
+                result = options.GetAndClearUpdated(data);
+                break;
+            case ExternalCoreApiConstants.SetCoreOptions:
+                options.RegisterVersionOne(data);
+                result = data != nint.Zero;
+                break;
+            case ExternalCoreApiConstants.SetCoreOptionsInternational:
+                options.RegisterVersionOneInternational(data);
+                result = data != nint.Zero;
+                break;
+            case ExternalCoreApiConstants.SetCoreOptionsV2:
+                options.RegisterVersionTwo(data);
+                result = data != nint.Zero;
+                break;
+            case ExternalCoreApiConstants.SetCoreOptionsV2International:
+                options.RegisterVersionTwoInternational(data);
+                result = data != nint.Zero;
+                break;
+            case ExternalCoreApiConstants.SetCoreOptionsDisplay:
+                result = options.ApplyVisibility(data);
+                break;
+            case ExternalCoreApiConstants.SetCoreOptionsUpdateDisplayCallback:
+                result = options.CaptureDisplayUpdate(data);
+                break;
+            case ExternalCoreApiConstants.SetVariable:
+                result = options.SetNativeValue(data);
+                break;
+            default:
+                result = false;
+                return false;
+        }
+        return true;
+    }
+
     internal static bool WritePointer(nint destination, nint value)
     {
         if (destination == nint.Zero) return false;

@@ -31,21 +31,8 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
                 return CoreFunctions.WritePointer(data, _saveDirectory.Pointer);
             case ExternalCoreApiConstants.SetPixelFormat:
                 return SetPixelFormat(data);
-            case ExternalCoreApiConstants.GetVariable:
-                return _optionHost.ReturnValue(data);
-            case ExternalCoreApiConstants.SetVariables:
-                _optionHost.RegisterLegacyVariables(data);
-                return data != nint.Zero;
-            case ExternalCoreApiConstants.GetVariableUpdate:
-                return _optionHost.GetAndClearUpdated(data);
             case ExternalCoreApiConstants.SetSupportNoGame:
                 SupportsNoGame = data != nint.Zero && Marshal.ReadByte(data) != ExternalCoreInteropConstants.NativeBooleanFalse;
-                return data != nint.Zero;
-            case ExternalCoreApiConstants.SetCoreOptions:
-                _optionHost.RegisterVersionOne(data);
-                return data != nint.Zero;
-            case ExternalCoreApiConstants.SetCoreOptionsInternational:
-                _optionHost.RegisterVersionOneInternational(data);
                 return data != nint.Zero;
             case ExternalCoreApiConstants.SetSystemAvInfo:
                 return SetSystemAvInfo(data);
@@ -81,18 +68,6 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
             case ExternalCoreApiConstants.SetDiskControlExtended:
             case ExternalCoreApiConstants.GetDiskControlVersion:
                 return false;
-            case ExternalCoreApiConstants.SetCoreOptionsV2:
-                _optionHost.RegisterVersionTwo(data);
-                return data != nint.Zero;
-            case ExternalCoreApiConstants.SetCoreOptionsV2International:
-                _optionHost.RegisterVersionTwoInternational(data);
-                return data != nint.Zero;
-            case ExternalCoreApiConstants.SetCoreOptionsDisplay:
-                return _optionHost.ApplyVisibility(data);
-            case ExternalCoreApiConstants.SetCoreOptionsUpdateDisplayCallback:
-                return _optionHost.CaptureDisplayUpdate(data);
-            case ExternalCoreApiConstants.SetVariable:
-                return _optionHost.SetNativeValue(data);
             case ExternalCoreApiConstants.GetVfsInterface:
                 return _virtualFileSystem.Provide(data);
             case ExternalCoreApiConstants.GetMidiInterface:
@@ -102,6 +77,8 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
             case ExternalCoreApiConstants.SetSerializationQuirks:
                 return false;
             default:
+                if (ExternalCoreEnvironmentFunctions.TryHandleOptionCommand(command, data, _optionHost, out var optionResult))
+                    return optionResult;
                 if (_unknownEnvironmentCommands.Add(command))
                     Diagnostics.Add(EnvironmentFunctions.CreateUnknownCommandDiagnostic(command));
                 return false;
