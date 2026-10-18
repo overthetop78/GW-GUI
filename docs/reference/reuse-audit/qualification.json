@@ -1408,7 +1408,7 @@
   ],
   "currentProjectReport": "current-project-groups.json",
   "currentReportScope": "All current repository CSharp and PowerShell files; no age filter; candidates require semantic review",
-  "currentExactCandidateGroups": 564,
+  "currentExactCandidateGroups": 563,
   "currentRenamedIdentifierCandidateGroups": 219,
   "currentQualificationStatus": "Manual semantic qualification remains incomplete. remaining-groups.json is the earlier historical checkpoint; current-project-groups.json covers all current CSharp and PowerShell files regardless of age.",
   "hostLoopComparison": "host-loop-comparison.json",
@@ -3127,5 +3127,51 @@
       "owner": "ControllerVisualProfileStore.Save b983fbf2a",
       "replacement": "File.Move overwrite true, synchronous text JSON; shared finally deletes temporary on failure"
     }
-  ]
+  ],
+  "isoEncoderBaseline": [
+    {
+      "format": "iso.fm",
+      "bitCount": 7296,
+      "bitsSha256": "DC307D0ED0F1CD6C90D44427BF50AA6881727B7FD6BE745247E49C241D4192A2",
+      "intervalCount": 5239,
+      "indexTimeTicks": 8000000,
+      "fluxSha256": "6703E5A17F84978457062C9178A63772A822ABA70AD93C7A3A341D5FCF56532D",
+      "source": "5ad3845ca"
+    },
+    {
+      "format": "iso.mfm",
+      "bitCount": 7488,
+      "bitsSha256": "1BF9E4D58DB1A11041FAF42EA99ED3432B5F53033B548A935BC0A94F4F66D8FF",
+      "intervalCount": 2909,
+      "indexTimeTicks": 8000000,
+      "fluxSha256": "966C88652533BCABBE8014C79BBB77F8C1F6B1A875F4C2B1AF966086755A4BF8",
+      "source": "5ad3845ca"
+    }
+  ],
+  "isoEncoderTraversalReuse": [
+    {
+      "path": "src/GWGUI.MediaEngine/Images/Writing/Encoding/Encoders/IsoFmTrackEncoder.cs",
+      "bodyIdenticalToSharedTraversal": true,
+      "specificOperationsUnchanged": true,
+      "formatMethodsUnchanged": 6,
+      "owner": "ISO FM d1e81d2ff before ISO MFM 3983553b9"
+    },
+    {
+      "path": "src/GWGUI.MediaEngine/Images/Writing/Encoding/Encoders/IsoMfmTrackEncoder.cs",
+      "bodyIdenticalToSharedTraversal": true,
+      "specificOperationsUnchanged": true,
+      "formatMethodsUnchanged": 5,
+      "owner": "ISO FM d1e81d2ff before ISO MFM 3983553b9"
+    }
+  ],
+  "isoEncoderTraversalVerification": {
+    "source": "5ad3845ca",
+    "olderOwner": "ISO FM d1e81d2ff is ancestor of ISO MFM 3983553b9",
+    "testsPassed": 6,
+    "hashReference": "isoEncoderBaseline",
+    "tests": "exact bits and flux for normal/deleted sectors of different sizes, invalid sector number and mismatched size",
+    "compilation": "MediaEngine, SDK, App and all 23 module references compiled by targeted dotnet test",
+    "nativeApplicationsOrWindowsCreated": 0,
+    "temporaryFilesCreated": 0
+  }
 }
