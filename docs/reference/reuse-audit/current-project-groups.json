@@ -1,9 +1,9 @@
 {
   "baseline": "ac7292d86^",
-  "currentCSharpFiles": 7312,
-  "outsideSrcCSharpFiles": 292,
+  "currentCSharpFiles": 7313,
+  "outsideSrcCSharpFiles": 293,
   "baselineMethodCount": 5848,
-  "currentMethodCount": 11587,
+  "currentMethodCount": 11595,
   "powerShellFunctionCount": 17,
   "groups": [
     {
@@ -1265,7 +1265,7 @@
     {
       "language": "CSharp",
       "hash": "0A9D4012A0EEF58659F6F622D06187BDA6844EE126F30B196EAE963950A66758",
-      "method": "AtariEmulationModule",
+      "method": "CommodoreEmulationModule",
       "tokens": 45,
       "current": [
         {
@@ -5670,6 +5670,35 @@
     },
     {
       "language": "CSharp",
+      "hash": "3306CFA595A0BE1FC37AEA0871EFE8A8BFF5489B6A2832EB66916D1AF6D9FD31",
+      "method": "HandleAudioSample",
+      "tokens": 37,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+          "name": "HandleAudioSample",
+          "line": 42,
+          "tokens": 37,
+          "hash": "3306CFA595A0BE1FC37AEA0871EFE8A8BFF5489B6A2832EB66916D1AF6D9FD31",
+          "shape": "32AAD474A90B3A325F6EC9131D9D3478F4DCDFD313EAC8446CA402A7E97EEDE3",
+          "qualification": "Native sample/copy adapter verified in nativeAudioInputComparison; guards, checked native counts, allocation policy and publication retained"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+          "name": "HandleAudioSample",
+          "line": 43,
+          "tokens": 37,
+          "hash": "3306CFA595A0BE1FC37AEA0871EFE8A8BFF5489B6A2832EB66916D1AF6D9FD31",
+          "shape": "32AAD474A90B3A325F6EC9131D9D3478F4DCDFD313EAC8446CA402A7E97EEDE3",
+          "qualification": "Native sample/copy adapter verified in nativeAudioInputComparison; guards, checked native counts, allocation policy and publication retained"
+        }
+      ],
+      "predecessors": [],
+      "shapePredecessors": [],
+      "qualification": "Qualified typed projections to verified shared operations"
+    },
+    {
+      "language": "CSharp",
       "hash": "333647FC7BF453A065724C1D62F495BE84C7462A29258DBEC9AB0B4FF69B302F",
       "method": "RegisterVersionTwoInternational",
       "tokens": 48,
@@ -8332,6 +8361,71 @@
     },
     {
       "language": "CSharp",
+      "hash": "4954EFD628A031CFD1F8D4CA8CA95691E1D74DE3259D85930A4BED1D0F1A6288",
+      "method": "HandleAudioSample",
+      "tokens": 35,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+          "name": "HandleAudioSample",
+          "line": 54,
+          "tokens": 35,
+          "hash": "4954EFD628A031CFD1F8D4CA8CA95691E1D74DE3259D85930A4BED1D0F1A6288",
+          "shape": "1732C58529661C50142E63287D36E26B5FF0A23AA4B277CC3CEFF05C354D3B87",
+          "qualification": "Native sample/copy adapter verified in nativeAudioInputComparison; guards, checked native counts, allocation policy and publication retained"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+          "name": "HandleAudioSample",
+          "line": 54,
+          "tokens": 35,
+          "hash": "4954EFD628A031CFD1F8D4CA8CA95691E1D74DE3259D85930A4BED1D0F1A6288",
+          "shape": "1732C58529661C50142E63287D36E26B5FF0A23AA4B277CC3CEFF05C354D3B87",
+          "qualification": "Native sample/copy adapter verified in nativeAudioInputComparison; guards, checked native counts, allocation policy and publication retained"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.AudioVideo.cs",
+          "name": "HandleAudioSample",
+          "line": 43,
+          "tokens": 35,
+          "hash": "4954EFD628A031CFD1F8D4CA8CA95691E1D74DE3259D85930A4BED1D0F1A6288",
+          "shape": "1732C58529661C50142E63287D36E26B5FF0A23AA4B277CC3CEFF05C354D3B87",
+          "qualification": "Native sample/copy adapter verified in nativeAudioInputComparison; guards, checked native counts, allocation policy and publication retained"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+          "name": "HandleAudioSample",
+          "line": 44,
+          "tokens": 35,
+          "hash": "4954EFD628A031CFD1F8D4CA8CA95691E1D74DE3259D85930A4BED1D0F1A6288",
+          "shape": "1732C58529661C50142E63287D36E26B5FF0A23AA4B277CC3CEFF05C354D3B87",
+          "qualification": "Native sample/copy adapter verified in nativeAudioInputComparison; guards, checked native counts, allocation policy and publication retained"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.AudioVideo.cs",
+          "name": "HandleAudioSample",
+          "line": 43,
+          "tokens": 35,
+          "hash": "4954EFD628A031CFD1F8D4CA8CA95691E1D74DE3259D85930A4BED1D0F1A6288",
+          "shape": "1732C58529661C50142E63287D36E26B5FF0A23AA4B277CC3CEFF05C354D3B87",
+          "qualification": "Native sample/copy adapter verified in nativeAudioInputComparison; guards, checked native counts, allocation policy and publication retained"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+          "name": "HandleAudioSample",
+          "line": 40,
+          "tokens": 35,
+          "hash": "4954EFD628A031CFD1F8D4CA8CA95691E1D74DE3259D85930A4BED1D0F1A6288",
+          "shape": "1732C58529661C50142E63287D36E26B5FF0A23AA4B277CC3CEFF05C354D3B87",
+          "qualification": "Native sample/copy adapter verified in nativeAudioInputComparison; guards, checked native counts, allocation policy and publication retained"
+        }
+      ],
+      "predecessors": [],
+      "shapePredecessors": [],
+      "qualification": "Qualified typed projections to verified shared operations"
+    },
+    {
+      "language": "CSharp",
       "hash": "4AF3A6F581D2EA361DD15D4B6C10CE179ADD76400466D3C58DE240D096CD6767",
       "method": "Apply",
       "tokens": 135,
@@ -8923,65 +9017,6 @@
           "shape": "411FBA9548BA8C0445127563D212B49672159CD970703143D6BB14BD94EE1C73"
         }
       ],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
-      "hash": "51FFB6B8AD6EC69203AA6C60FBCF8293C10AB8A132C7892A09361AD2A281F9FA",
-      "method": "HandleAudioBatch",
-      "tokens": 82,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
-          "name": "HandleAudioBatch",
-          "line": 59,
-          "tokens": 82,
-          "hash": "51FFB6B8AD6EC69203AA6C60FBCF8293C10AB8A132C7892A09361AD2A281F9FA",
-          "shape": "F56AF7EF5E1BE7B37741597D231B64040D7D13256F87FA505EF611A245DF93FC"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
-          "name": "HandleAudioBatch",
-          "line": 49,
-          "tokens": 82,
-          "hash": "51FFB6B8AD6EC69203AA6C60FBCF8293C10AB8A132C7892A09361AD2A281F9FA",
-          "shape": "F56AF7EF5E1BE7B37741597D231B64040D7D13256F87FA505EF611A245DF93FC"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.AudioVideo.cs",
-          "name": "HandleAudioBatch",
-          "line": 48,
-          "tokens": 82,
-          "hash": "51FFB6B8AD6EC69203AA6C60FBCF8293C10AB8A132C7892A09361AD2A281F9FA",
-          "shape": "F56AF7EF5E1BE7B37741597D231B64040D7D13256F87FA505EF611A245DF93FC"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
-          "name": "HandleAudioBatch",
-          "line": 59,
-          "tokens": 82,
-          "hash": "51FFB6B8AD6EC69203AA6C60FBCF8293C10AB8A132C7892A09361AD2A281F9FA",
-          "shape": "F56AF7EF5E1BE7B37741597D231B64040D7D13256F87FA505EF611A245DF93FC"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.AudioVideo.cs",
-          "name": "HandleAudioBatch",
-          "line": 48,
-          "tokens": 82,
-          "hash": "51FFB6B8AD6EC69203AA6C60FBCF8293C10AB8A132C7892A09361AD2A281F9FA",
-          "shape": "F56AF7EF5E1BE7B37741597D231B64040D7D13256F87FA505EF611A245DF93FC"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
-          "name": "HandleAudioBatch",
-          "line": 45,
-          "tokens": 82,
-          "hash": "51FFB6B8AD6EC69203AA6C60FBCF8293C10AB8A132C7892A09361AD2A281F9FA",
-          "shape": "F56AF7EF5E1BE7B37741597D231B64040D7D13256F87FA505EF611A245DF93FC"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
       "qualification": "pending"
     },
     {
@@ -12109,7 +12144,7 @@
     {
       "language": "CSharp",
       "hash": "68386C818382BCE400A3EDE65411B5CBD9D6A87F6D88FAF6501028CE28C38965",
-      "method": "ToModule",
+      "method": "ToSinclair",
       "tokens": 148,
       "current": [
         {
@@ -14412,33 +14447,6 @@
           "tokens": 61,
           "hash": "7F7E07F97E34587016E0EB9DC12EF74BE514C4ADDAFF83BB9F7AB07BDD60165D",
           "shape": "139F5CA0874D983AA53D94424839FF4633437CC85B1E9F8E34B135A2EA944019"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
-      "hash": "7FF7805AF78E0118772395E95EDCB3A4DF99ECC86C6693B9B4CBC3CECCA9735F",
-      "method": "HandleAudioSample",
-      "tokens": 31,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
-          "name": "HandleAudioSample",
-          "line": 43,
-          "tokens": 31,
-          "hash": "7FF7805AF78E0118772395E95EDCB3A4DF99ECC86C6693B9B4CBC3CECCA9735F",
-          "shape": "8525AF973876EB8E6D8A6E803FF56F25E517FEAD6666FFDC3D31BB2A98D3C08C"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
-          "name": "HandleAudioSample",
-          "line": 42,
-          "tokens": 31,
-          "hash": "7FF7805AF78E0118772395E95EDCB3A4DF99ECC86C6693B9B4CBC3CECCA9735F",
-          "shape": "8525AF973876EB8E6D8A6E803FF56F25E517FEAD6666FFDC3D31BB2A98D3C08C"
         }
       ],
       "predecessors": [],
@@ -16898,33 +16906,6 @@
           "tokens": 84,
           "hash": "921A2C3909598A4E6CF7384D49DF2E4EC31EB45BC11730469FCE4EFE1E6F209B",
           "shape": "950F4E9C8FAAF991E8BB322197F8712BF866C18CEF4B359E0C6C769F7428C421"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
-      "hash": "925638E7EB46E8AC139CD9CF5F0899257DAC93D732DB408D0C55DA3214D2B4E0",
-      "method": "HandleAudioBatch",
-      "tokens": 84,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
-          "name": "HandleAudioBatch",
-          "line": 48,
-          "tokens": 84,
-          "hash": "925638E7EB46E8AC139CD9CF5F0899257DAC93D732DB408D0C55DA3214D2B4E0",
-          "shape": "AF907F68AA820539B451220478417D29B20D3A95C7A3245B6C17EA6C8C8238E3"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
-          "name": "HandleAudioBatch",
-          "line": 47,
-          "tokens": 84,
-          "hash": "925638E7EB46E8AC139CD9CF5F0899257DAC93D732DB408D0C55DA3214D2B4E0",
-          "shape": "AF907F68AA820539B451220478417D29B20D3A95C7A3245B6C17EA6C8C8238E3"
         }
       ],
       "predecessors": [],
@@ -19479,7 +19460,7 @@
     {
       "language": "CSharp",
       "hash": "A1E03750FEB3292ACEB41656386F4A8AA8B05077D9ABFB7DA103AA3D71320B9F",
-      "method": "ToFairchild",
+      "method": "ToEpoch",
       "tokens": 103,
       "current": [
         {
@@ -19627,6 +19608,89 @@
     },
     {
       "language": "CSharp",
+      "hash": "A41DC582C6C283568B59EE4767E015AF86D706786DEE81B04B3C9A7452964A14",
+      "method": "HandleAudioBatch",
+      "tokens": 66,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+          "name": "HandleAudioBatch",
+          "line": 47,
+          "tokens": 66,
+          "hash": "A41DC582C6C283568B59EE4767E015AF86D706786DEE81B04B3C9A7452964A14",
+          "shape": "9FCFD8ED127737C0AFE1F1D087D1DC49663A565263E1E222C5E23786A8DCA9E3",
+          "qualification": "Native sample/copy adapter verified in nativeAudioInputComparison; guards, checked native counts, allocation policy and publication retained"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+          "name": "HandleAudioBatch",
+          "line": 48,
+          "tokens": 66,
+          "hash": "A41DC582C6C283568B59EE4767E015AF86D706786DEE81B04B3C9A7452964A14",
+          "shape": "9FCFD8ED127737C0AFE1F1D087D1DC49663A565263E1E222C5E23786A8DCA9E3",
+          "qualification": "Native sample/copy adapter verified in nativeAudioInputComparison; guards, checked native counts, allocation policy and publication retained"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+          "name": "HandleAudioBatch",
+          "line": 59,
+          "tokens": 66,
+          "hash": "A41DC582C6C283568B59EE4767E015AF86D706786DEE81B04B3C9A7452964A14",
+          "shape": "9FCFD8ED127737C0AFE1F1D087D1DC49663A565263E1E222C5E23786A8DCA9E3",
+          "qualification": "Native sample/copy adapter verified in nativeAudioInputComparison; guards, checked native counts, allocation policy and publication retained"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+          "name": "HandleAudioBatch",
+          "line": 59,
+          "tokens": 66,
+          "hash": "A41DC582C6C283568B59EE4767E015AF86D706786DEE81B04B3C9A7452964A14",
+          "shape": "9FCFD8ED127737C0AFE1F1D087D1DC49663A565263E1E222C5E23786A8DCA9E3",
+          "qualification": "Native sample/copy adapter verified in nativeAudioInputComparison; guards, checked native counts, allocation policy and publication retained"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.AudioVideo.cs",
+          "name": "HandleAudioBatch",
+          "line": 48,
+          "tokens": 66,
+          "hash": "A41DC582C6C283568B59EE4767E015AF86D706786DEE81B04B3C9A7452964A14",
+          "shape": "9FCFD8ED127737C0AFE1F1D087D1DC49663A565263E1E222C5E23786A8DCA9E3",
+          "qualification": "Native sample/copy adapter verified in nativeAudioInputComparison; guards, checked native counts, allocation policy and publication retained"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+          "name": "HandleAudioBatch",
+          "line": 49,
+          "tokens": 66,
+          "hash": "A41DC582C6C283568B59EE4767E015AF86D706786DEE81B04B3C9A7452964A14",
+          "shape": "9FCFD8ED127737C0AFE1F1D087D1DC49663A565263E1E222C5E23786A8DCA9E3",
+          "qualification": "Native sample/copy adapter verified in nativeAudioInputComparison; guards, checked native counts, allocation policy and publication retained"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.AudioVideo.cs",
+          "name": "HandleAudioBatch",
+          "line": 48,
+          "tokens": 66,
+          "hash": "A41DC582C6C283568B59EE4767E015AF86D706786DEE81B04B3C9A7452964A14",
+          "shape": "9FCFD8ED127737C0AFE1F1D087D1DC49663A565263E1E222C5E23786A8DCA9E3",
+          "qualification": "Native sample/copy adapter verified in nativeAudioInputComparison; guards, checked native counts, allocation policy and publication retained"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+          "name": "HandleAudioBatch",
+          "line": 45,
+          "tokens": 66,
+          "hash": "A41DC582C6C283568B59EE4767E015AF86D706786DEE81B04B3C9A7452964A14",
+          "shape": "9FCFD8ED127737C0AFE1F1D087D1DC49663A565263E1E222C5E23786A8DCA9E3",
+          "qualification": "Native sample/copy adapter verified in nativeAudioInputComparison; guards, checked native counts, allocation policy and publication retained"
+        }
+      ],
+      "predecessors": [],
+      "shapePredecessors": [],
+      "qualification": "Qualified typed projections to verified shared operations"
+    },
+    {
+      "language": "CSharp",
       "hash": "A42F78205484116B1E1887B9AF3E4722CAA2F6E157808A99C830BA6B37DB9ECB",
       "method": "RomDefinitions",
       "tokens": 53,
@@ -19714,7 +19778,7 @@
     {
       "language": "CSharp",
       "hash": "A61349BFDFFA5D404CE7D0D458204D435194B5E4D84870DF4F9FBE26A86A9946",
-      "method": "ToFairchild",
+      "method": "ToEpoch",
       "tokens": 36,
       "current": [
         {
@@ -20864,7 +20928,7 @@
     {
       "language": "CSharp",
       "hash": "B053A3AB4F0B78A37DED57B2D744801187AED6EC54FEEAFE4B1AA9C454D6F48C",
-      "method": "MattelEmulationModule",
+      "method": "EpochEmulationModule",
       "tokens": 47,
       "current": [
         {
@@ -27700,7 +27764,7 @@
     {
       "language": "CSharp",
       "hash": "F107F4D7D97C4E9F797468C991DF2090B47DF6E3F6F74E56044EFF0C28CAA51D",
-      "method": "NotifyDestroy",
+      "method": "NotifyHardwareContextDestroy",
       "tokens": 31,
       "current": [
         {

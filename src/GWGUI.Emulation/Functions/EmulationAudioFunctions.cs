@@ -17,8 +17,16 @@ internal static class EmulationAudioFunctions
     }
 
     internal static short[] CopyBatch(nint data, int frameCount)
+        => CopyBatch(data, GC.AllocateUninitializedArray<short>(checked(frameCount * 2)));
+
+    internal static short[] CopyBatch(nint data, nuint frameCount)
+        => CopyBatch(data, frameCount, 2);
+
+    internal static short[] CopyBatch(nint data, nuint frameCount, uint channelCount)
+        => CopyBatch(data, new short[checked((int)frameCount * (int)channelCount)]);
+
+    private static short[] CopyBatch(nint data, short[] samples)
     {
-        var samples = GC.AllocateUninitializedArray<short>(checked(frameCount * 2));
         Marshal.Copy(data, samples, 0, samples.Length);
         return samples;
     }

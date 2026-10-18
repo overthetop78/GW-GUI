@@ -60455,6 +60455,2870 @@
       "shortBodies": 9516,
       "shortExact": 773,
       "files": 7312
+    },
+    "subsequentProductBuild": {
+      "modules": [
+        {
+          "sha256": "CE2E7476A1C2DFE37A4235DC1AA643313C270DCABC016DA2C782E4B7323AD7E8",
+          "id": "acorn",
+          "path": "build/Debug/GW GUI/Modules/acorn/gwgui.emulation.acorn.dll"
+        },
+        {
+          "sha256": "7F783E613BA59CD004D2F0602FDB464C008119C64DEEBA0F24FF7C932C642382",
+          "id": "amstrad",
+          "path": "build/Debug/GW GUI/Modules/amstrad/gwgui.emulation.amstrad.dll"
+        },
+        {
+          "sha256": "DA0A2D0A815785589B242AB087F1A8DC066DB4CDCA58E292F4C2E5A69B495271",
+          "id": "apple",
+          "path": "build/Debug/GW GUI/Modules/apple/gwgui.emulation.apple.dll"
+        },
+        {
+          "sha256": "7907FDF0AA742D75432FB34F9AD4317B79CC38C10FFB6AE97035BD1A01152A49",
+          "id": "atari",
+          "path": "build/Debug/GW GUI/Modules/atari/gwgui.emulation.atari.dll"
+        },
+        {
+          "sha256": "5F166C80B1E751B9A774E8AA0F48639DBDFEA0C5617394787CC83F51AA8FC418",
+          "id": "bandai",
+          "path": "build/Debug/GW GUI/Modules/bandai/gwgui.emulation.bandai.dll"
+        },
+        {
+          "sha256": "D1089C72D783E91BA748C0B64F3A1DA72CA827C2E6A3E2E64E988685BE7BFE3B",
+          "id": "coleco",
+          "path": "build/Debug/GW GUI/Modules/coleco/gwgui.emulation.coleco.dll"
+        },
+        {
+          "sha256": "95E86D80FB06C6551BDF8F640D5545BF2A1B953D336674198CB392C5E8438D58",
+          "id": "commodore",
+          "path": "build/Debug/GW GUI/Modules/commodore/gwgui.emulation.commodore.dll"
+        },
+        {
+          "sha256": "F4DF684482A03496B739E8502186F672986F06F47444454A1B9F6934C4E43136",
+          "id": "epoch",
+          "path": "build/Debug/GW GUI/Modules/epoch/gwgui.emulation.epoch.dll"
+        },
+        {
+          "sha256": "727797B458DE40E257D5DB8DC269C7775229C95A63A7775A3755478A40A45196",
+          "id": "fairchild",
+          "path": "build/Debug/GW GUI/Modules/fairchild/gwgui.emulation.fairchild.dll"
+        },
+        {
+          "sha256": "556D9CBD09FDF431A0C7BBCAC4D6DDA6319F1B9E320847AE99353EACB7B3FFCF",
+          "id": "mattel",
+          "path": "build/Debug/GW GUI/Modules/mattel/gwgui.emulation.mattel.dll"
+        },
+        {
+          "sha256": "BF8DCC2AD3C4BA298D89150A9FD072139ABE9E13E4E272A4CCF84CD5E38D205A",
+          "id": "microsoft",
+          "path": "build/Debug/GW GUI/Modules/microsoft/gwgui.emulation.microsoft.dll"
+        },
+        {
+          "sha256": "E586B795DD774B722FFA985035234260B6D8D0C8C67563622DF84047AAD66C68",
+          "id": "nec",
+          "path": "build/Debug/GW GUI/Modules/nec/gwgui.emulation.nec.dll"
+        },
+        {
+          "sha256": "805FD08C5BD60377FBE4A369C9EB33FF0E33283519B430D8986B619F03974300",
+          "id": "nintendo",
+          "path": "build/Debug/GW GUI/Modules/nintendo/gwgui.emulation.nintendo.dll"
+        },
+        {
+          "sha256": "868F295CA92FFC44930FBCB66782F53E1E97F88DCF613E7A823C38EFFBB5E278",
+          "id": "panasonic",
+          "path": "build/Debug/GW GUI/Modules/panasonic/gwgui.emulation.panasonic.dll"
+        },
+        {
+          "sha256": "3231726253F142CF796D03FFADB953C4DBB5F192C68D58B594F105C21D954DB0",
+          "id": "philips",
+          "path": "build/Debug/GW GUI/Modules/philips/gwgui.emulation.philips.dll"
+        },
+        {
+          "sha256": "6895669B7AA75329571133A8EF370F51100093D45AC2D8D59C91DAEFC4F020D2",
+          "id": "sega",
+          "path": "build/Debug/GW GUI/Modules/sega/gwgui.emulation.sega.dll"
+        },
+        {
+          "sha256": "88E570C12F1D9C245ADC915809C3C78489DD2531ED9DA9D6E8B511035A9E85FB",
+          "id": "sharp",
+          "path": "build/Debug/GW GUI/Modules/sharp/gwgui.emulation.sharp.dll"
+        },
+        {
+          "sha256": "35009CB4B978759DC7E184212867C8DCBC173481C063E5AC4D0349C7667B442D",
+          "id": "sinclair",
+          "path": "build/Debug/GW GUI/Modules/sinclair/gwgui.emulation.sinclair.dll"
+        },
+        {
+          "sha256": "46D78D7F6964629D4D712D9A4547FFFB71D4EF514B72F6C0E045A756B75D5415",
+          "id": "snk",
+          "path": "build/Debug/GW GUI/Modules/snk/gwgui.emulation.snk.dll"
+        },
+        {
+          "sha256": "30EECE77F577FE03C8F0A26F64528AA8A9A9D12F7BFFBD98967D123553E84DC4",
+          "id": "sony",
+          "path": "build/Debug/GW GUI/Modules/sony/gwgui.emulation.sony.dll"
+        },
+        {
+          "sha256": "CB9AF7EC5B00D8553227DCB4E61DEE52E9DEB2FDD5020B7E58803BA95B6020C4",
+          "id": "thomson",
+          "path": "build/Debug/GW GUI/Modules/thomson/gwgui.emulation.thomson.dll"
+        },
+        {
+          "sha256": "865A4D1992C9AAB30D2BBDCDA96B9956A1C017B78A91292549E1E56BE4E5C149",
+          "id": "watara",
+          "path": "build/Debug/GW GUI/Modules/watara/gwgui.emulation.watara.dll"
+        },
+        {
+          "sha256": "1214C7C6702663DAE58FC94099D5CEEC1E35252A5BBFE3055C29CC4CBA40CCC4",
+          "id": "wenquxing",
+          "path": "build/Debug/GW GUI/Modules/wenquxing/gwgui.emulation.wenquxing.dll"
+        }
+      ],
+      "exitCode": 0,
+      "unchangedInputs": 33,
+      "groupedBlocks": [
+        "legacyAudioCallbackComparison",
+        "nativeAudioInputComparison"
+      ],
+      "updaterPrivateDlls": [
+        "gwgui.updater.dll"
+      ],
+      "executable": {
+        "path": "build/Debug/GW GUI/gwgui.exe",
+        "sha256": "F15EE5FF35AF82D330AFA84EDD1FAD0023A5D7A209754136F9D075F6B25A4A1F"
+      },
+      "sdkSha256": "5FEB342E5E3ACEDBAB5A304CB7DBAEE8113496077EA9509F05120DF563520B7C",
+      "command": "scripts/local-building.cmd --building=debug --modules=A"
     }
+  },
+  "nativeAudioInputComparison": {
+    "summary": {
+      "sampleProducers": 8,
+      "zeroInitializedNativeArrays": true,
+      "preserve": "Caller guards and their order, checked casts/multiplication, exact copied length, publication, rate getter, sequence increment and clock access stay in their modules.",
+      "methods": 17,
+      "profiles": 8,
+      "stereoBatchProducers": 8,
+      "multichannelBatchProducers": 1,
+      "existingIntCopyMustKeepUninitializedAllocation": true
+    },
+    "state": "verified",
+    "existingPrimitive": {
+      "sha256": "ABBD50B2BEBB1DA589B20A0C84092305D54064C96E1F37AAC5ED6DDAFEA3A00B",
+      "path": "src/GWGUI.Emulation/Functions/EmulationAudioFunctions.cs",
+      "text": "using System.Runtime.InteropServices;\n\nnamespace GWGUI.Emulation.Functions;\n\ninternal static class EmulationAudioFunctions\n{\n    internal static int MaximumBufferedFrames(int sampleRate) => Math.Max(1, sampleRate / 5);\n\n    internal static AudioChunk RetainNativeNewestFrames(AudioChunk chunk, int maximumFrames, bool multichannel)\n    {\n        if (chunk.FrameCount <= maximumFrames) return chunk;\n        var retainedSamples = chunk.InterleavedSamples.Slice(\n            (chunk.FrameCount - maximumFrames) * (multichannel ? chunk.ChannelCount : 2)).ToArray();\n        return multichannel\n            ? chunk with { InterleavedSamples = retainedSamples, FrameCount = maximumFrames }\n            : new AudioChunk(retainedSamples, chunk.SampleRate, maximumFrames, chunk.Sequence, chunk.Timestamp);\n    }\n\n    internal static short[] CopyBatch(nint data, int frameCount)\n    {\n        var samples = GC.AllocateUninitializedArray<short>(checked(frameCount * 2));\n        Marshal.Copy(data, samples, 0, samples.Length);\n        return samples;\n    }\n\n    internal static short[] SingleFrame(short left, short right) => [left, right];\n\n    internal static AudioChunk RetainNewestFrames(AudioChunk chunk, int maximumFrames)\n    {\n        if (chunk.FrameCount <= maximumFrames) return chunk;\n        var firstSample = checked((chunk.FrameCount - maximumFrames) * 2);\n        return chunk with\n        {\n            InterleavedSamples = chunk.InterleavedSamples[firstSample..].ToArray(),\n            FrameCount = maximumFrames\n        };\n    }\n\n    internal static float NormalizeVolume(float volume) =>\n        Math.Clamp(volume, 0f, 1f);\n\n    internal static ReadOnlySpan<short> ApplyVolume(ReadOnlySpan<short> samples, float volume, ref short[] buffer)\n    {\n        if (volume >= 1f) return samples;\n        if (buffer.Length < samples.Length) buffer = GC.AllocateUninitializedArray<short>(samples.Length);\n        for (var index = 0; index < samples.Length; index++)\n            buffer[index] = (short)Math.Clamp((int)MathF.Round(samples[index] * volume),\n                short.MinValue, short.MaxValue);\n        return buffer.AsSpan(0, samples.Length);\n    }\n}\r\n"
+    },
+    "snapshot": "e3157fc360ca5c0a8c536506d64d5c09cfc5b0b3",
+    "sources": [
+      {
+        "methods": [
+          {
+            "body": "{\r\n        PublishAudio(new AudioChunk(new[] { left, right }, SampleRate, AudioConstants.SingleFrameCount, ++_audioSequence, _clock.Elapsed));\r\n    }",
+            "arrays": [
+              "new[] { left, right }"
+            ],
+            "constants": [
+              {
+                "value": 1,
+                "expression": "AudioConstants.SingleFrameCount"
+              },
+              {
+                "value": 1,
+                "expression": "SingleFrameCount"
+              }
+            ],
+            "name": "HandleAudioSample",
+            "parameters": "(short left, short right)",
+            "calls": [
+              {
+                "assembly": "gwgui.emulation.amstrad",
+                "symbol": "GWGUI.Emulation.Amstrad.Emulators.Common.Interop.Services.ExternalHostCallbacks.PublishAudio(GWGUI.Emulation.Contracts.AudioChunk)",
+                "expression": "PublishAudio(new AudioChunk(new[] { left, right }, SampleRate, AudioConstants.SingleFrameCount, ++_audioSequence, _clock.Elapsed))"
+              },
+              {
+                "assembly": "gwgui.emulation",
+                "symbol": "GWGUI.Emulation.Contracts.AudioChunk.AudioChunk(System.ReadOnlyMemory<short>, int, int, long, System.TimeSpan, GWGUI.Emulation.Enums.EmulationAudioChannelLayout)",
+                "expression": "new AudioChunk(new[] { left, right }, SampleRate, AudioConstants.SingleFrameCount, ++_audioSequence, _clock.Elapsed)"
+              }
+            ]
+          },
+          {
+            "body": "{\r\n        if (data == nint.Zero || frames == ExternalCoreInteropConstants.EmptyNativeSize) return frames;\r\n        var samples = new short[checked((int)frames * AudioConstants.StereoChannelCount)];\r\n        Marshal.Copy(data, samples, BufferConstants.FirstBufferIndex, samples.Length);\r\n        PublishAudio(new AudioChunk(samples, SampleRate, checked((int)frames), ++_audioSequence, _clock.Elapsed));\r\n        return frames;\r\n    }",
+            "arrays": [
+              "new short[checked((int)frames * AudioConstants.StereoChannelCount)]"
+            ],
+            "constants": [
+              {
+                "value": 0,
+                "expression": "ExternalCoreInteropConstants.EmptyNativeSize"
+              },
+              {
+                "value": 0,
+                "expression": "EmptyNativeSize"
+              },
+              {
+                "value": 2,
+                "expression": "AudioConstants.StereoChannelCount"
+              },
+              {
+                "value": 2,
+                "expression": "StereoChannelCount"
+              },
+              {
+                "value": 0,
+                "expression": "BufferConstants.FirstBufferIndex"
+              },
+              {
+                "value": 0,
+                "expression": "FirstBufferIndex"
+              }
+            ],
+            "name": "HandleAudioBatch",
+            "parameters": "(nint data, nuint frames)",
+            "calls": [
+              {
+                "assembly": "System.Runtime.InteropServices",
+                "symbol": "System.Runtime.InteropServices.Marshal.Copy(nint, short[], int, int)",
+                "expression": "Marshal.Copy(data, samples, BufferConstants.FirstBufferIndex, samples.Length)"
+              },
+              {
+                "assembly": "gwgui.emulation.amstrad",
+                "symbol": "GWGUI.Emulation.Amstrad.Emulators.Common.Interop.Services.ExternalHostCallbacks.PublishAudio(GWGUI.Emulation.Contracts.AudioChunk)",
+                "expression": "PublishAudio(new AudioChunk(samples, SampleRate, checked((int)frames), ++_audioSequence, _clock.Elapsed))"
+              },
+              {
+                "assembly": "gwgui.emulation",
+                "symbol": "GWGUI.Emulation.Contracts.AudioChunk.AudioChunk(System.ReadOnlyMemory<short>, int, int, long, System.TimeSpan, GWGUI.Emulation.Enums.EmulationAudioChannelLayout)",
+                "expression": "new AudioChunk(samples, SampleRate, checked((int)frames), ++_audioSequence, _clock.Elapsed)"
+              }
+            ]
+          }
+        ],
+        "sha256": "3875491DA0B55DC625B70315750D3FBD1F5EBC883037259B6D1FB83DF759664A",
+        "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+        "allocationPolicy": "Native batches use new short[] zero initialization; preserve this separately from existing int CopyBatch using GC.AllocateUninitializedArray."
+      },
+      {
+        "methods": [
+          {
+            "body": "{\r\n        PublishAudio(new AudioChunk(new[] { left, right }, SampleRate, AudioConstants.SingleFrameCount, ++_audioSequence, _clock.Elapsed));\r\n    }",
+            "arrays": [
+              "new[] { left, right }"
+            ],
+            "constants": [
+              {
+                "value": 1,
+                "expression": "AudioConstants.SingleFrameCount"
+              },
+              {
+                "value": 1,
+                "expression": "SingleFrameCount"
+              }
+            ],
+            "name": "HandleAudioSample",
+            "parameters": "(short left, short right)",
+            "calls": [
+              {
+                "assembly": "gwgui.emulation.commodore",
+                "symbol": "GWGUI.Emulation.Commodore.Emulators.Common.Interop.Services.ExternalHostCallbacks.PublishAudio(GWGUI.Emulation.Contracts.AudioChunk)",
+                "expression": "PublishAudio(new AudioChunk(new[] { left, right }, SampleRate, AudioConstants.SingleFrameCount, ++_audioSequence, _clock.Elapsed))"
+              },
+              {
+                "assembly": "gwgui.emulation",
+                "symbol": "GWGUI.Emulation.Contracts.AudioChunk.AudioChunk(System.ReadOnlyMemory<short>, int, int, long, System.TimeSpan, GWGUI.Emulation.Enums.EmulationAudioChannelLayout)",
+                "expression": "new AudioChunk(new[] { left, right }, SampleRate, AudioConstants.SingleFrameCount, ++_audioSequence, _clock.Elapsed)"
+              }
+            ]
+          },
+          {
+            "body": "{\r\n        if (data == nint.Zero || frames == ExternalCoreInteropConstants.EmptyNativeSize) return frames;\r\n        var samples = new short[checked((int)frames * AudioConstants.StereoChannelCount)];\r\n        Marshal.Copy(data, samples, BufferConstants.FirstBufferIndex, samples.Length);\r\n        PublishAudio(new AudioChunk(samples, SampleRate, checked((int)frames), ++_audioSequence, _clock.Elapsed));\r\n        return frames;\r\n    }",
+            "arrays": [
+              "new short[checked((int)frames * AudioConstants.StereoChannelCount)]"
+            ],
+            "constants": [
+              {
+                "value": 0,
+                "expression": "ExternalCoreInteropConstants.EmptyNativeSize"
+              },
+              {
+                "value": 0,
+                "expression": "EmptyNativeSize"
+              },
+              {
+                "value": 2,
+                "expression": "AudioConstants.StereoChannelCount"
+              },
+              {
+                "value": 2,
+                "expression": "StereoChannelCount"
+              },
+              {
+                "value": 0,
+                "expression": "BufferConstants.FirstBufferIndex"
+              },
+              {
+                "value": 0,
+                "expression": "FirstBufferIndex"
+              }
+            ],
+            "name": "HandleAudioBatch",
+            "parameters": "(nint data, nuint frames)",
+            "calls": [
+              {
+                "assembly": "System.Runtime.InteropServices",
+                "symbol": "System.Runtime.InteropServices.Marshal.Copy(nint, short[], int, int)",
+                "expression": "Marshal.Copy(data, samples, BufferConstants.FirstBufferIndex, samples.Length)"
+              },
+              {
+                "assembly": "gwgui.emulation.commodore",
+                "symbol": "GWGUI.Emulation.Commodore.Emulators.Common.Interop.Services.ExternalHostCallbacks.PublishAudio(GWGUI.Emulation.Contracts.AudioChunk)",
+                "expression": "PublishAudio(new AudioChunk(samples, SampleRate, checked((int)frames), ++_audioSequence, _clock.Elapsed))"
+              },
+              {
+                "assembly": "gwgui.emulation",
+                "symbol": "GWGUI.Emulation.Contracts.AudioChunk.AudioChunk(System.ReadOnlyMemory<short>, int, int, long, System.TimeSpan, GWGUI.Emulation.Enums.EmulationAudioChannelLayout)",
+                "expression": "new AudioChunk(samples, SampleRate, checked((int)frames), ++_audioSequence, _clock.Elapsed)"
+              }
+            ]
+          }
+        ],
+        "sha256": "34E8A91391A8E322D5B6ED64C3E9A25DBAF7F27ACCC135D0139132F1FED649CA",
+        "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+        "allocationPolicy": "Native batches use new short[] zero initialization; preserve this separately from existing int CopyBatch using GC.AllocateUninitializedArray."
+      },
+      {
+        "methods": [
+          {
+            "body": "{\n        PublishAudio(new AudioChunk(new[] { left, right }, SampleRate, 1, ++_audioSequence, _clock.Elapsed));\n    }",
+            "arrays": [
+              "new[] { left, right }"
+            ],
+            "constants": [
+              {
+                "value": 1,
+                "expression": "1"
+              }
+            ],
+            "name": "HandleAudioSample",
+            "parameters": "(short left, short right)",
+            "calls": [
+              {
+                "assembly": "gwgui.emulation.nec",
+                "symbol": "GWGUI.Emulation.Nec.Emulators.Common.Interop.Services.ExternalHostCallbacks.PublishAudio(GWGUI.Emulation.Contracts.AudioChunk)",
+                "expression": "PublishAudio(new AudioChunk(new[] { left, right }, SampleRate, 1, ++_audioSequence, _clock.Elapsed))"
+              },
+              {
+                "assembly": "gwgui.emulation",
+                "symbol": "GWGUI.Emulation.Contracts.AudioChunk.AudioChunk(System.ReadOnlyMemory<short>, int, int, long, System.TimeSpan, GWGUI.Emulation.Enums.EmulationAudioChannelLayout)",
+                "expression": "new AudioChunk(new[] { left, right }, SampleRate, 1, ++_audioSequence, _clock.Elapsed)"
+              }
+            ]
+          },
+          {
+            "body": "{\n        if (data == nint.Zero || frames == ExternalCoreInteropConstants.EmptyNativeSize) return frames;\n        var samples = new short[checked((int)frames * 2)];\n        Marshal.Copy(data, samples, BufferConstants.FirstBufferIndex, samples.Length);\n        PublishAudio(new AudioChunk(samples, SampleRate, checked((int)frames), ++_audioSequence, _clock.Elapsed));\n        return frames;\n    }",
+            "arrays": [
+              "new short[checked((int)frames * 2)]"
+            ],
+            "constants": [
+              {
+                "value": 0,
+                "expression": "ExternalCoreInteropConstants.EmptyNativeSize"
+              },
+              {
+                "value": 0,
+                "expression": "EmptyNativeSize"
+              },
+              {
+                "value": 2,
+                "expression": "2"
+              },
+              {
+                "value": 0,
+                "expression": "BufferConstants.FirstBufferIndex"
+              },
+              {
+                "value": 0,
+                "expression": "FirstBufferIndex"
+              }
+            ],
+            "name": "HandleAudioBatch",
+            "parameters": "(nint data, nuint frames)",
+            "calls": [
+              {
+                "assembly": "System.Runtime.InteropServices",
+                "symbol": "System.Runtime.InteropServices.Marshal.Copy(nint, short[], int, int)",
+                "expression": "Marshal.Copy(data, samples, BufferConstants.FirstBufferIndex, samples.Length)"
+              },
+              {
+                "assembly": "gwgui.emulation.nec",
+                "symbol": "GWGUI.Emulation.Nec.Emulators.Common.Interop.Services.ExternalHostCallbacks.PublishAudio(GWGUI.Emulation.Contracts.AudioChunk)",
+                "expression": "PublishAudio(new AudioChunk(samples, SampleRate, checked((int)frames), ++_audioSequence, _clock.Elapsed))"
+              },
+              {
+                "assembly": "gwgui.emulation",
+                "symbol": "GWGUI.Emulation.Contracts.AudioChunk.AudioChunk(System.ReadOnlyMemory<short>, int, int, long, System.TimeSpan, GWGUI.Emulation.Enums.EmulationAudioChannelLayout)",
+                "expression": "new AudioChunk(samples, SampleRate, checked((int)frames), ++_audioSequence, _clock.Elapsed)"
+              }
+            ]
+          }
+        ],
+        "sha256": "849D9500AC7A1AE3B4BA5958E4CB3AD3C31CA737DC4C18D9590F1FB76C14D47D",
+        "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+        "allocationPolicy": "Native batches use new short[] zero initialization; preserve this separately from existing int CopyBatch using GC.AllocateUninitializedArray."
+      },
+      {
+        "methods": [
+          {
+            "body": "{\r\n        PublishAudio(new AudioChunk(new[] { left, right }, SampleRate, 1, ++_audioSequence, _clock.Elapsed));\r\n    }",
+            "arrays": [
+              "new[] { left, right }"
+            ],
+            "constants": [
+              {
+                "value": 1,
+                "expression": "1"
+              }
+            ],
+            "name": "HandleAudioSample",
+            "parameters": "(short left, short right)",
+            "calls": [
+              {
+                "assembly": "gwgui.emulation.nintendo",
+                "symbol": "GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Services.ExternalHostCallbacks.PublishAudio(GWGUI.Emulation.Contracts.AudioChunk)",
+                "expression": "PublishAudio(new AudioChunk(new[] { left, right }, SampleRate, 1, ++_audioSequence, _clock.Elapsed))"
+              },
+              {
+                "assembly": "gwgui.emulation",
+                "symbol": "GWGUI.Emulation.Contracts.AudioChunk.AudioChunk(System.ReadOnlyMemory<short>, int, int, long, System.TimeSpan, GWGUI.Emulation.Enums.EmulationAudioChannelLayout)",
+                "expression": "new AudioChunk(new[] { left, right }, SampleRate, 1, ++_audioSequence, _clock.Elapsed)"
+              }
+            ]
+          },
+          {
+            "body": "{\r\n        if (data == nint.Zero || frames == ExternalCoreInteropConstants.EmptyNativeSize) return frames;\r\n        var samples = new short[checked((int)frames * 2)];\r\n        Marshal.Copy(data, samples, BufferConstants.FirstBufferIndex, samples.Length);\r\n        PublishAudio(new AudioChunk(samples, SampleRate, checked((int)frames), ++_audioSequence, _clock.Elapsed));\r\n        return frames;\r\n    }",
+            "arrays": [
+              "new short[checked((int)frames * 2)]"
+            ],
+            "constants": [
+              {
+                "value": 0,
+                "expression": "ExternalCoreInteropConstants.EmptyNativeSize"
+              },
+              {
+                "value": 0,
+                "expression": "EmptyNativeSize"
+              },
+              {
+                "value": 2,
+                "expression": "2"
+              },
+              {
+                "value": 0,
+                "expression": "BufferConstants.FirstBufferIndex"
+              },
+              {
+                "value": 0,
+                "expression": "FirstBufferIndex"
+              }
+            ],
+            "name": "HandleAudioBatch",
+            "parameters": "(nint data, nuint frames)",
+            "calls": [
+              {
+                "assembly": "System.Runtime.InteropServices",
+                "symbol": "System.Runtime.InteropServices.Marshal.Copy(nint, short[], int, int)",
+                "expression": "Marshal.Copy(data, samples, BufferConstants.FirstBufferIndex, samples.Length)"
+              },
+              {
+                "assembly": "gwgui.emulation.nintendo",
+                "symbol": "GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Services.ExternalHostCallbacks.PublishAudio(GWGUI.Emulation.Contracts.AudioChunk)",
+                "expression": "PublishAudio(new AudioChunk(samples, SampleRate, checked((int)frames), ++_audioSequence, _clock.Elapsed))"
+              },
+              {
+                "assembly": "gwgui.emulation",
+                "symbol": "GWGUI.Emulation.Contracts.AudioChunk.AudioChunk(System.ReadOnlyMemory<short>, int, int, long, System.TimeSpan, GWGUI.Emulation.Enums.EmulationAudioChannelLayout)",
+                "expression": "new AudioChunk(samples, SampleRate, checked((int)frames), ++_audioSequence, _clock.Elapsed)"
+              }
+            ]
+          }
+        ],
+        "sha256": "5C2A2424B73C128764C4274D3DC8F3E2EF5DEB6288CC41EBAFBB6E0C75AB36CA",
+        "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+        "allocationPolicy": "Native batches use new short[] zero initialization; preserve this separately from existing int CopyBatch using GC.AllocateUninitializedArray."
+      },
+      {
+        "methods": [
+          {
+            "body": "{\r\n        PublishAudio(new AudioChunk(new[] { left, right }, SampleRate, 1, ++_audioSequence, _clock.Elapsed));\r\n    }",
+            "arrays": [
+              "new[] { left, right }"
+            ],
+            "constants": [
+              {
+                "value": 1,
+                "expression": "1"
+              }
+            ],
+            "name": "HandleAudioSample",
+            "parameters": "(short left, short right)",
+            "calls": [
+              {
+                "assembly": "gwgui.emulation.sega",
+                "symbol": "GWGUI.Emulation.Sega.Emulators.Common.Interop.Services.ExternalHostCallbacks.PublishAudio(GWGUI.Emulation.Contracts.AudioChunk)",
+                "expression": "PublishAudio(new AudioChunk(new[] { left, right }, SampleRate, 1, ++_audioSequence, _clock.Elapsed))"
+              },
+              {
+                "assembly": "gwgui.emulation",
+                "symbol": "GWGUI.Emulation.Contracts.AudioChunk.AudioChunk(System.ReadOnlyMemory<short>, int, int, long, System.TimeSpan, GWGUI.Emulation.Enums.EmulationAudioChannelLayout)",
+                "expression": "new AudioChunk(new[] { left, right }, SampleRate, 1, ++_audioSequence, _clock.Elapsed)"
+              }
+            ]
+          },
+          {
+            "body": "{\r\n        if (data == nint.Zero || frames == ExternalCoreInteropConstants.EmptyNativeSize) return frames;\r\n        var samples = new short[checked((int)frames * 2)];\r\n        Marshal.Copy(data, samples, BufferConstants.FirstBufferIndex, samples.Length);\r\n        PublishAudio(new AudioChunk(samples, SampleRate, checked((int)frames), ++_audioSequence, _clock.Elapsed));\r\n        return frames;\r\n    }",
+            "arrays": [
+              "new short[checked((int)frames * 2)]"
+            ],
+            "constants": [
+              {
+                "value": 0,
+                "expression": "ExternalCoreInteropConstants.EmptyNativeSize"
+              },
+              {
+                "value": 0,
+                "expression": "EmptyNativeSize"
+              },
+              {
+                "value": 2,
+                "expression": "2"
+              },
+              {
+                "value": 0,
+                "expression": "BufferConstants.FirstBufferIndex"
+              },
+              {
+                "value": 0,
+                "expression": "FirstBufferIndex"
+              }
+            ],
+            "name": "HandleAudioBatch",
+            "parameters": "(nint data, nuint frames)",
+            "calls": [
+              {
+                "assembly": "System.Runtime.InteropServices",
+                "symbol": "System.Runtime.InteropServices.Marshal.Copy(nint, short[], int, int)",
+                "expression": "Marshal.Copy(data, samples, BufferConstants.FirstBufferIndex, samples.Length)"
+              },
+              {
+                "assembly": "gwgui.emulation.sega",
+                "symbol": "GWGUI.Emulation.Sega.Emulators.Common.Interop.Services.ExternalHostCallbacks.PublishAudio(GWGUI.Emulation.Contracts.AudioChunk)",
+                "expression": "PublishAudio(new AudioChunk(samples, SampleRate, checked((int)frames), ++_audioSequence, _clock.Elapsed))"
+              },
+              {
+                "assembly": "gwgui.emulation",
+                "symbol": "GWGUI.Emulation.Contracts.AudioChunk.AudioChunk(System.ReadOnlyMemory<short>, int, int, long, System.TimeSpan, GWGUI.Emulation.Enums.EmulationAudioChannelLayout)",
+                "expression": "new AudioChunk(samples, SampleRate, checked((int)frames), ++_audioSequence, _clock.Elapsed)"
+              }
+            ]
+          }
+        ],
+        "sha256": "3038CF32C1C8C498751C0B4F60D013EC5CB5B99F1B6779FBA8E49D98F214552B",
+        "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+        "allocationPolicy": "Native batches use new short[] zero initialization; preserve this separately from existing int CopyBatch using GC.AllocateUninitializedArray."
+      },
+      {
+        "methods": [
+          {
+            "body": "{\r\n        PublishAudio(new AudioChunk(new[] { left, right }, SampleRate, 1, ++_audioSequence, _clock.Elapsed));\r\n    }",
+            "arrays": [
+              "new[] { left, right }"
+            ],
+            "constants": [
+              {
+                "value": 1,
+                "expression": "1"
+              }
+            ],
+            "name": "HandleAudioSample",
+            "parameters": "(short left, short right)",
+            "calls": [
+              {
+                "assembly": "gwgui.emulation.sony",
+                "symbol": "GWGUI.Emulation.Sony.Emulators.Common.Interop.Services.ExternalHostCallbacks.PublishAudio(GWGUI.Emulation.Contracts.AudioChunk)",
+                "expression": "PublishAudio(new AudioChunk(new[] { left, right }, SampleRate, 1, ++_audioSequence, _clock.Elapsed))"
+              },
+              {
+                "assembly": "gwgui.emulation",
+                "symbol": "GWGUI.Emulation.Contracts.AudioChunk.AudioChunk(System.ReadOnlyMemory<short>, int, int, long, System.TimeSpan, GWGUI.Emulation.Enums.EmulationAudioChannelLayout)",
+                "expression": "new AudioChunk(new[] { left, right }, SampleRate, 1, ++_audioSequence, _clock.Elapsed)"
+              }
+            ]
+          },
+          {
+            "body": "{\r\n        if (data == nint.Zero || frames == ExternalCoreInteropConstants.EmptyNativeSize) return frames;\r\n        var samples = new short[checked((int)frames * 2)];\r\n        Marshal.Copy(data, samples, BufferConstants.FirstBufferIndex, samples.Length);\r\n        PublishAudio(new AudioChunk(samples, SampleRate, checked((int)frames), ++_audioSequence, _clock.Elapsed));\r\n        return frames;\r\n    }",
+            "arrays": [
+              "new short[checked((int)frames * 2)]"
+            ],
+            "constants": [
+              {
+                "value": 0,
+                "expression": "ExternalCoreInteropConstants.EmptyNativeSize"
+              },
+              {
+                "value": 0,
+                "expression": "EmptyNativeSize"
+              },
+              {
+                "value": 2,
+                "expression": "2"
+              },
+              {
+                "value": 0,
+                "expression": "BufferConstants.FirstBufferIndex"
+              },
+              {
+                "value": 0,
+                "expression": "FirstBufferIndex"
+              }
+            ],
+            "name": "HandleAudioBatch",
+            "parameters": "(nint data, nuint frames)",
+            "calls": [
+              {
+                "assembly": "System.Runtime.InteropServices",
+                "symbol": "System.Runtime.InteropServices.Marshal.Copy(nint, short[], int, int)",
+                "expression": "Marshal.Copy(data, samples, BufferConstants.FirstBufferIndex, samples.Length)"
+              },
+              {
+                "assembly": "gwgui.emulation.sony",
+                "symbol": "GWGUI.Emulation.Sony.Emulators.Common.Interop.Services.ExternalHostCallbacks.PublishAudio(GWGUI.Emulation.Contracts.AudioChunk)",
+                "expression": "PublishAudio(new AudioChunk(samples, SampleRate, checked((int)frames), ++_audioSequence, _clock.Elapsed))"
+              },
+              {
+                "assembly": "gwgui.emulation",
+                "symbol": "GWGUI.Emulation.Contracts.AudioChunk.AudioChunk(System.ReadOnlyMemory<short>, int, int, long, System.TimeSpan, GWGUI.Emulation.Enums.EmulationAudioChannelLayout)",
+                "expression": "new AudioChunk(samples, SampleRate, checked((int)frames), ++_audioSequence, _clock.Elapsed)"
+              }
+            ]
+          },
+          {
+            "body": "{\r\n        if (data == nint.Zero || frames > MultichannelAudioConstants.MaximumFramesPerBatch\r\n            || !AudioChannelLayoutFunctions.TryFromNative(mask, channels, out var layout)) return 0;\r\n        if (frames == 0) return 0;\r\n        var samples = new short[checked((int)frames * (int)channels)];\r\n        Marshal.Copy(data, samples, 0, samples.Length);\r\n        PublishAudio(new AudioChunk(samples, SampleRate, (int)frames, ++_audioSequence, _clock.Elapsed, layout));\r\n        return frames;\r\n    }",
+            "arrays": [
+              "new short[checked((int)frames * (int)channels)]"
+            ],
+            "constants": [
+              {
+                "value": 262144,
+                "expression": "MultichannelAudioConstants.MaximumFramesPerBatch"
+              },
+              {
+                "value": 262144,
+                "expression": "MaximumFramesPerBatch"
+              },
+              {
+                "value": 0,
+                "expression": "0"
+              },
+              {
+                "value": 0,
+                "expression": "0"
+              },
+              {
+                "value": 0,
+                "expression": "0"
+              },
+              {
+                "value": 0,
+                "expression": "0"
+              }
+            ],
+            "name": "HandleMultichannelAudioBatch",
+            "parameters": "(nint data, nuint frames, uint channels, uint mask)",
+            "calls": [
+              {
+                "assembly": "gwgui.emulation.sony",
+                "symbol": "GWGUI.Emulation.Sony.Emulators.Common.Interop.Functions.AudioChannelLayoutFunctions.TryFromNative(uint, uint, out GWGUI.Emulation.Enums.EmulationAudioChannelLayout)",
+                "expression": "AudioChannelLayoutFunctions.TryFromNative(mask, channels, out var layout)"
+              },
+              {
+                "assembly": "System.Runtime.InteropServices",
+                "symbol": "System.Runtime.InteropServices.Marshal.Copy(nint, short[], int, int)",
+                "expression": "Marshal.Copy(data, samples, 0, samples.Length)"
+              },
+              {
+                "assembly": "gwgui.emulation.sony",
+                "symbol": "GWGUI.Emulation.Sony.Emulators.Common.Interop.Services.ExternalHostCallbacks.PublishAudio(GWGUI.Emulation.Contracts.AudioChunk)",
+                "expression": "PublishAudio(new AudioChunk(samples, SampleRate, (int)frames, ++_audioSequence, _clock.Elapsed, layout))"
+              },
+              {
+                "assembly": "gwgui.emulation",
+                "symbol": "GWGUI.Emulation.Contracts.AudioChunk.AudioChunk(System.ReadOnlyMemory<short>, int, int, long, System.TimeSpan, GWGUI.Emulation.Enums.EmulationAudioChannelLayout)",
+                "expression": "new AudioChunk(samples, SampleRate, (int)frames, ++_audioSequence, _clock.Elapsed, layout)"
+              }
+            ]
+          }
+        ],
+        "sha256": "42A5E803B07B4C850CE83C7EA5D03596F64035A3E6F3628C428DFD91C39975B2",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+        "allocationPolicy": "Native batches use new short[] zero initialization; preserve this separately from existing int CopyBatch using GC.AllocateUninitializedArray."
+      },
+      {
+        "methods": [
+          {
+            "body": "{\r\n        PublishAudio(new AudioChunk(new[] { left, right }, SampleRate, 1, ++_audioSequence, _clock.Elapsed));\r\n    }",
+            "arrays": [
+              "new[] { left, right }"
+            ],
+            "constants": [
+              {
+                "value": 1,
+                "expression": "1"
+              }
+            ],
+            "name": "HandleAudioSample",
+            "parameters": "(short left, short right)",
+            "calls": [
+              {
+                "assembly": "gwgui.emulation.sony",
+                "symbol": "GWGUI.Emulation.Sony.Emulators.Pcsx2.Services.ExternalHostCallbacks.PublishAudio(GWGUI.Emulation.Contracts.AudioChunk)",
+                "expression": "PublishAudio(new AudioChunk(new[] { left, right }, SampleRate, 1, ++_audioSequence, _clock.Elapsed))"
+              },
+              {
+                "assembly": "gwgui.emulation",
+                "symbol": "GWGUI.Emulation.Contracts.AudioChunk.AudioChunk(System.ReadOnlyMemory<short>, int, int, long, System.TimeSpan, GWGUI.Emulation.Enums.EmulationAudioChannelLayout)",
+                "expression": "new AudioChunk(new[] { left, right }, SampleRate, 1, ++_audioSequence, _clock.Elapsed)"
+              }
+            ]
+          },
+          {
+            "body": "{\r\n        if (data == nint.Zero || frames == ExternalCoreInteropConstants.EmptyNativeSize) return frames;\r\n        var samples = new short[checked((int)frames * 2)];\r\n        Marshal.Copy(data, samples, BufferConstants.FirstBufferIndex, samples.Length);\r\n        PublishAudio(new AudioChunk(samples, SampleRate, checked((int)frames), ++_audioSequence, _clock.Elapsed));\r\n        return frames;\r\n    }",
+            "arrays": [
+              "new short[checked((int)frames * 2)]"
+            ],
+            "constants": [
+              {
+                "value": 0,
+                "expression": "ExternalCoreInteropConstants.EmptyNativeSize"
+              },
+              {
+                "value": 0,
+                "expression": "EmptyNativeSize"
+              },
+              {
+                "value": 2,
+                "expression": "2"
+              },
+              {
+                "value": 0,
+                "expression": "BufferConstants.FirstBufferIndex"
+              },
+              {
+                "value": 0,
+                "expression": "FirstBufferIndex"
+              }
+            ],
+            "name": "HandleAudioBatch",
+            "parameters": "(nint data, nuint frames)",
+            "calls": [
+              {
+                "assembly": "System.Runtime.InteropServices",
+                "symbol": "System.Runtime.InteropServices.Marshal.Copy(nint, short[], int, int)",
+                "expression": "Marshal.Copy(data, samples, BufferConstants.FirstBufferIndex, samples.Length)"
+              },
+              {
+                "assembly": "gwgui.emulation.sony",
+                "symbol": "GWGUI.Emulation.Sony.Emulators.Pcsx2.Services.ExternalHostCallbacks.PublishAudio(GWGUI.Emulation.Contracts.AudioChunk)",
+                "expression": "PublishAudio(new AudioChunk(samples, SampleRate, checked((int)frames), ++_audioSequence, _clock.Elapsed))"
+              },
+              {
+                "assembly": "gwgui.emulation",
+                "symbol": "GWGUI.Emulation.Contracts.AudioChunk.AudioChunk(System.ReadOnlyMemory<short>, int, int, long, System.TimeSpan, GWGUI.Emulation.Enums.EmulationAudioChannelLayout)",
+                "expression": "new AudioChunk(samples, SampleRate, checked((int)frames), ++_audioSequence, _clock.Elapsed)"
+              }
+            ]
+          }
+        ],
+        "sha256": "08CA7E383394FCBE6049D7FD6B1C8FCD24DD278935E23EE2BD6AC25AA3BFDB45",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.AudioVideo.cs",
+        "allocationPolicy": "Native batches use new short[] zero initialization; preserve this separately from existing int CopyBatch using GC.AllocateUninitializedArray."
+      },
+      {
+        "methods": [
+          {
+            "body": "{\n        PublishAudio(new AudioChunk(new[] { left, right }, SampleRate, 1, ++_audioSequence, _clock.Elapsed));\n    }",
+            "arrays": [
+              "new[] { left, right }"
+            ],
+            "constants": [
+              {
+                "value": 1,
+                "expression": "1"
+              }
+            ],
+            "name": "HandleAudioSample",
+            "parameters": "(short left, short right)",
+            "calls": [
+              {
+                "assembly": "gwgui.emulation.sony",
+                "symbol": "GWGUI.Emulation.Sony.Emulators.Ppsspp.Services.ExternalHostCallbacks.PublishAudio(GWGUI.Emulation.Contracts.AudioChunk)",
+                "expression": "PublishAudio(new AudioChunk(new[] { left, right }, SampleRate, 1, ++_audioSequence, _clock.Elapsed))"
+              },
+              {
+                "assembly": "gwgui.emulation",
+                "symbol": "GWGUI.Emulation.Contracts.AudioChunk.AudioChunk(System.ReadOnlyMemory<short>, int, int, long, System.TimeSpan, GWGUI.Emulation.Enums.EmulationAudioChannelLayout)",
+                "expression": "new AudioChunk(new[] { left, right }, SampleRate, 1, ++_audioSequence, _clock.Elapsed)"
+              }
+            ]
+          },
+          {
+            "body": "{\n        if (data == nint.Zero || frames == ExternalCoreInteropConstants.EmptyNativeSize) return frames;\n        var samples = new short[checked((int)frames * 2)];\n        Marshal.Copy(data, samples, BufferConstants.FirstBufferIndex, samples.Length);\n        PublishAudio(new AudioChunk(samples, SampleRate, checked((int)frames), ++_audioSequence, _clock.Elapsed));\n        return frames;\n    }",
+            "arrays": [
+              "new short[checked((int)frames * 2)]"
+            ],
+            "constants": [
+              {
+                "value": 0,
+                "expression": "ExternalCoreInteropConstants.EmptyNativeSize"
+              },
+              {
+                "value": 0,
+                "expression": "EmptyNativeSize"
+              },
+              {
+                "value": 2,
+                "expression": "2"
+              },
+              {
+                "value": 0,
+                "expression": "BufferConstants.FirstBufferIndex"
+              },
+              {
+                "value": 0,
+                "expression": "FirstBufferIndex"
+              }
+            ],
+            "name": "HandleAudioBatch",
+            "parameters": "(nint data, nuint frames)",
+            "calls": [
+              {
+                "assembly": "System.Runtime.InteropServices",
+                "symbol": "System.Runtime.InteropServices.Marshal.Copy(nint, short[], int, int)",
+                "expression": "Marshal.Copy(data, samples, BufferConstants.FirstBufferIndex, samples.Length)"
+              },
+              {
+                "assembly": "gwgui.emulation.sony",
+                "symbol": "GWGUI.Emulation.Sony.Emulators.Ppsspp.Services.ExternalHostCallbacks.PublishAudio(GWGUI.Emulation.Contracts.AudioChunk)",
+                "expression": "PublishAudio(new AudioChunk(samples, SampleRate, checked((int)frames), ++_audioSequence, _clock.Elapsed))"
+              },
+              {
+                "assembly": "gwgui.emulation",
+                "symbol": "GWGUI.Emulation.Contracts.AudioChunk.AudioChunk(System.ReadOnlyMemory<short>, int, int, long, System.TimeSpan, GWGUI.Emulation.Enums.EmulationAudioChannelLayout)",
+                "expression": "new AudioChunk(samples, SampleRate, checked((int)frames), ++_audioSequence, _clock.Elapsed)"
+              }
+            ]
+          }
+        ],
+        "sha256": "FFFF4B1FAD84F109E8EBC47FC7957148D1E53D165858CB6C6B7950A495FD07F7",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.AudioVideo.cs",
+        "allocationPolicy": "Native batches use new short[] zero initialization; preserve this separately from existing int CopyBatch using GC.AllocateUninitializedArray."
+      }
+    ],
+    "semanticProjects": [
+      "GWGUI.Emulation",
+      "GWGUI.Emulation.Amstrad",
+      "GWGUI.Emulation.Commodore",
+      "GWGUI.Emulation.Nec",
+      "GWGUI.Emulation.Nintendo",
+      "GWGUI.Emulation.Sega",
+      "GWGUI.Emulation.Sony"
+    ],
+    "decision": "Use existing SingleFrame; extend existing CopyBatch family with native-width zero-initialized overloads and a single existing Marshal.Copy path, preserving the int overload allocation through expansion proof.",
+    "verification": {
+      "removedConstants": 83,
+      "sdk": {
+        "sha256": "3BAE639753A474C0F97CDE3EE1C7286E06F6F3A0CE7C8D9FC504BF8935A37798",
+        "copyIntExpansionIdentical": true,
+        "checkedNativeCastsAndMultiplication": true,
+        "path": "src/GWGUI.Emulation/Functions/EmulationAudioFunctions.cs",
+        "otherMethodsUnchanged": true
+      },
+      "existingIntAllocationPreserved": true,
+      "sources": [
+        {
+          "sha256": "07AD428415C1A6BD4494F682BEC86C63376470C4A58B3B92CC5DFE05B19D5A84",
+          "bindings": [
+            {
+              "symbol": "GWGUI.Emulation.Functions.EmulationAudioFunctions.SingleFrame(short, short)",
+              "expression": "GWGUI.Emulation.Functions.EmulationAudioFunctions.SingleFrame(left, right)"
+            },
+            {
+              "symbol": "GWGUI.Emulation.Functions.EmulationAudioFunctions.CopyBatch(nint, nuint)",
+              "expression": "GWGUI.Emulation.Functions.EmulationAudioFunctions.CopyBatch(data, frames)"
+            }
+          ],
+          "onlyPlannedTokenChanges": true,
+          "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs"
+        },
+        {
+          "sha256": "8DB54B43E8498F065E1F90E9063DC3A1101EC549BFB28D8E70713CD84A5C156B",
+          "bindings": [
+            {
+              "symbol": "GWGUI.Emulation.Functions.EmulationAudioFunctions.SingleFrame(short, short)",
+              "expression": "GWGUI.Emulation.Functions.EmulationAudioFunctions.SingleFrame(left, right)"
+            },
+            {
+              "symbol": "GWGUI.Emulation.Functions.EmulationAudioFunctions.CopyBatch(nint, nuint)",
+              "expression": "GWGUI.Emulation.Functions.EmulationAudioFunctions.CopyBatch(data, frames)"
+            }
+          ],
+          "onlyPlannedTokenChanges": true,
+          "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs"
+        },
+        {
+          "sha256": "F2D4BC6104545739E4DCBAFED20C801B355ADE7E88BF391B7284726F7AC7937F",
+          "bindings": [
+            {
+              "symbol": "GWGUI.Emulation.Functions.EmulationAudioFunctions.SingleFrame(short, short)",
+              "expression": "GWGUI.Emulation.Functions.EmulationAudioFunctions.SingleFrame(left, right)"
+            },
+            {
+              "symbol": "GWGUI.Emulation.Functions.EmulationAudioFunctions.CopyBatch(nint, nuint)",
+              "expression": "GWGUI.Emulation.Functions.EmulationAudioFunctions.CopyBatch(data, frames)"
+            }
+          ],
+          "onlyPlannedTokenChanges": true,
+          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs"
+        },
+        {
+          "sha256": "73D9D6AD20FA170441E78F6B442614F320E607A1495E7F089293452ADF33287A",
+          "bindings": [
+            {
+              "symbol": "GWGUI.Emulation.Functions.EmulationAudioFunctions.SingleFrame(short, short)",
+              "expression": "GWGUI.Emulation.Functions.EmulationAudioFunctions.SingleFrame(left, right)"
+            },
+            {
+              "symbol": "GWGUI.Emulation.Functions.EmulationAudioFunctions.CopyBatch(nint, nuint)",
+              "expression": "GWGUI.Emulation.Functions.EmulationAudioFunctions.CopyBatch(data, frames)"
+            }
+          ],
+          "onlyPlannedTokenChanges": true,
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs"
+        },
+        {
+          "sha256": "1ACA303DBE10CB61012FE7F5C47EFA31B3CF0C5B5907053E7F5BC1D97A35E155",
+          "bindings": [
+            {
+              "symbol": "GWGUI.Emulation.Functions.EmulationAudioFunctions.SingleFrame(short, short)",
+              "expression": "GWGUI.Emulation.Functions.EmulationAudioFunctions.SingleFrame(left, right)"
+            },
+            {
+              "symbol": "GWGUI.Emulation.Functions.EmulationAudioFunctions.CopyBatch(nint, nuint)",
+              "expression": "GWGUI.Emulation.Functions.EmulationAudioFunctions.CopyBatch(data, frames)"
+            }
+          ],
+          "onlyPlannedTokenChanges": true,
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs"
+        },
+        {
+          "sha256": "C082248EECACB0B5FBBDFFC29527E1FAA296C44DA6E96C5DB889C9C656269234",
+          "bindings": [
+            {
+              "symbol": "GWGUI.Emulation.Functions.EmulationAudioFunctions.SingleFrame(short, short)",
+              "expression": "GWGUI.Emulation.Functions.EmulationAudioFunctions.SingleFrame(left, right)"
+            },
+            {
+              "symbol": "GWGUI.Emulation.Functions.EmulationAudioFunctions.CopyBatch(nint, nuint)",
+              "expression": "GWGUI.Emulation.Functions.EmulationAudioFunctions.CopyBatch(data, frames)"
+            },
+            {
+              "symbol": "GWGUI.Emulation.Functions.EmulationAudioFunctions.CopyBatch(nint, nuint, uint)",
+              "expression": "GWGUI.Emulation.Functions.EmulationAudioFunctions.CopyBatch(data, frames, channels)"
+            }
+          ],
+          "onlyPlannedTokenChanges": true,
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs"
+        },
+        {
+          "sha256": "6E13410329A3D2C8F73BD5FD33DAEF6EB03955BF3F03940CA8A3148679538F67",
+          "bindings": [
+            {
+              "symbol": "GWGUI.Emulation.Functions.EmulationAudioFunctions.SingleFrame(short, short)",
+              "expression": "GWGUI.Emulation.Functions.EmulationAudioFunctions.SingleFrame(left, right)"
+            },
+            {
+              "symbol": "GWGUI.Emulation.Functions.EmulationAudioFunctions.CopyBatch(nint, nuint)",
+              "expression": "GWGUI.Emulation.Functions.EmulationAudioFunctions.CopyBatch(data, frames)"
+            }
+          ],
+          "onlyPlannedTokenChanges": true,
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.AudioVideo.cs"
+        },
+        {
+          "sha256": "FBBF06CA926362BEA7C32334C35339703621B07100898C22B217D41F6299D978",
+          "bindings": [
+            {
+              "symbol": "GWGUI.Emulation.Functions.EmulationAudioFunctions.SingleFrame(short, short)",
+              "expression": "GWGUI.Emulation.Functions.EmulationAudioFunctions.SingleFrame(left, right)"
+            },
+            {
+              "symbol": "GWGUI.Emulation.Functions.EmulationAudioFunctions.CopyBatch(nint, nuint)",
+              "expression": "GWGUI.Emulation.Functions.EmulationAudioFunctions.CopyBatch(data, frames)"
+            }
+          ],
+          "onlyPlannedTokenChanges": true,
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.AudioVideo.cs"
+        }
+      ],
+      "testConsumersIncluded": true,
+      "projects": [
+        "GWGUI.Emulation",
+        "GWGUI.Emulation.Acorn",
+        "GWGUI.Emulation.Amstrad",
+        "GWGUI.Emulation.Apple",
+        "GWGUI.Emulation.Atari",
+        "GWGUI.Emulation.Bandai",
+        "GWGUI.Emulation.Coleco",
+        "GWGUI.Emulation.Commodore",
+        "GWGUI.Emulation.Epoch",
+        "GWGUI.Emulation.Fairchild",
+        "GWGUI.Emulation.Mattel",
+        "GWGUI.Emulation.Nec",
+        "GWGUI.Emulation.Nintendo",
+        "GWGUI.Emulation.Panasonic",
+        "GWGUI.Emulation.Philips",
+        "GWGUI.Emulation.Sega",
+        "GWGUI.Emulation.Sharp",
+        "GWGUI.Emulation.Sinclair",
+        "GWGUI.Emulation.Snk",
+        "GWGUI.Emulation.Sony",
+        "GWGUI.Emulation.Thomson",
+        "GWGUI.Emulation.Watara",
+        "GWGUI.Emulation.Wenquxing",
+        "GWGUI.Tests"
+      ],
+      "nativeOperations": 17,
+      "nativeZeroInitializedAllocationPreserved": true,
+      "state": "verified: whole files, overload expansions, bindings, 83 constants, 74 targeted tests and Debug product",
+      "constantsNoDanglingReferences": true,
+      "constants": [
+        {
+          "sha256": "33B3607CAFB1EBBD16DCA4FA3711A7C5176332FE0C9A5CF8C50D977475D614F2",
+          "otherTokensUnchanged": true,
+          "path": "src/GWGUI.Emulation.Acorn/Common/Constants/AudioConstants.cs",
+          "removed": [
+            "StereoChannelCount",
+            "BufferDurationDivisor",
+            "MinimumBufferedFrameCount"
+          ]
+        },
+        {
+          "sha256": "7EE2794608A2892F1F85FD3C15EE8E142AFBA0835FF14B4AAA43919220F61B60",
+          "otherTokensUnchanged": true,
+          "path": "src/GWGUI.Emulation.Amstrad/Common/Constants/AudioConstants.cs",
+          "removed": [
+            "BufferDurationDivisor",
+            "MinimumBufferedFrameCount",
+            "MaximumFramesPerBatch",
+            "StereoChannelCount"
+          ]
+        },
+        {
+          "sha256": "167E9DDB047D5BA89AF4F3E3B6B272EE7596FF77C5139871064B6B9744E84A98",
+          "otherTokensUnchanged": true,
+          "path": "src/GWGUI.Emulation.Apple/Common/Constants/AudioConstants.cs",
+          "removed": [
+            "StereoChannelCount",
+            "BufferDurationDivisor",
+            "MinimumBufferedFrameCount"
+          ]
+        },
+        {
+          "sha256": "C8AE75650E86456D5DD24804066B7DC821DEC413EFFF91D8EC1DD9BF0436308B",
+          "otherTokensUnchanged": true,
+          "path": "src/GWGUI.Emulation.Atari/Common/Constants/AudioConstants.cs",
+          "removed": [
+            "StereoChannelCount",
+            "BufferDurationDivisor",
+            "MinimumBufferedFrameCount"
+          ]
+        },
+        {
+          "sha256": "9B5E47755AF31B6B0559E68A16B5C11C5242836E7E8E7D6867BFEBBF422E055E",
+          "otherTokensUnchanged": true,
+          "path": "src/GWGUI.Emulation.Bandai/Common/Constants/AudioConstants.cs",
+          "removed": [
+            "StereoChannelCount",
+            "BufferDurationDivisor",
+            "MinimumBufferedFrameCount"
+          ]
+        },
+        {
+          "sha256": "24599430A4AB1960A6E14023501D1D4B2ED7A56DF7A8138212B3B9914CE325D1",
+          "otherTokensUnchanged": true,
+          "path": "src/GWGUI.Emulation.Coleco/Common/Constants/AudioConstants.cs",
+          "removed": [
+            "StereoChannelCount",
+            "BufferDurationDivisor",
+            "MinimumBufferedFrameCount"
+          ]
+        },
+        {
+          "sha256": "C10118D2F935658F79FB24542939DCB7FA1B58ACD91CC9ABFDA540E232AD863B",
+          "otherTokensUnchanged": true,
+          "path": "src/GWGUI.Emulation.Commodore/Common/Constants/AudioConstants.cs",
+          "removed": [
+            "BufferDurationDivisor",
+            "MinimumBufferedFrameCount",
+            "StereoChannelCount"
+          ]
+        },
+        {
+          "sha256": "35FBBFE1F28074456867793742F5192CA84E19D39810CA33054CB590388BAF5B",
+          "otherTokensUnchanged": true,
+          "path": "src/GWGUI.Emulation.Epoch/Common/Constants/AudioConstants.cs",
+          "removed": [
+            "StereoChannelCount",
+            "BufferDurationDivisor",
+            "MinimumBufferedFrameCount"
+          ]
+        },
+        {
+          "sha256": "B1670658E74FA4BB9CC142A98CDD5951137B76DCB0DFBE0504E706965D2F22AC",
+          "otherTokensUnchanged": true,
+          "path": "src/GWGUI.Emulation.Fairchild/Common/Constants/AudioConstants.cs",
+          "removed": [
+            "StereoChannelCount",
+            "BufferDurationDivisor",
+            "MinimumBufferedFrameCount"
+          ]
+        },
+        {
+          "sha256": "FD82E3585408F4FEB1FD0DC4A8AF92428E85241520BC696F689E85783D0AD651",
+          "otherTokensUnchanged": true,
+          "path": "src/GWGUI.Emulation.Mattel/Common/Constants/AudioConstants.cs",
+          "removed": [
+            "StereoChannelCount",
+            "BufferDurationDivisor",
+            "MinimumBufferedFrameCount"
+          ]
+        },
+        {
+          "sha256": "2517F7DD7F2BDBBB7F582314AFB1BABF14110D79FE6E52B118BFDFCDDE0E9C39",
+          "otherTokensUnchanged": true,
+          "path": "src/GWGUI.Emulation.Nec/Common/Constants/AudioConstants.cs",
+          "removed": [
+            "StereoChannelCount",
+            "SingleFrameCount",
+            "BufferDurationDivisor",
+            "MinimumBufferedFrameCount",
+            "MaximumFramesPerBatch"
+          ]
+        },
+        {
+          "sha256": "4F228225E4E25E73A605A54C709119161227E8DF69EB90E8FC20F35A5531D087",
+          "otherTokensUnchanged": true,
+          "path": "src/GWGUI.Emulation.Nintendo/Common/Constants/AudioConstants.cs",
+          "removed": [
+            "StereoChannelCount",
+            "SingleFrameCount",
+            "BufferDurationDivisor",
+            "MinimumBufferedFrameCount",
+            "MaximumFramesPerBatch"
+          ]
+        },
+        {
+          "sha256": "E316A81B2808AC3CDA68222CBA177D094BC6A0372FC254ECB1E57A01AC7812B4",
+          "otherTokensUnchanged": true,
+          "path": "src/GWGUI.Emulation.Panasonic/Common/Constants/AudioConstants.cs",
+          "removed": [
+            "StereoChannelCount",
+            "SingleFrameCount",
+            "BufferDurationDivisor",
+            "MinimumBufferedFrameCount",
+            "MaximumFramesPerBatch"
+          ]
+        },
+        {
+          "sha256": "8FC32C8A007F39315315D4593C2FA210D0840B756AF426C6BB12CC7B5572D7C0",
+          "otherTokensUnchanged": true,
+          "path": "src/GWGUI.Emulation.Philips/Common/Constants/AudioConstants.cs",
+          "removed": [
+            "StereoChannelCount",
+            "BufferDurationDivisor",
+            "MinimumBufferedFrameCount"
+          ]
+        },
+        {
+          "sha256": "B9CA9B806236D5DFA9E57425D1DDB5AD4CBD624C630E8E62F19DFC991E3E91E2",
+          "otherTokensUnchanged": true,
+          "path": "src/GWGUI.Emulation.Sega/Common/Constants/AudioConstants.cs",
+          "removed": [
+            "StereoChannelCount",
+            "SingleFrameCount",
+            "BufferDurationDivisor",
+            "MinimumBufferedFrameCount",
+            "MaximumFramesPerBatch"
+          ]
+        },
+        {
+          "sha256": "2A9622F5D52307F8A0033DCE82B6F38CE08A48C4AB2E698B13D1E30B20C7F170",
+          "otherTokensUnchanged": true,
+          "path": "src/GWGUI.Emulation.Sharp/Common/Constants/AudioConstants.cs",
+          "removed": [
+            "StereoChannelCount",
+            "BufferDurationDivisor",
+            "MinimumBufferedFrameCount"
+          ]
+        },
+        {
+          "sha256": "40B925D040BA5FC99F03DB48DEFA86A346C20FAB30C438290B9CB18DAACC6C31",
+          "otherTokensUnchanged": true,
+          "path": "src/GWGUI.Emulation.Sinclair/Common/Constants/AudioConstants.cs",
+          "removed": [
+            "StereoChannelCount",
+            "BufferDurationDivisor",
+            "MinimumBufferedFrameCount"
+          ]
+        },
+        {
+          "sha256": "E2308B83569EA505196254CAB7EF38E1147D86B4A63696B324F60A3CD9F4B93E",
+          "otherTokensUnchanged": true,
+          "path": "src/GWGUI.Emulation.Snk/Common/Constants/AudioConstants.cs",
+          "removed": [
+            "StereoChannelCount",
+            "BufferDurationDivisor",
+            "MinimumBufferedFrameCount"
+          ]
+        },
+        {
+          "sha256": "845BE458BEF84746CB56D96CB86AEB2E03E84CD1273A5670E54D893BFCAA63EA",
+          "otherTokensUnchanged": true,
+          "path": "src/GWGUI.Emulation.Sony/Common/Constants/AudioConstants.cs",
+          "removed": [
+            "StereoChannelCount",
+            "SingleFrameCount",
+            "BufferDurationDivisor",
+            "MinimumBufferedFrameCount",
+            "MaximumFramesPerBatch"
+          ]
+        },
+        {
+          "sha256": "429000003E84FC8B8A216D81BBFEC9C0FE3CDF6CE9F2D55EB5C0988052FAE367",
+          "otherTokensUnchanged": true,
+          "path": "src/GWGUI.Emulation.Thomson/Common/Constants/AudioConstants.cs",
+          "removed": [
+            "StereoChannelCount",
+            "SingleFrameCount",
+            "BufferDurationDivisor",
+            "MinimumBufferedFrameCount",
+            "MaximumFramesPerBatch"
+          ]
+        },
+        {
+          "sha256": "A12C85503D59B349B1877642A5651B944A01B418F229BDF21BD6B0046372334B",
+          "otherTokensUnchanged": true,
+          "path": "src/GWGUI.Emulation.Watara/Common/Constants/AudioConstants.cs",
+          "removed": [
+            "StereoChannelCount",
+            "SingleFrameCount",
+            "BufferDurationDivisor",
+            "MinimumBufferedFrameCount",
+            "MaximumFramesPerBatch"
+          ]
+        },
+        {
+          "sha256": "09816B6F4D9E9B9D433D431D023E5155F8909B8D880AC72B3F02AE37ACCA41A7",
+          "otherTokensUnchanged": true,
+          "path": "src/GWGUI.Emulation.Wenquxing/Common/Constants/AudioConstants.cs",
+          "removed": [
+            "StereoChannelCount",
+            "SingleFrameCount",
+            "BufferDurationDivisor",
+            "MinimumBufferedFrameCount",
+            "MaximumFramesPerBatch"
+          ]
+        }
+      ],
+      "tests": {
+        "path": "tests/GWGUI.Tests/Emulation/CoreNativeAudioCopyTests.cs",
+        "command": "dotnet test tests/GWGUI.Tests/GWGUI.Tests.csproj -c Debug --no-restore --filter \"FullyQualifiedName~CoreAudio|FullyQualifiedName~CoreNativeAudioCopy|FullyQualifiedName~CoreAvUpdate\" --disable-build-servers",
+        "passed": 74,
+        "cleanup": "HGlobal freed in finally",
+        "sha256": "29142C78EC0314E43EE6983E9392456B714ED00FB84DA24EE5EC88E74B9457E9",
+        "exitCode": 0,
+        "externalFilesOrCore": false,
+        "newMemoryCases": 10
+      },
+      "buildInputs": [
+        {
+          "path": "src/GWGUI.Emulation.Acorn/Common/Constants/AudioConstants.cs",
+          "sha256": "33B3607CAFB1EBBD16DCA4FA3711A7C5176332FE0C9A5CF8C50D977475D614F2"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Amstrad/Common/Constants/AudioConstants.cs",
+          "sha256": "7EE2794608A2892F1F85FD3C15EE8E142AFBA0835FF14B4AAA43919220F61B60"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+          "sha256": "07AD428415C1A6BD4494F682BEC86C63376470C4A58B3B92CC5DFE05B19D5A84"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Apple/Common/Constants/AudioConstants.cs",
+          "sha256": "167E9DDB047D5BA89AF4F3E3B6B272EE7596FF77C5139871064B6B9744E84A98"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Atari/Common/Constants/AudioConstants.cs",
+          "sha256": "C8AE75650E86456D5DD24804066B7DC821DEC413EFFF91D8EC1DD9BF0436308B"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Bandai/Common/Constants/AudioConstants.cs",
+          "sha256": "9B5E47755AF31B6B0559E68A16B5C11C5242836E7E8E7D6867BFEBBF422E055E"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Coleco/Common/Constants/AudioConstants.cs",
+          "sha256": "24599430A4AB1960A6E14023501D1D4B2ED7A56DF7A8138212B3B9914CE325D1"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Commodore/Common/Constants/AudioConstants.cs",
+          "sha256": "C10118D2F935658F79FB24542939DCB7FA1B58ACD91CC9ABFDA540E232AD863B"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+          "sha256": "8DB54B43E8498F065E1F90E9063DC3A1101EC549BFB28D8E70713CD84A5C156B"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Epoch/Common/Constants/AudioConstants.cs",
+          "sha256": "35FBBFE1F28074456867793742F5192CA84E19D39810CA33054CB590388BAF5B"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Fairchild/Common/Constants/AudioConstants.cs",
+          "sha256": "B1670658E74FA4BB9CC142A98CDD5951137B76DCB0DFBE0504E706965D2F22AC"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Mattel/Common/Constants/AudioConstants.cs",
+          "sha256": "FD82E3585408F4FEB1FD0DC4A8AF92428E85241520BC696F689E85783D0AD651"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nec/Common/Constants/AudioConstants.cs",
+          "sha256": "2517F7DD7F2BDBBB7F582314AFB1BABF14110D79FE6E52B118BFDFCDDE0E9C39"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+          "sha256": "F2D4BC6104545739E4DCBAFED20C801B355ADE7E88BF391B7284726F7AC7937F"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nintendo/Common/Constants/AudioConstants.cs",
+          "sha256": "4F228225E4E25E73A605A54C709119161227E8DF69EB90E8FC20F35A5531D087"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+          "sha256": "73D9D6AD20FA170441E78F6B442614F320E607A1495E7F089293452ADF33287A"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Panasonic/Common/Constants/AudioConstants.cs",
+          "sha256": "E316A81B2808AC3CDA68222CBA177D094BC6A0372FC254ECB1E57A01AC7812B4"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Philips/Common/Constants/AudioConstants.cs",
+          "sha256": "8FC32C8A007F39315315D4593C2FA210D0840B756AF426C6BB12CC7B5572D7C0"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sega/Common/Constants/AudioConstants.cs",
+          "sha256": "B9CA9B806236D5DFA9E57425D1DDB5AD4CBD624C630E8E62F19DFC991E3E91E2"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+          "sha256": "1ACA303DBE10CB61012FE7F5C47EFA31B3CF0C5B5907053E7F5BC1D97A35E155"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sharp/Common/Constants/AudioConstants.cs",
+          "sha256": "2A9622F5D52307F8A0033DCE82B6F38CE08A48C4AB2E698B13D1E30B20C7F170"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sinclair/Common/Constants/AudioConstants.cs",
+          "sha256": "40B925D040BA5FC99F03DB48DEFA86A346C20FAB30C438290B9CB18DAACC6C31"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Snk/Common/Constants/AudioConstants.cs",
+          "sha256": "E2308B83569EA505196254CAB7EF38E1147D86B4A63696B324F60A3CD9F4B93E"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Common/Constants/AudioConstants.cs",
+          "sha256": "845BE458BEF84746CB56D96CB86AEB2E03E84CD1273A5670E54D893BFCAA63EA"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
+          "sha256": "C082248EECACB0B5FBBDFFC29527E1FAA296C44DA6E96C5DB889C9C656269234"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.AudioVideo.cs",
+          "sha256": "6E13410329A3D2C8F73BD5FD33DAEF6EB03955BF3F03940CA8A3148679538F67"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.AudioVideo.cs",
+          "sha256": "FBBF06CA926362BEA7C32334C35339703621B07100898C22B217D41F6299D978"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Thomson/Common/Constants/AudioConstants.cs",
+          "sha256": "429000003E84FC8B8A216D81BBFEC9C0FE3CDF6CE9F2D55EB5C0988052FAE367"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Watara/Common/Constants/AudioConstants.cs",
+          "sha256": "A12C85503D59B349B1877642A5651B944A01B418F229BDF21BD6B0046372334B"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Wenquxing/Common/Constants/AudioConstants.cs",
+          "sha256": "09816B6F4D9E9B9D433D431D023E5155F8909B8D880AC72B3F02AE37ACCA41A7"
+        },
+        {
+          "path": "src/GWGUI.Emulation/Functions/EmulationAudioFunctions.cs",
+          "sha256": "3BAE639753A474C0F97CDE3EE1C7286E06F6F3A0CE7C8D9FC504BF8935A37798"
+        },
+        {
+          "path": "src/GWGUI.Emulation/Services/ExternalCoreAudioCallbackHost.cs",
+          "sha256": "221050564E6192961B10DDE888AA06BDB5C6EE403376077D3B507CDBE9253EEE"
+        },
+        {
+          "path": "tests/GWGUI.Tests/Emulation/CoreNativeAudioCopyTests.cs",
+          "sha256": "29142C78EC0314E43EE6983E9392456B714ED00FB84DA24EE5EC88E74B9457E9"
+        }
+      ],
+      "productBuild": {
+        "modules": [
+          {
+            "sha256": "CE2E7476A1C2DFE37A4235DC1AA643313C270DCABC016DA2C782E4B7323AD7E8",
+            "id": "acorn",
+            "path": "build/Debug/GW GUI/Modules/acorn/gwgui.emulation.acorn.dll"
+          },
+          {
+            "sha256": "7F783E613BA59CD004D2F0602FDB464C008119C64DEEBA0F24FF7C932C642382",
+            "id": "amstrad",
+            "path": "build/Debug/GW GUI/Modules/amstrad/gwgui.emulation.amstrad.dll"
+          },
+          {
+            "sha256": "DA0A2D0A815785589B242AB087F1A8DC066DB4CDCA58E292F4C2E5A69B495271",
+            "id": "apple",
+            "path": "build/Debug/GW GUI/Modules/apple/gwgui.emulation.apple.dll"
+          },
+          {
+            "sha256": "7907FDF0AA742D75432FB34F9AD4317B79CC38C10FFB6AE97035BD1A01152A49",
+            "id": "atari",
+            "path": "build/Debug/GW GUI/Modules/atari/gwgui.emulation.atari.dll"
+          },
+          {
+            "sha256": "5F166C80B1E751B9A774E8AA0F48639DBDFEA0C5617394787CC83F51AA8FC418",
+            "id": "bandai",
+            "path": "build/Debug/GW GUI/Modules/bandai/gwgui.emulation.bandai.dll"
+          },
+          {
+            "sha256": "D1089C72D783E91BA748C0B64F3A1DA72CA827C2E6A3E2E64E988685BE7BFE3B",
+            "id": "coleco",
+            "path": "build/Debug/GW GUI/Modules/coleco/gwgui.emulation.coleco.dll"
+          },
+          {
+            "sha256": "95E86D80FB06C6551BDF8F640D5545BF2A1B953D336674198CB392C5E8438D58",
+            "id": "commodore",
+            "path": "build/Debug/GW GUI/Modules/commodore/gwgui.emulation.commodore.dll"
+          },
+          {
+            "sha256": "F4DF684482A03496B739E8502186F672986F06F47444454A1B9F6934C4E43136",
+            "id": "epoch",
+            "path": "build/Debug/GW GUI/Modules/epoch/gwgui.emulation.epoch.dll"
+          },
+          {
+            "sha256": "727797B458DE40E257D5DB8DC269C7775229C95A63A7775A3755478A40A45196",
+            "id": "fairchild",
+            "path": "build/Debug/GW GUI/Modules/fairchild/gwgui.emulation.fairchild.dll"
+          },
+          {
+            "sha256": "556D9CBD09FDF431A0C7BBCAC4D6DDA6319F1B9E320847AE99353EACB7B3FFCF",
+            "id": "mattel",
+            "path": "build/Debug/GW GUI/Modules/mattel/gwgui.emulation.mattel.dll"
+          },
+          {
+            "sha256": "BF8DCC2AD3C4BA298D89150A9FD072139ABE9E13E4E272A4CCF84CD5E38D205A",
+            "id": "microsoft",
+            "path": "build/Debug/GW GUI/Modules/microsoft/gwgui.emulation.microsoft.dll"
+          },
+          {
+            "sha256": "E586B795DD774B722FFA985035234260B6D8D0C8C67563622DF84047AAD66C68",
+            "id": "nec",
+            "path": "build/Debug/GW GUI/Modules/nec/gwgui.emulation.nec.dll"
+          },
+          {
+            "sha256": "805FD08C5BD60377FBE4A369C9EB33FF0E33283519B430D8986B619F03974300",
+            "id": "nintendo",
+            "path": "build/Debug/GW GUI/Modules/nintendo/gwgui.emulation.nintendo.dll"
+          },
+          {
+            "sha256": "868F295CA92FFC44930FBCB66782F53E1E97F88DCF613E7A823C38EFFBB5E278",
+            "id": "panasonic",
+            "path": "build/Debug/GW GUI/Modules/panasonic/gwgui.emulation.panasonic.dll"
+          },
+          {
+            "sha256": "3231726253F142CF796D03FFADB953C4DBB5F192C68D58B594F105C21D954DB0",
+            "id": "philips",
+            "path": "build/Debug/GW GUI/Modules/philips/gwgui.emulation.philips.dll"
+          },
+          {
+            "sha256": "6895669B7AA75329571133A8EF370F51100093D45AC2D8D59C91DAEFC4F020D2",
+            "id": "sega",
+            "path": "build/Debug/GW GUI/Modules/sega/gwgui.emulation.sega.dll"
+          },
+          {
+            "sha256": "88E570C12F1D9C245ADC915809C3C78489DD2531ED9DA9D6E8B511035A9E85FB",
+            "id": "sharp",
+            "path": "build/Debug/GW GUI/Modules/sharp/gwgui.emulation.sharp.dll"
+          },
+          {
+            "sha256": "35009CB4B978759DC7E184212867C8DCBC173481C063E5AC4D0349C7667B442D",
+            "id": "sinclair",
+            "path": "build/Debug/GW GUI/Modules/sinclair/gwgui.emulation.sinclair.dll"
+          },
+          {
+            "sha256": "46D78D7F6964629D4D712D9A4547FFFB71D4EF514B72F6C0E045A756B75D5415",
+            "id": "snk",
+            "path": "build/Debug/GW GUI/Modules/snk/gwgui.emulation.snk.dll"
+          },
+          {
+            "sha256": "30EECE77F577FE03C8F0A26F64528AA8A9A9D12F7BFFBD98967D123553E84DC4",
+            "id": "sony",
+            "path": "build/Debug/GW GUI/Modules/sony/gwgui.emulation.sony.dll"
+          },
+          {
+            "sha256": "CB9AF7EC5B00D8553227DCB4E61DEE52E9DEB2FDD5020B7E58803BA95B6020C4",
+            "id": "thomson",
+            "path": "build/Debug/GW GUI/Modules/thomson/gwgui.emulation.thomson.dll"
+          },
+          {
+            "sha256": "865A4D1992C9AAB30D2BBDCDA96B9956A1C017B78A91292549E1E56BE4E5C149",
+            "id": "watara",
+            "path": "build/Debug/GW GUI/Modules/watara/gwgui.emulation.watara.dll"
+          },
+          {
+            "sha256": "1214C7C6702663DAE58FC94099D5CEEC1E35252A5BBFE3055C29CC4CBA40CCC4",
+            "id": "wenquxing",
+            "path": "build/Debug/GW GUI/Modules/wenquxing/gwgui.emulation.wenquxing.dll"
+          }
+        ],
+        "exitCode": 0,
+        "unchangedInputs": 33,
+        "groupedBlocks": [
+          "legacyAudioCallbackComparison",
+          "nativeAudioInputComparison"
+        ],
+        "updaterPrivateDlls": [
+          "gwgui.updater.dll"
+        ],
+        "executable": {
+          "path": "build/Debug/GW GUI/gwgui.exe",
+          "sha256": "F15EE5FF35AF82D330AFA84EDD1FAD0023A5D7A209754136F9D075F6B25A4A1F"
+        },
+        "sdkSha256": "5FEB342E5E3ACEDBAB5A304CB7DBAEE8113496077EA9509F05120DF563520B7C",
+        "command": "scripts/local-building.cmd --building=debug --modules=A"
+      }
+    },
+    "reports": {
+      "scope": "Native sample/copy adapters and original queue/AV adapters bridged through whole-file proof; other host responsibilities remain open",
+      "shortBodies": 9514,
+      "longBodies": 11595,
+      "longGroups": 486,
+      "shortExact": 772,
+      "shortNormalized": 365,
+      "files": 7313
+    }
+  },
+  "audioConstantReferenceComparison": {
+    "unusedCount": 81,
+    "scope": "Only five audio constants in the twenty-two modules whose audio owners were moved; all matching identifier references resolved semantically, including unqualified names and test consumers.",
+    "projects": [
+      "GWGUI.Emulation",
+      "GWGUI.Emulation.Acorn",
+      "GWGUI.Emulation.Amstrad",
+      "GWGUI.Emulation.Apple",
+      "GWGUI.Emulation.Atari",
+      "GWGUI.Emulation.Bandai",
+      "GWGUI.Emulation.Coleco",
+      "GWGUI.Emulation.Commodore",
+      "GWGUI.Emulation.Epoch",
+      "GWGUI.Emulation.Fairchild",
+      "GWGUI.Emulation.Mattel",
+      "GWGUI.Emulation.Nec",
+      "GWGUI.Emulation.Nintendo",
+      "GWGUI.Emulation.Panasonic",
+      "GWGUI.Emulation.Philips",
+      "GWGUI.Emulation.Sega",
+      "GWGUI.Emulation.Sharp",
+      "GWGUI.Emulation.Sinclair",
+      "GWGUI.Emulation.Snk",
+      "GWGUI.Emulation.Sony",
+      "GWGUI.Emulation.Thomson",
+      "GWGUI.Emulation.Watara",
+      "GWGUI.Emulation.Wenquxing",
+      "GWGUI.Tests"
+    ],
+    "modules": [
+      "GWGUI.Emulation.Acorn",
+      "GWGUI.Emulation.Amstrad",
+      "GWGUI.Emulation.Apple",
+      "GWGUI.Emulation.Atari",
+      "GWGUI.Emulation.Bandai",
+      "GWGUI.Emulation.Coleco",
+      "GWGUI.Emulation.Commodore",
+      "GWGUI.Emulation.Epoch",
+      "GWGUI.Emulation.Fairchild",
+      "GWGUI.Emulation.Mattel",
+      "GWGUI.Emulation.Nec",
+      "GWGUI.Emulation.Nintendo",
+      "GWGUI.Emulation.Panasonic",
+      "GWGUI.Emulation.Philips",
+      "GWGUI.Emulation.Sega",
+      "GWGUI.Emulation.Sharp",
+      "GWGUI.Emulation.Sinclair",
+      "GWGUI.Emulation.Snk",
+      "GWGUI.Emulation.Sony",
+      "GWGUI.Emulation.Thomson",
+      "GWGUI.Emulation.Watara",
+      "GWGUI.Emulation.Wenquxing"
+    ],
+    "snapshot": "e3157fc360ca5c0a8c536506d64d5c09cfc5b0b3",
+    "testConsumersIncluded": true,
+    "fields": [
+      {
+        "path": "src/GWGUI.Emulation.Acorn/Common/Constants/AudioConstants.cs",
+        "referenceCount": 0,
+        "module": "GWGUI.Emulation.Acorn",
+        "name": "StereoChannelCount",
+        "unused": true,
+        "declaration": "internal const int StereoChannelCount = 2;",
+        "references": []
+      },
+      {
+        "path": "src/GWGUI.Emulation.Acorn/Common/Constants/AudioConstants.cs",
+        "referenceCount": 1,
+        "module": "GWGUI.Emulation.Acorn",
+        "name": "SingleFrameCount",
+        "unused": false,
+        "declaration": "internal const int SingleFrameCount = 1;",
+        "references": [
+          {
+            "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Acorn\\Emulators\\Common\\Interop\\Services\\ExternalHostCallbacks.AudioVideoInput.cs",
+            "position": 1721,
+            "module": "GWGUI.Emulation.Acorn",
+            "name": "SingleFrameCount",
+            "test": false,
+            "symbol": "GWGUI.Emulation.Acorn.Common.Constants.AudioConstants.SingleFrameCount"
+          }
+        ]
+      },
+      {
+        "path": "src/GWGUI.Emulation.Acorn/Common/Constants/AudioConstants.cs",
+        "referenceCount": 0,
+        "module": "GWGUI.Emulation.Acorn",
+        "name": "BufferDurationDivisor",
+        "unused": true,
+        "declaration": "internal const int BufferDurationDivisor = 5;",
+        "references": []
+      },
+      {
+        "path": "src/GWGUI.Emulation.Acorn/Common/Constants/AudioConstants.cs",
+        "referenceCount": 0,
+        "module": "GWGUI.Emulation.Acorn",
+        "name": "MinimumBufferedFrameCount",
+        "unused": true,
+        "declaration": "internal const int MinimumBufferedFrameCount = 1;",
+        "references": []
+      },
+      {
+        "path": "src/GWGUI.Emulation.Acorn/Common/Constants/AudioConstants.cs",
+        "referenceCount": 1,
+        "module": "GWGUI.Emulation.Acorn",
+        "name": "MaximumFramesPerBatch",
+        "unused": false,
+        "declaration": "internal const int MaximumFramesPerBatch = 64 * 1024;",
+        "references": [
+          {
+            "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Acorn\\Emulators\\Common\\Interop\\Services\\ExternalHostCallbacks.AudioVideoInput.cs",
+            "position": 1936,
+            "module": "GWGUI.Emulation.Acorn",
+            "name": "MaximumFramesPerBatch",
+            "test": false,
+            "symbol": "GWGUI.Emulation.Acorn.Common.Constants.AudioConstants.MaximumFramesPerBatch"
+          }
+        ]
+      },
+      {
+        "path": "src/GWGUI.Emulation.Amstrad/Common/Constants/AudioConstants.cs",
+        "referenceCount": 1,
+        "module": "GWGUI.Emulation.Amstrad",
+        "name": "StereoChannelCount",
+        "unused": false,
+        "declaration": "internal const int StereoChannelCount = 2;",
+        "references": [
+          {
+            "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Amstrad\\Emulators\\Common\\Interop\\Services\\ExternalHostCallbacks.AudioVideo.cs",
+            "position": 2414,
+            "module": "GWGUI.Emulation.Amstrad",
+            "name": "StereoChannelCount",
+            "test": false,
+            "symbol": "GWGUI.Emulation.Amstrad.Common.Constants.AudioConstants.StereoChannelCount"
+          }
+        ]
+      },
+      {
+        "path": "src/GWGUI.Emulation.Amstrad/Common/Constants/AudioConstants.cs",
+        "referenceCount": 1,
+        "module": "GWGUI.Emulation.Amstrad",
+        "name": "SingleFrameCount",
+        "unused": false,
+        "declaration": "internal const int SingleFrameCount = 1;",
+        "references": [
+          {
+            "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Amstrad\\Emulators\\Common\\Interop\\Services\\ExternalHostCallbacks.AudioVideo.cs",
+            "position": 2108,
+            "module": "GWGUI.Emulation.Amstrad",
+            "name": "SingleFrameCount",
+            "test": false,
+            "symbol": "GWGUI.Emulation.Amstrad.Common.Constants.AudioConstants.SingleFrameCount"
+          }
+        ]
+      },
+      {
+        "path": "src/GWGUI.Emulation.Amstrad/Common/Constants/AudioConstants.cs",
+        "referenceCount": 0,
+        "module": "GWGUI.Emulation.Amstrad",
+        "name": "BufferDurationDivisor",
+        "unused": true,
+        "declaration": "internal const int BufferDurationDivisor = 5;",
+        "references": []
+      },
+      {
+        "path": "src/GWGUI.Emulation.Amstrad/Common/Constants/AudioConstants.cs",
+        "referenceCount": 0,
+        "module": "GWGUI.Emulation.Amstrad",
+        "name": "MinimumBufferedFrameCount",
+        "unused": true,
+        "declaration": "internal const int MinimumBufferedFrameCount = 1;",
+        "references": []
+      },
+      {
+        "path": "src/GWGUI.Emulation.Amstrad/Common/Constants/AudioConstants.cs",
+        "referenceCount": 0,
+        "module": "GWGUI.Emulation.Amstrad",
+        "name": "MaximumFramesPerBatch",
+        "unused": true,
+        "declaration": "internal const int MaximumFramesPerBatch = 64 * 1024;",
+        "references": []
+      },
+      {
+        "path": "src/GWGUI.Emulation.Apple/Common/Constants/AudioConstants.cs",
+        "referenceCount": 0,
+        "module": "GWGUI.Emulation.Apple",
+        "name": "StereoChannelCount",
+        "unused": true,
+        "declaration": "internal const int StereoChannelCount = 2;",
+        "references": []
+      },
+      {
+        "path": "src/GWGUI.Emulation.Apple/Common/Constants/AudioConstants.cs",
+        "referenceCount": 1,
+        "module": "GWGUI.Emulation.Apple",
+        "name": "SingleFrameCount",
+        "unused": false,
+        "declaration": "internal const int SingleFrameCount = 1;",
+        "references": [
+          {
+            "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Apple\\Emulators\\Common\\Interop\\Services\\ExternalHostCallbacks.AudioVideoInput.cs",
+            "position": 1757,
+            "module": "GWGUI.Emulation.Apple",
+            "name": "SingleFrameCount",
+            "test": false,
+            "symbol": "GWGUI.Emulation.Apple.Common.Constants.AudioConstants.SingleFrameCount"
+          }
+        ]
+      },
+      {
+        "path": "src/GWGUI.Emulation.Apple/Common/Constants/AudioConstants.cs",
+        "referenceCount": 0,
+        "module": "GWGUI.Emulation.Apple",
+        "name": "BufferDurationDivisor",
+        "unused": true,
+        "declaration": "internal const int BufferDurationDivisor = 5;",
+        "references": []
+      },
+      {
+        "path": "src/GWGUI.Emulation.Apple/Common/Constants/AudioConstants.cs",
+        "referenceCount": 0,
+        "module": "GWGUI.Emulation.Apple",
+        "name": "MinimumBufferedFrameCount",
+        "unused": true,
+        "declaration": "internal const int MinimumBufferedFrameCount = 1;",
+        "references": []
+      },
+      {
+        "path": "src/GWGUI.Emulation.Apple/Common/Constants/AudioConstants.cs",
+        "referenceCount": 1,
+        "module": "GWGUI.Emulation.Apple",
+        "name": "MaximumFramesPerBatch",
+        "unused": false,
+        "declaration": "internal const int MaximumFramesPerBatch = 64 * 1024;",
+        "references": [
+          {
+            "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Apple\\Emulators\\Common\\Interop\\Services\\ExternalHostCallbacks.AudioVideoInput.cs",
+            "position": 1978,
+            "module": "GWGUI.Emulation.Apple",
+            "name": "MaximumFramesPerBatch",
+            "test": false,
+            "symbol": "GWGUI.Emulation.Apple.Common.Constants.AudioConstants.MaximumFramesPerBatch"
+          }
+        ]
+      },
+      {
+        "path": "src/GWGUI.Emulation.Atari/Common/Constants/AudioConstants.cs",
+        "referenceCount": 0,
+        "module": "GWGUI.Emulation.Atari",
+        "name": "StereoChannelCount",
+        "unused": true,
+        "declaration": "internal const int StereoChannelCount = 2;",
+        "references": []
+      },
+      {
+        "path": "src/GWGUI.Emulation.Atari/Common/Constants/AudioConstants.cs",
+        "referenceCount": 1,
+        "module": "GWGUI.Emulation.Atari",
+        "name": "SingleFrameCount",
+        "unused": false,
+        "declaration": "internal const int SingleFrameCount = 1;",
+        "references": [
+          {
+            "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Atari\\Emulators\\Common\\Interop\\Services\\ExternalHostCallbacks.AudioVideoInput.cs",
+            "position": 2201,
+            "module": "GWGUI.Emulation.Atari",
+            "name": "SingleFrameCount",
+            "test": false,
+            "symbol": "GWGUI.Emulation.Atari.Common.Constants.AudioConstants.SingleFrameCount"
+          }
+        ]
+      },
+      {
+        "path": "src/GWGUI.Emulation.Atari/Common/Constants/AudioConstants.cs",
+        "referenceCount": 0,
+        "module": "GWGUI.Emulation.Atari",
+        "name": "BufferDurationDivisor",
+        "unused": true,
+        "declaration": "internal const int BufferDurationDivisor = 5;",
+        "references": []
+      },
+      {
+        "path": "src/GWGUI.Emulation.Atari/Common/Constants/AudioConstants.cs",
+        "referenceCount": 0,
+        "module": "GWGUI.Emulation.Atari",
+        "name": "MinimumBufferedFrameCount",
+        "unused": true,
+        "declaration": "internal const int MinimumBufferedFrameCount = 1;",
+        "references": []
+      },
+      {
+        "path": "src/GWGUI.Emulation.Atari/Common/Constants/AudioConstants.cs",
+        "referenceCount": 1,
+        "module": "GWGUI.Emulation.Atari",
+        "name": "MaximumFramesPerBatch",
+        "unused": false,
+        "declaration": "internal const int MaximumFramesPerBatch = 64 * 1024;",
+        "references": [
+          {
+            "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Atari\\Emulators\\Common\\Interop\\Services\\ExternalHostCallbacks.AudioVideoInput.cs",
+            "position": 2422,
+            "module": "GWGUI.Emulation.Atari",
+            "name": "MaximumFramesPerBatch",
+            "test": false,
+            "symbol": "GWGUI.Emulation.Atari.Common.Constants.AudioConstants.MaximumFramesPerBatch"
+          }
+        ]
+      },
+      {
+        "path": "src/GWGUI.Emulation.Bandai/Common/Constants/AudioConstants.cs",
+        "referenceCount": 0,
+        "module": "GWGUI.Emulation.Bandai",
+        "name": "StereoChannelCount",
+        "unused": true,
+        "declaration": "internal const int StereoChannelCount = 2;",
+        "references": []
+      },
+      {
+        "path": "src/GWGUI.Emulation.Bandai/Common/Constants/AudioConstants.cs",
+        "referenceCount": 1,
+        "module": "GWGUI.Emulation.Bandai",
+        "name": "SingleFrameCount",
+        "unused": false,
+        "declaration": "internal const int SingleFrameCount = 1;",
+        "references": [
+          {
+            "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Bandai\\Emulators\\Common\\Interop\\Services\\ExternalHostCallbacks.AudioVideoInput.cs",
+            "position": 1724,
+            "module": "GWGUI.Emulation.Bandai",
+            "name": "SingleFrameCount",
+            "test": false,
+            "symbol": "GWGUI.Emulation.Bandai.Common.Constants.AudioConstants.SingleFrameCount"
+          }
+        ]
+      },
+      {
+        "path": "src/GWGUI.Emulation.Bandai/Common/Constants/AudioConstants.cs",
+        "referenceCount": 0,
+        "module": "GWGUI.Emulation.Bandai",
+        "name": "BufferDurationDivisor",
+        "unused": true,
+        "declaration": "internal const int BufferDurationDivisor = 5;",
+        "references": []
+      },
+      {
+        "path": "src/GWGUI.Emulation.Bandai/Common/Constants/AudioConstants.cs",
+        "referenceCount": 0,
+        "module": "GWGUI.Emulation.Bandai",
+        "name": "MinimumBufferedFrameCount",
+        "unused": true,
+        "declaration": "internal const int MinimumBufferedFrameCount = 1;",
+        "references": []
+      },
+      {
+        "path": "src/GWGUI.Emulation.Bandai/Common/Constants/AudioConstants.cs",
+        "referenceCount": 1,
+        "module": "GWGUI.Emulation.Bandai",
+        "name": "MaximumFramesPerBatch",
+        "unused": false,
+        "declaration": "internal const int MaximumFramesPerBatch = 64 * 1024;",
+        "references": [
+          {
+            "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Bandai\\Emulators\\Common\\Interop\\Services\\ExternalHostCallbacks.AudioVideoInput.cs",
+            "position": 1939,
+            "module": "GWGUI.Emulation.Bandai",
+            "name": "MaximumFramesPerBatch",
+            "test": false,
+            "symbol": "GWGUI.Emulation.Bandai.Common.Constants.AudioConstants.MaximumFramesPerBatch"
+          }
+        ]
+      },
+      {
+        "path": "src/GWGUI.Emulation.Coleco/Common/Constants/AudioConstants.cs",
+        "referenceCount": 0,
+        "module": "GWGUI.Emulation.Coleco",
+        "name": "StereoChannelCount",
+        "unused": true,
+        "declaration": "internal const int StereoChannelCount = 2;",
+        "references": []
+      },
+      {
+        "path": "src/GWGUI.Emulation.Coleco/Common/Constants/AudioConstants.cs",
+        "referenceCount": 1,
+        "module": "GWGUI.Emulation.Coleco",
+        "name": "SingleFrameCount",
+        "unused": false,
+        "declaration": "internal const int SingleFrameCount = 1;",
+        "references": [
+          {
+            "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Coleco\\Emulators\\Common\\Interop\\Services\\ExternalHostCallbacks.AudioVideoInput.cs",
+            "position": 1724,
+            "module": "GWGUI.Emulation.Coleco",
+            "name": "SingleFrameCount",
+            "test": false,
+            "symbol": "GWGUI.Emulation.Coleco.Common.Constants.AudioConstants.SingleFrameCount"
+          }
+        ]
+      },
+      {
+        "path": "src/GWGUI.Emulation.Coleco/Common/Constants/AudioConstants.cs",
+        "referenceCount": 0,
+        "module": "GWGUI.Emulation.Coleco",
+        "name": "BufferDurationDivisor",
+        "unused": true,
+        "declaration": "internal const int BufferDurationDivisor = 5;",
+        "references": []
+      },
+      {
+        "path": "src/GWGUI.Emulation.Coleco/Common/Constants/AudioConstants.cs",
+        "referenceCount": 0,
+        "module": "GWGUI.Emulation.Coleco",
+        "name": "MinimumBufferedFrameCount",
+        "unused": true,
+        "declaration": "internal const int MinimumBufferedFrameCount = 1;",
+        "references": []
+      },
+      {
+        "path": "src/GWGUI.Emulation.Coleco/Common/Constants/AudioConstants.cs",
+        "referenceCount": 1,
+        "module": "GWGUI.Emulation.Coleco",
+        "name": "MaximumFramesPerBatch",
+        "unused": false,
+        "declaration": "internal const int MaximumFramesPerBatch = 64 * 1024;",
+        "references": [
+          {
+            "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Coleco\\Emulators\\Common\\Interop\\Services\\ExternalHostCallbacks.AudioVideoInput.cs",
+            "position": 1939,
+            "module": "GWGUI.Emulation.Coleco",
+            "name": "MaximumFramesPerBatch",
+            "test": false,
+            "symbol": "GWGUI.Emulation.Coleco.Common.Constants.AudioConstants.MaximumFramesPerBatch"
+          }
+        ]
+      },
+      {
+        "path": "src/GWGUI.Emulation.Commodore/Common/Constants/AudioConstants.cs",
+        "referenceCount": 1,
+        "module": "GWGUI.Emulation.Commodore",
+        "name": "StereoChannelCount",
+        "unused": false,
+        "declaration": "internal const int StereoChannelCount = 2;",
+        "references": [
+          {
+            "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Commodore\\Emulators\\Common\\Interop\\Services\\ExternalHostCallbacks.AudioVideo.cs",
+            "position": 2322,
+            "module": "GWGUI.Emulation.Commodore",
+            "name": "StereoChannelCount",
+            "test": false,
+            "symbol": "GWGUI.Emulation.Commodore.Common.Constants.AudioConstants.StereoChannelCount"
+          }
+        ]
+      },
+      {
+        "path": "src/GWGUI.Emulation.Commodore/Common/Constants/AudioConstants.cs",
+        "referenceCount": 1,
+        "module": "GWGUI.Emulation.Commodore",
+        "name": "SingleFrameCount",
+        "unused": false,
+        "declaration": "internal const int SingleFrameCount = 1;",
+        "references": [
+          {
+            "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Commodore\\Emulators\\Common\\Interop\\Services\\ExternalHostCallbacks.AudioVideo.cs",
+            "position": 2016,
+            "module": "GWGUI.Emulation.Commodore",
+            "name": "SingleFrameCount",
+            "test": false,
+            "symbol": "GWGUI.Emulation.Commodore.Common.Constants.AudioConstants.SingleFrameCount"
+          }
+        ]
+      },
+      {
+        "path": "src/GWGUI.Emulation.Commodore/Common/Constants/AudioConstants.cs",
+        "referenceCount": 0,
+        "module": "GWGUI.Emulation.Commodore",
+        "name": "BufferDurationDivisor",
+        "unused": true,
+        "declaration": "internal const int BufferDurationDivisor = 5;",
+        "references": []
+      },
+      {
+        "path": "src/GWGUI.Emulation.Commodore/Common/Constants/AudioConstants.cs",
+        "referenceCount": 0,
+        "module": "GWGUI.Emulation.Commodore",
+        "name": "MinimumBufferedFrameCount",
+        "unused": true,
+        "declaration": "internal const int MinimumBufferedFrameCount = 1;",
+        "references": []
+      },
+      {
+        "path": "src/GWGUI.Emulation.Epoch/Common/Constants/AudioConstants.cs",
+        "referenceCount": 0,
+        "module": "GWGUI.Emulation.Epoch",
+        "name": "StereoChannelCount",
+        "unused": true,
+        "declaration": "internal const int StereoChannelCount = 2;",
+        "references": []
+      },
+      {
+        "path": "src/GWGUI.Emulation.Epoch/Common/Constants/AudioConstants.cs",
+        "referenceCount": 1,
+        "module": "GWGUI.Emulation.Epoch",
+        "name": "SingleFrameCount",
+        "unused": false,
+        "declaration": "internal const int SingleFrameCount = 1;",
+        "references": [
+          {
+            "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Epoch\\Emulators\\Common\\Interop\\Services\\ExternalHostCallbacks.AudioVideoInput.cs",
+            "position": 1721,
+            "module": "GWGUI.Emulation.Epoch",
+            "name": "SingleFrameCount",
+            "test": false,
+            "symbol": "GWGUI.Emulation.Epoch.Common.Constants.AudioConstants.SingleFrameCount"
+          }
+        ]
+      },
+      {
+        "path": "src/GWGUI.Emulation.Epoch/Common/Constants/AudioConstants.cs",
+        "referenceCount": 0,
+        "module": "GWGUI.Emulation.Epoch",
+        "name": "BufferDurationDivisor",
+        "unused": true,
+        "declaration": "internal const int BufferDurationDivisor = 5;",
+        "references": []
+      },
+      {
+        "path": "src/GWGUI.Emulation.Epoch/Common/Constants/AudioConstants.cs",
+        "referenceCount": 0,
+        "module": "GWGUI.Emulation.Epoch",
+        "name": "MinimumBufferedFrameCount",
+        "unused": true,
+        "declaration": "internal const int MinimumBufferedFrameCount = 1;",
+        "references": []
+      },
+      {
+        "path": "src/GWGUI.Emulation.Epoch/Common/Constants/AudioConstants.cs",
+        "referenceCount": 1,
+        "module": "GWGUI.Emulation.Epoch",
+        "name": "MaximumFramesPerBatch",
+        "unused": false,
+        "declaration": "internal const int MaximumFramesPerBatch = 64 * 1024;",
+        "references": [
+          {
+            "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Epoch\\Emulators\\Common\\Interop\\Services\\ExternalHostCallbacks.AudioVideoInput.cs",
+            "position": 1936,
+            "module": "GWGUI.Emulation.Epoch",
+            "name": "MaximumFramesPerBatch",
+            "test": false,
+            "symbol": "GWGUI.Emulation.Epoch.Common.Constants.AudioConstants.MaximumFramesPerBatch"
+          }
+        ]
+      },
+      {
+        "path": "src/GWGUI.Emulation.Fairchild/Common/Constants/AudioConstants.cs",
+        "referenceCount": 0,
+        "module": "GWGUI.Emulation.Fairchild",
+        "name": "StereoChannelCount",
+        "unused": true,
+        "declaration": "internal const int StereoChannelCount = 2;",
+        "references": []
+      },
+      {
+        "path": "src/GWGUI.Emulation.Fairchild/Common/Constants/AudioConstants.cs",
+        "referenceCount": 1,
+        "module": "GWGUI.Emulation.Fairchild",
+        "name": "SingleFrameCount",
+        "unused": false,
+        "declaration": "internal const int SingleFrameCount = 1;",
+        "references": [
+          {
+            "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Fairchild\\Emulators\\Common\\Interop\\Services\\ExternalHostCallbacks.AudioVideoInput.cs",
+            "position": 1733,
+            "module": "GWGUI.Emulation.Fairchild",
+            "name": "SingleFrameCount",
+            "test": false,
+            "symbol": "GWGUI.Emulation.Fairchild.Common.Constants.AudioConstants.SingleFrameCount"
+          }
+        ]
+      },
+      {
+        "path": "src/GWGUI.Emulation.Fairchild/Common/Constants/AudioConstants.cs",
+        "referenceCount": 0,
+        "module": "GWGUI.Emulation.Fairchild",
+        "name": "BufferDurationDivisor",
+        "unused": true,
+        "declaration": "internal const int BufferDurationDivisor = 5;",
+        "references": []
+      },
+      {
+        "path": "src/GWGUI.Emulation.Fairchild/Common/Constants/AudioConstants.cs",
+        "referenceCount": 0,
+        "module": "GWGUI.Emulation.Fairchild",
+        "name": "MinimumBufferedFrameCount",
+        "unused": true,
+        "declaration": "internal const int MinimumBufferedFrameCount = 1;",
+        "references": []
+      },
+      {
+        "path": "src/GWGUI.Emulation.Fairchild/Common/Constants/AudioConstants.cs",
+        "referenceCount": 1,
+        "module": "GWGUI.Emulation.Fairchild",
+        "name": "MaximumFramesPerBatch",
+        "unused": false,
+        "declaration": "internal const int MaximumFramesPerBatch = 64 * 1024;",
+        "references": [
+          {
+            "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Fairchild\\Emulators\\Common\\Interop\\Services\\ExternalHostCallbacks.AudioVideoInput.cs",
+            "position": 1948,
+            "module": "GWGUI.Emulation.Fairchild",
+            "name": "MaximumFramesPerBatch",
+            "test": false,
+            "symbol": "GWGUI.Emulation.Fairchild.Common.Constants.AudioConstants.MaximumFramesPerBatch"
+          }
+        ]
+      },
+      {
+        "path": "src/GWGUI.Emulation.Mattel/Common/Constants/AudioConstants.cs",
+        "referenceCount": 0,
+        "module": "GWGUI.Emulation.Mattel",
+        "name": "StereoChannelCount",
+        "unused": true,
+        "declaration": "internal const int StereoChannelCount = 2;",
+        "references": []
+      },
+      {
+        "path": "src/GWGUI.Emulation.Mattel/Common/Constants/AudioConstants.cs",
+        "referenceCount": 1,
+        "module": "GWGUI.Emulation.Mattel",
+        "name": "SingleFrameCount",
+        "unused": false,
+        "declaration": "internal const int SingleFrameCount = 1;",
+        "references": [
+          {
+            "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Mattel\\Emulators\\Common\\Interop\\Services\\ExternalHostCallbacks.AudioVideoInput.cs",
+            "position": 1724,
+            "module": "GWGUI.Emulation.Mattel",
+            "name": "SingleFrameCount",
+            "test": false,
+            "symbol": "GWGUI.Emulation.Mattel.Common.Constants.AudioConstants.SingleFrameCount"
+          }
+        ]
+      },
+      {
+        "path": "src/GWGUI.Emulation.Mattel/Common/Constants/AudioConstants.cs",
+        "referenceCount": 0,
+        "module": "GWGUI.Emulation.Mattel",
+        "name": "BufferDurationDivisor",
+        "unused": true,
+        "declaration": "internal const int BufferDurationDivisor = 5;",
+        "references": []
+      },
+      {
+        "path": "src/GWGUI.Emulation.Mattel/Common/Constants/AudioConstants.cs",
+        "referenceCount": 0,
+        "module": "GWGUI.Emulation.Mattel",
+        "name": "MinimumBufferedFrameCount",
+        "unused": true,
+        "declaration": "internal const int MinimumBufferedFrameCount = 1;",
+        "references": []
+      },
+      {
+        "path": "src/GWGUI.Emulation.Mattel/Common/Constants/AudioConstants.cs",
+        "referenceCount": 1,
+        "module": "GWGUI.Emulation.Mattel",
+        "name": "MaximumFramesPerBatch",
+        "unused": false,
+        "declaration": "internal const int MaximumFramesPerBatch = 64 * 1024;",
+        "references": [
+          {
+            "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Mattel\\Emulators\\Common\\Interop\\Services\\ExternalHostCallbacks.AudioVideoInput.cs",
+            "position": 1939,
+            "module": "GWGUI.Emulation.Mattel",
+            "name": "MaximumFramesPerBatch",
+            "test": false,
+            "symbol": "GWGUI.Emulation.Mattel.Common.Constants.AudioConstants.MaximumFramesPerBatch"
+          }
+        ]
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nec/Common/Constants/AudioConstants.cs",
+        "referenceCount": 0,
+        "module": "GWGUI.Emulation.Nec",
+        "name": "StereoChannelCount",
+        "unused": true,
+        "declaration": "internal const int StereoChannelCount = 2;",
+        "references": []
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nec/Common/Constants/AudioConstants.cs",
+        "referenceCount": 0,
+        "module": "GWGUI.Emulation.Nec",
+        "name": "SingleFrameCount",
+        "unused": true,
+        "declaration": "internal const int SingleFrameCount = 1;",
+        "references": []
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nec/Common/Constants/AudioConstants.cs",
+        "referenceCount": 0,
+        "module": "GWGUI.Emulation.Nec",
+        "name": "BufferDurationDivisor",
+        "unused": true,
+        "declaration": "internal const int BufferDurationDivisor = 5;",
+        "references": []
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nec/Common/Constants/AudioConstants.cs",
+        "referenceCount": 0,
+        "module": "GWGUI.Emulation.Nec",
+        "name": "MinimumBufferedFrameCount",
+        "unused": true,
+        "declaration": "internal const int MinimumBufferedFrameCount = 1;",
+        "references": []
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nec/Common/Constants/AudioConstants.cs",
+        "referenceCount": 0,
+        "module": "GWGUI.Emulation.Nec",
+        "name": "MaximumFramesPerBatch",
+        "unused": true,
+        "declaration": "internal const int MaximumFramesPerBatch = 64 * 1024;",
+        "references": []
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nintendo/Common/Constants/AudioConstants.cs",
+        "referenceCount": 0,
+        "module": "GWGUI.Emulation.Nintendo",
+        "name": "StereoChannelCount",
+        "unused": true,
+        "declaration": "internal const int StereoChannelCount = 2;",
+        "references": []
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nintendo/Common/Constants/AudioConstants.cs",
+        "referenceCount": 0,
+        "module": "GWGUI.Emulation.Nintendo",
+        "name": "SingleFrameCount",
+        "unused": true,
+        "declaration": "internal const int SingleFrameCount = 1;",
+        "references": []
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nintendo/Common/Constants/AudioConstants.cs",
+        "referenceCount": 0,
+        "module": "GWGUI.Emulation.Nintendo",
+        "name": "BufferDurationDivisor",
+        "unused": true,
+        "declaration": "internal const int BufferDurationDivisor = 5;",
+        "references": []
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nintendo/Common/Constants/AudioConstants.cs",
+        "referenceCount": 0,
+        "module": "GWGUI.Emulation.Nintendo",
+        "name": "MinimumBufferedFrameCount",
+        "unused": true,
+        "declaration": "internal const int MinimumBufferedFrameCount = 1;",
+        "references": []
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nintendo/Common/Constants/AudioConstants.cs",
+        "referenceCount": 0,
+        "module": "GWGUI.Emulation.Nintendo",
+        "name": "MaximumFramesPerBatch",
+        "unused": true,
+        "declaration": "internal const int MaximumFramesPerBatch = 64 * 1024;",
+        "references": []
+      },
+      {
+        "path": "src/GWGUI.Emulation.Panasonic/Common/Constants/AudioConstants.cs",
+        "referenceCount": 0,
+        "module": "GWGUI.Emulation.Panasonic",
+        "name": "StereoChannelCount",
+        "unused": true,
+        "declaration": "internal const int StereoChannelCount = 2;",
+        "references": []
+      },
+      {
+        "path": "src/GWGUI.Emulation.Panasonic/Common/Constants/AudioConstants.cs",
+        "referenceCount": 0,
+        "module": "GWGUI.Emulation.Panasonic",
+        "name": "SingleFrameCount",
+        "unused": true,
+        "declaration": "internal const int SingleFrameCount = 1;",
+        "references": []
+      },
+      {
+        "path": "src/GWGUI.Emulation.Panasonic/Common/Constants/AudioConstants.cs",
+        "referenceCount": 0,
+        "module": "GWGUI.Emulation.Panasonic",
+        "name": "BufferDurationDivisor",
+        "unused": true,
+        "declaration": "internal const int BufferDurationDivisor = 5;",
+        "references": []
+      },
+      {
+        "path": "src/GWGUI.Emulation.Panasonic/Common/Constants/AudioConstants.cs",
+        "referenceCount": 0,
+        "module": "GWGUI.Emulation.Panasonic",
+        "name": "MinimumBufferedFrameCount",
+        "unused": true,
+        "declaration": "internal const int MinimumBufferedFrameCount = 1;",
+        "references": []
+      },
+      {
+        "path": "src/GWGUI.Emulation.Panasonic/Common/Constants/AudioConstants.cs",
+        "referenceCount": 0,
+        "module": "GWGUI.Emulation.Panasonic",
+        "name": "MaximumFramesPerBatch",
+        "unused": true,
+        "declaration": "internal const int MaximumFramesPerBatch = 64 * 1024;",
+        "references": []
+      },
+      {
+        "path": "src/GWGUI.Emulation.Philips/Common/Constants/AudioConstants.cs",
+        "referenceCount": 0,
+        "module": "GWGUI.Emulation.Philips",
+        "name": "StereoChannelCount",
+        "unused": true,
+        "declaration": "internal const int StereoChannelCount = 2;",
+        "references": []
+      },
+      {
+        "path": "src/GWGUI.Emulation.Philips/Common/Constants/AudioConstants.cs",
+        "referenceCount": 1,
+        "module": "GWGUI.Emulation.Philips",
+        "name": "SingleFrameCount",
+        "unused": false,
+        "declaration": "internal const int SingleFrameCount = 1;",
+        "references": [
+          {
+            "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Philips\\Emulators\\Common\\Interop\\Services\\ExternalHostCallbacks.AudioVideoInput.cs",
+            "position": 1727,
+            "module": "GWGUI.Emulation.Philips",
+            "name": "SingleFrameCount",
+            "test": false,
+            "symbol": "GWGUI.Emulation.Philips.Common.Constants.AudioConstants.SingleFrameCount"
+          }
+        ]
+      },
+      {
+        "path": "src/GWGUI.Emulation.Philips/Common/Constants/AudioConstants.cs",
+        "referenceCount": 0,
+        "module": "GWGUI.Emulation.Philips",
+        "name": "BufferDurationDivisor",
+        "unused": true,
+        "declaration": "internal const int BufferDurationDivisor = 5;",
+        "references": []
+      },
+      {
+        "path": "src/GWGUI.Emulation.Philips/Common/Constants/AudioConstants.cs",
+        "referenceCount": 0,
+        "module": "GWGUI.Emulation.Philips",
+        "name": "MinimumBufferedFrameCount",
+        "unused": true,
+        "declaration": "internal const int MinimumBufferedFrameCount = 1;",
+        "references": []
+      },
+      {
+        "path": "src/GWGUI.Emulation.Philips/Common/Constants/AudioConstants.cs",
+        "referenceCount": 1,
+        "module": "GWGUI.Emulation.Philips",
+        "name": "MaximumFramesPerBatch",
+        "unused": false,
+        "declaration": "internal const int MaximumFramesPerBatch = 64 * 1024;",
+        "references": [
+          {
+            "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Philips\\Emulators\\Common\\Interop\\Services\\ExternalHostCallbacks.AudioVideoInput.cs",
+            "position": 1942,
+            "module": "GWGUI.Emulation.Philips",
+            "name": "MaximumFramesPerBatch",
+            "test": false,
+            "symbol": "GWGUI.Emulation.Philips.Common.Constants.AudioConstants.MaximumFramesPerBatch"
+          }
+        ]
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sega/Common/Constants/AudioConstants.cs",
+        "referenceCount": 0,
+        "module": "GWGUI.Emulation.Sega",
+        "name": "StereoChannelCount",
+        "unused": true,
+        "declaration": "internal const int StereoChannelCount = 2;",
+        "references": []
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sega/Common/Constants/AudioConstants.cs",
+        "referenceCount": 0,
+        "module": "GWGUI.Emulation.Sega",
+        "name": "SingleFrameCount",
+        "unused": true,
+        "declaration": "internal const int SingleFrameCount = 1;",
+        "references": []
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sega/Common/Constants/AudioConstants.cs",
+        "referenceCount": 0,
+        "module": "GWGUI.Emulation.Sega",
+        "name": "BufferDurationDivisor",
+        "unused": true,
+        "declaration": "internal const int BufferDurationDivisor = 5;",
+        "references": []
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sega/Common/Constants/AudioConstants.cs",
+        "referenceCount": 0,
+        "module": "GWGUI.Emulation.Sega",
+        "name": "MinimumBufferedFrameCount",
+        "unused": true,
+        "declaration": "internal const int MinimumBufferedFrameCount = 1;",
+        "references": []
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sega/Common/Constants/AudioConstants.cs",
+        "referenceCount": 0,
+        "module": "GWGUI.Emulation.Sega",
+        "name": "MaximumFramesPerBatch",
+        "unused": true,
+        "declaration": "internal const int MaximumFramesPerBatch = 64 * 1024;",
+        "references": []
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sharp/Common/Constants/AudioConstants.cs",
+        "referenceCount": 0,
+        "module": "GWGUI.Emulation.Sharp",
+        "name": "StereoChannelCount",
+        "unused": true,
+        "declaration": "internal const int StereoChannelCount = 2;",
+        "references": []
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sharp/Common/Constants/AudioConstants.cs",
+        "referenceCount": 1,
+        "module": "GWGUI.Emulation.Sharp",
+        "name": "SingleFrameCount",
+        "unused": false,
+        "declaration": "internal const int SingleFrameCount = 1;",
+        "references": [
+          {
+            "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Sharp\\Emulators\\Common\\Interop\\Services\\ExternalHostCallbacks.AudioVideoInput.cs",
+            "position": 1681,
+            "module": "GWGUI.Emulation.Sharp",
+            "name": "SingleFrameCount",
+            "test": false,
+            "symbol": "GWGUI.Emulation.Sharp.Common.Constants.AudioConstants.SingleFrameCount"
+          }
+        ]
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sharp/Common/Constants/AudioConstants.cs",
+        "referenceCount": 0,
+        "module": "GWGUI.Emulation.Sharp",
+        "name": "BufferDurationDivisor",
+        "unused": true,
+        "declaration": "internal const int BufferDurationDivisor = 5;",
+        "references": []
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sharp/Common/Constants/AudioConstants.cs",
+        "referenceCount": 0,
+        "module": "GWGUI.Emulation.Sharp",
+        "name": "MinimumBufferedFrameCount",
+        "unused": true,
+        "declaration": "internal const int MinimumBufferedFrameCount = 1;",
+        "references": []
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sharp/Common/Constants/AudioConstants.cs",
+        "referenceCount": 1,
+        "module": "GWGUI.Emulation.Sharp",
+        "name": "MaximumFramesPerBatch",
+        "unused": false,
+        "declaration": "internal const int MaximumFramesPerBatch = 64 * 1024;",
+        "references": [
+          {
+            "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Sharp\\Emulators\\Common\\Interop\\Services\\ExternalHostCallbacks.AudioVideoInput.cs",
+            "position": 1884,
+            "module": "GWGUI.Emulation.Sharp",
+            "name": "MaximumFramesPerBatch",
+            "test": false,
+            "symbol": "GWGUI.Emulation.Sharp.Common.Constants.AudioConstants.MaximumFramesPerBatch"
+          }
+        ]
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sinclair/Common/Constants/AudioConstants.cs",
+        "referenceCount": 0,
+        "module": "GWGUI.Emulation.Sinclair",
+        "name": "StereoChannelCount",
+        "unused": true,
+        "declaration": "internal const int StereoChannelCount = 2;",
+        "references": []
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sinclair/Common/Constants/AudioConstants.cs",
+        "referenceCount": 1,
+        "module": "GWGUI.Emulation.Sinclair",
+        "name": "SingleFrameCount",
+        "unused": false,
+        "declaration": "internal const int SingleFrameCount = 1;",
+        "references": [
+          {
+            "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Sinclair\\Emulators\\Common\\Interop\\Services\\ExternalHostCallbacks.AudioVideoInput.cs",
+            "position": 1690,
+            "module": "GWGUI.Emulation.Sinclair",
+            "name": "SingleFrameCount",
+            "test": false,
+            "symbol": "GWGUI.Emulation.Sinclair.Common.Constants.AudioConstants.SingleFrameCount"
+          }
+        ]
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sinclair/Common/Constants/AudioConstants.cs",
+        "referenceCount": 0,
+        "module": "GWGUI.Emulation.Sinclair",
+        "name": "BufferDurationDivisor",
+        "unused": true,
+        "declaration": "internal const int BufferDurationDivisor = 5;",
+        "references": []
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sinclair/Common/Constants/AudioConstants.cs",
+        "referenceCount": 0,
+        "module": "GWGUI.Emulation.Sinclair",
+        "name": "MinimumBufferedFrameCount",
+        "unused": true,
+        "declaration": "internal const int MinimumBufferedFrameCount = 1;",
+        "references": []
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sinclair/Common/Constants/AudioConstants.cs",
+        "referenceCount": 1,
+        "module": "GWGUI.Emulation.Sinclair",
+        "name": "MaximumFramesPerBatch",
+        "unused": false,
+        "declaration": "internal const int MaximumFramesPerBatch = 64 * 1024;",
+        "references": [
+          {
+            "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Sinclair\\Emulators\\Common\\Interop\\Services\\ExternalHostCallbacks.AudioVideoInput.cs",
+            "position": 1893,
+            "module": "GWGUI.Emulation.Sinclair",
+            "name": "MaximumFramesPerBatch",
+            "test": false,
+            "symbol": "GWGUI.Emulation.Sinclair.Common.Constants.AudioConstants.MaximumFramesPerBatch"
+          }
+        ]
+      },
+      {
+        "path": "src/GWGUI.Emulation.Snk/Common/Constants/AudioConstants.cs",
+        "referenceCount": 0,
+        "module": "GWGUI.Emulation.Snk",
+        "name": "StereoChannelCount",
+        "unused": true,
+        "declaration": "internal const int StereoChannelCount = 2;",
+        "references": []
+      },
+      {
+        "path": "src/GWGUI.Emulation.Snk/Common/Constants/AudioConstants.cs",
+        "referenceCount": 1,
+        "module": "GWGUI.Emulation.Snk",
+        "name": "SingleFrameCount",
+        "unused": false,
+        "declaration": "internal const int SingleFrameCount = 1;",
+        "references": [
+          {
+            "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Snk\\Emulators\\Common\\Interop\\Services\\ExternalHostCallbacks.AudioVideoInput.cs",
+            "position": 1675,
+            "module": "GWGUI.Emulation.Snk",
+            "name": "SingleFrameCount",
+            "test": false,
+            "symbol": "GWGUI.Emulation.Snk.Common.Constants.AudioConstants.SingleFrameCount"
+          }
+        ]
+      },
+      {
+        "path": "src/GWGUI.Emulation.Snk/Common/Constants/AudioConstants.cs",
+        "referenceCount": 0,
+        "module": "GWGUI.Emulation.Snk",
+        "name": "BufferDurationDivisor",
+        "unused": true,
+        "declaration": "internal const int BufferDurationDivisor = 5;",
+        "references": []
+      },
+      {
+        "path": "src/GWGUI.Emulation.Snk/Common/Constants/AudioConstants.cs",
+        "referenceCount": 0,
+        "module": "GWGUI.Emulation.Snk",
+        "name": "MinimumBufferedFrameCount",
+        "unused": true,
+        "declaration": "internal const int MinimumBufferedFrameCount = 1;",
+        "references": []
+      },
+      {
+        "path": "src/GWGUI.Emulation.Snk/Common/Constants/AudioConstants.cs",
+        "referenceCount": 1,
+        "module": "GWGUI.Emulation.Snk",
+        "name": "MaximumFramesPerBatch",
+        "unused": false,
+        "declaration": "internal const int MaximumFramesPerBatch = 64 * 1024;",
+        "references": [
+          {
+            "path": "F:\\GW GUI\\src\\GWGUI.Emulation.Snk\\Emulators\\Common\\Interop\\Services\\ExternalHostCallbacks.AudioVideoInput.cs",
+            "position": 1878,
+            "module": "GWGUI.Emulation.Snk",
+            "name": "MaximumFramesPerBatch",
+            "test": false,
+            "symbol": "GWGUI.Emulation.Snk.Common.Constants.AudioConstants.MaximumFramesPerBatch"
+          }
+        ]
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sony/Common/Constants/AudioConstants.cs",
+        "referenceCount": 0,
+        "module": "GWGUI.Emulation.Sony",
+        "name": "StereoChannelCount",
+        "unused": true,
+        "declaration": "internal const int StereoChannelCount = 2;",
+        "references": []
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sony/Common/Constants/AudioConstants.cs",
+        "referenceCount": 0,
+        "module": "GWGUI.Emulation.Sony",
+        "name": "SingleFrameCount",
+        "unused": true,
+        "declaration": "internal const int SingleFrameCount = 1;",
+        "references": []
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sony/Common/Constants/AudioConstants.cs",
+        "referenceCount": 0,
+        "module": "GWGUI.Emulation.Sony",
+        "name": "BufferDurationDivisor",
+        "unused": true,
+        "declaration": "internal const int BufferDurationDivisor = 5;",
+        "references": []
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sony/Common/Constants/AudioConstants.cs",
+        "referenceCount": 0,
+        "module": "GWGUI.Emulation.Sony",
+        "name": "MinimumBufferedFrameCount",
+        "unused": true,
+        "declaration": "internal const int MinimumBufferedFrameCount = 1;",
+        "references": []
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sony/Common/Constants/AudioConstants.cs",
+        "referenceCount": 0,
+        "module": "GWGUI.Emulation.Sony",
+        "name": "MaximumFramesPerBatch",
+        "unused": true,
+        "declaration": "internal const int MaximumFramesPerBatch = 64 * 1024;",
+        "references": []
+      },
+      {
+        "path": "src/GWGUI.Emulation.Thomson/Common/Constants/AudioConstants.cs",
+        "referenceCount": 0,
+        "module": "GWGUI.Emulation.Thomson",
+        "name": "StereoChannelCount",
+        "unused": true,
+        "declaration": "internal const int StereoChannelCount = 2;",
+        "references": []
+      },
+      {
+        "path": "src/GWGUI.Emulation.Thomson/Common/Constants/AudioConstants.cs",
+        "referenceCount": 0,
+        "module": "GWGUI.Emulation.Thomson",
+        "name": "SingleFrameCount",
+        "unused": true,
+        "declaration": "internal const int SingleFrameCount = 1;",
+        "references": []
+      },
+      {
+        "path": "src/GWGUI.Emulation.Thomson/Common/Constants/AudioConstants.cs",
+        "referenceCount": 0,
+        "module": "GWGUI.Emulation.Thomson",
+        "name": "BufferDurationDivisor",
+        "unused": true,
+        "declaration": "internal const int BufferDurationDivisor = 5;",
+        "references": []
+      },
+      {
+        "path": "src/GWGUI.Emulation.Thomson/Common/Constants/AudioConstants.cs",
+        "referenceCount": 0,
+        "module": "GWGUI.Emulation.Thomson",
+        "name": "MinimumBufferedFrameCount",
+        "unused": true,
+        "declaration": "internal const int MinimumBufferedFrameCount = 1;",
+        "references": []
+      },
+      {
+        "path": "src/GWGUI.Emulation.Thomson/Common/Constants/AudioConstants.cs",
+        "referenceCount": 0,
+        "module": "GWGUI.Emulation.Thomson",
+        "name": "MaximumFramesPerBatch",
+        "unused": true,
+        "declaration": "internal const int MaximumFramesPerBatch = 64 * 1024;",
+        "references": []
+      },
+      {
+        "path": "src/GWGUI.Emulation.Watara/Common/Constants/AudioConstants.cs",
+        "referenceCount": 0,
+        "module": "GWGUI.Emulation.Watara",
+        "name": "StereoChannelCount",
+        "unused": true,
+        "declaration": "internal const int StereoChannelCount = 2;",
+        "references": []
+      },
+      {
+        "path": "src/GWGUI.Emulation.Watara/Common/Constants/AudioConstants.cs",
+        "referenceCount": 0,
+        "module": "GWGUI.Emulation.Watara",
+        "name": "SingleFrameCount",
+        "unused": true,
+        "declaration": "internal const int SingleFrameCount = 1;",
+        "references": []
+      },
+      {
+        "path": "src/GWGUI.Emulation.Watara/Common/Constants/AudioConstants.cs",
+        "referenceCount": 0,
+        "module": "GWGUI.Emulation.Watara",
+        "name": "BufferDurationDivisor",
+        "unused": true,
+        "declaration": "internal const int BufferDurationDivisor = 5;",
+        "references": []
+      },
+      {
+        "path": "src/GWGUI.Emulation.Watara/Common/Constants/AudioConstants.cs",
+        "referenceCount": 0,
+        "module": "GWGUI.Emulation.Watara",
+        "name": "MinimumBufferedFrameCount",
+        "unused": true,
+        "declaration": "internal const int MinimumBufferedFrameCount = 1;",
+        "references": []
+      },
+      {
+        "path": "src/GWGUI.Emulation.Watara/Common/Constants/AudioConstants.cs",
+        "referenceCount": 0,
+        "module": "GWGUI.Emulation.Watara",
+        "name": "MaximumFramesPerBatch",
+        "unused": true,
+        "declaration": "internal const int MaximumFramesPerBatch = 64 * 1024;",
+        "references": []
+      },
+      {
+        "path": "src/GWGUI.Emulation.Wenquxing/Common/Constants/AudioConstants.cs",
+        "referenceCount": 0,
+        "module": "GWGUI.Emulation.Wenquxing",
+        "name": "StereoChannelCount",
+        "unused": true,
+        "declaration": "internal const int StereoChannelCount = 2;",
+        "references": []
+      },
+      {
+        "path": "src/GWGUI.Emulation.Wenquxing/Common/Constants/AudioConstants.cs",
+        "referenceCount": 0,
+        "module": "GWGUI.Emulation.Wenquxing",
+        "name": "SingleFrameCount",
+        "unused": true,
+        "declaration": "internal const int SingleFrameCount = 1;",
+        "references": []
+      },
+      {
+        "path": "src/GWGUI.Emulation.Wenquxing/Common/Constants/AudioConstants.cs",
+        "referenceCount": 0,
+        "module": "GWGUI.Emulation.Wenquxing",
+        "name": "BufferDurationDivisor",
+        "unused": true,
+        "declaration": "internal const int BufferDurationDivisor = 5;",
+        "references": []
+      },
+      {
+        "path": "src/GWGUI.Emulation.Wenquxing/Common/Constants/AudioConstants.cs",
+        "referenceCount": 0,
+        "module": "GWGUI.Emulation.Wenquxing",
+        "name": "MinimumBufferedFrameCount",
+        "unused": true,
+        "declaration": "internal const int MinimumBufferedFrameCount = 1;",
+        "references": []
+      },
+      {
+        "path": "src/GWGUI.Emulation.Wenquxing/Common/Constants/AudioConstants.cs",
+        "referenceCount": 0,
+        "module": "GWGUI.Emulation.Wenquxing",
+        "name": "MaximumFramesPerBatch",
+        "unused": true,
+        "declaration": "internal const int MaximumFramesPerBatch = 64 * 1024;",
+        "references": []
+      }
+    ],
+    "state": "source and test references recorded; removals pending explicit file actions",
+    "fieldCount": 109
   }
 }
