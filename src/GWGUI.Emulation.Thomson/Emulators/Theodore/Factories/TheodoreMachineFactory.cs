@@ -41,9 +41,8 @@ internal sealed class TheodoreMachineFactory : IEmulatorAdapter, IEmulatorMediaC
 
     public async ValueTask<string> InstallAsync(EmulatorManagementContext context, EmulationEmulatorRelease release, IProgress<double>? progress, CancellationToken cancellationToken)
     {
-        if (!_availableReleases.TryGetValue(release.Id, out var selected) || selected.Emulator != Emulator.Theodore)
-            throw new ArgumentException(nameof(release));
-        var forwarded = progress is null ? null : new Progress<CoreInstallProgress>(value => progress.Report(value.Fraction ?? 0));
+        var selected = EmulationCoreReleaseFunctions.SelectRelease(_availableReleases, release, static selected => selected.Emulator == Emulator.Theodore);
+        var forwarded = EmulationCoreReleaseFunctions.CreateInstallProgress<CoreInstallProgress>(progress, static value => value.Fraction);
         var installation = await new CoreReleaseService(context.HttpClient, context.CoreDirectory).InstallAsync(selected, forwarded, cancellationToken).ConfigureAwait(false);
         return installation.LibraryPath;
     }
