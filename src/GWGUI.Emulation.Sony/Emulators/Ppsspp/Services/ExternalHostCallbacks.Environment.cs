@@ -148,20 +148,17 @@ internal sealed partial class ExternalHostCallbacks
 
     private bool ApplyOptionVisibility(nint data)
     {
-        if (data == 0) return false;
-        var display = Marshal.PtrToStructure<ExternalCoreApi.CoreOptionDisplay>(data);
-        var key = display.Key == 0 ? null : Marshal.PtrToStringUTF8(display.Key);
-        if (string.IsNullOrWhiteSpace(key)) return false;
-        _optionVisibility[key] = display.Visible;
-        OptionCatalog = OptionCatalog.Select(option => option.Key.Equals(key, StringComparison.Ordinal) ? option with { IsVisible = display.Visible } : option).ToArray();
+        if (!EmulationCoreOptionFunctions.ApplyNativeVisibility(data, _optionVisibility, OptionCatalog,
+                static option => option.Key, static (option, visible) => option with { IsVisible = visible },
+                out var catalog)) return false;
+        OptionCatalog = catalog;
         return true;
     }
 
     private bool CaptureOptionsDisplayCallback(nint data)
     {
-        if (data == 0) return false;
-        var callback = Marshal.PtrToStructure<ExternalCoreApi.CoreOptionsUpdateDisplayCallback>(data).Callback;
-        _updateOptionsDisplay = callback == 0 ? null : Marshal.GetDelegateForFunctionPointer<ExternalCoreApi.UpdateCoreOptionsDisplay>(callback);
+        if (!EmulationCoreOptionFunctions.TryGetDisplayCallback(data, out var callback)) return false;
+        _updateOptionsDisplay = callback;
         return true;
     }
 
