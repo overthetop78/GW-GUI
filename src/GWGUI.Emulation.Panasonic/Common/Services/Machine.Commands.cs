@@ -13,14 +13,11 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     private ValueTask QueueCommand(Action action, CancellationToken cancellationToken)
     {
         cancellationToken.ThrowIfCancellationRequested();
-        var completion = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
-        lock (_gate)
+        return EmulationMachineCommand.Enqueue(_commands, _gate, action, cancellationToken, validateInsideGate: () =>
         {
-            if (State is not EmulationMachineState.Running and not EmulationMachineState.Paused) throw new InvalidOperationException(ErrorMessages.MachineInvalidState);
-            _commands.Enqueue(new MachineCommand(action, completion));
-            Monitor.PulseAll(_gate);
-        }
-        return new ValueTask(completion.Task.WaitAsync(cancellationToken));
+            if (State is not EmulationMachineState.Running and not EmulationMachineState.Paused)
+                throw new InvalidOperationException(ErrorMessages.MachineInvalidState);
+        });
     }
 
     private ValueTask QueueCommand<T>(Action<T> action, T value, CancellationToken cancellationToken) => QueueCommand(() => action(value), cancellationToken);
@@ -45,7 +42,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
             {
                 lock (_gate) while (_pauseRequested && _commands.IsEmpty && !cancellationToken.IsCancellationRequested) Monitor.Wait(_gate, TimeSpan.FromMilliseconds(MachineConstants.PauseWaitMilliseconds));
                 if (cancellationToken.IsCancellationRequested) break;
-                while (_commands.TryDequeue(out var command)) command.Execute();
+                while (_commands.TryDequeue(out var command)) command.Execute(rethrow: true);
                 lock (_gate) if (_pauseRequested) continue;
                 _core.SetInput(InputSnapshotFunctions.Apply(_input.Consume(), _inputConfiguration, Configuration.Model, Configuration.Core));
                 _core.RunFrame();
@@ -128,9 +125,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     }
 
     private void FailPendingCommands(Exception error)
-    {
-        while (_commands.TryDequeue(out var command)) command.Completion.TrySetException(error);
-    }
+        => EmulationMachineCommand.FailPending(_commands, error);
 
     private void ResetCore()
     {

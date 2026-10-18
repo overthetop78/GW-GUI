@@ -1,3 +1,4 @@
+global using MachineCommand = GWGUI.Emulation.Contracts.EmulationMachineCommand;
 global using GWGUI.Emulation.Constants;
 global using GWGUI.Emulation.Contracts;
 global using GWGUI.Emulation.Dictionaries;

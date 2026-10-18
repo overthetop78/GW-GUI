@@ -19,17 +19,17 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         cancellationToken.ThrowIfCancellationRequested();
         if (State is not EmulationMachineState.Running and not EmulationMachineState.Paused)
             throw MachineExceptions.MachineNotRunning();
-        var completion = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
-        _commands.Enqueue(new PendingCommand(() =>
+        return EmulationMachineCommand.Enqueue(_commands, _gate, () =>
         {
-            try { action(); }
+            try
+            {
+                action();
+            }
             catch (Exception error)
             {
                 throw EmulationErrorService.Translate(error, category, code, new EmulationMachineMessageContext(Configuration.Model));
             }
-        }, completion));
-        lock (_gate) Monitor.PulseAll(_gate);
-        return new ValueTask(completion.Task.WaitAsync(cancellationToken));
+        }, cancellationToken);
     }
     private void Run(CancellationToken cancellationToken)
     {
@@ -135,9 +135,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
             error);
     }
     private void FailPendingCommands(Exception error)
-    {
-        while (_commands.TryDequeue(out var command)) command.Completion.TrySetException(error);
-    }
+        => EmulationMachineCommand.FailPending(_commands, error);
 
     private void FlushAudio()
     {
@@ -210,14 +208,5 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         }
         catch (IOException) { }
         catch (UnauthorizedAccessException) { }
-    }
-
-    private sealed record PendingCommand(Action Action, TaskCompletionSource Completion)
-    {
-        public void Execute()
-        {
-            try { Action(); Completion.TrySetResult(); }
-            catch (Exception error) { Completion.TrySetException(error); }
-        }
     }
 }

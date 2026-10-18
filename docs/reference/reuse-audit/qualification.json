@@ -1408,7 +1408,7 @@
   ],
   "currentProjectReport": "current-project-groups.json",
   "currentReportScope": "All current repository CSharp and PowerShell files; no age filter; candidates require semantic review",
-  "currentExactCandidateGroups": 567,
+  "currentExactCandidateGroups": 566,
   "currentRenamedIdentifierCandidateGroups": 219,
   "currentQualificationStatus": "Manual semantic qualification remains incomplete. remaining-groups.json is the earlier historical checkpoint; current-project-groups.json covers all current CSharp and PowerShell files regardless of age.",
   "hostLoopComparison": "host-loop-comparison.json",
@@ -2078,6 +2078,276 @@
       "ignored": 0,
       "command": "dotnet test tests/GWGUI.Tests/GWGUI.Tests.csproj -c Debug --no-restore --filter FullyQualifiedName~CoreOptionHostStateTests --disable-build-servers",
       "resources": "No emulator files, windows or external core DLLs; native allocations protected by finally"
+    }
+  },
+  "machineCommandReuse": {
+    "origin": "PendingCommand Amiga before Amstrad; Atari a79af5171 adds rethrow policy",
+    "owner": "EmulationMachineCommand",
+    "comparisons": [
+      {
+        "module": "GWGUI.Emulation.Acorn",
+        "rethrow": true,
+        "validateInsideGate": true,
+        "prefixUnchanged": true,
+        "actionAndTranslationUnchanged": true,
+        "lockedValidationUnchanged": true,
+        "signatureAndRecordDataUnchanged": true,
+        "runtimeContractsUnchanged": true,
+        "executePolicyUnchanged": true
+      },
+      {
+        "module": "GWGUI.Emulation.Amstrad",
+        "rethrow": false,
+        "validateInsideGate": false,
+        "prefixUnchanged": true,
+        "actionAndTranslationUnchanged": true,
+        "lockedValidationUnchanged": true,
+        "signatureAndRecordDataUnchanged": true,
+        "runtimeContractsUnchanged": true,
+        "executePolicyUnchanged": true
+      },
+      {
+        "module": "GWGUI.Emulation.Wenquxing",
+        "rethrow": true,
+        "validateInsideGate": true,
+        "prefixUnchanged": true,
+        "actionAndTranslationUnchanged": true,
+        "lockedValidationUnchanged": true,
+        "signatureAndRecordDataUnchanged": true,
+        "runtimeContractsUnchanged": true,
+        "executePolicyUnchanged": true
+      },
+      {
+        "module": "GWGUI.Emulation.Atari",
+        "rethrow": true,
+        "validateInsideGate": false,
+        "prefixUnchanged": true,
+        "actionAndTranslationUnchanged": true,
+        "lockedValidationUnchanged": true,
+        "signatureAndRecordDataUnchanged": true,
+        "runtimeContractsUnchanged": true,
+        "executePolicyUnchanged": true
+      },
+      {
+        "module": "GWGUI.Emulation.Thomson",
+        "rethrow": true,
+        "validateInsideGate": true,
+        "prefixUnchanged": true,
+        "actionAndTranslationUnchanged": true,
+        "lockedValidationUnchanged": true,
+        "signatureAndRecordDataUnchanged": true,
+        "runtimeContractsUnchanged": true,
+        "executePolicyUnchanged": true
+      },
+      {
+        "module": "GWGUI.Emulation.Nintendo",
+        "rethrow": false,
+        "validateInsideGate": false,
+        "prefixUnchanged": true,
+        "actionAndTranslationUnchanged": true,
+        "lockedValidationUnchanged": true,
+        "signatureAndRecordDataUnchanged": true,
+        "runtimeContractsUnchanged": true,
+        "executePolicyUnchanged": true
+      },
+      {
+        "module": "GWGUI.Emulation.Apple",
+        "rethrow": true,
+        "validateInsideGate": true,
+        "prefixUnchanged": true,
+        "actionAndTranslationUnchanged": true,
+        "lockedValidationUnchanged": true,
+        "signatureAndRecordDataUnchanged": true,
+        "runtimeContractsUnchanged": true,
+        "executePolicyUnchanged": true
+      },
+      {
+        "module": "GWGUI.Emulation.Panasonic",
+        "rethrow": true,
+        "validateInsideGate": true,
+        "prefixUnchanged": true,
+        "actionAndTranslationUnchanged": true,
+        "lockedValidationUnchanged": true,
+        "signatureAndRecordDataUnchanged": true,
+        "runtimeContractsUnchanged": true,
+        "executePolicyUnchanged": true
+      },
+      {
+        "module": "GWGUI.Emulation.Epoch",
+        "rethrow": true,
+        "validateInsideGate": true,
+        "prefixUnchanged": true,
+        "actionAndTranslationUnchanged": true,
+        "lockedValidationUnchanged": true,
+        "signatureAndRecordDataUnchanged": true,
+        "runtimeContractsUnchanged": true,
+        "executePolicyUnchanged": true
+      },
+      {
+        "module": "GWGUI.Emulation.Sony",
+        "rethrow": false,
+        "validateInsideGate": false,
+        "prefixUnchanged": true,
+        "actionAndTranslationUnchanged": true,
+        "lockedValidationUnchanged": true,
+        "signatureAndRecordDataUnchanged": true,
+        "runtimeContractsUnchanged": true,
+        "executePolicyUnchanged": true
+      },
+      {
+        "module": "GWGUI.Emulation.Watara",
+        "rethrow": true,
+        "validateInsideGate": true,
+        "prefixUnchanged": true,
+        "actionAndTranslationUnchanged": true,
+        "lockedValidationUnchanged": true,
+        "signatureAndRecordDataUnchanged": true,
+        "runtimeContractsUnchanged": true,
+        "executePolicyUnchanged": true
+      },
+      {
+        "module": "GWGUI.Emulation.Nec",
+        "rethrow": false,
+        "validateInsideGate": false,
+        "prefixUnchanged": true,
+        "actionAndTranslationUnchanged": true,
+        "lockedValidationUnchanged": true,
+        "signatureAndRecordDataUnchanged": true,
+        "runtimeContractsUnchanged": true,
+        "executePolicyUnchanged": true
+      },
+      {
+        "module": "GWGUI.Emulation.Microsoft",
+        "rethrow": false,
+        "validateInsideGate": false,
+        "prefixUnchanged": true,
+        "actionAndTranslationUnchanged": true,
+        "lockedValidationUnchanged": true,
+        "signatureAndRecordDataUnchanged": true,
+        "runtimeContractsUnchanged": true,
+        "executePolicyUnchanged": true
+      },
+      {
+        "module": "GWGUI.Emulation.Commodore",
+        "rethrow": false,
+        "validateInsideGate": false,
+        "prefixUnchanged": true,
+        "actionAndTranslationUnchanged": true,
+        "lockedValidationUnchanged": true,
+        "signatureAndRecordDataUnchanged": true,
+        "runtimeContractsUnchanged": true,
+        "executePolicyUnchanged": true
+      },
+      {
+        "module": "GWGUI.Emulation.Sharp",
+        "rethrow": true,
+        "validateInsideGate": true,
+        "prefixUnchanged": true,
+        "actionAndTranslationUnchanged": true,
+        "lockedValidationUnchanged": true,
+        "signatureAndRecordDataUnchanged": true,
+        "runtimeContractsUnchanged": true,
+        "executePolicyUnchanged": true
+      },
+      {
+        "module": "GWGUI.Emulation.Mattel",
+        "rethrow": true,
+        "validateInsideGate": true,
+        "prefixUnchanged": true,
+        "actionAndTranslationUnchanged": true,
+        "lockedValidationUnchanged": true,
+        "signatureAndRecordDataUnchanged": true,
+        "runtimeContractsUnchanged": true,
+        "executePolicyUnchanged": true
+      },
+      {
+        "module": "GWGUI.Emulation.Sega",
+        "rethrow": false,
+        "validateInsideGate": false,
+        "prefixUnchanged": true,
+        "actionAndTranslationUnchanged": true,
+        "lockedValidationUnchanged": true,
+        "signatureAndRecordDataUnchanged": true,
+        "runtimeContractsUnchanged": true,
+        "executePolicyUnchanged": true
+      },
+      {
+        "module": "GWGUI.Emulation.Snk",
+        "rethrow": true,
+        "validateInsideGate": true,
+        "prefixUnchanged": true,
+        "actionAndTranslationUnchanged": true,
+        "lockedValidationUnchanged": true,
+        "signatureAndRecordDataUnchanged": true,
+        "runtimeContractsUnchanged": true,
+        "executePolicyUnchanged": true
+      },
+      {
+        "module": "GWGUI.Emulation.Coleco",
+        "rethrow": true,
+        "validateInsideGate": true,
+        "prefixUnchanged": true,
+        "actionAndTranslationUnchanged": true,
+        "lockedValidationUnchanged": true,
+        "signatureAndRecordDataUnchanged": true,
+        "runtimeContractsUnchanged": true,
+        "executePolicyUnchanged": true
+      },
+      {
+        "module": "GWGUI.Emulation.Sinclair",
+        "rethrow": true,
+        "validateInsideGate": true,
+        "prefixUnchanged": true,
+        "actionAndTranslationUnchanged": true,
+        "lockedValidationUnchanged": true,
+        "signatureAndRecordDataUnchanged": true,
+        "runtimeContractsUnchanged": true,
+        "executePolicyUnchanged": true
+      },
+      {
+        "module": "GWGUI.Emulation.Fairchild",
+        "rethrow": true,
+        "validateInsideGate": true,
+        "prefixUnchanged": true,
+        "actionAndTranslationUnchanged": true,
+        "lockedValidationUnchanged": true,
+        "signatureAndRecordDataUnchanged": true,
+        "runtimeContractsUnchanged": true,
+        "executePolicyUnchanged": true
+      },
+      {
+        "module": "GWGUI.Emulation.Bandai",
+        "rethrow": true,
+        "validateInsideGate": true,
+        "prefixUnchanged": true,
+        "actionAndTranslationUnchanged": true,
+        "lockedValidationUnchanged": true,
+        "signatureAndRecordDataUnchanged": true,
+        "runtimeContractsUnchanged": true,
+        "executePolicyUnchanged": true
+      },
+      {
+        "module": "GWGUI.Emulation.Philips",
+        "rethrow": true,
+        "validateInsideGate": true,
+        "prefixUnchanged": true,
+        "actionAndTranslationUnchanged": true,
+        "lockedValidationUnchanged": true,
+        "signatureAndRecordDataUnchanged": true,
+        "runtimeContractsUnchanged": true,
+        "executePolicyUnchanged": true
+      }
+    ],
+    "policies": "16 rethrow, 7 capture only; 15 validations inside gate, Atari and seven native validations outside gate",
+    "preserved": "No thread or action ownership transfer; asynchronous continuations, cancellation of wait only, monitor ordering, action translation and public runtime records",
+    "verification": "23 AST comparisons against 4433ef25a; SDK and 23 modules semantic check without Emit; 6 targeted tests pass after async test cleanup; diff --check passes",
+    "tests": {
+      "class": "MachineCommandTests",
+      "passed": 6,
+      "failed": 0,
+      "ignored": 0,
+      "command": "dotnet test tests/GWGUI.Tests/GWGUI.Tests.csproj -c Debug --no-restore --filter FullyQualifiedName~MachineCommandTests --disable-build-servers",
+      "resources": "No core, window, thread, file or external DLL launched by the test cases"
     }
   }
 }

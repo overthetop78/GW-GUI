@@ -4,22 +4,6 @@ using GWGUI.Emulation.Wenquxing.Common.Machines.Common.Enums;
 using GWGUI.Emulation;
 
 namespace GWGUI.Emulation.Wenquxing.Common.Contracts;
-internal sealed record MachineCommand(Action Action, TaskCompletionSource Completion)
-{
-    internal void Execute()
-    {
-        try
-        {
-            Action();
-            Completion.TrySetResult();
-        }
-        catch (Exception error)
-        {
-            Completion.TrySetException(error);
-            throw;
-        }
-    }
-}
 
 public sealed record RuntimeGeometry(int Width, int Height, int Pitch, float AspectRatio);
 public sealed record RuntimeStatus(
