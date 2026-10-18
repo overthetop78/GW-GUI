@@ -7,6 +7,16 @@ namespace GWGUI.Emulation.Functions;
 
 internal static class EmulationCoreReleaseFunctions
 {
+    internal static async Task<T> QueryReleaseAsync<T>(HttpClient client, Uri archiveUri,
+        Func<HttpResponseMessage, T> readResponse, CancellationToken cancellationToken)
+    {
+        using var request = new HttpRequestMessage(HttpMethod.Head, archiveUri);
+        using var response = await client.SendAsync(request, HttpCompletionOption.ResponseHeadersRead,
+            cancellationToken).ConfigureAwait(false);
+        response.EnsureSuccessStatusCode();
+        return readResponse(response);
+    }
+
     private static readonly JsonSerializerOptions ManifestJsonOptions = new(JsonSerializerDefaults.Web)
     {
         WriteIndented = true

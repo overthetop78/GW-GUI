@@ -38,18 +38,17 @@ public sealed class CoreReleaseService
     public async Task<IReadOnlyList<CoreRelease>> GetAvailableAsync(CancellationToken cancellationToken = default)
     {
         var releases = new List<CoreRelease>();
-        if (_definition.RequiredRelease is { } required) releases.Add(required);
-
-        if (LatestOfficialUri is not { } latestUri) return releases;
-        using var request = new HttpRequestMessage(HttpMethod.Head, latestUri);
-        using var response = await _httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
-        response.EnsureSuccessStatusCode();
-        var published = response.Content.Headers.LastModified ?? response.Headers.Date;
-        var suffix = published?.UtcDateTime.ToString(CoreReleaseConstants.YyyyMMddHHmm) ?? CoreReleaseConstants.Latest;
-        releases.Add(new CoreRelease(string.Concat(CoreReleaseConstants.OfficialReleaseIdPrefix, suffix),
-            published is null ? CoreReleaseConstants.LibretroLatest : string.Format(CoreReleaseConstants.PublishedDisplayFormat, published.Value.LocalDateTime),
-            latestUri, published, false, true));
-        return releases;
+        if (_definition.RequiredRelease is { } required)
+            releases.Add(required);
+        if (LatestOfficialUri is not { } latestUri)
+            return releases;
+        return await EmulationCoreReleaseFunctions.QueryReleaseAsync<IReadOnlyList<CoreRelease>>(_httpClient, latestUri, response =>
+        {
+            var published = response.Content.Headers.LastModified ?? response.Headers.Date;
+            var suffix = published?.UtcDateTime.ToString(CoreReleaseConstants.YyyyMMddHHmm) ?? CoreReleaseConstants.Latest;
+            releases.Add(new CoreRelease(string.Concat(CoreReleaseConstants.OfficialReleaseIdPrefix, suffix), published is null ? CoreReleaseConstants.LibretroLatest : string.Format(CoreReleaseConstants.PublishedDisplayFormat, published.Value.LocalDateTime), latestUri, published, false, true));
+            return releases;
+        }, cancellationToken).ConfigureAwait(false);
     }
 
     public bool IsInstalled(CoreRelease release)

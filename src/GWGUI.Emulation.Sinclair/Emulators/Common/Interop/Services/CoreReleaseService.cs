@@ -23,10 +23,10 @@ public sealed class CoreReleaseService : ICoreReleaseService
     public async Task<IReadOnlyList<CoreRelease>> GetAvailableAsync(Emulator emulator, CancellationToken cancellationToken = default)
     {
         var entry = CoreCatalog.Get(emulator);
-        using var request = new HttpRequestMessage(HttpMethod.Head, entry.ArchiveUri);
-        using var response = await _httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
-        response.EnsureSuccessStatusCode();
-        return[CoreReleaseFunctions.ParseRelease(entry, response)];
+        return await EmulationCoreReleaseFunctions.QueryReleaseAsync<IReadOnlyList<CoreRelease>>(_httpClient, entry.ArchiveUri, response =>
+        {
+            return[CoreReleaseFunctions.ParseRelease(entry, response)];
+        }, cancellationToken).ConfigureAwait(false);
     }
 
     public async Task<CoreInstallationPaths> InstallAsync(CoreRelease release, IProgress<CoreInstallProgress>? progress = null, CancellationToken cancellationToken = default)

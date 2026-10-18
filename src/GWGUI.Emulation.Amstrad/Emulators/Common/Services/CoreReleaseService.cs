@@ -38,14 +38,12 @@ public sealed class CoreReleaseService
 
     public async Task<IReadOnlyList<CoreRelease>> GetAvailableAsync(CancellationToken cancellationToken = default)
     {
-        using var request = new HttpRequestMessage(HttpMethod.Head, _definition.DownloadUri);
-        using var response = await _httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
-        response.EnsureSuccessStatusCode();
-        var published = response.Content.Headers.LastModified ?? response.Headers.Date;
-        var suffix = published?.UtcDateTime.ToString(CoreReleaseConstants.ReleaseIdentifierDateFormat) ?? CoreReleaseConstants.Latest;
-        return [new CoreRelease($"{CoreReleaseConstants.OfficialReleaseIdPrefix}{suffix}",
-            published is null ? _definition.LatestReleaseDisplayName : $"{published.Value.LocalDateTime.ToString(CoreReleaseConstants.ReleaseDisplayDateFormat)}{_definition.ReleaseProviderSuffix}",
-            _definition.DownloadUri, published, true, true)];
+        return await EmulationCoreReleaseFunctions.QueryReleaseAsync<IReadOnlyList<CoreRelease>>(_httpClient, _definition.DownloadUri, response =>
+        {
+            var published = response.Content.Headers.LastModified ?? response.Headers.Date;
+            var suffix = published?.UtcDateTime.ToString(CoreReleaseConstants.ReleaseIdentifierDateFormat) ?? CoreReleaseConstants.Latest;
+            return[new CoreRelease($"{CoreReleaseConstants.OfficialReleaseIdPrefix}{suffix}", published is null ? _definition.LatestReleaseDisplayName : $"{published.Value.LocalDateTime.ToString(CoreReleaseConstants.ReleaseDisplayDateFormat)}{_definition.ReleaseProviderSuffix}", _definition.DownloadUri, published, true, true)];
+        }, cancellationToken).ConfigureAwait(false);
     }
 
     public bool IsInstalled(CoreRelease release)

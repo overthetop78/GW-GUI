@@ -1,4 +1,742 @@
 {
+  "sharedSdkCallEvidence": {
+    "scope": "Current exact groups in current-project-groups.json after HEAD refactor; only one-invocation method bodies resolving to gwgui.emulation were selected",
+    "semanticProjects": 24,
+    "decision": "Shared SDK target is proven. This does not classify any remaining work in arguments as finished; all uncertain groups remain pending.",
+    "groups": [
+      {
+        "hash": "77615E1177DE9D89C58BC9CC1638677CFB89EFB62300BEFB92B572619341EE63",
+        "method": "DownloadAsync",
+        "tokens": 38,
+        "targets": [
+          {
+            "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Functions/CoreFunctions.Release.cs",
+            "target": "GWGUI.Emulation.Functions.EmulationCoreReleaseFunctions.DownloadAsync(System.Net.Http.HttpClient, System.Uri, string, System.Action<long, long?>?, System.Threading.CancellationToken)",
+            "line": 23
+          },
+          {
+            "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Functions/CoreFunctions.Release.cs",
+            "target": "GWGUI.Emulation.Functions.EmulationCoreReleaseFunctions.DownloadAsync(System.Net.Http.HttpClient, System.Uri, string, System.Action<long, long?>?, System.Threading.CancellationToken)",
+            "line": 22
+          },
+          {
+            "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Functions/CoreFunctions.Release.cs",
+            "target": "GWGUI.Emulation.Functions.EmulationCoreReleaseFunctions.DownloadAsync(System.Net.Http.HttpClient, System.Uri, string, System.Action<long, long?>?, System.Threading.CancellationToken)",
+            "line": 23
+          },
+          {
+            "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Functions/CoreFunctions.Release.cs",
+            "target": "GWGUI.Emulation.Functions.EmulationCoreReleaseFunctions.DownloadAsync(System.Net.Http.HttpClient, System.Uri, string, System.Action<long, long?>?, System.Threading.CancellationToken)",
+            "line": 23
+          },
+          {
+            "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Functions/CoreFunctions.Release.cs",
+            "target": "GWGUI.Emulation.Functions.EmulationCoreReleaseFunctions.DownloadAsync(System.Net.Http.HttpClient, System.Uri, string, System.Action<long, long?>?, System.Threading.CancellationToken)",
+            "line": 22
+          },
+          {
+            "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Functions/CoreFunctions.Release.cs",
+            "target": "GWGUI.Emulation.Functions.EmulationCoreReleaseFunctions.DownloadAsync(System.Net.Http.HttpClient, System.Uri, string, System.Action<long, long?>?, System.Threading.CancellationToken)",
+            "line": 23
+          },
+          {
+            "path": "src/GWGUI.Emulation.Panasonic/Emulators/Opera/Functions/CoreFunctions.Release.cs",
+            "target": "GWGUI.Emulation.Functions.EmulationCoreReleaseFunctions.DownloadAsync(System.Net.Http.HttpClient, System.Uri, string, System.Action<long, long?>?, System.Threading.CancellationToken)",
+            "line": 23
+          },
+          {
+            "path": "src/GWGUI.Emulation.Watara/Emulators/Potator/Functions/CoreFunctions.Release.cs",
+            "target": "GWGUI.Emulation.Functions.EmulationCoreReleaseFunctions.DownloadAsync(System.Net.Http.HttpClient, System.Uri, string, System.Action<long, long?>?, System.Threading.CancellationToken)",
+            "line": 23
+          },
+          {
+            "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Functions/CoreFunctions.Release.cs",
+            "target": "GWGUI.Emulation.Functions.EmulationCoreReleaseFunctions.DownloadAsync(System.Net.Http.HttpClient, System.Uri, string, System.Action<long, long?>?, System.Threading.CancellationToken)",
+            "line": 23
+          },
+          {
+            "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Functions/CoreFunctions.Release.cs",
+            "target": "GWGUI.Emulation.Functions.EmulationCoreReleaseFunctions.DownloadAsync(System.Net.Http.HttpClient, System.Uri, string, System.Action<long, long?>?, System.Threading.CancellationToken)",
+            "line": 23
+          },
+          {
+            "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Functions/CoreFunctions.Release.cs",
+            "target": "GWGUI.Emulation.Functions.EmulationCoreReleaseFunctions.DownloadAsync(System.Net.Http.HttpClient, System.Uri, string, System.Action<long, long?>?, System.Threading.CancellationToken)",
+            "line": 19
+          },
+          {
+            "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Functions/CoreFunctions.Release.cs",
+            "target": "GWGUI.Emulation.Functions.EmulationCoreReleaseFunctions.DownloadAsync(System.Net.Http.HttpClient, System.Uri, string, System.Action<long, long?>?, System.Threading.CancellationToken)",
+            "line": 23
+          },
+          {
+            "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Functions/CoreFunctions.Release.cs",
+            "target": "GWGUI.Emulation.Functions.EmulationCoreReleaseFunctions.DownloadAsync(System.Net.Http.HttpClient, System.Uri, string, System.Action<long, long?>?, System.Threading.CancellationToken)",
+            "line": 23
+          },
+          {
+            "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Functions/CoreFunctions.Release.cs",
+            "target": "GWGUI.Emulation.Functions.EmulationCoreReleaseFunctions.DownloadAsync(System.Net.Http.HttpClient, System.Uri, string, System.Action<long, long?>?, System.Threading.CancellationToken)",
+            "line": 23
+          },
+          {
+            "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Functions/CoreFunctions.Release.cs",
+            "target": "GWGUI.Emulation.Functions.EmulationCoreReleaseFunctions.DownloadAsync(System.Net.Http.HttpClient, System.Uri, string, System.Action<long, long?>?, System.Threading.CancellationToken)",
+            "line": 23
+          },
+          {
+            "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Functions/CoreFunctions.Release.cs",
+            "target": "GWGUI.Emulation.Functions.EmulationCoreReleaseFunctions.DownloadAsync(System.Net.Http.HttpClient, System.Uri, string, System.Action<long, long?>?, System.Threading.CancellationToken)",
+            "line": 23
+          }
+        ],
+        "decision": "shared SDK target verified; argument adapters still require review"
+      },
+      {
+        "hash": "7F404E519E1F20E9167630E0B7BD5F0374EA23A8F68D7C9E73A5B11E5F7E8E57",
+        "method": "ValidateConfiguredValues",
+        "tokens": 61,
+        "targets": [
+          {
+            "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/CoreOptionHost.cs",
+            "target": "GWGUI.Emulation.Functions.EmulationCoreOptionFunctions.ValidateConfiguredValues<GWGUI.Emulation.Coleco.Common.Contracts.CoreOption, GWGUI.Emulation.Coleco.Common.Contracts.CoreOptionValue>(System.Collections.Generic.IEnumerable<string>, System.Collections.Generic.IReadOnlyDictionary<string, string>, System.Collections.Generic.IReadOnlyList<GWGUI.Emulation.Coleco.Common.Contracts.CoreOption>, System.Func<GWGUI.Emulation.Coleco.Common.Contracts.CoreOption, string>, System.Func<GWGUI.Emulation.Coleco.Common.Contracts.CoreOption, System.Collections.Generic.IReadOnlyList<GWGUI.Emulation.Coleco.Common.Contracts.CoreOptionValue>>, System.Func<GWGUI.Emulation.Coleco.Common.Contracts.CoreOptionValue, string>, System.Action<string, string>)",
+            "line": 85
+          },
+          {
+            "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/CoreOptionHost.cs",
+            "target": "GWGUI.Emulation.Functions.EmulationCoreOptionFunctions.ValidateConfiguredValues<GWGUI.Emulation.Acorn.Common.Contracts.CoreOption, GWGUI.Emulation.Acorn.Common.Contracts.CoreOptionValue>(System.Collections.Generic.IEnumerable<string>, System.Collections.Generic.IReadOnlyDictionary<string, string>, System.Collections.Generic.IReadOnlyList<GWGUI.Emulation.Acorn.Common.Contracts.CoreOption>, System.Func<GWGUI.Emulation.Acorn.Common.Contracts.CoreOption, string>, System.Func<GWGUI.Emulation.Acorn.Common.Contracts.CoreOption, System.Collections.Generic.IReadOnlyList<GWGUI.Emulation.Acorn.Common.Contracts.CoreOptionValue>>, System.Func<GWGUI.Emulation.Acorn.Common.Contracts.CoreOptionValue, string>, System.Action<string, string>)",
+            "line": 85
+          },
+          {
+            "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/CoreOptionHost.cs",
+            "target": "GWGUI.Emulation.Functions.EmulationCoreOptionFunctions.ValidateConfiguredValues<GWGUI.Emulation.Philips.Common.Contracts.CoreOption, GWGUI.Emulation.Philips.Common.Contracts.CoreOptionValue>(System.Collections.Generic.IEnumerable<string>, System.Collections.Generic.IReadOnlyDictionary<string, string>, System.Collections.Generic.IReadOnlyList<GWGUI.Emulation.Philips.Common.Contracts.CoreOption>, System.Func<GWGUI.Emulation.Philips.Common.Contracts.CoreOption, string>, System.Func<GWGUI.Emulation.Philips.Common.Contracts.CoreOption, System.Collections.Generic.IReadOnlyList<GWGUI.Emulation.Philips.Common.Contracts.CoreOptionValue>>, System.Func<GWGUI.Emulation.Philips.Common.Contracts.CoreOptionValue, string>, System.Action<string, string>)",
+            "line": 85
+          },
+          {
+            "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/CoreOptionHost.cs",
+            "target": "GWGUI.Emulation.Functions.EmulationCoreOptionFunctions.ValidateConfiguredValues<GWGUI.Emulation.Mattel.Common.Contracts.CoreOption, GWGUI.Emulation.Mattel.Common.Contracts.CoreOptionValue>(System.Collections.Generic.IEnumerable<string>, System.Collections.Generic.IReadOnlyDictionary<string, string>, System.Collections.Generic.IReadOnlyList<GWGUI.Emulation.Mattel.Common.Contracts.CoreOption>, System.Func<GWGUI.Emulation.Mattel.Common.Contracts.CoreOption, string>, System.Func<GWGUI.Emulation.Mattel.Common.Contracts.CoreOption, System.Collections.Generic.IReadOnlyList<GWGUI.Emulation.Mattel.Common.Contracts.CoreOptionValue>>, System.Func<GWGUI.Emulation.Mattel.Common.Contracts.CoreOptionValue, string>, System.Action<string, string>)",
+            "line": 85
+          },
+          {
+            "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services/CoreOptionHost.cs",
+            "target": "GWGUI.Emulation.Functions.EmulationCoreOptionFunctions.ValidateConfiguredValues<GWGUI.Emulation.Bandai.Common.Contracts.CoreOption, GWGUI.Emulation.Bandai.Common.Contracts.CoreOptionValue>(System.Collections.Generic.IEnumerable<string>, System.Collections.Generic.IReadOnlyDictionary<string, string>, System.Collections.Generic.IReadOnlyList<GWGUI.Emulation.Bandai.Common.Contracts.CoreOption>, System.Func<GWGUI.Emulation.Bandai.Common.Contracts.CoreOption, string>, System.Func<GWGUI.Emulation.Bandai.Common.Contracts.CoreOption, System.Collections.Generic.IReadOnlyList<GWGUI.Emulation.Bandai.Common.Contracts.CoreOptionValue>>, System.Func<GWGUI.Emulation.Bandai.Common.Contracts.CoreOptionValue, string>, System.Action<string, string>)",
+            "line": 85
+          },
+          {
+            "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/CoreOptionHost.cs",
+            "target": "GWGUI.Emulation.Functions.EmulationCoreOptionFunctions.ValidateConfiguredValues<GWGUI.Emulation.Fairchild.Common.Contracts.CoreOption, GWGUI.Emulation.Fairchild.Common.Contracts.CoreOptionValue>(System.Collections.Generic.IEnumerable<string>, System.Collections.Generic.IReadOnlyDictionary<string, string>, System.Collections.Generic.IReadOnlyList<GWGUI.Emulation.Fairchild.Common.Contracts.CoreOption>, System.Func<GWGUI.Emulation.Fairchild.Common.Contracts.CoreOption, string>, System.Func<GWGUI.Emulation.Fairchild.Common.Contracts.CoreOption, System.Collections.Generic.IReadOnlyList<GWGUI.Emulation.Fairchild.Common.Contracts.CoreOptionValue>>, System.Func<GWGUI.Emulation.Fairchild.Common.Contracts.CoreOptionValue, string>, System.Action<string, string>)",
+            "line": 85
+          },
+          {
+            "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/CoreOptionHost.cs",
+            "target": "GWGUI.Emulation.Functions.EmulationCoreOptionFunctions.ValidateConfiguredValues<GWGUI.Emulation.Sharp.Common.Contracts.CoreOption, GWGUI.Emulation.Sharp.Common.Contracts.CoreOptionValue>(System.Collections.Generic.IEnumerable<string>, System.Collections.Generic.IReadOnlyDictionary<string, string>, System.Collections.Generic.IReadOnlyList<GWGUI.Emulation.Sharp.Common.Contracts.CoreOption>, System.Func<GWGUI.Emulation.Sharp.Common.Contracts.CoreOption, string>, System.Func<GWGUI.Emulation.Sharp.Common.Contracts.CoreOption, System.Collections.Generic.IReadOnlyList<GWGUI.Emulation.Sharp.Common.Contracts.CoreOptionValue>>, System.Func<GWGUI.Emulation.Sharp.Common.Contracts.CoreOptionValue, string>, System.Action<string, string>)",
+            "line": 84
+          },
+          {
+            "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/CoreOptionHost.cs",
+            "target": "GWGUI.Emulation.Functions.EmulationCoreOptionFunctions.ValidateConfiguredValues<GWGUI.Emulation.Atari.Common.Contracts.CoreOption, GWGUI.Emulation.Atari.Common.Contracts.CoreOptionValue>(System.Collections.Generic.IEnumerable<string>, System.Collections.Generic.IReadOnlyDictionary<string, string>, System.Collections.Generic.IReadOnlyList<GWGUI.Emulation.Atari.Common.Contracts.CoreOption>, System.Func<GWGUI.Emulation.Atari.Common.Contracts.CoreOption, string>, System.Func<GWGUI.Emulation.Atari.Common.Contracts.CoreOption, System.Collections.Generic.IReadOnlyList<GWGUI.Emulation.Atari.Common.Contracts.CoreOptionValue>>, System.Func<GWGUI.Emulation.Atari.Common.Contracts.CoreOptionValue, string>, System.Action<string, string>)",
+            "line": 81
+          },
+          {
+            "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/CoreOptionHost.cs",
+            "target": "GWGUI.Emulation.Functions.EmulationCoreOptionFunctions.ValidateConfiguredValues<GWGUI.Emulation.Snk.Common.Contracts.CoreOption, GWGUI.Emulation.Snk.Common.Contracts.CoreOptionValue>(System.Collections.Generic.IEnumerable<string>, System.Collections.Generic.IReadOnlyDictionary<string, string>, System.Collections.Generic.IReadOnlyList<GWGUI.Emulation.Snk.Common.Contracts.CoreOption>, System.Func<GWGUI.Emulation.Snk.Common.Contracts.CoreOption, string>, System.Func<GWGUI.Emulation.Snk.Common.Contracts.CoreOption, System.Collections.Generic.IReadOnlyList<GWGUI.Emulation.Snk.Common.Contracts.CoreOptionValue>>, System.Func<GWGUI.Emulation.Snk.Common.Contracts.CoreOptionValue, string>, System.Action<string, string>)",
+            "line": 82
+          },
+          {
+            "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/CoreOptionHost.cs",
+            "target": "GWGUI.Emulation.Functions.EmulationCoreOptionFunctions.ValidateConfiguredValues<GWGUI.Emulation.Epoch.Common.Contracts.CoreOption, GWGUI.Emulation.Epoch.Common.Contracts.CoreOptionValue>(System.Collections.Generic.IEnumerable<string>, System.Collections.Generic.IReadOnlyDictionary<string, string>, System.Collections.Generic.IReadOnlyList<GWGUI.Emulation.Epoch.Common.Contracts.CoreOption>, System.Func<GWGUI.Emulation.Epoch.Common.Contracts.CoreOption, string>, System.Func<GWGUI.Emulation.Epoch.Common.Contracts.CoreOption, System.Collections.Generic.IReadOnlyList<GWGUI.Emulation.Epoch.Common.Contracts.CoreOptionValue>>, System.Func<GWGUI.Emulation.Epoch.Common.Contracts.CoreOptionValue, string>, System.Action<string, string>)",
+            "line": 85
+          },
+          {
+            "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/CoreOptionHost.cs",
+            "target": "GWGUI.Emulation.Functions.EmulationCoreOptionFunctions.ValidateConfiguredValues<GWGUI.Emulation.Sinclair.Common.Contracts.CoreOption, GWGUI.Emulation.Sinclair.Common.Contracts.CoreOptionValue>(System.Collections.Generic.IEnumerable<string>, System.Collections.Generic.IReadOnlyDictionary<string, string>, System.Collections.Generic.IReadOnlyList<GWGUI.Emulation.Sinclair.Common.Contracts.CoreOption>, System.Func<GWGUI.Emulation.Sinclair.Common.Contracts.CoreOption, string>, System.Func<GWGUI.Emulation.Sinclair.Common.Contracts.CoreOption, System.Collections.Generic.IReadOnlyList<GWGUI.Emulation.Sinclair.Common.Contracts.CoreOptionValue>>, System.Func<GWGUI.Emulation.Sinclair.Common.Contracts.CoreOptionValue, string>, System.Action<string, string>)",
+            "line": 84
+          },
+          {
+            "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/CoreOptionHost.cs",
+            "target": "GWGUI.Emulation.Functions.EmulationCoreOptionFunctions.ValidateConfiguredValues<GWGUI.Emulation.Apple.Common.Contracts.CoreOption, GWGUI.Emulation.Apple.Common.Contracts.CoreOptionValue>(System.Collections.Generic.IEnumerable<string>, System.Collections.Generic.IReadOnlyDictionary<string, string>, System.Collections.Generic.IReadOnlyList<GWGUI.Emulation.Apple.Common.Contracts.CoreOption>, System.Func<GWGUI.Emulation.Apple.Common.Contracts.CoreOption, string>, System.Func<GWGUI.Emulation.Apple.Common.Contracts.CoreOption, System.Collections.Generic.IReadOnlyList<GWGUI.Emulation.Apple.Common.Contracts.CoreOptionValue>>, System.Func<GWGUI.Emulation.Apple.Common.Contracts.CoreOptionValue, string>, System.Action<string, string>)",
+            "line": 85
+          }
+        ],
+        "decision": "shared SDK target verified; argument adapters still require review"
+      },
+      {
+        "hash": "8468BB6689245A371BFE1D9F304CF042BEFB80C139349B64A5D38D5C95611F94",
+        "method": "CopyInputDescriptors",
+        "tokens": 46,
+        "targets": [
+          {
+            "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Functions/RuntimeFunctions.Environment.cs",
+            "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.CopyInputDescriptors<GWGUI.Emulation.Coleco.Emulators.Common.Contracts.InputDescriptor>(nint, int, System.Func<uint, uint, uint, uint, string, GWGUI.Emulation.Coleco.Emulators.Common.Contracts.InputDescriptor>)",
+            "line": 14
+          },
+          {
+            "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Functions/RuntimeFunctions.Environment.cs",
+            "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.CopyInputDescriptors<GWGUI.Emulation.Acorn.Emulators.Common.Contracts.InputDescriptor>(nint, int, System.Func<uint, uint, uint, uint, string, GWGUI.Emulation.Acorn.Emulators.Common.Contracts.InputDescriptor>)",
+            "line": 14
+          },
+          {
+            "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Functions/RuntimeFunctions.Environment.cs",
+            "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.CopyInputDescriptors<GWGUI.Emulation.Bandai.Emulators.Common.Contracts.InputDescriptor>(nint, int, System.Func<uint, uint, uint, uint, string, GWGUI.Emulation.Bandai.Emulators.Common.Contracts.InputDescriptor>)",
+            "line": 14
+          },
+          {
+            "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Functions/RuntimeFunctions.Environment.cs",
+            "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.CopyInputDescriptors<GWGUI.Emulation.Fairchild.Emulators.Common.Contracts.InputDescriptor>(nint, int, System.Func<uint, uint, uint, uint, string, GWGUI.Emulation.Fairchild.Emulators.Common.Contracts.InputDescriptor>)",
+            "line": 14
+          },
+          {
+            "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Functions/RuntimeFunctions.Environment.cs",
+            "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.CopyInputDescriptors<GWGUI.Emulation.Atari.Emulators.Common.Contracts.InputDescriptor>(nint, int, System.Func<uint, uint, uint, uint, string, GWGUI.Emulation.Atari.Emulators.Common.Contracts.InputDescriptor>)",
+            "line": 11
+          },
+          {
+            "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Functions/RuntimeFunctions.Environment.cs",
+            "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.CopyInputDescriptors<GWGUI.Emulation.Epoch.Emulators.Common.Contracts.InputDescriptor>(nint, int, System.Func<uint, uint, uint, uint, string, GWGUI.Emulation.Epoch.Emulators.Common.Contracts.InputDescriptor>)",
+            "line": 14
+          },
+          {
+            "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Functions/RuntimeFunctions.Environment.cs",
+            "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.CopyInputDescriptors<GWGUI.Emulation.Apple.Emulators.Common.Contracts.InputDescriptor>(nint, int, System.Func<uint, uint, uint, uint, string, GWGUI.Emulation.Apple.Emulators.Common.Contracts.InputDescriptor>)",
+            "line": 15
+          }
+        ],
+        "decision": "shared SDK target verified; argument adapters still require review"
+      },
+      {
+        "hash": "85ABB7168AEF56C180CD0A31D85D557B622D99200AE6C18A2599808041C08E13",
+        "method": "MergeLocalizedDefinitions",
+        "tokens": 33,
+        "targets": [
+          {
+            "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Functions/CoreFunctions.Options.cs",
+            "target": "GWGUI.Emulation.Functions.EmulationCoreOptionFunctions.MergeLocalized<GWGUI.Emulation.Coleco.Common.Contracts.CoreOption>(System.Collections.Generic.IReadOnlyList<GWGUI.Emulation.Coleco.Common.Contracts.CoreOption>, System.Collections.Generic.IReadOnlyList<GWGUI.Emulation.Coleco.Common.Contracts.CoreOption>, System.Func<GWGUI.Emulation.Coleco.Common.Contracts.CoreOption, string>, System.Func<GWGUI.Emulation.Coleco.Common.Contracts.CoreOption, GWGUI.Emulation.Coleco.Common.Contracts.CoreOption, GWGUI.Emulation.Coleco.Common.Contracts.CoreOption>)",
+            "line": 24
+          },
+          {
+            "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Functions/CoreFunctions.Options.cs",
+            "target": "GWGUI.Emulation.Functions.EmulationCoreOptionFunctions.MergeLocalized<GWGUI.Emulation.Acorn.Common.Contracts.CoreOption>(System.Collections.Generic.IReadOnlyList<GWGUI.Emulation.Acorn.Common.Contracts.CoreOption>, System.Collections.Generic.IReadOnlyList<GWGUI.Emulation.Acorn.Common.Contracts.CoreOption>, System.Func<GWGUI.Emulation.Acorn.Common.Contracts.CoreOption, string>, System.Func<GWGUI.Emulation.Acorn.Common.Contracts.CoreOption, GWGUI.Emulation.Acorn.Common.Contracts.CoreOption, GWGUI.Emulation.Acorn.Common.Contracts.CoreOption>)",
+            "line": 24
+          },
+          {
+            "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Functions/CoreFunctions.Options.cs",
+            "target": "GWGUI.Emulation.Functions.EmulationCoreOptionFunctions.MergeLocalized<GWGUI.Emulation.Philips.Common.Contracts.CoreOption>(System.Collections.Generic.IReadOnlyList<GWGUI.Emulation.Philips.Common.Contracts.CoreOption>, System.Collections.Generic.IReadOnlyList<GWGUI.Emulation.Philips.Common.Contracts.CoreOption>, System.Func<GWGUI.Emulation.Philips.Common.Contracts.CoreOption, string>, System.Func<GWGUI.Emulation.Philips.Common.Contracts.CoreOption, GWGUI.Emulation.Philips.Common.Contracts.CoreOption, GWGUI.Emulation.Philips.Common.Contracts.CoreOption>)",
+            "line": 24
+          },
+          {
+            "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Functions/CoreFunctions.Options.cs",
+            "target": "GWGUI.Emulation.Functions.EmulationCoreOptionFunctions.MergeLocalized<GWGUI.Emulation.Mattel.Common.Contracts.CoreOption>(System.Collections.Generic.IReadOnlyList<GWGUI.Emulation.Mattel.Common.Contracts.CoreOption>, System.Collections.Generic.IReadOnlyList<GWGUI.Emulation.Mattel.Common.Contracts.CoreOption>, System.Func<GWGUI.Emulation.Mattel.Common.Contracts.CoreOption, string>, System.Func<GWGUI.Emulation.Mattel.Common.Contracts.CoreOption, GWGUI.Emulation.Mattel.Common.Contracts.CoreOption, GWGUI.Emulation.Mattel.Common.Contracts.CoreOption>)",
+            "line": 24
+          },
+          {
+            "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Functions/CoreFunctions.Options.cs",
+            "target": "GWGUI.Emulation.Functions.EmulationCoreOptionFunctions.MergeLocalized<GWGUI.Emulation.Bandai.Common.Contracts.CoreOption>(System.Collections.Generic.IReadOnlyList<GWGUI.Emulation.Bandai.Common.Contracts.CoreOption>, System.Collections.Generic.IReadOnlyList<GWGUI.Emulation.Bandai.Common.Contracts.CoreOption>, System.Func<GWGUI.Emulation.Bandai.Common.Contracts.CoreOption, string>, System.Func<GWGUI.Emulation.Bandai.Common.Contracts.CoreOption, GWGUI.Emulation.Bandai.Common.Contracts.CoreOption, GWGUI.Emulation.Bandai.Common.Contracts.CoreOption>)",
+            "line": 24
+          },
+          {
+            "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Functions/CoreFunctions.Options.cs",
+            "target": "GWGUI.Emulation.Functions.EmulationCoreOptionFunctions.MergeLocalized<GWGUI.Emulation.Fairchild.Common.Contracts.CoreOption>(System.Collections.Generic.IReadOnlyList<GWGUI.Emulation.Fairchild.Common.Contracts.CoreOption>, System.Collections.Generic.IReadOnlyList<GWGUI.Emulation.Fairchild.Common.Contracts.CoreOption>, System.Func<GWGUI.Emulation.Fairchild.Common.Contracts.CoreOption, string>, System.Func<GWGUI.Emulation.Fairchild.Common.Contracts.CoreOption, GWGUI.Emulation.Fairchild.Common.Contracts.CoreOption, GWGUI.Emulation.Fairchild.Common.Contracts.CoreOption>)",
+            "line": 24
+          },
+          {
+            "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Functions/CoreFunctions.Options.cs",
+            "target": "GWGUI.Emulation.Functions.EmulationCoreOptionFunctions.MergeLocalized<GWGUI.Emulation.Sharp.Common.Contracts.CoreOption>(System.Collections.Generic.IReadOnlyList<GWGUI.Emulation.Sharp.Common.Contracts.CoreOption>, System.Collections.Generic.IReadOnlyList<GWGUI.Emulation.Sharp.Common.Contracts.CoreOption>, System.Func<GWGUI.Emulation.Sharp.Common.Contracts.CoreOption, string>, System.Func<GWGUI.Emulation.Sharp.Common.Contracts.CoreOption, GWGUI.Emulation.Sharp.Common.Contracts.CoreOption, GWGUI.Emulation.Sharp.Common.Contracts.CoreOption>)",
+            "line": 24
+          },
+          {
+            "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Functions/CoreFunctions.Options.cs",
+            "target": "GWGUI.Emulation.Functions.EmulationCoreOptionFunctions.MergeLocalized<GWGUI.Emulation.Atari.Common.Contracts.CoreOption>(System.Collections.Generic.IReadOnlyList<GWGUI.Emulation.Atari.Common.Contracts.CoreOption>, System.Collections.Generic.IReadOnlyList<GWGUI.Emulation.Atari.Common.Contracts.CoreOption>, System.Func<GWGUI.Emulation.Atari.Common.Contracts.CoreOption, string>, System.Func<GWGUI.Emulation.Atari.Common.Contracts.CoreOption, GWGUI.Emulation.Atari.Common.Contracts.CoreOption, GWGUI.Emulation.Atari.Common.Contracts.CoreOption>)",
+            "line": 24
+          },
+          {
+            "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Functions/CoreFunctions.Options.cs",
+            "target": "GWGUI.Emulation.Functions.EmulationCoreOptionFunctions.MergeLocalized<GWGUI.Emulation.Snk.Common.Contracts.CoreOption>(System.Collections.Generic.IReadOnlyList<GWGUI.Emulation.Snk.Common.Contracts.CoreOption>, System.Collections.Generic.IReadOnlyList<GWGUI.Emulation.Snk.Common.Contracts.CoreOption>, System.Func<GWGUI.Emulation.Snk.Common.Contracts.CoreOption, string>, System.Func<GWGUI.Emulation.Snk.Common.Contracts.CoreOption, GWGUI.Emulation.Snk.Common.Contracts.CoreOption, GWGUI.Emulation.Snk.Common.Contracts.CoreOption>)",
+            "line": 24
+          },
+          {
+            "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Functions/CoreFunctions.Options.cs",
+            "target": "GWGUI.Emulation.Functions.EmulationCoreOptionFunctions.MergeLocalized<GWGUI.Emulation.Epoch.Common.Contracts.CoreOption>(System.Collections.Generic.IReadOnlyList<GWGUI.Emulation.Epoch.Common.Contracts.CoreOption>, System.Collections.Generic.IReadOnlyList<GWGUI.Emulation.Epoch.Common.Contracts.CoreOption>, System.Func<GWGUI.Emulation.Epoch.Common.Contracts.CoreOption, string>, System.Func<GWGUI.Emulation.Epoch.Common.Contracts.CoreOption, GWGUI.Emulation.Epoch.Common.Contracts.CoreOption, GWGUI.Emulation.Epoch.Common.Contracts.CoreOption>)",
+            "line": 24
+          },
+          {
+            "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Functions/CoreFunctions.Options.cs",
+            "target": "GWGUI.Emulation.Functions.EmulationCoreOptionFunctions.MergeLocalized<GWGUI.Emulation.Sinclair.Common.Contracts.CoreOption>(System.Collections.Generic.IReadOnlyList<GWGUI.Emulation.Sinclair.Common.Contracts.CoreOption>, System.Collections.Generic.IReadOnlyList<GWGUI.Emulation.Sinclair.Common.Contracts.CoreOption>, System.Func<GWGUI.Emulation.Sinclair.Common.Contracts.CoreOption, string>, System.Func<GWGUI.Emulation.Sinclair.Common.Contracts.CoreOption, GWGUI.Emulation.Sinclair.Common.Contracts.CoreOption, GWGUI.Emulation.Sinclair.Common.Contracts.CoreOption>)",
+            "line": 24
+          },
+          {
+            "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Functions/CoreFunctions.Options.cs",
+            "target": "GWGUI.Emulation.Functions.EmulationCoreOptionFunctions.MergeLocalized<GWGUI.Emulation.Apple.Common.Contracts.CoreOption>(System.Collections.Generic.IReadOnlyList<GWGUI.Emulation.Apple.Common.Contracts.CoreOption>, System.Collections.Generic.IReadOnlyList<GWGUI.Emulation.Apple.Common.Contracts.CoreOption>, System.Func<GWGUI.Emulation.Apple.Common.Contracts.CoreOption, string>, System.Func<GWGUI.Emulation.Apple.Common.Contracts.CoreOption, GWGUI.Emulation.Apple.Common.Contracts.CoreOption, GWGUI.Emulation.Apple.Common.Contracts.CoreOption>)",
+            "line": 26
+          }
+        ],
+        "decision": "shared SDK target verified; argument adapters still require review"
+      },
+      {
+        "hash": "8F534F4150DDB02AD5C73BA430871EF0AB983F4166AB51757AFFB06535907A51",
+        "method": "CopyMemoryMap",
+        "tokens": 58,
+        "targets": [
+          {
+            "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Functions/RuntimeFunctions.Environment.cs",
+            "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.CopyMemoryMap<GWGUI.Emulation.Coleco.Emulators.Common.Interop.Contracts.MemoryDescriptor>(nint, int, System.Func<ulong, nint, nuint, nuint, nuint, nuint, nuint, string?, GWGUI.Emulation.Coleco.Emulators.Common.Interop.Contracts.MemoryDescriptor>)",
+            "line": 20
+          },
+          {
+            "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Functions/RuntimeFunctions.Environment.cs",
+            "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.CopyMemoryMap<GWGUI.Emulation.Acorn.Emulators.Common.Interop.Contracts.MemoryDescriptor>(nint, int, System.Func<ulong, nint, nuint, nuint, nuint, nuint, nuint, string?, GWGUI.Emulation.Acorn.Emulators.Common.Interop.Contracts.MemoryDescriptor>)",
+            "line": 20
+          },
+          {
+            "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Functions/RuntimeFunctions.Environment.cs",
+            "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.CopyMemoryMap<GWGUI.Emulation.Philips.Emulators.Common.Interop.Contracts.MemoryDescriptor>(nint, int, System.Func<ulong, nint, nuint, nuint, nuint, nuint, nuint, string?, GWGUI.Emulation.Philips.Emulators.Common.Interop.Contracts.MemoryDescriptor>)",
+            "line": 20
+          },
+          {
+            "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Functions/RuntimeFunctions.Environment.cs",
+            "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.CopyMemoryMap<GWGUI.Emulation.Mattel.Emulators.Common.Interop.Contracts.MemoryDescriptor>(nint, int, System.Func<ulong, nint, nuint, nuint, nuint, nuint, nuint, string?, GWGUI.Emulation.Mattel.Emulators.Common.Interop.Contracts.MemoryDescriptor>)",
+            "line": 20
+          },
+          {
+            "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Functions/RuntimeFunctions.Environment.cs",
+            "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.CopyMemoryMap<GWGUI.Emulation.Bandai.Emulators.Common.Interop.Contracts.MemoryDescriptor>(nint, int, System.Func<ulong, nint, nuint, nuint, nuint, nuint, nuint, string?, GWGUI.Emulation.Bandai.Emulators.Common.Interop.Contracts.MemoryDescriptor>)",
+            "line": 20
+          },
+          {
+            "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Functions/RuntimeFunctions.Environment.cs",
+            "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.CopyMemoryMap<GWGUI.Emulation.Fairchild.Emulators.Common.Interop.Contracts.MemoryDescriptor>(nint, int, System.Func<ulong, nint, nuint, nuint, nuint, nuint, nuint, string?, GWGUI.Emulation.Fairchild.Emulators.Common.Interop.Contracts.MemoryDescriptor>)",
+            "line": 20
+          },
+          {
+            "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Functions/RuntimeFunctions.Environment.cs",
+            "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.CopyMemoryMap<GWGUI.Emulation.Sharp.Emulators.Common.Interop.Contracts.MemoryDescriptor>(nint, int, System.Func<ulong, nint, nuint, nuint, nuint, nuint, nuint, string?, GWGUI.Emulation.Sharp.Emulators.Common.Interop.Contracts.MemoryDescriptor>)",
+            "line": 17
+          },
+          {
+            "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Functions/RuntimeFunctions.Environment.cs",
+            "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.CopyMemoryMap<GWGUI.Emulation.Atari.Emulators.Common.Interop.Contracts.MemoryDescriptor>(nint, int, System.Func<ulong, nint, nuint, nuint, nuint, nuint, nuint, string?, GWGUI.Emulation.Atari.Emulators.Common.Interop.Contracts.MemoryDescriptor>)",
+            "line": 17
+          },
+          {
+            "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Functions/RuntimeFunctions.Environment.cs",
+            "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.CopyMemoryMap<GWGUI.Emulation.Epoch.Emulators.Common.Interop.Contracts.MemoryDescriptor>(nint, int, System.Func<ulong, nint, nuint, nuint, nuint, nuint, nuint, string?, GWGUI.Emulation.Epoch.Emulators.Common.Interop.Contracts.MemoryDescriptor>)",
+            "line": 20
+          },
+          {
+            "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Functions/RuntimeFunctions.Environment.cs",
+            "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.CopyMemoryMap<GWGUI.Emulation.Snk.Emulators.Common.Interop.Contracts.MemoryDescriptor>(nint, int, System.Func<ulong, nint, nuint, nuint, nuint, nuint, nuint, string?, GWGUI.Emulation.Snk.Emulators.Common.Interop.Contracts.MemoryDescriptor>)",
+            "line": 17
+          },
+          {
+            "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Functions/RuntimeFunctions.Environment.cs",
+            "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.CopyMemoryMap<GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Contracts.MemoryDescriptor>(nint, int, System.Func<ulong, nint, nuint, nuint, nuint, nuint, nuint, string?, GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Contracts.MemoryDescriptor>)",
+            "line": 17
+          },
+          {
+            "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Functions/RuntimeFunctions.Environment.cs",
+            "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.CopyMemoryMap<GWGUI.Emulation.Apple.Emulators.Common.Interop.Contracts.MemoryDescriptor>(nint, int, System.Func<ulong, nint, nuint, nuint, nuint, nuint, nuint, string?, GWGUI.Emulation.Apple.Emulators.Common.Interop.Contracts.MemoryDescriptor>)",
+            "line": 21
+          }
+        ],
+        "decision": "shared SDK target verified; argument adapters still require review"
+      },
+      {
+        "hash": "91542207321A8287B4E9060EA27C385DAD11BE031F7A7E3B3C4EAB4D9ED4BC88",
+        "method": "CopyVersionTwoDefinitions",
+        "tokens": 65,
+        "targets": [
+          {
+            "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Functions/CoreFunctions.Options.cs",
+            "target": "GWGUI.Emulation.Functions.EmulationCoreOptionFunctions.CopyVersionTwoDefinitions<GWGUI.Emulation.Coleco.Common.Contracts.CoreOption, GWGUI.Emulation.Coleco.Common.Contracts.CoreOptionValue, GWGUI.Emulation.Coleco.Common.Contracts.CoreOptionCategory>(nint, out System.Collections.Generic.IReadOnlyList<GWGUI.Emulation.Coleco.Common.Contracts.CoreOptionCategory>, GWGUI.Emulation.Functions.EmulationNativeOptionFactory<GWGUI.Emulation.Coleco.Common.Contracts.CoreOption, GWGUI.Emulation.Coleco.Common.Contracts.CoreOptionValue>, System.Func<string, string, GWGUI.Emulation.Coleco.Common.Contracts.CoreOptionValue>, System.Func<GWGUI.Emulation.Coleco.Common.Contracts.CoreOptionValue, string>, System.Func<string, string, string?, GWGUI.Emulation.Coleco.Common.Contracts.CoreOptionCategory>, System.Func<GWGUI.Emulation.Coleco.Common.Contracts.CoreOptionCategory, string>)",
+            "line": 17
+          },
+          {
+            "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Functions/CoreFunctions.Options.cs",
+            "target": "GWGUI.Emulation.Functions.EmulationCoreOptionFunctions.CopyVersionTwoDefinitions<GWGUI.Emulation.Acorn.Common.Contracts.CoreOption, GWGUI.Emulation.Acorn.Common.Contracts.CoreOptionValue, GWGUI.Emulation.Acorn.Common.Contracts.CoreOptionCategory>(nint, out System.Collections.Generic.IReadOnlyList<GWGUI.Emulation.Acorn.Common.Contracts.CoreOptionCategory>, GWGUI.Emulation.Functions.EmulationNativeOptionFactory<GWGUI.Emulation.Acorn.Common.Contracts.CoreOption, GWGUI.Emulation.Acorn.Common.Contracts.CoreOptionValue>, System.Func<string, string, GWGUI.Emulation.Acorn.Common.Contracts.CoreOptionValue>, System.Func<GWGUI.Emulation.Acorn.Common.Contracts.CoreOptionValue, string>, System.Func<string, string, string?, GWGUI.Emulation.Acorn.Common.Contracts.CoreOptionCategory>, System.Func<GWGUI.Emulation.Acorn.Common.Contracts.CoreOptionCategory, string>)",
+            "line": 17
+          },
+          {
+            "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Functions/CoreFunctions.Options.cs",
+            "target": "GWGUI.Emulation.Functions.EmulationCoreOptionFunctions.CopyVersionTwoDefinitions<GWGUI.Emulation.Philips.Common.Contracts.CoreOption, GWGUI.Emulation.Philips.Common.Contracts.CoreOptionValue, GWGUI.Emulation.Philips.Common.Contracts.CoreOptionCategory>(nint, out System.Collections.Generic.IReadOnlyList<GWGUI.Emulation.Philips.Common.Contracts.CoreOptionCategory>, GWGUI.Emulation.Functions.EmulationNativeOptionFactory<GWGUI.Emulation.Philips.Common.Contracts.CoreOption, GWGUI.Emulation.Philips.Common.Contracts.CoreOptionValue>, System.Func<string, string, GWGUI.Emulation.Philips.Common.Contracts.CoreOptionValue>, System.Func<GWGUI.Emulation.Philips.Common.Contracts.CoreOptionValue, string>, System.Func<string, string, string?, GWGUI.Emulation.Philips.Common.Contracts.CoreOptionCategory>, System.Func<GWGUI.Emulation.Philips.Common.Contracts.CoreOptionCategory, string>)",
+            "line": 17
+          },
+          {
+            "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Functions/CoreFunctions.Options.cs",
+            "target": "GWGUI.Emulation.Functions.EmulationCoreOptionFunctions.CopyVersionTwoDefinitions<GWGUI.Emulation.Mattel.Common.Contracts.CoreOption, GWGUI.Emulation.Mattel.Common.Contracts.CoreOptionValue, GWGUI.Emulation.Mattel.Common.Contracts.CoreOptionCategory>(nint, out System.Collections.Generic.IReadOnlyList<GWGUI.Emulation.Mattel.Common.Contracts.CoreOptionCategory>, GWGUI.Emulation.Functions.EmulationNativeOptionFactory<GWGUI.Emulation.Mattel.Common.Contracts.CoreOption, GWGUI.Emulation.Mattel.Common.Contracts.CoreOptionValue>, System.Func<string, string, GWGUI.Emulation.Mattel.Common.Contracts.CoreOptionValue>, System.Func<GWGUI.Emulation.Mattel.Common.Contracts.CoreOptionValue, string>, System.Func<string, string, string?, GWGUI.Emulation.Mattel.Common.Contracts.CoreOptionCategory>, System.Func<GWGUI.Emulation.Mattel.Common.Contracts.CoreOptionCategory, string>)",
+            "line": 17
+          },
+          {
+            "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Functions/CoreFunctions.Options.cs",
+            "target": "GWGUI.Emulation.Functions.EmulationCoreOptionFunctions.CopyVersionTwoDefinitions<GWGUI.Emulation.Bandai.Common.Contracts.CoreOption, GWGUI.Emulation.Bandai.Common.Contracts.CoreOptionValue, GWGUI.Emulation.Bandai.Common.Contracts.CoreOptionCategory>(nint, out System.Collections.Generic.IReadOnlyList<GWGUI.Emulation.Bandai.Common.Contracts.CoreOptionCategory>, GWGUI.Emulation.Functions.EmulationNativeOptionFactory<GWGUI.Emulation.Bandai.Common.Contracts.CoreOption, GWGUI.Emulation.Bandai.Common.Contracts.CoreOptionValue>, System.Func<string, string, GWGUI.Emulation.Bandai.Common.Contracts.CoreOptionValue>, System.Func<GWGUI.Emulation.Bandai.Common.Contracts.CoreOptionValue, string>, System.Func<string, string, string?, GWGUI.Emulation.Bandai.Common.Contracts.CoreOptionCategory>, System.Func<GWGUI.Emulation.Bandai.Common.Contracts.CoreOptionCategory, string>)",
+            "line": 17
+          },
+          {
+            "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Functions/CoreFunctions.Options.cs",
+            "target": "GWGUI.Emulation.Functions.EmulationCoreOptionFunctions.CopyVersionTwoDefinitions<GWGUI.Emulation.Fairchild.Common.Contracts.CoreOption, GWGUI.Emulation.Fairchild.Common.Contracts.CoreOptionValue, GWGUI.Emulation.Fairchild.Common.Contracts.CoreOptionCategory>(nint, out System.Collections.Generic.IReadOnlyList<GWGUI.Emulation.Fairchild.Common.Contracts.CoreOptionCategory>, GWGUI.Emulation.Functions.EmulationNativeOptionFactory<GWGUI.Emulation.Fairchild.Common.Contracts.CoreOption, GWGUI.Emulation.Fairchild.Common.Contracts.CoreOptionValue>, System.Func<string, string, GWGUI.Emulation.Fairchild.Common.Contracts.CoreOptionValue>, System.Func<GWGUI.Emulation.Fairchild.Common.Contracts.CoreOptionValue, string>, System.Func<string, string, string?, GWGUI.Emulation.Fairchild.Common.Contracts.CoreOptionCategory>, System.Func<GWGUI.Emulation.Fairchild.Common.Contracts.CoreOptionCategory, string>)",
+            "line": 17
+          },
+          {
+            "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Functions/CoreFunctions.Options.cs",
+            "target": "GWGUI.Emulation.Functions.EmulationCoreOptionFunctions.CopyVersionTwoDefinitions<GWGUI.Emulation.Sharp.Common.Contracts.CoreOption, GWGUI.Emulation.Sharp.Common.Contracts.CoreOptionValue, GWGUI.Emulation.Sharp.Common.Contracts.CoreOptionCategory>(nint, out System.Collections.Generic.IReadOnlyList<GWGUI.Emulation.Sharp.Common.Contracts.CoreOptionCategory>, GWGUI.Emulation.Functions.EmulationNativeOptionFactory<GWGUI.Emulation.Sharp.Common.Contracts.CoreOption, GWGUI.Emulation.Sharp.Common.Contracts.CoreOptionValue>, System.Func<string, string, GWGUI.Emulation.Sharp.Common.Contracts.CoreOptionValue>, System.Func<GWGUI.Emulation.Sharp.Common.Contracts.CoreOptionValue, string>, System.Func<string, string, string?, GWGUI.Emulation.Sharp.Common.Contracts.CoreOptionCategory>, System.Func<GWGUI.Emulation.Sharp.Common.Contracts.CoreOptionCategory, string>)",
+            "line": 17
+          },
+          {
+            "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Functions/CoreFunctions.Options.cs",
+            "target": "GWGUI.Emulation.Functions.EmulationCoreOptionFunctions.CopyVersionTwoDefinitions<GWGUI.Emulation.Atari.Common.Contracts.CoreOption, GWGUI.Emulation.Atari.Common.Contracts.CoreOptionValue, GWGUI.Emulation.Atari.Emulators.Common.Contracts.CoreOptionCategory>(nint, out System.Collections.Generic.IReadOnlyList<GWGUI.Emulation.Atari.Emulators.Common.Contracts.CoreOptionCategory>, GWGUI.Emulation.Functions.EmulationNativeOptionFactory<GWGUI.Emulation.Atari.Common.Contracts.CoreOption, GWGUI.Emulation.Atari.Common.Contracts.CoreOptionValue>, System.Func<string, string, GWGUI.Emulation.Atari.Common.Contracts.CoreOptionValue>, System.Func<GWGUI.Emulation.Atari.Common.Contracts.CoreOptionValue, string>, System.Func<string, string, string?, GWGUI.Emulation.Atari.Emulators.Common.Contracts.CoreOptionCategory>, System.Func<GWGUI.Emulation.Atari.Emulators.Common.Contracts.CoreOptionCategory, string>)",
+            "line": 17
+          },
+          {
+            "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Functions/CoreFunctions.Options.cs",
+            "target": "GWGUI.Emulation.Functions.EmulationCoreOptionFunctions.CopyVersionTwoDefinitions<GWGUI.Emulation.Snk.Common.Contracts.CoreOption, GWGUI.Emulation.Snk.Common.Contracts.CoreOptionValue, GWGUI.Emulation.Snk.Common.Contracts.CoreOptionCategory>(nint, out System.Collections.Generic.IReadOnlyList<GWGUI.Emulation.Snk.Common.Contracts.CoreOptionCategory>, GWGUI.Emulation.Functions.EmulationNativeOptionFactory<GWGUI.Emulation.Snk.Common.Contracts.CoreOption, GWGUI.Emulation.Snk.Common.Contracts.CoreOptionValue>, System.Func<string, string, GWGUI.Emulation.Snk.Common.Contracts.CoreOptionValue>, System.Func<GWGUI.Emulation.Snk.Common.Contracts.CoreOptionValue, string>, System.Func<string, string, string?, GWGUI.Emulation.Snk.Common.Contracts.CoreOptionCategory>, System.Func<GWGUI.Emulation.Snk.Common.Contracts.CoreOptionCategory, string>)",
+            "line": 17
+          },
+          {
+            "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Functions/CoreFunctions.Options.cs",
+            "target": "GWGUI.Emulation.Functions.EmulationCoreOptionFunctions.CopyVersionTwoDefinitions<GWGUI.Emulation.Epoch.Common.Contracts.CoreOption, GWGUI.Emulation.Epoch.Common.Contracts.CoreOptionValue, GWGUI.Emulation.Epoch.Common.Contracts.CoreOptionCategory>(nint, out System.Collections.Generic.IReadOnlyList<GWGUI.Emulation.Epoch.Common.Contracts.CoreOptionCategory>, GWGUI.Emulation.Functions.EmulationNativeOptionFactory<GWGUI.Emulation.Epoch.Common.Contracts.CoreOption, GWGUI.Emulation.Epoch.Common.Contracts.CoreOptionValue>, System.Func<string, string, GWGUI.Emulation.Epoch.Common.Contracts.CoreOptionValue>, System.Func<GWGUI.Emulation.Epoch.Common.Contracts.CoreOptionValue, string>, System.Func<string, string, string?, GWGUI.Emulation.Epoch.Common.Contracts.CoreOptionCategory>, System.Func<GWGUI.Emulation.Epoch.Common.Contracts.CoreOptionCategory, string>)",
+            "line": 17
+          },
+          {
+            "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Functions/CoreFunctions.Options.cs",
+            "target": "GWGUI.Emulation.Functions.EmulationCoreOptionFunctions.CopyVersionTwoDefinitions<GWGUI.Emulation.Sinclair.Common.Contracts.CoreOption, GWGUI.Emulation.Sinclair.Common.Contracts.CoreOptionValue, GWGUI.Emulation.Sinclair.Common.Contracts.CoreOptionCategory>(nint, out System.Collections.Generic.IReadOnlyList<GWGUI.Emulation.Sinclair.Common.Contracts.CoreOptionCategory>, GWGUI.Emulation.Functions.EmulationNativeOptionFactory<GWGUI.Emulation.Sinclair.Common.Contracts.CoreOption, GWGUI.Emulation.Sinclair.Common.Contracts.CoreOptionValue>, System.Func<string, string, GWGUI.Emulation.Sinclair.Common.Contracts.CoreOptionValue>, System.Func<GWGUI.Emulation.Sinclair.Common.Contracts.CoreOptionValue, string>, System.Func<string, string, string?, GWGUI.Emulation.Sinclair.Common.Contracts.CoreOptionCategory>, System.Func<GWGUI.Emulation.Sinclair.Common.Contracts.CoreOptionCategory, string>)",
+            "line": 17
+          },
+          {
+            "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Functions/CoreFunctions.Options.cs",
+            "target": "GWGUI.Emulation.Functions.EmulationCoreOptionFunctions.CopyVersionTwoDefinitions<GWGUI.Emulation.Apple.Common.Contracts.CoreOption, GWGUI.Emulation.Apple.Common.Contracts.CoreOptionValue, GWGUI.Emulation.Apple.Emulators.Common.Contracts.CoreOptionCategory>(nint, out System.Collections.Generic.IReadOnlyList<GWGUI.Emulation.Apple.Emulators.Common.Contracts.CoreOptionCategory>, GWGUI.Emulation.Functions.EmulationNativeOptionFactory<GWGUI.Emulation.Apple.Common.Contracts.CoreOption, GWGUI.Emulation.Apple.Common.Contracts.CoreOptionValue>, System.Func<string, string, GWGUI.Emulation.Apple.Common.Contracts.CoreOptionValue>, System.Func<GWGUI.Emulation.Apple.Common.Contracts.CoreOptionValue, string>, System.Func<string, string, string?, GWGUI.Emulation.Apple.Emulators.Common.Contracts.CoreOptionCategory>, System.Func<GWGUI.Emulation.Apple.Emulators.Common.Contracts.CoreOptionCategory, string>)",
+            "line": 19
+          }
+        ],
+        "decision": "shared SDK target verified; argument adapters still require review"
+      },
+      {
+        "hash": "92C2A03BA29B93A013CA9BAC0BA9C538EBA528203059AEDAA0137650C1C7D8A9",
+        "method": "CopyLegacyDefinitions",
+        "tokens": 35,
+        "targets": [
+          {
+            "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Functions/CoreFunctions.Options.cs",
+            "target": "GWGUI.Emulation.Functions.EmulationCoreOptionFunctions.CopyLegacyDefinitions<GWGUI.Emulation.Coleco.Common.Contracts.CoreOption, GWGUI.Emulation.Coleco.Common.Contracts.CoreOptionValue>(nint, GWGUI.Emulation.Functions.EmulationNativeOptionFactory<GWGUI.Emulation.Coleco.Common.Contracts.CoreOption, GWGUI.Emulation.Coleco.Common.Contracts.CoreOptionValue>, System.Func<string, string, GWGUI.Emulation.Coleco.Common.Contracts.CoreOptionValue>, System.Func<GWGUI.Emulation.Coleco.Common.Contracts.CoreOptionValue, string>)",
+            "line": 9
+          },
+          {
+            "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Functions/CoreFunctions.Options.cs",
+            "target": "GWGUI.Emulation.Functions.EmulationCoreOptionFunctions.CopyLegacyDefinitions<GWGUI.Emulation.Acorn.Common.Contracts.CoreOption, GWGUI.Emulation.Acorn.Common.Contracts.CoreOptionValue>(nint, GWGUI.Emulation.Functions.EmulationNativeOptionFactory<GWGUI.Emulation.Acorn.Common.Contracts.CoreOption, GWGUI.Emulation.Acorn.Common.Contracts.CoreOptionValue>, System.Func<string, string, GWGUI.Emulation.Acorn.Common.Contracts.CoreOptionValue>, System.Func<GWGUI.Emulation.Acorn.Common.Contracts.CoreOptionValue, string>)",
+            "line": 9
+          },
+          {
+            "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Functions/CoreFunctions.Options.cs",
+            "target": "GWGUI.Emulation.Functions.EmulationCoreOptionFunctions.CopyLegacyDefinitions<GWGUI.Emulation.Philips.Common.Contracts.CoreOption, GWGUI.Emulation.Philips.Common.Contracts.CoreOptionValue>(nint, GWGUI.Emulation.Functions.EmulationNativeOptionFactory<GWGUI.Emulation.Philips.Common.Contracts.CoreOption, GWGUI.Emulation.Philips.Common.Contracts.CoreOptionValue>, System.Func<string, string, GWGUI.Emulation.Philips.Common.Contracts.CoreOptionValue>, System.Func<GWGUI.Emulation.Philips.Common.Contracts.CoreOptionValue, string>)",
+            "line": 9
+          },
+          {
+            "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Functions/CoreFunctions.Options.cs",
+            "target": "GWGUI.Emulation.Functions.EmulationCoreOptionFunctions.CopyLegacyDefinitions<GWGUI.Emulation.Mattel.Common.Contracts.CoreOption, GWGUI.Emulation.Mattel.Common.Contracts.CoreOptionValue>(nint, GWGUI.Emulation.Functions.EmulationNativeOptionFactory<GWGUI.Emulation.Mattel.Common.Contracts.CoreOption, GWGUI.Emulation.Mattel.Common.Contracts.CoreOptionValue>, System.Func<string, string, GWGUI.Emulation.Mattel.Common.Contracts.CoreOptionValue>, System.Func<GWGUI.Emulation.Mattel.Common.Contracts.CoreOptionValue, string>)",
+            "line": 9
+          },
+          {
+            "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Functions/CoreFunctions.Options.cs",
+            "target": "GWGUI.Emulation.Functions.EmulationCoreOptionFunctions.CopyLegacyDefinitions<GWGUI.Emulation.Bandai.Common.Contracts.CoreOption, GWGUI.Emulation.Bandai.Common.Contracts.CoreOptionValue>(nint, GWGUI.Emulation.Functions.EmulationNativeOptionFactory<GWGUI.Emulation.Bandai.Common.Contracts.CoreOption, GWGUI.Emulation.Bandai.Common.Contracts.CoreOptionValue>, System.Func<string, string, GWGUI.Emulation.Bandai.Common.Contracts.CoreOptionValue>, System.Func<GWGUI.Emulation.Bandai.Common.Contracts.CoreOptionValue, string>)",
+            "line": 9
+          },
+          {
+            "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Functions/CoreFunctions.Options.cs",
+            "target": "GWGUI.Emulation.Functions.EmulationCoreOptionFunctions.CopyLegacyDefinitions<GWGUI.Emulation.Fairchild.Common.Contracts.CoreOption, GWGUI.Emulation.Fairchild.Common.Contracts.CoreOptionValue>(nint, GWGUI.Emulation.Functions.EmulationNativeOptionFactory<GWGUI.Emulation.Fairchild.Common.Contracts.CoreOption, GWGUI.Emulation.Fairchild.Common.Contracts.CoreOptionValue>, System.Func<string, string, GWGUI.Emulation.Fairchild.Common.Contracts.CoreOptionValue>, System.Func<GWGUI.Emulation.Fairchild.Common.Contracts.CoreOptionValue, string>)",
+            "line": 9
+          },
+          {
+            "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Functions/CoreFunctions.Options.cs",
+            "target": "GWGUI.Emulation.Functions.EmulationCoreOptionFunctions.CopyLegacyDefinitions<GWGUI.Emulation.Sharp.Common.Contracts.CoreOption, GWGUI.Emulation.Sharp.Common.Contracts.CoreOptionValue>(nint, GWGUI.Emulation.Functions.EmulationNativeOptionFactory<GWGUI.Emulation.Sharp.Common.Contracts.CoreOption, GWGUI.Emulation.Sharp.Common.Contracts.CoreOptionValue>, System.Func<string, string, GWGUI.Emulation.Sharp.Common.Contracts.CoreOptionValue>, System.Func<GWGUI.Emulation.Sharp.Common.Contracts.CoreOptionValue, string>)",
+            "line": 9
+          },
+          {
+            "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Functions/CoreFunctions.Options.cs",
+            "target": "GWGUI.Emulation.Functions.EmulationCoreOptionFunctions.CopyLegacyDefinitions<GWGUI.Emulation.Atari.Common.Contracts.CoreOption, GWGUI.Emulation.Atari.Common.Contracts.CoreOptionValue>(nint, GWGUI.Emulation.Functions.EmulationNativeOptionFactory<GWGUI.Emulation.Atari.Common.Contracts.CoreOption, GWGUI.Emulation.Atari.Common.Contracts.CoreOptionValue>, System.Func<string, string, GWGUI.Emulation.Atari.Common.Contracts.CoreOptionValue>, System.Func<GWGUI.Emulation.Atari.Common.Contracts.CoreOptionValue, string>)",
+            "line": 9
+          },
+          {
+            "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Functions/CoreFunctions.Options.cs",
+            "target": "GWGUI.Emulation.Functions.EmulationCoreOptionFunctions.CopyLegacyDefinitions<GWGUI.Emulation.Snk.Common.Contracts.CoreOption, GWGUI.Emulation.Snk.Common.Contracts.CoreOptionValue>(nint, GWGUI.Emulation.Functions.EmulationNativeOptionFactory<GWGUI.Emulation.Snk.Common.Contracts.CoreOption, GWGUI.Emulation.Snk.Common.Contracts.CoreOptionValue>, System.Func<string, string, GWGUI.Emulation.Snk.Common.Contracts.CoreOptionValue>, System.Func<GWGUI.Emulation.Snk.Common.Contracts.CoreOptionValue, string>)",
+            "line": 9
+          },
+          {
+            "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Functions/CoreFunctions.Options.cs",
+            "target": "GWGUI.Emulation.Functions.EmulationCoreOptionFunctions.CopyLegacyDefinitions<GWGUI.Emulation.Epoch.Common.Contracts.CoreOption, GWGUI.Emulation.Epoch.Common.Contracts.CoreOptionValue>(nint, GWGUI.Emulation.Functions.EmulationNativeOptionFactory<GWGUI.Emulation.Epoch.Common.Contracts.CoreOption, GWGUI.Emulation.Epoch.Common.Contracts.CoreOptionValue>, System.Func<string, string, GWGUI.Emulation.Epoch.Common.Contracts.CoreOptionValue>, System.Func<GWGUI.Emulation.Epoch.Common.Contracts.CoreOptionValue, string>)",
+            "line": 9
+          },
+          {
+            "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Functions/CoreFunctions.Options.cs",
+            "target": "GWGUI.Emulation.Functions.EmulationCoreOptionFunctions.CopyLegacyDefinitions<GWGUI.Emulation.Sinclair.Common.Contracts.CoreOption, GWGUI.Emulation.Sinclair.Common.Contracts.CoreOptionValue>(nint, GWGUI.Emulation.Functions.EmulationNativeOptionFactory<GWGUI.Emulation.Sinclair.Common.Contracts.CoreOption, GWGUI.Emulation.Sinclair.Common.Contracts.CoreOptionValue>, System.Func<string, string, GWGUI.Emulation.Sinclair.Common.Contracts.CoreOptionValue>, System.Func<GWGUI.Emulation.Sinclair.Common.Contracts.CoreOptionValue, string>)",
+            "line": 9
+          },
+          {
+            "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Functions/CoreFunctions.Options.cs",
+            "target": "GWGUI.Emulation.Functions.EmulationCoreOptionFunctions.CopyLegacyDefinitions<GWGUI.Emulation.Apple.Common.Contracts.CoreOption, GWGUI.Emulation.Apple.Common.Contracts.CoreOptionValue>(nint, GWGUI.Emulation.Functions.EmulationNativeOptionFactory<GWGUI.Emulation.Apple.Common.Contracts.CoreOption, GWGUI.Emulation.Apple.Common.Contracts.CoreOptionValue>, System.Func<string, string, GWGUI.Emulation.Apple.Common.Contracts.CoreOptionValue>, System.Func<GWGUI.Emulation.Apple.Common.Contracts.CoreOptionValue, string>)",
+            "line": 11
+          }
+        ],
+        "decision": "shared SDK target verified; argument adapters still require review"
+      },
+      {
+        "hash": "9B222E7E59682B33F1C02D855482E5189B6DA9422D0CFE5F419D3B81FE4BBDFD",
+        "method": "CopyControllerPorts",
+        "tokens": 48,
+        "targets": [
+          {
+            "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Functions/RuntimeFunctions.Environment.cs",
+            "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.CopyControllerPorts<GWGUI.Emulation.Coleco.Emulators.Common.Contracts.ControllerPort, GWGUI.Emulation.Coleco.Emulators.Common.Contracts.ControllerDevice>(nint, int, int, System.Func<string, uint, GWGUI.Emulation.Coleco.Emulators.Common.Contracts.ControllerDevice>, System.Func<System.Collections.Generic.IReadOnlyList<GWGUI.Emulation.Coleco.Emulators.Common.Contracts.ControllerDevice>, GWGUI.Emulation.Coleco.Emulators.Common.Contracts.ControllerPort>)",
+            "line": 17
+          },
+          {
+            "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Functions/RuntimeFunctions.Environment.cs",
+            "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.CopyControllerPorts<GWGUI.Emulation.Acorn.Emulators.Common.Contracts.ControllerPort, GWGUI.Emulation.Acorn.Emulators.Common.Contracts.ControllerDevice>(nint, int, int, System.Func<string, uint, GWGUI.Emulation.Acorn.Emulators.Common.Contracts.ControllerDevice>, System.Func<System.Collections.Generic.IReadOnlyList<GWGUI.Emulation.Acorn.Emulators.Common.Contracts.ControllerDevice>, GWGUI.Emulation.Acorn.Emulators.Common.Contracts.ControllerPort>)",
+            "line": 17
+          },
+          {
+            "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Functions/RuntimeFunctions.Environment.cs",
+            "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.CopyControllerPorts<GWGUI.Emulation.Philips.Emulators.Common.Contracts.ControllerPort, GWGUI.Emulation.Philips.Emulators.Common.Contracts.ControllerDevice>(nint, int, int, System.Func<string, uint, GWGUI.Emulation.Philips.Emulators.Common.Contracts.ControllerDevice>, System.Func<System.Collections.Generic.IReadOnlyList<GWGUI.Emulation.Philips.Emulators.Common.Contracts.ControllerDevice>, GWGUI.Emulation.Philips.Emulators.Common.Contracts.ControllerPort>)",
+            "line": 17
+          },
+          {
+            "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Functions/RuntimeFunctions.Environment.cs",
+            "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.CopyControllerPorts<GWGUI.Emulation.Mattel.Emulators.Common.Contracts.ControllerPort, GWGUI.Emulation.Mattel.Emulators.Common.Contracts.ControllerDevice>(nint, int, int, System.Func<string, uint, GWGUI.Emulation.Mattel.Emulators.Common.Contracts.ControllerDevice>, System.Func<System.Collections.Generic.IReadOnlyList<GWGUI.Emulation.Mattel.Emulators.Common.Contracts.ControllerDevice>, GWGUI.Emulation.Mattel.Emulators.Common.Contracts.ControllerPort>)",
+            "line": 17
+          },
+          {
+            "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Functions/RuntimeFunctions.Environment.cs",
+            "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.CopyControllerPorts<GWGUI.Emulation.Bandai.Emulators.Common.Contracts.ControllerPort, GWGUI.Emulation.Bandai.Emulators.Common.Contracts.ControllerDevice>(nint, int, int, System.Func<string, uint, GWGUI.Emulation.Bandai.Emulators.Common.Contracts.ControllerDevice>, System.Func<System.Collections.Generic.IReadOnlyList<GWGUI.Emulation.Bandai.Emulators.Common.Contracts.ControllerDevice>, GWGUI.Emulation.Bandai.Emulators.Common.Contracts.ControllerPort>)",
+            "line": 17
+          },
+          {
+            "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Functions/RuntimeFunctions.Environment.cs",
+            "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.CopyControllerPorts<GWGUI.Emulation.Fairchild.Emulators.Common.Contracts.ControllerPort, GWGUI.Emulation.Fairchild.Emulators.Common.Contracts.ControllerDevice>(nint, int, int, System.Func<string, uint, GWGUI.Emulation.Fairchild.Emulators.Common.Contracts.ControllerDevice>, System.Func<System.Collections.Generic.IReadOnlyList<GWGUI.Emulation.Fairchild.Emulators.Common.Contracts.ControllerDevice>, GWGUI.Emulation.Fairchild.Emulators.Common.Contracts.ControllerPort>)",
+            "line": 17
+          },
+          {
+            "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Functions/RuntimeFunctions.Environment.cs",
+            "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.CopyControllerPorts<GWGUI.Emulation.Sharp.Emulators.Common.Interop.Contracts.ControllerPort, GWGUI.Emulation.Sharp.Emulators.Common.Interop.Contracts.ControllerDevice>(nint, int, int, System.Func<string, uint, GWGUI.Emulation.Sharp.Emulators.Common.Interop.Contracts.ControllerDevice>, System.Func<System.Collections.Generic.IReadOnlyList<GWGUI.Emulation.Sharp.Emulators.Common.Interop.Contracts.ControllerDevice>, GWGUI.Emulation.Sharp.Emulators.Common.Interop.Contracts.ControllerPort>)",
+            "line": 14
+          },
+          {
+            "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Functions/RuntimeFunctions.Environment.cs",
+            "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.CopyControllerPorts<GWGUI.Emulation.Atari.Emulators.Common.Contracts.ControllerPort, GWGUI.Emulation.Atari.Emulators.Common.Contracts.ControllerDevice>(nint, int, int, System.Func<string, uint, GWGUI.Emulation.Atari.Emulators.Common.Contracts.ControllerDevice>, System.Func<System.Collections.Generic.IReadOnlyList<GWGUI.Emulation.Atari.Emulators.Common.Contracts.ControllerDevice>, GWGUI.Emulation.Atari.Emulators.Common.Contracts.ControllerPort>)",
+            "line": 14
+          },
+          {
+            "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Functions/RuntimeFunctions.Environment.cs",
+            "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.CopyControllerPorts<GWGUI.Emulation.Epoch.Emulators.Common.Contracts.ControllerPort, GWGUI.Emulation.Epoch.Emulators.Common.Contracts.ControllerDevice>(nint, int, int, System.Func<string, uint, GWGUI.Emulation.Epoch.Emulators.Common.Contracts.ControllerDevice>, System.Func<System.Collections.Generic.IReadOnlyList<GWGUI.Emulation.Epoch.Emulators.Common.Contracts.ControllerDevice>, GWGUI.Emulation.Epoch.Emulators.Common.Contracts.ControllerPort>)",
+            "line": 17
+          },
+          {
+            "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Functions/RuntimeFunctions.Environment.cs",
+            "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.CopyControllerPorts<GWGUI.Emulation.Snk.Emulators.Common.Interop.Contracts.ControllerPort, GWGUI.Emulation.Snk.Emulators.Common.Interop.Contracts.ControllerDevice>(nint, int, int, System.Func<string, uint, GWGUI.Emulation.Snk.Emulators.Common.Interop.Contracts.ControllerDevice>, System.Func<System.Collections.Generic.IReadOnlyList<GWGUI.Emulation.Snk.Emulators.Common.Interop.Contracts.ControllerDevice>, GWGUI.Emulation.Snk.Emulators.Common.Interop.Contracts.ControllerPort>)",
+            "line": 14
+          },
+          {
+            "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Functions/RuntimeFunctions.Environment.cs",
+            "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.CopyControllerPorts<GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Contracts.ControllerPort, GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Contracts.ControllerDevice>(nint, int, int, System.Func<string, uint, GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Contracts.ControllerDevice>, System.Func<System.Collections.Generic.IReadOnlyList<GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Contracts.ControllerDevice>, GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Contracts.ControllerPort>)",
+            "line": 14
+          },
+          {
+            "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Functions/RuntimeFunctions.Environment.cs",
+            "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.CopyControllerPorts<GWGUI.Emulation.Apple.Emulators.Common.Contracts.ControllerPort, GWGUI.Emulation.Apple.Emulators.Common.Contracts.ControllerDevice>(nint, int, int, System.Func<string, uint, GWGUI.Emulation.Apple.Emulators.Common.Contracts.ControllerDevice>, System.Func<System.Collections.Generic.IReadOnlyList<GWGUI.Emulation.Apple.Emulators.Common.Contracts.ControllerDevice>, GWGUI.Emulation.Apple.Emulators.Common.Contracts.ControllerPort>)",
+            "line": 18
+          }
+        ],
+        "decision": "shared SDK target verified; argument adapters still require review"
+      },
+      {
+        "hash": "ACACE8648B4BB1319B4B1B3CBB2287A977BC9B89DB9BAB241456BC7B2A562141",
+        "method": "CopyLegacyVariables",
+        "tokens": 35,
+        "targets": [
+          {
+            "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Functions/CoreFunctions.Options.cs",
+            "target": "GWGUI.Emulation.Functions.EmulationCoreOptionFunctions.CopyLegacyVariables<GWGUI.Emulation.Coleco.Common.Contracts.CoreOption, GWGUI.Emulation.Coleco.Common.Contracts.CoreOptionValue>(nint, GWGUI.Emulation.Functions.EmulationNativeOptionFactory<GWGUI.Emulation.Coleco.Common.Contracts.CoreOption, GWGUI.Emulation.Coleco.Common.Contracts.CoreOptionValue>, System.Func<string, string, GWGUI.Emulation.Coleco.Common.Contracts.CoreOptionValue>, System.Func<GWGUI.Emulation.Coleco.Common.Contracts.CoreOptionValue, string>)",
+            "line": 13
+          },
+          {
+            "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Functions/CoreFunctions.Options.cs",
+            "target": "GWGUI.Emulation.Functions.EmulationCoreOptionFunctions.CopyLegacyVariables<GWGUI.Emulation.Acorn.Common.Contracts.CoreOption, GWGUI.Emulation.Acorn.Common.Contracts.CoreOptionValue>(nint, GWGUI.Emulation.Functions.EmulationNativeOptionFactory<GWGUI.Emulation.Acorn.Common.Contracts.CoreOption, GWGUI.Emulation.Acorn.Common.Contracts.CoreOptionValue>, System.Func<string, string, GWGUI.Emulation.Acorn.Common.Contracts.CoreOptionValue>, System.Func<GWGUI.Emulation.Acorn.Common.Contracts.CoreOptionValue, string>)",
+            "line": 13
+          },
+          {
+            "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Functions/CoreFunctions.Options.cs",
+            "target": "GWGUI.Emulation.Functions.EmulationCoreOptionFunctions.CopyLegacyVariables<GWGUI.Emulation.Philips.Common.Contracts.CoreOption, GWGUI.Emulation.Philips.Common.Contracts.CoreOptionValue>(nint, GWGUI.Emulation.Functions.EmulationNativeOptionFactory<GWGUI.Emulation.Philips.Common.Contracts.CoreOption, GWGUI.Emulation.Philips.Common.Contracts.CoreOptionValue>, System.Func<string, string, GWGUI.Emulation.Philips.Common.Contracts.CoreOptionValue>, System.Func<GWGUI.Emulation.Philips.Common.Contracts.CoreOptionValue, string>)",
+            "line": 13
+          },
+          {
+            "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Functions/CoreFunctions.Options.cs",
+            "target": "GWGUI.Emulation.Functions.EmulationCoreOptionFunctions.CopyLegacyVariables<GWGUI.Emulation.Mattel.Common.Contracts.CoreOption, GWGUI.Emulation.Mattel.Common.Contracts.CoreOptionValue>(nint, GWGUI.Emulation.Functions.EmulationNativeOptionFactory<GWGUI.Emulation.Mattel.Common.Contracts.CoreOption, GWGUI.Emulation.Mattel.Common.Contracts.CoreOptionValue>, System.Func<string, string, GWGUI.Emulation.Mattel.Common.Contracts.CoreOptionValue>, System.Func<GWGUI.Emulation.Mattel.Common.Contracts.CoreOptionValue, string>)",
+            "line": 13
+          },
+          {
+            "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Functions/CoreFunctions.Options.cs",
+            "target": "GWGUI.Emulation.Functions.EmulationCoreOptionFunctions.CopyLegacyVariables<GWGUI.Emulation.Bandai.Common.Contracts.CoreOption, GWGUI.Emulation.Bandai.Common.Contracts.CoreOptionValue>(nint, GWGUI.Emulation.Functions.EmulationNativeOptionFactory<GWGUI.Emulation.Bandai.Common.Contracts.CoreOption, GWGUI.Emulation.Bandai.Common.Contracts.CoreOptionValue>, System.Func<string, string, GWGUI.Emulation.Bandai.Common.Contracts.CoreOptionValue>, System.Func<GWGUI.Emulation.Bandai.Common.Contracts.CoreOptionValue, string>)",
+            "line": 13
+          },
+          {
+            "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Functions/CoreFunctions.Options.cs",
+            "target": "GWGUI.Emulation.Functions.EmulationCoreOptionFunctions.CopyLegacyVariables<GWGUI.Emulation.Fairchild.Common.Contracts.CoreOption, GWGUI.Emulation.Fairchild.Common.Contracts.CoreOptionValue>(nint, GWGUI.Emulation.Functions.EmulationNativeOptionFactory<GWGUI.Emulation.Fairchild.Common.Contracts.CoreOption, GWGUI.Emulation.Fairchild.Common.Contracts.CoreOptionValue>, System.Func<string, string, GWGUI.Emulation.Fairchild.Common.Contracts.CoreOptionValue>, System.Func<GWGUI.Emulation.Fairchild.Common.Contracts.CoreOptionValue, string>)",
+            "line": 13
+          },
+          {
+            "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Functions/CoreFunctions.Options.cs",
+            "target": "GWGUI.Emulation.Functions.EmulationCoreOptionFunctions.CopyLegacyVariables<GWGUI.Emulation.Sharp.Common.Contracts.CoreOption, GWGUI.Emulation.Sharp.Common.Contracts.CoreOptionValue>(nint, GWGUI.Emulation.Functions.EmulationNativeOptionFactory<GWGUI.Emulation.Sharp.Common.Contracts.CoreOption, GWGUI.Emulation.Sharp.Common.Contracts.CoreOptionValue>, System.Func<string, string, GWGUI.Emulation.Sharp.Common.Contracts.CoreOptionValue>, System.Func<GWGUI.Emulation.Sharp.Common.Contracts.CoreOptionValue, string>)",
+            "line": 13
+          },
+          {
+            "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Functions/CoreFunctions.Options.cs",
+            "target": "GWGUI.Emulation.Functions.EmulationCoreOptionFunctions.CopyLegacyVariables<GWGUI.Emulation.Atari.Common.Contracts.CoreOption, GWGUI.Emulation.Atari.Common.Contracts.CoreOptionValue>(nint, GWGUI.Emulation.Functions.EmulationNativeOptionFactory<GWGUI.Emulation.Atari.Common.Contracts.CoreOption, GWGUI.Emulation.Atari.Common.Contracts.CoreOptionValue>, System.Func<string, string, GWGUI.Emulation.Atari.Common.Contracts.CoreOptionValue>, System.Func<GWGUI.Emulation.Atari.Common.Contracts.CoreOptionValue, string>)",
+            "line": 13
+          },
+          {
+            "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Functions/CoreFunctions.Options.cs",
+            "target": "GWGUI.Emulation.Functions.EmulationCoreOptionFunctions.CopyLegacyVariables<GWGUI.Emulation.Snk.Common.Contracts.CoreOption, GWGUI.Emulation.Snk.Common.Contracts.CoreOptionValue>(nint, GWGUI.Emulation.Functions.EmulationNativeOptionFactory<GWGUI.Emulation.Snk.Common.Contracts.CoreOption, GWGUI.Emulation.Snk.Common.Contracts.CoreOptionValue>, System.Func<string, string, GWGUI.Emulation.Snk.Common.Contracts.CoreOptionValue>, System.Func<GWGUI.Emulation.Snk.Common.Contracts.CoreOptionValue, string>)",
+            "line": 13
+          },
+          {
+            "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Functions/CoreFunctions.Options.cs",
+            "target": "GWGUI.Emulation.Functions.EmulationCoreOptionFunctions.CopyLegacyVariables<GWGUI.Emulation.Epoch.Common.Contracts.CoreOption, GWGUI.Emulation.Epoch.Common.Contracts.CoreOptionValue>(nint, GWGUI.Emulation.Functions.EmulationNativeOptionFactory<GWGUI.Emulation.Epoch.Common.Contracts.CoreOption, GWGUI.Emulation.Epoch.Common.Contracts.CoreOptionValue>, System.Func<string, string, GWGUI.Emulation.Epoch.Common.Contracts.CoreOptionValue>, System.Func<GWGUI.Emulation.Epoch.Common.Contracts.CoreOptionValue, string>)",
+            "line": 13
+          },
+          {
+            "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Functions/CoreFunctions.Options.cs",
+            "target": "GWGUI.Emulation.Functions.EmulationCoreOptionFunctions.CopyLegacyVariables<GWGUI.Emulation.Sinclair.Common.Contracts.CoreOption, GWGUI.Emulation.Sinclair.Common.Contracts.CoreOptionValue>(nint, GWGUI.Emulation.Functions.EmulationNativeOptionFactory<GWGUI.Emulation.Sinclair.Common.Contracts.CoreOption, GWGUI.Emulation.Sinclair.Common.Contracts.CoreOptionValue>, System.Func<string, string, GWGUI.Emulation.Sinclair.Common.Contracts.CoreOptionValue>, System.Func<GWGUI.Emulation.Sinclair.Common.Contracts.CoreOptionValue, string>)",
+            "line": 13
+          },
+          {
+            "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Functions/CoreFunctions.Options.cs",
+            "target": "GWGUI.Emulation.Functions.EmulationCoreOptionFunctions.CopyLegacyVariables<GWGUI.Emulation.Apple.Common.Contracts.CoreOption, GWGUI.Emulation.Apple.Common.Contracts.CoreOptionValue>(nint, GWGUI.Emulation.Functions.EmulationNativeOptionFactory<GWGUI.Emulation.Apple.Common.Contracts.CoreOption, GWGUI.Emulation.Apple.Common.Contracts.CoreOptionValue>, System.Func<string, string, GWGUI.Emulation.Apple.Common.Contracts.CoreOptionValue>, System.Func<GWGUI.Emulation.Apple.Common.Contracts.CoreOptionValue, string>)",
+            "line": 15
+          }
+        ],
+        "decision": "shared SDK target verified; argument adapters still require review"
+      },
+      {
+        "hash": "C5BDD9DD3DBD54414784B57198F109924C67FDBC0668002B3D64133605E91552",
+        "method": "HashPath",
+        "tokens": 32,
+        "targets": [
+          {
+            "path": "src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+            "target": "GWGUI.Emulation.Functions.EmulationStateFileFunctions.HashPath(string, string, char, int, System.Func<System.Exception>)",
+            "line": 102
+          },
+          {
+            "path": "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+            "target": "GWGUI.Emulation.Functions.EmulationStateFileFunctions.HashPath(string, string, char, int, System.Func<System.Exception>)",
+            "line": 102
+          },
+          {
+            "path": "src/GWGUI.Emulation.Bandai/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+            "target": "GWGUI.Emulation.Functions.EmulationStateFileFunctions.HashPath(string, string, char, int, System.Func<System.Exception>)",
+            "line": 101
+          },
+          {
+            "path": "src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+            "target": "GWGUI.Emulation.Functions.EmulationStateFileFunctions.HashPath(string, string, char, int, System.Func<System.Exception>)",
+            "line": 102
+          },
+          {
+            "path": "src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+            "target": "GWGUI.Emulation.Functions.EmulationStateFileFunctions.HashPath(string, string, char, int, System.Func<System.Exception>)",
+            "line": 78
+          },
+          {
+            "path": "src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+            "target": "GWGUI.Emulation.Functions.EmulationStateFileFunctions.HashPath(string, string, char, int, System.Func<System.Exception>)",
+            "line": 102
+          },
+          {
+            "path": "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+            "target": "GWGUI.Emulation.Functions.EmulationStateFileFunctions.HashPath(string, string, char, int, System.Func<System.Exception>)",
+            "line": 82
+          },
+          {
+            "path": "src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+            "target": "GWGUI.Emulation.Functions.EmulationStateFileFunctions.HashPath(string, string, char, int, System.Func<System.Exception>)",
+            "line": 104
+          },
+          {
+            "path": "src/GWGUI.Emulation.Watara/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+            "target": "GWGUI.Emulation.Functions.EmulationStateFileFunctions.HashPath(string, string, char, int, System.Func<System.Exception>)",
+            "line": 74
+          },
+          {
+            "path": "src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+            "target": "GWGUI.Emulation.Functions.EmulationStateFileFunctions.HashPath(string, string, char, int, System.Func<System.Exception>)",
+            "line": 82
+          },
+          {
+            "path": "src/GWGUI.Emulation.Epoch/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+            "target": "GWGUI.Emulation.Functions.EmulationStateFileFunctions.HashPath(string, string, char, int, System.Func<System.Exception>)",
+            "line": 102
+          },
+          {
+            "path": "src/GWGUI.Emulation.Thomson/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+            "target": "GWGUI.Emulation.Functions.EmulationStateFileFunctions.HashPath(string, string, char, int, System.Func<System.Exception>)",
+            "line": 88
+          },
+          {
+            "path": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+            "target": "GWGUI.Emulation.Functions.EmulationStateFileFunctions.HashPath(string, string, char, int, System.Func<System.Exception>)",
+            "line": 88
+          }
+        ],
+        "decision": "shared SDK target verified; argument adapters still require review"
+      },
+      {
+        "hash": "D282FEEA549FA292ED6119442E26EFE0F61FE505F7EA39B2AB30E535E2EA2448",
+        "method": "NativeBlocks",
+        "tokens": 42,
+        "targets": [
+          {
+            "path": "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/SettingsFunctions.cs",
+            "target": "GWGUI.Emulation.Functions.EmulationCoreOptionFunctions.CreateSettingsBlocks<GWGUI.Emulation.Sharp.Common.Contracts.CoreOption>(System.Collections.Generic.IReadOnlyList<GWGUI.Emulation.Sharp.Common.Contracts.CoreOption>, System.Func<GWGUI.Emulation.Sharp.Common.Contracts.CoreOption, bool>, System.Func<GWGUI.Emulation.Sharp.Common.Contracts.CoreOption, string?>, System.Func<GWGUI.Emulation.Enums.EmulationMachineTab, string>, System.Func<GWGUI.Emulation.Sharp.Common.Contracts.CoreOption, GWGUI.Emulation.Enums.EmulationMachineTab, string, GWGUI.Emulation.Contracts.EmulationSettingsField>)",
+            "line": 18
+          },
+          {
+            "path": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/SettingsFunctions.cs",
+            "target": "GWGUI.Emulation.Functions.EmulationCoreOptionFunctions.CreateSettingsBlocks<GWGUI.Emulation.Sinclair.Common.Contracts.CoreOption>(System.Collections.Generic.IReadOnlyList<GWGUI.Emulation.Sinclair.Common.Contracts.CoreOption>, System.Func<GWGUI.Emulation.Sinclair.Common.Contracts.CoreOption, bool>, System.Func<GWGUI.Emulation.Sinclair.Common.Contracts.CoreOption, string?>, System.Func<GWGUI.Emulation.Enums.EmulationMachineTab, string>, System.Func<GWGUI.Emulation.Sinclair.Common.Contracts.CoreOption, GWGUI.Emulation.Enums.EmulationMachineTab, string, GWGUI.Emulation.Contracts.EmulationSettingsField>)",
+            "line": 18
+          }
+        ],
+        "decision": "shared SDK target verified; argument adapters still require review"
+      },
+      {
+        "hash": "FD39A8C7FA1E6DDE5D4232F3CD5EDABBD286D19449DC6355E78DB4A7FB07EC69",
+        "method": "CopyInputDescriptors",
+        "tokens": 44,
+        "targets": [
+          {
+            "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Functions/RuntimeFunctions.Environment.cs",
+            "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.CopyInputDescriptors<GWGUI.Emulation.Philips.Emulators.Common.Contracts.InputDescriptor>(nint, int, System.Func<uint, uint, uint, uint, string, GWGUI.Emulation.Philips.Emulators.Common.Contracts.InputDescriptor>)",
+            "line": 14
+          },
+          {
+            "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Functions/RuntimeFunctions.Environment.cs",
+            "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.CopyInputDescriptors<GWGUI.Emulation.Mattel.Emulators.Common.Contracts.InputDescriptor>(nint, int, System.Func<uint, uint, uint, uint, string, GWGUI.Emulation.Mattel.Emulators.Common.Contracts.InputDescriptor>)",
+            "line": 14
+          },
+          {
+            "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Functions/RuntimeFunctions.Environment.cs",
+            "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.CopyInputDescriptors<GWGUI.Emulation.Sharp.Emulators.Common.Interop.Contracts.InputDescriptor>(nint, int, System.Func<uint, uint, uint, uint, string, GWGUI.Emulation.Sharp.Emulators.Common.Interop.Contracts.InputDescriptor>)",
+            "line": 11
+          },
+          {
+            "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Functions/RuntimeFunctions.Environment.cs",
+            "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.CopyInputDescriptors<GWGUI.Emulation.Snk.Emulators.Common.Interop.Contracts.InputDescriptor>(nint, int, System.Func<uint, uint, uint, uint, string, GWGUI.Emulation.Snk.Emulators.Common.Interop.Contracts.InputDescriptor>)",
+            "line": 11
+          },
+          {
+            "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Functions/RuntimeFunctions.Environment.cs",
+            "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.CopyInputDescriptors<GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Contracts.InputDescriptor>(nint, int, System.Func<uint, uint, uint, uint, string, GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Contracts.InputDescriptor>)",
+            "line": 11
+          }
+        ],
+        "decision": "shared SDK target verified; argument adapters still require review"
+      }
+    ]
+  },
   "start": "ac7292d86",
   "baseline": "ac7292d86^",
   "initialCandidates": 727,
@@ -891,5 +1629,214 @@
     ],
     "preserved": "Fault before missing process before disposed; InvalidOperationException maps to Exited; borrowed process never disposed or started; no job initialized; null region -1; native NTSC=0 PAL=1",
     "verification": "SDK and sixteen modules: zero semantic errors without Emit; diff --check passes"
+  },
+  "releaseQueryReuse": {
+    "origin": "Amiga aa0ef2450; SDK QueryReleaseAsync owns HEAD request and response",
+    "services": 25,
+    "comparisons": [
+      {
+        "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+        "uri": true,
+        "prefix": true,
+        "reader": true,
+        "parameters": true,
+        "asynchronous": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+        "uri": true,
+        "prefix": true,
+        "reader": true,
+        "parameters": true,
+        "asynchronous": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/CoreReleaseService.cs",
+        "uri": true,
+        "prefix": true,
+        "reader": true,
+        "parameters": true,
+        "asynchronous": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+        "uri": true,
+        "prefix": true,
+        "reader": true,
+        "parameters": true,
+        "asynchronous": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+        "uri": true,
+        "prefix": true,
+        "reader": true,
+        "parameters": true,
+        "asynchronous": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Watara/Emulators/Potator/Services/CoreReleaseService.cs",
+        "uri": true,
+        "prefix": true,
+        "reader": true,
+        "parameters": true,
+        "asynchronous": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+        "uri": true,
+        "prefix": true,
+        "reader": true,
+        "parameters": true,
+        "asynchronous": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+        "uri": true,
+        "prefix": true,
+        "reader": true,
+        "parameters": true,
+        "asynchronous": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Services/CoreReleaseService.cs",
+        "uri": true,
+        "prefix": true,
+        "reader": true,
+        "parameters": true,
+        "asynchronous": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nec/Emulators/BeetlePcfx/Services/CoreReleaseService.cs",
+        "uri": true,
+        "prefix": true,
+        "reader": true,
+        "parameters": true,
+        "asynchronous": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+        "uri": true,
+        "prefix": true,
+        "reader": true,
+        "parameters": true,
+        "asynchronous": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+        "uri": true,
+        "prefix": true,
+        "reader": true,
+        "parameters": true,
+        "asynchronous": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+        "uri": true,
+        "prefix": true,
+        "reader": true,
+        "parameters": true,
+        "asynchronous": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+        "uri": true,
+        "prefix": true,
+        "reader": true,
+        "parameters": true,
+        "asynchronous": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+        "uri": true,
+        "prefix": true,
+        "reader": true,
+        "parameters": true,
+        "asynchronous": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+        "uri": true,
+        "prefix": true,
+        "reader": true,
+        "parameters": true,
+        "asynchronous": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+        "uri": true,
+        "prefix": true,
+        "reader": true,
+        "parameters": true,
+        "asynchronous": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+        "uri": true,
+        "prefix": true,
+        "reader": true,
+        "parameters": true,
+        "asynchronous": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/CoreReleaseService.cs",
+        "uri": true,
+        "prefix": true,
+        "reader": true,
+        "parameters": true,
+        "asynchronous": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/CoreReleaseService.cs",
+        "uri": true,
+        "prefix": true,
+        "reader": true,
+        "parameters": true,
+        "asynchronous": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Panasonic/Emulators/Opera/Services/CoreReleaseService.cs",
+        "uri": true,
+        "prefix": true,
+        "reader": true,
+        "parameters": true,
+        "asynchronous": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+        "uri": true,
+        "prefix": true,
+        "reader": true,
+        "parameters": true,
+        "asynchronous": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+        "uri": true,
+        "prefix": true,
+        "reader": true,
+        "parameters": true,
+        "asynchronous": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+        "uri": true,
+        "prefix": true,
+        "reader": true,
+        "parameters": true,
+        "asynchronous": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Services/CoreReleaseService.cs",
+        "uri": true,
+        "prefix": true,
+        "reader": true,
+        "parameters": true,
+        "asynchronous": true
+      }
+    ],
+    "preserved": "ResponseHeadersRead, EnsureSuccessStatusCode, cancellation; typed metadata, URI, cultures and required release list remain module-owned",
+    "verification": "AST tokens compared to e3e236524; SDK and modules checked without Emit",
+    "runtime": "No emulator server queried"
   }
 }

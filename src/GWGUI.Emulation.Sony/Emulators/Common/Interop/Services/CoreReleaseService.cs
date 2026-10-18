@@ -41,14 +41,12 @@ public sealed class CoreReleaseService
 
     public async Task<IReadOnlyList<CoreRelease>> GetAvailableAsync(CancellationToken cancellationToken = default)
     {
-        using var request = new HttpRequestMessage(HttpMethod.Head, _settings.OfficialArchiveUri);
-        using var response = await _httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
-        response.EnsureSuccessStatusCode();
-        var published = response.Content.Headers.LastModified ?? response.Headers.Date;
-        var suffix = published?.UtcDateTime.ToString(CoreReleaseConstants.YyyyMMddHHmm) ?? CoreReleaseConstants.Latest;
-        return [new CoreRelease(CoreReleaseConstants.OfficialReleasePrefix + suffix,
-            published is null ? _settings.DisplayName + CoreReleaseConstants.ReleaseDisplaySeparator + CoreReleaseConstants.Latest : published.Value.LocalDateTime.ToString(CoreReleaseConstants.PublicationDateFormat) + CoreReleaseConstants.ReleaseDisplaySeparator + _settings.DisplayName,
-            _settings.OfficialArchiveUri, published, true, true)];
+        return await EmulationCoreReleaseFunctions.QueryReleaseAsync<IReadOnlyList<CoreRelease>>(_httpClient, _settings.OfficialArchiveUri, response =>
+        {
+            var published = response.Content.Headers.LastModified ?? response.Headers.Date;
+            var suffix = published?.UtcDateTime.ToString(CoreReleaseConstants.YyyyMMddHHmm) ?? CoreReleaseConstants.Latest;
+            return[new CoreRelease(CoreReleaseConstants.OfficialReleasePrefix + suffix, published is null ? _settings.DisplayName + CoreReleaseConstants.ReleaseDisplaySeparator + CoreReleaseConstants.Latest : published.Value.LocalDateTime.ToString(CoreReleaseConstants.PublicationDateFormat) + CoreReleaseConstants.ReleaseDisplaySeparator + _settings.DisplayName, _settings.OfficialArchiveUri, published, true, true)];
+        }, cancellationToken).ConfigureAwait(false);
     }
 
     public bool IsInstalled(CoreRelease release)
