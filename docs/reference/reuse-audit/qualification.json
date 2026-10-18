@@ -5642,5 +5642,248 @@
     ],
     "originalTenSectionsMatch": true,
     "tests": "All ten commands; registration called with null data before false result; delegated true/false kept distinct from unknown command; unknown/stateless commands leave host untouched; registration exception propagates. Managed fake host only, no core/window/file."
+  },
+  "frameTransmissionReuse": {
+    "audioMapping": "Every module WriteAudio adapter directly calls the existing SDK codec with its two unchanged parameters; queue callback preserves TryDequeueAudio true-and-nonnull termination.",
+    "originalOwner": "23ce0f650:src/GWGUI.Emulation.Amiga/Cores/AmigaCoreHostProtocol.cs",
+    "ownership": "Streams, video/map writers, frames, audio packets and callbacks are borrowed; all graphics/core ownership and finally blocks remain in their modules.",
+    "sdkOwner": "src/GWGUI.Emulation/Functions/EmulationHostProtocolFunctions.Host.cs",
+    "methods": [
+      "WriteFrameIfChanged",
+      "WriteQueuedAudio",
+      "WriteChangedDiagnostics"
+    ],
+    "verification": "25 host-token comparisons outside the three operations and exact callback/codec mappings passed; existing SDK methods unchanged; 9 targeted managed-stream tests pass; SDK/App/23 module references compile; diff --check passes.",
+    "profiles": [
+      {
+        "path": "src/GWGUI.Emulation.Wenquxing/Common/Services/CoreHost.cs",
+        "frameGetter": "core.LatestVideoFrame",
+        "frameWriter": "CoreHostFunctions.WriteResizableSharedFrame",
+        "audioCodec": "src/GWGUI.Emulation.Wenquxing/Common/Functions/CoreFunctions.Host.cs",
+        "diagnosticCount": "core.Diagnostics.Count",
+        "jsonAndVideoOwnerUnchanged": true,
+        "otherHostTokensIncludingMetadataSnapshotsAndFinallyUnchanged": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Philips/Common/Services/CoreHost.cs",
+        "frameGetter": "core.LatestVideoFrame",
+        "frameWriter": "CoreHostFunctions.WriteResizableSharedFrame",
+        "audioCodec": "src/GWGUI.Emulation.Philips/Common/Functions/CoreFunctions.Host.cs",
+        "diagnosticCount": "core.Diagnostics.Count",
+        "jsonAndVideoOwnerUnchanged": true,
+        "otherHostTokensIncludingMetadataSnapshotsAndFinallyUnchanged": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Snk/Common/Services/CoreHost.cs",
+        "frameGetter": "core.LatestVideoFrame",
+        "frameWriter": "CoreHostFunctions.WriteResizableSharedFrame",
+        "audioCodec": "src/GWGUI.Emulation.Snk/Common/Functions/CoreFunctions.Host.cs",
+        "diagnosticCount": "core.Diagnostics.Count",
+        "jsonAndVideoOwnerUnchanged": true,
+        "otherHostTokensIncludingMetadataSnapshotsAndFinallyUnchanged": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Watara/Common/Services/CoreHost.cs",
+        "frameGetter": "core.LatestVideoFrame",
+        "frameWriter": "CoreHostFunctions.WriteResizableSharedFrame",
+        "audioCodec": "src/GWGUI.Emulation.Watara/Common/Functions/CoreFunctions.Host.cs",
+        "diagnosticCount": "core.Diagnostics.Count",
+        "jsonAndVideoOwnerUnchanged": true,
+        "otherHostTokensIncludingMetadataSnapshotsAndFinallyUnchanged": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sinclair/Common/Services/CoreHost.cs",
+        "frameGetter": "core.LatestVideoFrame",
+        "frameWriter": "CoreHostFunctions.WriteResizableSharedFrame",
+        "audioCodec": "src/GWGUI.Emulation.Sinclair/Common/Functions/CoreFunctions.Host.cs",
+        "diagnosticCount": "core.Diagnostics.Count",
+        "jsonAndVideoOwnerUnchanged": true,
+        "otherHostTokensIncludingMetadataSnapshotsAndFinallyUnchanged": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Panasonic/Common/Services/CoreHost.cs",
+        "frameGetter": "core.LatestVideoFrame",
+        "frameWriter": "CoreHostFunctions.WriteResizableSharedFrame",
+        "audioCodec": "src/GWGUI.Emulation.Panasonic/Common/Functions/CoreFunctions.Host.cs",
+        "diagnosticCount": "core.Diagnostics.Count",
+        "jsonAndVideoOwnerUnchanged": true,
+        "otherHostTokensIncludingMetadataSnapshotsAndFinallyUnchanged": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Thomson/Common/Services/CoreHost.cs",
+        "frameGetter": "core.LatestVideoFrame",
+        "frameWriter": "CoreHostFunctions.WriteResizableSharedFrame",
+        "audioCodec": "src/GWGUI.Emulation.Thomson/Common/Functions/CoreFunctions.Host.cs",
+        "diagnosticCount": "core.Diagnostics.Count",
+        "jsonAndVideoOwnerUnchanged": true,
+        "otherHostTokensIncludingMetadataSnapshotsAndFinallyUnchanged": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/CoreHost.cs",
+        "frameGetter": "activeCore.LatestVideoFrame",
+        "frameWriter": "CoreHostProtocol.WriteSharedFrame",
+        "audioCodec": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Functions/CoreHostProtocol.cs",
+        "diagnosticCount": "diagnostics.Count",
+        "jsonAndVideoOwnerUnchanged": true,
+        "otherHostTokensIncludingMetadataSnapshotsAndFinallyUnchanged": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/CoreHost.cs",
+        "frameGetter": "activeCore.LatestVideoFrame",
+        "frameWriter": "CoreHostProtocol.WriteSharedFrame",
+        "audioCodec": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Functions/CoreHostProtocol.cs",
+        "diagnosticCount": "diagnostics.Count",
+        "jsonAndVideoOwnerUnchanged": true,
+        "otherHostTokensIncludingMetadataSnapshotsAndFinallyUnchanged": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sharp/Common/Services/CoreHost.cs",
+        "frameGetter": "core.LatestVideoFrame",
+        "frameWriter": "CoreHostFunctions.WriteResizableSharedFrame",
+        "audioCodec": "src/GWGUI.Emulation.Sharp/Common/Functions/CoreFunctions.Host.cs",
+        "diagnosticCount": "core.Diagnostics.Count",
+        "jsonAndVideoOwnerUnchanged": true,
+        "otherHostTokensIncludingMetadataSnapshotsAndFinallyUnchanged": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/CoreHost.cs",
+        "frameGetter": "activeCore.LatestVideoFrame",
+        "frameWriter": "CoreHostProtocol.WriteSharedFrame",
+        "audioCodec": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Functions/CoreHostProtocol.cs",
+        "diagnosticCount": "diagnostics.Count",
+        "jsonAndVideoOwnerUnchanged": true,
+        "otherHostTokensIncludingMetadataSnapshotsAndFinallyUnchanged": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Fairchild/Common/Services/CoreHost.cs",
+        "frameGetter": "core.LatestVideoFrame",
+        "frameWriter": "CoreHostFunctions.WriteResizableSharedFrame",
+        "audioCodec": "src/GWGUI.Emulation.Fairchild/Common/Functions/CoreFunctions.Host.cs",
+        "diagnosticCount": "core.Diagnostics.Count",
+        "jsonAndVideoOwnerUnchanged": true,
+        "otherHostTokensIncludingMetadataSnapshotsAndFinallyUnchanged": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nec/Emulators/BeetlePcfx/Services/CoreHost.cs",
+        "frameGetter": "activeCore.LatestVideoFrame",
+        "frameWriter": "CoreHostProtocol.WriteSharedFrame",
+        "audioCodec": "src/GWGUI.Emulation.Nec/Emulators/BeetlePcfx/Functions/CoreHostProtocol.cs",
+        "diagnosticCount": "diagnostics.Count",
+        "jsonAndVideoOwnerUnchanged": true,
+        "otherHostTokensIncludingMetadataSnapshotsAndFinallyUnchanged": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/CoreHost.cs",
+        "frameGetter": "activeCore.LatestVideoFrame",
+        "frameWriter": "CoreHostProtocol.WriteSharedFrame",
+        "audioCodec": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Functions/CoreHostProtocol.cs",
+        "diagnosticCount": "diagnostics.Count",
+        "jsonAndVideoOwnerUnchanged": true,
+        "otherHostTokensIncludingMetadataSnapshotsAndFinallyUnchanged": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/CoreHost.cs",
+        "frameGetter": "activeCore.LatestVideoFrame",
+        "frameWriter": "CoreHostProtocol.WriteSharedFrame",
+        "audioCodec": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Functions/CoreHostProtocol.cs",
+        "diagnosticCount": "diagnostics.Count",
+        "jsonAndVideoOwnerUnchanged": true,
+        "otherHostTokensIncludingMetadataSnapshotsAndFinallyUnchanged": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Acorn/Common/Services/CoreHost.cs",
+        "frameGetter": "core.LatestVideoFrame",
+        "frameWriter": "CoreHostFunctions.WriteResizableSharedFrame",
+        "audioCodec": "src/GWGUI.Emulation.Acorn/Common/Functions/CoreFunctions.Host.cs",
+        "diagnosticCount": "core.Diagnostics.Count",
+        "jsonAndVideoOwnerUnchanged": true,
+        "otherHostTokensIncludingMetadataSnapshotsAndFinallyUnchanged": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/CoreHost.cs",
+        "frameGetter": "activeCore.LatestVideoFrame",
+        "frameWriter": "CoreHostProtocol.WriteSharedFrame",
+        "audioCodec": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Functions/CoreHostProtocol.cs",
+        "diagnosticCount": "diagnostics.Count",
+        "jsonAndVideoOwnerUnchanged": true,
+        "otherHostTokensIncludingMetadataSnapshotsAndFinallyUnchanged": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/CoreHost.cs",
+        "frameGetter": "activeCore.LatestVideoFrame",
+        "frameWriter": "CoreHostProtocol.WriteSharedFrame",
+        "audioCodec": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Functions/CoreHostProtocol.cs",
+        "diagnosticCount": "diagnostics.Count",
+        "jsonAndVideoOwnerUnchanged": true,
+        "otherHostTokensIncludingMetadataSnapshotsAndFinallyUnchanged": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Epoch/Common/Services/CoreHost.cs",
+        "frameGetter": "core.LatestVideoFrame",
+        "frameWriter": "CoreHostFunctions.WriteResizableSharedFrame",
+        "audioCodec": "src/GWGUI.Emulation.Epoch/Common/Functions/CoreFunctions.Host.cs",
+        "diagnosticCount": "core.Diagnostics.Count",
+        "jsonAndVideoOwnerUnchanged": true,
+        "otherHostTokensIncludingMetadataSnapshotsAndFinallyUnchanged": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Atari/Common/Services/CoreHost.cs",
+        "frameGetter": "core.LatestVideoFrame",
+        "frameWriter": "CoreHostFunctions.WriteResizableSharedFrame",
+        "audioCodec": "src/GWGUI.Emulation.Atari/Emulators/Common/Functions/CoreFunctions.Host.cs",
+        "diagnosticCount": "core.Diagnostics.Count",
+        "jsonAndVideoOwnerUnchanged": true,
+        "otherHostTokensIncludingMetadataSnapshotsAndFinallyUnchanged": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/CoreHost.cs",
+        "frameGetter": "activeCore.LatestVideoFrame",
+        "frameWriter": "CoreHostProtocol.WriteSharedFrame",
+        "audioCodec": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Functions/CoreHostProtocol.cs",
+        "diagnosticCount": "diagnostics.Count",
+        "jsonAndVideoOwnerUnchanged": true,
+        "otherHostTokensIncludingMetadataSnapshotsAndFinallyUnchanged": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Bandai/Common/Services/CoreHost.cs",
+        "frameGetter": "core.LatestVideoFrame",
+        "frameWriter": "CoreHostFunctions.WriteResizableSharedFrame",
+        "audioCodec": "src/GWGUI.Emulation.Bandai/Common/Functions/CoreFunctions.Host.cs",
+        "diagnosticCount": "core.Diagnostics.Count",
+        "jsonAndVideoOwnerUnchanged": true,
+        "otherHostTokensIncludingMetadataSnapshotsAndFinallyUnchanged": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Apple/Common/Services/CoreHost.cs",
+        "frameGetter": "core.LatestVideoFrame",
+        "frameWriter": "CoreHostFunctions.WriteResizableSharedFrame",
+        "audioCodec": "src/GWGUI.Emulation.Apple/Common/Functions/CoreFunctions.Host.cs",
+        "diagnosticCount": "core.Diagnostics.Count",
+        "jsonAndVideoOwnerUnchanged": true,
+        "otherHostTokensIncludingMetadataSnapshotsAndFinallyUnchanged": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Coleco/Common/Services/CoreHost.cs",
+        "frameGetter": "core.LatestVideoFrame",
+        "frameWriter": "CoreHostFunctions.WriteResizableSharedFrame",
+        "audioCodec": "src/GWGUI.Emulation.Coleco/Common/Functions/CoreFunctions.Host.cs",
+        "diagnosticCount": "core.Diagnostics.Count",
+        "jsonAndVideoOwnerUnchanged": true,
+        "otherHostTokensIncludingMetadataSnapshotsAndFinallyUnchanged": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Mattel/Common/Services/CoreHost.cs",
+        "frameGetter": "core.LatestVideoFrame",
+        "frameWriter": "CoreHostFunctions.WriteResizableSharedFrame",
+        "audioCodec": "src/GWGUI.Emulation.Mattel/Common/Functions/CoreFunctions.Host.cs",
+        "diagnosticCount": "core.Diagnostics.Count",
+        "jsonAndVideoOwnerUnchanged": true,
+        "otherHostTokensIncludingMetadataSnapshotsAndFinallyUnchanged": true
+      }
+    ],
+    "sourceCommit": "0936ce35c",
+    "originalVideoConditionAndCounterTokensUnchanged": true,
+    "diagnosticMapping": "Counter getter, serializer argument list/options and counter reference preserved in each caller. Native captured lists stay captured; rich host getters stay deferred.",
+    "tests": "Repeated/null video and write failure without sequence advance or borrowed writer disposal; mono/stereo audio order and wire metadata, empty/null termination, dequeue failure before any write; unchanged/changed diagnostic packets and counter commit only after successful serialization. Memory streams only."
   }
 }

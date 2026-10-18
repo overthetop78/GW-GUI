@@ -97,28 +97,18 @@ public static class CoreHost
     {
         core.SetInput(CoreHostFunctions.ReadInput(reader));
         core.RunFrame();
-        var frame = core.LatestVideoFrame;
-        CoreHostFunctions.WriteResizableSharedFrame(writer, frame?.Sequence == lastVideoSequence ? null : frame, video);
-        if (frame is not null)
-            lastVideoSequence = frame.Sequence;
+        EmulationHostProtocolFunctions.WriteFrameIfChanged(writer, core.LatestVideoFrame, ref lastVideoSequence,
+            (frameWriter, pendingFrame) => CoreHostFunctions.WriteResizableSharedFrame(frameWriter, pendingFrame, video));
         var bufferedAudioFrames = core.BufferedAudioFrames;
         var audioOverrunCount = core.AudioOverrunCount;
         var audioUnderrunCount = core.AudioUnderrunCount;
-        var audio = new List<AudioChunk>();
-        while (core.TryDequeueAudio(out var chunk) && chunk is not null)
-            audio.Add(chunk);
-        CoreHostFunctions.WriteAudio(writer, audio);
+        EmulationHostProtocolFunctions.WriteQueuedAudio(writer, () => core.TryDequeueAudio(out var chunk) ? chunk : null);
         writer.Write(core.FramesPerSecond);
         writer.Write(core.SampleRate);
         WriteRuntimeStatus(writer, core.Region, bufferedAudioFrames, audioOverrunCount, audioUnderrunCount);
         writer.Write(core.SupportsSaveStates);
-        var diagnosticsChanged = core.Diagnostics.Count != lastDiagnosticCount;
-        writer.Write(diagnosticsChanged);
-        if (diagnosticsChanged)
-        {
-            writer.Write(JsonSerializer.Serialize(core.Diagnostics, CoreHostFunctions.JsonOptions));
-            lastDiagnosticCount = core.Diagnostics.Count;
-        }
+        EmulationHostProtocolFunctions.WriteChangedDiagnostics(writer, () => core.Diagnostics.Count,
+            diagnosticWriter => diagnosticWriter.Write(JsonSerializer.Serialize(core.Diagnostics, CoreHostFunctions.JsonOptions)), ref lastDiagnosticCount);
 
         CoreHostFunctions.WriteLedStates(writer, core.LedStates);
     }

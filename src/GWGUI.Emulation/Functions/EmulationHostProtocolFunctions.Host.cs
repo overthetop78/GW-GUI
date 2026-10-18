@@ -7,6 +7,33 @@ namespace GWGUI.Emulation.Functions;
 
 internal static partial class EmulationHostProtocolFunctions
 {
+    internal static void WriteFrameIfChanged(BinaryWriter writer, VideoFrame? frame,
+        ref long lastVideoSequence, Action<BinaryWriter, VideoFrame?> writeFrame)
+    {
+        writeFrame(writer, frame?.Sequence == lastVideoSequence ? null : frame);
+        if (frame is not null) lastVideoSequence = frame.Sequence;
+    }
+
+    internal static void WriteQueuedAudio(BinaryWriter writer, Func<AudioChunk?> dequeue)
+    {
+        var audio = new List<AudioChunk>();
+        while (dequeue() is { } chunk) audio.Add(chunk);
+        WriteAudio(writer, audio);
+    }
+
+    internal static void WriteChangedDiagnostics(BinaryWriter writer, Func<int> count,
+        Action<BinaryWriter> writeDiagnostics, ref int lastDiagnosticCount)
+    {
+        var diagnosticsChanged = count() != lastDiagnosticCount;
+        writer.Write(diagnosticsChanged);
+        if (diagnosticsChanged)
+        {
+            writeDiagnostics(writer);
+            lastDiagnosticCount = count();
+        }
+    }
+
+
     // The caller owns the core and codecs. Unknown commands must not acquire a core
     // or consume a payload; initialization, frames and disposal stay in their host.
     internal static bool TryExecuteCoreCommand<TMedia, TPeripheral, TDiskStatus>(

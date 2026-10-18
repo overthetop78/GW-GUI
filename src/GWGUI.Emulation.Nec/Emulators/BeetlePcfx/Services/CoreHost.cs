@@ -59,26 +59,16 @@ public static class CoreHost
                             activeCore.SetInput(CoreHostProtocol.ReadInput(reader));
                             activeCore.RunFrame();
                             writer.Write(true);
-                            var frame = activeCore.LatestVideoFrame;
-                            CoreHostProtocol.WriteSharedFrame(writer, frame?.Sequence == lastVideoSequence ? null : frame, videoMap);
-                            if (frame is not null)
-                                lastVideoSequence = frame.Sequence;
-                            var audio = new List<AudioChunk>();
-                            while (activeCore.TryDequeueAudio(out var chunk) && chunk is not null)
-                                audio.Add(chunk);
-                            CoreHostProtocol.WriteAudio(writer, audio);
+                            EmulationHostProtocolFunctions.WriteFrameIfChanged(writer, activeCore.LatestVideoFrame, ref lastVideoSequence,
+                                (frameWriter, pendingFrame) => CoreHostProtocol.WriteSharedFrame(frameWriter, pendingFrame, videoMap));
+                            EmulationHostProtocolFunctions.WriteQueuedAudio(writer, () => activeCore.TryDequeueAudio(out var chunk) ? chunk : null);
                             writer.Write(activeCore.FramesPerSecond);
                             writer.Write(activeCore.SampleRate);
                             writer.Write(activeCore.DiskCount);
                             writer.Write(activeCore.CurrentDiskIndex);
                             var diagnostics = activeCore.Diagnostics;
-                            var diagnosticsChanged = diagnostics.Count != lastDiagnosticCount;
-                            writer.Write(diagnosticsChanged);
-                            if (diagnosticsChanged)
-                            {
-                                writer.Write(JsonSerializer.Serialize(diagnostics, CoreHostProtocol.JsonOptions));
-                                lastDiagnosticCount = diagnostics.Count;
-                            }
+                            EmulationHostProtocolFunctions.WriteChangedDiagnostics(writer, () => diagnostics.Count,
+                                diagnosticWriter => diagnosticWriter.Write(JsonSerializer.Serialize(diagnostics, CoreHostProtocol.JsonOptions)), ref lastDiagnosticCount);
 
                             CoreHostProtocol.WriteLedStates(writer, activeCore.LedStates);
                             break;
