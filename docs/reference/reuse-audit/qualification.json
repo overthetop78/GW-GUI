@@ -7234,5 +7234,105 @@
     ],
     "removedHelperCount": 17,
     "removedConstantCount": 145
+  },
+  "remainingHardwareDescriptionsQualification": {
+    "layoutDecisions": [
+      "Panasonic/Watara/Thomson/Wenquxing use raw CPU text without resource choices, compact RAM blocks and distinct placement; keep their field/block graphs. Panasonic has separate video RAM and NVRAM; Wenquxing varies memory resource.",
+      "Acorn/Apple use tab-based field BlockId and separate CPU value semantics; keep those descriptors. Atari exposes selectable CPU/RAM/region/resolution, not read-only hardware facts."
+    ],
+    "originalOwner": "5a7b3a6ce:src/GWGUI.Emulation.Atari/Functions/AtariSettingsDescriptionFunctions.cs",
+    "verification": "All seven current numeric expressions, divisors, long record types, precision and suffix checked; original Atari expression verified. No product source changed by this qualification. Follow-up file actions must be recorded before source edits.",
+    "profiles": [
+      {
+        "module": "Panasonic",
+        "path": "src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Functions/SettingsFunctions.cs",
+        "contract": "src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Contracts/HardwareModelContracts.cs",
+        "expression": "$\"{(hardware.CpuFrequencyHz / SettingsConstants.HertzPerMegahertz).ToString(\"0.######\", CultureInfo.CurrentCulture)} {SettingsConstants.MegahertzUnit}\"",
+        "rawClockType": "System.Int64",
+        "divisor": 1000000,
+        "precision": "0.######",
+        "culture": "CurrentCulture",
+        "unit": "MHz",
+        "action": "Reuse old Atari conversion in FormatMegahertz, retain this precision; six-digit profiles may call existing FormatFrequency"
+      },
+      {
+        "module": "Watara",
+        "path": "src/GWGUI.Emulation.Watara/Common/Machines/Common/Functions/SettingsFunctions.cs",
+        "contract": "src/GWGUI.Emulation.Watara/Common/Machines/Common/Contracts/HardwareModelContracts.cs",
+        "expression": "$\"{(hardware.CpuFrequencyHz / SettingsConstants.HertzPerMegahertz).ToString(\"0.######\", CultureInfo.CurrentCulture)} {SettingsConstants.MegahertzUnit}\"",
+        "rawClockType": "System.Int64",
+        "divisor": 1000000,
+        "precision": "0.######",
+        "culture": "CurrentCulture",
+        "unit": "MHz",
+        "action": "Reuse old Atari conversion in FormatMegahertz, retain this precision; six-digit profiles may call existing FormatFrequency"
+      },
+      {
+        "module": "Wenquxing",
+        "path": "src/GWGUI.Emulation.Wenquxing/Common/Machines/Common/Functions/SettingsFunctions.cs",
+        "contract": "src/GWGUI.Emulation.Wenquxing/Common/Machines/Common/Contracts/HardwareModelContracts.cs",
+        "expression": "$\"{(hardware.CpuFrequencyHz / SettingsConstants.HertzPerMegahertz).ToString(\"0.######\", CultureInfo.CurrentCulture)} {SettingsConstants.MegahertzUnit}\"",
+        "rawClockType": "System.Int64",
+        "divisor": 1000000,
+        "precision": "0.######",
+        "culture": "CurrentCulture",
+        "unit": "MHz",
+        "action": "Reuse old Atari conversion in FormatMegahertz, retain this precision; six-digit profiles may call existing FormatFrequency"
+      },
+      {
+        "module": "Thomson",
+        "path": "src/GWGUI.Emulation.Thomson/Common/Machines/Common/Functions/SettingsFunctions.cs",
+        "contract": "src/GWGUI.Emulation.Thomson/Common/Machines/Common/Contracts/HardwareModelContracts.cs",
+        "expression": "$\"{(hardware.CpuFrequencyHz / SettingsConstants.HertzPerMegahertz).ToString(\"0.######\", CultureInfo.CurrentCulture)} {SettingsConstants.MegahertzUnit}\"",
+        "rawClockType": "System.Int64",
+        "divisor": 1000000,
+        "precision": "0.######",
+        "culture": "CurrentCulture",
+        "unit": "MHz",
+        "action": "Reuse old Atari conversion in FormatMegahertz, retain this precision; six-digit profiles may call existing FormatFrequency"
+      },
+      {
+        "module": "Acorn",
+        "path": "src/GWGUI.Emulation.Acorn/Common/Machines/Common/Functions/SettingsFunctions.cs",
+        "contract": "src/GWGUI.Emulation.Acorn/Common/Machines/Common/Contracts/HardwareModelContracts.cs",
+        "expression": "$\"{hardware.DefaultCpuFrequencyHz / (double)SettingsConstants.Megahertz:0.##} MHz\"",
+        "rawClockType": "System.Int64",
+        "divisor": 1000000,
+        "precision": "0.##",
+        "culture": "CurrentCulture",
+        "unit": "MHz",
+        "action": "Reuse old Atari conversion in FormatMegahertz, retain this precision; six-digit profiles may call existing FormatFrequency"
+      },
+      {
+        "module": "Apple",
+        "path": "src/GWGUI.Emulation.Apple/Common/Machines/Common/Functions/SettingsFunctions.cs",
+        "contract": "src/GWGUI.Emulation.Apple/Common/Machines/Common/Contracts/HardwareModelContracts.cs",
+        "expression": "$\"{hardware.DefaultCpuFrequencyHz / (double)SettingsConstants.Megahertz:0.##} MHz\"",
+        "rawClockType": "System.Int64",
+        "divisor": 1000000,
+        "precision": "0.##",
+        "culture": "CurrentCulture",
+        "unit": "MHz",
+        "action": "Reuse old Atari conversion in FormatMegahertz, retain this precision; six-digit profiles may call existing FormatFrequency"
+      },
+      {
+        "module": "Atari",
+        "path": "src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/SettingsFunctions.Machine.Hardware.cs",
+        "contract": "src/GWGUI.Emulation.Atari/Common/Machines/Common/Contracts/HardwareModelContracts.cs",
+        "expression": "$\"{model.DefaultCpuFrequencyHz / 1_000_000d:0.00} MHz\"",
+        "rawClockType": "System.Int64",
+        "divisor": 1000000,
+        "precision": "0.00",
+        "culture": "CurrentCulture",
+        "unit": "MHz",
+        "action": "Reuse old Atari conversion in FormatMegahertz, retain this precision; six-digit profiles may call existing FormatFrequency"
+      }
+    ],
+    "sourceCommit": "70df33464",
+    "existingHelperDecisions": [
+      "Atari HardwareSettingsFunctions.FrequencyMhz creates configured-value choices from integer MHz; it is not a raw-Hz display converter.",
+      "Atari FormatBytes chooses MiB/KiB only for exactly divisible values (1536 -> 1536 B; 0 -> 0 MiB); Bandai-derived FormatMemory truncates to KiB above 1024 (1536 -> 1 KiB; 0 -> 0 B). Keep policies distinct.",
+      "EmulationVideoFunctions.FormatFrequency validates a positive finite double and formats invariant-culture Hz. Hardware clock displays accept Int64, use CurrentCulture and MHz/kHz. Do not route through video timing formatting."
+    ]
   }
 }
