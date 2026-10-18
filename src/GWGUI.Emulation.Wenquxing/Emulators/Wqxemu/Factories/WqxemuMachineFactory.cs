@@ -1,6 +1,5 @@
 using System.IO;
 using GWGUI.Emulation.Wenquxing.Emulators.Wqxemu.Constants;
-using GWGUI.Emulation.Wenquxing.Emulators.Wqxemu.Contracts;
 using GWGUI.Emulation.Wenquxing.Emulators.Wqxemu.Dictionaries;
 using GWGUI.Emulation.Wenquxing.Emulators.Wqxemu.Interop.Services;
 using GWGUI.Emulation.Wenquxing.Emulators.Wqxemu.Services;

@@ -1,6 +1,5 @@
 using System.IO;
 using GWGUI.Emulation.Watara.Emulators.Potator.Constants;
-using GWGUI.Emulation.Watara.Emulators.Potator.Contracts;
 
 namespace GWGUI.Emulation.Watara.Emulators.Potator.Dictionaries;
 internal static class CoreCatalog

@@ -1,6 +1,5 @@
 using System.IO;
 using GWGUI.Emulation.Watara.Emulators.Potator.Constants;
-using GWGUI.Emulation.Watara.Emulators.Potator.Contracts;
 using GWGUI.Emulation.Watara.Emulators.Potator.Dictionaries;
 using GWGUI.Emulation.Watara.Emulators.Potator.Interop.Services;
 using GWGUI.Emulation.Watara.Emulators.Potator.Services;

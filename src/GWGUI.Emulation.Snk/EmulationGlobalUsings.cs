@@ -38,3 +38,4 @@ global using CoreInstallProgress = global::GWGUI.Emulation.Contracts.EmulationCo
 
 global using CoreOptionCategory = GWGUI.Emulation.Contracts.EmulationOptionCategory;
 global using CoreRelease = GWGUI.Emulation.Contracts.EmulationCatalogCoreRelease<GWGUI.Emulation.Snk.Common.Machines.Common.Enums.Emulator>;
+global using EmulatorCatalogEntry = GWGUI.Emulation.Contracts.EmulationCoreCatalogEntry<GWGUI.Emulation.Snk.Common.Machines.Common.Enums.Emulator, GWGUI.Emulation.Snk.Common.Machines.Common.Enums.MachineModel>;

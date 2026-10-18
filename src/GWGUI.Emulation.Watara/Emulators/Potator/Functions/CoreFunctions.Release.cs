@@ -1,5 +1,4 @@
 using GWGUI.Emulation.Watara.Emulators.Potator.Constants;
-using GWGUI.Emulation.Watara.Emulators.Potator.Contracts;
 using GWGUI.Emulation.Watara.Emulators.Potator.Exceptions;
 using System.Net.Http;
 using System.IO;

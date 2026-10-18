@@ -1,6 +1,5 @@
 using System.IO;
 using GWGUI.Emulation.Wenquxing.Emulators.Wqxemu.Constants;
-using GWGUI.Emulation.Wenquxing.Emulators.Wqxemu.Contracts;
 
 namespace GWGUI.Emulation.Wenquxing.Emulators.Wqxemu.Dictionaries;
 internal static class CoreCatalog

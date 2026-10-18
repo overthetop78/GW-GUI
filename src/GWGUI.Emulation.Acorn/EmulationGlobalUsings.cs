@@ -45,3 +45,4 @@ global using CoreOptionValue = GWGUI.Emulation.Contracts.EmulationResourceOption
 
 global using CoreOption = GWGUI.Emulation.Contracts.EmulationResourceRestartOption;
 global using CoreRelease = GWGUI.Emulation.Contracts.EmulationCatalogCoreRelease<GWGUI.Emulation.Acorn.Common.Machines.Common.Enums.Emulator>;
+global using EmulatorCatalogEntry = GWGUI.Emulation.Contracts.EmulationCoreCatalogEntry<GWGUI.Emulation.Acorn.Common.Machines.Common.Enums.Emulator, GWGUI.Emulation.Acorn.Common.Machines.Common.Enums.MachineModel>;

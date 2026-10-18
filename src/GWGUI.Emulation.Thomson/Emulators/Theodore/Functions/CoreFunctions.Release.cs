@@ -1,5 +1,4 @@
 using GWGUI.Emulation.Thomson.Emulators.Theodore.Constants;
-using GWGUI.Emulation.Thomson.Emulators.Theodore.Contracts;
 using GWGUI.Emulation.Thomson.Emulators.Theodore.Exceptions;
 using System.Net.Http;
 using System.IO;

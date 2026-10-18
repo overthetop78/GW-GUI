@@ -1,5 +1,4 @@
 using GWGUI.Emulation.Wenquxing.Emulators.Wqxemu.Constants;
-using GWGUI.Emulation.Wenquxing.Emulators.Wqxemu.Contracts;
 using GWGUI.Emulation.Wenquxing.Emulators.Wqxemu.Exceptions;
 using System.Net.Http;
 using System.IO;

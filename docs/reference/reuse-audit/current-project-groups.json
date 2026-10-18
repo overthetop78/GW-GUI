@@ -1,9 +1,9 @@
 {
   "baseline": "ac7292d86^",
-  "currentCSharpFiles": 7319,
+  "currentCSharpFiles": 7300,
   "outsideSrcCSharpFiles": 300,
   "baselineMethodCount": 5848,
-  "currentMethodCount": 11629,
+  "currentMethodCount": 11631,
   "powerShellFunctionCount": 17,
   "groups": [
     {
@@ -145,11 +145,10 @@
         {
           "path": "src/GWGUI.Emulation.Nec/Emulators/BeetlePcfx/Factories/BeetlePcfxMachineFactory.cs",
           "name": "InstallAsync",
-          "line": 58,
+          "line": 57,
           "tokens": 42,
           "hash": "0293F4E0B0478A39ADD1E78CA844098864795D8625A41DAD8BD13C690F0EF4D8",
-          "shape": "3A6BB7E21C3D922185645C5F2B40AA178716B19E23D703FC507E1D960FA7FABF",
-          "qualification": "Typed installation adapter; original Amiga lookup verified in simpleFactoryReleaseSelectionReuse"
+          "shape": "3A6BB7E21C3D922185645C5F2B40AA178716B19E23D703FC507E1D960FA7FABF"
         },
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Factories/PpssppMachineFactory.cs",
@@ -172,7 +171,7 @@
       ],
       "predecessors": [],
       "shapePredecessors": [],
-      "qualification": "Qualified typed installation adapters; original selection shared in SDK"
+      "qualification": "Partial occurrence qualification; unannotated members pending"
     },
     {
       "language": "CSharp",
@@ -2722,7 +2721,7 @@
         {
           "path": "src/GWGUI.Emulation.Nec/Emulators/BeetlePcfx/Services/CoreReleaseService.cs",
           "name": "IsInstalled",
-          "line": 53,
+          "line": 52,
           "tokens": 44,
           "hash": "18C7BB79A0AEC4C92A7567F81C98524C2C7EDF7AEE98F383DC9E6BB00E4A5982",
           "shape": "AE50C42A407089D868F320F5CE203EBC1F14F0E05699D0839D5D2DE48ADB44A2"
@@ -6705,7 +6704,7 @@
         {
           "path": "src/GWGUI.Emulation.Panasonic/Emulators/Opera/Services/CoreReleaseService.cs",
           "name": "InstallAsync",
-          "line": 31,
+          "line": 30,
           "tokens": 294,
           "hash": "3BF8B10BDEDE16F24F3AA5B7BA94CC6612D097BAA436952CF7C42CBF014BB501",
           "shape": "34AD368703F881904891FBDA17C2D5BA8136E379BDAF1264224CDB6B1784FE99"
@@ -6713,7 +6712,7 @@
         {
           "path": "src/GWGUI.Emulation.Watara/Emulators/Potator/Services/CoreReleaseService.cs",
           "name": "InstallAsync",
-          "line": 31,
+          "line": 30,
           "tokens": 294,
           "hash": "3BF8B10BDEDE16F24F3AA5B7BA94CC6612D097BAA436952CF7C42CBF014BB501",
           "shape": "34AD368703F881904891FBDA17C2D5BA8136E379BDAF1264224CDB6B1784FE99"
@@ -6737,7 +6736,7 @@
         {
           "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Services/CoreReleaseService.cs",
           "name": "InstallAsync",
-          "line": 31,
+          "line": 30,
           "tokens": 294,
           "hash": "3BF8B10BDEDE16F24F3AA5B7BA94CC6612D097BAA436952CF7C42CBF014BB501",
           "shape": "34AD368703F881904891FBDA17C2D5BA8136E379BDAF1264224CDB6B1784FE99"
@@ -6745,7 +6744,7 @@
         {
           "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Services/CoreReleaseService.cs",
           "name": "InstallAsync",
-          "line": 31,
+          "line": 30,
           "tokens": 294,
           "hash": "3BF8B10BDEDE16F24F3AA5B7BA94CC6612D097BAA436952CF7C42CBF014BB501",
           "shape": "34AD368703F881904891FBDA17C2D5BA8136E379BDAF1264224CDB6B1784FE99"
@@ -7235,7 +7234,7 @@
         {
           "path": "src/GWGUI.Emulation.Nec/Emulators/BeetlePcfx/Services/CoreProvider.cs",
           "name": "FindInstalledPathAsync",
-          "line": 21,
+          "line": 20,
           "tokens": 39,
           "hash": "3EE32D675CC319A7E89C32C5203011D954A38BAB2D163CCC9BCD192204A2AFAA",
           "shape": "34005486CF3E8E526A689B90D2FB4808952C74C674364D3C0FD514FE32354C66"
@@ -7515,7 +7514,7 @@
         {
           "path": "src/GWGUI.Emulation.Panasonic/Emulators/Opera/Dictionaries/CoreCatalog.cs",
           "name": "GetInstallationPaths",
-          "line": 21,
+          "line": 20,
           "tokens": 88,
           "hash": "41BE31E1F1F1A1A6BF871B1008C22263B5B33C10375277951C5F6CF6B8E273BC",
           "shape": "9663AA36D5045F541427C6D13D69A9FC1CBDF1966A046B3E14874552AC508D91"
@@ -7523,7 +7522,7 @@
         {
           "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Dictionaries/CoreCatalog.cs",
           "name": "GetInstallationPaths",
-          "line": 21,
+          "line": 20,
           "tokens": 88,
           "hash": "41BE31E1F1F1A1A6BF871B1008C22263B5B33C10375277951C5F6CF6B8E273BC",
           "shape": "9663AA36D5045F541427C6D13D69A9FC1CBDF1966A046B3E14874552AC508D91"
@@ -7531,7 +7530,7 @@
         {
           "path": "src/GWGUI.Emulation.Watara/Emulators/Potator/Dictionaries/CoreCatalog.cs",
           "name": "GetInstallationPaths",
-          "line": 21,
+          "line": 20,
           "tokens": 88,
           "hash": "41BE31E1F1F1A1A6BF871B1008C22263B5B33C10375277951C5F6CF6B8E273BC",
           "shape": "9663AA36D5045F541427C6D13D69A9FC1CBDF1966A046B3E14874552AC508D91"
@@ -7539,7 +7538,7 @@
         {
           "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Dictionaries/CoreCatalog.cs",
           "name": "GetInstallationPaths",
-          "line": 21,
+          "line": 20,
           "tokens": 88,
           "hash": "41BE31E1F1F1A1A6BF871B1008C22263B5B33C10375277951C5F6CF6B8E273BC",
           "shape": "9663AA36D5045F541427C6D13D69A9FC1CBDF1966A046B3E14874552AC508D91"
@@ -8268,7 +8267,7 @@
         {
           "path": "src/GWGUI.Emulation.Nec/Emulators/BeetlePcfx/Factories/BeetlePcfxMachineFactory.cs",
           "name": "FindReleasesAsync",
-          "line": 51,
+          "line": 50,
           "tokens": 77,
           "hash": "490623079B48F6AE0E9078204866D7D868129EC4B9DA84496FAC5BC41D1E8389",
           "shape": "C39E29645CABAD2A5A03FCD84453653CDF779141E17CC66D47094566C82407AC"
@@ -9933,7 +9932,7 @@
         {
           "path": "src/GWGUI.Emulation.Watara/Emulators/Potator/Functions/CoreFunctions.Release.cs",
           "name": "ParseRelease",
-          "line": 16,
+          "line": 15,
           "tokens": 77,
           "hash": "5943AFDEB9FD3500CD8A06BC160BA3DDE296B2836B4B77DFA0582AFD1E7C0BB6",
           "shape": "F3067ECB2EE9936D9B53C46276858643F1B2EC198FC644C1B30ABFA5C58BC794"
@@ -9957,7 +9956,7 @@
         {
           "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Functions/CoreFunctions.Release.cs",
           "name": "ParseRelease",
-          "line": 16,
+          "line": 15,
           "tokens": 77,
           "hash": "5943AFDEB9FD3500CD8A06BC160BA3DDE296B2836B4B77DFA0582AFD1E7C0BB6",
           "shape": "F3067ECB2EE9936D9B53C46276858643F1B2EC198FC644C1B30ABFA5C58BC794"
@@ -9973,7 +9972,7 @@
         {
           "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Functions/CoreFunctions.Release.cs",
           "name": "ParseRelease",
-          "line": 16,
+          "line": 15,
           "tokens": 77,
           "hash": "5943AFDEB9FD3500CD8A06BC160BA3DDE296B2836B4B77DFA0582AFD1E7C0BB6",
           "shape": "F3067ECB2EE9936D9B53C46276858643F1B2EC198FC644C1B30ABFA5C58BC794"
@@ -9989,7 +9988,7 @@
         {
           "path": "src/GWGUI.Emulation.Panasonic/Emulators/Opera/Functions/CoreFunctions.Release.cs",
           "name": "ParseRelease",
-          "line": 16,
+          "line": 15,
           "tokens": 77,
           "hash": "5943AFDEB9FD3500CD8A06BC160BA3DDE296B2836B4B77DFA0582AFD1E7C0BB6",
           "shape": "F3067ECB2EE9936D9B53C46276858643F1B2EC198FC644C1B30ABFA5C58BC794"
@@ -11941,7 +11940,7 @@
     {
       "language": "CSharp",
       "hash": "68386C818382BCE400A3EDE65411B5CBD9D6A87F6D88FAF6501028CE28C38965",
-      "method": "ToSinclair",
+      "method": "ToModule",
       "tokens": 148,
       "current": [
         {
@@ -13479,7 +13478,7 @@
         {
           "path": "src/GWGUI.Emulation.Watara/Emulators/Potator/Functions/CoreFunctions.Release.cs",
           "name": "DownloadAsync",
-          "line": 23,
+          "line": 22,
           "tokens": 38,
           "hash": "77615E1177DE9D89C58BC9CC1638677CFB89EFB62300BEFB92B572619341EE63",
           "shape": "931B220EE4F238E5A4B0491E79735E5DD7C09F5CB170CEE665D3D130E6A05654"
@@ -13503,7 +13502,7 @@
         {
           "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Functions/CoreFunctions.Release.cs",
           "name": "DownloadAsync",
-          "line": 23,
+          "line": 22,
           "tokens": 38,
           "hash": "77615E1177DE9D89C58BC9CC1638677CFB89EFB62300BEFB92B572619341EE63",
           "shape": "931B220EE4F238E5A4B0491E79735E5DD7C09F5CB170CEE665D3D130E6A05654"
@@ -13519,7 +13518,7 @@
         {
           "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Functions/CoreFunctions.Release.cs",
           "name": "DownloadAsync",
-          "line": 23,
+          "line": 22,
           "tokens": 38,
           "hash": "77615E1177DE9D89C58BC9CC1638677CFB89EFB62300BEFB92B572619341EE63",
           "shape": "931B220EE4F238E5A4B0491E79735E5DD7C09F5CB170CEE665D3D130E6A05654"
@@ -13535,7 +13534,7 @@
         {
           "path": "src/GWGUI.Emulation.Panasonic/Emulators/Opera/Functions/CoreFunctions.Release.cs",
           "name": "DownloadAsync",
-          "line": 23,
+          "line": 22,
           "tokens": 38,
           "hash": "77615E1177DE9D89C58BC9CC1638677CFB89EFB62300BEFB92B572619341EE63",
           "shape": "931B220EE4F238E5A4B0491E79735E5DD7C09F5CB170CEE665D3D130E6A05654"
@@ -16859,7 +16858,7 @@
         {
           "path": "src/GWGUI.Emulation.Nec/Emulators/BeetlePcfx/Factories/BeetlePcfxMachineFactory.cs",
           "name": "GetInstallationAsync",
-          "line": 43,
+          "line": 42,
           "tokens": 46,
           "hash": "93541ADC13C85B36B505223E8F72DD418DA17457EAD457EA33B94FCC4D966746",
           "shape": "198E39518B5178B9D979BF013E2EF017A66AA323E6FE46CD0FEA21F390FD0103"
@@ -17862,6 +17861,33 @@
       "predecessors": [],
       "shapePredecessors": [],
       "qualification": "Qualified typed installation adapters; original selection shared in SDK"
+    },
+    {
+      "language": "CSharp",
+      "hash": "99E71693CF411141B232CE078BEBF68B4564516212CB4B40C2053E083141BDA9",
+      "method": "ToString",
+      "tokens": 49,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation/Contracts/EmulationDefinedCatalogEntry.cs",
+          "name": "ToString",
+          "line": 7,
+          "tokens": 49,
+          "hash": "99E71693CF411141B232CE078BEBF68B4564516212CB4B40C2053E083141BDA9",
+          "shape": "A79E68056B1A9404E3448594CA1D196D006D8863935C3CF6DEFEB08921429C41"
+        },
+        {
+          "path": "src/GWGUI.Emulation/Contracts/EmulationCoreCatalogEntry.cs",
+          "name": "ToString",
+          "line": 15,
+          "tokens": 49,
+          "hash": "99E71693CF411141B232CE078BEBF68B4564516212CB4B40C2053E083141BDA9",
+          "shape": "A79E68056B1A9404E3448594CA1D196D006D8863935C3CF6DEFEB08921429C41"
+        }
+      ],
+      "predecessors": [],
+      "shapePredecessors": [],
+      "qualification": "pending"
     },
     {
       "language": "CSharp",
@@ -19000,7 +19026,7 @@
         {
           "path": "src/GWGUI.Emulation.Nec/Emulators/BeetlePcfx/Services/ExternalCoreInstaller.cs",
           "name": "WriteManifestAsync",
-          "line": 67,
+          "line": 66,
           "tokens": 83,
           "hash": "A20755D3D687AB4CE8990E0E99A63E6CA03644312CEB677FACE54035FCDD32B8",
           "shape": "3AB715B51902B6D5D9B0906BC8123940BF3F749FDBA58C6F0857C49CC519DAFE"
@@ -19369,47 +19395,39 @@
         {
           "path": "src/GWGUI.Emulation.Watara/Emulators/Potator/Dictionaries/CoreCatalog.cs",
           "name": "GetActiveManifestPath",
-          "line": 32,
+          "line": 31,
           "tokens": 35,
           "hash": "A79C9B47DA7C85FC6CC894883221938C19716DAF0938D613663A73A3953E41C8",
-          "shape": "B31A6D176BD30854FD3F9107B653835582C19CAEC96C4A5AB6E3BFF031CCE76A",
-          "qualification": "Local validation and typed entry access; shared System.IO.Path.Combine primitive; 524 before/after outcomes in coreInstallationPathConstructionReuse",
-          "qualificationSourceSha256": "8661EA155535961BFB4A6A227DB4C84142935C2CE408A568E7478FEEA86B9C9D"
+          "shape": "B31A6D176BD30854FD3F9107B653835582C19CAEC96C4A5AB6E3BFF031CCE76A"
         },
         {
           "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Dictionaries/CoreCatalog.cs",
           "name": "GetActiveManifestPath",
-          "line": 32,
+          "line": 31,
           "tokens": 35,
           "hash": "A79C9B47DA7C85FC6CC894883221938C19716DAF0938D613663A73A3953E41C8",
-          "shape": "B31A6D176BD30854FD3F9107B653835582C19CAEC96C4A5AB6E3BFF031CCE76A",
-          "qualification": "Local validation and typed entry access; shared System.IO.Path.Combine primitive; 524 before/after outcomes in coreInstallationPathConstructionReuse",
-          "qualificationSourceSha256": "3CE4ABA9AED48CBE392979DBA32ED7E30A35C65EE288952B67A1DC0B88536861"
+          "shape": "B31A6D176BD30854FD3F9107B653835582C19CAEC96C4A5AB6E3BFF031CCE76A"
         },
         {
           "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Dictionaries/CoreCatalog.cs",
           "name": "GetActiveManifestPath",
-          "line": 32,
+          "line": 31,
           "tokens": 35,
           "hash": "A79C9B47DA7C85FC6CC894883221938C19716DAF0938D613663A73A3953E41C8",
-          "shape": "B31A6D176BD30854FD3F9107B653835582C19CAEC96C4A5AB6E3BFF031CCE76A",
-          "qualification": "Local validation and typed entry access; shared System.IO.Path.Combine primitive; 524 before/after outcomes in coreInstallationPathConstructionReuse",
-          "qualificationSourceSha256": "9C956A368818BD7EC2C2048D3EB3BAD05B4CFE668DCFB225C36C8BE6C8FBE60B"
+          "shape": "B31A6D176BD30854FD3F9107B653835582C19CAEC96C4A5AB6E3BFF031CCE76A"
         },
         {
           "path": "src/GWGUI.Emulation.Panasonic/Emulators/Opera/Dictionaries/CoreCatalog.cs",
           "name": "GetActiveManifestPath",
-          "line": 32,
+          "line": 31,
           "tokens": 35,
           "hash": "A79C9B47DA7C85FC6CC894883221938C19716DAF0938D613663A73A3953E41C8",
-          "shape": "B31A6D176BD30854FD3F9107B653835582C19CAEC96C4A5AB6E3BFF031CCE76A",
-          "qualification": "Local validation and typed entry access; shared System.IO.Path.Combine primitive; 524 before/after outcomes in coreInstallationPathConstructionReuse",
-          "qualificationSourceSha256": "2AE5FD205C06DA9FF9957DC0B4F6D9A26C0CFA297797DE79AF27BEB8050559CD"
+          "shape": "B31A6D176BD30854FD3F9107B653835582C19CAEC96C4A5AB6E3BFF031CCE76A"
         }
       ],
       "predecessors": [],
       "shapePredecessors": [],
-      "qualification": "Qualified local validation adapters over System.IO.Path.Combine; no duplicate path algorithm"
+      "qualification": "pending"
     },
     {
       "language": "CSharp",
@@ -19490,7 +19508,7 @@
         {
           "path": "src/GWGUI.Emulation.Watara/Emulators/Potator/Services/CoreReleaseService.cs",
           "name": "GetActiveInstallationAsync",
-          "line": 68,
+          "line": 67,
           "tokens": 78,
           "hash": "A932980C09120298785927D71317AF131473AA16FB6D21CCC5170E60E619C747",
           "shape": "251D4024965374BA0A89D3479DF00FB7DC55541BBBD858069DE54405C4288B87"
@@ -19522,7 +19540,7 @@
         {
           "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Services/CoreReleaseService.cs",
           "name": "GetActiveInstallationAsync",
-          "line": 68,
+          "line": 67,
           "tokens": 78,
           "hash": "A932980C09120298785927D71317AF131473AA16FB6D21CCC5170E60E619C747",
           "shape": "251D4024965374BA0A89D3479DF00FB7DC55541BBBD858069DE54405C4288B87"
@@ -19538,7 +19556,7 @@
         {
           "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Services/CoreReleaseService.cs",
           "name": "GetActiveInstallationAsync",
-          "line": 68,
+          "line": 67,
           "tokens": 78,
           "hash": "A932980C09120298785927D71317AF131473AA16FB6D21CCC5170E60E619C747",
           "shape": "251D4024965374BA0A89D3479DF00FB7DC55541BBBD858069DE54405C4288B87"
@@ -19546,7 +19564,7 @@
         {
           "path": "src/GWGUI.Emulation.Panasonic/Emulators/Opera/Services/CoreReleaseService.cs",
           "name": "GetActiveInstallationAsync",
-          "line": 68,
+          "line": 67,
           "tokens": 78,
           "hash": "A932980C09120298785927D71317AF131473AA16FB6D21CCC5170E60E619C747",
           "shape": "251D4024965374BA0A89D3479DF00FB7DC55541BBBD858069DE54405C4288B87"
@@ -20467,7 +20485,7 @@
     {
       "language": "CSharp",
       "hash": "B053A3AB4F0B78A37DED57B2D744801187AED6EC54FEEAFE4B1AA9C454D6F48C",
-      "method": "SnkEmulationModule",
+      "method": "FairchildEmulationModule",
       "tokens": 47,
       "current": [
         {
@@ -20792,7 +20810,7 @@
         {
           "path": "src/GWGUI.Emulation.Watara/Emulators/Potator/Services/CoreReleaseService.cs",
           "name": "GetAvailableAsync",
-          "line": 22,
+          "line": 21,
           "tokens": 55,
           "hash": "B4248463CC759BD54FC75812CFF8D13048D3A14D1D03C43351DBC55B15F03350",
           "shape": "24A6DCA9AF3951EB04CFDA4181C572C8DC19A7B045BCE5E39F092BA49FD0B910"
@@ -20824,7 +20842,7 @@
         {
           "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Services/CoreReleaseService.cs",
           "name": "GetAvailableAsync",
-          "line": 22,
+          "line": 21,
           "tokens": 55,
           "hash": "B4248463CC759BD54FC75812CFF8D13048D3A14D1D03C43351DBC55B15F03350",
           "shape": "24A6DCA9AF3951EB04CFDA4181C572C8DC19A7B045BCE5E39F092BA49FD0B910"
@@ -20840,7 +20858,7 @@
         {
           "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Services/CoreReleaseService.cs",
           "name": "GetAvailableAsync",
-          "line": 22,
+          "line": 21,
           "tokens": 55,
           "hash": "B4248463CC759BD54FC75812CFF8D13048D3A14D1D03C43351DBC55B15F03350",
           "shape": "24A6DCA9AF3951EB04CFDA4181C572C8DC19A7B045BCE5E39F092BA49FD0B910"
@@ -20848,7 +20866,7 @@
         {
           "path": "src/GWGUI.Emulation.Panasonic/Emulators/Opera/Services/CoreReleaseService.cs",
           "name": "GetAvailableAsync",
-          "line": 22,
+          "line": 21,
           "tokens": 55,
           "hash": "B4248463CC759BD54FC75812CFF8D13048D3A14D1D03C43351DBC55B15F03350",
           "shape": "24A6DCA9AF3951EB04CFDA4181C572C8DC19A7B045BCE5E39F092BA49FD0B910"
@@ -25952,7 +25970,7 @@
         {
           "path": "src/GWGUI.Emulation.Nec/Emulators/BeetlePcfx/Services/CoreReleaseService.cs",
           "name": "GetInstalledVersion",
-          "line": 29,
+          "line": 28,
           "tokens": 115,
           "hash": "E3FF6377348D5151A17D1FF1FAA3AC99DCD427A39A08B773A28932EF7FBFACCB",
           "shape": "A161A81547E62C0FD3388836E8D721AEDF45BC817A592BD82C806273B7FAEDEC"
@@ -29222,7 +29240,7 @@
         {
           "path": "src/GWGUI.Emulation.Watara/Emulators/Potator/Factories/PotatorMachineFactory.cs",
           "name": "GetInstallationAsync",
-          "line": 28,
+          "line": 27,
           "tokens": 54,
           "hash": "E0684C43D043735F2560B98688C4EE321AA8891A55D6E4A7159AA66B6B75C3B5",
           "shape": "097AD644589DE39BE47165A3FD7FF2594A48D84DAAB3570C62F4F2DAE537DA70"
@@ -29230,7 +29248,7 @@
         {
           "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Factories/TheodoreMachineFactory.cs",
           "name": "GetInstallationAsync",
-          "line": 29,
+          "line": 28,
           "tokens": 54,
           "hash": "FE1DE577A0AFAEECA8B3A23549FCF35B7494D5BD5227B17DE3A8A1F8CCAB86CA",
           "shape": "097AD644589DE39BE47165A3FD7FF2594A48D84DAAB3570C62F4F2DAE537DA70"
@@ -29238,7 +29256,7 @@
         {
           "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Factories/WqxemuMachineFactory.cs",
           "name": "GetInstallationAsync",
-          "line": 29,
+          "line": 28,
           "tokens": 54,
           "hash": "2FE5586A819D5583C6A23BF4E2AFA09CFF19EBFE405612DAC0A5E9294F069E03",
           "shape": "097AD644589DE39BE47165A3FD7FF2594A48D84DAAB3570C62F4F2DAE537DA70"
@@ -29968,32 +29986,29 @@
         {
           "path": "src/GWGUI.Emulation.Watara/Emulators/Potator/Factories/PotatorMachineFactory.cs",
           "name": "InstallAsync",
-          "line": 41,
+          "line": 40,
           "tokens": 80,
           "hash": "39CD38E026F434B0032E61B34A32057E26109E5EA97C67ED38A92F0AE0EEFE2E",
-          "shape": "23DBE5CB614CE6835FF1934FDADD4F1BA3C173AADD20628A92A5BE0FBAD6FA9C",
-          "qualification": "Typed fixed-emulator installation adapter; shared selection/progress verified in fixedFactoryReleaseSelectionReuse"
+          "shape": "23DBE5CB614CE6835FF1934FDADD4F1BA3C173AADD20628A92A5BE0FBAD6FA9C"
         },
         {
           "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Factories/TheodoreMachineFactory.cs",
           "name": "InstallAsync",
-          "line": 42,
+          "line": 41,
           "tokens": 80,
           "hash": "02EC2D1D5AC218E99339A0E9CE2AF2E5EECB8377E2BF5AEA33BFF7B03ED5DA20",
-          "shape": "23DBE5CB614CE6835FF1934FDADD4F1BA3C173AADD20628A92A5BE0FBAD6FA9C",
-          "qualification": "Typed fixed-emulator installation adapter; shared selection/progress verified in fixedFactoryReleaseSelectionReuse"
+          "shape": "23DBE5CB614CE6835FF1934FDADD4F1BA3C173AADD20628A92A5BE0FBAD6FA9C"
         },
         {
           "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Factories/WqxemuMachineFactory.cs",
           "name": "InstallAsync",
-          "line": 42,
+          "line": 41,
           "tokens": 80,
           "hash": "C7D0B0D3B262E503660AB96E6E49109B8EBED04CE4D0BF00F95D1B2184DA04C6",
-          "shape": "23DBE5CB614CE6835FF1934FDADD4F1BA3C173AADD20628A92A5BE0FBAD6FA9C",
-          "qualification": "Typed fixed-emulator installation adapter; shared selection/progress verified in fixedFactoryReleaseSelectionReuse"
+          "shape": "23DBE5CB614CE6835FF1934FDADD4F1BA3C173AADD20628A92A5BE0FBAD6FA9C"
         }
       ],
-      "qualification": "Qualified typed adapters; common selection/progress in existing SDK"
+      "qualification": "pending-symbol-and-policy-comparison"
     },
     {
       "shape": "249BC5708CDBC9A453449F2FC91255403B9F1E2B516EDB88B627D6102A92AEF0",
@@ -30518,7 +30533,7 @@
         {
           "path": "src/GWGUI.Emulation.Nec/Emulators/BeetlePcfx/Services/CoreReleaseService.cs",
           "name": "InstallAsync",
-          "line": 63,
+          "line": 62,
           "tokens": 263,
           "hash": "889A3C666BD422F1D9F8BBCF6029821CB8A07E57F02065A91630668DD6FF05D7",
           "shape": "3A5AF1DA73918C681E4201FE380BCDF5FC1E065C8E8A775786B2B401A371D8AB"
@@ -30715,7 +30730,7 @@
         {
           "path": "src/GWGUI.Emulation.Nec/Emulators/BeetlePcfx/Services/CoreHost.cs",
           "name": "Run",
-          "line": 20,
+          "line": 19,
           "tokens": 648,
           "hash": "68B2B98C5B3796C697A1D445749CF95D770B820C220C4353B4C581009D932369",
           "shape": "3D246AB3FC59DEE212661AF78245244D2D91EDF84F8AB50D40F7BADF9CFD78EA"
@@ -31916,7 +31931,7 @@
         {
           "path": "src/GWGUI.Emulation.Nec/Emulators/BeetlePcfx/Factories/BeetlePcfxMachineFactory.cs",
           "name": "TryHandleHostCommand",
-          "line": 33,
+          "line": 32,
           "tokens": 53,
           "hash": "50032695D87DD35B287EACFB36DBAF21BE4CD2EDE7C895396B890E3D886B8D03",
           "shape": "6074D3191E5899BF0143C1089F4D8E300AA659E7B578E2DB40325689389C80F8"
@@ -32283,7 +32298,7 @@
         {
           "path": "src/GWGUI.Emulation.Nec/Emulators/BeetlePcfx/Services/ExternalCoreInstaller.cs",
           "name": "InstallAsync",
-          "line": 39,
+          "line": 38,
           "tokens": 236,
           "hash": "5423B5EC9022DD87019474ABB8F0700C0464EBC5F5D26B54ECDA6D66BB1C951E",
           "shape": "6EF05BECD77A0E33E3B7530443B6D10D50350DC7367FEFE2EF664E0F720B9295"
@@ -33021,7 +33036,7 @@
         {
           "path": "src/GWGUI.Emulation.Watara/Emulators/Potator/Factories/PotatorMachineFactory.cs",
           "name": "FindReleasesAsync",
-          "line": 34,
+          "line": 33,
           "tokens": 91,
           "hash": "B56B6FC197F15E0CE8DF2238E6A92424F24486A31F9D4816C497238D5F17A3A4",
           "shape": "84810915F8F00F351538F5BD897BDCE8CB8B9DF592F05078AF26223213B20CF8"
@@ -33029,7 +33044,7 @@
         {
           "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Factories/TheodoreMachineFactory.cs",
           "name": "FindReleasesAsync",
-          "line": 35,
+          "line": 34,
           "tokens": 91,
           "hash": "CFF8A4A747B5D47C11C165B033A553D6CD12229C3FB7B77115A85855808BEC46",
           "shape": "84810915F8F00F351538F5BD897BDCE8CB8B9DF592F05078AF26223213B20CF8"
@@ -33037,7 +33052,7 @@
         {
           "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Factories/WqxemuMachineFactory.cs",
           "name": "FindReleasesAsync",
-          "line": 35,
+          "line": 34,
           "tokens": 91,
           "hash": "DEC9B42C838E217C356AA8B1BD70F331FF1D6C1F76622DF0C50F733C1FC824BC",
           "shape": "84810915F8F00F351538F5BD897BDCE8CB8B9DF592F05078AF26223213B20CF8"
@@ -33045,7 +33060,7 @@
         {
           "path": "src/GWGUI.Emulation.Panasonic/Emulators/Opera/Factories/OperaMachineFactory.cs",
           "name": "FindReleasesAsync",
-          "line": 37,
+          "line": 36,
           "tokens": 91,
           "hash": "F00EF5104BEAC4035EC8DB2E0AA870A193D691CBF42B2B1A12133E1DAD870488",
           "shape": "84810915F8F00F351538F5BD897BDCE8CB8B9DF592F05078AF26223213B20CF8"
@@ -33582,7 +33597,7 @@
         {
           "path": "src/GWGUI.Emulation.Watara/Emulators/Potator/Factories/PotatorMachineFactory.cs",
           "name": "FindInstalledCorePathAsync",
-          "line": 49,
+          "line": 48,
           "tokens": 32,
           "hash": "1D19E0CB5BADE1AA0DEC10BCB9386D97510DC7907ACAB273B54845324C2B55B6",
           "shape": "978EE4E8ED38A579F10FB1AE90A1D21535240F028036D507734CA642A9687A1E"
@@ -33590,7 +33605,7 @@
         {
           "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Factories/TheodoreMachineFactory.cs",
           "name": "FindInstalledCorePathAsync",
-          "line": 50,
+          "line": 49,
           "tokens": 32,
           "hash": "7A1E95BB39A08431B429E80F2C4F57BF3A93AB9387B9D554060149ACDEC8C312",
           "shape": "978EE4E8ED38A579F10FB1AE90A1D21535240F028036D507734CA642A9687A1E"
@@ -33598,7 +33613,7 @@
         {
           "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Factories/WqxemuMachineFactory.cs",
           "name": "FindInstalledCorePathAsync",
-          "line": 50,
+          "line": 49,
           "tokens": 32,
           "hash": "9A45AB47B81E5CC4E1704CED9E33CE9ABBB1C8AE9CD4268B26AC24E8B13CC06D",
           "shape": "978EE4E8ED38A579F10FB1AE90A1D21535240F028036D507734CA642A9687A1E"
@@ -33606,7 +33621,7 @@
         {
           "path": "src/GWGUI.Emulation.Panasonic/Emulators/Opera/Factories/OperaMachineFactory.cs",
           "name": "FindInstalledCorePathAsync",
-          "line": 51,
+          "line": 50,
           "tokens": 32,
           "hash": "C544AF1D98056710636A8D3DE3439CDE25814D6AEBFA99297364D42AAF30509C",
           "shape": "978EE4E8ED38A579F10FB1AE90A1D21535240F028036D507734CA642A9687A1E"
@@ -35243,7 +35258,7 @@
         {
           "path": "src/GWGUI.Emulation.Watara/Emulators/Potator/Factories/PotatorMachineFactory.cs",
           "name": "TryHandleHostCommand",
-          "line": 17,
+          "line": 16,
           "tokens": 83,
           "hash": "61A4A9455C5DE4AE8CED08D530A4DB98CD41B48EECB9A8017051D0D3FC29DBC4",
           "shape": "C1DBF792BB0BA836F7D153F7E40517BE6E2EA4B787CD6D8371457BDF3A814CA6"
@@ -35251,7 +35266,7 @@
         {
           "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Factories/TheodoreMachineFactory.cs",
           "name": "TryHandleHostCommand",
-          "line": 18,
+          "line": 17,
           "tokens": 83,
           "hash": "82D2D71F476EB1C88E10306E2B1D0E105CB0110134073065FC00F41B06D7AB6B",
           "shape": "C1DBF792BB0BA836F7D153F7E40517BE6E2EA4B787CD6D8371457BDF3A814CA6"
@@ -35259,7 +35274,7 @@
         {
           "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Factories/WqxemuMachineFactory.cs",
           "name": "TryHandleHostCommand",
-          "line": 18,
+          "line": 17,
           "tokens": 83,
           "hash": "3F349D9829C6BB5A3450DDEE1874909C28E5149161F16D23B8C569B8318075E4",
           "shape": "C1DBF792BB0BA836F7D153F7E40517BE6E2EA4B787CD6D8371457BDF3A814CA6"
@@ -35267,7 +35282,7 @@
         {
           "path": "src/GWGUI.Emulation.Panasonic/Emulators/Opera/Factories/OperaMachineFactory.cs",
           "name": "TryHandleHostCommand",
-          "line": 20,
+          "line": 19,
           "tokens": 83,
           "hash": "03504F2DBE975314D38CD13CA727F99C2435580516FF41766F21FB23FD78D306",
           "shape": "C1DBF792BB0BA836F7D153F7E40517BE6E2EA4B787CD6D8371457BDF3A814CA6"
@@ -37819,7 +37834,7 @@
   ],
   "scope": "All current repository CSharp and PowerShell files; no age filter; candidates require semantic review",
   "qualificationCarryForward": {
-    "occurrences": 93,
+    "occurrences": 85,
     "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical"
   }
 }

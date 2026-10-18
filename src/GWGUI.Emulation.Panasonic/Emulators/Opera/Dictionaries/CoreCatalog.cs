@@ -1,6 +1,5 @@
 using System.IO;
 using GWGUI.Emulation.Panasonic.Emulators.Opera.Constants;
-using GWGUI.Emulation.Panasonic.Emulators.Opera.Contracts;
 
 namespace GWGUI.Emulation.Panasonic.Emulators.Opera.Dictionaries;
 internal static class CoreCatalog

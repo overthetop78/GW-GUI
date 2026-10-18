@@ -45,3 +45,4 @@ global using CoreOptionValue = GWGUI.Emulation.Contracts.EmulationTimingOptionVa
 
 global using CoreOption = GWGUI.Emulation.Contracts.EmulationTimingOption;
 global using CoreRelease = GWGUI.Emulation.Contracts.EmulationCatalogCoreRelease<GWGUI.Emulation.Philips.Common.Machines.Common.Enums.Emulator>;
+global using EmulatorCatalogEntry = GWGUI.Emulation.Contracts.EmulationCoreCatalogEntry<GWGUI.Emulation.Philips.Common.Machines.Common.Enums.Emulator, GWGUI.Emulation.Philips.Common.Machines.Common.Enums.MachineModel>;

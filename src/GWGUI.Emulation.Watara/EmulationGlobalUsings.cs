@@ -34,3 +34,4 @@ global using CoreInstallProgress = global::GWGUI.Emulation.Contracts.EmulationCo
 
 global using CoreOption = GWGUI.Emulation.Contracts.EmulationEnabledOption;
 global using CoreRelease = GWGUI.Emulation.Contracts.EmulationCatalogCoreRelease<GWGUI.Emulation.Watara.Common.Machines.Common.Enums.Emulator>;
+global using EmulatorCatalogEntry = GWGUI.Emulation.Contracts.EmulationCoreCatalogEntry<GWGUI.Emulation.Watara.Common.Machines.Common.Enums.Emulator, GWGUI.Emulation.Watara.Common.Machines.Common.Enums.MachineModel>;

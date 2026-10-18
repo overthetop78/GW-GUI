@@ -1,6 +1,5 @@
 using ProcessCore = GWGUI.Emulation.Nec.Emulators.Common.Interop.Services.ProcessCore;
 using GWGUI.Emulation.Nec.Emulators.BeetlePcfx.Functions;
-using GWGUI.Emulation.Nec.Emulators.BeetlePcfx.Contracts;
 using GWGUI.Emulation.Nec.Emulators.BeetlePcfx.Constants;
 using GWGUI.Emulation.Nec.Emulators.BeetlePcfx.Services;
 using System.IO;

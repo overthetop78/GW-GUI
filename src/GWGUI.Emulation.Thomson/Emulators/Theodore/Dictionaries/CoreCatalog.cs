@@ -1,6 +1,5 @@
 using System.IO;
 using GWGUI.Emulation.Thomson.Emulators.Theodore.Constants;
-using GWGUI.Emulation.Thomson.Emulators.Theodore.Contracts;
 
 namespace GWGUI.Emulation.Thomson.Emulators.Theodore.Dictionaries;
 internal static class CoreCatalog

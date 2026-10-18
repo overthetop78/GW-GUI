@@ -1,5 +1,4 @@
 using GWGUI.Emulation.Panasonic.Emulators.Opera.Constants;
-using GWGUI.Emulation.Panasonic.Emulators.Opera.Contracts;
 using GWGUI.Emulation.Panasonic.Emulators.Opera.Dictionaries;
 using GWGUI.Emulation.Panasonic.Emulators.Opera.Exceptions;
 using GWGUI.Emulation.Panasonic.Emulators.Opera.Functions;

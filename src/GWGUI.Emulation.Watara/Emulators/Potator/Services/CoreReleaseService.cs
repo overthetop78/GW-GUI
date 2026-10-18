@@ -1,5 +1,4 @@
 using GWGUI.Emulation.Watara.Emulators.Potator.Constants;
-using GWGUI.Emulation.Watara.Emulators.Potator.Contracts;
 using GWGUI.Emulation.Watara.Emulators.Potator.Dictionaries;
 using GWGUI.Emulation.Watara.Emulators.Potator.Exceptions;
 using GWGUI.Emulation.Watara.Emulators.Potator.Functions;
