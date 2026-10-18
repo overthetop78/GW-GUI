@@ -28,23 +28,9 @@ public sealed partial class ChdHardDiskReader : IMediaImageReader
     IReadOnlySet<MediaRepresentationKind> IMediaImageReader.RepresentationKinds => SupportedRepresentationKinds;
     bool IMediaImageReader.SupportsFormatId(string formatId) => SupportedFormatIds.Contains(formatId);
 
-    async ValueTask<bool> IMediaImageReader.CanReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken)
-    {
-        if (context.RequestedFormatId is not null && !SupportedFormatIds.Contains(context.RequestedFormatId)) return false;
-        try
-        {
-            await ReadLayoutAsync(context, cancellationToken).ConfigureAwait(false);
-            return true;
-        }
-        catch (InvalidDataException)
-        {
-            return false;
-        }
-        catch (NotSupportedException)
-        {
-            return false;
-        }
-    }
+    ValueTask<bool> IMediaImageReader.CanReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken)
+        => MediaRecognitionRegistry.CanReadAsync(context, SupportedFormatIds,
+            ReadLayoutAsync, cancellationToken);
 
     async Task<MediaImageDocument> IMediaImageReader.ReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken)
     {

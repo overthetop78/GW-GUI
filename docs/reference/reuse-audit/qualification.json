@@ -8249,13 +8249,13 @@
     "afterProductBuild": "005e3c677"
   },
   "shortMethodInventory": {
-    "snapshot": "b59b43218d59a1ec7da59c51824fae843fbcf50b",
-    "files": 7321,
-    "bodyCount": 9484,
+    "snapshot": "145c2c84fdcf94f567a63d2d96011ff6b87c0c17",
+    "files": 7322,
+    "bodyCount": 9487,
     "exactGroups": 774,
     "renamedGroups": 365,
     "status": "Incomplete; existing queue/empty-method qualifications retained; 29 factory selections now shared and verified; sector source reader-selection stage shared, remaining typed writer ownership pending.",
-    "trackedCSharpCoverage": "Full current C# scan, 7321 source files, including original cassette validation extraction and managed compatibility tests. Candidate counts are not proven defects."
+    "trackedCSharpCoverage": "Full current C# scan, 7322 files including managed probe tests. Two textually identical remaining CanReadAsync bodies are typed parser adapters to the shared policy, verified separately; other candidates remain pending."
   },
   "hardwareIdentityComparisonReuse": {
     "snapshot": "a4760e868",
@@ -10934,5 +10934,100 @@
     "ast": "Shared expression exactly restores both original policies by substituting their existing format/machine fields. All other tokens of both files identical to b59b43218; Spectrum source SHA-256 unchanged.",
     "semanticAfter": "MediaEngine zero semantic errors; both CanEncode calls resolve to SequentialEncodeFunctions.CanEncodeValidatedBytes with original request and original field sets.",
     "tests": "Eight managed tests passed, exit 0: two encoder profiles for invalid blocks/format/machine/retained segments, two WAV sample-rate profiles including strict integer syntax and boundary 8000, and four Spectrum distinct size boundaries. No media files, native core, window, process or external fixture created."
+  },
+  "diskReaderProbeReuse": {
+    "state": "verified",
+    "before": [
+      {
+        "path": "src/GWGUI.MediaEngine/Images/Formats/HardDisk/Vmdk/VmdkReader.cs",
+        "sha256": "77F2076B6D6F358C268834C6F3C444B6C420999DB2456AEF1EF083F795F8867F",
+        "origin": "8ea733760",
+        "originalBodyUnchanged": true,
+        "validator": "GWGUI.MediaEngine.Images.Formats.HardDisk.Vmdk.VmdkReader.ReadDocumentAsync(GWGUI.MediaEngine.Images.Reading.Recognition.MediaRecognitionContext, bool, System.Threading.CancellationToken)",
+        "returnType": "System.Threading.Tasks.Task<GWGUI.MediaEngine.Contracts.MediaImageDocument>",
+        "callTokens": "ReadDocumentAsync ( context , false , cancellationToken )"
+      },
+      {
+        "path": "src/GWGUI.MediaEngine/Images/Formats/HardDisk/Qcow2/Qcow2Reader.cs",
+        "sha256": "BCF9799BFB3F318973749D723A6A42E5D9A4ED5DBB2713B77484189F1F7D3280",
+        "origin": "8ea733760",
+        "originalBodyUnchanged": true,
+        "validator": "GWGUI.MediaEngine.Images.Formats.HardDisk.Qcow2.Qcow2Reader.ReadDocumentAsync(GWGUI.MediaEngine.Images.Reading.Recognition.MediaRecognitionContext, bool, System.Threading.CancellationToken)",
+        "returnType": "System.Threading.Tasks.Task<GWGUI.MediaEngine.Contracts.MediaImageDocument>",
+        "callTokens": "ReadDocumentAsync ( context , false , cancellationToken )"
+      },
+      {
+        "path": "src/GWGUI.MediaEngine/Images/Formats/HardDisk/Vdi/VdiReader.cs",
+        "sha256": "04EA77C4CAEDC0DB8C16EDE60A24DBA55DC9A47D1ECA82CF1F4495E1D4ECCB71",
+        "origin": "8ea733760",
+        "originalBodyUnchanged": true,
+        "validator": "GWGUI.MediaEngine.Images.Formats.HardDisk.Vdi.VdiReader.ReadHeaderAsync(GWGUI.MediaEngine.Images.Reading.Recognition.MediaRecognitionContext, System.Threading.CancellationToken)",
+        "returnType": "System.Threading.Tasks.ValueTask<GWGUI.MediaEngine.Images.Formats.HardDisk.Vdi.VdiReader.VdiHeader>",
+        "callTokens": "ReadHeaderAsync ( context , cancellationToken )"
+      },
+      {
+        "path": "src/GWGUI.MediaEngine/Images/Formats/HardDisk/Vhdx/VhdxReader.cs",
+        "sha256": "E93B88FDC50E175D2CC778F9547D465068D205F21DC63C83FFAF89571A80811A",
+        "origin": "8ea733760",
+        "originalBodyUnchanged": true,
+        "validator": "GWGUI.MediaEngine.Images.Formats.HardDisk.Vhdx.VhdxReader.ReadStructuresAsync(GWGUI.MediaEngine.Images.Reading.Recognition.MediaRecognitionContext, System.Threading.CancellationToken)",
+        "returnType": "System.Threading.Tasks.Task<GWGUI.MediaEngine.Images.Formats.HardDisk.Vhdx.VhdxReader.VhdxStructures>",
+        "callTokens": "ReadStructuresAsync ( context , cancellationToken )"
+      },
+      {
+        "path": "src/GWGUI.MediaEngine/Images/Formats/HardDisk/Chd/ChdHardDiskReader.cs",
+        "sha256": "8EE325FAC8EEF9EC4C9E36A260A218B91F37ACF1A46554550D16AEA4882F91C2",
+        "origin": "8ea733760",
+        "originalBodyUnchanged": true,
+        "validator": "GWGUI.MediaEngine.Images.Formats.HardDisk.Chd.ChdHardDiskReader.ReadLayoutAsync(GWGUI.MediaEngine.Images.Reading.Recognition.MediaRecognitionContext, System.Threading.CancellationToken)",
+        "returnType": "System.Threading.Tasks.ValueTask<GWGUI.MediaEngine.Images.Formats.HardDisk.Chd.ChdHardDiskReader.ChdLayout>",
+        "callTokens": "ReadLayoutAsync ( context , cancellationToken )"
+      }
+    ],
+    "original": "All five policies already present in 8ea733760; exact current bodies match their originals. No false claim of precedence among files introduced together.",
+    "policy": "Same requested-format guard, await ConfigureAwait(false), true on validation success, false only for InvalidDataException/NotSupportedException. Same control-flow tokens after substitution of the single specialized parser invocation.",
+    "distinct": "VHD tests footer disk types and catches InvalidDataException only. RAW resolves structured block size and validates length. Both remain unchanged.",
+    "owner": "Existing MediaRecognitionRegistry already orchestrates media reader probes and complete validation. Add an internal generic probe policy there, keeping candidate ranking, signature matching and public registry methods unchanged. MediaRecognitionContext remains the borrowed cached source.",
+    "decision": "Use ValueTask<T> validator delegate; preserve VDI/CHD ValueTask readers directly and wrap existing VMDK/QCOW2/VHDX Tasks in ValueTask<T> without extra asynchronous callback. Keep context/token, false includeRanges, catches and asynchronous failure behavior.",
+    "after": [
+      {
+        "path": "src/GWGUI.MediaEngine/Images/Formats/HardDisk/Vmdk/VmdkReader.cs",
+        "sha256": "7D5C19293B6E84FF900DFEAB2D8D11E64D93C68F393037B49477D0F71FCAAEC1",
+        "expandedOriginalBodyIdentical": true,
+        "allOtherTokensIdentical": true,
+        "originalValidatorArgumentsPreserved": true
+      },
+      {
+        "path": "src/GWGUI.MediaEngine/Images/Formats/HardDisk/Qcow2/Qcow2Reader.cs",
+        "sha256": "70BE76639F9E100672B2292BC69DC33F4EB3E6A9E513893E48CE2890ECDE6B36",
+        "expandedOriginalBodyIdentical": true,
+        "allOtherTokensIdentical": true,
+        "originalValidatorArgumentsPreserved": true
+      },
+      {
+        "path": "src/GWGUI.MediaEngine/Images/Formats/HardDisk/Vdi/VdiReader.cs",
+        "sha256": "98C700818E2CA5B1F4834E98C135DBCA734FAD464D9732C85610B53AC5C08D5B",
+        "expandedOriginalBodyIdentical": true,
+        "allOtherTokensIdentical": true,
+        "originalValidatorArgumentsPreserved": true
+      },
+      {
+        "path": "src/GWGUI.MediaEngine/Images/Formats/HardDisk/Vhdx/VhdxReader.cs",
+        "sha256": "64D5B1F0ACB27B964B954A87924A269EBECEB0C07ECB392F1EA30934E9900652",
+        "expandedOriginalBodyIdentical": true,
+        "allOtherTokensIdentical": true,
+        "originalValidatorArgumentsPreserved": true
+      },
+      {
+        "path": "src/GWGUI.MediaEngine/Images/Formats/HardDisk/Chd/ChdHardDiskReader.cs",
+        "sha256": "8FAB0A6A2A81BBE21C27FD10690B60A258146CB88987C8C9C39E9F3F0182F680",
+        "expandedOriginalBodyIdentical": true,
+        "allOtherTokensIdentical": true,
+        "originalValidatorArgumentsPreserved": true
+      }
+    ],
+    "ast": "Shared body expands exactly to each of five original bodies; callbacks preserve parser, context, token and false includeRanges. The async ValueTask implementation moved into common method; adapters return that ValueTask directly, retaining fault timing. Task parsers wrapped in ValueTask<T>, ValueTask parsers supplied as method groups. All other tokens of all five readers and registry unchanged; VHD/RAW tokens unchanged.",
+    "semanticAfter": "MediaEngine zero semantic errors; five calls resolve to common generic CanReadAsync with the exact original parser return types: three Task<T> wrapped in ValueTask<T>, two ValueTask<T> method groups. Parser declarations, bodies and all other members unchanged.",
+    "tests": "Fifteen managed tests passed, exit 0: requested formats/null/case/empty, pre-cancelled token forwarding and early refusal, controlled pending validator completed/awaited in finally, synchronous/asynchronous InvalidDataException and NotSupportedException refusal, other IOException propagation, both cancellation paths with token, and null-context asynchronous fault timing. Context KnownLength=0 avoids FileInfo and no reads are invoked; no media files, external DLL fixtures, windows, processes or cores."
   }
 }

@@ -1,13 +1,17 @@
 {
-  "snapshot": "b59b43218d59a1ec7da59c51824fae843fbcf50b",
+  "snapshot": "145c2c84fdcf94f567a63d2d96011ff6b87c0c17",
   "snapshotState": "Current worktree based on snapshot",
   "worktreeSourceChanges": [
-    "src/GWGUI.MediaEngine/Images/Writing/Encoding/Sequential/Commodore/CommodoreTapeEncoder.cs",
-    "src/GWGUI.MediaEngine/Images/Writing/Encoding/Sequential/Msx/MsxTapeEncoder.cs"
+    "src/GWGUI.MediaEngine/Images/Formats/HardDisk/Chd/ChdHardDiskReader.cs",
+    "src/GWGUI.MediaEngine/Images/Formats/HardDisk/Qcow2/Qcow2Reader.cs",
+    "src/GWGUI.MediaEngine/Images/Formats/HardDisk/Vdi/VdiReader.cs",
+    "src/GWGUI.MediaEngine/Images/Formats/HardDisk/Vhdx/VhdxReader.cs",
+    "src/GWGUI.MediaEngine/Images/Formats/HardDisk/Vmdk/VmdkReader.cs",
+    "src/GWGUI.MediaEngine/Images/Reading/Recognition/MediaRecognitionRegistry.cs"
   ],
   "scope": "All current non-ignored repository CSharp files, including hidden paths; BaseMethodDeclaration bodies with fewer than 30 tokens. Candidate presence is not a defect or a completion claim.",
-  "fileCount": 7321,
-  "methodBodyCount": 9484,
+  "fileCount": 7322,
+  "methodBodyCount": 9487,
   "exactGroups": [
     {
       "hash": "0017F14C61995D644C52FF90F094E4708DC2CA772615CF2F5DD41E74BD202ECA",
@@ -31901,7 +31905,7 @@
           "name": "ReadAsync",
           "owner": "Qcow2Reader",
           "kind": "MethodDeclaration",
-          "line": 47,
+          "line": 33,
           "parameters": "(MediaRecognitionContext context, CancellationToken cancellationToken)",
           "tokens": 9,
           "bodyTokens": "=> ReadDocumentAsync ( context , true , cancellationToken )",
@@ -31913,7 +31917,7 @@
           "name": "ReadAsync",
           "owner": "VmdkReader",
           "kind": "MethodDeclaration",
-          "line": 49,
+          "line": 35,
           "parameters": "(MediaRecognitionContext context, CancellationToken cancellationToken)",
           "tokens": 9,
           "bodyTokens": "=> ReadDocumentAsync ( context , true , cancellationToken )",
@@ -60405,7 +60409,7 @@
           "name": "IsPowerOfTwo",
           "owner": "VhdxReader",
           "kind": "MethodDeclaration",
-          "line": 265,
+          "line": 251,
           "parameters": "(uint value)",
           "tokens": 16,
           "bodyTokens": "=> value != 0 && ( value & ( value - 1 ) ) == 0",
@@ -75910,7 +75914,7 @@
           "name": "ReadAsync",
           "owner": "Qcow2Reader",
           "kind": "MethodDeclaration",
-          "line": 47,
+          "line": 33,
           "parameters": "(MediaRecognitionContext context, CancellationToken cancellationToken)",
           "tokens": 9,
           "bodyTokens": "=> ReadDocumentAsync ( context , true , cancellationToken )",
@@ -75922,7 +75926,7 @@
           "name": "ReadAsync",
           "owner": "VmdkReader",
           "kind": "MethodDeclaration",
-          "line": 49,
+          "line": 35,
           "parameters": "(MediaRecognitionContext context, CancellationToken cancellationToken)",
           "tokens": 9,
           "bodyTokens": "=> ReadDocumentAsync ( context , true , cancellationToken )",
@@ -132694,6 +132698,30 @@
           "tokens": 13,
           "bodyTokens": "=> sectorImageReader . ReadAsync ( image , formatId , progress , cancellationToken )",
           "hash": "5909E3BFFB7162B8782572CC32105A2DD4A4F0DA1DD6256FEA85CBEED551BDA2",
+          "shape": "F40B65E28C7A3D97D5FFA80341514BAC0D3E534ECAD61BA15D6C362294982091"
+        },
+        {
+          "path": "src/GWGUI.MediaEngine/Images/Formats/HardDisk/Chd/ChdHardDiskReader.cs",
+          "name": "CanReadAsync",
+          "owner": "ChdHardDiskReader",
+          "kind": "MethodDeclaration",
+          "line": 31,
+          "parameters": "(MediaRecognitionContext context, CancellationToken cancellationToken)",
+          "tokens": 13,
+          "bodyTokens": "=> MediaRecognitionRegistry . CanReadAsync ( context , SupportedFormatIds , ReadLayoutAsync , cancellationToken )",
+          "hash": "229D63060FE232DAC493A49CF5220703684554EF65870A04E472DD8C5331E250",
+          "shape": "F40B65E28C7A3D97D5FFA80341514BAC0D3E534ECAD61BA15D6C362294982091"
+        },
+        {
+          "path": "src/GWGUI.MediaEngine/Images/Formats/HardDisk/Vdi/VdiReader.cs",
+          "name": "CanReadAsync",
+          "owner": "VdiReader",
+          "kind": "MethodDeclaration",
+          "line": 29,
+          "parameters": "(MediaRecognitionContext context, CancellationToken cancellationToken)",
+          "tokens": 13,
+          "bodyTokens": "=> MediaRecognitionRegistry . CanReadAsync ( context , SupportedFormatIds , ReadHeaderAsync , cancellationToken )",
+          "hash": "7B8E8C4737A4CDBB530EDBF6C901C3F10A9BEB1354C7103AF3D4A4D71009FEC0",
           "shape": "F40B65E28C7A3D97D5FFA80341514BAC0D3E534ECAD61BA15D6C362294982091"
         },
         {

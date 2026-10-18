@@ -28,23 +28,9 @@ public sealed class VmdkReader : IMediaImageReader
     IReadOnlySet<MediaRepresentationKind> IMediaImageReader.RepresentationKinds => SupportedRepresentationKinds;
     bool IMediaImageReader.SupportsFormatId(string formatId) => SupportedFormatIds.Contains(formatId);
 
-    async ValueTask<bool> IMediaImageReader.CanReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken)
-    {
-        if (context.RequestedFormatId is not null && !SupportedFormatIds.Contains(context.RequestedFormatId)) return false;
-        try
-        {
-            await ReadDocumentAsync(context, false, cancellationToken).ConfigureAwait(false);
-            return true;
-        }
-        catch (InvalidDataException)
-        {
-            return false;
-        }
-        catch (NotSupportedException)
-        {
-            return false;
-        }
-    }
+    ValueTask<bool> IMediaImageReader.CanReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken)
+        => MediaRecognitionRegistry.CanReadAsync(context, SupportedFormatIds,
+            static (source, token) => new ValueTask<MediaImageDocument>(ReadDocumentAsync(source, false, token)), cancellationToken);
 
     Task<MediaImageDocument> IMediaImageReader.ReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken) => ReadDocumentAsync(context, true, cancellationToken);
 
