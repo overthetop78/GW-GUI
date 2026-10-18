@@ -7,6 +7,7 @@ param(
 
 $ErrorActionPreference = 'Stop'
 $repository = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..\..\..'))
+. (Join-Path $PSScriptRoot 'organize_app\shared-component-files.ps1')
 if ([string]::IsNullOrWhiteSpace($DistDirectory)) { $DistDirectory = Join-Path $repository 'dist' }
 $dist = [IO.Path]::GetFullPath($DistDirectory)
 if (-not $dist.StartsWith($repository + [IO.Path]::DirectorySeparatorChar, [StringComparison]::OrdinalIgnoreCase)) {
@@ -42,7 +43,10 @@ dotnet publish (Join-Path $repository 'src\GWGUI.Updater\GWGUI.Updater.csproj') 
 if ($LASTEXITCODE -ne 0) { throw 'GW GUI updater publish failed.' }
 $updaterOutput = Join-Path $publish 'Updater'
 New-Item -ItemType Directory -Path $updaterOutput -Force | Out-Null
-Copy-Item -Path (Join-Path $updaterPublish '*') -Destination $updaterOutput -Recurse -Force
+$sharedHashes = Get-GwGuiFileHashes -Files @(Get-ChildItem -LiteralPath (Join-Path $publish 'lib') -Recurse -File)
+Copy-GwGuiComponentFiles -SourceDirectory $updaterPublish -DestinationDirectory $updaterOutput `
+    -SharedHashes $sharedHashes -RequiredFiles @('gwgui.updater.exe', 'gwgui.updater.dll', 'gwgui.updater.pdb',
+        'gwgui.updater.deps.json', 'gwgui.updater.runtimeconfig.json')
 Get-ChildItem -LiteralPath $publish -Recurse -File -Filter '*.pdb' | Remove-Item -Force
 
 Copy-Item -Path (Join-Path $publish '*') -Destination $portablePackage -Recurse -Force

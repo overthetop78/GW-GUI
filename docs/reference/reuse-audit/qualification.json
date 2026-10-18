@@ -22294,5 +22294,328 @@
     "verification": "All 37 statement sequences match mapped original branches and labels, with original constant expressions/current values. Restoring those sequences makes all eight complete files token-identical to HEAD; all other cases, catches, fields and callback ownership unchanged. Existing SDK primitives source hash unchanged. For 24 accepted-null sections the ignored primitive refusal is followed by true; remaining 13 sections return its same null-refusal/write result.",
     "semanticAfter": "SDK and six changed modules zero errors. 37 calls resolve to existing WriteBoolean(nint,bool) or WriteInteger(nint,int), never the checked uint overload. All original native command ids and reply constants preserved.",
     "tests": "24 existing tests passed, exit 0: StatelessEnvironmentCommandTests and CoreOptionHostStateTests. Boolean native byte values, configured interface versions, null-output refusal and unhandled command boundaries covered by existing SDK tests; atomic option-state regressions retained. No mirror test or new fixture added. Native accept-null profiles separately verified by AST ignored-result/true mapping."
+  },
+  "updaterSharedDependencies": {
+    "state": "verified",
+    "scope": "Installed updater deduplication and temporary worker staging only; whole-project audit remains open",
+    "originalOwner": "scripts/local-building/build.ps1 at a747050a2: filename index, SHA-256 membership, required metadata and relative copy",
+    "sharedOwner": "scripts/release/package/organize_app/shared-component-files.ps1",
+    "sources": [
+      {
+        "path": "scripts/local-building/build.ps1",
+        "sha256": "EAEF2EAE65381132F9E5AE8F73CDACAA01755AACAD2F334714352785CC82C700"
+      },
+      {
+        "path": "scripts/release/package/package.ps1",
+        "sha256": "04E9052B296679D70666C4559B372425AA92F68F79E666F7DA6234255BDD6B6A"
+      },
+      {
+        "path": "scripts/release/package/organize_app/shared-component-files.ps1",
+        "sha256": "BE18E987279943DFB6449F5920E29E2D0922206F0ECBABC95A1C4C8723061554"
+      },
+      {
+        "path": "src/GWGUI.App/Services/Updates/UpdatePackagePreparationService.cs",
+        "sha256": "98B06B60C026CA6C4D27AB30AD8F0EAE90E0913F1A62671506829E89358D412A"
+      }
+    ],
+    "before": {
+      "head": "269ebeb6bd07952a0456f5443c4371b4689b81fd",
+      "duplicates": [
+        {
+          "name": "DiscUtils.Core.dll",
+          "length": 308736,
+          "sha256": "3D3E368B4AE34DC098E8CDB49675A0A1EC2BEA0255E18116794C2F76B54C861C",
+          "sharedPath": "lib\\DiscUtils.Core\\DiscUtils.Core.dll"
+        },
+        {
+          "name": "DiscUtils.ExFat.dll",
+          "length": 92672,
+          "sha256": "E4DDD489F8E2144A56E5CA2F0DBCB7DD935A41766BF7F6366A36D03A904C723E",
+          "sharedPath": "lib\\DiscUtils.ExFat\\DiscUtils.ExFat.dll"
+        },
+        {
+          "name": "DiscUtils.Ext.dll",
+          "length": 41984,
+          "sha256": "9DB1AA05829D83E28E918A50EB228016D473708E386FA74233993552130FAD56",
+          "sharedPath": "lib\\DiscUtils.Ext\\DiscUtils.Ext.dll"
+        },
+        {
+          "name": "DiscUtils.Fat.dll",
+          "length": 85504,
+          "sha256": "35D3BD354DE864B35B5A18886DF8909DFB6AC2BBC0E5A47D62F52F48795A9572",
+          "sharedPath": "lib\\DiscUtils.Fat\\DiscUtils.Fat.dll"
+        },
+        {
+          "name": "DiscUtils.HfsPlus.dll",
+          "length": 48640,
+          "sha256": "290458E20A37473732A1C7640F29DE8A2A08CC0E18CD5787713926B4DC7696C5",
+          "sharedPath": "lib\\DiscUtils.HfsPlus\\DiscUtils.HfsPlus.dll"
+        },
+        {
+          "name": "DiscUtils.Ntfs.dll",
+          "length": 297472,
+          "sha256": "9C9C476E96D17C8FC9C99F15CDB01E7C4DF2A050CF4303B2FD31B45311D7434D",
+          "sharedPath": "lib\\DiscUtils.Ntfs\\DiscUtils.Ntfs.dll"
+        },
+        {
+          "name": "DiscUtils.Streams.dll",
+          "length": 151040,
+          "sha256": "08BE25F07961E8A0B6839417A6429A13CACB4017E1270C9F1C98F938ACD76DDC",
+          "sharedPath": "lib\\DiscUtils.Streams\\DiscUtils.Streams.dll"
+        },
+        {
+          "name": "DiscUtils.Vdi.dll",
+          "length": 30208,
+          "sha256": "9A6240406334175537953179BB99C9284CB1B9743FEB84B8C6B17E677F9D17A0",
+          "sharedPath": "lib\\DiscUtils.Vdi\\DiscUtils.Vdi.dll"
+        },
+        {
+          "name": "DiscUtils.Vhd.dll",
+          "length": 65024,
+          "sha256": "A902643BD4C0FBED126F2976ED6C02175DCDC1188160E1B0236D3EC943187F32",
+          "sharedPath": "lib\\DiscUtils.Vhd\\DiscUtils.Vhd.dll"
+        },
+        {
+          "name": "DiscUtils.Vhdx.dll",
+          "length": 100352,
+          "sha256": "AAC6AD25C979D6EFFACC6BDB5A7C4FAD838FA86B60DCEB1FD13589089C020A59",
+          "sharedPath": "lib\\DiscUtils.Vhdx\\DiscUtils.Vhdx.dll"
+        },
+        {
+          "name": "DiscUtils.Vmdk.dll",
+          "length": 77312,
+          "sha256": "E9CB4911E37D26849C6F181214C189DDCBE044E06F6191F676C6061DE91436A5",
+          "sharedPath": "lib\\DiscUtils.Vmdk\\DiscUtils.Vmdk.dll"
+        },
+        {
+          "name": "gwgui.emulation.dll",
+          "length": 1239040,
+          "sha256": "85CB2E890DC1F0F10828945CBF68ADDB5366A8AEA381305A27AFBB382DC4F3FD",
+          "sharedPath": "lib\\gwgui.emulation.dll"
+        },
+        {
+          "name": "gwgui.updates.dll",
+          "length": 59904,
+          "sha256": "7D49BA65E366B083E95805CBCDCEBC5F9B118DAE4F5D161A2B423E95DFAAFC45",
+          "sharedPath": "lib\\gwgui.updates.dll"
+        },
+        {
+          "name": "LTRData.Extensions.dll",
+          "length": 104960,
+          "sha256": "EEF1E1608FCE1DF712045682703CDD6242B3A4AEE48712C81A72C4623FBA31E2",
+          "sharedPath": "lib\\LTRData.Extensions\\LTRData.Extensions.dll"
+        }
+      ],
+      "bytes": 2702848
+    },
+    "build": {
+      "command": "scripts/local-building.cmd --building=debug --modules=A",
+      "exitCode": 0,
+      "executable": "build/Debug/GW GUI/gwgui.exe",
+      "modules": [
+        {
+          "id": "acorn",
+          "entryAssembly": "gwgui.emulation.acorn.dll",
+          "sha256": "DB328A30A07197B0864E39188116C17FA708BCEA93A4033B5DEC913E3AEE9388"
+        },
+        {
+          "id": "amstrad",
+          "entryAssembly": "gwgui.emulation.amstrad.dll",
+          "sha256": "F2A5ECC40ECBC89CFC882B7CAAE610E7F3F0E941B0CEAB4391FBD6809DB6A913"
+        },
+        {
+          "id": "apple",
+          "entryAssembly": "gwgui.emulation.apple.dll",
+          "sha256": "B04C5ABCC3B4EDF956EBF949E70CFBBF63CFE93AA2E1742BC051D86745A3B6FA"
+        },
+        {
+          "id": "atari",
+          "entryAssembly": "gwgui.emulation.atari.dll",
+          "sha256": "9632A54B0E86883FE30017457245D41A0095A446774147A304964DAC37607705"
+        },
+        {
+          "id": "bandai",
+          "entryAssembly": "gwgui.emulation.bandai.dll",
+          "sha256": "416A30F37C2BAD5A5F0C3A3272176307E08C65A04CE1F6E22497451DAD16ECB8"
+        },
+        {
+          "id": "coleco",
+          "entryAssembly": "gwgui.emulation.coleco.dll",
+          "sha256": "D5215D4E23399A7846B10A5925C540A74614E5A71B1A9A78134F99A953FC336D"
+        },
+        {
+          "id": "commodore",
+          "entryAssembly": "gwgui.emulation.commodore.dll",
+          "sha256": "D94594AD6079686768FCC75B78F461283F8BA333F12B8DE104159C69549026A1"
+        },
+        {
+          "id": "epoch",
+          "entryAssembly": "gwgui.emulation.epoch.dll",
+          "sha256": "BFAE0348A82E73A3787DD9EBEF3D7D6E9F0F43CB4782279D068A61F0AA64610C"
+        },
+        {
+          "id": "fairchild",
+          "entryAssembly": "gwgui.emulation.fairchild.dll",
+          "sha256": "02140F018258FC5661828DCFDAB6E74498B571295ADC0BB0970F0EB4DB6740AF"
+        },
+        {
+          "id": "mattel",
+          "entryAssembly": "gwgui.emulation.mattel.dll",
+          "sha256": "37A624C3022BE3514C3915732585697F4C19347F5D988CBD948E68C7C6C97C80"
+        },
+        {
+          "id": "microsoft",
+          "entryAssembly": "gwgui.emulation.microsoft.dll",
+          "sha256": "BA5D00002D85BDDA3F1DEDBCB03E8A005E06BF1214FF3C88DC7BFF8DEA2F730A"
+        },
+        {
+          "id": "nec",
+          "entryAssembly": "gwgui.emulation.nec.dll",
+          "sha256": "CDAF8C09696ED39A566EC1D8170F4EAFFCFEADF97577FCADDB47332C2C21DD6F"
+        },
+        {
+          "id": "nintendo",
+          "entryAssembly": "gwgui.emulation.nintendo.dll",
+          "sha256": "B2A19D10962CC96C4646BFD88662E11EE6D6FACD56505CC8FCE624F7AD1315F6"
+        },
+        {
+          "id": "panasonic",
+          "entryAssembly": "gwgui.emulation.panasonic.dll",
+          "sha256": "9E2778BAE0B7DD2DD9CEF6A5DE320F967F11680F6F8E9C87799F6808B7AE3E5A"
+        },
+        {
+          "id": "philips",
+          "entryAssembly": "gwgui.emulation.philips.dll",
+          "sha256": "BF1BA11672D97AEC46D2C460255C9E36F633600ECE4865319A033BA6CBB3A47D"
+        },
+        {
+          "id": "sega",
+          "entryAssembly": "gwgui.emulation.sega.dll",
+          "sha256": "6ACD1703E8687349BADE42327F76BB114E0B807CD89FF5EA62D9B0CF468F1210"
+        },
+        {
+          "id": "sharp",
+          "entryAssembly": "gwgui.emulation.sharp.dll",
+          "sha256": "F158C36E1DEC3823A98C1F0A8AFF5B68846E1AF08B33F5ACD39668337EE1EF00"
+        },
+        {
+          "id": "sinclair",
+          "entryAssembly": "gwgui.emulation.sinclair.dll",
+          "sha256": "E7AB96ED31F38CD70D6B6DEF59D2A53A16560684831E6E0D2E3D8FFF08003C6A"
+        },
+        {
+          "id": "snk",
+          "entryAssembly": "gwgui.emulation.snk.dll",
+          "sha256": "416A60E4E21B6704C0D781D4EF9FBF0CE01EB4D99EBAC64E911E8D1C6D78AFB4"
+        },
+        {
+          "id": "sony",
+          "entryAssembly": "gwgui.emulation.sony.dll",
+          "sha256": "F4C4844F11EE2FFE7ACD6351273349E2A5ACFF25579F36E33F05168A4B9C8D15"
+        },
+        {
+          "id": "thomson",
+          "entryAssembly": "gwgui.emulation.thomson.dll",
+          "sha256": "7C26D2F1B80B690A974FCB16BD6429CACCE4EF1E9A5F7556DD4A3100C156162E"
+        },
+        {
+          "id": "watara",
+          "entryAssembly": "gwgui.emulation.watara.dll",
+          "sha256": "CED34AF2B65B0C4B6FC74A1D14A2B57CAA29C39983E4009B9062FF62429E6D85"
+        },
+        {
+          "id": "wenquxing",
+          "entryAssembly": "gwgui.emulation.wenquxing.dll",
+          "sha256": "18138C0832E27B798FEAF7E6FE0AFF109630F8134812DE4C5B0B4A7A62CD7ED4"
+        }
+      ],
+      "sourcesUnchanged": true
+    },
+    "installed": {
+      "privateDlls": [
+        "gwgui.updater.dll"
+      ],
+      "sharedDependencies": [
+        {
+          "name": "DiscUtils.Core.dll",
+          "path": "lib\\DiscUtils.Core\\DiscUtils.Core.dll",
+          "sha256": "3D3E368B4AE34DC098E8CDB49675A0A1EC2BEA0255E18116794C2F76B54C861C"
+        },
+        {
+          "name": "DiscUtils.ExFat.dll",
+          "path": "lib\\DiscUtils.ExFat\\DiscUtils.ExFat.dll",
+          "sha256": "E4DDD489F8E2144A56E5CA2F0DBCB7DD935A41766BF7F6366A36D03A904C723E"
+        },
+        {
+          "name": "DiscUtils.Ext.dll",
+          "path": "lib\\DiscUtils.Ext\\DiscUtils.Ext.dll",
+          "sha256": "9DB1AA05829D83E28E918A50EB228016D473708E386FA74233993552130FAD56"
+        },
+        {
+          "name": "DiscUtils.Fat.dll",
+          "path": "lib\\DiscUtils.Fat\\DiscUtils.Fat.dll",
+          "sha256": "35D3BD354DE864B35B5A18886DF8909DFB6AC2BBC0E5A47D62F52F48795A9572"
+        },
+        {
+          "name": "DiscUtils.HfsPlus.dll",
+          "path": "lib\\DiscUtils.HfsPlus\\DiscUtils.HfsPlus.dll",
+          "sha256": "290458E20A37473732A1C7640F29DE8A2A08CC0E18CD5787713926B4DC7696C5"
+        },
+        {
+          "name": "DiscUtils.Ntfs.dll",
+          "path": "lib\\DiscUtils.Ntfs\\DiscUtils.Ntfs.dll",
+          "sha256": "9C9C476E96D17C8FC9C99F15CDB01E7C4DF2A050CF4303B2FD31B45311D7434D"
+        },
+        {
+          "name": "DiscUtils.Streams.dll",
+          "path": "lib\\DiscUtils.Streams\\DiscUtils.Streams.dll",
+          "sha256": "08BE25F07961E8A0B6839417A6429A13CACB4017E1270C9F1C98F938ACD76DDC"
+        },
+        {
+          "name": "DiscUtils.Vdi.dll",
+          "path": "lib\\DiscUtils.Vdi\\DiscUtils.Vdi.dll",
+          "sha256": "9A6240406334175537953179BB99C9284CB1B9743FEB84B8C6B17E677F9D17A0"
+        },
+        {
+          "name": "DiscUtils.Vhd.dll",
+          "path": "lib\\DiscUtils.Vhd\\DiscUtils.Vhd.dll",
+          "sha256": "A902643BD4C0FBED126F2976ED6C02175DCDC1188160E1B0236D3EC943187F32"
+        },
+        {
+          "name": "DiscUtils.Vhdx.dll",
+          "path": "lib\\DiscUtils.Vhdx\\DiscUtils.Vhdx.dll",
+          "sha256": "AAC6AD25C979D6EFFACC6BDB5A7C4FAD838FA86B60DCEB1FD13589089C020A59"
+        },
+        {
+          "name": "DiscUtils.Vmdk.dll",
+          "path": "lib\\DiscUtils.Vmdk\\DiscUtils.Vmdk.dll",
+          "sha256": "E9CB4911E37D26849C6F181214C189DDCBE044E06F6191F676C6061DE91436A5"
+        },
+        {
+          "name": "gwgui.emulation.dll",
+          "path": "lib\\gwgui.emulation.dll",
+          "sha256": "51A8DD0CEC7A4D5C820AE78018C397037495FFCA51E321C7128DADC22C17F5A0"
+        },
+        {
+          "name": "gwgui.updates.dll",
+          "path": "lib\\gwgui.updates.dll",
+          "sha256": "BA1086D0E27572517957A56E0F8FDE437FEBF01A6E826B5A6711080EECD9D9A8"
+        },
+        {
+          "name": "LTRData.Extensions.dll",
+          "path": "lib\\LTRData.Extensions\\LTRData.Extensions.dll",
+          "sha256": "EEF1E1608FCE1DF712045682703CDD6242B3A4AEE48712C81A72C4623FBA31E2"
+        }
+      ]
+    },
+    "validation": {
+      "powershell": "identical omitted; differing version and required metadata retained; three scripts parse",
+      "fixtureScenarios": 5,
+      "existingTests": 14,
+      "realWorkerTest": 1,
+      "realWorkerExitCode": 2,
+      "updateApplied": false,
+      "temporaryTestsCleanup": "source and script deleted; fixtures cleaned; original test assembly rebuilt without temporary code; 14 existing tests passed, exit 0"
+    }
   }
 }

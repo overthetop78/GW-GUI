@@ -3,8 +3,8 @@
   "currentCSharpFiles": 7325,
   "outsideSrcCSharpFiles": 284,
   "baselineMethodCount": 5848,
-  "currentMethodCount": 11681,
-  "powerShellFunctionCount": 15,
+  "currentMethodCount": 11683,
+  "powerShellFunctionCount": 17,
   "groups": [
     {
       "language": "CSharp",
@@ -1569,7 +1569,7 @@
     {
       "language": "CSharp",
       "hash": "0A9D4012A0EEF58659F6F622D06187BDA6844EE126F30B196EAE963950A66758",
-      "method": "SegaEmulationModule",
+      "method": "CommodoreEmulationModule",
       "tokens": 45,
       "current": [
         {
@@ -21097,7 +21097,7 @@
     {
       "language": "CSharp",
       "hash": "A1E03750FEB3292ACEB41656386F4A8AA8B05077D9ABFB7DA103AA3D71320B9F",
-      "method": "ToModule",
+      "method": "ToFairchild",
       "tokens": 103,
       "current": [
         {
@@ -22817,7 +22817,7 @@
     {
       "language": "CSharp",
       "hash": "B053A3AB4F0B78A37DED57B2D744801187AED6EC54FEEAFE4B1AA9C454D6F48C",
-      "method": "SharpEmulationModule",
+      "method": "SinclairEmulationModule",
       "tokens": 47,
       "current": [
         {

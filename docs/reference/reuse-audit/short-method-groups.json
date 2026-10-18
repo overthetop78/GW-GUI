@@ -1,15 +1,8 @@
 {
-  "snapshot": "b655f12c226cd0ed6a9f02eb0baa684f8be51fd0",
+  "snapshot": "269ebeb6bd07952a0456f5443c4371b4689b81fd",
   "snapshotState": "Current worktree based on snapshot",
   "worktreeSourceChanges": [
-    "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
-    "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
-    "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
-    "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
-    "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
-    "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
-    "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Environment.cs",
-    "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Environment.cs"
+    "src/GWGUI.App/Services/Updates/UpdatePackagePreparationService.cs"
   ],
   "scope": "All current non-ignored repository CSharp files, including hidden paths; BaseMethodDeclaration bodies with fewer than 30 tokens. Candidate presence is not a defect or a completion claim.",
   "fileCount": 7325,
@@ -48177,7 +48170,7 @@
           "name": "DeleteDirectory",
           "owner": "UpdatePackagePreparationService",
           "kind": "MethodDeclaration",
-          "line": 275,
+          "line": 321,
           "parameters": "(string path)",
           "tokens": 28,
           "bodyTokens": "{ try { if ( Directory . Exists ( path ) ) Directory . Delete ( path , recursive : true ) ; } catch { } }",
@@ -117226,7 +117219,7 @@
           "name": "DeleteDirectory",
           "owner": "UpdatePackagePreparationService",
           "kind": "MethodDeclaration",
-          "line": 275,
+          "line": 321,
           "parameters": "(string path)",
           "tokens": 28,
           "bodyTokens": "{ try { if ( Directory . Exists ( path ) ) Directory . Delete ( path , recursive : true ) ; } catch { } }",

@@ -30,6 +30,7 @@ if ($Version -notmatch '^\d+\.\d+\.\d+$') {
 }
 $configurations = if ([string]::IsNullOrWhiteSpace($Configuration)) { @('Debug', 'Release') } else { @($Configuration) }
 . (Join-Path $repository 'scripts\release\update-catalog\emulation-modules\emulation-modules.ps1')
+. (Join-Path $repository 'scripts\release\package\organize_app\shared-component-files.ps1')
 
 $moduleWasSpecified = $PSBoundParameters.ContainsKey('Module')
 if ($AllModules -and $moduleWasSpecified) {
@@ -107,19 +108,12 @@ function New-GwGuiBuild {
 
     $moduleOutput = Join-Path $applicationPublish 'Modules'
     New-Item -ItemType Directory -Path $moduleOutput -Force | Out-Null
+    $applicationFiles = @(Get-ChildItem -LiteralPath $applicationPublish -Recurse -File | Where-Object {
+        -not $_.FullName.StartsWith($moduleOutput + [IO.Path]::DirectorySeparatorChar,
+            [StringComparison]::OrdinalIgnoreCase)
+    })
+    $applicationHashes = Get-GwGuiFileHashes -Files $applicationFiles
     if ($SelectedModules.Count -gt 0) {
-        $applicationFiles = @(Get-ChildItem -LiteralPath $applicationPublish -Recurse -File | Where-Object {
-            -not $_.FullName.StartsWith($moduleOutput + [IO.Path]::DirectorySeparatorChar,
-                [StringComparison]::OrdinalIgnoreCase)
-        })
-        $applicationHashes = @{}
-        foreach ($file in $applicationFiles) {
-            if (-not $applicationHashes.ContainsKey($file.Name)) {
-                $applicationHashes[$file.Name] = [Collections.Generic.HashSet[string]]::new(
-                    [StringComparer]::OrdinalIgnoreCase)
-            }
-            $null = $applicationHashes[$file.Name].Add((Get-FileHash -LiteralPath $file.FullName -Algorithm SHA256).Hash)
-        }
         foreach ($moduleDefinition in $SelectedModules) {
             $project = $moduleDefinition.ProjectPath
             $manifest = $moduleDefinition.Manifest
@@ -137,23 +131,9 @@ function New-GwGuiBuild {
             if (-not (Test-Path -LiteralPath $entryAssembly -PathType Leaf)) {
                 throw "Module entry assembly was not produced: $entryAssembly"
             }
-            foreach ($source in Get-ChildItem -LiteralPath $publish -Recurse -File) {
-                $isRequiredMetadata = $source.Name -ieq 'module.json' `
-                    -or $source.Name -ieq $moduleDefinition.EntryAssembly `
-                    -or $source.Name -ieq ($moduleDefinition.AssemblyName + '.pdb') `
-                    -or $source.Name -ieq ($moduleDefinition.AssemblyName + '.deps.json')
-                if (-not $isRequiredMetadata -and $applicationHashes.ContainsKey($source.Name)) {
-                    $sourceHash = (Get-FileHash -LiteralPath $source.FullName -Algorithm SHA256).Hash
-                    if ($applicationHashes[$source.Name].Contains($sourceHash)) { continue }
-                }
-                $relativePath = $source.FullName.Substring($publish.Length).TrimStart('\', '/')
-                $target = Join-Path $destination $relativePath
-                $targetDirectory = Split-Path -Parent $target
-                if (-not (Test-Path -LiteralPath $targetDirectory -PathType Container)) {
-                    New-Item -ItemType Directory -Path $targetDirectory -Force | Out-Null
-                }
-                Copy-Item -LiteralPath $source.FullName -Destination $target -Force
-            }
+            Copy-GwGuiComponentFiles -SourceDirectory $publish -DestinationDirectory $destination `
+                -SharedHashes $applicationHashes -RequiredFiles @('module.json', $moduleDefinition.EntryAssembly,
+                    ($moduleDefinition.AssemblyName + '.pdb'), ($moduleDefinition.AssemblyName + '.deps.json'))
         }
     }
 
@@ -170,7 +150,10 @@ function New-GwGuiBuild {
     if ($LASTEXITCODE -ne 0) { throw "$BuildConfiguration updater publish failed." }
     $updaterOutput = Join-Path $output 'Updater'
     New-Item -ItemType Directory -Path $updaterOutput -Force | Out-Null
-    Copy-Item -Path (Join-Path $updaterPublish '*') -Destination $updaterOutput -Recurse -Force
+    $sharedHashes = Get-GwGuiFileHashes -Files @(Get-ChildItem -LiteralPath (Join-Path $output 'lib') -Recurse -File)
+    Copy-GwGuiComponentFiles -SourceDirectory $updaterPublish -DestinationDirectory $updaterOutput `
+        -SharedHashes $sharedHashes -RequiredFiles @('gwgui.updater.exe', 'gwgui.updater.dll', 'gwgui.updater.pdb',
+            'gwgui.updater.deps.json', 'gwgui.updater.runtimeconfig.json')
     Remove-Item -LiteralPath $staging -Recurse -Force
 
     $executable = Join-Path $output 'gwgui.exe'

@@ -162,9 +162,8 @@ internal sealed class UpdatePackagePreparationService
 
     private async Task<PreparedUpdateLaunch> CreateLaunchAsync(string transactionId, string workDirectory, IReadOnlyList<PreparedUpdateComponent> prepared, CancellationToken cancellationToken)
     {
-        var updaterSource = Path.Combine(_applicationDirectory, "Updater");
         var updaterDirectory = Path.Combine(workDirectory, "updater");
-        CopyRegularDirectory(updaterSource, updaterDirectory);
+        CopyUpdaterFiles(_applicationDirectory, updaterDirectory);
         var updaterExecutable = Path.Combine(updaterDirectory, "gwgui.updater.exe");
         if (!File.Exists(updaterExecutable))
             throw new FileNotFoundException("The installed updater is missing.", updaterExecutable);
@@ -252,6 +251,48 @@ internal sealed class UpdatePackagePreparationService
         return processIds.Order().ToArray();
     }
 
+    internal static void CopyUpdaterFiles(string applicationDirectory, string destination)
+    {
+        CopyRegularDirectory(Path.Combine(applicationDirectory, "Updater"), destination);
+        var dependencyFile = Path.Combine(destination, "gwgui.updater.deps.json");
+        if (!File.Exists(dependencyFile)) return;
+
+        using var document = JsonDocument.Parse(File.ReadAllText(dependencyFile));
+        var root = document.RootElement;
+        var targetName = root.GetProperty("runtimeTarget").GetProperty("name").GetString()!;
+        var target = root.GetProperty("targets").GetProperty(targetName);
+        var runtimeFiles = target.EnumerateObject()
+            .Where(library => library.Value.TryGetProperty("runtime", out _))
+            .SelectMany(library => library.Value.GetProperty("runtime").EnumerateObject())
+            .Select(asset => Path.GetFileName(asset.Name))
+            .Where(name => name.EndsWith(".dll", StringComparison.OrdinalIgnoreCase))
+            .Distinct(StringComparer.OrdinalIgnoreCase);
+        var libraryDirectory = Path.Combine(applicationDirectory, "lib");
+        string[]? sharedFiles = null;
+        foreach (var fileName in runtimeFiles)
+        {
+            var stagedFile = Path.Combine(destination, fileName);
+            if (File.Exists(stagedFile)) continue;
+            if (sharedFiles is null)
+            {
+                if ((File.GetAttributes(libraryDirectory) & FileAttributes.ReparsePoint) != 0)
+                    throw new InvalidDataException($"Updater directory cannot contain a reparse point: {libraryDirectory}");
+                sharedFiles = Directory.GetFiles(libraryDirectory, "*", new EnumerationOptions
+                {
+                    RecurseSubdirectories = true,
+                    AttributesToSkip = FileAttributes.ReparsePoint,
+                    IgnoreInaccessible = false
+                });
+            }
+            var matches = sharedFiles.Where(path => Path.GetFileName(path).Equals(fileName, StringComparison.OrdinalIgnoreCase)).ToArray();
+            if (matches.Length == 0)
+                throw new FileNotFoundException("An installed updater dependency is missing.", fileName);
+            if (matches.Length != 1)
+                throw new InvalidDataException($"The installed updater dependency is ambiguous: {fileName}");
+            CopyRegularFile(matches[0], stagedFile);
+        }
+    }
+
     private static void CopyRegularDirectory(string source, string destination)
     {
         if (!Directory.Exists(source))
@@ -265,11 +306,16 @@ internal sealed class UpdatePackagePreparationService
         }
         foreach (var file in Directory.EnumerateFiles(source, "*", SearchOption.AllDirectories))
         {
-            if ((File.GetAttributes(file) & FileAttributes.ReparsePoint) != 0)
-                throw new InvalidDataException($"Updater directory cannot contain a reparse point: {file}");
             var target = Path.Combine(destination, Path.GetRelativePath(source, file));
-            File.Copy(file, target, overwrite: false);
+            CopyRegularFile(file, target);
         }
+    }
+
+    private static void CopyRegularFile(string source, string destination)
+    {
+        if ((File.GetAttributes(source) & FileAttributes.ReparsePoint) != 0)
+            throw new InvalidDataException($"Updater directory cannot contain a reparse point: {source}");
+        File.Copy(source, destination, overwrite: false);
     }
 
     private static void DeleteDirectory(string path)
