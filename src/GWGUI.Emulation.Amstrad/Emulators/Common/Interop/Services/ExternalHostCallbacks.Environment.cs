@@ -18,14 +18,11 @@ internal sealed partial class ExternalHostCallbacks
             switch (command)
             {
                 case ExternalCoreApiConstants.GetSystemDirectory:
-                    Marshal.WriteIntPtr(data, NativeString(SystemDirectory));
-                    return true;
+                    return ExternalCoreEnvironmentFunctions.WritePointer(data, NativeString(SystemDirectory));
                 case ExternalCoreApiConstants.GetContentDirectory:
-                    Marshal.WriteIntPtr(data, NativeString(ContentDirectory));
-                    return true;
+                    return ExternalCoreEnvironmentFunctions.WritePointer(data, NativeString(ContentDirectory));
                 case ExternalCoreApiConstants.GetSaveDirectory:
-                    Marshal.WriteIntPtr(data, NativeString(SaveDirectory));
-                    return true;
+                    return ExternalCoreEnvironmentFunctions.WritePointer(data, NativeString(SaveDirectory));
                 case ExternalCoreApiConstants.GetCanDuplicateFrames:
                 case ExternalCoreApiConstants.GetInputBitmasks:
                     _ = ExternalCoreEnvironmentFunctions.WriteBoolean(data, true);

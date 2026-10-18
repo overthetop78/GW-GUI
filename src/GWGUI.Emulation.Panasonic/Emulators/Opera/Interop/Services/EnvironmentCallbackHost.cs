@@ -56,7 +56,7 @@ internal sealed class EnvironmentCallbackHost : IDisposable
         if (_disposed) return false;
         try
         {
-            if (_directories.TryGetValue(command, out var directory)) { if (data == nint.Zero) return false; Marshal.WriteIntPtr(data, directory.Pointer); return true; }
+            if (_directories.TryGetValue(command, out var directory)) { if (data == nint.Zero) return false; return ExternalCoreEnvironmentFunctions.WritePointer(data, directory.Pointer); }
             switch (command)
             {
                 case ExternalCoreApiConstants.SetVariables: return _options.Register(data);
@@ -67,8 +67,8 @@ internal sealed class EnvironmentCallbackHost : IDisposable
                 case ExternalCoreApiConstants.SetPerformanceLevel: return data != nint.Zero;
                 case ExternalCoreApiConstants.SetInputDescriptors: return data != nint.Zero;
                 case ExternalCoreApiConstants.SetControllerInfo: return data != nint.Zero;
-                case ExternalCoreApiConstants.GetCanDuplicateFrames: if (data == nint.Zero) return false; Marshal.WriteByte(data, 1); return true;
-                case ExternalCoreApiConstants.GetLanguage: if (data == nint.Zero) return false; Marshal.WriteInt32(data, CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == "fr" ? FrenchLanguage : EnglishLanguage); return true;
+                case ExternalCoreApiConstants.GetCanDuplicateFrames: if (data == nint.Zero) return false; return ExternalCoreEnvironmentFunctions.WriteBoolean(data, true);
+                case ExternalCoreApiConstants.GetLanguage: if (data == nint.Zero) return false; return ExternalCoreEnvironmentFunctions.WriteInteger(data, CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == "fr" ? FrenchLanguage : EnglishLanguage);
                 case ExternalCoreApiConstants.GetLogInterface: return ExternalCoreEnvironmentFunctions.SetLogInterface(data, _log);
                 case ExternalCoreApiConstants.SetMessage: if (data == nint.Zero) return false; ExternalCoreEnvironmentFunctions.CopyDiagnostic(Marshal.ReadIntPtr(data), Diagnostics.Add, allowWhitespace: true); return true;
                 case ExternalCoreApiConstants.SetPixelFormat:

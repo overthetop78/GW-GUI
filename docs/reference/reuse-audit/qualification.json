@@ -26357,7 +26357,11 @@
       "genericBodyIdenticalToPreviousTypedPublisher": true,
       "typedSignaturePreserved": true
     },
-    "productBuild": "After grouped build recorded in indexedBytePrimitiveReuse; included in test-project compilation, next product build due after additional completed block",
+    "productBuild": {
+      "callbackRootsAndSdkVerified": true,
+      "verification": "remainingNativeResponseReuse.productBuild",
+      "included": true
+    },
     "report": {
       "shortExactGroups": 780,
       "scope": "Candidates retained; no full OnEnvironment, Initialize, Run or installation lifecycle qualified from this branch extraction",
@@ -26366,6 +26370,1191 @@
       "shortRenamedGroups": 365,
       "shortMethodCount": 9566,
       "files": 7331
+    },
+    "subsequentNativeResponseValidation": {
+      "after": [
+        {
+          "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "beforeSha256": "93265B5213C1F8409F03F59449C5CBA2E850616320260A19A634E95E3854A7BE",
+          "afterSha256": "1C3095A849C3A7C992C686A52CDD5F5B237828CD41D06DCFF4CA007EA2DB60C0",
+          "logBranchUnchanged": true
+        },
+        {
+          "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "beforeSha256": "F184AB5A6412A2BEEEC02151A3AFC9EA8A6DD2ED9C8CF2FA2F95112D07FF17E7",
+          "afterSha256": "D1D2068A3BA7F78E9F5FBDB195B4ADBB0EC591AAAF9B44D4B4F07EE91E03950A",
+          "logBranchUnchanged": true
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "beforeSha256": "C38FBE5D0C0835D27E0A58BF2DE154A76C3C6777187582C12289B9EFD439730A",
+          "afterSha256": "E45CF2F1453636FD342277C06C2308E1FFCD5D56C2AF22AD338E4AD3908E1888",
+          "logBranchUnchanged": true
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "beforeSha256": "6B1871EB418A248160F8B8AF40BAC18F5E8B9FC7FAE51E095D209F6A5DC03DC3",
+          "afterSha256": "0859FA9F3A9A55FAA36E86DAE5D79D78B5DDE7D12B0F79A9B44CA8F72E36CD67",
+          "logBranchUnchanged": true
+        },
+        {
+          "path": "src/GWGUI.Emulation.Panasonic/Emulators/Opera/Interop/Services/EnvironmentCallbackHost.cs",
+          "beforeSha256": "A88E6EB71CE6997E655EC1097209D3A94C382653AABDF231CE817A690867A906",
+          "afterSha256": "F204574BFE164BCB4988BBAB76696141223AD8F33AFC41A38EF32AB521ABB345",
+          "logBranchUnchanged": true
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "beforeSha256": "CE829A0BA15BF4C687B3347ADF86619F1DB9F97733242F69610050F874E5929F",
+          "afterSha256": "B4547E751C3F9DB444C1960E2CD0D1034F21DC433A127764A64BDA091483AC45",
+          "logBranchUnchanged": true
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "beforeSha256": "FA94466A73B0BCBD42567300A92D5919BF60CBB4E6E677FBAA6A51657CA33A78",
+          "afterSha256": "20AF8D1A65F9E507DA63B0D5A08138A4E999BF3D9225052D4C8A461331A959D7",
+          "logBranchUnchanged": true
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Environment.cs",
+          "beforeSha256": "1410B0FC1AA129A93220668D7134E1F1BEF3C39C11A8D7CD8471B2C601F69C69",
+          "afterSha256": "3F0BD6202B95A0F0344C30F9B858C29766848AC9EDF8CF0D5B59454B69B56FC5",
+          "logBranchUnchanged": true
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Environment.cs",
+          "beforeSha256": "D165FCFF3E97E98D8C71487F9B5DF784215579A00425434D619DFAD30920205B",
+          "afterSha256": "1C79B6177309D1E39718848726531D4D7D64FDBA58A120F9438DD1F444813F2B",
+          "logBranchUnchanged": true
+        },
+        {
+          "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Interop/Services/EnvironmentCallbackHost.cs",
+          "beforeSha256": "7FB4BB6CA01A397F6BE83B6CF8D99CA25F82716A9F0C2C2B048325FBC0FB75F2",
+          "afterSha256": "2929279E8764B5918B6FB9FC9E6FB5FF64F5E59591908AC75F10620000C96C8E",
+          "logBranchUnchanged": true
+        },
+        {
+          "path": "src/GWGUI.Emulation.Watara/Emulators/Potator/Interop/Services/EnvironmentCallbackHost.cs",
+          "beforeSha256": "E9242294449477A3E02C64D6DB3A47B55F1B36851E6D93F54F15ACC18875A3A6",
+          "afterSha256": "9FDBF0F8CEFCD753AAD7D2BCBBA21E0AB6F1AF6ECA70CFE8375E8B1C33267B6E",
+          "logBranchUnchanged": true
+        },
+        {
+          "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Interop/Services/EnvironmentCallbackHost.cs",
+          "beforeSha256": "5F4DB5726FBCF8E6675874313D72ACFB402D55BD26D8C34B44E30FC3C1F02984",
+          "afterSha256": "115EACDB57958D68737C5D5E51F68B7109B9775FE4304629A4C2D7657BD5A569",
+          "logBranchUnchanged": true
+        }
+      ],
+      "scope": "Twelve whole-file comparisons preserve log publication and callback roots; only recorded response writes changed",
+      "sdkUnchanged": true,
+      "logBranchUnchanged": true,
+      "beforeHead": "fda919289dd12f8b8918744791c512260a24d06c"
+    }
+  },
+  "remainingNativeResponseReuse": {
+    "sdk": {
+      "primitives": [
+        {
+          "origin": "ac627b1bc",
+          "tokens": "internal static bool WritePointer ( nint destination , nint value ) { if ( destination == nint . Zero ) return false ; Marshal . WriteIntPtr ( destination , value ) ; return true ; }",
+          "name": "WritePointer"
+        },
+        {
+          "origin": "ac627b1bc",
+          "tokens": "internal static bool WriteBoolean ( nint destination , bool value ) { if ( destination == nint . Zero ) return false ; Marshal . WriteByte ( destination , value ? ( byte ) 1 : ( byte ) 0 ) ; return true ; }",
+          "name": "WriteBoolean"
+        },
+        {
+          "origin": "ac627b1bc",
+          "tokens": "internal static bool WriteInteger ( nint destination , int value ) { if ( destination == nint . Zero ) return false ; Marshal . WriteInt32 ( destination , value ) ; return true ; }",
+          "name": "WriteInteger"
+        }
+      ],
+      "path": "src/GWGUI.Emulation/Functions/ExternalCoreEnvironmentFunctions.cs",
+      "sha256": "92CBEB9E8C194A24BA5B4BBB8F19AB73902D03915B16EEBE9FE20F3292D798C7"
+    },
+    "invariants": [
+      "NativeString caches and allocations remain evaluated exactly once before writing, including null destination",
+      "Legacy null guards remain before pointer/culture values",
+      "Native pointer width preserved; booleans remain byte 1",
+      "French-only legacy mapping retained, not replaced with SDK full language mapping",
+      "No new SDK code, directory ownership or command support"
+    ],
+    "beforeHead": "fda919289dd12f8b8918744791c512260a24d06c",
+    "sources": [
+      {
+        "legacy": false,
+        "operations": [
+          {
+            "before": "Marshal.WriteIntPtr(data, NativeString(SystemDirectory));\r\n                    return true;",
+            "command": "GetSystemDirectory",
+            "target": "WritePointer",
+            "after": "return ExternalCoreEnvironmentFunctions.WritePointer(data, NativeString(SystemDirectory));",
+            "value": "NativeString(SystemDirectory)",
+            "length": 91,
+            "start": 768,
+            "guard": "Existing outer catch returns false on null; NativeString still evaluated first"
+          },
+          {
+            "before": "Marshal.WriteIntPtr(data, NativeString(ContentDirectory));\r\n                    return true;",
+            "command": "GetContentDirectory",
+            "target": "WritePointer",
+            "after": "return ExternalCoreEnvironmentFunctions.WritePointer(data, NativeString(ContentDirectory));",
+            "value": "NativeString(ContentDirectory)",
+            "length": 92,
+            "start": 949,
+            "guard": "Existing outer catch returns false on null; NativeString still evaluated first"
+          },
+          {
+            "before": "Marshal.WriteIntPtr(data, NativeString(SaveDirectory));\r\n                    return true;",
+            "command": "GetSaveDirectory",
+            "target": "WritePointer",
+            "after": "return ExternalCoreEnvironmentFunctions.WritePointer(data, NativeString(SaveDirectory));",
+            "value": "NativeString(SaveDirectory)",
+            "length": 89,
+            "start": 1128,
+            "guard": "Existing outer catch returns false on null; NativeString still evaluated first"
+          }
+        ],
+        "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "sha256": "93265B5213C1F8409F03F59449C5CBA2E850616320260A19A634E95E3854A7BE"
+      },
+      {
+        "legacy": false,
+        "operations": [
+          {
+            "before": "Marshal.WriteIntPtr(data, NativeString(SystemDirectory));\r\n                    return true;",
+            "command": "GetSystemDirectory",
+            "target": "WritePointer",
+            "after": "return ExternalCoreEnvironmentFunctions.WritePointer(data, NativeString(SystemDirectory));",
+            "value": "NativeString(SystemDirectory)",
+            "length": 91,
+            "start": 528,
+            "guard": "Existing outer catch returns false on null; NativeString still evaluated first"
+          },
+          {
+            "before": "Marshal.WriteIntPtr(data, NativeString(ContentDirectory));\r\n                    return true;",
+            "command": "GetContentDirectory",
+            "target": "WritePointer",
+            "after": "return ExternalCoreEnvironmentFunctions.WritePointer(data, NativeString(ContentDirectory));",
+            "value": "NativeString(ContentDirectory)",
+            "length": 92,
+            "start": 709,
+            "guard": "Existing outer catch returns false on null; NativeString still evaluated first"
+          },
+          {
+            "before": "Marshal.WriteIntPtr(data, NativeString(SaveDirectory));\r\n                    return true;",
+            "command": "GetSaveDirectory",
+            "target": "WritePointer",
+            "after": "return ExternalCoreEnvironmentFunctions.WritePointer(data, NativeString(SaveDirectory));",
+            "value": "NativeString(SaveDirectory)",
+            "length": 89,
+            "start": 888,
+            "guard": "Existing outer catch returns false on null; NativeString still evaluated first"
+          }
+        ],
+        "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "sha256": "F184AB5A6412A2BEEEC02151A3AFC9EA8A6DD2ED9C8CF2FA2F95112D07FF17E7"
+      },
+      {
+        "legacy": false,
+        "operations": [
+          {
+            "before": "Marshal.WriteIntPtr(data, NativeString(SystemDirectory));\n                    return true;",
+            "command": "GetSystemDirectory",
+            "target": "WritePointer",
+            "after": "return ExternalCoreEnvironmentFunctions.WritePointer(data, NativeString(SystemDirectory));",
+            "value": "NativeString(SystemDirectory)",
+            "length": 90,
+            "start": 827,
+            "guard": "Existing outer catch returns false on null; NativeString still evaluated first"
+          },
+          {
+            "before": "Marshal.WriteIntPtr(data, NativeString(ContentDirectory));\n                    return true;",
+            "command": "GetContentDirectory",
+            "target": "WritePointer",
+            "after": "return ExternalCoreEnvironmentFunctions.WritePointer(data, NativeString(ContentDirectory));",
+            "value": "NativeString(ContentDirectory)",
+            "length": 91,
+            "start": 1005,
+            "guard": "Existing outer catch returns false on null; NativeString still evaluated first"
+          },
+          {
+            "before": "Marshal.WriteIntPtr(data, NativeString(SaveDirectory));\n                    return true;",
+            "command": "GetSaveDirectory",
+            "target": "WritePointer",
+            "after": "return ExternalCoreEnvironmentFunctions.WritePointer(data, NativeString(SaveDirectory));",
+            "value": "NativeString(SaveDirectory)",
+            "length": 88,
+            "start": 1181,
+            "guard": "Existing outer catch returns false on null; NativeString still evaluated first"
+          }
+        ],
+        "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "sha256": "C38FBE5D0C0835D27E0A58BF2DE154A76C3C6777187582C12289B9EFD439730A"
+      },
+      {
+        "legacy": false,
+        "operations": [
+          {
+            "before": "Marshal.WriteIntPtr(data, NativeString(SystemDirectory));\r\n                    return true;",
+            "command": "GetSystemDirectory",
+            "target": "WritePointer",
+            "after": "return ExternalCoreEnvironmentFunctions.WritePointer(data, NativeString(SystemDirectory));",
+            "value": "NativeString(SystemDirectory)",
+            "length": 91,
+            "start": 1403,
+            "guard": "Existing outer catch returns false on null; NativeString still evaluated first"
+          },
+          {
+            "before": "Marshal.WriteIntPtr(data, NativeString(ContentDirectory));\r\n                    return true;",
+            "command": "GetContentDirectory",
+            "target": "WritePointer",
+            "after": "return ExternalCoreEnvironmentFunctions.WritePointer(data, NativeString(ContentDirectory));",
+            "value": "NativeString(ContentDirectory)",
+            "length": 92,
+            "start": 1584,
+            "guard": "Existing outer catch returns false on null; NativeString still evaluated first"
+          },
+          {
+            "before": "Marshal.WriteIntPtr(data, NativeString(SaveDirectory));\r\n                    return true;",
+            "command": "GetSaveDirectory",
+            "target": "WritePointer",
+            "after": "return ExternalCoreEnvironmentFunctions.WritePointer(data, NativeString(SaveDirectory));",
+            "value": "NativeString(SaveDirectory)",
+            "length": 89,
+            "start": 1763,
+            "guard": "Existing outer catch returns false on null; NativeString still evaluated first"
+          }
+        ],
+        "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "sha256": "6B1871EB418A248160F8B8AF40BAC18F5E8B9FC7FAE51E095D209F6A5DC03DC3"
+      },
+      {
+        "legacy": true,
+        "operations": [
+          {
+            "before": "Marshal.WriteIntPtr(data, directory.Pointer); return true;",
+            "command": "dictionary directory reply",
+            "target": "WritePointer",
+            "after": "return ExternalCoreEnvironmentFunctions.WritePointer(data, directory.Pointer);",
+            "value": "directory.Pointer",
+            "length": 58,
+            "start": 2872,
+            "guard": "Explicit guard retained before pointer property evaluation"
+          },
+          {
+            "before": "Marshal.WriteByte(data, 1); return true;",
+            "command": "GetCanDuplicateFrames",
+            "target": "WriteBoolean",
+            "after": "return ExternalCoreEnvironmentFunctions.WriteBoolean(data, true);",
+            "value": "true",
+            "length": 40,
+            "start": 3899,
+            "guard": "Explicit null guard retained; French/English expression and constants unchanged"
+          },
+          {
+            "before": "Marshal.WriteInt32(data, CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == \"fr\" ? FrenchLanguage : EnglishLanguage); return true;",
+            "command": "GetLanguage",
+            "target": "WriteInteger",
+            "after": "return ExternalCoreEnvironmentFunctions.WriteInteger(data, CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == \"fr\" ? FrenchLanguage : EnglishLanguage);",
+            "value": "CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == \"fr\" ? FrenchLanguage : EnglishLanguage",
+            "length": 136,
+            "start": 4036,
+            "guard": "Explicit null guard retained; French/English expression and constants unchanged"
+          }
+        ],
+        "path": "src/GWGUI.Emulation.Panasonic/Emulators/Opera/Interop/Services/EnvironmentCallbackHost.cs",
+        "sha256": "A88E6EB71CE6997E655EC1097209D3A94C382653AABDF231CE817A690867A906"
+      },
+      {
+        "legacy": false,
+        "operations": [
+          {
+            "before": "Marshal.WriteIntPtr(data, NativeString(SystemDirectory));\r\n                    return true;",
+            "command": "GetSystemDirectory",
+            "target": "WritePointer",
+            "after": "return ExternalCoreEnvironmentFunctions.WritePointer(data, NativeString(SystemDirectory));",
+            "value": "NativeString(SystemDirectory)",
+            "length": 91,
+            "start": 1375,
+            "guard": "Existing outer catch returns false on null; NativeString still evaluated first"
+          },
+          {
+            "before": "Marshal.WriteIntPtr(data, NativeString(ContentDirectory));\r\n                    return true;",
+            "command": "GetContentDirectory",
+            "target": "WritePointer",
+            "after": "return ExternalCoreEnvironmentFunctions.WritePointer(data, NativeString(ContentDirectory));",
+            "value": "NativeString(ContentDirectory)",
+            "length": 92,
+            "start": 1556,
+            "guard": "Existing outer catch returns false on null; NativeString still evaluated first"
+          },
+          {
+            "before": "Marshal.WriteIntPtr(data, NativeString(SaveDirectory));\r\n                    return true;",
+            "command": "GetSaveDirectory",
+            "target": "WritePointer",
+            "after": "return ExternalCoreEnvironmentFunctions.WritePointer(data, NativeString(SaveDirectory));",
+            "value": "NativeString(SaveDirectory)",
+            "length": 89,
+            "start": 1735,
+            "guard": "Existing outer catch returns false on null; NativeString still evaluated first"
+          }
+        ],
+        "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "sha256": "CE829A0BA15BF4C687B3347ADF86619F1DB9F97733242F69610050F874E5929F"
+      },
+      {
+        "legacy": false,
+        "operations": [
+          {
+            "before": "Marshal.WriteIntPtr(data, NativeString(SystemDirectory));\r\n                    return true;",
+            "command": "GetSystemDirectory",
+            "target": "WritePointer",
+            "after": "return ExternalCoreEnvironmentFunctions.WritePointer(data, NativeString(SystemDirectory));",
+            "value": "NativeString(SystemDirectory)",
+            "length": 91,
+            "start": 1867,
+            "guard": "Existing outer catch returns false on null; NativeString still evaluated first"
+          },
+          {
+            "before": "Marshal.WriteIntPtr(data, NativeString(ContentDirectory));\r\n                    return true;",
+            "command": "GetContentDirectory",
+            "target": "WritePointer",
+            "after": "return ExternalCoreEnvironmentFunctions.WritePointer(data, NativeString(ContentDirectory));",
+            "value": "NativeString(ContentDirectory)",
+            "length": 92,
+            "start": 2048,
+            "guard": "Existing outer catch returns false on null; NativeString still evaluated first"
+          },
+          {
+            "before": "Marshal.WriteIntPtr(data, NativeString(SaveDirectory));\r\n                    return true;",
+            "command": "GetSaveDirectory",
+            "target": "WritePointer",
+            "after": "return ExternalCoreEnvironmentFunctions.WritePointer(data, NativeString(SaveDirectory));",
+            "value": "NativeString(SaveDirectory)",
+            "length": 89,
+            "start": 2227,
+            "guard": "Existing outer catch returns false on null; NativeString still evaluated first"
+          }
+        ],
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "sha256": "FA94466A73B0BCBD42567300A92D5919BF60CBB4E6E677FBAA6A51657CA33A78"
+      },
+      {
+        "legacy": false,
+        "operations": [
+          {
+            "before": "Marshal.WriteIntPtr(data, NativeString(SystemDirectory));\r\n                    return true;",
+            "command": "GetSystemDirectory",
+            "target": "WritePointer",
+            "after": "return ExternalCoreEnvironmentFunctions.WritePointer(data, NativeString(SystemDirectory));",
+            "value": "NativeString(SystemDirectory)",
+            "length": 91,
+            "start": 1673,
+            "guard": "Existing outer catch returns false on null; NativeString still evaluated first"
+          },
+          {
+            "before": "Marshal.WriteIntPtr(data, NativeString(ContentDirectory));\r\n                    return true;",
+            "command": "GetContentDirectory",
+            "target": "WritePointer",
+            "after": "return ExternalCoreEnvironmentFunctions.WritePointer(data, NativeString(ContentDirectory));",
+            "value": "NativeString(ContentDirectory)",
+            "length": 92,
+            "start": 1854,
+            "guard": "Existing outer catch returns false on null; NativeString still evaluated first"
+          },
+          {
+            "before": "Marshal.WriteIntPtr(data, NativeString(SaveDirectory));\r\n                    return true;",
+            "command": "GetSaveDirectory",
+            "target": "WritePointer",
+            "after": "return ExternalCoreEnvironmentFunctions.WritePointer(data, NativeString(SaveDirectory));",
+            "value": "NativeString(SaveDirectory)",
+            "length": 89,
+            "start": 2033,
+            "guard": "Existing outer catch returns false on null; NativeString still evaluated first"
+          }
+        ],
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Environment.cs",
+        "sha256": "1410B0FC1AA129A93220668D7134E1F1BEF3C39C11A8D7CD8471B2C601F69C69"
+      },
+      {
+        "legacy": false,
+        "operations": [
+          {
+            "before": "Marshal.WriteIntPtr(data, NativeString(SystemDirectory));\r\n                    return true;",
+            "command": "GetSystemDirectory",
+            "target": "WritePointer",
+            "after": "return ExternalCoreEnvironmentFunctions.WritePointer(data, NativeString(SystemDirectory));",
+            "value": "NativeString(SystemDirectory)",
+            "length": 91,
+            "start": 1561,
+            "guard": "Existing outer catch returns false on null; NativeString still evaluated first"
+          },
+          {
+            "before": "Marshal.WriteIntPtr(data, NativeString(ContentDirectory));\r\n                    return true;",
+            "command": "GetContentDirectory",
+            "target": "WritePointer",
+            "after": "return ExternalCoreEnvironmentFunctions.WritePointer(data, NativeString(ContentDirectory));",
+            "value": "NativeString(ContentDirectory)",
+            "length": 92,
+            "start": 1742,
+            "guard": "Existing outer catch returns false on null; NativeString still evaluated first"
+          },
+          {
+            "before": "Marshal.WriteIntPtr(data, NativeString(SaveDirectory));\r\n                    return true;",
+            "command": "GetSaveDirectory",
+            "target": "WritePointer",
+            "after": "return ExternalCoreEnvironmentFunctions.WritePointer(data, NativeString(SaveDirectory));",
+            "value": "NativeString(SaveDirectory)",
+            "length": 89,
+            "start": 1921,
+            "guard": "Existing outer catch returns false on null; NativeString still evaluated first"
+          }
+        ],
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Environment.cs",
+        "sha256": "D165FCFF3E97E98D8C71487F9B5DF784215579A00425434D619DFAD30920205B"
+      },
+      {
+        "legacy": true,
+        "operations": [
+          {
+            "before": "Marshal.WriteIntPtr(data, directory.Pointer); return true;",
+            "command": "dictionary directory reply",
+            "target": "WritePointer",
+            "after": "return ExternalCoreEnvironmentFunctions.WritePointer(data, directory.Pointer);",
+            "value": "directory.Pointer",
+            "length": 58,
+            "start": 2948,
+            "guard": "Explicit guard retained before pointer property evaluation"
+          },
+          {
+            "before": "Marshal.WriteByte(data, 1); return true;",
+            "command": "GetCanDuplicateFrames",
+            "target": "WriteBoolean",
+            "after": "return ExternalCoreEnvironmentFunctions.WriteBoolean(data, true);",
+            "value": "true",
+            "length": 40,
+            "start": 3975,
+            "guard": "Explicit null guard retained; French/English expression and constants unchanged"
+          },
+          {
+            "before": "Marshal.WriteInt32(data, CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == \"fr\" ? FrenchLanguage : EnglishLanguage); return true;",
+            "command": "GetLanguage",
+            "target": "WriteInteger",
+            "after": "return ExternalCoreEnvironmentFunctions.WriteInteger(data, CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == \"fr\" ? FrenchLanguage : EnglishLanguage);",
+            "value": "CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == \"fr\" ? FrenchLanguage : EnglishLanguage",
+            "length": 136,
+            "start": 4112,
+            "guard": "Explicit null guard retained; French/English expression and constants unchanged"
+          }
+        ],
+        "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Interop/Services/EnvironmentCallbackHost.cs",
+        "sha256": "7FB4BB6CA01A397F6BE83B6CF8D99CA25F82716A9F0C2C2B048325FBC0FB75F2"
+      },
+      {
+        "legacy": true,
+        "operations": [
+          {
+            "before": "Marshal.WriteIntPtr(data, directory.Pointer); return true;",
+            "command": "dictionary directory reply",
+            "target": "WritePointer",
+            "after": "return ExternalCoreEnvironmentFunctions.WritePointer(data, directory.Pointer);",
+            "value": "directory.Pointer",
+            "length": 58,
+            "start": 3881,
+            "guard": "Explicit guard retained before pointer property evaluation"
+          },
+          {
+            "before": "Marshal.WriteByte(data, 1); return true;",
+            "command": "GetCanDuplicateFrames",
+            "target": "WriteBoolean",
+            "after": "return ExternalCoreEnvironmentFunctions.WriteBoolean(data, true);",
+            "value": "true",
+            "length": 40,
+            "start": 5435,
+            "guard": "Explicit null guard retained; French/English expression and constants unchanged"
+          },
+          {
+            "before": "Marshal.WriteInt32(data, CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == \"fr\" ? FrenchLanguage : EnglishLanguage); return true;",
+            "command": "GetLanguage",
+            "target": "WriteInteger",
+            "after": "return ExternalCoreEnvironmentFunctions.WriteInteger(data, CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == \"fr\" ? FrenchLanguage : EnglishLanguage);",
+            "value": "CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == \"fr\" ? FrenchLanguage : EnglishLanguage",
+            "length": 136,
+            "start": 5572,
+            "guard": "Explicit null guard retained; French/English expression and constants unchanged"
+          }
+        ],
+        "path": "src/GWGUI.Emulation.Watara/Emulators/Potator/Interop/Services/EnvironmentCallbackHost.cs",
+        "sha256": "E9242294449477A3E02C64D6DB3A47B55F1B36851E6D93F54F15ACC18875A3A6"
+      },
+      {
+        "legacy": true,
+        "operations": [
+          {
+            "before": "Marshal.WriteIntPtr(data, directory.Pointer); return true;",
+            "command": "dictionary directory reply",
+            "target": "WritePointer",
+            "after": "return ExternalCoreEnvironmentFunctions.WritePointer(data, directory.Pointer);",
+            "value": "directory.Pointer",
+            "length": 58,
+            "start": 2948,
+            "guard": "Explicit guard retained before pointer property evaluation"
+          },
+          {
+            "before": "Marshal.WriteByte(data, 1); return true;",
+            "command": "GetCanDuplicateFrames",
+            "target": "WriteBoolean",
+            "after": "return ExternalCoreEnvironmentFunctions.WriteBoolean(data, true);",
+            "value": "true",
+            "length": 40,
+            "start": 3975,
+            "guard": "Explicit null guard retained; French/English expression and constants unchanged"
+          },
+          {
+            "before": "Marshal.WriteInt32(data, CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == \"fr\" ? FrenchLanguage : EnglishLanguage); return true;",
+            "command": "GetLanguage",
+            "target": "WriteInteger",
+            "after": "return ExternalCoreEnvironmentFunctions.WriteInteger(data, CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == \"fr\" ? FrenchLanguage : EnglishLanguage);",
+            "value": "CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == \"fr\" ? FrenchLanguage : EnglishLanguage",
+            "length": 136,
+            "start": 4112,
+            "guard": "Explicit null guard retained; French/English expression and constants unchanged"
+          }
+        ],
+        "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Interop/Services/EnvironmentCallbackHost.cs",
+        "sha256": "5F4DB5726FBCF8E6675874313D72ACFB402D55BD26D8C34B44E30FC3C1F02984"
+      }
+    ],
+    "state": "verified",
+    "stringOwner": {
+      "path": "src/GWGUI.Emulation/Services/ExternalCoreUtf8String.cs",
+      "sha256": "32B6C406AAE60D459C889FAC356BC4DE306FFBD89B8F77C316070E2A22CFA408"
+    },
+    "verification": {
+      "tests": {
+        "failed": 0,
+        "resources": "Only native memory buffers freed in finally; no external fixture/core/process/window",
+        "newCases": 4,
+        "passed": 49,
+        "scope": "Native pointer zero/high bits and buffer boundaries/null destination; existing language/boolean and interface/routing cases",
+        "command": "dotnet test --no-restore --filter StatelessEnvironmentCommandTests|CoreCallbackInterfaceTests|EnvironmentCallbackCommandTests"
+      },
+      "sdkAndStringOwnerUnchanged": true,
+      "scope": "No qualification of full OnEnvironment, initialization, resource lifetime or other commands",
+      "semanticErrors": 0,
+      "wholeFiles": "Only recorded 36 write/return fragments replaced; all other tokens identical to beforeHead, including guards, language mapping, caches, fields and finally blocks",
+      "semanticProjects": [
+        "GWGUI.Emulation",
+        "GWGUI.Emulation.Amstrad",
+        "GWGUI.Emulation.Commodore",
+        "GWGUI.Emulation.Nec",
+        "GWGUI.Emulation.Nintendo",
+        "GWGUI.Emulation.Panasonic",
+        "GWGUI.Emulation.Sega",
+        "GWGUI.Emulation.Sony",
+        "GWGUI.Emulation.Thomson",
+        "GWGUI.Emulation.Watara",
+        "GWGUI.Emulation.Wenquxing"
+      ],
+      "sourceChecks": [
+        {
+          "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "guardAndEvaluationOrderPreserved": true,
+          "otherTokensUnchanged": true,
+          "sha256": "1C3095A849C3A7C992C686A52CDD5F5B237828CD41D06DCFF4CA007EA2DB60C0"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "guardAndEvaluationOrderPreserved": true,
+          "otherTokensUnchanged": true,
+          "sha256": "D1D2068A3BA7F78E9F5FBDB195B4ADBB0EC591AAAF9B44D4B4F07EE91E03950A"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "guardAndEvaluationOrderPreserved": true,
+          "otherTokensUnchanged": true,
+          "sha256": "E45CF2F1453636FD342277C06C2308E1FFCD5D56C2AF22AD338E4AD3908E1888"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "guardAndEvaluationOrderPreserved": true,
+          "otherTokensUnchanged": true,
+          "sha256": "0859FA9F3A9A55FAA36E86DAE5D79D78B5DDE7D12B0F79A9B44CA8F72E36CD67"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Panasonic/Emulators/Opera/Interop/Services/EnvironmentCallbackHost.cs",
+          "guardAndEvaluationOrderPreserved": true,
+          "otherTokensUnchanged": true,
+          "sha256": "F204574BFE164BCB4988BBAB76696141223AD8F33AFC41A38EF32AB521ABB345"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "guardAndEvaluationOrderPreserved": true,
+          "otherTokensUnchanged": true,
+          "sha256": "B4547E751C3F9DB444C1960E2CD0D1034F21DC433A127764A64BDA091483AC45"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "guardAndEvaluationOrderPreserved": true,
+          "otherTokensUnchanged": true,
+          "sha256": "20AF8D1A65F9E507DA63B0D5A08138A4E999BF3D9225052D4C8A461331A959D7"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Environment.cs",
+          "guardAndEvaluationOrderPreserved": true,
+          "otherTokensUnchanged": true,
+          "sha256": "3F0BD6202B95A0F0344C30F9B858C29766848AC9EDF8CF0D5B59454B69B56FC5"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Environment.cs",
+          "guardAndEvaluationOrderPreserved": true,
+          "otherTokensUnchanged": true,
+          "sha256": "1C79B6177309D1E39718848726531D4D7D64FDBA58A120F9438DD1F444813F2B"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Interop/Services/EnvironmentCallbackHost.cs",
+          "guardAndEvaluationOrderPreserved": true,
+          "otherTokensUnchanged": true,
+          "sha256": "2929279E8764B5918B6FB9FC9E6FB5FF64F5E59591908AC75F10620000C96C8E"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Watara/Emulators/Potator/Interop/Services/EnvironmentCallbackHost.cs",
+          "guardAndEvaluationOrderPreserved": true,
+          "otherTokensUnchanged": true,
+          "sha256": "9FDBF0F8CEFCD753AAD7D2BCBBA21E0AB6F1AF6ECA70CFE8375E8B1C33267B6E"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Interop/Services/EnvironmentCallbackHost.cs",
+          "guardAndEvaluationOrderPreserved": true,
+          "otherTokensUnchanged": true,
+          "sha256": "115EACDB57958D68737C5D5E51F68B7109B9775FE4304629A4C2D7657BD5A569"
+        }
+      ],
+      "bindings": [
+        {
+          "command": "GetSystemDirectory",
+          "guard": "Existing outer catch returns false on null; NativeString still evaluated first",
+          "value": "NativeString(SystemDirectory)",
+          "argumentEvaluatedOnce": true,
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.WritePointer(nint, nint)",
+          "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs"
+        },
+        {
+          "command": "GetContentDirectory",
+          "guard": "Existing outer catch returns false on null; NativeString still evaluated first",
+          "value": "NativeString(ContentDirectory)",
+          "argumentEvaluatedOnce": true,
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.WritePointer(nint, nint)",
+          "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs"
+        },
+        {
+          "command": "GetSaveDirectory",
+          "guard": "Existing outer catch returns false on null; NativeString still evaluated first",
+          "value": "NativeString(SaveDirectory)",
+          "argumentEvaluatedOnce": true,
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.WritePointer(nint, nint)",
+          "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs"
+        },
+        {
+          "command": "GetSystemDirectory",
+          "guard": "Existing outer catch returns false on null; NativeString still evaluated first",
+          "value": "NativeString(SystemDirectory)",
+          "argumentEvaluatedOnce": true,
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.WritePointer(nint, nint)",
+          "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs"
+        },
+        {
+          "command": "GetContentDirectory",
+          "guard": "Existing outer catch returns false on null; NativeString still evaluated first",
+          "value": "NativeString(ContentDirectory)",
+          "argumentEvaluatedOnce": true,
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.WritePointer(nint, nint)",
+          "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs"
+        },
+        {
+          "command": "GetSaveDirectory",
+          "guard": "Existing outer catch returns false on null; NativeString still evaluated first",
+          "value": "NativeString(SaveDirectory)",
+          "argumentEvaluatedOnce": true,
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.WritePointer(nint, nint)",
+          "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs"
+        },
+        {
+          "command": "GetSystemDirectory",
+          "guard": "Existing outer catch returns false on null; NativeString still evaluated first",
+          "value": "NativeString(SystemDirectory)",
+          "argumentEvaluatedOnce": true,
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.WritePointer(nint, nint)",
+          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs"
+        },
+        {
+          "command": "GetContentDirectory",
+          "guard": "Existing outer catch returns false on null; NativeString still evaluated first",
+          "value": "NativeString(ContentDirectory)",
+          "argumentEvaluatedOnce": true,
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.WritePointer(nint, nint)",
+          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs"
+        },
+        {
+          "command": "GetSaveDirectory",
+          "guard": "Existing outer catch returns false on null; NativeString still evaluated first",
+          "value": "NativeString(SaveDirectory)",
+          "argumentEvaluatedOnce": true,
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.WritePointer(nint, nint)",
+          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs"
+        },
+        {
+          "command": "GetSystemDirectory",
+          "guard": "Existing outer catch returns false on null; NativeString still evaluated first",
+          "value": "NativeString(SystemDirectory)",
+          "argumentEvaluatedOnce": true,
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.WritePointer(nint, nint)",
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs"
+        },
+        {
+          "command": "GetContentDirectory",
+          "guard": "Existing outer catch returns false on null; NativeString still evaluated first",
+          "value": "NativeString(ContentDirectory)",
+          "argumentEvaluatedOnce": true,
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.WritePointer(nint, nint)",
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs"
+        },
+        {
+          "command": "GetSaveDirectory",
+          "guard": "Existing outer catch returns false on null; NativeString still evaluated first",
+          "value": "NativeString(SaveDirectory)",
+          "argumentEvaluatedOnce": true,
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.WritePointer(nint, nint)",
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs"
+        },
+        {
+          "command": "dictionary directory reply",
+          "guard": "Explicit guard retained before pointer property evaluation",
+          "value": "directory.Pointer",
+          "argumentEvaluatedOnce": true,
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.WritePointer(nint, nint)",
+          "path": "src/GWGUI.Emulation.Panasonic/Emulators/Opera/Interop/Services/EnvironmentCallbackHost.cs"
+        },
+        {
+          "command": "GetCanDuplicateFrames",
+          "guard": "Explicit null guard retained; French/English expression and constants unchanged",
+          "value": "true",
+          "argumentEvaluatedOnce": true,
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.WriteBoolean(nint, bool)",
+          "path": "src/GWGUI.Emulation.Panasonic/Emulators/Opera/Interop/Services/EnvironmentCallbackHost.cs"
+        },
+        {
+          "command": "GetLanguage",
+          "guard": "Explicit null guard retained; French/English expression and constants unchanged",
+          "value": "CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == \"fr\" ? FrenchLanguage : EnglishLanguage",
+          "argumentEvaluatedOnce": true,
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.WriteInteger(nint, int)",
+          "path": "src/GWGUI.Emulation.Panasonic/Emulators/Opera/Interop/Services/EnvironmentCallbackHost.cs"
+        },
+        {
+          "command": "GetSystemDirectory",
+          "guard": "Existing outer catch returns false on null; NativeString still evaluated first",
+          "value": "NativeString(SystemDirectory)",
+          "argumentEvaluatedOnce": true,
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.WritePointer(nint, nint)",
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs"
+        },
+        {
+          "command": "GetContentDirectory",
+          "guard": "Existing outer catch returns false on null; NativeString still evaluated first",
+          "value": "NativeString(ContentDirectory)",
+          "argumentEvaluatedOnce": true,
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.WritePointer(nint, nint)",
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs"
+        },
+        {
+          "command": "GetSaveDirectory",
+          "guard": "Existing outer catch returns false on null; NativeString still evaluated first",
+          "value": "NativeString(SaveDirectory)",
+          "argumentEvaluatedOnce": true,
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.WritePointer(nint, nint)",
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs"
+        },
+        {
+          "command": "GetSystemDirectory",
+          "guard": "Existing outer catch returns false on null; NativeString still evaluated first",
+          "value": "NativeString(SystemDirectory)",
+          "argumentEvaluatedOnce": true,
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.WritePointer(nint, nint)",
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs"
+        },
+        {
+          "command": "GetContentDirectory",
+          "guard": "Existing outer catch returns false on null; NativeString still evaluated first",
+          "value": "NativeString(ContentDirectory)",
+          "argumentEvaluatedOnce": true,
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.WritePointer(nint, nint)",
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs"
+        },
+        {
+          "command": "GetSaveDirectory",
+          "guard": "Existing outer catch returns false on null; NativeString still evaluated first",
+          "value": "NativeString(SaveDirectory)",
+          "argumentEvaluatedOnce": true,
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.WritePointer(nint, nint)",
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs"
+        },
+        {
+          "command": "GetSystemDirectory",
+          "guard": "Existing outer catch returns false on null; NativeString still evaluated first",
+          "value": "NativeString(SystemDirectory)",
+          "argumentEvaluatedOnce": true,
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.WritePointer(nint, nint)",
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Environment.cs"
+        },
+        {
+          "command": "GetContentDirectory",
+          "guard": "Existing outer catch returns false on null; NativeString still evaluated first",
+          "value": "NativeString(ContentDirectory)",
+          "argumentEvaluatedOnce": true,
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.WritePointer(nint, nint)",
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Environment.cs"
+        },
+        {
+          "command": "GetSaveDirectory",
+          "guard": "Existing outer catch returns false on null; NativeString still evaluated first",
+          "value": "NativeString(SaveDirectory)",
+          "argumentEvaluatedOnce": true,
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.WritePointer(nint, nint)",
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Environment.cs"
+        },
+        {
+          "command": "GetSystemDirectory",
+          "guard": "Existing outer catch returns false on null; NativeString still evaluated first",
+          "value": "NativeString(SystemDirectory)",
+          "argumentEvaluatedOnce": true,
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.WritePointer(nint, nint)",
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Environment.cs"
+        },
+        {
+          "command": "GetContentDirectory",
+          "guard": "Existing outer catch returns false on null; NativeString still evaluated first",
+          "value": "NativeString(ContentDirectory)",
+          "argumentEvaluatedOnce": true,
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.WritePointer(nint, nint)",
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Environment.cs"
+        },
+        {
+          "command": "GetSaveDirectory",
+          "guard": "Existing outer catch returns false on null; NativeString still evaluated first",
+          "value": "NativeString(SaveDirectory)",
+          "argumentEvaluatedOnce": true,
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.WritePointer(nint, nint)",
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Environment.cs"
+        },
+        {
+          "command": "dictionary directory reply",
+          "guard": "Explicit guard retained before pointer property evaluation",
+          "value": "directory.Pointer",
+          "argumentEvaluatedOnce": true,
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.WritePointer(nint, nint)",
+          "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Interop/Services/EnvironmentCallbackHost.cs"
+        },
+        {
+          "command": "GetCanDuplicateFrames",
+          "guard": "Explicit null guard retained; French/English expression and constants unchanged",
+          "value": "true",
+          "argumentEvaluatedOnce": true,
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.WriteBoolean(nint, bool)",
+          "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Interop/Services/EnvironmentCallbackHost.cs"
+        },
+        {
+          "command": "GetLanguage",
+          "guard": "Explicit null guard retained; French/English expression and constants unchanged",
+          "value": "CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == \"fr\" ? FrenchLanguage : EnglishLanguage",
+          "argumentEvaluatedOnce": true,
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.WriteInteger(nint, int)",
+          "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Interop/Services/EnvironmentCallbackHost.cs"
+        },
+        {
+          "command": "dictionary directory reply",
+          "guard": "Explicit guard retained before pointer property evaluation",
+          "value": "directory.Pointer",
+          "argumentEvaluatedOnce": true,
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.WritePointer(nint, nint)",
+          "path": "src/GWGUI.Emulation.Watara/Emulators/Potator/Interop/Services/EnvironmentCallbackHost.cs"
+        },
+        {
+          "command": "GetCanDuplicateFrames",
+          "guard": "Explicit null guard retained; French/English expression and constants unchanged",
+          "value": "true",
+          "argumentEvaluatedOnce": true,
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.WriteBoolean(nint, bool)",
+          "path": "src/GWGUI.Emulation.Watara/Emulators/Potator/Interop/Services/EnvironmentCallbackHost.cs"
+        },
+        {
+          "command": "GetLanguage",
+          "guard": "Explicit null guard retained; French/English expression and constants unchanged",
+          "value": "CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == \"fr\" ? FrenchLanguage : EnglishLanguage",
+          "argumentEvaluatedOnce": true,
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.WriteInteger(nint, int)",
+          "path": "src/GWGUI.Emulation.Watara/Emulators/Potator/Interop/Services/EnvironmentCallbackHost.cs"
+        },
+        {
+          "command": "dictionary directory reply",
+          "guard": "Explicit guard retained before pointer property evaluation",
+          "value": "directory.Pointer",
+          "argumentEvaluatedOnce": true,
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.WritePointer(nint, nint)",
+          "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Interop/Services/EnvironmentCallbackHost.cs"
+        },
+        {
+          "command": "GetCanDuplicateFrames",
+          "guard": "Explicit null guard retained; French/English expression and constants unchanged",
+          "value": "true",
+          "argumentEvaluatedOnce": true,
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.WriteBoolean(nint, bool)",
+          "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Interop/Services/EnvironmentCallbackHost.cs"
+        },
+        {
+          "command": "GetLanguage",
+          "guard": "Explicit null guard retained; French/English expression and constants unchanged",
+          "value": "CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == \"fr\" ? FrenchLanguage : EnglishLanguage",
+          "argumentEvaluatedOnce": true,
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.WriteInteger(nint, int)",
+          "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Interop/Services/EnvironmentCallbackHost.cs"
+        }
+      ]
+    },
+    "report": {
+      "longMethodCount": 11664,
+      "files": 7331,
+      "shortExactGroups": 780,
+      "shortMethodCount": 9566,
+      "longCandidateGroups": 506,
+      "shortRenamedGroups": 365
+    },
+    "preBuildSourceChecks": [
+      {
+        "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+        "sha256": "67B1E5C081F964C3B48CA69D8C8E6916B1779027C5D03B7E983BDF592AE0659B"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "sha256": "1C3095A849C3A7C992C686A52CDD5F5B237828CD41D06DCFF4CA007EA2DB60C0"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+        "sha256": "4E8EF4D0A674D0D1092332C3D686FC9B27F5C40B867732CBCA661D9881499B24"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "sha256": "D1D2068A3BA7F78E9F5FBDB195B4ADBB0EC591AAAF9B44D4B4F07EE91E03950A"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+        "sha256": "2A4E149EDE0C7B068D13BE8F7477088A00D192DF1FCF414614BBC899C9DF0655"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "sha256": "E45CF2F1453636FD342277C06C2308E1FFCD5D56C2AF22AD338E4AD3908E1888"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+        "sha256": "318C42B71AC0D6877501EF3DE0EC22D6665FFBD4A142A1A6384811EE93323DB0"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "sha256": "0859FA9F3A9A55FAA36E86DAE5D79D78B5DDE7D12B0F79A9B44CA8F72E36CD67"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Panasonic/Emulators/Opera/Interop/Services/EnvironmentCallbackHost.cs",
+        "sha256": "F204574BFE164BCB4988BBAB76696141223AD8F33AFC41A38EF32AB521ABB345"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+        "sha256": "72F41186FCB18622C8A35F2B193F24245CDB3D3F383E71B0486904164F0939A2"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "sha256": "B4547E751C3F9DB444C1960E2CD0D1034F21DC433A127764A64BDA091483AC45"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+        "sha256": "E230A4DDA0DB84876AC76A7C54CAD590CA1D53363E52C5741C69E54D8DCC8969"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "sha256": "20AF8D1A65F9E507DA63B0D5A08138A4E999BF3D9225052D4C8A461331A959D7"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.cs",
+        "sha256": "25F6B1A2B15F2BC93976EA900A400AC0C76A5807C994FE5D660E674435103433"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Environment.cs",
+        "sha256": "3F0BD6202B95A0F0344C30F9B858C29766848AC9EDF8CF0D5B59454B69B56FC5"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.cs",
+        "sha256": "30587EFBCF35B44DE48F234966EAFF41540D9497BA69143AB0E2D1892B3AAFFA"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Environment.cs",
+        "sha256": "1C79B6177309D1E39718848726531D4D7D64FDBA58A120F9438DD1F444813F2B"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Interop/Services/EnvironmentCallbackHost.cs",
+        "sha256": "2929279E8764B5918B6FB9FC9E6FB5FF64F5E59591908AC75F10620000C96C8E"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Watara/Emulators/Potator/Interop/Services/EnvironmentCallbackHost.cs",
+        "sha256": "9FDBF0F8CEFCD753AAD7D2BCBBA21E0AB6F1AF6ECA70CFE8375E8B1C33267B6E"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Interop/Services/EnvironmentCallbackHost.cs",
+        "sha256": "115EACDB57958D68737C5D5E51F68B7109B9775FE4304629A4C2D7657BD5A569"
+      },
+      {
+        "path": "src/GWGUI.Emulation/Functions/ExternalCoreEnvironmentFunctions.cs",
+        "sha256": "92CBEB9E8C194A24BA5B4BBB8F19AB73902D03915B16EEBE9FE20F3292D798C7"
+      },
+      {
+        "path": "src/GWGUI.Emulation/Interop/ExternalCoreApi.cs",
+        "sha256": "05E32C021EDC30BE4BD88BE5848715D8CE091D775CE88BBF0AF534653C8D6647"
+      },
+      {
+        "path": "src/GWGUI.Emulation/Services/ExternalCoreUtf8String.cs",
+        "sha256": "32B6C406AAE60D459C889FAC356BC4DE306FFBD89B8F77C316070E2A22CFA408"
+      }
+    ],
+    "productBuild": {
+      "installedSdkSha256": "A8E6DCE3CCAA98D04F27EFF14F1579458782F43466D4A528D328E093C33E0C28",
+      "executableSha256": "236BECB578AB6A6E80E7C753D61FEFDD12147D0F74107430A510387C76ACAA48",
+      "executable": "build/Debug/GW GUI/gwgui.exe",
+      "installedSdkMatchesCompiledSource": true,
+      "updaterPrivateDlls": [
+        "gwgui.updater.dll"
+      ],
+      "sourceIntegrity": "23 source hashes match pre-build values",
+      "sourceChecksReference": "remainingNativeResponseReuse.preBuildSourceChecks",
+      "command": "scripts/local-building.cmd --building=debug --modules=A",
+      "modules": [
+        {
+          "sha256": "9A6337C3C6AA5D92B36C4A5F3BF970EF06090C989A2FDD98439432A2F2D38096",
+          "entryAssembly": "gwgui.emulation.acorn.dll",
+          "id": "acorn"
+        },
+        {
+          "sha256": "A96B3C4B90E9A178E2FAA3F286F8FA4D0CF68DF5DC098E24301A52C9B7076054",
+          "entryAssembly": "gwgui.emulation.amstrad.dll",
+          "id": "amstrad"
+        },
+        {
+          "sha256": "C0A19593C0B69EC5769E43C3224D240C9D29BA991FD4BAC0747F2BDA56A245CA",
+          "entryAssembly": "gwgui.emulation.apple.dll",
+          "id": "apple"
+        },
+        {
+          "sha256": "69BB2CA1508723482B4A7D92A4CD1F98FEA6E4528893E1E86BC825B28057BB73",
+          "entryAssembly": "gwgui.emulation.atari.dll",
+          "id": "atari"
+        },
+        {
+          "sha256": "CD65559E242E159CAD59D7D9EEE3EA9FE06FCD9CA5E9271F9061DD03864044EA",
+          "entryAssembly": "gwgui.emulation.bandai.dll",
+          "id": "bandai"
+        },
+        {
+          "sha256": "B0228488FFA4A663A59E743CB48DA12F650B04F26FFC5B8D3966AF869484CF21",
+          "entryAssembly": "gwgui.emulation.coleco.dll",
+          "id": "coleco"
+        },
+        {
+          "sha256": "D2296D34540B3B73D6A5C73F5AFBE0C84B1A7EFA23384A1571DF3BFC911A8C4E",
+          "entryAssembly": "gwgui.emulation.commodore.dll",
+          "id": "commodore"
+        },
+        {
+          "sha256": "CDE82D43691A060B40E54746B68C036A5A492B51FA4EA2532FAF7FBE603B23E3",
+          "entryAssembly": "gwgui.emulation.epoch.dll",
+          "id": "epoch"
+        },
+        {
+          "sha256": "05F060C055FB8B3295E676E8BDBB4C2A353FA2C3C076ADDF387C33F4FE9F9B14",
+          "entryAssembly": "gwgui.emulation.fairchild.dll",
+          "id": "fairchild"
+        },
+        {
+          "sha256": "138313D3830D5B7BE05EEDAE5E914F7B6CCA0415B190B6A0962663523FDC3931",
+          "entryAssembly": "gwgui.emulation.mattel.dll",
+          "id": "mattel"
+        },
+        {
+          "sha256": "D90F9D1B935C2DE6C154AEFD0E1B9AA5CAE36C2D73355DB58DF70DB9C55DCF79",
+          "entryAssembly": "gwgui.emulation.microsoft.dll",
+          "id": "microsoft"
+        },
+        {
+          "sha256": "B9E71E6BD14997995893A32994D5279371D07BFFC754FE5B3DE1A0B2D497CF97",
+          "entryAssembly": "gwgui.emulation.nec.dll",
+          "id": "nec"
+        },
+        {
+          "sha256": "A8CCCCF6E65A1487CB68FB37A565DDED29D4C10EDFC3D98148D0A93AF33F905C",
+          "entryAssembly": "gwgui.emulation.nintendo.dll",
+          "id": "nintendo"
+        },
+        {
+          "sha256": "F8CDADBE66ADAAB1DD34B6BF311CF0175F75208F111380CCB4FFACAB32562FB1",
+          "entryAssembly": "gwgui.emulation.panasonic.dll",
+          "id": "panasonic"
+        },
+        {
+          "sha256": "ECAA204E12A76803A8BC959CA9ADA03B5F0D69DE1F9FDA5D723ED9239A8B8CA8",
+          "entryAssembly": "gwgui.emulation.philips.dll",
+          "id": "philips"
+        },
+        {
+          "sha256": "407AE6DFCB0394A9874D20A7450C5DFF42D2966EDBCBC36B7125229F34E336C7",
+          "entryAssembly": "gwgui.emulation.sega.dll",
+          "id": "sega"
+        },
+        {
+          "sha256": "0D68722A86BC1CA2B7AAC8864D71D638646880BE746C22EAE16AC0A706A537E0",
+          "entryAssembly": "gwgui.emulation.sharp.dll",
+          "id": "sharp"
+        },
+        {
+          "sha256": "22990E7BBCA25A827D96FF6E033A9945C04209C2B3FB6F8A12C1A7E5718D1A65",
+          "entryAssembly": "gwgui.emulation.sinclair.dll",
+          "id": "sinclair"
+        },
+        {
+          "sha256": "F562C748A3BD595E945A282321B24577910988300A30C54793AA74167C8C2CDC",
+          "entryAssembly": "gwgui.emulation.snk.dll",
+          "id": "snk"
+        },
+        {
+          "sha256": "3EE897B2FA27F25B879AB3C2740C02331693FF82805B5B44502BDA4181F17F25",
+          "entryAssembly": "gwgui.emulation.sony.dll",
+          "id": "sony"
+        },
+        {
+          "sha256": "52E97DC88AB4E5F05A673D2313143BFF592E9BDB84093878713EACB22DB2805A",
+          "entryAssembly": "gwgui.emulation.thomson.dll",
+          "id": "thomson"
+        },
+        {
+          "sha256": "FBC33A4586D560E5230FD7803AC20AE564926B14D2256DBA39E6D8E9CF6736EC",
+          "entryAssembly": "gwgui.emulation.watara.dll",
+          "id": "watara"
+        },
+        {
+          "sha256": "D11DCF672F8DBFA67704E171F3E95EDF813B46493D8010642C4D85D50FF6A089",
+          "entryAssembly": "gwgui.emulation.wenquxing.dll",
+          "id": "wenquxing"
+        }
+      ],
+      "exitCode": 0
     }
   }
 }

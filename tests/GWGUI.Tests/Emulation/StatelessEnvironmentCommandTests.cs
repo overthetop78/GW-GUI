@@ -90,6 +90,35 @@ public sealed class StatelessEnvironmentCommandTests
         Assert.Equal(before, Marshal.ReadInt64(data));
     });
 
+    [Theory]
+    [InlineData(0L)]
+    [InlineData(-1L)]
+    [InlineData(long.MaxValue)]
+    public void PointerRepliesPreserveNativeBitsAndBufferBoundaries(long value)
+    {
+        var bytes = Enumerable.Repeat((byte)0xa5, 3 * IntPtr.Size).ToArray();
+        var allocation = Marshal.AllocHGlobal(bytes.Length);
+        try
+        {
+            Marshal.Copy(bytes, 0, allocation, bytes.Length);
+            var destination = allocation + IntPtr.Size;
+            var expected = unchecked((nint)value);
+            Assert.True(ExternalCoreEnvironmentFunctions.WritePointer(destination, expected));
+            Assert.Equal(expected, Marshal.ReadIntPtr(destination));
+            Marshal.Copy(allocation, bytes, 0, bytes.Length);
+            Assert.All(bytes.Take(IntPtr.Size), item => Assert.Equal((byte)0xa5, item));
+            Assert.All(bytes.Skip(2 * IntPtr.Size), item => Assert.Equal((byte)0xa5, item));
+        }
+        finally { Marshal.FreeHGlobal(allocation); }
+    }
+
+    [Fact]
+    public void PointerRepliesRefuseANullDestination()
+    {
+        Assert.False(ExternalCoreEnvironmentFunctions.WritePointer(nint.Zero, nint.Zero));
+        Assert.False(ExternalCoreEnvironmentFunctions.WritePointer(nint.Zero, (nint)(-1)));
+    }
+
     private static bool Handle(uint command, nint data, out bool result) =>
         ExternalCoreEnvironmentFunctions.TryHandleStatelessCommand(command, data, 7, 11, 0, out result);
 
