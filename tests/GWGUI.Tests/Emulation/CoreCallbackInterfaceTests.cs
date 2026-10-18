@@ -7,6 +7,53 @@ namespace GWGUI.Tests.Emulation;
 public sealed class CoreCallbackInterfaceTests
 {
     [Fact]
+    public void OptionalDelegateReturnsNullForMissingCallbacks()
+    {
+        Assert.Null(ExternalCoreEnvironmentFunctions.OptionalDelegate<ExternalCoreApi.KeyboardEvent>(nint.Zero));
+        Assert.Null(ExternalCoreEnvironmentFunctions.OptionalDelegate<ExternalCoreApi.GetImagePath>(nint.Zero));
+    }
+
+    [Fact]
+    public void OptionalKeyboardDelegatePreservesEveryArgument()
+    {
+        (bool Down, uint Key, uint Character, ushort Modifiers)? observed = null;
+        ExternalCoreApi.KeyboardEvent callback = (down, key, character, modifiers) => observed = (down, key, character, modifiers);
+        try
+        {
+            var pointer = Marshal.GetFunctionPointerForDelegate(callback);
+            var converted = ExternalCoreEnvironmentFunctions.OptionalDelegate<ExternalCoreApi.KeyboardEvent>(pointer);
+            Assert.NotNull(converted);
+            converted(true, 273, 0x1f642, ushort.MaxValue);
+            Assert.Equal((true, 273u, 0x1f642u, ushort.MaxValue), observed);
+            converted(false, 0, 0, 0);
+            Assert.Equal((false, 0u, 0u, (ushort)0), observed);
+        }
+        finally { GC.KeepAlive(callback); }
+    }
+
+    [Fact]
+    public void OptionalDiskDelegatePreservesArgumentsAndBooleanReturn()
+    {
+        (uint Index, nint Path, nuint Length)? observed = null;
+        ExternalCoreApi.GetImagePath callback = (index, path, length) =>
+        {
+            observed = (index, path, length);
+            return index == 5;
+        };
+        try
+        {
+            var pointer = Marshal.GetFunctionPointerForDelegate(callback);
+            var converted = ExternalCoreEnvironmentFunctions.OptionalDelegate<ExternalCoreApi.GetImagePath>(pointer);
+            Assert.NotNull(converted);
+            Assert.True(converted(5, (nint)123, (nuint)1024));
+            Assert.Equal((5u, (nint)123, (nuint)1024), observed);
+            Assert.False(converted(6, nint.Zero, 0));
+            Assert.Equal((6u, nint.Zero, (nuint)0), observed);
+        }
+        finally { GC.KeepAlive(callback); }
+    }
+
+    [Fact]
     public void NullDestinationsDoNotConvertOrPublishCallbacks()
     {
         Assert.False(ExternalCoreEnvironmentFunctions.SetLogInterface(nint.Zero, null!));

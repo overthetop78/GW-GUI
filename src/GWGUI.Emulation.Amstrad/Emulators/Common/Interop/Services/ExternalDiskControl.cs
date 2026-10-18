@@ -38,8 +38,8 @@ internal sealed class ExternalDiskControl
     {
         var api = Marshal.PtrToStructure<ExternalCoreApi.DiskControlExtended>(data);
         CaptureBasic(api.Basic);
-        _getImagePath = OptionalDelegate<ExternalCoreApi.GetImagePath>(api.GetImagePath);
-        _getImageLabel = OptionalDelegate<ExternalCoreApi.GetImageLabel>(api.GetImageLabel);
+        _getImagePath = GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.OptionalDelegate<ExternalCoreApi.GetImagePath>(api.GetImagePath);
+        _getImageLabel = GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.OptionalDelegate<ExternalCoreApi.GetImageLabel>(api.GetImageLabel);
     }
 
     private void CaptureBasic(ExternalCoreApi.DiskControl api)
@@ -126,6 +126,4 @@ internal sealed class ExternalDiskControl
         if (pointer == nint.Zero) throw new InvalidOperationException(CommonExceptions.DiskControlIncomplete());
         return Marshal.GetDelegateForFunctionPointer<T>(pointer);
     }
-
-    private static T? OptionalDelegate<T>(nint pointer) where T : Delegate => pointer == nint.Zero ? null : Marshal.GetDelegateForFunctionPointer<T>(pointer);
 }

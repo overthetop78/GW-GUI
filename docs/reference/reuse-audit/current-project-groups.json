@@ -3,7 +3,7 @@
   "currentCSharpFiles": 7331,
   "outsideSrcCSharpFiles": 288,
   "baselineMethodCount": 5848,
-  "currentMethodCount": 11666,
+  "currentMethodCount": 11669,
   "powerShellFunctionCount": 17,
   "groups": [
     {
@@ -1526,7 +1526,7 @@
     {
       "language": "CSharp",
       "hash": "0A9D4012A0EEF58659F6F622D06187BDA6844EE126F30B196EAE963950A66758",
-      "method": "AtariEmulationModule",
+      "method": "SegaEmulationModule",
       "tokens": 45,
       "current": [
         {
@@ -2886,99 +2886,6 @@
       ],
       "predecessors": [],
       "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
-      "hash": "15C1B04F372E21BE83C9D246D5F3D324CE08AA64D8AAD8653695C78292137D3B",
-      "method": "CaptureExtended",
-      "tokens": 52,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
-          "name": "CaptureExtended",
-          "line": 37,
-          "tokens": 52,
-          "hash": "15C1B04F372E21BE83C9D246D5F3D324CE08AA64D8AAD8653695C78292137D3B",
-          "shape": "3CD6047606F04028B0E9B7716FC5993308E1591A371CFF6858863556E4D6F52C"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
-          "name": "CaptureExtended",
-          "line": 38,
-          "tokens": 52,
-          "hash": "15C1B04F372E21BE83C9D246D5F3D324CE08AA64D8AAD8653695C78292137D3B",
-          "shape": "3CD6047606F04028B0E9B7716FC5993308E1591A371CFF6858863556E4D6F52C"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
-          "name": "CaptureExtended",
-          "line": 29,
-          "tokens": 52,
-          "hash": "15C1B04F372E21BE83C9D246D5F3D324CE08AA64D8AAD8653695C78292137D3B",
-          "shape": "3CD6047606F04028B0E9B7716FC5993308E1591A371CFF6858863556E4D6F52C"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalDiskControl.cs",
-          "name": "CaptureExtended",
-          "line": 39,
-          "tokens": 52,
-          "hash": "15C1B04F372E21BE83C9D246D5F3D324CE08AA64D8AAD8653695C78292137D3B",
-          "shape": "3CD6047606F04028B0E9B7716FC5993308E1591A371CFF6858863556E4D6F52C"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
-          "name": "CaptureExtended",
-          "line": 38,
-          "tokens": 52,
-          "hash": "15C1B04F372E21BE83C9D246D5F3D324CE08AA64D8AAD8653695C78292137D3B",
-          "shape": "3CD6047606F04028B0E9B7716FC5993308E1591A371CFF6858863556E4D6F52C"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalDiskControl.cs",
-          "name": "CaptureExtended",
-          "line": 39,
-          "tokens": 52,
-          "hash": "15C1B04F372E21BE83C9D246D5F3D324CE08AA64D8AAD8653695C78292137D3B",
-          "shape": "3CD6047606F04028B0E9B7716FC5993308E1591A371CFF6858863556E4D6F52C"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
-          "name": "CaptureExtended",
-          "line": 38,
-          "tokens": 52,
-          "hash": "15C1B04F372E21BE83C9D246D5F3D324CE08AA64D8AAD8653695C78292137D3B",
-          "shape": "3CD6047606F04028B0E9B7716FC5993308E1591A371CFF6858863556E4D6F52C"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
-          "name": "CaptureExtended",
-          "line": 33,
-          "tokens": 52,
-          "hash": "15C1B04F372E21BE83C9D246D5F3D324CE08AA64D8AAD8653695C78292137D3B",
-          "shape": "3CD6047606F04028B0E9B7716FC5993308E1591A371CFF6858863556E4D6F52C"
-        }
-      ],
-      "predecessors": [
-        {
-          "path": "src/GWGUI.Emulation.Amiga/Emulators/PUAE/Services/AmigaExternalDiskControl.cs",
-          "name": "CaptureExtended",
-          "line": 31,
-          "tokens": 52,
-          "hash": "15C1B04F372E21BE83C9D246D5F3D324CE08AA64D8AAD8653695C78292137D3B",
-          "shape": "3CD6047606F04028B0E9B7716FC5993308E1591A371CFF6858863556E4D6F52C"
-        }
-      ],
-      "shapePredecessors": [
-        {
-          "path": "src/GWGUI.Emulation.Amiga/Emulators/PUAE/Services/AmigaExternalDiskControl.cs",
-          "name": "CaptureExtended",
-          "line": 31,
-          "tokens": 52,
-          "hash": "15C1B04F372E21BE83C9D246D5F3D324CE08AA64D8AAD8653695C78292137D3B",
-          "shape": "3CD6047606F04028B0E9B7716FC5993308E1591A371CFF6858863556E4D6F52C"
-        }
-      ],
       "qualification": "pending"
     },
     {
@@ -13244,7 +13151,7 @@
     {
       "language": "CSharp",
       "hash": "68386C818382BCE400A3EDE65411B5CBD9D6A87F6D88FAF6501028CE28C38965",
-      "method": "ToSinclair",
+      "method": "ToModule",
       "tokens": 148,
       "current": [
         {
@@ -20723,7 +20630,7 @@
     {
       "language": "CSharp",
       "hash": "A1E03750FEB3292ACEB41656386F4A8AA8B05077D9ABFB7DA103AA3D71320B9F",
-      "method": "ToModule",
+      "method": "ToFairchild",
       "tokens": 103,
       "current": [
         {
@@ -20958,7 +20865,7 @@
     {
       "language": "CSharp",
       "hash": "A61349BFDFFA5D404CE7D0D458204D435194B5E4D84870DF4F9FBE26A86A9946",
-      "method": "ToEpoch",
+      "method": "ToFairchild",
       "tokens": 36,
       "current": [
         {
@@ -22151,7 +22058,7 @@
     {
       "language": "CSharp",
       "hash": "B053A3AB4F0B78A37DED57B2D744801187AED6EC54FEEAFE4B1AA9C454D6F48C",
-      "method": "WenquxingEmulationModule",
+      "method": "MattelEmulationModule",
       "tokens": 47,
       "current": [
         {
@@ -24528,6 +24435,169 @@
           "tokens": 85,
           "hash": "C84B20E8CEB590EF9123779ADF7BBED41F0BC4C3CC7D31851CE7F193DFE32C8D",
           "shape": "E2129F239BEFE60073AD82C4AD620CB58CF084320AC0506799086168FABAF4E1"
+        }
+      ],
+      "predecessors": [],
+      "shapePredecessors": [],
+      "qualification": "pending"
+    },
+    {
+      "language": "CSharp",
+      "hash": "C85E120E64E541B25E279ED4BBC173324BFE49204ED4836C14F77C335B8C4A46",
+      "method": "CaptureExtended",
+      "tokens": 68,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+          "name": "CaptureExtended",
+          "line": 37,
+          "tokens": 68,
+          "hash": "C85E120E64E541B25E279ED4BBC173324BFE49204ED4836C14F77C335B8C4A46",
+          "shape": "F2A3243DCE18519B08AA26F533107F2FE31466A58DBD46AFCC7AF216091A5295"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/DiskControl.cs",
+          "name": "CaptureExtended",
+          "line": 36,
+          "tokens": 68,
+          "hash": "C85E120E64E541B25E279ED4BBC173324BFE49204ED4836C14F77C335B8C4A46",
+          "shape": "F2A3243DCE18519B08AA26F533107F2FE31466A58DBD46AFCC7AF216091A5295"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+          "name": "CaptureExtended",
+          "line": 38,
+          "tokens": 68,
+          "hash": "C85E120E64E541B25E279ED4BBC173324BFE49204ED4836C14F77C335B8C4A46",
+          "shape": "F2A3243DCE18519B08AA26F533107F2FE31466A58DBD46AFCC7AF216091A5295"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/DiskControl.cs",
+          "name": "CaptureExtended",
+          "line": 49,
+          "tokens": 68,
+          "hash": "C85E120E64E541B25E279ED4BBC173324BFE49204ED4836C14F77C335B8C4A46",
+          "shape": "F2A3243DCE18519B08AA26F533107F2FE31466A58DBD46AFCC7AF216091A5295"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/DiskControl.cs",
+          "name": "CaptureExtended",
+          "line": 49,
+          "tokens": 68,
+          "hash": "C85E120E64E541B25E279ED4BBC173324BFE49204ED4836C14F77C335B8C4A46",
+          "shape": "F2A3243DCE18519B08AA26F533107F2FE31466A58DBD46AFCC7AF216091A5295"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/DiskControl.cs",
+          "name": "CaptureExtended",
+          "line": 49,
+          "tokens": 68,
+          "hash": "C85E120E64E541B25E279ED4BBC173324BFE49204ED4836C14F77C335B8C4A46",
+          "shape": "F2A3243DCE18519B08AA26F533107F2FE31466A58DBD46AFCC7AF216091A5295"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/DiskControl.cs",
+          "name": "CaptureExtended",
+          "line": 49,
+          "tokens": 68,
+          "hash": "C85E120E64E541B25E279ED4BBC173324BFE49204ED4836C14F77C335B8C4A46",
+          "shape": "F2A3243DCE18519B08AA26F533107F2FE31466A58DBD46AFCC7AF216091A5295"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+          "name": "CaptureExtended",
+          "line": 33,
+          "tokens": 68,
+          "hash": "C85E120E64E541B25E279ED4BBC173324BFE49204ED4836C14F77C335B8C4A46",
+          "shape": "F2A3243DCE18519B08AA26F533107F2FE31466A58DBD46AFCC7AF216091A5295"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+          "name": "CaptureExtended",
+          "line": 38,
+          "tokens": 68,
+          "hash": "C85E120E64E541B25E279ED4BBC173324BFE49204ED4836C14F77C335B8C4A46",
+          "shape": "F2A3243DCE18519B08AA26F533107F2FE31466A58DBD46AFCC7AF216091A5295"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalDiskControl.cs",
+          "name": "CaptureExtended",
+          "line": 39,
+          "tokens": 68,
+          "hash": "C85E120E64E541B25E279ED4BBC173324BFE49204ED4836C14F77C335B8C4A46",
+          "shape": "F2A3243DCE18519B08AA26F533107F2FE31466A58DBD46AFCC7AF216091A5295"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/DiskControl.cs",
+          "name": "CaptureExtended",
+          "line": 49,
+          "tokens": 68,
+          "hash": "C85E120E64E541B25E279ED4BBC173324BFE49204ED4836C14F77C335B8C4A46",
+          "shape": "F2A3243DCE18519B08AA26F533107F2FE31466A58DBD46AFCC7AF216091A5295"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalDiskControl.cs",
+          "name": "CaptureExtended",
+          "line": 39,
+          "tokens": 68,
+          "hash": "C85E120E64E541B25E279ED4BBC173324BFE49204ED4836C14F77C335B8C4A46",
+          "shape": "F2A3243DCE18519B08AA26F533107F2FE31466A58DBD46AFCC7AF216091A5295"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+          "name": "CaptureExtended",
+          "line": 38,
+          "tokens": 68,
+          "hash": "C85E120E64E541B25E279ED4BBC173324BFE49204ED4836C14F77C335B8C4A46",
+          "shape": "F2A3243DCE18519B08AA26F533107F2FE31466A58DBD46AFCC7AF216091A5295"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+          "name": "CaptureExtended",
+          "line": 29,
+          "tokens": 68,
+          "hash": "C85E120E64E541B25E279ED4BBC173324BFE49204ED4836C14F77C335B8C4A46",
+          "shape": "F2A3243DCE18519B08AA26F533107F2FE31466A58DBD46AFCC7AF216091A5295"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/DiskControl.cs",
+          "name": "CaptureExtended",
+          "line": 49,
+          "tokens": 68,
+          "hash": "C85E120E64E541B25E279ED4BBC173324BFE49204ED4836C14F77C335B8C4A46",
+          "shape": "F2A3243DCE18519B08AA26F533107F2FE31466A58DBD46AFCC7AF216091A5295"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/DiskControl.cs",
+          "name": "CaptureExtended",
+          "line": 49,
+          "tokens": 68,
+          "hash": "C85E120E64E541B25E279ED4BBC173324BFE49204ED4836C14F77C335B8C4A46",
+          "shape": "F2A3243DCE18519B08AA26F533107F2FE31466A58DBD46AFCC7AF216091A5295"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/DiskControl.cs",
+          "name": "CaptureExtended",
+          "line": 49,
+          "tokens": 68,
+          "hash": "C85E120E64E541B25E279ED4BBC173324BFE49204ED4836C14F77C335B8C4A46",
+          "shape": "F2A3243DCE18519B08AA26F533107F2FE31466A58DBD46AFCC7AF216091A5295"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/DiskControl.cs",
+          "name": "CaptureExtended",
+          "line": 37,
+          "tokens": 68,
+          "hash": "C85E120E64E541B25E279ED4BBC173324BFE49204ED4836C14F77C335B8C4A46",
+          "shape": "F2A3243DCE18519B08AA26F533107F2FE31466A58DBD46AFCC7AF216091A5295"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/DiskControl.cs",
+          "name": "CaptureExtended",
+          "line": 33,
+          "tokens": 68,
+          "hash": "C85E120E64E541B25E279ED4BBC173324BFE49204ED4836C14F77C335B8C4A46",
+          "shape": "F2A3243DCE18519B08AA26F533107F2FE31466A58DBD46AFCC7AF216091A5295"
         }
       ],
       "predecessors": [],
@@ -27116,114 +27186,6 @@
       ],
       "predecessors": [],
       "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
-      "hash": "DE4F510B2A9E4192FF527BE69CF4DC19BC109F9BD277109CA7DF4A3A38D9D5BA",
-      "method": "CaptureExtended",
-      "tokens": 56,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/DiskControl.cs",
-          "name": "CaptureExtended",
-          "line": 37,
-          "tokens": 56,
-          "hash": "DE4F510B2A9E4192FF527BE69CF4DC19BC109F9BD277109CA7DF4A3A38D9D5BA",
-          "shape": "AB646BD88B8F958DED2D6F13E86EDBBD8981B31D9F421916845034D4BB6AC64D"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/DiskControl.cs",
-          "name": "CaptureExtended",
-          "line": 36,
-          "tokens": 56,
-          "hash": "DE4F510B2A9E4192FF527BE69CF4DC19BC109F9BD277109CA7DF4A3A38D9D5BA",
-          "shape": "AB646BD88B8F958DED2D6F13E86EDBBD8981B31D9F421916845034D4BB6AC64D"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/DiskControl.cs",
-          "name": "CaptureExtended",
-          "line": 49,
-          "tokens": 56,
-          "hash": "DE4F510B2A9E4192FF527BE69CF4DC19BC109F9BD277109CA7DF4A3A38D9D5BA",
-          "shape": "AB646BD88B8F958DED2D6F13E86EDBBD8981B31D9F421916845034D4BB6AC64D"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/DiskControl.cs",
-          "name": "CaptureExtended",
-          "line": 49,
-          "tokens": 56,
-          "hash": "DE4F510B2A9E4192FF527BE69CF4DC19BC109F9BD277109CA7DF4A3A38D9D5BA",
-          "shape": "AB646BD88B8F958DED2D6F13E86EDBBD8981B31D9F421916845034D4BB6AC64D"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/DiskControl.cs",
-          "name": "CaptureExtended",
-          "line": 49,
-          "tokens": 56,
-          "hash": "DE4F510B2A9E4192FF527BE69CF4DC19BC109F9BD277109CA7DF4A3A38D9D5BA",
-          "shape": "AB646BD88B8F958DED2D6F13E86EDBBD8981B31D9F421916845034D4BB6AC64D"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/DiskControl.cs",
-          "name": "CaptureExtended",
-          "line": 49,
-          "tokens": 56,
-          "hash": "DE4F510B2A9E4192FF527BE69CF4DC19BC109F9BD277109CA7DF4A3A38D9D5BA",
-          "shape": "AB646BD88B8F958DED2D6F13E86EDBBD8981B31D9F421916845034D4BB6AC64D"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/DiskControl.cs",
-          "name": "CaptureExtended",
-          "line": 49,
-          "tokens": 56,
-          "hash": "DE4F510B2A9E4192FF527BE69CF4DC19BC109F9BD277109CA7DF4A3A38D9D5BA",
-          "shape": "AB646BD88B8F958DED2D6F13E86EDBBD8981B31D9F421916845034D4BB6AC64D"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/DiskControl.cs",
-          "name": "CaptureExtended",
-          "line": 49,
-          "tokens": 56,
-          "hash": "DE4F510B2A9E4192FF527BE69CF4DC19BC109F9BD277109CA7DF4A3A38D9D5BA",
-          "shape": "AB646BD88B8F958DED2D6F13E86EDBBD8981B31D9F421916845034D4BB6AC64D"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/DiskControl.cs",
-          "name": "CaptureExtended",
-          "line": 33,
-          "tokens": 56,
-          "hash": "DE4F510B2A9E4192FF527BE69CF4DC19BC109F9BD277109CA7DF4A3A38D9D5BA",
-          "shape": "AB646BD88B8F958DED2D6F13E86EDBBD8981B31D9F421916845034D4BB6AC64D"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/DiskControl.cs",
-          "name": "CaptureExtended",
-          "line": 49,
-          "tokens": 56,
-          "hash": "DE4F510B2A9E4192FF527BE69CF4DC19BC109F9BD277109CA7DF4A3A38D9D5BA",
-          "shape": "AB646BD88B8F958DED2D6F13E86EDBBD8981B31D9F421916845034D4BB6AC64D"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/DiskControl.cs",
-          "name": "CaptureExtended",
-          "line": 49,
-          "tokens": 56,
-          "hash": "DE4F510B2A9E4192FF527BE69CF4DC19BC109F9BD277109CA7DF4A3A38D9D5BA",
-          "shape": "AB646BD88B8F958DED2D6F13E86EDBBD8981B31D9F421916845034D4BB6AC64D"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [
-        {
-          "path": "src/GWGUI.Emulation.Atari/Services/AtariDiskControl.cs",
-          "name": "CaptureExtended",
-          "line": 35,
-          "tokens": 56,
-          "hash": "4CBD1FCA04194323BCE64F8A9F2D8E624E3B515AD0DBF6FA8A4A63FB364449E7",
-          "shape": "AB646BD88B8F958DED2D6F13E86EDBBD8981B31D9F421916845034D4BB6AC64D"
-        }
-      ],
       "qualification": "pending"
     },
     {

@@ -50,8 +50,8 @@ internal sealed class DiskControl
     {
         var api = Marshal.PtrToStructure<ExternalCoreApi.DiskControlExtended>(data);
         CaptureBasic(api.Basic);
-        _getImagePath = DiskControlFunctions.OptionalDelegate<ExternalCoreApi.GetImagePath>(api.GetImagePath);
-        _getImageLabel = DiskControlFunctions.OptionalDelegate<ExternalCoreApi.GetImageLabel>(api.GetImageLabel);
+        _getImagePath = GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.OptionalDelegate<ExternalCoreApi.GetImagePath>(api.GetImagePath);
+        _getImageLabel = GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.OptionalDelegate<ExternalCoreApi.GetImageLabel>(api.GetImageLabel);
     }
 
     internal void Select(int index)
