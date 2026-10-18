@@ -8,9 +8,18 @@ namespace GWGUI.Emulation.Functions;
 internal static class EmulationCoreReleaseFunctions
 {
     internal static TRelease SelectRelease<TRelease>(IReadOnlyDictionary<string, TRelease> availableReleases,
+        EmulationEmulatorRelease release)
+    {
+        if (!availableReleases.TryGetValue(release.Id, out var selected))
+            throw new ArgumentException(nameof(release));
+        return selected;
+    }
+
+    internal static TRelease SelectRelease<TRelease>(IReadOnlyDictionary<string, TRelease> availableReleases,
         EmulationEmulatorRelease release, Func<TRelease, bool> matchesEmulator)
     {
-        if (!availableReleases.TryGetValue(release.Id, out var selected) || !matchesEmulator(selected))
+        var selected = SelectRelease(availableReleases, release);
+        if (!matchesEmulator(selected))
             throw new ArgumentException(nameof(release));
         return selected;
     }

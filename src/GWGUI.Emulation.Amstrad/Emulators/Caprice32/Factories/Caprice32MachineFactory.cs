@@ -51,8 +51,7 @@ internal sealed class Caprice32MachineFactory : IEmulatorAdapter, IEmulatorCapab
 
     public async ValueTask<string> InstallAsync(EmulatorManagementContext context, EmulationEmulatorRelease release, IProgress<double>? progress, CancellationToken cancellationToken)
     {
-        if (!_availableReleases.TryGetValue(release.Id, out var selected))
-            throw new ArgumentException(nameof(release));
+        var selected = EmulationCoreReleaseFunctions.SelectRelease(_availableReleases, release);
         return await new CoreReleaseService(context.HttpClient, context.CoreDirectory, Core).InstallAsync(selected, progress, cancellationToken).ConfigureAwait(false);
     }
 

@@ -8249,7 +8249,7 @@
     "afterProductBuild": "005e3c677"
   },
   "shortMethodInventory": {
-    "snapshot": "77eb80f3769611839bf5de62485a4d3f77fd4055",
+    "snapshot": "1681751fb375192b0f809defd53cbb60bb006fdb",
     "files": 7316,
     "bodyCount": 9477,
     "exactGroups": 772,
@@ -8465,7 +8465,7 @@
         "containingDeclarations": [
           "class MachineFactory"
         ],
-        "sourceSha256": "55EA31D5B6541C6300CCA9C5426C1F66BA842AD6CE009AACD80AA20BD393041D",
+        "sourceSha256": "D940CF020E9D0F546B8A14965B4CC3A1B1A266A9917B1B03D2DF9D923D3EDB64",
         "statements": 0,
         "containsDirectives": false,
         "decision": "no-executable-body-to-centralize"
@@ -8605,7 +8605,7 @@
         "containingDeclarations": [
           "class CoreMachineFactory"
         ],
-        "sourceSha256": "9A7C6FB25A2EE2300D0F50F9231D8FE3286B360F14046BCE5B7C21F0A7E5DA67",
+        "sourceSha256": "6E3EE9023EE493288DB426BADCD5D6140FDECCB5153784CE5D171BC3687E8AB2",
         "statements": 0,
         "containsDirectives": false,
         "decision": "no-executable-body-to-centralize"
@@ -9853,7 +9853,8 @@
     "testCorrection": "Two initial assertions wrongly expected ParamName = release; corrected to original ArgumentException(string message): Message = release and ParamName = null. Production unchanged.",
     "resources": "New tests own only managed objects and a queued SynchronizationContext, restored in finally; no file, window, thread, process, native DLL or emulator instantiated.",
     "sdkSha256": "3F405B99F60F17E455A28F294F624A1B49DD2B7FF222764A38E9E4A177D8FA0D",
-    "testSha256": "5838D359DE111BFE90DC61EEEE4B97B9EA473E2A7ACA4671F91EF4BE14671798"
+    "testSha256": "5838D359DE111BFE90DC61EEEE4B97B9EA473E2A7ACA4671F91EF4BE14671798",
+    "subsequentSdkValidation": "Two-argument Amiga lookup reused by same three-argument Atari method; signature and predicate order verified, 23 selection/progress/pipeline tests passed in simpleFactoryReleaseSelectionReuse."
   },
   "fixedFactoryReleaseSelectionReuse": {
     "baseline": "a0644dca8",
@@ -9927,7 +9928,8 @@
     "ast": "Four complete token streams match a0644dca8 after expanding two shared statements; fixed enum predicate, forwarded variable, original installation call and return unchanged.",
     "semantic": "SDK and four module source compilations: zero semantic errors; eight calls resolved to original shared SDK operations with local types.",
     "tests": "Shared SDK and test source hashes identical to first block with 21 passed tests. No redundant test added; fixed enum symbols/constants resolved before and after. Full product build follows both blocks.",
-    "resources": "No resource owner or lifetime statement modified; all other members preserved."
+    "resources": "No resource owner or lifetime statement modified; all other members preserved.",
+    "subsequentSdkValidation": "Existing predicate overload signature unchanged; lookup factored to original Amiga guard, 23 tests passed and original fixed enum predicates unchanged."
   },
   "simpleFactoryReleaseSelectionReuse": {
     "baseline": "ebc8b9f32",
@@ -10042,6 +10044,79 @@
     ],
     "semantic": "SDK plus Amstrad, Commodore, NEC, Nintendo, Sega and Sony source compilations: zero errors; thirteen original dictionary types resolved.",
     "decision": "Retain original Amiga guard in a two-argument SelectRelease overload in existing SDK owner. Existing three-argument Atari overload reuses lookup then applies original emulator predicate; native factories use no emulator predicate.",
-    "state": "planned-before-source-edits"
+    "state": "verified",
+    "after": [
+      {
+        "path": "src/GWGUI.Emulation.Amstrad/Emulators/Caprice32/Factories/Caprice32MachineFactory.cs",
+        "sha256": "1F2B152F87BC090A36892C055ED35306C7E4A8ACCA22273B28129B773F45F4E3",
+        "otherTokensIdentical": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Amstrad/Emulators/CrocoDS/Factories/CrocoDSMachineFactory.cs",
+        "sha256": "F9E6223C3AFF63666D81DCED2E6D7AB0B406B2292D6FBD231C55B06A579600A1",
+        "otherTokensIdentical": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Factories/MachineFactory.cs",
+        "sha256": "D940CF020E9D0F546B8A14965B4CC3A1B1A266A9917B1B03D2DF9D923D3EDB64",
+        "otherTokensIdentical": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nec/Emulators/BeetlePceFast/Factories/BeetlePceFastMachineFactory.cs",
+        "sha256": "51EFF8E4F9FEEB234321742A2D4F230D094BF08E9E429BFF56B7E8834FD54059",
+        "otherTokensIdentical": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nec/Emulators/BeetlePcfx/Factories/BeetlePcfxMachineFactory.cs",
+        "sha256": "C9A673F7340D02556F9DEEE9F4D35781E4401976DBB9A71F0816D1E38F3957B0",
+        "otherTokensIdentical": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nec/Emulators/BeetleSgx/Factories/BeetleSgxMachineFactory.cs",
+        "sha256": "4DEF11334E1BDDE0A26A13F1D87439E63DD96BB8F12E2BEDD80ED64B0A1F3AE8",
+        "otherTokensIdentical": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Factories/CoreMachineFactory.cs",
+        "sha256": "7B69D9A157E6A844A7AEACFDE991BEADCA54B9520376ADF9A9C88591CE5F3239",
+        "otherTokensIdentical": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nec/Emulators/Geargrafx/Factories/GeargrafxMachineFactory.cs",
+        "sha256": "058AA445E247F0E93D6EB4D9259C2D65594BB82F574DD9CAB43B391C203B0E9B",
+        "otherTokensIdentical": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Factories/CoreMachineFactory.cs",
+        "sha256": "46E71C903D80DEAECBD6089F3BBBF30030BBFCDA4FFB5021C18E259B1F8851AC",
+        "otherTokensIdentical": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Factories/CoreMachineFactory.cs",
+        "sha256": "7A5E35BE14547FA16C495DF6D44001C41E8A0A7EF2F4CD68C7DEDC48FDE6D850",
+        "otherTokensIdentical": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Factories/CoreMachineFactory.cs",
+        "sha256": "6E3EE9023EE493288DB426BADCD5D6140FDECCB5153784CE5D171BC3687E8AB2",
+        "otherTokensIdentical": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Factories/Pcsx2MachineFactory.cs",
+        "sha256": "4A971F5887A9D60FC3BC84C0E182C02164AD00A991E02060B8F33971A985BA48",
+        "otherTokensIdentical": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Factories/PpssppMachineFactory.cs",
+        "sha256": "E2EE865C53B6D1592D78A9AFD2D0E5307E499E59B951FA0D5359665735A52935",
+        "otherTokensIdentical": true
+      }
+    ],
+    "emptyProofsRefreshed": 2,
+    "ast": "Whole source tokens of thirteen factories identical after replacing shared selection with original guard; two-argument SDK guard matches original Amiga 5a7b3a6ce. Three-argument Atari parameter tokens and predicate order preserved; all other SDK members identical.",
+    "semanticAfter": "SDK and six module source compilations without errors; thirteen native factory calls resolve to two-argument SelectRelease with original local CoreRelease types.",
+    "tests": "CoreReleaseSelectionTests 13 plus CoreInstallationFlowTests 10: 23 passed, exit 0. Both direct no-predicate cases passed; prior Atari guards, context-preserving progress and installation sequencing remain covered.",
+    "sdkSha256": "9FC05A9FCD545B0308C80E8BD04EF60CE584B380F5EDFE28584DAD73DC8C58FE",
+    "resources": "No resource owner changed. Test additions use managed values only; existing progress fixture restores SynchronizationContext in finally."
   }
 }

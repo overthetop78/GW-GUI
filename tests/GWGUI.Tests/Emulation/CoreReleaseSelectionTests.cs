@@ -5,6 +5,26 @@ namespace GWGUI.Tests.Emulation;
 
 public sealed class CoreReleaseSelectionTests
 {
+    [Fact]
+    public void SelectionWithoutPredicateKeepsTheReleaseForAnyEmulator()
+    {
+        var expected = new Release(42);
+        var releases = new Dictionary<string, Release> { ["build"] = expected };
+
+        Assert.Same(expected, EmulationCoreReleaseFunctions.SelectRelease(releases, Requested("build")));
+    }
+
+    [Fact]
+    public void SelectionWithoutPredicateKeepsTheMissingReleaseException()
+    {
+        var releases = new Dictionary<string, Release>();
+        var error = Assert.Throws<ArgumentException>(() =>
+            EmulationCoreReleaseFunctions.SelectRelease(releases, Requested("missing")));
+
+        Assert.Equal("release", error.Message);
+        Assert.Null(error.ParamName);
+    }
+
     [Theory]
     [InlineData("build")]
     [InlineData("BUILD")]

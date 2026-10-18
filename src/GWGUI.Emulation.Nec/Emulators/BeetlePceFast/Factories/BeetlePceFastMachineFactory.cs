@@ -65,8 +65,7 @@ internal sealed class BeetlePceFastMachineFactory : IEmulatorAdapter, IEmulatorM
 
     public async ValueTask<string> InstallAsync(EmulatorManagementContext context, EmulationEmulatorRelease release, IProgress<double>? progress, CancellationToken cancellationToken)
     {
-        if (!_availableReleases.TryGetValue(release.Id, out var selected))
-            throw new ArgumentException(nameof(release));
+        var selected = EmulationCoreReleaseFunctions.SelectRelease(_availableReleases, release);
         return await new CoreReleaseService(context.HttpClient, context.CoreDirectory, ReleaseConstants.Settings).InstallAsync(selected, progress, cancellationToken).ConfigureAwait(false);
     }
 

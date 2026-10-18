@@ -59,8 +59,7 @@ internal sealed class Pcsx2MachineFactory : IEmulatorAdapter, IEmulatorFirmwareA
 
     public async ValueTask<string> InstallAsync(EmulatorManagementContext context, EmulationEmulatorRelease release, IProgress<double>? progress, CancellationToken cancellationToken)
     {
-        if (!_availableReleases.TryGetValue(release.Id, out var selected))
-            throw new ArgumentException(nameof(release));
+        var selected = EmulationCoreReleaseFunctions.SelectRelease(_availableReleases, release);
         return await new CoreReleaseService(context.HttpClient, context.CoreDirectory).InstallAsync(selected, progress, cancellationToken).ConfigureAwait(false);
     }
 
