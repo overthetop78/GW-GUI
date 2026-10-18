@@ -140,17 +140,11 @@ internal sealed partial class ExternalHostCallbacks
     private bool ReturnOption(nint data)
     => EmulationCoreOptionFunctions.ReturnNativeValue(data, _options, (_, value) => NativeString(value));
 
-    internal void ValidateConfiguredOptions()
-    {
-        foreach (var key in _configuredOptionKeys)
-        {
-            var configuredValue = _options[key];
-            var option = OptionCatalog.FirstOrDefault(item => item.Key.Equals(key, StringComparison.Ordinal));
-            if (option is null || option.Values.Count == BufferConstants.EmptyCollectionCount) continue;
-            if (!option.Values.Any(value => value.Value.Equals(configuredValue, StringComparison.Ordinal)))
-                throw new InvalidDataException(CommonExceptions.InvalidOptionValue(configuredValue, key));
-        }
-    }
+    internal void ValidateConfiguredOptions() =>
+        EmulationCoreOptionFunctions.ValidateConfiguredValues(
+            _configuredOptionKeys, _options, OptionCatalog,
+            static option => option.Key, static option => option.Values, static value => value.Value,
+            static (key, value) => throw new InvalidDataException(CommonExceptions.InvalidOptionValue(value, key)));
 
     private bool CaptureMessage(nint data, bool extended)
     {

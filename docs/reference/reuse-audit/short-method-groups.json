@@ -1,5 +1,5 @@
 {
-  "snapshot": "54a1e1de04ddb6d0692f538c3f421df0c2e3322c",
+  "snapshot": "51605edb9f132c9073060114be1b360d43127fb7",
   "snapshotState": "Current worktree based on snapshot",
   "worktreeSourceChanges": [
     "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
