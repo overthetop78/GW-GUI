@@ -1,32 +1,21 @@
 {
-  "snapshot": "b5114ff1abd5492c8d08180ae902252d65f7caed",
+  "snapshot": "dfaf1710f4ddbb35834e698a277a1f6c52b55266",
   "snapshotState": "Current worktree based on snapshot",
   "worktreeSourceChanges": [
-    "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
-    "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
-    "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
-    "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
-    "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
-    "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
-    "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
-    "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
-    "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
-    "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
-    "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
-    "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
-    "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
-    "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
-    "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
-    "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
-    "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
-    "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
-    "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Environment.cs",
-    "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Environment.cs",
-    "src/GWGUI.Emulation/Functions/ExternalCoreEnvironmentFunctions.cs"
+    "src/GWGUI.MediaEngine/Functions/MediaFileExtensionFunctions.cs",
+    "src/GWGUI.MediaEngine/Images/Conversion/ConversionFidelity.cs",
+    "src/GWGUI.MediaEngine/Images/Conversion/Flux/FluxContainerConversionService.cs",
+    "src/GWGUI.MediaEngine/Images/Formats/CapabilityAwareImageFormatCatalog.cs",
+    "src/GWGUI.MediaEngine/Images/Formats/Cartridge/Console/ConsoleCartridgeWriter.cs",
+    "src/GWGUI.MediaEngine/Images/Formats/ImageFormatCatalog.cs",
+    "src/GWGUI.MediaEngine/Images/Formats/Optical/Gdi/GdiWriter.cs",
+    "src/GWGUI.MediaEngine/Images/Formats/Optical/WiiU/WiiUWriter.cs",
+    "src/GWGUI.MediaEngine/Images/Formats/Optical/Xdvdfs/XdvdfsWriter.cs",
+    "src/GWGUI.MediaEngine/Images/Formats/RuntimeImageFormatCatalog.cs"
   ],
   "scope": "All current non-ignored repository CSharp files, including hidden paths; BaseMethodDeclaration bodies with fewer than 30 tokens. Candidate presence is not a defect or a completion claim.",
-  "fileCount": 7327,
-  "methodBodyCount": 9553,
+  "fileCount": 7328,
+  "methodBodyCount": 9555,
   "exactGroups": [
     {
       "hash": "0017F14C61995D644C52FF90F094E4708DC2CA772615CF2F5DD41E74BD202ECA",
@@ -14384,62 +14373,6 @@
           "bodyTokens": "=> RequireExports ( ) . Reset ( )",
           "hash": "2BDFCFCFC2C5E0617D38D95E29630E07749013E042907EDE3669376FB4AAA9D3",
           "shape": "FBD3DC4A76F090EA380BE0020580A76FD965A562110093028E377F064C39BF6B"
-        }
-      ],
-      "qualification": "pending-symbol-and-ownership-comparison"
-    },
-    {
-      "hash": "2C2753BC87276517A7BC9318C4658F4103D56177A86B0B17E2E365E2563C4D34",
-      "tokens": 28,
-      "bodyTokens": "=> extension . StartsWith ( \".\" , StringComparison . Ordinal ) ? extension . ToLowerInvariant ( ) : $\" . { extension . ToLowerInvariant ( ) } \"",
-      "current": [
-        {
-          "path": "src/GWGUI.MediaEngine/Images/Formats/Cartridge/Console/ConsoleCartridgeWriter.cs",
-          "name": "NormalizeExtension",
-          "owner": "ConsoleCartridgeWriter",
-          "kind": "MethodDeclaration",
-          "line": 102,
-          "parameters": "(string extension)",
-          "tokens": 28,
-          "bodyTokens": "=> extension . StartsWith ( \".\" , StringComparison . Ordinal ) ? extension . ToLowerInvariant ( ) : $\" . { extension . ToLowerInvariant ( ) } \"",
-          "hash": "2C2753BC87276517A7BC9318C4658F4103D56177A86B0B17E2E365E2563C4D34",
-          "shape": "E2FD168AEE39804AAEB62498F341D5376A17045425CA7E1466C6352263435799"
-        },
-        {
-          "path": "src/GWGUI.MediaEngine/Images/Formats/Optical/Gdi/GdiWriter.cs",
-          "name": "NormalizeExtension",
-          "owner": "GdiWriter",
-          "kind": "MethodDeclaration",
-          "line": 112,
-          "parameters": "(string extension)",
-          "tokens": 28,
-          "bodyTokens": "=> extension . StartsWith ( \".\" , StringComparison . Ordinal ) ? extension . ToLowerInvariant ( ) : $\" . { extension . ToLowerInvariant ( ) } \"",
-          "hash": "2C2753BC87276517A7BC9318C4658F4103D56177A86B0B17E2E365E2563C4D34",
-          "shape": "E2FD168AEE39804AAEB62498F341D5376A17045425CA7E1466C6352263435799"
-        },
-        {
-          "path": "src/GWGUI.MediaEngine/Images/Formats/Optical/WiiU/WiiUWriter.cs",
-          "name": "NormalizeExtension",
-          "owner": "WiiUWriter",
-          "kind": "MethodDeclaration",
-          "line": 181,
-          "parameters": "(string extension)",
-          "tokens": 28,
-          "bodyTokens": "=> extension . StartsWith ( \".\" , StringComparison . Ordinal ) ? extension . ToLowerInvariant ( ) : $\" . { extension . ToLowerInvariant ( ) } \"",
-          "hash": "2C2753BC87276517A7BC9318C4658F4103D56177A86B0B17E2E365E2563C4D34",
-          "shape": "E2FD168AEE39804AAEB62498F341D5376A17045425CA7E1466C6352263435799"
-        },
-        {
-          "path": "src/GWGUI.MediaEngine/Images/Formats/Optical/Xdvdfs/XdvdfsWriter.cs",
-          "name": "NormalizeExtension",
-          "owner": "XdvdfsWriter",
-          "kind": "MethodDeclaration",
-          "line": 61,
-          "parameters": "(string extension)",
-          "tokens": 28,
-          "bodyTokens": "=> extension . StartsWith ( \".\" , StringComparison . Ordinal ) ? extension . ToLowerInvariant ( ) : $\" . { extension . ToLowerInvariant ( ) } \"",
-          "hash": "2C2753BC87276517A7BC9318C4658F4103D56177A86B0B17E2E365E2563C4D34",
-          "shape": "E2FD168AEE39804AAEB62498F341D5376A17045425CA7E1466C6352263435799"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -39849,23 +39782,11 @@
           "shape": "5ED0EEC7E91EB6A8B9688E87E872C314D290A425A6D62E8AE4FDB0720E240DE2"
         },
         {
-          "path": "src/GWGUI.MediaEngine/Images/Conversion/ConversionFidelity.cs",
-          "name": "Normalize",
-          "owner": "ConversionFidelity",
+          "path": "src/GWGUI.MediaEngine/Functions/MediaFileExtensionFunctions.cs",
+          "name": "NormalizeCore",
+          "owner": "MediaFileExtensionFunctions",
           "kind": "MethodDeclaration",
-          "line": 25,
-          "parameters": "(string extension)",
-          "tokens": 21,
-          "bodyTokens": "=> extension . StartsWith ( '.' ) ? extension . ToLowerInvariant ( ) : \".\" + extension . ToLowerInvariant ( )",
-          "hash": "86E6FE2646AD50569E1387D8D99E24E8033D54568DF335DAD6BA3720684FE9AE",
-          "shape": "5ED0EEC7E91EB6A8B9688E87E872C314D290A425A6D62E8AE4FDB0720E240DE2"
-        },
-        {
-          "path": "src/GWGUI.MediaEngine/Images/Conversion/Flux/FluxContainerConversionService.cs",
-          "name": "Normalize",
-          "owner": "FluxContainerConversionService",
-          "kind": "MethodDeclaration",
-          "line": 157,
+          "line": 12,
           "parameters": "(string extension)",
           "tokens": 21,
           "bodyTokens": "=> extension . StartsWith ( '.' ) ? extension . ToLowerInvariant ( ) : \".\" + extension . ToLowerInvariant ( )",
@@ -46843,38 +46764,6 @@
           "bodyTokens": "=> NativeSettings . Create ( configuration )",
           "hash": "9B0E0DF25E9E59F3B3B5524F27F03AA0DD4CA00CDC8CB1F59F04F007C92E7B87",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5"
-        }
-      ],
-      "qualification": "pending-symbol-and-ownership-comparison"
-    },
-    {
-      "hash": "9B2756E497EB57CDA885CFD8AEF69122E954CF9CF7969628D75D9E5D56AE131B",
-      "tokens": 21,
-      "bodyTokens": "=> value . StartsWith ( '.' ) ? value . ToLowerInvariant ( ) : \".\" + value . ToLowerInvariant ( )",
-      "current": [
-        {
-          "path": "src/GWGUI.MediaEngine/Images/Formats/CapabilityAwareImageFormatCatalog.cs",
-          "name": "Normalize",
-          "owner": "CapabilityAwareImageFormatCatalog",
-          "kind": "MethodDeclaration",
-          "line": 71,
-          "parameters": "(string value)",
-          "tokens": 21,
-          "bodyTokens": "=> value . StartsWith ( '.' ) ? value . ToLowerInvariant ( ) : \".\" + value . ToLowerInvariant ( )",
-          "hash": "9B2756E497EB57CDA885CFD8AEF69122E954CF9CF7969628D75D9E5D56AE131B",
-          "shape": "5ED0EEC7E91EB6A8B9688E87E872C314D290A425A6D62E8AE4FDB0720E240DE2"
-        },
-        {
-          "path": "src/GWGUI.MediaEngine/Images/Formats/ImageFormatCatalog.cs",
-          "name": "Normalize",
-          "owner": "BuiltInImageFormatCatalog",
-          "kind": "MethodDeclaration",
-          "line": 413,
-          "parameters": "(string value)",
-          "tokens": 21,
-          "bodyTokens": "=> value . StartsWith ( '.' ) ? value . ToLowerInvariant ( ) : \".\" + value . ToLowerInvariant ( )",
-          "hash": "9B2756E497EB57CDA885CFD8AEF69122E954CF9CF7969628D75D9E5D56AE131B",
-          "shape": "5ED0EEC7E91EB6A8B9688E87E872C314D290A425A6D62E8AE4FDB0720E240DE2"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -57000,6 +56889,40 @@
       "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
+      "hash": "C7360E90F16EAC2D0E4A02DAEDFAFABB64D4348452D16B6A4DCDEBD3B030FD11",
+      "tokens": 9,
+      "bodyTokens": "=> BuiltInImageFormatCatalog . GetCompatibleOutputs ( Formats , sourceExtension )",
+      "current": [
+        {
+          "path": "src/GWGUI.MediaEngine/Images/Formats/CapabilityAwareImageFormatCatalog.cs",
+          "name": "GetCompatibleOutputs",
+          "owner": "CapabilityAwareImageFormatCatalog",
+          "kind": "MethodDeclaration",
+          "line": 25,
+          "parameters": "(string sourceExtension)",
+          "tokens": 9,
+          "bodyTokens": "=> BuiltInImageFormatCatalog . GetCompatibleOutputs ( Formats , sourceExtension )",
+          "hash": "C7360E90F16EAC2D0E4A02DAEDFAFABB64D4348452D16B6A4DCDEBD3B030FD11",
+          "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE",
+          "qualification": "Catalog adapter to original shared selection verified in formatCatalogSelectionReuse; receiving Formats retained"
+        },
+        {
+          "path": "src/GWGUI.MediaEngine/Images/Formats/RuntimeImageFormatCatalog.cs",
+          "name": "GetCompatibleOutputs",
+          "owner": "RuntimeImageFormatCatalog",
+          "kind": "MethodDeclaration",
+          "line": 32,
+          "parameters": "(string sourceExtension)",
+          "tokens": 9,
+          "bodyTokens": "=> BuiltInImageFormatCatalog . GetCompatibleOutputs ( Formats , sourceExtension )",
+          "hash": "C7360E90F16EAC2D0E4A02DAEDFAFABB64D4348452D16B6A4DCDEBD3B030FD11",
+          "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE",
+          "qualification": "Catalog adapter to original shared selection verified in formatCatalogSelectionReuse; receiving Formats retained"
+        }
+      ],
+      "qualification": "Qualified adapters to original catalog query"
+    },
+    {
       "hash": "C7447F879A866FF4BF001F54000DDD18CA9AB7D0DA994F46BA9D6C2F270D2C44",
       "tokens": 13,
       "bodyTokens": "=> ReplaceCatalog ( CoreOptionFunctions . CopyLegacyVariables ( data ) , [ ] )",
@@ -62245,7 +62168,7 @@
           "name": "WiiUWriter",
           "owner": "WiiUWriter",
           "kind": "ConstructorDeclaration",
-          "line": 24,
+          "line": 25,
           "parameters": "(IAtomicImageFileWriter? files = null)",
           "tokens": 11,
           "bodyTokens": "=> this . files = files ?? new AtomicImageFileWriter ( )",
@@ -62257,7 +62180,7 @@
           "name": "XdvdfsWriter",
           "owner": "XdvdfsWriter",
           "kind": "ConstructorDeclaration",
-          "line": 21,
+          "line": 22,
           "parameters": "(IAtomicImageFileWriter? files = null)",
           "tokens": 11,
           "bodyTokens": "=> this . files = files ?? new AtomicImageFileWriter ( )",
@@ -80538,7 +80461,7 @@
           "name": "PreservesOriginalProtection",
           "owner": "ConversionFidelity",
           "kind": "MethodDeclaration",
-          "line": 23,
+          "line": 24,
           "parameters": "(ConversionFidelityLevel level)",
           "tokens": 6,
           "bodyTokens": "=> level == ConversionFidelityLevel . PreservedFlux",
@@ -87420,6 +87343,19 @@
           "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE"
         },
         {
+          "path": "src/GWGUI.MediaEngine/Images/Formats/CapabilityAwareImageFormatCatalog.cs",
+          "name": "GetCompatibleOutputs",
+          "owner": "CapabilityAwareImageFormatCatalog",
+          "kind": "MethodDeclaration",
+          "line": 25,
+          "parameters": "(string sourceExtension)",
+          "tokens": 9,
+          "bodyTokens": "=> BuiltInImageFormatCatalog . GetCompatibleOutputs ( Formats , sourceExtension )",
+          "hash": "C7360E90F16EAC2D0E4A02DAEDFAFABB64D4348452D16B6A4DCDEBD3B030FD11",
+          "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE",
+          "qualification": "Catalog adapter to original shared selection verified in formatCatalogSelectionReuse; receiving Formats retained"
+        },
+        {
           "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/ScpReader.cs",
           "name": "Remember",
           "owner": "ScpReader",
@@ -87430,6 +87366,19 @@
           "bodyTokens": "=> _fileCache . Remember ( path , image )",
           "hash": "2E97325B47FA72C6800B74C1F4C5A94BDF22821367F6CDDC13B888D17C236409",
           "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE"
+        },
+        {
+          "path": "src/GWGUI.MediaEngine/Images/Formats/RuntimeImageFormatCatalog.cs",
+          "name": "GetCompatibleOutputs",
+          "owner": "RuntimeImageFormatCatalog",
+          "kind": "MethodDeclaration",
+          "line": 32,
+          "parameters": "(string sourceExtension)",
+          "tokens": 9,
+          "bodyTokens": "=> BuiltInImageFormatCatalog . GetCompatibleOutputs ( Formats , sourceExtension )",
+          "hash": "C7360E90F16EAC2D0E4A02DAEDFAFABB64D4348452D16B6A4DCDEBD3B030FD11",
+          "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE",
+          "qualification": "Catalog adapter to original shared selection verified in formatCatalogSelectionReuse; receiving Formats retained"
         },
         {
           "path": "src/GWGUI.MediaEngine/Images/Reading/Recognition/DiskImageInterpretationService.cs",
@@ -89282,6 +89231,18 @@
           "tokens": 14,
           "bodyTokens": "=> Assert . Equal ( bytes , EmulationSettingsValuePresentationFunctions . MemoryBytes ( display ) )",
           "hash": "94C833355B21C90D1DF3A4AC678FE0AA83E6BFEEA8005442001D0D472C19EB5D",
+          "shape": "3962BD4F4F04B031D7B10A1381BAB37F157253F3FF1CA260DA715BA539743BBD"
+        },
+        {
+          "path": "tests/GWGUI.Tests/Media/ImageFormatCatalogReuseTests.cs",
+          "name": "RawNormalizationKeepsTheOriginalEmptyAndWhitespacePolicy",
+          "owner": "ImageFormatCatalogReuseTests",
+          "kind": "MethodDeclaration",
+          "line": 9,
+          "parameters": "(string value, string expected)",
+          "tokens": 14,
+          "bodyTokens": "=> Assert . Equal ( expected , MediaFileExtensionFunctions . NormalizeCore ( value ) )",
+          "hash": "D35076796538EA5B6DDDD4F41B2BCBF16D4F6E427A4DF518B88A3CBBDE76FB8F",
           "shape": "3962BD4F4F04B031D7B10A1381BAB37F157253F3FF1CA260DA715BA539743BBD"
         }
       ],
@@ -109271,97 +109232,6 @@
       "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
-      "shape": "5ED0EEC7E91EB6A8B9688E87E872C314D290A425A6D62E8AE4FDB0720E240DE2",
-      "tokens": 21,
-      "current": [
-        {
-          "path": "src/GWGUI.App/Parity/MediaParityMatrix.cs",
-          "name": "Normalize",
-          "owner": "MediaParityMatrix",
-          "kind": "MethodDeclaration",
-          "line": 18,
-          "parameters": "(string extension)",
-          "tokens": 21,
-          "bodyTokens": "=> extension . StartsWith ( '.' ) ? extension . ToLowerInvariant ( ) : \".\" + extension . ToLowerInvariant ( )",
-          "hash": "86E6FE2646AD50569E1387D8D99E24E8033D54568DF335DAD6BA3720684FE9AE",
-          "shape": "5ED0EEC7E91EB6A8B9688E87E872C314D290A425A6D62E8AE4FDB0720E240DE2"
-        },
-        {
-          "path": "src/GWGUI.App/Services/Parity/MediaEngineParityCatalog.cs",
-          "name": "Normalize",
-          "owner": "MediaEngineParityCatalog",
-          "kind": "MethodDeclaration",
-          "line": 64,
-          "parameters": "(string extension)",
-          "tokens": 21,
-          "bodyTokens": "=> extension . StartsWith ( '.' ) ? extension . ToLowerInvariant ( ) : \".\" + extension . ToLowerInvariant ( )",
-          "hash": "86E6FE2646AD50569E1387D8D99E24E8033D54568DF335DAD6BA3720684FE9AE",
-          "shape": "5ED0EEC7E91EB6A8B9688E87E872C314D290A425A6D62E8AE4FDB0720E240DE2"
-        },
-        {
-          "path": "src/GWGUI.App/Services/Parity/MediaParityComparisonService.cs",
-          "name": "Normalize",
-          "owner": "MediaParityComparisonService",
-          "kind": "MethodDeclaration",
-          "line": 126,
-          "parameters": "(string extension)",
-          "tokens": 21,
-          "bodyTokens": "=> extension . StartsWith ( '.' ) ? extension . ToLowerInvariant ( ) : \".\" + extension . ToLowerInvariant ( )",
-          "hash": "86E6FE2646AD50569E1387D8D99E24E8033D54568DF335DAD6BA3720684FE9AE",
-          "shape": "5ED0EEC7E91EB6A8B9688E87E872C314D290A425A6D62E8AE4FDB0720E240DE2"
-        },
-        {
-          "path": "src/GWGUI.MediaEngine/Images/Conversion/ConversionFidelity.cs",
-          "name": "Normalize",
-          "owner": "ConversionFidelity",
-          "kind": "MethodDeclaration",
-          "line": 25,
-          "parameters": "(string extension)",
-          "tokens": 21,
-          "bodyTokens": "=> extension . StartsWith ( '.' ) ? extension . ToLowerInvariant ( ) : \".\" + extension . ToLowerInvariant ( )",
-          "hash": "86E6FE2646AD50569E1387D8D99E24E8033D54568DF335DAD6BA3720684FE9AE",
-          "shape": "5ED0EEC7E91EB6A8B9688E87E872C314D290A425A6D62E8AE4FDB0720E240DE2"
-        },
-        {
-          "path": "src/GWGUI.MediaEngine/Images/Conversion/Flux/FluxContainerConversionService.cs",
-          "name": "Normalize",
-          "owner": "FluxContainerConversionService",
-          "kind": "MethodDeclaration",
-          "line": 157,
-          "parameters": "(string extension)",
-          "tokens": 21,
-          "bodyTokens": "=> extension . StartsWith ( '.' ) ? extension . ToLowerInvariant ( ) : \".\" + extension . ToLowerInvariant ( )",
-          "hash": "86E6FE2646AD50569E1387D8D99E24E8033D54568DF335DAD6BA3720684FE9AE",
-          "shape": "5ED0EEC7E91EB6A8B9688E87E872C314D290A425A6D62E8AE4FDB0720E240DE2"
-        },
-        {
-          "path": "src/GWGUI.MediaEngine/Images/Formats/CapabilityAwareImageFormatCatalog.cs",
-          "name": "Normalize",
-          "owner": "CapabilityAwareImageFormatCatalog",
-          "kind": "MethodDeclaration",
-          "line": 71,
-          "parameters": "(string value)",
-          "tokens": 21,
-          "bodyTokens": "=> value . StartsWith ( '.' ) ? value . ToLowerInvariant ( ) : \".\" + value . ToLowerInvariant ( )",
-          "hash": "9B2756E497EB57CDA885CFD8AEF69122E954CF9CF7969628D75D9E5D56AE131B",
-          "shape": "5ED0EEC7E91EB6A8B9688E87E872C314D290A425A6D62E8AE4FDB0720E240DE2"
-        },
-        {
-          "path": "src/GWGUI.MediaEngine/Images/Formats/ImageFormatCatalog.cs",
-          "name": "Normalize",
-          "owner": "BuiltInImageFormatCatalog",
-          "kind": "MethodDeclaration",
-          "line": 413,
-          "parameters": "(string value)",
-          "tokens": 21,
-          "bodyTokens": "=> value . StartsWith ( '.' ) ? value . ToLowerInvariant ( ) : \".\" + value . ToLowerInvariant ( )",
-          "hash": "9B2756E497EB57CDA885CFD8AEF69122E954CF9CF7969628D75D9E5D56AE131B",
-          "shape": "5ED0EEC7E91EB6A8B9688E87E872C314D290A425A6D62E8AE4FDB0720E240DE2"
-        }
-      ],
-      "qualification": "pending-symbol-and-ownership-comparison"
-    },
-    {
       "shape": "5F5DF4FD51C8290A722303EAF0B339FBDA469774634D02DBC75C9685143BA5A2",
       "tokens": 20,
       "current": [
@@ -119812,7 +119682,7 @@
           "name": "Extensions",
           "owner": "ConsoleCartridgeWriter",
           "kind": "MethodDeclaration",
-          "line": 104,
+          "line": 103,
           "parameters": "(params string[] extensions)",
           "tokens": 9,
           "bodyTokens": "=> extensions . ToFrozenSet ( StringComparer . OrdinalIgnoreCase )",
@@ -123470,6 +123340,19 @@
           "shape": "B53DBFCDFD0D1E84F55D2883652747C0E62AF9B195171F4DDA076A81E0826355"
         },
         {
+          "path": "src/GWGUI.MediaEngine/Images/Formats/ImageFormatCatalog.cs",
+          "name": "GetCompatibleOutputs",
+          "owner": "BuiltInImageFormatCatalog",
+          "kind": "MethodDeclaration",
+          "line": 407,
+          "parameters": "(string sourceExtension)",
+          "tokens": 7,
+          "bodyTokens": "=> GetCompatibleOutputs ( Formats , sourceExtension )",
+          "hash": "11C89325D94EEEB5CF6547A2F788B1784ED143722919A1ACD4B18749659A30D0",
+          "shape": "B53DBFCDFD0D1E84F55D2883652747C0E62AF9B195171F4DDA076A81E0826355",
+          "qualification": "Catalog adapter to original shared selection verified in formatCatalogSelectionReuse; receiving Formats retained"
+        },
+        {
           "path": "src/GWGUI.MediaEngine/Images/Reading/Recognition/Policies/ReaderBackedRecognitionPolicy.cs",
           "name": "ReadAsync",
           "owner": "ReaderBackedRecognitionPolicy",
@@ -123494,7 +123377,7 @@
           "shape": "B53DBFCDFD0D1E84F55D2883652747C0E62AF9B195171F4DDA076A81E0826355"
         }
       ],
-      "qualification": "pending-symbol-and-ownership-comparison"
+      "qualification": "Partial occurrence qualification; unannotated members pending"
     },
     {
       "shape": "B5DCA7169563873721D1878CA5A14D5BFDEB916903A8BAE1FBEF81D489B27D1A",

@@ -1,3 +1,4 @@
+using GWGUI.MediaEngine.Functions;
 using System.Collections.Frozen;
 using System.IO;
 using GWGUI.MediaEngine.Constants;
@@ -29,7 +30,7 @@ public sealed class XdvdfsWriter : IMediaImageWriter
     public bool CanWrite(MediaImageDocument document, string targetFormatId, string targetExtension) =>
         document.MediaKind == MediaKind.Optical
         && SupportedFormatIds.Contains(targetFormatId)
-        && XdvdfsFormat.Extensions.Contains(NormalizeExtension(targetExtension))
+        && XdvdfsFormat.Extensions.Contains(MediaFileExtensionFunctions.NormalizeCore(targetExtension))
         && document.Representation is OpticalMediaImageRepresentation optical
         && optical.Tracks is { Count: 1 } track
         && track[0].Mode == OpticalTrackMode.Mode1Data2048
@@ -57,6 +58,4 @@ public sealed class XdvdfsWriter : IMediaImageWriter
         }, cancellationToken).ConfigureAwait(false);
         return [outputPath];
     }
-
-    private static string NormalizeExtension(string extension) => extension.StartsWith(".", StringComparison.Ordinal) ? extension.ToLowerInvariant() : $".{extension.ToLowerInvariant()}";
 }

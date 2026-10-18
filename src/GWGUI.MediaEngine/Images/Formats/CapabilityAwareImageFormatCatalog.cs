@@ -1,3 +1,4 @@
+using GWGUI.MediaEngine.Functions;
 using System.Globalization;
 using System.Text.RegularExpressions;
 
@@ -22,10 +23,7 @@ public sealed class CapabilityAwareImageFormatCatalog : IImageFormatCatalog
     }
 
     public IReadOnlyList<DiskFormat> GetCompatibleOutputs(string sourceExtension)
-    {
-        var normalized = Normalize(sourceExtension);
-        return Formats.Where(format => format.CompatibleSourceExtensions?.Contains(normalized) == true).ToArray();
-    }
+        => BuiltInImageFormatCatalog.GetCompatibleOutputs(Formats, sourceExtension);
 
     private static DiskFormat ApplyPhysicalCapabilities(DiskFormat format, GwFormatCapabilities capabilities)
     {
@@ -47,7 +45,7 @@ public sealed class CapabilityAwareImageFormatCatalog : IImageFormatCatalog
         var detail = id.Contains('.') ? string.Join(" · ", id.Split('.')[1..].Select(FriendlyToken)) : null;
         var preferred = supported.Contains(".img") ? ".img" : supported.Contains(".scp") ? ".scp" : supported.Order(StringComparer.OrdinalIgnoreCase).FirstOrDefault();
         var extensions = preferred is null ? Array.Empty<ImageExtension>() : [new ImageExtension(preferred, preferred.TrimStart('.').ToUpperInvariant(), true)];
-        var sources = new HashSet<string>(supported.Select(Normalize), StringComparer.OrdinalIgnoreCase);
+        var sources = new HashSet<string>(supported.Select(MediaFileExtensionFunctions.NormalizeCore), StringComparer.OrdinalIgnoreCase);
         var tag = Regex.Replace(id.ToUpperInvariant(), "[^A-Z0-9]+", "-").Trim('-');
         return new DiskFormat(id, family, detail is null ? family : $"{family} — {detail}", extensions, false, sources, tag, FloppyFormFactor.Unknown, SupportsPhysicalRead: true, SupportsPhysicalWrite: true);
     }
@@ -67,6 +65,4 @@ public sealed class CapabilityAwareImageFormatCatalog : IImageFormatCatalog
         var words = Regex.Split(token.Replace('_', '-'), "[-]+").Where(word => word.Length > 0).Select(word => CultureInfo.InvariantCulture.TextInfo.ToTitleCase(word.ToLowerInvariant()));
         return string.Join(" ", words);
     }
-
-    private static string Normalize(string value) => value.StartsWith('.') ? value.ToLowerInvariant() : "." + value.ToLowerInvariant();
 }

@@ -1,3 +1,4 @@
+using GWGUI.MediaEngine.Functions;
 using System.Collections.Frozen;
 using System.Globalization;
 using System.IO;
@@ -64,8 +65,8 @@ public sealed class ConsoleCartridgeWriter : IMediaImageWriter
         return document.Representation is IMediaBlockRepresentation blocks
             && blocks.Capacity > 0
             && SupportedFormatIds.Contains(targetFormatId)
-            && SupportedExtensions.Contains(NormalizeExtension(targetExtension))
-            && FormatExtensions[targetFormatId].Contains(NormalizeExtension(targetExtension))
+            && SupportedExtensions.Contains(MediaFileExtensionFunctions.NormalizeCore(targetExtension))
+            && FormatExtensions[targetFormatId].Contains(MediaFileExtensionFunctions.NormalizeCore(targetExtension))
             && document.Metadata.TryGetValue(ConsoleCartridgeConstants.StoredLength, out var length)
             && long.TryParse(length, NumberStyles.None, CultureInfo.InvariantCulture, out var storedLength)
             && storedLength > 0 && storedLength <= blocks.Capacity;
@@ -98,8 +99,6 @@ public sealed class ConsoleCartridgeWriter : IMediaImageWriter
         }, cancellationToken).ConfigureAwait(false);
         return [outputPath];
     }
-
-    private static string NormalizeExtension(string extension) => extension.StartsWith(".", StringComparison.Ordinal) ? extension.ToLowerInvariant() : $".{extension.ToLowerInvariant()}";
 
     private static IReadOnlySet<string> Extensions(params string[] extensions) => extensions.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
 }

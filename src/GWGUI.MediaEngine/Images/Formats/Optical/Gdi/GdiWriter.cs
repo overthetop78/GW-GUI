@@ -1,3 +1,4 @@
+using GWGUI.MediaEngine.Functions;
 using System.Collections.Frozen;
 using System.Globalization;
 using System.IO;
@@ -27,7 +28,7 @@ public sealed class GdiWriter : IMediaImageWriter
     {
         ArgumentNullException.ThrowIfNull(document);
         if (!SupportedFormatIds.Contains(targetFormatId)
-            || !GdiConstants.Extensions.Contains(NormalizeExtension(targetExtension))
+            || !GdiConstants.Extensions.Contains(MediaFileExtensionFunctions.NormalizeCore(targetExtension))
             || document.MediaKind != MediaKind.Optical
             || document.Representation is not OpticalMediaImageRepresentation { Tracks.Count: > 0 } optical
             || optical.LayerCount is not null
@@ -108,8 +109,6 @@ public sealed class GdiWriter : IMediaImageWriter
     };
 
     private static string Quote(string value) => $"\"{value.Replace("\"", "\\\"")}\"";
-
-    private static string NormalizeExtension(string extension) => extension.StartsWith(".", StringComparison.Ordinal) ? extension.ToLowerInvariant() : $".{extension.ToLowerInvariant()}";
 
     private sealed record GdiOutputEntry(int Number, long Lba, int Control, int SectorSize, string FileName);
 }

@@ -1,9 +1,9 @@
 {
   "baseline": "ac7292d86^",
-  "currentCSharpFiles": 7327,
-  "outsideSrcCSharpFiles": 286,
+  "currentCSharpFiles": 7328,
+  "outsideSrcCSharpFiles": 287,
   "baselineMethodCount": 5848,
-  "currentMethodCount": 11647,
+  "currentMethodCount": 11652,
   "powerShellFunctionCount": 17,
   "groups": [
     {
@@ -19177,67 +19177,6 @@
     },
     {
       "language": "CSharp",
-      "hash": "9846B85C019CE86F2A23C269D023AF0EF7BA143603765B24255BEB0554F88050",
-      "method": "GetCompatibleOutputs",
-      "tokens": 34,
-      "current": [
-        {
-          "path": "src/GWGUI.MediaEngine/Images/Formats/CapabilityAwareImageFormatCatalog.cs",
-          "name": "GetCompatibleOutputs",
-          "line": 24,
-          "tokens": 34,
-          "hash": "9846B85C019CE86F2A23C269D023AF0EF7BA143603765B24255BEB0554F88050",
-          "shape": "7A188A4EA36A442028B4118031E084B9D3C35E2B083F663C7AF1494418AB63FD"
-        },
-        {
-          "path": "src/GWGUI.MediaEngine/Images/Formats/ImageFormatCatalog.cs",
-          "name": "GetCompatibleOutputs",
-          "line": 406,
-          "tokens": 34,
-          "hash": "9846B85C019CE86F2A23C269D023AF0EF7BA143603765B24255BEB0554F88050",
-          "shape": "7A188A4EA36A442028B4118031E084B9D3C35E2B083F663C7AF1494418AB63FD"
-        }
-      ],
-      "predecessors": [
-        {
-          "path": "src/GWGUI.MediaEngine/Images/Formats/CapabilityAwareImageFormatCatalog.cs",
-          "name": "GetCompatibleOutputs",
-          "line": 30,
-          "tokens": 34,
-          "hash": "9846B85C019CE86F2A23C269D023AF0EF7BA143603765B24255BEB0554F88050",
-          "shape": "7A188A4EA36A442028B4118031E084B9D3C35E2B083F663C7AF1494418AB63FD"
-        },
-        {
-          "path": "src/GWGUI.MediaEngine/Images/Formats/ImageFormatCatalog.cs",
-          "name": "GetCompatibleOutputs",
-          "line": 79,
-          "tokens": 34,
-          "hash": "9846B85C019CE86F2A23C269D023AF0EF7BA143603765B24255BEB0554F88050",
-          "shape": "7A188A4EA36A442028B4118031E084B9D3C35E2B083F663C7AF1494418AB63FD"
-        }
-      ],
-      "shapePredecessors": [
-        {
-          "path": "src/GWGUI.MediaEngine/Images/Formats/CapabilityAwareImageFormatCatalog.cs",
-          "name": "GetCompatibleOutputs",
-          "line": 30,
-          "tokens": 34,
-          "hash": "9846B85C019CE86F2A23C269D023AF0EF7BA143603765B24255BEB0554F88050",
-          "shape": "7A188A4EA36A442028B4118031E084B9D3C35E2B083F663C7AF1494418AB63FD"
-        },
-        {
-          "path": "src/GWGUI.MediaEngine/Images/Formats/ImageFormatCatalog.cs",
-          "name": "GetCompatibleOutputs",
-          "line": 79,
-          "tokens": 34,
-          "hash": "9846B85C019CE86F2A23C269D023AF0EF7BA143603765B24255BEB0554F88050",
-          "shape": "7A188A4EA36A442028B4118031E084B9D3C35E2B083F663C7AF1494418AB63FD"
-        }
-      ],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
       "hash": "9880AE890FE9264F68594561D8FE56929280C5BECCEB2321030DB099CC4F8AB8",
       "method": "QueueCommand",
       "tokens": 53,
@@ -20881,7 +20820,7 @@
     {
       "language": "CSharp",
       "hash": "A1E03750FEB3292ACEB41656386F4A8AA8B05077D9ABFB7DA103AA3D71320B9F",
-      "method": "ToEpoch",
+      "method": "ToModule",
       "tokens": 103,
       "current": [
         {
@@ -22309,7 +22248,7 @@
     {
       "language": "CSharp",
       "hash": "B053A3AB4F0B78A37DED57B2D744801187AED6EC54FEEAFE4B1AA9C454D6F48C",
-      "method": "EpochEmulationModule",
+      "method": "PanasonicEmulationModule",
       "tokens": 47,
       "current": [
         {
@@ -29140,7 +29079,7 @@
     {
       "language": "CSharp",
       "hash": "F107F4D7D97C4E9F797468C991DF2090B47DF6E3F6F74E56044EFF0C28CAA51D",
-      "method": "NotifyDestroy",
+      "method": "NotifyHardwareContextDestroy",
       "tokens": 31,
       "current": [
         {

@@ -6,6 +6,9 @@ public static class MediaFileExtensionFunctions
     public static string Normalize(string extension)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(extension);
-        return extension.StartsWith('.') ? extension.ToLowerInvariant() : $".{extension.ToLowerInvariant()}";
+        return NormalizeCore(extension);
     }
+
+    internal static string NormalizeCore(string extension)
+        => extension.StartsWith('.') ? extension.ToLowerInvariant() : "." + extension.ToLowerInvariant();
 }

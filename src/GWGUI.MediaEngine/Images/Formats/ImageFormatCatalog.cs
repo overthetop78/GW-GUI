@@ -1,3 +1,4 @@
+using GWGUI.MediaEngine.Functions;
 using GWGUI.MediaEngine.Constants;
 
 namespace GWGUI.MediaEngine.Images.Formats;
@@ -25,7 +26,7 @@ public sealed class BuiltInImageFormatCatalog : IImageFormatCatalog
         };
         DiskFormat Cartridge(string id, string family, string key, string fallback, IReadOnlyList<string> extensions, string tag)
         {
-            var normalized = extensions.Select(Normalize).ToArray();
+            var normalized = extensions.Select(MediaFileExtensionFunctions.NormalizeCore).ToArray();
             return new( id, family, T(key, fallback), normalized.Select((extension, index) => new ImageExtension(extension, extension[1..].ToUpperInvariant(), index == 0)).ToArray(), true, Set(normalized), tag, FloppyFormFactor.Unknown, false, false );
         }
 
@@ -404,11 +405,13 @@ public sealed class BuiltInImageFormatCatalog : IImageFormatCatalog
     }
 
     public IReadOnlyList<DiskFormat> GetCompatibleOutputs(string sourceExtension)
+        => GetCompatibleOutputs(Formats, sourceExtension);
+
+    internal static IReadOnlyList<DiskFormat> GetCompatibleOutputs(IReadOnlyList<DiskFormat> formats, string sourceExtension)
     {
-        var normalized = Normalize(sourceExtension);
-        return Formats.Where(format => format.CompatibleSourceExtensions?.Contains(normalized) == true).ToArray();
+        var normalized = MediaFileExtensionFunctions.NormalizeCore(sourceExtension);
+        return formats.Where(format => format.CompatibleSourceExtensions?.Contains(normalized) == true).ToArray();
     }
 
-    private static HashSet<string> Set(params string[] values) => new(values.Select(Normalize), StringComparer.OrdinalIgnoreCase);
-    private static string Normalize(string value) => value.StartsWith('.') ? value.ToLowerInvariant() : "." + value.ToLowerInvariant();
+    private static HashSet<string> Set(params string[] values) => new(values.Select(MediaFileExtensionFunctions.NormalizeCore), StringComparer.OrdinalIgnoreCase);
 }

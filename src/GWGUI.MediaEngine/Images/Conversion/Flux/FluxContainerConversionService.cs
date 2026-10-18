@@ -1,3 +1,4 @@
+using GWGUI.MediaEngine.Functions;
 using GWGUI.MediaEngine.Images.Writing;
 using GWGUI.MediaEngine.Constants;
 
@@ -13,7 +14,7 @@ public sealed class FluxContainerConversionService(ScpReader scpReader, ScpWrite
     public static bool CanConvert(string sourcePath, string formatId, string targetExtension)
     {
         var source = Path.GetExtension(sourcePath);
-        var target = Normalize(targetExtension);
+        var target = MediaFileExtensionFunctions.NormalizeCore(targetExtension);
         if (source.Equals(DiskImageFileExtensions.Scp, StringComparison.OrdinalIgnoreCase))
             return target is DiskImageFileExtensions.Scp or DiskImageFileExtensions.Hfe;
         if (!source.Equals(DiskImageFileExtensions.Hfe, StringComparison.OrdinalIgnoreCase))
@@ -23,8 +24,8 @@ public sealed class FluxContainerConversionService(ScpReader scpReader, ScpWrite
 
     public async Task ConvertAsync(string sourcePath, string outputPath, CancellationToken cancellationToken = default)
     {
-        var source = Normalize(Path.GetExtension(sourcePath));
-        var target = Normalize(Path.GetExtension(outputPath));
+        var source = MediaFileExtensionFunctions.NormalizeCore(Path.GetExtension(sourcePath));
+        var target = MediaFileExtensionFunctions.NormalizeCore(Path.GetExtension(outputPath));
         if (source == DiskImageFileExtensions.Scp && target == DiskImageFileExtensions.Scp)
         {
             await CopyScpAsync(sourcePath, outputPath, cancellationToken).ConfigureAwait(false);
@@ -153,6 +154,4 @@ public sealed class FluxContainerConversionService(ScpReader scpReader, ScpWrite
             throw new NotSupportedException("Le timing SCP ne possède pas de bitrate HFE v1 valide.");
         return checked((ushort)value);
     }
-
-    private static string Normalize(string extension) => extension.StartsWith('.') ? extension.ToLowerInvariant() : "." + extension.ToLowerInvariant();
 }

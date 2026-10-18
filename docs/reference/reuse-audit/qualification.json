@@ -24457,5 +24457,473 @@
         "callbackInterfaceInstallReuse"
       ]
     }
+  },
+  "formatCatalogSelectionReuse": {
+    "state": "verified",
+    "beforeHead": "dfaf1710f4ddbb35834e698a277a1f6c52b55266",
+    "origin": {
+      "commit": "121e83266",
+      "query": "public IReadOnlyList < DiskFormat > GetCompatibleOutputs ( string sourceExtension ) { var normalized = Normalize ( sourceExtension ) ; return Formats . Where ( format => format . CompatibleSourceExtensions ? . Contains ( normalized ) == true ) . ToArray ( ) ; }",
+      "normalize": "private static string Normalize ( string value ) => value . StartsWith ( '.' ) ? value . ToLowerInvariant ( ) : \".\" + value . ToLowerInvariant ( ) ;",
+      "path": "src/GWGUI.Domain/Formats/ImageFormatCatalog.cs"
+    },
+    "sources": [
+      {
+        "path": "src/GWGUI.MediaEngine/Functions/MediaFileExtensionFunctions.cs",
+        "beforeSha256": "05289D8860BF7E5862DACEE35DB3FFF506A62122BD65E5AC893A01B4873230FC",
+        "isCatalog": false,
+        "isShared": true,
+        "members": [
+          {
+            "name": "Normalize",
+            "parameters": "(string extension)",
+            "tokens": "public static string Normalize ( string extension ) { ArgumentException . ThrowIfNullOrWhiteSpace ( extension ) ; return extension . StartsWith ( '.' ) ? extension . ToLowerInvariant ( ) : $\" . { extension . ToLowerInvariant ( ) } \" ; }"
+          }
+        ]
+      },
+      {
+        "path": "src/GWGUI.MediaEngine/Images/Conversion/ConversionFidelity.cs",
+        "beforeSha256": "B3B01CA4C2E58C96CA3B584D9D8C896987515CF98E09A704911A14200E1CACEB",
+        "isCatalog": false,
+        "isShared": false,
+        "members": [
+          {
+            "name": "Normalize",
+            "parameters": "(string extension)",
+            "tokens": "private static string Normalize ( string extension ) => extension . StartsWith ( '.' ) ? extension . ToLowerInvariant ( ) : \".\" + extension . ToLowerInvariant ( ) ;"
+          }
+        ]
+      },
+      {
+        "path": "src/GWGUI.MediaEngine/Images/Conversion/Flux/FluxContainerConversionService.cs",
+        "beforeSha256": "242E2DBEE475C5D585AA4016BA731C8281FF23EEFB927E568E344506B6058A4E",
+        "isCatalog": false,
+        "isShared": false,
+        "members": [
+          {
+            "name": "Normalize",
+            "parameters": "(string extension)",
+            "tokens": "private static string Normalize ( string extension ) => extension . StartsWith ( '.' ) ? extension . ToLowerInvariant ( ) : \".\" + extension . ToLowerInvariant ( ) ;"
+          }
+        ]
+      },
+      {
+        "path": "src/GWGUI.MediaEngine/Images/Formats/CapabilityAwareImageFormatCatalog.cs",
+        "beforeSha256": "041F368EDD2E5DFE8EDD788890B801DCFA46F690ABBF50EA066DBE2ADF9B46FC",
+        "isCatalog": true,
+        "isShared": false,
+        "members": [
+          {
+            "name": "Normalize",
+            "parameters": "(string value)",
+            "tokens": "private static string Normalize ( string value ) => value . StartsWith ( '.' ) ? value . ToLowerInvariant ( ) : \".\" + value . ToLowerInvariant ( ) ;"
+          },
+          {
+            "name": "GetCompatibleOutputs",
+            "parameters": "(string sourceExtension)",
+            "tokens": "public IReadOnlyList < DiskFormat > GetCompatibleOutputs ( string sourceExtension ) { var normalized = Normalize ( sourceExtension ) ; return Formats . Where ( format => format . CompatibleSourceExtensions ? . Contains ( normalized ) == true ) . ToArray ( ) ; }"
+          }
+        ]
+      },
+      {
+        "path": "src/GWGUI.MediaEngine/Images/Formats/Cartridge/Console/ConsoleCartridgeWriter.cs",
+        "beforeSha256": "E25C4054AF7E234F867AA3953227DA7266DBBD0B29312A98EA13CC60BF705DFA",
+        "isCatalog": false,
+        "isShared": false,
+        "members": [
+          {
+            "name": "NormalizeExtension",
+            "parameters": "(string extension)",
+            "tokens": "private static string NormalizeExtension ( string extension ) => extension . StartsWith ( \".\" , StringComparison . Ordinal ) ? extension . ToLowerInvariant ( ) : $\" . { extension . ToLowerInvariant ( ) } \" ;"
+          }
+        ]
+      },
+      {
+        "path": "src/GWGUI.MediaEngine/Images/Formats/ImageFormatCatalog.cs",
+        "beforeSha256": "B1B024A26865F934B1B86294F9D1D5643F2645B0A96E129CA494575F3ADF6A46",
+        "isCatalog": true,
+        "isShared": false,
+        "members": [
+          {
+            "name": "Normalize",
+            "parameters": "(string value)",
+            "tokens": "private static string Normalize ( string value ) => value . StartsWith ( '.' ) ? value . ToLowerInvariant ( ) : \".\" + value . ToLowerInvariant ( ) ;"
+          },
+          {
+            "name": "GetCompatibleOutputs",
+            "parameters": "(string sourceExtension)",
+            "tokens": "public IReadOnlyList < DiskFormat > GetCompatibleOutputs ( string sourceExtension ) { var normalized = Normalize ( sourceExtension ) ; return Formats . Where ( format => format . CompatibleSourceExtensions ? . Contains ( normalized ) == true ) . ToArray ( ) ; }"
+          }
+        ]
+      },
+      {
+        "path": "src/GWGUI.MediaEngine/Images/Formats/Optical/Gdi/GdiWriter.cs",
+        "beforeSha256": "85E50245D69D5EC061C35DD2E1573F52DBBD16B7E8CB692B2DD8AAF6D5131F9A",
+        "isCatalog": false,
+        "isShared": false,
+        "members": [
+          {
+            "name": "NormalizeExtension",
+            "parameters": "(string extension)",
+            "tokens": "private static string NormalizeExtension ( string extension ) => extension . StartsWith ( \".\" , StringComparison . Ordinal ) ? extension . ToLowerInvariant ( ) : $\" . { extension . ToLowerInvariant ( ) } \" ;"
+          }
+        ]
+      },
+      {
+        "path": "src/GWGUI.MediaEngine/Images/Formats/Optical/WiiU/WiiUWriter.cs",
+        "beforeSha256": "73ECF6B23123FBEB6AD9C8EBE75CA669EA7724AB0B9498659BF9E2B304E286C1",
+        "isCatalog": false,
+        "isShared": false,
+        "members": [
+          {
+            "name": "NormalizeExtension",
+            "parameters": "(string extension)",
+            "tokens": "private static string NormalizeExtension ( string extension ) => extension . StartsWith ( \".\" , StringComparison . Ordinal ) ? extension . ToLowerInvariant ( ) : $\" . { extension . ToLowerInvariant ( ) } \" ;"
+          }
+        ]
+      },
+      {
+        "path": "src/GWGUI.MediaEngine/Images/Formats/Optical/Xdvdfs/XdvdfsWriter.cs",
+        "beforeSha256": "F4801F17A149BA3A0F75A25C58EBCDFBBA036E31E8189BDD2D442B8ABDCF915C",
+        "isCatalog": false,
+        "isShared": false,
+        "members": [
+          {
+            "name": "NormalizeExtension",
+            "parameters": "(string extension)",
+            "tokens": "private static string NormalizeExtension ( string extension ) => extension . StartsWith ( \".\" , StringComparison . Ordinal ) ? extension . ToLowerInvariant ( ) : $\" . { extension . ToLowerInvariant ( ) } \" ;"
+          }
+        ]
+      },
+      {
+        "path": "src/GWGUI.MediaEngine/Images/Formats/RuntimeImageFormatCatalog.cs",
+        "beforeSha256": "277716446F5CC27FDE01196198D255F48D534C7CD441B629FDBDC84D7E599CB8",
+        "isCatalog": true,
+        "isShared": false,
+        "members": [
+          {
+            "name": "GetCompatibleOutputs",
+            "parameters": "(string sourceExtension)",
+            "tokens": "public IReadOnlyList < DiskFormat > GetCompatibleOutputs ( string sourceExtension ) { var normalized = sourceExtension . StartsWith ( '.' ) ? sourceExtension . ToLowerInvariant ( ) : \".\" + sourceExtension . ToLowerInvariant ( ) ; return Formats . Where ( format => format . CompatibleSourceExtensions ? . Contains ( normalized ) == true ) . ToArray ( ) ; }"
+          }
+        ]
+      }
+    ],
+    "policies": [
+      {
+        "path": "src/GWGUI.MediaEngine/Functions/MediaFileExtensionFunctions.cs",
+        "policy": "Public Normalize rejects null, empty and whitespace before the raw operation"
+      },
+      {
+        "path": "src/GWGUI.MediaEngine/Images/Conversion/ConversionFidelity.cs",
+        "policy": "Raw operation: null throws NullReferenceException, empty becomes dot, whitespace retained; invariant lowercase, no trimming",
+        "form": "original char and concatenation"
+      },
+      {
+        "path": "src/GWGUI.MediaEngine/Images/Conversion/Flux/FluxContainerConversionService.cs",
+        "policy": "Raw operation: null throws NullReferenceException, empty becomes dot, whitespace retained; invariant lowercase, no trimming",
+        "form": "original char and concatenation"
+      },
+      {
+        "path": "src/GWGUI.MediaEngine/Images/Formats/CapabilityAwareImageFormatCatalog.cs",
+        "policy": "Raw operation: null throws NullReferenceException, empty becomes dot, whitespace retained; invariant lowercase, no trimming",
+        "form": "original char and concatenation"
+      },
+      {
+        "path": "src/GWGUI.MediaEngine/Images/Formats/Cartridge/Console/ConsoleCartridgeWriter.cs",
+        "policy": "Raw operation: null throws NullReferenceException, empty becomes dot, whitespace retained; invariant lowercase, no trimming",
+        "form": "single ASCII dot Ordinal and interpolation"
+      },
+      {
+        "path": "src/GWGUI.MediaEngine/Images/Formats/ImageFormatCatalog.cs",
+        "policy": "Raw operation: null throws NullReferenceException, empty becomes dot, whitespace retained; invariant lowercase, no trimming",
+        "form": "original char and concatenation"
+      },
+      {
+        "path": "src/GWGUI.MediaEngine/Images/Formats/Optical/Gdi/GdiWriter.cs",
+        "policy": "Raw operation: null throws NullReferenceException, empty becomes dot, whitespace retained; invariant lowercase, no trimming",
+        "form": "single ASCII dot Ordinal and interpolation"
+      },
+      {
+        "path": "src/GWGUI.MediaEngine/Images/Formats/Optical/WiiU/WiiUWriter.cs",
+        "policy": "Raw operation: null throws NullReferenceException, empty becomes dot, whitespace retained; invariant lowercase, no trimming",
+        "form": "single ASCII dot Ordinal and interpolation"
+      },
+      {
+        "path": "src/GWGUI.MediaEngine/Images/Formats/Optical/Xdvdfs/XdvdfsWriter.cs",
+        "policy": "Raw operation: null throws NullReferenceException, empty becomes dot, whitespace retained; invariant lowercase, no trimming",
+        "form": "single ASCII dot Ordinal and interpolation"
+      }
+    ],
+    "decision": "Use the prior curated query with the receiving catalog Formats; move the prior raw normalization into the existing shared extension owner, retaining the public validation and the different MediaAnalysis trimming policy",
+    "verification": {
+      "sourceChecks": [
+        {
+          "allOtherTokensUnchanged": true,
+          "path": "src/GWGUI.MediaEngine/Functions/MediaFileExtensionFunctions.cs",
+          "sha256": "F5428E023C7438D9C341E573D33C3E7DB21E819B462F50611276AA7B3ED85BCF"
+        },
+        {
+          "allOtherTokensUnchanged": true,
+          "path": "src/GWGUI.MediaEngine/Images/Conversion/ConversionFidelity.cs",
+          "sha256": "AD947751D71B597B336FD15423CFF31C4ED89B5B671F09C46A6B869D3D0F8BCF"
+        },
+        {
+          "allOtherTokensUnchanged": true,
+          "path": "src/GWGUI.MediaEngine/Images/Conversion/Flux/FluxContainerConversionService.cs",
+          "sha256": "9DBD81639BBA5828909DEC8D947FE97DB0F02E4F0603BE6013C9A3873AA44BF0"
+        },
+        {
+          "allOtherTokensUnchanged": true,
+          "path": "src/GWGUI.MediaEngine/Images/Formats/CapabilityAwareImageFormatCatalog.cs",
+          "sha256": "853EC855B21B2B49026EA8069740FE6FF8ED5E2EE6504344071025880429D7FD"
+        },
+        {
+          "allOtherTokensUnchanged": true,
+          "path": "src/GWGUI.MediaEngine/Images/Formats/Cartridge/Console/ConsoleCartridgeWriter.cs",
+          "sha256": "B8D874B2BFDA10712A4DD5BD71427FF457E67B4C40C4CE5BB97200F589938F86"
+        },
+        {
+          "allOtherTokensUnchanged": true,
+          "path": "src/GWGUI.MediaEngine/Images/Formats/ImageFormatCatalog.cs",
+          "sha256": "3F496EE5E8153478C7A55EBEB595CF0113928287056D21FB64060B41AD2382D1"
+        },
+        {
+          "allOtherTokensUnchanged": true,
+          "path": "src/GWGUI.MediaEngine/Images/Formats/Optical/Gdi/GdiWriter.cs",
+          "sha256": "1CCC8D209A77061DCA0E63411896DFECF4ED8164074FAE0ECB9BBB47F447FC60"
+        },
+        {
+          "allOtherTokensUnchanged": true,
+          "path": "src/GWGUI.MediaEngine/Images/Formats/Optical/WiiU/WiiUWriter.cs",
+          "sha256": "DC65481055584F2101CEF93CC115A99CABC18642E1F7FD21FD411EE7245E4BCF"
+        },
+        {
+          "allOtherTokensUnchanged": true,
+          "path": "src/GWGUI.MediaEngine/Images/Formats/Optical/Xdvdfs/XdvdfsWriter.cs",
+          "sha256": "464FD4856B90213CD626A2B64C53E9BA5A2D3AC4E474C27810668F8999083227"
+        },
+        {
+          "allOtherTokensUnchanged": true,
+          "path": "src/GWGUI.MediaEngine/Images/Formats/RuntimeImageFormatCatalog.cs",
+          "sha256": "4615255314A62F38C8064BDF3EEF5EBFF2ECA5EE49B8ABCFD6F49F0D2DCAC47A"
+        }
+      ],
+      "rawModels": [
+        {
+          "canonical": "value . StartsWith ( '.' ) ? value . ToLowerInvariant ( ) : \".\" + value . ToLowerInvariant ( )",
+          "publicValidationRetained": true,
+          "path": "src/GWGUI.MediaEngine/Functions/MediaFileExtensionFunctions.cs"
+        },
+        {
+          "canonical": "value . StartsWith ( '.' ) ? value . ToLowerInvariant ( ) : \".\" + value . ToLowerInvariant ( )",
+          "publicValidationRetained": false,
+          "path": "src/GWGUI.MediaEngine/Images/Conversion/ConversionFidelity.cs"
+        },
+        {
+          "canonical": "value . StartsWith ( '.' ) ? value . ToLowerInvariant ( ) : \".\" + value . ToLowerInvariant ( )",
+          "publicValidationRetained": false,
+          "path": "src/GWGUI.MediaEngine/Images/Conversion/Flux/FluxContainerConversionService.cs"
+        },
+        {
+          "canonical": "value . StartsWith ( '.' ) ? value . ToLowerInvariant ( ) : \".\" + value . ToLowerInvariant ( )",
+          "publicValidationRetained": false,
+          "path": "src/GWGUI.MediaEngine/Images/Formats/CapabilityAwareImageFormatCatalog.cs"
+        },
+        {
+          "canonical": "value . StartsWith ( '.' ) ? value . ToLowerInvariant ( ) : \".\" + value . ToLowerInvariant ( )",
+          "publicValidationRetained": false,
+          "path": "src/GWGUI.MediaEngine/Images/Formats/Cartridge/Console/ConsoleCartridgeWriter.cs"
+        },
+        {
+          "canonical": "value . StartsWith ( '.' ) ? value . ToLowerInvariant ( ) : \".\" + value . ToLowerInvariant ( )",
+          "publicValidationRetained": false,
+          "path": "src/GWGUI.MediaEngine/Images/Formats/ImageFormatCatalog.cs"
+        },
+        {
+          "canonical": "value . StartsWith ( '.' ) ? value . ToLowerInvariant ( ) : \".\" + value . ToLowerInvariant ( )",
+          "publicValidationRetained": false,
+          "path": "src/GWGUI.MediaEngine/Images/Formats/Optical/Gdi/GdiWriter.cs"
+        },
+        {
+          "canonical": "value . StartsWith ( '.' ) ? value . ToLowerInvariant ( ) : \".\" + value . ToLowerInvariant ( )",
+          "publicValidationRetained": false,
+          "path": "src/GWGUI.MediaEngine/Images/Formats/Optical/WiiU/WiiUWriter.cs"
+        },
+        {
+          "canonical": "value . StartsWith ( '.' ) ? value . ToLowerInvariant ( ) : \".\" + value . ToLowerInvariant ( )",
+          "publicValidationRetained": false,
+          "path": "src/GWGUI.MediaEngine/Images/Formats/Optical/Xdvdfs/XdvdfsWriter.cs"
+        }
+      ],
+      "coreMatchesOriginal": true,
+      "queryMatchesOriginal": true,
+      "oldBindings": [
+        {
+          "path": "src/GWGUI.MediaEngine/Images/Conversion/ConversionFidelity.cs",
+          "target": "GWGUI.MediaEngine.Images.Conversion.ConversionFidelity.Normalize(string)"
+        },
+        {
+          "path": "src/GWGUI.MediaEngine/Images/Conversion/ConversionFidelity.cs",
+          "target": "GWGUI.MediaEngine.Images.Conversion.ConversionFidelity.Normalize(string)"
+        },
+        {
+          "path": "src/GWGUI.MediaEngine/Images/Conversion/Flux/FluxContainerConversionService.cs",
+          "target": "GWGUI.MediaEngine.Images.Conversion.Flux.FluxContainerConversionService.Normalize(string)"
+        },
+        {
+          "path": "src/GWGUI.MediaEngine/Images/Conversion/Flux/FluxContainerConversionService.cs",
+          "target": "GWGUI.MediaEngine.Images.Conversion.Flux.FluxContainerConversionService.Normalize(string)"
+        },
+        {
+          "path": "src/GWGUI.MediaEngine/Images/Conversion/Flux/FluxContainerConversionService.cs",
+          "target": "GWGUI.MediaEngine.Images.Conversion.Flux.FluxContainerConversionService.Normalize(string)"
+        },
+        {
+          "path": "src/GWGUI.MediaEngine/Images/Formats/CapabilityAwareImageFormatCatalog.cs",
+          "target": "GWGUI.MediaEngine.Images.Formats.CapabilityAwareImageFormatCatalog.Normalize(string)"
+        },
+        {
+          "path": "src/GWGUI.MediaEngine/Images/Formats/CapabilityAwareImageFormatCatalog.cs",
+          "target": "GWGUI.MediaEngine.Images.Formats.CapabilityAwareImageFormatCatalog.Normalize(string)"
+        },
+        {
+          "path": "src/GWGUI.MediaEngine/Images/Formats/Cartridge/Console/ConsoleCartridgeWriter.cs",
+          "target": "GWGUI.MediaEngine.Images.Formats.Cartridge.Console.ConsoleCartridgeWriter.NormalizeExtension(string)"
+        },
+        {
+          "path": "src/GWGUI.MediaEngine/Images/Formats/Cartridge/Console/ConsoleCartridgeWriter.cs",
+          "target": "GWGUI.MediaEngine.Images.Formats.Cartridge.Console.ConsoleCartridgeWriter.NormalizeExtension(string)"
+        },
+        {
+          "path": "src/GWGUI.MediaEngine/Images/Formats/ImageFormatCatalog.cs",
+          "target": "GWGUI.MediaEngine.Images.Formats.BuiltInImageFormatCatalog.Normalize(string)"
+        },
+        {
+          "path": "src/GWGUI.MediaEngine/Images/Formats/ImageFormatCatalog.cs",
+          "target": "GWGUI.MediaEngine.Images.Formats.BuiltInImageFormatCatalog.Normalize(string)"
+        },
+        {
+          "path": "src/GWGUI.MediaEngine/Images/Formats/ImageFormatCatalog.cs",
+          "target": "GWGUI.MediaEngine.Images.Formats.BuiltInImageFormatCatalog.Normalize(string)"
+        },
+        {
+          "path": "src/GWGUI.MediaEngine/Images/Formats/Optical/Gdi/GdiWriter.cs",
+          "target": "GWGUI.MediaEngine.Images.Formats.Optical.Gdi.GdiWriter.NormalizeExtension(string)"
+        },
+        {
+          "path": "src/GWGUI.MediaEngine/Images/Formats/Optical/WiiU/WiiUWriter.cs",
+          "target": "GWGUI.MediaEngine.Images.Formats.Optical.WiiU.WiiUWriter.NormalizeExtension(string)"
+        },
+        {
+          "path": "src/GWGUI.MediaEngine/Images/Formats/Optical/WiiU/WiiUWriter.cs",
+          "target": "GWGUI.MediaEngine.Images.Formats.Optical.WiiU.WiiUWriter.NormalizeExtension(string)"
+        },
+        {
+          "path": "src/GWGUI.MediaEngine/Images/Formats/Optical/Xdvdfs/XdvdfsWriter.cs",
+          "target": "GWGUI.MediaEngine.Images.Formats.Optical.Xdvdfs.XdvdfsWriter.NormalizeExtension(string)"
+        }
+      ],
+      "coreBindings": [
+        {
+          "path": "src/GWGUI.MediaEngine/Functions/MediaFileExtensionFunctions.cs",
+          "target": "GWGUI.MediaEngine.Functions.MediaFileExtensionFunctions.NormalizeCore(string)"
+        },
+        {
+          "path": "src/GWGUI.MediaEngine/Images/Conversion/ConversionFidelity.cs",
+          "target": "GWGUI.MediaEngine.Functions.MediaFileExtensionFunctions.NormalizeCore(string)"
+        },
+        {
+          "path": "src/GWGUI.MediaEngine/Images/Conversion/ConversionFidelity.cs",
+          "target": "GWGUI.MediaEngine.Functions.MediaFileExtensionFunctions.NormalizeCore(string)"
+        },
+        {
+          "path": "src/GWGUI.MediaEngine/Images/Conversion/Flux/FluxContainerConversionService.cs",
+          "target": "GWGUI.MediaEngine.Functions.MediaFileExtensionFunctions.NormalizeCore(string)"
+        },
+        {
+          "path": "src/GWGUI.MediaEngine/Images/Conversion/Flux/FluxContainerConversionService.cs",
+          "target": "GWGUI.MediaEngine.Functions.MediaFileExtensionFunctions.NormalizeCore(string)"
+        },
+        {
+          "path": "src/GWGUI.MediaEngine/Images/Conversion/Flux/FluxContainerConversionService.cs",
+          "target": "GWGUI.MediaEngine.Functions.MediaFileExtensionFunctions.NormalizeCore(string)"
+        },
+        {
+          "path": "src/GWGUI.MediaEngine/Images/Formats/CapabilityAwareImageFormatCatalog.cs",
+          "target": "GWGUI.MediaEngine.Functions.MediaFileExtensionFunctions.NormalizeCore(string)"
+        },
+        {
+          "path": "src/GWGUI.MediaEngine/Images/Formats/Cartridge/Console/ConsoleCartridgeWriter.cs",
+          "target": "GWGUI.MediaEngine.Functions.MediaFileExtensionFunctions.NormalizeCore(string)"
+        },
+        {
+          "path": "src/GWGUI.MediaEngine/Images/Formats/Cartridge/Console/ConsoleCartridgeWriter.cs",
+          "target": "GWGUI.MediaEngine.Functions.MediaFileExtensionFunctions.NormalizeCore(string)"
+        },
+        {
+          "path": "src/GWGUI.MediaEngine/Images/Formats/ImageFormatCatalog.cs",
+          "target": "GWGUI.MediaEngine.Functions.MediaFileExtensionFunctions.NormalizeCore(string)"
+        },
+        {
+          "path": "src/GWGUI.MediaEngine/Images/Formats/ImageFormatCatalog.cs",
+          "target": "GWGUI.MediaEngine.Functions.MediaFileExtensionFunctions.NormalizeCore(string)"
+        },
+        {
+          "path": "src/GWGUI.MediaEngine/Images/Formats/ImageFormatCatalog.cs",
+          "target": "GWGUI.MediaEngine.Functions.MediaFileExtensionFunctions.NormalizeCore(string)"
+        },
+        {
+          "path": "src/GWGUI.MediaEngine/Images/Formats/Optical/Gdi/GdiWriter.cs",
+          "target": "GWGUI.MediaEngine.Functions.MediaFileExtensionFunctions.NormalizeCore(string)"
+        },
+        {
+          "path": "src/GWGUI.MediaEngine/Images/Formats/Optical/WiiU/WiiUWriter.cs",
+          "target": "GWGUI.MediaEngine.Functions.MediaFileExtensionFunctions.NormalizeCore(string)"
+        },
+        {
+          "path": "src/GWGUI.MediaEngine/Images/Formats/Optical/WiiU/WiiUWriter.cs",
+          "target": "GWGUI.MediaEngine.Functions.MediaFileExtensionFunctions.NormalizeCore(string)"
+        },
+        {
+          "path": "src/GWGUI.MediaEngine/Images/Formats/Optical/Xdvdfs/XdvdfsWriter.cs",
+          "target": "GWGUI.MediaEngine.Functions.MediaFileExtensionFunctions.NormalizeCore(string)"
+        }
+      ],
+      "queryBindings": [
+        {
+          "path": "src/GWGUI.MediaEngine/Images/Formats/CapabilityAwareImageFormatCatalog.cs",
+          "target": "GWGUI.MediaEngine.Images.Formats.BuiltInImageFormatCatalog.GetCompatibleOutputs(System.Collections.Generic.IReadOnlyList<GWGUI.MediaEngine.Images.Formats.DiskFormat>, string)"
+        },
+        {
+          "path": "src/GWGUI.MediaEngine/Images/Formats/ImageFormatCatalog.cs",
+          "target": "GWGUI.MediaEngine.Images.Formats.BuiltInImageFormatCatalog.GetCompatibleOutputs(System.Collections.Generic.IReadOnlyList<GWGUI.MediaEngine.Images.Formats.DiskFormat>, string)"
+        },
+        {
+          "path": "src/GWGUI.MediaEngine/Images/Formats/RuntimeImageFormatCatalog.cs",
+          "target": "GWGUI.MediaEngine.Images.Formats.BuiltInImageFormatCatalog.GetCompatibleOutputs(System.Collections.Generic.IReadOnlyList<GWGUI.MediaEngine.Images.Formats.DiskFormat>, string)"
+        }
+      ],
+      "semanticProjects": [
+        "GWGUI.MediaAnalysis",
+        "GWGUI.MediaFileSystems",
+        "GWGUI.MediaEngine"
+      ],
+      "previousCompilationErrors": 0,
+      "tests": {
+        "exitCode": 0,
+        "passed": 23,
+        "newMemoryCases": 19,
+        "existingCases": 4,
+        "classes": [
+          "ImageFormatCatalogReuseTests",
+          "XdvdfsMediaFormatTests",
+          "WiiUMediaFormatTests",
+          "AmstradCpcMediaFormatTests.RuntimeAmstradDestinationsKeepTheExistingFamilyAndRejectStaleAmigaSelection"
+        ],
+        "newTestsUseNoExternalFilesOrCores": true,
+        "cultureRestoredInFinally": true
+      }
+    }
   }
 }

@@ -1,3 +1,4 @@
+using GWGUI.MediaEngine.Functions;
 using System.Buffers.Binary;
 using System.Collections.Frozen;
 using System.IO;
@@ -34,7 +35,7 @@ public sealed class WiiUWriter : IMediaImageWriter
         ArgumentNullException.ThrowIfNull(document);
         return document.MediaKind == MediaKind.Optical
             && SupportedFormatIds.Contains(targetFormatId)
-            && SupportedExtensions.Contains(NormalizeExtension(targetExtension))
+            && SupportedExtensions.Contains(MediaFileExtensionFunctions.NormalizeCore(targetExtension))
             && document.Representation is BlockMediaImageRepresentation blocks
             && WiiUFormat.IsWudLengthCompatible(blocks.Capacity)
             && HasCompleteReadableCoverage(blocks);
@@ -49,7 +50,7 @@ public sealed class WiiUWriter : IMediaImageWriter
             throw new InvalidDataException("The Nintendo Wii U document cannot be written as a WUD or WUX image.");
         var readable = (IMediaBlockRepresentation)blocks;
 
-        if (NormalizeExtension(Path.GetExtension(outputPath)).Equals(DiskImageFileExtensions.Wux, StringComparison.OrdinalIgnoreCase))
+        if (MediaFileExtensionFunctions.NormalizeCore(Path.GetExtension(outputPath)).Equals(DiskImageFileExtensions.Wux, StringComparison.OrdinalIgnoreCase))
         {
             await WriteWuxAsync(outputPath, blocks.Capacity, readable, cancellationToken).ConfigureAwait(false);
             return [outputPath];
@@ -177,6 +178,4 @@ public sealed class WiiUWriter : IMediaImageWriter
         }
         return expected == blocks.Capacity;
     }
-
-    private static string NormalizeExtension(string extension) => extension.StartsWith(".", StringComparison.Ordinal) ? extension.ToLowerInvariant() : $".{extension.ToLowerInvariant()}";
 }
