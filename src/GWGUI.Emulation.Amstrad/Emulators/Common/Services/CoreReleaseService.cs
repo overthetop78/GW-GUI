@@ -65,24 +65,30 @@ public sealed class CoreReleaseService
         var extracted = destination + CoreReleaseConstants.Extract;
         try
         {
-            await EmulationCoreReleaseFunctions.DownloadAsync(_httpClient, release.DownloadUri, download,
-                (written, total) =>
+            await EmulationCoreReleaseFunctions.InstallLibraryAsync(
+                () => EmulationCoreReleaseFunctions.DownloadAsync(_httpClient, release.DownloadUri, download,
+                    (written, total) =>
+                    {
+                        if (total > 0) progress?.Report(written / (double)total.Value);
+                    }, cancellationToken),
+                () =>
                 {
-                    if (total > 0) progress?.Report(written / (double)total.Value);
-                }, cancellationToken).ConfigureAwait(false);
-
-            if (release.IsZip)
-            {
-                EmulationCoreReleaseFunctions.ExtractExpectedLibrary(download, _definition.LibraryFile, extracted,
-                    static _ => CommonExceptions.ArchiveMissingLibrary(), preserveLastWriteTime: true);
-            }
-            else File.Copy(download, extracted, true);
-
-            _definition.VerifyInstallation?.Invoke(extracted);
-            var sha256 = EmulationCoreDiagnosticFunctions.CalculateSha256(extracted);
-            File.Move(extracted, destination, true);
-            await ExternalCoreInstaller.WriteManifestAsync(release.Id, release.DownloadUri.AbsoluteUri, destination, sha256, _definition.Architecture, cancellationToken).ConfigureAwait(false);
-            progress?.Report(CoreReleaseConstants.CompletedDownloadProgress);
+                    if (release.IsZip)
+                    {
+                        EmulationCoreReleaseFunctions.ExtractExpectedLibrary(download, _definition.LibraryFile, extracted,
+                            static _ => CommonExceptions.ArchiveMissingLibrary(), preserveLastWriteTime: true);
+                    }
+                    else File.Copy(download, extracted, true);
+                },
+                archiveSize =>
+                {
+                    _definition.VerifyInstallation?.Invoke(extracted);
+                    return EmulationCoreDiagnosticFunctions.CalculateSha256(extracted);
+                },
+                () => File.Move(extracted, destination, true),
+                sha256 => ExternalCoreInstaller.WriteManifestAsync(release.Id, release.DownloadUri.AbsoluteUri, destination, sha256, _definition.Architecture, cancellationToken),
+                () => Task.CompletedTask,
+                archiveSize => progress?.Report(CoreReleaseConstants.CompletedDownloadProgress)).ConfigureAwait(false);
             return destination;
         }
         finally

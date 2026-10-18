@@ -7529,5 +7529,155 @@
         "profiles": 9
       }
     ]
+  },
+  "additionalNativeInstallationFlowReuse": {
+    "sourceSnapshot": "372e42eff",
+    "owner": "AtariCoreReleaseService before Amstrad, ac7292d86^:src/GWGUI.Emulation.Atari/Services/AtariCoreReleaseService.cs",
+    "existingMechanism": "EmulationCoreReleaseFunctions.InstallLibraryAsync, already shared with sixteen versioned installers",
+    "profiles": [
+      {
+        "module": "Amstrad",
+        "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/CoreReleaseService.cs"
+      },
+      {
+        "module": "Commodore",
+        "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/CoreReleaseService.cs"
+      },
+      {
+        "module": "Nec",
+        "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/CoreReleaseService.cs"
+      },
+      {
+        "module": "Nintendo",
+        "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/CoreReleaseService.cs"
+      },
+      {
+        "module": "Sega",
+        "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/CoreReleaseService.cs"
+      },
+      {
+        "module": "BeetlePcfx",
+        "path": "src/GWGUI.Emulation.Nec/Emulators/BeetlePcfx/Services/CoreReleaseService.cs"
+      },
+      {
+        "module": "Pcsx2",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/CoreReleaseService.cs"
+      }
+    ],
+    "steps": [
+      "download",
+      "ZIP extraction or direct copy",
+      "profile validation then SHA256",
+      "replacement",
+      "manifest write",
+      "no activation marker in these profiles",
+      "progress"
+    ],
+    "preserved": "Profile-specific extraction names and errors; optional Amstrad verifier; architecture and manifest contracts; cancellation and local finally cleanup",
+    "excluded": {
+      "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/CoreReleaseService.cs",
+      "reason": "Awaits SystemFilesFunctions.InstallAsync after hash and before replacement; separate qualification remains necessary"
+    },
+    "verification": {
+      "comparisons": [
+        {
+          "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/CoreReleaseService.cs",
+          "download": true,
+          "extraction": true,
+          "verification": true,
+          "hash": true,
+          "replacement": true,
+          "manifest": true,
+          "activation": "Task.CompletedTask only",
+          "progress": true,
+          "return": true,
+          "otherMembersAndCleanupUnchanged": true
+        },
+        {
+          "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+          "download": true,
+          "extraction": true,
+          "verification": true,
+          "hash": true,
+          "replacement": true,
+          "manifest": true,
+          "activation": "Task.CompletedTask only",
+          "progress": true,
+          "return": true,
+          "otherMembersAndCleanupUnchanged": true
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+          "download": true,
+          "extraction": true,
+          "verification": true,
+          "hash": true,
+          "replacement": true,
+          "manifest": true,
+          "activation": "Task.CompletedTask only",
+          "progress": true,
+          "return": true,
+          "otherMembersAndCleanupUnchanged": true
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+          "download": true,
+          "extraction": true,
+          "verification": true,
+          "hash": true,
+          "replacement": true,
+          "manifest": true,
+          "activation": "Task.CompletedTask only",
+          "progress": true,
+          "return": true,
+          "otherMembersAndCleanupUnchanged": true
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+          "download": true,
+          "extraction": true,
+          "verification": true,
+          "hash": true,
+          "replacement": true,
+          "manifest": true,
+          "activation": "Task.CompletedTask only",
+          "progress": true,
+          "return": true,
+          "otherMembersAndCleanupUnchanged": true
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nec/Emulators/BeetlePcfx/Services/CoreReleaseService.cs",
+          "download": true,
+          "extraction": true,
+          "verification": true,
+          "hash": true,
+          "replacement": true,
+          "manifest": true,
+          "activation": "Task.CompletedTask only",
+          "progress": true,
+          "return": true,
+          "otherMembersAndCleanupUnchanged": true
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/CoreReleaseService.cs",
+          "download": true,
+          "extraction": true,
+          "verification": true,
+          "hash": true,
+          "replacement": true,
+          "manifest": true,
+          "activation": "Task.CompletedTask only",
+          "progress": true,
+          "return": true,
+          "otherMembersAndCleanupUnchanged": true
+        }
+      ],
+      "sdkUnchanged": true,
+      "helperContract": "download -> extract -> validate/hash -> replace -> manifest -> completed no-op activation -> progress; local return and finally unchanged",
+      "tests": "CoreInstallationFlowTests: 8 passed, exit 0; SDK, App and all 23 module references compiled",
+      "resources": "Existing managed callback tests only; no downloaded native DLL, user files, process, window or additional temporary test",
+      "report": "11671 CSharp methods, 529 raw exact candidate groups; adapter matches remain candidates until full qualification",
+      "afterProductBuild": "372e42eff"
+    }
   }
 }
