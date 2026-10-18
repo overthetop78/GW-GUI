@@ -1408,7 +1408,7 @@
   ],
   "currentProjectReport": "current-project-groups.json",
   "currentReportScope": "All current repository CSharp and PowerShell files; no age filter; candidates require semantic review",
-  "currentExactCandidateGroups": 525,
+  "currentExactCandidateGroups": 524,
   "currentRenamedIdentifierCandidateGroups": 215,
   "currentQualificationStatus": "Manual semantic qualification remains incomplete. remaining-groups.json is the earlier historical checkpoint; current-project-groups.json covers all current CSharp and PowerShell files regardless of age.",
   "hostLoopComparison": "host-loop-comparison.json",
@@ -8010,5 +8010,34 @@
     "resources": "Memory arrays only; explicit System.IO import for InvalidDataException, no temporary image or external program",
     "scope": "Whole-project review continues. Outside emulation/tests, the pre-edit report had 31 exact and 57 normalized-identifier groups; those are candidates, not validated defects or a completion claim.",
     "afterProductBuild": "797a4c2"
+  },
+  "signalColorComponentReuse": {
+    "snapshot": "42474c1a6",
+    "origin": "66dc8c791:src/GWGUI.App/Rendering/Emulation/Processing/FilterNtsc.cs, Components",
+    "owner": "Existing SignalStandardNtsc.Components, visibility private -> internal; five calls in PAL/component target the original operation",
+    "comparisons": [
+      {
+        "path": "src/GWGUI.App/Rendering/Emulation/Processing/SignalStandardPal.cs",
+        "calls": 2,
+        "originalMethodIdentical": true,
+        "otherMembersAndShadersUnchanged": true
+      },
+      {
+        "path": "src/GWGUI.App/Rendering/Emulation/Processing/SignalConnectionComponent.cs",
+        "calls": 3,
+        "originalMethodIdentical": true,
+        "otherMembersAndShadersUnchanged": true
+      }
+    ],
+    "verification": "Original 66dc8c791 signature and arithmetic tokens matched all three old methods; NTSC file identical except visibility; both callers identical after restoring the removed method and normalizing five call targets; all shader strings unchanged",
+    "baseline": {
+      "NTSC": "3B414D036FCD8F475054C0BA8492D3B119A6E2BF9EB0E6C35835F7AEBA556262",
+      "PAL": "2C0EBE55CD3243EBAF36B6467C9A3111982D5CC496F49693781876050F72BBD6",
+      "Component": "DBBCE3CCF42B8350B07CEF9899A818976A7C0E5A9DC436CB4B5F6CD6DCBAD82C"
+    },
+    "tests": "Three fixed-hash tests passed on original code after removing discovery fallback, then the same three passed after reuse; sixty CPU scenarios: width 1/5, height 1/3, intensity -1/0/17/50/100",
+    "resources": "Float arrays, byte arrays and static hashing only; no graphic surface, native core, file, process or thread created by the new test",
+    "report": "11669 CSharp method bodies >=30 tokens, 524 exact candidate groups; whole-project qualification remains incomplete",
+    "afterProductBuild": "797a4c2e7"
   }
 }

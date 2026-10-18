@@ -25,8 +25,8 @@ internal static class SignalStandardPal
             var neighborY = y + (((y & 1) == 0) ? 1 : -1);
             neighborY = Math.Clamp(neighborY, 0, height - 1);
             var neighbor = (neighborY * width + x) * 3;
-            Components(source, center, out var luminance, out var inPhase, out var quadrature);
-            Components(source, neighbor, out _, out var neighborI, out var neighborQ);
+            SignalStandardNtsc.Components(source, center, out var luminance, out var inPhase, out var quadrature);
+            SignalStandardNtsc.Components(source, neighbor, out _, out var neighborI, out var neighborQ);
             inPhase += (neighborI - inPhase) * amount * 0.58f;
             quadrature += (neighborQ - quadrature) * amount * 0.72f;
             colors[center] = Math.Clamp(luminance + 0.956f * inPhase + 0.621f * quadrature, 0f, 1f);
@@ -35,13 +35,5 @@ internal static class SignalStandardPal
         }
     }
 
-    private static void Components(float[] source, int index, out float luminance, out float inPhase, out float quadrature)
-    {
-        var red = source[index];
-        var green = source[index + 1];
-        var blue = source[index + 2];
-        luminance = red * 0.299f + green * 0.587f + blue * 0.114f;
-        inPhase = red * 0.596f - green * 0.274f - blue * 0.322f;
-        quadrature = red * 0.211f - green * 0.523f + blue * 0.312f;
-    }
+
 }
