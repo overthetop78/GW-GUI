@@ -1,3 +1,4 @@
+using static GWGUI.MediaFileSystems.Functions.MediaMetadataFunctions;
 using System.IO;
 using GWGUI.MediaFileSystems.Constants;
 using GWGUI.MediaFileSystems.Contracts;
@@ -80,12 +81,6 @@ public sealed class AmstradCartridgeFileSystemReader : IMediaFileSystemReader
             freeSpaceKnown: false,
             attributes: [document.FormatId, "cartridge-banks"],
             fileSystemDisplayName: "Amstrad cartridge banks");
-    }
-
-    private static bool TryReadInt(IReadOnlyDictionary<string, string> metadata, string key, out int value)
-    {
-        value = 0;
-        return metadata.TryGetValue(key, out var text) && int.TryParse(text, System.Globalization.NumberStyles.None, System.Globalization.CultureInfo.InvariantCulture, out value);
     }
 
 }

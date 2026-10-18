@@ -1,3 +1,4 @@
+using static GWGUI.MediaFileSystems.Functions.MediaMetadataFunctions;
 using System.Globalization;
 using System.IO;
 using System.Text;
@@ -28,10 +29,10 @@ public sealed class FamicomDiskFileSystemReader : IMediaFileSystemReader
         if (!CanRead(document, volume) || document.Representation is not IMediaBlockRepresentation blocks)
             throw new InvalidDataException("The selected Famicom Disk System volume is not readable.");
 
-        if (!TryGetInt(document.Metadata, FamicomDiskMetadataConstants.SideCount, out var sideCount)
+        if (!TryReadInt(document.Metadata, FamicomDiskMetadataConstants.SideCount, out var sideCount)
             || sideCount < 1)
             throw new InvalidDataException("The Famicom Disk System side count is missing or invalid.");
-        if (!TryGetInt(document.Metadata, FamicomDiskMetadataConstants.SideLength, out var sideLength)
+        if (!TryReadInt(document.Metadata, FamicomDiskMetadataConstants.SideLength, out var sideLength)
             || sideLength < 1)
             throw new InvalidDataException("The Famicom Disk System side length is missing or invalid.");
 
@@ -141,10 +142,4 @@ public sealed class FamicomDiskFileSystemReader : IMediaFileSystemReader
     }
 
     private static string DecodeName(ReadOnlySpan<byte> bytes) => Encoding.ASCII.GetString(bytes).TrimEnd('\0', ' ');
-
-    private static bool TryGetInt(IReadOnlyDictionary<string, string> metadata, string key, out int value)
-    {
-        value = 0;
-        return metadata.TryGetValue(key, out var text) && int.TryParse(text, NumberStyles.None, CultureInfo.InvariantCulture, out value);
-    }
 }

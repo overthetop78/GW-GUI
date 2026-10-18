@@ -1,13 +1,14 @@
 {
-  "snapshot": "a4760e868d2594a5bb37ae0fbdeb1b5349792cd9",
+  "snapshot": "2a51d33a4faba3952b8dc6baccc12f1659579a71",
   "snapshotState": "Current worktree based on snapshot",
   "worktreeSourceChanges": [
-    "src/GWGUI.App/Services/Hardware/StartupHardwareMonitor.cs",
-    "src/GWGUI.Infrastructure/Functions/Hardware/GreaseweazleHardwareScanFunctions.cs",
-    "src/GWGUI.Infrastructure/Hardware/GreaseweazleHardwareRegistry.cs"
+    "src/GWGUI.MediaEngine/Functions/PcmSampleFunctions.cs",
+    "src/GWGUI.MediaFileSystems/FileSystems/Amstrad/Cartridge/AmstradCartridgeFileSystemReader.cs",
+    "src/GWGUI.MediaFileSystems/FileSystems/Console/Cartridge/ConsoleCartridgeFileSystemReader.cs",
+    "src/GWGUI.MediaFileSystems/FileSystems/Nintendo/FamicomDisk/FamicomDiskFileSystemReader.cs"
   ],
   "scope": "All current non-ignored repository CSharp files, including hidden paths; BaseMethodDeclaration bodies with fewer than 30 tokens. Candidate presence is not a defect or a completion claim.",
-  "fileCount": 7314,
+  "fileCount": 7315,
   "methodBodyCount": 9471,
   "exactGroups": [
     {
@@ -12498,7 +12499,7 @@
           "qualification": "empty-void-method-no-algorithm"
         }
       ],
-      "qualification": "partial-82-empty-void-methods-qualified-81-constructors-pending"
+      "qualification": "Partial empty-method qualification; constructors and unannotated members remain pending"
     },
     {
       "hash": "26400A65D37A9AF373A217903DE3BDDC19845DABB020EF2FB3623606AAB8546C",

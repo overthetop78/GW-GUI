@@ -8249,13 +8249,13 @@
     "afterProductBuild": "005e3c677"
   },
   "shortMethodInventory": {
-    "snapshot": "a4760e868d2594a5bb37ae0fbdeb1b5349792cd9",
-    "files": 7314,
+    "snapshot": "2a51d33a4faba3952b8dc6baccc12f1659579a71",
+    "files": 7315,
     "bodyCount": 9471,
     "exactGroups": 772,
     "renamedGroups": 363,
-    "status": "Incomplete; 24 queue occurrences verified, hardware identity predicate reused; other groups pending",
-    "trackedCSharpCoverage": "7314 tracked and listed files, no tracked CSharp file omitted by rg, hidden paths included"
+    "status": "Incomplete; 24 queue occurrences and 82 empty void methods qualified; hardware identity predicate and metadata integer parsing reused; other groups pending.",
+    "trackedCSharpCoverage": "Full current scan includes new MediaMetadataFunctions file; source file count 7315, hidden paths included."
   },
   "hardwareIdentityComparisonReuse": {
     "snapshot": "a4760e868",
@@ -9477,5 +9477,49 @@
     "productionChanges": "None",
     "tests": "None added: no executable change.",
     "remaining": "Constructors, literal return methods and all other unresolved candidates remain pending."
+  },
+  "metadataIntegerReuse": {
+    "originalCommit": "8ea733760",
+    "originalPath": "src/GWGUI.MediaEngine/Functions/PcmSampleFunctions.cs",
+    "originalMethod": "TryReadInt",
+    "copies": [
+      "f2fb3caf3 AmstradCartridgeFileSystemReader.TryReadInt",
+      "3fc06d0c9 ConsoleCartridgeFileSystemReader.TryReadInt",
+      "66ac379f0 FamicomDiskFileSystemReader.TryGetInt"
+    ],
+    "policy": "value = 0; metadata.TryGetValue then int.TryParse with NumberStyles.None and InvariantCulture",
+    "constant": "ConsoleCartridgeMetadataConstants.EmptyLength = 0",
+    "dependency": "MediaEngine references MediaFileSystems; MediaFileSystems cannot call MediaEngine without a cycle.",
+    "destination": "src/GWGUI.MediaFileSystems/Functions/MediaMetadataFunctions.cs",
+    "decision": "Move original implementation into dependency already shared by consumers; remove four private bodies and import the shared operation.",
+    "excluded": "CommodoreTapeDecoder.TryReadInt additionally requires value > 0; unchanged.",
+    "state": "verified-source-change",
+    "baseline": "2a51d33a4",
+    "verification": "Original 8ea733760 body matches current shared method by tokens; all four remaining consumer token streams match baseline after removing private method and normalizing static import / two Famicom call names.",
+    "semantic": "MediaFileSystems and MediaEngine: zero semantic errors; all 15 calls resolve to GWGUI.MediaFileSystems.Functions.MediaMetadataFunctions.TryReadInt(IReadOnlyDictionary<string,string>,string,out int).",
+    "tests": "Four existing integration tests passed, exit 0: CprAndRomExposeTheirRealBanks, ConsoleCartridgeFormatsRoundTripWithNamedBanks, FamicomDiskSystemFacesRoundTripAndExposeFiles, CpcBlocksRoundTripThroughTzxRepresentation.",
+    "productBuild": "Later than product build 1182bca7a; test build compiled App/SDK/all module references, product output not refreshed.",
+    "sources": [
+      {
+        "path": "src/GWGUI.MediaFileSystems/Functions/MediaMetadataFunctions.cs",
+        "sha256": "3D21335E79C9E178AF8D23606448B2B3CB27A244398BD5660D9C17EB838663C7"
+      },
+      {
+        "path": "src/GWGUI.MediaEngine/Functions/PcmSampleFunctions.cs",
+        "sha256": "E2AEE6684882C9D837B7AC22D07B14DF289F95996E6C501B80ED9ACF5D16E592"
+      },
+      {
+        "path": "src/GWGUI.MediaFileSystems/FileSystems/Amstrad/Cartridge/AmstradCartridgeFileSystemReader.cs",
+        "sha256": "BFD41CCF058CE9CE8412E66A78862931CBB5DDE705DEFEDD9C786B6D547618E6"
+      },
+      {
+        "path": "src/GWGUI.MediaFileSystems/FileSystems/Console/Cartridge/ConsoleCartridgeFileSystemReader.cs",
+        "sha256": "F650A1CDEEE8AE8AF9017B493C4DB70A5D750D3E13D93D4B3EB30FE53924F926"
+      },
+      {
+        "path": "src/GWGUI.MediaFileSystems/FileSystems/Nintendo/FamicomDisk/FamicomDiskFileSystemReader.cs",
+        "sha256": "93E442D47F43CC96FB949DA77A631F96A4A9C71C95220749F4A5679FD83291C2"
+      }
+    ]
   }
 }

@@ -1,3 +1,4 @@
+using static GWGUI.MediaFileSystems.Functions.MediaMetadataFunctions;
 using System.Buffers.Binary;
 
 namespace GWGUI.MediaEngine.Functions;
@@ -66,12 +67,6 @@ internal static class PcmSampleFunctions
     {
         var result = value[0] | value[1] << 8 | value[2] << 16;
         return (result & 0x00800000) == 0 ? result : result | unchecked((int)0xff000000);
-    }
-
-    private static bool TryReadInt(IReadOnlyDictionary<string, string> metadata, string key, out int value)
-    {
-        value = 0;
-        return metadata.TryGetValue(key, out var text) && int.TryParse(text, System.Globalization.NumberStyles.None, System.Globalization.CultureInfo.InvariantCulture, out value);
     }
 
     internal static bool TryReadSampleRate(IReadOnlyDictionary<string, string> parameters, out int sampleRate) =>

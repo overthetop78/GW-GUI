@@ -1,3 +1,4 @@
+using static GWGUI.MediaFileSystems.Functions.MediaMetadataFunctions;
 using System.Globalization;
 using System.IO;
 using GWGUI.MediaFileSystems.Constants;
@@ -75,12 +76,6 @@ public sealed class ConsoleCartridgeFileSystemReader : IMediaFileSystemReader
             document.Diagnostics, freeSpaceKnown: false,
             attributes: [document.FormatId, ConsoleCartridgeMetadataConstants.BanksAttribute],
             fileSystemDisplayName: volume.Name ?? document.FormatId);
-    }
-
-    private static bool TryReadInt(IReadOnlyDictionary<string, string> metadata, string key, out int value)
-    {
-        value = ConsoleCartridgeMetadataConstants.EmptyLength;
-        return metadata.TryGetValue(key, out var text) && int.TryParse(text, NumberStyles.None, CultureInfo.InvariantCulture, out value);
     }
 
     private static bool HasValidBankMetadata(IReadOnlyDictionary<string, string> metadata)
