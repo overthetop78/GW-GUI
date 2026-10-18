@@ -9,6 +9,9 @@ namespace GWGUI.App.Functions.Views.Emulation.Settings;
 
 internal static partial class EmulationSettingsFieldControlFunctions
 {
+    internal static FrameworkElement CreateVideoSlider(string id, int value, Action<int> changed)
+        => CreateVideoSlider(id, value, 0, 100, changed, 1, 36, new Thickness(0, 3, 0, 9));
+
     internal static FrameworkElement CreateVideoSlider(string id, int value, int maximum,
         Action<int> changed, bool enabled = true)
         => CreateVideoSlider(id, value, 0, maximum, changed, maximum == 100 ? 1 : 5,

@@ -1,19 +1,16 @@
 {
-  "snapshot": "344734196bcfd65788d864bf6dd352a047ad6adc",
+  "snapshot": "deed2f10e50fbaa643f43b061f080a5b3a803a34",
   "snapshotState": "Current worktree based on snapshot",
   "worktreeSourceChanges": [
     "src/GWGUI.App/Functions/Views/Emulation/Settings/EmulationSettingsFieldControlFunctions.Video.cs",
-    "src/GWGUI.App/Functions/Views/Emulation/Settings/EmulationVideoSettingsLayout.cs",
-    "src/GWGUI.App/Views/Controls/Emulation/Options/EmulationDotMatrixSettingsBlock.cs",
-    "src/GWGUI.App/Views/Controls/Emulation/Options/EmulationEPaperSettingsBlock.cs",
+    "src/GWGUI.App/Views/Controls/Emulation/Options/EmulationLedMatrixSettingsBlock.cs",
     "src/GWGUI.App/Views/Controls/Emulation/Options/EmulationPlasmaSettingsBlock.cs",
-    "src/GWGUI.App/Views/Controls/Emulation/Options/EmulationProjectionSettingsBlock.cs",
     "src/GWGUI.App/Views/Controls/Emulation/Options/EmulationSegmentDisplaySettingsBlock.cs",
-    "src/GWGUI.App/Views/Controls/Emulation/Options/EmulationVfdSettingsBlock.cs"
+    "src/GWGUI.App/Views/Controls/Emulation/Options/EmulationVectorSettingsBlock.cs"
   ],
   "scope": "All current non-ignored repository CSharp files, including hidden paths; BaseMethodDeclaration bodies with fewer than 30 tokens. Candidate presence is not a defect or a completion claim.",
   "fileCount": 7317,
-  "methodBodyCount": 9476,
+  "methodBodyCount": 9475,
   "exactGroups": [
     {
       "hash": "0017F14C61995D644C52FF90F094E4708DC2CA772615CF2F5DD41E74BD202ECA",
@@ -4071,38 +4068,6 @@
           "bodyTokens": "=> Id == Guid . Empty ? this with { Id = Guid . NewGuid ( ) } : this",
           "hash": "0ED731B44A53144738970181E062AB3C07386F0E1543E4189A68D1AAB4E142BC",
           "shape": "A8300DCF13A3C74C4B015788303BB467E60147AE785A82CE9F575BC238FDF89C"
-        }
-      ],
-      "qualification": "pending-symbol-and-ownership-comparison"
-    },
-    {
-      "hash": "0F9E91539E4766D61FFD58D3DAF0CA05CE5AE7732BFC89D8552B1635FB4D697D",
-      "tokens": 27,
-      "bodyTokens": "=> EmulationSettingsFieldControlFunctions . CreateVideoChoice ( id , resources , selected , changed , 160 , new Thickness ( 0 , 3 , 0 , 9 ) )",
-      "current": [
-        {
-          "path": "src/GWGUI.App/Views/Controls/Emulation/Options/EmulationLedMatrixSettingsBlock.cs",
-          "name": "Choice",
-          "owner": "EmulationLedMatrixSettingsBlock",
-          "kind": "MethodDeclaration",
-          "line": 40,
-          "parameters": "(string id, IReadOnlyDictionary<T, string> resources, T selected, Action<T> changed)",
-          "tokens": 27,
-          "bodyTokens": "=> EmulationSettingsFieldControlFunctions . CreateVideoChoice ( id , resources , selected , changed , 160 , new Thickness ( 0 , 3 , 0 , 9 ) )",
-          "hash": "0F9E91539E4766D61FFD58D3DAF0CA05CE5AE7732BFC89D8552B1635FB4D697D",
-          "shape": "519128CDC3FEAFEDDEC05B188BE51F212A150ED384D70904B17FF6601832D17A"
-        },
-        {
-          "path": "src/GWGUI.App/Views/Controls/Emulation/Options/EmulationSegmentDisplaySettingsBlock.cs",
-          "name": "Choice",
-          "owner": "EmulationSegmentDisplaySettingsBlock",
-          "kind": "MethodDeclaration",
-          "line": 69,
-          "parameters": "(string id, IReadOnlyDictionary<T, string> resources, T selected, Action<T> changed)",
-          "tokens": 27,
-          "bodyTokens": "=> EmulationSettingsFieldControlFunctions . CreateVideoChoice ( id , resources , selected , changed , 160 , new Thickness ( 0 , 3 , 0 , 9 ) )",
-          "hash": "0F9E91539E4766D61FFD58D3DAF0CA05CE5AE7732BFC89D8552B1635FB4D697D",
-          "shape": "519128CDC3FEAFEDDEC05B188BE51F212A150ED384D70904B17FF6601832D17A"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"

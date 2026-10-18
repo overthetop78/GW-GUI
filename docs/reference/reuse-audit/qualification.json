@@ -8249,10 +8249,10 @@
     "afterProductBuild": "005e3c677"
   },
   "shortMethodInventory": {
-    "snapshot": "344734196bcfd65788d864bf6dd352a047ad6adc",
+    "snapshot": "deed2f10e50fbaa643f43b061f080a5b3a803a34",
     "files": 7317,
-    "bodyCount": 9476,
-    "exactGroups": 772,
+    "bodyCount": 9475,
+    "exactGroups": 771,
     "renamedGroups": 364,
     "status": "Incomplete; existing queue/empty-method qualifications retained; 29 factory selections now shared and verified; sector source reader-selection stage shared, remaining typed writer ownership pending.",
     "trackedCSharpCoverage": "Full current scan includes new MediaMetadataFunctions file; source file count 7315, hidden paths included."
@@ -10681,6 +10681,107 @@
     "ast": "Fourteen local aliases removed; reversing the 71 call-name changes restores every other token in six blocks. Five shared overload bodies retain original policy expressions; existing shared widget-construction members unchanged.",
     "semanticAfter": "App compilation without semantic errors; 71 calls resolve to intended shared overloads, all five overloads resolve to original constructors. Slider default enabled=true preserved, generic Choice constraints preserved.",
     "tests": "Two existing WPF scenarios passed, exit 0: NativeVideoOptionsPreserveTheProcessingPosition and VideoFieldsKeepTheirHelpContent. Numeric/style equivalence separately established by complete AST expansion and original policy checks; no mirror test added.",
-    "resources": "No new widget owner or lifetime code. Existing WPF fixture closes windows/application/dispatcher in finally and joins thread; native-video scenario detaches reusable controls and clears Content in finally; test process exited successfully."
+    "resources": "No new widget owner or lifetime code. Existing WPF fixture closes windows/application/dispatcher in finally and joins thread; native-video scenario detaches reusable controls and clears Content in finally; test process exited successfully.",
+    "subsequentValidation": "Complementary block removes five more aliases and adds only fixed Plasma 36-width preset. Complete token comparison against deed2f10e proves all first-block members remain preserved; two WPF scenarios passed again."
+  },
+  "remainingVideoProfileReuse": {
+    "baseline": "deed2f10e",
+    "before": [
+      {
+        "path": "src/GWGUI.App/Views/Controls/Emulation/Options/EmulationLedMatrixSettingsBlock.cs",
+        "method": "Slider",
+        "width": 42,
+        "parameters": "(string id, int value, Action<int> changed)",
+        "expression": "EmulationSettingsFieldControlFunctions.CreateVideoSlider(id, value, 0, 100, changed, 1, 42, new Thickness(0, 3, 0, 9))",
+        "target": "GWGUI.App.Functions.Views.Emulation.Settings.EmulationSettingsFieldControlFunctions.CreateVideoSlider(string, int, int, int, System.Action<int>, double, double, System.Windows.Thickness, bool)",
+        "sha256": "A0FFA0A0833B11E060566C9C1BD78CED2EF1CCAA4875184D0624BCCBEFBED40D"
+      },
+      {
+        "path": "src/GWGUI.App/Views/Controls/Emulation/Options/EmulationLedMatrixSettingsBlock.cs",
+        "method": "Choice",
+        "width": 160,
+        "parameters": "(string id, IReadOnlyDictionary<T, string> resources, T selected, Action<T> changed)",
+        "expression": "EmulationSettingsFieldControlFunctions.CreateVideoChoice(id, resources, selected, changed, 160, new Thickness(0, 3, 0, 9))",
+        "target": "GWGUI.App.Functions.Views.Emulation.Settings.EmulationSettingsFieldControlFunctions.CreateVideoChoice<T>(string, System.Collections.Generic.IReadOnlyDictionary<T, string>, T, System.Action<T>, double, System.Windows.Thickness)",
+        "sha256": "A0FFA0A0833B11E060566C9C1BD78CED2EF1CCAA4875184D0624BCCBEFBED40D"
+      },
+      {
+        "path": "src/GWGUI.App/Views/Controls/Emulation/Options/EmulationPlasmaSettingsBlock.cs",
+        "method": "Slider",
+        "width": 36,
+        "parameters": "(string id, int value, Action<int> changed)",
+        "expression": "EmulationSettingsFieldControlFunctions.CreateVideoSlider(id, value, 0, 100, changed, 1, 36, new Thickness(0, 3, 0, 9))",
+        "target": "GWGUI.App.Functions.Views.Emulation.Settings.EmulationSettingsFieldControlFunctions.CreateVideoSlider(string, int, int, int, System.Action<int>, double, double, System.Windows.Thickness, bool)",
+        "sha256": "8AD071FA9572CF8BCEA905DE1594A249CD8266ABFE0A06E36D90A2AE0480ED50"
+      },
+      {
+        "path": "src/GWGUI.App/Views/Controls/Emulation/Options/EmulationSegmentDisplaySettingsBlock.cs",
+        "method": "Choice",
+        "width": 160,
+        "parameters": "(string id, IReadOnlyDictionary<T, string> resources, T selected, Action<T> changed)",
+        "expression": "EmulationSettingsFieldControlFunctions.CreateVideoChoice(id, resources, selected, changed, 160, new Thickness(0, 3, 0, 9))",
+        "target": "GWGUI.App.Functions.Views.Emulation.Settings.EmulationSettingsFieldControlFunctions.CreateVideoChoice<T>(string, System.Collections.Generic.IReadOnlyDictionary<T, string>, T, System.Action<T>, double, System.Windows.Thickness)",
+        "sha256": "815CF7078F198FF1CA9AD5D179F9A12F2428E662C82BFC811E9F1AD172B88DCF"
+      },
+      {
+        "path": "src/GWGUI.App/Views/Controls/Emulation/Options/EmulationVectorSettingsBlock.cs",
+        "method": "Slider",
+        "width": 36,
+        "parameters": "(string id, int value, Action<int> changed)",
+        "expression": "EmulationSettingsFieldControlFunctions.CreateVideoSlider(id, value, 0, 100, changed, 1, 36, new Thickness(0, 3, 0, 9))",
+        "target": "GWGUI.App.Functions.Views.Emulation.Settings.EmulationSettingsFieldControlFunctions.CreateVideoSlider(string, int, int, int, System.Action<int>, double, double, System.Windows.Thickness, bool)",
+        "sha256": "96A62233230D79769BF82D47F41802349CCBDCBF863E40926AC886BAE5416495"
+      }
+    ],
+    "origin": {
+      "commit": "41038682f",
+      "path": "src/GWGUI.App/Views/Controls/Emulation/Options/EmulationPlasmaSettingsBlock.cs",
+      "properties": {
+        "Value": "Math.Clamp(value, 0, 100)",
+        "TextWrapping": "TextWrapping.Wrap",
+        "TextAlignment": "TextAlignment.Right",
+        "IsSnapToTickEnabled": "true",
+        "Maximum": "100",
+        "Margin": "new Thickness(0, 0, 0, 4)",
+        "VerticalAlignment": "VerticalAlignment.Center",
+        "Width": "GridLength.Auto",
+        "Text": "LocExtension.Get(EmulationVideoProcessingCatalog.ParameterResourceKeys[id])",
+        "Minimum": "0",
+        "MinWidth": "36",
+        "number.Text": "current.ToString(CultureInfo.CurrentCulture)",
+        "slider.ValueChanged": "(_, _) =>\r\n        {\r\n            var current = (int)slider.Value;\r\n            number.Text = current.ToString(CultureInfo.CurrentCulture);\r\n            changed(current);\r\n        }",
+        "TickFrequency": "1"
+      }
+    },
+    "decision": "Promote original fixed 0-100/36-width Slider profile into existing control owner; retain LED width 42 by passing maximum=100 to existing variable-maximum overload; use existing 160-width Choice overload. Preserve unique margin/choice profiles.",
+    "semantic": "App source without errors; five aliases resolve to shared existing widget constructors.",
+    "excluded": "Vector and LED group margins differ; Vector 180-width and FixedPixel 180-width/different-margin choices remain local profile adapters.",
+    "state": "verified",
+    "after": [
+      {
+        "path": "src/GWGUI.App/Views/Controls/Emulation/Options/EmulationLedMatrixSettingsBlock.cs",
+        "sha256": "D4820B29660F094B3C4B6A67448AB219EC1420DE8831B8B067B73506698B9A00",
+        "allOtherTokensIdentical": true
+      },
+      {
+        "path": "src/GWGUI.App/Views/Controls/Emulation/Options/EmulationPlasmaSettingsBlock.cs",
+        "sha256": "A6ACF900C3819AD463BC1E02C332F810B54699A4ACA8C6BAA699E0BBA357528D",
+        "allOtherTokensIdentical": true
+      },
+      {
+        "path": "src/GWGUI.App/Views/Controls/Emulation/Options/EmulationSegmentDisplaySettingsBlock.cs",
+        "sha256": "5FC96F62EF3E3A26A4A4EC0C2C324FE47A7F64DAEB6971AA490FAA9CD4C1A7D2",
+        "allOtherTokensIdentical": true
+      },
+      {
+        "path": "src/GWGUI.App/Views/Controls/Emulation/Options/EmulationVectorSettingsBlock.cs",
+        "sha256": "6A21F5FAEDBAF00E5A69311A1D30D2F35AE61C559D6165AD79D902FA26BD8C27",
+        "allOtherTokensIdentical": true
+      }
+    ],
+    "ast": "Five local aliases removed, 26 calls updated. Reversing call names and explicit LED maximum=100 restores all other source tokens in four blocks. Fixed 36-width shared overload retains original Plasma expression; all other shared creator members unchanged.",
+    "semanticAfter": "App without semantic errors. 21 Slider and 5 Choice calls resolve to expected shared overloads. LED maximum=100 yields existing tick 1/width 42; fixed 36-width overload reaches original nine-parameter creator, enabled default true.",
+    "tests": "Same two existing WPF scenarios passed again after these additional changes, exit 0; no new redundant test. Original style expressions, callbacks and distinct profiles also checked by AST/source symbols.",
+    "resources": "No lifetime code changed; same original shared UI creators and existing fixture cleanup in finally/Shutdown/Join."
   }
 }

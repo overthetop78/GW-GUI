@@ -23,7 +23,7 @@ internal static class EmulationSegmentDisplaySettingsBlock
         groups.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
 
         EmulationSettingsLayout.AddVideoProcessingGroup(groups, EmulationResourceKeys.VideoSegmentDisplayGroupCells, 0, 0,
-            Choice(EmulationVideoProcessingCatalog.SegmentDisplayLayout, EmulationVideoProcessingCatalog.SegmentDisplayLayoutResourceKeys, value.Layout, choice => changed(current => current with { Layout = choice })),
+            EmulationSettingsFieldControlFunctions.CreateVideoChoice(EmulationVideoProcessingCatalog.SegmentDisplayLayout, EmulationVideoProcessingCatalog.SegmentDisplayLayoutResourceKeys, value.Layout, choice => changed(current => current with { Layout = choice })),
             EmulationSettingsFieldControlFunctions.CreateVideoSlider(EmulationVideoProcessingCatalog.SegmentDisplayCellSize, value.CellSize, 100, number => changed(current => current with { CellSize = number })),
             EmulationSettingsFieldControlFunctions.CreateVideoSlider(EmulationVideoProcessingCatalog.SegmentDisplayHorizontalGap, value.HorizontalGap, 100, number => changed(current => current with { HorizontalGap = number })),
             EmulationSettingsFieldControlFunctions.CreateVideoSlider(EmulationVideoProcessingCatalog.SegmentDisplayVerticalGap, value.VerticalGap, 100, number => changed(current => current with { VerticalGap = number })));
@@ -31,12 +31,12 @@ internal static class EmulationSegmentDisplaySettingsBlock
         EmulationSettingsLayout.AddVideoProcessingGroup(groups, EmulationResourceKeys.VideoSegmentDisplayGroupGeometry, 0, 1,
             EmulationSettingsFieldControlFunctions.CreateVideoSlider(EmulationVideoProcessingCatalog.SegmentDisplayThickness, value.Thickness, 100, number => changed(current => current with { Thickness = number })),
             EmulationSettingsFieldControlFunctions.CreateVideoSlider(EmulationVideoProcessingCatalog.SegmentDisplaySegmentGap, value.SegmentGap, 100, number => changed(current => current with { SegmentGap = number })),
-            Choice(EmulationVideoProcessingCatalog.SegmentDisplayEndShape, EmulationVideoProcessingCatalog.SegmentDisplayEndShapeResourceKeys, value.EndShape, choice => changed(current => current with { EndShape = choice })),
+            EmulationSettingsFieldControlFunctions.CreateVideoChoice(EmulationVideoProcessingCatalog.SegmentDisplayEndShape, EmulationVideoProcessingCatalog.SegmentDisplayEndShapeResourceKeys, value.EndShape, choice => changed(current => current with { EndShape = choice })),
             Check(EmulationVideoProcessingCatalog.SegmentDisplayDecimalPoint, value.DecimalPoint, enabled => changed(current => current with { DecimalPoint = enabled })),
             Check(EmulationVideoProcessingCatalog.SegmentDisplayColon, value.Colon, enabled => changed(current => current with { Colon = enabled })));
 
         EmulationSettingsLayout.AddVideoProcessingGroup(groups, EmulationResourceKeys.VideoSegmentDisplayGroupEmission, 1, 0,
-            Choice(EmulationVideoProcessingCatalog.SegmentDisplayColor, EmulationVideoProcessingCatalog.SegmentDisplayColorResourceKeys, value.Color, choice => changed(current => current with { Color = choice })),
+            EmulationSettingsFieldControlFunctions.CreateVideoChoice(EmulationVideoProcessingCatalog.SegmentDisplayColor, EmulationVideoProcessingCatalog.SegmentDisplayColorResourceKeys, value.Color, choice => changed(current => current with { Color = choice })),
             EmulationSettingsFieldControlFunctions.CreateVideoSlider(EmulationVideoProcessingCatalog.SegmentDisplayBrightness, value.Brightness, 100, number => changed(current => current with { Brightness = number })),
             EmulationSettingsFieldControlFunctions.CreateVideoSlider(EmulationVideoProcessingCatalog.SegmentDisplayActivationThreshold, value.ActivationThreshold, 100, number => changed(current => current with { ActivationThreshold = number })),
             EmulationSettingsFieldControlFunctions.CreateVideoSlider(EmulationVideoProcessingCatalog.SegmentDisplayContrast, value.Contrast, 100, number => changed(current => current with { Contrast = number })),
@@ -65,8 +65,4 @@ internal static class EmulationSegmentDisplaySettingsBlock
         check.Unchecked += (_, _) => changed(false);
         return EmulationSettingsFieldControlFunctions.CreateVideoField(id, check, new Thickness(0, 3, 0, 9));
     }
-
-    private static FrameworkElement Choice<T>(string id, IReadOnlyDictionary<T, string> resources, T selected, Action<T> changed)
-        where T : struct, Enum
-        => EmulationSettingsFieldControlFunctions.CreateVideoChoice(id, resources, selected, changed, 160, new Thickness(0, 3, 0, 9));
 }
