@@ -23,12 +23,20 @@ internal sealed class ExternalCoreLibrary : IDisposable
         return readInfo(nativeInfo);
     }
 
-    internal ExternalCoreLibrary(string absolutePath)
+    internal static void ValidatePath(string absolutePath, Func<Exception> requireAbsolute,
+        Func<string, Exception> missingFile)
     {
         if (!Path.IsPathFullyQualified(absolutePath))
-            throw new ArgumentException(ExternalCoreErrorMessages.PathMustBeAbsolute, nameof(absolutePath));
+            throw requireAbsolute();
         if (!File.Exists(absolutePath))
-            throw new FileNotFoundException(ExternalCoreErrorMessages.FileMissing, absolutePath);
+            throw missingFile(absolutePath);
+    }
+
+    internal ExternalCoreLibrary(string absolutePath)
+    {
+        ValidatePath(absolutePath,
+            static () => new ArgumentException(ExternalCoreErrorMessages.PathMustBeAbsolute, nameof(absolutePath)),
+            static path => new FileNotFoundException(ExternalCoreErrorMessages.FileMissing, path));
         _handle = NativeLibrary.Load(absolutePath);
     }
 

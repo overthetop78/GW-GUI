@@ -10,10 +10,9 @@ internal static class ExternalCoreProbe
 {
     internal static ExternalCoreInfo Inspect(string absolutePath, Emulator expectedEmulator)
     {
-        if (!Path.IsPathFullyQualified(absolutePath))
-            throw new EmulationException(ErrorCategory.Core, ErrorCode.CoreRejected, ErrorMessages.CorePathMustBeAbsolute);
-        if (!File.Exists(absolutePath))
-            throw new EmulationException(ErrorCategory.Core, ErrorCode.CoreNotFound, ErrorMessages.CoreFileMissing, new Dictionary<string, string> { [ErrorContextConstants.Path] = absolutePath });
+        ExternalCoreLibrary.ValidatePath(absolutePath,
+            static () => new EmulationException(ErrorCategory.Core, ErrorCode.CoreRejected, ErrorMessages.CorePathMustBeAbsolute),
+            static missingPath => new EmulationException(ErrorCategory.Core, ErrorCode.CoreNotFound, ErrorMessages.CoreFileMissing, new Dictionary<string, string> { [ErrorContextConstants.Path] = missingPath }));
 
         try
         {

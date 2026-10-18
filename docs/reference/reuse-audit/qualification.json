@@ -1597,7 +1597,8 @@
         "metadata": true
       }
     ],
-    "runtime": "No native library loaded for verification"
+    "runtime": "No native library loaded for verification",
+    "subsequentPathValidation": "Later path guard extraction is recorded in probePathValidationReuse against 7fd03c5ac; SDK Inspect body/library ownership and probe catch/metadata code remain unchanged. Initial probe metadata/catch responsibilities remain under audit."
   },
   "runtimeStatusReuse": {
     "origin": "AtariRuntimeFunctions before Amstrad, ac7292d86^",
@@ -8249,13 +8250,13 @@
     "afterProductBuild": "005e3c677"
   },
   "shortMethodInventory": {
-    "snapshot": "2e8ff48f54ea2ff95748a66aa4d42df5a2cd540a",
-    "files": 7323,
-    "bodyCount": 9488,
+    "snapshot": "7fd03c5acd1ccdfc7b27d14447bf85298788dd3d",
+    "files": 7324,
+    "bodyCount": 9489,
     "exactGroups": 774,
     "renamedGroups": 365,
     "status": "Incomplete; existing queue/empty-method qualifications retained; 29 factory selections now shared and verified; sector source reader-selection stage shared, remaining typed writer ownership pending.",
-    "trackedCSharpCoverage": "Full current C# scan: 7323 files including managed architecture tests; native probe and runtime groups remain under audit."
+    "trackedCSharpCoverage": "Full current C# scan: 7324 files. Probe path guard stage shared, with catches/metadata and broader runtime groups still under review."
   },
   "hardwareIdentityComparisonReuse": {
     "snapshot": "a4760e868",
@@ -11764,5 +11765,307 @@
     "ast": "Fourteen calls expand exactly to original conditions/throws, with the same property read, expected constant, Ordinal and error expression. Message thunks are static and only invoked inside the refusing branch. All other tokens of fourteen services and pre-existing diagnostic members unchanged; Atari/Acorn unchanged.",
     "semanticAfter": "SDK and all 23 modules: zero semantic errors. Fourteen calls resolve to original diagnostic owner, same x64 constants and deferred Func<string> providers: ten original properties, four original fields.",
     "tests": "Seventeen tests passed, exit 0: seven new managed ArchitectureValidation cases for ordinal identity/rejection, null/unknown values, provider count/timing and provider failure, plus ten existing CoreInstallationFlowTests. No files, external DLL fixture, windows, threads or processes created by these scenarios."
+  },
+  "probePathValidationReuse": {
+    "state": "verified; initial path stage only",
+    "snapshot": "7fd03c5ac",
+    "before": [
+      {
+        "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Functions/CoreFunctions.ExternalProbe.cs",
+        "sha256": "2739C8279446A97B6FEC0B68E197FA2A5422900C5B03A9029B5D4ABF66DD4743",
+        "ownerConstructor": false,
+        "conditions": [
+          "! Path . IsPathFullyQualified ( absolutePath )",
+          "! File . Exists ( absolutePath )"
+        ],
+        "errors": [
+          "GWGUI.Emulation.Sharp.Common.Exceptions.EmulationException.EmulationException(GWGUI.Emulation.Sharp.Common.Enums.ErrorCategory, GWGUI.Emulation.Sharp.Common.Enums.ErrorCode, string, System.Collections.Generic.IReadOnlyDictionary<string, string>?, System.Exception?, bool)",
+          "GWGUI.Emulation.Sharp.Common.Exceptions.EmulationException.EmulationException(GWGUI.Emulation.Sharp.Common.Enums.ErrorCategory, GWGUI.Emulation.Sharp.Common.Enums.ErrorCode, string, System.Collections.Generic.IReadOnlyDictionary<string, string>?, System.Exception?, bool)"
+        ],
+        "guardsBeforeTry": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Functions/CoreFunctions.ExternalProbe.cs",
+        "sha256": "B4342265D2083E88880EE0E4BAEBC4F0E17382067122EC29583553C182CD82AC",
+        "ownerConstructor": false,
+        "conditions": [
+          "! Path . IsPathFullyQualified ( absolutePath )",
+          "! File . Exists ( absolutePath )"
+        ],
+        "errors": [
+          "GWGUI.Emulation.Fairchild.Common.Exceptions.EmulationException.EmulationException(GWGUI.Emulation.Fairchild.Common.Enums.ErrorCategory, GWGUI.Emulation.Fairchild.Common.Enums.ErrorCode, string, System.Collections.Generic.IReadOnlyDictionary<string, string>?, System.Exception?, bool)",
+          "GWGUI.Emulation.Fairchild.Common.Exceptions.EmulationException.EmulationException(GWGUI.Emulation.Fairchild.Common.Enums.ErrorCategory, GWGUI.Emulation.Fairchild.Common.Enums.ErrorCode, string, System.Collections.Generic.IReadOnlyDictionary<string, string>?, System.Exception?, bool)"
+        ],
+        "guardsBeforeTry": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Functions/CoreFunctions.ExternalProbe.cs",
+        "sha256": "ECA9C30D21CF35BEB31BAD52601A038CCA612F1983BC47CCC79AA1ADF07E344D",
+        "ownerConstructor": false,
+        "conditions": [
+          "! Path . IsPathFullyQualified ( absolutePath )",
+          "! File . Exists ( absolutePath )"
+        ],
+        "errors": [
+          "GWGUI.Emulation.Coleco.Common.Exceptions.EmulationException.EmulationException(GWGUI.Emulation.Coleco.Common.Enums.ErrorCategory, GWGUI.Emulation.Coleco.Common.Enums.ErrorCode, string, System.Collections.Generic.IReadOnlyDictionary<string, string>?, System.Exception?, bool)",
+          "GWGUI.Emulation.Coleco.Common.Exceptions.EmulationException.EmulationException(GWGUI.Emulation.Coleco.Common.Enums.ErrorCategory, GWGUI.Emulation.Coleco.Common.Enums.ErrorCode, string, System.Collections.Generic.IReadOnlyDictionary<string, string>?, System.Exception?, bool)"
+        ],
+        "guardsBeforeTry": true
+      },
+      {
+        "path": "src/GWGUI.Emulation/Services/ExternalCoreLibrary.cs",
+        "sha256": "30A356748867734448349A5C2BA7434A4F574BB44BA4D52F87F0B25DA8ED4823",
+        "ownerConstructor": true,
+        "conditions": [
+          "! Path . IsPathFullyQualified ( absolutePath )",
+          "! File . Exists ( absolutePath )"
+        ],
+        "errors": [
+          "System.ArgumentException.ArgumentException(string?, string?)",
+          "System.IO.FileNotFoundException.FileNotFoundException(string?, string?)"
+        ],
+        "guardsBeforeTry": false
+      },
+      {
+        "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Functions/CoreFunctions.ExternalProbe.cs",
+        "sha256": "C6C0DCA317889F25BD4D41F1C48744B05F85E8A3D1F796C71F3E85135E9E1465",
+        "ownerConstructor": false,
+        "conditions": [
+          "! Path . IsPathFullyQualified ( absolutePath )",
+          "! File . Exists ( absolutePath )"
+        ],
+        "errors": [
+          "GWGUI.Emulation.Atari.Emulators.Common.Exceptions.EmulationException.EmulationException(GWGUI.Emulation.Atari.Emulators.Common.Enums.ErrorCategory, GWGUI.Emulation.Atari.Emulators.Common.Enums.ErrorCode, string, System.Collections.Generic.IReadOnlyDictionary<string, string>?, System.Exception?, bool)",
+          "GWGUI.Emulation.Atari.Emulators.Common.Exceptions.EmulationException.EmulationException(GWGUI.Emulation.Atari.Emulators.Common.Enums.ErrorCategory, GWGUI.Emulation.Atari.Emulators.Common.Enums.ErrorCode, string, System.Collections.Generic.IReadOnlyDictionary<string, string>?, System.Exception?, bool)"
+        ],
+        "guardsBeforeTry": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Functions/CoreFunctions.ExternalProbe.cs",
+        "sha256": "1841332661BC2B74A4CC3DF043831B6FFCEB193AE29D04523638771DC1E512A9",
+        "ownerConstructor": false,
+        "conditions": [
+          "! Path . IsPathFullyQualified ( absolutePath )",
+          "! File . Exists ( absolutePath )"
+        ],
+        "errors": [
+          "GWGUI.Emulation.Acorn.Common.Exceptions.EmulationException.EmulationException(GWGUI.Emulation.Acorn.Common.Enums.ErrorCategory, GWGUI.Emulation.Acorn.Common.Enums.ErrorCode, string, System.Collections.Generic.IReadOnlyDictionary<string, string>?, System.Exception?, bool)",
+          "GWGUI.Emulation.Acorn.Common.Exceptions.EmulationException.EmulationException(GWGUI.Emulation.Acorn.Common.Enums.ErrorCategory, GWGUI.Emulation.Acorn.Common.Enums.ErrorCode, string, System.Collections.Generic.IReadOnlyDictionary<string, string>?, System.Exception?, bool)"
+        ],
+        "guardsBeforeTry": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Functions/CoreFunctions.ExternalProbe.cs",
+        "sha256": "42E6B8AA7547DCB2D35E0F0F49B835828F2064E295116A8827C06CDEA3AFD2D5",
+        "ownerConstructor": false,
+        "conditions": [
+          "! Path . IsPathFullyQualified ( absolutePath )",
+          "! File . Exists ( absolutePath )"
+        ],
+        "errors": [
+          "GWGUI.Emulation.Philips.Common.Exceptions.EmulationException.EmulationException(GWGUI.Emulation.Philips.Common.Enums.ErrorCategory, GWGUI.Emulation.Philips.Common.Enums.ErrorCode, string, System.Collections.Generic.IReadOnlyDictionary<string, string>?, System.Exception?, bool)",
+          "GWGUI.Emulation.Philips.Common.Exceptions.EmulationException.EmulationException(GWGUI.Emulation.Philips.Common.Enums.ErrorCategory, GWGUI.Emulation.Philips.Common.Enums.ErrorCode, string, System.Collections.Generic.IReadOnlyDictionary<string, string>?, System.Exception?, bool)"
+        ],
+        "guardsBeforeTry": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Functions/CoreFunctions.ExternalProbe.cs",
+        "sha256": "7291AD0E03D5EA198A9DF2945FF92484743EBE8CCC5E577B02CDD4DFCA53D756",
+        "ownerConstructor": false,
+        "conditions": [
+          "! Path . IsPathFullyQualified ( absolutePath )",
+          "! File . Exists ( absolutePath )"
+        ],
+        "errors": [
+          "GWGUI.Emulation.Apple.Common.Exceptions.EmulationException.EmulationException(GWGUI.Emulation.Apple.Common.Enums.ErrorCategory, GWGUI.Emulation.Apple.Common.Enums.ErrorCode, string, System.Collections.Generic.IReadOnlyDictionary<string, string>?, System.Exception?, bool)",
+          "GWGUI.Emulation.Apple.Common.Exceptions.EmulationException.EmulationException(GWGUI.Emulation.Apple.Common.Enums.ErrorCategory, GWGUI.Emulation.Apple.Common.Enums.ErrorCode, string, System.Collections.Generic.IReadOnlyDictionary<string, string>?, System.Exception?, bool)"
+        ],
+        "guardsBeforeTry": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Functions/CoreFunctions.ExternalProbe.cs",
+        "sha256": "99D142BE0D82061DA1A4429F2C22EA7C79B9A34B8C971A9C26D62F1637B4A1EB",
+        "ownerConstructor": false,
+        "conditions": [
+          "! Path . IsPathFullyQualified ( absolutePath )",
+          "! File . Exists ( absolutePath )"
+        ],
+        "errors": [
+          "GWGUI.Emulation.Bandai.Common.Exceptions.EmulationException.EmulationException(GWGUI.Emulation.Bandai.Common.Enums.ErrorCategory, GWGUI.Emulation.Bandai.Common.Enums.ErrorCode, string, System.Collections.Generic.IReadOnlyDictionary<string, string>?, System.Exception?, bool)",
+          "GWGUI.Emulation.Bandai.Common.Exceptions.EmulationException.EmulationException(GWGUI.Emulation.Bandai.Common.Enums.ErrorCategory, GWGUI.Emulation.Bandai.Common.Enums.ErrorCode, string, System.Collections.Generic.IReadOnlyDictionary<string, string>?, System.Exception?, bool)"
+        ],
+        "guardsBeforeTry": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Functions/CoreFunctions.ExternalProbe.cs",
+        "sha256": "B628A429C29D8B3ED1BAFBCDBC22887D7B2EF771015C2BE152963BCC280968B2",
+        "ownerConstructor": false,
+        "conditions": [
+          "! Path . IsPathFullyQualified ( absolutePath )",
+          "! File . Exists ( absolutePath )"
+        ],
+        "errors": [
+          "GWGUI.Emulation.Sinclair.Common.Exceptions.EmulationException.EmulationException(GWGUI.Emulation.Sinclair.Common.Enums.ErrorCategory, GWGUI.Emulation.Sinclair.Common.Enums.ErrorCode, string, System.Collections.Generic.IReadOnlyDictionary<string, string>?, System.Exception?, bool)",
+          "GWGUI.Emulation.Sinclair.Common.Exceptions.EmulationException.EmulationException(GWGUI.Emulation.Sinclair.Common.Enums.ErrorCategory, GWGUI.Emulation.Sinclair.Common.Enums.ErrorCode, string, System.Collections.Generic.IReadOnlyDictionary<string, string>?, System.Exception?, bool)"
+        ],
+        "guardsBeforeTry": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Functions/CoreFunctions.ExternalProbe.cs",
+        "sha256": "9422FE2E41C56CCF578EDDB2ACF1B695DA8B7E71B7F13989610A6D7669F1F0FA",
+        "ownerConstructor": false,
+        "conditions": [
+          "! Path . IsPathFullyQualified ( absolutePath )",
+          "! File . Exists ( absolutePath )"
+        ],
+        "errors": [
+          "GWGUI.Emulation.Mattel.Common.Exceptions.EmulationException.EmulationException(GWGUI.Emulation.Mattel.Common.Enums.ErrorCategory, GWGUI.Emulation.Mattel.Common.Enums.ErrorCode, string, System.Collections.Generic.IReadOnlyDictionary<string, string>?, System.Exception?, bool)",
+          "GWGUI.Emulation.Mattel.Common.Exceptions.EmulationException.EmulationException(GWGUI.Emulation.Mattel.Common.Enums.ErrorCategory, GWGUI.Emulation.Mattel.Common.Enums.ErrorCode, string, System.Collections.Generic.IReadOnlyDictionary<string, string>?, System.Exception?, bool)"
+        ],
+        "guardsBeforeTry": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Functions/CoreFunctions.ExternalProbe.cs",
+        "sha256": "86635ADCAE894C1A4098A021EC9D52D7793D1220AC3A639B219FD0A44BB6359F",
+        "ownerConstructor": false,
+        "conditions": [
+          "! Path . IsPathFullyQualified ( absolutePath )",
+          "! File . Exists ( absolutePath )"
+        ],
+        "errors": [
+          "GWGUI.Emulation.Snk.Common.Exceptions.EmulationException.EmulationException(GWGUI.Emulation.Snk.Common.Enums.ErrorCategory, GWGUI.Emulation.Snk.Common.Enums.ErrorCode, string, System.Collections.Generic.IReadOnlyDictionary<string, string>?, System.Exception?, bool)",
+          "GWGUI.Emulation.Snk.Common.Exceptions.EmulationException.EmulationException(GWGUI.Emulation.Snk.Common.Enums.ErrorCategory, GWGUI.Emulation.Snk.Common.Enums.ErrorCode, string, System.Collections.Generic.IReadOnlyDictionary<string, string>?, System.Exception?, bool)"
+        ],
+        "guardsBeforeTry": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Functions/CoreFunctions.ExternalProbe.cs",
+        "sha256": "60779D46DF889697B39947CAF410D3E9DBA0CA2F0E254F71A516CABD7924F59A",
+        "ownerConstructor": false,
+        "conditions": [
+          "! Path . IsPathFullyQualified ( absolutePath )",
+          "! File . Exists ( absolutePath )"
+        ],
+        "errors": [
+          "GWGUI.Emulation.Epoch.Common.Exceptions.EmulationException.EmulationException(GWGUI.Emulation.Epoch.Common.Enums.ErrorCategory, GWGUI.Emulation.Epoch.Common.Enums.ErrorCode, string, System.Collections.Generic.IReadOnlyDictionary<string, string>?, System.Exception?, bool)",
+          "GWGUI.Emulation.Epoch.Common.Exceptions.EmulationException.EmulationException(GWGUI.Emulation.Epoch.Common.Enums.ErrorCategory, GWGUI.Emulation.Epoch.Common.Enums.ErrorCode, string, System.Collections.Generic.IReadOnlyDictionary<string, string>?, System.Exception?, bool)"
+        ],
+        "guardsBeforeTry": true
+      }
+    ],
+    "origin": "aeccd8ee0:src/GWGUI.Emulation/Common/ExternalCoreLibrary.cs; verified ancestor of Atari probe 2a145e278. Reuse original constructor conditions and adapt exception factories, not later probe copies.",
+    "semantic": "SDK and 23 modules zero semantic errors. Thirteen pairs resolve Path.IsPathFullyQualified(string) then File.Exists(string), with identical absolutePath input. Twelve probes put both guards before try. Exception constructors and module context remain distinct.",
+    "decision": "Add ValidatePath to existing ExternalCoreLibrary and use it in constructor plus twelve probes. Factories defer all exception/message/context construction. Preserve two successive validation passes already present (probe, then constructor), guards outside catches, and native handle ownership.",
+    "excluded": "ConfigurationFileAccessFunctions resolves relative configuration paths; DifferencingImageStreams validates parent locator/UTC/stream constraints. Neither is this absolute-core-file validation. Constructor and Inspect/using continue to own native load/free.",
+    "remaining": "Only path stage qualified here. Probe catches, identity metadata and typed result adaptation remain separate review; no broad native-probe completion claim.",
+    "after": [
+      {
+        "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Functions/CoreFunctions.ExternalProbe.cs",
+        "sha256": "BAC6E8EAE4CCDC3F04F582E5AC8BF0C1E4234798CEA4A21C42BB9F146AA4CD91",
+        "conditionsIdentical": true,
+        "deferredExceptionAndContextIdentical": true,
+        "allOtherTokensIdentical": true,
+        "scope": "initial path guards only; try/catches/metadata unchanged"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Functions/CoreFunctions.ExternalProbe.cs",
+        "sha256": "6DED46F551019CC8B5809FD00315ADA1B7EF3994D55FBAC2E3B618A7C4F5D1EC",
+        "conditionsIdentical": true,
+        "deferredExceptionAndContextIdentical": true,
+        "allOtherTokensIdentical": true,
+        "scope": "initial path guards only; try/catches/metadata unchanged"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Functions/CoreFunctions.ExternalProbe.cs",
+        "sha256": "F22B26E176BAB473FEEE42FEB5FBCBF10C99D03132D958568F75F99ED63429E9",
+        "conditionsIdentical": true,
+        "deferredExceptionAndContextIdentical": true,
+        "allOtherTokensIdentical": true,
+        "scope": "initial path guards only; try/catches/metadata unchanged"
+      },
+      {
+        "path": "src/GWGUI.Emulation/Services/ExternalCoreLibrary.cs",
+        "sha256": "80F682F396BD898F5CE9B1B15DCCCEAA2E777FA5DEB4DE312E596ABC75BF1845",
+        "conditionsIdentical": true,
+        "deferredExceptionAndContextIdentical": true,
+        "allOtherTokensIdentical": true,
+        "scope": "constructor only; Inspect/Resolve/Dispose/native load/free unchanged"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Functions/CoreFunctions.ExternalProbe.cs",
+        "sha256": "505C130DB6808AEA7DC0DEA2B708191D0CA2F4A8FDC209D79D921276A7E1FA54",
+        "conditionsIdentical": true,
+        "deferredExceptionAndContextIdentical": true,
+        "allOtherTokensIdentical": true,
+        "scope": "initial path guards only; try/catches/metadata unchanged"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Functions/CoreFunctions.ExternalProbe.cs",
+        "sha256": "71B7A6AC4EA9CE2B42174AADFD3DD81E68B85FBCE1301EDC0D61CC555B88C959",
+        "conditionsIdentical": true,
+        "deferredExceptionAndContextIdentical": true,
+        "allOtherTokensIdentical": true,
+        "scope": "initial path guards only; try/catches/metadata unchanged"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Functions/CoreFunctions.ExternalProbe.cs",
+        "sha256": "4C39751470DB8EE0A912789DE738C2D33EEDEF3BFBD8301C704AE4C28D8124AC",
+        "conditionsIdentical": true,
+        "deferredExceptionAndContextIdentical": true,
+        "allOtherTokensIdentical": true,
+        "scope": "initial path guards only; try/catches/metadata unchanged"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Functions/CoreFunctions.ExternalProbe.cs",
+        "sha256": "4DEB774A44364CD627EAB6E19011C5450C6D3E1607040DCDBAA047866D1157E7",
+        "conditionsIdentical": true,
+        "deferredExceptionAndContextIdentical": true,
+        "allOtherTokensIdentical": true,
+        "scope": "initial path guards only; try/catches/metadata unchanged"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Functions/CoreFunctions.ExternalProbe.cs",
+        "sha256": "A132FE8DD81B5F1BFFF62665413ACA1861F24E326C3B3FBCF010537BE5A5AA44",
+        "conditionsIdentical": true,
+        "deferredExceptionAndContextIdentical": true,
+        "allOtherTokensIdentical": true,
+        "scope": "initial path guards only; try/catches/metadata unchanged"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Functions/CoreFunctions.ExternalProbe.cs",
+        "sha256": "E4E8134E93781A84BFFF1B26E597C1D25B4DCC76610113CFD9D850BED47B88E5",
+        "conditionsIdentical": true,
+        "deferredExceptionAndContextIdentical": true,
+        "allOtherTokensIdentical": true,
+        "scope": "initial path guards only; try/catches/metadata unchanged"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Functions/CoreFunctions.ExternalProbe.cs",
+        "sha256": "791F39EFF27557CA181D7FEC6B69197D2DEF5879CB4071111F1A7989FE0B434A",
+        "conditionsIdentical": true,
+        "deferredExceptionAndContextIdentical": true,
+        "allOtherTokensIdentical": true,
+        "scope": "initial path guards only; try/catches/metadata unchanged"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Functions/CoreFunctions.ExternalProbe.cs",
+        "sha256": "8727D25651FB3A7DB9A266A3D84197E4C9349438DC9B2180E2A989C3E8650A3F",
+        "conditionsIdentical": true,
+        "deferredExceptionAndContextIdentical": true,
+        "allOtherTokensIdentical": true,
+        "scope": "initial path guards only; try/catches/metadata unchanged"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Functions/CoreFunctions.ExternalProbe.cs",
+        "sha256": "917C7447130CA0A05F093F6BDE134A7375BDD1244ED64F61F40C1FC7B0CF0A89",
+        "conditionsIdentical": true,
+        "deferredExceptionAndContextIdentical": true,
+        "allOtherTokensIdentical": true,
+        "scope": "initial path guards only; try/catches/metadata unchanged"
+      }
+    ],
+    "ast": "Thirteen pairs retain original Path.IsPathFullyQualified/File.Exists predicates and exception expressions after substituting static factory path parameters. All other tokens of twelve probes and library class unchanged after restoring guards/removing new method. Constructor still loads only after validation; probes keep guards outside try and constructor retains second validation pass.",
+    "semanticAfter": "SDK and all 23 modules zero semantic errors. Thirteen validations resolve to existing ExternalCoreLibrary owner; twenty-six exception constructor signatures unchanged. Lazy factories convert to Func<Exception>/Func<string,Exception>, preserving every module-specific error and SDK default types.",
+    "tests": "Twenty-four tests passed, exit 0: seven new CoreLibraryPathValidation cases, seven ArchitectureValidation cases and ten existing CoreInstallationFlowTests. Relative/drive-relative/root-relative/empty paths and directory roots exercise refusal/order/context/factory failures; no file created or read, no DLL fixture or native library loaded. Success-path source conditions separately preserved by AST."
   }
 }
