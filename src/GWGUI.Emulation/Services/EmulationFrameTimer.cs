@@ -8,6 +8,17 @@ namespace GWGUI.Emulation.Services;
 
 internal sealed class EmulationFrameTimer : IDisposable
 {
+    internal static long WaitForNextFrame(long nextFrame, double framesPerSecond,
+        TimeProvider clock, Action<TimeSpan> sleep)
+    {
+        var frameDuration = TimeSpan.FromSeconds(1 / Math.Clamp(framesPerSecond, 1, 1000));
+        nextFrame += (long)(frameDuration.TotalSeconds * clock.TimestampFrequency);
+        var remaining = clock.GetElapsedTime(clock.GetTimestamp(), nextFrame);
+        if (remaining > TimeSpan.Zero) sleep(remaining);
+        else nextFrame = clock.GetTimestamp();
+        return nextFrame;
+    }
+
     internal static void RunLoop(long nextFrame, object gate, ConcurrentQueue<EmulationMachineCommand> commands,
         Func<bool> isPaused, Action runFrame, Func<double> framesPerSecond,
         Func<long, double, long> nextFrameTimestamp, Action<long, CancellationToken> waitUntil,

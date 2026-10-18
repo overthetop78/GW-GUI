@@ -85,11 +85,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
                     AudioChunkReady?.Invoke(this, audio);
                 }
 
-                var frameDuration = TimeSpan.FromSeconds(MachineConstants.SecondsPerFrame / Math.Clamp(_core.FramesPerSecond, MachineConstants.MinimumFramesPerSecond, MachineConstants.MaximumFramesPerSecond));
-                nextFrame += (long)(frameDuration.TotalSeconds * TimeProvider.System.TimestampFrequency);
-                var remaining = TimeProvider.System.GetElapsedTime(TimeProvider.System.GetTimestamp(), nextFrame);
-                if (remaining > TimeSpan.Zero) Thread.Sleep(remaining);
-                else nextFrame = TimeProvider.System.GetTimestamp();
+                nextFrame = EmulationFrameTimer.WaitForNextFrame(nextFrame, _core.FramesPerSecond, TimeProvider.System, Thread.Sleep);
             }
         }
         catch (Exception error)

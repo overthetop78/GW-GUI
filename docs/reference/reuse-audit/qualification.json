@@ -6292,5 +6292,92 @@
     "sdkOwner": "src/GWGUI.Emulation/Functions/EmulationStateFileFunctions.cs",
     "verification": "Seven original comparison bodies and other Commands/Lifecycle tokens checked; previous SDK state methods unchanged; 8 targeted tests pass, SDK/App/23 module references compile. Current scan: 11672 bodies, 532 exact candidate groups.",
     "semantics": "Null left matches only empty right; right comparer drives lookup, values compare ordinally; dictionaries borrowed without mutation. Same existing validations and short-circuit order, including Commodore firmware hashes."
+  },
+  "nativeFrameTimingReuse": {
+    "consumers": [
+      {
+        "path": "src/GWGUI.Emulation.Amstrad/Common/Services/Machine.Commands.cs",
+        "originalTimingUnchanged": true,
+        "otherMembersAndFinallyUnchanged": true,
+        "clock": "TimeProvider.System",
+        "wait": "Thread.Sleep",
+        "currentFramesPerSecondBounds": [
+          1,
+          1000
+        ]
+      },
+      {
+        "path": "src/GWGUI.Emulation.Commodore/Common/Services/Machine.Commands.cs",
+        "originalTimingUnchanged": true,
+        "otherMembersAndFinallyUnchanged": true,
+        "clock": "TimeProvider.System",
+        "wait": "Thread.Sleep",
+        "currentFramesPerSecondBounds": [
+          1,
+          1000
+        ]
+      },
+      {
+        "path": "src/GWGUI.Emulation.Microsoft/Common/Services/Machine.Commands.cs",
+        "originalTimingUnchanged": true,
+        "otherMembersAndFinallyUnchanged": true,
+        "clock": "TimeProvider.System",
+        "wait": "Thread.Sleep",
+        "currentFramesPerSecondBounds": [
+          1,
+          1000
+        ]
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nec/Common/Services/Machine.Commands.cs",
+        "originalTimingUnchanged": true,
+        "otherMembersAndFinallyUnchanged": true,
+        "clock": "TimeProvider.System",
+        "wait": "Thread.Sleep",
+        "currentFramesPerSecondBounds": [
+          1,
+          1000
+        ]
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nintendo/Common/Services/Machine.Commands.cs",
+        "originalTimingUnchanged": true,
+        "otherMembersAndFinallyUnchanged": true,
+        "clock": "TimeProvider.System",
+        "wait": "Thread.Sleep",
+        "currentFramesPerSecondBounds": [
+          1,
+          1000
+        ]
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sega/Common/Services/Machine.Commands.cs",
+        "originalTimingUnchanged": true,
+        "otherMembersAndFinallyUnchanged": true,
+        "clock": "TimeProvider.System",
+        "wait": "Thread.Sleep",
+        "currentFramesPerSecondBounds": [
+          1,
+          1000
+        ]
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sony/Common/Services/Machine.Commands.cs",
+        "originalTimingUnchanged": true,
+        "otherMembersAndFinallyUnchanged": true,
+        "clock": "TimeProvider.System",
+        "wait": "Thread.Sleep",
+        "currentFramesPerSecondBounds": [
+          1,
+          1000
+        ]
+      }
+    ],
+    "sdkOwner": "src/GWGUI.Emulation/Services/EmulationFrameTimer.cs",
+    "verification": "Original Amiga timing, seven complete remaining module token streams and unchanged SDK RunLoop/high resolution timer verified; frequency constants checked; 15 targeted tests pass (10 simulated timing, 5 existing loops), SDK/App/23 module references compile.",
+    "originalOwner": "87a09639d:src/GWGUI.Emulation.Amiga/AmigaMachine.cs",
+    "policy": "Existing per-frame 1..1000 clamp retained; original TimeProvider duration, positive Thread.Sleep and late/equal deadline second timestamp retained. Does not instantiate a timer or thread, clock and wait callback are borrowed.",
+    "sourceCommit": "bfa61c6fd",
+    "method": "WaitForNextFrame"
   }
 }
