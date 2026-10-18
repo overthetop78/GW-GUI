@@ -21,12 +21,6 @@ internal sealed partial class ExternalHostCallbacks : IDisposable, IEmulationCor
             return callbackResult;
         switch (command)
         {
-            case ExternalCoreApiConstants.SetKeyboardCallback:
-                return CaptureKeyboardCallback(data);
-            case ExternalCoreApiConstants.SetDiskControl:
-            case ExternalCoreApiConstants.SetDiskControlExtended:
-            case ExternalCoreApiConstants.GetDiskControlVersion:
-                return false;
             case ExternalCoreApiConstants.GetMidiInterface:
             case ExternalCoreApiConstants.SetFastForwardingOverride:
             case ExternalCoreApiConstants.SetContentInfoOverride:
@@ -90,5 +84,25 @@ internal sealed partial class ExternalHostCallbacks : IDisposable, IEmulationCor
     bool IEmulationCoreEnvironmentCommands.ProvideVfs(nint data)
     {
         return _virtualFileSystem.Provide(data);
+    }
+
+    bool IEmulationCoreEnvironmentCommands.SetKeyboardCallback(nint data)
+    {
+        return CaptureKeyboardCallback(data);
+    }
+
+    bool IEmulationCoreEnvironmentCommands.CaptureDiskControl(nint data)
+    {
+        return false;
+    }
+
+    bool IEmulationCoreEnvironmentCommands.CaptureExtendedDiskControl(nint data)
+    {
+        return false;
+    }
+
+    bool IEmulationCoreEnvironmentCommands.GetDiskControlVersion(nint data)
+    {
+        return false;
     }
 }

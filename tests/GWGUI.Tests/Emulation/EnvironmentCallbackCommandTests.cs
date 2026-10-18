@@ -27,6 +27,10 @@ public sealed class EnvironmentCallbackCommandTests
     [InlineData(ExternalCoreApiConstants.SetMemoryMaps, "CaptureMemoryMaps")]
     [InlineData(ExternalCoreApiConstants.SetSupportAchievements, "SetSupportAchievements")]
     [InlineData(ExternalCoreApiConstants.GetVfsInterface, "ProvideVfs")]
+    [InlineData(ExternalCoreApiConstants.SetKeyboardCallback, "SetKeyboardCallback")]
+    [InlineData(ExternalCoreApiConstants.SetDiskControl, "CaptureDiskControl")]
+    [InlineData(ExternalCoreApiConstants.SetDiskControlExtended, "CaptureExtendedDiskControl")]
+    [InlineData(ExternalCoreApiConstants.GetDiskControlVersion, "GetDiskControlVersion")]
     public void RoutesRecognizedCommandsAndPreservesBothResults(uint command, string expected)
     {
         foreach (var result in new[] { false, true })
@@ -43,23 +47,50 @@ public sealed class EnvironmentCallbackCommandTests
     [Theory]
     [InlineData(uint.MaxValue)]
     [InlineData(ExternalCoreApiConstants.GetVariable)]
-    [InlineData(ExternalCoreApiConstants.SetKeyboardCallback)]
-    [InlineData(ExternalCoreApiConstants.SetDiskControl)]
+    [InlineData(ExternalCoreApiConstants.GetLanguage)]
+    [InlineData(ExternalCoreApiConstants.SetVariables)]
     public void LeavesOtherCommandsToTheirExistingOwners(uint command)
     {
         Assert.False(ExternalCoreEnvironmentFunctions.TryHandleCallbackCommand(command, (nint)42, null!, out var result));
         Assert.False(result);
     }
 
-    [Fact]
-    public void PropagatesTheOriginalCallbackError()
+    [Theory]
+    [InlineData(ExternalCoreApiConstants.SetRotation)]
+    [InlineData(ExternalCoreApiConstants.SetDiskControl)]
+    [InlineData(ExternalCoreApiConstants.SetDiskControlExtended)]
+    public void PropagatesTheOriginalCallbackError(uint command)
     {
         var error = new InvalidOperationException("callback failed");
         var callbacks = new Callbacks { Error = error };
         var observed = Assert.Throws<InvalidOperationException>(() =>
-            ExternalCoreEnvironmentFunctions.TryHandleCallbackCommand(ExternalCoreApiConstants.SetRotation, (nint)42, callbacks, out _));
+            ExternalCoreEnvironmentFunctions.TryHandleCallbackCommand(command, (nint)42, callbacks, out _));
         Assert.Same(error, observed);
         Assert.Equal(1, callbacks.CallCount);
+    }
+
+    [Theory]
+    [InlineData(ExternalCoreApiConstants.SetDiskControl)]
+    [InlineData(ExternalCoreApiConstants.SetDiskControlExtended)]
+    public void NullDiskCaptureIsRefusedBeforeCallingTheOwner(uint command)
+    {
+        Assert.True(ExternalCoreEnvironmentFunctions.TryHandleCallbackCommand(command, nint.Zero, null!, out var result));
+        Assert.False(result);
+    }
+
+    [Theory]
+    [InlineData(ExternalCoreApiConstants.SetKeyboardCallback)]
+    [InlineData(ExternalCoreApiConstants.GetDiskControlVersion)]
+    public void KeyboardAndVersionKeepTheProfileDecisionForNullData(uint command)
+    {
+        foreach (var expected in new[] { false, true })
+        {
+            var callbacks = new Callbacks { Result = expected };
+            Assert.True(ExternalCoreEnvironmentFunctions.TryHandleCallbackCommand(command, nint.Zero, callbacks, out var result));
+            Assert.Equal(expected, result);
+            Assert.Equal(nint.Zero, callbacks.LastData);
+            Assert.Equal(1, callbacks.CallCount);
+        }
     }
 
     private sealed class Callbacks : IEmulationCoreEnvironmentCommands
@@ -99,5 +130,9 @@ public sealed class EnvironmentCallbackCommandTests
         public bool CaptureMemoryMaps(nint data) => Record(nameof(CaptureMemoryMaps), data);
         public bool SetSupportAchievements(nint data) => Record(nameof(SetSupportAchievements), data);
         public bool ProvideVfs(nint data) => Record(nameof(ProvideVfs), data);
+        public bool SetKeyboardCallback(nint data) => Record(nameof(SetKeyboardCallback), data);
+        public bool CaptureDiskControl(nint data) => Record(nameof(CaptureDiskControl), data);
+        public bool CaptureExtendedDiskControl(nint data) => Record(nameof(CaptureExtendedDiskControl), data);
+        public bool GetDiskControlVersion(nint data) => Record(nameof(GetDiskControlVersion), data);
     }
 }

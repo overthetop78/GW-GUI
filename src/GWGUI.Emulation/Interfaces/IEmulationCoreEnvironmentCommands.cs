@@ -22,4 +22,8 @@ internal interface IEmulationCoreEnvironmentCommands
     bool CaptureMemoryMaps(nint data);
     bool SetSupportAchievements(nint data);
     bool ProvideVfs(nint data);
+    bool SetKeyboardCallback(nint data);
+    bool CaptureDiskControl(nint data);
+    bool CaptureExtendedDiskControl(nint data);
+    bool GetDiskControlVersion(nint data);
 }

@@ -27556,5 +27556,1870 @@
       ],
       "exitCode": 0
     }
+  },
+  "remainingRichCallbackDispatchReuse": {
+    "state": "verified",
+    "projects": [
+      "GWGUI.Emulation",
+      "GWGUI.Emulation.Acorn",
+      "GWGUI.Emulation.Apple",
+      "GWGUI.Emulation.Atari",
+      "GWGUI.Emulation.Bandai",
+      "GWGUI.Emulation.Coleco",
+      "GWGUI.Emulation.Epoch",
+      "GWGUI.Emulation.Fairchild",
+      "GWGUI.Emulation.Mattel",
+      "GWGUI.Emulation.Philips",
+      "GWGUI.Emulation.Sharp",
+      "GWGUI.Emulation.Sinclair",
+      "GWGUI.Emulation.Snk"
+    ],
+    "sources": [
+      {
+        "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "keyboardPolicy": "existing capture method",
+        "diskPolicy": "existing captures; null refused",
+        "branches": [
+          {
+            "section": "case ExternalCoreApiConstants.SetKeyboardCallback:\n                return CaptureKeyboardCallback(data);",
+            "command": "SetKeyboardCallback",
+            "value": 12,
+            "adapterBody": "return CaptureKeyboardCallback(data);",
+            "invocations": [
+              {
+                "symbol": "GWGUI.Emulation.Acorn.Emulators.Common.Interop.Services.ExternalHostCallbacks.CaptureKeyboardCallback(nint)",
+                "expression": "CaptureKeyboardCallback(data)",
+                "assembly": "gwgui.emulation.acorn"
+              }
+            ],
+            "sectionTokens": "case ExternalCoreApiConstants . SetKeyboardCallback : return CaptureKeyboardCallback ( data ) ;",
+            "operation": "SetKeyboardCallback",
+            "statements": "return CaptureKeyboardCallback(data);",
+            "sharedDiskGuard": false
+          },
+          {
+            "section": "case ExternalCoreApiConstants.SetDiskControl:\n                if (data == nint.Zero) return false;\n                _diskControl.Capture(data);\n                return true;",
+            "command": "SetDiskControl",
+            "value": 13,
+            "adapterBody": "_diskControl.Capture(data); return true;",
+            "invocations": [
+              {
+                "symbol": "GWGUI.Emulation.Acorn.Emulators.Common.Interop.Services.DiskControl.Capture(nint)",
+                "expression": "_diskControl.Capture(data)",
+                "assembly": "gwgui.emulation.acorn"
+              }
+            ],
+            "sectionTokens": "case ExternalCoreApiConstants . SetDiskControl : if ( data == nint . Zero ) return false ; _diskControl . Capture ( data ) ; return true ;",
+            "operation": "CaptureDiskControl",
+            "statements": "if (data == nint.Zero) return false;\r\n_diskControl.Capture(data);\r\nreturn true;",
+            "sharedDiskGuard": true
+          },
+          {
+            "section": "case ExternalCoreApiConstants.SetDiskControlExtended:\n                if (data == nint.Zero) return false;\n                _diskControl.CaptureExtended(data);\n                return true;",
+            "command": "SetDiskControlExtended",
+            "value": 58,
+            "adapterBody": "_diskControl.CaptureExtended(data); return true;",
+            "invocations": [
+              {
+                "symbol": "GWGUI.Emulation.Acorn.Emulators.Common.Interop.Services.DiskControl.CaptureExtended(nint)",
+                "expression": "_diskControl.CaptureExtended(data)",
+                "assembly": "gwgui.emulation.acorn"
+              }
+            ],
+            "sectionTokens": "case ExternalCoreApiConstants . SetDiskControlExtended : if ( data == nint . Zero ) return false ; _diskControl . CaptureExtended ( data ) ; return true ;",
+            "operation": "CaptureExtendedDiskControl",
+            "statements": "if (data == nint.Zero) return false;\r\n_diskControl.CaptureExtended(data);\r\nreturn true;",
+            "sharedDiskGuard": true
+          },
+          {
+            "section": "case ExternalCoreApiConstants.GetDiskControlVersion:\n                return CoreFunctions.WriteInteger(data, DiskControlConstants.InterfaceVersion);",
+            "command": "GetDiskControlVersion",
+            "value": 57,
+            "adapterBody": "return CoreFunctions.WriteInteger(data, DiskControlConstants.InterfaceVersion);",
+            "invocations": [
+              {
+                "symbol": "GWGUI.Emulation.Acorn.Emulators.Common.Interop.Functions.CoreFunctions.WriteInteger(nint, int)",
+                "expression": "CoreFunctions.WriteInteger(data, DiskControlConstants.InterfaceVersion)",
+                "assembly": "gwgui.emulation.acorn"
+              }
+            ],
+            "sectionTokens": "case ExternalCoreApiConstants . GetDiskControlVersion : return CoreFunctions . WriteInteger ( data , DiskControlConstants . InterfaceVersion ) ;",
+            "operation": "GetDiskControlVersion",
+            "statements": "return CoreFunctions.WriteInteger(data, DiskControlConstants.InterfaceVersion);",
+            "sharedDiskGuard": false
+          }
+        ],
+        "sha256": "D31BAA95791B1073968D9958569CDFC6F47FF0913790B53AAE7357CEE2A770EB"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "keyboardPolicy": "existing capture method",
+        "diskPolicy": "existing captures; null refused",
+        "branches": [
+          {
+            "section": "case ExternalCoreApiConstants.SetKeyboardCallback:\r\n                return CaptureKeyboardCallback(data);",
+            "command": "SetKeyboardCallback",
+            "value": 12,
+            "adapterBody": "return CaptureKeyboardCallback(data);",
+            "invocations": [
+              {
+                "symbol": "GWGUI.Emulation.Apple.Emulators.Common.Interop.Services.ExternalHostCallbacks.CaptureKeyboardCallback(nint)",
+                "expression": "CaptureKeyboardCallback(data)",
+                "assembly": "gwgui.emulation.apple"
+              }
+            ],
+            "sectionTokens": "case ExternalCoreApiConstants . SetKeyboardCallback : return CaptureKeyboardCallback ( data ) ;",
+            "operation": "SetKeyboardCallback",
+            "statements": "return CaptureKeyboardCallback(data);",
+            "sharedDiskGuard": false
+          },
+          {
+            "section": "case ExternalCoreApiConstants.SetDiskControl:\r\n                if (data == nint.Zero) return false;\r\n                _diskControl.Capture(data);\r\n                return true;",
+            "command": "SetDiskControl",
+            "value": 13,
+            "adapterBody": "_diskControl.Capture(data); return true;",
+            "invocations": [
+              {
+                "symbol": "GWGUI.Emulation.Apple.Emulators.Common.Interop.Services.DiskControl.Capture(nint)",
+                "expression": "_diskControl.Capture(data)",
+                "assembly": "gwgui.emulation.apple"
+              }
+            ],
+            "sectionTokens": "case ExternalCoreApiConstants . SetDiskControl : if ( data == nint . Zero ) return false ; _diskControl . Capture ( data ) ; return true ;",
+            "operation": "CaptureDiskControl",
+            "statements": "if (data == nint.Zero) return false;\r\n_diskControl.Capture(data);\r\nreturn true;",
+            "sharedDiskGuard": true
+          },
+          {
+            "section": "case ExternalCoreApiConstants.SetDiskControlExtended:\r\n                if (data == nint.Zero) return false;\r\n                _diskControl.CaptureExtended(data);\r\n                return true;",
+            "command": "SetDiskControlExtended",
+            "value": 58,
+            "adapterBody": "_diskControl.CaptureExtended(data); return true;",
+            "invocations": [
+              {
+                "symbol": "GWGUI.Emulation.Apple.Emulators.Common.Interop.Services.DiskControl.CaptureExtended(nint)",
+                "expression": "_diskControl.CaptureExtended(data)",
+                "assembly": "gwgui.emulation.apple"
+              }
+            ],
+            "sectionTokens": "case ExternalCoreApiConstants . SetDiskControlExtended : if ( data == nint . Zero ) return false ; _diskControl . CaptureExtended ( data ) ; return true ;",
+            "operation": "CaptureExtendedDiskControl",
+            "statements": "if (data == nint.Zero) return false;\r\n_diskControl.CaptureExtended(data);\r\nreturn true;",
+            "sharedDiskGuard": true
+          },
+          {
+            "section": "case ExternalCoreApiConstants.GetDiskControlVersion:\r\n                return CoreFunctions.WriteInteger(data, DiskControlConstants.InterfaceVersion);",
+            "command": "GetDiskControlVersion",
+            "value": 57,
+            "adapterBody": "return CoreFunctions.WriteInteger(data, DiskControlConstants.InterfaceVersion);",
+            "invocations": [
+              {
+                "symbol": "GWGUI.Emulation.Apple.Emulators.Common.Interop.Functions.CoreFunctions.WriteInteger(nint, int)",
+                "expression": "CoreFunctions.WriteInteger(data, DiskControlConstants.InterfaceVersion)",
+                "assembly": "gwgui.emulation.apple"
+              }
+            ],
+            "sectionTokens": "case ExternalCoreApiConstants . GetDiskControlVersion : return CoreFunctions . WriteInteger ( data , DiskControlConstants . InterfaceVersion ) ;",
+            "operation": "GetDiskControlVersion",
+            "statements": "return CoreFunctions.WriteInteger(data, DiskControlConstants.InterfaceVersion);",
+            "sharedDiskGuard": false
+          }
+        ],
+        "sha256": "622AB982FA2E81A4BF6F047E3B09BCB55B03C51660C54EFDF18C250DAD9E6373"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "keyboardPolicy": "existing capture method",
+        "diskPolicy": "existing captures; null refused",
+        "branches": [
+          {
+            "section": "case ExternalCoreApiConstants.SetKeyboardCallback:\r\n                return CaptureKeyboardCallback(data);",
+            "command": "SetKeyboardCallback",
+            "value": 12,
+            "adapterBody": "return CaptureKeyboardCallback(data);",
+            "invocations": [
+              {
+                "symbol": "GWGUI.Emulation.Atari.Emulators.Common.Interop.Services.ExternalHostCallbacks.CaptureKeyboardCallback(nint)",
+                "expression": "CaptureKeyboardCallback(data)",
+                "assembly": "gwgui.emulation.atari"
+              }
+            ],
+            "sectionTokens": "case ExternalCoreApiConstants . SetKeyboardCallback : return CaptureKeyboardCallback ( data ) ;",
+            "operation": "SetKeyboardCallback",
+            "statements": "return CaptureKeyboardCallback(data);",
+            "sharedDiskGuard": false
+          },
+          {
+            "section": "case ExternalCoreApiConstants.SetDiskControl:\r\n                if (data == nint.Zero) return false;\r\n                _diskControl.Capture(data);\r\n                return true;",
+            "command": "SetDiskControl",
+            "value": 13,
+            "adapterBody": "_diskControl.Capture(data); return true;",
+            "invocations": [
+              {
+                "symbol": "GWGUI.Emulation.Atari.Emulators.Common.Interop.Services.DiskControl.Capture(nint)",
+                "expression": "_diskControl.Capture(data)",
+                "assembly": "gwgui.emulation.atari"
+              }
+            ],
+            "sectionTokens": "case ExternalCoreApiConstants . SetDiskControl : if ( data == nint . Zero ) return false ; _diskControl . Capture ( data ) ; return true ;",
+            "operation": "CaptureDiskControl",
+            "statements": "if (data == nint.Zero) return false;\r\n_diskControl.Capture(data);\r\nreturn true;",
+            "sharedDiskGuard": true
+          },
+          {
+            "section": "case ExternalCoreApiConstants.SetDiskControlExtended:\r\n                if (data == nint.Zero) return false;\r\n                _diskControl.CaptureExtended(data);\r\n                return true;",
+            "command": "SetDiskControlExtended",
+            "value": 58,
+            "adapterBody": "_diskControl.CaptureExtended(data); return true;",
+            "invocations": [
+              {
+                "symbol": "GWGUI.Emulation.Atari.Emulators.Common.Interop.Services.DiskControl.CaptureExtended(nint)",
+                "expression": "_diskControl.CaptureExtended(data)",
+                "assembly": "gwgui.emulation.atari"
+              }
+            ],
+            "sectionTokens": "case ExternalCoreApiConstants . SetDiskControlExtended : if ( data == nint . Zero ) return false ; _diskControl . CaptureExtended ( data ) ; return true ;",
+            "operation": "CaptureExtendedDiskControl",
+            "statements": "if (data == nint.Zero) return false;\r\n_diskControl.CaptureExtended(data);\r\nreturn true;",
+            "sharedDiskGuard": true
+          },
+          {
+            "section": "case ExternalCoreApiConstants.GetDiskControlVersion:\r\n                return CoreFunctions.WriteInteger(data, DiskControlConstants.InterfaceVersion);",
+            "command": "GetDiskControlVersion",
+            "value": 57,
+            "adapterBody": "return CoreFunctions.WriteInteger(data, DiskControlConstants.InterfaceVersion);",
+            "invocations": [
+              {
+                "symbol": "GWGUI.Emulation.Atari.Emulators.Common.Interop.Functions.CoreFunctions.WriteInteger(nint, int)",
+                "expression": "CoreFunctions.WriteInteger(data, DiskControlConstants.InterfaceVersion)",
+                "assembly": "gwgui.emulation.atari"
+              }
+            ],
+            "sectionTokens": "case ExternalCoreApiConstants . GetDiskControlVersion : return CoreFunctions . WriteInteger ( data , DiskControlConstants . InterfaceVersion ) ;",
+            "operation": "GetDiskControlVersion",
+            "statements": "return CoreFunctions.WriteInteger(data, DiskControlConstants.InterfaceVersion);",
+            "sharedDiskGuard": false
+          }
+        ],
+        "sha256": "F02E69F8B10A3646C9CBE99B4CBCE34FF6142763B8C5F9CFF202523E9B2DDC6C"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "keyboardPolicy": "existing capture method",
+        "diskPolicy": "refused",
+        "branches": [
+          {
+            "section": "case ExternalCoreApiConstants.SetKeyboardCallback:\n                return CaptureKeyboardCallback(data);",
+            "command": "SetKeyboardCallback",
+            "value": 12,
+            "adapterBody": "return CaptureKeyboardCallback(data);",
+            "invocations": [
+              {
+                "symbol": "GWGUI.Emulation.Bandai.Emulators.Common.Interop.Services.ExternalHostCallbacks.CaptureKeyboardCallback(nint)",
+                "expression": "CaptureKeyboardCallback(data)",
+                "assembly": "gwgui.emulation.bandai"
+              }
+            ],
+            "sectionTokens": "case ExternalCoreApiConstants . SetKeyboardCallback : return CaptureKeyboardCallback ( data ) ;",
+            "operation": "SetKeyboardCallback",
+            "statements": "return CaptureKeyboardCallback(data);",
+            "sharedDiskGuard": false
+          },
+          {
+            "section": "case ExternalCoreApiConstants.SetDiskControl:\n            case ExternalCoreApiConstants.SetDiskControlExtended:\n            case ExternalCoreApiConstants.GetDiskControlVersion:\n                return false;",
+            "command": "SetDiskControl",
+            "value": 13,
+            "adapterBody": "return false;",
+            "invocations": [],
+            "sectionTokens": "case ExternalCoreApiConstants . SetDiskControl : case ExternalCoreApiConstants . SetDiskControlExtended : case ExternalCoreApiConstants . GetDiskControlVersion : return false ;",
+            "operation": "CaptureDiskControl",
+            "statements": "return false;",
+            "sharedDiskGuard": false
+          },
+          {
+            "section": "case ExternalCoreApiConstants.SetDiskControl:\n            case ExternalCoreApiConstants.SetDiskControlExtended:\n            case ExternalCoreApiConstants.GetDiskControlVersion:\n                return false;",
+            "command": "SetDiskControlExtended",
+            "value": 58,
+            "adapterBody": "return false;",
+            "invocations": [],
+            "sectionTokens": "case ExternalCoreApiConstants . SetDiskControl : case ExternalCoreApiConstants . SetDiskControlExtended : case ExternalCoreApiConstants . GetDiskControlVersion : return false ;",
+            "operation": "CaptureExtendedDiskControl",
+            "statements": "return false;",
+            "sharedDiskGuard": false
+          },
+          {
+            "section": "case ExternalCoreApiConstants.SetDiskControl:\n            case ExternalCoreApiConstants.SetDiskControlExtended:\n            case ExternalCoreApiConstants.GetDiskControlVersion:\n                return false;",
+            "command": "GetDiskControlVersion",
+            "value": 57,
+            "adapterBody": "return false;",
+            "invocations": [],
+            "sectionTokens": "case ExternalCoreApiConstants . SetDiskControl : case ExternalCoreApiConstants . SetDiskControlExtended : case ExternalCoreApiConstants . GetDiskControlVersion : return false ;",
+            "operation": "GetDiskControlVersion",
+            "statements": "return false;",
+            "sharedDiskGuard": false
+          }
+        ],
+        "sha256": "26B9CC1536F94D82CB4C4B9FDE03F07A945B934B3CAADE7FD1E4E5B90C284407"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "keyboardPolicy": "existing capture method",
+        "diskPolicy": "existing captures; null refused",
+        "branches": [
+          {
+            "section": "case ExternalCoreApiConstants.SetKeyboardCallback:\n                return CaptureKeyboardCallback(data);",
+            "command": "SetKeyboardCallback",
+            "value": 12,
+            "adapterBody": "return CaptureKeyboardCallback(data);",
+            "invocations": [
+              {
+                "symbol": "GWGUI.Emulation.Coleco.Emulators.Common.Interop.Services.ExternalHostCallbacks.CaptureKeyboardCallback(nint)",
+                "expression": "CaptureKeyboardCallback(data)",
+                "assembly": "gwgui.emulation.coleco"
+              }
+            ],
+            "sectionTokens": "case ExternalCoreApiConstants . SetKeyboardCallback : return CaptureKeyboardCallback ( data ) ;",
+            "operation": "SetKeyboardCallback",
+            "statements": "return CaptureKeyboardCallback(data);",
+            "sharedDiskGuard": false
+          },
+          {
+            "section": "case ExternalCoreApiConstants.SetDiskControl:\n                if (data == nint.Zero) return false;\n                _diskControl.Capture(data);\n                return true;",
+            "command": "SetDiskControl",
+            "value": 13,
+            "adapterBody": "_diskControl.Capture(data); return true;",
+            "invocations": [
+              {
+                "symbol": "GWGUI.Emulation.Coleco.Emulators.Common.Interop.Services.DiskControl.Capture(nint)",
+                "expression": "_diskControl.Capture(data)",
+                "assembly": "gwgui.emulation.coleco"
+              }
+            ],
+            "sectionTokens": "case ExternalCoreApiConstants . SetDiskControl : if ( data == nint . Zero ) return false ; _diskControl . Capture ( data ) ; return true ;",
+            "operation": "CaptureDiskControl",
+            "statements": "if (data == nint.Zero) return false;\r\n_diskControl.Capture(data);\r\nreturn true;",
+            "sharedDiskGuard": true
+          },
+          {
+            "section": "case ExternalCoreApiConstants.SetDiskControlExtended:\n                if (data == nint.Zero) return false;\n                _diskControl.CaptureExtended(data);\n                return true;",
+            "command": "SetDiskControlExtended",
+            "value": 58,
+            "adapterBody": "_diskControl.CaptureExtended(data); return true;",
+            "invocations": [
+              {
+                "symbol": "GWGUI.Emulation.Coleco.Emulators.Common.Interop.Services.DiskControl.CaptureExtended(nint)",
+                "expression": "_diskControl.CaptureExtended(data)",
+                "assembly": "gwgui.emulation.coleco"
+              }
+            ],
+            "sectionTokens": "case ExternalCoreApiConstants . SetDiskControlExtended : if ( data == nint . Zero ) return false ; _diskControl . CaptureExtended ( data ) ; return true ;",
+            "operation": "CaptureExtendedDiskControl",
+            "statements": "if (data == nint.Zero) return false;\r\n_diskControl.CaptureExtended(data);\r\nreturn true;",
+            "sharedDiskGuard": true
+          },
+          {
+            "section": "case ExternalCoreApiConstants.GetDiskControlVersion:\n                return CoreFunctions.WriteInteger(data, DiskControlConstants.InterfaceVersion);",
+            "command": "GetDiskControlVersion",
+            "value": 57,
+            "adapterBody": "return CoreFunctions.WriteInteger(data, DiskControlConstants.InterfaceVersion);",
+            "invocations": [
+              {
+                "symbol": "GWGUI.Emulation.Coleco.Emulators.Common.Interop.Functions.CoreFunctions.WriteInteger(nint, int)",
+                "expression": "CoreFunctions.WriteInteger(data, DiskControlConstants.InterfaceVersion)",
+                "assembly": "gwgui.emulation.coleco"
+              }
+            ],
+            "sectionTokens": "case ExternalCoreApiConstants . GetDiskControlVersion : return CoreFunctions . WriteInteger ( data , DiskControlConstants . InterfaceVersion ) ;",
+            "operation": "GetDiskControlVersion",
+            "statements": "return CoreFunctions.WriteInteger(data, DiskControlConstants.InterfaceVersion);",
+            "sharedDiskGuard": false
+          }
+        ],
+        "sha256": "E08476B056943C82F07A574D7A107A0ACB6404481580100F5B2700D59E3D8EF7"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "keyboardPolicy": "existing capture method",
+        "diskPolicy": "existing captures; null refused",
+        "branches": [
+          {
+            "section": "case ExternalCoreApiConstants.SetKeyboardCallback:\n                return CaptureKeyboardCallback(data);",
+            "command": "SetKeyboardCallback",
+            "value": 12,
+            "adapterBody": "return CaptureKeyboardCallback(data);",
+            "invocations": [
+              {
+                "symbol": "GWGUI.Emulation.Epoch.Emulators.Common.Interop.Services.ExternalHostCallbacks.CaptureKeyboardCallback(nint)",
+                "expression": "CaptureKeyboardCallback(data)",
+                "assembly": "gwgui.emulation.epoch"
+              }
+            ],
+            "sectionTokens": "case ExternalCoreApiConstants . SetKeyboardCallback : return CaptureKeyboardCallback ( data ) ;",
+            "operation": "SetKeyboardCallback",
+            "statements": "return CaptureKeyboardCallback(data);",
+            "sharedDiskGuard": false
+          },
+          {
+            "section": "case ExternalCoreApiConstants.SetDiskControl:\n                if (data == nint.Zero) return false;\n                _diskControl.Capture(data);\n                return true;",
+            "command": "SetDiskControl",
+            "value": 13,
+            "adapterBody": "_diskControl.Capture(data); return true;",
+            "invocations": [
+              {
+                "symbol": "GWGUI.Emulation.Epoch.Emulators.Common.Interop.Services.DiskControl.Capture(nint)",
+                "expression": "_diskControl.Capture(data)",
+                "assembly": "gwgui.emulation.epoch"
+              }
+            ],
+            "sectionTokens": "case ExternalCoreApiConstants . SetDiskControl : if ( data == nint . Zero ) return false ; _diskControl . Capture ( data ) ; return true ;",
+            "operation": "CaptureDiskControl",
+            "statements": "if (data == nint.Zero) return false;\r\n_diskControl.Capture(data);\r\nreturn true;",
+            "sharedDiskGuard": true
+          },
+          {
+            "section": "case ExternalCoreApiConstants.SetDiskControlExtended:\n                if (data == nint.Zero) return false;\n                _diskControl.CaptureExtended(data);\n                return true;",
+            "command": "SetDiskControlExtended",
+            "value": 58,
+            "adapterBody": "_diskControl.CaptureExtended(data); return true;",
+            "invocations": [
+              {
+                "symbol": "GWGUI.Emulation.Epoch.Emulators.Common.Interop.Services.DiskControl.CaptureExtended(nint)",
+                "expression": "_diskControl.CaptureExtended(data)",
+                "assembly": "gwgui.emulation.epoch"
+              }
+            ],
+            "sectionTokens": "case ExternalCoreApiConstants . SetDiskControlExtended : if ( data == nint . Zero ) return false ; _diskControl . CaptureExtended ( data ) ; return true ;",
+            "operation": "CaptureExtendedDiskControl",
+            "statements": "if (data == nint.Zero) return false;\r\n_diskControl.CaptureExtended(data);\r\nreturn true;",
+            "sharedDiskGuard": true
+          },
+          {
+            "section": "case ExternalCoreApiConstants.GetDiskControlVersion:\n                return CoreFunctions.WriteInteger(data, DiskControlConstants.InterfaceVersion);",
+            "command": "GetDiskControlVersion",
+            "value": 57,
+            "adapterBody": "return CoreFunctions.WriteInteger(data, DiskControlConstants.InterfaceVersion);",
+            "invocations": [
+              {
+                "symbol": "GWGUI.Emulation.Epoch.Emulators.Common.Interop.Functions.CoreFunctions.WriteInteger(nint, int)",
+                "expression": "CoreFunctions.WriteInteger(data, DiskControlConstants.InterfaceVersion)",
+                "assembly": "gwgui.emulation.epoch"
+              }
+            ],
+            "sectionTokens": "case ExternalCoreApiConstants . GetDiskControlVersion : return CoreFunctions . WriteInteger ( data , DiskControlConstants . InterfaceVersion ) ;",
+            "operation": "GetDiskControlVersion",
+            "statements": "return CoreFunctions.WriteInteger(data, DiskControlConstants.InterfaceVersion);",
+            "sharedDiskGuard": false
+          }
+        ],
+        "sha256": "16B4B5EB599FE94529F602AE24A56121A1B52C37051727679814F49CC3375E26"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "keyboardPolicy": "refused",
+        "diskPolicy": "existing captures; null refused",
+        "branches": [
+          {
+            "section": "case ExternalCoreApiConstants.SetKeyboardCallback:\n                return false;",
+            "command": "SetKeyboardCallback",
+            "value": 12,
+            "adapterBody": "return false;",
+            "invocations": [],
+            "sectionTokens": "case ExternalCoreApiConstants . SetKeyboardCallback : return false ;",
+            "operation": "SetKeyboardCallback",
+            "statements": "return false;",
+            "sharedDiskGuard": false
+          },
+          {
+            "section": "case ExternalCoreApiConstants.SetDiskControl:\n                if (data == nint.Zero) return false;\n                _diskControl.Capture(data);\n                return true;",
+            "command": "SetDiskControl",
+            "value": 13,
+            "adapterBody": "_diskControl.Capture(data); return true;",
+            "invocations": [
+              {
+                "symbol": "GWGUI.Emulation.Fairchild.Emulators.Common.Interop.Services.DiskControl.Capture(nint)",
+                "expression": "_diskControl.Capture(data)",
+                "assembly": "gwgui.emulation.fairchild"
+              }
+            ],
+            "sectionTokens": "case ExternalCoreApiConstants . SetDiskControl : if ( data == nint . Zero ) return false ; _diskControl . Capture ( data ) ; return true ;",
+            "operation": "CaptureDiskControl",
+            "statements": "if (data == nint.Zero) return false;\r\n_diskControl.Capture(data);\r\nreturn true;",
+            "sharedDiskGuard": true
+          },
+          {
+            "section": "case ExternalCoreApiConstants.SetDiskControlExtended:\n                if (data == nint.Zero) return false;\n                _diskControl.CaptureExtended(data);\n                return true;",
+            "command": "SetDiskControlExtended",
+            "value": 58,
+            "adapterBody": "_diskControl.CaptureExtended(data); return true;",
+            "invocations": [
+              {
+                "symbol": "GWGUI.Emulation.Fairchild.Emulators.Common.Interop.Services.DiskControl.CaptureExtended(nint)",
+                "expression": "_diskControl.CaptureExtended(data)",
+                "assembly": "gwgui.emulation.fairchild"
+              }
+            ],
+            "sectionTokens": "case ExternalCoreApiConstants . SetDiskControlExtended : if ( data == nint . Zero ) return false ; _diskControl . CaptureExtended ( data ) ; return true ;",
+            "operation": "CaptureExtendedDiskControl",
+            "statements": "if (data == nint.Zero) return false;\r\n_diskControl.CaptureExtended(data);\r\nreturn true;",
+            "sharedDiskGuard": true
+          },
+          {
+            "section": "case ExternalCoreApiConstants.GetDiskControlVersion:\n                return CoreFunctions.WriteInteger(data, DiskControlConstants.InterfaceVersion);",
+            "command": "GetDiskControlVersion",
+            "value": 57,
+            "adapterBody": "return CoreFunctions.WriteInteger(data, DiskControlConstants.InterfaceVersion);",
+            "invocations": [
+              {
+                "symbol": "GWGUI.Emulation.Fairchild.Emulators.Common.Interop.Functions.CoreFunctions.WriteInteger(nint, int)",
+                "expression": "CoreFunctions.WriteInteger(data, DiskControlConstants.InterfaceVersion)",
+                "assembly": "gwgui.emulation.fairchild"
+              }
+            ],
+            "sectionTokens": "case ExternalCoreApiConstants . GetDiskControlVersion : return CoreFunctions . WriteInteger ( data , DiskControlConstants . InterfaceVersion ) ;",
+            "operation": "GetDiskControlVersion",
+            "statements": "return CoreFunctions.WriteInteger(data, DiskControlConstants.InterfaceVersion);",
+            "sharedDiskGuard": false
+          }
+        ],
+        "sha256": "7908984107C4C0E690DC7408F14163812BD8AE380F8C427F1B15282A167206AD"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "keyboardPolicy": "existing pointer assignment",
+        "diskPolicy": "existing captures; null refused",
+        "branches": [
+          {
+            "section": "case ExternalCoreApiConstants.SetKeyboardCallback:\n                if (data == nint.Zero) return false;\n                KeyboardCallbackPointer = Marshal.ReadIntPtr(data);\n                return true;",
+            "command": "SetKeyboardCallback",
+            "value": 12,
+            "adapterBody": "if (data == nint.Zero) return false;\r\nKeyboardCallbackPointer = Marshal.ReadIntPtr(data);\r\nreturn true;",
+            "invocations": [
+              {
+                "symbol": "System.Runtime.InteropServices.Marshal.ReadIntPtr(nint)",
+                "expression": "Marshal.ReadIntPtr(data)",
+                "assembly": "System.Runtime.InteropServices"
+              }
+            ],
+            "sectionTokens": "case ExternalCoreApiConstants . SetKeyboardCallback : if ( data == nint . Zero ) return false ; KeyboardCallbackPointer = Marshal . ReadIntPtr ( data ) ; return true ;",
+            "operation": "SetKeyboardCallback",
+            "statements": "if (data == nint.Zero) return false;\r\nKeyboardCallbackPointer = Marshal.ReadIntPtr(data);\r\nreturn true;",
+            "sharedDiskGuard": false
+          },
+          {
+            "section": "case ExternalCoreApiConstants.SetDiskControl:\n                if (data == nint.Zero) return false;\n                _diskControl.Capture(data);\n                return true;",
+            "command": "SetDiskControl",
+            "value": 13,
+            "adapterBody": "_diskControl.Capture(data); return true;",
+            "invocations": [
+              {
+                "symbol": "GWGUI.Emulation.Mattel.Emulators.Common.Interop.Services.DiskControl.Capture(nint)",
+                "expression": "_diskControl.Capture(data)",
+                "assembly": "gwgui.emulation.mattel"
+              }
+            ],
+            "sectionTokens": "case ExternalCoreApiConstants . SetDiskControl : if ( data == nint . Zero ) return false ; _diskControl . Capture ( data ) ; return true ;",
+            "operation": "CaptureDiskControl",
+            "statements": "if (data == nint.Zero) return false;\r\n_diskControl.Capture(data);\r\nreturn true;",
+            "sharedDiskGuard": true
+          },
+          {
+            "section": "case ExternalCoreApiConstants.SetDiskControlExtended:\n                if (data == nint.Zero) return false;\n                _diskControl.CaptureExtended(data);\n                return true;",
+            "command": "SetDiskControlExtended",
+            "value": 58,
+            "adapterBody": "_diskControl.CaptureExtended(data); return true;",
+            "invocations": [
+              {
+                "symbol": "GWGUI.Emulation.Mattel.Emulators.Common.Interop.Services.DiskControl.CaptureExtended(nint)",
+                "expression": "_diskControl.CaptureExtended(data)",
+                "assembly": "gwgui.emulation.mattel"
+              }
+            ],
+            "sectionTokens": "case ExternalCoreApiConstants . SetDiskControlExtended : if ( data == nint . Zero ) return false ; _diskControl . CaptureExtended ( data ) ; return true ;",
+            "operation": "CaptureExtendedDiskControl",
+            "statements": "if (data == nint.Zero) return false;\r\n_diskControl.CaptureExtended(data);\r\nreturn true;",
+            "sharedDiskGuard": true
+          },
+          {
+            "section": "case ExternalCoreApiConstants.GetDiskControlVersion:\n                return CoreFunctions.WriteInteger(data, DiskControlConstants.InterfaceVersion);",
+            "command": "GetDiskControlVersion",
+            "value": 57,
+            "adapterBody": "return CoreFunctions.WriteInteger(data, DiskControlConstants.InterfaceVersion);",
+            "invocations": [
+              {
+                "symbol": "GWGUI.Emulation.Mattel.Emulators.Common.Interop.Functions.CoreFunctions.WriteInteger(nint, int)",
+                "expression": "CoreFunctions.WriteInteger(data, DiskControlConstants.InterfaceVersion)",
+                "assembly": "gwgui.emulation.mattel"
+              }
+            ],
+            "sectionTokens": "case ExternalCoreApiConstants . GetDiskControlVersion : return CoreFunctions . WriteInteger ( data , DiskControlConstants . InterfaceVersion ) ;",
+            "operation": "GetDiskControlVersion",
+            "statements": "return CoreFunctions.WriteInteger(data, DiskControlConstants.InterfaceVersion);",
+            "sharedDiskGuard": false
+          }
+        ],
+        "sha256": "A2E45C283BC08606D48DBDE0C1A6A7A013C845A6203C1F5A6B3489CD65DFD924"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "keyboardPolicy": "existing pointer assignment",
+        "diskPolicy": "existing captures; null refused",
+        "branches": [
+          {
+            "section": "case ExternalCoreApiConstants.SetKeyboardCallback:\n                if (data == nint.Zero) return false;\n                KeyboardCallbackPointer = Marshal.ReadIntPtr(data);\n                return true;",
+            "command": "SetKeyboardCallback",
+            "value": 12,
+            "adapterBody": "if (data == nint.Zero) return false;\r\nKeyboardCallbackPointer = Marshal.ReadIntPtr(data);\r\nreturn true;",
+            "invocations": [
+              {
+                "symbol": "System.Runtime.InteropServices.Marshal.ReadIntPtr(nint)",
+                "expression": "Marshal.ReadIntPtr(data)",
+                "assembly": "System.Runtime.InteropServices"
+              }
+            ],
+            "sectionTokens": "case ExternalCoreApiConstants . SetKeyboardCallback : if ( data == nint . Zero ) return false ; KeyboardCallbackPointer = Marshal . ReadIntPtr ( data ) ; return true ;",
+            "operation": "SetKeyboardCallback",
+            "statements": "if (data == nint.Zero) return false;\r\nKeyboardCallbackPointer = Marshal.ReadIntPtr(data);\r\nreturn true;",
+            "sharedDiskGuard": false
+          },
+          {
+            "section": "case ExternalCoreApiConstants.SetDiskControl:\n                if (data == nint.Zero) return false;\n                _diskControl.Capture(data);\n                return true;",
+            "command": "SetDiskControl",
+            "value": 13,
+            "adapterBody": "_diskControl.Capture(data); return true;",
+            "invocations": [
+              {
+                "symbol": "GWGUI.Emulation.Philips.Emulators.Common.Interop.Services.DiskControl.Capture(nint)",
+                "expression": "_diskControl.Capture(data)",
+                "assembly": "gwgui.emulation.philips"
+              }
+            ],
+            "sectionTokens": "case ExternalCoreApiConstants . SetDiskControl : if ( data == nint . Zero ) return false ; _diskControl . Capture ( data ) ; return true ;",
+            "operation": "CaptureDiskControl",
+            "statements": "if (data == nint.Zero) return false;\r\n_diskControl.Capture(data);\r\nreturn true;",
+            "sharedDiskGuard": true
+          },
+          {
+            "section": "case ExternalCoreApiConstants.SetDiskControlExtended:\n                if (data == nint.Zero) return false;\n                _diskControl.CaptureExtended(data);\n                return true;",
+            "command": "SetDiskControlExtended",
+            "value": 58,
+            "adapterBody": "_diskControl.CaptureExtended(data); return true;",
+            "invocations": [
+              {
+                "symbol": "GWGUI.Emulation.Philips.Emulators.Common.Interop.Services.DiskControl.CaptureExtended(nint)",
+                "expression": "_diskControl.CaptureExtended(data)",
+                "assembly": "gwgui.emulation.philips"
+              }
+            ],
+            "sectionTokens": "case ExternalCoreApiConstants . SetDiskControlExtended : if ( data == nint . Zero ) return false ; _diskControl . CaptureExtended ( data ) ; return true ;",
+            "operation": "CaptureExtendedDiskControl",
+            "statements": "if (data == nint.Zero) return false;\r\n_diskControl.CaptureExtended(data);\r\nreturn true;",
+            "sharedDiskGuard": true
+          },
+          {
+            "section": "case ExternalCoreApiConstants.GetDiskControlVersion:\n                return CoreFunctions.WriteInteger(data, DiskControlConstants.InterfaceVersion);",
+            "command": "GetDiskControlVersion",
+            "value": 57,
+            "adapterBody": "return CoreFunctions.WriteInteger(data, DiskControlConstants.InterfaceVersion);",
+            "invocations": [
+              {
+                "symbol": "GWGUI.Emulation.Philips.Emulators.Common.Interop.Functions.CoreFunctions.WriteInteger(nint, int)",
+                "expression": "CoreFunctions.WriteInteger(data, DiskControlConstants.InterfaceVersion)",
+                "assembly": "gwgui.emulation.philips"
+              }
+            ],
+            "sectionTokens": "case ExternalCoreApiConstants . GetDiskControlVersion : return CoreFunctions . WriteInteger ( data , DiskControlConstants . InterfaceVersion ) ;",
+            "operation": "GetDiskControlVersion",
+            "statements": "return CoreFunctions.WriteInteger(data, DiskControlConstants.InterfaceVersion);",
+            "sharedDiskGuard": false
+          }
+        ],
+        "sha256": "5B8663213644578072D11D54BD3ACE277C445779BDAF0AAA87F403FEA6929822"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "keyboardPolicy": "existing pointer assignment",
+        "diskPolicy": "existing captures; null refused",
+        "branches": [
+          {
+            "section": "case ExternalCoreApiConstants.SetKeyboardCallback:\n                if (data == nint.Zero)\n                    return false;\n                KeyboardCallbackPointer = Marshal.ReadIntPtr(data);\n                return true;",
+            "command": "SetKeyboardCallback",
+            "value": 12,
+            "adapterBody": "if (data == nint.Zero)\n                    return false;\r\nKeyboardCallbackPointer = Marshal.ReadIntPtr(data);\r\nreturn true;",
+            "invocations": [
+              {
+                "symbol": "System.Runtime.InteropServices.Marshal.ReadIntPtr(nint)",
+                "expression": "Marshal.ReadIntPtr(data)",
+                "assembly": "System.Runtime.InteropServices"
+              }
+            ],
+            "sectionTokens": "case ExternalCoreApiConstants . SetKeyboardCallback : if ( data == nint . Zero ) return false ; KeyboardCallbackPointer = Marshal . ReadIntPtr ( data ) ; return true ;",
+            "operation": "SetKeyboardCallback",
+            "statements": "if (data == nint.Zero)\n                    return false;\r\nKeyboardCallbackPointer = Marshal.ReadIntPtr(data);\r\nreturn true;",
+            "sharedDiskGuard": false
+          },
+          {
+            "section": "case ExternalCoreApiConstants.SetDiskControl:\n                if (data == nint.Zero)\n                    return false;\n                _diskControl.Capture(data);\n                return true;",
+            "command": "SetDiskControl",
+            "value": 13,
+            "adapterBody": "_diskControl.Capture(data); return true;",
+            "invocations": [
+              {
+                "symbol": "GWGUI.Emulation.Sharp.Emulators.Common.Interop.Services.DiskControl.Capture(nint)",
+                "expression": "_diskControl.Capture(data)",
+                "assembly": "gwgui.emulation.sharp"
+              }
+            ],
+            "sectionTokens": "case ExternalCoreApiConstants . SetDiskControl : if ( data == nint . Zero ) return false ; _diskControl . Capture ( data ) ; return true ;",
+            "operation": "CaptureDiskControl",
+            "statements": "if (data == nint.Zero)\n                    return false;\r\n_diskControl.Capture(data);\r\nreturn true;",
+            "sharedDiskGuard": true
+          },
+          {
+            "section": "case ExternalCoreApiConstants.SetDiskControlExtended:\n                if (data == nint.Zero)\n                    return false;\n                _diskControl.CaptureExtended(data);\n                return true;",
+            "command": "SetDiskControlExtended",
+            "value": 58,
+            "adapterBody": "_diskControl.CaptureExtended(data); return true;",
+            "invocations": [
+              {
+                "symbol": "GWGUI.Emulation.Sharp.Emulators.Common.Interop.Services.DiskControl.CaptureExtended(nint)",
+                "expression": "_diskControl.CaptureExtended(data)",
+                "assembly": "gwgui.emulation.sharp"
+              }
+            ],
+            "sectionTokens": "case ExternalCoreApiConstants . SetDiskControlExtended : if ( data == nint . Zero ) return false ; _diskControl . CaptureExtended ( data ) ; return true ;",
+            "operation": "CaptureExtendedDiskControl",
+            "statements": "if (data == nint.Zero)\n                    return false;\r\n_diskControl.CaptureExtended(data);\r\nreturn true;",
+            "sharedDiskGuard": true
+          },
+          {
+            "section": "case ExternalCoreApiConstants.GetDiskControlVersion:\n                return CoreFunctions.WriteInteger(data, DiskControlConstants.InterfaceVersion);",
+            "command": "GetDiskControlVersion",
+            "value": 57,
+            "adapterBody": "return CoreFunctions.WriteInteger(data, DiskControlConstants.InterfaceVersion);",
+            "invocations": [
+              {
+                "symbol": "GWGUI.Emulation.Sharp.Emulators.Common.Interop.Functions.CoreFunctions.WriteInteger(nint, int)",
+                "expression": "CoreFunctions.WriteInteger(data, DiskControlConstants.InterfaceVersion)",
+                "assembly": "gwgui.emulation.sharp"
+              }
+            ],
+            "sectionTokens": "case ExternalCoreApiConstants . GetDiskControlVersion : return CoreFunctions . WriteInteger ( data , DiskControlConstants . InterfaceVersion ) ;",
+            "operation": "GetDiskControlVersion",
+            "statements": "return CoreFunctions.WriteInteger(data, DiskControlConstants.InterfaceVersion);",
+            "sharedDiskGuard": false
+          }
+        ],
+        "sha256": "27C0390AD8A749274AAA77C749D4BA7BCC6F1DCAE87AE5892110315311D1126D"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "keyboardPolicy": "existing pointer assignment",
+        "diskPolicy": "existing captures; null refused",
+        "branches": [
+          {
+            "section": "case ExternalCoreApiConstants.SetKeyboardCallback:\n                if (data == nint.Zero)\n                    return false;\n                KeyboardCallbackPointer = Marshal.ReadIntPtr(data);\n                return true;",
+            "command": "SetKeyboardCallback",
+            "value": 12,
+            "adapterBody": "if (data == nint.Zero)\n                    return false;\r\nKeyboardCallbackPointer = Marshal.ReadIntPtr(data);\r\nreturn true;",
+            "invocations": [
+              {
+                "symbol": "System.Runtime.InteropServices.Marshal.ReadIntPtr(nint)",
+                "expression": "Marshal.ReadIntPtr(data)",
+                "assembly": "System.Runtime.InteropServices"
+              }
+            ],
+            "sectionTokens": "case ExternalCoreApiConstants . SetKeyboardCallback : if ( data == nint . Zero ) return false ; KeyboardCallbackPointer = Marshal . ReadIntPtr ( data ) ; return true ;",
+            "operation": "SetKeyboardCallback",
+            "statements": "if (data == nint.Zero)\n                    return false;\r\nKeyboardCallbackPointer = Marshal.ReadIntPtr(data);\r\nreturn true;",
+            "sharedDiskGuard": false
+          },
+          {
+            "section": "case ExternalCoreApiConstants.SetDiskControl:\n                if (data == nint.Zero)\n                    return false;\n                _diskControl.Capture(data);\n                return true;",
+            "command": "SetDiskControl",
+            "value": 13,
+            "adapterBody": "_diskControl.Capture(data); return true;",
+            "invocations": [
+              {
+                "symbol": "GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Services.DiskControl.Capture(nint)",
+                "expression": "_diskControl.Capture(data)",
+                "assembly": "gwgui.emulation.sinclair"
+              }
+            ],
+            "sectionTokens": "case ExternalCoreApiConstants . SetDiskControl : if ( data == nint . Zero ) return false ; _diskControl . Capture ( data ) ; return true ;",
+            "operation": "CaptureDiskControl",
+            "statements": "if (data == nint.Zero)\n                    return false;\r\n_diskControl.Capture(data);\r\nreturn true;",
+            "sharedDiskGuard": true
+          },
+          {
+            "section": "case ExternalCoreApiConstants.SetDiskControlExtended:\n                if (data == nint.Zero)\n                    return false;\n                _diskControl.CaptureExtended(data);\n                return true;",
+            "command": "SetDiskControlExtended",
+            "value": 58,
+            "adapterBody": "_diskControl.CaptureExtended(data); return true;",
+            "invocations": [
+              {
+                "symbol": "GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Services.DiskControl.CaptureExtended(nint)",
+                "expression": "_diskControl.CaptureExtended(data)",
+                "assembly": "gwgui.emulation.sinclair"
+              }
+            ],
+            "sectionTokens": "case ExternalCoreApiConstants . SetDiskControlExtended : if ( data == nint . Zero ) return false ; _diskControl . CaptureExtended ( data ) ; return true ;",
+            "operation": "CaptureExtendedDiskControl",
+            "statements": "if (data == nint.Zero)\n                    return false;\r\n_diskControl.CaptureExtended(data);\r\nreturn true;",
+            "sharedDiskGuard": true
+          },
+          {
+            "section": "case ExternalCoreApiConstants.GetDiskControlVersion:\n                return CoreFunctions.WriteInteger(data, DiskControlConstants.InterfaceVersion);",
+            "command": "GetDiskControlVersion",
+            "value": 57,
+            "adapterBody": "return CoreFunctions.WriteInteger(data, DiskControlConstants.InterfaceVersion);",
+            "invocations": [
+              {
+                "symbol": "GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Functions.CoreFunctions.WriteInteger(nint, int)",
+                "expression": "CoreFunctions.WriteInteger(data, DiskControlConstants.InterfaceVersion)",
+                "assembly": "gwgui.emulation.sinclair"
+              }
+            ],
+            "sectionTokens": "case ExternalCoreApiConstants . GetDiskControlVersion : return CoreFunctions . WriteInteger ( data , DiskControlConstants . InterfaceVersion ) ;",
+            "operation": "GetDiskControlVersion",
+            "statements": "return CoreFunctions.WriteInteger(data, DiskControlConstants.InterfaceVersion);",
+            "sharedDiskGuard": false
+          }
+        ],
+        "sha256": "6F099EB26B129A257CE7084D46D877F68067D4F6C8EB40F4573245D144B42B0A"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "keyboardPolicy": "refused",
+        "diskPolicy": "existing captures; null refused",
+        "branches": [
+          {
+            "section": "case ExternalCoreApiConstants.SetKeyboardCallback:\n                return false;",
+            "command": "SetKeyboardCallback",
+            "value": 12,
+            "adapterBody": "return false;",
+            "invocations": [],
+            "sectionTokens": "case ExternalCoreApiConstants . SetKeyboardCallback : return false ;",
+            "operation": "SetKeyboardCallback",
+            "statements": "return false;",
+            "sharedDiskGuard": false
+          },
+          {
+            "section": "case ExternalCoreApiConstants.SetDiskControl:\n                if (data == nint.Zero)\n                    return false;\n                _diskControl.Capture(data);\n                return true;",
+            "command": "SetDiskControl",
+            "value": 13,
+            "adapterBody": "_diskControl.Capture(data); return true;",
+            "invocations": [
+              {
+                "symbol": "GWGUI.Emulation.Snk.Emulators.Common.Interop.Services.DiskControl.Capture(nint)",
+                "expression": "_diskControl.Capture(data)",
+                "assembly": "gwgui.emulation.snk"
+              }
+            ],
+            "sectionTokens": "case ExternalCoreApiConstants . SetDiskControl : if ( data == nint . Zero ) return false ; _diskControl . Capture ( data ) ; return true ;",
+            "operation": "CaptureDiskControl",
+            "statements": "if (data == nint.Zero)\n                    return false;\r\n_diskControl.Capture(data);\r\nreturn true;",
+            "sharedDiskGuard": true
+          },
+          {
+            "section": "case ExternalCoreApiConstants.SetDiskControlExtended:\n                if (data == nint.Zero)\n                    return false;\n                _diskControl.CaptureExtended(data);\n                return true;",
+            "command": "SetDiskControlExtended",
+            "value": 58,
+            "adapterBody": "_diskControl.CaptureExtended(data); return true;",
+            "invocations": [
+              {
+                "symbol": "GWGUI.Emulation.Snk.Emulators.Common.Interop.Services.DiskControl.CaptureExtended(nint)",
+                "expression": "_diskControl.CaptureExtended(data)",
+                "assembly": "gwgui.emulation.snk"
+              }
+            ],
+            "sectionTokens": "case ExternalCoreApiConstants . SetDiskControlExtended : if ( data == nint . Zero ) return false ; _diskControl . CaptureExtended ( data ) ; return true ;",
+            "operation": "CaptureExtendedDiskControl",
+            "statements": "if (data == nint.Zero)\n                    return false;\r\n_diskControl.CaptureExtended(data);\r\nreturn true;",
+            "sharedDiskGuard": true
+          },
+          {
+            "section": "case ExternalCoreApiConstants.GetDiskControlVersion:\n                return CoreFunctions.WriteInteger(data, DiskControlConstants.InterfaceVersion);",
+            "command": "GetDiskControlVersion",
+            "value": 57,
+            "adapterBody": "return CoreFunctions.WriteInteger(data, DiskControlConstants.InterfaceVersion);",
+            "invocations": [
+              {
+                "symbol": "GWGUI.Emulation.Snk.Emulators.Common.Interop.Functions.CoreFunctions.WriteInteger(nint, int)",
+                "expression": "CoreFunctions.WriteInteger(data, DiskControlConstants.InterfaceVersion)",
+                "assembly": "gwgui.emulation.snk"
+              }
+            ],
+            "sectionTokens": "case ExternalCoreApiConstants . GetDiskControlVersion : return CoreFunctions . WriteInteger ( data , DiskControlConstants . InterfaceVersion ) ;",
+            "operation": "GetDiskControlVersion",
+            "statements": "return CoreFunctions.WriteInteger(data, DiskControlConstants.InterfaceVersion);",
+            "sharedDiskGuard": false
+          }
+        ],
+        "sha256": "0CAAF53C905E7E3CC00AEDF45AE46C00E00410D53EF350E2B4D8F3A248DE29ED"
+      }
+    ],
+    "origin": {
+      "path": "src/GWGUI.Emulation.Atari/Services/AtariExternalHostCallbacks.cs",
+      "branches": [
+        {
+          "command": "SetKeyboardCallback",
+          "section": "case ExternalCoreApiConstants.SetKeyboardCallback:\r\n                return CaptureKeyboardCallback(data);"
+        },
+        {
+          "command": "SetDiskControl",
+          "section": "case ExternalCoreApiConstants.SetDiskControl:\r\n                if (data == nint.Zero) return false;\r\n                _diskControl.Capture(data);\r\n                return true;"
+        },
+        {
+          "command": "SetDiskControlExtended",
+          "section": "case ExternalCoreApiConstants.SetDiskControlExtended:\r\n                if (data == nint.Zero) return false;\r\n                _diskControl.CaptureExtended(data);\r\n                return true;"
+        },
+        {
+          "command": "GetDiskControlVersion",
+          "section": "case ExternalCoreApiConstants.GetDiskControlVersion:\r\n                return AtariCoreFunctions.WriteInteger(data, AtariDiskControlConstants.InterfaceVersion);"
+        }
+      ],
+      "commit": "ac7292d86^"
+    },
+    "invariants": [
+      "Existing contract/router extended, no parallel state or interface",
+      "Twenty previous commands unchanged",
+      "Bandai refuses all three disk operations; Fairchild and SNK refuse keyboard",
+      "Six keyboard capture methods and four raw pointer assignments retained",
+      "Two shared disk guards precede callbacks, null data never reaches captures",
+      "Fields, ABI conversion, errors, diagnostics and resource owners remain local"
+    ],
+    "inputs": [
+      {
+        "sha256": "876ADE69DEFCB14D12AA09D02CB5EA526365E80EE1C55BDE595A95E2F65AF4E8",
+        "path": "src/GWGUI.Emulation/Interfaces/IEmulationCoreEnvironmentCommands.cs"
+      },
+      {
+        "sha256": "92CBEB9E8C194A24BA5B4BBB8F19AB73902D03915B16EEBE9FE20F3292D798C7",
+        "path": "src/GWGUI.Emulation/Functions/ExternalCoreEnvironmentFunctions.cs"
+      },
+      {
+        "sha256": "034B0E0A8C8E42AECCA0E37D1995337841700B8AE09E0F604F829B7025EC5A64",
+        "path": "tests/GWGUI.Tests/Emulation/EnvironmentCallbackCommandTests.cs"
+      }
+    ],
+    "beforeHead": "58134843c5df1173eb16e757e3d14620591cd3be",
+    "verification": {
+      "tests": {
+        "failed": 0,
+        "command": "dotnet test --no-restore --filter EnvironmentCallbackCommandTests|StatelessEnvironmentCommandTests|OptionEnvironmentCommandTests",
+        "scope": "24 routes preserve both callback results, disk null guard before owner, keyboard/version null profile decision, propagated errors, existing stateless/option regressions",
+        "passed": 67,
+        "resources": "New cases use managed fakes only, no native core/file/process/window",
+        "routingCases": 35
+      },
+      "scope": "Only four dispatch branches moved; original profile bodies, captures and state owners preserved. No full host, initialization or disposal qualification",
+      "interfaceSha256": "C20B94D56B9C18636A84A07FFF4BA05CAFFE352FEA41BC7CE120BB3145F31828",
+      "previousTwentyCommandsUnchanged": true,
+      "semanticErrors": 0,
+      "sdkSha256": "DDF77138CB4B049E98AB9A38EB03118972180B90047CE7FC86E77A273E5DD935",
+      "routerBindings": [
+        {
+          "assembly": "gwgui.emulation",
+          "operation": "GWGUI.Emulation.Interfaces.IEmulationCoreEnvironmentCommands.SetRotation(nint)"
+        },
+        {
+          "assembly": "gwgui.emulation",
+          "operation": "GWGUI.Emulation.Interfaces.IEmulationCoreEnvironmentCommands.CapturePerformanceLevel(nint)"
+        },
+        {
+          "assembly": "gwgui.emulation",
+          "operation": "GWGUI.Emulation.Interfaces.IEmulationCoreEnvironmentCommands.SetPixelFormat(nint)"
+        },
+        {
+          "assembly": "gwgui.emulation",
+          "operation": "GWGUI.Emulation.Interfaces.IEmulationCoreEnvironmentCommands.SetSystemAvInfo(nint)"
+        },
+        {
+          "assembly": "gwgui.emulation",
+          "operation": "GWGUI.Emulation.Interfaces.IEmulationCoreEnvironmentCommands.SetGeometry(nint)"
+        },
+        {
+          "assembly": "gwgui.emulation",
+          "operation": "GWGUI.Emulation.Interfaces.IEmulationCoreEnvironmentCommands.ReadMessage(nint)"
+        },
+        {
+          "assembly": "gwgui.emulation",
+          "operation": "GWGUI.Emulation.Interfaces.IEmulationCoreEnvironmentCommands.ReadExtendedMessage(nint)"
+        },
+        {
+          "assembly": "gwgui.emulation",
+          "operation": "GWGUI.Emulation.Interfaces.IEmulationCoreEnvironmentCommands.SetLogInterface(nint)"
+        },
+        {
+          "assembly": "gwgui.emulation",
+          "operation": "GWGUI.Emulation.Interfaces.IEmulationCoreEnvironmentCommands.SetLedInterface(nint)"
+        },
+        {
+          "assembly": "gwgui.emulation",
+          "operation": "GWGUI.Emulation.Interfaces.IEmulationCoreEnvironmentCommands.SetRumbleInterface(nint)"
+        },
+        {
+          "assembly": "gwgui.emulation",
+          "operation": "GWGUI.Emulation.Interfaces.IEmulationCoreEnvironmentCommands.SetSensorInterface(nint)"
+        },
+        {
+          "assembly": "gwgui.emulation",
+          "operation": "GWGUI.Emulation.Interfaces.IEmulationCoreEnvironmentCommands.WriteSystemDirectory(nint)"
+        },
+        {
+          "assembly": "gwgui.emulation",
+          "operation": "GWGUI.Emulation.Interfaces.IEmulationCoreEnvironmentCommands.WriteContentDirectory(nint)"
+        },
+        {
+          "assembly": "gwgui.emulation",
+          "operation": "GWGUI.Emulation.Interfaces.IEmulationCoreEnvironmentCommands.WriteSaveDirectory(nint)"
+        },
+        {
+          "assembly": "gwgui.emulation",
+          "operation": "GWGUI.Emulation.Interfaces.IEmulationCoreEnvironmentCommands.SetSupportNoGame(nint)"
+        },
+        {
+          "assembly": "gwgui.emulation",
+          "operation": "GWGUI.Emulation.Interfaces.IEmulationCoreEnvironmentCommands.CaptureInputDescriptors(nint)"
+        },
+        {
+          "assembly": "gwgui.emulation",
+          "operation": "GWGUI.Emulation.Interfaces.IEmulationCoreEnvironmentCommands.CaptureControllerInfo(nint)"
+        },
+        {
+          "assembly": "gwgui.emulation",
+          "operation": "GWGUI.Emulation.Interfaces.IEmulationCoreEnvironmentCommands.CaptureMemoryMaps(nint)"
+        },
+        {
+          "assembly": "gwgui.emulation",
+          "operation": "GWGUI.Emulation.Interfaces.IEmulationCoreEnvironmentCommands.SetSupportAchievements(nint)"
+        },
+        {
+          "assembly": "gwgui.emulation",
+          "operation": "GWGUI.Emulation.Interfaces.IEmulationCoreEnvironmentCommands.ProvideVfs(nint)"
+        },
+        {
+          "assembly": "gwgui.emulation",
+          "operation": "GWGUI.Emulation.Interfaces.IEmulationCoreEnvironmentCommands.SetKeyboardCallback(nint)"
+        },
+        {
+          "assembly": "gwgui.emulation",
+          "operation": "GWGUI.Emulation.Interfaces.IEmulationCoreEnvironmentCommands.CaptureDiskControl(nint)"
+        },
+        {
+          "assembly": "gwgui.emulation",
+          "operation": "GWGUI.Emulation.Interfaces.IEmulationCoreEnvironmentCommands.CaptureExtendedDiskControl(nint)"
+        },
+        {
+          "assembly": "gwgui.emulation",
+          "operation": "GWGUI.Emulation.Interfaces.IEmulationCoreEnvironmentCommands.GetDiskControlVersion(nint)"
+        }
+      ],
+      "adapterBindings": [
+        {
+          "oldStatements": "return CaptureKeyboardCallback(data);",
+          "operation": "SetKeyboardCallback",
+          "retainedBodyCalls": [
+            {
+              "symbol": "GWGUI.Emulation.Acorn.Emulators.Common.Interop.Services.ExternalHostCallbacks.CaptureKeyboardCallback(nint)",
+              "expression": "CaptureKeyboardCallback(data)",
+              "assembly": "gwgui.emulation.acorn"
+            }
+          ],
+          "guardExpansion": "Original body unchanged, including profile refusal or keyboard guard",
+          "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "interface": "GWGUI.Emulation.Interfaces.IEmulationCoreEnvironmentCommands",
+          "diskGuardMoved": false
+        },
+        {
+          "oldStatements": "if (data == nint.Zero) return false;\r\n_diskControl.Capture(data);\r\nreturn true;",
+          "operation": "CaptureDiskControl",
+          "retainedBodyCalls": [
+            {
+              "symbol": "GWGUI.Emulation.Acorn.Emulators.Common.Interop.Services.DiskControl.Capture(nint)",
+              "expression": "_diskControl.Capture(data)",
+              "assembly": "gwgui.emulation.acorn"
+            }
+          ],
+          "guardExpansion": "data == 0 => false before callback; otherwise original capture once then true",
+          "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "interface": "GWGUI.Emulation.Interfaces.IEmulationCoreEnvironmentCommands",
+          "diskGuardMoved": true
+        },
+        {
+          "oldStatements": "if (data == nint.Zero) return false;\r\n_diskControl.CaptureExtended(data);\r\nreturn true;",
+          "operation": "CaptureExtendedDiskControl",
+          "retainedBodyCalls": [
+            {
+              "symbol": "GWGUI.Emulation.Acorn.Emulators.Common.Interop.Services.DiskControl.CaptureExtended(nint)",
+              "expression": "_diskControl.CaptureExtended(data)",
+              "assembly": "gwgui.emulation.acorn"
+            }
+          ],
+          "guardExpansion": "data == 0 => false before callback; otherwise original capture once then true",
+          "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "interface": "GWGUI.Emulation.Interfaces.IEmulationCoreEnvironmentCommands",
+          "diskGuardMoved": true
+        },
+        {
+          "oldStatements": "return CoreFunctions.WriteInteger(data, DiskControlConstants.InterfaceVersion);",
+          "operation": "GetDiskControlVersion",
+          "retainedBodyCalls": [
+            {
+              "symbol": "GWGUI.Emulation.Acorn.Emulators.Common.Interop.Functions.CoreFunctions.WriteInteger(nint, int)",
+              "expression": "CoreFunctions.WriteInteger(data, DiskControlConstants.InterfaceVersion)",
+              "assembly": "gwgui.emulation.acorn"
+            }
+          ],
+          "guardExpansion": "Original body unchanged, including profile refusal or keyboard guard",
+          "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "interface": "GWGUI.Emulation.Interfaces.IEmulationCoreEnvironmentCommands",
+          "diskGuardMoved": false
+        },
+        {
+          "oldStatements": "return CaptureKeyboardCallback(data);",
+          "operation": "SetKeyboardCallback",
+          "retainedBodyCalls": [
+            {
+              "symbol": "GWGUI.Emulation.Apple.Emulators.Common.Interop.Services.ExternalHostCallbacks.CaptureKeyboardCallback(nint)",
+              "expression": "CaptureKeyboardCallback(data)",
+              "assembly": "gwgui.emulation.apple"
+            }
+          ],
+          "guardExpansion": "Original body unchanged, including profile refusal or keyboard guard",
+          "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "interface": "GWGUI.Emulation.Interfaces.IEmulationCoreEnvironmentCommands",
+          "diskGuardMoved": false
+        },
+        {
+          "oldStatements": "if (data == nint.Zero) return false;\r\n_diskControl.Capture(data);\r\nreturn true;",
+          "operation": "CaptureDiskControl",
+          "retainedBodyCalls": [
+            {
+              "symbol": "GWGUI.Emulation.Apple.Emulators.Common.Interop.Services.DiskControl.Capture(nint)",
+              "expression": "_diskControl.Capture(data)",
+              "assembly": "gwgui.emulation.apple"
+            }
+          ],
+          "guardExpansion": "data == 0 => false before callback; otherwise original capture once then true",
+          "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "interface": "GWGUI.Emulation.Interfaces.IEmulationCoreEnvironmentCommands",
+          "diskGuardMoved": true
+        },
+        {
+          "oldStatements": "if (data == nint.Zero) return false;\r\n_diskControl.CaptureExtended(data);\r\nreturn true;",
+          "operation": "CaptureExtendedDiskControl",
+          "retainedBodyCalls": [
+            {
+              "symbol": "GWGUI.Emulation.Apple.Emulators.Common.Interop.Services.DiskControl.CaptureExtended(nint)",
+              "expression": "_diskControl.CaptureExtended(data)",
+              "assembly": "gwgui.emulation.apple"
+            }
+          ],
+          "guardExpansion": "data == 0 => false before callback; otherwise original capture once then true",
+          "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "interface": "GWGUI.Emulation.Interfaces.IEmulationCoreEnvironmentCommands",
+          "diskGuardMoved": true
+        },
+        {
+          "oldStatements": "return CoreFunctions.WriteInteger(data, DiskControlConstants.InterfaceVersion);",
+          "operation": "GetDiskControlVersion",
+          "retainedBodyCalls": [
+            {
+              "symbol": "GWGUI.Emulation.Apple.Emulators.Common.Interop.Functions.CoreFunctions.WriteInteger(nint, int)",
+              "expression": "CoreFunctions.WriteInteger(data, DiskControlConstants.InterfaceVersion)",
+              "assembly": "gwgui.emulation.apple"
+            }
+          ],
+          "guardExpansion": "Original body unchanged, including profile refusal or keyboard guard",
+          "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "interface": "GWGUI.Emulation.Interfaces.IEmulationCoreEnvironmentCommands",
+          "diskGuardMoved": false
+        },
+        {
+          "oldStatements": "return CaptureKeyboardCallback(data);",
+          "operation": "SetKeyboardCallback",
+          "retainedBodyCalls": [
+            {
+              "symbol": "GWGUI.Emulation.Atari.Emulators.Common.Interop.Services.ExternalHostCallbacks.CaptureKeyboardCallback(nint)",
+              "expression": "CaptureKeyboardCallback(data)",
+              "assembly": "gwgui.emulation.atari"
+            }
+          ],
+          "guardExpansion": "Original body unchanged, including profile refusal or keyboard guard",
+          "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "interface": "GWGUI.Emulation.Interfaces.IEmulationCoreEnvironmentCommands",
+          "diskGuardMoved": false
+        },
+        {
+          "oldStatements": "if (data == nint.Zero) return false;\r\n_diskControl.Capture(data);\r\nreturn true;",
+          "operation": "CaptureDiskControl",
+          "retainedBodyCalls": [
+            {
+              "symbol": "GWGUI.Emulation.Atari.Emulators.Common.Interop.Services.DiskControl.Capture(nint)",
+              "expression": "_diskControl.Capture(data)",
+              "assembly": "gwgui.emulation.atari"
+            }
+          ],
+          "guardExpansion": "data == 0 => false before callback; otherwise original capture once then true",
+          "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "interface": "GWGUI.Emulation.Interfaces.IEmulationCoreEnvironmentCommands",
+          "diskGuardMoved": true
+        },
+        {
+          "oldStatements": "if (data == nint.Zero) return false;\r\n_diskControl.CaptureExtended(data);\r\nreturn true;",
+          "operation": "CaptureExtendedDiskControl",
+          "retainedBodyCalls": [
+            {
+              "symbol": "GWGUI.Emulation.Atari.Emulators.Common.Interop.Services.DiskControl.CaptureExtended(nint)",
+              "expression": "_diskControl.CaptureExtended(data)",
+              "assembly": "gwgui.emulation.atari"
+            }
+          ],
+          "guardExpansion": "data == 0 => false before callback; otherwise original capture once then true",
+          "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "interface": "GWGUI.Emulation.Interfaces.IEmulationCoreEnvironmentCommands",
+          "diskGuardMoved": true
+        },
+        {
+          "oldStatements": "return CoreFunctions.WriteInteger(data, DiskControlConstants.InterfaceVersion);",
+          "operation": "GetDiskControlVersion",
+          "retainedBodyCalls": [
+            {
+              "symbol": "GWGUI.Emulation.Atari.Emulators.Common.Interop.Functions.CoreFunctions.WriteInteger(nint, int)",
+              "expression": "CoreFunctions.WriteInteger(data, DiskControlConstants.InterfaceVersion)",
+              "assembly": "gwgui.emulation.atari"
+            }
+          ],
+          "guardExpansion": "Original body unchanged, including profile refusal or keyboard guard",
+          "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "interface": "GWGUI.Emulation.Interfaces.IEmulationCoreEnvironmentCommands",
+          "diskGuardMoved": false
+        },
+        {
+          "oldStatements": "return CaptureKeyboardCallback(data);",
+          "operation": "SetKeyboardCallback",
+          "retainedBodyCalls": [
+            {
+              "symbol": "GWGUI.Emulation.Bandai.Emulators.Common.Interop.Services.ExternalHostCallbacks.CaptureKeyboardCallback(nint)",
+              "expression": "CaptureKeyboardCallback(data)",
+              "assembly": "gwgui.emulation.bandai"
+            }
+          ],
+          "guardExpansion": "Original body unchanged, including profile refusal or keyboard guard",
+          "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "interface": "GWGUI.Emulation.Interfaces.IEmulationCoreEnvironmentCommands",
+          "diskGuardMoved": false
+        },
+        {
+          "oldStatements": "return false;",
+          "operation": "CaptureDiskControl",
+          "retainedBodyCalls": [],
+          "guardExpansion": "Original body unchanged, including profile refusal or keyboard guard",
+          "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "interface": "GWGUI.Emulation.Interfaces.IEmulationCoreEnvironmentCommands",
+          "diskGuardMoved": false
+        },
+        {
+          "oldStatements": "return false;",
+          "operation": "CaptureExtendedDiskControl",
+          "retainedBodyCalls": [],
+          "guardExpansion": "Original body unchanged, including profile refusal or keyboard guard",
+          "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "interface": "GWGUI.Emulation.Interfaces.IEmulationCoreEnvironmentCommands",
+          "diskGuardMoved": false
+        },
+        {
+          "oldStatements": "return false;",
+          "operation": "GetDiskControlVersion",
+          "retainedBodyCalls": [],
+          "guardExpansion": "Original body unchanged, including profile refusal or keyboard guard",
+          "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "interface": "GWGUI.Emulation.Interfaces.IEmulationCoreEnvironmentCommands",
+          "diskGuardMoved": false
+        },
+        {
+          "oldStatements": "return CaptureKeyboardCallback(data);",
+          "operation": "SetKeyboardCallback",
+          "retainedBodyCalls": [
+            {
+              "symbol": "GWGUI.Emulation.Coleco.Emulators.Common.Interop.Services.ExternalHostCallbacks.CaptureKeyboardCallback(nint)",
+              "expression": "CaptureKeyboardCallback(data)",
+              "assembly": "gwgui.emulation.coleco"
+            }
+          ],
+          "guardExpansion": "Original body unchanged, including profile refusal or keyboard guard",
+          "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "interface": "GWGUI.Emulation.Interfaces.IEmulationCoreEnvironmentCommands",
+          "diskGuardMoved": false
+        },
+        {
+          "oldStatements": "if (data == nint.Zero) return false;\r\n_diskControl.Capture(data);\r\nreturn true;",
+          "operation": "CaptureDiskControl",
+          "retainedBodyCalls": [
+            {
+              "symbol": "GWGUI.Emulation.Coleco.Emulators.Common.Interop.Services.DiskControl.Capture(nint)",
+              "expression": "_diskControl.Capture(data)",
+              "assembly": "gwgui.emulation.coleco"
+            }
+          ],
+          "guardExpansion": "data == 0 => false before callback; otherwise original capture once then true",
+          "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "interface": "GWGUI.Emulation.Interfaces.IEmulationCoreEnvironmentCommands",
+          "diskGuardMoved": true
+        },
+        {
+          "oldStatements": "if (data == nint.Zero) return false;\r\n_diskControl.CaptureExtended(data);\r\nreturn true;",
+          "operation": "CaptureExtendedDiskControl",
+          "retainedBodyCalls": [
+            {
+              "symbol": "GWGUI.Emulation.Coleco.Emulators.Common.Interop.Services.DiskControl.CaptureExtended(nint)",
+              "expression": "_diskControl.CaptureExtended(data)",
+              "assembly": "gwgui.emulation.coleco"
+            }
+          ],
+          "guardExpansion": "data == 0 => false before callback; otherwise original capture once then true",
+          "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "interface": "GWGUI.Emulation.Interfaces.IEmulationCoreEnvironmentCommands",
+          "diskGuardMoved": true
+        },
+        {
+          "oldStatements": "return CoreFunctions.WriteInteger(data, DiskControlConstants.InterfaceVersion);",
+          "operation": "GetDiskControlVersion",
+          "retainedBodyCalls": [
+            {
+              "symbol": "GWGUI.Emulation.Coleco.Emulators.Common.Interop.Functions.CoreFunctions.WriteInteger(nint, int)",
+              "expression": "CoreFunctions.WriteInteger(data, DiskControlConstants.InterfaceVersion)",
+              "assembly": "gwgui.emulation.coleco"
+            }
+          ],
+          "guardExpansion": "Original body unchanged, including profile refusal or keyboard guard",
+          "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "interface": "GWGUI.Emulation.Interfaces.IEmulationCoreEnvironmentCommands",
+          "diskGuardMoved": false
+        },
+        {
+          "oldStatements": "return CaptureKeyboardCallback(data);",
+          "operation": "SetKeyboardCallback",
+          "retainedBodyCalls": [
+            {
+              "symbol": "GWGUI.Emulation.Epoch.Emulators.Common.Interop.Services.ExternalHostCallbacks.CaptureKeyboardCallback(nint)",
+              "expression": "CaptureKeyboardCallback(data)",
+              "assembly": "gwgui.emulation.epoch"
+            }
+          ],
+          "guardExpansion": "Original body unchanged, including profile refusal or keyboard guard",
+          "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "interface": "GWGUI.Emulation.Interfaces.IEmulationCoreEnvironmentCommands",
+          "diskGuardMoved": false
+        },
+        {
+          "oldStatements": "if (data == nint.Zero) return false;\r\n_diskControl.Capture(data);\r\nreturn true;",
+          "operation": "CaptureDiskControl",
+          "retainedBodyCalls": [
+            {
+              "symbol": "GWGUI.Emulation.Epoch.Emulators.Common.Interop.Services.DiskControl.Capture(nint)",
+              "expression": "_diskControl.Capture(data)",
+              "assembly": "gwgui.emulation.epoch"
+            }
+          ],
+          "guardExpansion": "data == 0 => false before callback; otherwise original capture once then true",
+          "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "interface": "GWGUI.Emulation.Interfaces.IEmulationCoreEnvironmentCommands",
+          "diskGuardMoved": true
+        },
+        {
+          "oldStatements": "if (data == nint.Zero) return false;\r\n_diskControl.CaptureExtended(data);\r\nreturn true;",
+          "operation": "CaptureExtendedDiskControl",
+          "retainedBodyCalls": [
+            {
+              "symbol": "GWGUI.Emulation.Epoch.Emulators.Common.Interop.Services.DiskControl.CaptureExtended(nint)",
+              "expression": "_diskControl.CaptureExtended(data)",
+              "assembly": "gwgui.emulation.epoch"
+            }
+          ],
+          "guardExpansion": "data == 0 => false before callback; otherwise original capture once then true",
+          "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "interface": "GWGUI.Emulation.Interfaces.IEmulationCoreEnvironmentCommands",
+          "diskGuardMoved": true
+        },
+        {
+          "oldStatements": "return CoreFunctions.WriteInteger(data, DiskControlConstants.InterfaceVersion);",
+          "operation": "GetDiskControlVersion",
+          "retainedBodyCalls": [
+            {
+              "symbol": "GWGUI.Emulation.Epoch.Emulators.Common.Interop.Functions.CoreFunctions.WriteInteger(nint, int)",
+              "expression": "CoreFunctions.WriteInteger(data, DiskControlConstants.InterfaceVersion)",
+              "assembly": "gwgui.emulation.epoch"
+            }
+          ],
+          "guardExpansion": "Original body unchanged, including profile refusal or keyboard guard",
+          "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "interface": "GWGUI.Emulation.Interfaces.IEmulationCoreEnvironmentCommands",
+          "diskGuardMoved": false
+        },
+        {
+          "oldStatements": "return false;",
+          "operation": "SetKeyboardCallback",
+          "retainedBodyCalls": [],
+          "guardExpansion": "Original body unchanged, including profile refusal or keyboard guard",
+          "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "interface": "GWGUI.Emulation.Interfaces.IEmulationCoreEnvironmentCommands",
+          "diskGuardMoved": false
+        },
+        {
+          "oldStatements": "if (data == nint.Zero) return false;\r\n_diskControl.Capture(data);\r\nreturn true;",
+          "operation": "CaptureDiskControl",
+          "retainedBodyCalls": [
+            {
+              "symbol": "GWGUI.Emulation.Fairchild.Emulators.Common.Interop.Services.DiskControl.Capture(nint)",
+              "expression": "_diskControl.Capture(data)",
+              "assembly": "gwgui.emulation.fairchild"
+            }
+          ],
+          "guardExpansion": "data == 0 => false before callback; otherwise original capture once then true",
+          "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "interface": "GWGUI.Emulation.Interfaces.IEmulationCoreEnvironmentCommands",
+          "diskGuardMoved": true
+        },
+        {
+          "oldStatements": "if (data == nint.Zero) return false;\r\n_diskControl.CaptureExtended(data);\r\nreturn true;",
+          "operation": "CaptureExtendedDiskControl",
+          "retainedBodyCalls": [
+            {
+              "symbol": "GWGUI.Emulation.Fairchild.Emulators.Common.Interop.Services.DiskControl.CaptureExtended(nint)",
+              "expression": "_diskControl.CaptureExtended(data)",
+              "assembly": "gwgui.emulation.fairchild"
+            }
+          ],
+          "guardExpansion": "data == 0 => false before callback; otherwise original capture once then true",
+          "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "interface": "GWGUI.Emulation.Interfaces.IEmulationCoreEnvironmentCommands",
+          "diskGuardMoved": true
+        },
+        {
+          "oldStatements": "return CoreFunctions.WriteInteger(data, DiskControlConstants.InterfaceVersion);",
+          "operation": "GetDiskControlVersion",
+          "retainedBodyCalls": [
+            {
+              "symbol": "GWGUI.Emulation.Fairchild.Emulators.Common.Interop.Functions.CoreFunctions.WriteInteger(nint, int)",
+              "expression": "CoreFunctions.WriteInteger(data, DiskControlConstants.InterfaceVersion)",
+              "assembly": "gwgui.emulation.fairchild"
+            }
+          ],
+          "guardExpansion": "Original body unchanged, including profile refusal or keyboard guard",
+          "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "interface": "GWGUI.Emulation.Interfaces.IEmulationCoreEnvironmentCommands",
+          "diskGuardMoved": false
+        },
+        {
+          "oldStatements": "if (data == nint.Zero) return false;\r\nKeyboardCallbackPointer = Marshal.ReadIntPtr(data);\r\nreturn true;",
+          "operation": "SetKeyboardCallback",
+          "retainedBodyCalls": [
+            {
+              "symbol": "System.Runtime.InteropServices.Marshal.ReadIntPtr(nint)",
+              "expression": "Marshal.ReadIntPtr(data)",
+              "assembly": "System.Runtime.InteropServices"
+            }
+          ],
+          "guardExpansion": "Original body unchanged, including profile refusal or keyboard guard",
+          "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "interface": "GWGUI.Emulation.Interfaces.IEmulationCoreEnvironmentCommands",
+          "diskGuardMoved": false
+        },
+        {
+          "oldStatements": "if (data == nint.Zero) return false;\r\n_diskControl.Capture(data);\r\nreturn true;",
+          "operation": "CaptureDiskControl",
+          "retainedBodyCalls": [
+            {
+              "symbol": "GWGUI.Emulation.Mattel.Emulators.Common.Interop.Services.DiskControl.Capture(nint)",
+              "expression": "_diskControl.Capture(data)",
+              "assembly": "gwgui.emulation.mattel"
+            }
+          ],
+          "guardExpansion": "data == 0 => false before callback; otherwise original capture once then true",
+          "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "interface": "GWGUI.Emulation.Interfaces.IEmulationCoreEnvironmentCommands",
+          "diskGuardMoved": true
+        },
+        {
+          "oldStatements": "if (data == nint.Zero) return false;\r\n_diskControl.CaptureExtended(data);\r\nreturn true;",
+          "operation": "CaptureExtendedDiskControl",
+          "retainedBodyCalls": [
+            {
+              "symbol": "GWGUI.Emulation.Mattel.Emulators.Common.Interop.Services.DiskControl.CaptureExtended(nint)",
+              "expression": "_diskControl.CaptureExtended(data)",
+              "assembly": "gwgui.emulation.mattel"
+            }
+          ],
+          "guardExpansion": "data == 0 => false before callback; otherwise original capture once then true",
+          "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "interface": "GWGUI.Emulation.Interfaces.IEmulationCoreEnvironmentCommands",
+          "diskGuardMoved": true
+        },
+        {
+          "oldStatements": "return CoreFunctions.WriteInteger(data, DiskControlConstants.InterfaceVersion);",
+          "operation": "GetDiskControlVersion",
+          "retainedBodyCalls": [
+            {
+              "symbol": "GWGUI.Emulation.Mattel.Emulators.Common.Interop.Functions.CoreFunctions.WriteInteger(nint, int)",
+              "expression": "CoreFunctions.WriteInteger(data, DiskControlConstants.InterfaceVersion)",
+              "assembly": "gwgui.emulation.mattel"
+            }
+          ],
+          "guardExpansion": "Original body unchanged, including profile refusal or keyboard guard",
+          "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "interface": "GWGUI.Emulation.Interfaces.IEmulationCoreEnvironmentCommands",
+          "diskGuardMoved": false
+        },
+        {
+          "oldStatements": "if (data == nint.Zero) return false;\r\nKeyboardCallbackPointer = Marshal.ReadIntPtr(data);\r\nreturn true;",
+          "operation": "SetKeyboardCallback",
+          "retainedBodyCalls": [
+            {
+              "symbol": "System.Runtime.InteropServices.Marshal.ReadIntPtr(nint)",
+              "expression": "Marshal.ReadIntPtr(data)",
+              "assembly": "System.Runtime.InteropServices"
+            }
+          ],
+          "guardExpansion": "Original body unchanged, including profile refusal or keyboard guard",
+          "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "interface": "GWGUI.Emulation.Interfaces.IEmulationCoreEnvironmentCommands",
+          "diskGuardMoved": false
+        },
+        {
+          "oldStatements": "if (data == nint.Zero) return false;\r\n_diskControl.Capture(data);\r\nreturn true;",
+          "operation": "CaptureDiskControl",
+          "retainedBodyCalls": [
+            {
+              "symbol": "GWGUI.Emulation.Philips.Emulators.Common.Interop.Services.DiskControl.Capture(nint)",
+              "expression": "_diskControl.Capture(data)",
+              "assembly": "gwgui.emulation.philips"
+            }
+          ],
+          "guardExpansion": "data == 0 => false before callback; otherwise original capture once then true",
+          "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "interface": "GWGUI.Emulation.Interfaces.IEmulationCoreEnvironmentCommands",
+          "diskGuardMoved": true
+        },
+        {
+          "oldStatements": "if (data == nint.Zero) return false;\r\n_diskControl.CaptureExtended(data);\r\nreturn true;",
+          "operation": "CaptureExtendedDiskControl",
+          "retainedBodyCalls": [
+            {
+              "symbol": "GWGUI.Emulation.Philips.Emulators.Common.Interop.Services.DiskControl.CaptureExtended(nint)",
+              "expression": "_diskControl.CaptureExtended(data)",
+              "assembly": "gwgui.emulation.philips"
+            }
+          ],
+          "guardExpansion": "data == 0 => false before callback; otherwise original capture once then true",
+          "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "interface": "GWGUI.Emulation.Interfaces.IEmulationCoreEnvironmentCommands",
+          "diskGuardMoved": true
+        },
+        {
+          "oldStatements": "return CoreFunctions.WriteInteger(data, DiskControlConstants.InterfaceVersion);",
+          "operation": "GetDiskControlVersion",
+          "retainedBodyCalls": [
+            {
+              "symbol": "GWGUI.Emulation.Philips.Emulators.Common.Interop.Functions.CoreFunctions.WriteInteger(nint, int)",
+              "expression": "CoreFunctions.WriteInteger(data, DiskControlConstants.InterfaceVersion)",
+              "assembly": "gwgui.emulation.philips"
+            }
+          ],
+          "guardExpansion": "Original body unchanged, including profile refusal or keyboard guard",
+          "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "interface": "GWGUI.Emulation.Interfaces.IEmulationCoreEnvironmentCommands",
+          "diskGuardMoved": false
+        },
+        {
+          "oldStatements": "if (data == nint.Zero)\n                    return false;\r\nKeyboardCallbackPointer = Marshal.ReadIntPtr(data);\r\nreturn true;",
+          "operation": "SetKeyboardCallback",
+          "retainedBodyCalls": [
+            {
+              "symbol": "System.Runtime.InteropServices.Marshal.ReadIntPtr(nint)",
+              "expression": "Marshal.ReadIntPtr(data)",
+              "assembly": "System.Runtime.InteropServices"
+            }
+          ],
+          "guardExpansion": "Original body unchanged, including profile refusal or keyboard guard",
+          "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "interface": "GWGUI.Emulation.Interfaces.IEmulationCoreEnvironmentCommands",
+          "diskGuardMoved": false
+        },
+        {
+          "oldStatements": "if (data == nint.Zero)\n                    return false;\r\n_diskControl.Capture(data);\r\nreturn true;",
+          "operation": "CaptureDiskControl",
+          "retainedBodyCalls": [
+            {
+              "symbol": "GWGUI.Emulation.Sharp.Emulators.Common.Interop.Services.DiskControl.Capture(nint)",
+              "expression": "_diskControl.Capture(data)",
+              "assembly": "gwgui.emulation.sharp"
+            }
+          ],
+          "guardExpansion": "data == 0 => false before callback; otherwise original capture once then true",
+          "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "interface": "GWGUI.Emulation.Interfaces.IEmulationCoreEnvironmentCommands",
+          "diskGuardMoved": true
+        },
+        {
+          "oldStatements": "if (data == nint.Zero)\n                    return false;\r\n_diskControl.CaptureExtended(data);\r\nreturn true;",
+          "operation": "CaptureExtendedDiskControl",
+          "retainedBodyCalls": [
+            {
+              "symbol": "GWGUI.Emulation.Sharp.Emulators.Common.Interop.Services.DiskControl.CaptureExtended(nint)",
+              "expression": "_diskControl.CaptureExtended(data)",
+              "assembly": "gwgui.emulation.sharp"
+            }
+          ],
+          "guardExpansion": "data == 0 => false before callback; otherwise original capture once then true",
+          "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "interface": "GWGUI.Emulation.Interfaces.IEmulationCoreEnvironmentCommands",
+          "diskGuardMoved": true
+        },
+        {
+          "oldStatements": "return CoreFunctions.WriteInteger(data, DiskControlConstants.InterfaceVersion);",
+          "operation": "GetDiskControlVersion",
+          "retainedBodyCalls": [
+            {
+              "symbol": "GWGUI.Emulation.Sharp.Emulators.Common.Interop.Functions.CoreFunctions.WriteInteger(nint, int)",
+              "expression": "CoreFunctions.WriteInteger(data, DiskControlConstants.InterfaceVersion)",
+              "assembly": "gwgui.emulation.sharp"
+            }
+          ],
+          "guardExpansion": "Original body unchanged, including profile refusal or keyboard guard",
+          "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "interface": "GWGUI.Emulation.Interfaces.IEmulationCoreEnvironmentCommands",
+          "diskGuardMoved": false
+        },
+        {
+          "oldStatements": "if (data == nint.Zero)\n                    return false;\r\nKeyboardCallbackPointer = Marshal.ReadIntPtr(data);\r\nreturn true;",
+          "operation": "SetKeyboardCallback",
+          "retainedBodyCalls": [
+            {
+              "symbol": "System.Runtime.InteropServices.Marshal.ReadIntPtr(nint)",
+              "expression": "Marshal.ReadIntPtr(data)",
+              "assembly": "System.Runtime.InteropServices"
+            }
+          ],
+          "guardExpansion": "Original body unchanged, including profile refusal or keyboard guard",
+          "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "interface": "GWGUI.Emulation.Interfaces.IEmulationCoreEnvironmentCommands",
+          "diskGuardMoved": false
+        },
+        {
+          "oldStatements": "if (data == nint.Zero)\n                    return false;\r\n_diskControl.Capture(data);\r\nreturn true;",
+          "operation": "CaptureDiskControl",
+          "retainedBodyCalls": [
+            {
+              "symbol": "GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Services.DiskControl.Capture(nint)",
+              "expression": "_diskControl.Capture(data)",
+              "assembly": "gwgui.emulation.sinclair"
+            }
+          ],
+          "guardExpansion": "data == 0 => false before callback; otherwise original capture once then true",
+          "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "interface": "GWGUI.Emulation.Interfaces.IEmulationCoreEnvironmentCommands",
+          "diskGuardMoved": true
+        },
+        {
+          "oldStatements": "if (data == nint.Zero)\n                    return false;\r\n_diskControl.CaptureExtended(data);\r\nreturn true;",
+          "operation": "CaptureExtendedDiskControl",
+          "retainedBodyCalls": [
+            {
+              "symbol": "GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Services.DiskControl.CaptureExtended(nint)",
+              "expression": "_diskControl.CaptureExtended(data)",
+              "assembly": "gwgui.emulation.sinclair"
+            }
+          ],
+          "guardExpansion": "data == 0 => false before callback; otherwise original capture once then true",
+          "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "interface": "GWGUI.Emulation.Interfaces.IEmulationCoreEnvironmentCommands",
+          "diskGuardMoved": true
+        },
+        {
+          "oldStatements": "return CoreFunctions.WriteInteger(data, DiskControlConstants.InterfaceVersion);",
+          "operation": "GetDiskControlVersion",
+          "retainedBodyCalls": [
+            {
+              "symbol": "GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Functions.CoreFunctions.WriteInteger(nint, int)",
+              "expression": "CoreFunctions.WriteInteger(data, DiskControlConstants.InterfaceVersion)",
+              "assembly": "gwgui.emulation.sinclair"
+            }
+          ],
+          "guardExpansion": "Original body unchanged, including profile refusal or keyboard guard",
+          "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "interface": "GWGUI.Emulation.Interfaces.IEmulationCoreEnvironmentCommands",
+          "diskGuardMoved": false
+        },
+        {
+          "oldStatements": "return false;",
+          "operation": "SetKeyboardCallback",
+          "retainedBodyCalls": [],
+          "guardExpansion": "Original body unchanged, including profile refusal or keyboard guard",
+          "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "interface": "GWGUI.Emulation.Interfaces.IEmulationCoreEnvironmentCommands",
+          "diskGuardMoved": false
+        },
+        {
+          "oldStatements": "if (data == nint.Zero)\n                    return false;\r\n_diskControl.Capture(data);\r\nreturn true;",
+          "operation": "CaptureDiskControl",
+          "retainedBodyCalls": [
+            {
+              "symbol": "GWGUI.Emulation.Snk.Emulators.Common.Interop.Services.DiskControl.Capture(nint)",
+              "expression": "_diskControl.Capture(data)",
+              "assembly": "gwgui.emulation.snk"
+            }
+          ],
+          "guardExpansion": "data == 0 => false before callback; otherwise original capture once then true",
+          "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "interface": "GWGUI.Emulation.Interfaces.IEmulationCoreEnvironmentCommands",
+          "diskGuardMoved": true
+        },
+        {
+          "oldStatements": "if (data == nint.Zero)\n                    return false;\r\n_diskControl.CaptureExtended(data);\r\nreturn true;",
+          "operation": "CaptureExtendedDiskControl",
+          "retainedBodyCalls": [
+            {
+              "symbol": "GWGUI.Emulation.Snk.Emulators.Common.Interop.Services.DiskControl.CaptureExtended(nint)",
+              "expression": "_diskControl.CaptureExtended(data)",
+              "assembly": "gwgui.emulation.snk"
+            }
+          ],
+          "guardExpansion": "data == 0 => false before callback; otherwise original capture once then true",
+          "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "interface": "GWGUI.Emulation.Interfaces.IEmulationCoreEnvironmentCommands",
+          "diskGuardMoved": true
+        },
+        {
+          "oldStatements": "return CoreFunctions.WriteInteger(data, DiskControlConstants.InterfaceVersion);",
+          "operation": "GetDiskControlVersion",
+          "retainedBodyCalls": [
+            {
+              "symbol": "GWGUI.Emulation.Snk.Emulators.Common.Interop.Functions.CoreFunctions.WriteInteger(nint, int)",
+              "expression": "CoreFunctions.WriteInteger(data, DiskControlConstants.InterfaceVersion)",
+              "assembly": "gwgui.emulation.snk"
+            }
+          ],
+          "guardExpansion": "Original body unchanged, including profile refusal or keyboard guard",
+          "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "interface": "GWGUI.Emulation.Interfaces.IEmulationCoreEnvironmentCommands",
+          "diskGuardMoved": false
+        }
+      ],
+      "sourceChecks": [
+        {
+          "newAdapterCount": 4,
+          "otherTokensUnchanged": true,
+          "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "originalFieldsAndMembersUnchanged": true,
+          "sha256": "ED17CF13D1958C9C1BE7B2EBACA57592C1582057508F8C931CC2677C71A2D0D9"
+        },
+        {
+          "newAdapterCount": 4,
+          "otherTokensUnchanged": true,
+          "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "originalFieldsAndMembersUnchanged": true,
+          "sha256": "CE550DCCA9611E5E1D8E9E00B5BC8CF9418811103D778CAA9B03EB34E8DBE9EA"
+        },
+        {
+          "newAdapterCount": 4,
+          "otherTokensUnchanged": true,
+          "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "originalFieldsAndMembersUnchanged": true,
+          "sha256": "41478565FEB3820954854042771CE6688FD092119261B23252F95F4431C71E7A"
+        },
+        {
+          "newAdapterCount": 4,
+          "otherTokensUnchanged": true,
+          "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "originalFieldsAndMembersUnchanged": true,
+          "sha256": "42A5BEF8E6612EC7F6CDAA9A3F4FF90ACF325016E38DA2C7367ACAB8ECCB91E7"
+        },
+        {
+          "newAdapterCount": 4,
+          "otherTokensUnchanged": true,
+          "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "originalFieldsAndMembersUnchanged": true,
+          "sha256": "9A4DA6139AF601E6DC2CB59DC891C8F5DBC204092D2DC7667AC7B63C511DDFE5"
+        },
+        {
+          "newAdapterCount": 4,
+          "otherTokensUnchanged": true,
+          "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "originalFieldsAndMembersUnchanged": true,
+          "sha256": "81B7C7EA00E9B75F491094CF098A2C2DA88A40710BFF2ACD8CF6F3302EFA6871"
+        },
+        {
+          "newAdapterCount": 4,
+          "otherTokensUnchanged": true,
+          "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "originalFieldsAndMembersUnchanged": true,
+          "sha256": "2E037FAB77D6C367E1470D1412E3B2E833086E099B2BFEA190408A863239A319"
+        },
+        {
+          "newAdapterCount": 4,
+          "otherTokensUnchanged": true,
+          "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "originalFieldsAndMembersUnchanged": true,
+          "sha256": "859DF4B4D16EC83EC2B1DC497826065C6F015E800B47E05A5FF6C0D8501997C8"
+        },
+        {
+          "newAdapterCount": 4,
+          "otherTokensUnchanged": true,
+          "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "originalFieldsAndMembersUnchanged": true,
+          "sha256": "D5C10227D0A8B8D06F7E89A3D67BB9E4648F02CF7CC639A0171920B64DEB06DC"
+        },
+        {
+          "newAdapterCount": 4,
+          "otherTokensUnchanged": true,
+          "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "originalFieldsAndMembersUnchanged": true,
+          "sha256": "C335BBB5F8102F777E0E921D6B028A23120BBAA3D98A20E76B3804996E3CF8E6"
+        },
+        {
+          "newAdapterCount": 4,
+          "otherTokensUnchanged": true,
+          "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "originalFieldsAndMembersUnchanged": true,
+          "sha256": "57169EDB7351A658A42DF3DAC3211FB2C15EB489503AC03D818D1FAAABCE86DA"
+        },
+        {
+          "newAdapterCount": 4,
+          "otherTokensUnchanged": true,
+          "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "originalFieldsAndMembersUnchanged": true,
+          "sha256": "3CC997EF89AFBB18773453D41EE2139EB792A8BA6649779A94F7C9801C1446E7"
+        }
+      ],
+      "otherSdkAndInterfaceTokensUnchanged": true,
+      "semanticProjects": [
+        "GWGUI.Emulation",
+        "GWGUI.Emulation.Acorn",
+        "GWGUI.Emulation.Apple",
+        "GWGUI.Emulation.Atari",
+        "GWGUI.Emulation.Bandai",
+        "GWGUI.Emulation.Coleco",
+        "GWGUI.Emulation.Epoch",
+        "GWGUI.Emulation.Fairchild",
+        "GWGUI.Emulation.Mattel",
+        "GWGUI.Emulation.Philips",
+        "GWGUI.Emulation.Sharp",
+        "GWGUI.Emulation.Sinclair",
+        "GWGUI.Emulation.Snk"
+      ]
+    },
+    "productBuild": "After grouped Debug build in remainingNativeResponseReuse.productBuild; included in test-project compilation, next product build after additional completed block",
+    "report": {
+      "shortExactGroups": 786,
+      "longCandidateGroups": 507,
+      "shortRenamedGroups": 366,
+      "qualifiedAdapterCount": 48,
+      "files": 7331,
+      "longMethodCount": 11666,
+      "scope": "New exact/shape adapter groups retained and qualified per occurrence; full host candidates remain pending",
+      "shortMethodCount": 9618
+    }
   }
 }

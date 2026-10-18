@@ -80,6 +80,18 @@ internal static class ExternalCoreEnvironmentFunctions
             case ExternalCoreApiConstants.GetVfsInterface:
                 result = callbacks.ProvideVfs(data);
                 break;
+            case ExternalCoreApiConstants.SetKeyboardCallback:
+                result = callbacks.SetKeyboardCallback(data);
+                break;
+            case ExternalCoreApiConstants.SetDiskControl:
+                result = data != nint.Zero && callbacks.CaptureDiskControl(data);
+                break;
+            case ExternalCoreApiConstants.SetDiskControlExtended:
+                result = data != nint.Zero && callbacks.CaptureExtendedDiskControl(data);
+                break;
+            case ExternalCoreApiConstants.GetDiskControlVersion:
+                result = callbacks.GetDiskControlVersion(data);
+                break;
             default:
                 result = false;
                 return false;

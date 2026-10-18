@@ -20,23 +20,6 @@ internal sealed partial class ExternalHostCallbacks : IDisposable, IEmulationCor
             return callbackResult;
         switch (command)
         {
-            case ExternalCoreApiConstants.SetKeyboardCallback:
-                if (data == nint.Zero)
-                    return false;
-                KeyboardCallbackPointer = Marshal.ReadIntPtr(data);
-                return true;
-            case ExternalCoreApiConstants.SetDiskControl:
-                if (data == nint.Zero)
-                    return false;
-                _diskControl.Capture(data);
-                return true;
-            case ExternalCoreApiConstants.SetDiskControlExtended:
-                if (data == nint.Zero)
-                    return false;
-                _diskControl.CaptureExtended(data);
-                return true;
-            case ExternalCoreApiConstants.GetDiskControlVersion:
-                return CoreFunctions.WriteInteger(data, DiskControlConstants.InterfaceVersion);
             case ExternalCoreApiConstants.GetMidiInterface:
             case ExternalCoreApiConstants.SetFastForwardingOverride:
             case ExternalCoreApiConstants.SetContentInfoOverride:
@@ -100,5 +83,30 @@ internal sealed partial class ExternalHostCallbacks : IDisposable, IEmulationCor
     bool IEmulationCoreEnvironmentCommands.ProvideVfs(nint data)
     {
         return _virtualFileSystem.Provide(data);
+    }
+
+    bool IEmulationCoreEnvironmentCommands.SetKeyboardCallback(nint data)
+    {
+        if (data == nint.Zero)
+                            return false;
+        KeyboardCallbackPointer = Marshal.ReadIntPtr(data);
+        return true;
+    }
+
+    bool IEmulationCoreEnvironmentCommands.CaptureDiskControl(nint data)
+    {
+        _diskControl.Capture(data);
+        return true;
+    }
+
+    bool IEmulationCoreEnvironmentCommands.CaptureExtendedDiskControl(nint data)
+    {
+        _diskControl.CaptureExtended(data);
+        return true;
+    }
+
+    bool IEmulationCoreEnvironmentCommands.GetDiskControlVersion(nint data)
+    {
+        return CoreFunctions.WriteInteger(data, DiskControlConstants.InterfaceVersion);
     }
 }
