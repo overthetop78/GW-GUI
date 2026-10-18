@@ -36,8 +36,11 @@ internal static class EmulationHardwareSettingsFunctions
 
     internal static string FormatFrequency(long hertz, bool useKilohertz = false) =>
         !useKilohertz || hertz >= 1_000_000
-            ? $"{(hertz / 1_000_000d).ToString("0.######", CultureInfo.CurrentCulture)} MHz"
+            ? FormatMegahertz(hertz, "0.######")
             : $"{(hertz / 1_000d).ToString("0.###", CultureInfo.CurrentCulture)} kHz";
+
+    internal static string FormatMegahertz(long hertz, string format) =>
+        $"{(hertz / 1_000_000d).ToString(format, CultureInfo.CurrentCulture)} MHz";
 
     internal static string FormatMemory(long bytes) => bytes >= 1024
         ? $"{(bytes / 1024).ToString(CultureInfo.InvariantCulture)} KiB"

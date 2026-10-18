@@ -7236,12 +7236,13 @@
     "removedConstantCount": 145
   },
   "remainingHardwareDescriptionsQualification": {
-    "layoutDecisions": [
-      "Panasonic/Watara/Thomson/Wenquxing use raw CPU text without resource choices, compact RAM blocks and distinct placement; keep their field/block graphs. Panasonic has separate video RAM and NVRAM; Wenquxing varies memory resource.",
-      "Acorn/Apple use tab-based field BlockId and separate CPU value semantics; keep those descriptors. Atari exposes selectable CPU/RAM/region/resolution, not read-only hardware facts."
-    ],
-    "originalOwner": "5a7b3a6ce:src/GWGUI.Emulation.Atari/Functions/AtariSettingsDescriptionFunctions.cs",
     "verification": "All seven current numeric expressions, divisors, long record types, precision and suffix checked; original Atari expression verified. No product source changed by this qualification. Follow-up file actions must be recorded before source edits.",
+    "existingHelperDecisions": [
+      "Atari HardwareSettingsFunctions.FrequencyMhz creates configured-value choices from integer MHz; it is not a raw-Hz display converter.",
+      "Atari FormatBytes chooses MiB/KiB only for exactly divisible values (1536 -> 1536 B; 0 -> 0 MiB); Bandai-derived FormatMemory truncates to KiB above 1024 (1536 -> 1 KiB; 0 -> 0 B). Keep policies distinct.",
+      "EmulationVideoFunctions.FormatFrequency validates a positive finite double and formats invariant-culture Hz. Hardware clock displays accept Int64, use CurrentCulture and MHz/kHz. Do not route through video timing formatting."
+    ],
+    "sourceCommit": "70df33464",
     "profiles": [
       {
         "module": "Panasonic",
@@ -7328,11 +7329,106 @@
         "action": "Reuse old Atari conversion in FormatMegahertz, retain this precision; six-digit profiles may call existing FormatFrequency"
       }
     ],
-    "sourceCommit": "70df33464",
-    "existingHelperDecisions": [
-      "Atari HardwareSettingsFunctions.FrequencyMhz creates configured-value choices from integer MHz; it is not a raw-Hz display converter.",
-      "Atari FormatBytes chooses MiB/KiB only for exactly divisible values (1536 -> 1536 B; 0 -> 0 MiB); Bandai-derived FormatMemory truncates to KiB above 1024 (1536 -> 1 KiB; 0 -> 0 B). Keep policies distinct.",
-      "EmulationVideoFunctions.FormatFrequency validates a positive finite double and formats invariant-culture Hz. Hardware clock displays accept Int64, use CurrentCulture and MHz/kHz. Do not route through video timing formatting."
+    "originalOwner": "5a7b3a6ce:src/GWGUI.Emulation.Atari/Functions/AtariSettingsDescriptionFunctions.cs",
+    "layoutDecisions": [
+      "Panasonic/Watara/Thomson/Wenquxing use raw CPU text without resource choices, compact RAM blocks and distinct placement; keep their field/block graphs. Panasonic has separate video RAM and NVRAM; Wenquxing varies memory resource.",
+      "Acorn/Apple use tab-based field BlockId and separate CPU value semantics; keep those descriptors. Atari exposes selectable CPU/RAM/region/resolution, not read-only hardware facts."
     ]
+  },
+  "remainingHardwareFrequencyReuse": {
+    "policy": "Original Atari Int64-to-double MHz conversion and current culture, caller-prescribed fixed/optional decimal digits. Existing FormatFrequency signature and kHz path unchanged; frames and choices untouched.",
+    "sourceCommit": "0eb5ecf12",
+    "consumers": [
+      {
+        "module": "Panasonic",
+        "path": "src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Functions/SettingsFunctions.cs",
+        "constants": "src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Constants/SettingsConstants.cs",
+        "precision": "0.######",
+        "argument": "hardware.CpuFrequencyHz",
+        "replacement": "EmulationHardwareSettingsFunctions.FormatFrequency(hardware.CpuFrequencyHz)",
+        "removedConstants": [
+          "MegahertzUnit",
+          "HertzPerMegahertz"
+        ],
+        "remainingMemberTokensUnchanged": true
+      },
+      {
+        "module": "Watara",
+        "path": "src/GWGUI.Emulation.Watara/Common/Machines/Common/Functions/SettingsFunctions.cs",
+        "constants": "src/GWGUI.Emulation.Watara/Common/Machines/Common/Constants/SettingsConstants.cs",
+        "precision": "0.######",
+        "argument": "hardware.CpuFrequencyHz",
+        "replacement": "EmulationHardwareSettingsFunctions.FormatFrequency(hardware.CpuFrequencyHz)",
+        "removedConstants": [
+          "MegahertzUnit",
+          "HertzPerMegahertz"
+        ],
+        "remainingMemberTokensUnchanged": true
+      },
+      {
+        "module": "Wenquxing",
+        "path": "src/GWGUI.Emulation.Wenquxing/Common/Machines/Common/Functions/SettingsFunctions.cs",
+        "constants": "src/GWGUI.Emulation.Wenquxing/Common/Machines/Common/Constants/SettingsConstants.cs",
+        "precision": "0.######",
+        "argument": "hardware.CpuFrequencyHz",
+        "replacement": "EmulationHardwareSettingsFunctions.FormatFrequency(hardware.CpuFrequencyHz)",
+        "removedConstants": [
+          "MegahertzUnit",
+          "HertzPerMegahertz"
+        ],
+        "remainingMemberTokensUnchanged": true
+      },
+      {
+        "module": "Thomson",
+        "path": "src/GWGUI.Emulation.Thomson/Common/Machines/Common/Functions/SettingsFunctions.cs",
+        "constants": "src/GWGUI.Emulation.Thomson/Common/Machines/Common/Constants/SettingsConstants.cs",
+        "precision": "0.######",
+        "argument": "hardware.CpuFrequencyHz",
+        "replacement": "EmulationHardwareSettingsFunctions.FormatFrequency(hardware.CpuFrequencyHz)",
+        "removedConstants": [
+          "MegahertzUnit",
+          "HertzPerMegahertz"
+        ],
+        "remainingMemberTokensUnchanged": true
+      },
+      {
+        "module": "Acorn",
+        "path": "src/GWGUI.Emulation.Acorn/Common/Machines/Common/Functions/SettingsFunctions.cs",
+        "constants": "src/GWGUI.Emulation.Acorn/Common/Machines/Common/Constants/SettingsConstants.cs",
+        "precision": "0.##",
+        "argument": "hardware.DefaultCpuFrequencyHz",
+        "replacement": "EmulationHardwareSettingsFunctions.FormatMegahertz(hardware.DefaultCpuFrequencyHz, \"0.##\")",
+        "removedConstants": [
+          "Megahertz"
+        ],
+        "remainingMemberTokensUnchanged": true
+      },
+      {
+        "module": "Apple",
+        "path": "src/GWGUI.Emulation.Apple/Common/Machines/Common/Functions/SettingsFunctions.cs",
+        "constants": "src/GWGUI.Emulation.Apple/Common/Machines/Common/Constants/SettingsConstants.cs",
+        "precision": "0.##",
+        "argument": "hardware.DefaultCpuFrequencyHz",
+        "replacement": "EmulationHardwareSettingsFunctions.FormatMegahertz(hardware.DefaultCpuFrequencyHz, \"0.##\")",
+        "removedConstants": [
+          "Megahertz"
+        ],
+        "remainingMemberTokensUnchanged": true
+      },
+      {
+        "module": "Atari",
+        "path": "src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/SettingsFunctions.Machine.Hardware.cs",
+        "constants": null,
+        "precision": "0.00",
+        "argument": "model.DefaultCpuFrequencyHz",
+        "replacement": "EmulationHardwareSettingsFunctions.FormatMegahertz(model.DefaultCpuFrequencyHz, \"0.00\")",
+        "removedConstants": [],
+        "remainingMemberTokensUnchanged": true
+      }
+    ],
+    "sdkOwner": "src/GWGUI.Emulation/Functions/EmulationHardwareSettingsFunctions.cs",
+    "verification": "Original Atari long/double division and MHz suffix checked; prescribed decimal formats/current culture; seven complete expression-only substitutions and six constant-file comparisons passed; previous SDK methods, FormatFrequency signature and kHz path unchanged. 35 targeted tests pass, including fixed pre-refactor field hashes for 51 models; SDK/App/23 module references compile. Current scan: 11666 bodies, 529 exact candidate groups.",
+    "method": "FormatMegahertz",
+    "originalOwner": "5a7b3a6ce:src/GWGUI.Emulation.Atari/Functions/AtariSettingsDescriptionFunctions.cs"
   }
 }

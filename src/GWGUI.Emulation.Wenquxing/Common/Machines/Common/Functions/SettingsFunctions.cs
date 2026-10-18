@@ -19,7 +19,7 @@ internal static class SettingsDescriptionFunctions
                         EmulationMachineTab.Cpu,
                         SettingsConstants.ResourceCpuProcessor,
                         SettingsConstants.ResourceCpuSpeedOriginal,
-                        $"{(hardware.CpuFrequencyHz / SettingsConstants.HertzPerMegahertz).ToString("0.######", CultureInfo.CurrentCulture)} {SettingsConstants.MegahertzUnit}"
+                        EmulationHardwareSettingsFunctions.FormatFrequency(hardware.CpuFrequencyHz)
                     )
                 ],
                 IsCompact: true

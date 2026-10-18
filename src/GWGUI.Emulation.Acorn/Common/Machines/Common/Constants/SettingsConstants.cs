@@ -35,5 +35,4 @@ internal static class SettingsConstants
     internal const string ResourceAudioVolume = "Explorer.Volume";
     internal const string ResourceDefaultOutput = "Emulation.Audio.DefaultOutput";
     internal const int Kibibyte = 1024;
-    internal const int Megahertz = 1_000_000;
 }

@@ -11,6 +11,5 @@ internal static class SettingsConstants
     internal const string ResourceLightPen = "Emulation.Thomson.LightPen", ResourceLightPenContact = "Emulation.Thomson.LightPen.Contact";
     internal const string ResourceCpuProcessor = "Emulation.Cpu.Processor", ResourceCpuModel = "Emulation.Cpu.Model", ResourceCpuSpeedOriginal = "Emulation.Cpu.SpeedOriginal", ResourceMemoryMain = "Emulation.Memory.Main";
     internal const int BytesPerKibibyte = 1024, MouseSpeedStepPercent = 10;
-    internal const double HertzPerMegahertz = 1_000_000;
-    internal const string MegahertzUnit = "MHz", KibibyteUnit = "KiB", MillisecondsUnit = "ms", PercentUnit = "%";
+    internal const string KibibyteUnit = "KiB", MillisecondsUnit = "ms", PercentUnit = "%";
 }

@@ -87,6 +87,16 @@ public sealed class HardwareSettingsConstructionTests
         => InFrenchCulture(() => Assert.Equal(expected, EmulationHardwareSettingsFunctions.FormatFrequency(hertz, useKilohertz)));
 
     [Theory]
+    [InlineData(1000000L, "0.00", "1,00 MHz")]
+    [InlineData(1000000L, "0.##", "1 MHz")]
+    [InlineData(1000000L, "0.######", "1 MHz")]
+    [InlineData(32768L, "0.00", "0,03 MHz")]
+    [InlineData(32768L, "0.##", "0,03 MHz")]
+    [InlineData(32768L, "0.######", "0,032768 MHz")]
+    public void MegahertzDisplayKeepsFixedAndOptionalDecimalPlaces(long hertz, string format, string expected)
+        => InFrenchCulture(() => Assert.Equal(expected, EmulationHardwareSettingsFunctions.FormatMegahertz(hertz, format)));
+
+    [Theory]
     [InlineData(-1, "-1 B")]
     [InlineData(0, "0 B")]
     [InlineData(1023, "1023 B")]

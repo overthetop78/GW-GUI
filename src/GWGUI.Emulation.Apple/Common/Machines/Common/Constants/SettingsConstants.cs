@@ -42,5 +42,4 @@ internal static class SettingsConstants
     internal const string ResourceStateFolder = "Emulation.Folder.State";
     internal const string ResourceCaptureFolder = "Emulation.Folder.Capture";
     internal const int Kibibyte = 1024;
-    internal const int Megahertz = 1_000_000;
 }

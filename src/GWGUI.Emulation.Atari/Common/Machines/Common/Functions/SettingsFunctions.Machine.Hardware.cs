@@ -14,7 +14,7 @@ internal static partial class SettingsDescriptionFunctions
                     Value(configuration, SettingsConstants.Cpu, model.DefaultCpu.ToString()), model.Cpus.Select(value => value.ToString()),
                     isEnabled: model.Cpus.Count > 1),
                 Information(SettingsConstants.CpuOriginalFrequency, EmulationMachineTab.Cpu, SettingsDescriptionFunctionsConstants.Processor, SettingsDescriptionFunctionsConstants.ResourceCpuSpeedOriginal,
-                    $"{model.DefaultCpuFrequencyHz / 1_000_000d:0.00} MHz")),
+                    EmulationHardwareSettingsFunctions.FormatMegahertz(model.DefaultCpuFrequencyHz, "0.00"))),
             Block(SettingsDescriptionFunctionsConstants.MainMemory, EmulationMachineTab.Ram, SettingsDescriptionFunctionsConstants.ResourceMemoryMain, SettingsDescriptionFunctionsConstants.Value4, 1, HardwareMemory(configuration, model)),
             Block(SettingsDescriptionFunctionsConstants.Video, EmulationMachineTab.Video, SettingsDescriptionFunctionsConstants.ResourceVideoSettingsDisplay, SettingsDescriptionFunctionsConstants.Value7, 2,
                 Select(VideoAudioSettingsConstants.StandardOption, EmulationMachineTab.Video, SettingsDescriptionFunctionsConstants.Video,

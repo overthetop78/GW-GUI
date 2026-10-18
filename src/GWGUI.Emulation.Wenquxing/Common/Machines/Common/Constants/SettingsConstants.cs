@@ -10,6 +10,5 @@ internal static class SettingsConstants
         ResourceAudioLatency = "Emulation.Audio.Latency", ResourceAudioVolume = "Explorer.Volume", ResourceDefaultOutput = "Emulation.Audio.DefaultOutput";
     internal const string ResourceCpuProcessor = "Emulation.Cpu.Processor", ResourceCpuModel = "Emulation.Cpu.Model", ResourceCpuSpeedOriginal = "Emulation.Cpu.SpeedOriginal", ResourceMemoryMain = "Emulation.Memory.Main";
     internal const int BytesPerKibibyte = 1024;
-    internal const double HertzPerMegahertz = 1_000_000;
-    internal const string MegahertzUnit = "MHz", KibibyteUnit = "KiB", MillisecondsUnit = "ms", PercentUnit = "%";
+    internal const string KibibyteUnit = "KiB", MillisecondsUnit = "ms", PercentUnit = "%";
 }
