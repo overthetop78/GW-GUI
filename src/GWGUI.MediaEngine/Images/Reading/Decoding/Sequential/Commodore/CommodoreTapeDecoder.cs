@@ -22,7 +22,7 @@ public sealed class CommodoreTapeDecoder : ISequentialMediaDecoder
     public IReadOnlySet<string> FormatIds => SupportedFormats;
     public IReadOnlySet<string> MachineIds => SupportedMachines;
 
-    public bool CanDecode(MediaImageDocument document, string? machineId = null) => document.MediaKind == MediaKind.Tape && SupportedFormats.Contains(document.FormatId) && (machineId is null || SupportedMachines.Contains(machineId)) && document.Representation is SequentialMediaImageRepresentation;
+    public bool CanDecode(MediaImageDocument document, string? machineId = null) => SequentialDecodeFunctions.CanDecodeTape(document, machineId, SupportedFormats, SupportedMachines);
 
     public async Task<SequentialDecodeResult> DecodeAsync(MediaImageDocument document, string? machineId = null, CancellationToken cancellationToken = default)
     {

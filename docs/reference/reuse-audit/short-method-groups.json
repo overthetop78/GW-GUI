@@ -1,21 +1,54 @@
 {
-  "snapshot": "50ed6c4924c923b7a6ad63493b4d5d57a21218d5",
+  "snapshot": "edb4917a4cc3dc60cca98ff8266961876a59400c",
   "snapshotState": "Current worktree based on snapshot",
   "worktreeSourceChanges": [
+    "src/GWGUI.App/Controllers/MainWindow/MainWindowLifecycleController.cs",
+    "src/GWGUI.App/Controllers/MainWindow/Read/ReadTabController.Execution.cs",
+    "src/GWGUI.App/Controllers/MainWindow/Read/ReadTabController.ProfilesAndSettings.cs",
+    "src/GWGUI.App/Controllers/MainWindow/WriteTabController.cs",
+    "src/GWGUI.App/Services/DiskImages/Selection/DiskImageFileSelectionService.cs",
+    "src/GWGUI.App/Services/PhysicalDiskReading/InternalPhysicalDiskReader.cs",
+    "src/GWGUI.App/Services/PhysicalDiskReading/PhysicalDiskReadService.cs",
+    "src/GWGUI.App/Views/Windows/Shell/MainWindow.xaml.cs",
+    "src/GWGUI.Infrastructure/Hardware/Greaseweazle/WindowsGreaseweazleSerialTransport.cs",
+    "src/GWGUI.Infrastructure/Settings/Operations/OperationUiSettings.cs",
+    "src/GWGUI.MediaEngine/Constants/MediaImageWriterIds.cs",
+    "src/GWGUI.MediaEngine/Images/Conversion/IbmRawConversionService.cs",
+    "src/GWGUI.MediaEngine/Images/Conversion/MediaConversionComposition.cs",
+    "src/GWGUI.MediaEngine/Images/Formats/CapabilityAwareImageFormatCatalog.cs",
+    "src/GWGUI.MediaEngine/Images/Formats/DiskDefsFormatReader.cs",
+    "src/GWGUI.MediaEngine/Images/Formats/Floppy/Apridisk/ApridiskReader.cs",
     "src/GWGUI.MediaEngine/Images/Formats/Floppy/Hfe/ProtectedTrackHfeImageAdapter.cs",
-    "src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/ProtectedTrackScpImageAdapter.cs",
-    "src/GWGUI.MediaEngine/Images/Formats/Tape/CommodoreTap/CommodoreTapWriter.cs",
-    "src/GWGUI.MediaEngine/Images/Formats/Tape/Tzx/TzxWriter.cs",
-    "src/GWGUI.MediaEngine/Images/Formats/Tape/Wav/WavTapeWriter.cs",
-    "src/GWGUI.MediaEngine/Images/Writing/Encoding/Sequential/Acorn/AcornTapeEncoder.cs",
-    "src/GWGUI.MediaEngine/Images/Writing/Encoding/Sequential/Amstrad/AmstradCpcTapeEncoder.cs",
-    "src/GWGUI.MediaEngine/Images/Writing/Encoding/Sequential/Tzx/TzxSignalEncoder.cs",
-    "src/GWGUI.MediaFileSystems/Functions/MediaMetadataFunctions.cs",
-    "tests/GWGUI.Tests/Media/MediaMetadataIntegerTests.cs"
+    "src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/IbmRawImageWriter.cs",
+    "src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/LinearSectorImageWriter.cs",
+    "src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Decoding/ScpSectorDecodingComposition.cs",
+    "src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Reading/FloppyFluxAcquisitionService.cs",
+    "src/GWGUI.MediaEngine/Images/Formats/ImageFormatWorkspace.cs",
+    "src/GWGUI.MediaEngine/Images/Reading/Decoding/Decoders/DataGeneralFmDecoder.cs",
+    "src/GWGUI.MediaEngine/Images/Reading/Decoding/Decoders/MicropolisMfmDecoder.cs",
+    "src/GWGUI.MediaEngine/Images/Reading/Decoding/Decoders/NorthstarMfmDecoder.cs",
+    "src/GWGUI.MediaEngine/Images/Reading/Decoding/Sequential/Acorn/AcornTapeDecoder.cs",
+    "src/GWGUI.MediaEngine/Images/Reading/Decoding/Sequential/Amstrad/AmstradCpcTapeDecoder.cs",
+    "src/GWGUI.MediaEngine/Images/Reading/Decoding/Sequential/Atari/AtariCassetteDecoder.cs",
+    "src/GWGUI.MediaEngine/Images/Reading/Decoding/Sequential/Commodore/CommodoreTapeDecoder.cs",
+    "src/GWGUI.MediaEngine/Images/Reading/Decoding/Sequential/Msx/MsxTapeDecoder.cs",
+    "src/GWGUI.MediaEngine/Images/Reading/Decoding/Sequential/Spectrum/SpectrumTapeDecoder.cs",
+    "src/GWGUI.MediaEngine/Images/Reading/MediaRecognitionComposition.cs",
+    "src/GWGUI.MediaEngine/Images/Reading/Reconstruction/AmigaScpSectorImageReader.cs",
+    "src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Apple/AppleScpSectorImageReader.cs",
+    "src/GWGUI.MediaEngine/Images/Reading/Reconstruction/CommodoreScpSectorImageReader.cs",
+    "src/GWGUI.MediaEngine/Images/Reading/Reconstruction/DecRx02ScpSectorImageReader.cs",
+    "src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Iso/IsoScpSectorImagePolicyRegistry.cs",
+    "src/GWGUI.MediaEngine/Images/Writing/MediaWritingComposition.cs",
+    "tests/GWGUI.Tests/Hardware/PhysicalReading/PhysicalReadingTests.cs",
+    "tests/GWGUI.Tests/Hardware/PhysicalReading/ReadPlanningScenarios.cs",
+    "tests/GWGUI.Tests/Interface/WriteViews/WriteOperationScenarios.cs",
+    "tests/GWGUI.Tests/Interface/WriteViews/WriteSourceScenarios.cs",
+    "tests/GWGUI.Tests/Media/ImageFormatCatalogReuseTests.cs"
   ],
   "scope": "All current non-ignored repository CSharp files, including hidden paths; BaseMethodDeclaration bodies with fewer than 30 tokens. Candidate presence is not a defect or a completion claim.",
-  "fileCount": 7315,
-  "methodBodyCount": 9525,
+  "fileCount": 7324,
+  "methodBodyCount": 9533,
   "exactGroups": [
     {
       "hash": "0017F14C61995D644C52FF90F094E4708DC2CA772615CF2F5DD41E74BD202ECA",
@@ -2791,7 +2824,7 @@
           "name": "ReadByte",
           "owner": "ProtectedTrackHfeImageAdapter",
           "kind": "MethodDeclaration",
-          "line": 93,
+          "line": 108,
           "parameters": "(IReadOnlyDictionary<string, string> metadata, string key)",
           "tokens": 17,
           "bodyTokens": "=> MediaMetadataFunctions . TryReadByte ( metadata , key , out var value ) ? value : null",
@@ -10642,9 +10675,7 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "qualification": "typed-constructor-composition; emptyConstructorQualification",
-          "verifiedSourceSha256": "41A2E37BBF2598552AA1B4EE1C4FD5DBA25684FCA4E0D62E86C2086B1D75C9EF"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
         },
         {
           "path": "src/GWGUI.App/Views/Windows/Updates/UpdatesWindow.xaml.cs",
@@ -11569,9 +11600,7 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "qualification": "typed-constructor-composition; emptyConstructorQualification",
-          "verifiedSourceSha256": "5EE25ED6FB1442E55E80603D5011B4BD9E0B18E8B10E8C6861ED35555140DDFB"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
         },
         {
           "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/Atr/AtrReader.cs",
@@ -11718,14 +11747,12 @@
           "name": "IbmRawImageWriter",
           "owner": "IbmRawImageWriter",
           "kind": "ConstructorDeclaration",
-          "line": 12,
+          "line": 13,
           "parameters": "()",
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "qualification": "typed-constructor-composition; emptyConstructorQualification",
-          "verifiedSourceSha256": "68A05BC74A3196AB92B35C4C4462CC0A27DC480E6F57994F952ED6EABA4CFEA4"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
         },
         {
           "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/MsxRawImageReader.cs",
@@ -11852,6 +11879,18 @@
           "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
           "qualification": "typed-constructor-composition; emptyConstructorQualification",
           "verifiedSourceSha256": "0180A0861298A8AE1EEB175FA364026531298C9CDB9E64FCEA9C927707359CA1"
+        },
+        {
+          "path": "src/GWGUI.MediaEngine/Images/Reading/Decoding/Decoders/MicropolisMfmDecoder.cs",
+          "name": "MicropolisMfmDecoder",
+          "owner": "MicropolisMfmDecoder",
+          "kind": "ConstructorDeclaration",
+          "line": 10,
+          "parameters": "()",
+          "tokens": 2,
+          "bodyTokens": "{ }",
+          "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
         },
         {
           "path": "src/GWGUI.MediaEngine/Images/Reading/Decoding/FluxDecoderRegistry.cs",
@@ -12671,6 +12710,50 @@
         }
       ],
       "qualification": "Empty method/constructor occurrences qualified only within their recorded scopes; any unannotated member and called implementation remains pending"
+    },
+    {
+      "hash": "25F89343BD62DDC703FD2722CA0F67DC7D55D33A69BE037FEF193038A732DC56",
+      "tokens": 13,
+      "bodyTokens": "=> SequentialDecodeFunctions . CanDecodeTape ( document , machineId , SupportedFormats , SupportedMachines )",
+      "current": [
+        {
+          "path": "src/GWGUI.MediaEngine/Images/Reading/Decoding/Sequential/Amstrad/AmstradCpcTapeDecoder.cs",
+          "name": "CanDecode",
+          "owner": "AmstradCpcTapeDecoder",
+          "kind": "MethodDeclaration",
+          "line": 27,
+          "parameters": "(MediaImageDocument document, string? machineId = null)",
+          "tokens": 13,
+          "bodyTokens": "=> SequentialDecodeFunctions . CanDecodeTape ( document , machineId , SupportedFormats , SupportedMachines )",
+          "hash": "25F89343BD62DDC703FD2722CA0F67DC7D55D33A69BE037FEF193038A732DC56",
+          "shape": "F40B65E28C7A3D97D5FFA80341514BAC0D3E534ECAD61BA15D6C362294982091"
+        },
+        {
+          "path": "src/GWGUI.MediaEngine/Images/Reading/Decoding/Sequential/Commodore/CommodoreTapeDecoder.cs",
+          "name": "CanDecode",
+          "owner": "CommodoreTapeDecoder",
+          "kind": "MethodDeclaration",
+          "line": 25,
+          "parameters": "(MediaImageDocument document, string? machineId = null)",
+          "tokens": 13,
+          "bodyTokens": "=> SequentialDecodeFunctions . CanDecodeTape ( document , machineId , SupportedFormats , SupportedMachines )",
+          "hash": "25F89343BD62DDC703FD2722CA0F67DC7D55D33A69BE037FEF193038A732DC56",
+          "shape": "F40B65E28C7A3D97D5FFA80341514BAC0D3E534ECAD61BA15D6C362294982091"
+        },
+        {
+          "path": "src/GWGUI.MediaEngine/Images/Reading/Decoding/Sequential/Spectrum/SpectrumTapeDecoder.cs",
+          "name": "CanDecode",
+          "owner": "SpectrumTapeDecoder",
+          "kind": "MethodDeclaration",
+          "line": 25,
+          "parameters": "(MediaImageDocument document, string? machineId = null)",
+          "tokens": 13,
+          "bodyTokens": "=> SequentialDecodeFunctions . CanDecodeTape ( document , machineId , SupportedFormats , SupportedMachines )",
+          "hash": "25F89343BD62DDC703FD2722CA0F67DC7D55D33A69BE037FEF193038A732DC56",
+          "shape": "F40B65E28C7A3D97D5FFA80341514BAC0D3E534ECAD61BA15D6C362294982091"
+        }
+      ],
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "26400A65D37A9AF373A217903DE3BDDC19845DABB020EF2FB3623606AAB8546C",
@@ -55431,8 +55514,7 @@
           "tokens": 11,
           "bodyTokens": "=> ByteListCopy . Copy ( source , offset , length )",
           "hash": "C11B6C011442F8D3F11D9268D48AA0CD660499A7C1450A66A2FDA1AF03FA67E6",
-          "shape": "BC9FFBF62DFD416470CF1FBB8DDC76B277F7F31C6D3C158F74FC005B806169F1",
-          "qualification": "Adapter to original byte primitive; whole-file and typed expansion verified in indexedBytePrimitiveReuse"
+          "shape": "BC9FFBF62DFD416470CF1FBB8DDC76B277F7F31C6D3C158F74FC005B806169F1"
         },
         {
           "path": "src/GWGUI.MediaFileSystems/FileSystems/Commodore/Dos/CommodoreDosDirectoryReader.cs",
@@ -55448,7 +55530,7 @@
           "qualification": "Adapter to original byte primitive; whole-file and typed expansion verified in indexedBytePrimitiveReuse"
         }
       ],
-      "qualification": "Qualified adapters to shared original indexed byte operations"
+      "qualification": "Partial occurrence qualification; unannotated members pending"
     },
     {
       "hash": "C17773939DF708794D5B08B716FB4CB47DD8CCCE95F7E095DDC9F7300416A4E3",
@@ -56592,13 +56674,12 @@
           "name": "GetCompatibleOutputs",
           "owner": "CapabilityAwareImageFormatCatalog",
           "kind": "MethodDeclaration",
-          "line": 25,
+          "line": 26,
           "parameters": "(string sourceExtension)",
           "tokens": 9,
           "bodyTokens": "=> BuiltInImageFormatCatalog . GetCompatibleOutputs ( Formats , sourceExtension )",
           "hash": "C7360E90F16EAC2D0E4A02DAEDFAFABB64D4348452D16B6A4DCDEBD3B030FD11",
-          "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE",
-          "qualification": "Catalog adapter to original shared selection verified in formatCatalogSelectionReuse; receiving Formats retained"
+          "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE"
         },
         {
           "path": "src/GWGUI.MediaEngine/Images/Formats/RuntimeImageFormatCatalog.cs",
@@ -56614,7 +56695,7 @@
           "qualification": "Catalog adapter to original shared selection verified in formatCatalogSelectionReuse; receiving Formats retained"
         }
       ],
-      "qualification": "Qualified adapters to original catalog query"
+      "qualification": "Partial occurrence qualification; unannotated members pending"
     },
     {
       "hash": "C7447F879A866FF4BF001F54000DDD18CA9AB7D0DA994F46BA9D6C2F270D2C44",
@@ -63770,6 +63851,18 @@
       "bodyTokens": "=> FormatIds . Contains ( formatId )",
       "current": [
         {
+          "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/DefinedRawImageReader.cs",
+          "name": "SupportsFormatId",
+          "owner": "DefinedRawImageReader",
+          "kind": "MethodDeclaration",
+          "line": 20,
+          "parameters": "(string formatId)",
+          "tokens": 7,
+          "bodyTokens": "=> FormatIds . Contains ( formatId )",
+          "hash": "E11B55A491DED9AD2A44B032240E6FEAA8EFB6AF44BD336F3906248DF2D30991",
+          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5"
+        },
+        {
           "path": "src/GWGUI.MediaEngine/Images/Formats/Optical/Xdvdfs/XdvdfsReader.cs",
           "name": "SupportsFormatId",
           "owner": "XdvdfsReader",
@@ -67100,6 +67193,38 @@
           "bodyTokens": "=> throw new EmulationException ( ErrorCategory . State , ErrorCode . StateInvalid , ErrorMessages . StateUnavailable )",
           "hash": "EFD334E521A4B01CD1BE892050DCAE043E2D1575BECAB06D16F2DBA6A423850A",
           "shape": "11A42E7ACAE3E08FFF8D9B734D8359CAFEC65932C25C277505B1201F9089AEE4"
+        }
+      ],
+      "qualification": "pending-symbol-and-ownership-comparison"
+    },
+    {
+      "hash": "EFE09A7D1F8603C9510ED4C22019C78ABCBF532D469189423B931372B353A252",
+      "tokens": 23,
+      "bodyTokens": "{ ArgumentNullException . ThrowIfNull ( document ) ; return SequentialDecodeFunctions . CanDecodeTape ( document , machineId , SupportedFormats , SupportedMachines ) ; }",
+      "current": [
+        {
+          "path": "src/GWGUI.MediaEngine/Images/Reading/Decoding/Sequential/Acorn/AcornTapeDecoder.cs",
+          "name": "CanDecode",
+          "owner": "AcornTapeDecoder",
+          "kind": "MethodDeclaration",
+          "line": 29,
+          "parameters": "(MediaImageDocument document, string? machineId = null)",
+          "tokens": 23,
+          "bodyTokens": "{ ArgumentNullException . ThrowIfNull ( document ) ; return SequentialDecodeFunctions . CanDecodeTape ( document , machineId , SupportedFormats , SupportedMachines ) ; }",
+          "hash": "EFE09A7D1F8603C9510ED4C22019C78ABCBF532D469189423B931372B353A252",
+          "shape": "08E681D1997212C349415646417B1C71A7DE0CBB843D751A845FEEB3133CE8DD"
+        },
+        {
+          "path": "src/GWGUI.MediaEngine/Images/Reading/Decoding/Sequential/Atari/AtariCassetteDecoder.cs",
+          "name": "CanDecode",
+          "owner": "AtariCassetteDecoder",
+          "kind": "MethodDeclaration",
+          "line": 22,
+          "parameters": "(MediaImageDocument document, string? machineId = null)",
+          "tokens": 23,
+          "bodyTokens": "{ ArgumentNullException . ThrowIfNull ( document ) ; return SequentialDecodeFunctions . CanDecodeTape ( document , machineId , SupportedFormats , SupportedMachines ) ; }",
+          "hash": "EFE09A7D1F8603C9510ED4C22019C78ABCBF532D469189423B931372B353A252",
+          "shape": "08E681D1997212C349415646417B1C71A7DE0CBB843D751A845FEEB3133CE8DD"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -86030,13 +86155,12 @@
           "name": "GetCompatibleOutputs",
           "owner": "CapabilityAwareImageFormatCatalog",
           "kind": "MethodDeclaration",
-          "line": 25,
+          "line": 26,
           "parameters": "(string sourceExtension)",
           "tokens": 9,
           "bodyTokens": "=> BuiltInImageFormatCatalog . GetCompatibleOutputs ( Formats , sourceExtension )",
           "hash": "C7360E90F16EAC2D0E4A02DAEDFAFABB64D4348452D16B6A4DCDEBD3B030FD11",
-          "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE",
-          "qualification": "Catalog adapter to original shared selection verified in formatCatalogSelectionReuse; receiving Formats retained"
+          "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE"
         },
         {
           "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/ScpReader.cs",
@@ -88034,7 +88158,7 @@
           "name": "RawNormalizationKeepsTheOriginalEmptyAndWhitespacePolicy",
           "owner": "ImageFormatCatalogReuseTests",
           "kind": "MethodDeclaration",
-          "line": 9,
+          "line": 20,
           "parameters": "(string value, string expected)",
           "tokens": 14,
           "bodyTokens": "=> Assert . Equal ( expected , MediaFileExtensionFunctions . NormalizeCore ( value ) )",
@@ -94379,7 +94503,7 @@
           "name": "RefreshProfiles",
           "owner": "WriteTabController",
           "kind": "MethodDeclaration",
-          "line": 75,
+          "line": 74,
           "parameters": "(string? selectedId = null)",
           "tokens": 13,
           "bodyTokens": "=> profileController . Refresh ( ProfileCombo , OperationKind . Write , selectedId )",
@@ -103146,6 +103270,18 @@
           "tokens": 7,
           "bodyTokens": "=> SupportedFormatIds . Contains ( formatId )",
           "hash": "0AA89754C9CF196A924BFEFFA0B2F6EBD7BEC8124F6CF0480ADF83EFD881AA02",
+          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5"
+        },
+        {
+          "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/DefinedRawImageReader.cs",
+          "name": "SupportsFormatId",
+          "owner": "DefinedRawImageReader",
+          "kind": "MethodDeclaration",
+          "line": 20,
+          "parameters": "(string formatId)",
+          "tokens": 7,
+          "bodyTokens": "=> FormatIds . Contains ( formatId )",
+          "hash": "E11B55A491DED9AD2A44B032240E6FEAA8EFB6AF44BD336F3906248DF2D30991",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5"
         },
         {
@@ -114497,8 +114633,7 @@
           "tokens": 17,
           "bodyTokens": "=> MediaMetadataFunctions . TryReadByte ( metadata , key , out var value ) ? value : defaultValue",
           "hash": "BD18E2FB92BC952A1285E64AAB5925756EF3DFC4973F7DA3CF49BAB688E7A593",
-          "shape": "8F51755F908DCF74F0169C4BABA4278576F052EE502D1D8AA0B594ABDE21F76F",
-          "qualification": "Original byte/UInt16 metadata adapter verified in smallMetadataReuse; nullable/default and positive checks preserved."
+          "shape": "8F51755F908DCF74F0169C4BABA4278576F052EE502D1D8AA0B594ABDE21F76F"
         },
         {
           "path": "src/GWGUI.MediaEngine/Images/Writing/Encoding/Sequential/Amstrad/AmstradCpcTapeEncoder.cs",
@@ -114510,8 +114645,7 @@
           "tokens": 17,
           "bodyTokens": "=> MediaMetadataFunctions . TryReadByte ( metadata , key , out var value ) ? value : defaultValue",
           "hash": "BD18E2FB92BC952A1285E64AAB5925756EF3DFC4973F7DA3CF49BAB688E7A593",
-          "shape": "8F51755F908DCF74F0169C4BABA4278576F052EE502D1D8AA0B594ABDE21F76F",
-          "qualification": "Original byte/UInt16 metadata adapter verified in smallMetadataReuse; nullable/default and positive checks preserved."
+          "shape": "8F51755F908DCF74F0169C4BABA4278576F052EE502D1D8AA0B594ABDE21F76F"
         },
         {
           "path": "src/GWGUI.MediaEngine/Images/Writing/Encoding/Sequential/Amstrad/AmstradCpcTapeEncoder.cs",
@@ -114523,8 +114657,7 @@
           "tokens": 17,
           "bodyTokens": "=> MediaMetadataFunctions . TryReadUInt16 ( metadata , key , out var value ) ? value : defaultValue",
           "hash": "5060E247229D7FA3220C75EF9A921FF24028D399ED829770220C113BD2B3831A",
-          "shape": "8F51755F908DCF74F0169C4BABA4278576F052EE502D1D8AA0B594ABDE21F76F",
-          "qualification": "Original byte/UInt16 metadata adapter verified in smallMetadataReuse; nullable/default and positive checks preserved."
+          "shape": "8F51755F908DCF74F0169C4BABA4278576F052EE502D1D8AA0B594ABDE21F76F"
         },
         {
           "path": "src/GWGUI.MediaEngine/Images/Writing/Encoding/Sequential/Tzx/TzxSignalEncoder.cs",
@@ -114536,8 +114669,7 @@
           "tokens": 17,
           "bodyTokens": "=> MediaMetadataFunctions . TryReadUInt16 ( metadata , key , out var value ) ? value : defaultValue",
           "hash": "5060E247229D7FA3220C75EF9A921FF24028D399ED829770220C113BD2B3831A",
-          "shape": "8F51755F908DCF74F0169C4BABA4278576F052EE502D1D8AA0B594ABDE21F76F",
-          "qualification": "Original byte/UInt16 metadata adapter verified in smallMetadataReuse; nullable/default and positive checks preserved."
+          "shape": "8F51755F908DCF74F0169C4BABA4278576F052EE502D1D8AA0B594ABDE21F76F"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -116388,7 +116520,7 @@
         },
         {
           "path": "tests/GWGUI.Tests/Hardware/PhysicalReading/PhysicalReadingTests.cs",
-          "name": "InternalEngineRejectsMissingHardwareKnownFormatAndUnsupportedOptions",
+          "name": "InternalEngineRejectsMissingHardwareMissingFormatAndUnsupportedOptions",
           "owner": "PhysicalReadingTests",
           "kind": "MethodDeclaration",
           "line": 6,
@@ -119853,7 +119985,7 @@
           "name": "DisposeAsync",
           "owner": "WindowsGreaseweazleSerialTransport",
           "kind": "MethodDeclaration",
-          "line": 90,
+          "line": 91,
           "parameters": "()",
           "tokens": 8,
           "bodyTokens": "=> await CloseAsync ( CancellationToken . None )",
@@ -124266,8 +124398,7 @@
           "tokens": 11,
           "bodyTokens": "=> ByteListCopy . Copy ( source , offset , length )",
           "hash": "C11B6C011442F8D3F11D9268D48AA0CD660499A7C1450A66A2FDA1AF03FA67E6",
-          "shape": "BC9FFBF62DFD416470CF1FBB8DDC76B277F7F31C6D3C158F74FC005B806169F1",
-          "qualification": "Adapter to original byte primitive; whole-file and typed expansion verified in indexedBytePrimitiveReuse"
+          "shape": "BC9FFBF62DFD416470CF1FBB8DDC76B277F7F31C6D3C158F74FC005B806169F1"
         },
         {
           "path": "src/GWGUI.MediaEngine/Images/Writing/Encoding/Encoders/MicropolisMfmTrackEncoder.cs",
@@ -133322,6 +133453,42 @@
           "shape": "F40B65E28C7A3D97D5FFA80341514BAC0D3E534ECAD61BA15D6C362294982091"
         },
         {
+          "path": "src/GWGUI.MediaEngine/Images/Reading/Decoding/Sequential/Amstrad/AmstradCpcTapeDecoder.cs",
+          "name": "CanDecode",
+          "owner": "AmstradCpcTapeDecoder",
+          "kind": "MethodDeclaration",
+          "line": 27,
+          "parameters": "(MediaImageDocument document, string? machineId = null)",
+          "tokens": 13,
+          "bodyTokens": "=> SequentialDecodeFunctions . CanDecodeTape ( document , machineId , SupportedFormats , SupportedMachines )",
+          "hash": "25F89343BD62DDC703FD2722CA0F67DC7D55D33A69BE037FEF193038A732DC56",
+          "shape": "F40B65E28C7A3D97D5FFA80341514BAC0D3E534ECAD61BA15D6C362294982091"
+        },
+        {
+          "path": "src/GWGUI.MediaEngine/Images/Reading/Decoding/Sequential/Commodore/CommodoreTapeDecoder.cs",
+          "name": "CanDecode",
+          "owner": "CommodoreTapeDecoder",
+          "kind": "MethodDeclaration",
+          "line": 25,
+          "parameters": "(MediaImageDocument document, string? machineId = null)",
+          "tokens": 13,
+          "bodyTokens": "=> SequentialDecodeFunctions . CanDecodeTape ( document , machineId , SupportedFormats , SupportedMachines )",
+          "hash": "25F89343BD62DDC703FD2722CA0F67DC7D55D33A69BE037FEF193038A732DC56",
+          "shape": "F40B65E28C7A3D97D5FFA80341514BAC0D3E534ECAD61BA15D6C362294982091"
+        },
+        {
+          "path": "src/GWGUI.MediaEngine/Images/Reading/Decoding/Sequential/Spectrum/SpectrumTapeDecoder.cs",
+          "name": "CanDecode",
+          "owner": "SpectrumTapeDecoder",
+          "kind": "MethodDeclaration",
+          "line": 25,
+          "parameters": "(MediaImageDocument document, string? machineId = null)",
+          "tokens": 13,
+          "bodyTokens": "=> SequentialDecodeFunctions . CanDecodeTape ( document , machineId , SupportedFormats , SupportedMachines )",
+          "hash": "25F89343BD62DDC703FD2722CA0F67DC7D55D33A69BE037FEF193038A732DC56",
+          "shape": "F40B65E28C7A3D97D5FFA80341514BAC0D3E534ECAD61BA15D6C362294982091"
+        },
+        {
           "path": "tests/GWGUI.Tests/Application/OutputNaming/OutputNamingTests.cs",
           "name": "SequenceHasExpectedRepresentation",
           "owner": "OutputNamingTests",
@@ -134491,26 +134658,24 @@
           "name": "ReadByte",
           "owner": "ProtectedTrackHfeImageAdapter",
           "kind": "MethodDeclaration",
-          "line": 93,
+          "line": 108,
           "parameters": "(IReadOnlyDictionary<string, string> metadata, string key)",
           "tokens": 17,
           "bodyTokens": "=> MediaMetadataFunctions . TryReadByte ( metadata , key , out var value ) ? value : null",
           "hash": "0B606573BC3A9BF19D58C6DA3861E75A88360E306CB30E77722BE5B04AE00F07",
-          "shape": "FA4A00D0E6CA3FE079B81A3C63DAFBDF364882651483ABE6C9390D549342A13F",
-          "qualification": "Original byte/UInt16 metadata adapter verified in smallMetadataReuse; nullable/default and positive checks preserved."
+          "shape": "FA4A00D0E6CA3FE079B81A3C63DAFBDF364882651483ABE6C9390D549342A13F"
         },
         {
           "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/Hfe/ProtectedTrackHfeImageAdapter.cs",
           "name": "ReadUInt16",
           "owner": "ProtectedTrackHfeImageAdapter",
           "kind": "MethodDeclaration",
-          "line": 95,
+          "line": 110,
           "parameters": "(IReadOnlyDictionary<string, string> metadata, string key)",
           "tokens": 17,
           "bodyTokens": "=> MediaMetadataFunctions . TryReadUInt16 ( metadata , key , out var value ) ? value : null",
           "hash": "F32D221EDCF4B2AD8FE22BC24AF9FA0527D1020F677155E0AA19C45CF08F36B1",
-          "shape": "FA4A00D0E6CA3FE079B81A3C63DAFBDF364882651483ABE6C9390D549342A13F",
-          "qualification": "Original byte/UInt16 metadata adapter verified in smallMetadataReuse; nullable/default and positive checks preserved."
+          "shape": "FA4A00D0E6CA3FE079B81A3C63DAFBDF364882651483ABE6C9390D549342A13F"
         },
         {
           "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/ProtectedTrackScpImageAdapter.cs",
@@ -134522,8 +134687,7 @@
           "tokens": 17,
           "bodyTokens": "=> MediaMetadataFunctions . TryReadByte ( metadata , key , out var value ) ? value : null",
           "hash": "0B606573BC3A9BF19D58C6DA3861E75A88360E306CB30E77722BE5B04AE00F07",
-          "shape": "FA4A00D0E6CA3FE079B81A3C63DAFBDF364882651483ABE6C9390D549342A13F",
-          "qualification": "Original byte/UInt16 metadata adapter verified in smallMetadataReuse; nullable/default and positive checks preserved."
+          "shape": "FA4A00D0E6CA3FE079B81A3C63DAFBDF364882651483ABE6C9390D549342A13F"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"

@@ -1,9 +1,9 @@
 {
   "baseline": "ac7292d86^",
-  "currentCSharpFiles": 7315,
-  "outsideSrcCSharpFiles": 297,
+  "currentCSharpFiles": 7324,
+  "outsideSrcCSharpFiles": 299,
   "baselineMethodCount": 5848,
-  "currentMethodCount": 11588,
+  "currentMethodCount": 11619,
   "powerShellFunctionCount": 17,
   "groups": [
     {
@@ -1198,7 +1198,7 @@
     {
       "language": "CSharp",
       "hash": "0A9D4012A0EEF58659F6F622D06187BDA6844EE126F30B196EAE963950A66758",
-      "method": "CommodoreEmulationModule",
+      "method": "NecEmulationModule",
       "tokens": 45,
       "current": [
         {
@@ -3811,67 +3811,6 @@
       ],
       "predecessors": [],
       "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
-      "hash": "25E044303C256840146ECA1D849F8F95F1281D48D22F0A94ED50C194D2E45382",
-      "method": "CanDecode",
-      "tokens": 46,
-      "current": [
-        {
-          "path": "src/GWGUI.MediaEngine/Images/Reading/Decoding/Sequential/Atari/AtariCassetteDecoder.cs",
-          "name": "CanDecode",
-          "line": 22,
-          "tokens": 46,
-          "hash": "25E044303C256840146ECA1D849F8F95F1281D48D22F0A94ED50C194D2E45382",
-          "shape": "13EF809BF66CEE9C99EE1909C39202899676C2B36EA6152F3F5A42EE1A799074"
-        },
-        {
-          "path": "src/GWGUI.MediaEngine/Images/Reading/Decoding/Sequential/Acorn/AcornTapeDecoder.cs",
-          "name": "CanDecode",
-          "line": 29,
-          "tokens": 46,
-          "hash": "25E044303C256840146ECA1D849F8F95F1281D48D22F0A94ED50C194D2E45382",
-          "shape": "13EF809BF66CEE9C99EE1909C39202899676C2B36EA6152F3F5A42EE1A799074"
-        }
-      ],
-      "predecessors": [
-        {
-          "path": "src/GWGUI.MediaEngine/Images/Reading/Decoding/Sequential/Acorn/AcornTapeDecoder.cs",
-          "name": "CanDecode",
-          "line": 30,
-          "tokens": 46,
-          "hash": "25E044303C256840146ECA1D849F8F95F1281D48D22F0A94ED50C194D2E45382",
-          "shape": "13EF809BF66CEE9C99EE1909C39202899676C2B36EA6152F3F5A42EE1A799074"
-        },
-        {
-          "path": "src/GWGUI.MediaEngine/Images/Reading/Decoding/Sequential/Atari/AtariCassetteDecoder.cs",
-          "name": "CanDecode",
-          "line": 24,
-          "tokens": 46,
-          "hash": "25E044303C256840146ECA1D849F8F95F1281D48D22F0A94ED50C194D2E45382",
-          "shape": "13EF809BF66CEE9C99EE1909C39202899676C2B36EA6152F3F5A42EE1A799074"
-        }
-      ],
-      "shapePredecessors": [
-        {
-          "path": "src/GWGUI.MediaEngine/Images/Reading/Decoding/Sequential/Acorn/AcornTapeDecoder.cs",
-          "name": "CanDecode",
-          "line": 30,
-          "tokens": 46,
-          "hash": "25E044303C256840146ECA1D849F8F95F1281D48D22F0A94ED50C194D2E45382",
-          "shape": "13EF809BF66CEE9C99EE1909C39202899676C2B36EA6152F3F5A42EE1A799074"
-        },
-        {
-          "path": "src/GWGUI.MediaEngine/Images/Reading/Decoding/Sequential/Atari/AtariCassetteDecoder.cs",
-          "name": "CanDecode",
-          "line": 24,
-          "tokens": 46,
-          "hash": "25E044303C256840146ECA1D849F8F95F1281D48D22F0A94ED50C194D2E45382",
-          "shape": "13EF809BF66CEE9C99EE1909C39202899676C2B36EA6152F3F5A42EE1A799074"
-        }
-      ],
       "qualification": "pending"
     },
     {
@@ -18293,75 +18232,6 @@
     },
     {
       "language": "CSharp",
-      "hash": "9B6A72A5D10356534461A411AF81E0672551CAB20A6089EBAC63C8914001AD29",
-      "method": "CanDecode",
-      "tokens": 36,
-      "current": [
-        {
-          "path": "src/GWGUI.MediaEngine/Images/Reading/Decoding/Sequential/Spectrum/SpectrumTapeDecoder.cs",
-          "name": "CanDecode",
-          "line": 25,
-          "tokens": 36,
-          "hash": "9B6A72A5D10356534461A411AF81E0672551CAB20A6089EBAC63C8914001AD29",
-          "shape": "458C988E88A8079E6934A403CC293AFD2C6F751A1ADBDE7CCCC901C93703E864"
-        },
-        {
-          "path": "src/GWGUI.MediaEngine/Images/Reading/Decoding/Sequential/Commodore/CommodoreTapeDecoder.cs",
-          "name": "CanDecode",
-          "line": 25,
-          "tokens": 36,
-          "hash": "9B6A72A5D10356534461A411AF81E0672551CAB20A6089EBAC63C8914001AD29",
-          "shape": "458C988E88A8079E6934A403CC293AFD2C6F751A1ADBDE7CCCC901C93703E864"
-        },
-        {
-          "path": "src/GWGUI.MediaEngine/Images/Reading/Decoding/Sequential/Amstrad/AmstradCpcTapeDecoder.cs",
-          "name": "CanDecode",
-          "line": 27,
-          "tokens": 36,
-          "hash": "9B6A72A5D10356534461A411AF81E0672551CAB20A6089EBAC63C8914001AD29",
-          "shape": "458C988E88A8079E6934A403CC293AFD2C6F751A1ADBDE7CCCC901C93703E864"
-        }
-      ],
-      "predecessors": [
-        {
-          "path": "src/GWGUI.MediaEngine/Images/Reading/Decoding/Sequential/Commodore/CommodoreTapeDecoder.cs",
-          "name": "CanDecode",
-          "line": 27,
-          "tokens": 36,
-          "hash": "9B6A72A5D10356534461A411AF81E0672551CAB20A6089EBAC63C8914001AD29",
-          "shape": "458C988E88A8079E6934A403CC293AFD2C6F751A1ADBDE7CCCC901C93703E864"
-        },
-        {
-          "path": "src/GWGUI.MediaEngine/Images/Reading/Decoding/Sequential/Spectrum/SpectrumTapeDecoder.cs",
-          "name": "CanDecode",
-          "line": 27,
-          "tokens": 36,
-          "hash": "9B6A72A5D10356534461A411AF81E0672551CAB20A6089EBAC63C8914001AD29",
-          "shape": "458C988E88A8079E6934A403CC293AFD2C6F751A1ADBDE7CCCC901C93703E864"
-        }
-      ],
-      "shapePredecessors": [
-        {
-          "path": "src/GWGUI.MediaEngine/Images/Reading/Decoding/Sequential/Commodore/CommodoreTapeDecoder.cs",
-          "name": "CanDecode",
-          "line": 27,
-          "tokens": 36,
-          "hash": "9B6A72A5D10356534461A411AF81E0672551CAB20A6089EBAC63C8914001AD29",
-          "shape": "458C988E88A8079E6934A403CC293AFD2C6F751A1ADBDE7CCCC901C93703E864"
-        },
-        {
-          "path": "src/GWGUI.MediaEngine/Images/Reading/Decoding/Sequential/Spectrum/SpectrumTapeDecoder.cs",
-          "name": "CanDecode",
-          "line": 27,
-          "tokens": 36,
-          "hash": "9B6A72A5D10356534461A411AF81E0672551CAB20A6089EBAC63C8914001AD29",
-          "shape": "458C988E88A8079E6934A403CC293AFD2C6F751A1ADBDE7CCCC901C93703E864"
-        }
-      ],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
       "hash": "9BAAFD44B22CEE10B625AC51E5655455AE3B8F92463DE7951401F97F4C8ED3CA",
       "method": "CoreOptionHost",
       "tokens": 152,
@@ -19015,7 +18885,7 @@
     {
       "language": "CSharp",
       "hash": "A1E03750FEB3292ACEB41656386F4A8AA8B05077D9ABFB7DA103AA3D71320B9F",
-      "method": "ToModule",
+      "method": "ToEpoch",
       "tokens": 103,
       "current": [
         {
@@ -20515,7 +20385,7 @@
     {
       "language": "CSharp",
       "hash": "B053A3AB4F0B78A37DED57B2D744801187AED6EC54FEEAFE4B1AA9C454D6F48C",
-      "method": "WenquxingEmulationModule",
+      "method": "PanasonicEmulationModule",
       "tokens": 47,
       "current": [
         {
@@ -22078,6 +21948,33 @@
     },
     {
       "language": "CSharp",
+      "hash": "C2D5615FA80002F69D8F5BB351D422E21996D859A4AF57D5558C961407AC0F16",
+      "method": "ReadAsync",
+      "tokens": 30,
+      "current": [
+        {
+          "path": "src/GWGUI.MediaEngine/Images/Reading/Reconstruction/DecRx02ScpSectorImageReader.cs",
+          "name": "ReadAsync",
+          "line": 31,
+          "tokens": 30,
+          "hash": "C2D5615FA80002F69D8F5BB351D422E21996D859A4AF57D5558C961407AC0F16",
+          "shape": "1CA73B4FCA9CB1D543AF925F33E944DEF0C8207A0840CA6797DB1475919644C1"
+        },
+        {
+          "path": "src/GWGUI.MediaEngine/Images/Reading/Reconstruction/AmigaScpSectorImageReader.cs",
+          "name": "ReadAsync",
+          "line": 25,
+          "tokens": 30,
+          "hash": "C2D5615FA80002F69D8F5BB351D422E21996D859A4AF57D5558C961407AC0F16",
+          "shape": "1CA73B4FCA9CB1D543AF925F33E944DEF0C8207A0840CA6797DB1475919644C1"
+        }
+      ],
+      "predecessors": [],
+      "shapePredecessors": [],
+      "qualification": "pending"
+    },
+    {
+      "language": "CSharp",
       "hash": "C2E7D4B4B72F7F5EA89A4BB5D6F3FEAF4B9361FFD9513BE4AED6F87D4E119F51",
       "method": "ExternalCore",
       "tokens": 85,
@@ -23376,8 +23273,7 @@
           "line": 9,
           "tokens": 103,
           "hash": "CD8906CDB323F9FC13FC90049964CECF57F1CD558E065973392B971E6A3F4A4B",
-          "shape": "70E231C2692F1E011E9FB6483E1E2327740442B43EC9930C374055C7DC25AFE1",
-          "qualification": "Typed contract initialization and BCL defensive copies; distinct recursive/enum/analysis types and mapper revalidated in fileSystemTypedConstructorRevalidation"
+          "shape": "70E231C2692F1E011E9FB6483E1E2327740442B43EC9930C374055C7DC25AFE1"
         },
         {
           "path": "src/GWGUI.MediaEngine/Contracts/Explorer/FileSystemVolume.cs",
@@ -23385,8 +23281,7 @@
           "line": 9,
           "tokens": 103,
           "hash": "CD8906CDB323F9FC13FC90049964CECF57F1CD558E065973392B971E6A3F4A4B",
-          "shape": "70E231C2692F1E011E9FB6483E1E2327740442B43EC9930C374055C7DC25AFE1",
-          "qualification": "Typed contract initialization and BCL defensive copies; distinct recursive/enum/analysis types and mapper revalidated in fileSystemTypedConstructorRevalidation"
+          "shape": "70E231C2692F1E011E9FB6483E1E2327740442B43EC9930C374055C7DC25AFE1"
         }
       ],
       "predecessors": [
@@ -23425,7 +23320,7 @@
           "shape": "70E231C2692F1E011E9FB6483E1E2327740442B43EC9930C374055C7DC25AFE1"
         }
       ],
-      "qualification": "Qualified typed contract constructors; existing views and explicit mapper retained"
+      "qualification": "pending"
     },
     {
       "language": "CSharp",
@@ -28010,8 +27905,7 @@
           "line": 10,
           "tokens": 172,
           "hash": "F928600A8786776D9F646245A1902529A7051F2CD06EDC205C46B96000DA686F",
-          "shape": "C8FD14FDF6AE57B3DE90D73A0F3394C726C36FE24589A75C60D8284A759FBFD8",
-          "qualification": "Typed contract initialization and BCL defensive copies; distinct recursive/enum/analysis types and mapper revalidated in fileSystemTypedConstructorRevalidation"
+          "shape": "C8FD14FDF6AE57B3DE90D73A0F3394C726C36FE24589A75C60D8284A759FBFD8"
         },
         {
           "path": "src/GWGUI.MediaEngine/Contracts/Explorer/FileSystemEntry.cs",
@@ -28019,8 +27913,7 @@
           "line": 10,
           "tokens": 172,
           "hash": "F928600A8786776D9F646245A1902529A7051F2CD06EDC205C46B96000DA686F",
-          "shape": "C8FD14FDF6AE57B3DE90D73A0F3394C726C36FE24589A75C60D8284A759FBFD8",
-          "qualification": "Typed contract initialization and BCL defensive copies; distinct recursive/enum/analysis types and mapper revalidated in fileSystemTypedConstructorRevalidation"
+          "shape": "C8FD14FDF6AE57B3DE90D73A0F3394C726C36FE24589A75C60D8284A759FBFD8"
         }
       ],
       "predecessors": [
@@ -28059,7 +27952,7 @@
           "shape": "C8FD14FDF6AE57B3DE90D73A0F3394C726C36FE24589A75C60D8284A759FBFD8"
         }
       ],
-      "qualification": "Qualified typed contract constructors; existing views and explicit mapper retained"
+      "qualification": "pending"
     },
     {
       "language": "CSharp",
@@ -29197,7 +29090,7 @@
         {
           "path": "src/GWGUI.MediaEngine/Images/Reading/Decoding/Decoders/DataGeneralFmDecoder.cs",
           "name": "TryDecodeMfmBytes",
-          "line": 108,
+          "line": 110,
           "tokens": 57,
           "hash": "EF56A3EFDC1A9EDCB1B099826C762C03EB46522EDC67E32967587C954EA908CB",
           "shape": "073C05AA38848254C1BC7A290FEB7E333D3DEFAE2B1476D92EC9DF83D8DC4546"
@@ -35366,6 +35259,29 @@
       "qualification": "pending-symbol-and-policy-comparison"
     },
     {
+      "shape": "C88FA91DD32CC6373A0E6A547F3FBBF76075719F8A7096FD7ECC26340D0988EE",
+      "tokens": 32,
+      "current": [
+        {
+          "path": "src/GWGUI.MediaEngine/Images/Reading/Reconstruction/CommodoreScpSectorImageReader.cs",
+          "name": "ReadAsync",
+          "line": 28,
+          "tokens": 32,
+          "hash": "F935D408773FD4862CDD7B5B70CA3D5585A3A2F4A5EE23E7EBF3263300144491",
+          "shape": "C88FA91DD32CC6373A0E6A547F3FBBF76075719F8A7096FD7ECC26340D0988EE"
+        },
+        {
+          "path": "src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Apple/AppleScpSectorImageReader.cs",
+          "name": "ReadAsync",
+          "line": 46,
+          "tokens": 32,
+          "hash": "1725E13C82C6CF1232C6C036C65EA99B4F00AE24B008E691FD966D4AFBB97B18",
+          "shape": "C88FA91DD32CC6373A0E6A547F3FBBF76075719F8A7096FD7ECC26340D0988EE"
+        }
+      ],
+      "qualification": "pending-symbol-and-policy-comparison"
+    },
+    {
       "shape": "C8EB29902334C059DF1B6016B5329A782E5E7EDCF653E71B75FCA8FA326FB5C3",
       "tokens": 155,
       "current": [
@@ -35832,7 +35748,7 @@
         {
           "path": "src/GWGUI.App/Controllers/MainWindow/Read/ReadTabController.Execution.cs",
           "name": "ReportInternalProgress",
-          "line": 183,
+          "line": 184,
           "tokens": 84,
           "hash": "C8104B0BE0A25C5D2848FB9AE7381F46D7756E7F1284331DA63EA78AB7EC898F",
           "shape": "D3ECB58E2B3353535876416F8D0566A869D04AF215B962C12FF2D640EEE6EB7A"
@@ -37704,7 +37620,7 @@
         {
           "path": "src/GWGUI.MediaEngine/Images/Reading/Decoding/Decoders/NorthstarMfmDecoder.cs",
           "name": "TryDecodeMfmBytes",
-          "line": 86,
+          "line": 117,
           "tokens": 74,
           "hash": "8A41B182E17DD5EDDF608D43011CE1A263C5D8392B9775001DAE15FD78F70204",
           "shape": "FE4AFD20725179F3844F58A149FC3120A1F910EDDD292F495151C77A6F6F08F3"
@@ -37712,7 +37628,7 @@
         {
           "path": "src/GWGUI.MediaEngine/Images/Reading/Decoding/Decoders/MicropolisMfmDecoder.cs",
           "name": "TryDecodeMfmBytes",
-          "line": 65,
+          "line": 68,
           "tokens": 74,
           "hash": "4367F667EB5683706049C8D43ED134D3CE17100E052EC67E3B5811920A227861",
           "shape": "FE4AFD20725179F3844F58A149FC3120A1F910EDDD292F495151C77A6F6F08F3"

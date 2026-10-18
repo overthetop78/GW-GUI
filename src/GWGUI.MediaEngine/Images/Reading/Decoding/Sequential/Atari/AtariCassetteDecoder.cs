@@ -22,7 +22,7 @@ public sealed class AtariCassetteDecoder : ISequentialMediaDecoder
     public bool CanDecode(MediaImageDocument document, string? machineId = null)
     {
         ArgumentNullException.ThrowIfNull(document);
-        return document.MediaKind == MediaKind.Tape && SupportedFormats.Contains(document.FormatId) && (machineId is null || SupportedMachines.Contains(machineId)) && document.Representation is SequentialMediaImageRepresentation;
+        return SequentialDecodeFunctions.CanDecodeTape(document, machineId, SupportedFormats, SupportedMachines);
     }
 
     public async Task<SequentialDecodeResult> DecodeAsync(MediaImageDocument document, string? machineId = null, CancellationToken cancellationToken = default)

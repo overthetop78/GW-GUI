@@ -95406,5 +95406,667 @@
         ]
       }
     }
+  },
+  "sequentialDecodeCompatibilityReuse": {
+    "state": "verified",
+    "originalRevision": "8ea733760",
+    "originalPath": "src/GWGUI.MediaEngine/Decoding/Sequential/Atari/AtariCassetteDecoder.cs",
+    "originalMethod": "public bool CanDecode(MediaImageDocument document, string? machineId = null)\n    {\n        ArgumentNullException.ThrowIfNull(document);\n        return document.MediaKind == MediaKind.Tape\n            && SupportedFormats.Contains(document.FormatId)\n            && (machineId is null || SupportedMachines.Contains(machineId))\n            && document.Representation is SequentialMediaImageRepresentation;\n    }",
+    "sources": [
+      {
+        "path": "src/GWGUI.MediaEngine/Images/Reading/Decoding/Sequential/Atari/AtariCassetteDecoder.cs",
+        "sha256": "6CCC668CCF14F71935221D62A92E16CEFFE112F9B19B730B68A26096BF08F108",
+        "text": "using System.Collections.Frozen;\r\nusing GWGUI.MediaEngine.Enums;\r\nusing GWGUI.MediaEngine.Constants;\r\nusing GWGUI.MediaEngine.Contracts;\r\nusing GWGUI.MediaEngine.Interfaces.Decoding;\r\nusing GWGUI.MediaEngine.Functions;\r\nusing GWGUI.MediaEngine.Images.Reading.Recognition;\r\nusing GWGUI.MediaEngine.Images.Models.Sequential;\r\n\r\nnamespace GWGUI.MediaEngine.Images.Reading.Decoding.Sequential.Atari;\r\n\r\n/// <summary>Decodes retained Atari CAS data chunks and compatible PCM WAV FSK serial frames.</summary>\r\npublic sealed class AtariCassetteDecoder : ISequentialMediaDecoder\r\n{\r\n    private static readonly IReadOnlySet<string> SupportedFormats = new[] { TapeImageFormatIds.AtariCas, TapeImageFormatIds.Wav }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);\r\n    private static readonly IReadOnlySet<string> SupportedMachines = new[] { DiskSystemIds.Atari8Bit }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);\r\n\r\n    public string Id => AtariCasConstants.DecoderId;\r\n    public IReadOnlySet<string> FormatIds => SupportedFormats;\r\n    public IReadOnlySet<string> MachineIds => SupportedMachines;\r\n\r\n    public bool CanDecode(MediaImageDocument document, string? machineId = null)\r\n    {\r\n        ArgumentNullException.ThrowIfNull(document);\r\n        return document.MediaKind == MediaKind.Tape && SupportedFormats.Contains(document.FormatId) && (machineId is null || SupportedMachines.Contains(machineId)) && document.Representation is SequentialMediaImageRepresentation;\r\n    }\r\n\r\n    public async Task<SequentialDecodeResult> DecodeAsync(MediaImageDocument document, string? machineId = null, CancellationToken cancellationToken = default)\r\n    {\r\n        if (!CanDecode(document, machineId))\r\n            throw new InvalidDataException(\"The media document is not compatible with the Atari cassette decoder.\");\r\n        var representation = (SequentialMediaImageRepresentation)document.Representation;\r\n        return document.FormatId.Equals(TapeImageFormatIds.AtariCas, StringComparison.OrdinalIgnoreCase) ? await DecodeCasAsync(document, representation, cancellationToken).ConfigureAwait(false) : await DecodeWaveAsync(document, representation, cancellationToken).ConfigureAwait(false);\r\n    }\r\n\r\n    private async Task<SequentialDecodeResult> DecodeCasAsync(MediaImageDocument document, SequentialMediaImageRepresentation representation, CancellationToken cancellationToken)\r\n    {\r\n        var blocks = new List<SequentialDecodedBlock>();\r\n        var consumed = new HashSet<long>();\r\n        var fileData = new MemoryStream();\r\n        var filePositions = new List<long>();\r\n        var recordCount = 0;\r\n        var fullRecordCount = 0;\r\n        var partialRecordCount = 0;\r\n        var integrityValid = true;\r\n        var baudRates = new HashSet<string>(StringComparer.Ordinal);\r\n        foreach (var structuralSegment in representation.Segments ?? [])\r\n        {\r\n            if (structuralSegment.Kind is Enums.SequentialSegmentKind.TapeMark or Enums.SequentialSegmentKind.Carrier)\r\n                consumed.Add(structuralSegment.Position);\r\n        }\r\n\r\n        void FlushLogicalFile(bool endRecordPresent)\r\n        {\r\n            if (filePositions.Count == 0) return;\r\n            var ordinal = blocks.Count + 1;\r\n            var metadata = new Dictionary<string, string>(StringComparer.Ordinal)\r\n            {\r\n                [\"sourceKind\"] = \"atari-cas-records\",\r\n                [\"logicalFileOrdinal\"] = ordinal.ToString(System.Globalization.CultureInfo.InvariantCulture),\r\n                [\"recordCount\"] = recordCount.ToString(System.Globalization.CultureInfo.InvariantCulture),\r\n                [\"fullRecordCount\"] = fullRecordCount.ToString(System.Globalization.CultureInfo.InvariantCulture),\r\n                [\"partialRecordCount\"] = partialRecordCount.ToString(System.Globalization.CultureInfo.InvariantCulture),\r\n                [\"endRecordPresent\"] = endRecordPresent.ToString(System.Globalization.CultureInfo.InvariantCulture),\r\n                [\"baudRates\"] = string.Join(\", \", baudRates.Order(StringComparer.Ordinal)),\r\n                [\"checksumPresent\"] = true.ToString(System.Globalization.CultureInfo.InvariantCulture)\r\n            };\r\n            blocks.Add(new SequentialDecodedBlock(blocks.Count, fileData.ToArray(), filePositions.ToArray(), integrityValid, metadata));\r\n            fileData.SetLength(0);\r\n            filePositions.Clear();\r\n            recordCount = fullRecordCount = partialRecordCount = 0;\r\n            integrityValid = true;\r\n            baudRates.Clear();\r\n        }\r\n\r\n        foreach (var segment in representation.Segments ?? [])\r\n        {\r\n            cancellationToken.ThrowIfCancellationRequested();\r\n            if (segment.Kind != Enums.SequentialSegmentKind.DataBlock\r\n                || !segment.Metadata.TryGetValue(AtariCasConstants.ChunkIdMetadataKey, out var chunkId)\r\n                || chunkId != AtariCasConstants.DataChunk\r\n                || segment.DataRange is not { Source: not null } range\r\n                || range.Length > int.MaxValue)\r\n                continue;\r\n\r\n            var data = new byte[checked((int)range.Length)];\r\n            await range.Source.ReadExactlyAsync(range.SourceOffset, data, cancellationToken).ConfigureAwait(false);\r\n            if (!TryReadStandardRecord(data, out var recordType, out var recordData, out var checksumValid))\r\n            {\r\n                FlushLogicalFile(false);\r\n                if (IsExtendedZeroPaddingRecord(data)) consumed.Add(segment.Position);\r\n                continue;\r\n            }\r\n\r\n            consumed.Add(segment.Position);\r\n            filePositions.Add(segment.Position);\r\n            recordCount++;\r\n            integrityValid &= checksumValid;\r\n            if (segment.Metadata.TryGetValue(AtariCasConstants.BaudRateMetadataKey, out var baudRate))\r\n                baudRates.Add(baudRate);\r\n            if (recordType == AtariCasConstants.FullRecordType)\r\n            {\r\n                fullRecordCount++;\r\n                fileData.Write(recordData.Span);\r\n            }\r\n            else if (recordType == AtariCasConstants.PartialRecordType)\r\n            {\r\n                partialRecordCount++;\r\n                fileData.Write(recordData.Span);\r\n            }\r\n            else if (recordType == AtariCasConstants.EndRecordType)\r\n            {\r\n                FlushLogicalFile(true);\r\n            }\r\n        }\r\n        FlushLogicalFile(false);\r\n\r\n        var pulseSegments = (representation.Segments ?? []).Where(segment => segment.Kind == Enums.SequentialSegmentKind.Pulse && segment.Duration is not null && segment.Metadata.ContainsKey(\"signal\")).OrderBy(segment => segment.Position) .ToArray();\r\n        if (pulseSegments.Length > 0)\r\n        {\r\n            var bits = new List<bool>();\r\n            foreach (var pulse in pulseSegments)\r\n            {\r\n                var bitCount = Math.Max(1, (int)Math.Round(pulse.Duration!.Value.TotalSeconds * AtariCasConstants.DefaultBaudRate));\r\n                var mark = pulse.Metadata[\"signal\"].Equals(\"mark\", StringComparison.OrdinalIgnoreCase);\r\n                for (var index = 0; index < bitCount; index++) bits.Add(mark);\r\n            }\r\n            var decoded = FskSerialFunctions.DecodeFrames(bits, AtariCasConstants.SerialDataBitCount, AtariCasConstants.SerialFrameBitCount - AtariCasConstants.SerialDataBitCount - 1);\r\n            if (decoded.Bytes.Count > 0)\r\n            {\r\n                var positions = pulseSegments.Select(segment => segment.Position).ToArray();\r\n                blocks.Add(CreateBlock(blocks.Count, decoded.Bytes.ToArray(), positions, \"cas-fsk\"));\r\n                foreach (var positionValue in positions) consumed.Add(positionValue);\r\n                foreach (var fskChunk in (representation.Segments ?? []).Where(segment => segment.Metadata.TryGetValue(AtariCasConstants.ChunkIdMetadataKey, out var id) && id == AtariCasConstants.FskChunk))\r\n                    consumed.Add(fskChunk.Position);\r\n            }\r\n        }\r\n\r\n        var undecoded = (representation.Segments ?? []).Where(segment => !consumed.Contains(segment.Position)).ToArray();\r\n        var confidence = blocks.Count == 0 ? 0 : 1;\r\n        var diagnostics = blocks.Count == 0 ? new[] { \"No Atari CAS data chunk could be decoded.\" } : [];\r\n        return new SequentialDecodeResult(Id, confidence, blocks, undecoded, diagnostics);\r\n    }\r\n\r\n    private static bool TryReadStandardRecord(ReadOnlyMemory<byte> record, out byte recordType, out ReadOnlyMemory<byte> data, out bool checksumValid)\r\n    {\r\n        recordType = 0;\r\n        data = ReadOnlyMemory<byte>.Empty;\r\n        checksumValid = false;\r\n        if (record.Length < 4\r\n            || record.Span[0] != AtariCasConstants.RecordSyncByte\r\n            || record.Span[1] != AtariCasConstants.RecordSyncByte)\r\n            return false;\r\n\r\n        recordType = record.Span[2];\r\n        if (recordType is not (AtariCasConstants.FullRecordType\r\n            or AtariCasConstants.PartialRecordType\r\n            or AtariCasConstants.EndRecordType))\r\n            return false;\r\n\r\n        if (recordType == AtariCasConstants.EndRecordType)\r\n        {\r\n            checksumValid = CalculateSioChecksum(record.Span[..^1]) == record.Span[^1];\r\n            return true;\r\n        }\r\n\r\n        if (record.Length != AtariCasConstants.StandardRecordLength)\r\n            return false;\r\n\r\n        var dataLength = recordType switch\r\n        {\r\n            AtariCasConstants.FullRecordType => AtariCasConstants.RecordDataLength,\r\n            AtariCasConstants.PartialRecordType => Math.Min((int)record.Span[AtariCasConstants.PartialRecordLengthOffset], AtariCasConstants.RecordDataLength),\r\n            _ => 0\r\n        };\r\n        data = record.Slice(AtariCasConstants.RecordDataOffset, dataLength);\r\n        checksumValid = CalculateSioChecksum(record.Span[..AtariCasConstants.RecordChecksumOffset]) == record.Span[AtariCasConstants.RecordChecksumOffset];\r\n        return true;\r\n    }\r\n\r\n    private static bool IsExtendedZeroPaddingRecord(ReadOnlySpan<byte> record) =>\r\n        record.Length > AtariCasConstants.StandardRecordLength\r\n        && record[0] == AtariCasConstants.RecordSyncByte\r\n        && record[1] == AtariCasConstants.RecordSyncByte\r\n        && record[2] == AtariCasConstants.FullRecordType\r\n        && record[AtariCasConstants.RecordDataOffset..^1].IndexOfAnyExcept((byte)0) < 0\r\n        && CalculateSioChecksum(record[..^1]) == record[^1];\r\n\r\n    private async Task<SequentialDecodeResult> DecodeWaveAsync(MediaImageDocument document, SequentialMediaImageRepresentation representation, CancellationToken cancellationToken)\r\n    {\r\n        if (!PcmSampleFunctions.TryGetProfile(document.Metadata, out var channels, out var sampleRate, out var bitsPerSample, out var blockAlign))\r\n            return new SequentialDecodeResult(Id, 0, [], representation.Segments ?? [], [\"The WAV PCM profile is incomplete or incompatible.\"]);\r\n\r\n        var sampleSegments = (representation.Segments ?? []).Where(segment => segment.Kind == Enums.SequentialSegmentKind.Samples && segment.ChannelNumber == 0 && segment.DataRange?.Source is not null).OrderBy(segment => segment.Position) .ToArray();\r\n        if (sampleSegments.Length == 0)\r\n            return new SequentialDecodeResult(Id, 0, [], representation.Segments ?? [], [\"The WAV image has no readable PCM sample segment.\"]);\r\n\r\n        var bytes = new List<byte>();\r\n        var sourcePositions = new List<long>();\r\n        var validFrames = 0;\r\n        var testedFrames = 0;\r\n        foreach (var segment in sampleSegments)\r\n        {\r\n            cancellationToken.ThrowIfCancellationRequested();\r\n            var range = segment.DataRange!;\r\n            if (range.Length > int.MaxValue) continue;\r\n            var pcm = new byte[checked((int)range.Length)];\r\n            await range.Source!.ReadExactlyAsync(range.SourceOffset, pcm, cancellationToken).ConfigureAwait(false);\r\n            var samples = PcmSampleFunctions.ExtractChannel(pcm, channels, bitsPerSample, blockAlign, 0);\r\n            var decoded = FskSerialFunctions.Decode(\r\n                samples,\r\n                sampleRate,\r\n                AtariCasConstants.DefaultBaudRate,\r\n                AtariCasConstants.SpaceFrequency,\r\n                AtariCasConstants.MarkFrequency,\r\n                AtariCasConstants.SerialDataBitCount,\r\n                AtariCasConstants.SerialFrameBitCount - AtariCasConstants.SerialDataBitCount - 1,\r\n                AtariCasConstants.MinimumSamplesPerBit);\r\n            bytes.AddRange(decoded.Bytes);\r\n            validFrames += decoded.ValidFrames;\r\n            testedFrames += decoded.TestedFrames;\r\n            if (decoded.Bytes.Count > 0) sourcePositions.Add(segment.Position);\r\n        }\r\n\r\n        var blocks = bytes.Count == 0 ? Array.Empty<SequentialDecodedBlock>() : [CreateBlock(0, bytes.ToArray(), sourcePositions, \"wav-fsk\")];\r\n        var consumed = sourcePositions.ToHashSet();\r\n        var undecoded = (representation.Segments ?? []).Where(segment => !consumed.Contains(segment.Position)).ToArray();\r\n        var confidence = testedFrames == 0 ? 0 : validFrames / (double)testedFrames;\r\n        var diagnostics = bytes.Count == 0 ? new[] { \"No complete Atari FSK serial frame was found in the selected WAV channel.\" } : [];\r\n        return new SequentialDecodeResult(Id, confidence, blocks, undecoded, diagnostics);\r\n    }\r\n\r\n    private static SequentialDecodedBlock CreateBlock(long position, byte[] data, IReadOnlyList<long> sourcePositions, string sourceKind)\r\n    {\r\n        var integrity = data.Length < 2 ? (bool?)null : CalculateSioChecksum(data.AsSpan(0, data.Length - 1)) == data[^1];\r\n        return new SequentialDecodedBlock(\r\n            position,\r\n            data,\r\n            sourcePositions,\r\n            integrity,\r\n            new Dictionary<string, string>(StringComparer.Ordinal)\r\n            {\r\n                [\"sourceKind\"] = sourceKind,\r\n                [\"checksumPresent\"] = (data.Length >= 2).ToString(System.Globalization.CultureInfo.InvariantCulture)\r\n            });\r\n    }\r\n\r\n    private static byte CalculateSioChecksum(ReadOnlySpan<byte> data)\r\n    {\r\n        var checksum = 0;\r\n        foreach (var value in data)\r\n        {\r\n            checksum += value;\r\n            checksum = (checksum & 0xff) + (checksum >> 8);\r\n        }\r\n        return (byte)checksum;\r\n    }\r\n\r\n}\r\n",
+        "method": "public bool CanDecode(MediaImageDocument document, string? machineId = null)\r\n    {\r\n        ArgumentNullException.ThrowIfNull(document);\r\n        return document.MediaKind == MediaKind.Tape && SupportedFormats.Contains(document.FormatId) && (machineId is null || SupportedMachines.Contains(machineId)) && document.Representation is SequentialMediaImageRepresentation;\r\n    }",
+        "guard": true
+      },
+      {
+        "path": "src/GWGUI.MediaEngine/Images/Reading/Decoding/Sequential/Acorn/AcornTapeDecoder.cs",
+        "sha256": "3FCAEA7C7A262E9061A324BEB5F3333629696EBA96E51D141C6B16BD511F0D2F",
+        "text": "using GWGUI.MediaFileSystems.Primitives;\r\nusing GWGUI.MediaEngine.Images.Reading.Blocks;\r\nusing System.Buffers.Binary;\r\nusing System.Collections.Frozen;\r\nusing System.Globalization;\r\nusing System.Text;\r\nusing GWGUI.MediaEngine.Enums;\r\nusing GWGUI.MediaEngine.Constants;\r\nusing GWGUI.MediaEngine.Contracts;\r\n\r\nusing GWGUI.MediaEngine.Functions;\r\nusing GWGUI.MediaEngine.Interfaces.Decoding;\r\nusing GWGUI.MediaEngine.Images.Models.Sectors;\r\nusing GWGUI.MediaEngine.Images.Reading.Recognition;\r\nusing GWGUI.MediaEngine.Images.Models.Sequential;\r\n\r\nnamespace GWGUI.MediaEngine.Images.Reading.Decoding.Sequential.Acorn;\r\n\r\n/// <summary>Decodes Acorn cassette filing system blocks from UEF byte streams or compatible PCM FSK signals.</summary>\r\npublic sealed class AcornTapeDecoder : ISequentialMediaDecoder\r\n{\r\n    private static readonly IReadOnlySet<string> SupportedFormats = new[] { TapeImageFormatIds.Uef, TapeImageFormatIds.Wav }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);\r\n    private static readonly IReadOnlySet<string> SupportedMachines = new[] { DiskSystemIds.AcornBbc }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);\r\n\r\n    public string Id => UefConstants.DecoderId;\r\n    public IReadOnlySet<string> FormatIds => SupportedFormats;\r\n    public IReadOnlySet<string> MachineIds => SupportedMachines;\r\n\r\n    public bool CanDecode(MediaImageDocument document, string? machineId = null)\r\n    {\r\n        ArgumentNullException.ThrowIfNull(document);\r\n        return document.MediaKind == MediaKind.Tape && SupportedFormats.Contains(document.FormatId) && (machineId is null || SupportedMachines.Contains(machineId)) && document.Representation is SequentialMediaImageRepresentation;\r\n    }\r\n\r\n    public async Task<SequentialDecodeResult> DecodeAsync(MediaImageDocument document, string? machineId = null, CancellationToken cancellationToken = default)\r\n    {\r\n        if (!CanDecode(document, machineId))\r\n            throw new InvalidDataException(\"The media document is not compatible with the Acorn cassette decoder.\");\r\n        var representation = (SequentialMediaImageRepresentation)document.Representation;\r\n        return document.FormatId.Equals(TapeImageFormatIds.Uef, StringComparison.OrdinalIgnoreCase) ? await DecodeUefAsync(representation, cancellationToken).ConfigureAwait(false) : await DecodeWaveAsync(document, representation, cancellationToken).ConfigureAwait(false);\r\n    }\r\n\r\n    private static async Task<SequentialDecodeResult> DecodeUefAsync(SequentialMediaImageRepresentation representation, CancellationToken cancellationToken)\r\n    {\r\n        var blocks = new List<SequentialDecodedBlock>();\r\n        var consumed = new HashSet<long>();\r\n        foreach (var segment in (representation.Segments ?? []).OrderBy(segment => segment.Position))\r\n        {\r\n            cancellationToken.ThrowIfCancellationRequested();\r\n            if (segment.Kind != SequentialSegmentKind.DataBlock\r\n                || !IsImplicitData(segment)\r\n                || await BlockMediaDataReader.ReadRangeAsync(segment.DataRange, cancellationToken).ConfigureAwait(false) is not { } bytes)\r\n                continue;\r\n            var decoded = DecodeBlocks(bytes, segment.Position, \"uef-implicit\", blocks.Count);\r\n            if (decoded.Count == 0) continue;\r\n            blocks.AddRange(decoded);\r\n            consumed.Add(segment.Position);\r\n        }\r\n        return CreateResult(representation, blocks, consumed, \"No valid Acorn cassette block was found in the UEF byte streams.\");\r\n    }\r\n\r\n    private static async Task<SequentialDecodeResult> DecodeWaveAsync(MediaImageDocument document, SequentialMediaImageRepresentation representation, CancellationToken cancellationToken)\r\n    {\r\n        if (!PcmSampleFunctions.TryGetProfile(document.Metadata, out var channels, out var sampleRate, out var bitsPerSample, out var blockAlign))\r\n            return new SequentialDecodeResult(UefConstants.DecoderId, 0, [], representation.Segments ?? [], [\"The WAV PCM profile is incomplete or incompatible.\"]);\r\n\r\n        var decodedBytes = new List<byte>();\r\n        var sourcePositions = new List<long>();\r\n        var validFrames = 0;\r\n        var testedFrames = 0;\r\n        foreach (var segment in (representation.Segments ?? []).Where(segment => segment.Kind == SequentialSegmentKind.Samples && segment.ChannelNumber == 0).OrderBy(segment => segment.Position))\r\n        {\r\n            cancellationToken.ThrowIfCancellationRequested();\r\n            var pcm = await BlockMediaDataReader.ReadRangeAsync(segment.DataRange, cancellationToken).ConfigureAwait(false);\r\n            if (pcm is null) continue;\r\n            var samples = PcmSampleFunctions.ExtractChannel(pcm, channels, bitsPerSample, blockAlign, 0);\r\n            var serial = FskSerialFunctions.Decode(\r\n                samples,\r\n                sampleRate,\r\n                UefConstants.DefaultBaudRate,\r\n                UefConstants.AcornZeroFrequency,\r\n                UefConstants.AcornOneFrequency,\r\n                UefConstants.AcornDataBitsPerFrame,\r\n                UefConstants.AcornStopBitsPerFrame,\r\n                UefConstants.MinimumSamplesPerBit);\r\n            decodedBytes.AddRange(serial.Bytes);\r\n            validFrames += serial.ValidFrames;\r\n            testedFrames += serial.TestedFrames;\r\n            if (serial.Bytes.Count > 0) sourcePositions.Add(segment.Position);\r\n        }\r\n\r\n        var blocks = DecodeBlocks(decodedBytes, sourcePositions, \"wav-fsk\", 0);\r\n        var consumed = blocks.Count == 0 ? [] : sourcePositions.ToHashSet();\r\n        var result = CreateResult(representation, blocks, consumed, \"No valid Acorn cassette block was found in the decoded WAV serial stream.\");\r\n        if (blocks.Count == 0 || testedFrames == 0) return result;\r\n        var serialConfidence = validFrames / (double)testedFrames;\r\n        return new SequentialDecodeResult(result.DecoderId, Math.Min(result.Confidence, serialConfidence), result.Blocks, result.UndecodedSegments, result.Diagnostics);\r\n    }\r\n\r\n    private static IReadOnlyList<SequentialDecodedBlock> DecodeBlocks(IReadOnlyList<byte> bytes, long sourcePosition, string sourceKind, int firstPosition) => DecodeBlocks(bytes, [sourcePosition], sourceKind, firstPosition);\r\n\r\n    private static IReadOnlyList<SequentialDecodedBlock> DecodeBlocks(IReadOnlyList<byte> bytes, IReadOnlyList<long> sourcePositions, string sourceKind, int firstPosition)\r\n    {\r\n        var blocks = new List<SequentialDecodedBlock>();\r\n        for (var offset = 0; offset < bytes.Count; offset++)\r\n        {\r\n            if (bytes[offset] != UefConstants.AcornBlockSync) continue;\r\n            var nameStart = offset + 1;\r\n            var nameEnd = nameStart;\r\n            while (nameEnd < bytes.Count\r\n                   && nameEnd - nameStart <= UefConstants.AcornMaximumFileNameLength\r\n                   && bytes[nameEnd] != 0)\r\n                nameEnd++;\r\n            if (nameEnd >= bytes.Count\r\n                || bytes[nameEnd] != 0\r\n                || nameEnd - nameStart > UefConstants.AcornMaximumFileNameLength)\r\n                continue;\r\n\r\n            var fixedHeaderStart = nameEnd + 1;\r\n            var fixedHeaderLength = UefConstants.AcornLoadAddressLength\r\n                + UefConstants.AcornExecutionAddressLength\r\n                + UefConstants.AcornBlockNumberLength\r\n                + UefConstants.AcornDataLengthFieldLength\r\n                + UefConstants.AcornFlagsLength\r\n                + UefConstants.AcornNextAddressLength;\r\n            var headerEnd = fixedHeaderStart + fixedHeaderLength;\r\n            if (headerEnd + UefConstants.AcornChecksumLength > bytes.Count) continue;\r\n\r\n            var dataLengthOffset = fixedHeaderStart + UefConstants.AcornLoadAddressLength + UefConstants.AcornExecutionAddressLength + UefConstants.AcornBlockNumberLength;\r\n            var dataLength = ReadUInt16LittleEndian(bytes, dataLengthOffset);\r\n            var dataStart = headerEnd + UefConstants.AcornChecksumLength;\r\n            var blockEnd = dataStart + dataLength + UefConstants.AcornChecksumLength;\r\n            if (blockEnd > bytes.Count) continue;\r\n\r\n            var headerBytes = Copy(bytes, nameStart, headerEnd - nameStart);\r\n            var dataBytes = Copy(bytes, dataStart, dataLength);\r\n            var storedHeaderChecksum = ReadUInt16BigEndian(bytes, headerEnd);\r\n            var storedDataChecksum = ReadUInt16BigEndian(bytes, dataStart + dataLength);\r\n            var headerValid = Crc16Calculator.Compute(headerBytes, UefConstants.AcornChecksumPolynomial, UefConstants.AcornChecksumInitialValue) == storedHeaderChecksum;\r\n            var dataValid = Crc16Calculator.Compute(dataBytes, UefConstants.AcornChecksumPolynomial, UefConstants.AcornChecksumInitialValue) == storedDataChecksum;\r\n\r\n            var cursor = fixedHeaderStart;\r\n            var loadAddress = ReadUInt32LittleEndian(bytes, cursor);\r\n            cursor += UefConstants.AcornLoadAddressLength;\r\n            var executionAddress = ReadUInt32LittleEndian(bytes, cursor);\r\n            cursor += UefConstants.AcornExecutionAddressLength;\r\n            var blockNumber = ReadUInt16LittleEndian(bytes, cursor);\r\n            cursor += UefConstants.AcornBlockNumberLength + UefConstants.AcornDataLengthFieldLength;\r\n            var flags = bytes[cursor++];\r\n            var nextAddress = ReadUInt32LittleEndian(bytes, cursor);\r\n            var metadata = new Dictionary<string, string>(StringComparer.Ordinal)\r\n            {\r\n                [UefConstants.SourceKindMetadataKey] = sourceKind,\r\n                [UefConstants.FileNameMetadataKey] = System.Text.Encoding.ASCII.GetString(Copy(bytes, nameStart, nameEnd - nameStart)),\r\n                [UefConstants.LoadAddressMetadataKey] = loadAddress.ToString(\"x8\", CultureInfo.InvariantCulture),\r\n                [UefConstants.ExecutionAddressMetadataKey] = executionAddress.ToString(\"x8\", CultureInfo.InvariantCulture),\r\n                [UefConstants.BlockNumberMetadataKey] = blockNumber.ToString(CultureInfo.InvariantCulture),\r\n                [UefConstants.FlagsMetadataKey] = flags.ToString(\"x2\", CultureInfo.InvariantCulture),\r\n                [UefConstants.NextAddressMetadataKey] = nextAddress.ToString(\"x8\", CultureInfo.InvariantCulture)\r\n            };\r\n            blocks.Add(new SequentialDecodedBlock(firstPosition + blocks.Count, dataBytes, sourcePositions, headerValid && dataValid, metadata));\r\n            offset = blockEnd - 1;\r\n        }\r\n        return blocks;\r\n    }\r\n\r\n    private static SequentialDecodeResult CreateResult(SequentialMediaImageRepresentation representation, IReadOnlyList<SequentialDecodedBlock> blocks, IReadOnlySet<long> consumed, string emptyDiagnostic)\r\n    {\r\n        var undecoded = (representation.Segments ?? []).Where(segment => !consumed.Contains(segment.Position)).ToArray();\r\n        var confidence = blocks.Count == 0 ? 0 : blocks.Count(block => block.IntegrityValid == true) / (double)blocks.Count;\r\n        return new SequentialDecodeResult(UefConstants.DecoderId, confidence, blocks, undecoded, blocks.Count == 0 ? [emptyDiagnostic] : []);\r\n    }\r\n\r\n    private static bool IsImplicitData(SequentialMediaSegment segment) => segment.Metadata.TryGetValue(UefConstants.ChunkIdMetadataKey, out var chunkId) && ushort.TryParse(chunkId, NumberStyles.HexNumber, CultureInfo.InvariantCulture, out var parsed) && parsed == UefConstants.ImplicitData;\r\n\r\n    private static byte[] Copy(IReadOnlyList<byte> source, int offset, int length)\r\n        => ByteListCopy.Copy(source, offset, length);\r\n\r\n    private static ushort ReadUInt16LittleEndian(IReadOnlyList<byte> source, int offset) => BinaryPrimitives.ReadUInt16LittleEndian(Copy(source, offset, sizeof(ushort)));\r\n\r\n    private static ushort ReadUInt16BigEndian(IReadOnlyList<byte> source, int offset) => BinaryPrimitives.ReadUInt16BigEndian(Copy(source, offset, sizeof(ushort)));\r\n\r\n    private static uint ReadUInt32LittleEndian(IReadOnlyList<byte> source, int offset) => BinaryPrimitives.ReadUInt32LittleEndian(Copy(source, offset, sizeof(uint)));\r\n}\r\n",
+        "method": "public bool CanDecode(MediaImageDocument document, string? machineId = null)\r\n    {\r\n        ArgumentNullException.ThrowIfNull(document);\r\n        return document.MediaKind == MediaKind.Tape && SupportedFormats.Contains(document.FormatId) && (machineId is null || SupportedMachines.Contains(machineId)) && document.Representation is SequentialMediaImageRepresentation;\r\n    }",
+        "guard": true
+      },
+      {
+        "path": "src/GWGUI.MediaEngine/Images/Reading/Decoding/Sequential/Spectrum/SpectrumTapeDecoder.cs",
+        "sha256": "D57568D4922D868A96EE26D898AA6C845D849C953DF38ECA5150FEEB69B46DB5",
+        "text": "using GWGUI.MediaEngine.Images.Reading.Blocks;\r\nusing System.Buffers.Binary;\r\nusing System.Collections.Frozen;\r\nusing GWGUI.MediaEngine.Enums;\r\nusing GWGUI.MediaEngine.Constants;\r\nusing GWGUI.MediaEngine.Contracts;\r\n\r\nusing GWGUI.MediaEngine.Functions;\r\nusing GWGUI.MediaEngine.Interfaces.Decoding;\r\nusing GWGUI.MediaEngine.Images.Reading.Recognition;\r\nusing GWGUI.MediaEngine.Images.Models.Sequential;\r\n\r\nnamespace GWGUI.MediaEngine.Images.Reading.Decoding.Sequential.Spectrum;\r\n\r\n/// <summary>Validates Spectrum blocks retained in TAP or TZX and detects standard Spectrum pulses in PCM WAV.</summary>\r\npublic sealed class SpectrumTapeDecoder : ISequentialMediaDecoder\r\n{\r\n    private static readonly IReadOnlySet<string> SupportedFormats = new[] { TapeImageFormatIds.SpectrumTap, TapeImageFormatIds.Tzx, TapeImageFormatIds.Wav }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);\r\n    private static readonly IReadOnlySet<string> SupportedMachines = new[] { DiskSystemIds.Spectrum }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);\r\n\r\n    public string Id => SpectrumTapConstants.DecoderId;\r\n    public IReadOnlySet<string> FormatIds => SupportedFormats;\r\n    public IReadOnlySet<string> MachineIds => SupportedMachines;\r\n\r\n    public bool CanDecode(MediaImageDocument document, string? machineId = null) => document.MediaKind == MediaKind.Tape && SupportedFormats.Contains(document.FormatId) && (machineId is null || SupportedMachines.Contains(machineId)) && document.Representation is SequentialMediaImageRepresentation;\r\n\r\n    public async Task<SequentialDecodeResult> DecodeAsync(MediaImageDocument document, string? machineId = null, CancellationToken cancellationToken = default)\r\n    {\r\n        if (!CanDecode(document, machineId))\r\n            throw new InvalidDataException(\"The media document is not compatible with the Spectrum tape decoder.\");\r\n        var representation = (SequentialMediaImageRepresentation)document.Representation;\r\n        return document.FormatId.Equals(TapeImageFormatIds.Wav, StringComparison.OrdinalIgnoreCase) ? await DecodeWaveAsync(document, representation, cancellationToken).ConfigureAwait(false) : await DecodeStructuredAsync(document.FormatId, representation, cancellationToken).ConfigureAwait(false);\r\n    }\r\n\r\n    private async Task<SequentialDecodeResult> DecodeStructuredAsync(string formatId, SequentialMediaImageRepresentation representation, CancellationToken cancellationToken)\r\n    {\r\n        var blocks = new List<SequentialDecodedBlock>();\r\n        var consumed = new HashSet<long>();\r\n        foreach (var segment in representation.Segments ?? [])\r\n        {\r\n            cancellationToken.ThrowIfCancellationRequested();\r\n            byte[]? data = null;\r\n            if (formatId.Equals(TapeImageFormatIds.SpectrumTap, StringComparison.OrdinalIgnoreCase)\r\n                && segment.Metadata.ContainsKey(SpectrumTapConstants.BlockMetadataKey))\r\n                data = await BlockMediaDataReader.ReadRangeAsync(segment.DataRange, 0, segment.DataRange?.Length ?? 0, cancellationToken).ConfigureAwait(false);\r\n            else if (formatId.Equals(TapeImageFormatIds.Tzx, StringComparison.OrdinalIgnoreCase)\r\n                && segment.DataRange is { Length: <= int.MaxValue })\r\n            {\r\n                var payload = await BlockMediaDataReader.ReadRangeAsync(segment.DataRange, 0, segment.DataRange.Length, cancellationToken).ConfigureAwait(false);\r\n                if (payload is not null && TryTzxData(segment, payload, out var dataOffset, out var dataLength))\r\n                    data = payload.AsSpan(dataOffset, dataLength).ToArray();\r\n            }\r\n            if (data is null || data.Length < 2) continue;\r\n            blocks.Add(CreateBlock(blocks.Count, data, [segment.Position], formatId));\r\n            consumed.Add(segment.Position);\r\n        }\r\n        var validCount = blocks.Count(block => block.IntegrityValid == true);\r\n        var confidence = blocks.Count == 0 ? 0 : validCount / (double)blocks.Count;\r\n        return new SequentialDecodeResult(Id, confidence, blocks, (representation.Segments ?? []).Where(segment => !consumed.Contains(segment.Position)).ToArray(), blocks.Count == 0 ? [\"No complete Spectrum data block was found.\"] : []);\r\n    }\r\n\r\n    private async Task<SequentialDecodeResult> DecodeWaveAsync(MediaImageDocument document, SequentialMediaImageRepresentation representation, CancellationToken cancellationToken)\r\n    {\r\n        if (!PcmSampleFunctions.TryGetProfile(document.Metadata, out var channels, out var sampleRate, out var bitsPerSample, out var blockAlign))\r\n            return new SequentialDecodeResult(Id, 0, [], representation.Segments ?? [], [\"The WAV PCM profile is incomplete or incompatible.\"]);\r\n        var blocks = new List<SequentialDecodedBlock>();\r\n        var consumed = new HashSet<long>();\r\n        foreach (var segment in (representation.Segments ?? []).Where(segment => segment.Kind == SequentialSegmentKind.Samples && segment.ChannelNumber == 0))\r\n        {\r\n            cancellationToken.ThrowIfCancellationRequested();\r\n            var pcm = await BlockMediaDataReader.ReadRangeAsync(segment.DataRange, 0, segment.DataRange?.Length ?? 0, cancellationToken).ConfigureAwait(false);\r\n            if (pcm is null) continue;\r\n            var samples = PcmSampleFunctions.ExtractChannel(pcm, channels, bitsPerSample, blockAlign, 0);\r\n            var detected = DetectWaveBlocks(samples, sampleRate);\r\n            foreach (var data in detected) blocks.Add(CreateBlock(blocks.Count, data, [segment.Position], \"wav\"));\r\n            if (detected.Count > 0) consumed.Add(segment.Position);\r\n        }\r\n        var validCount = blocks.Count(block => block.IntegrityValid == true);\r\n        var confidence = blocks.Count == 0 ? 0 : validCount / (double)blocks.Count;\r\n        return new SequentialDecodeResult(\r\n            Id,\r\n            confidence,\r\n            blocks,\r\n            (representation.Segments ?? []).Where(segment => !consumed.Contains(segment.Position)).ToArray(),\r\n            blocks.Count == 0 ? [\"No standard Spectrum pulse block was detected in the selected WAV channel.\"] : []);\r\n    }\r\n\r\n    private static IReadOnlyList<byte[]> DetectWaveBlocks(IReadOnlyList<int> samples, int sampleRate)\r\n    {\r\n        var pulses = new List<double>();\r\n        var previousSign = samples.Count > 0 && samples[0] >= 0;\r\n        var previousCrossing = 0;\r\n        for (var index = 1; index < samples.Count; index++)\r\n        {\r\n            var sign = samples[index] >= 0;\r\n            if (sign == previousSign) continue;\r\n            pulses.Add((index - previousCrossing) * (double)TzxConstants.TStatesPerSecond / sampleRate);\r\n            previousCrossing = index;\r\n            previousSign = sign;\r\n        }\r\n\r\n        var blocks = new List<byte[]>();\r\n        for (var index = 0; index < pulses.Count;)\r\n        {\r\n            var pilotStart = index;\r\n            while (index < pulses.Count && Close(pulses[index], SpectrumTapConstants.PilotPulseTStates)) index++;\r\n            if (index - pilotStart < SpectrumTapConstants.MinimumDetectedPilotPulseCount\r\n                || index + 1 >= pulses.Count\r\n                || !Close(pulses[index], SpectrumTapConstants.SyncFirstPulseTStates)\r\n                || !Close(pulses[index + 1], SpectrumTapConstants.SyncSecondPulseTStates))\r\n            {\r\n                index = pilotStart + 1;\r\n                continue;\r\n            }\r\n            index += 2;\r\n            var bits = new List<bool>();\r\n            while (index + 1 < pulses.Count)\r\n            {\r\n                var zero = Close(pulses[index], SpectrumTapConstants.ZeroPulseTStates) && Close(pulses[index + 1], SpectrumTapConstants.ZeroPulseTStates);\r\n                var one = Close(pulses[index], SpectrumTapConstants.OnePulseTStates) && Close(pulses[index + 1], SpectrumTapConstants.OnePulseTStates);\r\n                if (!zero && !one) break;\r\n                bits.Add(one);\r\n                index += 2;\r\n            }\r\n            var byteCount = bits.Count / 8;\r\n            if (byteCount < 2) continue;\r\n            var data = new byte[byteCount];\r\n            for (var byteIndex = 0; byteIndex < byteCount; byteIndex++)\r\n                for (var bit = 0; bit < 8; bit++)\r\n                    if (bits[byteIndex * 8 + bit]) data[byteIndex] |= (byte)(0x80 >> bit);\r\n            blocks.Add(data);\r\n        }\r\n        return blocks;\r\n    }\r\n\r\n    private static bool TryTzxData(SequentialMediaSegment segment, byte[] payload, out int offset, out int length)\r\n    {\r\n        offset = length = 0;\r\n        if (!segment.Metadata.TryGetValue(TzxConstants.BlockIdMetadataKey, out var idText)\r\n            || !byte.TryParse(idText, System.Globalization.NumberStyles.HexNumber, System.Globalization.CultureInfo.InvariantCulture, out var id))\r\n            return false;\r\n        var prefixLength = id switch\r\n        {\r\n            TzxConstants.StandardSpeedData => 4,\r\n            TzxConstants.TurboSpeedData => 18,\r\n            TzxConstants.PureData => 10,\r\n            _ => -1\r\n        };\r\n        if (prefixLength < 0 || payload.Length < prefixLength) return false;\r\n        length = id switch\r\n        {\r\n            TzxConstants.StandardSpeedData => BinaryPrimitives.ReadUInt16LittleEndian(payload.AsSpan(2)),\r\n            TzxConstants.TurboSpeedData => ReadUInt24(payload.AsSpan(15)),\r\n            TzxConstants.PureData => ReadUInt24(payload.AsSpan(7)),\r\n            _ => 0\r\n        };\r\n        offset = prefixLength;\r\n        return length >= 2 && offset + (long)length <= payload.Length;\r\n    }\r\n\r\n    private static SequentialDecodedBlock CreateBlock(long position, byte[] data, IReadOnlyList<long> sourcePositions, string sourceFormat) =>\r\n        new(\r\n            position,\r\n            data,\r\n            sourcePositions,\r\n            Xor(data) == 0,\r\n            new Dictionary<string, string>(StringComparer.Ordinal)\r\n            {\r\n                [\"sourceFormat\"] = sourceFormat,\r\n                [\"flag\"] = data[0].ToString(\"x2\", System.Globalization.CultureInfo.InvariantCulture),\r\n                [\"header\"] = (data.Length == SpectrumTapConstants.HeaderBlockLength && data[0] == SpectrumTapConstants.HeaderFlag).ToString(System.Globalization.CultureInfo.InvariantCulture)\r\n            });\r\n\r\n    private static bool Close(double actual, double expected) => Math.Abs(actual - expected) <= expected * SpectrumTapConstants.PulseToleranceRatio;\r\n\r\n    private static byte Xor(ReadOnlySpan<byte> data)\r\n    {\r\n        byte result = 0;\r\n        foreach (var value in data) result ^= value;\r\n        return result;\r\n    }\r\n\r\n    private static int ReadUInt24(ReadOnlySpan<byte> value) => value[0] | value[1] << 8 | value[2] << 16;\r\n}\r\n",
+        "method": "public bool CanDecode(MediaImageDocument document, string? machineId = null) => document.MediaKind == MediaKind.Tape && SupportedFormats.Contains(document.FormatId) && (machineId is null || SupportedMachines.Contains(machineId)) && document.Representation is SequentialMediaImageRepresentation;",
+        "guard": false
+      },
+      {
+        "path": "src/GWGUI.MediaEngine/Images/Reading/Decoding/Sequential/Commodore/CommodoreTapeDecoder.cs",
+        "sha256": "09384613CC511EBC8D4A3D2ACBD6DC0DBAC778493E492DA4ACB24E57ABB7FD25",
+        "text": "using GWGUI.MediaFileSystems.Functions;\r\nusing System.Collections.Frozen;\r\nusing System.Globalization;\r\nusing GWGUI.MediaEngine.Enums;\r\nusing GWGUI.MediaEngine.Constants;\r\nusing GWGUI.MediaEngine.Contracts;\r\n\r\nusing GWGUI.MediaEngine.Functions;\r\nusing GWGUI.MediaEngine.Interfaces.Decoding;\r\nusing GWGUI.MediaEngine.Images.Reading.Recognition;\r\nusing GWGUI.MediaEngine.Images.Models.Sequential;\r\n\r\nnamespace GWGUI.MediaEngine.Images.Reading.Decoding.Sequential.Commodore;\r\n\r\n/// <summary>Recognizes standard Commodore ROM byte frames in TAP pulses or a selected PCM WAV channel.</summary>\r\npublic sealed class CommodoreTapeDecoder : ISequentialMediaDecoder\r\n{\r\n    private static readonly IReadOnlySet<string> SupportedFormats = new[] { TapeImageFormatIds.CommodoreTap, TapeImageFormatIds.Wav }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);\r\n    private static readonly IReadOnlySet<string> SupportedMachines = new[] { DiskSystemIds.Commodore }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);\r\n\r\n    public string Id => CommodoreTapConstants.DecoderId;\r\n    public IReadOnlySet<string> FormatIds => SupportedFormats;\r\n    public IReadOnlySet<string> MachineIds => SupportedMachines;\r\n\r\n    public bool CanDecode(MediaImageDocument document, string? machineId = null) => document.MediaKind == MediaKind.Tape && SupportedFormats.Contains(document.FormatId) && (machineId is null || SupportedMachines.Contains(machineId)) && document.Representation is SequentialMediaImageRepresentation;\r\n\r\n    public async Task<SequentialDecodeResult> DecodeAsync(MediaImageDocument document, string? machineId = null, CancellationToken cancellationToken = default)\r\n    {\r\n        if (!CanDecode(document, machineId))\r\n            throw new InvalidDataException(\"The media document is not compatible with the Commodore tape decoder.\");\r\n        var representation = (SequentialMediaImageRepresentation)document.Representation;\r\n        if (document.FormatId.Equals(TapeImageFormatIds.Wav, StringComparison.OrdinalIgnoreCase))\r\n            return await DecodeWaveAsync(document, representation, cancellationToken).ConfigureAwait(false);\r\n        return DecodeTap(document, representation, cancellationToken);\r\n    }\r\n\r\n    private static SequentialDecodeResult DecodeTap(MediaImageDocument document, SequentialMediaImageRepresentation representation, CancellationToken cancellationToken)\r\n    {\r\n        var clockRate = TryReadInt(document.Metadata, CommodoreTapConstants.ClockRateMetadataKey, out var storedClock) ? storedClock : CommodoreTapConstants.DefaultC64PalClockRate;\r\n        var pulses = new List<Pulse>();\r\n        foreach (var segment in (representation.Segments ?? []).OrderBy(segment => segment.Position))\r\n        {\r\n            cancellationToken.ThrowIfCancellationRequested();\r\n            if (segment.Kind != SequentialSegmentKind.Pulse) continue;\r\n            int cycles;\r\n            if (!TryReadInt(segment.Metadata, CommodoreTapConstants.CycleCountMetadataKey, out cycles))\r\n            {\r\n                if (segment.Duration is not { } duration) continue;\r\n                cycles = checked((int)Math.Round(duration.TotalSeconds * clockRate));\r\n            }\r\n            pulses.Add(new Pulse(cycles, segment.Position));\r\n        }\r\n        return CreateResult(representation, pulses, \"tap-pulses\");\r\n    }\r\n\r\n    private static async Task<SequentialDecodeResult> DecodeWaveAsync(MediaImageDocument document, SequentialMediaImageRepresentation representation, CancellationToken cancellationToken)\r\n    {\r\n        if (!PcmSampleFunctions.TryGetProfile(document.Metadata, out var channels, out var sampleRate, out var bitsPerSample, out var blockAlign))\r\n            return new SequentialDecodeResult(CommodoreTapConstants.DecoderId, 0, [], representation.Segments ?? [], [\"The WAV PCM profile is incomplete or incompatible.\"]);\r\n\r\n        var pulses = new List<Pulse>();\r\n        foreach (var segment in (representation.Segments ?? []).Where(segment => segment.Kind == SequentialSegmentKind.Samples && segment.ChannelNumber == 0).OrderBy(segment => segment.Position))\r\n        {\r\n            cancellationToken.ThrowIfCancellationRequested();\r\n            if (segment.DataRange is not { Source: not null, Length: <= int.MaxValue } range) continue;\r\n            var pcm = new byte[checked((int)range.Length)];\r\n            await range.Source.ReadExactlyAsync(range.SourceOffset, pcm, cancellationToken).ConfigureAwait(false);\r\n            var samples = PcmSampleFunctions.ExtractChannel(pcm, channels, bitsPerSample, blockAlign, 0);\r\n            AddWavePulses(samples, sampleRate, segment.Position, pulses);\r\n        }\r\n        return CreateResult(representation, pulses, \"wav-pulses\");\r\n    }\r\n\r\n    private static SequentialDecodeResult CreateResult(SequentialMediaImageRepresentation representation, IReadOnlyList<Pulse> pulses, string sourceKind)\r\n    {\r\n        var blocks = new List<SequentialDecodedBlock>();\r\n        var consumed = new HashSet<long>();\r\n        for (var scan = 0; scan + 1 < pulses.Count;)\r\n        {\r\n            if (!IsPulse(pulses[scan].Cycles, CommodoreTapConstants.LongPulseCycles)\r\n                || !IsPulse(pulses[scan + 1].Cycles, CommodoreTapConstants.MediumPulseCycles))\r\n            {\r\n                scan++;\r\n                continue;\r\n            }\r\n\r\n            var blockStart = scan;\r\n            var bytes = new List<byte>();\r\n            var parityValid = true;\r\n            while (TryDecodeByte(pulses, ref scan, out var value, out var validParity))\r\n            {\r\n                bytes.Add(value);\r\n                parityValid &= validParity;\r\n            }\r\n            if (bytes.Count == 0)\r\n            {\r\n                scan = blockStart + 1;\r\n                continue;\r\n            }\r\n\r\n            var sourcePositions = pulses.Skip(blockStart).Take(scan - blockStart).Select(pulse => pulse.SourcePosition).Distinct().ToArray();\r\n            foreach (var position in sourcePositions) consumed.Add(position);\r\n            blocks.Add(new SequentialDecodedBlock(\r\n                blocks.Count,\r\n                bytes.ToArray(),\r\n                sourcePositions,\r\n                parityValid,\r\n                new Dictionary<string, string>(StringComparer.Ordinal)\r\n                {\r\n                    [CommodoreTapConstants.SourceKindMetadataKey] = sourceKind,\r\n                    [CommodoreTapConstants.ParityValidMetadataKey] = parityValid.ToString(CultureInfo.InvariantCulture),\r\n                    [CommodoreTapConstants.ChecksumPresentMetadataKey] = bool.FalseString\r\n                }));\r\n        }\r\n\r\n        var undecoded = (representation.Segments ?? []).Where(segment => !consumed.Contains(segment.Position)).ToArray();\r\n        var confidence = blocks.Count == 0 ? 0 : blocks.Count(block => block.IntegrityValid == true) / (double)blocks.Count;\r\n        return new SequentialDecodeResult(CommodoreTapConstants.DecoderId, confidence, blocks, undecoded, blocks.Count == 0 ? [\"No standard Commodore ROM byte frame was recognized.\"] : []);\r\n    }\r\n\r\n    private static bool TryDecodeByte(IReadOnlyList<Pulse> pulses, ref int offset, out byte value, out bool parityValid)\r\n    {\r\n        value = 0;\r\n        parityValid = false;\r\n        var required = 2 + (CommodoreTapConstants.DataBitsPerByte + CommodoreTapConstants.ParityBitsPerByte) * CommodoreTapConstants.PulsesPerBit;\r\n        if (offset + required > pulses.Count\r\n            || !IsPulse(pulses[offset].Cycles, CommodoreTapConstants.LongPulseCycles)\r\n            || !IsPulse(pulses[offset + 1].Cycles, CommodoreTapConstants.MediumPulseCycles))\r\n            return false;\r\n\r\n        var cursor = offset + 2;\r\n        var ones = 0;\r\n        for (var bit = 0; bit < CommodoreTapConstants.DataBitsPerByte; bit++)\r\n        {\r\n            if (!TryDecodeBit(pulses[cursor].Cycles, pulses[cursor + 1].Cycles, out var set)) return false;\r\n            if (set)\r\n            {\r\n                value |= (byte)(1 << bit);\r\n                ones++;\r\n            }\r\n            cursor += CommodoreTapConstants.PulsesPerBit;\r\n        }\r\n        if (!TryDecodeBit(pulses[cursor].Cycles, pulses[cursor + 1].Cycles, out var parity)) return false;\r\n        parityValid = ((ones + (parity ? 1 : 0)) & 1) == 1;\r\n        offset = cursor + CommodoreTapConstants.PulsesPerBit;\r\n        return true;\r\n    }\r\n\r\n    private static bool TryDecodeBit(int firstCycles, int secondCycles, out bool value)\r\n    {\r\n        value = false;\r\n        if (IsPulse(firstCycles, CommodoreTapConstants.ShortPulseCycles)\r\n            && IsPulse(secondCycles, CommodoreTapConstants.MediumPulseCycles))\r\n            return true;\r\n        if (IsPulse(firstCycles, CommodoreTapConstants.MediumPulseCycles)\r\n            && IsPulse(secondCycles, CommodoreTapConstants.ShortPulseCycles))\r\n        {\r\n            value = true;\r\n            return true;\r\n        }\r\n        return false;\r\n    }\r\n\r\n    private static void AddWavePulses(IReadOnlyList<int> samples, int sampleRate, long sourcePosition, List<Pulse> pulses)\r\n    {\r\n        if (samples.Count == 0) return;\r\n        var previousSign = samples[0] >= 0;\r\n        var previousCrossing = 0;\r\n        for (var index = 1; index < samples.Count; index++)\r\n        {\r\n            var sign = samples[index] >= 0;\r\n            if (sign == previousSign) continue;\r\n            var cycles = checked((int)Math.Round((index - previousCrossing) * (double)CommodoreTapConstants.DefaultC64PalClockRate / sampleRate));\r\n            if (cycles > 0) pulses.Add(new Pulse(cycles, sourcePosition));\r\n            previousCrossing = index;\r\n            previousSign = sign;\r\n        }\r\n    }\r\n\r\n    private static bool IsPulse(int actual, int expected) => Math.Abs(actual - expected) <= expected * CommodoreTapConstants.PulseToleranceRatio;\r\n\r\n    private static bool TryReadInt(IReadOnlyDictionary<string, string> metadata, string key, out int value)\r\n    {\r\n        return MediaMetadataFunctions.TryReadInt(metadata, key, out value) && value > 0;\r\n    }\r\n\r\n    private readonly record struct Pulse(int Cycles, long SourcePosition);\r\n}\r\n",
+        "method": "public bool CanDecode(MediaImageDocument document, string? machineId = null) => document.MediaKind == MediaKind.Tape && SupportedFormats.Contains(document.FormatId) && (machineId is null || SupportedMachines.Contains(machineId)) && document.Representation is SequentialMediaImageRepresentation;",
+        "guard": false
+      },
+      {
+        "path": "src/GWGUI.MediaEngine/Images/Reading/Decoding/Sequential/Amstrad/AmstradCpcTapeDecoder.cs",
+        "sha256": "1F3CCBFEDC24F7E7CF606F2CD54478286C7BAB1F571B2DC809A9FCD7DF9D8687",
+        "text": "using System.Buffers.Binary;\r\nusing System.Collections.Frozen;\r\nusing System.IO;\r\nusing System.Text;\r\nusing GWGUI.MediaEngine.Constants;\r\nusing GWGUI.MediaEngine.Contracts;\r\nusing GWGUI.MediaEngine.Enums;\r\nusing GWGUI.MediaEngine.Functions;\r\nusing GWGUI.MediaEngine.Images.Formats.Tape.Amstrad;\r\nusing GWGUI.MediaEngine.Images.Formats.Tape.Tzx;\r\nusing GWGUI.MediaEngine.Images.Models.Sequential;\r\nusing GWGUI.MediaEngine.Images.Reading.Recognition;\r\nusing GWGUI.MediaEngine.Interfaces.Decoding;\r\n\r\nnamespace GWGUI.MediaEngine.Images.Reading.Decoding.Sequential.Amstrad;\r\n\r\n/// <summary>Decodes CPC firmware cassette records retained in CDT/TZX or captured as PCM audio.</summary>\r\npublic sealed class AmstradCpcTapeDecoder : ISequentialMediaDecoder\r\n{\r\n    private static readonly IReadOnlySet<string> SupportedFormats = new[] { TapeImageFormatIds.Tzx, TapeImageFormatIds.Wav, TapeImageFormatIds.Audio, TapeImageFormatIds.Voc }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);\r\n    private static readonly IReadOnlySet<string> SupportedMachines = new[] { DiskSystemIds.Amstrad }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);\r\n\r\n    public string Id => AmstradCpcTapeConstants.DecoderId;\r\n    public IReadOnlySet<string> FormatIds => SupportedFormats;\r\n    public IReadOnlySet<string> MachineIds => SupportedMachines;\r\n\r\n    public bool CanDecode(MediaImageDocument document, string? machineId = null) => document.MediaKind == MediaKind.Tape && SupportedFormats.Contains(document.FormatId) && (machineId is null || SupportedMachines.Contains(machineId)) && document.Representation is SequentialMediaImageRepresentation;\r\n\r\n    public async Task<SequentialDecodeResult> DecodeAsync(MediaImageDocument document, string? machineId = null, CancellationToken cancellationToken = default)\r\n    {\r\n        if (!CanDecode(document, machineId))\r\n            throw new InvalidDataException(\"The media document is not compatible with the Amstrad CPC cassette decoder.\");\r\n\r\n        var representation = (SequentialMediaImageRepresentation)document.Representation;\r\n        var records = document.FormatId.Equals(TapeImageFormatIds.Tzx, StringComparison.OrdinalIgnoreCase) ? await DecodeStructuredRecordsAsync(representation, cancellationToken).ConfigureAwait(false) : await DecodePcmRecordsAsync(document, representation, cancellationToken).ConfigureAwait(false);\r\n        return BuildResult(representation, records);\r\n    }\r\n\r\n    private static async Task<IReadOnlyList<DecodedRecord>> DecodeStructuredRecordsAsync(SequentialMediaImageRepresentation representation, CancellationToken cancellationToken)\r\n    {\r\n        var records = new List<DecodedRecord>();\r\n        foreach (var segment in representation.Segments ?? [])\r\n        {\r\n            cancellationToken.ThrowIfCancellationRequested();\r\n            if (segment.DataRange is not { Source: not null, Length: <= int.MaxValue } range) continue;\r\n            var payload = new byte[checked((int)range.Length)];\r\n            await range.Source.ReadExactlyAsync(range.SourceOffset, payload, cancellationToken).ConfigureAwait(false);\r\n            if (!TryGetTzxDataRange(segment, payload, out var offset, out var length)) continue;\r\n            if (offset + (long)length > payload.Length) continue;\r\n            if (TryDecodeRecord(payload.AsSpan(offset, length), [segment.Position], out var record)) records.Add(record);\r\n        }\r\n        return records;\r\n    }\r\n\r\n    private static async Task<IReadOnlyList<DecodedRecord>> DecodePcmRecordsAsync(MediaImageDocument document, SequentialMediaImageRepresentation representation, CancellationToken cancellationToken)\r\n    {\r\n        if (!PcmSampleFunctions.TryGetProfile(document.Metadata, out var channels, out var sampleRate, out var bitsPerSample, out var blockAlign))\r\n            return [];\r\n\r\n        var records = new List<DecodedRecord>();\r\n        foreach (var segment in (representation.Segments ?? []).Where(segment => segment.Kind == SequentialSegmentKind.Samples && segment.ChannelNumber == 0))\r\n        {\r\n            cancellationToken.ThrowIfCancellationRequested();\r\n            if (segment.DataRange is not { Source: not null, Length: <= int.MaxValue } range) continue;\r\n            var pcm = new byte[checked((int)range.Length)];\r\n            await range.Source.ReadExactlyAsync(range.SourceOffset, pcm, cancellationToken).ConfigureAwait(false);\r\n            var samples = PcmSampleFunctions.ExtractChannel(pcm, channels, bitsPerSample, blockAlign, 0);\r\n            foreach (var encoded in DetectRecords(samples, sampleRate))\r\n                if (TryDecodeRecord(encoded, [segment.Position], out var record)) records.Add(record);\r\n        }\r\n        return records;\r\n    }\r\n\r\n    private static SequentialDecodeResult BuildResult(SequentialMediaImageRepresentation representation, IReadOnlyList<DecodedRecord> records)\r\n    {\r\n        var blocks = new List<SequentialDecodedBlock>();\r\n        var consumed = records.SelectMany(record => record.SourcePositions).ToHashSet();\r\n        var diagnostics = new List<string>();\r\n        HeaderRecord? pending = null;\r\n\r\n        foreach (var record in records)\r\n        {\r\n            if (record.Sync == AmstradCpcTapeConstants.HeaderSync)\r\n            {\r\n                if (record.Data.Length < AmstradCpcTapeConstants.HeaderLength)\r\n                {\r\n                    diagnostics.Add(\"A CPC cassette header record is shorter than 64 bytes.\");\r\n                    pending = null;\r\n                    continue;\r\n                }\r\n                pending = ParseHeader(record);\r\n                continue;\r\n            }\r\n\r\n            if (record.Sync != AmstradCpcTapeConstants.DataSync || pending is null)\r\n            {\r\n                diagnostics.Add(\"A CPC cassette data record has no preceding header record.\");\r\n                continue;\r\n            }\r\n\r\n            var dataLength = Math.Min(pending.DataLength, record.Data.Length);\r\n            var metadata = new Dictionary<string, string>(pending.Metadata, StringComparer.Ordinal)\r\n            {\r\n                [\"sourceKind\"] = \"amstrad-cpc-cassette-records\",\r\n                [\"headerIntegrityValid\"] = pending.IntegrityValid.ToString(System.Globalization.CultureInfo.InvariantCulture),\r\n                [\"dataIntegrityValid\"] = record.IntegrityValid.ToString(System.Globalization.CultureInfo.InvariantCulture)\r\n            };\r\n            blocks.Add(new SequentialDecodedBlock(\r\n                blocks.Count,\r\n                record.Data[..dataLength],\r\n                pending.SourcePositions.Concat(record.SourcePositions).Distinct().ToArray(),\r\n                pending.IntegrityValid && record.IntegrityValid && dataLength == pending.DataLength,\r\n                metadata));\r\n            if (dataLength != pending.DataLength)\r\n                diagnostics.Add($\"CPC cassette block {pending.BlockNumber} contains {dataLength} of {pending.DataLength} declared bytes.\");\r\n            pending = null;\r\n        }\r\n\r\n        if (pending is not null) diagnostics.Add(\"A CPC cassette header record has no following data record.\");\r\n        var validCount = blocks.Count(block => block.IntegrityValid == true);\r\n        return new SequentialDecodeResult(\r\n            AmstradCpcTapeConstants.DecoderId,\r\n            blocks.Count == 0 ? 0 : validCount / (double)blocks.Count,\r\n            blocks,\r\n            (representation.Segments ?? []).Where(segment => !consumed.Contains(segment.Position)).ToArray(),\r\n            blocks.Count == 0 ? diagnostics.Append(\"No complete CPC cassette file block was found.\").ToArray() : diagnostics);\r\n    }\r\n\r\n    private static HeaderRecord ParseHeader(DecodedRecord record)\r\n    {\r\n        var header = record.Data.Span;\r\n        var name = Encoding.Latin1.GetString(header.Slice(AmstradCpcTapeConstants.FileNameOffset, AmstradCpcTapeConstants.FileNameLength)).TrimEnd('\\0', ' ');\r\n        var blockNumber = header[AmstradCpcTapeConstants.BlockNumberOffset];\r\n        var dataLength = BinaryPrimitives.ReadUInt16LittleEndian(header[AmstradCpcTapeConstants.DataLengthOffset..]);\r\n        var metadata = new Dictionary<string, string>(StringComparer.Ordinal)\r\n        {\r\n            [\"fileName\"] = name,\r\n            [\"blockNumber\"] = blockNumber.ToString(System.Globalization.CultureInfo.InvariantCulture),\r\n            [\"lastBlock\"] = (header[AmstradCpcTapeConstants.LastBlockOffset] != 0).ToString(System.Globalization.CultureInfo.InvariantCulture),\r\n            [\"firstBlock\"] = (header[AmstradCpcTapeConstants.FirstBlockOffset] != 0).ToString(System.Globalization.CultureInfo.InvariantCulture),\r\n            [\"fileType\"] = header[AmstradCpcTapeConstants.FileTypeOffset].ToString(System.Globalization.CultureInfo.InvariantCulture),\r\n            [\"dataLength\"] = dataLength.ToString(System.Globalization.CultureInfo.InvariantCulture),\r\n            [\"dataLocation\"] = BinaryPrimitives.ReadUInt16LittleEndian(header[AmstradCpcTapeConstants.DataLocationOffset..]).ToString(System.Globalization.CultureInfo.InvariantCulture),\r\n            [\"logicalLength\"] = BinaryPrimitives.ReadUInt16LittleEndian(header[AmstradCpcTapeConstants.LogicalLengthOffset..]).ToString(System.Globalization.CultureInfo.InvariantCulture),\r\n            [\"entryAddress\"] = BinaryPrimitives.ReadUInt16LittleEndian(header[AmstradCpcTapeConstants.EntryAddressOffset..]).ToString(System.Globalization.CultureInfo.InvariantCulture)\r\n        };\r\n        return new HeaderRecord(blockNumber, dataLength, record.IntegrityValid, record.SourcePositions, metadata);\r\n    }\r\n\r\n    private static bool TryDecodeRecord(ReadOnlySpan<byte> encoded, IReadOnlyList<long> sourcePositions, out DecodedRecord record)\r\n    {\r\n        record = default!;\r\n        if (encoded.Length < 1 + AmstradCpcTapeConstants.SegmentDataLength + AmstradCpcTapeConstants.SegmentCrcLength)\r\n            return false;\r\n        var sync = encoded[0];\r\n        if (sync is not AmstradCpcTapeConstants.HeaderSync and not AmstradCpcTapeConstants.DataSync) return false;\r\n\r\n        var body = encoded[1..];\r\n        if (!TryGetSegmentCount(body, sync == AmstradCpcTapeConstants.HeaderSync, out var segmentCount)) return false;\r\n        var data = new byte[segmentCount * AmstradCpcTapeConstants.SegmentDataLength];\r\n        var integrityValid = true;\r\n        for (var segmentIndex = 0; segmentIndex < segmentCount; segmentIndex++)\r\n        {\r\n            var sourceOffset = segmentIndex * (AmstradCpcTapeConstants.SegmentDataLength + AmstradCpcTapeConstants.SegmentCrcLength);\r\n            var segmentData = body.Slice(sourceOffset, AmstradCpcTapeConstants.SegmentDataLength);\r\n            segmentData.CopyTo(data.AsSpan(segmentIndex * AmstradCpcTapeConstants.SegmentDataLength));\r\n            var storedCrc = BinaryPrimitives.ReadUInt16BigEndian(body.Slice(sourceOffset + AmstradCpcTapeConstants.SegmentDataLength));\r\n            integrityValid &= storedCrc == unchecked((ushort)~ComputeCrc(segmentData));\r\n        }\r\n        record = new DecodedRecord(sync, data, integrityValid, sourcePositions);\r\n        return true;\r\n    }\r\n\r\n    private static bool TryGetSegmentCount(ReadOnlySpan<byte> body, bool header, out int segmentCount)\r\n    {\r\n        segmentCount = 0;\r\n        var candidates = header ? new[] { 1 } : Enumerable.Range(1, 8).ToArray();\r\n        foreach (var trailerLength in new[] { AmstradCpcTapeConstants.TrailerByteCount, 4 })\r\n        foreach (var count in candidates)\r\n        {\r\n            var used = count * (AmstradCpcTapeConstants.SegmentDataLength + AmstradCpcTapeConstants.SegmentCrcLength);\r\n            if (body.Length != used + trailerLength\r\n                || !body[used..].ToArray().All(value => value == AmstradCpcTapeConstants.TrailerByte))\r\n                continue;\r\n            segmentCount = count;\r\n            return true;\r\n        }\r\n        return false;\r\n    }\r\n\r\n    private static IReadOnlyList<byte[]> DetectRecords(IReadOnlyList<int> samples, int sampleRate)\r\n    {\r\n        var pulses = GetPulseLengths(samples, sampleRate);\r\n        var records = new List<byte[]>();\r\n        for (var index = 0; index < pulses.Count;)\r\n        {\r\n            var pilotStart = index;\r\n            var pilotLength = pulses[index];\r\n            while (index < pulses.Count && Close(pulses[index], pilotLength)) index++;\r\n            if (index - pilotStart < AmstradCpcTapeConstants.MinimumPilotPulseCount || index + 1 >= pulses.Count)\r\n            {\r\n                index = pilotStart + 1;\r\n                continue;\r\n            }\r\n            var zeroLength = pilotLength / 2;\r\n            if (!Close(pulses[index], zeroLength) || !Close(pulses[index + 1], zeroLength))\r\n            {\r\n                index = pilotStart + 1;\r\n                continue;\r\n            }\r\n            index += 2;\r\n            var bits = new List<bool>();\r\n            while (index + 1 < pulses.Count)\r\n            {\r\n                var first = pulses[index];\r\n                var second = pulses[index + 1];\r\n                if (!Close(first, second)) break;\r\n                if (Close(first, zeroLength)) bits.Add(false);\r\n                else if (Close(first, pilotLength)) bits.Add(true);\r\n                else break;\r\n                index += 2;\r\n            }\r\n            var bytes = new byte[bits.Count / 8];\r\n            for (var byteIndex = 0; byteIndex < bytes.Length; byteIndex++)\r\n                for (var bit = 0; bit < 8; bit++)\r\n                    if (bits[byteIndex * 8 + bit]) bytes[byteIndex] |= (byte)(0x80 >> bit);\r\n            if (bytes.Length > 0) records.Add(bytes);\r\n        }\r\n        return records;\r\n    }\r\n\r\n    private static IReadOnlyList<double> GetPulseLengths(IReadOnlyList<int> samples, int sampleRate)\r\n    {\r\n        var pulses = new List<double>();\r\n        if (samples.Count == 0) return pulses;\r\n        var previousSign = samples[0] >= 0;\r\n        var previousCrossing = 0;\r\n        for (var index = 1; index < samples.Count; index++)\r\n        {\r\n            var sign = samples[index] >= 0;\r\n            if (sign == previousSign) continue;\r\n            pulses.Add((index - previousCrossing) * (double)TzxConstants.TStatesPerSecond / sampleRate);\r\n            previousCrossing = index;\r\n            previousSign = sign;\r\n        }\r\n        return pulses;\r\n    }\r\n\r\n    private static bool TryGetTzxDataRange(SequentialMediaSegment segment, ReadOnlySpan<byte> payload, out int offset, out int length)\r\n    {\r\n        offset = length = 0;\r\n        if (!segment.Metadata.TryGetValue(TzxConstants.BlockIdMetadataKey, out var idText)\r\n            || !byte.TryParse(idText, System.Globalization.NumberStyles.HexNumber, System.Globalization.CultureInfo.InvariantCulture, out var id)\r\n            || segment.DataRange is not { Length: <= int.MaxValue })\r\n            return false;\r\n        offset = id switch\r\n        {\r\n            TzxConstants.StandardSpeedData => 4,\r\n            TzxConstants.TurboSpeedData => 18,\r\n            TzxConstants.PureData => 10,\r\n            _ => -1\r\n        };\r\n        if (offset < 0 || payload.Length < offset) return false;\r\n        length = id switch\r\n        {\r\n            TzxConstants.StandardSpeedData when payload.Length >= 4 => BinaryPrimitives.ReadUInt16LittleEndian(payload[2..]),\r\n            TzxConstants.TurboSpeedData when payload.Length >= 18 => ReadUInt24(payload[15..]),\r\n            TzxConstants.PureData when payload.Length >= 10 => ReadUInt24(payload[7..]),\r\n            _ => 0\r\n        };\r\n        return length > 0;\r\n    }\r\n\r\n    private static int ReadUInt24(ReadOnlySpan<byte> bytes) => bytes[0] | bytes[1] << 8 | bytes[2] << 16;\r\n\r\n    private static ushort ComputeCrc(ReadOnlySpan<byte> data)\r\n    => GWGUI.MediaEngine.Functions.Crc16Calculator.ComputeSpan(data, AmstradCpcTapeConstants.CrcPolynomial, AmstradCpcTapeConstants.CrcSeed);\r\n\r\n    private static bool Close(double actual, double expected) => Math.Abs(actual - expected) <= expected * AmstradCpcTapeConstants.PulseToleranceRatio;\r\n\r\n    private sealed record DecodedRecord(byte Sync, ReadOnlyMemory<byte> Data, bool IntegrityValid, IReadOnlyList<long> SourcePositions);\r\n\r\n    private sealed record HeaderRecord(int BlockNumber, int DataLength, bool IntegrityValid, IReadOnlyList<long> SourcePositions, IReadOnlyDictionary<string, string> Metadata);\r\n}\r\n",
+        "method": "public bool CanDecode(MediaImageDocument document, string? machineId = null) => document.MediaKind == MediaKind.Tape && SupportedFormats.Contains(document.FormatId) && (machineId is null || SupportedMachines.Contains(machineId)) && document.Representation is SequentialMediaImageRepresentation;",
+        "guard": false
+      }
+    ],
+    "policy": "Two explicit ArgumentNullException guards remain local. Three expression-bodied decoders retain NullReferenceException. Existing case-insensitive sets, evaluation order, optional machine and representation criteria preserved.",
+    "msx": {
+      "path": "src/GWGUI.MediaEngine/Images/Reading/Decoding/Sequential/Msx/MsxTapeDecoder.cs",
+      "sha256": "D2D9E8844765C9DB9E1C2588BDAFA8E2AEF3979D13B70ADCEF9FD364A58EAFC5",
+      "text": "using GWGUI.MediaEngine.Images.Reading.Blocks;\r\nusing System.Collections.Frozen;\r\nusing System.Globalization;\r\nusing GWGUI.MediaEngine.Enums;\r\nusing GWGUI.MediaEngine.Constants;\r\nusing GWGUI.MediaEngine.Contracts;\r\nusing GWGUI.MediaEngine.Images.Reading.Decoding.Sequential.Tzx;\r\n\r\nusing GWGUI.MediaEngine.Functions;\r\nusing GWGUI.MediaEngine.Interfaces.Decoding;\r\nusing GWGUI.MediaEngine.Images.Reading.Recognition;\r\nusing GWGUI.MediaEngine.Images.Models.Sequential;\r\n\r\nnamespace GWGUI.MediaEngine.Images.Reading.Decoding.Sequential.Msx;\r\n\r\n/// <summary>Validates MSX byte groups retained in CAS or TSX and decodes standard FSK serial frames from PCM WAV.</summary>\r\npublic sealed class MsxTapeDecoder : ISequentialMediaDecoder\r\n{\r\n    private static readonly IReadOnlySet<string> SupportedFormats = new[] { TapeImageFormatIds.MsxCas, TapeImageFormatIds.Tzx, TapeImageFormatIds.Wav }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);\r\n    private static readonly IReadOnlySet<string> SupportedMachines = new[] { DiskSystemIds.Msx }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);\r\n\r\n    public string Id => MsxCasConstants.DecoderId;\r\n    public IReadOnlySet<string> FormatIds => SupportedFormats;\r\n    public IReadOnlySet<string> MachineIds => SupportedMachines;\r\n\r\n    public bool CanDecode(MediaImageDocument document, string? machineId = null)\r\n    {\r\n        if (document.MediaKind != MediaKind.Tape\r\n            || !SupportedFormats.Contains(document.FormatId)\r\n            || document.Representation is not SequentialMediaImageRepresentation\r\n            || machineId is not null && !SupportedMachines.Contains(machineId))\r\n            return false;\r\n        return !document.FormatId.Equals(TapeImageFormatIds.Tzx, StringComparison.OrdinalIgnoreCase)\r\n            || machineId is not null\r\n            || document.Metadata.TryGetValue(\"contextExtension\", out var extension)\r\n                && extension.Equals(DiskImageFileExtensions.Tsx, StringComparison.OrdinalIgnoreCase);\r\n    }\r\n\r\n    public async Task<SequentialDecodeResult> DecodeAsync(MediaImageDocument document, string? machineId = null, CancellationToken cancellationToken = default)\r\n    {\r\n        if (!CanDecode(document, machineId))\r\n            throw new InvalidDataException(\"The media document has no explicit MSX cassette context.\");\r\n        var representation = (SequentialMediaImageRepresentation)document.Representation;\r\n        if (document.FormatId.Equals(TapeImageFormatIds.MsxCas, StringComparison.OrdinalIgnoreCase))\r\n            return await DecodeCasAsync(representation, cancellationToken).ConfigureAwait(false);\r\n        if (document.FormatId.Equals(TapeImageFormatIds.Tzx, StringComparison.OrdinalIgnoreCase))\r\n            return await DecodeTsxAsync(document, representation, cancellationToken).ConfigureAwait(false);\r\n        return await DecodeWaveAsync(document, representation, cancellationToken).ConfigureAwait(false);\r\n    }\r\n\r\n    private static async Task<SequentialDecodeResult> DecodeCasAsync(SequentialMediaImageRepresentation representation, CancellationToken cancellationToken)\r\n    {\r\n        var blocks = new List<SequentialDecodedBlock>();\r\n        var consumed = new HashSet<long>();\r\n        string? currentFileType = null;\r\n        foreach (var segment in (representation.Segments ?? []).OrderBy(segment => segment.Position))\r\n        {\r\n            cancellationToken.ThrowIfCancellationRequested();\r\n            if (segment.Kind == SequentialSegmentKind.TapeMark\r\n                && segment.Metadata.ContainsKey(MsxCasConstants.SeparatorMetadataKey))\r\n            {\r\n                consumed.Add(segment.Position);\r\n                continue;\r\n            }\r\n            if (segment.Kind != SequentialSegmentKind.DataBlock) continue;\r\n            var data = await BlockMediaDataReader.ReadRangeAsync(segment.DataRange, cancellationToken).ConfigureAwait(false);\r\n            if (data is null) continue;\r\n            if (segment.Metadata.TryGetValue(MsxCasConstants.FileTypeMetadataKey, out var fileType))\r\n                currentFileType = fileType;\r\n            if (currentFileType is null) continue;\r\n            blocks.Add(CreateBlock(blocks.Count, data, [segment.Position], \"cas\", currentFileType, true));\r\n            consumed.Add(segment.Position);\r\n        }\r\n        return Result(representation, blocks, consumed, \"No structurally identified MSX CAS byte group was found.\");\r\n    }\r\n\r\n    private static async Task<SequentialDecodeResult> DecodeTsxAsync(MediaImageDocument document, SequentialMediaImageRepresentation sourceRepresentation, CancellationToken cancellationToken)\r\n    {\r\n        var signal = await new TzxSignalDecoder().DecodeAsync(document, cancellationToken).ConfigureAwait(false);\r\n        var blocks = new List<SequentialDecodedBlock>();\r\n        var consumed = new HashSet<long>();\r\n        foreach (var segment in signal.Timeline.Segments ?? [])\r\n        {\r\n            cancellationToken.ThrowIfCancellationRequested();\r\n            if (segment.Kind != SequentialSegmentKind.DataBlock) continue;\r\n            var data = await BlockMediaDataReader.ReadRangeAsync(segment.DataRange, cancellationToken).ConfigureAwait(false);\r\n            if (data is null) continue;\r\n            var sourcePosition = TryReadLong(segment.Metadata, \"sourceSegmentPosition\", out var parsedPosition) ? parsedPosition : segment.Position;\r\n            var fileType = IdentifyFileType(data);\r\n            blocks.Add(CreateBlock(blocks.Count, data, [sourcePosition], \"tsx\", fileType, fileType is null ? null : true));\r\n            consumed.Add(sourcePosition);\r\n        }\r\n        var result = Result(sourceRepresentation, blocks, consumed, \"No MSX data block could be expanded from the TSX image.\");\r\n        if (signal.Diagnostics.Count == 0) return result;\r\n        return new SequentialDecodeResult(result.DecoderId, result.Confidence, result.Blocks, result.UndecodedSegments, [.. result.Diagnostics, .. signal.Diagnostics]);\r\n    }\r\n\r\n    private static async Task<SequentialDecodeResult> DecodeWaveAsync(MediaImageDocument document, SequentialMediaImageRepresentation representation, CancellationToken cancellationToken)\r\n    {\r\n        if (!PcmSampleFunctions.TryGetProfile(document.Metadata, out var channels, out var sampleRate, out var bitsPerSample, out var blockAlign))\r\n            return new SequentialDecodeResult(IdValue, 0, [], representation.Segments ?? [], [\"The WAV PCM profile is incomplete or incompatible.\"]);\r\n        var allBytes = new List<byte>();\r\n        var consumed = new HashSet<long>();\r\n        var validFrames = 0;\r\n        var testedFrames = 0;\r\n        foreach (var segment in (representation.Segments ?? []).Where(segment => segment.Kind == SequentialSegmentKind.Samples && segment.ChannelNumber == 0).OrderBy(segment => segment.Position))\r\n        {\r\n            cancellationToken.ThrowIfCancellationRequested();\r\n            var pcm = await BlockMediaDataReader.ReadRangeAsync(segment.DataRange, cancellationToken).ConfigureAwait(false);\r\n            if (pcm is null) continue;\r\n            var samples = PcmSampleFunctions.ExtractChannel(pcm, channels, bitsPerSample, blockAlign, 0);\r\n            var decoded = FskSerialFunctions.Decode(\r\n                samples,\r\n                sampleRate,\r\n                MsxCasConstants.StandardBaudRate,\r\n                MsxCasConstants.ZeroFrequency,\r\n                MsxCasConstants.OneFrequency,\r\n                MsxCasConstants.DataBitsPerFrame,\r\n                MsxCasConstants.StopBitsPerFrame,\r\n                MsxCasConstants.MinimumSamplesPerBit);\r\n            allBytes.AddRange(decoded.Bytes);\r\n            validFrames += decoded.ValidFrames;\r\n            testedFrames += decoded.TestedFrames;\r\n            if (decoded.Bytes.Count > 0) consumed.Add(segment.Position);\r\n        }\r\n        var fileType = IdentifyFileType(allBytes);\r\n        var blocks = allBytes.Count == 0 ? Array.Empty<SequentialDecodedBlock>() : [CreateBlock(0, allBytes.ToArray(), consumed.ToArray(), \"wav-fsk\", fileType, testedFrames > 0 && validFrames == testedFrames)];\r\n        var undecoded = (representation.Segments ?? []).Where(segment => !consumed.Contains(segment.Position)).ToArray();\r\n        var confidence = testedFrames == 0 ? 0 : validFrames / (double)testedFrames;\r\n        return new SequentialDecodeResult(IdValue, confidence, blocks, undecoded, blocks.Length == 0 ? [\"No complete MSX FSK serial frame was found in the selected WAV channel.\"] : []);\r\n    }\r\n\r\n    private static SequentialDecodeResult Result(SequentialMediaImageRepresentation representation, IReadOnlyList<SequentialDecodedBlock> blocks, IReadOnlySet<long> consumed, string emptyDiagnostic)\r\n    {\r\n        var undecoded = (representation.Segments ?? []).Where(segment => !consumed.Contains(segment.Position)).ToArray();\r\n        var confidence = blocks.Count == 0 ? 0 : blocks.Count(block => block.IntegrityValid != false) / (double)blocks.Count;\r\n        return new SequentialDecodeResult(IdValue, confidence, blocks, undecoded, blocks.Count == 0 ? [emptyDiagnostic] : []);\r\n    }\r\n\r\n    private static SequentialDecodedBlock CreateBlock(long position, ReadOnlyMemory<byte> data, IReadOnlyList<long> sourcePositions, string sourceKind, string? fileType, bool? integrityValid)\r\n    {\r\n        var metadata = new Dictionary<string, string>(StringComparer.Ordinal)\r\n        {\r\n            [MsxCasConstants.SourceKindMetadataKey] = sourceKind\r\n        };\r\n        if (integrityValid is { } serialFramesValid)\r\n            metadata[MsxCasConstants.SerialFramesValidMetadataKey] = serialFramesValid.ToString(CultureInfo.InvariantCulture);\r\n        if (fileType is not null) metadata[MsxCasConstants.FileTypeMetadataKey] = fileType;\r\n        return new SequentialDecodedBlock(position, data, sourcePositions, integrityValid, metadata);\r\n    }\r\n\r\n    private static string? IdentifyFileType(IReadOnlyList<byte> data)\r\n    {\r\n        if (data.Count < MsxCasConstants.FileTypeMarkerLength) return null;\r\n        var first = data[0];\r\n        for (var index = 1; index < MsxCasConstants.FileTypeMarkerLength; index++)\r\n            if (data[index] != first) return null;\r\n        return first switch\r\n        {\r\n            MsxCasConstants.BinaryFileMarker => \"binary\",\r\n            MsxCasConstants.TokenizedBasicFileMarker => \"basic\",\r\n            MsxCasConstants.AsciiFileMarker => \"ascii\",\r\n            _ => null\r\n        };\r\n    }\r\n\r\n    private static bool TryReadLong(IReadOnlyDictionary<string, string> metadata, string key, out long value)\r\n    {\r\n        value = 0;\r\n        return metadata.TryGetValue(key, out var text) && long.TryParse(text, NumberStyles.None, CultureInfo.InvariantCulture, out value) && value >= 0;\r\n    }\r\n\r\n    private const string IdValue = MsxCasConstants.DecoderId;\r\n}\r\n",
+      "method": "public bool CanDecode(MediaImageDocument document, string? machineId = null)\r\n    {\r\n        if (document.MediaKind != MediaKind.Tape\r\n            || !SupportedFormats.Contains(document.FormatId)\r\n            || document.Representation is not SequentialMediaImageRepresentation\r\n            || machineId is not null && !SupportedMachines.Contains(machineId))\r\n            return false;\r\n        return !document.FormatId.Equals(TapeImageFormatIds.Tzx, StringComparison.OrdinalIgnoreCase)\r\n            || machineId is not null\r\n            || document.Metadata.TryGetValue(\"contextExtension\", out var extension)\r\n                && extension.Equals(DiskImageFileExtensions.Tsx, StringComparison.OrdinalIgnoreCase);\r\n    }",
+      "policy": "Common initial predicate is equivalent over sealed read-only document properties and the readonly ordinal-ignore-case FrozenSet fields. MSX evaluates representation before optional machine; the shared predicate reverses only these pure checks. Its later TZX/TSX metadata rule and null behavior remain local."
+    },
+    "verification": {
+      "originalPredicateUnchanged": true,
+      "wholeFiles": [
+        {
+          "path": "src/GWGUI.MediaEngine/Images/Reading/Decoding/Sequential/Atari/AtariCassetteDecoder.cs",
+          "wholeFile": true,
+          "sha256": "0677AC35CD88CC86F4C21CFA2FC9D195F75CF3818EDFBF6D24E09DBFE12447AE"
+        },
+        {
+          "path": "src/GWGUI.MediaEngine/Images/Reading/Decoding/Sequential/Acorn/AcornTapeDecoder.cs",
+          "wholeFile": true,
+          "sha256": "557E9E7D46209D952F66A71A2E65BC17CB8B23B3F0182348689B343A852D9AE9"
+        },
+        {
+          "path": "src/GWGUI.MediaEngine/Images/Reading/Decoding/Sequential/Spectrum/SpectrumTapeDecoder.cs",
+          "wholeFile": true,
+          "sha256": "C9892F7560A19A09DC9E3876B063650DC79F4EAE07FBAA94F6C9F4CFB93F8864"
+        },
+        {
+          "path": "src/GWGUI.MediaEngine/Images/Reading/Decoding/Sequential/Commodore/CommodoreTapeDecoder.cs",
+          "wholeFile": true,
+          "sha256": "EFA0D4EF96BD0929E1E9799EFD34842BA54EF6A423F72DFC29705B62CE0DA121"
+        },
+        {
+          "path": "src/GWGUI.MediaEngine/Images/Reading/Decoding/Sequential/Amstrad/AmstradCpcTapeDecoder.cs",
+          "wholeFile": true,
+          "sha256": "D40CAF08C2DA8F60FF4C28B7051AA83DEDE16E7C395B07CC4564A6F2BC7F7F48"
+        },
+        {
+          "path": "src/GWGUI.MediaEngine/Images/Reading/Decoding/Sequential/Msx/MsxTapeDecoder.cs",
+          "wholeFile": true,
+          "sha256": "8852C0E06D4E733BBAF59773EDEBC974BED43DAB4E8AC5B18F852984FEC5FC72"
+        }
+      ],
+      "tests": "4 memory compatibility tests passed; 117 combined tests, then 102 tests after temporary-fixture removal and 29 final catalogue/codecs/cassette tests passed.",
+      "semanticErrors": 0,
+      "semanticBindings": 6
+    },
+    "inventory": {
+      "csharpFiles": 7324,
+      "renamedShortGroups": 368,
+      "exactShortGroups": 775,
+      "longBodies": 11619,
+      "longGroups": 478,
+      "shortBodies": 9533
+    }
+  },
+  "optionCassettePhysicalBuild": {
+    "command": "scripts/local-building.cmd --building=debug --modules=A",
+    "optionsCommit": "edb4917a4",
+    "state": "verified",
+    "sourceHashes": [
+      {
+        "sha256": "4BB4A4A0B81881C2BF605779D7764BA380DBE6CD211128A90638F14E6B63439D",
+        "path": "src/GWGUI.App/Controllers/MainWindow/MainWindowLifecycleController.cs"
+      },
+      {
+        "sha256": "002CB54B030D864CEB05E87E1DE1D40093AC1279E43215A116E8FD17629F9C60",
+        "path": "src/GWGUI.App/Controllers/MainWindow/Read/ReadTabController.Execution.cs"
+      },
+      {
+        "sha256": "71387F11F44BBD686628F02C3DF04DF8A35046009857016E36891A0419E45CB0",
+        "path": "src/GWGUI.App/Controllers/MainWindow/Read/ReadTabController.ProfilesAndSettings.cs"
+      },
+      {
+        "sha256": "85CAD1EF2A1C904524FE019B31792D256EC8189F7A5250DCF3CE795C2C91E720",
+        "path": "src/GWGUI.App/Controllers/MainWindow/WriteTabController.cs"
+      },
+      {
+        "sha256": "BFEF24A962EB11B238AC3BD4DB1495833FB011AA8440DD07C980F18BFB61F810",
+        "path": "src/GWGUI.App/Services/DiskImages/Selection/DiskImageFileSelectionService.cs"
+      },
+      {
+        "sha256": "128637C1526422016A89286A25DD504E4A00FE27B50827234EAD1BBB25FBC2AC",
+        "path": "src/GWGUI.App/Services/PhysicalDiskReading/InternalPhysicalDiskReader.cs"
+      },
+      {
+        "sha256": "0D7D716D9E8E7E89B259D66CB28227CAB1ED139783956A6EB92873E800B3FB9C",
+        "path": "src/GWGUI.App/Services/PhysicalDiskReading/PhysicalDiskReadService.cs"
+      },
+      {
+        "sha256": "ED7434544FB3FA5DF60A8DE1AE3AD5BB9B438E8CAE3C25EE62F33C0E18DA7B66",
+        "path": "src/GWGUI.App/Views/Windows/Shell/MainWindow.xaml.cs"
+      },
+      {
+        "sha256": "3E5027E003B81E373DEA07AF40D38C3EE26AA4E1839414A45D6B3F265707C1E7",
+        "path": "src/GWGUI.Emulation.Amstrad/Common/Contracts/CoreContracts.cs"
+      },
+      {
+        "sha256": "D359E9140F64B33B66CDD47DE5AA2555FAE15387089E7DF507BFC17099C101BE",
+        "path": "src/GWGUI.Emulation.Amstrad/EmulationGlobalUsings.cs"
+      },
+      {
+        "sha256": "AAD2E1AEDB1ED81461A48901ADF7E9C688E2699F425F7496E3E3EB0C37414B15",
+        "path": "src/GWGUI.Emulation.Atari/Common/Contracts/CoreContracts.cs"
+      },
+      {
+        "sha256": "7D63892407DC6D37945E87A6985CA310F58E17436323C878CB5E64FFDD452002",
+        "path": "src/GWGUI.Emulation.Atari/EmulationGlobalUsings.cs"
+      },
+      {
+        "sha256": "8D4730A62CE9720AA136B4A159401EAFE86ECC12FD80EFAF4948CBBBBEFE1400",
+        "path": "src/GWGUI.Emulation.Commodore/Common/Contracts/CoreContracts.cs"
+      },
+      {
+        "sha256": "D624A8AFEB9FAA94121605FA177C0229244CD6C0F9988FB34F40A5373E5FB4FA",
+        "path": "src/GWGUI.Emulation.Commodore/EmulationGlobalUsings.cs"
+      },
+      {
+        "sha256": "2FAF20A863E0ECF039443AC776A9EF36991094D727BAA90CB0AF361C2A6D9102",
+        "path": "src/GWGUI.Emulation.Microsoft/Common/Contracts/CoreContracts.cs"
+      },
+      {
+        "sha256": "1669AED5ADF26ABBF702B24D341E6E86265490AC4E450F81FF7A9470C208FBE6",
+        "path": "src/GWGUI.Emulation.Microsoft/EmulationGlobalUsings.cs"
+      },
+      {
+        "sha256": "270981FBB6FB4208E9CD3486FA37DB5C34D4EBD027FB9046122BB52D105CC8C1",
+        "path": "src/GWGUI.Emulation.Nec/Common/Contracts/CoreContracts.cs"
+      },
+      {
+        "sha256": "1CD022088182B877FA9562092FE552D8CD51A19D626702D9CE87FB27BA14F062",
+        "path": "src/GWGUI.Emulation.Nec/EmulationGlobalUsings.cs"
+      },
+      {
+        "sha256": "2BB704D02241434510A0E2FA6A1B5BBE0B3D71FF98F923DF0EB9719BAC8919B0",
+        "path": "src/GWGUI.Emulation.Panasonic/Common/Contracts/CoreContracts.cs"
+      },
+      {
+        "sha256": "DE56DCCCFF743EA905E401AB42DDC8F3E35DBD46322D75141638FCCC4F134492",
+        "path": "src/GWGUI.Emulation.Panasonic/EmulationGlobalUsings.cs"
+      },
+      {
+        "sha256": "0B3AF7D07932073663A3FDDF315D8452A9DE8AD7CE400CAD3BC95D0B6017872B",
+        "path": "src/GWGUI.Emulation.Sony/Common/Contracts/CoreContracts.cs"
+      },
+      {
+        "sha256": "03B7DE012885D624B22099C6CC96CA9A05702AE390AA5A14562AA7101AE08BEF",
+        "path": "src/GWGUI.Emulation.Sony/EmulationGlobalUsings.cs"
+      },
+      {
+        "sha256": "779726403FC6503019A3FAF9E2DFCCD27AD7602A0F02D7922E040D782917AEF9",
+        "path": "src/GWGUI.Emulation.Thomson/Common/Contracts/CoreContracts.cs"
+      },
+      {
+        "sha256": "0EC8B1F2F404412F34C3681B39CB1BFC8819B68F448DE2686648BBEAA4835EE0",
+        "path": "src/GWGUI.Emulation.Thomson/EmulationGlobalUsings.cs"
+      },
+      {
+        "sha256": "9A4F85A8163747D69DE2606EC6F52246671345F8D0E54E487209102A67ED24A0",
+        "path": "src/GWGUI.Emulation.Watara/Common/Contracts/CoreContracts.cs"
+      },
+      {
+        "sha256": "FDC0298A02B1B21128E4072D1F4CF7FEE1174AFC4BF532BB91F3E7192C615A54",
+        "path": "src/GWGUI.Emulation.Watara/EmulationGlobalUsings.cs"
+      },
+      {
+        "sha256": "047C876750E3ACBC6737BA784D8C3298B83B8A1F2EBCC63A1158B649B777B31A",
+        "path": "src/GWGUI.Emulation.Wenquxing/Common/Contracts/CoreContracts.cs"
+      },
+      {
+        "sha256": "04477B6171146CB0F5ADF2F920D0CC3F3C179C667B6E8A530926ABF7F62D01E5",
+        "path": "src/GWGUI.Emulation.Wenquxing/EmulationGlobalUsings.cs"
+      },
+      {
+        "sha256": "B3F989BDC9EEA8F8355679A9A5353271EA91852E1F2839F95A6303449F3E0807",
+        "path": "src/GWGUI.Infrastructure/Hardware/Greaseweazle/WindowsGreaseweazleSerialTransport.cs"
+      },
+      {
+        "sha256": "6C1D8248971DCAAB155FC12584030D84FAD2BC5175EBB18A27A86CE17131058D",
+        "path": "src/GWGUI.Infrastructure/Settings/Operations/OperationUiSettings.cs"
+      },
+      {
+        "sha256": "222EA4152E15D3C13DD5A0C6BA85B8E204537FBC33D746CB1CC9E5CBB217FA67",
+        "path": "src/GWGUI.MediaEngine/Constants/MediaImageWriterIds.cs"
+      },
+      {
+        "sha256": "0A970991B6C1548FAED327247AC68C514CEA9CDD13F066ADD365E8107993B7C0",
+        "path": "src/GWGUI.MediaEngine/Functions/SequentialDecodeFunctions.cs"
+      },
+      {
+        "sha256": "6FC69ADED68A62955EDBA36042EDE78967E7BD915453BE31A8EF57BE59976A39",
+        "path": "src/GWGUI.MediaEngine/GWGUI.MediaEngine.csproj"
+      },
+      {
+        "sha256": "B9A6F26ACC297EED72ED5A155C9100535F03B95457D07B9E3E9BA2284FDE16C8",
+        "path": "src/GWGUI.MediaEngine/Images/Conversion/Flux/FluxToHfeRepresentationConverter.cs"
+      },
+      {
+        "sha256": "5B5E9276835528BCEE62CED572EF1A6799744E67938AE8DA93B9607358E59D92",
+        "path": "src/GWGUI.MediaEngine/Images/Conversion/IbmRawConversionService.cs"
+      },
+      {
+        "sha256": "ED373E61B3FEFFDAEE6E4089CDFB92579D6656CF4B49318D868EB67115D474AC",
+        "path": "src/GWGUI.MediaEngine/Images/Conversion/MediaConversionComposition.cs"
+      },
+      {
+        "sha256": "F40DBDE5378E3546C911EF7ADAC1280CF86C08ABB3A88A652E22BE33C7C247EB",
+        "path": "src/GWGUI.MediaEngine/Images/Formats/CapabilityAwareImageFormatCatalog.cs"
+      },
+      {
+        "sha256": "AF82A1C95F2D4F7F1A44C07A624C25911495C9E3CC3F7B2DFFF524B1ED98607A",
+        "path": "src/GWGUI.MediaEngine/Images/Formats/Definitions/diskdefs_acorn.cfg"
+      },
+      {
+        "sha256": "A2B6EDA6BE6940B46DC5870A7E714398B22C70D20A6A45C7F25F2F1ACFD59385",
+        "path": "src/GWGUI.MediaEngine/Images/Formats/Definitions/diskdefs_akai.cfg"
+      },
+      {
+        "sha256": "511BCD6EF9D713F1DD2271477B32B1A8155FD3289799D9FA02144C7B72278AF9",
+        "path": "src/GWGUI.MediaEngine/Images/Formats/Definitions/diskdefs_amiga.cfg"
+      },
+      {
+        "sha256": "3221A0FEEE1950535DEB777BE7A7C3B862055458E87D3794ECE7B49B53743DD2",
+        "path": "src/GWGUI.MediaEngine/Images/Formats/Definitions/diskdefs_apple2.cfg"
+      },
+      {
+        "sha256": "27DF3B913B7FF97380436ADD094F7C1199BCDADF78C7884CD423DEFBB5527FA2",
+        "path": "src/GWGUI.MediaEngine/Images/Formats/Definitions/diskdefs_atari.cfg"
+      },
+      {
+        "sha256": "58A05CD90C637DBDD9ACA280A5DF5A6F091DFF85F826DCCF1B453FE78B5FB240",
+        "path": "src/GWGUI.MediaEngine/Images/Formats/Definitions/diskdefs_atarist.cfg"
+      },
+      {
+        "sha256": "F938273CAC7893417664DE754CB01F5391F833704AEB52544931A55FAAD56769",
+        "path": "src/GWGUI.MediaEngine/Images/Formats/Definitions/diskdefs_coco.cfg"
+      },
+      {
+        "sha256": "46D6016DF5961F4347E2586731EB60E1172A3C7A277EA85C2A144B37B3D24D5F",
+        "path": "src/GWGUI.MediaEngine/Images/Formats/Definitions/diskdefs_commodore.cfg"
+      },
+      {
+        "sha256": "71C9601AA34B037BDD646564C4FA05165F3E511C713DD191A40FE82B31A44248",
+        "path": "src/GWGUI.MediaEngine/Images/Formats/Definitions/diskdefs_datageneral.cfg"
+      },
+      {
+        "sha256": "C89865D0D6E525AE2C351B87DA2CF317042DF8B937D5F47C33BE14E9E8CE61E5",
+        "path": "src/GWGUI.MediaEngine/Images/Formats/Definitions/diskdefs_dec.cfg"
+      },
+      {
+        "sha256": "84211BCE6FCEC0F648F21DE0182CAFA2CF503F3A22C1B1E95BC4D84B536C87A3",
+        "path": "src/GWGUI.MediaEngine/Images/Formats/Definitions/diskdefs_dragon.cfg"
+      },
+      {
+        "sha256": "EE2D13D8F9C4E950049C446917138D56C2C8D2B9DAAE3C70ABD9AB50AAA8652F",
+        "path": "src/GWGUI.MediaEngine/Images/Formats/Definitions/diskdefs_eagle.cfg"
+      },
+      {
+        "sha256": "D0050018D457E2B5A0B2258E208E3BD97BDB81B672AEC16F5931AD85752E35BC",
+        "path": "src/GWGUI.MediaEngine/Images/Formats/Definitions/diskdefs_ensoniq.cfg"
+      },
+      {
+        "sha256": "9352293DA1FC5339AFDFD9D54C416DC3EFA7F012A85A8E2275EF80866F3076EC",
+        "path": "src/GWGUI.MediaEngine/Images/Formats/Definitions/diskdefs_epson.cfg"
+      },
+      {
+        "sha256": "FE98304B410C061A5100194A87F69EA6D3F992A116BA9B7C8A2A21DD6F74FF5F",
+        "path": "src/GWGUI.MediaEngine/Images/Formats/Definitions/diskdefs_gem.cfg"
+      },
+      {
+        "sha256": "BFB22666C36046BF16F423F9DAD1342761C21C6ED295B7FA9EA759C019ECB583",
+        "path": "src/GWGUI.MediaEngine/Images/Formats/Definitions/diskdefs_hp.cfg"
+      },
+      {
+        "sha256": "B707407393369637511C09AC18855A7FC84BF07EF6E6C9A2B48CE44B286DAE62",
+        "path": "src/GWGUI.MediaEngine/Images/Formats/Definitions/diskdefs_ibm.cfg"
+      },
+      {
+        "sha256": "5566BC8D476A4AFFF031725F4B3612B5C8EB5E1DC0B7A647FED46A08EDAE0E49",
+        "path": "src/GWGUI.MediaEngine/Images/Formats/Definitions/diskdefs_kaypro.cfg"
+      },
+      {
+        "sha256": "007F86AD17438E0BB9AEA05A420A237670A38F55AD0B5D03EEA26974AC3A7B15",
+        "path": "src/GWGUI.MediaEngine/Images/Formats/Definitions/diskdefs_luxor.cfg"
+      },
+      {
+        "sha256": "66F18C25EA397D7BF58B7D78BB7C37898D3CD7A9D1DA5098183FB5AAC2B99AD7",
+        "path": "src/GWGUI.MediaEngine/Images/Formats/Definitions/diskdefs_mac.cfg"
+      },
+      {
+        "sha256": "98C6BD026480A7726F66C36E2D7991C2CF8F8C4FBBDB89DE415E6209C34B6C69",
+        "path": "src/GWGUI.MediaEngine/Images/Formats/Definitions/diskdefs_micropolis.cfg"
+      },
+      {
+        "sha256": "3ADFD5951C381C1881F0F86828BF3F9A022841F390FFDAE76653AD7D665226CB",
+        "path": "src/GWGUI.MediaEngine/Images/Formats/Definitions/diskdefs_mm1.cfg"
+      },
+      {
+        "sha256": "9D121AE2EF53CA940FDBD56EF1EB9729FF31B7332039974C63E88DD79C3D7B5D",
+        "path": "src/GWGUI.MediaEngine/Images/Formats/Definitions/diskdefs_msx.cfg"
+      },
+      {
+        "sha256": "272658A6CA95C784E070AC534A107766DD9D13A15A342BD54DD6DAE11573DD50",
+        "path": "src/GWGUI.MediaEngine/Images/Formats/Definitions/diskdefs_northstar.cfg"
+      },
+      {
+        "sha256": "B5FC074B3C7BA0C3855FB3F3DFAB9003B6C0EC67A4915E7FE0AB28ED6E773839",
+        "path": "src/GWGUI.MediaEngine/Images/Formats/Definitions/diskdefs_occ1.cfg"
+      },
+      {
+        "sha256": "881384C0B1FE7089F27595F777455B870D6122518DA1E3BE34DCC5CBFD25068F",
+        "path": "src/GWGUI.MediaEngine/Images/Formats/Definitions/diskdefs_olivetti.cfg"
+      },
+      {
+        "sha256": "3D38EB514A7D3D1644052533F8CE34C0B7C3FE4223492543495C5EFBE9E7CB40",
+        "path": "src/GWGUI.MediaEngine/Images/Formats/Definitions/diskdefs_pc98.cfg"
+      },
+      {
+        "sha256": "51256CD18BB3E90365047A3BB5362F897B2B990063042417B43C7FC88D5A72B3",
+        "path": "src/GWGUI.MediaEngine/Images/Formats/Definitions/diskdefs_raw.cfg"
+      },
+      {
+        "sha256": "BB08343D69D8AAA7271171D52C90986669E19EF233C8BEBDFFB46F2193DBAB08",
+        "path": "src/GWGUI.MediaEngine/Images/Formats/Definitions/diskdefs_sci.cfg"
+      },
+      {
+        "sha256": "DAB0366E615D53B163FCB070AFBA4EB4359148C10D1F034F3C3C28A5C25AF24C",
+        "path": "src/GWGUI.MediaEngine/Images/Formats/Definitions/diskdefs_sega.cfg"
+      },
+      {
+        "sha256": "3C6D790C58E7431B7313A2B2DBC5B7B78FABA559FFDA7B3AD550254EB807310B",
+        "path": "src/GWGUI.MediaEngine/Images/Formats/Definitions/diskdefs_thomson.cfg"
+      },
+      {
+        "sha256": "348AD5EEC5E0C15E10B4CCDAF5AFC30B2614CB053D074B439EA4566A597D8244",
+        "path": "src/GWGUI.MediaEngine/Images/Formats/Definitions/diskdefs_tsc.cfg"
+      },
+      {
+        "sha256": "689E78F88E8D913CD64803E62FE3917424F7E0EDF72169404AE67A0FFDA726F8",
+        "path": "src/GWGUI.MediaEngine/Images/Formats/Definitions/diskdefs_xerox.cfg"
+      },
+      {
+        "sha256": "EA82C760E48D5DB56E7D78A210C3A30149EF38C089803FD6E8C3AFD78FF63630",
+        "path": "src/GWGUI.MediaEngine/Images/Formats/Definitions/diskdefs_zx.cfg"
+      },
+      {
+        "sha256": "7B57DA5B1B0D9D8D190DEBB1FE2F25FCFB41E093DE937CCB23F6C581E662216E",
+        "path": "src/GWGUI.MediaEngine/Images/Formats/Definitions/diskdefs.cfg"
+      },
+      {
+        "sha256": "F55443632FB6C6C00A1EEFDE5DF4F5E4BFC4CA189E208904211AAF7C69D53B85",
+        "path": "src/GWGUI.MediaEngine/Images/Formats/DiskDefsFormatReader.cs"
+      },
+      {
+        "sha256": "6B27F8B4E4DEB8EEEF22BA35AFBF48891D491767A7BAC7B9EC889FE56B7E6647",
+        "path": "src/GWGUI.MediaEngine/Images/Formats/DiskTrackDefinition.cs"
+      },
+      {
+        "sha256": "DC5F8CD9835A17E35D4345730A040B6CC24B84B313F46D7E4401244103C12E1E",
+        "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/Apridisk/ApridiskReader.cs"
+      },
+      {
+        "sha256": "610D03B06CE7EBB4C6439DFA706B3419270C80022502C37F78002A43A92B87DE",
+        "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/Apridisk/ApridiskWriter.cs"
+      },
+      {
+        "sha256": "C88BC2F03E719238CA7B804478BFC4F82AD17A032B62D0D1D33FE451462B7FA2",
+        "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/Hfe/ProtectedTrackHfeImageAdapter.cs"
+      },
+      {
+        "sha256": "C8E237D5F48E5A8F89017A3C44870655D8E7A00819DB4FC89B81B4B474114679",
+        "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/DefinedRawImageReader.cs"
+      },
+      {
+        "sha256": "8E7AAF70693F36204FA580346628B8D64E8FDD7B2A71C365C071F554B5E2325C",
+        "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/DefinedRawImageWriter.cs"
+      },
+      {
+        "sha256": "9651F998A6872986A4D31B3F63949DC18B32D14E2F1A93AC99AC8377F857DB20",
+        "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/IbmRawImageWriter.cs"
+      },
+      {
+        "sha256": "90EB695B6D78A38335CAFE257C693CC4801C6D85F4BA2A7355CD44C3A5C62812",
+        "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/LinearSectorImageWriter.cs"
+      },
+      {
+        "sha256": "E67F812437D1A681AEE342E5EE9DF14AADB0309122C02C7A16A3A03856F235CE",
+        "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Decoding/ScpSectorDecodingComposition.cs"
+      },
+      {
+        "sha256": "7ABB90FBB7E6CFBAC9DF6451058284BD6E4496FA2D51D342066DA45D79D1E606",
+        "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Reading/FloppyFluxAcquisitionService.cs"
+      },
+      {
+        "sha256": "072C5B59037D2899A5676BDE34B4E36D2E54E447812271BFB0D9B72B51187236",
+        "path": "src/GWGUI.MediaEngine/Images/Formats/ImageFormatWorkspace.cs"
+      },
+      {
+        "sha256": "373AF14047E0C30322ED7018D44D3475DA6D17159FD025A2ADC94A2593145191",
+        "path": "src/GWGUI.MediaEngine/Images/Reading/Decoding/Decoders/DataGeneralFmDecoder.cs"
+      },
+      {
+        "sha256": "EAD6F7C8A0FA2B770B37869D6938DC6184515B5CCFBA7C455650EE60665F7951",
+        "path": "src/GWGUI.MediaEngine/Images/Reading/Decoding/Decoders/MicropolisMfmDecoder.cs"
+      },
+      {
+        "sha256": "BA06ACAC645CFCCD10F630DEB0ADA28F68203FD843D46ACC50C03BB2E31E657A",
+        "path": "src/GWGUI.MediaEngine/Images/Reading/Decoding/Decoders/NorthstarMfmDecoder.cs"
+      },
+      {
+        "sha256": "557E9E7D46209D952F66A71A2E65BC17CB8B23B3F0182348689B343A852D9AE9",
+        "path": "src/GWGUI.MediaEngine/Images/Reading/Decoding/Sequential/Acorn/AcornTapeDecoder.cs"
+      },
+      {
+        "sha256": "D40CAF08C2DA8F60FF4C28B7051AA83DEDE16E7C395B07CC4564A6F2BC7F7F48",
+        "path": "src/GWGUI.MediaEngine/Images/Reading/Decoding/Sequential/Amstrad/AmstradCpcTapeDecoder.cs"
+      },
+      {
+        "sha256": "0677AC35CD88CC86F4C21CFA2FC9D195F75CF3818EDFBF6D24E09DBFE12447AE",
+        "path": "src/GWGUI.MediaEngine/Images/Reading/Decoding/Sequential/Atari/AtariCassetteDecoder.cs"
+      },
+      {
+        "sha256": "EFA0D4EF96BD0929E1E9799EFD34842BA54EF6A423F72DFC29705B62CE0DA121",
+        "path": "src/GWGUI.MediaEngine/Images/Reading/Decoding/Sequential/Commodore/CommodoreTapeDecoder.cs"
+      },
+      {
+        "sha256": "8852C0E06D4E733BBAF59773EDEBC974BED43DAB4E8AC5B18F852984FEC5FC72",
+        "path": "src/GWGUI.MediaEngine/Images/Reading/Decoding/Sequential/Msx/MsxTapeDecoder.cs"
+      },
+      {
+        "sha256": "C9892F7560A19A09DC9E3876B063650DC79F4EAE07FBAA94F6C9F4CFB93F8864",
+        "path": "src/GWGUI.MediaEngine/Images/Reading/Decoding/Sequential/Spectrum/SpectrumTapeDecoder.cs"
+      },
+      {
+        "sha256": "68DC4A95C2DC7B05D752FBE442E43956DF6A5494C3AFC0AF41466528212CB2F3",
+        "path": "src/GWGUI.MediaEngine/Images/Reading/MediaRecognitionComposition.cs"
+      },
+      {
+        "sha256": "3E4B9428B068A2995B1999C4D046A48F90CBF2B122ACC2E0267CAFDB6D4618BC",
+        "path": "src/GWGUI.MediaEngine/Images/Reading/Reconstruction/AmigaScpSectorImageReader.cs"
+      },
+      {
+        "sha256": "DA444C8C35890C50EA41124195F9D5E62B598BAA3FD61C1D7FBDFE2EE12E0501",
+        "path": "src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Apple/AppleScpSectorImageReader.cs"
+      },
+      {
+        "sha256": "EBF2266DC93AFB7CE07B607AA1C1C48C1A5D0B64AEB205C7E713189927F23978",
+        "path": "src/GWGUI.MediaEngine/Images/Reading/Reconstruction/CommodoreScpSectorImageReader.cs"
+      },
+      {
+        "sha256": "4D5C51EFC40150695BCF4905A34E65913FC15D8C8861A369E164530FCF3E984A",
+        "path": "src/GWGUI.MediaEngine/Images/Reading/Reconstruction/DecRx02ScpSectorImageReader.cs"
+      },
+      {
+        "sha256": "AB7D3E22A1DA566996EB0BCA3469D4F8960AE7A6CA3CFEBD4A6E1225F1FBAC6C",
+        "path": "src/GWGUI.MediaEngine/Images/Reading/Reconstruction/DefinedScpSectorImageReader.cs"
+      },
+      {
+        "sha256": "2C7A15833E31A4A816890FC643F9E0C0068AA065E9AB76B31EA31ADAAC19E649",
+        "path": "src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Iso/IsoScpSectorImagePolicyRegistry.cs"
+      },
+      {
+        "sha256": "FF84F8C03476748A8765FAA6C1B702B58E3699023372D1B816CE9DBAAB9C68F0",
+        "path": "src/GWGUI.MediaEngine/Images/Writing/MediaWritingComposition.cs"
+      },
+      {
+        "sha256": "1592610EAAAADAD156E8CA6A6295A5563B757DFFA717178DCBF6729BAF931A5E",
+        "path": "tests/GWGUI.Tests/Hardware/PhysicalReading/PhysicalReadingTests.cs"
+      },
+      {
+        "sha256": "9FC6508E87572D4195BE47B90605F0FD262AB3E354758AAB637CC0E8383946E0",
+        "path": "tests/GWGUI.Tests/Hardware/PhysicalReading/ReadPlanningScenarios.cs"
+      },
+      {
+        "sha256": "5C860FB2143E42DC100202A0695EEC4269644A3B545B3AFD532FCEF37583AF1A",
+        "path": "tests/GWGUI.Tests/Interface/WriteViews/WriteOperationScenarios.cs"
+      },
+      {
+        "sha256": "5281A801E9D6A6B344D294D090F28A0AFE9835E1B73CB8179186C7C804FE9CA3",
+        "path": "tests/GWGUI.Tests/Interface/WriteViews/WriteSourceScenarios.cs"
+      },
+      {
+        "sha256": "DA2731A2ACAE00A687E5008A48D114A175B9D8CEFE1B697C6C92CDFD7EDCB8E3",
+        "path": "tests/GWGUI.Tests/Media/FluxSectorReadRegressionTests.cs"
+      },
+      {
+        "sha256": "463215D59FD5EEBBE85DFF273F37D03782C9E7B0E416311AED232CB5F5A72AA2",
+        "path": "tests/GWGUI.Tests/Media/ImageFormatCatalogReuseTests.cs"
+      },
+      {
+        "sha256": "C87CB7598A6760F272D4928171E6DC53FE5072E8ADD6C7B50923C87192DDE120",
+        "path": "tests/GWGUI.Tests/Media/SequentialDecodingCompatibilityTests.cs"
+      }
+    ],
+    "physicalCommit": "ee80713e6",
+    "sourceCount": 108,
+    "exitCode": 0,
+    "application": "F:\\GW GUI\\build\\Debug\\GW GUI\\gwgui.exe",
+    "modules": [
+      {
+        "entryAssembly": "gwgui.emulation.acorn.dll",
+        "id": "acorn",
+        "path": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\acorn\\gwgui.emulation.acorn.dll"
+      },
+      {
+        "entryAssembly": "gwgui.emulation.amstrad.dll",
+        "id": "amstrad",
+        "path": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\amstrad\\gwgui.emulation.amstrad.dll"
+      },
+      {
+        "entryAssembly": "gwgui.emulation.apple.dll",
+        "id": "apple",
+        "path": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\apple\\gwgui.emulation.apple.dll"
+      },
+      {
+        "entryAssembly": "gwgui.emulation.atari.dll",
+        "id": "atari",
+        "path": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\atari\\gwgui.emulation.atari.dll"
+      },
+      {
+        "entryAssembly": "gwgui.emulation.bandai.dll",
+        "id": "bandai",
+        "path": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\bandai\\gwgui.emulation.bandai.dll"
+      },
+      {
+        "entryAssembly": "gwgui.emulation.coleco.dll",
+        "id": "coleco",
+        "path": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\coleco\\gwgui.emulation.coleco.dll"
+      },
+      {
+        "entryAssembly": "gwgui.emulation.commodore.dll",
+        "id": "commodore",
+        "path": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\commodore\\gwgui.emulation.commodore.dll"
+      },
+      {
+        "entryAssembly": "gwgui.emulation.epoch.dll",
+        "id": "epoch",
+        "path": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\epoch\\gwgui.emulation.epoch.dll"
+      },
+      {
+        "entryAssembly": "gwgui.emulation.fairchild.dll",
+        "id": "fairchild",
+        "path": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\fairchild\\gwgui.emulation.fairchild.dll"
+      },
+      {
+        "entryAssembly": "gwgui.emulation.mattel.dll",
+        "id": "mattel",
+        "path": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\mattel\\gwgui.emulation.mattel.dll"
+      },
+      {
+        "entryAssembly": "gwgui.emulation.microsoft.dll",
+        "id": "microsoft",
+        "path": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\microsoft\\gwgui.emulation.microsoft.dll"
+      },
+      {
+        "entryAssembly": "gwgui.emulation.nec.dll",
+        "id": "nec",
+        "path": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\nec\\gwgui.emulation.nec.dll"
+      },
+      {
+        "entryAssembly": "gwgui.emulation.nintendo.dll",
+        "id": "nintendo",
+        "path": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\nintendo\\gwgui.emulation.nintendo.dll"
+      },
+      {
+        "entryAssembly": "gwgui.emulation.panasonic.dll",
+        "id": "panasonic",
+        "path": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\panasonic\\gwgui.emulation.panasonic.dll"
+      },
+      {
+        "entryAssembly": "gwgui.emulation.philips.dll",
+        "id": "philips",
+        "path": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\philips\\gwgui.emulation.philips.dll"
+      },
+      {
+        "entryAssembly": "gwgui.emulation.sega.dll",
+        "id": "sega",
+        "path": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\sega\\gwgui.emulation.sega.dll"
+      },
+      {
+        "entryAssembly": "gwgui.emulation.sharp.dll",
+        "id": "sharp",
+        "path": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\sharp\\gwgui.emulation.sharp.dll"
+      },
+      {
+        "entryAssembly": "gwgui.emulation.sinclair.dll",
+        "id": "sinclair",
+        "path": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\sinclair\\gwgui.emulation.sinclair.dll"
+      },
+      {
+        "entryAssembly": "gwgui.emulation.snk.dll",
+        "id": "snk",
+        "path": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\snk\\gwgui.emulation.snk.dll"
+      },
+      {
+        "entryAssembly": "gwgui.emulation.sony.dll",
+        "id": "sony",
+        "path": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\sony\\gwgui.emulation.sony.dll"
+      },
+      {
+        "entryAssembly": "gwgui.emulation.thomson.dll",
+        "id": "thomson",
+        "path": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\thomson\\gwgui.emulation.thomson.dll"
+      },
+      {
+        "entryAssembly": "gwgui.emulation.watara.dll",
+        "id": "watara",
+        "path": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\watara\\gwgui.emulation.watara.dll"
+      },
+      {
+        "entryAssembly": "gwgui.emulation.wenquxing.dll",
+        "id": "wenquxing",
+        "path": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\wenquxing\\gwgui.emulation.wenquxing.dll"
+      }
+    ],
+    "moduleCount": 23,
+    "unchangedInputs": 108,
+    "updaterDlls": [
+      "gwgui.updater.dll"
+    ]
   }
 }

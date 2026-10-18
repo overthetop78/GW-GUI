@@ -25,10 +25,7 @@ public sealed class MsxTapeDecoder : ISequentialMediaDecoder
 
     public bool CanDecode(MediaImageDocument document, string? machineId = null)
     {
-        if (document.MediaKind != MediaKind.Tape
-            || !SupportedFormats.Contains(document.FormatId)
-            || document.Representation is not SequentialMediaImageRepresentation
-            || machineId is not null && !SupportedMachines.Contains(machineId))
+        if (!SequentialDecodeFunctions.CanDecodeTape(document, machineId, SupportedFormats, SupportedMachines))
             return false;
         return !document.FormatId.Equals(TapeImageFormatIds.Tzx, StringComparison.OrdinalIgnoreCase)
             || machineId is not null
