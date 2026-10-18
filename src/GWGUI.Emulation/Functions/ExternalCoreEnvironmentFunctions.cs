@@ -273,6 +273,27 @@ internal static class ExternalCoreEnvironmentFunctions
         return result.ToString();
     }
 
+
+    internal static void SelectDisk(int index, Func<uint> getImageIndex, Func<bool> getEjectState,
+        Func<bool, bool> setEjectState, Func<uint, bool> setImageIndex,
+        Func<Exception> ejectError, Func<Exception> selectError, Func<Exception> insertError)
+    {
+        var previousIndex = getImageIndex();
+        var wasEjected = getEjectState();
+        if (!wasEjected && !setEjectState(true)) throw ejectError();
+        try
+        {
+            if (!setImageIndex((uint)index)) throw selectError();
+            if (!setEjectState(false)) throw insertError();
+        }
+        catch
+        {
+            if (previousIndex != uint.MaxValue) setImageIndex(previousIndex);
+            if (!wasEjected) setEjectState(false);
+            throw;
+        }
+    }
+
     internal static string? ReadDiskText<T>(T? getter, int index, int bufferSize)
         where T : Delegate
     {

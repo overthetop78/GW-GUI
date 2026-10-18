@@ -59,20 +59,10 @@ internal sealed class DiskControl
         EnsureAvailable();
         if (index < DiskControlConstants.FirstImageIndex || index >= ImageCount)
             throw new ArgumentOutOfRangeException(nameof(index));
-        var previousIndex = _getImageIndex!();
-        var wasEjected = _getEjectState!();
-        if (!wasEjected && !_setEjectState!(true)) throw new InvalidOperationException(DiskControlErrors.EjectFailed);
-        try
-        {
-            if (!_setImageIndex!((uint)index)) throw new InvalidOperationException(DiskControlErrors.SelectFailed);
-            if (!_setEjectState!(false)) throw new InvalidOperationException(DiskControlErrors.InsertFailed);
-        }
-        catch
-        {
-            if (previousIndex != DiskControlConstants.NoNativeImageIndex) _setImageIndex!(previousIndex);
-            if (!wasEjected) _setEjectState!(false);
-            throw;
-        }
+        GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.SelectDisk(index,
+            () => _getImageIndex!(), () => _getEjectState!(),
+            value => _setEjectState!(value), value => _setImageIndex!(value),
+            () => new InvalidOperationException(DiskControlErrors.EjectFailed), () => new InvalidOperationException(DiskControlErrors.SelectFailed), () => new InvalidOperationException(DiskControlErrors.InsertFailed));
     }
 
     internal void Insert(string path)

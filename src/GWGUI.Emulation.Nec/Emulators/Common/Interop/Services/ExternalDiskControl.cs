@@ -61,23 +61,10 @@ internal sealed class ExternalDiskControl(string errorPrefix = "Emulation.Error.
         EnsureAvailable();
         var count = ImageCount;
         if (index < 0 || index >= count) throw new ArgumentOutOfRangeException(nameof(index));
-        var previousIndex = _getImageIndex!();
-        var wasEjected = _getEjectState!();
-        if (!wasEjected && !_setEjectState!(true))
-            throw new InvalidOperationException(Error("MediaEjectFailed"));
-        try
-        {
-            if (!_setImageIndex!((uint)index))
-                throw new InvalidOperationException(Error("RequestedDiskSelectionFailed"));
-            if (!_setEjectState!(false))
-                throw new InvalidOperationException(Error("RequestedMediaInsertFailed"));
-        }
-        catch
-        {
-            if (previousIndex != uint.MaxValue) _setImageIndex!(previousIndex);
-            if (!wasEjected) _setEjectState!(false);
-            throw;
-        }
+        GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.SelectDisk(index,
+            () => _getImageIndex!(), () => _getEjectState!(),
+            value => _setEjectState!(value), value => _setImageIndex!(value),
+            () => new InvalidOperationException(Error("MediaEjectFailed")), () => new InvalidOperationException(Error("RequestedDiskSelectionFailed")), () => new InvalidOperationException(Error("RequestedMediaInsertFailed")));
     }
 
     internal string? GetPath(int index) => ReadText(_getImagePath, index);

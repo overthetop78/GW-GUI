@@ -4489,5 +4489,149 @@
     ],
     "sdkOwner": "src/GWGUI.Emulation/Functions/EmulationHostProtocolFunctions.Host.cs",
     "tests": "Ten native commands, six host-owned/unknown commands, six missing-core argument-order cases and truncated binary state. Memory streams only, no external core, process or file."
+  },
+  "diskSelectionTransactionReuse": {
+    "profiles": [
+      {
+        "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "transactionMatchesOriginalAmiga": true,
+        "preconditionsAndOtherMembersUnchanged": true,
+        "nativeCallbacks": "Lazy field invocation preserved in lambdas",
+        "errorFactories": "Same three InvalidOperationException creation expressions invoked only when their original failure occurs"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/DiskControl.cs",
+        "transactionMatchesOriginalAmiga": true,
+        "preconditionsAndOtherMembersUnchanged": true,
+        "nativeCallbacks": "Lazy field invocation preserved in lambdas",
+        "errorFactories": "Same three InvalidOperationException creation expressions invoked only when their original failure occurs"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/DiskControl.cs",
+        "transactionMatchesOriginalAmiga": true,
+        "preconditionsAndOtherMembersUnchanged": true,
+        "nativeCallbacks": "Lazy field invocation preserved in lambdas",
+        "errorFactories": "Same three InvalidOperationException creation expressions invoked only when their original failure occurs"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/DiskControl.cs",
+        "transactionMatchesOriginalAmiga": true,
+        "preconditionsAndOtherMembersUnchanged": true,
+        "nativeCallbacks": "Lazy field invocation preserved in lambdas",
+        "errorFactories": "Same three InvalidOperationException creation expressions invoked only when their original failure occurs"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalDiskControl.cs",
+        "transactionMatchesOriginalAmiga": true,
+        "preconditionsAndOtherMembersUnchanged": true,
+        "nativeCallbacks": "Lazy field invocation preserved in lambdas",
+        "errorFactories": "Same three InvalidOperationException creation expressions invoked only when their original failure occurs"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/DiskControl.cs",
+        "transactionMatchesOriginalAmiga": true,
+        "preconditionsAndOtherMembersUnchanged": true,
+        "nativeCallbacks": "Lazy field invocation preserved in lambdas",
+        "errorFactories": "Same three InvalidOperationException creation expressions invoked only when their original failure occurs"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalDiskControl.cs",
+        "transactionMatchesOriginalAmiga": true,
+        "preconditionsAndOtherMembersUnchanged": true,
+        "nativeCallbacks": "Lazy field invocation preserved in lambdas",
+        "errorFactories": "Same three InvalidOperationException creation expressions invoked only when their original failure occurs"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/DiskControl.cs",
+        "transactionMatchesOriginalAmiga": true,
+        "preconditionsAndOtherMembersUnchanged": true,
+        "nativeCallbacks": "Lazy field invocation preserved in lambdas",
+        "errorFactories": "Same three InvalidOperationException creation expressions invoked only when their original failure occurs"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "transactionMatchesOriginalAmiga": true,
+        "preconditionsAndOtherMembersUnchanged": true,
+        "nativeCallbacks": "Lazy field invocation preserved in lambdas",
+        "errorFactories": "Same three InvalidOperationException creation expressions invoked only when their original failure occurs"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "transactionMatchesOriginalAmiga": true,
+        "preconditionsAndOtherMembersUnchanged": true,
+        "nativeCallbacks": "Lazy field invocation preserved in lambdas",
+        "errorFactories": "Same three InvalidOperationException creation expressions invoked only when their original failure occurs"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/DiskControl.cs",
+        "transactionMatchesOriginalAmiga": true,
+        "preconditionsAndOtherMembersUnchanged": true,
+        "nativeCallbacks": "Lazy field invocation preserved in lambdas",
+        "errorFactories": "Same three InvalidOperationException creation expressions invoked only when their original failure occurs"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/DiskControl.cs",
+        "transactionMatchesOriginalAmiga": true,
+        "preconditionsAndOtherMembersUnchanged": true,
+        "nativeCallbacks": "Lazy field invocation preserved in lambdas",
+        "errorFactories": "Same three InvalidOperationException creation expressions invoked only when their original failure occurs"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/DiskControl.cs",
+        "transactionMatchesOriginalAmiga": true,
+        "preconditionsAndOtherMembersUnchanged": true,
+        "nativeCallbacks": "Lazy field invocation preserved in lambdas",
+        "errorFactories": "Same three InvalidOperationException creation expressions invoked only when their original failure occurs"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "transactionMatchesOriginalAmiga": true,
+        "preconditionsAndOtherMembersUnchanged": true,
+        "nativeCallbacks": "Lazy field invocation preserved in lambdas",
+        "errorFactories": "Same three InvalidOperationException creation expressions invoked only when their original failure occurs"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "transactionMatchesOriginalAmiga": true,
+        "preconditionsAndOtherMembersUnchanged": true,
+        "nativeCallbacks": "Lazy field invocation preserved in lambdas",
+        "errorFactories": "Same three InvalidOperationException creation expressions invoked only when their original failure occurs"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/DiskControl.cs",
+        "transactionMatchesOriginalAmiga": true,
+        "preconditionsAndOtherMembersUnchanged": true,
+        "nativeCallbacks": "Lazy field invocation preserved in lambdas",
+        "errorFactories": "Same three InvalidOperationException creation expressions invoked only when their original failure occurs"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/DiskControl.cs",
+        "transactionMatchesOriginalAmiga": true,
+        "preconditionsAndOtherMembersUnchanged": true,
+        "nativeCallbacks": "Lazy field invocation preserved in lambdas",
+        "errorFactories": "Same three InvalidOperationException creation expressions invoked only when their original failure occurs"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "transactionMatchesOriginalAmiga": true,
+        "preconditionsAndOtherMembersUnchanged": true,
+        "nativeCallbacks": "Lazy field invocation preserved in lambdas",
+        "errorFactories": "Same three InvalidOperationException creation expressions invoked only when their original failure occurs"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/DiskControl.cs",
+        "transactionMatchesOriginalAmiga": true,
+        "preconditionsAndOtherMembersUnchanged": true,
+        "nativeCallbacks": "Lazy field invocation preserved in lambdas",
+        "errorFactories": "Same three InvalidOperationException creation expressions invoked only when their original failure occurs"
+      }
+    ],
+    "sharedTransactionMatchesOriginalAst": true,
+    "method": "SelectDisk",
+    "sdkOwner": "src/GWGUI.Emulation/Functions/ExternalCoreEnvironmentFunctions.cs",
+    "sourceCommit": "a1f0f3935",
+    "originalOwner": "6b720ad46:src/GWGUI.Emulation.Amiga/Cores/AmigaExternalDiskControl.cs",
+    "status": "Nineteen consumer AST comparisons and original Amiga transaction comparison passed; eleven targeted managed tests passed; SDK, App and all module references compiled.",
+    "tests": "Nine success/refusal/rollback profiles with lazy error creation, native callback exception, rollback exception propagation. No external core, file or process."
   }
 }
