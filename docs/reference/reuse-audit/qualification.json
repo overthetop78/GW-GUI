@@ -8250,13 +8250,13 @@
     "afterProductBuild": "005e3c677"
   },
   "shortMethodInventory": {
-    "snapshot": "adc3e23fc7d449a99de3c9b15abf02b602b7f6a7",
+    "snapshot": "0a3b6469ca5ffe293ca57153b21e7f87d4977936",
     "files": 7325,
     "bodyCount": 9501,
     "exactGroups": 775,
     "renamedGroups": 365,
     "status": "Incomplete; existing queue/empty-method qualifications retained; 29 factory selections now shared and verified; sector source reader-selection stage shared, remaining typed writer ownership pending.",
-    "trackedCSharpCoverage": "Full current C# scan: 7325 files. Twelve metadata probe/runtime pairs now share original reading policy; thirteen additional reads, extension parsers and broader runtime groups still under review."
+    "trackedCSharpCoverage": "Full current C# scan: 7325 files. Twelve metadata pairs and all 25 native UTF8 extension parsers shared and verified; broader native/rich environment, initialization and lifecycle groups remain under review."
   },
   "hardwareIdentityComparisonReuse": {
     "snapshot": "a4760e868",
@@ -12263,6 +12263,399 @@
     ],
     "verification": "SDK ReadInfo body matches original UTF8/name/ordinal identity/version/extensions/flags sequence after callback adaptation. Twelve original initialized tails expanded identically; error constructors/context unchanged and six result parameters mapped in original order. Restoring only initialized method/new wrapper and probe lambda produces identical token streams for all 24 complete files; removing new SDK method preserves all old SDK tokens. GetSystemInfo, Inspect loaded-library scope and release/finally unchanged.",
     "tests": "34 tests passed, exit 0: ten CoreInformationReading cases, seven path validation, seven architecture validation, ten existing installation flow. UTF8 copies remain valid after owned buffers released; all bool flags, null fields, refusal/provider errors and callback order covered. No file/DLL fixture/native library/process/window created; buffers freed in nested finally.",
-    "sdkSha256": "81DEB8A245FC2BFAAD7B3893BA83DE8148D7C0029697398D64F611A5E484AD42"
+    "sdkSha256": "81DEB8A245FC2BFAAD7B3893BA83DE8148D7C0029697398D64F611A5E484AD42",
+    "subsequentParserValidation": "Metadata after hashes describe commit 0a3b6469c. Subsequent nativeExtensionParsingReuse records removal of the twelve local parser methods and direct SDK parser method-group binding, with all other metadata members and original provider order unchanged."
+  },
+  "nativeExtensionParsingReuse": {
+    "state": "verified; 25 native parser sites only",
+    "snapshot": "0a3b6469ca5ffe293ca57153b21e7f87d4977936",
+    "origin": "12d82a3cd:src/GWGUI.Emulation.Amiga/Cores/AmigaExternalCore.cs; original parser exact after native-info variable rename, ancestor of Atari 2a145e278 and Amstrad 6ef78dc70.",
+    "before": [
+      {
+        "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Functions/CoreFunctions.cs",
+        "sha256": "CB65514B982E19C48C089B324DE0C0683AE777293EAAEFCD41E4B3FDCA05A5F6",
+        "kind": "method",
+        "returnType": "System.Collections.Generic.IReadOnlySet<string>",
+        "separator": "|",
+        "prefix": "."
+      },
+      {
+        "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalCore.cs",
+        "sha256": "3018E01AF63E45124C540479D75D12A01B0398C12CE4EFBF55A70CF7A9D6D6B8",
+        "kind": "inline",
+        "returnType": "System.Collections.Generic.HashSet<string>",
+        "separator": "|",
+        "prefix": "."
+      },
+      {
+        "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Functions/CoreFunctions.cs",
+        "sha256": "F5A2007A2F812FFA99FC70A4909D2BD702CE365223F08D304496029F18D0DC07",
+        "kind": "method",
+        "returnType": "System.Collections.Generic.IReadOnlySet<string>",
+        "separator": "|",
+        "prefix": "."
+      },
+      {
+        "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Functions/CoreFunctions.cs",
+        "sha256": "8BC5D028539364125E05DAC7E9711E157424B5816B0314167070871E8C23DBE6",
+        "kind": "method",
+        "returnType": "System.Collections.Generic.IReadOnlySet<string>",
+        "separator": "|",
+        "prefix": "."
+      },
+      {
+        "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Functions/CoreFunctions.cs",
+        "sha256": "96E61AC5B4B15A34AACE0FE9318447226D6D03D319D4AD3A6854272C909EE3C9",
+        "kind": "method",
+        "returnType": "System.Collections.Generic.IReadOnlySet<string>",
+        "separator": "|",
+        "prefix": "."
+      },
+      {
+        "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Functions/CoreFunctions.cs",
+        "sha256": "D947624DB99C49CF4A5F26793F462A83520F1EC34ABEA8FF7AECBE217EA666E5",
+        "kind": "method",
+        "returnType": "System.Collections.Generic.IReadOnlySet<string>",
+        "separator": "|",
+        "prefix": "."
+      },
+      {
+        "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalCore.cs",
+        "sha256": "E1F9B07ADDF87807CC125D6998D5EFDBEA2946A045F7AF9790F4953E21FB69D2",
+        "kind": "inline",
+        "returnType": "System.Collections.Generic.HashSet<string>",
+        "separator": "|",
+        "prefix": "."
+      },
+      {
+        "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Functions/CoreFunctions.cs",
+        "sha256": "6A879F34791D4B9766CD6CC6E78ED359D37ED7BDAE4A55130A0EBF8EADF72AF4",
+        "kind": "method",
+        "returnType": "System.Collections.Generic.IReadOnlySet<string>",
+        "separator": "|",
+        "prefix": "."
+      },
+      {
+        "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Functions/CoreFunctions.cs",
+        "sha256": "E6ECB7D1197DACA83CD132B10DD3B25A58FAD849FD39AFF089F2E5DE41F2BCFC",
+        "kind": "method",
+        "returnType": "System.Collections.Generic.IReadOnlySet<string>",
+        "separator": "|",
+        "prefix": "."
+      },
+      {
+        "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Functions/CoreFunctions.cs",
+        "sha256": "EFF2896C8F99E03C610AF550D9B9CF1884FE2C93768AF5B972915B7A0EF06BCD",
+        "kind": "method",
+        "returnType": "System.Collections.Generic.IReadOnlySet<string>",
+        "separator": "|",
+        "prefix": "."
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalCore.cs",
+        "sha256": "A5AB2BBF5D48DB01BBF1E4E2E7069EC3CE5B68CE70837665F781D4B0CB891AA5",
+        "kind": "inline",
+        "returnType": "System.Collections.Generic.HashSet<string>",
+        "separator": "|",
+        "prefix": "."
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nec/Emulators/BeetlePcfx/Services/ExternalCore.cs",
+        "sha256": "75B1E8F1501C2130907D85AB62589245FC9E7283628E20DB03FEEC12431E40B9",
+        "kind": "inline",
+        "returnType": "System.Collections.Generic.HashSet<string>",
+        "separator": "|",
+        "prefix": "."
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalCore.cs",
+        "sha256": "8E6ED5289EF79E8A434C1F82865FBBD9F68A22173880CACD37250587DC8BACF3",
+        "kind": "inline",
+        "returnType": "System.Collections.Generic.HashSet<string>",
+        "separator": "|",
+        "prefix": "."
+      },
+      {
+        "path": "src/GWGUI.Emulation.Panasonic/Emulators/Opera/Interop/Functions/CoreFunctions.Probe.cs",
+        "sha256": "6A51EFD565E7CFCA8C69B1A4E0B84DD5B4EBDD63E4CE78D9A918B6BFE925BC66",
+        "kind": "inline",
+        "returnType": "System.Collections.Generic.HashSet<string>",
+        "separator": "|",
+        "prefix": "."
+      },
+      {
+        "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Functions/CoreFunctions.cs",
+        "sha256": "FE61EF1A6F1F7A996F87E1F03D74D777EE746A08518AB2D9FAF0849EE3E6BABE",
+        "kind": "method",
+        "returnType": "System.Collections.Generic.IReadOnlySet<string>",
+        "separator": "|",
+        "prefix": "."
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalCore.cs",
+        "sha256": "4469E046518D6E584BC628250263C984696E9DE68272EBD3F0FDDC30B8A756A1",
+        "kind": "inline",
+        "returnType": "System.Collections.Generic.HashSet<string>",
+        "separator": "|",
+        "prefix": "."
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Functions/CoreFunctions.cs",
+        "sha256": "8A6603B0490C7246015837ED0295C2AD03ADCA5730CD0FDA0941CAFA4DFE36E5",
+        "kind": "method",
+        "returnType": "System.Collections.Generic.IReadOnlySet<string>",
+        "separator": "|",
+        "prefix": "."
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Functions/CoreFunctions.cs",
+        "sha256": "29F7C1CDD2F165EE07CEE2D808F6F2CDF84E7EC0DE64FF827B01F7FDF4B61477",
+        "kind": "method",
+        "returnType": "System.Collections.Generic.IReadOnlySet<string>",
+        "separator": "|",
+        "prefix": "."
+      },
+      {
+        "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Functions/CoreFunctions.cs",
+        "sha256": "C1252D5AF68FC1EE889432819304A0A72B50A401F75043E53F1F29B628B3C597",
+        "kind": "method",
+        "returnType": "System.Collections.Generic.IReadOnlySet<string>",
+        "separator": "|",
+        "prefix": "."
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalCore.cs",
+        "sha256": "4E1E22DD029A27C13F500166A99A56AE7D15E73BE0B7149884E97EC4A1F19BD9",
+        "kind": "inline",
+        "returnType": "System.Collections.Generic.HashSet<string>",
+        "separator": "|",
+        "prefix": "."
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalCore.cs",
+        "sha256": "AEDFC65E668723B03E92C7DFA9C66E2EC19D527B603A7C5CC7E30A6AEF200A74",
+        "kind": "inline",
+        "returnType": "System.Collections.Generic.HashSet<string>",
+        "separator": "|",
+        "prefix": "."
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalCore.cs",
+        "sha256": "E95534422293ACC9E18398A53D4AFFCC03AA60926A4087D3E6F86270C5E7E60B",
+        "kind": "inline",
+        "returnType": "System.Collections.Generic.HashSet<string>",
+        "separator": "|",
+        "prefix": "."
+      },
+      {
+        "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Interop/Functions/CoreFunctions.Probe.cs",
+        "sha256": "8AFD9EFEC1D738892DBAE22E3ACDC153674B9B9CC82A41F9B63F30987DAFD41F",
+        "kind": "inline",
+        "returnType": "System.Collections.Generic.HashSet<string>",
+        "separator": "|",
+        "prefix": "."
+      },
+      {
+        "path": "src/GWGUI.Emulation.Watara/Emulators/Potator/Interop/Functions/CoreFunctions.Probe.cs",
+        "sha256": "D4823A83D1102B57ADFF0AA0D6315FBC4CBB3EA4E576BB55CF938DF636FCA2A1",
+        "kind": "inline",
+        "returnType": "System.Collections.Generic.HashSet<string>",
+        "separator": "|",
+        "prefix": "."
+      },
+      {
+        "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Interop/Functions/CoreFunctions.Probe.cs",
+        "sha256": "4D132AB46AA008AFAA5A3A1F9C57B7E617A346E1089FFB78A9E1EDB442491C3E",
+        "kind": "inline",
+        "returnType": "System.Collections.Generic.HashSet<string>",
+        "separator": "|",
+        "prefix": "."
+      }
+    ],
+    "semantic": "SDK and all 23 modules zero errors; 12 IReadOnlySet methods and 13 HashSet inline expressions. Native char separator pipe and prefix dot resolved to constant values at all 25 sites. Original split/trim/hash comparer expression exact after char substitutions.",
+    "equivalence": "12 method variants guard IsNullOrWhiteSpace before splitting. Original null-coalesce pipeline returns the same empty OrdinalIgnoreCase HashSet for null/empty/all-whitespace UTF8 strings; Split RemoveEmptyEntries|TrimEntries removes whitespace tokens before prefix trim. Dot-only tokens still produce empty extension entries; do not filter them afterward. Return-set comparer and mutable concrete type retained.",
+    "decision": "Reuse original Amiga parser in existing ExternalCoreLibrary.ParseExtensions returning HashSet<string>. Remove twelve later local methods and bind current metadata adapter method groups directly to SDK parser; replace thirteen inline expressions at their exact existing positions. No extra read or ownership transfer.",
+    "otherMetadata": "Four legacy probes evaluate extensions before the version constructor argument and reject null names as empty. Nine native constructors copy nullable names with profile-specific matching, publish CoreName/CoreVersion before extension assignment. Sony common Accepts and PCSX2 two accepted names are deliberately retained; no blanket combined metadata reader substitution.",
+    "after": [
+      {
+        "kind": "method",
+        "otherTokensUnchanged": true,
+        "binding": "GWGUI.Emulation.Services.ExternalCoreLibrary.ParseExtensions(nint)",
+        "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Functions/CoreFunctions.cs",
+        "sha256": "64C420CB099C9EF9F422791D67001A5E81A4248F5E5839AD6DC7EBAA8D6CF633"
+      },
+      {
+        "kind": "inline",
+        "otherTokensUnchanged": true,
+        "binding": "GWGUI.Emulation.Services.ExternalCoreLibrary.ParseExtensions(nint)",
+        "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalCore.cs",
+        "sha256": "18A38BD0C7FC4424C0BCEA6A26009ADE7A118DEBBFB20C50F60CB2612287973F"
+      },
+      {
+        "kind": "method",
+        "otherTokensUnchanged": true,
+        "binding": "GWGUI.Emulation.Services.ExternalCoreLibrary.ParseExtensions(nint)",
+        "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Functions/CoreFunctions.cs",
+        "sha256": "2CCDE0196654C05B85BF919FA1D776CDE622EA72E1E8ADA6FF7C5A6604A91C75"
+      },
+      {
+        "kind": "method",
+        "otherTokensUnchanged": true,
+        "binding": "GWGUI.Emulation.Services.ExternalCoreLibrary.ParseExtensions(nint)",
+        "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Functions/CoreFunctions.cs",
+        "sha256": "C012757D3A2B53A1798247CD727A88B6457E821A417BEE073AA1A67CE2B8FCB6"
+      },
+      {
+        "kind": "method",
+        "otherTokensUnchanged": true,
+        "binding": "GWGUI.Emulation.Services.ExternalCoreLibrary.ParseExtensions(nint)",
+        "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Functions/CoreFunctions.cs",
+        "sha256": "BCE9134806169127DCFF742B036402C9A473FABCA6E13D71A922227B0DE17A5E"
+      },
+      {
+        "kind": "method",
+        "otherTokensUnchanged": true,
+        "binding": "GWGUI.Emulation.Services.ExternalCoreLibrary.ParseExtensions(nint)",
+        "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Functions/CoreFunctions.cs",
+        "sha256": "35B5B48D17F89C7905985F872A87593DECE5EFDAD517228B55765AF5C9962D68"
+      },
+      {
+        "kind": "inline",
+        "otherTokensUnchanged": true,
+        "binding": "GWGUI.Emulation.Services.ExternalCoreLibrary.ParseExtensions(nint)",
+        "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalCore.cs",
+        "sha256": "EA877811A717A62541624D4F3B705DEFDD311190BDF7A3F4C246A3C629AB010B"
+      },
+      {
+        "kind": "method",
+        "otherTokensUnchanged": true,
+        "binding": "GWGUI.Emulation.Services.ExternalCoreLibrary.ParseExtensions(nint)",
+        "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Functions/CoreFunctions.cs",
+        "sha256": "43C1ADDAC3589E7469463A5D5202BDE247CEF7767B75DD02A9F70D4D33E52A45"
+      },
+      {
+        "kind": "method",
+        "otherTokensUnchanged": true,
+        "binding": "GWGUI.Emulation.Services.ExternalCoreLibrary.ParseExtensions(nint)",
+        "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Functions/CoreFunctions.cs",
+        "sha256": "DB74778828CD6BC132FA694F76E404FAFD955DC0F10873089EB902185FEE8696"
+      },
+      {
+        "kind": "method",
+        "otherTokensUnchanged": true,
+        "binding": "GWGUI.Emulation.Services.ExternalCoreLibrary.ParseExtensions(nint)",
+        "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Functions/CoreFunctions.cs",
+        "sha256": "529DD3C485C43818B3EDD05624D242C9438BE46C8D6747B5EF669FBDA5569C5A"
+      },
+      {
+        "kind": "inline",
+        "otherTokensUnchanged": true,
+        "binding": "GWGUI.Emulation.Services.ExternalCoreLibrary.ParseExtensions(nint)",
+        "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalCore.cs",
+        "sha256": "55602720D7466C5E9D94F36824F5402E3B12FAA69128DCF6C36529560E791108"
+      },
+      {
+        "kind": "inline",
+        "otherTokensUnchanged": true,
+        "binding": "GWGUI.Emulation.Services.ExternalCoreLibrary.ParseExtensions(nint)",
+        "path": "src/GWGUI.Emulation.Nec/Emulators/BeetlePcfx/Services/ExternalCore.cs",
+        "sha256": "9FC4781D2860C55F76F602C7D506733032FFD3A616F81FDD0999960E3660D9C0"
+      },
+      {
+        "kind": "inline",
+        "otherTokensUnchanged": true,
+        "binding": "GWGUI.Emulation.Services.ExternalCoreLibrary.ParseExtensions(nint)",
+        "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalCore.cs",
+        "sha256": "BC2B224801D2D8CECBC94F2C5F5002217B44AFEA725247D8E85139FDE505F612"
+      },
+      {
+        "kind": "inline",
+        "otherTokensUnchanged": true,
+        "binding": "GWGUI.Emulation.Services.ExternalCoreLibrary.ParseExtensions(nint)",
+        "path": "src/GWGUI.Emulation.Panasonic/Emulators/Opera/Interop/Functions/CoreFunctions.Probe.cs",
+        "sha256": "6F95FF1D83CA241514C4980AC9AEED52A0C129C74E450A524C208109836C4390"
+      },
+      {
+        "kind": "method",
+        "otherTokensUnchanged": true,
+        "binding": "GWGUI.Emulation.Services.ExternalCoreLibrary.ParseExtensions(nint)",
+        "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Functions/CoreFunctions.cs",
+        "sha256": "F0FB06525A60B7B3DCB7FE50D134709B3272A45112704915F1D3DB37FDC3CE5B"
+      },
+      {
+        "kind": "inline",
+        "otherTokensUnchanged": true,
+        "binding": "GWGUI.Emulation.Services.ExternalCoreLibrary.ParseExtensions(nint)",
+        "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalCore.cs",
+        "sha256": "91BB15EBA38A2B22ABA02C0F76B857D4F0C061A66F840BE0B228B9AAA89521F0"
+      },
+      {
+        "kind": "method",
+        "otherTokensUnchanged": true,
+        "binding": "GWGUI.Emulation.Services.ExternalCoreLibrary.ParseExtensions(nint)",
+        "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Functions/CoreFunctions.cs",
+        "sha256": "E8497760D2DAFF2F42F2265CDFF3AF09D2DE652983091B5349F4159763A1E670"
+      },
+      {
+        "kind": "method",
+        "otherTokensUnchanged": true,
+        "binding": "GWGUI.Emulation.Services.ExternalCoreLibrary.ParseExtensions(nint)",
+        "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Functions/CoreFunctions.cs",
+        "sha256": "8F30C91F8DFFF03539D3F9406534B43C3A3582DAE3B56D6AE2778696AB501D26"
+      },
+      {
+        "kind": "method",
+        "otherTokensUnchanged": true,
+        "binding": "GWGUI.Emulation.Services.ExternalCoreLibrary.ParseExtensions(nint)",
+        "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Functions/CoreFunctions.cs",
+        "sha256": "CF60C3ED40869357780C6447FBF4592DA8E79420947C07E36C1E0728939BC1A7"
+      },
+      {
+        "kind": "inline",
+        "otherTokensUnchanged": true,
+        "binding": "GWGUI.Emulation.Services.ExternalCoreLibrary.ParseExtensions(nint)",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalCore.cs",
+        "sha256": "F56B4E0DFDE124087506D62C6DD74A710CE827A607D3565E908A71B14A5047DB"
+      },
+      {
+        "kind": "inline",
+        "otherTokensUnchanged": true,
+        "binding": "GWGUI.Emulation.Services.ExternalCoreLibrary.ParseExtensions(nint)",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalCore.cs",
+        "sha256": "9382FD54585535E68A67CEC04B4CA4F3106ADD341590BCB2A70AE9FF7D3E0B42"
+      },
+      {
+        "kind": "inline",
+        "otherTokensUnchanged": true,
+        "binding": "GWGUI.Emulation.Services.ExternalCoreLibrary.ParseExtensions(nint)",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalCore.cs",
+        "sha256": "A9F57AA6359DE335F4365B5F82F9266CC5BBE807E1D8D1013CCB6F9F528D4F86"
+      },
+      {
+        "kind": "inline",
+        "otherTokensUnchanged": true,
+        "binding": "GWGUI.Emulation.Services.ExternalCoreLibrary.ParseExtensions(nint)",
+        "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Interop/Functions/CoreFunctions.Probe.cs",
+        "sha256": "300018C674D116EC8F85902FE761B66D9424BD741044578B6FB0D4449B75390F"
+      },
+      {
+        "kind": "inline",
+        "otherTokensUnchanged": true,
+        "binding": "GWGUI.Emulation.Services.ExternalCoreLibrary.ParseExtensions(nint)",
+        "path": "src/GWGUI.Emulation.Watara/Emulators/Potator/Interop/Functions/CoreFunctions.Probe.cs",
+        "sha256": "B1F43B611D6F8D3772D95A281E03CCBC61FFDAC85FC635F658DA6B6C343BF6BC"
+      },
+      {
+        "kind": "inline",
+        "otherTokensUnchanged": true,
+        "binding": "GWGUI.Emulation.Services.ExternalCoreLibrary.ParseExtensions(nint)",
+        "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Interop/Functions/CoreFunctions.Probe.cs",
+        "sha256": "7A4A63704914FE61080E1C8C8F870DFDD39F5E83011170F85BBA8939265A3C7A"
+      }
+    ],
+    "astVerification": "All 25 complete files match their prior token streams after only local parser deletion/method-group redirection or inline expression replacement and removal of eight now-unused private char constants. Original Amiga 12d82a3cd expression matches SDK parser exactly after pointer rename. All previous SDK members unchanged; metadata identity/version/extension positions, GetSystemInfo, loading and finally preserved.",
+    "semanticAfter": "SDK and all 23 modules zero semantic errors. All 25 parser references resolve to SDK ExternalCoreLibrary.ParseExtensions(nint), returning original concrete HashSet<string>; twelve existing metadata callback interfaces accept it as IReadOnlySet<string>. No local ParseExtensions method remains.",
+    "tests": "44 targeted cases passed, exit 0: 20 CoreInformationReading (including nine extension normalization cases and independent empty-set ownership), seven paths, seven architectures and ten existing installation pipeline cases. UTF8 buffers freed in finally; null/empty/Unicode whitespace, separators, repeated dots, dot-only empty entries, internal spaces, case-insensitive non-ASCII deduplication and independent mutable sets covered. No file/DLL fixture or native library loaded.",
+    "sdkSha256": "7A76DD57541091F216C6225C9321B365EB87B1A5BDE2160DE98A47540EC16058"
   }
 }

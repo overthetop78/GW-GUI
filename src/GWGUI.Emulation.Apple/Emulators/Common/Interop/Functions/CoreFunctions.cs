@@ -17,7 +17,7 @@ internal static class CoreFunctions
     }
 
     internal static ExternalCoreInfo ReadInfo(GWGUI.Emulation.Interop.ExternalCoreApi.SystemInfo nativeInfo, Emulator expectedEmulator)
-        => ExternalCoreLibrary.ReadInfo(nativeInfo, expectedEmulator, ExpectedLibraryName, ParseExtensions,
+        => ExternalCoreLibrary.ReadInfo(nativeInfo, expectedEmulator, ExpectedLibraryName, ExternalCoreLibrary.ParseExtensions,
             static (expectedName, libraryName) => new EmulationException(ErrorCategory.Core, ErrorCode.CoreRejected,
                 ErrorMessages.CoreIdentityMismatch,
                 new Dictionary<string, string>
@@ -29,15 +29,6 @@ internal static class CoreFunctions
                 => new ExternalCoreInfo(emulator, libraryName, libraryVersion, extensions, needsFullPath, blocksArchiveExtraction));
     internal static string CreateInvalidOptionValueMessage(string key, string value) => string.Format(CultureInfo.InvariantCulture, ErrorMessages.OptionValueInvalidFormat, key, value);
     internal static string ExpectedLibraryName(Emulator emulator) => CoreCatalog.Get(emulator).LibraryName;
-
-    internal static IReadOnlySet<string> ParseExtensions(nint value)
-    {
-        var extensions = Marshal.PtrToStringUTF8(value);
-        return string.IsNullOrWhiteSpace(extensions)
-            ? new HashSet<string>(StringComparer.OrdinalIgnoreCase)
-            : extensions.Split(MediaConstants.SupportedExtensionSeparator, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries).Select(extension => extension.TrimStart(MediaConstants.ExtensionPrefix))
-                .ToHashSet(StringComparer.OrdinalIgnoreCase);
-    }
 
     internal static ExternalCoreExports ResolveExports(ExternalCoreLibrary library) => library.ResolveExports(requireLoadGameSpecial: false);
 

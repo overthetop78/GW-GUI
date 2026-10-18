@@ -9,8 +9,6 @@ namespace GWGUI.Emulation.Thomson.Emulators.Theodore.Interop.Functions;
 internal static class CoreProbeFunctions
 {
     private const uint ExpectedApiVersion = 1;
-    private const char ExtensionSeparator = '|';
-    private const char ExtensionPrefix = '.';
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate uint GetApiVersion();
 
     internal static ExternalCoreInfo Inspect(string absolutePath)
@@ -22,7 +20,7 @@ internal static class CoreProbeFunctions
         exports.GetSystemInfo(out var info);
         var name = Marshal.PtrToStringUTF8(info.LibraryName) ?? string.Empty;
         if (!string.Equals(name, EmulatorConstants.LibraryName, StringComparison.OrdinalIgnoreCase)) throw Rejected();
-        var extensions = (Marshal.PtrToStringUTF8(info.ValidExtensions) ?? string.Empty).Split(ExtensionSeparator, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries).Select(extension => extension.TrimStart(ExtensionPrefix)).ToHashSet(StringComparer.OrdinalIgnoreCase);
+        var extensions = ExternalCoreLibrary.ParseExtensions(info.ValidExtensions);
         return new ExternalCoreInfo(Emulator.Theodore, name, Marshal.PtrToStringUTF8(info.LibraryVersion) ?? string.Empty, extensions, info.NeedFullPath, info.BlockExtract);
     }
 

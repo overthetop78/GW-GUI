@@ -9,6 +9,12 @@ internal sealed class ExternalCoreLibrary : IDisposable
 {
     private nint _handle;
 
+    internal static HashSet<string> ParseExtensions(nint value)
+        => (Marshal.PtrToStringUTF8(value) ?? string.Empty)
+            .Split('|', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
+            .Select(extension => extension.TrimStart('.'))
+            .ToHashSet(StringComparer.OrdinalIgnoreCase);
+
     internal static TInfo ReadInfo<TExpected, TInfo>(ExternalCoreApi.SystemInfo nativeInfo, TExpected expected,
         Func<TExpected, string> expectedNameFor, Func<nint, IReadOnlySet<string>> parseExtensions,
         Func<string, string, Exception> identityMismatch,

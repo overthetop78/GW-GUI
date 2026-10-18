@@ -113,6 +113,44 @@ public sealed class CoreInformationReadingTests
         Assert.Equal(steps.Take(Array.IndexOf(steps, failure) + 1), calls);
     }
 
+    [Theory]
+    [InlineData(null, new string[] { })]
+    [InlineData("", new string[] { })]
+    [InlineData(" \t\u2003", new string[] { })]
+    [InlineData(" | || ", new string[] { })]
+    [InlineData(".bin|ROM|..Bin| rom | .iso", new[] { "bin", "ROM", "iso" })]
+    [InlineData(".", new[] { "" })]
+    [InlineData("...|..|.", new[] { "" })]
+    [InlineData(". bin| .rom ", new[] { " bin", "rom" })]
+    [InlineData(".é|É", new[] { "é" })]
+    public void CopiesNormalizedExtensionsAndPreservesOrdinalCaseComparison(string? source, string[] expected)
+    {
+        HashSet<string>? result = null;
+        WithInfo(null, null, source, info => result = ExternalCoreLibrary.ParseExtensions(info.ValidExtensions));
+
+        Assert.NotNull(result);
+        Assert.Equal(expected.Length, result.Count);
+        Assert.True(result.SetEquals(expected));
+        Assert.Same(StringComparer.OrdinalIgnoreCase, result.Comparer);
+        foreach (var extension in expected)
+            Assert.Contains(extension.ToUpperInvariant(), result);
+    }
+
+    [Fact]
+    public void ReturnsAnIndependentExtensionSetForEachRead()
+    {
+        HashSet<string>? first = null;
+        HashSet<string>? second = null;
+        WithInfo(null, null, null, info => first = ExternalCoreLibrary.ParseExtensions(info.ValidExtensions));
+        WithInfo(null, null, null, info => second = ExternalCoreLibrary.ParseExtensions(info.ValidExtensions));
+
+        Assert.NotNull(first);
+        Assert.NotNull(second);
+        Assert.NotSame(first, second);
+        first.Add("bin");
+        Assert.Empty(second);
+    }
+
     private static void WithInfo(string? name, string? version, string? extensions, Action<ExternalCoreApi.SystemInfo> action)
     {
         var info = new ExternalCoreApi.SystemInfo();
