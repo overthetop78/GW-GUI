@@ -41,3 +41,4 @@ global using CoreOptionCategory = GWGUI.Emulation.Contracts.EmulationOptionCateg
 global using CoreOptionValue = GWGUI.Emulation.Contracts.EmulationResourceOptionValue;
 global using CoreRelease = GWGUI.Emulation.Contracts.EmulationCatalogCoreRelease<GWGUI.Emulation.Sinclair.Common.Machines.Common.Enums.Emulator>;
 global using EmulatorCatalogEntry = GWGUI.Emulation.Contracts.EmulationCoreCatalogEntry<GWGUI.Emulation.Sinclair.Common.Machines.Common.Enums.Emulator, GWGUI.Emulation.Sinclair.Common.Machines.Common.Enums.MachineModel>;
+global using HostError = global::GWGUI.Emulation.Contracts.HostError<GWGUI.Emulation.Sinclair.Common.Enums.ErrorCategory, GWGUI.Emulation.Sinclair.Common.Enums.ErrorCode>;

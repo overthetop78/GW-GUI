@@ -15,5 +15,3 @@ public sealed record CoreOption(
     string? ResourceKey = null,
     string? ExplanationResourceKey = null
 );
-
-internal sealed record HostError(string Type, string Message, ErrorCategory? Category, ErrorCode? Code, IReadOnlyDictionary<string, string> Context, bool IsLocalized);

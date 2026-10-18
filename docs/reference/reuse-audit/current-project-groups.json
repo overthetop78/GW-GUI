@@ -1,6 +1,6 @@
 {
   "baseline": "ac7292d86^",
-  "currentCSharpFiles": 7300,
+  "currentCSharpFiles": 7289,
   "outsideSrcCSharpFiles": 300,
   "baselineMethodCount": 5848,
   "currentMethodCount": 11631,
@@ -1197,7 +1197,7 @@
     {
       "language": "CSharp",
       "hash": "0A9D4012A0EEF58659F6F622D06187BDA6844EE126F30B196EAE963950A66758",
-      "method": "SegaEmulationModule",
+      "method": "AtariEmulationModule",
       "tokens": 45,
       "current": [
         {
@@ -6480,9 +6480,7 @@
           "tokens": 53,
           "hash": "3AC878DDB9AD5A993C637D32114E8E978804B2966D4276AAC4015C2294856DBA",
           "shape": "18256391E9945E33B5CC256F4332717DF055E36391CACE5CED70BD0A20DA2855",
-          "qualification": "module-adapter-to-original-configured-validator",
-          "proof": "qualification.json:legacyConfiguredValidationReuse",
-          "sourceSha256": "80C27618C96A9A33D7975A0E922D06618E0826F6E26A7CB743CC7D3AA15BFCE9"
+          "qualification": "module-adapter-to-original-configured-validator"
         },
         {
           "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
@@ -6491,9 +6489,7 @@
           "tokens": 53,
           "hash": "3AC878DDB9AD5A993C637D32114E8E978804B2966D4276AAC4015C2294856DBA",
           "shape": "18256391E9945E33B5CC256F4332717DF055E36391CACE5CED70BD0A20DA2855",
-          "qualification": "module-adapter-to-original-configured-validator",
-          "proof": "qualification.json:legacyConfiguredValidationReuse",
-          "sourceSha256": "797A30B65CD303DA1530771BD676F893983E2EF312F2D84E2B5FB84FC1A2DA78"
+          "qualification": "module-adapter-to-original-configured-validator"
         },
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
@@ -6502,9 +6498,7 @@
           "tokens": 53,
           "hash": "3AC878DDB9AD5A993C637D32114E8E978804B2966D4276AAC4015C2294856DBA",
           "shape": "18256391E9945E33B5CC256F4332717DF055E36391CACE5CED70BD0A20DA2855",
-          "qualification": "module-adapter-to-original-configured-validator",
-          "proof": "qualification.json:legacyConfiguredValidationReuse",
-          "sourceSha256": "ADEF995ED2BEE12DB2D621FA1A9B29A99ABD2B38F8D596BF51A318F01A281FDD"
+          "qualification": "module-adapter-to-original-configured-validator"
         }
       ],
       "predecessors": [],
@@ -18721,12 +18715,7 @@
           "line": 15,
           "tokens": 641,
           "hash": "9EF788E02A4DE2D21207946E78841ED0BB170AC21091466EDB616ED812AA13B3",
-          "shape": "70FA1FD24775E947CAB2DC82DE42CF27B1272250AA64BEF588331D9C0E7CBD0C",
-          "qualification": "pending-stateful-options-and-diagnostic-branches",
-          "completedResponsibilities": [
-            "Four stateless query routes still use the original SDK; complete handler source unchanged during validation reuse"
-          ],
-          "proof": "qualification.json:legacyStatelessQueryReuse;legacyConfiguredValidationReuse"
+          "shape": "70FA1FD24775E947CAB2DC82DE42CF27B1272250AA64BEF588331D9C0E7CBD0C"
         },
         {
           "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
@@ -18734,12 +18723,7 @@
           "line": 15,
           "tokens": 641,
           "hash": "9EF788E02A4DE2D21207946E78841ED0BB170AC21091466EDB616ED812AA13B3",
-          "shape": "70FA1FD24775E947CAB2DC82DE42CF27B1272250AA64BEF588331D9C0E7CBD0C",
-          "qualification": "pending-stateful-options-and-diagnostic-branches",
-          "completedResponsibilities": [
-            "Four stateless query routes still use the original SDK; complete handler source unchanged during validation reuse"
-          ],
-          "proof": "qualification.json:legacyStatelessQueryReuse;legacyConfiguredValidationReuse"
+          "shape": "70FA1FD24775E947CAB2DC82DE42CF27B1272250AA64BEF588331D9C0E7CBD0C"
         }
       ],
       "predecessors": [],
@@ -19004,7 +18988,7 @@
     {
       "language": "CSharp",
       "hash": "A1E03750FEB3292ACEB41656386F4A8AA8B05077D9ABFB7DA103AA3D71320B9F",
-      "method": "ToEpoch",
+      "method": "ToFairchild",
       "tokens": 103,
       "current": [
         {
@@ -19314,7 +19298,7 @@
     {
       "language": "CSharp",
       "hash": "A61349BFDFFA5D404CE7D0D458204D435194B5E4D84870DF4F9FBE26A86A9946",
-      "method": "ToEpoch",
+      "method": "ToFairchild",
       "tokens": 36,
       "current": [
         {
@@ -20504,7 +20488,7 @@
     {
       "language": "CSharp",
       "hash": "B053A3AB4F0B78A37DED57B2D744801187AED6EC54FEEAFE4B1AA9C454D6F48C",
-      "method": "EpochEmulationModule",
+      "method": "FairchildEmulationModule",
       "tokens": 47,
       "current": [
         {
@@ -29777,9 +29761,7 @@
           "tokens": 53,
           "hash": "2ACF5ABDBB15BFA648981B825F1870C3B5CA91BD4687BE930A367946F2B74828",
           "shape": "18256391E9945E33B5CC256F4332717DF055E36391CACE5CED70BD0A20DA2855",
-          "qualification": "module-adapter-to-original-configured-validator",
-          "proof": "qualification.json:legacyConfiguredValidationReuse",
-          "sourceSha256": "738AD6A7143990F2630467B8CC4CB207F678EC10DB8FB9E24A517E1680100D08"
+          "qualification": "module-adapter-to-original-configured-validator"
         },
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Environment.cs",
@@ -29788,9 +29770,7 @@
           "tokens": 53,
           "hash": "68E85E2BD9501D3B2114510CBAFF25CBA67C8363F86C4F859BCFB7C1820B9A6C",
           "shape": "18256391E9945E33B5CC256F4332717DF055E36391CACE5CED70BD0A20DA2855",
-          "qualification": "module-adapter-to-original-configured-validator",
-          "proof": "qualification.json:legacyConfiguredValidationReuse",
-          "sourceSha256": "AF925900C547AA995783C1C7161F85A2C92BB48C199DDDD264F906DA98D5CB7A"
+          "qualification": "module-adapter-to-original-configured-validator"
         },
         {
           "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
@@ -29799,9 +29779,7 @@
           "tokens": 53,
           "hash": "3AC878DDB9AD5A993C637D32114E8E978804B2966D4276AAC4015C2294856DBA",
           "shape": "18256391E9945E33B5CC256F4332717DF055E36391CACE5CED70BD0A20DA2855",
-          "qualification": "module-adapter-to-original-configured-validator",
-          "proof": "qualification.json:legacyConfiguredValidationReuse",
-          "sourceSha256": "80C27618C96A9A33D7975A0E922D06618E0826F6E26A7CB743CC7D3AA15BFCE9"
+          "qualification": "module-adapter-to-original-configured-validator"
         },
         {
           "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
@@ -29810,9 +29788,7 @@
           "tokens": 53,
           "hash": "3AC878DDB9AD5A993C637D32114E8E978804B2966D4276AAC4015C2294856DBA",
           "shape": "18256391E9945E33B5CC256F4332717DF055E36391CACE5CED70BD0A20DA2855",
-          "qualification": "module-adapter-to-original-configured-validator",
-          "proof": "qualification.json:legacyConfiguredValidationReuse",
-          "sourceSha256": "797A30B65CD303DA1530771BD676F893983E2EF312F2D84E2B5FB84FC1A2DA78"
+          "qualification": "module-adapter-to-original-configured-validator"
         },
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
@@ -29821,9 +29797,7 @@
           "tokens": 53,
           "hash": "3AC878DDB9AD5A993C637D32114E8E978804B2966D4276AAC4015C2294856DBA",
           "shape": "18256391E9945E33B5CC256F4332717DF055E36391CACE5CED70BD0A20DA2855",
-          "qualification": "module-adapter-to-original-configured-validator",
-          "proof": "qualification.json:legacyConfiguredValidationReuse",
-          "sourceSha256": "ADEF995ED2BEE12DB2D621FA1A9B29A99ABD2B38F8D596BF51A318F01A281FDD"
+          "qualification": "module-adapter-to-original-configured-validator"
         },
         {
           "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
@@ -29832,9 +29806,7 @@
           "tokens": 53,
           "hash": "028423FF7390634101FD1D37DBFD9C3371B6212A581E7BABE9E77E7B8E5BC7E7",
           "shape": "18256391E9945E33B5CC256F4332717DF055E36391CACE5CED70BD0A20DA2855",
-          "qualification": "module-adapter-to-original-configured-validator",
-          "proof": "qualification.json:legacyConfiguredValidationReuse",
-          "sourceSha256": "7D8A9FCF94814DBE925C5E03C6B3D24A7F84E250D5B503FB9BE651892BDD5EE2"
+          "qualification": "module-adapter-to-original-configured-validator"
         }
       ],
       "qualification": "module-adapter-to-original-configured-validator"
@@ -37880,6 +37852,6 @@
   "scope": "All current repository CSharp and PowerShell files; no age filter; candidates require semantic review",
   "qualificationCarryForward": {
     "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical",
-    "occurrences": 85
+    "occurrences": 94
   }
 }

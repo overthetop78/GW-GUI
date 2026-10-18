@@ -35,3 +35,4 @@ global using CoreInstallProgress = global::GWGUI.Emulation.Contracts.EmulationCo
 global using CoreOption = GWGUI.Emulation.Contracts.EmulationEnabledOption;
 global using CoreRelease = GWGUI.Emulation.Contracts.EmulationCatalogCoreRelease<GWGUI.Emulation.Panasonic.Common.Machines.Common.Enums.Emulator>;
 global using EmulatorCatalogEntry = GWGUI.Emulation.Contracts.EmulationCoreCatalogEntry<GWGUI.Emulation.Panasonic.Common.Machines.Common.Enums.Emulator, GWGUI.Emulation.Panasonic.Common.Machines.Common.Enums.MachineModel>;
+global using HostError = global::GWGUI.Emulation.Contracts.HostError;
