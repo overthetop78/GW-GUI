@@ -30,6 +30,31 @@ public static partial class EmulationCoreOptionFunctions
                     { IsCompact = group.Key == EmulationMachineTab.Audio };
             }).ToArray();
 
+
+    internal static EmulationSettingsField CreateSettingsField<TValue>(string key, EmulationMachineTab tab,
+        string block, Func<string> resource, IReadOnlyList<TValue> values,
+        Func<TValue, EmulationSettingsChoice> choice, Func<TValue, bool> enabledChoice,
+        Func<TValue, bool> disabledChoice, Func<TValue, string> nativeValue,
+        Func<string> currentValue, Func<string?> explanation, Func<bool>? isEnabled = null)
+        where TValue : class
+    {
+        var resourceKey = resource();
+        var choices = values.Select(choice).ToArray();
+        var enabledOption = values.FirstOrDefault(enabledChoice);
+        var enabled = enabledOption is null ? null : nativeValue(enabledOption);
+        var disabledOption = values.FirstOrDefault(disabledChoice);
+        var disabled = disabledOption is null ? null : nativeValue(disabledOption);
+        var toggle = values.Count == 2 && enabled is not null && disabled is not null;
+        return new(key, tab, block, resourceKey,
+            toggle ? EmulationSettingsEditor.Toggle : EmulationSettingsEditor.Selection,
+            currentValue(), choices,
+            IsEnabled: isEnabled?.Invoke() ?? true,
+            ExplanationResourceKey: explanation(),
+            EnabledValue: enabled ?? EmulationSettingConstants.Enabled,
+            DisabledValue: disabled ?? EmulationSettingConstants.Disabled,
+            RequiresRestart: false);
+    }
+
     internal const int CoreOptionPointerFieldsBeforeValues = 6;
     internal const int CoreOptionValueFieldCount = 2;
     internal const int CoreOptionTerminatorFieldCount = 1;

@@ -111,19 +111,14 @@ internal static class SettingsDescriptionFunctions
     private static string Memory(long bytes) => bytes >= SettingsConstants.BytesPerKibibyte ? $"{(bytes / SettingsConstants.BytesPerKibibyte).ToString(CultureInfo.InvariantCulture)} {SettingsConstants.KibibyteUnit}" : $"{bytes.ToString(CultureInfo.InvariantCulture)} {SettingsConstants.ByteUnit}";
     private static EmulationSettingsField Information(string id, EmulationMachineTab tab, string block, string label, string value) => new(id, tab, block, label, EmulationSettingsEditor.Information, value);
     internal static EmulationSettingsField Native(MachineConfiguration configuration, CoreOption option, EmulationMachineTab tab, string block)
-    {
-        var resource = option.ResourceKey ?? throw new InvalidOperationException(option.Key);
-        var choices = option.Values.Select(choice => new EmulationSettingsChoice(choice.Value, choice.ResourceKey ?? string.Empty, choice.InvariantDisplayValue)).ToArray();
-        var enabled = option.Values.FirstOrDefault(choice => choice.ResourceKey == SettingsChoiceConstants.Enabled)?.Value;
-        var disabled = option.Values.FirstOrDefault(choice => choice.ResourceKey == SettingsChoiceConstants.Disabled)?.Value;
-        var toggle = option.Values.Count == 2 && enabled is not null && disabled is not null;
-        return new(option.Key, tab, block, resource, toggle ? EmulationSettingsEditor.Toggle : EmulationSettingsEditor.Selection,
-            configuration.Options.GetValueOrDefault(option.Key, option.DefaultValue), choices,
-            ExplanationResourceKey: option.ExplanationResourceKey,
-            EnabledValue: enabled ?? EmulationSettingConstants.Enabled,
-            DisabledValue: disabled ?? EmulationSettingConstants.Disabled,
-            RequiresRestart: false);
-    }
+    => EmulationCoreOptionFunctions.CreateSettingsField(option.Key, tab, block,
+        () => option.ResourceKey ?? throw new InvalidOperationException(option.Key), option.Values,
+        choice => new EmulationSettingsChoice(choice.Value, choice.ResourceKey ?? string.Empty, choice.InvariantDisplayValue),
+        choice => choice.ResourceKey == SettingsChoiceConstants.Enabled,
+        choice => choice.ResourceKey == SettingsChoiceConstants.Disabled,
+        static choice => choice.Value,
+        () => configuration.Options.GetValueOrDefault(option.Key, option.DefaultValue),
+        () => option.ExplanationResourceKey);
 
     internal static string ChoiceLabel(CoreOptionValue choice) => choice.ResourceKey ?? choice.InvariantDisplayValue ?? choice.Label;
 

@@ -5414,5 +5414,54 @@
       "decision": "Typed adapter to a verified shared SDK mechanism; no duplicated implementation of that mechanism in this method",
       "verification": "Roslyn current SDK plus 23 modules: zero errors; target symbol verified in every occurrence; adapter and CreateOption factory tokens compared across every occurrence. Source snapshot 70ce0b4c9."
     }
+  },
+  "nativeFieldQualification": {
+    "originalOwner": "23d3b9896:src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/SettingsFunctions.cs",
+    "sourceCommit": "70ce0b4c9",
+    "laterConsumers": [
+      "21e5ec276 Sinclair",
+      "a1f460542 SNK"
+    ],
+    "action": "Extend the existing generic CoreOptionFunctions with the older construction algorithm and preserve local policies through selectors. No new DTO or persistent state.",
+    "contractDifference": "SDK EmulationOption/EmulationOptionValue do not contain ResourceKey, ExplanationResourceKey, local IsEnabled or typed FrameSkipRatio metadata. They cannot replace these typed projections unchanged.",
+    "profileDifferences": "Sharp is enabled by default. Sinclair and SNK retain option.IsEnabled. SNK uses CommonChoiceResource and FrameSkipRatio formatting; Sharp/Sinclair use declared ResourceKey and InvariantDisplayValue. Resource errors differ and must remain local.",
+    "finding": "SDK CreateSettingsBlocks already owns grouping, but Native still repeats choice projection, enabled/disabled search and toggle/selection construction. No existing SDK field builder found.",
+    "sdkExistingOwner": "src/GWGUI.Emulation/Functions/EmulationCoreOptionFunctions.cs"
+  },
+  "nativeFieldConstructionReuse": {
+    "verification": "Three adapter-policy AST comparisons and all unrelated SDK/module members unchanged; 47 targeted tests pass (six new field cases and existing SNK catalogue descriptions); SDK/App/23 module references compile; diff --check passes.",
+    "originalOwner": "23d3b9896:src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/SettingsFunctions.cs",
+    "sdkOwner": "src/GWGUI.Emulation/Functions/EmulationCoreOptionFunctions.cs",
+    "sourceCommit": "0f1d19f47",
+    "algorithm": "Resource validation, projected choices, first enabled and disabled values, exactly-two toggle, selected value and metadata. Original Sharp algorithm with current per-module policies; no new DTO/state.",
+    "method": "CreateSettingsField",
+    "profiles": [
+      {
+        "module": "Sharp",
+        "path": "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/SettingsFunctions.cs",
+        "resourceChoiceToggleCurrentValueHelpAndEnabledPoliciesUnchanged": true,
+        "otherMembersUnchanged": true,
+        "enabledPolicy": "true (default)",
+        "choicePolicy": "choice => new EmulationSettingsChoice(choice.Value, choice.ResourceKey ?? string.Empty, choice.InvariantDisplayValue)"
+      },
+      {
+        "module": "Sinclair",
+        "path": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/SettingsFunctions.cs",
+        "resourceChoiceToggleCurrentValueHelpAndEnabledPoliciesUnchanged": true,
+        "otherMembersUnchanged": true,
+        "enabledPolicy": "option.IsEnabled",
+        "choicePolicy": "choice => new EmulationSettingsChoice(choice.Value, choice.ResourceKey ?? string.Empty, choice.InvariantDisplayValue)"
+      },
+      {
+        "module": "Snk",
+        "path": "src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/SettingsFunctions.cs",
+        "resourceChoiceToggleCurrentValueHelpAndEnabledPoliciesUnchanged": true,
+        "otherMembersUnchanged": true,
+        "enabledPolicy": "option.IsEnabled",
+        "choicePolicy": "choice => new EmulationSettingsChoice(\r\n                choice.Value,\r\n                choice.FrameSkipRatio is null ? CommonChoiceResource(choice.Value) ?? choice.ResourceKey ?? throw new InvalidOperationException($\"Missing common choice resource for {option.Key}: {choice.Value}.\") : string.Empty,\r\n                choice.FrameSkipRatio is FrameSkipRatio ratio ? SettingsChoiceFunctions.Format(ratio) : null\r\n            )"
+      }
+    ],
+    "restartPolicy": "RequiresRestart=false retained from all three current consumers; original 23d3b9896 policy evolved before this extraction and is not reapplied.",
+    "testFixtureCorrection": "The first Sharp fixture used a synthetic configuration option and was rejected before reaching Native. The corrected fixture obtains a real key and two values from the existing Sharp catalogue. No production validation changed."
   }
 }

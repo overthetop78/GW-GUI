@@ -83,31 +83,18 @@ internal static class SettingsDescriptionFunctions
     private static string Memory(long bytes) => bytes >= SettingsConstants.BytesPerKibibyte ? $"{(bytes / SettingsConstants.BytesPerKibibyte).ToString(CultureInfo.InvariantCulture)} {SettingsConstants.KibibyteUnit}" : $"{bytes.ToString(CultureInfo.InvariantCulture)} {SettingsConstants.ByteUnit}";
     private static EmulationSettingsField Information(string id, EmulationMachineTab tab, string block, string label, string value) => new(id, tab, block, label, EmulationSettingsEditor.Information, value);
     private static EmulationSettingsField Native(MachineConfiguration configuration, CoreOption option, EmulationMachineTab tab, string block)
-    {
-        var resource = option.ResourceKey ?? throw new InvalidOperationException($"Missing common resource for {option.Key}.");
-        var choices = option.Values.Select(choice => new EmulationSettingsChoice(
+    => EmulationCoreOptionFunctions.CreateSettingsField(option.Key, tab, block,
+        () => option.ResourceKey ?? throw new InvalidOperationException($"Missing common resource for {option.Key}."), option.Values,
+        choice => new EmulationSettingsChoice(
                 choice.Value,
                 choice.FrameSkipRatio is null ? CommonChoiceResource(choice.Value) ?? choice.ResourceKey ?? throw new InvalidOperationException($"Missing common choice resource for {option.Key}: {choice.Value}.") : string.Empty,
                 choice.FrameSkipRatio is FrameSkipRatio ratio ? SettingsChoiceFunctions.Format(ratio) : null
-            )).ToArray();
-        var enabled = option.Values.FirstOrDefault(choice => CommonChoiceResource(choice.Value) == SettingsConstants.ResourceEnabled)?.Value;
-        var disabled = option.Values.FirstOrDefault(choice => CommonChoiceResource(choice.Value) == SettingsConstants.ResourceDisabled)?.Value;
-        var toggle = option.Values.Count == 2 && enabled is not null && disabled is not null;
-        return new(
-            option.Key,
-            tab,
-            block,
-            resource,
-            toggle ? EmulationSettingsEditor.Toggle : EmulationSettingsEditor.Selection,
-            configuration.Options.GetValueOrDefault(option.Key, option.DefaultValue),
-            choices,
-            IsEnabled: option.IsEnabled,
-            ExplanationResourceKey: option.ExplanationResourceKey,
-            EnabledValue: enabled ?? EmulationSettingConstants.Enabled,
-            DisabledValue: disabled ?? EmulationSettingConstants.Disabled,
-            RequiresRestart: false
-        );
-    }
+            ),
+        choice => CommonChoiceResource(choice.Value) == SettingsConstants.ResourceEnabled,
+        choice => CommonChoiceResource(choice.Value) == SettingsConstants.ResourceDisabled,
+        static choice => choice.Value,
+        () => configuration.Options.GetValueOrDefault(option.Key, option.DefaultValue),
+        () => option.ExplanationResourceKey, () => option.IsEnabled);
 
     private static string? CommonChoiceResource(string value) => value.ToLowerInvariant() switch
     {
