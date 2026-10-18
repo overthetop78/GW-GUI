@@ -37,14 +37,9 @@ internal sealed class CoreOptionHost : IDisposable
     internal void RegisterVersionOne(nint data) => ReplaceCatalog(CoreOptionFunctions.CopyLegacyDefinitions(data), []);
 
     internal void RegisterVersionOneInternational(nint data)
-    {
-        if (data == nint.Zero) { ReplaceCatalog([], []); return; }
-        var englishPointer = Marshal.ReadIntPtr(data, CoreOptionConstants.EnglishPointerIndex * IntPtr.Size);
-        var localPointer = Marshal.ReadIntPtr(data, CoreOptionConstants.LocalPointerIndex * IntPtr.Size);
-        var english = CoreOptionFunctions.CopyLegacyDefinitions(englishPointer);
-        var local = CoreOptionFunctions.CopyLegacyDefinitions(localPointer);
-        ReplaceCatalog(CoreOptionFunctions.MergeLocalizedDefinitions(english, local), []);
-    }
+    => ReplaceCatalog(EmulationCoreOptionFunctions.CopyInternationalDefinitions<CoreOption>(data,
+        CoreOptionConstants.EnglishPointerIndex, CoreOptionConstants.LocalPointerIndex,
+        CoreOptionFunctions.CopyLegacyDefinitions, CoreOptionFunctions.MergeLocalizedDefinitions), []);
 
     internal void RegisterVersionTwo(nint data)
     {
@@ -54,12 +49,11 @@ internal sealed class CoreOptionHost : IDisposable
 
     internal void RegisterVersionTwoInternational(nint data)
     {
-        if (data == nint.Zero) { ReplaceCatalog([], []); return; }
-        var englishPointer = Marshal.ReadIntPtr(data, CoreOptionConstants.EnglishPointerIndex * IntPtr.Size);
-        var localPointer = Marshal.ReadIntPtr(data, CoreOptionConstants.LocalPointerIndex * IntPtr.Size);
-        var english = CoreOptionFunctions.CopyVersionTwoDefinitions(englishPointer, out var englishCategories);
-        var local = CoreOptionFunctions.CopyVersionTwoDefinitions(localPointer, out var localCategories);
-        ReplaceCatalog(CoreOptionFunctions.MergeLocalizedDefinitions(english, local), CoreOptionFunctions.MergeLocalizedCategories(englishCategories, localCategories));
+        var options = EmulationCoreOptionFunctions.CopyInternationalDefinitions<CoreOption, CoreOptionCategory>(data,
+            CoreOptionConstants.EnglishPointerIndex, CoreOptionConstants.LocalPointerIndex,
+            CoreOptionFunctions.CopyVersionTwoDefinitions, CoreOptionFunctions.MergeLocalizedDefinitions,
+            CoreOptionFunctions.MergeLocalizedCategories, out var categories);
+        ReplaceCatalog(options, categories);
     }
 
     internal bool ReturnValue(nint data) => _host.ReturnValue(data);

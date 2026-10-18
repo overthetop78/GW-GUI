@@ -7,8 +7,41 @@ internal delegate TOption EmulationNativeOptionFactory<TOption, TValue>(string k
     string? description, string? category, string defaultValue, IReadOnlyList<TValue> values,
     string? categorizedName, string? categorizedDescription);
 
+internal delegate IReadOnlyList<TOption> EmulationNativeOptionTableReader<TOption, TCategory>(nint data,
+    out IReadOnlyList<TCategory> categories);
+
 public static partial class EmulationCoreOptionFunctions
 {
+    internal static IReadOnlyList<TOption> CopyInternationalDefinitions<TOption>(nint data,
+        int englishPointerIndex, int localPointerIndex, Func<nint, IReadOnlyList<TOption>> read,
+        Func<IReadOnlyList<TOption>, IReadOnlyList<TOption>, IReadOnlyList<TOption>> merge)
+    {
+        if (data == nint.Zero) return [];
+        var englishPointer = Marshal.ReadIntPtr(data, englishPointerIndex * IntPtr.Size);
+        var localPointer = Marshal.ReadIntPtr(data, localPointerIndex * IntPtr.Size);
+        var english = read(englishPointer);
+        var local = read(localPointer);
+        return merge(english, local);
+    }
+
+    internal static IReadOnlyList<TOption> CopyInternationalDefinitions<TOption, TCategory>(nint data,
+        int englishPointerIndex, int localPointerIndex,
+        EmulationNativeOptionTableReader<TOption, TCategory> read,
+        Func<IReadOnlyList<TOption>, IReadOnlyList<TOption>, IReadOnlyList<TOption>> mergeOptions,
+        Func<IReadOnlyList<TCategory>, IReadOnlyList<TCategory>, IReadOnlyList<TCategory>> mergeCategories,
+        out IReadOnlyList<TCategory> categories)
+    {
+        categories = [];
+        if (data == nint.Zero) return [];
+        var englishPointer = Marshal.ReadIntPtr(data, englishPointerIndex * IntPtr.Size);
+        var localPointer = Marshal.ReadIntPtr(data, localPointerIndex * IntPtr.Size);
+        var english = read(englishPointer, out var englishCategories);
+        var local = read(localPointer, out var localCategories);
+        var options = mergeOptions(english, local);
+        categories = mergeCategories(englishCategories, localCategories);
+        return options;
+    }
+
     internal static nint SelectInternationalDefinitions(nint data)
     {
         if (data == nint.Zero) return nint.Zero;
