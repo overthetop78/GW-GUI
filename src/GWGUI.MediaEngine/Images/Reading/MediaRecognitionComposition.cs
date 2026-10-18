@@ -92,6 +92,7 @@ public sealed class MediaRecognitionComposition
                 new FamicomFdsReader(),
                 new AcornAtomDskReader(),
                 new ApridiskReader(),
+                new DefinedRawImageReader(),
                 new BbcDfsReader(),
                 new CoherentRawImageReader(),
                 new DecRx02Reader(),

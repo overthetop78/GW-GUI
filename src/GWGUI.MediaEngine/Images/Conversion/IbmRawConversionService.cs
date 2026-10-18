@@ -9,9 +9,9 @@ public sealed class IbmRawConversionService(IsoScpSectorImageReader scpReader, I
 {
     /// <summary>Indique si la sortie demandée est un profil IBM brut explicite.</summary>
     public static bool CanCreate(string formatId,
-        string extension) => !formatId.Equals(DiskImageFormatIds.IbmScan,
-        StringComparison.OrdinalIgnoreCase) && GWGUI.MediaEngine.Images.Formats.Floppy.Raw.IbmPcGeometryCatalog.TryFromFormatId(formatId,
-        out _) && (extension.Equals(DiskImageFileExtensions.Ima,
+        string extension) => (formatId.Equals(DiskImageFormatIds.IbmScan,
+        StringComparison.OrdinalIgnoreCase) || GWGUI.MediaEngine.Images.Formats.Floppy.Raw.IbmPcGeometryCatalog.TryFromFormatId(formatId,
+        out _)) && (extension.Equals(DiskImageFileExtensions.Ima,
         StringComparison.OrdinalIgnoreCase) || extension.Equals(DiskImageFileExtensions.Img,
         StringComparison.OrdinalIgnoreCase));
     /// <summary>Reconstruit ou relit la source puis écrit le profil IBM demandé.</summary>

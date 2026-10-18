@@ -6,16 +6,20 @@ using GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Reading;
 using GWGUI.MediaEngine.Images.Reading.Decoding;
 using GWGUI.MediaEngine.Images.Reading;
 using GWGUI.MediaEngine.Interfaces;
+using GWGUI.MediaEngine;
+using GWGUI.MediaEngine.Images.Conversion;
+using GWGUI.MediaEngine.Constants;
+using System.IO;
 
 using GWGUI.MediaEngine.Images.Formats.Floppy.Scp;
 
 namespace GWGUI.App.Services.PhysicalDiskReading;
 
-public sealed class PhysicalDiskReadService(FloppyFluxAcquisitionService acquisitionService, IScpWriter writer, FluxDecoderRegistry decoders, DiskImageExplorer explorer)
+public sealed class PhysicalDiskReadService(FloppyFluxAcquisitionService acquisitionService, IScpWriter writer, FluxDecoderRegistry decoders, DiskImageExplorer explorer, MediaConversionService? conversionService = null)
 {
     public static PhysicalDiskReadService CreateDefault() => new(new FloppyFluxAcquisitionService(), new ScpWriter(), new FluxDecoderRegistry(), DiskImageExplorer.CreateDefault());
 
-    public async Task<PhysicalDiskReadResult> ReadAsync(MediaAcquisitionResult acquisition, string outputPath, IProgress<PhysicalDiskReadOperationProgress>? progress = null, CancellationToken cancellationToken = default)
+    public async Task<PhysicalDiskReadResult> ReadAsync(MediaAcquisitionResult acquisition, string outputPath, IProgress<PhysicalDiskReadOperationProgress>? progress = null, CancellationToken cancellationToken = default, string? targetFormatId = null)
     {
         ArgumentNullException.ThrowIfNull(acquisition);
         ArgumentException.ThrowIfNullOrWhiteSpace(outputPath);
@@ -23,11 +27,23 @@ public sealed class PhysicalDiskReadService(FloppyFluxAcquisitionService acquisi
         var tracks = image.Tracks.Select(track => new PhysicalDiskTrackAddress(track.Cylinder, track.Head, track.Cylinder, track.Head)).ToArray();
 
         progress?.Report(new(PhysicalDiskReadStage.Saving, tracks.Length, tracks.Length, tracks: tracks));
-        await writer.WriteAsync(outputPath, image, cancellationToken).ConfigureAwait(false);
+        if (targetFormatId is null)
+            await writer.WriteAsync(outputPath, image, cancellationToken).ConfigureAwait(false);
+        else
+        {
+            var source = acquisitionService.CreateDocument(outputPath, image);
+            var conversion = conversionService ?? MediaEngineComposition.CreateDefault().ConversionService;
+            await conversion.ConvertAsync(new MediaConversionRequest(source, outputPath, targetFormatId), cancellationToken).ConfigureAwait(false);
+        }
 
         var diagnostics = DecodeTracks(image, progress, cancellationToken);
         progress?.Report(new(PhysicalDiskReadStage.Exploring, tracks.Length, tracks.Length, tracks: tracks));
-        var document = await explorer.ExploreScpAsync(outputPath, image, cancellationToken).ConfigureAwait(false);
+        var isScp = Path.GetExtension(outputPath).Equals(DiskImageFileExtensions.Scp, StringComparison.OrdinalIgnoreCase);
+        var explorationFormat = Path.GetExtension(outputPath).Equals(DiskImageFileExtensions.Hfe, StringComparison.OrdinalIgnoreCase)
+            ? DiskImageFormatIds.RawHfe : targetFormatId;
+        var document = targetFormatId is null || isScp
+            ? await explorer.ExploreScpAsync(outputPath, image, cancellationToken).ConfigureAwait(false)
+            : await explorer.ExploreAsync(outputPath, explorationFormat, cancellationToken).ConfigureAwait(false);
         return new(outputPath, acquisition, diagnostics, document);
     }
 

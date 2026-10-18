@@ -1,4 +1,7 @@
 using GWGUI.MediaEngine.Images.Formats;
+using GWGUI.MediaEngine.Images.Formats.Floppy.AcornAtom;
+using GWGUI.MediaEngine.Images.Formats.Floppy.Apridisk;
+using GWGUI.MediaEngine.Images.Reading.Reconstruction;
 using GWGUI.MediaEngine.Images.Formats.Cartridge.AmstradCpr;
 using GWGUI.MediaEngine.Images.Formats.Cartridge.AmstradRom;
 using GWGUI.MediaEngine.Images.Formats.Cartridge.Console;
@@ -100,6 +103,8 @@ public sealed class MediaWritingComposition
         var imd = new ImdWriter();
         var decRx02 = new DecRx02Writer();
         var linear = new LinearSectorImageWriter();
+        var apridisk = new ApridiskWriter();
+        var definedRaw = new DefinedRawImageWriter();
         var td0 = new Td0Writer();
         var scp = new ScpWriter();
         var hfe = new HfeWriter();
@@ -127,10 +132,24 @@ public sealed class MediaWritingComposition
 
         IMediaImageWriter[] writers =
         [
+            new SectorMediaImageWriterAdapter("defined-img", DiskDefsFormatReader.RawDefinitions.Keys, [".img"],
+                (image, _, format, _) => image.FormatId.Equals(format, StringComparison.OrdinalIgnoreCase),
+                async (image, _, path, format, token) =>
+                {
+                    await definedRaw.WriteAsync(image, path, format, token).ConfigureAwait(false);
+                    return [path];
+                }),
             amstradCpr,
             amstradRom,
             consoleCartridge,
             nintendoFamicomDisk,
+            Sector(MediaImageWriterIds.AcornAtomDsk, [DiskImageFileExtensions.Dsk],
+                (format, extension) => format.Equals(DiskImageFormatIds.AcornAtomDos, StringComparison.OrdinalIgnoreCase) && extension.Equals(DiskImageFileExtensions.Dsk, StringComparison.OrdinalIgnoreCase),
+                (image, _, path, _, token) => WriteSingleAsync(linear.WriteAsync(image.WithFormatId(DiskImageFormatIds.AcornAtomDos), path,
+                    new RegularSectorGeometry(DiskImageFormatIds.AcornAtomDos, AcornAtomDskReader.BlockSize, AcornAtomDskReader.Cylinders, AcornAtomDskReader.Heads, AcornAtomDskReader.SectorsPerTrack), token), path)),
+            Sector(MediaImageWriterIds.Apridisk, [DiskImageFileExtensions.Dsk],
+                (format, extension) => format.Equals(DiskImageFormatIds.ApricotPcXi315, StringComparison.OrdinalIgnoreCase) && extension.Equals(DiskImageFileExtensions.Dsk, StringComparison.OrdinalIgnoreCase),
+                (image, _, path, _, token) => WriteSingleAsync(apridisk.WriteAsync(image.WithFormatId(DiskImageFormatIds.ApricotPcXi315), path, token), path)),
             Sector(MediaImageWriterIds.AcornAdf, [DiskImageFileExtensions.Adf], AcornAdfConversionService.CanCreate, (image, _, path, _, token) => WriteSingleAsync(acornAdf.WriteAsync(image, path, token), path)),
             Sector(MediaImageWriterIds.AmigaAdf, [DiskImageFileExtensions.Adf], AmigaAdfConversionService.CanCreate, (image, _, path, _, token) => WriteSingleAsync(amigaAdf.WriteAsync(image, path, token), path)),
             Sector(MediaImageWriterIds.BbcDfs, [DiskImageFileExtensions.Ssd, DiskImageFileExtensions.Dsd], BbcDfsConversionService.CanCreate,
@@ -194,14 +213,20 @@ public sealed class MediaWritingComposition
         => new(id, FormatIds(supports, extensions), extensions, (_, _, formatId, extension) => supports(formatId, extension), write);
 
     private static FluxMediaImageWriterAdapter Flux(string id, string formatId, string extension, Func<ProtectedTrackImage, IReadOnlyDictionary<string, string>, string, CancellationToken, Task<IReadOnlyList<string>>> write)
-        => new(
+    {
+        var formatIds = DiskDefsFormatReader.Definitions.Values
+            .Where(definition => definition.Tracks.All(track => track.Codec == "bitcell"))
+            .Select(definition => definition.Id).Append(formatId).ToHashSet(StringComparer.OrdinalIgnoreCase);
+        return new(
             id,
-            [formatId],
+            formatIds,
             [extension],
-            (_, targetFormatId, targetExtension) =>
-                targetFormatId.Equals(formatId, StringComparison.OrdinalIgnoreCase) &&
+            (image, targetFormatId, targetExtension) =>
+                formatIds.Contains(targetFormatId) &&
+                (extension != DiskImageFileExtensions.Hfe || ProtectedTrackHfeImageAdapter.CanRepresentExactly(image)) &&
                 targetExtension.Equals(extension, StringComparison.OrdinalIgnoreCase),
             (image, metadata, path, _, token) => write(image, metadata, path, token));
+    }
 
     private static IReadOnlyList<string> FormatIds(Func<string, string, bool> supports, IReadOnlyList<string> extensions) => Formats.Formats.Where(format => extensions.Any(extension => supports(format.Id, extension))).Select(format => format.Id).Distinct(StringComparer.OrdinalIgnoreCase).ToArray();
 

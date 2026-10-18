@@ -1,4 +1,4 @@
-﻿using GWGUI.MediaEngine.Images.Reading.Decoding;
+using GWGUI.MediaEngine.Images.Reading.Decoding;
 using GWGUI.MediaEngine.Images.Reading.Decoding.Definitions;
 using GWGUI.MediaEngine.Functions;
 using GWGUI.MediaEngine.Images.Models.Sectors;
@@ -25,6 +25,12 @@ public sealed class AmigaScpSectorImageReader(IScpReader scpReader, FluxDecoderR
     public async Task<SectorImage> ReadAsync(string path, IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>? progress, CancellationToken cancellationToken = default)
     {
         var scp = await scpReader.ReadAsync(path, cancellationToken).ConfigureAwait(false);
+        return Read(scp, progress, cancellationToken);
+    }
+
+    internal SectorImage Read(ScpImage scp, IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>? progress, CancellationToken cancellationToken)
+    {
+        ArgumentNullException.ThrowIfNull(scp);
         var candidates = new Dictionary<SectorAddress, List<(DecodedSector Sector, int Revolution)>>();
         var completed = 0;
         var completedRevolutions = 0;

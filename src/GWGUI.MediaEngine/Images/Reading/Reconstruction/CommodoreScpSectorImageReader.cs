@@ -1,4 +1,4 @@
-﻿using GWGUI.MediaFileSystems.Formats.Commodore;
+using GWGUI.MediaFileSystems.Formats.Commodore;
 using GWGUI.MediaEngine.Images.Reading.Decoding;
 using GWGUI.MediaEngine.Functions;
 using GWGUI.MediaEngine.Images.Models.Sectors;
@@ -28,6 +28,12 @@ public sealed class CommodoreScpSectorImageReader(IScpReader scpReader, FluxDeco
     public async Task<SectorImage> ReadAsync(string path, string? formatId, IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>? progress, CancellationToken cancellationToken = default)
     {
         var scp = await scpReader.ReadAsync(path, cancellationToken).ConfigureAwait(false);
+        return Read(scp, formatId, progress, cancellationToken);
+    }
+
+    internal SectorImage Read(ScpImage scp, string? formatId, IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>? progress, CancellationToken cancellationToken)
+    {
+        ArgumentNullException.ThrowIfNull(scp);
         if (formatId == DiskImageFormatIds.Commodore1581)
             return Read1581(scp, progress, cancellationToken);
         if (formatId == DiskImageFormatIds.Commodore900Coherent)

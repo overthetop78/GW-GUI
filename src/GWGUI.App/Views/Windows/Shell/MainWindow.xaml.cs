@@ -322,7 +322,6 @@ public partial class MainWindow : Window
             _consoleLog,
             _runner,
             _diskImageWorkspace,
-            ReadFolder,
             CommandPreview,
             LogOutput,
             () => MainTabs?.SelectedIndex ?? -1,
@@ -393,7 +392,6 @@ public partial class MainWindow : Window
             _navigation,
             _operation,
             _diskImageWorkspace,
-            _viewModel,
             value => EmulationBlock.Configure(value),
             () => EmulationBlock.StopAllAsync(),
             async () =>

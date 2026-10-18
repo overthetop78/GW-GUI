@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using System.IO;
 using System.Runtime.InteropServices;
 using System.Runtime.Versioning;
 using Microsoft.Win32.SafeHandles;
@@ -19,7 +20,7 @@ public sealed class WindowsGreaseweazleSerialTransport : IGreaseweazleSerialTran
         cancellationToken.ThrowIfCancellationRequested();
         if (IsOpen) throw new InvalidOperationException("The serial transport is already open.");
 
-        _handle = CreateFile($@"\.\{portName}", GenericRead | GenericWrite, 0, IntPtr.Zero, OpenExisting, FileFlagOverlapped, IntPtr.Zero);
+        _handle = CreateFile($@"\\.\{portName}", GenericRead | GenericWrite, 0, IntPtr.Zero, OpenExisting, FileFlagOverlapped, IntPtr.Zero);
         if (_handle.IsInvalid)
         {
             var error = Marshal.GetLastWin32Error();

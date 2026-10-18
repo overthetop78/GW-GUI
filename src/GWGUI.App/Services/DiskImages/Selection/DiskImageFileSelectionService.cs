@@ -12,6 +12,7 @@ internal sealed class DiskImageFileSelectionService(Func<AppSettings> getSetting
     internal string? SelectExplorerImage() => SelectImage(settings => settings.LastExplorerImageFolder, (settings, folder) => settings.LastExplorerImageFolder = folder);
 
     internal string? SelectConversionImage() => SelectImage(settings => settings.LastDiskImageFolder, (settings, folder) => settings.LastDiskImageFolder = folder);
+    internal string? SelectWriteImage() => SelectImage(settings => settings.Write.Folder, (settings, folder) => settings.Write.Folder = folder);
 
     private string? SelectImage(Func<AppSettings, string?> getLastFolder, Action<AppSettings, string?> setLastFolder)
     {

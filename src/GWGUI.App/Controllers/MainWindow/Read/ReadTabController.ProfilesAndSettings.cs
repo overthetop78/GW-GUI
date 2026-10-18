@@ -190,6 +190,7 @@ internal sealed partial class ReadTabController
     internal void RestoreSettings()
     {
         var readSettings = settings().Read;
+        viewModel.Read.Folder = string.IsNullOrWhiteSpace(readSettings.Folder) ? settings().DefaultImagesFolder : readSettings.Folder;
         KnownFormatRadio.IsChecked = readSettings.UseKnownFormat;
         RawScpRadio.IsChecked = !readSettings.UseKnownFormat;
         SelectFormat(readSettings.FormatId, readSettings.ImageExtension);
@@ -203,6 +204,7 @@ internal sealed partial class ReadTabController
     internal void CaptureSettings()
     {
         var readSettings = settings().Read;
+        readSettings.Folder = string.IsNullOrWhiteSpace(viewModel.Read.Folder) ? null : viewModel.Read.Folder;
         readSettings.UseKnownFormat = KnownFormatRadio.IsChecked == true;
         readSettings.FormatId = (FormatCombo.SelectedItem as DiskFormat)?.Id;
         readSettings.ImageExtension = (ExtensionCombo.SelectedItem as ImageExtension)?.Extension;
@@ -218,7 +220,11 @@ internal sealed partial class ReadTabController
     internal PhysicalDiskReadOptions CreateInternalOptions(HardwareChoice hardware)
     {
         var selection = GreaseweazleDriveSelectionFunctions.Resolve(hardware.Drive.Selection);
-        var tracks = PhysicalDiskTrackSelectionParser.Parse(viewModel.Read.Tracks.Enabled ? viewModel.Read.Tracks.Value : ReadTabConstants.DefaultTrackSelection);
+        var defaultTracks = ReadTabConstants.DefaultTrackSelection;
+        if (RawScpRadio.IsChecked != true && FormatCombo.SelectedItem is DiskFormat format
+            && DiskDefsFormatReader.GetDimensions(format.Id) is { } dimensions)
+            defaultTracks = $"c=0-{dimensions.Cylinders - 1}:h=0-{dimensions.Heads - 1}";
+        var tracks = PhysicalDiskTrackSelectionParser.Parse(viewModel.Read.Tracks.Enabled ? viewModel.Read.Tracks.Value : defaultTracks);
         var revolutions = viewModel.Read.Revs.Enabled ? int.Parse(viewModel.Read.Revs.Value) : PhysicalDiskReadDefaults.Revolutions;
         var retries = viewModel.Read.Retries.Enabled ? int.Parse(viewModel.Read.Retries.Value) : PhysicalDiskReadDefaults.FluxOverflowRetries;
         var seekRetries = viewModel.Read.SeekRetries.Enabled ? int.Parse(viewModel.Read.SeekRetries.Value) : PhysicalDiskReadDefaults.SeekRetries;

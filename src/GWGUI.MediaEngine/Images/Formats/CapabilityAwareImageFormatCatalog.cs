@@ -1,4 +1,5 @@
 using GWGUI.MediaEngine.Functions;
+using GWGUI.MediaEngine.Constants;
 using System.Globalization;
 using System.Text.RegularExpressions;
 
@@ -28,7 +29,8 @@ public sealed class CapabilityAwareImageFormatCatalog : IImageFormatCatalog
     private static DiskFormat ApplyPhysicalCapabilities(DiskFormat format, GwFormatCapabilities capabilities)
     {
         if (!format.SupportsPhysicalRead && !format.SupportsPhysicalWrite) return format;
-        var supported = BuiltInDiskDefinitions.Supports(format.Id);
+        var supported = format.Id is DiskImageFormatIds.RawScp or DiskImageFormatIds.RawHfe
+            || BuiltInDiskDefinitions.Supports(format.Id);
         var gwFormat = GwFormatArgument.FromCatalogId(format.Id);
         supported |= gwFormat is not null && capabilities.FormatIds.Contains(gwFormat);
         return format with
@@ -45,6 +47,10 @@ public sealed class CapabilityAwareImageFormatCatalog : IImageFormatCatalog
         var detail = id.Contains('.') ? string.Join(" · ", id.Split('.')[1..].Select(FriendlyToken)) : null;
         var preferred = supported.Contains(".img") ? ".img" : supported.Contains(".scp") ? ".scp" : supported.Order(StringComparer.OrdinalIgnoreCase).FirstOrDefault();
         var extensions = preferred is null ? Array.Empty<ImageExtension>() : [new ImageExtension(preferred, preferred.TrimStart('.').ToUpperInvariant(), true)];
+        if (DiskDefsFormatReader.Definitions.TryGetValue(id, out var definition)
+            && definition.Tracks.All(track => track.Codec == "bitcell"))
+            extensions = new[] { ".scp", ".hfe" }.Where(supported.Contains)
+                .Select((extension, index) => new ImageExtension(extension, extension[1..].ToUpperInvariant(), index == 0)).ToArray();
         var sources = new HashSet<string>(supported.Select(MediaFileExtensionFunctions.NormalizeCore), StringComparer.OrdinalIgnoreCase);
         var tag = Regex.Replace(id.ToUpperInvariant(), "[^A-Z0-9]+", "-").Trim('-');
         return new DiskFormat(id, family, detail is null ? family : $"{family} — {detail}", extensions, false, sources, tag, FloppyFormFactor.Unknown, SupportsPhysicalRead: true, SupportsPhysicalWrite: true);

@@ -90,11 +90,6 @@ internal sealed partial class ReadTabController
                 dialogs.Show(LocExtension.Get("Hardware.NotConfigured"), LocExtension.Get("Read.Title"), icon: UserDialogIcon.Warning);
                 return;
             }
-            if (RawScpRadio.IsChecked != true)
-            {
-                dialogs.Show(LocExtension.Get("Read.InternalRawScpOnly"), LocExtension.Get("Read.Title"), icon: UserDialogIcon.Warning);
-                return;
-            }
             if (HasUnsupportedInternalOptions())
             {
                 dialogs.Show(LocExtension.Get("Read.InternalUnsupportedOptions"), LocExtension.Get("Read.Title"), icon: UserDialogIcon.Warning);
@@ -107,7 +102,13 @@ internal sealed partial class ReadTabController
                 dialogs.Show(LocExtension.Get("Read.InternalInvalidOptions"), LocExtension.Get("Read.Title"), icon: UserDialogIcon.Warning);
                 return;
             }
-            await ExecuteInternalAsync(options, target);
+            var targetFormatId = RawScpRadio.IsChecked == true ? null : (FormatCombo.SelectedItem as DiskFormat)?.Id;
+            if (RawScpRadio.IsChecked != true && string.IsNullOrWhiteSpace(targetFormatId))
+            {
+                dialogs.Show(LocExtension.Get("Read.InternalInvalidOptions"), LocExtension.Get("Read.Title"), icon: UserDialogIcon.Warning);
+                return;
+            }
+            await ExecuteInternalAsync(options, target, targetFormatId);
             return;
         }
 
@@ -142,7 +143,7 @@ internal sealed partial class ReadTabController
         view.ExecuteActionButton.Content = LocExtension.Get("Common.Execute");
     }
 
-    private async Task ExecuteInternalAsync(PhysicalDiskReadOptions options, string target)
+    private async Task ExecuteInternalAsync(PhysicalDiskReadOptions options, string target, string? targetFormatId)
     {
         view.ExecuteActionButton.Content = LocExtension.Get("Common.Stop");
         operation.Begin();
@@ -157,7 +158,7 @@ internal sealed partial class ReadTabController
         {
             var reader = createInternalReader();
             var readProgress = new Progress<PhysicalDiskReadOperationProgress>(ReportInternalProgress);
-            capture = await reader.ReadAsync(options, target, readProgress, token);
+            capture = await reader.ReadAsync(options, target, readProgress, token, targetFormatId);
             return new GwExecutionResult(0, false, stopwatch.Elapsed, []);
         });
         await operation.FlushPendingAsync();

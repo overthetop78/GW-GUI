@@ -45,7 +45,6 @@ internal sealed class WriteTabController(
     ConsoleLogSession consoleLog,
     IGreaseweazleRunner runner,
     DiskImageWorkspaceController diskImageWorkspace,
-    TextBox readFolder,
     TextBox commandPreview,
     RichTextBox logOutput,
     Func<int> selectedMainTab,
@@ -76,7 +75,8 @@ internal sealed class WriteTabController(
 
     internal async Task BrowseSourceAsync()
     {
-        var path = fileDialogs.OpenFile(new(LocExtension.Get("Common.DiskImageFilter"), readFolder.Text));
+        var path = new GWGUI.App.Services.DiskImages.Selection.DiskImageFileSelectionService(
+            settings, fileDialogs, (key, arguments) => LocExtension.Get(key, arguments)).SelectWriteImage();
         if (path is null) return;
         viewModel.Write.SourcePath = path;
         detectedFormat = detectSource is null ? formatDetector().Detect(path, new FileInfo(path).Length) : detectSource(path);

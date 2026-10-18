@@ -7,6 +7,17 @@ namespace GWGUI.Tests.Media;
 public sealed class ImageFormatCatalogReuseTests
 {
     [Theory]
+    [InlineData("raw.scp", ".scp")]
+    [InlineData("raw.hfe", ".hfe")]
+    public void RawContainersRemainReadableWithKnownCapabilities(string id, string extension)
+    {
+        var capabilities = new GwFormatCapabilities(new HashSet<string>([id], StringComparer.OrdinalIgnoreCase),
+            new HashSet<string>([extension], StringComparer.OrdinalIgnoreCase));
+        var catalog = new CapabilityAwareImageFormatCatalog(new BuiltInImageFormatCatalog(), capabilities);
+        Assert.True(catalog.Formats.Single(format => format.Id == id).SupportsPhysicalRead);
+    }
+
+    [Theory]
     [InlineData(".DSK", ".dsk")]
     [InlineData("DSK", ".dsk")]
     [InlineData("", ".")]

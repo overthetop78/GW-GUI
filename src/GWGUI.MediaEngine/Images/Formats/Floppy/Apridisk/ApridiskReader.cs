@@ -20,11 +20,11 @@ public sealed class ApridiskReader : IMediaImageReader
     internal const int SectorsPerTrack = 9;
     internal const int BlockCount = Cylinders * Heads * SectorsPerTrack;
 
-    private const uint SectorRecord = 0xE31D0001;
-    private const ushort Uncompressed = 0x9E90;
+    internal const uint SectorRecord = 0xE31D0001;
+    internal const ushort Uncompressed = 0x9E90;
     private const ushort Compressed = 0x3E5A;
-    private const int RecordHeaderSize = 16;
-    private static readonly byte[] Signature = "ACT Apricot disk image\u001a\u0004"u8.ToArray();
+    internal const int RecordHeaderSize = 16;
+    internal static readonly byte[] Signature = "ACT Apricot disk image\u001a\u0004"u8.ToArray();
     private static readonly IReadOnlySet<string> SupportedFormatIds = new[] { DiskImageFormatIds.ApricotPcXi315 }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
     private static readonly IReadOnlySet<string> SupportedExtensions = new[] { DiskImageFileExtensions.Dsk }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
     private static readonly IReadOnlyList<ReadOnlyMemory<byte>> SupportedSignatures = [Signature];

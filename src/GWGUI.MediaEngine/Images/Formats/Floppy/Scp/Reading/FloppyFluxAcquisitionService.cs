@@ -1,5 +1,8 @@
 using GWGUI.MediaFileSystems.Functions;
 using System.Globalization;
+using GWGUI.MediaEngine.Constants;
+using GWGUI.MediaEngine.Contracts;
+using GWGUI.MediaEngine.Images.Reading;
 using MediaPhysicalEncodingIds = global::GWGUI.MediaEngine.Constants.MediaPhysicalEncodingIds;
 using MediaPhysicalMetadataKeys = global::GWGUI.MediaEngine.Constants.MediaPhysicalMetadataKeys;
 using MediaAcquisitionResult = global::GWGUI.MediaEngine.Contracts.MediaAcquisitionResult;
@@ -13,6 +16,13 @@ namespace GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Reading;
 /// <summary>Reconstructs MediaEngine SCP data from neutral physical floppy flux units.</summary>
 public sealed class FloppyFluxAcquisitionService
 {
+    public MediaImageDocument CreateDocument(string sourcePath, ScpImage image)
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(sourcePath);
+        return MediaImageDocumentFactory.CreateFloppyFlux(new MediaSourceDescriptor(sourcePath, []),
+            DiskImageFormatIds.RawScp, ScpProtectedTrackImageAdapter.Create(image), ScpMetadataFunctions.Create(image));
+    }
+
     public ScpImage CreateScpImage(MediaAcquisitionResult acquisition)
     {
         ArgumentNullException.ThrowIfNull(acquisition);

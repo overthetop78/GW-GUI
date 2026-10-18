@@ -8,6 +8,19 @@ namespace GWGUI.MediaEngine.Images.Formats.Floppy.Hfe;
 /// <summary>Builds an HFE v1 container model from the common protected-track representation.</summary>
 internal static class ProtectedTrackHfeImageAdapter
 {
+    internal static bool CanRepresentExactly(ProtectedTrackImage image)
+    {
+        try
+        {
+            Create(image, new Dictionary<string, string> { [HfeMetadataKeys.Encoding] = "0" });
+            return true;
+        }
+        catch (Exception exception) when (exception is InvalidDataException or NotSupportedException or OverflowException)
+        {
+            return false;
+        }
+    }
+
     public static HfeImage Create(ProtectedTrackImage image, IReadOnlyDictionary<string, string> metadata)
     {
         ArgumentNullException.ThrowIfNull(image);
@@ -39,6 +52,8 @@ internal static class ProtectedTrackHfeImageAdapter
         if (bitCellTicks == 0) throw new InvalidDataException("The flux track does not contain representable timing.");
         var intervals = revolution.Flux.FluxIntervals.Select(value => checked(value * scale)).ToArray();
         var indexTime = checked(revolution.Flux.IndexTimeTicks * scale);
+        if ((long)indexTime / bitCellTicks > ushort.MaxValue / HfeFormat.MaximumHeadCount * HfeFormat.BitsPerByte)
+            throw new NotSupportedException("The exact flux timing exceeds the HFE v1 track length limit.");
         var bits = FluxBitCellConverter.ToBits(intervals, indexTime, bitCellTicks);
         return new HfeTrack(track.Cylinder, track.Head, bits, bitCellTicks);
     }

@@ -4,6 +4,7 @@ namespace GWGUI.Infrastructure.Settings.Operations;
 
 public sealed class ReadUiSettings
 {
+    public string? Folder { get; set; }
     public bool UseKnownFormat { get; set; }
     public string? FormatId { get; set; }
     public string? ImageExtension { get; set; }
@@ -17,6 +18,7 @@ public sealed class ReadUiSettings
 
 public sealed class AdvancedUiSettings
 {
+    public string? Folder { get; set; }
     public Dictionary<string, string> OptionValues { get; set; } = new();
     public HashSet<string> EnabledOptions { get; set; } = [];
 }

@@ -10,6 +10,16 @@ public sealed class LinearSectorImageWriter(IAtomicImageFileWriter? fileWriter =
     /// <summary>Valide la géométrie puis écrit tous les blocs sans remplissage implicite.</summary>
     public async Task WriteAsync(SectorImage image, string path, RegularSectorGeometry geometry, CancellationToken cancellationToken = default)
     {
+        ValidateGeometry(image, geometry);
+        await files.WriteAsync(path, async (output, token) =>
+        {
+            foreach (var block in ReadBlocks(image, geometry, token))
+                await output.WriteAsync(block.Data.ToArray(), token).ConfigureAwait(false);
+        }, cancellationToken).ConfigureAwait(false);
+    }
+
+    internal static void ValidateGeometry(SectorImage image, RegularSectorGeometry geometry)
+    {
         if (!image.FormatId.Equals(geometry.FormatId,
             StringComparison.OrdinalIgnoreCase) 
             || image.BlockSize 
@@ -23,21 +33,18 @@ public sealed class LinearSectorImageWriter(IAtomicImageFileWriter? fileWriter =
             || image.BlockCount 
             != geometry.BlockCount)
             throw LinearSectorImageWriterExceptions.InvalidGeometry(image.FormatId, image.BlockSize, image.Cylinders, image.Heads, image.SectorsPerTrack, geometry.FormatId, geometry.BlockSize, geometry.Cylinders, geometry.Heads, geometry.SectorsPerTrack);
-        await files.WriteAsync(
-            path,
-            async (output, token) =>
+    }
+
+    internal static IEnumerable<SectorBlock> ReadBlocks(SectorImage image, RegularSectorGeometry geometry, CancellationToken cancellationToken)
+    {
+        for (var logicalBlock = 0; logicalBlock < geometry.BlockCount; logicalBlock++)
         {
-            for (var logicalBlock = 0; logicalBlock < geometry.BlockCount; logicalBlock++)
-            {
-                token.ThrowIfCancellationRequested();
-                if (!image.TryGetBlock(logicalBlock, out var block))
-                    throw LinearSectorImageWriterExceptions.MissingBlock(logicalBlock);
-                if (block.Data.Count != geometry.BlockSize)
-                    throw LinearSectorImageWriterExceptions.InvalidBlockSize(logicalBlock, block.Data.Count, geometry.BlockSize);
-                await output.WriteAsync(block.Data.ToArray(), token).ConfigureAwait(false);
-            }
-        },
-            cancellationToken
-        ).ConfigureAwait(false);
+            cancellationToken.ThrowIfCancellationRequested();
+            if (!image.TryGetBlock(logicalBlock, out var block))
+                throw LinearSectorImageWriterExceptions.MissingBlock(logicalBlock);
+            if (block.Data.Count != geometry.BlockSize)
+                throw LinearSectorImageWriterExceptions.InvalidBlockSize(logicalBlock, block.Data.Count, geometry.BlockSize);
+            yield return block;
+        }
     }
 }

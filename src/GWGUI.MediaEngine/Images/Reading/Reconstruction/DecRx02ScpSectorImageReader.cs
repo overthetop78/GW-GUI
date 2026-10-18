@@ -1,4 +1,4 @@
-﻿using GWGUI.MediaEngine.Images.Reading.Decoding;
+using GWGUI.MediaEngine.Images.Reading.Decoding;
 using GWGUI.MediaEngine.Functions;
 using GWGUI.MediaEngine.Images.Models.Sectors;
 using GWGUI.MediaEngine.Images.Reading.Reconstruction;
@@ -31,6 +31,12 @@ public sealed class DecRx02ScpSectorImageReader(IScpReader scpReader, FluxDecode
     public async Task<SectorImage> ReadAsync(string path, IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>? progress, CancellationToken cancellationToken = default)
     {
         var scp = await scpReader.ReadAsync(path, cancellationToken).ConfigureAwait(false);
+        return Read(scp, progress, cancellationToken);
+    }
+
+    internal SectorImage Read(ScpImage scp, IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>? progress, CancellationToken cancellationToken)
+    {
+        ArgumentNullException.ThrowIfNull(scp);
         var sectors = new Dictionary<int, List<(DecodedSector Sector, int Revolution)>>();
         var completed = 0;
         foreach (var track in scp.Tracks)

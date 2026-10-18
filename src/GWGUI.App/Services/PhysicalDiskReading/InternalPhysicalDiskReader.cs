@@ -18,13 +18,13 @@ namespace GWGUI.App.Services.PhysicalDiskReading;
 
 public sealed class InternalPhysicalDiskReader(Func<IGreaseweazleReadDevice> deviceFactory)
 {
-    public async Task<PhysicalDiskReadResult> ReadAsync(PhysicalDiskReadOptions options, string outputPath, IProgress<PhysicalDiskReadOperationProgress>? progress = null, CancellationToken cancellationToken = default)
+    public async Task<PhysicalDiskReadResult> ReadAsync(PhysicalDiskReadOptions options, string outputPath, IProgress<PhysicalDiskReadOperationProgress>? progress = null, CancellationToken cancellationToken = default, string? targetFormatId = null)
     {
         var fluxService = new FloppyFluxAcquisitionService();
         var registry = new MediaAcquisitionProviderRegistry([new GreaseweazleMediaAcquisitionProvider(deviceFactory)]);
         var acquisitionProgress = new Progress<MediaAcquisitionProgress>(value => ReportProgress(value, options.Tracks, fluxService, progress));
         var acquisition = await registry.AcquireAsync(MediaKind.Floppy, options.PortName, CreateOptions(options), acquisitionProgress, cancellationToken).ConfigureAwait(false);
-        return await PhysicalDiskReadService.CreateDefault().ReadAsync(acquisition, outputPath, progress, cancellationToken).ConfigureAwait(false);
+        return await PhysicalDiskReadService.CreateDefault().ReadAsync(acquisition, outputPath, progress, cancellationToken, targetFormatId).ConfigureAwait(false);
     }
 
     public static InternalPhysicalDiskReader CreateDefault() => new(() => new GreaseweazleProtocolClient(new WindowsGreaseweazleSerialTransport()));

@@ -1,4 +1,5 @@
 using GWGUI.MediaFileSystems.FileSystems.Fat12;
+using GWGUI.MediaEngine.Constants;
 using GWGUI.MediaEngine.Images.Reading.Reconstruction;
 
 using GWGUI.MediaEngine.Images.Models.Sectors;
@@ -14,6 +15,9 @@ public sealed class IbmRawImageWriter(LinearSectorImageWriter writer)
     /// <summary>Écrit le profil IBM explicitement demandé après validation de tous les blocs.</summary>
     public Task WriteAsync(SectorImage image, string path, string formatId, CancellationToken cancellationToken = default)
     {
+        if (formatId.Equals(DiskImageFormatIds.IbmScan, StringComparison.OrdinalIgnoreCase))
+            return writer.WriteAsync(image.WithFormatId(formatId), path,
+                new RegularSectorGeometry(formatId, image.BlockSize, image.Cylinders, image.Heads, image.SectorsPerTrack), cancellationToken);
         if (!IbmPcGeometryCatalog.TryFromFormatId(formatId, out var geometry)) throw IbmRawImageWriterExceptions.UnsupportedFormat(formatId);
         var expected = new RegularSectorGeometry(formatId, FatBootSectorLayout.SectorSize, geometry.Cylinders, geometry.Heads, geometry.SectorsPerTrack);
         var source = image.FormatId.Equals(formatId, StringComparison.OrdinalIgnoreCase) ? image : image.WithFormatId(formatId);

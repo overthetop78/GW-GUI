@@ -1,4 +1,5 @@
 using GWGUI.MediaEngine.Images.Formats.Tape;
+using GWGUI.MediaEngine.Constants;
 using GWGUI.MediaEngine.Images.Reading;
 
 using GWGUI.MediaEngine.Images.Writing;
@@ -33,8 +34,11 @@ public sealed class MediaConversionComposition
         ArgumentNullException.ThrowIfNull(sequentialMedia);
         this.recognition = recognition;
         var sectorFormatIds = new HashSet<string>(recognition.Readers.Where(reader => reader.RepresentationKinds.Contains(MediaRepresentationKind.Sectors)).SelectMany(reader => reader.FormatIds), StringComparer.OrdinalIgnoreCase);
+        sectorFormatIds.Add(DiskImageFormatIds.IbmScan);
+        sectorFormatIds.UnionWith(GWGUI.MediaEngine.Images.Formats.DiskDefsFormatReader.RawDefinitions.Keys);
         var sectorToFlux = new SectorToFluxRepresentationConverter(new SectorImageScpConversionService(new SectorImageTrackEncoder(), new ScpEncodedTrackFluxService(), new ScpWriter()));
-        Converters = [new ScpFluxToSectorRepresentationConverter(scpDecoding.Reader, sectorFormatIds), sectorToFlux];
+        Converters = [new ScpFluxToSectorRepresentationConverter(scpDecoding.Reader, sectorFormatIds), sectorToFlux,
+            new GWGUI.MediaEngine.Images.Conversion.Flux.FluxToHfeRepresentationConverter()];
         Registry = new MediaRepresentationConverterRegistry(Converters);
         SequentialDecoders = sequentialMedia.Decoders;
         SequentialEncoders = sequentialMedia.Encoders;

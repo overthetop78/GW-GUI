@@ -5,8 +5,10 @@ using GWGUI.MediaEngine.Images.Models.Flux;
 
 namespace GWGUI.MediaEngine.Images.Reading.Decoding;
 /// <summary>Décode les pistes utilisant le format Micropolis MFM.</summary>
-public sealed class MicropolisMfmDecoder : IFluxDecoder
+public sealed class MicropolisMfmDecoder(bool includeRecord) : IFluxDecoder
 {
+    public MicropolisMfmDecoder() : this(false) { }
+
     /// <summary>Obtient l'identifiant technique du codec.</summary>
     public string Id => MicropolisMfmFormat.CodecId;
     /// <summary>Obtient le nom affiché du codec.</summary>
@@ -33,7 +35,8 @@ public sealed class MicropolisMfmDecoder : IFluxDecoder
             }
 
             decodedBytes.AddRange(record.Data);
-            sectors.Add(new(record.Cylinder, MicropolisMfmFormat.LogicalHead, record.Sector, MicropolisMfmFormat.SectorSizeCode, MicropolisMfmFormat.SectorSize, record.ChecksumValid, offset, SectorIntegrityKind.Checksum, Data: record.Data));
+            var payload = includeRecord ? record.Bytes : record.Data;
+            sectors.Add(new(record.Cylinder, MicropolisMfmFormat.LogicalHead, record.Sector, MicropolisMfmFormat.SectorSizeCode, payload.Length, record.ChecksumValid, offset, SectorIntegrityKind.Checksum, Data: payload));
             structures.Add(new(
                     FluxStructureKind.FormatHeader,
                     offset,

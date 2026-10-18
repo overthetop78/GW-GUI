@@ -1,4 +1,4 @@
-﻿using GWGUI.MediaEngine.Images.Reading.Decoding.Definitions;
+using GWGUI.MediaEngine.Images.Reading.Decoding.Definitions;
 using GWGUI.MediaEngine.Functions;
 using GWGUI.MediaEngine.Images.Models.Sectors;
 using GWGUI.MediaEngine.Images.Writing.Encoding;
@@ -8,6 +8,37 @@ namespace GWGUI.MediaEngine.Images.Reading.Decoding;
 /// <summary>Décode les pistes utilisant le format NorthStar MFM.</summary>
 public sealed class NorthstarMfmDecoder : IFluxDecoder
 {
+    internal IReadOnlyList<DecodedSector> DecodeHardSectors(FluxRevolution revolution, bool fm,
+        int cylinder, int head, int sectorCount)
+    {
+        var stream = fm ? FluxTransitionDecoder.DecodeAdaptiveFm(revolution.FluxIntervals)
+            : FluxTransitionDecoder.DecodeAdaptiveMfm(revolution.FluxIntervals);
+        var sync = fm ? TrackBitEncoding.EncodeCompactFm(0, NorthstarMfmFormat.AddressMark)
+            : TrackBitEncoding.EncodeCompactMfm(0, NorthstarMfmFormat.AddressMark);
+        var size = fm ? 256 : NorthstarMfmFormat.SectorSize;
+        var cells = checked((int)Math.Round(revolution.IndexTimeTicks / stream.BitCellTicks));
+        var sectors = new List<DecodedSector>();
+        for (var number = 0; number < sectorCount; number++)
+        {
+            var start = cells * number / sectorCount;
+            var end = Math.Min(stream.Bits.Length, cells * (number + 1) / sectorCount);
+            DecodedSector? candidate = null;
+            for (var offset = start; offset + (size + (fm ? 3 : 4)) * 16 <= end; offset++)
+            {
+                if (!FluxBitReader.MatchBytes(stream, offset, sync)) continue;
+                var dataOffset = offset + (fm ? 2 : 3) * 16;
+                var data = TryDecodeMfmBytes(stream, dataOffset, size);
+                if (data is null || !FluxBitReader.TryDecodeMfmByte(stream, dataOffset + size * 16, out var checksum)) continue;
+                var valid = RotatingChecksumCalculator.Compute(data) == checksum;
+                candidate = new(checked((byte)cylinder), checked((byte)head), number, (byte)(fm ? 1 : 2), size, valid,
+                    offset, SectorIntegrityKind.Checksum, Data: data);
+                if (valid) break;
+            }
+            if (candidate is not null) sectors.Add(candidate);
+        }
+        return sectors;
+    }
+
     /// <summary>Obtient l'identifiant technique du codec.</summary>
     public string Id => NorthstarMfmFormat.CodecId;
     /// <summary>Obtient le nom affiché du codec.</summary>

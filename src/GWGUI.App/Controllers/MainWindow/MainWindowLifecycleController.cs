@@ -30,7 +30,6 @@ internal sealed class MainWindowLifecycleController(
     IWindowNavigationService navigation,
     OperationRuntimeController operation,
     DiskImageWorkspaceController diskImageWorkspace,
-    MainWindowViewModel viewModel,
     Action<AppSettings> configureEmulation,
     Func<Task> stopEmulation,
     Func<Task> loadCapabilities,
@@ -73,7 +72,6 @@ internal sealed class MainWindowLifecycleController(
         initializeWorkspace();
         loadProfiles();
         if (!settingsProvidedAtStartup) { restoreWindow(); constrainWindow(); }
-        viewModel.Read.Folder = settings().DefaultImagesFolder;
         initializeSelectors();
         refreshReadProfiles(); refreshWriteProfiles(); refreshConvertProfiles();
         restoreReadSettings(); restoreWriteSettings(); restoreConversionSettings();
@@ -113,7 +111,7 @@ internal sealed class MainWindowLifecycleController(
         if (!navigation.ShowPreferences(settings())) return;
         captureRead(); captureWrite(); captureConversion(); captureWindow();
         loadProfiles(); refreshReadProfiles(); refreshWriteProfiles(); refreshConvertProfiles();
-        viewModel.Read.Folder = settings().DefaultImagesFolder; refreshHardware(); applyTheme();
+        restoreReadSettings(); refreshHardware(); applyTheme();
         await settingsStore.SaveAsync(settings());
         updateReadCommand(); updateWriteCommand(); updateConvertCommand();
     }
@@ -153,7 +151,7 @@ internal sealed class MainWindowLifecycleController(
                     if (navigation.ShowPreferences(settings()))
                     {
                         loadProfiles(); refreshReadProfiles(); refreshWriteProfiles(); refreshConvertProfiles();
-                        viewModel.Read.Folder = settings().DefaultImagesFolder; refreshHardware(); applyTheme();
+                        restoreReadSettings(); refreshHardware(); applyTheme();
                         await settingsStore.SaveAsync(settings());
                     }
                     return;
