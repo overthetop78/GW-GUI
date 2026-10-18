@@ -37,3 +37,4 @@ global using CoreInstallationPaths = global::GWGUI.Emulation.Contracts.Emulation
 global using CoreInstallProgress = global::GWGUI.Emulation.Contracts.EmulationCoreInstallProgress;
 
 global using CoreOptionCategory = GWGUI.Emulation.Contracts.EmulationOptionCategory;
+global using CoreRelease = GWGUI.Emulation.Contracts.EmulationCatalogCoreRelease<GWGUI.Emulation.Snk.Common.Machines.Common.Enums.Emulator>;

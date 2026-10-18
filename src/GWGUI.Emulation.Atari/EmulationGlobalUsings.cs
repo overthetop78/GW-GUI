@@ -73,3 +73,4 @@ global using CoreInstallProgress = global::GWGUI.Emulation.Contracts.EmulationCo
 global using CoreOptionCategory = GWGUI.Emulation.Contracts.EmulationOptionCategory;
 
 global using CoreOption = GWGUI.Emulation.Contracts.EmulationCategorizedOption;
+global using CoreRelease = GWGUI.Emulation.Contracts.EmulationCatalogCoreRelease<GWGUI.Emulation.Atari.Common.Machines.Common.Enums.Emulator>;

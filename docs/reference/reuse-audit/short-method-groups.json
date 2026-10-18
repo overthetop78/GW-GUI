@@ -1,63 +1,67 @@
 {
-  "snapshot": "b8ead5a50fa2f64b35eb248dcd75922d98744753",
+  "snapshot": "e7c961592d0dee77698a14c60be7399631c59503",
   "snapshotState": "Current worktree based on snapshot",
   "worktreeSourceChanges": [
-    "src/GWGUI.App/Controllers/MainWindow/MainWindowLifecycleController.cs",
-    "src/GWGUI.App/Controllers/MainWindow/Read/ReadTabController.Execution.cs",
-    "src/GWGUI.App/Controllers/MainWindow/Read/ReadTabController.ProfilesAndSettings.cs",
-    "src/GWGUI.App/Controllers/MainWindow/ReadTabController.cs",
-    "src/GWGUI.App/ViewModels/Operations/ReadOperationViewModel.cs",
-    "src/GWGUI.Emulation.Acorn/Common/Contracts/CoreContracts.cs",
+    "src/GWGUI.App/Constants/Localization/ErrorDescriptionResourceKeys.cs",
+    "src/GWGUI.App/Functions/Localization/ExceptionDescriptionFunctions.cs",
     "src/GWGUI.Emulation.Acorn/EmulationGlobalUsings.cs",
-    "src/GWGUI.Emulation.Amstrad/Common/Contracts/CoreContracts.cs",
+    "src/GWGUI.Emulation.Acorn/Emulators/Common/Contracts/CoreContracts.cs",
     "src/GWGUI.Emulation.Amstrad/EmulationGlobalUsings.cs",
-    "src/GWGUI.Emulation.Atari/Common/Contracts/CoreContracts.cs",
+    "src/GWGUI.Emulation.Amstrad/Emulators/Common/Contracts/CoreRelease.cs",
+    "src/GWGUI.Emulation.Apple/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Apple/Emulators/Common/Contracts/CoreContracts.cs",
     "src/GWGUI.Emulation.Atari/EmulationGlobalUsings.cs",
-    "src/GWGUI.Emulation.Bandai/Common/Contracts/CoreContracts.cs",
+    "src/GWGUI.Emulation.Atari/Emulators/Common/Contracts/CoreContracts.cs",
     "src/GWGUI.Emulation.Bandai/EmulationGlobalUsings.cs",
-    "src/GWGUI.Emulation.Coleco/Common/Contracts/CoreContracts.cs",
+    "src/GWGUI.Emulation.Bandai/Emulators/Common/Contracts/CoreContracts.cs",
     "src/GWGUI.Emulation.Coleco/EmulationGlobalUsings.cs",
-    "src/GWGUI.Emulation.Commodore/Common/Contracts/CoreContracts.cs",
+    "src/GWGUI.Emulation.Coleco/Emulators/Common/Contracts/CoreContracts.cs",
     "src/GWGUI.Emulation.Commodore/EmulationGlobalUsings.cs",
-    "src/GWGUI.Emulation.Epoch/Common/Contracts/CoreContracts.cs",
+    "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Contracts/CoreRelease.cs",
     "src/GWGUI.Emulation.Epoch/EmulationGlobalUsings.cs",
-    "src/GWGUI.Emulation.Fairchild/Common/Contracts/CoreContracts.cs",
+    "src/GWGUI.Emulation.Epoch/Emulators/Common/Contracts/CoreContracts.cs",
     "src/GWGUI.Emulation.Fairchild/EmulationGlobalUsings.cs",
-    "src/GWGUI.Emulation.Mattel/Common/Contracts/CoreContracts.cs",
+    "src/GWGUI.Emulation.Fairchild/Emulators/Common/Contracts/CoreContracts.cs",
     "src/GWGUI.Emulation.Mattel/EmulationGlobalUsings.cs",
-    "src/GWGUI.Emulation.Microsoft/Common/Contracts/CoreContracts.cs",
-    "src/GWGUI.Emulation.Microsoft/EmulationGlobalUsings.cs",
-    "src/GWGUI.Emulation.Nec/Common/Contracts/CoreContracts.cs",
+    "src/GWGUI.Emulation.Mattel/Emulators/Common/Contracts/CoreContracts.cs",
     "src/GWGUI.Emulation.Nec/EmulationGlobalUsings.cs",
-    "src/GWGUI.Emulation.Nintendo/Common/Contracts/CoreContracts.cs",
+    "src/GWGUI.Emulation.Nec/Emulators/BeetlePcfx/Contracts/CoreRelease.cs",
+    "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Contracts/CoreRelease.cs",
+    "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Contracts/CoreReleaseSettings.cs",
     "src/GWGUI.Emulation.Nintendo/EmulationGlobalUsings.cs",
-    "src/GWGUI.Emulation.Panasonic/Common/Contracts/CoreContracts.cs",
+    "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Contracts/CoreRelease.cs",
+    "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Contracts/CoreReleaseSettings.cs",
     "src/GWGUI.Emulation.Panasonic/EmulationGlobalUsings.cs",
-    "src/GWGUI.Emulation.Philips/Common/Contracts/CoreContracts.cs",
+    "src/GWGUI.Emulation.Panasonic/Emulators/Opera/Contracts/CoreContracts.cs",
     "src/GWGUI.Emulation.Philips/EmulationGlobalUsings.cs",
-    "src/GWGUI.Emulation.Sega/Common/Contracts/CoreContracts.cs",
+    "src/GWGUI.Emulation.Philips/Emulators/Common/Contracts/CoreContracts.cs",
     "src/GWGUI.Emulation.Sega/EmulationGlobalUsings.cs",
-    "src/GWGUI.Emulation.Sharp/Common/Contracts/CoreContracts.cs",
+    "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Contracts/CoreRelease.cs",
+    "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Contracts/CoreReleaseSettings.cs",
     "src/GWGUI.Emulation.Sharp/EmulationGlobalUsings.cs",
-    "src/GWGUI.Emulation.Thomson/Common/Contracts/CoreContracts.cs",
+    "src/GWGUI.Emulation.Sharp/Emulators/Common/Contracts/CoreContracts.cs",
+    "src/GWGUI.Emulation.Sinclair/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Sinclair/Emulators/Common/Contracts/CoreContracts.cs",
+    "src/GWGUI.Emulation.Snk/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Snk/Emulators/Common/Contracts/CoreContracts.cs",
+    "src/GWGUI.Emulation.Sony/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Contracts/CoreRelease.cs",
+    "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Contracts/CoreReleaseSettings.cs",
+    "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Contracts/CoreRelease.cs",
+    "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Contracts/CoreRelease.cs",
     "src/GWGUI.Emulation.Thomson/EmulationGlobalUsings.cs",
-    "src/GWGUI.Emulation.Watara/Common/Contracts/CoreContracts.cs",
+    "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Contracts/CoreContracts.cs",
     "src/GWGUI.Emulation.Watara/EmulationGlobalUsings.cs",
-    "src/GWGUI.Emulation.Wenquxing/Common/Contracts/CoreContracts.cs",
+    "src/GWGUI.Emulation.Watara/Emulators/Potator/Contracts/CoreContracts.cs",
     "src/GWGUI.Emulation.Wenquxing/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Contracts/CoreContracts.cs",
+    "src/GWGUI.Infrastructure/Hardware/Greaseweazle/GreaseweazleCommand.cs",
     "src/GWGUI.Infrastructure/Hardware/Greaseweazle/GreaseweazleProtocolClient.cs",
-    "src/GWGUI.Infrastructure/Hardware/Greaseweazle/WindowsGreaseweazleSerialTransport.cs",
-    "tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs",
-    "tests/GWGUI.Tests/Emulation/AdditionalNativeFieldSnapshotTests.cs",
-    "tests/GWGUI.Tests/Emulation/Amstrad/AmstradEmulatorAdapterTests.cs",
-    "tests/GWGUI.Tests/Emulation/CoreOptionHostStateTests.cs",
-    "tests/GWGUI.Tests/Emulation/MachineAdapters/MachineAdapterFailureScenarios.cs",
-    "tests/GWGUI.Tests/Emulation/NativeOptionFieldTests.cs",
-    "tests/GWGUI.Tests/Emulation/Sega/SegaMachineLifecycleTests.cs"
+    "tests/GWGUI.Tests/Hardware/GreaseweazleProtocol/ProtocolFramesScenarios.cs"
   ],
   "scope": "All current non-ignored repository CSharp files, including hidden paths; BaseMethodDeclaration bodies with fewer than 30 tokens. Candidate presence is not a defect or a completion claim.",
-  "fileCount": 7327,
-  "methodBodyCount": 9532,
+  "fileCount": 7319,
+  "methodBodyCount": 9531,
   "exactGroups": [
     {
       "hash": "0017F14C61995D644C52FF90F094E4708DC2CA772615CF2F5DD41E74BD202ECA",
@@ -1576,6 +1580,30 @@
       "tokens": 4,
       "bodyTokens": "=> ValueTask . CompletedTask",
       "current": [
+        {
+          "path": "tests/GWGUI.Tests/Hardware/GreaseweazlePositionTests.cs",
+          "name": "SetBaudRateAsync",
+          "owner": "Transport.GreaseweazlePositionTests",
+          "kind": "MethodDeclaration",
+          "line": 79,
+          "parameters": "(int baud, CancellationToken token = default)",
+          "tokens": 4,
+          "bodyTokens": "=> ValueTask . CompletedTask",
+          "hash": "083CC52B5670A56081AD454E3229F68D814DFEE230F575E735FD91ABC6966693",
+          "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E"
+        },
+        {
+          "path": "tests/GWGUI.Tests/Hardware/GreaseweazlePositionTests.cs",
+          "name": "DiscardBuffersAsync",
+          "owner": "Transport.GreaseweazlePositionTests",
+          "kind": "MethodDeclaration",
+          "line": 80,
+          "parameters": "(CancellationToken token = default)",
+          "tokens": 4,
+          "bodyTokens": "=> ValueTask . CompletedTask",
+          "hash": "083CC52B5670A56081AD454E3229F68D814DFEE230F575E735FD91ABC6966693",
+          "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E"
+        },
         {
           "path": "tests/GWGUI.Tests/Hardware/GreaseweazleProtocol/ProtocolFramesScenarios.cs",
           "name": "DisposeAsync",
@@ -66063,105 +66091,9 @@
           "shape": "1FA7A807218C89C16201399408D1D1E697FF4435BCC3E86C09C04883D91B0B9D"
         },
         {
-          "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Contracts/CoreRelease.cs",
+          "path": "src/GWGUI.Emulation/Contracts/EmulationDownloadCoreRelease.cs",
           "name": "ToString",
-          "owner": "CoreRelease",
-          "kind": "MethodDeclaration",
-          "line": 8,
-          "parameters": "()",
-          "tokens": 2,
-          "bodyTokens": "=> DisplayName",
-          "hash": "ED7D8E7A2B28D2E90C7D90D7DEEEBCF0F776E7C8B66FD95E1458EED9CEBD2E32",
-          "shape": "1FA7A807218C89C16201399408D1D1E697FF4435BCC3E86C09C04883D91B0B9D"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Contracts/CoreRelease.cs",
-          "name": "ToString",
-          "owner": "CoreRelease",
-          "kind": "MethodDeclaration",
-          "line": 6,
-          "parameters": "()",
-          "tokens": 2,
-          "bodyTokens": "=> DisplayName",
-          "hash": "ED7D8E7A2B28D2E90C7D90D7DEEEBCF0F776E7C8B66FD95E1458EED9CEBD2E32",
-          "shape": "1FA7A807218C89C16201399408D1D1E697FF4435BCC3E86C09C04883D91B0B9D"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/BeetlePcfx/Contracts/CoreRelease.cs",
-          "name": "ToString",
-          "owner": "CoreRelease",
-          "kind": "MethodDeclaration",
-          "line": 11,
-          "parameters": "()",
-          "tokens": 2,
-          "bodyTokens": "=> DisplayName",
-          "hash": "ED7D8E7A2B28D2E90C7D90D7DEEEBCF0F776E7C8B66FD95E1458EED9CEBD2E32",
-          "shape": "1FA7A807218C89C16201399408D1D1E697FF4435BCC3E86C09C04883D91B0B9D"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Contracts/CoreRelease.cs",
-          "name": "ToString",
-          "owner": "CoreRelease",
-          "kind": "MethodDeclaration",
-          "line": 10,
-          "parameters": "()",
-          "tokens": 2,
-          "bodyTokens": "=> DisplayName",
-          "hash": "ED7D8E7A2B28D2E90C7D90D7DEEEBCF0F776E7C8B66FD95E1458EED9CEBD2E32",
-          "shape": "1FA7A807218C89C16201399408D1D1E697FF4435BCC3E86C09C04883D91B0B9D"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Contracts/CoreRelease.cs",
-          "name": "ToString",
-          "owner": "CoreRelease",
-          "kind": "MethodDeclaration",
-          "line": 10,
-          "parameters": "()",
-          "tokens": 2,
-          "bodyTokens": "=> DisplayName",
-          "hash": "ED7D8E7A2B28D2E90C7D90D7DEEEBCF0F776E7C8B66FD95E1458EED9CEBD2E32",
-          "shape": "1FA7A807218C89C16201399408D1D1E697FF4435BCC3E86C09C04883D91B0B9D"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Contracts/CoreRelease.cs",
-          "name": "ToString",
-          "owner": "CoreRelease",
-          "kind": "MethodDeclaration",
-          "line": 10,
-          "parameters": "()",
-          "tokens": 2,
-          "bodyTokens": "=> DisplayName",
-          "hash": "ED7D8E7A2B28D2E90C7D90D7DEEEBCF0F776E7C8B66FD95E1458EED9CEBD2E32",
-          "shape": "1FA7A807218C89C16201399408D1D1E697FF4435BCC3E86C09C04883D91B0B9D"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Contracts/CoreRelease.cs",
-          "name": "ToString",
-          "owner": "CoreRelease",
-          "kind": "MethodDeclaration",
-          "line": 10,
-          "parameters": "()",
-          "tokens": 2,
-          "bodyTokens": "=> DisplayName",
-          "hash": "ED7D8E7A2B28D2E90C7D90D7DEEEBCF0F776E7C8B66FD95E1458EED9CEBD2E32",
-          "shape": "1FA7A807218C89C16201399408D1D1E697FF4435BCC3E86C09C04883D91B0B9D"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Contracts/CoreRelease.cs",
-          "name": "ToString",
-          "owner": "CoreRelease",
-          "kind": "MethodDeclaration",
-          "line": 11,
-          "parameters": "()",
-          "tokens": 2,
-          "bodyTokens": "=> DisplayName",
-          "hash": "ED7D8E7A2B28D2E90C7D90D7DEEEBCF0F776E7C8B66FD95E1458EED9CEBD2E32",
-          "shape": "1FA7A807218C89C16201399408D1D1E697FF4435BCC3E86C09C04883D91B0B9D"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Contracts/CoreRelease.cs",
-          "name": "ToString",
-          "owner": "CoreRelease",
+          "owner": "EmulationDownloadCoreRelease",
           "kind": "MethodDeclaration",
           "line": 11,
           "parameters": "()",
@@ -77987,18 +77919,6 @@
           "shape": "1FA7A807218C89C16201399408D1D1E697FF4435BCC3E86C09C04883D91B0B9D"
         },
         {
-          "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Contracts/CoreRelease.cs",
-          "name": "ToString",
-          "owner": "CoreRelease",
-          "kind": "MethodDeclaration",
-          "line": 8,
-          "parameters": "()",
-          "tokens": 2,
-          "bodyTokens": "=> DisplayName",
-          "hash": "ED7D8E7A2B28D2E90C7D90D7DEEEBCF0F776E7C8B66FD95E1458EED9CEBD2E32",
-          "shape": "1FA7A807218C89C16201399408D1D1E697FF4435BCC3E86C09C04883D91B0B9D"
-        },
-        {
           "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/CoreReleaseService.cs",
           "name": "GetLibraryPath",
           "owner": "CoreReleaseService",
@@ -78056,18 +77976,6 @@
           "tokens": 2,
           "bodyTokens": "=> snapshot",
           "hash": "CDCE4494941F1ED34F64A8DBD45286FB867B19BB7E914458D54838FABAC76DB7",
-          "shape": "1FA7A807218C89C16201399408D1D1E697FF4435BCC3E86C09C04883D91B0B9D"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Contracts/CoreRelease.cs",
-          "name": "ToString",
-          "owner": "CoreRelease",
-          "kind": "MethodDeclaration",
-          "line": 6,
-          "parameters": "()",
-          "tokens": 2,
-          "bodyTokens": "=> DisplayName",
-          "hash": "ED7D8E7A2B28D2E90C7D90D7DEEEBCF0F776E7C8B66FD95E1458EED9CEBD2E32",
           "shape": "1FA7A807218C89C16201399408D1D1E697FF4435BCC3E86C09C04883D91B0B9D"
         },
         {
@@ -78131,18 +78039,6 @@
           "shape": "1FA7A807218C89C16201399408D1D1E697FF4435BCC3E86C09C04883D91B0B9D"
         },
         {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/BeetlePcfx/Contracts/CoreRelease.cs",
-          "name": "ToString",
-          "owner": "CoreRelease",
-          "kind": "MethodDeclaration",
-          "line": 11,
-          "parameters": "()",
-          "tokens": 2,
-          "bodyTokens": "=> DisplayName",
-          "hash": "ED7D8E7A2B28D2E90C7D90D7DEEEBCF0F776E7C8B66FD95E1458EED9CEBD2E32",
-          "shape": "1FA7A807218C89C16201399408D1D1E697FF4435BCC3E86C09C04883D91B0B9D"
-        },
-        {
           "path": "src/GWGUI.Emulation.Nec/Emulators/BeetlePcfx/Services/CoreReleaseService.cs",
           "name": "GetLibraryPath",
           "owner": "CoreReleaseService",
@@ -78152,18 +78048,6 @@
           "tokens": 2,
           "bodyTokens": "=> RequiredLibraryPath",
           "hash": "453D248DEADEBACCDEF799C516D7A5DE14CD2C3372F493B0E6FAFC4286EABE14",
-          "shape": "1FA7A807218C89C16201399408D1D1E697FF4435BCC3E86C09C04883D91B0B9D"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Contracts/CoreRelease.cs",
-          "name": "ToString",
-          "owner": "CoreRelease",
-          "kind": "MethodDeclaration",
-          "line": 10,
-          "parameters": "()",
-          "tokens": 2,
-          "bodyTokens": "=> DisplayName",
-          "hash": "ED7D8E7A2B28D2E90C7D90D7DEEEBCF0F776E7C8B66FD95E1458EED9CEBD2E32",
           "shape": "1FA7A807218C89C16201399408D1D1E697FF4435BCC3E86C09C04883D91B0B9D"
         },
         {
@@ -78179,18 +78063,6 @@
           "shape": "1FA7A807218C89C16201399408D1D1E697FF4435BCC3E86C09C04883D91B0B9D"
         },
         {
-          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Contracts/CoreRelease.cs",
-          "name": "ToString",
-          "owner": "CoreRelease",
-          "kind": "MethodDeclaration",
-          "line": 10,
-          "parameters": "()",
-          "tokens": 2,
-          "bodyTokens": "=> DisplayName",
-          "hash": "ED7D8E7A2B28D2E90C7D90D7DEEEBCF0F776E7C8B66FD95E1458EED9CEBD2E32",
-          "shape": "1FA7A807218C89C16201399408D1D1E697FF4435BCC3E86C09C04883D91B0B9D"
-        },
-        {
           "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/CoreReleaseService.cs",
           "name": "GetLibraryPath",
           "owner": "CoreReleaseService",
@@ -78200,18 +78072,6 @@
           "tokens": 2,
           "bodyTokens": "=> RequiredLibraryPath",
           "hash": "453D248DEADEBACCDEF799C516D7A5DE14CD2C3372F493B0E6FAFC4286EABE14",
-          "shape": "1FA7A807218C89C16201399408D1D1E697FF4435BCC3E86C09C04883D91B0B9D"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Contracts/CoreRelease.cs",
-          "name": "ToString",
-          "owner": "CoreRelease",
-          "kind": "MethodDeclaration",
-          "line": 10,
-          "parameters": "()",
-          "tokens": 2,
-          "bodyTokens": "=> DisplayName",
-          "hash": "ED7D8E7A2B28D2E90C7D90D7DEEEBCF0F776E7C8B66FD95E1458EED9CEBD2E32",
           "shape": "1FA7A807218C89C16201399408D1D1E697FF4435BCC3E86C09C04883D91B0B9D"
         },
         {
@@ -78227,18 +78087,6 @@
           "shape": "1FA7A807218C89C16201399408D1D1E697FF4435BCC3E86C09C04883D91B0B9D"
         },
         {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Contracts/CoreRelease.cs",
-          "name": "ToString",
-          "owner": "CoreRelease",
-          "kind": "MethodDeclaration",
-          "line": 10,
-          "parameters": "()",
-          "tokens": 2,
-          "bodyTokens": "=> DisplayName",
-          "hash": "ED7D8E7A2B28D2E90C7D90D7DEEEBCF0F776E7C8B66FD95E1458EED9CEBD2E32",
-          "shape": "1FA7A807218C89C16201399408D1D1E697FF4435BCC3E86C09C04883D91B0B9D"
-        },
-        {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/CoreReleaseService.cs",
           "name": "GetLibraryPath",
           "owner": "CoreReleaseService",
@@ -78248,18 +78096,6 @@
           "tokens": 2,
           "bodyTokens": "=> RequiredLibraryPath",
           "hash": "453D248DEADEBACCDEF799C516D7A5DE14CD2C3372F493B0E6FAFC4286EABE14",
-          "shape": "1FA7A807218C89C16201399408D1D1E697FF4435BCC3E86C09C04883D91B0B9D"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Contracts/CoreRelease.cs",
-          "name": "ToString",
-          "owner": "CoreRelease",
-          "kind": "MethodDeclaration",
-          "line": 11,
-          "parameters": "()",
-          "tokens": 2,
-          "bodyTokens": "=> DisplayName",
-          "hash": "ED7D8E7A2B28D2E90C7D90D7DEEEBCF0F776E7C8B66FD95E1458EED9CEBD2E32",
           "shape": "1FA7A807218C89C16201399408D1D1E697FF4435BCC3E86C09C04883D91B0B9D"
         },
         {
@@ -78275,18 +78111,6 @@
           "shape": "1FA7A807218C89C16201399408D1D1E697FF4435BCC3E86C09C04883D91B0B9D"
         },
         {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Contracts/CoreRelease.cs",
-          "name": "ToString",
-          "owner": "CoreRelease",
-          "kind": "MethodDeclaration",
-          "line": 11,
-          "parameters": "()",
-          "tokens": 2,
-          "bodyTokens": "=> DisplayName",
-          "hash": "ED7D8E7A2B28D2E90C7D90D7DEEEBCF0F776E7C8B66FD95E1458EED9CEBD2E32",
-          "shape": "1FA7A807218C89C16201399408D1D1E697FF4435BCC3E86C09C04883D91B0B9D"
-        },
-        {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/CoreReleaseService.cs",
           "name": "GetLibraryPath",
           "owner": "CoreReleaseService",
@@ -78296,6 +78120,18 @@
           "tokens": 2,
           "bodyTokens": "=> RequiredLibraryPath",
           "hash": "453D248DEADEBACCDEF799C516D7A5DE14CD2C3372F493B0E6FAFC4286EABE14",
+          "shape": "1FA7A807218C89C16201399408D1D1E697FF4435BCC3E86C09C04883D91B0B9D"
+        },
+        {
+          "path": "src/GWGUI.Emulation/Contracts/EmulationDownloadCoreRelease.cs",
+          "name": "ToString",
+          "owner": "EmulationDownloadCoreRelease",
+          "kind": "MethodDeclaration",
+          "line": 11,
+          "parameters": "()",
+          "tokens": 2,
+          "bodyTokens": "=> DisplayName",
+          "hash": "ED7D8E7A2B28D2E90C7D90D7DEEEBCF0F776E7C8B66FD95E1458EED9CEBD2E32",
           "shape": "1FA7A807218C89C16201399408D1D1E697FF4435BCC3E86C09C04883D91B0B9D"
         },
         {
@@ -95889,6 +95725,18 @@
           "tokens": 4,
           "bodyTokens": "=> GetEnumerator ( )",
           "hash": "66243EC1ED9C4A8549BEEBD281E8FAA4C32CDB3749D7BDB962A8BFFBF79F17EA",
+          "shape": "553EF34A6E242B6805E98C44405BEF25D020A36DBB557133C7A643B8A74F4130"
+        },
+        {
+          "path": "tests/GWGUI.Tests/Hardware/GreaseweazlePositionTests.cs",
+          "name": "DisposeAsync",
+          "owner": "Transport.GreaseweazlePositionTests",
+          "kind": "MethodDeclaration",
+          "line": 103,
+          "parameters": "()",
+          "tokens": 4,
+          "bodyTokens": "=> CloseAsync ( )",
+          "hash": "86A2E7DDBAF99FDB837E19D5DD36C2FA5C50302359D945C148EDA536FB2D24BB",
           "shape": "553EF34A6E242B6805E98C44405BEF25D020A36DBB557133C7A643B8A74F4130"
         },
         {
@@ -126220,6 +126068,30 @@
           "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E"
         },
         {
+          "path": "tests/GWGUI.Tests/Hardware/GreaseweazlePositionTests.cs",
+          "name": "SetBaudRateAsync",
+          "owner": "Transport.GreaseweazlePositionTests",
+          "kind": "MethodDeclaration",
+          "line": 79,
+          "parameters": "(int baud, CancellationToken token = default)",
+          "tokens": 4,
+          "bodyTokens": "=> ValueTask . CompletedTask",
+          "hash": "083CC52B5670A56081AD454E3229F68D814DFEE230F575E735FD91ABC6966693",
+          "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E"
+        },
+        {
+          "path": "tests/GWGUI.Tests/Hardware/GreaseweazlePositionTests.cs",
+          "name": "DiscardBuffersAsync",
+          "owner": "Transport.GreaseweazlePositionTests",
+          "kind": "MethodDeclaration",
+          "line": 80,
+          "parameters": "(CancellationToken token = default)",
+          "tokens": 4,
+          "bodyTokens": "=> ValueTask . CompletedTask",
+          "hash": "083CC52B5670A56081AD454E3229F68D814DFEE230F575E735FD91ABC6966693",
+          "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E"
+        },
+        {
           "path": "tests/GWGUI.Tests/Hardware/GreaseweazleProtocol/ProtocolFramesScenarios.cs",
           "name": "DisposeAsync",
           "owner": "Transport.ProtocolFramesScenarios",
@@ -132370,6 +132242,37 @@
           "bodyTokens": "=> GWGUI . Emulation . Thomson . Emulators . Theodore . Constants . MediaRuntimeConstants . CartridgeExtensions",
           "hash": "F59590F208C1D6203E41953E4C99769BF64AEEE3721F6FF502F891DB2618247E",
           "shape": "EEC6F89EE48F2546FD1542F01BAE579B5E7A59DC0F858E2AA779F979CC4B85C3"
+        }
+      ],
+      "qualification": "pending-symbol-and-ownership-comparison"
+    },
+    {
+      "shape": "EFC49237D6333BC516961B6F7FBE7FD210D08DFE452FA4E3E8AE7592BD501B39",
+      "tokens": 18,
+      "current": [
+        {
+          "path": "tests/GWGUI.Tests/Hardware/GreaseweazlePositionTests.cs",
+          "name": "WriteAsync",
+          "owner": "Transport.GreaseweazlePositionTests",
+          "kind": "MethodDeclaration",
+          "line": 81,
+          "parameters": "(ReadOnlyMemory<byte> bytes, CancellationToken token = default)",
+          "tokens": 18,
+          "bodyTokens": "{ Commands . Add ( bytes . ToArray ( ) ) ; return ValueTask . CompletedTask ; }",
+          "hash": "3E5363D64ACEACA23178FF966089DEFDA54C27CC38CDB4E383F4A2A052129516",
+          "shape": "EFC49237D6333BC516961B6F7FBE7FD210D08DFE452FA4E3E8AE7592BD501B39"
+        },
+        {
+          "path": "tests/GWGUI.Tests/Hardware/GreaseweazleProtocol/ProtocolFramesScenarios.cs",
+          "name": "SetBaudRateAsync",
+          "owner": "Transport.ProtocolFramesScenarios",
+          "kind": "MethodDeclaration",
+          "line": 57,
+          "parameters": "(int baudRate,CancellationToken cancellationToken=default)",
+          "tokens": 18,
+          "bodyTokens": "{ Setup . Add ( baudRate . ToString ( ) ) ; return ValueTask . CompletedTask ; }",
+          "hash": "DFE7BEACADE806EC7F7004C9346DD1C9A1554D8B6CDA4A746B74CC0121B0B4C6",
+          "shape": "EFC49237D6333BC516961B6F7FBE7FD210D08DFE452FA4E3E8AE7592BD501B39"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"

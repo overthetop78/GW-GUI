@@ -22,3 +22,5 @@ global using GWGUI.Emulation.Sony.Common.Machines.Common.Functions;
 global using GWGUI.Emulation.Sony.Common.Services;
 
 global using InputAccumulator = GWGUI.Emulation.Services.EmulationInputAccumulator;
+global using CoreRelease = GWGUI.Emulation.Contracts.EmulationDownloadCoreRelease;
+global using CoreReleaseSettings = GWGUI.Emulation.Contracts.EmulationCoreReleaseSettings;

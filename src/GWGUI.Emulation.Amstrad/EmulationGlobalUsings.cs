@@ -34,3 +34,4 @@ global using GWGUI.Emulation.Amstrad.Emulators.Common.Constants;
 global using InputAccumulator = GWGUI.Emulation.Services.EmulationInputAccumulator;
 
 global using CoreOption = GWGUI.Emulation.Contracts.EmulationCategorizedOption;
+global using CoreRelease = GWGUI.Emulation.Contracts.EmulationDownloadCoreRelease;

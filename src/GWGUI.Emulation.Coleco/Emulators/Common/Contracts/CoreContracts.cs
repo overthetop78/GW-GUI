@@ -11,5 +11,3 @@ public sealed record EmulatorCatalogEntry(
     string InspectedRevision,
     IReadOnlySet<MachineModel> Models,
     string? DescriptionResourceKey = null);
-
-public sealed record CoreRelease(Emulator Emulator, string Id, string DeclaredVersion, Uri DownloadUri, DateTimeOffset PublishedUtc, long? ExpectedArchiveSize);

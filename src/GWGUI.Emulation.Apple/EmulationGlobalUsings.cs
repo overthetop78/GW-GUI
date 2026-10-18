@@ -39,3 +39,4 @@ global using CoreInstallProgress = global::GWGUI.Emulation.Contracts.EmulationCo
 
 global using CoreOptionCategory = GWGUI.Emulation.Contracts.EmulationOptionCategory;
 global using CoreOptionValue = GWGUI.Emulation.Contracts.EmulationResourceOptionValue;
+global using CoreRelease = GWGUI.Emulation.Contracts.EmulationCatalogCoreRelease<GWGUI.Emulation.Apple.Common.Machines.Common.Enums.Emulator>;

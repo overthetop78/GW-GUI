@@ -41,3 +41,4 @@ global using CoreOptionCategory = GWGUI.Emulation.Contracts.EmulationOptionCateg
 global using CoreOptionValue = GWGUI.Emulation.Contracts.EmulationTimingOptionValue;
 
 global using CoreOption = GWGUI.Emulation.Contracts.EmulationTimingOption;
+global using CoreRelease = GWGUI.Emulation.Contracts.EmulationCatalogCoreRelease<GWGUI.Emulation.Epoch.Common.Machines.Common.Enums.Emulator>;

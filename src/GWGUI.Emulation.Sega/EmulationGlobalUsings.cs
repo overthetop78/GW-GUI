@@ -25,3 +25,5 @@ global using InputAccumulator = GWGUI.Emulation.Services.EmulationInputAccumulat
 global using CoreOptionValue = GWGUI.Emulation.Contracts.EmulationMachineOptionValue;
 
 global using CoreOption = GWGUI.Emulation.Contracts.EmulationMachineOption;
+global using CoreRelease = GWGUI.Emulation.Contracts.EmulationDownloadCoreRelease;
+global using CoreReleaseSettings = GWGUI.Emulation.Contracts.EmulationCoreReleaseSettings;

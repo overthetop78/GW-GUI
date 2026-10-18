@@ -12,8 +12,4 @@ public sealed record EmulatorCatalogEntry(
     IReadOnlySet<MachineModel> Models,
     string? DescriptionResourceKey = null);
 
-
-
-public sealed record CoreRelease(Emulator Emulator, string Id, string DeclaredVersion, Uri DownloadUri, DateTimeOffset PublishedUtc, long? ExpectedArchiveSize);
-
 internal sealed record HostError(string Type, string Message, ErrorCategory? Category, ErrorCode? Code, IReadOnlyDictionary<string, string> Context, bool IsLocalized);

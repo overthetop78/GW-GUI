@@ -43,3 +43,4 @@ global using GWGUI.Emulation.Commodore.Emulators.UAE.Common.Interop.Constants;
 global using InputAccumulator = GWGUI.Emulation.Services.EmulationInputAccumulator;
 
 global using CoreOption = GWGUI.Emulation.Contracts.EmulationCategorizedOption;
+global using CoreRelease = GWGUI.Emulation.Contracts.EmulationDownloadCoreRelease;

@@ -41,3 +41,4 @@ global using CoreOptionCategory = GWGUI.Emulation.Contracts.EmulationOptionCateg
 global using CoreOptionValue = GWGUI.Emulation.Contracts.EmulationResourceOptionValue;
 
 global using CoreOption = GWGUI.Emulation.Contracts.EmulationResourceReloadOption;
+global using CoreRelease = GWGUI.Emulation.Contracts.EmulationCatalogCoreRelease<GWGUI.Emulation.Bandai.Common.Machines.Common.Enums.Emulator>;
