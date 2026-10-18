@@ -5,6 +5,20 @@ namespace GWGUI.MediaFileSystems.Functions;
 /// <summary>Reads decimal integer values from media metadata.</summary>
 public static class MediaMetadataFunctions
 {
+    public static bool TryReadByte(IReadOnlyDictionary<string, string> metadata, string key, out byte value)
+    {
+        value = 0;
+        return metadata.TryGetValue(key, out var text)
+            && byte.TryParse(text, NumberStyles.None, CultureInfo.InvariantCulture, out value);
+    }
+
+    public static bool TryReadUInt16(IReadOnlyDictionary<string, string> metadata, string key, out ushort value)
+    {
+        value = 0;
+        return metadata.TryGetValue(key, out var text)
+            && ushort.TryParse(text, NumberStyles.None, CultureInfo.InvariantCulture, out value);
+    }
+
     public static bool TryReadInt(IReadOnlyDictionary<string, string> metadata, string key, out int value)
         => TryReadInt(metadata, key, NumberStyles.None, out value);
 

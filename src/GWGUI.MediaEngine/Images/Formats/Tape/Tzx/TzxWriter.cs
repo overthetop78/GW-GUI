@@ -1,3 +1,4 @@
+using GWGUI.MediaFileSystems.Functions;
 using GWGUI.MediaEngine.Images.Reading.Blocks;
 using System.Collections.Frozen;
 using GWGUI.MediaEngine.Enums;
@@ -83,8 +84,7 @@ public sealed class TzxWriter : IMediaImageWriter
         return true;
     }
 
-    private static byte ReadVersion(IReadOnlyDictionary<string, string> metadata, string key, byte defaultValue) =>
-        metadata.TryGetValue(key, out var text) && byte.TryParse(text, System.Globalization.NumberStyles.None, System.Globalization.CultureInfo.InvariantCulture, out var value) ? value : defaultValue;
+    private static byte ReadVersion(IReadOnlyDictionary<string, string> metadata, string key, byte defaultValue) => MediaMetadataFunctions.TryReadByte(metadata, key, out var value) ? value : defaultValue;
 
     private sealed record TzxBlock(byte Id, MediaDataRange? Range);
 }

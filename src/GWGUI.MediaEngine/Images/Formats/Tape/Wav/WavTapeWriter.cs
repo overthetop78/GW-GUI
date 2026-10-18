@@ -1,3 +1,4 @@
+using static GWGUI.MediaFileSystems.Functions.MediaMetadataFunctions;
 using System.Buffers.Binary;
 using System.Collections.Frozen;
 using GWGUI.MediaEngine.Enums;
@@ -103,12 +104,6 @@ public sealed class WavTapeWriter : IMediaImageWriter
         if (selected.Length == 0 || selected.Any(range => range.Kind != MediaDataRangeKind.Stored)) return false;
         ranges = selected;
         return true;
-    }
-
-    private static bool TryReadUInt16(IReadOnlyDictionary<string, string> values, string key, out ushort value)
-    {
-        value = 0;
-        return values.TryGetValue(key, out var text) && ushort.TryParse(text, System.Globalization.NumberStyles.None, System.Globalization.CultureInfo.InvariantCulture, out value);
     }
 
     private static bool TryReadUInt32(IReadOnlyDictionary<string, string> values, string key, out uint value)

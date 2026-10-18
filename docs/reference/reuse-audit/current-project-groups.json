@@ -3,7 +3,7 @@
   "currentCSharpFiles": 7315,
   "outsideSrcCSharpFiles": 297,
   "baselineMethodCount": 5848,
-  "currentMethodCount": 11595,
+  "currentMethodCount": 11588,
   "powerShellFunctionCount": 17,
   "groups": [
     {
@@ -1198,7 +1198,7 @@
     {
       "language": "CSharp",
       "hash": "0A9D4012A0EEF58659F6F622D06187BDA6844EE126F30B196EAE963950A66758",
-      "method": "AtariEmulationModule",
+      "method": "CommodoreEmulationModule",
       "tokens": 45,
       "current": [
         {
@@ -11826,7 +11826,7 @@
     {
       "language": "CSharp",
       "hash": "68386C818382BCE400A3EDE65411B5CBD9D6A87F6D88FAF6501028CE28C38965",
-      "method": "ToSinclair",
+      "method": "ToModule",
       "tokens": 148,
       "current": [
         {
@@ -17527,67 +17527,6 @@
     },
     {
       "language": "CSharp",
-      "hash": "98B2BB976430CD3343FE29BA339E7EDBBB5760AE2ACE4EFE2DB082320CF239C9",
-      "method": "ReadByte",
-      "tokens": 34,
-      "current": [
-        {
-          "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/Hfe/ProtectedTrackHfeImageAdapter.cs",
-          "name": "ReadByte",
-          "line": 93,
-          "tokens": 34,
-          "hash": "98B2BB976430CD3343FE29BA339E7EDBBB5760AE2ACE4EFE2DB082320CF239C9",
-          "shape": "498C2051CAA1B0B805B802CB4AA44498D0453491339E9A444B3BFB40E73CB803"
-        },
-        {
-          "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/ProtectedTrackScpImageAdapter.cs",
-          "name": "ReadByte",
-          "line": 84,
-          "tokens": 34,
-          "hash": "98B2BB976430CD3343FE29BA339E7EDBBB5760AE2ACE4EFE2DB082320CF239C9",
-          "shape": "498C2051CAA1B0B805B802CB4AA44498D0453491339E9A444B3BFB40E73CB803"
-        }
-      ],
-      "predecessors": [
-        {
-          "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/Hfe/ProtectedTrackHfeImageAdapter.cs",
-          "name": "ReadByte",
-          "line": 104,
-          "tokens": 34,
-          "hash": "98B2BB976430CD3343FE29BA339E7EDBBB5760AE2ACE4EFE2DB082320CF239C9",
-          "shape": "498C2051CAA1B0B805B802CB4AA44498D0453491339E9A444B3BFB40E73CB803"
-        },
-        {
-          "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/ProtectedTrackScpImageAdapter.cs",
-          "name": "ReadByte",
-          "line": 90,
-          "tokens": 34,
-          "hash": "98B2BB976430CD3343FE29BA339E7EDBBB5760AE2ACE4EFE2DB082320CF239C9",
-          "shape": "498C2051CAA1B0B805B802CB4AA44498D0453491339E9A444B3BFB40E73CB803"
-        }
-      ],
-      "shapePredecessors": [
-        {
-          "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/Hfe/ProtectedTrackHfeImageAdapter.cs",
-          "name": "ReadByte",
-          "line": 104,
-          "tokens": 34,
-          "hash": "98B2BB976430CD3343FE29BA339E7EDBBB5760AE2ACE4EFE2DB082320CF239C9",
-          "shape": "498C2051CAA1B0B805B802CB4AA44498D0453491339E9A444B3BFB40E73CB803"
-        },
-        {
-          "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/ProtectedTrackScpImageAdapter.cs",
-          "name": "ReadByte",
-          "line": 90,
-          "tokens": 34,
-          "hash": "98B2BB976430CD3343FE29BA339E7EDBBB5760AE2ACE4EFE2DB082320CF239C9",
-          "shape": "498C2051CAA1B0B805B802CB4AA44498D0453491339E9A444B3BFB40E73CB803"
-        }
-      ],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
       "hash": "98D1D2D583DA093A03E38CF2B59A3DC8851353EEBF44918A61E278ACD122C938",
       "method": "Scan",
       "tokens": 64,
@@ -19076,7 +19015,7 @@
     {
       "language": "CSharp",
       "hash": "A1E03750FEB3292ACEB41656386F4A8AA8B05077D9ABFB7DA103AA3D71320B9F",
-      "method": "ToFairchild",
+      "method": "ToModule",
       "tokens": 103,
       "current": [
         {
@@ -19386,7 +19325,7 @@
     {
       "language": "CSharp",
       "hash": "A61349BFDFFA5D404CE7D0D458204D435194B5E4D84870DF4F9FBE26A86A9946",
-      "method": "ToFairchild",
+      "method": "ToEpoch",
       "tokens": 36,
       "current": [
         {
@@ -20576,7 +20515,7 @@
     {
       "language": "CSharp",
       "hash": "B053A3AB4F0B78A37DED57B2D744801187AED6EC54FEEAFE4B1AA9C454D6F48C",
-      "method": "MattelEmulationModule",
+      "method": "WenquxingEmulationModule",
       "tokens": 47,
       "current": [
         {
@@ -32155,29 +32094,6 @@
       "qualification": "pending-symbol-and-policy-comparison"
     },
     {
-      "shape": "68D382C851FED9288D2885496798E6F66D16B450C8A7513CCA142EFBDD2F4170",
-      "tokens": 42,
-      "current": [
-        {
-          "path": "src/GWGUI.MediaEngine/Images/Writing/Encoding/Sequential/Tzx/TzxSignalEncoder.cs",
-          "name": "ReadUInt16",
-          "line": 123,
-          "tokens": 42,
-          "hash": "BE6153C4E828C07356E04451F10FF2D60E94F905C2F55BD1D467F6E681B3FF96",
-          "shape": "68D382C851FED9288D2885496798E6F66D16B450C8A7513CCA142EFBDD2F4170"
-        },
-        {
-          "path": "src/GWGUI.MediaEngine/Images/Writing/Encoding/Sequential/Amstrad/AmstradCpcTapeEncoder.cs",
-          "name": "ReadUInt16",
-          "line": 184,
-          "tokens": 42,
-          "hash": "7FFF7754784B181B79F12E51281C6E4FDC26ADD70F78714E920DEF30A29530CB",
-          "shape": "68D382C851FED9288D2885496798E6F66D16B450C8A7513CCA142EFBDD2F4170"
-        }
-      ],
-      "qualification": "pending-symbol-and-policy-comparison"
-    },
-    {
       "shape": "690206D91E888222AC86F7380FAA22D1C27CE476CD04E878F85F37D987F09883",
       "tokens": 55,
       "current": [
@@ -32933,29 +32849,6 @@
           "tokens": 71,
           "hash": "3B8464EB67E96727F4489BDB9DA812CF09BFB335F4B970A5A56528CC33234D0C",
           "shape": "811E3CC29CB6A711EC46834B809561FCC1DFC4E6489B625C7F4131EBC3DFB597"
-        }
-      ],
-      "qualification": "pending-symbol-and-policy-comparison"
-    },
-    {
-      "shape": "817FB495652C1320C9C5C5988923F420976348DD1CFB166E86E1422D0F1F93B8",
-      "tokens": 42,
-      "current": [
-        {
-          "path": "src/GWGUI.MediaEngine/Images/Writing/Encoding/Sequential/Amstrad/AmstradCpcTapeEncoder.cs",
-          "name": "ReadByte",
-          "line": 181,
-          "tokens": 42,
-          "hash": "0C9411409672C50A16FA5F247B56C801295544863C5B511617793B8EABDBB92F",
-          "shape": "817FB495652C1320C9C5C5988923F420976348DD1CFB166E86E1422D0F1F93B8"
-        },
-        {
-          "path": "src/GWGUI.MediaEngine/Images/Formats/Tape/Tzx/TzxWriter.cs",
-          "name": "ReadVersion",
-          "line": 86,
-          "tokens": 42,
-          "hash": "86EAE07ABDB25D8CFF9780CCB6C96CCD486DFDC20B308F711C1436503E463CB4",
-          "shape": "817FB495652C1320C9C5C5988923F420976348DD1CFB166E86E1422D0F1F93B8"
         }
       ],
       "qualification": "pending-symbol-and-policy-comparison"
@@ -34251,15 +34144,15 @@
         {
           "path": "src/GWGUI.MediaEngine/Images/Writing/Encoding/Sequential/Acorn/AcornTapeEncoder.cs",
           "name": "TryReadHexByte",
-          "line": 177,
+          "line": 178,
           "tokens": 36,
           "hash": "08C6B8B4AAF879D51FFE56A922758E105698ED7971C96BD0F6B2BA705EDDA3B6",
           "shape": "AB33BF8B0BC76BD881B865590B1DC7DBC78E7232E3FBECF4575789A2010871EA"
         },
         {
-          "path": "src/GWGUI.MediaEngine/Images/Formats/Tape/CommodoreTap/CommodoreTapWriter.cs",
+          "path": "src/GWGUI.MediaFileSystems/Functions/MediaMetadataFunctions.cs",
           "name": "TryReadByte",
-          "line": 105,
+          "line": 8,
           "tokens": 36,
           "hash": "83254C1623E0DD732D53EDBA3B3E07AEFBD892B2929D082A2F30CF055073042C",
           "shape": "AB33BF8B0BC76BD881B865590B1DC7DBC78E7232E3FBECF4575789A2010871EA"
@@ -37897,7 +37790,7 @@
         {
           "path": "src/GWGUI.MediaEngine/Images/Formats/Tape/Tzx/TzxWriter.cs",
           "name": "CanWrite",
-          "line": 28,
+          "line": 29,
           "tokens": 42,
           "hash": "D72B8B63C76979AC3FC9630FB4F8EF0499B1A7981A38F21AEA1A5B653B3D4EC9",
           "shape": "FEB30F2D6A7B7359AA892F4B5A49C7AD031BECC09805C72F619BD413C7FDB046"

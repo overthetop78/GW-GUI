@@ -1,3 +1,4 @@
+using GWGUI.MediaFileSystems.Functions;
 using System.Buffers.Binary;
 using System.Collections.Frozen;
 using System.IO;
@@ -178,11 +179,9 @@ public sealed class AmstradCpcTapeEncoder : ISequentialMediaEncoder
 
     private static string ReadText(IReadOnlyDictionary<string, string> metadata, string key, string defaultValue) => metadata.TryGetValue(key, out var value) && !string.IsNullOrWhiteSpace(value) ? value : defaultValue;
 
-    private static byte ReadByte(IReadOnlyDictionary<string, string> metadata, string key, byte defaultValue) =>
-        metadata.TryGetValue(key, out var value) && byte.TryParse(value, System.Globalization.NumberStyles.None, System.Globalization.CultureInfo.InvariantCulture, out var parsed) ? parsed : defaultValue;
+    private static byte ReadByte(IReadOnlyDictionary<string, string> metadata, string key, byte defaultValue) => MediaMetadataFunctions.TryReadByte(metadata, key, out var value) ? value : defaultValue;
 
-    private static ushort ReadUInt16(IReadOnlyDictionary<string, string> metadata, string key, ushort defaultValue = 0) =>
-        metadata.TryGetValue(key, out var value) && ushort.TryParse(value, System.Globalization.NumberStyles.None, System.Globalization.CultureInfo.InvariantCulture, out var parsed) ? parsed : defaultValue;
+    private static ushort ReadUInt16(IReadOnlyDictionary<string, string> metadata, string key, ushort defaultValue = 0) => MediaMetadataFunctions.TryReadUInt16(metadata, key, out var value) ? value : defaultValue;
 
     private static bool ReadBoolean(IReadOnlyDictionary<string, string> metadata, string key, bool defaultValue) => metadata.TryGetValue(key, out var value) && bool.TryParse(value, out var parsed) ? parsed : defaultValue;
 }

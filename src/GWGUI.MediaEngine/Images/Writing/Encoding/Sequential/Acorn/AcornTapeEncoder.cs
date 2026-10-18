@@ -1,3 +1,4 @@
+using static GWGUI.MediaFileSystems.Functions.MediaMetadataFunctions;
 using System.Buffers.Binary;
 using System.Collections.Frozen;
 using System.Globalization;
@@ -180,9 +181,5 @@ public sealed class AcornTapeEncoder : ISequentialMediaEncoder
         return metadata.TryGetValue(key, out var text) && byte.TryParse(text, NumberStyles.HexNumber, CultureInfo.InvariantCulture, out value);
     }
 
-    private static bool TryReadUInt16(IReadOnlyDictionary<string, string> metadata, string key, out ushort value)
-    {
-        value = 0;
-        return metadata.TryGetValue(key, out var text) && ushort.TryParse(text, NumberStyles.None, CultureInfo.InvariantCulture, out value);
-    }
+
 }

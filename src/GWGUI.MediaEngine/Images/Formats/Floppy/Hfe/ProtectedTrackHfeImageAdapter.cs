@@ -1,4 +1,4 @@
-using System.Globalization;
+using GWGUI.MediaFileSystems.Functions;
 using GWGUI.MediaEngine.Images.Conversion.Flux;
 using GWGUI.MediaEngine.Images.Formats.Floppy.Scp;
 using GWGUI.MediaEngine.Images.Models.Flux;
@@ -90,7 +90,7 @@ internal static class ProtectedTrackHfeImageAdapter
         return checked((ushort)value);
     }
 
-    private static byte? ReadByte(IReadOnlyDictionary<string, string> metadata, string key) => metadata.TryGetValue(key, out var value) && byte.TryParse(value, NumberStyles.None, CultureInfo.InvariantCulture, out var parsed) ? parsed : null;
+    private static byte? ReadByte(IReadOnlyDictionary<string, string> metadata, string key) => MediaMetadataFunctions.TryReadByte(metadata, key, out var value) ? value : null;
 
-    private static ushort? ReadUInt16(IReadOnlyDictionary<string, string> metadata, string key) => metadata.TryGetValue(key, out var value) && ushort.TryParse(value, NumberStyles.None, CultureInfo.InvariantCulture, out var parsed) ? parsed : null;
+    private static ushort? ReadUInt16(IReadOnlyDictionary<string, string> metadata, string key) => MediaMetadataFunctions.TryReadUInt16(metadata, key, out var value) ? value : null;
 }

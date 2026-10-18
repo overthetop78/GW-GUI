@@ -3112,3 +3112,24 @@ Réponses des hôtes : enchaînement initial Amiga 34f4b2e28 repris dans WriteCo
     - [x] Modifier `docs/tasks/reuse-project-audit.md` : cocher les actions réalisées et consigner le résultat du bloc complet.
 
 Callbacks vidéo anciens : propriétaire Thomson f22f8e913 déplacé dans ExternalCoreVideoCallbackHost du SDK, quatre classes locales remplacées par alias directs. Classe complète identique après renommage du type et de son espace de noms ; consommateurs inchangés. SDK et quatre modules sans erreur sémantique, références App/23 modules compilées par les tests ; 29 tests mémoire réussis, dont huit cas vidéo nouveaux. Copie contiguë, remplissage des lignes, répétition de frame, séquence, première erreur et Dispose conservés ; allocations natives des tests libérées en finally, aucun cœur externe. Relevés actualisés : 7 315 fichiers C#, 11 595 grands corps/480 groupes, 9 517 petits corps/770 groupes exacts et 366 normalisés. Ce bloc est postérieur au dernier build produit 2dcaf5863 ; audit global ouvert.
+
+- [x] Réutiliser les parseurs décimaux byte et UInt16 des métadonnées
+  - [x] Raccorder les formats au propriétaire commun existant
+    - [x] Modifier `docs/reference/reuse-audit/qualification.json` : enregistrer les parseurs originaux Commodore TAP et WAV avant le déplacement 48651a8bb, les huit fichiers consommateurs et leurs politiques de défaut/positivité.
+    - [x] Modifier `src/GWGUI.MediaFileSystems/Functions/MediaMetadataFunctions.cs` : reprendre TryReadByte et TryReadUInt16 originaux avec NumberStyles.None et culture invariante.
+    - [x] Modifier les fichiers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Hfe/ProtectedTrackHfeImageAdapter.cs`, `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/ProtectedTrackScpImageAdapter.cs`, `src/GWGUI.MediaEngine/Images/Formats/Tape/CommodoreTap/CommodoreTapWriter.cs`, `src/GWGUI.MediaEngine/Images/Formats/Tape/Wav/WavTapeWriter.cs`, `src/GWGUI.MediaEngine/Images/Formats/Tape/Tzx/TzxWriter.cs`, `src/GWGUI.MediaEngine/Images/Writing/Encoding/Sequential/Tzx/TzxSignalEncoder.cs`, `src/GWGUI.MediaEngine/Images/Writing/Encoding/Sequential/Acorn/AcornTapeEncoder.cs` et `src/GWGUI.MediaEngine/Images/Writing/Encoding/Sequential/Amstrad/AmstradCpcTapeEncoder.cs` : remplacer les onze séquences décimales par les parseurs communs, conserver les défauts, nullables, positivité et parseurs hexadécimaux locaux.
+  - [x] Vérifier les limites et les formats concernés
+    - [x] Modifier `tests/GWGUI.Tests/Media/MediaMetadataIntegerTests.cs` : ajouter les limites byte/UInt16, rejets des signes/espaces/hexadécimal et remise à zéro des sorties absentes.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Writing/Encoding/Sequential/Acorn/AcornTapeEncoder.cs` : retirer les espaces de la ligne laissée vide par suppression du parseur.
+    - [x] Modifier `docs/reference/reuse-audit/qualification.json` : consigner les comparaisons intégrales des fichiers et les tests ciblés réussis.
+    - [x] Modifier `docs/reference/reuse-audit/current-project-groups.json` et `docs/reference/reuse-audit/short-method-groups.json` : actualiser les relevés.
+    - [x] Modifier `docs/tasks/reuse-project-audit.md` : cocher les actions réalisées et enregistrer le résultat du bloc.
+
+- [x] Construire ensemble les blocs vidéo et métadonnées
+  - [x] Valider le produit Debug et ses modules
+    - [x] Modifier `docs/reference/reuse-audit/qualification.json` : enregistrer les empreintes des sources des deux blocs, puis le résultat de scripts/local-building.cmd --building=debug --modules=A, la présence de gwgui.exe, des 23 EntryAssembly et l'absence de DLL partagée dans Updater.
+    - [x] Modifier `docs/tasks/reuse-project-audit.md` : consigner le build vérifié et cocher ce groupe avant le commit du bloc complet.
+
+Métadonnées décimales byte/UInt16 : deux parseurs originaux 8ea733760 repris dans MediaMetadataFunctions, onze séquences de huit fichiers remplacées ; trois wrappers sans politique retirés, adaptateurs nullables/défauts/positivité et hexadécimal conservés. Comparaison complète des huit fichiers et des deux corps originaux réussie ; les membres communs antérieurs sont inchangés. Trente-huit tests ciblés réussis, dont quatorze nouveaux cas mémoire sur les limites et sorties absentes ; références App/SDK/23 modules compilées. Relevés : 7 315 fichiers C#, 11 588 grands corps/479 groupes ; 9 525 petits corps/773 exacts/368 normalisés. Build produit groupé à suivre, audit global ouvert.
+
+Build groupé vidéo et métadonnées : scripts/local-building.cmd --building=debug --modules=A terminé avec code 0. Application build/Debug/GW GUI/gwgui.exe et 23 EntryAssembly vérifiés, 16 empreintes source/tests inchangées pendant compilation, Updater conserve uniquement sa DLL propre. Les deux blocs terminés sont inclus ; audit général ouvert.

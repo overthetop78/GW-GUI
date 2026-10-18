@@ -1,3 +1,4 @@
+using GWGUI.MediaFileSystems.Functions;
 using System.Buffers.Binary;
 using System.Collections.Frozen;
 using GWGUI.MediaEngine.Constants;
@@ -120,14 +121,9 @@ public sealed class TzxSignalEncoder : ISequentialMediaEncoder
         return payload;
     }
 
-    private static ushort ReadUInt16(IReadOnlyDictionary<string, string> metadata, string key, ushort defaultValue = 0) =>
-        metadata.TryGetValue(key, out var text) && ushort.TryParse(text, System.Globalization.NumberStyles.None, System.Globalization.CultureInfo.InvariantCulture, out var value) ? value : defaultValue;
+    private static ushort ReadUInt16(IReadOnlyDictionary<string, string> metadata, string key, ushort defaultValue = 0) => MediaMetadataFunctions.TryReadUInt16(metadata, key, out var value) ? value : defaultValue;
 
-    private static bool TryReadUInt16(IReadOnlyDictionary<string, string> metadata, string key, out ushort value)
-    {
-        value = 0;
-        return metadata.TryGetValue(key, out var text) && ushort.TryParse(text, System.Globalization.NumberStyles.None, System.Globalization.CultureInfo.InvariantCulture, out value) && value > 0;
-    }
+    private static bool TryReadUInt16(IReadOnlyDictionary<string, string> metadata, string key, out ushort value) => MediaMetadataFunctions.TryReadUInt16(metadata, key, out value) && value > 0;
 
     private sealed record OrderedItem(long Position, SequentialMediaSegment? Segment, SequentialDecodedBlock? Block);
 }

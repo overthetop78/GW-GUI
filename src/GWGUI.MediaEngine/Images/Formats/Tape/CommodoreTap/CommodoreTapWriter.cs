@@ -1,7 +1,7 @@
+using static GWGUI.MediaFileSystems.Functions.MediaMetadataFunctions;
 using GWGUI.MediaFileSystems.Functions;
 using System.Buffers.Binary;
 using System.Collections.Frozen;
-using System.Globalization;
 using GWGUI.MediaEngine.Enums;
 using GWGUI.MediaEngine.Constants;
 using GWGUI.MediaEngine.Contracts;
@@ -100,12 +100,6 @@ public sealed class CommodoreTapWriter : IMediaImageWriter
         }
         records = encoded;
         return true;
-    }
-
-    private static bool TryReadByte(IReadOnlyDictionary<string, string> metadata, string key, out byte value)
-    {
-        value = 0;
-        return metadata.TryGetValue(key, out var text) && byte.TryParse(text, NumberStyles.None, CultureInfo.InvariantCulture, out value);
     }
 
     private readonly record struct TapProfile(string Signature, byte Version, byte Platform, byte VideoStandard);

@@ -1,4 +1,4 @@
-using System.Globalization;
+using GWGUI.MediaFileSystems.Functions;
 using GWGUI.MediaEngine.Images.Models.Flux;
 
 namespace GWGUI.MediaEngine.Images.Formats.Floppy.Scp;
@@ -81,5 +81,5 @@ internal static class ProtectedTrackScpImageAdapter
         throw new NotSupportedException("SCP supports only floppy heads zero and one.");
     }
 
-    private static byte? ReadByte(IReadOnlyDictionary<string, string> metadata, string key) => metadata.TryGetValue(key, out var value) && byte.TryParse(value, NumberStyles.None, CultureInfo.InvariantCulture, out var parsed) ? parsed : null;
+    private static byte? ReadByte(IReadOnlyDictionary<string, string> metadata, string key) => MediaMetadataFunctions.TryReadByte(metadata, key, out var value) ? value : null;
 }

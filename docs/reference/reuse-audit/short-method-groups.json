@@ -1,19 +1,21 @@
 {
-  "snapshot": "2dcaf5863ddc4644d439d4209b53a0b5af6338a9",
+  "snapshot": "50ed6c4924c923b7a6ad63493b4d5d57a21218d5",
   "snapshotState": "Current worktree based on snapshot",
   "worktreeSourceChanges": [
-    "src/GWGUI.Emulation.Panasonic/EmulationGlobalUsings.cs",
-    "src/GWGUI.Emulation.Panasonic/Emulators/Opera/Interop/Services/VideoCallbackHost.cs",
-    "src/GWGUI.Emulation.Thomson/EmulationGlobalUsings.cs",
-    "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Interop/Services/VideoCallbackHost.cs",
-    "src/GWGUI.Emulation.Watara/EmulationGlobalUsings.cs",
-    "src/GWGUI.Emulation.Watara/Emulators/Potator/Interop/Services/VideoCallbackHost.cs",
-    "src/GWGUI.Emulation.Wenquxing/EmulationGlobalUsings.cs",
-    "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Interop/Services/VideoCallbackHost.cs"
+    "src/GWGUI.MediaEngine/Images/Formats/Floppy/Hfe/ProtectedTrackHfeImageAdapter.cs",
+    "src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/ProtectedTrackScpImageAdapter.cs",
+    "src/GWGUI.MediaEngine/Images/Formats/Tape/CommodoreTap/CommodoreTapWriter.cs",
+    "src/GWGUI.MediaEngine/Images/Formats/Tape/Tzx/TzxWriter.cs",
+    "src/GWGUI.MediaEngine/Images/Formats/Tape/Wav/WavTapeWriter.cs",
+    "src/GWGUI.MediaEngine/Images/Writing/Encoding/Sequential/Acorn/AcornTapeEncoder.cs",
+    "src/GWGUI.MediaEngine/Images/Writing/Encoding/Sequential/Amstrad/AmstradCpcTapeEncoder.cs",
+    "src/GWGUI.MediaEngine/Images/Writing/Encoding/Sequential/Tzx/TzxSignalEncoder.cs",
+    "src/GWGUI.MediaFileSystems/Functions/MediaMetadataFunctions.cs",
+    "tests/GWGUI.Tests/Media/MediaMetadataIntegerTests.cs"
   ],
   "scope": "All current non-ignored repository CSharp files, including hidden paths; BaseMethodDeclaration bodies with fewer than 30 tokens. Candidate presence is not a defect or a completion claim.",
   "fileCount": 7315,
-  "methodBodyCount": 9517,
+  "methodBodyCount": 9525,
   "exactGroups": [
     {
       "hash": "0017F14C61995D644C52FF90F094E4708DC2CA772615CF2F5DD41E74BD202ECA",
@@ -2775,6 +2777,38 @@
           "bodyTokens": "=> SupportedFormatIds . Contains ( formatId )",
           "hash": "0AA89754C9CF196A924BFEFFA0B2F6EBD7BEC8124F6CF0480ADF83EFD881AA02",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5"
+        }
+      ],
+      "qualification": "pending-symbol-and-ownership-comparison"
+    },
+    {
+      "hash": "0B606573BC3A9BF19D58C6DA3861E75A88360E306CB30E77722BE5B04AE00F07",
+      "tokens": 17,
+      "bodyTokens": "=> MediaMetadataFunctions . TryReadByte ( metadata , key , out var value ) ? value : null",
+      "current": [
+        {
+          "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/Hfe/ProtectedTrackHfeImageAdapter.cs",
+          "name": "ReadByte",
+          "owner": "ProtectedTrackHfeImageAdapter",
+          "kind": "MethodDeclaration",
+          "line": 93,
+          "parameters": "(IReadOnlyDictionary<string, string> metadata, string key)",
+          "tokens": 17,
+          "bodyTokens": "=> MediaMetadataFunctions . TryReadByte ( metadata , key , out var value ) ? value : null",
+          "hash": "0B606573BC3A9BF19D58C6DA3861E75A88360E306CB30E77722BE5B04AE00F07",
+          "shape": "FA4A00D0E6CA3FE079B81A3C63DAFBDF364882651483ABE6C9390D549342A13F"
+        },
+        {
+          "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/ProtectedTrackScpImageAdapter.cs",
+          "name": "ReadByte",
+          "owner": "ProtectedTrackScpImageAdapter",
+          "kind": "MethodDeclaration",
+          "line": 84,
+          "parameters": "(IReadOnlyDictionary<string, string> metadata, string key)",
+          "tokens": 17,
+          "bodyTokens": "=> MediaMetadataFunctions . TryReadByte ( metadata , key , out var value ) ? value : null",
+          "hash": "0B606573BC3A9BF19D58C6DA3861E75A88360E306CB30E77722BE5B04AE00F07",
+          "shape": "FA4A00D0E6CA3FE079B81A3C63DAFBDF364882651483ABE6C9390D549342A13F"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -22085,7 +22119,7 @@
           "name": "AddPulses",
           "owner": "AmstradCpcTapeEncoder",
           "kind": "MethodDeclaration",
-          "line": 165,
+          "line": 166,
           "parameters": "(List<short> samples, ref short level, ushort tStates, int count, int sampleRate)",
           "tokens": 26,
           "bodyTokens": "=> GWGUI . MediaEngine . Functions . PcmSampleFunctions . AppendPulses ( samples , ref level , tStates , count , sampleRate , TzxConstants . TStatesPerSecond )",
@@ -25999,6 +26033,38 @@
           "bodyTokens": "=> new ( 2 , UpdateCatalogKind . Module , DateTimeOffset . UtcNow , components )",
           "hash": "504EBD78F7D41FE046060D03813C92DE89B54106E3D24868B170F7298738BB87",
           "shape": "BF7A197B28049C371582F73C572C56A6E6D08FB1448FCD33BCCFC3B906DD7DA2"
+        }
+      ],
+      "qualification": "pending-symbol-and-ownership-comparison"
+    },
+    {
+      "hash": "5060E247229D7FA3220C75EF9A921FF24028D399ED829770220C113BD2B3831A",
+      "tokens": 17,
+      "bodyTokens": "=> MediaMetadataFunctions . TryReadUInt16 ( metadata , key , out var value ) ? value : defaultValue",
+      "current": [
+        {
+          "path": "src/GWGUI.MediaEngine/Images/Writing/Encoding/Sequential/Amstrad/AmstradCpcTapeEncoder.cs",
+          "name": "ReadUInt16",
+          "owner": "AmstradCpcTapeEncoder",
+          "kind": "MethodDeclaration",
+          "line": 184,
+          "parameters": "(IReadOnlyDictionary<string, string> metadata, string key, ushort defaultValue = 0)",
+          "tokens": 17,
+          "bodyTokens": "=> MediaMetadataFunctions . TryReadUInt16 ( metadata , key , out var value ) ? value : defaultValue",
+          "hash": "5060E247229D7FA3220C75EF9A921FF24028D399ED829770220C113BD2B3831A",
+          "shape": "8F51755F908DCF74F0169C4BABA4278576F052EE502D1D8AA0B594ABDE21F76F"
+        },
+        {
+          "path": "src/GWGUI.MediaEngine/Images/Writing/Encoding/Sequential/Tzx/TzxSignalEncoder.cs",
+          "name": "ReadUInt16",
+          "owner": "TzxSignalEncoder",
+          "kind": "MethodDeclaration",
+          "line": 124,
+          "parameters": "(IReadOnlyDictionary<string, string> metadata, string key, ushort defaultValue = 0)",
+          "tokens": 17,
+          "bodyTokens": "=> MediaMetadataFunctions . TryReadUInt16 ( metadata , key , out var value ) ? value : defaultValue",
+          "hash": "5060E247229D7FA3220C75EF9A921FF24028D399ED829770220C113BD2B3831A",
+          "shape": "8F51755F908DCF74F0169C4BABA4278576F052EE502D1D8AA0B594ABDE21F76F"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -54483,6 +54549,38 @@
       "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
+      "hash": "BD18E2FB92BC952A1285E64AAB5925756EF3DFC4973F7DA3CF49BAB688E7A593",
+      "tokens": 17,
+      "bodyTokens": "=> MediaMetadataFunctions . TryReadByte ( metadata , key , out var value ) ? value : defaultValue",
+      "current": [
+        {
+          "path": "src/GWGUI.MediaEngine/Images/Formats/Tape/Tzx/TzxWriter.cs",
+          "name": "ReadVersion",
+          "owner": "TzxWriter",
+          "kind": "MethodDeclaration",
+          "line": 87,
+          "parameters": "(IReadOnlyDictionary<string, string> metadata, string key, byte defaultValue)",
+          "tokens": 17,
+          "bodyTokens": "=> MediaMetadataFunctions . TryReadByte ( metadata , key , out var value ) ? value : defaultValue",
+          "hash": "BD18E2FB92BC952A1285E64AAB5925756EF3DFC4973F7DA3CF49BAB688E7A593",
+          "shape": "8F51755F908DCF74F0169C4BABA4278576F052EE502D1D8AA0B594ABDE21F76F"
+        },
+        {
+          "path": "src/GWGUI.MediaEngine/Images/Writing/Encoding/Sequential/Amstrad/AmstradCpcTapeEncoder.cs",
+          "name": "ReadByte",
+          "owner": "AmstradCpcTapeEncoder",
+          "kind": "MethodDeclaration",
+          "line": 182,
+          "parameters": "(IReadOnlyDictionary<string, string> metadata, string key, byte defaultValue)",
+          "tokens": 17,
+          "bodyTokens": "=> MediaMetadataFunctions . TryReadByte ( metadata , key , out var value ) ? value : defaultValue",
+          "hash": "BD18E2FB92BC952A1285E64AAB5925756EF3DFC4973F7DA3CF49BAB688E7A593",
+          "shape": "8F51755F908DCF74F0169C4BABA4278576F052EE502D1D8AA0B594ABDE21F76F"
+        }
+      ],
+      "qualification": "pending-symbol-and-ownership-comparison"
+    },
+    {
       "hash": "BD57AA3F899A215240D58C4230D597D868D6FD1E41C68FC1DC2D6474DAF1AB75",
       "tokens": 10,
       "bodyTokens": "=> Tg43Checked ? . Invoke ( sender , e )",
@@ -61744,7 +61842,7 @@
           "name": "TzxWriter",
           "owner": "TzxWriter",
           "kind": "ConstructorDeclaration",
-          "line": 20,
+          "line": 21,
           "parameters": "(IAtomicImageFileWriter? files = null)",
           "tokens": 11,
           "bodyTokens": "=> this . files = files ?? new AtomicImageFileWriter ( )",
@@ -61780,7 +61878,7 @@
           "name": "WavTapeWriter",
           "owner": "WavTapeWriter",
           "kind": "ConstructorDeclaration",
-          "line": 21,
+          "line": 22,
           "parameters": "(IAtomicImageFileWriter? files = null)",
           "tokens": 11,
           "bodyTokens": "=> this . files = files ?? new AtomicImageFileWriter ( )",
@@ -71464,7 +71562,7 @@
           "name": "ComputeCrc",
           "owner": "AmstradCpcTapeEncoder",
           "kind": "MethodDeclaration",
-          "line": 174,
+          "line": 175,
           "parameters": "(ReadOnlySpan<byte> data)",
           "tokens": 21,
           "bodyTokens": "=> GWGUI . MediaEngine . Functions . Crc16Calculator . ComputeSpan ( data , AmstradCpcTapeConstants . CrcPolynomial , AmstradCpcTapeConstants . CrcSeed )",
@@ -114386,6 +114484,65 @@
       "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
+      "shape": "8F51755F908DCF74F0169C4BABA4278576F052EE502D1D8AA0B594ABDE21F76F",
+      "tokens": 17,
+      "current": [
+        {
+          "path": "src/GWGUI.MediaEngine/Images/Formats/Tape/Tzx/TzxWriter.cs",
+          "name": "ReadVersion",
+          "owner": "TzxWriter",
+          "kind": "MethodDeclaration",
+          "line": 87,
+          "parameters": "(IReadOnlyDictionary<string, string> metadata, string key, byte defaultValue)",
+          "tokens": 17,
+          "bodyTokens": "=> MediaMetadataFunctions . TryReadByte ( metadata , key , out var value ) ? value : defaultValue",
+          "hash": "BD18E2FB92BC952A1285E64AAB5925756EF3DFC4973F7DA3CF49BAB688E7A593",
+          "shape": "8F51755F908DCF74F0169C4BABA4278576F052EE502D1D8AA0B594ABDE21F76F",
+          "qualification": "Original byte/UInt16 metadata adapter verified in smallMetadataReuse; nullable/default and positive checks preserved."
+        },
+        {
+          "path": "src/GWGUI.MediaEngine/Images/Writing/Encoding/Sequential/Amstrad/AmstradCpcTapeEncoder.cs",
+          "name": "ReadByte",
+          "owner": "AmstradCpcTapeEncoder",
+          "kind": "MethodDeclaration",
+          "line": 182,
+          "parameters": "(IReadOnlyDictionary<string, string> metadata, string key, byte defaultValue)",
+          "tokens": 17,
+          "bodyTokens": "=> MediaMetadataFunctions . TryReadByte ( metadata , key , out var value ) ? value : defaultValue",
+          "hash": "BD18E2FB92BC952A1285E64AAB5925756EF3DFC4973F7DA3CF49BAB688E7A593",
+          "shape": "8F51755F908DCF74F0169C4BABA4278576F052EE502D1D8AA0B594ABDE21F76F",
+          "qualification": "Original byte/UInt16 metadata adapter verified in smallMetadataReuse; nullable/default and positive checks preserved."
+        },
+        {
+          "path": "src/GWGUI.MediaEngine/Images/Writing/Encoding/Sequential/Amstrad/AmstradCpcTapeEncoder.cs",
+          "name": "ReadUInt16",
+          "owner": "AmstradCpcTapeEncoder",
+          "kind": "MethodDeclaration",
+          "line": 184,
+          "parameters": "(IReadOnlyDictionary<string, string> metadata, string key, ushort defaultValue = 0)",
+          "tokens": 17,
+          "bodyTokens": "=> MediaMetadataFunctions . TryReadUInt16 ( metadata , key , out var value ) ? value : defaultValue",
+          "hash": "5060E247229D7FA3220C75EF9A921FF24028D399ED829770220C113BD2B3831A",
+          "shape": "8F51755F908DCF74F0169C4BABA4278576F052EE502D1D8AA0B594ABDE21F76F",
+          "qualification": "Original byte/UInt16 metadata adapter verified in smallMetadataReuse; nullable/default and positive checks preserved."
+        },
+        {
+          "path": "src/GWGUI.MediaEngine/Images/Writing/Encoding/Sequential/Tzx/TzxSignalEncoder.cs",
+          "name": "ReadUInt16",
+          "owner": "TzxSignalEncoder",
+          "kind": "MethodDeclaration",
+          "line": 124,
+          "parameters": "(IReadOnlyDictionary<string, string> metadata, string key, ushort defaultValue = 0)",
+          "tokens": 17,
+          "bodyTokens": "=> MediaMetadataFunctions . TryReadUInt16 ( metadata , key , out var value ) ? value : defaultValue",
+          "hash": "5060E247229D7FA3220C75EF9A921FF24028D399ED829770220C113BD2B3831A",
+          "shape": "8F51755F908DCF74F0169C4BABA4278576F052EE502D1D8AA0B594ABDE21F76F",
+          "qualification": "Original byte/UInt16 metadata adapter verified in smallMetadataReuse; nullable/default and positive checks preserved."
+        }
+      ],
+      "qualification": "pending-symbol-and-ownership-comparison"
+    },
+    {
       "shape": "8FE122CEABDD00116C7F97238DE507EC8DB01CF7D1A9F3A5BF6ABA94775C099A",
       "tokens": 23,
       "current": [
@@ -130488,7 +130645,7 @@
           "name": "ComputeCrc",
           "owner": "AmstradCpcTapeEncoder",
           "kind": "MethodDeclaration",
-          "line": 174,
+          "line": 175,
           "parameters": "(ReadOnlySpan<byte> data)",
           "tokens": 21,
           "bodyTokens": "=> GWGUI . MediaEngine . Functions . Crc16Calculator . ComputeSpan ( data , AmstradCpcTapeConstants . CrcPolynomial , AmstradCpcTapeConstants . CrcSeed )",
@@ -134321,6 +134478,52 @@
           "bodyTokens": "=> sta . RunAsync ( ( ) => VisualizerDocumentScenarios . SectorStatusProgressUsesMediaGeometry ( cylinders , heads ) )",
           "hash": "C6ACE33B1C0B6589D54167F0B9BFFA6D015D4E4B68AF0EF8E5B4FC1E5A4E44F8",
           "shape": "F9351C42A791B28EEC993571A4524FD472BA32C803C10B546ED984DAF7A4998B"
+        }
+      ],
+      "qualification": "pending-symbol-and-ownership-comparison"
+    },
+    {
+      "shape": "FA4A00D0E6CA3FE079B81A3C63DAFBDF364882651483ABE6C9390D549342A13F",
+      "tokens": 17,
+      "current": [
+        {
+          "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/Hfe/ProtectedTrackHfeImageAdapter.cs",
+          "name": "ReadByte",
+          "owner": "ProtectedTrackHfeImageAdapter",
+          "kind": "MethodDeclaration",
+          "line": 93,
+          "parameters": "(IReadOnlyDictionary<string, string> metadata, string key)",
+          "tokens": 17,
+          "bodyTokens": "=> MediaMetadataFunctions . TryReadByte ( metadata , key , out var value ) ? value : null",
+          "hash": "0B606573BC3A9BF19D58C6DA3861E75A88360E306CB30E77722BE5B04AE00F07",
+          "shape": "FA4A00D0E6CA3FE079B81A3C63DAFBDF364882651483ABE6C9390D549342A13F",
+          "qualification": "Original byte/UInt16 metadata adapter verified in smallMetadataReuse; nullable/default and positive checks preserved."
+        },
+        {
+          "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/Hfe/ProtectedTrackHfeImageAdapter.cs",
+          "name": "ReadUInt16",
+          "owner": "ProtectedTrackHfeImageAdapter",
+          "kind": "MethodDeclaration",
+          "line": 95,
+          "parameters": "(IReadOnlyDictionary<string, string> metadata, string key)",
+          "tokens": 17,
+          "bodyTokens": "=> MediaMetadataFunctions . TryReadUInt16 ( metadata , key , out var value ) ? value : null",
+          "hash": "F32D221EDCF4B2AD8FE22BC24AF9FA0527D1020F677155E0AA19C45CF08F36B1",
+          "shape": "FA4A00D0E6CA3FE079B81A3C63DAFBDF364882651483ABE6C9390D549342A13F",
+          "qualification": "Original byte/UInt16 metadata adapter verified in smallMetadataReuse; nullable/default and positive checks preserved."
+        },
+        {
+          "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/ProtectedTrackScpImageAdapter.cs",
+          "name": "ReadByte",
+          "owner": "ProtectedTrackScpImageAdapter",
+          "kind": "MethodDeclaration",
+          "line": 84,
+          "parameters": "(IReadOnlyDictionary<string, string> metadata, string key)",
+          "tokens": 17,
+          "bodyTokens": "=> MediaMetadataFunctions . TryReadByte ( metadata , key , out var value ) ? value : null",
+          "hash": "0B606573BC3A9BF19D58C6DA3861E75A88360E306CB30E77722BE5B04AE00F07",
+          "shape": "FA4A00D0E6CA3FE079B81A3C63DAFBDF364882651483ABE6C9390D549342A13F",
+          "qualification": "Original byte/UInt16 metadata adapter verified in smallMetadataReuse; nullable/default and positive checks preserved."
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
