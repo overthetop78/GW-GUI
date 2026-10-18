@@ -7,6 +7,53 @@ namespace GWGUI.Tests.Emulation;
 public sealed class CoreCallbackInterfaceTests
 {
     [Fact]
+    public void RequiredDelegateThrowsTheDeferredErrorExactlyOnce()
+    {
+        var expected = new InvalidOperationException("incomplete interface");
+        var calls = 0;
+        var actual = Assert.Throws<InvalidOperationException>(() =>
+            ExternalCoreEnvironmentFunctions.RequiredDelegate<ExternalCoreApi.KeyboardEvent>(nint.Zero, () =>
+            {
+                calls++;
+                return expected;
+            }));
+        Assert.Same(expected, actual);
+        Assert.Equal(1, calls);
+    }
+
+    [Fact]
+    public void RequiredDelegatePreservesTheValidCallbackWithoutCreatingAnError()
+    {
+        (uint Index, nint Path, nuint Length)? observed = null;
+        ExternalCoreApi.GetImagePath callback = (index, path, length) =>
+        {
+            observed = (index, path, length);
+            return index == 7;
+        };
+        try
+        {
+            var pointer = Marshal.GetFunctionPointerForDelegate(callback);
+            var converted = ExternalCoreEnvironmentFunctions.RequiredDelegate<ExternalCoreApi.GetImagePath>(pointer,
+                () => throw new InvalidOperationException("must not create an error"));
+            Assert.True(converted(7, (nint)123, 1024));
+            Assert.Equal((7u, (nint)123, (nuint)1024), observed);
+            var withoutFactory = ExternalCoreEnvironmentFunctions.RequiredDelegate<ExternalCoreApi.GetImagePath>(pointer, null!);
+            Assert.False(withoutFactory(8, nint.Zero, 0));
+            Assert.Equal((8u, nint.Zero, (nuint)0), observed);
+        }
+        finally { GC.KeepAlive(callback); }
+    }
+
+    [Fact]
+    public void RequiredDelegatePropagatesAnErrorFromTheFactory()
+    {
+        var expected = new InvalidOperationException("factory failed");
+        var actual = Assert.Throws<InvalidOperationException>(() =>
+            ExternalCoreEnvironmentFunctions.RequiredDelegate<ExternalCoreApi.KeyboardEvent>(nint.Zero, () => throw expected));
+        Assert.Same(expected, actual);
+    }
+
+    [Fact]
     public void OptionalDelegateReturnsNullForMissingCallbacks()
     {
         Assert.Null(ExternalCoreEnvironmentFunctions.OptionalDelegate<ExternalCoreApi.KeyboardEvent>(nint.Zero));

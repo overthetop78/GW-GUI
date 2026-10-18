@@ -118,8 +118,5 @@ internal sealed class ExternalDiskControl
     }
 
     private static T Delegate<T>(nint pointer) where T : Delegate
-    {
-        if (pointer == nint.Zero) throw new InvalidOperationException(CoreExceptions.DiskControlIncomplete());
-        return Marshal.GetDelegateForFunctionPointer<T>(pointer);
-    }
+    => GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.RequiredDelegate<T>(pointer, static () => new InvalidOperationException(CoreExceptions.DiskControlIncomplete()));
 }

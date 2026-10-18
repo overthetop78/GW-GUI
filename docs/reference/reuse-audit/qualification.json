@@ -31153,6 +31153,2412 @@
         "gwgui.updater.dll"
       ],
       "executable": "build/Debug/GW GUI/gwgui.exe"
+    },
+    "subsequentRequiredConversionValidation": {
+      "scope": "Only required adapters and unused imports changed; optional calls, argument lists and owners preserved",
+      "sourceChecks": [
+        {
+          "afterSha256": "AE0DA1B6733DB68C0125CE842583D7B450E3AAC025FA82AB34FABA0AE61EE21D",
+          "beforeSha256": "6E9B5997743D1D55956D3B861B5581B658B34EA10FC4EC8050AB4186487A6D08",
+          "optionalCallsAndOwnerFieldsUnchanged": true,
+          "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs"
+        },
+        {
+          "afterSha256": "7B0CF26EDC65A83774379AAA8E248A112EE02A5BDDBDC2180CF5473BF7D0101E",
+          "beforeSha256": "046EAE553CE820B891FE918C770968721D2650BCF85D07313285D726F74BAF62",
+          "optionalCallsAndOwnerFieldsUnchanged": true,
+          "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+        },
+        {
+          "afterSha256": "20EA32BDB580AE7CF69937789EF01E58CDB4A56E06E23ED005D198E4C6187AE0",
+          "beforeSha256": "8AE3A7FBED62BC08C3B58E501F5DE0E87BA45C9D070C9F5C76ADD5F1704B68E5",
+          "optionalCallsAndOwnerFieldsUnchanged": true,
+          "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs"
+        },
+        {
+          "afterSha256": "64555AD4444FB123015296F344C476222811367ED542970EA78660D85648B04F",
+          "beforeSha256": "9F5E53C33E46DF3A3B667B4DEAA11184EBA2CD7D5B5B42007C83F1C616DC6E24",
+          "optionalCallsAndOwnerFieldsUnchanged": true,
+          "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs"
+        },
+        {
+          "afterSha256": "3CD29BC96750A3A5F686658E763D54A5B5D1B5AE069245B0AB53708C9A4985BF",
+          "beforeSha256": "5CEAFD87D8B93FC36013E572FB1D75F656161DFCE7B5B377359F11875737B04F",
+          "optionalCallsAndOwnerFieldsUnchanged": true,
+          "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs"
+        },
+        {
+          "afterSha256": "338CFE00B576CFA9F0B48AEBAAA41A7A0FC544917921A12AEC0E13671DBEA177",
+          "beforeSha256": "FB10CC46613EBA174294E7B463EE933204B17253EBDA6E987A93D123A25E170F",
+          "optionalCallsAndOwnerFieldsUnchanged": true,
+          "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+        },
+        {
+          "afterSha256": "5B411B2DAE78FF2F08019A56C8EBB1A9FDFD5AAF5D89A2612F1A7EB5FBE568E0",
+          "beforeSha256": "1A91309DEB441CA9539DD82099F42D6A2E6F019EDBAE817BEEFF3DB0A89E2DB2",
+          "optionalCallsAndOwnerFieldsUnchanged": true,
+          "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs"
+        },
+        {
+          "afterSha256": "F3996B94202DF57E5E628F88430923EFD8DDAB09B2EDE8EEEC14B5C9C61D450E",
+          "beforeSha256": "D42B7E148F493F87BE5B9678ABF0A2619858CD23BFAF6B60C268FA8E35473344",
+          "optionalCallsAndOwnerFieldsUnchanged": true,
+          "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs"
+        },
+        {
+          "afterSha256": "22F45BCEC579C09258342C3AB64DB4F1307F61506AA48F949EBE3ABC4428EDEF",
+          "beforeSha256": "189D3786F2F15A67573943F92BB852EC9DA8369B423ADB9B722E0BF4E847E7C7",
+          "optionalCallsAndOwnerFieldsUnchanged": true,
+          "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs"
+        },
+        {
+          "afterSha256": "C6442EE71CAACD61D304B221A5BCB80F8FD5F79DAEDAF250A4E099188AE690E2",
+          "beforeSha256": "F766094A684CBACA7E84B648CCB7FBAB14FAF176C1EAC0D834A8151666CCAE10",
+          "optionalCallsAndOwnerFieldsUnchanged": true,
+          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+        },
+        {
+          "afterSha256": "256310F1BE0504E4B8DE27E45C041FBB6E3DF7B231E7D9F463E818AE9D77E52D",
+          "beforeSha256": "96C0DA5260E6C1F5C9391C1D81744F07C7D5676791D76671E425294EB8DE3ACF",
+          "optionalCallsAndOwnerFieldsUnchanged": true,
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+        },
+        {
+          "afterSha256": "BE5B32342EA6701C1E061882AF98D8BA419CFDFE3D032C0D7D2BC8F187BB5038",
+          "beforeSha256": "BBB4C631E65F00854F322011B5F543BE6D5BC9B714552B7A4C05E63C61217210",
+          "optionalCallsAndOwnerFieldsUnchanged": true,
+          "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs"
+        },
+        {
+          "afterSha256": "4E6F05E890A6ED2EE2FBA732DEA87EC159A95F4C995B5AF57B8FE73CB081A52D",
+          "beforeSha256": "2CC3DABE890F7D1F9D1F47CE7BC4F3D3581B347B8C2AC7A3C6FD3E7029F643AD",
+          "optionalCallsAndOwnerFieldsUnchanged": true,
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+        },
+        {
+          "afterSha256": "19525D34886629A937F4C1FC0063E8C212BDB1C519CA83C02CF3DD3FC135B895",
+          "beforeSha256": "A313EB7CD7BDDE012D0584A3CE18650FC62D3FFF8817203E0F5570F03C4539C9",
+          "optionalCallsAndOwnerFieldsUnchanged": true,
+          "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs"
+        },
+        {
+          "afterSha256": "019DF737B16BEAAF749F0A7CD75AF7EB470B43B544A907EAEC8E062E08CE4090",
+          "beforeSha256": "C1BBAE11F3886F7CDC65055DFAABCCAB872283D6C859961F5FA44C6D288EF3D9",
+          "optionalCallsAndOwnerFieldsUnchanged": true,
+          "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs"
+        },
+        {
+          "afterSha256": "922F6F42786A9D2D1D859802488F47326FE04755370FA3E74C91DB98FF380E64",
+          "beforeSha256": "DE2379EC73113F51235D34D7B708E656B7D19985283C31406C5C1AA1D0694047",
+          "optionalCallsAndOwnerFieldsUnchanged": true,
+          "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs"
+        },
+        {
+          "afterSha256": "31A254DC7662F0EF05542EDD8D933F9E609B4DE6904B5FE921BA709DC3497FA5",
+          "beforeSha256": "337FA844920ECB8425C68B499CEB76496CA723507E97A8F86DB8DDC03A671108",
+          "optionalCallsAndOwnerFieldsUnchanged": true,
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+        },
+        {
+          "afterSha256": "E95CD22F1F2B516AC20C9B2F8FCD970885A677D5ACE7BD17B840C99B0A1F147C",
+          "beforeSha256": "36CA8EBA263696157691D27ECEFA8E5C99B3098440EBDFFD1CC5C4E705F62884",
+          "optionalCallsAndOwnerFieldsUnchanged": true,
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalDiskControl.cs"
+        },
+        {
+          "afterSha256": "47540358C069C9EF9A4A8CFFA9D7734C92457D346CF480539081595F8DA882F4",
+          "beforeSha256": "201B4E511AA291EA6B78AA42AFB154CB153FFBFBCAD2C7EACF45B7DD49D431D1",
+          "optionalCallsAndOwnerFieldsUnchanged": true,
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalDiskControl.cs"
+        }
+      ],
+      "afterSdkSha256": "581BA199386DC5D746903EE4DD9B1AA1F1F1B666FA4DB3DD9BB119AA0A7955CE",
+      "allOtherSdkTokensUnchanged": true,
+      "beforeSdkSha256": "5B07837341A35CA8B822145D2E9AAC9A0C69E6D6E8FDB98AF1F387B0FEFC9EE5"
+    }
+  },
+  "requiredNativeDelegateReuse": {
+    "referenceCount": 182,
+    "state": "verified",
+    "beforeHead": "966957c0cd23473698e4cc22d42c08d88321b01a",
+    "origin": {
+      "commit": "c2d674be4",
+      "path": "src/GWGUI.Emulation.Amiga/Cores/AmigaExternalDiskControl.cs",
+      "tokens": "private static T Delegate < T > ( nint pointer ) where T : Delegate { if ( pointer == 0 ) throw new InvalidOperationException ( \"The Amiga core provided incomplete disk control.\" ) ; return Marshal . GetDelegateForFunctionPointer < T > ( pointer ) ; }"
+    },
+    "sources": [
+      {
+        "errorAssembly": "gwgui.emulation.acorn",
+        "errorMessage": "DiskControlErrors.Incomplete",
+        "signature": "(nint pointer)",
+        "tokens": "internal static T RequiredDelegate < T > ( nint pointer ) where T : Delegate => pointer == nint . Zero ? throw new InvalidOperationException ( DiskControlErrors . Incomplete ) : Marshal . GetDelegateForFunctionPointer < T > ( pointer ) ;",
+        "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "errorSymbol": "GWGUI.Emulation.Acorn.Emulators.Common.Exceptions.DiskControlErrors.Incomplete",
+        "constraints": [
+          "where T : Delegate"
+        ],
+        "returnType": "T",
+        "errorCreation": "new InvalidOperationException(DiskControlErrors.Incomplete)",
+        "sha256": "6E9B5997743D1D55956D3B861B5581B658B34EA10FC4EC8050AB4186487A6D08",
+        "after": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.RequiredDelegate<T>(pointer, static () => new InvalidOperationException(DiskControlErrors.Incomplete))",
+        "method": "RequiredDelegate",
+        "factoryIsStatic": true
+      },
+      {
+        "errorAssembly": "gwgui.emulation.amstrad",
+        "errorMessage": "CommonExceptions.DiskControlIncomplete()",
+        "signature": "(nint pointer)",
+        "tokens": "private static T Delegate < T > ( nint pointer ) where T : Delegate { if ( pointer == nint . Zero ) throw new InvalidOperationException ( CommonExceptions . DiskControlIncomplete ( ) ) ; return Marshal . GetDelegateForFunctionPointer < T > ( pointer ) ; }",
+        "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "errorSymbol": "GWGUI.Emulation.Amstrad.Emulators.Common.Exceptions.CommonExceptions.DiskControlIncomplete()",
+        "constraints": [
+          "where T : Delegate"
+        ],
+        "returnType": "T",
+        "errorCreation": "new InvalidOperationException(CommonExceptions.DiskControlIncomplete())",
+        "sha256": "046EAE553CE820B891FE918C770968721D2650BCF85D07313285D726F74BAF62",
+        "after": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.RequiredDelegate<T>(pointer, static () => new InvalidOperationException(CommonExceptions.DiskControlIncomplete()))",
+        "method": "Delegate",
+        "factoryIsStatic": true
+      },
+      {
+        "errorAssembly": "gwgui.emulation.apple",
+        "errorMessage": "DiskControlErrors.Incomplete",
+        "signature": "(nint pointer)",
+        "tokens": "internal static T RequiredDelegate < T > ( nint pointer ) where T : Delegate => pointer == nint . Zero ? throw new InvalidOperationException ( DiskControlErrors . Incomplete ) : Marshal . GetDelegateForFunctionPointer < T > ( pointer ) ;",
+        "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "errorSymbol": "GWGUI.Emulation.Apple.Emulators.Common.Exceptions.DiskControlErrors.Incomplete",
+        "constraints": [
+          "where T : Delegate"
+        ],
+        "returnType": "T",
+        "errorCreation": "new InvalidOperationException(DiskControlErrors.Incomplete)",
+        "sha256": "8AE3A7FBED62BC08C3B58E501F5DE0E87BA45C9D070C9F5C76ADD5F1704B68E5",
+        "after": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.RequiredDelegate<T>(pointer, static () => new InvalidOperationException(DiskControlErrors.Incomplete))",
+        "method": "RequiredDelegate",
+        "factoryIsStatic": true
+      },
+      {
+        "errorAssembly": "gwgui.emulation.atari",
+        "errorMessage": "DiskControlErrors.Incomplete",
+        "signature": "(nint pointer)",
+        "tokens": "internal static T RequiredDelegate < T > ( nint pointer ) where T : Delegate => pointer == nint . Zero ? throw new InvalidOperationException ( DiskControlErrors . Incomplete ) : Marshal . GetDelegateForFunctionPointer < T > ( pointer ) ;",
+        "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "errorSymbol": "GWGUI.Emulation.Atari.Emulators.Common.Exceptions.DiskControlErrors.Incomplete",
+        "constraints": [
+          "where T : Delegate"
+        ],
+        "returnType": "T",
+        "errorCreation": "new InvalidOperationException(DiskControlErrors.Incomplete)",
+        "sha256": "9F5E53C33E46DF3A3B667B4DEAA11184EBA2CD7D5B5B42007C83F1C616DC6E24",
+        "after": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.RequiredDelegate<T>(pointer, static () => new InvalidOperationException(DiskControlErrors.Incomplete))",
+        "method": "RequiredDelegate",
+        "factoryIsStatic": true
+      },
+      {
+        "errorAssembly": "gwgui.emulation.coleco",
+        "errorMessage": "DiskControlErrors.Incomplete",
+        "signature": "(nint pointer)",
+        "tokens": "internal static T RequiredDelegate < T > ( nint pointer ) where T : Delegate => pointer == nint . Zero ? throw new InvalidOperationException ( DiskControlErrors . Incomplete ) : Marshal . GetDelegateForFunctionPointer < T > ( pointer ) ;",
+        "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "errorSymbol": "GWGUI.Emulation.Coleco.Emulators.Common.Exceptions.DiskControlErrors.Incomplete",
+        "constraints": [
+          "where T : Delegate"
+        ],
+        "returnType": "T",
+        "errorCreation": "new InvalidOperationException(DiskControlErrors.Incomplete)",
+        "sha256": "5CEAFD87D8B93FC36013E572FB1D75F656161DFCE7B5B377359F11875737B04F",
+        "after": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.RequiredDelegate<T>(pointer, static () => new InvalidOperationException(DiskControlErrors.Incomplete))",
+        "method": "RequiredDelegate",
+        "factoryIsStatic": true
+      },
+      {
+        "errorAssembly": "gwgui.emulation.commodore",
+        "errorMessage": "CoreExceptions.DiskControlIncomplete()",
+        "signature": "(nint pointer)",
+        "tokens": "private static T Delegate < T > ( nint pointer ) where T : Delegate { if ( pointer == nint . Zero ) throw new InvalidOperationException ( CoreExceptions . DiskControlIncomplete ( ) ) ; return Marshal . GetDelegateForFunctionPointer < T > ( pointer ) ; }",
+        "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "errorSymbol": "GWGUI.Emulation.Commodore.Emulators.Common.Interop.Exceptions.CoreExceptions.DiskControlIncomplete()",
+        "constraints": [
+          "where T : Delegate"
+        ],
+        "returnType": "T",
+        "errorCreation": "new InvalidOperationException(CoreExceptions.DiskControlIncomplete())",
+        "sha256": "FB10CC46613EBA174294E7B463EE933204B17253EBDA6E987A93D123A25E170F",
+        "after": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.RequiredDelegate<T>(pointer, static () => new InvalidOperationException(CoreExceptions.DiskControlIncomplete()))",
+        "method": "Delegate",
+        "factoryIsStatic": true
+      },
+      {
+        "errorAssembly": "gwgui.emulation.epoch",
+        "errorMessage": "DiskControlErrors.Incomplete",
+        "signature": "(nint pointer)",
+        "tokens": "internal static T RequiredDelegate < T > ( nint pointer ) where T : Delegate => pointer == nint . Zero ? throw new InvalidOperationException ( DiskControlErrors . Incomplete ) : Marshal . GetDelegateForFunctionPointer < T > ( pointer ) ;",
+        "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "errorSymbol": "GWGUI.Emulation.Epoch.Emulators.Common.Exceptions.DiskControlErrors.Incomplete",
+        "constraints": [
+          "where T : Delegate"
+        ],
+        "returnType": "T",
+        "errorCreation": "new InvalidOperationException(DiskControlErrors.Incomplete)",
+        "sha256": "1A91309DEB441CA9539DD82099F42D6A2E6F019EDBAE817BEEFF3DB0A89E2DB2",
+        "after": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.RequiredDelegate<T>(pointer, static () => new InvalidOperationException(DiskControlErrors.Incomplete))",
+        "method": "RequiredDelegate",
+        "factoryIsStatic": true
+      },
+      {
+        "errorAssembly": "gwgui.emulation.fairchild",
+        "errorMessage": "DiskControlErrors.Incomplete",
+        "signature": "(nint pointer)",
+        "tokens": "internal static T RequiredDelegate < T > ( nint pointer ) where T : Delegate => pointer == nint . Zero ? throw new InvalidOperationException ( DiskControlErrors . Incomplete ) : Marshal . GetDelegateForFunctionPointer < T > ( pointer ) ;",
+        "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "errorSymbol": "GWGUI.Emulation.Fairchild.Emulators.Common.Exceptions.DiskControlErrors.Incomplete",
+        "constraints": [
+          "where T : Delegate"
+        ],
+        "returnType": "T",
+        "errorCreation": "new InvalidOperationException(DiskControlErrors.Incomplete)",
+        "sha256": "D42B7E148F493F87BE5B9678ABF0A2619858CD23BFAF6B60C268FA8E35473344",
+        "after": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.RequiredDelegate<T>(pointer, static () => new InvalidOperationException(DiskControlErrors.Incomplete))",
+        "method": "RequiredDelegate",
+        "factoryIsStatic": true
+      },
+      {
+        "errorAssembly": "gwgui.emulation.mattel",
+        "errorMessage": "DiskControlErrors.Incomplete",
+        "signature": "(nint pointer)",
+        "tokens": "internal static T RequiredDelegate < T > ( nint pointer ) where T : Delegate => pointer == nint . Zero ? throw new InvalidOperationException ( DiskControlErrors . Incomplete ) : Marshal . GetDelegateForFunctionPointer < T > ( pointer ) ;",
+        "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "errorSymbol": "GWGUI.Emulation.Mattel.Emulators.Common.Exceptions.DiskControlErrors.Incomplete",
+        "constraints": [
+          "where T : Delegate"
+        ],
+        "returnType": "T",
+        "errorCreation": "new InvalidOperationException(DiskControlErrors.Incomplete)",
+        "sha256": "189D3786F2F15A67573943F92BB852EC9DA8369B423ADB9B722E0BF4E847E7C7",
+        "after": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.RequiredDelegate<T>(pointer, static () => new InvalidOperationException(DiskControlErrors.Incomplete))",
+        "method": "RequiredDelegate",
+        "factoryIsStatic": true
+      },
+      {
+        "errorAssembly": "gwgui.emulation.nec",
+        "errorMessage": "Error(\"DiskControlIncomplete\")",
+        "signature": "(nint pointer)",
+        "tokens": "private T Delegate < T > ( nint pointer ) where T : Delegate { if ( pointer == 0 ) throw new InvalidOperationException ( Error ( \"DiskControlIncomplete\" ) ) ; return Marshal . GetDelegateForFunctionPointer < T > ( pointer ) ; }",
+        "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "errorSymbol": "GWGUI.Emulation.Nec.Emulators.Common.Interop.Services.ExternalDiskControl.Error(string, params object[])",
+        "constraints": [
+          "where T : Delegate"
+        ],
+        "returnType": "T",
+        "errorCreation": "new InvalidOperationException(Error(\"DiskControlIncomplete\"))",
+        "sha256": "F766094A684CBACA7E84B648CCB7FBAB14FAF176C1EAC0D834A8151666CCAE10",
+        "after": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.RequiredDelegate<T>(pointer, () => new InvalidOperationException(Error(\"DiskControlIncomplete\")))",
+        "method": "Delegate",
+        "factoryIsStatic": false
+      },
+      {
+        "errorAssembly": "gwgui.emulation.nintendo",
+        "errorMessage": "CoreExceptions.DiskControlIncomplete()",
+        "signature": "(nint pointer)",
+        "tokens": "private static T Delegate < T > ( nint pointer ) where T : Delegate { if ( pointer == 0 ) throw new InvalidOperationException ( CoreExceptions . DiskControlIncomplete ( ) ) ; return Marshal . GetDelegateForFunctionPointer < T > ( pointer ) ; }",
+        "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "errorSymbol": "GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Exceptions.CoreExceptions.DiskControlIncomplete()",
+        "constraints": [
+          "where T : Delegate"
+        ],
+        "returnType": "T",
+        "errorCreation": "new InvalidOperationException(CoreExceptions.DiskControlIncomplete())",
+        "sha256": "96C0DA5260E6C1F5C9391C1D81744F07C7D5676791D76671E425294EB8DE3ACF",
+        "after": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.RequiredDelegate<T>(pointer, static () => new InvalidOperationException(CoreExceptions.DiskControlIncomplete()))",
+        "method": "Delegate",
+        "factoryIsStatic": true
+      },
+      {
+        "errorAssembly": "gwgui.emulation.philips",
+        "errorMessage": "DiskControlErrors.Incomplete",
+        "signature": "(nint pointer)",
+        "tokens": "internal static T RequiredDelegate < T > ( nint pointer ) where T : Delegate => pointer == nint . Zero ? throw new InvalidOperationException ( DiskControlErrors . Incomplete ) : Marshal . GetDelegateForFunctionPointer < T > ( pointer ) ;",
+        "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "errorSymbol": "GWGUI.Emulation.Philips.Emulators.Common.Exceptions.DiskControlErrors.Incomplete",
+        "constraints": [
+          "where T : Delegate"
+        ],
+        "returnType": "T",
+        "errorCreation": "new InvalidOperationException(DiskControlErrors.Incomplete)",
+        "sha256": "BBB4C631E65F00854F322011B5F543BE6D5BC9B714552B7A4C05E63C61217210",
+        "after": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.RequiredDelegate<T>(pointer, static () => new InvalidOperationException(DiskControlErrors.Incomplete))",
+        "method": "RequiredDelegate",
+        "factoryIsStatic": true
+      },
+      {
+        "errorAssembly": "gwgui.emulation.sega",
+        "errorMessage": "CoreExceptions.DiskControlIncomplete()",
+        "signature": "(nint pointer)",
+        "tokens": "private static T Delegate < T > ( nint pointer ) where T : Delegate { if ( pointer == 0 ) throw new InvalidOperationException ( CoreExceptions . DiskControlIncomplete ( ) ) ; return Marshal . GetDelegateForFunctionPointer < T > ( pointer ) ; }",
+        "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "errorSymbol": "GWGUI.Emulation.Sega.Emulators.Common.Interop.Exceptions.CoreExceptions.DiskControlIncomplete()",
+        "constraints": [
+          "where T : Delegate"
+        ],
+        "returnType": "T",
+        "errorCreation": "new InvalidOperationException(CoreExceptions.DiskControlIncomplete())",
+        "sha256": "2CC3DABE890F7D1F9D1F47CE7BC4F3D3581B347B8C2AC7A3C6FD3E7029F643AD",
+        "after": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.RequiredDelegate<T>(pointer, static () => new InvalidOperationException(CoreExceptions.DiskControlIncomplete()))",
+        "method": "Delegate",
+        "factoryIsStatic": true
+      },
+      {
+        "errorAssembly": "gwgui.emulation.sharp",
+        "errorMessage": "DiskControlErrors.Incomplete",
+        "signature": "(nint pointer)",
+        "tokens": "internal static T RequiredDelegate < T > ( nint pointer ) where T : Delegate => pointer == nint . Zero ? throw new InvalidOperationException ( DiskControlErrors . Incomplete ) : Marshal . GetDelegateForFunctionPointer < T > ( pointer ) ;",
+        "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "errorSymbol": "GWGUI.Emulation.Sharp.Emulators.Common.Exceptions.DiskControlErrors.Incomplete",
+        "constraints": [
+          "where T : Delegate"
+        ],
+        "returnType": "T",
+        "errorCreation": "new InvalidOperationException(DiskControlErrors.Incomplete)",
+        "sha256": "A313EB7CD7BDDE012D0584A3CE18650FC62D3FFF8817203E0F5570F03C4539C9",
+        "after": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.RequiredDelegate<T>(pointer, static () => new InvalidOperationException(DiskControlErrors.Incomplete))",
+        "method": "RequiredDelegate",
+        "factoryIsStatic": true
+      },
+      {
+        "errorAssembly": "gwgui.emulation.sinclair",
+        "errorMessage": "DiskControlErrors.Incomplete",
+        "signature": "(nint pointer)",
+        "tokens": "internal static T RequiredDelegate < T > ( nint pointer ) where T : Delegate => pointer == nint . Zero ? throw new InvalidOperationException ( DiskControlErrors . Incomplete ) : Marshal . GetDelegateForFunctionPointer < T > ( pointer ) ;",
+        "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "errorSymbol": "GWGUI.Emulation.Sinclair.Emulators.Common.Exceptions.DiskControlErrors.Incomplete",
+        "constraints": [
+          "where T : Delegate"
+        ],
+        "returnType": "T",
+        "errorCreation": "new InvalidOperationException(DiskControlErrors.Incomplete)",
+        "sha256": "C1BBAE11F3886F7CDC65055DFAABCCAB872283D6C859961F5FA44C6D288EF3D9",
+        "after": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.RequiredDelegate<T>(pointer, static () => new InvalidOperationException(DiskControlErrors.Incomplete))",
+        "method": "RequiredDelegate",
+        "factoryIsStatic": true
+      },
+      {
+        "errorAssembly": "gwgui.emulation.snk",
+        "errorMessage": "DiskControlErrors.Incomplete",
+        "signature": "(nint pointer)",
+        "tokens": "internal static T RequiredDelegate < T > ( nint pointer ) where T : Delegate => pointer == nint . Zero ? throw new InvalidOperationException ( DiskControlErrors . Incomplete ) : Marshal . GetDelegateForFunctionPointer < T > ( pointer ) ;",
+        "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "errorSymbol": "GWGUI.Emulation.Snk.Emulators.Common.Exceptions.DiskControlErrors.Incomplete",
+        "constraints": [
+          "where T : Delegate"
+        ],
+        "returnType": "T",
+        "errorCreation": "new InvalidOperationException(DiskControlErrors.Incomplete)",
+        "sha256": "DE2379EC73113F51235D34D7B708E656B7D19985283C31406C5C1AA1D0694047",
+        "after": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.RequiredDelegate<T>(pointer, static () => new InvalidOperationException(DiskControlErrors.Incomplete))",
+        "method": "RequiredDelegate",
+        "factoryIsStatic": true
+      },
+      {
+        "errorAssembly": "gwgui.emulation.sony",
+        "errorMessage": "CoreExceptions.DiskControlIncomplete()",
+        "signature": "(nint pointer)",
+        "tokens": "private static T Delegate < T > ( nint pointer ) where T : Delegate { if ( pointer == 0 ) throw new InvalidOperationException ( CoreExceptions . DiskControlIncomplete ( ) ) ; return Marshal . GetDelegateForFunctionPointer < T > ( pointer ) ; }",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "errorSymbol": "GWGUI.Emulation.Sony.Emulators.Common.Interop.Exceptions.CoreExceptions.DiskControlIncomplete()",
+        "constraints": [
+          "where T : Delegate"
+        ],
+        "returnType": "T",
+        "errorCreation": "new InvalidOperationException(CoreExceptions.DiskControlIncomplete())",
+        "sha256": "337FA844920ECB8425C68B499CEB76496CA723507E97A8F86DB8DDC03A671108",
+        "after": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.RequiredDelegate<T>(pointer, static () => new InvalidOperationException(CoreExceptions.DiskControlIncomplete()))",
+        "method": "Delegate",
+        "factoryIsStatic": true
+      },
+      {
+        "errorAssembly": "gwgui.emulation.sony",
+        "errorMessage": "Pcsx2Exceptions.DiskControlIncomplete()",
+        "signature": "(nint pointer)",
+        "tokens": "private static T Delegate < T > ( nint pointer ) where T : Delegate { if ( pointer == 0 ) throw new InvalidOperationException ( Pcsx2Exceptions . DiskControlIncomplete ( ) ) ; return Marshal . GetDelegateForFunctionPointer < T > ( pointer ) ; }",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalDiskControl.cs",
+        "errorSymbol": "GWGUI.Emulation.Sony.Emulators.Pcsx2.Exceptions.Pcsx2Exceptions.DiskControlIncomplete()",
+        "constraints": [
+          "where T : Delegate"
+        ],
+        "returnType": "T",
+        "errorCreation": "new InvalidOperationException(Pcsx2Exceptions.DiskControlIncomplete())",
+        "sha256": "36CA8EBA263696157691D27ECEFA8E5C99B3098440EBDFFD1CC5C4E705F62884",
+        "after": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.RequiredDelegate<T>(pointer, static () => new InvalidOperationException(Pcsx2Exceptions.DiskControlIncomplete()))",
+        "method": "Delegate",
+        "factoryIsStatic": true
+      },
+      {
+        "errorAssembly": "gwgui.emulation.sony",
+        "errorMessage": "PpssppExceptions.DiskControlIncomplete()",
+        "signature": "(nint pointer)",
+        "tokens": "private static T Delegate < T > ( nint pointer ) where T : Delegate { if ( pointer == 0 ) throw new InvalidOperationException ( PpssppExceptions . DiskControlIncomplete ( ) ) ; return Marshal . GetDelegateForFunctionPointer < T > ( pointer ) ; }",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalDiskControl.cs",
+        "errorSymbol": "GWGUI.Emulation.Sony.Emulators.Ppsspp.Exceptions.PpssppExceptions.DiskControlIncomplete()",
+        "constraints": [
+          "where T : Delegate"
+        ],
+        "returnType": "T",
+        "errorCreation": "new InvalidOperationException(PpssppExceptions.DiskControlIncomplete())",
+        "sha256": "201B4E511AA291EA6B78AA42AFB154CB153FFBFBCAD2C7EACF45B7DD49D431D1",
+        "after": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.RequiredDelegate<T>(pointer, static () => new InvalidOperationException(PpssppExceptions.DiskControlIncomplete()))",
+        "method": "Delegate",
+        "factoryIsStatic": true
+      }
+    ],
+    "sdk": {
+      "path": "src/GWGUI.Emulation/Functions/ExternalCoreEnvironmentFunctions.cs",
+      "sha256": "5B07837341A35CA8B822145D2E9AAC9A0C69E6D6E8FDB98AF1F387B0FEFC9EE5"
+    },
+    "referenceFiles": [
+      {
+        "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "sha256": "6E9B5997743D1D55956D3B861B5581B658B34EA10FC4EC8050AB4186487A6D08"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/DiskControl.cs",
+        "sha256": "6AE77F8FA521763BE8BCE400856A7D7EE61AEF0454A360DA6B9101496E970D89"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "sha256": "046EAE553CE820B891FE918C770968721D2650BCF85D07313285D726F74BAF62"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "sha256": "8AE3A7FBED62BC08C3B58E501F5DE0E87BA45C9D070C9F5C76ADD5F1704B68E5"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/DiskControl.cs",
+        "sha256": "0C2EFC7BF92A7657B60F1E03B30BD494E11FCBE49427AC768D2E597DAC0781D5"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "sha256": "9F5E53C33E46DF3A3B667B4DEAA11184EBA2CD7D5B5B42007C83F1C616DC6E24"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/DiskControl.cs",
+        "sha256": "BFC07B2202C766AF3CE46F334CFB6212D8D5E635FFF39C9D45479697A6220B9A"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "sha256": "5CEAFD87D8B93FC36013E572FB1D75F656161DFCE7B5B377359F11875737B04F"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/DiskControl.cs",
+        "sha256": "13A396610BDD9F477B84F81C354B212A30022786CC81BDE39A53E6D9A1B35633"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "sha256": "FB10CC46613EBA174294E7B463EE933204B17253EBDA6E987A93D123A25E170F"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "sha256": "1A91309DEB441CA9539DD82099F42D6A2E6F019EDBAE817BEEFF3DB0A89E2DB2"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/DiskControl.cs",
+        "sha256": "61EBD56226799CCF49C09D4C919FE77BF42685EE63061B1E78B90BFCA8568F5E"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "sha256": "D42B7E148F493F87BE5B9678ABF0A2619858CD23BFAF6B60C268FA8E35473344"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/DiskControl.cs",
+        "sha256": "4F19D02BC918CD794001DBC4361EEF532032A23399FE861959C9195B1BC77269"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "sha256": "189D3786F2F15A67573943F92BB852EC9DA8369B423ADB9B722E0BF4E847E7C7"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/DiskControl.cs",
+        "sha256": "1CCCA78E3D148EF054B2FF819486034F3DFDEE1DF0DB6B92226CEF368FEF2A07"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "sha256": "F766094A684CBACA7E84B648CCB7FBAB14FAF176C1EAC0D834A8151666CCAE10"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "sha256": "96C0DA5260E6C1F5C9391C1D81744F07C7D5676791D76671E425294EB8DE3ACF"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "sha256": "BBB4C631E65F00854F322011B5F543BE6D5BC9B714552B7A4C05E63C61217210"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/DiskControl.cs",
+        "sha256": "2C036755CC815DCFB2608A1FAFA2EF5D5DC0261056D050459E181312B94AEE0D"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "sha256": "2CC3DABE890F7D1F9D1F47CE7BC4F3D3581B347B8C2AC7A3C6FD3E7029F643AD"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "sha256": "A313EB7CD7BDDE012D0584A3CE18650FC62D3FFF8817203E0F5570F03C4539C9"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/DiskControl.cs",
+        "sha256": "625643CC38CE437A9458C027B4A487A1E617AA2AFFC79F6C9E79CCF2053BCF9B"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "sha256": "C1BBAE11F3886F7CDC65055DFAABCCAB872283D6C859961F5FA44C6D288EF3D9"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/DiskControl.cs",
+        "sha256": "C59EDA7329922DE7F9F0CC0AC40E38506E048AFA5A8DFA200AD46F3D532D47FC"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "sha256": "DE2379EC73113F51235D34D7B708E656B7D19985283C31406C5C1AA1D0694047"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/DiskControl.cs",
+        "sha256": "1BCD0FC8E701A78DAACF0AC7CF4F17D7CC00D18D5F5F1EE31A2D53CF8FBDDF39"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "sha256": "337FA844920ECB8425C68B499CEB76496CA723507E97A8F86DB8DDC03A671108"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalDiskControl.cs",
+        "sha256": "36CA8EBA263696157691D27ECEFA8E5C99B3098440EBDFFD1CC5C4E705F62884"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalDiskControl.cs",
+        "sha256": "201B4E511AA291EA6B78AA42AFB154CB153FFBFBCAD2C7EACF45B7DD49D431D1"
+      }
+    ],
+    "references": [
+      {
+        "target": "GWGUI.Emulation.Acorn.Emulators.Common.Interop.Functions.DiskControlFunctions.RequiredDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.SetEjectState>(nint)",
+        "expression": "DiskControlFunctions.RequiredDelegate<ExternalCoreApi.SetEjectState>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.SetEjectState",
+        "arguments": "(api.SetEjectState)",
+        "definitionPath": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/DiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Acorn.Emulators.Common.Interop.Functions.DiskControlFunctions.RequiredDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.GetEjectState>(nint)",
+        "expression": "DiskControlFunctions.RequiredDelegate<ExternalCoreApi.GetEjectState>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.GetEjectState",
+        "arguments": "(api.GetEjectState)",
+        "definitionPath": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/DiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Acorn.Emulators.Common.Interop.Functions.DiskControlFunctions.RequiredDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.GetImageIndex>(nint)",
+        "expression": "DiskControlFunctions.RequiredDelegate<ExternalCoreApi.GetImageIndex>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.GetImageIndex",
+        "arguments": "(api.GetImageIndex)",
+        "definitionPath": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/DiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Acorn.Emulators.Common.Interop.Functions.DiskControlFunctions.RequiredDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.SetImageIndex>(nint)",
+        "expression": "DiskControlFunctions.RequiredDelegate<ExternalCoreApi.SetImageIndex>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.SetImageIndex",
+        "arguments": "(api.SetImageIndex)",
+        "definitionPath": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/DiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Acorn.Emulators.Common.Interop.Functions.DiskControlFunctions.RequiredDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.GetImageCount>(nint)",
+        "expression": "DiskControlFunctions.RequiredDelegate<ExternalCoreApi.GetImageCount>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.GetImageCount",
+        "arguments": "(api.GetImageCount)",
+        "definitionPath": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/DiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Acorn.Emulators.Common.Interop.Functions.DiskControlFunctions.RequiredDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.ReplaceImage>(nint)",
+        "expression": "DiskControlFunctions.RequiredDelegate<ExternalCoreApi.ReplaceImage>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.ReplaceImage",
+        "arguments": "(api.ReplaceImage)",
+        "definitionPath": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/DiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Acorn.Emulators.Common.Interop.Functions.DiskControlFunctions.RequiredDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.AddImage>(nint)",
+        "expression": "DiskControlFunctions.RequiredDelegate<ExternalCoreApi.AddImage>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.AddImage",
+        "arguments": "(api.AddImage)",
+        "definitionPath": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/DiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Amstrad.Emulators.Common.Interop.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.SetEjectState>(nint)",
+        "expression": "Delegate<ExternalCoreApi.SetEjectState>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.SetEjectState",
+        "arguments": "(api.SetEjectState)",
+        "definitionPath": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Amstrad.Emulators.Common.Interop.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.GetEjectState>(nint)",
+        "expression": "Delegate<ExternalCoreApi.GetEjectState>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.GetEjectState",
+        "arguments": "(api.GetEjectState)",
+        "definitionPath": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Amstrad.Emulators.Common.Interop.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.GetImageIndex>(nint)",
+        "expression": "Delegate<ExternalCoreApi.GetImageIndex>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.GetImageIndex",
+        "arguments": "(api.GetImageIndex)",
+        "definitionPath": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Amstrad.Emulators.Common.Interop.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.SetImageIndex>(nint)",
+        "expression": "Delegate<ExternalCoreApi.SetImageIndex>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.SetImageIndex",
+        "arguments": "(api.SetImageIndex)",
+        "definitionPath": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Amstrad.Emulators.Common.Interop.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.GetImageCount>(nint)",
+        "expression": "Delegate<ExternalCoreApi.GetImageCount>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.GetImageCount",
+        "arguments": "(api.GetImageCount)",
+        "definitionPath": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Amstrad.Emulators.Common.Interop.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.ReplaceImage>(nint)",
+        "expression": "Delegate<ExternalCoreApi.ReplaceImage>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.ReplaceImage",
+        "arguments": "(api.ReplaceImage)",
+        "definitionPath": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Amstrad.Emulators.Common.Interop.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.AddImage>(nint)",
+        "expression": "Delegate<ExternalCoreApi.AddImage>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.AddImage",
+        "arguments": "(api.AddImage)",
+        "definitionPath": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Amstrad.Emulators.Common.Interop.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.SetEjectState>(nint)",
+        "expression": "Delegate<ExternalCoreApi.SetEjectState>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.SetEjectState",
+        "arguments": "(api.SetEjectState)",
+        "definitionPath": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Amstrad.Emulators.Common.Interop.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.GetEjectState>(nint)",
+        "expression": "Delegate<ExternalCoreApi.GetEjectState>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.GetEjectState",
+        "arguments": "(api.GetEjectState)",
+        "definitionPath": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Amstrad.Emulators.Common.Interop.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.GetImageIndex>(nint)",
+        "expression": "Delegate<ExternalCoreApi.GetImageIndex>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.GetImageIndex",
+        "arguments": "(api.GetImageIndex)",
+        "definitionPath": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Amstrad.Emulators.Common.Interop.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.SetImageIndex>(nint)",
+        "expression": "Delegate<ExternalCoreApi.SetImageIndex>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.SetImageIndex",
+        "arguments": "(api.SetImageIndex)",
+        "definitionPath": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Amstrad.Emulators.Common.Interop.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.GetImageCount>(nint)",
+        "expression": "Delegate<ExternalCoreApi.GetImageCount>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.GetImageCount",
+        "arguments": "(api.GetImageCount)",
+        "definitionPath": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Amstrad.Emulators.Common.Interop.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.ReplaceImage>(nint)",
+        "expression": "Delegate<ExternalCoreApi.ReplaceImage>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.ReplaceImage",
+        "arguments": "(api.ReplaceImage)",
+        "definitionPath": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Amstrad.Emulators.Common.Interop.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.AddImage>(nint)",
+        "expression": "Delegate<ExternalCoreApi.AddImage>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.AddImage",
+        "arguments": "(api.AddImage)",
+        "definitionPath": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Apple.Emulators.Common.Interop.Functions.DiskControlFunctions.RequiredDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.SetEjectState>(nint)",
+        "expression": "DiskControlFunctions.RequiredDelegate<ExternalCoreApi.SetEjectState>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.SetEjectState",
+        "arguments": "(api.SetEjectState)",
+        "definitionPath": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/DiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Apple.Emulators.Common.Interop.Functions.DiskControlFunctions.RequiredDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.GetEjectState>(nint)",
+        "expression": "DiskControlFunctions.RequiredDelegate<ExternalCoreApi.GetEjectState>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.GetEjectState",
+        "arguments": "(api.GetEjectState)",
+        "definitionPath": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/DiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Apple.Emulators.Common.Interop.Functions.DiskControlFunctions.RequiredDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.GetImageIndex>(nint)",
+        "expression": "DiskControlFunctions.RequiredDelegate<ExternalCoreApi.GetImageIndex>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.GetImageIndex",
+        "arguments": "(api.GetImageIndex)",
+        "definitionPath": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/DiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Apple.Emulators.Common.Interop.Functions.DiskControlFunctions.RequiredDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.SetImageIndex>(nint)",
+        "expression": "DiskControlFunctions.RequiredDelegate<ExternalCoreApi.SetImageIndex>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.SetImageIndex",
+        "arguments": "(api.SetImageIndex)",
+        "definitionPath": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/DiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Apple.Emulators.Common.Interop.Functions.DiskControlFunctions.RequiredDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.GetImageCount>(nint)",
+        "expression": "DiskControlFunctions.RequiredDelegate<ExternalCoreApi.GetImageCount>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.GetImageCount",
+        "arguments": "(api.GetImageCount)",
+        "definitionPath": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/DiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Apple.Emulators.Common.Interop.Functions.DiskControlFunctions.RequiredDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.ReplaceImage>(nint)",
+        "expression": "DiskControlFunctions.RequiredDelegate<ExternalCoreApi.ReplaceImage>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.ReplaceImage",
+        "arguments": "(api.ReplaceImage)",
+        "definitionPath": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/DiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Apple.Emulators.Common.Interop.Functions.DiskControlFunctions.RequiredDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.AddImage>(nint)",
+        "expression": "DiskControlFunctions.RequiredDelegate<ExternalCoreApi.AddImage>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.AddImage",
+        "arguments": "(api.AddImage)",
+        "definitionPath": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/DiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Atari.Emulators.Common.Interop.Functions.DiskControlFunctions.RequiredDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.SetEjectState>(nint)",
+        "expression": "DiskControlFunctions.RequiredDelegate<ExternalCoreApi.SetEjectState>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.SetEjectState",
+        "arguments": "(api.SetEjectState)",
+        "definitionPath": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/DiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Atari.Emulators.Common.Interop.Functions.DiskControlFunctions.RequiredDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.GetEjectState>(nint)",
+        "expression": "DiskControlFunctions.RequiredDelegate<ExternalCoreApi.GetEjectState>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.GetEjectState",
+        "arguments": "(api.GetEjectState)",
+        "definitionPath": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/DiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Atari.Emulators.Common.Interop.Functions.DiskControlFunctions.RequiredDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.GetImageIndex>(nint)",
+        "expression": "DiskControlFunctions.RequiredDelegate<ExternalCoreApi.GetImageIndex>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.GetImageIndex",
+        "arguments": "(api.GetImageIndex)",
+        "definitionPath": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/DiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Atari.Emulators.Common.Interop.Functions.DiskControlFunctions.RequiredDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.SetImageIndex>(nint)",
+        "expression": "DiskControlFunctions.RequiredDelegate<ExternalCoreApi.SetImageIndex>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.SetImageIndex",
+        "arguments": "(api.SetImageIndex)",
+        "definitionPath": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/DiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Atari.Emulators.Common.Interop.Functions.DiskControlFunctions.RequiredDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.GetImageCount>(nint)",
+        "expression": "DiskControlFunctions.RequiredDelegate<ExternalCoreApi.GetImageCount>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.GetImageCount",
+        "arguments": "(api.GetImageCount)",
+        "definitionPath": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/DiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Atari.Emulators.Common.Interop.Functions.DiskControlFunctions.RequiredDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.ReplaceImage>(nint)",
+        "expression": "DiskControlFunctions.RequiredDelegate<ExternalCoreApi.ReplaceImage>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.ReplaceImage",
+        "arguments": "(api.ReplaceImage)",
+        "definitionPath": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/DiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Atari.Emulators.Common.Interop.Functions.DiskControlFunctions.RequiredDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.AddImage>(nint)",
+        "expression": "DiskControlFunctions.RequiredDelegate<ExternalCoreApi.AddImage>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.AddImage",
+        "arguments": "(api.AddImage)",
+        "definitionPath": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/DiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Coleco.Emulators.Common.Interop.Functions.DiskControlFunctions.RequiredDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.SetEjectState>(nint)",
+        "expression": "DiskControlFunctions.RequiredDelegate<ExternalCoreApi.SetEjectState>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.SetEjectState",
+        "arguments": "(api.SetEjectState)",
+        "definitionPath": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/DiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Coleco.Emulators.Common.Interop.Functions.DiskControlFunctions.RequiredDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.GetEjectState>(nint)",
+        "expression": "DiskControlFunctions.RequiredDelegate<ExternalCoreApi.GetEjectState>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.GetEjectState",
+        "arguments": "(api.GetEjectState)",
+        "definitionPath": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/DiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Coleco.Emulators.Common.Interop.Functions.DiskControlFunctions.RequiredDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.GetImageIndex>(nint)",
+        "expression": "DiskControlFunctions.RequiredDelegate<ExternalCoreApi.GetImageIndex>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.GetImageIndex",
+        "arguments": "(api.GetImageIndex)",
+        "definitionPath": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/DiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Coleco.Emulators.Common.Interop.Functions.DiskControlFunctions.RequiredDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.SetImageIndex>(nint)",
+        "expression": "DiskControlFunctions.RequiredDelegate<ExternalCoreApi.SetImageIndex>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.SetImageIndex",
+        "arguments": "(api.SetImageIndex)",
+        "definitionPath": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/DiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Coleco.Emulators.Common.Interop.Functions.DiskControlFunctions.RequiredDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.GetImageCount>(nint)",
+        "expression": "DiskControlFunctions.RequiredDelegate<ExternalCoreApi.GetImageCount>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.GetImageCount",
+        "arguments": "(api.GetImageCount)",
+        "definitionPath": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/DiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Coleco.Emulators.Common.Interop.Functions.DiskControlFunctions.RequiredDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.ReplaceImage>(nint)",
+        "expression": "DiskControlFunctions.RequiredDelegate<ExternalCoreApi.ReplaceImage>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.ReplaceImage",
+        "arguments": "(api.ReplaceImage)",
+        "definitionPath": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/DiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Coleco.Emulators.Common.Interop.Functions.DiskControlFunctions.RequiredDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.AddImage>(nint)",
+        "expression": "DiskControlFunctions.RequiredDelegate<ExternalCoreApi.AddImage>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.AddImage",
+        "arguments": "(api.AddImage)",
+        "definitionPath": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/DiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Commodore.Emulators.Common.Interop.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.SetEjectState>(nint)",
+        "expression": "Delegate<ExternalCoreApi.SetEjectState>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.SetEjectState",
+        "arguments": "(api.SetEjectState)",
+        "definitionPath": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Commodore.Emulators.Common.Interop.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.GetEjectState>(nint)",
+        "expression": "Delegate<ExternalCoreApi.GetEjectState>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.GetEjectState",
+        "arguments": "(api.GetEjectState)",
+        "definitionPath": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Commodore.Emulators.Common.Interop.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.GetImageIndex>(nint)",
+        "expression": "Delegate<ExternalCoreApi.GetImageIndex>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.GetImageIndex",
+        "arguments": "(api.GetImageIndex)",
+        "definitionPath": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Commodore.Emulators.Common.Interop.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.SetImageIndex>(nint)",
+        "expression": "Delegate<ExternalCoreApi.SetImageIndex>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.SetImageIndex",
+        "arguments": "(api.SetImageIndex)",
+        "definitionPath": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Commodore.Emulators.Common.Interop.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.GetImageCount>(nint)",
+        "expression": "Delegate<ExternalCoreApi.GetImageCount>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.GetImageCount",
+        "arguments": "(api.GetImageCount)",
+        "definitionPath": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Commodore.Emulators.Common.Interop.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.ReplaceImage>(nint)",
+        "expression": "Delegate<ExternalCoreApi.ReplaceImage>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.ReplaceImage",
+        "arguments": "(api.ReplaceImage)",
+        "definitionPath": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Commodore.Emulators.Common.Interop.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.AddImage>(nint)",
+        "expression": "Delegate<ExternalCoreApi.AddImage>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.AddImage",
+        "arguments": "(api.AddImage)",
+        "definitionPath": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Commodore.Emulators.Common.Interop.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.SetEjectState>(nint)",
+        "expression": "Delegate<ExternalCoreApi.SetEjectState>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.SetEjectState",
+        "arguments": "(api.SetEjectState)",
+        "definitionPath": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Commodore.Emulators.Common.Interop.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.GetEjectState>(nint)",
+        "expression": "Delegate<ExternalCoreApi.GetEjectState>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.GetEjectState",
+        "arguments": "(api.GetEjectState)",
+        "definitionPath": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Commodore.Emulators.Common.Interop.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.GetImageIndex>(nint)",
+        "expression": "Delegate<ExternalCoreApi.GetImageIndex>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.GetImageIndex",
+        "arguments": "(api.GetImageIndex)",
+        "definitionPath": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Commodore.Emulators.Common.Interop.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.SetImageIndex>(nint)",
+        "expression": "Delegate<ExternalCoreApi.SetImageIndex>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.SetImageIndex",
+        "arguments": "(api.SetImageIndex)",
+        "definitionPath": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Commodore.Emulators.Common.Interop.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.GetImageCount>(nint)",
+        "expression": "Delegate<ExternalCoreApi.GetImageCount>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.GetImageCount",
+        "arguments": "(api.GetImageCount)",
+        "definitionPath": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Commodore.Emulators.Common.Interop.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.ReplaceImage>(nint)",
+        "expression": "Delegate<ExternalCoreApi.ReplaceImage>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.ReplaceImage",
+        "arguments": "(api.ReplaceImage)",
+        "definitionPath": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Commodore.Emulators.Common.Interop.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.AddImage>(nint)",
+        "expression": "Delegate<ExternalCoreApi.AddImage>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.AddImage",
+        "arguments": "(api.AddImage)",
+        "definitionPath": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Epoch.Emulators.Common.Interop.Functions.DiskControlFunctions.RequiredDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.SetEjectState>(nint)",
+        "expression": "DiskControlFunctions.RequiredDelegate<ExternalCoreApi.SetEjectState>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.SetEjectState",
+        "arguments": "(api.SetEjectState)",
+        "definitionPath": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/DiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Epoch.Emulators.Common.Interop.Functions.DiskControlFunctions.RequiredDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.GetEjectState>(nint)",
+        "expression": "DiskControlFunctions.RequiredDelegate<ExternalCoreApi.GetEjectState>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.GetEjectState",
+        "arguments": "(api.GetEjectState)",
+        "definitionPath": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/DiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Epoch.Emulators.Common.Interop.Functions.DiskControlFunctions.RequiredDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.GetImageIndex>(nint)",
+        "expression": "DiskControlFunctions.RequiredDelegate<ExternalCoreApi.GetImageIndex>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.GetImageIndex",
+        "arguments": "(api.GetImageIndex)",
+        "definitionPath": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/DiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Epoch.Emulators.Common.Interop.Functions.DiskControlFunctions.RequiredDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.SetImageIndex>(nint)",
+        "expression": "DiskControlFunctions.RequiredDelegate<ExternalCoreApi.SetImageIndex>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.SetImageIndex",
+        "arguments": "(api.SetImageIndex)",
+        "definitionPath": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/DiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Epoch.Emulators.Common.Interop.Functions.DiskControlFunctions.RequiredDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.GetImageCount>(nint)",
+        "expression": "DiskControlFunctions.RequiredDelegate<ExternalCoreApi.GetImageCount>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.GetImageCount",
+        "arguments": "(api.GetImageCount)",
+        "definitionPath": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/DiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Epoch.Emulators.Common.Interop.Functions.DiskControlFunctions.RequiredDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.ReplaceImage>(nint)",
+        "expression": "DiskControlFunctions.RequiredDelegate<ExternalCoreApi.ReplaceImage>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.ReplaceImage",
+        "arguments": "(api.ReplaceImage)",
+        "definitionPath": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/DiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Epoch.Emulators.Common.Interop.Functions.DiskControlFunctions.RequiredDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.AddImage>(nint)",
+        "expression": "DiskControlFunctions.RequiredDelegate<ExternalCoreApi.AddImage>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.AddImage",
+        "arguments": "(api.AddImage)",
+        "definitionPath": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/DiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Fairchild.Emulators.Common.Interop.Functions.DiskControlFunctions.RequiredDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.SetEjectState>(nint)",
+        "expression": "DiskControlFunctions.RequiredDelegate<ExternalCoreApi.SetEjectState>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.SetEjectState",
+        "arguments": "(api.SetEjectState)",
+        "definitionPath": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/DiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Fairchild.Emulators.Common.Interop.Functions.DiskControlFunctions.RequiredDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.GetEjectState>(nint)",
+        "expression": "DiskControlFunctions.RequiredDelegate<ExternalCoreApi.GetEjectState>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.GetEjectState",
+        "arguments": "(api.GetEjectState)",
+        "definitionPath": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/DiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Fairchild.Emulators.Common.Interop.Functions.DiskControlFunctions.RequiredDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.GetImageIndex>(nint)",
+        "expression": "DiskControlFunctions.RequiredDelegate<ExternalCoreApi.GetImageIndex>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.GetImageIndex",
+        "arguments": "(api.GetImageIndex)",
+        "definitionPath": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/DiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Fairchild.Emulators.Common.Interop.Functions.DiskControlFunctions.RequiredDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.SetImageIndex>(nint)",
+        "expression": "DiskControlFunctions.RequiredDelegate<ExternalCoreApi.SetImageIndex>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.SetImageIndex",
+        "arguments": "(api.SetImageIndex)",
+        "definitionPath": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/DiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Fairchild.Emulators.Common.Interop.Functions.DiskControlFunctions.RequiredDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.GetImageCount>(nint)",
+        "expression": "DiskControlFunctions.RequiredDelegate<ExternalCoreApi.GetImageCount>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.GetImageCount",
+        "arguments": "(api.GetImageCount)",
+        "definitionPath": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/DiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Fairchild.Emulators.Common.Interop.Functions.DiskControlFunctions.RequiredDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.ReplaceImage>(nint)",
+        "expression": "DiskControlFunctions.RequiredDelegate<ExternalCoreApi.ReplaceImage>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.ReplaceImage",
+        "arguments": "(api.ReplaceImage)",
+        "definitionPath": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/DiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Fairchild.Emulators.Common.Interop.Functions.DiskControlFunctions.RequiredDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.AddImage>(nint)",
+        "expression": "DiskControlFunctions.RequiredDelegate<ExternalCoreApi.AddImage>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.AddImage",
+        "arguments": "(api.AddImage)",
+        "definitionPath": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/DiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Mattel.Emulators.Common.Interop.Functions.DiskControlFunctions.RequiredDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.SetEjectState>(nint)",
+        "expression": "DiskControlFunctions.RequiredDelegate<ExternalCoreApi.SetEjectState>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.SetEjectState",
+        "arguments": "(api.SetEjectState)",
+        "definitionPath": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/DiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Mattel.Emulators.Common.Interop.Functions.DiskControlFunctions.RequiredDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.GetEjectState>(nint)",
+        "expression": "DiskControlFunctions.RequiredDelegate<ExternalCoreApi.GetEjectState>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.GetEjectState",
+        "arguments": "(api.GetEjectState)",
+        "definitionPath": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/DiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Mattel.Emulators.Common.Interop.Functions.DiskControlFunctions.RequiredDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.GetImageIndex>(nint)",
+        "expression": "DiskControlFunctions.RequiredDelegate<ExternalCoreApi.GetImageIndex>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.GetImageIndex",
+        "arguments": "(api.GetImageIndex)",
+        "definitionPath": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/DiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Mattel.Emulators.Common.Interop.Functions.DiskControlFunctions.RequiredDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.SetImageIndex>(nint)",
+        "expression": "DiskControlFunctions.RequiredDelegate<ExternalCoreApi.SetImageIndex>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.SetImageIndex",
+        "arguments": "(api.SetImageIndex)",
+        "definitionPath": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/DiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Mattel.Emulators.Common.Interop.Functions.DiskControlFunctions.RequiredDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.GetImageCount>(nint)",
+        "expression": "DiskControlFunctions.RequiredDelegate<ExternalCoreApi.GetImageCount>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.GetImageCount",
+        "arguments": "(api.GetImageCount)",
+        "definitionPath": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/DiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Mattel.Emulators.Common.Interop.Functions.DiskControlFunctions.RequiredDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.ReplaceImage>(nint)",
+        "expression": "DiskControlFunctions.RequiredDelegate<ExternalCoreApi.ReplaceImage>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.ReplaceImage",
+        "arguments": "(api.ReplaceImage)",
+        "definitionPath": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/DiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Mattel.Emulators.Common.Interop.Functions.DiskControlFunctions.RequiredDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.AddImage>(nint)",
+        "expression": "DiskControlFunctions.RequiredDelegate<ExternalCoreApi.AddImage>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.AddImage",
+        "arguments": "(api.AddImage)",
+        "definitionPath": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/DiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Nec.Emulators.Common.Interop.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.SetEjectState>(nint)",
+        "expression": "Delegate<ExternalCoreApi.SetEjectState>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.SetEjectState",
+        "arguments": "(api.SetEjectState)",
+        "definitionPath": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Nec.Emulators.Common.Interop.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.GetEjectState>(nint)",
+        "expression": "Delegate<ExternalCoreApi.GetEjectState>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.GetEjectState",
+        "arguments": "(api.GetEjectState)",
+        "definitionPath": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Nec.Emulators.Common.Interop.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.GetImageIndex>(nint)",
+        "expression": "Delegate<ExternalCoreApi.GetImageIndex>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.GetImageIndex",
+        "arguments": "(api.GetImageIndex)",
+        "definitionPath": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Nec.Emulators.Common.Interop.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.SetImageIndex>(nint)",
+        "expression": "Delegate<ExternalCoreApi.SetImageIndex>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.SetImageIndex",
+        "arguments": "(api.SetImageIndex)",
+        "definitionPath": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Nec.Emulators.Common.Interop.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.GetImageCount>(nint)",
+        "expression": "Delegate<ExternalCoreApi.GetImageCount>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.GetImageCount",
+        "arguments": "(api.GetImageCount)",
+        "definitionPath": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Nec.Emulators.Common.Interop.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.ReplaceImage>(nint)",
+        "expression": "Delegate<ExternalCoreApi.ReplaceImage>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.ReplaceImage",
+        "arguments": "(api.ReplaceImage)",
+        "definitionPath": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Nec.Emulators.Common.Interop.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.AddImage>(nint)",
+        "expression": "Delegate<ExternalCoreApi.AddImage>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.AddImage",
+        "arguments": "(api.AddImage)",
+        "definitionPath": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.SetEjectState>(nint)",
+        "expression": "Delegate<ExternalCoreApi.SetEjectState>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.SetEjectState",
+        "arguments": "(api.SetEjectState)",
+        "definitionPath": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.GetEjectState>(nint)",
+        "expression": "Delegate<ExternalCoreApi.GetEjectState>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.GetEjectState",
+        "arguments": "(api.GetEjectState)",
+        "definitionPath": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.GetImageIndex>(nint)",
+        "expression": "Delegate<ExternalCoreApi.GetImageIndex>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.GetImageIndex",
+        "arguments": "(api.GetImageIndex)",
+        "definitionPath": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.SetImageIndex>(nint)",
+        "expression": "Delegate<ExternalCoreApi.SetImageIndex>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.SetImageIndex",
+        "arguments": "(api.SetImageIndex)",
+        "definitionPath": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.GetImageCount>(nint)",
+        "expression": "Delegate<ExternalCoreApi.GetImageCount>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.GetImageCount",
+        "arguments": "(api.GetImageCount)",
+        "definitionPath": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.ReplaceImage>(nint)",
+        "expression": "Delegate<ExternalCoreApi.ReplaceImage>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.ReplaceImage",
+        "arguments": "(api.ReplaceImage)",
+        "definitionPath": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.AddImage>(nint)",
+        "expression": "Delegate<ExternalCoreApi.AddImage>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.AddImage",
+        "arguments": "(api.AddImage)",
+        "definitionPath": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.SetEjectState>(nint)",
+        "expression": "Delegate<ExternalCoreApi.SetEjectState>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.SetEjectState",
+        "arguments": "(api.SetEjectState)",
+        "definitionPath": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.GetEjectState>(nint)",
+        "expression": "Delegate<ExternalCoreApi.GetEjectState>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.GetEjectState",
+        "arguments": "(api.GetEjectState)",
+        "definitionPath": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.GetImageIndex>(nint)",
+        "expression": "Delegate<ExternalCoreApi.GetImageIndex>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.GetImageIndex",
+        "arguments": "(api.GetImageIndex)",
+        "definitionPath": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.SetImageIndex>(nint)",
+        "expression": "Delegate<ExternalCoreApi.SetImageIndex>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.SetImageIndex",
+        "arguments": "(api.SetImageIndex)",
+        "definitionPath": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.GetImageCount>(nint)",
+        "expression": "Delegate<ExternalCoreApi.GetImageCount>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.GetImageCount",
+        "arguments": "(api.GetImageCount)",
+        "definitionPath": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.ReplaceImage>(nint)",
+        "expression": "Delegate<ExternalCoreApi.ReplaceImage>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.ReplaceImage",
+        "arguments": "(api.ReplaceImage)",
+        "definitionPath": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.AddImage>(nint)",
+        "expression": "Delegate<ExternalCoreApi.AddImage>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.AddImage",
+        "arguments": "(api.AddImage)",
+        "definitionPath": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Philips.Emulators.Common.Interop.Functions.DiskControlFunctions.RequiredDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.SetEjectState>(nint)",
+        "expression": "DiskControlFunctions.RequiredDelegate<ExternalCoreApi.SetEjectState>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.SetEjectState",
+        "arguments": "(api.SetEjectState)",
+        "definitionPath": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/DiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Philips.Emulators.Common.Interop.Functions.DiskControlFunctions.RequiredDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.GetEjectState>(nint)",
+        "expression": "DiskControlFunctions.RequiredDelegate<ExternalCoreApi.GetEjectState>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.GetEjectState",
+        "arguments": "(api.GetEjectState)",
+        "definitionPath": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/DiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Philips.Emulators.Common.Interop.Functions.DiskControlFunctions.RequiredDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.GetImageIndex>(nint)",
+        "expression": "DiskControlFunctions.RequiredDelegate<ExternalCoreApi.GetImageIndex>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.GetImageIndex",
+        "arguments": "(api.GetImageIndex)",
+        "definitionPath": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/DiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Philips.Emulators.Common.Interop.Functions.DiskControlFunctions.RequiredDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.SetImageIndex>(nint)",
+        "expression": "DiskControlFunctions.RequiredDelegate<ExternalCoreApi.SetImageIndex>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.SetImageIndex",
+        "arguments": "(api.SetImageIndex)",
+        "definitionPath": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/DiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Philips.Emulators.Common.Interop.Functions.DiskControlFunctions.RequiredDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.GetImageCount>(nint)",
+        "expression": "DiskControlFunctions.RequiredDelegate<ExternalCoreApi.GetImageCount>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.GetImageCount",
+        "arguments": "(api.GetImageCount)",
+        "definitionPath": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/DiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Philips.Emulators.Common.Interop.Functions.DiskControlFunctions.RequiredDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.ReplaceImage>(nint)",
+        "expression": "DiskControlFunctions.RequiredDelegate<ExternalCoreApi.ReplaceImage>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.ReplaceImage",
+        "arguments": "(api.ReplaceImage)",
+        "definitionPath": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/DiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Philips.Emulators.Common.Interop.Functions.DiskControlFunctions.RequiredDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.AddImage>(nint)",
+        "expression": "DiskControlFunctions.RequiredDelegate<ExternalCoreApi.AddImage>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.AddImage",
+        "arguments": "(api.AddImage)",
+        "definitionPath": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/DiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Sega.Emulators.Common.Interop.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.SetEjectState>(nint)",
+        "expression": "Delegate<ExternalCoreApi.SetEjectState>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.SetEjectState",
+        "arguments": "(api.SetEjectState)",
+        "definitionPath": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Sega.Emulators.Common.Interop.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.GetEjectState>(nint)",
+        "expression": "Delegate<ExternalCoreApi.GetEjectState>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.GetEjectState",
+        "arguments": "(api.GetEjectState)",
+        "definitionPath": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Sega.Emulators.Common.Interop.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.GetImageIndex>(nint)",
+        "expression": "Delegate<ExternalCoreApi.GetImageIndex>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.GetImageIndex",
+        "arguments": "(api.GetImageIndex)",
+        "definitionPath": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Sega.Emulators.Common.Interop.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.SetImageIndex>(nint)",
+        "expression": "Delegate<ExternalCoreApi.SetImageIndex>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.SetImageIndex",
+        "arguments": "(api.SetImageIndex)",
+        "definitionPath": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Sega.Emulators.Common.Interop.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.GetImageCount>(nint)",
+        "expression": "Delegate<ExternalCoreApi.GetImageCount>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.GetImageCount",
+        "arguments": "(api.GetImageCount)",
+        "definitionPath": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Sega.Emulators.Common.Interop.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.ReplaceImage>(nint)",
+        "expression": "Delegate<ExternalCoreApi.ReplaceImage>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.ReplaceImage",
+        "arguments": "(api.ReplaceImage)",
+        "definitionPath": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Sega.Emulators.Common.Interop.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.AddImage>(nint)",
+        "expression": "Delegate<ExternalCoreApi.AddImage>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.AddImage",
+        "arguments": "(api.AddImage)",
+        "definitionPath": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Sega.Emulators.Common.Interop.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.SetEjectState>(nint)",
+        "expression": "Delegate<ExternalCoreApi.SetEjectState>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.SetEjectState",
+        "arguments": "(api.SetEjectState)",
+        "definitionPath": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Sega.Emulators.Common.Interop.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.GetEjectState>(nint)",
+        "expression": "Delegate<ExternalCoreApi.GetEjectState>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.GetEjectState",
+        "arguments": "(api.GetEjectState)",
+        "definitionPath": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Sega.Emulators.Common.Interop.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.GetImageIndex>(nint)",
+        "expression": "Delegate<ExternalCoreApi.GetImageIndex>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.GetImageIndex",
+        "arguments": "(api.GetImageIndex)",
+        "definitionPath": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Sega.Emulators.Common.Interop.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.SetImageIndex>(nint)",
+        "expression": "Delegate<ExternalCoreApi.SetImageIndex>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.SetImageIndex",
+        "arguments": "(api.SetImageIndex)",
+        "definitionPath": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Sega.Emulators.Common.Interop.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.GetImageCount>(nint)",
+        "expression": "Delegate<ExternalCoreApi.GetImageCount>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.GetImageCount",
+        "arguments": "(api.GetImageCount)",
+        "definitionPath": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Sega.Emulators.Common.Interop.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.ReplaceImage>(nint)",
+        "expression": "Delegate<ExternalCoreApi.ReplaceImage>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.ReplaceImage",
+        "arguments": "(api.ReplaceImage)",
+        "definitionPath": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Sega.Emulators.Common.Interop.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.AddImage>(nint)",
+        "expression": "Delegate<ExternalCoreApi.AddImage>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.AddImage",
+        "arguments": "(api.AddImage)",
+        "definitionPath": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Sharp.Emulators.Common.Interop.Functions.DiskControlFunctions.RequiredDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.SetEjectState>(nint)",
+        "expression": "DiskControlFunctions.RequiredDelegate<ExternalCoreApi.SetEjectState>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.SetEjectState",
+        "arguments": "(api.SetEjectState)",
+        "definitionPath": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/DiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Sharp.Emulators.Common.Interop.Functions.DiskControlFunctions.RequiredDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.GetEjectState>(nint)",
+        "expression": "DiskControlFunctions.RequiredDelegate<ExternalCoreApi.GetEjectState>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.GetEjectState",
+        "arguments": "(api.GetEjectState)",
+        "definitionPath": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/DiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Sharp.Emulators.Common.Interop.Functions.DiskControlFunctions.RequiredDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.GetImageIndex>(nint)",
+        "expression": "DiskControlFunctions.RequiredDelegate<ExternalCoreApi.GetImageIndex>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.GetImageIndex",
+        "arguments": "(api.GetImageIndex)",
+        "definitionPath": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/DiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Sharp.Emulators.Common.Interop.Functions.DiskControlFunctions.RequiredDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.SetImageIndex>(nint)",
+        "expression": "DiskControlFunctions.RequiredDelegate<ExternalCoreApi.SetImageIndex>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.SetImageIndex",
+        "arguments": "(api.SetImageIndex)",
+        "definitionPath": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/DiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Sharp.Emulators.Common.Interop.Functions.DiskControlFunctions.RequiredDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.GetImageCount>(nint)",
+        "expression": "DiskControlFunctions.RequiredDelegate<ExternalCoreApi.GetImageCount>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.GetImageCount",
+        "arguments": "(api.GetImageCount)",
+        "definitionPath": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/DiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Sharp.Emulators.Common.Interop.Functions.DiskControlFunctions.RequiredDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.ReplaceImage>(nint)",
+        "expression": "DiskControlFunctions.RequiredDelegate<ExternalCoreApi.ReplaceImage>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.ReplaceImage",
+        "arguments": "(api.ReplaceImage)",
+        "definitionPath": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/DiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Sharp.Emulators.Common.Interop.Functions.DiskControlFunctions.RequiredDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.AddImage>(nint)",
+        "expression": "DiskControlFunctions.RequiredDelegate<ExternalCoreApi.AddImage>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.AddImage",
+        "arguments": "(api.AddImage)",
+        "definitionPath": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/DiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Functions.DiskControlFunctions.RequiredDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.SetEjectState>(nint)",
+        "expression": "DiskControlFunctions.RequiredDelegate<ExternalCoreApi.SetEjectState>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.SetEjectState",
+        "arguments": "(api.SetEjectState)",
+        "definitionPath": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/DiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Functions.DiskControlFunctions.RequiredDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.GetEjectState>(nint)",
+        "expression": "DiskControlFunctions.RequiredDelegate<ExternalCoreApi.GetEjectState>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.GetEjectState",
+        "arguments": "(api.GetEjectState)",
+        "definitionPath": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/DiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Functions.DiskControlFunctions.RequiredDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.GetImageIndex>(nint)",
+        "expression": "DiskControlFunctions.RequiredDelegate<ExternalCoreApi.GetImageIndex>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.GetImageIndex",
+        "arguments": "(api.GetImageIndex)",
+        "definitionPath": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/DiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Functions.DiskControlFunctions.RequiredDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.SetImageIndex>(nint)",
+        "expression": "DiskControlFunctions.RequiredDelegate<ExternalCoreApi.SetImageIndex>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.SetImageIndex",
+        "arguments": "(api.SetImageIndex)",
+        "definitionPath": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/DiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Functions.DiskControlFunctions.RequiredDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.GetImageCount>(nint)",
+        "expression": "DiskControlFunctions.RequiredDelegate<ExternalCoreApi.GetImageCount>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.GetImageCount",
+        "arguments": "(api.GetImageCount)",
+        "definitionPath": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/DiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Functions.DiskControlFunctions.RequiredDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.ReplaceImage>(nint)",
+        "expression": "DiskControlFunctions.RequiredDelegate<ExternalCoreApi.ReplaceImage>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.ReplaceImage",
+        "arguments": "(api.ReplaceImage)",
+        "definitionPath": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/DiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Functions.DiskControlFunctions.RequiredDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.AddImage>(nint)",
+        "expression": "DiskControlFunctions.RequiredDelegate<ExternalCoreApi.AddImage>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.AddImage",
+        "arguments": "(api.AddImage)",
+        "definitionPath": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/DiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Snk.Emulators.Common.Interop.Functions.DiskControlFunctions.RequiredDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.SetEjectState>(nint)",
+        "expression": "DiskControlFunctions.RequiredDelegate<ExternalCoreApi.SetEjectState>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.SetEjectState",
+        "arguments": "(api.SetEjectState)",
+        "definitionPath": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/DiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Snk.Emulators.Common.Interop.Functions.DiskControlFunctions.RequiredDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.GetEjectState>(nint)",
+        "expression": "DiskControlFunctions.RequiredDelegate<ExternalCoreApi.GetEjectState>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.GetEjectState",
+        "arguments": "(api.GetEjectState)",
+        "definitionPath": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/DiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Snk.Emulators.Common.Interop.Functions.DiskControlFunctions.RequiredDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.GetImageIndex>(nint)",
+        "expression": "DiskControlFunctions.RequiredDelegate<ExternalCoreApi.GetImageIndex>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.GetImageIndex",
+        "arguments": "(api.GetImageIndex)",
+        "definitionPath": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/DiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Snk.Emulators.Common.Interop.Functions.DiskControlFunctions.RequiredDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.SetImageIndex>(nint)",
+        "expression": "DiskControlFunctions.RequiredDelegate<ExternalCoreApi.SetImageIndex>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.SetImageIndex",
+        "arguments": "(api.SetImageIndex)",
+        "definitionPath": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/DiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Snk.Emulators.Common.Interop.Functions.DiskControlFunctions.RequiredDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.GetImageCount>(nint)",
+        "expression": "DiskControlFunctions.RequiredDelegate<ExternalCoreApi.GetImageCount>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.GetImageCount",
+        "arguments": "(api.GetImageCount)",
+        "definitionPath": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/DiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Snk.Emulators.Common.Interop.Functions.DiskControlFunctions.RequiredDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.ReplaceImage>(nint)",
+        "expression": "DiskControlFunctions.RequiredDelegate<ExternalCoreApi.ReplaceImage>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.ReplaceImage",
+        "arguments": "(api.ReplaceImage)",
+        "definitionPath": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/DiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Snk.Emulators.Common.Interop.Functions.DiskControlFunctions.RequiredDelegate<GWGUI.Emulation.Interop.ExternalCoreApi.AddImage>(nint)",
+        "expression": "DiskControlFunctions.RequiredDelegate<ExternalCoreApi.AddImage>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.AddImage",
+        "arguments": "(api.AddImage)",
+        "definitionPath": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+        "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/DiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Sony.Emulators.Common.Interop.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.SetEjectState>(nint)",
+        "expression": "Delegate<ExternalCoreApi.SetEjectState>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.SetEjectState",
+        "arguments": "(api.SetEjectState)",
+        "definitionPath": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Sony.Emulators.Common.Interop.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.GetEjectState>(nint)",
+        "expression": "Delegate<ExternalCoreApi.GetEjectState>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.GetEjectState",
+        "arguments": "(api.GetEjectState)",
+        "definitionPath": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Sony.Emulators.Common.Interop.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.GetImageIndex>(nint)",
+        "expression": "Delegate<ExternalCoreApi.GetImageIndex>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.GetImageIndex",
+        "arguments": "(api.GetImageIndex)",
+        "definitionPath": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Sony.Emulators.Common.Interop.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.SetImageIndex>(nint)",
+        "expression": "Delegate<ExternalCoreApi.SetImageIndex>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.SetImageIndex",
+        "arguments": "(api.SetImageIndex)",
+        "definitionPath": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Sony.Emulators.Common.Interop.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.GetImageCount>(nint)",
+        "expression": "Delegate<ExternalCoreApi.GetImageCount>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.GetImageCount",
+        "arguments": "(api.GetImageCount)",
+        "definitionPath": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Sony.Emulators.Common.Interop.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.ReplaceImage>(nint)",
+        "expression": "Delegate<ExternalCoreApi.ReplaceImage>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.ReplaceImage",
+        "arguments": "(api.ReplaceImage)",
+        "definitionPath": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Sony.Emulators.Common.Interop.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.AddImage>(nint)",
+        "expression": "Delegate<ExternalCoreApi.AddImage>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.AddImage",
+        "arguments": "(api.AddImage)",
+        "definitionPath": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Sony.Emulators.Common.Interop.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.SetEjectState>(nint)",
+        "expression": "Delegate<ExternalCoreApi.SetEjectState>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.SetEjectState",
+        "arguments": "(api.SetEjectState)",
+        "definitionPath": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Sony.Emulators.Common.Interop.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.GetEjectState>(nint)",
+        "expression": "Delegate<ExternalCoreApi.GetEjectState>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.GetEjectState",
+        "arguments": "(api.GetEjectState)",
+        "definitionPath": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Sony.Emulators.Common.Interop.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.GetImageIndex>(nint)",
+        "expression": "Delegate<ExternalCoreApi.GetImageIndex>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.GetImageIndex",
+        "arguments": "(api.GetImageIndex)",
+        "definitionPath": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Sony.Emulators.Common.Interop.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.SetImageIndex>(nint)",
+        "expression": "Delegate<ExternalCoreApi.SetImageIndex>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.SetImageIndex",
+        "arguments": "(api.SetImageIndex)",
+        "definitionPath": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Sony.Emulators.Common.Interop.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.GetImageCount>(nint)",
+        "expression": "Delegate<ExternalCoreApi.GetImageCount>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.GetImageCount",
+        "arguments": "(api.GetImageCount)",
+        "definitionPath": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Sony.Emulators.Common.Interop.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.ReplaceImage>(nint)",
+        "expression": "Delegate<ExternalCoreApi.ReplaceImage>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.ReplaceImage",
+        "arguments": "(api.ReplaceImage)",
+        "definitionPath": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Sony.Emulators.Common.Interop.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.AddImage>(nint)",
+        "expression": "Delegate<ExternalCoreApi.AddImage>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.AddImage",
+        "arguments": "(api.AddImage)",
+        "definitionPath": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Sony.Emulators.Pcsx2.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.SetEjectState>(nint)",
+        "expression": "Delegate<ExternalCoreApi.SetEjectState>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.SetEjectState",
+        "arguments": "(api.SetEjectState)",
+        "definitionPath": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Sony.Emulators.Pcsx2.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.GetEjectState>(nint)",
+        "expression": "Delegate<ExternalCoreApi.GetEjectState>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.GetEjectState",
+        "arguments": "(api.GetEjectState)",
+        "definitionPath": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Sony.Emulators.Pcsx2.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.GetImageIndex>(nint)",
+        "expression": "Delegate<ExternalCoreApi.GetImageIndex>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.GetImageIndex",
+        "arguments": "(api.GetImageIndex)",
+        "definitionPath": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Sony.Emulators.Pcsx2.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.SetImageIndex>(nint)",
+        "expression": "Delegate<ExternalCoreApi.SetImageIndex>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.SetImageIndex",
+        "arguments": "(api.SetImageIndex)",
+        "definitionPath": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Sony.Emulators.Pcsx2.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.GetImageCount>(nint)",
+        "expression": "Delegate<ExternalCoreApi.GetImageCount>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.GetImageCount",
+        "arguments": "(api.GetImageCount)",
+        "definitionPath": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Sony.Emulators.Pcsx2.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.ReplaceImage>(nint)",
+        "expression": "Delegate<ExternalCoreApi.ReplaceImage>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.ReplaceImage",
+        "arguments": "(api.ReplaceImage)",
+        "definitionPath": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Sony.Emulators.Pcsx2.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.AddImage>(nint)",
+        "expression": "Delegate<ExternalCoreApi.AddImage>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.AddImage",
+        "arguments": "(api.AddImage)",
+        "definitionPath": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Sony.Emulators.Pcsx2.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.SetEjectState>(nint)",
+        "expression": "Delegate<ExternalCoreApi.SetEjectState>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.SetEjectState",
+        "arguments": "(api.SetEjectState)",
+        "definitionPath": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Sony.Emulators.Pcsx2.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.GetEjectState>(nint)",
+        "expression": "Delegate<ExternalCoreApi.GetEjectState>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.GetEjectState",
+        "arguments": "(api.GetEjectState)",
+        "definitionPath": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Sony.Emulators.Pcsx2.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.GetImageIndex>(nint)",
+        "expression": "Delegate<ExternalCoreApi.GetImageIndex>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.GetImageIndex",
+        "arguments": "(api.GetImageIndex)",
+        "definitionPath": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Sony.Emulators.Pcsx2.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.SetImageIndex>(nint)",
+        "expression": "Delegate<ExternalCoreApi.SetImageIndex>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.SetImageIndex",
+        "arguments": "(api.SetImageIndex)",
+        "definitionPath": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Sony.Emulators.Pcsx2.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.GetImageCount>(nint)",
+        "expression": "Delegate<ExternalCoreApi.GetImageCount>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.GetImageCount",
+        "arguments": "(api.GetImageCount)",
+        "definitionPath": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Sony.Emulators.Pcsx2.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.ReplaceImage>(nint)",
+        "expression": "Delegate<ExternalCoreApi.ReplaceImage>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.ReplaceImage",
+        "arguments": "(api.ReplaceImage)",
+        "definitionPath": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Sony.Emulators.Pcsx2.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.AddImage>(nint)",
+        "expression": "Delegate<ExternalCoreApi.AddImage>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.AddImage",
+        "arguments": "(api.AddImage)",
+        "definitionPath": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Sony.Emulators.Ppsspp.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.SetEjectState>(nint)",
+        "expression": "Delegate<ExternalCoreApi.SetEjectState>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.SetEjectState",
+        "arguments": "(api.SetEjectState)",
+        "definitionPath": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Sony.Emulators.Ppsspp.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.GetEjectState>(nint)",
+        "expression": "Delegate<ExternalCoreApi.GetEjectState>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.GetEjectState",
+        "arguments": "(api.GetEjectState)",
+        "definitionPath": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Sony.Emulators.Ppsspp.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.GetImageIndex>(nint)",
+        "expression": "Delegate<ExternalCoreApi.GetImageIndex>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.GetImageIndex",
+        "arguments": "(api.GetImageIndex)",
+        "definitionPath": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Sony.Emulators.Ppsspp.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.SetImageIndex>(nint)",
+        "expression": "Delegate<ExternalCoreApi.SetImageIndex>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.SetImageIndex",
+        "arguments": "(api.SetImageIndex)",
+        "definitionPath": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Sony.Emulators.Ppsspp.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.GetImageCount>(nint)",
+        "expression": "Delegate<ExternalCoreApi.GetImageCount>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.GetImageCount",
+        "arguments": "(api.GetImageCount)",
+        "definitionPath": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Sony.Emulators.Ppsspp.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.ReplaceImage>(nint)",
+        "expression": "Delegate<ExternalCoreApi.ReplaceImage>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.ReplaceImage",
+        "arguments": "(api.ReplaceImage)",
+        "definitionPath": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Sony.Emulators.Ppsspp.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.AddImage>(nint)",
+        "expression": "Delegate<ExternalCoreApi.AddImage>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.AddImage",
+        "arguments": "(api.AddImage)",
+        "definitionPath": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Sony.Emulators.Ppsspp.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.SetEjectState>(nint)",
+        "expression": "Delegate<ExternalCoreApi.SetEjectState>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.SetEjectState",
+        "arguments": "(api.SetEjectState)",
+        "definitionPath": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Sony.Emulators.Ppsspp.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.GetEjectState>(nint)",
+        "expression": "Delegate<ExternalCoreApi.GetEjectState>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.GetEjectState",
+        "arguments": "(api.GetEjectState)",
+        "definitionPath": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Sony.Emulators.Ppsspp.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.GetImageIndex>(nint)",
+        "expression": "Delegate<ExternalCoreApi.GetImageIndex>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.GetImageIndex",
+        "arguments": "(api.GetImageIndex)",
+        "definitionPath": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Sony.Emulators.Ppsspp.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.SetImageIndex>(nint)",
+        "expression": "Delegate<ExternalCoreApi.SetImageIndex>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.SetImageIndex",
+        "arguments": "(api.SetImageIndex)",
+        "definitionPath": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Sony.Emulators.Ppsspp.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.GetImageCount>(nint)",
+        "expression": "Delegate<ExternalCoreApi.GetImageCount>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.GetImageCount",
+        "arguments": "(api.GetImageCount)",
+        "definitionPath": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Sony.Emulators.Ppsspp.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.ReplaceImage>(nint)",
+        "expression": "Delegate<ExternalCoreApi.ReplaceImage>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.ReplaceImage",
+        "arguments": "(api.ReplaceImage)",
+        "definitionPath": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalDiskControl.cs"
+      },
+      {
+        "target": "GWGUI.Emulation.Sony.Emulators.Ppsspp.Services.ExternalDiskControl.Delegate<GWGUI.Emulation.Interop.ExternalCoreApi.AddImage>(nint)",
+        "expression": "Delegate<ExternalCoreApi.AddImage>",
+        "type": "GWGUI.Emulation.Interop.ExternalCoreApi.AddImage",
+        "arguments": "(api.AddImage)",
+        "definitionPath": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalDiskControl.cs",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalDiskControl.cs"
+      }
+    ],
+    "invariants": [
+      "Original null guard before mandatory Marshal conversion",
+      "Same module-owned InvalidOperationException and message; deferred factory evaluated only on null; NEC retains instance message context",
+      "Original generic signatures, 182 callers and argument evaluations unchanged",
+      "Optional conversion and native callback roots/captures/disposal unchanged"
+    ],
+    "projects": [
+      "GWGUI.Emulation",
+      "GWGUI.Emulation.Acorn",
+      "GWGUI.Emulation.Amstrad",
+      "GWGUI.Emulation.Apple",
+      "GWGUI.Emulation.Atari",
+      "GWGUI.Emulation.Coleco",
+      "GWGUI.Emulation.Commodore",
+      "GWGUI.Emulation.Epoch",
+      "GWGUI.Emulation.Fairchild",
+      "GWGUI.Emulation.Mattel",
+      "GWGUI.Emulation.Nec",
+      "GWGUI.Emulation.Nintendo",
+      "GWGUI.Emulation.Philips",
+      "GWGUI.Emulation.Sega",
+      "GWGUI.Emulation.Sharp",
+      "GWGUI.Emulation.Sinclair",
+      "GWGUI.Emulation.Snk",
+      "GWGUI.Emulation.Sony"
+    ],
+    "verification": {
+      "semanticErrors": 0,
+      "tests": {
+        "scope": "Deferred original exception once on null, valid callback arguments/boolean return without error factory, propagated factory failure; interface/routing/diagnostic regressions",
+        "newCases": 3,
+        "failed": 0,
+        "passed": 62,
+        "resources": "Managed delegates kept alive in finally; no external DLL/core/file/process/window fixture",
+        "command": "dotnet test --no-restore --filter CoreCallbackInterfaceTests|EnvironmentCallbackCommandTests|CoreDiagnosticTextTests"
+      },
+      "sdkSha256": "581BA199386DC5D746903EE4DD9B1AA1F1F1B666FA4DB3DD9BB119AA0A7955CE",
+      "removedUnusedInteropUsings": 11,
+      "sourceChecks": [
+        {
+          "sha256": "AE0DA1B6733DB68C0125CE842583D7B450E3AAC025FA82AB34FABA0AE61EE21D",
+          "signatureAndMessageUnchanged": true,
+          "otherTokensUnchanged": true,
+          "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs"
+        },
+        {
+          "sha256": "7B0CF26EDC65A83774379AAA8E248A112EE02A5BDDBDC2180CF5473BF7D0101E",
+          "signatureAndMessageUnchanged": true,
+          "otherTokensUnchanged": true,
+          "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+        },
+        {
+          "sha256": "20EA32BDB580AE7CF69937789EF01E58CDB4A56E06E23ED005D198E4C6187AE0",
+          "signatureAndMessageUnchanged": true,
+          "otherTokensUnchanged": true,
+          "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs"
+        },
+        {
+          "sha256": "64555AD4444FB123015296F344C476222811367ED542970EA78660D85648B04F",
+          "signatureAndMessageUnchanged": true,
+          "otherTokensUnchanged": true,
+          "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs"
+        },
+        {
+          "sha256": "3CD29BC96750A3A5F686658E763D54A5B5D1B5AE069245B0AB53708C9A4985BF",
+          "signatureAndMessageUnchanged": true,
+          "otherTokensUnchanged": true,
+          "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs"
+        },
+        {
+          "sha256": "338CFE00B576CFA9F0B48AEBAAA41A7A0FC544917921A12AEC0E13671DBEA177",
+          "signatureAndMessageUnchanged": true,
+          "otherTokensUnchanged": true,
+          "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+        },
+        {
+          "sha256": "5B411B2DAE78FF2F08019A56C8EBB1A9FDFD5AAF5D89A2612F1A7EB5FBE568E0",
+          "signatureAndMessageUnchanged": true,
+          "otherTokensUnchanged": true,
+          "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs"
+        },
+        {
+          "sha256": "F3996B94202DF57E5E628F88430923EFD8DDAB09B2EDE8EEEC14B5C9C61D450E",
+          "signatureAndMessageUnchanged": true,
+          "otherTokensUnchanged": true,
+          "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs"
+        },
+        {
+          "sha256": "22F45BCEC579C09258342C3AB64DB4F1307F61506AA48F949EBE3ABC4428EDEF",
+          "signatureAndMessageUnchanged": true,
+          "otherTokensUnchanged": true,
+          "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs"
+        },
+        {
+          "sha256": "C6442EE71CAACD61D304B221A5BCB80F8FD5F79DAEDAF250A4E099188AE690E2",
+          "signatureAndMessageUnchanged": true,
+          "otherTokensUnchanged": true,
+          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+        },
+        {
+          "sha256": "256310F1BE0504E4B8DE27E45C041FBB6E3DF7B231E7D9F463E818AE9D77E52D",
+          "signatureAndMessageUnchanged": true,
+          "otherTokensUnchanged": true,
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+        },
+        {
+          "sha256": "BE5B32342EA6701C1E061882AF98D8BA419CFDFE3D032C0D7D2BC8F187BB5038",
+          "signatureAndMessageUnchanged": true,
+          "otherTokensUnchanged": true,
+          "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs"
+        },
+        {
+          "sha256": "4E6F05E890A6ED2EE2FBA732DEA87EC159A95F4C995B5AF57B8FE73CB081A52D",
+          "signatureAndMessageUnchanged": true,
+          "otherTokensUnchanged": true,
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+        },
+        {
+          "sha256": "19525D34886629A937F4C1FC0063E8C212BDB1C519CA83C02CF3DD3FC135B895",
+          "signatureAndMessageUnchanged": true,
+          "otherTokensUnchanged": true,
+          "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs"
+        },
+        {
+          "sha256": "019DF737B16BEAAF749F0A7CD75AF7EB470B43B544A907EAEC8E062E08CE4090",
+          "signatureAndMessageUnchanged": true,
+          "otherTokensUnchanged": true,
+          "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs"
+        },
+        {
+          "sha256": "922F6F42786A9D2D1D859802488F47326FE04755370FA3E74C91DB98FF380E64",
+          "signatureAndMessageUnchanged": true,
+          "otherTokensUnchanged": true,
+          "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs"
+        },
+        {
+          "sha256": "31A254DC7662F0EF05542EDD8D933F9E609B4DE6904B5FE921BA709DC3497FA5",
+          "signatureAndMessageUnchanged": true,
+          "otherTokensUnchanged": true,
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalDiskControl.cs"
+        },
+        {
+          "sha256": "E95CD22F1F2B516AC20C9B2F8FCD970885A677D5ACE7BD17B840C99B0A1F147C",
+          "signatureAndMessageUnchanged": true,
+          "otherTokensUnchanged": true,
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalDiskControl.cs"
+        },
+        {
+          "sha256": "47540358C069C9EF9A4A8CFFA9D7734C92457D346CF480539081595F8DA882F4",
+          "signatureAndMessageUnchanged": true,
+          "otherTokensUnchanged": true,
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalDiskControl.cs"
+        }
+      ],
+      "originalCallersUnchanged": true,
+      "originalCallerCount": 182,
+      "originalGuardConversionRetained": true,
+      "scope": "Only required conversion shared; module error factories stay deferred and typed, all original callers and owner state preserved",
+      "semanticProjects": [
+        "GWGUI.Emulation",
+        "GWGUI.Emulation.Acorn",
+        "GWGUI.Emulation.Amstrad",
+        "GWGUI.Emulation.Apple",
+        "GWGUI.Emulation.Atari",
+        "GWGUI.Emulation.Coleco",
+        "GWGUI.Emulation.Commodore",
+        "GWGUI.Emulation.Epoch",
+        "GWGUI.Emulation.Fairchild",
+        "GWGUI.Emulation.Mattel",
+        "GWGUI.Emulation.Nec",
+        "GWGUI.Emulation.Nintendo",
+        "GWGUI.Emulation.Philips",
+        "GWGUI.Emulation.Sega",
+        "GWGUI.Emulation.Sharp",
+        "GWGUI.Emulation.Sinclair",
+        "GWGUI.Emulation.Snk",
+        "GWGUI.Emulation.Sony"
+      ],
+      "otherSdkTokensUnchanged": true,
+      "bindings": [
+        {
+          "staticFactory": true,
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.RequiredDelegate<T>(nint, System.Func<System.Exception>)",
+          "instanceMessageContextPreserved": true,
+          "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+          "originalErrorCreation": "new InvalidOperationException(DiskControlErrors.Incomplete)",
+          "expansion": "SDK null guard invokes original creation exactly once only for null, otherwise original Marshal conversion",
+          "originalErrorMessageSymbol": "GWGUI.Emulation.Acorn.Emulators.Common.Exceptions.DiskControlErrors.Incomplete"
+        },
+        {
+          "staticFactory": true,
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.RequiredDelegate<T>(nint, System.Func<System.Exception>)",
+          "instanceMessageContextPreserved": true,
+          "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+          "originalErrorCreation": "new InvalidOperationException(CommonExceptions.DiskControlIncomplete())",
+          "expansion": "SDK null guard invokes original creation exactly once only for null, otherwise original Marshal conversion",
+          "originalErrorMessageSymbol": "GWGUI.Emulation.Amstrad.Emulators.Common.Exceptions.CommonExceptions.DiskControlIncomplete()"
+        },
+        {
+          "staticFactory": true,
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.RequiredDelegate<T>(nint, System.Func<System.Exception>)",
+          "instanceMessageContextPreserved": true,
+          "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+          "originalErrorCreation": "new InvalidOperationException(DiskControlErrors.Incomplete)",
+          "expansion": "SDK null guard invokes original creation exactly once only for null, otherwise original Marshal conversion",
+          "originalErrorMessageSymbol": "GWGUI.Emulation.Apple.Emulators.Common.Exceptions.DiskControlErrors.Incomplete"
+        },
+        {
+          "staticFactory": true,
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.RequiredDelegate<T>(nint, System.Func<System.Exception>)",
+          "instanceMessageContextPreserved": true,
+          "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+          "originalErrorCreation": "new InvalidOperationException(DiskControlErrors.Incomplete)",
+          "expansion": "SDK null guard invokes original creation exactly once only for null, otherwise original Marshal conversion",
+          "originalErrorMessageSymbol": "GWGUI.Emulation.Atari.Emulators.Common.Exceptions.DiskControlErrors.Incomplete"
+        },
+        {
+          "staticFactory": true,
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.RequiredDelegate<T>(nint, System.Func<System.Exception>)",
+          "instanceMessageContextPreserved": true,
+          "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+          "originalErrorCreation": "new InvalidOperationException(DiskControlErrors.Incomplete)",
+          "expansion": "SDK null guard invokes original creation exactly once only for null, otherwise original Marshal conversion",
+          "originalErrorMessageSymbol": "GWGUI.Emulation.Coleco.Emulators.Common.Exceptions.DiskControlErrors.Incomplete"
+        },
+        {
+          "staticFactory": true,
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.RequiredDelegate<T>(nint, System.Func<System.Exception>)",
+          "instanceMessageContextPreserved": true,
+          "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+          "originalErrorCreation": "new InvalidOperationException(CoreExceptions.DiskControlIncomplete())",
+          "expansion": "SDK null guard invokes original creation exactly once only for null, otherwise original Marshal conversion",
+          "originalErrorMessageSymbol": "GWGUI.Emulation.Commodore.Emulators.Common.Interop.Exceptions.CoreExceptions.DiskControlIncomplete()"
+        },
+        {
+          "staticFactory": true,
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.RequiredDelegate<T>(nint, System.Func<System.Exception>)",
+          "instanceMessageContextPreserved": true,
+          "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+          "originalErrorCreation": "new InvalidOperationException(DiskControlErrors.Incomplete)",
+          "expansion": "SDK null guard invokes original creation exactly once only for null, otherwise original Marshal conversion",
+          "originalErrorMessageSymbol": "GWGUI.Emulation.Epoch.Emulators.Common.Exceptions.DiskControlErrors.Incomplete"
+        },
+        {
+          "staticFactory": true,
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.RequiredDelegate<T>(nint, System.Func<System.Exception>)",
+          "instanceMessageContextPreserved": true,
+          "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+          "originalErrorCreation": "new InvalidOperationException(DiskControlErrors.Incomplete)",
+          "expansion": "SDK null guard invokes original creation exactly once only for null, otherwise original Marshal conversion",
+          "originalErrorMessageSymbol": "GWGUI.Emulation.Fairchild.Emulators.Common.Exceptions.DiskControlErrors.Incomplete"
+        },
+        {
+          "staticFactory": true,
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.RequiredDelegate<T>(nint, System.Func<System.Exception>)",
+          "instanceMessageContextPreserved": true,
+          "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+          "originalErrorCreation": "new InvalidOperationException(DiskControlErrors.Incomplete)",
+          "expansion": "SDK null guard invokes original creation exactly once only for null, otherwise original Marshal conversion",
+          "originalErrorMessageSymbol": "GWGUI.Emulation.Mattel.Emulators.Common.Exceptions.DiskControlErrors.Incomplete"
+        },
+        {
+          "staticFactory": false,
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.RequiredDelegate<T>(nint, System.Func<System.Exception>)",
+          "instanceMessageContextPreserved": true,
+          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+          "originalErrorCreation": "new InvalidOperationException(Error(\"DiskControlIncomplete\"))",
+          "expansion": "SDK null guard invokes original creation exactly once only for null, otherwise original Marshal conversion",
+          "originalErrorMessageSymbol": "GWGUI.Emulation.Nec.Emulators.Common.Interop.Services.ExternalDiskControl.Error(string, params object[])"
+        },
+        {
+          "staticFactory": true,
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.RequiredDelegate<T>(nint, System.Func<System.Exception>)",
+          "instanceMessageContextPreserved": true,
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+          "originalErrorCreation": "new InvalidOperationException(CoreExceptions.DiskControlIncomplete())",
+          "expansion": "SDK null guard invokes original creation exactly once only for null, otherwise original Marshal conversion",
+          "originalErrorMessageSymbol": "GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Exceptions.CoreExceptions.DiskControlIncomplete()"
+        },
+        {
+          "staticFactory": true,
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.RequiredDelegate<T>(nint, System.Func<System.Exception>)",
+          "instanceMessageContextPreserved": true,
+          "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+          "originalErrorCreation": "new InvalidOperationException(DiskControlErrors.Incomplete)",
+          "expansion": "SDK null guard invokes original creation exactly once only for null, otherwise original Marshal conversion",
+          "originalErrorMessageSymbol": "GWGUI.Emulation.Philips.Emulators.Common.Exceptions.DiskControlErrors.Incomplete"
+        },
+        {
+          "staticFactory": true,
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.RequiredDelegate<T>(nint, System.Func<System.Exception>)",
+          "instanceMessageContextPreserved": true,
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+          "originalErrorCreation": "new InvalidOperationException(CoreExceptions.DiskControlIncomplete())",
+          "expansion": "SDK null guard invokes original creation exactly once only for null, otherwise original Marshal conversion",
+          "originalErrorMessageSymbol": "GWGUI.Emulation.Sega.Emulators.Common.Interop.Exceptions.CoreExceptions.DiskControlIncomplete()"
+        },
+        {
+          "staticFactory": true,
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.RequiredDelegate<T>(nint, System.Func<System.Exception>)",
+          "instanceMessageContextPreserved": true,
+          "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+          "originalErrorCreation": "new InvalidOperationException(DiskControlErrors.Incomplete)",
+          "expansion": "SDK null guard invokes original creation exactly once only for null, otherwise original Marshal conversion",
+          "originalErrorMessageSymbol": "GWGUI.Emulation.Sharp.Emulators.Common.Exceptions.DiskControlErrors.Incomplete"
+        },
+        {
+          "staticFactory": true,
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.RequiredDelegate<T>(nint, System.Func<System.Exception>)",
+          "instanceMessageContextPreserved": true,
+          "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+          "originalErrorCreation": "new InvalidOperationException(DiskControlErrors.Incomplete)",
+          "expansion": "SDK null guard invokes original creation exactly once only for null, otherwise original Marshal conversion",
+          "originalErrorMessageSymbol": "GWGUI.Emulation.Sinclair.Emulators.Common.Exceptions.DiskControlErrors.Incomplete"
+        },
+        {
+          "staticFactory": true,
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.RequiredDelegate<T>(nint, System.Func<System.Exception>)",
+          "instanceMessageContextPreserved": true,
+          "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+          "originalErrorCreation": "new InvalidOperationException(DiskControlErrors.Incomplete)",
+          "expansion": "SDK null guard invokes original creation exactly once only for null, otherwise original Marshal conversion",
+          "originalErrorMessageSymbol": "GWGUI.Emulation.Snk.Emulators.Common.Exceptions.DiskControlErrors.Incomplete"
+        },
+        {
+          "staticFactory": true,
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.RequiredDelegate<T>(nint, System.Func<System.Exception>)",
+          "instanceMessageContextPreserved": true,
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+          "originalErrorCreation": "new InvalidOperationException(CoreExceptions.DiskControlIncomplete())",
+          "expansion": "SDK null guard invokes original creation exactly once only for null, otherwise original Marshal conversion",
+          "originalErrorMessageSymbol": "GWGUI.Emulation.Sony.Emulators.Common.Interop.Exceptions.CoreExceptions.DiskControlIncomplete()"
+        },
+        {
+          "staticFactory": true,
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.RequiredDelegate<T>(nint, System.Func<System.Exception>)",
+          "instanceMessageContextPreserved": true,
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalDiskControl.cs",
+          "originalErrorCreation": "new InvalidOperationException(Pcsx2Exceptions.DiskControlIncomplete())",
+          "expansion": "SDK null guard invokes original creation exactly once only for null, otherwise original Marshal conversion",
+          "originalErrorMessageSymbol": "GWGUI.Emulation.Sony.Emulators.Pcsx2.Exceptions.Pcsx2Exceptions.DiskControlIncomplete()"
+        },
+        {
+          "staticFactory": true,
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.RequiredDelegate<T>(nint, System.Func<System.Exception>)",
+          "instanceMessageContextPreserved": true,
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalDiskControl.cs",
+          "originalErrorCreation": "new InvalidOperationException(PpssppExceptions.DiskControlIncomplete())",
+          "expansion": "SDK null guard invokes original creation exactly once only for null, otherwise original Marshal conversion",
+          "originalErrorMessageSymbol": "GWGUI.Emulation.Sony.Emulators.Ppsspp.Exceptions.PpssppExceptions.DiskControlIncomplete()"
+        }
+      ]
+    },
+    "productBuild": "After grouped Debug build in optionalNativeDelegateReuse.productBuild; compiled through test-project references, next product build after another completed block",
+    "report": {
+      "files": 7331,
+      "verifiedAdapters": 19,
+      "longCandidateGroups": 506,
+      "scope": "Every candidate occurrence of these error adapters annotated; unique adapters need no duplicate group; other responsibilities retained",
+      "shortRenamedGroups": 365,
+      "shortExactGroups": 784,
+      "shortMethodCount": 9601,
+      "longMethodCount": 11672,
+      "qualifiedCandidateAdapters": 18
     }
   }
 }

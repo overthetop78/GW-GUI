@@ -245,6 +245,12 @@ internal static class ExternalCoreEnvironmentFunctions
     internal static T? OptionalDelegate<T>(nint pointer) where T : Delegate
         => pointer == 0 ? null : Marshal.GetDelegateForFunctionPointer<T>(pointer);
 
+    internal static T RequiredDelegate<T>(nint pointer, Func<Exception> createError) where T : Delegate
+    {
+        if (pointer == 0) throw createError();
+        return Marshal.GetDelegateForFunctionPointer<T>(pointer);
+    }
+
     internal static bool SetLogInterface(nint data, ExternalCoreApi.LogCallback log)
         => SetLogInterface<ExternalCoreApi.LogCallback>(data, log);
 

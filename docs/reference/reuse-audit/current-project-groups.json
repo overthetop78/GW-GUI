@@ -3,7 +3,7 @@
   "currentCSharpFiles": 7331,
   "outsideSrcCSharpFiles": 288,
   "baselineMethodCount": 5848,
-  "currentMethodCount": 11669,
+  "currentMethodCount": 11672,
   "powerShellFunctionCount": 17,
   "groups": [
     {
@@ -1526,7 +1526,7 @@
     {
       "language": "CSharp",
       "hash": "0A9D4012A0EEF58659F6F622D06187BDA6844EE126F30B196EAE963950A66758",
-      "method": "SegaEmulationModule",
+      "method": "CommodoreEmulationModule",
       "tokens": 45,
       "current": [
         {
@@ -2176,6 +2176,53 @@
       "predecessors": [],
       "shapePredecessors": [],
       "qualification": "pending"
+    },
+    {
+      "language": "CSharp",
+      "hash": "10DC930946B061FB131F3FA33C64E6D7918A81B2290DC9661A13553A4087F12F",
+      "method": "Delegate",
+      "tokens": 30,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+          "name": "Delegate",
+          "line": 120,
+          "tokens": 30,
+          "hash": "10DC930946B061FB131F3FA33C64E6D7918A81B2290DC9661A13553A4087F12F",
+          "shape": "4DD6D00CD06304F2139C836D8D275D1D2F0EF56104E53E505A2A5C16BC89FBF5",
+          "qualification": "Module error adapter to original shared required conversion verified in requiredNativeDelegateReuse; message and instance/static factory context preserved"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+          "name": "Delegate",
+          "line": 125,
+          "tokens": 30,
+          "hash": "10DC930946B061FB131F3FA33C64E6D7918A81B2290DC9661A13553A4087F12F",
+          "shape": "4DD6D00CD06304F2139C836D8D275D1D2F0EF56104E53E505A2A5C16BC89FBF5",
+          "qualification": "Module error adapter to original shared required conversion verified in requiredNativeDelegateReuse; message and instance/static factory context preserved"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+          "name": "Delegate",
+          "line": 125,
+          "tokens": 30,
+          "hash": "10DC930946B061FB131F3FA33C64E6D7918A81B2290DC9661A13553A4087F12F",
+          "shape": "4DD6D00CD06304F2139C836D8D275D1D2F0EF56104E53E505A2A5C16BC89FBF5",
+          "qualification": "Module error adapter to original shared required conversion verified in requiredNativeDelegateReuse; message and instance/static factory context preserved"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+          "name": "Delegate",
+          "line": 125,
+          "tokens": 30,
+          "hash": "10DC930946B061FB131F3FA33C64E6D7918A81B2290DC9661A13553A4087F12F",
+          "shape": "4DD6D00CD06304F2139C836D8D275D1D2F0EF56104E53E505A2A5C16BC89FBF5",
+          "qualification": "Module error adapter to original shared required conversion verified in requiredNativeDelegateReuse; message and instance/static factory context preserved"
+        }
+      ],
+      "predecessors": [],
+      "shapePredecessors": [],
+      "qualification": "Qualified module error adapters to original required conversion"
     },
     {
       "language": "CSharp",
@@ -20630,7 +20677,7 @@
     {
       "language": "CSharp",
       "hash": "A1E03750FEB3292ACEB41656386F4A8AA8B05077D9ABFB7DA103AA3D71320B9F",
-      "method": "ToFairchild",
+      "method": "ToModule",
       "tokens": 103,
       "current": [
         {
@@ -20865,7 +20912,7 @@
     {
       "language": "CSharp",
       "hash": "A61349BFDFFA5D404CE7D0D458204D435194B5E4D84870DF4F9FBE26A86A9946",
-      "method": "ToFairchild",
+      "method": "ToEpoch",
       "tokens": 36,
       "current": [
         {
@@ -22058,7 +22105,7 @@
     {
       "language": "CSharp",
       "hash": "B053A3AB4F0B78A37DED57B2D744801187AED6EC54FEEAFE4B1AA9C454D6F48C",
-      "method": "MattelEmulationModule",
+      "method": "ColecoEmulationModule",
       "tokens": 47,
       "current": [
         {
@@ -28472,41 +28519,6 @@
     },
     {
       "language": "CSharp",
-      "hash": "EADE1992E4D6B16A3D022237D59AF02030E076F69B0947979E8E3DD371A2BB99",
-      "method": "Delegate",
-      "tokens": 30,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
-          "name": "Delegate",
-          "line": 125,
-          "tokens": 30,
-          "hash": "EADE1992E4D6B16A3D022237D59AF02030E076F69B0947979E8E3DD371A2BB99",
-          "shape": "0A03662BEFBA347DE9DE0254A0BF5BDC08FD33AEEE246C07C8FF71EECD2CF340"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
-          "name": "Delegate",
-          "line": 125,
-          "tokens": 30,
-          "hash": "EADE1992E4D6B16A3D022237D59AF02030E076F69B0947979E8E3DD371A2BB99",
-          "shape": "0A03662BEFBA347DE9DE0254A0BF5BDC08FD33AEEE246C07C8FF71EECD2CF340"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
-          "name": "Delegate",
-          "line": 125,
-          "tokens": 30,
-          "hash": "EADE1992E4D6B16A3D022237D59AF02030E076F69B0947979E8E3DD371A2BB99",
-          "shape": "0A03662BEFBA347DE9DE0254A0BF5BDC08FD33AEEE246C07C8FF71EECD2CF340"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
       "hash": "EB1E6CA33AF7FA82E807AD079534EB99A54A53B60444EF4A9C58C1CE548C763F",
       "method": "FlushAudio",
       "tokens": 32,
@@ -29009,7 +29021,7 @@
     {
       "language": "CSharp",
       "hash": "F107F4D7D97C4E9F797468C991DF2090B47DF6E3F6F74E56044EFF0C28CAA51D",
-      "method": "NotifyHardwareContextDestroy",
+      "method": "NotifyDestroy",
       "tokens": 31,
       "current": [
         {
@@ -31166,53 +31178,6 @@
       "qualification": "pending-symbol-and-policy-comparison"
     },
     {
-      "shape": "0A03662BEFBA347DE9DE0254A0BF5BDC08FD33AEEE246C07C8FF71EECD2CF340",
-      "tokens": 30,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
-          "name": "Delegate",
-          "line": 125,
-          "tokens": 30,
-          "hash": "EADE1992E4D6B16A3D022237D59AF02030E076F69B0947979E8E3DD371A2BB99",
-          "shape": "0A03662BEFBA347DE9DE0254A0BF5BDC08FD33AEEE246C07C8FF71EECD2CF340"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalDiskControl.cs",
-          "name": "Delegate",
-          "line": 126,
-          "tokens": 30,
-          "hash": "FCCDFC7F391E205B05B3F3944D35142ED8A9F9C3280724F3721870E4BA61AFE3",
-          "shape": "0A03662BEFBA347DE9DE0254A0BF5BDC08FD33AEEE246C07C8FF71EECD2CF340"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
-          "name": "Delegate",
-          "line": 125,
-          "tokens": 30,
-          "hash": "EADE1992E4D6B16A3D022237D59AF02030E076F69B0947979E8E3DD371A2BB99",
-          "shape": "0A03662BEFBA347DE9DE0254A0BF5BDC08FD33AEEE246C07C8FF71EECD2CF340"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalDiskControl.cs",
-          "name": "Delegate",
-          "line": 126,
-          "tokens": 30,
-          "hash": "99BE90FCB5915805C5C06A9B9C5990527FF97351F67138A5E4AC379DAA63C5DF",
-          "shape": "0A03662BEFBA347DE9DE0254A0BF5BDC08FD33AEEE246C07C8FF71EECD2CF340"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
-          "name": "Delegate",
-          "line": 125,
-          "tokens": 30,
-          "hash": "EADE1992E4D6B16A3D022237D59AF02030E076F69B0947979E8E3DD371A2BB99",
-          "shape": "0A03662BEFBA347DE9DE0254A0BF5BDC08FD33AEEE246C07C8FF71EECD2CF340"
-        }
-      ],
-      "qualification": "pending-symbol-and-policy-comparison"
-    },
-    {
       "shape": "0C3C2777DB70FAFE141777FD6E6CFC4B5B2BAC4F219906A3915970F02D34BF58",
       "tokens": 69,
       "current": [
@@ -32369,29 +32334,6 @@
       "qualification": "pending-symbol-and-policy-comparison"
     },
     {
-      "shape": "329C824F62EA62339EC1DB720265E7A2E273DD6B72225AF1C7916E9AED994F23",
-      "tokens": 32,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
-          "name": "Delegate",
-          "line": 124,
-          "tokens": 32,
-          "hash": "B032D9161C89FE3BB22AD70E7FC821E01704E23D56577A6A55E3E9698C4934B2",
-          "shape": "329C824F62EA62339EC1DB720265E7A2E273DD6B72225AF1C7916E9AED994F23"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
-          "name": "Delegate",
-          "line": 120,
-          "tokens": 32,
-          "hash": "819DB08E663BAD07931C12A986C3AD07EC8B9CB7A8A5A3808B5D60C0C794F01F",
-          "shape": "329C824F62EA62339EC1DB720265E7A2E273DD6B72225AF1C7916E9AED994F23"
-        }
-      ],
-      "qualification": "pending-symbol-and-policy-comparison"
-    },
-    {
       "shape": "3659208FAE53EA4FF620448823A4B5E1542658E1C83C0B36F45EA1563C486F01",
       "tokens": 109,
       "current": [
@@ -33390,6 +33332,76 @@
         }
       ],
       "qualification": "pending-symbol-and-policy-comparison"
+    },
+    {
+      "shape": "4DD6D00CD06304F2139C836D8D275D1D2F0EF56104E53E505A2A5C16BC89FBF5",
+      "tokens": 30,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+          "name": "Delegate",
+          "line": 120,
+          "tokens": 30,
+          "hash": "10DC930946B061FB131F3FA33C64E6D7918A81B2290DC9661A13553A4087F12F",
+          "shape": "4DD6D00CD06304F2139C836D8D275D1D2F0EF56104E53E505A2A5C16BC89FBF5",
+          "qualification": "Module error adapter to original shared required conversion verified in requiredNativeDelegateReuse; message and instance/static factory context preserved"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalDiskControl.cs",
+          "name": "Delegate",
+          "line": 126,
+          "tokens": 30,
+          "hash": "2AA5106B0C407B05DA7C505A4283FB325FCC3E0094889259F551CCC9905F0F4D",
+          "shape": "4DD6D00CD06304F2139C836D8D275D1D2F0EF56104E53E505A2A5C16BC89FBF5",
+          "qualification": "Module error adapter to original shared required conversion verified in requiredNativeDelegateReuse; message and instance/static factory context preserved"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalDiskControl.cs",
+          "name": "Delegate",
+          "line": 126,
+          "tokens": 30,
+          "hash": "CB28CD67782F465057FC2AF4ECFA9DA2EAE9855CDAD8D143DEC48F4D7321EA16",
+          "shape": "4DD6D00CD06304F2139C836D8D275D1D2F0EF56104E53E505A2A5C16BC89FBF5",
+          "qualification": "Module error adapter to original shared required conversion verified in requiredNativeDelegateReuse; message and instance/static factory context preserved"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+          "name": "Delegate",
+          "line": 125,
+          "tokens": 30,
+          "hash": "10DC930946B061FB131F3FA33C64E6D7918A81B2290DC9661A13553A4087F12F",
+          "shape": "4DD6D00CD06304F2139C836D8D275D1D2F0EF56104E53E505A2A5C16BC89FBF5",
+          "qualification": "Module error adapter to original shared required conversion verified in requiredNativeDelegateReuse; message and instance/static factory context preserved"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+          "name": "Delegate",
+          "line": 125,
+          "tokens": 30,
+          "hash": "10DC930946B061FB131F3FA33C64E6D7918A81B2290DC9661A13553A4087F12F",
+          "shape": "4DD6D00CD06304F2139C836D8D275D1D2F0EF56104E53E505A2A5C16BC89FBF5",
+          "qualification": "Module error adapter to original shared required conversion verified in requiredNativeDelegateReuse; message and instance/static factory context preserved"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+          "name": "Delegate",
+          "line": 124,
+          "tokens": 30,
+          "hash": "F1FF72212F533B5D6C0DF08ED1E12236B50440BD55DFBD579B9698A68DCAC531",
+          "shape": "4DD6D00CD06304F2139C836D8D275D1D2F0EF56104E53E505A2A5C16BC89FBF5",
+          "qualification": "Module error adapter to original shared required conversion verified in requiredNativeDelegateReuse; message and instance/static factory context preserved"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+          "name": "Delegate",
+          "line": 125,
+          "tokens": 30,
+          "hash": "10DC930946B061FB131F3FA33C64E6D7918A81B2290DC9661A13553A4087F12F",
+          "shape": "4DD6D00CD06304F2139C836D8D275D1D2F0EF56104E53E505A2A5C16BC89FBF5",
+          "qualification": "Module error adapter to original shared required conversion verified in requiredNativeDelegateReuse; message and instance/static factory context preserved"
+        }
+      ],
+      "qualification": "Qualified module error adapters to original required conversion"
     },
     {
       "shape": "509366B3E6245293F94839B5FC47B436981157475ED6D6001B1B4B036767BBB5",
