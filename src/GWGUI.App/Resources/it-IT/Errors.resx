@@ -73,4 +73,5 @@
   <data name="Error.Description.FileSystem.SeekError"><value>La posizione richiesta non è valida per questo oggetto file-system.</value></data>
   <data name="Error.Description.FileSystem.AnodeOperationFailed"><value>L'operazione di allocazione-nodo non è riuscita.</value></data>
   <data name="Error.Description.FileSystem.AnodeBitmapIndexBlockMissing"><value>Blocco indice bitmap a nodo di allocazione {0}/{1} non si poteva leggere.</value></data>
+  <data name="Error.Description.GreaseweazlePosition"><value>La testa di azionamento non è al cilindro richiesto ({0}). Ricalibrare l'unità prima di leggere.</value></data>
 </root>

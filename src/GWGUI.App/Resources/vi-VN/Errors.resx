@@ -73,4 +73,5 @@
   <data name="Error.Description.FileSystem.SeekError"><value>Vị trí đã yêu cầu không hợp lệ đối tượng hệ thống này.</value></data>
   <data name="Error.Description.FileSystem.AnodeOperationFailed"><value>Thao tác định vị- node thất bại.</value></data>
   <data name="Error.Description.FileSystem.AnodeBitmapIndexBlockMissing"><value>Khối chỉ mục sơ đồ mảng ảnh định vị- node {0}/{1} Không thể đọc được.</value></data>
+  <data name="Error.Description.GreaseweazlePosition"><value>Đầu ổ đĩa không có ở trụ đã yêu cầu ({0}Chỉnh lại ổ đĩa trước khi đọc.</value></data>
 </root>

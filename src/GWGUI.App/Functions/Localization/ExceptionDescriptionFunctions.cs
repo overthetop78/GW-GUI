@@ -6,6 +6,7 @@ using System.Reflection;
 using System.Text.Json;
 using GWGUI.App.Constants.Localization;
 using GWGUI.App.Localization.Extensions;
+using GWGUI.Infrastructure.Hardware.Greaseweazle;
 using AmigaDirectoryNotEmptyException = Hst.Amiga.FileSystems.Exceptions.DirectoryNotEmptyException;
 using AmigaDiskFullException = Hst.Amiga.FileSystems.Exceptions.DiskFullException;
 using AmigaFileSystemException = Hst.Amiga.FileSystems.Exceptions.FileSystemException;
@@ -35,6 +36,8 @@ internal static class ExceptionDescriptionFunctions
             return LocExtension.Get(ErrorDescriptionResourceKeys.OperationTimeout);
         if (exceptions.Any(candidate => candidate is OperationCanceledException))
             return LocExtension.Get(ErrorDescriptionResourceKeys.OperationCancelled);
+        if (exceptions.OfType<GreaseweazlePositionException>().FirstOrDefault() is { } position)
+            return LocExtension.Get(ErrorDescriptionResourceKeys.GreaseweazlePosition, position.Cylinder);
         if (exceptions.Any(candidate => candidate is UnauthorizedAccessException))
             return LocExtension.Get(ErrorDescriptionResourceKeys.AccessDenied);
         if (exceptions.OfType<FileNotFoundException>().FirstOrDefault() is { } fileNotFound)

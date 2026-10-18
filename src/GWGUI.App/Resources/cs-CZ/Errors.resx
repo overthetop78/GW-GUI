@@ -73,4 +73,5 @@
   <data name="Error.Description.FileSystem.SeekError"><value>Požadovaná pozice je pro tento objekt souboru neplatná.</value></data>
   <data name="Error.Description.FileSystem.AnodeOperationFailed"><value>Operace alokation- nód selhala.</value></data>
   <data name="Error.Description.FileSystem.AnodeBitmapIndexBlockMissing"><value>Blok indexu indexu allocation- uzel {0}/{1} Nedalo se číst.</value></data>
+  <data name="Error.Description.GreaseweazlePosition"><value>Hlavice pohonu není v požadovaném válci ({0}). Překalibrujte disk před čtením.</value></data>
 </root>

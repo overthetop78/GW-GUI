@@ -73,4 +73,5 @@
   <data name="Error.Description.FileSystem.SeekError"><value>Den ønskede position er ugyldig for dette filsystem- objekt.</value></data>
   <data name="Error.Description.FileSystem.AnodeOperationFailed"><value>Aktionsknudeoperationen mislykkedes.</value></data>
   <data name="Error.Description.FileSystem.AnodeBitmapIndexBlockMissing"><value>Allokerings- node- bitmap-indeksplokken {0}/{1} kunne ikke læses.</value></data>
+  <data name="Error.Description.GreaseweazlePosition"><value>Drevhovedet er ikke ved den ønskede cylinder ({0}). Genkalibrere drevet før læsning.</value></data>
 </root>

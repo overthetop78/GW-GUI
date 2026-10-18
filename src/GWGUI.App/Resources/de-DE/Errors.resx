@@ -73,4 +73,5 @@
   <data name="Error.Description.FileSystem.SeekError"><value>Die angeforderte Position ist für dieses Dateisystemobjekt ungültig.</value></data>
   <data name="Error.Description.FileSystem.AnodeOperationFailed"><value>Die Allokationsknotenoperation ist fehlgeschlagen.</value></data>
   <data name="Error.Description.FileSystem.AnodeBitmapIndexBlockMissing"><value>Bitmap-Indexblock für Allokationsknoten {0}/{1} nicht gelesen werden konnte.</value></data>
+  <data name="Error.Description.GreaseweazlePosition"><value>Der Antriebskopf befindet sich nicht am gewünschten Zylinder (){0}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .</value></data>
 </root>

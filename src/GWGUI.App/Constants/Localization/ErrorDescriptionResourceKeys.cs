@@ -9,6 +9,7 @@ internal static class ErrorDescriptionResourceKeys
     internal const string HttpStatus = "Error.Description.HttpStatus";
     internal const string OperationTimeout = "Error.Description.OperationTimeout";
     internal const string OperationCancelled = "Error.Description.OperationCancelled";
+    internal const string GreaseweazlePosition = "Error.Description.GreaseweazlePosition";
     internal const string AccessDenied = "Error.Description.AccessDenied";
     internal const string FileNotFound = "Error.Description.FileNotFound";
     internal const string DirectoryNotFound = "Error.Description.DirectoryNotFound";

@@ -73,4 +73,5 @@
   <data name="Error.Description.FileSystem.SeekError"><value>요청된 위치는 이 파일 시스템 객체에 대해 유효하지 않습니다.</value></data>
   <data name="Error.Description.FileSystem.AnodeOperationFailed"><value>할당 노드 작동 실패.</value></data>
   <data name="Error.Description.FileSystem.AnodeBitmapIndexBlockMissing"><value>Allocation-node 비트맵 인덱스 블록 {0}/ / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / /{1} 읽지 않을 수 있었습니다.</value></data>
+  <data name="Error.Description.GreaseweazlePosition"><value>구동 헤드는 요청된 실린더에 없습니다 ({0}). 읽기 전에 드라이브를 재조정합니다.</value></data>
 </root>

@@ -73,4 +73,5 @@
   <data name="Error.Description.FileSystem.SeekError"><value>The requested position is invalid for this file-system object.</value></data>
   <data name="Error.Description.FileSystem.AnodeOperationFailed"><value>The allocation-node operation failed.</value></data>
   <data name="Error.Description.FileSystem.AnodeBitmapIndexBlockMissing"><value>Allocation-node bitmap index block {0}/{1} could not be read.</value></data>
+  <data name="Error.Description.GreaseweazlePosition"><value>The drive head is not at the requested cylinder ({0}). Recalibrate the drive before reading.</value></data>
 </root>

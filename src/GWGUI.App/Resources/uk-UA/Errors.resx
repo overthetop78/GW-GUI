@@ -73,4 +73,5 @@
   <data name="Error.Description.FileSystem.SeekError"><value>За запитом, позиція недійсна для цього об'єкта файлової системи.</value></data>
   <data name="Error.Description.FileSystem.AnodeOperationFailed"><value>Не вдалося відведення.</value></data>
   <data name="Error.Description.FileSystem.AnodeBitmapIndexBlockMissing"><value>Блок індексу бітової карти вузла розподілу {0}/{1} не вдалося прочитати.</value></data>
+  <data name="Error.Description.GreaseweazlePosition"><value>Голова диска не за запитом циліндра ({0}). Перевірити диск перед читанням.</value></data>
 </root>

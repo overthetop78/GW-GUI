@@ -66,7 +66,35 @@ public sealed class GreaseweazleProtocolClient(IGreaseweazleSerialTransport tran
             await SendCommandAsync(command, cancellationToken);
         }
 
+        var trackZero = !await ReadPinAsync(26, cancellationToken);
+        if (cylinder == 0 && !trackZero)
+        {
+            try
+            {
+                await SendCommandAsync(new byte[] { (byte)GreaseweazleCommand.GetInfo, 3, 7 }, cancellationToken);
+                var driveInfo = new byte[32];
+                await transport.ReadExactlyAsync(driveInfo, cancellationToken);
+                if ((BinaryPrimitives.ReadUInt32LittleEndian(driveInfo) & 4) != 0)
+                    await SendCommandAsync(new byte[] { (byte)GreaseweazleCommand.NoClickStep, 2 }, cancellationToken);
+            }
+            catch (GreaseweazleProtocolException)
+            {
+                // Older firmware may not support the best-effort flippy correction.
+            }
+            trackZero = !await ReadPinAsync(26, cancellationToken);
+        }
+        if (cylinder >= 0 && (cylinder == 0) != trackZero)
+            throw new GreaseweazlePositionException(cylinder, trackZero);
+
         await SendCommandAsync(new byte[] { (byte)GreaseweazleCommand.Head, 3, head }, cancellationToken);
+    }
+
+    private async ValueTask<bool> ReadPinAsync(byte pin, CancellationToken cancellationToken)
+    {
+        await SendCommandAsync(new byte[] { (byte)GreaseweazleCommand.GetPin, 3, pin }, cancellationToken);
+        var response = new byte[1];
+        await transport.ReadExactlyAsync(response, cancellationToken);
+        return response[0] != 0;
     }
 
     public async ValueTask WriteFluxAsync(ReadOnlyMemory<uint> intervals, bool cueAtIndex, bool terminateAtIndex, uint hardSectorTicks = 0, CancellationToken cancellationToken = default)

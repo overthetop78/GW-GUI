@@ -73,4 +73,5 @@
   <data name="Error.Description.FileSystem.SeekError"><value>La position demandée est invalide pour cet objet système de fichiers.</value></data>
   <data name="Error.Description.FileSystem.AnodeOperationFailed"><value>L'opération de répartition des nœuds a échoué.</value></data>
   <data name="Error.Description.FileSystem.AnodeBitmapIndexBlockMissing"><value>Bloc d'index bitmap de l'allocation-node {0}/{1} ne pouvait pas être lu.</value></data>
+  <data name="Error.Description.GreaseweazlePosition"><value>La tête de lecture n'est pas au cylindre demandé ({0}). Recalibrez le lecteur avant de lire.</value></data>
 </root>

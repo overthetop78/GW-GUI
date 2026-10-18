@@ -73,4 +73,5 @@
   <data name="Error.Description.FileSystem.SeekError"><value>Pyydetty sijainti on virheellinen tälle tiedostojärjestelmä-oliolle.</value></data>
   <data name="Error.Description.FileSystem.AnodeOperationFailed"><value>Jakosolmun operaatio epäonnistui.</value></data>
   <data name="Error.Description.FileSystem.AnodeBitmapIndexBlockMissing"><value>Jako-node bittikartta-indeksi lohko {0}/{1} -Ei voitu lukea.</value></data>
+  <data name="Error.Description.GreaseweazlePosition"><value>Aseman pää ei ole vaaditussa sylinterissä ({0}) Kalibroi levy uudelleen ennen lukemista.</value></data>
 </root>
