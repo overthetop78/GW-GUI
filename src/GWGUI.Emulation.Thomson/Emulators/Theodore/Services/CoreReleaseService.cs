@@ -44,8 +44,8 @@ internal sealed class CoreReleaseService
                     archiveSize, extracted,
                     static (id, version, url, downloadedUtc, downloadedSize, librarySize, sha256, architecture, declaredVersion, exports)
                         => new CoreDiagnosticManifest(id, version, url, downloadedUtc, downloadedSize, librarySize, sha256, architecture, declaredVersion, exports));
-                if (!string.Equals(manifest.Architecture, EmulatorCatalogConstants.WindowsX64Architecture, StringComparison.Ordinal))
-                    throw new InvalidDataException(CoreReleaseErrors.InvalidArchitecture);
+                EmulationCoreDiagnosticFunctions.RequireArchitecture(manifest.Architecture, EmulatorCatalogConstants.WindowsX64Architecture,
+                    static () => CoreReleaseErrors.InvalidArchitecture);
                 return manifest;
             }, () => CoreReleaseFunctions.ReplaceLibraryAtomically(extracted, paths.LibraryPath), manifest => CoreReleaseFunctions.WriteManifestAtomicallyAsync(paths.ManifestPath, manifest, cancellationToken), async () =>
             {

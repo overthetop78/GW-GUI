@@ -1,10 +1,8 @@
 {
-  "snapshot": "6ec7d371e7a8e8c3641fbf636d3f3d5d1c881ebf",
+  "snapshot": "2e8ff48f54ea2ff95748a66aa4d42df5a2cd540a",
   "snapshotState": "Current worktree based on snapshot",
   "worktreeSourceChanges": [
-    "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/CoreReleaseService.cs",
     "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/CoreReleaseService.cs",
-    "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/CoreReleaseService.cs",
     "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services/CoreReleaseService.cs",
     "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/CoreReleaseService.cs",
     "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/CoreReleaseService.cs",
@@ -21,8 +19,8 @@
     "src/GWGUI.Emulation/Functions/EmulationCoreDiagnosticFunctions.cs"
   ],
   "scope": "All current non-ignored repository CSharp files, including hidden paths; BaseMethodDeclaration bodies with fewer than 30 tokens. Candidate presence is not a defect or a completion claim.",
-  "fileCount": 7322,
-  "methodBodyCount": 9487,
+  "fileCount": 7323,
+  "methodBodyCount": 9488,
   "exactGroups": [
     {
       "hash": "0017F14C61995D644C52FF90F094E4708DC2CA772615CF2F5DD41E74BD202ECA",

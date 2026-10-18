@@ -8249,13 +8249,13 @@
     "afterProductBuild": "005e3c677"
   },
   "shortMethodInventory": {
-    "snapshot": "6ec7d371e7a8e8c3641fbf636d3f3d5d1c881ebf",
-    "files": 7322,
-    "bodyCount": 9487,
+    "snapshot": "2e8ff48f54ea2ff95748a66aa4d42df5a2cd540a",
+    "files": 7323,
+    "bodyCount": 9488,
     "exactGroups": 774,
     "renamedGroups": 365,
     "status": "Incomplete; existing queue/empty-method qualifications retained; 29 factory selections now shared and verified; sector source reader-selection stage shared, remaining typed writer ownership pending.",
-    "trackedCSharpCoverage": "Full current C# scan: 7322 files. Original manifest collection now shared across sixteen installation adapters; remaining architecture guards and whole-project groups still require qualification."
+    "trackedCSharpCoverage": "Full current C# scan: 7323 files including managed architecture tests; native probe and runtime groups remain under audit."
   },
   "hardwareIdentityComparisonReuse": {
     "snapshot": "a4760e868",
@@ -11031,7 +11031,7 @@
     "tests": "Fifteen managed tests passed, exit 0: requested formats/null/case/empty, pre-cancelled token forwarding and early refusal, controlled pending validator completed/awaited in finally, synchronous/asynchronous InvalidDataException and NotSupportedException refusal, other IOException propagation, both cancellation paths with token, and null-context asynchronous fault timing. Context KnownLength=0 avoids FileInfo and no reads are invoked; no media files, external DLL fixtures, windows, processes or cores."
   },
   "installationTemporaryScopeReview": {
-    "state": "scope review and Sony wiring verified; sixteen ordered manifest collections now shared; remaining repeated architecture guard comparison scheduled separately",
+    "state": "scope ownership, Sony wiring, sixteen manifest collections and fourteen architecture comparisons verified in their dedicated records; global audit remains incomplete",
     "snapshot": "121ea9865",
     "profiles": [
       {
@@ -11314,7 +11314,7 @@
     "origin": "Existing SDK 734fbce43 reuses Atari installation before Amstrad: ac7292d86^:src/GWGUI.Emulation.Atari/Services/AtariCoreReleaseService.cs. Ancestry before Sony adapter 4e48b9b7d verified.",
     "ownership": "Modules create/name temporary files before the try and own the finally. Nine scopes use sequential DeleteIfExists, seven nested finally to guarantee the second delete, nine sequential guarded File.Delete. Keep cleanup order and exception behavior in the resource owner; no cleanup-policy flag or ownership transfer to collapse syntax.",
     "finding": "Sony/Emulators/Common/Interop/Services/CoreReleaseService.InstallAsync still duplicates download, extraction/raw copy, validation/hash, replacement, manifest write and completion. CoreMachineFactory.ReleaseService actively constructs it. CompletedProgress const double is 1d. Reconnect only the central sequence to the existing original SDK pipeline.",
-    "pending": "Architecture guard comparison is a separate next audit action; this record does not claim the whole-project or all remaining InstallAsync groups complete.",
+    "pending": "Other whole-project groups remain pending; this scope record is not a blanket qualification of all native runtime or probe code.",
     "sonyFollowup": "sonyCommonInstallationFlowReuse records the later correction; original 121ea9865 scope evidence remains historical. Manifest callback review still incomplete."
   },
   "sonyCommonInstallationFlowReuse": {
@@ -11550,10 +11550,11 @@
     ],
     "ast": "All ten shared expressions expand to original constructor fields in sixteen consumers after replacing already-verified primitive adapters with their SDK targets. Static factories forward ten parameters in unchanged order to the exact original public record. All other tokens, architecture guards and finally blocks unchanged; all pre-existing SDK diagnostic members unchanged.",
     "semantic": "Current SDK and all 23 modules: zero semantic errors. Sixteen CreateManifest calls return their original public manifest type; all ten factory parameter types match its original constructor. Four diagnostic primitives resolve to their original SDK owners.",
-    "tests": "Same ten existing CoreInstallationFlowTests passed again, exit 0. They cover pipeline ordering/failures and preparation, not direct file metadata output. Exact collection expressions, ordering and field mapping separately verified by AST and symbols. No redundant mirror test or external DLL fixture added; pre-existing resource-owning primitive methods unchanged."
+    "tests": "Same ten existing CoreInstallationFlowTests passed again, exit 0. They cover pipeline ordering/failures and preparation, not direct file metadata output. Exact collection expressions, ordering and field mapping separately verified by AST and symbols. No redundant mirror test or external DLL fixture added; pre-existing resource-owning primitive methods unchanged.",
+    "subsequentValidation": "Later architecture guard extraction is verified in diagnosticArchitectureGuardReuse against 2e8ff48f5: shared collection/factories and all other service members remain unchanged. Its source hashes replace no earlier historical evidence."
   },
   "diagnosticArchitectureGuardReuse": {
-    "state": "qualified-before-correction",
+    "state": "verified",
     "snapshot": "7e1736bb3",
     "before": [
       {
@@ -11659,6 +11660,109 @@
     "semantic": "SDK and 23 modules zero semantic errors. All guards resolve string.Equals(string,string,StringComparison), constant x64, StringComparison.Ordinal, System.IO.InvalidDataException(string). Message symbols are ten properties and four constant fields.",
     "existing": "EmulationCoreDiagnosticFunctions already owns architecture diagnostics and lazy message factories in VerifyWindowsX64Library. That PE-reading validation performs different checks and must not replace this scalar post-manifest condition. No existing RequireArchitecture/EnsureArchitecture function found.",
     "decision": "Extract only original scalar comparison into RequireArchitecture in existing diagnostic owner; pass actual and expected values unchanged and a Func<string> so localized message properties are never read on success. Invoke after manifest construction. Atari/Acorn continue without a guard.",
-    "validation": "Compare expanded original condition/throw and all other members; resolve each message property/field before/after. Managed tests cover ordinal comparison and deferred provider behavior, with no files or external DLL fixture. Translation resources remain in their current owners."
+    "validation": "Compare expanded original condition/throw and all other members; resolve each message property/field before/after. Managed tests cover ordinal comparison and deferred provider behavior, with no files or external DLL fixture. Translation resources remain in their current owners.",
+    "after": [
+      {
+        "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+        "sha256": "10FB504A6A4935D59BB52BFBFAA7D27BAA3121FA475C768941A731BB95418AF3",
+        "expandedGuardIdentical": true,
+        "deferredMessage": true,
+        "allOtherTokensIdentical": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+        "sha256": "919A41774F35E49E702EF9403B2432C472F3CBB8EA7CBEE2C53346D447B297FD",
+        "expandedGuardIdentical": true,
+        "deferredMessage": true,
+        "allOtherTokensIdentical": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Watara/Emulators/Potator/Services/CoreReleaseService.cs",
+        "sha256": "E8CE3475859FA4D253F90585A46C58F26D3A595C9DE782178626E33C802BC620",
+        "expandedGuardIdentical": true,
+        "deferredMessage": true,
+        "allOtherTokensIdentical": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+        "sha256": "69E5CB6DF52538B227B580C04810271764C61D77F0EB11ED7AACFCE15A3DB493",
+        "expandedGuardIdentical": true,
+        "deferredMessage": true,
+        "allOtherTokensIdentical": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+        "sha256": "80C60A3AA6A15474DD9687F876322F7E42F10B1CB506E42A923760283A63FDB6",
+        "expandedGuardIdentical": true,
+        "deferredMessage": true,
+        "allOtherTokensIdentical": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+        "sha256": "F5D34C5FDC4750D33257E1AD70188BC336D466C622CD3365C6FC357875B7084A",
+        "expandedGuardIdentical": true,
+        "deferredMessage": true,
+        "allOtherTokensIdentical": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Services/CoreReleaseService.cs",
+        "sha256": "BF1C66EC85774737DC746074A14294D2DB6930D529406941184C906579FC7B9F",
+        "expandedGuardIdentical": true,
+        "deferredMessage": true,
+        "allOtherTokensIdentical": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+        "sha256": "C8EA0BE7AFEA492BCE17E8A38E140C912842153AE115BBE5B62103ECA01A571E",
+        "expandedGuardIdentical": true,
+        "deferredMessage": true,
+        "allOtherTokensIdentical": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+        "sha256": "439F665BCE27B5D7A7008B883C1388ABC15A78F46498315CA6F5B9FD2B722F1C",
+        "expandedGuardIdentical": true,
+        "deferredMessage": true,
+        "allOtherTokensIdentical": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Services/CoreReleaseService.cs",
+        "sha256": "03C49A7A791CB35F9C3A366C9D04C06C3366BB6F0B6624C0403C9AF57A2FD7E5",
+        "expandedGuardIdentical": true,
+        "deferredMessage": true,
+        "allOtherTokensIdentical": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Panasonic/Emulators/Opera/Services/CoreReleaseService.cs",
+        "sha256": "BBB4016E93ED6D622DCABD5E51366922BF0C8972F0D732BA6C2202E1596A390B",
+        "expandedGuardIdentical": true,
+        "deferredMessage": true,
+        "allOtherTokensIdentical": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+        "sha256": "24E738645AB54C372ECB604AECBF04F6B1C1E25B34E7ED96FE6DBD175B0CB56A",
+        "expandedGuardIdentical": true,
+        "deferredMessage": true,
+        "allOtherTokensIdentical": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+        "sha256": "697AA8EB99DBF64AB00FD4E2389CFE0284818A68663E26161578555E4BDDBC5F",
+        "expandedGuardIdentical": true,
+        "deferredMessage": true,
+        "allOtherTokensIdentical": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+        "sha256": "FFCA5DEC6375F5E3922CEAF2BB7C5A4443D4B106EB3F5124331A244B2E528CC6",
+        "expandedGuardIdentical": true,
+        "deferredMessage": true,
+        "allOtherTokensIdentical": true
+      }
+    ],
+    "ast": "Fourteen calls expand exactly to original conditions/throws, with the same property read, expected constant, Ordinal and error expression. Message thunks are static and only invoked inside the refusing branch. All other tokens of fourteen services and pre-existing diagnostic members unchanged; Atari/Acorn unchanged.",
+    "semanticAfter": "SDK and all 23 modules: zero semantic errors. Fourteen calls resolve to original diagnostic owner, same x64 constants and deferred Func<string> providers: ten original properties, four original fields.",
+    "tests": "Seventeen tests passed, exit 0: seven new managed ArchitectureValidation cases for ordinal identity/rejection, null/unknown values, provider count/timing and provider failure, plus ten existing CoreInstallationFlowTests. No files, external DLL fixture, windows, threads or processes created by these scenarios."
   }
 }

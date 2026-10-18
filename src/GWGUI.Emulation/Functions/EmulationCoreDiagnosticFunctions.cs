@@ -7,6 +7,12 @@ namespace GWGUI.Emulation.Functions;
 
 internal static class EmulationCoreDiagnosticFunctions
 {
+    internal static void RequireArchitecture(string? actual, string expected, Func<string> error)
+    {
+        if (!string.Equals(actual, expected, StringComparison.Ordinal))
+            throw new InvalidDataException(error());
+    }
+
     internal static T CreateManifest<T>(string releaseId, string releaseVersion, string downloadUrl,
         long archiveSize, string libraryPath,
         Func<string, string, string, DateTimeOffset, long, long, string, string, string, IReadOnlyList<string>, T> create)
