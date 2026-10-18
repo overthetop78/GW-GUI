@@ -52,9 +52,7 @@ internal sealed partial class ExternalHostCallbacks
                 case ExternalCoreApiConstants.GetVariable:
                     return ReturnOption(data);
                 case ExternalCoreApiConstants.GetVariableUpdate:
-                    if (data != nint.Zero)
-                        Marshal.WriteByte(data,
-                            Interlocked.Exchange(ref _optionsUpdated, ExternalCoreInteropConstants.InactiveState) != ExternalCoreInteropConstants.InactiveState ? ExternalCoreInteropConstants.NativeBooleanTrue : ExternalCoreInteropConstants.NativeBooleanFalse);
+                    _ = EmulationCoreOptionFunctions.GetAndClearUpdated(data, ref _optionsUpdated);
                     return true;
                 case ExternalCoreApiConstants.GetDiskControlVersion:
                     if (data != nint.Zero) Marshal.WriteInt32(data, DiskControlVersion);
