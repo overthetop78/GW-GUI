@@ -1,3 +1,4 @@
+using GWGUI.MediaFileSystems.Primitives;
 using GWGUI.MediaEngine.Images.Reading.Blocks;
 using System.Buffers.Binary;
 using System.Collections.Frozen;
@@ -173,11 +174,7 @@ public sealed class AcornTapeDecoder : ISequentialMediaDecoder
     private static bool IsImplicitData(SequentialMediaSegment segment) => segment.Metadata.TryGetValue(UefConstants.ChunkIdMetadataKey, out var chunkId) && ushort.TryParse(chunkId, NumberStyles.HexNumber, CultureInfo.InvariantCulture, out var parsed) && parsed == UefConstants.ImplicitData;
 
     private static byte[] Copy(IReadOnlyList<byte> source, int offset, int length)
-    {
-        var result = new byte[length];
-        for (var index = 0; index < length; index++) result[index] = source[offset + index];
-        return result;
-    }
+        => ByteListCopy.Copy(source, offset, length);
 
     private static ushort ReadUInt16LittleEndian(IReadOnlyList<byte> source, int offset) => BinaryPrimitives.ReadUInt16LittleEndian(Copy(source, offset, sizeof(ushort)));
 

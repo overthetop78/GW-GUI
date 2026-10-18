@@ -1,9 +1,9 @@
 {
   "baseline": "ac7292d86^",
-  "currentCSharpFiles": 7328,
-  "outsideSrcCSharpFiles": 287,
+  "currentCSharpFiles": 7331,
+  "outsideSrcCSharpFiles": 288,
   "baselineMethodCount": 5848,
-  "currentMethodCount": 11652,
+  "currentMethodCount": 11661,
   "powerShellFunctionCount": 17,
   "groups": [
     {
@@ -1569,7 +1569,7 @@
     {
       "language": "CSharp",
       "hash": "0A9D4012A0EEF58659F6F622D06187BDA6844EE126F30B196EAE963950A66758",
-      "method": "AtariEmulationModule",
+      "method": "NecEmulationModule",
       "tokens": 45,
       "current": [
         {
@@ -4531,7 +4531,7 @@
         {
           "path": "src/GWGUI.MediaEngine/Images/Reading/Decoding/Sequential/Acorn/AcornTapeDecoder.cs",
           "name": "CanDecode",
-          "line": 28,
+          "line": 29,
           "tokens": 46,
           "hash": "25E044303C256840146ECA1D849F8F95F1281D48D22F0A94ED50C194D2E45382",
           "shape": "13EF809BF66CEE9C99EE1909C39202899676C2B36EA6152F3F5A42EE1A799074"
@@ -21055,7 +21055,7 @@
     {
       "language": "CSharp",
       "hash": "A61349BFDFFA5D404CE7D0D458204D435194B5E4D84870DF4F9FBE26A86A9946",
-      "method": "ToEpoch",
+      "method": "ToFairchild",
       "tokens": 36,
       "current": [
         {
@@ -22248,7 +22248,7 @@
     {
       "language": "CSharp",
       "hash": "B053A3AB4F0B78A37DED57B2D744801187AED6EC54FEEAFE4B1AA9C454D6F48C",
-      "method": "PanasonicEmulationModule",
+      "method": "WenquxingEmulationModule",
       "tokens": 47,
       "current": [
         {
@@ -24473,67 +24473,6 @@
     },
     {
       "language": "CSharp",
-      "hash": "C70E1A07E9EAE707C644468DC346C056FA16F9EC9512E294691C3B2E0AD485D0",
-      "method": "Copy",
-      "tokens": 40,
-      "current": [
-        {
-          "path": "src/GWGUI.MediaFileSystems/FileSystems/Commodore/Dos/CommodoreDosDirectoryReader.cs",
-          "name": "Copy",
-          "line": 110,
-          "tokens": 40,
-          "hash": "C70E1A07E9EAE707C644468DC346C056FA16F9EC9512E294691C3B2E0AD485D0",
-          "shape": "1A18005D7BE46579F5D9F2950974BD1197D4BE576AD1FE5B242127B54E28B3EC"
-        },
-        {
-          "path": "src/GWGUI.MediaEngine/Images/Reading/Decoding/Sequential/Acorn/AcornTapeDecoder.cs",
-          "name": "Copy",
-          "line": 175,
-          "tokens": 40,
-          "hash": "C70E1A07E9EAE707C644468DC346C056FA16F9EC9512E294691C3B2E0AD485D0",
-          "shape": "1A18005D7BE46579F5D9F2950974BD1197D4BE576AD1FE5B242127B54E28B3EC"
-        }
-      ],
-      "predecessors": [
-        {
-          "path": "src/GWGUI.MediaEngine/Images/Reading/Decoding/Sequential/Acorn/AcornTapeDecoder.cs",
-          "name": "Copy",
-          "line": 231,
-          "tokens": 40,
-          "hash": "C70E1A07E9EAE707C644468DC346C056FA16F9EC9512E294691C3B2E0AD485D0",
-          "shape": "1A18005D7BE46579F5D9F2950974BD1197D4BE576AD1FE5B242127B54E28B3EC"
-        },
-        {
-          "path": "src/GWGUI.MediaFileSystems/FileSystems/Commodore/Dos/CommodoreDosDirectoryReader.cs",
-          "name": "Copy",
-          "line": 92,
-          "tokens": 40,
-          "hash": "C70E1A07E9EAE707C644468DC346C056FA16F9EC9512E294691C3B2E0AD485D0",
-          "shape": "1A18005D7BE46579F5D9F2950974BD1197D4BE576AD1FE5B242127B54E28B3EC"
-        }
-      ],
-      "shapePredecessors": [
-        {
-          "path": "src/GWGUI.MediaEngine/Images/Reading/Decoding/Sequential/Acorn/AcornTapeDecoder.cs",
-          "name": "Copy",
-          "line": 231,
-          "tokens": 40,
-          "hash": "C70E1A07E9EAE707C644468DC346C056FA16F9EC9512E294691C3B2E0AD485D0",
-          "shape": "1A18005D7BE46579F5D9F2950974BD1197D4BE576AD1FE5B242127B54E28B3EC"
-        },
-        {
-          "path": "src/GWGUI.MediaFileSystems/FileSystems/Commodore/Dos/CommodoreDosDirectoryReader.cs",
-          "name": "Copy",
-          "line": 92,
-          "tokens": 40,
-          "hash": "C70E1A07E9EAE707C644468DC346C056FA16F9EC9512E294691C3B2E0AD485D0",
-          "shape": "1A18005D7BE46579F5D9F2950974BD1197D4BE576AD1FE5B242127B54E28B3EC"
-        }
-      ],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
       "hash": "C71AB6F7BB749137FA86CDE1648D58721B3C97DAE396674E771A36C51620526C",
       "method": "OptionCallbackHost",
       "tokens": 92,
@@ -25028,7 +24967,8 @@
           "line": 9,
           "tokens": 103,
           "hash": "CD8906CDB323F9FC13FC90049964CECF57F1CD558E065973392B971E6A3F4A4B",
-          "shape": "70E231C2692F1E011E9FB6483E1E2327740442B43EC9930C374055C7DC25AFE1"
+          "shape": "70E231C2692F1E011E9FB6483E1E2327740442B43EC9930C374055C7DC25AFE1",
+          "qualification": "Typed contract initialization and BCL defensive copies; distinct recursive/enum/analysis types and mapper revalidated in fileSystemTypedConstructorRevalidation"
         },
         {
           "path": "src/GWGUI.MediaEngine/Contracts/Explorer/FileSystemVolume.cs",
@@ -25036,7 +24976,8 @@
           "line": 9,
           "tokens": 103,
           "hash": "CD8906CDB323F9FC13FC90049964CECF57F1CD558E065973392B971E6A3F4A4B",
-          "shape": "70E231C2692F1E011E9FB6483E1E2327740442B43EC9930C374055C7DC25AFE1"
+          "shape": "70E231C2692F1E011E9FB6483E1E2327740442B43EC9930C374055C7DC25AFE1",
+          "qualification": "Typed contract initialization and BCL defensive copies; distinct recursive/enum/analysis types and mapper revalidated in fileSystemTypedConstructorRevalidation"
         }
       ],
       "predecessors": [
@@ -25075,7 +25016,7 @@
           "shape": "70E231C2692F1E011E9FB6483E1E2327740442B43EC9930C374055C7DC25AFE1"
         }
       ],
-      "qualification": "pending"
+      "qualification": "Qualified typed contract constructors; existing views and explicit mapper retained"
     },
     {
       "language": "CSharp",
@@ -29828,7 +29769,8 @@
           "line": 10,
           "tokens": 172,
           "hash": "F928600A8786776D9F646245A1902529A7051F2CD06EDC205C46B96000DA686F",
-          "shape": "C8FD14FDF6AE57B3DE90D73A0F3394C726C36FE24589A75C60D8284A759FBFD8"
+          "shape": "C8FD14FDF6AE57B3DE90D73A0F3394C726C36FE24589A75C60D8284A759FBFD8",
+          "qualification": "Typed contract initialization and BCL defensive copies; distinct recursive/enum/analysis types and mapper revalidated in fileSystemTypedConstructorRevalidation"
         },
         {
           "path": "src/GWGUI.MediaEngine/Contracts/Explorer/FileSystemEntry.cs",
@@ -29836,7 +29778,8 @@
           "line": 10,
           "tokens": 172,
           "hash": "F928600A8786776D9F646245A1902529A7051F2CD06EDC205C46B96000DA686F",
-          "shape": "C8FD14FDF6AE57B3DE90D73A0F3394C726C36FE24589A75C60D8284A759FBFD8"
+          "shape": "C8FD14FDF6AE57B3DE90D73A0F3394C726C36FE24589A75C60D8284A759FBFD8",
+          "qualification": "Typed contract initialization and BCL defensive copies; distinct recursive/enum/analysis types and mapper revalidated in fileSystemTypedConstructorRevalidation"
         }
       ],
       "predecessors": [
@@ -29875,7 +29818,7 @@
           "shape": "C8FD14FDF6AE57B3DE90D73A0F3394C726C36FE24589A75C60D8284A759FBFD8"
         }
       ],
-      "qualification": "pending"
+      "qualification": "Qualified typed contract constructors; existing views and explicit mapper retained"
     },
     {
       "language": "CSharp",

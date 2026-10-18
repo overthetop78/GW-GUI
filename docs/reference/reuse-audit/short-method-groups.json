@@ -1,21 +1,17 @@
 {
-  "snapshot": "dfaf1710f4ddbb35834e698a277a1f6c52b55266",
+  "snapshot": "d94ad5a03e46a89dd89a138d451d48ec4e0d5fd8",
   "snapshotState": "Current worktree based on snapshot",
   "worktreeSourceChanges": [
-    "src/GWGUI.MediaEngine/Functions/MediaFileExtensionFunctions.cs",
-    "src/GWGUI.MediaEngine/Images/Conversion/ConversionFidelity.cs",
-    "src/GWGUI.MediaEngine/Images/Conversion/Flux/FluxContainerConversionService.cs",
-    "src/GWGUI.MediaEngine/Images/Formats/CapabilityAwareImageFormatCatalog.cs",
-    "src/GWGUI.MediaEngine/Images/Formats/Cartridge/Console/ConsoleCartridgeWriter.cs",
-    "src/GWGUI.MediaEngine/Images/Formats/ImageFormatCatalog.cs",
-    "src/GWGUI.MediaEngine/Images/Formats/Optical/Gdi/GdiWriter.cs",
-    "src/GWGUI.MediaEngine/Images/Formats/Optical/WiiU/WiiUWriter.cs",
-    "src/GWGUI.MediaEngine/Images/Formats/Optical/Xdvdfs/XdvdfsWriter.cs",
-    "src/GWGUI.MediaEngine/Images/Formats/RuntimeImageFormatCatalog.cs"
+    "src/GWGUI.MediaEngine/Images/Reading/Decoding/Sequential/Acorn/AcornTapeDecoder.cs",
+    "src/GWGUI.MediaFileSystems/FileSystems/Atari/SpartaDos/SpartaDosDirectoryReader.cs",
+    "src/GWGUI.MediaFileSystems/FileSystems/Commodore/Dos/CommodoreDosDirectoryReader.cs",
+    "src/GWGUI.MediaFileSystems/Functions/AtariBootDiskFunctions.cs",
+    "src/GWGUI.MediaFileSystems/Functions/AtariKFileFunctions.cs",
+    "src/GWGUI.MediaFileSystems/Primitives/LittleEndianUInt24.cs"
   ],
   "scope": "All current non-ignored repository CSharp files, including hidden paths; BaseMethodDeclaration bodies with fewer than 30 tokens. Candidate presence is not a defect or a completion claim.",
-  "fileCount": 7328,
-  "methodBodyCount": 9555,
+  "fileCount": 7331,
+  "methodBodyCount": 9564,
   "exactGroups": [
     {
       "hash": "0017F14C61995D644C52FF90F094E4708DC2CA772615CF2F5DD41E74BD202ECA",
@@ -31646,6 +31642,38 @@
       "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
+      "hash": "66243EC1ED9C4A8549BEEBD281E8FAA4C32CDB3749D7BDB962A8BFFBF79F17EA",
+      "tokens": 4,
+      "bodyTokens": "=> GetEnumerator ( )",
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation/Contracts/EmulationControllerControls.cs",
+          "name": "GetEnumerator",
+          "owner": "EmulationControllerControls",
+          "kind": "MethodDeclaration",
+          "line": 23,
+          "parameters": "()",
+          "tokens": 4,
+          "bodyTokens": "=> GetEnumerator ( )",
+          "hash": "66243EC1ED9C4A8549BEEBD281E8FAA4C32CDB3749D7BDB962A8BFFBF79F17EA",
+          "shape": "553EF34A6E242B6805E98C44405BEF25D020A36DBB557133C7A643B8A74F4130"
+        },
+        {
+          "path": "tests/GWGUI.Tests/Media/IndexedBytePrimitiveTests.cs",
+          "name": "GetEnumerator",
+          "owner": "IndexedSource.IndexedBytePrimitiveTests",
+          "kind": "MethodDeclaration",
+          "line": 146,
+          "parameters": "()",
+          "tokens": 4,
+          "bodyTokens": "=> GetEnumerator ( )",
+          "hash": "66243EC1ED9C4A8549BEEBD281E8FAA4C32CDB3749D7BDB962A8BFFBF79F17EA",
+          "shape": "553EF34A6E242B6805E98C44405BEF25D020A36DBB557133C7A643B8A74F4130"
+        }
+      ],
+      "qualification": "pending-symbol-and-ownership-comparison"
+    },
+    {
       "hash": "66323361CCECCFE2343238BB6A85237C44040EBCA727F6DDCE17D85F28C065AF",
       "tokens": 19,
       "bodyTokens": "{ if ( _initialized && ! _disposed && ! _connectionFailed ) Request ( HostCommand . Stop ) ; }",
@@ -55757,6 +55785,40 @@
       "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
+      "hash": "C11B6C011442F8D3F11D9268D48AA0CD660499A7C1450A66A2FDA1AF03FA67E6",
+      "tokens": 11,
+      "bodyTokens": "=> ByteListCopy . Copy ( source , offset , length )",
+      "current": [
+        {
+          "path": "src/GWGUI.MediaEngine/Images/Reading/Decoding/Sequential/Acorn/AcornTapeDecoder.cs",
+          "name": "Copy",
+          "owner": "AcornTapeDecoder",
+          "kind": "MethodDeclaration",
+          "line": 176,
+          "parameters": "(IReadOnlyList<byte> source, int offset, int length)",
+          "tokens": 11,
+          "bodyTokens": "=> ByteListCopy . Copy ( source , offset , length )",
+          "hash": "C11B6C011442F8D3F11D9268D48AA0CD660499A7C1450A66A2FDA1AF03FA67E6",
+          "shape": "BC9FFBF62DFD416470CF1FBB8DDC76B277F7F31C6D3C158F74FC005B806169F1",
+          "qualification": "Adapter to original byte primitive; whole-file and typed expansion verified in indexedBytePrimitiveReuse"
+        },
+        {
+          "path": "src/GWGUI.MediaFileSystems/FileSystems/Commodore/Dos/CommodoreDosDirectoryReader.cs",
+          "name": "Copy",
+          "owner": "CommodoreDosDirectoryReader",
+          "kind": "MethodDeclaration",
+          "line": 110,
+          "parameters": "(IReadOnlyList<byte> source, int offset, int length)",
+          "tokens": 11,
+          "bodyTokens": "=> ByteListCopy . Copy ( source , offset , length )",
+          "hash": "C11B6C011442F8D3F11D9268D48AA0CD660499A7C1450A66A2FDA1AF03FA67E6",
+          "shape": "BC9FFBF62DFD416470CF1FBB8DDC76B277F7F31C6D3C158F74FC005B806169F1",
+          "qualification": "Adapter to original byte primitive; whole-file and typed expansion verified in indexedBytePrimitiveReuse"
+        }
+      ],
+      "qualification": "Qualified adapters to shared original indexed byte operations"
+    },
+    {
       "hash": "C17773939DF708794D5B08B716FB4CB47DD8CCCE95F7E095DDC9F7300416A4E3",
       "tokens": 18,
       "bodyTokens": "=> Request ( HostCommand . EjectMedia , writer => writer . Write ( slot . ProtocolValue ) )",
@@ -76421,7 +76483,7 @@
           "name": "ReadUInt16LittleEndian",
           "owner": "AcornTapeDecoder",
           "kind": "MethodDeclaration",
-          "line": 182,
+          "line": 179,
           "parameters": "(IReadOnlyList<byte> source, int offset)",
           "tokens": 17,
           "bodyTokens": "=> BinaryPrimitives . ReadUInt16LittleEndian ( Copy ( source , offset , sizeof ( ushort ) ) )",
@@ -76433,7 +76495,7 @@
           "name": "ReadUInt16BigEndian",
           "owner": "AcornTapeDecoder",
           "kind": "MethodDeclaration",
-          "line": 184,
+          "line": 181,
           "parameters": "(IReadOnlyList<byte> source, int offset)",
           "tokens": 17,
           "bodyTokens": "=> BinaryPrimitives . ReadUInt16BigEndian ( Copy ( source , offset , sizeof ( ushort ) ) )",
@@ -87393,6 +87455,45 @@
           "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE"
         },
         {
+          "path": "src/GWGUI.MediaFileSystems/FileSystems/Atari/SpartaDos/SpartaDosDirectoryReader.cs",
+          "name": "ReadUInt16",
+          "owner": "SpartaDosDirectoryReader",
+          "kind": "MethodDeclaration",
+          "line": 74,
+          "parameters": "(IReadOnlyList<byte> bytes, int offset)",
+          "tokens": 9,
+          "bodyTokens": "=> LittleEndianUInt16 . ReadIndexed ( bytes , offset )",
+          "hash": "A301906097A121F729B6AF222AF06CC00F3C1BD7D9E835F90D0C041EBE79513A",
+          "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE",
+          "qualification": "Adapter to original byte primitive; whole-file and typed expansion verified in indexedBytePrimitiveReuse"
+        },
+        {
+          "path": "src/GWGUI.MediaFileSystems/FileSystems/Atari/SpartaDos/SpartaDosDirectoryReader.cs",
+          "name": "ReadLength",
+          "owner": "SpartaDosDirectoryReader",
+          "kind": "MethodDeclaration",
+          "line": 76,
+          "parameters": "(IReadOnlyList<byte> bytes, int offset)",
+          "tokens": 9,
+          "bodyTokens": "=> LittleEndianUInt24 . ReadIndexed ( bytes , offset )",
+          "hash": "BA4448C7DEB682C438860010FA21468BE4D0BFF5BC21CAA44BB98A01D9BAC391",
+          "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE",
+          "qualification": "Adapter to original byte primitive; whole-file and typed expansion verified in indexedBytePrimitiveReuse"
+        },
+        {
+          "path": "src/GWGUI.MediaFileSystems/Functions/AtariKFileFunctions.cs",
+          "name": "ReadUInt16",
+          "owner": "AtariKFileFunctions",
+          "kind": "MethodDeclaration",
+          "line": 67,
+          "parameters": "(IReadOnlyList<byte> data, int offset)",
+          "tokens": 9,
+          "bodyTokens": "=> LittleEndianUInt16 . ReadIndexed ( data , offset )",
+          "hash": "5EBCAB61D923B664A16551778870D1DC8DADEB3706DE74F6168096D6C8A8D101",
+          "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE",
+          "qualification": "Adapter to original byte primitive; whole-file and typed expansion verified in indexedBytePrimitiveReuse"
+        },
+        {
           "path": "src/GWGUI.MediaFileSystems/Migration/FileSystemMigrationService.cs",
           "name": "CreatePlan",
           "owner": "FileSystemMigrationService",
@@ -93505,6 +93606,19 @@
           "shape": "45690CD4DC828C97341FE9C7AA1DC1036AE7C1491048A6F48098DA99CABEBF06"
         },
         {
+          "path": "src/GWGUI.MediaFileSystems/Functions/AtariKFileFunctions.cs",
+          "name": "PayloadLength",
+          "owner": "AtariKFileFunctions",
+          "kind": "MethodDeclaration",
+          "line": 49,
+          "parameters": "(IReadOnlyList<byte> header)",
+          "tokens": 11,
+          "bodyTokens": "=> LittleEndianUInt24 . ReadIndexed ( header , AtariKFileConstants . PayloadLengthOffset )",
+          "hash": "7D1F076BE134E577C577A9BC473079E6253ED941C5EF4E52ABCFF0D891011342",
+          "shape": "45690CD4DC828C97341FE9C7AA1DC1036AE7C1491048A6F48098DA99CABEBF06",
+          "qualification": "Adapter to original byte primitive; whole-file and typed expansion verified in indexedBytePrimitiveReuse"
+        },
+        {
           "path": "tests/GWGUI.Tests/Interface/DeviceSettingsViews/DeviceListScenarios.cs",
           "name": "GetAnalog",
           "owner": "Profiles.DeviceListScenarios",
@@ -96896,6 +97010,18 @@
           "tokens": 4,
           "bodyTokens": "=> release ( )",
           "hash": "1A6EAB74FD33D4946C36B57DF174CE7A11AA20CB3A2CE2AA8C239BE58EFDE0AE",
+          "shape": "553EF34A6E242B6805E98C44405BEF25D020A36DBB557133C7A643B8A74F4130"
+        },
+        {
+          "path": "tests/GWGUI.Tests/Media/IndexedBytePrimitiveTests.cs",
+          "name": "GetEnumerator",
+          "owner": "IndexedSource.IndexedBytePrimitiveTests",
+          "kind": "MethodDeclaration",
+          "line": 146,
+          "parameters": "()",
+          "tokens": 4,
+          "bodyTokens": "=> GetEnumerator ( )",
+          "hash": "66243EC1ED9C4A8549BEEBD281E8FAA4C32CDB3749D7BDB962A8BFFBF79F17EA",
           "shape": "553EF34A6E242B6805E98C44405BEF25D020A36DBB557133C7A643B8A74F4130"
         }
       ],
@@ -125688,6 +125814,19 @@
           "shape": "BC9FFBF62DFD416470CF1FBB8DDC76B277F7F31C6D3C158F74FC005B806169F1"
         },
         {
+          "path": "src/GWGUI.MediaEngine/Images/Reading/Decoding/Sequential/Acorn/AcornTapeDecoder.cs",
+          "name": "Copy",
+          "owner": "AcornTapeDecoder",
+          "kind": "MethodDeclaration",
+          "line": 176,
+          "parameters": "(IReadOnlyList<byte> source, int offset, int length)",
+          "tokens": 11,
+          "bodyTokens": "=> ByteListCopy . Copy ( source , offset , length )",
+          "hash": "C11B6C011442F8D3F11D9268D48AA0CD660499A7C1450A66A2FDA1AF03FA67E6",
+          "shape": "BC9FFBF62DFD416470CF1FBB8DDC76B277F7F31C6D3C158F74FC005B806169F1",
+          "qualification": "Adapter to original byte primitive; whole-file and typed expansion verified in indexedBytePrimitiveReuse"
+        },
+        {
           "path": "src/GWGUI.MediaEngine/Images/Writing/Encoding/Encoders/MicropolisMfmTrackEncoder.cs",
           "name": "CreateRecord",
           "owner": "MicropolisMfmTrackEncoder",
@@ -125722,6 +125861,19 @@
           "bodyTokens": "=> SequentialEncodeFunctions . CanEncodeValidatedBytes ( request , SupportedFormats , SupportedMachines )",
           "hash": "A614716C0F854939F4A39317EE8E459E5DE2F3473FFCC9AEC3303FF41CA72F6F",
           "shape": "BC9FFBF62DFD416470CF1FBB8DDC76B277F7F31C6D3C158F74FC005B806169F1"
+        },
+        {
+          "path": "src/GWGUI.MediaFileSystems/FileSystems/Commodore/Dos/CommodoreDosDirectoryReader.cs",
+          "name": "Copy",
+          "owner": "CommodoreDosDirectoryReader",
+          "kind": "MethodDeclaration",
+          "line": 110,
+          "parameters": "(IReadOnlyList<byte> source, int offset, int length)",
+          "tokens": 11,
+          "bodyTokens": "=> ByteListCopy . Copy ( source , offset , length )",
+          "hash": "C11B6C011442F8D3F11D9268D48AA0CD660499A7C1450A66A2FDA1AF03FA67E6",
+          "shape": "BC9FFBF62DFD416470CF1FBB8DDC76B277F7F31C6D3C158F74FC005B806169F1",
+          "qualification": "Adapter to original byte primitive; whole-file and typed expansion verified in indexedBytePrimitiveReuse"
         },
         {
           "path": "src/GWGUI.MediaFileSystems/Formats/Commodore/Commodore1571Geometry.cs",

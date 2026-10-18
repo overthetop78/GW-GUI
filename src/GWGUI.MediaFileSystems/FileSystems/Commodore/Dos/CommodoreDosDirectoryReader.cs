@@ -108,10 +108,5 @@ internal static class CommodoreDosDirectoryReader
 
     /// <summary>Copie une petite plage bornée destinée à un codec ou une primitive binaire.</summary>
     private static byte[] Copy(IReadOnlyList<byte> source, int offset, int length)
-    {
-        var result = new byte[length];
-        for (var index = 0; index < length; index++)
-            result[index] = source[offset + index];
-        return result;
-    }
+        => ByteListCopy.Copy(source, offset, length);
 }

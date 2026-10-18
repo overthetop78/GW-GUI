@@ -24924,6 +24924,937 @@
         "newTestsUseNoExternalFilesOrCores": true,
         "cultureRestoredInFinally": true
       }
+    },
+    "productBuild": {
+      "executableSha256": "370A96DEB77298148223EA6F975F90652053FEF3E361A2D499480B6165FC9B7B",
+      "modules": [
+        {
+          "id": "acorn",
+          "entryAssembly": "gwgui.emulation.acorn.dll",
+          "sha256": "B88BBBDE2836726A0384647C174B015829247CE44D8A93321BC38CBFEA5A8DB6"
+        },
+        {
+          "id": "amstrad",
+          "entryAssembly": "gwgui.emulation.amstrad.dll",
+          "sha256": "05E4CD940714A231B2ADE294970F7BDD53B41732374BF4C5B9D257FEC85E5A6C"
+        },
+        {
+          "id": "apple",
+          "entryAssembly": "gwgui.emulation.apple.dll",
+          "sha256": "4A826E8C539CD75E98FD7938DFDC9F1EA3B771C2D46B8DDDBC061075906645BB"
+        },
+        {
+          "id": "atari",
+          "entryAssembly": "gwgui.emulation.atari.dll",
+          "sha256": "A92D6EE65F30A64F3C70DE6751CE10E20D8DDDE194E16F615B6D4FD11C902285"
+        },
+        {
+          "id": "bandai",
+          "entryAssembly": "gwgui.emulation.bandai.dll",
+          "sha256": "6C87B5D041BD15C6F7F072E55DECA2236541A8326213ED8BF3010F88DC872AE0"
+        },
+        {
+          "id": "coleco",
+          "entryAssembly": "gwgui.emulation.coleco.dll",
+          "sha256": "18DE11DEE40C85CD3823A1AF0994168338F73CF49B3987C037B3E163A595B1D0"
+        },
+        {
+          "id": "commodore",
+          "entryAssembly": "gwgui.emulation.commodore.dll",
+          "sha256": "BE51E99DD9398B9787F8FB77D81EC0AA5455737A8E4DF2D6344E3AA12A10182C"
+        },
+        {
+          "id": "epoch",
+          "entryAssembly": "gwgui.emulation.epoch.dll",
+          "sha256": "452BAB80F420C6EFA3F02B96E4C885ADE851986DA4A9E58A31893607A167923C"
+        },
+        {
+          "id": "fairchild",
+          "entryAssembly": "gwgui.emulation.fairchild.dll",
+          "sha256": "6D27B1FFB3E3654C64B1CA8D27C785E5C2FD4978932BED242E0E2BC6437EF35F"
+        },
+        {
+          "id": "mattel",
+          "entryAssembly": "gwgui.emulation.mattel.dll",
+          "sha256": "BCBE9FA79693AB9E402AB9A0C3EFA3C5A1B569009ACB5363382F481AF1EEB959"
+        },
+        {
+          "id": "microsoft",
+          "entryAssembly": "gwgui.emulation.microsoft.dll",
+          "sha256": "CC2B7ECCC1E913ABA7448D0EE6B220BA9155519FA257FE2A3BE60BE5B6C7484B"
+        },
+        {
+          "id": "nec",
+          "entryAssembly": "gwgui.emulation.nec.dll",
+          "sha256": "46616D43B25B37B0DDAB42BE534C0EBB791CA633041069845C7BC82F6D9C8521"
+        },
+        {
+          "id": "nintendo",
+          "entryAssembly": "gwgui.emulation.nintendo.dll",
+          "sha256": "82512D04508714C8FD65C48544B74EF51CDD1037B1432FA1C449920CE2EBDBA1"
+        },
+        {
+          "id": "panasonic",
+          "entryAssembly": "gwgui.emulation.panasonic.dll",
+          "sha256": "D52A094CFB420058DECE34CA2F5DBC540BC4125DA8AFE515B84D6D132CFE9257"
+        },
+        {
+          "id": "philips",
+          "entryAssembly": "gwgui.emulation.philips.dll",
+          "sha256": "C87C2C13C7C3D80A40C50807E5C969ED04B9624C0AB9FD624A810D5DB42E9396"
+        },
+        {
+          "id": "sega",
+          "entryAssembly": "gwgui.emulation.sega.dll",
+          "sha256": "7CD8D3049922C7428EE14E0F214ABD12731C8E9BE6276454301CC6909AEC6956"
+        },
+        {
+          "id": "sharp",
+          "entryAssembly": "gwgui.emulation.sharp.dll",
+          "sha256": "B76882ACD99B5F0FF2956D1791AACFB4B44EF86A0B853DBC142B57A7765ACAB4"
+        },
+        {
+          "id": "sinclair",
+          "entryAssembly": "gwgui.emulation.sinclair.dll",
+          "sha256": "CC4C82C6C27707B15E7974FE7F41312533DF168B9259B51DCF3720B462E55672"
+        },
+        {
+          "id": "snk",
+          "entryAssembly": "gwgui.emulation.snk.dll",
+          "sha256": "FDCF2A0F5BEAB1D1D5F98E837D95DC0539C4D0128244E4123B245720B447D7EB"
+        },
+        {
+          "id": "sony",
+          "entryAssembly": "gwgui.emulation.sony.dll",
+          "sha256": "6B5CFF3F98490F40FD5A01B55191CEDF52A98D0EEF2C5F87E8AC0ED2340EDF47"
+        },
+        {
+          "id": "thomson",
+          "entryAssembly": "gwgui.emulation.thomson.dll",
+          "sha256": "F287DE02470D35520DDC7DB03DFEB2104A0EAC9C0D2BECC1CEB6789411345C60"
+        },
+        {
+          "id": "watara",
+          "entryAssembly": "gwgui.emulation.watara.dll",
+          "sha256": "1AF8281F97DDE22DA8DB86655B8318142778516EF3307A251F1826ED0EE944D2"
+        },
+        {
+          "id": "wenquxing",
+          "entryAssembly": "gwgui.emulation.wenquxing.dll",
+          "sha256": "15285D644355DCA6A6F937B269CE22ED5DCAD124241E8294BF539A87B5AF1175"
+        }
+      ],
+      "exitCode": 0,
+      "sourceChecks": [
+        {
+          "expansion": "Equivalent indexed expressions including ushort cast and constant folding",
+          "sha256": "2A0AD4E45FDB886F187E935D62F933D1B78C9F0349C0479E1C09C7320A357F3C",
+          "wholeFile": "Only specified byte operations and required using changed; all remaining tokens equal to beforeHead",
+          "path": "src/GWGUI.MediaFileSystems/FileSystems/Commodore/Dos/CommodoreDosDirectoryReader.cs",
+          "methods": [
+            "Copy"
+          ]
+        },
+        {
+          "expansion": "Equivalent indexed expressions including ushort cast and constant folding",
+          "sha256": "3FCAEA7C7A262E9061A324BEB5F3333629696EBA96E51D141C6B16BD511F0D2F",
+          "wholeFile": "Only specified byte operations and required using changed; all remaining tokens equal to beforeHead",
+          "path": "src/GWGUI.MediaEngine/Images/Reading/Decoding/Sequential/Acorn/AcornTapeDecoder.cs",
+          "methods": [
+            "Copy"
+          ]
+        },
+        {
+          "expansion": "Equivalent indexed expressions including ushort cast and constant folding",
+          "sha256": "B78F227C1DB8C76F02CF146F59B86269042FB37C3E7F301AD2F4BF51B8DC3670",
+          "wholeFile": "Only specified byte operations and required using changed; all remaining tokens equal to beforeHead",
+          "path": "src/GWGUI.MediaFileSystems/Functions/AtariKFileFunctions.cs",
+          "methods": [
+            "ReadUInt16",
+            "PayloadLength"
+          ]
+        },
+        {
+          "expansion": "Equivalent indexed expressions including ushort cast and constant folding",
+          "sha256": "469CC92BC376403C834EAF845E6FE5099C3BF8DE234ECD54916D4FD6141C386C",
+          "wholeFile": "Only specified byte operations and required using changed; all remaining tokens equal to beforeHead",
+          "path": "src/GWGUI.MediaFileSystems/Functions/AtariBootDiskFunctions.cs",
+          "methods": [
+            "ReadUInt16"
+          ]
+        },
+        {
+          "expansion": "Equivalent indexed expressions including ushort cast and constant folding",
+          "sha256": "CD74518CEB8124ED87200B81C86B379C8823DC851D6847FA2A9C10D70E246645",
+          "wholeFile": "Only specified byte operations and required using changed; all remaining tokens equal to beforeHead",
+          "path": "src/GWGUI.MediaFileSystems/FileSystems/Atari/SpartaDos/SpartaDosDirectoryReader.cs",
+          "methods": [
+            "ReadUInt16",
+            "ReadLength"
+          ]
+        },
+        {
+          "expansion": "Equivalent indexed expressions including ushort cast and constant folding",
+          "sha256": "C1730B36098693B50A61510A780FEFFD0C925CA866E05BE7C09A47A27524FC51",
+          "wholeFile": "Only specified byte operations and required using changed; all remaining tokens equal to beforeHead",
+          "path": "src/GWGUI.MediaFileSystems/Primitives/LittleEndianUInt24.cs",
+          "methods": [
+            "Read"
+          ]
+        },
+        {
+          "sha256": "4BC35F54E92C136D01D6694D24C60900E01CB34E025BBE1E59C02B36CA6C70CB",
+          "path": "src/GWGUI.MediaFileSystems/Primitives/ByteListCopy.cs",
+          "originalBody": "Verified against recorded original; UInt16 constants semantically folded"
+        },
+        {
+          "sha256": "53F90EA6CBDA92067E6E19F4B9FC049D65FF6547C0256EA360C3CDDBBA12D355",
+          "path": "src/GWGUI.MediaFileSystems/Primitives/LittleEndianUInt16.cs",
+          "originalBody": "Verified against recorded original; UInt16 constants semantically folded"
+        },
+        {
+          "allOtherTokensUnchanged": true,
+          "path": "src/GWGUI.MediaEngine/Functions/MediaFileExtensionFunctions.cs",
+          "sha256": "F5428E023C7438D9C341E573D33C3E7DB21E819B462F50611276AA7B3ED85BCF"
+        },
+        {
+          "allOtherTokensUnchanged": true,
+          "path": "src/GWGUI.MediaEngine/Images/Conversion/ConversionFidelity.cs",
+          "sha256": "AD947751D71B597B336FD15423CFF31C4ED89B5B671F09C46A6B869D3D0F8BCF"
+        },
+        {
+          "allOtherTokensUnchanged": true,
+          "path": "src/GWGUI.MediaEngine/Images/Conversion/Flux/FluxContainerConversionService.cs",
+          "sha256": "9DBD81639BBA5828909DEC8D947FE97DB0F02E4F0603BE6013C9A3873AA44BF0"
+        },
+        {
+          "allOtherTokensUnchanged": true,
+          "path": "src/GWGUI.MediaEngine/Images/Formats/CapabilityAwareImageFormatCatalog.cs",
+          "sha256": "853EC855B21B2B49026EA8069740FE6FF8ED5E2EE6504344071025880429D7FD"
+        },
+        {
+          "allOtherTokensUnchanged": true,
+          "path": "src/GWGUI.MediaEngine/Images/Formats/Cartridge/Console/ConsoleCartridgeWriter.cs",
+          "sha256": "B8D874B2BFDA10712A4DD5BD71427FF457E67B4C40C4CE5BB97200F589938F86"
+        },
+        {
+          "allOtherTokensUnchanged": true,
+          "path": "src/GWGUI.MediaEngine/Images/Formats/ImageFormatCatalog.cs",
+          "sha256": "3F496EE5E8153478C7A55EBEB595CF0113928287056D21FB64060B41AD2382D1"
+        },
+        {
+          "allOtherTokensUnchanged": true,
+          "path": "src/GWGUI.MediaEngine/Images/Formats/Optical/Gdi/GdiWriter.cs",
+          "sha256": "1CCC8D209A77061DCA0E63411896DFECF4ED8164074FAE0ECB9BBB47F447FC60"
+        },
+        {
+          "allOtherTokensUnchanged": true,
+          "path": "src/GWGUI.MediaEngine/Images/Formats/Optical/WiiU/WiiUWriter.cs",
+          "sha256": "DC65481055584F2101CEF93CC115A99CABC18642E1F7FD21FD411EE7245E4BCF"
+        },
+        {
+          "allOtherTokensUnchanged": true,
+          "path": "src/GWGUI.MediaEngine/Images/Formats/Optical/Xdvdfs/XdvdfsWriter.cs",
+          "sha256": "464FD4856B90213CD626A2B64C53E9BA5A2D3AC4E474C27810668F8999083227"
+        },
+        {
+          "allOtherTokensUnchanged": true,
+          "path": "src/GWGUI.MediaEngine/Images/Formats/RuntimeImageFormatCatalog.cs",
+          "sha256": "4615255314A62F38C8064BDF3EEF5EBFF2ECA5EE49B8ABCFD6F49F0D2DCAC47A"
+        }
+      ],
+      "command": "scripts/local-building.cmd --building=debug --modules=A",
+      "sourceIntegrity": "All 18 affected catalog/byte source files match pre-build verified hashes",
+      "updaterPrivateDlls": [
+        "gwgui.updater.dll"
+      ],
+      "executable": "build/Debug/GW GUI/gwgui.exe"
+    }
+  },
+  "fileSystemTypedConstructorRevalidation": {
+    "scope": "Only four constructor bodies and their typed schema boundaries; no other algorithm or lifecycle qualified",
+    "semanticProjects": [
+      "GWGUI.MediaAnalysis",
+      "GWGUI.MediaFileSystems",
+      "GWGUI.MediaEngine"
+    ],
+    "sourceChecks": [
+      {
+        "constructor": "FileSystemVolume",
+        "bodyHash": "CD8906CDB323F9FC13FC90049964CECF57F1CD558E065973392B971E6A3F4A4B",
+        "interfaces": [
+          "GWGUI.MediaFileSystems.Interfaces.Exploration.IFileSystemVolumeView",
+          "System.IEquatable<GWGUI.MediaEngine.Contracts.Explorer.FileSystemVolume>"
+        ],
+        "type": "GWGUI.MediaEngine.Contracts.Explorer.FileSystemVolume",
+        "sha256": "6B50D69A5C4250879F0B127D36DB510ACE4BBF12EA8FBC43D37997C7CFEEC7B3",
+        "properties": [
+          {
+            "initOnly": false,
+            "assembly": "System.Runtime",
+            "type": "System.Collections.Generic.IReadOnlyList<GWGUI.MediaEngine.Contracts.Explorer.FileSystemEntry>",
+            "name": "Entries",
+            "hasSetter": false
+          }
+        ],
+        "path": "src/GWGUI.MediaEngine/Contracts/Explorer/FileSystemVolume.cs"
+      },
+      {
+        "constructor": "FileSystemVolume",
+        "bodyHash": "CD8906CDB323F9FC13FC90049964CECF57F1CD558E065973392B971E6A3F4A4B",
+        "interfaces": [
+          "GWGUI.MediaFileSystems.Interfaces.Exploration.IFileSystemVolumeView",
+          "System.IEquatable<GWGUI.MediaFileSystems.FileSystemVolume>"
+        ],
+        "type": "GWGUI.MediaFileSystems.FileSystemVolume",
+        "sha256": "AF02E31D87390D5A9BBAD899AEB07AE0CFD16C047DECB935CECA3A963EFEF441",
+        "properties": [
+          {
+            "initOnly": false,
+            "assembly": "System.Runtime",
+            "type": "System.Collections.Generic.IReadOnlyList<GWGUI.MediaFileSystems.FileSystemEntry>",
+            "name": "Entries",
+            "hasSetter": false
+          }
+        ],
+        "path": "src/GWGUI.MediaFileSystems/Contracts/FileSystemVolume.cs"
+      },
+      {
+        "constructor": "FileSystemEntry",
+        "bodyHash": "F928600A8786776D9F646245A1902529A7051F2CD06EDC205C46B96000DA686F",
+        "interfaces": [
+          "GWGUI.MediaFileSystems.Interfaces.Exploration.IFileSystemEntryView",
+          "System.IEquatable<GWGUI.MediaEngine.Contracts.Explorer.FileSystemEntry>"
+        ],
+        "type": "GWGUI.MediaEngine.Contracts.Explorer.FileSystemEntry",
+        "sha256": "400B89636F2F8CA1A259D824EDA95CE8035A831472C1E55D0219550E033D9BE0",
+        "properties": [
+          {
+            "initOnly": false,
+            "assembly": "gwgui.mediaengine",
+            "type": "GWGUI.MediaEngine.Enums.FileSystemEntryKind",
+            "name": "Kind",
+            "hasSetter": false
+          },
+          {
+            "initOnly": false,
+            "assembly": "System.Runtime",
+            "type": "System.Collections.Generic.IReadOnlyList<GWGUI.MediaEngine.Contracts.Explorer.FileSystemEntry>",
+            "name": "Children",
+            "hasSetter": false
+          },
+          {
+            "initOnly": true,
+            "assembly": "gwgui.mediaengine",
+            "type": "GWGUI.MediaEngine.Contracts.Explorer.FileSystemEntryAnalysis?",
+            "name": "Analysis",
+            "hasSetter": true
+          }
+        ],
+        "path": "src/GWGUI.MediaEngine/Contracts/Explorer/FileSystemEntry.cs"
+      },
+      {
+        "constructor": "FileSystemEntry",
+        "bodyHash": "F928600A8786776D9F646245A1902529A7051F2CD06EDC205C46B96000DA686F",
+        "interfaces": [
+          "GWGUI.MediaFileSystems.Interfaces.Exploration.IFileSystemEntryView",
+          "System.IEquatable<GWGUI.MediaFileSystems.FileSystemEntry>"
+        ],
+        "type": "GWGUI.MediaFileSystems.FileSystemEntry",
+        "sha256": "5A4F02E50F10C4ADCC491B08DF5E844A198D7A0F61E6246DD3DF872A89F221B5",
+        "properties": [
+          {
+            "initOnly": false,
+            "assembly": "gwgui.mediafilesystems",
+            "type": "GWGUI.MediaFileSystems.FileSystemEntryKind",
+            "name": "Kind",
+            "hasSetter": false
+          },
+          {
+            "initOnly": true,
+            "assembly": "System.Runtime",
+            "type": "System.Collections.Generic.IReadOnlyList<GWGUI.MediaFileSystems.FileSystemEntry>",
+            "name": "Children",
+            "hasSetter": true
+          },
+          {
+            "initOnly": true,
+            "assembly": "gwgui.mediafilesystems",
+            "type": "GWGUI.MediaFileSystems.Contracts.FileSystemEntryAnalysis?",
+            "name": "Analysis",
+            "hasSetter": true
+          }
+        ],
+        "path": "src/GWGUI.MediaFileSystems/Contracts/FileSystemEntry.cs"
+      }
+    ],
+    "snapshot": "d94ad5a03e46a89dd89a138d451d48ec4e0d5fd8",
+    "mapper": {
+      "path": "src/GWGUI.MediaEngine/Contracts/Explorer/FileSystemVolumeMapper.cs",
+      "sha256": "FB079495638ECEFA5FFF4D469B774BF5F896A3ECA867F7B12BC7E1C7155DEBDD"
+    },
+    "graphVerified": true,
+    "state": "verified",
+    "projectInputs": [
+      {
+        "path": "src/GWGUI.MediaEngine/GWGUI.MediaEngine.csproj",
+        "sha256": "1B93D93B712EDE6291B9E119D08CD6943E7882AAF68C335BEC8ED0244EE812DD"
+      },
+      {
+        "path": "src/GWGUI.MediaFileSystems/GWGUI.MediaFileSystems.csproj",
+        "sha256": "BCA0D10E729A54C4C1A5F65D75DB27BF1C3EAF979C1474DF3FCDF876BA90D8D9"
+      }
+    ]
+  },
+  "indexedBytePrimitiveReuse": {
+    "state": "verified",
+    "beforeHead": "d94ad5a03e46a89dd89a138d451d48ec4e0d5fd8",
+    "sources": [
+      {
+        "methods": [
+          {
+            "signature": "(IReadOnlyList<byte> source, int offset, int length)",
+            "constants": [],
+            "name": "Copy",
+            "tokens": "private static byte [  ] Copy ( IReadOnlyList < byte > source , int offset , int length ) { var result = new byte [ length ] ; for ( var index = 0 ; index < length ; index ++ ) result [ index ] = source [ offset + index ] ; return result ; }",
+            "returnType": "byte[]"
+          }
+        ],
+        "sha256": "BF6E31F54AB373D76FE432204A897AC239960DA53938E19C96EA7A975C3F60C2",
+        "path": "src/GWGUI.MediaFileSystems/FileSystems/Commodore/Dos/CommodoreDosDirectoryReader.cs"
+      },
+      {
+        "methods": [
+          {
+            "signature": "(IReadOnlyList<byte> source, int offset, int length)",
+            "constants": [],
+            "name": "Copy",
+            "tokens": "private static byte [  ] Copy ( IReadOnlyList < byte > source , int offset , int length ) { var result = new byte [ length ] ; for ( var index = 0 ; index < length ; index ++ ) result [ index ] = source [ offset + index ] ; return result ; }",
+            "returnType": "byte[]"
+          }
+        ],
+        "sha256": "9332C8D65450C0E4D95C6966669896F2C1662A7220B2E2A13E7AFE22FD9471AD",
+        "path": "src/GWGUI.MediaEngine/Images/Reading/Decoding/Sequential/Acorn/AcornTapeDecoder.cs"
+      },
+      {
+        "methods": [
+          {
+            "signature": "(IReadOnlyList<byte> data, int offset)",
+            "constants": [
+              {
+                "value": 8,
+                "expression": "(sizeof(byte) * 8)"
+              }
+            ],
+            "name": "ReadUInt16",
+            "tokens": "private static int ReadUInt16 ( IReadOnlyList < byte > data , int offset ) => data [ offset ] | data [ offset + 1 ] << ( sizeof ( byte ) * 8 ) ;",
+            "returnType": "int"
+          },
+          {
+            "signature": "(IReadOnlyList<byte> header)",
+            "constants": [
+              {
+                "value": 8,
+                "expression": "(sizeof(byte) * 8)"
+              },
+              {
+                "value": 16,
+                "expression": "(sizeof(byte) * 16)"
+              },
+              {
+                "value": 9,
+                "expression": "AtariKFileConstants.PayloadLengthOffset"
+              },
+              {
+                "value": 9,
+                "expression": "AtariKFileConstants.PayloadLengthOffset"
+              },
+              {
+                "value": 9,
+                "expression": "AtariKFileConstants.PayloadLengthOffset"
+              }
+            ],
+            "name": "PayloadLength",
+            "tokens": "private static int PayloadLength ( IReadOnlyList < byte > header ) => header [ AtariKFileConstants . PayloadLengthOffset ] | header [ AtariKFileConstants . PayloadLengthOffset + 1 ] << ( sizeof ( byte ) * 8 ) | header [ AtariKFileConstants . PayloadLengthOffset + 2 ] << ( sizeof ( byte ) * 16 ) ;",
+            "returnType": "int"
+          }
+        ],
+        "sha256": "8CA99B19D2D25667FB02E619A779868652F0F4E1B4DB5122FBAC94E9947EFD3C",
+        "path": "src/GWGUI.MediaFileSystems/Functions/AtariKFileFunctions.cs"
+      },
+      {
+        "methods": [
+          {
+            "signature": "(IReadOnlyList<byte> data, int offset)",
+            "constants": [
+              {
+                "value": 8,
+                "expression": "(sizeof(byte) * 8)"
+              }
+            ],
+            "name": "ReadUInt16",
+            "tokens": "private static ushort ReadUInt16 ( IReadOnlyList < byte > data , int offset ) => ( ushort ) ( data [ offset ] | data [ offset + 1 ] << ( sizeof ( byte ) * 8 ) ) ;",
+            "returnType": "ushort"
+          }
+        ],
+        "sha256": "6CCFE9239A04992C9ACDDF4F8CAD3CCC9B8CE733F4A6FC5F3CA2F91B4FA7C405",
+        "path": "src/GWGUI.MediaFileSystems/Functions/AtariBootDiskFunctions.cs"
+      },
+      {
+        "methods": [
+          {
+            "signature": "(IReadOnlyList<byte> bytes, int offset)",
+            "constants": [
+              {
+                "value": 8,
+                "expression": "8"
+              }
+            ],
+            "name": "ReadUInt16",
+            "tokens": "private static int ReadUInt16 ( IReadOnlyList < byte > bytes , int offset ) => bytes [ offset ] | bytes [ offset + 1 ] << 8 ;",
+            "returnType": "int"
+          },
+          {
+            "signature": "(IReadOnlyList<byte> bytes, int offset)",
+            "constants": [
+              {
+                "value": 8,
+                "expression": "8"
+              },
+              {
+                "value": 16,
+                "expression": "16"
+              }
+            ],
+            "name": "ReadLength",
+            "tokens": "private static int ReadLength ( IReadOnlyList < byte > bytes , int offset ) => bytes [ offset ] | bytes [ offset + 1 ] << 8 | bytes [ offset + 2 ] << 16 ;",
+            "returnType": "int"
+          }
+        ],
+        "sha256": "B3E2570ACCF28EBBDFB8045829EC1A5DB7BF98A43CDC88AF6F2530AE967032C8",
+        "path": "src/GWGUI.MediaFileSystems/FileSystems/Atari/SpartaDos/SpartaDosDirectoryReader.cs"
+      },
+      {
+        "methods": [
+          {
+            "signature": "(ReadOnlySpan<byte> data, int offset)",
+            "constants": [
+              {
+                "value": 8,
+                "expression": "Constants.BitConstants.BitsPerByte"
+              },
+              {
+                "value": 16,
+                "expression": "16"
+              }
+            ],
+            "name": "Read",
+            "tokens": "public static int Read ( ReadOnlySpan < byte > data , int offset ) { if ( offset < 0 || offset > data . Length - Size ) throw new ArgumentOutOfRangeException ( nameof ( offset ) ) ; return data [ offset ] | data [ offset + 1 ] << Constants . BitConstants . BitsPerByte | data [ offset + 2 ] << 16 ; }",
+            "returnType": "int"
+          }
+        ],
+        "sha256": "4904982C3F97E975434C748CA72942B6ECDD9D54F0F7A69A89BBED6ED7309392",
+        "path": "src/GWGUI.MediaFileSystems/Primitives/LittleEndianUInt24.cs"
+      }
+    ],
+    "origins": {
+      "uint24": {
+        "commit": "ba5b09ea7",
+        "tokens": "public static int Read ( ReadOnlySpan < byte > data , int offset ) { if ( offset < 0 || offset > data . Length - Size ) throw new ArgumentOutOfRangeException ( nameof ( offset ) ) ; return data [ offset ] | data [ offset + 1 ] << BitPrimitives . BitsPerByte | data [ offset + 2 ] << 16 ; }",
+        "path": "src/GWGUI.MediaEngine/Primitives/LittleEndianUInt24.cs"
+      },
+      "copy": {
+        "commit": "4d40e132f",
+        "tokens": "private static byte [  ] Copy ( IReadOnlyList < byte > source , int offset , int length ) { var result = new byte [ length ] ; for ( var index = 0 ; index < length ; index ++ ) result [ index ] = source [ offset + index ] ; return result ; }",
+        "path": "src/GWGUI.MediaEngine/FileSystems/Commodore/Dos/CommodoreDosDirectoryReader.cs"
+      },
+      "uint16": {
+        "commit": "9a030635f",
+        "tokens": "private static int ReadUInt16 ( IReadOnlyList < byte > data , int offset ) => data [ offset ] | data [ offset + 1 ] << ( sizeof ( byte ) * 8 ) ;",
+        "path": "src/GWGUI.MediaFileSystems/Functions/AtariKFileFunctions.cs"
+      }
+    },
+    "decision": "Keep the existing MediaFileSystems primitive owner and dependency direction. Share original indexed copy and UInt16 bodies in that primitive family; adapt existing UInt24 with a separately named indexed read, without adding an ambiguous Read overload or changing its validated span contract.",
+    "invariants": [
+      "Copy allocates before reading and never queries Count or enumerates",
+      "Zero-length copy ignores source/offset and returns a new array",
+      "Indexed integer reads keep raw indexer order and exceptions; no Count or range prevalidation",
+      "AtariBootDisk ReadUInt16 keeps ushort return and explicit cast",
+      "Existing UInt24.Read(span, offset) keeps its guard and exception parameter name",
+      "Only pure byte composition shared across span/indexed UInt24; no format checks or lifecycle changed"
+    ],
+    "verification": {
+      "clientBindings": [
+        {
+          "method": "Copy",
+          "path": "src/GWGUI.MediaFileSystems/FileSystems/Commodore/Dos/CommodoreDosDirectoryReader.cs",
+          "assembly": "gwgui.mediafilesystems",
+          "target": "GWGUI.MediaFileSystems.Primitives.ByteListCopy.Copy(System.Collections.Generic.IReadOnlyList<byte>, int, int)"
+        },
+        {
+          "method": "Copy",
+          "path": "src/GWGUI.MediaEngine/Images/Reading/Decoding/Sequential/Acorn/AcornTapeDecoder.cs",
+          "assembly": "gwgui.mediafilesystems",
+          "target": "GWGUI.MediaFileSystems.Primitives.ByteListCopy.Copy(System.Collections.Generic.IReadOnlyList<byte>, int, int)"
+        },
+        {
+          "method": "ReadUInt16",
+          "path": "src/GWGUI.MediaFileSystems/Functions/AtariKFileFunctions.cs",
+          "assembly": "gwgui.mediafilesystems",
+          "target": "GWGUI.MediaFileSystems.Primitives.LittleEndianUInt16.ReadIndexed(System.Collections.Generic.IReadOnlyList<byte>, int)"
+        },
+        {
+          "method": "PayloadLength",
+          "path": "src/GWGUI.MediaFileSystems/Functions/AtariKFileFunctions.cs",
+          "assembly": "gwgui.mediafilesystems",
+          "target": "GWGUI.MediaFileSystems.Primitives.LittleEndianUInt24.ReadIndexed(System.Collections.Generic.IReadOnlyList<byte>, int)"
+        },
+        {
+          "method": "ReadUInt16",
+          "path": "src/GWGUI.MediaFileSystems/Functions/AtariBootDiskFunctions.cs",
+          "assembly": "gwgui.mediafilesystems",
+          "target": "GWGUI.MediaFileSystems.Primitives.LittleEndianUInt16.ReadIndexed(System.Collections.Generic.IReadOnlyList<byte>, int)"
+        },
+        {
+          "method": "ReadUInt16",
+          "path": "src/GWGUI.MediaFileSystems/FileSystems/Atari/SpartaDos/SpartaDosDirectoryReader.cs",
+          "assembly": "gwgui.mediafilesystems",
+          "target": "GWGUI.MediaFileSystems.Primitives.LittleEndianUInt16.ReadIndexed(System.Collections.Generic.IReadOnlyList<byte>, int)"
+        },
+        {
+          "method": "ReadLength",
+          "path": "src/GWGUI.MediaFileSystems/FileSystems/Atari/SpartaDos/SpartaDosDirectoryReader.cs",
+          "assembly": "gwgui.mediafilesystems",
+          "target": "GWGUI.MediaFileSystems.Primitives.LittleEndianUInt24.ReadIndexed(System.Collections.Generic.IReadOnlyList<byte>, int)"
+        }
+      ],
+      "scope": "Only byte operations shared; format guards, traversals, CRC and other whole-file tokens unchanged",
+      "sourceChecks": [
+        {
+          "expansion": "Equivalent indexed expressions including ushort cast and constant folding",
+          "sha256": "2A0AD4E45FDB886F187E935D62F933D1B78C9F0349C0479E1C09C7320A357F3C",
+          "wholeFile": "Only specified byte operations and required using changed; all remaining tokens equal to beforeHead",
+          "path": "src/GWGUI.MediaFileSystems/FileSystems/Commodore/Dos/CommodoreDosDirectoryReader.cs",
+          "methods": [
+            "Copy"
+          ]
+        },
+        {
+          "expansion": "Equivalent indexed expressions including ushort cast and constant folding",
+          "sha256": "3FCAEA7C7A262E9061A324BEB5F3333629696EBA96E51D141C6B16BD511F0D2F",
+          "wholeFile": "Only specified byte operations and required using changed; all remaining tokens equal to beforeHead",
+          "path": "src/GWGUI.MediaEngine/Images/Reading/Decoding/Sequential/Acorn/AcornTapeDecoder.cs",
+          "methods": [
+            "Copy"
+          ]
+        },
+        {
+          "expansion": "Equivalent indexed expressions including ushort cast and constant folding",
+          "sha256": "B78F227C1DB8C76F02CF146F59B86269042FB37C3E7F301AD2F4BF51B8DC3670",
+          "wholeFile": "Only specified byte operations and required using changed; all remaining tokens equal to beforeHead",
+          "path": "src/GWGUI.MediaFileSystems/Functions/AtariKFileFunctions.cs",
+          "methods": [
+            "ReadUInt16",
+            "PayloadLength"
+          ]
+        },
+        {
+          "expansion": "Equivalent indexed expressions including ushort cast and constant folding",
+          "sha256": "469CC92BC376403C834EAF845E6FE5099C3BF8DE234ECD54916D4FD6141C386C",
+          "wholeFile": "Only specified byte operations and required using changed; all remaining tokens equal to beforeHead",
+          "path": "src/GWGUI.MediaFileSystems/Functions/AtariBootDiskFunctions.cs",
+          "methods": [
+            "ReadUInt16"
+          ]
+        },
+        {
+          "expansion": "Equivalent indexed expressions including ushort cast and constant folding",
+          "sha256": "CD74518CEB8124ED87200B81C86B379C8823DC851D6847FA2A9C10D70E246645",
+          "wholeFile": "Only specified byte operations and required using changed; all remaining tokens equal to beforeHead",
+          "path": "src/GWGUI.MediaFileSystems/FileSystems/Atari/SpartaDos/SpartaDosDirectoryReader.cs",
+          "methods": [
+            "ReadUInt16",
+            "ReadLength"
+          ]
+        },
+        {
+          "expansion": "Equivalent indexed expressions including ushort cast and constant folding",
+          "sha256": "C1730B36098693B50A61510A780FEFFD0C925CA866E05BE7C09A47A27524FC51",
+          "wholeFile": "Only specified byte operations and required using changed; all remaining tokens equal to beforeHead",
+          "path": "src/GWGUI.MediaFileSystems/Primitives/LittleEndianUInt24.cs",
+          "methods": [
+            "Read"
+          ]
+        },
+        {
+          "sha256": "4BC35F54E92C136D01D6694D24C60900E01CB34E025BBE1E59C02B36CA6C70CB",
+          "path": "src/GWGUI.MediaFileSystems/Primitives/ByteListCopy.cs",
+          "originalBody": "Verified against recorded original; UInt16 constants semantically folded"
+        },
+        {
+          "sha256": "53F90EA6CBDA92067E6E19F4B9FC049D65FF6547C0256EA360C3CDDBBA12D355",
+          "path": "src/GWGUI.MediaFileSystems/Primitives/LittleEndianUInt16.cs",
+          "originalBody": "Verified against recorded original; UInt16 constants semantically folded"
+        }
+      ],
+      "semanticErrors": 0,
+      "tests": {
+        "scope": "Managed memory-only new tests, existing Commodore regression and catalog selection tests",
+        "passed": 47,
+        "failed": 0,
+        "productBuild": "Grouped Debug modules=A succeeded; executable and 23 modules verified",
+        "command": "dotnet test --no-build --no-restore --filter IndexedBytePrimitiveTests|CommodoreDosMigrationImageTests|ImageFormatCatalogReuseTests"
+      },
+      "semanticProjects": [
+        "GWGUI.MediaAnalysis",
+        "GWGUI.MediaFileSystems",
+        "GWGUI.MediaEngine"
+      ]
+    },
+    "productBuild": {
+      "executableSha256": "370A96DEB77298148223EA6F975F90652053FEF3E361A2D499480B6165FC9B7B",
+      "modules": [
+        {
+          "id": "acorn",
+          "entryAssembly": "gwgui.emulation.acorn.dll",
+          "sha256": "B88BBBDE2836726A0384647C174B015829247CE44D8A93321BC38CBFEA5A8DB6"
+        },
+        {
+          "id": "amstrad",
+          "entryAssembly": "gwgui.emulation.amstrad.dll",
+          "sha256": "05E4CD940714A231B2ADE294970F7BDD53B41732374BF4C5B9D257FEC85E5A6C"
+        },
+        {
+          "id": "apple",
+          "entryAssembly": "gwgui.emulation.apple.dll",
+          "sha256": "4A826E8C539CD75E98FD7938DFDC9F1EA3B771C2D46B8DDDBC061075906645BB"
+        },
+        {
+          "id": "atari",
+          "entryAssembly": "gwgui.emulation.atari.dll",
+          "sha256": "A92D6EE65F30A64F3C70DE6751CE10E20D8DDDE194E16F615B6D4FD11C902285"
+        },
+        {
+          "id": "bandai",
+          "entryAssembly": "gwgui.emulation.bandai.dll",
+          "sha256": "6C87B5D041BD15C6F7F072E55DECA2236541A8326213ED8BF3010F88DC872AE0"
+        },
+        {
+          "id": "coleco",
+          "entryAssembly": "gwgui.emulation.coleco.dll",
+          "sha256": "18DE11DEE40C85CD3823A1AF0994168338F73CF49B3987C037B3E163A595B1D0"
+        },
+        {
+          "id": "commodore",
+          "entryAssembly": "gwgui.emulation.commodore.dll",
+          "sha256": "BE51E99DD9398B9787F8FB77D81EC0AA5455737A8E4DF2D6344E3AA12A10182C"
+        },
+        {
+          "id": "epoch",
+          "entryAssembly": "gwgui.emulation.epoch.dll",
+          "sha256": "452BAB80F420C6EFA3F02B96E4C885ADE851986DA4A9E58A31893607A167923C"
+        },
+        {
+          "id": "fairchild",
+          "entryAssembly": "gwgui.emulation.fairchild.dll",
+          "sha256": "6D27B1FFB3E3654C64B1CA8D27C785E5C2FD4978932BED242E0E2BC6437EF35F"
+        },
+        {
+          "id": "mattel",
+          "entryAssembly": "gwgui.emulation.mattel.dll",
+          "sha256": "BCBE9FA79693AB9E402AB9A0C3EFA3C5A1B569009ACB5363382F481AF1EEB959"
+        },
+        {
+          "id": "microsoft",
+          "entryAssembly": "gwgui.emulation.microsoft.dll",
+          "sha256": "CC2B7ECCC1E913ABA7448D0EE6B220BA9155519FA257FE2A3BE60BE5B6C7484B"
+        },
+        {
+          "id": "nec",
+          "entryAssembly": "gwgui.emulation.nec.dll",
+          "sha256": "46616D43B25B37B0DDAB42BE534C0EBB791CA633041069845C7BC82F6D9C8521"
+        },
+        {
+          "id": "nintendo",
+          "entryAssembly": "gwgui.emulation.nintendo.dll",
+          "sha256": "82512D04508714C8FD65C48544B74EF51CDD1037B1432FA1C449920CE2EBDBA1"
+        },
+        {
+          "id": "panasonic",
+          "entryAssembly": "gwgui.emulation.panasonic.dll",
+          "sha256": "D52A094CFB420058DECE34CA2F5DBC540BC4125DA8AFE515B84D6D132CFE9257"
+        },
+        {
+          "id": "philips",
+          "entryAssembly": "gwgui.emulation.philips.dll",
+          "sha256": "C87C2C13C7C3D80A40C50807E5C969ED04B9624C0AB9FD624A810D5DB42E9396"
+        },
+        {
+          "id": "sega",
+          "entryAssembly": "gwgui.emulation.sega.dll",
+          "sha256": "7CD8D3049922C7428EE14E0F214ABD12731C8E9BE6276454301CC6909AEC6956"
+        },
+        {
+          "id": "sharp",
+          "entryAssembly": "gwgui.emulation.sharp.dll",
+          "sha256": "B76882ACD99B5F0FF2956D1791AACFB4B44EF86A0B853DBC142B57A7765ACAB4"
+        },
+        {
+          "id": "sinclair",
+          "entryAssembly": "gwgui.emulation.sinclair.dll",
+          "sha256": "CC4C82C6C27707B15E7974FE7F41312533DF168B9259B51DCF3720B462E55672"
+        },
+        {
+          "id": "snk",
+          "entryAssembly": "gwgui.emulation.snk.dll",
+          "sha256": "FDCF2A0F5BEAB1D1D5F98E837D95DC0539C4D0128244E4123B245720B447D7EB"
+        },
+        {
+          "id": "sony",
+          "entryAssembly": "gwgui.emulation.sony.dll",
+          "sha256": "6B5CFF3F98490F40FD5A01B55191CEDF52A98D0EEF2C5F87E8AC0ED2340EDF47"
+        },
+        {
+          "id": "thomson",
+          "entryAssembly": "gwgui.emulation.thomson.dll",
+          "sha256": "F287DE02470D35520DDC7DB03DFEB2104A0EAC9C0D2BECC1CEB6789411345C60"
+        },
+        {
+          "id": "watara",
+          "entryAssembly": "gwgui.emulation.watara.dll",
+          "sha256": "1AF8281F97DDE22DA8DB86655B8318142778516EF3307A251F1826ED0EE944D2"
+        },
+        {
+          "id": "wenquxing",
+          "entryAssembly": "gwgui.emulation.wenquxing.dll",
+          "sha256": "15285D644355DCA6A6F937B269CE22ED5DCAD124241E8294BF539A87B5AF1175"
+        }
+      ],
+      "exitCode": 0,
+      "sourceChecks": [
+        {
+          "expansion": "Equivalent indexed expressions including ushort cast and constant folding",
+          "sha256": "2A0AD4E45FDB886F187E935D62F933D1B78C9F0349C0479E1C09C7320A357F3C",
+          "wholeFile": "Only specified byte operations and required using changed; all remaining tokens equal to beforeHead",
+          "path": "src/GWGUI.MediaFileSystems/FileSystems/Commodore/Dos/CommodoreDosDirectoryReader.cs",
+          "methods": [
+            "Copy"
+          ]
+        },
+        {
+          "expansion": "Equivalent indexed expressions including ushort cast and constant folding",
+          "sha256": "3FCAEA7C7A262E9061A324BEB5F3333629696EBA96E51D141C6B16BD511F0D2F",
+          "wholeFile": "Only specified byte operations and required using changed; all remaining tokens equal to beforeHead",
+          "path": "src/GWGUI.MediaEngine/Images/Reading/Decoding/Sequential/Acorn/AcornTapeDecoder.cs",
+          "methods": [
+            "Copy"
+          ]
+        },
+        {
+          "expansion": "Equivalent indexed expressions including ushort cast and constant folding",
+          "sha256": "B78F227C1DB8C76F02CF146F59B86269042FB37C3E7F301AD2F4BF51B8DC3670",
+          "wholeFile": "Only specified byte operations and required using changed; all remaining tokens equal to beforeHead",
+          "path": "src/GWGUI.MediaFileSystems/Functions/AtariKFileFunctions.cs",
+          "methods": [
+            "ReadUInt16",
+            "PayloadLength"
+          ]
+        },
+        {
+          "expansion": "Equivalent indexed expressions including ushort cast and constant folding",
+          "sha256": "469CC92BC376403C834EAF845E6FE5099C3BF8DE234ECD54916D4FD6141C386C",
+          "wholeFile": "Only specified byte operations and required using changed; all remaining tokens equal to beforeHead",
+          "path": "src/GWGUI.MediaFileSystems/Functions/AtariBootDiskFunctions.cs",
+          "methods": [
+            "ReadUInt16"
+          ]
+        },
+        {
+          "expansion": "Equivalent indexed expressions including ushort cast and constant folding",
+          "sha256": "CD74518CEB8124ED87200B81C86B379C8823DC851D6847FA2A9C10D70E246645",
+          "wholeFile": "Only specified byte operations and required using changed; all remaining tokens equal to beforeHead",
+          "path": "src/GWGUI.MediaFileSystems/FileSystems/Atari/SpartaDos/SpartaDosDirectoryReader.cs",
+          "methods": [
+            "ReadUInt16",
+            "ReadLength"
+          ]
+        },
+        {
+          "expansion": "Equivalent indexed expressions including ushort cast and constant folding",
+          "sha256": "C1730B36098693B50A61510A780FEFFD0C925CA866E05BE7C09A47A27524FC51",
+          "wholeFile": "Only specified byte operations and required using changed; all remaining tokens equal to beforeHead",
+          "path": "src/GWGUI.MediaFileSystems/Primitives/LittleEndianUInt24.cs",
+          "methods": [
+            "Read"
+          ]
+        },
+        {
+          "sha256": "4BC35F54E92C136D01D6694D24C60900E01CB34E025BBE1E59C02B36CA6C70CB",
+          "path": "src/GWGUI.MediaFileSystems/Primitives/ByteListCopy.cs",
+          "originalBody": "Verified against recorded original; UInt16 constants semantically folded"
+        },
+        {
+          "sha256": "53F90EA6CBDA92067E6E19F4B9FC049D65FF6547C0256EA360C3CDDBBA12D355",
+          "path": "src/GWGUI.MediaFileSystems/Primitives/LittleEndianUInt16.cs",
+          "originalBody": "Verified against recorded original; UInt16 constants semantically folded"
+        },
+        {
+          "allOtherTokensUnchanged": true,
+          "path": "src/GWGUI.MediaEngine/Functions/MediaFileExtensionFunctions.cs",
+          "sha256": "F5428E023C7438D9C341E573D33C3E7DB21E819B462F50611276AA7B3ED85BCF"
+        },
+        {
+          "allOtherTokensUnchanged": true,
+          "path": "src/GWGUI.MediaEngine/Images/Conversion/ConversionFidelity.cs",
+          "sha256": "AD947751D71B597B336FD15423CFF31C4ED89B5B671F09C46A6B869D3D0F8BCF"
+        },
+        {
+          "allOtherTokensUnchanged": true,
+          "path": "src/GWGUI.MediaEngine/Images/Conversion/Flux/FluxContainerConversionService.cs",
+          "sha256": "9DBD81639BBA5828909DEC8D947FE97DB0F02E4F0603BE6013C9A3873AA44BF0"
+        },
+        {
+          "allOtherTokensUnchanged": true,
+          "path": "src/GWGUI.MediaEngine/Images/Formats/CapabilityAwareImageFormatCatalog.cs",
+          "sha256": "853EC855B21B2B49026EA8069740FE6FF8ED5E2EE6504344071025880429D7FD"
+        },
+        {
+          "allOtherTokensUnchanged": true,
+          "path": "src/GWGUI.MediaEngine/Images/Formats/Cartridge/Console/ConsoleCartridgeWriter.cs",
+          "sha256": "B8D874B2BFDA10712A4DD5BD71427FF457E67B4C40C4CE5BB97200F589938F86"
+        },
+        {
+          "allOtherTokensUnchanged": true,
+          "path": "src/GWGUI.MediaEngine/Images/Formats/ImageFormatCatalog.cs",
+          "sha256": "3F496EE5E8153478C7A55EBEB595CF0113928287056D21FB64060B41AD2382D1"
+        },
+        {
+          "allOtherTokensUnchanged": true,
+          "path": "src/GWGUI.MediaEngine/Images/Formats/Optical/Gdi/GdiWriter.cs",
+          "sha256": "1CCC8D209A77061DCA0E63411896DFECF4ED8164074FAE0ECB9BBB47F447FC60"
+        },
+        {
+          "allOtherTokensUnchanged": true,
+          "path": "src/GWGUI.MediaEngine/Images/Formats/Optical/WiiU/WiiUWriter.cs",
+          "sha256": "DC65481055584F2101CEF93CC115A99CABC18642E1F7FD21FD411EE7245E4BCF"
+        },
+        {
+          "allOtherTokensUnchanged": true,
+          "path": "src/GWGUI.MediaEngine/Images/Formats/Optical/Xdvdfs/XdvdfsWriter.cs",
+          "sha256": "464FD4856B90213CD626A2B64C53E9BA5A2D3AC4E474C27810668F8999083227"
+        },
+        {
+          "allOtherTokensUnchanged": true,
+          "path": "src/GWGUI.MediaEngine/Images/Formats/RuntimeImageFormatCatalog.cs",
+          "sha256": "4615255314A62F38C8064BDF3EEF5EBFF2ECA5EE49B8ABCFD6F49F0D2DCAC47A"
+        }
+      ],
+      "command": "scripts/local-building.cmd --building=debug --modules=A",
+      "sourceIntegrity": "All 18 affected catalog/byte source files match pre-build verified hashes",
+      "updaterPrivateDlls": [
+        "gwgui.updater.dll"
+      ],
+      "executable": "build/Debug/GW GUI/gwgui.exe"
     }
   }
 }
