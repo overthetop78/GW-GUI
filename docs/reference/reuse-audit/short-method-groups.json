@@ -1,13 +1,8 @@
 {
-  "snapshot": "145c2c84fdcf94f567a63d2d96011ff6b87c0c17",
+  "snapshot": "e3b237e15525f39c29887ab33dceeeddc0d8ddc0",
   "snapshotState": "Current worktree based on snapshot",
   "worktreeSourceChanges": [
-    "src/GWGUI.MediaEngine/Images/Formats/HardDisk/Chd/ChdHardDiskReader.cs",
-    "src/GWGUI.MediaEngine/Images/Formats/HardDisk/Qcow2/Qcow2Reader.cs",
-    "src/GWGUI.MediaEngine/Images/Formats/HardDisk/Vdi/VdiReader.cs",
-    "src/GWGUI.MediaEngine/Images/Formats/HardDisk/Vhdx/VhdxReader.cs",
-    "src/GWGUI.MediaEngine/Images/Formats/HardDisk/Vmdk/VmdkReader.cs",
-    "src/GWGUI.MediaEngine/Images/Reading/Recognition/MediaRecognitionRegistry.cs"
+    "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/CoreReleaseService.cs"
   ],
   "scope": "All current non-ignored repository CSharp files, including hidden paths; BaseMethodDeclaration bodies with fewer than 30 tokens. Candidate presence is not a defect or a completion claim.",
   "fileCount": 7322,
@@ -18345,7 +18340,7 @@
           "name": "VerifyWindowsX64Library",
           "owner": "CoreReleaseService",
           "kind": "MethodDeclaration",
-          "line": 98,
+          "line": 104,
           "parameters": "(string path)",
           "tokens": 19,
           "bodyTokens": "=> EmulationCoreDiagnosticFunctions . VerifyWindowsX64Library ( path , CoreExceptions . DownloadedCoreNotPe , CoreExceptions . DownloadedCoreInvalidPe , CoreExceptions . DownloadedCoreWrongArchitecture )",
@@ -131557,7 +131552,7 @@
           "name": "VerifyWindowsX64Library",
           "owner": "CoreReleaseService",
           "kind": "MethodDeclaration",
-          "line": 98,
+          "line": 104,
           "parameters": "(string path)",
           "tokens": 19,
           "bodyTokens": "=> EmulationCoreDiagnosticFunctions . VerifyWindowsX64Library ( path , CoreExceptions . DownloadedCoreNotPe , CoreExceptions . DownloadedCoreInvalidPe , CoreExceptions . DownloadedCoreWrongArchitecture )",

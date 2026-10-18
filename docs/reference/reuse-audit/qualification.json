@@ -8249,13 +8249,13 @@
     "afterProductBuild": "005e3c677"
   },
   "shortMethodInventory": {
-    "snapshot": "145c2c84fdcf94f567a63d2d96011ff6b87c0c17",
+    "snapshot": "e3b237e15525f39c29887ab33dceeeddc0d8ddc0",
     "files": 7322,
     "bodyCount": 9487,
     "exactGroups": 774,
     "renamedGroups": 365,
     "status": "Incomplete; existing queue/empty-method qualifications retained; 29 factory selections now shared and verified; sector source reader-selection stage shared, remaining typed writer ownership pending.",
-    "trackedCSharpCoverage": "Full current C# scan, 7322 files including managed probe tests. Two textually identical remaining CanReadAsync bodies are typed parser adapters to the shared policy, verified separately; other candidates remain pending."
+    "trackedCSharpCoverage": "Full current C# scan: 7322 files. Sony common installer now uses existing SDK pipeline; remaining InstallAsync callback/manifest ownership review is incomplete."
   },
   "hardwareIdentityComparisonReuse": {
     "snapshot": "a4760e868",
@@ -11031,7 +11031,7 @@
     "tests": "Fifteen managed tests passed, exit 0: requested formats/null/case/empty, pre-cancelled token forwarding and early refusal, controlled pending validator completed/awaited in finally, synchronous/asynchronous InvalidDataException and NotSupportedException refusal, other IOException propagation, both cancellation paths with token, and null-context asynchronous fault timing. Context KnownLength=0 avoids FileInfo and no reads are invoked; no media files, external DLL fixtures, windows, processes or cores."
   },
   "installationTemporaryScopeReview": {
-    "state": "partial; Sony common pipeline correction pending; full manifest callback review pending",
+    "state": "partial; Sony common central sequence now shared and verified; typed manifest construction review pending",
     "snapshot": "121ea9865",
     "profiles": [
       {
@@ -11314,6 +11314,18 @@
     "origin": "Existing SDK 734fbce43 reuses Atari installation before Amstrad: ac7292d86^:src/GWGUI.Emulation.Atari/Services/AtariCoreReleaseService.cs. Ancestry before Sony adapter 4e48b9b7d verified.",
     "ownership": "Modules create/name temporary files before the try and own the finally. Nine scopes use sequential DeleteIfExists, seven nested finally to guarantee the second delete, nine sequential guarded File.Delete. Keep cleanup order and exception behavior in the resource owner; no cleanup-policy flag or ownership transfer to collapse syntax.",
     "finding": "Sony/Emulators/Common/Interop/Services/CoreReleaseService.InstallAsync still duplicates download, extraction/raw copy, validation/hash, replacement, manifest write and completion. CoreMachineFactory.ReleaseService actively constructs it. CompletedProgress const double is 1d. Reconnect only the central sequence to the existing original SDK pipeline.",
-    "pending": "Sony wiring, before/after comparison and regression validation. Typed diagnostic-manifest construction remains under review; scope evidence does not qualify whole InstallAsync bodies or remaining metadata callbacks."
+    "pending": "Sony wiring, before/after comparison and regression validation. Typed diagnostic-manifest construction remains under review; scope evidence does not qualify whole InstallAsync bodies or remaining metadata callbacks.",
+    "sonyFollowup": "sonyCommonInstallationFlowReuse records the later correction; original 121ea9865 scope evidence remains historical. Manifest callback review still incomplete."
+  },
+  "sonyCommonInstallationFlowReuse": {
+    "state": "verified",
+    "baseline": "e3b237e15",
+    "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/CoreReleaseService.cs",
+    "sha256": "A6515FC90B63E34632509C60FD0ADAE1A43DE8856B35F8FF89E6E094A02C87D8",
+    "owner": "Existing SDK EmulationCoreReleaseFunctions.InstallLibraryAsync; original Atari policy predates Sony adapter, as verified in installationTemporaryScopeReview.",
+    "ast": "All seven callbacks preserve original download arguments/progress/token, ZIP/raw extraction and timestamp flag, x64 validation before SHA-256, replacement, manifest parameters, constant completion and return. Activation is Task.CompletedTask. Local finally, setup and all other source tokens unchanged.",
+    "abi": "Seven-parameter SDK overload reused unchanged; no SDK edit or new helper.",
+    "semantic": "SDK and Sony: zero semantic errors. Existing seven-parameter InstallLibraryAsync selected with string manifest/hash. Six original overloads (download, extraction, x64 verification, hash, File.Move, Sony manifest) resolve identically before/after.",
+    "tests": "Ten existing CoreInstallationFlowTests passed, exit 0. Covers ordering, each failing stage, preparation wait/failure. No new mirror test, real download, module process or DLL/file fixture. Controlled tasks in existing tests completed and awaited in finally."
   }
 }
