@@ -13,9 +13,7 @@ public sealed class D81ConversionService(CommodoreScpSectorImageReader scpReader
     {
         if (!CanCreate(formatId, Path.GetExtension(outputPath)))
             throw new InvalidDataException($"Format '{formatId}' cannot be written to '{Path.GetExtension(outputPath)}' as D81.");
-        var image = Path.GetExtension(sourcePath).Equals(DiskImageFileExtensions.Scp, StringComparison.OrdinalIgnoreCase) 
-            ? await scpReader.ReadAsync(sourcePath, DiskImageFormatIds.Commodore1581, cancellationToken).ConfigureAwait(false) 
-            : await reader.ReadAsync(sourcePath, cancellationToken).ConfigureAwait(false);
+        var image = await MediaConversionService.ReadSectorSourceAsync(sourcePath, () => scpReader.ReadAsync(sourcePath, DiskImageFormatIds.Commodore1581, cancellationToken), () => reader.ReadAsync(sourcePath, cancellationToken)).ConfigureAwait(false);
         await writer.WriteAsync(image, outputPath, cancellationToken).ConfigureAwait(false);
     }
 }

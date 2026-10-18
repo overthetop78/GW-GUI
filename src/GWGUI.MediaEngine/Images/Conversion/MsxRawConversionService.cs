@@ -16,7 +16,7 @@ public sealed class MsxRawConversionService(IsoScpSectorImageReader scpReader, M
     /// <summary>Reconstruit ou relit la source puis écrit le DSK demandé.</summary>
     public async Task ConvertAsync(string sourcePath, string outputPath, string formatId, CancellationToken cancellationToken = default)
     {
-        var image = Path.GetExtension(sourcePath).Equals(DiskImageFileExtensions.Scp, StringComparison.OrdinalIgnoreCase) ? await scpReader.ReadAsync(sourcePath, formatId, cancellationToken).ConfigureAwait(false) : await reader.ReadAsync(sourcePath, cancellationToken).ConfigureAwait(false);
+        var image = await MediaConversionService.ReadSectorSourceAsync(sourcePath, () => scpReader.ReadAsync(sourcePath, formatId, cancellationToken), () => reader.ReadAsync(sourcePath, cancellationToken)).ConfigureAwait(false);
         await writer.WriteAsync(image, outputPath, formatId, cancellationToken).ConfigureAwait(false);
     }
 

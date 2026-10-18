@@ -17,7 +17,7 @@ public sealed class IbmRawConversionService(IsoScpSectorImageReader scpReader, I
     /// <summary>Reconstruit ou relit la source puis écrit le profil IBM demandé.</summary>
     public async Task ConvertAsync(string sourcePath, string outputPath, string formatId, CancellationToken cancellationToken = default)
     {
-        var image = Path.GetExtension(sourcePath).Equals(DiskImageFileExtensions.Scp, StringComparison.OrdinalIgnoreCase) ? await scpReader.ReadAsync(sourcePath, formatId, cancellationToken).ConfigureAwait(false) : await reader.ReadAsync(sourcePath, cancellationToken).ConfigureAwait(false);
+        var image = await MediaConversionService.ReadSectorSourceAsync(sourcePath, () => scpReader.ReadAsync(sourcePath, formatId, cancellationToken), () => reader.ReadAsync(sourcePath, cancellationToken)).ConfigureAwait(false);
         await ConvertAsync(image, outputPath, formatId, cancellationToken).ConfigureAwait(false);
     }
 

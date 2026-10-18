@@ -8249,12 +8249,12 @@
     "afterProductBuild": "005e3c677"
   },
   "shortMethodInventory": {
-    "snapshot": "1681751fb375192b0f809defd53cbb60bb006fdb",
-    "files": 7316,
-    "bodyCount": 9477,
+    "snapshot": "9e020e20c1f1a5497ac25aeb85e705140631ae88",
+    "files": 7317,
+    "bodyCount": 9478,
     "exactGroups": 772,
     "renamedGroups": 364,
-    "status": "Incomplete; queue and empty-method occurrences qualified; source hashes and coordinates of six affected empty methods refreshed after full member comparison. Twelve typed installation adapters now delegate shared selection/progress.",
+    "status": "Incomplete; existing queue/empty-method qualifications retained; 29 factory selections now shared and verified; sector source reader-selection stage shared, remaining typed writer ownership pending.",
     "trackedCSharpCoverage": "Full current scan includes new MediaMetadataFunctions file; source file count 7315, hidden paths included."
   },
   "hardwareIdentityComparisonReuse": {
@@ -10118,5 +10118,314 @@
     "tests": "CoreReleaseSelectionTests 13 plus CoreInstallationFlowTests 10: 23 passed, exit 0. Both direct no-predicate cases passed; prior Atari guards, context-preserving progress and installation sequencing remain covered.",
     "sdkSha256": "9FC05A9FCD545B0308C80E8BD04EF60CE584B380F5EDFE28584DAD73DC8C58FE",
     "resources": "No resource owner changed. Test additions use managed values only; existing progress fixture restores SynchronizationContext in finally."
+  },
+  "sectorSourceSelectionReuse": {
+    "baseline": "9e020e20c",
+    "originCommit": "b9a576cc8",
+    "originPath": "src/GWGUI.MediaEngine/Conversion/Amiga/AmigaAdfConversionService.cs",
+    "conditionTokens": "Path . GetExtension ( sourcePath ) . Equals ( DiskImageFileExtensions . Scp , StringComparison . OrdinalIgnoreCase )",
+    "before": [
+      {
+        "path": "src/GWGUI.MediaEngine/Images/Conversion/MsxRawConversionService.cs",
+        "method": "ConvertAsync",
+        "parameters": "(string sourcePath, string outputPath, string formatId, CancellationToken cancellationToken = default)",
+        "line": 17,
+        "initializerLine": 19,
+        "condition": "Path . GetExtension ( sourcePath ) . Equals ( DiskImageFileExtensions . Scp , StringComparison . OrdinalIgnoreCase )",
+        "readScp": {
+          "expression": "scpReader.ReadAsync(sourcePath, formatId, cancellationToken)",
+          "symbol": "GWGUI.MediaEngine.Images.Reading.Reconstruction.Iso.IsoScpSectorImageReader.ReadAsync(string, string?, System.Threading.CancellationToken)"
+        },
+        "readImage": {
+          "expression": "reader.ReadAsync(sourcePath, cancellationToken)",
+          "symbol": "GWGUI.MediaEngine.Images.Formats.Floppy.Raw.MsxRawImageReader.ReadAsync(string, System.Threading.CancellationToken)"
+        },
+        "imageType": "GWGUI.MediaEngine.Images.Models.Sectors.SectorImage",
+        "sourceSha256": "CC48243F6A13A9D573C1CDEB5D349E00E8AC73EBB1B7DF1F58AC15C4DA94BC5B"
+      },
+      {
+        "path": "src/GWGUI.MediaEngine/Images/Conversion/IbmRawConversionService.cs",
+        "method": "ConvertAsync",
+        "parameters": "(string sourcePath, string outputPath, string formatId, CancellationToken cancellationToken = default)",
+        "line": 18,
+        "initializerLine": 20,
+        "condition": "Path . GetExtension ( sourcePath ) . Equals ( DiskImageFileExtensions . Scp , StringComparison . OrdinalIgnoreCase )",
+        "readScp": {
+          "expression": "scpReader.ReadAsync(sourcePath, formatId, cancellationToken)",
+          "symbol": "GWGUI.MediaEngine.Images.Reading.Reconstruction.Iso.IsoScpSectorImageReader.ReadAsync(string, string?, System.Threading.CancellationToken)"
+        },
+        "readImage": {
+          "expression": "reader.ReadAsync(sourcePath, cancellationToken)",
+          "symbol": "GWGUI.MediaEngine.Images.Formats.Floppy.Raw.IbmRawImageReader.ReadAsync(string, System.Threading.CancellationToken)"
+        },
+        "imageType": "GWGUI.MediaEngine.Images.Models.Sectors.SectorImage",
+        "sourceSha256": "EFD03CA417CE0F19DCCACDF4AF0C5CDDC3CD7F38859C5A3A43429A0EA2B88ADA"
+      },
+      {
+        "path": "src/GWGUI.MediaEngine/Images/Conversion/DecRx02ConversionService.cs",
+        "method": "ConvertAsync",
+        "parameters": "(string sourcePath, string outputPath, CancellationToken cancellationToken = default)",
+        "line": 16,
+        "initializerLine": 18,
+        "condition": "Path . GetExtension ( sourcePath ) . Equals ( DiskImageFileExtensions . Scp , StringComparison . OrdinalIgnoreCase )",
+        "readScp": {
+          "expression": "scpReader.ReadAsync(sourcePath, cancellationToken)",
+          "symbol": "GWGUI.MediaEngine.Images.Reading.Reconstruction.DecRx02ScpSectorImageReader.ReadAsync(string, System.Threading.CancellationToken)"
+        },
+        "readImage": {
+          "expression": "reader.ReadAsync(sourcePath, cancellationToken)",
+          "symbol": "GWGUI.MediaEngine.Images.Formats.Floppy.Rx02.DecRx02Reader.ReadAsync(string, System.Threading.CancellationToken)"
+        },
+        "imageType": "GWGUI.MediaEngine.Images.Models.Sectors.SectorImage",
+        "sourceSha256": "19CBE9F66F4683F9E70B9251EF6536457CCD3BF1CA58EA5137BFEF18C39DAD6C"
+      },
+      {
+        "path": "src/GWGUI.MediaEngine/Images/Conversion/AmigaAdfConversionService.cs",
+        "method": "ConvertAsync",
+        "parameters": "(string sourcePath, string outputPath, string formatId, CancellationToken cancellationToken = default)",
+        "line": 17,
+        "initializerLine": 19,
+        "condition": "Path . GetExtension ( sourcePath ) . Equals ( DiskImageFileExtensions . Scp , StringComparison . OrdinalIgnoreCase )",
+        "readScp": {
+          "expression": "scpReader.ReadAsync(sourcePath, cancellationToken)",
+          "symbol": "GWGUI.MediaEngine.Images.Reading.Reconstruction.AmigaScpSectorImageReader.ReadAsync(string, System.Threading.CancellationToken)"
+        },
+        "readImage": {
+          "expression": "reader.ReadAsync(sourcePath, cancellationToken)",
+          "symbol": "GWGUI.MediaEngine.Images.Formats.Floppy.Adf.AdfReader.ReadAsync(string, System.Threading.CancellationToken)"
+        },
+        "imageType": "GWGUI.MediaEngine.Images.Models.Sectors.SectorImage",
+        "sourceSha256": "87CD3E3E5AFA64E9BCE612A3579401EAE5335DF2F755598B8A96B46D481DF086"
+      },
+      {
+        "path": "src/GWGUI.MediaEngine/Images/Conversion/AmigaAdfConversionService.cs",
+        "method": "ConvertDetectedAsync",
+        "parameters": "(string sourcePath, string outputPath, CancellationToken cancellationToken = default)",
+        "line": 24,
+        "initializerLine": 26,
+        "condition": "Path . GetExtension ( sourcePath ) . Equals ( DiskImageFileExtensions . Scp , StringComparison . OrdinalIgnoreCase )",
+        "readScp": {
+          "expression": "scpReader.ReadAsync(sourcePath, cancellationToken)",
+          "symbol": "GWGUI.MediaEngine.Images.Reading.Reconstruction.AmigaScpSectorImageReader.ReadAsync(string, System.Threading.CancellationToken)"
+        },
+        "readImage": {
+          "expression": "reader.ReadAsync(sourcePath, cancellationToken)",
+          "symbol": "GWGUI.MediaEngine.Images.Formats.Floppy.Adf.AdfReader.ReadAsync(string, System.Threading.CancellationToken)"
+        },
+        "imageType": "GWGUI.MediaEngine.Images.Models.Sectors.SectorImage",
+        "sourceSha256": "87CD3E3E5AFA64E9BCE612A3579401EAE5335DF2F755598B8A96B46D481DF086"
+      },
+      {
+        "path": "src/GWGUI.MediaEngine/Images/Conversion/Commodore/D81ConversionService.cs",
+        "method": "ConvertAsync",
+        "parameters": "(string sourcePath, string outputPath, string formatId, CancellationToken cancellationToken = default)",
+        "line": 12,
+        "initializerLine": 16,
+        "condition": "Path . GetExtension ( sourcePath ) . Equals ( DiskImageFileExtensions . Scp , StringComparison . OrdinalIgnoreCase )",
+        "readScp": {
+          "expression": "scpReader.ReadAsync(sourcePath, DiskImageFormatIds.Commodore1581, cancellationToken)",
+          "symbol": "GWGUI.MediaEngine.Images.Reading.Reconstruction.CommodoreScpSectorImageReader.ReadAsync(string, string?, System.Threading.CancellationToken)"
+        },
+        "readImage": {
+          "expression": "reader.ReadAsync(sourcePath, cancellationToken)",
+          "symbol": "GWGUI.MediaEngine.Images.Formats.Floppy.D81.D81Reader.ReadAsync(string, System.Threading.CancellationToken)"
+        },
+        "imageType": "GWGUI.MediaEngine.Images.Models.Sectors.SectorImage",
+        "sourceSha256": "85204679AD9F12BC09F209559DFB23EB80144978C9012733B46BDAD22D5DC763"
+      },
+      {
+        "path": "src/GWGUI.MediaEngine/Images/Conversion/Commodore/CoherentConversionService.cs",
+        "method": "ConvertAsync",
+        "parameters": "(string sourcePath, string outputPath, CancellationToken cancellationToken = default)",
+        "line": 16,
+        "initializerLine": 18,
+        "condition": "Path . GetExtension ( sourcePath ) . Equals ( DiskImageFileExtensions . Scp , StringComparison . OrdinalIgnoreCase )",
+        "readScp": {
+          "expression": "scpReader.ReadAsync(sourcePath, DiskImageFormatIds.Commodore900Coherent, cancellationToken)",
+          "symbol": "GWGUI.MediaEngine.Images.Reading.Reconstruction.CommodoreScpSectorImageReader.ReadAsync(string, string?, System.Threading.CancellationToken)"
+        },
+        "readImage": {
+          "expression": "reader.ReadAsync(sourcePath, cancellationToken)",
+          "symbol": "GWGUI.MediaEngine.Images.Formats.Floppy.Raw.CoherentRawImageReader.ReadAsync(string, System.Threading.CancellationToken)"
+        },
+        "imageType": "GWGUI.MediaEngine.Images.Models.Sectors.SectorImage",
+        "sourceSha256": "B5A83F946BD57CCDB1992C2BB821E42243FE00EF6C1A036945DF2DF0AAA2BAEE"
+      },
+      {
+        "path": "src/GWGUI.MediaEngine/Images/Conversion/Acorn/BbcDfsConversionService.cs",
+        "method": "ConvertAsync",
+        "parameters": "(string sourcePath, string outputPath, string formatId, CancellationToken cancellationToken = default)",
+        "line": 20,
+        "initializerLine": 22,
+        "condition": "Path . GetExtension ( sourcePath ) . Equals ( DiskImageFileExtensions . Scp , StringComparison . OrdinalIgnoreCase )",
+        "readScp": {
+          "expression": "scpReader.ReadAsync(sourcePath, formatId, cancellationToken)",
+          "symbol": "GWGUI.MediaEngine.Images.Reading.Reconstruction.Iso.IsoScpSectorImageReader.ReadAsync(string, string?, System.Threading.CancellationToken)"
+        },
+        "readImage": {
+          "expression": "reader.ReadAsync(sourcePath, cancellationToken)",
+          "symbol": "GWGUI.MediaEngine.Images.Formats.Floppy.BbcDfs.BbcDfsReader.ReadAsync(string, System.Threading.CancellationToken)"
+        },
+        "imageType": "GWGUI.MediaEngine.Images.Models.Sectors.SectorImage",
+        "sourceSha256": "44F896D7473C0CC4A901037FED96315B1185D290F906B42D13F16CFB009CBE67"
+      },
+      {
+        "path": "src/GWGUI.MediaEngine/Images/Conversion/Acorn/AcornAdfConversionService.cs",
+        "method": "ConvertAsync",
+        "parameters": "(string sourcePath, string outputPath, string formatId, CancellationToken cancellationToken = default)",
+        "line": 16,
+        "initializerLine": 18,
+        "condition": "Path . GetExtension ( sourcePath ) . Equals ( DiskImageFileExtensions . Scp , StringComparison . OrdinalIgnoreCase )",
+        "readScp": {
+          "expression": "scpReader.ReadAsync(sourcePath, formatId, cancellationToken)",
+          "symbol": "GWGUI.MediaEngine.Images.Reading.Reconstruction.Iso.IsoScpSectorImageReader.ReadAsync(string, string?, System.Threading.CancellationToken)"
+        },
+        "readImage": {
+          "expression": "reader.ReadAsync(sourcePath, cancellationToken)",
+          "symbol": "GWGUI.MediaEngine.Images.Formats.Floppy.Adf.AdfReader.ReadAsync(string, System.Threading.CancellationToken)"
+        },
+        "imageType": "GWGUI.MediaEngine.Images.Models.Sectors.SectorImage",
+        "sourceSha256": "B9CC98E7A71F2388F390AD5141BB85E955EFA8125A324B62444D31DD3C509908"
+      },
+      {
+        "path": "src/GWGUI.MediaEngine/Images/Conversion/Atari/AtrConversionService.cs",
+        "method": "ConvertAsync",
+        "parameters": "(string sourcePath, string outputPath, string formatId, CancellationToken cancellationToken = default)",
+        "line": 14,
+        "initializerLine": 16,
+        "condition": "Path . GetExtension ( sourcePath ) . Equals ( DiskImageFileExtensions . Scp , StringComparison . OrdinalIgnoreCase )",
+        "readScp": {
+          "expression": "scpReader.ReadAsync(sourcePath, formatId, cancellationToken)",
+          "symbol": "GWGUI.MediaEngine.Images.Reading.Reconstruction.Atari.AtariScpSectorImageReader.ReadAsync(string, string?, System.Threading.CancellationToken)"
+        },
+        "readImage": {
+          "expression": "reader.ReadAsync(sourcePath, cancellationToken)",
+          "symbol": "GWGUI.MediaEngine.Images.Formats.Floppy.Atr.AtrReader.ReadAsync(string, System.Threading.CancellationToken)"
+        },
+        "imageType": "GWGUI.MediaEngine.Images.Models.Sectors.SectorImage",
+        "sourceSha256": "4D8244BBBF96DE8082D53EA390A82466FA09A2442A4A18454200BFDEB01595AB"
+      }
+    ],
+    "history": [
+      {
+        "path": "src/GWGUI.MediaEngine/Images/Conversion/Acorn/AcornAdfConversionService.cs",
+        "firstCommit": "15ac3164851dc14802827fb32344e71809fb5b2d"
+      },
+      {
+        "path": "src/GWGUI.MediaEngine/Images/Conversion/Acorn/BbcDfsConversionService.cs",
+        "firstCommit": "6c55e7f7638a6bc8dbf2e5b6d8a98df5b22fc40b"
+      },
+      {
+        "path": "src/GWGUI.MediaEngine/Images/Conversion/AmigaAdfConversionService.cs",
+        "firstCommit": "b9a576cc80bcdd6352d63aa04f1aeabea6b90258"
+      },
+      {
+        "path": "src/GWGUI.MediaEngine/Images/Conversion/Atari/AtrConversionService.cs",
+        "firstCommit": "f9fdbeabe3721975f0d8d3cb168768666aa0b94b"
+      },
+      {
+        "path": "src/GWGUI.MediaEngine/Images/Conversion/Commodore/CoherentConversionService.cs",
+        "firstCommit": "e3392f8dd20330a51351e88bd6f6acb1c74d8e52"
+      },
+      {
+        "path": "src/GWGUI.MediaEngine/Images/Conversion/Commodore/D81ConversionService.cs",
+        "firstCommit": "c6e9c259c22d8060ef09a72801a6e7378fb73a90"
+      },
+      {
+        "path": "src/GWGUI.MediaEngine/Images/Conversion/DecRx02ConversionService.cs",
+        "firstCommit": "db4a76507b265f2d8c530ba211cbba7d15d45457"
+      },
+      {
+        "path": "src/GWGUI.MediaEngine/Images/Conversion/IbmRawConversionService.cs",
+        "firstCommit": "4ed108db7d7d77c71d2ac7b10953eea5b2119ad5"
+      },
+      {
+        "path": "src/GWGUI.MediaEngine/Images/Conversion/MsxRawConversionService.cs",
+        "firstCommit": "6c55e7f7638a6bc8dbf2e5b6d8a98df5b22fc40b"
+      }
+    ],
+    "semantic": "MediaEngine without semantic errors; all ten conditional results and both readers return SectorImage.",
+    "owner": "Existing MediaConversionService; no second conversion registry or contract.",
+    "decision": "Share only original extension-based reader choice, with deferred reader calls; return selected Task directly. Keep await ConfigureAwait(false), exact reader arguments, format validation and all writer calls in their original services.",
+    "excluded": "Apple signature routing, UCSD three-reader selection, and Amstrad detailed-container branch have different policies and remain unchanged.",
+    "state": "verified",
+    "after": [
+      {
+        "path": "src/GWGUI.MediaEngine/Images/Conversion/MsxRawConversionService.cs",
+        "method": "ConvertAsync",
+        "line": 17,
+        "sha256": "5803A0DECE353D3A57D1F3F0710FF7E734C11919C454D7D4C6B3F26C9A57ABFD",
+        "allOtherTokensIdentical": true
+      },
+      {
+        "path": "src/GWGUI.MediaEngine/Images/Conversion/IbmRawConversionService.cs",
+        "method": "ConvertAsync",
+        "line": 18,
+        "sha256": "DADC4BF0AD521599B361263B1CD9C558B7BF6DAE39ABBBB39C606FA0500AC2CC",
+        "allOtherTokensIdentical": true
+      },
+      {
+        "path": "src/GWGUI.MediaEngine/Images/Conversion/DecRx02ConversionService.cs",
+        "method": "ConvertAsync",
+        "line": 16,
+        "sha256": "66D7A9F1122D3B417EE7A9E2DF8F619085259C5B7CBDE29D84EA7652CE22DD23",
+        "allOtherTokensIdentical": true
+      },
+      {
+        "path": "src/GWGUI.MediaEngine/Images/Conversion/AmigaAdfConversionService.cs",
+        "method": "ConvertAsync",
+        "line": 17,
+        "sha256": "1B3393DB862D3D0B09D4036F5376A7B42042099B84825D0D0D19A34D302C3C13",
+        "allOtherTokensIdentical": true
+      },
+      {
+        "path": "src/GWGUI.MediaEngine/Images/Conversion/AmigaAdfConversionService.cs",
+        "method": "ConvertDetectedAsync",
+        "line": 24,
+        "sha256": "1B3393DB862D3D0B09D4036F5376A7B42042099B84825D0D0D19A34D302C3C13",
+        "allOtherTokensIdentical": true
+      },
+      {
+        "path": "src/GWGUI.MediaEngine/Images/Conversion/Commodore/D81ConversionService.cs",
+        "method": "ConvertAsync",
+        "line": 12,
+        "sha256": "C1B6CCBCCE2A561F878EB18170448B94958532A8E5FD5CEE5B8824123B243A38",
+        "allOtherTokensIdentical": true
+      },
+      {
+        "path": "src/GWGUI.MediaEngine/Images/Conversion/Commodore/CoherentConversionService.cs",
+        "method": "ConvertAsync",
+        "line": 16,
+        "sha256": "0C1C062DCE294B3FAF87A4D837C94296E7E920CA783D6EE41D6D26AA97CA6C3F",
+        "allOtherTokensIdentical": true
+      },
+      {
+        "path": "src/GWGUI.MediaEngine/Images/Conversion/Acorn/BbcDfsConversionService.cs",
+        "method": "ConvertAsync",
+        "line": 20,
+        "sha256": "CB09892725EE4220991BC2CD43F1F082130DB5ACDC4C0ABFF2DFA11B54AE7C7C",
+        "allOtherTokensIdentical": true
+      },
+      {
+        "path": "src/GWGUI.MediaEngine/Images/Conversion/Acorn/AcornAdfConversionService.cs",
+        "method": "ConvertAsync",
+        "line": 16,
+        "sha256": "170EDE3C4BAD578A245B42EB49F8AA6442DA578F53865EAA102BACFE2D2B7C8D",
+        "allOtherTokensIdentical": true
+      },
+      {
+        "path": "src/GWGUI.MediaEngine/Images/Conversion/Atari/AtrConversionService.cs",
+        "method": "ConvertAsync",
+        "line": 14,
+        "sha256": "CA5A3E9E01629E934311B931362487085869A228DC8618B67A8FD89EA17F1718",
+        "allOtherTokensIdentical": true
+      }
+    ],
+    "ast": "Original Amiga condition preserved; ten original reader argument lists and ConfigureAwait(false) preserved. Expanding shared source-selection calls restores all nine complete token streams; existing coordinator members unchanged after removing new helper/imports.",
+    "semanticAfter": "MediaEngine zero semantic errors; ten shared calls and all twenty original reader overloads resolved.",
+    "tests": "SectorSourceSelectionTests 12 plus MediaConversionServiceTests 3: 15 passed, exit 0. Selected Task/image identity, unfinished Task, case-insensitive SCP extension, other extensions, synchronous/asynchronous failures and cancellation token covered.",
+    "testCorrection": "First compilation rejected the synchronous-failure assertion as obsolete xUnit Func<Task> overload. Replaced with explicit void lambda Action; production unchanged.",
+    "resources": "Tests instantiate only in-memory SectorImage/Task values; controlled TaskCompletionSource released and awaited in finally. No file, window, process, thread, native DLL or emulator created. Reader/writer instances borrowed from callers remain under original ownership.",
+    "stageScope": "Shared reader-selection stage verified. Remaining typed writer/projection ownership still part of general audit; no whole-project completion claim."
   }
 }

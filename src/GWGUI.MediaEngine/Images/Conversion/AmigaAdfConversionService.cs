@@ -16,14 +16,14 @@ public sealed class AmigaAdfConversionService(AmigaScpSectorImageReader scpReade
     /// <summary>Reconstruit ou relit la source puis écrit l'ADF demandé.</summary>
     public async Task ConvertAsync(string sourcePath, string outputPath, string formatId, CancellationToken cancellationToken = default)
     {
-        var image = Path.GetExtension(sourcePath).Equals(DiskImageFileExtensions.Scp, StringComparison.OrdinalIgnoreCase) ? await scpReader.ReadAsync(sourcePath, cancellationToken).ConfigureAwait(false) : await reader.ReadAsync(sourcePath, cancellationToken).ConfigureAwait(false);
+        var image = await MediaConversionService.ReadSectorSourceAsync(sourcePath, () => scpReader.ReadAsync(sourcePath, cancellationToken), () => reader.ReadAsync(sourcePath, cancellationToken)).ConfigureAwait(false);
         await ConvertAsync(image, outputPath, formatId, cancellationToken).ConfigureAwait(false);
     }
 
     /// <summary>Reconstruit la source et conserve automatiquement sa géométrie Amiga DD ou HD.</summary>
     public async Task ConvertDetectedAsync(string sourcePath, string outputPath, CancellationToken cancellationToken = default)
     {
-        var image = Path.GetExtension(sourcePath).Equals(DiskImageFileExtensions.Scp, StringComparison.OrdinalIgnoreCase) ? await scpReader.ReadAsync(sourcePath, cancellationToken).ConfigureAwait(false) : await reader.ReadAsync(sourcePath, cancellationToken).ConfigureAwait(false);
+        var image = await MediaConversionService.ReadSectorSourceAsync(sourcePath, () => scpReader.ReadAsync(sourcePath, cancellationToken), () => reader.ReadAsync(sourcePath, cancellationToken)).ConfigureAwait(false);
         if (!image.FormatId.Equals(DiskImageFormatIds.AmigaDos, StringComparison.OrdinalIgnoreCase) && !image.FormatId.Equals(DiskImageFormatIds.AmigaDosHighDensity, StringComparison.OrdinalIgnoreCase))
             throw AmigaAdfWriterExceptions.FormatMismatch(image.FormatId, DiskImageFormatIds.AmigaDos);
         await writer.WriteAsync(image, outputPath, cancellationToken).ConfigureAwait(false);

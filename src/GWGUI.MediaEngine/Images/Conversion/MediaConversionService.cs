@@ -1,3 +1,6 @@
+using System.IO;
+using GWGUI.MediaEngine.Constants;
+using GWGUI.MediaEngine.Images.Models.Sectors;
 using GWGUI.MediaEngine.Images.Writing;
 using GWGUI.MediaEngine.Contracts;
 using GWGUI.MediaEngine.Enums;
@@ -20,6 +23,11 @@ public sealed class MediaConversionService
         this.writers = writers;
         this.writingService = writingService;
     }
+
+    internal static Task<SectorImage> ReadSectorSourceAsync(string sourcePath,
+        Func<Task<SectorImage>> readScp, Func<Task<SectorImage>> readImage)
+        => Path.GetExtension(sourcePath).Equals(DiskImageFileExtensions.Scp, StringComparison.OrdinalIgnoreCase)
+            ? readScp() : readImage();
 
     public IReadOnlyList<MediaConversionDestination> GetAvailableDestinations(MediaImageDocument document)
     {
