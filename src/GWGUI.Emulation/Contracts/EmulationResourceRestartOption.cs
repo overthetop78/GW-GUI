@@ -1,15 +1,17 @@
-namespace GWGUI.Emulation.Watara.Common.Contracts;
-public sealed record CoreOption(
+namespace GWGUI.Emulation.Contracts;
+
+public sealed record EmulationResourceRestartOption(
     string Key,
     string Name,
     string? Description,
     string? Category,
     string DefaultValue,
     string CurrentValue,
-    IReadOnlyList<CoreOptionValue> Values,
+    IReadOnlyList<EmulationResourceOptionValue> Values,
     bool IsVisible = true,
     string? CategorizedName = null,
     string? CategorizedDescription = null,
     bool RequiresRestart = false,
-    bool IsEnabled = true
+    string? ResourceKey = null,
+    string? ExplanationResourceKey = null
 );

@@ -1,9 +1,9 @@
 {
   "baseline": "ac7292d86^",
-  "currentCSharpFiles": 7332,
+  "currentCSharpFiles": 7327,
   "outsideSrcCSharpFiles": 299,
   "baselineMethodCount": 5848,
-  "currentMethodCount": 11620,
+  "currentMethodCount": 11622,
   "powerShellFunctionCount": 17,
   "groups": [
     {
@@ -1198,7 +1198,7 @@
     {
       "language": "CSharp",
       "hash": "0A9D4012A0EEF58659F6F622D06187BDA6844EE126F30B196EAE963950A66758",
-      "method": "AtariEmulationModule",
+      "method": "SegaEmulationModule",
       "tokens": 45,
       "current": [
         {
@@ -20467,7 +20467,7 @@
     {
       "language": "CSharp",
       "hash": "B053A3AB4F0B78A37DED57B2D744801187AED6EC54FEEAFE4B1AA9C454D6F48C",
-      "method": "PanasonicEmulationModule",
+      "method": "PhilipsEmulationModule",
       "tokens": 47,
       "current": [
         {
@@ -27206,7 +27206,7 @@
     {
       "language": "CSharp",
       "hash": "F107F4D7D97C4E9F797468C991DF2090B47DF6E3F6F74E56044EFF0C28CAA51D",
-      "method": "NotifyDestroy",
+      "method": "NotifyHardwareContextDestroy",
       "tokens": 31,
       "current": [
         {
@@ -35788,7 +35788,7 @@
         {
           "path": "src/GWGUI.App/Controllers/MainWindow/Read/ReadTabController.Execution.cs",
           "name": "ReportInternalProgress",
-          "line": 184,
+          "line": 191,
           "tokens": 84,
           "hash": "C8104B0BE0A25C5D2848FB9AE7381F46D7756E7F1284331DA63EA78AB7EC898F",
           "shape": "D3ECB58E2B3353535876416F8D0566A869D04AF215B962C12FF2D640EEE6EB7A"
@@ -37819,7 +37819,7 @@
   ],
   "scope": "All current repository CSharp and PowerShell files; no age filter; candidates require semantic review",
   "qualificationCarryForward": {
-    "occurrences": 93,
-    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical"
+    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical",
+    "occurrences": 93
   }
 }

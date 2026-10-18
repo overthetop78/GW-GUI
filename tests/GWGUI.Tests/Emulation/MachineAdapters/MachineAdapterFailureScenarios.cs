@@ -1,3 +1,4 @@
+using CoreOption = GWGUI.Emulation.Contracts.EmulationCategorizedOption;
 using GWGUI.App.Services.Emulation;
 using GWGUI.Emulation.Atari.Common.Machines.Common.Functions;
 using GWGUI.Emulation.Atari.Emulators.Common.Exceptions;

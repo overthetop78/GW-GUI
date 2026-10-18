@@ -42,3 +42,5 @@ global using CoreInstallProgress = global::GWGUI.Emulation.Contracts.EmulationCo
 
 global using CoreOptionCategory = GWGUI.Emulation.Contracts.EmulationOptionCategory;
 global using CoreOptionValue = GWGUI.Emulation.Contracts.EmulationResourceOptionValue;
+
+global using CoreOption = GWGUI.Emulation.Contracts.EmulationResourceRestartOption;

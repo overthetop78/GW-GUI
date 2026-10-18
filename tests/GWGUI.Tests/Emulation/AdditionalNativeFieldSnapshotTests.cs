@@ -37,9 +37,9 @@ public sealed class AdditionalNativeFieldSnapshotTests(ITestOutputHelper output)
             var arguments = Enumerable.Repeat<object?>(Type.Missing, constructor.GetParameters().Length).ToArray();
             arguments[0] = module == "Apple" ? Enum.Parse(modelType, "AppleII") : Enum.GetValues(modelType).GetValue(0);
             var configuration = constructor.Invoke(arguments);
-            var optionType = assembly.GetType(root + "Contracts.CoreOption", throwOnError: true)!;
             var native = assembly.GetType(root + "Machines.Common.Functions.SettingsDescriptionFunctions", throwOnError: true)!
                 .GetMethod("Native", BindingFlags.Static | BindingFlags.NonPublic)!;
+            var optionType = native.GetParameters()[1].ParameterType;
             Scenario[] scenarios =
             [
                 new("normal", ["enabled", "disabled"]),

@@ -1,3 +1,4 @@
+using CoreOption = GWGUI.Emulation.Contracts.EmulationCategorizedOption;
 using GWGUI.Emulation.Amstrad.Emulators.Common.Interop.Constants;
 using GWGUI.Emulation.Amstrad.Emulators.Common.Interop.Services;
 using System.Globalization;

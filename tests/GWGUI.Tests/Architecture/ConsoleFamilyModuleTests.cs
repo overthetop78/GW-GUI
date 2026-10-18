@@ -1,3 +1,4 @@
+using CoreOption = GWGUI.Emulation.Contracts.EmulationMachineOption;
 using CoreOptionValue = GWGUI.Emulation.Contracts.EmulationMachineOptionValue;
 using System.Reflection;
 using System.Net.Http;

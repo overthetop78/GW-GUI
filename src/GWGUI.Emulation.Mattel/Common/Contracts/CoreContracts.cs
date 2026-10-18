@@ -1,20 +1,5 @@
 namespace GWGUI.Emulation.Mattel.Common.Contracts;
 
-public sealed record CoreOption(
-    string Key,
-    string Name,
-    string? Description,
-    string? Category,
-    string DefaultValue,
-    string CurrentValue,
-    IReadOnlyList<CoreOptionValue> Values,
-    bool IsVisible = true,
-    string? CategorizedName = null,
-    string? CategorizedDescription = null,
-    string? ResourceKey = null,
-    string? ExplanationResourceKey = null,
-    bool RequiresRuntimeReload = false);
-
 
 
 

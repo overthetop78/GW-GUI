@@ -30,7 +30,7 @@ public sealed class NativeOptionFieldTests
             new(offValue, "Off", "Emulation.Value.Disabled", "NO")
         };
         if (thirdChoice) values.Add(new("automatic", "Automatic", "Visual.Automatic"));
-        var option = new SharpOptions.CoreOption(declared.Key, "Mode", null, "Video", offValue, "ignored",
+        var option = new EmulationResourceRestartOption(declared.Key, "Mode", null, "Video", offValue, "ignored",
             values, ResourceKey: "Native.Mode", ExplanationResourceKey: "Native.Mode.Help");
         var configuration = new SharpConfiguration(SharpModel.X68000,
             options: new Dictionary<string, string> { [declared.Key] = onValue });

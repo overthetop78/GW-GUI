@@ -1,3 +1,4 @@
+using CoreOption = GWGUI.Emulation.Contracts.EmulationMachineOption;
 using GWGUI.Emulation;
 using GWGUI.Emulation.Contracts;
 using GWGUI.Emulation.Enums;
