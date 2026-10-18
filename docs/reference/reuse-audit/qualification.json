@@ -12067,5 +12067,125 @@
     "ast": "Thirteen pairs retain original Path.IsPathFullyQualified/File.Exists predicates and exception expressions after substituting static factory path parameters. All other tokens of twelve probes and library class unchanged after restoring guards/removing new method. Constructor still loads only after validation; probes keep guards outside try and constructor retains second validation pass.",
     "semanticAfter": "SDK and all 23 modules zero semantic errors. Thirteen validations resolve to existing ExternalCoreLibrary owner; twenty-six exception constructor signatures unchanged. Lazy factories convert to Func<Exception>/Func<string,Exception>, preserving every module-specific error and SDK default types.",
     "tests": "Twenty-four tests passed, exit 0: seven new CoreLibraryPathValidation cases, seven ArchitectureValidation cases and ten existing CoreInstallationFlowTests. Relative/drive-relative/root-relative/empty paths and directory roots exercise refusal/order/context/factory failures; no file created or read, no DLL fixture or native library loaded. Success-path source conditions separately preserved by AST."
+  },
+  "probeMetadataReadingReuse": {
+    "state": "qualified-before-correction; twelve probe/runtime pairs only",
+    "snapshot": "238cf4f5b",
+    "before": [
+      {
+        "probe": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Functions/CoreFunctions.ExternalProbe.cs",
+        "probeSha256": "A132FE8DD81B5F1BFFF62665413ACA1861F24E326C3B3FBCF010537BE5A5AA44",
+        "functions": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Functions/CoreFunctions.cs",
+        "functionsSha256": "5F801DFC794501BA406AB54DA762B68CD52049588891203508A888EE76D6DA26",
+        "contract": "GWGUI.Emulation.Bandai.Emulators.Common.Interop.Contracts.ExternalCoreInfo",
+        "expectedName": "GWGUI.Emulation.Bandai.Emulators.Common.Interop.Functions.CoreFunctions.ExpectedLibraryName(GWGUI.Emulation.Bandai.Common.Machines.Common.Enums.Emulator)",
+        "metadataPairIdentical": true
+      },
+      {
+        "probe": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Functions/CoreFunctions.ExternalProbe.cs",
+        "probeSha256": "6DED46F551019CC8B5809FD00315ADA1B7EF3994D55FBAC2E3B618A7C4F5D1EC",
+        "functions": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Functions/CoreFunctions.cs",
+        "functionsSha256": "337AEE1B4B59424C58C3A090BC1BA91155B2A0C5A5DEA62662FEEA3AAC824554",
+        "contract": "GWGUI.Emulation.Fairchild.Emulators.Common.Interop.Contracts.ExternalCoreInfo",
+        "expectedName": "GWGUI.Emulation.Fairchild.Emulators.Common.Interop.Functions.CoreFunctions.ExpectedLibraryName(GWGUI.Emulation.Fairchild.Common.Machines.Common.Enums.Emulator)",
+        "metadataPairIdentical": true
+      },
+      {
+        "probe": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Functions/CoreFunctions.ExternalProbe.cs",
+        "probeSha256": "8727D25651FB3A7DB9A266A3D84197E4C9349438DC9B2180E2A989C3E8650A3F",
+        "functions": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Functions/CoreFunctions.cs",
+        "functionsSha256": "FCACE20024D4A956871BB268477D0FEE80682A109F18DE292D2F99E9644FE694",
+        "contract": "GWGUI.Emulation.Snk.Emulators.Common.Interop.Contracts.ExternalCoreInfo",
+        "expectedName": "GWGUI.Emulation.Snk.Emulators.Common.Interop.Functions.CoreFunctions.ExpectedLibraryName(GWGUI.Emulation.Snk.Common.Machines.Common.Enums.Emulator)",
+        "metadataPairIdentical": true
+      },
+      {
+        "probe": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Functions/CoreFunctions.ExternalProbe.cs",
+        "probeSha256": "4C39751470DB8EE0A912789DE738C2D33EEDEF3BFBD8301C704AE4C28D8124AC",
+        "functions": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Functions/CoreFunctions.cs",
+        "functionsSha256": "EEF897A5B9DC464FA1A7A16E1504D14773A7C47E462AEAD9A30150D229E19F7A",
+        "contract": "GWGUI.Emulation.Philips.Emulators.Common.Interop.Contracts.ExternalCoreInfo",
+        "expectedName": "GWGUI.Emulation.Philips.Emulators.Common.Interop.Functions.CoreFunctions.ExpectedLibraryName(GWGUI.Emulation.Philips.Common.Machines.Common.Enums.Emulator)",
+        "metadataPairIdentical": true
+      },
+      {
+        "probe": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Functions/CoreFunctions.ExternalProbe.cs",
+        "probeSha256": "505C130DB6808AEA7DC0DEA2B708191D0CA2F4A8FDC209D79D921276A7E1FA54",
+        "functions": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Functions/CoreFunctions.cs",
+        "functionsSha256": "DD6DC918627718FFDAE097AD8CC952CE24F87E21C82394E762A9E405E0E64929",
+        "contract": "GWGUI.Emulation.Atari.Emulators.Common.Interop.Contracts.ExternalCoreInfo",
+        "expectedName": "GWGUI.Emulation.Atari.Emulators.Common.Interop.Functions.CoreFunctions.ExpectedLibraryName(GWGUI.Emulation.Atari.Common.Machines.Common.Enums.Emulator)",
+        "metadataPairIdentical": true
+      },
+      {
+        "probe": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Functions/CoreFunctions.ExternalProbe.cs",
+        "probeSha256": "791F39EFF27557CA181D7FEC6B69197D2DEF5879CB4071111F1A7989FE0B434A",
+        "functions": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Functions/CoreFunctions.cs",
+        "functionsSha256": "8FCF928093E9195B793B5EAE02B5192975E1FE6D42C199DB41C6EFB8012BEDD9",
+        "contract": "GWGUI.Emulation.Mattel.Emulators.Common.Interop.Contracts.ExternalCoreInfo",
+        "expectedName": "GWGUI.Emulation.Mattel.Emulators.Common.Interop.Functions.CoreFunctions.ExpectedLibraryName(GWGUI.Emulation.Mattel.Common.Machines.Common.Enums.Emulator)",
+        "metadataPairIdentical": true
+      },
+      {
+        "probe": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Functions/CoreFunctions.ExternalProbe.cs",
+        "probeSha256": "917C7447130CA0A05F093F6BDE134A7375BDD1244ED64F61F40C1FC7B0CF0A89",
+        "functions": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Functions/CoreFunctions.cs",
+        "functionsSha256": "421405857900C20A512DCA09F5296C88142478B6C9B56382B6B0FED8EB50543F",
+        "contract": "GWGUI.Emulation.Epoch.Emulators.Common.Interop.Contracts.ExternalCoreInfo",
+        "expectedName": "GWGUI.Emulation.Epoch.Emulators.Common.Interop.Functions.CoreFunctions.ExpectedLibraryName(GWGUI.Emulation.Epoch.Common.Machines.Common.Enums.Emulator)",
+        "metadataPairIdentical": true
+      },
+      {
+        "probe": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Functions/CoreFunctions.ExternalProbe.cs",
+        "probeSha256": "F22B26E176BAB473FEEE42FEB5FBCBF10C99D03132D958568F75F99ED63429E9",
+        "functions": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Functions/CoreFunctions.cs",
+        "functionsSha256": "C40413CDB07027368BD18282F8B210FB2142BDB9F7A3B80FDB813EA9CDF30A8E",
+        "contract": "GWGUI.Emulation.Coleco.Emulators.Common.Interop.Contracts.ExternalCoreInfo",
+        "expectedName": "GWGUI.Emulation.Coleco.Emulators.Common.Interop.Functions.CoreFunctions.ExpectedLibraryName(GWGUI.Emulation.Coleco.Common.Machines.Common.Enums.Emulator)",
+        "metadataPairIdentical": true
+      },
+      {
+        "probe": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Functions/CoreFunctions.ExternalProbe.cs",
+        "probeSha256": "BAC6E8EAE4CCDC3F04F582E5AC8BF0C1E4234798CEA4A21C42BB9F146AA4CD91",
+        "functions": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Functions/CoreFunctions.cs",
+        "functionsSha256": "74F02444DA83025ACEE7ECA6A255E13B35AE856A63A5877180F9E0FEB764F9A3",
+        "contract": "GWGUI.Emulation.Sharp.Emulators.Common.Interop.Contracts.ExternalCoreInfo",
+        "expectedName": "GWGUI.Emulation.Sharp.Emulators.Common.Interop.Functions.CoreFunctions.ExpectedLibraryName(GWGUI.Emulation.Sharp.Common.Machines.Common.Enums.Emulator)",
+        "metadataPairIdentical": true
+      },
+      {
+        "probe": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Functions/CoreFunctions.ExternalProbe.cs",
+        "probeSha256": "E4E8134E93781A84BFFF1B26E597C1D25B4DCC76610113CFD9D850BED47B88E5",
+        "functions": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Functions/CoreFunctions.cs",
+        "functionsSha256": "704B500118F56B9EA30936CBA19E073E6022F7637AA51D0DD095490125777E30",
+        "contract": "GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Contracts.ExternalCoreInfo",
+        "expectedName": "GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Functions.CoreFunctions.ExpectedLibraryName(GWGUI.Emulation.Sinclair.Common.Machines.Common.Enums.Emulator)",
+        "metadataPairIdentical": true
+      },
+      {
+        "probe": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Functions/CoreFunctions.ExternalProbe.cs",
+        "probeSha256": "71B7A6AC4EA9CE2B42174AADFD3DD81E68B85FBCE1301EDC0D61CC555B88C959",
+        "functions": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Functions/CoreFunctions.cs",
+        "functionsSha256": "4B0B05757856C7D8D7D242C72D72272E452CD16CD6D85367140DACCAEEA648DF",
+        "contract": "GWGUI.Emulation.Acorn.Emulators.Common.Interop.Contracts.ExternalCoreInfo",
+        "expectedName": "GWGUI.Emulation.Acorn.Emulators.Common.Interop.Functions.CoreFunctions.ExpectedLibraryName(GWGUI.Emulation.Acorn.Common.Machines.Common.Enums.Emulator)",
+        "metadataPairIdentical": true
+      },
+      {
+        "probe": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Functions/CoreFunctions.ExternalProbe.cs",
+        "probeSha256": "4DEB774A44364CD627EAB6E19011C5450C6D3E1607040DCDBAA047866D1157E7",
+        "functions": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Functions/CoreFunctions.cs",
+        "functionsSha256": "2A719A5C4704EE6A9F472352159A2CE7B23FBB057ABFA680E5969636EFC68AA5",
+        "contract": "GWGUI.Emulation.Apple.Emulators.Common.Interop.Contracts.ExternalCoreInfo",
+        "expectedName": "GWGUI.Emulation.Apple.Emulators.Common.Interop.Functions.CoreFunctions.ExpectedLibraryName(GWGUI.Emulation.Apple.Common.Machines.Common.Enums.Emulator)",
+        "metadataPairIdentical": true
+      }
+    ],
+    "origin": "Atari probe metadata and ParseExtensions already present in 2a145e278, before ReadInitializedInfo introduced in 06251dce3. Exact original metadata matches all twelve pairs after type/owner/variable renames; original parser matches twelve current parsers after constants-owner rename.",
+    "semantic": "SDK and all 23 modules zero semantic errors. Twenty-four metadata sequences use the same GWGUI.Emulation.Interop.ExternalCoreApi.SystemInfo. Twelve typed six-field result contracts remain distinct, all parser returns IReadOnlySet<string>; separator and prefix constants are pipe and dot.",
+    "decision": "Reuse original probe sequence in existing SDK library owner with generic expected-value/result factories. ReadInitializedInfo keeps its single GetSystemInfo before delegation; Probe reads metadata within existing loaded-library scope. Expected-name resolution must remain after library-name UTF-8 copy and before identity comparison; errors/messages/context remain lazy and typed.",
+    "parser": "Keep original module ParseExtensions functions as delegates in this first metadata extraction. They are identical but remain a separate parser-sharing action, not silently replaced by a newer policy.",
+    "additional": "Repository search also finds thirteen LibraryVersion reads outside these pairs: four legacy probes and nine native ExternalCore classes. Examples differ in null-name policy/identity matcher and extensions-versus-version read order. Per-profile qualification still pending; no blanket metadata equivalence claim.",
+    "ownership": "Native pointer fields are borrowed. Copy strings while the library is loaded; retain existing initialization, get-info, error, unload/free ordering. Tests own/free their memory buffers in finally."
   }
 }
