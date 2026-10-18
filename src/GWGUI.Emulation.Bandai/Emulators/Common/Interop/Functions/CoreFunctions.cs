@@ -39,14 +39,7 @@ internal static class CoreFunctions
     internal static ExternalCoreExports ResolveExports(ExternalCoreLibrary library) => library.ResolveExports(requireLoadGameSpecial: false);
 
     internal static void InstallCallbacks(ExternalCoreExports exports, ExternalHostCallbacks callbacks)
-    {
-        exports.SetEnvironment(callbacks.Environment);
-        exports.SetVideo(callbacks.Video);
-        exports.SetAudioSample(callbacks.AudioSample);
-        exports.SetAudioBatch(callbacks.AudioBatch);
-        exports.SetInputPoll(callbacks.InputPoll);
-        exports.SetInputState(callbacks.InputState);
-    }
+    => ExternalCoreEnvironmentFunctions.InstallCallbacks(exports, callbacks);
 
     internal static bool WritePointer(nint destination, nint value)
         => ExternalCoreEnvironmentFunctions.WritePointer(destination, value);

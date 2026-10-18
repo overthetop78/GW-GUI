@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Interop;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
@@ -7,8 +8,15 @@ using NativeMedia = GWGUI.Emulation.Watara.Emulators.Potator.Functions.MediaRunt
 
 namespace GWGUI.Emulation.Watara.Emulators.Potator.Interop.Services;
 
-internal sealed class ExternalCore : IEmulatorCore, IEmulatorAudioBufferFeedback
+internal sealed class ExternalCore : IEmulatorCore, IEmulationCoreCallbacks, IEmulatorAudioBufferFeedback
 {
+    ExternalCoreApi.EnvironmentCallback IEmulationCoreCallbacks.Environment => _environment!.Callback;
+    ExternalCoreApi.VideoCallback IEmulationCoreCallbacks.Video => _video!.Callback;
+    ExternalCoreApi.AudioSampleCallback IEmulationCoreCallbacks.AudioSample => _audio!.SampleCallback;
+    ExternalCoreApi.AudioBatchCallback IEmulationCoreCallbacks.AudioBatch => _audio!.BatchCallback;
+    ExternalCoreApi.InputPollCallback IEmulationCoreCallbacks.InputPoll => _input!.PollCallback;
+    ExternalCoreApi.InputStateCallback IEmulationCoreCallbacks.InputState => _input!.StateCallback;
+
     private readonly string _path;
     private readonly ExternalCoreInfo _info;
     private ExternalCoreLibrary? _library;
@@ -59,12 +67,7 @@ internal sealed class ExternalCore : IEmulatorCore, IEmulatorAudioBufferFeedback
             _audio = new AudioCallbackHost();
             _environment = new EnvironmentCallbackHost(_video, _audio, configuration.Options, Path.Combine(sessionDirectory, "System"), Path.Combine(sessionDirectory, "Content"), saveDirectory ?? Path.Combine(sessionDirectory, "Saves"), Path.Combine(sessionDirectory, "Assets"));
             _input = new InputCallbackHost();
-            _exports.SetEnvironment(_environment.Callback);
-            _exports.SetVideo(_video.Callback);
-            _exports.SetAudioSample(_audio.SampleCallback);
-            _exports.SetAudioBatch(_audio.BatchCallback);
-            _exports.SetInputPoll(_input.PollCallback);
-            _exports.SetInputState(_input.StateCallback);
+            ExternalCoreEnvironmentFunctions.InstallCallbacks(_exports, this);
             _exports.Initialize();
             _initialized = true;
             for (var port = ControllerConstants.FirstPort; port < ControllerConstants.PortCount; port++) _exports.SetControllerPortDevice((uint)port, 1);

@@ -7,6 +7,17 @@ using GWGUI.Emulation.Constants;
 namespace GWGUI.Emulation.Functions;
 internal static class ExternalCoreEnvironmentFunctions
 {
+    internal static void InstallCallbacks(ExternalCoreExports exports, IEmulationCoreCallbacks callbacks)
+    {
+        exports.SetEnvironment(callbacks.Environment);
+        exports.SetVideo(callbacks.Video);
+        exports.SetAudioSample(callbacks.AudioSample);
+        exports.SetAudioBatch(callbacks.AudioBatch);
+        exports.SetInputPoll(callbacks.InputPoll);
+        exports.SetInputState(callbacks.InputState);
+    }
+
+
     internal static bool TryHandleStatelessCommand(uint command, nint data, uint coreOptionsVersion,
         uint messageInterfaceVersion, ulong inputCapabilities, out bool result)
     {

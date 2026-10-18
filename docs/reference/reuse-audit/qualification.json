@@ -6379,5 +6379,263 @@
     "policy": "Existing per-frame 1..1000 clamp retained; original TimeProvider duration, positive Thread.Sleep and late/equal deadline second timestamp retained. Does not instantiate a timer or thread, clock and wait callback are borrowed.",
     "sourceCommit": "bfa61c6fd",
     "method": "WaitForNextFrame"
+  },
+  "callbackInstallationReuse": {
+    "sdkOwner": "src/GWGUI.Emulation/Functions/ExternalCoreEnvironmentFunctions.cs",
+    "verification": "Original Atari sequence and six SDK signatures, twelve full callback/function comparisons and initialization/probe sites, four complete core comparisons with exact deferred field mapping and required SDK imports, previous SDK methods unchanged. 7 final managed tests pass; SDK/App/23 module references compile. Current scan: 11667 bodies, 531 exact candidate groups.",
+    "sourceCommit": "84351bb8b",
+    "ownership": "Callbacks and exports remain borrowed. No new state, callback instances or disposal. Each existing getter is read immediately before its setter; exceptions propagate immediately to the existing initialization/probe finally.",
+    "remaining": "Full initialization algorithms still pending; six-callback registration shared by the sixteen inspected hosts using ExternalCoreExports. Other native profiles remain outside this proof. The four separate-owner hosts retain their existing callback objects and cleanup.",
+    "contract": "src/GWGUI.Emulation/Interfaces/IEmulationCoreCallbacks.cs",
+    "method": "InstallCallbacks",
+    "originalOwner": "2a145e278:src/GWGUI.Emulation.Atari/Cores/AtariCoreFunctions.cs",
+    "consumers": [
+      {
+        "callbacks": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+        "functions": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Functions/CoreFunctions.cs",
+        "core": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/ExternalCore.cs",
+        "probe": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Functions/CoreFunctions.OptionProbe.cs",
+        "originalAtariBody": true,
+        "contractProperties": [
+          "Environment",
+          "Video",
+          "AudioSample",
+          "AudioBatch",
+          "InputPoll",
+          "InputState"
+        ],
+        "onlySixGetterAccessModifiersAndInterfaceAdded": true,
+        "otherMembersConstructorAndDisposeUnchanged": true,
+        "initializationAndProbeUnchanged": true
+      },
+      {
+        "callbacks": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+        "functions": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Functions/CoreFunctions.cs",
+        "core": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/ExternalCore.cs",
+        "probe": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Functions/CoreFunctions.OptionProbe.cs",
+        "originalAtariBody": true,
+        "contractProperties": [
+          "Environment",
+          "Video",
+          "AudioSample",
+          "AudioBatch",
+          "InputPoll",
+          "InputState"
+        ],
+        "onlySixGetterAccessModifiersAndInterfaceAdded": true,
+        "otherMembersConstructorAndDisposeUnchanged": true,
+        "initializationAndProbeUnchanged": true
+      },
+      {
+        "callbacks": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+        "functions": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Functions/CoreFunctions.cs",
+        "core": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/ExternalCore.cs",
+        "probe": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Functions/CoreFunctions.OptionProbe.cs",
+        "originalAtariBody": true,
+        "contractProperties": [
+          "Environment",
+          "Video",
+          "AudioSample",
+          "AudioBatch",
+          "InputPoll",
+          "InputState"
+        ],
+        "onlySixGetterAccessModifiersAndInterfaceAdded": true,
+        "otherMembersConstructorAndDisposeUnchanged": true,
+        "initializationAndProbeUnchanged": true
+      },
+      {
+        "callbacks": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+        "functions": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Functions/CoreFunctions.cs",
+        "core": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/ExternalCore.cs",
+        "probe": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Functions/CoreFunctions.OptionProbe.cs",
+        "originalAtariBody": true,
+        "contractProperties": [
+          "Environment",
+          "Video",
+          "AudioSample",
+          "AudioBatch",
+          "InputPoll",
+          "InputState"
+        ],
+        "onlySixGetterAccessModifiersAndInterfaceAdded": true,
+        "otherMembersConstructorAndDisposeUnchanged": true,
+        "initializationAndProbeUnchanged": true
+      },
+      {
+        "callbacks": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+        "functions": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Functions/CoreFunctions.cs",
+        "core": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/ExternalCore.cs",
+        "probe": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Functions/CoreFunctions.OptionProbe.cs",
+        "originalAtariBody": true,
+        "contractProperties": [
+          "Environment",
+          "Video",
+          "AudioSample",
+          "AudioBatch",
+          "InputPoll",
+          "InputState"
+        ],
+        "onlySixGetterAccessModifiersAndInterfaceAdded": true,
+        "otherMembersConstructorAndDisposeUnchanged": true,
+        "initializationAndProbeUnchanged": true
+      },
+      {
+        "callbacks": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+        "functions": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Functions/CoreFunctions.cs",
+        "core": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/ExternalCore.cs",
+        "probe": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Functions/CoreFunctions.OptionProbe.cs",
+        "originalAtariBody": true,
+        "contractProperties": [
+          "Environment",
+          "Video",
+          "AudioSample",
+          "AudioBatch",
+          "InputPoll",
+          "InputState"
+        ],
+        "onlySixGetterAccessModifiersAndInterfaceAdded": true,
+        "otherMembersConstructorAndDisposeUnchanged": true,
+        "initializationAndProbeUnchanged": true
+      },
+      {
+        "callbacks": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+        "functions": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Functions/CoreFunctions.cs",
+        "core": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/ExternalCore.cs",
+        "probe": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Functions/CoreFunctions.OptionProbe.cs",
+        "originalAtariBody": true,
+        "contractProperties": [
+          "Environment",
+          "Video",
+          "AudioSample",
+          "AudioBatch",
+          "InputPoll",
+          "InputState"
+        ],
+        "onlySixGetterAccessModifiersAndInterfaceAdded": true,
+        "otherMembersConstructorAndDisposeUnchanged": true,
+        "initializationAndProbeUnchanged": true
+      },
+      {
+        "callbacks": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+        "functions": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Functions/CoreFunctions.cs",
+        "core": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/ExternalCore.cs",
+        "probe": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Functions/CoreFunctions.OptionProbe.cs",
+        "originalAtariBody": true,
+        "contractProperties": [
+          "Environment",
+          "Video",
+          "AudioSample",
+          "AudioBatch",
+          "InputPoll",
+          "InputState"
+        ],
+        "onlySixGetterAccessModifiersAndInterfaceAdded": true,
+        "otherMembersConstructorAndDisposeUnchanged": true,
+        "initializationAndProbeUnchanged": true
+      },
+      {
+        "callbacks": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+        "functions": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Functions/CoreFunctions.cs",
+        "core": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/ExternalCore.cs",
+        "probe": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Functions/CoreFunctions.OptionProbe.cs",
+        "originalAtariBody": true,
+        "contractProperties": [
+          "Environment",
+          "Video",
+          "AudioSample",
+          "AudioBatch",
+          "InputPoll",
+          "InputState"
+        ],
+        "onlySixGetterAccessModifiersAndInterfaceAdded": true,
+        "otherMembersConstructorAndDisposeUnchanged": true,
+        "initializationAndProbeUnchanged": true
+      },
+      {
+        "callbacks": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+        "functions": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Functions/CoreFunctions.cs",
+        "core": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/ExternalCore.cs",
+        "probe": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Functions/CoreFunctions.OptionProbe.cs",
+        "originalAtariBody": true,
+        "contractProperties": [
+          "Environment",
+          "Video",
+          "AudioSample",
+          "AudioBatch",
+          "InputPoll",
+          "InputState"
+        ],
+        "onlySixGetterAccessModifiersAndInterfaceAdded": true,
+        "otherMembersConstructorAndDisposeUnchanged": true,
+        "initializationAndProbeUnchanged": true
+      },
+      {
+        "callbacks": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+        "functions": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Functions/CoreFunctions.cs",
+        "core": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/ExternalCore.cs",
+        "probe": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Functions/CoreFunctions.OptionProbe.cs",
+        "originalAtariBody": true,
+        "contractProperties": [
+          "Environment",
+          "Video",
+          "AudioSample",
+          "AudioBatch",
+          "InputPoll",
+          "InputState"
+        ],
+        "onlySixGetterAccessModifiersAndInterfaceAdded": true,
+        "otherMembersConstructorAndDisposeUnchanged": true,
+        "initializationAndProbeUnchanged": true
+      },
+      {
+        "callbacks": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+        "functions": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Functions/CoreFunctions.cs",
+        "core": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services/ExternalCore.cs",
+        "probe": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Functions/CoreFunctions.OptionProbe.cs",
+        "originalAtariBody": true,
+        "contractProperties": [
+          "Environment",
+          "Video",
+          "AudioSample",
+          "AudioBatch",
+          "InputPoll",
+          "InputState"
+        ],
+        "onlySixGetterAccessModifiersAndInterfaceAdded": true,
+        "otherMembersConstructorAndDisposeUnchanged": true,
+        "initializationAndProbeUnchanged": true
+      }
+    ],
+    "legacyConsumers": [
+      {
+        "path": "src/GWGUI.Emulation.Panasonic/Emulators/Opera/Interop/Services/ExternalCore.cs",
+        "deferredLookupsMatchPreviousArguments": true,
+        "getterTypesMatchSdkContract": true,
+        "remainingTokensIncludingInitializeAndFinallyUnchanged": true,
+        "callbacksRemainOwnedByExistingFields": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Interop/Services/ExternalCore.cs",
+        "deferredLookupsMatchPreviousArguments": true,
+        "getterTypesMatchSdkContract": true,
+        "remainingTokensIncludingInitializeAndFinallyUnchanged": true,
+        "callbacksRemainOwnedByExistingFields": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Watara/Emulators/Potator/Interop/Services/ExternalCore.cs",
+        "deferredLookupsMatchPreviousArguments": true,
+        "getterTypesMatchSdkContract": true,
+        "remainingTokensIncludingInitializeAndFinallyUnchanged": true,
+        "callbacksRemainOwnedByExistingFields": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Interop/Services/ExternalCore.cs",
+        "deferredLookupsMatchPreviousArguments": true,
+        "getterTypesMatchSdkContract": true,
+        "remainingTokensIncludingInitializeAndFinallyUnchanged": true,
+        "callbacksRemainOwnedByExistingFields": true
+      }
+    ]
   }
 }

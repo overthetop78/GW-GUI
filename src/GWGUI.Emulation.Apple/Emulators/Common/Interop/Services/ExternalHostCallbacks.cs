@@ -10,7 +10,7 @@ using GWGUI.Emulation.Services;
 
 namespace GWGUI.Emulation.Apple.Emulators.Common.Interop.Services;
 
-internal sealed partial class ExternalHostCallbacks : IDisposable
+internal sealed partial class ExternalHostCallbacks : IDisposable, IEmulationCoreCallbacks
 {
     private readonly CoreOptionHost _optionHost;
     private readonly VideoBufferSet _videoBuffers = new();
@@ -84,12 +84,12 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
         }
     }
 
-    internal ExternalCoreApi.EnvironmentCallback Environment { get; }
-    internal ExternalCoreApi.VideoCallback Video { get; }
-    internal ExternalCoreApi.AudioSampleCallback AudioSample { get; }
-    internal ExternalCoreApi.AudioBatchCallback AudioBatch { get; }
-    internal ExternalCoreApi.InputPollCallback InputPoll { get; }
-    internal ExternalCoreApi.InputStateCallback InputState { get; }
+    public ExternalCoreApi.EnvironmentCallback Environment { get; }
+    public ExternalCoreApi.VideoCallback Video { get; }
+    public ExternalCoreApi.AudioSampleCallback AudioSample { get; }
+    public ExternalCoreApi.AudioBatchCallback AudioBatch { get; }
+    public ExternalCoreApi.InputPollCallback InputPoll { get; }
+    public ExternalCoreApi.InputStateCallback InputState { get; }
     internal ExternalCoreApi.SetLedState SetLedState { get; }
     internal ExternalCoreApi.SetRumbleState SetRumbleState { get; }
     internal ExternalCoreApi.SetSensorState SetSensorState { get; }
