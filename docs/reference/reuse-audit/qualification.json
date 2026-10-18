@@ -4329,5 +4329,19 @@
     "compilation": "SDK, App and all 23 referenced modules compiled by targeted dotnet test",
     "ownedTestBuffers": "freed in finally",
     "afterProductBuild": "fc25eaa16"
+  },
+  "necNativeConfigurationReuse": {
+    "sourceCommit": "f23a9d075",
+    "semantics": "Clone native record before independent ordinal dictionary; Configure still copies dictionary before definitions and clones record after the unchanged loop. Native adapters inject no defaults.",
+    "originalOwnerCommit": "59e5bbb83",
+    "originalOwnerPath": "src/GWGUI.Emulation.Nec/Emulators/BeetlePcfx/Core/Functions/BeetlePcfxOptionFunctions.cs",
+    "verification": "8 targeted tests passed, including four explicit native snapshot profiles and four existing QuasiBasicMode profiles; all project references compiled. No external core or user file used.",
+    "owner": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Functions/CoreSettingsFunctions.cs",
+    "consumers": [
+      "src/GWGUI.Emulation.Nec/Emulators/BeetlePcfx/Functions/BeetlePcfxOptionFunctions.cs",
+      "src/GWGUI.Emulation.Nec/Emulators/BeetlePceFast/Functions/BeetlePceFastOptionFunctions.cs"
+    ],
+    "laterCopyCommit": "2a9191065",
+    "comparisons": "Original PC-FX and both prechange ToNative bodies have identical AST tokens. Every existing CoreSettings method is unchanged except Configure first dictionary initializer; its loop and final record clone are token-identical."
   }
 }

@@ -19,6 +19,12 @@ internal static class CoreSettingsFunctions
 
     internal static bool HasDefinitions(string emulatorId) => Definitions(emulatorId).Count != 0;
 
+    internal static MachineConfiguration CopyConfiguredOptions(MachineConfiguration configuration) =>
+        configuration with { Options = CopyOptionValues(configuration.Options) };
+
+    private static Dictionary<string, string> CopyOptionValues(IReadOnlyDictionary<string, string>? options) =>
+        new(options ?? new Dictionary<string, string>(), StringComparer.Ordinal);
+
     internal static IReadOnlyList<EmulationSettingsField> Fields(MachineConfiguration configuration,
         EmulationMachineTab tab,
         string blockId) => Definitions(configuration.EmulatorId).Where(option => option.Tab == tab && AppliesTo(option, configuration.Model)).Select(option => new EmulationSettingsField(
@@ -28,7 +34,7 @@ internal static class CoreSettingsFunctions
 
     internal static MachineConfiguration Configure(MachineConfiguration configuration)
     {
-        var options = new Dictionary<string, string>(configuration.Options ?? new Dictionary<string, string>(), StringComparer.Ordinal);
+        var options = CopyOptionValues(configuration.Options);
         foreach (var option in Definitions(configuration.EmulatorId))
         {
             var fallback = Default(configuration, option);

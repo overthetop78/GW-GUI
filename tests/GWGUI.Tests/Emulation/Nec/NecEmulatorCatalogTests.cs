@@ -63,6 +63,38 @@ public sealed class NecEmulatorCatalogTests
     }
 
     [Theory]
+    [InlineData("PcEngine", "beetle_pce_fast", false)]
+    [InlineData("PcEngine", "beetle_pce_fast", true)]
+    [InlineData("PcFx", "beetle_pcfx_fast", false)]
+    [InlineData("PcFx", "beetle_pcfx_fast", true)]
+    public void RuntimeOptionSnapshotsKeepOnlyExplicitOptionsAndNeverShareTheSourceDictionary(
+        string machine, string emulator, bool noOptions)
+    {
+        var options = noOptions ? null : new Dictionary<string, string>(StringComparer.Ordinal)
+        {
+            ["native_option"] = "first",
+            ["NATIVE_OPTION"] = "second"
+        };
+        var configuration = new MachineConfiguration(machine, emulator, options,
+            Id: Guid.Parse("10101010-2020-3030-4040-505050505050"), AudioEnabled: false);
+        var snapshot = emulator == "beetle_pce_fast"
+            ? GWGUI.Emulation.Nec.Emulators.BeetlePceFast.Functions.BeetlePceFastOptionFunctions.ToNative(configuration)
+            : GWGUI.Emulation.Nec.Emulators.BeetlePcfx.Functions.BeetlePcfxOptionFunctions.ToNative(configuration);
+        Assert.NotSame(configuration, snapshot);
+        Assert.Equal(configuration with { Options = snapshot.Options }, snapshot);
+        Assert.NotNull(snapshot.Options);
+        Assert.NotSame(options, snapshot.Options);
+        Assert.Equal(noOptions ? 0 : 2, snapshot.Options.Count);
+        if (!noOptions)
+        {
+            Assert.Equal("first", snapshot.Options["native_option"]);
+            Assert.Equal("second", snapshot.Options["NATIVE_OPTION"]);
+        }
+        Assert.IsAssignableFrom<IDictionary<string, string>>(snapshot.Options).Add("later", "value");
+        Assert.False(options?.ContainsKey("later") ?? false);
+    }
+
+    [Theory]
     [InlineData("quasi88", 13)]
     [InlineData("neko_project_ii", 11)]
     [InlineData("np2kai", 11)]
