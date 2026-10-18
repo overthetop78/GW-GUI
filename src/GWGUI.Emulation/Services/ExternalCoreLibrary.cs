@@ -9,6 +9,19 @@ internal sealed class ExternalCoreLibrary : IDisposable
 {
     private nint _handle;
 
+    internal static TInfo ReadInfo<TExpected, TInfo>(ExternalCoreApi.SystemInfo nativeInfo, TExpected expected,
+        Func<TExpected, string> expectedNameFor, Func<nint, IReadOnlySet<string>> parseExtensions,
+        Func<string, string, Exception> identityMismatch,
+        Func<TExpected, string, string, IReadOnlySet<string>, bool, bool, TInfo> create)
+    {
+        var libraryName = Marshal.PtrToStringUTF8(nativeInfo.LibraryName) ?? string.Empty;
+        var expectedName = expectedNameFor(expected);
+        if (!string.Equals(libraryName, expectedName, StringComparison.OrdinalIgnoreCase))
+            throw identityMismatch(expectedName, libraryName);
+        return create(expected, libraryName, Marshal.PtrToStringUTF8(nativeInfo.LibraryVersion) ?? string.Empty,
+            parseExtensions(nativeInfo.ValidExtensions), nativeInfo.NeedFullPath, nativeInfo.BlockExtract);
+    }
+
     internal static T Inspect<T>(string absolutePath, uint expectedApiVersion,
         Action<ExternalCoreLibrary> validateExports, Func<uint, Exception> unsupportedApi,
         Func<ExternalCoreApi.SystemInfo, T> readInfo)

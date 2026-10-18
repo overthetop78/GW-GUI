@@ -8,18 +8,20 @@ internal static class CoreFunctions
     internal static ExternalCoreInfo ReadInitializedInfo(ExternalCoreExports exports, Emulator expectedEmulator)
     {
         exports.GetSystemInfo(out var nativeInfo);
-        var libraryName = Marshal.PtrToStringUTF8(nativeInfo.LibraryName) ?? string.Empty;
-        var expectedName = ExpectedLibraryName(expectedEmulator);
-        if (!string.Equals(libraryName, expectedName, StringComparison.OrdinalIgnoreCase))
-            throw new EmulationException(ErrorCategory.Core, ErrorCode.CoreRejected,
+        return ReadInfo(nativeInfo, expectedEmulator);
+    }
+
+    internal static ExternalCoreInfo ReadInfo(GWGUI.Emulation.Interop.ExternalCoreApi.SystemInfo nativeInfo, Emulator expectedEmulator)
+        => ExternalCoreLibrary.ReadInfo(nativeInfo, expectedEmulator, ExpectedLibraryName, ParseExtensions,
+            static (expectedName, libraryName) => new EmulationException(ErrorCategory.Core, ErrorCode.CoreRejected,
                 ErrorMessages.CoreIdentityMismatch,
                 new Dictionary<string, string>
                 {
                     [ErrorContextConstants.Expected] = expectedName,
                     [ErrorContextConstants.Actual] = libraryName
-                });
-        return new ExternalCoreInfo(expectedEmulator, libraryName, Marshal.PtrToStringUTF8(nativeInfo.LibraryVersion) ?? string.Empty, ParseExtensions(nativeInfo.ValidExtensions), nativeInfo.NeedFullPath, nativeInfo.BlockExtract);
-    }
+                }),
+            static (emulator, libraryName, libraryVersion, extensions, needsFullPath, blocksArchiveExtraction)
+                => new ExternalCoreInfo(emulator, libraryName, libraryVersion, extensions, needsFullPath, blocksArchiveExtraction));
     internal static string CreateInvalidOptionValueMessage(string key, string value) => string.Format(CultureInfo.InvariantCulture, ErrorMessages.OptionValueInvalidFormat, key, value);
     internal static string ExpectedLibraryName(Emulator emulator) => CoreCatalog.Get(emulator).LibraryName;
 
