@@ -1408,7 +1408,7 @@
   ],
   "currentProjectReport": "current-project-groups.json",
   "currentReportScope": "All current repository CSharp and PowerShell files; no age filter; candidates require semantic review",
-  "currentExactCandidateGroups": 563,
+  "currentExactCandidateGroups": 562,
   "currentRenamedIdentifierCandidateGroups": 219,
   "currentQualificationStatus": "Manual semantic qualification remains incomplete. remaining-groups.json is the earlier historical checkpoint; current-project-groups.json covers all current CSharp and PowerShell files regardless of age.",
   "hostLoopComparison": "host-loop-comparison.json",
@@ -3173,5 +3173,156 @@
     "compilation": "MediaEngine, SDK, App and all 23 module references compiled by targeted dotnet test",
     "nativeApplicationsOrWindowsCreated": 0,
     "temporaryFilesCreated": 0
-  }
+  },
+  "hardwareControllerCloneReuse": [
+    {
+      "path": "src/GWGUI.Infrastructure/Hardware/GreaseweazleHardwareRegistry.cs",
+      "clonePropertiesUnchanged": true,
+      "allRemainingTokensUnchanged": true,
+      "owner": "GreaseweazleHardwareRegistry 993d1bb76",
+      "newInstance": true,
+      "availability": false
+    },
+    {
+      "path": "src/GWGUI.App/Services/Hardware/StartupHardwareMonitor.cs",
+      "clonePropertiesUnchanged": true,
+      "allRemainingTokensUnchanged": true,
+      "owner": "GreaseweazleHardwareRegistry 993d1bb76",
+      "newInstance": true,
+      "availability": false
+    }
+  ],
+  "hardwareControllerCloneVerification": {
+    "owner": "GreaseweazleHardwareRegistry 993d1bb76",
+    "testsPassed": 6,
+    "source": "06a31980a",
+    "tests": "existing simulated startup cancellation, configured identity and repeated discovery/network warning",
+    "realHardwareAccess": false,
+    "externalToolStarted": false,
+    "existingFixture": "Shutdown and Dispatcher shutdown in finally, thread Join and termination check",
+    "compilation": "Infrastructure, App and all referenced projects compiled by targeted dotnet test",
+    "afterProductBuild": "06a31980a"
+  },
+  "fileSystemTypedConstructorQualification": [
+    {
+      "hash": "CD8906CDB323F9FC13FC90049964CECF57F1CD558E065973392B971E6A3F4A4B",
+      "constructor": "FileSystemVolume",
+      "paths": [
+        "src/GWGUI.MediaFileSystems/Contracts/FileSystemVolume.cs",
+        "src/GWGUI.MediaEngine/Contracts/Explorer/FileSystemVolume.cs"
+      ],
+      "decision": "Retain typed contract initialization; no duplicated reusable production algorithm in these bodies",
+      "reason": "Public constructor parameters and copied collections use different recursively typed entries and enum/analysis contracts. Entry Children is init-only in MediaFileSystems and getter-only in MediaEngine. Construction assigns fields and delegates defensive copying to BCL collections.",
+      "symbols": [
+        {
+          "contract": "GWGUI.MediaEngine.Contracts.Explorer.FileSystemVolume",
+          "assembly": "gwgui.mediaengine",
+          "properties": [
+            {
+              "name": "Entries",
+              "type": "System.Collections.Generic.IReadOnlyList<GWGUI.MediaEngine.Contracts.Explorer.FileSystemEntry>",
+              "assembly": "System.Runtime",
+              "hasSetter": false,
+              "initOnly": false
+            }
+          ]
+        },
+        {
+          "contract": "GWGUI.MediaFileSystems.FileSystemVolume",
+          "assembly": "gwgui.mediafilesystems",
+          "properties": [
+            {
+              "name": "Entries",
+              "type": "System.Collections.Generic.IReadOnlyList<GWGUI.MediaFileSystems.FileSystemEntry>",
+              "assembly": "System.Runtime",
+              "hasSetter": false,
+              "initOnly": false
+            }
+          ]
+        }
+      ],
+      "sharedTraversal": "Existing IFileSystemEntryView and IFileSystemVolumeView already expose the common read-only operations",
+      "mapping": "FileSystemVolumeMapper explicitly maps both entry enums and recreates analysis records; ConvertVolume and ToFileSystemsVolume adapt the public models",
+      "dependency": "MediaEngine references MediaFileSystems; MediaFileSystems references MediaAnalysis and not MediaEngine",
+      "boundaryFiles": [
+        "src/GWGUI.MediaEngine/Contracts/Explorer/FileSystemVolumeMapper.cs",
+        "src/GWGUI.MediaEngine/GWGUI.MediaEngine.csproj",
+        "src/GWGUI.MediaFileSystems/GWGUI.MediaFileSystems.csproj"
+      ]
+    },
+    {
+      "hash": "F928600A8786776D9F646245A1902529A7051F2CD06EDC205C46B96000DA686F",
+      "constructor": "FileSystemEntry",
+      "paths": [
+        "src/GWGUI.MediaFileSystems/Contracts/FileSystemEntry.cs",
+        "src/GWGUI.MediaEngine/Contracts/Explorer/FileSystemEntry.cs"
+      ],
+      "decision": "Retain typed contract initialization; no duplicated reusable production algorithm in these bodies",
+      "reason": "Public constructor parameters and copied collections use different recursively typed entries and enum/analysis contracts. Entry Children is init-only in MediaFileSystems and getter-only in MediaEngine. Construction assigns fields and delegates defensive copying to BCL collections.",
+      "symbols": [
+        {
+          "contract": "GWGUI.MediaEngine.Contracts.Explorer.FileSystemEntry",
+          "assembly": "gwgui.mediaengine",
+          "properties": [
+            {
+              "name": "Kind",
+              "type": "GWGUI.MediaEngine.Enums.FileSystemEntryKind",
+              "assembly": "gwgui.mediaengine",
+              "hasSetter": false,
+              "initOnly": false
+            },
+            {
+              "name": "Children",
+              "type": "System.Collections.Generic.IReadOnlyList<GWGUI.MediaEngine.Contracts.Explorer.FileSystemEntry>",
+              "assembly": "System.Runtime",
+              "hasSetter": false,
+              "initOnly": false
+            },
+            {
+              "name": "Analysis",
+              "type": "GWGUI.MediaEngine.Contracts.Explorer.FileSystemEntryAnalysis?",
+              "assembly": "gwgui.mediaengine",
+              "hasSetter": true,
+              "initOnly": true
+            }
+          ]
+        },
+        {
+          "contract": "GWGUI.MediaFileSystems.FileSystemEntry",
+          "assembly": "gwgui.mediafilesystems",
+          "properties": [
+            {
+              "name": "Kind",
+              "type": "GWGUI.MediaFileSystems.FileSystemEntryKind",
+              "assembly": "gwgui.mediafilesystems",
+              "hasSetter": false,
+              "initOnly": false
+            },
+            {
+              "name": "Children",
+              "type": "System.Collections.Generic.IReadOnlyList<GWGUI.MediaFileSystems.FileSystemEntry>",
+              "assembly": "System.Runtime",
+              "hasSetter": true,
+              "initOnly": true
+            },
+            {
+              "name": "Analysis",
+              "type": "GWGUI.MediaFileSystems.Contracts.FileSystemEntryAnalysis?",
+              "assembly": "gwgui.mediafilesystems",
+              "hasSetter": true,
+              "initOnly": true
+            }
+          ]
+        }
+      ],
+      "sharedTraversal": "Existing IFileSystemEntryView and IFileSystemVolumeView already expose the common read-only operations",
+      "mapping": "FileSystemVolumeMapper explicitly maps both entry enums and recreates analysis records; ConvertVolume and ToFileSystemsVolume adapt the public models",
+      "dependency": "MediaEngine references MediaFileSystems; MediaFileSystems references MediaAnalysis and not MediaEngine",
+      "boundaryFiles": [
+        "src/GWGUI.MediaEngine/Contracts/Explorer/FileSystemVolumeMapper.cs",
+        "src/GWGUI.MediaEngine/GWGUI.MediaEngine.csproj",
+        "src/GWGUI.MediaFileSystems/GWGUI.MediaFileSystems.csproj"
+      ]
+    }
+  ]
 }

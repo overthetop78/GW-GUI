@@ -13,7 +13,7 @@ public sealed class GreaseweazleHardwareRegistry(ISerialDeviceDiscovery discover
     public async Task<HardwareScanResult> ScanAsync(string executable, IReadOnlyList<ControllerSettings> configuredControllers, CancellationToken cancellationToken = default)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(executable);
-        var controllers = configuredControllers.Select(CloneUnavailable).ToList();
+        var controllers = configuredControllers.Select(GWGUI.Infrastructure.Functions.Hardware.GreaseweazleHardwareScanFunctions.CloneUnavailable).ToList();
         var unconfigured = new List<ControllerSettings>();
         var serialDevices = await Task.Run(discovery.FindSerialDevices, cancellationToken);
         foreach (var serial in serialDevices.Where(GreaseweazleDeviceMatcher.IsCandidate))
@@ -41,19 +41,6 @@ public sealed class GreaseweazleHardwareRegistry(ISerialDeviceDiscovery discover
         }
         return new(controllers, unconfigured);
     }
-
-    private static ControllerSettings CloneUnavailable(ControllerSettings source) => new()
-    {
-        UsbId = source.UsbId,
-        UsbSerialNumber = source.UsbSerialNumber,
-        PnpDeviceId = source.PnpDeviceId,
-        LastUsbLocation = source.LastUsbLocation,
-        VendorId = source.VendorId,
-        ProductId = source.ProductId,
-        LastPort = source.LastPort,
-        Model = source.Model,
-        IsAvailable = false
-    };
 
     private static bool Matches(ControllerSettings controller, SerialDevice serial, string? confirmedSerial)
     {

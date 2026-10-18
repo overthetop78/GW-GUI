@@ -1,10 +1,24 @@
 using GWGUI.Infrastructure.Commands.Execution;
 using GWGUI.Infrastructure.Hardware;
+using GWGUI.Infrastructure.Settings.Hardware;
 
 namespace GWGUI.Infrastructure.Functions.Hardware;
 
-internal static class GreaseweazleHardwareScanFunctions
+public static class GreaseweazleHardwareScanFunctions
 {
+    public static ControllerSettings CloneUnavailable(ControllerSettings source) => new()
+    {
+        UsbId = source.UsbId,
+        UsbSerialNumber = source.UsbSerialNumber,
+        PnpDeviceId = source.PnpDeviceId,
+        LastUsbLocation = source.LastUsbLocation,
+        VendorId = source.VendorId,
+        ProductId = source.ProductId,
+        LastPort = source.LastPort,
+        Model = source.Model,
+        IsAvailable = false
+    };
+
     internal static bool CanUseInfo(GwExecutionResult result, GwDeviceInfo information, SerialDevice serialDevice)
     {
         if (result.IsSuccess) return true;

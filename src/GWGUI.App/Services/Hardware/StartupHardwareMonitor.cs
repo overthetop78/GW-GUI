@@ -21,7 +21,7 @@ public sealed class StartupHardwareMonitor(IHardwareRegistry registry, ISettings
 
         var scan = await registry.ScanAsync(settings.GwExecutablePath!, settings.Controllers, cancellationToken);
         settings.Controllers = scan.ConfiguredControllers.ToList();
-        var remembered = settings.UnconfiguredControllers.Select(CloneUnavailable).ToList();
+        var remembered = settings.UnconfiguredControllers.Select(GWGUI.Infrastructure.Functions.Hardware.GreaseweazleHardwareScanFunctions.CloneUnavailable).ToList();
         var newControllers = new List<ControllerSettings>();
         foreach (var detected in scan.UnconfiguredControllers)
         {
@@ -35,13 +35,6 @@ public sealed class StartupHardwareMonitor(IHardwareRegistry registry, ISettings
     }
 
     public static bool SameController(ControllerSettings left, ControllerSettings right) => Same(left.UsbId, right.UsbId) || Same(left.UsbSerialNumber, right.UsbSerialNumber) || Same(left.PnpDeviceId, right.PnpDeviceId);
-
-    private static ControllerSettings CloneUnavailable(ControllerSettings source) => new()
-    {
-        UsbId = source.UsbId, UsbSerialNumber = source.UsbSerialNumber, PnpDeviceId = source.PnpDeviceId,
-        LastUsbLocation = source.LastUsbLocation, VendorId = source.VendorId, ProductId = source.ProductId,
-        LastPort = source.LastPort, Model = source.Model, IsAvailable = false
-    };
 
     private static void CopyDetection(ControllerSettings source, ControllerSettings target)
     {
