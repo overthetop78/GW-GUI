@@ -10469,7 +10469,8 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "empty-void-method-no-algorithm"
         },
         {
           "path": "src/GWGUI.App/Interfaces/Rendering/Emulation/IEmulationVideoProcessingPipeline.cs",
@@ -10481,7 +10482,8 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "empty-void-method-no-algorithm"
         },
         {
           "path": "src/GWGUI.App/Interfaces/Rendering/Emulation/IEmulationVideoSurface.cs",
@@ -10493,7 +10495,8 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "empty-void-method-no-algorithm"
         },
         {
           "path": "src/GWGUI.App/Interfaces/Rendering/Emulation/IEmulationVideoSurface.cs",
@@ -10505,7 +10508,8 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "empty-void-method-no-algorithm"
         },
         {
           "path": "src/GWGUI.App/Rendering/Emulation/Processing/PassthroughEmulationVideoProcessingPipeline.cs",
@@ -10517,7 +10521,8 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "empty-void-method-no-algorithm"
         },
         {
           "path": "src/GWGUI.App/Services/Emulation/MachineSession.cs",
@@ -10649,7 +10654,8 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "empty-void-method-no-algorithm"
         },
         {
           "path": "src/GWGUI.Emulation.Apple/Common/Machines/Common/Contracts/ConfigurationContracts.cs",
@@ -10673,7 +10679,8 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "empty-void-method-no-algorithm"
         },
         {
           "path": "src/GWGUI.Emulation.Apple/Emulators/MiniVmac/Functions/ConfigurationFunctions.cs",
@@ -10685,7 +10692,8 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "empty-void-method-no-algorithm"
         },
         {
           "path": "src/GWGUI.Emulation.Atari/Common/Machines/Common/Contracts/ConfigurationContracts.cs",
@@ -10709,7 +10717,8 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "empty-void-method-no-algorithm"
         },
         {
           "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Factories/MachineFactory.cs",
@@ -10721,7 +10730,8 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "empty-void-method-no-algorithm"
         },
         {
           "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Factories/MachineFactory.cs",
@@ -10733,7 +10743,8 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "empty-void-method-no-algorithm"
         },
         {
           "path": "src/GWGUI.Emulation.Bandai/Common/Machines/Common/Contracts/ConfigurationContracts.cs",
@@ -10757,7 +10768,8 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "empty-void-method-no-algorithm"
         },
         {
           "path": "src/GWGUI.Emulation.Coleco/Common/Machines/Common/Contracts/ConfigurationContracts.cs",
@@ -10781,7 +10793,8 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "empty-void-method-no-algorithm"
         },
         {
           "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Factories/MachineFactory.cs",
@@ -10793,7 +10806,8 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "empty-void-method-no-algorithm"
         },
         {
           "path": "src/GWGUI.Emulation.Epoch/Common/Machines/Common/Contracts/ConfigurationContracts.cs",
@@ -10817,7 +10831,8 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "empty-void-method-no-algorithm"
         },
         {
           "path": "src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Contracts/ConfigurationContracts.cs",
@@ -10841,7 +10856,8 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "empty-void-method-no-algorithm"
         },
         {
           "path": "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Contracts/ConfigurationContracts.cs",
@@ -10913,7 +10929,8 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "empty-void-method-no-algorithm"
         },
         {
           "path": "src/GWGUI.Emulation.Sinclair/Emulators/EightyOne/Factories/EightyOneMachineFactory.cs",
@@ -10925,7 +10942,8 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "empty-void-method-no-algorithm"
         },
         {
           "path": "src/GWGUI.Emulation.Snk/Common/Machines/Common/Contracts/ConfigurationContracts.cs",
@@ -10949,7 +10967,8 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "empty-void-method-no-algorithm"
         },
         {
           "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Factories/LibretroMachineFactory.cs",
@@ -10961,7 +10980,8 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "empty-void-method-no-algorithm"
         },
         {
           "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
@@ -10985,7 +11005,8 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "empty-void-method-no-algorithm"
         },
         {
           "path": "src/GWGUI.Emulation.Snk/Emulators/Race/Factories/RaceMachineFactory.cs",
@@ -10997,7 +11018,8 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "empty-void-method-no-algorithm"
         },
         {
           "path": "src/GWGUI.Emulation.Sony/Common/Interfaces/IEmulatorSettingsAdapter.cs",
@@ -11009,7 +11031,8 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "empty-void-method-no-algorithm"
         },
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Factories/CoreMachineFactory.cs",
@@ -11021,7 +11044,8 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "empty-void-method-no-algorithm"
         },
         {
           "path": "src/GWGUI.Emulation.Thomson/Common/Machines/Common/Contracts/ConfigurationContracts.cs",
@@ -11057,7 +11081,8 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "empty-void-method-no-algorithm"
         },
         {
           "path": "src/GWGUI.Emulation.Wenquxing/Common/Machines/Common/Contracts/ConfigurationContracts.cs",
@@ -11105,7 +11130,8 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "empty-void-method-no-algorithm"
         },
         {
           "path": "src/GWGUI.Emulation/HardDisks/FileSystems/Amiga/FastFileSystem/FastFileSystemVolume.cs",
@@ -11117,7 +11143,8 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "empty-void-method-no-algorithm"
         },
         {
           "path": "src/GWGUI.Emulation/HardDisks/FileSystems/Amiga/Pfs3/Blocks/Pfs3DirEntry.cs",
@@ -11165,7 +11192,8 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "empty-void-method-no-algorithm"
         },
         {
           "path": "src/GWGUI.Emulation/HardDisks/FileSystems/Amiga/Pfs3/Pfs3EntryStream.cs",
@@ -11177,7 +11205,8 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "empty-void-method-no-algorithm"
         },
         {
           "path": "src/GWGUI.Emulation/HardDisks/FileSystems/Amiga/Pfs3/Pfs3ExtraFields.cs",
@@ -11309,7 +11338,8 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "empty-void-method-no-algorithm"
         },
         {
           "path": "src/GWGUI.Emulation/Services/ExternalCoreUtf8String.cs",
@@ -11789,7 +11819,8 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "empty-void-method-no-algorithm"
         },
         {
           "path": "src/GWGUI.MediaFileSystems/Exploration/SectorFileSystemRegistry.cs",
@@ -11813,7 +11844,8 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "empty-void-method-no-algorithm"
         },
         {
           "path": "tests/GWGUI.LocalDiskImageTests/WpfResourceCleanupSelfTests.cs",
@@ -11825,7 +11857,8 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "empty-void-method-no-algorithm"
         },
         {
           "path": "tests/GWGUI.Tests/Application/Launcher/LauncherDecisionScenarios.cs",
@@ -11837,7 +11870,8 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "empty-void-method-no-algorithm"
         },
         {
           "path": "tests/GWGUI.Tests/Application/TestInfrastructure/StaExecutionScenarios.cs",
@@ -11849,7 +11883,8 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "empty-void-method-no-algorithm"
         },
         {
           "path": "tests/GWGUI.Tests/Emulation/Amstrad/AmstradEmulatorAdapterTests.cs",
@@ -11861,7 +11896,8 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "empty-void-method-no-algorithm"
         },
         {
           "path": "tests/GWGUI.Tests/Emulation/Amstrad/AmstradEmulatorAdapterTests.cs",
@@ -11873,7 +11909,8 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "empty-void-method-no-algorithm"
         },
         {
           "path": "tests/GWGUI.Tests/Emulation/Amstrad/AmstradEmulatorAdapterTests.cs",
@@ -11885,7 +11922,8 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "empty-void-method-no-algorithm"
         },
         {
           "path": "tests/GWGUI.Tests/Emulation/Amstrad/AmstradEmulatorAdapterTests.cs",
@@ -11897,7 +11935,8 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "empty-void-method-no-algorithm"
         },
         {
           "path": "tests/GWGUI.Tests/Emulation/Amstrad/AmstradEmulatorAdapterTests.cs",
@@ -11909,7 +11948,8 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "empty-void-method-no-algorithm"
         },
         {
           "path": "tests/GWGUI.Tests/Emulation/Amstrad/AmstradEmulatorAdapterTests.cs",
@@ -11921,7 +11961,8 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "empty-void-method-no-algorithm"
         },
         {
           "path": "tests/GWGUI.Tests/Emulation/Amstrad/AmstradEmulatorAdapterTests.cs",
@@ -11933,7 +11974,8 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "empty-void-method-no-algorithm"
         },
         {
           "path": "tests/GWGUI.Tests/Emulation/Amstrad/AmstradEmulatorAdapterTests.cs",
@@ -11945,7 +11987,8 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "empty-void-method-no-algorithm"
         },
         {
           "path": "tests/GWGUI.Tests/Emulation/ControllerInput/ControllerFeedbackOutputTests.cs",
@@ -11957,7 +12000,8 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "empty-void-method-no-algorithm"
         },
         {
           "path": "tests/GWGUI.Tests/Emulation/ModuleConfigurationReviewTests.cs",
@@ -11969,7 +12013,8 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "empty-void-method-no-algorithm"
         },
         {
           "path": "tests/GWGUI.Tests/Emulation/ModuleConfigurationReviewTests.cs",
@@ -11981,7 +12026,8 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "empty-void-method-no-algorithm"
         },
         {
           "path": "tests/GWGUI.Tests/Emulation/ModuleConfigurationReviewTests.cs",
@@ -11993,7 +12039,8 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "empty-void-method-no-algorithm"
         },
         {
           "path": "tests/GWGUI.Tests/Emulation/ModuleConfigurationReviewTests.cs",
@@ -12005,7 +12052,8 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "empty-void-method-no-algorithm"
         },
         {
           "path": "tests/GWGUI.Tests/Emulation/Nintendo/NintendoEmulatorCatalogTests.cs",
@@ -12017,7 +12065,8 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "empty-void-method-no-algorithm"
         },
         {
           "path": "tests/GWGUI.Tests/Emulation/Nintendo/NintendoEmulatorCatalogTests.cs",
@@ -12029,7 +12078,8 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "empty-void-method-no-algorithm"
         },
         {
           "path": "tests/GWGUI.Tests/Emulation/Nintendo/NintendoEmulatorCatalogTests.cs",
@@ -12041,7 +12091,8 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "empty-void-method-no-algorithm"
         },
         {
           "path": "tests/GWGUI.Tests/Emulation/Nintendo/NintendoEmulatorCatalogTests.cs",
@@ -12053,7 +12104,8 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "empty-void-method-no-algorithm"
         },
         {
           "path": "tests/GWGUI.Tests/Emulation/Sega/SegaMachineLifecycleTests.cs",
@@ -12065,7 +12117,8 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "empty-void-method-no-algorithm"
         },
         {
           "path": "tests/GWGUI.Tests/Emulation/Sega/SegaMachineLifecycleTests.cs",
@@ -12077,7 +12130,8 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "empty-void-method-no-algorithm"
         },
         {
           "path": "tests/GWGUI.Tests/Emulation/Sega/SegaMachineLifecycleTests.cs",
@@ -12089,7 +12143,8 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "empty-void-method-no-algorithm"
         },
         {
           "path": "tests/GWGUI.Tests/Emulation/Sega/SegaMachineLifecycleTests.cs",
@@ -12101,7 +12156,8 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "empty-void-method-no-algorithm"
         },
         {
           "path": "tests/GWGUI.Tests/Emulation/Sega/SegaMachineLifecycleTests.cs",
@@ -12113,7 +12169,8 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "empty-void-method-no-algorithm"
         },
         {
           "path": "tests/GWGUI.Tests/Emulation/Sega/SegaMachineLifecycleTests.cs",
@@ -12125,7 +12182,8 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "empty-void-method-no-algorithm"
         },
         {
           "path": "tests/GWGUI.Tests/Emulation/Sega/SegaMachineLifecycleTests.cs",
@@ -12137,7 +12195,8 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "empty-void-method-no-algorithm"
         },
         {
           "path": "tests/GWGUI.Tests/Emulation/Sega/SegaMachineLifecycleTests.cs",
@@ -12149,7 +12208,8 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "empty-void-method-no-algorithm"
         },
         {
           "path": "tests/GWGUI.Tests/Emulation/Sega/SegaMachineLifecycleTests.cs",
@@ -12161,7 +12221,8 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "empty-void-method-no-algorithm"
         },
         {
           "path": "tests/GWGUI.Tests/Emulation/Sega/SegaMachineLifecycleTests.cs",
@@ -12173,7 +12234,8 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "empty-void-method-no-algorithm"
         },
         {
           "path": "tests/GWGUI.Tests/Emulation/Sega/SegaMachineLifecycleTests.cs",
@@ -12185,7 +12247,8 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "empty-void-method-no-algorithm"
         },
         {
           "path": "tests/GWGUI.Tests/Emulation/Sega/SegaMachineLifecycleTests.cs",
@@ -12197,7 +12260,8 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "empty-void-method-no-algorithm"
         },
         {
           "path": "tests/GWGUI.Tests/Emulation/Sega/SegaMachineLifecycleTests.cs",
@@ -12209,7 +12273,8 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "empty-void-method-no-algorithm"
         },
         {
           "path": "tests/GWGUI.Tests/Emulation/Sony/ControllerFeedbackTests.cs",
@@ -12221,7 +12286,8 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "empty-void-method-no-algorithm"
         },
         {
           "path": "tests/GWGUI.Tests/Emulation/Sony/ControllerFeedbackTests.cs",
@@ -12233,7 +12299,8 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "empty-void-method-no-algorithm"
         },
         {
           "path": "tests/GWGUI.Tests/Emulation/Sony/ControllerFeedbackTests.cs",
@@ -12245,7 +12312,8 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "empty-void-method-no-algorithm"
         },
         {
           "path": "tests/GWGUI.Tests/Emulation/Sony/ControllerFeedbackTests.cs",
@@ -12257,7 +12325,8 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "empty-void-method-no-algorithm"
         },
         {
           "path": "tests/GWGUI.Tests/Emulation/Sony/ControllerFeedbackTests.cs",
@@ -12269,7 +12338,8 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "empty-void-method-no-algorithm"
         },
         {
           "path": "tests/GWGUI.Tests/Emulation/Sony/ControllerFeedbackTests.cs",
@@ -12281,7 +12351,8 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "empty-void-method-no-algorithm"
         },
         {
           "path": "tests/GWGUI.Tests/Emulation/Sony/ControllerFeedbackTests.cs",
@@ -12293,7 +12364,8 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "empty-void-method-no-algorithm"
         },
         {
           "path": "tests/GWGUI.Tests/Emulation/Sony/MultichannelAudioTests.cs",
@@ -12305,7 +12377,8 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "empty-void-method-no-algorithm"
         },
         {
           "path": "tests/GWGUI.Tests/Emulation/Sony/MultichannelAudioTests.cs",
@@ -12317,7 +12390,8 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "empty-void-method-no-algorithm"
         },
         {
           "path": "tests/GWGUI.Tests/Emulation/Sony/MultichannelAudioTests.cs",
@@ -12329,7 +12403,8 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "empty-void-method-no-algorithm"
         },
         {
           "path": "tests/GWGUI.Tests/Emulation/Sony/MultichannelAudioTests.cs",
@@ -12341,7 +12416,8 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "empty-void-method-no-algorithm"
         },
         {
           "path": "tests/GWGUI.Tests/Emulation/Sony/MultichannelAudioTests.cs",
@@ -12353,7 +12429,8 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "empty-void-method-no-algorithm"
         },
         {
           "path": "tests/GWGUI.Tests/Emulation/Sony/MultichannelAudioTests.cs",
@@ -12365,7 +12442,8 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "empty-void-method-no-algorithm"
         },
         {
           "path": "tests/GWGUI.Tests/Emulation/Sony/NativeShutdownTests.cs",
@@ -12377,7 +12455,8 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "empty-void-method-no-algorithm"
         },
         {
           "path": "tests/GWGUI.Tests/Emulation/Sony/NativeShutdownTests.cs",
@@ -12389,7 +12468,8 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "empty-void-method-no-algorithm"
         },
         {
           "path": "tests/GWGUI.Tests/Interface/EmulationViews/HiddenMachineRenderingTests.cs",
@@ -12401,7 +12481,8 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "empty-void-method-no-algorithm"
         },
         {
           "path": "tests/GWGUI.Tests/Interface/EmulationViews/HiddenMachineRenderingTests.cs",
@@ -12413,10 +12494,11 @@
           "tokens": 2,
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "qualification": "empty-void-method-no-algorithm"
         }
       ],
-      "qualification": "pending-symbol-and-ownership-comparison"
+      "qualification": "partial-82-empty-void-methods-qualified-81-constructors-pending"
     },
     {
       "hash": "26400A65D37A9AF373A217903DE3BDDC19845DABB020EF2FB3623606AAB8546C",

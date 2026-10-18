@@ -8266,5 +8266,1216 @@
     "tests": "Eight existing HardwareSelectionTests cases passed, exit 0; SDK/App/all 23 module references compiled",
     "resources": "Discovery, command runner, file existence and settings store simulated; no real executable/device or new test. Existing WPF fixture closes resources in finally and joins its thread, verified in source.",
     "afterProductBuild": "005e3c677"
+  },
+  "emptyMethodBodyQualification": {
+    "scope": "Only empty void MethodDeclaration bodies; syntax proof of absence of executable statements, not semantic validation of contracts, resources or feature support.",
+    "verifiedCommit": "1182bca7a31e4eb116fe85f06c54486a22fb6f4f",
+    "methodCount": 82,
+    "excludedConstructorCount": 81,
+    "excludedReason": "Constructor initializers and construction responsibilities are outside the empty block.",
+    "declarations": [
+      {
+        "path": "src/GWGUI.App/Contracts/Input/GameInput/IGameInputControllerSource.cs",
+        "line": 5,
+        "name": "StartMonitoring",
+        "owner": "IGameInputControllerSource",
+        "declaration": "void StartMonitoring()",
+        "containingDeclarations": [
+          "interface IGameInputControllerSource"
+        ],
+        "sourceSha256": "FFAF04529779DE3E70D49CAB35B4634AC4E7672C1051673C9C760550D5758F06",
+        "statements": 0,
+        "containsDirectives": false,
+        "decision": "no-executable-body-to-centralize"
+      },
+      {
+        "path": "src/GWGUI.App/Interfaces/Rendering/Emulation/IEmulationVideoProcessingPipeline.cs",
+        "line": 8,
+        "name": "ResetTemporalHistory",
+        "owner": "IEmulationVideoProcessingPipeline",
+        "declaration": "void ResetTemporalHistory()",
+        "containingDeclarations": [
+          "interface IEmulationVideoProcessingPipeline"
+        ],
+        "sourceSha256": "8D1282A1F305622B49996DCB2B384A617B657D43702C5461C162224E7B03C12A",
+        "statements": 0,
+        "containsDirectives": false,
+        "decision": "no-executable-body-to-centralize"
+      },
+      {
+        "path": "src/GWGUI.App/Interfaces/Rendering/Emulation/IEmulationVideoSurface.cs",
+        "line": 20,
+        "name": "ResetHistory",
+        "owner": "IEmulationVideoSurface",
+        "declaration": "void ResetHistory()",
+        "containingDeclarations": [
+          "interface IEmulationVideoSurface"
+        ],
+        "sourceSha256": "341325D324BDE3D9E1E3EB9F2BC603F2C0D2EF422D8893CD0595401B606E9140",
+        "statements": 0,
+        "containsDirectives": false,
+        "decision": "no-executable-body-to-centralize"
+      },
+      {
+        "path": "src/GWGUI.App/Interfaces/Rendering/Emulation/IEmulationVideoSurface.cs",
+        "line": 21,
+        "name": "SuspendPresentation",
+        "owner": "IEmulationVideoSurface",
+        "declaration": "void SuspendPresentation()",
+        "containingDeclarations": [
+          "interface IEmulationVideoSurface"
+        ],
+        "sourceSha256": "341325D324BDE3D9E1E3EB9F2BC603F2C0D2EF422D8893CD0595401B606E9140",
+        "statements": 0,
+        "containsDirectives": false,
+        "decision": "no-executable-body-to-centralize"
+      },
+      {
+        "path": "src/GWGUI.App/Rendering/Emulation/Processing/PassthroughEmulationVideoProcessingPipeline.cs",
+        "line": 19,
+        "name": "Dispose",
+        "owner": "PassthroughEmulationVideoProcessingPipeline",
+        "declaration": "public void Dispose()",
+        "containingDeclarations": [
+          "class PassthroughEmulationVideoProcessingPipeline"
+        ],
+        "sourceSha256": "C320CAFDEA2836CCA33F85682E1977AAA25E693431467A08B99937047C87C300",
+        "statements": 0,
+        "containsDirectives": false,
+        "decision": "no-executable-body-to-centralize"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+        "line": 143,
+        "name": "BeginFrame",
+        "owner": "ExternalHostCallbacks",
+        "declaration": "internal void BeginFrame()",
+        "containingDeclarations": [
+          "class ExternalHostCallbacks"
+        ],
+        "sourceSha256": "E8B6D9120B19ED61697C8EE80639BD000EADB2688A9166091E1C58C61218EBBD",
+        "statements": 0,
+        "containsDirectives": false,
+        "decision": "no-executable-body-to-centralize"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+        "line": 144,
+        "name": "BeginFrame",
+        "owner": "ExternalHostCallbacks",
+        "declaration": "internal void BeginFrame()",
+        "containingDeclarations": [
+          "class ExternalHostCallbacks"
+        ],
+        "sourceSha256": "AFB805DDE3694BCD4D05EE0DD8E460757D68EB3C794AFF37FEE7D1CAAFF7E2FE",
+        "statements": 0,
+        "containsDirectives": false,
+        "decision": "no-executable-body-to-centralize"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Apple/Emulators/MiniVmac/Functions/ConfigurationFunctions.cs",
+        "line": 7,
+        "name": "InitializeOptions",
+        "owner": "ConfigurationFunctions",
+        "declaration": "internal static void InitializeOptions(MachineConfiguration configuration, IDictionary<string, string> options)",
+        "containingDeclarations": [
+          "class ConfigurationFunctions"
+        ],
+        "sourceSha256": "387D439FE9675E49431009CBE8F1914C2722C75EAD2DB18468B275259C45B8EB",
+        "statements": 0,
+        "containsDirectives": false,
+        "decision": "no-executable-body-to-centralize"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Factories/MachineFactory.cs",
+        "line": 110,
+        "name": "ValidatePreparedContent",
+        "owner": "MachineFactory",
+        "declaration": "public virtual void ValidatePreparedContent(EmulatorPreparedContent? preparedContent, bool diskControlAvailable)",
+        "containingDeclarations": [
+          "class MachineFactory"
+        ],
+        "sourceSha256": "5ED00F6ACF1632B0EA97B6E8930B278C53027368FBDF5B0FDBF8840C75A8FBB0",
+        "statements": 0,
+        "containsDirectives": false,
+        "decision": "no-executable-body-to-centralize"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Factories/MachineFactory.cs",
+        "line": 112,
+        "name": "ValidateInsertion",
+        "owner": "MachineFactory",
+        "declaration": "public virtual void ValidateInsertion(MachineConfiguration configuration, MediaConfiguration media)",
+        "containingDeclarations": [
+          "class MachineFactory"
+        ],
+        "sourceSha256": "5ED00F6ACF1632B0EA97B6E8930B278C53027368FBDF5B0FDBF8840C75A8FBB0",
+        "statements": 0,
+        "containsDirectives": false,
+        "decision": "no-executable-body-to-centralize"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Factories/MachineFactory.cs",
+        "line": 122,
+        "name": "CleanupPreparedContent",
+        "owner": "MachineFactory",
+        "declaration": "public virtual void CleanupPreparedContent(EmulatorPreparedContent? preparedContent)",
+        "containingDeclarations": [
+          "class MachineFactory"
+        ],
+        "sourceSha256": "5ED00F6ACF1632B0EA97B6E8930B278C53027368FBDF5B0FDBF8840C75A8FBB0",
+        "statements": 0,
+        "containsDirectives": false,
+        "decision": "no-executable-body-to-centralize"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+        "line": 140,
+        "name": "BeginFrame",
+        "owner": "ExternalHostCallbacks",
+        "declaration": "internal void BeginFrame()",
+        "containingDeclarations": [
+          "class ExternalHostCallbacks"
+        ],
+        "sourceSha256": "09EC0DF6B575B283D4116014462CC3D2FEB9B08A309926F33A70FC9DB7245445",
+        "statements": 0,
+        "containsDirectives": false,
+        "decision": "no-executable-body-to-centralize"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+        "line": 144,
+        "name": "BeginFrame",
+        "owner": "ExternalHostCallbacks",
+        "declaration": "internal void BeginFrame()",
+        "containingDeclarations": [
+          "class ExternalHostCallbacks"
+        ],
+        "sourceSha256": "18282C60EE725F5ECC964F40CB18CED109A3CBCAD3FACE81CDB1D53D9225A758",
+        "statements": 0,
+        "containsDirectives": false,
+        "decision": "no-executable-body-to-centralize"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Factories/MachineFactory.cs",
+        "line": 57,
+        "name": "ValidateConfiguration",
+        "owner": "MachineFactory",
+        "declaration": "public virtual void ValidateConfiguration(MachineConfiguration configuration)",
+        "containingDeclarations": [
+          "class MachineFactory"
+        ],
+        "sourceSha256": "55EA31D5B6541C6300CCA9C5426C1F66BA842AD6CE009AACD80AA20BD393041D",
+        "statements": 0,
+        "containsDirectives": false,
+        "decision": "no-executable-body-to-centralize"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+        "line": 142,
+        "name": "BeginFrame",
+        "owner": "ExternalHostCallbacks",
+        "declaration": "internal void BeginFrame()",
+        "containingDeclarations": [
+          "class ExternalHostCallbacks"
+        ],
+        "sourceSha256": "60A69AC70E895DB4A4CFB7411DBBE2FDB238D5123CF770DF1AC90B45148CF3DB",
+        "statements": 0,
+        "containsDirectives": false,
+        "decision": "no-executable-body-to-centralize"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+        "line": 140,
+        "name": "BeginFrame",
+        "owner": "ExternalHostCallbacks",
+        "declaration": "internal void BeginFrame()",
+        "containingDeclarations": [
+          "class ExternalHostCallbacks"
+        ],
+        "sourceSha256": "9DC4808816D0507DE4AABF22B56C04E84BE90206E79D31F4901008EF445C285B",
+        "statements": 0,
+        "containsDirectives": false,
+        "decision": "no-executable-body-to-centralize"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Factories/LibretroMachineFactory.cs",
+        "line": 17,
+        "name": "CompleteMediaLoad",
+        "owner": "LibretroMachineFactory",
+        "declaration": "internal virtual void CompleteMediaLoad(MachineConfiguration configuration, string sessionDirectory, ExternalHostCallbacks callbacks)",
+        "containingDeclarations": [
+          "class LibretroMachineFactory"
+        ],
+        "sourceSha256": "B4FAA3B2DFAE421C8615E5002922058EA0F9A32FC73FB0B0F29ED11782294FDE",
+        "statements": 0,
+        "containsDirectives": false,
+        "decision": "no-executable-body-to-centralize"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sinclair/Emulators/EightyOne/Factories/EightyOneMachineFactory.cs",
+        "line": 19,
+        "name": "PrepareFirmware",
+        "owner": "EightyOneMachineFactory",
+        "declaration": "internal override void PrepareFirmware(MachineConfiguration configuration, string systemDirectory)",
+        "containingDeclarations": [
+          "class EightyOneMachineFactory"
+        ],
+        "sourceSha256": "46A47B3D7FCD5FF3325095F8837D45304BEBFE20D01DD50F1926BF1AE04E8AA5",
+        "statements": 0,
+        "containsDirectives": false,
+        "decision": "no-executable-body-to-centralize"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Factories/LibretroMachineFactory.cs",
+        "line": 24,
+        "name": "CompleteMediaLoad",
+        "owner": "LibretroMachineFactory",
+        "declaration": "internal virtual void CompleteMediaLoad(MachineConfiguration configuration, string sessionDirectory, ExternalHostCallbacks callbacks)",
+        "containingDeclarations": [
+          "class LibretroMachineFactory"
+        ],
+        "sourceSha256": "D7572EBCC951303F8328115F1D92314181D6DA7CCCBB4900D82873C70744906D",
+        "statements": 0,
+        "containsDirectives": false,
+        "decision": "no-executable-body-to-centralize"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Factories/LibretroMachineFactory.cs",
+        "line": 27,
+        "name": "CompletePersistentMedia",
+        "owner": "LibretroMachineFactory",
+        "declaration": "internal virtual void CompletePersistentMedia(object? state)",
+        "containingDeclarations": [
+          "class LibretroMachineFactory"
+        ],
+        "sourceSha256": "D7572EBCC951303F8328115F1D92314181D6DA7CCCBB4900D82873C70744906D",
+        "statements": 0,
+        "containsDirectives": false,
+        "decision": "no-executable-body-to-centralize"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Snk/Emulators/MednafenNgp/Factories/MednafenNgpMachineFactory.cs",
+        "line": 19,
+        "name": "PrepareFirmware",
+        "owner": "MednafenNgpMachineFactory",
+        "declaration": "internal override void PrepareFirmware(MachineConfiguration configuration, string systemDirectory)",
+        "containingDeclarations": [
+          "class MednafenNgpMachineFactory"
+        ],
+        "sourceSha256": "2E715D556A6E3A50D67546EB4ED7CE8AC8E18805D34ACDEC981C99AD13B500F5",
+        "statements": 0,
+        "containsDirectives": false,
+        "decision": "no-executable-body-to-centralize"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Snk/Emulators/Race/Factories/RaceMachineFactory.cs",
+        "line": 19,
+        "name": "PrepareFirmware",
+        "owner": "RaceMachineFactory",
+        "declaration": "internal override void PrepareFirmware(MachineConfiguration configuration, string systemDirectory)",
+        "containingDeclarations": [
+          "class RaceMachineFactory"
+        ],
+        "sourceSha256": "BEEFCF2BD448907FA7651D37B648688EB9355A4BB4FF6A833A93ABF0077573A8",
+        "statements": 0,
+        "containsDirectives": false,
+        "decision": "no-executable-body-to-centralize"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sony/Common/Interfaces/IEmulatorSettingsAdapter.cs",
+        "line": 9,
+        "name": "ValidateConfiguration",
+        "owner": "IEmulatorSettingsAdapter",
+        "declaration": "void ValidateConfiguration(MachineConfiguration configuration)",
+        "containingDeclarations": [
+          "interface IEmulatorSettingsAdapter"
+        ],
+        "sourceSha256": "648BCC22B2FEFB6D800256A42FC4D59E9B11AFBD887E01AE0F9BC11267E5D5B5",
+        "statements": 0,
+        "containsDirectives": false,
+        "decision": "no-executable-body-to-centralize"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Factories/CoreMachineFactory.cs",
+        "line": 20,
+        "name": "ValidateConfiguration",
+        "owner": "CoreMachineFactory",
+        "declaration": "public virtual void ValidateConfiguration(MachineConfiguration configuration)",
+        "containingDeclarations": [
+          "class CoreMachineFactory"
+        ],
+        "sourceSha256": "9A7C6FB25A2EE2300D0F50F9231D8FE3286B360F14046BCE5B7C21F0A7E5DA67",
+        "statements": 0,
+        "containsDirectives": false,
+        "decision": "no-executable-body-to-centralize"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Watara/Emulators/Potator/Interop/Services/InputCallbackHost.cs",
+        "line": 32,
+        "name": "OnPoll",
+        "owner": "InputCallbackHost",
+        "declaration": "private void OnPoll()",
+        "containingDeclarations": [
+          "class InputCallbackHost"
+        ],
+        "sourceSha256": "7D3534989D46106306994531AC1709412125E6A02C9FDF6DB91D286DCFE48BBA",
+        "statements": 0,
+        "containsDirectives": false,
+        "decision": "no-executable-body-to-centralize"
+      },
+      {
+        "path": "src/GWGUI.Emulation/HardDisks/Containers/DifferencingImageStreams.cs",
+        "line": 46,
+        "name": "Flush",
+        "owner": "ReadOnlyParent.DifferencingImageStreams",
+        "declaration": "public override void Flush()",
+        "containingDeclarations": [
+          "class ReadOnlyParent",
+          "class DifferencingImageStreams"
+        ],
+        "sourceSha256": "6806B4F1972C7D0CDE85431B9CE7C2513DC15D097E232C51651648927B1108B0",
+        "statements": 0,
+        "containsDirectives": false,
+        "decision": "no-executable-body-to-centralize"
+      },
+      {
+        "path": "src/GWGUI.Emulation/HardDisks/FileSystems/Amiga/FastFileSystem/FastFileSystemVolume.cs",
+        "line": 30,
+        "name": "Dispose",
+        "owner": "FastFileSystemVolume",
+        "declaration": "public void Dispose()",
+        "containingDeclarations": [
+          "class FastFileSystemVolume"
+        ],
+        "sourceSha256": "790DFD7673A0AB4DA2B419A30A566EF252ABF619833CCAB05E50560F4E3498C2",
+        "statements": 0,
+        "containsDirectives": false,
+        "decision": "no-executable-body-to-centralize"
+      },
+      {
+        "path": "src/GWGUI.Emulation/HardDisks/FileSystems/Amiga/Pfs3/Doctor/Pfs3DoctorStandardScan.cs",
+        "line": 153,
+        "name": "RepairDir",
+        "owner": "Pfs3DoctorStandardScan",
+        "declaration": "private static void RepairDir(Pfs3DirEntry dirEntry, Pfs3CachedBlock dirblock)",
+        "containingDeclarations": [
+          "class Pfs3DoctorStandardScan"
+        ],
+        "sourceSha256": "F793349DD2D94DD4B626B00BCE8DFCE8DF61F1B068015CDF8372DA3DD5190C77",
+        "statements": 0,
+        "containsDirectives": false,
+        "decision": "no-executable-body-to-centralize"
+      },
+      {
+        "path": "src/GWGUI.Emulation/HardDisks/FileSystems/Amiga/Pfs3/Pfs3EntryStream.cs",
+        "line": 36,
+        "name": "Flush",
+        "owner": "Pfs3EntryStream",
+        "declaration": "public override void Flush()",
+        "containingDeclarations": [
+          "class Pfs3EntryStream"
+        ],
+        "sourceSha256": "B6BF3C85AC49696F18B15F4E000E5AC83D4F84C7E782C2E213758DD75CEF8B9E",
+        "statements": 0,
+        "containsDirectives": false,
+        "decision": "no-executable-body-to-centralize"
+      },
+      {
+        "path": "src/GWGUI.Emulation/Services/EmulationAudioOutputController.cs",
+        "line": 206,
+        "name": "BeforeStart",
+        "owner": "EmulationAudioOutputController",
+        "declaration": "protected virtual void BeforeStart(IAudioOutput output)",
+        "containingDeclarations": [
+          "class EmulationAudioOutputController"
+        ],
+        "sourceSha256": "4E843D7AEB9801010D05FFEE08DDFE1B0E07E3B0CC788656489470ED5E5B4BD4",
+        "statements": 0,
+        "containsDirectives": false,
+        "decision": "no-executable-body-to-centralize"
+      },
+      {
+        "path": "src/GWGUI.MediaEngine/Interfaces/Formats/Floppy/Scp/IScpReader.cs",
+        "line": 11,
+        "name": "Remember",
+        "owner": "IScpReader",
+        "declaration": "void Remember(string path, ScpImage image)",
+        "containingDeclarations": [
+          "interface IScpReader"
+        ],
+        "sourceSha256": "52842934FAF14BE6508339F3E2E88E31F7948575CD908D1579143F40AD2A4A70",
+        "statements": 0,
+        "containsDirectives": false,
+        "decision": "no-executable-body-to-centralize"
+      },
+      {
+        "path": "tests/GWGUI.LocalDiskImageTests/LocalExplorerOpeningCheck.cs",
+        "line": 182,
+        "name": "OnStartup",
+        "owner": "ResourceApplication.LocalExplorerOpeningCheck",
+        "declaration": "protected override void OnStartup(StartupEventArgs e)",
+        "containingDeclarations": [
+          "class ResourceApplication",
+          "class LocalExplorerOpeningCheck"
+        ],
+        "sourceSha256": "49DEE31FAC2202458C57C666AF57C35734A44192E4665CD7C461EA8D2F8AAAC4",
+        "statements": 0,
+        "containsDirectives": false,
+        "decision": "no-executable-body-to-centralize"
+      },
+      {
+        "path": "tests/GWGUI.LocalDiskImageTests/WpfResourceCleanupSelfTests.cs",
+        "line": 76,
+        "name": "OnStartup",
+        "owner": "TestApplication.WpfResourceCleanupSelfTests",
+        "declaration": "protected override void OnStartup(StartupEventArgs e)",
+        "containingDeclarations": [
+          "class TestApplication",
+          "class WpfResourceCleanupSelfTests"
+        ],
+        "sourceSha256": "7F133184B8711F35BBCE07DA3428AC01D33390E77BE8EE32CFDEA9F5CE13D750",
+        "statements": 0,
+        "containsDirectives": false,
+        "decision": "no-executable-body-to-centralize"
+      },
+      {
+        "path": "tests/GWGUI.Tests/Application/Launcher/LauncherDecisionScenarios.cs",
+        "line": 17,
+        "name": "EmptyEntry",
+        "owner": "LauncherDecisionScenarios",
+        "declaration": "public static void EmptyEntry()",
+        "containingDeclarations": [
+          "class LauncherDecisionScenarios"
+        ],
+        "sourceSha256": "F97F13F26D7899607B3E4861105E7AC3044E575A7E6D2F128C6D26D22C8871B0",
+        "statements": 0,
+        "containsDirectives": false,
+        "decision": "no-executable-body-to-centralize"
+      },
+      {
+        "path": "tests/GWGUI.Tests/Application/TestInfrastructure/StaExecutionScenarios.cs",
+        "line": 92,
+        "name": "OnStartup",
+        "owner": "ResourceApplication.StaExecutionScenarios",
+        "declaration": "protected override void OnStartup(System.Windows.StartupEventArgs e)",
+        "containingDeclarations": [
+          "class ResourceApplication",
+          "class StaExecutionScenarios"
+        ],
+        "sourceSha256": "4462E24B339962E3E0AFAC391D9F85BAEEFE03FCA6945299C9A51588B5894313",
+        "statements": 0,
+        "containsDirectives": false,
+        "decision": "no-executable-body-to-centralize"
+      },
+      {
+        "path": "tests/GWGUI.Tests/Emulation/Amstrad/AmstradEmulatorAdapterTests.cs",
+        "line": 583,
+        "name": "Initialize",
+        "owner": "RecordingCore.AmstradEmulatorAdapterTests",
+        "declaration": "public void Initialize(MachineConfiguration configuration, string sessionDirectory, string? saveDirectory = null)",
+        "containingDeclarations": [
+          "class RecordingCore",
+          "class AmstradEmulatorAdapterTests"
+        ],
+        "sourceSha256": "D3EB0F5E14C264EAC9D48C8B566D2B0AD4E2DB7F0AF7DFD899969D0011DCFC3F",
+        "statements": 0,
+        "containsDirectives": false,
+        "decision": "no-executable-body-to-centralize"
+      },
+      {
+        "path": "tests/GWGUI.Tests/Emulation/Amstrad/AmstradEmulatorAdapterTests.cs",
+        "line": 587,
+        "name": "Stop",
+        "owner": "RecordingCore.AmstradEmulatorAdapterTests",
+        "declaration": "public void Stop()",
+        "containingDeclarations": [
+          "class RecordingCore",
+          "class AmstradEmulatorAdapterTests"
+        ],
+        "sourceSha256": "D3EB0F5E14C264EAC9D48C8B566D2B0AD4E2DB7F0AF7DFD899969D0011DCFC3F",
+        "statements": 0,
+        "containsDirectives": false,
+        "decision": "no-executable-body-to-centralize"
+      },
+      {
+        "path": "tests/GWGUI.Tests/Emulation/Amstrad/AmstradEmulatorAdapterTests.cs",
+        "line": 588,
+        "name": "SetInput",
+        "owner": "RecordingCore.AmstradEmulatorAdapterTests",
+        "declaration": "public void SetInput(EmulationInputSnapshot snapshot)",
+        "containingDeclarations": [
+          "class RecordingCore",
+          "class AmstradEmulatorAdapterTests"
+        ],
+        "sourceSha256": "D3EB0F5E14C264EAC9D48C8B566D2B0AD4E2DB7F0AF7DFD899969D0011DCFC3F",
+        "statements": 0,
+        "containsDirectives": false,
+        "decision": "no-executable-body-to-centralize"
+      },
+      {
+        "path": "tests/GWGUI.Tests/Emulation/Amstrad/AmstradEmulatorAdapterTests.cs",
+        "line": 589,
+        "name": "InsertMedia",
+        "owner": "RecordingCore.AmstradEmulatorAdapterTests",
+        "declaration": "public void InsertMedia(string path)",
+        "containingDeclarations": [
+          "class RecordingCore",
+          "class AmstradEmulatorAdapterTests"
+        ],
+        "sourceSha256": "D3EB0F5E14C264EAC9D48C8B566D2B0AD4E2DB7F0AF7DFD899969D0011DCFC3F",
+        "statements": 0,
+        "containsDirectives": false,
+        "decision": "no-executable-body-to-centralize"
+      },
+      {
+        "path": "tests/GWGUI.Tests/Emulation/Amstrad/AmstradEmulatorAdapterTests.cs",
+        "line": 590,
+        "name": "EjectMedia",
+        "owner": "RecordingCore.AmstradEmulatorAdapterTests",
+        "declaration": "public void EjectMedia()",
+        "containingDeclarations": [
+          "class RecordingCore",
+          "class AmstradEmulatorAdapterTests"
+        ],
+        "sourceSha256": "D3EB0F5E14C264EAC9D48C8B566D2B0AD4E2DB7F0AF7DFD899969D0011DCFC3F",
+        "statements": 0,
+        "containsDirectives": false,
+        "decision": "no-executable-body-to-centralize"
+      },
+      {
+        "path": "tests/GWGUI.Tests/Emulation/Amstrad/AmstradEmulatorAdapterTests.cs",
+        "line": 591,
+        "name": "SelectDisk",
+        "owner": "RecordingCore.AmstradEmulatorAdapterTests",
+        "declaration": "public void SelectDisk(int index)",
+        "containingDeclarations": [
+          "class RecordingCore",
+          "class AmstradEmulatorAdapterTests"
+        ],
+        "sourceSha256": "D3EB0F5E14C264EAC9D48C8B566D2B0AD4E2DB7F0AF7DFD899969D0011DCFC3F",
+        "statements": 0,
+        "containsDirectives": false,
+        "decision": "no-executable-body-to-centralize"
+      },
+      {
+        "path": "tests/GWGUI.Tests/Emulation/Amstrad/AmstradEmulatorAdapterTests.cs",
+        "line": 593,
+        "name": "LoadState",
+        "owner": "RecordingCore.AmstradEmulatorAdapterTests",
+        "declaration": "public void LoadState(ReadOnlySpan<byte> state)",
+        "containingDeclarations": [
+          "class RecordingCore",
+          "class AmstradEmulatorAdapterTests"
+        ],
+        "sourceSha256": "D3EB0F5E14C264EAC9D48C8B566D2B0AD4E2DB7F0AF7DFD899969D0011DCFC3F",
+        "statements": 0,
+        "containsDirectives": false,
+        "decision": "no-executable-body-to-centralize"
+      },
+      {
+        "path": "tests/GWGUI.Tests/Emulation/Amstrad/AmstradEmulatorAdapterTests.cs",
+        "line": 594,
+        "name": "SetOption",
+        "owner": "RecordingCore.AmstradEmulatorAdapterTests",
+        "declaration": "public void SetOption(string key, string value)",
+        "containingDeclarations": [
+          "class RecordingCore",
+          "class AmstradEmulatorAdapterTests"
+        ],
+        "sourceSha256": "D3EB0F5E14C264EAC9D48C8B566D2B0AD4E2DB7F0AF7DFD899969D0011DCFC3F",
+        "statements": 0,
+        "containsDirectives": false,
+        "decision": "no-executable-body-to-centralize"
+      },
+      {
+        "path": "tests/GWGUI.Tests/Emulation/ControllerInput/ControllerFeedbackOutputTests.cs",
+        "line": 125,
+        "name": "Refresh",
+        "owner": "Source.ControllerFeedbackOutputTests",
+        "declaration": "public void Refresh()",
+        "containingDeclarations": [
+          "class Source",
+          "class ControllerFeedbackOutputTests"
+        ],
+        "sourceSha256": "5460BD0DE105911012271433EC9E78CA99705DB3EB86355A494FD6E405ADF3EE",
+        "statements": 0,
+        "containsDirectives": false,
+        "decision": "no-executable-body-to-centralize"
+      },
+      {
+        "path": "tests/GWGUI.Tests/Emulation/ModuleConfigurationReviewTests.cs",
+        "line": 95,
+        "name": "Start",
+        "owner": "TrackingAudio.ModuleConfigurationReviewTests",
+        "declaration": "public void Start(int sampleRate)",
+        "containingDeclarations": [
+          "class TrackingAudio",
+          "class ModuleConfigurationReviewTests"
+        ],
+        "sourceSha256": "07954C624051A09612462BEB10304A669E814C6DDE4FE641E2D5BE667AB1BA41",
+        "statements": 0,
+        "containsDirectives": false,
+        "decision": "no-executable-body-to-centralize"
+      },
+      {
+        "path": "tests/GWGUI.Tests/Emulation/ModuleConfigurationReviewTests.cs",
+        "line": 96,
+        "name": "Write",
+        "owner": "TrackingAudio.ModuleConfigurationReviewTests",
+        "declaration": "public void Write(ReadOnlySpan<short> interleavedStereo)",
+        "containingDeclarations": [
+          "class TrackingAudio",
+          "class ModuleConfigurationReviewTests"
+        ],
+        "sourceSha256": "07954C624051A09612462BEB10304A669E814C6DDE4FE641E2D5BE667AB1BA41",
+        "statements": 0,
+        "containsDirectives": false,
+        "decision": "no-executable-body-to-centralize"
+      },
+      {
+        "path": "tests/GWGUI.Tests/Emulation/ModuleConfigurationReviewTests.cs",
+        "line": 97,
+        "name": "Flush",
+        "owner": "TrackingAudio.ModuleConfigurationReviewTests",
+        "declaration": "public void Flush()",
+        "containingDeclarations": [
+          "class TrackingAudio",
+          "class ModuleConfigurationReviewTests"
+        ],
+        "sourceSha256": "07954C624051A09612462BEB10304A669E814C6DDE4FE641E2D5BE667AB1BA41",
+        "statements": 0,
+        "containsDirectives": false,
+        "decision": "no-executable-body-to-centralize"
+      },
+      {
+        "path": "tests/GWGUI.Tests/Emulation/ModuleConfigurationReviewTests.cs",
+        "line": 98,
+        "name": "Stop",
+        "owner": "TrackingAudio.ModuleConfigurationReviewTests",
+        "declaration": "public void Stop()",
+        "containingDeclarations": [
+          "class TrackingAudio",
+          "class ModuleConfigurationReviewTests"
+        ],
+        "sourceSha256": "07954C624051A09612462BEB10304A669E814C6DDE4FE641E2D5BE667AB1BA41",
+        "statements": 0,
+        "containsDirectives": false,
+        "decision": "no-executable-body-to-centralize"
+      },
+      {
+        "path": "tests/GWGUI.Tests/Emulation/Nintendo/NintendoEmulatorCatalogTests.cs",
+        "line": 67,
+        "name": "Start",
+        "owner": "TrackingAudioOutput.NintendoEmulatorCatalogTests",
+        "declaration": "public void Start(int sampleRate)",
+        "containingDeclarations": [
+          "class TrackingAudioOutput",
+          "class NintendoEmulatorCatalogTests"
+        ],
+        "sourceSha256": "4B651AF33F3C5C90B5AA47F8CCBC7947DB6900D649A8948A9D123787D33027C6",
+        "statements": 0,
+        "containsDirectives": false,
+        "decision": "no-executable-body-to-centralize"
+      },
+      {
+        "path": "tests/GWGUI.Tests/Emulation/Nintendo/NintendoEmulatorCatalogTests.cs",
+        "line": 68,
+        "name": "Write",
+        "owner": "TrackingAudioOutput.NintendoEmulatorCatalogTests",
+        "declaration": "public void Write(ReadOnlySpan<short> interleavedStereo)",
+        "containingDeclarations": [
+          "class TrackingAudioOutput",
+          "class NintendoEmulatorCatalogTests"
+        ],
+        "sourceSha256": "4B651AF33F3C5C90B5AA47F8CCBC7947DB6900D649A8948A9D123787D33027C6",
+        "statements": 0,
+        "containsDirectives": false,
+        "decision": "no-executable-body-to-centralize"
+      },
+      {
+        "path": "tests/GWGUI.Tests/Emulation/Nintendo/NintendoEmulatorCatalogTests.cs",
+        "line": 69,
+        "name": "Flush",
+        "owner": "TrackingAudioOutput.NintendoEmulatorCatalogTests",
+        "declaration": "public void Flush()",
+        "containingDeclarations": [
+          "class TrackingAudioOutput",
+          "class NintendoEmulatorCatalogTests"
+        ],
+        "sourceSha256": "4B651AF33F3C5C90B5AA47F8CCBC7947DB6900D649A8948A9D123787D33027C6",
+        "statements": 0,
+        "containsDirectives": false,
+        "decision": "no-executable-body-to-centralize"
+      },
+      {
+        "path": "tests/GWGUI.Tests/Emulation/Nintendo/NintendoEmulatorCatalogTests.cs",
+        "line": 70,
+        "name": "Stop",
+        "owner": "TrackingAudioOutput.NintendoEmulatorCatalogTests",
+        "declaration": "public void Stop()",
+        "containingDeclarations": [
+          "class TrackingAudioOutput",
+          "class NintendoEmulatorCatalogTests"
+        ],
+        "sourceSha256": "4B651AF33F3C5C90B5AA47F8CCBC7947DB6900D649A8948A9D123787D33027C6",
+        "statements": 0,
+        "containsDirectives": false,
+        "decision": "no-executable-body-to-centralize"
+      },
+      {
+        "path": "tests/GWGUI.Tests/Emulation/Sega/SegaMachineLifecycleTests.cs",
+        "line": 863,
+        "name": "Start",
+        "owner": "SilentAudioOutput.SegaMachineLifecycleTests",
+        "declaration": "public void Start(int sampleRate)",
+        "containingDeclarations": [
+          "class SilentAudioOutput",
+          "class SegaMachineLifecycleTests"
+        ],
+        "sourceSha256": "C1ABFAD25D57CB3EA0A8361F25882977DA39FC81D44D7CFA71A3181B6B4C101E",
+        "statements": 0,
+        "containsDirectives": false,
+        "decision": "no-executable-body-to-centralize"
+      },
+      {
+        "path": "tests/GWGUI.Tests/Emulation/Sega/SegaMachineLifecycleTests.cs",
+        "line": 864,
+        "name": "Write",
+        "owner": "SilentAudioOutput.SegaMachineLifecycleTests",
+        "declaration": "public void Write(ReadOnlySpan<short> interleavedStereo)",
+        "containingDeclarations": [
+          "class SilentAudioOutput",
+          "class SegaMachineLifecycleTests"
+        ],
+        "sourceSha256": "C1ABFAD25D57CB3EA0A8361F25882977DA39FC81D44D7CFA71A3181B6B4C101E",
+        "statements": 0,
+        "containsDirectives": false,
+        "decision": "no-executable-body-to-centralize"
+      },
+      {
+        "path": "tests/GWGUI.Tests/Emulation/Sega/SegaMachineLifecycleTests.cs",
+        "line": 865,
+        "name": "Flush",
+        "owner": "SilentAudioOutput.SegaMachineLifecycleTests",
+        "declaration": "public void Flush()",
+        "containingDeclarations": [
+          "class SilentAudioOutput",
+          "class SegaMachineLifecycleTests"
+        ],
+        "sourceSha256": "C1ABFAD25D57CB3EA0A8361F25882977DA39FC81D44D7CFA71A3181B6B4C101E",
+        "statements": 0,
+        "containsDirectives": false,
+        "decision": "no-executable-body-to-centralize"
+      },
+      {
+        "path": "tests/GWGUI.Tests/Emulation/Sega/SegaMachineLifecycleTests.cs",
+        "line": 866,
+        "name": "Stop",
+        "owner": "SilentAudioOutput.SegaMachineLifecycleTests",
+        "declaration": "public void Stop()",
+        "containingDeclarations": [
+          "class SilentAudioOutput",
+          "class SegaMachineLifecycleTests"
+        ],
+        "sourceSha256": "C1ABFAD25D57CB3EA0A8361F25882977DA39FC81D44D7CFA71A3181B6B4C101E",
+        "statements": 0,
+        "containsDirectives": false,
+        "decision": "no-executable-body-to-centralize"
+      },
+      {
+        "path": "tests/GWGUI.Tests/Emulation/Sega/SegaMachineLifecycleTests.cs",
+        "line": 867,
+        "name": "Dispose",
+        "owner": "SilentAudioOutput.SegaMachineLifecycleTests",
+        "declaration": "public void Dispose()",
+        "containingDeclarations": [
+          "class SilentAudioOutput",
+          "class SegaMachineLifecycleTests"
+        ],
+        "sourceSha256": "C1ABFAD25D57CB3EA0A8361F25882977DA39FC81D44D7CFA71A3181B6B4C101E",
+        "statements": 0,
+        "containsDirectives": false,
+        "decision": "no-executable-body-to-centralize"
+      },
+      {
+        "path": "tests/GWGUI.Tests/Emulation/Sega/SegaMachineLifecycleTests.cs",
+        "line": 893,
+        "name": "Initialize",
+        "owner": "Core.SegaMachineLifecycleTests",
+        "declaration": "public void Initialize(MachineConfiguration configuration, string sessionDirectory, string? saveDirectory = null)",
+        "containingDeclarations": [
+          "class Core",
+          "class SegaMachineLifecycleTests"
+        ],
+        "sourceSha256": "C1ABFAD25D57CB3EA0A8361F25882977DA39FC81D44D7CFA71A3181B6B4C101E",
+        "statements": 0,
+        "containsDirectives": false,
+        "decision": "no-executable-body-to-centralize"
+      },
+      {
+        "path": "tests/GWGUI.Tests/Emulation/Sega/SegaMachineLifecycleTests.cs",
+        "line": 906,
+        "name": "HardReset",
+        "owner": "Core.SegaMachineLifecycleTests",
+        "declaration": "public void HardReset()",
+        "containingDeclarations": [
+          "class Core",
+          "class SegaMachineLifecycleTests"
+        ],
+        "sourceSha256": "C1ABFAD25D57CB3EA0A8361F25882977DA39FC81D44D7CFA71A3181B6B4C101E",
+        "statements": 0,
+        "containsDirectives": false,
+        "decision": "no-executable-body-to-centralize"
+      },
+      {
+        "path": "tests/GWGUI.Tests/Emulation/Sega/SegaMachineLifecycleTests.cs",
+        "line": 907,
+        "name": "SoftReset",
+        "owner": "Core.SegaMachineLifecycleTests",
+        "declaration": "public void SoftReset()",
+        "containingDeclarations": [
+          "class Core",
+          "class SegaMachineLifecycleTests"
+        ],
+        "sourceSha256": "C1ABFAD25D57CB3EA0A8361F25882977DA39FC81D44D7CFA71A3181B6B4C101E",
+        "statements": 0,
+        "containsDirectives": false,
+        "decision": "no-executable-body-to-centralize"
+      },
+      {
+        "path": "tests/GWGUI.Tests/Emulation/Sega/SegaMachineLifecycleTests.cs",
+        "line": 908,
+        "name": "InsertMedia",
+        "owner": "Core.SegaMachineLifecycleTests",
+        "declaration": "public void InsertMedia(string path)",
+        "containingDeclarations": [
+          "class Core",
+          "class SegaMachineLifecycleTests"
+        ],
+        "sourceSha256": "C1ABFAD25D57CB3EA0A8361F25882977DA39FC81D44D7CFA71A3181B6B4C101E",
+        "statements": 0,
+        "containsDirectives": false,
+        "decision": "no-executable-body-to-centralize"
+      },
+      {
+        "path": "tests/GWGUI.Tests/Emulation/Sega/SegaMachineLifecycleTests.cs",
+        "line": 909,
+        "name": "EjectMedia",
+        "owner": "Core.SegaMachineLifecycleTests",
+        "declaration": "public void EjectMedia()",
+        "containingDeclarations": [
+          "class Core",
+          "class SegaMachineLifecycleTests"
+        ],
+        "sourceSha256": "C1ABFAD25D57CB3EA0A8361F25882977DA39FC81D44D7CFA71A3181B6B4C101E",
+        "statements": 0,
+        "containsDirectives": false,
+        "decision": "no-executable-body-to-centralize"
+      },
+      {
+        "path": "tests/GWGUI.Tests/Emulation/Sega/SegaMachineLifecycleTests.cs",
+        "line": 910,
+        "name": "SelectDisk",
+        "owner": "Core.SegaMachineLifecycleTests",
+        "declaration": "public void SelectDisk(int index)",
+        "containingDeclarations": [
+          "class Core",
+          "class SegaMachineLifecycleTests"
+        ],
+        "sourceSha256": "C1ABFAD25D57CB3EA0A8361F25882977DA39FC81D44D7CFA71A3181B6B4C101E",
+        "statements": 0,
+        "containsDirectives": false,
+        "decision": "no-executable-body-to-centralize"
+      },
+      {
+        "path": "tests/GWGUI.Tests/Emulation/Sega/SegaMachineLifecycleTests.cs",
+        "line": 912,
+        "name": "LoadState",
+        "owner": "Core.SegaMachineLifecycleTests",
+        "declaration": "public void LoadState(ReadOnlySpan<byte> state)",
+        "containingDeclarations": [
+          "class Core",
+          "class SegaMachineLifecycleTests"
+        ],
+        "sourceSha256": "C1ABFAD25D57CB3EA0A8361F25882977DA39FC81D44D7CFA71A3181B6B4C101E",
+        "statements": 0,
+        "containsDirectives": false,
+        "decision": "no-executable-body-to-centralize"
+      },
+      {
+        "path": "tests/GWGUI.Tests/Emulation/Sega/SegaMachineLifecycleTests.cs",
+        "line": 913,
+        "name": "SetOption",
+        "owner": "Core.SegaMachineLifecycleTests",
+        "declaration": "public void SetOption(string key, string value)",
+        "containingDeclarations": [
+          "class Core",
+          "class SegaMachineLifecycleTests"
+        ],
+        "sourceSha256": "C1ABFAD25D57CB3EA0A8361F25882977DA39FC81D44D7CFA71A3181B6B4C101E",
+        "statements": 0,
+        "containsDirectives": false,
+        "decision": "no-executable-body-to-centralize"
+      },
+      {
+        "path": "tests/GWGUI.Tests/Emulation/Sony/ControllerFeedbackTests.cs",
+        "line": 184,
+        "name": "Initialize",
+        "owner": "FeedbackCore.ControllerFeedbackTests",
+        "declaration": "public void Initialize(MachineConfiguration configuration, string sessionDirectory, string? saveDirectory = null)",
+        "containingDeclarations": [
+          "class FeedbackCore",
+          "class ControllerFeedbackTests"
+        ],
+        "sourceSha256": "EA3B5760F2D588CFFEA1797E10DA6F7B32FD601ED3228DBB0222879088145B4D",
+        "statements": 0,
+        "containsDirectives": false,
+        "decision": "no-executable-body-to-centralize"
+      },
+      {
+        "path": "tests/GWGUI.Tests/Emulation/Sony/ControllerFeedbackTests.cs",
+        "line": 185,
+        "name": "RunFrame",
+        "owner": "FeedbackCore.ControllerFeedbackTests",
+        "declaration": "public void RunFrame()",
+        "containingDeclarations": [
+          "class FeedbackCore",
+          "class ControllerFeedbackTests"
+        ],
+        "sourceSha256": "EA3B5760F2D588CFFEA1797E10DA6F7B32FD601ED3228DBB0222879088145B4D",
+        "statements": 0,
+        "containsDirectives": false,
+        "decision": "no-executable-body-to-centralize"
+      },
+      {
+        "path": "tests/GWGUI.Tests/Emulation/Sony/ControllerFeedbackTests.cs",
+        "line": 186,
+        "name": "Stop",
+        "owner": "FeedbackCore.ControllerFeedbackTests",
+        "declaration": "public void Stop()",
+        "containingDeclarations": [
+          "class FeedbackCore",
+          "class ControllerFeedbackTests"
+        ],
+        "sourceSha256": "EA3B5760F2D588CFFEA1797E10DA6F7B32FD601ED3228DBB0222879088145B4D",
+        "statements": 0,
+        "containsDirectives": false,
+        "decision": "no-executable-body-to-centralize"
+      },
+      {
+        "path": "tests/GWGUI.Tests/Emulation/Sony/ControllerFeedbackTests.cs",
+        "line": 189,
+        "name": "HardReset",
+        "owner": "FeedbackCore.ControllerFeedbackTests",
+        "declaration": "public void HardReset()",
+        "containingDeclarations": [
+          "class FeedbackCore",
+          "class ControllerFeedbackTests"
+        ],
+        "sourceSha256": "EA3B5760F2D588CFFEA1797E10DA6F7B32FD601ED3228DBB0222879088145B4D",
+        "statements": 0,
+        "containsDirectives": false,
+        "decision": "no-executable-body-to-centralize"
+      },
+      {
+        "path": "tests/GWGUI.Tests/Emulation/Sony/ControllerFeedbackTests.cs",
+        "line": 190,
+        "name": "SoftReset",
+        "owner": "FeedbackCore.ControllerFeedbackTests",
+        "declaration": "public void SoftReset()",
+        "containingDeclarations": [
+          "class FeedbackCore",
+          "class ControllerFeedbackTests"
+        ],
+        "sourceSha256": "EA3B5760F2D588CFFEA1797E10DA6F7B32FD601ED3228DBB0222879088145B4D",
+        "statements": 0,
+        "containsDirectives": false,
+        "decision": "no-executable-body-to-centralize"
+      },
+      {
+        "path": "tests/GWGUI.Tests/Emulation/Sony/ControllerFeedbackTests.cs",
+        "line": 191,
+        "name": "SetInput",
+        "owner": "FeedbackCore.ControllerFeedbackTests",
+        "declaration": "public void SetInput(EmulationInputSnapshot snapshot)",
+        "containingDeclarations": [
+          "class FeedbackCore",
+          "class ControllerFeedbackTests"
+        ],
+        "sourceSha256": "EA3B5760F2D588CFFEA1797E10DA6F7B32FD601ED3228DBB0222879088145B4D",
+        "statements": 0,
+        "containsDirectives": false,
+        "decision": "no-executable-body-to-centralize"
+      },
+      {
+        "path": "tests/GWGUI.Tests/Emulation/Sony/ControllerFeedbackTests.cs",
+        "line": 192,
+        "name": "SetControllerPortDevice",
+        "owner": "FeedbackCore.ControllerFeedbackTests",
+        "declaration": "public void SetControllerPortDevice(int port, ControllerType type)",
+        "containingDeclarations": [
+          "class FeedbackCore",
+          "class ControllerFeedbackTests"
+        ],
+        "sourceSha256": "EA3B5760F2D588CFFEA1797E10DA6F7B32FD601ED3228DBB0222879088145B4D",
+        "statements": 0,
+        "containsDirectives": false,
+        "decision": "no-executable-body-to-centralize"
+      },
+      {
+        "path": "tests/GWGUI.Tests/Emulation/Sony/MultichannelAudioTests.cs",
+        "line": 173,
+        "name": "Flush",
+        "owner": "Sink.MultichannelAudioTests",
+        "declaration": "public void Flush()",
+        "containingDeclarations": [
+          "class Sink",
+          "class MultichannelAudioTests"
+        ],
+        "sourceSha256": "1D486E7AA9810826048CA24933691E937C213C71C9478AC954D63415B675AEB2",
+        "statements": 0,
+        "containsDirectives": false,
+        "decision": "no-executable-body-to-centralize"
+      },
+      {
+        "path": "tests/GWGUI.Tests/Emulation/Sony/MultichannelAudioTests.cs",
+        "line": 174,
+        "name": "Stop",
+        "owner": "Sink.MultichannelAudioTests",
+        "declaration": "public void Stop()",
+        "containingDeclarations": [
+          "class Sink",
+          "class MultichannelAudioTests"
+        ],
+        "sourceSha256": "1D486E7AA9810826048CA24933691E937C213C71C9478AC954D63415B675AEB2",
+        "statements": 0,
+        "containsDirectives": false,
+        "decision": "no-executable-body-to-centralize"
+      },
+      {
+        "path": "tests/GWGUI.Tests/Emulation/Sony/MultichannelAudioTests.cs",
+        "line": 198,
+        "name": "Initialize",
+        "owner": "AudioCore.MultichannelAudioTests",
+        "declaration": "public void Initialize(MachineConfiguration configuration, string sessionDirectory, string? saveDirectory = null)",
+        "containingDeclarations": [
+          "class AudioCore",
+          "class MultichannelAudioTests"
+        ],
+        "sourceSha256": "1D486E7AA9810826048CA24933691E937C213C71C9478AC954D63415B675AEB2",
+        "statements": 0,
+        "containsDirectives": false,
+        "decision": "no-executable-body-to-centralize"
+      },
+      {
+        "path": "tests/GWGUI.Tests/Emulation/Sony/MultichannelAudioTests.cs",
+        "line": 200,
+        "name": "Stop",
+        "owner": "AudioCore.MultichannelAudioTests",
+        "declaration": "public void Stop()",
+        "containingDeclarations": [
+          "class AudioCore",
+          "class MultichannelAudioTests"
+        ],
+        "sourceSha256": "1D486E7AA9810826048CA24933691E937C213C71C9478AC954D63415B675AEB2",
+        "statements": 0,
+        "containsDirectives": false,
+        "decision": "no-executable-body-to-centralize"
+      },
+      {
+        "path": "tests/GWGUI.Tests/Emulation/Sony/MultichannelAudioTests.cs",
+        "line": 202,
+        "name": "SetInput",
+        "owner": "AudioCore.MultichannelAudioTests",
+        "declaration": "public void SetInput(EmulationInputSnapshot snapshot)",
+        "containingDeclarations": [
+          "class AudioCore",
+          "class MultichannelAudioTests"
+        ],
+        "sourceSha256": "1D486E7AA9810826048CA24933691E937C213C71C9478AC954D63415B675AEB2",
+        "statements": 0,
+        "containsDirectives": false,
+        "decision": "no-executable-body-to-centralize"
+      },
+      {
+        "path": "tests/GWGUI.Tests/Emulation/Sony/MultichannelAudioTests.cs",
+        "line": 203,
+        "name": "SetControllerPortDevice",
+        "owner": "AudioCore.MultichannelAudioTests",
+        "declaration": "public void SetControllerPortDevice(int port, ControllerType type)",
+        "containingDeclarations": [
+          "class AudioCore",
+          "class MultichannelAudioTests"
+        ],
+        "sourceSha256": "1D486E7AA9810826048CA24933691E937C213C71C9478AC954D63415B675AEB2",
+        "statements": 0,
+        "containsDirectives": false,
+        "decision": "no-executable-body-to-centralize"
+      },
+      {
+        "path": "tests/GWGUI.Tests/Emulation/Sony/NativeShutdownTests.cs",
+        "line": 142,
+        "name": "SetInput",
+        "owner": "ShutdownCore.NativeShutdownTests",
+        "declaration": "public void SetInput(EmulationInputSnapshot snapshot)",
+        "containingDeclarations": [
+          "class ShutdownCore",
+          "class NativeShutdownTests"
+        ],
+        "sourceSha256": "21A55A4135EFAB355EA2E6121931FDC8C93E90A506840A052ED16DD4D22BF2CF",
+        "statements": 0,
+        "containsDirectives": false,
+        "decision": "no-executable-body-to-centralize"
+      },
+      {
+        "path": "tests/GWGUI.Tests/Emulation/Sony/NativeShutdownTests.cs",
+        "line": 143,
+        "name": "SetControllerPortDevice",
+        "owner": "ShutdownCore.NativeShutdownTests",
+        "declaration": "public void SetControllerPortDevice(int port, ControllerType type)",
+        "containingDeclarations": [
+          "class ShutdownCore",
+          "class NativeShutdownTests"
+        ],
+        "sourceSha256": "21A55A4135EFAB355EA2E6121931FDC8C93E90A506840A052ED16DD4D22BF2CF",
+        "statements": 0,
+        "containsDirectives": false,
+        "decision": "no-executable-body-to-centralize"
+      },
+      {
+        "path": "tests/GWGUI.Tests/Interface/EmulationViews/HiddenMachineRenderingTests.cs",
+        "line": 76,
+        "name": "Dispose",
+        "owner": "BlockingPipeline.HiddenMachineRenderingTests",
+        "declaration": "public void Dispose()",
+        "containingDeclarations": [
+          "class BlockingPipeline",
+          "class HiddenMachineRenderingTests"
+        ],
+        "sourceSha256": "04C65E6BC4A0087675F1AA2E80B0FB7E2B31A5D12D730A2BCF352E0D5D5C8E42",
+        "statements": 0,
+        "containsDirectives": false,
+        "decision": "no-executable-body-to-centralize"
+      },
+      {
+        "path": "tests/GWGUI.Tests/Interface/EmulationViews/HiddenMachineRenderingTests.cs",
+        "line": 116,
+        "name": "SetVideoProcessing",
+        "owner": "Surface.HiddenMachineRenderingTests",
+        "declaration": "public void SetVideoProcessing(EmulationVideoProcessingConfiguration configuration)",
+        "containingDeclarations": [
+          "class Surface",
+          "class HiddenMachineRenderingTests"
+        ],
+        "sourceSha256": "04C65E6BC4A0087675F1AA2E80B0FB7E2B31A5D12D730A2BCF352E0D5D5C8E42",
+        "statements": 0,
+        "containsDirectives": false,
+        "decision": "no-executable-body-to-centralize"
+      }
+    ],
+    "productionChanges": "None",
+    "tests": "None added: no executable change.",
+    "remaining": "Constructors, literal return methods and all other unresolved candidates remain pending."
   }
 }
