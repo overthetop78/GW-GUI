@@ -99,5 +99,43 @@ public sealed class NativeOptionFieldTests
         Assert.Same(expected, actual);
         Assert.False(readConfiguration);
     }
+
+    [Fact]
+    public void ExistingFieldPathKeepsNativeValueReadsAndConstructorCallbackOrder()
+    {
+        var events = new List<string>();
+        var field = EmulationCoreOptionFunctions.CreateSettingsField("mode", EmulationMachineTab.Video, "video",
+            () => { events.Add("resource"); return "Native.Mode"; }, new[] { "on", "off" },
+            value => { events.Add("choice " + value); return new(value, value); },
+            value => { events.Add("enabled " + value); return value == "on"; },
+            value => { events.Add("disabled " + value); return value == "off"; },
+            value => { events.Add("native " + value); return value.ToUpperInvariant(); },
+            () => { events.Add("configured"); return "OFF"; },
+            () => { events.Add("help"); return "Native.Help"; },
+            () => { events.Add("active"); return false; });
+        Assert.Equal(new[] { "resource", "choice on", "choice off", "enabled on", "native on",
+            "disabled on", "disabled off", "native off", "configured", "active", "help" }, events);
+        Assert.Equal("ON", field.EnabledValue);
+        Assert.Equal("OFF", field.DisabledValue);
+        Assert.False(field.IsEnabled);
+    }
+
+    [Fact]
+    public void CustomTogglePreservesLateMissingColecoValueFailure()
+    {
+        var events = new List<string>();
+        var values = new[] { "enabled", "enabled" };
+        Assert.Throws<InvalidOperationException>(() =>
+            EmulationCoreOptionFunctions.CreateSettingsFieldWithToggle("mode", EmulationMachineTab.Video, "video",
+                () => { events.Add("resource"); return "Native.Mode"; }, values,
+                value => { events.Add("choice " + value); return new(value, value); },
+                () => { events.Add("toggle"); return true; },
+                () => { events.Add("configured"); return "enabled"; },
+                () => { events.Add("help"); return "Native.Help"; },
+                _ => { events.Add("enabled"); return values.First(value => value == "enabled"); },
+                _ => { events.Add("disabled"); return values.First(value => value == "disabled"); }));
+        Assert.Equal(new[] { "resource", "choice enabled", "choice enabled", "toggle", "configured", "help",
+            "enabled", "disabled" }, events);
+    }
 }
 

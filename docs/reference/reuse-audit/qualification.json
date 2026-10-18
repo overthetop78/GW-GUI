@@ -7430,5 +7430,104 @@
     "verification": "Original Atari long/double division and MHz suffix checked; prescribed decimal formats/current culture; seven complete expression-only substitutions and six constant-file comparisons passed; previous SDK methods, FormatFrequency signature and kHz path unchanged. 35 targeted tests pass, including fixed pre-refactor field hashes for 51 models; SDK/App/23 module references compile. Current scan: 11666 bodies, 529 exact candidate groups.",
     "method": "FormatMegahertz",
     "originalOwner": "5a7b3a6ce:src/GWGUI.Emulation.Atari/Functions/AtariSettingsDescriptionFunctions.cs"
+  },
+  "additionalNativeFieldConstructionReuse": {
+    "sourceCommit": "929ad2ca3",
+    "policy": "Reuse current Sharp-derived SDK field constructor without changing restart policy (false). Existing CreateSettingsField signature, nativeValue detection/evaluation and constructor callback order remain intact. Native profiles retain their own toggle/error semantics, including duplicate choices and Apple preparation order.",
+    "verification": "Existing SDK preparation/signature and expanded constructor token-equivalent; seven full module comparisons and exact resource/choice/mode/value/help/enable/disable callback arguments checked; all other SDK functions/native readers unchanged. Seven hashes fixed and validated on prior code, 63 graph/error-type scenarios identical after refactor. 15 targeted tests and 41 existing SNK catalogue tests pass; SDK/App/23 module references compile. Current scan: 11671 bodies, 529 exact candidate groups.",
+    "originalOwner": "23d3b9896:src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/SettingsFunctions.cs",
+    "consumers": [
+      {
+        "module": "Bandai",
+        "path": "src/GWGUI.Emulation.Bandai/Common/Machines/Common/Functions/SettingsFunctions.cs",
+        "profile": "projected",
+        "otherMembersUnchanged": true,
+        "policy": "Original resource/choice projection and local toggle or forced selection; current/help/enabled/disabled preserved."
+      },
+      {
+        "module": "Coleco",
+        "path": "src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/SettingsFunctions.cs",
+        "profile": "projected",
+        "otherMembersUnchanged": true,
+        "policy": "Original All predicate and late First(enabled)/First(disabled), after configured value/help."
+      },
+      {
+        "module": "Mattel",
+        "path": "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/SettingsFunctions.cs",
+        "profile": "projected",
+        "otherMembersUnchanged": true,
+        "policy": "Original resource/choice projection and local toggle or forced selection; current/help/enabled/disabled preserved."
+      },
+      {
+        "module": "Philips",
+        "path": "src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/SettingsFunctions.cs",
+        "profile": "projected",
+        "otherMembersUnchanged": true,
+        "policy": "Original resource/choice projection and local toggle or forced selection; current/help/enabled/disabled preserved."
+      },
+      {
+        "module": "Epoch",
+        "path": "src/GWGUI.Emulation.Epoch/Common/Machines/Common/Functions/SettingsFunctions.cs",
+        "profile": "projected",
+        "otherMembersUnchanged": true,
+        "policy": "Original resource/choice projection and local toggle or forced selection; current/help/enabled/disabled preserved."
+      },
+      {
+        "module": "Fairchild",
+        "path": "src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Functions/SettingsFunctions.cs",
+        "profile": "projected",
+        "otherMembersUnchanged": true,
+        "policy": "Original resource/choice projection and local toggle or forced selection; current/help/enabled/disabled preserved."
+      },
+      {
+        "module": "Apple",
+        "path": "src/GWGUI.Emulation.Apple/Common/Machines/Common/Functions/SettingsFunctions.cs",
+        "profile": "prepared",
+        "otherMembersUnchanged": true,
+        "policy": "Resource, current value and indexed choice projection remain before prepared construction; no help added."
+      }
+    ],
+    "methods": [
+      "CreatePreparedSettingsField",
+      "CreateSettingsFieldWithToggle"
+    ],
+    "existingSdkOwner": "src/GWGUI.Emulation/Functions/EmulationCoreOptionFunctions.cs",
+    "snapshotEvidence": [
+      {
+        "module": "Philips",
+        "hash": "A59F5563A245EDA148412EA137298E9F7783253C5B947D6015CA1691A0E63E29",
+        "profiles": 9
+      },
+      {
+        "module": "Bandai",
+        "hash": "61E0AB3FE57B20A536C821BF6EF438ED25BCEEBB635ABC1A33AA828FA164E8AE",
+        "profiles": 9
+      },
+      {
+        "module": "Apple",
+        "hash": "4F981FD0EDF59980DEB0DD4AECC7CF19926686D14608407AE3A51FBF23F56DDF",
+        "profiles": 9
+      },
+      {
+        "module": "Mattel",
+        "hash": "A59F5563A245EDA148412EA137298E9F7783253C5B947D6015CA1691A0E63E29",
+        "profiles": 9
+      },
+      {
+        "module": "Coleco",
+        "hash": "09B9446D269E293126182897C0A9190638C677AA682E86F0C857BA256BB567C8",
+        "profiles": 9
+      },
+      {
+        "module": "Fairchild",
+        "hash": "5BD2568589E8A75D0F88231F03ACB0351F940DE45734F252C2A7D15D703C6E7B",
+        "profiles": 9
+      },
+      {
+        "module": "Epoch",
+        "hash": "A59F5563A245EDA148412EA137298E9F7783253C5B947D6015CA1691A0E63E29",
+        "profiles": 9
+      }
+    ]
   }
 }

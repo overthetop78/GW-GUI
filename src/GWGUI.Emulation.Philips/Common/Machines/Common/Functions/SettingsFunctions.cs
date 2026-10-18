@@ -44,17 +44,13 @@ internal static class SettingsDescriptionFunctions
     }
 
     internal static EmulationSettingsField Native(MachineConfiguration configuration, CoreOption option, EmulationMachineTab tab, string block)
-    {
-        var resource = option.ResourceKey ?? throw new InvalidOperationException(option.Key);
-        var choices = option.Values.Select(choice => new EmulationSettingsChoice(choice.Value, choice.ResourceKey ?? string.Empty, InvariantChoice(choice))).ToArray();
-        var toggle = option.Values.Count == 2 && option.Values.All(choice => choice.Value is "enabled" or "disabled");
-        return new(option.Key, tab, block, resource, toggle ? EmulationSettingsEditor.Toggle : EmulationSettingsEditor.Selection,
-            configuration.Options.GetValueOrDefault(option.Key, option.DefaultValue), choices,
-            ExplanationResourceKey: option.ExplanationResourceKey,
-            EnabledValue: toggle ? "enabled" : EmulationSettingConstants.Enabled,
-            DisabledValue: toggle ? "disabled" : EmulationSettingConstants.Disabled,
-            RequiresRestart: false);
-    }
+    => EmulationCoreOptionFunctions.CreateSettingsFieldWithToggle(option.Key, tab, block,
+        () => option.ResourceKey ?? throw new InvalidOperationException(option.Key), option.Values,
+        choice => new EmulationSettingsChoice(choice.Value, choice.ResourceKey ?? string.Empty, InvariantChoice(choice)),
+        () => option.Values.Count == 2 && option.Values.All(choice => choice.Value is "enabled" or "disabled"),
+        () => configuration.Options.GetValueOrDefault(option.Key, option.DefaultValue), () => option.ExplanationResourceKey,
+        toggle => toggle ? "enabled" : EmulationSettingConstants.Enabled,
+        toggle => toggle ? "disabled" : EmulationSettingConstants.Disabled);
 
     internal static string ChoiceLabel(CoreOptionValue choice) => choice.ResourceKey ?? InvariantChoice(choice) ?? choice.Label;
 

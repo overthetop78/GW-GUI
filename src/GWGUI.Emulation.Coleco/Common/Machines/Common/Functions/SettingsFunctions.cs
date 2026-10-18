@@ -29,18 +29,13 @@ internal static class SettingsDescriptionFunctions
     }
 
     internal static EmulationSettingsField Native(MachineConfiguration configuration, CoreOption option, EmulationMachineTab tab, string blockId)
-    {
-        var resource = option.ResourceKey ?? throw new InvalidOperationException(option.Key);
-        var choices = option.Values.Select(choice => Choice(choice, option.Key)).ToArray();
-        var toggle = option.Values.Count == 2 && option.Values.All(choice => choice.Value is "Enabled" or "Disabled" or "ON" or "OFF" or "on" or "off" or "enabled" or "disabled");
-        return new(option.Key, tab, blockId, resource,
-            toggle ? EmulationSettingsEditor.Toggle : EmulationSettingsEditor.Selection,
-            configuration.Options.GetValueOrDefault(option.Key, option.DefaultValue), choices,
-            ExplanationResourceKey: option.ExplanationResourceKey,
-            EnabledValue: toggle ? option.Values.First(choice => choice.Value is "Enabled" or "ON" or "on" or "enabled").Value : EmulationSettingConstants.Enabled,
-            DisabledValue: toggle ? option.Values.First(choice => choice.Value is "Disabled" or "OFF" or "off" or "disabled").Value : EmulationSettingConstants.Disabled,
-            RequiresRestart: false);
-    }
+    => EmulationCoreOptionFunctions.CreateSettingsFieldWithToggle(option.Key, tab, blockId,
+        () => option.ResourceKey ?? throw new InvalidOperationException(option.Key), option.Values,
+        choice => Choice(choice, option.Key),
+        () => option.Values.Count == 2 && option.Values.All(choice => choice.Value is "Enabled" or "Disabled" or "ON" or "OFF" or "on" or "off" or "enabled" or "disabled"),
+        () => configuration.Options.GetValueOrDefault(option.Key, option.DefaultValue), () => option.ExplanationResourceKey,
+        toggle => toggle ? option.Values.First(choice => choice.Value is "Enabled" or "ON" or "on" or "enabled").Value : EmulationSettingConstants.Enabled,
+        toggle => toggle ? option.Values.First(choice => choice.Value is "Disabled" or "OFF" or "off" or "disabled").Value : EmulationSettingConstants.Disabled);
     private static EmulationSettingsChoice Choice(CoreOptionValue choice, string optionKey)
     {
         if (choice.InvariantDisplayValue is { } invariant) return new(choice.Value, string.Empty, invariant);

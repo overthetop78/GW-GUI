@@ -31,17 +31,13 @@ internal static class SettingsDescriptionFunctions
     }
 
     internal static EmulationSettingsField Native(MachineConfiguration configuration, CoreOption option, EmulationMachineTab tab, string block)
-    {
-        var resource = option.ResourceKey ?? throw new InvalidOperationException($"Missing common resource for {option.Key}.");
-        var choices = option.Values.Select(choice => new EmulationSettingsChoice(choice.Value, choice.ResourceKey ?? throw new InvalidOperationException($"Missing common choice resource for {option.Key}: {choice.Value}."))).ToArray();
-        var toggle = option.Values.Count == 2 && option.Values.All(choice => choice.Value is "enabled" or "disabled");
-        return new(option.Key, tab, block, resource, toggle ? EmulationSettingsEditor.Toggle : EmulationSettingsEditor.Selection,
-            configuration.Options.GetValueOrDefault(option.Key, option.DefaultValue), choices,
-            ExplanationResourceKey: option.ExplanationResourceKey,
-            EnabledValue: toggle ? "enabled" : EmulationSettingConstants.Enabled,
-            DisabledValue: toggle ? "disabled" : EmulationSettingConstants.Disabled,
-            RequiresRestart: false);
-    }
+    => EmulationCoreOptionFunctions.CreateSettingsFieldWithToggle(option.Key, tab, block,
+        () => option.ResourceKey ?? throw new InvalidOperationException($"Missing common resource for {option.Key}."), option.Values,
+        choice => new EmulationSettingsChoice(choice.Value, choice.ResourceKey ?? throw new InvalidOperationException($"Missing common choice resource for {option.Key}: {choice.Value}.")),
+        () => option.Values.Count == 2 && option.Values.All(choice => choice.Value is "enabled" or "disabled"),
+        () => configuration.Options.GetValueOrDefault(option.Key, option.DefaultValue), () => option.ExplanationResourceKey,
+        toggle => toggle ? "enabled" : EmulationSettingConstants.Enabled,
+        toggle => toggle ? "disabled" : EmulationSettingConstants.Disabled);
 
     private static EmulationSettingsBlock Audio(MachineConfiguration configuration) => Block(EmulationMachineTab.Audio,
         SettingsConstants.ResourceAudio,

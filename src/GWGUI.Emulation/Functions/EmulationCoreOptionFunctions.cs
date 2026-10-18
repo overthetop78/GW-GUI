@@ -45,15 +45,41 @@ public static partial class EmulationCoreOptionFunctions
         var disabledOption = values.FirstOrDefault(disabledChoice);
         var disabled = disabledOption is null ? null : nativeValue(disabledOption);
         var toggle = values.Count == 2 && enabled is not null && disabled is not null;
-        return new(key, tab, block, resourceKey,
+        return CreatePreparedSettingsField(key, tab, block, resourceKey,
             toggle ? EmulationSettingsEditor.Toggle : EmulationSettingsEditor.Selection,
+            choices, currentValue, explanation,
+            () => enabled ?? EmulationSettingConstants.Enabled,
+            () => disabled ?? EmulationSettingConstants.Disabled, isEnabled);
+    }
+
+    internal static EmulationSettingsField CreatePreparedSettingsField(string key, EmulationMachineTab tab,
+        string block, string resourceKey, EmulationSettingsEditor editor, IReadOnlyList<EmulationSettingsChoice> choices,
+        Func<string> currentValue, Func<string?> explanation, Func<string> enabledValue,
+        Func<string> disabledValue, Func<bool>? isEnabled = null) =>
+        new(key, tab, block, resourceKey, editor,
             currentValue(), choices,
             IsEnabled: isEnabled?.Invoke() ?? true,
             ExplanationResourceKey: explanation(),
-            EnabledValue: enabled ?? EmulationSettingConstants.Enabled,
-            DisabledValue: disabled ?? EmulationSettingConstants.Disabled,
+            EnabledValue: enabledValue(),
+            DisabledValue: disabledValue(),
             RequiresRestart: false);
+
+    internal static EmulationSettingsField CreateSettingsFieldWithToggle<TValue>(string key, EmulationMachineTab tab,
+        string block, Func<string> resource, IReadOnlyList<TValue> values, Func<TValue, EmulationSettingsChoice> choice,
+        Func<bool> isToggle, Func<string> currentValue, Func<string?> explanation,
+        Func<bool, string>? enabledValue = null, Func<bool, string>? disabledValue = null)
+        where TValue : class
+    {
+        var resourceKey = resource();
+        var choices = values.Select(choice).ToArray();
+        var toggle = isToggle();
+        return CreatePreparedSettingsField(key, tab, block, resourceKey,
+            toggle ? EmulationSettingsEditor.Toggle : EmulationSettingsEditor.Selection, choices,
+            currentValue, explanation,
+            () => enabledValue is null ? EmulationSettingConstants.Enabled : enabledValue(toggle),
+            () => disabledValue is null ? EmulationSettingConstants.Disabled : disabledValue(toggle));
     }
+
 
     internal const int CoreOptionPointerFieldsBeforeValues = 6;
     internal const int CoreOptionValueFieldCount = 2;

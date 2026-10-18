@@ -29,15 +29,17 @@ internal static class SettingsDescriptionFunctions
     }
     internal static EmulationSettingsField Information(string id, EmulationMachineTab tab, string block, string label, string value) => new(id, tab, block, label, EmulationSettingsEditor.Information, value);
     internal static EmulationSettingsField Native(MachineConfiguration configuration, CoreOption option, EmulationMachineTab tab, string blockId)
-    {
-        var resource = option.ResourceKey ?? throw new InvalidOperationException($"Missing common resource for {option.Key}.");
-        var choices = option.Values.Select(choice => new EmulationSettingsChoice(
+    => EmulationCoreOptionFunctions.CreateSettingsFieldWithToggle(option.Key, tab, blockId,
+        () => option.ResourceKey ?? throw new InvalidOperationException($"Missing common resource for {option.Key}."), option.Values,
+        choice => new EmulationSettingsChoice(
                 choice.Value,
                 choice.ResourceKey ?? (choice.InvariantDisplayValue is not null ? string.Empty : throw new InvalidOperationException($"Missing common choice for {option.Key}/{choice.Value}.")),
                 choice.InvariantDisplayValue
-            )).ToArray();
-        return new( option.Key, tab, blockId, resource, EmulationSettingsEditor.Selection, configuration.Options.GetValueOrDefault(option.Key, option.DefaultValue), choices, ExplanationResourceKey: option.ExplanationResourceKey, RequiresRestart: false );
-    }
+            ),
+        () => false,
+        () => configuration.Options.GetValueOrDefault(option.Key, option.DefaultValue), () => option.ExplanationResourceKey,
+        toggle => EmulationSettingConstants.Enabled,
+        toggle => EmulationSettingConstants.Disabled);
 
     private static EmulationSettingsBlock Audio(MachineConfiguration configuration) => Block(
         EmulationMachineTab.Audio,
