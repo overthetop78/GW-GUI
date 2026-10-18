@@ -1,38 +1,41 @@
 {
-  "snapshot": "db63aca33a22e826d96a4a1f4edec224a52904ba",
+  "snapshot": "fc79bfbe3469b5cca7ec4958ac9d0c97bfacfd2c",
   "snapshotState": "Current worktree based on snapshot",
   "worktreeSourceChanges": [
-    "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
-    "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
-    "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
-    "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
-    "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
-    "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
-    "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
-    "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
-    "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
-    "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
-    "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Hardware.cs",
-    "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
-    "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
-    "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Hardware.cs",
-    "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
-    "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
-    "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioStatus.cs",
-    "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
-    "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/HardwareRenderSession.cs",
-    "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Environment.cs",
-    "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Environment.cs",
-    "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Interop/Services/EnvironmentCallbackHost.cs",
-    "src/GWGUI.Emulation.Watara/Emulators/Potator/Interop/Services/EnvironmentCallbackHost.cs",
-    "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Interop/Services/EnvironmentCallbackHost.cs",
-    "src/GWGUI.Emulation/Functions/EmulationCoreOptionFunctions.Native.cs",
-    "src/GWGUI.Emulation/Functions/ExternalCoreEnvironmentFunctions.cs",
-    "tests/GWGUI.Tests/Emulation/CoreCallbackInterfaceTests.cs"
+    "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+    "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/DiskControl.cs",
+    "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+    "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+    "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/DiskControl.cs",
+    "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+    "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/DiskControl.cs",
+    "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+    "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/DiskControl.cs",
+    "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+    "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+    "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/DiskControl.cs",
+    "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+    "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/DiskControl.cs",
+    "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+    "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/DiskControl.cs",
+    "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+    "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+    "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+    "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/DiskControl.cs",
+    "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+    "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+    "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/DiskControl.cs",
+    "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+    "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/DiskControl.cs",
+    "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
+    "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/DiskControl.cs",
+    "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+    "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalDiskControl.cs",
+    "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalDiskControl.cs"
   ],
   "scope": "All current non-ignored repository CSharp files, including hidden paths; BaseMethodDeclaration bodies with fewer than 30 tokens. Candidate presence is not a defect or a completion claim.",
-  "fileCount": 7331,
-  "methodBodyCount": 9604,
+  "fileCount": 7323,
+  "methodBodyCount": 9509,
   "exactGroups": [
     {
       "hash": "0017F14C61995D644C52FF90F094E4708DC2CA772615CF2F5DD41E74BD202ECA",
@@ -3739,146 +3742,6 @@
       "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
-      "hash": "0E86A3FBFE2C3151DA86704ADA01857BBE9880A7A52655E0E99238DA7A938989",
-      "tokens": 9,
-      "bodyTokens": "=> DiskControlFunctions . ReadText ( _getImagePath , index )",
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/DiskControl.cs",
-          "name": "GetPath",
-          "owner": "DiskControl",
-          "kind": "MethodDeclaration",
-          "line": 92,
-          "parameters": "(int index)",
-          "tokens": 9,
-          "bodyTokens": "=> DiskControlFunctions . ReadText ( _getImagePath , index )",
-          "hash": "0E86A3FBFE2C3151DA86704ADA01857BBE9880A7A52655E0E99238DA7A938989",
-          "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/DiskControl.cs",
-          "name": "GetPath",
-          "owner": "DiskControl",
-          "kind": "MethodDeclaration",
-          "line": 122,
-          "parameters": "(int index)",
-          "tokens": 9,
-          "bodyTokens": "=> DiskControlFunctions . ReadText ( _getImagePath , index )",
-          "hash": "0E86A3FBFE2C3151DA86704ADA01857BBE9880A7A52655E0E99238DA7A938989",
-          "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/DiskControl.cs",
-          "name": "GetPath",
-          "owner": "DiskControl",
-          "kind": "MethodDeclaration",
-          "line": 89,
-          "parameters": "(int index)",
-          "tokens": 9,
-          "bodyTokens": "=> DiskControlFunctions . ReadText ( _getImagePath , index )",
-          "hash": "0E86A3FBFE2C3151DA86704ADA01857BBE9880A7A52655E0E99238DA7A938989",
-          "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/DiskControl.cs",
-          "name": "GetPath",
-          "owner": "DiskControl",
-          "kind": "MethodDeclaration",
-          "line": 105,
-          "parameters": "(int index)",
-          "tokens": 9,
-          "bodyTokens": "=> DiskControlFunctions . ReadText ( _getImagePath , index )",
-          "hash": "0E86A3FBFE2C3151DA86704ADA01857BBE9880A7A52655E0E99238DA7A938989",
-          "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/DiskControl.cs",
-          "name": "GetPath",
-          "owner": "DiskControl",
-          "kind": "MethodDeclaration",
-          "line": 105,
-          "parameters": "(int index)",
-          "tokens": 9,
-          "bodyTokens": "=> DiskControlFunctions . ReadText ( _getImagePath , index )",
-          "hash": "0E86A3FBFE2C3151DA86704ADA01857BBE9880A7A52655E0E99238DA7A938989",
-          "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/DiskControl.cs",
-          "name": "GetPath",
-          "owner": "DiskControl",
-          "kind": "MethodDeclaration",
-          "line": 105,
-          "parameters": "(int index)",
-          "tokens": 9,
-          "bodyTokens": "=> DiskControlFunctions . ReadText ( _getImagePath , index )",
-          "hash": "0E86A3FBFE2C3151DA86704ADA01857BBE9880A7A52655E0E99238DA7A938989",
-          "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/DiskControl.cs",
-          "name": "GetPath",
-          "owner": "DiskControl",
-          "kind": "MethodDeclaration",
-          "line": 105,
-          "parameters": "(int index)",
-          "tokens": 9,
-          "bodyTokens": "=> DiskControlFunctions . ReadText ( _getImagePath , index )",
-          "hash": "0E86A3FBFE2C3151DA86704ADA01857BBE9880A7A52655E0E99238DA7A938989",
-          "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/DiskControl.cs",
-          "name": "GetPath",
-          "owner": "DiskControl",
-          "kind": "MethodDeclaration",
-          "line": 105,
-          "parameters": "(int index)",
-          "tokens": 9,
-          "bodyTokens": "=> DiskControlFunctions . ReadText ( _getImagePath , index )",
-          "hash": "0E86A3FBFE2C3151DA86704ADA01857BBE9880A7A52655E0E99238DA7A938989",
-          "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/DiskControl.cs",
-          "name": "GetPath",
-          "owner": "DiskControl",
-          "kind": "MethodDeclaration",
-          "line": 101,
-          "parameters": "(int index)",
-          "tokens": 9,
-          "bodyTokens": "=> DiskControlFunctions . ReadText ( _getImagePath , index )",
-          "hash": "0E86A3FBFE2C3151DA86704ADA01857BBE9880A7A52655E0E99238DA7A938989",
-          "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/DiskControl.cs",
-          "name": "GetPath",
-          "owner": "DiskControl",
-          "kind": "MethodDeclaration",
-          "line": 101,
-          "parameters": "(int index)",
-          "tokens": 9,
-          "bodyTokens": "=> DiskControlFunctions . ReadText ( _getImagePath , index )",
-          "hash": "0E86A3FBFE2C3151DA86704ADA01857BBE9880A7A52655E0E99238DA7A938989",
-          "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/DiskControl.cs",
-          "name": "GetPath",
-          "owner": "DiskControl",
-          "kind": "MethodDeclaration",
-          "line": 101,
-          "parameters": "(int index)",
-          "tokens": 9,
-          "bodyTokens": "=> DiskControlFunctions . ReadText ( _getImagePath , index )",
-          "hash": "0E86A3FBFE2C3151DA86704ADA01857BBE9880A7A52655E0E99238DA7A938989",
-          "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE"
-        }
-      ],
-      "qualification": "pending-symbol-and-ownership-comparison"
-    },
-    {
       "hash": "0E9003A92B5AA4983D3987AF3A808A77D0FC8BCD53B0511B86726A8DF7D946D7",
       "tokens": 7,
       "bodyTokens": "=> Text ( \"Emulation.Error.Core.UnsupportedPixelFormat\" , value )",
@@ -6363,158 +6226,6 @@
       "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
-      "hash": "198F6C238E28C3D66BFDB141C76AA2D4FA8BD87C992FBCD0957AD67E670656DF",
-      "tokens": 15,
-      "bodyTokens": "=> CaptureBasic ( Marshal . PtrToStructure < ExternalCoreApi . DiskControl > ( data ) )",
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/DiskControl.cs",
-          "name": "Capture",
-          "owner": "DiskControl",
-          "kind": "MethodDeclaration",
-          "line": 34,
-          "parameters": "(nint data)",
-          "tokens": 15,
-          "bodyTokens": "=> CaptureBasic ( Marshal . PtrToStructure < ExternalCoreApi . DiskControl > ( data ) )",
-          "hash": "198F6C238E28C3D66BFDB141C76AA2D4FA8BD87C992FBCD0957AD67E670656DF",
-          "shape": "86D2988843E12207747876CE25CF500FF963DFFA2D8D36410E992FB0568474A9"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/DiskControl.cs",
-          "name": "Capture",
-          "owner": "DiskControl",
-          "kind": "MethodDeclaration",
-          "line": 35,
-          "parameters": "(nint data)",
-          "tokens": 15,
-          "bodyTokens": "=> CaptureBasic ( Marshal . PtrToStructure < ExternalCoreApi . DiskControl > ( data ) )",
-          "hash": "198F6C238E28C3D66BFDB141C76AA2D4FA8BD87C992FBCD0957AD67E670656DF",
-          "shape": "86D2988843E12207747876CE25CF500FF963DFFA2D8D36410E992FB0568474A9"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/DiskControl.cs",
-          "name": "Capture",
-          "owner": "DiskControl",
-          "kind": "MethodDeclaration",
-          "line": 31,
-          "parameters": "(nint data)",
-          "tokens": 15,
-          "bodyTokens": "=> CaptureBasic ( Marshal . PtrToStructure < ExternalCoreApi . DiskControl > ( data ) )",
-          "hash": "198F6C238E28C3D66BFDB141C76AA2D4FA8BD87C992FBCD0957AD67E670656DF",
-          "shape": "86D2988843E12207747876CE25CF500FF963DFFA2D8D36410E992FB0568474A9"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/DiskControl.cs",
-          "name": "Capture",
-          "owner": "DiskControl",
-          "kind": "MethodDeclaration",
-          "line": 47,
-          "parameters": "(nint data)",
-          "tokens": 15,
-          "bodyTokens": "=> CaptureBasic ( Marshal . PtrToStructure < ExternalCoreApi . DiskControl > ( data ) )",
-          "hash": "198F6C238E28C3D66BFDB141C76AA2D4FA8BD87C992FBCD0957AD67E670656DF",
-          "shape": "86D2988843E12207747876CE25CF500FF963DFFA2D8D36410E992FB0568474A9"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/DiskControl.cs",
-          "name": "Capture",
-          "owner": "DiskControl",
-          "kind": "MethodDeclaration",
-          "line": 47,
-          "parameters": "(nint data)",
-          "tokens": 15,
-          "bodyTokens": "=> CaptureBasic ( Marshal . PtrToStructure < ExternalCoreApi . DiskControl > ( data ) )",
-          "hash": "198F6C238E28C3D66BFDB141C76AA2D4FA8BD87C992FBCD0957AD67E670656DF",
-          "shape": "86D2988843E12207747876CE25CF500FF963DFFA2D8D36410E992FB0568474A9"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/DiskControl.cs",
-          "name": "Capture",
-          "owner": "DiskControl",
-          "kind": "MethodDeclaration",
-          "line": 47,
-          "parameters": "(nint data)",
-          "tokens": 15,
-          "bodyTokens": "=> CaptureBasic ( Marshal . PtrToStructure < ExternalCoreApi . DiskControl > ( data ) )",
-          "hash": "198F6C238E28C3D66BFDB141C76AA2D4FA8BD87C992FBCD0957AD67E670656DF",
-          "shape": "86D2988843E12207747876CE25CF500FF963DFFA2D8D36410E992FB0568474A9"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/DiskControl.cs",
-          "name": "Capture",
-          "owner": "DiskControl",
-          "kind": "MethodDeclaration",
-          "line": 47,
-          "parameters": "(nint data)",
-          "tokens": 15,
-          "bodyTokens": "=> CaptureBasic ( Marshal . PtrToStructure < ExternalCoreApi . DiskControl > ( data ) )",
-          "hash": "198F6C238E28C3D66BFDB141C76AA2D4FA8BD87C992FBCD0957AD67E670656DF",
-          "shape": "86D2988843E12207747876CE25CF500FF963DFFA2D8D36410E992FB0568474A9"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
-          "name": "Capture",
-          "owner": "ExternalDiskControl",
-          "kind": "MethodDeclaration",
-          "line": 27,
-          "parameters": "(nint data)",
-          "tokens": 15,
-          "bodyTokens": "=> CaptureBasic ( Marshal . PtrToStructure < ExternalCoreApi . DiskControl > ( data ) )",
-          "hash": "198F6C238E28C3D66BFDB141C76AA2D4FA8BD87C992FBCD0957AD67E670656DF",
-          "shape": "86D2988843E12207747876CE25CF500FF963DFFA2D8D36410E992FB0568474A9"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/DiskControl.cs",
-          "name": "Capture",
-          "owner": "DiskControl",
-          "kind": "MethodDeclaration",
-          "line": 47,
-          "parameters": "(nint data)",
-          "tokens": 15,
-          "bodyTokens": "=> CaptureBasic ( Marshal . PtrToStructure < ExternalCoreApi . DiskControl > ( data ) )",
-          "hash": "198F6C238E28C3D66BFDB141C76AA2D4FA8BD87C992FBCD0957AD67E670656DF",
-          "shape": "86D2988843E12207747876CE25CF500FF963DFFA2D8D36410E992FB0568474A9"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/DiskControl.cs",
-          "name": "Capture",
-          "owner": "DiskControl",
-          "kind": "MethodDeclaration",
-          "line": 47,
-          "parameters": "(nint data)",
-          "tokens": 15,
-          "bodyTokens": "=> CaptureBasic ( Marshal . PtrToStructure < ExternalCoreApi . DiskControl > ( data ) )",
-          "hash": "198F6C238E28C3D66BFDB141C76AA2D4FA8BD87C992FBCD0957AD67E670656DF",
-          "shape": "86D2988843E12207747876CE25CF500FF963DFFA2D8D36410E992FB0568474A9"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/DiskControl.cs",
-          "name": "Capture",
-          "owner": "DiskControl",
-          "kind": "MethodDeclaration",
-          "line": 47,
-          "parameters": "(nint data)",
-          "tokens": 15,
-          "bodyTokens": "=> CaptureBasic ( Marshal . PtrToStructure < ExternalCoreApi . DiskControl > ( data ) )",
-          "hash": "198F6C238E28C3D66BFDB141C76AA2D4FA8BD87C992FBCD0957AD67E670656DF",
-          "shape": "86D2988843E12207747876CE25CF500FF963DFFA2D8D36410E992FB0568474A9"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/DiskControl.cs",
-          "name": "Capture",
-          "owner": "DiskControl",
-          "kind": "MethodDeclaration",
-          "line": 47,
-          "parameters": "(nint data)",
-          "tokens": 15,
-          "bodyTokens": "=> CaptureBasic ( Marshal . PtrToStructure < ExternalCoreApi . DiskControl > ( data ) )",
-          "hash": "198F6C238E28C3D66BFDB141C76AA2D4FA8BD87C992FBCD0957AD67E670656DF",
-          "shape": "86D2988843E12207747876CE25CF500FF963DFFA2D8D36410E992FB0568474A9"
-        }
-      ],
-      "qualification": "pending-symbol-and-ownership-comparison"
-    },
-    {
       "hash": "19FF7043EC29816D603E2D6BC2A0EDD50D76EB6D1A7800C2160B1FC92A2693A4",
       "tokens": 20,
       "bodyTokens": "=> string . Format ( CultureInfo . InvariantCulture , ExceptionText . Get ( EnvironmentConstants . UnknownCommandDiagnosticResourceKey ) , command )",
@@ -7237,157 +6948,6 @@
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
-    },
-    {
-      "hash": "1CA881F646F484AF1B46F31247BD21CD4F7E374E898B30BB4F46371C7E699C37",
-      "tokens": 28,
-      "bodyTokens": "=> GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . RequiredDelegate < T > ( pointer , static ( ) => new InvalidOperationException ( DiskControlErrors . Incomplete ) )",
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
-          "name": "RequiredDelegate",
-          "owner": "DiskControlFunctions",
-          "kind": "MethodDeclaration",
-          "line": 9,
-          "parameters": "(nint pointer)",
-          "tokens": 28,
-          "bodyTokens": "=> GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . RequiredDelegate < T > ( pointer , static ( ) => new InvalidOperationException ( DiskControlErrors . Incomplete ) )",
-          "hash": "1CA881F646F484AF1B46F31247BD21CD4F7E374E898B30BB4F46371C7E699C37",
-          "shape": "5B0D92E3EF81F05BF5096BF183AE311A17784C182E106DE0689B206C3D04A4D3",
-          "qualification": "Module error adapter to original shared required conversion verified in requiredNativeDelegateReuse; deferred message and owner context preserved"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
-          "name": "RequiredDelegate",
-          "owner": "DiskControlFunctions",
-          "kind": "MethodDeclaration",
-          "line": 10,
-          "parameters": "(nint pointer)",
-          "tokens": 28,
-          "bodyTokens": "=> GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . RequiredDelegate < T > ( pointer , static ( ) => new InvalidOperationException ( DiskControlErrors . Incomplete ) )",
-          "hash": "1CA881F646F484AF1B46F31247BD21CD4F7E374E898B30BB4F46371C7E699C37",
-          "shape": "5B0D92E3EF81F05BF5096BF183AE311A17784C182E106DE0689B206C3D04A4D3",
-          "qualification": "Module error adapter to original shared required conversion verified in requiredNativeDelegateReuse; deferred message and owner context preserved"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
-          "name": "RequiredDelegate",
-          "owner": "DiskControlFunctions",
-          "kind": "MethodDeclaration",
-          "line": 6,
-          "parameters": "(nint pointer)",
-          "tokens": 28,
-          "bodyTokens": "=> GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . RequiredDelegate < T > ( pointer , static ( ) => new InvalidOperationException ( DiskControlErrors . Incomplete ) )",
-          "hash": "1CA881F646F484AF1B46F31247BD21CD4F7E374E898B30BB4F46371C7E699C37",
-          "shape": "5B0D92E3EF81F05BF5096BF183AE311A17784C182E106DE0689B206C3D04A4D3",
-          "qualification": "Module error adapter to original shared required conversion verified in requiredNativeDelegateReuse; deferred message and owner context preserved"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
-          "name": "RequiredDelegate",
-          "owner": "DiskControlFunctions",
-          "kind": "MethodDeclaration",
-          "line": 8,
-          "parameters": "(nint pointer)",
-          "tokens": 28,
-          "bodyTokens": "=> GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . RequiredDelegate < T > ( pointer , static ( ) => new InvalidOperationException ( DiskControlErrors . Incomplete ) )",
-          "hash": "1CA881F646F484AF1B46F31247BD21CD4F7E374E898B30BB4F46371C7E699C37",
-          "shape": "5B0D92E3EF81F05BF5096BF183AE311A17784C182E106DE0689B206C3D04A4D3",
-          "qualification": "Module error adapter to original shared required conversion verified in requiredNativeDelegateReuse; deferred message and owner context preserved"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
-          "name": "RequiredDelegate",
-          "owner": "DiskControlFunctions",
-          "kind": "MethodDeclaration",
-          "line": 8,
-          "parameters": "(nint pointer)",
-          "tokens": 28,
-          "bodyTokens": "=> GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . RequiredDelegate < T > ( pointer , static ( ) => new InvalidOperationException ( DiskControlErrors . Incomplete ) )",
-          "hash": "1CA881F646F484AF1B46F31247BD21CD4F7E374E898B30BB4F46371C7E699C37",
-          "shape": "5B0D92E3EF81F05BF5096BF183AE311A17784C182E106DE0689B206C3D04A4D3",
-          "qualification": "Module error adapter to original shared required conversion verified in requiredNativeDelegateReuse; deferred message and owner context preserved"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
-          "name": "RequiredDelegate",
-          "owner": "DiskControlFunctions",
-          "kind": "MethodDeclaration",
-          "line": 8,
-          "parameters": "(nint pointer)",
-          "tokens": 28,
-          "bodyTokens": "=> GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . RequiredDelegate < T > ( pointer , static ( ) => new InvalidOperationException ( DiskControlErrors . Incomplete ) )",
-          "hash": "1CA881F646F484AF1B46F31247BD21CD4F7E374E898B30BB4F46371C7E699C37",
-          "shape": "5B0D92E3EF81F05BF5096BF183AE311A17784C182E106DE0689B206C3D04A4D3",
-          "qualification": "Module error adapter to original shared required conversion verified in requiredNativeDelegateReuse; deferred message and owner context preserved"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
-          "name": "RequiredDelegate",
-          "owner": "DiskControlFunctions",
-          "kind": "MethodDeclaration",
-          "line": 8,
-          "parameters": "(nint pointer)",
-          "tokens": 28,
-          "bodyTokens": "=> GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . RequiredDelegate < T > ( pointer , static ( ) => new InvalidOperationException ( DiskControlErrors . Incomplete ) )",
-          "hash": "1CA881F646F484AF1B46F31247BD21CD4F7E374E898B30BB4F46371C7E699C37",
-          "shape": "5B0D92E3EF81F05BF5096BF183AE311A17784C182E106DE0689B206C3D04A4D3",
-          "qualification": "Module error adapter to original shared required conversion verified in requiredNativeDelegateReuse; deferred message and owner context preserved"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
-          "name": "RequiredDelegate",
-          "owner": "DiskControlFunctions",
-          "kind": "MethodDeclaration",
-          "line": 8,
-          "parameters": "(nint pointer)",
-          "tokens": 28,
-          "bodyTokens": "=> GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . RequiredDelegate < T > ( pointer , static ( ) => new InvalidOperationException ( DiskControlErrors . Incomplete ) )",
-          "hash": "1CA881F646F484AF1B46F31247BD21CD4F7E374E898B30BB4F46371C7E699C37",
-          "shape": "5B0D92E3EF81F05BF5096BF183AE311A17784C182E106DE0689B206C3D04A4D3",
-          "qualification": "Module error adapter to original shared required conversion verified in requiredNativeDelegateReuse; deferred message and owner context preserved"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
-          "name": "RequiredDelegate",
-          "owner": "DiskControlFunctions",
-          "kind": "MethodDeclaration",
-          "line": 8,
-          "parameters": "(nint pointer)",
-          "tokens": 28,
-          "bodyTokens": "=> GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . RequiredDelegate < T > ( pointer , static ( ) => new InvalidOperationException ( DiskControlErrors . Incomplete ) )",
-          "hash": "1CA881F646F484AF1B46F31247BD21CD4F7E374E898B30BB4F46371C7E699C37",
-          "shape": "5B0D92E3EF81F05BF5096BF183AE311A17784C182E106DE0689B206C3D04A4D3",
-          "qualification": "Module error adapter to original shared required conversion verified in requiredNativeDelegateReuse; deferred message and owner context preserved"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
-          "name": "RequiredDelegate",
-          "owner": "DiskControlFunctions",
-          "kind": "MethodDeclaration",
-          "line": 8,
-          "parameters": "(nint pointer)",
-          "tokens": 28,
-          "bodyTokens": "=> GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . RequiredDelegate < T > ( pointer , static ( ) => new InvalidOperationException ( DiskControlErrors . Incomplete ) )",
-          "hash": "1CA881F646F484AF1B46F31247BD21CD4F7E374E898B30BB4F46371C7E699C37",
-          "shape": "5B0D92E3EF81F05BF5096BF183AE311A17784C182E106DE0689B206C3D04A4D3",
-          "qualification": "Module error adapter to original shared required conversion verified in requiredNativeDelegateReuse; deferred message and owner context preserved"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
-          "name": "RequiredDelegate",
-          "owner": "DiskControlFunctions",
-          "kind": "MethodDeclaration",
-          "line": 8,
-          "parameters": "(nint pointer)",
-          "tokens": 28,
-          "bodyTokens": "=> GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . RequiredDelegate < T > ( pointer , static ( ) => new InvalidOperationException ( DiskControlErrors . Incomplete ) )",
-          "hash": "1CA881F646F484AF1B46F31247BD21CD4F7E374E898B30BB4F46371C7E699C37",
-          "shape": "5B0D92E3EF81F05BF5096BF183AE311A17784C182E106DE0689B206C3D04A4D3",
-          "qualification": "Module error adapter to original shared required conversion verified in requiredNativeDelegateReuse; deferred message and owner context preserved"
-        }
-      ],
-      "qualification": "Qualified module error adapters to original required conversion"
     },
     {
       "hash": "1CBAB4FDB49E4FB02E304B31EE54F0D688C3BA8C2D2F60E5B2A88E6330A38B6A",
@@ -22881,6 +22441,30 @@
           "bodyTokens": "=> true",
           "hash": "486B6C8DECE74C9D43F3AD0173678A1CADEDEDEA4157BF648ED507F65F415A6E",
           "shape": "486B6C8DECE74C9D43F3AD0173678A1CADEDEDEA4157BF648ED507F65F415A6E"
+        },
+        {
+          "path": "tests/GWGUI.Tests/Emulation/CoreDiskControlTests.cs",
+          "name": "MediaExists",
+          "owner": "NativeOwner.CoreDiskControlTests",
+          "kind": "MethodDeclaration",
+          "line": 256,
+          "parameters": "(string path)",
+          "tokens": 2,
+          "bodyTokens": "=> true",
+          "hash": "486B6C8DECE74C9D43F3AD0173678A1CADEDEDEA4157BF648ED507F65F415A6E",
+          "shape": "486B6C8DECE74C9D43F3AD0173678A1CADEDEDEA4157BF648ED507F65F415A6E"
+        },
+        {
+          "path": "tests/GWGUI.Tests/Emulation/CoreDiskControlTests.cs",
+          "name": "MediaExists",
+          "owner": "RichOwner.CoreDiskControlTests",
+          "kind": "MethodDeclaration",
+          "line": 271,
+          "parameters": "(string path)",
+          "tokens": 2,
+          "bodyTokens": "=> true",
+          "hash": "486B6C8DECE74C9D43F3AD0173678A1CADEDEDEA4157BF648ED507F65F415A6E",
+          "shape": "486B6C8DECE74C9D43F3AD0173678A1CADEDEDEA4157BF648ED507F65F415A6E"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -30962,146 +30546,6 @@
           "bodyTokens": "{ SupportsAchievements = data != nint . Zero && Marshal . ReadByte ( data ) != ExternalCoreInteropConstants . NativeBooleanFalse ; return data != nint . Zero ; }",
           "hash": "6318F30A02A697AC0260E7AC90FD65903FC612A68B30FDA2E634DAA671982B1F",
           "shape": "212998FA524F1BF871FE3D1E66933B56FD70A996F9B344CAF518E41A96793142"
-        }
-      ],
-      "qualification": "pending-symbol-and-ownership-comparison"
-    },
-    {
-      "hash": "636F99E1D7A9B893F4BCDCD25E12FDD46990D50582576900CAC00AC46065850E",
-      "tokens": 19,
-      "bodyTokens": "=> GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ReadDiskText ( getter , index , DiskControlConstants . TextBufferSize )",
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
-          "name": "ReadText",
-          "owner": "DiskControlFunctions",
-          "kind": "MethodDeclaration",
-          "line": 11,
-          "parameters": "(T? getter, int index)",
-          "tokens": 19,
-          "bodyTokens": "=> GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ReadDiskText ( getter , index , DiskControlConstants . TextBufferSize )",
-          "hash": "636F99E1D7A9B893F4BCDCD25E12FDD46990D50582576900CAC00AC46065850E",
-          "shape": "5A0E9909C6137DF58DC7736A32CE28D25A94D442E49BF62889812A2917EF03D1"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
-          "name": "ReadText",
-          "owner": "DiskControlFunctions",
-          "kind": "MethodDeclaration",
-          "line": 12,
-          "parameters": "(T? getter, int index)",
-          "tokens": 19,
-          "bodyTokens": "=> GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ReadDiskText ( getter , index , DiskControlConstants . TextBufferSize )",
-          "hash": "636F99E1D7A9B893F4BCDCD25E12FDD46990D50582576900CAC00AC46065850E",
-          "shape": "5A0E9909C6137DF58DC7736A32CE28D25A94D442E49BF62889812A2917EF03D1"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
-          "name": "ReadText",
-          "owner": "DiskControlFunctions",
-          "kind": "MethodDeclaration",
-          "line": 8,
-          "parameters": "(T? getter, int index)",
-          "tokens": 19,
-          "bodyTokens": "=> GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ReadDiskText ( getter , index , DiskControlConstants . TextBufferSize )",
-          "hash": "636F99E1D7A9B893F4BCDCD25E12FDD46990D50582576900CAC00AC46065850E",
-          "shape": "5A0E9909C6137DF58DC7736A32CE28D25A94D442E49BF62889812A2917EF03D1"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
-          "name": "ReadText",
-          "owner": "DiskControlFunctions",
-          "kind": "MethodDeclaration",
-          "line": 10,
-          "parameters": "(T? getter, int index)",
-          "tokens": 19,
-          "bodyTokens": "=> GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ReadDiskText ( getter , index , DiskControlConstants . TextBufferSize )",
-          "hash": "636F99E1D7A9B893F4BCDCD25E12FDD46990D50582576900CAC00AC46065850E",
-          "shape": "5A0E9909C6137DF58DC7736A32CE28D25A94D442E49BF62889812A2917EF03D1"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
-          "name": "ReadText",
-          "owner": "DiskControlFunctions",
-          "kind": "MethodDeclaration",
-          "line": 10,
-          "parameters": "(T? getter, int index)",
-          "tokens": 19,
-          "bodyTokens": "=> GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ReadDiskText ( getter , index , DiskControlConstants . TextBufferSize )",
-          "hash": "636F99E1D7A9B893F4BCDCD25E12FDD46990D50582576900CAC00AC46065850E",
-          "shape": "5A0E9909C6137DF58DC7736A32CE28D25A94D442E49BF62889812A2917EF03D1"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
-          "name": "ReadText",
-          "owner": "DiskControlFunctions",
-          "kind": "MethodDeclaration",
-          "line": 10,
-          "parameters": "(T? getter, int index)",
-          "tokens": 19,
-          "bodyTokens": "=> GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ReadDiskText ( getter , index , DiskControlConstants . TextBufferSize )",
-          "hash": "636F99E1D7A9B893F4BCDCD25E12FDD46990D50582576900CAC00AC46065850E",
-          "shape": "5A0E9909C6137DF58DC7736A32CE28D25A94D442E49BF62889812A2917EF03D1"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
-          "name": "ReadText",
-          "owner": "DiskControlFunctions",
-          "kind": "MethodDeclaration",
-          "line": 10,
-          "parameters": "(T? getter, int index)",
-          "tokens": 19,
-          "bodyTokens": "=> GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ReadDiskText ( getter , index , DiskControlConstants . TextBufferSize )",
-          "hash": "636F99E1D7A9B893F4BCDCD25E12FDD46990D50582576900CAC00AC46065850E",
-          "shape": "5A0E9909C6137DF58DC7736A32CE28D25A94D442E49BF62889812A2917EF03D1"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
-          "name": "ReadText",
-          "owner": "DiskControlFunctions",
-          "kind": "MethodDeclaration",
-          "line": 10,
-          "parameters": "(T? getter, int index)",
-          "tokens": 19,
-          "bodyTokens": "=> GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ReadDiskText ( getter , index , DiskControlConstants . TextBufferSize )",
-          "hash": "636F99E1D7A9B893F4BCDCD25E12FDD46990D50582576900CAC00AC46065850E",
-          "shape": "5A0E9909C6137DF58DC7736A32CE28D25A94D442E49BF62889812A2917EF03D1"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
-          "name": "ReadText",
-          "owner": "DiskControlFunctions",
-          "kind": "MethodDeclaration",
-          "line": 10,
-          "parameters": "(T? getter, int index)",
-          "tokens": 19,
-          "bodyTokens": "=> GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ReadDiskText ( getter , index , DiskControlConstants . TextBufferSize )",
-          "hash": "636F99E1D7A9B893F4BCDCD25E12FDD46990D50582576900CAC00AC46065850E",
-          "shape": "5A0E9909C6137DF58DC7736A32CE28D25A94D442E49BF62889812A2917EF03D1"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
-          "name": "ReadText",
-          "owner": "DiskControlFunctions",
-          "kind": "MethodDeclaration",
-          "line": 10,
-          "parameters": "(T? getter, int index)",
-          "tokens": 19,
-          "bodyTokens": "=> GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ReadDiskText ( getter , index , DiskControlConstants . TextBufferSize )",
-          "hash": "636F99E1D7A9B893F4BCDCD25E12FDD46990D50582576900CAC00AC46065850E",
-          "shape": "5A0E9909C6137DF58DC7736A32CE28D25A94D442E49BF62889812A2917EF03D1"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
-          "name": "ReadText",
-          "owner": "DiskControlFunctions",
-          "kind": "MethodDeclaration",
-          "line": 10,
-          "parameters": "(T? getter, int index)",
-          "tokens": 19,
-          "bodyTokens": "=> GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ReadDiskText ( getter , index , DiskControlConstants . TextBufferSize )",
-          "hash": "636F99E1D7A9B893F4BCDCD25E12FDD46990D50582576900CAC00AC46065850E",
-          "shape": "5A0E9909C6137DF58DC7736A32CE28D25A94D442E49BF62889812A2917EF03D1"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -45873,86 +45317,6 @@
       "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
-      "hash": "9822C2FAF81F81CE931BA6E5CD4643E438869DD50200B15F46F7D3BE9EDDC5CA",
-      "tokens": 17,
-      "bodyTokens": "=> GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ReadDiskText ( getter , index , 4096 )",
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
-          "name": "ReadText",
-          "owner": "ExternalDiskControl",
-          "kind": "MethodDeclaration",
-          "line": 73,
-          "parameters": "(T? getter, int index)",
-          "tokens": 17,
-          "bodyTokens": "=> GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ReadDiskText ( getter , index , 4096 )",
-          "hash": "9822C2FAF81F81CE931BA6E5CD4643E438869DD50200B15F46F7D3BE9EDDC5CA",
-          "shape": "5D2B6435D13B8769F781F3F8140BE4A56F98FFF58379A8A260E54320FD8F1413"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
-          "name": "ReadText",
-          "owner": "ExternalDiskControl",
-          "kind": "MethodDeclaration",
-          "line": 82,
-          "parameters": "(T? getter, int index)",
-          "tokens": 17,
-          "bodyTokens": "=> GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ReadDiskText ( getter , index , 4096 )",
-          "hash": "9822C2FAF81F81CE931BA6E5CD4643E438869DD50200B15F46F7D3BE9EDDC5CA",
-          "shape": "5D2B6435D13B8769F781F3F8140BE4A56F98FFF58379A8A260E54320FD8F1413"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
-          "name": "ReadText",
-          "owner": "ExternalDiskControl",
-          "kind": "MethodDeclaration",
-          "line": 82,
-          "parameters": "(T? getter, int index)",
-          "tokens": 17,
-          "bodyTokens": "=> GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ReadDiskText ( getter , index , 4096 )",
-          "hash": "9822C2FAF81F81CE931BA6E5CD4643E438869DD50200B15F46F7D3BE9EDDC5CA",
-          "shape": "5D2B6435D13B8769F781F3F8140BE4A56F98FFF58379A8A260E54320FD8F1413"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
-          "name": "ReadText",
-          "owner": "ExternalDiskControl",
-          "kind": "MethodDeclaration",
-          "line": 82,
-          "parameters": "(T? getter, int index)",
-          "tokens": 17,
-          "bodyTokens": "=> GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ReadDiskText ( getter , index , 4096 )",
-          "hash": "9822C2FAF81F81CE931BA6E5CD4643E438869DD50200B15F46F7D3BE9EDDC5CA",
-          "shape": "5D2B6435D13B8769F781F3F8140BE4A56F98FFF58379A8A260E54320FD8F1413"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalDiskControl.cs",
-          "name": "ReadText",
-          "owner": "ExternalDiskControl",
-          "kind": "MethodDeclaration",
-          "line": 83,
-          "parameters": "(T? getter, int index)",
-          "tokens": 17,
-          "bodyTokens": "=> GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ReadDiskText ( getter , index , 4096 )",
-          "hash": "9822C2FAF81F81CE931BA6E5CD4643E438869DD50200B15F46F7D3BE9EDDC5CA",
-          "shape": "5D2B6435D13B8769F781F3F8140BE4A56F98FFF58379A8A260E54320FD8F1413"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalDiskControl.cs",
-          "name": "ReadText",
-          "owner": "ExternalDiskControl",
-          "kind": "MethodDeclaration",
-          "line": 83,
-          "parameters": "(T? getter, int index)",
-          "tokens": 17,
-          "bodyTokens": "=> GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ReadDiskText ( getter , index , 4096 )",
-          "hash": "9822C2FAF81F81CE931BA6E5CD4643E438869DD50200B15F46F7D3BE9EDDC5CA",
-          "shape": "5D2B6435D13B8769F781F3F8140BE4A56F98FFF58379A8A260E54320FD8F1413"
-        }
-      ],
-      "qualification": "pending-symbol-and-ownership-comparison"
-    },
-    {
       "hash": "989728C2F9B6F66BB5AB9107AA4BEDF71E6937BA0EBAB66993EEB1C864F4DD01",
       "tokens": 28,
       "bodyTokens": "=> EmulationHostProtocolFunctions . ReadResponseAsync ( _pipe ! , TimeSpan . FromSeconds ( 30 ) , CancellationToken . None , length => CoreExceptions . InvalidResponseLength ( length ) )",
@@ -51853,110 +51217,6 @@
       "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
-      "hash": "AEF76C1489BC9D79FA318D8109A63A127FE7009C6AD2DB8539B786D125F46B60",
-      "tokens": 7,
-      "bodyTokens": "=> ReadText ( _getImagePath , index )",
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
-          "name": "GetPath",
-          "owner": "ExternalDiskControl",
-          "kind": "MethodDeclaration",
-          "line": 78,
-          "parameters": "(int index)",
-          "tokens": 7,
-          "bodyTokens": "=> ReadText ( _getImagePath , index )",
-          "hash": "AEF76C1489BC9D79FA318D8109A63A127FE7009C6AD2DB8539B786D125F46B60",
-          "shape": "B53DBFCDFD0D1E84F55D2883652747C0E62AF9B195171F4DDA076A81E0826355"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
-          "name": "GetPath",
-          "owner": "ExternalDiskControl",
-          "kind": "MethodDeclaration",
-          "line": 74,
-          "parameters": "(int index)",
-          "tokens": 7,
-          "bodyTokens": "=> ReadText ( _getImagePath , index )",
-          "hash": "AEF76C1489BC9D79FA318D8109A63A127FE7009C6AD2DB8539B786D125F46B60",
-          "shape": "B53DBFCDFD0D1E84F55D2883652747C0E62AF9B195171F4DDA076A81E0826355"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
-          "name": "GetPath",
-          "owner": "ExternalDiskControl",
-          "kind": "MethodDeclaration",
-          "line": 70,
-          "parameters": "(int index)",
-          "tokens": 7,
-          "bodyTokens": "=> ReadText ( _getImagePath , index )",
-          "hash": "AEF76C1489BC9D79FA318D8109A63A127FE7009C6AD2DB8539B786D125F46B60",
-          "shape": "B53DBFCDFD0D1E84F55D2883652747C0E62AF9B195171F4DDA076A81E0826355"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
-          "name": "GetPath",
-          "owner": "ExternalDiskControl",
-          "kind": "MethodDeclaration",
-          "line": 79,
-          "parameters": "(int index)",
-          "tokens": 7,
-          "bodyTokens": "=> ReadText ( _getImagePath , index )",
-          "hash": "AEF76C1489BC9D79FA318D8109A63A127FE7009C6AD2DB8539B786D125F46B60",
-          "shape": "B53DBFCDFD0D1E84F55D2883652747C0E62AF9B195171F4DDA076A81E0826355"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
-          "name": "GetPath",
-          "owner": "ExternalDiskControl",
-          "kind": "MethodDeclaration",
-          "line": 79,
-          "parameters": "(int index)",
-          "tokens": 7,
-          "bodyTokens": "=> ReadText ( _getImagePath , index )",
-          "hash": "AEF76C1489BC9D79FA318D8109A63A127FE7009C6AD2DB8539B786D125F46B60",
-          "shape": "B53DBFCDFD0D1E84F55D2883652747C0E62AF9B195171F4DDA076A81E0826355"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
-          "name": "GetPath",
-          "owner": "ExternalDiskControl",
-          "kind": "MethodDeclaration",
-          "line": 79,
-          "parameters": "(int index)",
-          "tokens": 7,
-          "bodyTokens": "=> ReadText ( _getImagePath , index )",
-          "hash": "AEF76C1489BC9D79FA318D8109A63A127FE7009C6AD2DB8539B786D125F46B60",
-          "shape": "B53DBFCDFD0D1E84F55D2883652747C0E62AF9B195171F4DDA076A81E0826355"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalDiskControl.cs",
-          "name": "GetPath",
-          "owner": "ExternalDiskControl",
-          "kind": "MethodDeclaration",
-          "line": 80,
-          "parameters": "(int index)",
-          "tokens": 7,
-          "bodyTokens": "=> ReadText ( _getImagePath , index )",
-          "hash": "AEF76C1489BC9D79FA318D8109A63A127FE7009C6AD2DB8539B786D125F46B60",
-          "shape": "B53DBFCDFD0D1E84F55D2883652747C0E62AF9B195171F4DDA076A81E0826355"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalDiskControl.cs",
-          "name": "GetPath",
-          "owner": "ExternalDiskControl",
-          "kind": "MethodDeclaration",
-          "line": 80,
-          "parameters": "(int index)",
-          "tokens": 7,
-          "bodyTokens": "=> ReadText ( _getImagePath , index )",
-          "hash": "AEF76C1489BC9D79FA318D8109A63A127FE7009C6AD2DB8539B786D125F46B60",
-          "shape": "B53DBFCDFD0D1E84F55D2883652747C0E62AF9B195171F4DDA076A81E0826355"
-        }
-      ],
-      "qualification": "pending-symbol-and-ownership-comparison"
-    },
-    {
       "hash": "AFD6EFF3CD164888A253916F61278FBBEAF088D4A99DFEEA04E041815DD6E576",
       "tokens": 15,
       "bodyTokens": "=> Math . Max ( AudioConstants . MinimumBufferedFrameCount , sampleRate / AudioConstants . BufferDurationDivisor )",
@@ -53153,6 +52413,18 @@
       "tokens": 7,
       "bodyTokens": "=> File . Exists ( path )",
       "current": [
+        {
+          "path": "src/GWGUI.Emulation/Services/ExternalRichDiskControl.cs",
+          "name": "MediaExists",
+          "owner": "ExternalRichDiskControl",
+          "kind": "MethodDeclaration",
+          "line": 9,
+          "parameters": "(string path)",
+          "tokens": 7,
+          "bodyTokens": "=> File . Exists ( path )",
+          "hash": "B3CCE69DF6BA3DEC8D3C8F1F6B72F59F8438A0C91A05F1B5E40B8EC5EB3287B8",
+          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5"
+        },
         {
           "path": "src/GWGUI.Infrastructure/HostTools/IInstallationFileSystem.cs",
           "name": "FileExists",
@@ -55169,6 +54441,169 @@
       "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
+      "hash": "BC2CB21C5340481CC091ECD859B3F59734434A30BC7913409890F619159DADC7",
+      "tokens": 4,
+      "bodyTokens": "=> content . GameInfo",
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/DiskControl.cs",
+          "name": "GetGameInfo",
+          "owner": "DiskControl",
+          "kind": "MethodDeclaration",
+          "line": 25,
+          "parameters": "(GWGUI.Emulation.Services.ExternalCoreLoadedContent content)",
+          "tokens": 4,
+          "bodyTokens": "=> content . GameInfo",
+          "hash": "BC2CB21C5340481CC091ECD859B3F59734434A30BC7913409890F619159DADC7",
+          "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E",
+          "qualification": "Typed profile/content/status projection to original shared disk-control component; exact message/factory/DTO bindings verified in completeDiskControlComparison, 399 identical traces; unrelated members not qualified"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/DiskControl.cs",
+          "name": "GetGameInfo",
+          "owner": "DiskControl",
+          "kind": "MethodDeclaration",
+          "line": 26,
+          "parameters": "(GWGUI.Emulation.Services.ExternalCoreLoadedContent content)",
+          "tokens": 4,
+          "bodyTokens": "=> content . GameInfo",
+          "hash": "BC2CB21C5340481CC091ECD859B3F59734434A30BC7913409890F619159DADC7",
+          "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E",
+          "qualification": "Typed profile/content/status projection to original shared disk-control component; exact message/factory/DTO bindings verified in completeDiskControlComparison, 399 identical traces; unrelated members not qualified"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/DiskControl.cs",
+          "name": "GetGameInfo",
+          "owner": "DiskControl",
+          "kind": "MethodDeclaration",
+          "line": 22,
+          "parameters": "(GWGUI.Emulation.Services.ExternalCoreLoadedContent content)",
+          "tokens": 4,
+          "bodyTokens": "=> content . GameInfo",
+          "hash": "BC2CB21C5340481CC091ECD859B3F59734434A30BC7913409890F619159DADC7",
+          "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E",
+          "qualification": "Typed profile/content/status projection to original shared disk-control component; exact message/factory/DTO bindings verified in completeDiskControlComparison, 399 identical traces; unrelated members not qualified"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/DiskControl.cs",
+          "name": "GetGameInfo",
+          "owner": "DiskControl",
+          "kind": "MethodDeclaration",
+          "line": 26,
+          "parameters": "(GWGUI.Emulation.Services.ExternalCoreLoadedContent content)",
+          "tokens": 4,
+          "bodyTokens": "=> content . GameInfo",
+          "hash": "BC2CB21C5340481CC091ECD859B3F59734434A30BC7913409890F619159DADC7",
+          "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E",
+          "qualification": "Typed profile/content/status projection to original shared disk-control component; exact message/factory/DTO bindings verified in completeDiskControlComparison, 399 identical traces; unrelated members not qualified"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/DiskControl.cs",
+          "name": "GetGameInfo",
+          "owner": "DiskControl",
+          "kind": "MethodDeclaration",
+          "line": 26,
+          "parameters": "(GWGUI.Emulation.Services.ExternalCoreLoadedContent content)",
+          "tokens": 4,
+          "bodyTokens": "=> content . GameInfo",
+          "hash": "BC2CB21C5340481CC091ECD859B3F59734434A30BC7913409890F619159DADC7",
+          "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E",
+          "qualification": "Typed profile/content/status projection to original shared disk-control component; exact message/factory/DTO bindings verified in completeDiskControlComparison, 399 identical traces; unrelated members not qualified"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/DiskControl.cs",
+          "name": "GetGameInfo",
+          "owner": "DiskControl",
+          "kind": "MethodDeclaration",
+          "line": 26,
+          "parameters": "(GWGUI.Emulation.Services.ExternalCoreLoadedContent content)",
+          "tokens": 4,
+          "bodyTokens": "=> content . GameInfo",
+          "hash": "BC2CB21C5340481CC091ECD859B3F59734434A30BC7913409890F619159DADC7",
+          "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E",
+          "qualification": "Typed profile/content/status projection to original shared disk-control component; exact message/factory/DTO bindings verified in completeDiskControlComparison, 399 identical traces; unrelated members not qualified"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/DiskControl.cs",
+          "name": "GetGameInfo",
+          "owner": "DiskControl",
+          "kind": "MethodDeclaration",
+          "line": 26,
+          "parameters": "(GWGUI.Emulation.Services.ExternalCoreLoadedContent content)",
+          "tokens": 4,
+          "bodyTokens": "=> content . GameInfo",
+          "hash": "BC2CB21C5340481CC091ECD859B3F59734434A30BC7913409890F619159DADC7",
+          "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E",
+          "qualification": "Typed profile/content/status projection to original shared disk-control component; exact message/factory/DTO bindings verified in completeDiskControlComparison, 399 identical traces; unrelated members not qualified"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/DiskControl.cs",
+          "name": "GetGameInfo",
+          "owner": "DiskControl",
+          "kind": "MethodDeclaration",
+          "line": 26,
+          "parameters": "(GWGUI.Emulation.Services.ExternalCoreLoadedContent content)",
+          "tokens": 4,
+          "bodyTokens": "=> content . GameInfo",
+          "hash": "BC2CB21C5340481CC091ECD859B3F59734434A30BC7913409890F619159DADC7",
+          "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E",
+          "qualification": "Typed profile/content/status projection to original shared disk-control component; exact message/factory/DTO bindings verified in completeDiskControlComparison, 399 identical traces; unrelated members not qualified"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/DiskControl.cs",
+          "name": "GetGameInfo",
+          "owner": "DiskControl",
+          "kind": "MethodDeclaration",
+          "line": 25,
+          "parameters": "(GWGUI.Emulation.Services.ExternalCoreLoadedContent content)",
+          "tokens": 4,
+          "bodyTokens": "=> content . GameInfo",
+          "hash": "BC2CB21C5340481CC091ECD859B3F59734434A30BC7913409890F619159DADC7",
+          "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E",
+          "qualification": "Typed profile/content/status projection to original shared disk-control component; exact message/factory/DTO bindings verified in completeDiskControlComparison, 399 identical traces; unrelated members not qualified"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/DiskControl.cs",
+          "name": "GetGameInfo",
+          "owner": "DiskControl",
+          "kind": "MethodDeclaration",
+          "line": 25,
+          "parameters": "(GWGUI.Emulation.Services.ExternalCoreLoadedContent content)",
+          "tokens": 4,
+          "bodyTokens": "=> content . GameInfo",
+          "hash": "BC2CB21C5340481CC091ECD859B3F59734434A30BC7913409890F619159DADC7",
+          "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E",
+          "qualification": "Typed profile/content/status projection to original shared disk-control component; exact message/factory/DTO bindings verified in completeDiskControlComparison, 399 identical traces; unrelated members not qualified"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/DiskControl.cs",
+          "name": "GetGameInfo",
+          "owner": "DiskControl",
+          "kind": "MethodDeclaration",
+          "line": 25,
+          "parameters": "(GWGUI.Emulation.Snk.Emulators.Common.Interop.Services.LoadedContent content)",
+          "tokens": 4,
+          "bodyTokens": "=> content . GameInfo",
+          "hash": "BC2CB21C5340481CC091ECD859B3F59734434A30BC7913409890F619159DADC7",
+          "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E",
+          "qualification": "Typed profile/content/status projection to original shared disk-control component; exact message/factory/DTO bindings verified in completeDiskControlComparison, 399 identical traces; unrelated members not qualified"
+        },
+        {
+          "path": "tests/GWGUI.Tests/Emulation/CoreDiskControlTests.cs",
+          "name": "GetGameInfo",
+          "owner": "RichOwner.CoreDiskControlTests",
+          "kind": "MethodDeclaration",
+          "line": 278,
+          "parameters": "(Content content)",
+          "tokens": 4,
+          "bodyTokens": "=> content . GameInfo",
+          "hash": "BC2CB21C5340481CC091ECD859B3F59734434A30BC7913409890F619159DADC7",
+          "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E"
+        }
+      ],
+      "qualification": "Partial occurrence qualification; unannotated members pending"
+    },
+    {
       "hash": "BCA6BDB68DCF5C06AA68D9BC2A20148FEC88CC351A1939A73CD7AD34C7FE7C94",
       "tokens": 13,
       "bodyTokens": "=> BinaryPrimitives . WriteUInt32BigEndian ( bytes [ offset .. ] , value )",
@@ -55360,62 +54795,6 @@
           "bodyTokens": "{ if ( _disposed ) return ; _disposed = true ; DisposeNativeResources ( ) ; }",
           "hash": "BCE082651F7B2DFD899A77885BB88A4517BEF67FC7B23AD8CBE772863681962A",
           "shape": "554428A360C9E923776122D36A3E793B72AEE44CA0705B6F463D1E478E5E5D4F"
-        }
-      ],
-      "qualification": "pending-symbol-and-ownership-comparison"
-    },
-    {
-      "hash": "BD1AD1230EDC3D58A18BEA92823D245AD1DE755008BA61987C4C3911DF60B7ED",
-      "tokens": 18,
-      "bodyTokens": "{ if ( ! IsAvailable ) throw new InvalidOperationException ( CoreExceptions . DiskControlUnavailable ( ) ) ; }",
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
-          "name": "EnsureAvailable",
-          "owner": "ExternalDiskControl",
-          "kind": "MethodDeclaration",
-          "line": 115,
-          "parameters": "()",
-          "tokens": 18,
-          "bodyTokens": "{ if ( ! IsAvailable ) throw new InvalidOperationException ( CoreExceptions . DiskControlUnavailable ( ) ) ; }",
-          "hash": "BD1AD1230EDC3D58A18BEA92823D245AD1DE755008BA61987C4C3911DF60B7ED",
-          "shape": "AA076952426BCADFBF9540305BF536A0A2F0C5E4950B4C63A842826491BA12A3"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
-          "name": "EnsureAvailable",
-          "owner": "ExternalDiskControl",
-          "kind": "MethodDeclaration",
-          "line": 120,
-          "parameters": "()",
-          "tokens": 18,
-          "bodyTokens": "{ if ( ! IsAvailable ) throw new InvalidOperationException ( CoreExceptions . DiskControlUnavailable ( ) ) ; }",
-          "hash": "BD1AD1230EDC3D58A18BEA92823D245AD1DE755008BA61987C4C3911DF60B7ED",
-          "shape": "AA076952426BCADFBF9540305BF536A0A2F0C5E4950B4C63A842826491BA12A3"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
-          "name": "EnsureAvailable",
-          "owner": "ExternalDiskControl",
-          "kind": "MethodDeclaration",
-          "line": 120,
-          "parameters": "()",
-          "tokens": 18,
-          "bodyTokens": "{ if ( ! IsAvailable ) throw new InvalidOperationException ( CoreExceptions . DiskControlUnavailable ( ) ) ; }",
-          "hash": "BD1AD1230EDC3D58A18BEA92823D245AD1DE755008BA61987C4C3911DF60B7ED",
-          "shape": "AA076952426BCADFBF9540305BF536A0A2F0C5E4950B4C63A842826491BA12A3"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
-          "name": "EnsureAvailable",
-          "owner": "ExternalDiskControl",
-          "kind": "MethodDeclaration",
-          "line": 120,
-          "parameters": "()",
-          "tokens": 18,
-          "bodyTokens": "{ if ( ! IsAvailable ) throw new InvalidOperationException ( CoreExceptions . DiskControlUnavailable ( ) ) ; }",
-          "hash": "BD1AD1230EDC3D58A18BEA92823D245AD1DE755008BA61987C4C3911DF60B7ED",
-          "shape": "AA076952426BCADFBF9540305BF536A0A2F0C5E4950B4C63A842826491BA12A3"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -60845,110 +60224,6 @@
       "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
-      "hash": "D33CFCE4A0AE2F07E1844A94CCD7315ED30F8DCE3A449C3B1841011233A1B529",
-      "tokens": 7,
-      "bodyTokens": "=> ReadText ( _getImageLabel , index )",
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
-          "name": "GetLabel",
-          "owner": "ExternalDiskControl",
-          "kind": "MethodDeclaration",
-          "line": 79,
-          "parameters": "(int index)",
-          "tokens": 7,
-          "bodyTokens": "=> ReadText ( _getImageLabel , index )",
-          "hash": "D33CFCE4A0AE2F07E1844A94CCD7315ED30F8DCE3A449C3B1841011233A1B529",
-          "shape": "B53DBFCDFD0D1E84F55D2883652747C0E62AF9B195171F4DDA076A81E0826355"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
-          "name": "GetLabel",
-          "owner": "ExternalDiskControl",
-          "kind": "MethodDeclaration",
-          "line": 75,
-          "parameters": "(int index)",
-          "tokens": 7,
-          "bodyTokens": "=> ReadText ( _getImageLabel , index )",
-          "hash": "D33CFCE4A0AE2F07E1844A94CCD7315ED30F8DCE3A449C3B1841011233A1B529",
-          "shape": "B53DBFCDFD0D1E84F55D2883652747C0E62AF9B195171F4DDA076A81E0826355"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
-          "name": "GetLabel",
-          "owner": "ExternalDiskControl",
-          "kind": "MethodDeclaration",
-          "line": 71,
-          "parameters": "(int index)",
-          "tokens": 7,
-          "bodyTokens": "=> ReadText ( _getImageLabel , index )",
-          "hash": "D33CFCE4A0AE2F07E1844A94CCD7315ED30F8DCE3A449C3B1841011233A1B529",
-          "shape": "B53DBFCDFD0D1E84F55D2883652747C0E62AF9B195171F4DDA076A81E0826355"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
-          "name": "GetLabel",
-          "owner": "ExternalDiskControl",
-          "kind": "MethodDeclaration",
-          "line": 80,
-          "parameters": "(int index)",
-          "tokens": 7,
-          "bodyTokens": "=> ReadText ( _getImageLabel , index )",
-          "hash": "D33CFCE4A0AE2F07E1844A94CCD7315ED30F8DCE3A449C3B1841011233A1B529",
-          "shape": "B53DBFCDFD0D1E84F55D2883652747C0E62AF9B195171F4DDA076A81E0826355"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
-          "name": "GetLabel",
-          "owner": "ExternalDiskControl",
-          "kind": "MethodDeclaration",
-          "line": 80,
-          "parameters": "(int index)",
-          "tokens": 7,
-          "bodyTokens": "=> ReadText ( _getImageLabel , index )",
-          "hash": "D33CFCE4A0AE2F07E1844A94CCD7315ED30F8DCE3A449C3B1841011233A1B529",
-          "shape": "B53DBFCDFD0D1E84F55D2883652747C0E62AF9B195171F4DDA076A81E0826355"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
-          "name": "GetLabel",
-          "owner": "ExternalDiskControl",
-          "kind": "MethodDeclaration",
-          "line": 80,
-          "parameters": "(int index)",
-          "tokens": 7,
-          "bodyTokens": "=> ReadText ( _getImageLabel , index )",
-          "hash": "D33CFCE4A0AE2F07E1844A94CCD7315ED30F8DCE3A449C3B1841011233A1B529",
-          "shape": "B53DBFCDFD0D1E84F55D2883652747C0E62AF9B195171F4DDA076A81E0826355"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalDiskControl.cs",
-          "name": "GetLabel",
-          "owner": "ExternalDiskControl",
-          "kind": "MethodDeclaration",
-          "line": 81,
-          "parameters": "(int index)",
-          "tokens": 7,
-          "bodyTokens": "=> ReadText ( _getImageLabel , index )",
-          "hash": "D33CFCE4A0AE2F07E1844A94CCD7315ED30F8DCE3A449C3B1841011233A1B529",
-          "shape": "B53DBFCDFD0D1E84F55D2883652747C0E62AF9B195171F4DDA076A81E0826355"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalDiskControl.cs",
-          "name": "GetLabel",
-          "owner": "ExternalDiskControl",
-          "kind": "MethodDeclaration",
-          "line": 81,
-          "parameters": "(int index)",
-          "tokens": 7,
-          "bodyTokens": "=> ReadText ( _getImageLabel , index )",
-          "hash": "D33CFCE4A0AE2F07E1844A94CCD7315ED30F8DCE3A449C3B1841011233A1B529",
-          "shape": "B53DBFCDFD0D1E84F55D2883652747C0E62AF9B195171F4DDA076A81E0826355"
-        }
-      ],
-      "qualification": "pending-symbol-and-ownership-comparison"
-    },
-    {
       "hash": "D36559F5624313C2927D4E991663507CC546AA3B6B964C712545CA04F28FD9C4",
       "tokens": 12,
       "bodyTokens": "=> InputSettingsFunctions . Apply ( Require ( configuration ) , settings )",
@@ -63945,62 +63220,6 @@
       "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
-      "hash": "DE5E8770E18A8B0F699C580AB4435BD4853D679F8B3832FFF152F4923C8254DA",
-      "tokens": 26,
-      "bodyTokens": "{ EnsureAvailable ( ) ; if ( ! _setEjectState ! ( true ) ) throw new InvalidOperationException ( CoreExceptions . MediaEjectFailed ( ) ) ; }",
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
-          "name": "Eject",
-          "owner": "ExternalDiskControl",
-          "kind": "MethodDeclaration",
-          "line": 109,
-          "parameters": "()",
-          "tokens": 26,
-          "bodyTokens": "{ EnsureAvailable ( ) ; if ( ! _setEjectState ! ( true ) ) throw new InvalidOperationException ( CoreExceptions . MediaEjectFailed ( ) ) ; }",
-          "hash": "DE5E8770E18A8B0F699C580AB4435BD4853D679F8B3832FFF152F4923C8254DA",
-          "shape": "96ED33995E1531C3E0A08F21F26D06C3025B68C0A397114FDBCB5FFA00274BBB"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
-          "name": "Eject",
-          "owner": "ExternalDiskControl",
-          "kind": "MethodDeclaration",
-          "line": 114,
-          "parameters": "()",
-          "tokens": 26,
-          "bodyTokens": "{ EnsureAvailable ( ) ; if ( ! _setEjectState ! ( true ) ) throw new InvalidOperationException ( CoreExceptions . MediaEjectFailed ( ) ) ; }",
-          "hash": "DE5E8770E18A8B0F699C580AB4435BD4853D679F8B3832FFF152F4923C8254DA",
-          "shape": "96ED33995E1531C3E0A08F21F26D06C3025B68C0A397114FDBCB5FFA00274BBB"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
-          "name": "Eject",
-          "owner": "ExternalDiskControl",
-          "kind": "MethodDeclaration",
-          "line": 114,
-          "parameters": "()",
-          "tokens": 26,
-          "bodyTokens": "{ EnsureAvailable ( ) ; if ( ! _setEjectState ! ( true ) ) throw new InvalidOperationException ( CoreExceptions . MediaEjectFailed ( ) ) ; }",
-          "hash": "DE5E8770E18A8B0F699C580AB4435BD4853D679F8B3832FFF152F4923C8254DA",
-          "shape": "96ED33995E1531C3E0A08F21F26D06C3025B68C0A397114FDBCB5FFA00274BBB"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
-          "name": "Eject",
-          "owner": "ExternalDiskControl",
-          "kind": "MethodDeclaration",
-          "line": 114,
-          "parameters": "()",
-          "tokens": 26,
-          "bodyTokens": "{ EnsureAvailable ( ) ; if ( ! _setEjectState ! ( true ) ) throw new InvalidOperationException ( CoreExceptions . MediaEjectFailed ( ) ) ; }",
-          "hash": "DE5E8770E18A8B0F699C580AB4435BD4853D679F8B3832FFF152F4923C8254DA",
-          "shape": "96ED33995E1531C3E0A08F21F26D06C3025B68C0A397114FDBCB5FFA00274BBB"
-        }
-      ],
-      "qualification": "pending-symbol-and-ownership-comparison"
-    },
-    {
       "hash": "DEB9055D0AA0D494EDBF5980A22A02EFB19C1077A73C5F4C7645D83BE9F11A2A",
       "tokens": 9,
       "bodyTokens": "=> WriteJsonAtomicallyAsync ( manifestPath , manifest , cancellationToken )",
@@ -64596,146 +63815,6 @@
           "bodyTokens": "{ Begin ( HostCommand . SaveState ) ; CompleteRequest ( ) ; return CoreHostProtocol . ReadBytes ( Response ) ; }",
           "hash": "DFD8B1920C6C727E89E9954F07290193FE6548327932B966422EB64FE4BF9095",
           "shape": "8D615F8C05F733C46CE8EAF0CBA541700F12858E3B1A307655F5F9CF7EBBB2F3"
-        }
-      ],
-      "qualification": "pending-symbol-and-ownership-comparison"
-    },
-    {
-      "hash": "DFF5C97C3141BA1B2F62A61FEACBFC7841E281810F264631CF34615E592B982E",
-      "tokens": 16,
-      "bodyTokens": "{ if ( ! IsAvailable ) throw new InvalidOperationException ( DiskControlErrors . Unavailable ) ; }",
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/DiskControl.cs",
-          "name": "EnsureAvailable",
-          "owner": "DiskControl",
-          "kind": "MethodDeclaration",
-          "line": 112,
-          "parameters": "()",
-          "tokens": 16,
-          "bodyTokens": "{ if ( ! IsAvailable ) throw new InvalidOperationException ( DiskControlErrors . Unavailable ) ; }",
-          "hash": "DFF5C97C3141BA1B2F62A61FEACBFC7841E281810F264631CF34615E592B982E",
-          "shape": "BFF7DB2A51B88A81660ED34D94322D792DED0486ECBF5B887E5D43881D01BAD9"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/DiskControl.cs",
-          "name": "EnsureAvailable",
-          "owner": "DiskControl",
-          "kind": "MethodDeclaration",
-          "line": 142,
-          "parameters": "()",
-          "tokens": 16,
-          "bodyTokens": "{ if ( ! IsAvailable ) throw new InvalidOperationException ( DiskControlErrors . Unavailable ) ; }",
-          "hash": "DFF5C97C3141BA1B2F62A61FEACBFC7841E281810F264631CF34615E592B982E",
-          "shape": "BFF7DB2A51B88A81660ED34D94322D792DED0486ECBF5B887E5D43881D01BAD9"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/DiskControl.cs",
-          "name": "EnsureAvailable",
-          "owner": "DiskControl",
-          "kind": "MethodDeclaration",
-          "line": 109,
-          "parameters": "()",
-          "tokens": 16,
-          "bodyTokens": "{ if ( ! IsAvailable ) throw new InvalidOperationException ( DiskControlErrors . Unavailable ) ; }",
-          "hash": "DFF5C97C3141BA1B2F62A61FEACBFC7841E281810F264631CF34615E592B982E",
-          "shape": "BFF7DB2A51B88A81660ED34D94322D792DED0486ECBF5B887E5D43881D01BAD9"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/DiskControl.cs",
-          "name": "EnsureAvailable",
-          "owner": "DiskControl",
-          "kind": "MethodDeclaration",
-          "line": 131,
-          "parameters": "()",
-          "tokens": 16,
-          "bodyTokens": "{ if ( ! IsAvailable ) throw new InvalidOperationException ( DiskControlErrors . Unavailable ) ; }",
-          "hash": "DFF5C97C3141BA1B2F62A61FEACBFC7841E281810F264631CF34615E592B982E",
-          "shape": "BFF7DB2A51B88A81660ED34D94322D792DED0486ECBF5B887E5D43881D01BAD9"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/DiskControl.cs",
-          "name": "EnsureAvailable",
-          "owner": "DiskControl",
-          "kind": "MethodDeclaration",
-          "line": 131,
-          "parameters": "()",
-          "tokens": 16,
-          "bodyTokens": "{ if ( ! IsAvailable ) throw new InvalidOperationException ( DiskControlErrors . Unavailable ) ; }",
-          "hash": "DFF5C97C3141BA1B2F62A61FEACBFC7841E281810F264631CF34615E592B982E",
-          "shape": "BFF7DB2A51B88A81660ED34D94322D792DED0486ECBF5B887E5D43881D01BAD9"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/DiskControl.cs",
-          "name": "EnsureAvailable",
-          "owner": "DiskControl",
-          "kind": "MethodDeclaration",
-          "line": 131,
-          "parameters": "()",
-          "tokens": 16,
-          "bodyTokens": "{ if ( ! IsAvailable ) throw new InvalidOperationException ( DiskControlErrors . Unavailable ) ; }",
-          "hash": "DFF5C97C3141BA1B2F62A61FEACBFC7841E281810F264631CF34615E592B982E",
-          "shape": "BFF7DB2A51B88A81660ED34D94322D792DED0486ECBF5B887E5D43881D01BAD9"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/DiskControl.cs",
-          "name": "EnsureAvailable",
-          "owner": "DiskControl",
-          "kind": "MethodDeclaration",
-          "line": 131,
-          "parameters": "()",
-          "tokens": 16,
-          "bodyTokens": "{ if ( ! IsAvailable ) throw new InvalidOperationException ( DiskControlErrors . Unavailable ) ; }",
-          "hash": "DFF5C97C3141BA1B2F62A61FEACBFC7841E281810F264631CF34615E592B982E",
-          "shape": "BFF7DB2A51B88A81660ED34D94322D792DED0486ECBF5B887E5D43881D01BAD9"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/DiskControl.cs",
-          "name": "EnsureAvailable",
-          "owner": "DiskControl",
-          "kind": "MethodDeclaration",
-          "line": 131,
-          "parameters": "()",
-          "tokens": 16,
-          "bodyTokens": "{ if ( ! IsAvailable ) throw new InvalidOperationException ( DiskControlErrors . Unavailable ) ; }",
-          "hash": "DFF5C97C3141BA1B2F62A61FEACBFC7841E281810F264631CF34615E592B982E",
-          "shape": "BFF7DB2A51B88A81660ED34D94322D792DED0486ECBF5B887E5D43881D01BAD9"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/DiskControl.cs",
-          "name": "EnsureAvailable",
-          "owner": "DiskControl",
-          "kind": "MethodDeclaration",
-          "line": 126,
-          "parameters": "()",
-          "tokens": 16,
-          "bodyTokens": "{ if ( ! IsAvailable ) throw new InvalidOperationException ( DiskControlErrors . Unavailable ) ; }",
-          "hash": "DFF5C97C3141BA1B2F62A61FEACBFC7841E281810F264631CF34615E592B982E",
-          "shape": "BFF7DB2A51B88A81660ED34D94322D792DED0486ECBF5B887E5D43881D01BAD9"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/DiskControl.cs",
-          "name": "EnsureAvailable",
-          "owner": "DiskControl",
-          "kind": "MethodDeclaration",
-          "line": 126,
-          "parameters": "()",
-          "tokens": 16,
-          "bodyTokens": "{ if ( ! IsAvailable ) throw new InvalidOperationException ( DiskControlErrors . Unavailable ) ; }",
-          "hash": "DFF5C97C3141BA1B2F62A61FEACBFC7841E281810F264631CF34615E592B982E",
-          "shape": "BFF7DB2A51B88A81660ED34D94322D792DED0486ECBF5B887E5D43881D01BAD9"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/DiskControl.cs",
-          "name": "EnsureAvailable",
-          "owner": "DiskControl",
-          "kind": "MethodDeclaration",
-          "line": 126,
-          "parameters": "()",
-          "tokens": 16,
-          "bodyTokens": "{ if ( ! IsAvailable ) throw new InvalidOperationException ( DiskControlErrors . Unavailable ) ; }",
-          "hash": "DFF5C97C3141BA1B2F62A61FEACBFC7841E281810F264631CF34615E592B982E",
-          "shape": "BFF7DB2A51B88A81660ED34D94322D792DED0486ECBF5B887E5D43881D01BAD9"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -65503,146 +64582,6 @@
           "tokens": 9,
           "bodyTokens": "=> NativeMedia . Prepare ( configuration , supportedExtensions )",
           "hash": "E529FBE4A6EF4375433DDAACC1A3F3E0E862EC9E900997EFD3CD7C470329B1EF",
-          "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE"
-        }
-      ],
-      "qualification": "pending-symbol-and-ownership-comparison"
-    },
-    {
-      "hash": "E55CC2C514814E7FD8705022409C3DFAB83EF3CBC4C71FE34DA7909E5E5C8BF2",
-      "tokens": 9,
-      "bodyTokens": "=> DiskControlFunctions . ReadText ( _getImageLabel , index )",
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/DiskControl.cs",
-          "name": "GetLabel",
-          "owner": "DiskControl",
-          "kind": "MethodDeclaration",
-          "line": 93,
-          "parameters": "(int index)",
-          "tokens": 9,
-          "bodyTokens": "=> DiskControlFunctions . ReadText ( _getImageLabel , index )",
-          "hash": "E55CC2C514814E7FD8705022409C3DFAB83EF3CBC4C71FE34DA7909E5E5C8BF2",
-          "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/DiskControl.cs",
-          "name": "GetLabel",
-          "owner": "DiskControl",
-          "kind": "MethodDeclaration",
-          "line": 123,
-          "parameters": "(int index)",
-          "tokens": 9,
-          "bodyTokens": "=> DiskControlFunctions . ReadText ( _getImageLabel , index )",
-          "hash": "E55CC2C514814E7FD8705022409C3DFAB83EF3CBC4C71FE34DA7909E5E5C8BF2",
-          "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/DiskControl.cs",
-          "name": "GetLabel",
-          "owner": "DiskControl",
-          "kind": "MethodDeclaration",
-          "line": 90,
-          "parameters": "(int index)",
-          "tokens": 9,
-          "bodyTokens": "=> DiskControlFunctions . ReadText ( _getImageLabel , index )",
-          "hash": "E55CC2C514814E7FD8705022409C3DFAB83EF3CBC4C71FE34DA7909E5E5C8BF2",
-          "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/DiskControl.cs",
-          "name": "GetLabel",
-          "owner": "DiskControl",
-          "kind": "MethodDeclaration",
-          "line": 106,
-          "parameters": "(int index)",
-          "tokens": 9,
-          "bodyTokens": "=> DiskControlFunctions . ReadText ( _getImageLabel , index )",
-          "hash": "E55CC2C514814E7FD8705022409C3DFAB83EF3CBC4C71FE34DA7909E5E5C8BF2",
-          "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/DiskControl.cs",
-          "name": "GetLabel",
-          "owner": "DiskControl",
-          "kind": "MethodDeclaration",
-          "line": 106,
-          "parameters": "(int index)",
-          "tokens": 9,
-          "bodyTokens": "=> DiskControlFunctions . ReadText ( _getImageLabel , index )",
-          "hash": "E55CC2C514814E7FD8705022409C3DFAB83EF3CBC4C71FE34DA7909E5E5C8BF2",
-          "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/DiskControl.cs",
-          "name": "GetLabel",
-          "owner": "DiskControl",
-          "kind": "MethodDeclaration",
-          "line": 106,
-          "parameters": "(int index)",
-          "tokens": 9,
-          "bodyTokens": "=> DiskControlFunctions . ReadText ( _getImageLabel , index )",
-          "hash": "E55CC2C514814E7FD8705022409C3DFAB83EF3CBC4C71FE34DA7909E5E5C8BF2",
-          "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/DiskControl.cs",
-          "name": "GetLabel",
-          "owner": "DiskControl",
-          "kind": "MethodDeclaration",
-          "line": 106,
-          "parameters": "(int index)",
-          "tokens": 9,
-          "bodyTokens": "=> DiskControlFunctions . ReadText ( _getImageLabel , index )",
-          "hash": "E55CC2C514814E7FD8705022409C3DFAB83EF3CBC4C71FE34DA7909E5E5C8BF2",
-          "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/DiskControl.cs",
-          "name": "GetLabel",
-          "owner": "DiskControl",
-          "kind": "MethodDeclaration",
-          "line": 106,
-          "parameters": "(int index)",
-          "tokens": 9,
-          "bodyTokens": "=> DiskControlFunctions . ReadText ( _getImageLabel , index )",
-          "hash": "E55CC2C514814E7FD8705022409C3DFAB83EF3CBC4C71FE34DA7909E5E5C8BF2",
-          "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/DiskControl.cs",
-          "name": "GetLabel",
-          "owner": "DiskControl",
-          "kind": "MethodDeclaration",
-          "line": 102,
-          "parameters": "(int index)",
-          "tokens": 9,
-          "bodyTokens": "=> DiskControlFunctions . ReadText ( _getImageLabel , index )",
-          "hash": "E55CC2C514814E7FD8705022409C3DFAB83EF3CBC4C71FE34DA7909E5E5C8BF2",
-          "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/DiskControl.cs",
-          "name": "GetLabel",
-          "owner": "DiskControl",
-          "kind": "MethodDeclaration",
-          "line": 102,
-          "parameters": "(int index)",
-          "tokens": 9,
-          "bodyTokens": "=> DiskControlFunctions . ReadText ( _getImageLabel , index )",
-          "hash": "E55CC2C514814E7FD8705022409C3DFAB83EF3CBC4C71FE34DA7909E5E5C8BF2",
-          "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/DiskControl.cs",
-          "name": "GetLabel",
-          "owner": "DiskControl",
-          "kind": "MethodDeclaration",
-          "line": 102,
-          "parameters": "(int index)",
-          "tokens": 9,
-          "bodyTokens": "=> DiskControlFunctions . ReadText ( _getImageLabel , index )",
-          "hash": "E55CC2C514814E7FD8705022409C3DFAB83EF3CBC4C71FE34DA7909E5E5C8BF2",
           "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE"
         }
       ],
@@ -69124,146 +68063,6 @@
           "bodyTokens": "=> ExceptionText . Get ( \"Emulation.Coleco.Error.CoreRejected\" )",
           "hash": "F29FC953249EEEF48E1D1C21BE9A8DAE40998070C7C0889A907638FC3CA0A4D9",
           "shape": "B13ECA86E5A59CA6F7394DF7A0702F36169B1B76C7DA1E1458CE3D02D3E91D27"
-        }
-      ],
-      "qualification": "pending-symbol-and-ownership-comparison"
-    },
-    {
-      "hash": "F3483D7072999A6A1345CBAD9C4710886C1F6D7AC85FD134D49AA398E0CDED82",
-      "tokens": 24,
-      "bodyTokens": "{ EnsureAvailable ( ) ; if ( ! _setEjectState ! ( true ) ) throw new InvalidOperationException ( DiskControlErrors . EjectFailed ) ; }",
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/DiskControl.cs",
-          "name": "Eject",
-          "owner": "DiskControl",
-          "kind": "MethodDeclaration",
-          "line": 86,
-          "parameters": "()",
-          "tokens": 24,
-          "bodyTokens": "{ EnsureAvailable ( ) ; if ( ! _setEjectState ! ( true ) ) throw new InvalidOperationException ( DiskControlErrors . EjectFailed ) ; }",
-          "hash": "F3483D7072999A6A1345CBAD9C4710886C1F6D7AC85FD134D49AA398E0CDED82",
-          "shape": "4AAA242F4B875422DA87F87EBE52C5E8BF02A8C3661F45CA0D2E98359E0F1114"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/DiskControl.cs",
-          "name": "Eject",
-          "owner": "DiskControl",
-          "kind": "MethodDeclaration",
-          "line": 87,
-          "parameters": "()",
-          "tokens": 24,
-          "bodyTokens": "{ EnsureAvailable ( ) ; if ( ! _setEjectState ! ( true ) ) throw new InvalidOperationException ( DiskControlErrors . EjectFailed ) ; }",
-          "hash": "F3483D7072999A6A1345CBAD9C4710886C1F6D7AC85FD134D49AA398E0CDED82",
-          "shape": "4AAA242F4B875422DA87F87EBE52C5E8BF02A8C3661F45CA0D2E98359E0F1114"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/DiskControl.cs",
-          "name": "Eject",
-          "owner": "DiskControl",
-          "kind": "MethodDeclaration",
-          "line": 83,
-          "parameters": "()",
-          "tokens": 24,
-          "bodyTokens": "{ EnsureAvailable ( ) ; if ( ! _setEjectState ! ( true ) ) throw new InvalidOperationException ( DiskControlErrors . EjectFailed ) ; }",
-          "hash": "F3483D7072999A6A1345CBAD9C4710886C1F6D7AC85FD134D49AA398E0CDED82",
-          "shape": "4AAA242F4B875422DA87F87EBE52C5E8BF02A8C3661F45CA0D2E98359E0F1114"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/DiskControl.cs",
-          "name": "Eject",
-          "owner": "DiskControl",
-          "kind": "MethodDeclaration",
-          "line": 99,
-          "parameters": "()",
-          "tokens": 24,
-          "bodyTokens": "{ EnsureAvailable ( ) ; if ( ! _setEjectState ! ( true ) ) throw new InvalidOperationException ( DiskControlErrors . EjectFailed ) ; }",
-          "hash": "F3483D7072999A6A1345CBAD9C4710886C1F6D7AC85FD134D49AA398E0CDED82",
-          "shape": "4AAA242F4B875422DA87F87EBE52C5E8BF02A8C3661F45CA0D2E98359E0F1114"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/DiskControl.cs",
-          "name": "Eject",
-          "owner": "DiskControl",
-          "kind": "MethodDeclaration",
-          "line": 99,
-          "parameters": "()",
-          "tokens": 24,
-          "bodyTokens": "{ EnsureAvailable ( ) ; if ( ! _setEjectState ! ( true ) ) throw new InvalidOperationException ( DiskControlErrors . EjectFailed ) ; }",
-          "hash": "F3483D7072999A6A1345CBAD9C4710886C1F6D7AC85FD134D49AA398E0CDED82",
-          "shape": "4AAA242F4B875422DA87F87EBE52C5E8BF02A8C3661F45CA0D2E98359E0F1114"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/DiskControl.cs",
-          "name": "Eject",
-          "owner": "DiskControl",
-          "kind": "MethodDeclaration",
-          "line": 99,
-          "parameters": "()",
-          "tokens": 24,
-          "bodyTokens": "{ EnsureAvailable ( ) ; if ( ! _setEjectState ! ( true ) ) throw new InvalidOperationException ( DiskControlErrors . EjectFailed ) ; }",
-          "hash": "F3483D7072999A6A1345CBAD9C4710886C1F6D7AC85FD134D49AA398E0CDED82",
-          "shape": "4AAA242F4B875422DA87F87EBE52C5E8BF02A8C3661F45CA0D2E98359E0F1114"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/DiskControl.cs",
-          "name": "Eject",
-          "owner": "DiskControl",
-          "kind": "MethodDeclaration",
-          "line": 99,
-          "parameters": "()",
-          "tokens": 24,
-          "bodyTokens": "{ EnsureAvailable ( ) ; if ( ! _setEjectState ! ( true ) ) throw new InvalidOperationException ( DiskControlErrors . EjectFailed ) ; }",
-          "hash": "F3483D7072999A6A1345CBAD9C4710886C1F6D7AC85FD134D49AA398E0CDED82",
-          "shape": "4AAA242F4B875422DA87F87EBE52C5E8BF02A8C3661F45CA0D2E98359E0F1114"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/DiskControl.cs",
-          "name": "Eject",
-          "owner": "DiskControl",
-          "kind": "MethodDeclaration",
-          "line": 99,
-          "parameters": "()",
-          "tokens": 24,
-          "bodyTokens": "{ EnsureAvailable ( ) ; if ( ! _setEjectState ! ( true ) ) throw new InvalidOperationException ( DiskControlErrors . EjectFailed ) ; }",
-          "hash": "F3483D7072999A6A1345CBAD9C4710886C1F6D7AC85FD134D49AA398E0CDED82",
-          "shape": "4AAA242F4B875422DA87F87EBE52C5E8BF02A8C3661F45CA0D2E98359E0F1114"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/DiskControl.cs",
-          "name": "Eject",
-          "owner": "DiskControl",
-          "kind": "MethodDeclaration",
-          "line": 95,
-          "parameters": "()",
-          "tokens": 24,
-          "bodyTokens": "{ EnsureAvailable ( ) ; if ( ! _setEjectState ! ( true ) ) throw new InvalidOperationException ( DiskControlErrors . EjectFailed ) ; }",
-          "hash": "F3483D7072999A6A1345CBAD9C4710886C1F6D7AC85FD134D49AA398E0CDED82",
-          "shape": "4AAA242F4B875422DA87F87EBE52C5E8BF02A8C3661F45CA0D2E98359E0F1114"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/DiskControl.cs",
-          "name": "Eject",
-          "owner": "DiskControl",
-          "kind": "MethodDeclaration",
-          "line": 95,
-          "parameters": "()",
-          "tokens": 24,
-          "bodyTokens": "{ EnsureAvailable ( ) ; if ( ! _setEjectState ! ( true ) ) throw new InvalidOperationException ( DiskControlErrors . EjectFailed ) ; }",
-          "hash": "F3483D7072999A6A1345CBAD9C4710886C1F6D7AC85FD134D49AA398E0CDED82",
-          "shape": "4AAA242F4B875422DA87F87EBE52C5E8BF02A8C3661F45CA0D2E98359E0F1114"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/DiskControl.cs",
-          "name": "Eject",
-          "owner": "DiskControl",
-          "kind": "MethodDeclaration",
-          "line": 95,
-          "parameters": "()",
-          "tokens": 24,
-          "bodyTokens": "{ EnsureAvailable ( ) ; if ( ! _setEjectState ! ( true ) ) throw new InvalidOperationException ( DiskControlErrors . EjectFailed ) ; }",
-          "hash": "F3483D7072999A6A1345CBAD9C4710886C1F6D7AC85FD134D49AA398E0CDED82",
-          "shape": "4AAA242F4B875422DA87F87EBE52C5E8BF02A8C3661F45CA0D2E98359E0F1114"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -80108,7 +78907,7 @@
           "name": "Error",
           "owner": "ExternalDiskControl",
           "kind": "MethodDeclaration",
-          "line": 14,
+          "line": 7,
           "parameters": "(string name, params object[] arguments)",
           "tokens": 13,
           "bodyTokens": "=> CoreExceptions . Text ( errorPrefix + \".\" + name , arguments )",
@@ -82723,30 +81522,6 @@
           "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE"
         },
         {
-          "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/DiskControl.cs",
-          "name": "GetPath",
-          "owner": "DiskControl",
-          "kind": "MethodDeclaration",
-          "line": 92,
-          "parameters": "(int index)",
-          "tokens": 9,
-          "bodyTokens": "=> DiskControlFunctions . ReadText ( _getImagePath , index )",
-          "hash": "0E86A3FBFE2C3151DA86704ADA01857BBE9880A7A52655E0E99238DA7A938989",
-          "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/DiskControl.cs",
-          "name": "GetLabel",
-          "owner": "DiskControl",
-          "kind": "MethodDeclaration",
-          "line": 93,
-          "parameters": "(int index)",
-          "tokens": 9,
-          "bodyTokens": "=> DiskControlFunctions . ReadText ( _getImageLabel , index )",
-          "hash": "E55CC2C514814E7FD8705022409C3DFAB83EF3CBC4C71FE34DA7909E5E5C8BF2",
-          "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE"
-        },
-        {
           "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
           "name": "SetOption",
           "owner": "ExternalHostCallbacks",
@@ -83073,30 +81848,6 @@
           "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE"
         },
         {
-          "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/DiskControl.cs",
-          "name": "GetPath",
-          "owner": "DiskControl",
-          "kind": "MethodDeclaration",
-          "line": 122,
-          "parameters": "(int index)",
-          "tokens": 9,
-          "bodyTokens": "=> DiskControlFunctions . ReadText ( _getImagePath , index )",
-          "hash": "0E86A3FBFE2C3151DA86704ADA01857BBE9880A7A52655E0E99238DA7A938989",
-          "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/DiskControl.cs",
-          "name": "GetLabel",
-          "owner": "DiskControl",
-          "kind": "MethodDeclaration",
-          "line": 123,
-          "parameters": "(int index)",
-          "tokens": 9,
-          "bodyTokens": "=> DiskControlFunctions . ReadText ( _getImageLabel , index )",
-          "hash": "E55CC2C514814E7FD8705022409C3DFAB83EF3CBC4C71FE34DA7909E5E5C8BF2",
-          "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE"
-        },
-        {
           "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
           "name": "SetOption",
           "owner": "ExternalHostCallbacks",
@@ -83348,30 +82099,6 @@
           "tokens": 9,
           "bodyTokens": "=> ExternalCoreEnvironmentFunctions . WriteUnsignedLong ( destination , value )",
           "hash": "ADFB327CA8D38029549F623AF8FF7011CC7D305935CFE672F6539123E2D3BC97",
-          "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/DiskControl.cs",
-          "name": "GetPath",
-          "owner": "DiskControl",
-          "kind": "MethodDeclaration",
-          "line": 89,
-          "parameters": "(int index)",
-          "tokens": 9,
-          "bodyTokens": "=> DiskControlFunctions . ReadText ( _getImagePath , index )",
-          "hash": "0E86A3FBFE2C3151DA86704ADA01857BBE9880A7A52655E0E99238DA7A938989",
-          "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/DiskControl.cs",
-          "name": "GetLabel",
-          "owner": "DiskControl",
-          "kind": "MethodDeclaration",
-          "line": 90,
-          "parameters": "(int index)",
-          "tokens": 9,
-          "bodyTokens": "=> DiskControlFunctions . ReadText ( _getImageLabel , index )",
-          "hash": "E55CC2C514814E7FD8705022409C3DFAB83EF3CBC4C71FE34DA7909E5E5C8BF2",
           "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE"
         },
         {
@@ -83846,30 +82573,6 @@
           "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE"
         },
         {
-          "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/DiskControl.cs",
-          "name": "GetPath",
-          "owner": "DiskControl",
-          "kind": "MethodDeclaration",
-          "line": 105,
-          "parameters": "(int index)",
-          "tokens": 9,
-          "bodyTokens": "=> DiskControlFunctions . ReadText ( _getImagePath , index )",
-          "hash": "0E86A3FBFE2C3151DA86704ADA01857BBE9880A7A52655E0E99238DA7A938989",
-          "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/DiskControl.cs",
-          "name": "GetLabel",
-          "owner": "DiskControl",
-          "kind": "MethodDeclaration",
-          "line": 106,
-          "parameters": "(int index)",
-          "tokens": 9,
-          "bodyTokens": "=> DiskControlFunctions . ReadText ( _getImageLabel , index )",
-          "hash": "E55CC2C514814E7FD8705022409C3DFAB83EF3CBC4C71FE34DA7909E5E5C8BF2",
-          "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE"
-        },
-        {
           "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
           "name": "SetOption",
           "owner": "ExternalHostCallbacks",
@@ -84268,30 +82971,6 @@
           "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE"
         },
         {
-          "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/DiskControl.cs",
-          "name": "GetPath",
-          "owner": "DiskControl",
-          "kind": "MethodDeclaration",
-          "line": 105,
-          "parameters": "(int index)",
-          "tokens": 9,
-          "bodyTokens": "=> DiskControlFunctions . ReadText ( _getImagePath , index )",
-          "hash": "0E86A3FBFE2C3151DA86704ADA01857BBE9880A7A52655E0E99238DA7A938989",
-          "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/DiskControl.cs",
-          "name": "GetLabel",
-          "owner": "DiskControl",
-          "kind": "MethodDeclaration",
-          "line": 106,
-          "parameters": "(int index)",
-          "tokens": 9,
-          "bodyTokens": "=> DiskControlFunctions . ReadText ( _getImageLabel , index )",
-          "hash": "E55CC2C514814E7FD8705022409C3DFAB83EF3CBC4C71FE34DA7909E5E5C8BF2",
-          "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE"
-        },
-        {
           "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
           "name": "SetOption",
           "owner": "ExternalHostCallbacks",
@@ -84534,30 +83213,6 @@
           "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE"
         },
         {
-          "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/DiskControl.cs",
-          "name": "GetPath",
-          "owner": "DiskControl",
-          "kind": "MethodDeclaration",
-          "line": 105,
-          "parameters": "(int index)",
-          "tokens": 9,
-          "bodyTokens": "=> DiskControlFunctions . ReadText ( _getImagePath , index )",
-          "hash": "0E86A3FBFE2C3151DA86704ADA01857BBE9880A7A52655E0E99238DA7A938989",
-          "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/DiskControl.cs",
-          "name": "GetLabel",
-          "owner": "DiskControl",
-          "kind": "MethodDeclaration",
-          "line": 106,
-          "parameters": "(int index)",
-          "tokens": 9,
-          "bodyTokens": "=> DiskControlFunctions . ReadText ( _getImageLabel , index )",
-          "hash": "E55CC2C514814E7FD8705022409C3DFAB83EF3CBC4C71FE34DA7909E5E5C8BF2",
-          "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE"
-        },
-        {
           "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
           "name": "SetOption",
           "owner": "ExternalHostCallbacks",
@@ -84797,30 +83452,6 @@
           "tokens": 9,
           "bodyTokens": "=> ExternalCoreEnvironmentFunctions . WriteUnsignedLong ( destination , value )",
           "hash": "ADFB327CA8D38029549F623AF8FF7011CC7D305935CFE672F6539123E2D3BC97",
-          "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/DiskControl.cs",
-          "name": "GetPath",
-          "owner": "DiskControl",
-          "kind": "MethodDeclaration",
-          "line": 105,
-          "parameters": "(int index)",
-          "tokens": 9,
-          "bodyTokens": "=> DiskControlFunctions . ReadText ( _getImagePath , index )",
-          "hash": "0E86A3FBFE2C3151DA86704ADA01857BBE9880A7A52655E0E99238DA7A938989",
-          "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/DiskControl.cs",
-          "name": "GetLabel",
-          "owner": "DiskControl",
-          "kind": "MethodDeclaration",
-          "line": 106,
-          "parameters": "(int index)",
-          "tokens": 9,
-          "bodyTokens": "=> DiskControlFunctions . ReadText ( _getImageLabel , index )",
-          "hash": "E55CC2C514814E7FD8705022409C3DFAB83EF3CBC4C71FE34DA7909E5E5C8BF2",
           "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE"
         },
         {
@@ -85450,30 +84081,6 @@
           "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE"
         },
         {
-          "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/DiskControl.cs",
-          "name": "GetPath",
-          "owner": "DiskControl",
-          "kind": "MethodDeclaration",
-          "line": 105,
-          "parameters": "(int index)",
-          "tokens": 9,
-          "bodyTokens": "=> DiskControlFunctions . ReadText ( _getImagePath , index )",
-          "hash": "0E86A3FBFE2C3151DA86704ADA01857BBE9880A7A52655E0E99238DA7A938989",
-          "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/DiskControl.cs",
-          "name": "GetLabel",
-          "owner": "DiskControl",
-          "kind": "MethodDeclaration",
-          "line": 106,
-          "parameters": "(int index)",
-          "tokens": 9,
-          "bodyTokens": "=> DiskControlFunctions . ReadText ( _getImageLabel , index )",
-          "hash": "E55CC2C514814E7FD8705022409C3DFAB83EF3CBC4C71FE34DA7909E5E5C8BF2",
-          "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE"
-        },
-        {
           "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
           "name": "SetOption",
           "owner": "ExternalHostCallbacks",
@@ -85812,30 +84419,6 @@
           "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE"
         },
         {
-          "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/DiskControl.cs",
-          "name": "GetPath",
-          "owner": "DiskControl",
-          "kind": "MethodDeclaration",
-          "line": 101,
-          "parameters": "(int index)",
-          "tokens": 9,
-          "bodyTokens": "=> DiskControlFunctions . ReadText ( _getImagePath , index )",
-          "hash": "0E86A3FBFE2C3151DA86704ADA01857BBE9880A7A52655E0E99238DA7A938989",
-          "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/DiskControl.cs",
-          "name": "GetLabel",
-          "owner": "DiskControl",
-          "kind": "MethodDeclaration",
-          "line": 102,
-          "parameters": "(int index)",
-          "tokens": 9,
-          "bodyTokens": "=> DiskControlFunctions . ReadText ( _getImageLabel , index )",
-          "hash": "E55CC2C514814E7FD8705022409C3DFAB83EF3CBC4C71FE34DA7909E5E5C8BF2",
-          "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE"
-        },
-        {
           "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
           "name": "SetOption",
           "owner": "ExternalHostCallbacks",
@@ -86114,30 +84697,6 @@
           "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE"
         },
         {
-          "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/DiskControl.cs",
-          "name": "GetPath",
-          "owner": "DiskControl",
-          "kind": "MethodDeclaration",
-          "line": 101,
-          "parameters": "(int index)",
-          "tokens": 9,
-          "bodyTokens": "=> DiskControlFunctions . ReadText ( _getImagePath , index )",
-          "hash": "0E86A3FBFE2C3151DA86704ADA01857BBE9880A7A52655E0E99238DA7A938989",
-          "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/DiskControl.cs",
-          "name": "GetLabel",
-          "owner": "DiskControl",
-          "kind": "MethodDeclaration",
-          "line": 102,
-          "parameters": "(int index)",
-          "tokens": 9,
-          "bodyTokens": "=> DiskControlFunctions . ReadText ( _getImageLabel , index )",
-          "hash": "E55CC2C514814E7FD8705022409C3DFAB83EF3CBC4C71FE34DA7909E5E5C8BF2",
-          "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE"
-        },
-        {
           "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
           "name": "SetOption",
           "owner": "ExternalHostCallbacks",
@@ -86401,30 +84960,6 @@
           "tokens": 9,
           "bodyTokens": "=> ExternalCoreEnvironmentFunctions . WriteUnsignedLong ( destination , value )",
           "hash": "ADFB327CA8D38029549F623AF8FF7011CC7D305935CFE672F6539123E2D3BC97",
-          "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/DiskControl.cs",
-          "name": "GetPath",
-          "owner": "DiskControl",
-          "kind": "MethodDeclaration",
-          "line": 101,
-          "parameters": "(int index)",
-          "tokens": 9,
-          "bodyTokens": "=> DiskControlFunctions . ReadText ( _getImagePath , index )",
-          "hash": "0E86A3FBFE2C3151DA86704ADA01857BBE9880A7A52655E0E99238DA7A938989",
-          "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/DiskControl.cs",
-          "name": "GetLabel",
-          "owner": "DiskControl",
-          "kind": "MethodDeclaration",
-          "line": 102,
-          "parameters": "(int index)",
-          "tokens": 9,
-          "bodyTokens": "=> DiskControlFunctions . ReadText ( _getImageLabel , index )",
-          "hash": "E55CC2C514814E7FD8705022409C3DFAB83EF3CBC4C71FE34DA7909E5E5C8BF2",
           "shape": "2C3D4D9E36F39CBBF962E67F83260301D0B193ED619EDF4FD430FBA1D83281EE"
         },
         {
@@ -89611,6 +88146,37 @@
           "bodyTokens": "=> CoreCatalog . CreateAdapter ( configuration . Core ) . GetRuntimeOptions ( configuration )",
           "hash": "1BD7DC2458F78F35E3D38FCAC342459D37D503A113F7C8CF0CA157B9A197383C",
           "shape": "38B72D2BBE8CCE26B1010FA533608B1B53AB34942D422237142F8E17C2B7696F"
+        }
+      ],
+      "qualification": "pending-symbol-and-ownership-comparison"
+    },
+    {
+      "shape": "38DAD104540DC10AD471FC5C3DA674D7706100BDB0548A8DA90435D35091F538",
+      "tokens": 11,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation/Services/ExternalCoreDiskControl.cs",
+          "name": "GetPath",
+          "owner": "ExternalCoreDiskControl",
+          "kind": "MethodDeclaration",
+          "line": 104,
+          "parameters": "(int index)",
+          "tokens": 11,
+          "bodyTokens": "=> ExternalCoreEnvironmentFunctions . ReadDiskText ( _getImagePath , index , 4096 )",
+          "hash": "5A28F33A36E2C13E628E026544534620653F60319DF61E620D85C85252380E3F",
+          "shape": "38DAD104540DC10AD471FC5C3DA674D7706100BDB0548A8DA90435D35091F538"
+        },
+        {
+          "path": "src/GWGUI.Emulation/Services/ExternalCoreDiskControl.cs",
+          "name": "GetLabel",
+          "owner": "ExternalCoreDiskControl",
+          "kind": "MethodDeclaration",
+          "line": 105,
+          "parameters": "(int index)",
+          "tokens": 11,
+          "bodyTokens": "=> ExternalCoreEnvironmentFunctions . ReadDiskText ( _getImageLabel , index , 4096 )",
+          "hash": "85650E701673248AB39032A63627391D1EC9B08D74896DA6177700B6AA6F6425",
+          "shape": "38DAD104540DC10AD471FC5C3DA674D7706100BDB0548A8DA90435D35091F538"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -104223,6 +102789,18 @@
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5"
         },
         {
+          "path": "src/GWGUI.Emulation/Services/ExternalRichDiskControl.cs",
+          "name": "MediaExists",
+          "owner": "ExternalRichDiskControl",
+          "kind": "MethodDeclaration",
+          "line": 9,
+          "parameters": "(string path)",
+          "tokens": 7,
+          "bodyTokens": "=> File . Exists ( path )",
+          "hash": "B3CCE69DF6BA3DEC8D3C8F1F6B72F59F8438A0C91A05F1B5E40B8EC5EB3287B8",
+          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5"
+        },
+        {
           "path": "src/GWGUI.Infrastructure/Commands/Building/GwCommandBuilder.cs",
           "name": "BuildRead",
           "owner": "GwCommandBuilder",
@@ -106558,169 +105136,6 @@
           "bodyTokens": "=> InputSettingsFunctions . Describe ( configuration as MachineConfiguration ?? throw new ArgumentException ( nameof ( configuration ) ) )",
           "hash": "6422D54DE8C6FD30BA27F38CBF5A642D1FADEE9CE9582196F69EB7303E53DC45",
           "shape": "59999C1BFECB6D30E8DA0A428F8EC501698DEC5924CC4B25279666BD45B5F4B0"
-        }
-      ],
-      "qualification": "pending-symbol-and-ownership-comparison"
-    },
-    {
-      "shape": "5A0E9909C6137DF58DC7736A32CE28D25A94D442E49BF62889812A2917EF03D1",
-      "tokens": 19,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
-          "name": "ReadText",
-          "owner": "DiskControlFunctions",
-          "kind": "MethodDeclaration",
-          "line": 11,
-          "parameters": "(T? getter, int index)",
-          "tokens": 19,
-          "bodyTokens": "=> GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ReadDiskText ( getter , index , DiskControlConstants . TextBufferSize )",
-          "hash": "636F99E1D7A9B893F4BCDCD25E12FDD46990D50582576900CAC00AC46065850E",
-          "shape": "5A0E9909C6137DF58DC7736A32CE28D25A94D442E49BF62889812A2917EF03D1"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
-          "name": "ReadText",
-          "owner": "ExternalDiskControl",
-          "kind": "MethodDeclaration",
-          "line": 81,
-          "parameters": "(T? getter, int index)",
-          "tokens": 19,
-          "bodyTokens": "=> GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ReadDiskText ( getter , index , ExternalCoreInteropConstants . DiskMetadataBufferSize )",
-          "hash": "6BE7935BA697512E599DE6FD28CE6ABC8CB8F6C6DD1F65B2261A934FFED287E3",
-          "shape": "5A0E9909C6137DF58DC7736A32CE28D25A94D442E49BF62889812A2917EF03D1"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
-          "name": "ReadText",
-          "owner": "DiskControlFunctions",
-          "kind": "MethodDeclaration",
-          "line": 12,
-          "parameters": "(T? getter, int index)",
-          "tokens": 19,
-          "bodyTokens": "=> GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ReadDiskText ( getter , index , DiskControlConstants . TextBufferSize )",
-          "hash": "636F99E1D7A9B893F4BCDCD25E12FDD46990D50582576900CAC00AC46065850E",
-          "shape": "5A0E9909C6137DF58DC7736A32CE28D25A94D442E49BF62889812A2917EF03D1"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
-          "name": "ReadText",
-          "owner": "DiskControlFunctions",
-          "kind": "MethodDeclaration",
-          "line": 8,
-          "parameters": "(T? getter, int index)",
-          "tokens": 19,
-          "bodyTokens": "=> GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ReadDiskText ( getter , index , DiskControlConstants . TextBufferSize )",
-          "hash": "636F99E1D7A9B893F4BCDCD25E12FDD46990D50582576900CAC00AC46065850E",
-          "shape": "5A0E9909C6137DF58DC7736A32CE28D25A94D442E49BF62889812A2917EF03D1"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
-          "name": "ReadText",
-          "owner": "DiskControlFunctions",
-          "kind": "MethodDeclaration",
-          "line": 10,
-          "parameters": "(T? getter, int index)",
-          "tokens": 19,
-          "bodyTokens": "=> GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ReadDiskText ( getter , index , DiskControlConstants . TextBufferSize )",
-          "hash": "636F99E1D7A9B893F4BCDCD25E12FDD46990D50582576900CAC00AC46065850E",
-          "shape": "5A0E9909C6137DF58DC7736A32CE28D25A94D442E49BF62889812A2917EF03D1"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
-          "name": "ReadText",
-          "owner": "ExternalDiskControl",
-          "kind": "MethodDeclaration",
-          "line": 77,
-          "parameters": "(T? getter, int index)",
-          "tokens": 19,
-          "bodyTokens": "=> GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ReadDiskText ( getter , index , ExternalCoreConstants . ImageTextBufferSize )",
-          "hash": "850DE5B3167C56FF86223B940A507918896A94C07F30B2DAD644DAF82E96070C",
-          "shape": "5A0E9909C6137DF58DC7736A32CE28D25A94D442E49BF62889812A2917EF03D1"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
-          "name": "ReadText",
-          "owner": "DiskControlFunctions",
-          "kind": "MethodDeclaration",
-          "line": 10,
-          "parameters": "(T? getter, int index)",
-          "tokens": 19,
-          "bodyTokens": "=> GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ReadDiskText ( getter , index , DiskControlConstants . TextBufferSize )",
-          "hash": "636F99E1D7A9B893F4BCDCD25E12FDD46990D50582576900CAC00AC46065850E",
-          "shape": "5A0E9909C6137DF58DC7736A32CE28D25A94D442E49BF62889812A2917EF03D1"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
-          "name": "ReadText",
-          "owner": "DiskControlFunctions",
-          "kind": "MethodDeclaration",
-          "line": 10,
-          "parameters": "(T? getter, int index)",
-          "tokens": 19,
-          "bodyTokens": "=> GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ReadDiskText ( getter , index , DiskControlConstants . TextBufferSize )",
-          "hash": "636F99E1D7A9B893F4BCDCD25E12FDD46990D50582576900CAC00AC46065850E",
-          "shape": "5A0E9909C6137DF58DC7736A32CE28D25A94D442E49BF62889812A2917EF03D1"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
-          "name": "ReadText",
-          "owner": "DiskControlFunctions",
-          "kind": "MethodDeclaration",
-          "line": 10,
-          "parameters": "(T? getter, int index)",
-          "tokens": 19,
-          "bodyTokens": "=> GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ReadDiskText ( getter , index , DiskControlConstants . TextBufferSize )",
-          "hash": "636F99E1D7A9B893F4BCDCD25E12FDD46990D50582576900CAC00AC46065850E",
-          "shape": "5A0E9909C6137DF58DC7736A32CE28D25A94D442E49BF62889812A2917EF03D1"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
-          "name": "ReadText",
-          "owner": "DiskControlFunctions",
-          "kind": "MethodDeclaration",
-          "line": 10,
-          "parameters": "(T? getter, int index)",
-          "tokens": 19,
-          "bodyTokens": "=> GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ReadDiskText ( getter , index , DiskControlConstants . TextBufferSize )",
-          "hash": "636F99E1D7A9B893F4BCDCD25E12FDD46990D50582576900CAC00AC46065850E",
-          "shape": "5A0E9909C6137DF58DC7736A32CE28D25A94D442E49BF62889812A2917EF03D1"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
-          "name": "ReadText",
-          "owner": "DiskControlFunctions",
-          "kind": "MethodDeclaration",
-          "line": 10,
-          "parameters": "(T? getter, int index)",
-          "tokens": 19,
-          "bodyTokens": "=> GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ReadDiskText ( getter , index , DiskControlConstants . TextBufferSize )",
-          "hash": "636F99E1D7A9B893F4BCDCD25E12FDD46990D50582576900CAC00AC46065850E",
-          "shape": "5A0E9909C6137DF58DC7736A32CE28D25A94D442E49BF62889812A2917EF03D1"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
-          "name": "ReadText",
-          "owner": "DiskControlFunctions",
-          "kind": "MethodDeclaration",
-          "line": 10,
-          "parameters": "(T? getter, int index)",
-          "tokens": 19,
-          "bodyTokens": "=> GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ReadDiskText ( getter , index , DiskControlConstants . TextBufferSize )",
-          "hash": "636F99E1D7A9B893F4BCDCD25E12FDD46990D50582576900CAC00AC46065850E",
-          "shape": "5A0E9909C6137DF58DC7736A32CE28D25A94D442E49BF62889812A2917EF03D1"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs",
-          "name": "ReadText",
-          "owner": "DiskControlFunctions",
-          "kind": "MethodDeclaration",
-          "line": 10,
-          "parameters": "(T? getter, int index)",
-          "tokens": 19,
-          "bodyTokens": "=> GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ReadDiskText ( getter , index , DiskControlConstants . TextBufferSize )",
-          "hash": "636F99E1D7A9B893F4BCDCD25E12FDD46990D50582576900CAC00AC46065850E",
-          "shape": "5A0E9909C6137DF58DC7736A32CE28D25A94D442E49BF62889812A2917EF03D1"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -117557,97 +115972,6 @@
       "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
-      "shape": "96ED33995E1531C3E0A08F21F26D06C3025B68C0A397114FDBCB5FFA00274BBB",
-      "tokens": 26,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
-          "name": "Eject",
-          "owner": "ExternalDiskControl",
-          "kind": "MethodDeclaration",
-          "line": 113,
-          "parameters": "()",
-          "tokens": 26,
-          "bodyTokens": "{ EnsureAvailable ( ) ; if ( ! _setEjectState ! ( true ) ) throw new InvalidOperationException ( CommonExceptions . MediaEjectFailed ( ) ) ; }",
-          "hash": "4068DF88E544C878F0C0BDA0DB5582D2A0361D1975DA5B07365DEEDC0864CB34",
-          "shape": "96ED33995E1531C3E0A08F21F26D06C3025B68C0A397114FDBCB5FFA00274BBB"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
-          "name": "Eject",
-          "owner": "ExternalDiskControl",
-          "kind": "MethodDeclaration",
-          "line": 109,
-          "parameters": "()",
-          "tokens": 26,
-          "bodyTokens": "{ EnsureAvailable ( ) ; if ( ! _setEjectState ! ( true ) ) throw new InvalidOperationException ( CoreExceptions . MediaEjectFailed ( ) ) ; }",
-          "hash": "DE5E8770E18A8B0F699C580AB4435BD4853D679F8B3832FFF152F4923C8254DA",
-          "shape": "96ED33995E1531C3E0A08F21F26D06C3025B68C0A397114FDBCB5FFA00274BBB"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
-          "name": "Eject",
-          "owner": "ExternalDiskControl",
-          "kind": "MethodDeclaration",
-          "line": 114,
-          "parameters": "()",
-          "tokens": 26,
-          "bodyTokens": "{ EnsureAvailable ( ) ; if ( ! _setEjectState ! ( true ) ) throw new InvalidOperationException ( CoreExceptions . MediaEjectFailed ( ) ) ; }",
-          "hash": "DE5E8770E18A8B0F699C580AB4435BD4853D679F8B3832FFF152F4923C8254DA",
-          "shape": "96ED33995E1531C3E0A08F21F26D06C3025B68C0A397114FDBCB5FFA00274BBB"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
-          "name": "Eject",
-          "owner": "ExternalDiskControl",
-          "kind": "MethodDeclaration",
-          "line": 114,
-          "parameters": "()",
-          "tokens": 26,
-          "bodyTokens": "{ EnsureAvailable ( ) ; if ( ! _setEjectState ! ( true ) ) throw new InvalidOperationException ( CoreExceptions . MediaEjectFailed ( ) ) ; }",
-          "hash": "DE5E8770E18A8B0F699C580AB4435BD4853D679F8B3832FFF152F4923C8254DA",
-          "shape": "96ED33995E1531C3E0A08F21F26D06C3025B68C0A397114FDBCB5FFA00274BBB"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
-          "name": "Eject",
-          "owner": "ExternalDiskControl",
-          "kind": "MethodDeclaration",
-          "line": 114,
-          "parameters": "()",
-          "tokens": 26,
-          "bodyTokens": "{ EnsureAvailable ( ) ; if ( ! _setEjectState ! ( true ) ) throw new InvalidOperationException ( CoreExceptions . MediaEjectFailed ( ) ) ; }",
-          "hash": "DE5E8770E18A8B0F699C580AB4435BD4853D679F8B3832FFF152F4923C8254DA",
-          "shape": "96ED33995E1531C3E0A08F21F26D06C3025B68C0A397114FDBCB5FFA00274BBB"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalDiskControl.cs",
-          "name": "Eject",
-          "owner": "ExternalDiskControl",
-          "kind": "MethodDeclaration",
-          "line": 115,
-          "parameters": "()",
-          "tokens": 26,
-          "bodyTokens": "{ EnsureAvailable ( ) ; if ( ! _setEjectState ! ( true ) ) throw new InvalidOperationException ( Pcsx2Exceptions . MediaEjectFailed ( ) ) ; }",
-          "hash": "178F41D49AE439B34B28CF20B93C1973C3518BAD0DC518DD4D46E1690A763323",
-          "shape": "96ED33995E1531C3E0A08F21F26D06C3025B68C0A397114FDBCB5FFA00274BBB"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalDiskControl.cs",
-          "name": "Eject",
-          "owner": "ExternalDiskControl",
-          "kind": "MethodDeclaration",
-          "line": 115,
-          "parameters": "()",
-          "tokens": 26,
-          "bodyTokens": "{ EnsureAvailable ( ) ; if ( ! _setEjectState ! ( true ) ) throw new InvalidOperationException ( PpssppExceptions . MediaEjectFailed ( ) ) ; }",
-          "hash": "DDC88B931DBD48BA9271BD9762E9DB1554EACC07F791249F351D42E1FCBB465C",
-          "shape": "96ED33995E1531C3E0A08F21F26D06C3025B68C0A397114FDBCB5FFA00274BBB"
-        }
-      ],
-      "qualification": "pending-symbol-and-ownership-comparison"
-    },
-    {
       "shape": "97CD238BF1F5996B8E04EC3796AB33EF1711A0408FC985D3316AEB5696255133",
       "tokens": 13,
       "current": [
@@ -121561,97 +119885,6 @@
       "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
-      "shape": "AA076952426BCADFBF9540305BF536A0A2F0C5E4950B4C63A842826491BA12A3",
-      "tokens": 18,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
-          "name": "EnsureAvailable",
-          "owner": "ExternalDiskControl",
-          "kind": "MethodDeclaration",
-          "line": 119,
-          "parameters": "()",
-          "tokens": 18,
-          "bodyTokens": "{ if ( ! IsAvailable ) throw new InvalidOperationException ( CommonExceptions . DiskControlUnavailable ( ) ) ; }",
-          "hash": "D6A9E23EC92AAC6B277862A3ADBAC46730B49283424FB72BDCE2D011071C9B6A",
-          "shape": "AA076952426BCADFBF9540305BF536A0A2F0C5E4950B4C63A842826491BA12A3"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
-          "name": "EnsureAvailable",
-          "owner": "ExternalDiskControl",
-          "kind": "MethodDeclaration",
-          "line": 115,
-          "parameters": "()",
-          "tokens": 18,
-          "bodyTokens": "{ if ( ! IsAvailable ) throw new InvalidOperationException ( CoreExceptions . DiskControlUnavailable ( ) ) ; }",
-          "hash": "BD1AD1230EDC3D58A18BEA92823D245AD1DE755008BA61987C4C3911DF60B7ED",
-          "shape": "AA076952426BCADFBF9540305BF536A0A2F0C5E4950B4C63A842826491BA12A3"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
-          "name": "EnsureAvailable",
-          "owner": "ExternalDiskControl",
-          "kind": "MethodDeclaration",
-          "line": 120,
-          "parameters": "()",
-          "tokens": 18,
-          "bodyTokens": "{ if ( ! IsAvailable ) throw new InvalidOperationException ( CoreExceptions . DiskControlUnavailable ( ) ) ; }",
-          "hash": "BD1AD1230EDC3D58A18BEA92823D245AD1DE755008BA61987C4C3911DF60B7ED",
-          "shape": "AA076952426BCADFBF9540305BF536A0A2F0C5E4950B4C63A842826491BA12A3"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
-          "name": "EnsureAvailable",
-          "owner": "ExternalDiskControl",
-          "kind": "MethodDeclaration",
-          "line": 120,
-          "parameters": "()",
-          "tokens": 18,
-          "bodyTokens": "{ if ( ! IsAvailable ) throw new InvalidOperationException ( CoreExceptions . DiskControlUnavailable ( ) ) ; }",
-          "hash": "BD1AD1230EDC3D58A18BEA92823D245AD1DE755008BA61987C4C3911DF60B7ED",
-          "shape": "AA076952426BCADFBF9540305BF536A0A2F0C5E4950B4C63A842826491BA12A3"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
-          "name": "EnsureAvailable",
-          "owner": "ExternalDiskControl",
-          "kind": "MethodDeclaration",
-          "line": 120,
-          "parameters": "()",
-          "tokens": 18,
-          "bodyTokens": "{ if ( ! IsAvailable ) throw new InvalidOperationException ( CoreExceptions . DiskControlUnavailable ( ) ) ; }",
-          "hash": "BD1AD1230EDC3D58A18BEA92823D245AD1DE755008BA61987C4C3911DF60B7ED",
-          "shape": "AA076952426BCADFBF9540305BF536A0A2F0C5E4950B4C63A842826491BA12A3"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalDiskControl.cs",
-          "name": "EnsureAvailable",
-          "owner": "ExternalDiskControl",
-          "kind": "MethodDeclaration",
-          "line": 121,
-          "parameters": "()",
-          "tokens": 18,
-          "bodyTokens": "{ if ( ! IsAvailable ) throw new InvalidOperationException ( Pcsx2Exceptions . DiskControlUnavailable ( ) ) ; }",
-          "hash": "607BC6F66BE033234DE60633DE9FAA1DD85C5E54AA452D76E401B4B4A1C4F69B",
-          "shape": "AA076952426BCADFBF9540305BF536A0A2F0C5E4950B4C63A842826491BA12A3"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalDiskControl.cs",
-          "name": "EnsureAvailable",
-          "owner": "ExternalDiskControl",
-          "kind": "MethodDeclaration",
-          "line": 121,
-          "parameters": "()",
-          "tokens": 18,
-          "bodyTokens": "{ if ( ! IsAvailable ) throw new InvalidOperationException ( PpssppExceptions . DiskControlUnavailable ( ) ) ; }",
-          "hash": "F1027A908F530DDB434CDBA87B94771723B738D6E6C59AD090BE1416FB7214F2",
-          "shape": "AA076952426BCADFBF9540305BF536A0A2F0C5E4950B4C63A842826491BA12A3"
-        }
-      ],
-      "qualification": "pending-symbol-and-ownership-comparison"
-    },
-    {
       "shape": "AA865A259C441C578407F02C833BEAF8C0AB7EB11FE1F628174F7A3AE98B0BBA",
       "tokens": 20,
       "current": [
@@ -122604,30 +120837,6 @@
           "shape": "B53DBFCDFD0D1E84F55D2883652747C0E62AF9B195171F4DDA076A81E0826355"
         },
         {
-          "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
-          "name": "GetPath",
-          "owner": "ExternalDiskControl",
-          "kind": "MethodDeclaration",
-          "line": 78,
-          "parameters": "(int index)",
-          "tokens": 7,
-          "bodyTokens": "=> ReadText ( _getImagePath , index )",
-          "hash": "AEF76C1489BC9D79FA318D8109A63A127FE7009C6AD2DB8539B786D125F46B60",
-          "shape": "B53DBFCDFD0D1E84F55D2883652747C0E62AF9B195171F4DDA076A81E0826355"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
-          "name": "GetLabel",
-          "owner": "ExternalDiskControl",
-          "kind": "MethodDeclaration",
-          "line": 79,
-          "parameters": "(int index)",
-          "tokens": 7,
-          "bodyTokens": "=> ReadText ( _getImageLabel , index )",
-          "hash": "D33CFCE4A0AE2F07E1844A94CCD7315ED30F8DCE3A449C3B1841011233A1B529",
-          "shape": "B53DBFCDFD0D1E84F55D2883652747C0E62AF9B195171F4DDA076A81E0826355"
-        },
-        {
           "path": "src/GWGUI.Emulation.Apple/Common/Services/Machine.cs",
           "name": "EjectAsync",
           "owner": "Machine",
@@ -122901,30 +121110,6 @@
           "tokens": 7,
           "bodyTokens": "=> InsertMediaAsync ( path , cancellationToken )",
           "hash": "E69AA377099320A9BFF1980BA5DADA303A3BCFACDE5D616593B14AE1E539800E",
-          "shape": "B53DBFCDFD0D1E84F55D2883652747C0E62AF9B195171F4DDA076A81E0826355"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
-          "name": "GetPath",
-          "owner": "ExternalDiskControl",
-          "kind": "MethodDeclaration",
-          "line": 74,
-          "parameters": "(int index)",
-          "tokens": 7,
-          "bodyTokens": "=> ReadText ( _getImagePath , index )",
-          "hash": "AEF76C1489BC9D79FA318D8109A63A127FE7009C6AD2DB8539B786D125F46B60",
-          "shape": "B53DBFCDFD0D1E84F55D2883652747C0E62AF9B195171F4DDA076A81E0826355"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
-          "name": "GetLabel",
-          "owner": "ExternalDiskControl",
-          "kind": "MethodDeclaration",
-          "line": 75,
-          "parameters": "(int index)",
-          "tokens": 7,
-          "bodyTokens": "=> ReadText ( _getImageLabel , index )",
-          "hash": "D33CFCE4A0AE2F07E1844A94CCD7315ED30F8DCE3A449C3B1841011233A1B529",
           "shape": "B53DBFCDFD0D1E84F55D2883652747C0E62AF9B195171F4DDA076A81E0826355"
         },
         {
@@ -123240,30 +121425,6 @@
           "shape": "B53DBFCDFD0D1E84F55D2883652747C0E62AF9B195171F4DDA076A81E0826355"
         },
         {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
-          "name": "GetPath",
-          "owner": "ExternalDiskControl",
-          "kind": "MethodDeclaration",
-          "line": 70,
-          "parameters": "(int index)",
-          "tokens": 7,
-          "bodyTokens": "=> ReadText ( _getImagePath , index )",
-          "hash": "AEF76C1489BC9D79FA318D8109A63A127FE7009C6AD2DB8539B786D125F46B60",
-          "shape": "B53DBFCDFD0D1E84F55D2883652747C0E62AF9B195171F4DDA076A81E0826355"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
-          "name": "GetLabel",
-          "owner": "ExternalDiskControl",
-          "kind": "MethodDeclaration",
-          "line": 71,
-          "parameters": "(int index)",
-          "tokens": 7,
-          "bodyTokens": "=> ReadText ( _getImageLabel , index )",
-          "hash": "D33CFCE4A0AE2F07E1844A94CCD7315ED30F8DCE3A449C3B1841011233A1B529",
-          "shape": "B53DBFCDFD0D1E84F55D2883652747C0E62AF9B195171F4DDA076A81E0826355"
-        },
-        {
           "path": "src/GWGUI.Emulation.Nintendo/Common/Services/Machine.cs",
           "name": "SelectDiskAsync",
           "owner": "Machine",
@@ -123309,30 +121470,6 @@
           "tokens": 7,
           "bodyTokens": "=> InsertMediaAsync ( path , cancellationToken )",
           "hash": "E69AA377099320A9BFF1980BA5DADA303A3BCFACDE5D616593B14AE1E539800E",
-          "shape": "B53DBFCDFD0D1E84F55D2883652747C0E62AF9B195171F4DDA076A81E0826355"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
-          "name": "GetPath",
-          "owner": "ExternalDiskControl",
-          "kind": "MethodDeclaration",
-          "line": 79,
-          "parameters": "(int index)",
-          "tokens": 7,
-          "bodyTokens": "=> ReadText ( _getImagePath , index )",
-          "hash": "AEF76C1489BC9D79FA318D8109A63A127FE7009C6AD2DB8539B786D125F46B60",
-          "shape": "B53DBFCDFD0D1E84F55D2883652747C0E62AF9B195171F4DDA076A81E0826355"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
-          "name": "GetLabel",
-          "owner": "ExternalDiskControl",
-          "kind": "MethodDeclaration",
-          "line": 80,
-          "parameters": "(int index)",
-          "tokens": 7,
-          "bodyTokens": "=> ReadText ( _getImageLabel , index )",
-          "hash": "D33CFCE4A0AE2F07E1844A94CCD7315ED30F8DCE3A449C3B1841011233A1B529",
           "shape": "B53DBFCDFD0D1E84F55D2883652747C0E62AF9B195171F4DDA076A81E0826355"
         },
         {
@@ -123525,30 +121662,6 @@
           "tokens": 7,
           "bodyTokens": "=> InsertMediaAsync ( path , cancellationToken )",
           "hash": "E69AA377099320A9BFF1980BA5DADA303A3BCFACDE5D616593B14AE1E539800E",
-          "shape": "B53DBFCDFD0D1E84F55D2883652747C0E62AF9B195171F4DDA076A81E0826355"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
-          "name": "GetPath",
-          "owner": "ExternalDiskControl",
-          "kind": "MethodDeclaration",
-          "line": 79,
-          "parameters": "(int index)",
-          "tokens": 7,
-          "bodyTokens": "=> ReadText ( _getImagePath , index )",
-          "hash": "AEF76C1489BC9D79FA318D8109A63A127FE7009C6AD2DB8539B786D125F46B60",
-          "shape": "B53DBFCDFD0D1E84F55D2883652747C0E62AF9B195171F4DDA076A81E0826355"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
-          "name": "GetLabel",
-          "owner": "ExternalDiskControl",
-          "kind": "MethodDeclaration",
-          "line": 80,
-          "parameters": "(int index)",
-          "tokens": 7,
-          "bodyTokens": "=> ReadText ( _getImageLabel , index )",
-          "hash": "D33CFCE4A0AE2F07E1844A94CCD7315ED30F8DCE3A449C3B1841011233A1B529",
           "shape": "B53DBFCDFD0D1E84F55D2883652747C0E62AF9B195171F4DDA076A81E0826355"
         },
         {
@@ -123825,78 +121938,6 @@
           "tokens": 7,
           "bodyTokens": "=> InsertMediaAsync ( path , cancellationToken )",
           "hash": "E69AA377099320A9BFF1980BA5DADA303A3BCFACDE5D616593B14AE1E539800E",
-          "shape": "B53DBFCDFD0D1E84F55D2883652747C0E62AF9B195171F4DDA076A81E0826355"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
-          "name": "GetPath",
-          "owner": "ExternalDiskControl",
-          "kind": "MethodDeclaration",
-          "line": 79,
-          "parameters": "(int index)",
-          "tokens": 7,
-          "bodyTokens": "=> ReadText ( _getImagePath , index )",
-          "hash": "AEF76C1489BC9D79FA318D8109A63A127FE7009C6AD2DB8539B786D125F46B60",
-          "shape": "B53DBFCDFD0D1E84F55D2883652747C0E62AF9B195171F4DDA076A81E0826355"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
-          "name": "GetLabel",
-          "owner": "ExternalDiskControl",
-          "kind": "MethodDeclaration",
-          "line": 80,
-          "parameters": "(int index)",
-          "tokens": 7,
-          "bodyTokens": "=> ReadText ( _getImageLabel , index )",
-          "hash": "D33CFCE4A0AE2F07E1844A94CCD7315ED30F8DCE3A449C3B1841011233A1B529",
-          "shape": "B53DBFCDFD0D1E84F55D2883652747C0E62AF9B195171F4DDA076A81E0826355"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalDiskControl.cs",
-          "name": "GetPath",
-          "owner": "ExternalDiskControl",
-          "kind": "MethodDeclaration",
-          "line": 80,
-          "parameters": "(int index)",
-          "tokens": 7,
-          "bodyTokens": "=> ReadText ( _getImagePath , index )",
-          "hash": "AEF76C1489BC9D79FA318D8109A63A127FE7009C6AD2DB8539B786D125F46B60",
-          "shape": "B53DBFCDFD0D1E84F55D2883652747C0E62AF9B195171F4DDA076A81E0826355"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalDiskControl.cs",
-          "name": "GetLabel",
-          "owner": "ExternalDiskControl",
-          "kind": "MethodDeclaration",
-          "line": 81,
-          "parameters": "(int index)",
-          "tokens": 7,
-          "bodyTokens": "=> ReadText ( _getImageLabel , index )",
-          "hash": "D33CFCE4A0AE2F07E1844A94CCD7315ED30F8DCE3A449C3B1841011233A1B529",
-          "shape": "B53DBFCDFD0D1E84F55D2883652747C0E62AF9B195171F4DDA076A81E0826355"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalDiskControl.cs",
-          "name": "GetPath",
-          "owner": "ExternalDiskControl",
-          "kind": "MethodDeclaration",
-          "line": 80,
-          "parameters": "(int index)",
-          "tokens": 7,
-          "bodyTokens": "=> ReadText ( _getImagePath , index )",
-          "hash": "AEF76C1489BC9D79FA318D8109A63A127FE7009C6AD2DB8539B786D125F46B60",
-          "shape": "B53DBFCDFD0D1E84F55D2883652747C0E62AF9B195171F4DDA076A81E0826355"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalDiskControl.cs",
-          "name": "GetLabel",
-          "owner": "ExternalDiskControl",
-          "kind": "MethodDeclaration",
-          "line": 81,
-          "parameters": "(int index)",
-          "tokens": 7,
-          "bodyTokens": "=> ReadText ( _getImageLabel , index )",
-          "hash": "D33CFCE4A0AE2F07E1844A94CCD7315ED30F8DCE3A449C3B1841011233A1B529",
           "shape": "B53DBFCDFD0D1E84F55D2883652747C0E62AF9B195171F4DDA076A81E0826355"
         },
         {
@@ -126993,6 +125034,19 @@
           "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E"
         },
         {
+          "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/DiskControl.cs",
+          "name": "GetGameInfo",
+          "owner": "DiskControl",
+          "kind": "MethodDeclaration",
+          "line": 25,
+          "parameters": "(GWGUI.Emulation.Services.ExternalCoreLoadedContent content)",
+          "tokens": 4,
+          "bodyTokens": "=> content . GameInfo",
+          "hash": "BC2CB21C5340481CC091ECD859B3F59734434A30BC7913409890F619159DADC7",
+          "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E",
+          "qualification": "Typed profile/content/status projection to original shared disk-control component; exact message/factory/DTO bindings verified in completeDiskControlComparison, 399 identical traces; unrelated members not qualified"
+        },
+        {
           "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs",
           "name": "OnGetSensorInput",
           "owner": "ExternalHostCallbacks",
@@ -127027,6 +125081,19 @@
           "bodyTokens": "=> configuration . Options",
           "hash": "97D29A9C82D4AEE70BECF6E87312AA35C9130A231BA98294E1E224B002C6486D",
           "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/DiskControl.cs",
+          "name": "GetGameInfo",
+          "owner": "DiskControl",
+          "kind": "MethodDeclaration",
+          "line": 26,
+          "parameters": "(GWGUI.Emulation.Services.ExternalCoreLoadedContent content)",
+          "tokens": 4,
+          "bodyTokens": "=> content . GameInfo",
+          "hash": "BC2CB21C5340481CC091ECD859B3F59734434A30BC7913409890F619159DADC7",
+          "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E",
+          "qualification": "Typed profile/content/status projection to original shared disk-control component; exact message/factory/DTO bindings verified in completeDiskControlComparison, 399 identical traces; unrelated members not qualified"
         },
         {
           "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs",
@@ -127075,6 +125142,19 @@
           "bodyTokens": "=> configuration . Options",
           "hash": "97D29A9C82D4AEE70BECF6E87312AA35C9130A231BA98294E1E224B002C6486D",
           "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/DiskControl.cs",
+          "name": "GetGameInfo",
+          "owner": "DiskControl",
+          "kind": "MethodDeclaration",
+          "line": 22,
+          "parameters": "(GWGUI.Emulation.Services.ExternalCoreLoadedContent content)",
+          "tokens": 4,
+          "bodyTokens": "=> content . GameInfo",
+          "hash": "BC2CB21C5340481CC091ECD859B3F59734434A30BC7913409890F619159DADC7",
+          "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E",
+          "qualification": "Typed profile/content/status projection to original shared disk-control component; exact message/factory/DTO bindings verified in completeDiskControlComparison, 399 identical traces; unrelated members not qualified"
         },
         {
           "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs",
@@ -127149,6 +125229,19 @@
           "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E"
         },
         {
+          "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/DiskControl.cs",
+          "name": "GetGameInfo",
+          "owner": "DiskControl",
+          "kind": "MethodDeclaration",
+          "line": 26,
+          "parameters": "(GWGUI.Emulation.Services.ExternalCoreLoadedContent content)",
+          "tokens": 4,
+          "bodyTokens": "=> content . GameInfo",
+          "hash": "BC2CB21C5340481CC091ECD859B3F59734434A30BC7913409890F619159DADC7",
+          "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E",
+          "qualification": "Typed profile/content/status projection to original shared disk-control component; exact message/factory/DTO bindings verified in completeDiskControlComparison, 399 identical traces; unrelated members not qualified"
+        },
+        {
           "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs",
           "name": "OnGetSensorInput",
           "owner": "ExternalHostCallbacks",
@@ -127209,6 +125302,19 @@
           "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E"
         },
         {
+          "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/DiskControl.cs",
+          "name": "GetGameInfo",
+          "owner": "DiskControl",
+          "kind": "MethodDeclaration",
+          "line": 26,
+          "parameters": "(GWGUI.Emulation.Services.ExternalCoreLoadedContent content)",
+          "tokens": 4,
+          "bodyTokens": "=> content . GameInfo",
+          "hash": "BC2CB21C5340481CC091ECD859B3F59734434A30BC7913409890F619159DADC7",
+          "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E",
+          "qualification": "Typed profile/content/status projection to original shared disk-control component; exact message/factory/DTO bindings verified in completeDiskControlComparison, 399 identical traces; unrelated members not qualified"
+        },
+        {
           "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs",
           "name": "OnGetSensorInput",
           "owner": "ExternalHostCallbacks",
@@ -127267,6 +125373,19 @@
           "bodyTokens": "=> configuration . Options",
           "hash": "97D29A9C82D4AEE70BECF6E87312AA35C9130A231BA98294E1E224B002C6486D",
           "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/DiskControl.cs",
+          "name": "GetGameInfo",
+          "owner": "DiskControl",
+          "kind": "MethodDeclaration",
+          "line": 26,
+          "parameters": "(GWGUI.Emulation.Services.ExternalCoreLoadedContent content)",
+          "tokens": 4,
+          "bodyTokens": "=> content . GameInfo",
+          "hash": "BC2CB21C5340481CC091ECD859B3F59734434A30BC7913409890F619159DADC7",
+          "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E",
+          "qualification": "Typed profile/content/status projection to original shared disk-control component; exact message/factory/DTO bindings verified in completeDiskControlComparison, 399 identical traces; unrelated members not qualified"
         },
         {
           "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs",
@@ -127353,6 +125472,19 @@
           "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E"
         },
         {
+          "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/DiskControl.cs",
+          "name": "GetGameInfo",
+          "owner": "DiskControl",
+          "kind": "MethodDeclaration",
+          "line": 26,
+          "parameters": "(GWGUI.Emulation.Services.ExternalCoreLoadedContent content)",
+          "tokens": 4,
+          "bodyTokens": "=> content . GameInfo",
+          "hash": "BC2CB21C5340481CC091ECD859B3F59734434A30BC7913409890F619159DADC7",
+          "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E",
+          "qualification": "Typed profile/content/status projection to original shared disk-control component; exact message/factory/DTO bindings verified in completeDiskControlComparison, 399 identical traces; unrelated members not qualified"
+        },
+        {
           "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs",
           "name": "OnGetSensorInput",
           "owner": "ExternalHostCallbacks",
@@ -127423,6 +125555,19 @@
           "bodyTokens": "=> configuration . Options",
           "hash": "97D29A9C82D4AEE70BECF6E87312AA35C9130A231BA98294E1E224B002C6486D",
           "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/DiskControl.cs",
+          "name": "GetGameInfo",
+          "owner": "DiskControl",
+          "kind": "MethodDeclaration",
+          "line": 26,
+          "parameters": "(GWGUI.Emulation.Services.ExternalCoreLoadedContent content)",
+          "tokens": 4,
+          "bodyTokens": "=> content . GameInfo",
+          "hash": "BC2CB21C5340481CC091ECD859B3F59734434A30BC7913409890F619159DADC7",
+          "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E",
+          "qualification": "Typed profile/content/status projection to original shared disk-control component; exact message/factory/DTO bindings verified in completeDiskControlComparison, 399 identical traces; unrelated members not qualified"
         },
         {
           "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs",
@@ -127497,6 +125642,19 @@
           "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E"
         },
         {
+          "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/DiskControl.cs",
+          "name": "GetGameInfo",
+          "owner": "DiskControl",
+          "kind": "MethodDeclaration",
+          "line": 25,
+          "parameters": "(GWGUI.Emulation.Services.ExternalCoreLoadedContent content)",
+          "tokens": 4,
+          "bodyTokens": "=> content . GameInfo",
+          "hash": "BC2CB21C5340481CC091ECD859B3F59734434A30BC7913409890F619159DADC7",
+          "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E",
+          "qualification": "Typed profile/content/status projection to original shared disk-control component; exact message/factory/DTO bindings verified in completeDiskControlComparison, 399 identical traces; unrelated members not qualified"
+        },
+        {
           "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs",
           "name": "OnGetSensorInput",
           "owner": "ExternalHostCallbacks",
@@ -127533,6 +125691,19 @@
           "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E"
         },
         {
+          "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/DiskControl.cs",
+          "name": "GetGameInfo",
+          "owner": "DiskControl",
+          "kind": "MethodDeclaration",
+          "line": 25,
+          "parameters": "(GWGUI.Emulation.Services.ExternalCoreLoadedContent content)",
+          "tokens": 4,
+          "bodyTokens": "=> content . GameInfo",
+          "hash": "BC2CB21C5340481CC091ECD859B3F59734434A30BC7913409890F619159DADC7",
+          "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E",
+          "qualification": "Typed profile/content/status projection to original shared disk-control component; exact message/factory/DTO bindings verified in completeDiskControlComparison, 399 identical traces; unrelated members not qualified"
+        },
+        {
           "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs",
           "name": "OnGetSensorInput",
           "owner": "ExternalHostCallbacks",
@@ -127567,6 +125738,19 @@
           "bodyTokens": "=> configuration . Options",
           "hash": "97D29A9C82D4AEE70BECF6E87312AA35C9130A231BA98294E1E224B002C6486D",
           "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/DiskControl.cs",
+          "name": "GetGameInfo",
+          "owner": "DiskControl",
+          "kind": "MethodDeclaration",
+          "line": 25,
+          "parameters": "(GWGUI.Emulation.Snk.Emulators.Common.Interop.Services.LoadedContent content)",
+          "tokens": 4,
+          "bodyTokens": "=> content . GameInfo",
+          "hash": "BC2CB21C5340481CC091ECD859B3F59734434A30BC7913409890F619159DADC7",
+          "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E",
+          "qualification": "Typed profile/content/status projection to original shared disk-control component; exact message/factory/DTO bindings verified in completeDiskControlComparison, 399 identical traces; unrelated members not qualified"
         },
         {
           "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs",
@@ -127989,6 +126173,18 @@
           "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E"
         },
         {
+          "path": "tests/GWGUI.Tests/Emulation/CoreDiskControlTests.cs",
+          "name": "GetGameInfo",
+          "owner": "RichOwner.CoreDiskControlTests",
+          "kind": "MethodDeclaration",
+          "line": 278,
+          "parameters": "(Content content)",
+          "tokens": 4,
+          "bodyTokens": "=> content . GameInfo",
+          "hash": "BC2CB21C5340481CC091ECD859B3F59734434A30BC7913409890F619159DADC7",
+          "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E"
+        },
+        {
           "path": "tests/GWGUI.Tests/Hardware/GreaseweazleProtocol/ProtocolFramesScenarios.cs",
           "name": "DisposeAsync",
           "owner": "Transport.ProtocolFramesScenarios",
@@ -128025,7 +126221,7 @@
           "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E"
         }
       ],
-      "qualification": "pending-symbol-and-ownership-comparison"
+      "qualification": "Partial occurrence qualification; unannotated members pending"
     },
     {
       "shape": "BF7A197B28049C371582F73C572C56A6E6D08FB1448FCD33BCCFC3B906DD7DA2",
@@ -131163,6 +129359,37 @@
           "bodyTokens": "=> BinaryPrimitives . WriteUInt16LittleEndian ( data . AsSpan ( offset , sizeof ( ushort ) ) , checked ( ( ushort ) value ) )",
           "hash": "84222BD86185AAFB9B5F07B19BE5A963ABD3A4612B9683F139076E182F5EDF4D",
           "shape": "CCAA8AD2CA4561971C1ABC6809963DE20784FEECEA5B20DB3AF8B062C064B68C"
+        }
+      ],
+      "qualification": "pending-symbol-and-ownership-comparison"
+    },
+    {
+      "shape": "CD7F2FC297FF32DABD48FCC098236EC1C30703B5368DBDF6C56D6C90647D9783",
+      "tokens": 14,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation/Services/ExternalCoreDiskControl.cs",
+          "name": "MediaExists",
+          "owner": "ExternalCoreDiskControl",
+          "kind": "MethodDeclaration",
+          "line": 32,
+          "parameters": "(string path)",
+          "tokens": 14,
+          "bodyTokens": "=> File . Exists ( path ) || Directory . Exists ( path )",
+          "hash": "EF5E041271F90C867A399E1F96ADBEDAECB577A6B29C8036D649EF4B6B13C742",
+          "shape": "CD7F2FC297FF32DABD48FCC098236EC1C30703B5368DBDF6C56D6C90647D9783"
+        },
+        {
+          "path": "src/GWGUI.MediaEngine/Images/Formats/Floppy/Apple/AppleDiskImageReader.cs",
+          "name": "SupportsFormatId",
+          "owner": "AppleDiskImageReader",
+          "kind": "MethodDeclaration",
+          "line": 124,
+          "parameters": "(string formatId)",
+          "tokens": 14,
+          "bodyTokens": "=> SupportedFormatIds . Contains ( formatId ) || AppleDiskImageFormatFamilies . Contains ( formatId )",
+          "hash": "40CAA460F567804988E47DE2546E581430108E98C32005EDB250AD23CAB07147",
+          "shape": "CD7F2FC297FF32DABD48FCC098236EC1C30703B5368DBDF6C56D6C90647D9783"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
