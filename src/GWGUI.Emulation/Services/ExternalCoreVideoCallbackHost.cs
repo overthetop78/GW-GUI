@@ -2,14 +2,14 @@ using System.Diagnostics;
 using System.Runtime.InteropServices;
 using GWGUI.Emulation.Interop;
 
-namespace GWGUI.Emulation.Panasonic.Emulators.Opera.Interop.Services;
+namespace GWGUI.Emulation.Services;
 
-internal sealed class VideoCallbackHost : IDisposable
+internal sealed class ExternalCoreVideoCallbackHost : IDisposable
 {
     private readonly long _started = Stopwatch.GetTimestamp();
     private long _sequence;
     private bool _disposed;
-    internal VideoCallbackHost() => Callback = OnVideo;
+    internal ExternalCoreVideoCallbackHost() => Callback = OnVideo;
     internal ExternalCoreApi.VideoCallback Callback { get; }
     internal VideoFrame? LatestFrame { get; private set; }
     internal EmulationPixelFormat PixelFormat { get; set; } = EmulationPixelFormat.Xrgb8888;

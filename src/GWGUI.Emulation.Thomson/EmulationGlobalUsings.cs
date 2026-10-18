@@ -1,3 +1,4 @@
+global using VideoCallbackHost = GWGUI.Emulation.Services.ExternalCoreVideoCallbackHost;
 global using AudioCallbackHost = GWGUI.Emulation.Services.ExternalCoreAudioCallbackHost;
 global using MachineCommand = GWGUI.Emulation.Contracts.EmulationMachineCommand;
 global using GWGUI.Emulation;

@@ -1,9 +1,9 @@
 {
   "baseline": "ac7292d86^",
-  "currentCSharpFiles": 7317,
-  "outsideSrcCSharpFiles": 296,
+  "currentCSharpFiles": 7315,
+  "outsideSrcCSharpFiles": 297,
   "baselineMethodCount": 5848,
-  "currentMethodCount": 11594,
+  "currentMethodCount": 11595,
   "powerShellFunctionCount": 17,
   "groups": [
     {
@@ -5586,8 +5586,7 @@
           "line": 42,
           "tokens": 37,
           "hash": "3306CFA595A0BE1FC37AEA0871EFE8A8BFF5489B6A2832EB66916D1AF6D9FD31",
-          "shape": "32AAD474A90B3A325F6EC9131D9D3478F4DCDFD313EAC8446CA402A7E97EEDE3",
-          "qualification": "Native sample/copy adapter verified in nativeAudioInputComparison; guards, checked native counts, allocation policy and publication retained"
+          "shape": "32AAD474A90B3A325F6EC9131D9D3478F4DCDFD313EAC8446CA402A7E97EEDE3"
         },
         {
           "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
@@ -5595,13 +5594,12 @@
           "line": 43,
           "tokens": 37,
           "hash": "3306CFA595A0BE1FC37AEA0871EFE8A8BFF5489B6A2832EB66916D1AF6D9FD31",
-          "shape": "32AAD474A90B3A325F6EC9131D9D3478F4DCDFD313EAC8446CA402A7E97EEDE3",
-          "qualification": "Native sample/copy adapter verified in nativeAudioInputComparison; guards, checked native counts, allocation policy and publication retained"
+          "shape": "32AAD474A90B3A325F6EC9131D9D3478F4DCDFD313EAC8446CA402A7E97EEDE3"
         }
       ],
       "predecessors": [],
       "shapePredecessors": [],
-      "qualification": "Qualified typed projections to verified shared operations"
+      "qualification": "pending"
     },
     {
       "language": "CSharp",
@@ -8053,8 +8051,7 @@
           "line": 32,
           "tokens": 43,
           "hash": "47EC8C8E21B51D2AC16299DC0E1E0218A0F902AF01458B8A12FAB592FAD21774",
-          "shape": "73F9B31D05B4DF55455E4C648A35705BBC466C4DF87814799D2BE784C3A2D42F",
-          "qualification": "Native AV adapter to original Amiga operations; constants, 32 bindings, hardware prefixes and whole files verified in nativeAvUpdateComparison; other host responsibilities remain open"
+          "shape": "73F9B31D05B4DF55455E4C648A35705BBC466C4DF87814799D2BE784C3A2D42F"
         },
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
@@ -8062,8 +8059,7 @@
           "line": 29,
           "tokens": 43,
           "hash": "47EC8C8E21B51D2AC16299DC0E1E0218A0F902AF01458B8A12FAB592FAD21774",
-          "shape": "73F9B31D05B4DF55455E4C648A35705BBC466C4DF87814799D2BE784C3A2D42F",
-          "qualification": "Native AV adapter to original Amiga operations; constants, 32 bindings, hardware prefixes and whole files verified in nativeAvUpdateComparison; other host responsibilities remain open"
+          "shape": "73F9B31D05B4DF55455E4C648A35705BBC466C4DF87814799D2BE784C3A2D42F"
         },
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.AudioVideo.cs",
@@ -8071,13 +8067,12 @@
           "line": 32,
           "tokens": 43,
           "hash": "47EC8C8E21B51D2AC16299DC0E1E0218A0F902AF01458B8A12FAB592FAD21774",
-          "shape": "73F9B31D05B4DF55455E4C648A35705BBC466C4DF87814799D2BE784C3A2D42F",
-          "qualification": "Native AV adapter to original Amiga operations; constants, 32 bindings, hardware prefixes and whole files verified in nativeAvUpdateComparison; other host responsibilities remain open"
+          "shape": "73F9B31D05B4DF55455E4C648A35705BBC466C4DF87814799D2BE784C3A2D42F"
         }
       ],
       "predecessors": [],
       "shapePredecessors": [],
-      "qualification": "Qualified typed projections to verified shared operations"
+      "qualification": "pending"
     },
     {
       "language": "CSharp",
@@ -8277,8 +8272,7 @@
           "line": 54,
           "tokens": 35,
           "hash": "4954EFD628A031CFD1F8D4CA8CA95691E1D74DE3259D85930A4BED1D0F1A6288",
-          "shape": "1732C58529661C50142E63287D36E26B5FF0A23AA4B277CC3CEFF05C354D3B87",
-          "qualification": "Native sample/copy adapter verified in nativeAudioInputComparison; guards, checked native counts, allocation policy and publication retained"
+          "shape": "1732C58529661C50142E63287D36E26B5FF0A23AA4B277CC3CEFF05C354D3B87"
         },
         {
           "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
@@ -8286,8 +8280,7 @@
           "line": 54,
           "tokens": 35,
           "hash": "4954EFD628A031CFD1F8D4CA8CA95691E1D74DE3259D85930A4BED1D0F1A6288",
-          "shape": "1732C58529661C50142E63287D36E26B5FF0A23AA4B277CC3CEFF05C354D3B87",
-          "qualification": "Native sample/copy adapter verified in nativeAudioInputComparison; guards, checked native counts, allocation policy and publication retained"
+          "shape": "1732C58529661C50142E63287D36E26B5FF0A23AA4B277CC3CEFF05C354D3B87"
         },
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.AudioVideo.cs",
@@ -8295,8 +8288,7 @@
           "line": 43,
           "tokens": 35,
           "hash": "4954EFD628A031CFD1F8D4CA8CA95691E1D74DE3259D85930A4BED1D0F1A6288",
-          "shape": "1732C58529661C50142E63287D36E26B5FF0A23AA4B277CC3CEFF05C354D3B87",
-          "qualification": "Native sample/copy adapter verified in nativeAudioInputComparison; guards, checked native counts, allocation policy and publication retained"
+          "shape": "1732C58529661C50142E63287D36E26B5FF0A23AA4B277CC3CEFF05C354D3B87"
         },
         {
           "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
@@ -8304,8 +8296,7 @@
           "line": 44,
           "tokens": 35,
           "hash": "4954EFD628A031CFD1F8D4CA8CA95691E1D74DE3259D85930A4BED1D0F1A6288",
-          "shape": "1732C58529661C50142E63287D36E26B5FF0A23AA4B277CC3CEFF05C354D3B87",
-          "qualification": "Native sample/copy adapter verified in nativeAudioInputComparison; guards, checked native counts, allocation policy and publication retained"
+          "shape": "1732C58529661C50142E63287D36E26B5FF0A23AA4B277CC3CEFF05C354D3B87"
         },
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.AudioVideo.cs",
@@ -8313,8 +8304,7 @@
           "line": 43,
           "tokens": 35,
           "hash": "4954EFD628A031CFD1F8D4CA8CA95691E1D74DE3259D85930A4BED1D0F1A6288",
-          "shape": "1732C58529661C50142E63287D36E26B5FF0A23AA4B277CC3CEFF05C354D3B87",
-          "qualification": "Native sample/copy adapter verified in nativeAudioInputComparison; guards, checked native counts, allocation policy and publication retained"
+          "shape": "1732C58529661C50142E63287D36E26B5FF0A23AA4B277CC3CEFF05C354D3B87"
         },
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
@@ -8322,13 +8312,12 @@
           "line": 40,
           "tokens": 35,
           "hash": "4954EFD628A031CFD1F8D4CA8CA95691E1D74DE3259D85930A4BED1D0F1A6288",
-          "shape": "1732C58529661C50142E63287D36E26B5FF0A23AA4B277CC3CEFF05C354D3B87",
-          "qualification": "Native sample/copy adapter verified in nativeAudioInputComparison; guards, checked native counts, allocation policy and publication retained"
+          "shape": "1732C58529661C50142E63287D36E26B5FF0A23AA4B277CC3CEFF05C354D3B87"
         }
       ],
       "predecessors": [],
       "shapePredecessors": [],
-      "qualification": "Qualified typed projections to verified shared operations"
+      "qualification": "pending"
     },
     {
       "language": "CSharp",
@@ -18742,8 +18731,7 @@
           "line": 28,
           "tokens": 57,
           "hash": "9EA2058656DD52FA39072446E6DEB416AC62961622DA67FF716A66183497192B",
-          "shape": "4310E36373675657E8F6DBE682BE3A56A645AD8C4012BC74A2DB4BC2710CC6AC",
-          "qualification": "Typed profile/content/status projection to original shared disk-control component; bindings and 399 traces verified in completeDiskControlComparison"
+          "shape": "4310E36373675657E8F6DBE682BE3A56A645AD8C4012BC74A2DB4BC2710CC6AC"
         },
         {
           "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/DiskControl.cs",
@@ -18751,8 +18739,7 @@
           "line": 27,
           "tokens": 57,
           "hash": "9EA2058656DD52FA39072446E6DEB416AC62961622DA67FF716A66183497192B",
-          "shape": "4310E36373675657E8F6DBE682BE3A56A645AD8C4012BC74A2DB4BC2710CC6AC",
-          "qualification": "Typed profile/content/status projection to original shared disk-control component; bindings and 399 traces verified in completeDiskControlComparison"
+          "shape": "4310E36373675657E8F6DBE682BE3A56A645AD8C4012BC74A2DB4BC2710CC6AC"
         },
         {
           "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/DiskControl.cs",
@@ -18760,8 +18747,7 @@
           "line": 24,
           "tokens": 57,
           "hash": "9EA2058656DD52FA39072446E6DEB416AC62961622DA67FF716A66183497192B",
-          "shape": "4310E36373675657E8F6DBE682BE3A56A645AD8C4012BC74A2DB4BC2710CC6AC",
-          "qualification": "Typed profile/content/status projection to original shared disk-control component; bindings and 399 traces verified in completeDiskControlComparison"
+          "shape": "4310E36373675657E8F6DBE682BE3A56A645AD8C4012BC74A2DB4BC2710CC6AC"
         },
         {
           "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/DiskControl.cs",
@@ -18769,8 +18755,7 @@
           "line": 58,
           "tokens": 57,
           "hash": "9EA2058656DD52FA39072446E6DEB416AC62961622DA67FF716A66183497192B",
-          "shape": "4310E36373675657E8F6DBE682BE3A56A645AD8C4012BC74A2DB4BC2710CC6AC",
-          "qualification": "Typed profile/content/status projection to original shared disk-control component; bindings and 399 traces verified in completeDiskControlComparison"
+          "shape": "4310E36373675657E8F6DBE682BE3A56A645AD8C4012BC74A2DB4BC2710CC6AC"
         },
         {
           "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/DiskControl.cs",
@@ -18778,8 +18763,7 @@
           "line": 28,
           "tokens": 57,
           "hash": "9EA2058656DD52FA39072446E6DEB416AC62961622DA67FF716A66183497192B",
-          "shape": "4310E36373675657E8F6DBE682BE3A56A645AD8C4012BC74A2DB4BC2710CC6AC",
-          "qualification": "Typed profile/content/status projection to original shared disk-control component; bindings and 399 traces verified in completeDiskControlComparison"
+          "shape": "4310E36373675657E8F6DBE682BE3A56A645AD8C4012BC74A2DB4BC2710CC6AC"
         },
         {
           "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/DiskControl.cs",
@@ -18787,8 +18771,7 @@
           "line": 28,
           "tokens": 57,
           "hash": "9EA2058656DD52FA39072446E6DEB416AC62961622DA67FF716A66183497192B",
-          "shape": "4310E36373675657E8F6DBE682BE3A56A645AD8C4012BC74A2DB4BC2710CC6AC",
-          "qualification": "Typed profile/content/status projection to original shared disk-control component; bindings and 399 traces verified in completeDiskControlComparison"
+          "shape": "4310E36373675657E8F6DBE682BE3A56A645AD8C4012BC74A2DB4BC2710CC6AC"
         },
         {
           "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/DiskControl.cs",
@@ -18796,8 +18779,7 @@
           "line": 27,
           "tokens": 57,
           "hash": "9EA2058656DD52FA39072446E6DEB416AC62961622DA67FF716A66183497192B",
-          "shape": "4310E36373675657E8F6DBE682BE3A56A645AD8C4012BC74A2DB4BC2710CC6AC",
-          "qualification": "Typed profile/content/status projection to original shared disk-control component; bindings and 399 traces verified in completeDiskControlComparison"
+          "shape": "4310E36373675657E8F6DBE682BE3A56A645AD8C4012BC74A2DB4BC2710CC6AC"
         },
         {
           "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/DiskControl.cs",
@@ -18805,8 +18787,7 @@
           "line": 27,
           "tokens": 57,
           "hash": "9EA2058656DD52FA39072446E6DEB416AC62961622DA67FF716A66183497192B",
-          "shape": "4310E36373675657E8F6DBE682BE3A56A645AD8C4012BC74A2DB4BC2710CC6AC",
-          "qualification": "Typed profile/content/status projection to original shared disk-control component; bindings and 399 traces verified in completeDiskControlComparison"
+          "shape": "4310E36373675657E8F6DBE682BE3A56A645AD8C4012BC74A2DB4BC2710CC6AC"
         },
         {
           "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/DiskControl.cs",
@@ -18814,8 +18795,7 @@
           "line": 28,
           "tokens": 57,
           "hash": "9EA2058656DD52FA39072446E6DEB416AC62961622DA67FF716A66183497192B",
-          "shape": "4310E36373675657E8F6DBE682BE3A56A645AD8C4012BC74A2DB4BC2710CC6AC",
-          "qualification": "Typed profile/content/status projection to original shared disk-control component; bindings and 399 traces verified in completeDiskControlComparison"
+          "shape": "4310E36373675657E8F6DBE682BE3A56A645AD8C4012BC74A2DB4BC2710CC6AC"
         },
         {
           "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/DiskControl.cs",
@@ -18823,8 +18803,7 @@
           "line": 28,
           "tokens": 57,
           "hash": "9EA2058656DD52FA39072446E6DEB416AC62961622DA67FF716A66183497192B",
-          "shape": "4310E36373675657E8F6DBE682BE3A56A645AD8C4012BC74A2DB4BC2710CC6AC",
-          "qualification": "Typed profile/content/status projection to original shared disk-control component; bindings and 399 traces verified in completeDiskControlComparison"
+          "shape": "4310E36373675657E8F6DBE682BE3A56A645AD8C4012BC74A2DB4BC2710CC6AC"
         },
         {
           "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/DiskControl.cs",
@@ -18832,13 +18811,12 @@
           "line": 27,
           "tokens": 57,
           "hash": "9EA2058656DD52FA39072446E6DEB416AC62961622DA67FF716A66183497192B",
-          "shape": "4310E36373675657E8F6DBE682BE3A56A645AD8C4012BC74A2DB4BC2710CC6AC",
-          "qualification": "Typed profile/content/status projection to original shared disk-control component; bindings and 399 traces verified in completeDiskControlComparison"
+          "shape": "4310E36373675657E8F6DBE682BE3A56A645AD8C4012BC74A2DB4BC2710CC6AC"
         }
       ],
       "predecessors": [],
       "shapePredecessors": [],
-      "qualification": "Qualified typed projections to verified shared operations"
+      "qualification": "pending"
     },
     {
       "language": "CSharp",
@@ -19256,8 +19234,7 @@
           "line": 47,
           "tokens": 66,
           "hash": "A41DC582C6C283568B59EE4767E015AF86D706786DEE81B04B3C9A7452964A14",
-          "shape": "9FCFD8ED127737C0AFE1F1D087D1DC49663A565263E1E222C5E23786A8DCA9E3",
-          "qualification": "Native sample/copy adapter verified in nativeAudioInputComparison; guards, checked native counts, allocation policy and publication retained"
+          "shape": "9FCFD8ED127737C0AFE1F1D087D1DC49663A565263E1E222C5E23786A8DCA9E3"
         },
         {
           "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
@@ -19265,8 +19242,7 @@
           "line": 48,
           "tokens": 66,
           "hash": "A41DC582C6C283568B59EE4767E015AF86D706786DEE81B04B3C9A7452964A14",
-          "shape": "9FCFD8ED127737C0AFE1F1D087D1DC49663A565263E1E222C5E23786A8DCA9E3",
-          "qualification": "Native sample/copy adapter verified in nativeAudioInputComparison; guards, checked native counts, allocation policy and publication retained"
+          "shape": "9FCFD8ED127737C0AFE1F1D087D1DC49663A565263E1E222C5E23786A8DCA9E3"
         },
         {
           "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
@@ -19274,8 +19250,7 @@
           "line": 59,
           "tokens": 66,
           "hash": "A41DC582C6C283568B59EE4767E015AF86D706786DEE81B04B3C9A7452964A14",
-          "shape": "9FCFD8ED127737C0AFE1F1D087D1DC49663A565263E1E222C5E23786A8DCA9E3",
-          "qualification": "Native sample/copy adapter verified in nativeAudioInputComparison; guards, checked native counts, allocation policy and publication retained"
+          "shape": "9FCFD8ED127737C0AFE1F1D087D1DC49663A565263E1E222C5E23786A8DCA9E3"
         },
         {
           "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
@@ -19283,8 +19258,7 @@
           "line": 59,
           "tokens": 66,
           "hash": "A41DC582C6C283568B59EE4767E015AF86D706786DEE81B04B3C9A7452964A14",
-          "shape": "9FCFD8ED127737C0AFE1F1D087D1DC49663A565263E1E222C5E23786A8DCA9E3",
-          "qualification": "Native sample/copy adapter verified in nativeAudioInputComparison; guards, checked native counts, allocation policy and publication retained"
+          "shape": "9FCFD8ED127737C0AFE1F1D087D1DC49663A565263E1E222C5E23786A8DCA9E3"
         },
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.AudioVideo.cs",
@@ -19292,8 +19266,7 @@
           "line": 48,
           "tokens": 66,
           "hash": "A41DC582C6C283568B59EE4767E015AF86D706786DEE81B04B3C9A7452964A14",
-          "shape": "9FCFD8ED127737C0AFE1F1D087D1DC49663A565263E1E222C5E23786A8DCA9E3",
-          "qualification": "Native sample/copy adapter verified in nativeAudioInputComparison; guards, checked native counts, allocation policy and publication retained"
+          "shape": "9FCFD8ED127737C0AFE1F1D087D1DC49663A565263E1E222C5E23786A8DCA9E3"
         },
         {
           "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
@@ -19301,8 +19274,7 @@
           "line": 49,
           "tokens": 66,
           "hash": "A41DC582C6C283568B59EE4767E015AF86D706786DEE81B04B3C9A7452964A14",
-          "shape": "9FCFD8ED127737C0AFE1F1D087D1DC49663A565263E1E222C5E23786A8DCA9E3",
-          "qualification": "Native sample/copy adapter verified in nativeAudioInputComparison; guards, checked native counts, allocation policy and publication retained"
+          "shape": "9FCFD8ED127737C0AFE1F1D087D1DC49663A565263E1E222C5E23786A8DCA9E3"
         },
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.AudioVideo.cs",
@@ -19310,8 +19282,7 @@
           "line": 48,
           "tokens": 66,
           "hash": "A41DC582C6C283568B59EE4767E015AF86D706786DEE81B04B3C9A7452964A14",
-          "shape": "9FCFD8ED127737C0AFE1F1D087D1DC49663A565263E1E222C5E23786A8DCA9E3",
-          "qualification": "Native sample/copy adapter verified in nativeAudioInputComparison; guards, checked native counts, allocation policy and publication retained"
+          "shape": "9FCFD8ED127737C0AFE1F1D087D1DC49663A565263E1E222C5E23786A8DCA9E3"
         },
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
@@ -19319,13 +19290,12 @@
           "line": 45,
           "tokens": 66,
           "hash": "A41DC582C6C283568B59EE4767E015AF86D706786DEE81B04B3C9A7452964A14",
-          "shape": "9FCFD8ED127737C0AFE1F1D087D1DC49663A565263E1E222C5E23786A8DCA9E3",
-          "qualification": "Native sample/copy adapter verified in nativeAudioInputComparison; guards, checked native counts, allocation policy and publication retained"
+          "shape": "9FCFD8ED127737C0AFE1F1D087D1DC49663A565263E1E222C5E23786A8DCA9E3"
         }
       ],
       "predecessors": [],
       "shapePredecessors": [],
-      "qualification": "Qualified typed projections to verified shared operations"
+      "qualification": "pending"
     },
     {
       "language": "CSharp",
@@ -20749,8 +20719,7 @@
           "line": 20,
           "tokens": 35,
           "hash": "B146262134AFFF7E4CE131718663D226284802DE31328CCEE78F188A224F5E41",
-          "shape": "9EA238BAD503DDC562337A787C8288C64D68D8157E89DD0D546505223483749C",
-          "qualification": "Typed profile/content/status projection to original shared disk-control component; bindings and 399 traces verified in completeDiskControlComparison"
+          "shape": "9EA238BAD503DDC562337A787C8288C64D68D8157E89DD0D546505223483749C"
         },
         {
           "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/DiskControl.cs",
@@ -20758,8 +20727,7 @@
           "line": 19,
           "tokens": 35,
           "hash": "B146262134AFFF7E4CE131718663D226284802DE31328CCEE78F188A224F5E41",
-          "shape": "9EA238BAD503DDC562337A787C8288C64D68D8157E89DD0D546505223483749C",
-          "qualification": "Typed profile/content/status projection to original shared disk-control component; bindings and 399 traces verified in completeDiskControlComparison"
+          "shape": "9EA238BAD503DDC562337A787C8288C64D68D8157E89DD0D546505223483749C"
         },
         {
           "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/DiskControl.cs",
@@ -20767,8 +20735,7 @@
           "line": 16,
           "tokens": 35,
           "hash": "B146262134AFFF7E4CE131718663D226284802DE31328CCEE78F188A224F5E41",
-          "shape": "9EA238BAD503DDC562337A787C8288C64D68D8157E89DD0D546505223483749C",
-          "qualification": "Typed profile/content/status projection to original shared disk-control component; bindings and 399 traces verified in completeDiskControlComparison"
+          "shape": "9EA238BAD503DDC562337A787C8288C64D68D8157E89DD0D546505223483749C"
         },
         {
           "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/DiskControl.cs",
@@ -20776,8 +20743,7 @@
           "line": 20,
           "tokens": 35,
           "hash": "B146262134AFFF7E4CE131718663D226284802DE31328CCEE78F188A224F5E41",
-          "shape": "9EA238BAD503DDC562337A787C8288C64D68D8157E89DD0D546505223483749C",
-          "qualification": "Typed profile/content/status projection to original shared disk-control component; bindings and 399 traces verified in completeDiskControlComparison"
+          "shape": "9EA238BAD503DDC562337A787C8288C64D68D8157E89DD0D546505223483749C"
         },
         {
           "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/DiskControl.cs",
@@ -20785,8 +20751,7 @@
           "line": 20,
           "tokens": 35,
           "hash": "B146262134AFFF7E4CE131718663D226284802DE31328CCEE78F188A224F5E41",
-          "shape": "9EA238BAD503DDC562337A787C8288C64D68D8157E89DD0D546505223483749C",
-          "qualification": "Typed profile/content/status projection to original shared disk-control component; bindings and 399 traces verified in completeDiskControlComparison"
+          "shape": "9EA238BAD503DDC562337A787C8288C64D68D8157E89DD0D546505223483749C"
         },
         {
           "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/DiskControl.cs",
@@ -20794,8 +20759,7 @@
           "line": 20,
           "tokens": 35,
           "hash": "B146262134AFFF7E4CE131718663D226284802DE31328CCEE78F188A224F5E41",
-          "shape": "9EA238BAD503DDC562337A787C8288C64D68D8157E89DD0D546505223483749C",
-          "qualification": "Typed profile/content/status projection to original shared disk-control component; bindings and 399 traces verified in completeDiskControlComparison"
+          "shape": "9EA238BAD503DDC562337A787C8288C64D68D8157E89DD0D546505223483749C"
         },
         {
           "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/DiskControl.cs",
@@ -20803,8 +20767,7 @@
           "line": 20,
           "tokens": 35,
           "hash": "B146262134AFFF7E4CE131718663D226284802DE31328CCEE78F188A224F5E41",
-          "shape": "9EA238BAD503DDC562337A787C8288C64D68D8157E89DD0D546505223483749C",
-          "qualification": "Typed profile/content/status projection to original shared disk-control component; bindings and 399 traces verified in completeDiskControlComparison"
+          "shape": "9EA238BAD503DDC562337A787C8288C64D68D8157E89DD0D546505223483749C"
         },
         {
           "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/DiskControl.cs",
@@ -20812,8 +20775,7 @@
           "line": 20,
           "tokens": 35,
           "hash": "B146262134AFFF7E4CE131718663D226284802DE31328CCEE78F188A224F5E41",
-          "shape": "9EA238BAD503DDC562337A787C8288C64D68D8157E89DD0D546505223483749C",
-          "qualification": "Typed profile/content/status projection to original shared disk-control component; bindings and 399 traces verified in completeDiskControlComparison"
+          "shape": "9EA238BAD503DDC562337A787C8288C64D68D8157E89DD0D546505223483749C"
         },
         {
           "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/DiskControl.cs",
@@ -20821,8 +20783,7 @@
           "line": 20,
           "tokens": 35,
           "hash": "B146262134AFFF7E4CE131718663D226284802DE31328CCEE78F188A224F5E41",
-          "shape": "9EA238BAD503DDC562337A787C8288C64D68D8157E89DD0D546505223483749C",
-          "qualification": "Typed profile/content/status projection to original shared disk-control component; bindings and 399 traces verified in completeDiskControlComparison"
+          "shape": "9EA238BAD503DDC562337A787C8288C64D68D8157E89DD0D546505223483749C"
         },
         {
           "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/DiskControl.cs",
@@ -20830,8 +20791,7 @@
           "line": 20,
           "tokens": 35,
           "hash": "B146262134AFFF7E4CE131718663D226284802DE31328CCEE78F188A224F5E41",
-          "shape": "9EA238BAD503DDC562337A787C8288C64D68D8157E89DD0D546505223483749C",
-          "qualification": "Typed profile/content/status projection to original shared disk-control component; bindings and 399 traces verified in completeDiskControlComparison"
+          "shape": "9EA238BAD503DDC562337A787C8288C64D68D8157E89DD0D546505223483749C"
         },
         {
           "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/DiskControl.cs",
@@ -20839,13 +20799,12 @@
           "line": 20,
           "tokens": 35,
           "hash": "B146262134AFFF7E4CE131718663D226284802DE31328CCEE78F188A224F5E41",
-          "shape": "9EA238BAD503DDC562337A787C8288C64D68D8157E89DD0D546505223483749C",
-          "qualification": "Typed profile/content/status projection to original shared disk-control component; bindings and 399 traces verified in completeDiskControlComparison"
+          "shape": "9EA238BAD503DDC562337A787C8288C64D68D8157E89DD0D546505223483749C"
         }
       ],
       "predecessors": [],
       "shapePredecessors": [],
-      "qualification": "Qualified typed projections to verified shared operations"
+      "qualification": "pending"
     },
     {
       "language": "CSharp",
@@ -21399,49 +21358,6 @@
           "tokens": 114,
           "hash": "B928AEA44BCF6E0696805BACE69B941B5D0E62866C75F522880DF0D1DEA7A00E",
           "shape": "F23A700F5DA50B6A055AE70FD6E12B022C1CE34B65D5C83CD4A689B9B4CB1622"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
-      "hash": "B96052DFB5096C69125C28C75134FC5E36F3D3730DBB507DF6995581517AD778",
-      "method": "OnVideo",
-      "tokens": 223,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Watara/Emulators/Potator/Interop/Services/VideoCallbackHost.cs",
-          "name": "OnVideo",
-          "line": 19,
-          "tokens": 223,
-          "hash": "B96052DFB5096C69125C28C75134FC5E36F3D3730DBB507DF6995581517AD778",
-          "shape": "0C2338379E53B997B4572C69575E93DB49CE1EBA92612FCE7BF563F594B77045"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Interop/Services/VideoCallbackHost.cs",
-          "name": "OnVideo",
-          "line": 19,
-          "tokens": 223,
-          "hash": "B96052DFB5096C69125C28C75134FC5E36F3D3730DBB507DF6995581517AD778",
-          "shape": "0C2338379E53B997B4572C69575E93DB49CE1EBA92612FCE7BF563F594B77045"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Interop/Services/VideoCallbackHost.cs",
-          "name": "OnVideo",
-          "line": 19,
-          "tokens": 223,
-          "hash": "B96052DFB5096C69125C28C75134FC5E36F3D3730DBB507DF6995581517AD778",
-          "shape": "0C2338379E53B997B4572C69575E93DB49CE1EBA92612FCE7BF563F594B77045"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Panasonic/Emulators/Opera/Interop/Services/VideoCallbackHost.cs",
-          "name": "OnVideo",
-          "line": 19,
-          "tokens": 223,
-          "hash": "B96052DFB5096C69125C28C75134FC5E36F3D3730DBB507DF6995581517AD778",
-          "shape": "0C2338379E53B997B4572C69575E93DB49CE1EBA92612FCE7BF563F594B77045"
         }
       ],
       "predecessors": [],
@@ -27423,7 +27339,7 @@
     {
       "language": "CSharp",
       "hash": "F107F4D7D97C4E9F797468C991DF2090B47DF6E3F6F74E56044EFF0C28CAA51D",
-      "method": "NotifyDestroy",
+      "method": "NotifyHardwareContextDestroy",
       "tokens": 31,
       "current": [
         {
@@ -27585,8 +27501,7 @@
           "line": 43,
           "tokens": 44,
           "hash": "F3B1330702A3CDC4F4377841C5382CD7DC323A9C9BB02F190F6B0AC4AF58EF3F",
-          "shape": "6D601B5AB3A56689A6940ACD0A399659676F3595AF59C52FABE4E20C377E6A81",
-          "qualification": "Native AV adapter to original Amiga operations; constants, 32 bindings, hardware prefixes and whole files verified in nativeAvUpdateComparison; other host responsibilities remain open"
+          "shape": "6D601B5AB3A56689A6940ACD0A399659676F3595AF59C52FABE4E20C377E6A81"
         },
         {
           "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
@@ -27594,13 +27509,12 @@
           "line": 43,
           "tokens": 44,
           "hash": "F3B1330702A3CDC4F4377841C5382CD7DC323A9C9BB02F190F6B0AC4AF58EF3F",
-          "shape": "6D601B5AB3A56689A6940ACD0A399659676F3595AF59C52FABE4E20C377E6A81",
-          "qualification": "Native AV adapter to original Amiga operations; constants, 32 bindings, hardware prefixes and whole files verified in nativeAvUpdateComparison; other host responsibilities remain open"
+          "shape": "6D601B5AB3A56689A6940ACD0A399659676F3595AF59C52FABE4E20C377E6A81"
         }
       ],
       "predecessors": [],
       "shapePredecessors": [],
-      "qualification": "Qualified typed projections to verified shared operations"
+      "qualification": "pending"
     },
     {
       "language": "CSharp",

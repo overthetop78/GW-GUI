@@ -1,37 +1,19 @@
 {
-  "snapshot": "ee09846bfa2b945e6fb0ac2005667d4f4de919d1",
+  "snapshot": "2dcaf5863ddc4644d439d4209b53a0b5af6338a9",
   "snapshotState": "Current worktree based on snapshot",
   "worktreeSourceChanges": [
-    "src/GWGUI.Emulation.Acorn/Common/Services/CoreHost.cs",
-    "src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/CoreHost.cs",
-    "src/GWGUI.Emulation.Apple/Common/Services/CoreHost.cs",
-    "src/GWGUI.Emulation.Atari/Common/Services/CoreHost.cs",
-    "src/GWGUI.Emulation.Bandai/Common/Services/CoreHost.cs",
-    "src/GWGUI.Emulation.Coleco/Common/Services/CoreHost.cs",
-    "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/CoreHost.cs",
-    "src/GWGUI.Emulation.Epoch/Common/Services/CoreHost.cs",
-    "src/GWGUI.Emulation.Fairchild/Common/Services/CoreHost.cs",
-    "src/GWGUI.Emulation.Mattel/Common/Services/CoreHost.cs",
-    "src/GWGUI.Emulation.Nec/Emulators/BeetlePcfx/Services/CoreHost.cs",
-    "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/CoreHost.cs",
-    "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/CoreHost.cs",
-    "src/GWGUI.Emulation.Panasonic/Common/Services/CoreHost.cs",
-    "src/GWGUI.Emulation.Philips/Common/Services/CoreHost.cs",
-    "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/CoreHost.cs",
-    "src/GWGUI.Emulation.Sharp/Common/Services/CoreHost.cs",
-    "src/GWGUI.Emulation.Sinclair/Common/Services/CoreHost.cs",
-    "src/GWGUI.Emulation.Snk/Common/Services/CoreHost.cs",
-    "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/CoreHost.cs",
-    "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/CoreHost.cs",
-    "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/CoreHost.cs",
-    "src/GWGUI.Emulation.Thomson/Common/Services/CoreHost.cs",
-    "src/GWGUI.Emulation.Watara/Common/Services/CoreHost.cs",
-    "src/GWGUI.Emulation.Wenquxing/Common/Services/CoreHost.cs",
-    "src/GWGUI.Emulation/Functions/EmulationHostProtocolFunctions.Host.cs"
+    "src/GWGUI.Emulation.Panasonic/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Panasonic/Emulators/Opera/Interop/Services/VideoCallbackHost.cs",
+    "src/GWGUI.Emulation.Thomson/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Interop/Services/VideoCallbackHost.cs",
+    "src/GWGUI.Emulation.Watara/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Watara/Emulators/Potator/Interop/Services/VideoCallbackHost.cs",
+    "src/GWGUI.Emulation.Wenquxing/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Interop/Services/VideoCallbackHost.cs"
   ],
   "scope": "All current non-ignored repository CSharp files, including hidden paths; BaseMethodDeclaration bodies with fewer than 30 tokens. Candidate presence is not a defect or a completion claim.",
-  "fileCount": 7317,
-  "methodBodyCount": 9523,
+  "fileCount": 7315,
+  "methodBodyCount": 9517,
   "exactGroups": [
     {
       "hash": "0017F14C61995D644C52FF90F094E4708DC2CA772615CF2F5DD41E74BD202ECA",
@@ -4248,8 +4230,7 @@
           "tokens": 23,
           "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . Geometry > ( data , ApplyGeometry ) ; }",
           "hash": "10A097D804C5AAA3388F5957E18FBF680988DF6BFE5D8AF21FD16FDC005CA046",
-          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40",
-          "qualification": "Native AV adapter to original Amiga operations; constants, 32 bindings, hardware prefixes and whole files verified in nativeAvUpdateComparison; other host responsibilities remain open"
+          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40"
         },
         {
           "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
@@ -4261,8 +4242,7 @@
           "tokens": 23,
           "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . Geometry > ( data , ApplyGeometry ) ; }",
           "hash": "10A097D804C5AAA3388F5957E18FBF680988DF6BFE5D8AF21FD16FDC005CA046",
-          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40",
-          "qualification": "Native AV adapter to original Amiga operations; constants, 32 bindings, hardware prefixes and whole files verified in nativeAvUpdateComparison; other host responsibilities remain open"
+          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40"
         },
         {
           "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
@@ -4274,8 +4254,7 @@
           "tokens": 23,
           "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . Geometry > ( data , ApplyGeometry ) ; }",
           "hash": "10A097D804C5AAA3388F5957E18FBF680988DF6BFE5D8AF21FD16FDC005CA046",
-          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40",
-          "qualification": "Native AV adapter to original Amiga operations; constants, 32 bindings, hardware prefixes and whole files verified in nativeAvUpdateComparison; other host responsibilities remain open"
+          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40"
         },
         {
           "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
@@ -4287,8 +4266,7 @@
           "tokens": 23,
           "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . Geometry > ( data , ApplyGeometry ) ; }",
           "hash": "10A097D804C5AAA3388F5957E18FBF680988DF6BFE5D8AF21FD16FDC005CA046",
-          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40",
-          "qualification": "Native AV adapter to original Amiga operations; constants, 32 bindings, hardware prefixes and whole files verified in nativeAvUpdateComparison; other host responsibilities remain open"
+          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40"
         },
         {
           "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
@@ -4300,8 +4278,7 @@
           "tokens": 23,
           "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . Geometry > ( data , ApplyGeometry ) ; }",
           "hash": "10A097D804C5AAA3388F5957E18FBF680988DF6BFE5D8AF21FD16FDC005CA046",
-          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40",
-          "qualification": "Native AV adapter to original Amiga operations; constants, 32 bindings, hardware prefixes and whole files verified in nativeAvUpdateComparison; other host responsibilities remain open"
+          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40"
         },
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
@@ -4313,8 +4290,7 @@
           "tokens": 23,
           "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . Geometry > ( data , ApplyGeometry ) ; }",
           "hash": "10A097D804C5AAA3388F5957E18FBF680988DF6BFE5D8AF21FD16FDC005CA046",
-          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40",
-          "qualification": "Native AV adapter to original Amiga operations; constants, 32 bindings, hardware prefixes and whole files verified in nativeAvUpdateComparison; other host responsibilities remain open"
+          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40"
         },
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.AudioVideo.cs",
@@ -4326,8 +4302,7 @@
           "tokens": 23,
           "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . Geometry > ( data , ApplyGeometry ) ; }",
           "hash": "10A097D804C5AAA3388F5957E18FBF680988DF6BFE5D8AF21FD16FDC005CA046",
-          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40",
-          "qualification": "Native AV adapter to original Amiga operations; constants, 32 bindings, hardware prefixes and whole files verified in nativeAvUpdateComparison; other host responsibilities remain open"
+          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40"
         },
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.AudioVideo.cs",
@@ -4339,11 +4314,10 @@
           "tokens": 23,
           "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . Geometry > ( data , ApplyGeometry ) ; }",
           "hash": "10A097D804C5AAA3388F5957E18FBF680988DF6BFE5D8AF21FD16FDC005CA046",
-          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40",
-          "qualification": "Native AV adapter to original Amiga operations; constants, 32 bindings, hardware prefixes and whole files verified in nativeAvUpdateComparison; other host responsibilities remain open"
+          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40"
         }
       ],
-      "qualification": "Qualified typed projections to verified shared operations"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "110ED191B8AC068C2089B94E02CBC1988F9C501D752E137DC816CC3F59E84F25",
@@ -6273,62 +6247,6 @@
           "bodyTokens": "=> _loaded && _exports is { } exports ? exports : throw new InvalidOperationException ( )",
           "hash": "18E899CA4508CEE80FDF95ADB082B24FF4CF0B11F30FD1F234DF86B46F2E4916",
           "shape": "149D614BF86776C2E5C7BDC4C9B4824C10583FAC8D6A058EEB4E73333C97E502"
-        }
-      ],
-      "qualification": "pending-symbol-and-ownership-comparison"
-    },
-    {
-      "hash": "190F700BC0764D12FD3A7A663D90138D0C599802266F8AE94DC6A988732470B1",
-      "tokens": 14,
-      "bodyTokens": "{ _disposed = true ; LatestFrame = null ; Failure = null ; }",
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Panasonic/Emulators/Opera/Interop/Services/VideoCallbackHost.cs",
-          "name": "Dispose",
-          "owner": "VideoCallbackHost",
-          "kind": "MethodDeclaration",
-          "line": 42,
-          "parameters": "()",
-          "tokens": 14,
-          "bodyTokens": "{ _disposed = true ; LatestFrame = null ; Failure = null ; }",
-          "hash": "190F700BC0764D12FD3A7A663D90138D0C599802266F8AE94DC6A988732470B1",
-          "shape": "C1057CF5D93B38CE30D29BBFEAF7F2497002CD6DCD10148634793589915F004A"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Interop/Services/VideoCallbackHost.cs",
-          "name": "Dispose",
-          "owner": "VideoCallbackHost",
-          "kind": "MethodDeclaration",
-          "line": 42,
-          "parameters": "()",
-          "tokens": 14,
-          "bodyTokens": "{ _disposed = true ; LatestFrame = null ; Failure = null ; }",
-          "hash": "190F700BC0764D12FD3A7A663D90138D0C599802266F8AE94DC6A988732470B1",
-          "shape": "C1057CF5D93B38CE30D29BBFEAF7F2497002CD6DCD10148634793589915F004A"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Watara/Emulators/Potator/Interop/Services/VideoCallbackHost.cs",
-          "name": "Dispose",
-          "owner": "VideoCallbackHost",
-          "kind": "MethodDeclaration",
-          "line": 42,
-          "parameters": "()",
-          "tokens": 14,
-          "bodyTokens": "{ _disposed = true ; LatestFrame = null ; Failure = null ; }",
-          "hash": "190F700BC0764D12FD3A7A663D90138D0C599802266F8AE94DC6A988732470B1",
-          "shape": "C1057CF5D93B38CE30D29BBFEAF7F2497002CD6DCD10148634793589915F004A"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Interop/Services/VideoCallbackHost.cs",
-          "name": "Dispose",
-          "owner": "VideoCallbackHost",
-          "kind": "MethodDeclaration",
-          "line": 42,
-          "parameters": "()",
-          "tokens": 14,
-          "bodyTokens": "{ _disposed = true ; LatestFrame = null ; Failure = null ; }",
-          "hash": "190F700BC0764D12FD3A7A663D90138D0C599802266F8AE94DC6A988732470B1",
-          "shape": "C1057CF5D93B38CE30D29BBFEAF7F2497002CD6DCD10148634793589915F004A"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -15503,8 +15421,7 @@
           "tokens": 22,
           "bodyTokens": "{ LatestAudioChunk = chunk ; _audioBuffer . EnqueueNative ( chunk , this , static owner => owner . SampleRate ) ; }",
           "hash": "2EFC2728CE88B375CC2696FEEA1FD76F3A92F0960BDCC349225568669E4F7620",
-          "shape": "B664C56964646B10E74EBAE15DFF6C762545119F75BD0C15E3A3A6EB1D82C62D",
-          "qualification": "Typed original shared audio-queue adapter; whole files, original transactions, rate read/trim/counter policies and 147 tests verified in completeAudioBufferComparison; other owner lifecycle remains open"
+          "shape": "B664C56964646B10E74EBAE15DFF6C762545119F75BD0C15E3A3A6EB1D82C62D"
         },
         {
           "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
@@ -15516,8 +15433,7 @@
           "tokens": 22,
           "bodyTokens": "{ LatestAudioChunk = chunk ; _audioBuffer . EnqueueNative ( chunk , this , static owner => owner . SampleRate ) ; }",
           "hash": "2EFC2728CE88B375CC2696FEEA1FD76F3A92F0960BDCC349225568669E4F7620",
-          "shape": "B664C56964646B10E74EBAE15DFF6C762545119F75BD0C15E3A3A6EB1D82C62D",
-          "qualification": "Typed original shared audio-queue adapter; whole files, original transactions, rate read/trim/counter policies and 147 tests verified in completeAudioBufferComparison; other owner lifecycle remains open"
+          "shape": "B664C56964646B10E74EBAE15DFF6C762545119F75BD0C15E3A3A6EB1D82C62D"
         },
         {
           "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
@@ -15529,8 +15445,7 @@
           "tokens": 22,
           "bodyTokens": "{ LatestAudioChunk = chunk ; _audioBuffer . EnqueueNative ( chunk , this , static owner => owner . SampleRate ) ; }",
           "hash": "2EFC2728CE88B375CC2696FEEA1FD76F3A92F0960BDCC349225568669E4F7620",
-          "shape": "B664C56964646B10E74EBAE15DFF6C762545119F75BD0C15E3A3A6EB1D82C62D",
-          "qualification": "Typed original shared audio-queue adapter; whole files, original transactions, rate read/trim/counter policies and 147 tests verified in completeAudioBufferComparison; other owner lifecycle remains open"
+          "shape": "B664C56964646B10E74EBAE15DFF6C762545119F75BD0C15E3A3A6EB1D82C62D"
         },
         {
           "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
@@ -15542,8 +15457,7 @@
           "tokens": 22,
           "bodyTokens": "{ LatestAudioChunk = chunk ; _audioBuffer . EnqueueNative ( chunk , this , static owner => owner . SampleRate ) ; }",
           "hash": "2EFC2728CE88B375CC2696FEEA1FD76F3A92F0960BDCC349225568669E4F7620",
-          "shape": "B664C56964646B10E74EBAE15DFF6C762545119F75BD0C15E3A3A6EB1D82C62D",
-          "qualification": "Typed original shared audio-queue adapter; whole files, original transactions, rate read/trim/counter policies and 147 tests verified in completeAudioBufferComparison; other owner lifecycle remains open"
+          "shape": "B664C56964646B10E74EBAE15DFF6C762545119F75BD0C15E3A3A6EB1D82C62D"
         },
         {
           "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
@@ -15555,8 +15469,7 @@
           "tokens": 22,
           "bodyTokens": "{ LatestAudioChunk = chunk ; _audioBuffer . EnqueueNative ( chunk , this , static owner => owner . SampleRate ) ; }",
           "hash": "2EFC2728CE88B375CC2696FEEA1FD76F3A92F0960BDCC349225568669E4F7620",
-          "shape": "B664C56964646B10E74EBAE15DFF6C762545119F75BD0C15E3A3A6EB1D82C62D",
-          "qualification": "Typed original shared audio-queue adapter; whole files, original transactions, rate read/trim/counter policies and 147 tests verified in completeAudioBufferComparison; other owner lifecycle remains open"
+          "shape": "B664C56964646B10E74EBAE15DFF6C762545119F75BD0C15E3A3A6EB1D82C62D"
         },
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.AudioVideo.cs",
@@ -15568,8 +15481,7 @@
           "tokens": 22,
           "bodyTokens": "{ LatestAudioChunk = chunk ; _audioBuffer . EnqueueNative ( chunk , this , static owner => owner . SampleRate ) ; }",
           "hash": "2EFC2728CE88B375CC2696FEEA1FD76F3A92F0960BDCC349225568669E4F7620",
-          "shape": "B664C56964646B10E74EBAE15DFF6C762545119F75BD0C15E3A3A6EB1D82C62D",
-          "qualification": "Typed original shared audio-queue adapter; whole files, original transactions, rate read/trim/counter policies and 147 tests verified in completeAudioBufferComparison; other owner lifecycle remains open"
+          "shape": "B664C56964646B10E74EBAE15DFF6C762545119F75BD0C15E3A3A6EB1D82C62D"
         },
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.AudioVideo.cs",
@@ -15581,11 +15493,10 @@
           "tokens": 22,
           "bodyTokens": "{ LatestAudioChunk = chunk ; _audioBuffer . EnqueueNative ( chunk , this , static owner => owner . SampleRate ) ; }",
           "hash": "2EFC2728CE88B375CC2696FEEA1FD76F3A92F0960BDCC349225568669E4F7620",
-          "shape": "B664C56964646B10E74EBAE15DFF6C762545119F75BD0C15E3A3A6EB1D82C62D",
-          "qualification": "Typed original shared audio-queue adapter; whole files, original transactions, rate read/trim/counter policies and 147 tests verified in completeAudioBufferComparison; other owner lifecycle remains open"
+          "shape": "B664C56964646B10E74EBAE15DFF6C762545119F75BD0C15E3A3A6EB1D82C62D"
         }
       ],
-      "qualification": "Qualified typed projections to verified shared operations"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "2FAC078E91EF1E71F70F0F9FDD15737823152BC7185D13D1C54BA1285678461E",
@@ -34304,8 +34215,7 @@
           "tokens": 11,
           "bodyTokens": "{ return _audioBuffer . TryDequeueNative ( out chunk ) ; }",
           "hash": "723F67719FC61882D53254131473F4130BEE147F09732DC336217ACA8CBA40E8",
-          "shape": "52EF0C023010193B15C2E3EC3D821686C8C099CBA64E4D017F43E29C0FB2F209",
-          "qualification": "Typed original shared audio-queue adapter; whole files, original transactions, rate read/trim/counter policies and 147 tests verified in completeAudioBufferComparison; other owner lifecycle remains open"
+          "shape": "52EF0C023010193B15C2E3EC3D821686C8C099CBA64E4D017F43E29C0FB2F209"
         },
         {
           "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
@@ -34317,8 +34227,7 @@
           "tokens": 11,
           "bodyTokens": "{ return _audioBuffer . TryDequeueNative ( out chunk ) ; }",
           "hash": "723F67719FC61882D53254131473F4130BEE147F09732DC336217ACA8CBA40E8",
-          "shape": "52EF0C023010193B15C2E3EC3D821686C8C099CBA64E4D017F43E29C0FB2F209",
-          "qualification": "Typed original shared audio-queue adapter; whole files, original transactions, rate read/trim/counter policies and 147 tests verified in completeAudioBufferComparison; other owner lifecycle remains open"
+          "shape": "52EF0C023010193B15C2E3EC3D821686C8C099CBA64E4D017F43E29C0FB2F209"
         },
         {
           "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
@@ -34330,8 +34239,7 @@
           "tokens": 11,
           "bodyTokens": "{ return _audioBuffer . TryDequeueNative ( out chunk ) ; }",
           "hash": "723F67719FC61882D53254131473F4130BEE147F09732DC336217ACA8CBA40E8",
-          "shape": "52EF0C023010193B15C2E3EC3D821686C8C099CBA64E4D017F43E29C0FB2F209",
-          "qualification": "Typed original shared audio-queue adapter; whole files, original transactions, rate read/trim/counter policies and 147 tests verified in completeAudioBufferComparison; other owner lifecycle remains open"
+          "shape": "52EF0C023010193B15C2E3EC3D821686C8C099CBA64E4D017F43E29C0FB2F209"
         },
         {
           "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
@@ -34343,8 +34251,7 @@
           "tokens": 11,
           "bodyTokens": "{ return _audioBuffer . TryDequeueNative ( out chunk ) ; }",
           "hash": "723F67719FC61882D53254131473F4130BEE147F09732DC336217ACA8CBA40E8",
-          "shape": "52EF0C023010193B15C2E3EC3D821686C8C099CBA64E4D017F43E29C0FB2F209",
-          "qualification": "Typed original shared audio-queue adapter; whole files, original transactions, rate read/trim/counter policies and 147 tests verified in completeAudioBufferComparison; other owner lifecycle remains open"
+          "shape": "52EF0C023010193B15C2E3EC3D821686C8C099CBA64E4D017F43E29C0FB2F209"
         },
         {
           "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
@@ -34356,8 +34263,7 @@
           "tokens": 11,
           "bodyTokens": "{ return _audioBuffer . TryDequeueNative ( out chunk ) ; }",
           "hash": "723F67719FC61882D53254131473F4130BEE147F09732DC336217ACA8CBA40E8",
-          "shape": "52EF0C023010193B15C2E3EC3D821686C8C099CBA64E4D017F43E29C0FB2F209",
-          "qualification": "Typed original shared audio-queue adapter; whole files, original transactions, rate read/trim/counter policies and 147 tests verified in completeAudioBufferComparison; other owner lifecycle remains open"
+          "shape": "52EF0C023010193B15C2E3EC3D821686C8C099CBA64E4D017F43E29C0FB2F209"
         },
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
@@ -34369,8 +34275,7 @@
           "tokens": 11,
           "bodyTokens": "{ return _audioBuffer . TryDequeueNative ( out chunk ) ; }",
           "hash": "723F67719FC61882D53254131473F4130BEE147F09732DC336217ACA8CBA40E8",
-          "shape": "52EF0C023010193B15C2E3EC3D821686C8C099CBA64E4D017F43E29C0FB2F209",
-          "qualification": "Typed original shared audio-queue adapter; whole files, original transactions, rate read/trim/counter policies and 147 tests verified in completeAudioBufferComparison; other owner lifecycle remains open"
+          "shape": "52EF0C023010193B15C2E3EC3D821686C8C099CBA64E4D017F43E29C0FB2F209"
         },
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.AudioVideo.cs",
@@ -34382,8 +34287,7 @@
           "tokens": 11,
           "bodyTokens": "{ return _audioBuffer . TryDequeueNative ( out chunk ) ; }",
           "hash": "723F67719FC61882D53254131473F4130BEE147F09732DC336217ACA8CBA40E8",
-          "shape": "52EF0C023010193B15C2E3EC3D821686C8C099CBA64E4D017F43E29C0FB2F209",
-          "qualification": "Typed original shared audio-queue adapter; whole files, original transactions, rate read/trim/counter policies and 147 tests verified in completeAudioBufferComparison; other owner lifecycle remains open"
+          "shape": "52EF0C023010193B15C2E3EC3D821686C8C099CBA64E4D017F43E29C0FB2F209"
         },
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.AudioVideo.cs",
@@ -34395,11 +34299,10 @@
           "tokens": 11,
           "bodyTokens": "{ return _audioBuffer . TryDequeueNative ( out chunk ) ; }",
           "hash": "723F67719FC61882D53254131473F4130BEE147F09732DC336217ACA8CBA40E8",
-          "shape": "52EF0C023010193B15C2E3EC3D821686C8C099CBA64E4D017F43E29C0FB2F209",
-          "qualification": "Typed original shared audio-queue adapter; whole files, original transactions, rate read/trim/counter policies and 147 tests verified in completeAudioBufferComparison; other owner lifecycle remains open"
+          "shape": "52EF0C023010193B15C2E3EC3D821686C8C099CBA64E4D017F43E29C0FB2F209"
         }
       ],
-      "qualification": "Qualified typed projections to verified shared operations"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "726307E8D9A17A7737EF7A0B5063F7CBD492B33C177122293415298C3DFD997D",
@@ -49450,8 +49353,7 @@
           "tokens": 23,
           "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . SystemAvInfo > ( data , ApplyInitialAvInfo ) ; }",
           "hash": "A71878BE281E480439721CAB75D0D79DFFC435DA73DC13933B3737B0088F09DB",
-          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40",
-          "qualification": "Native AV adapter to original Amiga operations; constants, 32 bindings, hardware prefixes and whole files verified in nativeAvUpdateComparison; other host responsibilities remain open"
+          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40"
         },
         {
           "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
@@ -49463,8 +49365,7 @@
           "tokens": 23,
           "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . SystemAvInfo > ( data , ApplyInitialAvInfo ) ; }",
           "hash": "A71878BE281E480439721CAB75D0D79DFFC435DA73DC13933B3737B0088F09DB",
-          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40",
-          "qualification": "Native AV adapter to original Amiga operations; constants, 32 bindings, hardware prefixes and whole files verified in nativeAvUpdateComparison; other host responsibilities remain open"
+          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40"
         },
         {
           "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
@@ -49476,8 +49377,7 @@
           "tokens": 23,
           "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . SystemAvInfo > ( data , ApplyInitialAvInfo ) ; }",
           "hash": "A71878BE281E480439721CAB75D0D79DFFC435DA73DC13933B3737B0088F09DB",
-          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40",
-          "qualification": "Native AV adapter to original Amiga operations; constants, 32 bindings, hardware prefixes and whole files verified in nativeAvUpdateComparison; other host responsibilities remain open"
+          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40"
         },
         {
           "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
@@ -49489,8 +49389,7 @@
           "tokens": 23,
           "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . SystemAvInfo > ( data , ApplyInitialAvInfo ) ; }",
           "hash": "A71878BE281E480439721CAB75D0D79DFFC435DA73DC13933B3737B0088F09DB",
-          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40",
-          "qualification": "Native AV adapter to original Amiga operations; constants, 32 bindings, hardware prefixes and whole files verified in nativeAvUpdateComparison; other host responsibilities remain open"
+          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40"
         },
         {
           "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
@@ -49502,8 +49401,7 @@
           "tokens": 23,
           "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . SystemAvInfo > ( data , ApplyInitialAvInfo ) ; }",
           "hash": "A71878BE281E480439721CAB75D0D79DFFC435DA73DC13933B3737B0088F09DB",
-          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40",
-          "qualification": "Native AV adapter to original Amiga operations; constants, 32 bindings, hardware prefixes and whole files verified in nativeAvUpdateComparison; other host responsibilities remain open"
+          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40"
         },
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
@@ -49515,8 +49413,7 @@
           "tokens": 23,
           "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . SystemAvInfo > ( data , ApplyInitialAvInfo ) ; }",
           "hash": "A71878BE281E480439721CAB75D0D79DFFC435DA73DC13933B3737B0088F09DB",
-          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40",
-          "qualification": "Native AV adapter to original Amiga operations; constants, 32 bindings, hardware prefixes and whole files verified in nativeAvUpdateComparison; other host responsibilities remain open"
+          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40"
         },
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.AudioVideo.cs",
@@ -49528,8 +49425,7 @@
           "tokens": 23,
           "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . SystemAvInfo > ( data , ApplyInitialAvInfo ) ; }",
           "hash": "A71878BE281E480439721CAB75D0D79DFFC435DA73DC13933B3737B0088F09DB",
-          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40",
-          "qualification": "Native AV adapter to original Amiga operations; constants, 32 bindings, hardware prefixes and whole files verified in nativeAvUpdateComparison; other host responsibilities remain open"
+          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40"
         },
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.AudioVideo.cs",
@@ -49541,11 +49437,10 @@
           "tokens": 23,
           "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . SystemAvInfo > ( data , ApplyInitialAvInfo ) ; }",
           "hash": "A71878BE281E480439721CAB75D0D79DFFC435DA73DC13933B3737B0088F09DB",
-          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40",
-          "qualification": "Native AV adapter to original Amiga operations; constants, 32 bindings, hardware prefixes and whole files verified in nativeAvUpdateComparison; other host responsibilities remain open"
+          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40"
         }
       ],
-      "qualification": "Qualified typed projections to verified shared operations"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "A7237BE81063AD64FAAAA6FCB2614D6E89F21BC6A58D44A9BDE6C2A3426923C7",
@@ -52576,62 +52471,6 @@
       "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
-      "hash": "B5BFAAA5006DF27EEF642182EEC6BBC393D8903628897B4049C955EEADCB7C87",
-      "tokens": 4,
-      "bodyTokens": "=> Callback = OnVideo",
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Panasonic/Emulators/Opera/Interop/Services/VideoCallbackHost.cs",
-          "name": "VideoCallbackHost",
-          "owner": "VideoCallbackHost",
-          "kind": "ConstructorDeclaration",
-          "line": 12,
-          "parameters": "()",
-          "tokens": 4,
-          "bodyTokens": "=> Callback = OnVideo",
-          "hash": "B5BFAAA5006DF27EEF642182EEC6BBC393D8903628897B4049C955EEADCB7C87",
-          "shape": "B932470D7058F703992A464F512909FC424994B604352F54A6D0C14BA936E912"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Interop/Services/VideoCallbackHost.cs",
-          "name": "VideoCallbackHost",
-          "owner": "VideoCallbackHost",
-          "kind": "ConstructorDeclaration",
-          "line": 12,
-          "parameters": "()",
-          "tokens": 4,
-          "bodyTokens": "=> Callback = OnVideo",
-          "hash": "B5BFAAA5006DF27EEF642182EEC6BBC393D8903628897B4049C955EEADCB7C87",
-          "shape": "B932470D7058F703992A464F512909FC424994B604352F54A6D0C14BA936E912"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Watara/Emulators/Potator/Interop/Services/VideoCallbackHost.cs",
-          "name": "VideoCallbackHost",
-          "owner": "VideoCallbackHost",
-          "kind": "ConstructorDeclaration",
-          "line": 12,
-          "parameters": "()",
-          "tokens": 4,
-          "bodyTokens": "=> Callback = OnVideo",
-          "hash": "B5BFAAA5006DF27EEF642182EEC6BBC393D8903628897B4049C955EEADCB7C87",
-          "shape": "B932470D7058F703992A464F512909FC424994B604352F54A6D0C14BA936E912"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Interop/Services/VideoCallbackHost.cs",
-          "name": "VideoCallbackHost",
-          "owner": "VideoCallbackHost",
-          "kind": "ConstructorDeclaration",
-          "line": 12,
-          "parameters": "()",
-          "tokens": 4,
-          "bodyTokens": "=> Callback = OnVideo",
-          "hash": "B5BFAAA5006DF27EEF642182EEC6BBC393D8903628897B4049C955EEADCB7C87",
-          "shape": "B932470D7058F703992A464F512909FC424994B604352F54A6D0C14BA936E912"
-        }
-      ],
-      "qualification": "pending-symbol-and-ownership-comparison"
-    },
-    {
       "hash": "B61555F313F97C4F5F7C2869E986BAC2A8CFED00EA13B8FCCA360FE4AD8AC4E0",
       "tokens": 7,
       "bodyTokens": "=> EmulationCoreDiagnosticFunctions . ReadArchitecture ( path )",
@@ -53542,8 +53381,7 @@
           "tokens": 18,
           "bodyTokens": "{ GWGUI . Emulation . Functions . EmulationVideoFunctions . ApplyGeometry ( geometry , ref _aspectRatio ) ; }",
           "hash": "B907F9F622E3B24ACCF775DF1E9FC453005A3DFC0D273420231E988E66C28125",
-          "shape": "8FF3EC20E6F210EB9FFC9B0BF6E35C37DA4A19DC49926C77D8A934DB044A6043",
-          "qualification": "Native AV adapter to original Amiga operations; constants, 32 bindings, hardware prefixes and whole files verified in nativeAvUpdateComparison; other host responsibilities remain open"
+          "shape": "8FF3EC20E6F210EB9FFC9B0BF6E35C37DA4A19DC49926C77D8A934DB044A6043"
         },
         {
           "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
@@ -53555,8 +53393,7 @@
           "tokens": 18,
           "bodyTokens": "{ GWGUI . Emulation . Functions . EmulationVideoFunctions . ApplyGeometry ( geometry , ref _aspectRatio ) ; }",
           "hash": "B907F9F622E3B24ACCF775DF1E9FC453005A3DFC0D273420231E988E66C28125",
-          "shape": "8FF3EC20E6F210EB9FFC9B0BF6E35C37DA4A19DC49926C77D8A934DB044A6043",
-          "qualification": "Native AV adapter to original Amiga operations; constants, 32 bindings, hardware prefixes and whole files verified in nativeAvUpdateComparison; other host responsibilities remain open"
+          "shape": "8FF3EC20E6F210EB9FFC9B0BF6E35C37DA4A19DC49926C77D8A934DB044A6043"
         },
         {
           "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
@@ -53568,11 +53405,10 @@
           "tokens": 18,
           "bodyTokens": "{ GWGUI . Emulation . Functions . EmulationVideoFunctions . ApplyGeometry ( geometry , ref _aspectRatio ) ; }",
           "hash": "B907F9F622E3B24ACCF775DF1E9FC453005A3DFC0D273420231E988E66C28125",
-          "shape": "8FF3EC20E6F210EB9FFC9B0BF6E35C37DA4A19DC49926C77D8A934DB044A6043",
-          "qualification": "Native AV adapter to original Amiga operations; constants, 32 bindings, hardware prefixes and whole files verified in nativeAvUpdateComparison; other host responsibilities remain open"
+          "shape": "8FF3EC20E6F210EB9FFC9B0BF6E35C37DA4A19DC49926C77D8A934DB044A6043"
         }
       ],
-      "qualification": "Qualified typed projections to verified shared operations"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "B93622EEA2A367CFFA8AABFDF4FE2E51D2C11DC849FDB0487044CCE3DED3DE97",
@@ -54313,8 +54149,7 @@
           "tokens": 4,
           "bodyTokens": "=> content . GameInfo",
           "hash": "BC2CB21C5340481CC091ECD859B3F59734434A30BC7913409890F619159DADC7",
-          "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E",
-          "qualification": "Typed profile/content/status projection to original shared disk-control component; bindings and 399 traces verified in completeDiskControlComparison"
+          "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E"
         },
         {
           "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/DiskControl.cs",
@@ -54326,8 +54161,7 @@
           "tokens": 4,
           "bodyTokens": "=> content . GameInfo",
           "hash": "BC2CB21C5340481CC091ECD859B3F59734434A30BC7913409890F619159DADC7",
-          "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E",
-          "qualification": "Typed profile/content/status projection to original shared disk-control component; bindings and 399 traces verified in completeDiskControlComparison"
+          "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E"
         },
         {
           "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/DiskControl.cs",
@@ -54339,8 +54173,7 @@
           "tokens": 4,
           "bodyTokens": "=> content . GameInfo",
           "hash": "BC2CB21C5340481CC091ECD859B3F59734434A30BC7913409890F619159DADC7",
-          "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E",
-          "qualification": "Typed profile/content/status projection to original shared disk-control component; bindings and 399 traces verified in completeDiskControlComparison"
+          "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E"
         },
         {
           "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/DiskControl.cs",
@@ -54352,8 +54185,7 @@
           "tokens": 4,
           "bodyTokens": "=> content . GameInfo",
           "hash": "BC2CB21C5340481CC091ECD859B3F59734434A30BC7913409890F619159DADC7",
-          "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E",
-          "qualification": "Typed profile/content/status projection to original shared disk-control component; bindings and 399 traces verified in completeDiskControlComparison"
+          "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E"
         },
         {
           "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/DiskControl.cs",
@@ -54365,8 +54197,7 @@
           "tokens": 4,
           "bodyTokens": "=> content . GameInfo",
           "hash": "BC2CB21C5340481CC091ECD859B3F59734434A30BC7913409890F619159DADC7",
-          "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E",
-          "qualification": "Typed profile/content/status projection to original shared disk-control component; bindings and 399 traces verified in completeDiskControlComparison"
+          "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E"
         },
         {
           "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/DiskControl.cs",
@@ -54378,8 +54209,7 @@
           "tokens": 4,
           "bodyTokens": "=> content . GameInfo",
           "hash": "BC2CB21C5340481CC091ECD859B3F59734434A30BC7913409890F619159DADC7",
-          "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E",
-          "qualification": "Typed profile/content/status projection to original shared disk-control component; bindings and 399 traces verified in completeDiskControlComparison"
+          "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E"
         },
         {
           "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/DiskControl.cs",
@@ -54391,8 +54221,7 @@
           "tokens": 4,
           "bodyTokens": "=> content . GameInfo",
           "hash": "BC2CB21C5340481CC091ECD859B3F59734434A30BC7913409890F619159DADC7",
-          "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E",
-          "qualification": "Typed profile/content/status projection to original shared disk-control component; bindings and 399 traces verified in completeDiskControlComparison"
+          "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E"
         },
         {
           "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/DiskControl.cs",
@@ -54404,8 +54233,7 @@
           "tokens": 4,
           "bodyTokens": "=> content . GameInfo",
           "hash": "BC2CB21C5340481CC091ECD859B3F59734434A30BC7913409890F619159DADC7",
-          "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E",
-          "qualification": "Typed profile/content/status projection to original shared disk-control component; bindings and 399 traces verified in completeDiskControlComparison"
+          "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E"
         },
         {
           "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/DiskControl.cs",
@@ -54417,8 +54245,7 @@
           "tokens": 4,
           "bodyTokens": "=> content . GameInfo",
           "hash": "BC2CB21C5340481CC091ECD859B3F59734434A30BC7913409890F619159DADC7",
-          "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E",
-          "qualification": "Typed profile/content/status projection to original shared disk-control component; bindings and 399 traces verified in completeDiskControlComparison"
+          "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E"
         },
         {
           "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/DiskControl.cs",
@@ -54430,8 +54257,7 @@
           "tokens": 4,
           "bodyTokens": "=> content . GameInfo",
           "hash": "BC2CB21C5340481CC091ECD859B3F59734434A30BC7913409890F619159DADC7",
-          "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E",
-          "qualification": "Typed profile/content/status projection to original shared disk-control component; bindings and 399 traces verified in completeDiskControlComparison"
+          "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E"
         },
         {
           "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/DiskControl.cs",
@@ -54443,8 +54269,7 @@
           "tokens": 4,
           "bodyTokens": "=> content . GameInfo",
           "hash": "BC2CB21C5340481CC091ECD859B3F59734434A30BC7913409890F619159DADC7",
-          "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E",
-          "qualification": "Typed profile/content/status projection to original shared disk-control component; bindings and 399 traces verified in completeDiskControlComparison"
+          "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E"
         },
         {
           "path": "tests/GWGUI.Tests/Emulation/CoreDiskControlTests.cs",
@@ -54459,7 +54284,7 @@
           "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E"
         }
       ],
-      "qualification": "Partial occurrence qualification; unannotated members pending"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "BCA6BDB68DCF5C06AA68D9BC2A20148FEC88CC351A1939A73CD7AD34C7FE7C94",
@@ -67036,8 +66861,7 @@
           "tokens": 29,
           "bodyTokens": "{ GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplySystemAvInfo ( info , ApplyGeometry , value => FramesPerSecond = value , value => SampleRate = value ) ; }",
           "hash": "EF57C40E23D6C718452FFE4D07BF63E284BA5BCC557C7DC7ECF9B28D9C8559FA",
-          "shape": "9C9B6A573CB72084B5D3A1DB25C956190DFEAD4F51F9E056ACA89B04A55E75A8",
-          "qualification": "Native AV adapter to original Amiga operations; constants, 32 bindings, hardware prefixes and whole files verified in nativeAvUpdateComparison; other host responsibilities remain open"
+          "shape": "9C9B6A573CB72084B5D3A1DB25C956190DFEAD4F51F9E056ACA89B04A55E75A8"
         },
         {
           "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
@@ -67049,8 +66873,7 @@
           "tokens": 29,
           "bodyTokens": "{ GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplySystemAvInfo ( info , ApplyGeometry , value => FramesPerSecond = value , value => SampleRate = value ) ; }",
           "hash": "EF57C40E23D6C718452FFE4D07BF63E284BA5BCC557C7DC7ECF9B28D9C8559FA",
-          "shape": "9C9B6A573CB72084B5D3A1DB25C956190DFEAD4F51F9E056ACA89B04A55E75A8",
-          "qualification": "Native AV adapter to original Amiga operations; constants, 32 bindings, hardware prefixes and whole files verified in nativeAvUpdateComparison; other host responsibilities remain open"
+          "shape": "9C9B6A573CB72084B5D3A1DB25C956190DFEAD4F51F9E056ACA89B04A55E75A8"
         },
         {
           "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
@@ -67062,8 +66885,7 @@
           "tokens": 29,
           "bodyTokens": "{ GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplySystemAvInfo ( info , ApplyGeometry , value => FramesPerSecond = value , value => SampleRate = value ) ; }",
           "hash": "EF57C40E23D6C718452FFE4D07BF63E284BA5BCC557C7DC7ECF9B28D9C8559FA",
-          "shape": "9C9B6A573CB72084B5D3A1DB25C956190DFEAD4F51F9E056ACA89B04A55E75A8",
-          "qualification": "Native AV adapter to original Amiga operations; constants, 32 bindings, hardware prefixes and whole files verified in nativeAvUpdateComparison; other host responsibilities remain open"
+          "shape": "9C9B6A573CB72084B5D3A1DB25C956190DFEAD4F51F9E056ACA89B04A55E75A8"
         },
         {
           "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
@@ -67075,8 +66897,7 @@
           "tokens": 29,
           "bodyTokens": "{ GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplySystemAvInfo ( info , ApplyGeometry , value => FramesPerSecond = value , value => SampleRate = value ) ; }",
           "hash": "EF57C40E23D6C718452FFE4D07BF63E284BA5BCC557C7DC7ECF9B28D9C8559FA",
-          "shape": "9C9B6A573CB72084B5D3A1DB25C956190DFEAD4F51F9E056ACA89B04A55E75A8",
-          "qualification": "Native AV adapter to original Amiga operations; constants, 32 bindings, hardware prefixes and whole files verified in nativeAvUpdateComparison; other host responsibilities remain open"
+          "shape": "9C9B6A573CB72084B5D3A1DB25C956190DFEAD4F51F9E056ACA89B04A55E75A8"
         },
         {
           "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
@@ -67088,8 +66909,7 @@
           "tokens": 29,
           "bodyTokens": "{ GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplySystemAvInfo ( info , ApplyGeometry , value => FramesPerSecond = value , value => SampleRate = value ) ; }",
           "hash": "EF57C40E23D6C718452FFE4D07BF63E284BA5BCC557C7DC7ECF9B28D9C8559FA",
-          "shape": "9C9B6A573CB72084B5D3A1DB25C956190DFEAD4F51F9E056ACA89B04A55E75A8",
-          "qualification": "Native AV adapter to original Amiga operations; constants, 32 bindings, hardware prefixes and whole files verified in nativeAvUpdateComparison; other host responsibilities remain open"
+          "shape": "9C9B6A573CB72084B5D3A1DB25C956190DFEAD4F51F9E056ACA89B04A55E75A8"
         },
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
@@ -67101,8 +66921,7 @@
           "tokens": 29,
           "bodyTokens": "{ GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplySystemAvInfo ( info , ApplyGeometry , value => FramesPerSecond = value , value => SampleRate = value ) ; }",
           "hash": "EF57C40E23D6C718452FFE4D07BF63E284BA5BCC557C7DC7ECF9B28D9C8559FA",
-          "shape": "9C9B6A573CB72084B5D3A1DB25C956190DFEAD4F51F9E056ACA89B04A55E75A8",
-          "qualification": "Native AV adapter to original Amiga operations; constants, 32 bindings, hardware prefixes and whole files verified in nativeAvUpdateComparison; other host responsibilities remain open"
+          "shape": "9C9B6A573CB72084B5D3A1DB25C956190DFEAD4F51F9E056ACA89B04A55E75A8"
         },
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.AudioVideo.cs",
@@ -67114,8 +66933,7 @@
           "tokens": 29,
           "bodyTokens": "{ GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplySystemAvInfo ( info , ApplyGeometry , value => FramesPerSecond = value , value => SampleRate = value ) ; }",
           "hash": "EF57C40E23D6C718452FFE4D07BF63E284BA5BCC557C7DC7ECF9B28D9C8559FA",
-          "shape": "9C9B6A573CB72084B5D3A1DB25C956190DFEAD4F51F9E056ACA89B04A55E75A8",
-          "qualification": "Native AV adapter to original Amiga operations; constants, 32 bindings, hardware prefixes and whole files verified in nativeAvUpdateComparison; other host responsibilities remain open"
+          "shape": "9C9B6A573CB72084B5D3A1DB25C956190DFEAD4F51F9E056ACA89B04A55E75A8"
         },
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.AudioVideo.cs",
@@ -67127,11 +66945,10 @@
           "tokens": 29,
           "bodyTokens": "{ GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplySystemAvInfo ( info , ApplyGeometry , value => FramesPerSecond = value , value => SampleRate = value ) ; }",
           "hash": "EF57C40E23D6C718452FFE4D07BF63E284BA5BCC557C7DC7ECF9B28D9C8559FA",
-          "shape": "9C9B6A573CB72084B5D3A1DB25C956190DFEAD4F51F9E056ACA89B04A55E75A8",
-          "qualification": "Native AV adapter to original Amiga operations; constants, 32 bindings, hardware prefixes and whole files verified in nativeAvUpdateComparison; other host responsibilities remain open"
+          "shape": "9C9B6A573CB72084B5D3A1DB25C956190DFEAD4F51F9E056ACA89B04A55E75A8"
         }
       ],
-      "qualification": "Qualified typed projections to verified shared operations"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "EFD334E521A4B01CD1BE892050DCAE043E2D1575BECAB06D16F2DBA6A423850A",
@@ -122465,18 +122282,6 @@
           "shape": "B932470D7058F703992A464F512909FC424994B604352F54A6D0C14BA936E912"
         },
         {
-          "path": "src/GWGUI.Emulation.Panasonic/Emulators/Opera/Interop/Services/VideoCallbackHost.cs",
-          "name": "VideoCallbackHost",
-          "owner": "VideoCallbackHost",
-          "kind": "ConstructorDeclaration",
-          "line": 12,
-          "parameters": "()",
-          "tokens": 4,
-          "bodyTokens": "=> Callback = OnVideo",
-          "hash": "B5BFAAA5006DF27EEF642182EEC6BBC393D8903628897B4049C955EEADCB7C87",
-          "shape": "B932470D7058F703992A464F512909FC424994B604352F54A6D0C14BA936E912"
-        },
-        {
           "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalCore.cs",
           "name": "ExternalCore",
           "owner": "ExternalCore",
@@ -122537,18 +122342,6 @@
           "shape": "B932470D7058F703992A464F512909FC424994B604352F54A6D0C14BA936E912"
         },
         {
-          "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Interop/Services/VideoCallbackHost.cs",
-          "name": "VideoCallbackHost",
-          "owner": "VideoCallbackHost",
-          "kind": "ConstructorDeclaration",
-          "line": 12,
-          "parameters": "()",
-          "tokens": 4,
-          "bodyTokens": "=> Callback = OnVideo",
-          "hash": "B5BFAAA5006DF27EEF642182EEC6BBC393D8903628897B4049C955EEADCB7C87",
-          "shape": "B932470D7058F703992A464F512909FC424994B604352F54A6D0C14BA936E912"
-        },
-        {
           "path": "src/GWGUI.Emulation.Watara/Common/Services/ProcessCore.cs",
           "name": "SetAudioBufferStatus",
           "owner": "ProcessCore",
@@ -122573,18 +122366,6 @@
           "shape": "B932470D7058F703992A464F512909FC424994B604352F54A6D0C14BA936E912"
         },
         {
-          "path": "src/GWGUI.Emulation.Watara/Emulators/Potator/Interop/Services/VideoCallbackHost.cs",
-          "name": "VideoCallbackHost",
-          "owner": "VideoCallbackHost",
-          "kind": "ConstructorDeclaration",
-          "line": 12,
-          "parameters": "()",
-          "tokens": 4,
-          "bodyTokens": "=> Callback = OnVideo",
-          "hash": "B5BFAAA5006DF27EEF642182EEC6BBC393D8903628897B4049C955EEADCB7C87",
-          "shape": "B932470D7058F703992A464F512909FC424994B604352F54A6D0C14BA936E912"
-        },
-        {
           "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Interop/Services/InputCallbackHost.cs",
           "name": "Update",
           "owner": "InputCallbackHost",
@@ -122597,9 +122378,9 @@
           "shape": "B932470D7058F703992A464F512909FC424994B604352F54A6D0C14BA936E912"
         },
         {
-          "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Interop/Services/VideoCallbackHost.cs",
-          "name": "VideoCallbackHost",
-          "owner": "VideoCallbackHost",
+          "path": "src/GWGUI.Emulation/Services/ExternalCoreVideoCallbackHost.cs",
+          "name": "ExternalCoreVideoCallbackHost",
+          "owner": "ExternalCoreVideoCallbackHost",
           "kind": "ConstructorDeclaration",
           "line": 12,
           "parameters": "()",
@@ -124481,8 +124262,7 @@
           "tokens": 23,
           "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . Geometry > ( data , ApplyGeometry ) ; }",
           "hash": "10A097D804C5AAA3388F5957E18FBF680988DF6BFE5D8AF21FD16FDC005CA046",
-          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40",
-          "qualification": "Native AV adapter to original Amiga operations; constants, 32 bindings, hardware prefixes and whole files verified in nativeAvUpdateComparison; other host responsibilities remain open"
+          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40"
         },
         {
           "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
@@ -124494,8 +124274,7 @@
           "tokens": 23,
           "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . SystemAvInfo > ( data , ApplyInitialAvInfo ) ; }",
           "hash": "A71878BE281E480439721CAB75D0D79DFFC435DA73DC13933B3737B0088F09DB",
-          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40",
-          "qualification": "Native AV adapter to original Amiga operations; constants, 32 bindings, hardware prefixes and whole files verified in nativeAvUpdateComparison; other host responsibilities remain open"
+          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40"
         },
         {
           "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
@@ -124507,8 +124286,7 @@
           "tokens": 23,
           "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . Geometry > ( data , ApplyGeometry ) ; }",
           "hash": "10A097D804C5AAA3388F5957E18FBF680988DF6BFE5D8AF21FD16FDC005CA046",
-          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40",
-          "qualification": "Native AV adapter to original Amiga operations; constants, 32 bindings, hardware prefixes and whole files verified in nativeAvUpdateComparison; other host responsibilities remain open"
+          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40"
         },
         {
           "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
@@ -124520,8 +124298,7 @@
           "tokens": 23,
           "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . SystemAvInfo > ( data , ApplyInitialAvInfo ) ; }",
           "hash": "A71878BE281E480439721CAB75D0D79DFFC435DA73DC13933B3737B0088F09DB",
-          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40",
-          "qualification": "Native AV adapter to original Amiga operations; constants, 32 bindings, hardware prefixes and whole files verified in nativeAvUpdateComparison; other host responsibilities remain open"
+          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40"
         },
         {
           "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
@@ -124533,8 +124310,7 @@
           "tokens": 23,
           "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . Geometry > ( data , ApplyGeometry ) ; }",
           "hash": "10A097D804C5AAA3388F5957E18FBF680988DF6BFE5D8AF21FD16FDC005CA046",
-          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40",
-          "qualification": "Native AV adapter to original Amiga operations; constants, 32 bindings, hardware prefixes and whole files verified in nativeAvUpdateComparison; other host responsibilities remain open"
+          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40"
         },
         {
           "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
@@ -124546,8 +124322,7 @@
           "tokens": 23,
           "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . SystemAvInfo > ( data , ApplyInitialAvInfo ) ; }",
           "hash": "A71878BE281E480439721CAB75D0D79DFFC435DA73DC13933B3737B0088F09DB",
-          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40",
-          "qualification": "Native AV adapter to original Amiga operations; constants, 32 bindings, hardware prefixes and whole files verified in nativeAvUpdateComparison; other host responsibilities remain open"
+          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40"
         },
         {
           "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
@@ -124559,8 +124334,7 @@
           "tokens": 23,
           "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . Geometry > ( data , ApplyGeometry ) ; }",
           "hash": "10A097D804C5AAA3388F5957E18FBF680988DF6BFE5D8AF21FD16FDC005CA046",
-          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40",
-          "qualification": "Native AV adapter to original Amiga operations; constants, 32 bindings, hardware prefixes and whole files verified in nativeAvUpdateComparison; other host responsibilities remain open"
+          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40"
         },
         {
           "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
@@ -124572,8 +124346,7 @@
           "tokens": 23,
           "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . SystemAvInfo > ( data , ApplyInitialAvInfo ) ; }",
           "hash": "A71878BE281E480439721CAB75D0D79DFFC435DA73DC13933B3737B0088F09DB",
-          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40",
-          "qualification": "Native AV adapter to original Amiga operations; constants, 32 bindings, hardware prefixes and whole files verified in nativeAvUpdateComparison; other host responsibilities remain open"
+          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40"
         },
         {
           "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
@@ -124585,8 +124358,7 @@
           "tokens": 23,
           "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . Geometry > ( data , ApplyGeometry ) ; }",
           "hash": "10A097D804C5AAA3388F5957E18FBF680988DF6BFE5D8AF21FD16FDC005CA046",
-          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40",
-          "qualification": "Native AV adapter to original Amiga operations; constants, 32 bindings, hardware prefixes and whole files verified in nativeAvUpdateComparison; other host responsibilities remain open"
+          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40"
         },
         {
           "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
@@ -124598,8 +124370,7 @@
           "tokens": 23,
           "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . SystemAvInfo > ( data , ApplyInitialAvInfo ) ; }",
           "hash": "A71878BE281E480439721CAB75D0D79DFFC435DA73DC13933B3737B0088F09DB",
-          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40",
-          "qualification": "Native AV adapter to original Amiga operations; constants, 32 bindings, hardware prefixes and whole files verified in nativeAvUpdateComparison; other host responsibilities remain open"
+          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40"
         },
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
@@ -124611,8 +124382,7 @@
           "tokens": 23,
           "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . Geometry > ( data , ApplyGeometry ) ; }",
           "hash": "10A097D804C5AAA3388F5957E18FBF680988DF6BFE5D8AF21FD16FDC005CA046",
-          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40",
-          "qualification": "Native AV adapter to original Amiga operations; constants, 32 bindings, hardware prefixes and whole files verified in nativeAvUpdateComparison; other host responsibilities remain open"
+          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40"
         },
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
@@ -124624,8 +124394,7 @@
           "tokens": 23,
           "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . SystemAvInfo > ( data , ApplyInitialAvInfo ) ; }",
           "hash": "A71878BE281E480439721CAB75D0D79DFFC435DA73DC13933B3737B0088F09DB",
-          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40",
-          "qualification": "Native AV adapter to original Amiga operations; constants, 32 bindings, hardware prefixes and whole files verified in nativeAvUpdateComparison; other host responsibilities remain open"
+          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40"
         },
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.AudioVideo.cs",
@@ -124637,8 +124406,7 @@
           "tokens": 23,
           "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . Geometry > ( data , ApplyGeometry ) ; }",
           "hash": "10A097D804C5AAA3388F5957E18FBF680988DF6BFE5D8AF21FD16FDC005CA046",
-          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40",
-          "qualification": "Native AV adapter to original Amiga operations; constants, 32 bindings, hardware prefixes and whole files verified in nativeAvUpdateComparison; other host responsibilities remain open"
+          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40"
         },
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.AudioVideo.cs",
@@ -124650,8 +124418,7 @@
           "tokens": 23,
           "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . SystemAvInfo > ( data , ApplyInitialAvInfo ) ; }",
           "hash": "A71878BE281E480439721CAB75D0D79DFFC435DA73DC13933B3737B0088F09DB",
-          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40",
-          "qualification": "Native AV adapter to original Amiga operations; constants, 32 bindings, hardware prefixes and whole files verified in nativeAvUpdateComparison; other host responsibilities remain open"
+          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40"
         },
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.AudioVideo.cs",
@@ -124663,8 +124430,7 @@
           "tokens": 23,
           "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . Geometry > ( data , ApplyGeometry ) ; }",
           "hash": "10A097D804C5AAA3388F5957E18FBF680988DF6BFE5D8AF21FD16FDC005CA046",
-          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40",
-          "qualification": "Native AV adapter to original Amiga operations; constants, 32 bindings, hardware prefixes and whole files verified in nativeAvUpdateComparison; other host responsibilities remain open"
+          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40"
         },
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.AudioVideo.cs",
@@ -124676,11 +124442,10 @@
           "tokens": 23,
           "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . SystemAvInfo > ( data , ApplyInitialAvInfo ) ; }",
           "hash": "A71878BE281E480439721CAB75D0D79DFFC435DA73DC13933B3737B0088F09DB",
-          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40",
-          "qualification": "Native AV adapter to original Amiga operations; constants, 32 bindings, hardware prefixes and whole files verified in nativeAvUpdateComparison; other host responsibilities remain open"
+          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40"
         }
       ],
-      "qualification": "Qualified typed projections to verified shared operations"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "shape": "BDC0E37F77A48E079D369D6AAFDC19B435CD8827599EC067AAB6FC77E60E4EFD",
@@ -125060,8 +124825,7 @@
           "tokens": 4,
           "bodyTokens": "=> content . GameInfo",
           "hash": "BC2CB21C5340481CC091ECD859B3F59734434A30BC7913409890F619159DADC7",
-          "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E",
-          "qualification": "Typed profile/content/status projection to original shared disk-control component; bindings and 399 traces verified in completeDiskControlComparison"
+          "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E"
         },
         {
           "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs",
@@ -125109,8 +124873,7 @@
           "tokens": 4,
           "bodyTokens": "=> content . GameInfo",
           "hash": "BC2CB21C5340481CC091ECD859B3F59734434A30BC7913409890F619159DADC7",
-          "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E",
-          "qualification": "Typed profile/content/status projection to original shared disk-control component; bindings and 399 traces verified in completeDiskControlComparison"
+          "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E"
         },
         {
           "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs",
@@ -125170,8 +124933,7 @@
           "tokens": 4,
           "bodyTokens": "=> content . GameInfo",
           "hash": "BC2CB21C5340481CC091ECD859B3F59734434A30BC7913409890F619159DADC7",
-          "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E",
-          "qualification": "Typed profile/content/status projection to original shared disk-control component; bindings and 399 traces verified in completeDiskControlComparison"
+          "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E"
         },
         {
           "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs",
@@ -125255,8 +125017,7 @@
           "tokens": 4,
           "bodyTokens": "=> content . GameInfo",
           "hash": "BC2CB21C5340481CC091ECD859B3F59734434A30BC7913409890F619159DADC7",
-          "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E",
-          "qualification": "Typed profile/content/status projection to original shared disk-control component; bindings and 399 traces verified in completeDiskControlComparison"
+          "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E"
         },
         {
           "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs",
@@ -125328,8 +125089,7 @@
           "tokens": 4,
           "bodyTokens": "=> content . GameInfo",
           "hash": "BC2CB21C5340481CC091ECD859B3F59734434A30BC7913409890F619159DADC7",
-          "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E",
-          "qualification": "Typed profile/content/status projection to original shared disk-control component; bindings and 399 traces verified in completeDiskControlComparison"
+          "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E"
         },
         {
           "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs",
@@ -125401,8 +125161,7 @@
           "tokens": 4,
           "bodyTokens": "=> content . GameInfo",
           "hash": "BC2CB21C5340481CC091ECD859B3F59734434A30BC7913409890F619159DADC7",
-          "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E",
-          "qualification": "Typed profile/content/status projection to original shared disk-control component; bindings and 399 traces verified in completeDiskControlComparison"
+          "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E"
         },
         {
           "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs",
@@ -125498,8 +125257,7 @@
           "tokens": 4,
           "bodyTokens": "=> content . GameInfo",
           "hash": "BC2CB21C5340481CC091ECD859B3F59734434A30BC7913409890F619159DADC7",
-          "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E",
-          "qualification": "Typed profile/content/status projection to original shared disk-control component; bindings and 399 traces verified in completeDiskControlComparison"
+          "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E"
         },
         {
           "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs",
@@ -125583,8 +125341,7 @@
           "tokens": 4,
           "bodyTokens": "=> content . GameInfo",
           "hash": "BC2CB21C5340481CC091ECD859B3F59734434A30BC7913409890F619159DADC7",
-          "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E",
-          "qualification": "Typed profile/content/status projection to original shared disk-control component; bindings and 399 traces verified in completeDiskControlComparison"
+          "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E"
         },
         {
           "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs",
@@ -125668,8 +125425,7 @@
           "tokens": 4,
           "bodyTokens": "=> content . GameInfo",
           "hash": "BC2CB21C5340481CC091ECD859B3F59734434A30BC7913409890F619159DADC7",
-          "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E",
-          "qualification": "Typed profile/content/status projection to original shared disk-control component; bindings and 399 traces verified in completeDiskControlComparison"
+          "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E"
         },
         {
           "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs",
@@ -125717,8 +125473,7 @@
           "tokens": 4,
           "bodyTokens": "=> content . GameInfo",
           "hash": "BC2CB21C5340481CC091ECD859B3F59734434A30BC7913409890F619159DADC7",
-          "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E",
-          "qualification": "Typed profile/content/status projection to original shared disk-control component; bindings and 399 traces verified in completeDiskControlComparison"
+          "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E"
         },
         {
           "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs",
@@ -125766,8 +125521,7 @@
           "tokens": 4,
           "bodyTokens": "=> content . GameInfo",
           "hash": "BC2CB21C5340481CC091ECD859B3F59734434A30BC7913409890F619159DADC7",
-          "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E",
-          "qualification": "Typed profile/content/status projection to original shared disk-control component; bindings and 399 traces verified in completeDiskControlComparison"
+          "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E"
         },
         {
           "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs",
@@ -126238,7 +125992,7 @@
           "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E"
         }
       ],
-      "qualification": "Partial occurrence qualification; unannotated members pending"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "shape": "BF7A197B28049C371582F73C572C56A6E6D08FB1448FCD33BCCFC3B906DD7DA2",
