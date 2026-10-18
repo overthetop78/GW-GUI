@@ -22293,7 +22293,22 @@
     ],
     "verification": "All 37 statement sequences match mapped original branches and labels, with original constant expressions/current values. Restoring those sequences makes all eight complete files token-identical to HEAD; all other cases, catches, fields and callback ownership unchanged. Existing SDK primitives source hash unchanged. For 24 accepted-null sections the ignored primitive refusal is followed by true; remaining 13 sections return its same null-refusal/write result.",
     "semanticAfter": "SDK and six changed modules zero errors. 37 calls resolve to existing WriteBoolean(nint,bool) or WriteInteger(nint,int), never the checked uint overload. All original native command ids and reply constants preserved.",
-    "tests": "24 existing tests passed, exit 0: StatelessEnvironmentCommandTests and CoreOptionHostStateTests. Boolean native byte values, configured interface versions, null-output refusal and unhandled command boundaries covered by existing SDK tests; atomic option-state regressions retained. No mirror test or new fixture added. Native accept-null profiles separately verified by AST ignored-result/true mapping."
+    "tests": "24 existing tests passed, exit 0: StatelessEnvironmentCommandTests and CoreOptionHostStateTests. Boolean native byte values, configured interface versions, null-output refusal and unhandled command boundaries covered by existing SDK tests; atomic option-state regressions retained. No mirror test or new fixture added. Native accept-null profiles separately verified by AST ignored-result/true mapping.",
+    "subsequentDiagnosticValidation": {
+      "proof": "diagnosticUtf8Reuse.verification",
+      "beforeHashesMatch": true,
+      "paths": [
+        "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Environment.cs",
+        "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Environment.cs"
+      ],
+      "decision": "Only diagnostic text fragments changed after scalar verification; whole-file AST comparison and SDK other-method comparison preserve earlier scalar work"
+    }
   },
   "updaterSharedDependencies": {
     "state": "verified",
@@ -22616,6 +22631,626 @@
       "realWorkerExitCode": 2,
       "updateApplied": false,
       "temporaryTestsCleanup": "source and script deleted; fixtures cleaned; original test assembly rebuilt without temporary code; 14 existing tests passed, exit 0"
+    }
+  },
+  "diagnosticUtf8Reuse": {
+    "state": "verified",
+    "beforeHead": "b96440fc9d3ebd7f581c10b7a1a17a456cb0beba",
+    "originNative": {
+      "commit": "160a579b2",
+      "path": "src/GWGUI.Emulation.Amiga/Cores/AmigaExternalHostCallbacks.cs",
+      "method": "private bool CaptureMessage ( nint data , bool extended ) { if ( data == 0 ) return false ; var textPointer = Marshal . ReadIntPtr ( data ) ; var message = textPointer == 0 ? null : Marshal . PtrToStringUTF8 ( textPointer ) ; if ( ! string . IsNullOrWhiteSpace ( message ) ) AddDiagnostic ( $\" [message { ( extended ? \"-extended\" : string . Empty ) } ]  { message } \" ) ; return true ; }"
+    },
+    "originRich": {
+      "commit": "5c43ca75e",
+      "path": "src/GWGUI.Emulation.Atari/Cores/AtariExternalHostCallbacks.cs",
+      "method": "private string ? CopyDiagnostic ( nint textPointer ) { var text = Marshal . PtrToStringUTF8 ( textPointer ) ; if ( ! string . IsNullOrWhiteSpace ( text ) ) Diagnostics . Add ( text ) ; return string . IsNullOrWhiteSpace ( text ) ? null : text ; }"
+    },
+    "scope": "Only borrowed UTF8 copying, emptiness filtering and publication; do not merge complete handlers or format-string log parsing",
+    "invariants": [
+      "Native outer data check, first pointer read, diagnostic prefix and bounded queue remain local",
+      "Rich typed messages retain frames and all extended metadata",
+      "Legacy raw log/message strings preserve whitespace and existing exception catches",
+      "Pointers remain borrowed; no new native allocation or lifetime owner",
+      "Native/rich format-string log parsing is outside this fragment"
+    ],
+    "hosts": [
+      {
+        "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "kind": "native",
+        "beforeSha256": "9703F8A07E4548F928B9BFE43DE864539713B6340677571CE9D6C878B6077232",
+        "fragments": {
+          "primary": "private bool CaptureMessage ( nint data , bool extended ) { if ( data == nint . Zero ) return false ; var textPointer = Marshal . ReadIntPtr ( data ) ; var message = textPointer == nint . Zero ? null : Marshal . PtrToStringUTF8 ( textPointer ) ; if ( ! string . IsNullOrWhiteSpace ( message ) ) AddDiagnostic ( $\" { ExternalHostCallbacksConstants . MessageDiagnosticPrefix } { ( extended ? ExternalHostCallbacksConstants . Extended : string . Empty ) } { ExternalHostCallbacksConstants . DiagnosticLevelSuffix } { message } \" ) ; return true ; }"
+        },
+        "whitespace": "filtered"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "kind": "native",
+        "beforeSha256": "1B78CF3497132462138342E88976B0108F52F91C2CF4A4C60AF9991805AD7351",
+        "fragments": {
+          "primary": "private bool CaptureMessage ( nint data , bool extended ) { if ( data == nint . Zero ) return false ; var textPointer = Marshal . ReadIntPtr ( data ) ; var message = textPointer == nint . Zero ? null : Marshal . PtrToStringUTF8 ( textPointer ) ; if ( ! string . IsNullOrWhiteSpace ( message ) ) AddDiagnostic ( string . Format ( CoreMessageFormat , extended ? Extended : string . Empty , message ) ) ; return true ; }"
+        },
+        "whitespace": "filtered"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "kind": "native",
+        "beforeSha256": "89EE0D11F52F8FA8B020F133BDCD86EDBA2BABE773AD9B2FEE39A09005612376",
+        "fragments": {
+          "primary": "private bool CaptureMessage ( nint data , bool extended ) { if ( data == 0 ) return false ; var textPointer = Marshal . ReadIntPtr ( data ) ; var message = textPointer == 0 ? null : Marshal . PtrToStringUTF8 ( textPointer ) ; if ( ! string . IsNullOrWhiteSpace ( message ) ) AddDiagnostic ( $\" [message { ( extended ? ExternalHostCallbacksConstants . Extended : string . Empty ) } ]  { message } \" ) ; return true ; }"
+        },
+        "whitespace": "filtered"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Environment.cs",
+        "kind": "native",
+        "beforeSha256": "078B08B1C8CCECA8E37F39B0AA4B9DB11F43B7B8C73ED1C3DBD15680227C61B2",
+        "fragments": {
+          "primary": "private bool CaptureMessage ( nint data , bool extended ) { if ( data == 0 ) return false ; var textPointer = Marshal . ReadIntPtr ( data ) ; var message = textPointer == 0 ? null : Marshal . PtrToStringUTF8 ( textPointer ) ; if ( ! string . IsNullOrWhiteSpace ( message ) ) AddDiagnostic ( $\" [message { ( extended ? ExternalHostCallbacksConstants . Extended : string . Empty ) } ]  { message } \" ) ; return true ; }"
+        },
+        "whitespace": "filtered"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Environment.cs",
+        "kind": "native",
+        "beforeSha256": "B055AFBD5B68D0AFA60AD5E9658F6612FFB29036CE07402823EE5AE7906BEDBC",
+        "fragments": {
+          "primary": "private bool CaptureMessage ( nint data , bool extended ) { if ( data == 0 ) return false ; var textPointer = Marshal . ReadIntPtr ( data ) ; var message = textPointer == 0 ? null : Marshal . PtrToStringUTF8 ( textPointer ) ; if ( ! string . IsNullOrWhiteSpace ( message ) ) AddDiagnostic ( $\" [message { ( extended ? ExternalHostCallbacksConstants . Extended : string . Empty ) } ]  { message } \" ) ; return true ; }"
+        },
+        "whitespace": "filtered"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "kind": "native",
+        "beforeSha256": "C9AF8CB6D54B35F23408EE0EC72A5681C8D8A7179463A57B94BF26D54528E124",
+        "fragments": {
+          "primary": "private bool CaptureMessage ( nint data , bool extended ) { if ( data == 0 ) return false ; var textPointer = Marshal . ReadIntPtr ( data ) ; var message = textPointer == 0 ? null : Marshal . PtrToStringUTF8 ( textPointer ) ; if ( ! string . IsNullOrWhiteSpace ( message ) ) AddDiagnostic ( $\" [message { ( extended ? ExternalHostCallbacksConstants . Extended : string . Empty ) } ]  { message } \" ) ; return true ; }"
+        },
+        "whitespace": "filtered"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "kind": "native",
+        "beforeSha256": "25BA3C95F2529595F7BB8A09B70B2CFF816C4F8A3CBD258D9A2E86DBE0AD92CE",
+        "fragments": {
+          "primary": "private bool CaptureMessage ( nint data , bool extended ) { if ( data == 0 ) return false ; var textPointer = Marshal . ReadIntPtr ( data ) ; var message = textPointer == 0 ? null : Marshal . PtrToStringUTF8 ( textPointer ) ; if ( ! string . IsNullOrWhiteSpace ( message ) ) AddDiagnostic ( $\" [message { ( extended ? ExternalHostCallbacksConstants . Extended : string . Empty ) } ]  { message } \" ) ; return true ; }"
+        },
+        "whitespace": "filtered"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "kind": "native",
+        "beforeSha256": "C17C911640523DE91FFB2D82609111E831DF6BDE95BD2DD9FA6B3A698E4A081F",
+        "fragments": {
+          "primary": "private bool CaptureMessage ( nint data , bool extended ) { if ( data == 0 ) return false ; var textPointer = Marshal . ReadIntPtr ( data ) ; var message = textPointer == 0 ? null : Marshal . PtrToStringUTF8 ( textPointer ) ; if ( ! string . IsNullOrWhiteSpace ( message ) ) AddDiagnostic ( $\" [message { ( extended ? ExternalHostCallbacksConstants . Extended : string . Empty ) } ]  { message } \" ) ; return true ; }"
+        },
+        "whitespace": "filtered"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+        "kind": "rich",
+        "beforeSha256": "30EE86FCA3512B7BA665A0EF12953A8BE566065D57F8898D6C57175E0077522A",
+        "fragments": {
+          "primary": "private string ? CopyDiagnostic ( nint textPointer ) { var text = Marshal . PtrToStringUTF8 ( textPointer ) ; if ( ! string . IsNullOrWhiteSpace ( text ) ) Diagnostics . Add ( text ) ; return string . IsNullOrWhiteSpace ( text ) ? null : text ; }",
+          "ReadMessage": "public bool ReadMessage ( nint data ) { if ( data == nint . Zero ) return false ; var message = Marshal . PtrToStructure < ExternalCoreApi . Message > ( data ) ; var text = CopyDiagnostic ( message . Text ) ; if ( text is not null ) Messages . Add ( new ( text , message . Frames ) ) ; return true ; }",
+          "ReadExtendedMessage": "public bool ReadExtendedMessage ( nint data ) { if ( data == nint . Zero ) return false ; var message = Marshal . PtrToStructure < ExternalCoreApi . MessageExtended > ( data ) ; var text = CopyDiagnostic ( message . Text ) ; if ( text is not null ) ExtendedMessages . Add ( new ( text , message . DurationMilliseconds , message . Priority , message . Level , message . Target , message . Type , message . Progress ) ) ; return true ; }"
+        },
+        "whitespace": "filtered"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+        "kind": "rich",
+        "beforeSha256": "76509B067DD5A69FF1FF23FD18F39FE41D0A96C5AAA9BCBD4DDF25026611D90B",
+        "fragments": {
+          "primary": "private string ? CopyDiagnostic ( nint textPointer ) { var text = Marshal . PtrToStringUTF8 ( textPointer ) ; if ( ! string . IsNullOrWhiteSpace ( text ) ) Diagnostics . Add ( text ) ; return string . IsNullOrWhiteSpace ( text ) ? null : text ; }",
+          "ReadMessage": "public bool ReadMessage ( nint data ) { if ( data == nint . Zero ) return false ; var message = Marshal . PtrToStructure < ExternalCoreApi . Message > ( data ) ; var text = CopyDiagnostic ( message . Text ) ; if ( text is not null ) Messages . Add ( new ( text , message . Frames ) ) ; return true ; }",
+          "ReadExtendedMessage": "public bool ReadExtendedMessage ( nint data ) { if ( data == nint . Zero ) return false ; var message = Marshal . PtrToStructure < ExternalCoreApi . MessageExtended > ( data ) ; var text = CopyDiagnostic ( message . Text ) ; if ( text is not null ) ExtendedMessages . Add ( new ( text , message . DurationMilliseconds , message . Priority , message . Level , message . Target , message . Type , message . Progress ) ) ; return true ; }"
+        },
+        "whitespace": "filtered"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+        "kind": "rich",
+        "beforeSha256": "A94AF90773890389A8C8F85A0C4873C6CE8EB1DA1FB3313773D8B3EDCDFEF54A",
+        "fragments": {
+          "primary": "private string ? CopyDiagnostic ( nint textPointer ) { var text = Marshal . PtrToStringUTF8 ( textPointer ) ; if ( ! string . IsNullOrWhiteSpace ( text ) ) Diagnostics . Add ( text ) ; return string . IsNullOrWhiteSpace ( text ) ? null : text ; }",
+          "ReadMessage": "public bool ReadMessage ( nint data ) { if ( data == nint . Zero ) return false ; var message = Marshal . PtrToStructure < ExternalCoreApi . Message > ( data ) ; var text = CopyDiagnostic ( message . Text ) ; if ( text is not null ) Messages . Add ( new ( text , message . Frames ) ) ; return true ; }",
+          "ReadExtendedMessage": "public bool ReadExtendedMessage ( nint data ) { if ( data == nint . Zero ) return false ; var message = Marshal . PtrToStructure < ExternalCoreApi . MessageExtended > ( data ) ; var text = CopyDiagnostic ( message . Text ) ; if ( text is not null ) ExtendedMessages . Add ( new ( text , message . DurationMilliseconds , message . Priority , message . Level , message . Target , message . Type , message . Progress ) ) ; return true ; }"
+        },
+        "whitespace": "filtered"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+        "kind": "rich",
+        "beforeSha256": "7F9EF2DC6F7CA2550B37C3473791008E6A89E9C9A54893385028444EC0DD35EB",
+        "fragments": {
+          "primary": "private string ? CopyDiagnostic ( nint textPointer ) { var text = Marshal . PtrToStringUTF8 ( textPointer ) ; if ( ! string . IsNullOrWhiteSpace ( text ) ) Diagnostics . Add ( text ) ; return string . IsNullOrWhiteSpace ( text ) ? null : text ; }",
+          "ReadMessage": "public bool ReadMessage ( nint data ) { if ( data == nint . Zero ) return false ; var message = Marshal . PtrToStructure < ExternalCoreApi . Message > ( data ) ; var text = CopyDiagnostic ( message . Text ) ; if ( text is not null ) Messages . Add ( new ( text , message . Frames ) ) ; return true ; }",
+          "ReadExtendedMessage": "public bool ReadExtendedMessage ( nint data ) { if ( data == nint . Zero ) return false ; var message = Marshal . PtrToStructure < ExternalCoreApi . MessageExtended > ( data ) ; var text = CopyDiagnostic ( message . Text ) ; if ( text is not null ) ExtendedMessages . Add ( new ( text , message . DurationMilliseconds , message . Priority , message . Level , message . Target , message . Type , message . Progress ) ) ; return true ; }"
+        },
+        "whitespace": "filtered"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+        "kind": "rich",
+        "beforeSha256": "53AC988E337B70A8874D98DE8D5DA0E5BD462E0C42BD45024366C113C33F531B",
+        "fragments": {
+          "primary": "private string ? CopyDiagnostic ( nint textPointer ) { var text = Marshal . PtrToStringUTF8 ( textPointer ) ; if ( ! string . IsNullOrWhiteSpace ( text ) ) Diagnostics . Add ( text ) ; return string . IsNullOrWhiteSpace ( text ) ? null : text ; }",
+          "ReadMessage": "public bool ReadMessage ( nint data ) { if ( data == nint . Zero ) return false ; var message = Marshal . PtrToStructure < ExternalCoreApi . Message > ( data ) ; var text = CopyDiagnostic ( message . Text ) ; if ( text is not null ) Messages . Add ( new ( text , message . Frames ) ) ; return true ; }",
+          "ReadExtendedMessage": "public bool ReadExtendedMessage ( nint data ) { if ( data == nint . Zero ) return false ; var message = Marshal . PtrToStructure < ExternalCoreApi . MessageExtended > ( data ) ; var text = CopyDiagnostic ( message . Text ) ; if ( text is not null ) ExtendedMessages . Add ( new ( text , message . DurationMilliseconds , message . Priority , message . Level , message . Target , message . Type , message . Progress ) ) ; return true ; }"
+        },
+        "whitespace": "filtered"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+        "kind": "rich",
+        "beforeSha256": "ADE9C50B8FEC3B78E0FC59DEC0B3771199A40000E787E5F2806566673A7EF9BF",
+        "fragments": {
+          "primary": "private string ? CopyDiagnostic ( nint textPointer ) { var text = Marshal . PtrToStringUTF8 ( textPointer ) ; if ( ! string . IsNullOrWhiteSpace ( text ) ) Diagnostics . Add ( text ) ; return string . IsNullOrWhiteSpace ( text ) ? null : text ; }",
+          "ReadMessage": "public bool ReadMessage ( nint data ) { if ( data == nint . Zero ) return false ; var message = Marshal . PtrToStructure < ExternalCoreApi . Message > ( data ) ; var text = CopyDiagnostic ( message . Text ) ; if ( text is not null ) Messages . Add ( new ( text , message . Frames ) ) ; return true ; }",
+          "ReadExtendedMessage": "public bool ReadExtendedMessage ( nint data ) { if ( data == nint . Zero ) return false ; var message = Marshal . PtrToStructure < ExternalCoreApi . MessageExtended > ( data ) ; var text = CopyDiagnostic ( message . Text ) ; if ( text is not null ) ExtendedMessages . Add ( new ( text , message . DurationMilliseconds , message . Priority , message . Level , message . Target , message . Type , message . Progress ) ) ; return true ; }"
+        },
+        "whitespace": "filtered"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+        "kind": "rich",
+        "beforeSha256": "3ABD269ABE8F8E21D7E0677ED29EF2B5E0C91E4BA40F19DFD225E1B81E2858B4",
+        "fragments": {
+          "primary": "private string ? CopyDiagnostic ( nint textPointer ) { var text = Marshal . PtrToStringUTF8 ( textPointer ) ; if ( ! string . IsNullOrWhiteSpace ( text ) ) Diagnostics . Add ( text ) ; return string . IsNullOrWhiteSpace ( text ) ? null : text ; }",
+          "ReadMessage": "public bool ReadMessage ( nint data ) { if ( data == nint . Zero ) return false ; var message = Marshal . PtrToStructure < ExternalCoreApi . Message > ( data ) ; var text = CopyDiagnostic ( message . Text ) ; if ( text is not null ) Messages . Add ( new ( text , message . Frames ) ) ; return true ; }",
+          "ReadExtendedMessage": "public bool ReadExtendedMessage ( nint data ) { if ( data == nint . Zero ) return false ; var message = Marshal . PtrToStructure < ExternalCoreApi . MessageExtended > ( data ) ; var text = CopyDiagnostic ( message . Text ) ; if ( text is not null ) ExtendedMessages . Add ( new ( text , message . DurationMilliseconds , message . Priority , message . Level , message . Target , message . Type , message . Progress ) ) ; return true ; }"
+        },
+        "whitespace": "filtered"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+        "kind": "rich",
+        "beforeSha256": "9088F668CC52F8D2397D36D05E837AE08A20D2AA8DC6B7B40542978F7A6D41CB",
+        "fragments": {
+          "primary": "private string ? CopyDiagnostic ( nint textPointer ) { var text = Marshal . PtrToStringUTF8 ( textPointer ) ; if ( ! string . IsNullOrWhiteSpace ( text ) ) Diagnostics . Add ( text ) ; return string . IsNullOrWhiteSpace ( text ) ? null : text ; }",
+          "ReadMessage": "public bool ReadMessage ( nint data ) { if ( data == nint . Zero ) return false ; var message = Marshal . PtrToStructure < ExternalCoreApi . Message > ( data ) ; var text = CopyDiagnostic ( message . Text ) ; if ( text is not null ) Messages . Add ( new ( text , message . Frames ) ) ; return true ; }",
+          "ReadExtendedMessage": "public bool ReadExtendedMessage ( nint data ) { if ( data == nint . Zero ) return false ; var message = Marshal . PtrToStructure < ExternalCoreApi . MessageExtended > ( data ) ; var text = CopyDiagnostic ( message . Text ) ; if ( text is not null ) ExtendedMessages . Add ( new ( text , message . DurationMilliseconds , message . Priority , message . Level , message . Target , message . Type , message . Progress ) ) ; return true ; }"
+        },
+        "whitespace": "filtered"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+        "kind": "rich",
+        "beforeSha256": "A8795D786AA8104DC86C86BE2480A7A033005C0865B3A152C8E97E5B7C0E226E",
+        "fragments": {
+          "primary": "private string ? CopyDiagnostic ( nint textPointer ) { var text = Marshal . PtrToStringUTF8 ( textPointer ) ; if ( ! string . IsNullOrWhiteSpace ( text ) ) Diagnostics . Add ( text ) ; return string . IsNullOrWhiteSpace ( text ) ? null : text ; }",
+          "ReadMessage": "public bool ReadMessage ( nint data ) { if ( data == nint . Zero ) return false ; var message = Marshal . PtrToStructure < ExternalCoreApi . Message > ( data ) ; var text = CopyDiagnostic ( message . Text ) ; if ( text is not null ) Messages . Add ( new ( text , message . Frames ) ) ; return true ; }",
+          "ReadExtendedMessage": "public bool ReadExtendedMessage ( nint data ) { if ( data == nint . Zero ) return false ; var message = Marshal . PtrToStructure < ExternalCoreApi . MessageExtended > ( data ) ; var text = CopyDiagnostic ( message . Text ) ; if ( text is not null ) ExtendedMessages . Add ( new ( text , message . DurationMilliseconds , message . Priority , message . Level , message . Target , message . Type , message . Progress ) ) ; return true ; }"
+        },
+        "whitespace": "filtered"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+        "kind": "rich",
+        "beforeSha256": "AC5A1EEF49B697847BC95C9F9055A9BEEAE20B94FD27B5F7C88400E023CB514E",
+        "fragments": {
+          "primary": "private string ? CopyDiagnostic ( nint textPointer ) { var text = Marshal . PtrToStringUTF8 ( textPointer ) ; if ( ! string . IsNullOrWhiteSpace ( text ) ) Diagnostics . Add ( text ) ; return string . IsNullOrWhiteSpace ( text ) ? null : text ; }",
+          "ReadMessage": "public bool ReadMessage ( nint data ) { if ( data == nint . Zero ) return false ; var message = Marshal . PtrToStructure < ExternalCoreApi . Message > ( data ) ; var text = CopyDiagnostic ( message . Text ) ; if ( text is not null ) Messages . Add ( new ( text , message . Frames ) ) ; return true ; }",
+          "ReadExtendedMessage": "public bool ReadExtendedMessage ( nint data ) { if ( data == nint . Zero ) return false ; var message = Marshal . PtrToStructure < ExternalCoreApi . MessageExtended > ( data ) ; var text = CopyDiagnostic ( message . Text ) ; if ( text is not null ) ExtendedMessages . Add ( new ( text , message . DurationMilliseconds , message . Priority , message . Level , message . Target , message . Type , message . Progress ) ) ; return true ; }"
+        },
+        "whitespace": "filtered"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+        "kind": "rich",
+        "beforeSha256": "A0A8F8963B86FD960BE917DFAB62C45FF6A0D933DCF6FD23980C4BD94AA369FB",
+        "fragments": {
+          "primary": "private string ? CopyDiagnostic ( nint textPointer ) { var text = Marshal . PtrToStringUTF8 ( textPointer ) ; if ( ! string . IsNullOrWhiteSpace ( text ) ) Diagnostics . Add ( text ) ; return string . IsNullOrWhiteSpace ( text ) ? null : text ; }",
+          "ReadMessage": "public bool ReadMessage ( nint data ) { if ( data == nint . Zero ) return false ; var message = Marshal . PtrToStructure < ExternalCoreApi . Message > ( data ) ; var text = CopyDiagnostic ( message . Text ) ; if ( text is not null ) Messages . Add ( new ( text , message . Frames ) ) ; return true ; }",
+          "ReadExtendedMessage": "public bool ReadExtendedMessage ( nint data ) { if ( data == nint . Zero ) return false ; var message = Marshal . PtrToStructure < ExternalCoreApi . MessageExtended > ( data ) ; var text = CopyDiagnostic ( message . Text ) ; if ( text is not null ) ExtendedMessages . Add ( new ( text , message . DurationMilliseconds , message . Priority , message . Level , message . Target , message . Type , message . Progress ) ) ; return true ; }"
+        },
+        "whitespace": "filtered"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+        "kind": "rich",
+        "beforeSha256": "271F56B645E53CDA91CDF0F5ADD25B62F7D109EAE586A4F6D47AEBE2118711D1",
+        "fragments": {
+          "primary": "private string ? CopyDiagnostic ( nint textPointer ) { var text = Marshal . PtrToStringUTF8 ( textPointer ) ; if ( ! string . IsNullOrWhiteSpace ( text ) ) Diagnostics . Add ( text ) ; return string . IsNullOrWhiteSpace ( text ) ? null : text ; }",
+          "ReadMessage": "public bool ReadMessage ( nint data ) { if ( data == nint . Zero ) return false ; var message = Marshal . PtrToStructure < ExternalCoreApi . Message > ( data ) ; var text = CopyDiagnostic ( message . Text ) ; if ( text is not null ) Messages . Add ( new ( text , message . Frames ) ) ; return true ; }",
+          "ReadExtendedMessage": "public bool ReadExtendedMessage ( nint data ) { if ( data == nint . Zero ) return false ; var message = Marshal . PtrToStructure < ExternalCoreApi . MessageExtended > ( data ) ; var text = CopyDiagnostic ( message . Text ) ; if ( text is not null ) ExtendedMessages . Add ( new ( text , message . DurationMilliseconds , message . Priority , message . Level , message . Target , message . Type , message . Progress ) ) ; return true ; }"
+        },
+        "whitespace": "filtered"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Watara/Emulators/Potator/Interop/Services/EnvironmentCallbackHost.cs",
+        "kind": "legacy",
+        "beforeSha256": "23F17CE0AD7AC4B373CA27EED83CD7A530B95C0CF0902F4EC1C41C93D173CE92",
+        "fragments": {
+          "primary": "private void OnLog ( int level , nint text ) { try { var message = Marshal . PtrToStringUTF8 ( text ) ; if ( ! string . IsNullOrEmpty ( message ) ) Diagnostics . Add ( message ) ; } catch ( Exception error ) { Failure ??= error ; } }",
+          "SetMessage": "case ExternalCoreApiConstants.SetMessage: if (data == nint.Zero) return false; var message = Marshal.PtrToStringUTF8(Marshal.ReadIntPtr(data)); if (!string.IsNullOrEmpty(message)) Diagnostics.Add(message); return true;"
+        },
+        "whitespace": "preserved"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Interop/Services/EnvironmentCallbackHost.cs",
+        "kind": "legacy",
+        "beforeSha256": "971AA6D41F724E5D906C7F769723173712F9EF1D9F569B1E1807277CF01C84FF",
+        "fragments": {
+          "primary": "private void OnLog ( int level , nint text ) { try { var message = Marshal . PtrToStringUTF8 ( text ) ; if ( ! string . IsNullOrEmpty ( message ) ) Diagnostics . Add ( message ) ; } catch ( Exception error ) { Failure ??= error ; } }",
+          "SetMessage": "case ExternalCoreApiConstants.SetMessage: if (data == nint.Zero) return false; var message = Marshal.PtrToStringUTF8(Marshal.ReadIntPtr(data)); if (!string.IsNullOrEmpty(message)) Diagnostics.Add(message); return true;"
+        },
+        "whitespace": "preserved"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Interop/Services/EnvironmentCallbackHost.cs",
+        "kind": "legacy",
+        "beforeSha256": "3B1F429FA9334514B9425696C0FDB58DE37390D9CB08CCD54E2E086EFBA2FE69",
+        "fragments": {
+          "primary": "private void OnLog ( int level , nint text ) { try { var message = Marshal . PtrToStringUTF8 ( text ) ; if ( ! string . IsNullOrEmpty ( message ) ) Diagnostics . Add ( message ) ; } catch ( Exception error ) { Failure ??= error ; } }",
+          "SetMessage": "case ExternalCoreApiConstants.SetMessage: if (data == nint.Zero) return false; var message = Marshal.PtrToStringUTF8(Marshal.ReadIntPtr(data)); if (!string.IsNullOrEmpty(message)) Diagnostics.Add(message); return true;"
+        },
+        "whitespace": "preserved"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Panasonic/Emulators/Opera/Interop/Services/EnvironmentCallbackHost.cs",
+        "kind": "legacy",
+        "beforeSha256": "E989F287806B00167E3B6E5FA590AE9FCA4F2FCFD5C795F76960CB3B74654538",
+        "fragments": {
+          "primary": "private void OnLog ( int level , nint text ) { try { var message = Marshal . PtrToStringUTF8 ( text ) ; if ( ! string . IsNullOrEmpty ( message ) ) Diagnostics . Add ( message ) ; } catch ( Exception error ) { Failure ??= error ; } }",
+          "SetMessage": "case ExternalCoreApiConstants.SetMessage: if (data == nint.Zero) return false; var message = Marshal.PtrToStringUTF8(Marshal.ReadIntPtr(data)); if (!string.IsNullOrEmpty(message)) Diagnostics.Add(message); return true;"
+        },
+        "whitespace": "preserved"
+      }
+    ],
+    "verification": {
+      "sdkOtherTokensUnchanged": true,
+      "sourceChecks": [
+        {
+          "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "afterSha256": "AF8E1B1BFA7E0287D3554ED88BC0F56B105E10DD720650362F47E0AC118100A8",
+          "wholeFileTokensMatchPlannedSubstitution": true,
+          "typedMessagesUntouched": false
+        },
+        {
+          "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "afterSha256": "A09CAA40607937C100346DAEA17F1B93EA545FC7D98DC07E37A389CE65B962C1",
+          "wholeFileTokensMatchPlannedSubstitution": true,
+          "typedMessagesUntouched": false
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "afterSha256": "2BA9D12875623FA429969325C201306373DC21D47DD948D4BEB553BCACA32BB9",
+          "wholeFileTokensMatchPlannedSubstitution": true,
+          "typedMessagesUntouched": false
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Environment.cs",
+          "afterSha256": "9A7548C0262882AAF721B5B80E599909AA7439BEDE4E2116D0A9AC9FD85752FF",
+          "wholeFileTokensMatchPlannedSubstitution": true,
+          "typedMessagesUntouched": false
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Environment.cs",
+          "afterSha256": "0DDABD0CD119D33DDC146D33C4E0BF4C21419C3B5A284ADCF797E1A25F76E524",
+          "wholeFileTokensMatchPlannedSubstitution": true,
+          "typedMessagesUntouched": false
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "afterSha256": "8B130872D2EAA8DC4951D99F4EBFD6DFE51E453DC1A09F03CC60537746D69956",
+          "wholeFileTokensMatchPlannedSubstitution": true,
+          "typedMessagesUntouched": false
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "afterSha256": "20D1B684B58882EF2B545F8AEF1E0485D5B1B54E9C40D48C5B1BB9CCD3BF7596",
+          "wholeFileTokensMatchPlannedSubstitution": true,
+          "typedMessagesUntouched": false
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "afterSha256": "0944215FC5B5BAE9D488866B127618CB4F2A6E87F5F0911DCAF8234294F2F22B",
+          "wholeFileTokensMatchPlannedSubstitution": true,
+          "typedMessagesUntouched": false
+        },
+        {
+          "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "afterSha256": "C64468728C5B2769BA2013CD8F3B9283298398FEDC12BFEADF6133D3C58A0CDA",
+          "wholeFileTokensMatchPlannedSubstitution": true,
+          "typedMessagesUntouched": true
+        },
+        {
+          "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "afterSha256": "AD4793076866D09D379DA0A28FE3073750CDA1FA98D2E5E3E16E1D693AEB5C51",
+          "wholeFileTokensMatchPlannedSubstitution": true,
+          "typedMessagesUntouched": true
+        },
+        {
+          "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "afterSha256": "9EB673C72AA8BA430B675B2BA2A1178DBE20E97B28D4AE50CB8B699762D5E6B0",
+          "wholeFileTokensMatchPlannedSubstitution": true,
+          "typedMessagesUntouched": true
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "afterSha256": "820BDB87C50E1B20FD534F8A2BBE3F36CFFF7E5FADB89A1AD3FF6557D22A6B07",
+          "wholeFileTokensMatchPlannedSubstitution": true,
+          "typedMessagesUntouched": true
+        },
+        {
+          "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "afterSha256": "FB6927BE2E72CEF0B59125C4B049F0037541A5718DB3BC3BA54C8C8D065D4B09",
+          "wholeFileTokensMatchPlannedSubstitution": true,
+          "typedMessagesUntouched": true
+        },
+        {
+          "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "afterSha256": "13577BF44E971009450D3C95BE69B9596069CD058634E596465BADF688F1FC10",
+          "wholeFileTokensMatchPlannedSubstitution": true,
+          "typedMessagesUntouched": true
+        },
+        {
+          "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "afterSha256": "6C8EC3523A4A1CF0CB2EFA323ABA4264E4E3CDD94F4B181A62759AFA3B5DFFE5",
+          "wholeFileTokensMatchPlannedSubstitution": true,
+          "typedMessagesUntouched": true
+        },
+        {
+          "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "afterSha256": "8F22F5DED2DA81F9CFA0B9EC6632E7672268F6F27C9D4FD765F5D7FEFBCE40A7",
+          "wholeFileTokensMatchPlannedSubstitution": true,
+          "typedMessagesUntouched": true
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "afterSha256": "179D7935D931BC7F11ADABBD6B13FC79DE68399C7846D66FB864A99D2B2C462A",
+          "wholeFileTokensMatchPlannedSubstitution": true,
+          "typedMessagesUntouched": true
+        },
+        {
+          "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "afterSha256": "981801929EB5BDE655DCB5ECD76F26BDE84B1F89E56A14F3D60C67816687BD8C",
+          "wholeFileTokensMatchPlannedSubstitution": true,
+          "typedMessagesUntouched": true
+        },
+        {
+          "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "afterSha256": "585374C18EA1CA6EE0051FE5B5E4630F113E2F776A325D364153804A8ACB1865",
+          "wholeFileTokensMatchPlannedSubstitution": true,
+          "typedMessagesUntouched": true
+        },
+        {
+          "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "afterSha256": "7EE2CAC192462142F0DEFFDFD4A3A5A7A695DA9C9E59EE752D2561774E47A884",
+          "wholeFileTokensMatchPlannedSubstitution": true,
+          "typedMessagesUntouched": true
+        },
+        {
+          "path": "src/GWGUI.Emulation.Watara/Emulators/Potator/Interop/Services/EnvironmentCallbackHost.cs",
+          "afterSha256": "894448913EA018B23B77D214AA899736BB4416E488009B350CB1D73F88755FAE",
+          "wholeFileTokensMatchPlannedSubstitution": true,
+          "typedMessagesUntouched": false
+        },
+        {
+          "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Interop/Services/EnvironmentCallbackHost.cs",
+          "afterSha256": "7AE7A2ABD869A7416D81E82B20086807ACB925CE2D4F1AAEF1EE0ECA36A149E2",
+          "wholeFileTokensMatchPlannedSubstitution": true,
+          "typedMessagesUntouched": false
+        },
+        {
+          "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Interop/Services/EnvironmentCallbackHost.cs",
+          "afterSha256": "C57CB970DAF2A0B968EED9CD0834AFE2645611EA6C39D22E97D0371A0D4055B1",
+          "wholeFileTokensMatchPlannedSubstitution": true,
+          "typedMessagesUntouched": false
+        },
+        {
+          "path": "src/GWGUI.Emulation.Panasonic/Emulators/Opera/Interop/Services/EnvironmentCallbackHost.cs",
+          "afterSha256": "F0837C8C492678CD7781F2EF8D3E47423965430A89960283B92A5872A8E864BF",
+          "wholeFileTokensMatchPlannedSubstitution": true,
+          "typedMessagesUntouched": false
+        }
+      ],
+      "bindings": [
+        {
+          "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.CopyDiagnostic(nint, System.Action<string>, bool)",
+          "arguments": 2,
+          "kind": "native"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.CopyDiagnostic(nint, System.Action<string>, bool)",
+          "arguments": 2,
+          "kind": "native"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.CopyDiagnostic(nint, System.Action<string>, bool)",
+          "arguments": 2,
+          "kind": "native"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Environment.cs",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.CopyDiagnostic(nint, System.Action<string>, bool)",
+          "arguments": 2,
+          "kind": "native"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Environment.cs",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.CopyDiagnostic(nint, System.Action<string>, bool)",
+          "arguments": 2,
+          "kind": "native"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.CopyDiagnostic(nint, System.Action<string>, bool)",
+          "arguments": 2,
+          "kind": "native"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.CopyDiagnostic(nint, System.Action<string>, bool)",
+          "arguments": 2,
+          "kind": "native"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.CopyDiagnostic(nint, System.Action<string>, bool)",
+          "arguments": 2,
+          "kind": "native"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.CopyDiagnostic(nint, System.Action<string>, bool)",
+          "arguments": 2,
+          "kind": "rich"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.CopyDiagnostic(nint, System.Action<string>, bool)",
+          "arguments": 2,
+          "kind": "rich"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.CopyDiagnostic(nint, System.Action<string>, bool)",
+          "arguments": 2,
+          "kind": "rich"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.CopyDiagnostic(nint, System.Action<string>, bool)",
+          "arguments": 2,
+          "kind": "rich"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.CopyDiagnostic(nint, System.Action<string>, bool)",
+          "arguments": 2,
+          "kind": "rich"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.CopyDiagnostic(nint, System.Action<string>, bool)",
+          "arguments": 2,
+          "kind": "rich"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.CopyDiagnostic(nint, System.Action<string>, bool)",
+          "arguments": 2,
+          "kind": "rich"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.CopyDiagnostic(nint, System.Action<string>, bool)",
+          "arguments": 2,
+          "kind": "rich"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.CopyDiagnostic(nint, System.Action<string>, bool)",
+          "arguments": 2,
+          "kind": "rich"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.CopyDiagnostic(nint, System.Action<string>, bool)",
+          "arguments": 2,
+          "kind": "rich"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.CopyDiagnostic(nint, System.Action<string>, bool)",
+          "arguments": 2,
+          "kind": "rich"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.CopyDiagnostic(nint, System.Action<string>, bool)",
+          "arguments": 2,
+          "kind": "rich"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Watara/Emulators/Potator/Interop/Services/EnvironmentCallbackHost.cs",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.CopyDiagnostic(nint, System.Action<string>, bool)",
+          "arguments": 3,
+          "kind": "legacy"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Watara/Emulators/Potator/Interop/Services/EnvironmentCallbackHost.cs",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.CopyDiagnostic(nint, System.Action<string>, bool)",
+          "arguments": 3,
+          "kind": "legacy"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Interop/Services/EnvironmentCallbackHost.cs",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.CopyDiagnostic(nint, System.Action<string>, bool)",
+          "arguments": 3,
+          "kind": "legacy"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Interop/Services/EnvironmentCallbackHost.cs",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.CopyDiagnostic(nint, System.Action<string>, bool)",
+          "arguments": 3,
+          "kind": "legacy"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Interop/Services/EnvironmentCallbackHost.cs",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.CopyDiagnostic(nint, System.Action<string>, bool)",
+          "arguments": 3,
+          "kind": "legacy"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Interop/Services/EnvironmentCallbackHost.cs",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.CopyDiagnostic(nint, System.Action<string>, bool)",
+          "arguments": 3,
+          "kind": "legacy"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Panasonic/Emulators/Opera/Interop/Services/EnvironmentCallbackHost.cs",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.CopyDiagnostic(nint, System.Action<string>, bool)",
+          "arguments": 3,
+          "kind": "legacy"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Panasonic/Emulators/Opera/Interop/Services/EnvironmentCallbackHost.cs",
+          "target": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.CopyDiagnostic(nint, System.Action<string>, bool)",
+          "arguments": 3,
+          "kind": "legacy"
+        }
+      ],
+      "semanticProjects": [
+        "GWGUI.Emulation",
+        "GWGUI.Emulation.Acorn",
+        "GWGUI.Emulation.Amstrad",
+        "GWGUI.Emulation.Apple",
+        "GWGUI.Emulation.Atari",
+        "GWGUI.Emulation.Bandai",
+        "GWGUI.Emulation.Coleco",
+        "GWGUI.Emulation.Commodore",
+        "GWGUI.Emulation.Epoch",
+        "GWGUI.Emulation.Fairchild",
+        "GWGUI.Emulation.Mattel",
+        "GWGUI.Emulation.Nec",
+        "GWGUI.Emulation.Nintendo",
+        "GWGUI.Emulation.Panasonic",
+        "GWGUI.Emulation.Philips",
+        "GWGUI.Emulation.Sega",
+        "GWGUI.Emulation.Sharp",
+        "GWGUI.Emulation.Sinclair",
+        "GWGUI.Emulation.Snk",
+        "GWGUI.Emulation.Sony",
+        "GWGUI.Emulation.Thomson",
+        "GWGUI.Emulation.Watara",
+        "GWGUI.Emulation.Wenquxing"
+      ],
+      "tests": {
+        "command": "dotnet test tests/GWGUI.Tests/GWGUI.Tests.csproj -c Debug --no-restore --filter CoreDiagnosticTextTests|StatelessEnvironmentCommandTests|OptionEnvironmentCommandTests --disable-build-servers",
+        "exitCode": 0,
+        "passed": 41,
+        "newMemoryCases": 13,
+        "externalFilesOrCores": false,
+        "allAllocatedMemoryFreedInFinally": true
+      }
     }
   }
 }

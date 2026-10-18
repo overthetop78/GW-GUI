@@ -63,11 +63,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
     }
 
     private string? CopyDiagnostic(nint textPointer)
-    {
-        var text = Marshal.PtrToStringUTF8(textPointer);
-        if (!string.IsNullOrWhiteSpace(text)) Diagnostics.Add(text);
-        return string.IsNullOrWhiteSpace(text) ? null : text;
-    }
+        => ExternalCoreEnvironmentFunctions.CopyDiagnostic(textPointer, Diagnostics.Add);
 
     public bool SetLogInterface(nint data)
         => ExternalCoreEnvironmentFunctions.SetLogInterface(data, Log);

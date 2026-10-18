@@ -7,6 +7,14 @@ using GWGUI.Emulation.Constants;
 namespace GWGUI.Emulation.Functions;
 internal static class ExternalCoreEnvironmentFunctions
 {
+    internal static string? CopyDiagnostic(nint textPointer, Action<string> publish, bool allowWhitespace = false)
+    {
+        var text = textPointer == nint.Zero ? null : Marshal.PtrToStringUTF8(textPointer);
+        if (allowWhitespace ? string.IsNullOrEmpty(text) : string.IsNullOrWhiteSpace(text)) return null;
+        publish(text);
+        return text;
+    }
+
     internal static bool TryHandleCallbackCommand(uint command, nint data,
         IEmulationCoreEnvironmentCommands callbacks, out bool result)
     {

@@ -178,8 +178,7 @@ internal sealed partial class ExternalHostCallbacks
     {
         if (data == 0) return false;
         var textPointer = Marshal.ReadIntPtr(data);
-        var message = textPointer == 0 ? null : Marshal.PtrToStringUTF8(textPointer);
-        if (!string.IsNullOrWhiteSpace(message)) AddDiagnostic($"[message{(extended ? ExternalHostCallbacksConstants.Extended : string.Empty)}] {message}");
+        ExternalCoreEnvironmentFunctions.CopyDiagnostic(textPointer, message => AddDiagnostic($"[message{(extended ? ExternalHostCallbacksConstants.Extended : string.Empty)}] {message}"));
         return true;
     }
 

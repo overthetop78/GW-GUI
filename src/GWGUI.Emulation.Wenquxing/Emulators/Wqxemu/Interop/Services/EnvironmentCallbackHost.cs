@@ -72,7 +72,7 @@ internal sealed class EnvironmentCallbackHost : IDisposable
                 case ExternalCoreApiConstants.GetLanguage: if (data == nint.Zero) return false; Marshal.WriteInt32(data, CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == "fr" ? FrenchLanguage : EnglishLanguage); return true;
                 case ExternalCoreApiConstants.SetKeyboardCallback: if (data == nint.Zero) return false; var pointer = Marshal.ReadIntPtr(data); Keyboard = pointer == nint.Zero ? null : Marshal.GetDelegateForFunctionPointer<ExternalCoreApi.KeyboardEvent>(pointer); return true;
                 case ExternalCoreApiConstants.GetLogInterface: if (data == nint.Zero) return false; Marshal.WriteIntPtr(data, Marshal.GetFunctionPointerForDelegate(_log)); return true;
-                case ExternalCoreApiConstants.SetMessage: if (data == nint.Zero) return false; var message = Marshal.PtrToStringUTF8(Marshal.ReadIntPtr(data)); if (!string.IsNullOrEmpty(message)) Diagnostics.Add(message); return true;
+                case ExternalCoreApiConstants.SetMessage: if (data == nint.Zero) return false; ExternalCoreEnvironmentFunctions.CopyDiagnostic(Marshal.ReadIntPtr(data), Diagnostics.Add, allowWhitespace: true); return true;
                 case ExternalCoreApiConstants.SetPixelFormat:
                     if (data == nint.Zero) return false;
                     var format = (NativePixelFormat)Marshal.ReadInt32(data);
@@ -89,7 +89,7 @@ internal sealed class EnvironmentCallbackHost : IDisposable
 
     private void OnLog(int level, nint text)
     {
-        try { var message = Marshal.PtrToStringUTF8(text); if (!string.IsNullOrEmpty(message)) Diagnostics.Add(message); }
+        try { ExternalCoreEnvironmentFunctions.CopyDiagnostic(text, Diagnostics.Add, allowWhitespace: true); }
         catch (Exception error) { Failure ??= error; }
     }
 
