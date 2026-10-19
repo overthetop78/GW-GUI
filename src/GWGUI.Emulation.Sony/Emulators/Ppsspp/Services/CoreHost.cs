@@ -50,19 +50,15 @@ public static class CoreHost
                             break;
                         case HostCommand.RunFrame:
                             var activeCore = EnsureCore(core);
-                            activeCore.SetInput(CoreHostProtocol.ReadInput(reader));
-                            activeCore.RunFrame();
-                            writer.Write(true);
-                            EmulationHostProtocolFunctions.WriteFrameIfChanged(writer, activeCore.LatestVideoFrame, ref lastVideoSequence,
-                                (frameWriter, pendingFrame) => CoreHostProtocol.WriteSharedFrame(frameWriter, pendingFrame, videoMap));
-                            EmulationHostProtocolFunctions.WriteCoreAudio(writer, activeCore);
-                            writer.Write(activeCore.DiskCount);
-                            writer.Write(activeCore.CurrentDiskIndex);
-                            var diagnostics = activeCore.Diagnostics;
-                            EmulationHostProtocolFunctions.WriteChangedDiagnostics(writer, () => diagnostics.Count,
-                                diagnosticWriter => diagnosticWriter.Write(JsonSerializer.Serialize(diagnostics, CoreHostProtocol.JsonOptions)), ref lastDiagnosticCount);
-
-                            CoreHostProtocol.WriteLedStates(writer, activeCore.LedStates);
+                            EmulationHostProtocolFunctions.RunCoreFrame<ExternalCore, MachineConfiguration, CoreOption>(
+                                reader, writer, activeCore, CoreHostProtocol.ReadInput,
+                                (frameWriter, pendingFrame) => CoreHostProtocol.WriteSharedFrame(frameWriter, pendingFrame, videoMap),
+                                static (statusWriter, frameCore) =>
+                                {
+                                    statusWriter.Write(frameCore.DiskCount);
+                                    statusWriter.Write(frameCore.CurrentDiskIndex);
+                                }, CoreHostProtocol.WriteLedStates, static () => CoreHostProtocol.JsonOptions,
+                                ref lastVideoSequence, ref lastDiagnosticCount);
                             writer.Write(activeCore.ShutdownRequested);
                             break;
                         case HostCommand.SoftReset:

@@ -97,6 +97,26 @@ internal static partial class EmulationHostProtocolFunctions
         writer.Write(string.Join(extensionSeparator, core.SupportedContentExtensions.Order(StringComparer.OrdinalIgnoreCase)));
     }
 
+    internal static void RunCoreFrame<TCore, TConfiguration, TOption>(
+        BinaryReader reader, BinaryWriter writer, TCore core,
+        Func<BinaryReader, EmulationInputSnapshot> readInput, Action<BinaryWriter, VideoFrame?> writeFrame,
+        Action<BinaryWriter, TCore> writeMediaStatus,
+        Action<BinaryWriter, IReadOnlyDictionary<int, bool>> writeLedStates,
+        Func<JsonSerializerOptions> jsonOptions, ref long lastVideoSequence, ref int lastDiagnosticCount)
+        where TCore : IEmulationCoreRuntime<TConfiguration, TOption>
+    {
+        core.SetInput(readInput(reader));
+        core.RunFrame();
+        writer.Write(true);
+        WriteFrameIfChanged(writer, core.LatestVideoFrame, ref lastVideoSequence, writeFrame);
+        WriteCoreAudio(writer, core);
+        writeMediaStatus(writer, core);
+        var diagnostics = core.Diagnostics;
+        WriteChangedDiagnostics(writer, () => diagnostics.Count,
+            diagnosticWriter => diagnosticWriter.Write(JsonSerializer.Serialize(diagnostics, jsonOptions())), ref lastDiagnosticCount);
+        writeLedStates(writer, core.LedStates);
+    }
+
     internal static void WriteCoreAudio<TConfiguration, TOption>(BinaryWriter writer,
         IEmulationCoreRuntime<TConfiguration, TOption> core)
     {
