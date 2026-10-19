@@ -6,6 +6,12 @@ namespace GWGUI.Emulation.Sony.Emulators.Pcsx2.Functions;
 
 internal static class FileSystemFunctions
 {
+    internal static MachineConfiguration ConfigureRuntime(MachineConfiguration configuration)
+    {
+        Validate(configuration);
+        return HardDiskRuntimeFunctions.Configure(configuration);
+    }
+
     private static bool Enabled(MachineConfiguration configuration, string option) => configuration.Options?.GetValueOrDefault(option) == EmulationSettingConstants.Enabled;
 
     private static string? PathSelection(MachineConfiguration configuration, string pathKey) => configuration.Options?.GetValueOrDefault(pathKey) is { } path && !string.IsNullOrWhiteSpace(path) ? path : null;

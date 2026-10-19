@@ -1,3 +1,4 @@
+using ExternalCore = GWGUI.Emulation.Sony.Emulators.Common.Interop.Services.ExternalCore;
 using GWGUI.Emulation.Sony.Emulators.Ppsspp.Exceptions;
 using GWGUI.Emulation.Sony.Emulators.Ppsspp.Constants;
 using GWGUI.Emulation.Sony.Emulators.Common.Interop.Contracts;
@@ -37,7 +38,7 @@ public static class CoreHost
                                         CoreHostProtocol.ReadString,
                                         static requestReader => JsonSerializer.Deserialize<MachineConfiguration>(requestReader.ReadString(), CoreHostProtocol.JsonOptions) ?? throw new InvalidDataException(PpssppExceptions.HostConfigurationInvalid()));
                                 EmulationHostProtocolFunctions.DisposePreviousCore(ref core);
-                                core = new ExternalCore(corePath);
+                                core = new ExternalCore(PpssppConstants.Definition, corePath);
                                 core.Initialize(configuration, session, saves);
                                 writer.Write(true);
                                 EmulationHostProtocolFunctions.WriteCoreInitialization<ExternalCore, MachineConfiguration, CoreOption>(

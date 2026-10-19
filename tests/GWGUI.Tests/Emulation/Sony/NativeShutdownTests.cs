@@ -53,8 +53,8 @@ public sealed class NativeShutdownTests
         IDisposable core = adapter switch
         {
             "Common" => new GWGUI.Emulation.Sony.Emulators.Common.Interop.Services.ExternalCore(GWGUI.Emulation.Sony.Emulators.Pcee2.Constants.CoreConstants.Definition, string.Empty),
-            "Pcsx2" => new GWGUI.Emulation.Sony.Emulators.Pcsx2.Services.ExternalCore(string.Empty),
-            "Ppsspp" => new GWGUI.Emulation.Sony.Emulators.Ppsspp.Services.ExternalCore(string.Empty),
+            "Pcsx2" => new GWGUI.Emulation.Sony.Emulators.Common.Interop.Services.ExternalCore(GWGUI.Emulation.Sony.Emulators.Pcsx2.Constants.Pcsx2Constants.Definition, string.Empty),
+            "Ppsspp" => new GWGUI.Emulation.Sony.Emulators.Common.Interop.Services.ExternalCore(GWGUI.Emulation.Sony.Emulators.Ppsspp.Constants.PpssppConstants.Definition, string.Empty),
             _ => throw new ArgumentOutOfRangeException(nameof(adapter))
         };
         var type = core.GetType();

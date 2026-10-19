@@ -7,6 +7,13 @@ namespace GWGUI.Emulation.Sony.Emulators.Ppsspp.Functions;
 
 internal static class SystemFilesFunctions
 {
+    internal static string DirectoryForCore(string corePath)
+    {
+        var directory = Path.GetDirectoryName(corePath)!;
+        Validate(directory);
+        return directory;
+    }
+
     internal static bool IsInstalled(string directory) => SystemFilesConstants.RequiredFiles.All(file => File.Exists(Path.Combine(directory, SystemFilesConstants.DirectoryName, file)));
 
     internal static void Validate(string directory)

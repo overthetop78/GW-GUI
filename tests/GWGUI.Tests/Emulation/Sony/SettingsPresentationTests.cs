@@ -93,7 +93,7 @@ public sealed class SettingsPresentationTests
         { ConfiguredSlots = storage.ConfiguredSlots.Where(slot => slot != stick.Slot).ToArray(), DeviceSettings = [] });
         Assert.Equal("disabled", removed.Options!["ppsspp_memstick_inserted"]);
         Assert.Equal(directory, removed.Options[StorageSettingsFunctionsConstants.MemoryCardPathOptionPrefix + 0]);
-        Assert.Equal(directory, GWGUI.Emulation.Sony.Emulators.Ppsspp.Services.ExternalCore.ResolveSaveDirectory(removed, "fallback"));
+        Assert.Equal(directory, GWGUI.Emulation.Sony.Emulators.Ppsspp.Functions.StorageFunctions.ResolveSaveDirectory(removed, "fallback"));
         var restored = StorageSettingsFunctions.Apply(removed, storage);
         Assert.Equal("enabled", restored.Options!["ppsspp_memstick_inserted"]);
         Assert.Equal(directory, restored.Options[StorageSettingsFunctionsConstants.MemoryCardPathOptionPrefix + 0]);

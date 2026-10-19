@@ -1,25 +1,28 @@
 {
-  "snapshot": "e7972269515e514854c76e490ffd48249197a864",
+  "snapshot": "53f8acd87858295852e32a1644fa178dd47e9917",
   "snapshotState": "Current worktree based on snapshot",
   "worktreeSourceChanges": [
-    "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Factories/CoreMachineFactory.cs",
-    "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/CoreReleaseService.cs",
-    "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Constants/CoreReleaseConstants.cs",
+    "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Contracts/CoreDefinition.cs",
+    "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalCore.cs",
+    "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Constants/ExternalCoreConstants.cs",
+    "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Constants/ExternalHostCallbacksConstants.cs",
     "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Constants/Pcsx2Constants.cs",
-    "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Factories/Pcsx2MachineFactory.cs",
-    "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/CoreProvider.cs",
-    "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/CoreReleaseService.cs",
-    "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalCoreInstaller.cs",
-    "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Constants/CoreReleaseConstants.cs",
+    "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Functions/FileSystemFunctions.cs",
+    "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Functions/HardDiskRuntimeFunctions.cs",
+    "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/CoreHost.cs",
+    "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalCore.cs",
+    "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Constants/ExternalCoreConstants.cs",
+    "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Constants/ExternalHostCallbacksConstants.cs",
     "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Constants/PpssppConstants.cs",
-    "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Factories/PpssppMachineFactory.cs",
-    "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/CoreProvider.cs",
-    "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/CoreReleaseService.cs",
-    "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalCoreInstaller.cs"
+    "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Functions/SystemFilesFunctions.cs",
+    "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/CoreHost.cs",
+    "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalCore.cs",
+    "tests/GWGUI.Tests/Emulation/Sony/NativeShutdownTests.cs",
+    "tests/GWGUI.Tests/Emulation/Sony/SettingsPresentationTests.cs"
   ],
   "scope": "All current non-ignored repository CSharp files, including hidden paths; BaseMethodDeclaration bodies with fewer than 30 tokens. Candidate presence is not a defect or a completion claim.",
-  "fileCount": 7273,
-  "methodBodyCount": 9721,
+  "fileCount": 7268,
+  "methodBodyCount": 9704,
   "exactGroups": [
     {
       "hash": "0017F14C61995D644C52FF90F094E4708DC2CA772615CF2F5DD41E74BD202ECA",
@@ -8205,31 +8208,7 @@
           "name": "SetInput",
           "owner": "ExternalCore",
           "kind": "MethodDeclaration",
-          "line": 195,
-          "parameters": "(EmulationInputSnapshot snapshot)",
-          "tokens": 15,
-          "bodyTokens": "{ if ( _host is not null ) _host . Input = snapshot ; }",
-          "hash": "1DD26B4125ADE08D279F054A71475FABECF348C025C8F729D7A8DF72397873A8",
-          "shape": "990C62D10E6EDA3C0B381CF01DCDC3A0A37A79353DDE1C817C970CD08FF74E32"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalCore.cs",
-          "name": "SetInput",
-          "owner": "ExternalCore",
-          "kind": "MethodDeclaration",
-          "line": 182,
-          "parameters": "(EmulationInputSnapshot snapshot)",
-          "tokens": 15,
-          "bodyTokens": "{ if ( _host is not null ) _host . Input = snapshot ; }",
-          "hash": "1DD26B4125ADE08D279F054A71475FABECF348C025C8F729D7A8DF72397873A8",
-          "shape": "990C62D10E6EDA3C0B381CF01DCDC3A0A37A79353DDE1C817C970CD08FF74E32"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalCore.cs",
-          "name": "SetInput",
-          "owner": "ExternalCore",
-          "kind": "MethodDeclaration",
-          "line": 171,
+          "line": 204,
           "parameters": "(EmulationInputSnapshot snapshot)",
           "tokens": 15,
           "bodyTokens": "{ if ( _host is not null ) _host . Input = snapshot ; }",
@@ -9092,30 +9071,6 @@
           "owner": "ExternalCore",
           "kind": "MethodDeclaration",
           "line": 60,
-          "parameters": "(out AudioChunk? chunk)",
-          "tokens": 25,
-          "bodyTokens": "{ if ( _host is not null ) return _host . TryDequeueAudio ( out chunk ) ; chunk = null ; return false ; }",
-          "hash": "224232770C7EEB0F380399FB7EC114BC1EE892F0829E0E701BB48374F7147A58",
-          "shape": "82DBCC92FA6EA9B54F6A7FAB9D45A92228D091A77C0E1369AB26E065628A9A12"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalCore.cs",
-          "name": "TryDequeueAudio",
-          "owner": "ExternalCore",
-          "kind": "MethodDeclaration",
-          "line": 57,
-          "parameters": "(out AudioChunk? chunk)",
-          "tokens": 25,
-          "bodyTokens": "{ if ( _host is not null ) return _host . TryDequeueAudio ( out chunk ) ; chunk = null ; return false ; }",
-          "hash": "224232770C7EEB0F380399FB7EC114BC1EE892F0829E0E701BB48374F7147A58",
-          "shape": "82DBCC92FA6EA9B54F6A7FAB9D45A92228D091A77C0E1369AB26E065628A9A12"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalCore.cs",
-          "name": "TryDequeueAudio",
-          "owner": "ExternalCore",
-          "kind": "MethodDeclaration",
-          "line": 51,
           "parameters": "(out AudioChunk? chunk)",
           "tokens": 25,
           "bodyTokens": "{ if ( _host is not null ) return _host . TryDequeueAudio ( out chunk ) ; chunk = null ; return false ; }",
@@ -13297,7 +13252,8 @@
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
           "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "qualification": "empty-void-method-no-algorithm"
+          "qualification": "empty-void-method-no-algorithm",
+          "qualificationSourceSha256": "4AB9856904F8408E78574AAD07D620D9CCF897C2A7AA02EDA71100DD8E742ACD"
         },
         {
           "path": "tests/GWGUI.Tests/Emulation/Sony/NativeShutdownTests.cs",
@@ -13310,7 +13266,8 @@
           "bodyTokens": "{ }",
           "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
           "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
-          "qualification": "empty-void-method-no-algorithm"
+          "qualification": "empty-void-method-no-algorithm",
+          "qualificationSourceSha256": "4AB9856904F8408E78574AAD07D620D9CCF897C2A7AA02EDA71100DD8E742ACD"
         },
         {
           "path": "tests/GWGUI.Tests/Interface/EmulationViews/HiddenMachineRenderingTests.cs",
@@ -26411,18 +26368,6 @@
           "bodyTokens": "=> ( _host ?? throw new InvalidOperationException ( CoreExceptions . CoreNotInitialized ( ) ) ) . SetOption ( key , value )",
           "hash": "4D8969EBD0B8480B86DCCFDF317195C75112E157378BD95FE5CB30B2B0AF74DF",
           "shape": "019B7910AB8C312888A5FA3FBC7C12824FB43E08BF8FD72048335E48156006B7"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalCore.cs",
-          "name": "SetOption",
-          "owner": "ExternalCore",
-          "kind": "MethodDeclaration",
-          "line": 273,
-          "parameters": "(string key, string value)",
-          "tokens": 22,
-          "bodyTokens": "=> ( _host ?? throw new InvalidOperationException ( CoreExceptions . CoreNotInitialized ( ) ) ) . SetOption ( key , value )",
-          "hash": "4D8969EBD0B8480B86DCCFDF317195C75112E157378BD95FE5CB30B2B0AF74DF",
-          "shape": "019B7910AB8C312888A5FA3FBC7C12824FB43E08BF8FD72048335E48156006B7"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -27386,18 +27331,6 @@
           "owner": "ExternalCore",
           "kind": "MethodDeclaration",
           "line": 221,
-          "parameters": "(int index)",
-          "tokens": 22,
-          "bodyTokens": "=> ( _host ?? throw new InvalidOperationException ( CoreExceptions . CoreNotInitialized ( ) ) ) . DiskControl . Select ( index )",
-          "hash": "51154855154C4D7D54E4FFA02D169AF1F65AC95A799C3EBCEE8EE5ACD3C3DF5F",
-          "shape": "2BEDF28CF2FCB03E2733CB9F0365930830156C990716A0F9CB330B0033063C7B"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalCore.cs",
-          "name": "SelectDisk",
-          "owner": "ExternalCore",
-          "kind": "MethodDeclaration",
-          "line": 240,
           "parameters": "(int index)",
           "tokens": 22,
           "bodyTokens": "=> ( _host ?? throw new InvalidOperationException ( CoreExceptions . CoreNotInitialized ( ) ) ) . DiskControl . Select ( index )",
@@ -49360,18 +49293,6 @@
           "bodyTokens": "=> ( _reset ?? throw new InvalidOperationException ( CoreExceptions . CoreNotInitialized ( ) ) ) ( )",
           "hash": "9E98A23CE54DD1DF82A27F543DF070A0E75D7AC052BBB72916364D09FF3A49FB",
           "shape": "C1471FD2C9E7B2F45D59599F22B24868657FAB3DE46132D5A230B8EADB18EFD6"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalCore.cs",
-          "name": "SoftReset",
-          "owner": "ExternalCore",
-          "kind": "MethodDeclaration",
-          "line": 194,
-          "parameters": "()",
-          "tokens": 17,
-          "bodyTokens": "=> ( _reset ?? throw new InvalidOperationException ( CoreExceptions . CoreNotInitialized ( ) ) ) ( )",
-          "hash": "9E98A23CE54DD1DF82A27F543DF070A0E75D7AC052BBB72916364D09FF3A49FB",
-          "shape": "C1471FD2C9E7B2F45D59599F22B24868657FAB3DE46132D5A230B8EADB18EFD6"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -51173,18 +51094,6 @@
           "owner": "ExternalCore",
           "kind": "MethodDeclaration",
           "line": 219,
-          "parameters": "(string path)",
-          "tokens": 22,
-          "bodyTokens": "=> ( _host ?? throw new InvalidOperationException ( CoreExceptions . CoreNotInitialized ( ) ) ) . DiskControl . Insert ( path )",
-          "hash": "A610C53D3B540A4D8BAFCC792BC38E2EACA4772DF8F2396FE7E36639C77CB2CC",
-          "shape": "2BEDF28CF2FCB03E2733CB9F0365930830156C990716A0F9CB330B0033063C7B"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalCore.cs",
-          "name": "InsertMedia",
-          "owner": "ExternalCore",
-          "kind": "MethodDeclaration",
-          "line": 238,
           "parameters": "(string path)",
           "tokens": 22,
           "bodyTokens": "=> ( _host ?? throw new InvalidOperationException ( CoreExceptions . CoreNotInitialized ( ) ) ) . DiskControl . Insert ( path )",
@@ -53682,30 +53591,6 @@
           "bodyTokens": "=> _corePath = corePath",
           "hash": "B0AA65ED33733AD22B8F7230227D2C31B6DC2FAB6F40B7F391573E169D02ED15",
           "shape": "B932470D7058F703992A464F512909FC424994B604352F54A6D0C14BA936E912"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalCore.cs",
-          "name": "ExternalCore",
-          "owner": "ExternalCore",
-          "kind": "ConstructorDeclaration",
-          "line": 38,
-          "parameters": "(string corePath)",
-          "tokens": 4,
-          "bodyTokens": "=> _corePath = corePath",
-          "hash": "B0AA65ED33733AD22B8F7230227D2C31B6DC2FAB6F40B7F391573E169D02ED15",
-          "shape": "B932470D7058F703992A464F512909FC424994B604352F54A6D0C14BA936E912"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalCore.cs",
-          "name": "ExternalCore",
-          "owner": "ExternalCore",
-          "kind": "ConstructorDeclaration",
-          "line": 33,
-          "parameters": "(string corePath)",
-          "tokens": 4,
-          "bodyTokens": "=> _corePath = corePath",
-          "hash": "B0AA65ED33733AD22B8F7230227D2C31B6DC2FAB6F40B7F391573E169D02ED15",
-          "shape": "B932470D7058F703992A464F512909FC424994B604352F54A6D0C14BA936E912"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -55500,7 +55385,7 @@
           "name": "WriteSuccess",
           "owner": "CoreHost",
           "kind": "MethodDeclaration",
-          "line": 93,
+          "line": 94,
           "parameters": "(BinaryWriter writer)",
           "tokens": 7,
           "bodyTokens": "=> writer . Write ( true )",
@@ -55512,7 +55397,7 @@
           "name": "WriteSuccess",
           "owner": "CoreHost",
           "kind": "MethodDeclaration",
-          "line": 90,
+          "line": 91,
           "parameters": "(BinaryWriter writer)",
           "tokens": 7,
           "bodyTokens": "=> writer . Write ( true )",
@@ -55737,18 +55622,6 @@
           "owner": "ExternalCore",
           "kind": "MethodDeclaration",
           "line": 220,
-          "parameters": "()",
-          "tokens": 21,
-          "bodyTokens": "=> ( _host ?? throw new InvalidOperationException ( CoreExceptions . CoreNotInitialized ( ) ) ) . DiskControl . Eject ( )",
-          "hash": "B9730490ECB857C61B33450AFC2A7667260ADEAC88B6C016C7DE73CC024F57C5",
-          "shape": "386DADF6984ABADAFF6BC8D92E0FA2D3AF6C069D5A1803408BBE83D8E31A9930"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalCore.cs",
-          "name": "EjectMedia",
-          "owner": "ExternalCore",
-          "kind": "MethodDeclaration",
-          "line": 239,
           "parameters": "()",
           "tokens": 21,
           "bodyTokens": "=> ( _host ?? throw new InvalidOperationException ( CoreExceptions . CoreNotInitialized ( ) ) ) . DiskControl . Eject ( )",
@@ -59523,18 +59396,6 @@
           "owner": "ExternalCore",
           "kind": "MethodDeclaration",
           "line": 299,
-          "parameters": "(string name)",
-          "tokens": 23,
-          "bodyTokens": "=> ( _library ?? throw new InvalidOperationException ( CoreExceptions . CoreNotLoaded ( ) ) ) . Resolve < T > ( name )",
-          "hash": "C8E679C9DAF4E134E2F72F499A9E54A4C75749A9F51B2A0C9EFFCF32608B328C",
-          "shape": "671B145644FB052C9EF93E88D8B4E8021342A487986E84DDF7EE5CC420EC4B08"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalCore.cs",
-          "name": "Export",
-          "owner": "ExternalCore",
-          "kind": "MethodDeclaration",
-          "line": 325,
           "parameters": "(string name)",
           "tokens": 23,
           "bodyTokens": "=> ( _library ?? throw new InvalidOperationException ( CoreExceptions . CoreNotLoaded ( ) ) ) . Resolve < T > ( name )",
@@ -74762,42 +74623,6 @@
           "bodyTokens": "=> ( _host ?? throw new InvalidOperationException ( CoreExceptions . CoreNotInitialized ( ) ) ) . SetOption ( key , value )",
           "hash": "4D8969EBD0B8480B86DCCFDF317195C75112E157378BD95FE5CB30B2B0AF74DF",
           "shape": "019B7910AB8C312888A5FA3FBC7C12824FB43E08BF8FD72048335E48156006B7"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalCore.cs",
-          "name": "SetOption",
-          "owner": "ExternalCore",
-          "kind": "MethodDeclaration",
-          "line": 273,
-          "parameters": "(string key, string value)",
-          "tokens": 22,
-          "bodyTokens": "=> ( _host ?? throw new InvalidOperationException ( CoreExceptions . CoreNotInitialized ( ) ) ) . SetOption ( key , value )",
-          "hash": "4D8969EBD0B8480B86DCCFDF317195C75112E157378BD95FE5CB30B2B0AF74DF",
-          "shape": "019B7910AB8C312888A5FA3FBC7C12824FB43E08BF8FD72048335E48156006B7"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalCore.cs",
-          "name": "SetOption",
-          "owner": "ExternalCore",
-          "kind": "MethodDeclaration",
-          "line": 248,
-          "parameters": "(string key, string value)",
-          "tokens": 22,
-          "bodyTokens": "=> ( _host ?? throw new InvalidOperationException ( Pcsx2Exceptions . CoreNotInitialized ( ) ) ) . SetOption ( key , value )",
-          "hash": "C8E31A596334EA8C504C95CEF2EB8C1C49E3F7D2CED9E8683303A8A1462EF01D",
-          "shape": "019B7910AB8C312888A5FA3FBC7C12824FB43E08BF8FD72048335E48156006B7"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalCore.cs",
-          "name": "SetOption",
-          "owner": "ExternalCore",
-          "kind": "MethodDeclaration",
-          "line": 220,
-          "parameters": "(string key, string value)",
-          "tokens": 22,
-          "bodyTokens": "=> ( _host ?? throw new InvalidOperationException ( PpssppExceptions . CoreNotInitialized ( ) ) ) . SetOption ( key , value )",
-          "hash": "89221B345C06588D2F00901ADDA94B8F58734E0C59DFAC082F7D75A400B61A10",
-          "shape": "019B7910AB8C312888A5FA3FBC7C12824FB43E08BF8FD72048335E48156006B7"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -83472,78 +83297,6 @@
           "bodyTokens": "=> ( _host ?? throw new InvalidOperationException ( CoreExceptions . CoreNotInitialized ( ) ) ) . DiskControl . Select ( index )",
           "hash": "51154855154C4D7D54E4FFA02D169AF1F65AC95A799C3EBCEE8EE5ACD3C3DF5F",
           "shape": "2BEDF28CF2FCB03E2733CB9F0365930830156C990716A0F9CB330B0033063C7B"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalCore.cs",
-          "name": "InsertMedia",
-          "owner": "ExternalCore",
-          "kind": "MethodDeclaration",
-          "line": 238,
-          "parameters": "(string path)",
-          "tokens": 22,
-          "bodyTokens": "=> ( _host ?? throw new InvalidOperationException ( CoreExceptions . CoreNotInitialized ( ) ) ) . DiskControl . Insert ( path )",
-          "hash": "A610C53D3B540A4D8BAFCC792BC38E2EACA4772DF8F2396FE7E36639C77CB2CC",
-          "shape": "2BEDF28CF2FCB03E2733CB9F0365930830156C990716A0F9CB330B0033063C7B"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalCore.cs",
-          "name": "SelectDisk",
-          "owner": "ExternalCore",
-          "kind": "MethodDeclaration",
-          "line": 240,
-          "parameters": "(int index)",
-          "tokens": 22,
-          "bodyTokens": "=> ( _host ?? throw new InvalidOperationException ( CoreExceptions . CoreNotInitialized ( ) ) ) . DiskControl . Select ( index )",
-          "hash": "51154855154C4D7D54E4FFA02D169AF1F65AC95A799C3EBCEE8EE5ACD3C3DF5F",
-          "shape": "2BEDF28CF2FCB03E2733CB9F0365930830156C990716A0F9CB330B0033063C7B"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalCore.cs",
-          "name": "InsertMedia",
-          "owner": "ExternalCore",
-          "kind": "MethodDeclaration",
-          "line": 213,
-          "parameters": "(string path)",
-          "tokens": 22,
-          "bodyTokens": "=> ( _host ?? throw new InvalidOperationException ( Pcsx2Exceptions . CoreNotInitialized ( ) ) ) . DiskControl . Insert ( path )",
-          "hash": "B21AC3F9A379CC6B0300A704B875D405F11502D679CA42E262CD109779C25A8A",
-          "shape": "2BEDF28CF2FCB03E2733CB9F0365930830156C990716A0F9CB330B0033063C7B"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalCore.cs",
-          "name": "SelectDisk",
-          "owner": "ExternalCore",
-          "kind": "MethodDeclaration",
-          "line": 215,
-          "parameters": "(int index)",
-          "tokens": 22,
-          "bodyTokens": "=> ( _host ?? throw new InvalidOperationException ( Pcsx2Exceptions . CoreNotInitialized ( ) ) ) . DiskControl . Select ( index )",
-          "hash": "9C270A2DE11758683A4A56857B271AB221778A4F6D145A2C63A479481379B3B3",
-          "shape": "2BEDF28CF2FCB03E2733CB9F0365930830156C990716A0F9CB330B0033063C7B"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalCore.cs",
-          "name": "InsertMedia",
-          "owner": "ExternalCore",
-          "kind": "MethodDeclaration",
-          "line": 185,
-          "parameters": "(string path)",
-          "tokens": 22,
-          "bodyTokens": "=> ( _host ?? throw new InvalidOperationException ( PpssppExceptions . CoreNotInitialized ( ) ) ) . DiskControl . Insert ( path )",
-          "hash": "A6E68C1C89174E09FCC05B7C6957DE591DC2CC0790C630B9D879D05B5CA97A80",
-          "shape": "2BEDF28CF2FCB03E2733CB9F0365930830156C990716A0F9CB330B0033063C7B"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalCore.cs",
-          "name": "SelectDisk",
-          "owner": "ExternalCore",
-          "kind": "MethodDeclaration",
-          "line": 187,
-          "parameters": "(int index)",
-          "tokens": 22,
-          "bodyTokens": "=> ( _host ?? throw new InvalidOperationException ( PpssppExceptions . CoreNotInitialized ( ) ) ) . DiskControl . Select ( index )",
-          "hash": "6F5281032566D8F79C0215EE1070471F22107CDCAB4E53B8ABAA62A02BC8ECFF",
-          "shape": "2BEDF28CF2FCB03E2733CB9F0365930830156C990716A0F9CB330B0033063C7B"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -89918,6 +89671,37 @@
       "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
+      "shape": "35A5BFEC6EC05A96992CA35F9A2CD8DD55F1613A770E9719BFDC54EC5561E14E",
+      "tokens": 13,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Commodore/Emulators/UAE/Common/Interop/Factories/AmigaMachineFactory.cs",
+          "name": "ScanFirmware",
+          "owner": "AmigaMachineFactory",
+          "kind": "MethodDeclaration",
+          "line": 29,
+          "parameters": "(MachineConfiguration configuration, string directory, CancellationToken cancellationToken)",
+          "tokens": 13,
+          "bodyTokens": "=> AmigaFirmwareFunctions . Scan ( configuration . Model , directory , cancellationToken )",
+          "hash": "F55CD591D631CD96D0DF8E96BF5CD854269FF3CAB9254B31CDA15326404C08B5",
+          "shape": "35A5BFEC6EC05A96992CA35F9A2CD8DD55F1613A770E9719BFDC54EC5561E14E"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalCore.cs",
+          "name": "Error",
+          "owner": "ExternalCore",
+          "kind": "MethodDeclaration",
+          "line": 334,
+          "parameters": "(string key, params object[] arguments)",
+          "tokens": 13,
+          "bodyTokens": "=> CoreExceptions . ForEmulator ( _definition . Id , key , arguments )",
+          "hash": "116A8AF9976656E224FBD5D0CA064E365F73A8D6AFCAE67CD1F0CE0C79CB5267",
+          "shape": "35A5BFEC6EC05A96992CA35F9A2CD8DD55F1613A770E9719BFDC54EC5561E14E"
+        }
+      ],
+      "qualification": "pending-symbol-and-ownership-comparison"
+    },
+    {
       "shape": "3650BFBB3CAD377A640B18EBCEFFB5CF8C162271B46BD6B98D5B8CE48D194B4B",
       "tokens": 15,
       "current": [
@@ -90585,42 +90369,6 @@
           "tokens": 21,
           "bodyTokens": "=> ( _host ?? throw new InvalidOperationException ( CoreExceptions . CoreNotInitialized ( ) ) ) . DiskControl . Eject ( )",
           "hash": "B9730490ECB857C61B33450AFC2A7667260ADEAC88B6C016C7DE73CC024F57C5",
-          "shape": "386DADF6984ABADAFF6BC8D92E0FA2D3AF6C069D5A1803408BBE83D8E31A9930"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalCore.cs",
-          "name": "EjectMedia",
-          "owner": "ExternalCore",
-          "kind": "MethodDeclaration",
-          "line": 239,
-          "parameters": "()",
-          "tokens": 21,
-          "bodyTokens": "=> ( _host ?? throw new InvalidOperationException ( CoreExceptions . CoreNotInitialized ( ) ) ) . DiskControl . Eject ( )",
-          "hash": "B9730490ECB857C61B33450AFC2A7667260ADEAC88B6C016C7DE73CC024F57C5",
-          "shape": "386DADF6984ABADAFF6BC8D92E0FA2D3AF6C069D5A1803408BBE83D8E31A9930"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalCore.cs",
-          "name": "EjectMedia",
-          "owner": "ExternalCore",
-          "kind": "MethodDeclaration",
-          "line": 214,
-          "parameters": "()",
-          "tokens": 21,
-          "bodyTokens": "=> ( _host ?? throw new InvalidOperationException ( Pcsx2Exceptions . CoreNotInitialized ( ) ) ) . DiskControl . Eject ( )",
-          "hash": "21DD5DC7ED87D7D20D48C54A6900FA9B871EAA17CA82558CBF07913CE3AC6C43",
-          "shape": "386DADF6984ABADAFF6BC8D92E0FA2D3AF6C069D5A1803408BBE83D8E31A9930"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalCore.cs",
-          "name": "EjectMedia",
-          "owner": "ExternalCore",
-          "kind": "MethodDeclaration",
-          "line": 186,
-          "parameters": "()",
-          "tokens": 21,
-          "bodyTokens": "=> ( _host ?? throw new InvalidOperationException ( PpssppExceptions . CoreNotInitialized ( ) ) ) . DiskControl . Eject ( )",
-          "hash": "E2FB06FD09CE36F181B032D1BE303025BD7BDE01D07528F973D37D3DB509A0F1",
           "shape": "386DADF6984ABADAFF6BC8D92E0FA2D3AF6C069D5A1803408BBE83D8E31A9930"
         }
       ],
@@ -112739,42 +112487,6 @@
           "bodyTokens": "=> ( _library ?? throw new InvalidOperationException ( CoreExceptions . CoreNotLoaded ( ) ) ) . Resolve < T > ( name )",
           "hash": "C8E679C9DAF4E134E2F72F499A9E54A4C75749A9F51B2A0C9EFFCF32608B328C",
           "shape": "671B145644FB052C9EF93E88D8B4E8021342A487986E84DDF7EE5CC420EC4B08"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalCore.cs",
-          "name": "Export",
-          "owner": "ExternalCore",
-          "kind": "MethodDeclaration",
-          "line": 325,
-          "parameters": "(string name)",
-          "tokens": 23,
-          "bodyTokens": "=> ( _library ?? throw new InvalidOperationException ( CoreExceptions . CoreNotLoaded ( ) ) ) . Resolve < T > ( name )",
-          "hash": "C8E679C9DAF4E134E2F72F499A9E54A4C75749A9F51B2A0C9EFFCF32608B328C",
-          "shape": "671B145644FB052C9EF93E88D8B4E8021342A487986E84DDF7EE5CC420EC4B08"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalCore.cs",
-          "name": "Export",
-          "owner": "ExternalCore",
-          "kind": "MethodDeclaration",
-          "line": 286,
-          "parameters": "(string name)",
-          "tokens": 23,
-          "bodyTokens": "=> ( _library ?? throw new InvalidOperationException ( Pcsx2Exceptions . CoreNotLoaded ( ) ) ) . Resolve < T > ( name )",
-          "hash": "A9356C690937E5FAA2113D403275F99BD91F27326627B08CA3E1795B0F1423C5",
-          "shape": "671B145644FB052C9EF93E88D8B4E8021342A487986E84DDF7EE5CC420EC4B08"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalCore.cs",
-          "name": "Export",
-          "owner": "ExternalCore",
-          "kind": "MethodDeclaration",
-          "line": 249,
-          "parameters": "(string name)",
-          "tokens": 23,
-          "bodyTokens": "=> ( _library ?? throw new InvalidOperationException ( PpssppExceptions . CoreNotLoaded ( ) ) ) . Resolve < T > ( name )",
-          "hash": "CE9EBA7FE1789693A2373483544AC80266309074C78C2E13E3A664BAEF6D892A",
-          "shape": "671B145644FB052C9EF93E88D8B4E8021342A487986E84DDF7EE5CC420EC4B08"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -121158,6 +120870,37 @@
       "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
+      "shape": "A11DC16A2FAE551B51091DA9767820CC2602C6A7720625BC7968ADE38BE6E101",
+      "tokens": 23,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalCore.cs",
+          "name": "InsertMedia",
+          "owner": "ExternalCore",
+          "kind": "MethodDeclaration",
+          "line": 247,
+          "parameters": "(string path)",
+          "tokens": 23,
+          "bodyTokens": "=> ( _host ?? throw new InvalidOperationException ( Error ( CoreExceptionsResourceConstants . CoreNotInitialized ) ) ) . DiskControl . Insert ( path )",
+          "hash": "107D0B329C57A57AAE627AA39A338E8C5926674C481FCE52BCEF4484D70BB386",
+          "shape": "A11DC16A2FAE551B51091DA9767820CC2602C6A7720625BC7968ADE38BE6E101"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalCore.cs",
+          "name": "SelectDisk",
+          "owner": "ExternalCore",
+          "kind": "MethodDeclaration",
+          "line": 249,
+          "parameters": "(int index)",
+          "tokens": 23,
+          "bodyTokens": "=> ( _host ?? throw new InvalidOperationException ( Error ( CoreExceptionsResourceConstants . CoreNotInitialized ) ) ) . DiskControl . Select ( index )",
+          "hash": "7E87CC2408E23EA1A57B6F64CA655D26025446AE293FFA5A9B5C5CB39258BEF4",
+          "shape": "A11DC16A2FAE551B51091DA9767820CC2602C6A7720625BC7968ADE38BE6E101"
+        }
+      ],
+      "qualification": "pending-symbol-and-ownership-comparison"
+    },
+    {
       "shape": "A158CF0AC71681CF145F1CF212D4372DCBBFDC688BF79C62F852ACBDCFAB8C0D",
       "tokens": 28,
       "current": [
@@ -124345,7 +124088,7 @@
           "name": "WriteSuccess",
           "owner": "CoreHost",
           "kind": "MethodDeclaration",
-          "line": 93,
+          "line": 94,
           "parameters": "(BinaryWriter writer)",
           "tokens": 7,
           "bodyTokens": "=> writer . Write ( true )",
@@ -124357,7 +124100,7 @@
           "name": "WriteSuccess",
           "owner": "CoreHost",
           "kind": "MethodDeclaration",
-          "line": 90,
+          "line": 91,
           "parameters": "(BinaryWriter writer)",
           "tokens": 7,
           "bodyTokens": "=> writer . Write ( true )",
@@ -126555,30 +126298,6 @@
           "tokens": 4,
           "bodyTokens": "=> _setState = SetState",
           "hash": "B84145CD6C7C4EE42E5F9D9DFF048B7FD64D0A56E007CAA1BAA37E56B881FB83",
-          "shape": "B932470D7058F703992A464F512909FC424994B604352F54A6D0C14BA936E912"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalCore.cs",
-          "name": "ExternalCore",
-          "owner": "ExternalCore",
-          "kind": "ConstructorDeclaration",
-          "line": 38,
-          "parameters": "(string corePath)",
-          "tokens": 4,
-          "bodyTokens": "=> _corePath = corePath",
-          "hash": "B0AA65ED33733AD22B8F7230227D2C31B6DC2FAB6F40B7F391573E169D02ED15",
-          "shape": "B932470D7058F703992A464F512909FC424994B604352F54A6D0C14BA936E912"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalCore.cs",
-          "name": "ExternalCore",
-          "owner": "ExternalCore",
-          "kind": "ConstructorDeclaration",
-          "line": 33,
-          "parameters": "(string corePath)",
-          "tokens": 4,
-          "bodyTokens": "=> _corePath = corePath",
-          "hash": "B0AA65ED33733AD22B8F7230227D2C31B6DC2FAB6F40B7F391573E169D02ED15",
           "shape": "B932470D7058F703992A464F512909FC424994B604352F54A6D0C14BA936E912"
         },
         {
@@ -131041,66 +130760,6 @@
           "bodyTokens": "=> ( _reset ?? throw new InvalidOperationException ( CoreExceptions . CoreNotInitialized ( ) ) ) ( )",
           "hash": "9E98A23CE54DD1DF82A27F543DF070A0E75D7AC052BBB72916364D09FF3A49FB",
           "shape": "C1471FD2C9E7B2F45D59599F22B24868657FAB3DE46132D5A230B8EADB18EFD6"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalCore.cs",
-          "name": "SoftReset",
-          "owner": "ExternalCore",
-          "kind": "MethodDeclaration",
-          "line": 194,
-          "parameters": "()",
-          "tokens": 17,
-          "bodyTokens": "=> ( _reset ?? throw new InvalidOperationException ( CoreExceptions . CoreNotInitialized ( ) ) ) ( )",
-          "hash": "9E98A23CE54DD1DF82A27F543DF070A0E75D7AC052BBB72916364D09FF3A49FB",
-          "shape": "C1471FD2C9E7B2F45D59599F22B24868657FAB3DE46132D5A230B8EADB18EFD6"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalCore.cs",
-          "name": "RunFrame",
-          "owner": "ExternalCore",
-          "kind": "MethodDeclaration",
-          "line": 172,
-          "parameters": "()",
-          "tokens": 17,
-          "bodyTokens": "=> ( _run ?? throw new InvalidOperationException ( Pcsx2Exceptions . CoreNotInitialized ( ) ) ) ( )",
-          "hash": "4FC9B24027DCC3A91285B7C89F223B711157492419F51E97CD5B6EC5569F121F",
-          "shape": "C1471FD2C9E7B2F45D59599F22B24868657FAB3DE46132D5A230B8EADB18EFD6"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalCore.cs",
-          "name": "SoftReset",
-          "owner": "ExternalCore",
-          "kind": "MethodDeclaration",
-          "line": 181,
-          "parameters": "()",
-          "tokens": 17,
-          "bodyTokens": "=> ( _reset ?? throw new InvalidOperationException ( Pcsx2Exceptions . CoreNotInitialized ( ) ) ) ( )",
-          "hash": "8A55E6F46957A2E08A5B9CBB6535570F68C6DEE6A3CF2AC57692927A8ABAEEB1",
-          "shape": "C1471FD2C9E7B2F45D59599F22B24868657FAB3DE46132D5A230B8EADB18EFD6"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalCore.cs",
-          "name": "RunFrame",
-          "owner": "ExternalCore",
-          "kind": "MethodDeclaration",
-          "line": 161,
-          "parameters": "()",
-          "tokens": 17,
-          "bodyTokens": "=> ( _run ?? throw new InvalidOperationException ( PpssppExceptions . CoreNotInitialized ( ) ) ) ( )",
-          "hash": "938F69D1111F68DECD3BCCA3BEF61AF2DA4E62860D3E580BC18ECAAEA2C5A6A9",
-          "shape": "C1471FD2C9E7B2F45D59599F22B24868657FAB3DE46132D5A230B8EADB18EFD6"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalCore.cs",
-          "name": "SoftReset",
-          "owner": "ExternalCore",
-          "kind": "MethodDeclaration",
-          "line": 170,
-          "parameters": "()",
-          "tokens": 17,
-          "bodyTokens": "=> ( _reset ?? throw new InvalidOperationException ( PpssppExceptions . CoreNotInitialized ( ) ) ) ( )",
-          "hash": "2422E1A884B69075391A531F5DB1E56E569CDBFAA7A0B5E8E1023B195AAC598A",
-          "shape": "C1471FD2C9E7B2F45D59599F22B24868657FAB3DE46132D5A230B8EADB18EFD6"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -133582,7 +133241,7 @@
           "name": "EnsureCore",
           "owner": "CoreHost",
           "kind": "MethodDeclaration",
-          "line": 92,
+          "line": 93,
           "parameters": "(ExternalCore? core)",
           "tokens": 13,
           "bodyTokens": "=> core ?? throw new InvalidOperationException ( Pcsx2Exceptions . HostNotInitialized ( ) )",
@@ -133594,7 +133253,7 @@
           "name": "EnsureCore",
           "owner": "CoreHost",
           "kind": "MethodDeclaration",
-          "line": 89,
+          "line": 90,
           "parameters": "(ExternalCore? core)",
           "tokens": 13,
           "bodyTokens": "=> core ?? throw new InvalidOperationException ( PpssppExceptions . HostNotInitialized ( ) )",
@@ -139297,7 +138956,7 @@
     }
   ],
   "qualificationCarryForward": {
-    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical",
-    "occurrences": 709
+    "occurrences": 708,
+    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical"
   }
 }

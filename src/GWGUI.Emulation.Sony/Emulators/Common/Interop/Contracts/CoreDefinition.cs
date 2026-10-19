@@ -22,4 +22,11 @@ internal sealed record CoreDefinition(
     Func<MachineConfiguration, CoreContentLoadPlan?>? CreateContentLoadPlan = null,
     Func<MachineConfiguration, IReadOnlyList<CoreControllerPort>>? CreateControllerPorts = null,
     CoreFirmwarePersistenceSettings? FirmwarePersistence = null,
-    Action<MachineConfiguration, string>? PrepareSystemFiles = null);
+    Action<MachineConfiguration, string>? PrepareSystemFiles = null,
+    Func<MachineConfiguration, MachineConfiguration>? PrepareRuntimeConfiguration = null,
+    Func<MachineConfiguration, string?, string?>? ResolveSaveDirectory = null,
+    Func<MachineConfiguration, IReadOnlyList<MediaConfiguration>>? ResolveContentMedia = null,
+    Func<string, string>? ResolveSystemDirectory = null,
+    Func<MachineConfiguration, string, string>? ResolveNativeSystemDirectory = null,
+    Func<MachineConfiguration, string, string, bool?, (string Path, bool IsReadOnly)>? ResolveVirtualPath = null,
+    Func<string>? FullContentPathsRequired = null);

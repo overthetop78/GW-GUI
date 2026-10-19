@@ -6,6 +6,9 @@ namespace GWGUI.Emulation.Sony.Emulators.Pcsx2.Functions;
 
 internal static class HardDiskRuntimeFunctions
 {
+    internal static IReadOnlyList<MediaConfiguration> ResolveContentMedia(MachineConfiguration configuration) =>
+        (configuration.Media ?? []).Where(item => item.IsInserted && item.Category != MediaCategory.HardDisk).OrderBy(item => item.MountOrder).ToArray();
+
     internal static string NativeCapacity(int capacityGiB) => capacityGiB.ToString(CultureInfo.InvariantCulture) + " GiB";
 
     internal static MediaConfiguration? Selected(MachineConfiguration configuration)

@@ -1,3 +1,7 @@
+using GWGUI.Emulation.Sony.Emulators.Common.Interop.Contracts;
+using GWGUI.Emulation.Sony.Emulators.Ppsspp.Exceptions;
+using GWGUI.Emulation.Sony.Emulators.Ppsspp.Functions;
+
 namespace GWGUI.Emulation.Sony.Emulators.Ppsspp.Constants;
 
 internal static class PpssppConstants
@@ -21,4 +25,14 @@ internal static class PpssppConstants
     internal const string ChdExtension = ".chd";
     internal static IReadOnlyList<string> ContentExtensions { get; } =
         [ElfExtension, IsoExtension, CsoExtension, PrxExtension, PbpExtension, ChdExtension];
+
+    internal static CoreDefinition Definition { get; } = new(
+        Id, LibraryName, LibraryFileName, ContentExtensions, ReleaseSettings,
+        Dictionaries.OptionCatalog.All, [],
+        new(Id, DisplayName, DescriptionResourceKey, new HashSet<string>(StringComparer.Ordinal) { ModelConstants.Psp }),
+        RequiresExternalFirmware: false,
+        ControllerTypes: [ControllerType.Joystick],
+        ResolveSaveDirectory: StorageFunctions.ResolveSaveDirectory,
+        ResolveSystemDirectory: SystemFilesFunctions.DirectoryForCore,
+        FullContentPathsRequired: PpssppExceptions.FullContentPathsRequired);
 }

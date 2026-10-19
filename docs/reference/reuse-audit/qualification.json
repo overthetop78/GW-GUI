@@ -336978,7 +336978,913 @@
         "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Constants/ExternalHostCallbacksConstants.cs",
         "evidence": "Text search in both specialized trees finds declaration only; confirm compiled symbol references before removing."
       }
-    ]
+    ],
+    "nativeCoreReuse": {
+      "policies": [
+        "Extend existing CoreDefinition, not a new runtime DTO: optional preparation/directory/media callbacks and explicit native lifecycle policies; all eight current defaults preserved.",
+        "PCSX2 validates paths then configures HDD; content excludes HDD; PS2 cards prepared before firmware; native pseudo-directory/VFS resolver, aliases PCSX2/LRPS2, full paths required, no save RAM exports.",
+        "PPSSPP save directory uses Memory Stick option then fallback; system directory is installed library parent and assets validated; full paths required; direct Joypad/None IDs, one controller pass before load.",
+        "Both legacy profiles skip second configured-options validation, retain original startup exception boundary and do not activate save RAM persistence; PCSX2 cards still persist after loaded partial startup even if ready flag is false.",
+        "Original specialized floppy-only playlist policy64 entries/file GW GUI media.m3u is moved into existing Common content selector with supplied original error factory; default eight first-media behavior unchanged.",
+        "PPSSPP destroys hardware from Stop only when loaded, then host Dispose after deinit; Common/PCSX2 additionally notify before Stop. Preserve this profile order and all finally cleanup.",
+        "Common retains native content buffers until unload/dispose, providing one owner and ensuring release after library teardown; no user media accessed by tests.",
+        "Local CoreHost senders keep existing protocol/client shape for this native-core step; shared ProcessCore/CoreHost migration remains next with explicit feedback wire and dynamic PSP metadata handling."
+      ],
+      "state": "Native and process differences compared; adapt existing Common native core first, then remove legacy native owners. Process/factory stage remains open.",
+      "before": [
+        {
+          "sha256": "A693AE5B0C490FADA13F78037850FACD63E998FE802059FDEFAA0F565C8A97F0",
+          "source": "namespace GWGUI.Emulation.Sony.Emulators.Common.Interop.Contracts;\r\n\r\ninternal sealed record CoreDefinition(\r\n    string Id,\r\n    string LibraryName,\r\n    string LibraryFileName,\r\n    IReadOnlyList<string> Extensions,\r\n    CoreReleaseSettings ReleaseSettings,\r\n    IReadOnlyList<CoreOption> Options,\r\n    IReadOnlyList<FirmwareSlot> Firmware,\r\n    EmulationEmulatorDefinition Emulator,\r\n    bool RequiresExternalFirmware,\r\n    IReadOnlyList<ControllerType> ControllerTypes,\r\n    TimeSpan? StartupTimeout = null,\r\n    TimeSpan? ShutdownTimeout = null,\r\n    IReadOnlyList<string>? StartupFailureDiagnostics = null,\r\n    bool PersistentDataDirectories = false,\r\n    bool SupportsSavedStates = true,\r\n    IReadOnlyList<ControllerType>? FeedbackControllerTypes = null,\r\n    TimeSpan? DisposalTimeout = null,\r\n    IReadOnlyList<string>? PreviousLibraryNames = null,\r\n    Func<MachineConfiguration, CoreContentLoadPlan?>? CreateContentLoadPlan = null,\r\n    Func<MachineConfiguration, IReadOnlyList<CoreControllerPort>>? CreateControllerPorts = null,\r\n    CoreFirmwarePersistenceSettings? FirmwarePersistence = null,\r\n    Action<MachineConfiguration, string>? PrepareSystemFiles = null);\r\n",
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Contracts/CoreDefinition.cs",
+          "exists": true
+        },
+        {
+          "sha256": "785AC66D8BBF2D882D6F3E8F13D996F6DB3E7D0903CABBBA03ACAD74C15C7EFD",
+          "source": "namespace GWGUI.Emulation.Sony.Emulators.Common.Interop.Constants;\n\ninternal static class ExternalCoreConstants\n{\n    internal const string CoreDirectory = \"Core\";\n    internal const string RetroApiVersion = \"retro_api_version\";\n    internal const string RetroGetSystemInfo = \"retro_get_system_info\";\n    internal const string RetroSetEnvironment = \"retro_set_environment\";\n    internal const string RetroSetVideoRefresh = \"retro_set_video_refresh\";\n    internal const string RetroSetAudioSample = \"retro_set_audio_sample\";\n    internal const string RetroSetAudioSampleBatch = \"retro_set_audio_sample_batch\";\n    internal const string RetroSetInputPoll = \"retro_set_input_poll\";\n    internal const string RetroSetInputState = \"retro_set_input_state\";\n    internal const string RetroDeinit = \"retro_deinit\";\n    internal const string RetroUnloadGame = \"retro_unload_game\";\n    internal const string RetroRun = \"retro_run\";\n    internal const string RetroReset = \"retro_reset\";\n    internal const string RetroSerializeSize = \"retro_serialize_size\";\n    internal const string RetroSerialize = \"retro_serialize\";\n    internal const string RetroUnserialize = \"retro_unserialize\";\n    internal const string RetroGetRegion = \"retro_get_region\";\n    internal const string RetroGetMemoryData = \"retro_get_memory_data\";\n    internal const string RetroGetMemorySize = \"retro_get_memory_size\";\n    internal const string RetroInit = \"retro_init\";\n    internal const string RetroSetControllerPortDevice = \"retro_set_controller_port_device\";\n    internal const string RetroLoadGame = \"retro_load_game\";\n    internal const string RetroGetSystemAvInfo = \"retro_get_system_av_info\";\n    internal const double FallbackFramesPerSecond = 50d;\n    internal const int FallbackSampleRate = 44_100;\n}\n\n\n",
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Constants/ExternalCoreConstants.cs",
+          "exists": true
+        },
+        {
+          "sha256": "F56B4E0DFDE124087506D62C6DD74A710CE827A607D3565E908A71B14A5047DB",
+          "source": "using System.IO;\r\nusing System.Runtime.InteropServices;\r\nusing System.Security.Cryptography;\r\nusing GWGUI.Emulation.Sony.Emulators.Common.Interop.Contracts;\r\nusing GWGUI.Emulation.Sony.Emulators.Common.Interop.Exceptions;\r\nusing GWGUI.Emulation.Sony.Emulators.Common.Interop.Constants;\r\nusing GWGUI.Emulation.Sony.Emulators.Common.Interop.Functions;\r\nusing SemanticControllerFunctions = GWGUI.Emulation.Sony.Common.Machines.Common.Functions.ControllerFunctions;\r\nusing SemanticPortConstants = GWGUI.Emulation.Sony.Common.Constants.ControllerPortConstants;\r\n\r\nnamespace GWGUI.Emulation.Sony.Emulators.Common.Interop.Services;\r\n\r\ninternal sealed partial class ExternalCore : IEmulatorCore\r\n{\r\n    private readonly string _corePath;\r\n    private readonly CoreDefinition _definition;\r\n    private ExternalCoreLibrary? _library;\r\n    private ExternalHostCallbacks? _host;\r\n    private ExternalCoreApi.VoidCall? _deinitialize;\r\n    private ExternalCoreApi.VoidCall? _unloadGame;\r\n    private ExternalCoreApi.VoidCall? _run;\r\n    private ExternalCoreApi.VoidCall? _reset;\r\n    private ExternalCoreApi.SetControllerPortDevice? _setControllerPortDevice;\r\n    private ExternalCoreApi.GetSerializedSize? _getSerializedSize;\r\n    private ExternalCoreApi.Serialize? _serialize;\r\n    private ExternalCoreApi.Serialize? _unserialize;\r\n    private MachineConfiguration? _configuration;\r\n    private string? _sessionDirectory;\r\n    private string? _saveDirectory;\r\n    private bool _gameLoaded;\r\n    private bool _initialized;\r\n    private bool _disposing;\r\n    private IReadOnlyList<CoreControllerPort>? _controllerPorts;\r\n    private IReadOnlyList<(string Source, string Native, int Size)> _firmwareFiles = [];\r\n\r\n    internal ExternalCore(CoreDefinition definition, string corePath)\r\n    {\r\n        _definition = definition;\r\n        _corePath = corePath;\r\n    }\r\n\r\n    public VideoFrame? LatestVideoFrame => _host?.LatestVideoFrame;\r\n    public AudioChunk? LatestAudioChunk => _host?.LatestAudioChunk;\r\n    public IReadOnlyList<CoreOption> Options => _host?.OptionCatalog ?? [];\r\n    public IReadOnlyList<string> Diagnostics => _host?.Diagnostics ?? [];\r\n    public IReadOnlyDictionary<int, bool> LedStates => _host?.LedStates ?? new Dictionary<int, bool>();\r\n    public bool ShutdownRequested => _host?.ShutdownRequested ?? false;\r\n    public IReadOnlyList<ControllerFeedbackState> ControllerFeedback => (_host?.Feedback.Snapshot() ?? [])\r\n        .Select(state => state with { Port = _controllerPorts?.FirstOrDefault(port => port.NativeDevice == ExternalHostCallbacksConstants.JoypadDevice && port.NativePort == state.Port)?.ConfigurationPort ?? state.Port }).ToArray();\r\n    public string CoreName { get; private set; } = string.Empty;\r\n    public string CoreVersion { get; private set; } = string.Empty;\r\n    public IReadOnlySet<string> SupportedContentExtensions { get; private set; } =\r\n        new HashSet<string>(StringComparer.OrdinalIgnoreCase);\r\n    public string CoreSha256 { get; private set; } = string.Empty;\r\n    public double FramesPerSecond => _host?.FramesPerSecond ?? ExternalCoreConstants.FallbackFramesPerSecond;\r\n    public int SampleRate => _host?.SampleRate ?? ExternalCoreConstants.FallbackSampleRate;\r\n    public int DiskCount => _host?.DiskControl.ImageCount ?? 0;\r\n    public int CurrentDiskIndex => _host?.DiskControl.CurrentIndex ?? -1;\r\n\r\n    public bool TryDequeueAudio(out AudioChunk? chunk)\r\n    {\r\n        if (_host is not null) return _host.TryDequeueAudio(out chunk);\r\n        chunk = null;\r\n        return false;\r\n    }\r\n\r\n    public void Initialize(MachineConfiguration configuration, string sessionDirectory, string? saveDirectory = null)\r\n    {\r\n        _configuration = configuration;\r\n        _sessionDirectory = Path.GetFullPath(sessionDirectory);\r\n        _saveDirectory = saveDirectory is null ? null : Path.GetFullPath(saveDirectory);\r\n        _saveMemoryReady = false;\r\n        var media = ResolveConfiguredMedia(configuration);\r\n        var contentPlan = _definition.CreateContentLoadPlan?.Invoke(configuration);\r\n        foreach (var item in media)\r\n            if (!File.Exists(item.Path))\r\n                throw new FileNotFoundException(CoreExceptions.MediaNotFound(), item.Path);\r\n\r\n        var sourceCorePath = ResolveCorePath(_corePath);\r\n        using (var stream = File.OpenRead(sourceCorePath))\r\n            CoreSha256 = Convert.ToHexString(SHA256.HashData(stream));\r\n\r\n        saveDirectory = Path.GetFullPath(saveDirectory ?? Path.Combine(sessionDirectory, CoreDirectoryConstants.SavesDirectoryName));\r\n        var coreSaveDirectory = Path.Combine(saveDirectory, _definition.Id);\r\n        var (systemDirectory, contentDirectory) = CoreDirectoryFunctions.NativeDataDirectories(_definition, sessionDirectory, saveDirectory);\r\n        _saveMemoryRegions = (contentPlan?.SaveMemoryRegions ?? [new CoreSaveMemoryRegion(SaveMemoryConstants.SaveRamId, SaveMemoryConstants.FileName)])\r\n            .Select(region => (region.Id, Path.Combine(coreSaveDirectory, region.FileName))).ToArray();\r\n        Directory.CreateDirectory(systemDirectory);\r\n        FirmwareConfigurationFunctions.CopySelectedFiles(configuration, new Engine().Adapter(configuration), systemDirectory);\r\n        _definition.PrepareSystemFiles?.Invoke(configuration, systemDirectory);\r\n        _firmwareFiles = _definition.FirmwarePersistence is { } persistence\r\n            ? FirmwareRuntimeFunctions.Prepare(configuration, _definition.Id, persistence, systemDirectory, saveDirectory)\r\n            : [];\r\n        Directory.CreateDirectory(contentDirectory);\r\n        Directory.CreateDirectory(saveDirectory);\r\n        var isolatedCoreDirectory = Path.Combine(sessionDirectory, ExternalCoreConstants.CoreDirectory);\r\n        Directory.CreateDirectory(isolatedCoreDirectory);\r\n        var isolatedCorePath = Path.Combine(isolatedCoreDirectory, _definition.LibraryFileName);\r\n        File.Copy(sourceCorePath, isolatedCorePath, true);\r\n        var contentPath = PrepareContentPath(media, contentDirectory);\r\n        var nativeSaveDirectory = PrepareMemoryCards(configuration, saveDirectory, systemDirectory);\r\n        _controllerPorts = _definition.CreateControllerPorts?.Invoke(configuration);\r\n        _host = new ExternalHostCallbacks(systemDirectory, contentDirectory, nativeSaveDirectory, configuration.Options ?? new Dictionary<string, string>(), _definition.StartupFailureDiagnostics, _controllerPorts);\r\n\r\n        try\r\n        {\r\n            _library = new ExternalCoreLibrary(isolatedCorePath);\r\n            var apiVersion = Export<ExternalCoreApi.GetApiVersion>(ExternalCoreConstants.RetroApiVersion)();\r\n            if (apiVersion != ExternalCoreInteropConstants.ApiVersion)\r\n                throw new NotSupportedException(CoreExceptions.UnsupportedApiVersion(apiVersion));\r\n            Export<ExternalCoreApi.GetSystemInfo>(ExternalCoreConstants.RetroGetSystemInfo)(out var info);\r\n            var libraryName = Marshal.PtrToStringUTF8(info.LibraryName);\r\n            if (!CoreIdentityFunctions.Accepts(_definition, libraryName))\r\n                throw new InvalidDataException(CoreExceptions.LibraryIdentityMismatch(libraryName));\r\n            CoreName = libraryName!;\r\n            CoreVersion = Marshal.PtrToStringUTF8(info.LibraryVersion) ?? string.Empty;\r\n            SupportedContentExtensions = ExternalCoreLibrary.ParseExtensions(info.ValidExtensions);\r\n            ValidateExtension(contentPath);\r\n            foreach (var path in contentPlan?.Paths ?? []) ValidateExtension(path);\r\n\r\n            Export<ExternalCoreApi.SetEnvironment>(ExternalCoreConstants.RetroSetEnvironment)(_host.Environment);\r\n            Export<ExternalCoreApi.SetVideo>(ExternalCoreConstants.RetroSetVideoRefresh)(_host.Video);\r\n            Export<ExternalCoreApi.SetAudioSample>(ExternalCoreConstants.RetroSetAudioSample)(_host.AudioSample);\r\n            Export<ExternalCoreApi.SetAudioBatch>(ExternalCoreConstants.RetroSetAudioSampleBatch)(_host.AudioBatch);\r\n            Export<ExternalCoreApi.SetInputPoll>(ExternalCoreConstants.RetroSetInputPoll)(_host.InputPoll);\r\n            Export<ExternalCoreApi.SetInputState>(ExternalCoreConstants.RetroSetInputState)(_host.InputState);\r\n            _deinitialize = Export<ExternalCoreApi.VoidCall>(ExternalCoreConstants.RetroDeinit);\r\n            _unloadGame = Export<ExternalCoreApi.VoidCall>(ExternalCoreConstants.RetroUnloadGame);\r\n            _run = Export<ExternalCoreApi.VoidCall>(ExternalCoreConstants.RetroRun);\r\n            _reset = Export<ExternalCoreApi.VoidCall>(ExternalCoreConstants.RetroReset);\r\n            _getSerializedSize = Export<ExternalCoreApi.GetSerializedSize>(ExternalCoreConstants.RetroSerializeSize);\r\n            _serialize = Export<ExternalCoreApi.Serialize>(ExternalCoreConstants.RetroSerialize);\r\n            _unserialize = Export<ExternalCoreApi.Serialize>(ExternalCoreConstants.RetroUnserialize);\r\n            _getMemoryData = Export<ExternalCoreApi.GetMemoryData>(ExternalCoreConstants.RetroGetMemoryData);\r\n            _getMemorySize = Export<ExternalCoreApi.GetMemorySize>(ExternalCoreConstants.RetroGetMemorySize);\r\n            Export<ExternalCoreApi.VoidCall>(ExternalCoreConstants.RetroInit)();\r\n            _initialized = true;\r\n            _host.ValidateConfiguredOptions();\r\n            _setControllerPortDevice = Export<ExternalCoreApi.SetControllerPortDevice>(ExternalCoreConstants.RetroSetControllerPortDevice);\r\n            ApplyConfiguredControllers(requireAdvertised: false);\r\n\r\n            var loadGame = Export<ExternalCoreApi.LoadGame>(ExternalCoreConstants.RetroLoadGame);\r\n            if (contentPlan is not null)\r\n                _gameLoaded = LoadSubsystem(contentPlan, info.NeedFullPath);\r\n            else if (contentPath is null)\r\n            {\r\n                if (!_host.SupportsNoGame)\r\n                    throw new InvalidOperationException(CoreExceptions.StartWithoutMediaUnsupported());\r\n                _gameLoaded = loadGame(0);\r\n            }\r\n            else _gameLoaded = LoadGame(loadGame, contentPath, info.NeedFullPath);\r\n            _host.DiagnosticMonitor.ThrowIfFailed();\r\n            if (!_gameLoaded) throw new InvalidOperationException(CoreExceptions.ContentRefused());\r\n            _host.ValidateConfiguredOptions();\r\n            ApplyConfiguredControllers(requireAdvertised: true);\r\n            RestoreSaveMemory();\r\n            _saveMemoryReady = true;\r\n            Export<ExternalCoreApi.GetSystemAvInfo>(ExternalCoreConstants.RetroGetSystemAvInfo)(out var av);\r\n            _host.ApplyInitialAvInfo(av);\r\n            _host.HardwareRender.Reset();\r\n            _host.DiagnosticMonitor.ThrowIfFailed();\r\n        }\r\n        catch (Exception error)\r\n        {\r\n            var startupError = CoreDiagnosticMonitor.WithNativeDiagnostics(error, _host?.Diagnostics ?? []);\r\n            try { Dispose(); }\r\n            catch (Exception cleanupError) { throw new AggregateException(startupError, cleanupError); }\r\n            if (!ReferenceEquals(startupError, error)) throw startupError;\r\n            throw;\r\n        }\r\n    }\r\n\r\n    internal static IReadOnlyList<MediaConfiguration> ResolveConfiguredMedia(MachineConfiguration configuration) => (configuration.Media ?? []).Where(item => item.IsInserted).OrderBy(item => item.MountOrder).ToArray();\r\n\r\n    internal static string? PrepareContentPath(IReadOnlyList<MediaConfiguration> media, string contentDirectory)\r\n    {\r\n        if (media.Count == 0) return null;\r\n        return Path.GetFullPath(media[0].Path);\r\n    }\r\n\r\n    public void RunFrame()\r\n    {\r\n        (_run ?? throw new InvalidOperationException(CoreExceptions.CoreNotInitialized()))();\r\n        _host?.DiagnosticMonitor.ThrowIfFailed();\r\n    }\r\n    public void HardReset()\r\n    {\r\n        var configuration = _configuration ?? throw new InvalidOperationException(CoreExceptions.CoreNotInitialized());\r\n        var sessionDirectory = _sessionDirectory ?? throw new InvalidOperationException(CoreExceptions.CoreNotInitialized());\r\n        var saveDirectory = _saveDirectory;\r\n        Dispose();\r\n        Initialize(configuration, sessionDirectory, saveDirectory);\r\n    }\r\n    public void SoftReset() => (_reset ?? throw new InvalidOperationException(CoreExceptions.CoreNotInitialized()))();\r\n    public void SetInput(EmulationInputSnapshot snapshot)\r\n    {\r\n        if (_host is not null) _host.Input = snapshot;\r\n    }\r\n    public void SetControllerPortDevice(int port, ControllerType type)\r\n    {\r\n        var configuration = _configuration ?? throw new InvalidOperationException(CoreExceptions.CoreNotInitialized());\r\n        var host = _host ?? throw new InvalidOperationException(CoreExceptions.CoreNotInitialized());\r\n        var setter = _setControllerPortDevice ?? throw new InvalidOperationException(CoreExceptions.CoreNotInitialized());\r\n        SemanticControllerFunctions.Validate(configuration, port, type);\r\n        var route = _controllerPorts?.Single(item => item.ConfigurationPort == port);\r\n        if (_gameLoaded && route is { CanChangeWhileRunning: false } && SemanticControllerFunctions.Resolve(configuration, port) != type)\r\n            throw new NotSupportedException();\r\n        var nativePort = route?.NativePort ?? (uint)port;\r\n        if (route is null || route.NativeDevice == ExternalHostCallbacksConstants.JoypadDevice)\r\n        {\r\n            var nativeId = ControllerPortFunctions.Resolve(type, checked((int)nativePort), host.ControllerPorts);\r\n            setter(nativePort, nativeId);\r\n            host.Feedback.ResetPort(checked((int)nativePort));\r\n        }\r\n        host.SetControllerType(port, type);\r\n        _configuration = SemanticControllerFunctions.WithControllerType(configuration, port, type);\r\n    }\r\n\r\n    private void ApplyConfiguredControllers(bool requireAdvertised)\r\n    {\r\n        var configuration = _configuration ?? throw new InvalidOperationException(CoreExceptions.CoreNotInitialized());\r\n        for (var port = SemanticPortConstants.MinimumControllerPort;\r\n            port < SemanticControllerFunctions.PortCount(configuration); port++)\r\n        {\r\n            var type = SemanticControllerFunctions.Resolve(configuration, port);\r\n            if (!requireAdvertised && !_host!.ControllerPorts.Any()\r\n                && type is not (ControllerType.Joystick or ControllerType.DanceMat or ControllerType.ArcadeStick or ControllerType.None))\r\n                continue;\r\n            SetControllerPortDevice(port, type);\r\n        }\r\n        if (configuration.EmulatorId == Emulators.Rpcs3.Constants.CoreConstants.Id)\r\n            for (var port = SemanticControllerFunctions.PortCount(configuration); port < 7; port++)\r\n            {\r\n                _setControllerPortDevice!((uint)port, 0u);\r\n                _host!.SetControllerType(port, ControllerType.None);\r\n            }\r\n    }\r\n    public void InsertMedia(string path) => (_host ?? throw new InvalidOperationException(CoreExceptions.CoreNotInitialized())).DiskControl.Insert(path);\r\n    public void EjectMedia() => (_host ?? throw new InvalidOperationException(CoreExceptions.CoreNotInitialized())).DiskControl.Eject();\r\n    public void SelectDisk(int index) => (_host ?? throw new InvalidOperationException(CoreExceptions.CoreNotInitialized())).DiskControl.Select(index);\r\n\r\n    public byte[] SaveState()\r\n    {\r\n        var size = (_getSerializedSize ?? throw new InvalidOperationException(CoreExceptions.CoreNotInitialized()))();\r\n        if (size == ExternalCoreInteropConstants.EmptyNativeSize || size > SavedStateConstants.MaximumStateSize)\r\n            throw new InvalidOperationException(CoreExceptions.InvalidStateSize(size));\r\n        var state = new byte[(int)size];\r\n        var buffer = Marshal.AllocHGlobal(state.Length);\r\n        try\r\n        {\r\n            if (!_serialize!(buffer, size))\r\n                throw new InvalidOperationException(CoreExceptions.StateSaveFailed());\r\n            Marshal.Copy(buffer, state, BufferConstants.FirstBufferIndex, state.Length);\r\n        }\r\n        finally { Marshal.FreeHGlobal(buffer); }\r\n        return state;\r\n    }\r\n\r\n    public void LoadState(ReadOnlySpan<byte> state)\r\n    {\r\n        if (state.IsEmpty) throw new ArgumentException(CoreExceptions.StateEmpty(), nameof(state));\r\n        var bytes = state.ToArray();\r\n        var buffer = Marshal.AllocHGlobal(bytes.Length);\r\n        try\r\n        {\r\n            Marshal.Copy(bytes, BufferConstants.FirstBufferIndex, buffer, bytes.Length);\r\n            if (!_unserialize!(buffer, (nuint)bytes.Length))\r\n                throw new InvalidOperationException(CoreExceptions.StateRestoreFailed());\r\n        }\r\n        finally { Marshal.FreeHGlobal(buffer); }\r\n    }\r\n\r\n    public void SetOption(string key, string value) => (_host ?? throw new InvalidOperationException(CoreExceptions.CoreNotInitialized())).SetOption(key, value);\r\n\r\n    public void Stop()\r\n    {\r\n        if (!_gameLoaded) return;\r\n        _gameLoaded = false;\r\n        try { PersistSaveMemory(); }\r\n        finally\r\n        {\r\n            try\r\n            {\r\n                try { _host?.HardwareRender.NotifyDestroy(); }\r\n                finally { _unloadGame?.Invoke(); }\r\n            }\r\n            finally\r\n            {\r\n                try { PersistMemoryCards(); }\r\n                finally\r\n                {\r\n                    _saveMemoryReady = false;\r\n                    _memoryCardFiles.Clear();\r\n                }\r\n            }\r\n        }\r\n    }\r\n\r\n    private void ValidateExtension(string? path)\r\n    {\r\n        if (path is null) return;\r\n        var extension = Path.GetExtension(path).TrimStart(MediaConstants.ExtensionPrefix);\r\n        if (!SupportedContentExtensions.Contains(extension))\r\n            throw new InvalidDataException(CoreExceptions.UnsupportedContentExtension(extension));\r\n    }\r\n\r\n    private bool LoadGame(ExternalCoreApi.LoadGame loadGame, string path, bool needFullPath)\r\n    {\r\n        var nativePath = AllocateContentPath(path);\r\n        var game = Marshal.AllocHGlobal(Marshal.SizeOf<ExternalCoreApi.GameInfo>());\r\n        try\r\n        {\r\n            var content = needFullPath ? null : File.ReadAllBytes(path);\r\n            Marshal.StructureToPtr(new ExternalCoreApi.GameInfo\r\n            {\r\n                Path = nativePath.Pointer,\r\n                Data = content is null ? nint.Zero : AllocateContent(content),\r\n                Size = content is null ? ExternalCoreInteropConstants.EmptyNativeSize : (nuint)content.Length\r\n            }, game, false);\r\n            return loadGame(game);\r\n        }\r\n        finally { Marshal.FreeHGlobal(game); }\r\n    }\r\n\r\n    private T Export<T>(string name) where T : Delegate => (_library ?? throw new InvalidOperationException(CoreExceptions.CoreNotLoaded())).Resolve<T>(name);\r\n\r\n    private static string ResolveCorePath(string path)\r\n    {\r\n        if (!Path.IsPathFullyQualified(path))\r\n            throw new ArgumentException(CoreExceptions.CorePathNotAbsolute(), nameof(path));\r\n        if (!File.Exists(path)) throw new FileNotFoundException(CoreExceptions.CoreNotFound(), path);\r\n        return path;\r\n    }\r\n\r\n    public void Dispose()\r\n    {\r\n        if (_disposing) return;\r\n        _disposing = true;\r\n        try\r\n        {\r\n            var callbacks = _host;\r\n            try { _host?.HardwareRender.NotifyDestroy(); }\r\n            finally\r\n            {\r\n\r\n                try { Stop(); }\r\n                finally\r\n                {\r\n                    try\r\n                    {\r\n                        if (_initialized) _deinitialize?.Invoke();\r\n                    }\r\n                    finally\r\n                    {\r\n                        _initialized = false;\r\n                        _deinitialize = null;\r\n                        _unloadGame = null;\r\n                        _run = null;\r\n                        _reset = null;\r\n                        _setControllerPortDevice = null;\r\n                        _getSerializedSize = null;\r\n                        _serialize = null;\r\n                        _unserialize = null;\r\n                        _getMemoryData = null;\r\n                        _getMemorySize = null;\r\n                        try { FirmwareRuntimeFunctions.Persist(_firmwareFiles); }\r\n                        finally\r\n                        {\r\n                            _firmwareFiles = [];\r\n                            try { _host?.Dispose(); }\r\n                            finally\r\n                            {\r\n                                _host = null;\r\n                                try { _library?.Dispose(); }\r\n                                finally\r\n                                {\r\n                                    GC.KeepAlive(callbacks);\r\n                                    _library = null;\r\n                                    ReleaseContentBuffers();\r\n                                }\r\n                            }\r\n                        }\r\n                    }\r\n                }\r\n            }\r\n\r\n        }\r\n        finally { _disposing = false; }\r\n    }\r\n}\r\n",
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalCore.cs",
+          "exists": true
+        },
+        {
+          "sha256": "5F69DFB043E78AF5A9ACC30FDD384A6EB049781A366E9BF4D413CDF9283D70BA",
+          "source": "using System.IO;\nusing System.Runtime.InteropServices;\nusing GWGUI.Emulation.Sony.Emulators.Common.Interop.Constants;\nusing GWGUI.Emulation.Sony.Emulators.Common.Interop.Exceptions;\nusing NativeMemoryCards = GWGUI.Emulation.Sony.Emulators.Common.Interop.Functions.MemoryCardFunctions;\n\nnamespace GWGUI.Emulation.Sony.Emulators.Common.Interop.Services;\n\ninternal sealed partial class ExternalCore\n{\n    private ExternalCoreApi.GetMemoryData? _getMemoryData;\n    private ExternalCoreApi.GetMemorySize? _getMemorySize;\n    private IReadOnlyList<(uint Id, string Path)> _saveMemoryRegions = [];\n    private bool _saveMemoryReady;\n    private readonly List<(string Source, string Native)> _memoryCardFiles = [];\n\n    private string PrepareMemoryCards(MachineConfiguration configuration, string saveDirectory, string systemDirectory)\n    {\n        _memoryCardFiles.Clear();\n        if (configuration.Model == ModelConstants.PlayStation2)\n        {\n            NativeMemoryCards.PreparePs2(configuration, systemDirectory, _memoryCardFiles);\n            return saveDirectory;\n        }\n        if (configuration.Model != ModelConstants.PlayStation) return saveDirectory;\n        var directory = Path.Combine(_sessionDirectory!, MemoryCardConstants.Directory);\n        Directory.CreateDirectory(directory);\n        var names = NativeMemoryCards.NativeFileNames(configuration);\n        for (var index = 0; index < names.Count; index++)\n        {\n            var source = NativeMemoryCards.SelectedPath(configuration, index);\n            if (string.IsNullOrWhiteSpace(source)) continue;\n            if (new FileInfo(source).Length != StorageSettingsFunctionsConstants.MemoryCardSize)\n                throw new InvalidDataException(source);\n            var destination = Path.Combine(directory, names[index]);\n            File.Copy(source, destination, true);\n            _memoryCardFiles.Add((source, destination));\n        }\n        return directory;\n    }\n\n    private void PersistMemoryCards()\n    {\n        if (!_saveMemoryReady) return;\n        NativeMemoryCards.PersistFiles(_memoryCardFiles, _configuration?.Model == ModelConstants.PlayStation2 ? StorageSettingsFunctionsConstants.Ps2MemoryCardSize : StorageSettingsFunctionsConstants.MemoryCardSize);\n    }\n\n    private (nint Pointer, int Size) SaveMemory(uint id)\n    {\n        var size = _getMemorySize?.Invoke(id) ?? ExternalCoreInteropConstants.EmptyNativeSize;\n        if (size == ExternalCoreInteropConstants.EmptyNativeSize) return default;\n        if (size > SaveMemoryConstants.MaximumManagedBufferSize)\n            throw new InvalidOperationException(CoreExceptions.InvalidStateSize(size));\n        var pointer = _getMemoryData?.Invoke(id) ?? nint.Zero;\n        return pointer == nint.Zero ? default : (pointer, checked((int)size));\n    }\n\n    private void RestoreSaveMemory()\n    {\n        if (_configuration?.Model == ModelConstants.PlayStation) return;\n        foreach (var region in _saveMemoryRegions)\n        {\n            if (!File.Exists(region.Path)) continue;\n            var memory = SaveMemory(region.Id);\n            if (memory.Pointer == nint.Zero) continue;\n            var bytes = File.ReadAllBytes(region.Path);\n            if (bytes.Length != memory.Size)\n                throw new InvalidDataException(CoreExceptions.InvalidStateSize((nuint)bytes.Length));\n            Marshal.Copy(bytes, BufferConstants.FirstBufferIndex, memory.Pointer, bytes.Length);\n        }\n    }\n\n    private void PersistSaveMemory()\n    {\n        if (_configuration?.Model == ModelConstants.PlayStation) return;\n        if (!_saveMemoryReady) return;\n        var errors = new List<Exception>();\n        foreach (var region in _saveMemoryRegions)\n            try { PersistSaveMemory(region.Id, region.Path); }\n            catch (Exception error) { errors.Add(error); }\n        if (errors.Count > 0) throw new AggregateException(errors);\n    }\n\n    private void PersistSaveMemory(uint id, string path)\n    {\n        var memory = SaveMemory(id);\n        if (memory.Pointer == nint.Zero) return;\n        var bytes = new byte[memory.Size];\n        Marshal.Copy(memory.Pointer, bytes, BufferConstants.FirstBufferIndex, bytes.Length);\n        Directory.CreateDirectory(Path.GetDirectoryName(path)!);\n        var temporaryPath = path + SaveMemoryConstants.TemporaryFileSuffix;\n        try\n        {\n            File.WriteAllBytes(temporaryPath, bytes);\n            File.Move(temporaryPath, path, overwrite: true);\n        }\n        finally\n        {\n            if (File.Exists(temporaryPath)) File.Delete(temporaryPath);\n        }\n    }\n}\n",
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalCore.SaveMemory.cs",
+          "exists": true
+        },
+        {
+          "sha256": "D38F0BDE39EE2E5A21D8B2D716D8E276120FB881D564FDCB713FCEEBCE21111C",
+          "source": "using System.IO;\r\nusing GWGUI.Emulation.Sony.Emulators.Pcsx2.Constants;\r\nusing GWGUI.Emulation.Sony.Emulators.Pcsx2.Enums;\r\n\r\nnamespace GWGUI.Emulation.Sony.Emulators.Pcsx2.Functions;\r\n\r\ninternal static class FileSystemFunctions\r\n{\r\n    private static bool Enabled(MachineConfiguration configuration, string option) => configuration.Options?.GetValueOrDefault(option) == EmulationSettingConstants.Enabled;\r\n\r\n    private static string? PathSelection(MachineConfiguration configuration, string pathKey) => configuration.Options?.GetValueOrDefault(pathKey) is { } path && !string.IsNullOrWhiteSpace(path) ? path : null;\r\n\r\n    private static string? Selection(MachineConfiguration configuration, string option, string pathKey) => Enabled(configuration, option)\r\n        && (option != OptionConstants.UseExternalGameindexKey || GameIndexAvailable(configuration)) ? PathSelection(configuration, pathKey) : null;\r\n\r\n    private static bool GameIndexAvailable(MachineConfiguration configuration)\r\n    {\r\n        var renderer = configuration.Options?.GetValueOrDefault(OptionConstants.RendererKey) ?? OptionValueFunctions.ToNative(RendererBackend.Automatic);\r\n        return Enabled(configuration, OptionConstants.EnableHwHacksKey)\r\n            && new[] { RendererBackend.Automatic, RendererBackend.OpenGl, RendererBackend.Direct3D11, RendererBackend.Direct3D12, RendererBackend.Vulkan }\r\n                .Any(value => OptionValueFunctions.ToNative(value) == renderer);\r\n    }\r\n\r\n    internal static void Validate(MachineConfiguration configuration)\r\n    {\r\n        var gameIndex = Selection(configuration, OptionConstants.UseExternalGameindexKey, FileSystemConstants.GameIndexPathKey);\r\n        if (gameIndex is not null && !File.Exists(gameIndex)) throw new FileNotFoundException(null, gameIndex);\r\n        var cheats = Selection(configuration, OptionConstants.EnableCheatsKey, FileSystemConstants.CheatsDirectoryKey);\r\n        if (cheats is not null && !Directory.Exists(cheats)) throw new DirectoryNotFoundException(cheats);\r\n    }\r\n\r\n    internal static string SystemDirectory(MachineConfiguration configuration, string physicalDirectory) => HardDiskRuntimeFunctions.Selected(configuration) is not null\r\n        || Selection(configuration, OptionConstants.UseExternalGameindexKey, FileSystemConstants.GameIndexPathKey) is not null\r\n        || PathSelection(configuration, FileSystemConstants.CheatsDirectoryKey) is not null ? FileSystemConstants.SystemUri : physicalDirectory;\r\n\r\n    internal static (string Path, bool IsReadOnly) Resolve(MachineConfiguration configuration, string systemDirectory, string path, bool? cheatsEnabled = null)\r\n    {\r\n        var normalized = path.Replace('\\\\', '/');\r\n        if (!normalized.Equals(FileSystemConstants.SystemUri, StringComparison.Ordinal)\r\n            && !normalized.StartsWith(FileSystemConstants.SystemUri + \"/\", StringComparison.Ordinal)) return (path, false);\r\n        var relative = normalized[FileSystemConstants.SystemUri.Length..].TrimStart('/');\r\n        if (relative.Equals(HardDiskConstants.NativeFile, StringComparison.OrdinalIgnoreCase) && HardDiskRuntimeFunctions.Selected(configuration) is { } disk)\r\n            return (Path.GetFullPath(disk.Path), disk.IsReadOnly);\r\n        if (relative.Equals(FileSystemConstants.GameIndexFile, StringComparison.OrdinalIgnoreCase)\r\n            && Selection(configuration, OptionConstants.UseExternalGameindexKey, FileSystemConstants.GameIndexPathKey) is { } database)\r\n            return (Path.GetFullPath(database), true);\r\n        if ((relative.Equals(FileSystemConstants.CheatsDirectory, StringComparison.OrdinalIgnoreCase)\r\n            || relative.StartsWith(FileSystemConstants.CheatsDirectory + \"/\", StringComparison.OrdinalIgnoreCase))\r\n            && (cheatsEnabled ?? Enabled(configuration, OptionConstants.EnableCheatsKey))\r\n            && PathSelection(configuration, FileSystemConstants.CheatsDirectoryKey) is { } cheats)\r\n            return (Within(cheats, relative[FileSystemConstants.CheatsDirectory.Length..].TrimStart('/')), true);\r\n        return (Within(systemDirectory, relative), false);\r\n    }\r\n\r\n    private static string Within(string directory, string relative)\r\n    {\r\n        var root = Path.GetFullPath(directory);\r\n        var resolved = Path.GetFullPath(Path.Combine(root, relative));\r\n        if (!resolved.Equals(root, StringComparison.OrdinalIgnoreCase) && !resolved.StartsWith(root.TrimEnd(Path.DirectorySeparatorChar) + Path.DirectorySeparatorChar, StringComparison.OrdinalIgnoreCase))\r\n            throw new InvalidDataException(relative);\r\n        return resolved;\r\n    }\r\n\r\n    internal static IReadOnlyList<EmulationSettingsBlock> Describe(MachineConfiguration configuration, IReadOnlyList<EmulationSettingsBlock> blocks) => blocks\r\n        .Select(block => block with { Fields = block.Fields.SelectMany(field => WithPath(configuration, field)).ToArray() }).ToArray();\r\n\r\n    private static IEnumerable<EmulationSettingsField> WithPath(MachineConfiguration configuration, EmulationSettingsField field)\r\n    {\r\n        var database = field.Id == OptionConstants.UseExternalGameindexKey;\r\n        var cheats = field.Id == OptionConstants.EnableCheatsKey;\r\n        var available = !database || GameIndexAvailable(configuration);\r\n        yield return database || cheats ? field with { RefreshSettingsOnChange = true, IsEnabled = field.IsEnabled && available }\r\n            : field.Id is OptionConstants.EnableHwHacksKey or OptionConstants.RendererKey ? field with { RefreshSettingsOnChange = true } : field;\r\n        if (!field.IsVisible || !database && !cheats) yield break;\r\n        var key = database ? FileSystemConstants.GameIndexPathKey : FileSystemConstants.CheatsDirectoryKey;\r\n        yield return new EmulationSettingsField(key, field.Tab, field.BlockId,\r\n            database ? FileSystemConstants.GameIndexLabel : FileSystemConstants.CheatsDirectoryLabel,\r\n            database ? EmulationSettingsEditor.Path : EmulationSettingsEditor.OpenDirectory,\r\n            configuration.Options?.GetValueOrDefault(key), IsEnabled: cheats || available && field.Value == field.EnabledValue, RequiresRestart: true,\r\n            DefaultFolderCategory: cheats ? EmulationDefaultFolderCategory.Cheats : null);\r\n    }\r\n}\r\n",
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Functions/FileSystemFunctions.cs",
+          "exists": true
+        },
+        {
+          "sha256": "06121B4A96B2055F58C5C91D155D6C03348BC98B166F57E569248955A4453189",
+          "source": "using System.Globalization;\nusing System.IO;\nusing GWGUI.Emulation.Sony.Emulators.Pcsx2.Constants;\n\nnamespace GWGUI.Emulation.Sony.Emulators.Pcsx2.Functions;\n\ninternal static class HardDiskRuntimeFunctions\n{\n    internal static string NativeCapacity(int capacityGiB) => capacityGiB.ToString(CultureInfo.InvariantCulture) + \" GiB\";\n\n    internal static MediaConfiguration? Selected(MachineConfiguration configuration)\n    {\n        var disks = (configuration.Media ?? []).Where(media => media.Category == MediaCategory.HardDisk && media.IsInserted).ToArray();\n        if (disks.Length > 1) throw new InvalidDataException(nameof(configuration.Media));\n        return disks.SingleOrDefault();\n    }\n\n    internal static MachineConfiguration Configure(MachineConfiguration configuration)\n    {\n        var disk = Selected(configuration);\n        var options = new Dictionary<string, string>(configuration.Options ?? new Dictionary<string, string>(), StringComparer.Ordinal)\n        {\n            [OptionConstants.Dev9HddKey] = disk is null ? \"disabled\" : \"enabled\",\n            [OptionConstants.Dev9HddSizeKey] = NativeCapacity(HardDiskConstants.DefaultCapacityGiB)\n        };\n        if (disk is not null)\n        {\n            var size = new FileInfo(disk.Path).Length;\n            // ATA IDENTIFY advertises the configured capacity, independently of the\n            // file length. Do not round a different image size to a native preset.\n            var capacity = size / HardDiskConstants.Gibibyte;\n            if (size % HardDiskConstants.Gibibyte != 0 || capacity > HardDiskConstants.CapacitiesGiB.Max()\n                || !HardDiskConstants.CapacitiesGiB.Contains((int)capacity))\n                throw new InvalidDataException(disk.Path);\n            options[OptionConstants.Dev9HddSizeKey] = NativeCapacity((int)capacity);\n        }\n        return configuration with { Options = options };\n    }\n\n}\n",
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Functions/HardDiskRuntimeFunctions.cs",
+          "exists": true
+        },
+        {
+          "sha256": "3AAB6B8A533C472E3ED07B027DDE7DC2AE33B9DD604897033F20DDAE2BFDCCD4",
+          "source": "using System.IO;\nusing System.IO.Compression;\nusing GWGUI.Emulation.Sony.Emulators.Ppsspp.Constants;\nusing GWGUI.Emulation.Sony.Emulators.Ppsspp.Exceptions;\n\nnamespace GWGUI.Emulation.Sony.Emulators.Ppsspp.Functions;\n\ninternal static class SystemFilesFunctions\n{\n    internal static bool IsInstalled(string directory) => SystemFilesConstants.RequiredFiles.All(file => File.Exists(Path.Combine(directory, SystemFilesConstants.DirectoryName, file)));\n\n    internal static void Validate(string directory)\n    {\n        foreach (var file in SystemFilesConstants.RequiredFiles)\n        {\n            var path = Path.Combine(directory, SystemFilesConstants.DirectoryName, file);\n            if (!File.Exists(path)) throw new FileNotFoundException(PpssppExceptions.SystemFilesMissing(), path);\n        }\n    }\n\n    internal static async Task InstallAsync(HttpClient client, string directory, CancellationToken cancellationToken)\n    {\n        var root = Path.GetFullPath(directory);\n        var staging = Path.Combine(root, SystemFilesConstants.StagingPrefix + Guid.NewGuid().ToString(\"N\"));\n        var previous = staging + SystemFilesConstants.PreviousSuffix;\n        var installed = Path.Combine(root, SystemFilesConstants.DirectoryName);\n        var replaced = false;\n        Directory.CreateDirectory(staging);\n        try\n        {\n            using var response = await client.GetAsync(SystemFilesConstants.PackageUrl, HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);\n            response.EnsureSuccessStatusCode();\n            await using (var source = await response.Content.ReadAsStreamAsync(cancellationToken).ConfigureAwait(false))\n            using (var package = new MemoryStream())\n            {\n                await source.CopyToAsync(package, cancellationToken).ConfigureAwait(false);\n                package.Position = 0;\n                using var archive = new ZipArchive(package, ZipArchiveMode.Read);\n                archive.ExtractToDirectory(staging);\n            }\n            Validate(staging);\n            cancellationToken.ThrowIfCancellationRequested();\n            if (Directory.Exists(installed)) Directory.Move(installed, previous);\n            try\n            {\n                Directory.Move(Path.Combine(staging, SystemFilesConstants.DirectoryName), installed);\n                replaced = true;\n            }\n            catch\n            {\n                if (Directory.Exists(previous)) Directory.Move(previous, installed);\n                throw;\n            }\n        }\n        finally\n        {\n            try { if (Directory.Exists(staging)) Directory.Delete(staging, true); }\n            finally { if (replaced && Directory.Exists(previous)) Directory.Delete(previous, true); }\n        }\n    }\n}\n",
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Functions/SystemFilesFunctions.cs",
+          "exists": true
+        },
+        {
+          "sha256": null,
+          "source": null,
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Functions/StorageFunctions.cs",
+          "exists": false
+        },
+        {
+          "sha256": "21A55A4135EFAB355EA2E6121931FDC8C93E90A506840A052ED16DD4D22BF2CF",
+          "source": "using System.Reflection;\nusing System.Diagnostics;\nusing GWGUI.Emulation.Contracts;\nusing GWGUI.Emulation.Enums;\nusing GWGUI.Emulation.Sony.Common.Contracts;\nusing GWGUI.Emulation.Sony.Common.Interfaces;\nusing GWGUI.Emulation.Sony.Common.Machines.Common.Contracts;\nusing GWGUI.Emulation.Sony.Common.Machines.Common.Enums;\nusing GWGUI.Emulation.Sony.Common.Services;\n\nnamespace GWGUI.Tests.Emulation.Sony;\n\npublic sealed class NativeShutdownTests\n{\n    [Theory]\n    [InlineData(\"Pcsx2\", false)]\n    [InlineData(\"Pcsx2\", true)]\n    [InlineData(\"Ppsspp\", false)]\n    [InlineData(\"Ppsspp\", true)]\n    public void HostExitObservationFailureIsReportedInsteadOfHidden(string adapter, bool terminate)\n    {\n        using IDisposable core = adapter == \"Pcsx2\"\n            ? new GWGUI.Emulation.Sony.Emulators.Pcsx2.Services.ProcessCore(\"unused-host\")\n            : new GWGUI.Emulation.Sony.Emulators.Ppsspp.Services.ProcessCore(\"unused-host\");\n        using var unassociatedProcess = new Process();\n        var processField = core.GetType().GetField(\"_process\", BindingFlags.Instance | BindingFlags.NonPublic)!;\n        processField.SetValue(core, unassociatedProcess);\n        if (terminate)\n        {\n            var method = core.GetType().GetMethod(\"TerminateProcess\", BindingFlags.Instance | BindingFlags.NonPublic)!;\n            var error = Assert.Throws<TargetInvocationException>(() => method.Invoke(core, null));\n            Assert.IsType<InvalidOperationException>(error.InnerException);\n        }\n        else Assert.Throws<InvalidOperationException>(core.Dispose);\n        Assert.Null(processField.GetValue(core));\n    }\n\n    [Theory]\n    [InlineData(\"Common\", \"Stop\", false)]\n    [InlineData(\"Common\", \"Stop\", true)]\n    [InlineData(\"Common\", \"Dispose\", false)]\n    [InlineData(\"Common\", \"Dispose\", true)]\n    [InlineData(\"Pcsx2\", \"Stop\", false)]\n    [InlineData(\"Pcsx2\", \"Stop\", true)]\n    [InlineData(\"Pcsx2\", \"Dispose\", false)]\n    [InlineData(\"Pcsx2\", \"Dispose\", true)]\n    [InlineData(\"Ppsspp\", \"Stop\", false)]\n    [InlineData(\"Ppsspp\", \"Stop\", true)]\n    [InlineData(\"Ppsspp\", \"Dispose\", false)]\n    [InlineData(\"Ppsspp\", \"Dispose\", true)]\n    public void ReentrantTeardownReleasesNativeContentAndCoreOnce(string adapter, string operation, bool failUnload)\n    {\n        IDisposable core = adapter switch\n        {\n            \"Common\" => new GWGUI.Emulation.Sony.Emulators.Common.Interop.Services.ExternalCore(GWGUI.Emulation.Sony.Emulators.Pcee2.Constants.CoreConstants.Definition, string.Empty),\n            \"Pcsx2\" => new GWGUI.Emulation.Sony.Emulators.Pcsx2.Services.ExternalCore(string.Empty),\n            \"Ppsspp\" => new GWGUI.Emulation.Sony.Emulators.Ppsspp.Services.ExternalCore(string.Empty),\n            _ => throw new ArgumentOutOfRangeException(nameof(adapter))\n        };\n        var type = core.GetType();\n        var method = type.GetMethod(operation)!;\n        var calls = new List<string>();\n        var reentered = false;\n        var injected = new InvalidOperationException(\"Injected unload failure\");\n        Action unload = () =>\n        {\n            calls.Add(\"unload\");\n            if (reentered) return;\n            reentered = true;\n            method.Invoke(core, null);\n            if (failUnload) throw injected;\n        };\n        Action deinitialize = () => calls.Add(\"deinitialize\");\n        try\n        {\n            foreach (var (name, action) in new[] { (\"_unloadGame\", unload), (\"_deinitialize\", deinitialize) })\n            {\n                var field = type.GetField(name, BindingFlags.Instance | BindingFlags.NonPublic)!;\n                field.SetValue(core, Delegate.CreateDelegate(field.FieldType, action.Target, action.Method));\n            }\n            type.GetField(\"_gameLoaded\", BindingFlags.Instance | BindingFlags.NonPublic)!.SetValue(core, true);\n            type.GetField(\"_initialized\", BindingFlags.Instance | BindingFlags.NonPublic)!.SetValue(core, true);\n            if (failUnload)\n            {\n                var error = Assert.Throws<TargetInvocationException>(() => method.Invoke(core, null));\n                Assert.Same(injected, error.InnerException);\n            }\n            else method.Invoke(core, null);\n            method.Invoke(core, null);\n        }\n        finally { core.Dispose(); }\n        Assert.Equal(new[] { \"unload\", \"deinitialize\" }, calls);\n    }\n\n    [Theory]\n    [InlineData(true, 0)]\n    [InlineData(false, 1)]\n    public async Task RequestedShutdownStopsNormallyAndReleasesTheCoreOnce(bool duringInitialize, int expectedFrames)\n    {\n        var core = new ShutdownCore(duringInitialize);\n        var deleted = 0;\n        var machine = new Machine(Guid.NewGuid(), new MachineConfiguration(\"PlayStation3\", \"rpcs3\", AudioEnabled: false), core, [], \"unused-session\", deleteSession: _ => deleted++);\n        try\n        {\n            await machine.Lifecycle.StartAsync();\n            for (var i = 0; i < 100 && machine.State == EmulationMachineState.Running; i++) await Task.Delay(10);\n            Assert.Equal(EmulationMachineState.Stopped, machine.State);\n            Assert.Equal(expectedFrames, core.Frames);\n            Assert.Equal(1, core.Stops);\n        }\n        finally { await machine.DisposeAsync(); }\n        Assert.Equal(1, core.Disposals);\n        Assert.Equal(1, deleted);\n    }\n\n    private sealed class ShutdownCore(bool duringInitialize) : IEmulatorCore\n    {\n        public bool ShutdownRequested { get; private set; }\n        public int Frames { get; private set; }\n        public int Stops { get; private set; }\n        public int Disposals { get; private set; }\n        public VideoFrame? LatestVideoFrame => null;\n        public AudioChunk? LatestAudioChunk => null;\n        public IReadOnlyList<CoreOption> Options => [];\n        public IReadOnlyList<string> Diagnostics => [];\n        public IReadOnlyDictionary<int, bool> LedStates => new Dictionary<int, bool>();\n        public string CoreName => \"Test core\";\n        public string CoreVersion => \"1\";\n        public IReadOnlySet<string> SupportedContentExtensions => new HashSet<string>();\n        public string CoreSha256 => string.Empty;\n        public double FramesPerSecond => 60;\n        public int SampleRate => 44100;\n        public int DiskCount => 0;\n        public int CurrentDiskIndex => -1;\n        public void Initialize(MachineConfiguration configuration, string sessionDirectory, string? saveDirectory = null) => ShutdownRequested = duringInitialize;\n        public void RunFrame() { Frames++; ShutdownRequested = true; }\n        public void Stop() => Stops++;\n        public void Dispose() => Disposals++;\n        public bool TryDequeueAudio(out AudioChunk? chunk) { chunk = null; return false; }\n        public void HardReset() => throw new NotSupportedException();\n        public void SoftReset() => throw new NotSupportedException();\n        public void SetInput(EmulationInputSnapshot snapshot) { }\n        public void SetControllerPortDevice(int port, ControllerType type) { }\n        public void InsertMedia(string path) => throw new NotSupportedException();\n        public void EjectMedia() => throw new NotSupportedException();\n        public void SelectDisk(int index) => throw new NotSupportedException();\n        public byte[] SaveState() => throw new NotSupportedException();\n        public void LoadState(ReadOnlySpan<byte> state) => throw new NotSupportedException();\n        public void SetOption(string key, string value) => throw new NotSupportedException();\n    }\n}\n",
+          "path": "tests/GWGUI.Tests/Emulation/Sony/NativeShutdownTests.cs",
+          "exists": true
+        },
+        {
+          "sha256": "02320634F95A03482B132C9476FE1FCFC8C0A88CF12EC2EE40A63A3479F704D7",
+          "source": "using System.Net.Http;\r\nusing System.IO;\r\nusing System.Globalization;\r\nusing GWGUI.Emulation.Constants;\r\nusing GWGUI.Emulation.Enums;\r\nusing GWGUI.Emulation.Sony.Common.Machines.Common.Constants;\r\nusing GWGUI.Emulation.Sony.Common.Machines.Common.Contracts;\r\nusing GWGUI.Emulation.Sony.Common.Machines.Common.Enums;\r\nusing GWGUI.Emulation.Sony.Common.Machines.Common.Functions;\r\nusing GWGUI.Emulation.Sony.Modules;\r\n\r\nnamespace GWGUI.Tests.Emulation.Sony;\r\n\r\npublic sealed class SettingsPresentationTests\r\n{\r\n    [Theory]\r\n    [InlineData(\"fr-FR\", \"French\", \"french\")]\r\n    [InlineData(\"fr-CA\", \"French\", \"french\")]\r\n    [InlineData(\"en-US\", \"English\", \"english\")]\r\n    [InlineData(\"pt-BR\", \"Portuguese\", \"portuguese\")]\r\n    [InlineData(\"ja-JP\", \"Japanese\", \"japanese\")]\r\n    [InlineData(\"zh-Hant\", \"Chinese Traditional\", \"chinese_trad\")]\r\n    [InlineData(\"zh-TW\", \"Chinese Traditional\", \"chinese_trad\")]\r\n    [InlineData(\"zh-HK\", \"Chinese Traditional\", \"chinese_trad\")]\r\n    [InlineData(\"zh-Hans\", \"Chinese Simplified\", \"chinese_simp\")]\r\n    [InlineData(\"ar-SA\", \"English\", \"english\")]\r\n    public void SystemLanguageUsesApplicationCultureInsteadOfSavedManualChoice(string culture, string psp, string ps3)\r\n    {\r\n        foreach (var (model, emulator, key, expected) in new[]\r\n        {\r\n            (ModelConstants.Psp, \"ppsspp\", \"ppsspp_language\", psp),\r\n            (ModelConstants.PlayStation3, \"rpcs3\", \"rpcs3_language\", ps3)\r\n        })\r\n        {\r\n            var original = new MachineConfiguration(model, emulator, Options: new Dictionary<string, string> { [key] = \"old-manual-selection\" });\r\n            var native = GWGUI.Emulation.Sony.Emulators.Common.Interop.Functions.SystemLanguageFunctions.Configure(original, CultureInfo.GetCultureInfo(culture));\r\n            Assert.Equal(expected, native.Options![key]);\r\n            Assert.Equal(\"old-manual-selection\", original.Options![key]);\r\n            Assert.DoesNotContain(SettingsDescriptionFunctions.Create(original).SelectMany(block => block.Fields), field => field.Id == key);\r\n        }\r\n    }\r\n\r\n    [Fact]\r\n    public void Rpcs3CpuGroupsSeparatePrecisionExecutionAndScheduling()\r\n    {\r\n        var blocks = SettingsDescriptionFunctions.Create(new MachineConfiguration(ModelConstants.PlayStation3, \"rpcs3\"))\r\n            .Where(block => block.Tab == EmulationMachineTab.Cpu).ToArray();\r\n        foreach (var (title, ids) in new[]\r\n        {\r\n            (\"Recompilation\", new[] { \"rpcs3_ppu_decoder\", \"rpcs3_spu_decoder\" }),\r\n            (\"PpuAccuracy\", new[] { \"rpcs3_ppu_set_fpcc\", \"rpcs3_accurate_dfma\" }),\r\n            (\"SpuAccuracy\", new[] { \"rpcs3_spu_xfloat_accuracy\", \"rpcs3_spu_accurate_dma\" }),\r\n            (\"SpuExecution\", new[] { \"rpcs3_spu_loop_detection\", \"rpcs3_spu_cache\", \"rpcs3_preferred_spu_threads\" }),\r\n            (\"Scheduling\", new[] { \"rpcs3_clocks_scale\", \"rpcs3_thread_scheduler\", \"rpcs3_ppu_threads\" })\r\n        })\r\n        {\r\n            var block = Assert.Single(blocks, block => block.TitleResourceKey == \"Emulation.Sony.Cpu.\" + title);\r\n            Assert.True(block.IsCompact);\r\n            foreach (var id in ids) Assert.Contains(block.Fields, field => field.Id == id);\r\n        }\r\n        Assert.DoesNotContain(blocks, block => block.TitleResourceKey is \"Emulation.Sony.Cpu.Timing\" or \"Emulation.Sony.Cpu.VectorUnits\");\r\n        var fields = blocks.SelectMany(block => block.Fields).ToArray();\r\n        Assert.Equal(fields.Length, fields.Select(field => field.Id).Distinct().Count());\r\n    }\r\n\r\n    [Fact]\r\n    public void PspUsesNativeResolutionDimensionsAndDedicatedCheatsTab()\r\n    {\r\n        var configuration = new MachineConfiguration(ModelConstants.Psp, \"ppsspp\");\r\n        var fields = SettingsDescriptionFunctions.Create(configuration).SelectMany(block => block.Fields).ToArray();\r\n        var resolution = Assert.Single(fields, field => field.Id == \"ppsspp_internal_resolution\");\r\n        Assert.Equal(\"1× (480 × 272 px)\", Assert.Single(resolution.Choices!, choice => choice.Id == \"480x272\").InvariantDisplayValue);\r\n        Assert.Equal(\"2× (960 × 544 px)\", Assert.Single(resolution.Choices!, choice => choice.Id == \"960x544\").InvariantDisplayValue);\r\n        Assert.Equal(EmulationMachineTab.Cheats, Assert.Single(fields, field => field.Id == \"ppsspp_cheats\").Tab);\r\n        var port = Assert.Single(InputSettingsFunctions.Describe(configuration).ControllerPorts);\r\n        Assert.Equal(16, port.Bindings.Definitions.Count);\r\n        Assert.Equal(new[] { EmulationControllerVisualIds.SonyPsp1000, EmulationControllerVisualIds.SonyPsp2000,\r\n            EmulationControllerVisualIds.SonyPsp3000, EmulationControllerVisualIds.SonyPspGo }, port.Bindings.CompatibleVisualIds);\r\n    }\r\n\r\n    [Fact]\r\n    public void MemoryStickRemovalKeepsItsDirectoryAndUpdatesTheNativeInsertionFlag()\r\n    {\r\n        var directory = Path.GetTempPath();\r\n        var configuration = new MachineConfiguration(ModelConstants.Psp, \"ppsspp\", Options: new Dictionary<string, string>\r\n        { [StorageSettingsFunctionsConstants.MemoryCardPathOptionPrefix + 0] = directory });\r\n        var storage = StorageSettingsFunctions.Describe(configuration);\r\n        var stick = Assert.Single(storage.AvailableDevices, device => device.MediaType == EmulationMediaType.MemoryCard);\r\n        Assert.False(stick.IsPermanent);\r\n        Assert.Equal(EmulationStorageConfigurationKind.None, stick.ConfigurationKind);\r\n        Assert.Contains(stick.Slot, storage.ConfiguredSlots);\r\n        var removed = StorageSettingsFunctions.Apply(configuration, storage with\r\n        { ConfiguredSlots = storage.ConfiguredSlots.Where(slot => slot != stick.Slot).ToArray(), DeviceSettings = [] });\r\n        Assert.Equal(\"disabled\", removed.Options![\"ppsspp_memstick_inserted\"]);\r\n        Assert.Equal(directory, removed.Options[StorageSettingsFunctionsConstants.MemoryCardPathOptionPrefix + 0]);\r\n        Assert.Equal(directory, GWGUI.Emulation.Sony.Emulators.Ppsspp.Services.ExternalCore.ResolveSaveDirectory(removed, \"fallback\"));\r\n        var restored = StorageSettingsFunctions.Apply(removed, storage);\r\n        Assert.Equal(\"enabled\", restored.Options![\"ppsspp_memstick_inserted\"]);\r\n        Assert.Equal(directory, restored.Options[StorageSettingsFunctionsConstants.MemoryCardPathOptionPrefix + 0]);\r\n    }\r\n\r\n    [Fact]\r\n    public void Rpcs3SeparatesBluRayInternalStorageNetworkAndSystemOptions()\r\n    {\r\n        var configuration = new MachineConfiguration(ModelConstants.PlayStation3, \"rpcs3\");\r\n        var storage = StorageSettingsFunctions.Describe(configuration);\r\n        var disc = Assert.Single(storage.AvailableDevices, device => device.MediaType == EmulationMediaType.CompactDisc);\r\n        Assert.Equal(\"Blu-ray\", disc.DisplayLabel);\r\n        Assert.Equal(\"rpcs3_emulate_bdvd_speed\", Assert.Single(disc.ConfigurationFields!).Id);\r\n        var hdd = Assert.Single(storage.AvailableDevices, device => device.MediaType == EmulationMediaType.HardDisk);\r\n        Assert.True(hdd.IsPermanent);\r\n        Assert.Contains(hdd.Slot, storage.ConfiguredSlots);\r\n        Assert.Equal(EmulationStorageConfigurationKind.ManagedStorage, hdd.ConfigurationKind);\r\n        Assert.Null(hdd.HardDiskFormats);\r\n        Assert.Equal(new[] { \"rpcs3_disk_cache_size\", \"rpcs3_emulate_hdd_speed\" }, hdd.ConfigurationFields!.Select(field => field.Id).Order());\r\n        var cache = hdd.ConfigurationFields.Single(field => field.Id == \"rpcs3_disk_cache_size\");\r\n        Assert.Equal(\"Emulation.Storage.Cache.Unlimited\", cache.Choices![0].DisplayResourceKey);\r\n        Assert.Null(cache.Choices[0].InvariantDisplayValue);\r\n        var fields = SettingsDescriptionFunctions.Create(configuration).SelectMany(block => block.Fields).ToArray();\r\n        Assert.DoesNotContain(fields, field => field.Id is \"rpcs3_disk_cache_size\" or \"rpcs3_emulate_hdd_speed\" or \"rpcs3_emulate_bdvd_speed\");\r\n        Assert.Equal(EmulationMachineTab.Ethernet, Assert.Single(fields, field => field.Id == \"rpcs3_network_enabled\").Tab);\r\n        Assert.DoesNotContain(fields, field => field.Id == \"rpcs3_language\");\r\n        Assert.Equal(EmulationMachineTab.Cheats, Assert.Single(fields, field => field.Id == \"rpcs3_database_override\").Tab);\r\n        Assert.Equal(EmulationMachineTab.Rom, Assert.Single(fields, field => field.Id == \"rpcs3_license_area\").Tab);\r\n        Assert.True(Assert.Single(fields, field => field.Id == \"rpcs3_enter_button\").IsGlobalControllerOption);\r\n        Assert.Equal(EmulationMachineTab.Controllers, Assert.Single(fields, field => field.Id == \"rpcs3_enter_button\").Tab);\r\n        foreach (var key in new[] { \"rpcs3_show_trophy_popups\", \"rpcs3_show_ppu_compilation_hint\", \"rpcs3_show_shader_compilation_hint\" })\r\n            Assert.Equal(EmulationMachineTab.Video, Assert.Single(fields, field => field.Id == key).Tab);\r\n        Assert.Equal(EmulationMachineTab.Video, Assert.Single(fields, field => field.Id == \"rpcs3_disable_hw_blending\").Tab);\r\n        var selected = StorageSettingsFunctions.Apply(configuration, storage with\r\n        { DeviceSettings = [new(hdd.Slot, Options: new Dictionary<string, string> { [\"rpcs3_disk_cache_size\"] = \"wipe\" })] });\r\n        Assert.Equal(\"wipe\", selected.Options![\"rpcs3_disk_cache_size\"]);\r\n    }\r\n\r\n    [Fact]\r\n    public void Rpcs3ControllerCountPreservesHiddenAssignments()\r\n    {\r\n        var configuration = new MachineConfiguration(ModelConstants.PlayStation3, \"rpcs3\",\r\n            Input: new InputConfiguration(ControllerBindings: [new ControllerBinding(6, ControllerType.Joystick,\r\n                ButtonMappings: new Dictionary<string, string> { [\"B\"] = \"Keyboard:A\" })]));\r\n        var one = InputSettingsFunctions.Describe(configuration);\r\n        Assert.Single(one.ControllerPorts);\r\n        var smaller = InputSettingsFunctions.Apply(configuration, one);\r\n        Assert.Equal(\"Keyboard:A\", smaller.Input!.ControllerBindings!.Single(binding => binding.Port == 6).ButtonMappings![\"B\"]);\r\n        var expanded = smaller with { Options = new Dictionary<string, string> { [\"input.controllerCount\"] = \"7\" } };\r\n        var seven = InputSettingsFunctions.Describe(expanded);\r\n        Assert.Equal(7, seven.ControllerPorts.Count);\r\n        Assert.Equal(\"Keyboard:A\", seven.ControllerPorts[6].Bindings.Values[\"B\"]);\r\n        var selector = Assert.Single(SettingsDescriptionFunctions.Create(expanded).SelectMany(block => block.Fields), field => field.Id == \"input.controllerCount\");\r\n        Assert.True(selector.IsGlobalControllerOption);\r\n        Assert.True(selector.RefreshSettingsOnChange);\r\n    }\r\n\r\n    [Theory]\r\n    [InlineData(\"disabled\", \"0,1\")]\r\n    [InlineData(\"port1\", \"0,1,2,3,4\")]\r\n    [InlineData(\"port2\", \"0,1,5,6,7\")]\r\n    [InlineData(\"both\", \"0,1,2,3,4,5,6,7\")]\r\n    public void Pcee2MultitapExposesThePhysicalMemoryCardSlots(string mode, string indexes)\r\n    {\r\n        var configuration = new MachineConfiguration(ModelConstants.PlayStation2, \"pcee2\",\r\n            Options: new Dictionary<string, string> { [\"pcsx2_multitap\"] = mode });\r\n        var expected = indexes.Split(',').Select(int.Parse).ToArray();\r\n        var cards = StorageSettingsFunctions.Describe(configuration).AvailableDevices\r\n            .Where(device => device.MediaType == EmulationMediaType.MemoryCard).ToArray();\r\n        Assert.Equal(expected, cards.Select(card => card.Slot.Index));\r\n        Assert.Equal(expected.Select(GWGUI.Emulation.Sony.Emulators.Pcee2.Functions.MemoryCardFunctions.NativeFileName),\r\n            GWGUI.Emulation.Sony.Emulators.Common.Interop.Functions.MemoryCardFunctions.NativeFileNames(configuration));\r\n        Assert.All(cards, card => Assert.Equal(\r\n            GWGUI.Emulation.Sony.Emulators.Pcee2.Functions.MemoryCardFunctions.DisplayLabel(card.Slot.Index), card.DisplayLabel));\r\n        Assert.All(cards, card => Assert.Null(card.DisplayLabelResourceKey));\r\n    }\r\n\r\n    [Fact]\r\n    public void Pcee2MultitapCardsUseTheMatchingIniKeysAndKeepUnrelatedSettings()\r\n    {\r\n        var configuration = new MachineConfiguration(ModelConstants.PlayStation2, \"pcee2\",\r\n            Options: new Dictionary<string, string>\r\n            {\r\n                [\"pcsx2_multitap\"] = \"port2\",\r\n                [StorageSettingsFunctionsConstants.MemoryCardEnabledOptionPrefix + 5] = \"True\",\r\n                [StorageSettingsFunctionsConstants.MemoryCardPathOptionPrefix + 5] = \"selected.ps2\"\r\n            });\r\n        var lines = GWGUI.Emulation.Sony.Emulators.Pcee2.Functions.MemoryCardFunctions.BuildSettings(configuration,\r\n            [\"[MemoryCards]\", \"Slot1_Enable = true\", \"Multitap2_Slot2_Enable = false\", \"[Other]\", \"Keep = yes\"]);\r\n        Assert.Contains(\"Slot1_Enable = true\", lines);\r\n        Assert.Contains(\"[Other]\", lines);\r\n        Assert.Contains(\"Keep = yes\", lines);\r\n        Assert.Contains(\"Multitap2_Slot2_Enable = true\", lines);\r\n        Assert.Contains(\"Multitap2_Slot2_Filename = Mcd-Multitap2-Slot02.ps2\", lines);\r\n        Assert.Contains(\"Multitap1_Slot2_Enable = false\", lines);\r\n        Assert.Contains(\"Multitap2_Slot3_Enable = false\", lines);\r\n        Assert.Single(lines, line => line.StartsWith(\"Multitap2_Slot2_Enable =\", StringComparison.Ordinal));\r\n        var disabled = configuration with { Options = new Dictionary<string, string> { [\"pcsx2_multitap\"] = \"disabled\" } };\r\n        var cleared = GWGUI.Emulation.Sony.Emulators.Pcee2.Functions.MemoryCardFunctions.BuildSettings(disabled, lines);\r\n        Assert.Contains(\"Multitap2_Slot2_Enable = false\", cleared);\r\n        Assert.DoesNotContain(\"Multitap2_Slot2_Enable = true\", cleared);\r\n    }\r\n\r\n    [Theory]\r\n    [InlineData(\"pcsx2\")]\r\n    [InlineData(\"pcee2\")]\r\n    [InlineData(\"play\")]\r\n    public void ControllerChoicesContainOnlySupportedDevices(string emulator)\r\n    {\r\n        var configuration = new MachineConfiguration(ModelConstants.PlayStation2, emulator);\r\n        var settings = InputSettingsFunctions.Describe(configuration);\r\n        Assert.All(settings.ControllerPorts, port =>\r\n        {\r\n            Assert.DoesNotContain(port.ControllerChoices, choice => choice.Id == \"BuzzBuzzers\");\r\n            Assert.All(port.ControllerChoices, choice => Assert.True(\r\n                GWGUI.Emulation.Sony.Common.Machines.Common.Dictionaries.ControllerCatalog.IsSupported(\r\n                    configuration, Enum.Parse<GWGUI.Emulation.Sony.Common.Machines.Common.Enums.ControllerType>(choice.Id),\r\n                    port.Number - 1, port.IsUsb)));\r\n            Assert.Contains(port.ControllerChoices, choice => choice.Id == port.SelectedControllerId);\r\n        });\r\n    }\r\n\r\n    [Theory]\r\n    [InlineData(\"pcsx2\", \"None,Keyboard,Mouse\")]\r\n    [InlineData(\"pcee2\", \"None,GunCon2\")]\r\n    [InlineData(\"play\", \"None\")]\r\n    public void UsbChoicesComeFromTheEmulatorAdapter(string emulator, string expected)\r\n    {\r\n        var settings = InputSettingsFunctions.Describe(new MachineConfiguration(ModelConstants.PlayStation2, emulator));\r\n        Assert.All(settings.ControllerPorts.Where(port => port.IsUsb),\r\n            port => Assert.Equal(expected.Split(','), port.ControllerChoices.Select(choice => choice.Id)));\r\n    }\r\n\r\n    [Fact]\r\n    public void SelectedPcee2GunConIsSentThroughTheNativeLightgunOption()\r\n    {\r\n        var configuration = new MachineConfiguration(ModelConstants.PlayStation2, \"pcee2\",\r\n            Input: new InputConfiguration(ControllerBindings:\r\n                [new ControllerBinding(0, GWGUI.Emulation.Sony.Common.Machines.Common.Enums.ControllerType.GunCon2),\r\n                 new ControllerBinding(1, GWGUI.Emulation.Sony.Common.Machines.Common.Enums.ControllerType.None)]));\r\n        var native = GWGUI.Emulation.Sony.Emulators.Pcee2.Functions.ControllerConfigurationFunctions.Configure(configuration);\r\n        Assert.Equal(GWGUI.Emulation.Sony.Emulators.Pcee2.Constants.OptionConstants.LightgunUsb1,\r\n            native.Options![GWGUI.Emulation.Sony.Emulators.Pcee2.Constants.OptionConstants.LightgunKey]);\r\n        var route = Assert.Single(GWGUI.Emulation.Sony.Emulators.Pcee2.Functions.ControllerConfigurationFunctions.CreatePorts(native),\r\n            port => port.ConfigurationPort == 0);\r\n        Assert.Equal(0u, route.NativePort);\r\n        Assert.False(route.CanChangeWhileRunning);\r\n    }\r\n\r\n    [Theory]\r\n    [InlineData(GWGUI.Emulation.Sony.Common.Machines.Common.Enums.ControllerType.Keyboard, \"USB Keyboard\", 3u)]\r\n    [InlineData(GWGUI.Emulation.Sony.Common.Machines.Common.Enums.ControllerType.Mouse, \"USB Mouse\", 2u)]\r\n    public void SelectedLrps2UsbDeviceIsSentAsTheAdvertisedNativeType(\r\n        GWGUI.Emulation.Sony.Common.Machines.Common.Enums.ControllerType type, string name, uint id)\r\n    {\r\n        var configuration = new MachineConfiguration(ModelConstants.PlayStation2, \"pcsx2\",\r\n            Input: new InputConfiguration(UsbBindings: [new ControllerBinding(0, type)]));\r\n        var native = InputSettingsFunctions.NativeUsbType(configuration, 0,\r\n            GWGUI.Emulation.Sony.Common.Machines.Common.Enums.ControllerType.Joystick);\r\n        Assert.Equal(type, native);\r\n        IReadOnlyList<IReadOnlyList<GWGUI.Emulation.Sony.Emulators.Common.Interop.Contracts.ControllerDevice>> devices =\r\n            [[new GWGUI.Emulation.Sony.Emulators.Common.Interop.Contracts.ControllerDevice(name, id)]];\r\n        Assert.Equal(id, GWGUI.Emulation.Sony.Emulators.Common.Interop.Functions.ControllerPortFunctions.Resolve(native, 0, devices));\r\n    }\r\n\r\n    [Theory]\r\n    [InlineData(\"pcsx2\")]\r\n    public void UsbKeyboardAndMouseUseTheirDedicatedTabs(string emulator)\r\n    {\r\n        var configuration = new MachineConfiguration(ModelConstants.PlayStation2, emulator);\r\n        var original = InputSettingsFunctions.Describe(configuration);\r\n        Assert.False(InputSettingsFunctions.HasUsbKeyboard(configuration));\r\n        Assert.False(InputSettingsFunctions.HasUsbMouse(configuration));\r\n        var usbNumber = 0;\r\n        var edited = original with { ControllerPorts = original.ControllerPorts.Select(port => !port.IsUsb ? port\r\n            : port with { SelectedControllerId = usbNumber++ == 0 ? \"Keyboard\" : \"Mouse\" }).ToArray() };\r\n        var saved = InputSettingsFunctions.Apply(configuration, edited);\r\n        Assert.True(InputSettingsFunctions.HasUsbKeyboard(saved));\r\n        Assert.True(InputSettingsFunctions.HasUsbMouse(saved));\r\n        var restored = InputSettingsFunctions.Describe(saved);\r\n        Assert.NotEmpty(restored.Keyboard!.Definitions);\r\n        Assert.NotEmpty(restored.Mouse!.Definitions);\r\n        Assert.All(restored.ControllerPorts.Where(port => port.IsUsb), port => Assert.Empty(port.Bindings.Definitions));\r\n        var removed = InputSettingsFunctions.Apply(saved, restored with\r\n        { ControllerPorts = restored.ControllerPorts.Select(port => port.IsUsb ? port with { SelectedControllerId = \"None\" } : port).ToArray() });\r\n        Assert.False(InputSettingsFunctions.HasUsbKeyboard(removed));\r\n        Assert.False(InputSettingsFunctions.HasUsbMouse(removed));\r\n    }\r\n\r\n    [Theory]\r\n    [InlineData(ModelConstants.PlayStation, \"swanstation\")]\r\n    [InlineData(ModelConstants.PlayStation2, \"pcsx2\")]\r\n    public void ModelSpecificAsciiButtonSurvivesConfigurationRoundTrip(string model, string emulator)\r\n    {\r\n        var configuration = new MachineConfiguration(model, emulator);\r\n        var settings = InputSettingsFunctions.Describe(configuration);\r\n        var port = settings.ControllerPorts.First(item => !item.IsUsb);\r\n        var edited = port with { SelectedControllerId = \"Joystick\", VisualId = EmulationControllerVisualIds.SonyAsciiSpecializedPad,\r\n            Bindings = port.Bindings with { Values = new Dictionary<string, string> { [\"Slow\"] = \"Keyboard:F1\" } } };\r\n        var saved = InputSettingsFunctions.Apply(configuration, settings with\r\n        { ControllerPorts = settings.ControllerPorts.Select(item => item.Number == port.Number ? edited : item).ToArray() });\r\n        var restored = Assert.Single(InputSettingsFunctions.Describe(saved).ControllerPorts, item => item.Number == port.Number);\r\n        Assert.Contains(restored.Bindings.Definitions, definition => definition.Id == \"Slow\");\r\n        Assert.Equal(\"Keyboard:F1\", restored.Bindings.Values[\"Slow\"]);\r\n    }\r\n\r\n    [Theory]\r\n    [InlineData(ModelConstants.PlayStation, \"swanstation\")]\r\n    [InlineData(ModelConstants.PlayStation2, \"pcsx2\")]\r\n    [InlineData(ModelConstants.PlayStation2, \"pcee2\")]\r\n    [InlineData(ModelConstants.PlayStation2, \"play\")]\r\n    public void DanceMatKeepsAllPrintedControlsAndIndependentDirections(string model, string emulator)\r\n    {\r\n        var port = InputSettingsFunctions.Describe(new MachineConfiguration(model, emulator)).ControllerPorts\r\n            .First(item => item.ControllerChoices.Any(choice => choice.Id == \"DanceMat\"));\r\n        var mat = Assert.Single(port.ControllerChoices, choice => choice.Id == \"DanceMat\");\r\n        Assert.Equal(EmulationControllerVisualIds.SonyDanceMat, mat.DefaultVisualId);\r\n        Assert.Equal(10, mat.BindingDefinitions!.Count);\r\n        Assert.Equal(10, mat.VisualCommandIds!.Count);\r\n        foreach (var key in new[] { \"Up\", \"Down\", \"Left\", \"Right\" })\r\n            Assert.Null(Assert.Single(mat.BindingDefinitions, binding => binding.Id == key).OppositeDirectionId);\r\n        Assert.Equal(1u, GWGUI.Emulation.Sony.Emulators.Common.Interop.Functions.ControllerPortFunctions.Resolve(\r\n            GWGUI.Emulation.Sony.Common.Machines.Common.Enums.ControllerType.DanceMat, 0, []));\r\n    }\r\n\r\n    [Theory]\r\n    [InlineData(\"pcsx2\", true)]\r\n    [InlineData(\"pcee2\", false)]\r\n    [InlineData(\"play\", false)]\r\n    public void Ps2DvdOnlyOffersConfigurationWhenNativeFieldsExist(string emulator, bool configurable)\r\n    {\r\n        var device = Assert.Single(StorageSettingsFunctions.Describe(new MachineConfiguration(ModelConstants.PlayStation2, emulator))\r\n            .AvailableDevices, item => item.MediaType == EmulationMediaType.CompactDisc);\r\n        Assert.Equal(\"DVD\", device.DisplayLabel);\r\n        Assert.Equal(\"Emulation.Sony.Storage.DVD.Device\", device.TypeResourceKey);\r\n        Assert.True(device.IsPermanent);\r\n        Assert.Equal(configurable ? EmulationStorageConfigurationKind.CompactDiscDrive : EmulationStorageConfigurationKind.None, device.ConfigurationKind);\r\n        Assert.Equal(configurable, device.ConfigurationFields!.Count > 0);\r\n    }\r\n\r\n    [Theory]\r\n    [InlineData(false)]\r\n    [InlineData(true)]\r\n    public void Pcee2EthernetPreservesUnrelatedNativeSettings(bool enabled)\r\n    {\r\n        string[] original = [\"[Other]\", \"Value = keep\", \"[DEV9/Eth]\", \"EthEnable = old\", \"EthApi = old\", \"Custom = keep\", \"[Next]\", \"Value = also keep\"];\r\n        var updated = GWGUI.Emulation.Sony.Emulators.Pcee2.Functions.NetworkFunctions.BuildSettings(original, enabled);\r\n        Assert.Contains(\"EthEnable = \" + (enabled ? \"true\" : \"false\"), updated);\r\n        Assert.Contains(\"EthApi = Sockets\", updated);\r\n        Assert.Contains(\"EthDevice = Auto\", updated);\r\n        Assert.Contains(\"InterceptDHCP = true\", updated);\r\n        Assert.Contains(\"Custom = keep\", updated);\r\n        Assert.Contains(\"Value = keep\", updated);\r\n        Assert.Contains(\"Value = also keep\", updated);\r\n        Assert.Equal(\"EthEnable = old\", original[3]);\r\n        Assert.Equal(updated, GWGUI.Emulation.Sony.Emulators.Pcee2.Functions.NetworkFunctions.BuildSettings(updated, enabled));\r\n    }\r\n\r\n    [Fact]\r\n    public void Pcee2UsesNamedNativeModesAndToggleRecompilers()\r\n    {\r\n        var fields = SettingsDescriptionFunctions.Create(new MachineConfiguration(ModelConstants.PlayStation2, \"pcee2\"))\r\n            .SelectMany(block => block.Fields).ToArray();\r\n        var deinterlace = Assert.Single(fields, field => field.Id == \"pcsx2_deinterlace_mode\");\r\n        Assert.Equal(EmulationSettingsEditor.Selection, deinterlace.Editor);\r\n        Assert.Equal(10, deinterlace.Choices!.Count);\r\n        Assert.Equal(\"Emulation.Sony.Video.Deinterlace.9\", Assert.Single(deinterlace.Choices, choice => choice.Id == \"9\").DisplayResourceKey);\r\n        var clock = Assert.Single(fields, field => field.Id == \"pcsx2_ee_cycle_rate\");\r\n        Assert.Equal(\"50 %\", Assert.Single(clock.Choices!, choice => choice.Id == \"-3\").InvariantDisplayValue);\r\n        Assert.Equal(\"100 %\", Assert.Single(clock.Choices!, choice => choice.Id == \"0\").InvariantDisplayValue);\r\n        foreach (var key in new[] { \"cpu_recompiler\", \"rec_ee\", \"rec_iop\", \"rec_vu0\", \"rec_vu1\" })\r\n            Assert.Equal(EmulationSettingsEditor.Toggle, Assert.Single(fields, field => field.Id == \"pcsx2_\" + key).Editor);\r\n        Assert.Equal(EmulationMachineTab.Ethernet, Assert.Single(fields, field => field.Id == \"network.ethernetEnabled\").Tab);\r\n    }\r\n\r\n    [Theory]\r\n    [InlineData(\"pcsx_rearmed\", \"pcsx_rearmed_multitap\", \"disabled\", false, false)]\r\n    [InlineData(\"pcsx_rearmed\", \"pcsx_rearmed_multitap\", \"port 1\", true, false)]\r\n    [InlineData(\"pcsx_rearmed\", \"pcsx_rearmed_multitap\", \"port 2\", false, true)]\r\n    [InlineData(\"pcsx_rearmed\", \"pcsx_rearmed_multitap\", \"ports 1 and 2\", true, true)]\r\n    [InlineData(\"swanstation\", \"swanstation_ControllerPorts_MultitapMode\", \"Disabled\", false, false)]\r\n    [InlineData(\"swanstation\", \"swanstation_ControllerPorts_MultitapMode\", \"Port1Only\", true, false)]\r\n    [InlineData(\"swanstation\", \"swanstation_ControllerPorts_MultitapMode\", \"Port2Only\", false, true)]\r\n    [InlineData(\"swanstation\", \"swanstation_ControllerPorts_MultitapMode\", \"BothPorts\", true, true)]\r\n    [InlineData(\"pcee2\", \"pcsx2_multitap\", \"disabled\", false, false)]\r\n    [InlineData(\"pcee2\", \"pcsx2_multitap\", \"port1\", true, false)]\r\n    [InlineData(\"pcee2\", \"pcsx2_multitap\", \"port2\", false, true)]\r\n    [InlineData(\"pcee2\", \"pcsx2_multitap\", \"both\", true, true)]\r\n    public void MultitapUsesTwoSwitchesAndRoundTripsNativeValues(string emulator, string key, string native, bool first, bool second)\r\n    {\r\n        var configuration = new MachineConfiguration(emulator == \"pcee2\" ? ModelConstants.PlayStation2 : ModelConstants.PlayStation,\r\n            emulator, Options: new Dictionary<string, string> { [key] = native });\r\n        var fields = SettingsDescriptionFunctions.Create(configuration).SelectMany(block => block.Fields).ToArray();\r\n        Assert.DoesNotContain(fields, field => field.Id == key);\r\n        var port1 = Assert.Single(fields, field => field.Id == key + \".port1\");\r\n        var port2 = Assert.Single(fields, field => field.Id == key + \".port2\");\r\n        Assert.Equal(EmulationSettingsEditor.Toggle, port1.Editor);\r\n        Assert.Equal(EmulationSettingsEditor.Toggle, port2.Editor);\r\n        Assert.Equal(first ? EmulationSettingConstants.Enabled : EmulationSettingConstants.Disabled, port1.Value);\r\n        Assert.Equal(second ? EmulationSettingConstants.Enabled : EmulationSettingConstants.Disabled, port2.Value);\r\n        using var http = new HttpClient();\r\n        var module = new SonyEmulationModule(Environment.CurrentDirectory, Environment.CurrentDirectory, http, Environment.CurrentDirectory);\r\n        var updated = Assert.IsType<MachineConfiguration>(module.ApplySettings(configuration, new Dictionary<string, string?>\r\n        {\r\n            [port1.Id] = port1.Value, [port2.Id] = port2.Value\r\n        }));\r\n        Assert.Equal(native, updated.Options![key]);\r\n        Assert.DoesNotContain(updated.Options.Keys, option => option.StartsWith(key + \".port\", StringComparison.Ordinal));\r\n    }\r\n\r\n    [Fact]\r\n    public void CdReadAheadNamesWholeDiscAndPreservesSectorCounts()\r\n    {\r\n        var fields = StorageSettingsFunctions.Describe(new MachineConfiguration(ModelConstants.PlayStation, \"pcsx_rearmed\"))\r\n            .AvailableDevices.Single(device => device.MediaType == EmulationMediaType.CompactDisc).ConfigurationFields!;\r\n        var field = Assert.Single(fields, item => item.Id == \"pcsx_rearmed_cd_readahead\");\r\n        Assert.Equal(\"Visual.SectorsUnit\", field.ValueUnitResourceKey);\r\n        Assert.Equal(\"12\", field.Value);\r\n        Assert.Equal(\"12\", Assert.Single(field.Choices!, choice => choice.Id == \"12\").InvariantDisplayValue);\r\n        var whole = Assert.Single(field.Choices!, choice => choice.Id == \"333000\");\r\n        Assert.Equal(\"Emulation.Sony.CD.ReadWholeDisc\", whole.DisplayResourceKey);\r\n        Assert.Null(whole.InvariantDisplayValue);\r\n        Assert.Equal(\"Emulation.Option.Sony.Value.Disabled\", Assert.Single(field.Choices!, choice => choice.Id == \"0\").DisplayResourceKey);\r\n        var swan = StorageSettingsFunctions.Describe(new MachineConfiguration(ModelConstants.PlayStation, \"swanstation\"))\r\n            .AvailableDevices.Single(device => device.MediaType == EmulationMediaType.CompactDisc).ConfigurationFields!\r\n            .Single(item => item.Id == \"swanstation_CDROM_ReadaheadSectors\");\r\n        Assert.Equal(\"Visual.SectorsUnit\", swan.ValueUnitResourceKey);\r\n        Assert.True(swan.UseChoiceLabelsForSlider);\r\n    }\r\n\r\n    [Fact]\r\n    public void BeetleHardwareSeparatesFiltersTexturePacksAndCaches()\r\n    {\r\n        var blocks = SettingsDescriptionFunctions.Create(new MachineConfiguration(ModelConstants.PlayStation, \"mednafen_psx_hw\"));\r\n        var filters = Assert.Single(blocks, block => block.TitleResourceKey == \"Emulation.Sony.Video.ImageFilters\");\r\n        Assert.Contains(filters.Fields, field => field.Id == \"beetle_psx_hw_msaa\");\r\n        Assert.Contains(filters.Fields, field => field.Id == \"beetle_psx_hw_super_sampling\");\r\n        var packs = Assert.Single(blocks, block => block.TitleResourceKey == \"Emulation.Sony.Video.TexturePacks\");\r\n        Assert.Contains(packs.Fields, field => field.Id == \"beetle_psx_hw_hd_dump_mode\");\r\n        var cache = Assert.Single(blocks, block => block.TitleResourceKey == \"Emulation.Sony.Video.TextureCache\");\r\n        Assert.Contains(cache.Fields, field => field.Id == \"beetle_psx_hw_hd_cache_vram_budget\");\r\n        Assert.Contains(cache.Fields, field => field.Id == \"beetle_psx_hw_hd_cache_ram_budget\");\r\n    }\r\n}\r\n",
+          "path": "tests/GWGUI.Tests/Emulation/Sony/SettingsPresentationTests.cs",
+          "exists": true
+        },
+        {
+          "origin": "HEAD 53f8acd87",
+          "source": "namespace GWGUI.Emulation.Sony.Emulators.Pcsx2.Constants;\n\ninternal static class Pcsx2Constants\n{\n    internal const string LibraryFileName = \"pcsx2_libretro.dll\";\n    internal const string OfficialPackageUrl = \"https://buildbot.libretro.com/nightly/windows/x86_64/latest/pcsx2_libretro.dll.zip\";\n    internal static CoreReleaseSettings ReleaseSettings { get; } = new(new Uri(OfficialPackageUrl), LibraryFileName, LibraryFileName, DisplayName);\n\n    internal const string Id = \"pcsx2\";\n    internal const string DisplayName = \"PCSX2\";\n    internal const string LibraryName = \"PCSX2\";\n    internal const string CurrentLibraryName = \"LRPS2\";\n    internal const string DescriptionResourceKey = \"Emulation.Emulator.pcsx2.Description\";\n    internal const string CoreHostCommand = \"--sony-pcsx2-core-host\";\n}\n",
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Constants/Pcsx2Constants.cs",
+          "exists": true,
+          "sha256": "9AFED5D46050A1DBF9BCFF9F01BDFB971F4105132C0BE51DB6DC3F08BB946066"
+        },
+        {
+          "origin": "HEAD 53f8acd87",
+          "source": "using ExternalHostCallbacks = GWGUI.Emulation.Sony.Emulators.Common.Interop.Services.ExternalHostCallbacks;\nusing ExternalCoreInteropConstants = GWGUI.Emulation.Sony.Emulators.Common.Interop.Constants.ExternalCoreInteropConstants;\nusing System.IO;\nusing System.Runtime.InteropServices;\nusing System.Security.Cryptography;\nusing GWGUI.Emulation.Sony.Emulators.Pcsx2.Exceptions;\nusing GWGUI.Emulation.Sony.Emulators.Pcsx2.Constants;\nusing NativeControllerFunctions = GWGUI.Emulation.Sony.Emulators.Common.Interop.Functions.ControllerPortFunctions;\nusing NativeControllerDevice = GWGUI.Emulation.Sony.Emulators.Common.Interop.Contracts.ControllerDevice;\nusing NativeMemoryCards = GWGUI.Emulation.Sony.Emulators.Common.Interop.Functions.MemoryCardFunctions;\nusing NativeFirmware = GWGUI.Emulation.Sony.Emulators.Common.Interop.Functions.FirmwareRuntimeFunctions;\nusing FirmwareConstants = GWGUI.Emulation.Sony.Emulators.Pcsx2.Constants.FirmwareConstants;\n\nnamespace GWGUI.Emulation.Sony.Emulators.Pcsx2.Services;\n\ninternal sealed class ExternalCore : IEmulatorCore\n{\n    private readonly string _corePath;\n    private ExternalCoreLibrary? _library;\n    private ExternalHostCallbacks? _host;\n    private ExternalCoreApi.VoidCall? _deinitialize;\n    private ExternalCoreApi.VoidCall? _unloadGame;\n    private ExternalCoreApi.VoidCall? _run;\n    private ExternalCoreApi.VoidCall? _reset;\n    private ExternalCoreApi.SetControllerPortDevice? _setControllerPortDevice;\n    private ExternalCoreApi.GetSerializedSize? _getSerializedSize;\n    private ExternalCoreApi.Serialize? _serialize;\n    private ExternalCoreApi.Serialize? _unserialize;\n    private MachineConfiguration? _configuration;\n    private string? _sessionDirectory;\n    private string? _saveDirectory;\n    private bool _gameLoaded;\n    private bool _initialized;\n    private bool _disposing;\n    private readonly List<(string Source, string Native)> _memoryCardFiles = [];\n    private IReadOnlyList<(string Source, string Native, int Size)> _firmwareFiles = [];\n\n    internal ExternalCore(string corePath) => _corePath = corePath;\n\n    public VideoFrame? LatestVideoFrame => _host?.LatestVideoFrame;\n    public AudioChunk? LatestAudioChunk => _host?.LatestAudioChunk;\n    public IReadOnlyList<CoreOption> Options => _host?.OptionCatalog ?? [];\n    public IReadOnlyList<string> Diagnostics => _host?.Diagnostics ?? [];\n    public IReadOnlyDictionary<int, bool> LedStates => _host?.LedStates ?? new Dictionary<int, bool>();\n    public bool ShutdownRequested => _host?.ShutdownRequested ?? false;\n    public IReadOnlyList<ControllerFeedbackState> ControllerFeedback => _host?.Feedback.Snapshot() ?? [];\n    public string CoreName { get; private set; } = string.Empty;\n    public string CoreVersion { get; private set; } = string.Empty;\n    public IReadOnlySet<string> SupportedContentExtensions { get; private set; } =\n        new HashSet<string>(StringComparer.OrdinalIgnoreCase);\n    public string CoreSha256 { get; private set; } = string.Empty;\n    public double FramesPerSecond => _host?.FramesPerSecond ?? 50d;\n    public int SampleRate => _host?.SampleRate ?? 44_100;\n    public int DiskCount => _host?.DiskControl.ImageCount ?? 0;\n    public int CurrentDiskIndex => _host?.DiskControl.CurrentIndex ?? -1;\n\n    public bool TryDequeueAudio(out AudioChunk? chunk)\n    {\n        if (_host is not null) return _host.TryDequeueAudio(out chunk);\n        chunk = null;\n        return false;\n    }\n\n    public void Initialize(MachineConfiguration configuration, string sessionDirectory, string? saveDirectory = null)\n    {\n        Functions.FileSystemFunctions.Validate(configuration);\n        configuration = Functions.HardDiskRuntimeFunctions.Configure(configuration);\n        _configuration = configuration;\n        _sessionDirectory = Path.GetFullPath(sessionDirectory);\n        _saveDirectory = saveDirectory is null ? null : Path.GetFullPath(saveDirectory);\n        var media = ResolveConfiguredMedia(configuration);\n        foreach (var item in media)\n            if (!File.Exists(item.Path))\n                throw new FileNotFoundException(Pcsx2Exceptions.MediaNotFound(), item.Path);\n\n        var sourceCorePath = ResolveCorePath(_corePath);\n        using (var stream = File.OpenRead(sourceCorePath))\n            CoreSha256 = Convert.ToHexString(SHA256.HashData(stream));\n\n        var systemDirectory = Path.Combine(sessionDirectory, CoreDirectoryConstants.SystemDirectoryName);\n        var contentDirectory = Path.Combine(sessionDirectory, CoreDirectoryConstants.ContentDirectoryName);\n        saveDirectory = Path.GetFullPath(saveDirectory ?? Path.Combine(sessionDirectory, CoreDirectoryConstants.SavesDirectoryName));\n        Directory.CreateDirectory(systemDirectory);\n        NativeMemoryCards.PreparePs2(configuration, systemDirectory, _memoryCardFiles);\n        FirmwareConfigurationFunctions.CopySelectedFiles(configuration, new GWGUI.Emulation.Sony.Emulators.Pcsx2.Factories.Pcsx2MachineFactory(), systemDirectory);\n        _firmwareFiles = NativeFirmware.Prepare(configuration, Pcsx2Constants.Id, FirmwareConstants.Persistence, systemDirectory, saveDirectory);\n        Directory.CreateDirectory(contentDirectory);\n        Directory.CreateDirectory(saveDirectory);\n        var isolatedCoreDirectory = Path.Combine(sessionDirectory, ExternalCoreConstants.CoreDirectory);\n        Directory.CreateDirectory(isolatedCoreDirectory);\n        var isolatedCorePath = Path.Combine(isolatedCoreDirectory, ExternalCoreConstants.LibraryName);\n        File.Copy(sourceCorePath, isolatedCorePath, true);\n        var contentPath = PrepareContentPath(media, contentDirectory);\n        var nativeSystemDirectory = Functions.FileSystemFunctions.SystemDirectory(configuration, systemDirectory);\n        Func<string, (string Path, bool IsReadOnly)>? pathResolver = nativeSystemDirectory == systemDirectory\n            ? null : path => Functions.FileSystemFunctions.Resolve(configuration, systemDirectory, path, _host?.CheatsEnabled);\n        _host = new ExternalHostCallbacks(systemDirectory, contentDirectory, saveDirectory, configuration.Options ?? new Dictionary<string, string>(),\n            emulatorId: Pcsx2Constants.Id, nativeSystemDirectory: nativeSystemDirectory, pathResolver: pathResolver);\n\n        try\n        {\n            _library = new ExternalCoreLibrary(isolatedCorePath);\n            var apiVersion = Export<ExternalCoreApi.GetApiVersion>(ExternalCoreConstants.RetroApiVersion)();\n            if (apiVersion != ExternalCoreInteropConstants.ApiVersion)\n                throw new NotSupportedException(Pcsx2Exceptions.UnsupportedApiVersion(apiVersion));\n            Export<ExternalCoreApi.GetSystemInfo>(ExternalCoreConstants.RetroGetSystemInfo)(out var info);\n            var libraryName = Marshal.PtrToStringUTF8(info.LibraryName);\n            if (!string.Equals(libraryName, Pcsx2Constants.LibraryName, StringComparison.OrdinalIgnoreCase)\n                && !string.Equals(libraryName, Pcsx2Constants.CurrentLibraryName, StringComparison.OrdinalIgnoreCase))\n                throw new InvalidDataException(Pcsx2Exceptions.LibraryIdentityMismatch(libraryName));\n            if (!info.NeedFullPath)\n                throw new InvalidDataException(Pcsx2Exceptions.FullContentPathsRequired());\n            CoreName = libraryName!;\n            CoreVersion = Marshal.PtrToStringUTF8(info.LibraryVersion) ?? string.Empty;\n            SupportedContentExtensions = ExternalCoreLibrary.ParseExtensions(info.ValidExtensions);\n            ValidateExtension(contentPath);\n\n            Export<ExternalCoreApi.SetEnvironment>(ExternalCoreConstants.RetroSetEnvironment)(_host.Environment);\n            Export<ExternalCoreApi.SetVideo>(ExternalCoreConstants.RetroSetVideoRefresh)(_host.Video);\n            Export<ExternalCoreApi.SetAudioSample>(ExternalCoreConstants.RetroSetAudioSample)(_host.AudioSample);\n            Export<ExternalCoreApi.SetAudioBatch>(ExternalCoreConstants.RetroSetAudioSampleBatch)(_host.AudioBatch);\n            Export<ExternalCoreApi.SetInputPoll>(ExternalCoreConstants.RetroSetInputPoll)(_host.InputPoll);\n            Export<ExternalCoreApi.SetInputState>(ExternalCoreConstants.RetroSetInputState)(_host.InputState);\n            _deinitialize = Export<ExternalCoreApi.VoidCall>(ExternalCoreConstants.RetroDeinit);\n            _unloadGame = Export<ExternalCoreApi.VoidCall>(ExternalCoreConstants.RetroUnloadGame);\n            _run = Export<ExternalCoreApi.VoidCall>(ExternalCoreConstants.RetroRun);\n            _reset = Export<ExternalCoreApi.VoidCall>(ExternalCoreConstants.RetroReset);\n            _getSerializedSize = Export<ExternalCoreApi.GetSerializedSize>(ExternalCoreConstants.RetroSerializeSize);\n            _serialize = Export<ExternalCoreApi.Serialize>(ExternalCoreConstants.RetroSerialize);\n            _unserialize = Export<ExternalCoreApi.Serialize>(ExternalCoreConstants.RetroUnserialize);\n            Export<ExternalCoreApi.VoidCall>(ExternalCoreConstants.RetroInit)();\n            _initialized = true;\n            _host.ValidateConfiguredOptions();\n            _setControllerPortDevice = Export<ExternalCoreApi.SetControllerPortDevice>(ExternalCoreConstants.RetroSetControllerPortDevice);\n            ApplyConfiguredControllers(requireAdvertised: false);\n\n            var loadGame = Export<ExternalCoreApi.LoadGame>(ExternalCoreConstants.RetroLoadGame);\n            if (contentPath is null)\n            {\n                if (!_host.SupportsNoGame)\n                    throw new InvalidOperationException(Pcsx2Exceptions.StartWithoutMediaUnsupported());\n                _gameLoaded = loadGame(0);\n            }\n            else _gameLoaded = LoadGame(loadGame, contentPath);\n            if (!_gameLoaded) throw new InvalidOperationException(Pcsx2Exceptions.ContentRefused());\n            ApplyConfiguredControllers(requireAdvertised: true);\n            Export<ExternalCoreApi.GetSystemAvInfo>(ExternalCoreConstants.RetroGetSystemAvInfo)(out var av);\n            _host.ApplyInitialAvInfo(av);\n            _host.HardwareRender.Reset();\n        }\n        catch\n        {\n            Dispose();\n            throw;\n        }\n    }\n\n    internal static IReadOnlyList<MediaConfiguration> ResolveConfiguredMedia(MachineConfiguration configuration) => (configuration.Media ?? []).Where(item => item.IsInserted && item.Category != MediaCategory.HardDisk).OrderBy(item => item.MountOrder).ToArray();\n\n    internal static string? PrepareContentPath(IReadOnlyList<MediaConfiguration> media, string contentDirectory)\n    {\n        if (media.Count == 0) return null;\n        if (media.Count == 1 || media.Any(item => item.Category != MediaCategory.Floppy))\n            return Path.GetFullPath(media[0].Path);\n        if (media.Count > ExternalCoreConstants.MaximumPlaylistEntries)\n            throw new ArgumentOutOfRangeException(nameof(media), Pcsx2Exceptions.PlaylistLimitExceeded());\n        var playlist = Path.Combine(contentDirectory, ExternalCoreConstants.PlaylistName);\n        File.WriteAllLines(playlist, media.Select(item => Path.GetFullPath(item.Path)), new System.Text.UTF8Encoding(false));\n        return playlist;\n    }\n\n    public void RunFrame() => (_run ?? throw new InvalidOperationException(Pcsx2Exceptions.CoreNotInitialized()))();\n    public void HardReset()\n    {\n        var configuration = _configuration ?? throw new InvalidOperationException(Pcsx2Exceptions.CoreNotInitialized());\n        var sessionDirectory = _sessionDirectory ?? throw new InvalidOperationException(Pcsx2Exceptions.CoreNotInitialized());\n        var saveDirectory = _saveDirectory;\n        Dispose();\n        Initialize(configuration, sessionDirectory, saveDirectory);\n    }\n    public void SoftReset() => (_reset ?? throw new InvalidOperationException(Pcsx2Exceptions.CoreNotInitialized()))();\n    public void SetInput(EmulationInputSnapshot snapshot)\n    {\n        if (_host is not null) _host.Input = snapshot;\n    }\n    public void SetControllerPortDevice(int port, ControllerType type)\n    {\n        var configuration = _configuration ?? throw new InvalidOperationException(Pcsx2Exceptions.CoreNotInitialized());\n        var host = _host ?? throw new InvalidOperationException(Pcsx2Exceptions.CoreNotInitialized());\n        var setter = _setControllerPortDevice ?? throw new InvalidOperationException(Pcsx2Exceptions.CoreNotInitialized());\n        ControllerFunctions.Validate(configuration, port, type);\n        var nativePorts = host.ControllerPorts.Select(devices => (IReadOnlyList<NativeControllerDevice>)devices.Select(device => new NativeControllerDevice(device.Name, device.Id)).ToArray()).ToArray();\n        var nativeType = InputSettingsFunctions.NativeUsbType(configuration, port, type);\n        var nativeId = NativeControllerFunctions.Resolve(nativeType, port, nativePorts);\n        setter((uint)port, nativeId);\n        host.SetControllerType(port, nativeType);\n        host.Feedback.ResetPort(port);\n        _configuration = ControllerFunctions.WithControllerType(configuration, port, type);\n    }\n\n    private void ApplyConfiguredControllers(bool requireAdvertised)\n    {\n        var configuration = _configuration ?? throw new InvalidOperationException(Pcsx2Exceptions.CoreNotInitialized());\n        for (var port = ControllerPortConstants.MinimumControllerPort;\n            port < ControllerFunctions.PortCount(configuration); port++)\n        {\n            var type = ControllerFunctions.Resolve(configuration, port);\n            if (!requireAdvertised && !_host!.ControllerPorts.Any()\n                && type is not (ControllerType.Joystick or ControllerType.DanceMat or ControllerType.ArcadeStick or ControllerType.None)) continue;\n            SetControllerPortDevice(port, type);\n        }\n    }\n    public void InsertMedia(string path) => (_host ?? throw new InvalidOperationException(Pcsx2Exceptions.CoreNotInitialized())).DiskControl.Insert(path);\n    public void EjectMedia() => (_host ?? throw new InvalidOperationException(Pcsx2Exceptions.CoreNotInitialized())).DiskControl.Eject();\n    public void SelectDisk(int index) => (_host ?? throw new InvalidOperationException(Pcsx2Exceptions.CoreNotInitialized())).DiskControl.Select(index);\n\n    public byte[] SaveState()\n    {\n        var size = (_getSerializedSize ?? throw new InvalidOperationException(Pcsx2Exceptions.CoreNotInitialized()))();\n        if (size == ExternalCoreInteropConstants.EmptyNativeSize || size > SavedStateConstants.MaximumStateSize)\n            throw new InvalidOperationException(Pcsx2Exceptions.InvalidStateSize(size));\n        var state = new byte[(int)size];\n        var buffer = Marshal.AllocHGlobal(state.Length);\n        try\n        {\n            if (!_serialize!(buffer, size))\n                throw new InvalidOperationException(Pcsx2Exceptions.StateSaveFailed());\n            Marshal.Copy(buffer, state, BufferConstants.FirstBufferIndex, state.Length);\n        }\n        finally { Marshal.FreeHGlobal(buffer); }\n        return state;\n    }\n\n    public void LoadState(ReadOnlySpan<byte> state)\n    {\n        if (state.IsEmpty) throw new ArgumentException(Pcsx2Exceptions.StateEmpty(), nameof(state));\n        var bytes = state.ToArray();\n        var buffer = Marshal.AllocHGlobal(bytes.Length);\n        try\n        {\n            Marshal.Copy(bytes, BufferConstants.FirstBufferIndex, buffer, bytes.Length);\n            if (!_unserialize!(buffer, (nuint)bytes.Length))\n                throw new InvalidOperationException(Pcsx2Exceptions.StateRestoreFailed());\n        }\n        finally { Marshal.FreeHGlobal(buffer); }\n    }\n\n    public void SetOption(string key, string value) => (_host ?? throw new InvalidOperationException(Pcsx2Exceptions.CoreNotInitialized())).SetOption(key, value);\n\n    public void Stop()\n    {\n        if (!_gameLoaded) return;\n        _gameLoaded = false;\n        try\n        {\n            try { _host?.HardwareRender.NotifyDestroy(); }\n            finally { _unloadGame?.Invoke(); }\n        }\n        finally\n        {\n            try { NativeMemoryCards.PersistFiles(_memoryCardFiles, StorageSettingsFunctionsConstants.Ps2MemoryCardSize); }\n            finally { _memoryCardFiles.Clear(); }\n        }\n    }\n\n    private void ValidateExtension(string? path)\n    {\n        if (path is null) return;\n        var extension = Path.GetExtension(path).TrimStart(MediaConstants.ExtensionPrefix);\n        if (!SupportedContentExtensions.Contains(extension))\n            throw new InvalidDataException(Pcsx2Exceptions.UnsupportedContentExtension(extension));\n    }\n\n    private static bool LoadGame(ExternalCoreApi.LoadGame loadGame, string path)\n    {\n        using var nativePath = new ExternalCoreUtf8String(path);\n        var game = Marshal.AllocHGlobal(Marshal.SizeOf<ExternalCoreApi.GameInfo>());\n        try\n        {\n            Marshal.StructureToPtr(new ExternalCoreApi.GameInfo { Path = nativePath.Pointer }, game, false);\n            return loadGame(game);\n        }\n        finally { Marshal.FreeHGlobal(game); }\n    }\n\n    private T Export<T>(string name) where T : Delegate => (_library ?? throw new InvalidOperationException(Pcsx2Exceptions.CoreNotLoaded())).Resolve<T>(name);\n\n    private static string ResolveCorePath(string path)\n    {\n        if (!Path.IsPathFullyQualified(path))\n            throw new ArgumentException(Pcsx2Exceptions.CorePathNotAbsolute(), nameof(path));\n        if (!File.Exists(path)) throw new FileNotFoundException(Pcsx2Exceptions.CoreNotFound(), path);\n        return path;\n    }\n\n    public void Dispose()\n    {\n        if (_disposing) return;\n        _disposing = true;\n        try\n        {\n            var callbacks = _host;\n            try { _host?.HardwareRender.NotifyDestroy(); }\n            finally\n            {\n                try { Stop(); }\n                finally\n                {\n                    try\n                    {\n                        if (_initialized) _deinitialize?.Invoke();\n                    }\n                    finally\n                    {\n                        _initialized = false;\n                        _deinitialize = null;\n                        _unloadGame = null;\n                        _run = null;\n                        _reset = null;\n                        _setControllerPortDevice = null;\n                        _getSerializedSize = null;\n                        _serialize = null;\n                        _unserialize = null;\n                        try { NativeFirmware.Persist(_firmwareFiles); }\n                        finally\n                        {\n                            _firmwareFiles = [];\n                            try { _host?.Dispose(); }\n                            finally\n                            {\n                                _host = null;\n                                try { _library?.Dispose(); }\n                                finally { GC.KeepAlive(callbacks); _library = null; }\n                            }\n                        }\n                    }\n                }\n\n            }\n\n        }\n        finally { _disposing = false; }\n    }\n}\n\n\n",
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalCore.cs",
+          "exists": true,
+          "sha256": "B20B4F40BE1BD78E10CC461511B28CB8072B445E3EED9035940ED081E4B59979"
+        },
+        {
+          "origin": "HEAD 53f8acd87",
+          "source": "using ControllerFeedbackProtocol = GWGUI.Emulation.Sony.Emulators.Common.Interop.Functions.ControllerFeedbackProtocol;\nusing GWGUI.Emulation.Sony.Emulators.Pcsx2.Exceptions;\nusing GWGUI.Emulation.Sony.Emulators.Pcsx2.Constants;\nusing GWGUI.Emulation.Sony.Emulators.Common.Interop.Contracts;\nusing GWGUI.Emulation.Sony.Emulators.Pcsx2.Factories;\nusing GWGUI.Emulation.Sony.Emulators.Pcsx2.Functions;\nusing GWGUI.Emulation.Sony.Emulators.Pcsx2.Services;\nusing GWGUI.Emulation.Sony.Emulators.Common.Interop.Enums;\n\nusing System.IO.Pipes;\nusing System.Runtime.Versioning;\nusing System.Text.Json;\n\nusing System.IO;\n\nnamespace GWGUI.Emulation.Sony.Emulators.Pcsx2.Services;\n\npublic static class CoreHost\n                {\n    [SupportedOSPlatform(CoreHostConstants.Windows)]\n    public static void Run(string pipeName, string videoMapName)\n    {\n        EmulationHostProtocolFunctions.WithSharedVideoMap(videoMapName, 0, videoMap =>\n            EmulationHostProtocolFunctions.RunConnectedSession(pipeName, CoreHostConstants.Value, 15_000, (reader, transportWriter) =>\n            {\n                ExternalCore? core = null;\n                var lastVideoSequence = 0L;\n                var lastDiagnosticCount = 0;\n                try\n                {\n                    EmulationHostProtocolFunctions.RunCommandLoop<HostCommand>(reader, transportWriter, static commandReader => (HostCommand)commandReader.ReadByte(), HostCommand.Dispose, (command, writer) =>\n                    {\n                        switch (command)\n                        {\n                            case HostCommand.Initialize:\n                                var (corePath, session, saves, configuration) =\n                                    EmulationHostProtocolFunctions.ReadInitializationRequest(reader,\n                                        CoreHostProtocol.ReadString,\n                                        static requestReader => JsonSerializer.Deserialize<MachineConfiguration>(requestReader.ReadString(), CoreHostProtocol.JsonOptions) ?? throw new InvalidDataException(Pcsx2Exceptions.HostConfigurationInvalid()));\n                                EmulationHostProtocolFunctions.DisposePreviousCore(ref core);\n                                core = new ExternalCore(corePath);\n                                core.Initialize(configuration, session, saves);\n                                writer.Write(true);\n                                EmulationHostProtocolFunctions.WriteCoreInitialization<ExternalCore, MachineConfiguration, CoreOption>(\n                                    writer, core, CoreHostProtocol.JsonOptions, ref lastDiagnosticCount, '|');\n                                EmulationHostProtocolFunctions.WriteDiskSelection(writer, core);\n                                CoreHostProtocol.WriteLedStates(writer, core.LedStates);\n                                writer.Write(core.ShutdownRequested);\n                                ControllerFeedbackProtocol.Write(writer, core.ControllerFeedback);\n                                break;\n                            case HostCommand.RunFrame:\n                                var activeCore = EnsureCore(core);\n                                EmulationHostProtocolFunctions.RunCoreFrame<ExternalCore, MachineConfiguration, CoreOption>(\n                                    reader, writer, activeCore, CoreHostProtocol.ReadInput,\n                                    (frameWriter, pendingFrame) => CoreHostProtocol.WriteSharedFrame(frameWriter, pendingFrame, videoMap),\n                                    EmulationHostProtocolFunctions.WriteDiskSelection, CoreHostProtocol.WriteLedStates, static () => CoreHostProtocol.JsonOptions,\n                                    ref lastVideoSequence, ref lastDiagnosticCount);\n                                writer.Write(activeCore.ShutdownRequested);\n                                ControllerFeedbackProtocol.Write(writer, activeCore.ControllerFeedback);\n                                break;\n                            case HostCommand.SoftReset:\n                                EnsureCore(core).SoftReset();\n                                WriteSuccess(writer);\n                                break;\n                            case HostCommand.SetControllerPortDevice:\n                                EnsureCore(core).SetControllerPortDevice(reader.ReadInt32(), (ControllerType)reader.ReadInt32());\n                                WriteSuccess(writer);\n                                break;\n                            case HostCommand.Dispose:\n                                EmulationHostProtocolFunctions.DisposePreviousCore(ref core);\n                                WriteSuccess(writer);\n                                break;\n                            default:\n                                if (!EmulationHostProtocolFunctions.TryExecutePathMediaCommand((byte)command, reader, writer,\n                                        () => EnsureCore(core), CoreHostProtocol.ReadBytes, WriteSuccess))\n                                    throw new InvalidDataException(Pcsx2Exceptions.UnknownHostCommand((byte)command));\n                                break;\n                        }\n                    }, (writer, error) =>\n                    {\n                        writer.Write(false);\n                        writer.Write(error.ToString());\n                    });\n                }\n                finally\n                {\n                    EmulationHostProtocolFunctions.DisposePreviousCore(ref core);\n                }\n            }));\n    }\n\n    private static ExternalCore EnsureCore(ExternalCore? core) => core ?? throw new InvalidOperationException(Pcsx2Exceptions.HostNotInitialized());\n    private static void WriteSuccess(BinaryWriter writer) => writer.Write(true);\n}\n",
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/CoreHost.cs",
+          "exists": true,
+          "sha256": "D08C08F6610C58EC5B4608F8C2BCEC838865C9E73C38B4AEC2695351434F20B5"
+        },
+        {
+          "origin": "HEAD 53f8acd87",
+          "source": "namespace GWGUI.Emulation.Sony.Emulators.Pcsx2.Constants;\n\ninternal static class ExternalCoreConstants\n{\n    internal const string CoreDirectory = \"Core\";\n    internal const string LibraryName = \"pcsx2_libretro.dll\";\n    internal const string PlaylistName = \"GW GUI media.m3u\";\n    internal const int MaximumPlaylistEntries = 64;\n    internal const string RetroApiVersion = \"retro_api_version\";\n    internal const string RetroGetSystemInfo = \"retro_get_system_info\";\n    internal const string RetroSetEnvironment = \"retro_set_environment\";\n    internal const string RetroSetVideoRefresh = \"retro_set_video_refresh\";\n    internal const string RetroSetAudioSample = \"retro_set_audio_sample\";\n    internal const string RetroSetAudioSampleBatch = \"retro_set_audio_sample_batch\";\n    internal const string RetroSetInputPoll = \"retro_set_input_poll\";\n    internal const string RetroSetInputState = \"retro_set_input_state\";\n    internal const string RetroDeinit = \"retro_deinit\";\n    internal const string RetroUnloadGame = \"retro_unload_game\";\n    internal const string RetroRun = \"retro_run\";\n    internal const string RetroReset = \"retro_reset\";\n    internal const string RetroSerializeSize = \"retro_serialize_size\";\n    internal const string RetroSerialize = \"retro_serialize\";\n    internal const string RetroUnserialize = \"retro_unserialize\";\n    internal const string RetroGetRegion = \"retro_get_region\";\n    internal const string RetroGetMemoryData = \"retro_get_memory_data\";\n    internal const string RetroGetMemorySize = \"retro_get_memory_size\";\n    internal const string RetroInit = \"retro_init\";\n    internal const string RetroSetControllerPortDevice = \"retro_set_controller_port_device\";\n    internal const string RetroLoadGame = \"retro_load_game\";\n    internal const string RetroGetSystemAvInfo = \"retro_get_system_av_info\";\n    internal const uint JoypadDevice = 1;\n}\n\n\n",
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Constants/ExternalCoreConstants.cs",
+          "exists": true,
+          "sha256": "AC3D93CC6F25CC2DBCE0951C961377B04C9C75A3A9C21D9C57BFFE8E9C2A89E8"
+        },
+        {
+          "origin": "HEAD 53f8acd87",
+          "source": "using GWGUI.Emulation.Sony.Emulators.Pcsx2.Constants;\nusing GWGUI.Emulation.Sony.Emulators.Common.Interop.Contracts;\nusing GWGUI.Emulation.Sony.Emulators.Pcsx2.Factories;\nusing GWGUI.Emulation.Sony.Emulators.Pcsx2.Functions;\nusing GWGUI.Emulation.Sony.Emulators.Pcsx2.Services;\n\nnamespace GWGUI.Emulation.Sony.Emulators.Pcsx2.Constants;\n\ninternal static class ExternalHostCallbacksConstants\n{\n    internal const string Extended = \"-extended\";\n    internal const uint JoypadDevice = 1;\n    internal const uint MouseDevice = 2;\n    internal const uint KeyboardDevice = 3;\n    internal const uint AnalogDevice = 5;\n    internal const uint PointerDevice = 6;\n    internal const uint JoypadMask = 256;\n    internal const uint PointerX = 0;\n    internal const uint PointerY = 1;\n    internal const uint PointerPressed = 2;\n    internal const int PointerCoordinateScale = 128;\n    internal const int PointerCoordinateCenter = 1;\n    internal const int PointerCoordinateMinimum = -32767;\n    internal const int PointerCoordinateMaximum = 32767;\n    internal const int CoreOptionPointerFieldsBeforeValues = 6;\n    internal const int CoreOptionValueFieldCount = 2;\n    internal const int CoreOptionTerminatorFieldCount = 1;\n    internal const int CoreOptionDescriptionPointerIndex = 3;\n    internal const int CoreOptionCategoryPointerIndex = 5;\n    internal const int MaximumCoreOptionDefinitions = 1024;\n    internal const int MaximumCoreOptionValues = 128;\n}\n\n\n",
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Constants/ExternalHostCallbacksConstants.cs",
+          "exists": true,
+          "sha256": "847ED54E9C49F2EF87B87F4FDF1094CA9725FF6A2750FF961221DDD7CAC24A78"
+        },
+        {
+          "origin": "HEAD 53f8acd87",
+          "source": "namespace GWGUI.Emulation.Sony.Emulators.Ppsspp.Constants;\n\ninternal static class PpssppConstants\n{\n    internal const string LibraryFileName = \"ppsspp_libretro.dll\";\n    internal const string OfficialPackageUrl = \"https://buildbot.libretro.com/nightly/windows/x86_64/latest/ppsspp_libretro.dll.zip\";\n    internal static CoreReleaseSettings ReleaseSettings { get; } = new(new Uri(OfficialPackageUrl), LibraryFileName, LibraryFileName, DisplayName);\n\n    internal const string Id = \"ppsspp\";\n    internal const string Psp1000Model = \"psp_1000\";\n    internal const int ExpandedMemoryKib = 64 * 1024;\n    internal const string DisplayName = \"PPSSPP\";\n    internal const string LibraryName = \"PPSSPP\";\n    internal const string DescriptionResourceKey = \"Emulation.Emulator.ppsspp.Description\";\n    internal const string CoreHostCommand = \"--sony-ppsspp-core-host\";\n    internal const string ElfExtension = \".elf\";\n    internal const string IsoExtension = \".iso\";\n    internal const string CsoExtension = \".cso\";\n    internal const string PrxExtension = \".prx\";\n    internal const string PbpExtension = \".pbp\";\n    internal const string ChdExtension = \".chd\";\n    internal static IReadOnlyList<string> ContentExtensions { get; } =\n        [ElfExtension, IsoExtension, CsoExtension, PrxExtension, PbpExtension, ChdExtension];\n}\n",
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Constants/PpssppConstants.cs",
+          "exists": true,
+          "sha256": "D36491AF601C8C91231B3083695E324A5E76E7FF7F256BE1D34E51068AA85470"
+        },
+        {
+          "origin": "HEAD 53f8acd87",
+          "source": "using ExternalHostCallbacks = GWGUI.Emulation.Sony.Emulators.Common.Interop.Services.ExternalHostCallbacks;\nusing ExternalCoreInteropConstants = GWGUI.Emulation.Sony.Emulators.Common.Interop.Constants.ExternalCoreInteropConstants;\nusing System.IO;\nusing System.Runtime.InteropServices;\nusing System.Security.Cryptography;\nusing GWGUI.Emulation.Sony.Emulators.Ppsspp.Exceptions;\nusing GWGUI.Emulation.Sony.Emulators.Ppsspp.Constants;\nusing GWGUI.Emulation.Sony.Emulators.Ppsspp.Functions;\nusing NativeControllerConstants = GWGUI.Emulation.Sony.Emulators.Common.Interop.Constants.ControllerPortConstants;\n\nnamespace GWGUI.Emulation.Sony.Emulators.Ppsspp.Services;\n\ninternal sealed class ExternalCore : IEmulatorCore\n{\n    private readonly string _corePath;\n    private ExternalCoreLibrary? _library;\n    private ExternalHostCallbacks? _host;\n    private ExternalCoreApi.VoidCall? _deinitialize;\n    private ExternalCoreApi.VoidCall? _unloadGame;\n    private ExternalCoreApi.VoidCall? _run;\n    private ExternalCoreApi.VoidCall? _reset;\n    private ExternalCoreApi.SetControllerPortDevice? _setControllerPortDevice;\n    private ExternalCoreApi.GetSerializedSize? _getSerializedSize;\n    private ExternalCoreApi.Serialize? _serialize;\n    private ExternalCoreApi.Serialize? _unserialize;\n    private MachineConfiguration? _configuration;\n    private string? _sessionDirectory;\n    private string? _saveDirectory;\n    private bool _gameLoaded;\n    private bool _initialized;\n    private bool _disposing;\n\n    internal ExternalCore(string corePath) => _corePath = corePath;\n\n    public VideoFrame? LatestVideoFrame => _host?.LatestVideoFrame;\n    public AudioChunk? LatestAudioChunk => _host?.LatestAudioChunk;\n    public IReadOnlyList<CoreOption> Options => _host?.OptionCatalog ?? [];\n    public IReadOnlyList<string> Diagnostics => _host?.Diagnostics ?? [];\n    public IReadOnlyDictionary<int, bool> LedStates => _host?.LedStates ?? new Dictionary<int, bool>();\n    public bool ShutdownRequested => _host?.ShutdownRequested ?? false;\n    public string CoreName { get; private set; } = string.Empty;\n    public string CoreVersion { get; private set; } = string.Empty;\n    public IReadOnlySet<string> SupportedContentExtensions { get; private set; } =\n        new HashSet<string>(StringComparer.OrdinalIgnoreCase);\n    public string CoreSha256 { get; private set; } = string.Empty;\n    public double FramesPerSecond => _host?.FramesPerSecond ?? 50d;\n    public int SampleRate => _host?.SampleRate ?? 44_100;\n    public int DiskCount => _host?.DiskControl.ImageCount ?? 0;\n    public int CurrentDiskIndex => _host?.DiskControl.CurrentIndex ?? -1;\n\n    public bool TryDequeueAudio(out AudioChunk? chunk)\n    {\n        if (_host is not null) return _host.TryDequeueAudio(out chunk);\n        chunk = null;\n        return false;\n    }\n\n    public void Initialize(MachineConfiguration configuration, string sessionDirectory, string? saveDirectory = null)\n    {\n        saveDirectory = ResolveSaveDirectory(configuration, saveDirectory);\n        _configuration = configuration;\n        _sessionDirectory = Path.GetFullPath(sessionDirectory);\n        _saveDirectory = saveDirectory is null ? null : Path.GetFullPath(saveDirectory);\n        var media = ResolveConfiguredMedia(configuration);\n        foreach (var item in media)\n            if (!File.Exists(item.Path))\n                throw new FileNotFoundException(PpssppExceptions.MediaNotFound(), item.Path);\n\n        var sourceCorePath = ResolveCorePath(_corePath);\n        using (var stream = File.OpenRead(sourceCorePath))\n            CoreSha256 = Convert.ToHexString(SHA256.HashData(stream));\n\n        var systemDirectory = Path.GetDirectoryName(sourceCorePath)!;\n        SystemFilesFunctions.Validate(systemDirectory);\n        var contentDirectory = Path.Combine(sessionDirectory, CoreDirectoryConstants.ContentDirectoryName);\n        saveDirectory = Path.GetFullPath(saveDirectory ?? Path.Combine(sessionDirectory, CoreDirectoryConstants.SavesDirectoryName));\n        Directory.CreateDirectory(systemDirectory);\n        Directory.CreateDirectory(contentDirectory);\n        Directory.CreateDirectory(saveDirectory);\n        var isolatedCoreDirectory = Path.Combine(sessionDirectory, ExternalCoreConstants.CoreDirectory);\n        Directory.CreateDirectory(isolatedCoreDirectory);\n        var isolatedCorePath = Path.Combine(isolatedCoreDirectory, ExternalCoreConstants.LibraryName);\n        File.Copy(sourceCorePath, isolatedCorePath, true);\n        var contentPath = PrepareContentPath(media, contentDirectory);\n        _host = new ExternalHostCallbacks(systemDirectory, contentDirectory, saveDirectory, configuration.Options ?? new Dictionary<string, string>(), emulatorId: PpssppConstants.Id);\n\n        try\n        {\n            _library = new ExternalCoreLibrary(isolatedCorePath);\n            var apiVersion = Export<ExternalCoreApi.GetApiVersion>(ExternalCoreConstants.RetroApiVersion)();\n            if (apiVersion != ExternalCoreInteropConstants.ApiVersion)\n                throw new NotSupportedException(PpssppExceptions.UnsupportedApiVersion(apiVersion));\n            Export<ExternalCoreApi.GetSystemInfo>(ExternalCoreConstants.RetroGetSystemInfo)(out var info);\n            var libraryName = Marshal.PtrToStringUTF8(info.LibraryName);\n            if (!string.Equals(libraryName, PpssppConstants.LibraryName, StringComparison.OrdinalIgnoreCase))\n                throw new InvalidDataException(PpssppExceptions.LibraryIdentityMismatch(libraryName));\n            if (!info.NeedFullPath)\n                throw new InvalidDataException(PpssppExceptions.FullContentPathsRequired());\n            CoreName = libraryName!;\n            CoreVersion = Marshal.PtrToStringUTF8(info.LibraryVersion) ?? string.Empty;\n            SupportedContentExtensions = ExternalCoreLibrary.ParseExtensions(info.ValidExtensions);\n            ValidateExtension(contentPath);\n\n            Export<ExternalCoreApi.SetEnvironment>(ExternalCoreConstants.RetroSetEnvironment)(_host.Environment);\n            Export<ExternalCoreApi.SetVideo>(ExternalCoreConstants.RetroSetVideoRefresh)(_host.Video);\n            Export<ExternalCoreApi.SetAudioSample>(ExternalCoreConstants.RetroSetAudioSample)(_host.AudioSample);\n            Export<ExternalCoreApi.SetAudioBatch>(ExternalCoreConstants.RetroSetAudioSampleBatch)(_host.AudioBatch);\n            Export<ExternalCoreApi.SetInputPoll>(ExternalCoreConstants.RetroSetInputPoll)(_host.InputPoll);\n            Export<ExternalCoreApi.SetInputState>(ExternalCoreConstants.RetroSetInputState)(_host.InputState);\n            _deinitialize = Export<ExternalCoreApi.VoidCall>(ExternalCoreConstants.RetroDeinit);\n            _unloadGame = Export<ExternalCoreApi.VoidCall>(ExternalCoreConstants.RetroUnloadGame);\n            _run = Export<ExternalCoreApi.VoidCall>(ExternalCoreConstants.RetroRun);\n            _reset = Export<ExternalCoreApi.VoidCall>(ExternalCoreConstants.RetroReset);\n            _getSerializedSize = Export<ExternalCoreApi.GetSerializedSize>(ExternalCoreConstants.RetroSerializeSize);\n            _serialize = Export<ExternalCoreApi.Serialize>(ExternalCoreConstants.RetroSerialize);\n            _unserialize = Export<ExternalCoreApi.Serialize>(ExternalCoreConstants.RetroUnserialize);\n            Export<ExternalCoreApi.VoidCall>(ExternalCoreConstants.RetroInit)();\n            _initialized = true;\n            _host.ValidateConfiguredOptions();\n            _setControllerPortDevice = Export<ExternalCoreApi.SetControllerPortDevice>(ExternalCoreConstants.RetroSetControllerPortDevice);\n            for (var port = ControllerPortConstants.MinimumControllerPort;\n                port < ControllerFunctions.PortCount(configuration); port++)\n                SetControllerPortDevice(port, ControllerFunctions.Resolve(configuration, port));\n\n            var loadGame = Export<ExternalCoreApi.LoadGame>(ExternalCoreConstants.RetroLoadGame);\n            if (contentPath is null)\n            {\n                if (!_host.SupportsNoGame)\n                    throw new InvalidOperationException(PpssppExceptions.StartWithoutMediaUnsupported());\n                _gameLoaded = loadGame(0);\n            }\n            else _gameLoaded = LoadGame(loadGame, contentPath);\n            if (!_gameLoaded) throw new InvalidOperationException(PpssppExceptions.ContentRefused());\n            Export<ExternalCoreApi.GetSystemAvInfo>(ExternalCoreConstants.RetroGetSystemAvInfo)(out var av);\n            _host.ApplyInitialAvInfo(av);\n            _host.HardwareRender.Reset();\n        }\n        catch\n        {\n            Dispose();\n            throw;\n        }\n    }\n\n    internal static string? ResolveSaveDirectory(MachineConfiguration configuration, string? fallback) => configuration.Options?.GetValueOrDefault(StorageSettingsFunctionsConstants.MemoryCardPathOptionPrefix + 0) is { Length: > 0 } directory ? directory : fallback;\n\n    internal static IReadOnlyList<MediaConfiguration> ResolveConfiguredMedia(MachineConfiguration configuration) => (configuration.Media ?? []).Where(item => item.IsInserted).OrderBy(item => item.MountOrder).ToArray();\n\n    internal static string? PrepareContentPath(IReadOnlyList<MediaConfiguration> media, string contentDirectory)\n    {\n        if (media.Count == 0) return null;\n        if (media.Count == 1 || media.Any(item => item.Category != MediaCategory.Floppy))\n            return Path.GetFullPath(media[0].Path);\n        if (media.Count > ExternalCoreConstants.MaximumPlaylistEntries)\n            throw new ArgumentOutOfRangeException(nameof(media), PpssppExceptions.PlaylistLimitExceeded());\n        var playlist = Path.Combine(contentDirectory, ExternalCoreConstants.PlaylistName);\n        File.WriteAllLines(playlist, media.Select(item => Path.GetFullPath(item.Path)), new System.Text.UTF8Encoding(false));\n        return playlist;\n    }\n\n    public void RunFrame() => (_run ?? throw new InvalidOperationException(PpssppExceptions.CoreNotInitialized()))();\n    public void HardReset()\n    {\n        var configuration = _configuration ?? throw new InvalidOperationException(PpssppExceptions.CoreNotInitialized());\n        var sessionDirectory = _sessionDirectory ?? throw new InvalidOperationException(PpssppExceptions.CoreNotInitialized());\n        var saveDirectory = _saveDirectory;\n        Dispose();\n        Initialize(configuration, sessionDirectory, saveDirectory);\n    }\n    public void SoftReset() => (_reset ?? throw new InvalidOperationException(PpssppExceptions.CoreNotInitialized()))();\n    public void SetInput(EmulationInputSnapshot snapshot)\n    {\n        if (_host is not null) _host.Input = snapshot;\n    }\n    public void SetControllerPortDevice(int port, ControllerType type)\n    {\n        var configuration = _configuration ?? throw new InvalidOperationException(PpssppExceptions.CoreNotInitialized());\n        var host = _host ?? throw new InvalidOperationException(PpssppExceptions.CoreNotInitialized());\n        var setter = _setControllerPortDevice ?? throw new InvalidOperationException(PpssppExceptions.CoreNotInitialized());\n        ControllerFunctions.Validate(configuration, port, type);\n        setter((uint)port, type == ControllerType.None ? NativeControllerConstants.NoneDevice : NativeControllerConstants.JoypadDevice);\n        host.SetControllerType(port, type);\n        _configuration = ControllerFunctions.WithControllerType(configuration, port, type);\n    }\n    public void InsertMedia(string path) => (_host ?? throw new InvalidOperationException(PpssppExceptions.CoreNotInitialized())).DiskControl.Insert(path);\n    public void EjectMedia() => (_host ?? throw new InvalidOperationException(PpssppExceptions.CoreNotInitialized())).DiskControl.Eject();\n    public void SelectDisk(int index) => (_host ?? throw new InvalidOperationException(PpssppExceptions.CoreNotInitialized())).DiskControl.Select(index);\n\n    public byte[] SaveState()\n    {\n        var size = (_getSerializedSize ?? throw new InvalidOperationException(PpssppExceptions.CoreNotInitialized()))();\n        if (size == ExternalCoreInteropConstants.EmptyNativeSize || size > SavedStateConstants.MaximumStateSize)\n            throw new InvalidOperationException(PpssppExceptions.InvalidStateSize(size));\n        var state = new byte[(int)size];\n        var buffer = Marshal.AllocHGlobal(state.Length);\n        try\n        {\n            if (!_serialize!(buffer, size))\n                throw new InvalidOperationException(PpssppExceptions.StateSaveFailed());\n            Marshal.Copy(buffer, state, BufferConstants.FirstBufferIndex, state.Length);\n        }\n        finally { Marshal.FreeHGlobal(buffer); }\n        return state;\n    }\n\n    public void LoadState(ReadOnlySpan<byte> state)\n    {\n        if (state.IsEmpty) throw new ArgumentException(PpssppExceptions.StateEmpty(), nameof(state));\n        var bytes = state.ToArray();\n        var buffer = Marshal.AllocHGlobal(bytes.Length);\n        try\n        {\n            Marshal.Copy(bytes, BufferConstants.FirstBufferIndex, buffer, bytes.Length);\n            if (!_unserialize!(buffer, (nuint)bytes.Length))\n                throw new InvalidOperationException(PpssppExceptions.StateRestoreFailed());\n        }\n        finally { Marshal.FreeHGlobal(buffer); }\n    }\n\n    public void SetOption(string key, string value) => (_host ?? throw new InvalidOperationException(PpssppExceptions.CoreNotInitialized())).SetOption(key, value);\n\n    public void Stop()\n    {\n        var gameLoaded = _gameLoaded;\n        _gameLoaded = false;\n        try { _host?.HardwareRender.NotifyDestroy(); }\n        finally { if (gameLoaded) _unloadGame?.Invoke(); }\n    }\n    private void ValidateExtension(string? path)\n    {\n        if (path is null) return;\n        var extension = Path.GetExtension(path).TrimStart(MediaConstants.ExtensionPrefix);\n        if (!SupportedContentExtensions.Contains(extension))\n            throw new InvalidDataException(PpssppExceptions.UnsupportedContentExtension(extension));\n    }\n\n    private static bool LoadGame(ExternalCoreApi.LoadGame loadGame, string path)\n    {\n        using var nativePath = new ExternalCoreUtf8String(path);\n        var game = Marshal.AllocHGlobal(Marshal.SizeOf<ExternalCoreApi.GameInfo>());\n        try\n        {\n            Marshal.StructureToPtr(new ExternalCoreApi.GameInfo { Path = nativePath.Pointer }, game, false);\n            return loadGame(game);\n        }\n        finally { Marshal.FreeHGlobal(game); }\n    }\n\n    private T Export<T>(string name) where T : Delegate => (_library ?? throw new InvalidOperationException(PpssppExceptions.CoreNotLoaded())).Resolve<T>(name);\n\n    private static string ResolveCorePath(string path)\n    {\n        if (!Path.IsPathFullyQualified(path))\n            throw new ArgumentException(PpssppExceptions.CorePathNotAbsolute(), nameof(path));\n        if (!File.Exists(path)) throw new FileNotFoundException(PpssppExceptions.CoreNotFound(), path);\n        return path;\n    }\n\n    public void Dispose()\n    {\n        if (_disposing) return;\n        _disposing = true;\n        try\n        {\n            var callbacks = _host;\n            try { Stop(); }\n            finally\n            {\n                try\n                {\n                    if (_initialized) _deinitialize?.Invoke();\n                }\n                finally\n                {\n                    _initialized = false;\n                    _deinitialize = null;\n                    _unloadGame = null;\n                    _run = null;\n                    _reset = null;\n                    _setControllerPortDevice = null;\n                    _getSerializedSize = null;\n                    _serialize = null;\n                    _unserialize = null;\n                    try { _host?.Dispose(); }\n                    finally\n                    {\n                        _host = null;\n                        try { _library?.Dispose(); }\n                        finally { GC.KeepAlive(callbacks); _library = null; }\n                    }\n                }\n            }\n\n        }\n        finally { _disposing = false; }\n    }\n}\n\n\n",
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalCore.cs",
+          "exists": true,
+          "sha256": "C7B215E901308065DAEACC50E653E484724A19838966091A64CCB6D28B5C3711"
+        },
+        {
+          "origin": "HEAD 53f8acd87",
+          "source": "using GWGUI.Emulation.Sony.Emulators.Ppsspp.Exceptions;\nusing GWGUI.Emulation.Sony.Emulators.Ppsspp.Constants;\nusing GWGUI.Emulation.Sony.Emulators.Common.Interop.Contracts;\nusing GWGUI.Emulation.Sony.Emulators.Ppsspp.Factories;\nusing GWGUI.Emulation.Sony.Emulators.Ppsspp.Functions;\nusing GWGUI.Emulation.Sony.Emulators.Ppsspp.Services;\nusing GWGUI.Emulation.Sony.Emulators.Common.Interop.Enums;\n\nusing System.IO.Pipes;\nusing System.Runtime.Versioning;\nusing System.Text.Json;\n\nusing System.IO;\n\nnamespace GWGUI.Emulation.Sony.Emulators.Ppsspp.Services;\n\npublic static class CoreHost\n                {\n    [SupportedOSPlatform(CoreHostConstants.Windows)]\n    public static void Run(string pipeName, string videoMapName)\n    {\n        EmulationHostProtocolFunctions.WithSharedVideoMap(videoMapName, 0, videoMap =>\n            EmulationHostProtocolFunctions.RunConnectedSession(pipeName, CoreHostConstants.Value, 15_000, (reader, transportWriter) =>\n            {\n                ExternalCore? core = null;\n                var lastVideoSequence = 0L;\n                var lastDiagnosticCount = 0;\n                try\n                {\n                    EmulationHostProtocolFunctions.RunCommandLoop<HostCommand>(reader, transportWriter, static commandReader => (HostCommand)commandReader.ReadByte(), HostCommand.Dispose, (command, writer) =>\n                    {\n                        switch (command)\n                        {\n                            case HostCommand.Initialize:\n                                var (corePath, session, saves, configuration) =\n                                    EmulationHostProtocolFunctions.ReadInitializationRequest(reader,\n                                        CoreHostProtocol.ReadString,\n                                        static requestReader => JsonSerializer.Deserialize<MachineConfiguration>(requestReader.ReadString(), CoreHostProtocol.JsonOptions) ?? throw new InvalidDataException(PpssppExceptions.HostConfigurationInvalid()));\n                                EmulationHostProtocolFunctions.DisposePreviousCore(ref core);\n                                core = new ExternalCore(corePath);\n                                core.Initialize(configuration, session, saves);\n                                writer.Write(true);\n                                EmulationHostProtocolFunctions.WriteCoreInitialization<ExternalCore, MachineConfiguration, CoreOption>(\n                                    writer, core, CoreHostProtocol.JsonOptions, ref lastDiagnosticCount, '|');\n                                EmulationHostProtocolFunctions.WriteDiskSelection(writer, core);\n                                CoreHostProtocol.WriteLedStates(writer, core.LedStates);\n                                writer.Write(core.ShutdownRequested);\n                                break;\n                            case HostCommand.RunFrame:\n                                var activeCore = EnsureCore(core);\n                                EmulationHostProtocolFunctions.RunCoreFrame<ExternalCore, MachineConfiguration, CoreOption>(\n                                    reader, writer, activeCore, CoreHostProtocol.ReadInput,\n                                    (frameWriter, pendingFrame) => CoreHostProtocol.WriteSharedFrame(frameWriter, pendingFrame, videoMap),\n                                    EmulationHostProtocolFunctions.WriteDiskSelection, CoreHostProtocol.WriteLedStates, static () => CoreHostProtocol.JsonOptions,\n                                    ref lastVideoSequence, ref lastDiagnosticCount);\n                                writer.Write(activeCore.ShutdownRequested);\n                                break;\n                            case HostCommand.SoftReset:\n                                EnsureCore(core).SoftReset();\n                                WriteSuccess(writer);\n                                break;\n                            case HostCommand.SetControllerPortDevice:\n                                EnsureCore(core).SetControllerPortDevice(reader.ReadInt32(), (ControllerType)reader.ReadInt32());\n                                WriteSuccess(writer);\n                                break;\n                            case HostCommand.Dispose:\n                                EmulationHostProtocolFunctions.DisposePreviousCore(ref core);\n                                WriteSuccess(writer);\n                                break;\n                            default:\n                                if (!EmulationHostProtocolFunctions.TryExecutePathMediaCommand((byte)command, reader, writer,\n                                        () => EnsureCore(core), CoreHostProtocol.ReadBytes, WriteSuccess))\n                                    throw new InvalidDataException(PpssppExceptions.UnknownHostCommand((byte)command));\n                                break;\n                        }\n                    }, (writer, error) =>\n                    {\n                        writer.Write(false);\n                        writer.Write(error.ToString());\n                    });\n                }\n                finally\n                {\n                    EmulationHostProtocolFunctions.DisposePreviousCore(ref core);\n                }\n            }));\n    }\n\n    private static ExternalCore EnsureCore(ExternalCore? core) => core ?? throw new InvalidOperationException(PpssppExceptions.HostNotInitialized());\n    private static void WriteSuccess(BinaryWriter writer) => writer.Write(true);\n}\n",
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/CoreHost.cs",
+          "exists": true,
+          "sha256": "1AAB2CCCA715EC0001523F50A029382A91B5F51FB266343E2EDD7BD196340A78"
+        },
+        {
+          "origin": "HEAD 53f8acd87",
+          "source": "namespace GWGUI.Emulation.Sony.Emulators.Ppsspp.Constants;\n\ninternal static class ExternalCoreConstants\n{\n    internal const string CoreDirectory = \"Core\";\n    internal const string LibraryName = \"ppsspp_libretro.dll\";\n    internal const string PlaylistName = \"GW GUI media.m3u\";\n    internal const int MaximumPlaylistEntries = 64;\n    internal const string RetroApiVersion = \"retro_api_version\";\n    internal const string RetroGetSystemInfo = \"retro_get_system_info\";\n    internal const string RetroSetEnvironment = \"retro_set_environment\";\n    internal const string RetroSetVideoRefresh = \"retro_set_video_refresh\";\n    internal const string RetroSetAudioSample = \"retro_set_audio_sample\";\n    internal const string RetroSetAudioSampleBatch = \"retro_set_audio_sample_batch\";\n    internal const string RetroSetInputPoll = \"retro_set_input_poll\";\n    internal const string RetroSetInputState = \"retro_set_input_state\";\n    internal const string RetroDeinit = \"retro_deinit\";\n    internal const string RetroUnloadGame = \"retro_unload_game\";\n    internal const string RetroRun = \"retro_run\";\n    internal const string RetroReset = \"retro_reset\";\n    internal const string RetroSerializeSize = \"retro_serialize_size\";\n    internal const string RetroSerialize = \"retro_serialize\";\n    internal const string RetroUnserialize = \"retro_unserialize\";\n    internal const string RetroGetRegion = \"retro_get_region\";\n    internal const string RetroGetMemoryData = \"retro_get_memory_data\";\n    internal const string RetroGetMemorySize = \"retro_get_memory_size\";\n    internal const string RetroInit = \"retro_init\";\n    internal const string RetroSetControllerPortDevice = \"retro_set_controller_port_device\";\n    internal const string RetroLoadGame = \"retro_load_game\";\n    internal const string RetroGetSystemAvInfo = \"retro_get_system_av_info\";\n    internal const uint JoypadDevice = 1;\n}\n\n\n",
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Constants/ExternalCoreConstants.cs",
+          "exists": true,
+          "sha256": "D9E5189BDDCD574DE9B65469CF87B79EF9865F69E5171B2FB719DB8FA7243F46"
+        },
+        {
+          "origin": "HEAD 53f8acd87",
+          "source": "using GWGUI.Emulation.Sony.Emulators.Ppsspp.Constants;\nusing GWGUI.Emulation.Sony.Emulators.Common.Interop.Contracts;\nusing GWGUI.Emulation.Sony.Emulators.Ppsspp.Factories;\nusing GWGUI.Emulation.Sony.Emulators.Ppsspp.Functions;\nusing GWGUI.Emulation.Sony.Emulators.Ppsspp.Services;\n\nnamespace GWGUI.Emulation.Sony.Emulators.Ppsspp.Constants;\n\ninternal static class ExternalHostCallbacksConstants\n{\n    internal const string Extended = \"-extended\";\n    internal const uint JoypadDevice = 1;\n    internal const uint MouseDevice = 2;\n    internal const uint KeyboardDevice = 3;\n    internal const uint AnalogDevice = 5;\n    internal const uint PointerDevice = 6;\n    internal const uint JoypadMask = 256;\n    internal const uint PointerX = 0;\n    internal const uint PointerY = 1;\n    internal const uint PointerPressed = 2;\n    internal const int PointerCoordinateScale = 128;\n    internal const int PointerCoordinateCenter = 1;\n    internal const int PointerCoordinateMinimum = -32767;\n    internal const int PointerCoordinateMaximum = 32767;\n    internal const int CoreOptionPointerFieldsBeforeValues = 6;\n    internal const int CoreOptionValueFieldCount = 2;\n    internal const int CoreOptionTerminatorFieldCount = 1;\n    internal const int CoreOptionDescriptionPointerIndex = 3;\n    internal const int CoreOptionCategoryPointerIndex = 5;\n    internal const int MaximumCoreOptionDefinitions = 1024;\n    internal const int MaximumCoreOptionValues = 128;\n}\n\n\n",
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Constants/ExternalHostCallbacksConstants.cs",
+          "exists": true,
+          "sha256": "D0FF20A4AB44AC31615BD2BE471A2CBF8DEA636A2721F6F28F47EDAB60A47E72"
+        }
+      ],
+      "pendingProcessPolicies": [
+        "All existing connection15s/response30s/graceful5000ms defaults equal; profile overrides of eight Common definitions retained.",
+        "PPSSPP old wire has no feedback payload; sender/receiver must migrate together.",
+        "PSP metadata uses PpssppOptionFunctions.Options(configuration), not static catalogue only.",
+        "Remaining errors/transport labels and process cleanup boundaries must be checked in process stage."
+      ],
+      "comparisons": [
+        {
+          "methods": [
+            {
+              "matchingSignatures": 1,
+              "name": "Run",
+              "parameters": "(string pipeName, string videoMapName)",
+              "bodyIdentical": false
+            },
+            {
+              "matchingSignatures": 1,
+              "name": "EnsureCore",
+              "parameters": "(ExternalCore? core)",
+              "bodyIdentical": false
+            },
+            {
+              "matchingSignatures": 1,
+              "name": "WriteSuccess",
+              "parameters": "(BinaryWriter writer)",
+              "bodyIdentical": true
+            }
+          ],
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/CoreHost.cs",
+          "commonOwner": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/CoreHost.cs"
+        },
+        {
+          "methods": [
+            {
+              "matchingSignatures": 0,
+              "name": "ExternalCore",
+              "parameters": "(string corePath)",
+              "bodyIdentical": false
+            },
+            {
+              "matchingSignatures": 1,
+              "name": "TryDequeueAudio",
+              "parameters": "(out AudioChunk? chunk)",
+              "bodyIdentical": true
+            },
+            {
+              "matchingSignatures": 1,
+              "name": "Initialize",
+              "parameters": "(MachineConfiguration configuration, string sessionDirectory, string? saveDirectory = null)",
+              "bodyIdentical": false
+            },
+            {
+              "matchingSignatures": 1,
+              "name": "ResolveConfiguredMedia",
+              "parameters": "(MachineConfiguration configuration)",
+              "bodyIdentical": false
+            },
+            {
+              "matchingSignatures": 1,
+              "name": "PrepareContentPath",
+              "parameters": "(IReadOnlyList<MediaConfiguration> media, string contentDirectory)",
+              "bodyIdentical": false
+            },
+            {
+              "matchingSignatures": 1,
+              "name": "RunFrame",
+              "parameters": "()",
+              "bodyIdentical": false
+            },
+            {
+              "matchingSignatures": 1,
+              "name": "HardReset",
+              "parameters": "()",
+              "bodyIdentical": false
+            },
+            {
+              "matchingSignatures": 1,
+              "name": "SoftReset",
+              "parameters": "()",
+              "bodyIdentical": false
+            },
+            {
+              "matchingSignatures": 1,
+              "name": "SetInput",
+              "parameters": "(EmulationInputSnapshot snapshot)",
+              "bodyIdentical": true
+            },
+            {
+              "matchingSignatures": 1,
+              "name": "SetControllerPortDevice",
+              "parameters": "(int port, ControllerType type)",
+              "bodyIdentical": false
+            },
+            {
+              "matchingSignatures": 1,
+              "name": "ApplyConfiguredControllers",
+              "parameters": "(bool requireAdvertised)",
+              "bodyIdentical": false
+            },
+            {
+              "matchingSignatures": 1,
+              "name": "InsertMedia",
+              "parameters": "(string path)",
+              "bodyIdentical": false
+            },
+            {
+              "matchingSignatures": 1,
+              "name": "EjectMedia",
+              "parameters": "()",
+              "bodyIdentical": false
+            },
+            {
+              "matchingSignatures": 1,
+              "name": "SelectDisk",
+              "parameters": "(int index)",
+              "bodyIdentical": false
+            },
+            {
+              "matchingSignatures": 1,
+              "name": "SaveState",
+              "parameters": "()",
+              "bodyIdentical": false
+            },
+            {
+              "matchingSignatures": 1,
+              "name": "LoadState",
+              "parameters": "(ReadOnlySpan<byte> state)",
+              "bodyIdentical": false
+            },
+            {
+              "matchingSignatures": 1,
+              "name": "SetOption",
+              "parameters": "(string key, string value)",
+              "bodyIdentical": false
+            },
+            {
+              "matchingSignatures": 1,
+              "name": "Stop",
+              "parameters": "()",
+              "bodyIdentical": false
+            },
+            {
+              "matchingSignatures": 1,
+              "name": "ValidateExtension",
+              "parameters": "(string? path)",
+              "bodyIdentical": false
+            },
+            {
+              "matchingSignatures": 0,
+              "name": "LoadGame",
+              "parameters": "(ExternalCoreApi.LoadGame loadGame, string path)",
+              "bodyIdentical": false
+            },
+            {
+              "matchingSignatures": 1,
+              "name": "Export",
+              "parameters": "(string name)",
+              "bodyIdentical": false
+            },
+            {
+              "matchingSignatures": 1,
+              "name": "ResolveCorePath",
+              "parameters": "(string path)",
+              "bodyIdentical": false
+            },
+            {
+              "matchingSignatures": 1,
+              "name": "Dispose",
+              "parameters": "()",
+              "bodyIdentical": false
+            }
+          ],
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalCore.cs",
+          "commonOwner": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalCore.cs"
+        },
+        {
+          "methods": [
+            {
+              "matchingSignatures": 1,
+              "name": "ProcessCore",
+              "parameters": "(string hostExecutablePath, string? corePath = null)",
+              "bodyIdentical": true
+            },
+            {
+              "matchingSignatures": 1,
+              "name": "TryDequeueAudio",
+              "parameters": "(out AudioChunk? chunk)",
+              "bodyIdentical": true
+            },
+            {
+              "matchingSignatures": 1,
+              "name": "Initialize",
+              "parameters": "(MachineConfiguration configuration, string sessionDirectory, string? saveDirectory = null)",
+              "bodyIdentical": false
+            },
+            {
+              "matchingSignatures": 1,
+              "name": "RunFrame",
+              "parameters": "()",
+              "bodyIdentical": false
+            },
+            {
+              "matchingSignatures": 1,
+              "name": "HardReset",
+              "parameters": "()",
+              "bodyIdentical": false
+            },
+            {
+              "matchingSignatures": 1,
+              "name": "SoftReset",
+              "parameters": "()",
+              "bodyIdentical": true
+            },
+            {
+              "matchingSignatures": 1,
+              "name": "Stop",
+              "parameters": "()",
+              "bodyIdentical": true
+            },
+            {
+              "matchingSignatures": 1,
+              "name": "SetInput",
+              "parameters": "(EmulationInputSnapshot snapshot)",
+              "bodyIdentical": true
+            },
+            {
+              "matchingSignatures": 1,
+              "name": "InsertMedia",
+              "parameters": "(string path)",
+              "bodyIdentical": true
+            },
+            {
+              "matchingSignatures": 1,
+              "name": "EjectMedia",
+              "parameters": "()",
+              "bodyIdentical": true
+            },
+            {
+              "matchingSignatures": 1,
+              "name": "SelectDisk",
+              "parameters": "(int index)",
+              "bodyIdentical": true
+            },
+            {
+              "matchingSignatures": 1,
+              "name": "SaveState",
+              "parameters": "()",
+              "bodyIdentical": true
+            },
+            {
+              "matchingSignatures": 1,
+              "name": "LoadState",
+              "parameters": "(ReadOnlySpan<byte> state)",
+              "bodyIdentical": true
+            },
+            {
+              "matchingSignatures": 1,
+              "name": "SetOption",
+              "parameters": "(string key, string value)",
+              "bodyIdentical": true
+            },
+            {
+              "matchingSignatures": 1,
+              "name": "SetControllerPortDevice",
+              "parameters": "(int port, ControllerType type)",
+              "bodyIdentical": false
+            },
+            {
+              "matchingSignatures": 1,
+              "name": "Dispose",
+              "parameters": "()",
+              "bodyIdentical": true
+            },
+            {
+              "matchingSignatures": 1,
+              "name": "ReleaseHost",
+              "parameters": "()",
+              "bodyIdentical": false
+            },
+            {
+              "matchingSignatures": 1,
+              "name": "StringRequest",
+              "parameters": "(HostCommand command, string value)",
+              "bodyIdentical": true
+            },
+            {
+              "matchingSignatures": 1,
+              "name": "SimpleRequest",
+              "parameters": "(HostCommand command)",
+              "bodyIdentical": true
+            },
+            {
+              "matchingSignatures": 1,
+              "name": "Begin",
+              "parameters": "(HostCommand command)",
+              "bodyIdentical": false
+            },
+            {
+              "matchingSignatures": 1,
+              "name": "CompleteRequest",
+              "parameters": "()",
+              "bodyIdentical": false
+            },
+            {
+              "matchingSignatures": 1,
+              "name": "ReadResponseAsync",
+              "parameters": "()",
+              "bodyIdentical": false
+            },
+            {
+              "matchingSignatures": 1,
+              "name": "TerminateProcess",
+              "parameters": "()",
+              "bodyIdentical": false
+            },
+            {
+              "matchingSignatures": 0,
+              "name": "WaitForProcessExit",
+              "parameters": "(Process process, bool graceful)",
+              "bodyIdentical": false
+            },
+            {
+              "matchingSignatures": 1,
+              "name": "DisposeSafely",
+              "parameters": "(IDisposable? value)",
+              "bodyIdentical": true
+            }
+          ],
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ProcessCore.cs",
+          "commonOwner": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ProcessCore.cs"
+        },
+        {
+          "methods": [
+            {
+              "matchingSignatures": 1,
+              "name": "Run",
+              "parameters": "(string pipeName, string videoMapName)",
+              "bodyIdentical": false
+            },
+            {
+              "matchingSignatures": 1,
+              "name": "EnsureCore",
+              "parameters": "(ExternalCore? core)",
+              "bodyIdentical": false
+            },
+            {
+              "matchingSignatures": 1,
+              "name": "WriteSuccess",
+              "parameters": "(BinaryWriter writer)",
+              "bodyIdentical": true
+            }
+          ],
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/CoreHost.cs",
+          "commonOwner": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/CoreHost.cs"
+        },
+        {
+          "methods": [
+            {
+              "matchingSignatures": 0,
+              "name": "ExternalCore",
+              "parameters": "(string corePath)",
+              "bodyIdentical": false
+            },
+            {
+              "matchingSignatures": 1,
+              "name": "TryDequeueAudio",
+              "parameters": "(out AudioChunk? chunk)",
+              "bodyIdentical": true
+            },
+            {
+              "matchingSignatures": 1,
+              "name": "Initialize",
+              "parameters": "(MachineConfiguration configuration, string sessionDirectory, string? saveDirectory = null)",
+              "bodyIdentical": false
+            },
+            {
+              "matchingSignatures": 0,
+              "name": "ResolveSaveDirectory",
+              "parameters": "(MachineConfiguration configuration, string? fallback)",
+              "bodyIdentical": false
+            },
+            {
+              "matchingSignatures": 1,
+              "name": "ResolveConfiguredMedia",
+              "parameters": "(MachineConfiguration configuration)",
+              "bodyIdentical": true
+            },
+            {
+              "matchingSignatures": 1,
+              "name": "PrepareContentPath",
+              "parameters": "(IReadOnlyList<MediaConfiguration> media, string contentDirectory)",
+              "bodyIdentical": false
+            },
+            {
+              "matchingSignatures": 1,
+              "name": "RunFrame",
+              "parameters": "()",
+              "bodyIdentical": false
+            },
+            {
+              "matchingSignatures": 1,
+              "name": "HardReset",
+              "parameters": "()",
+              "bodyIdentical": false
+            },
+            {
+              "matchingSignatures": 1,
+              "name": "SoftReset",
+              "parameters": "()",
+              "bodyIdentical": false
+            },
+            {
+              "matchingSignatures": 1,
+              "name": "SetInput",
+              "parameters": "(EmulationInputSnapshot snapshot)",
+              "bodyIdentical": true
+            },
+            {
+              "matchingSignatures": 1,
+              "name": "SetControllerPortDevice",
+              "parameters": "(int port, ControllerType type)",
+              "bodyIdentical": false
+            },
+            {
+              "matchingSignatures": 1,
+              "name": "InsertMedia",
+              "parameters": "(string path)",
+              "bodyIdentical": false
+            },
+            {
+              "matchingSignatures": 1,
+              "name": "EjectMedia",
+              "parameters": "()",
+              "bodyIdentical": false
+            },
+            {
+              "matchingSignatures": 1,
+              "name": "SelectDisk",
+              "parameters": "(int index)",
+              "bodyIdentical": false
+            },
+            {
+              "matchingSignatures": 1,
+              "name": "SaveState",
+              "parameters": "()",
+              "bodyIdentical": false
+            },
+            {
+              "matchingSignatures": 1,
+              "name": "LoadState",
+              "parameters": "(ReadOnlySpan<byte> state)",
+              "bodyIdentical": false
+            },
+            {
+              "matchingSignatures": 1,
+              "name": "SetOption",
+              "parameters": "(string key, string value)",
+              "bodyIdentical": false
+            },
+            {
+              "matchingSignatures": 1,
+              "name": "Stop",
+              "parameters": "()",
+              "bodyIdentical": false
+            },
+            {
+              "matchingSignatures": 1,
+              "name": "ValidateExtension",
+              "parameters": "(string? path)",
+              "bodyIdentical": false
+            },
+            {
+              "matchingSignatures": 0,
+              "name": "LoadGame",
+              "parameters": "(ExternalCoreApi.LoadGame loadGame, string path)",
+              "bodyIdentical": false
+            },
+            {
+              "matchingSignatures": 1,
+              "name": "Export",
+              "parameters": "(string name)",
+              "bodyIdentical": false
+            },
+            {
+              "matchingSignatures": 1,
+              "name": "ResolveCorePath",
+              "parameters": "(string path)",
+              "bodyIdentical": false
+            },
+            {
+              "matchingSignatures": 1,
+              "name": "Dispose",
+              "parameters": "()",
+              "bodyIdentical": false
+            }
+          ],
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalCore.cs",
+          "commonOwner": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalCore.cs"
+        },
+        {
+          "methods": [
+            {
+              "matchingSignatures": 1,
+              "name": "ProcessCore",
+              "parameters": "(string hostExecutablePath, string? corePath = null)",
+              "bodyIdentical": true
+            },
+            {
+              "matchingSignatures": 1,
+              "name": "TryDequeueAudio",
+              "parameters": "(out AudioChunk? chunk)",
+              "bodyIdentical": true
+            },
+            {
+              "matchingSignatures": 1,
+              "name": "Initialize",
+              "parameters": "(MachineConfiguration configuration, string sessionDirectory, string? saveDirectory = null)",
+              "bodyIdentical": false
+            },
+            {
+              "matchingSignatures": 1,
+              "name": "RunFrame",
+              "parameters": "()",
+              "bodyIdentical": false
+            },
+            {
+              "matchingSignatures": 1,
+              "name": "HardReset",
+              "parameters": "()",
+              "bodyIdentical": false
+            },
+            {
+              "matchingSignatures": 1,
+              "name": "SoftReset",
+              "parameters": "()",
+              "bodyIdentical": true
+            },
+            {
+              "matchingSignatures": 1,
+              "name": "Stop",
+              "parameters": "()",
+              "bodyIdentical": true
+            },
+            {
+              "matchingSignatures": 1,
+              "name": "SetInput",
+              "parameters": "(EmulationInputSnapshot snapshot)",
+              "bodyIdentical": true
+            },
+            {
+              "matchingSignatures": 1,
+              "name": "InsertMedia",
+              "parameters": "(string path)",
+              "bodyIdentical": true
+            },
+            {
+              "matchingSignatures": 1,
+              "name": "EjectMedia",
+              "parameters": "()",
+              "bodyIdentical": true
+            },
+            {
+              "matchingSignatures": 1,
+              "name": "SelectDisk",
+              "parameters": "(int index)",
+              "bodyIdentical": true
+            },
+            {
+              "matchingSignatures": 1,
+              "name": "SaveState",
+              "parameters": "()",
+              "bodyIdentical": true
+            },
+            {
+              "matchingSignatures": 1,
+              "name": "LoadState",
+              "parameters": "(ReadOnlySpan<byte> state)",
+              "bodyIdentical": true
+            },
+            {
+              "matchingSignatures": 1,
+              "name": "SetOption",
+              "parameters": "(string key, string value)",
+              "bodyIdentical": true
+            },
+            {
+              "matchingSignatures": 1,
+              "name": "SetControllerPortDevice",
+              "parameters": "(int port, ControllerType type)",
+              "bodyIdentical": false
+            },
+            {
+              "matchingSignatures": 1,
+              "name": "Dispose",
+              "parameters": "()",
+              "bodyIdentical": true
+            },
+            {
+              "matchingSignatures": 1,
+              "name": "ReleaseHost",
+              "parameters": "()",
+              "bodyIdentical": false
+            },
+            {
+              "matchingSignatures": 1,
+              "name": "StringRequest",
+              "parameters": "(HostCommand command, string value)",
+              "bodyIdentical": true
+            },
+            {
+              "matchingSignatures": 1,
+              "name": "SimpleRequest",
+              "parameters": "(HostCommand command)",
+              "bodyIdentical": true
+            },
+            {
+              "matchingSignatures": 1,
+              "name": "Begin",
+              "parameters": "(HostCommand command)",
+              "bodyIdentical": false
+            },
+            {
+              "matchingSignatures": 1,
+              "name": "CompleteRequest",
+              "parameters": "()",
+              "bodyIdentical": false
+            },
+            {
+              "matchingSignatures": 1,
+              "name": "ReadResponseAsync",
+              "parameters": "()",
+              "bodyIdentical": false
+            },
+            {
+              "matchingSignatures": 1,
+              "name": "TerminateProcess",
+              "parameters": "()",
+              "bodyIdentical": false
+            },
+            {
+              "matchingSignatures": 0,
+              "name": "WaitForProcessExit",
+              "parameters": "(Process process, bool graceful)",
+              "bodyIdentical": false
+            },
+            {
+              "matchingSignatures": 1,
+              "name": "DisposeSafely",
+              "parameters": "(IDisposable? value)",
+              "bodyIdentical": true
+            }
+          ],
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ProcessCore.cs",
+          "commonOwner": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ProcessCore.cs"
+        }
+      ],
+      "userClarification": {
+        "saveMemorySourceMatchesHead": true,
+        "superseded": "Les omissions des copies locales ne constituent pas des politiques de cycle a conserver.",
+        "nativeConstantReferences": 0,
+        "removedPolicies": [
+          "FloppyPlaylistLimitExceeded",
+          "SupportsSaveMemory",
+          "PrepareMemoryCardsBeforeFirmware",
+          "UseAdvertisedControllers",
+          "ConfigureControllersAfterLoad",
+          "ValidateOptionsAfterLoad",
+          "IncludeNativeFailureDiagnostics",
+          "DestroyHardwareBeforeStop"
+        ],
+        "requirement": "Tous les profils utilisent le cycle Common complet existant.",
+        "semanticErrors": 0,
+        "candidateIdentifiersExamined": 107,
+        "nativeErrorsAfterConstantDeletion": 0
+      },
+      "commonLifecycleProof": [
+        {
+          "method": "Stop",
+          "matchesOriginalCommon": true
+        },
+        {
+          "method": "Dispose",
+          "matchesOriginalCommon": true
+        },
+        {
+          "method": "PrepareContentPath",
+          "matchesOriginalCommon": true
+        },
+        {
+          "method": "ResolveConfiguredMedia",
+          "matchesOriginalCommon": true
+        },
+        {
+          "method": "TryDequeueAudio",
+          "matchesOriginalCommon": true
+        },
+        {
+          "method": "SetInput",
+          "matchesOriginalCommon": true
+        }
+      ],
+      "deletedOwners": [
+        "Pcsx2/Services/ExternalCore.cs",
+        "Ppsspp/Services/ExternalCore.cs",
+        "Pcsx2/Constants/ExternalCoreConstants.cs",
+        "Ppsspp/Constants/ExternalCoreConstants.cs",
+        "Pcsx2/Constants/ExternalHostCallbacksConstants.cs",
+        "Ppsspp/Constants/ExternalHostCallbacksConstants.cs"
+      ],
+      "tests": {
+        "filter": "NativeCoreProfileMigrationTests|NativeShutdownTests|NativeStartupDiagnosticsTests|ControllerPortResolutionTests|MemoryStickRemovalKeepsItsDirectoryAndUpdatesTheNativeInsertionFlag",
+        "temporaryCases": 4,
+        "failed": 0,
+        "realCoreLoaded": false,
+        "userMediaAccessed": false,
+        "passed": 37,
+        "temporarySourceRemoved": true,
+        "temporaryCompiledTypeRemoved": true,
+        "temporaryDirectoriesRemoved": true
+      },
+      "verification": {
+        "sources": [
+          {
+            "nativeLifetimeUnchanged": true,
+            "sha256": "8F8530D2746DE7C5D2AD68A6F17F2C5865676EFA3E4633FC6E595EA42E4E37C8",
+            "onlyCoreOwnerAndDefinitionChanged": true,
+            "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/CoreHost.cs"
+          },
+          {
+            "nativeLifetimeUnchanged": true,
+            "sha256": "66FA65B5D007B48FDA72E0DE264490028856D88DB681972DD2685BAB895826E8",
+            "onlyCoreOwnerAndDefinitionChanged": true,
+            "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/CoreHost.cs"
+          }
+        ]
+      },
+      "inventory": {
+        "otherMethodsNewlyQualified": 0,
+        "removedQualifiedOccurrencesInDeletedOwners": 0,
+        "partialMembersRestored": 69,
+        "sourceHashesUpdatedWithProof": 0,
+        "reports": {
+          "docs/reference/reuse-audit/short-method-groups.json": {
+            "groups": 0,
+            "exactGroups": 806,
+            "methodBodyCount": 9704,
+            "renamedIdentifierGroups": 379,
+            "fileCount": 7268
+          },
+          "docs/reference/reuse-audit/current-project-groups.json": {
+            "groups": 460,
+            "exactGroups": 0,
+            "methodBodyCount": 11620,
+            "renamedIdentifierGroups": 207,
+            "fileCount": 7268
+          }
+        },
+        "additionalUnchangedFullMembersRetained": 0,
+        "oldPartialMembers": 69,
+        "retiredPartialEvidence": []
+      }
+    }
   },
   "sonyCallbacksBuild": {
     "coveredCommits": [

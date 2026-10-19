@@ -1,9 +1,9 @@
 {
   "baseline": "ac7292d86^",
-  "currentCSharpFiles": 7273,
+  "currentCSharpFiles": 7268,
   "outsideSrcCSharpFiles": 309,
   "baselineMethodCount": 5848,
-  "currentMethodCount": 11644,
+  "currentMethodCount": 11620,
   "powerShellFunctionCount": 17,
   "groups": [
     {
@@ -1229,7 +1229,7 @@
     {
       "language": "CSharp",
       "hash": "0A9D4012A0EEF58659F6F622D06187BDA6844EE126F30B196EAE963950A66758",
-      "method": "SegaEmulationModule",
+      "method": "AtariEmulationModule",
       "tokens": 45,
       "current": [
         {
@@ -14241,22 +14241,6 @@
           "shape": "609CD156B425830BB71DB9369D31EEC479D57869454E37993745D2118A925594"
         },
         {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalCore.cs",
-          "name": "LoadGame",
-          "line": 237,
-          "tokens": 71,
-          "hash": "803989E5B6DFE60979D4441956FF6A5A8FB0DDA87FB5ABDEB7D59B9FBB74BCF1",
-          "shape": "609CD156B425830BB71DB9369D31EEC479D57869454E37993745D2118A925594"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalCore.cs",
-          "name": "LoadGame",
-          "line": 274,
-          "tokens": 71,
-          "hash": "803989E5B6DFE60979D4441956FF6A5A8FB0DDA87FB5ABDEB7D59B9FBB74BCF1",
-          "shape": "609CD156B425830BB71DB9369D31EEC479D57869454E37993745D2118A925594"
-        },
-        {
           "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalCore.cs",
           "name": "LoadGame",
           "line": 199,
@@ -14959,14 +14943,6 @@
           "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalCore.cs",
           "name": "HardReset",
           "line": 151,
-          "tokens": 52,
-          "hash": "89651D0EF4C4DBC1F923B555458D72FBA349AB4EC263076C86E1BE53C245BDC3",
-          "shape": "AEE701D990A0A8C7B7ACD421F166C8D3AFF63D511EE2DAF4844860E4DEE7A22B"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalCore.cs",
-          "name": "HardReset",
-          "line": 186,
           "tokens": 52,
           "hash": "89651D0EF4C4DBC1F923B555458D72FBA349AB4EC263076C86E1BE53C245BDC3",
           "shape": "AEE701D990A0A8C7B7ACD421F166C8D3AFF63D511EE2DAF4844860E4DEE7A22B"
@@ -15792,14 +15768,6 @@
           "shape": "4222899A6C51A11F5BAC755FED8F456EEF948F87F9393E5AB6F5D036D3729E86"
         },
         {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalCore.cs",
-          "name": "ResolveConfiguredMedia",
-          "line": 147,
-          "tokens": 31,
-          "hash": "90ADD1B28438911B47924FF00BAFE41E133EF7DBD830E863FE8D2623CB97CFEE",
-          "shape": "4222899A6C51A11F5BAC755FED8F456EEF948F87F9393E5AB6F5D036D3729E86"
-        },
-        {
           "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalCore.cs",
           "name": "ResolveConfiguredMedia",
           "line": 136,
@@ -15810,7 +15778,7 @@
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalCore.cs",
           "name": "ResolveConfiguredMedia",
-          "line": 173,
+          "line": 182,
           "tokens": 31,
           "hash": "90ADD1B28438911B47924FF00BAFE41E133EF7DBD830E863FE8D2623CB97CFEE",
           "shape": "4222899A6C51A11F5BAC755FED8F456EEF948F87F9393E5AB6F5D036D3729E86"
@@ -17547,14 +17515,6 @@
           "tokens": 49,
           "hash": "9B14F3B1FA53AB96A05DB2D5C63ED2D1C62AF5E71B02349342308B2544D1B844",
           "shape": "AC95E65908476B9CE9520D4BB8EBD6158DBDF7604CE6AAFA43340694EC485BDA"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalCore.cs",
-          "name": "ValidateExtension",
-          "line": 299,
-          "tokens": 49,
-          "hash": "9B14F3B1FA53AB96A05DB2D5C63ED2D1C62AF5E71B02349342308B2544D1B844",
-          "shape": "AC95E65908476B9CE9520D4BB8EBD6158DBDF7604CE6AAFA43340694EC485BDA"
         }
       ],
       "predecessors": [],
@@ -18256,7 +18216,7 @@
     {
       "language": "CSharp",
       "hash": "A1E03750FEB3292ACEB41656386F4A8AA8B05077D9ABFB7DA103AA3D71320B9F",
-      "method": "ToFairchild",
+      "method": "ToModule",
       "tokens": 103,
       "current": [
         {
@@ -19826,7 +19786,7 @@
     {
       "language": "CSharp",
       "hash": "B053A3AB4F0B78A37DED57B2D744801187AED6EC54FEEAFE4B1AA9C454D6F48C",
-      "method": "FairchildEmulationModule",
+      "method": "MattelEmulationModule",
       "tokens": 47,
       "current": [
         {
@@ -22441,14 +22401,6 @@
           "tokens": 54,
           "hash": "C882F494804D50CDCBDE09EBB9AE8703FD2146EEB5333443DB164AACC5D9DD07",
           "shape": "B79D87DCD4BB30A034126C7C4DC61FF9956CE7F6CF003416A4ECE238C727ADF3"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalCore.cs",
-          "name": "ResolveCorePath",
-          "line": 327,
-          "tokens": 54,
-          "hash": "C882F494804D50CDCBDE09EBB9AE8703FD2146EEB5333443DB164AACC5D9DD07",
-          "shape": "B79D87DCD4BB30A034126C7C4DC61FF9956CE7F6CF003416A4ECE238C727ADF3"
         }
       ],
       "predecessors": [],
@@ -24090,14 +24042,6 @@
           "shape": "E7A743DC0BC4193847D70969C3383F9DC430CC5C2E0DC3C2389DB6B77EF39EF3"
         },
         {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalCore.cs",
-          "name": "SaveState",
-          "line": 242,
-          "tokens": 127,
-          "hash": "D4DB5A672ACF48D443BECF1F3F96694C9422E31CD511E3FAEA6DAE6BF7E8B7F3",
-          "shape": "E7A743DC0BC4193847D70969C3383F9DC430CC5C2E0DC3C2389DB6B77EF39EF3"
-        },
-        {
           "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalCore.cs",
           "name": "SaveState",
           "line": 214,
@@ -24645,14 +24589,6 @@
           "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalCore.cs",
           "name": "LoadState",
           "line": 185,
-          "tokens": 102,
-          "hash": "DD2DA12A202F91EE3364498CFDEB77C522444D6495FE329D459AB4E570AE2BE1",
-          "shape": "3D25C498D59996BAF974F6ADD529195FAC747540354E0F9141E80D4BA0DBA8FF"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalCore.cs",
-          "name": "LoadState",
-          "line": 259,
           "tokens": 102,
           "hash": "DD2DA12A202F91EE3364498CFDEB77C522444D6495FE329D459AB4E570AE2BE1",
           "shape": "3D25C498D59996BAF974F6ADD529195FAC747540354E0F9141E80D4BA0DBA8FF"
@@ -27979,7 +27915,7 @@
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Functions/FileSystemFunctions.cs",
           "name": "Describe",
-          "line": 64,
+          "line": 70,
           "tokens": 37,
           "hash": "F58D3103EA6834ADBA05452C974FA9A1212C5CF50AC22EFBEB0096EA1D1D95BE",
           "shape": "043A85CAEC9FDCF8F428173EA4551CE0811E1C745027BE737FB96DEE832DA680"
@@ -29308,27 +29244,11 @@
           "shape": "26505774D52C147D3A4D8EE1C9C518D190D3F08C1D9349FD6A8FE9A88A1AD018"
         },
         {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalCore.cs",
-          "name": "PrepareContentPath",
-          "line": 149,
-          "tokens": 125,
-          "hash": "0250FA241FCEEEEE6ADA5CD02FB0B887F2C817036458DAC134F8E22D725465D6",
-          "shape": "26505774D52C147D3A4D8EE1C9C518D190D3F08C1D9349FD6A8FE9A88A1AD018"
-        },
-        {
           "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalCore.cs",
           "name": "PrepareContentPath",
           "line": 138,
           "tokens": 125,
           "hash": "E49044D62F2C2C9A913A1E3F17A894CE2A05FE134DAD05A969F9C1BF9FB2E9D9",
-          "shape": "26505774D52C147D3A4D8EE1C9C518D190D3F08C1D9349FD6A8FE9A88A1AD018"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalCore.cs",
-          "name": "PrepareContentPath",
-          "line": 160,
-          "tokens": 125,
-          "hash": "2405840DD71D9B4BB27B49717E63821E35ACFEECF4128809992D2233E4231C55",
           "shape": "26505774D52C147D3A4D8EE1C9C518D190D3F08C1D9349FD6A8FE9A88A1AD018"
         }
       ],
@@ -29863,33 +29783,9 @@
           "shape": "3D25C498D59996BAF974F6ADD529195FAC747540354E0F9141E80D4BA0DBA8FF"
         },
         {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalCore.cs",
-          "name": "LoadState",
-          "line": 206,
-          "tokens": 102,
-          "hash": "B4FC23E5D218D8100E9F0BF267E526D7B2887B154B0C3B1B961F594130422228",
-          "shape": "3D25C498D59996BAF974F6ADD529195FAC747540354E0F9141E80D4BA0DBA8FF"
-        },
-        {
           "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalCore.cs",
           "name": "LoadState",
           "line": 185,
-          "tokens": 102,
-          "hash": "DD2DA12A202F91EE3364498CFDEB77C522444D6495FE329D459AB4E570AE2BE1",
-          "shape": "3D25C498D59996BAF974F6ADD529195FAC747540354E0F9141E80D4BA0DBA8FF"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalCore.cs",
-          "name": "LoadState",
-          "line": 234,
-          "tokens": 102,
-          "hash": "43DAF1264B0202FEE2D1C36E4CBA04A7B92DD1B4D8A1A24C1E8940290FDE233D",
-          "shape": "3D25C498D59996BAF974F6ADD529195FAC747540354E0F9141E80D4BA0DBA8FF"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalCore.cs",
-          "name": "LoadState",
-          "line": 259,
           "tokens": 102,
           "hash": "DD2DA12A202F91EE3364498CFDEB77C522444D6495FE329D459AB4E570AE2BE1",
           "shape": "3D25C498D59996BAF974F6ADD529195FAC747540354E0F9141E80D4BA0DBA8FF"
@@ -33389,33 +33285,9 @@
           "shape": "AC95E65908476B9CE9520D4BB8EBD6158DBDF7604CE6AAFA43340694EC485BDA"
         },
         {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalCore.cs",
-          "name": "ValidateExtension",
-          "line": 229,
-          "tokens": 49,
-          "hash": "CC8D7CCC671830757476D91A6FCE608F884889F342B354B5441968607D7A19E7",
-          "shape": "AC95E65908476B9CE9520D4BB8EBD6158DBDF7604CE6AAFA43340694EC485BDA"
-        },
-        {
           "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalCore.cs",
           "name": "ValidateExtension",
           "line": 207,
-          "tokens": 49,
-          "hash": "9B14F3B1FA53AB96A05DB2D5C63ED2D1C62AF5E71B02349342308B2544D1B844",
-          "shape": "AC95E65908476B9CE9520D4BB8EBD6158DBDF7604CE6AAFA43340694EC485BDA"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalCore.cs",
-          "name": "ValidateExtension",
-          "line": 266,
-          "tokens": 49,
-          "hash": "37A2ECB39C42E7E80C24AB4037B44A23CF7986A8A7CC7D74316B9334C20B3A23",
-          "shape": "AC95E65908476B9CE9520D4BB8EBD6158DBDF7604CE6AAFA43340694EC485BDA"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalCore.cs",
-          "name": "ValidateExtension",
-          "line": 299,
           "tokens": 49,
           "hash": "9B14F3B1FA53AB96A05DB2D5C63ED2D1C62AF5E71B02349342308B2544D1B844",
           "shape": "AC95E65908476B9CE9520D4BB8EBD6158DBDF7604CE6AAFA43340694EC485BDA"
@@ -33562,14 +33434,6 @@
           "shape": "AEE701D990A0A8C7B7ACD421F166C8D3AFF63D511EE2DAF4844860E4DEE7A22B"
         },
         {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalCore.cs",
-          "name": "HardReset",
-          "line": 162,
-          "tokens": 52,
-          "hash": "55B509A30FF791D095D769AB0B3ACAEE11973FEB810592A13515BABA37C43A41",
-          "shape": "AEE701D990A0A8C7B7ACD421F166C8D3AFF63D511EE2DAF4844860E4DEE7A22B"
-        },
-        {
           "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ProcessCore.cs",
           "name": "HardReset",
           "line": 138,
@@ -33594,27 +33458,11 @@
           "shape": "AEE701D990A0A8C7B7ACD421F166C8D3AFF63D511EE2DAF4844860E4DEE7A22B"
         },
         {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalCore.cs",
-          "name": "HardReset",
-          "line": 173,
-          "tokens": 52,
-          "hash": "56873516A71B6FB291D92C331D0D0F4D0739034B8B52480BB66AD2CDA7BBF1CC",
-          "shape": "AEE701D990A0A8C7B7ACD421F166C8D3AFF63D511EE2DAF4844860E4DEE7A22B"
-        },
-        {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ProcessCore.cs",
           "name": "HardReset",
           "line": 147,
           "tokens": 52,
           "hash": "E9F11883F5862725437A760DAB91262332436FA01A2D80782ED7EC78C0C46595",
-          "shape": "AEE701D990A0A8C7B7ACD421F166C8D3AFF63D511EE2DAF4844860E4DEE7A22B"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalCore.cs",
-          "name": "HardReset",
-          "line": 186,
-          "tokens": 52,
-          "hash": "89651D0EF4C4DBC1F923B555458D72FBA349AB4EC263076C86E1BE53C245BDC3",
           "shape": "AEE701D990A0A8C7B7ACD421F166C8D3AFF63D511EE2DAF4844860E4DEE7A22B"
         }
       ],
@@ -33960,33 +33808,9 @@
           "shape": "B79D87DCD4BB30A034126C7C4DC61FF9956CE7F6CF003416A4ECE238C727ADF3"
         },
         {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalCore.cs",
-          "name": "ResolveCorePath",
-          "line": 251,
-          "tokens": 54,
-          "hash": "13598BACF71776B34B2B6D70294D652E7E482775D1A7106BEDFCD587C0782931",
-          "shape": "B79D87DCD4BB30A034126C7C4DC61FF9956CE7F6CF003416A4ECE238C727ADF3"
-        },
-        {
           "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalCore.cs",
           "name": "ResolveCorePath",
           "line": 238,
-          "tokens": 54,
-          "hash": "C882F494804D50CDCBDE09EBB9AE8703FD2146EEB5333443DB164AACC5D9DD07",
-          "shape": "B79D87DCD4BB30A034126C7C4DC61FF9956CE7F6CF003416A4ECE238C727ADF3"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalCore.cs",
-          "name": "ResolveCorePath",
-          "line": 288,
-          "tokens": 54,
-          "hash": "0C324B6C6CFA7D8C5BF0176C3C490BD7AB7DE0974E215B40905A68019CA54091",
-          "shape": "B79D87DCD4BB30A034126C7C4DC61FF9956CE7F6CF003416A4ECE238C727ADF3"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalCore.cs",
-          "name": "ResolveCorePath",
-          "line": 327,
           "tokens": 54,
           "hash": "C882F494804D50CDCBDE09EBB9AE8703FD2146EEB5333443DB164AACC5D9DD07",
           "shape": "B79D87DCD4BB30A034126C7C4DC61FF9956CE7F6CF003416A4ECE238C727ADF3"
@@ -35826,33 +35650,9 @@
           "shape": "E7A743DC0BC4193847D70969C3383F9DC430CC5C2E0DC3C2389DB6B77EF39EF3"
         },
         {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalCore.cs",
-          "name": "SaveState",
-          "line": 189,
-          "tokens": 127,
-          "hash": "CF48136E80C6CF5EA3AB8B2C06352E32595D4C74F4BF52D364328FEDB912AB72",
-          "shape": "E7A743DC0BC4193847D70969C3383F9DC430CC5C2E0DC3C2389DB6B77EF39EF3"
-        },
-        {
           "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalCore.cs",
           "name": "SaveState",
           "line": 168,
-          "tokens": 127,
-          "hash": "D4DB5A672ACF48D443BECF1F3F96694C9422E31CD511E3FAEA6DAE6BF7E8B7F3",
-          "shape": "E7A743DC0BC4193847D70969C3383F9DC430CC5C2E0DC3C2389DB6B77EF39EF3"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalCore.cs",
-          "name": "SaveState",
-          "line": 217,
-          "tokens": 127,
-          "hash": "BFDFC0E242CD8844B824E24130C7BFAB33E13274B87EEBA4F95C84D625567453",
-          "shape": "E7A743DC0BC4193847D70969C3383F9DC430CC5C2E0DC3C2389DB6B77EF39EF3"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalCore.cs",
-          "name": "SaveState",
-          "line": 242,
           "tokens": 127,
           "hash": "D4DB5A672ACF48D443BECF1F3F96694C9422E31CD511E3FAEA6DAE6BF7E8B7F3",
           "shape": "E7A743DC0BC4193847D70969C3383F9DC430CC5C2E0DC3C2389DB6B77EF39EF3"
@@ -37064,7 +36864,7 @@
   ],
   "scope": "All current repository CSharp and PowerShell files; no age filter; candidates require semantic review",
   "qualificationCarryForward": {
-    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical",
-    "occurrences": 240
+    "occurrences": 242,
+    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical"
   }
 }
