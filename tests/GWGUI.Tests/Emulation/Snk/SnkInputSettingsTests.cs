@@ -1,15 +1,45 @@
 using GWGUI.Emulation.Contracts;
 using GWGUI.Emulation.Enums;
 using GWGUI.Emulation.Snk.Common.Machines.Common.Contracts;
+using GWGUI.Emulation.Snk.Common.Machines.Common.Dictionaries;
 using GWGUI.Emulation.Snk.Common.Machines.Common.Enums;
 using GWGUI.Emulation.Snk.Common.Machines.Common.Functions;
 using GWGUI.Emulation.Snk.Common.Interfaces;
 using GWGUI.Emulation.Snk.Common.Services;
+using GWGUI.Emulation.Snk.Emulators.Common.Interop.Factories;
 
 namespace GWGUI.Tests.Emulation.Snk;
 
 public sealed class SnkInputSettingsTests
 {
+    [Theory]
+    [InlineData(Emulator.NeoCd, 10)]
+    [InlineData(Emulator.Mame2015, 10)]
+    [InlineData(Emulator.FbAlpha2012NeoGeo, 10)]
+    [InlineData(Emulator.Mame2003Plus, 10)]
+    [InlineData(Emulator.FbAlpha2012, 10)]
+    [InlineData(Emulator.FbAlpha, 10)]
+    [InlineData(Emulator.Mame2000, 10)]
+    [InlineData(Emulator.Geolith, 10)]
+    [InlineData(Emulator.HbMame, 10)]
+    [InlineData(Emulator.Race, 7)]
+    [InlineData(Emulator.MednafenNgp, 7)]
+    public void NativeControllerMapsKeepEachCallIsolated(Emulator emulator, int expectedCount)
+    {
+        var factory = Assert.IsAssignableFrom<LibretroMachineFactory>(new Engine().Adapter(emulator));
+        var configuration = new MachineConfiguration(ModelCatalog.Parse(factory.Definition.MachineIds.First()), core: emulator);
+        var first = Assert.IsType<Dictionary<ControllerCommand, uint>>(factory.ControllerButtonIds(configuration));
+        var expected = first.OrderBy(pair => pair.Key).ToArray();
+        var second = factory.ControllerButtonIds(configuration);
+        Assert.Equal(expectedCount, expected.Length);
+        Assert.NotSame(first, second);
+        first.Clear();
+        Assert.Equal(expected, second.OrderBy(pair => pair.Key));
+        var third = factory.ControllerButtonIds(configuration);
+        Assert.NotSame(second, third);
+        Assert.Equal(expected, third.OrderBy(pair => pair.Key));
+    }
+
     [Theory]
     [InlineData(MachineModel.NeoGeoAes)]
     [InlineData(MachineModel.NeoGeoMvs)]

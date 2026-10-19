@@ -14,7 +14,30 @@ internal abstract class LibretroMachineFactory(EmulatorCatalogEntry catalogEntry
 
     internal virtual int DirectoryStringBufferCapacity => 0;
     internal virtual string ExpectedNativeLibraryName => CatalogEntry.LibraryName;
-    internal abstract IReadOnlyDictionary<ControllerCommand, uint> ControllerButtonIds(MachineConfiguration configuration);
+    internal virtual IReadOnlyDictionary<ControllerCommand, uint> ControllerButtonIds(MachineConfiguration configuration) => new Dictionary<ControllerCommand, uint>
+    {
+        [ControllerCommand.Up] = InputConstants.JoypadUpId,
+        [ControllerCommand.Down] = InputConstants.JoypadDownId,
+        [ControllerCommand.Left] = InputConstants.JoypadLeftId,
+        [ControllerCommand.Right] = InputConstants.JoypadRightId,
+        [ControllerCommand.A] = InputConstants.JoypadBId,
+        [ControllerCommand.B] = InputConstants.JoypadAId,
+        [ControllerCommand.C] = InputConstants.JoypadYId,
+        [ControllerCommand.D] = InputConstants.JoypadXId,
+        [ControllerCommand.Start] = InputConstants.JoypadStartId,
+        [ControllerCommand.Select] = InputConstants.JoypadSelectId
+    };
+
+    protected static IReadOnlyDictionary<ControllerCommand, uint> PocketControllerButtonIds() => new Dictionary<ControllerCommand, uint>
+    {
+        [ControllerCommand.Up] = InputConstants.JoypadUpId,
+        [ControllerCommand.Down] = InputConstants.JoypadDownId,
+        [ControllerCommand.Left] = InputConstants.JoypadLeftId,
+        [ControllerCommand.Right] = InputConstants.JoypadRightId,
+        [ControllerCommand.A] = InputConstants.JoypadBId,
+        [ControllerCommand.B] = InputConstants.JoypadAId,
+        [ControllerCommand.Option] = InputConstants.JoypadStartId
+    };
     internal virtual ulong InputCapabilities(MachineConfiguration configuration) => (1UL << checked((int)InputConstants.JoypadDevice)) | (1UL << checked((int)InputConstants.AnalogDevice));
     internal virtual uint ControllerDeviceId(MachineConfiguration configuration, int port, PeripheralCategory peripheral) => peripheral == PeripheralCategory.None ? InputConstants.NoDevice : InputConstants.JoypadDevice;
     internal abstract void PrepareFirmware(MachineConfiguration configuration, string systemDirectory);

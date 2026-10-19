@@ -3,7 +3,7 @@
   "currentCSharpFiles": 7231,
   "outsideSrcCSharpFiles": 309,
   "baselineMethodCount": 5848,
-  "currentMethodCount": 11509,
+  "currentMethodCount": 11501,
   "powerShellFunctionCount": 17,
   "groups": [
     {
@@ -851,7 +851,7 @@
     {
       "language": "CSharp",
       "hash": "0A9D4012A0EEF58659F6F622D06187BDA6844EE126F30B196EAE963950A66758",
-      "method": "AtariEmulationModule",
+      "method": "CommodoreEmulationModule",
       "tokens": 45,
       "current": [
         {
@@ -3679,89 +3679,6 @@
           "tokens": 144,
           "hash": "256745C9280719FE9666031C5D64DE75215FD6B2867B4D0CB083C91B3353A2F7",
           "shape": "9D4FB831778280C5022C8C0F0183BCB91517C274DDD8BE0B40BCEB32C9829E00"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
-      "hash": "2697D352D0445A5CDCAE68781FCDF135DA24329A7482DC310D0AFE74AF934411",
-      "method": "ControllerButtonIds",
-      "tokens": 109,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Snk/Emulators/NeoCd/Factories/NeoCdMachineFactory.cs",
-          "name": "ControllerButtonIds",
-          "line": 25,
-          "tokens": 109,
-          "hash": "2697D352D0445A5CDCAE68781FCDF135DA24329A7482DC310D0AFE74AF934411",
-          "shape": "3659208FAE53EA4FF620448823A4B5E1542658E1C83C0B36F45EA1563C486F01"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Snk/Emulators/Mame2015/Factories/Mame2015MachineFactory.cs",
-          "name": "ControllerButtonIds",
-          "line": 28,
-          "tokens": 109,
-          "hash": "2697D352D0445A5CDCAE68781FCDF135DA24329A7482DC310D0AFE74AF934411",
-          "shape": "3659208FAE53EA4FF620448823A4B5E1542658E1C83C0B36F45EA1563C486F01"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Snk/Emulators/FbAlpha2012NeoGeo/Factories/FbAlpha2012NeoGeoMachineFactory.cs",
-          "name": "ControllerButtonIds",
-          "line": 44,
-          "tokens": 109,
-          "hash": "2697D352D0445A5CDCAE68781FCDF135DA24329A7482DC310D0AFE74AF934411",
-          "shape": "3659208FAE53EA4FF620448823A4B5E1542658E1C83C0B36F45EA1563C486F01"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Snk/Emulators/Mame2003Plus/Factories/Mame2003PlusMachineFactory.cs",
-          "name": "ControllerButtonIds",
-          "line": 25,
-          "tokens": 109,
-          "hash": "2697D352D0445A5CDCAE68781FCDF135DA24329A7482DC310D0AFE74AF934411",
-          "shape": "3659208FAE53EA4FF620448823A4B5E1542658E1C83C0B36F45EA1563C486F01"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Snk/Emulators/FbAlpha2012/Factories/FbAlpha2012MachineFactory.cs",
-          "name": "ControllerButtonIds",
-          "line": 44,
-          "tokens": 109,
-          "hash": "2697D352D0445A5CDCAE68781FCDF135DA24329A7482DC310D0AFE74AF934411",
-          "shape": "3659208FAE53EA4FF620448823A4B5E1542658E1C83C0B36F45EA1563C486F01"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Snk/Emulators/FbAlpha/Factories/FbAlphaMachineFactory.cs",
-          "name": "ControllerButtonIds",
-          "line": 44,
-          "tokens": 109,
-          "hash": "2697D352D0445A5CDCAE68781FCDF135DA24329A7482DC310D0AFE74AF934411",
-          "shape": "3659208FAE53EA4FF620448823A4B5E1542658E1C83C0B36F45EA1563C486F01"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Snk/Emulators/Mame2000/Factories/Mame2000MachineFactory.cs",
-          "name": "ControllerButtonIds",
-          "line": 25,
-          "tokens": 109,
-          "hash": "2697D352D0445A5CDCAE68781FCDF135DA24329A7482DC310D0AFE74AF934411",
-          "shape": "3659208FAE53EA4FF620448823A4B5E1542658E1C83C0B36F45EA1563C486F01"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Snk/Emulators/Geolith/Factories/GeolithMachineFactory.cs",
-          "name": "ControllerButtonIds",
-          "line": 29,
-          "tokens": 109,
-          "hash": "2697D352D0445A5CDCAE68781FCDF135DA24329A7482DC310D0AFE74AF934411",
-          "shape": "3659208FAE53EA4FF620448823A4B5E1542658E1C83C0B36F45EA1563C486F01"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Snk/Emulators/HbMame/Factories/HbMameMachineFactory.cs",
-          "name": "ControllerButtonIds",
-          "line": 29,
-          "tokens": 109,
-          "hash": "2697D352D0445A5CDCAE68781FCDF135DA24329A7482DC310D0AFE74AF934411",
-          "shape": "3659208FAE53EA4FF620448823A4B5E1542658E1C83C0B36F45EA1563C486F01"
         }
       ],
       "predecessors": [],
@@ -10315,7 +10232,7 @@
         {
           "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Factories/LibretroMachineFactory.cs",
           "name": "TryHandleHostCommand",
-          "line": 31,
+          "line": 54,
           "tokens": 163,
           "hash": "5D3F9182BBC893121D482EA70397DC962D4A1E2C390D15B47E23A4E05254A3E4",
           "shape": "63C3CA85CC1E082624A5CCB1A5FCD5B5B7F2B91909B76A9673C54C90A4B1A5F6"
@@ -14198,7 +14115,7 @@
         {
           "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Factories/LibretroMachineFactory.cs",
           "name": "FindReleasesAsync",
-          "line": 61,
+          "line": 84,
           "tokens": 89,
           "hash": "82425DA05F6539F8C8E36A0FB7FE08F9E91E8F69E1413EE72ACD4775B7629B4D",
           "shape": "151E2B36878CCE6C1EEBDCEBE729C8A22C42E938BB132C16CC2321CE9A961CE6"
@@ -17568,7 +17485,7 @@
         {
           "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Factories/LibretroMachineFactory.cs",
           "name": "GetInstallationAsync",
-          "line": 54,
+          "line": 77,
           "tokens": 57,
           "hash": "A0E72BBD83AF229441F01D877A06D0A65FCF8216DF19F4BD29934FF778DD096F",
           "shape": "50CB72E604B93C8D15B9BE368DA9065D7B59634DC2BCEA5CC6908A094C409AB0"
@@ -19301,7 +19218,7 @@
     {
       "language": "CSharp",
       "hash": "B053A3AB4F0B78A37DED57B2D744801187AED6EC54FEEAFE4B1AA9C454D6F48C",
-      "method": "SharpEmulationModule",
+      "method": "FairchildEmulationModule",
       "tokens": 47,
       "current": [
         {
@@ -21054,12 +20971,12 @@
         {
           "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Factories/LibretroMachineFactory.cs",
           "name": "InstallAsync",
-          "line": 68,
+          "line": 91,
           "tokens": 77,
           "hash": "C3E60F98B301BC5AF48BC237ACAF244B46FB9F5777C62F9BF455AE71E441FC5D",
           "shape": "9154E847E998C5111A9FEDED3DB977BC0122F77F0942C8475D8579AFD08BA9DB",
           "qualification": "Typed installation adapter; shared selection and progress verified in factoryReleaseSelectionReuse",
-          "qualificationSourceSha256": "43C92610BB0C119B09EB2C1EC952166B5E555DB9D9597066174D508422463906"
+          "qualificationSourceSha256": "0E39DBC16399F98D2BBFFAC8DF9D042D97BCD750E432BE37EDBEFB5366AA8AB1"
         },
         {
           "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Factories/LibretroMachineFactory.cs",
@@ -21801,33 +21718,6 @@
           "tokens": 54,
           "hash": "C882F494804D50CDCBDE09EBB9AE8703FD2146EEB5333443DB164AACC5D9DD07",
           "shape": "B79D87DCD4BB30A034126C7C4DC61FF9956CE7F6CF003416A4ECE238C727ADF3"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
-      "hash": "CB08B0AAF85E899A5F62D35E39A72056181CB2DD1EF3E1A5C76BFD1507438F28",
-      "method": "ControllerButtonIds",
-      "tokens": 79,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Snk/Emulators/Race/Factories/RaceMachineFactory.cs",
-          "name": "ControllerButtonIds",
-          "line": 29,
-          "tokens": 79,
-          "hash": "CB08B0AAF85E899A5F62D35E39A72056181CB2DD1EF3E1A5C76BFD1507438F28",
-          "shape": "034A7AAF56BBF6F4D38862E62CE6C621AA8CE4354A09D8A6FB848F45B8687592"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Snk/Emulators/MednafenNgp/Factories/MednafenNgpMachineFactory.cs",
-          "name": "ControllerButtonIds",
-          "line": 29,
-          "tokens": 79,
-          "hash": "CB08B0AAF85E899A5F62D35E39A72056181CB2DD1EF3E1A5C76BFD1507438F28",
-          "shape": "034A7AAF56BBF6F4D38862E62CE6C621AA8CE4354A09D8A6FB848F45B8687592"
         }
       ],
       "predecessors": [],
@@ -23864,7 +23754,7 @@
         {
           "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Factories/LibretroMachineFactory.cs",
           "name": "CreateCore",
-          "line": 78,
+          "line": 101,
           "tokens": 32,
           "hash": "DDEDFE657872B085A0F811E03E84036892D8F1A8143B112433F039022CCC16EA",
           "shape": "08DB65DF999DB111141C420A4FCD63530C8FA51828CE3500CBD17632C0CD2A36"
@@ -28416,51 +28306,11 @@
       "tokens": 109,
       "current": [
         {
-          "path": "src/GWGUI.Emulation.Snk/Emulators/NeoCd/Factories/NeoCdMachineFactory.cs",
-          "name": "ControllerButtonIds",
-          "line": 25,
-          "tokens": 109,
-          "hash": "2697D352D0445A5CDCAE68781FCDF135DA24329A7482DC310D0AFE74AF934411",
-          "shape": "3659208FAE53EA4FF620448823A4B5E1542658E1C83C0B36F45EA1563C486F01"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Snk/Emulators/Mame2015/Factories/Mame2015MachineFactory.cs",
-          "name": "ControllerButtonIds",
-          "line": 28,
-          "tokens": 109,
-          "hash": "2697D352D0445A5CDCAE68781FCDF135DA24329A7482DC310D0AFE74AF934411",
-          "shape": "3659208FAE53EA4FF620448823A4B5E1542658E1C83C0B36F45EA1563C486F01"
-        },
-        {
           "path": "src/GWGUI.Emulation.Snk/Emulators/Mame2010/Factories/Mame2010MachineFactory.cs",
           "name": "ControllerButtonIds",
           "line": 25,
           "tokens": 109,
           "hash": "3F936ED508B2ACA86F5CCD2E3112BB007EFCCDEE919B06B6B36AEF71B5D3BE0F",
-          "shape": "3659208FAE53EA4FF620448823A4B5E1542658E1C83C0B36F45EA1563C486F01"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Snk/Emulators/FbAlpha2012NeoGeo/Factories/FbAlpha2012NeoGeoMachineFactory.cs",
-          "name": "ControllerButtonIds",
-          "line": 44,
-          "tokens": 109,
-          "hash": "2697D352D0445A5CDCAE68781FCDF135DA24329A7482DC310D0AFE74AF934411",
-          "shape": "3659208FAE53EA4FF620448823A4B5E1542658E1C83C0B36F45EA1563C486F01"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Snk/Emulators/Mame2003Plus/Factories/Mame2003PlusMachineFactory.cs",
-          "name": "ControllerButtonIds",
-          "line": 25,
-          "tokens": 109,
-          "hash": "2697D352D0445A5CDCAE68781FCDF135DA24329A7482DC310D0AFE74AF934411",
-          "shape": "3659208FAE53EA4FF620448823A4B5E1542658E1C83C0B36F45EA1563C486F01"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Snk/Emulators/FbAlpha2012/Factories/FbAlpha2012MachineFactory.cs",
-          "name": "ControllerButtonIds",
-          "line": 44,
-          "tokens": 109,
-          "hash": "2697D352D0445A5CDCAE68781FCDF135DA24329A7482DC310D0AFE74AF934411",
           "shape": "3659208FAE53EA4FF620448823A4B5E1542658E1C83C0B36F45EA1563C486F01"
         },
         {
@@ -28472,36 +28322,14 @@
           "shape": "3659208FAE53EA4FF620448823A4B5E1542658E1C83C0B36F45EA1563C486F01"
         },
         {
-          "path": "src/GWGUI.Emulation.Snk/Emulators/FbAlpha/Factories/FbAlphaMachineFactory.cs",
+          "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Factories/LibretroMachineFactory.cs",
           "name": "ControllerButtonIds",
-          "line": 44,
+          "line": 17,
           "tokens": 109,
           "hash": "2697D352D0445A5CDCAE68781FCDF135DA24329A7482DC310D0AFE74AF934411",
-          "shape": "3659208FAE53EA4FF620448823A4B5E1542658E1C83C0B36F45EA1563C486F01"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Snk/Emulators/Mame2000/Factories/Mame2000MachineFactory.cs",
-          "name": "ControllerButtonIds",
-          "line": 25,
-          "tokens": 109,
-          "hash": "2697D352D0445A5CDCAE68781FCDF135DA24329A7482DC310D0AFE74AF934411",
-          "shape": "3659208FAE53EA4FF620448823A4B5E1542658E1C83C0B36F45EA1563C486F01"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Snk/Emulators/Geolith/Factories/GeolithMachineFactory.cs",
-          "name": "ControllerButtonIds",
-          "line": 29,
-          "tokens": 109,
-          "hash": "2697D352D0445A5CDCAE68781FCDF135DA24329A7482DC310D0AFE74AF934411",
-          "shape": "3659208FAE53EA4FF620448823A4B5E1542658E1C83C0B36F45EA1563C486F01"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Snk/Emulators/HbMame/Factories/HbMameMachineFactory.cs",
-          "name": "ControllerButtonIds",
-          "line": 29,
-          "tokens": 109,
-          "hash": "2697D352D0445A5CDCAE68781FCDF135DA24329A7482DC310D0AFE74AF934411",
-          "shape": "3659208FAE53EA4FF620448823A4B5E1542658E1C83C0B36F45EA1563C486F01"
+          "shape": "3659208FAE53EA4FF620448823A4B5E1542658E1C83C0B36F45EA1563C486F01",
+          "qualification": "Verified original SNK mapping owner reused by nine Neo Geo or two Pocket factories; snkControllerTableReuse; resolved entries and fresh dictionary allocation preserved.",
+          "qualificationSourceSha256": "0E39DBC16399F98D2BBFFAC8DF9D042D97BCD750E432BE37EDBEFB5366AA8AB1"
         }
       ],
       "qualification": "pending-symbol-and-policy-comparison"
@@ -35389,6 +35217,6 @@
   "scope": "All current repository CSharp and PowerShell files; no age filter; candidates require semantic review",
   "qualificationCarryForward": {
     "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical",
-    "occurrences": 284
+    "occurrences": 298
   }
 }
