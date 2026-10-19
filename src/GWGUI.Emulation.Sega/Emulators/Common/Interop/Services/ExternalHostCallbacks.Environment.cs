@@ -16,6 +16,9 @@ internal sealed partial class ExternalHostCallbacks : IEmulationCoreEnvironmentC
     {
         try
         {
+            if (ExternalCoreEnvironmentFunctions.TryHandleLegacyQuery(command, data,
+                    2, ExternalCoreInteropConstants.MessageInterfaceVersion, out var legacyQueryResult))
+                return legacyQueryResult;
             switch (command)
             {
                 case SetContentInfoOverride:
@@ -48,12 +51,6 @@ internal sealed partial class ExternalHostCallbacks : IEmulationCoreEnvironmentC
                 case ExternalCoreApiConstants.GetLedInterface:
                     _ = ExternalCoreEnvironmentFunctions.TryHandleCallbackCommand(command, data, this, out var callbackResult);
                     return callbackResult;
-                case ExternalCoreApiConstants.GetCanDuplicateFrames:
-                case ExternalCoreApiConstants.GetInputBitmasks:
-                case ExternalCoreApiConstants.GetCoreOptionsVersion:
-                    _ = ExternalCoreEnvironmentFunctions.TryHandleStatelessCommand(command, data,
-                        2, ExternalCoreInteropConstants.MessageInterfaceVersion, 0, out _);
-                    return true;
                 case ExternalCoreApiConstants.SetCoreOptions:
                 case ExternalCoreApiConstants.SetCoreOptionsInternational:
                 case ExternalCoreApiConstants.SetCoreOptionsV2:
@@ -67,10 +64,6 @@ internal sealed partial class ExternalHostCallbacks : IEmulationCoreEnvironmentC
                 case ExternalCoreApiConstants.SetCoreOptionsUpdateDisplayCallback:
                     _ = ExternalCoreEnvironmentFunctions.TryHandleOptionCommand(command, data, this, out var optionResult);
                     return optionResult;
-                case ExternalCoreApiConstants.GetMessageInterfaceVersion:
-                    _ = ExternalCoreEnvironmentFunctions.TryHandleStatelessCommand(command, data,
-                        2, ExternalCoreInteropConstants.MessageInterfaceVersion, 0, out var queryResult);
-                    return queryResult;
                 case ExternalCoreApiConstants.SetFastForwardingOverride:
                     return false;
                 default:

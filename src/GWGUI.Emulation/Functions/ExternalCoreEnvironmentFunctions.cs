@@ -127,6 +127,25 @@ internal static class ExternalCoreEnvironmentFunctions
     }
 
 
+    internal static bool TryHandleLegacyQuery(uint command, nint data, uint coreOptionsVersion,
+        uint messageInterfaceVersion, out bool result)
+    {
+        switch (command)
+        {
+            case ExternalCoreApiConstants.GetCanDuplicateFrames:
+            case ExternalCoreApiConstants.GetInputBitmasks:
+            case ExternalCoreApiConstants.GetCoreOptionsVersion:
+                _ = TryHandleStatelessCommand(command, data, coreOptionsVersion, messageInterfaceVersion, 0, out _);
+                result = true;
+                return true;
+            case ExternalCoreApiConstants.GetMessageInterfaceVersion:
+                _ = TryHandleStatelessCommand(command, data, coreOptionsVersion, messageInterfaceVersion, 0, out result);
+                return true;
+            default:
+                result = false;
+                return false;
+        }
+    }
     internal static bool TryHandleStatelessCommand(uint command, nint data, uint coreOptionsVersion,
         uint messageInterfaceVersion, ulong inputCapabilities, out bool result)
     {

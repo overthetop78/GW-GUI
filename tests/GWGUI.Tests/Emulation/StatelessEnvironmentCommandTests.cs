@@ -119,6 +119,53 @@ public sealed class StatelessEnvironmentCommandTests
         Assert.False(ExternalCoreEnvironmentFunctions.WritePointer(nint.Zero, (nint)(-1)));
     }
 
+    [Theory]
+    [InlineData(ExternalCoreApiConstants.GetCanDuplicateFrames, true)]
+    [InlineData(ExternalCoreApiConstants.GetInputBitmasks, true)]
+    [InlineData(ExternalCoreApiConstants.GetCoreOptionsVersion, true)]
+    [InlineData(ExternalCoreApiConstants.GetMessageInterfaceVersion, false)]
+    public void LegacyNullRepliesPreserveTheOriginalQueryPolicy(uint command, bool expected)
+    {
+        Assert.True(ExternalCoreEnvironmentFunctions.TryHandleLegacyQuery(command, nint.Zero,
+            7, 11, out var result));
+        Assert.Equal(expected, result);
+    }
+
+    [Theory]
+    [InlineData(ExternalCoreApiConstants.GetCanDuplicateFrames, 1, 1)]
+    [InlineData(ExternalCoreApiConstants.GetInputBitmasks, 1, 1)]
+    [InlineData(ExternalCoreApiConstants.GetCoreOptionsVersion, 7, 4)]
+    [InlineData(ExternalCoreApiConstants.GetMessageInterfaceVersion, 11, 4)]
+    public void LegacyRepliesKeepTheProfileValuesAndNativeWriteWidths(uint command, int expected, int width) =>
+        WithBuffer(data =>
+        {
+            var before = unchecked((ulong)Marshal.ReadInt64(data));
+            Assert.True(ExternalCoreEnvironmentFunctions.TryHandleLegacyQuery(command, data,
+                7, 11, out var result));
+            Assert.True(result);
+            var mask = width == 1 ? 0xffUL : 0xffffffffUL;
+            Assert.Equal((before & ~mask) | (uint)expected, unchecked((ulong)Marshal.ReadInt64(data)));
+        });
+
+    [Theory]
+    [InlineData(ExternalCoreApiConstants.GetOverscan)]
+    [InlineData(ExternalCoreApiConstants.GetFastForwarding)]
+    [InlineData(ExternalCoreApiConstants.GetInputDeviceCapabilities)]
+    [InlineData(ExternalCoreApiConstants.GetLanguage)]
+    [InlineData(ExternalCoreApiConstants.GetPerformanceInterface)]
+    [InlineData(ExternalCoreApiConstants.GetVariable)]
+    [InlineData(ExternalCoreApiConstants.SetPixelFormat)]
+    [InlineData(ExternalCoreApiConstants.SetVariables)]
+    [InlineData(uint.MaxValue)]
+    public void LegacyQueryGuardLeavesOtherCommandsAndTheirOutputUntouched(uint command) =>
+        WithBuffer(data =>
+        {
+            var before = Marshal.ReadInt64(data);
+            Assert.False(ExternalCoreEnvironmentFunctions.TryHandleLegacyQuery(command, data,
+                7, 11, out var result));
+            Assert.False(result);
+            Assert.Equal(before, Marshal.ReadInt64(data));
+        });
     private static bool Handle(uint command, nint data, out bool result) =>
         ExternalCoreEnvironmentFunctions.TryHandleStatelessCommand(command, data, 7, 11, 0, out result);
 
