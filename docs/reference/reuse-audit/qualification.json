@@ -283088,6 +283088,2428 @@
       "largeQualificationsRetained": 148,
       "shortBodies": 9576,
       "largeGroups": 478
+    },
+    "productBuild": "included and verified in environmentDispatchBuild"
+  },
+  "segaNintendoOptionDispatchReuse": {
+    "router": {
+      "path": "src/GWGUI.Emulation/Functions/ExternalCoreEnvironmentFunctions.cs",
+      "sha256": "F451838198B54FB9E9ACB11AF807FF9D6D57268B4AD645954B6B4AE07648A478"
+    },
+    "invariants": [
+      "Five registration dispatches ignore router null-result and return original true only after callback completes",
+      "GetVariableUpdate adapter keeps discarded native result and original true",
+      "International pointers unwrapped in original owner at original time",
+      "SetVariable stays on unknown diagnostic path; SetNativeValue adapter not routed",
+      "Both contracts remain on same resource owner, no new state/host/interface"
+    ],
+    "origin": "Existing Atari-derived SDK TryHandleOptionCommand and IEmulationCoreOptionCommands; existing module option helpers retained",
+    "registrationCommands": [
+      "SetCoreOptions",
+      "SetCoreOptionsInternational",
+      "SetCoreOptionsV2",
+      "SetCoreOptionsV2International",
+      "SetVariables"
+    ],
+    "state": "verified and built with all 23 modules; 249 targeted tests pass",
+    "commandMap": {
+      "SetCoreOptions": "RegisterVersionOne",
+      "SetCoreOptionsInternational": "RegisterVersionOneInternational",
+      "SetCoreOptionsV2": "RegisterVersionTwo",
+      "SetCoreOptionsV2International": "RegisterVersionTwoInternational",
+      "SetVariables": "RegisterLegacyVariables",
+      "GetVariable": "ReturnValue",
+      "GetVariableUpdate": "GetAndClearUpdated",
+      "SetCoreOptionsDisplay": "ApplyVisibility",
+      "SetCoreOptionsUpdateDisplayCallback": "CaptureDisplayUpdate"
+    },
+    "baselineTests": {
+      "failed": 0,
+      "passed": 249
+    },
+    "contract": {
+      "path": "src/GWGUI.Emulation/Interfaces/IEmulationCoreOptionCommands.cs",
+      "sha256": "322731E6C9890870B13D2B031E3A34499EE2CE0177217EE0FC08A631110A82BF"
+    },
+    "qualificationCorrection": "At inventory, qualify only explicit interface implementations by syntax line/body; remove prior overly broad name-only annotations from private helpers",
+    "items": [
+      {
+        "sections": [
+          {
+            "adapter": "RegisterVersionOne",
+            "originalBody": "RegisterVersionOneOptions(data);\r\nreturn true;",
+            "body": "RegisterVersionOneOptions(data);",
+            "voidRegistration": true,
+            "command": "SetCoreOptions"
+          },
+          {
+            "adapter": "RegisterVersionOneInternational",
+            "originalBody": "RegisterVersionOneOptions(Marshal.ReadIntPtr(data));\r\nreturn true;",
+            "body": "RegisterVersionOneOptions(Marshal.ReadIntPtr(data));",
+            "voidRegistration": true,
+            "command": "SetCoreOptionsInternational"
+          },
+          {
+            "adapter": "RegisterVersionTwo",
+            "originalBody": "RegisterVersionTwoOptions(data);\r\nreturn true;",
+            "body": "RegisterVersionTwoOptions(data);",
+            "voidRegistration": true,
+            "command": "SetCoreOptionsV2"
+          },
+          {
+            "adapter": "RegisterVersionTwoInternational",
+            "originalBody": "RegisterVersionTwoOptions(Marshal.ReadIntPtr(data));\r\nreturn true;",
+            "body": "RegisterVersionTwoOptions(Marshal.ReadIntPtr(data));",
+            "voidRegistration": true,
+            "command": "SetCoreOptionsV2International"
+          },
+          {
+            "adapter": "RegisterLegacyVariables",
+            "originalBody": "RegisterLegacyOptions(data);\r\nreturn true;",
+            "body": "RegisterLegacyOptions(data);",
+            "voidRegistration": true,
+            "command": "SetVariables"
+          },
+          {
+            "adapter": "ReturnValue",
+            "originalBody": "return ReturnOption(data);",
+            "body": "return ReturnOption(data);",
+            "voidRegistration": false,
+            "command": "GetVariable"
+          },
+          {
+            "adapter": "GetAndClearUpdated",
+            "originalBody": "_ = EmulationCoreOptionFunctions.GetAndClearUpdated(data, ref _optionsUpdated);\r\nreturn true;",
+            "body": "_ = EmulationCoreOptionFunctions.GetAndClearUpdated(data, ref _optionsUpdated);\r\nreturn true;",
+            "voidRegistration": false,
+            "command": "GetVariableUpdate"
+          },
+          {
+            "adapter": "ApplyVisibility",
+            "originalBody": "return ApplyOptionVisibility(data);",
+            "body": "return ApplyOptionVisibility(data);",
+            "voidRegistration": false,
+            "command": "SetCoreOptionsDisplay"
+          },
+          {
+            "adapter": "CaptureDisplayUpdate",
+            "originalBody": "return CaptureOptionsDisplayCallback(data);",
+            "body": "return CaptureOptionsDisplayCallback(data);",
+            "voidRegistration": false,
+            "command": "SetCoreOptionsUpdateDisplayCallback"
+          }
+        ],
+        "before": "using GWGUI.Emulation.Sega.Emulators.Common.Interop.Constants;\r\nusing GWGUI.Emulation.Sega.Emulators.Common.Interop.Contracts;\r\nusing GWGUI.Emulation.Sega.Emulators.Common.Interop.Functions;\r\nusing GWGUI.Emulation.Sega.Emulators.Common.Interop.Services;\r\nusing GWGUI.Emulation.Sega.Emulators.Common.Interop.Exceptions;\r\n\r\nusing System.Runtime.InteropServices;\r\nusing GWGUI.Emulation;\r\nusing static GWGUI.Emulation.Sega.Emulators.Common.Interop.Constants.ExternalHostCallbacksConstants;\r\n\r\nnamespace GWGUI.Emulation.Sega.Emulators.Common.Interop.Services;\r\n\r\ninternal sealed partial class ExternalHostCallbacks : IEmulationCoreEnvironmentCommands\r\n{\r\n    private bool HandleEnvironment(uint command, nint data)\r\n    {\r\n        try\r\n        {\r\n            switch (command)\r\n            {\r\n                case SetContentInfoOverride:\r\n                    return CaptureContentOverrides(data);\r\n                case GetGameInfoExtended:\r\n                    return ProvideExtendedGameInfo(data);\r\n                case HardwareRenderConstants.SetHardwareRender:\r\n                    return ConfigureHardwareRender(data);\r\n                case HardwareRenderConstants.GetPreferredHardwareRender:\r\n                    return ExternalCoreEnvironmentFunctions.WriteInteger(data, OpenGlHardwareRenderContext.OpenGlCoreContextType);\r\n                case ExternalCoreApiConstants.GetSystemDirectory:\r\n                case ExternalCoreApiConstants.GetContentDirectory:\r\n                case ExternalCoreApiConstants.GetSaveDirectory:\r\n                case ExternalCoreApiConstants.SetMessage:\r\n                case ExternalCoreApiConstants.SetPixelFormat:\r\n                case ExternalCoreApiConstants.GetDiskControlVersion:\r\n                case ExternalCoreApiConstants.SetInputDescriptors:\r\n                case ExternalCoreApiConstants.SetKeyboardCallback:\r\n                case ExternalCoreApiConstants.SetDiskControl:\r\n                case ExternalCoreApiConstants.SetDiskControlExtended:\r\n                case ExternalCoreApiConstants.SetControllerInfo:\r\n                case ExternalCoreApiConstants.SetMemoryMaps:\r\n                case ExternalCoreApiConstants.SetSupportAchievements:\r\n                case ExternalCoreApiConstants.SetSupportNoGame:\r\n                case ExternalCoreApiConstants.SetMessageExtended:\r\n                case ExternalCoreApiConstants.SetGeometry:\r\n                case ExternalCoreApiConstants.SetSystemAvInfo:\r\n                case ExternalCoreApiConstants.GetLogInterface:\r\n                case ExternalCoreApiConstants.GetVfsInterface:\r\n                case ExternalCoreApiConstants.GetLedInterface:\r\n                    _ = ExternalCoreEnvironmentFunctions.TryHandleCallbackCommand(command, data, this, out var callbackResult);\r\n                    return callbackResult;\r\n                case ExternalCoreApiConstants.GetCanDuplicateFrames:\r\n                case ExternalCoreApiConstants.GetInputBitmasks:\r\n                case ExternalCoreApiConstants.GetCoreOptionsVersion:\r\n                    _ = ExternalCoreEnvironmentFunctions.TryHandleStatelessCommand(command, data,\r\n                        2, ExternalCoreInteropConstants.MessageInterfaceVersion, 0, out _);\r\n                    return true;\r\n                case ExternalCoreApiConstants.SetCoreOptions:\r\n                    RegisterVersionOneOptions(data);\r\n                    return true;\r\n                case ExternalCoreApiConstants.SetCoreOptionsInternational:\r\n                    RegisterVersionOneOptions(Marshal.ReadIntPtr(data));\r\n                    return true;\r\n                case ExternalCoreApiConstants.SetCoreOptionsV2:\r\n                    RegisterVersionTwoOptions(data);\r\n                    return true;\r\n                case ExternalCoreApiConstants.SetCoreOptionsV2International:\r\n                    RegisterVersionTwoOptions(Marshal.ReadIntPtr(data));\r\n                    return true;\r\n                case ExternalCoreApiConstants.SetVariables:\r\n                    RegisterLegacyOptions(data);\r\n                    return true;\r\n                case ExternalCoreApiConstants.GetVariable:\r\n                    return ReturnOption(data);\r\n                case ExternalCoreApiConstants.GetVariableUpdate:\r\n                    _ = EmulationCoreOptionFunctions.GetAndClearUpdated(data, ref _optionsUpdated);\r\n                    return true;\r\n                case ExternalCoreApiConstants.SetCoreOptionsDisplay:\r\n                    return ApplyOptionVisibility(data);\r\n                case ExternalCoreApiConstants.SetCoreOptionsUpdateDisplayCallback:\r\n                    return CaptureOptionsDisplayCallback(data);\r\n                case ExternalCoreApiConstants.GetMessageInterfaceVersion:\r\n                    _ = ExternalCoreEnvironmentFunctions.TryHandleStatelessCommand(command, data,\r\n                        2, ExternalCoreInteropConstants.MessageInterfaceVersion, 0, out var queryResult);\r\n                    return queryResult;\r\n                case ExternalCoreApiConstants.SetFastForwardingOverride:\r\n                    return false;\r\n                default:\r\n                    if (_unknownEnvironmentCommands.Add(command)) AddDiagnostic($\"Unsupported environment command: {command}\");\r\n                    return false;\r\n            }\r\n        }\r\n        catch\r\n        {\r\n            return false;\r\n        }\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.WriteSystemDirectory(nint data)\r\n    {\r\n        return ExternalCoreEnvironmentFunctions.WritePointer(data, NativeString(SystemDirectory));\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.WriteContentDirectory(nint data)\r\n    {\r\n        return ExternalCoreEnvironmentFunctions.WritePointer(data, NativeString(ContentDirectory));\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.WriteSaveDirectory(nint data)\r\n    {\r\n        return ExternalCoreEnvironmentFunctions.WritePointer(data, NativeString(SaveDirectory));\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.ReadMessage(nint data)\r\n    {\r\n        return CaptureMessage(data, extended: false);\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.SetPixelFormat(nint data)\r\n    {\r\n        _pixelFormat = Marshal.ReadInt32(data) switch\r\n        {\r\n            ExternalCoreInteropConstants.PixelFormatXrgb8888 => EmulationPixelFormat.Xrgb8888,\r\n            ExternalCoreInteropConstants.PixelFormatRgb565 => EmulationPixelFormat.Rgb565,\r\n            var value => throw new NotSupportedException(CoreExceptions.UnsupportedPixelFormat(value))};\r\n        return true;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.GetDiskControlVersion(nint data)\r\n    {\r\n        _ = ExternalCoreEnvironmentFunctions.WriteInteger(data, 1);\r\n        return true;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.CaptureInputDescriptors(nint data)\r\n    {\r\n        return true;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.SetKeyboardCallback(nint data)\r\n    {\r\n        var keyboard = Marshal.PtrToStructure<ExternalCoreApi.KeyboardCallback>(data);\r\n        _keyboardEvent = GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.OptionalDelegate<ExternalCoreApi.KeyboardEvent>(keyboard.Callback);\r\n        return true;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.CaptureDiskControl(nint data)\r\n    {\r\n        DiskControl.Capture(data);\r\n        return true;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.CaptureExtendedDiskControl(nint data)\r\n    {\r\n        DiskControl.CaptureExtended(data);\r\n        return true;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.CaptureControllerInfo(nint data)\r\n    {\r\n        return CaptureControllerInfo(data);\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.CaptureMemoryMaps(nint data)\r\n    {\r\n        return true;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.SetSupportAchievements(nint data)\r\n    {\r\n        return true;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.SetSupportNoGame(nint data)\r\n    {\r\n        SupportsNoGame = data != nint.Zero && Marshal.ReadByte(data) != ExternalCoreInteropConstants.NativeBooleanFalse;\r\n        return true;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.ReadExtendedMessage(nint data)\r\n    {\r\n        return CaptureMessage(data, extended: true);\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.SetGeometry(nint data)\r\n    {\r\n        return ApplyGeometry(data);\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.SetSystemAvInfo(nint data)\r\n    {\r\n        return ApplySystemAvInfo(data);\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.SetLogInterface(nint data)\r\n    {\r\n        return ExternalCoreEnvironmentFunctions.SetLogInterface(data, Log);\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.ProvideVfs(nint data)\r\n    {\r\n        return false;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.SetLedInterface(nint data)\r\n    {\r\n        return ExternalCoreEnvironmentFunctions.SetLedInterface(data, Led);\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.SetRotation(nint data) => false;\r\n    bool IEmulationCoreEnvironmentCommands.CapturePerformanceLevel(nint data) => false;\r\n    bool IEmulationCoreEnvironmentCommands.SetRumbleInterface(nint data) => false;\r\n    bool IEmulationCoreEnvironmentCommands.SetSensorInterface(nint data) => false;\r\n\r\n    private void RegisterLegacyOptions(nint data) => OptionCatalog = AdaptOptions(EmulationCoreOptionFunctions.ReadLegacy(data, _options, _optionVisibility));\r\n\r\n    private void RegisterVersionOneOptions(nint data)\n    {\n        if (EmulationCoreOptionFunctions.ReadVersionOne(data, _options, _optionVisibility) is { } options)\n            OptionCatalog = AdaptOptions(options);\n    }\r\n\r\n    private void RegisterVersionTwoOptions(nint data)\n    {\n        if (EmulationCoreOptionFunctions.ReadVersionTwo(data, _options, _optionVisibility) is { } options)\n            OptionCatalog = AdaptOptions(options);\n    }\r\n\r\n    private bool ApplyOptionVisibility(nint data)\r\n    {\n        if (!EmulationCoreOptionFunctions.ApplyNativeVisibility(data, _optionVisibility, OptionCatalog,\n                static option => option.Key, static (option, visible) => option with { IsVisible = visible },\n                out var catalog)) return false;\n        OptionCatalog = catalog;\n        return true;\n    }\r\n\r\n    private bool CaptureOptionsDisplayCallback(nint data)\r\n    {\n        if (!EmulationCoreOptionFunctions.TryGetDisplayCallback(data, out var callback)) return false;\n        _updateOptionsDisplay = callback;\n        return true;\n    }\r\n\r\n    private static IReadOnlyList<CoreOption> AdaptOptions(IReadOnlyList<EmulationOption> options) => options.Select(option =>\n        new CoreOption(option.Key, option.Name, option.Description, option.Category, option.DefaultValue, option.CurrentValue,\n            option.Values.Select(value => new CoreOptionValue(value.Value, value.Label)).ToArray(), option.IsVisible)).ToArray();\r\n\r\n    private bool ReturnOption(nint data)\r\n    => EmulationCoreOptionFunctions.ReturnNativeValue(data, _options, (_, value) => NativeString(value), unavailableResult: false);\r\n\r\n    internal void ValidateConfiguredOptions() =>\r\n        EmulationCoreOptionFunctions.ValidateConfiguredValues(\r\n            _configuredOptionKeys, _options, OptionCatalog,\r\n            static option => option.Key, static option => option.Values, static value => value.Value,\r\n            static (key, value) => throw new InvalidDataException(CoreExceptions.InvalidOptionValue(value, key)));\r\n\r\n    private bool CaptureMessage(nint data, bool extended)\r\n    {\r\n        if (data == 0) return false;\r\n        var textPointer = Marshal.ReadIntPtr(data);\r\n        ExternalCoreEnvironmentFunctions.CopyDiagnostic(textPointer, message => AddDiagnostic($\"[message{(extended ? ExternalHostCallbacksConstants.Extended : string.Empty)}] {message}\"));\r\n        return true;\r\n    }\r\n\r\n    private bool CaptureControllerInfo(nint data)\r\n    {\n        if (!GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.TryCopyControllerPorts<IReadOnlyList<ControllerDevice>, ControllerDevice>(\n            data, 16, 64, static (name, id) => new(name, id), static devices => devices,\n            rejectOverflow: true, skipEmptyNames: true, out var ports)) return false;\n        ControllerPorts = ports;\n        return true;\n    }\r\n\r\n    private nint NativeString(string value)\r\n    {\n        if (_nativeStrings.TryGetValue(value, out var existing)) return existing.Pointer;\n        return ExternalCoreUtf8String.AddTo(_nativeStrings, value, value).Pointer;\n    }\r\n\r\n}\r\n",
+        "methodBefore": "private bool HandleEnvironment(uint command, nint data)\r\n    {\r\n        try\r\n        {\r\n            switch (command)\r\n            {\r\n                case SetContentInfoOverride:\r\n                    return CaptureContentOverrides(data);\r\n                case GetGameInfoExtended:\r\n                    return ProvideExtendedGameInfo(data);\r\n                case HardwareRenderConstants.SetHardwareRender:\r\n                    return ConfigureHardwareRender(data);\r\n                case HardwareRenderConstants.GetPreferredHardwareRender:\r\n                    return ExternalCoreEnvironmentFunctions.WriteInteger(data, OpenGlHardwareRenderContext.OpenGlCoreContextType);\r\n                case ExternalCoreApiConstants.GetSystemDirectory:\r\n                case ExternalCoreApiConstants.GetContentDirectory:\r\n                case ExternalCoreApiConstants.GetSaveDirectory:\r\n                case ExternalCoreApiConstants.SetMessage:\r\n                case ExternalCoreApiConstants.SetPixelFormat:\r\n                case ExternalCoreApiConstants.GetDiskControlVersion:\r\n                case ExternalCoreApiConstants.SetInputDescriptors:\r\n                case ExternalCoreApiConstants.SetKeyboardCallback:\r\n                case ExternalCoreApiConstants.SetDiskControl:\r\n                case ExternalCoreApiConstants.SetDiskControlExtended:\r\n                case ExternalCoreApiConstants.SetControllerInfo:\r\n                case ExternalCoreApiConstants.SetMemoryMaps:\r\n                case ExternalCoreApiConstants.SetSupportAchievements:\r\n                case ExternalCoreApiConstants.SetSupportNoGame:\r\n                case ExternalCoreApiConstants.SetMessageExtended:\r\n                case ExternalCoreApiConstants.SetGeometry:\r\n                case ExternalCoreApiConstants.SetSystemAvInfo:\r\n                case ExternalCoreApiConstants.GetLogInterface:\r\n                case ExternalCoreApiConstants.GetVfsInterface:\r\n                case ExternalCoreApiConstants.GetLedInterface:\r\n                    _ = ExternalCoreEnvironmentFunctions.TryHandleCallbackCommand(command, data, this, out var callbackResult);\r\n                    return callbackResult;\r\n                case ExternalCoreApiConstants.GetCanDuplicateFrames:\r\n                case ExternalCoreApiConstants.GetInputBitmasks:\r\n                case ExternalCoreApiConstants.GetCoreOptionsVersion:\r\n                    _ = ExternalCoreEnvironmentFunctions.TryHandleStatelessCommand(command, data,\r\n                        2, ExternalCoreInteropConstants.MessageInterfaceVersion, 0, out _);\r\n                    return true;\r\n                case ExternalCoreApiConstants.SetCoreOptions:\r\n                    RegisterVersionOneOptions(data);\r\n                    return true;\r\n                case ExternalCoreApiConstants.SetCoreOptionsInternational:\r\n                    RegisterVersionOneOptions(Marshal.ReadIntPtr(data));\r\n                    return true;\r\n                case ExternalCoreApiConstants.SetCoreOptionsV2:\r\n                    RegisterVersionTwoOptions(data);\r\n                    return true;\r\n                case ExternalCoreApiConstants.SetCoreOptionsV2International:\r\n                    RegisterVersionTwoOptions(Marshal.ReadIntPtr(data));\r\n                    return true;\r\n                case ExternalCoreApiConstants.SetVariables:\r\n                    RegisterLegacyOptions(data);\r\n                    return true;\r\n                case ExternalCoreApiConstants.GetVariable:\r\n                    return ReturnOption(data);\r\n                case ExternalCoreApiConstants.GetVariableUpdate:\r\n                    _ = EmulationCoreOptionFunctions.GetAndClearUpdated(data, ref _optionsUpdated);\r\n                    return true;\r\n                case ExternalCoreApiConstants.SetCoreOptionsDisplay:\r\n                    return ApplyOptionVisibility(data);\r\n                case ExternalCoreApiConstants.SetCoreOptionsUpdateDisplayCallback:\r\n                    return CaptureOptionsDisplayCallback(data);\r\n                case ExternalCoreApiConstants.GetMessageInterfaceVersion:\r\n                    _ = ExternalCoreEnvironmentFunctions.TryHandleStatelessCommand(command, data,\r\n                        2, ExternalCoreInteropConstants.MessageInterfaceVersion, 0, out var queryResult);\r\n                    return queryResult;\r\n                case ExternalCoreApiConstants.SetFastForwardingOverride:\r\n                    return false;\r\n                default:\r\n                    if (_unknownEnvironmentCommands.Add(command)) AddDiagnostic($\"Unsupported environment command: {command}\");\r\n                    return false;\r\n            }\r\n        }\r\n        catch\r\n        {\r\n            return false;\r\n        }\r\n    }",
+        "after": "using GWGUI.Emulation.Sega.Emulators.Common.Interop.Constants;\r\nusing GWGUI.Emulation.Sega.Emulators.Common.Interop.Contracts;\r\nusing GWGUI.Emulation.Sega.Emulators.Common.Interop.Functions;\r\nusing GWGUI.Emulation.Sega.Emulators.Common.Interop.Services;\r\nusing GWGUI.Emulation.Sega.Emulators.Common.Interop.Exceptions;\r\n\r\nusing System.Runtime.InteropServices;\r\nusing GWGUI.Emulation;\r\nusing static GWGUI.Emulation.Sega.Emulators.Common.Interop.Constants.ExternalHostCallbacksConstants;\r\n\r\nnamespace GWGUI.Emulation.Sega.Emulators.Common.Interop.Services;\r\n\r\ninternal sealed partial class ExternalHostCallbacks : IEmulationCoreEnvironmentCommands, IEmulationCoreOptionCommands\r\n{\r\n    private bool HandleEnvironment(uint command, nint data)\r\n    {\r\n        try\r\n        {\r\n            switch (command)\r\n            {\r\n                case SetContentInfoOverride:\r\n                    return CaptureContentOverrides(data);\r\n                case GetGameInfoExtended:\r\n                    return ProvideExtendedGameInfo(data);\r\n                case HardwareRenderConstants.SetHardwareRender:\r\n                    return ConfigureHardwareRender(data);\r\n                case HardwareRenderConstants.GetPreferredHardwareRender:\r\n                    return ExternalCoreEnvironmentFunctions.WriteInteger(data, OpenGlHardwareRenderContext.OpenGlCoreContextType);\r\n                case ExternalCoreApiConstants.GetSystemDirectory:\r\n                case ExternalCoreApiConstants.GetContentDirectory:\r\n                case ExternalCoreApiConstants.GetSaveDirectory:\r\n                case ExternalCoreApiConstants.SetMessage:\r\n                case ExternalCoreApiConstants.SetPixelFormat:\r\n                case ExternalCoreApiConstants.GetDiskControlVersion:\r\n                case ExternalCoreApiConstants.SetInputDescriptors:\r\n                case ExternalCoreApiConstants.SetKeyboardCallback:\r\n                case ExternalCoreApiConstants.SetDiskControl:\r\n                case ExternalCoreApiConstants.SetDiskControlExtended:\r\n                case ExternalCoreApiConstants.SetControllerInfo:\r\n                case ExternalCoreApiConstants.SetMemoryMaps:\r\n                case ExternalCoreApiConstants.SetSupportAchievements:\r\n                case ExternalCoreApiConstants.SetSupportNoGame:\r\n                case ExternalCoreApiConstants.SetMessageExtended:\r\n                case ExternalCoreApiConstants.SetGeometry:\r\n                case ExternalCoreApiConstants.SetSystemAvInfo:\r\n                case ExternalCoreApiConstants.GetLogInterface:\r\n                case ExternalCoreApiConstants.GetVfsInterface:\r\n                case ExternalCoreApiConstants.GetLedInterface:\r\n                    _ = ExternalCoreEnvironmentFunctions.TryHandleCallbackCommand(command, data, this, out var callbackResult);\r\n                    return callbackResult;\r\n                case ExternalCoreApiConstants.GetCanDuplicateFrames:\r\n                case ExternalCoreApiConstants.GetInputBitmasks:\r\n                case ExternalCoreApiConstants.GetCoreOptionsVersion:\r\n                    _ = ExternalCoreEnvironmentFunctions.TryHandleStatelessCommand(command, data,\r\n                        2, ExternalCoreInteropConstants.MessageInterfaceVersion, 0, out _);\r\n                    return true;\r\n                case ExternalCoreApiConstants.SetCoreOptions:\r\n                case ExternalCoreApiConstants.SetCoreOptionsInternational:\r\n                case ExternalCoreApiConstants.SetCoreOptionsV2:\r\n                case ExternalCoreApiConstants.SetCoreOptionsV2International:\r\n                case ExternalCoreApiConstants.SetVariables:\r\n                    _ = ExternalCoreEnvironmentFunctions.TryHandleOptionCommand(command, data, this, out _);\r\n                    return true;\r\n                case ExternalCoreApiConstants.GetVariable:\r\n                case ExternalCoreApiConstants.GetVariableUpdate:\r\n                case ExternalCoreApiConstants.SetCoreOptionsDisplay:\r\n                case ExternalCoreApiConstants.SetCoreOptionsUpdateDisplayCallback:\r\n                    _ = ExternalCoreEnvironmentFunctions.TryHandleOptionCommand(command, data, this, out var optionResult);\r\n                    return optionResult;\r\n                case ExternalCoreApiConstants.GetMessageInterfaceVersion:\r\n                    _ = ExternalCoreEnvironmentFunctions.TryHandleStatelessCommand(command, data,\r\n                        2, ExternalCoreInteropConstants.MessageInterfaceVersion, 0, out var queryResult);\r\n                    return queryResult;\r\n                case ExternalCoreApiConstants.SetFastForwardingOverride:\r\n                    return false;\r\n                default:\r\n                    if (_unknownEnvironmentCommands.Add(command)) AddDiagnostic($\"Unsupported environment command: {command}\");\r\n                    return false;\r\n            }\r\n        }\r\n        catch\r\n        {\r\n            return false;\r\n        }\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.WriteSystemDirectory(nint data)\r\n    {\r\n        return ExternalCoreEnvironmentFunctions.WritePointer(data, NativeString(SystemDirectory));\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.WriteContentDirectory(nint data)\r\n    {\r\n        return ExternalCoreEnvironmentFunctions.WritePointer(data, NativeString(ContentDirectory));\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.WriteSaveDirectory(nint data)\r\n    {\r\n        return ExternalCoreEnvironmentFunctions.WritePointer(data, NativeString(SaveDirectory));\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.ReadMessage(nint data)\r\n    {\r\n        return CaptureMessage(data, extended: false);\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.SetPixelFormat(nint data)\r\n    {\r\n        _pixelFormat = Marshal.ReadInt32(data) switch\r\n        {\r\n            ExternalCoreInteropConstants.PixelFormatXrgb8888 => EmulationPixelFormat.Xrgb8888,\r\n            ExternalCoreInteropConstants.PixelFormatRgb565 => EmulationPixelFormat.Rgb565,\r\n            var value => throw new NotSupportedException(CoreExceptions.UnsupportedPixelFormat(value))};\r\n        return true;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.GetDiskControlVersion(nint data)\r\n    {\r\n        _ = ExternalCoreEnvironmentFunctions.WriteInteger(data, 1);\r\n        return true;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.CaptureInputDescriptors(nint data)\r\n    {\r\n        return true;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.SetKeyboardCallback(nint data)\r\n    {\r\n        var keyboard = Marshal.PtrToStructure<ExternalCoreApi.KeyboardCallback>(data);\r\n        _keyboardEvent = GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.OptionalDelegate<ExternalCoreApi.KeyboardEvent>(keyboard.Callback);\r\n        return true;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.CaptureDiskControl(nint data)\r\n    {\r\n        DiskControl.Capture(data);\r\n        return true;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.CaptureExtendedDiskControl(nint data)\r\n    {\r\n        DiskControl.CaptureExtended(data);\r\n        return true;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.CaptureControllerInfo(nint data)\r\n    {\r\n        return CaptureControllerInfo(data);\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.CaptureMemoryMaps(nint data)\r\n    {\r\n        return true;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.SetSupportAchievements(nint data)\r\n    {\r\n        return true;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.SetSupportNoGame(nint data)\r\n    {\r\n        SupportsNoGame = data != nint.Zero && Marshal.ReadByte(data) != ExternalCoreInteropConstants.NativeBooleanFalse;\r\n        return true;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.ReadExtendedMessage(nint data)\r\n    {\r\n        return CaptureMessage(data, extended: true);\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.SetGeometry(nint data)\r\n    {\r\n        return ApplyGeometry(data);\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.SetSystemAvInfo(nint data)\r\n    {\r\n        return ApplySystemAvInfo(data);\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.SetLogInterface(nint data)\r\n    {\r\n        return ExternalCoreEnvironmentFunctions.SetLogInterface(data, Log);\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.ProvideVfs(nint data)\r\n    {\r\n        return false;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.SetLedInterface(nint data)\r\n    {\r\n        return ExternalCoreEnvironmentFunctions.SetLedInterface(data, Led);\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.SetRotation(nint data) => false;\r\n    bool IEmulationCoreEnvironmentCommands.CapturePerformanceLevel(nint data) => false;\r\n    bool IEmulationCoreEnvironmentCommands.SetRumbleInterface(nint data) => false;\r\n    bool IEmulationCoreEnvironmentCommands.SetSensorInterface(nint data) => false;\r\n\r\n    void IEmulationCoreOptionCommands.RegisterVersionOne(nint data)\r\n    {\r\n        RegisterVersionOneOptions(data);\r\n    }\r\n\r\n    void IEmulationCoreOptionCommands.RegisterVersionOneInternational(nint data)\r\n    {\r\n        RegisterVersionOneOptions(Marshal.ReadIntPtr(data));\r\n    }\r\n\r\n    void IEmulationCoreOptionCommands.RegisterVersionTwo(nint data)\r\n    {\r\n        RegisterVersionTwoOptions(data);\r\n    }\r\n\r\n    void IEmulationCoreOptionCommands.RegisterVersionTwoInternational(nint data)\r\n    {\r\n        RegisterVersionTwoOptions(Marshal.ReadIntPtr(data));\r\n    }\r\n\r\n    void IEmulationCoreOptionCommands.RegisterLegacyVariables(nint data)\r\n    {\r\n        RegisterLegacyOptions(data);\r\n    }\r\n\r\n    bool IEmulationCoreOptionCommands.ReturnValue(nint data)\r\n    {\r\n        return ReturnOption(data);\r\n    }\r\n\r\n    bool IEmulationCoreOptionCommands.GetAndClearUpdated(nint data)\r\n    {\r\n        _ = EmulationCoreOptionFunctions.GetAndClearUpdated(data, ref _optionsUpdated);\r\n        return true;\r\n    }\r\n\r\n    bool IEmulationCoreOptionCommands.ApplyVisibility(nint data)\r\n    {\r\n        return ApplyOptionVisibility(data);\r\n    }\r\n\r\n    bool IEmulationCoreOptionCommands.CaptureDisplayUpdate(nint data)\r\n    {\r\n        return CaptureOptionsDisplayCallback(data);\r\n    }\r\n\r\n    bool IEmulationCoreOptionCommands.SetNativeValue(nint data) => false;\r\n\r\n    private void RegisterLegacyOptions(nint data) => OptionCatalog = AdaptOptions(EmulationCoreOptionFunctions.ReadLegacy(data, _options, _optionVisibility));\r\n\r\n    private void RegisterVersionOneOptions(nint data)\n    {\n        if (EmulationCoreOptionFunctions.ReadVersionOne(data, _options, _optionVisibility) is { } options)\n            OptionCatalog = AdaptOptions(options);\n    }\r\n\r\n    private void RegisterVersionTwoOptions(nint data)\n    {\n        if (EmulationCoreOptionFunctions.ReadVersionTwo(data, _options, _optionVisibility) is { } options)\n            OptionCatalog = AdaptOptions(options);\n    }\r\n\r\n    private bool ApplyOptionVisibility(nint data)\r\n    {\n        if (!EmulationCoreOptionFunctions.ApplyNativeVisibility(data, _optionVisibility, OptionCatalog,\n                static option => option.Key, static (option, visible) => option with { IsVisible = visible },\n                out var catalog)) return false;\n        OptionCatalog = catalog;\n        return true;\n    }\r\n\r\n    private bool CaptureOptionsDisplayCallback(nint data)\r\n    {\n        if (!EmulationCoreOptionFunctions.TryGetDisplayCallback(data, out var callback)) return false;\n        _updateOptionsDisplay = callback;\n        return true;\n    }\r\n\r\n    private static IReadOnlyList<CoreOption> AdaptOptions(IReadOnlyList<EmulationOption> options) => options.Select(option =>\n        new CoreOption(option.Key, option.Name, option.Description, option.Category, option.DefaultValue, option.CurrentValue,\n            option.Values.Select(value => new CoreOptionValue(value.Value, value.Label)).ToArray(), option.IsVisible)).ToArray();\r\n\r\n    private bool ReturnOption(nint data)\r\n    => EmulationCoreOptionFunctions.ReturnNativeValue(data, _options, (_, value) => NativeString(value), unavailableResult: false);\r\n\r\n    internal void ValidateConfiguredOptions() =>\r\n        EmulationCoreOptionFunctions.ValidateConfiguredValues(\r\n            _configuredOptionKeys, _options, OptionCatalog,\r\n            static option => option.Key, static option => option.Values, static value => value.Value,\r\n            static (key, value) => throw new InvalidDataException(CoreExceptions.InvalidOptionValue(value, key)));\r\n\r\n    private bool CaptureMessage(nint data, bool extended)\r\n    {\r\n        if (data == 0) return false;\r\n        var textPointer = Marshal.ReadIntPtr(data);\r\n        ExternalCoreEnvironmentFunctions.CopyDiagnostic(textPointer, message => AddDiagnostic($\"[message{(extended ? ExternalHostCallbacksConstants.Extended : string.Empty)}] {message}\"));\r\n        return true;\r\n    }\r\n\r\n    private bool CaptureControllerInfo(nint data)\r\n    {\n        if (!GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.TryCopyControllerPorts<IReadOnlyList<ControllerDevice>, ControllerDevice>(\n            data, 16, 64, static (name, id) => new(name, id), static devices => devices,\n            rejectOverflow: true, skipEmptyNames: true, out var ports)) return false;\n        ControllerPorts = ports;\n        return true;\n    }\r\n\r\n    private nint NativeString(string value)\r\n    {\n        if (_nativeStrings.TryGetValue(value, out var existing)) return existing.Pointer;\n        return ExternalCoreUtf8String.AddTo(_nativeStrings, value, value).Pointer;\n    }\r\n\r\n}\r\n",
+        "sha256": "76910459666EA6073FFD26E3701A92EFE6033D28EBFFDFFD4F6E5E0A9500FF2B",
+        "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs"
+      },
+      {
+        "sections": [
+          {
+            "adapter": "RegisterVersionOne",
+            "originalBody": "RegisterVersionOneOptions(data);\r\nreturn true;",
+            "body": "RegisterVersionOneOptions(data);",
+            "voidRegistration": true,
+            "command": "SetCoreOptions"
+          },
+          {
+            "adapter": "RegisterVersionOneInternational",
+            "originalBody": "RegisterVersionOneOptions(Marshal.ReadIntPtr(data));\r\nreturn true;",
+            "body": "RegisterVersionOneOptions(Marshal.ReadIntPtr(data));",
+            "voidRegistration": true,
+            "command": "SetCoreOptionsInternational"
+          },
+          {
+            "adapter": "RegisterVersionTwo",
+            "originalBody": "RegisterVersionTwoOptions(data);\r\nreturn true;",
+            "body": "RegisterVersionTwoOptions(data);",
+            "voidRegistration": true,
+            "command": "SetCoreOptionsV2"
+          },
+          {
+            "adapter": "RegisterVersionTwoInternational",
+            "originalBody": "RegisterVersionTwoOptions(Marshal.ReadIntPtr(data));\r\nreturn true;",
+            "body": "RegisterVersionTwoOptions(Marshal.ReadIntPtr(data));",
+            "voidRegistration": true,
+            "command": "SetCoreOptionsV2International"
+          },
+          {
+            "adapter": "RegisterLegacyVariables",
+            "originalBody": "RegisterLegacyOptions(data);\r\nreturn true;",
+            "body": "RegisterLegacyOptions(data);",
+            "voidRegistration": true,
+            "command": "SetVariables"
+          },
+          {
+            "adapter": "ReturnValue",
+            "originalBody": "return ReturnOption(data);",
+            "body": "return ReturnOption(data);",
+            "voidRegistration": false,
+            "command": "GetVariable"
+          },
+          {
+            "adapter": "GetAndClearUpdated",
+            "originalBody": "_ = EmulationCoreOptionFunctions.GetAndClearUpdated(data, ref _optionsUpdated);\r\nreturn true;",
+            "body": "_ = EmulationCoreOptionFunctions.GetAndClearUpdated(data, ref _optionsUpdated);\r\nreturn true;",
+            "voidRegistration": false,
+            "command": "GetVariableUpdate"
+          },
+          {
+            "adapter": "ApplyVisibility",
+            "originalBody": "return ApplyOptionVisibility(data);",
+            "body": "return ApplyOptionVisibility(data);",
+            "voidRegistration": false,
+            "command": "SetCoreOptionsDisplay"
+          },
+          {
+            "adapter": "CaptureDisplayUpdate",
+            "originalBody": "return CaptureOptionsDisplayCallback(data);",
+            "body": "return CaptureOptionsDisplayCallback(data);",
+            "voidRegistration": false,
+            "command": "SetCoreOptionsUpdateDisplayCallback"
+          }
+        ],
+        "before": "using GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Constants;\r\nusing GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Contracts;\r\nusing GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Functions;\r\nusing GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Services;\r\nusing GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Exceptions;\r\n\r\nusing System.Runtime.InteropServices;\r\nusing GWGUI.Emulation;\r\nusing static GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Constants.ExternalHostCallbacksConstants;\r\n\r\nnamespace GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Services;\r\n\r\ninternal sealed partial class ExternalHostCallbacks : IEmulationCoreEnvironmentCommands\r\n{\r\n    private bool HandleEnvironment(uint command, nint data)\r\n    {\r\n        try\r\n        {\r\n            switch (command)\r\n            {\r\n                case SetContentInfoOverride:\r\n                    return CaptureContentOverrides(data);\r\n                case GetGameInfoExtended:\r\n                    return ProvideExtendedGameInfo(data);\r\n                case HardwareRenderConstants.SetHardwareRender:\r\n                    return ConfigureHardwareRender(data);\r\n                case HardwareRenderConstants.GetPreferredHardwareRender:\r\n                    return ExternalCoreEnvironmentFunctions.WriteInteger(data, OpenGlHardwareRenderContext.OpenGlCoreContextType);\r\n                case ExternalCoreApiConstants.GetSystemDirectory:\r\n                case ExternalCoreApiConstants.GetContentDirectory:\r\n                case ExternalCoreApiConstants.GetSaveDirectory:\r\n                case ExternalCoreApiConstants.SetMessage:\r\n                case ExternalCoreApiConstants.SetPixelFormat:\r\n                case ExternalCoreApiConstants.GetDiskControlVersion:\r\n                case ExternalCoreApiConstants.SetInputDescriptors:\r\n                case ExternalCoreApiConstants.SetKeyboardCallback:\r\n                case ExternalCoreApiConstants.SetDiskControl:\r\n                case ExternalCoreApiConstants.SetDiskControlExtended:\r\n                case ExternalCoreApiConstants.SetControllerInfo:\r\n                case ExternalCoreApiConstants.SetMemoryMaps:\r\n                case ExternalCoreApiConstants.SetSupportAchievements:\r\n                case ExternalCoreApiConstants.SetSupportNoGame:\r\n                case ExternalCoreApiConstants.SetMessageExtended:\r\n                case ExternalCoreApiConstants.SetGeometry:\r\n                case ExternalCoreApiConstants.SetSystemAvInfo:\r\n                case ExternalCoreApiConstants.GetLogInterface:\r\n                case ExternalCoreApiConstants.GetVfsInterface:\r\n                case ExternalCoreApiConstants.GetLedInterface:\r\n                    _ = ExternalCoreEnvironmentFunctions.TryHandleCallbackCommand(command, data, this, out var callbackResult);\r\n                    return callbackResult;\r\n                case ExternalCoreApiConstants.GetCanDuplicateFrames:\r\n                case ExternalCoreApiConstants.GetInputBitmasks:\r\n                case ExternalCoreApiConstants.GetCoreOptionsVersion:\r\n                    _ = ExternalCoreEnvironmentFunctions.TryHandleStatelessCommand(command, data,\r\n                        2, ExternalCoreInteropConstants.MessageInterfaceVersion, 0, out _);\r\n                    return true;\r\n                case ExternalCoreApiConstants.SetCoreOptions:\r\n                    RegisterVersionOneOptions(data);\r\n                    return true;\r\n                case ExternalCoreApiConstants.SetCoreOptionsInternational:\r\n                    RegisterVersionOneOptions(Marshal.ReadIntPtr(data));\r\n                    return true;\r\n                case ExternalCoreApiConstants.SetCoreOptionsV2:\r\n                    RegisterVersionTwoOptions(data);\r\n                    return true;\r\n                case ExternalCoreApiConstants.SetCoreOptionsV2International:\r\n                    RegisterVersionTwoOptions(Marshal.ReadIntPtr(data));\r\n                    return true;\r\n                case ExternalCoreApiConstants.SetVariables:\r\n                    RegisterLegacyOptions(data);\r\n                    return true;\r\n                case ExternalCoreApiConstants.GetVariable:\r\n                    return ReturnOption(data);\r\n                case ExternalCoreApiConstants.GetVariableUpdate:\r\n                    _ = EmulationCoreOptionFunctions.GetAndClearUpdated(data, ref _optionsUpdated);\r\n                    return true;\r\n                case ExternalCoreApiConstants.SetCoreOptionsDisplay:\r\n                    return ApplyOptionVisibility(data);\r\n                case ExternalCoreApiConstants.SetCoreOptionsUpdateDisplayCallback:\r\n                    return CaptureOptionsDisplayCallback(data);\r\n                case ExternalCoreApiConstants.GetMessageInterfaceVersion:\r\n                    _ = ExternalCoreEnvironmentFunctions.TryHandleStatelessCommand(command, data,\r\n                        2, ExternalCoreInteropConstants.MessageInterfaceVersion, 0, out var queryResult);\r\n                    return queryResult;\r\n                case ExternalCoreApiConstants.SetFastForwardingOverride:\r\n                    return false;\r\n                default:\r\n                    if (_unknownEnvironmentCommands.Add(command)) AddDiagnostic($\"Unsupported environment command: {command}\");\r\n                    return false;\r\n            }\r\n        }\r\n        catch\r\n        {\r\n            return false;\r\n        }\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.WriteSystemDirectory(nint data)\r\n    {\r\n        return ExternalCoreEnvironmentFunctions.WritePointer(data, NativeString(SystemDirectory));\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.WriteContentDirectory(nint data)\r\n    {\r\n        return ExternalCoreEnvironmentFunctions.WritePointer(data, NativeString(ContentDirectory));\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.WriteSaveDirectory(nint data)\r\n    {\r\n        return ExternalCoreEnvironmentFunctions.WritePointer(data, NativeString(SaveDirectory));\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.ReadMessage(nint data)\r\n    {\r\n        return CaptureMessage(data, extended: false);\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.SetPixelFormat(nint data)\r\n    {\r\n        _pixelFormat = Marshal.ReadInt32(data) switch\r\n        {\r\n            ExternalCoreInteropConstants.PixelFormatXrgb8888 => EmulationPixelFormat.Xrgb8888,\r\n            ExternalCoreInteropConstants.PixelFormatRgb565 => EmulationPixelFormat.Rgb565,\r\n            var value => throw new NotSupportedException(CoreExceptions.UnsupportedPixelFormat(value))};\r\n        return true;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.GetDiskControlVersion(nint data)\r\n    {\r\n        _ = ExternalCoreEnvironmentFunctions.WriteInteger(data, 1);\r\n        return true;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.CaptureInputDescriptors(nint data)\r\n    {\r\n        return true;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.SetKeyboardCallback(nint data)\r\n    {\r\n        var keyboard = Marshal.PtrToStructure<ExternalCoreApi.KeyboardCallback>(data);\r\n        _keyboardEvent = GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.OptionalDelegate<ExternalCoreApi.KeyboardEvent>(keyboard.Callback);\r\n        return true;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.CaptureDiskControl(nint data)\r\n    {\r\n        DiskControl.Capture(data);\r\n        return true;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.CaptureExtendedDiskControl(nint data)\r\n    {\r\n        DiskControl.CaptureExtended(data);\r\n        return true;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.CaptureControllerInfo(nint data)\r\n    {\r\n        return CaptureControllerInfo(data);\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.CaptureMemoryMaps(nint data)\r\n    {\r\n        return true;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.SetSupportAchievements(nint data)\r\n    {\r\n        return true;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.SetSupportNoGame(nint data)\r\n    {\r\n        SupportsNoGame = data != nint.Zero && Marshal.ReadByte(data) != ExternalCoreInteropConstants.NativeBooleanFalse;\r\n        return true;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.ReadExtendedMessage(nint data)\r\n    {\r\n        return CaptureMessage(data, extended: true);\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.SetGeometry(nint data)\r\n    {\r\n        return ApplyGeometry(data);\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.SetSystemAvInfo(nint data)\r\n    {\r\n        return ApplySystemAvInfo(data);\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.SetLogInterface(nint data)\r\n    {\r\n        return ExternalCoreEnvironmentFunctions.SetLogInterface(data, Log);\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.ProvideVfs(nint data)\r\n    {\r\n        return false;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.SetLedInterface(nint data)\r\n    {\r\n        return ExternalCoreEnvironmentFunctions.SetLedInterface(data, Led);\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.SetRotation(nint data) => false;\r\n    bool IEmulationCoreEnvironmentCommands.CapturePerformanceLevel(nint data) => false;\r\n    bool IEmulationCoreEnvironmentCommands.SetRumbleInterface(nint data) => false;\r\n    bool IEmulationCoreEnvironmentCommands.SetSensorInterface(nint data) => false;\r\n\r\n    private void RegisterLegacyOptions(nint data) => OptionCatalog = AdaptOptions(EmulationCoreOptionFunctions.ReadLegacy(data, _options, _optionVisibility));\r\n\r\n    private void RegisterVersionOneOptions(nint data)\n    {\n        if (EmulationCoreOptionFunctions.ReadVersionOne(data, _options, _optionVisibility) is { } options)\n            OptionCatalog = AdaptOptions(options);\n    }\r\n\r\n    private void RegisterVersionTwoOptions(nint data)\n    {\n        if (EmulationCoreOptionFunctions.ReadVersionTwo(data, _options, _optionVisibility) is { } options)\n            OptionCatalog = AdaptOptions(options);\n    }\r\n\r\n    private bool ApplyOptionVisibility(nint data)\r\n    {\n        if (!EmulationCoreOptionFunctions.ApplyNativeVisibility(data, _optionVisibility, OptionCatalog,\n                static option => option.Key, static (option, visible) => option with { IsVisible = visible },\n                out var catalog)) return false;\n        OptionCatalog = catalog;\n        return true;\n    }\r\n\r\n    private bool CaptureOptionsDisplayCallback(nint data)\r\n    {\n        if (!EmulationCoreOptionFunctions.TryGetDisplayCallback(data, out var callback)) return false;\n        _updateOptionsDisplay = callback;\n        return true;\n    }\r\n\r\n    private static IReadOnlyList<CoreOption> AdaptOptions(IReadOnlyList<EmulationOption> options) => options.Select(option =>\n        new CoreOption(option.Key, option.Name, option.Description, option.Category, option.DefaultValue, option.CurrentValue,\n            option.Values.Select(value => new CoreOptionValue(value.Value, value.Label)).ToArray(), option.IsVisible))\n        .Where(CoreSettingsFunctions.IsSupportedNintendoOption).Select(CoreSettingsFunctions.WithSupportedGraphicsApis).ToArray();\r\n\r\n    private bool ReturnOption(nint data)\r\n    => EmulationCoreOptionFunctions.ReturnNativeValue(data, _options, (_, value) => NativeString(value), unavailableResult: false);\r\n\r\n    internal void ValidateConfiguredOptions() =>\r\n        EmulationCoreOptionFunctions.ValidateConfiguredValues(\r\n            _configuredOptionKeys, _options, OptionCatalog,\r\n            static option => option.Key, static option => option.Values, static value => value.Value,\r\n            static (key, value) => throw new InvalidDataException(CoreExceptions.InvalidOptionValue(value, key)));\r\n\r\n    private bool CaptureMessage(nint data, bool extended)\r\n    {\r\n        if (data == 0) return false;\r\n        var textPointer = Marshal.ReadIntPtr(data);\r\n        ExternalCoreEnvironmentFunctions.CopyDiagnostic(textPointer, message => AddDiagnostic($\"[message{(extended ? ExternalHostCallbacksConstants.Extended : string.Empty)}] {message}\"));\r\n        return true;\r\n    }\r\n\r\n    private bool CaptureControllerInfo(nint data)\r\n    {\n        if (!GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.TryCopyControllerPorts<IReadOnlyList<ControllerDevice>, ControllerDevice>(\n            data, 16, 64, static (name, id) => new(name, id), static devices => devices,\n            rejectOverflow: true, skipEmptyNames: true, out var ports)) return false;\n        ControllerPorts = ports;\n        return true;\n    }\r\n\r\n    private nint NativeString(string value)\r\n    {\n        if (_nativeStrings.TryGetValue(value, out var existing)) return existing.Pointer;\n        return ExternalCoreUtf8String.AddTo(_nativeStrings, value, value).Pointer;\n    }\r\n\r\n}\r\n",
+        "methodBefore": "private bool HandleEnvironment(uint command, nint data)\r\n    {\r\n        try\r\n        {\r\n            switch (command)\r\n            {\r\n                case SetContentInfoOverride:\r\n                    return CaptureContentOverrides(data);\r\n                case GetGameInfoExtended:\r\n                    return ProvideExtendedGameInfo(data);\r\n                case HardwareRenderConstants.SetHardwareRender:\r\n                    return ConfigureHardwareRender(data);\r\n                case HardwareRenderConstants.GetPreferredHardwareRender:\r\n                    return ExternalCoreEnvironmentFunctions.WriteInteger(data, OpenGlHardwareRenderContext.OpenGlCoreContextType);\r\n                case ExternalCoreApiConstants.GetSystemDirectory:\r\n                case ExternalCoreApiConstants.GetContentDirectory:\r\n                case ExternalCoreApiConstants.GetSaveDirectory:\r\n                case ExternalCoreApiConstants.SetMessage:\r\n                case ExternalCoreApiConstants.SetPixelFormat:\r\n                case ExternalCoreApiConstants.GetDiskControlVersion:\r\n                case ExternalCoreApiConstants.SetInputDescriptors:\r\n                case ExternalCoreApiConstants.SetKeyboardCallback:\r\n                case ExternalCoreApiConstants.SetDiskControl:\r\n                case ExternalCoreApiConstants.SetDiskControlExtended:\r\n                case ExternalCoreApiConstants.SetControllerInfo:\r\n                case ExternalCoreApiConstants.SetMemoryMaps:\r\n                case ExternalCoreApiConstants.SetSupportAchievements:\r\n                case ExternalCoreApiConstants.SetSupportNoGame:\r\n                case ExternalCoreApiConstants.SetMessageExtended:\r\n                case ExternalCoreApiConstants.SetGeometry:\r\n                case ExternalCoreApiConstants.SetSystemAvInfo:\r\n                case ExternalCoreApiConstants.GetLogInterface:\r\n                case ExternalCoreApiConstants.GetVfsInterface:\r\n                case ExternalCoreApiConstants.GetLedInterface:\r\n                    _ = ExternalCoreEnvironmentFunctions.TryHandleCallbackCommand(command, data, this, out var callbackResult);\r\n                    return callbackResult;\r\n                case ExternalCoreApiConstants.GetCanDuplicateFrames:\r\n                case ExternalCoreApiConstants.GetInputBitmasks:\r\n                case ExternalCoreApiConstants.GetCoreOptionsVersion:\r\n                    _ = ExternalCoreEnvironmentFunctions.TryHandleStatelessCommand(command, data,\r\n                        2, ExternalCoreInteropConstants.MessageInterfaceVersion, 0, out _);\r\n                    return true;\r\n                case ExternalCoreApiConstants.SetCoreOptions:\r\n                    RegisterVersionOneOptions(data);\r\n                    return true;\r\n                case ExternalCoreApiConstants.SetCoreOptionsInternational:\r\n                    RegisterVersionOneOptions(Marshal.ReadIntPtr(data));\r\n                    return true;\r\n                case ExternalCoreApiConstants.SetCoreOptionsV2:\r\n                    RegisterVersionTwoOptions(data);\r\n                    return true;\r\n                case ExternalCoreApiConstants.SetCoreOptionsV2International:\r\n                    RegisterVersionTwoOptions(Marshal.ReadIntPtr(data));\r\n                    return true;\r\n                case ExternalCoreApiConstants.SetVariables:\r\n                    RegisterLegacyOptions(data);\r\n                    return true;\r\n                case ExternalCoreApiConstants.GetVariable:\r\n                    return ReturnOption(data);\r\n                case ExternalCoreApiConstants.GetVariableUpdate:\r\n                    _ = EmulationCoreOptionFunctions.GetAndClearUpdated(data, ref _optionsUpdated);\r\n                    return true;\r\n                case ExternalCoreApiConstants.SetCoreOptionsDisplay:\r\n                    return ApplyOptionVisibility(data);\r\n                case ExternalCoreApiConstants.SetCoreOptionsUpdateDisplayCallback:\r\n                    return CaptureOptionsDisplayCallback(data);\r\n                case ExternalCoreApiConstants.GetMessageInterfaceVersion:\r\n                    _ = ExternalCoreEnvironmentFunctions.TryHandleStatelessCommand(command, data,\r\n                        2, ExternalCoreInteropConstants.MessageInterfaceVersion, 0, out var queryResult);\r\n                    return queryResult;\r\n                case ExternalCoreApiConstants.SetFastForwardingOverride:\r\n                    return false;\r\n                default:\r\n                    if (_unknownEnvironmentCommands.Add(command)) AddDiagnostic($\"Unsupported environment command: {command}\");\r\n                    return false;\r\n            }\r\n        }\r\n        catch\r\n        {\r\n            return false;\r\n        }\r\n    }",
+        "after": "using GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Constants;\r\nusing GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Contracts;\r\nusing GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Functions;\r\nusing GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Services;\r\nusing GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Exceptions;\r\n\r\nusing System.Runtime.InteropServices;\r\nusing GWGUI.Emulation;\r\nusing static GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Constants.ExternalHostCallbacksConstants;\r\n\r\nnamespace GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Services;\r\n\r\ninternal sealed partial class ExternalHostCallbacks : IEmulationCoreEnvironmentCommands, IEmulationCoreOptionCommands\r\n{\r\n    private bool HandleEnvironment(uint command, nint data)\r\n    {\r\n        try\r\n        {\r\n            switch (command)\r\n            {\r\n                case SetContentInfoOverride:\r\n                    return CaptureContentOverrides(data);\r\n                case GetGameInfoExtended:\r\n                    return ProvideExtendedGameInfo(data);\r\n                case HardwareRenderConstants.SetHardwareRender:\r\n                    return ConfigureHardwareRender(data);\r\n                case HardwareRenderConstants.GetPreferredHardwareRender:\r\n                    return ExternalCoreEnvironmentFunctions.WriteInteger(data, OpenGlHardwareRenderContext.OpenGlCoreContextType);\r\n                case ExternalCoreApiConstants.GetSystemDirectory:\r\n                case ExternalCoreApiConstants.GetContentDirectory:\r\n                case ExternalCoreApiConstants.GetSaveDirectory:\r\n                case ExternalCoreApiConstants.SetMessage:\r\n                case ExternalCoreApiConstants.SetPixelFormat:\r\n                case ExternalCoreApiConstants.GetDiskControlVersion:\r\n                case ExternalCoreApiConstants.SetInputDescriptors:\r\n                case ExternalCoreApiConstants.SetKeyboardCallback:\r\n                case ExternalCoreApiConstants.SetDiskControl:\r\n                case ExternalCoreApiConstants.SetDiskControlExtended:\r\n                case ExternalCoreApiConstants.SetControllerInfo:\r\n                case ExternalCoreApiConstants.SetMemoryMaps:\r\n                case ExternalCoreApiConstants.SetSupportAchievements:\r\n                case ExternalCoreApiConstants.SetSupportNoGame:\r\n                case ExternalCoreApiConstants.SetMessageExtended:\r\n                case ExternalCoreApiConstants.SetGeometry:\r\n                case ExternalCoreApiConstants.SetSystemAvInfo:\r\n                case ExternalCoreApiConstants.GetLogInterface:\r\n                case ExternalCoreApiConstants.GetVfsInterface:\r\n                case ExternalCoreApiConstants.GetLedInterface:\r\n                    _ = ExternalCoreEnvironmentFunctions.TryHandleCallbackCommand(command, data, this, out var callbackResult);\r\n                    return callbackResult;\r\n                case ExternalCoreApiConstants.GetCanDuplicateFrames:\r\n                case ExternalCoreApiConstants.GetInputBitmasks:\r\n                case ExternalCoreApiConstants.GetCoreOptionsVersion:\r\n                    _ = ExternalCoreEnvironmentFunctions.TryHandleStatelessCommand(command, data,\r\n                        2, ExternalCoreInteropConstants.MessageInterfaceVersion, 0, out _);\r\n                    return true;\r\n                case ExternalCoreApiConstants.SetCoreOptions:\r\n                case ExternalCoreApiConstants.SetCoreOptionsInternational:\r\n                case ExternalCoreApiConstants.SetCoreOptionsV2:\r\n                case ExternalCoreApiConstants.SetCoreOptionsV2International:\r\n                case ExternalCoreApiConstants.SetVariables:\r\n                    _ = ExternalCoreEnvironmentFunctions.TryHandleOptionCommand(command, data, this, out _);\r\n                    return true;\r\n                case ExternalCoreApiConstants.GetVariable:\r\n                case ExternalCoreApiConstants.GetVariableUpdate:\r\n                case ExternalCoreApiConstants.SetCoreOptionsDisplay:\r\n                case ExternalCoreApiConstants.SetCoreOptionsUpdateDisplayCallback:\r\n                    _ = ExternalCoreEnvironmentFunctions.TryHandleOptionCommand(command, data, this, out var optionResult);\r\n                    return optionResult;\r\n                case ExternalCoreApiConstants.GetMessageInterfaceVersion:\r\n                    _ = ExternalCoreEnvironmentFunctions.TryHandleStatelessCommand(command, data,\r\n                        2, ExternalCoreInteropConstants.MessageInterfaceVersion, 0, out var queryResult);\r\n                    return queryResult;\r\n                case ExternalCoreApiConstants.SetFastForwardingOverride:\r\n                    return false;\r\n                default:\r\n                    if (_unknownEnvironmentCommands.Add(command)) AddDiagnostic($\"Unsupported environment command: {command}\");\r\n                    return false;\r\n            }\r\n        }\r\n        catch\r\n        {\r\n            return false;\r\n        }\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.WriteSystemDirectory(nint data)\r\n    {\r\n        return ExternalCoreEnvironmentFunctions.WritePointer(data, NativeString(SystemDirectory));\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.WriteContentDirectory(nint data)\r\n    {\r\n        return ExternalCoreEnvironmentFunctions.WritePointer(data, NativeString(ContentDirectory));\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.WriteSaveDirectory(nint data)\r\n    {\r\n        return ExternalCoreEnvironmentFunctions.WritePointer(data, NativeString(SaveDirectory));\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.ReadMessage(nint data)\r\n    {\r\n        return CaptureMessage(data, extended: false);\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.SetPixelFormat(nint data)\r\n    {\r\n        _pixelFormat = Marshal.ReadInt32(data) switch\r\n        {\r\n            ExternalCoreInteropConstants.PixelFormatXrgb8888 => EmulationPixelFormat.Xrgb8888,\r\n            ExternalCoreInteropConstants.PixelFormatRgb565 => EmulationPixelFormat.Rgb565,\r\n            var value => throw new NotSupportedException(CoreExceptions.UnsupportedPixelFormat(value))};\r\n        return true;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.GetDiskControlVersion(nint data)\r\n    {\r\n        _ = ExternalCoreEnvironmentFunctions.WriteInteger(data, 1);\r\n        return true;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.CaptureInputDescriptors(nint data)\r\n    {\r\n        return true;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.SetKeyboardCallback(nint data)\r\n    {\r\n        var keyboard = Marshal.PtrToStructure<ExternalCoreApi.KeyboardCallback>(data);\r\n        _keyboardEvent = GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.OptionalDelegate<ExternalCoreApi.KeyboardEvent>(keyboard.Callback);\r\n        return true;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.CaptureDiskControl(nint data)\r\n    {\r\n        DiskControl.Capture(data);\r\n        return true;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.CaptureExtendedDiskControl(nint data)\r\n    {\r\n        DiskControl.CaptureExtended(data);\r\n        return true;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.CaptureControllerInfo(nint data)\r\n    {\r\n        return CaptureControllerInfo(data);\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.CaptureMemoryMaps(nint data)\r\n    {\r\n        return true;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.SetSupportAchievements(nint data)\r\n    {\r\n        return true;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.SetSupportNoGame(nint data)\r\n    {\r\n        SupportsNoGame = data != nint.Zero && Marshal.ReadByte(data) != ExternalCoreInteropConstants.NativeBooleanFalse;\r\n        return true;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.ReadExtendedMessage(nint data)\r\n    {\r\n        return CaptureMessage(data, extended: true);\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.SetGeometry(nint data)\r\n    {\r\n        return ApplyGeometry(data);\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.SetSystemAvInfo(nint data)\r\n    {\r\n        return ApplySystemAvInfo(data);\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.SetLogInterface(nint data)\r\n    {\r\n        return ExternalCoreEnvironmentFunctions.SetLogInterface(data, Log);\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.ProvideVfs(nint data)\r\n    {\r\n        return false;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.SetLedInterface(nint data)\r\n    {\r\n        return ExternalCoreEnvironmentFunctions.SetLedInterface(data, Led);\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.SetRotation(nint data) => false;\r\n    bool IEmulationCoreEnvironmentCommands.CapturePerformanceLevel(nint data) => false;\r\n    bool IEmulationCoreEnvironmentCommands.SetRumbleInterface(nint data) => false;\r\n    bool IEmulationCoreEnvironmentCommands.SetSensorInterface(nint data) => false;\r\n\r\n    void IEmulationCoreOptionCommands.RegisterVersionOne(nint data)\r\n    {\r\n        RegisterVersionOneOptions(data);\r\n    }\r\n\r\n    void IEmulationCoreOptionCommands.RegisterVersionOneInternational(nint data)\r\n    {\r\n        RegisterVersionOneOptions(Marshal.ReadIntPtr(data));\r\n    }\r\n\r\n    void IEmulationCoreOptionCommands.RegisterVersionTwo(nint data)\r\n    {\r\n        RegisterVersionTwoOptions(data);\r\n    }\r\n\r\n    void IEmulationCoreOptionCommands.RegisterVersionTwoInternational(nint data)\r\n    {\r\n        RegisterVersionTwoOptions(Marshal.ReadIntPtr(data));\r\n    }\r\n\r\n    void IEmulationCoreOptionCommands.RegisterLegacyVariables(nint data)\r\n    {\r\n        RegisterLegacyOptions(data);\r\n    }\r\n\r\n    bool IEmulationCoreOptionCommands.ReturnValue(nint data)\r\n    {\r\n        return ReturnOption(data);\r\n    }\r\n\r\n    bool IEmulationCoreOptionCommands.GetAndClearUpdated(nint data)\r\n    {\r\n        _ = EmulationCoreOptionFunctions.GetAndClearUpdated(data, ref _optionsUpdated);\r\n        return true;\r\n    }\r\n\r\n    bool IEmulationCoreOptionCommands.ApplyVisibility(nint data)\r\n    {\r\n        return ApplyOptionVisibility(data);\r\n    }\r\n\r\n    bool IEmulationCoreOptionCommands.CaptureDisplayUpdate(nint data)\r\n    {\r\n        return CaptureOptionsDisplayCallback(data);\r\n    }\r\n\r\n    bool IEmulationCoreOptionCommands.SetNativeValue(nint data) => false;\r\n\r\n    private void RegisterLegacyOptions(nint data) => OptionCatalog = AdaptOptions(EmulationCoreOptionFunctions.ReadLegacy(data, _options, _optionVisibility));\r\n\r\n    private void RegisterVersionOneOptions(nint data)\n    {\n        if (EmulationCoreOptionFunctions.ReadVersionOne(data, _options, _optionVisibility) is { } options)\n            OptionCatalog = AdaptOptions(options);\n    }\r\n\r\n    private void RegisterVersionTwoOptions(nint data)\n    {\n        if (EmulationCoreOptionFunctions.ReadVersionTwo(data, _options, _optionVisibility) is { } options)\n            OptionCatalog = AdaptOptions(options);\n    }\r\n\r\n    private bool ApplyOptionVisibility(nint data)\r\n    {\n        if (!EmulationCoreOptionFunctions.ApplyNativeVisibility(data, _optionVisibility, OptionCatalog,\n                static option => option.Key, static (option, visible) => option with { IsVisible = visible },\n                out var catalog)) return false;\n        OptionCatalog = catalog;\n        return true;\n    }\r\n\r\n    private bool CaptureOptionsDisplayCallback(nint data)\r\n    {\n        if (!EmulationCoreOptionFunctions.TryGetDisplayCallback(data, out var callback)) return false;\n        _updateOptionsDisplay = callback;\n        return true;\n    }\r\n\r\n    private static IReadOnlyList<CoreOption> AdaptOptions(IReadOnlyList<EmulationOption> options) => options.Select(option =>\n        new CoreOption(option.Key, option.Name, option.Description, option.Category, option.DefaultValue, option.CurrentValue,\n            option.Values.Select(value => new CoreOptionValue(value.Value, value.Label)).ToArray(), option.IsVisible))\n        .Where(CoreSettingsFunctions.IsSupportedNintendoOption).Select(CoreSettingsFunctions.WithSupportedGraphicsApis).ToArray();\r\n\r\n    private bool ReturnOption(nint data)\r\n    => EmulationCoreOptionFunctions.ReturnNativeValue(data, _options, (_, value) => NativeString(value), unavailableResult: false);\r\n\r\n    internal void ValidateConfiguredOptions() =>\r\n        EmulationCoreOptionFunctions.ValidateConfiguredValues(\r\n            _configuredOptionKeys, _options, OptionCatalog,\r\n            static option => option.Key, static option => option.Values, static value => value.Value,\r\n            static (key, value) => throw new InvalidDataException(CoreExceptions.InvalidOptionValue(value, key)));\r\n\r\n    private bool CaptureMessage(nint data, bool extended)\r\n    {\r\n        if (data == 0) return false;\r\n        var textPointer = Marshal.ReadIntPtr(data);\r\n        ExternalCoreEnvironmentFunctions.CopyDiagnostic(textPointer, message => AddDiagnostic($\"[message{(extended ? ExternalHostCallbacksConstants.Extended : string.Empty)}] {message}\"));\r\n        return true;\r\n    }\r\n\r\n    private bool CaptureControllerInfo(nint data)\r\n    {\n        if (!GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.TryCopyControllerPorts<IReadOnlyList<ControllerDevice>, ControllerDevice>(\n            data, 16, 64, static (name, id) => new(name, id), static devices => devices,\n            rejectOverflow: true, skipEmptyNames: true, out var ports)) return false;\n        ControllerPorts = ports;\n        return true;\n    }\r\n\r\n    private nint NativeString(string value)\r\n    {\n        if (_nativeStrings.TryGetValue(value, out var existing)) return existing.Pointer;\n        return ExternalCoreUtf8String.AddTo(_nativeStrings, value, value).Pointer;\n    }\r\n\r\n}\r\n",
+        "sha256": "52EF7E894669E63CC5331621E3AD5DD8749869058A3CF809F1EF84735C3F330B",
+        "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs"
+      }
+    ],
+    "verification": {
+      "newClasses": 0,
+      "sharedContractAndRouterUnchanged": true,
+      "newResourceOwners": 0,
+      "sources": [
+        {
+          "commands": [
+            {
+              "bodyAndCallsIdentical": true,
+              "originalRegistrationResultRetained": true,
+              "adapter": "RegisterVersionOne",
+              "command": "SetCoreOptions",
+              "constantIdentical": true
+            },
+            {
+              "bodyAndCallsIdentical": true,
+              "originalRegistrationResultRetained": true,
+              "adapter": "RegisterVersionOneInternational",
+              "command": "SetCoreOptionsInternational",
+              "constantIdentical": true
+            },
+            {
+              "bodyAndCallsIdentical": true,
+              "originalRegistrationResultRetained": true,
+              "adapter": "RegisterVersionTwo",
+              "command": "SetCoreOptionsV2",
+              "constantIdentical": true
+            },
+            {
+              "bodyAndCallsIdentical": true,
+              "originalRegistrationResultRetained": true,
+              "adapter": "RegisterVersionTwoInternational",
+              "command": "SetCoreOptionsV2International",
+              "constantIdentical": true
+            },
+            {
+              "bodyAndCallsIdentical": true,
+              "originalRegistrationResultRetained": true,
+              "adapter": "RegisterLegacyVariables",
+              "command": "SetVariables",
+              "constantIdentical": true
+            },
+            {
+              "bodyAndCallsIdentical": true,
+              "originalRegistrationResultRetained": false,
+              "adapter": "ReturnValue",
+              "command": "GetVariable",
+              "constantIdentical": true
+            },
+            {
+              "bodyAndCallsIdentical": true,
+              "originalRegistrationResultRetained": false,
+              "adapter": "GetAndClearUpdated",
+              "command": "GetVariableUpdate",
+              "constantIdentical": true
+            },
+            {
+              "bodyAndCallsIdentical": true,
+              "originalRegistrationResultRetained": false,
+              "adapter": "ApplyVisibility",
+              "command": "SetCoreOptionsDisplay",
+              "constantIdentical": true
+            },
+            {
+              "bodyAndCallsIdentical": true,
+              "originalRegistrationResultRetained": false,
+              "adapter": "CaptureDisplayUpdate",
+              "command": "SetCoreOptionsUpdateDisplayCallback",
+              "constantIdentical": true
+            }
+          ],
+          "sha256": "1C51D64B2068D32BBDB2332E2CE5BD455CBBF1DD9AD446327E115CB3DB4D1944",
+          "unchangedResidualSections": 9,
+          "semanticErrors": 0,
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "otherOwnerMethodsUnchanged": true,
+          "catchUnchanged": true
+        },
+        {
+          "commands": [
+            {
+              "bodyAndCallsIdentical": true,
+              "originalRegistrationResultRetained": true,
+              "adapter": "RegisterVersionOne",
+              "command": "SetCoreOptions",
+              "constantIdentical": true
+            },
+            {
+              "bodyAndCallsIdentical": true,
+              "originalRegistrationResultRetained": true,
+              "adapter": "RegisterVersionOneInternational",
+              "command": "SetCoreOptionsInternational",
+              "constantIdentical": true
+            },
+            {
+              "bodyAndCallsIdentical": true,
+              "originalRegistrationResultRetained": true,
+              "adapter": "RegisterVersionTwo",
+              "command": "SetCoreOptionsV2",
+              "constantIdentical": true
+            },
+            {
+              "bodyAndCallsIdentical": true,
+              "originalRegistrationResultRetained": true,
+              "adapter": "RegisterVersionTwoInternational",
+              "command": "SetCoreOptionsV2International",
+              "constantIdentical": true
+            },
+            {
+              "bodyAndCallsIdentical": true,
+              "originalRegistrationResultRetained": true,
+              "adapter": "RegisterLegacyVariables",
+              "command": "SetVariables",
+              "constantIdentical": true
+            },
+            {
+              "bodyAndCallsIdentical": true,
+              "originalRegistrationResultRetained": false,
+              "adapter": "ReturnValue",
+              "command": "GetVariable",
+              "constantIdentical": true
+            },
+            {
+              "bodyAndCallsIdentical": true,
+              "originalRegistrationResultRetained": false,
+              "adapter": "GetAndClearUpdated",
+              "command": "GetVariableUpdate",
+              "constantIdentical": true
+            },
+            {
+              "bodyAndCallsIdentical": true,
+              "originalRegistrationResultRetained": false,
+              "adapter": "ApplyVisibility",
+              "command": "SetCoreOptionsDisplay",
+              "constantIdentical": true
+            },
+            {
+              "bodyAndCallsIdentical": true,
+              "originalRegistrationResultRetained": false,
+              "adapter": "CaptureDisplayUpdate",
+              "command": "SetCoreOptionsUpdateDisplayCallback",
+              "constantIdentical": true
+            }
+          ],
+          "sha256": "03108B7CC7E85FE0EE451A3A6035D39D0336F60CFDE01FCA52BD5EE57FB6A3DB",
+          "unchangedResidualSections": 9,
+          "semanticErrors": 0,
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "otherOwnerMethodsUnchanged": true,
+          "catchUnchanged": true
+        }
+      ]
+    },
+    "tests": {
+      "filter": "EnvironmentCallbackCommandTests|StatelessEnvironmentCommandTests|OptionEnvironmentCommandTests|GWGUI.Tests.Emulation.Sega|GWGUI.Tests.Emulation.Nintendo",
+      "newTests": 0,
+      "newFixtures": 0,
+      "beforePassed": 249,
+      "failed": 0,
+      "afterPassed": 249
+    },
+    "inventory": {
+      "largeGroups": 478,
+      "shortQualificationsRetained": 380,
+      "largeQualificationsRetained": 148,
+      "renamedShortGroups": 374,
+      "correctedPrivateHelperAnnotations": [
+        {
+          "name": "CaptureControllerInfo",
+          "collection": "groups",
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "file": "current-project-groups.json",
+          "line": 265,
+          "reason": "Private helper was included by name-only matching; explicit interface adapter proof does not classify this helper",
+          "oldQualification": "Typed existing environment-contract adapter; original branch body and resolved calls preserved, routed by unchanged SDK function; verified in segaNintendoEnvironmentReuse"
+        },
+        {
+          "name": "CaptureControllerInfo",
+          "collection": "groups",
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "file": "current-project-groups.json",
+          "line": 266,
+          "reason": "Private helper was included by name-only matching; explicit interface adapter proof does not classify this helper",
+          "oldQualification": "Typed existing environment-contract adapter; original branch body and resolved calls preserved, routed by unchanged SDK function; verified in segaNintendoEnvironmentReuse"
+        }
+      ],
+      "exactShortGroups": 799,
+      "shortBodies": 9596,
+      "largeBodies": 11662,
+      "adapterOccurrences": [
+        {
+          "name": "SetKeyboardCallback",
+          "line": 128,
+          "file": "current-project-groups.json",
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoEnvironmentReuse, owner methods unchanged through segaNintendoOptionDispatchReuse",
+          "hash": "49B709C72531B93C6EEC45A5ED14BD04C56EAFF511F4B433829066F232718C38",
+          "collection": "groups",
+          "contract": "IEmulationCoreEnvironmentCommands"
+        },
+        {
+          "name": "SetKeyboardCallback",
+          "line": 128,
+          "file": "current-project-groups.json",
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoEnvironmentReuse, owner methods unchanged through segaNintendoOptionDispatchReuse",
+          "hash": "49B709C72531B93C6EEC45A5ED14BD04C56EAFF511F4B433829066F232718C38",
+          "collection": "groups",
+          "contract": "IEmulationCoreEnvironmentCommands"
+        },
+        {
+          "name": "SetPixelFormat",
+          "line": 107,
+          "file": "current-project-groups.json",
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoEnvironmentReuse, owner methods unchanged through segaNintendoOptionDispatchReuse",
+          "hash": "6E4B1A58D8BA8571F5B3047B8A91D95CB1FAD23A27B0C07DE280D57BF74B43A6",
+          "collection": "groups",
+          "contract": "IEmulationCoreEnvironmentCommands"
+        },
+        {
+          "name": "SetPixelFormat",
+          "line": 107,
+          "file": "current-project-groups.json",
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoEnvironmentReuse, owner methods unchanged through segaNintendoOptionDispatchReuse",
+          "hash": "6E4B1A58D8BA8571F5B3047B8A91D95CB1FAD23A27B0C07DE280D57BF74B43A6",
+          "collection": "groups",
+          "contract": "IEmulationCoreEnvironmentCommands"
+        },
+        {
+          "name": "WriteContentDirectory",
+          "line": 92,
+          "file": "short-method-groups.json",
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoEnvironmentReuse, owner methods unchanged through segaNintendoOptionDispatchReuse",
+          "hash": "06394F8D150AEDA6DFC346AF237BEAE1F2646F39A65FA32B77A3F2DF52024D68",
+          "collection": "exactGroups",
+          "contract": "IEmulationCoreEnvironmentCommands"
+        },
+        {
+          "name": "WriteContentDirectory",
+          "line": 92,
+          "file": "short-method-groups.json",
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoEnvironmentReuse, owner methods unchanged through segaNintendoOptionDispatchReuse",
+          "hash": "06394F8D150AEDA6DFC346AF237BEAE1F2646F39A65FA32B77A3F2DF52024D68",
+          "collection": "exactGroups",
+          "contract": "IEmulationCoreEnvironmentCommands"
+        },
+        {
+          "name": "SetLedInterface",
+          "line": 193,
+          "file": "short-method-groups.json",
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoEnvironmentReuse, owner methods unchanged through segaNintendoOptionDispatchReuse",
+          "hash": "080B4DA489C00BF0C9A967EFB0253F479B75D7590C04A04D882E288CDBEE9815",
+          "collection": "exactGroups",
+          "contract": "IEmulationCoreEnvironmentCommands"
+        },
+        {
+          "name": "SetLedInterface",
+          "line": 193,
+          "file": "short-method-groups.json",
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoEnvironmentReuse, owner methods unchanged through segaNintendoOptionDispatchReuse",
+          "hash": "080B4DA489C00BF0C9A967EFB0253F479B75D7590C04A04D882E288CDBEE9815",
+          "collection": "exactGroups",
+          "contract": "IEmulationCoreEnvironmentCommands"
+        },
+        {
+          "name": "ReturnValue",
+          "line": 228,
+          "file": "short-method-groups.json",
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoOptionDispatchReuse",
+          "hash": "106BB0CD9DD530E24A94B7DE53DC6C3A13D2D2FF7B525B573B08FE3ADFC02D0A",
+          "collection": "exactGroups",
+          "contract": "IEmulationCoreOptionCommands"
+        },
+        {
+          "name": "ReturnValue",
+          "line": 228,
+          "file": "short-method-groups.json",
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoOptionDispatchReuse",
+          "hash": "106BB0CD9DD530E24A94B7DE53DC6C3A13D2D2FF7B525B573B08FE3ADFC02D0A",
+          "collection": "exactGroups",
+          "contract": "IEmulationCoreOptionCommands"
+        },
+        {
+          "name": "SetLogInterface",
+          "line": 183,
+          "file": "short-method-groups.json",
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoEnvironmentReuse, owner methods unchanged through segaNintendoOptionDispatchReuse",
+          "hash": "137FF1FE9E94B2640EC04BB3D89C3047EFF92F97EB242A7447A2CE7BA72EA196",
+          "collection": "exactGroups",
+          "contract": "IEmulationCoreEnvironmentCommands"
+        },
+        {
+          "name": "SetLogInterface",
+          "line": 183,
+          "file": "short-method-groups.json",
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoEnvironmentReuse, owner methods unchanged through segaNintendoOptionDispatchReuse",
+          "hash": "137FF1FE9E94B2640EC04BB3D89C3047EFF92F97EB242A7447A2CE7BA72EA196",
+          "collection": "exactGroups",
+          "contract": "IEmulationCoreEnvironmentCommands"
+        },
+        {
+          "name": "RegisterVersionTwo",
+          "line": 213,
+          "file": "short-method-groups.json",
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoOptionDispatchReuse",
+          "hash": "1756CBE6D07FAA02C971A74AB8AD5063D89D2908ACA90B6269E1223329798BB2",
+          "collection": "exactGroups",
+          "contract": "IEmulationCoreOptionCommands"
+        },
+        {
+          "name": "RegisterVersionTwo",
+          "line": 213,
+          "file": "short-method-groups.json",
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoOptionDispatchReuse",
+          "hash": "1756CBE6D07FAA02C971A74AB8AD5063D89D2908ACA90B6269E1223329798BB2",
+          "collection": "exactGroups",
+          "contract": "IEmulationCoreOptionCommands"
+        },
+        {
+          "name": "RegisterVersionOneInternational",
+          "line": 208,
+          "file": "short-method-groups.json",
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoOptionDispatchReuse",
+          "hash": "2657DA23DBD81FAAAF8187E2140CC794CC3C67CE9AF34F02D349FDFB2C06971E",
+          "collection": "exactGroups",
+          "contract": "IEmulationCoreOptionCommands"
+        },
+        {
+          "name": "RegisterVersionOneInternational",
+          "line": 208,
+          "file": "short-method-groups.json",
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoOptionDispatchReuse",
+          "hash": "2657DA23DBD81FAAAF8187E2140CC794CC3C67CE9AF34F02D349FDFB2C06971E",
+          "collection": "exactGroups",
+          "contract": "IEmulationCoreOptionCommands"
+        },
+        {
+          "name": "SetSystemAvInfo",
+          "line": 178,
+          "file": "short-method-groups.json",
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoEnvironmentReuse, owner methods unchanged through segaNintendoOptionDispatchReuse",
+          "hash": "37EDF529122C9988481D543DCA9F57E80DF70192296886E4B56DF2776FB300CB",
+          "collection": "exactGroups",
+          "contract": "IEmulationCoreEnvironmentCommands"
+        },
+        {
+          "name": "SetSystemAvInfo",
+          "line": 178,
+          "file": "short-method-groups.json",
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoEnvironmentReuse, owner methods unchanged through segaNintendoOptionDispatchReuse",
+          "hash": "37EDF529122C9988481D543DCA9F57E80DF70192296886E4B56DF2776FB300CB",
+          "collection": "exactGroups",
+          "contract": "IEmulationCoreEnvironmentCommands"
+        },
+        {
+          "name": "ApplyVisibility",
+          "line": 239,
+          "file": "short-method-groups.json",
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoOptionDispatchReuse",
+          "hash": "39E5AE129B4B7161D08064506480DC605CB6CB126874483BB289379BAB73FD04",
+          "collection": "exactGroups",
+          "contract": "IEmulationCoreOptionCommands"
+        },
+        {
+          "name": "ApplyVisibility",
+          "line": 239,
+          "file": "short-method-groups.json",
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoOptionDispatchReuse",
+          "hash": "39E5AE129B4B7161D08064506480DC605CB6CB126874483BB289379BAB73FD04",
+          "collection": "exactGroups",
+          "contract": "IEmulationCoreOptionCommands"
+        },
+        {
+          "name": "CaptureInputDescriptors",
+          "line": 123,
+          "file": "short-method-groups.json",
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoEnvironmentReuse, owner methods unchanged through segaNintendoOptionDispatchReuse",
+          "hash": "44424BF45D4FBD8B50871A7929CBF49A8C76F8ACD89A4E2C55896B19817E6396",
+          "collection": "exactGroups",
+          "contract": "IEmulationCoreEnvironmentCommands"
+        },
+        {
+          "name": "CaptureMemoryMaps",
+          "line": 152,
+          "file": "short-method-groups.json",
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoEnvironmentReuse, owner methods unchanged through segaNintendoOptionDispatchReuse",
+          "hash": "44424BF45D4FBD8B50871A7929CBF49A8C76F8ACD89A4E2C55896B19817E6396",
+          "collection": "exactGroups",
+          "contract": "IEmulationCoreEnvironmentCommands"
+        },
+        {
+          "name": "SetSupportAchievements",
+          "line": 157,
+          "file": "short-method-groups.json",
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoEnvironmentReuse, owner methods unchanged through segaNintendoOptionDispatchReuse",
+          "hash": "44424BF45D4FBD8B50871A7929CBF49A8C76F8ACD89A4E2C55896B19817E6396",
+          "collection": "exactGroups",
+          "contract": "IEmulationCoreEnvironmentCommands"
+        },
+        {
+          "name": "CaptureInputDescriptors",
+          "line": 123,
+          "file": "short-method-groups.json",
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoEnvironmentReuse, owner methods unchanged through segaNintendoOptionDispatchReuse",
+          "hash": "44424BF45D4FBD8B50871A7929CBF49A8C76F8ACD89A4E2C55896B19817E6396",
+          "collection": "exactGroups",
+          "contract": "IEmulationCoreEnvironmentCommands"
+        },
+        {
+          "name": "CaptureMemoryMaps",
+          "line": 152,
+          "file": "short-method-groups.json",
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoEnvironmentReuse, owner methods unchanged through segaNintendoOptionDispatchReuse",
+          "hash": "44424BF45D4FBD8B50871A7929CBF49A8C76F8ACD89A4E2C55896B19817E6396",
+          "collection": "exactGroups",
+          "contract": "IEmulationCoreEnvironmentCommands"
+        },
+        {
+          "name": "SetSupportAchievements",
+          "line": 157,
+          "file": "short-method-groups.json",
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoEnvironmentReuse, owner methods unchanged through segaNintendoOptionDispatchReuse",
+          "hash": "44424BF45D4FBD8B50871A7929CBF49A8C76F8ACD89A4E2C55896B19817E6396",
+          "collection": "exactGroups",
+          "contract": "IEmulationCoreEnvironmentCommands"
+        },
+        {
+          "name": "GetDiskControlVersion",
+          "line": 117,
+          "file": "short-method-groups.json",
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoEnvironmentReuse, owner methods unchanged through segaNintendoOptionDispatchReuse",
+          "hash": "44F5E77119FA439514B959373926FE74E129E6C5B8A13A1663F79D80FB78E45C",
+          "collection": "exactGroups",
+          "contract": "IEmulationCoreEnvironmentCommands"
+        },
+        {
+          "name": "GetDiskControlVersion",
+          "line": 117,
+          "file": "short-method-groups.json",
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoEnvironmentReuse, owner methods unchanged through segaNintendoOptionDispatchReuse",
+          "hash": "44F5E77119FA439514B959373926FE74E129E6C5B8A13A1663F79D80FB78E45C",
+          "collection": "exactGroups",
+          "contract": "IEmulationCoreEnvironmentCommands"
+        },
+        {
+          "name": "ProvideVfs",
+          "line": 188,
+          "file": "short-method-groups.json",
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoEnvironmentReuse, owner methods unchanged through segaNintendoOptionDispatchReuse",
+          "hash": "533F78B031DE1D5E576C454F6C1D2105BAFBE2C148EBEFC458AA13D1A57A21A7",
+          "collection": "exactGroups",
+          "contract": "IEmulationCoreEnvironmentCommands"
+        },
+        {
+          "name": "ProvideVfs",
+          "line": 188,
+          "file": "short-method-groups.json",
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoEnvironmentReuse, owner methods unchanged through segaNintendoOptionDispatchReuse",
+          "hash": "533F78B031DE1D5E576C454F6C1D2105BAFBE2C148EBEFC458AA13D1A57A21A7",
+          "collection": "exactGroups",
+          "contract": "IEmulationCoreEnvironmentCommands"
+        },
+        {
+          "name": "WriteSystemDirectory",
+          "line": 87,
+          "file": "short-method-groups.json",
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoEnvironmentReuse, owner methods unchanged through segaNintendoOptionDispatchReuse",
+          "hash": "5C284CDD09EA92511298B1C0345EE8F2C337D6BAD8CE871D1E2477D4E5F74A60",
+          "collection": "exactGroups",
+          "contract": "IEmulationCoreEnvironmentCommands"
+        },
+        {
+          "name": "WriteSystemDirectory",
+          "line": 87,
+          "file": "short-method-groups.json",
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoEnvironmentReuse, owner methods unchanged through segaNintendoOptionDispatchReuse",
+          "hash": "5C284CDD09EA92511298B1C0345EE8F2C337D6BAD8CE871D1E2477D4E5F74A60",
+          "collection": "exactGroups",
+          "contract": "IEmulationCoreEnvironmentCommands"
+        },
+        {
+          "name": "ReadExtendedMessage",
+          "line": 168,
+          "file": "short-method-groups.json",
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoEnvironmentReuse, owner methods unchanged through segaNintendoOptionDispatchReuse",
+          "hash": "6D2AEFAABE07B7E794EA38903FB542F00B87D10CA5850856400957160DCED1D8",
+          "collection": "exactGroups",
+          "contract": "IEmulationCoreEnvironmentCommands"
+        },
+        {
+          "name": "ReadExtendedMessage",
+          "line": 168,
+          "file": "short-method-groups.json",
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoEnvironmentReuse, owner methods unchanged through segaNintendoOptionDispatchReuse",
+          "hash": "6D2AEFAABE07B7E794EA38903FB542F00B87D10CA5850856400957160DCED1D8",
+          "collection": "exactGroups",
+          "contract": "IEmulationCoreEnvironmentCommands"
+        },
+        {
+          "name": "WriteSaveDirectory",
+          "line": 97,
+          "file": "short-method-groups.json",
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoEnvironmentReuse, owner methods unchanged through segaNintendoOptionDispatchReuse",
+          "hash": "773E43D140327F702055BC93C7D79A898949235B90C5F7DB5FD9C1992B7A93AB",
+          "collection": "exactGroups",
+          "contract": "IEmulationCoreEnvironmentCommands"
+        },
+        {
+          "name": "WriteSaveDirectory",
+          "line": 97,
+          "file": "short-method-groups.json",
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoEnvironmentReuse, owner methods unchanged through segaNintendoOptionDispatchReuse",
+          "hash": "773E43D140327F702055BC93C7D79A898949235B90C5F7DB5FD9C1992B7A93AB",
+          "collection": "exactGroups",
+          "contract": "IEmulationCoreEnvironmentCommands"
+        },
+        {
+          "name": "SetSupportNoGame",
+          "line": 162,
+          "file": "short-method-groups.json",
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoEnvironmentReuse, owner methods unchanged through segaNintendoOptionDispatchReuse",
+          "hash": "7B1EFBA620D392279828A636605CCC6C91A9AD3CC85FC61B4525742DAD602214",
+          "collection": "exactGroups",
+          "contract": "IEmulationCoreEnvironmentCommands"
+        },
+        {
+          "name": "SetSupportNoGame",
+          "line": 162,
+          "file": "short-method-groups.json",
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoEnvironmentReuse, owner methods unchanged through segaNintendoOptionDispatchReuse",
+          "hash": "7B1EFBA620D392279828A636605CCC6C91A9AD3CC85FC61B4525742DAD602214",
+          "collection": "exactGroups",
+          "contract": "IEmulationCoreEnvironmentCommands"
+        },
+        {
+          "name": "CaptureDisplayUpdate",
+          "line": 244,
+          "file": "short-method-groups.json",
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoOptionDispatchReuse",
+          "hash": "88FF62A8FFFD0DF43D59B3F93D634B4917D8DC8E6152B7CAB60AEE80BEDA35EC",
+          "collection": "exactGroups",
+          "contract": "IEmulationCoreOptionCommands"
+        },
+        {
+          "name": "CaptureDisplayUpdate",
+          "line": 244,
+          "file": "short-method-groups.json",
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoOptionDispatchReuse",
+          "hash": "88FF62A8FFFD0DF43D59B3F93D634B4917D8DC8E6152B7CAB60AEE80BEDA35EC",
+          "collection": "exactGroups",
+          "contract": "IEmulationCoreOptionCommands"
+        },
+        {
+          "name": "RegisterVersionTwoInternational",
+          "line": 218,
+          "file": "short-method-groups.json",
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoOptionDispatchReuse",
+          "hash": "911DAA96C130927E1A7183B1C6777A3515E9FE019AECADC5F0443254EBEC78A1",
+          "collection": "exactGroups",
+          "contract": "IEmulationCoreOptionCommands"
+        },
+        {
+          "name": "RegisterVersionTwoInternational",
+          "line": 218,
+          "file": "short-method-groups.json",
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoOptionDispatchReuse",
+          "hash": "911DAA96C130927E1A7183B1C6777A3515E9FE019AECADC5F0443254EBEC78A1",
+          "collection": "exactGroups",
+          "contract": "IEmulationCoreOptionCommands"
+        },
+        {
+          "name": "GetAndClearUpdated",
+          "line": 233,
+          "file": "short-method-groups.json",
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoOptionDispatchReuse",
+          "hash": "A511C24DE867C925D800FC79D613BAE762B043F996223598FB07C3B9D163233E",
+          "collection": "exactGroups",
+          "contract": "IEmulationCoreOptionCommands"
+        },
+        {
+          "name": "GetAndClearUpdated",
+          "line": 233,
+          "file": "short-method-groups.json",
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoOptionDispatchReuse",
+          "hash": "A511C24DE867C925D800FC79D613BAE762B043F996223598FB07C3B9D163233E",
+          "collection": "exactGroups",
+          "contract": "IEmulationCoreOptionCommands"
+        },
+        {
+          "name": "ReadMessage",
+          "line": 102,
+          "file": "short-method-groups.json",
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoEnvironmentReuse, owner methods unchanged through segaNintendoOptionDispatchReuse",
+          "hash": "A6408306ED7BC44A5C02001C2CBFCC888A9B35927F243018C16F97BE1DA2DAAA",
+          "collection": "exactGroups",
+          "contract": "IEmulationCoreEnvironmentCommands"
+        },
+        {
+          "name": "ReadMessage",
+          "line": 102,
+          "file": "short-method-groups.json",
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoEnvironmentReuse, owner methods unchanged through segaNintendoOptionDispatchReuse",
+          "hash": "A6408306ED7BC44A5C02001C2CBFCC888A9B35927F243018C16F97BE1DA2DAAA",
+          "collection": "exactGroups",
+          "contract": "IEmulationCoreEnvironmentCommands"
+        },
+        {
+          "name": "CaptureExtendedDiskControl",
+          "line": 141,
+          "file": "short-method-groups.json",
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoEnvironmentReuse, owner methods unchanged through segaNintendoOptionDispatchReuse",
+          "hash": "AB266269EC8578CCBE37A7AF5941978D9CB25BAB07D909CC9BD3B5AB61E35EB8",
+          "collection": "exactGroups",
+          "contract": "IEmulationCoreEnvironmentCommands"
+        },
+        {
+          "name": "CaptureExtendedDiskControl",
+          "line": 141,
+          "file": "short-method-groups.json",
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoEnvironmentReuse, owner methods unchanged through segaNintendoOptionDispatchReuse",
+          "hash": "AB266269EC8578CCBE37A7AF5941978D9CB25BAB07D909CC9BD3B5AB61E35EB8",
+          "collection": "exactGroups",
+          "contract": "IEmulationCoreEnvironmentCommands"
+        },
+        {
+          "name": "RegisterVersionOne",
+          "line": 203,
+          "file": "short-method-groups.json",
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoOptionDispatchReuse",
+          "hash": "AC559ED16E50D5DCABD05E1FBE53A4EE36ADA6420FED479E57E903429E49F2A8",
+          "collection": "exactGroups",
+          "contract": "IEmulationCoreOptionCommands"
+        },
+        {
+          "name": "RegisterVersionOne",
+          "line": 203,
+          "file": "short-method-groups.json",
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoOptionDispatchReuse",
+          "hash": "AC559ED16E50D5DCABD05E1FBE53A4EE36ADA6420FED479E57E903429E49F2A8",
+          "collection": "exactGroups",
+          "contract": "IEmulationCoreOptionCommands"
+        },
+        {
+          "name": "SetGeometry",
+          "line": 173,
+          "file": "short-method-groups.json",
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoEnvironmentReuse, owner methods unchanged through segaNintendoOptionDispatchReuse",
+          "hash": "B84A4D7D2F6E262457C92FC54F7814D24EB15115A97C6EED020038337306C495",
+          "collection": "exactGroups",
+          "contract": "IEmulationCoreEnvironmentCommands"
+        },
+        {
+          "name": "SetGeometry",
+          "line": 173,
+          "file": "short-method-groups.json",
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoEnvironmentReuse, owner methods unchanged through segaNintendoOptionDispatchReuse",
+          "hash": "B84A4D7D2F6E262457C92FC54F7814D24EB15115A97C6EED020038337306C495",
+          "collection": "exactGroups",
+          "contract": "IEmulationCoreEnvironmentCommands"
+        },
+        {
+          "name": "CaptureControllerInfo",
+          "line": 147,
+          "file": "short-method-groups.json",
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoEnvironmentReuse, owner methods unchanged through segaNintendoOptionDispatchReuse",
+          "hash": "D2D91291347E808C7CB92B1022BAEA37044FA9AFF36852A843AF7637073DA97F",
+          "collection": "exactGroups",
+          "contract": "IEmulationCoreEnvironmentCommands"
+        },
+        {
+          "name": "CaptureControllerInfo",
+          "line": 147,
+          "file": "short-method-groups.json",
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoEnvironmentReuse, owner methods unchanged through segaNintendoOptionDispatchReuse",
+          "hash": "D2D91291347E808C7CB92B1022BAEA37044FA9AFF36852A843AF7637073DA97F",
+          "collection": "exactGroups",
+          "contract": "IEmulationCoreEnvironmentCommands"
+        },
+        {
+          "name": "RegisterLegacyVariables",
+          "line": 223,
+          "file": "short-method-groups.json",
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoOptionDispatchReuse",
+          "hash": "D4AA6E8274759FD5B649E448E1FA45C560F642426BDE6E634D6E5BE89A12EA57",
+          "collection": "exactGroups",
+          "contract": "IEmulationCoreOptionCommands"
+        },
+        {
+          "name": "RegisterLegacyVariables",
+          "line": 223,
+          "file": "short-method-groups.json",
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoOptionDispatchReuse",
+          "hash": "D4AA6E8274759FD5B649E448E1FA45C560F642426BDE6E634D6E5BE89A12EA57",
+          "collection": "exactGroups",
+          "contract": "IEmulationCoreOptionCommands"
+        },
+        {
+          "name": "CaptureDiskControl",
+          "line": 135,
+          "file": "short-method-groups.json",
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoEnvironmentReuse, owner methods unchanged through segaNintendoOptionDispatchReuse",
+          "hash": "E2F0C1D6DDB6886EB6702607CD2F6360FA8277E35C02DB1BFC22AB6D53F87A79",
+          "collection": "exactGroups",
+          "contract": "IEmulationCoreEnvironmentCommands"
+        },
+        {
+          "name": "CaptureDiskControl",
+          "line": 135,
+          "file": "short-method-groups.json",
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoEnvironmentReuse, owner methods unchanged through segaNintendoOptionDispatchReuse",
+          "hash": "E2F0C1D6DDB6886EB6702607CD2F6360FA8277E35C02DB1BFC22AB6D53F87A79",
+          "collection": "exactGroups",
+          "contract": "IEmulationCoreEnvironmentCommands"
+        },
+        {
+          "name": "WriteSystemDirectory",
+          "line": 87,
+          "file": "short-method-groups.json",
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoEnvironmentReuse, owner methods unchanged through segaNintendoOptionDispatchReuse",
+          "hash": "5C284CDD09EA92511298B1C0345EE8F2C337D6BAD8CE871D1E2477D4E5F74A60",
+          "collection": "renamedIdentifierGroups",
+          "contract": "IEmulationCoreEnvironmentCommands"
+        },
+        {
+          "name": "WriteContentDirectory",
+          "line": 92,
+          "file": "short-method-groups.json",
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoEnvironmentReuse, owner methods unchanged through segaNintendoOptionDispatchReuse",
+          "hash": "06394F8D150AEDA6DFC346AF237BEAE1F2646F39A65FA32B77A3F2DF52024D68",
+          "collection": "renamedIdentifierGroups",
+          "contract": "IEmulationCoreEnvironmentCommands"
+        },
+        {
+          "name": "WriteSaveDirectory",
+          "line": 97,
+          "file": "short-method-groups.json",
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoEnvironmentReuse, owner methods unchanged through segaNintendoOptionDispatchReuse",
+          "hash": "773E43D140327F702055BC93C7D79A898949235B90C5F7DB5FD9C1992B7A93AB",
+          "collection": "renamedIdentifierGroups",
+          "contract": "IEmulationCoreEnvironmentCommands"
+        },
+        {
+          "name": "WriteSystemDirectory",
+          "line": 87,
+          "file": "short-method-groups.json",
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoEnvironmentReuse, owner methods unchanged through segaNintendoOptionDispatchReuse",
+          "hash": "5C284CDD09EA92511298B1C0345EE8F2C337D6BAD8CE871D1E2477D4E5F74A60",
+          "collection": "renamedIdentifierGroups",
+          "contract": "IEmulationCoreEnvironmentCommands"
+        },
+        {
+          "name": "WriteContentDirectory",
+          "line": 92,
+          "file": "short-method-groups.json",
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoEnvironmentReuse, owner methods unchanged through segaNintendoOptionDispatchReuse",
+          "hash": "06394F8D150AEDA6DFC346AF237BEAE1F2646F39A65FA32B77A3F2DF52024D68",
+          "collection": "renamedIdentifierGroups",
+          "contract": "IEmulationCoreEnvironmentCommands"
+        },
+        {
+          "name": "WriteSaveDirectory",
+          "line": 97,
+          "file": "short-method-groups.json",
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoEnvironmentReuse, owner methods unchanged through segaNintendoOptionDispatchReuse",
+          "hash": "773E43D140327F702055BC93C7D79A898949235B90C5F7DB5FD9C1992B7A93AB",
+          "collection": "renamedIdentifierGroups",
+          "contract": "IEmulationCoreEnvironmentCommands"
+        },
+        {
+          "name": "CaptureControllerInfo",
+          "line": 147,
+          "file": "short-method-groups.json",
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoEnvironmentReuse, owner methods unchanged through segaNintendoOptionDispatchReuse",
+          "hash": "D2D91291347E808C7CB92B1022BAEA37044FA9AFF36852A843AF7637073DA97F",
+          "collection": "renamedIdentifierGroups",
+          "contract": "IEmulationCoreEnvironmentCommands"
+        },
+        {
+          "name": "SetGeometry",
+          "line": 173,
+          "file": "short-method-groups.json",
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoEnvironmentReuse, owner methods unchanged through segaNintendoOptionDispatchReuse",
+          "hash": "B84A4D7D2F6E262457C92FC54F7814D24EB15115A97C6EED020038337306C495",
+          "collection": "renamedIdentifierGroups",
+          "contract": "IEmulationCoreEnvironmentCommands"
+        },
+        {
+          "name": "SetSystemAvInfo",
+          "line": 178,
+          "file": "short-method-groups.json",
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoEnvironmentReuse, owner methods unchanged through segaNintendoOptionDispatchReuse",
+          "hash": "37EDF529122C9988481D543DCA9F57E80DF70192296886E4B56DF2776FB300CB",
+          "collection": "renamedIdentifierGroups",
+          "contract": "IEmulationCoreEnvironmentCommands"
+        },
+        {
+          "name": "ReturnValue",
+          "line": 228,
+          "file": "short-method-groups.json",
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoOptionDispatchReuse",
+          "hash": "106BB0CD9DD530E24A94B7DE53DC6C3A13D2D2FF7B525B573B08FE3ADFC02D0A",
+          "collection": "renamedIdentifierGroups",
+          "contract": "IEmulationCoreOptionCommands"
+        },
+        {
+          "name": "ApplyVisibility",
+          "line": 239,
+          "file": "short-method-groups.json",
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoOptionDispatchReuse",
+          "hash": "39E5AE129B4B7161D08064506480DC605CB6CB126874483BB289379BAB73FD04",
+          "collection": "renamedIdentifierGroups",
+          "contract": "IEmulationCoreOptionCommands"
+        },
+        {
+          "name": "CaptureDisplayUpdate",
+          "line": 244,
+          "file": "short-method-groups.json",
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoOptionDispatchReuse",
+          "hash": "88FF62A8FFFD0DF43D59B3F93D634B4917D8DC8E6152B7CAB60AEE80BEDA35EC",
+          "collection": "renamedIdentifierGroups",
+          "contract": "IEmulationCoreOptionCommands"
+        },
+        {
+          "name": "CaptureControllerInfo",
+          "line": 147,
+          "file": "short-method-groups.json",
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoEnvironmentReuse, owner methods unchanged through segaNintendoOptionDispatchReuse",
+          "hash": "D2D91291347E808C7CB92B1022BAEA37044FA9AFF36852A843AF7637073DA97F",
+          "collection": "renamedIdentifierGroups",
+          "contract": "IEmulationCoreEnvironmentCommands"
+        },
+        {
+          "name": "SetGeometry",
+          "line": 173,
+          "file": "short-method-groups.json",
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoEnvironmentReuse, owner methods unchanged through segaNintendoOptionDispatchReuse",
+          "hash": "B84A4D7D2F6E262457C92FC54F7814D24EB15115A97C6EED020038337306C495",
+          "collection": "renamedIdentifierGroups",
+          "contract": "IEmulationCoreEnvironmentCommands"
+        },
+        {
+          "name": "SetSystemAvInfo",
+          "line": 178,
+          "file": "short-method-groups.json",
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoEnvironmentReuse, owner methods unchanged through segaNintendoOptionDispatchReuse",
+          "hash": "37EDF529122C9988481D543DCA9F57E80DF70192296886E4B56DF2776FB300CB",
+          "collection": "renamedIdentifierGroups",
+          "contract": "IEmulationCoreEnvironmentCommands"
+        },
+        {
+          "name": "ReturnValue",
+          "line": 228,
+          "file": "short-method-groups.json",
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoOptionDispatchReuse",
+          "hash": "106BB0CD9DD530E24A94B7DE53DC6C3A13D2D2FF7B525B573B08FE3ADFC02D0A",
+          "collection": "renamedIdentifierGroups",
+          "contract": "IEmulationCoreOptionCommands"
+        },
+        {
+          "name": "ApplyVisibility",
+          "line": 239,
+          "file": "short-method-groups.json",
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoOptionDispatchReuse",
+          "hash": "39E5AE129B4B7161D08064506480DC605CB6CB126874483BB289379BAB73FD04",
+          "collection": "renamedIdentifierGroups",
+          "contract": "IEmulationCoreOptionCommands"
+        },
+        {
+          "name": "CaptureDisplayUpdate",
+          "line": 244,
+          "file": "short-method-groups.json",
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoOptionDispatchReuse",
+          "hash": "88FF62A8FFFD0DF43D59B3F93D634B4917D8DC8E6152B7CAB60AEE80BEDA35EC",
+          "collection": "renamedIdentifierGroups",
+          "contract": "IEmulationCoreOptionCommands"
+        },
+        {
+          "name": "CaptureDiskControl",
+          "line": 135,
+          "file": "short-method-groups.json",
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoEnvironmentReuse, owner methods unchanged through segaNintendoOptionDispatchReuse",
+          "hash": "E2F0C1D6DDB6886EB6702607CD2F6360FA8277E35C02DB1BFC22AB6D53F87A79",
+          "collection": "renamedIdentifierGroups",
+          "contract": "IEmulationCoreEnvironmentCommands"
+        },
+        {
+          "name": "CaptureExtendedDiskControl",
+          "line": 141,
+          "file": "short-method-groups.json",
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoEnvironmentReuse, owner methods unchanged through segaNintendoOptionDispatchReuse",
+          "hash": "AB266269EC8578CCBE37A7AF5941978D9CB25BAB07D909CC9BD3B5AB61E35EB8",
+          "collection": "renamedIdentifierGroups",
+          "contract": "IEmulationCoreEnvironmentCommands"
+        },
+        {
+          "name": "CaptureDiskControl",
+          "line": 135,
+          "file": "short-method-groups.json",
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoEnvironmentReuse, owner methods unchanged through segaNintendoOptionDispatchReuse",
+          "hash": "E2F0C1D6DDB6886EB6702607CD2F6360FA8277E35C02DB1BFC22AB6D53F87A79",
+          "collection": "renamedIdentifierGroups",
+          "contract": "IEmulationCoreEnvironmentCommands"
+        },
+        {
+          "name": "CaptureExtendedDiskControl",
+          "line": 141,
+          "file": "short-method-groups.json",
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoEnvironmentReuse, owner methods unchanged through segaNintendoOptionDispatchReuse",
+          "hash": "AB266269EC8578CCBE37A7AF5941978D9CB25BAB07D909CC9BD3B5AB61E35EB8",
+          "collection": "renamedIdentifierGroups",
+          "contract": "IEmulationCoreEnvironmentCommands"
+        },
+        {
+          "name": "RegisterVersionOne",
+          "line": 203,
+          "file": "short-method-groups.json",
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoOptionDispatchReuse",
+          "hash": "AC559ED16E50D5DCABD05E1FBE53A4EE36ADA6420FED479E57E903429E49F2A8",
+          "collection": "renamedIdentifierGroups",
+          "contract": "IEmulationCoreOptionCommands"
+        },
+        {
+          "name": "RegisterVersionTwo",
+          "line": 213,
+          "file": "short-method-groups.json",
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoOptionDispatchReuse",
+          "hash": "1756CBE6D07FAA02C971A74AB8AD5063D89D2908ACA90B6269E1223329798BB2",
+          "collection": "renamedIdentifierGroups",
+          "contract": "IEmulationCoreOptionCommands"
+        },
+        {
+          "name": "RegisterLegacyVariables",
+          "line": 223,
+          "file": "short-method-groups.json",
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoOptionDispatchReuse",
+          "hash": "D4AA6E8274759FD5B649E448E1FA45C560F642426BDE6E634D6E5BE89A12EA57",
+          "collection": "renamedIdentifierGroups",
+          "contract": "IEmulationCoreOptionCommands"
+        },
+        {
+          "name": "RegisterVersionOne",
+          "line": 203,
+          "file": "short-method-groups.json",
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoOptionDispatchReuse",
+          "hash": "AC559ED16E50D5DCABD05E1FBE53A4EE36ADA6420FED479E57E903429E49F2A8",
+          "collection": "renamedIdentifierGroups",
+          "contract": "IEmulationCoreOptionCommands"
+        },
+        {
+          "name": "RegisterVersionTwo",
+          "line": 213,
+          "file": "short-method-groups.json",
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoOptionDispatchReuse",
+          "hash": "1756CBE6D07FAA02C971A74AB8AD5063D89D2908ACA90B6269E1223329798BB2",
+          "collection": "renamedIdentifierGroups",
+          "contract": "IEmulationCoreOptionCommands"
+        },
+        {
+          "name": "RegisterLegacyVariables",
+          "line": 223,
+          "file": "short-method-groups.json",
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoOptionDispatchReuse",
+          "hash": "D4AA6E8274759FD5B649E448E1FA45C560F642426BDE6E634D6E5BE89A12EA57",
+          "collection": "renamedIdentifierGroups",
+          "contract": "IEmulationCoreOptionCommands"
+        },
+        {
+          "name": "RegisterVersionOneInternational",
+          "line": 208,
+          "file": "short-method-groups.json",
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoOptionDispatchReuse",
+          "hash": "2657DA23DBD81FAAAF8187E2140CC794CC3C67CE9AF34F02D349FDFB2C06971E",
+          "collection": "renamedIdentifierGroups",
+          "contract": "IEmulationCoreOptionCommands"
+        },
+        {
+          "name": "RegisterVersionTwoInternational",
+          "line": 218,
+          "file": "short-method-groups.json",
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoOptionDispatchReuse",
+          "hash": "911DAA96C130927E1A7183B1C6777A3515E9FE019AECADC5F0443254EBEC78A1",
+          "collection": "renamedIdentifierGroups",
+          "contract": "IEmulationCoreOptionCommands"
+        },
+        {
+          "name": "RegisterVersionOneInternational",
+          "line": 208,
+          "file": "short-method-groups.json",
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoOptionDispatchReuse",
+          "hash": "2657DA23DBD81FAAAF8187E2140CC794CC3C67CE9AF34F02D349FDFB2C06971E",
+          "collection": "renamedIdentifierGroups",
+          "contract": "IEmulationCoreOptionCommands"
+        },
+        {
+          "name": "RegisterVersionTwoInternational",
+          "line": 218,
+          "file": "short-method-groups.json",
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoOptionDispatchReuse",
+          "hash": "911DAA96C130927E1A7183B1C6777A3515E9FE019AECADC5F0443254EBEC78A1",
+          "collection": "renamedIdentifierGroups",
+          "contract": "IEmulationCoreOptionCommands"
+        },
+        {
+          "name": "SetLogInterface",
+          "line": 183,
+          "file": "short-method-groups.json",
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoEnvironmentReuse, owner methods unchanged through segaNintendoOptionDispatchReuse",
+          "hash": "137FF1FE9E94B2640EC04BB3D89C3047EFF92F97EB242A7447A2CE7BA72EA196",
+          "collection": "renamedIdentifierGroups",
+          "contract": "IEmulationCoreEnvironmentCommands"
+        },
+        {
+          "name": "SetLedInterface",
+          "line": 193,
+          "file": "short-method-groups.json",
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoEnvironmentReuse, owner methods unchanged through segaNintendoOptionDispatchReuse",
+          "hash": "080B4DA489C00BF0C9A967EFB0253F479B75D7590C04A04D882E288CDBEE9815",
+          "collection": "renamedIdentifierGroups",
+          "contract": "IEmulationCoreEnvironmentCommands"
+        },
+        {
+          "name": "SetLogInterface",
+          "line": 183,
+          "file": "short-method-groups.json",
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoEnvironmentReuse, owner methods unchanged through segaNintendoOptionDispatchReuse",
+          "hash": "137FF1FE9E94B2640EC04BB3D89C3047EFF92F97EB242A7447A2CE7BA72EA196",
+          "collection": "renamedIdentifierGroups",
+          "contract": "IEmulationCoreEnvironmentCommands"
+        },
+        {
+          "name": "SetLedInterface",
+          "line": 193,
+          "file": "short-method-groups.json",
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "proof": "segaNintendoEnvironmentReuse, owner methods unchanged through segaNintendoOptionDispatchReuse",
+          "hash": "080B4DA489C00BF0C9A967EFB0253F479B75D7590C04A04D882E288CDBEE9815",
+          "collection": "renamedIdentifierGroups",
+          "contract": "IEmulationCoreEnvironmentCommands"
+        }
+      ],
+      "remainingHandleEnvironment": "Residual hardware/content/stateless and selection policy remain pending",
+      "physicalCSharpFiles": 7288
     }
+  },
+  "environmentDispatchBuild": {
+    "before": [
+      {
+        "sha256": "EC7D038183957F0F2DD09078668AB7866560A585B3566836E5ECD105796260F4",
+        "exists": true,
+        "path": "global.json"
+      },
+      {
+        "sha256": "06027F2C20CB4CD2231BB9247B6CFAF23B60CE4E896103A76042EC3D2F30FF4B",
+        "exists": true,
+        "path": "scripts/local-building.cmd"
+      },
+      {
+        "sha256": "EAEF2EAE65381132F9E5AE8F73CDACAA01755AACAD2F334714352785CC82C700",
+        "exists": true,
+        "path": "scripts/local-building/build.ps1"
+      },
+      {
+        "sha256": "75DFD60CAC53DB8E4FF8FF274DB1A92A802E518C6C35AE1C7EAD3CA74065F054",
+        "exists": true,
+        "path": "scripts/module-directory/build-module-directory.ps1"
+      },
+      {
+        "sha256": "EFF57734FACEB7536E603A78DB0E43723BA22E8128C23BBB98C9F9B154BBE0F3",
+        "exists": true,
+        "path": "scripts/module-release/package-module.ps1"
+      },
+      {
+        "sha256": "20A8899A47EF613BE8D7E106C81FF1C00BCA6E00C5F3CC4B1FD1E596A9BA24FB",
+        "exists": true,
+        "path": "scripts/publish-module-directory.cmd"
+      },
+      {
+        "sha256": "3AD1334C3E0C2EDC5D0B8AEB416D9F096784A80F6F0DC1EABECD7BA5CADA5DFB",
+        "exists": true,
+        "path": "scripts/publish-modules.cmd"
+      },
+      {
+        "sha256": "C6A1F3A111B00408FEFD153342140CA556B63A120C539830236B5D22B7987626",
+        "exists": true,
+        "path": "scripts/publish-release.cmd"
+      },
+      {
+        "sha256": "E6FA82514B4F43F7E45308FA925B16876C1F0924053BD611837D15C741A56C30",
+        "exists": true,
+        "path": "scripts/publish-wiki.cmd"
+      },
+      {
+        "sha256": "DF28EE0A0FCD20ACABA2D1131DBE89CFE057D7FE6F3119D2F6BCBA2CA917469B",
+        "exists": true,
+        "path": "scripts/release/package/organize_app/organize-application-output.ps1"
+      },
+      {
+        "sha256": "BE18E987279943DFB6449F5920E29E2D0922206F0ECBABC95A1C4C8723061554",
+        "exists": true,
+        "path": "scripts/release/package/organize_app/shared-component-files.ps1"
+      },
+      {
+        "sha256": "04E9052B296679D70666C4559B372425AA92F68F79E666F7DA6234255BDD6B6A",
+        "exists": true,
+        "path": "scripts/release/package/package.ps1"
+      },
+      {
+        "sha256": "3E3D1FC84EA4F113F3B3B6BF14E9F35A3E7B305BF4F79153E20D7849D026988D",
+        "exists": true,
+        "path": "scripts/release/update-catalog/build-update-catalog.ps1"
+      },
+      {
+        "sha256": "3D75EB2584FDC3E6C9E2B153B919ADDF88748D1C92CB5D421699D0A5966E7625",
+        "exists": true,
+        "path": "scripts/release/update-catalog/emulation-modules/emulation-modules.ps1"
+      },
+      {
+        "sha256": "AA775F80D85158C60C3AD3E5073420B4BA33949C2EC9DC8FA78F47CBAA77913A",
+        "exists": true,
+        "path": "scripts/temp/analyze-media-data.ps1"
+      },
+      {
+        "sha256": "31AC2B278BDE2D72222F440F825B6591BE38AF0AD16CCC6D969AA9ECFB3385FC",
+        "exists": true,
+        "path": "scripts/temp/common/DotNetProcess.ps1"
+      },
+      {
+        "sha256": "6FB701484E9E322749CC2DC40964B7858E244ED725DC07A62FE5482281F47598",
+        "exists": true,
+        "path": "scripts/temp/extract_data_from_ContentHex.ps1"
+      },
+      {
+        "sha256": "7E3FB09B7F82364956CF923C0AC8B9BBE24D16327442B70990A3AE1CA63DFB1F",
+        "exists": true,
+        "path": "scripts/temp/extract-media-files.ps1"
+      },
+      {
+        "sha256": "45EFF764E2539E5DBF223BFF176BAE71DD0B70A86AB12680E5DFB18DFF0772DC",
+        "exists": true,
+        "path": "scripts/temp/read-media-with-libretro.ps1"
+      },
+      {
+        "sha256": "3CEE5946F141097643AE07175E52131D25C268DCDBBA287DA0892E1A3708A5F4",
+        "exists": true,
+        "path": "scripts/tests/test-app-accessibility.ps1"
+      },
+      {
+        "sha256": "9A67170E382BBCBDF5DE0922AE8E74B283D6AA8DAE386913D73170F7BB157795",
+        "exists": true,
+        "path": "scripts/tests/test-installer-upgrade.ps1"
+      },
+      {
+        "sha256": "A9CF61F494BCAE405D7A6CEFDE99CE8BB57C43C90A5C2FAFE44A2164751B15A1",
+        "exists": true,
+        "path": "scripts/tests/test-installer.ps1"
+      },
+      {
+        "sha256": "3CDC9B369EE24651DFC07289AB2207A4604CA1883F47BFB8B526B8B2E6974406",
+        "exists": true,
+        "path": "scripts/tools/find-invalid-documentation.ps1"
+      },
+      {
+        "sha256": "2E5B7FDA06F544830ADA911396C89305DFBECE95129C1C45DC3E9A3E91EFD1C2",
+        "exists": true,
+        "path": "scripts/tools/stop-debug-gwgui.ps1"
+      },
+      {
+        "sha256": "93D3D34A8CFC807CBC2DD755DCB97A32E93F8677C64EEA6B9E5D376A55427662",
+        "exists": true,
+        "path": "scripts/wiki/build-wiki.ps1"
+      },
+      {
+        "sha256": "0B496084B44EBA11BE96271BC6AFA9F4AAA749E91CA2335556BFAD395CB36D2B",
+        "exists": true,
+        "path": "scripts/wiki/publish-wiki.ps1"
+      },
+      {
+        "sha256": "45D17E66BC1DD5923693633986D0B6792A1D89DC1B25FDCDD44701D4EC72931C",
+        "exists": true,
+        "path": "src/GWGUI.App/GWGUI.App.csproj"
+      },
+      {
+        "sha256": "C5D7ED8C9804B7C017C65EE2D5538E3D886B35F391B76A45D047D0CB444BEFD3",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Acorn/GWGUI.Emulation.Acorn.csproj"
+      },
+      {
+        "sha256": "5D1361DF84F667F12B408B9CA08E982E037C4C9D65D3AE020C87DB86450F29DB",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Acorn/module.json"
+      },
+      {
+        "sha256": "E5CD137AF53BFFCD58CBEF9F656499E89C8CE93D2672929432F514CBF62F5568",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Amstrad/GWGUI.Emulation.Amstrad.csproj"
+      },
+      {
+        "sha256": "0685C64F7DBFA038CDCEC72E0407222B33BD1147B842E6ECCD08072A92A30047",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Amstrad/module.json"
+      },
+      {
+        "sha256": "624CD4C0CC6BD90301FE79E6F781E57623F006EF2030CFF2FD9ECBE8603B05A4",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Apple/GWGUI.Emulation.Apple.csproj"
+      },
+      {
+        "sha256": "FBE09CFCB4F6A08E589D10464AD6741B26B145BCFAF296154A57C7A698AF1163",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Apple/module.json"
+      },
+      {
+        "sha256": "0B69DEA50029B3D269EE60914F4239F18692D1A14A964301949FF2DBA6877C86",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Atari/GWGUI.Emulation.Atari.csproj"
+      },
+      {
+        "sha256": "51CC891084CC5412C7D00BF348F710FD5DE995C24EE67A606337BF1FE842306F",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Atari/module.json"
+      },
+      {
+        "sha256": "8731868F4238380DF2E63E5DC48DEDF906A6A1B891D84775EFD81B15F35BA19A",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Bandai/GWGUI.Emulation.Bandai.csproj"
+      },
+      {
+        "sha256": "F6F87EA0A37548B557A4C12127904D272C80C4EE75B2CEC5653FDFB5DFFBFD82",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Bandai/module.json"
+      },
+      {
+        "sha256": "8B8E257FE498755B742F645D17A1A1FA1A55CF4AE833422631BD898347868F67",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Coleco/GWGUI.Emulation.Coleco.csproj"
+      },
+      {
+        "sha256": "EE3B477DB0CCEEDD0C02D2C4548ED4E5B44D56EBA689195557DB607DF9218B14",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Coleco/module.json"
+      },
+      {
+        "sha256": "2484487C872A8CC2111BEEA0BE22B0D13DEF6996A4918B3AEF7C02F7E79C1433",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Commodore/GWGUI.Emulation.Commodore.csproj"
+      },
+      {
+        "sha256": "715A8D7E88A5371FE1E576185FE0F2388F8CF19D29C42BCF9DA9FF4E48839A22",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Commodore/module.json"
+      },
+      {
+        "sha256": "833629D231B69D9789FFA68C6C8757E21CC4818F6956B4A362AAF62E383296A6",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Epoch/GWGUI.Emulation.Epoch.csproj"
+      },
+      {
+        "sha256": "4F9BE08D73FEB957D482FACD353D3DE33FACFE3EB811CDB760A0C43039FA3982",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Epoch/module.json"
+      },
+      {
+        "sha256": "45E562B934ADAE7A24678A110C2C0DAE308B20FFE149D08BA30DFB365C4C5962",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Fairchild/GWGUI.Emulation.Fairchild.csproj"
+      },
+      {
+        "sha256": "2A189DF8B8D6ECA422D9A557E3543CC1BEB26795076B565DCB61A5CB3252E4B5",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Fairchild/module.json"
+      },
+      {
+        "sha256": "0791D297AF339DDAAA0CB6AF8A44ADB3156503B84FDD56F4C497B7803403847B",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Mattel/GWGUI.Emulation.Mattel.csproj"
+      },
+      {
+        "sha256": "F47DC3DB92E381580877689A2486482966240DAF8FF5E8D2FE10D9D693D6EF5A",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Mattel/module.json"
+      },
+      {
+        "sha256": "83B81BBC65B2070D889850635E5BC7603AEBC74BA8B2BF7C18ED59C2E770CD21",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Microsoft/GWGUI.Emulation.Microsoft.csproj"
+      },
+      {
+        "sha256": "43D19332331FCAA8F42C6B8CD1F7DF144606E3A988C21A997407AEF76BC19CC5",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Microsoft/module.json"
+      },
+      {
+        "sha256": "BCDC416DC7B08C38D7244523B3E7D3FE569A5618B80C9693F84D4F0A8394F6E8",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Nec/GWGUI.Emulation.Nec.csproj"
+      },
+      {
+        "sha256": "418AB9A38DE74CB5003E3F5F343B90AEE5F9ADDDCAB4BC4257F16C018E112F32",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Nec/module.json"
+      },
+      {
+        "sha256": "03108B7CC7E85FE0EE451A3A6035D39D0336F60CFDE01FCA52BD5EE57FB6A3DB",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs"
+      },
+      {
+        "sha256": "5C53880ECF569F2508C22165163C4ECCC57DDB8D354435FD7DD36066E1054118",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Nintendo/GWGUI.Emulation.Nintendo.csproj"
+      },
+      {
+        "sha256": "788A3664E12FF76C48BD1DC889037A4A949495669F8593DC2E1A5F873679F619",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Nintendo/module.json"
+      },
+      {
+        "sha256": "56C39603191BF0D499E10B0D51A10F70F8126D7734421332F635B9108DB94E1A",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Panasonic/GWGUI.Emulation.Panasonic.csproj"
+      },
+      {
+        "sha256": "EA9A3616D39CD4D1F5E30E9976F5068D53ED1FFF6045385D768D7C90BB507BEE",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Panasonic/module.json"
+      },
+      {
+        "sha256": "D710F842C3EEC902EBD72DA559E8DB51738882B3C101868AF2BE5FEF1A449136",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Philips/GWGUI.Emulation.Philips.csproj"
+      },
+      {
+        "sha256": "6EB25C1487B811A43F9D3A47CBEE2CAE00037733C012977E4F6524EBBB456D1E",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Philips/module.json"
+      },
+      {
+        "sha256": "1C51D64B2068D32BBDB2332E2CE5BD455CBBF1DD9AD446327E115CB3DB4D1944",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs"
+      },
+      {
+        "sha256": "84C8C40DB0187221E7C0D4FCF25A30CC25E3CC5BA46BB642130771B893EC881E",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Sega/GWGUI.Emulation.Sega.csproj"
+      },
+      {
+        "sha256": "5365B31349DE22D838CB7B2A8C539559C4A63BD88E69E29A270191EA81AA2577",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Sega/module.json"
+      },
+      {
+        "sha256": "492139470ED46F60044E0D656C7C319EFD09B1063022CBCB7E64BD252B8F9252",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Sharp/GWGUI.Emulation.Sharp.csproj"
+      },
+      {
+        "sha256": "D53D6EC4BEBA44812044807AFAC9BCB72DFF2610C4EF6B756F68BD8273962CA0",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Sharp/module.json"
+      },
+      {
+        "sha256": "2CD3BC3A64743D4B11CC6312544FE6108E1BF8DFD27D3758FB2828D3CF5FA242",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Sinclair/GWGUI.Emulation.Sinclair.csproj"
+      },
+      {
+        "sha256": "9B470D469CEEA3E635CBA07A802BEF90B7B219FF0EA1A472D92AF8720EC659CB",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Sinclair/module.json"
+      },
+      {
+        "sha256": "B734D83E941BB713D6043EA55D3175B58ED4E3E1A20900353AEF0193082B7C46",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Snk/GWGUI.Emulation.Snk.csproj"
+      },
+      {
+        "sha256": "F01DB0F0477C9E3396953A6E5F4C038664D443D8A8438190C090A203C752A3E1",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Snk/module.json"
+      },
+      {
+        "sha256": "AD1328E423A7E4A8A0BD3C1B406B5B6C4B8FBB5E074A3B2BD56C9CB674DC0FA4",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Sony/GWGUI.Emulation.Sony.csproj"
+      },
+      {
+        "sha256": "2D42F1C300CF0AF603AC2F173E733190938222A97AD4C90EFDACEDC6EEC5A0D2",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Sony/module.json"
+      },
+      {
+        "sha256": "C4FDABFB3825230FC0CD480AFA2DE67C78CCF0D24EEC2EAF0CF144B30A26DB5D",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Thomson/GWGUI.Emulation.Thomson.csproj"
+      },
+      {
+        "sha256": "73607D4205DE7D262CE05C177098DA420502B7D0D5FCDBD27C83D43B436BAA9E",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Thomson/module.json"
+      },
+      {
+        "sha256": "A8C72698C6BA5326AA24DB4782DA7D0F21C966DFE25F5BF30DF6A0668243C5D0",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Watara/GWGUI.Emulation.Watara.csproj"
+      },
+      {
+        "sha256": "13EB5DAC82C5FAFAFA194447193A6A02EC755A4A4A083D43D73A25A2FEBEEC5D",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Watara/module.json"
+      },
+      {
+        "sha256": "E22F6C874E8A20A6E28CFE250943F4347919384B79B52DB5E9D8A61C67AF9328",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Wenquxing/GWGUI.Emulation.Wenquxing.csproj"
+      },
+      {
+        "sha256": "911CC9E4D67C1C8BFB3D5E9D7133EEDF03F801CD769C2299155A994A7E544991",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Wenquxing/module.json"
+      },
+      {
+        "sha256": "F451838198B54FB9E9ACB11AF807FF9D6D57268B4AD645954B6B4AE07648A478",
+        "exists": true,
+        "path": "src/GWGUI.Emulation/Functions/ExternalCoreEnvironmentFunctions.cs"
+      },
+      {
+        "sha256": "5A9DABBDCBBE1C93A04D5ABA1BE00A0527421F3270F02FEBE063453AC5FB857C",
+        "exists": true,
+        "path": "src/GWGUI.Emulation/GWGUI.Emulation.csproj"
+      },
+      {
+        "sha256": "C20B94D56B9C18636A84A07FFF4BA05CAFFE352FEA41BC7CE120BB3145F31828",
+        "exists": true,
+        "path": "src/GWGUI.Emulation/Interfaces/IEmulationCoreEnvironmentCommands.cs"
+      },
+      {
+        "sha256": "322731E6C9890870B13D2B031E3A34499EE2CE0177217EE0FC08A631110A82BF",
+        "exists": true,
+        "path": "src/GWGUI.Emulation/Interfaces/IEmulationCoreOptionCommands.cs"
+      },
+      {
+        "sha256": "5AF1A6F4FD9761192136278A7420D9491A72A1CF7D5400140B72252127608336",
+        "exists": true,
+        "path": "src/GWGUI.Infrastructure/GWGUI.Infrastructure.csproj"
+      },
+      {
+        "sha256": "704C315EFBB669FA6BCC398F29B9FEB3A7BF2F41D9BE44E3B41D0CC81B023473",
+        "exists": true,
+        "path": "src/GWGUI.Launcher/GWGUI.Launcher.csproj"
+      },
+      {
+        "sha256": "5D914401AB2AAE3465A052EDBBC99B8E73495BBD2B2F3546543653C2169E1C65",
+        "exists": true,
+        "path": "src/GWGUI.MediaAnalysis/GWGUI.MediaAnalysis.csproj"
+      },
+      {
+        "sha256": "11A282DF1F8B5F162AA0ABEE100C18B8751389A1B51DE83C77D5684CC4A1A069",
+        "exists": true,
+        "path": "src/GWGUI.MediaEngine/GWGUI.MediaEngine.csproj"
+      },
+      {
+        "sha256": "BCA0D10E729A54C4C1A5F65D75DB27BF1C3EAF979C1474DF3FCDF876BA90D8D9",
+        "exists": true,
+        "path": "src/GWGUI.MediaFileSystems/GWGUI.MediaFileSystems.csproj"
+      },
+      {
+        "sha256": "6360F653C53DCC478D97631DE16CE136DB234F6342EA9AE463E3A2EFCE85C13F",
+        "exists": true,
+        "path": "src/GWGUI.Updater/GWGUI.Updater.csproj"
+      },
+      {
+        "sha256": "B87C1A99E3FD3EE39A2613EC0D071C5D7D7DF3575FAB40B70A5ACFC4EF27923D",
+        "exists": true,
+        "path": "src/GWGUI.Updates/GWGUI.Updates.csproj"
+      },
+      {
+        "sha256": "29F1202CBF6FACC651C0FE3C1A1E8E830CCBD4A5B292B8E3A29AF51E451CCEB3",
+        "exists": true,
+        "path": "src/GWGUI.VideoPresentation/GWGUI.VideoPresentation.csproj"
+      },
+      {
+        "sha256": "CCE2F714A2CCD215346850E7BACCD933EC364B707D9F8FD2155BBFFC16DF7062",
+        "exists": true,
+        "path": "tests/GWGUI.Tests/Emulation/EnvironmentCallbackCommandTests.cs"
+      },
+      {
+        "sha256": "A69318B80DE1D17C1B5026546F8A4087669A10B9657520B1D7EFF3B6FF9D8343",
+        "exists": true,
+        "path": "tests/GWGUI.Tests/Emulation/OptionEnvironmentCommandTests.cs"
+      },
+      {
+        "sha256": "719C7A5425A3CF3C3D140EA5FFD8B6FDE9B15135772D8E13D0DB8C388924FA0C",
+        "exists": true,
+        "path": "tests/GWGUI.Tests/Emulation/StatelessEnvironmentCommandTests.cs"
+      }
+    ],
+    "command": "scripts/local-building.cmd --building=debug --modules=A",
+    "startedAt": "2026-10-19T04:16:49.3284406+02:00",
+    "coveredBlocks": [
+      "segaNintendoEnvironmentReuse",
+      "segaNintendoOptionDispatchReuse"
+    ],
+    "state": "verified",
+    "after": [
+      {
+        "path": "global.json",
+        "sha256": "EC7D038183957F0F2DD09078668AB7866560A585B3566836E5ECD105796260F4",
+        "exists": true
+      },
+      {
+        "path": "scripts/local-building.cmd",
+        "sha256": "06027F2C20CB4CD2231BB9247B6CFAF23B60CE4E896103A76042EC3D2F30FF4B",
+        "exists": true
+      },
+      {
+        "path": "scripts/local-building/build.ps1",
+        "sha256": "EAEF2EAE65381132F9E5AE8F73CDACAA01755AACAD2F334714352785CC82C700",
+        "exists": true
+      },
+      {
+        "path": "scripts/module-directory/build-module-directory.ps1",
+        "sha256": "75DFD60CAC53DB8E4FF8FF274DB1A92A802E518C6C35AE1C7EAD3CA74065F054",
+        "exists": true
+      },
+      {
+        "path": "scripts/module-release/package-module.ps1",
+        "sha256": "EFF57734FACEB7536E603A78DB0E43723BA22E8128C23BBB98C9F9B154BBE0F3",
+        "exists": true
+      },
+      {
+        "path": "scripts/publish-module-directory.cmd",
+        "sha256": "20A8899A47EF613BE8D7E106C81FF1C00BCA6E00C5F3CC4B1FD1E596A9BA24FB",
+        "exists": true
+      },
+      {
+        "path": "scripts/publish-modules.cmd",
+        "sha256": "3AD1334C3E0C2EDC5D0B8AEB416D9F096784A80F6F0DC1EABECD7BA5CADA5DFB",
+        "exists": true
+      },
+      {
+        "path": "scripts/publish-release.cmd",
+        "sha256": "C6A1F3A111B00408FEFD153342140CA556B63A120C539830236B5D22B7987626",
+        "exists": true
+      },
+      {
+        "path": "scripts/publish-wiki.cmd",
+        "sha256": "E6FA82514B4F43F7E45308FA925B16876C1F0924053BD611837D15C741A56C30",
+        "exists": true
+      },
+      {
+        "path": "scripts/release/package/organize_app/organize-application-output.ps1",
+        "sha256": "DF28EE0A0FCD20ACABA2D1131DBE89CFE057D7FE6F3119D2F6BCBA2CA917469B",
+        "exists": true
+      },
+      {
+        "path": "scripts/release/package/organize_app/shared-component-files.ps1",
+        "sha256": "BE18E987279943DFB6449F5920E29E2D0922206F0ECBABC95A1C4C8723061554",
+        "exists": true
+      },
+      {
+        "path": "scripts/release/package/package.ps1",
+        "sha256": "04E9052B296679D70666C4559B372425AA92F68F79E666F7DA6234255BDD6B6A",
+        "exists": true
+      },
+      {
+        "path": "scripts/release/update-catalog/build-update-catalog.ps1",
+        "sha256": "3E3D1FC84EA4F113F3B3B6BF14E9F35A3E7B305BF4F79153E20D7849D026988D",
+        "exists": true
+      },
+      {
+        "path": "scripts/release/update-catalog/emulation-modules/emulation-modules.ps1",
+        "sha256": "3D75EB2584FDC3E6C9E2B153B919ADDF88748D1C92CB5D421699D0A5966E7625",
+        "exists": true
+      },
+      {
+        "path": "scripts/temp/analyze-media-data.ps1",
+        "sha256": "AA775F80D85158C60C3AD3E5073420B4BA33949C2EC9DC8FA78F47CBAA77913A",
+        "exists": true
+      },
+      {
+        "path": "scripts/temp/common/DotNetProcess.ps1",
+        "sha256": "31AC2B278BDE2D72222F440F825B6591BE38AF0AD16CCC6D969AA9ECFB3385FC",
+        "exists": true
+      },
+      {
+        "path": "scripts/temp/extract_data_from_ContentHex.ps1",
+        "sha256": "6FB701484E9E322749CC2DC40964B7858E244ED725DC07A62FE5482281F47598",
+        "exists": true
+      },
+      {
+        "path": "scripts/temp/extract-media-files.ps1",
+        "sha256": "7E3FB09B7F82364956CF923C0AC8B9BBE24D16327442B70990A3AE1CA63DFB1F",
+        "exists": true
+      },
+      {
+        "path": "scripts/temp/read-media-with-libretro.ps1",
+        "sha256": "45EFF764E2539E5DBF223BFF176BAE71DD0B70A86AB12680E5DFB18DFF0772DC",
+        "exists": true
+      },
+      {
+        "path": "scripts/tests/test-app-accessibility.ps1",
+        "sha256": "3CEE5946F141097643AE07175E52131D25C268DCDBBA287DA0892E1A3708A5F4",
+        "exists": true
+      },
+      {
+        "path": "scripts/tests/test-installer-upgrade.ps1",
+        "sha256": "9A67170E382BBCBDF5DE0922AE8E74B283D6AA8DAE386913D73170F7BB157795",
+        "exists": true
+      },
+      {
+        "path": "scripts/tests/test-installer.ps1",
+        "sha256": "A9CF61F494BCAE405D7A6CEFDE99CE8BB57C43C90A5C2FAFE44A2164751B15A1",
+        "exists": true
+      },
+      {
+        "path": "scripts/tools/find-invalid-documentation.ps1",
+        "sha256": "3CDC9B369EE24651DFC07289AB2207A4604CA1883F47BFB8B526B8B2E6974406",
+        "exists": true
+      },
+      {
+        "path": "scripts/tools/stop-debug-gwgui.ps1",
+        "sha256": "2E5B7FDA06F544830ADA911396C89305DFBECE95129C1C45DC3E9A3E91EFD1C2",
+        "exists": true
+      },
+      {
+        "path": "scripts/wiki/build-wiki.ps1",
+        "sha256": "93D3D34A8CFC807CBC2DD755DCB97A32E93F8677C64EEA6B9E5D376A55427662",
+        "exists": true
+      },
+      {
+        "path": "scripts/wiki/publish-wiki.ps1",
+        "sha256": "0B496084B44EBA11BE96271BC6AFA9F4AAA749E91CA2335556BFAD395CB36D2B",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.App/GWGUI.App.csproj",
+        "sha256": "45D17E66BC1DD5923693633986D0B6792A1D89DC1B25FDCDD44701D4EC72931C",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Acorn/GWGUI.Emulation.Acorn.csproj",
+        "sha256": "C5D7ED8C9804B7C017C65EE2D5538E3D886B35F391B76A45D047D0CB444BEFD3",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Acorn/module.json",
+        "sha256": "5D1361DF84F667F12B408B9CA08E982E037C4C9D65D3AE020C87DB86450F29DB",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Amstrad/GWGUI.Emulation.Amstrad.csproj",
+        "sha256": "E5CD137AF53BFFCD58CBEF9F656499E89C8CE93D2672929432F514CBF62F5568",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Amstrad/module.json",
+        "sha256": "0685C64F7DBFA038CDCEC72E0407222B33BD1147B842E6ECCD08072A92A30047",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Apple/GWGUI.Emulation.Apple.csproj",
+        "sha256": "624CD4C0CC6BD90301FE79E6F781E57623F006EF2030CFF2FD9ECBE8603B05A4",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Apple/module.json",
+        "sha256": "FBE09CFCB4F6A08E589D10464AD6741B26B145BCFAF296154A57C7A698AF1163",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Atari/GWGUI.Emulation.Atari.csproj",
+        "sha256": "0B69DEA50029B3D269EE60914F4239F18692D1A14A964301949FF2DBA6877C86",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Atari/module.json",
+        "sha256": "51CC891084CC5412C7D00BF348F710FD5DE995C24EE67A606337BF1FE842306F",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Bandai/GWGUI.Emulation.Bandai.csproj",
+        "sha256": "8731868F4238380DF2E63E5DC48DEDF906A6A1B891D84775EFD81B15F35BA19A",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Bandai/module.json",
+        "sha256": "F6F87EA0A37548B557A4C12127904D272C80C4EE75B2CEC5653FDFB5DFFBFD82",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Coleco/GWGUI.Emulation.Coleco.csproj",
+        "sha256": "8B8E257FE498755B742F645D17A1A1FA1A55CF4AE833422631BD898347868F67",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Coleco/module.json",
+        "sha256": "EE3B477DB0CCEEDD0C02D2C4548ED4E5B44D56EBA689195557DB607DF9218B14",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Commodore/GWGUI.Emulation.Commodore.csproj",
+        "sha256": "2484487C872A8CC2111BEEA0BE22B0D13DEF6996A4918B3AEF7C02F7E79C1433",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Commodore/module.json",
+        "sha256": "715A8D7E88A5371FE1E576185FE0F2388F8CF19D29C42BCF9DA9FF4E48839A22",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Epoch/GWGUI.Emulation.Epoch.csproj",
+        "sha256": "833629D231B69D9789FFA68C6C8757E21CC4818F6956B4A362AAF62E383296A6",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Epoch/module.json",
+        "sha256": "4F9BE08D73FEB957D482FACD353D3DE33FACFE3EB811CDB760A0C43039FA3982",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Fairchild/GWGUI.Emulation.Fairchild.csproj",
+        "sha256": "45E562B934ADAE7A24678A110C2C0DAE308B20FFE149D08BA30DFB365C4C5962",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Fairchild/module.json",
+        "sha256": "2A189DF8B8D6ECA422D9A557E3543CC1BEB26795076B565DCB61A5CB3252E4B5",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Mattel/GWGUI.Emulation.Mattel.csproj",
+        "sha256": "0791D297AF339DDAAA0CB6AF8A44ADB3156503B84FDD56F4C497B7803403847B",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Mattel/module.json",
+        "sha256": "F47DC3DB92E381580877689A2486482966240DAF8FF5E8D2FE10D9D693D6EF5A",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Microsoft/GWGUI.Emulation.Microsoft.csproj",
+        "sha256": "83B81BBC65B2070D889850635E5BC7603AEBC74BA8B2BF7C18ED59C2E770CD21",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Microsoft/module.json",
+        "sha256": "43D19332331FCAA8F42C6B8CD1F7DF144606E3A988C21A997407AEF76BC19CC5",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nec/GWGUI.Emulation.Nec.csproj",
+        "sha256": "BCDC416DC7B08C38D7244523B3E7D3FE569A5618B80C9693F84D4F0A8394F6E8",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nec/module.json",
+        "sha256": "418AB9A38DE74CB5003E3F5F343B90AEE5F9ADDDCAB4BC4257F16C018E112F32",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "sha256": "03108B7CC7E85FE0EE451A3A6035D39D0336F60CFDE01FCA52BD5EE57FB6A3DB",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nintendo/GWGUI.Emulation.Nintendo.csproj",
+        "sha256": "5C53880ECF569F2508C22165163C4ECCC57DDB8D354435FD7DD36066E1054118",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nintendo/module.json",
+        "sha256": "788A3664E12FF76C48BD1DC889037A4A949495669F8593DC2E1A5F873679F619",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Panasonic/GWGUI.Emulation.Panasonic.csproj",
+        "sha256": "56C39603191BF0D499E10B0D51A10F70F8126D7734421332F635B9108DB94E1A",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Panasonic/module.json",
+        "sha256": "EA9A3616D39CD4D1F5E30E9976F5068D53ED1FFF6045385D768D7C90BB507BEE",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Philips/GWGUI.Emulation.Philips.csproj",
+        "sha256": "D710F842C3EEC902EBD72DA559E8DB51738882B3C101868AF2BE5FEF1A449136",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Philips/module.json",
+        "sha256": "6EB25C1487B811A43F9D3A47CBEE2CAE00037733C012977E4F6524EBBB456D1E",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "sha256": "1C51D64B2068D32BBDB2332E2CE5BD455CBBF1DD9AD446327E115CB3DB4D1944",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sega/GWGUI.Emulation.Sega.csproj",
+        "sha256": "84C8C40DB0187221E7C0D4FCF25A30CC25E3CC5BA46BB642130771B893EC881E",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sega/module.json",
+        "sha256": "5365B31349DE22D838CB7B2A8C539559C4A63BD88E69E29A270191EA81AA2577",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sharp/GWGUI.Emulation.Sharp.csproj",
+        "sha256": "492139470ED46F60044E0D656C7C319EFD09B1063022CBCB7E64BD252B8F9252",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sharp/module.json",
+        "sha256": "D53D6EC4BEBA44812044807AFAC9BCB72DFF2610C4EF6B756F68BD8273962CA0",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sinclair/GWGUI.Emulation.Sinclair.csproj",
+        "sha256": "2CD3BC3A64743D4B11CC6312544FE6108E1BF8DFD27D3758FB2828D3CF5FA242",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sinclair/module.json",
+        "sha256": "9B470D469CEEA3E635CBA07A802BEF90B7B219FF0EA1A472D92AF8720EC659CB",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Snk/GWGUI.Emulation.Snk.csproj",
+        "sha256": "B734D83E941BB713D6043EA55D3175B58ED4E3E1A20900353AEF0193082B7C46",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Snk/module.json",
+        "sha256": "F01DB0F0477C9E3396953A6E5F4C038664D443D8A8438190C090A203C752A3E1",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sony/GWGUI.Emulation.Sony.csproj",
+        "sha256": "AD1328E423A7E4A8A0BD3C1B406B5B6C4B8FBB5E074A3B2BD56C9CB674DC0FA4",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sony/module.json",
+        "sha256": "2D42F1C300CF0AF603AC2F173E733190938222A97AD4C90EFDACEDC6EEC5A0D2",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Thomson/GWGUI.Emulation.Thomson.csproj",
+        "sha256": "C4FDABFB3825230FC0CD480AFA2DE67C78CCF0D24EEC2EAF0CF144B30A26DB5D",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Thomson/module.json",
+        "sha256": "73607D4205DE7D262CE05C177098DA420502B7D0D5FCDBD27C83D43B436BAA9E",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Watara/GWGUI.Emulation.Watara.csproj",
+        "sha256": "A8C72698C6BA5326AA24DB4782DA7D0F21C966DFE25F5BF30DF6A0668243C5D0",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Watara/module.json",
+        "sha256": "13EB5DAC82C5FAFAFA194447193A6A02EC755A4A4A083D43D73A25A2FEBEEC5D",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Wenquxing/GWGUI.Emulation.Wenquxing.csproj",
+        "sha256": "E22F6C874E8A20A6E28CFE250943F4347919384B79B52DB5E9D8A61C67AF9328",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Wenquxing/module.json",
+        "sha256": "911CC9E4D67C1C8BFB3D5E9D7133EEDF03F801CD769C2299155A994A7E544991",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation/Functions/ExternalCoreEnvironmentFunctions.cs",
+        "sha256": "F451838198B54FB9E9ACB11AF807FF9D6D57268B4AD645954B6B4AE07648A478",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation/GWGUI.Emulation.csproj",
+        "sha256": "5A9DABBDCBBE1C93A04D5ABA1BE00A0527421F3270F02FEBE063453AC5FB857C",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation/Interfaces/IEmulationCoreEnvironmentCommands.cs",
+        "sha256": "C20B94D56B9C18636A84A07FFF4BA05CAFFE352FEA41BC7CE120BB3145F31828",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation/Interfaces/IEmulationCoreOptionCommands.cs",
+        "sha256": "322731E6C9890870B13D2B031E3A34499EE2CE0177217EE0FC08A631110A82BF",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Infrastructure/GWGUI.Infrastructure.csproj",
+        "sha256": "5AF1A6F4FD9761192136278A7420D9491A72A1CF7D5400140B72252127608336",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Launcher/GWGUI.Launcher.csproj",
+        "sha256": "704C315EFBB669FA6BCC398F29B9FEB3A7BF2F41D9BE44E3B41D0CC81B023473",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.MediaAnalysis/GWGUI.MediaAnalysis.csproj",
+        "sha256": "5D914401AB2AAE3465A052EDBBC99B8E73495BBD2B2F3546543653C2169E1C65",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.MediaEngine/GWGUI.MediaEngine.csproj",
+        "sha256": "11A282DF1F8B5F162AA0ABEE100C18B8751389A1B51DE83C77D5684CC4A1A069",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.MediaFileSystems/GWGUI.MediaFileSystems.csproj",
+        "sha256": "BCA0D10E729A54C4C1A5F65D75DB27BF1C3EAF979C1474DF3FCDF876BA90D8D9",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Updater/GWGUI.Updater.csproj",
+        "sha256": "6360F653C53DCC478D97631DE16CE136DB234F6342EA9AE463E3A2EFCE85C13F",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Updates/GWGUI.Updates.csproj",
+        "sha256": "B87C1A99E3FD3EE39A2613EC0D071C5D7D7DF3575FAB40B70A5ACFC4EF27923D",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.VideoPresentation/GWGUI.VideoPresentation.csproj",
+        "sha256": "29F1202CBF6FACC651C0FE3C1A1E8E830CCBD4A5B292B8E3A29AF51E451CCEB3",
+        "exists": true
+      },
+      {
+        "path": "tests/GWGUI.Tests/Emulation/EnvironmentCallbackCommandTests.cs",
+        "sha256": "CCE2F714A2CCD215346850E7BACCD933EC364B707D9F8FD2155BBFFC16DF7062",
+        "exists": true
+      },
+      {
+        "path": "tests/GWGUI.Tests/Emulation/OptionEnvironmentCommandTests.cs",
+        "sha256": "A69318B80DE1D17C1B5026546F8A4087669A10B9657520B1D7EFF3B6FF9D8343",
+        "exists": true
+      },
+      {
+        "path": "tests/GWGUI.Tests/Emulation/StatelessEnvironmentCommandTests.cs",
+        "sha256": "719C7A5425A3CF3C3D140EA5FFD8B6FDE9B15135772D8E13D0DB8C388924FA0C",
+        "exists": true
+      }
+    ],
+    "modules": [
+      {
+        "id": "acorn",
+        "matchesCompiledOutput": true,
+        "path": "build/Debug/GW GUI/Modules/acorn/gwgui.emulation.acorn.dll",
+        "sha256": "EDC53717A9556BFEBD89DE31D25C932372778BA43BEE57B08FF16BB50C5FAC28",
+        "compiledPath": "src/GWGUI.Emulation.Acorn/bin/Debug/net10.0/win-x64/gwgui.emulation.acorn.dll"
+      },
+      {
+        "id": "amstrad",
+        "matchesCompiledOutput": true,
+        "path": "build/Debug/GW GUI/Modules/amstrad/gwgui.emulation.amstrad.dll",
+        "sha256": "AFE73C0DF0FBCA948C80B028F43FB4B7C2537DB4A117D2199BB7529C68069CFE",
+        "compiledPath": "src/GWGUI.Emulation.Amstrad/bin/Debug/net10.0/win-x64/gwgui.emulation.amstrad.dll"
+      },
+      {
+        "id": "apple",
+        "matchesCompiledOutput": true,
+        "path": "build/Debug/GW GUI/Modules/apple/gwgui.emulation.apple.dll",
+        "sha256": "CEFC4F7CFAE492A6C74AAF18B66D15EDE9852A78DB6B189FE8EC50A1EEB56062",
+        "compiledPath": "src/GWGUI.Emulation.Apple/bin/Debug/net10.0/win-x64/gwgui.emulation.apple.dll"
+      },
+      {
+        "id": "atari",
+        "matchesCompiledOutput": true,
+        "path": "build/Debug/GW GUI/Modules/atari/gwgui.emulation.atari.dll",
+        "sha256": "4FFE715C84CBC0E483AF2477D68F82ECF6CEC4CF2AF3D892607029C136258215",
+        "compiledPath": "src/GWGUI.Emulation.Atari/bin/Debug/net10.0/win-x64/gwgui.emulation.atari.dll"
+      },
+      {
+        "id": "bandai",
+        "matchesCompiledOutput": true,
+        "path": "build/Debug/GW GUI/Modules/bandai/gwgui.emulation.bandai.dll",
+        "sha256": "DA7277D6D729148ECB6F8CBF8540E187FA8A2B18DC8F022D2C8AD438F5011CCF",
+        "compiledPath": "src/GWGUI.Emulation.Bandai/bin/Debug/net10.0/win-x64/gwgui.emulation.bandai.dll"
+      },
+      {
+        "id": "coleco",
+        "matchesCompiledOutput": true,
+        "path": "build/Debug/GW GUI/Modules/coleco/gwgui.emulation.coleco.dll",
+        "sha256": "ED7BCCAE7C2D24AD9CD7A39585B6D5F33045F4533AC06AFEED44FEA24BF0ED47",
+        "compiledPath": "src/GWGUI.Emulation.Coleco/bin/Debug/net10.0/win-x64/gwgui.emulation.coleco.dll"
+      },
+      {
+        "id": "commodore",
+        "matchesCompiledOutput": true,
+        "path": "build/Debug/GW GUI/Modules/commodore/gwgui.emulation.commodore.dll",
+        "sha256": "B97C76BFD46F3A0D35612B3A9889DCAD2BE458D649D569729F5968906C44D7D0",
+        "compiledPath": "src/GWGUI.Emulation.Commodore/bin/Debug/net10.0/win-x64/gwgui.emulation.commodore.dll"
+      },
+      {
+        "id": "epoch",
+        "matchesCompiledOutput": true,
+        "path": "build/Debug/GW GUI/Modules/epoch/gwgui.emulation.epoch.dll",
+        "sha256": "A92C7E45D8755853AA31D1C63A7CB114543E16D62439A512F7BF4238C054F031",
+        "compiledPath": "src/GWGUI.Emulation.Epoch/bin/Debug/net10.0/win-x64/gwgui.emulation.epoch.dll"
+      },
+      {
+        "id": "fairchild",
+        "matchesCompiledOutput": true,
+        "path": "build/Debug/GW GUI/Modules/fairchild/gwgui.emulation.fairchild.dll",
+        "sha256": "E705F63284793C3F8AA0599386401B38FF5CF28EA4712DEB72E105A4F8090484",
+        "compiledPath": "src/GWGUI.Emulation.Fairchild/bin/Debug/net10.0/win-x64/gwgui.emulation.fairchild.dll"
+      },
+      {
+        "id": "mattel",
+        "matchesCompiledOutput": true,
+        "path": "build/Debug/GW GUI/Modules/mattel/gwgui.emulation.mattel.dll",
+        "sha256": "8E4E9B9E99B51BF8447AAD0A2299ECC15069992FF0A654E2852B4F9A7136708E",
+        "compiledPath": "src/GWGUI.Emulation.Mattel/bin/Debug/net10.0/win-x64/gwgui.emulation.mattel.dll"
+      },
+      {
+        "id": "microsoft",
+        "matchesCompiledOutput": true,
+        "path": "build/Debug/GW GUI/Modules/microsoft/gwgui.emulation.microsoft.dll",
+        "sha256": "1999E28096B901384EB142F6F3608684AD8A9FCF4814D92455D3790464A34D27",
+        "compiledPath": "src/GWGUI.Emulation.Microsoft/bin/Debug/net10.0/win-x64/gwgui.emulation.microsoft.dll"
+      },
+      {
+        "id": "nec",
+        "matchesCompiledOutput": true,
+        "path": "build/Debug/GW GUI/Modules/nec/gwgui.emulation.nec.dll",
+        "sha256": "AD2D7B0ABF64109EC94F8B04F7DEC6960831997D437A4911AA22B6CF41E7FD68",
+        "compiledPath": "src/GWGUI.Emulation.Nec/bin/Debug/net10.0/win-x64/gwgui.emulation.nec.dll"
+      },
+      {
+        "id": "nintendo",
+        "matchesCompiledOutput": true,
+        "path": "build/Debug/GW GUI/Modules/nintendo/gwgui.emulation.nintendo.dll",
+        "sha256": "6309BDECBA21BD83C291291E3CCD2C6D2B3CA5BAF898289559460E301944123B",
+        "compiledPath": "src/GWGUI.Emulation.Nintendo/bin/Debug/net10.0/win-x64/gwgui.emulation.nintendo.dll"
+      },
+      {
+        "id": "panasonic",
+        "matchesCompiledOutput": true,
+        "path": "build/Debug/GW GUI/Modules/panasonic/gwgui.emulation.panasonic.dll",
+        "sha256": "65EC19CA8FD84B6107317D3B7883DFF883032A2F13450D167C88CFA60AECB9FC",
+        "compiledPath": "src/GWGUI.Emulation.Panasonic/bin/Debug/net10.0/win-x64/gwgui.emulation.panasonic.dll"
+      },
+      {
+        "id": "philips",
+        "matchesCompiledOutput": true,
+        "path": "build/Debug/GW GUI/Modules/philips/gwgui.emulation.philips.dll",
+        "sha256": "E041F2EB749696A46550C4B4B48D3067F21B871C486A00BD1688F6ED72A6DAB1",
+        "compiledPath": "src/GWGUI.Emulation.Philips/bin/Debug/net10.0/win-x64/gwgui.emulation.philips.dll"
+      },
+      {
+        "id": "sega",
+        "matchesCompiledOutput": true,
+        "path": "build/Debug/GW GUI/Modules/sega/gwgui.emulation.sega.dll",
+        "sha256": "748EC59AC8F849643BEAA39281152ABF136960808712BA05721EFCBF809CDA3B",
+        "compiledPath": "src/GWGUI.Emulation.Sega/bin/Debug/net10.0/win-x64/gwgui.emulation.sega.dll"
+      },
+      {
+        "id": "sharp",
+        "matchesCompiledOutput": true,
+        "path": "build/Debug/GW GUI/Modules/sharp/gwgui.emulation.sharp.dll",
+        "sha256": "6FDE62C538CF2F782B25C7966B7D86257BD59066D7DBA4212425E47C9E447952",
+        "compiledPath": "src/GWGUI.Emulation.Sharp/bin/Debug/net10.0/win-x64/gwgui.emulation.sharp.dll"
+      },
+      {
+        "id": "sinclair",
+        "matchesCompiledOutput": true,
+        "path": "build/Debug/GW GUI/Modules/sinclair/gwgui.emulation.sinclair.dll",
+        "sha256": "0A324BF6FB9A474A152BEEC8A91AF90945026CE8F2A39365DA46A919D1B2FE68",
+        "compiledPath": "src/GWGUI.Emulation.Sinclair/bin/Debug/net10.0/win-x64/gwgui.emulation.sinclair.dll"
+      },
+      {
+        "id": "snk",
+        "matchesCompiledOutput": true,
+        "path": "build/Debug/GW GUI/Modules/snk/gwgui.emulation.snk.dll",
+        "sha256": "C9692339F408C8D01F3CE92AA0CBF054A4D4051F273760F0D090AB3DD25487B0",
+        "compiledPath": "src/GWGUI.Emulation.Snk/bin/Debug/net10.0/win-x64/gwgui.emulation.snk.dll"
+      },
+      {
+        "id": "sony",
+        "matchesCompiledOutput": true,
+        "path": "build/Debug/GW GUI/Modules/sony/gwgui.emulation.sony.dll",
+        "sha256": "B92559C01B9817D9BFD426118B4B6208A52CB9F0D5A77332DF18620F1AEDE6C7",
+        "compiledPath": "src/GWGUI.Emulation.Sony/bin/Debug/net10.0/win-x64/gwgui.emulation.sony.dll"
+      },
+      {
+        "id": "thomson",
+        "matchesCompiledOutput": true,
+        "path": "build/Debug/GW GUI/Modules/thomson/gwgui.emulation.thomson.dll",
+        "sha256": "6BBC7CE6280AEE67E2FCFD2E53915D58D0BC3D3759780B8A3AE6A482BE60AF67",
+        "compiledPath": "src/GWGUI.Emulation.Thomson/bin/Debug/net10.0/win-x64/gwgui.emulation.thomson.dll"
+      },
+      {
+        "id": "watara",
+        "matchesCompiledOutput": true,
+        "path": "build/Debug/GW GUI/Modules/watara/gwgui.emulation.watara.dll",
+        "sha256": "FBB5B01989D0E581F98698DE29377FB73687CB6E796104EDC19CA3983A08BA54",
+        "compiledPath": "src/GWGUI.Emulation.Watara/bin/Debug/net10.0/win-x64/gwgui.emulation.watara.dll"
+      },
+      {
+        "id": "wenquxing",
+        "matchesCompiledOutput": true,
+        "path": "build/Debug/GW GUI/Modules/wenquxing/gwgui.emulation.wenquxing.dll",
+        "sha256": "F0E4AE83908C5E170533AC1F78D1CBEC5C2DC52FBC08FCBC667549B0B7BEF79E",
+        "compiledPath": "src/GWGUI.Emulation.Wenquxing/bin/Debug/net10.0/win-x64/gwgui.emulation.wenquxing.dll"
+      }
+    ],
+    "exe": {
+      "path": "build/Debug/GW GUI/gwgui.exe",
+      "sha256": "4670E3E01C9B7A76D70603F1486EDEECB11C22A81C9494A5E019DD5846E67E61"
+    },
+    "sdk": {
+      "matchesCompiledSdk": true,
+      "path": "build/Debug/GW GUI/lib/gwgui.emulation.dll",
+      "sha256": "7167645C51B709AB1795EF610C97275D771A71E23BC3056C7D92BEA4A06990D6",
+      "environmentSignatures": [
+        {
+          "genericParameters": 0,
+          "parameters": 4,
+          "name": "TryHandleCallbackCommand"
+        },
+        {
+          "genericParameters": 0,
+          "parameters": 4,
+          "name": "TryHandleOptionCommand"
+        }
+      ]
+    },
+    "exitCode": 0,
+    "completedAt": "2026-10-19T04:21:35.7247653+02:00"
   }
 }

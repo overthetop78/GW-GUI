@@ -10,7 +10,7 @@ using static GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Constants.Externa
 
 namespace GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Services;
 
-internal sealed partial class ExternalHostCallbacks : IEmulationCoreEnvironmentCommands
+internal sealed partial class ExternalHostCallbacks : IEmulationCoreEnvironmentCommands, IEmulationCoreOptionCommands
 {
     private bool HandleEnvironment(uint command, nint data)
     {
@@ -55,29 +55,18 @@ internal sealed partial class ExternalHostCallbacks : IEmulationCoreEnvironmentC
                         2, ExternalCoreInteropConstants.MessageInterfaceVersion, 0, out _);
                     return true;
                 case ExternalCoreApiConstants.SetCoreOptions:
-                    RegisterVersionOneOptions(data);
-                    return true;
                 case ExternalCoreApiConstants.SetCoreOptionsInternational:
-                    RegisterVersionOneOptions(Marshal.ReadIntPtr(data));
-                    return true;
                 case ExternalCoreApiConstants.SetCoreOptionsV2:
-                    RegisterVersionTwoOptions(data);
-                    return true;
                 case ExternalCoreApiConstants.SetCoreOptionsV2International:
-                    RegisterVersionTwoOptions(Marshal.ReadIntPtr(data));
-                    return true;
                 case ExternalCoreApiConstants.SetVariables:
-                    RegisterLegacyOptions(data);
+                    _ = ExternalCoreEnvironmentFunctions.TryHandleOptionCommand(command, data, this, out _);
                     return true;
                 case ExternalCoreApiConstants.GetVariable:
-                    return ReturnOption(data);
                 case ExternalCoreApiConstants.GetVariableUpdate:
-                    _ = EmulationCoreOptionFunctions.GetAndClearUpdated(data, ref _optionsUpdated);
-                    return true;
                 case ExternalCoreApiConstants.SetCoreOptionsDisplay:
-                    return ApplyOptionVisibility(data);
                 case ExternalCoreApiConstants.SetCoreOptionsUpdateDisplayCallback:
-                    return CaptureOptionsDisplayCallback(data);
+                    _ = ExternalCoreEnvironmentFunctions.TryHandleOptionCommand(command, data, this, out var optionResult);
+                    return optionResult;
                 case ExternalCoreApiConstants.GetMessageInterfaceVersion:
                     _ = ExternalCoreEnvironmentFunctions.TryHandleStatelessCommand(command, data,
                         2, ExternalCoreInteropConstants.MessageInterfaceVersion, 0, out var queryResult);
@@ -210,6 +199,54 @@ internal sealed partial class ExternalHostCallbacks : IEmulationCoreEnvironmentC
     bool IEmulationCoreEnvironmentCommands.CapturePerformanceLevel(nint data) => false;
     bool IEmulationCoreEnvironmentCommands.SetRumbleInterface(nint data) => false;
     bool IEmulationCoreEnvironmentCommands.SetSensorInterface(nint data) => false;
+
+    void IEmulationCoreOptionCommands.RegisterVersionOne(nint data)
+    {
+        RegisterVersionOneOptions(data);
+    }
+
+    void IEmulationCoreOptionCommands.RegisterVersionOneInternational(nint data)
+    {
+        RegisterVersionOneOptions(Marshal.ReadIntPtr(data));
+    }
+
+    void IEmulationCoreOptionCommands.RegisterVersionTwo(nint data)
+    {
+        RegisterVersionTwoOptions(data);
+    }
+
+    void IEmulationCoreOptionCommands.RegisterVersionTwoInternational(nint data)
+    {
+        RegisterVersionTwoOptions(Marshal.ReadIntPtr(data));
+    }
+
+    void IEmulationCoreOptionCommands.RegisterLegacyVariables(nint data)
+    {
+        RegisterLegacyOptions(data);
+    }
+
+    bool IEmulationCoreOptionCommands.ReturnValue(nint data)
+    {
+        return ReturnOption(data);
+    }
+
+    bool IEmulationCoreOptionCommands.GetAndClearUpdated(nint data)
+    {
+        _ = EmulationCoreOptionFunctions.GetAndClearUpdated(data, ref _optionsUpdated);
+        return true;
+    }
+
+    bool IEmulationCoreOptionCommands.ApplyVisibility(nint data)
+    {
+        return ApplyOptionVisibility(data);
+    }
+
+    bool IEmulationCoreOptionCommands.CaptureDisplayUpdate(nint data)
+    {
+        return CaptureOptionsDisplayCallback(data);
+    }
+
+    bool IEmulationCoreOptionCommands.SetNativeValue(nint data) => false;
 
     private void RegisterLegacyOptions(nint data) => OptionCatalog = AdaptOptions(EmulationCoreOptionFunctions.ReadLegacy(data, _options, _optionVisibility));
 
