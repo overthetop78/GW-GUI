@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Interfaces;
 using System.Buffers.Binary;
 using System.IO;
 using System.Security.Cryptography;
@@ -8,6 +9,12 @@ namespace GWGUI.Emulation.Functions;
 
 internal static class EmulationStateFileFunctions
 {
+    internal static bool CoreIdentityMatches<TConfiguration, TOption>(bool sameEmulator,
+        string? name, string? version, string? sha256, IEmulationCoreRuntime<TConfiguration, TOption> core) =>
+        sameEmulator
+        && string.Equals(name, core.CoreName, StringComparison.Ordinal)
+        && string.Equals(version, core.CoreVersion, StringComparison.Ordinal)
+        && string.Equals(sha256, core.CoreSha256, StringComparison.OrdinalIgnoreCase);
     internal static bool IdentityValuesEqual(IReadOnlyDictionary<string, string>? left, IReadOnlyDictionary<string, string> right)
     {
         if ((left?.Count ?? 0) != right.Count) return false;

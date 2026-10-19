@@ -14,7 +14,7 @@ internal static class SavedStateFunctions
     {
         if (header.FormatVersion != StateConstants.CurrentFormatVersion)
             throw Invalid(EmulationMessageCode.SavedStateIncompatible, ErrorMessages.StateIncompatible);
-        if (header.Core != core.Emulator || !string.Equals(header.CoreName, core.CoreName, StringComparison.Ordinal) || !string.Equals(header.CoreVersion, core.CoreVersion, StringComparison.Ordinal) || !string.Equals(header.CoreSha256, core.CoreSha256, StringComparison.OrdinalIgnoreCase))
+        if (!EmulationStateFileFunctions.CoreIdentityMatches(header.Core == core.Emulator, header.CoreName, header.CoreVersion, header.CoreSha256, core))
             throw Invalid(EmulationMessageCode.SavedStateIncompatible, ErrorMessages.StateIncompatible);
         if (header.Model != configuration.Model)
             throw Invalid(EmulationMessageCode.SavedStateIncompatible, ErrorMessages.StateIncompatible);

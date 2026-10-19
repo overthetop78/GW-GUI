@@ -3,7 +3,7 @@
   "currentCSharpFiles": 7245,
   "outsideSrcCSharpFiles": 309,
   "baselineMethodCount": 5848,
-  "currentMethodCount": 11531,
+  "currentMethodCount": 11534,
   "powerShellFunctionCount": 17,
   "groups": [
     {
@@ -45,7 +45,9 @@
           "line": 9,
           "tokens": 46,
           "hash": "010BF0CC1A7A329001C424B98CA552C242DCBF4B7357DA2F2DF40591B7C56C59",
-          "shape": "C6F4835D5671C3B95EABC79CF706DC44C7FCF18835C4E5065F6A87F42BD50BC1"
+          "shape": "C6F4835D5671C3B95EABC79CF706DC44C7FCF18835C4E5065F6A87F42BD50BC1",
+          "qualification": "Verified existing SDK record projection; catalogConstructionAdaptersQualification: retain module-specific enum binding, archive suffix, absolute URI and model set.",
+          "qualificationSourceSha256": "2A9B8B0269D83B02EF5B749C13EEBCED5F771C900882DBFEF68AFB7FA4621E74"
         },
         {
           "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Functions/CoreFunctions.Catalog.cs",
@@ -53,7 +55,9 @@
           "line": 9,
           "tokens": 46,
           "hash": "010BF0CC1A7A329001C424B98CA552C242DCBF4B7357DA2F2DF40591B7C56C59",
-          "shape": "C6F4835D5671C3B95EABC79CF706DC44C7FCF18835C4E5065F6A87F42BD50BC1"
+          "shape": "C6F4835D5671C3B95EABC79CF706DC44C7FCF18835C4E5065F6A87F42BD50BC1",
+          "qualification": "Verified existing SDK record projection; catalogConstructionAdaptersQualification: retain module-specific enum binding, archive suffix, absolute URI and model set.",
+          "qualificationSourceSha256": "BFAB9946B96C13CF641180E957B137791B7470AD7525479A729EE94974B018E4"
         },
         {
           "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Functions/CoreFunctions.Catalog.cs",
@@ -61,63 +65,13 @@
           "line": 9,
           "tokens": 46,
           "hash": "010BF0CC1A7A329001C424B98CA552C242DCBF4B7357DA2F2DF40591B7C56C59",
-          "shape": "C6F4835D5671C3B95EABC79CF706DC44C7FCF18835C4E5065F6A87F42BD50BC1"
+          "shape": "C6F4835D5671C3B95EABC79CF706DC44C7FCF18835C4E5065F6A87F42BD50BC1",
+          "qualification": "Verified existing SDK record projection; catalogConstructionAdaptersQualification: retain module-specific enum binding, archive suffix, absolute URI and model set.",
+          "qualificationSourceSha256": "BD84C377D470292ED6A7D0591530FC84FD1F25BC9CC38192B40E2D021572735A"
         }
       ],
       "predecessors": [],
       "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
-      "hash": "02E8800CB2255364A7EA92E9F535054E67E31227643C0325F472AA876B930759",
-      "method": "Validate",
-      "tokens": 179,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Watara/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
-          "name": "Validate",
-          "line": 13,
-          "tokens": 179,
-          "hash": "02E8800CB2255364A7EA92E9F535054E67E31227643C0325F472AA876B930759",
-          "shape": "3C95EAEB8884907E131A75B57B0B37783BAA233B5F03DE48E018B6279092D791"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Thomson/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
-          "name": "Validate",
-          "line": 13,
-          "tokens": 179,
-          "hash": "02E8800CB2255364A7EA92E9F535054E67E31227643C0325F472AA876B930759",
-          "shape": "3C95EAEB8884907E131A75B57B0B37783BAA233B5F03DE48E018B6279092D791"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Wenquxing/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
-          "name": "Validate",
-          "line": 11,
-          "tokens": 179,
-          "hash": "02E8800CB2255364A7EA92E9F535054E67E31227643C0325F472AA876B930759",
-          "shape": "3C95EAEB8884907E131A75B57B0B37783BAA233B5F03DE48E018B6279092D791"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
-          "name": "Validate",
-          "line": 13,
-          "tokens": 179,
-          "hash": "02E8800CB2255364A7EA92E9F535054E67E31227643C0325F472AA876B930759",
-          "shape": "3C95EAEB8884907E131A75B57B0B37783BAA233B5F03DE48E018B6279092D791"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [
-        {
-          "path": "src/GWGUI.Emulation.Atari/Functions/AtariSavedStateFunctions.cs",
-          "name": "Validate",
-          "line": 22,
-          "tokens": 179,
-          "hash": "1F5AA72C498FC97CEC4532C96B386DE53C4707D8944F046D98349B124AFF53C6",
-          "shape": "3C95EAEB8884907E131A75B57B0B37783BAA233B5F03DE48E018B6279092D791"
-        }
-      ],
       "qualification": "pending"
     },
     {
@@ -1161,7 +1115,7 @@
     {
       "language": "CSharp",
       "hash": "0A9D4012A0EEF58659F6F622D06187BDA6844EE126F30B196EAE963950A66758",
-      "method": "SegaEmulationModule",
+      "method": "AtariEmulationModule",
       "tokens": 45,
       "current": [
         {
@@ -2070,6 +2024,127 @@
           "tokens": 217,
           "hash": "13B30F1DB07B2F3F277D67184AECF1376B7FC9502D80FD56DE25C9AB94688088",
           "shape": "7A272A95F90E5A87A6AC41FCCA5B3413BFEBAF0CDC5595AB1AF19EF00D08A5E4"
+        }
+      ],
+      "predecessors": [],
+      "shapePredecessors": [],
+      "qualification": "pending"
+    },
+    {
+      "language": "CSharp",
+      "hash": "14B1CF1F88B86F415858BF25B6E29EB7DD9D4C48DE04E13DE36A235C2A4DDCA0",
+      "method": "Validate",
+      "tokens": 145,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+          "name": "Validate",
+          "line": 22,
+          "tokens": 145,
+          "hash": "14B1CF1F88B86F415858BF25B6E29EB7DD9D4C48DE04E13DE36A235C2A4DDCA0",
+          "shape": "81BF059DEFCF2F4D5012AC0B48CC87211DC53793AB378156EFD14242B4411193",
+          "qualification": "Verified saved core metadata uses original SDK state functions; remaining validation composes module-owned format, model, content/configuration fingerprints and local exceptions, all preserved.",
+          "qualificationSourceSha256": "F5BDCEF3D9CB42AFAE75454F8B609EC387B0B8D5361877F90A62829B64380C1E"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Apple/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+          "name": "Validate",
+          "line": 22,
+          "tokens": 145,
+          "hash": "14B1CF1F88B86F415858BF25B6E29EB7DD9D4C48DE04E13DE36A235C2A4DDCA0",
+          "shape": "81BF059DEFCF2F4D5012AC0B48CC87211DC53793AB378156EFD14242B4411193",
+          "qualification": "Verified saved core metadata uses original SDK state functions; remaining validation composes module-owned format, model, content/configuration fingerprints and local exceptions, all preserved.",
+          "qualificationSourceSha256": "18E1EAA8C9EEC9A7962017990534BB755ACA0C1EC0398747F687453F8445C884"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+          "name": "Validate",
+          "line": 22,
+          "tokens": 145,
+          "hash": "14B1CF1F88B86F415858BF25B6E29EB7DD9D4C48DE04E13DE36A235C2A4DDCA0",
+          "shape": "81BF059DEFCF2F4D5012AC0B48CC87211DC53793AB378156EFD14242B4411193",
+          "qualification": "Verified saved core metadata uses original SDK state functions; remaining validation composes module-owned format, model, content/configuration fingerprints and local exceptions, all preserved.",
+          "qualificationSourceSha256": "E1329DA2F7513260FCBCA74DE93B7723F0393672A23DAABBAEFB7EA39F0E8B77"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+          "name": "Validate",
+          "line": 21,
+          "tokens": 145,
+          "hash": "14B1CF1F88B86F415858BF25B6E29EB7DD9D4C48DE04E13DE36A235C2A4DDCA0",
+          "shape": "81BF059DEFCF2F4D5012AC0B48CC87211DC53793AB378156EFD14242B4411193",
+          "qualification": "Verified saved core metadata uses original SDK state functions; remaining validation composes module-owned format, model, content/configuration fingerprints and local exceptions, all preserved.",
+          "qualificationSourceSha256": "8EB04EE4160755E13B7A4640D1AE1669AFC8A95F8BD2CBCF6D78E2410D2D2A59"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Bandai/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+          "name": "Validate",
+          "line": 22,
+          "tokens": 145,
+          "hash": "14B1CF1F88B86F415858BF25B6E29EB7DD9D4C48DE04E13DE36A235C2A4DDCA0",
+          "shape": "81BF059DEFCF2F4D5012AC0B48CC87211DC53793AB378156EFD14242B4411193",
+          "qualification": "Verified saved core metadata uses original SDK state functions; remaining validation composes module-owned format, model, content/configuration fingerprints and local exceptions, all preserved.",
+          "qualificationSourceSha256": "76359C862283DC2954A077F69EB37A85EFC190054CFECEE050518C082B41C096"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+          "name": "Validate",
+          "line": 22,
+          "tokens": 145,
+          "hash": "14B1CF1F88B86F415858BF25B6E29EB7DD9D4C48DE04E13DE36A235C2A4DDCA0",
+          "shape": "81BF059DEFCF2F4D5012AC0B48CC87211DC53793AB378156EFD14242B4411193",
+          "qualification": "Verified saved core metadata uses original SDK state functions; remaining validation composes module-owned format, model, content/configuration fingerprints and local exceptions, all preserved.",
+          "qualificationSourceSha256": "ABFDC39108C454912CE1AB082B01535FBBA89246FB954C06704CBE09E6621B87"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+          "name": "Validate",
+          "line": 22,
+          "tokens": 145,
+          "hash": "14B1CF1F88B86F415858BF25B6E29EB7DD9D4C48DE04E13DE36A235C2A4DDCA0",
+          "shape": "81BF059DEFCF2F4D5012AC0B48CC87211DC53793AB378156EFD14242B4411193",
+          "qualification": "Verified saved core metadata uses original SDK state functions; remaining validation composes module-owned format, model, content/configuration fingerprints and local exceptions, all preserved.",
+          "qualificationSourceSha256": "AA356090ED5C33319F9EDB182B540FFA69387BA69CB5346014FB804B79949AC7"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Epoch/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+          "name": "Validate",
+          "line": 22,
+          "tokens": 145,
+          "hash": "14B1CF1F88B86F415858BF25B6E29EB7DD9D4C48DE04E13DE36A235C2A4DDCA0",
+          "shape": "81BF059DEFCF2F4D5012AC0B48CC87211DC53793AB378156EFD14242B4411193",
+          "qualification": "Verified saved core metadata uses original SDK state functions; remaining validation composes module-owned format, model, content/configuration fingerprints and local exceptions, all preserved.",
+          "qualificationSourceSha256": "AF16BA082E9EB5170E3E2CF7D65B88ECDDDA11B7A7C3ED99747E7D79A450A414"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+          "name": "Validate",
+          "line": 13,
+          "tokens": 145,
+          "hash": "14B1CF1F88B86F415858BF25B6E29EB7DD9D4C48DE04E13DE36A235C2A4DDCA0",
+          "shape": "81BF059DEFCF2F4D5012AC0B48CC87211DC53793AB378156EFD14242B4411193",
+          "qualification": "Verified saved core metadata uses original SDK state functions; remaining validation composes module-owned format, model, content/configuration fingerprints and local exceptions, all preserved.",
+          "qualificationSourceSha256": "EF01635AED4F016BB00BFDB2995AEA685FC3FD04D9C99442321EA7D9B28929C5"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+          "name": "Validate",
+          "line": 13,
+          "tokens": 145,
+          "hash": "14B1CF1F88B86F415858BF25B6E29EB7DD9D4C48DE04E13DE36A235C2A4DDCA0",
+          "shape": "81BF059DEFCF2F4D5012AC0B48CC87211DC53793AB378156EFD14242B4411193",
+          "qualification": "Verified saved core metadata uses original SDK state functions; remaining validation composes module-owned format, model, content/configuration fingerprints and local exceptions, all preserved.",
+          "qualificationSourceSha256": "07FCC0B6B79516A0CB1C7A8271250F02C2620C0FA26FC479535037849CC214AA"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+          "name": "Validate",
+          "line": 13,
+          "tokens": 145,
+          "hash": "14B1CF1F88B86F415858BF25B6E29EB7DD9D4C48DE04E13DE36A235C2A4DDCA0",
+          "shape": "81BF059DEFCF2F4D5012AC0B48CC87211DC53793AB378156EFD14242B4411193",
+          "qualification": "Verified saved core metadata uses original SDK state functions; remaining validation composes module-owned format, model, content/configuration fingerprints and local exceptions, all preserved.",
+          "qualificationSourceSha256": "41FD10B73CF3A56E25B4625CB3E8E32DC5001029FA7B7B51AA89A5BBD564D5EF"
         }
       ],
       "predecessors": [],
@@ -7804,7 +7879,7 @@
         {
           "path": "src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
           "name": "ContentEntries",
-          "line": 69,
+          "line": 67,
           "tokens": 112,
           "hash": "42B4DFF58AA1D47DD7F12ACBCC510A40FBCA67EE26166684468181FB6D4D8A4D",
           "shape": "946473DBD50DA0787C915B3579BDF6F5DE6419110B772D94F00180BC5DABA83B"
@@ -7812,7 +7887,7 @@
         {
           "path": "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
           "name": "ContentEntries",
-          "line": 69,
+          "line": 67,
           "tokens": 112,
           "hash": "42B4DFF58AA1D47DD7F12ACBCC510A40FBCA67EE26166684468181FB6D4D8A4D",
           "shape": "946473DBD50DA0787C915B3579BDF6F5DE6419110B772D94F00180BC5DABA83B"
@@ -7820,7 +7895,7 @@
         {
           "path": "src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
           "name": "ContentEntries",
-          "line": 69,
+          "line": 67,
           "tokens": 112,
           "hash": "42B4DFF58AA1D47DD7F12ACBCC510A40FBCA67EE26166684468181FB6D4D8A4D",
           "shape": "946473DBD50DA0787C915B3579BDF6F5DE6419110B772D94F00180BC5DABA83B"
@@ -7828,7 +7903,7 @@
         {
           "path": "src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
           "name": "ContentEntries",
-          "line": 69,
+          "line": 67,
           "tokens": 112,
           "hash": "42B4DFF58AA1D47DD7F12ACBCC510A40FBCA67EE26166684468181FB6D4D8A4D",
           "shape": "946473DBD50DA0787C915B3579BDF6F5DE6419110B772D94F00180BC5DABA83B"
@@ -7836,7 +7911,7 @@
         {
           "path": "src/GWGUI.Emulation.Epoch/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
           "name": "ContentEntries",
-          "line": 69,
+          "line": 67,
           "tokens": 112,
           "hash": "42B4DFF58AA1D47DD7F12ACBCC510A40FBCA67EE26166684468181FB6D4D8A4D",
           "shape": "946473DBD50DA0787C915B3579BDF6F5DE6419110B772D94F00180BC5DABA83B"
@@ -7844,7 +7919,7 @@
         {
           "path": "src/GWGUI.Emulation.Bandai/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
           "name": "ContentEntries",
-          "line": 69,
+          "line": 67,
           "tokens": 112,
           "hash": "42B4DFF58AA1D47DD7F12ACBCC510A40FBCA67EE26166684468181FB6D4D8A4D",
           "shape": "946473DBD50DA0787C915B3579BDF6F5DE6419110B772D94F00180BC5DABA83B"
@@ -10975,7 +11050,7 @@
         {
           "path": "src/GWGUI.Emulation.Apple/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
           "name": "IsHeaderValid",
-          "line": 81,
+          "line": 79,
           "tokens": 86,
           "hash": "62923A33F34DC3B59DA0B52A2183BF2EC44DAFB60306C34B2E9B3D8354555539",
           "shape": "9746FAB94F5EC0BC235CEA0C0480090799AFCF8087E0B5EB0C27127AC458203D"
@@ -11023,7 +11098,7 @@
         {
           "path": "src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
           "name": "IsHeaderValid",
-          "line": 80,
+          "line": 78,
           "tokens": 86,
           "hash": "62923A33F34DC3B59DA0B52A2183BF2EC44DAFB60306C34B2E9B3D8354555539",
           "shape": "9746FAB94F5EC0BC235CEA0C0480090799AFCF8087E0B5EB0C27127AC458203D"
@@ -11039,7 +11114,7 @@
         {
           "path": "src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
           "name": "IsHeaderValid",
-          "line": 79,
+          "line": 77,
           "tokens": 86,
           "hash": "62923A33F34DC3B59DA0B52A2183BF2EC44DAFB60306C34B2E9B3D8354555539",
           "shape": "9746FAB94F5EC0BC235CEA0C0480090799AFCF8087E0B5EB0C27127AC458203D"
@@ -11055,7 +11130,7 @@
         {
           "path": "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
           "name": "IsHeaderValid",
-          "line": 80,
+          "line": 78,
           "tokens": 86,
           "hash": "62923A33F34DC3B59DA0B52A2183BF2EC44DAFB60306C34B2E9B3D8354555539",
           "shape": "9746FAB94F5EC0BC235CEA0C0480090799AFCF8087E0B5EB0C27127AC458203D"
@@ -11063,7 +11138,7 @@
         {
           "path": "src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
           "name": "IsHeaderValid",
-          "line": 80,
+          "line": 78,
           "tokens": 86,
           "hash": "62923A33F34DC3B59DA0B52A2183BF2EC44DAFB60306C34B2E9B3D8354555539",
           "shape": "9746FAB94F5EC0BC235CEA0C0480090799AFCF8087E0B5EB0C27127AC458203D"
@@ -11071,7 +11146,7 @@
         {
           "path": "src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
           "name": "IsHeaderValid",
-          "line": 80,
+          "line": 78,
           "tokens": 86,
           "hash": "62923A33F34DC3B59DA0B52A2183BF2EC44DAFB60306C34B2E9B3D8354555539",
           "shape": "9746FAB94F5EC0BC235CEA0C0480090799AFCF8087E0B5EB0C27127AC458203D"
@@ -11079,7 +11154,7 @@
         {
           "path": "src/GWGUI.Emulation.Epoch/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
           "name": "IsHeaderValid",
-          "line": 80,
+          "line": 78,
           "tokens": 86,
           "hash": "62923A33F34DC3B59DA0B52A2183BF2EC44DAFB60306C34B2E9B3D8354555539",
           "shape": "9746FAB94F5EC0BC235CEA0C0480090799AFCF8087E0B5EB0C27127AC458203D"
@@ -11087,7 +11162,7 @@
         {
           "path": "src/GWGUI.Emulation.Bandai/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
           "name": "IsHeaderValid",
-          "line": 80,
+          "line": 78,
           "tokens": 86,
           "hash": "62923A33F34DC3B59DA0B52A2183BF2EC44DAFB60306C34B2E9B3D8354555539",
           "shape": "9746FAB94F5EC0BC235CEA0C0480090799AFCF8087E0B5EB0C27127AC458203D"
@@ -11991,7 +12066,7 @@
         {
           "path": "src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
           "name": "InputFingerprint",
-          "line": 91,
+          "line": 89,
           "tokens": 116,
           "hash": "6A6DB789A2537977DDF122D682BCB64E3A947B6FEE779E7C0EF16717C8457882",
           "shape": "FE655AAAD5C952EA883082487E54A08833E829A3269982B4753725A1605CF58A"
@@ -11999,7 +12074,7 @@
         {
           "path": "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
           "name": "InputFingerprint",
-          "line": 91,
+          "line": 89,
           "tokens": 116,
           "hash": "6A6DB789A2537977DDF122D682BCB64E3A947B6FEE779E7C0EF16717C8457882",
           "shape": "FE655AAAD5C952EA883082487E54A08833E829A3269982B4753725A1605CF58A"
@@ -12007,7 +12082,7 @@
         {
           "path": "src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
           "name": "InputFingerprint",
-          "line": 91,
+          "line": 89,
           "tokens": 116,
           "hash": "6A6DB789A2537977DDF122D682BCB64E3A947B6FEE779E7C0EF16717C8457882",
           "shape": "FE655AAAD5C952EA883082487E54A08833E829A3269982B4753725A1605CF58A"
@@ -12015,7 +12090,7 @@
         {
           "path": "src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
           "name": "InputFingerprint",
-          "line": 91,
+          "line": 89,
           "tokens": 116,
           "hash": "6A6DB789A2537977DDF122D682BCB64E3A947B6FEE779E7C0EF16717C8457882",
           "shape": "FE655AAAD5C952EA883082487E54A08833E829A3269982B4753725A1605CF58A"
@@ -12023,7 +12098,7 @@
         {
           "path": "src/GWGUI.Emulation.Epoch/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
           "name": "InputFingerprint",
-          "line": 91,
+          "line": 89,
           "tokens": 116,
           "hash": "6A6DB789A2537977DDF122D682BCB64E3A947B6FEE779E7C0EF16717C8457882",
           "shape": "FE655AAAD5C952EA883082487E54A08833E829A3269982B4753725A1605CF58A"
@@ -16072,7 +16147,7 @@
         {
           "path": "src/GWGUI.Emulation.Apple/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
           "name": "ConfigurationHash",
-          "line": 50,
+          "line": 48,
           "tokens": 116,
           "hash": "95162D7F81990B27EA494812E87EB7D675A83605C668A5E09C14913B0B0D66C6",
           "shape": "E45CF66B1478C0F4842C0FF66630774B8DFC4DED0F98AE6EA644A7331FCCDAAD"
@@ -16104,7 +16179,7 @@
         {
           "path": "src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
           "name": "ConfigurationHash",
-          "line": 50,
+          "line": 48,
           "tokens": 116,
           "hash": "95162D7F81990B27EA494812E87EB7D675A83605C668A5E09C14913B0B0D66C6",
           "shape": "E45CF66B1478C0F4842C0FF66630774B8DFC4DED0F98AE6EA644A7331FCCDAAD"
@@ -16112,7 +16187,7 @@
         {
           "path": "src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
           "name": "ConfigurationHash",
-          "line": 49,
+          "line": 47,
           "tokens": 116,
           "hash": "95162D7F81990B27EA494812E87EB7D675A83605C668A5E09C14913B0B0D66C6",
           "shape": "E45CF66B1478C0F4842C0FF66630774B8DFC4DED0F98AE6EA644A7331FCCDAAD"
@@ -16120,7 +16195,7 @@
         {
           "path": "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
           "name": "ConfigurationHash",
-          "line": 50,
+          "line": 48,
           "tokens": 116,
           "hash": "95162D7F81990B27EA494812E87EB7D675A83605C668A5E09C14913B0B0D66C6",
           "shape": "E45CF66B1478C0F4842C0FF66630774B8DFC4DED0F98AE6EA644A7331FCCDAAD"
@@ -16128,7 +16203,7 @@
         {
           "path": "src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
           "name": "ConfigurationHash",
-          "line": 50,
+          "line": 48,
           "tokens": 116,
           "hash": "95162D7F81990B27EA494812E87EB7D675A83605C668A5E09C14913B0B0D66C6",
           "shape": "E45CF66B1478C0F4842C0FF66630774B8DFC4DED0F98AE6EA644A7331FCCDAAD"
@@ -16136,7 +16211,7 @@
         {
           "path": "src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
           "name": "ConfigurationHash",
-          "line": 50,
+          "line": 48,
           "tokens": 116,
           "hash": "95162D7F81990B27EA494812E87EB7D675A83605C668A5E09C14913B0B0D66C6",
           "shape": "E45CF66B1478C0F4842C0FF66630774B8DFC4DED0F98AE6EA644A7331FCCDAAD"
@@ -16144,7 +16219,7 @@
         {
           "path": "src/GWGUI.Emulation.Epoch/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
           "name": "ConfigurationHash",
-          "line": 50,
+          "line": 48,
           "tokens": 116,
           "hash": "95162D7F81990B27EA494812E87EB7D675A83605C668A5E09C14913B0B0D66C6",
           "shape": "E45CF66B1478C0F4842C0FF66630774B8DFC4DED0F98AE6EA644A7331FCCDAAD"
@@ -16152,7 +16227,7 @@
         {
           "path": "src/GWGUI.Emulation.Bandai/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
           "name": "ConfigurationHash",
-          "line": 50,
+          "line": 48,
           "tokens": 116,
           "hash": "95162D7F81990B27EA494812E87EB7D675A83605C668A5E09C14913B0B0D66C6",
           "shape": "E45CF66B1478C0F4842C0FF66630774B8DFC4DED0F98AE6EA644A7331FCCDAAD"
@@ -16817,7 +16892,7 @@
         {
           "path": "src/GWGUI.Emulation.Bandai/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
           "name": "InputFingerprint",
-          "line": 91,
+          "line": 89,
           "tokens": 83,
           "hash": "99EEB4C3C19CCA49AB45BFDEA87BB5DFD8EC189A2D66A531616A6FF6B35F5CB2",
           "shape": "D2BC7C5BDC7AD5CCFDBE7069B18BE6786D00BAAEFB52DD03940CEAD3F27874F3"
@@ -17804,6 +17879,57 @@
           "tokens": 103,
           "hash": "A1E03750FEB3292ACEB41656386F4A8AA8B05077D9ABFB7DA103AA3D71320B9F",
           "shape": "7E96B0B592775B6C7BDDB0C8F0B6945863C71B5D5557BD77024C5EE08B08370D"
+        }
+      ],
+      "predecessors": [],
+      "shapePredecessors": [],
+      "qualification": "pending"
+    },
+    {
+      "language": "CSharp",
+      "hash": "A28473AAEDEB3E5A65C35F388E9866F958183E77677513687D0BDED89AB2ECAE",
+      "method": "Validate",
+      "tokens": 145,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+          "name": "Validate",
+          "line": 13,
+          "tokens": 145,
+          "hash": "A28473AAEDEB3E5A65C35F388E9866F958183E77677513687D0BDED89AB2ECAE",
+          "shape": "81BF059DEFCF2F4D5012AC0B48CC87211DC53793AB378156EFD14242B4411193",
+          "qualification": "Verified saved core metadata uses original SDK state functions; remaining validation composes module-owned format, model, content/configuration fingerprints and local exceptions, all preserved.",
+          "qualificationSourceSha256": "611AE70FD099E3D04EE940E439B6E863D5FC41CD7E85E68680818F16CA33143B"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Wenquxing/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+          "name": "Validate",
+          "line": 11,
+          "tokens": 145,
+          "hash": "A28473AAEDEB3E5A65C35F388E9866F958183E77677513687D0BDED89AB2ECAE",
+          "shape": "81BF059DEFCF2F4D5012AC0B48CC87211DC53793AB378156EFD14242B4411193",
+          "qualification": "Verified saved core metadata uses original SDK state functions; remaining validation composes module-owned format, model, content/configuration fingerprints and local exceptions, all preserved.",
+          "qualificationSourceSha256": "B634A37B9A027645B0D9677DD995553EDC52737CDB60359046C99D5CE552C107"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Watara/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+          "name": "Validate",
+          "line": 13,
+          "tokens": 145,
+          "hash": "A28473AAEDEB3E5A65C35F388E9866F958183E77677513687D0BDED89AB2ECAE",
+          "shape": "81BF059DEFCF2F4D5012AC0B48CC87211DC53793AB378156EFD14242B4411193",
+          "qualification": "Verified saved core metadata uses original SDK state functions; remaining validation composes module-owned format, model, content/configuration fingerprints and local exceptions, all preserved.",
+          "qualificationSourceSha256": "B1CEF9DFA63C5FA7A0C752DF3622921E65DCF0AE924DD73664230BDF2486C843"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Thomson/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+          "name": "Validate",
+          "line": 13,
+          "tokens": 145,
+          "hash": "A28473AAEDEB3E5A65C35F388E9866F958183E77677513687D0BDED89AB2ECAE",
+          "shape": "81BF059DEFCF2F4D5012AC0B48CC87211DC53793AB378156EFD14242B4411193",
+          "qualification": "Verified saved core metadata uses original SDK state functions; remaining validation composes module-owned format, model, content/configuration fingerprints and local exceptions, all preserved.",
+          "qualificationSourceSha256": "DDD66A6D43B0B30B457976271F3AB75FE8A832DAED9A8D33D4DDDC5688BB4709"
         }
       ],
       "predecessors": [],
@@ -19278,7 +19404,7 @@
     {
       "language": "CSharp",
       "hash": "B053A3AB4F0B78A37DED57B2D744801187AED6EC54FEEAFE4B1AA9C454D6F48C",
-      "method": "PanasonicEmulationModule",
+      "method": "ColecoEmulationModule",
       "tokens": 47,
       "current": [
         {
@@ -20247,7 +20373,7 @@
         {
           "path": "src/GWGUI.Emulation.Apple/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
           "name": "InputFingerprint",
-          "line": 92,
+          "line": 90,
           "tokens": 164,
           "hash": "BBF8B0F424BDE42FCB92EFF86792BCA4D9A31196FE7E1D911D92822BC71AB826",
           "shape": "930C88C4720D45FBB6CADC121B720224575732506F03BA3020D7E00B9D1B9A07"
@@ -20255,7 +20381,7 @@
         {
           "path": "src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
           "name": "InputFingerprint",
-          "line": 90,
+          "line": 88,
           "tokens": 164,
           "hash": "BBF8B0F424BDE42FCB92EFF86792BCA4D9A31196FE7E1D911D92822BC71AB826",
           "shape": "930C88C4720D45FBB6CADC121B720224575732506F03BA3020D7E00B9D1B9A07"
@@ -21433,7 +21559,7 @@
         {
           "path": "src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
           "name": "HashPath",
-          "line": 102,
+          "line": 100,
           "tokens": 32,
           "hash": "C5BDD9DD3DBD54414784B57198F109924C67FDBC0668002B3D64133605E91552",
           "shape": "F6BBBC9A138AD4FCF9FFC3B0234A3FBF71B91259B9ED90D1B76A0CDD82CC145C"
@@ -21441,7 +21567,7 @@
         {
           "path": "src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
           "name": "HashPath",
-          "line": 104,
+          "line": 102,
           "tokens": 32,
           "hash": "C5BDD9DD3DBD54414784B57198F109924C67FDBC0668002B3D64133605E91552",
           "shape": "F6BBBC9A138AD4FCF9FFC3B0234A3FBF71B91259B9ED90D1B76A0CDD82CC145C"
@@ -21457,7 +21583,7 @@
         {
           "path": "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
           "name": "HashPath",
-          "line": 102,
+          "line": 100,
           "tokens": 32,
           "hash": "C5BDD9DD3DBD54414784B57198F109924C67FDBC0668002B3D64133605E91552",
           "shape": "F6BBBC9A138AD4FCF9FFC3B0234A3FBF71B91259B9ED90D1B76A0CDD82CC145C"
@@ -21465,7 +21591,7 @@
         {
           "path": "src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
           "name": "HashPath",
-          "line": 102,
+          "line": 100,
           "tokens": 32,
           "hash": "C5BDD9DD3DBD54414784B57198F109924C67FDBC0668002B3D64133605E91552",
           "shape": "F6BBBC9A138AD4FCF9FFC3B0234A3FBF71B91259B9ED90D1B76A0CDD82CC145C"
@@ -21473,7 +21599,7 @@
         {
           "path": "src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
           "name": "HashPath",
-          "line": 102,
+          "line": 100,
           "tokens": 32,
           "hash": "C5BDD9DD3DBD54414784B57198F109924C67FDBC0668002B3D64133605E91552",
           "shape": "F6BBBC9A138AD4FCF9FFC3B0234A3FBF71B91259B9ED90D1B76A0CDD82CC145C"
@@ -21481,7 +21607,7 @@
         {
           "path": "src/GWGUI.Emulation.Epoch/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
           "name": "HashPath",
-          "line": 102,
+          "line": 100,
           "tokens": 32,
           "hash": "C5BDD9DD3DBD54414784B57198F109924C67FDBC0668002B3D64133605E91552",
           "shape": "F6BBBC9A138AD4FCF9FFC3B0234A3FBF71B91259B9ED90D1B76A0CDD82CC145C"
@@ -21489,7 +21615,7 @@
         {
           "path": "src/GWGUI.Emulation.Bandai/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
           "name": "HashPath",
-          "line": 101,
+          "line": 99,
           "tokens": 32,
           "hash": "C5BDD9DD3DBD54414784B57198F109924C67FDBC0668002B3D64133605E91552",
           "shape": "F6BBBC9A138AD4FCF9FFC3B0234A3FBF71B91259B9ED90D1B76A0CDD82CC145C"
@@ -23848,114 +23974,6 @@
       ],
       "predecessors": [],
       "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
-      "hash": "DB0CAED9230133CBBD9B054F74BF37DA8AA72B4C0877FB70F241E048108E29A3",
-      "method": "Validate",
-      "tokens": 179,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Apple/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
-          "name": "Validate",
-          "line": 22,
-          "tokens": 179,
-          "hash": "DB0CAED9230133CBBD9B054F74BF37DA8AA72B4C0877FB70F241E048108E29A3",
-          "shape": "3C95EAEB8884907E131A75B57B0B37783BAA233B5F03DE48E018B6279092D791"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
-          "name": "Validate",
-          "line": 13,
-          "tokens": 179,
-          "hash": "DB0CAED9230133CBBD9B054F74BF37DA8AA72B4C0877FB70F241E048108E29A3",
-          "shape": "3C95EAEB8884907E131A75B57B0B37783BAA233B5F03DE48E018B6279092D791"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
-          "name": "Validate",
-          "line": 13,
-          "tokens": 179,
-          "hash": "DB0CAED9230133CBBD9B054F74BF37DA8AA72B4C0877FB70F241E048108E29A3",
-          "shape": "3C95EAEB8884907E131A75B57B0B37783BAA233B5F03DE48E018B6279092D791"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
-          "name": "Validate",
-          "line": 13,
-          "tokens": 179,
-          "hash": "DB0CAED9230133CBBD9B054F74BF37DA8AA72B4C0877FB70F241E048108E29A3",
-          "shape": "3C95EAEB8884907E131A75B57B0B37783BAA233B5F03DE48E018B6279092D791"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
-          "name": "Validate",
-          "line": 22,
-          "tokens": 179,
-          "hash": "DB0CAED9230133CBBD9B054F74BF37DA8AA72B4C0877FB70F241E048108E29A3",
-          "shape": "3C95EAEB8884907E131A75B57B0B37783BAA233B5F03DE48E018B6279092D791"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
-          "name": "Validate",
-          "line": 21,
-          "tokens": 179,
-          "hash": "DB0CAED9230133CBBD9B054F74BF37DA8AA72B4C0877FB70F241E048108E29A3",
-          "shape": "3C95EAEB8884907E131A75B57B0B37783BAA233B5F03DE48E018B6279092D791"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
-          "name": "Validate",
-          "line": 22,
-          "tokens": 179,
-          "hash": "DB0CAED9230133CBBD9B054F74BF37DA8AA72B4C0877FB70F241E048108E29A3",
-          "shape": "3C95EAEB8884907E131A75B57B0B37783BAA233B5F03DE48E018B6279092D791"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
-          "name": "Validate",
-          "line": 22,
-          "tokens": 179,
-          "hash": "DB0CAED9230133CBBD9B054F74BF37DA8AA72B4C0877FB70F241E048108E29A3",
-          "shape": "3C95EAEB8884907E131A75B57B0B37783BAA233B5F03DE48E018B6279092D791"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
-          "name": "Validate",
-          "line": 22,
-          "tokens": 179,
-          "hash": "DB0CAED9230133CBBD9B054F74BF37DA8AA72B4C0877FB70F241E048108E29A3",
-          "shape": "3C95EAEB8884907E131A75B57B0B37783BAA233B5F03DE48E018B6279092D791"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Epoch/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
-          "name": "Validate",
-          "line": 22,
-          "tokens": 179,
-          "hash": "DB0CAED9230133CBBD9B054F74BF37DA8AA72B4C0877FB70F241E048108E29A3",
-          "shape": "3C95EAEB8884907E131A75B57B0B37783BAA233B5F03DE48E018B6279092D791"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Bandai/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
-          "name": "Validate",
-          "line": 22,
-          "tokens": 179,
-          "hash": "DB0CAED9230133CBBD9B054F74BF37DA8AA72B4C0877FB70F241E048108E29A3",
-          "shape": "3C95EAEB8884907E131A75B57B0B37783BAA233B5F03DE48E018B6279092D791"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [
-        {
-          "path": "src/GWGUI.Emulation.Atari/Functions/AtariSavedStateFunctions.cs",
-          "name": "Validate",
-          "line": 22,
-          "tokens": 179,
-          "hash": "1F5AA72C498FC97CEC4532C96B386DE53C4707D8944F046D98349B124AFF53C6",
-          "shape": "3C95EAEB8884907E131A75B57B0B37783BAA233B5F03DE48E018B6279092D791"
-        }
-      ],
       "qualification": "pending"
     },
     {
@@ -26737,7 +26755,7 @@
         {
           "path": "src/GWGUI.Emulation.Apple/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
           "name": "ValidatePayloadSize",
-          "line": 38,
+          "line": 36,
           "tokens": 42,
           "hash": "FACBDEB6DA1C34850E122DC9ECD369FF375565FE0B8CE4F19BEF4BD201B34657",
           "shape": "EF6A030CBD670C289D6BC24275AA9AC8E186C4A25F6C97AE1A8426A574C3FF8F"
@@ -26769,7 +26787,7 @@
         {
           "path": "src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
           "name": "ValidatePayloadSize",
-          "line": 38,
+          "line": 36,
           "tokens": 42,
           "hash": "FACBDEB6DA1C34850E122DC9ECD369FF375565FE0B8CE4F19BEF4BD201B34657",
           "shape": "EF6A030CBD670C289D6BC24275AA9AC8E186C4A25F6C97AE1A8426A574C3FF8F"
@@ -26777,7 +26795,7 @@
         {
           "path": "src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
           "name": "ValidatePayloadSize",
-          "line": 37,
+          "line": 35,
           "tokens": 42,
           "hash": "FACBDEB6DA1C34850E122DC9ECD369FF375565FE0B8CE4F19BEF4BD201B34657",
           "shape": "EF6A030CBD670C289D6BC24275AA9AC8E186C4A25F6C97AE1A8426A574C3FF8F"
@@ -26785,7 +26803,7 @@
         {
           "path": "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
           "name": "ValidatePayloadSize",
-          "line": 38,
+          "line": 36,
           "tokens": 42,
           "hash": "FACBDEB6DA1C34850E122DC9ECD369FF375565FE0B8CE4F19BEF4BD201B34657",
           "shape": "EF6A030CBD670C289D6BC24275AA9AC8E186C4A25F6C97AE1A8426A574C3FF8F"
@@ -26793,7 +26811,7 @@
         {
           "path": "src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
           "name": "ValidatePayloadSize",
-          "line": 38,
+          "line": 36,
           "tokens": 42,
           "hash": "FACBDEB6DA1C34850E122DC9ECD369FF375565FE0B8CE4F19BEF4BD201B34657",
           "shape": "EF6A030CBD670C289D6BC24275AA9AC8E186C4A25F6C97AE1A8426A574C3FF8F"
@@ -26801,7 +26819,7 @@
         {
           "path": "src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
           "name": "ValidatePayloadSize",
-          "line": 38,
+          "line": 36,
           "tokens": 42,
           "hash": "FACBDEB6DA1C34850E122DC9ECD369FF375565FE0B8CE4F19BEF4BD201B34657",
           "shape": "EF6A030CBD670C289D6BC24275AA9AC8E186C4A25F6C97AE1A8426A574C3FF8F"
@@ -26809,7 +26827,7 @@
         {
           "path": "src/GWGUI.Emulation.Epoch/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
           "name": "ValidatePayloadSize",
-          "line": 38,
+          "line": 36,
           "tokens": 42,
           "hash": "FACBDEB6DA1C34850E122DC9ECD369FF375565FE0B8CE4F19BEF4BD201B34657",
           "shape": "EF6A030CBD670C289D6BC24275AA9AC8E186C4A25F6C97AE1A8426A574C3FF8F"
@@ -26817,7 +26835,7 @@
         {
           "path": "src/GWGUI.Emulation.Bandai/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
           "name": "ValidatePayloadSize",
-          "line": 38,
+          "line": 36,
           "tokens": 42,
           "hash": "FACBDEB6DA1C34850E122DC9ECD369FF375565FE0B8CE4F19BEF4BD201B34657",
           "shape": "EF6A030CBD670C289D6BC24275AA9AC8E186C4A25F6C97AE1A8426A574C3FF8F"
@@ -28794,133 +28812,6 @@
           "tokens": 32,
           "hash": "0BA77D556EA20D9E75C5005609DF95BED481E863FF3F17884492D2EE8881BC02",
           "shape": "3AB6CA3847DF5D91EB16620D10AD321596418E1794717590706AF6AD523FCA2F"
-        }
-      ],
-      "qualification": "pending-symbol-and-policy-comparison"
-    },
-    {
-      "shape": "3C95EAEB8884907E131A75B57B0B37783BAA233B5F03DE48E018B6279092D791",
-      "tokens": 179,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Apple/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
-          "name": "Validate",
-          "line": 22,
-          "tokens": 179,
-          "hash": "DB0CAED9230133CBBD9B054F74BF37DA8AA72B4C0877FB70F241E048108E29A3",
-          "shape": "3C95EAEB8884907E131A75B57B0B37783BAA233B5F03DE48E018B6279092D791"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Watara/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
-          "name": "Validate",
-          "line": 13,
-          "tokens": 179,
-          "hash": "02E8800CB2255364A7EA92E9F535054E67E31227643C0325F472AA876B930759",
-          "shape": "3C95EAEB8884907E131A75B57B0B37783BAA233B5F03DE48E018B6279092D791"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
-          "name": "Validate",
-          "line": 13,
-          "tokens": 179,
-          "hash": "DB0CAED9230133CBBD9B054F74BF37DA8AA72B4C0877FB70F241E048108E29A3",
-          "shape": "3C95EAEB8884907E131A75B57B0B37783BAA233B5F03DE48E018B6279092D791"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
-          "name": "Validate",
-          "line": 13,
-          "tokens": 179,
-          "hash": "DB0CAED9230133CBBD9B054F74BF37DA8AA72B4C0877FB70F241E048108E29A3",
-          "shape": "3C95EAEB8884907E131A75B57B0B37783BAA233B5F03DE48E018B6279092D791"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
-          "name": "Validate",
-          "line": 13,
-          "tokens": 179,
-          "hash": "DB0CAED9230133CBBD9B054F74BF37DA8AA72B4C0877FB70F241E048108E29A3",
-          "shape": "3C95EAEB8884907E131A75B57B0B37783BAA233B5F03DE48E018B6279092D791"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Thomson/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
-          "name": "Validate",
-          "line": 13,
-          "tokens": 179,
-          "hash": "02E8800CB2255364A7EA92E9F535054E67E31227643C0325F472AA876B930759",
-          "shape": "3C95EAEB8884907E131A75B57B0B37783BAA233B5F03DE48E018B6279092D791"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
-          "name": "Validate",
-          "line": 22,
-          "tokens": 179,
-          "hash": "DB0CAED9230133CBBD9B054F74BF37DA8AA72B4C0877FB70F241E048108E29A3",
-          "shape": "3C95EAEB8884907E131A75B57B0B37783BAA233B5F03DE48E018B6279092D791"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Wenquxing/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
-          "name": "Validate",
-          "line": 11,
-          "tokens": 179,
-          "hash": "02E8800CB2255364A7EA92E9F535054E67E31227643C0325F472AA876B930759",
-          "shape": "3C95EAEB8884907E131A75B57B0B37783BAA233B5F03DE48E018B6279092D791"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
-          "name": "Validate",
-          "line": 21,
-          "tokens": 179,
-          "hash": "DB0CAED9230133CBBD9B054F74BF37DA8AA72B4C0877FB70F241E048108E29A3",
-          "shape": "3C95EAEB8884907E131A75B57B0B37783BAA233B5F03DE48E018B6279092D791"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
-          "name": "Validate",
-          "line": 13,
-          "tokens": 179,
-          "hash": "02E8800CB2255364A7EA92E9F535054E67E31227643C0325F472AA876B930759",
-          "shape": "3C95EAEB8884907E131A75B57B0B37783BAA233B5F03DE48E018B6279092D791"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
-          "name": "Validate",
-          "line": 22,
-          "tokens": 179,
-          "hash": "DB0CAED9230133CBBD9B054F74BF37DA8AA72B4C0877FB70F241E048108E29A3",
-          "shape": "3C95EAEB8884907E131A75B57B0B37783BAA233B5F03DE48E018B6279092D791"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
-          "name": "Validate",
-          "line": 22,
-          "tokens": 179,
-          "hash": "DB0CAED9230133CBBD9B054F74BF37DA8AA72B4C0877FB70F241E048108E29A3",
-          "shape": "3C95EAEB8884907E131A75B57B0B37783BAA233B5F03DE48E018B6279092D791"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
-          "name": "Validate",
-          "line": 22,
-          "tokens": 179,
-          "hash": "DB0CAED9230133CBBD9B054F74BF37DA8AA72B4C0877FB70F241E048108E29A3",
-          "shape": "3C95EAEB8884907E131A75B57B0B37783BAA233B5F03DE48E018B6279092D791"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Epoch/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
-          "name": "Validate",
-          "line": 22,
-          "tokens": 179,
-          "hash": "DB0CAED9230133CBBD9B054F74BF37DA8AA72B4C0877FB70F241E048108E29A3",
-          "shape": "3C95EAEB8884907E131A75B57B0B37783BAA233B5F03DE48E018B6279092D791"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Bandai/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
-          "name": "Validate",
-          "line": 22,
-          "tokens": 179,
-          "hash": "DB0CAED9230133CBBD9B054F74BF37DA8AA72B4C0877FB70F241E048108E29A3",
-          "shape": "3C95EAEB8884907E131A75B57B0B37783BAA233B5F03DE48E018B6279092D791"
         }
       ],
       "qualification": "pending-symbol-and-policy-comparison"
@@ -30980,6 +30871,163 @@
           "tokens": 71,
           "hash": "3B8464EB67E96727F4489BDB9DA812CF09BFB335F4B970A5A56528CC33234D0C",
           "shape": "811E3CC29CB6A711EC46834B809561FCC1DFC4E6489B625C7F4131EBC3DFB597"
+        }
+      ],
+      "qualification": "pending-symbol-and-policy-comparison"
+    },
+    {
+      "shape": "81BF059DEFCF2F4D5012AC0B48CC87211DC53793AB378156EFD14242B4411193",
+      "tokens": 145,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+          "name": "Validate",
+          "line": 22,
+          "tokens": 145,
+          "hash": "14B1CF1F88B86F415858BF25B6E29EB7DD9D4C48DE04E13DE36A235C2A4DDCA0",
+          "shape": "81BF059DEFCF2F4D5012AC0B48CC87211DC53793AB378156EFD14242B4411193",
+          "qualification": "Verified saved core metadata uses original SDK state functions; remaining validation composes module-owned format, model, content/configuration fingerprints and local exceptions, all preserved.",
+          "qualificationSourceSha256": "F5BDCEF3D9CB42AFAE75454F8B609EC387B0B8D5361877F90A62829B64380C1E"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Apple/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+          "name": "Validate",
+          "line": 22,
+          "tokens": 145,
+          "hash": "14B1CF1F88B86F415858BF25B6E29EB7DD9D4C48DE04E13DE36A235C2A4DDCA0",
+          "shape": "81BF059DEFCF2F4D5012AC0B48CC87211DC53793AB378156EFD14242B4411193",
+          "qualification": "Verified saved core metadata uses original SDK state functions; remaining validation composes module-owned format, model, content/configuration fingerprints and local exceptions, all preserved.",
+          "qualificationSourceSha256": "18E1EAA8C9EEC9A7962017990534BB755ACA0C1EC0398747F687453F8445C884"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+          "name": "Validate",
+          "line": 22,
+          "tokens": 145,
+          "hash": "14B1CF1F88B86F415858BF25B6E29EB7DD9D4C48DE04E13DE36A235C2A4DDCA0",
+          "shape": "81BF059DEFCF2F4D5012AC0B48CC87211DC53793AB378156EFD14242B4411193",
+          "qualification": "Verified saved core metadata uses original SDK state functions; remaining validation composes module-owned format, model, content/configuration fingerprints and local exceptions, all preserved.",
+          "qualificationSourceSha256": "E1329DA2F7513260FCBCA74DE93B7723F0393672A23DAABBAEFB7EA39F0E8B77"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+          "name": "Validate",
+          "line": 21,
+          "tokens": 145,
+          "hash": "14B1CF1F88B86F415858BF25B6E29EB7DD9D4C48DE04E13DE36A235C2A4DDCA0",
+          "shape": "81BF059DEFCF2F4D5012AC0B48CC87211DC53793AB378156EFD14242B4411193",
+          "qualification": "Verified saved core metadata uses original SDK state functions; remaining validation composes module-owned format, model, content/configuration fingerprints and local exceptions, all preserved.",
+          "qualificationSourceSha256": "8EB04EE4160755E13B7A4640D1AE1669AFC8A95F8BD2CBCF6D78E2410D2D2A59"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+          "name": "Validate",
+          "line": 13,
+          "tokens": 145,
+          "hash": "A28473AAEDEB3E5A65C35F388E9866F958183E77677513687D0BDED89AB2ECAE",
+          "shape": "81BF059DEFCF2F4D5012AC0B48CC87211DC53793AB378156EFD14242B4411193",
+          "qualification": "Verified saved core metadata uses original SDK state functions; remaining validation composes module-owned format, model, content/configuration fingerprints and local exceptions, all preserved.",
+          "qualificationSourceSha256": "611AE70FD099E3D04EE940E439B6E863D5FC41CD7E85E68680818F16CA33143B"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Bandai/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+          "name": "Validate",
+          "line": 22,
+          "tokens": 145,
+          "hash": "14B1CF1F88B86F415858BF25B6E29EB7DD9D4C48DE04E13DE36A235C2A4DDCA0",
+          "shape": "81BF059DEFCF2F4D5012AC0B48CC87211DC53793AB378156EFD14242B4411193",
+          "qualification": "Verified saved core metadata uses original SDK state functions; remaining validation composes module-owned format, model, content/configuration fingerprints and local exceptions, all preserved.",
+          "qualificationSourceSha256": "76359C862283DC2954A077F69EB37A85EFC190054CFECEE050518C082B41C096"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+          "name": "Validate",
+          "line": 22,
+          "tokens": 145,
+          "hash": "14B1CF1F88B86F415858BF25B6E29EB7DD9D4C48DE04E13DE36A235C2A4DDCA0",
+          "shape": "81BF059DEFCF2F4D5012AC0B48CC87211DC53793AB378156EFD14242B4411193",
+          "qualification": "Verified saved core metadata uses original SDK state functions; remaining validation composes module-owned format, model, content/configuration fingerprints and local exceptions, all preserved.",
+          "qualificationSourceSha256": "ABFDC39108C454912CE1AB082B01535FBBA89246FB954C06704CBE09E6621B87"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+          "name": "Validate",
+          "line": 22,
+          "tokens": 145,
+          "hash": "14B1CF1F88B86F415858BF25B6E29EB7DD9D4C48DE04E13DE36A235C2A4DDCA0",
+          "shape": "81BF059DEFCF2F4D5012AC0B48CC87211DC53793AB378156EFD14242B4411193",
+          "qualification": "Verified saved core metadata uses original SDK state functions; remaining validation composes module-owned format, model, content/configuration fingerprints and local exceptions, all preserved.",
+          "qualificationSourceSha256": "AA356090ED5C33319F9EDB182B540FFA69387BA69CB5346014FB804B79949AC7"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Epoch/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+          "name": "Validate",
+          "line": 22,
+          "tokens": 145,
+          "hash": "14B1CF1F88B86F415858BF25B6E29EB7DD9D4C48DE04E13DE36A235C2A4DDCA0",
+          "shape": "81BF059DEFCF2F4D5012AC0B48CC87211DC53793AB378156EFD14242B4411193",
+          "qualification": "Verified saved core metadata uses original SDK state functions; remaining validation composes module-owned format, model, content/configuration fingerprints and local exceptions, all preserved.",
+          "qualificationSourceSha256": "AF16BA082E9EB5170E3E2CF7D65B88ECDDDA11B7A7C3ED99747E7D79A450A414"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Wenquxing/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+          "name": "Validate",
+          "line": 11,
+          "tokens": 145,
+          "hash": "A28473AAEDEB3E5A65C35F388E9866F958183E77677513687D0BDED89AB2ECAE",
+          "shape": "81BF059DEFCF2F4D5012AC0B48CC87211DC53793AB378156EFD14242B4411193",
+          "qualification": "Verified saved core metadata uses original SDK state functions; remaining validation composes module-owned format, model, content/configuration fingerprints and local exceptions, all preserved.",
+          "qualificationSourceSha256": "B634A37B9A027645B0D9677DD995553EDC52737CDB60359046C99D5CE552C107"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Watara/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+          "name": "Validate",
+          "line": 13,
+          "tokens": 145,
+          "hash": "A28473AAEDEB3E5A65C35F388E9866F958183E77677513687D0BDED89AB2ECAE",
+          "shape": "81BF059DEFCF2F4D5012AC0B48CC87211DC53793AB378156EFD14242B4411193",
+          "qualification": "Verified saved core metadata uses original SDK state functions; remaining validation composes module-owned format, model, content/configuration fingerprints and local exceptions, all preserved.",
+          "qualificationSourceSha256": "B1CEF9DFA63C5FA7A0C752DF3622921E65DCF0AE924DD73664230BDF2486C843"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+          "name": "Validate",
+          "line": 13,
+          "tokens": 145,
+          "hash": "14B1CF1F88B86F415858BF25B6E29EB7DD9D4C48DE04E13DE36A235C2A4DDCA0",
+          "shape": "81BF059DEFCF2F4D5012AC0B48CC87211DC53793AB378156EFD14242B4411193",
+          "qualification": "Verified saved core metadata uses original SDK state functions; remaining validation composes module-owned format, model, content/configuration fingerprints and local exceptions, all preserved.",
+          "qualificationSourceSha256": "EF01635AED4F016BB00BFDB2995AEA685FC3FD04D9C99442321EA7D9B28929C5"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Thomson/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+          "name": "Validate",
+          "line": 13,
+          "tokens": 145,
+          "hash": "A28473AAEDEB3E5A65C35F388E9866F958183E77677513687D0BDED89AB2ECAE",
+          "shape": "81BF059DEFCF2F4D5012AC0B48CC87211DC53793AB378156EFD14242B4411193",
+          "qualification": "Verified saved core metadata uses original SDK state functions; remaining validation composes module-owned format, model, content/configuration fingerprints and local exceptions, all preserved.",
+          "qualificationSourceSha256": "DDD66A6D43B0B30B457976271F3AB75FE8A832DAED9A8D33D4DDDC5688BB4709"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+          "name": "Validate",
+          "line": 13,
+          "tokens": 145,
+          "hash": "14B1CF1F88B86F415858BF25B6E29EB7DD9D4C48DE04E13DE36A235C2A4DDCA0",
+          "shape": "81BF059DEFCF2F4D5012AC0B48CC87211DC53793AB378156EFD14242B4411193",
+          "qualification": "Verified saved core metadata uses original SDK state functions; remaining validation composes module-owned format, model, content/configuration fingerprints and local exceptions, all preserved.",
+          "qualificationSourceSha256": "07FCC0B6B79516A0CB1C7A8271250F02C2620C0FA26FC479535037849CC214AA"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+          "name": "Validate",
+          "line": 13,
+          "tokens": 145,
+          "hash": "14B1CF1F88B86F415858BF25B6E29EB7DD9D4C48DE04E13DE36A235C2A4DDCA0",
+          "shape": "81BF059DEFCF2F4D5012AC0B48CC87211DC53793AB378156EFD14242B4411193",
+          "qualification": "Verified saved core metadata uses original SDK state functions; remaining validation composes module-owned format, model, content/configuration fingerprints and local exceptions, all preserved.",
+          "qualificationSourceSha256": "41FD10B73CF3A56E25B4625CB3E8E32DC5001029FA7B7B51AA89A5BBD564D5EF"
         }
       ],
       "qualification": "pending-symbol-and-policy-comparison"
@@ -34543,7 +34591,7 @@
         {
           "path": "src/GWGUI.Emulation.Apple/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
           "name": "ValidatePayloadSize",
-          "line": 38,
+          "line": 36,
           "tokens": 42,
           "hash": "FACBDEB6DA1C34850E122DC9ECD369FF375565FE0B8CE4F19BEF4BD201B34657",
           "shape": "EF6A030CBD670C289D6BC24275AA9AC8E186C4A25F6C97AE1A8426A574C3FF8F"
@@ -34591,7 +34639,7 @@
         {
           "path": "src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
           "name": "ValidatePayloadSize",
-          "line": 38,
+          "line": 36,
           "tokens": 42,
           "hash": "FACBDEB6DA1C34850E122DC9ECD369FF375565FE0B8CE4F19BEF4BD201B34657",
           "shape": "EF6A030CBD670C289D6BC24275AA9AC8E186C4A25F6C97AE1A8426A574C3FF8F"
@@ -34607,7 +34655,7 @@
         {
           "path": "src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
           "name": "ValidatePayloadSize",
-          "line": 37,
+          "line": 35,
           "tokens": 42,
           "hash": "FACBDEB6DA1C34850E122DC9ECD369FF375565FE0B8CE4F19BEF4BD201B34657",
           "shape": "EF6A030CBD670C289D6BC24275AA9AC8E186C4A25F6C97AE1A8426A574C3FF8F"
@@ -34623,7 +34671,7 @@
         {
           "path": "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
           "name": "ValidatePayloadSize",
-          "line": 38,
+          "line": 36,
           "tokens": 42,
           "hash": "FACBDEB6DA1C34850E122DC9ECD369FF375565FE0B8CE4F19BEF4BD201B34657",
           "shape": "EF6A030CBD670C289D6BC24275AA9AC8E186C4A25F6C97AE1A8426A574C3FF8F"
@@ -34631,7 +34679,7 @@
         {
           "path": "src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
           "name": "ValidatePayloadSize",
-          "line": 38,
+          "line": 36,
           "tokens": 42,
           "hash": "FACBDEB6DA1C34850E122DC9ECD369FF375565FE0B8CE4F19BEF4BD201B34657",
           "shape": "EF6A030CBD670C289D6BC24275AA9AC8E186C4A25F6C97AE1A8426A574C3FF8F"
@@ -34639,7 +34687,7 @@
         {
           "path": "src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
           "name": "ValidatePayloadSize",
-          "line": 38,
+          "line": 36,
           "tokens": 42,
           "hash": "FACBDEB6DA1C34850E122DC9ECD369FF375565FE0B8CE4F19BEF4BD201B34657",
           "shape": "EF6A030CBD670C289D6BC24275AA9AC8E186C4A25F6C97AE1A8426A574C3FF8F"
@@ -34647,7 +34695,7 @@
         {
           "path": "src/GWGUI.Emulation.Epoch/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
           "name": "ValidatePayloadSize",
-          "line": 38,
+          "line": 36,
           "tokens": 42,
           "hash": "FACBDEB6DA1C34850E122DC9ECD369FF375565FE0B8CE4F19BEF4BD201B34657",
           "shape": "EF6A030CBD670C289D6BC24275AA9AC8E186C4A25F6C97AE1A8426A574C3FF8F"
@@ -34655,7 +34703,7 @@
         {
           "path": "src/GWGUI.Emulation.Bandai/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
           "name": "ValidatePayloadSize",
-          "line": 38,
+          "line": 36,
           "tokens": 42,
           "hash": "FACBDEB6DA1C34850E122DC9ECD369FF375565FE0B8CE4F19BEF4BD201B34657",
           "shape": "EF6A030CBD670C289D6BC24275AA9AC8E186C4A25F6C97AE1A8426A574C3FF8F"
@@ -35574,7 +35622,7 @@
   ],
   "scope": "All current repository CSharp and PowerShell files; no age filter; candidates require semantic review",
   "qualificationCarryForward": {
-    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical",
-    "occurrences": 249
+    "occurrences": 251,
+    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical"
   }
 }
