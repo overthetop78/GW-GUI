@@ -53,16 +53,7 @@ internal static class SavedStateFunctions
     internal static string ContentHash(MachineConfiguration configuration) => HashBytes(JsonSerializer.SerializeToUtf8Bytes(ContentEntries(configuration), StateConstants.JsonOptions));
     private static IReadOnlyList<StateContentEntry> ContentEntries(MachineConfiguration configuration) => configuration.Firmware.Images.OrderBy(image => image.Key).Select(image => new StateContentEntry(image.Key.ToString(), "firmware", HashFile(image.Value))).ToArray();
     private static EmulationMediaSlot MediaOrder(MediaConfiguration media) => media.Slot;
-    internal static bool IsHeaderValid(SavedStateHeader header) => header.FormatVersion
-        > StateConstants.EmptyLength
-        && Enum.IsDefined(header.Core)
-        && Enum.IsDefined(header.Model)
-        && !string.IsNullOrWhiteSpace(header.CoreName)
-        && !string.IsNullOrWhiteSpace(header.CoreVersion)
-        && !string.IsNullOrWhiteSpace(header.CoreSha256)
-        && !string.IsNullOrWhiteSpace(header.ConfigurationSha256)
-        && !string.IsNullOrWhiteSpace(header.ContentSha256)
-        && !string.IsNullOrWhiteSpace(header.StateSha256);
+    internal static bool IsHeaderValid(SavedStateHeader header) => EmulationStateFileFunctions.IsHeaderValid(header);
     private static StateInputFingerprint InputFingerprint(InputConfiguration input, MachineModel model) => new(KeyboardDictionary.Bindings(input, model).OrderBy(pair => pair.Key, StringComparer.Ordinal).ToArray());
 
     private static string HashFile(string path) => EmulationCoreDiagnosticFunctions.CalculateSha256(path);

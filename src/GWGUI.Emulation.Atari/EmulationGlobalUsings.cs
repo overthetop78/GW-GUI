@@ -76,3 +76,8 @@ global using CoreOption = GWGUI.Emulation.Contracts.EmulationCategorizedOption;
 global using CoreRelease = GWGUI.Emulation.Contracts.EmulationCatalogCoreRelease<GWGUI.Emulation.Atari.Common.Machines.Common.Enums.Emulator>;
 global using EmulatorCatalogEntry = GWGUI.Emulation.Contracts.EmulationCoreCatalogEntry<GWGUI.Emulation.Atari.Common.Machines.Common.Enums.Emulator, GWGUI.Emulation.Atari.Common.Machines.Common.Enums.MachineModel>;
 global using HostError = global::GWGUI.Emulation.Contracts.HostError<GWGUI.Emulation.Atari.Emulators.Common.Enums.ErrorCategory, GWGUI.Emulation.Atari.Emulators.Common.Enums.ErrorCode>;
+
+global using SavedStateHeader = global::GWGUI.Emulation.Contracts.EmulationSavedStateHeader<global::GWGUI.Emulation.Atari.Common.Machines.Common.Enums.MachineModel, global::GWGUI.Emulation.Atari.Common.Machines.Common.Enums.Emulator>;
+global using StateContentEntry = global::GWGUI.Emulation.Contracts.EmulationStateContentEntry;
+global using StateControllerFingerprint = global::GWGUI.Emulation.Contracts.EmulationStateControllerFingerprint<global::GWGUI.Emulation.Atari.Common.Machines.Common.Enums.PeripheralCategory>;
+global using StateFile = global::GWGUI.Emulation.Contracts.EmulationSavedStateFile<global::GWGUI.Emulation.Atari.Common.Machines.Common.Enums.MachineModel, global::GWGUI.Emulation.Atari.Common.Machines.Common.Enums.Emulator>;

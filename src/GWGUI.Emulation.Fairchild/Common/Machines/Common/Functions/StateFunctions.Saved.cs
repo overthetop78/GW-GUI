@@ -76,25 +76,17 @@ internal static class SavedStateFunctions
     private static EmulationMediaSlot MediaOrder(MediaConfiguration media) => media.Slot;
 
     internal static bool IsHeaderValid(SavedStateHeader header) =>
-        header.FormatVersion > StateConstants.EmptyLength
-        && Enum.IsDefined(header.Core)
-        && Enum.IsDefined(header.Model)
-        && !string.IsNullOrWhiteSpace(header.CoreName)
-        && !string.IsNullOrWhiteSpace(header.CoreVersion)
-        && !string.IsNullOrWhiteSpace(header.CoreSha256)
-        && !string.IsNullOrWhiteSpace(header.ConfigurationSha256)
-        && !string.IsNullOrWhiteSpace(header.ContentSha256)
-        && !string.IsNullOrWhiteSpace(header.StateSha256);
+        EmulationStateFileFunctions.IsHeaderValid(header);
 
     private static StateInputFingerprint InputFingerprint(InputConfiguration input) => new(
-        (input.Keyboard ?? new Dictionary<string, string>()).OrderBy(pair => pair.Key, StringComparer.Ordinal).ToArray(),
+        EmulationStateFileFunctions.OrderInputMappings(input.Keyboard).ToArray(),
         (input.Controllers ?? []).OrderBy(controller => controller.Port)
             .Select(controller => new StateControllerFingerprint(
                 controller.Port,
                 controller.Peripheral,
                 controller.DeviceId,
                 controller.DeadZonePercent,
-                (controller.Mappings ?? new Dictionary<string, string>()).OrderBy(pair => pair.Key, StringComparer.Ordinal).ToArray()))
+                EmulationStateFileFunctions.OrderInputMappings(controller.Mappings).ToArray()))
             .ToArray());
 
     private static string HashPath(string path) =>

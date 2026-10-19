@@ -42,3 +42,8 @@ global using CoreOptionValue = GWGUI.Emulation.Contracts.EmulationResourceOption
 global using CoreRelease = GWGUI.Emulation.Contracts.EmulationCatalogCoreRelease<GWGUI.Emulation.Apple.Common.Machines.Common.Enums.Emulator>;
 global using EmulatorCatalogEntry = GWGUI.Emulation.Contracts.EmulationCoreCatalogEntry<GWGUI.Emulation.Apple.Common.Machines.Common.Enums.Emulator, GWGUI.Emulation.Apple.Common.Machines.Common.Enums.MachineModel>;
 global using HostError = global::GWGUI.Emulation.Contracts.HostError<GWGUI.Emulation.Apple.Common.Enums.ErrorCategory, GWGUI.Emulation.Apple.Common.Enums.ErrorCode>;
+
+global using SavedStateHeader = global::GWGUI.Emulation.Contracts.EmulationSavedStateHeader<global::GWGUI.Emulation.Apple.Common.Machines.Common.Enums.MachineModel, global::GWGUI.Emulation.Apple.Common.Machines.Common.Enums.Emulator>;
+global using StateContentEntry = global::GWGUI.Emulation.Contracts.EmulationStateContentEntry;
+global using StateControllerFingerprint = global::GWGUI.Emulation.Contracts.EmulationStateControllerFingerprint<global::GWGUI.Emulation.Apple.Common.Machines.Common.Enums.PeripheralCategory>;
+global using StateFile = global::GWGUI.Emulation.Contracts.EmulationSavedStateFile<global::GWGUI.Emulation.Apple.Common.Machines.Common.Enums.MachineModel, global::GWGUI.Emulation.Apple.Common.Machines.Common.Enums.Emulator>;

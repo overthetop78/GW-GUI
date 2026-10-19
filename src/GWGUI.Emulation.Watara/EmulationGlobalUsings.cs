@@ -36,3 +36,8 @@ global using CoreOption = GWGUI.Emulation.Contracts.EmulationEnabledOption;
 global using CoreRelease = GWGUI.Emulation.Contracts.EmulationCatalogCoreRelease<GWGUI.Emulation.Watara.Common.Machines.Common.Enums.Emulator>;
 global using EmulatorCatalogEntry = GWGUI.Emulation.Contracts.EmulationCoreCatalogEntry<GWGUI.Emulation.Watara.Common.Machines.Common.Enums.Emulator, GWGUI.Emulation.Watara.Common.Machines.Common.Enums.MachineModel>;
 global using HostError = global::GWGUI.Emulation.Contracts.HostError;
+
+global using SavedStateHeader = global::GWGUI.Emulation.Contracts.EmulationSavedStateHeader<global::GWGUI.Emulation.Watara.Common.Machines.Common.Enums.MachineModel, global::GWGUI.Emulation.Watara.Common.Machines.Common.Enums.Emulator>;
+global using StateContentEntry = global::GWGUI.Emulation.Contracts.EmulationStateContentEntry;
+global using StateControllerFingerprint = global::GWGUI.Emulation.Contracts.EmulationStateControllerFingerprint<global::GWGUI.Emulation.Watara.Common.Machines.Common.Enums.PeripheralCategory>;
+global using StateFile = global::GWGUI.Emulation.Contracts.EmulationSavedStateFile<global::GWGUI.Emulation.Watara.Common.Machines.Common.Enums.MachineModel, global::GWGUI.Emulation.Watara.Common.Machines.Common.Enums.Emulator>;

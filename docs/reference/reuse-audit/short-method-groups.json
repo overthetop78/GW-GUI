@@ -1,27 +1,69 @@
 {
-  "snapshot": "7cf28d7f6c1588c0bb2297a2e739bc1206e721ad",
+  "snapshot": "f99bc49f9132ea0261c4f83aa3949960eb3771f5",
   "snapshotState": "Current worktree based on snapshot",
   "worktreeSourceChanges": [
-    "src/GWGUI.Emulation.Acorn/Common/Machines/Common/Functions/SettingsFunctions.cs",
-    "src/GWGUI.Emulation.Apple/Common/Machines/Common/Functions/SettingsFunctions.cs",
-    "src/GWGUI.Emulation.Bandai/Common/Machines/Common/Functions/SettingsFunctions.cs",
-    "src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/SettingsFunctions.cs",
-    "src/GWGUI.Emulation.Epoch/Common/Machines/Common/Functions/SettingsFunctions.cs",
-    "src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Functions/SettingsFunctions.cs",
-    "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/SettingsFunctions.cs",
-    "src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Functions/SettingsFunctions.cs",
-    "src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/SettingsFunctions.cs",
-    "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/SettingsFunctions.cs",
-    "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/SettingsFunctions.cs",
-    "src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/SettingsFunctions.cs",
-    "src/GWGUI.Emulation.Thomson/Common/Machines/Common/Functions/SettingsFunctions.cs",
-    "src/GWGUI.Emulation.Watara/Common/Machines/Common/Functions/SettingsFunctions.cs",
-    "src/GWGUI.Emulation.Wenquxing/Common/Machines/Common/Functions/SettingsFunctions.cs",
-    "src/GWGUI.Emulation/Functions/EmulationHardwareSettingsFunctions.cs"
+    "src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Contracts/StateContracts.cs",
+    "src/GWGUI.Emulation.Amstrad/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Apple/Common/Machines/Common/Contracts/StateContracts.cs",
+    "src/GWGUI.Emulation.Apple/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+    "src/GWGUI.Emulation.Apple/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Atari/Common/Machines/Common/Contracts/StateContracts.cs",
+    "src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+    "src/GWGUI.Emulation.Atari/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Bandai/Common/Machines/Common/Contracts/StateContracts.cs",
+    "src/GWGUI.Emulation.Bandai/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+    "src/GWGUI.Emulation.Bandai/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Coleco/Common/Machines/Common/Contracts/StateContracts.cs",
+    "src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+    "src/GWGUI.Emulation.Coleco/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Epoch/Common/Machines/Common/Contracts/StateContracts.cs",
+    "src/GWGUI.Emulation.Epoch/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+    "src/GWGUI.Emulation.Epoch/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Contracts/StateContracts.cs",
+    "src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+    "src/GWGUI.Emulation.Fairchild/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Contracts/StateContracts.cs",
+    "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+    "src/GWGUI.Emulation.Mattel/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Microsoft/Common/Machines/Common/Contracts/StateContracts.cs",
+    "src/GWGUI.Emulation.Microsoft/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Nec/Common/Machines/Common/Contracts/StateContracts.cs",
+    "src/GWGUI.Emulation.Nec/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Contracts/StateContracts.cs",
+    "src/GWGUI.Emulation.Nintendo/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Contracts/StateContracts.cs",
+    "src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+    "src/GWGUI.Emulation.Panasonic/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Philips/Common/Machines/Common/Contracts/StateContracts.cs",
+    "src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+    "src/GWGUI.Emulation.Philips/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Sega/Common/Machines/Common/Contracts/StateContracts.cs",
+    "src/GWGUI.Emulation.Sega/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Contracts/StateContracts.cs",
+    "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+    "src/GWGUI.Emulation.Sharp/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Contracts/StateContracts.cs",
+    "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+    "src/GWGUI.Emulation.Sinclair/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Snk/Common/Machines/Common/Contracts/StateContracts.cs",
+    "src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+    "src/GWGUI.Emulation.Snk/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Sony/Common/Machines/Common/Contracts/StateContracts.cs",
+    "src/GWGUI.Emulation.Sony/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Thomson/Common/Machines/Common/Contracts/StateContracts.cs",
+    "src/GWGUI.Emulation.Thomson/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+    "src/GWGUI.Emulation.Thomson/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Watara/Common/Machines/Common/Contracts/StateContracts.cs",
+    "src/GWGUI.Emulation.Watara/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+    "src/GWGUI.Emulation.Watara/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Wenquxing/Common/Machines/Common/Contracts/StateContracts.cs",
+    "src/GWGUI.Emulation.Wenquxing/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+    "src/GWGUI.Emulation.Wenquxing/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation/Functions/EmulationStateFileFunctions.cs"
   ],
   "scope": "All current non-ignored repository CSharp files, including hidden paths; BaseMethodDeclaration bodies with fewer than 30 tokens. Candidate presence is not a defect or a completion claim.",
   "fileCount": 7217,
-  "methodBodyCount": 9506,
+  "methodBodyCount": 9526,
   "exactGroups": [
     {
       "hash": "0017F14C61995D644C52FF90F094E4708DC2CA772615CF2F5DD41E74BD202ECA",
@@ -34934,6 +34976,224 @@
       "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
+      "hash": "6AD211930FA122FF021FB3DE399B8F0E01942776AEBC3B9B8EA3B9F72AAA7289",
+      "tokens": 7,
+      "bodyTokens": "=> EmulationStateFileFunctions . IsHeaderValid ( header )",
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Apple/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+          "name": "IsHeaderValid",
+          "owner": "SavedStateFunctions",
+          "kind": "MethodDeclaration",
+          "line": 79,
+          "parameters": "(SavedStateHeader header)",
+          "tokens": 7,
+          "bodyTokens": "=> EmulationStateFileFunctions . IsHeaderValid ( header )",
+          "hash": "6AD211930FA122FF021FB3DE399B8F0E01942776AEBC3B9B8EA3B9F72AAA7289",
+          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
+          "qualification": "Verified complete state projection/predicate using original shared SDK contracts and algorithms; stateFingerprintContractsReuse. Closed enum types,all original fields,order,UTF8/JSON/hash and predicate controls preserved; no session-wide claim.",
+          "qualificationSourceSha256": "B6AF8720A161C9FCF3C719153D476A80D5A386123620359FCC63F59CA775BD26"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+          "name": "IsHeaderValid",
+          "owner": "SavedStateFunctions",
+          "kind": "MethodDeclaration",
+          "line": 77,
+          "parameters": "(SavedStateHeader header)",
+          "tokens": 7,
+          "bodyTokens": "=> EmulationStateFileFunctions . IsHeaderValid ( header )",
+          "hash": "6AD211930FA122FF021FB3DE399B8F0E01942776AEBC3B9B8EA3B9F72AAA7289",
+          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
+          "qualification": "Verified complete state projection/predicate using original shared SDK contracts and algorithms; stateFingerprintContractsReuse. Closed enum types,all original fields,order,UTF8/JSON/hash and predicate controls preserved; no session-wide claim.",
+          "qualificationSourceSha256": "821D67F5B8239A973D935BB53973BFFA3F24522CF791203761E5877148017870"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Bandai/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+          "name": "IsHeaderValid",
+          "owner": "SavedStateFunctions",
+          "kind": "MethodDeclaration",
+          "line": 78,
+          "parameters": "(SavedStateHeader header)",
+          "tokens": 7,
+          "bodyTokens": "=> EmulationStateFileFunctions . IsHeaderValid ( header )",
+          "hash": "6AD211930FA122FF021FB3DE399B8F0E01942776AEBC3B9B8EA3B9F72AAA7289",
+          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
+          "qualification": "Verified complete state projection/predicate using original shared SDK contracts and algorithms; stateFingerprintContractsReuse. Closed enum types,all original fields,order,UTF8/JSON/hash and predicate controls preserved; no session-wide claim.",
+          "qualificationSourceSha256": "D8C000AB575243BB425BE254C1ECE1C001AFE93F817D11DD002CB1E58B8EE26B"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+          "name": "IsHeaderValid",
+          "owner": "SavedStateFunctions",
+          "kind": "MethodDeclaration",
+          "line": 78,
+          "parameters": "(SavedStateHeader header)",
+          "tokens": 7,
+          "bodyTokens": "=> EmulationStateFileFunctions . IsHeaderValid ( header )",
+          "hash": "6AD211930FA122FF021FB3DE399B8F0E01942776AEBC3B9B8EA3B9F72AAA7289",
+          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
+          "qualification": "Verified complete state projection/predicate using original shared SDK contracts and algorithms; stateFingerprintContractsReuse. Closed enum types,all original fields,order,UTF8/JSON/hash and predicate controls preserved; no session-wide claim.",
+          "qualificationSourceSha256": "A1F8FCAC5134E893CC849A514BA7F8F8629D3E7E6025757515EB59FDADB97F83"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Epoch/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+          "name": "IsHeaderValid",
+          "owner": "SavedStateFunctions",
+          "kind": "MethodDeclaration",
+          "line": 78,
+          "parameters": "(SavedStateHeader header)",
+          "tokens": 7,
+          "bodyTokens": "=> EmulationStateFileFunctions . IsHeaderValid ( header )",
+          "hash": "6AD211930FA122FF021FB3DE399B8F0E01942776AEBC3B9B8EA3B9F72AAA7289",
+          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
+          "qualification": "Verified complete state projection/predicate using original shared SDK contracts and algorithms; stateFingerprintContractsReuse. Closed enum types,all original fields,order,UTF8/JSON/hash and predicate controls preserved; no session-wide claim.",
+          "qualificationSourceSha256": "2E8993319BD0867434923A9BE88CA02ED47FC3FE59A1CFBD753F1CEEF80DAA24"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+          "name": "IsHeaderValid",
+          "owner": "SavedStateFunctions",
+          "kind": "MethodDeclaration",
+          "line": 78,
+          "parameters": "(SavedStateHeader header)",
+          "tokens": 7,
+          "bodyTokens": "=> EmulationStateFileFunctions . IsHeaderValid ( header )",
+          "hash": "6AD211930FA122FF021FB3DE399B8F0E01942776AEBC3B9B8EA3B9F72AAA7289",
+          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
+          "qualification": "Verified complete state projection/predicate using original shared SDK contracts and algorithms; stateFingerprintContractsReuse. Closed enum types,all original fields,order,UTF8/JSON/hash and predicate controls preserved; no session-wide claim.",
+          "qualificationSourceSha256": "69B2EB5D92A582322E0D8F3D86602E955846B9C9C6AFFF7E54BDC4C61C7D0C33"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+          "name": "IsHeaderValid",
+          "owner": "SavedStateFunctions",
+          "kind": "MethodDeclaration",
+          "line": 78,
+          "parameters": "(SavedStateHeader header)",
+          "tokens": 7,
+          "bodyTokens": "=> EmulationStateFileFunctions . IsHeaderValid ( header )",
+          "hash": "6AD211930FA122FF021FB3DE399B8F0E01942776AEBC3B9B8EA3B9F72AAA7289",
+          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
+          "qualification": "Verified complete state projection/predicate using original shared SDK contracts and algorithms; stateFingerprintContractsReuse. Closed enum types,all original fields,order,UTF8/JSON/hash and predicate controls preserved; no session-wide claim.",
+          "qualificationSourceSha256": "6D8C785E5AFF2A97A7DF1ECBD10156FB4B1E93CE8E4A2E0DE257FA6F79ABA9F3"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+          "name": "IsHeaderValid",
+          "owner": "SavedStateFunctions",
+          "kind": "MethodDeclaration",
+          "line": 63,
+          "parameters": "(SavedStateHeader header)",
+          "tokens": 7,
+          "bodyTokens": "=> EmulationStateFileFunctions . IsHeaderValid ( header )",
+          "hash": "6AD211930FA122FF021FB3DE399B8F0E01942776AEBC3B9B8EA3B9F72AAA7289",
+          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
+          "qualification": "Verified complete state projection/predicate using original shared SDK contracts and algorithms; stateFingerprintContractsReuse. Closed enum types,all original fields,order,UTF8/JSON/hash and predicate controls preserved; no session-wide claim.",
+          "qualificationSourceSha256": "7B7D4CE30BFF7926DCF88A6B5BBDBA7AC4F4B4488E2C6123C4B5AB1150C2587A"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+          "name": "IsHeaderValid",
+          "owner": "SavedStateFunctions",
+          "kind": "MethodDeclaration",
+          "line": 78,
+          "parameters": "(SavedStateHeader header)",
+          "tokens": 7,
+          "bodyTokens": "=> EmulationStateFileFunctions . IsHeaderValid ( header )",
+          "hash": "6AD211930FA122FF021FB3DE399B8F0E01942776AEBC3B9B8EA3B9F72AAA7289",
+          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
+          "qualification": "Verified complete state projection/predicate using original shared SDK contracts and algorithms; stateFingerprintContractsReuse. Closed enum types,all original fields,order,UTF8/JSON/hash and predicate controls preserved; no session-wide claim.",
+          "qualificationSourceSha256": "D039E3C8F8F08AEF883B5832E5248EBD56F8B5A5FED1047FD4DA052D1AB9EFF1"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+          "name": "IsHeaderValid",
+          "owner": "SavedStateFunctions",
+          "kind": "MethodDeclaration",
+          "line": 62,
+          "parameters": "(SavedStateHeader header)",
+          "tokens": 7,
+          "bodyTokens": "=> EmulationStateFileFunctions . IsHeaderValid ( header )",
+          "hash": "6AD211930FA122FF021FB3DE399B8F0E01942776AEBC3B9B8EA3B9F72AAA7289",
+          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
+          "qualification": "Verified complete state projection/predicate using original shared SDK contracts and algorithms; stateFingerprintContractsReuse. Closed enum types,all original fields,order,UTF8/JSON/hash and predicate controls preserved; no session-wide claim.",
+          "qualificationSourceSha256": "58F7E553A86D701A6A731E9AF8FA9533A868C797B6CA4DFECC46CA47CD44D529"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+          "name": "IsHeaderValid",
+          "owner": "SavedStateFunctions",
+          "kind": "MethodDeclaration",
+          "line": 68,
+          "parameters": "(SavedStateHeader header)",
+          "tokens": 7,
+          "bodyTokens": "=> EmulationStateFileFunctions . IsHeaderValid ( header )",
+          "hash": "6AD211930FA122FF021FB3DE399B8F0E01942776AEBC3B9B8EA3B9F72AAA7289",
+          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
+          "qualification": "Verified complete state projection/predicate using original shared SDK contracts and algorithms; stateFingerprintContractsReuse. Closed enum types,all original fields,order,UTF8/JSON/hash and predicate controls preserved; no session-wide claim.",
+          "qualificationSourceSha256": "432D1F6C9ABCEDCD9E05E42A787DB4091BF645806EBCD75542525A7CFD235EAF"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+          "name": "IsHeaderValid",
+          "owner": "SavedStateFunctions",
+          "kind": "MethodDeclaration",
+          "line": 67,
+          "parameters": "(SavedStateHeader header)",
+          "tokens": 7,
+          "bodyTokens": "=> EmulationStateFileFunctions . IsHeaderValid ( header )",
+          "hash": "6AD211930FA122FF021FB3DE399B8F0E01942776AEBC3B9B8EA3B9F72AAA7289",
+          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
+          "qualification": "Verified complete state projection/predicate using original shared SDK contracts and algorithms; stateFingerprintContractsReuse. Closed enum types,all original fields,order,UTF8/JSON/hash and predicate controls preserved; no session-wide claim.",
+          "qualificationSourceSha256": "9C8B8E5970B54021AE0B388AAE4CA2F70EC99A3F68D29F7E10378B32740B2383"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Thomson/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+          "name": "IsHeaderValid",
+          "owner": "SavedStateFunctions",
+          "kind": "MethodDeclaration",
+          "line": 68,
+          "parameters": "(SavedStateHeader header)",
+          "tokens": 7,
+          "bodyTokens": "=> EmulationStateFileFunctions . IsHeaderValid ( header )",
+          "hash": "6AD211930FA122FF021FB3DE399B8F0E01942776AEBC3B9B8EA3B9F72AAA7289",
+          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
+          "qualification": "Verified complete state projection/predicate using original shared SDK contracts and algorithms; stateFingerprintContractsReuse. Closed enum types,all original fields,order,UTF8/JSON/hash and predicate controls preserved; no session-wide claim.",
+          "qualificationSourceSha256": "6252D562D1E9CDF379EDCCE07BA9A2AB0907414F59C2A2733A2D0E8C3A04FBD0"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Watara/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+          "name": "IsHeaderValid",
+          "owner": "SavedStateFunctions",
+          "kind": "MethodDeclaration",
+          "line": 59,
+          "parameters": "(SavedStateHeader header)",
+          "tokens": 7,
+          "bodyTokens": "=> EmulationStateFileFunctions . IsHeaderValid ( header )",
+          "hash": "6AD211930FA122FF021FB3DE399B8F0E01942776AEBC3B9B8EA3B9F72AAA7289",
+          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
+          "qualification": "Verified complete state projection/predicate using original shared SDK contracts and algorithms; stateFingerprintContractsReuse. Closed enum types,all original fields,order,UTF8/JSON/hash and predicate controls preserved; no session-wide claim.",
+          "qualificationSourceSha256": "151DBE44D97EE5F273487E47DC4AD457AA33B5DFCC51D9FCF99B1CFC39BEAE3A"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Wenquxing/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+          "name": "IsHeaderValid",
+          "owner": "SavedStateFunctions",
+          "kind": "MethodDeclaration",
+          "line": 56,
+          "parameters": "(SavedStateHeader header)",
+          "tokens": 7,
+          "bodyTokens": "=> EmulationStateFileFunctions . IsHeaderValid ( header )",
+          "hash": "6AD211930FA122FF021FB3DE399B8F0E01942776AEBC3B9B8EA3B9F72AAA7289",
+          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
+          "qualification": "Verified complete state projection/predicate using original shared SDK contracts and algorithms; stateFingerprintContractsReuse. Closed enum types,all original fields,order,UTF8/JSON/hash and predicate controls preserved; no session-wide claim.",
+          "qualificationSourceSha256": "9B12BA4C1AF4B1A66F8E5556D5A596E65142EB77108C71943973009D9B94A6DA"
+        }
+      ],
+      "qualification": "All occurrences qualified individually; see member evidence"
+    },
+    {
       "hash": "6B085E2717F854A0DE2FDC4EABE798DBBDDFC07BE42175F636BA24B432C02608",
       "tokens": 10,
       "bodyTokens": "=> from + ( to - from ) * amount",
@@ -36533,14 +36793,14 @@
           "name": "HashFile",
           "owner": "SavedStateFunctions",
           "kind": "MethodDeclaration",
-          "line": 82,
+          "line": 73,
           "parameters": "(string path)",
           "tokens": 7,
           "bodyTokens": "=> EmulationCoreDiagnosticFunctions . CalculateSha256 ( path )",
           "hash": "7199063222D5CD76E4186D3E3B2E685984670EABED39251CF0097ACB4E02AF6C",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationCoreDiagnosticFunctions.CalculateSha256(string); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "611AE70FD099E3D04EE940E439B6E863D5FC41CD7E85E68680818F16CA33143B"
+          "qualificationSourceSha256": "7B7D4CE30BFF7926DCF88A6B5BBDBA7AC4F4B4488E2C6123C4B5AB1150C2587A"
         },
         {
           "path": "src/GWGUI.Emulation.Panasonic/Emulators/Opera/Interop/Functions/CoreFunctions.Diagnostics.cs",
@@ -36645,14 +36905,14 @@
           "name": "HashFile",
           "owner": "SavedStateFunctions",
           "kind": "MethodDeclaration",
-          "line": 68,
+          "line": 59,
           "parameters": "(string path)",
           "tokens": 7,
           "bodyTokens": "=> EmulationCoreDiagnosticFunctions . CalculateSha256 ( path )",
           "hash": "7199063222D5CD76E4186D3E3B2E685984670EABED39251CF0097ACB4E02AF6C",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationCoreDiagnosticFunctions.CalculateSha256(string); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "B634A37B9A027645B0D9677DD995553EDC52737CDB60359046C99D5CE552C107"
+          "qualificationSourceSha256": "9B12BA4C1AF4B1A66F8E5556D5A596E65142EB77108C71943973009D9B94A6DA"
         },
         {
           "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Interop/Functions/CoreFunctions.Diagnostics.cs",
@@ -39226,7 +39486,7 @@
           "hash": "7BE050FFA84516FA0C67A879F4496D599879EFEBD7EB006860EFD7F872AC82E6",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationStateFileFunctions.HashBytes(System.ReadOnlySpan<byte>); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "18E1EAA8C9EEC9A7962017990534BB755ACA0C1EC0398747F687453F8445C884"
+          "qualificationSourceSha256": "B6AF8720A161C9FCF3C719153D476A80D5A386123620359FCC63F59CA775BD26"
         },
         {
           "path": "src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
@@ -39240,7 +39500,7 @@
           "hash": "7BE050FFA84516FA0C67A879F4496D599879EFEBD7EB006860EFD7F872AC82E6",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationStateFileFunctions.HashBytes(System.ReadOnlySpan<byte>); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "8EB04EE4160755E13B7A4640D1AE1669AFC8A95F8BD2CBCF6D78E2410D2D2A59"
+          "qualificationSourceSha256": "821D67F5B8239A973D935BB53973BFFA3F24522CF791203761E5877148017870"
         },
         {
           "path": "src/GWGUI.Emulation.Bandai/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
@@ -39254,7 +39514,7 @@
           "hash": "7BE050FFA84516FA0C67A879F4496D599879EFEBD7EB006860EFD7F872AC82E6",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationStateFileFunctions.HashBytes(System.ReadOnlySpan<byte>); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "76359C862283DC2954A077F69EB37A85EFC190054CFECEE050518C082B41C096"
+          "qualificationSourceSha256": "D8C000AB575243BB425BE254C1ECE1C001AFE93F817D11DD002CB1E58B8EE26B"
         },
         {
           "path": "src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
@@ -39268,7 +39528,7 @@
           "hash": "7BE050FFA84516FA0C67A879F4496D599879EFEBD7EB006860EFD7F872AC82E6",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationStateFileFunctions.HashBytes(System.ReadOnlySpan<byte>); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "F5BDCEF3D9CB42AFAE75454F8B609EC387B0B8D5361877F90A62829B64380C1E"
+          "qualificationSourceSha256": "A1F8FCAC5134E893CC849A514BA7F8F8629D3E7E6025757515EB59FDADB97F83"
         },
         {
           "path": "src/GWGUI.Emulation.Commodore/Common/Services/StateStore.cs",
@@ -39296,7 +39556,7 @@
           "hash": "7BE050FFA84516FA0C67A879F4496D599879EFEBD7EB006860EFD7F872AC82E6",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationStateFileFunctions.HashBytes(System.ReadOnlySpan<byte>); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "AF16BA082E9EB5170E3E2CF7D65B88ECDDDA11B7A7C3ED99747E7D79A450A414"
+          "qualificationSourceSha256": "2E8993319BD0867434923A9BE88CA02ED47FC3FE59A1CFBD753F1CEEF80DAA24"
         },
         {
           "path": "src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
@@ -39310,7 +39570,7 @@
           "hash": "7BE050FFA84516FA0C67A879F4496D599879EFEBD7EB006860EFD7F872AC82E6",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationStateFileFunctions.HashBytes(System.ReadOnlySpan<byte>); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "ABFDC39108C454912CE1AB082B01535FBBA89246FB954C06704CBE09E6621B87"
+          "qualificationSourceSha256": "69B2EB5D92A582322E0D8F3D86602E955846B9C9C6AFFF7E54BDC4C61C7D0C33"
         },
         {
           "path": "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
@@ -39324,7 +39584,7 @@
           "hash": "7BE050FFA84516FA0C67A879F4496D599879EFEBD7EB006860EFD7F872AC82E6",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationStateFileFunctions.HashBytes(System.ReadOnlySpan<byte>); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "E1329DA2F7513260FCBCA74DE93B7723F0393672A23DAABBAEFB7EA39F0E8B77"
+          "qualificationSourceSha256": "6D8C785E5AFF2A97A7DF1ECBD10156FB4B1E93CE8E4A2E0DE257FA6F79ABA9F3"
         },
         {
           "path": "src/GWGUI.Emulation.Microsoft/Common/Services/StateStore.cs",
@@ -39380,7 +39640,7 @@
           "hash": "7BE050FFA84516FA0C67A879F4496D599879EFEBD7EB006860EFD7F872AC82E6",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationStateFileFunctions.HashBytes(System.ReadOnlySpan<byte>); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "611AE70FD099E3D04EE940E439B6E863D5FC41CD7E85E68680818F16CA33143B"
+          "qualificationSourceSha256": "7B7D4CE30BFF7926DCF88A6B5BBDBA7AC4F4B4488E2C6123C4B5AB1150C2587A"
         },
         {
           "path": "src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
@@ -39394,7 +39654,7 @@
           "hash": "7BE050FFA84516FA0C67A879F4496D599879EFEBD7EB006860EFD7F872AC82E6",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationStateFileFunctions.HashBytes(System.ReadOnlySpan<byte>); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "AA356090ED5C33319F9EDB182B540FFA69387BA69CB5346014FB804B79949AC7"
+          "qualificationSourceSha256": "D039E3C8F8F08AEF883B5832E5248EBD56F8B5A5FED1047FD4DA052D1AB9EFF1"
         },
         {
           "path": "src/GWGUI.Emulation.Sega/Common/Services/StateStore.cs",
@@ -39422,7 +39682,7 @@
           "hash": "7BE050FFA84516FA0C67A879F4496D599879EFEBD7EB006860EFD7F872AC82E6",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationStateFileFunctions.HashBytes(System.ReadOnlySpan<byte>); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "41FD10B73CF3A56E25B4625CB3E8E32DC5001029FA7B7B51AA89A5BBD564D5EF"
+          "qualificationSourceSha256": "58F7E553A86D701A6A731E9AF8FA9533A868C797B6CA4DFECC46CA47CD44D529"
         },
         {
           "path": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
@@ -39436,7 +39696,7 @@
           "hash": "7BE050FFA84516FA0C67A879F4496D599879EFEBD7EB006860EFD7F872AC82E6",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationStateFileFunctions.HashBytes(System.ReadOnlySpan<byte>); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "07FCC0B6B79516A0CB1C7A8271250F02C2620C0FA26FC479535037849CC214AA"
+          "qualificationSourceSha256": "432D1F6C9ABCEDCD9E05E42A787DB4091BF645806EBCD75542525A7CFD235EAF"
         },
         {
           "path": "src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
@@ -39450,7 +39710,7 @@
           "hash": "7BE050FFA84516FA0C67A879F4496D599879EFEBD7EB006860EFD7F872AC82E6",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationStateFileFunctions.HashBytes(System.ReadOnlySpan<byte>); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "EF01635AED4F016BB00BFDB2995AEA685FC3FD04D9C99442321EA7D9B28929C5"
+          "qualificationSourceSha256": "9C8B8E5970B54021AE0B388AAE4CA2F70EC99A3F68D29F7E10378B32740B2383"
         },
         {
           "path": "src/GWGUI.Emulation.Sony/Common/Services/StateStore.cs",
@@ -39478,7 +39738,7 @@
           "hash": "7BE050FFA84516FA0C67A879F4496D599879EFEBD7EB006860EFD7F872AC82E6",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationStateFileFunctions.HashBytes(System.ReadOnlySpan<byte>); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "DDD66A6D43B0B30B457976271F3AB75FE8A832DAED9A8D33D4DDDC5688BB4709"
+          "qualificationSourceSha256": "6252D562D1E9CDF379EDCCE07BA9A2AB0907414F59C2A2733A2D0E8C3A04FBD0"
         },
         {
           "path": "src/GWGUI.Emulation.Watara/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
@@ -39492,7 +39752,7 @@
           "hash": "7BE050FFA84516FA0C67A879F4496D599879EFEBD7EB006860EFD7F872AC82E6",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationStateFileFunctions.HashBytes(System.ReadOnlySpan<byte>); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "B1CEF9DFA63C5FA7A0C752DF3622921E65DCF0AE924DD73664230BDF2486C843"
+          "qualificationSourceSha256": "151DBE44D97EE5F273487E47DC4AD457AA33B5DFCC51D9FCF99B1CFC39BEAE3A"
         },
         {
           "path": "src/GWGUI.Emulation.Wenquxing/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
@@ -39506,7 +39766,7 @@
           "hash": "7BE050FFA84516FA0C67A879F4496D599879EFEBD7EB006860EFD7F872AC82E6",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationStateFileFunctions.HashBytes(System.ReadOnlySpan<byte>); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "B634A37B9A027645B0D9677DD995553EDC52737CDB60359046C99D5CE552C107"
+          "qualificationSourceSha256": "9B12BA4C1AF4B1A66F8E5556D5A596E65142EB77108C71943973009D9B94A6DA"
         }
       ],
       "qualification": "All occurrences qualified individually; see member evidence"
@@ -100088,6 +100348,37 @@
       "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
+      "shape": "526E45DDE2A06CEF9B52E67B27CC8457DC626B15B9234FCCF628B128561DEDB8",
+      "tokens": 16,
+      "current": [
+        {
+          "path": "tests/GWGUI.Tests/Emulation/StateFingerprintContractTests.cs",
+          "name": "NativeCases",
+          "owner": "StateFingerprintContractTests",
+          "kind": "MethodDeclaration",
+          "line": 16,
+          "parameters": "()",
+          "tokens": 16,
+          "bodyTokens": "=> Families . Select ( family => new object [  ] { family } )",
+          "hash": "08000E4ABA6B12FDA087C25D99672F21CF7BEFB5E543D9EC55E0BABA3C286235",
+          "shape": "526E45DDE2A06CEF9B52E67B27CC8457DC626B15B9234FCCF628B128561DEDB8"
+        },
+        {
+          "path": "tests/GWGUI.Tests/Emulation/StateFingerprintContractTests.cs",
+          "name": "ControllerCases",
+          "owner": "StateFingerprintContractTests",
+          "kind": "MethodDeclaration",
+          "line": 17,
+          "parameters": "()",
+          "tokens": 16,
+          "bodyTokens": "=> ControllerFamilies . Select ( family => new object [  ] { family } )",
+          "hash": "2AAE835D8FEC149E7C6A8E6064DFEC9FC66C81FA2818658B7B3C551ABE8E64EB",
+          "shape": "526E45DDE2A06CEF9B52E67B27CC8457DC626B15B9234FCCF628B128561DEDB8"
+        }
+      ],
+      "qualification": "pending-symbol-and-ownership-comparison"
+    },
+    {
       "shape": "52F36C06CA05CE2EAABB40F04914A015A0C64A2331E92397B4004526365A0A5A",
       "tokens": 22,
       "current": [
@@ -102989,7 +103280,21 @@
           "hash": "7BE050FFA84516FA0C67A879F4496D599879EFEBD7EB006860EFD7F872AC82E6",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationStateFileFunctions.HashBytes(System.ReadOnlySpan<byte>); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "18E1EAA8C9EEC9A7962017990534BB755ACA0C1EC0398747F687453F8445C884"
+          "qualificationSourceSha256": "B6AF8720A161C9FCF3C719153D476A80D5A386123620359FCC63F59CA775BD26"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Apple/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+          "name": "IsHeaderValid",
+          "owner": "SavedStateFunctions",
+          "kind": "MethodDeclaration",
+          "line": 79,
+          "parameters": "(SavedStateHeader header)",
+          "tokens": 7,
+          "bodyTokens": "=> EmulationStateFileFunctions . IsHeaderValid ( header )",
+          "hash": "6AD211930FA122FF021FB3DE399B8F0E01942776AEBC3B9B8EA3B9F72AAA7289",
+          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
+          "qualification": "Verified complete state projection/predicate using original shared SDK contracts and algorithms; stateFingerprintContractsReuse. Closed enum types,all original fields,order,UTF8/JSON/hash and predicate controls preserved; no session-wide claim.",
+          "qualificationSourceSha256": "B6AF8720A161C9FCF3C719153D476A80D5A386123620359FCC63F59CA775BD26"
         },
         {
           "path": "src/GWGUI.Emulation.Apple/Common/Services/Machine.Lifecycle.cs",
@@ -103315,7 +103620,21 @@
           "hash": "7BE050FFA84516FA0C67A879F4496D599879EFEBD7EB006860EFD7F872AC82E6",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationStateFileFunctions.HashBytes(System.ReadOnlySpan<byte>); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "8EB04EE4160755E13B7A4640D1AE1669AFC8A95F8BD2CBCF6D78E2410D2D2A59"
+          "qualificationSourceSha256": "821D67F5B8239A973D935BB53973BFFA3F24522CF791203761E5877148017870"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+          "name": "IsHeaderValid",
+          "owner": "SavedStateFunctions",
+          "kind": "MethodDeclaration",
+          "line": 77,
+          "parameters": "(SavedStateHeader header)",
+          "tokens": 7,
+          "bodyTokens": "=> EmulationStateFileFunctions . IsHeaderValid ( header )",
+          "hash": "6AD211930FA122FF021FB3DE399B8F0E01942776AEBC3B9B8EA3B9F72AAA7289",
+          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
+          "qualification": "Verified complete state projection/predicate using original shared SDK contracts and algorithms; stateFingerprintContractsReuse. Closed enum types,all original fields,order,UTF8/JSON/hash and predicate controls preserved; no session-wide claim.",
+          "qualificationSourceSha256": "821D67F5B8239A973D935BB53973BFFA3F24522CF791203761E5877148017870"
         },
         {
           "path": "src/GWGUI.Emulation.Atari/Common/Services/Machine.Lifecycle.cs",
@@ -103729,7 +104048,21 @@
           "hash": "7BE050FFA84516FA0C67A879F4496D599879EFEBD7EB006860EFD7F872AC82E6",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationStateFileFunctions.HashBytes(System.ReadOnlySpan<byte>); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "76359C862283DC2954A077F69EB37A85EFC190054CFECEE050518C082B41C096"
+          "qualificationSourceSha256": "D8C000AB575243BB425BE254C1ECE1C001AFE93F817D11DD002CB1E58B8EE26B"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Bandai/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+          "name": "IsHeaderValid",
+          "owner": "SavedStateFunctions",
+          "kind": "MethodDeclaration",
+          "line": 78,
+          "parameters": "(SavedStateHeader header)",
+          "tokens": 7,
+          "bodyTokens": "=> EmulationStateFileFunctions . IsHeaderValid ( header )",
+          "hash": "6AD211930FA122FF021FB3DE399B8F0E01942776AEBC3B9B8EA3B9F72AAA7289",
+          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
+          "qualification": "Verified complete state projection/predicate using original shared SDK contracts and algorithms; stateFingerprintContractsReuse. Closed enum types,all original fields,order,UTF8/JSON/hash and predicate controls preserved; no session-wide claim.",
+          "qualificationSourceSha256": "D8C000AB575243BB425BE254C1ECE1C001AFE93F817D11DD002CB1E58B8EE26B"
         },
         {
           "path": "src/GWGUI.Emulation.Bandai/Common/Services/Engine.cs",
@@ -104019,7 +104352,21 @@
           "hash": "7BE050FFA84516FA0C67A879F4496D599879EFEBD7EB006860EFD7F872AC82E6",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationStateFileFunctions.HashBytes(System.ReadOnlySpan<byte>); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "F5BDCEF3D9CB42AFAE75454F8B609EC387B0B8D5361877F90A62829B64380C1E"
+          "qualificationSourceSha256": "A1F8FCAC5134E893CC849A514BA7F8F8629D3E7E6025757515EB59FDADB97F83"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+          "name": "IsHeaderValid",
+          "owner": "SavedStateFunctions",
+          "kind": "MethodDeclaration",
+          "line": 78,
+          "parameters": "(SavedStateHeader header)",
+          "tokens": 7,
+          "bodyTokens": "=> EmulationStateFileFunctions . IsHeaderValid ( header )",
+          "hash": "6AD211930FA122FF021FB3DE399B8F0E01942776AEBC3B9B8EA3B9F72AAA7289",
+          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
+          "qualification": "Verified complete state projection/predicate using original shared SDK contracts and algorithms; stateFingerprintContractsReuse. Closed enum types,all original fields,order,UTF8/JSON/hash and predicate controls preserved; no session-wide claim.",
+          "qualificationSourceSha256": "A1F8FCAC5134E893CC849A514BA7F8F8629D3E7E6025757515EB59FDADB97F83"
         },
         {
           "path": "src/GWGUI.Emulation.Coleco/Common/Services/Engine.cs",
@@ -104559,7 +104906,21 @@
           "hash": "7BE050FFA84516FA0C67A879F4496D599879EFEBD7EB006860EFD7F872AC82E6",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationStateFileFunctions.HashBytes(System.ReadOnlySpan<byte>); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "AF16BA082E9EB5170E3E2CF7D65B88ECDDDA11B7A7C3ED99747E7D79A450A414"
+          "qualificationSourceSha256": "2E8993319BD0867434923A9BE88CA02ED47FC3FE59A1CFBD753F1CEEF80DAA24"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Epoch/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+          "name": "IsHeaderValid",
+          "owner": "SavedStateFunctions",
+          "kind": "MethodDeclaration",
+          "line": 78,
+          "parameters": "(SavedStateHeader header)",
+          "tokens": 7,
+          "bodyTokens": "=> EmulationStateFileFunctions . IsHeaderValid ( header )",
+          "hash": "6AD211930FA122FF021FB3DE399B8F0E01942776AEBC3B9B8EA3B9F72AAA7289",
+          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
+          "qualification": "Verified complete state projection/predicate using original shared SDK contracts and algorithms; stateFingerprintContractsReuse. Closed enum types,all original fields,order,UTF8/JSON/hash and predicate controls preserved; no session-wide claim.",
+          "qualificationSourceSha256": "2E8993319BD0867434923A9BE88CA02ED47FC3FE59A1CFBD753F1CEEF80DAA24"
         },
         {
           "path": "src/GWGUI.Emulation.Epoch/Common/Services/Engine.cs",
@@ -104911,7 +105272,21 @@
           "hash": "7BE050FFA84516FA0C67A879F4496D599879EFEBD7EB006860EFD7F872AC82E6",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationStateFileFunctions.HashBytes(System.ReadOnlySpan<byte>); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "ABFDC39108C454912CE1AB082B01535FBBA89246FB954C06704CBE09E6621B87"
+          "qualificationSourceSha256": "69B2EB5D92A582322E0D8F3D86602E955846B9C9C6AFFF7E54BDC4C61C7D0C33"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+          "name": "IsHeaderValid",
+          "owner": "SavedStateFunctions",
+          "kind": "MethodDeclaration",
+          "line": 78,
+          "parameters": "(SavedStateHeader header)",
+          "tokens": 7,
+          "bodyTokens": "=> EmulationStateFileFunctions . IsHeaderValid ( header )",
+          "hash": "6AD211930FA122FF021FB3DE399B8F0E01942776AEBC3B9B8EA3B9F72AAA7289",
+          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
+          "qualification": "Verified complete state projection/predicate using original shared SDK contracts and algorithms; stateFingerprintContractsReuse. Closed enum types,all original fields,order,UTF8/JSON/hash and predicate controls preserved; no session-wide claim.",
+          "qualificationSourceSha256": "69B2EB5D92A582322E0D8F3D86602E955846B9C9C6AFFF7E54BDC4C61C7D0C33"
         },
         {
           "path": "src/GWGUI.Emulation.Fairchild/Common/Services/Engine.cs",
@@ -105227,7 +105602,21 @@
           "hash": "7BE050FFA84516FA0C67A879F4496D599879EFEBD7EB006860EFD7F872AC82E6",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationStateFileFunctions.HashBytes(System.ReadOnlySpan<byte>); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "E1329DA2F7513260FCBCA74DE93B7723F0393672A23DAABBAEFB7EA39F0E8B77"
+          "qualificationSourceSha256": "6D8C785E5AFF2A97A7DF1ECBD10156FB4B1E93CE8E4A2E0DE257FA6F79ABA9F3"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+          "name": "IsHeaderValid",
+          "owner": "SavedStateFunctions",
+          "kind": "MethodDeclaration",
+          "line": 78,
+          "parameters": "(SavedStateHeader header)",
+          "tokens": 7,
+          "bodyTokens": "=> EmulationStateFileFunctions . IsHeaderValid ( header )",
+          "hash": "6AD211930FA122FF021FB3DE399B8F0E01942776AEBC3B9B8EA3B9F72AAA7289",
+          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
+          "qualification": "Verified complete state projection/predicate using original shared SDK contracts and algorithms; stateFingerprintContractsReuse. Closed enum types,all original fields,order,UTF8/JSON/hash and predicate controls preserved; no session-wide claim.",
+          "qualificationSourceSha256": "6D8C785E5AFF2A97A7DF1ECBD10156FB4B1E93CE8E4A2E0DE257FA6F79ABA9F3"
         },
         {
           "path": "src/GWGUI.Emulation.Mattel/Common/Services/Engine.cs",
@@ -105759,21 +106148,35 @@
           "hash": "7BE050FFA84516FA0C67A879F4496D599879EFEBD7EB006860EFD7F872AC82E6",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationStateFileFunctions.HashBytes(System.ReadOnlySpan<byte>); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "611AE70FD099E3D04EE940E439B6E863D5FC41CD7E85E68680818F16CA33143B"
+          "qualificationSourceSha256": "7B7D4CE30BFF7926DCF88A6B5BBDBA7AC4F4B4488E2C6123C4B5AB1150C2587A"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+          "name": "IsHeaderValid",
+          "owner": "SavedStateFunctions",
+          "kind": "MethodDeclaration",
+          "line": 63,
+          "parameters": "(SavedStateHeader header)",
+          "tokens": 7,
+          "bodyTokens": "=> EmulationStateFileFunctions . IsHeaderValid ( header )",
+          "hash": "6AD211930FA122FF021FB3DE399B8F0E01942776AEBC3B9B8EA3B9F72AAA7289",
+          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
+          "qualification": "Verified complete state projection/predicate using original shared SDK contracts and algorithms; stateFingerprintContractsReuse. Closed enum types,all original fields,order,UTF8/JSON/hash and predicate controls preserved; no session-wide claim.",
+          "qualificationSourceSha256": "7B7D4CE30BFF7926DCF88A6B5BBDBA7AC4F4B4488E2C6123C4B5AB1150C2587A"
         },
         {
           "path": "src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
           "name": "HashFile",
           "owner": "SavedStateFunctions",
           "kind": "MethodDeclaration",
-          "line": 82,
+          "line": 73,
           "parameters": "(string path)",
           "tokens": 7,
           "bodyTokens": "=> EmulationCoreDiagnosticFunctions . CalculateSha256 ( path )",
           "hash": "7199063222D5CD76E4186D3E3B2E685984670EABED39251CF0097ACB4E02AF6C",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationCoreDiagnosticFunctions.CalculateSha256(string); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "611AE70FD099E3D04EE940E439B6E863D5FC41CD7E85E68680818F16CA33143B"
+          "qualificationSourceSha256": "7B7D4CE30BFF7926DCF88A6B5BBDBA7AC4F4B4488E2C6123C4B5AB1150C2587A"
         },
         {
           "path": "src/GWGUI.Emulation.Panasonic/Common/Services/Machine.Lifecycle.cs",
@@ -106061,7 +106464,21 @@
           "hash": "7BE050FFA84516FA0C67A879F4496D599879EFEBD7EB006860EFD7F872AC82E6",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationStateFileFunctions.HashBytes(System.ReadOnlySpan<byte>); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "AA356090ED5C33319F9EDB182B540FFA69387BA69CB5346014FB804B79949AC7"
+          "qualificationSourceSha256": "D039E3C8F8F08AEF883B5832E5248EBD56F8B5A5FED1047FD4DA052D1AB9EFF1"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+          "name": "IsHeaderValid",
+          "owner": "SavedStateFunctions",
+          "kind": "MethodDeclaration",
+          "line": 78,
+          "parameters": "(SavedStateHeader header)",
+          "tokens": 7,
+          "bodyTokens": "=> EmulationStateFileFunctions . IsHeaderValid ( header )",
+          "hash": "6AD211930FA122FF021FB3DE399B8F0E01942776AEBC3B9B8EA3B9F72AAA7289",
+          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
+          "qualification": "Verified complete state projection/predicate using original shared SDK contracts and algorithms; stateFingerprintContractsReuse. Closed enum types,all original fields,order,UTF8/JSON/hash and predicate controls preserved; no session-wide claim.",
+          "qualificationSourceSha256": "D039E3C8F8F08AEF883B5832E5248EBD56F8B5A5FED1047FD4DA052D1AB9EFF1"
         },
         {
           "path": "src/GWGUI.Emulation.Philips/Common/Services/Engine.cs",
@@ -106495,7 +106912,21 @@
           "hash": "7BE050FFA84516FA0C67A879F4496D599879EFEBD7EB006860EFD7F872AC82E6",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationStateFileFunctions.HashBytes(System.ReadOnlySpan<byte>); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "41FD10B73CF3A56E25B4625CB3E8E32DC5001029FA7B7B51AA89A5BBD564D5EF"
+          "qualificationSourceSha256": "58F7E553A86D701A6A731E9AF8FA9533A868C797B6CA4DFECC46CA47CD44D529"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+          "name": "IsHeaderValid",
+          "owner": "SavedStateFunctions",
+          "kind": "MethodDeclaration",
+          "line": 62,
+          "parameters": "(SavedStateHeader header)",
+          "tokens": 7,
+          "bodyTokens": "=> EmulationStateFileFunctions . IsHeaderValid ( header )",
+          "hash": "6AD211930FA122FF021FB3DE399B8F0E01942776AEBC3B9B8EA3B9F72AAA7289",
+          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
+          "qualification": "Verified complete state projection/predicate using original shared SDK contracts and algorithms; stateFingerprintContractsReuse. Closed enum types,all original fields,order,UTF8/JSON/hash and predicate controls preserved; no session-wide claim.",
+          "qualificationSourceSha256": "58F7E553A86D701A6A731E9AF8FA9533A868C797B6CA4DFECC46CA47CD44D529"
         },
         {
           "path": "src/GWGUI.Emulation.Sharp/Common/Services/Engine.cs",
@@ -106899,7 +107330,21 @@
           "hash": "7BE050FFA84516FA0C67A879F4496D599879EFEBD7EB006860EFD7F872AC82E6",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationStateFileFunctions.HashBytes(System.ReadOnlySpan<byte>); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "07FCC0B6B79516A0CB1C7A8271250F02C2620C0FA26FC479535037849CC214AA"
+          "qualificationSourceSha256": "432D1F6C9ABCEDCD9E05E42A787DB4091BF645806EBCD75542525A7CFD235EAF"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+          "name": "IsHeaderValid",
+          "owner": "SavedStateFunctions",
+          "kind": "MethodDeclaration",
+          "line": 68,
+          "parameters": "(SavedStateHeader header)",
+          "tokens": 7,
+          "bodyTokens": "=> EmulationStateFileFunctions . IsHeaderValid ( header )",
+          "hash": "6AD211930FA122FF021FB3DE399B8F0E01942776AEBC3B9B8EA3B9F72AAA7289",
+          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
+          "qualification": "Verified complete state projection/predicate using original shared SDK contracts and algorithms; stateFingerprintContractsReuse. Closed enum types,all original fields,order,UTF8/JSON/hash and predicate controls preserved; no session-wide claim.",
+          "qualificationSourceSha256": "432D1F6C9ABCEDCD9E05E42A787DB4091BF645806EBCD75542525A7CFD235EAF"
         },
         {
           "path": "src/GWGUI.Emulation.Sinclair/Common/Services/Engine.cs",
@@ -107301,7 +107746,21 @@
           "hash": "7BE050FFA84516FA0C67A879F4496D599879EFEBD7EB006860EFD7F872AC82E6",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationStateFileFunctions.HashBytes(System.ReadOnlySpan<byte>); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "EF01635AED4F016BB00BFDB2995AEA685FC3FD04D9C99442321EA7D9B28929C5"
+          "qualificationSourceSha256": "9C8B8E5970B54021AE0B388AAE4CA2F70EC99A3F68D29F7E10378B32740B2383"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+          "name": "IsHeaderValid",
+          "owner": "SavedStateFunctions",
+          "kind": "MethodDeclaration",
+          "line": 67,
+          "parameters": "(SavedStateHeader header)",
+          "tokens": 7,
+          "bodyTokens": "=> EmulationStateFileFunctions . IsHeaderValid ( header )",
+          "hash": "6AD211930FA122FF021FB3DE399B8F0E01942776AEBC3B9B8EA3B9F72AAA7289",
+          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
+          "qualification": "Verified complete state projection/predicate using original shared SDK contracts and algorithms; stateFingerprintContractsReuse. Closed enum types,all original fields,order,UTF8/JSON/hash and predicate controls preserved; no session-wide claim.",
+          "qualificationSourceSha256": "9C8B8E5970B54021AE0B388AAE4CA2F70EC99A3F68D29F7E10378B32740B2383"
         },
         {
           "path": "src/GWGUI.Emulation.Snk/Common/Services/Machine.Lifecycle.cs",
@@ -108489,7 +108948,21 @@
           "hash": "7BE050FFA84516FA0C67A879F4496D599879EFEBD7EB006860EFD7F872AC82E6",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationStateFileFunctions.HashBytes(System.ReadOnlySpan<byte>); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "DDD66A6D43B0B30B457976271F3AB75FE8A832DAED9A8D33D4DDDC5688BB4709"
+          "qualificationSourceSha256": "6252D562D1E9CDF379EDCCE07BA9A2AB0907414F59C2A2733A2D0E8C3A04FBD0"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Thomson/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+          "name": "IsHeaderValid",
+          "owner": "SavedStateFunctions",
+          "kind": "MethodDeclaration",
+          "line": 68,
+          "parameters": "(SavedStateHeader header)",
+          "tokens": 7,
+          "bodyTokens": "=> EmulationStateFileFunctions . IsHeaderValid ( header )",
+          "hash": "6AD211930FA122FF021FB3DE399B8F0E01942776AEBC3B9B8EA3B9F72AAA7289",
+          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
+          "qualification": "Verified complete state projection/predicate using original shared SDK contracts and algorithms; stateFingerprintContractsReuse. Closed enum types,all original fields,order,UTF8/JSON/hash and predicate controls preserved; no session-wide claim.",
+          "qualificationSourceSha256": "6252D562D1E9CDF379EDCCE07BA9A2AB0907414F59C2A2733A2D0E8C3A04FBD0"
         },
         {
           "path": "src/GWGUI.Emulation.Thomson/Common/Services/Machine.Lifecycle.cs",
@@ -108709,7 +109182,21 @@
           "hash": "7BE050FFA84516FA0C67A879F4496D599879EFEBD7EB006860EFD7F872AC82E6",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationStateFileFunctions.HashBytes(System.ReadOnlySpan<byte>); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "B1CEF9DFA63C5FA7A0C752DF3622921E65DCF0AE924DD73664230BDF2486C843"
+          "qualificationSourceSha256": "151DBE44D97EE5F273487E47DC4AD457AA33B5DFCC51D9FCF99B1CFC39BEAE3A"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Watara/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+          "name": "IsHeaderValid",
+          "owner": "SavedStateFunctions",
+          "kind": "MethodDeclaration",
+          "line": 59,
+          "parameters": "(SavedStateHeader header)",
+          "tokens": 7,
+          "bodyTokens": "=> EmulationStateFileFunctions . IsHeaderValid ( header )",
+          "hash": "6AD211930FA122FF021FB3DE399B8F0E01942776AEBC3B9B8EA3B9F72AAA7289",
+          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
+          "qualification": "Verified complete state projection/predicate using original shared SDK contracts and algorithms; stateFingerprintContractsReuse. Closed enum types,all original fields,order,UTF8/JSON/hash and predicate controls preserved; no session-wide claim.",
+          "qualificationSourceSha256": "151DBE44D97EE5F273487E47DC4AD457AA33B5DFCC51D9FCF99B1CFC39BEAE3A"
         },
         {
           "path": "src/GWGUI.Emulation.Watara/Common/Services/Machine.Lifecycle.cs",
@@ -108945,21 +109432,35 @@
           "hash": "7BE050FFA84516FA0C67A879F4496D599879EFEBD7EB006860EFD7F872AC82E6",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationStateFileFunctions.HashBytes(System.ReadOnlySpan<byte>); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "B634A37B9A027645B0D9677DD995553EDC52737CDB60359046C99D5CE552C107"
+          "qualificationSourceSha256": "9B12BA4C1AF4B1A66F8E5556D5A596E65142EB77108C71943973009D9B94A6DA"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Wenquxing/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
+          "name": "IsHeaderValid",
+          "owner": "SavedStateFunctions",
+          "kind": "MethodDeclaration",
+          "line": 56,
+          "parameters": "(SavedStateHeader header)",
+          "tokens": 7,
+          "bodyTokens": "=> EmulationStateFileFunctions . IsHeaderValid ( header )",
+          "hash": "6AD211930FA122FF021FB3DE399B8F0E01942776AEBC3B9B8EA3B9F72AAA7289",
+          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
+          "qualification": "Verified complete state projection/predicate using original shared SDK contracts and algorithms; stateFingerprintContractsReuse. Closed enum types,all original fields,order,UTF8/JSON/hash and predicate controls preserved; no session-wide claim.",
+          "qualificationSourceSha256": "9B12BA4C1AF4B1A66F8E5556D5A596E65142EB77108C71943973009D9B94A6DA"
         },
         {
           "path": "src/GWGUI.Emulation.Wenquxing/Common/Machines/Common/Functions/StateFunctions.Saved.cs",
           "name": "HashFile",
           "owner": "SavedStateFunctions",
           "kind": "MethodDeclaration",
-          "line": 68,
+          "line": 59,
           "parameters": "(string path)",
           "tokens": 7,
           "bodyTokens": "=> EmulationCoreDiagnosticFunctions . CalculateSha256 ( path )",
           "hash": "7199063222D5CD76E4186D3E3B2E685984670EABED39251CF0097ACB4E02AF6C",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.EmulationCoreDiagnosticFunctions.CalculateSha256(string); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "B634A37B9A027645B0D9677DD995553EDC52737CDB60359046C99D5CE552C107"
+          "qualificationSourceSha256": "9B12BA4C1AF4B1A66F8E5556D5A596E65142EB77108C71943973009D9B94A6DA"
         },
         {
           "path": "src/GWGUI.Emulation.Wenquxing/Common/Services/Machine.Lifecycle.cs",
@@ -141951,7 +142452,7 @@
     }
   ],
   "qualificationCarryForward": {
-    "occurrences": 2771,
-    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical"
+    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical",
+    "occurrences": 2781
   }
 }

@@ -94,4 +94,21 @@ internal static class EmulationStateFileFunctions
         }
         return Convert.ToHexString(hash.GetHashAndReset());
     }
+
+    internal static IOrderedEnumerable<KeyValuePair<string, TValue>> OrderInputMappings<TValue>(
+        IReadOnlyDictionary<string, TValue>? mappings) =>
+        (mappings ?? new Dictionary<string, TValue>()).OrderBy(pair => pair.Key, StringComparer.Ordinal);
+
+    internal static bool IsHeaderValid<TModel, TCore>(EmulationSavedStateHeader<TModel, TCore> header)
+        where TModel : struct, Enum
+        where TCore : struct, Enum =>
+        header.FormatVersion > 0
+        && Enum.IsDefined(header.Core)
+        && Enum.IsDefined(header.Model)
+        && !string.IsNullOrWhiteSpace(header.CoreName)
+        && !string.IsNullOrWhiteSpace(header.CoreVersion)
+        && !string.IsNullOrWhiteSpace(header.CoreSha256)
+        && !string.IsNullOrWhiteSpace(header.ConfigurationSha256)
+        && !string.IsNullOrWhiteSpace(header.ContentSha256)
+        && !string.IsNullOrWhiteSpace(header.StateSha256);
 }

@@ -36,3 +36,5 @@ global using InputAccumulator = GWGUI.Emulation.Services.EmulationInputAccumulat
 global using CoreOption = GWGUI.Emulation.Contracts.EmulationCategorizedOption;
 global using CoreRelease = GWGUI.Emulation.Contracts.EmulationDownloadCoreRelease;
 global using EmulatorCatalogEntry = GWGUI.Emulation.Contracts.EmulationDefinedCatalogEntry<GWGUI.Emulation.Amstrad.Common.Machines.Common.Enums.Emulator>;
+
+global using SavedStateHeader = global::GWGUI.Emulation.Contracts.EmulationLegacySavedStateHeader;

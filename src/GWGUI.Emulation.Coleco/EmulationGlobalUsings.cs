@@ -46,3 +46,8 @@ global using EmulatorCatalogEntry = GWGUI.Emulation.Contracts.EmulationCoreCatal
 global using HostError = global::GWGUI.Emulation.Contracts.HostError<GWGUI.Emulation.Coleco.Common.Enums.ErrorCategory, GWGUI.Emulation.Coleco.Common.Enums.ErrorCode>;
 
 global using InputFrameStore = GWGUI.Emulation.Services.EmulationInputFrameStore;
+
+global using SavedStateHeader = global::GWGUI.Emulation.Contracts.EmulationSavedStateHeader<global::GWGUI.Emulation.Coleco.Common.Machines.Common.Enums.MachineModel, global::GWGUI.Emulation.Coleco.Common.Machines.Common.Enums.Emulator>;
+global using StateContentEntry = global::GWGUI.Emulation.Contracts.EmulationStateContentEntry;
+global using StateControllerFingerprint = global::GWGUI.Emulation.Contracts.EmulationStateControllerFingerprint<global::GWGUI.Emulation.Coleco.Common.Machines.Common.Enums.PeripheralCategory>;
+global using StateFile = global::GWGUI.Emulation.Contracts.EmulationSavedStateFile<global::GWGUI.Emulation.Coleco.Common.Machines.Common.Enums.MachineModel, global::GWGUI.Emulation.Coleco.Common.Machines.Common.Enums.Emulator>;
