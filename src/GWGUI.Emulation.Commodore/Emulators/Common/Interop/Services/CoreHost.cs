@@ -1,7 +1,6 @@
 using System.IO;
 
 using System.IO.Pipes;
-using System.IO.MemoryMappedFiles;
 using System.Runtime.Versioning;
 using System.Text.Json;
 
@@ -12,76 +11,75 @@ public static class CoreHost
     [SupportedOSPlatform(CoreHostConstants.Windows)]
     public static void Run(string pipeName, string videoMapName)
     {
-        using var videoMemory = MemoryMappedFile.OpenExisting(videoMapName, MemoryMappedFileRights.ReadWrite);
-        using var videoMap = videoMemory.CreateViewAccessor(ProcessCoreConstants.ViewStartOffset, EmulationHostProtocolConstants.VideoMapCapacity, MemoryMappedFileAccess.ReadWrite);
-        EmulationHostProtocolFunctions.RunConnectedSession(pipeName, CoreHostConstants.LocalServerName, CoreHostConstants.PipeConnectionTimeoutMilliseconds, (reader, transportWriter) =>
-        {
-            ExternalCore? core = null;
-            var lastVideoSequence = CoreHostConstants.InitialVideoSequence;
-            var lastDiagnosticCount = CoreHostConstants.InitialDiagnosticCount;
-            try
+        EmulationHostProtocolFunctions.WithSharedVideoMap(videoMapName, ProcessCoreConstants.ViewStartOffset, videoMap =>
+            EmulationHostProtocolFunctions.RunConnectedSession(pipeName, CoreHostConstants.LocalServerName, CoreHostConstants.PipeConnectionTimeoutMilliseconds, (reader, transportWriter) =>
             {
-                EmulationHostProtocolFunctions.RunCommandLoop<HostCommand>(reader, transportWriter, static commandReader => (HostCommand)commandReader.ReadByte(), HostCommand.Dispose, (command, writer) =>
+                ExternalCore? core = null;
+                var lastVideoSequence = CoreHostConstants.InitialVideoSequence;
+                var lastDiagnosticCount = CoreHostConstants.InitialDiagnosticCount;
+                try
                 {
-                    switch (command)
+                    EmulationHostProtocolFunctions.RunCommandLoop<HostCommand>(reader, transportWriter, static commandReader => (HostCommand)commandReader.ReadByte(), HostCommand.Dispose, (command, writer) =>
                     {
-                        case HostCommand.Initialize:
-                            var (corePath, session, saves, configuration) =
-                                EmulationHostProtocolFunctions.ReadInitializationRequest(reader,
-                                    CoreHostProtocol.ReadString,
-                                    static requestReader => JsonSerializer.Deserialize<MachineConfiguration>(requestReader.ReadString(), CoreHostProtocol.JsonOptions) ?? throw new InvalidDataException(CoreExceptions.HostConfigurationInvalid()));
-                            core?.Dispose();
-                            core = new ExternalCore(corePath);
-                            core.Initialize(configuration, session, saves);
-                            writer.Write(true);
-                            EmulationHostProtocolFunctions.WriteCoreInitialization<ExternalCore, MachineConfiguration, CoreOption>(
-                                writer, core, CoreHostProtocol.JsonOptions, ref lastDiagnosticCount, ProcessCoreConstants.ExtensionSeparator);
-                            writer.Write(core.DiskCount);
-                            writer.Write(core.CurrentDiskIndex);
-                            CoreHostProtocol.WriteLedStates(writer, core.LedStates);
-                            break;
-                        case HostCommand.RunFrame:
-                            var activeCore = EnsureCore(core);
-                            EmulationHostProtocolFunctions.RunCoreFrame<ExternalCore, MachineConfiguration, CoreOption>(
-                                reader, writer, activeCore, CoreHostProtocol.ReadInput,
-                                (frameWriter, pendingFrame) => CoreHostProtocol.WriteSharedFrame(frameWriter, pendingFrame, videoMap),
-                                static (statusWriter, frameCore) =>
-                                {
-                                    statusWriter.Write(frameCore.DiskCount);
-                                    statusWriter.Write(frameCore.CurrentDiskIndex);
-                                }, CoreHostProtocol.WriteLedStates, static () => CoreHostProtocol.JsonOptions,
-                                ref lastVideoSequence, ref lastDiagnosticCount);
-                            break;
-                        case HostCommand.InsertMedia:
-                            EnsureCore(core).InsertMedia(reader.ReadString());
-                            WriteSuccess(writer);
-                            break;
-                        case HostCommand.EjectMedia:
-                            EnsureCore(core).EjectMedia();
-                            WriteSuccess(writer);
-                            break;
-                        case HostCommand.Dispose:
-                            core?.Dispose();
-                            core = null;
-                            WriteSuccess(writer);
-                            break;
-                        default:
-                            if (!EmulationHostProtocolFunctions.TryExecuteCoreStateCommand((byte)command, reader, writer,
-                                    () => EnsureCore(core), CoreHostProtocol.ReadBytes, WriteSuccess))
-                                throw new InvalidDataException(CoreExceptions.UnknownHostCommand((byte)command));
-                            break;
-                    }
-                }, (writer, error) =>
+                        switch (command)
+                        {
+                            case HostCommand.Initialize:
+                                var (corePath, session, saves, configuration) =
+                                    EmulationHostProtocolFunctions.ReadInitializationRequest(reader,
+                                        CoreHostProtocol.ReadString,
+                                        static requestReader => JsonSerializer.Deserialize<MachineConfiguration>(requestReader.ReadString(), CoreHostProtocol.JsonOptions) ?? throw new InvalidDataException(CoreExceptions.HostConfigurationInvalid()));
+                                core?.Dispose();
+                                core = new ExternalCore(corePath);
+                                core.Initialize(configuration, session, saves);
+                                writer.Write(true);
+                                EmulationHostProtocolFunctions.WriteCoreInitialization<ExternalCore, MachineConfiguration, CoreOption>(
+                                    writer, core, CoreHostProtocol.JsonOptions, ref lastDiagnosticCount, ProcessCoreConstants.ExtensionSeparator);
+                                writer.Write(core.DiskCount);
+                                writer.Write(core.CurrentDiskIndex);
+                                CoreHostProtocol.WriteLedStates(writer, core.LedStates);
+                                break;
+                            case HostCommand.RunFrame:
+                                var activeCore = EnsureCore(core);
+                                EmulationHostProtocolFunctions.RunCoreFrame<ExternalCore, MachineConfiguration, CoreOption>(
+                                    reader, writer, activeCore, CoreHostProtocol.ReadInput,
+                                    (frameWriter, pendingFrame) => CoreHostProtocol.WriteSharedFrame(frameWriter, pendingFrame, videoMap),
+                                    static (statusWriter, frameCore) =>
+                                    {
+                                        statusWriter.Write(frameCore.DiskCount);
+                                        statusWriter.Write(frameCore.CurrentDiskIndex);
+                                    }, CoreHostProtocol.WriteLedStates, static () => CoreHostProtocol.JsonOptions,
+                                    ref lastVideoSequence, ref lastDiagnosticCount);
+                                break;
+                            case HostCommand.InsertMedia:
+                                EnsureCore(core).InsertMedia(reader.ReadString());
+                                WriteSuccess(writer);
+                                break;
+                            case HostCommand.EjectMedia:
+                                EnsureCore(core).EjectMedia();
+                                WriteSuccess(writer);
+                                break;
+                            case HostCommand.Dispose:
+                                core?.Dispose();
+                                core = null;
+                                WriteSuccess(writer);
+                                break;
+                            default:
+                                if (!EmulationHostProtocolFunctions.TryExecuteCoreStateCommand((byte)command, reader, writer,
+                                        () => EnsureCore(core), CoreHostProtocol.ReadBytes, WriteSuccess))
+                                    throw new InvalidDataException(CoreExceptions.UnknownHostCommand((byte)command));
+                                break;
+                        }
+                    }, (writer, error) =>
+                    {
+                        writer.Write(false);
+                        writer.Write(error.ToString());
+                    });
+                }
+                finally
                 {
-                    writer.Write(false);
-                    writer.Write(error.ToString());
-                });
-            }
-            finally
-            {
-                core?.Dispose();
-            }
-        });
+                    core?.Dispose();
+                }
+            }));
     }
 
     private static ExternalCore EnsureCore(ExternalCore? core) => core ?? throw new InvalidOperationException(CoreExceptions.HostNotInitialized());

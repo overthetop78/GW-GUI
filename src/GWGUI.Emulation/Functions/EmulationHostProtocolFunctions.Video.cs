@@ -10,6 +10,15 @@ namespace GWGUI.Emulation.Functions;
 
 internal static partial class EmulationHostProtocolFunctions
 {
+    [SupportedOSPlatform("windows")]
+    internal static void WithSharedVideoMap(string videoMapName, long viewOffset, Action<MemoryMappedViewAccessor> run)
+    {
+        using var videoMemory = MemoryMappedFile.OpenExisting(videoMapName, MemoryMappedFileRights.ReadWrite);
+        using var videoMap = videoMemory.CreateViewAccessor(viewOffset, EmulationHostProtocolConstants.VideoMapCapacity,
+            MemoryMappedFileAccess.ReadWrite);
+        run(videoMap);
+    }
+
     internal static int CalculateVideoSlotCapacity(int frameLength, int minimumSlotCapacity, string hostName)
     {
         if (frameLength <= 0 || frameLength > EmulationHostProtocolConstants.VideoSlotCapacity)
