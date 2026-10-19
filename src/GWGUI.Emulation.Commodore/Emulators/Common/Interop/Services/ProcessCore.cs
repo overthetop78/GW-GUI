@@ -79,10 +79,11 @@ internal sealed class ProcessCore : IEmulatorCore
             EmulationHostProtocolFunctions.WaitForConnection(_pipe, TimeSpan.FromSeconds(ProcessCoreConstants.InitializationTimeoutSeconds));
             _writer = new BinaryWriter(_pipe, System.Text.Encoding.UTF8, true);
             Begin(HostCommand.Initialize);
-            _writer.Write(_corePath ?? string.Empty);
-            _writer.Write(Path.GetFullPath(sessionDirectory));
-            CoreHostProtocol.WriteString(_writer, saveDirectory is null ? null : Path.GetFullPath(saveDirectory));
-            _writer.Write(JsonSerializer.Serialize(configuration, CoreHostProtocol.JsonOptions));
+            EmulationHostProtocolFunctions.WriteInitializationRequest(ref _writer, _corePath ?? string.Empty,
+                () => Path.GetFullPath(sessionDirectory),
+                () => saveDirectory is null ? null : Path.GetFullPath(saveDirectory),
+                CoreHostProtocol.WriteString,
+                () => JsonSerializer.Serialize(configuration, CoreHostProtocol.JsonOptions));
             CompleteRequest();
             CoreSha256 = Response.ReadString();
             FramesPerSecond = Response.ReadDouble();

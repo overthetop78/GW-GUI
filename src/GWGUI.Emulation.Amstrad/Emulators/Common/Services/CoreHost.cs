@@ -31,10 +31,10 @@ public static class CoreHost
                     switch (command)
                     {
                         case HostCommand.Initialize:
-                            var corePath = reader.ReadString();
-                            var session = reader.ReadString();
-                            var saves = CoreHostProtocol.ReadString(reader);
-                            var configuration = JsonSerializer.Deserialize<MachineConfiguration>(reader.ReadString(), CoreHostProtocol.JsonOptions) ?? throw new InvalidDataException(CommonExceptions.HostConfigurationInvalid());
+                            var (corePath, session, saves, configuration) =
+                                EmulationHostProtocolFunctions.ReadInitializationRequest(reader,
+                                    CoreHostProtocol.ReadString,
+                                    static requestReader => JsonSerializer.Deserialize<MachineConfiguration>(requestReader.ReadString(), CoreHostProtocol.JsonOptions) ?? throw new InvalidDataException(CommonExceptions.HostConfigurationInvalid()));
                             var previousCore = core;
                             core = null;
                             try

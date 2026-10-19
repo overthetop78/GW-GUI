@@ -144,6 +144,134 @@ public sealed class CoreInitializationRequestTests
         });
     }
 
+    [Theory]
+    [InlineData(null)]
+    [InlineData("saves")]
+    public void HistoricalReaderKeepsFourFieldsAndLeavesTheReaderOpen(string? saves)
+    {
+        WithWriter((stream, writer) =>
+        {
+            writer.Write("core.dll");
+            writer.Write("legacy-session");
+            EmulationHostProtocolFunctions.WriteString(writer, saves);
+            writer.Write(JsonSerializer.Serialize(new Configuration("legacy", 4)));
+            writer.Write("remaining");
+            writer.Flush();
+            Inspect(stream, reader =>
+            {
+                var calls = new List<string>();
+                var request = EmulationHostProtocolFunctions.ReadInitializationRequest(reader,
+                    input => { calls.Add("saves"); return EmulationHostProtocolFunctions.ReadString(input); },
+                    input => { calls.Add("configuration"); return JsonSerializer.Deserialize<Configuration>(input.ReadString())!; });
+                Assert.Equal(new[] { "saves", "configuration" }, calls);
+                Assert.Equal(("core.dll", "legacy-session", saves, new Configuration("legacy", 4)), request);
+                Assert.Equal("remaining", reader.ReadString());
+            });
+        });
+    }
+
+    [Fact]
+    public void HistoricalReaderPreservesTheConfigurationErrorAndItsPosition()
+    {
+        WithWriter((stream, writer) =>
+        {
+            writer.Write("core.dll");
+            writer.Write("legacy-session");
+            writer.Write(false);
+            writer.Write("null");
+            writer.Write("remaining");
+            writer.Flush();
+            Inspect(stream, reader =>
+            {
+                var error = new InvalidDataException("invalid configuration");
+                Assert.Same(error, Assert.Throws<InvalidDataException>(() =>
+                    EmulationHostProtocolFunctions.ReadInitializationRequest(reader,
+                        EmulationHostProtocolFunctions.ReadString,
+                        input => JsonSerializer.Deserialize<Configuration>(input.ReadString()) ?? throw error)));
+                Assert.Equal("remaining", reader.ReadString());
+            });
+        });
+    }
+
+    [Theory]
+    [InlineData(null)]
+    [InlineData("saves")]
+    public void HistoricalWriterKeepsFourFieldsAndDefersItsCodecs(string? saves)
+    {
+        WithWriter((stream, writer) =>
+        {
+            BinaryWriter? slot = writer;
+            var calls = new List<string>();
+            EmulationHostProtocolFunctions.WriteInitializationRequest(ref slot, "core.dll",
+                () => { Assert.True(stream.Position > 0); calls.Add("session"); return "legacy-session"; },
+                () => { calls.Add("saves"); return saves; },
+                (output, value) => { calls.Add("save-codec"); EmulationHostProtocolFunctions.WriteString(output, value); },
+                () => { calls.Add("configuration"); return JsonSerializer.Serialize(new Configuration("legacy", 4)); });
+            Assert.Same(writer, slot);
+            Assert.Equal(new[] { "session", "saves", "save-codec", "configuration" }, calls);
+            writer.Write("remaining");
+            writer.Flush();
+            Inspect(stream, reader =>
+            {
+                Assert.Equal("core.dll", reader.ReadString());
+                Assert.Equal("legacy-session", reader.ReadString());
+                Assert.Equal(saves, EmulationHostProtocolFunctions.ReadString(reader));
+                Assert.Equal(new Configuration("legacy", 4), JsonSerializer.Deserialize<Configuration>(reader.ReadString()));
+                Assert.Equal("remaining", reader.ReadString());
+            });
+        });
+    }
+
+    [Fact]
+    public void HistoricalWriterReadsTheReentrantWriterSlotForEachOperation()
+    {
+        using var first = new RecordingWriter();
+        using var second = new RecordingWriter();
+        BinaryWriter? slot = first;
+        first.AfterWrite = () => slot = second;
+        EmulationHostProtocolFunctions.WriteInitializationRequest(ref slot, "core.dll",
+            () => "session", () => "saves", (output, value) => output.Write(value!), () => "json");
+        Assert.Equal(new[] { "core.dll" }, first.Values);
+        Assert.Equal(new[] { "session", "saves", "json" }, second.Values);
+        Assert.Same(second, slot);
+    }
+
+    [Fact]
+    public void HistoricalWriterPreservesThePrefixAndBorrowedSlotWhenSerializationFails()
+    {
+        WithWriter((stream, writer) =>
+        {
+            BinaryWriter? slot = writer;
+            var error = new InvalidOperationException("serialization failure");
+            Assert.Same(error, Assert.Throws<InvalidOperationException>(() =>
+                EmulationHostProtocolFunctions.WriteInitializationRequest(ref slot, "core.dll",
+                    () => "session", () => null, EmulationHostProtocolFunctions.WriteString, () => throw error)));
+            Assert.Same(writer, slot);
+            writer.Write("remaining");
+            writer.Flush();
+            Inspect(stream, reader =>
+            {
+                Assert.Equal("core.dll", reader.ReadString());
+                Assert.Equal("session", reader.ReadString());
+                Assert.False(reader.ReadBoolean());
+                Assert.Equal("remaining", reader.ReadString());
+            });
+        });
+    }
+
+    private sealed class RecordingWriter : BinaryWriter
+    {
+        internal RecordingWriter() : base(Stream.Null, Encoding.UTF8, leaveOpen: true) { }
+        internal List<string> Values { get; } = [];
+        internal Action? AfterWrite { get; set; }
+
+        public override void Write(string value)
+        {
+            Values.Add(value);
+            AfterWrite?.Invoke();
+        }
+    }
+
     private static void WithWriter(Action<MemoryStream, BinaryWriter> verify)
     {
         var stream = new MemoryStream();
