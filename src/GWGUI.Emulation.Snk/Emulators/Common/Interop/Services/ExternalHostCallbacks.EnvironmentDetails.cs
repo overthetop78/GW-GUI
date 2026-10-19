@@ -30,13 +30,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
         => ExternalCoreEnvironmentFunctions.SetPixelFormat(data, ref _pixelFormat);
 
     public bool SetSystemAvInfo(nint data)
-    {
-        if (data == nint.Zero)
-            return false;
-        var info = Marshal.PtrToStructure<ExternalCoreApi.SystemAvInfo>(data);
-        ApplySystemAvInfo(info);
-        return true;
-    }
+        => ExternalCoreEnvironmentFunctions.ApplyStructure<ExternalCoreApi.SystemAvInfo>(data, ApplySystemAvInfo);
 
     public bool SetGeometry(nint data)
     {

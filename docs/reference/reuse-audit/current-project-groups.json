@@ -3,7 +3,7 @@
   "currentCSharpFiles": 7231,
   "outsideSrcCSharpFiles": 309,
   "baselineMethodCount": 5848,
-  "currentMethodCount": 11519,
+  "currentMethodCount": 11507,
   "powerShellFunctionCount": 17,
   "groups": [
     {
@@ -72,7 +72,7 @@
       ],
       "predecessors": [],
       "shapePredecessors": [],
-      "qualification": "pending"
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "language": "CSharp",
@@ -405,131 +405,6 @@
       "predecessors": [],
       "shapePredecessors": [],
       "qualification": "All occurrences qualified individually; see member evidence"
-    },
-    {
-      "language": "CSharp",
-      "hash": "0613D716BD18AD39B68664516B420E82922A9C828ED3888A6BD118B96A9C36EB",
-      "method": "SetSystemAvInfo",
-      "tokens": 36,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
-          "name": "SetSystemAvInfo",
-          "line": 40,
-          "tokens": 36,
-          "hash": "0613D716BD18AD39B68664516B420E82922A9C828ED3888A6BD118B96A9C36EB",
-          "shape": "71F635297E2E5577B34A8F14AB0ABB0D38810926B4116D54259419F14886EA13"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
-          "name": "SetSystemAvInfo",
-          "line": 39,
-          "tokens": 36,
-          "hash": "0613D716BD18AD39B68664516B420E82922A9C828ED3888A6BD118B96A9C36EB",
-          "shape": "71F635297E2E5577B34A8F14AB0ABB0D38810926B4116D54259419F14886EA13"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
-          "name": "SetSystemAvInfo",
-          "line": 32,
-          "tokens": 36,
-          "hash": "0613D716BD18AD39B68664516B420E82922A9C828ED3888A6BD118B96A9C36EB",
-          "shape": "71F635297E2E5577B34A8F14AB0ABB0D38810926B4116D54259419F14886EA13"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
-          "name": "SetSystemAvInfo",
-          "line": 32,
-          "tokens": 36,
-          "hash": "0613D716BD18AD39B68664516B420E82922A9C828ED3888A6BD118B96A9C36EB",
-          "shape": "71F635297E2E5577B34A8F14AB0ABB0D38810926B4116D54259419F14886EA13"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
-          "name": "SetSystemAvInfo",
-          "line": 31,
-          "tokens": 36,
-          "hash": "0613D716BD18AD39B68664516B420E82922A9C828ED3888A6BD118B96A9C36EB",
-          "shape": "71F635297E2E5577B34A8F14AB0ABB0D38810926B4116D54259419F14886EA13"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
-          "name": "SetSystemAvInfo",
-          "line": 32,
-          "tokens": 36,
-          "hash": "0613D716BD18AD39B68664516B420E82922A9C828ED3888A6BD118B96A9C36EB",
-          "shape": "71F635297E2E5577B34A8F14AB0ABB0D38810926B4116D54259419F14886EA13"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
-          "name": "SetSystemAvInfo",
-          "line": 31,
-          "tokens": 36,
-          "hash": "0613D716BD18AD39B68664516B420E82922A9C828ED3888A6BD118B96A9C36EB",
-          "shape": "71F635297E2E5577B34A8F14AB0ABB0D38810926B4116D54259419F14886EA13"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
-          "name": "SetSystemAvInfo",
-          "line": 39,
-          "tokens": 36,
-          "hash": "0613D716BD18AD39B68664516B420E82922A9C828ED3888A6BD118B96A9C36EB",
-          "shape": "71F635297E2E5577B34A8F14AB0ABB0D38810926B4116D54259419F14886EA13"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
-          "name": "SetSystemAvInfo",
-          "line": 38,
-          "tokens": 36,
-          "hash": "0613D716BD18AD39B68664516B420E82922A9C828ED3888A6BD118B96A9C36EB",
-          "shape": "71F635297E2E5577B34A8F14AB0ABB0D38810926B4116D54259419F14886EA13"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
-          "name": "SetSystemAvInfo",
-          "line": 39,
-          "tokens": 36,
-          "hash": "0613D716BD18AD39B68664516B420E82922A9C828ED3888A6BD118B96A9C36EB",
-          "shape": "71F635297E2E5577B34A8F14AB0ABB0D38810926B4116D54259419F14886EA13"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
-          "name": "SetSystemAvInfo",
-          "line": 31,
-          "tokens": 36,
-          "hash": "0613D716BD18AD39B68664516B420E82922A9C828ED3888A6BD118B96A9C36EB",
-          "shape": "71F635297E2E5577B34A8F14AB0ABB0D38810926B4116D54259419F14886EA13"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
-          "name": "SetSystemAvInfo",
-          "line": 36,
-          "tokens": 36,
-          "hash": "0613D716BD18AD39B68664516B420E82922A9C828ED3888A6BD118B96A9C36EB",
-          "shape": "71F635297E2E5577B34A8F14AB0ABB0D38810926B4116D54259419F14886EA13"
-        }
-      ],
-      "predecessors": [
-        {
-          "path": "src/GWGUI.Emulation.Atari/Services/AtariExternalHostCallbacks.cs",
-          "name": "SetSystemAvInfo",
-          "line": 296,
-          "tokens": 36,
-          "hash": "0613D716BD18AD39B68664516B420E82922A9C828ED3888A6BD118B96A9C36EB",
-          "shape": "71F635297E2E5577B34A8F14AB0ABB0D38810926B4116D54259419F14886EA13"
-        }
-      ],
-      "shapePredecessors": [
-        {
-          "path": "src/GWGUI.Emulation.Atari/Services/AtariExternalHostCallbacks.cs",
-          "name": "SetSystemAvInfo",
-          "line": 296,
-          "tokens": 36,
-          "hash": "0613D716BD18AD39B68664516B420E82922A9C828ED3888A6BD118B96A9C36EB",
-          "shape": "71F635297E2E5577B34A8F14AB0ABB0D38810926B4116D54259419F14886EA13"
-        }
-      ],
-      "qualification": "pending"
     },
     {
       "language": "CSharp",
@@ -976,7 +851,7 @@
     {
       "language": "CSharp",
       "hash": "0A9D4012A0EEF58659F6F622D06187BDA6844EE126F30B196EAE963950A66758",
-      "method": "SegaEmulationModule",
+      "method": "AtariEmulationModule",
       "tokens": 45,
       "current": [
         {
@@ -2010,7 +1885,7 @@
       ],
       "predecessors": [],
       "shapePredecessors": [],
-      "qualification": "pending"
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "language": "CSharp",
@@ -2136,7 +2011,7 @@
       ],
       "predecessors": [],
       "shapePredecessors": [],
-      "qualification": "pending"
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "language": "CSharp",
@@ -5675,7 +5550,7 @@
       ],
       "predecessors": [],
       "shapePredecessors": [],
-      "qualification": "pending"
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "language": "CSharp",
@@ -5871,7 +5746,7 @@
       ],
       "predecessors": [],
       "shapePredecessors": [],
-      "qualification": "pending"
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "language": "CSharp",
@@ -5909,7 +5784,7 @@
         {
           "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
           "name": "ReadExtendedMessage",
-          "line": 65,
+          "line": 60,
           "tokens": 82,
           "hash": "35F6627AC5705D3F91FFEF567B3685F1595EE8454E9BCD9BABE49DDDCCA699B5",
           "shape": "2F887F65E90289B0BC0F161C1EC26146A54EDBCB2D0E023FD2B26939BF78F574"
@@ -5917,7 +5792,7 @@
         {
           "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
           "name": "ReadExtendedMessage",
-          "line": 64,
+          "line": 59,
           "tokens": 82,
           "hash": "35F6627AC5705D3F91FFEF567B3685F1595EE8454E9BCD9BABE49DDDCCA699B5",
           "shape": "2F887F65E90289B0BC0F161C1EC26146A54EDBCB2D0E023FD2B26939BF78F574"
@@ -5925,7 +5800,7 @@
         {
           "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
           "name": "ReadExtendedMessage",
-          "line": 61,
+          "line": 55,
           "tokens": 82,
           "hash": "35F6627AC5705D3F91FFEF567B3685F1595EE8454E9BCD9BABE49DDDCCA699B5",
           "shape": "2F887F65E90289B0BC0F161C1EC26146A54EDBCB2D0E023FD2B26939BF78F574"
@@ -5933,7 +5808,7 @@
         {
           "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
           "name": "ReadExtendedMessage",
-          "line": 61,
+          "line": 55,
           "tokens": 82,
           "hash": "35F6627AC5705D3F91FFEF567B3685F1595EE8454E9BCD9BABE49DDDCCA699B5",
           "shape": "2F887F65E90289B0BC0F161C1EC26146A54EDBCB2D0E023FD2B26939BF78F574"
@@ -5941,7 +5816,7 @@
         {
           "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
           "name": "ReadExtendedMessage",
-          "line": 56,
+          "line": 51,
           "tokens": 82,
           "hash": "35F6627AC5705D3F91FFEF567B3685F1595EE8454E9BCD9BABE49DDDCCA699B5",
           "shape": "2F887F65E90289B0BC0F161C1EC26146A54EDBCB2D0E023FD2B26939BF78F574"
@@ -5949,7 +5824,7 @@
         {
           "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
           "name": "ReadExtendedMessage",
-          "line": 61,
+          "line": 55,
           "tokens": 82,
           "hash": "35F6627AC5705D3F91FFEF567B3685F1595EE8454E9BCD9BABE49DDDCCA699B5",
           "shape": "2F887F65E90289B0BC0F161C1EC26146A54EDBCB2D0E023FD2B26939BF78F574"
@@ -5957,7 +5832,7 @@
         {
           "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
           "name": "ReadExtendedMessage",
-          "line": 56,
+          "line": 51,
           "tokens": 82,
           "hash": "35F6627AC5705D3F91FFEF567B3685F1595EE8454E9BCD9BABE49DDDCCA699B5",
           "shape": "2F887F65E90289B0BC0F161C1EC26146A54EDBCB2D0E023FD2B26939BF78F574"
@@ -5965,7 +5840,7 @@
         {
           "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
           "name": "ReadExtendedMessage",
-          "line": 64,
+          "line": 59,
           "tokens": 82,
           "hash": "35F6627AC5705D3F91FFEF567B3685F1595EE8454E9BCD9BABE49DDDCCA699B5",
           "shape": "2F887F65E90289B0BC0F161C1EC26146A54EDBCB2D0E023FD2B26939BF78F574"
@@ -5973,7 +5848,7 @@
         {
           "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
           "name": "ReadExtendedMessage",
-          "line": 63,
+          "line": 58,
           "tokens": 82,
           "hash": "35F6627AC5705D3F91FFEF567B3685F1595EE8454E9BCD9BABE49DDDCCA699B5",
           "shape": "2F887F65E90289B0BC0F161C1EC26146A54EDBCB2D0E023FD2B26939BF78F574"
@@ -5981,7 +5856,7 @@
         {
           "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
           "name": "ReadExtendedMessage",
-          "line": 64,
+          "line": 59,
           "tokens": 82,
           "hash": "35F6627AC5705D3F91FFEF567B3685F1595EE8454E9BCD9BABE49DDDCCA699B5",
           "shape": "2F887F65E90289B0BC0F161C1EC26146A54EDBCB2D0E023FD2B26939BF78F574"
@@ -5989,7 +5864,7 @@
         {
           "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
           "name": "ReadExtendedMessage",
-          "line": 56,
+          "line": 51,
           "tokens": 82,
           "hash": "35F6627AC5705D3F91FFEF567B3685F1595EE8454E9BCD9BABE49DDDCCA699B5",
           "shape": "2F887F65E90289B0BC0F161C1EC26146A54EDBCB2D0E023FD2B26939BF78F574"
@@ -5997,7 +5872,7 @@
         {
           "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
           "name": "ReadExtendedMessage",
-          "line": 61,
+          "line": 56,
           "tokens": 82,
           "hash": "35F6627AC5705D3F91FFEF567B3685F1595EE8454E9BCD9BABE49DDDCCA699B5",
           "shape": "2F887F65E90289B0BC0F161C1EC26146A54EDBCB2D0E023FD2B26939BF78F574"
@@ -8502,7 +8377,7 @@
       ],
       "predecessors": [],
       "shapePredecessors": [],
-      "qualification": "pending"
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "language": "CSharp",
@@ -11457,12 +11332,12 @@
       ],
       "predecessors": [],
       "shapePredecessors": [],
-      "qualification": "pending"
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "language": "CSharp",
       "hash": "68386C818382BCE400A3EDE65411B5CBD9D6A87F6D88FAF6501028CE28C38965",
-      "method": "ToSinclair",
+      "method": "ToModule",
       "tokens": 148,
       "current": [
         {
@@ -13179,7 +13054,7 @@
       ],
       "predecessors": [],
       "shapePredecessors": [],
-      "qualification": "pending"
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "language": "CSharp",
@@ -13954,7 +13829,7 @@
         {
           "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
           "name": "ReadMessage",
-          "line": 56,
+          "line": 51,
           "tokens": 62,
           "hash": "8065EF5935E2374A05A7615CB00829A10BAC2FFD555E588EBCC7641E90263CF6",
           "shape": "17FDE5BA813D7FCAA6671A93A46FFB5EE6BC54B3E404965C547C175CF610B91E"
@@ -13962,7 +13837,7 @@
         {
           "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
           "name": "ReadMessage",
-          "line": 55,
+          "line": 50,
           "tokens": 62,
           "hash": "8065EF5935E2374A05A7615CB00829A10BAC2FFD555E588EBCC7641E90263CF6",
           "shape": "17FDE5BA813D7FCAA6671A93A46FFB5EE6BC54B3E404965C547C175CF610B91E"
@@ -13970,7 +13845,7 @@
         {
           "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
           "name": "ReadMessage",
-          "line": 50,
+          "line": 44,
           "tokens": 62,
           "hash": "8065EF5935E2374A05A7615CB00829A10BAC2FFD555E588EBCC7641E90263CF6",
           "shape": "17FDE5BA813D7FCAA6671A93A46FFB5EE6BC54B3E404965C547C175CF610B91E"
@@ -13978,7 +13853,7 @@
         {
           "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
           "name": "ReadMessage",
-          "line": 50,
+          "line": 44,
           "tokens": 62,
           "hash": "8065EF5935E2374A05A7615CB00829A10BAC2FFD555E588EBCC7641E90263CF6",
           "shape": "17FDE5BA813D7FCAA6671A93A46FFB5EE6BC54B3E404965C547C175CF610B91E"
@@ -13986,7 +13861,7 @@
         {
           "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
           "name": "ReadMessage",
-          "line": 47,
+          "line": 42,
           "tokens": 62,
           "hash": "8065EF5935E2374A05A7615CB00829A10BAC2FFD555E588EBCC7641E90263CF6",
           "shape": "17FDE5BA813D7FCAA6671A93A46FFB5EE6BC54B3E404965C547C175CF610B91E"
@@ -13994,7 +13869,7 @@
         {
           "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
           "name": "ReadMessage",
-          "line": 50,
+          "line": 44,
           "tokens": 62,
           "hash": "8065EF5935E2374A05A7615CB00829A10BAC2FFD555E588EBCC7641E90263CF6",
           "shape": "17FDE5BA813D7FCAA6671A93A46FFB5EE6BC54B3E404965C547C175CF610B91E"
@@ -14002,7 +13877,7 @@
         {
           "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
           "name": "ReadMessage",
-          "line": 47,
+          "line": 42,
           "tokens": 62,
           "hash": "8065EF5935E2374A05A7615CB00829A10BAC2FFD555E588EBCC7641E90263CF6",
           "shape": "17FDE5BA813D7FCAA6671A93A46FFB5EE6BC54B3E404965C547C175CF610B91E"
@@ -14010,7 +13885,7 @@
         {
           "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
           "name": "ReadMessage",
-          "line": 55,
+          "line": 50,
           "tokens": 62,
           "hash": "8065EF5935E2374A05A7615CB00829A10BAC2FFD555E588EBCC7641E90263CF6",
           "shape": "17FDE5BA813D7FCAA6671A93A46FFB5EE6BC54B3E404965C547C175CF610B91E"
@@ -14018,7 +13893,7 @@
         {
           "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
           "name": "ReadMessage",
-          "line": 54,
+          "line": 49,
           "tokens": 62,
           "hash": "8065EF5935E2374A05A7615CB00829A10BAC2FFD555E588EBCC7641E90263CF6",
           "shape": "17FDE5BA813D7FCAA6671A93A46FFB5EE6BC54B3E404965C547C175CF610B91E"
@@ -14026,7 +13901,7 @@
         {
           "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
           "name": "ReadMessage",
-          "line": 55,
+          "line": 50,
           "tokens": 62,
           "hash": "8065EF5935E2374A05A7615CB00829A10BAC2FFD555E588EBCC7641E90263CF6",
           "shape": "17FDE5BA813D7FCAA6671A93A46FFB5EE6BC54B3E404965C547C175CF610B91E"
@@ -14034,7 +13909,7 @@
         {
           "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
           "name": "ReadMessage",
-          "line": 47,
+          "line": 42,
           "tokens": 62,
           "hash": "8065EF5935E2374A05A7615CB00829A10BAC2FFD555E588EBCC7641E90263CF6",
           "shape": "17FDE5BA813D7FCAA6671A93A46FFB5EE6BC54B3E404965C547C175CF610B91E"
@@ -14042,7 +13917,7 @@
         {
           "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
           "name": "ReadMessage",
-          "line": 52,
+          "line": 47,
           "tokens": 62,
           "hash": "8065EF5935E2374A05A7615CB00829A10BAC2FFD555E588EBCC7641E90263CF6",
           "shape": "17FDE5BA813D7FCAA6671A93A46FFB5EE6BC54B3E404965C547C175CF610B91E"
@@ -16632,7 +16507,7 @@
       ],
       "predecessors": [],
       "shapePredecessors": [],
-      "qualification": "Partial occurrence qualification; unannotated members pending"
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "language": "CSharp",
@@ -16844,7 +16719,7 @@
         {
           "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
           "name": "SetGeometry",
-          "line": 48,
+          "line": 43,
           "tokens": 36,
           "hash": "9AB85EAB2A72E3E3F5BD16225FDEBE6E9DD99D9AF06116DF58D92D07F7C023E2",
           "shape": "00C4BB87831F6E7602FE3D30589EF9D585027DA9937E95C73D54096266C84474"
@@ -16852,7 +16727,7 @@
         {
           "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
           "name": "SetGeometry",
-          "line": 47,
+          "line": 42,
           "tokens": 36,
           "hash": "9AB85EAB2A72E3E3F5BD16225FDEBE6E9DD99D9AF06116DF58D92D07F7C023E2",
           "shape": "00C4BB87831F6E7602FE3D30589EF9D585027DA9937E95C73D54096266C84474"
@@ -16860,7 +16735,7 @@
         {
           "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
           "name": "SetGeometry",
-          "line": 41,
+          "line": 35,
           "tokens": 36,
           "hash": "9AB85EAB2A72E3E3F5BD16225FDEBE6E9DD99D9AF06116DF58D92D07F7C023E2",
           "shape": "00C4BB87831F6E7602FE3D30589EF9D585027DA9937E95C73D54096266C84474"
@@ -16868,7 +16743,7 @@
         {
           "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
           "name": "SetGeometry",
-          "line": 41,
+          "line": 35,
           "tokens": 36,
           "hash": "9AB85EAB2A72E3E3F5BD16225FDEBE6E9DD99D9AF06116DF58D92D07F7C023E2",
           "shape": "00C4BB87831F6E7602FE3D30589EF9D585027DA9937E95C73D54096266C84474"
@@ -16876,7 +16751,7 @@
         {
           "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
           "name": "SetGeometry",
-          "line": 39,
+          "line": 34,
           "tokens": 36,
           "hash": "9AB85EAB2A72E3E3F5BD16225FDEBE6E9DD99D9AF06116DF58D92D07F7C023E2",
           "shape": "00C4BB87831F6E7602FE3D30589EF9D585027DA9937E95C73D54096266C84474"
@@ -16884,7 +16759,7 @@
         {
           "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
           "name": "SetGeometry",
-          "line": 41,
+          "line": 35,
           "tokens": 36,
           "hash": "9AB85EAB2A72E3E3F5BD16225FDEBE6E9DD99D9AF06116DF58D92D07F7C023E2",
           "shape": "00C4BB87831F6E7602FE3D30589EF9D585027DA9937E95C73D54096266C84474"
@@ -16892,7 +16767,7 @@
         {
           "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
           "name": "SetGeometry",
-          "line": 39,
+          "line": 34,
           "tokens": 36,
           "hash": "9AB85EAB2A72E3E3F5BD16225FDEBE6E9DD99D9AF06116DF58D92D07F7C023E2",
           "shape": "00C4BB87831F6E7602FE3D30589EF9D585027DA9937E95C73D54096266C84474"
@@ -16900,7 +16775,7 @@
         {
           "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
           "name": "SetGeometry",
-          "line": 47,
+          "line": 42,
           "tokens": 36,
           "hash": "9AB85EAB2A72E3E3F5BD16225FDEBE6E9DD99D9AF06116DF58D92D07F7C023E2",
           "shape": "00C4BB87831F6E7602FE3D30589EF9D585027DA9937E95C73D54096266C84474"
@@ -16908,7 +16783,7 @@
         {
           "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
           "name": "SetGeometry",
-          "line": 46,
+          "line": 41,
           "tokens": 36,
           "hash": "9AB85EAB2A72E3E3F5BD16225FDEBE6E9DD99D9AF06116DF58D92D07F7C023E2",
           "shape": "00C4BB87831F6E7602FE3D30589EF9D585027DA9937E95C73D54096266C84474"
@@ -16916,7 +16791,7 @@
         {
           "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
           "name": "SetGeometry",
-          "line": 47,
+          "line": 42,
           "tokens": 36,
           "hash": "9AB85EAB2A72E3E3F5BD16225FDEBE6E9DD99D9AF06116DF58D92D07F7C023E2",
           "shape": "00C4BB87831F6E7602FE3D30589EF9D585027DA9937E95C73D54096266C84474"
@@ -16924,7 +16799,7 @@
         {
           "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
           "name": "SetGeometry",
-          "line": 39,
+          "line": 34,
           "tokens": 36,
           "hash": "9AB85EAB2A72E3E3F5BD16225FDEBE6E9DD99D9AF06116DF58D92D07F7C023E2",
           "shape": "00C4BB87831F6E7602FE3D30589EF9D585027DA9937E95C73D54096266C84474"
@@ -16932,7 +16807,7 @@
         {
           "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs",
           "name": "SetGeometry",
-          "line": 44,
+          "line": 39,
           "tokens": 36,
           "hash": "9AB85EAB2A72E3E3F5BD16225FDEBE6E9DD99D9AF06116DF58D92D07F7C023E2",
           "shape": "00C4BB87831F6E7602FE3D30589EF9D585027DA9937E95C73D54096266C84474"
@@ -17736,7 +17611,7 @@
       ],
       "predecessors": [],
       "shapePredecessors": [],
-      "qualification": "pending"
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "language": "CSharp",
@@ -19149,7 +19024,7 @@
       ],
       "predecessors": [],
       "shapePredecessors": [],
-      "qualification": "pending"
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "language": "CSharp",
@@ -19265,7 +19140,7 @@
     {
       "language": "CSharp",
       "hash": "B053A3AB4F0B78A37DED57B2D744801187AED6EC54FEEAFE4B1AA9C454D6F48C",
-      "method": "PanasonicEmulationModule",
+      "method": "PhilipsEmulationModule",
       "tokens": 47,
       "current": [
         {
@@ -20759,7 +20634,7 @@
       ],
       "predecessors": [],
       "shapePredecessors": [],
-      "qualification": "pending"
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "language": "CSharp",
@@ -25813,7 +25688,7 @@
     {
       "language": "CSharp",
       "hash": "F107F4D7D97C4E9F797468C991DF2090B47DF6E3F6F74E56044EFF0C28CAA51D",
-      "method": "NotifyHardwareContextDestroy",
+      "method": "NotifyDestroy",
       "tokens": 31,
       "current": [
         {
@@ -26229,7 +26104,7 @@
       ],
       "predecessors": [],
       "shapePredecessors": [],
-      "qualification": "pending"
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "language": "CSharp",
@@ -30130,7 +30005,7 @@
           "qualificationSourceSha256": "6A0C0665CE812B5E21740497E3037B1C2140FAECBFAFC091A09BADC1BCF88DF5"
         }
       ],
-      "qualification": "pending-symbol-and-policy-comparison"
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "shape": "6B36D163C321A7AAA01128F4ADBE6D3756A3F079CD45C79E435EFA26D8008BEE",
@@ -30891,7 +30766,7 @@
           "qualificationSourceSha256": "41FD10B73CF3A56E25B4625CB3E8E32DC5001029FA7B7B51AA89A5BBD564D5EF"
         }
       ],
-      "qualification": "pending-symbol-and-policy-comparison"
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "shape": "822C566F51278DCFE9592163DF6749BD5E9765E923AAC231C4E97679F9E75B18",
@@ -31675,7 +31550,7 @@
           "qualificationSourceSha256": "376ADDF95EBA1D6D82F10F3C7CE2DC59F99EB79C8E42D6915258F2F063E6CE0A"
         }
       ],
-      "qualification": "pending-symbol-and-policy-comparison"
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "shape": "98BFEA96C98C9ADBBB92A7A5966293BDB69AED7EA138CF83F9AAA5412AEA72D0",
@@ -33193,7 +33068,7 @@
           "qualificationSourceSha256": "20D950E9CC5E7302D8A087C88F885B59D3F83748437ED78522ABDF45B89D2A0E"
         }
       ],
-      "qualification": "pending-symbol-and-policy-comparison"
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "shape": "C88FA91DD32CC6373A0E6A547F3FBBF76075719F8A7096FD7ECC26340D0988EE",
@@ -33949,7 +33824,7 @@
           "qualificationSourceSha256": "78197A15497F9B0018CB3DF259B9309CF2BAEB238DDC9AB64A39014ABDB3A98D"
         }
       ],
-      "qualification": "Partial occurrence qualification; unannotated members pending"
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "shape": "DDBCB8AA4A800554EB17648A7BA637E80133D3062C195B9FBBA868CD95890F40",
@@ -35483,7 +35358,7 @@
   ],
   "scope": "All current repository CSharp and PowerShell files; no age filter; candidates require semantic review",
   "qualificationCarryForward": {
-    "occurrences": 284,
-    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical"
+    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical",
+    "occurrences": 284
   }
 }
