@@ -1,9 +1,9 @@
 {
   "baseline": "ac7292d86^",
-  "currentCSharpFiles": 7295,
+  "currentCSharpFiles": 7281,
   "outsideSrcCSharpFiles": 309,
   "baselineMethodCount": 5848,
-  "currentMethodCount": 11696,
+  "currentMethodCount": 11654,
   "powerShellFunctionCount": 17,
   "groups": [
     {
@@ -157,7 +157,8 @@
           "tokens": 42,
           "hash": "0293F4E0B0478A39ADD1E78CA844098864795D8625A41DAD8BD13C690F0EF4D8",
           "shape": "3A6BB7E21C3D922185645C5F2B40AA178716B19E23D703FC507E1D960FA7FABF",
-          "qualification": "Typed installation adapter; original Amiga lookup verified in simpleFactoryReleaseSelectionReuse"
+          "qualification": "Typed installation adapter; original Amiga lookup verified in simpleFactoryReleaseSelectionReuse",
+          "qualificationSourceSha256": "6D510C8A7584BF638B35178BCAF104DF0998021EDD9AD8095F771A996E470818"
         },
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Factories/Pcsx2MachineFactory.cs",
@@ -166,12 +167,13 @@
           "tokens": 42,
           "hash": "0293F4E0B0478A39ADD1E78CA844098864795D8625A41DAD8BD13C690F0EF4D8",
           "shape": "3A6BB7E21C3D922185645C5F2B40AA178716B19E23D703FC507E1D960FA7FABF",
-          "qualification": "Typed installation adapter; original Amiga lookup verified in simpleFactoryReleaseSelectionReuse"
+          "qualification": "Typed installation adapter; original Amiga lookup verified in simpleFactoryReleaseSelectionReuse",
+          "qualificationSourceSha256": "B03A71B0ED577F0E4622B5DFA8D2BFCB664B61C57322AEE1DE91487982940EC5"
         }
       ],
       "predecessors": [],
       "shapePredecessors": [],
-      "qualification": "Partial occurrence qualification; unannotated members pending"
+      "qualification": "pending"
     },
     {
       "language": "CSharp",
@@ -235,14 +237,6 @@
           "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
           "name": "ExternalHostCallbacks",
           "line": 40,
-          "tokens": 118,
-          "hash": "02FB2530FA33711E6DA4FDED0DDA8362581A2AE3ECC77D1BF89D6058AD6D52B8",
-          "shape": "88556CB96B835CDEE52EF15D517E09D46B7106389A036D470EA9047D050B921B"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.cs",
-          "name": "ExternalHostCallbacks",
-          "line": 47,
           "tokens": 118,
           "hash": "02FB2530FA33711E6DA4FDED0DDA8362581A2AE3ECC77D1BF89D6058AD6D52B8",
           "shape": "88556CB96B835CDEE52EF15D517E09D46B7106389A036D470EA9047D050B921B"
@@ -703,41 +697,6 @@
       "predecessors": [],
       "shapePredecessors": [],
       "qualification": "All occurrences qualified individually; see member evidence"
-    },
-    {
-      "language": "CSharp",
-      "hash": "04FBB5D32D9E5A8924669658158312747E0ED460438200A534F8A2759ACAC054",
-      "method": "HandleLog",
-      "tokens": 44,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Input.cs",
-          "name": "HandleLog",
-          "line": 57,
-          "tokens": 44,
-          "hash": "04FBB5D32D9E5A8924669658158312747E0ED460438200A534F8A2759ACAC054",
-          "shape": "122F42BD8CEFF21331835FC7C37D2BC217E930540A79B8EF66BF3B2D4AEA05F7"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Input.cs",
-          "name": "HandleLog",
-          "line": 60,
-          "tokens": 44,
-          "hash": "04FBB5D32D9E5A8924669658158312747E0ED460438200A534F8A2759ACAC054",
-          "shape": "122F42BD8CEFF21331835FC7C37D2BC217E930540A79B8EF66BF3B2D4AEA05F7"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.Input.cs",
-          "name": "HandleLog",
-          "line": 57,
-          "tokens": 44,
-          "hash": "04FBB5D32D9E5A8924669658158312747E0ED460438200A534F8A2759ACAC054",
-          "shape": "122F42BD8CEFF21331835FC7C37D2BC217E930540A79B8EF66BF3B2D4AEA05F7"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
-      "qualification": "pending"
     },
     {
       "language": "CSharp",
@@ -1309,7 +1268,7 @@
     {
       "language": "CSharp",
       "hash": "0A9D4012A0EEF58659F6F622D06187BDA6844EE126F30B196EAE963950A66758",
-      "method": "AtariEmulationModule",
+      "method": "CommodoreEmulationModule",
       "tokens": 45,
       "current": [
         {
@@ -2115,41 +2074,6 @@
           "shape": "F579B632E35BFB7C4703ECD110B3DDB757D1BD44C5977EA85612F90E452B0A28"
         }
       ],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
-      "hash": "1388325F9C25F9A45882A75C2AF953117E6EB3F6BE1B8BD1239915EFE3D3AE42",
-      "method": "HandleInputPoll",
-      "tokens": 73,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Input.cs",
-          "name": "HandleInputPoll",
-          "line": 20,
-          "tokens": 73,
-          "hash": "1388325F9C25F9A45882A75C2AF953117E6EB3F6BE1B8BD1239915EFE3D3AE42",
-          "shape": "49C28777DAE91AAB99CF62A88D2112DE508263DDB9C746FD0AD88E324D27D27D"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Input.cs",
-          "name": "HandleInputPoll",
-          "line": 23,
-          "tokens": 73,
-          "hash": "1388325F9C25F9A45882A75C2AF953117E6EB3F6BE1B8BD1239915EFE3D3AE42",
-          "shape": "49C28777DAE91AAB99CF62A88D2112DE508263DDB9C746FD0AD88E324D27D27D"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.Input.cs",
-          "name": "HandleInputPoll",
-          "line": 20,
-          "tokens": 73,
-          "hash": "1388325F9C25F9A45882A75C2AF953117E6EB3F6BE1B8BD1239915EFE3D3AE42",
-          "shape": "49C28777DAE91AAB99CF62A88D2112DE508263DDB9C746FD0AD88E324D27D27D"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
       "qualification": "pending"
     },
     {
@@ -4556,33 +4480,6 @@
     },
     {
       "language": "CSharp",
-      "hash": "2B981952FD479021B0D0193AE12D0756983F9EAA8A31F5AA5D54B8E92FB69229",
-      "method": "SetControllerType",
-      "tokens": 46,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.cs",
-          "name": "SetControllerType",
-          "line": 87,
-          "tokens": 46,
-          "hash": "2B981952FD479021B0D0193AE12D0756983F9EAA8A31F5AA5D54B8E92FB69229",
-          "shape": "D7C5142D9DBF8314EA9F93E75B4D7A9776BECB69A71B9F0F50EE10F0C4321737"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.cs",
-          "name": "SetControllerType",
-          "line": 93,
-          "tokens": 46,
-          "hash": "2B981952FD479021B0D0193AE12D0756983F9EAA8A31F5AA5D54B8E92FB69229",
-          "shape": "D7C5142D9DBF8314EA9F93E75B4D7A9776BECB69A71B9F0F50EE10F0C4321737"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
       "hash": "2C12EEE3AB7DAAE1DD8B7B1464C073373048F34D26AAA292589B58AF4A4A56A9",
       "method": "AddAudio",
       "tokens": 33,
@@ -4815,25 +4712,9 @@
           "shape": "D6CDBB1C357EA0A45C9655632D20626BA5B3F5DD0F79DD602BBB3036DD0DB05C"
         },
         {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "NativeString",
-          "line": 236,
-          "tokens": 34,
-          "hash": "2D061211B136CF8AB54CD0112BFF5718E60C605ADD94F59F0E3BC81305E3686F",
-          "shape": "D6CDBB1C357EA0A45C9655632D20626BA5B3F5DD0F79DD602BBB3036DD0DB05C"
-        },
-        {
           "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
           "name": "NativeString",
           "line": 268,
-          "tokens": 34,
-          "hash": "2D061211B136CF8AB54CD0112BFF5718E60C605ADD94F59F0E3BC81305E3686F",
-          "shape": "D6CDBB1C357EA0A45C9655632D20626BA5B3F5DD0F79DD602BBB3036DD0DB05C"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "NativeString",
-          "line": 241,
           "tokens": 34,
           "hash": "2D061211B136CF8AB54CD0112BFF5718E60C605ADD94F59F0E3BC81305E3686F",
           "shape": "D6CDBB1C357EA0A45C9655632D20626BA5B3F5DD0F79DD602BBB3036DD0DB05C"
@@ -6632,41 +6513,6 @@
     },
     {
       "language": "CSharp",
-      "hash": "3A94A5CDB0DC8CB6EFABC5AADF175E724AFF70E136A8BD66B83B231869FB8E0D",
-      "method": "HandleVideo",
-      "tokens": 44,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.AudioVideo.cs",
-          "name": "HandleVideo",
-          "line": 16,
-          "tokens": 44,
-          "hash": "3A94A5CDB0DC8CB6EFABC5AADF175E724AFF70E136A8BD66B83B231869FB8E0D",
-          "shape": "FF1EA1DF82275BDE7507FA0283ACF3177915A8EFE731E30AA428742FB7FE84BD"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.AudioVideo.cs",
-          "name": "HandleVideo",
-          "line": 16,
-          "tokens": 44,
-          "hash": "3A94A5CDB0DC8CB6EFABC5AADF175E724AFF70E136A8BD66B83B231869FB8E0D",
-          "shape": "FF1EA1DF82275BDE7507FA0283ACF3177915A8EFE731E30AA428742FB7FE84BD"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
-          "name": "HandleVideo",
-          "line": 13,
-          "tokens": 44,
-          "hash": "3A94A5CDB0DC8CB6EFABC5AADF175E724AFF70E136A8BD66B83B231869FB8E0D",
-          "shape": "FF1EA1DF82275BDE7507FA0283ACF3177915A8EFE731E30AA428742FB7FE84BD"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
       "hash": "3AA7A6CAD2831D3BB7B7155D8C8A0D8447DEF2F09C0C6D736E37A640BDA971CE",
       "method": "MapPointer",
       "tokens": 83,
@@ -6753,16 +6599,6 @@
           "tokens": 53,
           "hash": "3AC878DDB9AD5A993C637D32114E8E978804B2966D4276AAC4015C2294856DBA",
           "shape": "18256391E9945E33B5CC256F4332717DF055E36391CACE5CED70BD0A20DA2855"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "ValidateConfiguredOptions",
-          "line": 222,
-          "tokens": 53,
-          "hash": "3AC878DDB9AD5A993C637D32114E8E978804B2966D4276AAC4015C2294856DBA",
-          "shape": "18256391E9945E33B5CC256F4332717DF055E36391CACE5CED70BD0A20DA2855",
-          "qualification": "module-adapter-to-original-configured-validator",
-          "qualificationSourceSha256": "22543E8F1AACEF6D688672372C52E7720A31092A508A57729C473EA857F20E2A"
         }
       ],
       "predecessors": [],
@@ -8647,41 +8483,6 @@
     },
     {
       "language": "CSharp",
-      "hash": "47EC8C8E21B51D2AC16299DC0E1E0218A0F902AF01458B8A12FAB592FAD21774",
-      "method": "ApplyGeometry",
-      "tokens": 43,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.AudioVideo.cs",
-          "name": "ApplyGeometry",
-          "line": 32,
-          "tokens": 43,
-          "hash": "47EC8C8E21B51D2AC16299DC0E1E0218A0F902AF01458B8A12FAB592FAD21774",
-          "shape": "73F9B31D05B4DF55455E4C648A35705BBC466C4DF87814799D2BE784C3A2D42F"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
-          "name": "ApplyGeometry",
-          "line": 29,
-          "tokens": 43,
-          "hash": "47EC8C8E21B51D2AC16299DC0E1E0218A0F902AF01458B8A12FAB592FAD21774",
-          "shape": "73F9B31D05B4DF55455E4C648A35705BBC466C4DF87814799D2BE784C3A2D42F"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.AudioVideo.cs",
-          "name": "ApplyGeometry",
-          "line": 32,
-          "tokens": 43,
-          "hash": "47EC8C8E21B51D2AC16299DC0E1E0218A0F902AF01458B8A12FAB592FAD21774",
-          "shape": "73F9B31D05B4DF55455E4C648A35705BBC466C4DF87814799D2BE784C3A2D42F"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
       "hash": "48758D96E590E86167B57A76216D43D5C650ED740DDCF9AC41A13E2F564B9F1D",
       "method": "SetRotation",
       "tokens": 53,
@@ -8889,25 +8690,9 @@
           "shape": "1732C58529661C50142E63287D36E26B5FF0A23AA4B277CC3CEFF05C354D3B87"
         },
         {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.AudioVideo.cs",
-          "name": "HandleAudioSample",
-          "line": 43,
-          "tokens": 35,
-          "hash": "4954EFD628A031CFD1F8D4CA8CA95691E1D74DE3259D85930A4BED1D0F1A6288",
-          "shape": "1732C58529661C50142E63287D36E26B5FF0A23AA4B277CC3CEFF05C354D3B87"
-        },
-        {
           "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
           "name": "HandleAudioSample",
           "line": 44,
-          "tokens": 35,
-          "hash": "4954EFD628A031CFD1F8D4CA8CA95691E1D74DE3259D85930A4BED1D0F1A6288",
-          "shape": "1732C58529661C50142E63287D36E26B5FF0A23AA4B277CC3CEFF05C354D3B87"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.AudioVideo.cs",
-          "name": "HandleAudioSample",
-          "line": 43,
           "tokens": 35,
           "hash": "4954EFD628A031CFD1F8D4CA8CA95691E1D74DE3259D85930A4BED1D0F1A6288",
           "shape": "1732C58529661C50142E63287D36E26B5FF0A23AA4B277CC3CEFF05C354D3B87"
@@ -8989,27 +8774,7 @@
           "hash": "49B709C72531B93C6EEC45A5ED14BD04C56EAFF511F4B433829066F232718C38",
           "shape": "6CBA8351AC26F069A9F3AC31EE18CA7FBD7D4E34F727636E0734220F6EBEAE12",
           "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "22543E8F1AACEF6D688672372C52E7720A31092A508A57729C473EA857F20E2A"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "SetKeyboardCallback",
-          "line": 165,
-          "tokens": 42,
-          "hash": "49B709C72531B93C6EEC45A5ED14BD04C56EAFF511F4B433829066F232718C38",
-          "shape": "6CBA8351AC26F069A9F3AC31EE18CA7FBD7D4E34F727636E0734220F6EBEAE12",
-          "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "21DB4137ACB170E9B31AAA4425EC214984E586D8190B543C2A7EA723AD9B9C6E"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "SetKeyboardCallback",
-          "line": 160,
-          "tokens": 42,
-          "hash": "49B709C72531B93C6EEC45A5ED14BD04C56EAFF511F4B433829066F232718C38",
-          "shape": "6CBA8351AC26F069A9F3AC31EE18CA7FBD7D4E34F727636E0734220F6EBEAE12",
-          "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "307CD8A80A0D3B15C29348DABFD21BAE4A849B738E95D4FD0A0F0E44C301B129"
+          "qualificationSourceSha256": "7BD7FF33DD88A5DF96F233E4A9A63C83E051733BB82EC5F54466086917A88B9C"
         }
       ],
       "predecessors": [],
@@ -10122,25 +9887,9 @@
           "shape": "6EFDFF7E3AAB45246FEE69A0E436D23B4FA57DBE3DD76854C08B828979CEF2E9"
         },
         {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Input.cs",
-          "name": "FilterReservedKeyboardChord",
-          "line": 42,
-          "tokens": 107,
-          "hash": "57E40BAEA0712FBBC32B298EFA1A0CB15E077A7BF97AC46EAF9C4F8B29A00E4B",
-          "shape": "6EFDFF7E3AAB45246FEE69A0E436D23B4FA57DBE3DD76854C08B828979CEF2E9"
-        },
-        {
           "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Input.cs",
           "name": "FilterReservedKeyboardChord",
           "line": 43,
-          "tokens": 107,
-          "hash": "57E40BAEA0712FBBC32B298EFA1A0CB15E077A7BF97AC46EAF9C4F8B29A00E4B",
-          "shape": "6EFDFF7E3AAB45246FEE69A0E436D23B4FA57DBE3DD76854C08B828979CEF2E9"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Input.cs",
-          "name": "FilterReservedKeyboardChord",
-          "line": 45,
           "tokens": 107,
           "hash": "57E40BAEA0712FBBC32B298EFA1A0CB15E077A7BF97AC46EAF9C4F8B29A00E4B",
           "shape": "6EFDFF7E3AAB45246FEE69A0E436D23B4FA57DBE3DD76854C08B828979CEF2E9"
@@ -14584,7 +14333,7 @@
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalCore.cs",
           "name": "LoadGame",
-          "line": 236,
+          "line": 237,
           "tokens": 71,
           "hash": "803989E5B6DFE60979D4441956FF6A5A8FB0DDA87FB5ABDEB7D59B9FBB74BCF1",
           "shape": "609CD156B425830BB71DB9369D31EEC479D57869454E37993745D2118A925594"
@@ -14592,7 +14341,7 @@
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalCore.cs",
           "name": "LoadGame",
-          "line": 273,
+          "line": 274,
           "tokens": 71,
           "hash": "803989E5B6DFE60979D4441956FF6A5A8FB0DDA87FB5ABDEB7D59B9FBB74BCF1",
           "shape": "609CD156B425830BB71DB9369D31EEC479D57869454E37993745D2118A925594"
@@ -16055,22 +15804,6 @@
           "shape": "915041BAE6F662114851DBEB6F334C5758EA433826D411084C0728391E5220B4"
         },
         {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "CaptureMessage",
-          "line": 219,
-          "tokens": 57,
-          "hash": "8FF53C720BD6FEB0ECCC119A30FB0EE7FE38E45E2B13D40B9BD68F721C3A20CE",
-          "shape": "915041BAE6F662114851DBEB6F334C5758EA433826D411084C0728391E5220B4"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "CaptureMessage",
-          "line": 224,
-          "tokens": 57,
-          "hash": "8FF53C720BD6FEB0ECCC119A30FB0EE7FE38E45E2B13D40B9BD68F721C3A20CE",
-          "shape": "915041BAE6F662114851DBEB6F334C5758EA433826D411084C0728391E5220B4"
-        },
-        {
           "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
           "name": "CaptureMessage",
           "line": 250,
@@ -16151,7 +15884,7 @@
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalCore.cs",
           "name": "ResolveConfiguredMedia",
-          "line": 146,
+          "line": 147,
           "tokens": 31,
           "hash": "90ADD1B28438911B47924FF00BAFE41E133EF7DBD830E863FE8D2623CB97CFEE",
           "shape": "4222899A6C51A11F5BAC755FED8F456EEF948F87F9393E5AB6F5D036D3729E86"
@@ -16551,7 +16284,7 @@
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Exceptions/CoreExceptions.cs",
           "name": "Text",
-          "line": 56,
+          "line": 67,
           "tokens": 46,
           "hash": "9299AE70EAD54A793B6EA18E30A367148081D78DCAFECBA443BB66DA5370BC13",
           "shape": "88E7C50023076A18F4DD7BC62F9C15D9F0B3F4211553180AA660FFF1FAB41829"
@@ -18631,7 +18364,7 @@
     {
       "language": "CSharp",
       "hash": "A1E03750FEB3292ACEB41656386F4A8AA8B05077D9ABFB7DA103AA3D71320B9F",
-      "method": "ToFairchild",
+      "method": "ToModule",
       "tokens": 103,
       "current": [
         {
@@ -18816,25 +18549,9 @@
           "shape": "9FCFD8ED127737C0AFE1F1D087D1DC49663A565263E1E222C5E23786A8DCA9E3"
         },
         {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.AudioVideo.cs",
-          "name": "HandleAudioBatch",
-          "line": 48,
-          "tokens": 66,
-          "hash": "A41DC582C6C283568B59EE4767E015AF86D706786DEE81B04B3C9A7452964A14",
-          "shape": "9FCFD8ED127737C0AFE1F1D087D1DC49663A565263E1E222C5E23786A8DCA9E3"
-        },
-        {
           "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
           "name": "HandleAudioBatch",
           "line": 49,
-          "tokens": 66,
-          "hash": "A41DC582C6C283568B59EE4767E015AF86D706786DEE81B04B3C9A7452964A14",
-          "shape": "9FCFD8ED127737C0AFE1F1D087D1DC49663A565263E1E222C5E23786A8DCA9E3"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.AudioVideo.cs",
-          "name": "HandleAudioBatch",
-          "line": 48,
           "tokens": 66,
           "hash": "A41DC582C6C283568B59EE4767E015AF86D706786DEE81B04B3C9A7452964A14",
           "shape": "9FCFD8ED127737C0AFE1F1D087D1DC49663A565263E1E222C5E23786A8DCA9E3"
@@ -19439,25 +19156,9 @@
           "shape": "26FBE5AEC15198094DF5D1BEBBA4B49701B85618AA31991ADEE9CD3F9A8B6A4E"
         },
         {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "ApplyOptionVisibility",
-          "line": 192,
-          "tokens": 52,
-          "hash": "AB55EC24DA69F122481FC1289EE08BAE9F2F3728F91F712280299B378F66EB1D",
-          "shape": "26FBE5AEC15198094DF5D1BEBBA4B49701B85618AA31991ADEE9CD3F9A8B6A4E"
-        },
-        {
           "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
           "name": "ApplyOptionVisibility",
           "line": 221,
-          "tokens": 52,
-          "hash": "AB55EC24DA69F122481FC1289EE08BAE9F2F3728F91F712280299B378F66EB1D",
-          "shape": "26FBE5AEC15198094DF5D1BEBBA4B49701B85618AA31991ADEE9CD3F9A8B6A4E"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "ApplyOptionVisibility",
-          "line": 197,
           "tokens": 52,
           "hash": "AB55EC24DA69F122481FC1289EE08BAE9F2F3728F91F712280299B378F66EB1D",
           "shape": "26FBE5AEC15198094DF5D1BEBBA4B49701B85618AA31991ADEE9CD3F9A8B6A4E"
@@ -20222,7 +19923,7 @@
     {
       "language": "CSharp",
       "hash": "B053A3AB4F0B78A37DED57B2D744801187AED6EC54FEEAFE4B1AA9C454D6F48C",
-      "method": "PhilipsEmulationModule",
+      "method": "MattelEmulationModule",
       "tokens": 47,
       "current": [
         {
@@ -25337,14 +25038,6 @@
           "shape": "A494B9C1ABE840CAB2E2947D8C535FDF39D8E02B21B644F35941848DA03DB358"
         },
         {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Input.cs",
-          "name": "CreateKeyboardMap",
-          "line": 132,
-          "tokens": 55,
-          "hash": "E0BC603E350A0A3E43AA228224DDF07A41C832AA5D5F3729C1A432E1D25D79C0",
-          "shape": "A494B9C1ABE840CAB2E2947D8C535FDF39D8E02B21B644F35941848DA03DB358"
-        },
-        {
           "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Input.cs",
           "name": "CreateKeyboardMap",
           "line": 131,
@@ -25353,17 +25046,9 @@
           "shape": "A494B9C1ABE840CAB2E2947D8C535FDF39D8E02B21B644F35941848DA03DB358"
         },
         {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Input.cs",
-          "name": "CreateKeyboardMap",
-          "line": 140,
-          "tokens": 55,
-          "hash": "E0BC603E350A0A3E43AA228224DDF07A41C832AA5D5F3729C1A432E1D25D79C0",
-          "shape": "A494B9C1ABE840CAB2E2947D8C535FDF39D8E02B21B644F35941848DA03DB358"
-        },
-        {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.Input.cs",
           "name": "CreateKeyboardMap",
-          "line": 166,
+          "line": 179,
           "tokens": 55,
           "hash": "E0BC603E350A0A3E43AA228224DDF07A41C832AA5D5F3729C1A432E1D25D79C0",
           "shape": "A494B9C1ABE840CAB2E2947D8C535FDF39D8E02B21B644F35941848DA03DB358"
@@ -27335,32 +27020,12 @@
           "qualificationSourceSha256": "10FBF2A2329886A789614AF5A664FB914B6FB95C0F8B79D2DD08C312486ACE42"
         },
         {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "CaptureControllerInfo",
-          "line": 227,
-          "tokens": 71,
-          "hash": "F492411E1A0392A401BF45212E633C833C64154B48CC89B2B9EF7602B72824F2",
-          "shape": "5C3F1F72B4AAC394A999213EDEF1A7FD33AA23BC8AAF93F9F928DBA6C0B14599",
-          "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "307CD8A80A0D3B15C29348DABFD21BAE4A849B738E95D4FD0A0F0E44C301B129"
-        },
-        {
           "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
           "name": "CaptureControllerInfo",
           "line": 259,
           "tokens": 71,
           "hash": "F492411E1A0392A401BF45212E633C833C64154B48CC89B2B9EF7602B72824F2",
           "shape": "5C3F1F72B4AAC394A999213EDEF1A7FD33AA23BC8AAF93F9F928DBA6C0B14599"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "CaptureControllerInfo",
-          "line": 232,
-          "tokens": 71,
-          "hash": "F492411E1A0392A401BF45212E633C833C64154B48CC89B2B9EF7602B72824F2",
-          "shape": "5C3F1F72B4AAC394A999213EDEF1A7FD33AA23BC8AAF93F9F928DBA6C0B14599",
-          "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "21DB4137ACB170E9B31AAA4425EC214984E586D8190B543C2A7EA723AD9B9C6E"
         },
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
@@ -27370,7 +27035,7 @@
           "hash": "F492411E1A0392A401BF45212E633C833C64154B48CC89B2B9EF7602B72824F2",
           "shape": "5C3F1F72B4AAC394A999213EDEF1A7FD33AA23BC8AAF93F9F928DBA6C0B14599",
           "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "22543E8F1AACEF6D688672372C52E7720A31092A508A57729C473EA857F20E2A"
+          "qualificationSourceSha256": "7BD7FF33DD88A5DF96F233E4A9A63C83E051733BB82EC5F54466086917A88B9C"
         }
       ],
       "predecessors": [],
@@ -27394,26 +27059,6 @@
           "qualificationSourceSha256": "B4125ED362370D5FA40827C0C6D69DB4894E1773B5F61DF2772C5AE7E241BF3C"
         },
         {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Input.cs",
-          "name": "PublishKeyboardTransitions",
-          "line": 32,
-          "tokens": 63,
-          "hash": "F4D9DE21E99613BAAD068CC85A4E87A8100694E24E1F0146DE2A9AD01E5D5B60",
-          "shape": "980FA15B101FFF4166DB7A5844456C5841D086702F20FD987F10F709321AE2FD",
-          "qualification": "Typed keyboard publication adapter to original Atari transitions and shared modifiers verified in keyboardTransitionReuse; local guard/filter/map/character/order policies retained",
-          "qualificationSourceSha256": "F92FDA12E2E825A8505993A073557FB88D99ED7D9380D3FF8444FD36FC9ADFDC"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Input.cs",
-          "name": "PublishKeyboardTransitions",
-          "line": 35,
-          "tokens": 63,
-          "hash": "F4D9DE21E99613BAAD068CC85A4E87A8100694E24E1F0146DE2A9AD01E5D5B60",
-          "shape": "980FA15B101FFF4166DB7A5844456C5841D086702F20FD987F10F709321AE2FD",
-          "qualification": "Typed keyboard publication adapter to original Atari transitions and shared modifiers verified in keyboardTransitionReuse; local guard/filter/map/character/order policies retained",
-          "qualificationSourceSha256": "759C393D33323E727F4253CDE5ABF8B8FE5C24F5D4F11165E92CCABEEA38B0E3"
-        },
-        {
           "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Input.cs",
           "name": "PublishKeyboardTransitions",
           "line": 33,
@@ -27431,7 +27076,7 @@
           "hash": "F4D9DE21E99613BAAD068CC85A4E87A8100694E24E1F0146DE2A9AD01E5D5B60",
           "shape": "980FA15B101FFF4166DB7A5844456C5841D086702F20FD987F10F709321AE2FD",
           "qualification": "Typed keyboard publication adapter to original Atari transitions and shared modifiers verified in keyboardTransitionReuse; local guard/filter/map/character/order policies retained",
-          "qualificationSourceSha256": "88F8770B735B65E2F3905F2C194EAFEF2D541A37BD8B465B4A7A120D6FFDC8D1"
+          "qualificationSourceSha256": "AC6202F5406D49C84992DB40F62F2E64029354C10470B5D34D32D80E2E67C4DA"
         },
         {
           "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.Input.cs",
@@ -27446,7 +27091,7 @@
       ],
       "predecessors": [],
       "shapePredecessors": [],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending"
     },
     {
       "language": "CSharp",
@@ -28335,25 +27980,9 @@
           "shape": "6D80FAC43CB3CBBBF9EE70C5F8711806197A44718722E009B76BCE6F65F9C4FD"
         },
         {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Input.cs",
-          "name": "HandleLed",
-          "line": 63,
-          "tokens": 51,
-          "hash": "FF94CA3B3FDB1E5D8071728ED10409A0E7239535266178AB83E7FB5B3F5CF12E",
-          "shape": "6D80FAC43CB3CBBBF9EE70C5F8711806197A44718722E009B76BCE6F65F9C4FD"
-        },
-        {
           "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Input.cs",
           "name": "HandleLed",
           "line": 64,
-          "tokens": 51,
-          "hash": "FF94CA3B3FDB1E5D8071728ED10409A0E7239535266178AB83E7FB5B3F5CF12E",
-          "shape": "6D80FAC43CB3CBBBF9EE70C5F8711806197A44718722E009B76BCE6F65F9C4FD"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Input.cs",
-          "name": "HandleLed",
-          "line": 66,
           "tokens": 51,
           "hash": "FF94CA3B3FDB1E5D8071728ED10409A0E7239535266178AB83E7FB5B3F5CF12E",
           "shape": "6D80FAC43CB3CBBBF9EE70C5F8711806197A44718722E009B76BCE6F65F9C4FD"
@@ -29375,26 +29004,6 @@
       "tokens": 53,
       "current": [
         {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "ValidateConfiguredOptions",
-          "line": 213,
-          "tokens": 53,
-          "hash": "2ACF5ABDBB15BFA648981B825F1870C3B5CA91BD4687BE930A367946F2B74828",
-          "shape": "18256391E9945E33B5CC256F4332717DF055E36391CACE5CED70BD0A20DA2855",
-          "qualification": "module-adapter-to-original-configured-validator",
-          "qualificationSourceSha256": "307CD8A80A0D3B15C29348DABFD21BAE4A849B738E95D4FD0A0F0E44C301B129"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "ValidateConfiguredOptions",
-          "line": 218,
-          "tokens": 53,
-          "hash": "68E85E2BD9501D3B2114510CBAFF25CBA67C8363F86C4F859BCFB7C1820B9A6C",
-          "shape": "18256391E9945E33B5CC256F4332717DF055E36391CACE5CED70BD0A20DA2855",
-          "qualification": "module-adapter-to-original-configured-validator",
-          "qualificationSourceSha256": "21DB4137ACB170E9B31AAA4425EC214984E586D8190B543C2A7EA723AD9B9C6E"
-        },
-        {
           "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
           "name": "ValidateConfiguredOptions",
           "line": 245,
@@ -29409,16 +29018,6 @@
           "tokens": 53,
           "hash": "3AC878DDB9AD5A993C637D32114E8E978804B2966D4276AAC4015C2294856DBA",
           "shape": "18256391E9945E33B5CC256F4332717DF055E36391CACE5CED70BD0A20DA2855"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "ValidateConfiguredOptions",
-          "line": 222,
-          "tokens": 53,
-          "hash": "3AC878DDB9AD5A993C637D32114E8E978804B2966D4276AAC4015C2294856DBA",
-          "shape": "18256391E9945E33B5CC256F4332717DF055E36391CACE5CED70BD0A20DA2855",
-          "qualification": "module-adapter-to-original-configured-validator",
-          "qualificationSourceSha256": "22543E8F1AACEF6D688672372C52E7720A31092A508A57729C473EA857F20E2A"
         },
         {
           "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
@@ -29828,7 +29427,7 @@
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalCore.cs",
           "name": "PrepareContentPath",
-          "line": 148,
+          "line": 149,
           "tokens": 125,
           "hash": "0250FA241FCEEEEE6ADA5CD02FB0B887F2C817036458DAC134F8E22D725465D6",
           "shape": "26505774D52C147D3A4D8EE1C9C518D190D3F08C1D9349FD6A8FE9A88A1AD018"
@@ -29844,7 +29443,7 @@
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalCore.cs",
           "name": "PrepareContentPath",
-          "line": 159,
+          "line": 160,
           "tokens": 125,
           "hash": "2405840DD71D9B4BB27B49717E63821E35ACFEECF4128809992D2233E4231C55",
           "shape": "26505774D52C147D3A4D8EE1C9C518D190D3F08C1D9349FD6A8FE9A88A1AD018"
@@ -30192,7 +29791,7 @@
           "shape": "3A5AF1DA73918C681E4201FE380BCDF5FC1E065C8E8A775786B2B401A371D8AB"
         }
       ],
-      "qualification": "Partial occurrence qualification; unannotated members pending"
+      "qualification": "pending-symbol-and-policy-comparison"
     },
     {
       "shape": "3AB6CA3847DF5D91EB16620D10AD321596418E1794717590706AF6AD523FCA2F",
@@ -30391,7 +29990,7 @@
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalCore.cs",
           "name": "LoadState",
-          "line": 205,
+          "line": 206,
           "tokens": 102,
           "hash": "B4FC23E5D218D8100E9F0BF267E526D7B2887B154B0C3B1B961F594130422228",
           "shape": "3D25C498D59996BAF974F6ADD529195FAC747540354E0F9141E80D4BA0DBA8FF"
@@ -30407,7 +30006,7 @@
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalCore.cs",
           "name": "LoadState",
-          "line": 233,
+          "line": 234,
           "tokens": 102,
           "hash": "43DAF1264B0202FEE2D1C36E4CBA04A7B92DD1B4D8A1A24C1E8940290FDE233D",
           "shape": "3D25C498D59996BAF974F6ADD529195FAC747540354E0F9141E80D4BA0DBA8FF"
@@ -33398,26 +32997,6 @@
           "qualificationSourceSha256": "B4125ED362370D5FA40827C0C6D69DB4894E1773B5F61DF2772C5AE7E241BF3C"
         },
         {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Input.cs",
-          "name": "PublishKeyboardTransitions",
-          "line": 32,
-          "tokens": 63,
-          "hash": "F4D9DE21E99613BAAD068CC85A4E87A8100694E24E1F0146DE2A9AD01E5D5B60",
-          "shape": "980FA15B101FFF4166DB7A5844456C5841D086702F20FD987F10F709321AE2FD",
-          "qualification": "Typed keyboard publication adapter to original Atari transitions and shared modifiers verified in keyboardTransitionReuse; local guard/filter/map/character/order policies retained",
-          "qualificationSourceSha256": "F92FDA12E2E825A8505993A073557FB88D99ED7D9380D3FF8444FD36FC9ADFDC"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Input.cs",
-          "name": "PublishKeyboardTransitions",
-          "line": 35,
-          "tokens": 63,
-          "hash": "F4D9DE21E99613BAAD068CC85A4E87A8100694E24E1F0146DE2A9AD01E5D5B60",
-          "shape": "980FA15B101FFF4166DB7A5844456C5841D086702F20FD987F10F709321AE2FD",
-          "qualification": "Typed keyboard publication adapter to original Atari transitions and shared modifiers verified in keyboardTransitionReuse; local guard/filter/map/character/order policies retained",
-          "qualificationSourceSha256": "759C393D33323E727F4253CDE5ABF8B8FE5C24F5D4F11165E92CCABEEA38B0E3"
-        },
-        {
           "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Input.cs",
           "name": "PublishKeyboardTransitions",
           "line": 33,
@@ -33435,7 +33014,7 @@
           "hash": "F4D9DE21E99613BAAD068CC85A4E87A8100694E24E1F0146DE2A9AD01E5D5B60",
           "shape": "980FA15B101FFF4166DB7A5844456C5841D086702F20FD987F10F709321AE2FD",
           "qualification": "Typed keyboard publication adapter to original Atari transitions and shared modifiers verified in keyboardTransitionReuse; local guard/filter/map/character/order policies retained",
-          "qualificationSourceSha256": "88F8770B735B65E2F3905F2C194EAFEF2D541A37BD8B465B4A7A120D6FFDC8D1"
+          "qualificationSourceSha256": "AC6202F5406D49C84992DB40F62F2E64029354C10470B5D34D32D80E2E67C4DA"
         },
         {
           "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.Input.cs",
@@ -33448,7 +33027,7 @@
           "qualificationSourceSha256": "376ADDF95EBA1D6D82F10F3C7CE2DC59F99EB79C8E42D6915258F2F063E6CE0A"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending-symbol-and-policy-comparison"
     },
     {
       "shape": "98BFEA96C98C9ADBBB92A7A5966293BDB69AED7EA138CF83F9AAA5412AEA72D0",
@@ -33960,7 +33539,7 @@
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalCore.cs",
           "name": "ValidateExtension",
-          "line": 228,
+          "line": 229,
           "tokens": 49,
           "hash": "CC8D7CCC671830757476D91A6FCE608F884889F342B354B5441968607D7A19E7",
           "shape": "AC95E65908476B9CE9520D4BB8EBD6158DBDF7604CE6AAFA43340694EC485BDA"
@@ -33976,7 +33555,7 @@
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalCore.cs",
           "name": "ValidateExtension",
-          "line": 265,
+          "line": 266,
           "tokens": 49,
           "hash": "37A2ECB39C42E7E80C24AB4037B44A23CF7986A8A7CC7D74316B9334C20B3A23",
           "shape": "AC95E65908476B9CE9520D4BB8EBD6158DBDF7604CE6AAFA43340694EC485BDA"
@@ -34133,7 +33712,7 @@
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalCore.cs",
           "name": "HardReset",
-          "line": 161,
+          "line": 162,
           "tokens": 52,
           "hash": "55B509A30FF791D095D769AB0B3ACAEE11973FEB810592A13515BABA37C43A41",
           "shape": "AEE701D990A0A8C7B7ACD421F166C8D3AFF63D511EE2DAF4844860E4DEE7A22B"
@@ -34165,7 +33744,7 @@
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalCore.cs",
           "name": "HardReset",
-          "line": 172,
+          "line": 173,
           "tokens": 52,
           "hash": "56873516A71B6FB291D92C331D0D0F4D0739034B8B52480BB66AD2CDA7BBF1CC",
           "shape": "AEE701D990A0A8C7B7ACD421F166C8D3AFF63D511EE2DAF4844860E4DEE7A22B"
@@ -34531,7 +34110,7 @@
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalCore.cs",
           "name": "ResolveCorePath",
-          "line": 250,
+          "line": 251,
           "tokens": 54,
           "hash": "13598BACF71776B34B2B6D70294D652E7E482775D1A7106BEDFCD587C0782931",
           "shape": "B79D87DCD4BB30A034126C7C4DC61FF9956CE7F6CF003416A4ECE238C727ADF3"
@@ -34547,7 +34126,7 @@
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalCore.cs",
           "name": "ResolveCorePath",
-          "line": 287,
+          "line": 288,
           "tokens": 54,
           "hash": "0C324B6C6CFA7D8C5BF0176C3C490BD7AB7DE0974E215B40905A68019CA54091",
           "shape": "B79D87DCD4BB30A034126C7C4DC61FF9956CE7F6CF003416A4ECE238C727ADF3"
@@ -35176,37 +34755,6 @@
           "tokens": 32,
           "hash": "1725E13C82C6CF1232C6C036C65EA99B4F00AE24B008E691FD966D4AFBB97B18",
           "shape": "C88FA91DD32CC6373A0E6A547F3FBBF76075719F8A7096FD7ECC26340D0988EE"
-        }
-      ],
-      "qualification": "pending-symbol-and-policy-comparison"
-    },
-    {
-      "shape": "C8EB29902334C059DF1B6016B5329A782E5E7EDCF653E71B75FCA8FA326FB5C3",
-      "tokens": 155,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.cs",
-          "name": "SetOption",
-          "line": 117,
-          "tokens": 155,
-          "hash": "F3CFF6A31B8D3134AF16ADA7789ED6E6CD851F53CF357E665BBB2C7484A069F5",
-          "shape": "C8EB29902334C059DF1B6016B5329A782E5E7EDCF653E71B75FCA8FA326FB5C3"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.cs",
-          "name": "SetOption",
-          "line": 123,
-          "tokens": 155,
-          "hash": "047CCDE4743CAC1EDEA30F69146DF51879ED3A9F75BAA122B499F44D35F22A56",
-          "shape": "C8EB29902334C059DF1B6016B5329A782E5E7EDCF653E71B75FCA8FA326FB5C3"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
-          "name": "SetOption",
-          "line": 122,
-          "tokens": 155,
-          "hash": "C7CAE4314A93FE84810058F475E23E4956E5747F80AB0250E4A08A83B0BDC09C",
-          "shape": "C8EB29902334C059DF1B6016B5329A782E5E7EDCF653E71B75FCA8FA326FB5C3"
         }
       ],
       "qualification": "pending-symbol-and-policy-comparison"
@@ -36395,7 +35943,7 @@
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalCore.cs",
           "name": "SaveState",
-          "line": 188,
+          "line": 189,
           "tokens": 127,
           "hash": "CF48136E80C6CF5EA3AB8B2C06352E32595D4C74F4BF52D364328FEDB912AB72",
           "shape": "E7A743DC0BC4193847D70969C3383F9DC430CC5C2E0DC3C2389DB6B77EF39EF3"
@@ -36411,7 +35959,7 @@
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalCore.cs",
           "name": "SaveState",
-          "line": 216,
+          "line": 217,
           "tokens": 127,
           "hash": "BFDFC0E242CD8844B824E24130C7BFAB33E13274B87EEBA4F95C84D625567453",
           "shape": "E7A743DC0BC4193847D70969C3383F9DC430CC5C2E0DC3C2389DB6B77EF39EF3"
@@ -37631,7 +37179,7 @@
   ],
   "scope": "All current repository CSharp and PowerShell files; no age filter; candidates require semantic review",
   "qualificationCarryForward": {
-    "occurrences": 237,
+    "occurrences": 238,
     "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical"
   }
 }

@@ -1,6 +1,6 @@
 using FirmwareConstants = GWGUI.Emulation.Sony.Emulators.Pcsx2.Constants.FirmwareConstants;
 using GWGUI.Emulation.Sony.Emulators.Pcsx2.Functions;
-using GWGUI.Emulation.Sony.Emulators.Pcsx2.Contracts;
+using GWGUI.Emulation.Sony.Emulators.Common.Interop.Contracts;
 using GWGUI.Emulation.Sony.Emulators.Pcsx2.Constants;
 using GWGUI.Emulation.Sony.Emulators.Pcsx2.Services;
 using System.IO;

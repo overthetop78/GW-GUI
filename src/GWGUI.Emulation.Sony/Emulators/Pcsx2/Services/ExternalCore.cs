@@ -1,3 +1,4 @@
+using ExternalHostCallbacks = GWGUI.Emulation.Sony.Emulators.Common.Interop.Services.ExternalHostCallbacks;
 using ExternalCoreInteropConstants = GWGUI.Emulation.Sony.Emulators.Common.Interop.Constants.ExternalCoreInteropConstants;
 using System.IO;
 using System.Runtime.InteropServices;
@@ -94,7 +95,7 @@ internal sealed class ExternalCore : IEmulatorCore
         Func<string, (string Path, bool IsReadOnly)>? pathResolver = nativeSystemDirectory == systemDirectory
             ? null : path => Functions.FileSystemFunctions.Resolve(configuration, systemDirectory, path, _host?.CheatsEnabled);
         _host = new ExternalHostCallbacks(systemDirectory, contentDirectory, saveDirectory, configuration.Options ?? new Dictionary<string, string>(),
-            nativeSystemDirectory, pathResolver);
+            emulatorId: Pcsx2Constants.Id, nativeSystemDirectory: nativeSystemDirectory, pathResolver: pathResolver);
 
         try
         {

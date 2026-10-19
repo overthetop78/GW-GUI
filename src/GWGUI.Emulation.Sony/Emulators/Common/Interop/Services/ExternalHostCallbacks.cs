@@ -9,6 +9,7 @@ using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Collections.Concurrent;
 using GWGUI.Emulation;
+using GWGUI.Emulation.Services;
 
 namespace GWGUI.Emulation.Sony.Emulators.Common.Interop.Services;
 
@@ -26,6 +27,10 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
     private long _videoSequence;
     private long _audioSequence;
     private bool _disposed;
+    private readonly string? _emulatorId;
+    private readonly bool _legacyCallbacks;
+    private readonly bool _pspCallbacks;
+    private readonly ExternalCoreVirtualFileSystem? _virtualFileSystem;
     private volatile bool _shutdownRequested;
     internal bool ShutdownRequested => _shutdownRequested;
     internal NativeControllerFeedback Feedback { get; } = new();
@@ -42,16 +47,21 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
     private ExternalCoreApi.UpdateCoreOptionsDisplay? _updateOptionsDisplay;
     private bool _suppressFullscreenChord;
     private readonly Dictionary<string, bool> _optionVisibility = new(StringComparer.Ordinal);
-    internal ExternalDiskControl DiskControl { get; } = new();
+    internal ExternalDiskControl DiskControl { get; }
 
-    internal ExternalHostCallbacks(string systemDirectory, string contentDirectory, string saveDirectory, IReadOnlyDictionary<string, string>? options, IReadOnlyList<string>? startupFailureDiagnostics = null, IReadOnlyList<CoreControllerPort>? controllerPorts = null)
+    internal ExternalHostCallbacks(string systemDirectory, string contentDirectory, string saveDirectory, IReadOnlyDictionary<string, string>? options, IReadOnlyList<string>? startupFailureDiagnostics = null, IReadOnlyList<CoreControllerPort>? controllerPorts = null,
+        string? emulatorId = null, string? nativeSystemDirectory = null, Func<string, (string Path, bool IsReadOnly)>? pathResolver = null)
     {
+        _emulatorId = emulatorId;
+        _pspCallbacks = emulatorId == Emulators.Ppsspp.Constants.PpssppConstants.Id;
+        _legacyCallbacks = _pspCallbacks || emulatorId == Emulators.Pcsx2.Constants.Pcsx2Constants.Id;
+        DiskControl = new ExternalDiskControl(emulatorId);
         _controllerPorts = controllerPorts;
         DiagnosticMonitor = new CoreDiagnosticMonitor(startupFailureDiagnostics);
         Directory.CreateDirectory(systemDirectory);
         Directory.CreateDirectory(contentDirectory);
         Directory.CreateDirectory(saveDirectory);
-        SystemDirectory = Path.GetFullPath(systemDirectory);
+        SystemDirectory = nativeSystemDirectory ?? Path.GetFullPath(systemDirectory);
         ContentDirectory = Path.GetFullPath(contentDirectory);
         SaveDirectory = Path.GetFullPath(saveDirectory);
         if (options is not null)
@@ -70,9 +80,12 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
         InputState = HandleInputState;
         Log = HandleLog;
         Led = HandleLed;
+        if (emulatorId == Emulators.Pcsx2.Constants.Pcsx2Constants.Id)
+            _virtualFileSystem = new ExternalCoreVirtualFileSystem(readObserver: null, pathResolver: pathResolver);
     }
 
     internal string SystemDirectory { get; }
+    internal bool CheatsEnabled => _options.GetValueOrDefault(Emulators.Pcsx2.Constants.OptionConstants.EnableCheatsKey) == EmulationSettingConstants.Enabled;
     internal string ContentDirectory { get; }
     internal string SaveDirectory { get; }
     internal VideoFrame? LatestVideoFrame { get; private set; }
@@ -122,10 +135,10 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
     internal void SetOption(string key, string value)
     {
         if (!OptionCatalog.Any(option => option.Key.Equals(key, StringComparison.Ordinal)))
-            throw new ArgumentOutOfRangeException(nameof(key), key, CoreExceptions.UnknownCoreOption());
+            throw new ArgumentOutOfRangeException(nameof(key), key, CoreExceptions.ForEmulator(_emulatorId, CoreExceptionsResourceConstants.UnknownCoreOption));
         var option = OptionCatalog.First(item => item.Key.Equals(key, StringComparison.Ordinal));
         if (option.Values.Count > 0 && !option.Values.Any(item => item.Value.Equals(value, StringComparison.Ordinal)))
-            throw new ArgumentOutOfRangeException(nameof(value), value, CoreExceptions.InvalidOptionValue(value, key));
+            throw new ArgumentOutOfRangeException(nameof(value), value, CoreExceptions.ForEmulator(_emulatorId, CoreExceptionsResourceConstants.InvalidOptionValue, value, key));
         _options[key] = value;
         OptionCatalog = CoreOptionMetadataFunctions.WithCurrentValues(OptionCatalog, _options);
         Interlocked.Exchange(ref _optionsUpdated, 1);
@@ -149,19 +162,23 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
         }
         finally
         {
-            Feedback.Dispose();
-            _nativeStrings.Clear();
-            _keyboardEvent = null;
-            _updateOptionsDisplay = null;
-            LatestVideoFrame = null;
-            _audioBuffer.ClearNative(() => LatestAudioChunk = null);
-            lock (_inputGate)
+            try
             {
-                _input.Reset();
-                _polledInput = EmulationInputSnapshot.Empty;
-                _previousKeys = new HashSet<EmulationKey>();
+                Feedback.Dispose();
+                _nativeStrings.Clear();
+                _keyboardEvent = null;
+                _updateOptionsDisplay = null;
+                LatestVideoFrame = null;
+                _audioBuffer.ClearNative(() => LatestAudioChunk = null);
+                lock (_inputGate)
+                {
+                    _input.Reset();
+                    _polledInput = EmulationInputSnapshot.Empty;
+                    _previousKeys = new HashSet<EmulationKey>();
+                }
+                _disposed = true;
             }
-            _disposed = true;
+            finally { _virtualFileSystem?.Dispose(); }
         }
     }
 }

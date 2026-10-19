@@ -92,6 +92,19 @@ internal sealed partial class ExternalHostCallbacks
         if (device == KeyboardDevice)
             return KeyboardMap.TryGetValue(id, out var key) && input.Keys.Contains(key) ? (short)1 : (short)0;
 
+        if (device == MouseDevice && _pspCallbacks)
+            return port == 0 ? (MouseInput)id switch
+            {
+                MouseInput.X => ClampToShort(input.Pointer.DeltaX),
+                MouseInput.Y => ClampToShort(input.Pointer.DeltaY),
+                MouseInput.Left => Bool(input.Pointer.Left),
+                MouseInput.Right => Bool(input.Pointer.Right),
+                MouseInput.WheelUp => Bool(input.Pointer.Wheel > NeutralWheelDelta),
+                MouseInput.WheelDown => Bool(input.Pointer.Wheel < NeutralWheelDelta),
+                MouseInput.Middle => Bool(input.Pointer.Middle),
+                _ => default
+            } : default;
+
         if (device == MouseDevice)
             return (MouseInput)id switch
             {
@@ -109,18 +122,18 @@ internal sealed partial class ExternalHostCallbacks
                 _ => default
             };
 
-        if (device == PointerDevice && index == PrimaryPointerIndex)
+        if (device == PointerDevice && (_legacyCallbacks ? port == 0 : index == PrimaryPointerIndex))
             return id switch
             {
                 PointerX => (short)_pointerX,
                 PointerY => (short)_pointerY,
                 PointerPressed => Bool(input.Pointer.Left),
-                PointerCount => input.Pointer.Left ? (short)SinglePointerCount : default,
-                PointerOffscreen => Bool(PointerIsOffscreen()),
+                PointerCount when !_legacyCallbacks => input.Pointer.Left ? (short)SinglePointerCount : default,
+                PointerOffscreen when !_legacyCallbacks => Bool(PointerIsOffscreen()),
                 _ => default
             };
 
-        if (device == LightGunDevice)
+        if (device == LightGunDevice && !_legacyCallbacks)
         {
             var axisX = controller.Controls.ContainsKey(EmulationControllerCommandIds.LeftStickLeft) || controller.Controls.ContainsKey(EmulationControllerCommandIds.LeftStickRight);
             var axisY = controller.Controls.ContainsKey(EmulationControllerCommandIds.LeftStickUp) || controller.Controls.ContainsKey(EmulationControllerCommandIds.LeftStickDown);
@@ -140,7 +153,7 @@ internal sealed partial class ExternalHostCallbacks
         if (port >= input.Controllers.Count) return 0;
         if (device == JoypadDevice)
         {
-            var buttons = AnalogToggleFunctions.ButtonMask(controller, (ControllerType)_controllerTypes[(int)port]);
+            var buttons = _legacyCallbacks ? controller.Buttons : AnalogToggleFunctions.ButtonMask(controller, (ControllerType)_controllerTypes[(int)port]);
             if (id == JoypadMask) return unchecked((short)(buttons & ushort.MaxValue));
             return id < ControllerButtonMaskWidth && (buttons & (1u << (int)id)) != EmptyButtonMask ? Bool(true) : default;
         }
@@ -151,7 +164,7 @@ internal sealed partial class ExternalHostCallbacks
                 (AnalogInputIndex.LeftStick, AnalogAxis.Y) => controller.LeftY,
                 (AnalogInputIndex.RightStick, AnalogAxis.X) => controller.RightX,
                 (AnalogInputIndex.RightStick, AnalogAxis.Y) => controller.RightY,
-                (AnalogInputIndex.Button, _) => AnalogButton(controller, (JoypadInput)id),
+                (AnalogInputIndex.Button, _) when !_pspCallbacks => AnalogButton(controller, (JoypadInput)id),
                 _ => default
             };
         return 0;

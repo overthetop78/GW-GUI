@@ -1,22 +1,56 @@
 {
-  "snapshot": "9b0a10a9444731742d7a1d100a218eed245121ee",
+  "snapshot": "1e0cf72bb6eecc6ec54a1016b86d97c946444d54",
   "snapshotState": "Current worktree based on snapshot",
   "worktreeSourceChanges": [
-    "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
-    "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
-    "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
-    "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
-    "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+    "src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/InputFunctions.Usb.cs",
+    "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Exceptions/CoreExceptions.cs",
+    "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalDiskControl.cs",
+    "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs",
     "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+    "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.Input.cs",
+    "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+    "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Constants/CoreHostConstants.cs",
+    "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Constants/CoreReleaseConstants.cs",
+    "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Constants/ExternalHostCallbacksConstants.cs",
+    "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Constants/ProcessCoreConstants.cs",
+    "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Contracts/ControllerContracts.cs",
+    "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Enums/HostEnums.cs",
+    "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Factories/Pcsx2MachineFactory.cs",
+    "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Functions/CoreHostProtocol.cs",
+    "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/CoreHost.cs",
+    "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/CoreProvider.cs",
+    "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/CoreReleaseService.cs",
+    "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalCore.cs",
+    "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalCoreInstaller.cs",
+    "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalDiskControl.cs",
+    "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.AudioVideo.cs",
     "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Environment.cs",
+    "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Input.cs",
+    "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.cs",
+    "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ProcessCore.cs",
+    "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Constants/CoreHostConstants.cs",
+    "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Constants/CoreReleaseConstants.cs",
+    "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Constants/ExternalHostCallbacksConstants.cs",
+    "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Constants/ProcessCoreConstants.cs",
+    "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Contracts/ControllerContracts.cs",
+    "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Enums/HostEnums.cs",
+    "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Factories/PpssppMachineFactory.cs",
+    "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Functions/CoreHostProtocol.cs",
+    "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/CoreHost.cs",
+    "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/CoreProvider.cs",
+    "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/CoreReleaseService.cs",
+    "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalCore.cs",
+    "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalCoreInstaller.cs",
+    "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalDiskControl.cs",
+    "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.AudioVideo.cs",
     "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Environment.cs",
-    "src/GWGUI.Emulation/Functions/ExternalCoreEnvironmentFunctions.cs",
-    "tests/GWGUI.Tests/Emulation/EnvironmentCallbackCommandTests.cs",
-    "tests/GWGUI.Tests/Emulation/StatelessEnvironmentCommandTests.cs"
+    "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Input.cs",
+    "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.cs",
+    "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ProcessCore.cs"
   ],
   "scope": "All current non-ignored repository CSharp files, including hidden paths; BaseMethodDeclaration bodies with fewer than 30 tokens. Candidate presence is not a defect or a completion claim.",
-  "fileCount": 7295,
-  "methodBodyCount": 9808,
+  "fileCount": 7281,
+  "methodBodyCount": 9731,
   "exactGroups": [
     {
       "hash": "0017F14C61995D644C52FF90F094E4708DC2CA772615CF2F5DD41E74BD202ECA",
@@ -1591,35 +1625,7 @@
           "hash": "06394F8D150AEDA6DFC346AF237BEAE1F2646F39A65FA32B77A3F2DF52024D68",
           "shape": "3191AAA5C050B2FB9B265C69588C34817A8F39CE4AE58B182AF83FDFB2FD551A",
           "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "22543E8F1AACEF6D688672372C52E7720A31092A508A57729C473EA857F20E2A"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "WriteContentDirectory",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 124,
-          "parameters": "(nint data)",
-          "tokens": 15,
-          "bodyTokens": "{ return ExternalCoreEnvironmentFunctions . WritePointer ( data , NativeString ( ContentDirectory ) ) ; }",
-          "hash": "06394F8D150AEDA6DFC346AF237BEAE1F2646F39A65FA32B77A3F2DF52024D68",
-          "shape": "3191AAA5C050B2FB9B265C69588C34817A8F39CE4AE58B182AF83FDFB2FD551A",
-          "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "21DB4137ACB170E9B31AAA4425EC214984E586D8190B543C2A7EA723AD9B9C6E"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "WriteContentDirectory",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 119,
-          "parameters": "(nint data)",
-          "tokens": 15,
-          "bodyTokens": "{ return ExternalCoreEnvironmentFunctions . WritePointer ( data , NativeString ( ContentDirectory ) ) ; }",
-          "hash": "06394F8D150AEDA6DFC346AF237BEAE1F2646F39A65FA32B77A3F2DF52024D68",
-          "shape": "3191AAA5C050B2FB9B265C69588C34817A8F39CE4AE58B182AF83FDFB2FD551A",
-          "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "307CD8A80A0D3B15C29348DABFD21BAE4A849B738E95D4FD0A0F0E44C301B129"
+          "qualificationSourceSha256": "7BD7FF33DD88A5DF96F233E4A9A63C83E051733BB82EC5F54466086917A88B9C"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -1819,35 +1825,7 @@
           "hash": "080B4DA489C00BF0C9A967EFB0253F479B75D7590C04A04D882E288CDBEE9815",
           "shape": "F303EAEA3201C1425797ABA6BE7B56B7A0E55BA593199F248E80D14193E93B18",
           "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "22543E8F1AACEF6D688672372C52E7720A31092A508A57729C473EA857F20E2A"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "SetLedInterface",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 107,
-          "parameters": "(nint data)",
-          "tokens": 12,
-          "bodyTokens": "{ return ExternalCoreEnvironmentFunctions . SetLedInterface ( data , Led ) ; }",
-          "hash": "080B4DA489C00BF0C9A967EFB0253F479B75D7590C04A04D882E288CDBEE9815",
-          "shape": "F303EAEA3201C1425797ABA6BE7B56B7A0E55BA593199F248E80D14193E93B18",
-          "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "21DB4137ACB170E9B31AAA4425EC214984E586D8190B543C2A7EA723AD9B9C6E"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "SetLedInterface",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 105,
-          "parameters": "(nint data)",
-          "tokens": 12,
-          "bodyTokens": "{ return ExternalCoreEnvironmentFunctions . SetLedInterface ( data , Led ) ; }",
-          "hash": "080B4DA489C00BF0C9A967EFB0253F479B75D7590C04A04D882E288CDBEE9815",
-          "shape": "F303EAEA3201C1425797ABA6BE7B56B7A0E55BA593199F248E80D14193E93B18",
-          "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "307CD8A80A0D3B15C29348DABFD21BAE4A849B738E95D4FD0A0F0E44C301B129"
+          "qualificationSourceSha256": "7BD7FF33DD88A5DF96F233E4A9A63C83E051733BB82EC5F54466086917A88B9C"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -4034,20 +4012,6 @@
           "shape": "66378EFCAFE50F1909DEBDA527C2552CE21743C5708B5C06ED14D57EE1E444F8",
           "qualification": "Existing explicit typed pixel binding now calls shared SDK strict pixel reader; original1/2 mapping, deferred local error and assignment-after-success preserved; all other file tokens unchanged, verified in legacyDirectEnvironmentReuse.",
           "qualificationSourceSha256": "A920FE0B1D36631D78E17F80137FE67716A1BC9C0CDB8DA6A3ADBFF023F2117F"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "SetPixelFormat",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 79,
-          "parameters": "(nint data)",
-          "tokens": 28,
-          "bodyTokens": "{ _pixelFormat = ExternalCoreEnvironmentFunctions . ReadLegacyPixelFormat ( data , static value => new NotSupportedException ( CoreExceptions . UnsupportedPixelFormat ( value ) ) ) ; return true ; }",
-          "hash": "0DDA84ECE2D3E06661D13D80D73B3483DD249C732C0ACC0D228FE4A9ECC1E85D",
-          "shape": "66378EFCAFE50F1909DEBDA527C2552CE21743C5708B5C06ED14D57EE1E444F8",
-          "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "22543E8F1AACEF6D688672372C52E7720A31092A508A57729C473EA857F20E2A"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -4272,42 +4236,6 @@
           "bodyTokens": "=> Id == Guid . Empty ? this with { Id = Guid . NewGuid ( ) } : this",
           "hash": "0ED731B44A53144738970181E062AB3C07386F0E1543E4189A68D1AAB4E142BC",
           "shape": "A8300DCF13A3C74C4B015788303BB467E60147AE785A82CE9F575BC238FDF89C"
-        }
-      ],
-      "qualification": "pending-symbol-and-ownership-comparison"
-    },
-    {
-      "hash": "0F8829A39D79472AF066206BEF9E8728471C7EDFAE430C03D17823A5E85888EF",
-      "tokens": 10,
-      "bodyTokens": "{ return Feedback . Register ( data ) ; }",
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "SetRumbleInterface",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 116,
-          "parameters": "(nint data)",
-          "tokens": 10,
-          "bodyTokens": "{ return Feedback . Register ( data ) ; }",
-          "hash": "0F8829A39D79472AF066206BEF9E8728471C7EDFAE430C03D17823A5E85888EF",
-          "shape": "9156AB283B85B72FC7CE4035DD8F9E42783B48DD4D090F9FAD8EEDB79CC0CF7E",
-          "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "22543E8F1AACEF6D688672372C52E7720A31092A508A57729C473EA857F20E2A"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "SetRumbleInterface",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 112,
-          "parameters": "(nint data)",
-          "tokens": 10,
-          "bodyTokens": "{ return Feedback . Register ( data ) ; }",
-          "hash": "0F8829A39D79472AF066206BEF9E8728471C7EDFAE430C03D17823A5E85888EF",
-          "shape": "9156AB283B85B72FC7CE4035DD8F9E42783B48DD4D090F9FAD8EEDB79CC0CF7E",
-          "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "21DB4137ACB170E9B31AAA4425EC214984E586D8190B543C2A7EA723AD9B9C6E"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -4779,30 +4707,6 @@
           "owner": "ExternalHostCallbacks",
           "kind": "MethodDeclaration",
           "line": 24,
-          "parameters": "(nint data)",
-          "tokens": 23,
-          "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . Geometry > ( data , ApplyGeometry ) ; }",
-          "hash": "10A097D804C5AAA3388F5957E18FBF680988DF6BFE5D8AF21FD16FDC005CA046",
-          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.AudioVideo.cs",
-          "name": "ApplyGeometry",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 27,
-          "parameters": "(nint data)",
-          "tokens": 23,
-          "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . Geometry > ( data , ApplyGeometry ) ; }",
-          "hash": "10A097D804C5AAA3388F5957E18FBF680988DF6BFE5D8AF21FD16FDC005CA046",
-          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.AudioVideo.cs",
-          "name": "ApplyGeometry",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 27,
           "parameters": "(nint data)",
           "tokens": 23,
           "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . Geometry > ( data , ApplyGeometry ) ; }",
@@ -6040,30 +5944,6 @@
           "shape": "468BBCC9E8E194CEAAB92177E72C1E93EBA0A7EAAECDA00A18F21F8E868AA2CF"
         },
         {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Input.cs",
-          "name": "IsModifier",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 58,
-          "parameters": "(EmulationKey key)",
-          "tokens": 26,
-          "bodyTokens": "=> key is EmulationKey . LeftShift or EmulationKey . RightShift or EmulationKey . LeftControl or EmulationKey . RightControl or EmulationKey . LeftAlt or EmulationKey . RightAlt",
-          "hash": "1315525D912A0AA3635A3984F2A50B499CDCD7A80CCE94E0B488BB0B07949DA4",
-          "shape": "468BBCC9E8E194CEAAB92177E72C1E93EBA0A7EAAECDA00A18F21F8E868AA2CF"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Input.cs",
-          "name": "IsModifier",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 55,
-          "parameters": "(EmulationKey key)",
-          "tokens": 26,
-          "bodyTokens": "=> key is EmulationKey . LeftShift or EmulationKey . RightShift or EmulationKey . LeftControl or EmulationKey . RightControl or EmulationKey . LeftAlt or EmulationKey . RightAlt",
-          "hash": "1315525D912A0AA3635A3984F2A50B499CDCD7A80CCE94E0B488BB0B07949DA4",
-          "shape": "468BBCC9E8E194CEAAB92177E72C1E93EBA0A7EAAECDA00A18F21F8E868AA2CF"
-        },
-        {
           "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Interop/Functions/KeyboardFunctions.cs",
           "name": "IsModifier",
           "owner": "KeyboardFunctions",
@@ -6265,35 +6145,7 @@
           "hash": "137FF1FE9E94B2640EC04BB3D89C3047EFF92F97EB242A7447A2CE7BA72EA196",
           "shape": "F303EAEA3201C1425797ABA6BE7B56B7A0E55BA593199F248E80D14193E93B18",
           "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "22543E8F1AACEF6D688672372C52E7720A31092A508A57729C473EA857F20E2A"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "SetLogInterface",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 102,
-          "parameters": "(nint data)",
-          "tokens": 12,
-          "bodyTokens": "{ return ExternalCoreEnvironmentFunctions . SetLogInterface ( data , Log ) ; }",
-          "hash": "137FF1FE9E94B2640EC04BB3D89C3047EFF92F97EB242A7447A2CE7BA72EA196",
-          "shape": "F303EAEA3201C1425797ABA6BE7B56B7A0E55BA593199F248E80D14193E93B18",
-          "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "21DB4137ACB170E9B31AAA4425EC214984E586D8190B543C2A7EA723AD9B9C6E"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "SetLogInterface",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 100,
-          "parameters": "(nint data)",
-          "tokens": 12,
-          "bodyTokens": "{ return ExternalCoreEnvironmentFunctions . SetLogInterface ( data , Log ) ; }",
-          "hash": "137FF1FE9E94B2640EC04BB3D89C3047EFF92F97EB242A7447A2CE7BA72EA196",
-          "shape": "F303EAEA3201C1425797ABA6BE7B56B7A0E55BA593199F248E80D14193E93B18",
-          "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "307CD8A80A0D3B15C29348DABFD21BAE4A849B738E95D4FD0A0F0E44C301B129"
+          "qualificationSourceSha256": "7BD7FF33DD88A5DF96F233E4A9A63C83E051733BB82EC5F54466086917A88B9C"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -8396,7 +8248,7 @@
           "name": "SetInput",
           "owner": "ExternalCore",
           "kind": "MethodDeclaration",
-          "line": 181,
+          "line": 182,
           "parameters": "(EmulationInputSnapshot snapshot)",
           "tokens": 15,
           "bodyTokens": "{ if ( _host is not null ) _host . Input = snapshot ; }",
@@ -8408,7 +8260,7 @@
           "name": "SetInput",
           "owner": "ExternalCore",
           "kind": "MethodDeclaration",
-          "line": 170,
+          "line": 171,
           "parameters": "(EmulationInputSnapshot snapshot)",
           "tokens": 15,
           "bodyTokens": "{ if ( _host is not null ) _host . Input = snapshot ; }",
@@ -9282,7 +9134,7 @@
           "name": "TryDequeueAudio",
           "owner": "ExternalCore",
           "kind": "MethodDeclaration",
-          "line": 56,
+          "line": 57,
           "parameters": "(out AudioChunk? chunk)",
           "tokens": 25,
           "bodyTokens": "{ if ( _host is not null ) return _host . TryDequeueAudio ( out chunk ) ; chunk = null ; return false ; }",
@@ -9294,7 +9146,7 @@
           "name": "TryDequeueAudio",
           "owner": "ExternalCore",
           "kind": "MethodDeclaration",
-          "line": 50,
+          "line": 51,
           "parameters": "(out AudioChunk? chunk)",
           "tokens": 25,
           "bodyTokens": "{ if ( _host is not null ) return _host . TryDequeueAudio ( out chunk ) ; chunk = null ; return false ; }",
@@ -14773,30 +14625,6 @@
           "shape": "690A04AD7CADEEAFE208E4C40BAE2336B9107030DAC83FB9861D7244C30C127D"
         },
         {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Input.cs",
-          "name": "CharacterFor",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 55,
-          "parameters": "(uint code, IReadOnlySet<EmulationKey> keys)",
-          "tokens": 15,
-          "bodyTokens": "=> GWGUI . Emulation . Functions . ExternalCoreKeyboardFunctions . Character ( code , keys )",
-          "hash": "2A0E032940DF242D6528728EBD1D986D16F75A5D3E1A93C5EEF361E1B18444F4",
-          "shape": "690A04AD7CADEEAFE208E4C40BAE2336B9107030DAC83FB9861D7244C30C127D"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Input.cs",
-          "name": "CharacterFor",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 52,
-          "parameters": "(uint code, IReadOnlySet<EmulationKey> keys)",
-          "tokens": 15,
-          "bodyTokens": "=> GWGUI . Emulation . Functions . ExternalCoreKeyboardFunctions . Character ( code , keys )",
-          "hash": "2A0E032940DF242D6528728EBD1D986D16F75A5D3E1A93C5EEF361E1B18444F4",
-          "shape": "690A04AD7CADEEAFE208E4C40BAE2336B9107030DAC83FB9861D7244C30C127D"
-        },
-        {
           "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Interop/Functions/KeyboardFunctions.cs",
           "name": "Character",
           "owner": "KeyboardFunctions",
@@ -16402,30 +16230,6 @@
           "owner": "ExternalHostCallbacks",
           "kind": "MethodDeclaration",
           "line": 67,
-          "parameters": "(AudioChunk chunk)",
-          "tokens": 22,
-          "bodyTokens": "{ LatestAudioChunk = chunk ; _audioBuffer . EnqueueNative ( chunk , this , static owner => owner . SampleRate ) ; }",
-          "hash": "2EFC2728CE88B375CC2696FEEA1FD76F3A92F0960BDCC349225568669E4F7620",
-          "shape": "B664C56964646B10E74EBAE15DFF6C762545119F75BD0C15E3A3A6EB1D82C62D"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.AudioVideo.cs",
-          "name": "PublishAudio",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 56,
-          "parameters": "(AudioChunk chunk)",
-          "tokens": 22,
-          "bodyTokens": "{ LatestAudioChunk = chunk ; _audioBuffer . EnqueueNative ( chunk , this , static owner => owner . SampleRate ) ; }",
-          "hash": "2EFC2728CE88B375CC2696FEEA1FD76F3A92F0960BDCC349225568669E4F7620",
-          "shape": "B664C56964646B10E74EBAE15DFF6C762545119F75BD0C15E3A3A6EB1D82C62D"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.AudioVideo.cs",
-          "name": "PublishAudio",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 56,
           "parameters": "(AudioChunk chunk)",
           "tokens": 22,
           "bodyTokens": "{ LatestAudioChunk = chunk ; _audioBuffer . EnqueueNative ( chunk , this , static owner => owner . SampleRate ) ; }",
@@ -19056,35 +18860,7 @@
           "hash": "37EDF529122C9988481D543DCA9F57E80DF70192296886E4B56DF2776FB300CB",
           "shape": "4FDF3DCF3ABAE04BA613C290C31C4AC0316D2EEAC917897FE82860B1D7044E2E",
           "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "22543E8F1AACEF6D688672372C52E7720A31092A508A57729C473EA857F20E2A"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "SetSystemAvInfo",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 82,
-          "parameters": "(nint data)",
-          "tokens": 8,
-          "bodyTokens": "{ return ApplySystemAvInfo ( data ) ; }",
-          "hash": "37EDF529122C9988481D543DCA9F57E80DF70192296886E4B56DF2776FB300CB",
-          "shape": "4FDF3DCF3ABAE04BA613C290C31C4AC0316D2EEAC917897FE82860B1D7044E2E",
-          "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "21DB4137ACB170E9B31AAA4425EC214984E586D8190B543C2A7EA723AD9B9C6E"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "SetSystemAvInfo",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 80,
-          "parameters": "(nint data)",
-          "tokens": 8,
-          "bodyTokens": "{ return ApplySystemAvInfo ( data ) ; }",
-          "hash": "37EDF529122C9988481D543DCA9F57E80DF70192296886E4B56DF2776FB300CB",
-          "shape": "4FDF3DCF3ABAE04BA613C290C31C4AC0316D2EEAC917897FE82860B1D7044E2E",
-          "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "307CD8A80A0D3B15C29348DABFD21BAE4A849B738E95D4FD0A0F0E44C301B129"
+          "qualificationSourceSha256": "7BD7FF33DD88A5DF96F233E4A9A63C83E051733BB82EC5F54466086917A88B9C"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -21213,31 +20989,7 @@
           "name": "AccumulatePointerCoordinate",
           "owner": "ExternalHostCallbacks",
           "kind": "MethodDeclaration",
-          "line": 164,
-          "parameters": "(int coordinate, int delta)",
-          "tokens": 24,
-          "bodyTokens": "=> ( int ) Math . Clamp ( ( long ) coordinate + ( long ) delta * PointerCoordinateScale , PointerCoordinateMinimum , PointerCoordinateMaximum )",
-          "hash": "4090B0425A8C18C870171D2CD2EF18D4590B73A50CD4F6029623535D66758878",
-          "shape": "24709A45541A12BB4523B219F856A02510EA428D997EEE64FE08357E7F7E7BBD"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Input.cs",
-          "name": "AccumulatePointerCoordinate",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 138,
-          "parameters": "(int coordinate, int delta)",
-          "tokens": 24,
-          "bodyTokens": "=> ( int ) Math . Clamp ( ( long ) coordinate + ( long ) delta * PointerCoordinateScale , PointerCoordinateMinimum , PointerCoordinateMaximum )",
-          "hash": "4090B0425A8C18C870171D2CD2EF18D4590B73A50CD4F6029623535D66758878",
-          "shape": "24709A45541A12BB4523B219F856A02510EA428D997EEE64FE08357E7F7E7BBD"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Input.cs",
-          "name": "AccumulatePointerCoordinate",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 130,
+          "line": 177,
           "parameters": "(int coordinate, int delta)",
           "tokens": 24,
           "bodyTokens": "=> ( int ) Math . Clamp ( ( long ) coordinate + ( long ) delta * PointerCoordinateScale , PointerCoordinateMinimum , PointerCoordinateMaximum )",
@@ -22524,7 +22276,7 @@
           "hash": "44424BF45D4FBD8B50871A7929CBF49A8C76F8ACD89A4E2C55896B19817E6396",
           "shape": "44424BF45D4FBD8B50871A7929CBF49A8C76F8ACD89A4E2C55896B19817E6396",
           "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "22543E8F1AACEF6D688672372C52E7720A31092A508A57729C473EA857F20E2A"
+          "qualificationSourceSha256": "7BD7FF33DD88A5DF96F233E4A9A63C83E051733BB82EC5F54466086917A88B9C"
         },
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
@@ -22538,7 +22290,7 @@
           "hash": "44424BF45D4FBD8B50871A7929CBF49A8C76F8ACD89A4E2C55896B19817E6396",
           "shape": "44424BF45D4FBD8B50871A7929CBF49A8C76F8ACD89A4E2C55896B19817E6396",
           "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "22543E8F1AACEF6D688672372C52E7720A31092A508A57729C473EA857F20E2A"
+          "qualificationSourceSha256": "7BD7FF33DD88A5DF96F233E4A9A63C83E051733BB82EC5F54466086917A88B9C"
         },
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
@@ -22552,91 +22304,7 @@
           "hash": "44424BF45D4FBD8B50871A7929CBF49A8C76F8ACD89A4E2C55896B19817E6396",
           "shape": "44424BF45D4FBD8B50871A7929CBF49A8C76F8ACD89A4E2C55896B19817E6396",
           "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "22543E8F1AACEF6D688672372C52E7720A31092A508A57729C473EA857F20E2A"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "CaptureInputDescriptors",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 140,
-          "parameters": "(nint data)",
-          "tokens": 5,
-          "bodyTokens": "{ return true ; }",
-          "hash": "44424BF45D4FBD8B50871A7929CBF49A8C76F8ACD89A4E2C55896B19817E6396",
-          "shape": "44424BF45D4FBD8B50871A7929CBF49A8C76F8ACD89A4E2C55896B19817E6396",
-          "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "21DB4137ACB170E9B31AAA4425EC214984E586D8190B543C2A7EA723AD9B9C6E"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "CaptureMemoryMaps",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 150,
-          "parameters": "(nint data)",
-          "tokens": 5,
-          "bodyTokens": "{ return true ; }",
-          "hash": "44424BF45D4FBD8B50871A7929CBF49A8C76F8ACD89A4E2C55896B19817E6396",
-          "shape": "44424BF45D4FBD8B50871A7929CBF49A8C76F8ACD89A4E2C55896B19817E6396",
-          "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "21DB4137ACB170E9B31AAA4425EC214984E586D8190B543C2A7EA723AD9B9C6E"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "SetSupportAchievements",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 155,
-          "parameters": "(nint data)",
-          "tokens": 5,
-          "bodyTokens": "{ return true ; }",
-          "hash": "44424BF45D4FBD8B50871A7929CBF49A8C76F8ACD89A4E2C55896B19817E6396",
-          "shape": "44424BF45D4FBD8B50871A7929CBF49A8C76F8ACD89A4E2C55896B19817E6396",
-          "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "21DB4137ACB170E9B31AAA4425EC214984E586D8190B543C2A7EA723AD9B9C6E"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "CaptureInputDescriptors",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 135,
-          "parameters": "(nint data)",
-          "tokens": 5,
-          "bodyTokens": "{ return true ; }",
-          "hash": "44424BF45D4FBD8B50871A7929CBF49A8C76F8ACD89A4E2C55896B19817E6396",
-          "shape": "44424BF45D4FBD8B50871A7929CBF49A8C76F8ACD89A4E2C55896B19817E6396",
-          "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "307CD8A80A0D3B15C29348DABFD21BAE4A849B738E95D4FD0A0F0E44C301B129"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "CaptureMemoryMaps",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 145,
-          "parameters": "(nint data)",
-          "tokens": 5,
-          "bodyTokens": "{ return true ; }",
-          "hash": "44424BF45D4FBD8B50871A7929CBF49A8C76F8ACD89A4E2C55896B19817E6396",
-          "shape": "44424BF45D4FBD8B50871A7929CBF49A8C76F8ACD89A4E2C55896B19817E6396",
-          "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "307CD8A80A0D3B15C29348DABFD21BAE4A849B738E95D4FD0A0F0E44C301B129"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "SetSupportAchievements",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 150,
-          "parameters": "(nint data)",
-          "tokens": 5,
-          "bodyTokens": "{ return true ; }",
-          "hash": "44424BF45D4FBD8B50871A7929CBF49A8C76F8ACD89A4E2C55896B19817E6396",
-          "shape": "44424BF45D4FBD8B50871A7929CBF49A8C76F8ACD89A4E2C55896B19817E6396",
-          "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "307CD8A80A0D3B15C29348DABFD21BAE4A849B738E95D4FD0A0F0E44C301B129"
+          "qualificationSourceSha256": "7BD7FF33DD88A5DF96F233E4A9A63C83E051733BB82EC5F54466086917A88B9C"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -22880,35 +22548,7 @@
           "hash": "44F5E77119FA439514B959373926FE74E129E6C5B8A13A1663F79D80FB78E45C",
           "shape": "4674271D8874D90F5E35E6FB42DD3AC8420742CF9C67AC6AA5451C7E2FE5D1A8",
           "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "22543E8F1AACEF6D688672372C52E7720A31092A508A57729C473EA857F20E2A"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "GetDiskControlVersion",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 184,
-          "parameters": "(nint data)",
-          "tokens": 16,
-          "bodyTokens": "{ _ = ExternalCoreEnvironmentFunctions . WriteInteger ( data , 1 ) ; return true ; }",
-          "hash": "44F5E77119FA439514B959373926FE74E129E6C5B8A13A1663F79D80FB78E45C",
-          "shape": "4674271D8874D90F5E35E6FB42DD3AC8420742CF9C67AC6AA5451C7E2FE5D1A8",
-          "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "21DB4137ACB170E9B31AAA4425EC214984E586D8190B543C2A7EA723AD9B9C6E"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "GetDiskControlVersion",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 179,
-          "parameters": "(nint data)",
-          "tokens": 16,
-          "bodyTokens": "{ _ = ExternalCoreEnvironmentFunctions . WriteInteger ( data , 1 ) ; return true ; }",
-          "hash": "44F5E77119FA439514B959373926FE74E129E6C5B8A13A1663F79D80FB78E45C",
-          "shape": "4674271D8874D90F5E35E6FB42DD3AC8420742CF9C67AC6AA5451C7E2FE5D1A8",
-          "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "307CD8A80A0D3B15C29348DABFD21BAE4A849B738E95D4FD0A0F0E44C301B129"
+          "qualificationSourceSha256": "7BD7FF33DD88A5DF96F233E4A9A63C83E051733BB82EC5F54466086917A88B9C"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -28709,34 +28349,6 @@
           "shape": "533F78B031DE1D5E576C454F6C1D2105BAFBE2C148EBEFC458AA13D1A57A21A7",
           "qualification": "Typed routed adapter verified in remainingRichCallbackDispatchReuse; original profile body/refusal and callback ownership retained",
           "qualificationSourceSha256": "62CC2E892F6D5E4E43C7AE41B1E97D71D0988CC5AE22D877D5EE2DE7C14E1F29"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "ProvideVfs",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 164,
-          "parameters": "(nint data)",
-          "tokens": 5,
-          "bodyTokens": "{ return false ; }",
-          "hash": "533F78B031DE1D5E576C454F6C1D2105BAFBE2C148EBEFC458AA13D1A57A21A7",
-          "shape": "533F78B031DE1D5E576C454F6C1D2105BAFBE2C148EBEFC458AA13D1A57A21A7",
-          "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "22543E8F1AACEF6D688672372C52E7720A31092A508A57729C473EA857F20E2A"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "ProvideVfs",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 155,
-          "parameters": "(nint data)",
-          "tokens": 5,
-          "bodyTokens": "{ return false ; }",
-          "hash": "533F78B031DE1D5E576C454F6C1D2105BAFBE2C148EBEFC458AA13D1A57A21A7",
-          "shape": "533F78B031DE1D5E576C454F6C1D2105BAFBE2C148EBEFC458AA13D1A57A21A7",
-          "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "307CD8A80A0D3B15C29348DABFD21BAE4A849B738E95D4FD0A0F0E44C301B129"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -30252,35 +29864,7 @@
           "hash": "5C284CDD09EA92511298B1C0345EE8F2C337D6BAD8CE871D1E2477D4E5F74A60",
           "shape": "3191AAA5C050B2FB9B265C69588C34817A8F39CE4AE58B182AF83FDFB2FD551A",
           "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "22543E8F1AACEF6D688672372C52E7720A31092A508A57729C473EA857F20E2A"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "WriteSystemDirectory",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 119,
-          "parameters": "(nint data)",
-          "tokens": 15,
-          "bodyTokens": "{ return ExternalCoreEnvironmentFunctions . WritePointer ( data , NativeString ( SystemDirectory ) ) ; }",
-          "hash": "5C284CDD09EA92511298B1C0345EE8F2C337D6BAD8CE871D1E2477D4E5F74A60",
-          "shape": "3191AAA5C050B2FB9B265C69588C34817A8F39CE4AE58B182AF83FDFB2FD551A",
-          "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "21DB4137ACB170E9B31AAA4425EC214984E586D8190B543C2A7EA723AD9B9C6E"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "WriteSystemDirectory",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 114,
-          "parameters": "(nint data)",
-          "tokens": 15,
-          "bodyTokens": "{ return ExternalCoreEnvironmentFunctions . WritePointer ( data , NativeString ( SystemDirectory ) ) ; }",
-          "hash": "5C284CDD09EA92511298B1C0345EE8F2C337D6BAD8CE871D1E2477D4E5F74A60",
-          "shape": "3191AAA5C050B2FB9B265C69588C34817A8F39CE4AE58B182AF83FDFB2FD551A",
-          "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "307CD8A80A0D3B15C29348DABFD21BAE4A849B738E95D4FD0A0F0E44C301B129"
+          "qualificationSourceSha256": "7BD7FF33DD88A5DF96F233E4A9A63C83E051733BB82EC5F54466086917A88B9C"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -33593,30 +33177,6 @@
           "bodyTokens": "{ _diagnostics . Enqueue ( message ) ; while ( _diagnostics . Count > 500 ) _diagnostics . TryDequeue ( out _ ) ; }",
           "hash": "667E4F0D51F52A653B34554FFC417B33F0869FB31486DEA8BCD2D460EED97F44",
           "shape": "88FE1827780B6807F3D01FEBD12274CA195012282D7948D6A87CBD3AE7E5809C"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Input.cs",
-          "name": "AddDiagnostic",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 74,
-          "parameters": "(string message)",
-          "tokens": 25,
-          "bodyTokens": "{ _diagnostics . Enqueue ( message ) ; while ( _diagnostics . Count > 500 ) _diagnostics . TryDequeue ( out _ ) ; }",
-          "hash": "667E4F0D51F52A653B34554FFC417B33F0869FB31486DEA8BCD2D460EED97F44",
-          "shape": "88FE1827780B6807F3D01FEBD12274CA195012282D7948D6A87CBD3AE7E5809C"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Input.cs",
-          "name": "AddDiagnostic",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 71,
-          "parameters": "(string message)",
-          "tokens": 25,
-          "bodyTokens": "{ _diagnostics . Enqueue ( message ) ; while ( _diagnostics . Count > 500 ) _diagnostics . TryDequeue ( out _ ) ; }",
-          "hash": "667E4F0D51F52A653B34554FFC417B33F0869FB31486DEA8BCD2D460EED97F44",
-          "shape": "88FE1827780B6807F3D01FEBD12274CA195012282D7948D6A87CBD3AE7E5809C"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -34716,35 +34276,7 @@
           "hash": "6D2AEFAABE07B7E794EA38903FB542F00B87D10CA5850856400957160DCED1D8",
           "shape": "C9CB71D57EA7AC35E894F923131E2EEEA87AD020C95C45D3F6B3706FDF815B3D",
           "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "22543E8F1AACEF6D688672372C52E7720A31092A508A57729C473EA857F20E2A"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "ReadExtendedMessage",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 97,
-          "parameters": "(nint data)",
-          "tokens": 12,
-          "bodyTokens": "{ return CaptureMessage ( data , extended : true ) ; }",
-          "hash": "6D2AEFAABE07B7E794EA38903FB542F00B87D10CA5850856400957160DCED1D8",
-          "shape": "C9CB71D57EA7AC35E894F923131E2EEEA87AD020C95C45D3F6B3706FDF815B3D",
-          "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "21DB4137ACB170E9B31AAA4425EC214984E586D8190B543C2A7EA723AD9B9C6E"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "ReadExtendedMessage",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 95,
-          "parameters": "(nint data)",
-          "tokens": 12,
-          "bodyTokens": "{ return CaptureMessage ( data , extended : true ) ; }",
-          "hash": "6D2AEFAABE07B7E794EA38903FB542F00B87D10CA5850856400957160DCED1D8",
-          "shape": "C9CB71D57EA7AC35E894F923131E2EEEA87AD020C95C45D3F6B3706FDF815B3D",
-          "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "307CD8A80A0D3B15C29348DABFD21BAE4A849B738E95D4FD0A0F0E44C301B129"
+          "qualificationSourceSha256": "7BD7FF33DD88A5DF96F233E4A9A63C83E051733BB82EC5F54466086917A88B9C"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -35574,50 +35106,6 @@
       "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
-      "hash": "6F7F05118DEB1C6A12FC3B02831E9AC4545C07FC952B3B19498470660B80AA7E",
-      "tokens": 23,
-      "bodyTokens": "{ if ( CoreOptionMetadataFunctions . ReadVersionTwo ( options , _options , _optionVisibility ) is { } catalog ) OptionCatalog = catalog ; }",
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "RegisterVersionTwoOptions",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 196,
-          "parameters": "(nint options)",
-          "tokens": 23,
-          "bodyTokens": "{ if ( CoreOptionMetadataFunctions . ReadVersionTwo ( options , _options , _optionVisibility ) is { } catalog ) OptionCatalog = catalog ; }",
-          "hash": "6F7F05118DEB1C6A12FC3B02831E9AC4545C07FC952B3B19498470660B80AA7E",
-          "shape": "0D00798852338B14A38AECAC24BB46A9ABD5A8A00A3052EF96E4DC3556F931F2"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "RegisterVersionTwoOptions",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 192,
-          "parameters": "(nint options)",
-          "tokens": 23,
-          "bodyTokens": "{ if ( CoreOptionMetadataFunctions . ReadVersionTwo ( options , _options , _optionVisibility ) is { } catalog ) OptionCatalog = catalog ; }",
-          "hash": "6F7F05118DEB1C6A12FC3B02831E9AC4545C07FC952B3B19498470660B80AA7E",
-          "shape": "0D00798852338B14A38AECAC24BB46A9ABD5A8A00A3052EF96E4DC3556F931F2"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "RegisterVersionTwoOptions",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 187,
-          "parameters": "(nint options)",
-          "tokens": 23,
-          "bodyTokens": "{ if ( CoreOptionMetadataFunctions . ReadVersionTwo ( options , _options , _optionVisibility ) is { } catalog ) OptionCatalog = catalog ; }",
-          "hash": "6F7F05118DEB1C6A12FC3B02831E9AC4545C07FC952B3B19498470660B80AA7E",
-          "shape": "0D00798852338B14A38AECAC24BB46A9ABD5A8A00A3052EF96E4DC3556F931F2"
-        }
-      ],
-      "qualification": "pending-symbol-and-ownership-comparison"
-    },
-    {
       "hash": "7001CAC6DF94257CEDA21F30D6E70831B4B0B5AF50B59B0EA075F14B1B4EED1C",
       "tokens": 8,
       "bodyTokens": "=> blk . used == g . locknr",
@@ -36380,30 +35868,6 @@
           "owner": "ExternalHostCallbacks",
           "kind": "MethodDeclaration",
           "line": 69,
-          "parameters": "(out AudioChunk? chunk)",
-          "tokens": 11,
-          "bodyTokens": "{ return _audioBuffer . TryDequeueNative ( out chunk ) ; }",
-          "hash": "723F67719FC61882D53254131473F4130BEE147F09732DC336217ACA8CBA40E8",
-          "shape": "52EF0C023010193B15C2E3EC3D821686C8C099CBA64E4D017F43E29C0FB2F209"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.AudioVideo.cs",
-          "name": "TryDequeueAudio",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 62,
-          "parameters": "(out AudioChunk? chunk)",
-          "tokens": 11,
-          "bodyTokens": "{ return _audioBuffer . TryDequeueNative ( out chunk ) ; }",
-          "hash": "723F67719FC61882D53254131473F4130BEE147F09732DC336217ACA8CBA40E8",
-          "shape": "52EF0C023010193B15C2E3EC3D821686C8C099CBA64E4D017F43E29C0FB2F209"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.AudioVideo.cs",
-          "name": "TryDequeueAudio",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 62,
           "parameters": "(out AudioChunk? chunk)",
           "tokens": 11,
           "bodyTokens": "{ return _audioBuffer . TryDequeueNative ( out chunk ) ; }",
@@ -37839,35 +37303,7 @@
           "hash": "773E43D140327F702055BC93C7D79A898949235B90C5F7DB5FD9C1992B7A93AB",
           "shape": "3191AAA5C050B2FB9B265C69588C34817A8F39CE4AE58B182AF83FDFB2FD551A",
           "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "22543E8F1AACEF6D688672372C52E7720A31092A508A57729C473EA857F20E2A"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "WriteSaveDirectory",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 129,
-          "parameters": "(nint data)",
-          "tokens": 15,
-          "bodyTokens": "{ return ExternalCoreEnvironmentFunctions . WritePointer ( data , NativeString ( SaveDirectory ) ) ; }",
-          "hash": "773E43D140327F702055BC93C7D79A898949235B90C5F7DB5FD9C1992B7A93AB",
-          "shape": "3191AAA5C050B2FB9B265C69588C34817A8F39CE4AE58B182AF83FDFB2FD551A",
-          "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "21DB4137ACB170E9B31AAA4425EC214984E586D8190B543C2A7EA723AD9B9C6E"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "WriteSaveDirectory",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 124,
-          "parameters": "(nint data)",
-          "tokens": 15,
-          "bodyTokens": "{ return ExternalCoreEnvironmentFunctions . WritePointer ( data , NativeString ( SaveDirectory ) ) ; }",
-          "hash": "773E43D140327F702055BC93C7D79A898949235B90C5F7DB5FD9C1992B7A93AB",
-          "shape": "3191AAA5C050B2FB9B265C69588C34817A8F39CE4AE58B182AF83FDFB2FD551A",
-          "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "307CD8A80A0D3B15C29348DABFD21BAE4A849B738E95D4FD0A0F0E44C301B129"
+          "qualificationSourceSha256": "7BD7FF33DD88A5DF96F233E4A9A63C83E051733BB82EC5F54466086917A88B9C"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -38789,35 +38225,7 @@
           "hash": "7B1EFBA620D392279828A636605CCC6C91A9AD3CC85FC61B4525742DAD602214",
           "shape": "8F4FF768AED10C4437BCA458AF7776556B7FF78CBC484A643ADF9203E6C1FCFE",
           "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "22543E8F1AACEF6D688672372C52E7720A31092A508A57729C473EA857F20E2A"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "SetSupportNoGame",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 134,
-          "parameters": "(nint data)",
-          "tokens": 24,
-          "bodyTokens": "{ SupportsNoGame = data != nint . Zero && Marshal . ReadByte ( data ) != ExternalCoreInteropConstants . NativeBooleanFalse ; return true ; }",
-          "hash": "7B1EFBA620D392279828A636605CCC6C91A9AD3CC85FC61B4525742DAD602214",
-          "shape": "8F4FF768AED10C4437BCA458AF7776556B7FF78CBC484A643ADF9203E6C1FCFE",
-          "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "21DB4137ACB170E9B31AAA4425EC214984E586D8190B543C2A7EA723AD9B9C6E"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "SetSupportNoGame",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 129,
-          "parameters": "(nint data)",
-          "tokens": 24,
-          "bodyTokens": "{ SupportsNoGame = data != nint . Zero && Marshal . ReadByte ( data ) != ExternalCoreInteropConstants . NativeBooleanFalse ; return true ; }",
-          "hash": "7B1EFBA620D392279828A636605CCC6C91A9AD3CC85FC61B4525742DAD602214",
-          "shape": "8F4FF768AED10C4437BCA458AF7776556B7FF78CBC484A643ADF9203E6C1FCFE",
-          "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "307CD8A80A0D3B15C29348DABFD21BAE4A849B738E95D4FD0A0F0E44C301B129"
+          "qualificationSourceSha256": "7BD7FF33DD88A5DF96F233E4A9A63C83E051733BB82EC5F54466086917A88B9C"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -42003,50 +41411,6 @@
       "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
-      "hash": "8741A411C6E08ED5CD0556134A7D1679E532DCABCB6240AF8A2D0E6F4F1B05C8",
-      "tokens": 13,
-      "bodyTokens": "=> OptionCatalog = CoreOptionMetadataFunctions . ReadLegacy ( data , _options , _optionVisibility )",
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "RegisterLegacyOptions",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 194,
-          "parameters": "(nint data)",
-          "tokens": 13,
-          "bodyTokens": "=> OptionCatalog = CoreOptionMetadataFunctions . ReadLegacy ( data , _options , _optionVisibility )",
-          "hash": "8741A411C6E08ED5CD0556134A7D1679E532DCABCB6240AF8A2D0E6F4F1B05C8",
-          "shape": "123659AE8F2393482905482D56DA90B9006F776360EE723DCBD7BA255AFCDB51"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "RegisterLegacyOptions",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 190,
-          "parameters": "(nint data)",
-          "tokens": 13,
-          "bodyTokens": "=> OptionCatalog = CoreOptionMetadataFunctions . ReadLegacy ( data , _options , _optionVisibility )",
-          "hash": "8741A411C6E08ED5CD0556134A7D1679E532DCABCB6240AF8A2D0E6F4F1B05C8",
-          "shape": "123659AE8F2393482905482D56DA90B9006F776360EE723DCBD7BA255AFCDB51"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "RegisterLegacyOptions",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 185,
-          "parameters": "(nint data)",
-          "tokens": 13,
-          "bodyTokens": "=> OptionCatalog = CoreOptionMetadataFunctions . ReadLegacy ( data , _options , _optionVisibility )",
-          "hash": "8741A411C6E08ED5CD0556134A7D1679E532DCABCB6240AF8A2D0E6F4F1B05C8",
-          "shape": "123659AE8F2393482905482D56DA90B9006F776360EE723DCBD7BA255AFCDB51"
-        }
-      ],
-      "qualification": "pending-symbol-and-ownership-comparison"
-    },
-    {
       "hash": "875DFD2B2F4088C98353E6F065106A6ADE7D09D3B31A5ECC0B4A25A0343AC6F2",
       "tokens": 25,
       "bodyTokens": "=> JsonSerializer . Deserialize < DiskStatus > ( reader . ReadString ( ) , JsonOptions ) ?? throw new InvalidDataException ( CoreHostErrors . CommunicationFailed )",
@@ -43256,31 +42620,7 @@
           "name": "Bool",
           "owner": "ExternalHostCallbacks",
           "kind": "MethodDeclaration",
-          "line": 162,
-          "parameters": "(bool value)",
-          "tokens": 12,
-          "bodyTokens": "=> value ? ( short ) 1 : ( short ) 0",
-          "hash": "8B00437FF082B1A19B4E5DCACFC27DDC35A764ABE41875C069245FA1723CACE4",
-          "shape": "599A8A14CFB05C9FE14ABC5C2DB79A2C6584BBAED5F5B0C4BFAAEA919DAC1D73"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Input.cs",
-          "name": "Bool",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 136,
-          "parameters": "(bool value)",
-          "tokens": 12,
-          "bodyTokens": "=> value ? ( short ) 1 : ( short ) 0",
-          "hash": "8B00437FF082B1A19B4E5DCACFC27DDC35A764ABE41875C069245FA1723CACE4",
-          "shape": "599A8A14CFB05C9FE14ABC5C2DB79A2C6584BBAED5F5B0C4BFAAEA919DAC1D73"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Input.cs",
-          "name": "Bool",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 128,
+          "line": 175,
           "parameters": "(bool value)",
           "tokens": 12,
           "bodyTokens": "=> value ? ( short ) 1 : ( short ) 0",
@@ -51857,7 +51197,7 @@
           "bodyTokens": "=> _audio . TryDequeue ( out chunk )",
           "hash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
           "shape": "1FBFB6090F34D6901544D7FAD27D47CC6030CD643FBD6AF77DEC1273B9057478",
-          "qualificationSourceSha256": "1520EFECD221C888E95E9A179170446C48C4DE039B01CA335B1FB7F12849240D",
+          "qualificationSourceSha256": "C776BACA0104EAD42D27FC2A37651C24C7E155DA96B4EBC3CD4E8FA370F63A11",
           "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
           "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers"
         },
@@ -51872,7 +51212,7 @@
           "bodyTokens": "=> _audio . TryDequeue ( out chunk )",
           "hash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
           "shape": "1FBFB6090F34D6901544D7FAD27D47CC6030CD643FBD6AF77DEC1273B9057478",
-          "qualificationSourceSha256": "65AE6D10CF88315A5D4630AE429B530FF2F913AAC22FF763220FB8CC067020B8",
+          "qualificationSourceSha256": "B36BC3A14A26E3900E3B46402FBF910A57E51D573CE299FECB5EBE0B7E5F7687",
           "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
           "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers"
         },
@@ -51922,7 +51262,7 @@
           "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers"
         }
       ],
-      "qualification": "Partial occurrence qualification; unannotated members pending"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "hash": "A610C53D3B540A4D8BAFCC792BC38E2EACA4772DF8F2396FE7E36639C77CB2CC",
@@ -52143,35 +51483,7 @@
           "hash": "A6408306ED7BC44A5C02001C2CBFCC888A9B35927F243018C16F97BE1DA2DAAA",
           "shape": "2DC44C7756ED068054EDD23EE2007E6D0B1DB41F0FD03B1B034ED948562754A5",
           "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "22543E8F1AACEF6D688672372C52E7720A31092A508A57729C473EA857F20E2A"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "ReadMessage",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 92,
-          "parameters": "(nint data)",
-          "tokens": 12,
-          "bodyTokens": "{ return CaptureMessage ( data , extended : false ) ; }",
-          "hash": "A6408306ED7BC44A5C02001C2CBFCC888A9B35927F243018C16F97BE1DA2DAAA",
-          "shape": "2DC44C7756ED068054EDD23EE2007E6D0B1DB41F0FD03B1B034ED948562754A5",
-          "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "21DB4137ACB170E9B31AAA4425EC214984E586D8190B543C2A7EA723AD9B9C6E"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "ReadMessage",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 90,
-          "parameters": "(nint data)",
-          "tokens": 12,
-          "bodyTokens": "{ return CaptureMessage ( data , extended : false ) ; }",
-          "hash": "A6408306ED7BC44A5C02001C2CBFCC888A9B35927F243018C16F97BE1DA2DAAA",
-          "shape": "2DC44C7756ED068054EDD23EE2007E6D0B1DB41F0FD03B1B034ED948562754A5",
-          "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "307CD8A80A0D3B15C29348DABFD21BAE4A849B738E95D4FD0A0F0E44C301B129"
+          "qualificationSourceSha256": "7BD7FF33DD88A5DF96F233E4A9A63C83E051733BB82EC5F54466086917A88B9C"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -52335,30 +51647,6 @@
           "owner": "ExternalHostCallbacks",
           "kind": "MethodDeclaration",
           "line": 35,
-          "parameters": "(nint data)",
-          "tokens": 23,
-          "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . SystemAvInfo > ( data , ApplyInitialAvInfo ) ; }",
-          "hash": "A71878BE281E480439721CAB75D0D79DFFC435DA73DC13933B3737B0088F09DB",
-          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.AudioVideo.cs",
-          "name": "ApplySystemAvInfo",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 38,
-          "parameters": "(nint data)",
-          "tokens": 23,
-          "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . SystemAvInfo > ( data , ApplyInitialAvInfo ) ; }",
-          "hash": "A71878BE281E480439721CAB75D0D79DFFC435DA73DC13933B3737B0088F09DB",
-          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.AudioVideo.cs",
-          "name": "ApplySystemAvInfo",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 38,
           "parameters": "(nint data)",
           "tokens": 23,
           "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . SystemAvInfo > ( data , ApplyInitialAvInfo ) ; }",
@@ -53118,31 +52406,7 @@
           "name": "ClampToShort",
           "owner": "ExternalHostCallbacks",
           "kind": "MethodDeclaration",
-          "line": 163,
-          "parameters": "(int value)",
-          "tokens": 18,
-          "bodyTokens": "=> ( short ) Math . Clamp ( value , short . MinValue , short . MaxValue )",
-          "hash": "AA60FC2C08FB2398EF69078192826EA9B71425C5962BE2D89CCAE46944C95B60",
-          "shape": "319BB2E07E50E90B0A8C7C70D08A43E706C5147CB105928D01BEC12F97DD8FBB"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Input.cs",
-          "name": "ClampToShort",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 137,
-          "parameters": "(int value)",
-          "tokens": 18,
-          "bodyTokens": "=> ( short ) Math . Clamp ( value , short . MinValue , short . MaxValue )",
-          "hash": "AA60FC2C08FB2398EF69078192826EA9B71425C5962BE2D89CCAE46944C95B60",
-          "shape": "319BB2E07E50E90B0A8C7C70D08A43E706C5147CB105928D01BEC12F97DD8FBB"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Input.cs",
-          "name": "ClampToShort",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 129,
+          "line": 176,
           "parameters": "(int value)",
           "tokens": 18,
           "bodyTokens": "=> ( short ) Math . Clamp ( value , short . MinValue , short . MaxValue )",
@@ -53491,35 +52755,7 @@
           "hash": "AB266269EC8578CCBE37A7AF5941978D9CB25BAB07D909CC9BD3B5AB61E35EB8",
           "shape": "5BD1205AD01F6C49070C7136C7832405771FFFC59B8FBD179B682895C15ED4AC",
           "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "22543E8F1AACEF6D688672372C52E7720A31092A508A57729C473EA857F20E2A"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "CaptureExtendedDiskControl",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 178,
-          "parameters": "(nint data)",
-          "tokens": 12,
-          "bodyTokens": "{ DiskControl . CaptureExtended ( data ) ; return true ; }",
-          "hash": "AB266269EC8578CCBE37A7AF5941978D9CB25BAB07D909CC9BD3B5AB61E35EB8",
-          "shape": "5BD1205AD01F6C49070C7136C7832405771FFFC59B8FBD179B682895C15ED4AC",
-          "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "21DB4137ACB170E9B31AAA4425EC214984E586D8190B543C2A7EA723AD9B9C6E"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "CaptureExtendedDiskControl",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 173,
-          "parameters": "(nint data)",
-          "tokens": 12,
-          "bodyTokens": "{ DiskControl . CaptureExtended ( data ) ; return true ; }",
-          "hash": "AB266269EC8578CCBE37A7AF5941978D9CB25BAB07D909CC9BD3B5AB61E35EB8",
-          "shape": "5BD1205AD01F6C49070C7136C7832405771FFFC59B8FBD179B682895C15ED4AC",
-          "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "307CD8A80A0D3B15C29348DABFD21BAE4A849B738E95D4FD0A0F0E44C301B129"
+          "qualificationSourceSha256": "7BD7FF33DD88A5DF96F233E4A9A63C83E051733BB82EC5F54466086917A88B9C"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -54176,30 +53412,6 @@
           "bodyTokens": "=> EmulationCoreOptionFunctions . ReturnNativeValue ( data , _options , ( _ , value ) => NativeString ( value ) )",
           "hash": "AE2493582A07D17C227DB350601CD5A197D4A59EE5A6E3AAA6E5E29FB3E79756",
           "shape": "F543DC3C1353A5835BA9377CC1608E11BFAEC849BA5345A4C84309832472EAE2"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "ReturnOption",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 215,
-          "parameters": "(nint data)",
-          "tokens": 20,
-          "bodyTokens": "=> EmulationCoreOptionFunctions . ReturnNativeValue ( data , _options , ( _ , value ) => NativeString ( value ) )",
-          "hash": "AE2493582A07D17C227DB350601CD5A197D4A59EE5A6E3AAA6E5E29FB3E79756",
-          "shape": "F543DC3C1353A5835BA9377CC1608E11BFAEC849BA5345A4C84309832472EAE2"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "ReturnOption",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 210,
-          "parameters": "(nint data)",
-          "tokens": 20,
-          "bodyTokens": "=> EmulationCoreOptionFunctions . ReturnNativeValue ( data , _options , ( _ , value ) => NativeString ( value ) )",
-          "hash": "AE2493582A07D17C227DB350601CD5A197D4A59EE5A6E3AAA6E5E29FB3E79756",
-          "shape": "F543DC3C1353A5835BA9377CC1608E11BFAEC849BA5345A4C84309832472EAE2"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -54614,7 +53826,7 @@
           "name": "ExternalCore",
           "owner": "ExternalCore",
           "kind": "ConstructorDeclaration",
-          "line": 37,
+          "line": 38,
           "parameters": "(string corePath)",
           "tokens": 4,
           "bodyTokens": "=> _corePath = corePath",
@@ -54626,7 +53838,7 @@
           "name": "ExternalCore",
           "owner": "ExternalCore",
           "kind": "ConstructorDeclaration",
-          "line": 32,
+          "line": 33,
           "parameters": "(string corePath)",
           "tokens": 4,
           "bodyTokens": "=> _corePath = corePath",
@@ -56535,35 +55747,7 @@
           "hash": "B84A4D7D2F6E262457C92FC54F7814D24EB15115A97C6EED020038337306C495",
           "shape": "4FDF3DCF3ABAE04BA613C290C31C4AC0316D2EEAC917897FE82860B1D7044E2E",
           "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "22543E8F1AACEF6D688672372C52E7720A31092A508A57729C473EA857F20E2A"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "SetGeometry",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 87,
-          "parameters": "(nint data)",
-          "tokens": 8,
-          "bodyTokens": "{ return ApplyGeometry ( data ) ; }",
-          "hash": "B84A4D7D2F6E262457C92FC54F7814D24EB15115A97C6EED020038337306C495",
-          "shape": "4FDF3DCF3ABAE04BA613C290C31C4AC0316D2EEAC917897FE82860B1D7044E2E",
-          "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "21DB4137ACB170E9B31AAA4425EC214984E586D8190B543C2A7EA723AD9B9C6E"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "SetGeometry",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 85,
-          "parameters": "(nint data)",
-          "tokens": 8,
-          "bodyTokens": "{ return ApplyGeometry ( data ) ; }",
-          "hash": "B84A4D7D2F6E262457C92FC54F7814D24EB15115A97C6EED020038337306C495",
-          "shape": "4FDF3DCF3ABAE04BA613C290C31C4AC0316D2EEAC917897FE82860B1D7044E2E",
-          "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "307CD8A80A0D3B15C29348DABFD21BAE4A849B738E95D4FD0A0F0E44C301B129"
+          "qualificationSourceSha256": "7BD7FF33DD88A5DF96F233E4A9A63C83E051733BB82EC5F54466086917A88B9C"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -62873,35 +62057,7 @@
           "hash": "D2D91291347E808C7CB92B1022BAEA37044FA9AFF36852A843AF7637073DA97F",
           "shape": "4FDF3DCF3ABAE04BA613C290C31C4AC0316D2EEAC917897FE82860B1D7044E2E",
           "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "22543E8F1AACEF6D688672372C52E7720A31092A508A57729C473EA857F20E2A"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "CaptureControllerInfo",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 145,
-          "parameters": "(nint data)",
-          "tokens": 8,
-          "bodyTokens": "{ return CaptureControllerInfo ( data ) ; }",
-          "hash": "D2D91291347E808C7CB92B1022BAEA37044FA9AFF36852A843AF7637073DA97F",
-          "shape": "4FDF3DCF3ABAE04BA613C290C31C4AC0316D2EEAC917897FE82860B1D7044E2E",
-          "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "21DB4137ACB170E9B31AAA4425EC214984E586D8190B543C2A7EA723AD9B9C6E"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "CaptureControllerInfo",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 140,
-          "parameters": "(nint data)",
-          "tokens": 8,
-          "bodyTokens": "{ return CaptureControllerInfo ( data ) ; }",
-          "hash": "D2D91291347E808C7CB92B1022BAEA37044FA9AFF36852A843AF7637073DA97F",
-          "shape": "4FDF3DCF3ABAE04BA613C290C31C4AC0316D2EEAC917897FE82860B1D7044E2E",
-          "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "307CD8A80A0D3B15C29348DABFD21BAE4A849B738E95D4FD0A0F0E44C301B129"
+          "qualificationSourceSha256": "7BD7FF33DD88A5DF96F233E4A9A63C83E051733BB82EC5F54466086917A88B9C"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -67385,35 +66541,7 @@
           "hash": "E2F0C1D6DDB6886EB6702607CD2F6360FA8277E35C02DB1BFC22AB6D53F87A79",
           "shape": "5BD1205AD01F6C49070C7136C7832405771FFFC59B8FBD179B682895C15ED4AC",
           "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "22543E8F1AACEF6D688672372C52E7720A31092A508A57729C473EA857F20E2A"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "CaptureDiskControl",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 172,
-          "parameters": "(nint data)",
-          "tokens": 12,
-          "bodyTokens": "{ DiskControl . Capture ( data ) ; return true ; }",
-          "hash": "E2F0C1D6DDB6886EB6702607CD2F6360FA8277E35C02DB1BFC22AB6D53F87A79",
-          "shape": "5BD1205AD01F6C49070C7136C7832405771FFFC59B8FBD179B682895C15ED4AC",
-          "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "21DB4137ACB170E9B31AAA4425EC214984E586D8190B543C2A7EA723AD9B9C6E"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "CaptureDiskControl",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 167,
-          "parameters": "(nint data)",
-          "tokens": 12,
-          "bodyTokens": "{ DiskControl . Capture ( data ) ; return true ; }",
-          "hash": "E2F0C1D6DDB6886EB6702607CD2F6360FA8277E35C02DB1BFC22AB6D53F87A79",
-          "shape": "5BD1205AD01F6C49070C7136C7832405771FFFC59B8FBD179B682895C15ED4AC",
-          "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "307CD8A80A0D3B15C29348DABFD21BAE4A849B738E95D4FD0A0F0E44C301B129"
+          "qualificationSourceSha256": "7BD7FF33DD88A5DF96F233E4A9A63C83E051733BB82EC5F54466086917A88B9C"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -68729,30 +67857,6 @@
           "owner": "ExternalHostCallbacks",
           "kind": "MethodDeclaration",
           "line": 210,
-          "parameters": "(nint data)",
-          "tokens": 26,
-          "bodyTokens": "{ if ( ! EmulationCoreOptionFunctions . TryGetDisplayCallback ( data , out var callback ) ) return false ; _updateOptionsDisplay = callback ; return true ; }",
-          "hash": "E89414CCFF5FD4017FB8A9CA35290828E0969CA9EBCFE332A2D4446C5B8F6AD0",
-          "shape": "D45560128D8194131A023AB86214BC21B735813598EB8B4DCD32669567612C2F"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "CaptureOptionsDisplayCallback",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 206,
-          "parameters": "(nint data)",
-          "tokens": 26,
-          "bodyTokens": "{ if ( ! EmulationCoreOptionFunctions . TryGetDisplayCallback ( data , out var callback ) ) return false ; _updateOptionsDisplay = callback ; return true ; }",
-          "hash": "E89414CCFF5FD4017FB8A9CA35290828E0969CA9EBCFE332A2D4446C5B8F6AD0",
-          "shape": "D45560128D8194131A023AB86214BC21B735813598EB8B4DCD32669567612C2F"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "CaptureOptionsDisplayCallback",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 201,
           "parameters": "(nint data)",
           "tokens": 26,
           "bodyTokens": "{ if ( ! EmulationCoreOptionFunctions . TryGetDisplayCallback ( data , out var callback ) ) return false ; _updateOptionsDisplay = callback ; return true ; }",
@@ -70414,30 +69518,6 @@
           "bodyTokens": "{ GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplySystemAvInfo ( info , ApplyGeometry , value => FramesPerSecond = value , value => SampleRate = value ) ; }",
           "hash": "EF57C40E23D6C718452FFE4D07BF63E284BA5BCC557C7DC7ECF9B28D9C8559FA",
           "shape": "9C9B6A573CB72084B5D3A1DB25C956190DFEAD4F51F9E056ACA89B04A55E75A8"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.AudioVideo.cs",
-          "name": "ApplyInitialAvInfo",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 21,
-          "parameters": "(ExternalCoreApi.SystemAvInfo info)",
-          "tokens": 29,
-          "bodyTokens": "{ GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplySystemAvInfo ( info , ApplyGeometry , value => FramesPerSecond = value , value => SampleRate = value ) ; }",
-          "hash": "EF57C40E23D6C718452FFE4D07BF63E284BA5BCC557C7DC7ECF9B28D9C8559FA",
-          "shape": "9C9B6A573CB72084B5D3A1DB25C956190DFEAD4F51F9E056ACA89B04A55E75A8"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.AudioVideo.cs",
-          "name": "ApplyInitialAvInfo",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 21,
-          "parameters": "(ExternalCoreApi.SystemAvInfo info)",
-          "tokens": 29,
-          "bodyTokens": "{ GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplySystemAvInfo ( info , ApplyGeometry , value => FramesPerSecond = value , value => SampleRate = value ) ; }",
-          "hash": "EF57C40E23D6C718452FFE4D07BF63E284BA5BCC557C7DC7ECF9B28D9C8559FA",
-          "shape": "9C9B6A573CB72084B5D3A1DB25C956190DFEAD4F51F9E056ACA89B04A55E75A8"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -72066,20 +71146,6 @@
           "bodyTokens": "{ return _virtualFileSystem . Provide ( data ) ; }",
           "hash": "F5F37D534B4E1AA0A271672EEBD7C732AC52182A416439A1BD63E5E389B45E85",
           "shape": "9156AB283B85B72FC7CE4035DD8F9E42783B48DD4D090F9FAD8EEDB79CC0CF7E"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "ProvideVfs",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 160,
-          "parameters": "(nint data)",
-          "tokens": 10,
-          "bodyTokens": "{ return _virtualFileSystem . Provide ( data ) ; }",
-          "hash": "F5F37D534B4E1AA0A271672EEBD7C732AC52182A416439A1BD63E5E389B45E85",
-          "shape": "9156AB283B85B72FC7CE4035DD8F9E42783B48DD4D090F9FAD8EEDB79CC0CF7E",
-          "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "21DB4137ACB170E9B31AAA4425EC214984E586D8190B543C2A7EA723AD9B9C6E"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -73465,7 +72531,7 @@
           "hash": "FAB7D4DDE81CA9D3BA4417B48F2A64C3983D76F7D545CF6F40C2D8A2FED10352",
           "shape": "FAB7D4DDE81CA9D3BA4417B48F2A64C3983D76F7D545CF6F40C2D8A2FED10352",
           "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "22543E8F1AACEF6D688672372C52E7720A31092A508A57729C473EA857F20E2A"
+          "qualificationSourceSha256": "7BD7FF33DD88A5DF96F233E4A9A63C83E051733BB82EC5F54466086917A88B9C"
         },
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
@@ -73479,7 +72545,7 @@
           "hash": "FAB7D4DDE81CA9D3BA4417B48F2A64C3983D76F7D545CF6F40C2D8A2FED10352",
           "shape": "FAB7D4DDE81CA9D3BA4417B48F2A64C3983D76F7D545CF6F40C2D8A2FED10352",
           "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "22543E8F1AACEF6D688672372C52E7720A31092A508A57729C473EA857F20E2A"
+          "qualificationSourceSha256": "7BD7FF33DD88A5DF96F233E4A9A63C83E051733BB82EC5F54466086917A88B9C"
         },
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
@@ -73493,105 +72559,7 @@
           "hash": "FAB7D4DDE81CA9D3BA4417B48F2A64C3983D76F7D545CF6F40C2D8A2FED10352",
           "shape": "FAB7D4DDE81CA9D3BA4417B48F2A64C3983D76F7D545CF6F40C2D8A2FED10352",
           "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "22543E8F1AACEF6D688672372C52E7720A31092A508A57729C473EA857F20E2A"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "SetRotation",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 71,
-          "parameters": "(nint data)",
-          "tokens": 2,
-          "bodyTokens": "=> false",
-          "hash": "FAB7D4DDE81CA9D3BA4417B48F2A64C3983D76F7D545CF6F40C2D8A2FED10352",
-          "shape": "FAB7D4DDE81CA9D3BA4417B48F2A64C3983D76F7D545CF6F40C2D8A2FED10352",
-          "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "21DB4137ACB170E9B31AAA4425EC214984E586D8190B543C2A7EA723AD9B9C6E"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "CapturePerformanceLevel",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 73,
-          "parameters": "(nint data)",
-          "tokens": 2,
-          "bodyTokens": "=> false",
-          "hash": "FAB7D4DDE81CA9D3BA4417B48F2A64C3983D76F7D545CF6F40C2D8A2FED10352",
-          "shape": "FAB7D4DDE81CA9D3BA4417B48F2A64C3983D76F7D545CF6F40C2D8A2FED10352",
-          "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "21DB4137ACB170E9B31AAA4425EC214984E586D8190B543C2A7EA723AD9B9C6E"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "SetSensorInterface",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 117,
-          "parameters": "(nint data)",
-          "tokens": 2,
-          "bodyTokens": "=> false",
-          "hash": "FAB7D4DDE81CA9D3BA4417B48F2A64C3983D76F7D545CF6F40C2D8A2FED10352",
-          "shape": "FAB7D4DDE81CA9D3BA4417B48F2A64C3983D76F7D545CF6F40C2D8A2FED10352",
-          "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "21DB4137ACB170E9B31AAA4425EC214984E586D8190B543C2A7EA723AD9B9C6E"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "SetRotation",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 69,
-          "parameters": "(nint data)",
-          "tokens": 2,
-          "bodyTokens": "=> false",
-          "hash": "FAB7D4DDE81CA9D3BA4417B48F2A64C3983D76F7D545CF6F40C2D8A2FED10352",
-          "shape": "FAB7D4DDE81CA9D3BA4417B48F2A64C3983D76F7D545CF6F40C2D8A2FED10352",
-          "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "307CD8A80A0D3B15C29348DABFD21BAE4A849B738E95D4FD0A0F0E44C301B129"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "CapturePerformanceLevel",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 71,
-          "parameters": "(nint data)",
-          "tokens": 2,
-          "bodyTokens": "=> false",
-          "hash": "FAB7D4DDE81CA9D3BA4417B48F2A64C3983D76F7D545CF6F40C2D8A2FED10352",
-          "shape": "FAB7D4DDE81CA9D3BA4417B48F2A64C3983D76F7D545CF6F40C2D8A2FED10352",
-          "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "307CD8A80A0D3B15C29348DABFD21BAE4A849B738E95D4FD0A0F0E44C301B129"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "SetRumbleInterface",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 110,
-          "parameters": "(nint data)",
-          "tokens": 2,
-          "bodyTokens": "=> false",
-          "hash": "FAB7D4DDE81CA9D3BA4417B48F2A64C3983D76F7D545CF6F40C2D8A2FED10352",
-          "shape": "FAB7D4DDE81CA9D3BA4417B48F2A64C3983D76F7D545CF6F40C2D8A2FED10352",
-          "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "307CD8A80A0D3B15C29348DABFD21BAE4A849B738E95D4FD0A0F0E44C301B129"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "SetSensorInterface",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 112,
-          "parameters": "(nint data)",
-          "tokens": 2,
-          "bodyTokens": "=> false",
-          "hash": "FAB7D4DDE81CA9D3BA4417B48F2A64C3983D76F7D545CF6F40C2D8A2FED10352",
-          "shape": "FAB7D4DDE81CA9D3BA4417B48F2A64C3983D76F7D545CF6F40C2D8A2FED10352",
-          "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "307CD8A80A0D3B15C29348DABFD21BAE4A849B738E95D4FD0A0F0E44C301B129"
+          "qualificationSourceSha256": "7BD7FF33DD88A5DF96F233E4A9A63C83E051733BB82EC5F54466086917A88B9C"
         },
         {
           "path": "src/GWGUI.Emulation/Interfaces/IAudioOutput.cs",
@@ -75986,7 +74954,7 @@
           "name": "SetOption",
           "owner": "ExternalCore",
           "kind": "MethodDeclaration",
-          "line": 247,
+          "line": 248,
           "parameters": "(string key, string value)",
           "tokens": 22,
           "bodyTokens": "=> ( _host ?? throw new InvalidOperationException ( Pcsx2Exceptions . CoreNotInitialized ( ) ) ) . SetOption ( key , value )",
@@ -75998,7 +74966,7 @@
           "name": "SetOption",
           "owner": "ExternalCore",
           "kind": "MethodDeclaration",
-          "line": 219,
+          "line": 220,
           "parameters": "(string key, string value)",
           "tokens": 22,
           "bodyTokens": "=> ( _host ?? throw new InvalidOperationException ( PpssppExceptions . CoreNotInitialized ( ) ) ) . SetOption ( key , value )",
@@ -82464,7 +81432,7 @@
           "bodyTokens": "=> _audio . TryDequeue ( out chunk )",
           "hash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
           "shape": "1FBFB6090F34D6901544D7FAD27D47CC6030CD643FBD6AF77DEC1273B9057478",
-          "qualificationSourceSha256": "1520EFECD221C888E95E9A179170446C48C4DE039B01CA335B1FB7F12849240D",
+          "qualificationSourceSha256": "C776BACA0104EAD42D27FC2A37651C24C7E155DA96B4EBC3CD4E8FA370F63A11",
           "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
           "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers"
         },
@@ -82479,7 +81447,7 @@
           "bodyTokens": "=> _audio . TryDequeue ( out chunk )",
           "hash": "A51C3F63B5E43A3A74425711E393757576B6C17A6B08B69259C5595C726C251D",
           "shape": "1FBFB6090F34D6901544D7FAD27D47CC6030CD643FBD6AF77DEC1273B9057478",
-          "qualificationSourceSha256": "65AE6D10CF88315A5D4630AE429B530FF2F913AAC22FF763220FB8CC067020B8",
+          "qualificationSourceSha256": "B36BC3A14A26E3900E3B46402FBF910A57E51D573CE299FECB5EBE0B7E5F7687",
           "qualification": "Verified direct ConcurrentQueue forwarding; shortAudioDequeueReuse",
           "qualificationRevalidationProof": "hostConnectionWaitReuse.unchangedQualifiedMembers"
         },
@@ -84732,7 +83700,7 @@
           "name": "InsertMedia",
           "owner": "ExternalCore",
           "kind": "MethodDeclaration",
-          "line": 212,
+          "line": 213,
           "parameters": "(string path)",
           "tokens": 22,
           "bodyTokens": "=> ( _host ?? throw new InvalidOperationException ( Pcsx2Exceptions . CoreNotInitialized ( ) ) ) . DiskControl . Insert ( path )",
@@ -84744,7 +83712,7 @@
           "name": "SelectDisk",
           "owner": "ExternalCore",
           "kind": "MethodDeclaration",
-          "line": 214,
+          "line": 215,
           "parameters": "(int index)",
           "tokens": 22,
           "bodyTokens": "=> ( _host ?? throw new InvalidOperationException ( Pcsx2Exceptions . CoreNotInitialized ( ) ) ) . DiskControl . Select ( index )",
@@ -84756,7 +83724,7 @@
           "name": "InsertMedia",
           "owner": "ExternalCore",
           "kind": "MethodDeclaration",
-          "line": 184,
+          "line": 185,
           "parameters": "(string path)",
           "tokens": 22,
           "bodyTokens": "=> ( _host ?? throw new InvalidOperationException ( PpssppExceptions . CoreNotInitialized ( ) ) ) . DiskControl . Insert ( path )",
@@ -84768,7 +83736,7 @@
           "name": "SelectDisk",
           "owner": "ExternalCore",
           "kind": "MethodDeclaration",
-          "line": 186,
+          "line": 187,
           "parameters": "(int index)",
           "tokens": 22,
           "bodyTokens": "=> ( _host ?? throw new InvalidOperationException ( PpssppExceptions . CoreNotInitialized ( ) ) ) . DiskControl . Select ( index )",
@@ -90599,7 +89567,7 @@
           "hash": "5C284CDD09EA92511298B1C0345EE8F2C337D6BAD8CE871D1E2477D4E5F74A60",
           "shape": "3191AAA5C050B2FB9B265C69588C34817A8F39CE4AE58B182AF83FDFB2FD551A",
           "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "22543E8F1AACEF6D688672372C52E7720A31092A508A57729C473EA857F20E2A"
+          "qualificationSourceSha256": "7BD7FF33DD88A5DF96F233E4A9A63C83E051733BB82EC5F54466086917A88B9C"
         },
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
@@ -90613,7 +89581,7 @@
           "hash": "06394F8D150AEDA6DFC346AF237BEAE1F2646F39A65FA32B77A3F2DF52024D68",
           "shape": "3191AAA5C050B2FB9B265C69588C34817A8F39CE4AE58B182AF83FDFB2FD551A",
           "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "22543E8F1AACEF6D688672372C52E7720A31092A508A57729C473EA857F20E2A"
+          "qualificationSourceSha256": "7BD7FF33DD88A5DF96F233E4A9A63C83E051733BB82EC5F54466086917A88B9C"
         },
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
@@ -90627,91 +89595,7 @@
           "hash": "773E43D140327F702055BC93C7D79A898949235B90C5F7DB5FD9C1992B7A93AB",
           "shape": "3191AAA5C050B2FB9B265C69588C34817A8F39CE4AE58B182AF83FDFB2FD551A",
           "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "22543E8F1AACEF6D688672372C52E7720A31092A508A57729C473EA857F20E2A"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "WriteSystemDirectory",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 119,
-          "parameters": "(nint data)",
-          "tokens": 15,
-          "bodyTokens": "{ return ExternalCoreEnvironmentFunctions . WritePointer ( data , NativeString ( SystemDirectory ) ) ; }",
-          "hash": "5C284CDD09EA92511298B1C0345EE8F2C337D6BAD8CE871D1E2477D4E5F74A60",
-          "shape": "3191AAA5C050B2FB9B265C69588C34817A8F39CE4AE58B182AF83FDFB2FD551A",
-          "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "21DB4137ACB170E9B31AAA4425EC214984E586D8190B543C2A7EA723AD9B9C6E"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "WriteContentDirectory",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 124,
-          "parameters": "(nint data)",
-          "tokens": 15,
-          "bodyTokens": "{ return ExternalCoreEnvironmentFunctions . WritePointer ( data , NativeString ( ContentDirectory ) ) ; }",
-          "hash": "06394F8D150AEDA6DFC346AF237BEAE1F2646F39A65FA32B77A3F2DF52024D68",
-          "shape": "3191AAA5C050B2FB9B265C69588C34817A8F39CE4AE58B182AF83FDFB2FD551A",
-          "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "21DB4137ACB170E9B31AAA4425EC214984E586D8190B543C2A7EA723AD9B9C6E"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "WriteSaveDirectory",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 129,
-          "parameters": "(nint data)",
-          "tokens": 15,
-          "bodyTokens": "{ return ExternalCoreEnvironmentFunctions . WritePointer ( data , NativeString ( SaveDirectory ) ) ; }",
-          "hash": "773E43D140327F702055BC93C7D79A898949235B90C5F7DB5FD9C1992B7A93AB",
-          "shape": "3191AAA5C050B2FB9B265C69588C34817A8F39CE4AE58B182AF83FDFB2FD551A",
-          "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "21DB4137ACB170E9B31AAA4425EC214984E586D8190B543C2A7EA723AD9B9C6E"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "WriteSystemDirectory",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 114,
-          "parameters": "(nint data)",
-          "tokens": 15,
-          "bodyTokens": "{ return ExternalCoreEnvironmentFunctions . WritePointer ( data , NativeString ( SystemDirectory ) ) ; }",
-          "hash": "5C284CDD09EA92511298B1C0345EE8F2C337D6BAD8CE871D1E2477D4E5F74A60",
-          "shape": "3191AAA5C050B2FB9B265C69588C34817A8F39CE4AE58B182AF83FDFB2FD551A",
-          "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "307CD8A80A0D3B15C29348DABFD21BAE4A849B738E95D4FD0A0F0E44C301B129"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "WriteContentDirectory",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 119,
-          "parameters": "(nint data)",
-          "tokens": 15,
-          "bodyTokens": "{ return ExternalCoreEnvironmentFunctions . WritePointer ( data , NativeString ( ContentDirectory ) ) ; }",
-          "hash": "06394F8D150AEDA6DFC346AF237BEAE1F2646F39A65FA32B77A3F2DF52024D68",
-          "shape": "3191AAA5C050B2FB9B265C69588C34817A8F39CE4AE58B182AF83FDFB2FD551A",
-          "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "307CD8A80A0D3B15C29348DABFD21BAE4A849B738E95D4FD0A0F0E44C301B129"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "WriteSaveDirectory",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 124,
-          "parameters": "(nint data)",
-          "tokens": 15,
-          "bodyTokens": "{ return ExternalCoreEnvironmentFunctions . WritePointer ( data , NativeString ( SaveDirectory ) ) ; }",
-          "hash": "773E43D140327F702055BC93C7D79A898949235B90C5F7DB5FD9C1992B7A93AB",
-          "shape": "3191AAA5C050B2FB9B265C69588C34817A8F39CE4AE58B182AF83FDFB2FD551A",
-          "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "307CD8A80A0D3B15C29348DABFD21BAE4A849B738E95D4FD0A0F0E44C301B129"
+          "qualificationSourceSha256": "7BD7FF33DD88A5DF96F233E4A9A63C83E051733BB82EC5F54466086917A88B9C"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -91918,7 +90802,7 @@
           "name": "EjectMedia",
           "owner": "ExternalCore",
           "kind": "MethodDeclaration",
-          "line": 213,
+          "line": 214,
           "parameters": "()",
           "tokens": 21,
           "bodyTokens": "=> ( _host ?? throw new InvalidOperationException ( Pcsx2Exceptions . CoreNotInitialized ( ) ) ) . DiskControl . Eject ( )",
@@ -91930,7 +90814,7 @@
           "name": "EjectMedia",
           "owner": "ExternalCore",
           "kind": "MethodDeclaration",
-          "line": 185,
+          "line": 186,
           "parameters": "()",
           "tokens": 21,
           "bodyTokens": "=> ( _host ?? throw new InvalidOperationException ( PpssppExceptions . CoreNotInitialized ( ) ) ) . DiskControl . Eject ( )",
@@ -96908,30 +95792,6 @@
           "shape": "468BBCC9E8E194CEAAB92177E72C1E93EBA0A7EAAECDA00A18F21F8E868AA2CF"
         },
         {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Input.cs",
-          "name": "IsModifier",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 58,
-          "parameters": "(EmulationKey key)",
-          "tokens": 26,
-          "bodyTokens": "=> key is EmulationKey . LeftShift or EmulationKey . RightShift or EmulationKey . LeftControl or EmulationKey . RightControl or EmulationKey . LeftAlt or EmulationKey . RightAlt",
-          "hash": "1315525D912A0AA3635A3984F2A50B499CDCD7A80CCE94E0B488BB0B07949DA4",
-          "shape": "468BBCC9E8E194CEAAB92177E72C1E93EBA0A7EAAECDA00A18F21F8E868AA2CF"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Input.cs",
-          "name": "IsModifier",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 55,
-          "parameters": "(EmulationKey key)",
-          "tokens": 26,
-          "bodyTokens": "=> key is EmulationKey . LeftShift or EmulationKey . RightShift or EmulationKey . LeftControl or EmulationKey . RightControl or EmulationKey . LeftAlt or EmulationKey . RightAlt",
-          "hash": "1315525D912A0AA3635A3984F2A50B499CDCD7A80CCE94E0B488BB0B07949DA4",
-          "shape": "468BBCC9E8E194CEAAB92177E72C1E93EBA0A7EAAECDA00A18F21F8E868AA2CF"
-        },
-        {
           "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Interop/Functions/KeyboardFunctions.cs",
           "name": "IsModifier",
           "owner": "KeyboardFunctions",
@@ -99106,7 +97966,7 @@
           "hash": "37EDF529122C9988481D543DCA9F57E80DF70192296886E4B56DF2776FB300CB",
           "shape": "4FDF3DCF3ABAE04BA613C290C31C4AC0316D2EEAC917897FE82860B1D7044E2E",
           "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "22543E8F1AACEF6D688672372C52E7720A31092A508A57729C473EA857F20E2A"
+          "qualificationSourceSha256": "7BD7FF33DD88A5DF96F233E4A9A63C83E051733BB82EC5F54466086917A88B9C"
         },
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
@@ -99120,7 +97980,7 @@
           "hash": "B84A4D7D2F6E262457C92FC54F7814D24EB15115A97C6EED020038337306C495",
           "shape": "4FDF3DCF3ABAE04BA613C290C31C4AC0316D2EEAC917897FE82860B1D7044E2E",
           "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "22543E8F1AACEF6D688672372C52E7720A31092A508A57729C473EA857F20E2A"
+          "qualificationSourceSha256": "7BD7FF33DD88A5DF96F233E4A9A63C83E051733BB82EC5F54466086917A88B9C"
         },
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
@@ -99134,91 +97994,7 @@
           "hash": "D2D91291347E808C7CB92B1022BAEA37044FA9AFF36852A843AF7637073DA97F",
           "shape": "4FDF3DCF3ABAE04BA613C290C31C4AC0316D2EEAC917897FE82860B1D7044E2E",
           "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "22543E8F1AACEF6D688672372C52E7720A31092A508A57729C473EA857F20E2A"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "SetSystemAvInfo",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 82,
-          "parameters": "(nint data)",
-          "tokens": 8,
-          "bodyTokens": "{ return ApplySystemAvInfo ( data ) ; }",
-          "hash": "37EDF529122C9988481D543DCA9F57E80DF70192296886E4B56DF2776FB300CB",
-          "shape": "4FDF3DCF3ABAE04BA613C290C31C4AC0316D2EEAC917897FE82860B1D7044E2E",
-          "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "21DB4137ACB170E9B31AAA4425EC214984E586D8190B543C2A7EA723AD9B9C6E"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "SetGeometry",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 87,
-          "parameters": "(nint data)",
-          "tokens": 8,
-          "bodyTokens": "{ return ApplyGeometry ( data ) ; }",
-          "hash": "B84A4D7D2F6E262457C92FC54F7814D24EB15115A97C6EED020038337306C495",
-          "shape": "4FDF3DCF3ABAE04BA613C290C31C4AC0316D2EEAC917897FE82860B1D7044E2E",
-          "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "21DB4137ACB170E9B31AAA4425EC214984E586D8190B543C2A7EA723AD9B9C6E"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "CaptureControllerInfo",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 145,
-          "parameters": "(nint data)",
-          "tokens": 8,
-          "bodyTokens": "{ return CaptureControllerInfo ( data ) ; }",
-          "hash": "D2D91291347E808C7CB92B1022BAEA37044FA9AFF36852A843AF7637073DA97F",
-          "shape": "4FDF3DCF3ABAE04BA613C290C31C4AC0316D2EEAC917897FE82860B1D7044E2E",
-          "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "21DB4137ACB170E9B31AAA4425EC214984E586D8190B543C2A7EA723AD9B9C6E"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "SetSystemAvInfo",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 80,
-          "parameters": "(nint data)",
-          "tokens": 8,
-          "bodyTokens": "{ return ApplySystemAvInfo ( data ) ; }",
-          "hash": "37EDF529122C9988481D543DCA9F57E80DF70192296886E4B56DF2776FB300CB",
-          "shape": "4FDF3DCF3ABAE04BA613C290C31C4AC0316D2EEAC917897FE82860B1D7044E2E",
-          "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "307CD8A80A0D3B15C29348DABFD21BAE4A849B738E95D4FD0A0F0E44C301B129"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "SetGeometry",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 85,
-          "parameters": "(nint data)",
-          "tokens": 8,
-          "bodyTokens": "{ return ApplyGeometry ( data ) ; }",
-          "hash": "B84A4D7D2F6E262457C92FC54F7814D24EB15115A97C6EED020038337306C495",
-          "shape": "4FDF3DCF3ABAE04BA613C290C31C4AC0316D2EEAC917897FE82860B1D7044E2E",
-          "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "307CD8A80A0D3B15C29348DABFD21BAE4A849B738E95D4FD0A0F0E44C301B129"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "CaptureControllerInfo",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 140,
-          "parameters": "(nint data)",
-          "tokens": 8,
-          "bodyTokens": "{ return CaptureControllerInfo ( data ) ; }",
-          "hash": "D2D91291347E808C7CB92B1022BAEA37044FA9AFF36852A843AF7637073DA97F",
-          "shape": "4FDF3DCF3ABAE04BA613C290C31C4AC0316D2EEAC917897FE82860B1D7044E2E",
-          "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "307CD8A80A0D3B15C29348DABFD21BAE4A849B738E95D4FD0A0F0E44C301B129"
+          "qualificationSourceSha256": "7BD7FF33DD88A5DF96F233E4A9A63C83E051733BB82EC5F54466086917A88B9C"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -109327,7 +108103,7 @@
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5"
         }
       ],
-      "qualification": "Partial occurrence qualification; unannotated members pending"
+      "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
       "shape": "58A9234AE3B4464524823E437C34C769B9FDCDD6B5F944262CEAA71A85012A38",
@@ -112746,7 +111522,7 @@
           "hash": "E2F0C1D6DDB6886EB6702607CD2F6360FA8277E35C02DB1BFC22AB6D53F87A79",
           "shape": "5BD1205AD01F6C49070C7136C7832405771FFFC59B8FBD179B682895C15ED4AC",
           "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "22543E8F1AACEF6D688672372C52E7720A31092A508A57729C473EA857F20E2A"
+          "qualificationSourceSha256": "7BD7FF33DD88A5DF96F233E4A9A63C83E051733BB82EC5F54466086917A88B9C"
         },
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
@@ -112760,63 +111536,7 @@
           "hash": "AB266269EC8578CCBE37A7AF5941978D9CB25BAB07D909CC9BD3B5AB61E35EB8",
           "shape": "5BD1205AD01F6C49070C7136C7832405771FFFC59B8FBD179B682895C15ED4AC",
           "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "22543E8F1AACEF6D688672372C52E7720A31092A508A57729C473EA857F20E2A"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "CaptureDiskControl",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 172,
-          "parameters": "(nint data)",
-          "tokens": 12,
-          "bodyTokens": "{ DiskControl . Capture ( data ) ; return true ; }",
-          "hash": "E2F0C1D6DDB6886EB6702607CD2F6360FA8277E35C02DB1BFC22AB6D53F87A79",
-          "shape": "5BD1205AD01F6C49070C7136C7832405771FFFC59B8FBD179B682895C15ED4AC",
-          "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "21DB4137ACB170E9B31AAA4425EC214984E586D8190B543C2A7EA723AD9B9C6E"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "CaptureExtendedDiskControl",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 178,
-          "parameters": "(nint data)",
-          "tokens": 12,
-          "bodyTokens": "{ DiskControl . CaptureExtended ( data ) ; return true ; }",
-          "hash": "AB266269EC8578CCBE37A7AF5941978D9CB25BAB07D909CC9BD3B5AB61E35EB8",
-          "shape": "5BD1205AD01F6C49070C7136C7832405771FFFC59B8FBD179B682895C15ED4AC",
-          "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "21DB4137ACB170E9B31AAA4425EC214984E586D8190B543C2A7EA723AD9B9C6E"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "CaptureDiskControl",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 167,
-          "parameters": "(nint data)",
-          "tokens": 12,
-          "bodyTokens": "{ DiskControl . Capture ( data ) ; return true ; }",
-          "hash": "E2F0C1D6DDB6886EB6702607CD2F6360FA8277E35C02DB1BFC22AB6D53F87A79",
-          "shape": "5BD1205AD01F6C49070C7136C7832405771FFFC59B8FBD179B682895C15ED4AC",
-          "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "307CD8A80A0D3B15C29348DABFD21BAE4A849B738E95D4FD0A0F0E44C301B129"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "CaptureExtendedDiskControl",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 173,
-          "parameters": "(nint data)",
-          "tokens": 12,
-          "bodyTokens": "{ DiskControl . CaptureExtended ( data ) ; return true ; }",
-          "hash": "AB266269EC8578CCBE37A7AF5941978D9CB25BAB07D909CC9BD3B5AB61E35EB8",
-          "shape": "5BD1205AD01F6C49070C7136C7832405771FFFC59B8FBD179B682895C15ED4AC",
-          "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "307CD8A80A0D3B15C29348DABFD21BAE4A849B738E95D4FD0A0F0E44C301B129"
+          "qualificationSourceSha256": "7BD7FF33DD88A5DF96F233E4A9A63C83E051733BB82EC5F54466086917A88B9C"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -114138,48 +112858,6 @@
           "shape": "66378EFCAFE50F1909DEBDA527C2552CE21743C5708B5C06ED14D57EE1E444F8",
           "qualification": "Existing explicit typed pixel binding now calls shared SDK strict pixel reader; original1/2 mapping, deferred local error and assignment-after-success preserved; all other file tokens unchanged, verified in legacyDirectEnvironmentReuse.",
           "qualificationSourceSha256": "A920FE0B1D36631D78E17F80137FE67716A1BC9C0CDB8DA6A3ADBFF023F2117F"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "SetPixelFormat",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 79,
-          "parameters": "(nint data)",
-          "tokens": 28,
-          "bodyTokens": "{ _pixelFormat = ExternalCoreEnvironmentFunctions . ReadLegacyPixelFormat ( data , static value => new NotSupportedException ( CoreExceptions . UnsupportedPixelFormat ( value ) ) ) ; return true ; }",
-          "hash": "0DDA84ECE2D3E06661D13D80D73B3483DD249C732C0ACC0D228FE4A9ECC1E85D",
-          "shape": "66378EFCAFE50F1909DEBDA527C2552CE21743C5708B5C06ED14D57EE1E444F8",
-          "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "22543E8F1AACEF6D688672372C52E7720A31092A508A57729C473EA857F20E2A"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "SetPixelFormat",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 75,
-          "parameters": "(nint data)",
-          "tokens": 28,
-          "bodyTokens": "{ _pixelFormat = ExternalCoreEnvironmentFunctions . ReadLegacyPixelFormat ( data , static value => new NotSupportedException ( Pcsx2Exceptions . UnsupportedPixelFormat ( value ) ) ) ; return true ; }",
-          "hash": "930FE14AB8697FD5DB340A870D31559E9F30B4F5A62985E7E037D115641DB0F3",
-          "shape": "66378EFCAFE50F1909DEBDA527C2552CE21743C5708B5C06ED14D57EE1E444F8",
-          "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "21DB4137ACB170E9B31AAA4425EC214984E586D8190B543C2A7EA723AD9B9C6E"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "SetPixelFormat",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 73,
-          "parameters": "(nint data)",
-          "tokens": 28,
-          "bodyTokens": "{ _pixelFormat = ExternalCoreEnvironmentFunctions . ReadLegacyPixelFormat ( data , static value => new NotSupportedException ( PpssppExceptions . UnsupportedPixelFormat ( value ) ) ) ; return true ; }",
-          "hash": "03AFCFC393E177CE9794B3D56265B972893EA8523826A072CAAF346744382CAE",
-          "shape": "66378EFCAFE50F1909DEBDA527C2552CE21743C5708B5C06ED14D57EE1E444F8",
-          "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "307CD8A80A0D3B15C29348DABFD21BAE4A849B738E95D4FD0A0F0E44C301B129"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -114277,7 +112955,7 @@
           "name": "Export",
           "owner": "ExternalCore",
           "kind": "MethodDeclaration",
-          "line": 285,
+          "line": 286,
           "parameters": "(string name)",
           "tokens": 23,
           "bodyTokens": "=> ( _library ?? throw new InvalidOperationException ( Pcsx2Exceptions . CoreNotLoaded ( ) ) ) . Resolve < T > ( name )",
@@ -114289,7 +112967,7 @@
           "name": "Export",
           "owner": "ExternalCore",
           "kind": "MethodDeclaration",
-          "line": 248,
+          "line": 249,
           "parameters": "(string name)",
           "tokens": 23,
           "bodyTokens": "=> ( _library ?? throw new InvalidOperationException ( PpssppExceptions . CoreNotLoaded ( ) ) ) . Resolve < T > ( name )",
@@ -114746,30 +113424,6 @@
         },
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.Input.cs",
-          "name": "CharacterFor",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 52,
-          "parameters": "(uint code, IReadOnlySet<EmulationKey> keys)",
-          "tokens": 15,
-          "bodyTokens": "=> GWGUI . Emulation . Functions . ExternalCoreKeyboardFunctions . Character ( code , keys )",
-          "hash": "2A0E032940DF242D6528728EBD1D986D16F75A5D3E1A93C5EEF361E1B18444F4",
-          "shape": "690A04AD7CADEEAFE208E4C40BAE2336B9107030DAC83FB9861D7244C30C127D"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Input.cs",
-          "name": "CharacterFor",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 55,
-          "parameters": "(uint code, IReadOnlySet<EmulationKey> keys)",
-          "tokens": 15,
-          "bodyTokens": "=> GWGUI . Emulation . Functions . ExternalCoreKeyboardFunctions . Character ( code , keys )",
-          "hash": "2A0E032940DF242D6528728EBD1D986D16F75A5D3E1A93C5EEF361E1B18444F4",
-          "shape": "690A04AD7CADEEAFE208E4C40BAE2336B9107030DAC83FB9861D7244C30C127D"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Input.cs",
           "name": "CharacterFor",
           "owner": "ExternalHostCallbacks",
           "kind": "MethodDeclaration",
@@ -120697,48 +119351,6 @@
           "bodyTokens": "{ return _virtualFileSystem . Provide ( data ) ; }",
           "hash": "F5F37D534B4E1AA0A271672EEBD7C732AC52182A416439A1BD63E5E389B45E85",
           "shape": "9156AB283B85B72FC7CE4035DD8F9E42783B48DD4D090F9FAD8EEDB79CC0CF7E"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "SetRumbleInterface",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 116,
-          "parameters": "(nint data)",
-          "tokens": 10,
-          "bodyTokens": "{ return Feedback . Register ( data ) ; }",
-          "hash": "0F8829A39D79472AF066206BEF9E8728471C7EDFAE430C03D17823A5E85888EF",
-          "shape": "9156AB283B85B72FC7CE4035DD8F9E42783B48DD4D090F9FAD8EEDB79CC0CF7E",
-          "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "22543E8F1AACEF6D688672372C52E7720A31092A508A57729C473EA857F20E2A"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "SetRumbleInterface",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 112,
-          "parameters": "(nint data)",
-          "tokens": 10,
-          "bodyTokens": "{ return Feedback . Register ( data ) ; }",
-          "hash": "0F8829A39D79472AF066206BEF9E8728471C7EDFAE430C03D17823A5E85888EF",
-          "shape": "9156AB283B85B72FC7CE4035DD8F9E42783B48DD4D090F9FAD8EEDB79CC0CF7E",
-          "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "21DB4137ACB170E9B31AAA4425EC214984E586D8190B543C2A7EA723AD9B9C6E"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "ProvideVfs",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 160,
-          "parameters": "(nint data)",
-          "tokens": 10,
-          "bodyTokens": "{ return _virtualFileSystem . Provide ( data ) ; }",
-          "hash": "F5F37D534B4E1AA0A271672EEBD7C732AC52182A416439A1BD63E5E389B45E85",
-          "shape": "9156AB283B85B72FC7CE4035DD8F9E42783B48DD4D090F9FAD8EEDB79CC0CF7E",
-          "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "21DB4137ACB170E9B31AAA4425EC214984E586D8190B543C2A7EA723AD9B9C6E"
         },
         {
           "path": "src/GWGUI.Emulation/HardDisks/FileSystems/Amiga/Shared/AmigaTextHelper.cs",
@@ -128196,7 +126808,7 @@
           "name": "ExternalCore",
           "owner": "ExternalCore",
           "kind": "ConstructorDeclaration",
-          "line": 37,
+          "line": 38,
           "parameters": "(string corePath)",
           "tokens": 4,
           "bodyTokens": "=> _corePath = corePath",
@@ -128208,7 +126820,7 @@
           "name": "ExternalCore",
           "owner": "ExternalCore",
           "kind": "ConstructorDeclaration",
-          "line": 32,
+          "line": 33,
           "parameters": "(string corePath)",
           "tokens": 4,
           "bodyTokens": "=> _corePath = corePath",
@@ -130275,54 +128887,6 @@
           "owner": "ExternalHostCallbacks",
           "kind": "MethodDeclaration",
           "line": 35,
-          "parameters": "(nint data)",
-          "tokens": 23,
-          "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . SystemAvInfo > ( data , ApplyInitialAvInfo ) ; }",
-          "hash": "A71878BE281E480439721CAB75D0D79DFFC435DA73DC13933B3737B0088F09DB",
-          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.AudioVideo.cs",
-          "name": "ApplyGeometry",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 27,
-          "parameters": "(nint data)",
-          "tokens": 23,
-          "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . Geometry > ( data , ApplyGeometry ) ; }",
-          "hash": "10A097D804C5AAA3388F5957E18FBF680988DF6BFE5D8AF21FD16FDC005CA046",
-          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.AudioVideo.cs",
-          "name": "ApplySystemAvInfo",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 38,
-          "parameters": "(nint data)",
-          "tokens": 23,
-          "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . SystemAvInfo > ( data , ApplyInitialAvInfo ) ; }",
-          "hash": "A71878BE281E480439721CAB75D0D79DFFC435DA73DC13933B3737B0088F09DB",
-          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.AudioVideo.cs",
-          "name": "ApplyGeometry",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 27,
-          "parameters": "(nint data)",
-          "tokens": 23,
-          "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . Geometry > ( data , ApplyGeometry ) ; }",
-          "hash": "10A097D804C5AAA3388F5957E18FBF680988DF6BFE5D8AF21FD16FDC005CA046",
-          "shape": "BCA8CCAA711C55BBAA8E6A13DB6E7102FE728619EF51403C98498220CB631A40"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.AudioVideo.cs",
-          "name": "ApplySystemAvInfo",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 38,
           "parameters": "(nint data)",
           "tokens": 23,
           "bodyTokens": "{ return GWGUI . Emulation . Functions . ExternalCoreEnvironmentFunctions . ApplyStructure < ExternalCoreApi . SystemAvInfo > ( data , ApplyInitialAvInfo ) ; }",
@@ -132741,7 +131305,7 @@
           "name": "RunFrame",
           "owner": "ExternalCore",
           "kind": "MethodDeclaration",
-          "line": 171,
+          "line": 172,
           "parameters": "()",
           "tokens": 17,
           "bodyTokens": "=> ( _run ?? throw new InvalidOperationException ( Pcsx2Exceptions . CoreNotInitialized ( ) ) ) ( )",
@@ -132753,7 +131317,7 @@
           "name": "SoftReset",
           "owner": "ExternalCore",
           "kind": "MethodDeclaration",
-          "line": 180,
+          "line": 181,
           "parameters": "()",
           "tokens": 17,
           "bodyTokens": "=> ( _reset ?? throw new InvalidOperationException ( Pcsx2Exceptions . CoreNotInitialized ( ) ) ) ( )",
@@ -132765,7 +131329,7 @@
           "name": "RunFrame",
           "owner": "ExternalCore",
           "kind": "MethodDeclaration",
-          "line": 160,
+          "line": 161,
           "parameters": "()",
           "tokens": 17,
           "bodyTokens": "=> ( _run ?? throw new InvalidOperationException ( PpssppExceptions . CoreNotInitialized ( ) ) ) ( )",
@@ -132777,7 +131341,7 @@
           "name": "SoftReset",
           "owner": "ExternalCore",
           "kind": "MethodDeclaration",
-          "line": 169,
+          "line": 170,
           "parameters": "()",
           "tokens": 17,
           "bodyTokens": "=> ( _reset ?? throw new InvalidOperationException ( PpssppExceptions . CoreNotInitialized ( ) ) ) ( )",
@@ -135789,30 +134353,6 @@
           "shape": "D45560128D8194131A023AB86214BC21B735813598EB8B4DCD32669567612C2F"
         },
         {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "CaptureOptionsDisplayCallback",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 206,
-          "parameters": "(nint data)",
-          "tokens": 26,
-          "bodyTokens": "{ if ( ! EmulationCoreOptionFunctions . TryGetDisplayCallback ( data , out var callback ) ) return false ; _updateOptionsDisplay = callback ; return true ; }",
-          "hash": "E89414CCFF5FD4017FB8A9CA35290828E0969CA9EBCFE332A2D4446C5B8F6AD0",
-          "shape": "D45560128D8194131A023AB86214BC21B735813598EB8B4DCD32669567612C2F"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "CaptureOptionsDisplayCallback",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 201,
-          "parameters": "(nint data)",
-          "tokens": 26,
-          "bodyTokens": "{ if ( ! EmulationCoreOptionFunctions . TryGetDisplayCallback ( data , out var callback ) ) return false ; _updateOptionsDisplay = callback ; return true ; }",
-          "hash": "E89414CCFF5FD4017FB8A9CA35290828E0969CA9EBCFE332A2D4446C5B8F6AD0",
-          "shape": "D45560128D8194131A023AB86214BC21B735813598EB8B4DCD32669567612C2F"
-        },
-        {
           "path": "src/GWGUI.Emulation/Services/EmulationCoreOptionHost.cs",
           "name": "CaptureDisplayUpdate",
           "owner": "EmulationCoreOptionHost",
@@ -138579,7 +137119,7 @@
           "hash": "137FF1FE9E94B2640EC04BB3D89C3047EFF92F97EB242A7447A2CE7BA72EA196",
           "shape": "F303EAEA3201C1425797ABA6BE7B56B7A0E55BA593199F248E80D14193E93B18",
           "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "22543E8F1AACEF6D688672372C52E7720A31092A508A57729C473EA857F20E2A"
+          "qualificationSourceSha256": "7BD7FF33DD88A5DF96F233E4A9A63C83E051733BB82EC5F54466086917A88B9C"
         },
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
@@ -138593,63 +137133,7 @@
           "hash": "080B4DA489C00BF0C9A967EFB0253F479B75D7590C04A04D882E288CDBEE9815",
           "shape": "F303EAEA3201C1425797ABA6BE7B56B7A0E55BA593199F248E80D14193E93B18",
           "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "22543E8F1AACEF6D688672372C52E7720A31092A508A57729C473EA857F20E2A"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "SetLogInterface",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 102,
-          "parameters": "(nint data)",
-          "tokens": 12,
-          "bodyTokens": "{ return ExternalCoreEnvironmentFunctions . SetLogInterface ( data , Log ) ; }",
-          "hash": "137FF1FE9E94B2640EC04BB3D89C3047EFF92F97EB242A7447A2CE7BA72EA196",
-          "shape": "F303EAEA3201C1425797ABA6BE7B56B7A0E55BA593199F248E80D14193E93B18",
-          "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "21DB4137ACB170E9B31AAA4425EC214984E586D8190B543C2A7EA723AD9B9C6E"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "SetLedInterface",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 107,
-          "parameters": "(nint data)",
-          "tokens": 12,
-          "bodyTokens": "{ return ExternalCoreEnvironmentFunctions . SetLedInterface ( data , Led ) ; }",
-          "hash": "080B4DA489C00BF0C9A967EFB0253F479B75D7590C04A04D882E288CDBEE9815",
-          "shape": "F303EAEA3201C1425797ABA6BE7B56B7A0E55BA593199F248E80D14193E93B18",
-          "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "21DB4137ACB170E9B31AAA4425EC214984E586D8190B543C2A7EA723AD9B9C6E"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "SetLogInterface",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 100,
-          "parameters": "(nint data)",
-          "tokens": 12,
-          "bodyTokens": "{ return ExternalCoreEnvironmentFunctions . SetLogInterface ( data , Log ) ; }",
-          "hash": "137FF1FE9E94B2640EC04BB3D89C3047EFF92F97EB242A7447A2CE7BA72EA196",
-          "shape": "F303EAEA3201C1425797ABA6BE7B56B7A0E55BA593199F248E80D14193E93B18",
-          "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "307CD8A80A0D3B15C29348DABFD21BAE4A849B738E95D4FD0A0F0E44C301B129"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "SetLedInterface",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 105,
-          "parameters": "(nint data)",
-          "tokens": 12,
-          "bodyTokens": "{ return ExternalCoreEnvironmentFunctions . SetLedInterface ( data , Led ) ; }",
-          "hash": "080B4DA489C00BF0C9A967EFB0253F479B75D7590C04A04D882E288CDBEE9815",
-          "shape": "F303EAEA3201C1425797ABA6BE7B56B7A0E55BA593199F248E80D14193E93B18",
-          "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
-          "qualificationSourceSha256": "307CD8A80A0D3B15C29348DABFD21BAE4A849B738E95D4FD0A0F0E44C301B129"
+          "qualificationSourceSha256": "7BD7FF33DD88A5DF96F233E4A9A63C83E051733BB82EC5F54466086917A88B9C"
         },
         {
           "path": "src/GWGUI.MediaEngine/Contracts/Explorer/DiskImageContractData.cs",
@@ -141096,6 +139580,6 @@
   ],
   "qualificationCarryForward": {
     "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical",
-    "occurrences": 486
+    "occurrences": 676
   }
 }

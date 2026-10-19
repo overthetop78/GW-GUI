@@ -53,6 +53,17 @@ internal static class CoreExceptions
     internal static string InvalidStateSize(nuint size) => Text(CoreExceptionsResourceConstants.InvalidStateSize, size);
     internal static string UnknownHostCommand(byte command) => Text(CoreExceptionsResourceConstants.UnknownHostCommand, command);
 
+    internal static string ForEmulator(string? emulatorId, string key, params object[] arguments)
+    {
+        var profile = emulatorId switch
+        {
+            Emulators.Pcsx2.Constants.Pcsx2Constants.Id => "Pcsx2",
+            Emulators.Ppsspp.Constants.PpssppConstants.Id => "Ppsspp",
+            _ => null
+        };
+        return Text(profile is null ? key : key.Replace("Emulation.Error.Core.", $"Emulation.Error.{profile}.", StringComparison.Ordinal), arguments);
+    }
+
     private static string Text(string key, params object[] arguments)
     {
         if (!Localization.TryGetString(key, CultureInfo.CurrentUICulture, out var value)) value = key;

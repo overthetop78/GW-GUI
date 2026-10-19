@@ -1,7 +1,7 @@
 using GWGUI.Emulation.Sony.Emulators.Ppsspp.Exceptions;
-using GWGUI.Emulation.Sony.Emulators.Ppsspp.Enums;
+using GWGUI.Emulation.Sony.Emulators.Common.Interop.Enums;
 using GWGUI.Emulation.Sony.Emulators.Ppsspp.Constants;
-using GWGUI.Emulation.Sony.Emulators.Ppsspp.Contracts;
+using GWGUI.Emulation.Sony.Emulators.Common.Interop.Contracts;
 using GWGUI.Emulation.Sony.Emulators.Ppsspp.Factories;
 using GWGUI.Emulation.Sony.Emulators.Ppsspp.Functions;
 using GWGUI.Emulation.Sony.Emulators.Ppsspp.Services;

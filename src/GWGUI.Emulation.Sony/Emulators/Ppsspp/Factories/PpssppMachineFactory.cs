@@ -1,5 +1,5 @@
 using GWGUI.Emulation.Sony.Emulators.Ppsspp.Functions;
-using GWGUI.Emulation.Sony.Emulators.Ppsspp.Contracts;
+using GWGUI.Emulation.Sony.Emulators.Common.Interop.Contracts;
 using GWGUI.Emulation.Sony.Emulators.Ppsspp.Constants;
 using GWGUI.Emulation.Sony.Emulators.Ppsspp.Services;
 using System.IO;

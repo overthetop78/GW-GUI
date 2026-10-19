@@ -122,7 +122,7 @@ internal static partial class InputSettingsFunctions
     }
 
     private static IReadOnlyList<InputBindingDefinition> UsbKeyboardDefinitions() =>
-        Emulators.Pcsx2.Services.ExternalHostCallbacks.SupportedKeyboardKeys.OrderBy(key => (int)key)
+        Emulators.Common.Interop.Services.ExternalHostCallbacks.SupportedKeyboardKeys.OrderBy(key => (int)key)
             .Select(key => new InputBindingDefinition(key.ToString(), "Emulation.Sony.Keyboard.Key." + key, key.ToString())).ToArray();
 
     private static IReadOnlyList<InputBindingDefinition> NetPlayDefinitions() =>

@@ -1,11 +1,11 @@
 using ControllerFeedbackProtocol = GWGUI.Emulation.Sony.Emulators.Common.Interop.Functions.ControllerFeedbackProtocol;
 using GWGUI.Emulation.Sony.Emulators.Pcsx2.Exceptions;
 using GWGUI.Emulation.Sony.Emulators.Pcsx2.Constants;
-using GWGUI.Emulation.Sony.Emulators.Pcsx2.Contracts;
+using GWGUI.Emulation.Sony.Emulators.Common.Interop.Contracts;
 using GWGUI.Emulation.Sony.Emulators.Pcsx2.Factories;
 using GWGUI.Emulation.Sony.Emulators.Pcsx2.Functions;
 using GWGUI.Emulation.Sony.Emulators.Pcsx2.Services;
-using GWGUI.Emulation.Sony.Emulators.Pcsx2.Enums;
+using GWGUI.Emulation.Sony.Emulators.Common.Interop.Enums;
 
 using System.IO.Pipes;
 using System.Runtime.Versioning;

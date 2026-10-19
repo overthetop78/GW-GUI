@@ -24,7 +24,7 @@ internal sealed partial class ExternalHostCallbacks : IEmulationCoreEnvironmentC
                 return legacyEnvironmentResult;
             switch (command)
             {
-                case MultichannelAudioConstants.GetBatchCallback:
+                case MultichannelAudioConstants.GetBatchCallback when !_legacyCallbacks:
                     if (data == nint.Zero) return false;
                     Marshal.StructureToPtr(new MultichannelAudioApi.Callback
                     {
@@ -32,7 +32,7 @@ internal sealed partial class ExternalHostCallbacks : IEmulationCoreEnvironmentC
                         Float = nint.Zero
                     }, data, false);
                     return true;
-                case ExternalCoreApiConstants.GetRumbleInterface:
+                case ExternalCoreApiConstants.GetRumbleInterface when !_pspCallbacks:
                     return ((IEmulationCoreEnvironmentCommands)this).SetRumbleInterface(data);
                 case ExternalCoreApiConstants.Shutdown:
                     _shutdownRequested = true;
@@ -79,7 +79,7 @@ internal sealed partial class ExternalHostCallbacks : IEmulationCoreEnvironmentC
     bool IEmulationCoreEnvironmentCommands.SetPixelFormat(nint data)
     {
         _pixelFormat = ExternalCoreEnvironmentFunctions.ReadLegacyPixelFormat(data,
-            static value => new NotSupportedException(CoreExceptions.UnsupportedPixelFormat(value)));
+            value => new NotSupportedException(CoreExceptions.ForEmulator(_emulatorId, CoreExceptionsResourceConstants.UnsupportedPixelFormat, value)));
         return true;
     }
 
@@ -115,7 +115,7 @@ internal sealed partial class ExternalHostCallbacks : IEmulationCoreEnvironmentC
 
     bool IEmulationCoreEnvironmentCommands.SetRumbleInterface(nint data)
     {
-        return Feedback.Register(data);
+        return !_pspCallbacks && Feedback.Register(data);
     }
 
     bool IEmulationCoreEnvironmentCommands.SetSensorInterface(nint data) => false;
@@ -163,7 +163,7 @@ internal sealed partial class ExternalHostCallbacks : IEmulationCoreEnvironmentC
 
     bool IEmulationCoreEnvironmentCommands.ProvideVfs(nint data)
     {
-        return false;
+        return _virtualFileSystem?.Provide(data) ?? false;
     }
 
     bool IEmulationCoreEnvironmentCommands.SetKeyboardCallback(nint data)
@@ -223,7 +223,7 @@ internal sealed partial class ExternalHostCallbacks : IEmulationCoreEnvironmentC
         EmulationCoreOptionFunctions.ValidateConfiguredValues(
             _configuredOptionKeys, _options, OptionCatalog,
             static option => option.Key, static option => option.Values, static value => value.Value,
-            static (key, value) => throw new InvalidDataException(CoreExceptions.InvalidOptionValue(value, key)));
+            (key, value) => throw new InvalidDataException(CoreExceptions.ForEmulator(_emulatorId, CoreExceptionsResourceConstants.InvalidOptionValue, value, key)));
 
     private bool CaptureMessage(nint data, bool extended)
     {

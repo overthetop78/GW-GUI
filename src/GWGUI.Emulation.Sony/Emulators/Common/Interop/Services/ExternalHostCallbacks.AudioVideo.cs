@@ -53,7 +53,7 @@ internal sealed partial class ExternalHostCallbacks
     private void PublishAudio(AudioChunk chunk)
     {
         LatestAudioChunk = chunk;
-        _audioBuffer.EnqueueNative(chunk, this, static owner => owner.SampleRate, multichannel: true);
+        _audioBuffer.EnqueueNative(chunk, this, static owner => owner.SampleRate, multichannel: !_legacyCallbacks);
     }
 
     private nuint HandleMultichannelAudioBatch(nint data, nuint frames, uint channels, uint mask)
