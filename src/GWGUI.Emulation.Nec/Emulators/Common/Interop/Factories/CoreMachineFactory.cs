@@ -62,6 +62,7 @@ internal abstract class CoreMachineFactory : IEmulatorAdapter
         var machineId = Guid.NewGuid();
         var native = Configure(configuration.EnsureId());
         var sessionDirectory = Path.Combine(context.SessionsDirectory, machineId.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));
+        PrepareSession(configuration, context, sessionDirectory);
         ProcessCore? core = null;
         IAudioOutput? audio = null;
         var ownershipTransferred = false;
@@ -85,6 +86,8 @@ internal abstract class CoreMachineFactory : IEmulatorAdapter
             }
         }
     }
+    protected virtual void PrepareSession(MachineConfiguration configuration, EmulatorCreationContext context, string sessionDirectory) { }
+
     protected virtual MachineConfiguration Configure(MachineConfiguration configuration) => CoreSettingsFunctions.Configure(configuration);
 
     private CoreReleaseService ReleaseService(EmulatorManagementContext context) => new(context.HttpClient, context.CoreDirectory, ReleaseSettings, CoreCatalog.Get(EmulatorId).ErrorResourcePrefix);

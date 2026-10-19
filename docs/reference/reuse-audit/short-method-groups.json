@@ -1,31 +1,17 @@
 {
-  "snapshot": "3202a0458a6d4d149037cc20aafb47a4ee598263",
+  "snapshot": "b8e2009b8faf5cbd6971d77b7739836ad6f6afc0",
   "snapshotState": "Current worktree based on snapshot",
   "worktreeSourceChanges": [
-    "src/GWGUI.Emulation.Nec/Emulators/BeetlePcfx/Constants/BeetlePcfxConstants.cs",
-    "src/GWGUI.Emulation.Nec/Emulators/BeetlePcfx/Constants/CoreHostConstants.cs",
-    "src/GWGUI.Emulation.Nec/Emulators/BeetlePcfx/Constants/CoreReleaseConstants.cs",
-    "src/GWGUI.Emulation.Nec/Emulators/BeetlePcfx/Constants/ExternalCoreConstants.cs",
-    "src/GWGUI.Emulation.Nec/Emulators/BeetlePcfx/Constants/ProcessCoreConstants.cs",
-    "src/GWGUI.Emulation.Nec/Emulators/BeetlePcfx/Enums/HostEnums.cs",
-    "src/GWGUI.Emulation.Nec/Emulators/BeetlePcfx/Exceptions/BeetlePcfxExceptions.cs",
-    "src/GWGUI.Emulation.Nec/Emulators/BeetlePcfx/Factories/BeetlePcfxMachineFactory.cs",
-    "src/GWGUI.Emulation.Nec/Emulators/BeetlePcfx/Functions/BeetlePcfxStorageFunctions.cs",
-    "src/GWGUI.Emulation.Nec/Emulators/BeetlePcfx/Functions/CoreHostProtocol.cs",
-    "src/GWGUI.Emulation.Nec/Emulators/BeetlePcfx/Services/CoreHost.cs",
-    "src/GWGUI.Emulation.Nec/Emulators/BeetlePcfx/Services/CoreProvider.cs",
-    "src/GWGUI.Emulation.Nec/Emulators/BeetlePcfx/Services/CoreReleaseService.cs",
-    "src/GWGUI.Emulation.Nec/Emulators/BeetlePcfx/Services/ExternalCore.cs",
-    "src/GWGUI.Emulation.Nec/Emulators/BeetlePcfx/Services/ExternalCoreInstaller.cs",
-    "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Contracts/CoreDefinition.cs",
-    "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
+    "src/GWGUI.Emulation.Nec/Emulators/BeetlePceFast/Factories/BeetlePceFastMachineFactory.cs",
+    "src/GWGUI.Emulation.Nec/Emulators/BeetlePceFast/Services/CoreProvider.cs",
+    "src/GWGUI.Emulation.Nec/Emulators/BeetlePceFast/Services/ExternalCoreInstaller.cs",
+    "src/GWGUI.Emulation.Nec/Emulators/BeetleSgx/Factories/BeetleSgxMachineFactory.cs",
     "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Factories/CoreMachineFactory.cs",
-    "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/CoreReleaseService.cs",
-    "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalCore.cs"
+    "src/GWGUI.Emulation.Nec/Emulators/Geargrafx/Factories/GeargrafxMachineFactory.cs"
   ],
   "scope": "All current non-ignored repository CSharp files, including hidden paths; BaseMethodDeclaration bodies with fewer than 30 tokens. Candidate presence is not a defect or a completion claim.",
-  "fileCount": 7247,
-  "methodBodyCount": 9496,
+  "fileCount": 7245,
+  "methodBodyCount": 9482,
   "exactGroups": [
     {
       "hash": "0017F14C61995D644C52FF90F094E4708DC2CA772615CF2F5DD41E74BD202ECA",
@@ -867,7 +853,7 @@
           "name": "Configure",
           "owner": "CoreMachineFactory",
           "kind": "MethodDeclaration",
-          "line": 88,
+          "line": 91,
           "parameters": "(MachineConfiguration configuration)",
           "tokens": 7,
           "bodyTokens": "=> CoreSettingsFunctions . Configure ( configuration )",
@@ -11533,6 +11519,18 @@
           "verifiedSourceSha256": "66C18E0D1E77D97E3C86DE68B4FA7A7869CF08622EE13F93548B93F268F9249E",
           "qualification": "typed-constructor-composition; emptyConstructorQualification",
           "qualificationSourceSha256": "66C18E0D1E77D97E3C86DE68B4FA7A7869CF08622EE13F93548B93F268F9249E"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Factories/CoreMachineFactory.cs",
+          "name": "PrepareSession",
+          "owner": "CoreMachineFactory",
+          "kind": "MethodDeclaration",
+          "line": 89,
+          "parameters": "(MachineConfiguration configuration, EmulatorCreationContext context, string sessionDirectory)",
+          "tokens": 2,
+          "bodyTokens": "{ }",
+          "hash": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A",
+          "shape": "257C1BE96AE69F4B01C2C69BDB6D78605F59175819FB007D0BF245BF48444C4A"
         },
         {
           "path": "src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Contracts/ConfigurationContracts.cs",
@@ -36655,47 +36653,11 @@
           "shape": "5C2085D02582C8ECE3EE3ED6B0DE483A9E4F58B080B8E20A07DEC8B45D1812E7"
         },
         {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/BeetlePceFast/Factories/BeetlePceFastMachineFactory.cs",
-          "name": "ResolveConfiguredMedia",
-          "owner": "BeetlePceFastMachineFactory",
-          "kind": "MethodDeclaration",
-          "line": 74,
-          "parameters": "(MachineConfiguration configuration)",
-          "tokens": 12,
-          "bodyTokens": "=> EmulationMediaConversionFunctions . ToCommon ( configuration . Media ?? [ ] )",
-          "hash": "76D5A58062DDF84AA8DCA10DEAD64723D804FDF29CE53D119B559F7D9396C43E",
-          "shape": "5C2085D02582C8ECE3EE3ED6B0DE483A9E4F58B080B8E20A07DEC8B45D1812E7"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/BeetleSgx/Factories/BeetleSgxMachineFactory.cs",
-          "name": "ResolveConfiguredMedia",
-          "owner": "BeetleSgxMachineFactory",
-          "kind": "MethodDeclaration",
-          "line": 67,
-          "parameters": "(MachineConfiguration configuration)",
-          "tokens": 12,
-          "bodyTokens": "=> EmulationMediaConversionFunctions . ToCommon ( configuration . Media ?? [ ] )",
-          "hash": "76D5A58062DDF84AA8DCA10DEAD64723D804FDF29CE53D119B559F7D9396C43E",
-          "shape": "5C2085D02582C8ECE3EE3ED6B0DE483A9E4F58B080B8E20A07DEC8B45D1812E7"
-        },
-        {
           "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Factories/CoreMachineFactory.cs",
           "name": "ResolveConfiguredMedia",
           "owner": "CoreMachineFactory",
           "kind": "MethodDeclaration",
           "line": 58,
-          "parameters": "(MachineConfiguration configuration)",
-          "tokens": 12,
-          "bodyTokens": "=> EmulationMediaConversionFunctions . ToCommon ( configuration . Media ?? [ ] )",
-          "hash": "76D5A58062DDF84AA8DCA10DEAD64723D804FDF29CE53D119B559F7D9396C43E",
-          "shape": "5C2085D02582C8ECE3EE3ED6B0DE483A9E4F58B080B8E20A07DEC8B45D1812E7"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/Geargrafx/Factories/GeargrafxMachineFactory.cs",
-          "name": "ResolveConfiguredMedia",
-          "owner": "GeargrafxMachineFactory",
-          "kind": "MethodDeclaration",
-          "line": 82,
           "parameters": "(MachineConfiguration configuration)",
           "tokens": 12,
           "bodyTokens": "=> EmulationMediaConversionFunctions . ToCommon ( configuration . Media ?? [ ] )",
@@ -51630,62 +51592,6 @@
       "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
-      "hash": "A97C864EECE0AC29E0E18B059E35E6181E4E7E3EF35D7C09D958B18475A00597",
-      "tokens": 21,
-      "bodyTokens": "=> GWGUI . Emulation . Nec . Emulators . Common . Interop . Functions . CoreStorageSettingsFunctions . Describe ( configuration )",
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/BeetlePceFast/Factories/BeetlePceFastMachineFactory.cs",
-          "name": "DescribeStorage",
-          "owner": "BeetlePceFastMachineFactory",
-          "kind": "MethodDeclaration",
-          "line": 21,
-          "parameters": "(MachineConfiguration configuration)",
-          "tokens": 21,
-          "bodyTokens": "=> GWGUI . Emulation . Nec . Emulators . Common . Interop . Functions . CoreStorageSettingsFunctions . Describe ( configuration )",
-          "hash": "A97C864EECE0AC29E0E18B059E35E6181E4E7E3EF35D7C09D958B18475A00597",
-          "shape": "7ECE1B0AAD4C523B8065136AE8EE125471365E934AC1A4A1E761C864DBDD3E6E"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/BeetleSgx/Factories/BeetleSgxMachineFactory.cs",
-          "name": "DescribeStorage",
-          "owner": "BeetleSgxMachineFactory",
-          "kind": "MethodDeclaration",
-          "line": 16,
-          "parameters": "(MachineConfiguration configuration)",
-          "tokens": 21,
-          "bodyTokens": "=> GWGUI . Emulation . Nec . Emulators . Common . Interop . Functions . CoreStorageSettingsFunctions . Describe ( configuration )",
-          "hash": "A97C864EECE0AC29E0E18B059E35E6181E4E7E3EF35D7C09D958B18475A00597",
-          "shape": "7ECE1B0AAD4C523B8065136AE8EE125471365E934AC1A4A1E761C864DBDD3E6E"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Factories/CoreMachineFactory.cs",
-          "name": "DescribeStorage",
-          "owner": "CoreMachineFactory",
-          "kind": "MethodDeclaration",
-          "line": 12,
-          "parameters": "(MachineConfiguration configuration)",
-          "tokens": 21,
-          "bodyTokens": "=> GWGUI . Emulation . Nec . Emulators . Common . Interop . Functions . CoreStorageSettingsFunctions . Describe ( configuration )",
-          "hash": "A97C864EECE0AC29E0E18B059E35E6181E4E7E3EF35D7C09D958B18475A00597",
-          "shape": "7ECE1B0AAD4C523B8065136AE8EE125471365E934AC1A4A1E761C864DBDD3E6E"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/Geargrafx/Factories/GeargrafxMachineFactory.cs",
-          "name": "DescribeStorage",
-          "owner": "GeargrafxMachineFactory",
-          "kind": "MethodDeclaration",
-          "line": 24,
-          "parameters": "(MachineConfiguration configuration)",
-          "tokens": 21,
-          "bodyTokens": "=> GWGUI . Emulation . Nec . Emulators . Common . Interop . Functions . CoreStorageSettingsFunctions . Describe ( configuration )",
-          "hash": "A97C864EECE0AC29E0E18B059E35E6181E4E7E3EF35D7C09D958B18475A00597",
-          "shape": "7ECE1B0AAD4C523B8065136AE8EE125471365E934AC1A4A1E761C864DBDD3E6E"
-        }
-      ],
-      "qualification": "pending-symbol-and-ownership-comparison"
-    },
-    {
       "hash": "AA3356C7AC2249F1E4C5D549DF3206DA0275E31801B057255D6831A9329997E1",
       "tokens": 26,
       "bodyTokens": "=> options . TryGetValue ( key , out var value ) && int . TryParse ( value , out var parsed ) ? parsed : defaultValue",
@@ -52221,50 +52127,6 @@
           "shape": "5BD1205AD01F6C49070C7136C7832405771FFFC59B8FBD179B682895C15ED4AC",
           "qualification": "Explicit binding to existing SDK callback contract; original module case body and instance state preserved through inverse whole-file reconstruction in legacyDirectEnvironmentReuse. Shared positive20 selector preserves module capability gates and direct null-disk capture policy. Absent capabilities remain false; strict pixels share original SDK mapping with original deferred module error. No new state/resource owner.",
           "qualificationSourceSha256": "7BD7FF33DD88A5DF96F233E4A9A63C83E051733BB82EC5F54466086917A88B9C"
-        }
-      ],
-      "qualification": "pending-symbol-and-ownership-comparison"
-    },
-    {
-      "hash": "AB2BDC51409C89983DEDFD4F6B68DD6EF436351C94DD700C176614974A5777CC",
-      "tokens": 9,
-      "bodyTokens": "{ exitCode = 0 ; return false ; }",
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Microsoft/Modules/MicrosoftEmulationModule.cs",
-          "name": "TryHandleHostCommand",
-          "owner": "MicrosoftEmulationModule",
-          "kind": "MethodDeclaration",
-          "line": 29,
-          "parameters": "(IReadOnlyList<string> arguments, out int exitCode)",
-          "tokens": 9,
-          "bodyTokens": "{ exitCode = 0 ; return false ; }",
-          "hash": "AB2BDC51409C89983DEDFD4F6B68DD6EF436351C94DD700C176614974A5777CC",
-          "shape": "B84E8CAE68BA01EF3AD257D5603D616D3E09041041623D2DF5DE9D18CF522684"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/BeetleSgx/Factories/BeetleSgxMachineFactory.cs",
-          "name": "TryHandleHostCommand",
-          "owner": "BeetleSgxMachineFactory",
-          "kind": "MethodDeclaration",
-          "line": 27,
-          "parameters": "(IReadOnlyList<string> arguments, out int exitCode)",
-          "tokens": 9,
-          "bodyTokens": "{ exitCode = 0 ; return false ; }",
-          "hash": "AB2BDC51409C89983DEDFD4F6B68DD6EF436351C94DD700C176614974A5777CC",
-          "shape": "B84E8CAE68BA01EF3AD257D5603D616D3E09041041623D2DF5DE9D18CF522684"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/Geargrafx/Factories/GeargrafxMachineFactory.cs",
-          "name": "TryHandleHostCommand",
-          "owner": "GeargrafxMachineFactory",
-          "kind": "MethodDeclaration",
-          "line": 43,
-          "parameters": "(IReadOnlyList<string> arguments, out int exitCode)",
-          "tokens": 9,
-          "bodyTokens": "{ exitCode = 0 ; return false ; }",
-          "hash": "AB2BDC51409C89983DEDFD4F6B68DD6EF436351C94DD700C176614974A5777CC",
-          "shape": "B84E8CAE68BA01EF3AD257D5603D616D3E09041041623D2DF5DE9D18CF522684"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -52865,6 +52727,38 @@
           "bodyTokens": "=> EmulationCoreOptionFunctions . ReturnNativeValue ( data , _options , ( _ , value ) => NativeString ( value ) )",
           "hash": "AE2493582A07D17C227DB350601CD5A197D4A59EE5A6E3AAA6E5E29FB3E79756",
           "shape": "F543DC3C1353A5835BA9377CC1608E11BFAEC849BA5345A4C84309832472EAE2"
+        }
+      ],
+      "qualification": "pending-symbol-and-ownership-comparison"
+    },
+    {
+      "hash": "AF0580863D755BD3EB9A3B584A4A3AFEF3C6E000F187831744B86A1E93A8FB2E",
+      "tokens": 21,
+      "bodyTokens": "{ ArgumentNullException . ThrowIfNull ( context . HttpClient ) ; return base . FindInstalledCorePathAsync ( context , cancellationToken ) ; }",
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Nec/Emulators/BeetlePceFast/Factories/BeetlePceFastMachineFactory.cs",
+          "name": "FindInstalledCorePathAsync",
+          "owner": "BeetlePceFastMachineFactory",
+          "kind": "MethodDeclaration",
+          "line": 36,
+          "parameters": "(EmulatorManagementContext context, CancellationToken cancellationToken)",
+          "tokens": 21,
+          "bodyTokens": "{ ArgumentNullException . ThrowIfNull ( context . HttpClient ) ; return base . FindInstalledCorePathAsync ( context , cancellationToken ) ; }",
+          "hash": "AF0580863D755BD3EB9A3B584A4A3AFEF3C6E000F187831744B86A1E93A8FB2E",
+          "shape": "434598DC6D1AFA51A07B299A4EA2EFE334A626570AB3E65B82FCB3A9DFC33EDA"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nec/Emulators/BeetlePcfx/Factories/BeetlePcfxMachineFactory.cs",
+          "name": "FindInstalledCorePathAsync",
+          "owner": "BeetlePcfxMachineFactory",
+          "kind": "MethodDeclaration",
+          "line": 23,
+          "parameters": "(EmulatorManagementContext context, CancellationToken cancellationToken)",
+          "tokens": 21,
+          "bodyTokens": "{ ArgumentNullException . ThrowIfNull ( context . HttpClient ) ; return base . FindInstalledCorePathAsync ( context , cancellationToken ) ; }",
+          "hash": "AF0580863D755BD3EB9A3B584A4A3AFEF3C6E000F187831744B86A1E93A8FB2E",
+          "shape": "434598DC6D1AFA51A07B299A4EA2EFE334A626570AB3E65B82FCB3A9DFC33EDA"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -63098,62 +62992,6 @@
       "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
-      "hash": "D847A03E9576374C1E8B3812935759582F9130DB7BDADC3F775E3411681DE868",
-      "tokens": 23,
-      "bodyTokens": "=> GWGUI . Emulation . Nec . Emulators . Common . Interop . Functions . CoreStorageSettingsFunctions . Apply ( configuration , settings )",
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/BeetlePceFast/Factories/BeetlePceFastMachineFactory.cs",
-          "name": "ApplyStorage",
-          "owner": "BeetlePceFastMachineFactory",
-          "kind": "MethodDeclaration",
-          "line": 22,
-          "parameters": "(MachineConfiguration configuration, EmulationStorageSettings settings)",
-          "tokens": 23,
-          "bodyTokens": "=> GWGUI . Emulation . Nec . Emulators . Common . Interop . Functions . CoreStorageSettingsFunctions . Apply ( configuration , settings )",
-          "hash": "D847A03E9576374C1E8B3812935759582F9130DB7BDADC3F775E3411681DE868",
-          "shape": "8FE122CEABDD00116C7F97238DE507EC8DB01CF7D1A9F3A5BF6ABA94775C099A"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/BeetleSgx/Factories/BeetleSgxMachineFactory.cs",
-          "name": "ApplyStorage",
-          "owner": "BeetleSgxMachineFactory",
-          "kind": "MethodDeclaration",
-          "line": 17,
-          "parameters": "(MachineConfiguration configuration, EmulationStorageSettings settings)",
-          "tokens": 23,
-          "bodyTokens": "=> GWGUI . Emulation . Nec . Emulators . Common . Interop . Functions . CoreStorageSettingsFunctions . Apply ( configuration , settings )",
-          "hash": "D847A03E9576374C1E8B3812935759582F9130DB7BDADC3F775E3411681DE868",
-          "shape": "8FE122CEABDD00116C7F97238DE507EC8DB01CF7D1A9F3A5BF6ABA94775C099A"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Factories/CoreMachineFactory.cs",
-          "name": "ApplyStorage",
-          "owner": "CoreMachineFactory",
-          "kind": "MethodDeclaration",
-          "line": 13,
-          "parameters": "(MachineConfiguration configuration, EmulationStorageSettings settings)",
-          "tokens": 23,
-          "bodyTokens": "=> GWGUI . Emulation . Nec . Emulators . Common . Interop . Functions . CoreStorageSettingsFunctions . Apply ( configuration , settings )",
-          "hash": "D847A03E9576374C1E8B3812935759582F9130DB7BDADC3F775E3411681DE868",
-          "shape": "8FE122CEABDD00116C7F97238DE507EC8DB01CF7D1A9F3A5BF6ABA94775C099A"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/Geargrafx/Factories/GeargrafxMachineFactory.cs",
-          "name": "ApplyStorage",
-          "owner": "GeargrafxMachineFactory",
-          "kind": "MethodDeclaration",
-          "line": 25,
-          "parameters": "(MachineConfiguration configuration, EmulationStorageSettings settings)",
-          "tokens": 23,
-          "bodyTokens": "=> GWGUI . Emulation . Nec . Emulators . Common . Interop . Functions . CoreStorageSettingsFunctions . Apply ( configuration , settings )",
-          "hash": "D847A03E9576374C1E8B3812935759582F9130DB7BDADC3F775E3411681DE868",
-          "shape": "8FE122CEABDD00116C7F97238DE507EC8DB01CF7D1A9F3A5BF6ABA94775C099A"
-        }
-      ],
-      "qualification": "pending-symbol-and-ownership-comparison"
-    },
-    {
       "hash": "D8EC533307609F960EA789A5441738EEEF8D1989CDC19E602D3A8706D7EACD03",
       "tokens": 25,
       "bodyTokens": "=> GWGUI . Emulation . Functions . ConfigurationFileAccessFunctions . WriteDocumentAtomically ( FilePath , _profiles , new JsonSerializerOptions { WriteIndented = true } , \".tmp\" )",
@@ -67486,6 +67324,50 @@
       "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
+      "hash": "EC20EFD1B1D75B2D707A437323180699E70BA82A353805DE9BACCB88CA761B3E",
+      "tokens": 7,
+      "bodyTokens": "=> BeetlePceFastOptionFunctions . ToNative ( configuration )",
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Nec/Emulators/BeetlePceFast/Factories/BeetlePceFastMachineFactory.cs",
+          "name": "Configure",
+          "owner": "BeetlePceFastMachineFactory",
+          "kind": "MethodDeclaration",
+          "line": 34,
+          "parameters": "(MachineConfiguration configuration)",
+          "tokens": 7,
+          "bodyTokens": "=> BeetlePceFastOptionFunctions . ToNative ( configuration )",
+          "hash": "EC20EFD1B1D75B2D707A437323180699E70BA82A353805DE9BACCB88CA761B3E",
+          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nec/Emulators/BeetleSgx/Factories/BeetleSgxMachineFactory.cs",
+          "name": "Configure",
+          "owner": "BeetleSgxMachineFactory",
+          "kind": "MethodDeclaration",
+          "line": 20,
+          "parameters": "(MachineConfiguration configuration)",
+          "tokens": 7,
+          "bodyTokens": "=> BeetlePceFastOptionFunctions . ToNative ( configuration )",
+          "hash": "EC20EFD1B1D75B2D707A437323180699E70BA82A353805DE9BACCB88CA761B3E",
+          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nec/Emulators/Geargrafx/Factories/GeargrafxMachineFactory.cs",
+          "name": "Configure",
+          "owner": "GeargrafxMachineFactory",
+          "kind": "MethodDeclaration",
+          "line": 37,
+          "parameters": "(MachineConfiguration configuration)",
+          "tokens": 7,
+          "bodyTokens": "=> BeetlePceFastOptionFunctions . ToNative ( configuration )",
+          "hash": "EC20EFD1B1D75B2D707A437323180699E70BA82A353805DE9BACCB88CA761B3E",
+          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5"
+        }
+      ],
+      "qualification": "pending-symbol-and-ownership-comparison"
+    },
+    {
       "hash": "ECACAE5A4E4D2D0DC3373C69C3EF027632C31E368EF1EF4E64077B76B72B57B2",
       "tokens": 7,
       "bodyTokens": "=> _host . SetNativeValue ( data )",
@@ -68797,62 +68679,6 @@
           "bodyTokens": "{ ArgumentNullException . ThrowIfNull ( document ) ; return SequentialDecodeFunctions . CanDecodeTape ( document , machineId , SupportedFormats , SupportedMachines ) ; }",
           "hash": "EFE09A7D1F8603C9510ED4C22019C78ABCBF532D469189423B931372B353A252",
           "shape": "08E681D1997212C349415646417B1C71A7DE0CBB843D751A845FEEB3133CE8DD"
-        }
-      ],
-      "qualification": "pending-symbol-and-ownership-comparison"
-    },
-    {
-      "hash": "EFED81DE084C746F75A4ECB004C6C7835683E1B24F0AB28357AD202BB2254C42",
-      "tokens": 21,
-      "bodyTokens": "=> GWGUI . Emulation . Nec . Emulators . Common . Interop . Functions . CoreSettingsDescriptionFunctions . Create ( configuration )",
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/BeetlePceFast/Factories/BeetlePceFastMachineFactory.cs",
-          "name": "GetSettingsBlocks",
-          "owner": "BeetlePceFastMachineFactory",
-          "kind": "MethodDeclaration",
-          "line": 24,
-          "parameters": "(MachineConfiguration configuration)",
-          "tokens": 21,
-          "bodyTokens": "=> GWGUI . Emulation . Nec . Emulators . Common . Interop . Functions . CoreSettingsDescriptionFunctions . Create ( configuration )",
-          "hash": "EFED81DE084C746F75A4ECB004C6C7835683E1B24F0AB28357AD202BB2254C42",
-          "shape": "7ECE1B0AAD4C523B8065136AE8EE125471365E934AC1A4A1E761C864DBDD3E6E"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/BeetleSgx/Factories/BeetleSgxMachineFactory.cs",
-          "name": "GetSettingsBlocks",
-          "owner": "BeetleSgxMachineFactory",
-          "kind": "MethodDeclaration",
-          "line": 19,
-          "parameters": "(MachineConfiguration configuration)",
-          "tokens": 21,
-          "bodyTokens": "=> GWGUI . Emulation . Nec . Emulators . Common . Interop . Functions . CoreSettingsDescriptionFunctions . Create ( configuration )",
-          "hash": "EFED81DE084C746F75A4ECB004C6C7835683E1B24F0AB28357AD202BB2254C42",
-          "shape": "7ECE1B0AAD4C523B8065136AE8EE125471365E934AC1A4A1E761C864DBDD3E6E"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Factories/CoreMachineFactory.cs",
-          "name": "GetSettingsBlocks",
-          "owner": "CoreMachineFactory",
-          "kind": "MethodDeclaration",
-          "line": 15,
-          "parameters": "(MachineConfiguration configuration)",
-          "tokens": 21,
-          "bodyTokens": "=> GWGUI . Emulation . Nec . Emulators . Common . Interop . Functions . CoreSettingsDescriptionFunctions . Create ( configuration )",
-          "hash": "EFED81DE084C746F75A4ECB004C6C7835683E1B24F0AB28357AD202BB2254C42",
-          "shape": "7ECE1B0AAD4C523B8065136AE8EE125471365E934AC1A4A1E761C864DBDD3E6E"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/Geargrafx/Factories/GeargrafxMachineFactory.cs",
-          "name": "GetSettingsBlocks",
-          "owner": "GeargrafxMachineFactory",
-          "kind": "MethodDeclaration",
-          "line": 27,
-          "parameters": "(MachineConfiguration configuration)",
-          "tokens": 21,
-          "bodyTokens": "=> GWGUI . Emulation . Nec . Emulators . Common . Interop . Functions . CoreSettingsDescriptionFunctions . Create ( configuration )",
-          "hash": "EFED81DE084C746F75A4ECB004C6C7835683E1B24F0AB28357AD202BB2254C42",
-          "shape": "7ECE1B0AAD4C523B8065136AE8EE125471365E934AC1A4A1E761C864DBDD3E6E"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -73770,18 +73596,6 @@
           "owner": "CoreMachineFactory",
           "kind": "MethodDeclaration",
           "line": 34,
-          "parameters": "(EmulatorManagementContext context, CancellationToken cancellationToken)",
-          "tokens": 29,
-          "bodyTokens": "{ cancellationToken . ThrowIfCancellationRequested ( ) ; return ValueTask . FromResult ( new EmulationEmulatorInstallation ( Definition , ReleaseService ( context ) . GetInstalledVersion ( ) ) ) ; }",
-          "hash": "FF3F1FAD6962CA826B5C067E6473360253690B415D13806848E609A2DBC0274E",
-          "shape": "CC851862CB17590CCD7B05032B6B25C0B10A4BECFDD7E7DC7E1F1019D1F8AA0E"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/Geargrafx/Factories/GeargrafxMachineFactory.cs",
-          "name": "GetInstallationAsync",
-          "owner": "GeargrafxMachineFactory",
-          "kind": "MethodDeclaration",
-          "line": 49,
           "parameters": "(EmulatorManagementContext context, CancellationToken cancellationToken)",
           "tokens": 29,
           "bodyTokens": "{ cancellationToken . ThrowIfCancellationRequested ( ) ; return ValueTask . FromResult ( new EmulationEmulatorInstallation ( Definition , ReleaseService ( context ) . GetInstalledVersion ( ) ) ) ; }",
@@ -81223,7 +81037,7 @@
           "name": "IsDefaultFor",
           "owner": "GeargrafxMachineFactory",
           "kind": "MethodDeclaration",
-          "line": 22,
+          "line": 23,
           "parameters": "(string machineId)",
           "tokens": 6,
           "bodyTokens": "=> machineId == LaserActiveMachineConstants . Id",
@@ -81611,30 +81425,6 @@
           "tokens": 15,
           "bodyTokens": "=> new ( ErrorCategory . Content , ErrorCode . ContentUnsupported , ErrorMessages . ContentLoadFailed )",
           "hash": "E502933391FFDF57DFDEFAB93E686ACCC67BC20E9B17F4917839044FEA31ACFF",
-          "shape": "256A303F228786EF8F58ED115BB396935162BDCD2BB1A5E01655A4797D1B68B3"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/BeetleSgx/Factories/BeetleSgxMachineFactory.cs",
-          "name": "ReleaseService",
-          "owner": "BeetleSgxMachineFactory",
-          "kind": "MethodDeclaration",
-          "line": 80,
-          "parameters": "(EmulatorManagementContext context)",
-          "tokens": 15,
-          "bodyTokens": "=> new ( context . HttpClient , context . CoreDirectory , BeetleSgxConstants . ReleaseSettings )",
-          "hash": "A199069A63C213603FA782678581ED3EBB11394D166296C8697E2B7395C4E416",
-          "shape": "256A303F228786EF8F58ED115BB396935162BDCD2BB1A5E01655A4797D1B68B3"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/Geargrafx/Factories/GeargrafxMachineFactory.cs",
-          "name": "ReleaseService",
-          "owner": "GeargrafxMachineFactory",
-          "kind": "MethodDeclaration",
-          "line": 97,
-          "parameters": "(EmulatorManagementContext context)",
-          "tokens": 15,
-          "bodyTokens": "=> new ( context . HttpClient , context . CoreDirectory , GeargrafxConstants . ReleaseSettings )",
-          "hash": "5A70030E1FFF815581401A7F5729D06C570991594AEDD27B0777F66B554F2E5C",
           "shape": "256A303F228786EF8F58ED115BB396935162BDCD2BB1A5E01655A4797D1B68B3"
         },
         {
@@ -101958,6 +101748,18 @@
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5"
         },
         {
+          "path": "src/GWGUI.Emulation.Nec/Emulators/BeetlePceFast/Factories/BeetlePceFastMachineFactory.cs",
+          "name": "Configure",
+          "owner": "BeetlePceFastMachineFactory",
+          "kind": "MethodDeclaration",
+          "line": 34,
+          "parameters": "(MachineConfiguration configuration)",
+          "tokens": 7,
+          "bodyTokens": "=> BeetlePceFastOptionFunctions . ToNative ( configuration )",
+          "hash": "EC20EFD1B1D75B2D707A437323180699E70BA82A353805DE9BACCB88CA761B3E",
+          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5"
+        },
+        {
           "path": "src/GWGUI.Emulation.Nec/Emulators/BeetlePcfx/Factories/BeetlePcfxMachineFactory.cs",
           "name": "Configure",
           "owner": "BeetlePcfxMachineFactory",
@@ -101970,11 +101772,23 @@
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5"
         },
         {
+          "path": "src/GWGUI.Emulation.Nec/Emulators/BeetleSgx/Factories/BeetleSgxMachineFactory.cs",
+          "name": "Configure",
+          "owner": "BeetleSgxMachineFactory",
+          "kind": "MethodDeclaration",
+          "line": 20,
+          "parameters": "(MachineConfiguration configuration)",
+          "tokens": 7,
+          "bodyTokens": "=> BeetlePceFastOptionFunctions . ToNative ( configuration )",
+          "hash": "EC20EFD1B1D75B2D707A437323180699E70BA82A353805DE9BACCB88CA761B3E",
+          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5"
+        },
+        {
           "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Factories/CoreMachineFactory.cs",
           "name": "Configure",
           "owner": "CoreMachineFactory",
           "kind": "MethodDeclaration",
-          "line": 88,
+          "line": 91,
           "parameters": "(MachineConfiguration configuration)",
           "tokens": 7,
           "bodyTokens": "=> CoreSettingsFunctions . Configure ( configuration )",
@@ -102015,6 +101829,18 @@
           "tokens": 7,
           "bodyTokens": "=> GeargrafxFirmwareFunctions . Identify ( firmware )",
           "hash": "9FB4DAFF502258300066DA998ABD2A5786B642857DB974E34899EFA63CBD3AA5",
+          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nec/Emulators/Geargrafx/Factories/GeargrafxMachineFactory.cs",
+          "name": "Configure",
+          "owner": "GeargrafxMachineFactory",
+          "kind": "MethodDeclaration",
+          "line": 37,
+          "parameters": "(MachineConfiguration configuration)",
+          "tokens": 7,
+          "bodyTokens": "=> BeetlePceFastOptionFunctions . ToNative ( configuration )",
+          "hash": "EC20EFD1B1D75B2D707A437323180699E70BA82A353805DE9BACCB88CA761B3E",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5"
         },
         {
@@ -114878,30 +114704,6 @@
       "tokens": 21,
       "current": [
         {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/BeetlePceFast/Factories/BeetlePceFastMachineFactory.cs",
-          "name": "DescribeStorage",
-          "owner": "BeetlePceFastMachineFactory",
-          "kind": "MethodDeclaration",
-          "line": 21,
-          "parameters": "(MachineConfiguration configuration)",
-          "tokens": 21,
-          "bodyTokens": "=> GWGUI . Emulation . Nec . Emulators . Common . Interop . Functions . CoreStorageSettingsFunctions . Describe ( configuration )",
-          "hash": "A97C864EECE0AC29E0E18B059E35E6181E4E7E3EF35D7C09D958B18475A00597",
-          "shape": "7ECE1B0AAD4C523B8065136AE8EE125471365E934AC1A4A1E761C864DBDD3E6E"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/BeetlePceFast/Factories/BeetlePceFastMachineFactory.cs",
-          "name": "GetSettingsBlocks",
-          "owner": "BeetlePceFastMachineFactory",
-          "kind": "MethodDeclaration",
-          "line": 24,
-          "parameters": "(MachineConfiguration configuration)",
-          "tokens": 21,
-          "bodyTokens": "=> GWGUI . Emulation . Nec . Emulators . Common . Interop . Functions . CoreSettingsDescriptionFunctions . Create ( configuration )",
-          "hash": "EFED81DE084C746F75A4ECB004C6C7835683E1B24F0AB28357AD202BB2254C42",
-          "shape": "7ECE1B0AAD4C523B8065136AE8EE125471365E934AC1A4A1E761C864DBDD3E6E"
-        },
-        {
           "path": "src/GWGUI.Emulation.Nec/Emulators/BeetlePceFast/Functions/BeetlePceFastOptionFunctions.cs",
           "name": "ToNative",
           "owner": "BeetlePceFastOptionFunctions",
@@ -114926,30 +114728,6 @@
           "shape": "7ECE1B0AAD4C523B8065136AE8EE125471365E934AC1A4A1E761C864DBDD3E6E"
         },
         {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/BeetleSgx/Factories/BeetleSgxMachineFactory.cs",
-          "name": "DescribeStorage",
-          "owner": "BeetleSgxMachineFactory",
-          "kind": "MethodDeclaration",
-          "line": 16,
-          "parameters": "(MachineConfiguration configuration)",
-          "tokens": 21,
-          "bodyTokens": "=> GWGUI . Emulation . Nec . Emulators . Common . Interop . Functions . CoreStorageSettingsFunctions . Describe ( configuration )",
-          "hash": "A97C864EECE0AC29E0E18B059E35E6181E4E7E3EF35D7C09D958B18475A00597",
-          "shape": "7ECE1B0AAD4C523B8065136AE8EE125471365E934AC1A4A1E761C864DBDD3E6E"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/BeetleSgx/Factories/BeetleSgxMachineFactory.cs",
-          "name": "GetSettingsBlocks",
-          "owner": "BeetleSgxMachineFactory",
-          "kind": "MethodDeclaration",
-          "line": 19,
-          "parameters": "(MachineConfiguration configuration)",
-          "tokens": 21,
-          "bodyTokens": "=> GWGUI . Emulation . Nec . Emulators . Common . Interop . Functions . CoreSettingsDescriptionFunctions . Create ( configuration )",
-          "hash": "EFED81DE084C746F75A4ECB004C6C7835683E1B24F0AB28357AD202BB2254C42",
-          "shape": "7ECE1B0AAD4C523B8065136AE8EE125471365E934AC1A4A1E761C864DBDD3E6E"
-        },
-        {
           "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Factories/CoreMachineFactory.cs",
           "name": "DescribeStorage",
           "owner": "CoreMachineFactory",
@@ -114967,30 +114745,6 @@
           "owner": "CoreMachineFactory",
           "kind": "MethodDeclaration",
           "line": 15,
-          "parameters": "(MachineConfiguration configuration)",
-          "tokens": 21,
-          "bodyTokens": "=> GWGUI . Emulation . Nec . Emulators . Common . Interop . Functions . CoreSettingsDescriptionFunctions . Create ( configuration )",
-          "hash": "EFED81DE084C746F75A4ECB004C6C7835683E1B24F0AB28357AD202BB2254C42",
-          "shape": "7ECE1B0AAD4C523B8065136AE8EE125471365E934AC1A4A1E761C864DBDD3E6E"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/Geargrafx/Factories/GeargrafxMachineFactory.cs",
-          "name": "DescribeStorage",
-          "owner": "GeargrafxMachineFactory",
-          "kind": "MethodDeclaration",
-          "line": 24,
-          "parameters": "(MachineConfiguration configuration)",
-          "tokens": 21,
-          "bodyTokens": "=> GWGUI . Emulation . Nec . Emulators . Common . Interop . Functions . CoreStorageSettingsFunctions . Describe ( configuration )",
-          "hash": "A97C864EECE0AC29E0E18B059E35E6181E4E7E3EF35D7C09D958B18475A00597",
-          "shape": "7ECE1B0AAD4C523B8065136AE8EE125471365E934AC1A4A1E761C864DBDD3E6E"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/Geargrafx/Factories/GeargrafxMachineFactory.cs",
-          "name": "GetSettingsBlocks",
-          "owner": "GeargrafxMachineFactory",
-          "kind": "MethodDeclaration",
-          "line": 27,
           "parameters": "(MachineConfiguration configuration)",
           "tokens": 21,
           "bodyTokens": "=> GWGUI . Emulation . Nec . Emulators . Common . Interop . Functions . CoreSettingsDescriptionFunctions . Create ( configuration )",
@@ -117240,37 +116994,6 @@
       "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
-      "shape": "8F2C77CECB90991E83576DD13665012ED2EAFB83A99070E6BC0A07ECBD84299A",
-      "tokens": 15,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/BeetlePceFast/Services/ExternalCoreInstaller.cs",
-          "name": "ExternalCoreInstaller",
-          "owner": "ExternalCoreInstaller",
-          "kind": "ConstructorDeclaration",
-          "line": 23,
-          "parameters": "(HttpClient httpClient, string directory)",
-          "tokens": 15,
-          "bodyTokens": "{ _httpClient = httpClient ; _directory = Path . GetFullPath ( directory ) ; }",
-          "hash": "4B6ADED5474641CA5E769CA697ADD62908C864C39C2C02515E41FDBFEF9D2767",
-          "shape": "8F2C77CECB90991E83576DD13665012ED2EAFB83A99070E6BC0A07ECBD84299A"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Interop/Services/KeyboardState.cs",
-          "name": "KeyboardState",
-          "owner": "KeyboardState",
-          "kind": "ConstructorDeclaration",
-          "line": 13,
-          "parameters": "(MachineModel model)",
-          "tokens": 15,
-          "bodyTokens": "{ _model = model ; _map = KeyboardFunctions . CreateKeyMap ( model ) ; }",
-          "hash": "0EA5C8E6E922448ECF36195A7E7E99664F14351767AB3FDDFA12EF1313491EE0",
-          "shape": "8F2C77CECB90991E83576DD13665012ED2EAFB83A99070E6BC0A07ECBD84299A"
-        }
-      ],
-      "qualification": "pending-symbol-and-ownership-comparison"
-    },
-    {
       "shape": "8F51755F908DCF74F0169C4BABA4278576F052EE502D1D8AA0B594ABDE21F76F",
       "tokens": 17,
       "current": [
@@ -117354,47 +117077,11 @@
           "shape": "8FE122CEABDD00116C7F97238DE507EC8DB01CF7D1A9F3A5BF6ABA94775C099A"
         },
         {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/BeetlePceFast/Factories/BeetlePceFastMachineFactory.cs",
-          "name": "ApplyStorage",
-          "owner": "BeetlePceFastMachineFactory",
-          "kind": "MethodDeclaration",
-          "line": 22,
-          "parameters": "(MachineConfiguration configuration, EmulationStorageSettings settings)",
-          "tokens": 23,
-          "bodyTokens": "=> GWGUI . Emulation . Nec . Emulators . Common . Interop . Functions . CoreStorageSettingsFunctions . Apply ( configuration , settings )",
-          "hash": "D847A03E9576374C1E8B3812935759582F9130DB7BDADC3F775E3411681DE868",
-          "shape": "8FE122CEABDD00116C7F97238DE507EC8DB01CF7D1A9F3A5BF6ABA94775C099A"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/BeetleSgx/Factories/BeetleSgxMachineFactory.cs",
-          "name": "ApplyStorage",
-          "owner": "BeetleSgxMachineFactory",
-          "kind": "MethodDeclaration",
-          "line": 17,
-          "parameters": "(MachineConfiguration configuration, EmulationStorageSettings settings)",
-          "tokens": 23,
-          "bodyTokens": "=> GWGUI . Emulation . Nec . Emulators . Common . Interop . Functions . CoreStorageSettingsFunctions . Apply ( configuration , settings )",
-          "hash": "D847A03E9576374C1E8B3812935759582F9130DB7BDADC3F775E3411681DE868",
-          "shape": "8FE122CEABDD00116C7F97238DE507EC8DB01CF7D1A9F3A5BF6ABA94775C099A"
-        },
-        {
           "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Factories/CoreMachineFactory.cs",
           "name": "ApplyStorage",
           "owner": "CoreMachineFactory",
           "kind": "MethodDeclaration",
           "line": 13,
-          "parameters": "(MachineConfiguration configuration, EmulationStorageSettings settings)",
-          "tokens": 23,
-          "bodyTokens": "=> GWGUI . Emulation . Nec . Emulators . Common . Interop . Functions . CoreStorageSettingsFunctions . Apply ( configuration , settings )",
-          "hash": "D847A03E9576374C1E8B3812935759582F9130DB7BDADC3F775E3411681DE868",
-          "shape": "8FE122CEABDD00116C7F97238DE507EC8DB01CF7D1A9F3A5BF6ABA94775C099A"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/Geargrafx/Factories/GeargrafxMachineFactory.cs",
-          "name": "ApplyStorage",
-          "owner": "GeargrafxMachineFactory",
-          "kind": "MethodDeclaration",
-          "line": 25,
           "parameters": "(MachineConfiguration configuration, EmulationStorageSettings settings)",
           "tokens": 23,
           "bodyTokens": "=> GWGUI . Emulation . Nec . Emulators . Common . Interop . Functions . CoreStorageSettingsFunctions . Apply ( configuration , settings )",
@@ -131903,18 +131590,6 @@
           "shape": "CC851862CB17590CCD7B05032B6B25C0B10A4BECFDD7E7DC7E1F1019D1F8AA0E"
         },
         {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/Geargrafx/Factories/GeargrafxMachineFactory.cs",
-          "name": "GetInstallationAsync",
-          "owner": "GeargrafxMachineFactory",
-          "kind": "MethodDeclaration",
-          "line": 49,
-          "parameters": "(EmulatorManagementContext context, CancellationToken cancellationToken)",
-          "tokens": 29,
-          "bodyTokens": "{ cancellationToken . ThrowIfCancellationRequested ( ) ; return ValueTask . FromResult ( new EmulationEmulatorInstallation ( Definition , ReleaseService ( context ) . GetInstalledVersion ( ) ) ) ; }",
-          "hash": "FF3F1FAD6962CA826B5C067E6473360253690B415D13806848E609A2DBC0274E",
-          "shape": "CC851862CB17590CCD7B05032B6B25C0B10A4BECFDD7E7DC7E1F1019D1F8AA0E"
-        },
-        {
           "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Factories/CoreMachineFactory.cs",
           "name": "GetInstallationAsync",
           "owner": "CoreMachineFactory",
@@ -137819,6 +137494,6 @@
   ],
   "qualificationCarryForward": {
     "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical",
-    "occurrences": 756
+    "occurrences": 744
   }
 }

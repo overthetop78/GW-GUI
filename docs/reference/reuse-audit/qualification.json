@@ -392557,5 +392557,276 @@
         }
       }
     }
+  },
+  "necRemainingFactoriesReuse": {
+    "differences": [
+      "All three already instantiate Common ProcessCore and use Common CoreReleaseService; storage and media/settings projections are identical.",
+      "Native configuration uses the original BeetlePceFastOptionFunctions.ToNative, not the base CoreSettingsFunctions.Configure.",
+      "Machine default definitions remain unchanged; Geargrafx additionally identifies firmware.",
+      "Geargrafx calls its existing firmware preparation after choosing the session directory and before creating resources; preserve that order with a protected base hook.",
+      "PCE Fast provider checks a null HttpClient before cancellation; retain its override as for PC-FX.",
+      "PCE provider is the only consumer of ExternalCoreInstaller. Its installation method is unreferenced; actual install uses Common CoreReleaseService. Remove the two classes only after compiled symbol verification."
+    ],
+    "state": "shared-structure-verified",
+    "before": [
+      {
+        "path": "src/GWGUI.Emulation.Nec/Emulators/BeetlePceFast/Factories/BeetlePceFastMachineFactory.cs",
+        "sha256": "51EFF8E4F9FEEB234321742A2D4F230D094BF08E9E429BFF56B7E8834FD54059",
+        "source": "using GWGUI.Emulation.Nec.Emulators.BeetlePceFast.Functions;\r\nusing GWGUI.Emulation.Nec.Emulators.Common.Interop.Functions;\r\nusing GWGUI.Emulation.Nec.Emulators.Common.Interop.Contracts;\r\nusing GWGUI.Emulation.Nec.Emulators.BeetlePceFast.Constants;\r\nusing GWGUI.Emulation.Nec.Emulators.Common.Interop.Constants;\r\nusing GWGUI.Emulation.Nec.Emulators.BeetlePceFast.Services;\r\nusing GWGUI.Emulation.Nec.Emulators.Common.Interop.Services;\r\nusing System.IO;\r\nusing GWGUI.Emulation.Nec.Common.Machines.PcEngine.Constants;\r\nusing GWGUI.Emulation.Nec.Common.Machines.CoreGrafx.Constants;\r\nusing GWGUI.Emulation.Nec.Common.Machines.PcEngineDuo.Constants;\r\nusing GWGUI.Emulation.Nec.Common.Machines.PcEngineLt.Constants;\r\nusing GWGUI.Emulation.Nec.Common.Machines.TurboExpress.Constants;\r\n\r\nnamespace GWGUI.Emulation.Nec.Emulators.BeetlePceFast.Factories;\r\n\r\ninternal sealed class BeetlePceFastMachineFactory : IEmulatorAdapter, IEmulatorMachineDefaults\r\n{\r\n    public bool IsDefaultFor(string machineId) => Definition.MachineIds.Contains(machineId);\r\n\r\n    public EmulationStorageSettings DescribeStorage(MachineConfiguration configuration) => GWGUI.Emulation.Nec.Emulators.Common.Interop.Functions.CoreStorageSettingsFunctions.Describe(configuration);\r\n    public MachineConfiguration ApplyStorage(MachineConfiguration configuration, EmulationStorageSettings settings) => GWGUI.Emulation.Nec.Emulators.Common.Interop.Functions.CoreStorageSettingsFunctions.Apply(configuration, settings);\r\n\r\n    public IReadOnlyList<EmulationSettingsBlock> GetSettingsBlocks(MachineConfiguration configuration) => GWGUI.Emulation.Nec.Emulators.Common.Interop.Functions.CoreSettingsDescriptionFunctions.Create(configuration);\r\n\r\n    private IReadOnlyDictionary<string, CoreRelease> _availableReleases = new Dictionary<string, CoreRelease>(StringComparer.Ordinal);\r\n\r\n    public string EmulatorId => BeetlePceFastConstants.Id;\r\n    public string EmulatorKey => BeetlePceFastConstants.Id;\r\n    public EmulationEmulatorDefinition Definition { get; } = new(\r\n        BeetlePceFastConstants.Id, BeetlePceFastConstants.DisplayName,\r\n        BeetlePceFastConstants.DescriptionResourceKey,\r\n        new[] { PcEngineMachineConstants.Id, CoreGrafxMachineConstants.Id,\r\n            PcEngineDuoMachineConstants.Id, PcEngineLtMachineConstants.Id,\r\n            TurboExpressMachineConstants.Id,\r\n            GWGUI.Emulation.Nec.Common.Machines.PcEngineCd.Constants.MachineConstants.Id,\r\n            GWGUI.Emulation.Nec.Common.Machines.PcEngineSuperCd.Constants.MachineConstants.Id ,\r\n            GWGUI.Emulation.Nec.Common.Machines.PcEngineArcadeCard.Constants.MachineConstants.Id }\r\n            .ToHashSet(StringComparer.Ordinal));\r\n\r\n    public bool TryHandleHostCommand(IReadOnlyList<string> arguments, out int exitCode)\r\n    {\r\n        exitCode = 0;\r\n        if (arguments is not [ProcessCoreConstants.CoreHost, var pipeName, var videoMapName])\r\n            return false;\r\n        if (!OperatingSystem.IsWindows()) throw new PlatformNotSupportedException();\r\n        CoreHost.Run(pipeName, videoMapName);\r\n        return true;\r\n    }\r\n\r\n    public ValueTask<EmulationEmulatorInstallation> GetInstallationAsync(EmulatorManagementContext context, CancellationToken cancellationToken)\r\n    {\r\n        cancellationToken.ThrowIfCancellationRequested();\r\n        var service = new CoreReleaseService(context.HttpClient, context.CoreDirectory, ReleaseConstants.Settings);\r\n        var version = service.GetInstalledVersion();\r\n        return ValueTask.FromResult(new EmulationEmulatorInstallation(Definition, version));\r\n    }\r\n\r\n    public async ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindReleasesAsync(EmulatorManagementContext context, CancellationToken cancellationToken)\r\n    {\r\n        var releases = await new CoreReleaseService(context.HttpClient, context.CoreDirectory, ReleaseConstants.Settings).GetAvailableAsync(cancellationToken).ConfigureAwait(false);\r\n        _availableReleases = releases.ToDictionary(item => item.Id, StringComparer.Ordinal);\r\n        return releases.Select(item => new EmulationEmulatorRelease(item.Id, item.DisplayName, item.Id, item.IsRequired)).ToArray();\r\n    }\r\n\r\n    public async ValueTask<string> InstallAsync(EmulatorManagementContext context, EmulationEmulatorRelease release, IProgress<double>? progress, CancellationToken cancellationToken)\r\n    {\r\n        var selected = EmulationCoreReleaseFunctions.SelectRelease(_availableReleases, release);\r\n        return await new CoreReleaseService(context.HttpClient, context.CoreDirectory, ReleaseConstants.Settings).InstallAsync(selected, progress, cancellationToken).ConfigureAwait(false);\r\n    }\r\n\r\n    public ValueTask<string?> FindInstalledCorePathAsync(EmulatorManagementContext context, CancellationToken cancellationToken) => new(new CoreProvider(context.HttpClient, context.CoreDirectory).FindInstalledPathAsync(cancellationToken));\r\n\r\n    public IReadOnlyList<EmulationMedia> ResolveConfiguredMedia(MachineConfiguration configuration) => EmulationMediaConversionFunctions.ToCommon(configuration.Media ?? []);\r\n\r\n    public Machine Create(MachineConfiguration configuration, EmulatorCreationContext context)\r\n    {\r\n        var machineId = Guid.NewGuid();\r\n        var native = BeetlePceFastOptionFunctions.ToNative(configuration.EnsureId());\r\n        return new Machine(machineId, native,\r\n            new ProcessCore(context.HostExecutablePath, context.CorePath),\r\n            native.Media ?? [], Path.Combine(context.SessionsDirectory, machineId.ToString(ConfigurationStoreConstants.MachineIdentifierFormat)),\r\n            native.AudioEnabled ? context.AudioOutputFactory?.Invoke() : null,\r\n            context.SaveDirectoryResolver?.Invoke(configuration));\r\n    }\r\n}\r\n"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nec/Emulators/BeetleSgx/Factories/BeetleSgxMachineFactory.cs",
+        "sha256": "4DEF11334E1BDDE0A26A13F1D87439E63DD96BB8F12E2BEDD80ED64B0A1F3AE8",
+        "source": "using System.IO;\r\nusing GWGUI.Emulation.Nec.Common.Machines.SuperGrafx.Constants;\r\nusing GWGUI.Emulation.Nec.Emulators.Common.Interop.Contracts;\r\nusing GWGUI.Emulation.Nec.Emulators.BeetlePceFast.Functions;\r\nusing GWGUI.Emulation.Nec.Emulators.Common.Interop.Functions;\r\nusing GWGUI.Emulation.Nec.Emulators.BeetlePceFast.Services;\r\nusing GWGUI.Emulation.Nec.Emulators.Common.Interop.Services;\r\nusing GWGUI.Emulation.Nec.Emulators.BeetleSgx.Constants;\r\n\r\nnamespace GWGUI.Emulation.Nec.Emulators.BeetleSgx.Factories;\r\n\r\ninternal sealed class BeetleSgxMachineFactory : IEmulatorAdapter, IEmulatorMachineDefaults\r\n{\r\n    public bool IsDefaultFor(string machineId) => Definition.MachineIds.Contains(machineId);\r\n\r\n    public EmulationStorageSettings DescribeStorage(MachineConfiguration configuration) => GWGUI.Emulation.Nec.Emulators.Common.Interop.Functions.CoreStorageSettingsFunctions.Describe(configuration);\r\n    public MachineConfiguration ApplyStorage(MachineConfiguration configuration, EmulationStorageSettings settings) => GWGUI.Emulation.Nec.Emulators.Common.Interop.Functions.CoreStorageSettingsFunctions.Apply(configuration, settings);\r\n\r\n    public IReadOnlyList<EmulationSettingsBlock> GetSettingsBlocks(MachineConfiguration configuration) => GWGUI.Emulation.Nec.Emulators.Common.Interop.Functions.CoreSettingsDescriptionFunctions.Create(configuration);\r\n\r\n    private IReadOnlyDictionary<string, CoreRelease> _availableReleases = new Dictionary<string, CoreRelease>(StringComparer.Ordinal);\r\n\r\n    public string EmulatorId => BeetleSgxConstants.Id;\r\n    public string EmulatorKey => BeetleSgxConstants.Id;\r\n    public EmulationEmulatorDefinition Definition { get; } = new(BeetleSgxConstants.Id, BeetleSgxConstants.DisplayName, BeetleSgxConstants.DescriptionResourceKey, new[] { SuperGrafxMachineConstants.Id }.ToHashSet(StringComparer.Ordinal));\r\n\r\n    public bool TryHandleHostCommand(IReadOnlyList<string> arguments, out int exitCode)\r\n    {\r\n        exitCode = 0;\r\n        return false;\r\n    }\r\n\r\n    public ValueTask<EmulationEmulatorInstallation> GetInstallationAsync(EmulatorManagementContext context, CancellationToken cancellationToken)\r\n    {\r\n        cancellationToken.ThrowIfCancellationRequested();\r\n        var service = ReleaseService(context);\r\n        return ValueTask.FromResult(new EmulationEmulatorInstallation(Definition, service.GetInstalledVersion()));\r\n    }\r\n\r\n    public async ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindReleasesAsync(EmulatorManagementContext context, CancellationToken cancellationToken)\r\n    {\r\n        var releases = await ReleaseService(context).GetAvailableAsync(cancellationToken).ConfigureAwait(false);\r\n        _availableReleases = releases.ToDictionary(item => item.Id, StringComparer.Ordinal);\r\n        return releases.Select(item => new EmulationEmulatorRelease(item.Id, item.DisplayName, item.Id, item.IsRequired)).ToArray();\r\n    }\r\n\r\n    public async ValueTask<string> InstallAsync(EmulatorManagementContext context, EmulationEmulatorRelease release, IProgress<double>? progress, CancellationToken cancellationToken)\r\n    {\r\n        var selected = EmulationCoreReleaseFunctions.SelectRelease(_availableReleases, release);\r\n        return await ReleaseService(context).InstallAsync(selected, progress, cancellationToken).ConfigureAwait(false);\r\n    }\r\n\r\n    public ValueTask<string?> FindInstalledCorePathAsync(EmulatorManagementContext context, CancellationToken cancellationToken)\r\n    {\r\n        cancellationToken.ThrowIfCancellationRequested();\r\n        var path = ReleaseService(context).RequiredLibraryPath;\r\n        if (!File.Exists(path)) return ValueTask.FromResult<string?>(null);\r\n        try\r\n        {\r\n            CoreReleaseService.VerifyWindowsX64Library(path);\r\n            return ValueTask.FromResult<string?>(path);\r\n        }\r\n        catch (IOException) { return ValueTask.FromResult<string?>(null); }\r\n        catch (InvalidDataException) { return ValueTask.FromResult<string?>(null); }\r\n    }\r\n\r\n    public IReadOnlyList<EmulationMedia> ResolveConfiguredMedia(MachineConfiguration configuration) => EmulationMediaConversionFunctions.ToCommon(configuration.Media ?? []);\r\n\r\n    public Machine Create(MachineConfiguration configuration, EmulatorCreationContext context)\r\n    {\r\n        var machineId = Guid.NewGuid();\r\n        var native = BeetlePceFastOptionFunctions.ToNative(configuration.EnsureId());\r\n        return new Machine(machineId, native,\r\n            new ProcessCore(context.HostExecutablePath, context.CorePath),\r\n            native.Media ?? [], Path.Combine(context.SessionsDirectory, machineId.ToString(ConfigurationStoreConstants.MachineIdentifierFormat)),\r\n            native.AudioEnabled ? context.AudioOutputFactory?.Invoke() : null,\r\n            context.SaveDirectoryResolver?.Invoke(configuration));\r\n    }\r\n\r\n    private static CoreReleaseService ReleaseService(EmulatorManagementContext context) => new(context.HttpClient, context.CoreDirectory, BeetleSgxConstants.ReleaseSettings);\r\n}\r\n"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nec/Emulators/Geargrafx/Factories/GeargrafxMachineFactory.cs",
+        "sha256": "058AA445E247F0E93D6EB4D9259C2D65594BB82F574DD9CAB43B391C203B0E9B",
+        "source": "using System.IO;\r\nusing GWGUI.Emulation.Nec.Common.Machines.CoreGrafx.Constants;\r\nusing GWGUI.Emulation.Nec.Common.Machines.LaserActive.Constants;\r\nusing GWGUI.Emulation.Nec.Common.Machines.PcEngine.Constants;\r\nusing GWGUI.Emulation.Nec.Common.Machines.PcEngineDuo.Constants;\r\nusing GWGUI.Emulation.Nec.Common.Machines.PcEngineLt.Constants;\r\nusing GWGUI.Emulation.Nec.Common.Machines.SuperGrafx.Constants;\r\nusing GWGUI.Emulation.Nec.Common.Machines.TurboExpress.Constants;\r\nusing GWGUI.Emulation.Nec.Emulators.Common.Interop.Contracts;\r\nusing GWGUI.Emulation.Nec.Emulators.BeetlePceFast.Functions;\r\nusing GWGUI.Emulation.Nec.Emulators.Common.Interop.Functions;\r\nusing GWGUI.Emulation.Nec.Emulators.BeetlePceFast.Services;\r\nusing GWGUI.Emulation.Nec.Emulators.Common.Interop.Services;\r\nusing GWGUI.Emulation.Nec.Emulators.Geargrafx.Constants;\r\nusing GWGUI.Emulation.Nec.Emulators.Geargrafx.Functions;\r\n\r\nnamespace GWGUI.Emulation.Nec.Emulators.Geargrafx.Factories;\r\n\r\ninternal sealed class GeargrafxMachineFactory : IEmulatorAdapter, IEmulatorMachineDefaults, IEmulatorFirmwareInspection\r\n{\r\n    public Firmware? IdentifyFirmware(Firmware firmware) => GeargrafxFirmwareFunctions.Identify(firmware);\r\n    public bool IsDefaultFor(string machineId) => machineId == LaserActiveMachineConstants.Id;\r\n\r\n    public EmulationStorageSettings DescribeStorage(MachineConfiguration configuration) => GWGUI.Emulation.Nec.Emulators.Common.Interop.Functions.CoreStorageSettingsFunctions.Describe(configuration);\r\n    public MachineConfiguration ApplyStorage(MachineConfiguration configuration, EmulationStorageSettings settings) => GWGUI.Emulation.Nec.Emulators.Common.Interop.Functions.CoreStorageSettingsFunctions.Apply(configuration, settings);\r\n\r\n    public IReadOnlyList<EmulationSettingsBlock> GetSettingsBlocks(MachineConfiguration configuration) => GWGUI.Emulation.Nec.Emulators.Common.Interop.Functions.CoreSettingsDescriptionFunctions.Create(configuration);\r\n\r\n    private IReadOnlyDictionary<string, CoreRelease> _availableReleases = new Dictionary<string, CoreRelease>(StringComparer.Ordinal);\r\n\r\n    public string EmulatorId => GeargrafxConstants.Id;\r\n    public string EmulatorKey => GeargrafxConstants.Id;\r\n    public EmulationEmulatorDefinition Definition { get; } = new(\r\n        GeargrafxConstants.Id, GeargrafxConstants.DisplayName,\r\n        GeargrafxConstants.DescriptionResourceKey,\r\n        new[] { PcEngineMachineConstants.Id, CoreGrafxMachineConstants.Id,\r\n            PcEngineDuoMachineConstants.Id, PcEngineLtMachineConstants.Id,\r\n            TurboExpressMachineConstants.Id,\r\n            GWGUI.Emulation.Nec.Common.Machines.PcEngineCd.Constants.MachineConstants.Id,\r\n            GWGUI.Emulation.Nec.Common.Machines.PcEngineSuperCd.Constants.MachineConstants.Id, SuperGrafxMachineConstants.Id,\r\n            LaserActiveMachineConstants.Id }.ToHashSet(StringComparer.Ordinal));\r\n\r\n    public bool TryHandleHostCommand(IReadOnlyList<string> arguments, out int exitCode)\r\n    {\r\n        exitCode = 0;\r\n        return false;\r\n    }\r\n\r\n    public ValueTask<EmulationEmulatorInstallation> GetInstallationAsync(EmulatorManagementContext context, CancellationToken cancellationToken)\r\n    {\r\n        cancellationToken.ThrowIfCancellationRequested();\r\n        return ValueTask.FromResult(new EmulationEmulatorInstallation(Definition, ReleaseService(context).GetInstalledVersion()));\r\n    }\r\n\r\n    public async ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindReleasesAsync(EmulatorManagementContext context, CancellationToken cancellationToken)\r\n    {\r\n        var releases = await ReleaseService(context).GetAvailableAsync(cancellationToken).ConfigureAwait(false);\r\n        _availableReleases = releases.ToDictionary(item => item.Id, StringComparer.Ordinal);\r\n        return releases.Select(item => new EmulationEmulatorRelease(item.Id, item.DisplayName, item.Id, item.IsRequired)).ToArray();\r\n    }\r\n\r\n    public async ValueTask<string> InstallAsync(EmulatorManagementContext context, EmulationEmulatorRelease release, IProgress<double>? progress, CancellationToken cancellationToken)\r\n    {\r\n        var selected = EmulationCoreReleaseFunctions.SelectRelease(_availableReleases, release);\r\n        return await ReleaseService(context).InstallAsync(selected, progress, cancellationToken).ConfigureAwait(false);\r\n    }\r\n\r\n    public ValueTask<string?> FindInstalledCorePathAsync(EmulatorManagementContext context, CancellationToken cancellationToken)\r\n    {\r\n        cancellationToken.ThrowIfCancellationRequested();\r\n        var path = ReleaseService(context).RequiredLibraryPath;\r\n        if (!File.Exists(path)) return ValueTask.FromResult<string?>(null);\r\n        try\r\n        {\r\n            CoreReleaseService.VerifyWindowsX64Library(path);\r\n            return ValueTask.FromResult<string?>(path);\r\n        }\r\n        catch (IOException) { return ValueTask.FromResult<string?>(null); }\r\n        catch (InvalidDataException) { return ValueTask.FromResult<string?>(null); }\r\n    }\r\n\r\n    public IReadOnlyList<EmulationMedia> ResolveConfiguredMedia(MachineConfiguration configuration) => EmulationMediaConversionFunctions.ToCommon(configuration.Media ?? []);\r\n\r\n    public Machine Create(MachineConfiguration configuration, EmulatorCreationContext context)\r\n    {\r\n        var machineId = Guid.NewGuid();\r\n        var native = BeetlePceFastOptionFunctions.ToNative(configuration.EnsureId());\r\n        var sessionDirectory = Path.Combine(context.SessionsDirectory, machineId.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\r\n        GeargrafxFirmwareFunctions.Prepare(context.FirmwareDirectory, sessionDirectory, configuration.FirmwarePath);\r\n        return new Machine(machineId, native,\r\n            new ProcessCore(context.HostExecutablePath, context.CorePath),\r\n            native.Media ?? [], sessionDirectory,\r\n            native.AudioEnabled ? context.AudioOutputFactory?.Invoke() : null,\r\n            context.SaveDirectoryResolver?.Invoke(configuration));\r\n    }\r\n\r\n    private static CoreReleaseService ReleaseService(EmulatorManagementContext context) => new(context.HttpClient, context.CoreDirectory, GeargrafxConstants.ReleaseSettings);\r\n}\r\n"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nec/Emulators/Geargrafx/Functions/GeargrafxFirmwareFunctions.cs",
+        "sha256": "AFA4C424EE1F6F646D2A388B6A019434195732B68971FE2EB14CD77F85DD53B9",
+        "source": "using System.IO;\nusing GWGUI.Emulation.Nec.Emulators.Geargrafx.Constants;\n\nnamespace GWGUI.Emulation.Nec.Emulators.Geargrafx.Functions;\n\ninternal static class GeargrafxFirmwareFunctions\n{\n    internal static Firmware? Identify(Firmware firmware)\n    {\n        var name = Path.GetFileName(firmware.Path);\n        if (!name.Equals(GeargrafxFirmwareConstants.PacN1, StringComparison.OrdinalIgnoreCase)\n            && !name.Equals(GeargrafxFirmwareConstants.PceLp1, StringComparison.OrdinalIgnoreCase)\n            && !name.Equals(GeargrafxFirmwareConstants.PacN10, StringComparison.OrdinalIgnoreCase)) return null;\n        return firmware with\n        {\n            Type = FirmwareType.SystemRom, IsKnown = true, IsOfficial = false,\n            Name = Path.GetFileNameWithoutExtension(name), Version = null,\n            CompatibleModels = [GWGUI.Emulation.Nec.Common.Machines.LaserActive.Constants.LaserActiveMachineConstants.Id]\n        };\n    }\n    internal static void Prepare(string firmwareDirectory, string sessionDirectory, string? selectedFirmwarePath)\n    {\n        if (!string.IsNullOrWhiteSpace(selectedFirmwarePath)\n            && !File.Exists(selectedFirmwarePath))\n            throw new FileNotFoundException(null, selectedFirmwarePath);\n        var selectedName = string.IsNullOrWhiteSpace(selectedFirmwarePath) ? null : Path.GetFileName(selectedFirmwarePath);\n        var preferPceLp1 = string.Equals(selectedName, GeargrafxFirmwareConstants.PceLp1, StringComparison.OrdinalIgnoreCase);\n        var systemDirectory = Path.Combine(sessionDirectory, CoreDirectoryConstants.SystemDirectoryName);\n        Directory.CreateDirectory(systemDirectory);\n\n        if (Directory.Exists(firmwareDirectory))\n            foreach (var source in Directory.EnumerateFiles(firmwareDirectory, FirmwareCatalogConstants.SearchPattern, SearchOption.AllDirectories).OrderBy(path => path, StringComparer.OrdinalIgnoreCase))\n            {\n                var name = Path.GetFileName(source);\n                if (!GeargrafxFirmwareConstants.SupportedNames.Contains(name)) continue;\n                if (preferPceLp1 && name.Equals(GeargrafxFirmwareConstants.PacN1, StringComparison.OrdinalIgnoreCase)) continue;\n                var destination = Path.Combine(systemDirectory, name);\n                if (!File.Exists(destination)) File.Copy(source, destination);\n            }\n\n        if (string.IsNullOrWhiteSpace(selectedFirmwarePath)) return;\n        var firmware = FirmwareCatalog.Inspect(selectedFirmwarePath);\n        var destinationName = firmware.Md5 switch\n        {\n            FirmwareCatalogConstants.SystemCard1Md5 => GeargrafxFirmwareConstants.SystemCard1,\n            FirmwareCatalogConstants.SystemCard2Md5 or FirmwareCatalogConstants.SystemCard21Md5\n                or FirmwareCatalogConstants.SystemCard2UsMd5 => GeargrafxFirmwareConstants.SystemCard2,\n            FirmwareCatalogConstants.GamesExpressBlueMd5 or FirmwareCatalogConstants.GamesExpressGreenMd5\n                => GeargrafxFirmwareConstants.GameExpress,\n            FirmwareCatalogConstants.SystemCard3Md5 or FirmwareCatalogConstants.SystemCard3UsMd5\n                => GeargrafxFirmwareConstants.SystemCard3,\n            _ when GeargrafxFirmwareConstants.SupportedNames.Contains(selectedName!) => selectedName!,\n            _ => GeargrafxFirmwareConstants.SystemCard3\n        };\n        File.Copy(selectedFirmwarePath, Path.Combine(systemDirectory, destinationName), true);\n    }\n}\n"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Factories/CoreMachineFactory.cs",
+        "sha256": "F39729FCEB6B10000AB8C2C24252C01A490CF4D21FACA1C3168886796C090C3A",
+        "source": "using GWGUI.Emulation.Nec.Emulators.Common.Interop.Constants;\r\nusing GWGUI.Emulation.Nec.Emulators.Common.Interop.Dictionaries;\r\nusing GWGUI.Emulation.Nec.Emulators.Common.Interop.Functions;\r\nusing System.IO;\r\nusing GWGUI.Emulation.Nec.Emulators.Common.Interop.Contracts;\r\nusing GWGUI.Emulation.Nec.Emulators.Common.Interop.Services;\r\n\r\nnamespace GWGUI.Emulation.Nec.Emulators.Common.Interop.Factories;\r\n\r\ninternal abstract class CoreMachineFactory : IEmulatorAdapter\r\n{\r\n    public EmulationStorageSettings DescribeStorage(MachineConfiguration configuration) => GWGUI.Emulation.Nec.Emulators.Common.Interop.Functions.CoreStorageSettingsFunctions.Describe(configuration);\r\n    public MachineConfiguration ApplyStorage(MachineConfiguration configuration, EmulationStorageSettings settings) => GWGUI.Emulation.Nec.Emulators.Common.Interop.Functions.CoreStorageSettingsFunctions.Apply(configuration, settings);\r\n\r\n    public IReadOnlyList<EmulationSettingsBlock> GetSettingsBlocks(MachineConfiguration configuration) => GWGUI.Emulation.Nec.Emulators.Common.Interop.Functions.CoreSettingsDescriptionFunctions.Create(configuration);\r\n\r\n    private IReadOnlyDictionary<string, CoreRelease> _availableReleases = new Dictionary<string, CoreRelease>(StringComparer.Ordinal);\r\n\r\n    protected abstract CoreReleaseSettings ReleaseSettings { get; }\r\n    public abstract string EmulatorId { get; }\r\n    public string EmulatorKey => EmulatorId;\r\n    public abstract EmulationEmulatorDefinition Definition { get; }\r\n\r\n    public bool TryHandleHostCommand(IReadOnlyList<string> arguments, out int exitCode)\r\n    {\r\n        exitCode = 0;\r\n        if (arguments is not [ProcessCoreConstants.CoreHost, var pipeName, var videoMapName])\r\n            return false;\r\n        if (!OperatingSystem.IsWindows()) throw new PlatformNotSupportedException();\r\n        CoreHost.Run(pipeName, videoMapName);\r\n        return true;\r\n    }\r\n\r\n    public ValueTask<EmulationEmulatorInstallation> GetInstallationAsync(EmulatorManagementContext context, CancellationToken cancellationToken)\r\n    {\r\n        cancellationToken.ThrowIfCancellationRequested();\r\n        return ValueTask.FromResult(new EmulationEmulatorInstallation(Definition, ReleaseService(context).GetInstalledVersion()));\r\n    }\r\n\r\n    public async ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindReleasesAsync(EmulatorManagementContext context, CancellationToken cancellationToken)\r\n    {\r\n        var releases = await ReleaseService(context).GetAvailableAsync(cancellationToken).ConfigureAwait(false);\r\n        _availableReleases = releases.ToDictionary(item => item.Id, StringComparer.Ordinal);\r\n        return releases.Select(item => new EmulationEmulatorRelease(item.Id, item.DisplayName, item.Id, item.IsRequired)).ToArray();\r\n    }\r\n\r\n    public async ValueTask<string> InstallAsync(EmulatorManagementContext context, EmulationEmulatorRelease release, IProgress<double>? progress, CancellationToken cancellationToken)\r\n    {\r\n        var selected = EmulationCoreReleaseFunctions.SelectRelease(_availableReleases, release);\r\n        return await ReleaseService(context).InstallAsync(selected, progress, cancellationToken).ConfigureAwait(false);\r\n    }\r\n\r\n    public virtual ValueTask<string?> FindInstalledCorePathAsync(EmulatorManagementContext context, CancellationToken cancellationToken)\n    {\n        cancellationToken.ThrowIfCancellationRequested();\n        return ValueTask.FromResult(ReleaseService(context).FindInstalledLibraryPath());\n    }\n    public IReadOnlyList<EmulationMedia> ResolveConfiguredMedia(MachineConfiguration configuration) => EmulationMediaConversionFunctions.ToCommon(configuration.Media ?? []);\r\n\r\n    public virtual Machine Create(MachineConfiguration configuration, EmulatorCreationContext context)\r\n    {\r\n        var machineId = Guid.NewGuid();\r\n        var native = Configure(configuration.EnsureId());\r\n        var sessionDirectory = Path.Combine(context.SessionsDirectory, machineId.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\r\n        ProcessCore? core = null;\n        IAudioOutput? audio = null;\n        var ownershipTransferred = false;\n        try\n        {\n            var definition = CoreCatalog.Get(EmulatorId);\n            core = new ProcessCore(context.HostExecutablePath, context.CorePath,\n                displayName: definition.TransportDisplayName, errorPrefix: definition.ErrorResourcePrefix);\n            audio = native.AudioEnabled ? context.AudioOutputFactory?.Invoke() : null;\n            var machine = new Machine(machineId, native, core, native.Media ?? [], sessionDirectory, audio,\n                context.SaveDirectoryResolver?.Invoke(configuration));\n            ownershipTransferred = true;\n            return machine;\n        }\n        finally\n        {\n            if (!ownershipTransferred)\n            {\n                try { core?.Dispose(); }\n                finally { audio?.Dispose(); }\n            }\n        }\n    }\n    protected virtual MachineConfiguration Configure(MachineConfiguration configuration) => CoreSettingsFunctions.Configure(configuration);\r\n\r\n    private CoreReleaseService ReleaseService(EmulatorManagementContext context) => new(context.HttpClient, context.CoreDirectory, ReleaseSettings, CoreCatalog.Get(EmulatorId).ErrorResourcePrefix);\r\n}\r\n"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nec/Emulators/BeetlePceFast/Services/CoreProvider.cs",
+        "sha256": "6BBACA0EB06B4E0F6C53C9EA602158A163694D0F6EBA45854B8E526FB798EB5A",
+        "source": "using GWGUI.Emulation.Nec.Emulators.BeetlePceFast.Constants;\r\nusing GWGUI.Emulation.Nec.Emulators.Common.Interop.Constants;\r\nusing GWGUI.Emulation.Nec.Emulators.Common.Interop.Contracts;\r\nusing GWGUI.Emulation.Nec.Emulators.BeetlePceFast.Factories;\r\nusing GWGUI.Emulation.Nec.Emulators.BeetlePceFast.Functions;\r\nusing GWGUI.Emulation.Nec.Emulators.Common.Interop.Functions;\r\nusing GWGUI.Emulation.Nec.Emulators.BeetlePceFast.Services;\r\nusing GWGUI.Emulation.Nec.Emulators.Common.Interop.Services;\r\n\r\nnamespace GWGUI.Emulation.Nec.Emulators.BeetlePceFast.Services;\r\n\r\npublic sealed class CoreProvider\r\n{\r\n    private readonly HttpClient _client;\r\n    private readonly string _installationDirectory;\r\n\r\n    public CoreProvider(HttpClient client, string installationDirectory)\r\n    {\r\n        ArgumentNullException.ThrowIfNull(client);\r\n        _client = client;\r\n        _installationDirectory = installationDirectory;\r\n    }\r\n\r\n    public Task<string?> FindInstalledPathAsync(CancellationToken cancellationToken = default)\r\n    {\r\n        cancellationToken.ThrowIfCancellationRequested();\r\n        var installer = new ExternalCoreInstaller(_client, _installationDirectory);\r\n        return Task.FromResult<string?>(installer.IsInstalled ? installer.LibraryPath : null);\r\n    }\r\n}\r\n\r\n\r\n"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nec/Emulators/BeetlePceFast/Services/ExternalCoreInstaller.cs",
+        "sha256": "AF9C53622F4E8FC2A641CA14F5F00111820C4B5CAC69228BBDA2124477CEB942",
+        "source": "using GWGUI.Emulation.Nec.Emulators.Common.Interop.Exceptions;\r\nusing GWGUI.Emulation.Nec.Emulators.BeetlePceFast.Constants;\r\nusing GWGUI.Emulation.Nec.Emulators.Common.Interop.Constants;\r\nusing GWGUI.Emulation.Nec.Emulators.Common.Interop.Contracts;\r\nusing GWGUI.Emulation.Nec.Emulators.BeetlePceFast.Factories;\r\nusing GWGUI.Emulation.Nec.Emulators.BeetlePceFast.Functions;\r\nusing GWGUI.Emulation.Nec.Emulators.Common.Interop.Functions;\r\nusing GWGUI.Emulation.Nec.Emulators.BeetlePceFast.Services;\r\nusing GWGUI.Emulation.Nec.Emulators.Common.Interop.Services;\r\nusing System.IO;\r\nusing System.Text.Json;\r\n\r\n\r\nnamespace GWGUI.Emulation.Nec.Emulators.BeetlePceFast.Services;\r\n\r\npublic sealed class ExternalCoreInstaller\r\n{\r\n    public const string CoreRevision = CoreReleaseConstants.Latest;\r\n    public const string DownloadUrl = ReleaseConstants.OfficialArchiveUrl;\r\n    private readonly HttpClient _httpClient;\r\n    private readonly string _directory;\r\n\r\n    public ExternalCoreInstaller(HttpClient httpClient, string directory)\r\n    {\r\n        _httpClient = httpClient;\r\n        _directory = Path.GetFullPath(directory);\r\n    }\r\n\r\n    public string LibraryPath => Path.Combine(_directory, ReleaseConstants.InstalledLibraryName);\r\n\r\n    public bool IsInstalled\r\n    {\r\n        get\r\n        {\r\n            if (!File.Exists(LibraryPath)) return false;\r\n            try { CoreReleaseService.VerifyWindowsX64Library(LibraryPath); return true; }\r\n            catch (IOException) { return false; }\r\n            catch (InvalidDataException) { return false; }\r\n        }\r\n    }\r\n\r\n    public async Task<string> InstallAsync(CancellationToken cancellationToken = default)\r\n    {\r\n        Directory.CreateDirectory(_directory);\r\n        var package = LibraryPath + CoreReleaseConstants.Download;\r\n        var extracted = LibraryPath + CoreReleaseConstants.Extract;\r\n        try\r\n        {\r\n            using var response = await _httpClient.GetAsync(DownloadUrl, HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);\r\n            response.EnsureSuccessStatusCode();\r\n            await using (var source = await response.Content.ReadAsStreamAsync(cancellationToken).ConfigureAwait(false))\r\n            await using (var destination = new FileStream(package, FileMode.Create, FileAccess.Write, FileShare.None, 81920, FileOptions.Asynchronous))\r\n                await source.CopyToAsync(destination, cancellationToken).ConfigureAwait(false);\r\n\r\n            EmulationCoreReleaseFunctions.ExtractExpectedLibrary(package, ReleaseConstants.ArchiveLibraryName, extracted,\r\n                static _ => CoreExceptions.ArchiveMissingLibrary(), preserveLastWriteTime: true);\r\n            CoreReleaseService.VerifyWindowsX64Library(extracted);\r\n            var sha256 = EmulationCoreDiagnosticFunctions.CalculateSha256(extracted);\r\n            File.Move(extracted, LibraryPath, true);\r\n            await CoreManifestFunctions.WriteManifestAsync(CoreRevision, DownloadUrl, LibraryPath, sha256, cancellationToken).ConfigureAwait(false);\r\n            return LibraryPath;\r\n        }\r\n        finally\r\n        {\r\n            if (File.Exists(package)) File.Delete(package);\r\n            if (File.Exists(extracted)) File.Delete(extracted);\r\n        }\r\n    }\r\n}\r\n\r\n"
+      }
+    ],
+    "verification": {
+      "referencesOnlyWithinRemovedClasses": true,
+      "sources": [
+        {
+          "originalDefinitionAndSpecificMethodsUnchanged": true,
+          "originalToNativeFunctionRetained": true,
+          "path": "src/GWGUI.Emulation.Nec/Emulators/BeetlePceFast/Factories/BeetlePceFastMachineFactory.cs"
+        },
+        {
+          "originalDefinitionAndSpecificMethodsUnchanged": true,
+          "originalToNativeFunctionRetained": true,
+          "path": "src/GWGUI.Emulation.Nec/Emulators/BeetleSgx/Factories/BeetleSgxMachineFactory.cs"
+        },
+        {
+          "originalDefinitionAndSpecificMethodsUnchanged": true,
+          "originalToNativeFunctionRetained": true,
+          "path": "src/GWGUI.Emulation.Nec/Emulators/Geargrafx/Factories/GeargrafxMachineFactory.cs"
+        }
+      ],
+      "legacyReferences": [
+        {
+          "type": "GWGUI.Emulation.Nec.Emulators.BeetlePceFast.Services.ExternalCoreInstaller",
+          "position": 1046,
+          "file": "F:\\GW GUI\\src\\GWGUI.Emulation.Nec\\Emulators\\BeetlePceFast\\Services\\ExternalCoreInstaller.cs",
+          "text": "_httpClient"
+        },
+        {
+          "type": "GWGUI.Emulation.Nec.Emulators.BeetlePceFast.Services.ExternalCoreInstaller",
+          "position": 1081,
+          "file": "F:\\GW GUI\\src\\GWGUI.Emulation.Nec\\Emulators\\BeetlePceFast\\Services\\ExternalCoreInstaller.cs",
+          "text": "_directory"
+        },
+        {
+          "type": "GWGUI.Emulation.Nec.Emulators.BeetlePceFast.Services.ExternalCoreInstaller",
+          "position": 1179,
+          "file": "F:\\GW GUI\\src\\GWGUI.Emulation.Nec\\Emulators\\BeetlePceFast\\Services\\ExternalCoreInstaller.cs",
+          "text": "_directory"
+        },
+        {
+          "type": "GWGUI.Emulation.Nec.Emulators.BeetlePceFast.Services.ExternalCoreInstaller",
+          "position": 1323,
+          "file": "F:\\GW GUI\\src\\GWGUI.Emulation.Nec\\Emulators\\BeetlePceFast\\Services\\ExternalCoreInstaller.cs",
+          "text": "LibraryPath"
+        },
+        {
+          "type": "GWGUI.Emulation.Nec.Emulators.BeetlePceFast.Services.ExternalCoreInstaller",
+          "position": 1413,
+          "file": "F:\\GW GUI\\src\\GWGUI.Emulation.Nec\\Emulators\\BeetlePceFast\\Services\\ExternalCoreInstaller.cs",
+          "text": "LibraryPath"
+        },
+        {
+          "type": "GWGUI.Emulation.Nec.Emulators.BeetlePceFast.Services.ExternalCoreInstaller",
+          "position": 1706,
+          "file": "F:\\GW GUI\\src\\GWGUI.Emulation.Nec\\Emulators\\BeetlePceFast\\Services\\ExternalCoreInstaller.cs",
+          "text": "_directory"
+        },
+        {
+          "type": "GWGUI.Emulation.Nec.Emulators.BeetlePceFast.Services.ExternalCoreInstaller",
+          "position": 1742,
+          "file": "F:\\GW GUI\\src\\GWGUI.Emulation.Nec\\Emulators\\BeetlePceFast\\Services\\ExternalCoreInstaller.cs",
+          "text": "LibraryPath"
+        },
+        {
+          "type": "GWGUI.Emulation.Nec.Emulators.BeetlePceFast.Services.ExternalCoreInstaller",
+          "position": 1812,
+          "file": "F:\\GW GUI\\src\\GWGUI.Emulation.Nec\\Emulators\\BeetlePceFast\\Services\\ExternalCoreInstaller.cs",
+          "text": "LibraryPath"
+        },
+        {
+          "type": "GWGUI.Emulation.Nec.Emulators.BeetlePceFast.Services.ExternalCoreInstaller",
+          "position": 1920,
+          "file": "F:\\GW GUI\\src\\GWGUI.Emulation.Nec\\Emulators\\BeetlePceFast\\Services\\ExternalCoreInstaller.cs",
+          "text": "_httpClient"
+        },
+        {
+          "type": "GWGUI.Emulation.Nec.Emulators.BeetlePceFast.Services.ExternalCoreInstaller",
+          "position": 1941,
+          "file": "F:\\GW GUI\\src\\GWGUI.Emulation.Nec\\Emulators\\BeetlePceFast\\Services\\ExternalCoreInstaller.cs",
+          "text": "DownloadUrl"
+        },
+        {
+          "type": "GWGUI.Emulation.Nec.Emulators.BeetlePceFast.Services.ExternalCoreInstaller",
+          "position": 2872,
+          "file": "F:\\GW GUI\\src\\GWGUI.Emulation.Nec\\Emulators\\BeetlePceFast\\Services\\ExternalCoreInstaller.cs",
+          "text": "LibraryPath"
+        },
+        {
+          "type": "GWGUI.Emulation.Nec.Emulators.BeetlePceFast.Services.ExternalCoreInstaller",
+          "position": 2952,
+          "file": "F:\\GW GUI\\src\\GWGUI.Emulation.Nec\\Emulators\\BeetlePceFast\\Services\\ExternalCoreInstaller.cs",
+          "text": "CoreRevision"
+        },
+        {
+          "type": "GWGUI.Emulation.Nec.Emulators.BeetlePceFast.Services.ExternalCoreInstaller",
+          "position": 2966,
+          "file": "F:\\GW GUI\\src\\GWGUI.Emulation.Nec\\Emulators\\BeetlePceFast\\Services\\ExternalCoreInstaller.cs",
+          "text": "DownloadUrl"
+        },
+        {
+          "type": "GWGUI.Emulation.Nec.Emulators.BeetlePceFast.Services.ExternalCoreInstaller",
+          "position": 2979,
+          "file": "F:\\GW GUI\\src\\GWGUI.Emulation.Nec\\Emulators\\BeetlePceFast\\Services\\ExternalCoreInstaller.cs",
+          "text": "LibraryPath"
+        },
+        {
+          "type": "GWGUI.Emulation.Nec.Emulators.BeetlePceFast.Services.ExternalCoreInstaller",
+          "position": 3062,
+          "file": "F:\\GW GUI\\src\\GWGUI.Emulation.Nec\\Emulators\\BeetlePceFast\\Services\\ExternalCoreInstaller.cs",
+          "text": "LibraryPath"
+        },
+        {
+          "type": "GWGUI.Emulation.Nec.Emulators.BeetlePceFast.Services.CoreProvider",
+          "position": 842,
+          "file": "F:\\GW GUI\\src\\GWGUI.Emulation.Nec\\Emulators\\BeetlePceFast\\Services\\CoreProvider.cs",
+          "text": "_client"
+        },
+        {
+          "type": "GWGUI.Emulation.Nec.Emulators.BeetlePceFast.Services.CoreProvider",
+          "position": 869,
+          "file": "F:\\GW GUI\\src\\GWGUI.Emulation.Nec\\Emulators\\BeetlePceFast\\Services\\CoreProvider.cs",
+          "text": "_installationDirectory"
+        },
+        {
+          "type": "GWGUI.Emulation.Nec.Emulators.BeetlePceFast.Services.ExternalCoreInstaller",
+          "position": 1117,
+          "file": "F:\\GW GUI\\src\\GWGUI.Emulation.Nec\\Emulators\\BeetlePceFast\\Services\\CoreProvider.cs",
+          "text": "ExternalCoreInstaller"
+        },
+        {
+          "type": "GWGUI.Emulation.Nec.Emulators.BeetlePceFast.Services.CoreProvider",
+          "position": 1139,
+          "file": "F:\\GW GUI\\src\\GWGUI.Emulation.Nec\\Emulators\\BeetlePceFast\\Services\\CoreProvider.cs",
+          "text": "_client"
+        },
+        {
+          "type": "GWGUI.Emulation.Nec.Emulators.BeetlePceFast.Services.CoreProvider",
+          "position": 1148,
+          "file": "F:\\GW GUI\\src\\GWGUI.Emulation.Nec\\Emulators\\BeetlePceFast\\Services\\CoreProvider.cs",
+          "text": "_installationDirectory"
+        },
+        {
+          "type": "GWGUI.Emulation.Nec.Emulators.BeetlePceFast.Services.ExternalCoreInstaller",
+          "position": 1224,
+          "file": "F:\\GW GUI\\src\\GWGUI.Emulation.Nec\\Emulators\\BeetlePceFast\\Services\\CoreProvider.cs",
+          "text": "IsInstalled"
+        },
+        {
+          "type": "GWGUI.Emulation.Nec.Emulators.BeetlePceFast.Services.ExternalCoreInstaller",
+          "position": 1248,
+          "file": "F:\\GW GUI\\src\\GWGUI.Emulation.Nec\\Emulators\\BeetlePceFast\\Services\\CoreProvider.cs",
+          "text": "LibraryPath"
+        }
+      ],
+      "necErrorsBeforeRemoval": 0,
+      "legacySymbolCandidates": 42,
+      "sdkErrorsBeforeRemoval": 0,
+      "firmwareFunctionsUnchanged": true,
+      "sessionPreparationBeforeResourceCreation": true,
+      "sdkErrorsAfterRemoval": 0,
+      "necErrorsAfterRemoval": 0,
+      "commonFactoryBindings": [
+        {
+          "baseType": "CoreMachineFactory",
+          "type": "GWGUI.Emulation.Nec.Emulators.BeetlePceFast.Factories.BeetlePceFastMachineFactory"
+        },
+        {
+          "baseType": "CoreMachineFactory",
+          "type": "GWGUI.Emulation.Nec.Emulators.BeetleSgx.Factories.BeetleSgxMachineFactory"
+        },
+        {
+          "baseType": "CoreMachineFactory",
+          "type": "GWGUI.Emulation.Nec.Emulators.Geargrafx.Factories.GeargrafxMachineFactory"
+        },
+        {
+          "baseType": "CoreMachineFactory",
+          "type": "GWGUI.Emulation.Nec.Emulators.BeetlePcfx.Factories.BeetlePcfxMachineFactory"
+        },
+        {
+          "baseType": "CoreMachineFactory",
+          "type": "GWGUI.Emulation.Nec.Emulators.BeetlePce.Factories.MachineFactory"
+        },
+        {
+          "baseType": "CoreMachineFactory",
+          "type": "GWGUI.Emulation.Nec.Emulators.Quasi88.Factories.MachineFactory"
+        },
+        {
+          "baseType": "CoreMachineFactory",
+          "type": "GWGUI.Emulation.Nec.Emulators.NekoProjectII.Factories.MachineFactory"
+        },
+        {
+          "baseType": "CoreMachineFactory",
+          "type": "GWGUI.Emulation.Nec.Emulators.NP2Kai.Factories.MachineFactory"
+        }
+      ],
+      "tests": {
+        "failed": 0,
+        "filter": "NEC and installation/protocol regression cases",
+        "newTestsAdded": 0,
+        "passed": 119
+      }
+    },
+    "inventory": {
+      "reports": {
+        "docs/reference/reuse-audit/current-project-groups.json": {
+          "groups": 449,
+          "fileCount": 7245,
+          "methodBodyCount": 11531,
+          "exactGroups": 0,
+          "renamedIdentifierGroups": 199
+        },
+        "docs/reference/reuse-audit/short-method-groups.json": {
+          "groups": 0,
+          "fileCount": 7245,
+          "methodBodyCount": 9482,
+          "exactGroups": 808,
+          "renamedIdentifierGroups": 378
+        }
+      },
+      "retiredPartialEvidence": [],
+      "retainedPartialMembers": 63,
+      "oldPartialMembers": 63,
+      "retainedFullMembers": 995
+    }
   }
 }

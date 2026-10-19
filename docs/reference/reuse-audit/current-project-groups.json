@@ -1,9 +1,9 @@
 {
   "baseline": "ac7292d86^",
-  "currentCSharpFiles": 7247,
+  "currentCSharpFiles": 7245,
   "outsideSrcCSharpFiles": 309,
   "baselineMethodCount": 5848,
-  "currentMethodCount": 11547,
+  "currentMethodCount": 11531,
   "powerShellFunctionCount": 17,
   "groups": [
     {
@@ -3337,14 +3337,6 @@
           "shape": "6074D3191E5899BF0143C1089F4D8E300AA659E7B578E2DB40325689389C80F8"
         },
         {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/BeetlePceFast/Factories/BeetlePceFastMachineFactory.cs",
-          "name": "TryHandleHostCommand",
-          "line": 41,
-          "tokens": 53,
-          "hash": "20A444877B6B88E6C341063D7DBC3C3BDD8203E03E3C4C0E75734B88D6D9E743",
-          "shape": "6074D3191E5899BF0143C1089F4D8E300AA659E7B578E2DB40325689389C80F8"
-        },
-        {
           "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Factories/CoreMachineFactory.cs",
           "name": "TryHandleHostCommand",
           "line": 22,
@@ -4260,23 +4252,7 @@
           "shape": "DE04789A9F3FD28B1360743FFB66E9EF5A94FE56E107F5F1A99BBACD3258A961"
         },
         {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/Geargrafx/Factories/GeargrafxMachineFactory.cs",
-          "name": "FindReleasesAsync",
-          "line": 55,
-          "tokens": 70,
-          "hash": "2A8DDB8D27470228E7EF361B5011A8A7FAD85DA9331EDD0C78E42FA8F800A9D7",
-          "shape": "DE04789A9F3FD28B1360743FFB66E9EF5A94FE56E107F5F1A99BBACD3258A961"
-        },
-        {
           "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Factories/CoreMachineFactory.cs",
-          "name": "FindReleasesAsync",
-          "line": 40,
-          "tokens": 70,
-          "hash": "2A8DDB8D27470228E7EF361B5011A8A7FAD85DA9331EDD0C78E42FA8F800A9D7",
-          "shape": "DE04789A9F3FD28B1360743FFB66E9EF5A94FE56E107F5F1A99BBACD3258A961"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/BeetleSgx/Factories/BeetleSgxMachineFactory.cs",
           "name": "FindReleasesAsync",
           "line": 40,
           "tokens": 70,
@@ -13735,33 +13711,6 @@
     },
     {
       "language": "CSharp",
-      "hash": "7D93D5EB76F476C04B31EFE93FC7202AE54E7BE54CE1F00E273DFFA2B67F59C0",
-      "method": "Create",
-      "tokens": 96,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/BeetleSgx/Factories/BeetleSgxMachineFactory.cs",
-          "name": "Create",
-          "line": 69,
-          "tokens": 96,
-          "hash": "7D93D5EB76F476C04B31EFE93FC7202AE54E7BE54CE1F00E273DFFA2B67F59C0",
-          "shape": "D7C9E04AC96B075E4D1C788FEBA66416AD44B00DBF8A13C457B7CAC9D724877C"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/BeetlePceFast/Factories/BeetlePceFastMachineFactory.cs",
-          "name": "Create",
-          "line": 76,
-          "tokens": 96,
-          "hash": "7D93D5EB76F476C04B31EFE93FC7202AE54E7BE54CE1F00E273DFFA2B67F59C0",
-          "shape": "D7C9E04AC96B075E4D1C788FEBA66416AD44B00DBF8A13C457B7CAC9D724877C"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
       "hash": "7DFCD8E6EB9690D4617A0C2115ABE631474036F0D7D818B565048E8F1DF9108B",
       "method": "TryHandleHostCommand",
       "tokens": 33,
@@ -16774,16 +16723,6 @@
           "qualificationSourceSha256": "7A5E35BE14547FA16C495DF6D44001C41E8A0A7EF2F4CD68C7DEDC48FDE6D850"
         },
         {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/Geargrafx/Factories/GeargrafxMachineFactory.cs",
-          "name": "InstallAsync",
-          "line": 62,
-          "tokens": 35,
-          "hash": "99CC348EDCBC899F046B28B37E0547716425CCB4C4E49D4CFF6FFA5185D49B31",
-          "shape": "DCEEA65751BFCDB6664EC671F661B5B9090D6EE419A3790C42897FBCEB0D4948",
-          "qualification": "Typed installation adapter; original Amiga lookup verified in simpleFactoryReleaseSelectionReuse",
-          "qualificationSourceSha256": "058AA445E247F0E93D6EB4D9259C2D65594BB82F574DD9CAB43B391C203B0E9B"
-        },
-        {
           "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Factories/CoreMachineFactory.cs",
           "name": "InstallAsync",
           "line": 47,
@@ -16791,17 +16730,7 @@
           "hash": "99CC348EDCBC899F046B28B37E0547716425CCB4C4E49D4CFF6FFA5185D49B31",
           "shape": "DCEEA65751BFCDB6664EC671F661B5B9090D6EE419A3790C42897FBCEB0D4948",
           "qualification": "Typed installation adapter; original Amiga lookup verified in simpleFactoryReleaseSelectionReuse",
-          "qualificationSourceSha256": "F39729FCEB6B10000AB8C2C24252C01A490CF4D21FACA1C3168886796C090C3A"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/BeetleSgx/Factories/BeetleSgxMachineFactory.cs",
-          "name": "InstallAsync",
-          "line": 47,
-          "tokens": 35,
-          "hash": "99CC348EDCBC899F046B28B37E0547716425CCB4C4E49D4CFF6FFA5185D49B31",
-          "shape": "DCEEA65751BFCDB6664EC671F661B5B9090D6EE419A3790C42897FBCEB0D4948",
-          "qualification": "Typed installation adapter; original Amiga lookup verified in simpleFactoryReleaseSelectionReuse",
-          "qualificationSourceSha256": "4DEF11334E1BDDE0A26A13F1D87439E63DD96BB8F12E2BEDD80ED64B0A1F3AE8"
+          "qualificationSourceSha256": "DBC604AB7ABEB15F98A4C12DDC56F77419DB407C3CFFF08B4A5B82ED56563CF4"
         },
         {
           "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Factories/CoreMachineFactory.cs",
@@ -17849,7 +17778,7 @@
     {
       "language": "CSharp",
       "hash": "A1E03750FEB3292ACEB41656386F4A8AA8B05077D9ABFB7DA103AA3D71320B9F",
-      "method": "ToEpoch",
+      "method": "ToFairchild",
       "tokens": 103,
       "current": [
         {
@@ -18091,7 +18020,7 @@
     {
       "language": "CSharp",
       "hash": "A61349BFDFFA5D404CE7D0D458204D435194B5E4D84870DF4F9FBE26A86A9946",
-      "method": "ToEpoch",
+      "method": "ToFairchild",
       "tokens": 36,
       "current": [
         {
@@ -19349,7 +19278,7 @@
     {
       "language": "CSharp",
       "hash": "B053A3AB4F0B78A37DED57B2D744801187AED6EC54FEEAFE4B1AA9C454D6F48C",
-      "method": "ColecoEmulationModule",
+      "method": "PanasonicEmulationModule",
       "tokens": 47,
       "current": [
         {
@@ -23379,22 +23308,6 @@
           "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Factories/CoreMachineFactory.cs",
           "name": "FindInstalledCorePathAsync",
           "line": 50,
-          "tokens": 98,
-          "hash": "D2E6CE7C8C0A75A94192DFF41B7C02F9C0DF62DFB4C95A3BE8B067036808033C",
-          "shape": "F702034DA35A8EF74F18338D982FC16704896D94B4BA1A01D4F4AB0257210444"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/Geargrafx/Factories/GeargrafxMachineFactory.cs",
-          "name": "FindInstalledCorePathAsync",
-          "line": 68,
-          "tokens": 98,
-          "hash": "D2E6CE7C8C0A75A94192DFF41B7C02F9C0DF62DFB4C95A3BE8B067036808033C",
-          "shape": "F702034DA35A8EF74F18338D982FC16704896D94B4BA1A01D4F4AB0257210444"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/BeetleSgx/Factories/BeetleSgxMachineFactory.cs",
-          "name": "FindInstalledCorePathAsync",
-          "line": 53,
           "tokens": 98,
           "hash": "D2E6CE7C8C0A75A94192DFF41B7C02F9C0DF62DFB4C95A3BE8B067036808033C",
           "shape": "F702034DA35A8EF74F18338D982FC16704896D94B4BA1A01D4F4AB0257210444"
@@ -34097,16 +34010,6 @@
           "qualificationSourceSha256": "7A5E35BE14547FA16C495DF6D44001C41E8A0A7EF2F4CD68C7DEDC48FDE6D850"
         },
         {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/Geargrafx/Factories/GeargrafxMachineFactory.cs",
-          "name": "InstallAsync",
-          "line": 62,
-          "tokens": 35,
-          "hash": "99CC348EDCBC899F046B28B37E0547716425CCB4C4E49D4CFF6FFA5185D49B31",
-          "shape": "DCEEA65751BFCDB6664EC671F661B5B9090D6EE419A3790C42897FBCEB0D4948",
-          "qualification": "Typed installation adapter; original Amiga lookup verified in simpleFactoryReleaseSelectionReuse",
-          "qualificationSourceSha256": "058AA445E247F0E93D6EB4D9259C2D65594BB82F574DD9CAB43B391C203B0E9B"
-        },
-        {
           "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Factories/CoreMachineFactory.cs",
           "name": "InstallAsync",
           "line": 47,
@@ -34114,17 +34017,7 @@
           "hash": "99CC348EDCBC899F046B28B37E0547716425CCB4C4E49D4CFF6FFA5185D49B31",
           "shape": "DCEEA65751BFCDB6664EC671F661B5B9090D6EE419A3790C42897FBCEB0D4948",
           "qualification": "Typed installation adapter; original Amiga lookup verified in simpleFactoryReleaseSelectionReuse",
-          "qualificationSourceSha256": "F39729FCEB6B10000AB8C2C24252C01A490CF4D21FACA1C3168886796C090C3A"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/BeetleSgx/Factories/BeetleSgxMachineFactory.cs",
-          "name": "InstallAsync",
-          "line": 47,
-          "tokens": 35,
-          "hash": "99CC348EDCBC899F046B28B37E0547716425CCB4C4E49D4CFF6FFA5185D49B31",
-          "shape": "DCEEA65751BFCDB6664EC671F661B5B9090D6EE419A3790C42897FBCEB0D4948",
-          "qualification": "Typed installation adapter; original Amiga lookup verified in simpleFactoryReleaseSelectionReuse",
-          "qualificationSourceSha256": "4DEF11334E1BDDE0A26A13F1D87439E63DD96BB8F12E2BEDD80ED64B0A1F3AE8"
+          "qualificationSourceSha256": "DBC604AB7ABEB15F98A4C12DDC56F77419DB407C3CFFF08B4A5B82ED56563CF4"
         },
         {
           "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Factories/CoreMachineFactory.cs",
@@ -34193,23 +34086,7 @@
           "shape": "DE04789A9F3FD28B1360743FFB66E9EF5A94FE56E107F5F1A99BBACD3258A961"
         },
         {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/Geargrafx/Factories/GeargrafxMachineFactory.cs",
-          "name": "FindReleasesAsync",
-          "line": 55,
-          "tokens": 70,
-          "hash": "2A8DDB8D27470228E7EF361B5011A8A7FAD85DA9331EDD0C78E42FA8F800A9D7",
-          "shape": "DE04789A9F3FD28B1360743FFB66E9EF5A94FE56E107F5F1A99BBACD3258A961"
-        },
-        {
           "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Factories/CoreMachineFactory.cs",
-          "name": "FindReleasesAsync",
-          "line": 40,
-          "tokens": 70,
-          "hash": "2A8DDB8D27470228E7EF361B5011A8A7FAD85DA9331EDD0C78E42FA8F800A9D7",
-          "shape": "DE04789A9F3FD28B1360743FFB66E9EF5A94FE56E107F5F1A99BBACD3258A961"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/BeetleSgx/Factories/BeetleSgxMachineFactory.cs",
           "name": "FindReleasesAsync",
           "line": 40,
           "tokens": 70,
@@ -35697,7 +35574,7 @@
   ],
   "scope": "All current repository CSharp and PowerShell files; no age filter; candidates require semantic review",
   "qualificationCarryForward": {
-    "occurrences": 253,
-    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical"
+    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical",
+    "occurrences": 249
   }
 }
