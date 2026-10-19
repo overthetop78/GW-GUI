@@ -313041,5 +313041,1028 @@
         }
       ]
     }
+  },
+  "environmentRemainingCommandReuse": {
+    "semanticComparisonProjects": [
+      "GWGUI.Emulation",
+      "GWGUI.Emulation.Acorn",
+      "GWGUI.Emulation.Apple",
+      "GWGUI.Emulation.Atari",
+      "GWGUI.Emulation.Bandai",
+      "GWGUI.Emulation.Coleco",
+      "GWGUI.Emulation.Epoch",
+      "GWGUI.Emulation.Fairchild",
+      "GWGUI.Emulation.Mattel",
+      "GWGUI.Emulation.Philips",
+      "GWGUI.Emulation.Sharp",
+      "GWGUI.Emulation.Sinclair",
+      "GWGUI.Emulation.Snk"
+    ],
+    "items": [
+      {
+        "profile": [
+          {
+            "value": 2,
+            "symbol": "GWGUI.Emulation.Acorn.Emulators.Common.Interop.Constants.CoreOptionConstants.SupportedInterfaceVersion",
+            "constant": true,
+            "expression": "CoreOptionConstants.SupportedInterfaceVersion"
+          },
+          {
+            "value": 1,
+            "symbol": "GWGUI.Emulation.Acorn.Emulators.Common.Interop.Constants.ExternalCoreInteropConstants.MessageInterfaceVersion",
+            "constant": true,
+            "expression": "ExternalCoreInteropConstants.MessageInterfaceVersion"
+          },
+          {
+            "value": 46,
+            "symbol": "ulong.operator |(ulong, ulong)",
+            "constant": true,
+            "expression": "EnvironmentConstants.JoypadCapability | EnvironmentConstants.MouseCapability | EnvironmentConstants.KeyboardCapability | EnvironmentConstants.AnalogCapability"
+          }
+        ],
+        "diagnosticOwnerSha256": "E8B6D9120B19ED61697C8EE80639BD000EADB2688A9166091E1C58C61218EBBD",
+        "sha256": "ED17CF13D1958C9C1BE7B2EBACA57592C1582057508F8C931CC2677C71A2D0D9",
+        "method": "private bool OnEnvironment(uint command, nint data)\n    {\n        _environmentCommands.Add(command);\r\n        if (ExternalCoreEnvironmentFunctions.TryHandleStatelessCommand(command, data,\r\n                CoreOptionConstants.SupportedInterfaceVersion, ExternalCoreInteropConstants.MessageInterfaceVersion,\r\n                EnvironmentConstants.JoypadCapability | EnvironmentConstants.MouseCapability | EnvironmentConstants.KeyboardCapability | EnvironmentConstants.AnalogCapability, out var commonResult))\r\n            return commonResult;\n        if (ExternalCoreEnvironmentFunctions.TryHandleCallbackCommand(command, data, this, out var callbackResult))\n            return callbackResult;\n        switch (command)\n        {\n            case ExternalCoreApiConstants.GetMidiInterface:\n            case ExternalCoreApiConstants.SetFastForwardingOverride:\n            case ExternalCoreApiConstants.SetContentInfoOverride:\n            case ExternalCoreApiConstants.SetNetworkPacketInterface:\n            case ExternalCoreApiConstants.SetSerializationQuirks:\n                return false;\n            default:\n                if (ExternalCoreEnvironmentFunctions.TryHandleOptionCommand(command, data, _optionHost, out var optionResult))\r\n                    return optionResult;\r\n                if (_unknownEnvironmentCommands.Add(command))\n                    Diagnostics.Add(EnvironmentFunctions.CreateUnknownCommandDiagnostic(command));\n                return false;\n        }\n    }",
+        "source": "using GWGUI.Emulation.Acorn.Emulators.Common.Interop.Functions;\nusing GWGUI.Emulation.Acorn.Emulators.Common.Interop.Constants;\nusing System.IO;\nusing System.Diagnostics;\nusing System.Runtime.InteropServices;\nusing GWGUI.Emulation;\nusing GWGUI.Emulation.Services;\n\nnamespace GWGUI.Emulation.Acorn.Emulators.Common.Interop.Services;\n\ninternal sealed partial class ExternalHostCallbacks : IDisposable, IEmulationCoreEnvironmentCommands\n{\n    private bool OnEnvironment(uint command, nint data)\n    {\n        _environmentCommands.Add(command);\r\n        if (ExternalCoreEnvironmentFunctions.TryHandleStatelessCommand(command, data,\r\n                CoreOptionConstants.SupportedInterfaceVersion, ExternalCoreInteropConstants.MessageInterfaceVersion,\r\n                EnvironmentConstants.JoypadCapability | EnvironmentConstants.MouseCapability | EnvironmentConstants.KeyboardCapability | EnvironmentConstants.AnalogCapability, out var commonResult))\r\n            return commonResult;\n        if (ExternalCoreEnvironmentFunctions.TryHandleCallbackCommand(command, data, this, out var callbackResult))\n            return callbackResult;\n        switch (command)\n        {\n            case ExternalCoreApiConstants.GetMidiInterface:\n            case ExternalCoreApiConstants.SetFastForwardingOverride:\n            case ExternalCoreApiConstants.SetContentInfoOverride:\n            case ExternalCoreApiConstants.SetNetworkPacketInterface:\n            case ExternalCoreApiConstants.SetSerializationQuirks:\n                return false;\n            default:\n                if (ExternalCoreEnvironmentFunctions.TryHandleOptionCommand(command, data, _optionHost, out var optionResult))\r\n                    return optionResult;\r\n                if (_unknownEnvironmentCommands.Add(command))\n                    Diagnostics.Add(EnvironmentFunctions.CreateUnknownCommandDiagnostic(command));\n                return false;\n        }\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.WriteSystemDirectory(nint data)\r\n    {\r\n        return CoreFunctions.WritePointer(data, _systemDirectory.Pointer);\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.WriteContentDirectory(nint data)\r\n    {\r\n        return CoreFunctions.WritePointer(data, _assetsDirectory.Pointer);\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.WriteSaveDirectory(nint data)\r\n    {\r\n        return CoreFunctions.WritePointer(data, _saveDirectory.Pointer);\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.SetSupportNoGame(nint data)\r\n    {\r\n        SupportsNoGame = data != nint.Zero && Marshal.ReadByte(data) != ExternalCoreInteropConstants.NativeBooleanFalse;\r\n        return data != nint.Zero;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.CaptureInputDescriptors(nint data)\r\n    {\r\n        InputDescriptors = EnvironmentFunctions.CopyInputDescriptors(data);\r\n        return data != nint.Zero;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.CaptureControllerInfo(nint data)\r\n    {\r\n        ControllerPorts = EnvironmentFunctions.CopyControllerPorts(data);\r\n        return data != nint.Zero;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.CaptureMemoryMaps(nint data)\r\n    {\r\n        MemoryDescriptors = EnvironmentFunctions.CopyMemoryMap(data);\r\n        return data != nint.Zero;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.SetSupportAchievements(nint data)\r\n    {\r\n        SupportsAchievements = data != nint.Zero && Marshal.ReadByte(data) != ExternalCoreInteropConstants.NativeBooleanFalse;\r\n        return data != nint.Zero;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.ProvideVfs(nint data)\r\n    {\r\n        return _virtualFileSystem.Provide(data);\r\n    }\n\r\n    bool IEmulationCoreEnvironmentCommands.SetKeyboardCallback(nint data)\r\n    {\r\n        return CaptureKeyboardCallback(data);\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.CaptureDiskControl(nint data)\r\n    {\r\n        _diskControl.Capture(data);\r\n        return true;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.CaptureExtendedDiskControl(nint data)\r\n    {\r\n        _diskControl.CaptureExtended(data);\r\n        return true;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.GetDiskControlVersion(nint data)\r\n    {\r\n        return CoreFunctions.WriteInteger(data, DiskControlConstants.InterfaceVersion);\r\n    }\r\n}\n\n",
+        "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "formatter": "GWGUI.Emulation.Acorn.Emulators.Common.Interop.Functions.EnvironmentFunctions.CreateUnknownCommandDiagnostic(uint)",
+        "family": "Acorn",
+        "cases": [
+          {
+            "value": 65584,
+            "expression": "ExternalCoreApiConstants.GetMidiInterface"
+          },
+          {
+            "value": 64,
+            "expression": "ExternalCoreApiConstants.SetFastForwardingOverride"
+          },
+          {
+            "value": 65,
+            "expression": "ExternalCoreApiConstants.SetContentInfoOverride"
+          },
+          {
+            "value": 78,
+            "expression": "ExternalCoreApiConstants.SetNetworkPacketInterface"
+          },
+          {
+            "value": 87,
+            "expression": "ExternalCoreApiConstants.SetSerializationQuirks"
+          }
+        ],
+        "diagnosticGetterAutoProperty": true,
+        "unknownSetReadonly": true,
+        "diagnosticOwner": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs"
+      },
+      {
+        "profile": [
+          {
+            "value": 2,
+            "symbol": "GWGUI.Emulation.Apple.Emulators.Common.Interop.Constants.CoreOptionConstants.SupportedInterfaceVersion",
+            "constant": true,
+            "expression": "CoreOptionConstants.SupportedInterfaceVersion"
+          },
+          {
+            "value": 1,
+            "symbol": "GWGUI.Emulation.Apple.Emulators.Common.Interop.Constants.ExternalCoreInteropConstants.MessageInterfaceVersion",
+            "constant": true,
+            "expression": "ExternalCoreInteropConstants.MessageInterfaceVersion"
+          },
+          {
+            "value": 46,
+            "symbol": "ulong.operator |(ulong, ulong)",
+            "constant": true,
+            "expression": "EnvironmentConstants.JoypadCapability | EnvironmentConstants.MouseCapability | EnvironmentConstants.KeyboardCapability | EnvironmentConstants.AnalogCapability"
+          }
+        ],
+        "diagnosticOwnerSha256": "AFB805DDE3694BCD4D05EE0DD8E460757D68EB3C794AFF37FEE7D1CAAFF7E2FE",
+        "sha256": "CE550DCCA9611E5E1D8E9E00B5BC8CF9418811103D778CAA9B03EB34E8DBE9EA",
+        "method": "private bool OnEnvironment(uint command, nint data)\r\n    {\r\n        _environmentCommands.Add(command);\r\n        if (ExternalCoreEnvironmentFunctions.TryHandleStatelessCommand(command, data,\r\n                CoreOptionConstants.SupportedInterfaceVersion, ExternalCoreInteropConstants.MessageInterfaceVersion,\r\n                EnvironmentConstants.JoypadCapability | EnvironmentConstants.MouseCapability | EnvironmentConstants.KeyboardCapability | EnvironmentConstants.AnalogCapability, out var commonResult))\r\n            return commonResult;\r\n        if (ExternalCoreEnvironmentFunctions.TryHandleCallbackCommand(command, data, this, out var callbackResult))\n            return callbackResult;\n        switch (command)\r\n        {\r\n            case ExternalCoreApiConstants.GetMidiInterface:\r\n            case ExternalCoreApiConstants.SetFastForwardingOverride:\r\n            case ExternalCoreApiConstants.SetContentInfoOverride:\r\n            case ExternalCoreApiConstants.SetNetworkPacketInterface:\r\n            case ExternalCoreApiConstants.SetSerializationQuirks:\r\n                return false;\r\n            default:\r\n                if (ExternalCoreEnvironmentFunctions.TryHandleOptionCommand(command, data, _optionHost, out var optionResult))\r\n                    return optionResult;\r\n                if (_unknownEnvironmentCommands.Add(command))\r\n                    Diagnostics.Add(EnvironmentFunctions.CreateUnknownCommandDiagnostic(command));\r\n                return false;\r\n        }\r\n    }",
+        "source": "using GWGUI.Emulation.Apple.Emulators.Common.Interop.Constants;\r\nusing GWGUI.Emulation.Apple.Emulators.Common.Interop.Functions;\r\nusing System.IO;\r\nusing System.Diagnostics;\r\nusing System.Runtime.InteropServices;\r\nusing GWGUI.Emulation;\r\nusing GWGUI.Emulation.Services;\r\n\r\nnamespace GWGUI.Emulation.Apple.Emulators.Common.Interop.Services;\r\n\r\ninternal sealed partial class ExternalHostCallbacks : IDisposable, IEmulationCoreEnvironmentCommands\r\n{\r\n    private bool OnEnvironment(uint command, nint data)\r\n    {\r\n        _environmentCommands.Add(command);\r\n        if (ExternalCoreEnvironmentFunctions.TryHandleStatelessCommand(command, data,\r\n                CoreOptionConstants.SupportedInterfaceVersion, ExternalCoreInteropConstants.MessageInterfaceVersion,\r\n                EnvironmentConstants.JoypadCapability | EnvironmentConstants.MouseCapability | EnvironmentConstants.KeyboardCapability | EnvironmentConstants.AnalogCapability, out var commonResult))\r\n            return commonResult;\r\n        if (ExternalCoreEnvironmentFunctions.TryHandleCallbackCommand(command, data, this, out var callbackResult))\n            return callbackResult;\n        switch (command)\r\n        {\r\n            case ExternalCoreApiConstants.GetMidiInterface:\r\n            case ExternalCoreApiConstants.SetFastForwardingOverride:\r\n            case ExternalCoreApiConstants.SetContentInfoOverride:\r\n            case ExternalCoreApiConstants.SetNetworkPacketInterface:\r\n            case ExternalCoreApiConstants.SetSerializationQuirks:\r\n                return false;\r\n            default:\r\n                if (ExternalCoreEnvironmentFunctions.TryHandleOptionCommand(command, data, _optionHost, out var optionResult))\r\n                    return optionResult;\r\n                if (_unknownEnvironmentCommands.Add(command))\r\n                    Diagnostics.Add(EnvironmentFunctions.CreateUnknownCommandDiagnostic(command));\r\n                return false;\r\n        }\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.WriteSystemDirectory(nint data)\r\n    {\r\n        return CoreFunctions.WritePointer(data, _systemDirectory.Pointer);\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.WriteContentDirectory(nint data)\r\n    {\r\n        return CoreFunctions.WritePointer(data, _assetsDirectory.Pointer);\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.WriteSaveDirectory(nint data)\r\n    {\r\n        return CoreFunctions.WritePointer(data, _saveDirectory.Pointer);\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.SetSupportNoGame(nint data)\r\n    {\r\n        SupportsNoGame = data != nint.Zero && Marshal.ReadByte(data) != ExternalCoreInteropConstants.NativeBooleanFalse;\r\n        return data != nint.Zero;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.CaptureInputDescriptors(nint data)\r\n    {\r\n        InputDescriptors = EnvironmentFunctions.CopyInputDescriptors(data);\r\n        return data != nint.Zero;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.CaptureControllerInfo(nint data)\r\n    {\r\n        ControllerPorts = EnvironmentFunctions.CopyControllerPorts(data);\r\n        return data != nint.Zero;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.CaptureMemoryMaps(nint data)\r\n    {\r\n        MemoryDescriptors = EnvironmentFunctions.CopyMemoryMap(data);\r\n        return data != nint.Zero;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.SetSupportAchievements(nint data)\r\n    {\r\n        SupportsAchievements = data != nint.Zero && Marshal.ReadByte(data) != ExternalCoreInteropConstants.NativeBooleanFalse;\r\n        return data != nint.Zero;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.ProvideVfs(nint data)\r\n    {\r\n        return _virtualFileSystem.Provide(data);\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.SetKeyboardCallback(nint data)\r\n    {\r\n        return CaptureKeyboardCallback(data);\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.CaptureDiskControl(nint data)\r\n    {\r\n        _diskControl.Capture(data);\r\n        return true;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.CaptureExtendedDiskControl(nint data)\r\n    {\r\n        _diskControl.CaptureExtended(data);\r\n        return true;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.GetDiskControlVersion(nint data)\r\n    {\r\n        return CoreFunctions.WriteInteger(data, DiskControlConstants.InterfaceVersion);\r\n    }\r\n}\r\n",
+        "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "formatter": "GWGUI.Emulation.Apple.Emulators.Common.Interop.Functions.EnvironmentFunctions.CreateUnknownCommandDiagnostic(uint)",
+        "family": "Apple",
+        "cases": [
+          {
+            "value": 65584,
+            "expression": "ExternalCoreApiConstants.GetMidiInterface"
+          },
+          {
+            "value": 64,
+            "expression": "ExternalCoreApiConstants.SetFastForwardingOverride"
+          },
+          {
+            "value": 65,
+            "expression": "ExternalCoreApiConstants.SetContentInfoOverride"
+          },
+          {
+            "value": 78,
+            "expression": "ExternalCoreApiConstants.SetNetworkPacketInterface"
+          },
+          {
+            "value": 87,
+            "expression": "ExternalCoreApiConstants.SetSerializationQuirks"
+          }
+        ],
+        "diagnosticGetterAutoProperty": true,
+        "unknownSetReadonly": true,
+        "diagnosticOwner": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs"
+      },
+      {
+        "profile": [
+          {
+            "value": 2,
+            "symbol": "GWGUI.Emulation.Atari.Emulators.Common.Interop.Constants.CoreOptionConstants.SupportedInterfaceVersion",
+            "constant": true,
+            "expression": "CoreOptionConstants.SupportedInterfaceVersion"
+          },
+          {
+            "value": 1,
+            "symbol": "GWGUI.Emulation.Atari.Emulators.Common.Interop.Constants.ExternalCoreInteropConstants.MessageInterfaceVersion",
+            "constant": true,
+            "expression": "ExternalCoreInteropConstants.MessageInterfaceVersion"
+          },
+          {
+            "value": 46,
+            "symbol": "ulong.operator |(ulong, ulong)",
+            "constant": true,
+            "expression": "EnvironmentConstants.JoypadCapability | EnvironmentConstants.MouseCapability | EnvironmentConstants.KeyboardCapability | EnvironmentConstants.AnalogCapability"
+          }
+        ],
+        "diagnosticOwnerSha256": "352475712665D0935EC37714E411E96CFFABB031CFF69F33BF84DDD2FCF6D528",
+        "sha256": "41478565FEB3820954854042771CE6688FD092119261B23252F95F4431C71E7A",
+        "method": "private bool OnEnvironment(uint command, nint data)\r\n    {\r\n        _environmentCommands.Add(command);\r\n        if (ExternalCoreEnvironmentFunctions.TryHandleStatelessCommand(command, data,\r\n                CoreOptionConstants.SupportedInterfaceVersion, ExternalCoreInteropConstants.MessageInterfaceVersion,\r\n                EnvironmentConstants.JoypadCapability | EnvironmentConstants.MouseCapability | EnvironmentConstants.KeyboardCapability | EnvironmentConstants.AnalogCapability, out var commonResult))\r\n            return commonResult;\r\n        if (ExternalCoreEnvironmentFunctions.TryHandleCallbackCommand(command, data, this, out var callbackResult))\n            return callbackResult;\n        switch (command)\r\n        {\r\n            case ExternalCoreApiConstants.GetMidiInterface:\r\n            case ExternalCoreApiConstants.SetFastForwardingOverride:\r\n            case ExternalCoreApiConstants.SetContentInfoOverride:\r\n            case ExternalCoreApiConstants.SetNetworkPacketInterface:\r\n            case ExternalCoreApiConstants.SetSerializationQuirks:\r\n                return false;\r\n            default:\r\n                if (ExternalCoreEnvironmentFunctions.TryHandleOptionCommand(command, data, _optionHost, out var optionResult))\r\n                    return optionResult;\r\n                if (_unknownEnvironmentCommands.Add(command))\r\n                    Diagnostics.Add(EnvironmentFunctions.CreateUnknownCommandDiagnostic(command));\r\n                return false;\r\n        }\r\n    }",
+        "source": "using System.IO;\r\nusing System.Diagnostics;\r\nusing System.Runtime.InteropServices;\r\nusing GWGUI.Emulation;\r\nusing GWGUI.Emulation.Services;\r\n\r\nnamespace GWGUI.Emulation.Atari.Emulators.Common.Interop.Services;\r\n\r\ninternal sealed partial class ExternalHostCallbacks : IDisposable, IEmulationCoreEnvironmentCommands\r\n{\r\n    private bool OnEnvironment(uint command, nint data)\r\n    {\r\n        _environmentCommands.Add(command);\r\n        if (ExternalCoreEnvironmentFunctions.TryHandleStatelessCommand(command, data,\r\n                CoreOptionConstants.SupportedInterfaceVersion, ExternalCoreInteropConstants.MessageInterfaceVersion,\r\n                EnvironmentConstants.JoypadCapability | EnvironmentConstants.MouseCapability | EnvironmentConstants.KeyboardCapability | EnvironmentConstants.AnalogCapability, out var commonResult))\r\n            return commonResult;\r\n        if (ExternalCoreEnvironmentFunctions.TryHandleCallbackCommand(command, data, this, out var callbackResult))\n            return callbackResult;\n        switch (command)\r\n        {\r\n            case ExternalCoreApiConstants.GetMidiInterface:\r\n            case ExternalCoreApiConstants.SetFastForwardingOverride:\r\n            case ExternalCoreApiConstants.SetContentInfoOverride:\r\n            case ExternalCoreApiConstants.SetNetworkPacketInterface:\r\n            case ExternalCoreApiConstants.SetSerializationQuirks:\r\n                return false;\r\n            default:\r\n                if (ExternalCoreEnvironmentFunctions.TryHandleOptionCommand(command, data, _optionHost, out var optionResult))\r\n                    return optionResult;\r\n                if (_unknownEnvironmentCommands.Add(command))\r\n                    Diagnostics.Add(EnvironmentFunctions.CreateUnknownCommandDiagnostic(command));\r\n                return false;\r\n        }\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.WriteSystemDirectory(nint data)\r\n    {\r\n        return CoreFunctions.WritePointer(data, _systemDirectory.Pointer);\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.WriteContentDirectory(nint data)\r\n    {\r\n        return CoreFunctions.WritePointer(data, _assetsDirectory.Pointer);\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.WriteSaveDirectory(nint data)\r\n    {\r\n        return CoreFunctions.WritePointer(data, _saveDirectory.Pointer);\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.SetSupportNoGame(nint data)\r\n    {\r\n        SupportsNoGame = data != nint.Zero && Marshal.ReadByte(data) != ExternalCoreInteropConstants.NativeBooleanFalse;\r\n        return data != nint.Zero;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.CaptureInputDescriptors(nint data)\r\n    {\r\n        InputDescriptors = EnvironmentFunctions.CopyInputDescriptors(data);\r\n        return data != nint.Zero;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.CaptureControllerInfo(nint data)\r\n    {\r\n        ControllerPorts = EnvironmentFunctions.CopyControllerPorts(data);\r\n        return data != nint.Zero;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.CaptureMemoryMaps(nint data)\r\n    {\r\n        MemoryDescriptors = EnvironmentFunctions.CopyMemoryMap(data);\r\n        return data != nint.Zero;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.SetSupportAchievements(nint data)\r\n    {\r\n        SupportsAchievements = data != nint.Zero && Marshal.ReadByte(data) != ExternalCoreInteropConstants.NativeBooleanFalse;\r\n        return data != nint.Zero;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.ProvideVfs(nint data)\r\n    {\r\n        return _virtualFileSystem.Provide(data);\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.SetKeyboardCallback(nint data)\r\n    {\r\n        return CaptureKeyboardCallback(data);\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.CaptureDiskControl(nint data)\r\n    {\r\n        _diskControl.Capture(data);\r\n        return true;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.CaptureExtendedDiskControl(nint data)\r\n    {\r\n        _diskControl.CaptureExtended(data);\r\n        return true;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.GetDiskControlVersion(nint data)\r\n    {\r\n        return CoreFunctions.WriteInteger(data, DiskControlConstants.InterfaceVersion);\r\n    }\r\n}\r\n",
+        "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "formatter": "GWGUI.Emulation.Atari.Emulators.Common.Interop.Functions.EnvironmentFunctions.CreateUnknownCommandDiagnostic(uint)",
+        "family": "Atari",
+        "cases": [
+          {
+            "value": 65584,
+            "expression": "ExternalCoreApiConstants.GetMidiInterface"
+          },
+          {
+            "value": 64,
+            "expression": "ExternalCoreApiConstants.SetFastForwardingOverride"
+          },
+          {
+            "value": 65,
+            "expression": "ExternalCoreApiConstants.SetContentInfoOverride"
+          },
+          {
+            "value": 78,
+            "expression": "ExternalCoreApiConstants.SetNetworkPacketInterface"
+          },
+          {
+            "value": 87,
+            "expression": "ExternalCoreApiConstants.SetSerializationQuirks"
+          }
+        ],
+        "diagnosticGetterAutoProperty": true,
+        "unknownSetReadonly": true,
+        "diagnosticOwner": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs"
+      },
+      {
+        "profile": [
+          {
+            "value": 2,
+            "symbol": "GWGUI.Emulation.Bandai.Emulators.Common.Interop.Constants.CoreOptionConstants.SupportedInterfaceVersion",
+            "constant": true,
+            "expression": "CoreOptionConstants.SupportedInterfaceVersion"
+          },
+          {
+            "value": 1,
+            "symbol": "GWGUI.Emulation.Bandai.Emulators.Common.Interop.Constants.ExternalCoreInteropConstants.MessageInterfaceVersion",
+            "constant": true,
+            "expression": "ExternalCoreInteropConstants.MessageInterfaceVersion"
+          },
+          {
+            "value": 2,
+            "symbol": "GWGUI.Emulation.Bandai.Emulators.Common.Interop.Constants.EnvironmentConstants.JoypadCapability",
+            "constant": true,
+            "expression": "EnvironmentConstants.JoypadCapability"
+          }
+        ],
+        "diagnosticOwnerSha256": "09EC0DF6B575B283D4116014462CC3D2FEB9B08A309926F33A70FC9DB7245445",
+        "sha256": "42A5BEF8E6612EC7F6CDAA9A3F4FF90ACF325016E38DA2C7367ACAB8ECCB91E7",
+        "method": "private bool OnEnvironment(uint command, nint data)\n    {\n        _environmentCommands.Add(command);\r\n        if (ExternalCoreEnvironmentFunctions.TryHandleStatelessCommand(command, data,\r\n                CoreOptionConstants.SupportedInterfaceVersion, ExternalCoreInteropConstants.MessageInterfaceVersion,\r\n                EnvironmentConstants.JoypadCapability, out var commonResult))\r\n            return commonResult;\n        if (ExternalCoreEnvironmentFunctions.TryHandleCallbackCommand(command, data, this, out var callbackResult))\n            return callbackResult;\n        switch (command)\n        {\n            case ExternalCoreApiConstants.GetMidiInterface:\n            case ExternalCoreApiConstants.SetFastForwardingOverride:\n            case ExternalCoreApiConstants.SetContentInfoOverride:\n            case ExternalCoreApiConstants.SetNetworkPacketInterface:\n            case ExternalCoreApiConstants.SetSerializationQuirks:\n                return false;\n            default:\n                if (ExternalCoreEnvironmentFunctions.TryHandleOptionCommand(command, data, _optionHost, out var optionResult))\r\n                    return optionResult;\r\n                if (_unknownEnvironmentCommands.Add(command))\n                    Diagnostics.Add(EnvironmentFunctions.CreateUnknownCommandDiagnostic(command));\n                return false;\n        }\n    }",
+        "source": "using GWGUI.Emulation.Bandai.Emulators.Common.Interop.Constants;\nusing GWGUI.Emulation.Bandai.Emulators.Common.Interop.Functions;\nusing System.IO;\nusing System.Diagnostics;\nusing System.Runtime.InteropServices;\nusing GWGUI.Emulation;\nusing GWGUI.Emulation.Services;\n\nnamespace GWGUI.Emulation.Bandai.Emulators.Common.Interop.Services;\n\ninternal sealed partial class ExternalHostCallbacks : IDisposable, IEmulationCoreEnvironmentCommands\n{\n    private bool OnEnvironment(uint command, nint data)\n    {\n        _environmentCommands.Add(command);\r\n        if (ExternalCoreEnvironmentFunctions.TryHandleStatelessCommand(command, data,\r\n                CoreOptionConstants.SupportedInterfaceVersion, ExternalCoreInteropConstants.MessageInterfaceVersion,\r\n                EnvironmentConstants.JoypadCapability, out var commonResult))\r\n            return commonResult;\n        if (ExternalCoreEnvironmentFunctions.TryHandleCallbackCommand(command, data, this, out var callbackResult))\n            return callbackResult;\n        switch (command)\n        {\n            case ExternalCoreApiConstants.GetMidiInterface:\n            case ExternalCoreApiConstants.SetFastForwardingOverride:\n            case ExternalCoreApiConstants.SetContentInfoOverride:\n            case ExternalCoreApiConstants.SetNetworkPacketInterface:\n            case ExternalCoreApiConstants.SetSerializationQuirks:\n                return false;\n            default:\n                if (ExternalCoreEnvironmentFunctions.TryHandleOptionCommand(command, data, _optionHost, out var optionResult))\r\n                    return optionResult;\r\n                if (_unknownEnvironmentCommands.Add(command))\n                    Diagnostics.Add(EnvironmentFunctions.CreateUnknownCommandDiagnostic(command));\n                return false;\n        }\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.WriteSystemDirectory(nint data)\r\n    {\r\n        return CoreFunctions.WritePointer(data, _systemDirectory.Pointer);\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.WriteContentDirectory(nint data)\r\n    {\r\n        return CoreFunctions.WritePointer(data, _assetsDirectory.Pointer);\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.WriteSaveDirectory(nint data)\r\n    {\r\n        return CoreFunctions.WritePointer(data, _saveDirectory.Pointer);\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.SetSupportNoGame(nint data)\r\n    {\r\n        SupportsNoGame = data != nint.Zero && Marshal.ReadByte(data) != ExternalCoreInteropConstants.NativeBooleanFalse;\r\n        return data != nint.Zero;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.CaptureInputDescriptors(nint data)\r\n    {\r\n        InputDescriptors = EnvironmentFunctions.CopyInputDescriptors(data);\r\n        return data != nint.Zero;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.CaptureControllerInfo(nint data)\r\n    {\r\n        ControllerPorts = EnvironmentFunctions.CopyControllerPorts(data);\r\n        return data != nint.Zero;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.CaptureMemoryMaps(nint data)\r\n    {\r\n        MemoryDescriptors = EnvironmentFunctions.CopyMemoryMap(data);\r\n        return data != nint.Zero;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.SetSupportAchievements(nint data)\r\n    {\r\n        SupportsAchievements = data != nint.Zero && Marshal.ReadByte(data) != ExternalCoreInteropConstants.NativeBooleanFalse;\r\n        return data != nint.Zero;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.ProvideVfs(nint data)\r\n    {\r\n        return _virtualFileSystem.Provide(data);\r\n    }\n\r\n    bool IEmulationCoreEnvironmentCommands.SetKeyboardCallback(nint data)\r\n    {\r\n        return CaptureKeyboardCallback(data);\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.CaptureDiskControl(nint data)\r\n    {\r\n        return false;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.CaptureExtendedDiskControl(nint data)\r\n    {\r\n        return false;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.GetDiskControlVersion(nint data)\r\n    {\r\n        return false;\r\n    }\r\n}\n",
+        "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "formatter": "GWGUI.Emulation.Bandai.Emulators.Common.Interop.Functions.EnvironmentFunctions.CreateUnknownCommandDiagnostic(uint)",
+        "family": "Bandai",
+        "cases": [
+          {
+            "value": 65584,
+            "expression": "ExternalCoreApiConstants.GetMidiInterface"
+          },
+          {
+            "value": 64,
+            "expression": "ExternalCoreApiConstants.SetFastForwardingOverride"
+          },
+          {
+            "value": 65,
+            "expression": "ExternalCoreApiConstants.SetContentInfoOverride"
+          },
+          {
+            "value": 78,
+            "expression": "ExternalCoreApiConstants.SetNetworkPacketInterface"
+          },
+          {
+            "value": 87,
+            "expression": "ExternalCoreApiConstants.SetSerializationQuirks"
+          }
+        ],
+        "diagnosticGetterAutoProperty": true,
+        "unknownSetReadonly": true,
+        "diagnosticOwner": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs"
+      },
+      {
+        "profile": [
+          {
+            "value": 2,
+            "symbol": "GWGUI.Emulation.Coleco.Emulators.Common.Interop.Constants.CoreOptionConstants.SupportedInterfaceVersion",
+            "constant": true,
+            "expression": "CoreOptionConstants.SupportedInterfaceVersion"
+          },
+          {
+            "value": 1,
+            "symbol": "GWGUI.Emulation.Coleco.Emulators.Common.Interop.Constants.ExternalCoreInteropConstants.MessageInterfaceVersion",
+            "constant": true,
+            "expression": "ExternalCoreInteropConstants.MessageInterfaceVersion"
+          },
+          {
+            "value": 46,
+            "symbol": "ulong.operator |(ulong, ulong)",
+            "constant": true,
+            "expression": "EnvironmentConstants.JoypadCapability | EnvironmentConstants.MouseCapability | EnvironmentConstants.KeyboardCapability | EnvironmentConstants.AnalogCapability"
+          }
+        ],
+        "diagnosticOwnerSha256": "18282C60EE725F5ECC964F40CB18CED109A3CBCAD3FACE81CDB1D53D9225A758",
+        "sha256": "9A4DA6139AF601E6DC2CB59DC891C8F5DBC204092D2DC7667AC7B63C511DDFE5",
+        "method": "private bool OnEnvironment(uint command, nint data)\n    {\n        _environmentCommands.Add(command);\r\n        if (ExternalCoreEnvironmentFunctions.TryHandleStatelessCommand(command, data,\r\n                CoreOptionConstants.SupportedInterfaceVersion, ExternalCoreInteropConstants.MessageInterfaceVersion,\r\n                EnvironmentConstants.JoypadCapability | EnvironmentConstants.MouseCapability | EnvironmentConstants.KeyboardCapability | EnvironmentConstants.AnalogCapability, out var commonResult))\r\n            return commonResult;\n        if (ExternalCoreEnvironmentFunctions.TryHandleCallbackCommand(command, data, this, out var callbackResult))\n            return callbackResult;\n        switch (command)\n        {\n            case ExternalCoreApiConstants.GetMidiInterface:\n            case ExternalCoreApiConstants.SetFastForwardingOverride:\n            case ExternalCoreApiConstants.SetContentInfoOverride:\n            case ExternalCoreApiConstants.SetNetworkPacketInterface:\n            case ExternalCoreApiConstants.SetSerializationQuirks:\n                return false;\n            default:\n                if (ExternalCoreEnvironmentFunctions.TryHandleOptionCommand(command, data, _optionHost, out var optionResult))\r\n                    return optionResult;\r\n                if (_unknownEnvironmentCommands.Add(command))\n                    Diagnostics.Add(EnvironmentFunctions.CreateUnknownCommandDiagnostic(command));\n                return false;\n        }\n    }",
+        "source": "using GWGUI.Emulation.Coleco.Emulators.Common.Interop.Constants;\nusing GWGUI.Emulation.Coleco.Emulators.Common.Interop.Functions;\nusing System.IO;\nusing System.Diagnostics;\nusing System.Runtime.InteropServices;\nusing GWGUI.Emulation;\nusing GWGUI.Emulation.Services;\n\nnamespace GWGUI.Emulation.Coleco.Emulators.Common.Interop.Services;\n\ninternal sealed partial class ExternalHostCallbacks : IDisposable, IEmulationCoreEnvironmentCommands\n{\n    private bool OnEnvironment(uint command, nint data)\n    {\n        _environmentCommands.Add(command);\r\n        if (ExternalCoreEnvironmentFunctions.TryHandleStatelessCommand(command, data,\r\n                CoreOptionConstants.SupportedInterfaceVersion, ExternalCoreInteropConstants.MessageInterfaceVersion,\r\n                EnvironmentConstants.JoypadCapability | EnvironmentConstants.MouseCapability | EnvironmentConstants.KeyboardCapability | EnvironmentConstants.AnalogCapability, out var commonResult))\r\n            return commonResult;\n        if (ExternalCoreEnvironmentFunctions.TryHandleCallbackCommand(command, data, this, out var callbackResult))\n            return callbackResult;\n        switch (command)\n        {\n            case ExternalCoreApiConstants.GetMidiInterface:\n            case ExternalCoreApiConstants.SetFastForwardingOverride:\n            case ExternalCoreApiConstants.SetContentInfoOverride:\n            case ExternalCoreApiConstants.SetNetworkPacketInterface:\n            case ExternalCoreApiConstants.SetSerializationQuirks:\n                return false;\n            default:\n                if (ExternalCoreEnvironmentFunctions.TryHandleOptionCommand(command, data, _optionHost, out var optionResult))\r\n                    return optionResult;\r\n                if (_unknownEnvironmentCommands.Add(command))\n                    Diagnostics.Add(EnvironmentFunctions.CreateUnknownCommandDiagnostic(command));\n                return false;\n        }\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.WriteSystemDirectory(nint data)\r\n    {\r\n        return CoreFunctions.WritePointer(data, _systemDirectory.Pointer);\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.WriteContentDirectory(nint data)\r\n    {\r\n        return CoreFunctions.WritePointer(data, _assetsDirectory.Pointer);\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.WriteSaveDirectory(nint data)\r\n    {\r\n        return CoreFunctions.WritePointer(data, _saveDirectory.Pointer);\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.SetSupportNoGame(nint data)\r\n    {\r\n        SupportsNoGame = data != nint.Zero && Marshal.ReadByte(data) != ExternalCoreInteropConstants.NativeBooleanFalse;\r\n        return data != nint.Zero;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.CaptureInputDescriptors(nint data)\r\n    {\r\n        InputDescriptors = EnvironmentFunctions.CopyInputDescriptors(data);\r\n        return data != nint.Zero;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.CaptureControllerInfo(nint data)\r\n    {\r\n        ControllerPorts = EnvironmentFunctions.CopyControllerPorts(data);\r\n        return data != nint.Zero;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.CaptureMemoryMaps(nint data)\r\n    {\r\n        MemoryDescriptors = EnvironmentFunctions.CopyMemoryMap(data);\r\n        return data != nint.Zero;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.SetSupportAchievements(nint data)\r\n    {\r\n        SupportsAchievements = data != nint.Zero && Marshal.ReadByte(data) != ExternalCoreInteropConstants.NativeBooleanFalse;\r\n        return data != nint.Zero;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.ProvideVfs(nint data)\r\n    {\r\n        return _virtualFileSystem.Provide(data);\r\n    }\n\r\n    bool IEmulationCoreEnvironmentCommands.SetKeyboardCallback(nint data)\r\n    {\r\n        return CaptureKeyboardCallback(data);\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.CaptureDiskControl(nint data)\r\n    {\r\n        _diskControl.Capture(data);\r\n        return true;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.CaptureExtendedDiskControl(nint data)\r\n    {\r\n        _diskControl.CaptureExtended(data);\r\n        return true;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.GetDiskControlVersion(nint data)\r\n    {\r\n        return CoreFunctions.WriteInteger(data, DiskControlConstants.InterfaceVersion);\r\n    }\r\n}\n",
+        "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "formatter": "GWGUI.Emulation.Coleco.Emulators.Common.Interop.Functions.EnvironmentFunctions.CreateUnknownCommandDiagnostic(uint)",
+        "family": "Coleco",
+        "cases": [
+          {
+            "value": 65584,
+            "expression": "ExternalCoreApiConstants.GetMidiInterface"
+          },
+          {
+            "value": 64,
+            "expression": "ExternalCoreApiConstants.SetFastForwardingOverride"
+          },
+          {
+            "value": 65,
+            "expression": "ExternalCoreApiConstants.SetContentInfoOverride"
+          },
+          {
+            "value": 78,
+            "expression": "ExternalCoreApiConstants.SetNetworkPacketInterface"
+          },
+          {
+            "value": 87,
+            "expression": "ExternalCoreApiConstants.SetSerializationQuirks"
+          }
+        ],
+        "diagnosticGetterAutoProperty": true,
+        "unknownSetReadonly": true,
+        "diagnosticOwner": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs"
+      },
+      {
+        "profile": [
+          {
+            "value": 2,
+            "symbol": "GWGUI.Emulation.Epoch.Emulators.Common.Interop.Constants.CoreOptionConstants.SupportedInterfaceVersion",
+            "constant": true,
+            "expression": "CoreOptionConstants.SupportedInterfaceVersion"
+          },
+          {
+            "value": 1,
+            "symbol": "GWGUI.Emulation.Epoch.Emulators.Common.Interop.Constants.ExternalCoreInteropConstants.MessageInterfaceVersion",
+            "constant": true,
+            "expression": "ExternalCoreInteropConstants.MessageInterfaceVersion"
+          },
+          {
+            "value": 62,
+            "symbol": "ulong.operator |(ulong, ulong)",
+            "constant": true,
+            "expression": "EnvironmentConstants.JoypadCapability | EnvironmentConstants.MouseCapability | EnvironmentConstants.KeyboardCapability | EnvironmentConstants.LightGunCapability | EnvironmentConstants.AnalogCapability"
+          }
+        ],
+        "diagnosticOwnerSha256": "60A69AC70E895DB4A4CFB7411DBBE2FDB238D5123CF770DF1AC90B45148CF3DB",
+        "sha256": "81B7C7EA00E9B75F491094CF098A2C2DA88A40710BFF2ACD8CF6F3302EFA6871",
+        "method": "private bool OnEnvironment(uint command, nint data)\n    {\n        _environmentCommands.Add(command);\r\n        if (ExternalCoreEnvironmentFunctions.TryHandleStatelessCommand(command, data,\r\n                CoreOptionConstants.SupportedInterfaceVersion, ExternalCoreInteropConstants.MessageInterfaceVersion,\r\n                EnvironmentConstants.JoypadCapability | EnvironmentConstants.MouseCapability | EnvironmentConstants.KeyboardCapability | EnvironmentConstants.LightGunCapability | EnvironmentConstants.AnalogCapability, out var commonResult))\r\n            return commonResult;\n        if (ExternalCoreEnvironmentFunctions.TryHandleCallbackCommand(command, data, this, out var callbackResult))\n            return callbackResult;\n        switch (command)\n        {\n            case ExternalCoreApiConstants.GetMidiInterface:\n            case ExternalCoreApiConstants.SetFastForwardingOverride:\n            case ExternalCoreApiConstants.SetContentInfoOverride:\n            case ExternalCoreApiConstants.SetNetworkPacketInterface:\n            case ExternalCoreApiConstants.SetSerializationQuirks:\n                return false;\n            default:\n                if (ExternalCoreEnvironmentFunctions.TryHandleOptionCommand(command, data, _optionHost, out var optionResult))\r\n                    return optionResult;\r\n                if (_unknownEnvironmentCommands.Add(command))\n                    Diagnostics.Add(EnvironmentFunctions.CreateUnknownCommandDiagnostic(command));\n                return false;\n        }\n    }",
+        "source": "using GWGUI.Emulation.Epoch.Emulators.Common.Interop.Constants;\nusing GWGUI.Emulation.Epoch.Emulators.Common.Interop.Functions;\nusing System.IO;\nusing System.Diagnostics;\nusing System.Runtime.InteropServices;\nusing GWGUI.Emulation;\nusing GWGUI.Emulation.Services;\n\nnamespace GWGUI.Emulation.Epoch.Emulators.Common.Interop.Services;\n\ninternal sealed partial class ExternalHostCallbacks : IDisposable, IEmulationCoreEnvironmentCommands\n{\n    private bool OnEnvironment(uint command, nint data)\n    {\n        _environmentCommands.Add(command);\r\n        if (ExternalCoreEnvironmentFunctions.TryHandleStatelessCommand(command, data,\r\n                CoreOptionConstants.SupportedInterfaceVersion, ExternalCoreInteropConstants.MessageInterfaceVersion,\r\n                EnvironmentConstants.JoypadCapability | EnvironmentConstants.MouseCapability | EnvironmentConstants.KeyboardCapability | EnvironmentConstants.LightGunCapability | EnvironmentConstants.AnalogCapability, out var commonResult))\r\n            return commonResult;\n        if (ExternalCoreEnvironmentFunctions.TryHandleCallbackCommand(command, data, this, out var callbackResult))\n            return callbackResult;\n        switch (command)\n        {\n            case ExternalCoreApiConstants.GetMidiInterface:\n            case ExternalCoreApiConstants.SetFastForwardingOverride:\n            case ExternalCoreApiConstants.SetContentInfoOverride:\n            case ExternalCoreApiConstants.SetNetworkPacketInterface:\n            case ExternalCoreApiConstants.SetSerializationQuirks:\n                return false;\n            default:\n                if (ExternalCoreEnvironmentFunctions.TryHandleOptionCommand(command, data, _optionHost, out var optionResult))\r\n                    return optionResult;\r\n                if (_unknownEnvironmentCommands.Add(command))\n                    Diagnostics.Add(EnvironmentFunctions.CreateUnknownCommandDiagnostic(command));\n                return false;\n        }\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.WriteSystemDirectory(nint data)\r\n    {\r\n        return CoreFunctions.WritePointer(data, _systemDirectory.Pointer);\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.WriteContentDirectory(nint data)\r\n    {\r\n        return CoreFunctions.WritePointer(data, _assetsDirectory.Pointer);\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.WriteSaveDirectory(nint data)\r\n    {\r\n        return CoreFunctions.WritePointer(data, _saveDirectory.Pointer);\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.SetSupportNoGame(nint data)\r\n    {\r\n        SupportsNoGame = data != nint.Zero && Marshal.ReadByte(data) != ExternalCoreInteropConstants.NativeBooleanFalse;\r\n        return data != nint.Zero;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.CaptureInputDescriptors(nint data)\r\n    {\r\n        InputDescriptors = EnvironmentFunctions.CopyInputDescriptors(data);\r\n        return data != nint.Zero;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.CaptureControllerInfo(nint data)\r\n    {\r\n        ControllerPorts = EnvironmentFunctions.CopyControllerPorts(data);\r\n        return data != nint.Zero;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.CaptureMemoryMaps(nint data)\r\n    {\r\n        MemoryDescriptors = EnvironmentFunctions.CopyMemoryMap(data);\r\n        return data != nint.Zero;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.SetSupportAchievements(nint data)\r\n    {\r\n        SupportsAchievements = data != nint.Zero && Marshal.ReadByte(data) != ExternalCoreInteropConstants.NativeBooleanFalse;\r\n        return data != nint.Zero;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.ProvideVfs(nint data)\r\n    {\r\n        return _virtualFileSystem.Provide(data);\r\n    }\n\r\n    bool IEmulationCoreEnvironmentCommands.SetKeyboardCallback(nint data)\r\n    {\r\n        return CaptureKeyboardCallback(data);\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.CaptureDiskControl(nint data)\r\n    {\r\n        _diskControl.Capture(data);\r\n        return true;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.CaptureExtendedDiskControl(nint data)\r\n    {\r\n        _diskControl.CaptureExtended(data);\r\n        return true;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.GetDiskControlVersion(nint data)\r\n    {\r\n        return CoreFunctions.WriteInteger(data, DiskControlConstants.InterfaceVersion);\r\n    }\r\n}\n",
+        "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "formatter": "GWGUI.Emulation.Epoch.Emulators.Common.Interop.Functions.EnvironmentFunctions.CreateUnknownCommandDiagnostic(uint)",
+        "family": "Epoch",
+        "cases": [
+          {
+            "value": 65584,
+            "expression": "ExternalCoreApiConstants.GetMidiInterface"
+          },
+          {
+            "value": 64,
+            "expression": "ExternalCoreApiConstants.SetFastForwardingOverride"
+          },
+          {
+            "value": 65,
+            "expression": "ExternalCoreApiConstants.SetContentInfoOverride"
+          },
+          {
+            "value": 78,
+            "expression": "ExternalCoreApiConstants.SetNetworkPacketInterface"
+          },
+          {
+            "value": 87,
+            "expression": "ExternalCoreApiConstants.SetSerializationQuirks"
+          }
+        ],
+        "diagnosticGetterAutoProperty": true,
+        "unknownSetReadonly": true,
+        "diagnosticOwner": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs"
+      },
+      {
+        "profile": [
+          {
+            "value": 2,
+            "symbol": "GWGUI.Emulation.Fairchild.Emulators.Common.Interop.Constants.CoreOptionConstants.SupportedInterfaceVersion",
+            "constant": true,
+            "expression": "CoreOptionConstants.SupportedInterfaceVersion"
+          },
+          {
+            "value": 1,
+            "symbol": "GWGUI.Emulation.Fairchild.Emulators.Common.Interop.Constants.ExternalCoreInteropConstants.MessageInterfaceVersion",
+            "constant": true,
+            "expression": "ExternalCoreInteropConstants.MessageInterfaceVersion"
+          },
+          {
+            "value": 2,
+            "symbol": "GWGUI.Emulation.Fairchild.Emulators.Common.Interop.Constants.EnvironmentConstants.JoypadCapability",
+            "constant": true,
+            "expression": "EnvironmentConstants.JoypadCapability"
+          }
+        ],
+        "diagnosticOwnerSha256": "9DC4808816D0507DE4AABF22B56C04E84BE90206E79D31F4901008EF445C285B",
+        "sha256": "2E037FAB77D6C367E1470D1412E3B2E833086E099B2BFEA190408A863239A319",
+        "method": "private bool OnEnvironment(uint command, nint data)\n    {\n        _environmentCommands.Add(command);\r\n        if (ExternalCoreEnvironmentFunctions.TryHandleStatelessCommand(command, data,\r\n                CoreOptionConstants.SupportedInterfaceVersion, ExternalCoreInteropConstants.MessageInterfaceVersion,\r\n                EnvironmentConstants.JoypadCapability, out var commonResult))\r\n            return commonResult;\n        if (ExternalCoreEnvironmentFunctions.TryHandleCallbackCommand(command, data, this, out var callbackResult))\n            return callbackResult;\n        switch (command)\n        {\n            case ExternalCoreApiConstants.GetMidiInterface:\n            case ExternalCoreApiConstants.SetFastForwardingOverride:\n            case ExternalCoreApiConstants.SetContentInfoOverride:\n            case ExternalCoreApiConstants.SetNetworkPacketInterface:\n            case ExternalCoreApiConstants.SetSerializationQuirks:\n                return false;\n            default:\n                if (ExternalCoreEnvironmentFunctions.TryHandleOptionCommand(command, data, _optionHost, out var optionResult))\r\n                    return optionResult;\r\n                if (_unknownEnvironmentCommands.Add(command))\n                    Diagnostics.Add(EnvironmentFunctions.CreateUnknownCommandDiagnostic(command));\n                return false;\n        }\n    }",
+        "source": "using GWGUI.Emulation.Fairchild.Emulators.Common.Interop.Constants;\nusing GWGUI.Emulation.Fairchild.Emulators.Common.Interop.Functions;\nusing System.IO;\nusing System.Diagnostics;\nusing System.Runtime.InteropServices;\nusing GWGUI.Emulation;\nusing GWGUI.Emulation.Services;\n\nnamespace GWGUI.Emulation.Fairchild.Emulators.Common.Interop.Services;\n\ninternal sealed partial class ExternalHostCallbacks : IDisposable, IEmulationCoreEnvironmentCommands\n{\n    private bool OnEnvironment(uint command, nint data)\n    {\n        _environmentCommands.Add(command);\r\n        if (ExternalCoreEnvironmentFunctions.TryHandleStatelessCommand(command, data,\r\n                CoreOptionConstants.SupportedInterfaceVersion, ExternalCoreInteropConstants.MessageInterfaceVersion,\r\n                EnvironmentConstants.JoypadCapability, out var commonResult))\r\n            return commonResult;\n        if (ExternalCoreEnvironmentFunctions.TryHandleCallbackCommand(command, data, this, out var callbackResult))\n            return callbackResult;\n        switch (command)\n        {\n            case ExternalCoreApiConstants.GetMidiInterface:\n            case ExternalCoreApiConstants.SetFastForwardingOverride:\n            case ExternalCoreApiConstants.SetContentInfoOverride:\n            case ExternalCoreApiConstants.SetNetworkPacketInterface:\n            case ExternalCoreApiConstants.SetSerializationQuirks:\n                return false;\n            default:\n                if (ExternalCoreEnvironmentFunctions.TryHandleOptionCommand(command, data, _optionHost, out var optionResult))\r\n                    return optionResult;\r\n                if (_unknownEnvironmentCommands.Add(command))\n                    Diagnostics.Add(EnvironmentFunctions.CreateUnknownCommandDiagnostic(command));\n                return false;\n        }\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.WriteSystemDirectory(nint data)\r\n    {\r\n        return CoreFunctions.WritePointer(data, _systemDirectory.Pointer);\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.WriteContentDirectory(nint data)\r\n    {\r\n        return CoreFunctions.WritePointer(data, _assetsDirectory.Pointer);\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.WriteSaveDirectory(nint data)\r\n    {\r\n        return CoreFunctions.WritePointer(data, _saveDirectory.Pointer);\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.SetSupportNoGame(nint data)\r\n    {\r\n        SupportsNoGame = data != nint.Zero && Marshal.ReadByte(data) != ExternalCoreInteropConstants.NativeBooleanFalse;\r\n        return data != nint.Zero;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.CaptureInputDescriptors(nint data)\r\n    {\r\n        InputDescriptors = EnvironmentFunctions.CopyInputDescriptors(data);\r\n        return data != nint.Zero;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.CaptureControllerInfo(nint data)\r\n    {\r\n        ControllerPorts = EnvironmentFunctions.CopyControllerPorts(data);\r\n        return data != nint.Zero;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.CaptureMemoryMaps(nint data)\r\n    {\r\n        MemoryDescriptors = EnvironmentFunctions.CopyMemoryMap(data);\r\n        return data != nint.Zero;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.SetSupportAchievements(nint data)\r\n    {\r\n        SupportsAchievements = data != nint.Zero && Marshal.ReadByte(data) != ExternalCoreInteropConstants.NativeBooleanFalse;\r\n        return data != nint.Zero;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.ProvideVfs(nint data)\r\n    {\r\n        return _virtualFileSystem.Provide(data);\r\n    }\n\r\n    bool IEmulationCoreEnvironmentCommands.SetKeyboardCallback(nint data)\r\n    {\r\n        return false;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.CaptureDiskControl(nint data)\r\n    {\r\n        _diskControl.Capture(data);\r\n        return true;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.CaptureExtendedDiskControl(nint data)\r\n    {\r\n        _diskControl.CaptureExtended(data);\r\n        return true;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.GetDiskControlVersion(nint data)\r\n    {\r\n        return CoreFunctions.WriteInteger(data, DiskControlConstants.InterfaceVersion);\r\n    }\r\n}\n",
+        "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "formatter": "GWGUI.Emulation.Fairchild.Emulators.Common.Interop.Functions.EnvironmentFunctions.CreateUnknownCommandDiagnostic(uint)",
+        "family": "Fairchild",
+        "cases": [
+          {
+            "value": 65584,
+            "expression": "ExternalCoreApiConstants.GetMidiInterface"
+          },
+          {
+            "value": 64,
+            "expression": "ExternalCoreApiConstants.SetFastForwardingOverride"
+          },
+          {
+            "value": 65,
+            "expression": "ExternalCoreApiConstants.SetContentInfoOverride"
+          },
+          {
+            "value": 78,
+            "expression": "ExternalCoreApiConstants.SetNetworkPacketInterface"
+          },
+          {
+            "value": 87,
+            "expression": "ExternalCoreApiConstants.SetSerializationQuirks"
+          }
+        ],
+        "diagnosticGetterAutoProperty": true,
+        "unknownSetReadonly": true,
+        "diagnosticOwner": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs"
+      },
+      {
+        "profile": [
+          {
+            "value": 2,
+            "symbol": "GWGUI.Emulation.Mattel.Emulators.Common.Interop.Constants.CoreOptionConstants.SupportedInterfaceVersion",
+            "constant": true,
+            "expression": "CoreOptionConstants.SupportedInterfaceVersion"
+          },
+          {
+            "value": 1,
+            "symbol": "GWGUI.Emulation.Mattel.Emulators.Common.Interop.Constants.ExternalCoreInteropConstants.MessageInterfaceVersion",
+            "constant": true,
+            "expression": "ExternalCoreInteropConstants.MessageInterfaceVersion"
+          },
+          {
+            "value": 62,
+            "symbol": "GWGUI.Emulation.Mattel.Emulators.Common.Interop.Constants.EnvironmentConstants.SupportedInputCapabilities",
+            "constant": true,
+            "expression": "EnvironmentConstants.SupportedInputCapabilities"
+          }
+        ],
+        "diagnosticOwnerSha256": "03466CB5FDD18869C4D7E88DD976FE899181B44AA34DE684D1398366FA6CCE05",
+        "sha256": "859DF4B4D16EC83EC2B1DC497826065C6F015E800B47E05A5FF6C0D8501997C8",
+        "method": "private bool OnEnvironment(uint command, nint data)\n    {\n        _environmentCommands.Add(command);\r\n        if (ExternalCoreEnvironmentFunctions.TryHandleStatelessCommand(command, data,\r\n                CoreOptionConstants.SupportedInterfaceVersion, ExternalCoreInteropConstants.MessageInterfaceVersion,\r\n                EnvironmentConstants.SupportedInputCapabilities, out var commonResult))\r\n            return commonResult;\n        if (ExternalCoreEnvironmentFunctions.TryHandleCallbackCommand(command, data, this, out var callbackResult))\n            return callbackResult;\n        switch (command)\n        {\n            case ExternalCoreApiConstants.GetMidiInterface:\n            case ExternalCoreApiConstants.SetFastForwardingOverride:\n            case ExternalCoreApiConstants.SetContentInfoOverride:\n            case ExternalCoreApiConstants.SetNetworkPacketInterface:\n            case ExternalCoreApiConstants.SetSerializationQuirks:\n                return false;\n            default:\n                if (ExternalCoreEnvironmentFunctions.TryHandleOptionCommand(command, data, _optionHost, out var optionResult))\r\n                    return optionResult;\r\n                if (_unknownEnvironmentCommands.Add(command))\n                    Diagnostics.Add(EnvironmentFunctions.CreateUnknownCommandDiagnostic(command));\n                return false;\n        }\n    }",
+        "source": "using GWGUI.Emulation.Mattel.Emulators.Common.Interop.Constants;\nusing GWGUI.Emulation.Mattel.Emulators.Common.Interop.Functions;\nusing System.IO;\nusing System.Diagnostics;\nusing System.Runtime.InteropServices;\nusing GWGUI.Emulation;\nusing GWGUI.Emulation.Services;\n\nnamespace GWGUI.Emulation.Mattel.Emulators.Common.Interop.Services;\n\ninternal sealed partial class ExternalHostCallbacks : IDisposable, IEmulationCoreEnvironmentCommands\n{\n    private bool OnEnvironment(uint command, nint data)\n    {\n        _environmentCommands.Add(command);\r\n        if (ExternalCoreEnvironmentFunctions.TryHandleStatelessCommand(command, data,\r\n                CoreOptionConstants.SupportedInterfaceVersion, ExternalCoreInteropConstants.MessageInterfaceVersion,\r\n                EnvironmentConstants.SupportedInputCapabilities, out var commonResult))\r\n            return commonResult;\n        if (ExternalCoreEnvironmentFunctions.TryHandleCallbackCommand(command, data, this, out var callbackResult))\n            return callbackResult;\n        switch (command)\n        {\n            case ExternalCoreApiConstants.GetMidiInterface:\n            case ExternalCoreApiConstants.SetFastForwardingOverride:\n            case ExternalCoreApiConstants.SetContentInfoOverride:\n            case ExternalCoreApiConstants.SetNetworkPacketInterface:\n            case ExternalCoreApiConstants.SetSerializationQuirks:\n                return false;\n            default:\n                if (ExternalCoreEnvironmentFunctions.TryHandleOptionCommand(command, data, _optionHost, out var optionResult))\r\n                    return optionResult;\r\n                if (_unknownEnvironmentCommands.Add(command))\n                    Diagnostics.Add(EnvironmentFunctions.CreateUnknownCommandDiagnostic(command));\n                return false;\n        }\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.WriteSystemDirectory(nint data)\r\n    {\r\n        return CoreFunctions.WritePointer(data, _systemDirectory.Pointer);\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.WriteContentDirectory(nint data)\r\n    {\r\n        return CoreFunctions.WritePointer(data, _assetsDirectory.Pointer);\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.WriteSaveDirectory(nint data)\r\n    {\r\n        return CoreFunctions.WritePointer(data, _saveDirectory.Pointer);\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.SetSupportNoGame(nint data)\r\n    {\r\n        SupportsNoGame = data != nint.Zero && Marshal.ReadByte(data) != ExternalCoreInteropConstants.NativeBooleanFalse;\r\n        return data != nint.Zero;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.CaptureInputDescriptors(nint data)\r\n    {\r\n        InputDescriptors = EnvironmentFunctions.CopyInputDescriptors(data, _inputDescriptorLimit);\r\n        return data != nint.Zero;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.CaptureControllerInfo(nint data)\r\n    {\r\n        ControllerPorts = EnvironmentFunctions.CopyControllerPorts(data);\r\n        return data != nint.Zero;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.CaptureMemoryMaps(nint data)\r\n    {\r\n        MemoryDescriptors = EnvironmentFunctions.CopyMemoryMap(data);\r\n        return data != nint.Zero;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.SetSupportAchievements(nint data)\r\n    {\r\n        SupportsAchievements = data != nint.Zero && Marshal.ReadByte(data) != ExternalCoreInteropConstants.NativeBooleanFalse;\r\n        return data != nint.Zero;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.ProvideVfs(nint data)\r\n    {\r\n        return _virtualFileSystem.Provide(data);\r\n    }\n\r\n    bool IEmulationCoreEnvironmentCommands.SetKeyboardCallback(nint data)\r\n    {\r\n        if (data == nint.Zero) return false;\r\n        KeyboardCallbackPointer = Marshal.ReadIntPtr(data);\r\n        return true;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.CaptureDiskControl(nint data)\r\n    {\r\n        _diskControl.Capture(data);\r\n        return true;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.CaptureExtendedDiskControl(nint data)\r\n    {\r\n        _diskControl.CaptureExtended(data);\r\n        return true;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.GetDiskControlVersion(nint data)\r\n    {\r\n        return CoreFunctions.WriteInteger(data, DiskControlConstants.InterfaceVersion);\r\n    }\r\n}\n",
+        "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "formatter": "GWGUI.Emulation.Mattel.Emulators.Common.Interop.Functions.EnvironmentFunctions.CreateUnknownCommandDiagnostic(uint)",
+        "family": "Mattel",
+        "cases": [
+          {
+            "value": 65584,
+            "expression": "ExternalCoreApiConstants.GetMidiInterface"
+          },
+          {
+            "value": 64,
+            "expression": "ExternalCoreApiConstants.SetFastForwardingOverride"
+          },
+          {
+            "value": 65,
+            "expression": "ExternalCoreApiConstants.SetContentInfoOverride"
+          },
+          {
+            "value": 78,
+            "expression": "ExternalCoreApiConstants.SetNetworkPacketInterface"
+          },
+          {
+            "value": 87,
+            "expression": "ExternalCoreApiConstants.SetSerializationQuirks"
+          }
+        ],
+        "diagnosticGetterAutoProperty": true,
+        "unknownSetReadonly": true,
+        "diagnosticOwner": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs"
+      },
+      {
+        "profile": [
+          {
+            "value": 2,
+            "symbol": "GWGUI.Emulation.Philips.Emulators.Common.Interop.Constants.CoreOptionConstants.SupportedInterfaceVersion",
+            "constant": true,
+            "expression": "CoreOptionConstants.SupportedInterfaceVersion"
+          },
+          {
+            "value": 1,
+            "symbol": "GWGUI.Emulation.Philips.Emulators.Common.Interop.Constants.ExternalCoreInteropConstants.MessageInterfaceVersion",
+            "constant": true,
+            "expression": "ExternalCoreInteropConstants.MessageInterfaceVersion"
+          },
+          {
+            "value": 62,
+            "symbol": "GWGUI.Emulation.Philips.Emulators.Common.Interop.Constants.EnvironmentConstants.SupportedInputCapabilities",
+            "constant": true,
+            "expression": "EnvironmentConstants.SupportedInputCapabilities"
+          }
+        ],
+        "diagnosticOwnerSha256": "5C36E30F0A6DA06E28484321077D4D4918B03B15B3FBF7FC4786CA7A98BA8E4C",
+        "sha256": "D5C10227D0A8B8D06F7E89A3D67BB9E4648F02CF7CC639A0171920B64DEB06DC",
+        "method": "private bool OnEnvironment(uint command, nint data)\n    {\n        _environmentCommands.Add(command);\r\n        if (ExternalCoreEnvironmentFunctions.TryHandleStatelessCommand(command, data,\r\n                CoreOptionConstants.SupportedInterfaceVersion, ExternalCoreInteropConstants.MessageInterfaceVersion,\r\n                EnvironmentConstants.SupportedInputCapabilities, out var commonResult))\r\n            return commonResult;\n        if (ExternalCoreEnvironmentFunctions.TryHandleCallbackCommand(command, data, this, out var callbackResult))\n            return callbackResult;\n        switch (command)\n        {\n            case ExternalCoreApiConstants.GetMidiInterface:\n            case ExternalCoreApiConstants.SetFastForwardingOverride:\n            case ExternalCoreApiConstants.SetContentInfoOverride:\n            case ExternalCoreApiConstants.SetNetworkPacketInterface:\n            case ExternalCoreApiConstants.SetSerializationQuirks:\n                return false;\n            default:\n                if (ExternalCoreEnvironmentFunctions.TryHandleOptionCommand(command, data, _optionHost, out var optionResult))\r\n                    return optionResult;\r\n                if (_unknownEnvironmentCommands.Add(command))\n                    Diagnostics.Add(EnvironmentFunctions.CreateUnknownCommandDiagnostic(command));\n                return false;\n        }\n    }",
+        "source": "using GWGUI.Emulation.Philips.Emulators.Common.Interop.Constants;\nusing GWGUI.Emulation.Philips.Emulators.Common.Interop.Functions;\nusing System.IO;\nusing System.Diagnostics;\nusing System.Runtime.InteropServices;\nusing GWGUI.Emulation;\nusing GWGUI.Emulation.Services;\n\nnamespace GWGUI.Emulation.Philips.Emulators.Common.Interop.Services;\n\ninternal sealed partial class ExternalHostCallbacks : IDisposable, IEmulationCoreEnvironmentCommands\n{\n    private bool OnEnvironment(uint command, nint data)\n    {\n        _environmentCommands.Add(command);\r\n        if (ExternalCoreEnvironmentFunctions.TryHandleStatelessCommand(command, data,\r\n                CoreOptionConstants.SupportedInterfaceVersion, ExternalCoreInteropConstants.MessageInterfaceVersion,\r\n                EnvironmentConstants.SupportedInputCapabilities, out var commonResult))\r\n            return commonResult;\n        if (ExternalCoreEnvironmentFunctions.TryHandleCallbackCommand(command, data, this, out var callbackResult))\n            return callbackResult;\n        switch (command)\n        {\n            case ExternalCoreApiConstants.GetMidiInterface:\n            case ExternalCoreApiConstants.SetFastForwardingOverride:\n            case ExternalCoreApiConstants.SetContentInfoOverride:\n            case ExternalCoreApiConstants.SetNetworkPacketInterface:\n            case ExternalCoreApiConstants.SetSerializationQuirks:\n                return false;\n            default:\n                if (ExternalCoreEnvironmentFunctions.TryHandleOptionCommand(command, data, _optionHost, out var optionResult))\r\n                    return optionResult;\r\n                if (_unknownEnvironmentCommands.Add(command))\n                    Diagnostics.Add(EnvironmentFunctions.CreateUnknownCommandDiagnostic(command));\n                return false;\n        }\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.WriteSystemDirectory(nint data)\r\n    {\r\n        return CoreFunctions.WritePointer(data, _systemDirectory.Pointer);\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.WriteContentDirectory(nint data)\r\n    {\r\n        return CoreFunctions.WritePointer(data, _assetsDirectory.Pointer);\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.WriteSaveDirectory(nint data)\r\n    {\r\n        return CoreFunctions.WritePointer(data, _saveDirectory.Pointer);\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.SetSupportNoGame(nint data)\r\n    {\r\n        SupportsNoGame = data != nint.Zero && Marshal.ReadByte(data) != ExternalCoreInteropConstants.NativeBooleanFalse;\r\n        return data != nint.Zero;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.CaptureInputDescriptors(nint data)\r\n    {\r\n        InputDescriptors = EnvironmentFunctions.CopyInputDescriptors(data, _inputDescriptorLimit);\r\n        return data != nint.Zero;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.CaptureControllerInfo(nint data)\r\n    {\r\n        ControllerPorts = EnvironmentFunctions.CopyControllerPorts(data);\r\n        return data != nint.Zero;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.CaptureMemoryMaps(nint data)\r\n    {\r\n        MemoryDescriptors = EnvironmentFunctions.CopyMemoryMap(data);\r\n        return data != nint.Zero;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.SetSupportAchievements(nint data)\r\n    {\r\n        SupportsAchievements = data != nint.Zero && Marshal.ReadByte(data) != ExternalCoreInteropConstants.NativeBooleanFalse;\r\n        return data != nint.Zero;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.ProvideVfs(nint data)\r\n    {\r\n        return _virtualFileSystem.Provide(data);\r\n    }\n\r\n    bool IEmulationCoreEnvironmentCommands.SetKeyboardCallback(nint data)\r\n    {\r\n        if (data == nint.Zero) return false;\r\n        KeyboardCallbackPointer = Marshal.ReadIntPtr(data);\r\n        return true;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.CaptureDiskControl(nint data)\r\n    {\r\n        _diskControl.Capture(data);\r\n        return true;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.CaptureExtendedDiskControl(nint data)\r\n    {\r\n        _diskControl.CaptureExtended(data);\r\n        return true;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.GetDiskControlVersion(nint data)\r\n    {\r\n        return CoreFunctions.WriteInteger(data, DiskControlConstants.InterfaceVersion);\r\n    }\r\n}\n",
+        "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "formatter": "GWGUI.Emulation.Philips.Emulators.Common.Interop.Functions.EnvironmentFunctions.CreateUnknownCommandDiagnostic(uint)",
+        "family": "Philips",
+        "cases": [
+          {
+            "value": 65584,
+            "expression": "ExternalCoreApiConstants.GetMidiInterface"
+          },
+          {
+            "value": 64,
+            "expression": "ExternalCoreApiConstants.SetFastForwardingOverride"
+          },
+          {
+            "value": 65,
+            "expression": "ExternalCoreApiConstants.SetContentInfoOverride"
+          },
+          {
+            "value": 78,
+            "expression": "ExternalCoreApiConstants.SetNetworkPacketInterface"
+          },
+          {
+            "value": 87,
+            "expression": "ExternalCoreApiConstants.SetSerializationQuirks"
+          }
+        ],
+        "diagnosticGetterAutoProperty": true,
+        "unknownSetReadonly": true,
+        "diagnosticOwner": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs"
+      },
+      {
+        "profile": [
+          {
+            "value": 2,
+            "symbol": "GWGUI.Emulation.Sharp.Emulators.Common.Interop.Constants.CoreOptionConstants.SupportedInterfaceVersion",
+            "constant": true,
+            "expression": "CoreOptionConstants.SupportedInterfaceVersion"
+          },
+          {
+            "value": 1,
+            "symbol": "GWGUI.Emulation.Sharp.Emulators.Common.Interop.Constants.ExternalCoreInteropConstants.MessageInterfaceVersion",
+            "constant": true,
+            "expression": "ExternalCoreInteropConstants.MessageInterfaceVersion"
+          },
+          {
+            "value": 46,
+            "symbol": "GWGUI.Emulation.Sharp.Emulators.Common.Interop.Constants.EnvironmentConstants.SupportedInputCapabilities",
+            "constant": true,
+            "expression": "EnvironmentConstants.SupportedInputCapabilities"
+          }
+        ],
+        "diagnosticOwnerSha256": "1C0FA67EA236A4EACE79C698D97DCF3A7EE2C7BB4EF9DF77EE1F747F324EEE76",
+        "sha256": "C335BBB5F8102F777E0E921D6B028A23120BBAA3D98A20E76B3804996E3CF8E6",
+        "method": "private bool OnEnvironment(uint command, nint data)\n    {\n        _environmentCommands.Add(command);\r\n        if (ExternalCoreEnvironmentFunctions.TryHandleStatelessCommand(command, data,\r\n                CoreOptionConstants.SupportedInterfaceVersion, ExternalCoreInteropConstants.MessageInterfaceVersion,\r\n                EnvironmentConstants.SupportedInputCapabilities, out var commonResult))\r\n            return commonResult;\n        if (ExternalCoreEnvironmentFunctions.TryHandleCallbackCommand(command, data, this, out var callbackResult))\n            return callbackResult;\n        switch (command)\n        {\n            case ExternalCoreApiConstants.GetMidiInterface:\n            case ExternalCoreApiConstants.SetFastForwardingOverride:\n            case ExternalCoreApiConstants.SetContentInfoOverride:\n            case ExternalCoreApiConstants.SetNetworkPacketInterface:\n            case ExternalCoreApiConstants.SetSerializationQuirks:\n                return false;\n            default:\n                if (ExternalCoreEnvironmentFunctions.TryHandleOptionCommand(command, data, _optionHost, out var optionResult))\r\n                    return optionResult;\r\n                if (_unknownEnvironmentCommands.Add(command))\n                    Diagnostics.Add(EnvironmentFunctions.CreateUnknownCommandDiagnostic(command));\n                return false;\n        }\n    }",
+        "source": "using GWGUI.Emulation.Sharp.Emulators.Common.Interop.Constants;\nusing GWGUI.Emulation.Sharp.Emulators.Common.Interop.Functions;\nusing System.IO;\nusing System.Diagnostics;\nusing System.Runtime.InteropServices;\nusing GWGUI.Emulation;\nusing GWGUI.Emulation.Services;\n\nnamespace GWGUI.Emulation.Sharp.Emulators.Common.Interop.Services;\ninternal sealed partial class ExternalHostCallbacks : IDisposable, IEmulationCoreEnvironmentCommands\n{\n    private bool OnEnvironment(uint command, nint data)\n    {\n        _environmentCommands.Add(command);\r\n        if (ExternalCoreEnvironmentFunctions.TryHandleStatelessCommand(command, data,\r\n                CoreOptionConstants.SupportedInterfaceVersion, ExternalCoreInteropConstants.MessageInterfaceVersion,\r\n                EnvironmentConstants.SupportedInputCapabilities, out var commonResult))\r\n            return commonResult;\n        if (ExternalCoreEnvironmentFunctions.TryHandleCallbackCommand(command, data, this, out var callbackResult))\n            return callbackResult;\n        switch (command)\n        {\n            case ExternalCoreApiConstants.GetMidiInterface:\n            case ExternalCoreApiConstants.SetFastForwardingOverride:\n            case ExternalCoreApiConstants.SetContentInfoOverride:\n            case ExternalCoreApiConstants.SetNetworkPacketInterface:\n            case ExternalCoreApiConstants.SetSerializationQuirks:\n                return false;\n            default:\n                if (ExternalCoreEnvironmentFunctions.TryHandleOptionCommand(command, data, _optionHost, out var optionResult))\r\n                    return optionResult;\r\n                if (_unknownEnvironmentCommands.Add(command))\n                    Diagnostics.Add(EnvironmentFunctions.CreateUnknownCommandDiagnostic(command));\n                return false;\n        }\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.WriteSystemDirectory(nint data)\r\n    {\r\n        return CoreFunctions.WritePointer(data, _systemDirectory.Pointer);\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.WriteContentDirectory(nint data)\r\n    {\r\n        return CoreFunctions.WritePointer(data, _contentDirectory.Pointer);\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.WriteSaveDirectory(nint data)\r\n    {\r\n        return CoreFunctions.WritePointer(data, _saveDirectory.Pointer);\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.SetSupportNoGame(nint data)\r\n    {\r\n        SupportsNoGame = data != nint.Zero && Marshal.ReadByte(data) != ExternalCoreInteropConstants.NativeBooleanFalse;\r\n        return data != nint.Zero;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.CaptureInputDescriptors(nint data)\r\n    {\r\n        InputDescriptors = EnvironmentFunctions.CopyInputDescriptors(data, _inputDescriptorLimit);\r\n        return data != nint.Zero;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.CaptureControllerInfo(nint data)\r\n    {\r\n        ControllerPorts = EnvironmentFunctions.CopyControllerPorts(data);\r\n        return data != nint.Zero;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.CaptureMemoryMaps(nint data)\r\n    {\r\n        MemoryDescriptors = EnvironmentFunctions.CopyMemoryMap(data);\r\n        return data != nint.Zero;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.SetSupportAchievements(nint data)\r\n    {\r\n        SupportsAchievements = data != nint.Zero && Marshal.ReadByte(data) != ExternalCoreInteropConstants.NativeBooleanFalse;\r\n        return data != nint.Zero;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.ProvideVfs(nint data)\r\n    {\r\n        return _virtualFileSystem.Provide(data);\r\n    }\n\r\n    bool IEmulationCoreEnvironmentCommands.SetKeyboardCallback(nint data)\r\n    {\r\n        if (data == nint.Zero)\r\n                            return false;\r\n        KeyboardCallbackPointer = Marshal.ReadIntPtr(data);\r\n        return true;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.CaptureDiskControl(nint data)\r\n    {\r\n        _diskControl.Capture(data);\r\n        return true;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.CaptureExtendedDiskControl(nint data)\r\n    {\r\n        _diskControl.CaptureExtended(data);\r\n        return true;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.GetDiskControlVersion(nint data)\r\n    {\r\n        return CoreFunctions.WriteInteger(data, DiskControlConstants.InterfaceVersion);\r\n    }\r\n}",
+        "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "formatter": "GWGUI.Emulation.Sharp.Emulators.Common.Interop.Functions.EnvironmentFunctions.CreateUnknownCommandDiagnostic(uint)",
+        "family": "Sharp",
+        "cases": [
+          {
+            "value": 65584,
+            "expression": "ExternalCoreApiConstants.GetMidiInterface"
+          },
+          {
+            "value": 64,
+            "expression": "ExternalCoreApiConstants.SetFastForwardingOverride"
+          },
+          {
+            "value": 65,
+            "expression": "ExternalCoreApiConstants.SetContentInfoOverride"
+          },
+          {
+            "value": 78,
+            "expression": "ExternalCoreApiConstants.SetNetworkPacketInterface"
+          },
+          {
+            "value": 87,
+            "expression": "ExternalCoreApiConstants.SetSerializationQuirks"
+          }
+        ],
+        "diagnosticGetterAutoProperty": true,
+        "unknownSetReadonly": true,
+        "diagnosticOwner": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs"
+      },
+      {
+        "profile": [
+          {
+            "value": 2,
+            "symbol": "GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Constants.CoreOptionConstants.SupportedInterfaceVersion",
+            "constant": true,
+            "expression": "CoreOptionConstants.SupportedInterfaceVersion"
+          },
+          {
+            "value": 1,
+            "symbol": "GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Constants.ExternalCoreInteropConstants.MessageInterfaceVersion",
+            "constant": true,
+            "expression": "ExternalCoreInteropConstants.MessageInterfaceVersion"
+          },
+          {
+            "value": 14,
+            "symbol": "GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Constants.EnvironmentConstants.SupportedInputCapabilities",
+            "constant": true,
+            "expression": "EnvironmentConstants.SupportedInputCapabilities"
+          }
+        ],
+        "diagnosticOwnerSha256": "D0E7682E32A8102EDEB76AA0AA43B4A51F72EEC36AE899BF1699612298F7DC5D",
+        "sha256": "57169EDB7351A658A42DF3DAC3211FB2C15EB489503AC03D818D1FAAABCE86DA",
+        "method": "private bool OnEnvironment(uint command, nint data)\n    {\n        _environmentCommands.Add(command);\r\n        if (ExternalCoreEnvironmentFunctions.TryHandleStatelessCommand(command, data,\r\n                CoreOptionConstants.SupportedInterfaceVersion, ExternalCoreInteropConstants.MessageInterfaceVersion,\r\n                EnvironmentConstants.SupportedInputCapabilities, out var commonResult))\r\n            return commonResult;\n        if (ExternalCoreEnvironmentFunctions.TryHandleCallbackCommand(command, data, this, out var callbackResult))\n            return callbackResult;\n        switch (command)\n        {\n            case ExternalCoreApiConstants.GetMidiInterface:\n            case ExternalCoreApiConstants.SetFastForwardingOverride:\n            case ExternalCoreApiConstants.SetContentInfoOverride:\n            case ExternalCoreApiConstants.SetNetworkPacketInterface:\n            case ExternalCoreApiConstants.SetSerializationQuirks:\n                return false;\n            default:\n                if (ExternalCoreEnvironmentFunctions.TryHandleOptionCommand(command, data, _optionHost, out var optionResult))\r\n                    return optionResult;\r\n                if (_unknownEnvironmentCommands.Add(command))\n                    Diagnostics.Add(EnvironmentFunctions.CreateUnknownCommandDiagnostic(command));\n                return false;\n        }\n    }",
+        "source": "using GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Functions;\nusing GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Constants;\nusing System.IO;\nusing System.Diagnostics;\nusing System.Runtime.InteropServices;\nusing GWGUI.Emulation;\nusing GWGUI.Emulation.Services;\n\nnamespace GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Services;\ninternal sealed partial class ExternalHostCallbacks : IDisposable, IEmulationCoreEnvironmentCommands\n{\n    private bool OnEnvironment(uint command, nint data)\n    {\n        _environmentCommands.Add(command);\r\n        if (ExternalCoreEnvironmentFunctions.TryHandleStatelessCommand(command, data,\r\n                CoreOptionConstants.SupportedInterfaceVersion, ExternalCoreInteropConstants.MessageInterfaceVersion,\r\n                EnvironmentConstants.SupportedInputCapabilities, out var commonResult))\r\n            return commonResult;\n        if (ExternalCoreEnvironmentFunctions.TryHandleCallbackCommand(command, data, this, out var callbackResult))\n            return callbackResult;\n        switch (command)\n        {\n            case ExternalCoreApiConstants.GetMidiInterface:\n            case ExternalCoreApiConstants.SetFastForwardingOverride:\n            case ExternalCoreApiConstants.SetContentInfoOverride:\n            case ExternalCoreApiConstants.SetNetworkPacketInterface:\n            case ExternalCoreApiConstants.SetSerializationQuirks:\n                return false;\n            default:\n                if (ExternalCoreEnvironmentFunctions.TryHandleOptionCommand(command, data, _optionHost, out var optionResult))\r\n                    return optionResult;\r\n                if (_unknownEnvironmentCommands.Add(command))\n                    Diagnostics.Add(EnvironmentFunctions.CreateUnknownCommandDiagnostic(command));\n                return false;\n        }\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.WriteSystemDirectory(nint data)\r\n    {\r\n        return CoreFunctions.WritePointer(data, _systemDirectory.Pointer);\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.WriteContentDirectory(nint data)\r\n    {\r\n        return CoreFunctions.WritePointer(data, _contentDirectory.Pointer);\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.WriteSaveDirectory(nint data)\r\n    {\r\n        return CoreFunctions.WritePointer(data, _saveDirectory.Pointer);\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.SetSupportNoGame(nint data)\r\n    {\r\n        SupportsNoGame = data != nint.Zero && Marshal.ReadByte(data) != ExternalCoreInteropConstants.NativeBooleanFalse;\r\n        return data != nint.Zero;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.CaptureInputDescriptors(nint data)\r\n    {\r\n        InputDescriptors = EnvironmentFunctions.CopyInputDescriptors(data, _inputDescriptorLimit);\r\n        return data != nint.Zero;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.CaptureControllerInfo(nint data)\r\n    {\r\n        ControllerPorts = EnvironmentFunctions.CopyControllerPorts(data);\r\n        return data != nint.Zero;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.CaptureMemoryMaps(nint data)\r\n    {\r\n        MemoryDescriptors = EnvironmentFunctions.CopyMemoryMap(data);\r\n        return data != nint.Zero;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.SetSupportAchievements(nint data)\r\n    {\r\n        SupportsAchievements = data != nint.Zero && Marshal.ReadByte(data) != ExternalCoreInteropConstants.NativeBooleanFalse;\r\n        return data != nint.Zero;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.ProvideVfs(nint data)\r\n    {\r\n        return _virtualFileSystem.Provide(data);\r\n    }\n\r\n    bool IEmulationCoreEnvironmentCommands.SetKeyboardCallback(nint data)\r\n    {\r\n        if (data == nint.Zero)\r\n                            return false;\r\n        KeyboardCallbackPointer = Marshal.ReadIntPtr(data);\r\n        return true;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.CaptureDiskControl(nint data)\r\n    {\r\n        _diskControl.Capture(data);\r\n        return true;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.CaptureExtendedDiskControl(nint data)\r\n    {\r\n        _diskControl.CaptureExtended(data);\r\n        return true;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.GetDiskControlVersion(nint data)\r\n    {\r\n        return CoreFunctions.WriteInteger(data, DiskControlConstants.InterfaceVersion);\r\n    }\r\n}",
+        "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "formatter": "GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Functions.EnvironmentFunctions.CreateUnknownCommandDiagnostic(uint)",
+        "family": "Sinclair",
+        "cases": [
+          {
+            "value": 65584,
+            "expression": "ExternalCoreApiConstants.GetMidiInterface"
+          },
+          {
+            "value": 64,
+            "expression": "ExternalCoreApiConstants.SetFastForwardingOverride"
+          },
+          {
+            "value": 65,
+            "expression": "ExternalCoreApiConstants.SetContentInfoOverride"
+          },
+          {
+            "value": 78,
+            "expression": "ExternalCoreApiConstants.SetNetworkPacketInterface"
+          },
+          {
+            "value": 87,
+            "expression": "ExternalCoreApiConstants.SetSerializationQuirks"
+          }
+        ],
+        "diagnosticGetterAutoProperty": true,
+        "unknownSetReadonly": true,
+        "diagnosticOwner": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs"
+      },
+      {
+        "profile": [
+          {
+            "value": 2,
+            "symbol": "GWGUI.Emulation.Snk.Emulators.Common.Interop.Constants.CoreOptionConstants.SupportedInterfaceVersion",
+            "constant": true,
+            "expression": "CoreOptionConstants.SupportedInterfaceVersion"
+          },
+          {
+            "value": 1,
+            "symbol": "GWGUI.Emulation.Snk.Emulators.Common.Interop.Constants.ExternalCoreInteropConstants.MessageInterfaceVersion",
+            "constant": true,
+            "expression": "ExternalCoreInteropConstants.MessageInterfaceVersion"
+          },
+          {
+            "value": null,
+            "symbol": "GWGUI.Emulation.Snk.Emulators.Common.Interop.Services.ExternalHostCallbacks._inputCapabilities",
+            "constant": false,
+            "expression": "_inputCapabilities"
+          }
+        ],
+        "diagnosticOwnerSha256": "403ACF5E1F9039FCE26E380B2CA8938BEBDDA448695AB77275DE5ECF8A63A1E3",
+        "sha256": "3CC997EF89AFBB18773453D41EE2139EB792A8BA6649779A94F7C9801C1446E7",
+        "method": "private bool OnEnvironment(uint command, nint data)\n    {\n        _environmentCommands.Add(command);\r\n        if (ExternalCoreEnvironmentFunctions.TryHandleStatelessCommand(command, data,\r\n                CoreOptionConstants.SupportedInterfaceVersion, ExternalCoreInteropConstants.MessageInterfaceVersion,\r\n                _inputCapabilities, out var commonResult))\r\n            return commonResult;\n        if (ExternalCoreEnvironmentFunctions.TryHandleCallbackCommand(command, data, this, out var callbackResult))\n            return callbackResult;\n        switch (command)\n        {\n            case EnvironmentConstants.SetAudioBufferStatusCallback:\n                return CaptureAudioBufferStatus(data);\n            case EnvironmentConstants.SetMinimumAudioLatency:\n                return SetMinimumAudioLatency(data);\n            case ExternalCoreApiConstants.GetMidiInterface:\n            case ExternalCoreApiConstants.SetFastForwardingOverride:\n            case ExternalCoreApiConstants.SetContentInfoOverride:\n            case ExternalCoreApiConstants.SetNetworkPacketInterface:\n            case ExternalCoreApiConstants.SetSerializationQuirks:\n                return false;\n            default:\n                if (ExternalCoreEnvironmentFunctions.TryHandleOptionCommand(command, data, _optionHost, out var optionResult))\r\n                    return optionResult;\r\n                if (_unknownEnvironmentCommands.Add(command))\n                    Diagnostics.Add(EnvironmentFunctions.CreateUnknownCommandDiagnostic(command));\n                return false;\n        }\n    }",
+        "source": "using GWGUI.Emulation.Snk.Emulators.Common.Interop.Functions;\nusing GWGUI.Emulation.Snk.Emulators.Common.Interop.Constants;\nusing System.IO;\nusing System.Diagnostics;\nusing System.Runtime.InteropServices;\nusing GWGUI.Emulation;\nusing GWGUI.Emulation.Services;\n\nnamespace GWGUI.Emulation.Snk.Emulators.Common.Interop.Services;\ninternal sealed partial class ExternalHostCallbacks : IDisposable, IEmulationCoreEnvironmentCommands\n{\n    private bool OnEnvironment(uint command, nint data)\n    {\n        _environmentCommands.Add(command);\r\n        if (ExternalCoreEnvironmentFunctions.TryHandleStatelessCommand(command, data,\r\n                CoreOptionConstants.SupportedInterfaceVersion, ExternalCoreInteropConstants.MessageInterfaceVersion,\r\n                _inputCapabilities, out var commonResult))\r\n            return commonResult;\n        if (ExternalCoreEnvironmentFunctions.TryHandleCallbackCommand(command, data, this, out var callbackResult))\n            return callbackResult;\n        switch (command)\n        {\n            case EnvironmentConstants.SetAudioBufferStatusCallback:\n                return CaptureAudioBufferStatus(data);\n            case EnvironmentConstants.SetMinimumAudioLatency:\n                return SetMinimumAudioLatency(data);\n            case ExternalCoreApiConstants.GetMidiInterface:\n            case ExternalCoreApiConstants.SetFastForwardingOverride:\n            case ExternalCoreApiConstants.SetContentInfoOverride:\n            case ExternalCoreApiConstants.SetNetworkPacketInterface:\n            case ExternalCoreApiConstants.SetSerializationQuirks:\n                return false;\n            default:\n                if (ExternalCoreEnvironmentFunctions.TryHandleOptionCommand(command, data, _optionHost, out var optionResult))\r\n                    return optionResult;\r\n                if (_unknownEnvironmentCommands.Add(command))\n                    Diagnostics.Add(EnvironmentFunctions.CreateUnknownCommandDiagnostic(command));\n                return false;\n        }\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.WriteSystemDirectory(nint data)\r\n    {\r\n        return CoreFunctions.WritePointer(data, _systemDirectory.Pointer);\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.WriteContentDirectory(nint data)\r\n    {\r\n        return CoreFunctions.WritePointer(data, _contentDirectory.Pointer);\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.WriteSaveDirectory(nint data)\r\n    {\r\n        return CoreFunctions.WritePointer(data, _saveDirectory.Pointer);\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.SetSupportNoGame(nint data)\r\n    {\r\n        SupportsNoGame = data != nint.Zero && Marshal.ReadByte(data) != ExternalCoreInteropConstants.NativeBooleanFalse;\r\n        return data != nint.Zero;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.CaptureInputDescriptors(nint data)\r\n    {\r\n        InputDescriptors = EnvironmentFunctions.CopyInputDescriptors(data, _inputDescriptorLimit);\r\n        return data != nint.Zero;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.CaptureControllerInfo(nint data)\r\n    {\r\n        ControllerPorts = EnvironmentFunctions.CopyControllerPorts(data);\r\n        return data != nint.Zero;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.CaptureMemoryMaps(nint data)\r\n    {\r\n        MemoryDescriptors = EnvironmentFunctions.CopyMemoryMap(data);\r\n        return data != nint.Zero;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.SetSupportAchievements(nint data)\r\n    {\r\n        SupportsAchievements = data != nint.Zero && Marshal.ReadByte(data) != ExternalCoreInteropConstants.NativeBooleanFalse;\r\n        return data != nint.Zero;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.ProvideVfs(nint data)\r\n    {\r\n        return _virtualFileSystem.Provide(data);\r\n    }\n\r\n    bool IEmulationCoreEnvironmentCommands.SetKeyboardCallback(nint data)\r\n    {\r\n        return false;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.CaptureDiskControl(nint data)\r\n    {\r\n        _diskControl.Capture(data);\r\n        return true;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.CaptureExtendedDiskControl(nint data)\r\n    {\r\n        _diskControl.CaptureExtended(data);\r\n        return true;\r\n    }\r\n\r\n    bool IEmulationCoreEnvironmentCommands.GetDiskControlVersion(nint data)\r\n    {\r\n        return CoreFunctions.WriteInteger(data, DiskControlConstants.InterfaceVersion);\r\n    }\r\n}",
+        "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+        "formatter": "GWGUI.Emulation.Snk.Emulators.Common.Interop.Functions.EnvironmentFunctions.CreateUnknownCommandDiagnostic(uint)",
+        "family": "Snk",
+        "cases": [
+          {
+            "value": 62,
+            "expression": "EnvironmentConstants.SetAudioBufferStatusCallback"
+          },
+          {
+            "value": 63,
+            "expression": "EnvironmentConstants.SetMinimumAudioLatency"
+          },
+          {
+            "value": 65584,
+            "expression": "ExternalCoreApiConstants.GetMidiInterface"
+          },
+          {
+            "value": 64,
+            "expression": "ExternalCoreApiConstants.SetFastForwardingOverride"
+          },
+          {
+            "value": 65,
+            "expression": "ExternalCoreApiConstants.SetContentInfoOverride"
+          },
+          {
+            "value": 78,
+            "expression": "ExternalCoreApiConstants.SetNetworkPacketInterface"
+          },
+          {
+            "value": 87,
+            "expression": "ExternalCoreApiConstants.SetSerializationQuirks"
+          }
+        ],
+        "diagnosticGetterAutoProperty": true,
+        "unknownSetReadonly": true,
+        "diagnosticOwner": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs"
+      }
+    ],
+    "origin": "ac7292d86^:src/GWGUI.Emulation.Atari/Services/AtariExternalHostCallbacks.cs",
+    "state": "Original Atari fallback reused by12 profile-specific OnEnvironment adapters; inverse expansion/bindings and refused numeric values verified; SDK/all23 compile;144 targeted tests pass; grouped product build pending; other project candidates open",
+    "sdk": {
+      "beforeSha256": "F451838198B54FB9E9ACB11AF807FF9D6D57268B4AD645954B6B4AE07648A478",
+      "path": "src/GWGUI.Emulation/Functions/ExternalCoreEnvironmentFunctions.cs",
+      "before": "using System.Text;\r\nusing System.Globalization;\r\nusing System.Runtime.InteropServices;\r\nusing GWGUI.Emulation.Interop;\r\nusing GWGUI.Emulation.Constants;\r\n\r\nnamespace GWGUI.Emulation.Functions;\r\ninternal static class ExternalCoreEnvironmentFunctions\r\n{\r\n    internal static void ApplySystemAvInfo(ExternalCoreApi.SystemAvInfo info,\r\n        Action<ExternalCoreApi.Geometry> applyGeometry, Action<double> setFramesPerSecond, Action<int> setSampleRate)\r\n    {\r\n        applyGeometry(info.Geometry);\r\n        if (double.IsFinite(info.Timing.FramesPerSecond) && info.Timing.FramesPerSecond > 0)\r\n            setFramesPerSecond(info.Timing.FramesPerSecond);\r\n        if (double.IsFinite(info.Timing.SampleRate) && info.Timing.SampleRate is > 0 and <= int.MaxValue)\r\n            setSampleRate(checked((int)Math.Round(info.Timing.SampleRate)));\r\n    }\r\n\r\n    internal static bool ApplyStructure<T>(nint data, Action<T> apply) where T : struct\r\n    {\r\n        if (data == 0) return false;\r\n        apply(Marshal.PtrToStructure<T>(data));\r\n        return true;\r\n    }\r\n\r\n    internal static string? CopyDiagnostic(nint textPointer, Action<string> publish, bool allowWhitespace = false)\r\n    {\r\n        var text = textPointer == nint.Zero ? null : Marshal.PtrToStringUTF8(textPointer);\r\n        if (allowWhitespace ? string.IsNullOrEmpty(text) : string.IsNullOrWhiteSpace(text)) return null;\r\n        publish(text);\r\n        return text;\r\n    }\r\n\r\n    internal static bool TryHandleCallbackCommand(uint command, nint data,\r\n        IEmulationCoreEnvironmentCommands callbacks, out bool result)\r\n    {\r\n        switch (command)\r\n        {\r\n            case ExternalCoreApiConstants.SetRotation:\r\n                result = callbacks.SetRotation(data);\r\n                break;\r\n            case ExternalCoreApiConstants.SetPerformanceLevel:\r\n                result = callbacks.CapturePerformanceLevel(data);\r\n                break;\r\n            case ExternalCoreApiConstants.SetPixelFormat:\r\n                result = callbacks.SetPixelFormat(data);\r\n                break;\r\n            case ExternalCoreApiConstants.SetSystemAvInfo:\r\n                result = callbacks.SetSystemAvInfo(data);\r\n                break;\r\n            case ExternalCoreApiConstants.SetGeometry:\r\n                result = callbacks.SetGeometry(data);\r\n                break;\r\n            case ExternalCoreApiConstants.SetMessage:\r\n                result = callbacks.ReadMessage(data);\r\n                break;\r\n            case ExternalCoreApiConstants.SetMessageExtended:\r\n                result = callbacks.ReadExtendedMessage(data);\r\n                break;\r\n            case ExternalCoreApiConstants.GetLogInterface:\r\n                result = callbacks.SetLogInterface(data);\r\n                break;\r\n            case ExternalCoreApiConstants.GetLedInterface:\r\n                result = callbacks.SetLedInterface(data);\r\n                break;\r\n            case ExternalCoreApiConstants.GetRumbleInterface:\r\n                result = callbacks.SetRumbleInterface(data);\r\n                break;\r\n            case ExternalCoreApiConstants.GetSensorInterface:\r\n                result = callbacks.SetSensorInterface(data);\r\n                break;\r\n            case ExternalCoreApiConstants.GetSystemDirectory:\r\n                result = callbacks.WriteSystemDirectory(data);\r\n                break;\r\n            case ExternalCoreApiConstants.GetContentDirectory:\r\n                result = callbacks.WriteContentDirectory(data);\r\n                break;\r\n            case ExternalCoreApiConstants.GetSaveDirectory:\r\n                result = callbacks.WriteSaveDirectory(data);\r\n                break;\r\n            case ExternalCoreApiConstants.SetSupportNoGame:\r\n                result = callbacks.SetSupportNoGame(data);\r\n                break;\r\n            case ExternalCoreApiConstants.SetInputDescriptors:\r\n                result = callbacks.CaptureInputDescriptors(data);\r\n                break;\r\n            case ExternalCoreApiConstants.SetControllerInfo:\r\n                result = callbacks.CaptureControllerInfo(data);\r\n                break;\r\n            case ExternalCoreApiConstants.SetMemoryMaps:\r\n                result = callbacks.CaptureMemoryMaps(data);\r\n                break;\r\n            case ExternalCoreApiConstants.SetSupportAchievements:\r\n                result = callbacks.SetSupportAchievements(data);\r\n                break;\r\n            case ExternalCoreApiConstants.GetVfsInterface:\r\n                result = callbacks.ProvideVfs(data);\r\n                break;\r\n            case ExternalCoreApiConstants.SetKeyboardCallback:\r\n                result = callbacks.SetKeyboardCallback(data);\r\n                break;\r\n            case ExternalCoreApiConstants.SetDiskControl:\r\n                result = data != nint.Zero && callbacks.CaptureDiskControl(data);\r\n                break;\r\n            case ExternalCoreApiConstants.SetDiskControlExtended:\r\n                result = data != nint.Zero && callbacks.CaptureExtendedDiskControl(data);\r\n                break;\r\n            case ExternalCoreApiConstants.GetDiskControlVersion:\r\n                result = callbacks.GetDiskControlVersion(data);\r\n                break;\r\n            default:\r\n                result = false;\r\n                return false;\r\n        }\r\n        return true;\r\n    }\r\n\r\n    internal static void InstallCallbacks(ExternalCoreExports exports, IEmulationCoreCallbacks callbacks)\n    {\n        exports.SetEnvironment(callbacks.Environment);\n        exports.SetVideo(callbacks.Video);\n        exports.SetAudioSample(callbacks.AudioSample);\n        exports.SetAudioBatch(callbacks.AudioBatch);\n        exports.SetInputPoll(callbacks.InputPoll);\n        exports.SetInputState(callbacks.InputState);\n    }\n\n\r\n    internal static bool TryHandleStatelessCommand(uint command, nint data, uint coreOptionsVersion,\r\n        uint messageInterfaceVersion, ulong inputCapabilities, out bool result)\r\n    {\r\n        switch (command)\r\n        {\r\n            case ExternalCoreApiConstants.GetOverscan:\r\n            case ExternalCoreApiConstants.GetFastForwarding:\r\n                result = WriteBoolean(data, false);\r\n                break;\r\n            case ExternalCoreApiConstants.GetCanDuplicateFrames:\r\n            case ExternalCoreApiConstants.GetInputBitmasks:\r\n                result = WriteBoolean(data, true);\r\n                break;\r\n            case ExternalCoreApiConstants.GetCoreOptionsVersion:\r\n                result = WriteInteger(data, coreOptionsVersion);\r\n                break;\r\n            case ExternalCoreApiConstants.GetMessageInterfaceVersion:\r\n                result = WriteInteger(data, messageInterfaceVersion);\r\n                break;\r\n            case ExternalCoreApiConstants.GetPerformanceInterface:\r\n                result = false;\r\n                break;\r\n            case ExternalCoreApiConstants.GetInputDeviceCapabilities:\r\n                result = WriteUnsignedLong(data, inputCapabilities);\r\n                break;\r\n            case ExternalCoreApiConstants.GetLanguage:\r\n                result = WriteInteger(data, CurrentLanguage());\r\n                break;\r\n            default:\r\n                result = false;\r\n                return false;\r\n        }\r\n        return true;\r\n    }\r\n\r\n\n    internal static bool TryHandleOptionCommand(uint command, nint data,\n        IEmulationCoreOptionCommands options, out bool result)\n    {\n        switch (command)\n        {\n            case ExternalCoreApiConstants.GetVariable:\n                result = options.ReturnValue(data);\n                break;\n            case ExternalCoreApiConstants.SetVariables:\n                options.RegisterLegacyVariables(data);\n                result = data != nint.Zero;\n                break;\n            case ExternalCoreApiConstants.GetVariableUpdate:\n                result = options.GetAndClearUpdated(data);\n                break;\n            case ExternalCoreApiConstants.SetCoreOptions:\n                options.RegisterVersionOne(data);\n                result = data != nint.Zero;\n                break;\n            case ExternalCoreApiConstants.SetCoreOptionsInternational:\n                options.RegisterVersionOneInternational(data);\n                result = data != nint.Zero;\n                break;\n            case ExternalCoreApiConstants.SetCoreOptionsV2:\n                options.RegisterVersionTwo(data);\n                result = data != nint.Zero;\n                break;\n            case ExternalCoreApiConstants.SetCoreOptionsV2International:\n                options.RegisterVersionTwoInternational(data);\n                result = data != nint.Zero;\n                break;\n            case ExternalCoreApiConstants.SetCoreOptionsDisplay:\n                result = options.ApplyVisibility(data);\n                break;\n            case ExternalCoreApiConstants.SetCoreOptionsUpdateDisplayCallback:\n                result = options.CaptureDisplayUpdate(data);\n                break;\n            case ExternalCoreApiConstants.SetVariable:\n                result = options.SetNativeValue(data);\n                break;\n            default:\n                result = false;\n                return false;\n        }\n        return true;\n    }\n\n    internal static bool WritePointer(nint destination, nint value)\r\n    {\r\n        if (destination == nint.Zero) return false;\r\n        Marshal.WriteIntPtr(destination, value);\r\n        return true;\r\n    }\r\n\r\n    internal static bool WriteBoolean(nint destination, bool value)\r\n    {\r\n        if (destination == nint.Zero) return false;\r\n        Marshal.WriteByte(destination, value ? (byte)1 : (byte)0);\r\n        return true;\r\n    }\r\n\r\n    internal static bool WriteInteger(nint destination, int value)\r\n    {\r\n        if (destination == nint.Zero) return false;\r\n        Marshal.WriteInt32(destination, value);\r\n        return true;\r\n    }\r\n\r\n    internal static bool WriteInteger(nint destination, uint value) => WriteInteger(destination, checked((int)value));\r\n\r\n    internal static bool WriteUnsignedLong(nint destination, ulong value)\r\n    {\r\n        if (destination == nint.Zero) return false;\r\n        Marshal.WriteInt64(destination, unchecked((long)value));\r\n        return true;\r\n    }\r\n\r\n    internal static bool SetPixelFormat(nint data, ref EmulationPixelFormat pixelFormat)\r\n    {\r\n        if (data == nint.Zero) return false;\r\n        switch (Marshal.ReadInt32(data))\r\n        {\r\n            case 1:\r\n                pixelFormat = EmulationPixelFormat.Xrgb8888;\r\n                return true;\r\n            case 2:\r\n                pixelFormat = EmulationPixelFormat.Rgb565;\r\n                return true;\r\n            case 0:\r\n                pixelFormat = EmulationPixelFormat.Rgb1555;\r\n                return true;\r\n            default:\r\n                return false;\r\n        }\r\n    }\r\n\r\n    internal static T? OptionalDelegate<T>(nint pointer) where T : Delegate\r\n        => OptionalDelegate<T, nint>(pointer, static value => value);\r\n\r\n    // Garder deux lectures distinctes pour une source qui peut changer entre les lectures.\r\n    internal static T? OptionalDelegate<T, TSource>(TSource source, Func<TSource, nint> readPointer) where T : Delegate\r\n        => readPointer(source) == 0 ? null : Marshal.GetDelegateForFunctionPointer<T>(readPointer(source));\r\n\r\n    internal static T RequiredDelegate<T>(nint pointer, Func<Exception> createError) where T : Delegate\r\n    {\r\n        if (pointer == 0) throw createError();\r\n        return Marshal.GetDelegateForFunctionPointer<T>(pointer);\r\n    }\r\n\r\n    internal static bool SetLogInterface(nint data, ExternalCoreApi.LogCallback log)\r\n        => SetLogInterface<ExternalCoreApi.LogCallback>(data, log);\r\n\r\n    internal static bool SetLogInterface<TLog>(nint data, TLog log) where TLog : Delegate\r\n        => InstallInterface(data, () => new ExternalCoreApi.LogInterface\r\n        {\r\n            Log = Marshal.GetFunctionPointerForDelegate(log)\r\n        });\r\n\r\n    internal static bool SetLedInterface(nint data, ExternalCoreApi.SetLedState setState)\r\n        => InstallInterface(data, () => new ExternalCoreApi.LedInterface\r\n        {\r\n            SetLedState = Marshal.GetFunctionPointerForDelegate(setState)\r\n        });\r\n\r\n    internal static bool SetRumbleInterface(nint data, ExternalCoreApi.SetRumbleState setState)\r\n        => InstallInterface(data, () => new ExternalCoreApi.RumbleInterface\r\n        {\r\n            SetState = Marshal.GetFunctionPointerForDelegate(setState)\r\n        });\r\n\r\n    internal static bool SetSensorInterface(nint data, ExternalCoreApi.SetSensorState setState, ExternalCoreApi.GetSensorInput getInput)\r\n        => InstallInterface(data, () => new ExternalCoreApi.SensorInterface\r\n        {\r\n            SetState = Marshal.GetFunctionPointerForDelegate(setState),\r\n            GetInput = Marshal.GetFunctionPointerForDelegate(getInput)\r\n        });\r\n\r\n    private static bool InstallInterface<T>(nint data, Func<T> create) where T : struct\r\n    {\r\n        if (data == nint.Zero) return false;\r\n        Marshal.StructureToPtr(create(), data, false);\r\n        return true;\r\n    }\r\n\r\n    internal static IReadOnlyList<T> CopyInputDescriptors<T>(nint data, int maximumCount, Func<uint, uint, uint, uint, string, T> create)\r\n    {\r\n        if (data == nint.Zero)\r\n            return[];\r\n        var result = new List<T>();\r\n        var nativeSize = Marshal.SizeOf<ExternalCoreApi.InputDescriptor>();\r\n        for (var index = 0; index < maximumCount; index++)\r\n        {\r\n            var native = Marshal.PtrToStructure<ExternalCoreApi.InputDescriptor>(data + index * nativeSize);\r\n            if (native.Description == nint.Zero)\r\n                return result;\r\n            result.Add(create(native.Port, native.Device, native.Index, native.Id, Marshal.PtrToStringUTF8(native.Description) ?? string.Empty));\r\n        }\r\n\r\n        return result;\r\n    }\r\n\r\n    internal static IReadOnlyList<TPort> CopyControllerPorts<TPort, TDevice>(nint data, int maximumPorts, int maximumDevices, Func<string, uint, TDevice> createDevice, Func<IReadOnlyList<TDevice>, TPort> createPort)\r\n    {\r\n        TryCopyControllerPorts(data, maximumPorts, maximumDevices, createDevice, createPort,\r\n            rejectOverflow: false, skipEmptyNames: false, out var ports);\r\n        return ports;\r\n    }\r\n\r\n    internal static bool TryCopyControllerPorts<TPort, TDevice>(nint data, int maximumPorts, int maximumDevices,\r\n        Func<string, uint, TDevice> createDevice, Func<IReadOnlyList<TDevice>, TPort> createPort,\r\n        bool rejectOverflow, bool skipEmptyNames, out IReadOnlyList<TPort> result)\r\n    {\r\n        result = [];\r\n        if (data == nint.Zero)\r\n            return true;\r\n        var ports = new List<TPort>();\r\n        result = ports;\r\n        var portSize = Marshal.SizeOf<ExternalCoreApi.ControllerInfo>();\r\n        var deviceSize = Marshal.SizeOf<ExternalCoreApi.ControllerDescription>();\r\n        for (var portIndex = 0; portIndex < maximumPorts; portIndex++)\r\n        {\r\n            var port = Marshal.PtrToStructure<ExternalCoreApi.ControllerInfo>(data + portIndex * portSize);\r\n            if (port.Types == nint.Zero || port.Count == 0)\r\n                return true;\r\n            if (rejectOverflow && port.Count > maximumDevices)\r\n                return false;\r\n            var devices = new List<TDevice>();\r\n            var count = Math.Min(port.Count, (uint)maximumDevices);\r\n            for (var deviceIndex = 0; deviceIndex < count; deviceIndex++)\r\n            {\r\n                var device = Marshal.PtrToStructure<ExternalCoreApi.ControllerDescription>(port.Types + checked((int)deviceIndex) * deviceSize);\r\n                var name = Marshal.PtrToStringUTF8(device.Description) ?? string.Empty;\r\n                if (!skipEmptyNames || !string.IsNullOrWhiteSpace(name))\r\n                    devices.Add(createDevice(name, device.Id));\r\n            }\r\n\r\n            ports.Add(createPort(devices));\r\n        }\r\n\r\n        return true;\r\n    }\r\n\r\n    internal static IReadOnlyList<T> CopyMemoryMap<T>(nint data, int maximumCount, Func<ulong, nint, nuint, nuint, nuint, nuint, nuint, string?, T> create)\r\n    {\r\n        if (data == nint.Zero)\r\n            return[];\r\n        var map = Marshal.PtrToStructure<ExternalCoreApi.MemoryMap>(data);\r\n        if (map.Descriptors == nint.Zero || map.Count == 0)\r\n            return[];\r\n        var result = new List<T>();\r\n        var count = Math.Min(map.Count, (uint)maximumCount);\r\n        var size = Marshal.SizeOf<ExternalCoreApi.MemoryDescriptor>();\r\n        for (var index = 0; index < count; index++)\r\n        {\r\n            var item = Marshal.PtrToStructure<ExternalCoreApi.MemoryDescriptor>(map.Descriptors + checked((int)index) * size);\r\n            result.Add(create(item.Flags, item.Pointer, item.Offset, item.Start, item.Select, item.Disconnect, item.Length, Marshal.PtrToStringUTF8(item.AddressSpace)));\r\n        }\r\n\r\n        return result;\r\n    }\r\n\r\n    internal static uint CurrentLanguage() => (uint)(CultureInfo.CurrentUICulture.TwoLetterISOLanguageName switch\r\n    {\r\n        \"ja\" => Language.Japanese,\r\n        \"fr\" => Language.French,\r\n        \"es\" => Language.Spanish,\r\n        \"de\" => Language.German,\r\n        \"it\" => Language.Italian,\r\n        \"nl\" => Language.Dutch,\r\n        \"pt\" when string.Equals(CultureInfo.CurrentUICulture.Name, \"pt-BR\", StringComparison.OrdinalIgnoreCase) => Language.PortugueseBrazil,\r\n        \"pt\" => Language.PortuguesePortugal,\r\n        \"ru\" => Language.Russian,\r\n        \"ko\" => Language.Korean,\r\n        \"zh\" when CultureInfo.CurrentUICulture.Name.Contains(\"Hant\", StringComparison.OrdinalIgnoreCase) => Language.ChineseTraditional,\r\n        \"zh\" => Language.ChineseSimplified,\r\n        \"pl\" => Language.Polish,\r\n        \"vi\" => Language.Vietnamese,\r\n        \"ar\" => Language.Arabic,\r\n        \"el\" => Language.Greek,\r\n        \"tr\" => Language.Turkish,\r\n        \"he\" => Language.Hebrew,\r\n        \"fi\" => Language.Finnish,\r\n        \"id\" => Language.Indonesian,\r\n        \"sv\" => Language.Swedish,\r\n        \"uk\" => Language.Ukrainian,\r\n        \"cs\" => Language.Czech,\r\n        \"hu\" => Language.Hungarian,\r\n        \"nb\" => Language.Norwegian,\r\n        \"th\" => Language.Thai,\r\n        _ => Language.English\r\n    });\r\n    private enum Language : uint\r\n    {\r\n        English = 0,\r\n        Japanese = 1,\r\n        French = 2,\r\n        Spanish = 3,\r\n        German = 4,\r\n        Italian = 5,\r\n        Dutch = 6,\r\n        PortugueseBrazil = 7,\r\n        PortuguesePortugal = 8,\r\n        Russian = 9,\r\n        Korean = 10,\r\n        ChineseTraditional = 11,\r\n        ChineseSimplified = 12,\r\n        Polish = 14,\r\n        Vietnamese = 15,\r\n        Arabic = 16,\r\n        Greek = 17,\r\n        Turkish = 18,\r\n        Hebrew = 21,\r\n        Finnish = 23,\r\n        Indonesian = 24,\r\n        Swedish = 25,\r\n        Ukrainian = 26,\r\n        Czech = 27,\r\n        Hungarian = 31,\r\n        Norwegian = 34,\r\n        Thai = 36\r\n    }\r\n\r\n    internal static string CopyNativeLogTemplate(nint format, string argumentMarker, string conversionCharacters)\r\n    {\r\n        var source = Marshal.PtrToStringUTF8(format)?.Trim();\r\n        if (string.IsNullOrEmpty(source))\r\n            return string.Empty;\r\n        var result = new StringBuilder(source.Length);\r\n        for (var index = 0; index < source.Length; index++)\r\n        {\r\n            var character = source[index];\r\n            if (character != '%')\r\n            {\r\n                result.Append(character);\r\n                continue;\r\n            }\r\n\r\n            if (index + 1 < source.Length && source[index + 1] == '%')\r\n            {\r\n                result.Append('%');\r\n                index++;\r\n                continue;\r\n            }\r\n\r\n            result.Append(argumentMarker);\r\n            while (index + 1 < source.Length)\r\n            {\r\n                index++;\r\n                if (conversionCharacters.Contains(source[index], StringComparison.Ordinal))\r\n                    break;\r\n            }\r\n        }\r\n\r\n        return result.ToString();\r\n    }\r\n\r\n\n    internal static void SelectDisk(int index, Func<uint> getImageIndex, Func<bool> getEjectState,\n        Func<bool, bool> setEjectState, Func<uint, bool> setImageIndex,\n        Func<Exception> ejectError, Func<Exception> selectError, Func<Exception> insertError)\n    {\n        var previousIndex = getImageIndex();\n        var wasEjected = getEjectState();\n        if (!wasEjected && !setEjectState(true)) throw ejectError();\n        try\n        {\n            if (!setImageIndex((uint)index)) throw selectError();\n            if (!setEjectState(false)) throw insertError();\n        }\n        catch\n        {\n            if (previousIndex != uint.MaxValue) setImageIndex(previousIndex);\n            if (!wasEjected) setEjectState(false);\n            throw;\n        }\n    }\n\n    internal static string? ReadDiskText<T>(T? getter, int index, int bufferSize)\r\n        where T : Delegate\r\n    {\r\n        if (getter is null || index < 0)\r\n            return null;\r\n        var buffer = Marshal.AllocHGlobal(bufferSize);\r\n        try\r\n        {\r\n            var success = getter switch\r\n            {\r\n                ExternalCoreApi.GetImagePath path => path((uint)index, buffer, checked((nuint)bufferSize)),\r\n                ExternalCoreApi.GetImageLabel label => label((uint)index, buffer, checked((nuint)bufferSize)),\r\n                _ => false\r\n            };\r\n            return success ? Marshal.PtrToStringUTF8(buffer) : null;\r\n        }\r\n        finally\r\n        {\r\n            Marshal.FreeHGlobal(buffer);\r\n        }\r\n    }\r\n}\r\n",
+      "afterSha256": "8370BBBCA413D53810712F66A7BA3BB001500ED83ED66DD40744AA15230EE61D"
+    },
+    "originalSource": "using System.Diagnostics;\r\nusing System.Runtime.InteropServices;\r\nusing GWGUI.Emulation;\r\nusing GWGUI.Emulation.Services;\r\n\r\nnamespace GWGUI.Emulation.Atari.Services;\r\n\r\ninternal sealed class AtariExternalHostCallbacks : IDisposable\r\n{\r\n    private readonly AtariCoreOptionHost _optionHost;\r\n    private readonly AtariVideoBufferSet _videoBuffers = new();\r\n    private readonly AtariInputFrameStore _input = new();\r\n    private readonly AtariKeyboardState _keyboard = new();\r\n    private readonly long _videoStartTimestamp = Stopwatch.GetTimestamp();\r\n    private readonly AtariAudioBuffer _audio = new();\r\n    private readonly AtariEmulator _emulator;\r\n    private readonly Dictionary<int, bool> _ledStates = [];\r\n    private readonly HashSet<uint> _unknownEnvironmentCommands = [];\r\n    private readonly HashSet<uint> _environmentCommands = [];\r\n    private readonly ExternalCoreUtf8String _systemDirectory;\r\n    private readonly ExternalCoreUtf8String _contentDirectory;\r\n    private readonly ExternalCoreUtf8String _saveDirectory;\r\n    private readonly ExternalCoreUtf8String _assetsDirectory;\r\n    private long _videoSequence;\r\n    private long _audioSequence;\r\n    private EmulationPixelFormat _pixelFormat = EmulationPixelFormat.Xrgb8888;\r\n    private bool _usesNativeLedInterface;\r\n    private bool _disposed;\r\n    private ExternalCoreApi.KeyboardEvent? _keyboardEvent;\r\n    private IReadOnlyList<AtariControllerBinding>? _controllerBindings;\r\n    private readonly AtariDiskControl _diskControl = new();\r\n    private readonly ExternalCoreVirtualFileSystem _virtualFileSystem;\r\n    private readonly HashSet<string> _opticalActivityPaths = new(StringComparer.OrdinalIgnoreCase);\r\n\r\n    internal AtariExternalHostCallbacks(AtariEmulator emulator, string systemDirectory, string contentDirectory, string saveDirectory,\r\n        string assetsDirectory,\r\n        IReadOnlyDictionary<string, string> configuredOptions)\r\n    {\r\n        _emulator = emulator;\r\n        Directory.CreateDirectory(systemDirectory);\r\n        Directory.CreateDirectory(contentDirectory);\r\n        Directory.CreateDirectory(saveDirectory);\r\n        Directory.CreateDirectory(assetsDirectory);\r\n        _systemDirectory = new ExternalCoreUtf8String(Path.GetFullPath(systemDirectory));\r\n        _contentDirectory = new ExternalCoreUtf8String(Path.GetFullPath(contentDirectory));\r\n        _saveDirectory = new ExternalCoreUtf8String(Path.GetFullPath(saveDirectory));\r\n        _assetsDirectory = new ExternalCoreUtf8String(Path.GetFullPath(assetsDirectory));\r\n        _optionHost = new AtariCoreOptionHost(configuredOptions);\r\n        _virtualFileSystem = new ExternalCoreVirtualFileSystem(OnFileRead);\r\n        Environment = OnEnvironment;\r\n        Video = OnVideo;\r\n        AudioSample = OnAudioSample;\r\n        AudioBatch = OnAudioBatch;\r\n        InputPoll = OnInputPoll;\r\n        InputState = OnInputState;\r\n        SetLedState = OnSetLedState;\r\n        SetRumbleState = OnSetRumbleState;\r\n        SetSensorState = OnSetSensorState;\r\n        GetSensorInput = OnGetSensorInput;\r\n        Log = OnLog;\r\n    }\r\n\r\n    internal ExternalCoreApi.EnvironmentCallback Environment { get; }\r\n    internal ExternalCoreApi.VideoCallback Video { get; }\r\n    internal ExternalCoreApi.AudioSampleCallback AudioSample { get; }\r\n    internal ExternalCoreApi.AudioBatchCallback AudioBatch { get; }\r\n    internal ExternalCoreApi.InputPollCallback InputPoll { get; }\r\n    internal ExternalCoreApi.InputStateCallback InputState { get; }\r\n    internal ExternalCoreApi.SetLedState SetLedState { get; }\r\n    internal ExternalCoreApi.SetRumbleState SetRumbleState { get; }\r\n    internal ExternalCoreApi.SetSensorState SetSensorState { get; }\r\n    internal ExternalCoreApi.GetSensorInput GetSensorInput { get; }\r\n    internal ExternalCoreApi.LogCallback Log { get; }\r\n    internal EmulationInputSnapshot Input\r\n    {\r\n        set => _input.Update(AtariControllerFunctions.ApplyDeadZones(value, _controllerBindings));\r\n    }\r\n    internal VideoFrame? LatestVideoFrame { get; private set; }\r\n    internal AudioChunk? LatestAudioChunk { get; private set; }\r\n    internal IReadOnlyList<AtariCoreOption> Options => _optionHost.Catalog;\r\n    internal IReadOnlyList<AtariCoreOptionCategory> OptionCategories => _optionHost.Categories;\r\n    internal IReadOnlyDictionary<string, string> OptionDocumentValues => _optionHost.DocumentValues;\r\n    internal List<string> Diagnostics { get; } = [];\r\n    internal IReadOnlyDictionary<int, bool> LedStates => _ledStates;\r\n    internal IReadOnlyList<AtariInputDescriptor> InputDescriptors { get; private set; } = [];\r\n    internal IReadOnlyList<AtariControllerPort> ControllerPorts { get; private set; } = [];\r\n    internal IReadOnlyList<AtariMemoryDescriptor> MemoryDescriptors { get; private set; } = [];\r\n    internal nint KeyboardCallbackPointer { get; private set; }\r\n    internal uint Rotation { get; private set; } = AtariEnvironmentConstants.NoRotation;\r\n    internal bool SupportsAchievements { get; private set; }\r\n    internal uint PerformanceLevel { get; private set; }\r\n    internal ExternalCoreApi.Geometry Geometry { get; private set; }\r\n    internal ExternalCoreApi.SystemAvInfo SystemAvInfo { get; private set; }\r\n    internal List<AtariEnvironmentMessage> Messages { get; } = [];\r\n    internal List<AtariEnvironmentExtendedMessage> ExtendedMessages { get; } = [];\r\n    internal IReadOnlySet<uint> EnvironmentCommands => _environmentCommands;\r\n    internal bool SupportsNoGame { get; private set; }\r\n    internal double FramesPerSecond { get; private set; }\r\n    internal int SampleRate { get; private set; }\r\n    internal int BufferedAudioFrames => _audio.BufferedFrames;\r\n    internal long AudioOverrunCount => _audio.OverrunCount;\r\n    internal long AudioUnderrunCount => _audio.UnderrunCount;\r\n    internal float AspectRatio { get; private set; }\r\n    internal AtariDiskControl DiskControl => _diskControl;\r\n\r\n    internal bool TryDequeueAudio(out AudioChunk? chunk) => _audio.TryDequeue(out chunk);\r\n\r\n    internal void ApplySystemAvInfo(ExternalCoreApi.SystemAvInfo info)\r\n    {\r\n        SystemAvInfo = info;\r\n        Geometry = info.Geometry;\r\n        FramesPerSecond = info.Timing.FramesPerSecond;\r\n        SampleRate = checked((int)Math.Round(info.Timing.SampleRate));\r\n        AspectRatio = info.Geometry.AspectRatio;\r\n    }\r\n\r\n    internal void SetOption(string key, string value) => _optionHost.SetValue(key, value);\r\n    internal void ConfigureInput(AtariInputConfiguration input) => _controllerBindings = input.Controllers;\r\n    internal void ValidateConfiguredOptions() => _optionHost.ValidateConfiguredValues();\r\n    internal void TrackOpticalMedia(IEnumerable<string> paths)\r\n    {\r\n        _opticalActivityPaths.Clear();\r\n        foreach (var path in paths) _opticalActivityPaths.Add(Path.GetFullPath(path));\r\n    }\r\n\r\n    internal void BeginFrame()\r\n    {\r\n        if (_emulator == AtariEmulator.VirtualJaguar) _ledStates[0] = false;\r\n    }\r\n\r\n    private bool OnEnvironment(uint command, nint data)\r\n    {\r\n        _environmentCommands.Add(command);\r\n        switch (command)\r\n        {\r\n            case ExternalCoreApiConstants.SetRotation:\r\n                return SetRotation(data);\r\n            case ExternalCoreApiConstants.GetOverscan:\r\n                return AtariCoreFunctions.WriteBoolean(data, false);\r\n            case ExternalCoreApiConstants.SetPerformanceLevel:\r\n                return CapturePerformanceLevel(data);\r\n            case ExternalCoreApiConstants.GetSystemDirectory:\r\n                return AtariCoreFunctions.WritePointer(data, _systemDirectory.Pointer);\r\n            case ExternalCoreApiConstants.GetContentDirectory:\r\n                return AtariCoreFunctions.WritePointer(data, _assetsDirectory.Pointer);\r\n            case ExternalCoreApiConstants.GetSaveDirectory:\r\n                return AtariCoreFunctions.WritePointer(data, _saveDirectory.Pointer);\r\n            case ExternalCoreApiConstants.SetPixelFormat:\r\n                return SetPixelFormat(data);\r\n            case ExternalCoreApiConstants.GetVariable:\r\n                return _optionHost.ReturnValue(data);\r\n            case ExternalCoreApiConstants.SetVariables:\r\n                _optionHost.RegisterLegacyVariables(data);\r\n                return data != nint.Zero;\r\n            case ExternalCoreApiConstants.GetVariableUpdate:\r\n                return _optionHost.GetAndClearUpdated(data);\r\n            case ExternalCoreApiConstants.SetSupportNoGame:\r\n                SupportsNoGame = data != nint.Zero && Marshal.ReadByte(data) != AtariConstants.NativeBooleanFalse;\r\n                return data != nint.Zero;\r\n            case ExternalCoreApiConstants.GetCanDuplicateFrames:\r\n            case ExternalCoreApiConstants.GetInputBitmasks:\r\n                return AtariCoreFunctions.WriteBoolean(data, true);\r\n            case ExternalCoreApiConstants.GetCoreOptionsVersion:\r\n                return AtariCoreFunctions.WriteInteger(data, AtariCoreOptionConstants.SupportedInterfaceVersion);\r\n            case ExternalCoreApiConstants.SetCoreOptions:\r\n                _optionHost.RegisterVersionOne(data);\r\n                return data != nint.Zero;\r\n            case ExternalCoreApiConstants.SetCoreOptionsInternational:\r\n                _optionHost.RegisterVersionOneInternational(data);\r\n                return data != nint.Zero;\r\n            case ExternalCoreApiConstants.GetMessageInterfaceVersion:\r\n                return AtariCoreFunctions.WriteInteger(data, AtariConstants.MessageInterfaceVersion);\r\n            case ExternalCoreApiConstants.SetSystemAvInfo:\r\n                return SetSystemAvInfo(data);\r\n            case ExternalCoreApiConstants.SetGeometry:\r\n                return SetGeometry(data);\r\n            case ExternalCoreApiConstants.SetMessage:\r\n                return ReadMessage(data);\r\n            case ExternalCoreApiConstants.SetMessageExtended:\r\n                return ReadExtendedMessage(data);\r\n            case ExternalCoreApiConstants.GetLogInterface:\r\n                return SetLogInterface(data);\r\n            case ExternalCoreApiConstants.GetPerformanceInterface:\r\n                return false;\r\n            case ExternalCoreApiConstants.GetLedInterface:\r\n                return SetLedInterface(data);\r\n            case ExternalCoreApiConstants.GetRumbleInterface:\r\n                return SetRumbleInterface(data);\r\n            case ExternalCoreApiConstants.GetSensorInterface:\r\n                return SetSensorInterface(data);\r\n            case ExternalCoreApiConstants.GetInputDeviceCapabilities:\r\n                return AtariCoreFunctions.WriteUnsignedLong(data,\r\n                    AtariEnvironmentConstants.JoypadCapability | AtariEnvironmentConstants.MouseCapability |\r\n                    AtariEnvironmentConstants.KeyboardCapability | AtariEnvironmentConstants.AnalogCapability);\r\n            case ExternalCoreApiConstants.GetLanguage:\r\n                return AtariCoreFunctions.WriteInteger(data, AtariEnvironmentFunctions.CurrentLanguage());\r\n            case ExternalCoreApiConstants.GetFastForwarding:\r\n                return AtariCoreFunctions.WriteBoolean(data, false);\r\n            case ExternalCoreApiConstants.SetInputDescriptors:\r\n                InputDescriptors = AtariEnvironmentFunctions.CopyInputDescriptors(data);\r\n                return data != nint.Zero;\r\n            case ExternalCoreApiConstants.SetKeyboardCallback:\r\n                return CaptureKeyboardCallback(data);\r\n            case ExternalCoreApiConstants.SetControllerInfo:\r\n                ControllerPorts = AtariEnvironmentFunctions.CopyControllerPorts(data);\r\n                return data != nint.Zero;\r\n            case ExternalCoreApiConstants.SetMemoryMaps:\r\n                MemoryDescriptors = AtariEnvironmentFunctions.CopyMemoryMap(data);\r\n                return data != nint.Zero;\r\n            case ExternalCoreApiConstants.SetSupportAchievements:\r\n                SupportsAchievements = data != nint.Zero && Marshal.ReadByte(data) != AtariConstants.NativeBooleanFalse;\r\n                return data != nint.Zero;\r\n            case ExternalCoreApiConstants.SetDiskControl:\r\n                if (data == nint.Zero) return false;\r\n                _diskControl.Capture(data);\r\n                return true;\r\n            case ExternalCoreApiConstants.SetDiskControlExtended:\r\n                if (data == nint.Zero) return false;\r\n                _diskControl.CaptureExtended(data);\r\n                return true;\r\n            case ExternalCoreApiConstants.GetDiskControlVersion:\r\n                return AtariCoreFunctions.WriteInteger(data, AtariDiskControlConstants.InterfaceVersion);\r\n            case ExternalCoreApiConstants.SetCoreOptionsV2:\r\n                _optionHost.RegisterVersionTwo(data);\r\n                return data != nint.Zero;\r\n            case ExternalCoreApiConstants.SetCoreOptionsV2International:\r\n                _optionHost.RegisterVersionTwoInternational(data);\r\n                return data != nint.Zero;\r\n            case ExternalCoreApiConstants.SetCoreOptionsDisplay:\r\n                return _optionHost.ApplyVisibility(data);\r\n            case ExternalCoreApiConstants.SetCoreOptionsUpdateDisplayCallback:\r\n                return _optionHost.CaptureDisplayUpdate(data);\r\n            case ExternalCoreApiConstants.SetVariable:\r\n                return _optionHost.SetNativeValue(data);\r\n            case ExternalCoreApiConstants.GetVfsInterface:\r\n                return _virtualFileSystem.Provide(data);\r\n            case ExternalCoreApiConstants.GetMidiInterface:\r\n            case ExternalCoreApiConstants.SetFastForwardingOverride:\r\n            case ExternalCoreApiConstants.SetContentInfoOverride:\r\n            case ExternalCoreApiConstants.SetNetworkPacketInterface:\r\n            case ExternalCoreApiConstants.SetSerializationQuirks:\r\n                return false;\r\n            default:\r\n                if (_unknownEnvironmentCommands.Add(command))\r\n                    Diagnostics.Add(AtariEnvironmentFunctions.CreateUnknownCommandDiagnostic(command));\r\n                return false;\r\n        }\r\n    }\r\n\r\n    private bool SetRotation(nint data)\r\n    {\r\n        if (data == nint.Zero) return false;\r\n        var rotation = unchecked((uint)Marshal.ReadInt32(data));\r\n        if (rotation is < AtariEnvironmentConstants.FirstRotation or > AtariEnvironmentConstants.LastRotation)\r\n            return false;\r\n        Rotation = rotation;\r\n        return true;\r\n    }\r\n\r\n    private bool CapturePerformanceLevel(nint data)\r\n    {\r\n        if (data == nint.Zero) return false;\r\n        PerformanceLevel = unchecked((uint)Marshal.ReadInt32(data));\r\n        return true;\r\n    }\r\n\r\n    private bool CaptureKeyboardCallback(nint data)\r\n    {\r\n        if (data == nint.Zero) return false;\r\n        KeyboardCallbackPointer = Marshal.PtrToStructure<ExternalCoreApi.KeyboardCallback>(data).Callback;\r\n        _keyboardEvent = KeyboardCallbackPointer == nint.Zero\r\n            ? null\r\n            : Marshal.GetDelegateForFunctionPointer<ExternalCoreApi.KeyboardEvent>(KeyboardCallbackPointer);\r\n        return true;\r\n    }\r\n\r\n    private bool SetPixelFormat(nint data)\r\n    {\r\n        if (data == nint.Zero) return false;\r\n        switch (Marshal.ReadInt32(data))\r\n        {\r\n            case AtariConstants.PixelFormatXrgb8888:\r\n                _pixelFormat = EmulationPixelFormat.Xrgb8888;\r\n                return true;\r\n            case AtariConstants.PixelFormatRgb565:\r\n                _pixelFormat = EmulationPixelFormat.Rgb565;\r\n                return true;\r\n            case AtariConstants.PixelFormat0Rgb1555:\r\n                _pixelFormat = EmulationPixelFormat.Rgb1555;\r\n                return true;\r\n            default:\r\n                return false;\r\n        }\r\n    }\r\n\r\n    private bool SetSystemAvInfo(nint data)\r\n    {\r\n        if (data == nint.Zero) return false;\r\n        var info = Marshal.PtrToStructure<ExternalCoreApi.SystemAvInfo>(data);\r\n        ApplySystemAvInfo(info);\r\n        return true;\r\n    }\r\n\r\n    private bool SetGeometry(nint data)\r\n    {\r\n        if (data == nint.Zero) return false;\r\n        Geometry = Marshal.PtrToStructure<ExternalCoreApi.Geometry>(data);\r\n        AspectRatio = Geometry.AspectRatio;\r\n        return true;\r\n    }\r\n\r\n    private bool ReadMessage(nint data)\r\n    {\r\n        if (data == nint.Zero) return false;\r\n        var message = Marshal.PtrToStructure<ExternalCoreApi.Message>(data);\r\n        var text = CopyDiagnostic(message.Text);\r\n        if (text is not null) Messages.Add(new(text, message.Frames));\r\n        return true;\r\n    }\r\n\r\n    private bool ReadExtendedMessage(nint data)\r\n    {\r\n        if (data == nint.Zero) return false;\r\n        var message = Marshal.PtrToStructure<ExternalCoreApi.MessageExtended>(data);\r\n        var text = CopyDiagnostic(message.Text);\r\n        if (text is not null) ExtendedMessages.Add(new(text, message.DurationMilliseconds, message.Priority,\r\n            message.Level, message.Target, message.Type, message.Progress));\r\n        return true;\r\n    }\r\n\r\n    private string? CopyDiagnostic(nint textPointer)\r\n    {\r\n        var text = Marshal.PtrToStringUTF8(textPointer);\r\n        if (!string.IsNullOrWhiteSpace(text)) Diagnostics.Add(text);\r\n        return string.IsNullOrWhiteSpace(text) ? null : text;\r\n    }\r\n\r\n    private bool SetLogInterface(nint data)\r\n    {\r\n        if (data == nint.Zero) return false;\r\n        Marshal.StructureToPtr(new ExternalCoreApi.LogInterface\r\n        {\r\n            Log = Marshal.GetFunctionPointerForDelegate(Log)\r\n        }, data, false);\r\n        return true;\r\n    }\r\n\r\n    private bool SetLedInterface(nint data)\r\n    {\r\n        if (data == nint.Zero) return false;\r\n        Marshal.StructureToPtr(new ExternalCoreApi.LedInterface\r\n        {\r\n            SetLedState = Marshal.GetFunctionPointerForDelegate(SetLedState)\r\n        }, data, false);\r\n        _usesNativeLedInterface = true;\r\n        return true;\r\n    }\r\n\r\n    private bool SetRumbleInterface(nint data)\r\n    {\r\n        if (data == nint.Zero) return false;\r\n        Marshal.StructureToPtr(new ExternalCoreApi.RumbleInterface\r\n        {\r\n            SetState = Marshal.GetFunctionPointerForDelegate(SetRumbleState)\r\n        }, data, false);\r\n        return true;\r\n    }\r\n\r\n    private bool SetSensorInterface(nint data)\r\n    {\r\n        if (data == nint.Zero) return false;\r\n        Marshal.StructureToPtr(new ExternalCoreApi.SensorInterface\r\n        {\r\n            SetState = Marshal.GetFunctionPointerForDelegate(SetSensorState),\r\n            GetInput = Marshal.GetFunctionPointerForDelegate(GetSensorInput)\r\n        }, data, false);\r\n        return true;\r\n    }\r\n\r\n    private void OnVideo(nint data, uint width, uint height, nuint pitch)\r\n    {\r\n        if (data == nint.Zero)\r\n        {\r\n            if (LatestVideoFrame is { } previous)\r\n                LatestVideoFrame = previous with\r\n                {\r\n                    Sequence = ++_videoSequence,\r\n                    Timestamp = AtariVideoFunctions.Timestamp(_videoStartTimestamp)\r\n                };\r\n            return;\r\n        }\r\n        if (width == AtariConstants.EmptyFrameDimension ||\r\n            height == AtariConstants.EmptyFrameDimension || pitch == AtariConstants.EmptyNativeSize) return;\r\n        var length = AtariVideoFunctions.FrameLength(height, pitch);\r\n        if (length > EmulationHostProtocolConstants.VideoSlotCapacity) return;\r\n        var pixels = _videoBuffers.Rent(length);\r\n        AtariVideoFunctions.CopyRows(data, pixels, checked((int)height), checked((int)pitch));\r\n        if (_emulator == AtariEmulator.Hatari && !_usesNativeLedInterface)\r\n            EmulationMediaActivityFunctions.CaptureHatariOverlay(pixels.AsSpan(AtariConstants.FirstBufferIndex, length),\r\n                checked((int)width), checked((int)height), checked((int)pitch), _pixelFormat, _ledStates);\r\n        else if (_emulator == AtariEmulator.Atari800)\r\n            EmulationMediaActivityFunctions.CaptureAtari800Overlay(\r\n                pixels.AsSpan(AtariConstants.FirstBufferIndex, length), checked((int)width), checked((int)height),\r\n                checked((int)pitch), _pixelFormat, _ledStates);\r\n        LatestVideoFrame = new VideoFrame(pixels.AsMemory(AtariConstants.FirstBufferIndex, length),\r\n            checked((int)width), checked((int)height), checked((int)pitch), _pixelFormat, AspectRatio,\r\n            ++_videoSequence, AtariVideoFunctions.Timestamp(_videoStartTimestamp));\r\n    }\r\n\r\n    private void OnAudioSample(short left, short right)\r\n    {\r\n        AddAudio(AtariAudioFunctions.SingleFrame(left, right), AtariAudioConstants.SingleFrameCount);\r\n    }\r\n\r\n    private nuint OnAudioBatch(nint data, nuint frames)\r\n    {\r\n        if (data == nint.Zero || frames == AtariConstants.EmptyNativeSize ||\r\n            frames > AtariAudioConstants.MaximumFramesPerBatch) return AtariConstants.EmptyNativeSize;\r\n        var frameCount = checked((int)frames);\r\n        var samples = AtariAudioFunctions.CopyBatch(data, frameCount);\r\n        AddAudio(samples, frameCount);\r\n        return frames;\r\n    }\r\n\r\n    private void AddAudio(ReadOnlyMemory<short> samples, int frameCount)\r\n    {\r\n        var chunk = new AudioChunk(samples, SampleRate, frameCount, ++_audioSequence, TimeSpan.Zero);\r\n        LatestAudioChunk = chunk;\r\n        _audio.Enqueue(chunk);\r\n    }\r\n\r\n    private void OnInputPoll()\r\n    {\r\n        _input.Poll();\r\n        _keyboard.Publish(_input.Polled.Keys, _keyboardEvent);\r\n    }\r\n    private short OnInputState(uint port, uint device, uint index, uint id) => _input.State(port, device, index, id);\r\n    private void OnSetLedState(int led, int state) => _ledStates[led] = state != AtariConstants.InactiveState;\r\n    private void OnFileRead(string path, long length)\r\n    {\r\n        if (length > 0 && _emulator == AtariEmulator.VirtualJaguar && _opticalActivityPaths.Contains(path))\r\n            _ledStates[0] = true;\r\n    }\r\n    private bool OnSetRumbleState(uint port, uint effect, ushort strength) => false;\r\n    private bool OnSetSensorState(uint port, uint action, uint rate) => false;\r\n    private float OnGetSensorInput(uint port, uint id) => AtariEnvironmentConstants.NoSensorInput;\r\n\r\n    private void OnLog(int level, nint format)\r\n    {\r\n        var text = AtariEnvironmentFunctions.CopyNativeLogTemplate(format);\r\n        if (!string.IsNullOrEmpty(text)) Diagnostics.Add(text);\r\n    }\r\n\r\n    public void Dispose()\r\n    {\r\n        if (_disposed) return;\r\n        _disposed = true;\r\n        _optionHost.Dispose();\r\n        _videoBuffers.Dispose();\r\n        _virtualFileSystem.Dispose();\r\n        _systemDirectory.Dispose();\r\n        _contentDirectory.Dispose();\r\n        _saveDirectory.Dispose();\r\n        _assetsDirectory.Dispose();\r\n    }\r\n}",
+    "findings": [
+      "Same five rejected commands and option/unknown fallback in12 native adapters",
+      "Stateless/callback routes and exact resolved module version/capability arguments stay local and unchanged",
+      "SNK audio buffer callback62/minimum latency63 remain before the shared fallback",
+      "Retain every module diagnostic formatter, including localized SNK resource lookup",
+      "Unknown HashSet.Add must occur before formatter and diagnostics publication; rejected and recognized-false option commands must not log",
+      "Diagnostic owner collections are unchanged auto-properties/read-only sets; helper borrows them and must not dispose them"
+    ],
+    "verification": {
+      "expandedSwitch": "switch (command)\r\n        {\r\n            case ExternalCoreApiConstants.GetMidiInterface:\r\n            case ExternalCoreApiConstants.SetFastForwardingOverride:\r\n            case ExternalCoreApiConstants.SetContentInfoOverride:\r\n            case ExternalCoreApiConstants.SetNetworkPacketInterface:\r\n            case ExternalCoreApiConstants.SetSerializationQuirks:\r\n                return false;\r\n            default:\r\n                if (ExternalCoreEnvironmentFunctions.TryHandleOptionCommand(command, data, _optionHost, out var optionResult))\r\n                    return optionResult;\r\n                if (_unknownEnvironmentCommands.Add(command))\r\n                    Diagnostics.Add(EnvironmentFunctions.CreateUnknownCommandDiagnostic(command));\r\n                return false;\r\n        }",
+      "borrowedCollectionsNotDisposed": true,
+      "sdkOtherMethodsUnchanged": true,
+      "semanticProjects": [
+        "GWGUI.Emulation",
+        "GWGUI.Emulation.Acorn",
+        "GWGUI.Emulation.Amstrad",
+        "GWGUI.Emulation.Apple",
+        "GWGUI.Emulation.Atari",
+        "GWGUI.Emulation.Bandai",
+        "GWGUI.Emulation.Coleco",
+        "GWGUI.Emulation.Commodore",
+        "GWGUI.Emulation.Epoch",
+        "GWGUI.Emulation.Fairchild",
+        "GWGUI.Emulation.Mattel",
+        "GWGUI.Emulation.Microsoft",
+        "GWGUI.Emulation.Nec",
+        "GWGUI.Emulation.Nintendo",
+        "GWGUI.Emulation.Panasonic",
+        "GWGUI.Emulation.Philips",
+        "GWGUI.Emulation.Sega",
+        "GWGUI.Emulation.Sharp",
+        "GWGUI.Emulation.Sinclair",
+        "GWGUI.Emulation.Snk",
+        "GWGUI.Emulation.Sony",
+        "GWGUI.Emulation.Thomson",
+        "GWGUI.Emulation.Watara",
+        "GWGUI.Emulation.Wenquxing"
+      ],
+      "semanticErrors": 0,
+      "sources": [
+        {
+          "expansionMatchesOriginalFile": true,
+          "profileAndCallbackOrderUnchanged": true,
+          "fallbackSymbol": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.HandleRemainingCommand(uint, nint, GWGUI.Emulation.Interfaces.IEmulationCoreOptionCommands, System.Collections.Generic.ISet<uint>, System.Collections.Generic.ICollection<string>, System.Func<uint, string>)",
+          "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "snkAudioBranchesUnchanged": false,
+          "formatterSymbol": "GWGUI.Emulation.Acorn.Emulators.Common.Interop.Functions.EnvironmentFunctions.CreateUnknownCommandDiagnostic(uint)",
+          "sha256": "B01A64E35E107DC9B2E48F4250E306FBFF8333961895C06EF12FEC8D09D0CBDF",
+          "diagnosticOwnerUnchanged": true
+        },
+        {
+          "expansionMatchesOriginalFile": true,
+          "profileAndCallbackOrderUnchanged": true,
+          "fallbackSymbol": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.HandleRemainingCommand(uint, nint, GWGUI.Emulation.Interfaces.IEmulationCoreOptionCommands, System.Collections.Generic.ISet<uint>, System.Collections.Generic.ICollection<string>, System.Func<uint, string>)",
+          "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "snkAudioBranchesUnchanged": false,
+          "formatterSymbol": "GWGUI.Emulation.Apple.Emulators.Common.Interop.Functions.EnvironmentFunctions.CreateUnknownCommandDiagnostic(uint)",
+          "sha256": "152D1EFAEA25971278A1D8981516CF513A96D29CC48442201461F9B9DEDBE9BD",
+          "diagnosticOwnerUnchanged": true
+        },
+        {
+          "expansionMatchesOriginalFile": true,
+          "profileAndCallbackOrderUnchanged": true,
+          "fallbackSymbol": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.HandleRemainingCommand(uint, nint, GWGUI.Emulation.Interfaces.IEmulationCoreOptionCommands, System.Collections.Generic.ISet<uint>, System.Collections.Generic.ICollection<string>, System.Func<uint, string>)",
+          "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "snkAudioBranchesUnchanged": false,
+          "formatterSymbol": "GWGUI.Emulation.Atari.Emulators.Common.Interop.Functions.EnvironmentFunctions.CreateUnknownCommandDiagnostic(uint)",
+          "sha256": "C8848887628CCD0A9FF4252080C5794B680EBDA38DFABA8A113E19D5930E215E",
+          "diagnosticOwnerUnchanged": true
+        },
+        {
+          "expansionMatchesOriginalFile": true,
+          "profileAndCallbackOrderUnchanged": true,
+          "fallbackSymbol": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.HandleRemainingCommand(uint, nint, GWGUI.Emulation.Interfaces.IEmulationCoreOptionCommands, System.Collections.Generic.ISet<uint>, System.Collections.Generic.ICollection<string>, System.Func<uint, string>)",
+          "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "snkAudioBranchesUnchanged": false,
+          "formatterSymbol": "GWGUI.Emulation.Bandai.Emulators.Common.Interop.Functions.EnvironmentFunctions.CreateUnknownCommandDiagnostic(uint)",
+          "sha256": "19E57AA16F0ED85AB07E0AC69113ABA23EB3A2E3553E3543087F9AC00D3A7D61",
+          "diagnosticOwnerUnchanged": true
+        },
+        {
+          "expansionMatchesOriginalFile": true,
+          "profileAndCallbackOrderUnchanged": true,
+          "fallbackSymbol": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.HandleRemainingCommand(uint, nint, GWGUI.Emulation.Interfaces.IEmulationCoreOptionCommands, System.Collections.Generic.ISet<uint>, System.Collections.Generic.ICollection<string>, System.Func<uint, string>)",
+          "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "snkAudioBranchesUnchanged": false,
+          "formatterSymbol": "GWGUI.Emulation.Coleco.Emulators.Common.Interop.Functions.EnvironmentFunctions.CreateUnknownCommandDiagnostic(uint)",
+          "sha256": "ACCEDFBA377555E91B7E2C60C685981202A6AFCE971FBF85C4593E65A56C4D00",
+          "diagnosticOwnerUnchanged": true
+        },
+        {
+          "expansionMatchesOriginalFile": true,
+          "profileAndCallbackOrderUnchanged": true,
+          "fallbackSymbol": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.HandleRemainingCommand(uint, nint, GWGUI.Emulation.Interfaces.IEmulationCoreOptionCommands, System.Collections.Generic.ISet<uint>, System.Collections.Generic.ICollection<string>, System.Func<uint, string>)",
+          "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "snkAudioBranchesUnchanged": false,
+          "formatterSymbol": "GWGUI.Emulation.Epoch.Emulators.Common.Interop.Functions.EnvironmentFunctions.CreateUnknownCommandDiagnostic(uint)",
+          "sha256": "5459CE6B61D7D96A3E454E35331A69B0853DEDC549D6163D8A5DBECBD8A4A946",
+          "diagnosticOwnerUnchanged": true
+        },
+        {
+          "expansionMatchesOriginalFile": true,
+          "profileAndCallbackOrderUnchanged": true,
+          "fallbackSymbol": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.HandleRemainingCommand(uint, nint, GWGUI.Emulation.Interfaces.IEmulationCoreOptionCommands, System.Collections.Generic.ISet<uint>, System.Collections.Generic.ICollection<string>, System.Func<uint, string>)",
+          "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "snkAudioBranchesUnchanged": false,
+          "formatterSymbol": "GWGUI.Emulation.Fairchild.Emulators.Common.Interop.Functions.EnvironmentFunctions.CreateUnknownCommandDiagnostic(uint)",
+          "sha256": "299627259D17C602FC770E1D0C12FCC9B07E626AA4B31486EE3F58EE2AF63718",
+          "diagnosticOwnerUnchanged": true
+        },
+        {
+          "expansionMatchesOriginalFile": true,
+          "profileAndCallbackOrderUnchanged": true,
+          "fallbackSymbol": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.HandleRemainingCommand(uint, nint, GWGUI.Emulation.Interfaces.IEmulationCoreOptionCommands, System.Collections.Generic.ISet<uint>, System.Collections.Generic.ICollection<string>, System.Func<uint, string>)",
+          "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "snkAudioBranchesUnchanged": false,
+          "formatterSymbol": "GWGUI.Emulation.Mattel.Emulators.Common.Interop.Functions.EnvironmentFunctions.CreateUnknownCommandDiagnostic(uint)",
+          "sha256": "C5FC870FD52B87B139270494DEAAEC420F30D835BAFD459C2B25669829DC79B8",
+          "diagnosticOwnerUnchanged": true
+        },
+        {
+          "expansionMatchesOriginalFile": true,
+          "profileAndCallbackOrderUnchanged": true,
+          "fallbackSymbol": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.HandleRemainingCommand(uint, nint, GWGUI.Emulation.Interfaces.IEmulationCoreOptionCommands, System.Collections.Generic.ISet<uint>, System.Collections.Generic.ICollection<string>, System.Func<uint, string>)",
+          "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "snkAudioBranchesUnchanged": false,
+          "formatterSymbol": "GWGUI.Emulation.Philips.Emulators.Common.Interop.Functions.EnvironmentFunctions.CreateUnknownCommandDiagnostic(uint)",
+          "sha256": "403DE4347C7D082E1B35FCF99448B5723CABC7011B5F92D44DB2B8FAD919089D",
+          "diagnosticOwnerUnchanged": true
+        },
+        {
+          "expansionMatchesOriginalFile": true,
+          "profileAndCallbackOrderUnchanged": true,
+          "fallbackSymbol": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.HandleRemainingCommand(uint, nint, GWGUI.Emulation.Interfaces.IEmulationCoreOptionCommands, System.Collections.Generic.ISet<uint>, System.Collections.Generic.ICollection<string>, System.Func<uint, string>)",
+          "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "snkAudioBranchesUnchanged": false,
+          "formatterSymbol": "GWGUI.Emulation.Sharp.Emulators.Common.Interop.Functions.EnvironmentFunctions.CreateUnknownCommandDiagnostic(uint)",
+          "sha256": "6A0C0665CE812B5E21740497E3037B1C2140FAECBFAFC091A09BADC1BCF88DF5",
+          "diagnosticOwnerUnchanged": true
+        },
+        {
+          "expansionMatchesOriginalFile": true,
+          "profileAndCallbackOrderUnchanged": true,
+          "fallbackSymbol": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.HandleRemainingCommand(uint, nint, GWGUI.Emulation.Interfaces.IEmulationCoreOptionCommands, System.Collections.Generic.ISet<uint>, System.Collections.Generic.ICollection<string>, System.Func<uint, string>)",
+          "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "snkAudioBranchesUnchanged": false,
+          "formatterSymbol": "GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Functions.EnvironmentFunctions.CreateUnknownCommandDiagnostic(uint)",
+          "sha256": "19AD3F0A0CE8637A8AAAE0B492E41B89D8243D0BD9CE51024B8B34D09A29D107",
+          "diagnosticOwnerUnchanged": true
+        },
+        {
+          "expansionMatchesOriginalFile": true,
+          "profileAndCallbackOrderUnchanged": true,
+          "fallbackSymbol": "GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.HandleRemainingCommand(uint, nint, GWGUI.Emulation.Interfaces.IEmulationCoreOptionCommands, System.Collections.Generic.ISet<uint>, System.Collections.Generic.ICollection<string>, System.Func<uint, string>)",
+          "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "snkAudioBranchesUnchanged": true,
+          "formatterSymbol": "GWGUI.Emulation.Snk.Emulators.Common.Interop.Functions.EnvironmentFunctions.CreateUnknownCommandDiagnostic(uint)",
+          "sha256": "62CC2E892F6D5E4E43C7AE41B1E97D71D0988CC5AE22D877D5EE2DE7C14E1F29",
+          "diagnosticOwnerUnchanged": true
+        }
+      ],
+      "allModuleProfileBindingsUnchanged": true,
+      "refusedCommandValues": [
+        {
+          "value": 65584,
+          "expression": "ExternalCoreApiConstants.GetMidiInterface"
+        },
+        {
+          "value": 64,
+          "expression": "ExternalCoreApiConstants.SetFastForwardingOverride"
+        },
+        {
+          "value": 65,
+          "expression": "ExternalCoreApiConstants.SetContentInfoOverride"
+        },
+        {
+          "value": 78,
+          "expression": "ExternalCoreApiConstants.SetNetworkPacketInterface"
+        },
+        {
+          "value": 87,
+          "expression": "ExternalCoreApiConstants.SetSerializationQuirks"
+        }
+      ],
+      "refusedCommandValuesMatchAll12Modules": true
+    },
+    "tests": {
+      "failed": 0,
+      "coverage": [
+        "five refused commands skip options and diagnostics",
+        "recognized true/false option replies",
+        "unknown deduplication before formatting and publication",
+        "formatter exception preserves original deduplication",
+        "option exception propagates before unknown diagnostic",
+        "existing stateless/callback/option/native table regressions"
+      ],
+      "path": "tests/GWGUI.Tests/Emulation/OptionEnvironmentCommandTests.cs",
+      "addedCases": 10,
+      "usesExternalResources": false,
+      "sha256": "1886EADC343FF32D4D72D7D2D2B9F33C1F9F7A0A54C0AF23ED2E0E84E2BB0216",
+      "passed": 144
+    },
+    "inventory": {
+      "additionalUnchangedFullMembersRetained": 90,
+      "otherMethodsQualifiedByThisProof": 0,
+      "qualifiedMethodOccurrences": [
+        {
+          "name": "OnEnvironment",
+          "sha256": "ACCEDFBA377555E91B7E2C60C685981202A6AFCE971FBF85C4593E65A56C4D00",
+          "kind": "groups",
+          "report": "docs/reference/reuse-audit/current-project-groups.json",
+          "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs"
+        },
+        {
+          "name": "OnEnvironment",
+          "sha256": "C8848887628CCD0A9FF4252080C5794B680EBDA38DFABA8A113E19D5930E215E",
+          "kind": "groups",
+          "report": "docs/reference/reuse-audit/current-project-groups.json",
+          "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs"
+        },
+        {
+          "name": "OnEnvironment",
+          "sha256": "152D1EFAEA25971278A1D8981516CF513A96D29CC48442201461F9B9DEDBE9BD",
+          "kind": "groups",
+          "report": "docs/reference/reuse-audit/current-project-groups.json",
+          "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs"
+        },
+        {
+          "name": "OnEnvironment",
+          "sha256": "B01A64E35E107DC9B2E48F4250E306FBFF8333961895C06EF12FEC8D09D0CBDF",
+          "kind": "groups",
+          "report": "docs/reference/reuse-audit/current-project-groups.json",
+          "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs"
+        },
+        {
+          "name": "OnEnvironment",
+          "sha256": "C5FC870FD52B87B139270494DEAAEC420F30D835BAFD459C2B25669829DC79B8",
+          "kind": "groups",
+          "report": "docs/reference/reuse-audit/current-project-groups.json",
+          "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs"
+        },
+        {
+          "name": "OnEnvironment",
+          "sha256": "403DE4347C7D082E1B35FCF99448B5723CABC7011B5F92D44DB2B8FAD919089D",
+          "kind": "groups",
+          "report": "docs/reference/reuse-audit/current-project-groups.json",
+          "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs"
+        },
+        {
+          "name": "OnEnvironment",
+          "sha256": "19AD3F0A0CE8637A8AAAE0B492E41B89D8243D0BD9CE51024B8B34D09A29D107",
+          "kind": "groups",
+          "report": "docs/reference/reuse-audit/current-project-groups.json",
+          "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs"
+        },
+        {
+          "name": "OnEnvironment",
+          "sha256": "6A0C0665CE812B5E21740497E3037B1C2140FAECBFAFC091A09BADC1BCF88DF5",
+          "kind": "groups",
+          "report": "docs/reference/reuse-audit/current-project-groups.json",
+          "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs"
+        },
+        {
+          "name": "OnEnvironment",
+          "sha256": "299627259D17C602FC770E1D0C12FCC9B07E626AA4B31486EE3F58EE2AF63718",
+          "kind": "groups",
+          "report": "docs/reference/reuse-audit/current-project-groups.json",
+          "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs"
+        },
+        {
+          "name": "OnEnvironment",
+          "sha256": "19E57AA16F0ED85AB07E0AC69113ABA23EB3A2E3553E3543087F9AC00D3A7D61",
+          "kind": "groups",
+          "report": "docs/reference/reuse-audit/current-project-groups.json",
+          "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs"
+        },
+        {
+          "name": "OnEnvironment",
+          "sha256": "C5FC870FD52B87B139270494DEAAEC420F30D835BAFD459C2B25669829DC79B8",
+          "kind": "renamedIdentifierGroups",
+          "report": "docs/reference/reuse-audit/current-project-groups.json",
+          "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs"
+        },
+        {
+          "name": "OnEnvironment",
+          "sha256": "403DE4347C7D082E1B35FCF99448B5723CABC7011B5F92D44DB2B8FAD919089D",
+          "kind": "renamedIdentifierGroups",
+          "report": "docs/reference/reuse-audit/current-project-groups.json",
+          "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs"
+        },
+        {
+          "name": "OnEnvironment",
+          "sha256": "299627259D17C602FC770E1D0C12FCC9B07E626AA4B31486EE3F58EE2AF63718",
+          "kind": "renamedIdentifierGroups",
+          "report": "docs/reference/reuse-audit/current-project-groups.json",
+          "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs"
+        },
+        {
+          "name": "OnEnvironment",
+          "sha256": "19E57AA16F0ED85AB07E0AC69113ABA23EB3A2E3553E3543087F9AC00D3A7D61",
+          "kind": "renamedIdentifierGroups",
+          "report": "docs/reference/reuse-audit/current-project-groups.json",
+          "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs"
+        },
+        {
+          "name": "OnEnvironment",
+          "sha256": "19AD3F0A0CE8637A8AAAE0B492E41B89D8243D0BD9CE51024B8B34D09A29D107",
+          "kind": "renamedIdentifierGroups",
+          "report": "docs/reference/reuse-audit/current-project-groups.json",
+          "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs"
+        },
+        {
+          "name": "OnEnvironment",
+          "sha256": "6A0C0665CE812B5E21740497E3037B1C2140FAECBFAFC091A09BADC1BCF88DF5",
+          "kind": "renamedIdentifierGroups",
+          "report": "docs/reference/reuse-audit/current-project-groups.json",
+          "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs"
+        }
+      ],
+      "sourceMethodsVerified": 12,
+      "oldPartialMembers": 67,
+      "reports": {
+        "docs/reference/reuse-audit/current-project-groups.json": {
+          "exactGroups": 0,
+          "fileCount": 7295,
+          "groups": 467,
+          "renamedIdentifierGroups": 210,
+          "methodBodyCount": 11668
+        },
+        "docs/reference/reuse-audit/short-method-groups.json": {
+          "exactGroups": 807,
+          "fileCount": 7295,
+          "groups": 0,
+          "renamedIdentifierGroups": 376,
+          "methodBodyCount": 9667
+        }
+      },
+      "partialMembersRestored": 67
+    }
   }
 }

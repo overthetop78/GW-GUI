@@ -66,6 +66,97 @@ public sealed class OptionEnvironmentCommandTests
         Assert.Equal(new[] { ("RegisterVersionTwo", (nint)17) }, options.Calls);
     }
 
+    [Theory]
+    [InlineData(ExternalCoreApiConstants.GetMidiInterface)]
+    [InlineData(ExternalCoreApiConstants.SetFastForwardingOverride)]
+    [InlineData(ExternalCoreApiConstants.SetContentInfoOverride)]
+    [InlineData(ExternalCoreApiConstants.SetNetworkPacketInterface)]
+    [InlineData(ExternalCoreApiConstants.SetSerializationQuirks)]
+    public void RefusedCommandsDoNotReachOptionsOrUnknownDiagnostics(uint command)
+    {
+        var options = new OptionCommands { Failure = new InvalidOperationException("must not call") };
+        var unknown = new HashSet<uint>();
+        var diagnostics = new List<string>();
+        Assert.False(ExternalCoreEnvironmentFunctions.HandleRemainingCommand(command, 17, options,
+            unknown, diagnostics, _ => throw new InvalidOperationException("must not format")));
+        Assert.Empty(options.Calls);
+        Assert.Empty(unknown);
+        Assert.Empty(diagnostics);
+    }
+
+    [Theory]
+    [InlineData(false)]
+    [InlineData(true)]
+    public void RemainingOptionRepliesDoNotBecomeUnknownCommands(bool reply)
+    {
+        var options = new OptionCommands { BooleanResult = reply };
+        var unknown = new HashSet<uint>();
+        var diagnostics = new List<string>();
+        Assert.Equal(reply, ExternalCoreEnvironmentFunctions.HandleRemainingCommand(
+            ExternalCoreApiConstants.GetVariable, 17, options, unknown, diagnostics,
+            _ => throw new InvalidOperationException("must not format")));
+        Assert.Equal(new[] { ("ReturnValue", (nint)17) }, options.Calls);
+        Assert.Empty(unknown);
+        Assert.Empty(diagnostics);
+    }
+
+    [Fact]
+    public void UnknownCommandIsRecordedBeforeFormattingAndPublishedOnce()
+    {
+        var options = new OptionCommands();
+        var unknown = new HashSet<uint>();
+        var diagnostics = new List<string>();
+        var formatted = 0;
+        string Format(uint command)
+        {
+            Assert.Contains(command, unknown);
+            formatted++;
+            return $"module diagnostic {command}";
+        }
+        for (var attempt = 0; attempt < 2; attempt++)
+            Assert.False(ExternalCoreEnvironmentFunctions.HandleRemainingCommand(uint.MaxValue,
+                17, options, unknown, diagnostics, Format));
+        Assert.Equal(1, formatted);
+        Assert.Equal(new[] { uint.MaxValue }, unknown);
+        Assert.Equal(new[] { $"module diagnostic {uint.MaxValue}" }, diagnostics);
+        Assert.Empty(options.Calls);
+    }
+
+    [Fact]
+    public void FailedDiagnosticFormattingKeepsTheOriginalDeduplicationOrder()
+    {
+        var options = new OptionCommands();
+        var unknown = new HashSet<uint>();
+        var diagnostics = new List<string>();
+        var failure = new InvalidOperationException("format failed");
+        var formatted = 0;
+        string Format(uint command) { formatted++; throw failure; }
+        Assert.Same(failure, Assert.Throws<InvalidOperationException>(() =>
+            ExternalCoreEnvironmentFunctions.HandleRemainingCommand(uint.MaxValue, 17,
+                options, unknown, diagnostics, Format)));
+        Assert.Contains(uint.MaxValue, unknown);
+        Assert.Empty(diagnostics);
+        Assert.False(ExternalCoreEnvironmentFunctions.HandleRemainingCommand(uint.MaxValue, 17,
+            options, unknown, diagnostics, Format));
+        Assert.Equal(1, formatted);
+        Assert.Empty(diagnostics);
+    }
+
+    [Fact]
+    public void RemainingOptionFailurePropagatesWithoutCreatingUnknownDiagnostic()
+    {
+        var failure = new InvalidOperationException("option failed");
+        var options = new OptionCommands { Failure = failure };
+        var unknown = new HashSet<uint>();
+        var diagnostics = new List<string>();
+        Assert.Same(failure, Assert.Throws<InvalidOperationException>(() =>
+            ExternalCoreEnvironmentFunctions.HandleRemainingCommand(ExternalCoreApiConstants.SetCoreOptionsV2,
+                17, options, unknown, diagnostics,
+                _ => throw new InvalidOperationException("must not format"))));
+        Assert.Equal(new[] { ("RegisterVersionTwo", (nint)17) }, options.Calls);
+        Assert.Empty(unknown);
+        Assert.Empty(diagnostics);
+    }
     private sealed class OptionCommands : IEmulationCoreOptionCommands
     {
         internal bool BooleanResult { get; init; }

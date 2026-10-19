@@ -3,7 +3,7 @@
   "currentCSharpFiles": 7295,
   "outsideSrcCSharpFiles": 309,
   "baselineMethodCount": 5848,
-  "currentMethodCount": 11662,
+  "currentMethodCount": 11668,
   "powerShellFunctionCount": 17,
   "groups": [
     {
@@ -1309,7 +1309,7 @@
     {
       "language": "CSharp",
       "hash": "0A9D4012A0EEF58659F6F622D06187BDA6844EE126F30B196EAE963950A66758",
-      "method": "SegaEmulationModule",
+      "method": "CommodoreEmulationModule",
       "tokens": 45,
       "current": [
         {
@@ -5931,6 +5931,57 @@
     },
     {
       "language": "CSharp",
+      "hash": "33A5E51E6B6461EE1B9BBCF0AF122A99E0CB2D28A78C79BB21396F3B392BA73D",
+      "method": "OnEnvironment",
+      "tokens": 91,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "name": "OnEnvironment",
+          "line": 13,
+          "tokens": 91,
+          "hash": "33A5E51E6B6461EE1B9BBCF0AF122A99E0CB2D28A78C79BB21396F3B392BA73D",
+          "shape": "73DB7F77A1AFA98313DF96A94579D63D5F8CA7D735D78689AD965A6A74EC30B6",
+          "qualification": "Module adapter: exact declared version/capability bindings and callback/observation order preserved; original Atari refused/options/unknown logic reused via SDK HandleRemainingCommand; original module diagnostic formatter and SNK-specific audio cases retained. Whole OnEnvironment method verified by inverse expansion and symbol/value checks in environmentRemainingCommandReuse; other methods in file not qualified by this proof.",
+          "qualificationSourceSha256": "ACCEDFBA377555E91B7E2C60C685981202A6AFCE971FBF85C4593E65A56C4D00"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "name": "OnEnvironment",
+          "line": 11,
+          "tokens": 91,
+          "hash": "33A5E51E6B6461EE1B9BBCF0AF122A99E0CB2D28A78C79BB21396F3B392BA73D",
+          "shape": "73DB7F77A1AFA98313DF96A94579D63D5F8CA7D735D78689AD965A6A74EC30B6",
+          "qualification": "Module adapter: exact declared version/capability bindings and callback/observation order preserved; original Atari refused/options/unknown logic reused via SDK HandleRemainingCommand; original module diagnostic formatter and SNK-specific audio cases retained. Whole OnEnvironment method verified by inverse expansion and symbol/value checks in environmentRemainingCommandReuse; other methods in file not qualified by this proof.",
+          "qualificationSourceSha256": "C8848887628CCD0A9FF4252080C5794B680EBDA38DFABA8A113E19D5930E215E"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "name": "OnEnvironment",
+          "line": 13,
+          "tokens": 91,
+          "hash": "33A5E51E6B6461EE1B9BBCF0AF122A99E0CB2D28A78C79BB21396F3B392BA73D",
+          "shape": "73DB7F77A1AFA98313DF96A94579D63D5F8CA7D735D78689AD965A6A74EC30B6",
+          "qualification": "Module adapter: exact declared version/capability bindings and callback/observation order preserved; original Atari refused/options/unknown logic reused via SDK HandleRemainingCommand; original module diagnostic formatter and SNK-specific audio cases retained. Whole OnEnvironment method verified by inverse expansion and symbol/value checks in environmentRemainingCommandReuse; other methods in file not qualified by this proof.",
+          "qualificationSourceSha256": "152D1EFAEA25971278A1D8981516CF513A96D29CC48442201461F9B9DEDBE9BD"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "name": "OnEnvironment",
+          "line": 13,
+          "tokens": 91,
+          "hash": "33A5E51E6B6461EE1B9BBCF0AF122A99E0CB2D28A78C79BB21396F3B392BA73D",
+          "shape": "73DB7F77A1AFA98313DF96A94579D63D5F8CA7D735D78689AD965A6A74EC30B6",
+          "qualification": "Module adapter: exact declared version/capability bindings and callback/observation order preserved; original Atari refused/options/unknown logic reused via SDK HandleRemainingCommand; original module diagnostic formatter and SNK-specific audio cases retained. Whole OnEnvironment method verified by inverse expansion and symbol/value checks in environmentRemainingCommandReuse; other methods in file not qualified by this proof.",
+          "qualificationSourceSha256": "B01A64E35E107DC9B2E48F4250E306FBFF8333961895C06EF12FEC8D09D0CBDF"
+        }
+      ],
+      "predecessors": [],
+      "shapePredecessors": [],
+      "qualification": "pending"
+    },
+    {
+      "language": "CSharp",
       "hash": "34B10B184759F56AF6CB7DD2508779A83309898F2DF01CA412F6F3CC0DCAB0C5",
       "method": "QueueCommand",
       "tokens": 81,
@@ -6041,6 +6092,57 @@
           "tokens": 38,
           "hash": "34BA4C6427954701E8EEE0D9F2A155F47ED0800FB64CBDEEF3C53A838CA72FE5",
           "shape": "333ED9ED54316FFA21EBB8AC93BB3A1BF36B18CA72F584441DE43A280159F8B3"
+        }
+      ],
+      "predecessors": [],
+      "shapePredecessors": [],
+      "qualification": "pending"
+    },
+    {
+      "language": "CSharp",
+      "hash": "34BBBCCF491DC0EA340718D594E18F0BEE56C2004E468B8CB956235F1D3599F3",
+      "method": "OnEnvironment",
+      "tokens": 79,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "name": "OnEnvironment",
+          "line": 13,
+          "tokens": 79,
+          "hash": "34BBBCCF491DC0EA340718D594E18F0BEE56C2004E468B8CB956235F1D3599F3",
+          "shape": "6B1197A0490D2259B5C7D34161D92A387940BA04527D70DF740FB965E568606A",
+          "qualification": "Module adapter: exact declared version/capability bindings and callback/observation order preserved; original Atari refused/options/unknown logic reused via SDK HandleRemainingCommand; original module diagnostic formatter and SNK-specific audio cases retained. Whole OnEnvironment method verified by inverse expansion and symbol/value checks in environmentRemainingCommandReuse; other methods in file not qualified by this proof.",
+          "qualificationSourceSha256": "C5FC870FD52B87B139270494DEAAEC420F30D835BAFD459C2B25669829DC79B8"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "name": "OnEnvironment",
+          "line": 13,
+          "tokens": 79,
+          "hash": "34BBBCCF491DC0EA340718D594E18F0BEE56C2004E468B8CB956235F1D3599F3",
+          "shape": "6B1197A0490D2259B5C7D34161D92A387940BA04527D70DF740FB965E568606A",
+          "qualification": "Module adapter: exact declared version/capability bindings and callback/observation order preserved; original Atari refused/options/unknown logic reused via SDK HandleRemainingCommand; original module diagnostic formatter and SNK-specific audio cases retained. Whole OnEnvironment method verified by inverse expansion and symbol/value checks in environmentRemainingCommandReuse; other methods in file not qualified by this proof.",
+          "qualificationSourceSha256": "403DE4347C7D082E1B35FCF99448B5723CABC7011B5F92D44DB2B8FAD919089D"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "name": "OnEnvironment",
+          "line": 12,
+          "tokens": 79,
+          "hash": "34BBBCCF491DC0EA340718D594E18F0BEE56C2004E468B8CB956235F1D3599F3",
+          "shape": "6B1197A0490D2259B5C7D34161D92A387940BA04527D70DF740FB965E568606A",
+          "qualification": "Module adapter: exact declared version/capability bindings and callback/observation order preserved; original Atari refused/options/unknown logic reused via SDK HandleRemainingCommand; original module diagnostic formatter and SNK-specific audio cases retained. Whole OnEnvironment method verified by inverse expansion and symbol/value checks in environmentRemainingCommandReuse; other methods in file not qualified by this proof.",
+          "qualificationSourceSha256": "19AD3F0A0CE8637A8AAAE0B492E41B89D8243D0BD9CE51024B8B34D09A29D107"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "name": "OnEnvironment",
+          "line": 12,
+          "tokens": 79,
+          "hash": "34BBBCCF491DC0EA340718D594E18F0BEE56C2004E468B8CB956235F1D3599F3",
+          "shape": "6B1197A0490D2259B5C7D34161D92A387940BA04527D70DF740FB965E568606A",
+          "qualification": "Module adapter: exact declared version/capability bindings and callback/observation order preserved; original Atari refused/options/unknown logic reused via SDK HandleRemainingCommand; original module diagnostic formatter and SNK-specific audio cases retained. Whole OnEnvironment method verified by inverse expansion and symbol/value checks in environmentRemainingCommandReuse; other methods in file not qualified by this proof.",
+          "qualificationSourceSha256": "6A0C0665CE812B5E21740497E3037B1C2140FAECBFAFC091A09BADC1BCF88DF5"
         }
       ],
       "predecessors": [],
@@ -11880,8 +11982,39 @@
     },
     {
       "language": "CSharp",
+      "hash": "67D0C4A3396100776E937E2F9D68A434620FB380859FD104D872BA0B99C1616A",
+      "method": "OnEnvironment",
+      "tokens": 79,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "name": "OnEnvironment",
+          "line": 13,
+          "tokens": 79,
+          "hash": "67D0C4A3396100776E937E2F9D68A434620FB380859FD104D872BA0B99C1616A",
+          "shape": "6B1197A0490D2259B5C7D34161D92A387940BA04527D70DF740FB965E568606A",
+          "qualification": "Module adapter: exact declared version/capability bindings and callback/observation order preserved; original Atari refused/options/unknown logic reused via SDK HandleRemainingCommand; original module diagnostic formatter and SNK-specific audio cases retained. Whole OnEnvironment method verified by inverse expansion and symbol/value checks in environmentRemainingCommandReuse; other methods in file not qualified by this proof.",
+          "qualificationSourceSha256": "299627259D17C602FC770E1D0C12FCC9B07E626AA4B31486EE3F58EE2AF63718"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "name": "OnEnvironment",
+          "line": 13,
+          "tokens": 79,
+          "hash": "67D0C4A3396100776E937E2F9D68A434620FB380859FD104D872BA0B99C1616A",
+          "shape": "6B1197A0490D2259B5C7D34161D92A387940BA04527D70DF740FB965E568606A",
+          "qualification": "Module adapter: exact declared version/capability bindings and callback/observation order preserved; original Atari refused/options/unknown logic reused via SDK HandleRemainingCommand; original module diagnostic formatter and SNK-specific audio cases retained. Whole OnEnvironment method verified by inverse expansion and symbol/value checks in environmentRemainingCommandReuse; other methods in file not qualified by this proof.",
+          "qualificationSourceSha256": "19E57AA16F0ED85AB07E0AC69113ABA23EB3A2E3553E3543087F9AC00D3A7D61"
+        }
+      ],
+      "predecessors": [],
+      "shapePredecessors": [],
+      "qualification": "pending"
+    },
+    {
+      "language": "CSharp",
       "hash": "68386C818382BCE400A3EDE65411B5CBD9D6A87F6D88FAF6501028CE28C38965",
-      "method": "ToModule",
+      "method": "ToSinclair",
       "tokens": 148,
       "current": [
         {
@@ -15596,49 +15729,6 @@
     },
     {
       "language": "CSharp",
-      "hash": "8D7B630B9CED627DCE4FBE70008AC5CFCC7FAD9A0FD02622D8E2E62F65F08E83",
-      "method": "OnEnvironment",
-      "tokens": 139,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "OnEnvironment",
-          "line": 12,
-          "tokens": 139,
-          "hash": "8D7B630B9CED627DCE4FBE70008AC5CFCC7FAD9A0FD02622D8E2E62F65F08E83",
-          "shape": "2BA5F0CADB78D97264799B5E5682715FFE92FE02F237994A0D0703B7D3421DD8"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "OnEnvironment",
-          "line": 13,
-          "tokens": 139,
-          "hash": "8D7B630B9CED627DCE4FBE70008AC5CFCC7FAD9A0FD02622D8E2E62F65F08E83",
-          "shape": "2BA5F0CADB78D97264799B5E5682715FFE92FE02F237994A0D0703B7D3421DD8"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "OnEnvironment",
-          "line": 13,
-          "tokens": 139,
-          "hash": "8D7B630B9CED627DCE4FBE70008AC5CFCC7FAD9A0FD02622D8E2E62F65F08E83",
-          "shape": "2BA5F0CADB78D97264799B5E5682715FFE92FE02F237994A0D0703B7D3421DD8"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "OnEnvironment",
-          "line": 12,
-          "tokens": 139,
-          "hash": "8D7B630B9CED627DCE4FBE70008AC5CFCC7FAD9A0FD02622D8E2E62F65F08E83",
-          "shape": "2BA5F0CADB78D97264799B5E5682715FFE92FE02F237994A0D0703B7D3421DD8"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
       "hash": "8E5FBCDDEBAB0FDA3801BC063D583AE187BE005D6955E04E937C13B159EA898E",
       "method": "CapturePerformanceLevel",
       "tokens": 31,
@@ -18476,7 +18566,7 @@
     {
       "language": "CSharp",
       "hash": "A1E03750FEB3292ACEB41656386F4A8AA8B05077D9ABFB7DA103AA3D71320B9F",
-      "method": "ToModule",
+      "method": "ToFairchild",
       "tokens": 103,
       "current": [
         {
@@ -18786,7 +18876,7 @@
     {
       "language": "CSharp",
       "hash": "A61349BFDFFA5D404CE7D0D458204D435194B5E4D84870DF4F9FBE26A86A9946",
-      "method": "ToEpoch",
+      "method": "ToFairchild",
       "tokens": 36,
       "current": [
         {
@@ -20067,7 +20157,7 @@
     {
       "language": "CSharp",
       "hash": "B053A3AB4F0B78A37DED57B2D744801187AED6EC54FEEAFE4B1AA9C454D6F48C",
-      "method": "SharpEmulationModule",
+      "method": "PhilipsEmulationModule",
       "tokens": 47,
       "current": [
         {
@@ -20318,49 +20408,6 @@
           "tokens": 68,
           "hash": "B14CA78E55CBDA5C5FA71CF0E4A42A125295C54336017BE89744AA29C8F3DACD",
           "shape": "48798A5162CA5C0A2AB4337ACAC74F7DC624D09A82C33C940874351CA43C5FA9"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
-      "hash": "B2CBFE536C88A1DF9D160893C94619EFD1465C1E705611ACE9FB3DCB4BD5033F",
-      "method": "OnEnvironment",
-      "tokens": 151,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "OnEnvironment",
-          "line": 13,
-          "tokens": 151,
-          "hash": "B2CBFE536C88A1DF9D160893C94619EFD1465C1E705611ACE9FB3DCB4BD5033F",
-          "shape": "983114A8D6E9F83AC4FA1F01EDD8314422978EA69A37BA350C9FD41A6042DC85"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "OnEnvironment",
-          "line": 13,
-          "tokens": 151,
-          "hash": "B2CBFE536C88A1DF9D160893C94619EFD1465C1E705611ACE9FB3DCB4BD5033F",
-          "shape": "983114A8D6E9F83AC4FA1F01EDD8314422978EA69A37BA350C9FD41A6042DC85"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "OnEnvironment",
-          "line": 11,
-          "tokens": 151,
-          "hash": "B2CBFE536C88A1DF9D160893C94619EFD1465C1E705611ACE9FB3DCB4BD5033F",
-          "shape": "983114A8D6E9F83AC4FA1F01EDD8314422978EA69A37BA350C9FD41A6042DC85"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "OnEnvironment",
-          "line": 13,
-          "tokens": 151,
-          "hash": "B2CBFE536C88A1DF9D160893C94619EFD1465C1E705611ACE9FB3DCB4BD5033F",
-          "shape": "983114A8D6E9F83AC4FA1F01EDD8314422978EA69A37BA350C9FD41A6042DC85"
         }
       ],
       "predecessors": [],
@@ -24396,33 +24443,6 @@
           "tokens": 127,
           "hash": "D4DB5A672ACF48D443BECF1F3F96694C9422E31CD511E3FAEA6DAE6BF7E8B7F3",
           "shape": "E7A743DC0BC4193847D70969C3383F9DC430CC5C2E0DC3C2389DB6B77EF39EF3"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
-      "hash": "D5915C75DE274913E7DEE1A4432A88A863AB2CA1EA269D0B2D3F0D4BC28A9421",
-      "method": "OnEnvironment",
-      "tokens": 139,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "OnEnvironment",
-          "line": 13,
-          "tokens": 139,
-          "hash": "D5915C75DE274913E7DEE1A4432A88A863AB2CA1EA269D0B2D3F0D4BC28A9421",
-          "shape": "2BA5F0CADB78D97264799B5E5682715FFE92FE02F237994A0D0703B7D3421DD8"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "OnEnvironment",
-          "line": 13,
-          "tokens": 139,
-          "hash": "D5915C75DE274913E7DEE1A4432A88A863AB2CA1EA269D0B2D3F0D4BC28A9421",
-          "shape": "2BA5F0CADB78D97264799B5E5682715FFE92FE02F237994A0D0703B7D3421DD8"
         }
       ],
       "predecessors": [],
@@ -29783,61 +29803,6 @@
       "qualification": "pending-symbol-and-policy-comparison"
     },
     {
-      "shape": "2BA5F0CADB78D97264799B5E5682715FFE92FE02F237994A0D0703B7D3421DD8",
-      "tokens": 139,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "OnEnvironment",
-          "line": 13,
-          "tokens": 139,
-          "hash": "D5915C75DE274913E7DEE1A4432A88A863AB2CA1EA269D0B2D3F0D4BC28A9421",
-          "shape": "2BA5F0CADB78D97264799B5E5682715FFE92FE02F237994A0D0703B7D3421DD8"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "OnEnvironment",
-          "line": 12,
-          "tokens": 139,
-          "hash": "8D7B630B9CED627DCE4FBE70008AC5CFCC7FAD9A0FD02622D8E2E62F65F08E83",
-          "shape": "2BA5F0CADB78D97264799B5E5682715FFE92FE02F237994A0D0703B7D3421DD8"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "OnEnvironment",
-          "line": 13,
-          "tokens": 139,
-          "hash": "8D7B630B9CED627DCE4FBE70008AC5CFCC7FAD9A0FD02622D8E2E62F65F08E83",
-          "shape": "2BA5F0CADB78D97264799B5E5682715FFE92FE02F237994A0D0703B7D3421DD8"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "OnEnvironment",
-          "line": 13,
-          "tokens": 139,
-          "hash": "8D7B630B9CED627DCE4FBE70008AC5CFCC7FAD9A0FD02622D8E2E62F65F08E83",
-          "shape": "2BA5F0CADB78D97264799B5E5682715FFE92FE02F237994A0D0703B7D3421DD8"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "OnEnvironment",
-          "line": 12,
-          "tokens": 139,
-          "hash": "8D7B630B9CED627DCE4FBE70008AC5CFCC7FAD9A0FD02622D8E2E62F65F08E83",
-          "shape": "2BA5F0CADB78D97264799B5E5682715FFE92FE02F237994A0D0703B7D3421DD8"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "OnEnvironment",
-          "line": 13,
-          "tokens": 139,
-          "hash": "D5915C75DE274913E7DEE1A4432A88A863AB2CA1EA269D0B2D3F0D4BC28A9421",
-          "shape": "2BA5F0CADB78D97264799B5E5682715FFE92FE02F237994A0D0703B7D3421DD8"
-        }
-      ],
-      "qualification": "pending-symbol-and-policy-comparison"
-    },
-    {
       "shape": "2DBBDFC4A910AAC5FE94F83D01BCB8CDD320B74C5B3DB180B9268E440417F73F",
       "tokens": 86,
       "current": [
@@ -31832,6 +31797,73 @@
           "tokens": 91,
           "hash": "DA470D225B3BE04FFE4608AFB78C7F1DE4057A9B97817CE57FC9D275FB072FEF",
           "shape": "6A10CA5AF479B4466C25EA42A60AF2E7EA8C5F2A6A207933CB121E4857B59937"
+        }
+      ],
+      "qualification": "pending-symbol-and-policy-comparison"
+    },
+    {
+      "shape": "6B1197A0490D2259B5C7D34161D92A387940BA04527D70DF740FB965E568606A",
+      "tokens": 79,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "name": "OnEnvironment",
+          "line": 13,
+          "tokens": 79,
+          "hash": "34BBBCCF491DC0EA340718D594E18F0BEE56C2004E468B8CB956235F1D3599F3",
+          "shape": "6B1197A0490D2259B5C7D34161D92A387940BA04527D70DF740FB965E568606A",
+          "qualification": "Module adapter: exact declared version/capability bindings and callback/observation order preserved; original Atari refused/options/unknown logic reused via SDK HandleRemainingCommand; original module diagnostic formatter and SNK-specific audio cases retained. Whole OnEnvironment method verified by inverse expansion and symbol/value checks in environmentRemainingCommandReuse; other methods in file not qualified by this proof.",
+          "qualificationSourceSha256": "C5FC870FD52B87B139270494DEAAEC420F30D835BAFD459C2B25669829DC79B8"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "name": "OnEnvironment",
+          "line": 13,
+          "tokens": 79,
+          "hash": "34BBBCCF491DC0EA340718D594E18F0BEE56C2004E468B8CB956235F1D3599F3",
+          "shape": "6B1197A0490D2259B5C7D34161D92A387940BA04527D70DF740FB965E568606A",
+          "qualification": "Module adapter: exact declared version/capability bindings and callback/observation order preserved; original Atari refused/options/unknown logic reused via SDK HandleRemainingCommand; original module diagnostic formatter and SNK-specific audio cases retained. Whole OnEnvironment method verified by inverse expansion and symbol/value checks in environmentRemainingCommandReuse; other methods in file not qualified by this proof.",
+          "qualificationSourceSha256": "403DE4347C7D082E1B35FCF99448B5723CABC7011B5F92D44DB2B8FAD919089D"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "name": "OnEnvironment",
+          "line": 13,
+          "tokens": 79,
+          "hash": "67D0C4A3396100776E937E2F9D68A434620FB380859FD104D872BA0B99C1616A",
+          "shape": "6B1197A0490D2259B5C7D34161D92A387940BA04527D70DF740FB965E568606A",
+          "qualification": "Module adapter: exact declared version/capability bindings and callback/observation order preserved; original Atari refused/options/unknown logic reused via SDK HandleRemainingCommand; original module diagnostic formatter and SNK-specific audio cases retained. Whole OnEnvironment method verified by inverse expansion and symbol/value checks in environmentRemainingCommandReuse; other methods in file not qualified by this proof.",
+          "qualificationSourceSha256": "299627259D17C602FC770E1D0C12FCC9B07E626AA4B31486EE3F58EE2AF63718"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "name": "OnEnvironment",
+          "line": 13,
+          "tokens": 79,
+          "hash": "67D0C4A3396100776E937E2F9D68A434620FB380859FD104D872BA0B99C1616A",
+          "shape": "6B1197A0490D2259B5C7D34161D92A387940BA04527D70DF740FB965E568606A",
+          "qualification": "Module adapter: exact declared version/capability bindings and callback/observation order preserved; original Atari refused/options/unknown logic reused via SDK HandleRemainingCommand; original module diagnostic formatter and SNK-specific audio cases retained. Whole OnEnvironment method verified by inverse expansion and symbol/value checks in environmentRemainingCommandReuse; other methods in file not qualified by this proof.",
+          "qualificationSourceSha256": "19E57AA16F0ED85AB07E0AC69113ABA23EB3A2E3553E3543087F9AC00D3A7D61"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "name": "OnEnvironment",
+          "line": 12,
+          "tokens": 79,
+          "hash": "34BBBCCF491DC0EA340718D594E18F0BEE56C2004E468B8CB956235F1D3599F3",
+          "shape": "6B1197A0490D2259B5C7D34161D92A387940BA04527D70DF740FB965E568606A",
+          "qualification": "Module adapter: exact declared version/capability bindings and callback/observation order preserved; original Atari refused/options/unknown logic reused via SDK HandleRemainingCommand; original module diagnostic formatter and SNK-specific audio cases retained. Whole OnEnvironment method verified by inverse expansion and symbol/value checks in environmentRemainingCommandReuse; other methods in file not qualified by this proof.",
+          "qualificationSourceSha256": "19AD3F0A0CE8637A8AAAE0B492E41B89D8243D0BD9CE51024B8B34D09A29D107"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "name": "OnEnvironment",
+          "line": 12,
+          "tokens": 79,
+          "hash": "34BBBCCF491DC0EA340718D594E18F0BEE56C2004E468B8CB956235F1D3599F3",
+          "shape": "6B1197A0490D2259B5C7D34161D92A387940BA04527D70DF740FB965E568606A",
+          "qualification": "Module adapter: exact declared version/capability bindings and callback/observation order preserved; original Atari refused/options/unknown logic reused via SDK HandleRemainingCommand; original module diagnostic formatter and SNK-specific audio cases retained. Whole OnEnvironment method verified by inverse expansion and symbol/value checks in environmentRemainingCommandReuse; other methods in file not qualified by this proof.",
+          "qualificationSourceSha256": "6A0C0665CE812B5E21740497E3037B1C2140FAECBFAFC091A09BADC1BCF88DF5"
         }
       ],
       "qualification": "pending-symbol-and-policy-comparison"
@@ -37549,7 +37581,7 @@
   ],
   "scope": "All current repository CSharp and PowerShell files; no age filter; candidates require semantic review",
   "qualificationCarryForward": {
-    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical",
-    "occurrences": 230
+    "occurrences": 230,
+    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical"
   }
 }

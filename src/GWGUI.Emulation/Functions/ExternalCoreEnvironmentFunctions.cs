@@ -163,6 +163,26 @@ internal static class ExternalCoreEnvironmentFunctions
     }
 
 
+    internal static bool HandleRemainingCommand(uint command, nint data,
+        IEmulationCoreOptionCommands options, ISet<uint> unknownCommands,
+        ICollection<string> diagnostics, Func<uint, string> createUnknownDiagnostic)
+    {
+        switch (command)
+        {
+            case ExternalCoreApiConstants.GetMidiInterface:
+            case ExternalCoreApiConstants.SetFastForwardingOverride:
+            case ExternalCoreApiConstants.SetContentInfoOverride:
+            case ExternalCoreApiConstants.SetNetworkPacketInterface:
+            case ExternalCoreApiConstants.SetSerializationQuirks:
+                return false;
+            default:
+                if (TryHandleOptionCommand(command, data, options, out var optionResult))
+                    return optionResult;
+                if (unknownCommands.Add(command))
+                    diagnostics.Add(createUnknownDiagnostic(command));
+                return false;
+        }
+    }
     internal static bool TryHandleOptionCommand(uint command, nint data,
         IEmulationCoreOptionCommands options, out bool result)
     {

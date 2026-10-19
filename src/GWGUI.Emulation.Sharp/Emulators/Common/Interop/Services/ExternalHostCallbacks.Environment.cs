@@ -18,21 +18,8 @@ internal sealed partial class ExternalHostCallbacks : IDisposable, IEmulationCor
             return commonResult;
         if (ExternalCoreEnvironmentFunctions.TryHandleCallbackCommand(command, data, this, out var callbackResult))
             return callbackResult;
-        switch (command)
-        {
-            case ExternalCoreApiConstants.GetMidiInterface:
-            case ExternalCoreApiConstants.SetFastForwardingOverride:
-            case ExternalCoreApiConstants.SetContentInfoOverride:
-            case ExternalCoreApiConstants.SetNetworkPacketInterface:
-            case ExternalCoreApiConstants.SetSerializationQuirks:
-                return false;
-            default:
-                if (ExternalCoreEnvironmentFunctions.TryHandleOptionCommand(command, data, _optionHost, out var optionResult))
-                    return optionResult;
-                if (_unknownEnvironmentCommands.Add(command))
-                    Diagnostics.Add(EnvironmentFunctions.CreateUnknownCommandDiagnostic(command));
-                return false;
-        }
+        return ExternalCoreEnvironmentFunctions.HandleRemainingCommand(command, data, _optionHost,
+            _unknownEnvironmentCommands, Diagnostics, EnvironmentFunctions.CreateUnknownCommandDiagnostic);
     }
 
     bool IEmulationCoreEnvironmentCommands.WriteSystemDirectory(nint data)

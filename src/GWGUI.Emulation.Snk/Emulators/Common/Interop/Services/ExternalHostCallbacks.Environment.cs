@@ -24,18 +24,9 @@ internal sealed partial class ExternalHostCallbacks : IDisposable, IEmulationCor
                 return CaptureAudioBufferStatus(data);
             case EnvironmentConstants.SetMinimumAudioLatency:
                 return SetMinimumAudioLatency(data);
-            case ExternalCoreApiConstants.GetMidiInterface:
-            case ExternalCoreApiConstants.SetFastForwardingOverride:
-            case ExternalCoreApiConstants.SetContentInfoOverride:
-            case ExternalCoreApiConstants.SetNetworkPacketInterface:
-            case ExternalCoreApiConstants.SetSerializationQuirks:
-                return false;
             default:
-                if (ExternalCoreEnvironmentFunctions.TryHandleOptionCommand(command, data, _optionHost, out var optionResult))
-                    return optionResult;
-                if (_unknownEnvironmentCommands.Add(command))
-                    Diagnostics.Add(EnvironmentFunctions.CreateUnknownCommandDiagnostic(command));
-                return false;
+                return ExternalCoreEnvironmentFunctions.HandleRemainingCommand(command, data, _optionHost,
+                    _unknownEnvironmentCommands, Diagnostics, EnvironmentFunctions.CreateUnknownCommandDiagnostic);
         }
     }
 
