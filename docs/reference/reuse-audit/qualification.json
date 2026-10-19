@@ -280363,6 +280363,1673 @@
       "largeGroups": 476,
       "exactShortGroups": 775
     },
-    "productBuild": "source block after verified grouped build 1a5ba2bb3; include in next grouped Debug --modules=A build"
+    "productBuild": "included and verified in keyboardTransitionsBuild"
+  },
+  "nativeCodeTransitionReuse": {
+    "items": [
+      {
+        "category": "native-code state; specialized policy retained",
+        "before": "using GWGUI.Emulation.Acorn.Emulators.Common.Interop.Functions;\nusing GWGUI.Emulation.Acorn.Emulators.Common.Interop.Constants;\nusing GWGUI.Emulation;\n\nnamespace GWGUI.Emulation.Acorn.Emulators.Common.Interop.Services;\n\ninternal sealed class KeyboardState\n{\n    private static readonly IReadOnlyDictionary<EmulationKey, uint> KeyMap = KeyboardFunctions.CreateKeyMap();\n    private IReadOnlySet<uint> _previous = new HashSet<uint>();\n\n    internal void Publish(IReadOnlySet<EmulationKey> keys, ExternalCoreApi.KeyboardEvent? keyboardEvent)\n    {\n        if (keyboardEvent is null) return;\n        var modifiers = KeyboardFunctions.Modifiers(keys);\n        var current = keys.Where(KeyMap.ContainsKey).Select(key => KeyMap[key]).ToHashSet();\n        var modifierCodes = keys.Where(KeyboardFunctions.IsModifier).Select(key => KeyMap[key]).ToHashSet();\n        foreach (var code in _previous.Except(current).OrderBy(code => IsModifier(code) ? KeyboardConstants.ModifierLastOrder : KeyboardConstants.ModifierFirstOrder))\n            keyboardEvent(false, code, KeyboardConstants.NoCharacter, modifiers);\n        foreach (var code in current.Except(_previous).OrderBy(code => modifierCodes.Contains(code) ? KeyboardConstants.ModifierFirstOrder : KeyboardConstants.ModifierLastOrder))\n            keyboardEvent(true, code, KeyboardFunctions.Character(code, keys), modifiers);\n        _previous = current;\n    }\n\n    private static bool IsModifier(uint code) => code is KeyboardConstants.LeftShift or KeyboardConstants.RightShift or KeyboardConstants.LeftControl or KeyboardConstants.RightControl;\n\n    internal static IReadOnlyDictionary<EmulationKey, uint> Mappings => KeyMap;\n}\n\n",
+        "previousType": "IReadOnlySet<uint>",
+        "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/KeyboardState.cs",
+        "previousField": "_previous",
+        "sha256": "F3073F73C5EAC7857EA8674AB39F05F38069DE2F692CAB96E6FAAA9D4EFE19DF",
+        "selectedForSharedKeyLoop": false,
+        "body": "    {\n        if (keyboardEvent is null) return;\n        var modifiers = KeyboardFunctions.Modifiers(keys);\n        var current = keys.Where(KeyMap.ContainsKey).Select(key => KeyMap[key]).ToHashSet();\n        var modifierCodes = keys.Where(KeyboardFunctions.IsModifier).Select(key => KeyMap[key]).ToHashSet();\n        foreach (var code in _previous.Except(current).OrderBy(code => IsModifier(code) ? KeyboardConstants.ModifierLastOrder : KeyboardConstants.ModifierFirstOrder))\n            keyboardEvent(false, code, KeyboardConstants.NoCharacter, modifiers);\n        foreach (var code in current.Except(_previous).OrderBy(code => modifierCodes.Contains(code) ? KeyboardConstants.ModifierFirstOrder : KeyboardConstants.ModifierLastOrder))\n            keyboardEvent(true, code, KeyboardFunctions.Character(code, keys), modifiers);\n        _previous = current;\n    }\n",
+        "method": "Publish",
+        "orderRelease": "codes.OrderBy(code => IsModifier(code) ? KeyboardConstants.ModifierLastOrder : KeyboardConstants.ModifierFirstOrder)",
+        "orderPress": "codes.OrderBy(code => modifierCodes.Contains(code) ? KeyboardConstants.ModifierFirstOrder : KeyboardConstants.ModifierLastOrder)",
+        "character": "KeyboardFunctions.Character(code, keys)",
+        "modifiers": "modifiers",
+        "callback": "keyboardEvent",
+        "oldLoops": "foreach (var code in _previous.Except(current).OrderBy(code => IsModifier(code) ? KeyboardConstants.ModifierLastOrder : KeyboardConstants.ModifierFirstOrder))\n            keyboardEvent(false, code, KeyboardConstants.NoCharacter, modifiers);\n        foreach (var code in current.Except(_previous).OrderBy(code => modifierCodes.Contains(code) ? KeyboardConstants.ModifierFirstOrder : KeyboardConstants.ModifierLastOrder))\n            keyboardEvent(true, code, KeyboardFunctions.Character(code, keys), modifiers);",
+        "replacement": "ExternalCoreKeyboardFunctions.PublishCodeTransitions(current, ref _previous, keyboardEvent, modifiers,\r\n                codes => codes.OrderBy(code => IsModifier(code) ? KeyboardConstants.ModifierLastOrder : KeyboardConstants.ModifierFirstOrder),\r\n                codes => codes.OrderBy(code => modifierCodes.Contains(code) ? KeyboardConstants.ModifierFirstOrder : KeyboardConstants.ModifierLastOrder),\r\n                code => KeyboardFunctions.Character(code, keys));",
+        "after": "using GWGUI.Emulation.Acorn.Emulators.Common.Interop.Functions;\nusing GWGUI.Emulation.Acorn.Emulators.Common.Interop.Constants;\nusing GWGUI.Emulation;\n\nnamespace GWGUI.Emulation.Acorn.Emulators.Common.Interop.Services;\n\ninternal sealed class KeyboardState\n{\n    private static readonly IReadOnlyDictionary<EmulationKey, uint> KeyMap = KeyboardFunctions.CreateKeyMap();\n    private IReadOnlySet<uint> _previous = new HashSet<uint>();\n\n    internal void Publish(IReadOnlySet<EmulationKey> keys, ExternalCoreApi.KeyboardEvent? keyboardEvent)\n    {\n        if (keyboardEvent is null) return;\n        var modifiers = KeyboardFunctions.Modifiers(keys);\n        var current = keys.Where(KeyMap.ContainsKey).Select(key => KeyMap[key]).ToHashSet();\n        var modifierCodes = keys.Where(KeyboardFunctions.IsModifier).Select(key => KeyMap[key]).ToHashSet();\n        ExternalCoreKeyboardFunctions.PublishCodeTransitions(current, ref _previous, keyboardEvent, modifiers,\r\n                codes => codes.OrderBy(code => IsModifier(code) ? KeyboardConstants.ModifierLastOrder : KeyboardConstants.ModifierFirstOrder),\r\n                codes => codes.OrderBy(code => modifierCodes.Contains(code) ? KeyboardConstants.ModifierFirstOrder : KeyboardConstants.ModifierLastOrder),\r\n                code => KeyboardFunctions.Character(code, keys));\n        _previous = current;\n    }\n\n    private static bool IsModifier(uint code) => code is KeyboardConstants.LeftShift or KeyboardConstants.RightShift or KeyboardConstants.LeftControl or KeyboardConstants.RightControl;\n\n    internal static IReadOnlyDictionary<EmulationKey, uint> Mappings => KeyMap;\n}\n\n"
+      },
+      {
+        "category": "native-code state; specialized policy retained",
+        "before": "using GWGUI.Emulation.Apple.Emulators.Common.Interop.Constants;\r\nusing GWGUI.Emulation.Apple.Emulators.Common.Interop.Functions;\r\nusing GWGUI.Emulation.Interop;\r\nusing GWGUI.Emulation;\r\n\r\nnamespace GWGUI.Emulation.Apple.Emulators.Common.Interop.Services;\r\n\r\ninternal sealed class KeyboardState\r\n{\r\n    private static readonly IReadOnlyDictionary<EmulationKey, uint> KeyMap = KeyboardFunctions.CreateKeyMap();\r\n    private IReadOnlySet<uint> _previous = new HashSet<uint>();\r\n\r\n    internal void Publish(IReadOnlySet<EmulationKey> keys, ExternalCoreApi.KeyboardEvent? keyboardEvent)\r\n    {\r\n        if (keyboardEvent is null) return;\r\n        var modifiers = KeyboardFunctions.Modifiers(keys);\r\n        var current = keys.Where(KeyMap.ContainsKey).Select(key => KeyMap[key]).ToHashSet();\r\n        var modifierCodes = keys.Where(KeyboardFunctions.IsModifier).Select(key => KeyMap[key]).ToHashSet();\r\n        foreach (var code in _previous.Except(current).OrderBy(code => IsModifier(code) ? KeyboardConstants.ModifierLastOrder : KeyboardConstants.ModifierFirstOrder))\r\n            keyboardEvent(false, code, KeyboardConstants.NoCharacter, modifiers);\r\n        foreach (var code in current.Except(_previous).OrderBy(code => modifierCodes.Contains(code) ? KeyboardConstants.ModifierFirstOrder : KeyboardConstants.ModifierLastOrder))\r\n            keyboardEvent(true, code, KeyboardFunctions.Character(code, keys), modifiers);\r\n        _previous = current;\r\n    }\r\n\r\n    private static bool IsModifier(uint code) => code is KeyboardConstants.LeftShift or KeyboardConstants.RightShift or KeyboardConstants.LeftControl or KeyboardConstants.RightControl or KeyboardConstants.LeftAlt or KeyboardConstants.RightAlt;\r\n\r\n    internal static IReadOnlyDictionary<EmulationKey, uint> Mappings => KeyMap;\r\n}\r\n",
+        "previousType": "IReadOnlySet<uint>",
+        "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/KeyboardState.cs",
+        "previousField": "_previous",
+        "sha256": "9BC1C7F4FD27DD616C31B5FAE190D17D17E3083F3028B05A05DD6CA5790F6FA6",
+        "selectedForSharedKeyLoop": false,
+        "body": "    {\r\n        if (keyboardEvent is null) return;\r\n        var modifiers = KeyboardFunctions.Modifiers(keys);\r\n        var current = keys.Where(KeyMap.ContainsKey).Select(key => KeyMap[key]).ToHashSet();\r\n        var modifierCodes = keys.Where(KeyboardFunctions.IsModifier).Select(key => KeyMap[key]).ToHashSet();\r\n        foreach (var code in _previous.Except(current).OrderBy(code => IsModifier(code) ? KeyboardConstants.ModifierLastOrder : KeyboardConstants.ModifierFirstOrder))\r\n            keyboardEvent(false, code, KeyboardConstants.NoCharacter, modifiers);\r\n        foreach (var code in current.Except(_previous).OrderBy(code => modifierCodes.Contains(code) ? KeyboardConstants.ModifierFirstOrder : KeyboardConstants.ModifierLastOrder))\r\n            keyboardEvent(true, code, KeyboardFunctions.Character(code, keys), modifiers);\r\n        _previous = current;\r\n    }\r\n",
+        "method": "Publish",
+        "orderRelease": "codes.OrderBy(code => IsModifier(code) ? KeyboardConstants.ModifierLastOrder : KeyboardConstants.ModifierFirstOrder)",
+        "orderPress": "codes.OrderBy(code => modifierCodes.Contains(code) ? KeyboardConstants.ModifierFirstOrder : KeyboardConstants.ModifierLastOrder)",
+        "character": "KeyboardFunctions.Character(code, keys)",
+        "modifiers": "modifiers",
+        "callback": "keyboardEvent",
+        "oldLoops": "foreach (var code in _previous.Except(current).OrderBy(code => IsModifier(code) ? KeyboardConstants.ModifierLastOrder : KeyboardConstants.ModifierFirstOrder))\r\n            keyboardEvent(false, code, KeyboardConstants.NoCharacter, modifiers);\r\n        foreach (var code in current.Except(_previous).OrderBy(code => modifierCodes.Contains(code) ? KeyboardConstants.ModifierFirstOrder : KeyboardConstants.ModifierLastOrder))\r\n            keyboardEvent(true, code, KeyboardFunctions.Character(code, keys), modifiers);",
+        "replacement": "ExternalCoreKeyboardFunctions.PublishCodeTransitions(current, ref _previous, keyboardEvent, modifiers,\r\n                codes => codes.OrderBy(code => IsModifier(code) ? KeyboardConstants.ModifierLastOrder : KeyboardConstants.ModifierFirstOrder),\r\n                codes => codes.OrderBy(code => modifierCodes.Contains(code) ? KeyboardConstants.ModifierFirstOrder : KeyboardConstants.ModifierLastOrder),\r\n                code => KeyboardFunctions.Character(code, keys));",
+        "after": "using GWGUI.Emulation.Apple.Emulators.Common.Interop.Constants;\r\nusing GWGUI.Emulation.Apple.Emulators.Common.Interop.Functions;\r\nusing GWGUI.Emulation.Interop;\r\nusing GWGUI.Emulation;\r\n\r\nnamespace GWGUI.Emulation.Apple.Emulators.Common.Interop.Services;\r\n\r\ninternal sealed class KeyboardState\r\n{\r\n    private static readonly IReadOnlyDictionary<EmulationKey, uint> KeyMap = KeyboardFunctions.CreateKeyMap();\r\n    private IReadOnlySet<uint> _previous = new HashSet<uint>();\r\n\r\n    internal void Publish(IReadOnlySet<EmulationKey> keys, ExternalCoreApi.KeyboardEvent? keyboardEvent)\r\n    {\r\n        if (keyboardEvent is null) return;\r\n        var modifiers = KeyboardFunctions.Modifiers(keys);\r\n        var current = keys.Where(KeyMap.ContainsKey).Select(key => KeyMap[key]).ToHashSet();\r\n        var modifierCodes = keys.Where(KeyboardFunctions.IsModifier).Select(key => KeyMap[key]).ToHashSet();\r\n        ExternalCoreKeyboardFunctions.PublishCodeTransitions(current, ref _previous, keyboardEvent, modifiers,\r\n                codes => codes.OrderBy(code => IsModifier(code) ? KeyboardConstants.ModifierLastOrder : KeyboardConstants.ModifierFirstOrder),\r\n                codes => codes.OrderBy(code => modifierCodes.Contains(code) ? KeyboardConstants.ModifierFirstOrder : KeyboardConstants.ModifierLastOrder),\r\n                code => KeyboardFunctions.Character(code, keys));\r\n        _previous = current;\r\n    }\r\n\r\n    private static bool IsModifier(uint code) => code is KeyboardConstants.LeftShift or KeyboardConstants.RightShift or KeyboardConstants.LeftControl or KeyboardConstants.RightControl or KeyboardConstants.LeftAlt or KeyboardConstants.RightAlt;\r\n\r\n    internal static IReadOnlyDictionary<EmulationKey, uint> Mappings => KeyMap;\r\n}\r\n"
+      },
+      {
+        "category": "native-code state; specialized policy retained",
+        "before": "using GWGUI.Emulation.Mattel.Emulators.Common.Interop.Constants;\nusing GWGUI.Emulation.Mattel.Emulators.Common.Interop.Functions;\nusing GWGUI.Emulation;\n\nnamespace GWGUI.Emulation.Mattel.Emulators.Common.Interop.Services;\n\ninternal sealed class KeyboardState\n{\n    private static readonly IReadOnlyDictionary<EmulationKey, uint> KeyMap = KeyboardFunctions.CreateKeyMap();\n    private IReadOnlySet<uint> _previous = new HashSet<uint>();\n\n    internal void Publish(IReadOnlySet<EmulationKey> keys, ExternalCoreApi.KeyboardEvent? keyboardEvent)\n    {\n        if (keyboardEvent is null) return;\n        var modifiers = KeyboardFunctions.Modifiers(keys);\n        var current = keys.Where(KeyMap.ContainsKey).Select(key => KeyMap[key]).ToHashSet();\n        var modifierCodes = keys.Where(KeyboardFunctions.IsModifier).Select(key => KeyMap[key]).ToHashSet();\n        foreach (var code in _previous.Except(current).OrderBy(code => IsModifier(code) ? KeyboardConstants.ModifierLastOrder : KeyboardConstants.ModifierFirstOrder))\n            keyboardEvent(false, code, KeyboardConstants.NoCharacter, modifiers);\n        foreach (var code in current.Except(_previous).OrderBy(code => modifierCodes.Contains(code) ? KeyboardConstants.ModifierFirstOrder : KeyboardConstants.ModifierLastOrder))\n            keyboardEvent(true, code, KeyboardFunctions.Character(code, keys), modifiers);\n        _previous = current;\n    }\n\n    private static bool IsModifier(uint code) => code is KeyboardConstants.LeftShift or KeyboardConstants.RightShift or KeyboardConstants.LeftControl or KeyboardConstants.RightControl or KeyboardConstants.LeftAlt or KeyboardConstants.RightAlt;\n\n    internal static IReadOnlyDictionary<EmulationKey, uint> Mappings => KeyMap;\n}\n",
+        "previousType": "IReadOnlySet<uint>",
+        "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/KeyboardState.cs",
+        "previousField": "_previous",
+        "sha256": "53504CE0E41B485096FD001A912177C9AD6723AD64E328D5C50D4CC6C2FBA42F",
+        "selectedForSharedKeyLoop": false,
+        "body": "    {\n        if (keyboardEvent is null) return;\n        var modifiers = KeyboardFunctions.Modifiers(keys);\n        var current = keys.Where(KeyMap.ContainsKey).Select(key => KeyMap[key]).ToHashSet();\n        var modifierCodes = keys.Where(KeyboardFunctions.IsModifier).Select(key => KeyMap[key]).ToHashSet();\n        foreach (var code in _previous.Except(current).OrderBy(code => IsModifier(code) ? KeyboardConstants.ModifierLastOrder : KeyboardConstants.ModifierFirstOrder))\n            keyboardEvent(false, code, KeyboardConstants.NoCharacter, modifiers);\n        foreach (var code in current.Except(_previous).OrderBy(code => modifierCodes.Contains(code) ? KeyboardConstants.ModifierFirstOrder : KeyboardConstants.ModifierLastOrder))\n            keyboardEvent(true, code, KeyboardFunctions.Character(code, keys), modifiers);\n        _previous = current;\n    }\n",
+        "method": "Publish",
+        "orderRelease": "codes.OrderBy(code => IsModifier(code) ? KeyboardConstants.ModifierLastOrder : KeyboardConstants.ModifierFirstOrder)",
+        "orderPress": "codes.OrderBy(code => modifierCodes.Contains(code) ? KeyboardConstants.ModifierFirstOrder : KeyboardConstants.ModifierLastOrder)",
+        "character": "KeyboardFunctions.Character(code, keys)",
+        "modifiers": "modifiers",
+        "callback": "keyboardEvent",
+        "oldLoops": "foreach (var code in _previous.Except(current).OrderBy(code => IsModifier(code) ? KeyboardConstants.ModifierLastOrder : KeyboardConstants.ModifierFirstOrder))\n            keyboardEvent(false, code, KeyboardConstants.NoCharacter, modifiers);\n        foreach (var code in current.Except(_previous).OrderBy(code => modifierCodes.Contains(code) ? KeyboardConstants.ModifierFirstOrder : KeyboardConstants.ModifierLastOrder))\n            keyboardEvent(true, code, KeyboardFunctions.Character(code, keys), modifiers);",
+        "replacement": "ExternalCoreKeyboardFunctions.PublishCodeTransitions(current, ref _previous, keyboardEvent, modifiers,\r\n                codes => codes.OrderBy(code => IsModifier(code) ? KeyboardConstants.ModifierLastOrder : KeyboardConstants.ModifierFirstOrder),\r\n                codes => codes.OrderBy(code => modifierCodes.Contains(code) ? KeyboardConstants.ModifierFirstOrder : KeyboardConstants.ModifierLastOrder),\r\n                code => KeyboardFunctions.Character(code, keys));",
+        "after": "using GWGUI.Emulation.Mattel.Emulators.Common.Interop.Constants;\nusing GWGUI.Emulation.Mattel.Emulators.Common.Interop.Functions;\nusing GWGUI.Emulation;\n\nnamespace GWGUI.Emulation.Mattel.Emulators.Common.Interop.Services;\n\ninternal sealed class KeyboardState\n{\n    private static readonly IReadOnlyDictionary<EmulationKey, uint> KeyMap = KeyboardFunctions.CreateKeyMap();\n    private IReadOnlySet<uint> _previous = new HashSet<uint>();\n\n    internal void Publish(IReadOnlySet<EmulationKey> keys, ExternalCoreApi.KeyboardEvent? keyboardEvent)\n    {\n        if (keyboardEvent is null) return;\n        var modifiers = KeyboardFunctions.Modifiers(keys);\n        var current = keys.Where(KeyMap.ContainsKey).Select(key => KeyMap[key]).ToHashSet();\n        var modifierCodes = keys.Where(KeyboardFunctions.IsModifier).Select(key => KeyMap[key]).ToHashSet();\n        ExternalCoreKeyboardFunctions.PublishCodeTransitions(current, ref _previous, keyboardEvent, modifiers,\r\n                codes => codes.OrderBy(code => IsModifier(code) ? KeyboardConstants.ModifierLastOrder : KeyboardConstants.ModifierFirstOrder),\r\n                codes => codes.OrderBy(code => modifierCodes.Contains(code) ? KeyboardConstants.ModifierFirstOrder : KeyboardConstants.ModifierLastOrder),\r\n                code => KeyboardFunctions.Character(code, keys));\n        _previous = current;\n    }\n\n    private static bool IsModifier(uint code) => code is KeyboardConstants.LeftShift or KeyboardConstants.RightShift or KeyboardConstants.LeftControl or KeyboardConstants.RightControl or KeyboardConstants.LeftAlt or KeyboardConstants.RightAlt;\n\n    internal static IReadOnlyDictionary<EmulationKey, uint> Mappings => KeyMap;\n}\n"
+      },
+      {
+        "category": "native-code state; specialized policy retained",
+        "before": "using GWGUI.Emulation.Philips.Emulators.Common.Interop.Constants;\nusing GWGUI.Emulation.Philips.Emulators.Common.Interop.Functions;\nusing GWGUI.Emulation;\n\nnamespace GWGUI.Emulation.Philips.Emulators.Common.Interop.Services;\n\ninternal sealed class KeyboardState\n{\n    private static readonly IReadOnlyDictionary<EmulationKey, uint> KeyMap = KeyboardFunctions.CreateKeyMap();\n    private IReadOnlySet<uint> _previous = new HashSet<uint>();\n\n    internal void Publish(IReadOnlySet<EmulationKey> keys, ExternalCoreApi.KeyboardEvent? keyboardEvent)\n    {\n        if (keyboardEvent is null) return;\n        var modifiers = KeyboardFunctions.Modifiers(keys);\n        var current = keys.Where(KeyMap.ContainsKey).Select(key => KeyMap[key]).ToHashSet();\n        var modifierCodes = keys.Where(KeyboardFunctions.IsModifier).Select(key => KeyMap[key]).ToHashSet();\n        foreach (var code in _previous.Except(current).OrderBy(code => IsModifier(code) ? KeyboardConstants.ModifierLastOrder : KeyboardConstants.ModifierFirstOrder))\n            keyboardEvent(false, code, KeyboardConstants.NoCharacter, modifiers);\n        foreach (var code in current.Except(_previous).OrderBy(code => modifierCodes.Contains(code) ? KeyboardConstants.ModifierFirstOrder : KeyboardConstants.ModifierLastOrder))\n            keyboardEvent(true, code, KeyboardFunctions.Character(code, keys), modifiers);\n        _previous = current;\n    }\n\n    private static bool IsModifier(uint code) => code is KeyboardConstants.LeftShift or KeyboardConstants.RightShift or KeyboardConstants.LeftControl or KeyboardConstants.RightControl or KeyboardConstants.LeftAlt or KeyboardConstants.RightAlt;\n\n    internal static IReadOnlyDictionary<EmulationKey, uint> Mappings => KeyMap;\n}\n",
+        "previousType": "IReadOnlySet<uint>",
+        "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/KeyboardState.cs",
+        "previousField": "_previous",
+        "sha256": "38568100AC86413E9390137A48901279091077BEDCFFA8E86D4AEF7AA4FEFC29",
+        "selectedForSharedKeyLoop": false,
+        "body": "    {\n        if (keyboardEvent is null) return;\n        var modifiers = KeyboardFunctions.Modifiers(keys);\n        var current = keys.Where(KeyMap.ContainsKey).Select(key => KeyMap[key]).ToHashSet();\n        var modifierCodes = keys.Where(KeyboardFunctions.IsModifier).Select(key => KeyMap[key]).ToHashSet();\n        foreach (var code in _previous.Except(current).OrderBy(code => IsModifier(code) ? KeyboardConstants.ModifierLastOrder : KeyboardConstants.ModifierFirstOrder))\n            keyboardEvent(false, code, KeyboardConstants.NoCharacter, modifiers);\n        foreach (var code in current.Except(_previous).OrderBy(code => modifierCodes.Contains(code) ? KeyboardConstants.ModifierFirstOrder : KeyboardConstants.ModifierLastOrder))\n            keyboardEvent(true, code, KeyboardFunctions.Character(code, keys), modifiers);\n        _previous = current;\n    }\n",
+        "method": "Publish",
+        "orderRelease": "codes.OrderBy(code => IsModifier(code) ? KeyboardConstants.ModifierLastOrder : KeyboardConstants.ModifierFirstOrder)",
+        "orderPress": "codes.OrderBy(code => modifierCodes.Contains(code) ? KeyboardConstants.ModifierFirstOrder : KeyboardConstants.ModifierLastOrder)",
+        "character": "KeyboardFunctions.Character(code, keys)",
+        "modifiers": "modifiers",
+        "callback": "keyboardEvent",
+        "oldLoops": "foreach (var code in _previous.Except(current).OrderBy(code => IsModifier(code) ? KeyboardConstants.ModifierLastOrder : KeyboardConstants.ModifierFirstOrder))\n            keyboardEvent(false, code, KeyboardConstants.NoCharacter, modifiers);\n        foreach (var code in current.Except(_previous).OrderBy(code => modifierCodes.Contains(code) ? KeyboardConstants.ModifierFirstOrder : KeyboardConstants.ModifierLastOrder))\n            keyboardEvent(true, code, KeyboardFunctions.Character(code, keys), modifiers);",
+        "replacement": "ExternalCoreKeyboardFunctions.PublishCodeTransitions(current, ref _previous, keyboardEvent, modifiers,\r\n                codes => codes.OrderBy(code => IsModifier(code) ? KeyboardConstants.ModifierLastOrder : KeyboardConstants.ModifierFirstOrder),\r\n                codes => codes.OrderBy(code => modifierCodes.Contains(code) ? KeyboardConstants.ModifierFirstOrder : KeyboardConstants.ModifierLastOrder),\r\n                code => KeyboardFunctions.Character(code, keys));",
+        "after": "using GWGUI.Emulation.Philips.Emulators.Common.Interop.Constants;\nusing GWGUI.Emulation.Philips.Emulators.Common.Interop.Functions;\nusing GWGUI.Emulation;\n\nnamespace GWGUI.Emulation.Philips.Emulators.Common.Interop.Services;\n\ninternal sealed class KeyboardState\n{\n    private static readonly IReadOnlyDictionary<EmulationKey, uint> KeyMap = KeyboardFunctions.CreateKeyMap();\n    private IReadOnlySet<uint> _previous = new HashSet<uint>();\n\n    internal void Publish(IReadOnlySet<EmulationKey> keys, ExternalCoreApi.KeyboardEvent? keyboardEvent)\n    {\n        if (keyboardEvent is null) return;\n        var modifiers = KeyboardFunctions.Modifiers(keys);\n        var current = keys.Where(KeyMap.ContainsKey).Select(key => KeyMap[key]).ToHashSet();\n        var modifierCodes = keys.Where(KeyboardFunctions.IsModifier).Select(key => KeyMap[key]).ToHashSet();\n        ExternalCoreKeyboardFunctions.PublishCodeTransitions(current, ref _previous, keyboardEvent, modifiers,\r\n                codes => codes.OrderBy(code => IsModifier(code) ? KeyboardConstants.ModifierLastOrder : KeyboardConstants.ModifierFirstOrder),\r\n                codes => codes.OrderBy(code => modifierCodes.Contains(code) ? KeyboardConstants.ModifierFirstOrder : KeyboardConstants.ModifierLastOrder),\r\n                code => KeyboardFunctions.Character(code, keys));\n        _previous = current;\n    }\n\n    private static bool IsModifier(uint code) => code is KeyboardConstants.LeftShift or KeyboardConstants.RightShift or KeyboardConstants.LeftControl or KeyboardConstants.RightControl or KeyboardConstants.LeftAlt or KeyboardConstants.RightAlt;\n\n    internal static IReadOnlyDictionary<EmulationKey, uint> Mappings => KeyMap;\n}\n"
+      },
+      {
+        "category": "native-code state; specialized policy retained",
+        "before": "using GWGUI.Emulation.Sharp.Emulators.Common.Interop.Constants;\nusing GWGUI.Emulation.Sharp.Emulators.Common.Interop.Functions;\nnamespace GWGUI.Emulation.Sharp.Emulators.Common.Interop.Services;\ninternal sealed class KeyboardState\n{\n    private static readonly EmulationKey[] ComposeKeys = [\n        EmulationKey.SharpXf1,\n        EmulationKey.SharpXf2,\n        EmulationKey.SharpXf3,\n        EmulationKey.SharpXf4,\n        EmulationKey.SharpXf5,\n        EmulationKey.SharpKana,\n        EmulationKey.SharpRoman,\n        EmulationKey.SharpCode,\n        EmulationKey.SharpHiragana,\n        EmulationKey.SharpFullWidth\n    ];\n    private readonly IReadOnlyDictionary<EmulationKey, uint> _map;\n    private readonly bool _supportsCompose;\n    private HashSet<uint> _previous = [];\n    private bool _compose;\n    internal KeyboardState(Emulator emulator)\n    {\n        _map = KeyboardFunctions.CreateKeyMap(emulator);\n        _supportsCompose = emulator == Emulator.Px68k;\n    }\n\n    internal IReadOnlySet<uint> Codes { get; private set; } = new HashSet<uint>();\n\n    internal void Publish(IReadOnlySet<EmulationKey> keys, ExternalCoreApi.KeyboardEvent? keyboardEvent)\n    {\n        var composed = new HashSet<uint>();\n        if (_supportsCompose)\n        {\n            for (var index = 0; index < ComposeKeys.Length; index++)\n            {\n                if (keys.Contains(ComposeKeys[index]))\n                    composed.Add(KeyboardConstants.FirstFunctionKey + checked((uint)index));\n            }\n        }\n\n        var desiredCompose = composed.Count != 0;\n        HashSet<uint> current;\n        if (_compose != desiredCompose && _previous.Any(code => code != KeyboardConstants.Compose))\n        {\n            // The native mode must remain active for the frame that releases its keys.\n            current = _compose ? [KeyboardConstants.Compose] : [];\n        }\n        else\n        {\n            _compose = desiredCompose;\n            current = _compose ? composed : keys.Where(_map.ContainsKey).Select(key => _map[key]).ToHashSet();\n            if (_compose)\n                current.Add(KeyboardConstants.Compose);\n        }\n\n        Codes = current;\n        if (keyboardEvent is not null)\n        {\n            var modifiers = KeyboardFunctions.Modifiers(keys);\n            foreach (var code in _previous.Except(current))\n                keyboardEvent(false, code, KeyboardConstants.NoCharacter, modifiers);\n            foreach (var code in current.Except(_previous))\n                keyboardEvent(true, code, _compose ? KeyboardConstants.NoCharacter : KeyboardFunctions.Character(code, keys), modifiers);\n        }\n\n        _previous = current;\n    }\n}",
+        "previousType": "HashSet<uint>",
+        "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/KeyboardState.cs",
+        "previousField": "_previous",
+        "sha256": "D59615C0B021B92817074CFF851DA0AA5CA2EA8FBA0E73A3D8616C360766A943",
+        "selectedForSharedKeyLoop": false,
+        "body": "    {\n        var composed = new HashSet<uint>();\n        if (_supportsCompose)\n        {\n            for (var index = 0; index < ComposeKeys.Length; index++)\n            {\n                if (keys.Contains(ComposeKeys[index]))\n                    composed.Add(KeyboardConstants.FirstFunctionKey + checked((uint)index));\n            }\n        }\n\n        var desiredCompose = composed.Count != 0;\n        HashSet<uint> current;\n        if (_compose != desiredCompose && _previous.Any(code => code != KeyboardConstants.Compose))\n        {\n            // The native mode must remain active for the frame that releases its keys.\n            current = _compose ? [KeyboardConstants.Compose] : [];\n        }\n        else\n        {\n            _compose = desiredCompose;\n            current = _compose ? composed : keys.Where(_map.ContainsKey).Select(key => _map[key]).ToHashSet();\n            if (_compose)\n                current.Add(KeyboardConstants.Compose);\n        }\n\n        Codes = current;\n        if (keyboardEvent is not null)\n        {\n            var modifiers = KeyboardFunctions.Modifiers(keys);\n            foreach (var code in _previous.Except(current))\n                keyboardEvent(false, code, KeyboardConstants.NoCharacter, modifiers);\n            foreach (var code in current.Except(_previous))\n                keyboardEvent(true, code, _compose ? KeyboardConstants.NoCharacter : KeyboardFunctions.Character(code, keys), modifiers);\n        }\n\n        _previous = current;\n    }\n",
+        "method": "Publish",
+        "orderRelease": "codes",
+        "orderPress": "codes",
+        "character": "_compose ? KeyboardConstants.NoCharacter : KeyboardFunctions.Character(code, keys)",
+        "modifiers": "modifiers",
+        "callback": "keyboardEvent",
+        "oldLoops": "foreach (var code in _previous.Except(current))\n                keyboardEvent(false, code, KeyboardConstants.NoCharacter, modifiers);\n            foreach (var code in current.Except(_previous))\n                keyboardEvent(true, code, _compose ? KeyboardConstants.NoCharacter : KeyboardFunctions.Character(code, keys), modifiers);",
+        "replacement": "ExternalCoreKeyboardFunctions.PublishCodeTransitions(current, ref _previous, keyboardEvent, modifiers,\r\n                codes => codes,\r\n                codes => codes,\r\n                code => _compose ? KeyboardConstants.NoCharacter : KeyboardFunctions.Character(code, keys));",
+        "after": "using GWGUI.Emulation.Sharp.Emulators.Common.Interop.Constants;\nusing GWGUI.Emulation.Sharp.Emulators.Common.Interop.Functions;\nnamespace GWGUI.Emulation.Sharp.Emulators.Common.Interop.Services;\ninternal sealed class KeyboardState\n{\n    private static readonly EmulationKey[] ComposeKeys = [\n        EmulationKey.SharpXf1,\n        EmulationKey.SharpXf2,\n        EmulationKey.SharpXf3,\n        EmulationKey.SharpXf4,\n        EmulationKey.SharpXf5,\n        EmulationKey.SharpKana,\n        EmulationKey.SharpRoman,\n        EmulationKey.SharpCode,\n        EmulationKey.SharpHiragana,\n        EmulationKey.SharpFullWidth\n    ];\n    private readonly IReadOnlyDictionary<EmulationKey, uint> _map;\n    private readonly bool _supportsCompose;\n    private HashSet<uint> _previous = [];\n    private bool _compose;\n    internal KeyboardState(Emulator emulator)\n    {\n        _map = KeyboardFunctions.CreateKeyMap(emulator);\n        _supportsCompose = emulator == Emulator.Px68k;\n    }\n\n    internal IReadOnlySet<uint> Codes { get; private set; } = new HashSet<uint>();\n\n    internal void Publish(IReadOnlySet<EmulationKey> keys, ExternalCoreApi.KeyboardEvent? keyboardEvent)\n    {\n        var composed = new HashSet<uint>();\n        if (_supportsCompose)\n        {\n            for (var index = 0; index < ComposeKeys.Length; index++)\n            {\n                if (keys.Contains(ComposeKeys[index]))\n                    composed.Add(KeyboardConstants.FirstFunctionKey + checked((uint)index));\n            }\n        }\n\n        var desiredCompose = composed.Count != 0;\n        HashSet<uint> current;\n        if (_compose != desiredCompose && _previous.Any(code => code != KeyboardConstants.Compose))\n        {\n            // The native mode must remain active for the frame that releases its keys.\n            current = _compose ? [KeyboardConstants.Compose] : [];\n        }\n        else\n        {\n            _compose = desiredCompose;\n            current = _compose ? composed : keys.Where(_map.ContainsKey).Select(key => _map[key]).ToHashSet();\n            if (_compose)\n                current.Add(KeyboardConstants.Compose);\n        }\n\n        Codes = current;\n        if (keyboardEvent is not null)\n        {\n            var modifiers = KeyboardFunctions.Modifiers(keys);\n            ExternalCoreKeyboardFunctions.PublishCodeTransitions(current, ref _previous, keyboardEvent, modifiers,\r\n                codes => codes,\r\n                codes => codes,\r\n                code => _compose ? KeyboardConstants.NoCharacter : KeyboardFunctions.Character(code, keys));\n        }\n\n        _previous = current;\n    }\n}"
+      },
+      {
+        "category": "native-code state; specialized policy retained",
+        "before": "using GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Functions;\nusing GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Constants;\nnamespace GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Services;\n\ninternal sealed class KeyboardState\n{\n    private readonly IReadOnlyDictionary<EmulationKey, uint> _map;\n    private HashSet<uint> _previous = [];\n\n    internal KeyboardState(Emulator emulator) => _map = KeyboardFunctions.CreateKeyMap(emulator);\n\n    internal IReadOnlySet<uint> Codes { get; private set; } = new HashSet<uint>();\n\n    internal void Publish(IReadOnlySet<EmulationKey> keys, ExternalCoreApi.KeyboardEvent? keyboardEvent)\n    {\n        var current = keys.Where(_map.ContainsKey).Select(key => _map[key]).ToHashSet();\n        Codes = current;\n        if (keyboardEvent is not null)\n        {\n            var modifiers = KeyboardFunctions.Modifiers(keys);\n            foreach (var code in _previous.Except(current)) keyboardEvent(false, code, KeyboardConstants.NoCharacter, modifiers);\n            foreach (var code in current.Except(_previous)) keyboardEvent(true, code, KeyboardFunctions.Character(code, keys), modifiers);\n        }\n        _previous = current;\n    }\n}\n",
+        "previousType": "HashSet<uint>",
+        "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/KeyboardState.cs",
+        "previousField": "_previous",
+        "sha256": "DA066273C15CBBC13239E6720367E197CD27B1E92462C82A6F1BB9E03DB89AB3",
+        "selectedForSharedKeyLoop": false,
+        "body": "    {\n        var current = keys.Where(_map.ContainsKey).Select(key => _map[key]).ToHashSet();\n        Codes = current;\n        if (keyboardEvent is not null)\n        {\n            var modifiers = KeyboardFunctions.Modifiers(keys);\n            foreach (var code in _previous.Except(current)) keyboardEvent(false, code, KeyboardConstants.NoCharacter, modifiers);\n            foreach (var code in current.Except(_previous)) keyboardEvent(true, code, KeyboardFunctions.Character(code, keys), modifiers);\n        }\n        _previous = current;\n    }\n",
+        "method": "Publish",
+        "orderRelease": "codes",
+        "orderPress": "codes",
+        "character": "KeyboardFunctions.Character(code, keys)",
+        "modifiers": "modifiers",
+        "callback": "keyboardEvent",
+        "oldLoops": "foreach (var code in _previous.Except(current)) keyboardEvent(false, code, KeyboardConstants.NoCharacter, modifiers);\n            foreach (var code in current.Except(_previous)) keyboardEvent(true, code, KeyboardFunctions.Character(code, keys), modifiers);",
+        "replacement": "ExternalCoreKeyboardFunctions.PublishCodeTransitions(current, ref _previous, keyboardEvent, modifiers,\r\n                codes => codes,\r\n                codes => codes,\r\n                code => KeyboardFunctions.Character(code, keys));",
+        "after": "using GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Functions;\nusing GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Constants;\nnamespace GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Services;\n\ninternal sealed class KeyboardState\n{\n    private readonly IReadOnlyDictionary<EmulationKey, uint> _map;\n    private HashSet<uint> _previous = [];\n\n    internal KeyboardState(Emulator emulator) => _map = KeyboardFunctions.CreateKeyMap(emulator);\n\n    internal IReadOnlySet<uint> Codes { get; private set; } = new HashSet<uint>();\n\n    internal void Publish(IReadOnlySet<EmulationKey> keys, ExternalCoreApi.KeyboardEvent? keyboardEvent)\n    {\n        var current = keys.Where(_map.ContainsKey).Select(key => _map[key]).ToHashSet();\n        Codes = current;\n        if (keyboardEvent is not null)\n        {\n            var modifiers = KeyboardFunctions.Modifiers(keys);\n            ExternalCoreKeyboardFunctions.PublishCodeTransitions(current, ref _previous, keyboardEvent, modifiers,\r\n                codes => codes,\r\n                codes => codes,\r\n                code => KeyboardFunctions.Character(code, keys));\n        }\n        _previous = current;\n    }\n}\n"
+      },
+      {
+        "category": "native-code state; specialized policy retained",
+        "before": "using GWGUI.Emulation.Interop;\nusing GWGUI.Emulation.Thomson.Emulators.Theodore.Interop.Constants;\nusing GWGUI.Emulation.Thomson.Emulators.Theodore.Interop.Functions;\n\nnamespace GWGUI.Emulation.Thomson.Emulators.Theodore.Interop.Services;\n\ninternal sealed class KeyboardState\n{\n    private const int ShiftedFunctionKeyCount = 5;\n    private readonly MachineModel _model;\n    private readonly IReadOnlyDictionary<EmulationKey, uint> _map;\n    private HashSet<uint> _previous = [];\n    internal KeyboardState(MachineModel model) { _model = model; _map = KeyboardFunctions.CreateKeyMap(model); }\n\n    internal void Publish(IReadOnlySet<EmulationKey> keys, ExternalCoreApi.KeyboardEvent? callback)\n    {\n        if (callback is null) return;\n        var current = new HashSet<uint>();\n        foreach (var key in keys)\n        {\n            var shiftedFunction = (int)key - (int)EmulationKey.F6;\n            var functionModifier = _model switch { MachineModel.Mo6 => KeyboardConstants.RightShift, MachineModel.To8 or MachineModel.To8D or MachineModel.To9 or MachineModel.To9Plus => KeyboardConstants.LeftShift, _ => (uint?)null };\n            if (functionModifier is uint modifier && shiftedFunction >= 0 && shiftedFunction < ShiftedFunctionKeyCount) { current.Add(modifier); current.Add(KeyboardConstants.FirstFunctionKey + (uint)shiftedFunction); }\n            else if (_map.TryGetValue(key, out var code)) current.Add(code);\n        }\n        var modifiers = KeyboardFunctions.Modifiers(keys);\n        foreach (var code in _previous.Except(current).OrderBy(IsModifier)) callback(false, code, KeyboardConstants.NoCharacter, modifiers);\n        foreach (var code in current.Except(_previous).OrderByDescending(IsModifier)) callback(true, code, KeyboardConstants.NoCharacter, modifiers);\n        _previous = current;\n    }\n\n    internal void Release(ExternalCoreApi.KeyboardEvent? callback)\n    {\n        if (callback is not null) foreach (var code in _previous.OrderBy(IsModifier)) callback(false, code, KeyboardConstants.NoCharacter, KeyboardConstants.NoModifiers);\n        _previous.Clear();\n    }\n\n    private static bool IsModifier(uint code) => code is KeyboardConstants.LeftShift or KeyboardConstants.RightShift or KeyboardConstants.LeftControl or KeyboardConstants.RightControl;\n}\r\n",
+        "previousType": "HashSet<uint>",
+        "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Interop/Services/KeyboardState.cs",
+        "previousField": "_previous",
+        "sha256": "3ABEAE87F7A55E2E652965ED0825A38A4C7F434E0F6CEFFD3406AA7D9E3DAF66",
+        "selectedForSharedKeyLoop": false,
+        "body": "    {\n        if (callback is null) return;\n        var current = new HashSet<uint>();\n        foreach (var key in keys)\n        {\n            var shiftedFunction = (int)key - (int)EmulationKey.F6;\n            var functionModifier = _model switch { MachineModel.Mo6 => KeyboardConstants.RightShift, MachineModel.To8 or MachineModel.To8D or MachineModel.To9 or MachineModel.To9Plus => KeyboardConstants.LeftShift, _ => (uint?)null };\n            if (functionModifier is uint modifier && shiftedFunction >= 0 && shiftedFunction < ShiftedFunctionKeyCount) { current.Add(modifier); current.Add(KeyboardConstants.FirstFunctionKey + (uint)shiftedFunction); }\n            else if (_map.TryGetValue(key, out var code)) current.Add(code);\n        }\n        var modifiers = KeyboardFunctions.Modifiers(keys);\n        foreach (var code in _previous.Except(current).OrderBy(IsModifier)) callback(false, code, KeyboardConstants.NoCharacter, modifiers);\n        foreach (var code in current.Except(_previous).OrderByDescending(IsModifier)) callback(true, code, KeyboardConstants.NoCharacter, modifiers);\n        _previous = current;\n    }\n",
+        "method": "Publish",
+        "orderRelease": "codes.OrderBy(IsModifier)",
+        "orderPress": "codes.OrderByDescending(IsModifier)",
+        "character": "KeyboardConstants.NoCharacter",
+        "modifiers": "modifiers",
+        "callback": "callback",
+        "oldLoops": "foreach (var code in _previous.Except(current).OrderBy(IsModifier)) callback(false, code, KeyboardConstants.NoCharacter, modifiers);\n        foreach (var code in current.Except(_previous).OrderByDescending(IsModifier)) callback(true, code, KeyboardConstants.NoCharacter, modifiers);",
+        "replacement": "ExternalCoreKeyboardFunctions.PublishCodeTransitions(current, ref _previous, callback, modifiers,\r\n                codes => codes.OrderBy(IsModifier),\r\n                codes => codes.OrderByDescending(IsModifier),\r\n                code => KeyboardConstants.NoCharacter);",
+        "after": "using GWGUI.Emulation.Interop;\nusing GWGUI.Emulation.Thomson.Emulators.Theodore.Interop.Constants;\nusing GWGUI.Emulation.Thomson.Emulators.Theodore.Interop.Functions;\n\nnamespace GWGUI.Emulation.Thomson.Emulators.Theodore.Interop.Services;\n\ninternal sealed class KeyboardState\n{\n    private const int ShiftedFunctionKeyCount = 5;\n    private readonly MachineModel _model;\n    private readonly IReadOnlyDictionary<EmulationKey, uint> _map;\n    private HashSet<uint> _previous = [];\n    internal KeyboardState(MachineModel model) { _model = model; _map = KeyboardFunctions.CreateKeyMap(model); }\n\n    internal void Publish(IReadOnlySet<EmulationKey> keys, ExternalCoreApi.KeyboardEvent? callback)\n    {\n        if (callback is null) return;\n        var current = new HashSet<uint>();\n        foreach (var key in keys)\n        {\n            var shiftedFunction = (int)key - (int)EmulationKey.F6;\n            var functionModifier = _model switch { MachineModel.Mo6 => KeyboardConstants.RightShift, MachineModel.To8 or MachineModel.To8D or MachineModel.To9 or MachineModel.To9Plus => KeyboardConstants.LeftShift, _ => (uint?)null };\n            if (functionModifier is uint modifier && shiftedFunction >= 0 && shiftedFunction < ShiftedFunctionKeyCount) { current.Add(modifier); current.Add(KeyboardConstants.FirstFunctionKey + (uint)shiftedFunction); }\n            else if (_map.TryGetValue(key, out var code)) current.Add(code);\n        }\n        var modifiers = KeyboardFunctions.Modifiers(keys);\n        ExternalCoreKeyboardFunctions.PublishCodeTransitions(current, ref _previous, callback, modifiers,\r\n                codes => codes.OrderBy(IsModifier),\r\n                codes => codes.OrderByDescending(IsModifier),\r\n                code => KeyboardConstants.NoCharacter);\n        _previous = current;\n    }\n\n    internal void Release(ExternalCoreApi.KeyboardEvent? callback)\n    {\n        if (callback is not null) foreach (var code in _previous.OrderBy(IsModifier)) callback(false, code, KeyboardConstants.NoCharacter, KeyboardConstants.NoModifiers);\n        _previous.Clear();\n    }\n\n    private static bool IsModifier(uint code) => code is KeyboardConstants.LeftShift or KeyboardConstants.RightShift or KeyboardConstants.LeftControl or KeyboardConstants.RightControl;\n}\r\n"
+      },
+      {
+        "category": "native-code state; specialized policy retained",
+        "before": "using GWGUI.Emulation.Interop;\nusing GWGUI.Emulation.Wenquxing.Emulators.Wqxemu.Interop.Constants;\nusing GWGUI.Emulation.Wenquxing.Emulators.Wqxemu.Interop.Functions;\n\nnamespace GWGUI.Emulation.Wenquxing.Emulators.Wqxemu.Interop.Services;\n\ninternal sealed class KeyboardState\n{\n    private readonly IReadOnlyDictionary<EmulationKey, uint> _map;\n    private HashSet<uint> _previous = [];\n    internal KeyboardState(MachineModel model) => _map = KeyboardFunctions.CreateKeyMap(model);\n    internal void Publish(IReadOnlySet<EmulationKey> keys, ExternalCoreApi.KeyboardEvent? callback)\n    {\n        if (callback is null) return;\n        var current = keys.Where(_map.ContainsKey).Select(key => _map[key]).ToHashSet();\n        foreach (var code in _previous.Except(current)) callback(false, code, KeyboardConstants.NoCharacter, KeyboardConstants.NoModifiers);\n        foreach (var code in current.Except(_previous)) callback(true, code, KeyboardConstants.NoCharacter, KeyboardConstants.NoModifiers);\n        _previous = current;\n    }\n    internal void Release(ExternalCoreApi.KeyboardEvent? callback)\n    {\n        try { if (callback is not null) foreach (var code in _previous) callback(false, code, KeyboardConstants.NoCharacter, KeyboardConstants.NoModifiers); }\n        finally { _previous.Clear(); }\n    }\n}",
+        "previousType": "HashSet<uint>",
+        "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Interop/Services/KeyboardState.cs",
+        "previousField": "_previous",
+        "sha256": "2F0C0BD8890C20892A2D5B261926E584D148DFCC31A05C2A69E3FD637F5B6D90",
+        "selectedForSharedKeyLoop": false,
+        "body": "    {\n        if (callback is null) return;\n        var current = keys.Where(_map.ContainsKey).Select(key => _map[key]).ToHashSet();\n        foreach (var code in _previous.Except(current)) callback(false, code, KeyboardConstants.NoCharacter, KeyboardConstants.NoModifiers);\n        foreach (var code in current.Except(_previous)) callback(true, code, KeyboardConstants.NoCharacter, KeyboardConstants.NoModifiers);\n        _previous = current;\n    }\n",
+        "method": "Publish",
+        "orderRelease": "codes",
+        "orderPress": "codes",
+        "character": "KeyboardConstants.NoCharacter",
+        "modifiers": "KeyboardConstants.NoModifiers",
+        "callback": "callback",
+        "oldLoops": "foreach (var code in _previous.Except(current)) callback(false, code, KeyboardConstants.NoCharacter, KeyboardConstants.NoModifiers);\n        foreach (var code in current.Except(_previous)) callback(true, code, KeyboardConstants.NoCharacter, KeyboardConstants.NoModifiers);",
+        "replacement": "ExternalCoreKeyboardFunctions.PublishCodeTransitions(current, ref _previous, callback, KeyboardConstants.NoModifiers,\r\n                codes => codes,\r\n                codes => codes,\r\n                code => KeyboardConstants.NoCharacter);",
+        "after": "using GWGUI.Emulation.Interop;\nusing GWGUI.Emulation.Wenquxing.Emulators.Wqxemu.Interop.Constants;\nusing GWGUI.Emulation.Wenquxing.Emulators.Wqxemu.Interop.Functions;\n\nnamespace GWGUI.Emulation.Wenquxing.Emulators.Wqxemu.Interop.Services;\n\ninternal sealed class KeyboardState\n{\n    private readonly IReadOnlyDictionary<EmulationKey, uint> _map;\n    private HashSet<uint> _previous = [];\n    internal KeyboardState(MachineModel model) => _map = KeyboardFunctions.CreateKeyMap(model);\n    internal void Publish(IReadOnlySet<EmulationKey> keys, ExternalCoreApi.KeyboardEvent? callback)\n    {\n        if (callback is null) return;\n        var current = keys.Where(_map.ContainsKey).Select(key => _map[key]).ToHashSet();\n        ExternalCoreKeyboardFunctions.PublishCodeTransitions(current, ref _previous, callback, KeyboardConstants.NoModifiers,\r\n                codes => codes,\r\n                codes => codes,\r\n                code => KeyboardConstants.NoCharacter);\n        _previous = current;\n    }\n    internal void Release(ExternalCoreApi.KeyboardEvent? callback)\n    {\n        try { if (callback is not null) foreach (var code in _previous) callback(false, code, KeyboardConstants.NoCharacter, KeyboardConstants.NoModifiers); }\n        finally { _previous.Clear(); }\n    }\n}"
+      }
+    ],
+    "state": "verified and built with all 23 modules; 183 targeted tests pass",
+    "decision": "Keep native-code set construction, alias deduplication, null guards, Codes/compose/model state and final previous=current assignment in each owner. Share only the two notification loops with ref previous-set reads, explicit release/press ordering and character policies; no fallback from codes to keys.",
+    "sdk": {
+      "sha256": "2FADA0380962A87235801AB6104DF5C1E1C5F10E4C0C6ED797EFA4BFB0D707BC",
+      "after": "using GWGUI.Emulation.Interop;\r\n\r\nnamespace GWGUI.Emulation.Functions;\r\n\r\ninternal static class ExternalCoreKeyboardFunctions\r\n{\r\n    internal static ushort Modifiers(IReadOnlySet<EmulationKey> keys) => (ushort)(\n        (HasShift(keys) ? ExternalCoreKeyboardConstants.ShiftModifier : ExternalCoreKeyboardConstants.NoModifiers) |\n        (keys.Contains(EmulationKey.LeftControl) || keys.Contains(EmulationKey.RightControl) ? ExternalCoreKeyboardConstants.ControlModifier : ExternalCoreKeyboardConstants.NoModifiers) |\n        (keys.Contains(EmulationKey.LeftAlt) || keys.Contains(EmulationKey.RightAlt) ? ExternalCoreKeyboardConstants.AltModifier : ExternalCoreKeyboardConstants.NoModifiers));\n\n    internal static void PublishTransitions(IReadOnlySet<EmulationKey> keys,\n        IReadOnlyDictionary<EmulationKey, uint> keyMap, ushort modifiers,\n        ref IReadOnlySet<EmulationKey> previous, ref ExternalCoreApi.KeyboardEvent? keyboardEvent,\n        Func<EmulationKey, bool> isModifier, Func<uint, IReadOnlySet<EmulationKey>, uint> characterFor)\n    {\n        foreach (var key in previous.Except(keys).OrderBy(key => isModifier(key) ? ExternalCoreKeyboardConstants.ModifierLastOrder : ExternalCoreKeyboardConstants.ModifierFirstOrder))\n            if (keyMap.TryGetValue(key, out var code))\n                keyboardEvent!(false, code, ExternalCoreKeyboardConstants.NoCharacter, modifiers);\n        foreach (var key in keys.Except(previous).OrderBy(key => isModifier(key) ? ExternalCoreKeyboardConstants.ModifierFirstOrder : ExternalCoreKeyboardConstants.ModifierLastOrder))\n            if (keyMap.TryGetValue(key, out var code))\n                keyboardEvent!(true, code, characterFor(code, keys), modifiers);\n        previous = new HashSet<EmulationKey>(keys);\n    }\n\r\n    internal static void PublishCodeTransitions<TSet>(TSet current, ref TSet previous,\n        ExternalCoreApi.KeyboardEvent keyboardEvent, ushort modifiers,\n        Func<IEnumerable<uint>, IEnumerable<uint>> orderReleased,\n        Func<IEnumerable<uint>, IEnumerable<uint>> orderPressed, Func<uint, uint> characterFor)\n        where TSet : IReadOnlySet<uint>\n    {\n        foreach (var code in orderReleased(previous.Except(current)))\n            keyboardEvent(false, code, ExternalCoreKeyboardConstants.NoCharacter, modifiers);\n        foreach (var code in orderPressed(current.Except(previous)))\n            keyboardEvent(true, code, characterFor(code), modifiers);\n    }\n\r\n    internal static IReadOnlyDictionary<EmulationKey, uint> CreateKeyMap()\r\n    {\r\n        var map = new Dictionary<EmulationKey, uint>\r\n        {\r\n            [EmulationKey.Backspace] = ExternalCoreKeyboardConstants.Backspace,\r\n            [EmulationKey.Tab] = ExternalCoreKeyboardConstants.Tab,\r\n            [EmulationKey.Return] = ExternalCoreKeyboardConstants.Return,\r\n            [EmulationKey.Escape] = ExternalCoreKeyboardConstants.Escape,\r\n            [EmulationKey.Space] = ExternalCoreKeyboardConstants.Space,\r\n            [EmulationKey.Comma] = ',', [EmulationKey.Minus] = '-', [EmulationKey.Period] = '.',\r\n            [EmulationKey.Slash] = '/', [EmulationKey.Semicolon] = ';', [EmulationKey.Equals] = '=',\r\n            [EmulationKey.LeftBracket] = '[', [EmulationKey.Backslash] = '\\\\',\r\n            [EmulationKey.RightBracket] = ']', [EmulationKey.Quote] = '\\'', [EmulationKey.Backquote] = '`',\r\n            [EmulationKey.Delete] = ExternalCoreKeyboardConstants.Delete,\r\n            [EmulationKey.Up] = ExternalCoreKeyboardConstants.Up, [EmulationKey.Down] = ExternalCoreKeyboardConstants.Down,\r\n            [EmulationKey.Right] = ExternalCoreKeyboardConstants.Right, [EmulationKey.Left] = ExternalCoreKeyboardConstants.Left,\r\n            [EmulationKey.Insert] = ExternalCoreKeyboardConstants.Insert, [EmulationKey.Home] = ExternalCoreKeyboardConstants.Home,\r\n            [EmulationKey.End] = ExternalCoreKeyboardConstants.End, [EmulationKey.PageUp] = ExternalCoreKeyboardConstants.PageUp,\r\n            [EmulationKey.PageDown] = ExternalCoreKeyboardConstants.PageDown,\r\n            [EmulationKey.CapsLock] = ExternalCoreKeyboardConstants.CapsLock,\r\n            [EmulationKey.RightShift] = ExternalCoreKeyboardConstants.RightShift,\r\n            [EmulationKey.LeftShift] = ExternalCoreKeyboardConstants.LeftShift,\r\n            [EmulationKey.RightControl] = ExternalCoreKeyboardConstants.RightControl,\r\n            [EmulationKey.LeftControl] = ExternalCoreKeyboardConstants.LeftControl,\r\n            [EmulationKey.RightAlt] = ExternalCoreKeyboardConstants.RightAlt,\r\n            [EmulationKey.LeftAlt] = ExternalCoreKeyboardConstants.LeftAlt,\r\n            [EmulationKey.LeftAmiga] = ExternalCoreKeyboardConstants.LeftMeta,\r\n            [EmulationKey.RightAmiga] = ExternalCoreKeyboardConstants.RightMeta,\r\n            [EmulationKey.Help] = ExternalCoreKeyboardConstants.Help,\r\n            [EmulationKey.Break] = ExternalCoreKeyboardConstants.Break,\r\n            [EmulationKey.Undo] = ExternalCoreKeyboardConstants.Undo,\r\n            [EmulationKey.NumpadPeriod] = ExternalCoreKeyboardConstants.KeypadPeriod,\r\n            [EmulationKey.NumpadDivide] = ExternalCoreKeyboardConstants.KeypadDivide,\r\n            [EmulationKey.NumpadMultiply] = ExternalCoreKeyboardConstants.KeypadMultiply,\r\n            [EmulationKey.NumpadMinus] = ExternalCoreKeyboardConstants.KeypadMinus,\r\n            [EmulationKey.NumpadPlus] = ExternalCoreKeyboardConstants.KeypadPlus,\r\n            [EmulationKey.NumpadEnter] = ExternalCoreKeyboardConstants.KeypadEnter\r\n        };\r\n        AddRange(map, EmulationKey.A, ExternalCoreKeyboardConstants.FirstLetter, ExternalCoreKeyboardConstants.LetterCount);\r\n        AddRange(map, EmulationKey.D0, ExternalCoreKeyboardConstants.FirstDigit, ExternalCoreKeyboardConstants.DigitCount);\r\n        AddRange(map, EmulationKey.F1, ExternalCoreKeyboardConstants.FirstFunctionKey, ExternalCoreKeyboardConstants.FunctionKeyCount);\r\n        AddRange(map, EmulationKey.Numpad0, ExternalCoreKeyboardConstants.FirstKeypadDigit, ExternalCoreKeyboardConstants.DigitCount);\r\n        return map;\r\n    }\r\n\r\n\r\n    internal static uint Character(uint code, IReadOnlySet<EmulationKey> keys)\r\n    {\r\n        var shifted = HasShift(keys);\r\n        if (code is >= ExternalCoreKeyboardConstants.FirstLetter and <= ExternalCoreKeyboardConstants.LastLetter)\r\n            return shifted ^ keys.Contains(EmulationKey.CapsLock) ? code - ExternalCoreKeyboardConstants.UppercaseOffset : code;\r\n        if (!shifted) return IsPrintable(code) ? code : ExternalCoreKeyboardConstants.NoCharacter;\r\n        return code switch\r\n        {\r\n            '0' => ')', '1' => '!', '2' => '@', '3' => '#', '4' => '$', '5' => '%',\r\n            '6' => '^', '7' => '&', '8' => '*', '9' => '(', '-' => '_', '=' => '+',\r\n            '[' => '{', ']' => '}', '\\\\' => '|', ';' => ':', '\\'' => '\"', ',' => '<',\r\n            '.' => '>', '/' => '?', '`' => '~', _ => IsPrintable(code) ? code : ExternalCoreKeyboardConstants.NoCharacter\r\n        };\r\n    }\r\n\r\n\r\n    private static bool HasShift(IReadOnlySet<EmulationKey> keys) => keys.Contains(EmulationKey.LeftShift) || keys.Contains(EmulationKey.RightShift);\r\n\r\n\r\n    private static bool IsPrintable(uint code) => code is >= ExternalCoreKeyboardConstants.FirstPrintableCharacter and <= ExternalCoreKeyboardConstants.LastPrintableCharacter;\r\n\r\n\r\n    internal static void AddRange(IDictionary<EmulationKey, uint> map, EmulationKey firstKey, uint firstCode, int count)\r\n    {\r\n        for (var offset = ExternalCoreKeyboardConstants.FirstRangeOffset; offset < count; offset++)\r\n            map[(EmulationKey)((int)firstKey + offset)] = firstCode + checked((uint)offset);\r\n    }\r\n\r\n}\r\n",
+      "path": "src/GWGUI.Emulation/Functions/ExternalCoreKeyboardFunctions.cs",
+      "method": "    internal static void PublishCodeTransitions<TSet>(TSet current, ref TSet previous,\n        ExternalCoreApi.KeyboardEvent keyboardEvent, ushort modifiers,\n        Func<IEnumerable<uint>, IEnumerable<uint>> orderReleased,\n        Func<IEnumerable<uint>, IEnumerable<uint>> orderPressed, Func<uint, uint> characterFor)\n        where TSet : IReadOnlySet<uint>\n    {\n        foreach (var code in orderReleased(previous.Except(current)))\n            keyboardEvent(false, code, ExternalCoreKeyboardConstants.NoCharacter, modifiers);\n        foreach (var code in orderPressed(current.Except(previous)))\n            keyboardEvent(true, code, characterFor(code), modifiers);\n    }\n",
+      "before": "using GWGUI.Emulation.Interop;\r\n\r\nnamespace GWGUI.Emulation.Functions;\r\n\r\ninternal static class ExternalCoreKeyboardFunctions\r\n{\r\n    internal static ushort Modifiers(IReadOnlySet<EmulationKey> keys) => (ushort)(\n        (HasShift(keys) ? ExternalCoreKeyboardConstants.ShiftModifier : ExternalCoreKeyboardConstants.NoModifiers) |\n        (keys.Contains(EmulationKey.LeftControl) || keys.Contains(EmulationKey.RightControl) ? ExternalCoreKeyboardConstants.ControlModifier : ExternalCoreKeyboardConstants.NoModifiers) |\n        (keys.Contains(EmulationKey.LeftAlt) || keys.Contains(EmulationKey.RightAlt) ? ExternalCoreKeyboardConstants.AltModifier : ExternalCoreKeyboardConstants.NoModifiers));\n\n    internal static void PublishTransitions(IReadOnlySet<EmulationKey> keys,\n        IReadOnlyDictionary<EmulationKey, uint> keyMap, ushort modifiers,\n        ref IReadOnlySet<EmulationKey> previous, ref ExternalCoreApi.KeyboardEvent? keyboardEvent,\n        Func<EmulationKey, bool> isModifier, Func<uint, IReadOnlySet<EmulationKey>, uint> characterFor)\n    {\n        foreach (var key in previous.Except(keys).OrderBy(key => isModifier(key) ? ExternalCoreKeyboardConstants.ModifierLastOrder : ExternalCoreKeyboardConstants.ModifierFirstOrder))\n            if (keyMap.TryGetValue(key, out var code))\n                keyboardEvent!(false, code, ExternalCoreKeyboardConstants.NoCharacter, modifiers);\n        foreach (var key in keys.Except(previous).OrderBy(key => isModifier(key) ? ExternalCoreKeyboardConstants.ModifierFirstOrder : ExternalCoreKeyboardConstants.ModifierLastOrder))\n            if (keyMap.TryGetValue(key, out var code))\n                keyboardEvent!(true, code, characterFor(code, keys), modifiers);\n        previous = new HashSet<EmulationKey>(keys);\n    }\n\r\n    internal static IReadOnlyDictionary<EmulationKey, uint> CreateKeyMap()\r\n    {\r\n        var map = new Dictionary<EmulationKey, uint>\r\n        {\r\n            [EmulationKey.Backspace] = ExternalCoreKeyboardConstants.Backspace,\r\n            [EmulationKey.Tab] = ExternalCoreKeyboardConstants.Tab,\r\n            [EmulationKey.Return] = ExternalCoreKeyboardConstants.Return,\r\n            [EmulationKey.Escape] = ExternalCoreKeyboardConstants.Escape,\r\n            [EmulationKey.Space] = ExternalCoreKeyboardConstants.Space,\r\n            [EmulationKey.Comma] = ',', [EmulationKey.Minus] = '-', [EmulationKey.Period] = '.',\r\n            [EmulationKey.Slash] = '/', [EmulationKey.Semicolon] = ';', [EmulationKey.Equals] = '=',\r\n            [EmulationKey.LeftBracket] = '[', [EmulationKey.Backslash] = '\\\\',\r\n            [EmulationKey.RightBracket] = ']', [EmulationKey.Quote] = '\\'', [EmulationKey.Backquote] = '`',\r\n            [EmulationKey.Delete] = ExternalCoreKeyboardConstants.Delete,\r\n            [EmulationKey.Up] = ExternalCoreKeyboardConstants.Up, [EmulationKey.Down] = ExternalCoreKeyboardConstants.Down,\r\n            [EmulationKey.Right] = ExternalCoreKeyboardConstants.Right, [EmulationKey.Left] = ExternalCoreKeyboardConstants.Left,\r\n            [EmulationKey.Insert] = ExternalCoreKeyboardConstants.Insert, [EmulationKey.Home] = ExternalCoreKeyboardConstants.Home,\r\n            [EmulationKey.End] = ExternalCoreKeyboardConstants.End, [EmulationKey.PageUp] = ExternalCoreKeyboardConstants.PageUp,\r\n            [EmulationKey.PageDown] = ExternalCoreKeyboardConstants.PageDown,\r\n            [EmulationKey.CapsLock] = ExternalCoreKeyboardConstants.CapsLock,\r\n            [EmulationKey.RightShift] = ExternalCoreKeyboardConstants.RightShift,\r\n            [EmulationKey.LeftShift] = ExternalCoreKeyboardConstants.LeftShift,\r\n            [EmulationKey.RightControl] = ExternalCoreKeyboardConstants.RightControl,\r\n            [EmulationKey.LeftControl] = ExternalCoreKeyboardConstants.LeftControl,\r\n            [EmulationKey.RightAlt] = ExternalCoreKeyboardConstants.RightAlt,\r\n            [EmulationKey.LeftAlt] = ExternalCoreKeyboardConstants.LeftAlt,\r\n            [EmulationKey.LeftAmiga] = ExternalCoreKeyboardConstants.LeftMeta,\r\n            [EmulationKey.RightAmiga] = ExternalCoreKeyboardConstants.RightMeta,\r\n            [EmulationKey.Help] = ExternalCoreKeyboardConstants.Help,\r\n            [EmulationKey.Break] = ExternalCoreKeyboardConstants.Break,\r\n            [EmulationKey.Undo] = ExternalCoreKeyboardConstants.Undo,\r\n            [EmulationKey.NumpadPeriod] = ExternalCoreKeyboardConstants.KeypadPeriod,\r\n            [EmulationKey.NumpadDivide] = ExternalCoreKeyboardConstants.KeypadDivide,\r\n            [EmulationKey.NumpadMultiply] = ExternalCoreKeyboardConstants.KeypadMultiply,\r\n            [EmulationKey.NumpadMinus] = ExternalCoreKeyboardConstants.KeypadMinus,\r\n            [EmulationKey.NumpadPlus] = ExternalCoreKeyboardConstants.KeypadPlus,\r\n            [EmulationKey.NumpadEnter] = ExternalCoreKeyboardConstants.KeypadEnter\r\n        };\r\n        AddRange(map, EmulationKey.A, ExternalCoreKeyboardConstants.FirstLetter, ExternalCoreKeyboardConstants.LetterCount);\r\n        AddRange(map, EmulationKey.D0, ExternalCoreKeyboardConstants.FirstDigit, ExternalCoreKeyboardConstants.DigitCount);\r\n        AddRange(map, EmulationKey.F1, ExternalCoreKeyboardConstants.FirstFunctionKey, ExternalCoreKeyboardConstants.FunctionKeyCount);\r\n        AddRange(map, EmulationKey.Numpad0, ExternalCoreKeyboardConstants.FirstKeypadDigit, ExternalCoreKeyboardConstants.DigitCount);\r\n        return map;\r\n    }\r\n\r\n\r\n    internal static uint Character(uint code, IReadOnlySet<EmulationKey> keys)\r\n    {\r\n        var shifted = HasShift(keys);\r\n        if (code is >= ExternalCoreKeyboardConstants.FirstLetter and <= ExternalCoreKeyboardConstants.LastLetter)\r\n            return shifted ^ keys.Contains(EmulationKey.CapsLock) ? code - ExternalCoreKeyboardConstants.UppercaseOffset : code;\r\n        if (!shifted) return IsPrintable(code) ? code : ExternalCoreKeyboardConstants.NoCharacter;\r\n        return code switch\r\n        {\r\n            '0' => ')', '1' => '!', '2' => '@', '3' => '#', '4' => '$', '5' => '%',\r\n            '6' => '^', '7' => '&', '8' => '*', '9' => '(', '-' => '_', '=' => '+',\r\n            '[' => '{', ']' => '}', '\\\\' => '|', ';' => ':', '\\'' => '\"', ',' => '<',\r\n            '.' => '>', '/' => '?', '`' => '~', _ => IsPrintable(code) ? code : ExternalCoreKeyboardConstants.NoCharacter\r\n        };\r\n    }\r\n\r\n\r\n    private static bool HasShift(IReadOnlySet<EmulationKey> keys) => keys.Contains(EmulationKey.LeftShift) || keys.Contains(EmulationKey.RightShift);\r\n\r\n\r\n    private static bool IsPrintable(uint code) => code is >= ExternalCoreKeyboardConstants.FirstPrintableCharacter and <= ExternalCoreKeyboardConstants.LastPrintableCharacter;\r\n\r\n\r\n    internal static void AddRange(IDictionary<EmulationKey, uint> map, EmulationKey firstKey, uint firstCode, int count)\r\n    {\r\n        for (var offset = ExternalCoreKeyboardConstants.FirstRangeOffset; offset < count; offset++)\r\n            map[(EmulationKey)((int)firstKey + offset)] = firstCode + checked((uint)offset);\r\n    }\r\n\r\n}\r\n"
+    },
+    "origin": {
+      "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/KeyboardState.cs",
+      "commit": "296e23e7e0fcfe4cda560bca4fb5f729726f0a38",
+      "source": "using GWGUI.Emulation;\r\n\r\nnamespace GWGUI.Emulation.Acorn.Emulators.Common.Interop.Services;\r\n\r\ninternal sealed class KeyboardState\r\n{\r\n    private static readonly IReadOnlyDictionary<EmulationKey, uint> KeyMap = KeyboardFunctions.CreateKeyMap();\r\n    private IReadOnlySet<uint> _previous = new HashSet<uint>();\r\n\r\n    internal void Publish(IReadOnlySet<EmulationKey> keys, ExternalCoreApi.KeyboardEvent? keyboardEvent)\r\n    {\r\n        if (keyboardEvent is null) return;\r\n        var modifiers = KeyboardFunctions.Modifiers(keys);\r\n        var current = keys.Where(KeyMap.ContainsKey).Select(key => KeyMap[key]).ToHashSet();\r\n        var modifierCodes = keys.Where(KeyboardFunctions.IsModifier).Select(key => KeyMap[key]).ToHashSet();\r\n        foreach (var code in _previous.Except(current).OrderBy(code => IsModifier(code)\r\n                     ? KeyboardConstants.ModifierLastOrder : KeyboardConstants.ModifierFirstOrder))\r\n            keyboardEvent(false, code, KeyboardConstants.NoCharacter, modifiers);\r\n        foreach (var code in current.Except(_previous).OrderBy(code => modifierCodes.Contains(code)\r\n                     ? KeyboardConstants.ModifierFirstOrder : KeyboardConstants.ModifierLastOrder))\r\n            keyboardEvent(true, code, KeyboardFunctions.Character(code, keys), modifiers);\r\n        _previous = current;\r\n    }\r\n\r\n    private static bool IsModifier(uint code) => code is KeyboardConstants.LeftShift\r\n        or KeyboardConstants.RightShift or KeyboardConstants.LeftControl or KeyboardConstants.RightControl;\r\n\r\n    internal static IReadOnlyDictionary<EmulationKey, uint> Mappings => KeyMap;\r\n}\r\n"
+    },
+    "originCandidates": [
+      {
+        "commit": "296e23e7e0fcfe4cda560bca4fb5f729726f0a38",
+        "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/KeyboardState.cs"
+      },
+      {
+        "commit": "296e23e7e0fcfe4cda560bca4fb5f729726f0a38",
+        "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/KeyboardState.cs"
+      },
+      {
+        "commit": "296e23e7e0fcfe4cda560bca4fb5f729726f0a38",
+        "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/KeyboardState.cs"
+      },
+      {
+        "commit": "296e23e7e0fcfe4cda560bca4fb5f729726f0a38",
+        "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/KeyboardState.cs"
+      },
+      {
+        "commit": "23d3b9896615cacb28f72ca13e9dbd13d76145c6",
+        "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/KeyboardState.cs"
+      },
+      {
+        "commit": "21e5ec276cb3c0489ed2c744a3be05d91a77bc3e",
+        "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/KeyboardState.cs"
+      },
+      {
+        "commit": "f22f8e913a97752f1745a8883ef809b08205dd4d",
+        "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Interop/Services/KeyboardState.cs"
+      },
+      {
+        "commit": "0f887a0197d0756f156ae2fba1f20b4863a02928",
+        "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Interop/Services/KeyboardState.cs"
+      }
+    ],
+    "tests": {
+      "beforePassed": 178,
+      "beforeFailed": 0,
+      "afterPassed": 183,
+      "afterFailed": 0,
+      "newPureCases": 5
+    },
+    "testSourceBefore": {
+      "sha256": "4A7DB9E0E2F88AEC6EFBAD3FE0B4534F5017D14F60919879206F238DE4210724",
+      "path": "tests/GWGUI.Tests/Emulation/KeyboardTransitionTests.cs",
+      "source": "using GWGUI.Emulation.Enums;\nusing GWGUI.Emulation.Functions;\nusing GWGUI.Emulation.Interop;\n\nnamespace GWGUI.Tests.Emulation;\n\npublic sealed class KeyboardTransitionTests\n{\n    private static readonly IReadOnlyDictionary<EmulationKey, uint> Map = new Dictionary<EmulationKey, uint>\n    {\n        [EmulationKey.A] = 'a', [EmulationKey.B] = 'b', [EmulationKey.C] = 'c',\n        [EmulationKey.LeftShift] = 304, [EmulationKey.LeftControl] = 306, [EmulationKey.LeftAmiga] = 311\n    };\n\n    [Fact]\n    public void ReleasesPrecedePressesAndModifiersKeepTheirOriginalPriority()\n    {\n        var events = new List<(bool Down, uint Code, uint Character, ushort Modifiers)>();\n        var state = new State { Previous = new HashSet<EmulationKey> { EmulationKey.LeftShift, EmulationKey.A } };\n        state.Event = (down, code, character, modifiers) => events.Add((down, code, character, modifiers));\n        Publish(state, new HashSet<EmulationKey> { EmulationKey.B, EmulationKey.LeftControl });\n        Assert.Equal(new[]\n        {\n            (false, (uint)'a', 0u, (ushort)2), (false, 304u, 0u, (ushort)2),\n            (true, 306u, 0u, (ushort)2), (true, (uint)'b', (uint)'b', (ushort)2)\n        }, events);\n    }\n\n    [Fact]\n    public void UnknownKeysAreTrackedInAnIndependentSnapshotWithoutEvents()\n    {\n        var events = 0;\n        var state = new State { Event = (_, _, _, _) => events++ };\n        var input = new HashSet<EmulationKey> { EmulationKey.F24 };\n        Publish(state, input);\n        Assert.Equal(0, events);\n        Assert.NotSame(input, state.Previous);\n        input.Clear();\n        Assert.Contains(EmulationKey.F24, state.Previous);\n    }\n\n    [Fact]\n    public void CallbackFailureDoesNotCommitTheNextSnapshot()\n    {\n        var error = new InvalidOperationException(\"callback failure\");\n        var state = new State\n        {\n            Previous = new HashSet<EmulationKey> { EmulationKey.A },\n            Event = (_, _, _, _) => throw error\n        };\n        var previous = state.Previous;\n        Assert.Same(error, Assert.Throws<InvalidOperationException>(() => Publish(state, new HashSet<EmulationKey>())));\n        Assert.Same(previous, state.Previous);\n    }\n\n    [Fact]\n    public void ReentrantStateAndCallbackChangesAreVisibleToTheRemainingTransitions()\n    {\n        var events = 0;\n        var state = new State { Previous = new HashSet<EmulationKey> { EmulationKey.A } };\n        state.Event = (_, _, _, _) =>\n        {\n            events++;\n            state.Previous = new HashSet<EmulationKey> { EmulationKey.B };\n        };\n        Publish(state, new HashSet<EmulationKey> { EmulationKey.B });\n        Assert.Equal(1, events);\n\n        var receivers = new List<string>();\n        state.Previous = new HashSet<EmulationKey> { EmulationKey.A, EmulationKey.C };\n        state.Event = (_, _, _, _) =>\n        {\n            receivers.Add(\"first\");\n            state.Event = (_, _, _, _) => receivers.Add(\"replacement\");\n        };\n        Publish(state, new HashSet<EmulationKey>());\n        Assert.Equal(new[] { \"first\", \"replacement\" }, receivers);\n    }\n\n    [Fact]\n    public void CharacterAndModifierPoliciesRemainSuppliedByTheMachine()\n    {\n        var events = new List<(uint Code, uint Character)>();\n        var state = new State { Event = (_, code, character, _) => events.Add((code, character)) };\n        var keys = new HashSet<EmulationKey> { EmulationKey.A, EmulationKey.LeftAmiga };\n        ExternalCoreKeyboardFunctions.PublishTransitions(keys, Map, 0, ref state.Previous, ref state.Event,\n            static key => key == EmulationKey.LeftAmiga, static (code, _) => code + 1000);\n        Assert.Equal(new[] { (311u, 1311u), ((uint)'a', (uint)'a' + 1000) }, events);\n    }\n\n    [Fact]\n    public void RightHandModifiersUseTheSameBitsAndCapsLockAddsNoBit()\n    {\n        var keys = new HashSet<EmulationKey>\n        {\n            EmulationKey.RightShift, EmulationKey.RightControl, EmulationKey.RightAlt, EmulationKey.CapsLock\n        };\n        Assert.Equal((ushort)7, ExternalCoreKeyboardFunctions.Modifiers(keys));\n    }\n\n    private static void Publish(State state, IReadOnlySet<EmulationKey> keys) =>\n        ExternalCoreKeyboardFunctions.PublishTransitions(keys, Map, ExternalCoreKeyboardFunctions.Modifiers(keys),\n            ref state.Previous, ref state.Event, IsModifier, ExternalCoreKeyboardFunctions.Character);\n\n    private static bool IsModifier(EmulationKey key) => key is EmulationKey.LeftShift or EmulationKey.LeftControl;\n\n    private sealed class State\n    {\n        internal IReadOnlySet<EmulationKey> Previous = new HashSet<EmulationKey>();\n        internal ExternalCoreApi.KeyboardEvent? Event;\n    }\n}\n"
+    },
+    "verification": {
+      "bindings": [
+        {
+          "originalLoopExpansionIdentical": true,
+          "setType": "System.Collections.Generic.IReadOnlySet<uint>",
+          "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/KeyboardState.cs",
+          "callbackByValue": true,
+          "ownerCommitUnchanged": true,
+          "previousSetByRef": true
+        },
+        {
+          "originalLoopExpansionIdentical": true,
+          "setType": "System.Collections.Generic.IReadOnlySet<uint>",
+          "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/KeyboardState.cs",
+          "callbackByValue": true,
+          "ownerCommitUnchanged": true,
+          "previousSetByRef": true
+        },
+        {
+          "originalLoopExpansionIdentical": true,
+          "setType": "System.Collections.Generic.IReadOnlySet<uint>",
+          "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/KeyboardState.cs",
+          "callbackByValue": true,
+          "ownerCommitUnchanged": true,
+          "previousSetByRef": true
+        },
+        {
+          "originalLoopExpansionIdentical": true,
+          "setType": "System.Collections.Generic.IReadOnlySet<uint>",
+          "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/KeyboardState.cs",
+          "callbackByValue": true,
+          "ownerCommitUnchanged": true,
+          "previousSetByRef": true
+        },
+        {
+          "originalLoopExpansionIdentical": true,
+          "setType": "System.Collections.Generic.HashSet<uint>",
+          "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/KeyboardState.cs",
+          "callbackByValue": true,
+          "ownerCommitUnchanged": true,
+          "previousSetByRef": true
+        },
+        {
+          "originalLoopExpansionIdentical": true,
+          "setType": "System.Collections.Generic.HashSet<uint>",
+          "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/KeyboardState.cs",
+          "callbackByValue": true,
+          "ownerCommitUnchanged": true,
+          "previousSetByRef": true
+        },
+        {
+          "originalLoopExpansionIdentical": true,
+          "setType": "System.Collections.Generic.HashSet<uint>",
+          "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Interop/Services/KeyboardState.cs",
+          "callbackByValue": true,
+          "ownerCommitUnchanged": true,
+          "previousSetByRef": true
+        },
+        {
+          "originalLoopExpansionIdentical": true,
+          "setType": "System.Collections.Generic.HashSet<uint>",
+          "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Interop/Services/KeyboardState.cs",
+          "callbackByValue": true,
+          "ownerCommitUnchanged": true,
+          "previousSetByRef": true
+        }
+      ],
+      "newStateClasses": 0,
+      "sourceChecks": [
+        {
+          "path": "src/GWGUI.Emulation/Functions/ExternalCoreKeyboardFunctions.cs",
+          "wholeSourceMatchesPlan": true,
+          "sha256": "1227C4CDD1565C5016391B5720CDB1E65632963C725D6B6A361ECAE234531AE0"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/KeyboardState.cs",
+          "wholeSourceMatchesPlan": true,
+          "sha256": "CAE3F76A9480B89EDC593860B081683D3BA5181BE8F7BFFAE20DD50DC12EC81F"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/KeyboardState.cs",
+          "wholeSourceMatchesPlan": true,
+          "sha256": "BEADE65E4287F84551187B89121CACEDD6D073C1E0EF1BCF7D10141C052278FF"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/KeyboardState.cs",
+          "wholeSourceMatchesPlan": true,
+          "sha256": "4DB56042B791F7532510BDA85FE4B1BDFB01C907161A2F6E18D584F1A930747A"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/KeyboardState.cs",
+          "wholeSourceMatchesPlan": true,
+          "sha256": "8DB91DE2BE9C3FBCBCD80A999AB2C6C808623688284CBD86C3E916333618336A"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/KeyboardState.cs",
+          "wholeSourceMatchesPlan": true,
+          "sha256": "D0FE57068434C3CE414C89C52FF4D46B73F0E1395332EC4B4CF99CD6A396B80B"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/KeyboardState.cs",
+          "wholeSourceMatchesPlan": true,
+          "sha256": "6AF7DA39E57969AA8C063980C51164A203C062B8249C8376BFC444AB70966766"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Interop/Services/KeyboardState.cs",
+          "wholeSourceMatchesPlan": true,
+          "sha256": "1DCD75508626B7F4460F401CC5EE87327CC0480F115F441F191F37DC5402D8FD"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Interop/Services/KeyboardState.cs",
+          "wholeSourceMatchesPlan": true,
+          "sha256": "8FABFAEDEB7037E3E27131F0FDA28A54DFF59C91994282F97FEC870E68DCCF2B"
+        }
+      ],
+      "guardsMapAliasComposeCodesAndOwnerCommitsUnchanged": true,
+      "newOwnedResources": 0,
+      "originalLoopExpansionsIdentical": 8,
+      "semanticProjects": [
+        "GWGUI.Emulation",
+        "GWGUI.Emulation.Acorn",
+        "GWGUI.Emulation.Apple",
+        "GWGUI.Emulation.Mattel",
+        "GWGUI.Emulation.Philips",
+        "GWGUI.Emulation.Sharp",
+        "GWGUI.Emulation.Sinclair",
+        "GWGUI.Emulation.Thomson",
+        "GWGUI.Emulation.Wenquxing"
+      ],
+      "semanticErrors": 0
+    },
+    "unchangedQualifiedMembers": {
+      "groups": [],
+      "policy": "Only publisher suffixes change; the SDK only receives the recorded insertion and import. Every retained non-Initialize member keeps name/body/path/hash and its prior whole-source proof matches the actual before source. Update source hash after exact planned substitutions; no blanket exception for changed members.",
+      "items": []
+    },
+    "inventory": {
+      "shortQualificationsRetained": 374,
+      "largeQualificationsRetained": 148,
+      "remainingNativeCodeVariants": 0,
+      "largeGroups": 476,
+      "physicalCSharpFiles": 7288,
+      "adapterOccurrences": [
+        {
+          "collection": "groups",
+          "method": "Publish",
+          "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/KeyboardState.cs",
+          "file": "current-project-groups.json",
+          "hash": "417E5EC00E8488888C60A37FE081F5BA8DF52E04AC21BAAC4A18AF56F93F7B93"
+        },
+        {
+          "collection": "groups",
+          "method": "Publish",
+          "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/KeyboardState.cs",
+          "file": "current-project-groups.json",
+          "hash": "417E5EC00E8488888C60A37FE081F5BA8DF52E04AC21BAAC4A18AF56F93F7B93"
+        },
+        {
+          "collection": "groups",
+          "method": "Publish",
+          "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/KeyboardState.cs",
+          "file": "current-project-groups.json",
+          "hash": "417E5EC00E8488888C60A37FE081F5BA8DF52E04AC21BAAC4A18AF56F93F7B93"
+        },
+        {
+          "collection": "groups",
+          "method": "Publish",
+          "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/KeyboardState.cs",
+          "file": "current-project-groups.json",
+          "hash": "417E5EC00E8488888C60A37FE081F5BA8DF52E04AC21BAAC4A18AF56F93F7B93"
+        }
+      ],
+      "shortBodies": 9532,
+      "renamedShortGroups": 369,
+      "largeBodies": 11658,
+      "exactShortGroups": 775
+    }
+  },
+  "keyboardTransitionsBuild": {
+    "coveredBlocks": [
+      "keyboardTransitionReuse",
+      "nativeCodeTransitionReuse"
+    ],
+    "before": [
+      {
+        "path": "global.json",
+        "sha256": "EC7D038183957F0F2DD09078668AB7866560A585B3566836E5ECD105796260F4",
+        "exists": true
+      },
+      {
+        "path": "scripts/local-building.cmd",
+        "sha256": "06027F2C20CB4CD2231BB9247B6CFAF23B60CE4E896103A76042EC3D2F30FF4B",
+        "exists": true
+      },
+      {
+        "path": "scripts/local-building/build.ps1",
+        "sha256": "EAEF2EAE65381132F9E5AE8F73CDACAA01755AACAD2F334714352785CC82C700",
+        "exists": true
+      },
+      {
+        "path": "scripts/module-directory/build-module-directory.ps1",
+        "sha256": "75DFD60CAC53DB8E4FF8FF274DB1A92A802E518C6C35AE1C7EAD3CA74065F054",
+        "exists": true
+      },
+      {
+        "path": "scripts/module-release/package-module.ps1",
+        "sha256": "EFF57734FACEB7536E603A78DB0E43723BA22E8128C23BBB98C9F9B154BBE0F3",
+        "exists": true
+      },
+      {
+        "path": "scripts/publish-module-directory.cmd",
+        "sha256": "20A8899A47EF613BE8D7E106C81FF1C00BCA6E00C5F3CC4B1FD1E596A9BA24FB",
+        "exists": true
+      },
+      {
+        "path": "scripts/publish-modules.cmd",
+        "sha256": "3AD1334C3E0C2EDC5D0B8AEB416D9F096784A80F6F0DC1EABECD7BA5CADA5DFB",
+        "exists": true
+      },
+      {
+        "path": "scripts/publish-release.cmd",
+        "sha256": "C6A1F3A111B00408FEFD153342140CA556B63A120C539830236B5D22B7987626",
+        "exists": true
+      },
+      {
+        "path": "scripts/publish-wiki.cmd",
+        "sha256": "E6FA82514B4F43F7E45308FA925B16876C1F0924053BD611837D15C741A56C30",
+        "exists": true
+      },
+      {
+        "path": "scripts/release/package/organize_app/organize-application-output.ps1",
+        "sha256": "DF28EE0A0FCD20ACABA2D1131DBE89CFE057D7FE6F3119D2F6BCBA2CA917469B",
+        "exists": true
+      },
+      {
+        "path": "scripts/release/package/organize_app/shared-component-files.ps1",
+        "sha256": "BE18E987279943DFB6449F5920E29E2D0922206F0ECBABC95A1C4C8723061554",
+        "exists": true
+      },
+      {
+        "path": "scripts/release/package/package.ps1",
+        "sha256": "04E9052B296679D70666C4559B372425AA92F68F79E666F7DA6234255BDD6B6A",
+        "exists": true
+      },
+      {
+        "path": "scripts/release/update-catalog/build-update-catalog.ps1",
+        "sha256": "3E3D1FC84EA4F113F3B3B6BF14E9F35A3E7B305BF4F79153E20D7849D026988D",
+        "exists": true
+      },
+      {
+        "path": "scripts/release/update-catalog/emulation-modules/emulation-modules.ps1",
+        "sha256": "3D75EB2584FDC3E6C9E2B153B919ADDF88748D1C92CB5D421699D0A5966E7625",
+        "exists": true
+      },
+      {
+        "path": "scripts/temp/analyze-media-data.ps1",
+        "sha256": "AA775F80D85158C60C3AD3E5073420B4BA33949C2EC9DC8FA78F47CBAA77913A",
+        "exists": true
+      },
+      {
+        "path": "scripts/temp/common/DotNetProcess.ps1",
+        "sha256": "31AC2B278BDE2D72222F440F825B6591BE38AF0AD16CCC6D969AA9ECFB3385FC",
+        "exists": true
+      },
+      {
+        "path": "scripts/temp/extract_data_from_ContentHex.ps1",
+        "sha256": "6FB701484E9E322749CC2DC40964B7858E244ED725DC07A62FE5482281F47598",
+        "exists": true
+      },
+      {
+        "path": "scripts/temp/extract-media-files.ps1",
+        "sha256": "7E3FB09B7F82364956CF923C0AC8B9BBE24D16327442B70990A3AE1CA63DFB1F",
+        "exists": true
+      },
+      {
+        "path": "scripts/temp/read-media-with-libretro.ps1",
+        "sha256": "45EFF764E2539E5DBF223BFF176BAE71DD0B70A86AB12680E5DFB18DFF0772DC",
+        "exists": true
+      },
+      {
+        "path": "scripts/tests/test-app-accessibility.ps1",
+        "sha256": "3CEE5946F141097643AE07175E52131D25C268DCDBBA287DA0892E1A3708A5F4",
+        "exists": true
+      },
+      {
+        "path": "scripts/tests/test-installer-upgrade.ps1",
+        "sha256": "9A67170E382BBCBDF5DE0922AE8E74B283D6AA8DAE386913D73170F7BB157795",
+        "exists": true
+      },
+      {
+        "path": "scripts/tests/test-installer.ps1",
+        "sha256": "A9CF61F494BCAE405D7A6CEFDE99CE8BB57C43C90A5C2FAFE44A2164751B15A1",
+        "exists": true
+      },
+      {
+        "path": "scripts/tools/find-invalid-documentation.ps1",
+        "sha256": "3CDC9B369EE24651DFC07289AB2207A4604CA1883F47BFB8B526B8B2E6974406",
+        "exists": true
+      },
+      {
+        "path": "scripts/tools/stop-debug-gwgui.ps1",
+        "sha256": "2E5B7FDA06F544830ADA911396C89305DFBECE95129C1C45DC3E9A3E91EFD1C2",
+        "exists": true
+      },
+      {
+        "path": "scripts/wiki/build-wiki.ps1",
+        "sha256": "93D3D34A8CFC807CBC2DD755DCB97A32E93F8677C64EEA6B9E5D376A55427662",
+        "exists": true
+      },
+      {
+        "path": "scripts/wiki/publish-wiki.ps1",
+        "sha256": "0B496084B44EBA11BE96271BC6AFA9F4AAA749E91CA2335556BFAD395CB36D2B",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.App/GWGUI.App.csproj",
+        "sha256": "45D17E66BC1DD5923693633986D0B6792A1D89DC1B25FDCDD44701D4EC72931C",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/KeyboardState.cs",
+        "sha256": "CAE3F76A9480B89EDC593860B081683D3BA5181BE8F7BFFAE20DD50DC12EC81F",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Acorn/GWGUI.Emulation.Acorn.csproj",
+        "sha256": "C5D7ED8C9804B7C017C65EE2D5538E3D886B35F391B76A45D047D0CB444BEFD3",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Acorn/module.json",
+        "sha256": "5D1361DF84F667F12B408B9CA08E982E037C4C9D65D3AE020C87DB86450F29DB",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.Input.cs",
+        "sha256": "55C46DDCADD0C80D3FEF40CE14932FE4E3FA2C7F86537E2F6B7D1D1640C63AB2",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Amstrad/GWGUI.Emulation.Amstrad.csproj",
+        "sha256": "E5CD137AF53BFFCD58CBEF9F656499E89C8CE93D2672929432F514CBF62F5568",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Amstrad/module.json",
+        "sha256": "0685C64F7DBFA038CDCEC72E0407222B33BD1147B842E6ECCD08072A92A30047",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/KeyboardState.cs",
+        "sha256": "BEADE65E4287F84551187B89121CACEDD6D073C1E0EF1BCF7D10141C052278FF",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Apple/GWGUI.Emulation.Apple.csproj",
+        "sha256": "624CD4C0CC6BD90301FE79E6F781E57623F006EF2030CFF2FD9ECBE8603B05A4",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Apple/module.json",
+        "sha256": "FBE09CFCB4F6A08E589D10464AD6741B26B145BCFAF296154A57C7A698AF1163",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/KeyboardState.cs",
+        "sha256": "A7030D768C4493CF9F13E33E491D17AE480237C16D5809BEA4046B064FA88728",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Atari/GWGUI.Emulation.Atari.csproj",
+        "sha256": "0B69DEA50029B3D269EE60914F4239F18692D1A14A964301949FF2DBA6877C86",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Atari/module.json",
+        "sha256": "51CC891084CC5412C7D00BF348F710FD5DE995C24EE67A606337BF1FE842306F",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Bandai/GWGUI.Emulation.Bandai.csproj",
+        "sha256": "8731868F4238380DF2E63E5DC48DEDF906A6A1B891D84775EFD81B15F35BA19A",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Bandai/module.json",
+        "sha256": "F6F87EA0A37548B557A4C12127904D272C80C4EE75B2CEC5653FDFB5DFFBFD82",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/KeyboardState.cs",
+        "sha256": "FF5109318E95269DE8E66DB2924BD12406915CC91BB7AB0D29079BDEF7269501",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Coleco/GWGUI.Emulation.Coleco.csproj",
+        "sha256": "8B8E257FE498755B742F645D17A1A1FA1A55CF4AE833422631BD898347868F67",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Coleco/module.json",
+        "sha256": "EE3B477DB0CCEEDD0C02D2C4548ED4E5B44D56EBA689195557DB607DF9218B14",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.Input.cs",
+        "sha256": "8B67D8EA0507ED5EB215EDD6C46C5F24465A8BD098023CAD74169E9B5F00EA65",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Commodore/GWGUI.Emulation.Commodore.csproj",
+        "sha256": "2484487C872A8CC2111BEEA0BE22B0D13DEF6996A4918B3AEF7C02F7E79C1433",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Commodore/module.json",
+        "sha256": "715A8D7E88A5371FE1E576185FE0F2388F8CF19D29C42BCF9DA9FF4E48839A22",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/KeyboardState.cs",
+        "sha256": "100A27F718D4F384897F32F00551D194A1F5CD3DA56A60635D488FDF2041C2E6",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Epoch/GWGUI.Emulation.Epoch.csproj",
+        "sha256": "833629D231B69D9789FFA68C6C8757E21CC4818F6956B4A362AAF62E383296A6",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Epoch/module.json",
+        "sha256": "4F9BE08D73FEB957D482FACD353D3DE33FACFE3EB811CDB760A0C43039FA3982",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Fairchild/GWGUI.Emulation.Fairchild.csproj",
+        "sha256": "45E562B934ADAE7A24678A110C2C0DAE308B20FFE149D08BA30DFB365C4C5962",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Fairchild/module.json",
+        "sha256": "2A189DF8B8D6ECA422D9A557E3543CC1BEB26795076B565DCB61A5CB3252E4B5",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/KeyboardState.cs",
+        "sha256": "4DB56042B791F7532510BDA85FE4B1BDFB01C907161A2F6E18D584F1A930747A",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Mattel/GWGUI.Emulation.Mattel.csproj",
+        "sha256": "0791D297AF339DDAAA0CB6AF8A44ADB3156503B84FDD56F4C497B7803403847B",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Mattel/module.json",
+        "sha256": "F47DC3DB92E381580877689A2486482966240DAF8FF5E8D2FE10D9D693D6EF5A",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Microsoft/GWGUI.Emulation.Microsoft.csproj",
+        "sha256": "83B81BBC65B2070D889850635E5BC7603AEBC74BA8B2BF7C18ED59C2E770CD21",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Microsoft/module.json",
+        "sha256": "43D19332331FCAA8F42C6B8CD1F7DF144606E3A988C21A997407AEF76BC19CC5",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.Input.cs",
+        "sha256": "376ADDF95EBA1D6D82F10F3C7CE2DC59F99EB79C8E42D6915258F2F063E6CE0A",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nec/GWGUI.Emulation.Nec.csproj",
+        "sha256": "BCDC416DC7B08C38D7244523B3E7D3FE569A5618B80C9693F84D4F0A8394F6E8",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nec/module.json",
+        "sha256": "418AB9A38DE74CB5003E3F5F343B90AEE5F9ADDDCAB4BC4257F16C018E112F32",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Input.cs",
+        "sha256": "B40746F45FA161A080227C991B05603EB30C3DCDD91D674E2426251662301C2B",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nintendo/GWGUI.Emulation.Nintendo.csproj",
+        "sha256": "5C53880ECF569F2508C22165163C4ECCC57DDB8D354435FD7DD36066E1054118",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nintendo/module.json",
+        "sha256": "788A3664E12FF76C48BD1DC889037A4A949495669F8593DC2E1A5F873679F619",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Panasonic/GWGUI.Emulation.Panasonic.csproj",
+        "sha256": "56C39603191BF0D499E10B0D51A10F70F8126D7734421332F635B9108DB94E1A",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Panasonic/module.json",
+        "sha256": "EA9A3616D39CD4D1F5E30E9976F5068D53ED1FFF6045385D768D7C90BB507BEE",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/KeyboardState.cs",
+        "sha256": "8DB91DE2BE9C3FBCBCD80A999AB2C6C808623688284CBD86C3E916333618336A",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Philips/GWGUI.Emulation.Philips.csproj",
+        "sha256": "D710F842C3EEC902EBD72DA559E8DB51738882B3C101868AF2BE5FEF1A449136",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Philips/module.json",
+        "sha256": "6EB25C1487B811A43F9D3A47CBEE2CAE00037733C012977E4F6524EBBB456D1E",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Input.cs",
+        "sha256": "B4125ED362370D5FA40827C0C6D69DB4894E1773B5F61DF2772C5AE7E241BF3C",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sega/GWGUI.Emulation.Sega.csproj",
+        "sha256": "84C8C40DB0187221E7C0D4FCF25A30CC25E3CC5BA46BB642130771B893EC881E",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sega/module.json",
+        "sha256": "5365B31349DE22D838CB7B2A8C539559C4A63BD88E69E29A270191EA81AA2577",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/KeyboardState.cs",
+        "sha256": "D0FE57068434C3CE414C89C52FF4D46B73F0E1395332EC4B4CF99CD6A396B80B",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sharp/GWGUI.Emulation.Sharp.csproj",
+        "sha256": "492139470ED46F60044E0D656C7C319EFD09B1063022CBCB7E64BD252B8F9252",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sharp/module.json",
+        "sha256": "D53D6EC4BEBA44812044807AFAC9BCB72DFF2610C4EF6B756F68BD8273962CA0",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/KeyboardState.cs",
+        "sha256": "6AF7DA39E57969AA8C063980C51164A203C062B8249C8376BFC444AB70966766",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sinclair/GWGUI.Emulation.Sinclair.csproj",
+        "sha256": "2CD3BC3A64743D4B11CC6312544FE6108E1BF8DFD27D3758FB2828D3CF5FA242",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sinclair/module.json",
+        "sha256": "9B470D469CEEA3E635CBA07A802BEF90B7B219FF0EA1A472D92AF8720EC659CB",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Snk/GWGUI.Emulation.Snk.csproj",
+        "sha256": "B734D83E941BB713D6043EA55D3175B58ED4E3E1A20900353AEF0193082B7C46",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Snk/module.json",
+        "sha256": "F01DB0F0477C9E3396953A6E5F4C038664D443D8A8438190C090A203C752A3E1",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.Input.cs",
+        "sha256": "88F8770B735B65E2F3905F2C194EAFEF2D541A37BD8B465B4A7A120D6FFDC8D1",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Input.cs",
+        "sha256": "759C393D33323E727F4253CDE5ABF8B8FE5C24F5D4F11165E92CCABEEA38B0E3",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Input.cs",
+        "sha256": "F92FDA12E2E825A8505993A073557FB88D99ED7D9380D3FF8444FD36FC9ADFDC",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sony/GWGUI.Emulation.Sony.csproj",
+        "sha256": "AD1328E423A7E4A8A0BD3C1B406B5B6C4B8FBB5E074A3B2BD56C9CB674DC0FA4",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sony/module.json",
+        "sha256": "2D42F1C300CF0AF603AC2F173E733190938222A97AD4C90EFDACEDC6EEC5A0D2",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Interop/Services/KeyboardState.cs",
+        "sha256": "1DCD75508626B7F4460F401CC5EE87327CC0480F115F441F191F37DC5402D8FD",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Thomson/GWGUI.Emulation.Thomson.csproj",
+        "sha256": "C4FDABFB3825230FC0CD480AFA2DE67C78CCF0D24EEC2EAF0CF144B30A26DB5D",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Thomson/module.json",
+        "sha256": "73607D4205DE7D262CE05C177098DA420502B7D0D5FCDBD27C83D43B436BAA9E",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Watara/GWGUI.Emulation.Watara.csproj",
+        "sha256": "A8C72698C6BA5326AA24DB4782DA7D0F21C966DFE25F5BF30DF6A0668243C5D0",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Watara/module.json",
+        "sha256": "13EB5DAC82C5FAFAFA194447193A6A02EC755A4A4A083D43D73A25A2FEBEEC5D",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Interop/Services/KeyboardState.cs",
+        "sha256": "8FABFAEDEB7037E3E27131F0FDA28A54DFF59C91994282F97FEC870E68DCCF2B",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Wenquxing/GWGUI.Emulation.Wenquxing.csproj",
+        "sha256": "E22F6C874E8A20A6E28CFE250943F4347919384B79B52DB5E9D8A61C67AF9328",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Wenquxing/module.json",
+        "sha256": "911CC9E4D67C1C8BFB3D5E9D7133EEDF03F801CD769C2299155A994A7E544991",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation/Functions/EmulationChildProcessLifetime.cs",
+        "sha256": "4EE40C4EDAB6F8412FFC52E9FA5DCEC737BE8C08D204E5D35344AD681DA36B49",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation/Functions/EmulationHostProtocolFunctions.cs",
+        "sha256": "69EB395875E8D380B578EF44DE510C66AA95A42E94B098848468ECF91125146D",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation/Functions/EmulationHostProtocolFunctions.Video.cs",
+        "sha256": "CC96663BAD54411AE14426502D8B103696096F9C78AC18D36285BDA92056DAC1",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation/Functions/ExternalCoreKeyboardFunctions.cs",
+        "sha256": "1227C4CDD1565C5016391B5720CDB1E65632963C725D6B6A361ECAE234531AE0",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation/GWGUI.Emulation.csproj",
+        "sha256": "5A9DABBDCBBE1C93A04D5ABA1BE00A0527421F3270F02FEBE063453AC5FB857C",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Infrastructure/GWGUI.Infrastructure.csproj",
+        "sha256": "5AF1A6F4FD9761192136278A7420D9491A72A1CF7D5400140B72252127608336",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Launcher/GWGUI.Launcher.csproj",
+        "sha256": "704C315EFBB669FA6BCC398F29B9FEB3A7BF2F41D9BE44E3B41D0CC81B023473",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.MediaAnalysis/GWGUI.MediaAnalysis.csproj",
+        "sha256": "5D914401AB2AAE3465A052EDBBC99B8E73495BBD2B2F3546543653C2169E1C65",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.MediaEngine/GWGUI.MediaEngine.csproj",
+        "sha256": "11A282DF1F8B5F162AA0ABEE100C18B8751389A1B51DE83C77D5684CC4A1A069",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.MediaFileSystems/GWGUI.MediaFileSystems.csproj",
+        "sha256": "BCA0D10E729A54C4C1A5F65D75DB27BF1C3EAF979C1474DF3FCDF876BA90D8D9",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Updater/GWGUI.Updater.csproj",
+        "sha256": "6360F653C53DCC478D97631DE16CE136DB234F6342EA9AE463E3A2EFCE85C13F",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Updates/GWGUI.Updates.csproj",
+        "sha256": "B87C1A99E3FD3EE39A2613EC0D071C5D7D7DF3575FAB40B70A5ACFC4EF27923D",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.VideoPresentation/GWGUI.VideoPresentation.csproj",
+        "sha256": "29F1202CBF6FACC651C0FE3C1A1E8E830CCBD4A5B292B8E3A29AF51E451CCEB3",
+        "exists": true
+      },
+      {
+        "path": "tests/GWGUI.Tests/Emulation/CoreInitializationRequestTests.cs",
+        "sha256": "F9B6B481CBFBADF51683831E0DFECB920D89A073686549A738CFFDD4C790EEA0",
+        "exists": true
+      },
+      {
+        "path": "tests/GWGUI.Tests/Emulation/KeyboardTransitionTests.cs",
+        "sha256": "4726BE7E4C969BEBB2B41DC1DB6DA8859B12FC23B12F189785A400803974EFB6",
+        "exists": true
+      }
+    ],
+    "startedAt": "2026-10-19T04:00:27.1230099+02:00",
+    "state": "verified",
+    "command": "scripts/local-building.cmd --building=debug --modules=A",
+    "after": [
+      {
+        "sha256": "EC7D038183957F0F2DD09078668AB7866560A585B3566836E5ECD105796260F4",
+        "path": "global.json",
+        "exists": true
+      },
+      {
+        "sha256": "06027F2C20CB4CD2231BB9247B6CFAF23B60CE4E896103A76042EC3D2F30FF4B",
+        "path": "scripts/local-building.cmd",
+        "exists": true
+      },
+      {
+        "sha256": "EAEF2EAE65381132F9E5AE8F73CDACAA01755AACAD2F334714352785CC82C700",
+        "path": "scripts/local-building/build.ps1",
+        "exists": true
+      },
+      {
+        "sha256": "75DFD60CAC53DB8E4FF8FF274DB1A92A802E518C6C35AE1C7EAD3CA74065F054",
+        "path": "scripts/module-directory/build-module-directory.ps1",
+        "exists": true
+      },
+      {
+        "sha256": "EFF57734FACEB7536E603A78DB0E43723BA22E8128C23BBB98C9F9B154BBE0F3",
+        "path": "scripts/module-release/package-module.ps1",
+        "exists": true
+      },
+      {
+        "sha256": "20A8899A47EF613BE8D7E106C81FF1C00BCA6E00C5F3CC4B1FD1E596A9BA24FB",
+        "path": "scripts/publish-module-directory.cmd",
+        "exists": true
+      },
+      {
+        "sha256": "3AD1334C3E0C2EDC5D0B8AEB416D9F096784A80F6F0DC1EABECD7BA5CADA5DFB",
+        "path": "scripts/publish-modules.cmd",
+        "exists": true
+      },
+      {
+        "sha256": "C6A1F3A111B00408FEFD153342140CA556B63A120C539830236B5D22B7987626",
+        "path": "scripts/publish-release.cmd",
+        "exists": true
+      },
+      {
+        "sha256": "E6FA82514B4F43F7E45308FA925B16876C1F0924053BD611837D15C741A56C30",
+        "path": "scripts/publish-wiki.cmd",
+        "exists": true
+      },
+      {
+        "sha256": "DF28EE0A0FCD20ACABA2D1131DBE89CFE057D7FE6F3119D2F6BCBA2CA917469B",
+        "path": "scripts/release/package/organize_app/organize-application-output.ps1",
+        "exists": true
+      },
+      {
+        "sha256": "BE18E987279943DFB6449F5920E29E2D0922206F0ECBABC95A1C4C8723061554",
+        "path": "scripts/release/package/organize_app/shared-component-files.ps1",
+        "exists": true
+      },
+      {
+        "sha256": "04E9052B296679D70666C4559B372425AA92F68F79E666F7DA6234255BDD6B6A",
+        "path": "scripts/release/package/package.ps1",
+        "exists": true
+      },
+      {
+        "sha256": "3E3D1FC84EA4F113F3B3B6BF14E9F35A3E7B305BF4F79153E20D7849D026988D",
+        "path": "scripts/release/update-catalog/build-update-catalog.ps1",
+        "exists": true
+      },
+      {
+        "sha256": "3D75EB2584FDC3E6C9E2B153B919ADDF88748D1C92CB5D421699D0A5966E7625",
+        "path": "scripts/release/update-catalog/emulation-modules/emulation-modules.ps1",
+        "exists": true
+      },
+      {
+        "sha256": "AA775F80D85158C60C3AD3E5073420B4BA33949C2EC9DC8FA78F47CBAA77913A",
+        "path": "scripts/temp/analyze-media-data.ps1",
+        "exists": true
+      },
+      {
+        "sha256": "31AC2B278BDE2D72222F440F825B6591BE38AF0AD16CCC6D969AA9ECFB3385FC",
+        "path": "scripts/temp/common/DotNetProcess.ps1",
+        "exists": true
+      },
+      {
+        "sha256": "6FB701484E9E322749CC2DC40964B7858E244ED725DC07A62FE5482281F47598",
+        "path": "scripts/temp/extract_data_from_ContentHex.ps1",
+        "exists": true
+      },
+      {
+        "sha256": "7E3FB09B7F82364956CF923C0AC8B9BBE24D16327442B70990A3AE1CA63DFB1F",
+        "path": "scripts/temp/extract-media-files.ps1",
+        "exists": true
+      },
+      {
+        "sha256": "45EFF764E2539E5DBF223BFF176BAE71DD0B70A86AB12680E5DFB18DFF0772DC",
+        "path": "scripts/temp/read-media-with-libretro.ps1",
+        "exists": true
+      },
+      {
+        "sha256": "3CEE5946F141097643AE07175E52131D25C268DCDBBA287DA0892E1A3708A5F4",
+        "path": "scripts/tests/test-app-accessibility.ps1",
+        "exists": true
+      },
+      {
+        "sha256": "9A67170E382BBCBDF5DE0922AE8E74B283D6AA8DAE386913D73170F7BB157795",
+        "path": "scripts/tests/test-installer-upgrade.ps1",
+        "exists": true
+      },
+      {
+        "sha256": "A9CF61F494BCAE405D7A6CEFDE99CE8BB57C43C90A5C2FAFE44A2164751B15A1",
+        "path": "scripts/tests/test-installer.ps1",
+        "exists": true
+      },
+      {
+        "sha256": "3CDC9B369EE24651DFC07289AB2207A4604CA1883F47BFB8B526B8B2E6974406",
+        "path": "scripts/tools/find-invalid-documentation.ps1",
+        "exists": true
+      },
+      {
+        "sha256": "2E5B7FDA06F544830ADA911396C89305DFBECE95129C1C45DC3E9A3E91EFD1C2",
+        "path": "scripts/tools/stop-debug-gwgui.ps1",
+        "exists": true
+      },
+      {
+        "sha256": "93D3D34A8CFC807CBC2DD755DCB97A32E93F8677C64EEA6B9E5D376A55427662",
+        "path": "scripts/wiki/build-wiki.ps1",
+        "exists": true
+      },
+      {
+        "sha256": "0B496084B44EBA11BE96271BC6AFA9F4AAA749E91CA2335556BFAD395CB36D2B",
+        "path": "scripts/wiki/publish-wiki.ps1",
+        "exists": true
+      },
+      {
+        "sha256": "45D17E66BC1DD5923693633986D0B6792A1D89DC1B25FDCDD44701D4EC72931C",
+        "path": "src/GWGUI.App/GWGUI.App.csproj",
+        "exists": true
+      },
+      {
+        "sha256": "CAE3F76A9480B89EDC593860B081683D3BA5181BE8F7BFFAE20DD50DC12EC81F",
+        "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/KeyboardState.cs",
+        "exists": true
+      },
+      {
+        "sha256": "C5D7ED8C9804B7C017C65EE2D5538E3D886B35F391B76A45D047D0CB444BEFD3",
+        "path": "src/GWGUI.Emulation.Acorn/GWGUI.Emulation.Acorn.csproj",
+        "exists": true
+      },
+      {
+        "sha256": "5D1361DF84F667F12B408B9CA08E982E037C4C9D65D3AE020C87DB86450F29DB",
+        "path": "src/GWGUI.Emulation.Acorn/module.json",
+        "exists": true
+      },
+      {
+        "sha256": "55C46DDCADD0C80D3FEF40CE14932FE4E3FA2C7F86537E2F6B7D1D1640C63AB2",
+        "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.Input.cs",
+        "exists": true
+      },
+      {
+        "sha256": "E5CD137AF53BFFCD58CBEF9F656499E89C8CE93D2672929432F514CBF62F5568",
+        "path": "src/GWGUI.Emulation.Amstrad/GWGUI.Emulation.Amstrad.csproj",
+        "exists": true
+      },
+      {
+        "sha256": "0685C64F7DBFA038CDCEC72E0407222B33BD1147B842E6ECCD08072A92A30047",
+        "path": "src/GWGUI.Emulation.Amstrad/module.json",
+        "exists": true
+      },
+      {
+        "sha256": "BEADE65E4287F84551187B89121CACEDD6D073C1E0EF1BCF7D10141C052278FF",
+        "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/KeyboardState.cs",
+        "exists": true
+      },
+      {
+        "sha256": "624CD4C0CC6BD90301FE79E6F781E57623F006EF2030CFF2FD9ECBE8603B05A4",
+        "path": "src/GWGUI.Emulation.Apple/GWGUI.Emulation.Apple.csproj",
+        "exists": true
+      },
+      {
+        "sha256": "FBE09CFCB4F6A08E589D10464AD6741B26B145BCFAF296154A57C7A698AF1163",
+        "path": "src/GWGUI.Emulation.Apple/module.json",
+        "exists": true
+      },
+      {
+        "sha256": "A7030D768C4493CF9F13E33E491D17AE480237C16D5809BEA4046B064FA88728",
+        "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/KeyboardState.cs",
+        "exists": true
+      },
+      {
+        "sha256": "0B69DEA50029B3D269EE60914F4239F18692D1A14A964301949FF2DBA6877C86",
+        "path": "src/GWGUI.Emulation.Atari/GWGUI.Emulation.Atari.csproj",
+        "exists": true
+      },
+      {
+        "sha256": "51CC891084CC5412C7D00BF348F710FD5DE995C24EE67A606337BF1FE842306F",
+        "path": "src/GWGUI.Emulation.Atari/module.json",
+        "exists": true
+      },
+      {
+        "sha256": "8731868F4238380DF2E63E5DC48DEDF906A6A1B891D84775EFD81B15F35BA19A",
+        "path": "src/GWGUI.Emulation.Bandai/GWGUI.Emulation.Bandai.csproj",
+        "exists": true
+      },
+      {
+        "sha256": "F6F87EA0A37548B557A4C12127904D272C80C4EE75B2CEC5653FDFB5DFFBFD82",
+        "path": "src/GWGUI.Emulation.Bandai/module.json",
+        "exists": true
+      },
+      {
+        "sha256": "FF5109318E95269DE8E66DB2924BD12406915CC91BB7AB0D29079BDEF7269501",
+        "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/KeyboardState.cs",
+        "exists": true
+      },
+      {
+        "sha256": "8B8E257FE498755B742F645D17A1A1FA1A55CF4AE833422631BD898347868F67",
+        "path": "src/GWGUI.Emulation.Coleco/GWGUI.Emulation.Coleco.csproj",
+        "exists": true
+      },
+      {
+        "sha256": "EE3B477DB0CCEEDD0C02D2C4548ED4E5B44D56EBA689195557DB607DF9218B14",
+        "path": "src/GWGUI.Emulation.Coleco/module.json",
+        "exists": true
+      },
+      {
+        "sha256": "8B67D8EA0507ED5EB215EDD6C46C5F24465A8BD098023CAD74169E9B5F00EA65",
+        "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.Input.cs",
+        "exists": true
+      },
+      {
+        "sha256": "2484487C872A8CC2111BEEA0BE22B0D13DEF6996A4918B3AEF7C02F7E79C1433",
+        "path": "src/GWGUI.Emulation.Commodore/GWGUI.Emulation.Commodore.csproj",
+        "exists": true
+      },
+      {
+        "sha256": "715A8D7E88A5371FE1E576185FE0F2388F8CF19D29C42BCF9DA9FF4E48839A22",
+        "path": "src/GWGUI.Emulation.Commodore/module.json",
+        "exists": true
+      },
+      {
+        "sha256": "100A27F718D4F384897F32F00551D194A1F5CD3DA56A60635D488FDF2041C2E6",
+        "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/KeyboardState.cs",
+        "exists": true
+      },
+      {
+        "sha256": "833629D231B69D9789FFA68C6C8757E21CC4818F6956B4A362AAF62E383296A6",
+        "path": "src/GWGUI.Emulation.Epoch/GWGUI.Emulation.Epoch.csproj",
+        "exists": true
+      },
+      {
+        "sha256": "4F9BE08D73FEB957D482FACD353D3DE33FACFE3EB811CDB760A0C43039FA3982",
+        "path": "src/GWGUI.Emulation.Epoch/module.json",
+        "exists": true
+      },
+      {
+        "sha256": "45E562B934ADAE7A24678A110C2C0DAE308B20FFE149D08BA30DFB365C4C5962",
+        "path": "src/GWGUI.Emulation.Fairchild/GWGUI.Emulation.Fairchild.csproj",
+        "exists": true
+      },
+      {
+        "sha256": "2A189DF8B8D6ECA422D9A557E3543CC1BEB26795076B565DCB61A5CB3252E4B5",
+        "path": "src/GWGUI.Emulation.Fairchild/module.json",
+        "exists": true
+      },
+      {
+        "sha256": "4DB56042B791F7532510BDA85FE4B1BDFB01C907161A2F6E18D584F1A930747A",
+        "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/KeyboardState.cs",
+        "exists": true
+      },
+      {
+        "sha256": "0791D297AF339DDAAA0CB6AF8A44ADB3156503B84FDD56F4C497B7803403847B",
+        "path": "src/GWGUI.Emulation.Mattel/GWGUI.Emulation.Mattel.csproj",
+        "exists": true
+      },
+      {
+        "sha256": "F47DC3DB92E381580877689A2486482966240DAF8FF5E8D2FE10D9D693D6EF5A",
+        "path": "src/GWGUI.Emulation.Mattel/module.json",
+        "exists": true
+      },
+      {
+        "sha256": "83B81BBC65B2070D889850635E5BC7603AEBC74BA8B2BF7C18ED59C2E770CD21",
+        "path": "src/GWGUI.Emulation.Microsoft/GWGUI.Emulation.Microsoft.csproj",
+        "exists": true
+      },
+      {
+        "sha256": "43D19332331FCAA8F42C6B8CD1F7DF144606E3A988C21A997407AEF76BC19CC5",
+        "path": "src/GWGUI.Emulation.Microsoft/module.json",
+        "exists": true
+      },
+      {
+        "sha256": "376ADDF95EBA1D6D82F10F3C7CE2DC59F99EB79C8E42D6915258F2F063E6CE0A",
+        "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.Input.cs",
+        "exists": true
+      },
+      {
+        "sha256": "BCDC416DC7B08C38D7244523B3E7D3FE569A5618B80C9693F84D4F0A8394F6E8",
+        "path": "src/GWGUI.Emulation.Nec/GWGUI.Emulation.Nec.csproj",
+        "exists": true
+      },
+      {
+        "sha256": "418AB9A38DE74CB5003E3F5F343B90AEE5F9ADDDCAB4BC4257F16C018E112F32",
+        "path": "src/GWGUI.Emulation.Nec/module.json",
+        "exists": true
+      },
+      {
+        "sha256": "B40746F45FA161A080227C991B05603EB30C3DCDD91D674E2426251662301C2B",
+        "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Input.cs",
+        "exists": true
+      },
+      {
+        "sha256": "5C53880ECF569F2508C22165163C4ECCC57DDB8D354435FD7DD36066E1054118",
+        "path": "src/GWGUI.Emulation.Nintendo/GWGUI.Emulation.Nintendo.csproj",
+        "exists": true
+      },
+      {
+        "sha256": "788A3664E12FF76C48BD1DC889037A4A949495669F8593DC2E1A5F873679F619",
+        "path": "src/GWGUI.Emulation.Nintendo/module.json",
+        "exists": true
+      },
+      {
+        "sha256": "56C39603191BF0D499E10B0D51A10F70F8126D7734421332F635B9108DB94E1A",
+        "path": "src/GWGUI.Emulation.Panasonic/GWGUI.Emulation.Panasonic.csproj",
+        "exists": true
+      },
+      {
+        "sha256": "EA9A3616D39CD4D1F5E30E9976F5068D53ED1FFF6045385D768D7C90BB507BEE",
+        "path": "src/GWGUI.Emulation.Panasonic/module.json",
+        "exists": true
+      },
+      {
+        "sha256": "8DB91DE2BE9C3FBCBCD80A999AB2C6C808623688284CBD86C3E916333618336A",
+        "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/KeyboardState.cs",
+        "exists": true
+      },
+      {
+        "sha256": "D710F842C3EEC902EBD72DA559E8DB51738882B3C101868AF2BE5FEF1A449136",
+        "path": "src/GWGUI.Emulation.Philips/GWGUI.Emulation.Philips.csproj",
+        "exists": true
+      },
+      {
+        "sha256": "6EB25C1487B811A43F9D3A47CBEE2CAE00037733C012977E4F6524EBBB456D1E",
+        "path": "src/GWGUI.Emulation.Philips/module.json",
+        "exists": true
+      },
+      {
+        "sha256": "B4125ED362370D5FA40827C0C6D69DB4894E1773B5F61DF2772C5AE7E241BF3C",
+        "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Input.cs",
+        "exists": true
+      },
+      {
+        "sha256": "84C8C40DB0187221E7C0D4FCF25A30CC25E3CC5BA46BB642130771B893EC881E",
+        "path": "src/GWGUI.Emulation.Sega/GWGUI.Emulation.Sega.csproj",
+        "exists": true
+      },
+      {
+        "sha256": "5365B31349DE22D838CB7B2A8C539559C4A63BD88E69E29A270191EA81AA2577",
+        "path": "src/GWGUI.Emulation.Sega/module.json",
+        "exists": true
+      },
+      {
+        "sha256": "D0FE57068434C3CE414C89C52FF4D46B73F0E1395332EC4B4CF99CD6A396B80B",
+        "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/KeyboardState.cs",
+        "exists": true
+      },
+      {
+        "sha256": "492139470ED46F60044E0D656C7C319EFD09B1063022CBCB7E64BD252B8F9252",
+        "path": "src/GWGUI.Emulation.Sharp/GWGUI.Emulation.Sharp.csproj",
+        "exists": true
+      },
+      {
+        "sha256": "D53D6EC4BEBA44812044807AFAC9BCB72DFF2610C4EF6B756F68BD8273962CA0",
+        "path": "src/GWGUI.Emulation.Sharp/module.json",
+        "exists": true
+      },
+      {
+        "sha256": "6AF7DA39E57969AA8C063980C51164A203C062B8249C8376BFC444AB70966766",
+        "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/KeyboardState.cs",
+        "exists": true
+      },
+      {
+        "sha256": "2CD3BC3A64743D4B11CC6312544FE6108E1BF8DFD27D3758FB2828D3CF5FA242",
+        "path": "src/GWGUI.Emulation.Sinclair/GWGUI.Emulation.Sinclair.csproj",
+        "exists": true
+      },
+      {
+        "sha256": "9B470D469CEEA3E635CBA07A802BEF90B7B219FF0EA1A472D92AF8720EC659CB",
+        "path": "src/GWGUI.Emulation.Sinclair/module.json",
+        "exists": true
+      },
+      {
+        "sha256": "B734D83E941BB713D6043EA55D3175B58ED4E3E1A20900353AEF0193082B7C46",
+        "path": "src/GWGUI.Emulation.Snk/GWGUI.Emulation.Snk.csproj",
+        "exists": true
+      },
+      {
+        "sha256": "F01DB0F0477C9E3396953A6E5F4C038664D443D8A8438190C090A203C752A3E1",
+        "path": "src/GWGUI.Emulation.Snk/module.json",
+        "exists": true
+      },
+      {
+        "sha256": "88F8770B735B65E2F3905F2C194EAFEF2D541A37BD8B465B4A7A120D6FFDC8D1",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.Input.cs",
+        "exists": true
+      },
+      {
+        "sha256": "759C393D33323E727F4253CDE5ABF8B8FE5C24F5D4F11165E92CCABEEA38B0E3",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Input.cs",
+        "exists": true
+      },
+      {
+        "sha256": "F92FDA12E2E825A8505993A073557FB88D99ED7D9380D3FF8444FD36FC9ADFDC",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Input.cs",
+        "exists": true
+      },
+      {
+        "sha256": "AD1328E423A7E4A8A0BD3C1B406B5B6C4B8FBB5E074A3B2BD56C9CB674DC0FA4",
+        "path": "src/GWGUI.Emulation.Sony/GWGUI.Emulation.Sony.csproj",
+        "exists": true
+      },
+      {
+        "sha256": "2D42F1C300CF0AF603AC2F173E733190938222A97AD4C90EFDACEDC6EEC5A0D2",
+        "path": "src/GWGUI.Emulation.Sony/module.json",
+        "exists": true
+      },
+      {
+        "sha256": "1DCD75508626B7F4460F401CC5EE87327CC0480F115F441F191F37DC5402D8FD",
+        "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Interop/Services/KeyboardState.cs",
+        "exists": true
+      },
+      {
+        "sha256": "C4FDABFB3825230FC0CD480AFA2DE67C78CCF0D24EEC2EAF0CF144B30A26DB5D",
+        "path": "src/GWGUI.Emulation.Thomson/GWGUI.Emulation.Thomson.csproj",
+        "exists": true
+      },
+      {
+        "sha256": "73607D4205DE7D262CE05C177098DA420502B7D0D5FCDBD27C83D43B436BAA9E",
+        "path": "src/GWGUI.Emulation.Thomson/module.json",
+        "exists": true
+      },
+      {
+        "sha256": "A8C72698C6BA5326AA24DB4782DA7D0F21C966DFE25F5BF30DF6A0668243C5D0",
+        "path": "src/GWGUI.Emulation.Watara/GWGUI.Emulation.Watara.csproj",
+        "exists": true
+      },
+      {
+        "sha256": "13EB5DAC82C5FAFAFA194447193A6A02EC755A4A4A083D43D73A25A2FEBEEC5D",
+        "path": "src/GWGUI.Emulation.Watara/module.json",
+        "exists": true
+      },
+      {
+        "sha256": "8FABFAEDEB7037E3E27131F0FDA28A54DFF59C91994282F97FEC870E68DCCF2B",
+        "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Interop/Services/KeyboardState.cs",
+        "exists": true
+      },
+      {
+        "sha256": "E22F6C874E8A20A6E28CFE250943F4347919384B79B52DB5E9D8A61C67AF9328",
+        "path": "src/GWGUI.Emulation.Wenquxing/GWGUI.Emulation.Wenquxing.csproj",
+        "exists": true
+      },
+      {
+        "sha256": "911CC9E4D67C1C8BFB3D5E9D7133EEDF03F801CD769C2299155A994A7E544991",
+        "path": "src/GWGUI.Emulation.Wenquxing/module.json",
+        "exists": true
+      },
+      {
+        "sha256": "4EE40C4EDAB6F8412FFC52E9FA5DCEC737BE8C08D204E5D35344AD681DA36B49",
+        "path": "src/GWGUI.Emulation/Functions/EmulationChildProcessLifetime.cs",
+        "exists": true
+      },
+      {
+        "sha256": "69EB395875E8D380B578EF44DE510C66AA95A42E94B098848468ECF91125146D",
+        "path": "src/GWGUI.Emulation/Functions/EmulationHostProtocolFunctions.cs",
+        "exists": true
+      },
+      {
+        "sha256": "CC96663BAD54411AE14426502D8B103696096F9C78AC18D36285BDA92056DAC1",
+        "path": "src/GWGUI.Emulation/Functions/EmulationHostProtocolFunctions.Video.cs",
+        "exists": true
+      },
+      {
+        "sha256": "1227C4CDD1565C5016391B5720CDB1E65632963C725D6B6A361ECAE234531AE0",
+        "path": "src/GWGUI.Emulation/Functions/ExternalCoreKeyboardFunctions.cs",
+        "exists": true
+      },
+      {
+        "sha256": "5A9DABBDCBBE1C93A04D5ABA1BE00A0527421F3270F02FEBE063453AC5FB857C",
+        "path": "src/GWGUI.Emulation/GWGUI.Emulation.csproj",
+        "exists": true
+      },
+      {
+        "sha256": "5AF1A6F4FD9761192136278A7420D9491A72A1CF7D5400140B72252127608336",
+        "path": "src/GWGUI.Infrastructure/GWGUI.Infrastructure.csproj",
+        "exists": true
+      },
+      {
+        "sha256": "704C315EFBB669FA6BCC398F29B9FEB3A7BF2F41D9BE44E3B41D0CC81B023473",
+        "path": "src/GWGUI.Launcher/GWGUI.Launcher.csproj",
+        "exists": true
+      },
+      {
+        "sha256": "5D914401AB2AAE3465A052EDBBC99B8E73495BBD2B2F3546543653C2169E1C65",
+        "path": "src/GWGUI.MediaAnalysis/GWGUI.MediaAnalysis.csproj",
+        "exists": true
+      },
+      {
+        "sha256": "11A282DF1F8B5F162AA0ABEE100C18B8751389A1B51DE83C77D5684CC4A1A069",
+        "path": "src/GWGUI.MediaEngine/GWGUI.MediaEngine.csproj",
+        "exists": true
+      },
+      {
+        "sha256": "BCA0D10E729A54C4C1A5F65D75DB27BF1C3EAF979C1474DF3FCDF876BA90D8D9",
+        "path": "src/GWGUI.MediaFileSystems/GWGUI.MediaFileSystems.csproj",
+        "exists": true
+      },
+      {
+        "sha256": "6360F653C53DCC478D97631DE16CE136DB234F6342EA9AE463E3A2EFCE85C13F",
+        "path": "src/GWGUI.Updater/GWGUI.Updater.csproj",
+        "exists": true
+      },
+      {
+        "sha256": "B87C1A99E3FD3EE39A2613EC0D071C5D7D7DF3575FAB40B70A5ACFC4EF27923D",
+        "path": "src/GWGUI.Updates/GWGUI.Updates.csproj",
+        "exists": true
+      },
+      {
+        "sha256": "29F1202CBF6FACC651C0FE3C1A1E8E830CCBD4A5B292B8E3A29AF51E451CCEB3",
+        "path": "src/GWGUI.VideoPresentation/GWGUI.VideoPresentation.csproj",
+        "exists": true
+      },
+      {
+        "sha256": "F9B6B481CBFBADF51683831E0DFECB920D89A073686549A738CFFDD4C790EEA0",
+        "path": "tests/GWGUI.Tests/Emulation/CoreInitializationRequestTests.cs",
+        "exists": true
+      },
+      {
+        "sha256": "4726BE7E4C969BEBB2B41DC1DB6DA8859B12FC23B12F189785A400803974EFB6",
+        "path": "tests/GWGUI.Tests/Emulation/KeyboardTransitionTests.cs",
+        "exists": true
+      }
+    ],
+    "modules": [
+      {
+        "compiledPath": "src/GWGUI.Emulation.Acorn/bin/Debug/net10.0/win-x64/gwgui.emulation.acorn.dll",
+        "id": "acorn",
+        "path": "build/Debug/GW GUI/Modules/acorn/gwgui.emulation.acorn.dll",
+        "matchesCompiledOutput": true,
+        "sha256": "D88C9FE0A1610EC861E0D6CDB120C66EFADEBBC14EAF24CC3A64AB4F87C9ACDA"
+      },
+      {
+        "compiledPath": "src/GWGUI.Emulation.Amstrad/bin/Debug/net10.0/win-x64/gwgui.emulation.amstrad.dll",
+        "id": "amstrad",
+        "path": "build/Debug/GW GUI/Modules/amstrad/gwgui.emulation.amstrad.dll",
+        "matchesCompiledOutput": true,
+        "sha256": "715A39BA69165090D7E8B60D6BAC25A2F07F13183D487CF2EA92C0A108DDB069"
+      },
+      {
+        "compiledPath": "src/GWGUI.Emulation.Apple/bin/Debug/net10.0/win-x64/gwgui.emulation.apple.dll",
+        "id": "apple",
+        "path": "build/Debug/GW GUI/Modules/apple/gwgui.emulation.apple.dll",
+        "matchesCompiledOutput": true,
+        "sha256": "0F7DA09A624824A3FA80AF854C75C865B6BCF9D75C0E908F58B33D69AE283249"
+      },
+      {
+        "compiledPath": "src/GWGUI.Emulation.Atari/bin/Debug/net10.0/win-x64/gwgui.emulation.atari.dll",
+        "id": "atari",
+        "path": "build/Debug/GW GUI/Modules/atari/gwgui.emulation.atari.dll",
+        "matchesCompiledOutput": true,
+        "sha256": "C6CF1C9FE880693B36E21EA9FAE82B5C5411DA9D67A5ACBEA4A6971F34638324"
+      },
+      {
+        "compiledPath": "src/GWGUI.Emulation.Bandai/bin/Debug/net10.0/win-x64/gwgui.emulation.bandai.dll",
+        "id": "bandai",
+        "path": "build/Debug/GW GUI/Modules/bandai/gwgui.emulation.bandai.dll",
+        "matchesCompiledOutput": true,
+        "sha256": "5AB5472AFD70F2E7BAE996BE04EFC96B0D6CDE6C1C369FE360D5FE8291EE6F2B"
+      },
+      {
+        "compiledPath": "src/GWGUI.Emulation.Coleco/bin/Debug/net10.0/win-x64/gwgui.emulation.coleco.dll",
+        "id": "coleco",
+        "path": "build/Debug/GW GUI/Modules/coleco/gwgui.emulation.coleco.dll",
+        "matchesCompiledOutput": true,
+        "sha256": "68F6AF0CA760F3BB477A720309555C3D1B864DDA9DD55AADB89E87B04FC55DF3"
+      },
+      {
+        "compiledPath": "src/GWGUI.Emulation.Commodore/bin/Debug/net10.0/win-x64/gwgui.emulation.commodore.dll",
+        "id": "commodore",
+        "path": "build/Debug/GW GUI/Modules/commodore/gwgui.emulation.commodore.dll",
+        "matchesCompiledOutput": true,
+        "sha256": "1B080AF045399C26418088636FB77038CDC4D7E4802E2F3CF09B66DC7F6D5965"
+      },
+      {
+        "compiledPath": "src/GWGUI.Emulation.Epoch/bin/Debug/net10.0/win-x64/gwgui.emulation.epoch.dll",
+        "id": "epoch",
+        "path": "build/Debug/GW GUI/Modules/epoch/gwgui.emulation.epoch.dll",
+        "matchesCompiledOutput": true,
+        "sha256": "D803F1F4AA616D94F6EA50E76086F62B2AAF52C9135291824F5740E1BF09A413"
+      },
+      {
+        "compiledPath": "src/GWGUI.Emulation.Fairchild/bin/Debug/net10.0/win-x64/gwgui.emulation.fairchild.dll",
+        "id": "fairchild",
+        "path": "build/Debug/GW GUI/Modules/fairchild/gwgui.emulation.fairchild.dll",
+        "matchesCompiledOutput": true,
+        "sha256": "D02FE5A0B88E05715EFF5C48941DC8163E94D6079E159AF86753E79F7E4466DB"
+      },
+      {
+        "compiledPath": "src/GWGUI.Emulation.Mattel/bin/Debug/net10.0/win-x64/gwgui.emulation.mattel.dll",
+        "id": "mattel",
+        "path": "build/Debug/GW GUI/Modules/mattel/gwgui.emulation.mattel.dll",
+        "matchesCompiledOutput": true,
+        "sha256": "DF96AEEC6D7FA7F2515448F074048D52AAF4C9EDBCA40114E2523BFBB5E0E6AD"
+      },
+      {
+        "compiledPath": "src/GWGUI.Emulation.Microsoft/bin/Debug/net10.0/win-x64/gwgui.emulation.microsoft.dll",
+        "id": "microsoft",
+        "path": "build/Debug/GW GUI/Modules/microsoft/gwgui.emulation.microsoft.dll",
+        "matchesCompiledOutput": true,
+        "sha256": "B02432D4E9CCAAEA15EAA7FEFC0F23B855183ECF0E2A88DF35D29C83047042E3"
+      },
+      {
+        "compiledPath": "src/GWGUI.Emulation.Nec/bin/Debug/net10.0/win-x64/gwgui.emulation.nec.dll",
+        "id": "nec",
+        "path": "build/Debug/GW GUI/Modules/nec/gwgui.emulation.nec.dll",
+        "matchesCompiledOutput": true,
+        "sha256": "E0C46BFB6C2DBAA0A1A14866ADC7D3EBAC30DA17CD167ED628F4DE4E54A768D4"
+      },
+      {
+        "compiledPath": "src/GWGUI.Emulation.Nintendo/bin/Debug/net10.0/win-x64/gwgui.emulation.nintendo.dll",
+        "id": "nintendo",
+        "path": "build/Debug/GW GUI/Modules/nintendo/gwgui.emulation.nintendo.dll",
+        "matchesCompiledOutput": true,
+        "sha256": "84D47D10CDD0250B1458D33F10A13D75BA17D50860244137D01F9844C15C02C1"
+      },
+      {
+        "compiledPath": "src/GWGUI.Emulation.Panasonic/bin/Debug/net10.0/win-x64/gwgui.emulation.panasonic.dll",
+        "id": "panasonic",
+        "path": "build/Debug/GW GUI/Modules/panasonic/gwgui.emulation.panasonic.dll",
+        "matchesCompiledOutput": true,
+        "sha256": "EEFC165A9B88B7DFB578B03ABBCBA6E928C8304A8AD3A24CF8196544E281C2BB"
+      },
+      {
+        "compiledPath": "src/GWGUI.Emulation.Philips/bin/Debug/net10.0/win-x64/gwgui.emulation.philips.dll",
+        "id": "philips",
+        "path": "build/Debug/GW GUI/Modules/philips/gwgui.emulation.philips.dll",
+        "matchesCompiledOutput": true,
+        "sha256": "066FA1619221952984CE2E2224E3315341E1AF1658AB3704586810DEB9CD2857"
+      },
+      {
+        "compiledPath": "src/GWGUI.Emulation.Sega/bin/Debug/net10.0/win-x64/gwgui.emulation.sega.dll",
+        "id": "sega",
+        "path": "build/Debug/GW GUI/Modules/sega/gwgui.emulation.sega.dll",
+        "matchesCompiledOutput": true,
+        "sha256": "8F3B831739F3EE3C2E93D1EB57AB62678AAB39A0D3E7E8BE1C4FA037F1C3F242"
+      },
+      {
+        "compiledPath": "src/GWGUI.Emulation.Sharp/bin/Debug/net10.0/win-x64/gwgui.emulation.sharp.dll",
+        "id": "sharp",
+        "path": "build/Debug/GW GUI/Modules/sharp/gwgui.emulation.sharp.dll",
+        "matchesCompiledOutput": true,
+        "sha256": "135D0259D34871049ED990E35870317349924781BE9170BF78372D29612ABEFB"
+      },
+      {
+        "compiledPath": "src/GWGUI.Emulation.Sinclair/bin/Debug/net10.0/win-x64/gwgui.emulation.sinclair.dll",
+        "id": "sinclair",
+        "path": "build/Debug/GW GUI/Modules/sinclair/gwgui.emulation.sinclair.dll",
+        "matchesCompiledOutput": true,
+        "sha256": "A33F5B9E02C0164DC92C9FEB1179C3137962FEA60E2D9F301AE652B39012AF15"
+      },
+      {
+        "compiledPath": "src/GWGUI.Emulation.Snk/bin/Debug/net10.0/win-x64/gwgui.emulation.snk.dll",
+        "id": "snk",
+        "path": "build/Debug/GW GUI/Modules/snk/gwgui.emulation.snk.dll",
+        "matchesCompiledOutput": true,
+        "sha256": "1AFB4D5EDB01ED1659F73A5A4AE8A41573E5E42B6D211D346E9B05CE593407AD"
+      },
+      {
+        "compiledPath": "src/GWGUI.Emulation.Sony/bin/Debug/net10.0/win-x64/gwgui.emulation.sony.dll",
+        "id": "sony",
+        "path": "build/Debug/GW GUI/Modules/sony/gwgui.emulation.sony.dll",
+        "matchesCompiledOutput": true,
+        "sha256": "C40B4FD7F617ED9982E592BA9C6159885EB7268114D53BFAA3EE6624766DDDB3"
+      },
+      {
+        "compiledPath": "src/GWGUI.Emulation.Thomson/bin/Debug/net10.0/win-x64/gwgui.emulation.thomson.dll",
+        "id": "thomson",
+        "path": "build/Debug/GW GUI/Modules/thomson/gwgui.emulation.thomson.dll",
+        "matchesCompiledOutput": true,
+        "sha256": "19FE3D975EF5D4EF9F2047BB7294B1D2CAE009FAD0F4A9AD88CA8B0F7A37F3FE"
+      },
+      {
+        "compiledPath": "src/GWGUI.Emulation.Watara/bin/Debug/net10.0/win-x64/gwgui.emulation.watara.dll",
+        "id": "watara",
+        "path": "build/Debug/GW GUI/Modules/watara/gwgui.emulation.watara.dll",
+        "matchesCompiledOutput": true,
+        "sha256": "FFA6D79673B995E48325F6BE94655C7BE7AEEB142CBF6BDBE8AE4E63494B9C33"
+      },
+      {
+        "compiledPath": "src/GWGUI.Emulation.Wenquxing/bin/Debug/net10.0/win-x64/gwgui.emulation.wenquxing.dll",
+        "id": "wenquxing",
+        "path": "build/Debug/GW GUI/Modules/wenquxing/gwgui.emulation.wenquxing.dll",
+        "matchesCompiledOutput": true,
+        "sha256": "AD9AF624A7D5D01D7EE4C2929C730226356C8CDA7F7DEF20CA4ADB5C89BEAAC9"
+      }
+    ],
+    "exe": {
+      "sha256": "28E1CACB193546876019F860C3F9C4471BECADC082F55E49922BDB2DAF8607F2",
+      "path": "build/Debug/GW GUI/gwgui.exe"
+    },
+    "sdk": {
+      "sha256": "AD419B4105A850B50EFFBA38BDC586565C8D9EE5D9B6FF907030A632472A6E91",
+      "keyboardSignatures": [
+        {
+          "parameters": 1,
+          "name": "Modifiers",
+          "genericParameters": 0
+        },
+        {
+          "parameters": 7,
+          "name": "PublishTransitions",
+          "genericParameters": 0
+        },
+        {
+          "parameters": 7,
+          "name": "PublishCodeTransitions",
+          "genericParameters": 1
+        }
+      ],
+      "path": "build/Debug/GW GUI/lib/gwgui.emulation.dll",
+      "matchesCompiledSdk": true
+    },
+    "exitCode": 0,
+    "completedAt": "2026-10-19T04:05:08.2893144+02:00"
   }
 }

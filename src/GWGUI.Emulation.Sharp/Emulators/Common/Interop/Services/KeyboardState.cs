@@ -58,10 +58,10 @@ internal sealed class KeyboardState
         if (keyboardEvent is not null)
         {
             var modifiers = KeyboardFunctions.Modifiers(keys);
-            foreach (var code in _previous.Except(current))
-                keyboardEvent(false, code, KeyboardConstants.NoCharacter, modifiers);
-            foreach (var code in current.Except(_previous))
-                keyboardEvent(true, code, _compose ? KeyboardConstants.NoCharacter : KeyboardFunctions.Character(code, keys), modifiers);
+            ExternalCoreKeyboardFunctions.PublishCodeTransitions(current, ref _previous, keyboardEvent, modifiers,
+                codes => codes,
+                codes => codes,
+                code => _compose ? KeyboardConstants.NoCharacter : KeyboardFunctions.Character(code, keys));
         }
 
         _previous = current;

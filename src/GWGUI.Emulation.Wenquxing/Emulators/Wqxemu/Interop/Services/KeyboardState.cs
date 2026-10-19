@@ -13,8 +13,10 @@ internal sealed class KeyboardState
     {
         if (callback is null) return;
         var current = keys.Where(_map.ContainsKey).Select(key => _map[key]).ToHashSet();
-        foreach (var code in _previous.Except(current)) callback(false, code, KeyboardConstants.NoCharacter, KeyboardConstants.NoModifiers);
-        foreach (var code in current.Except(_previous)) callback(true, code, KeyboardConstants.NoCharacter, KeyboardConstants.NoModifiers);
+        ExternalCoreKeyboardFunctions.PublishCodeTransitions(current, ref _previous, callback, KeyboardConstants.NoModifiers,
+                codes => codes,
+                codes => codes,
+                code => KeyboardConstants.NoCharacter);
         _previous = current;
     }
     internal void Release(ExternalCoreApi.KeyboardEvent? callback)

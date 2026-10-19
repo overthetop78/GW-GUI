@@ -23,6 +23,18 @@ internal static class ExternalCoreKeyboardFunctions
         previous = new HashSet<EmulationKey>(keys);
     }
 
+    internal static void PublishCodeTransitions<TSet>(TSet current, ref TSet previous,
+        ExternalCoreApi.KeyboardEvent keyboardEvent, ushort modifiers,
+        Func<IEnumerable<uint>, IEnumerable<uint>> orderReleased,
+        Func<IEnumerable<uint>, IEnumerable<uint>> orderPressed, Func<uint, uint> characterFor)
+        where TSet : IReadOnlySet<uint>
+    {
+        foreach (var code in orderReleased(previous.Except(current)))
+            keyboardEvent(false, code, ExternalCoreKeyboardConstants.NoCharacter, modifiers);
+        foreach (var code in orderPressed(current.Except(previous)))
+            keyboardEvent(true, code, characterFor(code), modifiers);
+    }
+
     internal static IReadOnlyDictionary<EmulationKey, uint> CreateKeyMap()
     {
         var map = new Dictionary<EmulationKey, uint>

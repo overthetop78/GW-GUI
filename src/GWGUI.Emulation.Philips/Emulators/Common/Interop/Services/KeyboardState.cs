@@ -15,10 +15,10 @@ internal sealed class KeyboardState
         var modifiers = KeyboardFunctions.Modifiers(keys);
         var current = keys.Where(KeyMap.ContainsKey).Select(key => KeyMap[key]).ToHashSet();
         var modifierCodes = keys.Where(KeyboardFunctions.IsModifier).Select(key => KeyMap[key]).ToHashSet();
-        foreach (var code in _previous.Except(current).OrderBy(code => IsModifier(code) ? KeyboardConstants.ModifierLastOrder : KeyboardConstants.ModifierFirstOrder))
-            keyboardEvent(false, code, KeyboardConstants.NoCharacter, modifiers);
-        foreach (var code in current.Except(_previous).OrderBy(code => modifierCodes.Contains(code) ? KeyboardConstants.ModifierFirstOrder : KeyboardConstants.ModifierLastOrder))
-            keyboardEvent(true, code, KeyboardFunctions.Character(code, keys), modifiers);
+        ExternalCoreKeyboardFunctions.PublishCodeTransitions(current, ref _previous, keyboardEvent, modifiers,
+                codes => codes.OrderBy(code => IsModifier(code) ? KeyboardConstants.ModifierLastOrder : KeyboardConstants.ModifierFirstOrder),
+                codes => codes.OrderBy(code => modifierCodes.Contains(code) ? KeyboardConstants.ModifierFirstOrder : KeyboardConstants.ModifierLastOrder),
+                code => KeyboardFunctions.Character(code, keys));
         _previous = current;
     }
 

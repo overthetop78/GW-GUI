@@ -24,8 +24,10 @@ internal sealed class KeyboardState
             else if (_map.TryGetValue(key, out var code)) current.Add(code);
         }
         var modifiers = KeyboardFunctions.Modifiers(keys);
-        foreach (var code in _previous.Except(current).OrderBy(IsModifier)) callback(false, code, KeyboardConstants.NoCharacter, modifiers);
-        foreach (var code in current.Except(_previous).OrderByDescending(IsModifier)) callback(true, code, KeyboardConstants.NoCharacter, modifiers);
+        ExternalCoreKeyboardFunctions.PublishCodeTransitions(current, ref _previous, callback, modifiers,
+                codes => codes.OrderBy(IsModifier),
+                codes => codes.OrderByDescending(IsModifier),
+                code => KeyboardConstants.NoCharacter);
         _previous = current;
     }
 

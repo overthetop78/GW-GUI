@@ -3,7 +3,7 @@
   "currentCSharpFiles": 7288,
   "outsideSrcCSharpFiles": 303,
   "baselineMethodCount": 5848,
-  "currentMethodCount": 11652,
+  "currentMethodCount": 11658,
   "powerShellFunctionCount": 17,
   "groups": [
     {
@@ -1197,7 +1197,7 @@
     {
       "language": "CSharp",
       "hash": "0A9D4012A0EEF58659F6F622D06187BDA6844EE126F30B196EAE963950A66758",
-      "method": "SegaEmulationModule",
+      "method": "NecEmulationModule",
       "tokens": 45,
       "current": [
         {
@@ -7700,6 +7700,57 @@
     },
     {
       "language": "CSharp",
+      "hash": "417E5EC00E8488888C60A37FE081F5BA8DF52E04AC21BAAC4A18AF56F93F7B93",
+      "method": "Publish",
+      "tokens": 147,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/KeyboardState.cs",
+          "name": "Publish",
+          "line": 12,
+          "tokens": 147,
+          "hash": "417E5EC00E8488888C60A37FE081F5BA8DF52E04AC21BAAC4A18AF56F93F7B93",
+          "shape": "D85B19E0D611B6F721A035AEA7B727C9E851908F87ECB53388EDBBD5DCC64B39",
+          "qualification": "Typed native-code publication adapter to original shared notifications verified in nativeCodeTransitionReuse; code construction, alias deduplication, ordering, characters and owner commits retained",
+          "qualificationSourceSha256": "4DB56042B791F7532510BDA85FE4B1BDFB01C907161A2F6E18D584F1A930747A"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/KeyboardState.cs",
+          "name": "Publish",
+          "line": 13,
+          "tokens": 147,
+          "hash": "417E5EC00E8488888C60A37FE081F5BA8DF52E04AC21BAAC4A18AF56F93F7B93",
+          "shape": "D85B19E0D611B6F721A035AEA7B727C9E851908F87ECB53388EDBBD5DCC64B39",
+          "qualification": "Typed native-code publication adapter to original shared notifications verified in nativeCodeTransitionReuse; code construction, alias deduplication, ordering, characters and owner commits retained",
+          "qualificationSourceSha256": "BEADE65E4287F84551187B89121CACEDD6D073C1E0EF1BCF7D10141C052278FF"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/KeyboardState.cs",
+          "name": "Publish",
+          "line": 12,
+          "tokens": 147,
+          "hash": "417E5EC00E8488888C60A37FE081F5BA8DF52E04AC21BAAC4A18AF56F93F7B93",
+          "shape": "D85B19E0D611B6F721A035AEA7B727C9E851908F87ECB53388EDBBD5DCC64B39",
+          "qualification": "Typed native-code publication adapter to original shared notifications verified in nativeCodeTransitionReuse; code construction, alias deduplication, ordering, characters and owner commits retained",
+          "qualificationSourceSha256": "8DB91DE2BE9C3FBCBCD80A999AB2C6C808623688284CBD86C3E916333618336A"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/KeyboardState.cs",
+          "name": "Publish",
+          "line": 12,
+          "tokens": 147,
+          "hash": "417E5EC00E8488888C60A37FE081F5BA8DF52E04AC21BAAC4A18AF56F93F7B93",
+          "shape": "D85B19E0D611B6F721A035AEA7B727C9E851908F87ECB53388EDBBD5DCC64B39",
+          "qualification": "Typed native-code publication adapter to original shared notifications verified in nativeCodeTransitionReuse; code construction, alias deduplication, ordering, characters and owner commits retained",
+          "qualificationSourceSha256": "CAE3F76A9480B89EDC593860B081683D3BA5181BE8F7BFFAE20DD50DC12EC81F"
+        }
+      ],
+      "predecessors": [],
+      "shapePredecessors": [],
+      "qualification": "Qualified native-code notification adapters; original loops shared and native state/policies retained"
+    },
+    {
+      "language": "CSharp",
       "hash": "41BE31E1F1F1A1A6BF871B1008C22263B5B33C10375277951C5F6CF6B8E273BC",
       "method": "GetInstallationPaths",
       "tokens": 88,
@@ -11373,49 +11424,6 @@
     },
     {
       "language": "CSharp",
-      "hash": "5FEB5029553974CA60546E07EC278A665EB12BE636A20A057E365292147211DC",
-      "method": "Publish",
-      "tokens": 169,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/KeyboardState.cs",
-          "name": "Publish",
-          "line": 13,
-          "tokens": 169,
-          "hash": "5FEB5029553974CA60546E07EC278A665EB12BE636A20A057E365292147211DC",
-          "shape": "7CBF5E76BE3D499AA37CF43227522BA92082053B069E3FD5FE48077D82318E76"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/KeyboardState.cs",
-          "name": "Publish",
-          "line": 12,
-          "tokens": 169,
-          "hash": "5FEB5029553974CA60546E07EC278A665EB12BE636A20A057E365292147211DC",
-          "shape": "7CBF5E76BE3D499AA37CF43227522BA92082053B069E3FD5FE48077D82318E76"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/KeyboardState.cs",
-          "name": "Publish",
-          "line": 12,
-          "tokens": 169,
-          "hash": "5FEB5029553974CA60546E07EC278A665EB12BE636A20A057E365292147211DC",
-          "shape": "7CBF5E76BE3D499AA37CF43227522BA92082053B069E3FD5FE48077D82318E76"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/KeyboardState.cs",
-          "name": "Publish",
-          "line": 12,
-          "tokens": 169,
-          "hash": "5FEB5029553974CA60546E07EC278A665EB12BE636A20A057E365292147211DC",
-          "shape": "7CBF5E76BE3D499AA37CF43227522BA92082053B069E3FD5FE48077D82318E76"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
       "hash": "6135938C7A9959365A2054112C907AC7E1B29C1106471BF6E00DA6078DFB22AB",
       "method": "ScanFirmwareAsync",
       "tokens": 113,
@@ -12098,7 +12106,7 @@
     {
       "language": "CSharp",
       "hash": "68386C818382BCE400A3EDE65411B5CBD9D6A87F6D88FAF6501028CE28C38965",
-      "method": "ToModule",
+      "method": "ToSinclair",
       "tokens": 148,
       "current": [
         {
@@ -19192,7 +19200,7 @@
     {
       "language": "CSharp",
       "hash": "A1E03750FEB3292ACEB41656386F4A8AA8B05077D9ABFB7DA103AA3D71320B9F",
-      "method": "ToFairchild",
+      "method": "ToEpoch",
       "tokens": 103,
       "current": [
         {
@@ -19502,7 +19510,7 @@
     {
       "language": "CSharp",
       "hash": "A61349BFDFFA5D404CE7D0D458204D435194B5E4D84870DF4F9FBE26A86A9946",
-      "method": "ToFairchild",
+      "method": "ToEpoch",
       "tokens": 36,
       "current": [
         {
@@ -20639,7 +20647,7 @@
     {
       "language": "CSharp",
       "hash": "B053A3AB4F0B78A37DED57B2D744801187AED6EC54FEEAFE4B1AA9C454D6F48C",
-      "method": "PanasonicEmulationModule",
+      "method": "WenquxingEmulationModule",
       "tokens": 47,
       "current": [
         {
@@ -27317,7 +27325,7 @@
     {
       "language": "CSharp",
       "hash": "F107F4D7D97C4E9F797468C991DF2090B47DF6E3F6F74E56044EFF0C28CAA51D",
-      "method": "NotifyHardwareContextDestroy",
+      "method": "NotifyDestroy",
       "tokens": 31,
       "current": [
         {
@@ -29920,7 +29928,7 @@
         {
           "path": "src/GWGUI.Emulation/Functions/ExternalCoreKeyboardFunctions.cs",
           "name": "CreateKeyMap",
-          "line": 26,
+          "line": 38,
           "tokens": 503,
           "hash": "7532A951E1A58D6A920A8CCC867A5D4467B0051E899DABE2DA23EFA99F262AF5",
           "shape": "202C213CD232410AC1D6B9F589E0F60A16594AA88F806622C143F6BBB9A81569"
@@ -37953,7 +37961,7 @@
   ],
   "scope": "All current repository CSharp and PowerShell files; no age filter; candidates require semantic review",
   "qualificationCarryForward": {
-    "occurrences": 132,
-    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical"
+    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical",
+    "occurrences": 148
   }
 }
