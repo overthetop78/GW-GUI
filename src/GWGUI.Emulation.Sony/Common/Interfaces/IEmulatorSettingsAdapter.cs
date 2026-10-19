@@ -3,9 +3,10 @@ namespace GWGUI.Emulation.Sony.Common.Interfaces;
 internal interface IEmulatorSettingsAdapter
 {
     IReadOnlyList<EmulationSettingsBlock> GetSettingsBlocks(MachineConfiguration configuration);
-    IReadOnlyList<EmulationSettingsBlock> GetMachineSettingsBlocks(MachineConfiguration configuration) => GetSettingsBlocks(configuration).Where(block => block.Tab != EmulationMachineTab.Storage).ToArray();
+    IReadOnlyList<EmulationSettingsBlock> GetMachineSettingsBlocks(MachineConfiguration configuration) =>
+        Emulators.Common.Interop.Functions.CoreSettingsFunctions.MachineBlocks(this, configuration);
     IReadOnlyList<EmulationSettingsField> GetStorageDeviceConfigurationFields(MachineConfiguration configuration, EmulationMediaCategory category) =>
-        category == EmulationMediaCategory.CompactDiscDrive ? GetSettingsBlocks(configuration).Where(block => block.Tab == EmulationMachineTab.Storage).SelectMany(block => block.Fields).ToArray() : [];
+        Emulators.Common.Interop.Functions.CoreSettingsFunctions.StorageFields(this, configuration, category);
     void ValidateConfiguration(MachineConfiguration configuration) { }
     IReadOnlyDictionary<string, string> GetRuntimeOptions(MachineConfiguration configuration) => configuration.Options ?? new Dictionary<string, string>();
     int GetMemoryKib(MachineConfiguration configuration) => ModelCatalog.Get(configuration.Model).RamKib;

@@ -29,4 +29,7 @@ internal sealed record CoreDefinition(
     Func<string, string>? ResolveSystemDirectory = null,
     Func<MachineConfiguration, string, string>? ResolveNativeSystemDirectory = null,
     Func<MachineConfiguration, string, string, bool?, (string Path, bool IsReadOnly)>? ResolveVirtualPath = null,
-    Func<string>? FullContentPathsRequired = null);
+    Func<string>? FullContentPathsRequired = null,
+    Func<MachineConfiguration, IReadOnlyList<CoreOption>>? ResolveOptions = null,
+    Func<string, bool>? IsInstallationComplete = null,
+    Func<HttpClient, string, CancellationToken, Task>? PrepareInstallation = null);

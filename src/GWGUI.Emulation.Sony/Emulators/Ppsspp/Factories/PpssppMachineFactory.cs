@@ -1,95 +1,25 @@
-using CoreReleaseService = GWGUI.Emulation.Sony.Emulators.Common.Interop.Services.CoreReleaseService;
-using GWGUI.Emulation.Sony.Emulators.Ppsspp.Functions;
 using GWGUI.Emulation.Sony.Emulators.Common.Interop.Contracts;
+using GWGUI.Emulation.Sony.Emulators.Common.Interop.Factories;
+using GWGUI.Emulation.Sony.Emulators.Common.Interop.Functions;
 using GWGUI.Emulation.Sony.Emulators.Ppsspp.Constants;
-using GWGUI.Emulation.Sony.Emulators.Ppsspp.Services;
-using System.IO;
+using GWGUI.Emulation.Sony.Emulators.Ppsspp.Functions;
 
 namespace GWGUI.Emulation.Sony.Emulators.Ppsspp.Factories;
 
-internal sealed class PpssppMachineFactory : IEmulatorAdapter, IEmulatorFirmwareAdapter, IEmulatorSettingsAdapter, IEmulatorControllerAdapter, IEmulatorMediaAdapter
+internal sealed class PpssppMachineFactory : CoreMachineFactory
 {
-    private IReadOnlyDictionary<string, CoreRelease> _availableReleases = new Dictionary<string, CoreRelease>(StringComparer.Ordinal);
-
-    public bool RequiresExternalFirmware => false;
-    public IReadOnlyList<FirmwareSlot> GetFirmwareSlots(MachineConfiguration configuration) => [];
-    public IReadOnlyList<EmulationSettingsBlock> GetSettingsBlocks(MachineConfiguration configuration) => Emulators.Common.Interop.Functions.CoreSettingsFunctions.Blocks(PpssppOptionFunctions.Options(configuration), configuration);
-    public IReadOnlyDictionary<string, string> GetRuntimeOptions(MachineConfiguration configuration) => PpssppOptionFunctions.ToNative(configuration).Options!;
-    public MachineConfiguration ApplyVideoSettings(MachineConfiguration configuration, EmulationGraphicsApi graphicsApi) =>
+    protected override CoreDefinition CoreDefinition => PpssppConstants.Definition;
+    public override IReadOnlyList<EmulationSettingsBlock> GetSettingsBlocks(MachineConfiguration configuration) =>
+        CoreSettingsFunctions.Blocks(PpssppOptionFunctions.Options(configuration), configuration);
+    public override MachineConfiguration ApplyVideoSettings(MachineConfiguration configuration, EmulationGraphicsApi graphicsApi) =>
         PpssppOptionFunctions.ToNative(configuration with { GraphicsApi = graphicsApi });
-    public IReadOnlyList<ControllerType> GetControllerTypes(MachineConfiguration configuration) => [ControllerType.Joystick];
-    public IReadOnlyList<string> SupportedContentExtensions => PpssppConstants.ContentExtensions;
-    public int GetMemoryKib(MachineConfiguration configuration) => configuration.Options?.GetValueOrDefault(OptionConstants.PspModelKey) != PpssppConstants.Psp1000Model ? PpssppConstants.ExpandedMemoryKib : ModelCatalog.Get(configuration.Model).RamKib;
-    public string EmulatorId => PpssppConstants.Id;
-    public string EmulatorKey => PpssppConstants.Id;
-    public EmulationEmulatorDefinition Definition { get; } = new(PpssppConstants.Id, PpssppConstants.DisplayName, PpssppConstants.DescriptionResourceKey, new[] { ModelConstants.Psp }.ToHashSet(StringComparer.Ordinal));
-
-    public bool TryHandleHostCommand(IReadOnlyList<string> arguments, out int exitCode)
-    {
-        exitCode = 0;
-        if (arguments is not [PpssppConstants.CoreHostCommand, var pipeName, var videoMapName])
-            return false;
-        if (!OperatingSystem.IsWindows()) throw new PlatformNotSupportedException();
-        CoreHost.Run(pipeName, videoMapName);
-        return true;
-    }
-
-    public ValueTask<EmulationEmulatorInstallation> GetInstallationAsync(EmulatorManagementContext context, CancellationToken cancellationToken)
-    {
-        cancellationToken.ThrowIfCancellationRequested();
-        var service = ReleaseService(context);
-        var version = service.GetInstalledVersion();
-        return ValueTask.FromResult(new EmulationEmulatorInstallation(Definition, version));
-    }
-
-    public async ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindReleasesAsync(EmulatorManagementContext context, CancellationToken cancellationToken)
-    {
-        var releases = await ReleaseService(context).GetAvailableAsync(cancellationToken).ConfigureAwait(false);
-        _availableReleases = releases.ToDictionary(item => item.Id, StringComparer.Ordinal);
-        return releases.Select(item => new EmulationEmulatorRelease(item.Id, item.DisplayName, item.Id, item.IsRequired)).ToArray();
-    }
-
-    public async ValueTask<string> InstallAsync(EmulatorManagementContext context, EmulationEmulatorRelease release, IProgress<double>? progress, CancellationToken cancellationToken)
-    {
-        var selected = EmulationCoreReleaseFunctions.SelectRelease(_availableReleases, release);
-        return await ReleaseService(context).InstallAsync(selected, progress, cancellationToken).ConfigureAwait(false);
-    }
-
-    public ValueTask<string?> FindInstalledCorePathAsync(EmulatorManagementContext context, CancellationToken cancellationToken)
-    {
-        ArgumentNullException.ThrowIfNull(context.HttpClient);
-        cancellationToken.ThrowIfCancellationRequested();
-        return ValueTask.FromResult(ReleaseService(context).FindInstalledLibraryPath());
-    }
-
-    private static CoreReleaseService ReleaseService(EmulatorManagementContext context) =>
-        new(context.HttpClient, context.CoreDirectory, PpssppConstants.ReleaseSettings, emulatorId: PpssppConstants.Id, isInstallationComplete: SystemFilesFunctions.IsInstalled, prepareInstallation: SystemFilesFunctions.InstallAsync);
-
-    public IReadOnlyList<EmulationMedia> ResolveConfiguredMedia(MachineConfiguration configuration) => EmulationMediaConversionFunctions.ToCommon(configuration.Media ?? []);
-
-    public Machine Create(MachineConfiguration configuration, EmulatorCreationContext context)
-    {
-        var machineId = Guid.NewGuid();
-        var native = PpssppOptionFunctions.ToNative(configuration.EnsureId());
-        var sessionDirectory = Path.Combine(context.SessionsDirectory, machineId.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));
-        ProcessCore? core = null;
-        IAudioOutput? audio = null;
-        var ownershipTransferred = false;
-        try
-        {
-            core = new ProcessCore(context.HostExecutablePath, context.CorePath);
-            audio = native.AudioEnabled ? context.AudioOutputFactory?.Invoke() : null;
-            var machine = new Machine(machineId, native, core, native.Media ?? [], sessionDirectory, audio, context.SaveDirectoryResolver?.Invoke(configuration));
-            ownershipTransferred = true;
-            return machine;
-        }
-        finally
-        {
-            if (!ownershipTransferred)
-            {
-                try { core?.Dispose(); }
-                finally { audio?.Dispose(); }
-            }
-        }
-    }
+    public override int GetMemoryKib(MachineConfiguration configuration) =>
+        configuration.Options?.GetValueOrDefault(OptionConstants.PspModelKey) != PpssppConstants.Psp1000Model ? PpssppConstants.ExpandedMemoryKib : ModelCatalog.Get(configuration.Model).RamKib;
+    public override int GetMemoryCardCount(MachineConfiguration configuration) => 1;
+    public override bool IsCpuClock(string fieldId) => false;
+    public override IReadOnlyList<EmulationSettingsBlock> GetMachineSettingsBlocks(MachineConfiguration configuration) =>
+        CoreSettingsFunctions.MachineBlocks(this, configuration);
+    public override IReadOnlyList<EmulationSettingsField> GetStorageDeviceConfigurationFields(MachineConfiguration configuration, EmulationMediaCategory category) =>
+        CoreSettingsFunctions.StorageFields(this, configuration, category);
+    protected override MachineConfiguration Configure(MachineConfiguration configuration) => PpssppOptionFunctions.ToNative(configuration);
 }

@@ -1,9 +1,9 @@
 {
   "baseline": "ac7292d86^",
-  "currentCSharpFiles": 7268,
+  "currentCSharpFiles": 7258,
   "outsideSrcCSharpFiles": 309,
   "baselineMethodCount": 5848,
-  "currentMethodCount": 11620,
+  "currentMethodCount": 11586,
   "powerShellFunctionCount": 17,
   "groups": [
     {
@@ -3439,7 +3439,7 @@
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Factories/CoreMachineFactory.cs",
           "name": "TryHandleHostCommand",
-          "line": 56,
+          "line": 57,
           "tokens": 53,
           "hash": "20A444877B6B88E6C341063D7DBC3C3BDD8203E03E3C4C0E75734B88D6D9E743",
           "shape": "6074D3191E5899BF0143C1089F4D8E300AA659E7B578E2DB40325689389C80F8"
@@ -4370,23 +4370,7 @@
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Factories/CoreMachineFactory.cs",
           "name": "FindReleasesAsync",
-          "line": 71,
-          "tokens": 70,
-          "hash": "2A8DDB8D27470228E7EF361B5011A8A7FAD85DA9331EDD0C78E42FA8F800A9D7",
-          "shape": "DE04789A9F3FD28B1360743FFB66E9EF5A94FE56E107F5F1A99BBACD3258A961"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Factories/Pcsx2MachineFactory.cs",
-          "name": "FindReleasesAsync",
-          "line": 54,
-          "tokens": 70,
-          "hash": "2A8DDB8D27470228E7EF361B5011A8A7FAD85DA9331EDD0C78E42FA8F800A9D7",
-          "shape": "DE04789A9F3FD28B1360743FFB66E9EF5A94FE56E107F5F1A99BBACD3258A961"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Factories/PpssppMachineFactory.cs",
-          "name": "FindReleasesAsync",
-          "line": 45,
+          "line": 72,
           "tokens": 70,
           "hash": "2A8DDB8D27470228E7EF361B5011A8A7FAD85DA9331EDD0C78E42FA8F800A9D7",
           "shape": "DE04789A9F3FD28B1360743FFB66E9EF5A94FE56E107F5F1A99BBACD3258A961"
@@ -8830,33 +8814,6 @@
     },
     {
       "language": "CSharp",
-      "hash": "4D66D0F6153579FF1A616FE88E7D664308F2E5E881FC47BE4BC3332D17CAF420",
-      "method": "TerminateProcess",
-      "tokens": 48,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ProcessCore.cs",
-          "name": "TerminateProcess",
-          "line": 297,
-          "tokens": 48,
-          "hash": "4D66D0F6153579FF1A616FE88E7D664308F2E5E881FC47BE4BC3332D17CAF420",
-          "shape": "7CA20EC089E08A2555F01702F21AFD97CAEBEDE1396EB33935487D5EDC529EB9"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ProcessCore.cs",
-          "name": "TerminateProcess",
-          "line": 302,
-          "tokens": 48,
-          "hash": "4D66D0F6153579FF1A616FE88E7D664308F2E5E881FC47BE4BC3332D17CAF420",
-          "shape": "7CA20EC089E08A2555F01702F21AFD97CAEBEDE1396EB33935487D5EDC529EB9"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
       "hash": "4E4B45F06037E58BED2FBFE912AD62DA719AE9C15D2DFEF78EB501969E1707E9",
       "method": "MachineConfiguration",
       "tokens": 140,
@@ -11769,7 +11726,7 @@
     {
       "language": "CSharp",
       "hash": "68386C818382BCE400A3EDE65411B5CBD9D6A87F6D88FAF6501028CE28C38965",
-      "method": "ToModule",
+      "method": "ToSinclair",
       "tokens": 148,
       "current": [
         {
@@ -16136,23 +16093,7 @@
           "shape": "88E7C50023076A18F4DD7BC62F9C15D9F0B3F4211553180AA660FFF1FAB41829"
         },
         {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Exceptions/PpssppExceptions.cs",
-          "name": "Text",
-          "line": 58,
-          "tokens": 46,
-          "hash": "9299AE70EAD54A793B6EA18E30A367148081D78DCAFECBA443BB66DA5370BC13",
-          "shape": "88E7C50023076A18F4DD7BC62F9C15D9F0B3F4211553180AA660FFF1FAB41829"
-        },
-        {
           "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Exceptions/CoreExceptions.cs",
-          "name": "Text",
-          "line": 57,
-          "tokens": 46,
-          "hash": "9299AE70EAD54A793B6EA18E30A367148081D78DCAFECBA443BB66DA5370BC13",
-          "shape": "88E7C50023076A18F4DD7BC62F9C15D9F0B3F4211553180AA660FFF1FAB41829"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Exceptions/Pcsx2Exceptions.cs",
           "name": "Text",
           "line": 57,
           "tokens": 46,
@@ -17140,28 +17081,12 @@
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Factories/CoreMachineFactory.cs",
           "name": "InstallAsync",
-          "line": 78,
+          "line": 79,
           "tokens": 35,
           "hash": "99CC348EDCBC899F046B28B37E0547716425CCB4C4E49D4CFF6FFA5185D49B31",
           "shape": "DCEEA65751BFCDB6664EC671F661B5B9090D6EE419A3790C42897FBCEB0D4948",
           "qualification": "Typed installation adapter; original Amiga lookup verified in simpleFactoryReleaseSelectionReuse",
-          "qualificationSourceSha256": "4AED4025010275FBB3FB06D68978004871B943F3F4A4850AA41DEDEB802F9C26"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Factories/Pcsx2MachineFactory.cs",
-          "name": "InstallAsync",
-          "line": 61,
-          "tokens": 35,
-          "hash": "99CC348EDCBC899F046B28B37E0547716425CCB4C4E49D4CFF6FFA5185D49B31",
-          "shape": "DCEEA65751BFCDB6664EC671F661B5B9090D6EE419A3790C42897FBCEB0D4948"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Factories/PpssppMachineFactory.cs",
-          "name": "InstallAsync",
-          "line": 52,
-          "tokens": 35,
-          "hash": "99CC348EDCBC899F046B28B37E0547716425CCB4C4E49D4CFF6FFA5185D49B31",
-          "shape": "DCEEA65751BFCDB6664EC671F661B5B9090D6EE419A3790C42897FBCEB0D4948"
+          "qualificationSourceSha256": "78197A15497F9B0018CB3DF259B9309CF2BAEB238DDC9AB64A39014ABDB3A98D"
         }
       ],
       "predecessors": [],
@@ -18493,35 +18418,8 @@
     },
     {
       "language": "CSharp",
-      "hash": "A5DB9EC95B1035EB128BEA006002D6923189EF4B4141CE217DC811B0289A7B31",
-      "method": "GetInstallationAsync",
-      "tokens": 39,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Factories/PpssppMachineFactory.cs",
-          "name": "GetInstallationAsync",
-          "line": 37,
-          "tokens": 39,
-          "hash": "A5DB9EC95B1035EB128BEA006002D6923189EF4B4141CE217DC811B0289A7B31",
-          "shape": "FEA9CDB149D7F1256708083B7B5F10698CD8E3AA6F716ACDEC352BA61D5A65DB"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Factories/Pcsx2MachineFactory.cs",
-          "name": "GetInstallationAsync",
-          "line": 46,
-          "tokens": 39,
-          "hash": "A5DB9EC95B1035EB128BEA006002D6923189EF4B4141CE217DC811B0289A7B31",
-          "shape": "FEA9CDB149D7F1256708083B7B5F10698CD8E3AA6F716ACDEC352BA61D5A65DB"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
       "hash": "A61349BFDFFA5D404CE7D0D458204D435194B5E4D84870DF4F9FBE26A86A9946",
-      "method": "ToFairchild",
+      "method": "ToEpoch",
       "tokens": 36,
       "current": [
         {
@@ -19786,7 +19684,7 @@
     {
       "language": "CSharp",
       "hash": "B053A3AB4F0B78A37DED57B2D744801187AED6EC54FEEAFE4B1AA9C454D6F48C",
-      "method": "MattelEmulationModule",
+      "method": "PanasonicEmulationModule",
       "tokens": 47,
       "current": [
         {
@@ -23959,33 +23857,6 @@
     },
     {
       "language": "CSharp",
-      "hash": "D43C44B872B2E9662B267AEFE59DBD7B837DE67B6E1EBF3073E24821AF5BC913",
-      "method": "FindInstalledCorePathAsync",
-      "tokens": 32,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Factories/PpssppMachineFactory.cs",
-          "name": "FindInstalledCorePathAsync",
-          "line": 58,
-          "tokens": 32,
-          "hash": "D43C44B872B2E9662B267AEFE59DBD7B837DE67B6E1EBF3073E24821AF5BC913",
-          "shape": "0D5900C81823755BE7EE16C05072E71A72B4614E6C02128BEEE89CE023D04990"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Factories/Pcsx2MachineFactory.cs",
-          "name": "FindInstalledCorePathAsync",
-          "line": 67,
-          "tokens": 32,
-          "hash": "D43C44B872B2E9662B267AEFE59DBD7B837DE67B6E1EBF3073E24821AF5BC913",
-          "shape": "0D5900C81823755BE7EE16C05072E71A72B4614E6C02128BEEE89CE023D04990"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
       "hash": "D46C082E6B3C27DB3B8FF226B0B3B639A775A4E6C8AA343CFDE8AE4FB3C61F88",
       "method": "Inspect",
       "tokens": 45,
@@ -25897,14 +25768,6 @@
           "tokens": 52,
           "hash": "E9F11883F5862725437A760DAB91262332436FA01A2D80782ED7EC78C0C46595",
           "shape": "AEE701D990A0A8C7B7ACD421F166C8D3AFF63D511EE2DAF4844860E4DEE7A22B"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ProcessCore.cs",
-          "name": "HardReset",
-          "line": 147,
-          "tokens": 52,
-          "hash": "E9F11883F5862725437A760DAB91262332436FA01A2D80782ED7EC78C0C46595",
-          "shape": "AEE701D990A0A8C7B7ACD421F166C8D3AFF63D511EE2DAF4844860E4DEE7A22B"
         }
       ],
       "predecessors": [],
@@ -26820,14 +26683,6 @@
           "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ProcessCore.cs",
           "name": "CompleteRequest",
           "line": 256,
-          "tokens": 152,
-          "hash": "F473FA03B284020FA6172C72E93BB42B339979D8422326F60602DDECA6439989",
-          "shape": "88C91183F0013DAE40D17EAFBA2096CFCBFA37FD14BEF0A205140347CC403B55"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ProcessCore.cs",
-          "name": "CompleteRequest",
-          "line": 282,
           "tokens": 152,
           "hash": "F473FA03B284020FA6172C72E93BB42B339979D8422326F60602DDECA6439989",
           "shape": "88C91183F0013DAE40D17EAFBA2096CFCBFA37FD14BEF0A205140347CC403B55"
@@ -28261,6 +28116,29 @@
           "tokens": 187,
           "hash": "B3DA2CC870B641CA64D247B58B5ACC8BD5D7AF443A517809B16F2D9F2DFCEE95",
           "shape": "0772337F2269B5C95A35008871BD4251CE29C376D4ED51032754E4F770C2B9D8"
+        }
+      ],
+      "qualification": "pending-symbol-and-policy-comparison"
+    },
+    {
+      "shape": "081468AE712EA117343791178A83619DEEF7C285AD379353B5AD1D5770F8FA6B",
+      "tokens": 54,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ProcessCore.cs",
+          "name": "HardReset",
+          "line": 148,
+          "tokens": 54,
+          "hash": "FD45DA04D0E1882D9629A8D8B6AD32EE43D21F8CCF7E94E78F688485C0A8E459",
+          "shape": "081468AE712EA117343791178A83619DEEF7C285AD379353B5AD1D5770F8FA6B"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalCore.cs",
+          "name": "HardReset",
+          "line": 195,
+          "tokens": 54,
+          "hash": "D155FDEBE8A0563FBE4F3B54A3903D75890CDE1A2B2CEDC8C4842B8F652584A1",
+          "shape": "081468AE712EA117343791178A83619DEEF7C285AD379353B5AD1D5770F8FA6B"
         }
       ],
       "qualification": "pending-symbol-and-policy-comparison"
@@ -30992,14 +30870,6 @@
           "shape": "6074D3191E5899BF0143C1089F4D8E300AA659E7B578E2DB40325689389C80F8"
         },
         {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Factories/PpssppMachineFactory.cs",
-          "name": "TryHandleHostCommand",
-          "line": 27,
-          "tokens": 53,
-          "hash": "27DB99CA1FA2E7BAB0D50D558BAF85CA5839EFDB30BB53D1862D3BF2838618EF",
-          "shape": "6074D3191E5899BF0143C1089F4D8E300AA659E7B578E2DB40325689389C80F8"
-        },
-        {
           "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Factories/CoreMachineFactory.cs",
           "name": "TryHandleHostCommand",
           "line": 22,
@@ -31008,17 +30878,9 @@
           "shape": "6074D3191E5899BF0143C1089F4D8E300AA659E7B578E2DB40325689389C80F8"
         },
         {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Factories/Pcsx2MachineFactory.cs",
-          "name": "TryHandleHostCommand",
-          "line": 36,
-          "tokens": 53,
-          "hash": "5C127679E9610AD7C3ABA12D40669DE966CAAF29616B7C84FFB476652ACD80C1",
-          "shape": "6074D3191E5899BF0143C1089F4D8E300AA659E7B578E2DB40325689389C80F8"
-        },
-        {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Factories/CoreMachineFactory.cs",
           "name": "TryHandleHostCommand",
-          "line": 56,
+          "line": 57,
           "tokens": 53,
           "hash": "20A444877B6B88E6C341063D7DBC3C3BDD8203E03E3C4C0E75734B88D6D9E743",
           "shape": "6074D3191E5899BF0143C1089F4D8E300AA659E7B578E2DB40325689389C80F8"
@@ -31963,37 +31825,6 @@
       "qualification": "pending-symbol-and-policy-comparison"
     },
     {
-      "shape": "83F6062164C4A6437843320CED4327D4559DF2EC619B3C1FA7E42FD56A5AC76E",
-      "tokens": 71,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ProcessCore.cs",
-          "name": "SetControllerPortDevice",
-          "line": 188,
-          "tokens": 71,
-          "hash": "327C0D9E11A2162B28AF471DE2BD4D98CCC0E1F749B5AE8EC94087DA38F92A3D",
-          "shape": "83F6062164C4A6437843320CED4327D4559DF2EC619B3C1FA7E42FD56A5AC76E"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ProcessCore.cs",
-          "name": "SetControllerPortDevice",
-          "line": 192,
-          "tokens": 71,
-          "hash": "36DFDF3396A6FEB3274B0EBCEA87EB3F54132720DE217BE71C68D69260F378F2",
-          "shape": "83F6062164C4A6437843320CED4327D4559DF2EC619B3C1FA7E42FD56A5AC76E"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ProcessCore.cs",
-          "name": "SetControllerPortDevice",
-          "line": 191,
-          "tokens": 71,
-          "hash": "75050A1BA03EBCB6DC794821DC29111468DEE916C53DDD0F0A745EEC1D789AC1",
-          "shape": "83F6062164C4A6437843320CED4327D4559DF2EC619B3C1FA7E42FD56A5AC76E"
-        }
-      ],
-      "qualification": "pending-symbol-and-policy-comparison"
-    },
-    {
       "shape": "8479EE694F6433712F7B863286A2CD70851E047D1FBCEB2A2170F63DCB7CF8EA",
       "tokens": 53,
       "current": [
@@ -32160,29 +31991,6 @@
       "qualification": "pending-symbol-and-policy-comparison"
     },
     {
-      "shape": "848BB5C8DA58FA8D07AA445D6ADA31867EAE3B5B92A94A8D9C381F18A5E7ED11",
-      "tokens": 168,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ProcessCore.cs",
-          "name": "RunFrame",
-          "line": 126,
-          "tokens": 168,
-          "hash": "CD5D0A155915C652FCDB7AD50888FBC2ECE88EE76B1F36DDD8EED04398EC7BE5",
-          "shape": "848BB5C8DA58FA8D07AA445D6ADA31867EAE3B5B92A94A8D9C381F18A5E7ED11"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ProcessCore.cs",
-          "name": "RunFrame",
-          "line": 125,
-          "tokens": 168,
-          "hash": "BDD9DD161BF17D9BBCF59F1338802D809588E642178504E1E79431EED9178A20",
-          "shape": "848BB5C8DA58FA8D07AA445D6ADA31867EAE3B5B92A94A8D9C381F18A5E7ED11"
-        }
-      ],
-      "qualification": "pending-symbol-and-policy-comparison"
-    },
-    {
       "shape": "84B9AFA92594EA3723A2CF10AE78F58C5C3FA7FEA7A3BF3D0490CD4B12CC9E4D",
       "tokens": 57,
       "current": [
@@ -32263,53 +32071,6 @@
           "tokens": 48,
           "hash": "2E25507336E7667D4299BAC46B817A0931EB7C1114C042D7E42B4021AEBA6832",
           "shape": "87BA93C66085FE31E39BE006ECB8A686D757A7FDC1E0BD6CCE5D0CBF3CEE0550"
-        }
-      ],
-      "qualification": "pending-symbol-and-policy-comparison"
-    },
-    {
-      "shape": "88C91183F0013DAE40D17EAFBA2096CFCBFA37FD14BEF0A205140347CC403B55",
-      "tokens": 152,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ProcessCore.cs",
-          "name": "CompleteRequest",
-          "line": 256,
-          "tokens": 152,
-          "hash": "F473FA03B284020FA6172C72E93BB42B339979D8422326F60602DDECA6439989",
-          "shape": "88C91183F0013DAE40D17EAFBA2096CFCBFA37FD14BEF0A205140347CC403B55"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ProcessCore.cs",
-          "name": "CompleteRequest",
-          "line": 274,
-          "tokens": 152,
-          "hash": "26881731027238083412547E6F93A81EB24D5FD7144E4E412C603215B8D09316",
-          "shape": "88C91183F0013DAE40D17EAFBA2096CFCBFA37FD14BEF0A205140347CC403B55"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ProcessCore.cs",
-          "name": "CompleteRequest",
-          "line": 256,
-          "tokens": 152,
-          "hash": "F473FA03B284020FA6172C72E93BB42B339979D8422326F60602DDECA6439989",
-          "shape": "88C91183F0013DAE40D17EAFBA2096CFCBFA37FD14BEF0A205140347CC403B55"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ProcessCore.cs",
-          "name": "CompleteRequest",
-          "line": 279,
-          "tokens": 152,
-          "hash": "D5E4A6D32A331107EA3616F48A41D8A6E6383EA0449EAA44B5A9AE1CB6BAD614",
-          "shape": "88C91183F0013DAE40D17EAFBA2096CFCBFA37FD14BEF0A205140347CC403B55"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ProcessCore.cs",
-          "name": "CompleteRequest",
-          "line": 282,
-          "tokens": 152,
-          "hash": "F473FA03B284020FA6172C72E93BB42B339979D8422326F60602DDECA6439989",
-          "shape": "88C91183F0013DAE40D17EAFBA2096CFCBFA37FD14BEF0A205140347CC403B55"
         }
       ],
       "qualification": "pending-symbol-and-policy-comparison"
@@ -32657,7 +32418,7 @@
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs",
           "name": "Get",
-          "line": 17,
+          "line": 19,
           "tokens": 34,
           "hash": "FD931A1844DAEF87C4D6B77B2443FB3F9C0753BC80500AA2C7DC5540C8442111",
           "shape": "9741AE98627FB055873AE2D7DCB6BEF71EBE676FD5EAF84C44F4D726A83FD6F3"
@@ -33316,27 +33077,11 @@
           "shape": "AD507A316DC65899970EDA6BE724E74EE0E96801B566CFB7D9CC44EC7FAF67DE"
         },
         {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ProcessCore.cs",
-          "name": "Begin",
-          "line": 265,
-          "tokens": 59,
-          "hash": "16943285AB08E7BAA7AF005173148EE66DB16A3ADC180F34521397E1E1EC2128",
-          "shape": "AD507A316DC65899970EDA6BE724E74EE0E96801B566CFB7D9CC44EC7FAF67DE"
-        },
-        {
           "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ProcessCore.cs",
           "name": "Begin",
           "line": 247,
           "tokens": 59,
           "hash": "4C4E58340A22AD06D6CDA1D2A8766A6FF5F5EED37F5D386637401C644384231C",
-          "shape": "AD507A316DC65899970EDA6BE724E74EE0E96801B566CFB7D9CC44EC7FAF67DE"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ProcessCore.cs",
-          "name": "Begin",
-          "line": 270,
-          "tokens": 59,
-          "hash": "68136092E67EC29E48C15F54904CE2C182B641A68044DE06BE275D25553BA71E",
           "shape": "AD507A316DC65899970EDA6BE724E74EE0E96801B566CFB7D9CC44EC7FAF67DE"
         },
         {
@@ -33426,14 +33171,6 @@
           "shape": "AEE701D990A0A8C7B7ACD421F166C8D3AFF63D511EE2DAF4844860E4DEE7A22B"
         },
         {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ProcessCore.cs",
-          "name": "HardReset",
-          "line": 144,
-          "tokens": 52,
-          "hash": "5EEB185D8CACA5BA626DD1D0158B1E33C4EB1FA142C4F9E19BFB141B501D41AD",
-          "shape": "AEE701D990A0A8C7B7ACD421F166C8D3AFF63D511EE2DAF4844860E4DEE7A22B"
-        },
-        {
           "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ProcessCore.cs",
           "name": "HardReset",
           "line": 138,
@@ -33447,22 +33184,6 @@
           "line": 151,
           "tokens": 52,
           "hash": "89651D0EF4C4DBC1F923B555458D72FBA349AB4EC263076C86E1BE53C245BDC3",
-          "shape": "AEE701D990A0A8C7B7ACD421F166C8D3AFF63D511EE2DAF4844860E4DEE7A22B"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ProcessCore.cs",
-          "name": "HardReset",
-          "line": 148,
-          "tokens": 52,
-          "hash": "C9030DEBE734450567DF3A4B6620FF6F2D4298B115808ED67B22B470516CC2E9",
-          "shape": "AEE701D990A0A8C7B7ACD421F166C8D3AFF63D511EE2DAF4844860E4DEE7A22B"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ProcessCore.cs",
-          "name": "HardReset",
-          "line": 147,
-          "tokens": 52,
-          "hash": "E9F11883F5862725437A760DAB91262332436FA01A2D80782ED7EC78C0C46595",
           "shape": "AEE701D990A0A8C7B7ACD421F166C8D3AFF63D511EE2DAF4844860E4DEE7A22B"
         }
       ],
@@ -35073,29 +34794,6 @@
       "qualification": "pending-symbol-and-policy-comparison"
     },
     {
-      "shape": "DB7F7F9197C3C0039F05494382B47CCE98DFCD119D4A0E0C974B52DD79D1168F",
-      "tokens": 168,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Factories/PpssppMachineFactory.cs",
-          "name": "Create",
-          "line": 70,
-          "tokens": 168,
-          "hash": "95E42A0911796E283BDEBF1F73031B0B31DD5AA53D9587DADFDDFB7262A4FB95",
-          "shape": "DB7F7F9197C3C0039F05494382B47CCE98DFCD119D4A0E0C974B52DD79D1168F"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Factories/Pcsx2MachineFactory.cs",
-          "name": "Create",
-          "line": 79,
-          "tokens": 168,
-          "hash": "292B7A2ABCF21EE9281DC6AF4C35E4C8CE09B0316A2DAB73A36DB66EC1C3233F",
-          "shape": "DB7F7F9197C3C0039F05494382B47CCE98DFCD119D4A0E0C974B52DD79D1168F"
-        }
-      ],
-      "qualification": "pending-symbol-and-policy-comparison"
-    },
-    {
       "shape": "DB8DA50A6C7DB61A3D8D699A7FA6A805D9D21DA6BEAC5E3BE180EB2B52DCE820",
       "tokens": 149,
       "current": [
@@ -35195,28 +34893,12 @@
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Factories/CoreMachineFactory.cs",
           "name": "InstallAsync",
-          "line": 78,
+          "line": 79,
           "tokens": 35,
           "hash": "99CC348EDCBC899F046B28B37E0547716425CCB4C4E49D4CFF6FFA5185D49B31",
           "shape": "DCEEA65751BFCDB6664EC671F661B5B9090D6EE419A3790C42897FBCEB0D4948",
           "qualification": "Typed installation adapter; original Amiga lookup verified in simpleFactoryReleaseSelectionReuse",
-          "qualificationSourceSha256": "4AED4025010275FBB3FB06D68978004871B943F3F4A4850AA41DEDEB802F9C26"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Factories/Pcsx2MachineFactory.cs",
-          "name": "InstallAsync",
-          "line": 61,
-          "tokens": 35,
-          "hash": "99CC348EDCBC899F046B28B37E0547716425CCB4C4E49D4CFF6FFA5185D49B31",
-          "shape": "DCEEA65751BFCDB6664EC671F661B5B9090D6EE419A3790C42897FBCEB0D4948"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Factories/PpssppMachineFactory.cs",
-          "name": "InstallAsync",
-          "line": 52,
-          "tokens": 35,
-          "hash": "99CC348EDCBC899F046B28B37E0547716425CCB4C4E49D4CFF6FFA5185D49B31",
-          "shape": "DCEEA65751BFCDB6664EC671F661B5B9090D6EE419A3790C42897FBCEB0D4948"
+          "qualificationSourceSha256": "78197A15497F9B0018CB3DF259B9309CF2BAEB238DDC9AB64A39014ABDB3A98D"
         }
       ],
       "qualification": "Partial occurrence qualification; unannotated members pending"
@@ -35299,23 +34981,7 @@
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Factories/CoreMachineFactory.cs",
           "name": "FindReleasesAsync",
-          "line": 71,
-          "tokens": 70,
-          "hash": "2A8DDB8D27470228E7EF361B5011A8A7FAD85DA9331EDD0C78E42FA8F800A9D7",
-          "shape": "DE04789A9F3FD28B1360743FFB66E9EF5A94FE56E107F5F1A99BBACD3258A961"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Factories/Pcsx2MachineFactory.cs",
-          "name": "FindReleasesAsync",
-          "line": 54,
-          "tokens": 70,
-          "hash": "2A8DDB8D27470228E7EF361B5011A8A7FAD85DA9331EDD0C78E42FA8F800A9D7",
-          "shape": "DE04789A9F3FD28B1360743FFB66E9EF5A94FE56E107F5F1A99BBACD3258A961"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Factories/PpssppMachineFactory.cs",
-          "name": "FindReleasesAsync",
-          "line": 45,
+          "line": 72,
           "tokens": 70,
           "hash": "2A8DDB8D27470228E7EF361B5011A8A7FAD85DA9331EDD0C78E42FA8F800A9D7",
           "shape": "DE04789A9F3FD28B1360743FFB66E9EF5A94FE56E107F5F1A99BBACD3258A961"
@@ -36864,7 +36530,7 @@
   ],
   "scope": "All current repository CSharp and PowerShell files; no age filter; candidates require semantic review",
   "qualificationCarryForward": {
-    "occurrences": 242,
-    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical"
+    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical",
+    "occurrences": 240
   }
 }

@@ -20,8 +20,8 @@ public sealed class NativeShutdownTests
     public void HostExitObservationFailureIsReportedInsteadOfHidden(string adapter, bool terminate)
     {
         using IDisposable core = adapter == "Pcsx2"
-            ? new GWGUI.Emulation.Sony.Emulators.Pcsx2.Services.ProcessCore("unused-host")
-            : new GWGUI.Emulation.Sony.Emulators.Ppsspp.Services.ProcessCore("unused-host");
+            ? new GWGUI.Emulation.Sony.Emulators.Common.Interop.Services.ProcessCore("unused-host")
+            : new GWGUI.Emulation.Sony.Emulators.Common.Interop.Services.ProcessCore("unused-host");
         using var unassociatedProcess = new Process();
         var processField = core.GetType().GetField("_process", BindingFlags.Instance | BindingFlags.NonPublic)!;
         processField.SetValue(core, unassociatedProcess);

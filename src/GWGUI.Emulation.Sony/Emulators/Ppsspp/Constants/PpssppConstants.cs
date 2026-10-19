@@ -16,7 +16,6 @@ internal static class PpssppConstants
     internal const string DisplayName = "PPSSPP";
     internal const string LibraryName = "PPSSPP";
     internal const string DescriptionResourceKey = "Emulation.Emulator.ppsspp.Description";
-    internal const string CoreHostCommand = "--sony-ppsspp-core-host";
     internal const string ElfExtension = ".elf";
     internal const string IsoExtension = ".iso";
     internal const string CsoExtension = ".cso";
@@ -34,5 +33,8 @@ internal static class PpssppConstants
         ControllerTypes: [ControllerType.Joystick],
         ResolveSaveDirectory: StorageFunctions.ResolveSaveDirectory,
         ResolveSystemDirectory: SystemFilesFunctions.DirectoryForCore,
-        FullContentPathsRequired: PpssppExceptions.FullContentPathsRequired);
+        FullContentPathsRequired: PpssppExceptions.FullContentPathsRequired,
+        ResolveOptions: PpssppOptionFunctions.Options,
+        IsInstallationComplete: SystemFilesFunctions.IsInstalled,
+        PrepareInstallation: SystemFilesFunctions.InstallAsync);
 }

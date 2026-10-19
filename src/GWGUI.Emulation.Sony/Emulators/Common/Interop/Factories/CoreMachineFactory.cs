@@ -20,7 +20,7 @@ internal abstract class CoreMachineFactory : IEmulatorAdapter, IEmulatorFirmware
     public virtual void ValidateConfiguration(MachineConfiguration configuration) { }
     public virtual IReadOnlyList<EmulationMediaDevice> GetStorageDevices(MachineConfiguration configuration) => [];
     public virtual IReadOnlyList<InputBindingDefinition>? GetControllerBindingDefinitions(MachineConfiguration configuration, ControllerType type, int port) => null;
-    public IReadOnlyList<EmulationSettingsBlock> GetMachineSettingsBlocks(MachineConfiguration configuration)
+    public virtual IReadOnlyList<EmulationSettingsBlock> GetMachineSettingsBlocks(MachineConfiguration configuration)
     {
         var globalStorage = CoreDefinition.Options.Where(option => option.IsGlobalStorageOption).Select(option => option.Key).ToHashSet(StringComparer.Ordinal);
         return GetSettingsBlocks(configuration).Select(block => block.Tab == EmulationMachineTab.Storage
@@ -32,6 +32,7 @@ internal abstract class CoreMachineFactory : IEmulatorAdapter, IEmulatorFirmware
             ? CoreSettingsFunctions.Blocks(CoreDefinition.Options.Where(option => !option.IsGlobalStorageOption).ToArray(), configuration).Where(block => block.Tab == EmulationMachineTab.Storage).SelectMany(block => block.Fields).ToArray()
             : [];
     public IReadOnlyDictionary<string, string> GetRuntimeOptions(MachineConfiguration configuration) => Configure(configuration).Options!;
+    public virtual int GetMemoryKib(MachineConfiguration configuration) => ModelCatalog.Get(configuration.Model).RamKib;
     public virtual IReadOnlyList<int> GetAudioLatencyChoices(MachineConfiguration configuration) => AudioConstants.LatencyMilliseconds;
     public virtual AudioConfiguration GetAudioConfiguration(MachineConfiguration configuration) => configuration.Audio ?? new AudioConfiguration();
     public virtual MachineConfiguration ApplyVideoSettings(MachineConfiguration configuration, EmulationGraphicsApi graphicsApi) =>
@@ -45,7 +46,7 @@ internal abstract class CoreMachineFactory : IEmulatorAdapter, IEmulatorFirmware
     public IReadOnlyList<EmulationControllerOutputDefinition> GetControllerOutputs(MachineConfiguration configuration, ControllerType type) =>
         CoreDefinition.FeedbackControllerTypes?.Contains(type) == true ? InputSettingsFunctions.RumbleOutputs : [];
     public IReadOnlyList<string> SupportedContentExtensions => CoreDefinition.Extensions;
-    public bool IsCpuClock(string fieldId) => CoreSettingsConstants.IsCpuClock(fieldId);
+    public virtual bool IsCpuClock(string fieldId) => CoreSettingsConstants.IsCpuClock(fieldId);
     public virtual int GetMemoryCardCount(MachineConfiguration configuration) => configuration.Model is ModelConstants.PlayStation or ModelConstants.PlayStation2 ? MemoryCardFunctions.Count(configuration) : 0;
     public virtual bool HasFixedMemoryCardDirectories => false;
     public virtual string? GetMemoryCardDirectory(int index) => null;
@@ -118,5 +119,6 @@ internal abstract class CoreMachineFactory : IEmulatorAdapter, IEmulatorFirmware
 
     protected virtual MachineConfiguration Configure(MachineConfiguration configuration) => CoreSettingsFunctions.Configure(CoreDefinition, configuration);
 
-    private CoreReleaseService ReleaseService(EmulatorManagementContext context) => new(context.HttpClient, context.CoreDirectory, ReleaseSettings);
+    private CoreReleaseService ReleaseService(EmulatorManagementContext context) => new(context.HttpClient, context.CoreDirectory, ReleaseSettings,
+        CoreDefinition.Id, CoreDefinition.IsInstallationComplete, CoreDefinition.PrepareInstallation);
 }

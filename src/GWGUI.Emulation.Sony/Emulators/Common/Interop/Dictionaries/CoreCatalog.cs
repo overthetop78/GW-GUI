@@ -11,7 +11,9 @@ internal static class CoreCatalog
         Play.Constants.CoreConstants.Definition,
         Rpcs3.Constants.CoreConstants.Definition,
         PokketStation.Constants.CoreConstants.Definition,
-        SwanStation.Constants.CoreConstants.Definition
+        SwanStation.Constants.CoreConstants.Definition,
+        Pcsx2.Constants.Pcsx2Constants.Definition,
+        Ppsspp.Constants.PpssppConstants.Definition
     ];
 
     internal static Contracts.CoreDefinition Get(string id) => All.SingleOrDefault(core => core.Id.Equals(id, StringComparison.Ordinal)) ?? throw new ArgumentOutOfRangeException(nameof(id), id, null);
