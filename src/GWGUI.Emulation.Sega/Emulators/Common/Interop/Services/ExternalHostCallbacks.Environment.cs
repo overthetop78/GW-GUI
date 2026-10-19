@@ -10,7 +10,7 @@ using static GWGUI.Emulation.Sega.Emulators.Common.Interop.Constants.ExternalHos
 
 namespace GWGUI.Emulation.Sega.Emulators.Common.Interop.Services;
 
-internal sealed partial class ExternalHostCallbacks
+internal sealed partial class ExternalHostCallbacks : IEmulationCoreEnvironmentCommands
 {
     private bool HandleEnvironment(uint command, nint data)
     {
@@ -27,26 +27,32 @@ internal sealed partial class ExternalHostCallbacks
                 case HardwareRenderConstants.GetPreferredHardwareRender:
                     return ExternalCoreEnvironmentFunctions.WriteInteger(data, OpenGlHardwareRenderContext.OpenGlCoreContextType);
                 case ExternalCoreApiConstants.GetSystemDirectory:
-                    return ExternalCoreEnvironmentFunctions.WritePointer(data, NativeString(SystemDirectory));
                 case ExternalCoreApiConstants.GetContentDirectory:
-                    return ExternalCoreEnvironmentFunctions.WritePointer(data, NativeString(ContentDirectory));
                 case ExternalCoreApiConstants.GetSaveDirectory:
-                    return ExternalCoreEnvironmentFunctions.WritePointer(data, NativeString(SaveDirectory));
+                case ExternalCoreApiConstants.SetMessage:
+                case ExternalCoreApiConstants.SetPixelFormat:
+                case ExternalCoreApiConstants.GetDiskControlVersion:
+                case ExternalCoreApiConstants.SetInputDescriptors:
+                case ExternalCoreApiConstants.SetKeyboardCallback:
+                case ExternalCoreApiConstants.SetDiskControl:
+                case ExternalCoreApiConstants.SetDiskControlExtended:
+                case ExternalCoreApiConstants.SetControllerInfo:
+                case ExternalCoreApiConstants.SetMemoryMaps:
+                case ExternalCoreApiConstants.SetSupportAchievements:
+                case ExternalCoreApiConstants.SetSupportNoGame:
+                case ExternalCoreApiConstants.SetMessageExtended:
+                case ExternalCoreApiConstants.SetGeometry:
+                case ExternalCoreApiConstants.SetSystemAvInfo:
+                case ExternalCoreApiConstants.GetLogInterface:
+                case ExternalCoreApiConstants.GetVfsInterface:
+                case ExternalCoreApiConstants.GetLedInterface:
+                    _ = ExternalCoreEnvironmentFunctions.TryHandleCallbackCommand(command, data, this, out var callbackResult);
+                    return callbackResult;
                 case ExternalCoreApiConstants.GetCanDuplicateFrames:
                 case ExternalCoreApiConstants.GetInputBitmasks:
                 case ExternalCoreApiConstants.GetCoreOptionsVersion:
                     _ = ExternalCoreEnvironmentFunctions.TryHandleStatelessCommand(command, data,
                         2, ExternalCoreInteropConstants.MessageInterfaceVersion, 0, out _);
-                    return true;
-                case ExternalCoreApiConstants.SetMessage:
-                    return CaptureMessage(data, extended: false);
-                case ExternalCoreApiConstants.SetPixelFormat:
-                    _pixelFormat = Marshal.ReadInt32(data) switch
-                    {
-                        ExternalCoreInteropConstants.PixelFormatXrgb8888 => EmulationPixelFormat.Xrgb8888,
-                        ExternalCoreInteropConstants.PixelFormatRgb565 => EmulationPixelFormat.Rgb565,
-                    var value => throw new NotSupportedException(CoreExceptions.UnsupportedPixelFormat(value))
-                    };
                     return true;
                 case ExternalCoreApiConstants.SetCoreOptions:
                     RegisterVersionOneOptions(data);
@@ -68,51 +74,16 @@ internal sealed partial class ExternalHostCallbacks
                 case ExternalCoreApiConstants.GetVariableUpdate:
                     _ = EmulationCoreOptionFunctions.GetAndClearUpdated(data, ref _optionsUpdated);
                     return true;
-                case ExternalCoreApiConstants.GetDiskControlVersion:
-                    _ = ExternalCoreEnvironmentFunctions.WriteInteger(data, 1);
-                    return true;
-                case ExternalCoreApiConstants.SetInputDescriptors:
-                    return true;
-                case ExternalCoreApiConstants.SetKeyboardCallback:
-                    var keyboard = Marshal.PtrToStructure<ExternalCoreApi.KeyboardCallback>(data);
-                    _keyboardEvent = GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.OptionalDelegate<ExternalCoreApi.KeyboardEvent>(keyboard.Callback);
-                    return true;
-                case ExternalCoreApiConstants.SetDiskControl:
-                    DiskControl.Capture(data);
-                    return true;
-                case ExternalCoreApiConstants.SetDiskControlExtended:
-                    DiskControl.CaptureExtended(data);
-                    return true;
-                case ExternalCoreApiConstants.SetControllerInfo:
-                    return CaptureControllerInfo(data);
-                case ExternalCoreApiConstants.SetMemoryMaps:
-                case ExternalCoreApiConstants.SetSupportAchievements:
-                    return true;
                 case ExternalCoreApiConstants.SetCoreOptionsDisplay:
                     return ApplyOptionVisibility(data);
                 case ExternalCoreApiConstants.SetCoreOptionsUpdateDisplayCallback:
                     return CaptureOptionsDisplayCallback(data);
-                case ExternalCoreApiConstants.SetSupportNoGame:
-                    SupportsNoGame = data != nint.Zero && Marshal.ReadByte(data) != ExternalCoreInteropConstants.NativeBooleanFalse;
-                    return true;
                 case ExternalCoreApiConstants.GetMessageInterfaceVersion:
                     _ = ExternalCoreEnvironmentFunctions.TryHandleStatelessCommand(command, data,
                         2, ExternalCoreInteropConstants.MessageInterfaceVersion, 0, out var queryResult);
                     return queryResult;
-                case ExternalCoreApiConstants.SetMessageExtended:
-                    return CaptureMessage(data, extended: true);
                 case ExternalCoreApiConstants.SetFastForwardingOverride:
                     return false;
-                case ExternalCoreApiConstants.SetGeometry:
-                    return ApplyGeometry(data);
-                case ExternalCoreApiConstants.SetSystemAvInfo:
-                    return ApplySystemAvInfo(data);
-                case ExternalCoreApiConstants.GetLogInterface:
-                    return ExternalCoreEnvironmentFunctions.SetLogInterface(data, Log);
-                case ExternalCoreApiConstants.GetVfsInterface:
-                    return false;
-                case ExternalCoreApiConstants.GetLedInterface:
-                    return ExternalCoreEnvironmentFunctions.SetLedInterface(data, Led);
                 default:
                     if (_unknownEnvironmentCommands.Add(command)) AddDiagnostic($"Unsupported environment command: {command}");
                     return false;
@@ -123,6 +94,122 @@ internal sealed partial class ExternalHostCallbacks
             return false;
         }
     }
+
+    bool IEmulationCoreEnvironmentCommands.WriteSystemDirectory(nint data)
+    {
+        return ExternalCoreEnvironmentFunctions.WritePointer(data, NativeString(SystemDirectory));
+    }
+
+    bool IEmulationCoreEnvironmentCommands.WriteContentDirectory(nint data)
+    {
+        return ExternalCoreEnvironmentFunctions.WritePointer(data, NativeString(ContentDirectory));
+    }
+
+    bool IEmulationCoreEnvironmentCommands.WriteSaveDirectory(nint data)
+    {
+        return ExternalCoreEnvironmentFunctions.WritePointer(data, NativeString(SaveDirectory));
+    }
+
+    bool IEmulationCoreEnvironmentCommands.ReadMessage(nint data)
+    {
+        return CaptureMessage(data, extended: false);
+    }
+
+    bool IEmulationCoreEnvironmentCommands.SetPixelFormat(nint data)
+    {
+        _pixelFormat = Marshal.ReadInt32(data) switch
+        {
+            ExternalCoreInteropConstants.PixelFormatXrgb8888 => EmulationPixelFormat.Xrgb8888,
+            ExternalCoreInteropConstants.PixelFormatRgb565 => EmulationPixelFormat.Rgb565,
+            var value => throw new NotSupportedException(CoreExceptions.UnsupportedPixelFormat(value))};
+        return true;
+    }
+
+    bool IEmulationCoreEnvironmentCommands.GetDiskControlVersion(nint data)
+    {
+        _ = ExternalCoreEnvironmentFunctions.WriteInteger(data, 1);
+        return true;
+    }
+
+    bool IEmulationCoreEnvironmentCommands.CaptureInputDescriptors(nint data)
+    {
+        return true;
+    }
+
+    bool IEmulationCoreEnvironmentCommands.SetKeyboardCallback(nint data)
+    {
+        var keyboard = Marshal.PtrToStructure<ExternalCoreApi.KeyboardCallback>(data);
+        _keyboardEvent = GWGUI.Emulation.Functions.ExternalCoreEnvironmentFunctions.OptionalDelegate<ExternalCoreApi.KeyboardEvent>(keyboard.Callback);
+        return true;
+    }
+
+    bool IEmulationCoreEnvironmentCommands.CaptureDiskControl(nint data)
+    {
+        DiskControl.Capture(data);
+        return true;
+    }
+
+    bool IEmulationCoreEnvironmentCommands.CaptureExtendedDiskControl(nint data)
+    {
+        DiskControl.CaptureExtended(data);
+        return true;
+    }
+
+    bool IEmulationCoreEnvironmentCommands.CaptureControllerInfo(nint data)
+    {
+        return CaptureControllerInfo(data);
+    }
+
+    bool IEmulationCoreEnvironmentCommands.CaptureMemoryMaps(nint data)
+    {
+        return true;
+    }
+
+    bool IEmulationCoreEnvironmentCommands.SetSupportAchievements(nint data)
+    {
+        return true;
+    }
+
+    bool IEmulationCoreEnvironmentCommands.SetSupportNoGame(nint data)
+    {
+        SupportsNoGame = data != nint.Zero && Marshal.ReadByte(data) != ExternalCoreInteropConstants.NativeBooleanFalse;
+        return true;
+    }
+
+    bool IEmulationCoreEnvironmentCommands.ReadExtendedMessage(nint data)
+    {
+        return CaptureMessage(data, extended: true);
+    }
+
+    bool IEmulationCoreEnvironmentCommands.SetGeometry(nint data)
+    {
+        return ApplyGeometry(data);
+    }
+
+    bool IEmulationCoreEnvironmentCommands.SetSystemAvInfo(nint data)
+    {
+        return ApplySystemAvInfo(data);
+    }
+
+    bool IEmulationCoreEnvironmentCommands.SetLogInterface(nint data)
+    {
+        return ExternalCoreEnvironmentFunctions.SetLogInterface(data, Log);
+    }
+
+    bool IEmulationCoreEnvironmentCommands.ProvideVfs(nint data)
+    {
+        return false;
+    }
+
+    bool IEmulationCoreEnvironmentCommands.SetLedInterface(nint data)
+    {
+        return ExternalCoreEnvironmentFunctions.SetLedInterface(data, Led);
+    }
+
+    bool IEmulationCoreEnvironmentCommands.SetRotation(nint data) => false;
+    bool IEmulationCoreEnvironmentCommands.CapturePerformanceLevel(nint data) => false;
+    bool IEmulationCoreEnvironmentCommands.SetRumbleInterface(nint data) => false;
+    bool IEmulationCoreEnvironmentCommands.SetSensorInterface(nint data) => false;
 
     private void RegisterLegacyOptions(nint data) => OptionCatalog = AdaptOptions(EmulationCoreOptionFunctions.ReadLegacy(data, _options, _optionVisibility));
 

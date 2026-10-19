@@ -3,7 +3,7 @@
   "currentCSharpFiles": 7288,
   "outsideSrcCSharpFiles": 303,
   "baselineMethodCount": 5848,
-  "currentMethodCount": 11658,
+  "currentMethodCount": 11662,
   "powerShellFunctionCount": 17,
   "groups": [
     {
@@ -1197,7 +1197,7 @@
     {
       "language": "CSharp",
       "hash": "0A9D4012A0EEF58659F6F622D06187BDA6844EE126F30B196EAE963950A66758",
-      "method": "NecEmulationModule",
+      "method": "CommodoreEmulationModule",
       "tokens": 45,
       "current": [
         {
@@ -4551,7 +4551,7 @@
         {
           "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
           "name": "NativeString",
-          "line": 187,
+          "line": 274,
           "tokens": 34,
           "hash": "2D061211B136CF8AB54CD0112BFF5718E60C605ADD94F59F0E3BC81305E3686F",
           "shape": "D6CDBB1C357EA0A45C9655632D20626BA5B3F5DD0F79DD602BBB3036DD0DB05C"
@@ -4575,7 +4575,7 @@
         {
           "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
           "name": "NativeString",
-          "line": 188,
+          "line": 275,
           "tokens": 34,
           "hash": "2D061211B136CF8AB54CD0112BFF5718E60C605ADD94F59F0E3BC81305E3686F",
           "shape": "D6CDBB1C357EA0A45C9655632D20626BA5B3F5DD0F79DD602BBB3036DD0DB05C"
@@ -6446,20 +6446,18 @@
         {
           "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
           "name": "ValidateConfiguredOptions",
-          "line": 165,
+          "line": 252,
           "tokens": 53,
           "hash": "3AC878DDB9AD5A993C637D32114E8E978804B2966D4276AAC4015C2294856DBA",
-          "shape": "18256391E9945E33B5CC256F4332717DF055E36391CACE5CED70BD0A20DA2855",
-          "qualification": "module-adapter-to-original-configured-validator"
+          "shape": "18256391E9945E33B5CC256F4332717DF055E36391CACE5CED70BD0A20DA2855"
         },
         {
           "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
           "name": "ValidateConfiguredOptions",
-          "line": 164,
+          "line": 251,
           "tokens": 53,
           "hash": "3AC878DDB9AD5A993C637D32114E8E978804B2966D4276AAC4015C2294856DBA",
-          "shape": "18256391E9945E33B5CC256F4332717DF055E36391CACE5CED70BD0A20DA2855",
-          "qualification": "module-adapter-to-original-configured-validator"
+          "shape": "18256391E9945E33B5CC256F4332717DF055E36391CACE5CED70BD0A20DA2855"
         },
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
@@ -6473,7 +6471,7 @@
       ],
       "predecessors": [],
       "shapePredecessors": [],
-      "qualification": "module-adapter-to-original-configured-validator"
+      "qualification": "pending"
     },
     {
       "language": "CSharp",
@@ -8633,6 +8631,37 @@
     },
     {
       "language": "CSharp",
+      "hash": "49B709C72531B93C6EEC45A5ED14BD04C56EAFF511F4B433829066F232718C38",
+      "method": "SetKeyboardCallback",
+      "tokens": 42,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "name": "SetKeyboardCallback",
+          "line": 139,
+          "tokens": 42,
+          "hash": "49B709C72531B93C6EEC45A5ED14BD04C56EAFF511F4B433829066F232718C38",
+          "shape": "6CBA8351AC26F069A9F3AC31EE18CA7FBD7D4E34F727636E0734220F6EBEAE12",
+          "qualification": "Typed existing environment-contract adapter; original branch body and resolved calls preserved, routed by unchanged SDK function; verified in segaNintendoEnvironmentReuse",
+          "qualificationSourceSha256": "52EF7E894669E63CC5331621E3AD5DD8749869058A3CF809F1EF84735C3F330B"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "name": "SetKeyboardCallback",
+          "line": 139,
+          "tokens": 42,
+          "hash": "49B709C72531B93C6EEC45A5ED14BD04C56EAFF511F4B433829066F232718C38",
+          "shape": "6CBA8351AC26F069A9F3AC31EE18CA7FBD7D4E34F727636E0734220F6EBEAE12",
+          "qualification": "Typed existing environment-contract adapter; original branch body and resolved calls preserved, routed by unchanged SDK function; verified in segaNintendoEnvironmentReuse",
+          "qualificationSourceSha256": "76910459666EA6073FFD26E3701A92EFE6033D28EBFFDFFD4F6E5E0A9500FF2B"
+        }
+      ],
+      "predecessors": [],
+      "shapePredecessors": [],
+      "qualification": "Qualified typed environment adapters to existing SDK router"
+    },
+    {
+      "language": "CSharp",
       "hash": "4AF3A6F581D2EA361DD15D4B6C10CE179ADD76400466D3C58DE240D096CD6767",
       "method": "Apply",
       "tokens": 135,
@@ -8901,7 +8930,7 @@
         {
           "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
           "name": "AdaptOptions",
-          "line": 157,
+          "line": 244,
           "tokens": 68,
           "hash": "4F02DAEAE45311749016D72F2B39A384D73ACFDBC8EAA2D267B0BE4556421ABB",
           "shape": "4C849465BA084C687FB0C55D3EA3936D22E727BDF3A793FAA13601F21D3E03C0"
@@ -12947,6 +12976,37 @@
     },
     {
       "language": "CSharp",
+      "hash": "6E4B1A58D8BA8571F5B3047B8A91D95CB1FAD23A27B0C07DE280D57BF74B43A6",
+      "method": "SetPixelFormat",
+      "tokens": 47,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "name": "SetPixelFormat",
+          "line": 118,
+          "tokens": 47,
+          "hash": "6E4B1A58D8BA8571F5B3047B8A91D95CB1FAD23A27B0C07DE280D57BF74B43A6",
+          "shape": "6669AD7FD29FA6286A03C2C110462A94C862AB8D2F1135FF07A6E72BF8CE4C52",
+          "qualification": "Typed existing environment-contract adapter; original branch body and resolved calls preserved, routed by unchanged SDK function; verified in segaNintendoEnvironmentReuse",
+          "qualificationSourceSha256": "52EF7E894669E63CC5331621E3AD5DD8749869058A3CF809F1EF84735C3F330B"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "name": "SetPixelFormat",
+          "line": 118,
+          "tokens": 47,
+          "hash": "6E4B1A58D8BA8571F5B3047B8A91D95CB1FAD23A27B0C07DE280D57BF74B43A6",
+          "shape": "6669AD7FD29FA6286A03C2C110462A94C862AB8D2F1135FF07A6E72BF8CE4C52",
+          "qualification": "Typed existing environment-contract adapter; original branch body and resolved calls preserved, routed by unchanged SDK function; verified in segaNintendoEnvironmentReuse",
+          "qualificationSourceSha256": "76910459666EA6073FFD26E3701A92EFE6033D28EBFFDFFD4F6E5E0A9500FF2B"
+        }
+      ],
+      "predecessors": [],
+      "shapePredecessors": [],
+      "qualification": "Qualified typed environment adapters to existing SDK router"
+    },
+    {
+      "language": "CSharp",
       "hash": "6F152D6879CCE1F6974A2FF3D6EB04D53A03D5688BA68D4D9930D7A04910092E",
       "method": "ReadAsync",
       "tokens": 33,
@@ -13573,6 +13633,33 @@
           "tokens": 104,
           "hash": "74D6D12541195C5C3046C038997436345FFF277F0BB6AA34B83F5CE319D46CD5",
           "shape": "C30177A54FBA0BFD2C0D8752E6336688170525AB8CDEA431945F35B57EC040F5"
+        }
+      ],
+      "predecessors": [],
+      "shapePredecessors": [],
+      "qualification": "pending"
+    },
+    {
+      "language": "CSharp",
+      "hash": "75307543864AC1EC262EA12C9D3DF4F1C7A5F3FDF24AB27CBB94E3BBC9E61DB8",
+      "method": "HandleEnvironment",
+      "tokens": 414,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "name": "HandleEnvironment",
+          "line": 15,
+          "tokens": 414,
+          "hash": "75307543864AC1EC262EA12C9D3DF4F1C7A5F3FDF24AB27CBB94E3BBC9E61DB8",
+          "shape": "D42BC0E9A27B3C9B18F22D2447014237B0B8062A294FC54BFFED971BBD76774B"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
+          "name": "HandleEnvironment",
+          "line": 15,
+          "tokens": 414,
+          "hash": "75307543864AC1EC262EA12C9D3DF4F1C7A5F3FDF24AB27CBB94E3BBC9E61DB8",
+          "shape": "D42BC0E9A27B3C9B18F22D2447014237B0B8062A294FC54BFFED971BBD76774B"
         }
       ],
       "predecessors": [],
@@ -16441,7 +16528,7 @@
         {
           "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
           "name": "CaptureMessage",
-          "line": 171,
+          "line": 258,
           "tokens": 57,
           "hash": "8FF53C720BD6FEB0ECCC119A30FB0EE7FE38E45E2B13D40B9BD68F721C3A20CE",
           "shape": "915041BAE6F662114851DBEB6F334C5758EA433826D411084C0728391E5220B4"
@@ -16481,7 +16568,7 @@
         {
           "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
           "name": "CaptureMessage",
-          "line": 170,
+          "line": 257,
           "tokens": 57,
           "hash": "8FF53C720BD6FEB0ECCC119A30FB0EE7FE38E45E2B13D40B9BD68F721C3A20CE",
           "shape": "915041BAE6F662114851DBEB6F334C5758EA433826D411084C0728391E5220B4"
@@ -18917,33 +19004,6 @@
     },
     {
       "language": "CSharp",
-      "hash": "9EF788E02A4DE2D21207946E78841ED0BB170AC21091466EDB616ED812AA13B3",
-      "method": "HandleEnvironment",
-      "tokens": 641,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "HandleEnvironment",
-          "line": 15,
-          "tokens": 641,
-          "hash": "9EF788E02A4DE2D21207946E78841ED0BB170AC21091466EDB616ED812AA13B3",
-          "shape": "70FA1FD24775E947CAB2DC82DE42CF27B1272250AA64BEF588331D9C0E7CBD0C"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
-          "name": "HandleEnvironment",
-          "line": 15,
-          "tokens": 641,
-          "hash": "9EF788E02A4DE2D21207946E78841ED0BB170AC21091466EDB616ED812AA13B3",
-          "shape": "70FA1FD24775E947CAB2DC82DE42CF27B1272250AA64BEF588331D9C0E7CBD0C"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
       "hash": "9FE6BBC29D889C3CD7E2746B735394247656274C5041CF7716934214E05417A0",
       "method": "ApplyPresentation",
       "tokens": 126,
@@ -19200,7 +19260,7 @@
     {
       "language": "CSharp",
       "hash": "A1E03750FEB3292ACEB41656386F4A8AA8B05077D9ABFB7DA103AA3D71320B9F",
-      "method": "ToEpoch",
+      "method": "ToFairchild",
       "tokens": 103,
       "current": [
         {
@@ -19510,7 +19570,7 @@
     {
       "language": "CSharp",
       "hash": "A61349BFDFFA5D404CE7D0D458204D435194B5E4D84870DF4F9FBE26A86A9946",
-      "method": "ToEpoch",
+      "method": "ToFairchild",
       "tokens": 36,
       "current": [
         {
@@ -20021,7 +20081,7 @@
         {
           "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
           "name": "ApplyOptionVisibility",
-          "line": 141,
+          "line": 228,
           "tokens": 52,
           "hash": "AB55EC24DA69F122481FC1289EE08BAE9F2F3728F91F712280299B378F66EB1D",
           "shape": "26FBE5AEC15198094DF5D1BEBBA4B49701B85618AA31991ADEE9CD3F9A8B6A4E"
@@ -20045,7 +20105,7 @@
         {
           "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
           "name": "ApplyOptionVisibility",
-          "line": 141,
+          "line": 228,
           "tokens": 52,
           "hash": "AB55EC24DA69F122481FC1289EE08BAE9F2F3728F91F712280299B378F66EB1D",
           "shape": "26FBE5AEC15198094DF5D1BEBBA4B49701B85618AA31991ADEE9CD3F9A8B6A4E"
@@ -20647,7 +20707,7 @@
     {
       "language": "CSharp",
       "hash": "B053A3AB4F0B78A37DED57B2D744801187AED6EC54FEEAFE4B1AA9C454D6F48C",
-      "method": "WenquxingEmulationModule",
+      "method": "MattelEmulationModule",
       "tokens": 47,
       "current": [
         {
@@ -27325,7 +27385,7 @@
     {
       "language": "CSharp",
       "hash": "F107F4D7D97C4E9F797468C991DF2090B47DF6E3F6F74E56044EFF0C28CAA51D",
-      "method": "NotifyDestroy",
+      "method": "NotifyHardwareContextDestroy",
       "tokens": 31,
       "current": [
         {
@@ -27662,10 +27722,12 @@
         {
           "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
           "name": "CaptureControllerInfo",
-          "line": 178,
+          "line": 265,
           "tokens": 71,
           "hash": "F492411E1A0392A401BF45212E633C833C64154B48CC89B2B9EF7602B72824F2",
-          "shape": "5C3F1F72B4AAC394A999213EDEF1A7FD33AA23BC8AAF93F9F928DBA6C0B14599"
+          "shape": "5C3F1F72B4AAC394A999213EDEF1A7FD33AA23BC8AAF93F9F928DBA6C0B14599",
+          "qualification": "Typed existing environment-contract adapter; original branch body and resolved calls preserved, routed by unchanged SDK function; verified in segaNintendoEnvironmentReuse",
+          "qualificationSourceSha256": "76910459666EA6073FFD26E3701A92EFE6033D28EBFFDFFD4F6E5E0A9500FF2B"
         },
         {
           "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
@@ -27686,10 +27748,12 @@
         {
           "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
           "name": "CaptureControllerInfo",
-          "line": 179,
+          "line": 266,
           "tokens": 71,
           "hash": "F492411E1A0392A401BF45212E633C833C64154B48CC89B2B9EF7602B72824F2",
-          "shape": "5C3F1F72B4AAC394A999213EDEF1A7FD33AA23BC8AAF93F9F928DBA6C0B14599"
+          "shape": "5C3F1F72B4AAC394A999213EDEF1A7FD33AA23BC8AAF93F9F928DBA6C0B14599",
+          "qualification": "Typed existing environment-contract adapter; original branch body and resolved calls preserved, routed by unchanged SDK function; verified in segaNintendoEnvironmentReuse",
+          "qualificationSourceSha256": "52EF7E894669E63CC5331621E3AD5DD8749869058A3CF809F1EF84735C3F330B"
         },
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Environment.cs",
@@ -27710,7 +27774,7 @@
       ],
       "predecessors": [],
       "shapePredecessors": [],
-      "qualification": "pending"
+      "qualification": "Partial occurrence qualification; unannotated members pending"
     },
     {
       "language": "CSharp",
@@ -29739,20 +29803,18 @@
         {
           "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
           "name": "ValidateConfiguredOptions",
-          "line": 165,
+          "line": 252,
           "tokens": 53,
           "hash": "3AC878DDB9AD5A993C637D32114E8E978804B2966D4276AAC4015C2294856DBA",
-          "shape": "18256391E9945E33B5CC256F4332717DF055E36391CACE5CED70BD0A20DA2855",
-          "qualification": "module-adapter-to-original-configured-validator"
+          "shape": "18256391E9945E33B5CC256F4332717DF055E36391CACE5CED70BD0A20DA2855"
         },
         {
           "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
           "name": "ValidateConfiguredOptions",
-          "line": 164,
+          "line": 251,
           "tokens": 53,
           "hash": "3AC878DDB9AD5A993C637D32114E8E978804B2966D4276AAC4015C2294856DBA",
-          "shape": "18256391E9945E33B5CC256F4332717DF055E36391CACE5CED70BD0A20DA2855",
-          "qualification": "module-adapter-to-original-configured-validator"
+          "shape": "18256391E9945E33B5CC256F4332717DF055E36391CACE5CED70BD0A20DA2855"
         },
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
@@ -29773,7 +29835,7 @@
           "qualification": "module-adapter-to-original-configured-validator"
         }
       ],
-      "qualification": "module-adapter-to-original-configured-validator"
+      "qualification": "pending-symbol-and-policy-comparison"
     },
     {
       "shape": "183D06E6E876C7CBC3BE254E159C5BDD401D4599B329DB8382797F1E8F3CBB16",
@@ -37961,7 +38023,7 @@
   ],
   "scope": "All current repository CSharp and PowerShell files; no age filter; candidates require semantic review",
   "qualificationCarryForward": {
-    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical",
-    "occurrences": 148
+    "occurrences": 148,
+    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical"
   }
 }
