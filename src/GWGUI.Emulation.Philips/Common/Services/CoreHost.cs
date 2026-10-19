@@ -41,8 +41,7 @@ public static class CoreHost
                             writer.Write(EnsureCore(core).HasUnsavedMediaChanges(EmulationMediaSlot.FromProtocolValue(reader.ReadInt32())));
                             break;
                         case HostCommand.Dispose:
-                            core?.Dispose();
-                            core = null;
+                            EmulationHostProtocolFunctions.DisposePreviousCore(ref core);
                             break;
                         default:
                             if (!EmulationHostProtocolFunctions.TryExecuteCoreCommand<MediaConfiguration, PeripheralCategory, DiskStatus>(
@@ -60,7 +59,7 @@ public static class CoreHost
             }
             finally
             {
-                core?.Dispose();
+                EmulationHostProtocolFunctions.DisposePreviousCore(ref core);
             }
         });
     }

@@ -28,7 +28,7 @@ public static class CoreHost
                                     EmulationHostProtocolFunctions.ReadInitializationRequest(reader,
                                         CoreHostProtocol.ReadString,
                                         static requestReader => JsonSerializer.Deserialize<MachineConfiguration>(requestReader.ReadString(), CoreHostProtocol.JsonOptions) ?? throw new InvalidDataException(CoreExceptions.HostConfigurationInvalid()));
-                                core?.Dispose();
+                                EmulationHostProtocolFunctions.DisposePreviousCore(ref core);
                                 core = new ExternalCore(corePath);
                                 core.Initialize(configuration, session, saves);
                                 writer.Write(true);
@@ -59,8 +59,7 @@ public static class CoreHost
                                 WriteSuccess(writer);
                                 break;
                             case HostCommand.Dispose:
-                                core?.Dispose();
-                                core = null;
+                                EmulationHostProtocolFunctions.DisposePreviousCore(ref core);
                                 WriteSuccess(writer);
                                 break;
                             default:
@@ -77,7 +76,7 @@ public static class CoreHost
                 }
                 finally
                 {
-                    core?.Dispose();
+                    EmulationHostProtocolFunctions.DisposePreviousCore(ref core);
                 }
             }));
     }

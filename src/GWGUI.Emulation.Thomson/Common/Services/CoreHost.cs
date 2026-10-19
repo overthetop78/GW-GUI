@@ -34,8 +34,7 @@ public static class CoreHost
                             RunFrame(reader, writer, video, EnsureCore(core), ref lastVideoSequence, ref lastDiagnosticCount);
                             break;
                         case HostCommand.Dispose:
-                            core?.Dispose();
-                            core = null;
+                            EmulationHostProtocolFunctions.DisposePreviousCore(ref core);
                             break;
                         default:
                             if (!EmulationHostProtocolFunctions.TryExecuteCoreCommand<MediaConfiguration, PeripheralCategory, DiskStatus>(
@@ -53,7 +52,7 @@ public static class CoreHost
             }
             finally
             {
-                core?.Dispose();
+                EmulationHostProtocolFunctions.DisposePreviousCore(ref core);
             }
         });
     }

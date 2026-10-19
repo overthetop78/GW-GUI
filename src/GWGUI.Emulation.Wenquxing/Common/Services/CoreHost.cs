@@ -64,8 +64,7 @@ public static class CoreHost
                             EnsureCore(core).SetControllerPortDevice(reader.ReadInt32(), (EmulationPeripheralCategory)reader.ReadInt32());
                             break;
                         case HostCommand.Dispose:
-                            core?.Dispose();
-                            core = null;
+                            EmulationHostProtocolFunctions.DisposePreviousCore(ref core);
                             break;
                         default:
                             throw new InvalidDataException(string.Format(CultureInfo.InvariantCulture, CoreHostErrors.UnknownCommandFormat, (byte)command));
@@ -78,7 +77,7 @@ public static class CoreHost
             }
             finally
             {
-                core?.Dispose();
+                EmulationHostProtocolFunctions.DisposePreviousCore(ref core);
             }
         });
     }
