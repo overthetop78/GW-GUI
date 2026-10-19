@@ -194,12 +194,6 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     private void DeleteSessionDirectory()
     {
         if (_deleteSession is not null) { _deleteSession(_sessionDirectory); return; }
-        try
-        {
-            var path = Path.GetFullPath(_sessionDirectory);
-            if (Directory.Exists(path) && !string.IsNullOrWhiteSpace(Path.GetFileName(path))) Directory.Delete(path, true);
-        }
-        catch (IOException) { }
-        catch (UnauthorizedAccessException) { }
+        EmulationSessionDirectoryFunctions.DeleteSessionDirectory(_sessionDirectory);
     }
 }

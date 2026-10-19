@@ -1,27 +1,34 @@
 {
-  "snapshot": "d1d99b42cf4fe3ded3042c37f3fae6f600106d0d",
+  "snapshot": "ad0f7616bac9d2431f37f60c41757436c974ec1e",
   "snapshotState": "Current worktree based on snapshot",
   "worktreeSourceChanges": [
-    "src/GWGUI.Emulation.Acorn/Common/Services/Machine.Commands.cs",
-    "src/GWGUI.Emulation.Apple/Common/Services/Machine.Commands.cs",
-    "src/GWGUI.Emulation.Atari/Common/Services/Machine.Commands.cs",
-    "src/GWGUI.Emulation.Bandai/Common/Services/Machine.Commands.cs",
-    "src/GWGUI.Emulation.Coleco/Common/Services/Machine.Commands.cs",
-    "src/GWGUI.Emulation.Epoch/Common/Services/Machine.Commands.cs",
-    "src/GWGUI.Emulation.Fairchild/Common/Services/Machine.Commands.cs",
-    "src/GWGUI.Emulation.Mattel/Common/Services/Machine.Commands.cs",
-    "src/GWGUI.Emulation.Panasonic/Common/Services/Machine.Commands.cs",
-    "src/GWGUI.Emulation.Philips/Common/Services/Machine.Commands.cs",
-    "src/GWGUI.Emulation.Sharp/Common/Services/Machine.Commands.cs",
-    "src/GWGUI.Emulation.Sinclair/Common/Services/Machine.Commands.cs",
-    "src/GWGUI.Emulation.Snk/Common/Services/Machine.Commands.cs",
-    "src/GWGUI.Emulation.Thomson/Common/Services/Machine.Commands.cs",
-    "src/GWGUI.Emulation.Watara/Common/Services/Machine.Commands.cs",
-    "src/GWGUI.Emulation.Wenquxing/Common/Services/Machine.Commands.cs"
+    "src/GWGUI.Emulation.Acorn/Common/Machines/Common/Functions/MachineFunctions.cs",
+    "src/GWGUI.Emulation.Amstrad/Common/Services/Machine.Commands.cs",
+    "src/GWGUI.Emulation.Apple/Common/Machines/Common/Functions/MachineFunctions.cs",
+    "src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/MachineFunctions.cs",
+    "src/GWGUI.Emulation.Bandai/Common/Machines/Common/Functions/MachineFunctions.cs",
+    "src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/MachineFunctions.cs",
+    "src/GWGUI.Emulation.Commodore/Common/Services/Machine.Commands.cs",
+    "src/GWGUI.Emulation.Epoch/Common/Machines/Common/Functions/MachineFunctions.cs",
+    "src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Functions/MachineFunctions.cs",
+    "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/MachineFunctions.cs",
+    "src/GWGUI.Emulation.Microsoft/Common/Services/Machine.Commands.cs",
+    "src/GWGUI.Emulation.Nec/Common/Services/Machine.Commands.cs",
+    "src/GWGUI.Emulation.Nintendo/Common/Services/Machine.Commands.cs",
+    "src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Functions/MachineFunctions.cs",
+    "src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/MachineFunctions.cs",
+    "src/GWGUI.Emulation.Sega/Common/Services/Machine.Commands.cs",
+    "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/MachineFunctions.cs",
+    "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/MachineFunctions.cs",
+    "src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/MachineFunctions.cs",
+    "src/GWGUI.Emulation.Sony/Common/Services/Machine.Commands.cs",
+    "src/GWGUI.Emulation.Thomson/Common/Machines/Common/Functions/MachineFunctions.cs",
+    "src/GWGUI.Emulation.Watara/Common/Machines/Common/Functions/MachineFunctions.cs",
+    "src/GWGUI.Emulation.Wenquxing/Common/Machines/Common/Functions/MachineFunctions.cs"
   ],
   "scope": "All current non-ignored repository CSharp files, including hidden paths; BaseMethodDeclaration bodies with fewer than 30 tokens. Candidate presence is not a defect or a completion claim.",
-  "fileCount": 7288,
-  "methodBodyCount": 9593,
+  "fileCount": 7289,
+  "methodBodyCount": 9616,
   "exactGroups": [
     {
       "hash": "0017F14C61995D644C52FF90F094E4708DC2CA772615CF2F5DD41E74BD202ECA",
@@ -8864,6 +8871,224 @@
           "bodyTokens": "=> SupportedFormatIds . Contains ( targetFormatId ) && SupportedExtensions . Contains ( targetExtension ) && TryGetBanks ( document , out _ )",
           "hash": "225471A1B380C288C0E067AF8C30F58B38163AC679C14EC68D6A8C6C57EFB47F",
           "shape": "0B99B8C8D32FB48E8077CC08191A6922A6F9DBE234B49B84FD707A3F010105B0"
+        }
+      ],
+      "qualification": "pending-symbol-and-ownership-comparison"
+    },
+    {
+      "hash": "226D7E8AE4B8FCCF46F366A5CD621CE5C46A98F586BB0292A2DFD44906089D72",
+      "tokens": 7,
+      "bodyTokens": "=> EmulationSessionDirectoryFunctions . DeleteGeneratedSessionDirectory ( sessionDirectory )",
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Acorn/Common/Machines/Common/Functions/MachineFunctions.cs",
+          "name": "DeleteSessionDirectory",
+          "owner": "MachineFunctions",
+          "kind": "MethodDeclaration",
+          "line": 20,
+          "parameters": "(string sessionDirectory)",
+          "tokens": 7,
+          "bodyTokens": "=> EmulationSessionDirectoryFunctions . DeleteGeneratedSessionDirectory ( sessionDirectory )",
+          "hash": "226D7E8AE4B8FCCF46F366A5CD621CE5C46A98F586BB0292A2DFD44906089D72",
+          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
+          "qualification": "Typed session cleanup/override adapter; original Amiga and Acorn policies expanded and bound in sessionDirectoryCleanupReuse",
+          "qualificationSourceSha256": "313B8165E196A27BBC5B1F00CC4AE43E91E788C5625F4AACE28FD03E1C0E0856"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Apple/Common/Machines/Common/Functions/MachineFunctions.cs",
+          "name": "DeleteSessionDirectory",
+          "owner": "MachineFunctions",
+          "kind": "MethodDeclaration",
+          "line": 20,
+          "parameters": "(string sessionDirectory)",
+          "tokens": 7,
+          "bodyTokens": "=> EmulationSessionDirectoryFunctions . DeleteGeneratedSessionDirectory ( sessionDirectory )",
+          "hash": "226D7E8AE4B8FCCF46F366A5CD621CE5C46A98F586BB0292A2DFD44906089D72",
+          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
+          "qualification": "Typed session cleanup/override adapter; original Amiga and Acorn policies expanded and bound in sessionDirectoryCleanupReuse",
+          "qualificationSourceSha256": "A72866139218B7F770AB9457E649568C60251F9CD0172E263680E472A07FB9BC"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Bandai/Common/Machines/Common/Functions/MachineFunctions.cs",
+          "name": "DeleteSessionDirectory",
+          "owner": "MachineFunctions",
+          "kind": "MethodDeclaration",
+          "line": 20,
+          "parameters": "(string sessionDirectory)",
+          "tokens": 7,
+          "bodyTokens": "=> EmulationSessionDirectoryFunctions . DeleteGeneratedSessionDirectory ( sessionDirectory )",
+          "hash": "226D7E8AE4B8FCCF46F366A5CD621CE5C46A98F586BB0292A2DFD44906089D72",
+          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
+          "qualification": "Typed session cleanup/override adapter; original Amiga and Acorn policies expanded and bound in sessionDirectoryCleanupReuse",
+          "qualificationSourceSha256": "EB885106E8D80F7977202B1C27F99F1EEA7C3E881C90C940A461DA017292B1EB"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/MachineFunctions.cs",
+          "name": "DeleteSessionDirectory",
+          "owner": "MachineFunctions",
+          "kind": "MethodDeclaration",
+          "line": 20,
+          "parameters": "(string sessionDirectory)",
+          "tokens": 7,
+          "bodyTokens": "=> EmulationSessionDirectoryFunctions . DeleteGeneratedSessionDirectory ( sessionDirectory )",
+          "hash": "226D7E8AE4B8FCCF46F366A5CD621CE5C46A98F586BB0292A2DFD44906089D72",
+          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
+          "qualification": "Typed session cleanup/override adapter; original Amiga and Acorn policies expanded and bound in sessionDirectoryCleanupReuse",
+          "qualificationSourceSha256": "D6622D4CD52617A870AF07DD9F303843275B9ED7000C876BDE7274C34A5ADDEE"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Epoch/Common/Machines/Common/Functions/MachineFunctions.cs",
+          "name": "DeleteSessionDirectory",
+          "owner": "MachineFunctions",
+          "kind": "MethodDeclaration",
+          "line": 20,
+          "parameters": "(string sessionDirectory)",
+          "tokens": 7,
+          "bodyTokens": "=> EmulationSessionDirectoryFunctions . DeleteGeneratedSessionDirectory ( sessionDirectory )",
+          "hash": "226D7E8AE4B8FCCF46F366A5CD621CE5C46A98F586BB0292A2DFD44906089D72",
+          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
+          "qualification": "Typed session cleanup/override adapter; original Amiga and Acorn policies expanded and bound in sessionDirectoryCleanupReuse",
+          "qualificationSourceSha256": "E4AD229B23478D455A3E4AB8D80C66256AEDF4E70B200C210B9060CEF0BCBBEA"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Functions/MachineFunctions.cs",
+          "name": "DeleteSessionDirectory",
+          "owner": "MachineFunctions",
+          "kind": "MethodDeclaration",
+          "line": 20,
+          "parameters": "(string sessionDirectory)",
+          "tokens": 7,
+          "bodyTokens": "=> EmulationSessionDirectoryFunctions . DeleteGeneratedSessionDirectory ( sessionDirectory )",
+          "hash": "226D7E8AE4B8FCCF46F366A5CD621CE5C46A98F586BB0292A2DFD44906089D72",
+          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
+          "qualification": "Typed session cleanup/override adapter; original Amiga and Acorn policies expanded and bound in sessionDirectoryCleanupReuse",
+          "qualificationSourceSha256": "B354A4B063C61CB82128B4226CE7BE9AF102FB9E948A40E077E735730D1AB8C9"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/MachineFunctions.cs",
+          "name": "DeleteSessionDirectory",
+          "owner": "MachineFunctions",
+          "kind": "MethodDeclaration",
+          "line": 20,
+          "parameters": "(string sessionDirectory)",
+          "tokens": 7,
+          "bodyTokens": "=> EmulationSessionDirectoryFunctions . DeleteGeneratedSessionDirectory ( sessionDirectory )",
+          "hash": "226D7E8AE4B8FCCF46F366A5CD621CE5C46A98F586BB0292A2DFD44906089D72",
+          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
+          "qualification": "Typed session cleanup/override adapter; original Amiga and Acorn policies expanded and bound in sessionDirectoryCleanupReuse",
+          "qualificationSourceSha256": "9C25DB32F36FEDCB4022CB379EC0AE46A2022D80F33F37C7D848924E6F770F6A"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Functions/MachineFunctions.cs",
+          "name": "DeleteSessionDirectory",
+          "owner": "MachineFunctions",
+          "kind": "MethodDeclaration",
+          "line": 20,
+          "parameters": "(string sessionDirectory)",
+          "tokens": 7,
+          "bodyTokens": "=> EmulationSessionDirectoryFunctions . DeleteGeneratedSessionDirectory ( sessionDirectory )",
+          "hash": "226D7E8AE4B8FCCF46F366A5CD621CE5C46A98F586BB0292A2DFD44906089D72",
+          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
+          "qualification": "Typed session cleanup/override adapter; original Amiga and Acorn policies expanded and bound in sessionDirectoryCleanupReuse",
+          "qualificationSourceSha256": "52ECD85BA69C1A9C644878CFAC2A65CE79A99168463FD10A2F4E3471A11BF0E6"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/MachineFunctions.cs",
+          "name": "DeleteSessionDirectory",
+          "owner": "MachineFunctions",
+          "kind": "MethodDeclaration",
+          "line": 20,
+          "parameters": "(string sessionDirectory)",
+          "tokens": 7,
+          "bodyTokens": "=> EmulationSessionDirectoryFunctions . DeleteGeneratedSessionDirectory ( sessionDirectory )",
+          "hash": "226D7E8AE4B8FCCF46F366A5CD621CE5C46A98F586BB0292A2DFD44906089D72",
+          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
+          "qualification": "Typed session cleanup/override adapter; original Amiga and Acorn policies expanded and bound in sessionDirectoryCleanupReuse",
+          "qualificationSourceSha256": "2B9587F3BC8A0861DA304885FC58DCE1859C4007C179D301B8C225E93FC19946"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/MachineFunctions.cs",
+          "name": "DeleteSessionDirectory",
+          "owner": "MachineFunctions",
+          "kind": "MethodDeclaration",
+          "line": 20,
+          "parameters": "(string sessionDirectory)",
+          "tokens": 7,
+          "bodyTokens": "=> EmulationSessionDirectoryFunctions . DeleteGeneratedSessionDirectory ( sessionDirectory )",
+          "hash": "226D7E8AE4B8FCCF46F366A5CD621CE5C46A98F586BB0292A2DFD44906089D72",
+          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
+          "qualification": "Typed session cleanup/override adapter; original Amiga and Acorn policies expanded and bound in sessionDirectoryCleanupReuse",
+          "qualificationSourceSha256": "EA29C421173729E38822201A7FDF4DD19E21140B90539D23F5BAF64E71A1CA25"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/MachineFunctions.cs",
+          "name": "DeleteSessionDirectory",
+          "owner": "MachineFunctions",
+          "kind": "MethodDeclaration",
+          "line": 20,
+          "parameters": "(string sessionDirectory)",
+          "tokens": 7,
+          "bodyTokens": "=> EmulationSessionDirectoryFunctions . DeleteGeneratedSessionDirectory ( sessionDirectory )",
+          "hash": "226D7E8AE4B8FCCF46F366A5CD621CE5C46A98F586BB0292A2DFD44906089D72",
+          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
+          "qualification": "Typed session cleanup/override adapter; original Amiga and Acorn policies expanded and bound in sessionDirectoryCleanupReuse",
+          "qualificationSourceSha256": "7482FC62D5A5AB2D14911A12A327DDF74B8E709C399060F6221B651918DA8771"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/MachineFunctions.cs",
+          "name": "DeleteSessionDirectory",
+          "owner": "MachineFunctions",
+          "kind": "MethodDeclaration",
+          "line": 20,
+          "parameters": "(string sessionDirectory)",
+          "tokens": 7,
+          "bodyTokens": "=> EmulationSessionDirectoryFunctions . DeleteGeneratedSessionDirectory ( sessionDirectory )",
+          "hash": "226D7E8AE4B8FCCF46F366A5CD621CE5C46A98F586BB0292A2DFD44906089D72",
+          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
+          "qualification": "Typed session cleanup/override adapter; original Amiga and Acorn policies expanded and bound in sessionDirectoryCleanupReuse",
+          "qualificationSourceSha256": "9027AA1E0AC9F0597D30C9DF47998C69D8389F77C3BC46D2D71BF78EB6571FC8"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Thomson/Common/Machines/Common/Functions/MachineFunctions.cs",
+          "name": "DeleteSessionDirectory",
+          "owner": "MachineFunctions",
+          "kind": "MethodDeclaration",
+          "line": 20,
+          "parameters": "(string sessionDirectory)",
+          "tokens": 7,
+          "bodyTokens": "=> EmulationSessionDirectoryFunctions . DeleteGeneratedSessionDirectory ( sessionDirectory )",
+          "hash": "226D7E8AE4B8FCCF46F366A5CD621CE5C46A98F586BB0292A2DFD44906089D72",
+          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
+          "qualification": "Typed session cleanup/override adapter; original Amiga and Acorn policies expanded and bound in sessionDirectoryCleanupReuse",
+          "qualificationSourceSha256": "ED0172B9F76877353E72744F1889CC83622159327A31682F71C57A20D4A9B8BA"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Watara/Common/Machines/Common/Functions/MachineFunctions.cs",
+          "name": "DeleteSessionDirectory",
+          "owner": "MachineFunctions",
+          "kind": "MethodDeclaration",
+          "line": 20,
+          "parameters": "(string sessionDirectory)",
+          "tokens": 7,
+          "bodyTokens": "=> EmulationSessionDirectoryFunctions . DeleteGeneratedSessionDirectory ( sessionDirectory )",
+          "hash": "226D7E8AE4B8FCCF46F366A5CD621CE5C46A98F586BB0292A2DFD44906089D72",
+          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
+          "qualification": "Typed session cleanup/override adapter; original Amiga and Acorn policies expanded and bound in sessionDirectoryCleanupReuse",
+          "qualificationSourceSha256": "3CE4F5D5590A6401E5CDE3A70020A17DA313E5CEF3E014F3C01BCAA1F84F7A3C"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Wenquxing/Common/Machines/Common/Functions/MachineFunctions.cs",
+          "name": "DeleteSessionDirectory",
+          "owner": "MachineFunctions",
+          "kind": "MethodDeclaration",
+          "line": 20,
+          "parameters": "(string sessionDirectory)",
+          "tokens": 7,
+          "bodyTokens": "=> EmulationSessionDirectoryFunctions . DeleteGeneratedSessionDirectory ( sessionDirectory )",
+          "hash": "226D7E8AE4B8FCCF46F366A5CD621CE5C46A98F586BB0292A2DFD44906089D72",
+          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
+          "qualification": "Typed session cleanup/override adapter; original Amiga and Acorn policies expanded and bound in sessionDirectoryCleanupReuse",
+          "qualificationSourceSha256": "10031384C6018229ED7722E2E441CA221EFB36AE486E755F803F90CF2994455D"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -20500,6 +20725,112 @@
           "bodyTokens": "=> Get ( id ) . BackendModel",
           "hash": "415069D5247271DF126C87130B6988A08B77330C094701D6F8EA467FA6C26BAD",
           "shape": "7851DDB3D4A5C6FFA8186CBBC9D6F499D8E551156B6AFF4367E9D86D76E6F9ED"
+        }
+      ],
+      "qualification": "pending-symbol-and-ownership-comparison"
+    },
+    {
+      "hash": "4167DDB44F0A2F8E6C04DCCF0502A9B90F5DC929F408281560475ECDE82EDE03",
+      "tokens": 25,
+      "bodyTokens": "{ if ( _deleteSession is not null ) { _deleteSession ( _sessionDirectory ) ; return ; } EmulationSessionDirectoryFunctions . DeleteSessionDirectory ( _sessionDirectory ) ; }",
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Amstrad/Common/Services/Machine.Commands.cs",
+          "name": "DeleteSessionDirectory",
+          "owner": "Machine",
+          "kind": "MethodDeclaration",
+          "line": 174,
+          "parameters": "()",
+          "tokens": 25,
+          "bodyTokens": "{ if ( _deleteSession is not null ) { _deleteSession ( _sessionDirectory ) ; return ; } EmulationSessionDirectoryFunctions . DeleteSessionDirectory ( _sessionDirectory ) ; }",
+          "hash": "4167DDB44F0A2F8E6C04DCCF0502A9B90F5DC929F408281560475ECDE82EDE03",
+          "shape": "1937593ABDAE2D05BB9F2C1F576118538E7C2E60D82D00FB2D11922AE6330135",
+          "qualification": "Typed session cleanup/override adapter; original Amiga and Acorn policies expanded and bound in sessionDirectoryCleanupReuse",
+          "qualificationSourceSha256": "609C1CE624779AEE6538828A379BD092F4F1AEFBFFE883BB60C6A9680621B1FF"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Commodore/Common/Services/Machine.Commands.cs",
+          "name": "DeleteSessionDirectory",
+          "owner": "Machine",
+          "kind": "MethodDeclaration",
+          "line": 171,
+          "parameters": "()",
+          "tokens": 25,
+          "bodyTokens": "{ if ( _deleteSession is not null ) { _deleteSession ( _sessionDirectory ) ; return ; } EmulationSessionDirectoryFunctions . DeleteSessionDirectory ( _sessionDirectory ) ; }",
+          "hash": "4167DDB44F0A2F8E6C04DCCF0502A9B90F5DC929F408281560475ECDE82EDE03",
+          "shape": "1937593ABDAE2D05BB9F2C1F576118538E7C2E60D82D00FB2D11922AE6330135",
+          "qualification": "Typed session cleanup/override adapter; original Amiga and Acorn policies expanded and bound in sessionDirectoryCleanupReuse",
+          "qualificationSourceSha256": "7E88D4B4C6D3A58E4845C63FB59A51D80A697C03E84C3602F0872EEF4B9F4EC1"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Microsoft/Common/Services/Machine.Commands.cs",
+          "name": "DeleteSessionDirectory",
+          "owner": "Machine",
+          "kind": "MethodDeclaration",
+          "line": 174,
+          "parameters": "()",
+          "tokens": 25,
+          "bodyTokens": "{ if ( _deleteSession is not null ) { _deleteSession ( _sessionDirectory ) ; return ; } EmulationSessionDirectoryFunctions . DeleteSessionDirectory ( _sessionDirectory ) ; }",
+          "hash": "4167DDB44F0A2F8E6C04DCCF0502A9B90F5DC929F408281560475ECDE82EDE03",
+          "shape": "1937593ABDAE2D05BB9F2C1F576118538E7C2E60D82D00FB2D11922AE6330135",
+          "qualification": "Typed session cleanup/override adapter; original Amiga and Acorn policies expanded and bound in sessionDirectoryCleanupReuse",
+          "qualificationSourceSha256": "D9A6A2BA24BFA05F10506763ADB715C0AA49F37D6CCE770AFD559C1C97624782"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nec/Common/Services/Machine.Commands.cs",
+          "name": "DeleteSessionDirectory",
+          "owner": "Machine",
+          "kind": "MethodDeclaration",
+          "line": 191,
+          "parameters": "()",
+          "tokens": 25,
+          "bodyTokens": "{ if ( _deleteSession is not null ) { _deleteSession ( _sessionDirectory ) ; return ; } EmulationSessionDirectoryFunctions . DeleteSessionDirectory ( _sessionDirectory ) ; }",
+          "hash": "4167DDB44F0A2F8E6C04DCCF0502A9B90F5DC929F408281560475ECDE82EDE03",
+          "shape": "1937593ABDAE2D05BB9F2C1F576118538E7C2E60D82D00FB2D11922AE6330135",
+          "qualification": "Typed session cleanup/override adapter; original Amiga and Acorn policies expanded and bound in sessionDirectoryCleanupReuse",
+          "qualificationSourceSha256": "3549B456E003CAAF8632D793203E50A596E0DAE950BFB3190D863D15CCB189B3"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nintendo/Common/Services/Machine.Commands.cs",
+          "name": "DeleteSessionDirectory",
+          "owner": "Machine",
+          "kind": "MethodDeclaration",
+          "line": 174,
+          "parameters": "()",
+          "tokens": 25,
+          "bodyTokens": "{ if ( _deleteSession is not null ) { _deleteSession ( _sessionDirectory ) ; return ; } EmulationSessionDirectoryFunctions . DeleteSessionDirectory ( _sessionDirectory ) ; }",
+          "hash": "4167DDB44F0A2F8E6C04DCCF0502A9B90F5DC929F408281560475ECDE82EDE03",
+          "shape": "1937593ABDAE2D05BB9F2C1F576118538E7C2E60D82D00FB2D11922AE6330135",
+          "qualification": "Typed session cleanup/override adapter; original Amiga and Acorn policies expanded and bound in sessionDirectoryCleanupReuse",
+          "qualificationSourceSha256": "9DBCAB187A05FC2339D3A3FCD2609FC8D7327B90E45894A4D6287BDDD416B59F"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sega/Common/Services/Machine.Commands.cs",
+          "name": "DeleteSessionDirectory",
+          "owner": "Machine",
+          "kind": "MethodDeclaration",
+          "line": 185,
+          "parameters": "()",
+          "tokens": 25,
+          "bodyTokens": "{ if ( _deleteSession is not null ) { _deleteSession ( _sessionDirectory ) ; return ; } EmulationSessionDirectoryFunctions . DeleteSessionDirectory ( _sessionDirectory ) ; }",
+          "hash": "4167DDB44F0A2F8E6C04DCCF0502A9B90F5DC929F408281560475ECDE82EDE03",
+          "shape": "1937593ABDAE2D05BB9F2C1F576118538E7C2E60D82D00FB2D11922AE6330135",
+          "qualification": "Typed session cleanup/override adapter; original Amiga and Acorn policies expanded and bound in sessionDirectoryCleanupReuse",
+          "qualificationSourceSha256": "F8F0157D8A4FF7066A92AB28A54F620C6E8773E8392BF21F25AC7B3372C45939"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Common/Services/Machine.Commands.cs",
+          "name": "DeleteSessionDirectory",
+          "owner": "Machine",
+          "kind": "MethodDeclaration",
+          "line": 194,
+          "parameters": "()",
+          "tokens": 25,
+          "bodyTokens": "{ if ( _deleteSession is not null ) { _deleteSession ( _sessionDirectory ) ; return ; } EmulationSessionDirectoryFunctions . DeleteSessionDirectory ( _sessionDirectory ) ; }",
+          "hash": "4167DDB44F0A2F8E6C04DCCF0502A9B90F5DC929F408281560475ECDE82EDE03",
+          "shape": "1937593ABDAE2D05BB9F2C1F576118538E7C2E60D82D00FB2D11922AE6330135",
+          "qualification": "Typed session cleanup/override adapter; original Amiga and Acorn policies expanded and bound in sessionDirectoryCleanupReuse",
+          "qualificationSourceSha256": "7D05A5426F71B6AEE6150F745A492FFDEC6E9444BBF459183A988BFB12FD21E4"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -98077,6 +98408,20 @@
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5"
         },
         {
+          "path": "src/GWGUI.Emulation.Acorn/Common/Machines/Common/Functions/MachineFunctions.cs",
+          "name": "DeleteSessionDirectory",
+          "owner": "MachineFunctions",
+          "kind": "MethodDeclaration",
+          "line": 20,
+          "parameters": "(string sessionDirectory)",
+          "tokens": 7,
+          "bodyTokens": "=> EmulationSessionDirectoryFunctions . DeleteGeneratedSessionDirectory ( sessionDirectory )",
+          "hash": "226D7E8AE4B8FCCF46F366A5CD621CE5C46A98F586BB0292A2DFD44906089D72",
+          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
+          "qualification": "Typed session cleanup/override adapter; original Amiga and Acorn policies expanded and bound in sessionDirectoryCleanupReuse",
+          "qualificationSourceSha256": "313B8165E196A27BBC5B1F00CC4AE43E91E788C5625F4AACE28FD03E1C0E0856"
+        },
+        {
           "path": "src/GWGUI.Emulation.Acorn/Common/Machines/Common/Functions/RuntimeFunctions.cs",
           "name": "RegionValue",
           "owner": "RuntimeFunctions",
@@ -98401,6 +98746,20 @@
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5"
         },
         {
+          "path": "src/GWGUI.Emulation.Apple/Common/Machines/Common/Functions/MachineFunctions.cs",
+          "name": "DeleteSessionDirectory",
+          "owner": "MachineFunctions",
+          "kind": "MethodDeclaration",
+          "line": 20,
+          "parameters": "(string sessionDirectory)",
+          "tokens": 7,
+          "bodyTokens": "=> EmulationSessionDirectoryFunctions . DeleteGeneratedSessionDirectory ( sessionDirectory )",
+          "hash": "226D7E8AE4B8FCCF46F366A5CD621CE5C46A98F586BB0292A2DFD44906089D72",
+          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
+          "qualification": "Typed session cleanup/override adapter; original Amiga and Acorn policies expanded and bound in sessionDirectoryCleanupReuse",
+          "qualificationSourceSha256": "A72866139218B7F770AB9457E649568C60251F9CD0172E263680E472A07FB9BC"
+        },
+        {
           "path": "src/GWGUI.Emulation.Apple/Common/Machines/Common/Functions/RuntimeFunctions.cs",
           "name": "RegionValue",
           "owner": "RuntimeFunctions",
@@ -98639,6 +98998,20 @@
           "bodyTokens": "=> Array . AsReadOnly ( values )",
           "hash": "502421F019E79521B7A54D446DCDFF0CE3FA249F45A92FB35B43F32BDA4E28E8",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/MachineFunctions.cs",
+          "name": "DeleteSessionDirectory",
+          "owner": "MachineFunctions",
+          "kind": "MethodDeclaration",
+          "line": 19,
+          "parameters": "(string sessionDirectory)",
+          "tokens": 7,
+          "bodyTokens": "=> EmulationSessionDirectoryFunctions . DeleteSessionDirectory ( sessionDirectory )",
+          "hash": "BC5DB9D84DFA0C654F14B3719EC2C7DE66CC971199156A2BCBF451FEEF52C4B3",
+          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
+          "qualification": "Typed session cleanup/override adapter; original Amiga and Acorn policies expanded and bound in sessionDirectoryCleanupReuse",
+          "qualificationSourceSha256": "3563E3A6B6A322753EE9C3C3EA6D53CA3AAFE862F5C92FED4A1409692007FDAC"
         },
         {
           "path": "src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/MediaFunctions.Compatibility.cs",
@@ -99025,6 +99398,20 @@
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5"
         },
         {
+          "path": "src/GWGUI.Emulation.Bandai/Common/Machines/Common/Functions/MachineFunctions.cs",
+          "name": "DeleteSessionDirectory",
+          "owner": "MachineFunctions",
+          "kind": "MethodDeclaration",
+          "line": 20,
+          "parameters": "(string sessionDirectory)",
+          "tokens": 7,
+          "bodyTokens": "=> EmulationSessionDirectoryFunctions . DeleteGeneratedSessionDirectory ( sessionDirectory )",
+          "hash": "226D7E8AE4B8FCCF46F366A5CD621CE5C46A98F586BB0292A2DFD44906089D72",
+          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
+          "qualification": "Typed session cleanup/override adapter; original Amiga and Acorn policies expanded and bound in sessionDirectoryCleanupReuse",
+          "qualificationSourceSha256": "EB885106E8D80F7977202B1C27F99F1EEA7C3E881C90C940A461DA017292B1EB"
+        },
+        {
           "path": "src/GWGUI.Emulation.Bandai/Common/Machines/Common/Functions/RuntimeFunctions.cs",
           "name": "RegionValue",
           "owner": "RuntimeFunctions",
@@ -99251,6 +99638,20 @@
           "bodyTokens": "=> EmulationHostProtocolFunctions . ReadString ( reader )",
           "hash": "9AF2FD85A52DEE0E2870D7D9C587ED674441222794F477521A88EF0DE1F6D974",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/MachineFunctions.cs",
+          "name": "DeleteSessionDirectory",
+          "owner": "MachineFunctions",
+          "kind": "MethodDeclaration",
+          "line": 20,
+          "parameters": "(string sessionDirectory)",
+          "tokens": 7,
+          "bodyTokens": "=> EmulationSessionDirectoryFunctions . DeleteGeneratedSessionDirectory ( sessionDirectory )",
+          "hash": "226D7E8AE4B8FCCF46F366A5CD621CE5C46A98F586BB0292A2DFD44906089D72",
+          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
+          "qualification": "Typed session cleanup/override adapter; original Amiga and Acorn policies expanded and bound in sessionDirectoryCleanupReuse",
+          "qualificationSourceSha256": "D6622D4CD52617A870AF07DD9F303843275B9ED7000C876BDE7274C34A5ADDEE"
         },
         {
           "path": "src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/RuntimeFunctions.cs",
@@ -99733,6 +100134,20 @@
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5"
         },
         {
+          "path": "src/GWGUI.Emulation.Epoch/Common/Machines/Common/Functions/MachineFunctions.cs",
+          "name": "DeleteSessionDirectory",
+          "owner": "MachineFunctions",
+          "kind": "MethodDeclaration",
+          "line": 20,
+          "parameters": "(string sessionDirectory)",
+          "tokens": 7,
+          "bodyTokens": "=> EmulationSessionDirectoryFunctions . DeleteGeneratedSessionDirectory ( sessionDirectory )",
+          "hash": "226D7E8AE4B8FCCF46F366A5CD621CE5C46A98F586BB0292A2DFD44906089D72",
+          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
+          "qualification": "Typed session cleanup/override adapter; original Amiga and Acorn policies expanded and bound in sessionDirectoryCleanupReuse",
+          "qualificationSourceSha256": "E4AD229B23478D455A3E4AB8D80C66256AEDF4E70B200C210B9060CEF0BCBBEA"
+        },
+        {
           "path": "src/GWGUI.Emulation.Epoch/Common/Machines/Common/Functions/RuntimeFunctions.cs",
           "name": "RegionValue",
           "owner": "RuntimeFunctions",
@@ -100033,6 +100448,20 @@
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5"
         },
         {
+          "path": "src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Functions/MachineFunctions.cs",
+          "name": "DeleteSessionDirectory",
+          "owner": "MachineFunctions",
+          "kind": "MethodDeclaration",
+          "line": 20,
+          "parameters": "(string sessionDirectory)",
+          "tokens": 7,
+          "bodyTokens": "=> EmulationSessionDirectoryFunctions . DeleteGeneratedSessionDirectory ( sessionDirectory )",
+          "hash": "226D7E8AE4B8FCCF46F366A5CD621CE5C46A98F586BB0292A2DFD44906089D72",
+          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
+          "qualification": "Typed session cleanup/override adapter; original Amiga and Acorn policies expanded and bound in sessionDirectoryCleanupReuse",
+          "qualificationSourceSha256": "B354A4B063C61CB82128B4226CE7BE9AF102FB9E948A40E077E735730D1AB8C9"
+        },
+        {
           "path": "src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Functions/RuntimeFunctions.cs",
           "name": "RegionValue",
           "owner": "RuntimeFunctions",
@@ -100295,6 +100724,20 @@
           "bodyTokens": "=> InputFunctions . Freeze ( input )",
           "hash": "D47B8851ECEE3ED8AA3319C517BFE0CB6DC0596D29C63D18D75560BF44F878EC",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/MachineFunctions.cs",
+          "name": "DeleteSessionDirectory",
+          "owner": "MachineFunctions",
+          "kind": "MethodDeclaration",
+          "line": 20,
+          "parameters": "(string sessionDirectory)",
+          "tokens": 7,
+          "bodyTokens": "=> EmulationSessionDirectoryFunctions . DeleteGeneratedSessionDirectory ( sessionDirectory )",
+          "hash": "226D7E8AE4B8FCCF46F366A5CD621CE5C46A98F586BB0292A2DFD44906089D72",
+          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
+          "qualification": "Typed session cleanup/override adapter; original Amiga and Acorn policies expanded and bound in sessionDirectoryCleanupReuse",
+          "qualificationSourceSha256": "9C25DB32F36FEDCB4022CB379EC0AE46A2022D80F33F37C7D848924E6F770F6A"
         },
         {
           "path": "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/RuntimeFunctions.cs",
@@ -100729,6 +101172,20 @@
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5"
         },
         {
+          "path": "src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Functions/MachineFunctions.cs",
+          "name": "DeleteSessionDirectory",
+          "owner": "MachineFunctions",
+          "kind": "MethodDeclaration",
+          "line": 20,
+          "parameters": "(string sessionDirectory)",
+          "tokens": 7,
+          "bodyTokens": "=> EmulationSessionDirectoryFunctions . DeleteGeneratedSessionDirectory ( sessionDirectory )",
+          "hash": "226D7E8AE4B8FCCF46F366A5CD621CE5C46A98F586BB0292A2DFD44906089D72",
+          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
+          "qualification": "Typed session cleanup/override adapter; original Amiga and Acorn policies expanded and bound in sessionDirectoryCleanupReuse",
+          "qualificationSourceSha256": "52ECD85BA69C1A9C644878CFAC2A65CE79A99168463FD10A2F4E3471A11BF0E6"
+        },
+        {
           "path": "src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Functions/RuntimeFunctions.cs",
           "name": "RegionValue",
           "owner": "RuntimeFunctions",
@@ -100979,6 +101436,20 @@
           "bodyTokens": "=> InputFunctions . Freeze ( input )",
           "hash": "D47B8851ECEE3ED8AA3319C517BFE0CB6DC0596D29C63D18D75560BF44F878EC",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/MachineFunctions.cs",
+          "name": "DeleteSessionDirectory",
+          "owner": "MachineFunctions",
+          "kind": "MethodDeclaration",
+          "line": 20,
+          "parameters": "(string sessionDirectory)",
+          "tokens": 7,
+          "bodyTokens": "=> EmulationSessionDirectoryFunctions . DeleteGeneratedSessionDirectory ( sessionDirectory )",
+          "hash": "226D7E8AE4B8FCCF46F366A5CD621CE5C46A98F586BB0292A2DFD44906089D72",
+          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
+          "qualification": "Typed session cleanup/override adapter; original Amiga and Acorn policies expanded and bound in sessionDirectoryCleanupReuse",
+          "qualificationSourceSha256": "2B9587F3BC8A0861DA304885FC58DCE1859C4007C179D301B8C225E93FC19946"
         },
         {
           "path": "src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/RuntimeFunctions.cs",
@@ -101353,6 +101824,20 @@
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5"
         },
         {
+          "path": "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/MachineFunctions.cs",
+          "name": "DeleteSessionDirectory",
+          "owner": "MachineFunctions",
+          "kind": "MethodDeclaration",
+          "line": 20,
+          "parameters": "(string sessionDirectory)",
+          "tokens": 7,
+          "bodyTokens": "=> EmulationSessionDirectoryFunctions . DeleteGeneratedSessionDirectory ( sessionDirectory )",
+          "hash": "226D7E8AE4B8FCCF46F366A5CD621CE5C46A98F586BB0292A2DFD44906089D72",
+          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
+          "qualification": "Typed session cleanup/override adapter; original Amiga and Acorn policies expanded and bound in sessionDirectoryCleanupReuse",
+          "qualificationSourceSha256": "EA29C421173729E38822201A7FDF4DD19E21140B90539D23F5BAF64E71A1CA25"
+        },
+        {
           "path": "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/RuntimeFunctions.cs",
           "name": "RegionValue",
           "owner": "RuntimeFunctions",
@@ -101701,6 +102186,20 @@
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5"
         },
         {
+          "path": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/MachineFunctions.cs",
+          "name": "DeleteSessionDirectory",
+          "owner": "MachineFunctions",
+          "kind": "MethodDeclaration",
+          "line": 20,
+          "parameters": "(string sessionDirectory)",
+          "tokens": 7,
+          "bodyTokens": "=> EmulationSessionDirectoryFunctions . DeleteGeneratedSessionDirectory ( sessionDirectory )",
+          "hash": "226D7E8AE4B8FCCF46F366A5CD621CE5C46A98F586BB0292A2DFD44906089D72",
+          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
+          "qualification": "Typed session cleanup/override adapter; original Amiga and Acorn policies expanded and bound in sessionDirectoryCleanupReuse",
+          "qualificationSourceSha256": "7482FC62D5A5AB2D14911A12A327DDF74B8E709C399060F6221B651918DA8771"
+        },
+        {
           "path": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/RuntimeFunctions.cs",
           "name": "RegionValue",
           "owner": "RuntimeFunctions",
@@ -102047,6 +102546,20 @@
           "bodyTokens": "=> EmulationKeyboardBindingFunctions . IsValid ( source )",
           "hash": "DCB3A6642E3E51AC90451349407D723514CEED98B87859CA2DDBF50FC7C9BE7B",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/MachineFunctions.cs",
+          "name": "DeleteSessionDirectory",
+          "owner": "MachineFunctions",
+          "kind": "MethodDeclaration",
+          "line": 20,
+          "parameters": "(string sessionDirectory)",
+          "tokens": 7,
+          "bodyTokens": "=> EmulationSessionDirectoryFunctions . DeleteGeneratedSessionDirectory ( sessionDirectory )",
+          "hash": "226D7E8AE4B8FCCF46F366A5CD621CE5C46A98F586BB0292A2DFD44906089D72",
+          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
+          "qualification": "Typed session cleanup/override adapter; original Amiga and Acorn policies expanded and bound in sessionDirectoryCleanupReuse",
+          "qualificationSourceSha256": "9027AA1E0AC9F0597D30C9DF47998C69D8389F77C3BC46D2D71BF78EB6571FC8"
         },
         {
           "path": "src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/RuntimeFunctions.cs",
@@ -103201,6 +103714,20 @@
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5"
         },
         {
+          "path": "src/GWGUI.Emulation.Thomson/Common/Machines/Common/Functions/MachineFunctions.cs",
+          "name": "DeleteSessionDirectory",
+          "owner": "MachineFunctions",
+          "kind": "MethodDeclaration",
+          "line": 20,
+          "parameters": "(string sessionDirectory)",
+          "tokens": 7,
+          "bodyTokens": "=> EmulationSessionDirectoryFunctions . DeleteGeneratedSessionDirectory ( sessionDirectory )",
+          "hash": "226D7E8AE4B8FCCF46F366A5CD621CE5C46A98F586BB0292A2DFD44906089D72",
+          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
+          "qualification": "Typed session cleanup/override adapter; original Amiga and Acorn policies expanded and bound in sessionDirectoryCleanupReuse",
+          "qualificationSourceSha256": "ED0172B9F76877353E72744F1889CC83622159327A31682F71C57A20D4A9B8BA"
+        },
+        {
           "path": "src/GWGUI.Emulation.Thomson/Common/Machines/Common/Functions/RuntimeFunctions.cs",
           "name": "RegionValue",
           "owner": "RuntimeFunctions",
@@ -103379,6 +103906,20 @@
           "bodyTokens": "=> EmulationKeyboardBindingFunctions . IsValid ( source )",
           "hash": "DCB3A6642E3E51AC90451349407D723514CEED98B87859CA2DDBF50FC7C9BE7B",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Watara/Common/Machines/Common/Functions/MachineFunctions.cs",
+          "name": "DeleteSessionDirectory",
+          "owner": "MachineFunctions",
+          "kind": "MethodDeclaration",
+          "line": 20,
+          "parameters": "(string sessionDirectory)",
+          "tokens": 7,
+          "bodyTokens": "=> EmulationSessionDirectoryFunctions . DeleteGeneratedSessionDirectory ( sessionDirectory )",
+          "hash": "226D7E8AE4B8FCCF46F366A5CD621CE5C46A98F586BB0292A2DFD44906089D72",
+          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
+          "qualification": "Typed session cleanup/override adapter; original Amiga and Acorn policies expanded and bound in sessionDirectoryCleanupReuse",
+          "qualificationSourceSha256": "3CE4F5D5590A6401E5CDE3A70020A17DA313E5CEF3E014F3C01BCAA1F84F7A3C"
         },
         {
           "path": "src/GWGUI.Emulation.Watara/Common/Machines/Common/Functions/RuntimeFunctions.cs",
@@ -103571,6 +104112,20 @@
           "bodyTokens": "=> EmulationAudioFunctions . NormalizeVolume ( volume )",
           "hash": "9A3D18E76E844C379336E222BB5EAFC9BE2F5B751232B34B45730790215631E3",
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Wenquxing/Common/Machines/Common/Functions/MachineFunctions.cs",
+          "name": "DeleteSessionDirectory",
+          "owner": "MachineFunctions",
+          "kind": "MethodDeclaration",
+          "line": 20,
+          "parameters": "(string sessionDirectory)",
+          "tokens": 7,
+          "bodyTokens": "=> EmulationSessionDirectoryFunctions . DeleteGeneratedSessionDirectory ( sessionDirectory )",
+          "hash": "226D7E8AE4B8FCCF46F366A5CD621CE5C46A98F586BB0292A2DFD44906089D72",
+          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
+          "qualification": "Typed session cleanup/override adapter; original Amiga and Acorn policies expanded and bound in sessionDirectoryCleanupReuse",
+          "qualificationSourceSha256": "10031384C6018229ED7722E2E441CA221EFB36AE486E755F803F90CF2994455D"
         },
         {
           "path": "src/GWGUI.Emulation.Wenquxing/Common/Machines/Common/Functions/RuntimeFunctions.cs",

@@ -17,15 +17,6 @@ internal static class MachineFunctions
     }
 
     internal static void DeleteSessionDirectory(string sessionDirectory)
-    {
-        try
-        {
-            var path = Path.GetFullPath(sessionDirectory);
-            if (Directory.Exists(path) && !string.IsNullOrWhiteSpace(Path.GetFileName(path)))
-                Directory.Delete(path, recursive: true);
-        }
-        catch (IOException) { }
-        catch (UnauthorizedAccessException) { }
-    }
+        => EmulationSessionDirectoryFunctions.DeleteSessionDirectory(sessionDirectory);
 
 }

@@ -1,9 +1,9 @@
 {
   "baseline": "ac7292d86^",
-  "currentCSharpFiles": 7288,
+  "currentCSharpFiles": 7289,
   "outsideSrcCSharpFiles": 305,
   "baselineMethodCount": 5848,
-  "currentMethodCount": 11682,
+  "currentMethodCount": 11662,
   "powerShellFunctionCount": 17,
   "groups": [
     {
@@ -10892,137 +10892,6 @@
     },
     {
       "language": "CSharp",
-      "hash": "5DCA3ACEA1911E73AC9F00CD77FD55D511E5534AD03C00C0827CD90CF80BE0B4",
-      "method": "DeleteSessionDirectory",
-      "tokens": 113,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Acorn/Common/Machines/Common/Functions/MachineFunctions.cs",
-          "name": "DeleteSessionDirectory",
-          "line": 20,
-          "tokens": 113,
-          "hash": "5DCA3ACEA1911E73AC9F00CD77FD55D511E5534AD03C00C0827CD90CF80BE0B4",
-          "shape": "8AE277F807E351D1992190C6C88C8D220906697A638EEADF09B842658FCCA108"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Apple/Common/Machines/Common/Functions/MachineFunctions.cs",
-          "name": "DeleteSessionDirectory",
-          "line": 20,
-          "tokens": 113,
-          "hash": "5DCA3ACEA1911E73AC9F00CD77FD55D511E5534AD03C00C0827CD90CF80BE0B4",
-          "shape": "8AE277F807E351D1992190C6C88C8D220906697A638EEADF09B842658FCCA108"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Watara/Common/Machines/Common/Functions/MachineFunctions.cs",
-          "name": "DeleteSessionDirectory",
-          "line": 20,
-          "tokens": 113,
-          "hash": "5DCA3ACEA1911E73AC9F00CD77FD55D511E5534AD03C00C0827CD90CF80BE0B4",
-          "shape": "8AE277F807E351D1992190C6C88C8D220906697A638EEADF09B842658FCCA108"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/MachineFunctions.cs",
-          "name": "DeleteSessionDirectory",
-          "line": 20,
-          "tokens": 113,
-          "hash": "5DCA3ACEA1911E73AC9F00CD77FD55D511E5534AD03C00C0827CD90CF80BE0B4",
-          "shape": "8AE277F807E351D1992190C6C88C8D220906697A638EEADF09B842658FCCA108"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/MachineFunctions.cs",
-          "name": "DeleteSessionDirectory",
-          "line": 20,
-          "tokens": 113,
-          "hash": "5DCA3ACEA1911E73AC9F00CD77FD55D511E5534AD03C00C0827CD90CF80BE0B4",
-          "shape": "8AE277F807E351D1992190C6C88C8D220906697A638EEADF09B842658FCCA108"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/MachineFunctions.cs",
-          "name": "DeleteSessionDirectory",
-          "line": 20,
-          "tokens": 113,
-          "hash": "5DCA3ACEA1911E73AC9F00CD77FD55D511E5534AD03C00C0827CD90CF80BE0B4",
-          "shape": "8AE277F807E351D1992190C6C88C8D220906697A638EEADF09B842658FCCA108"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Thomson/Common/Machines/Common/Functions/MachineFunctions.cs",
-          "name": "DeleteSessionDirectory",
-          "line": 20,
-          "tokens": 113,
-          "hash": "5DCA3ACEA1911E73AC9F00CD77FD55D511E5534AD03C00C0827CD90CF80BE0B4",
-          "shape": "8AE277F807E351D1992190C6C88C8D220906697A638EEADF09B842658FCCA108"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/MachineFunctions.cs",
-          "name": "DeleteSessionDirectory",
-          "line": 20,
-          "tokens": 113,
-          "hash": "5DCA3ACEA1911E73AC9F00CD77FD55D511E5534AD03C00C0827CD90CF80BE0B4",
-          "shape": "8AE277F807E351D1992190C6C88C8D220906697A638EEADF09B842658FCCA108"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Wenquxing/Common/Machines/Common/Functions/MachineFunctions.cs",
-          "name": "DeleteSessionDirectory",
-          "line": 20,
-          "tokens": 113,
-          "hash": "5DCA3ACEA1911E73AC9F00CD77FD55D511E5534AD03C00C0827CD90CF80BE0B4",
-          "shape": "8AE277F807E351D1992190C6C88C8D220906697A638EEADF09B842658FCCA108"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Functions/MachineFunctions.cs",
-          "name": "DeleteSessionDirectory",
-          "line": 20,
-          "tokens": 113,
-          "hash": "5DCA3ACEA1911E73AC9F00CD77FD55D511E5534AD03C00C0827CD90CF80BE0B4",
-          "shape": "8AE277F807E351D1992190C6C88C8D220906697A638EEADF09B842658FCCA108"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/MachineFunctions.cs",
-          "name": "DeleteSessionDirectory",
-          "line": 20,
-          "tokens": 113,
-          "hash": "5DCA3ACEA1911E73AC9F00CD77FD55D511E5534AD03C00C0827CD90CF80BE0B4",
-          "shape": "8AE277F807E351D1992190C6C88C8D220906697A638EEADF09B842658FCCA108"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/MachineFunctions.cs",
-          "name": "DeleteSessionDirectory",
-          "line": 20,
-          "tokens": 113,
-          "hash": "5DCA3ACEA1911E73AC9F00CD77FD55D511E5534AD03C00C0827CD90CF80BE0B4",
-          "shape": "8AE277F807E351D1992190C6C88C8D220906697A638EEADF09B842658FCCA108"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Functions/MachineFunctions.cs",
-          "name": "DeleteSessionDirectory",
-          "line": 20,
-          "tokens": 113,
-          "hash": "5DCA3ACEA1911E73AC9F00CD77FD55D511E5534AD03C00C0827CD90CF80BE0B4",
-          "shape": "8AE277F807E351D1992190C6C88C8D220906697A638EEADF09B842658FCCA108"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Epoch/Common/Machines/Common/Functions/MachineFunctions.cs",
-          "name": "DeleteSessionDirectory",
-          "line": 20,
-          "tokens": 113,
-          "hash": "5DCA3ACEA1911E73AC9F00CD77FD55D511E5534AD03C00C0827CD90CF80BE0B4",
-          "shape": "8AE277F807E351D1992190C6C88C8D220906697A638EEADF09B842658FCCA108"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Bandai/Common/Machines/Common/Functions/MachineFunctions.cs",
-          "name": "DeleteSessionDirectory",
-          "line": 20,
-          "tokens": 113,
-          "hash": "5DCA3ACEA1911E73AC9F00CD77FD55D511E5534AD03C00C0827CD90CF80BE0B4",
-          "shape": "8AE277F807E351D1992190C6C88C8D220906697A638EEADF09B842658FCCA108"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
       "hash": "5DFED0430E0A4DD9C831B6BA524202A9C3ECAF731E6EE8A7633C68D4C060E61F",
       "method": "Apply",
       "tokens": 179,
@@ -11993,7 +11862,7 @@
     {
       "language": "CSharp",
       "hash": "68386C818382BCE400A3EDE65411B5CBD9D6A87F6D88FAF6501028CE28C38965",
-      "method": "ToSinclair",
+      "method": "ToModule",
       "tokens": 148,
       "current": [
         {
@@ -16048,91 +15917,6 @@
     },
     {
       "language": "CSharp",
-      "hash": "8DAAD6CAF96CABF34414EAB1E92DBE460F5D624FDF2A2170E56F2272C90684BF",
-      "method": "DeleteSessionDirectory",
-      "tokens": 74,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Amstrad/Common/Services/Machine.Commands.cs",
-          "name": "DeleteSessionDirectory",
-          "line": 174,
-          "tokens": 74,
-          "hash": "8DAAD6CAF96CABF34414EAB1E92DBE460F5D624FDF2A2170E56F2272C90684BF",
-          "shape": "D446B11652C0911BD1CE6FDABE721E92BDFC6B4956C8E96EDC22EFB7E2F85988"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sega/Common/Services/Machine.Commands.cs",
-          "name": "DeleteSessionDirectory",
-          "line": 185,
-          "tokens": 74,
-          "hash": "8DAAD6CAF96CABF34414EAB1E92DBE460F5D624FDF2A2170E56F2272C90684BF",
-          "shape": "D446B11652C0911BD1CE6FDABE721E92BDFC6B4956C8E96EDC22EFB7E2F85988"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Common/Services/Machine.Commands.cs",
-          "name": "DeleteSessionDirectory",
-          "line": 191,
-          "tokens": 74,
-          "hash": "8DAAD6CAF96CABF34414EAB1E92DBE460F5D624FDF2A2170E56F2272C90684BF",
-          "shape": "D446B11652C0911BD1CE6FDABE721E92BDFC6B4956C8E96EDC22EFB7E2F85988"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nintendo/Common/Services/Machine.Commands.cs",
-          "name": "DeleteSessionDirectory",
-          "line": 174,
-          "tokens": 74,
-          "hash": "8DAAD6CAF96CABF34414EAB1E92DBE460F5D624FDF2A2170E56F2272C90684BF",
-          "shape": "D446B11652C0911BD1CE6FDABE721E92BDFC6B4956C8E96EDC22EFB7E2F85988"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Microsoft/Common/Services/Machine.Commands.cs",
-          "name": "DeleteSessionDirectory",
-          "line": 174,
-          "tokens": 74,
-          "hash": "8DAAD6CAF96CABF34414EAB1E92DBE460F5D624FDF2A2170E56F2272C90684BF",
-          "shape": "D446B11652C0911BD1CE6FDABE721E92BDFC6B4956C8E96EDC22EFB7E2F85988"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Common/Services/Machine.Commands.cs",
-          "name": "DeleteSessionDirectory",
-          "line": 194,
-          "tokens": 74,
-          "hash": "8DAAD6CAF96CABF34414EAB1E92DBE460F5D624FDF2A2170E56F2272C90684BF",
-          "shape": "D446B11652C0911BD1CE6FDABE721E92BDFC6B4956C8E96EDC22EFB7E2F85988"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Commodore/Common/Services/Machine.Commands.cs",
-          "name": "DeleteSessionDirectory",
-          "line": 171,
-          "tokens": 74,
-          "hash": "8DAAD6CAF96CABF34414EAB1E92DBE460F5D624FDF2A2170E56F2272C90684BF",
-          "shape": "D446B11652C0911BD1CE6FDABE721E92BDFC6B4956C8E96EDC22EFB7E2F85988"
-        }
-      ],
-      "predecessors": [
-        {
-          "path": "src/GWGUI.Emulation.Amiga/Services/AmigaMachine.cs",
-          "name": "DeleteSessionDirectory",
-          "line": 473,
-          "tokens": 74,
-          "hash": "8DAAD6CAF96CABF34414EAB1E92DBE460F5D624FDF2A2170E56F2272C90684BF",
-          "shape": "D446B11652C0911BD1CE6FDABE721E92BDFC6B4956C8E96EDC22EFB7E2F85988"
-        }
-      ],
-      "shapePredecessors": [
-        {
-          "path": "src/GWGUI.Emulation.Amiga/Services/AmigaMachine.cs",
-          "name": "DeleteSessionDirectory",
-          "line": 473,
-          "tokens": 74,
-          "hash": "8DAAD6CAF96CABF34414EAB1E92DBE460F5D624FDF2A2170E56F2272C90684BF",
-          "shape": "D446B11652C0911BD1CE6FDABE721E92BDFC6B4956C8E96EDC22EFB7E2F85988"
-        }
-      ],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
       "hash": "8E5FBCDDEBAB0FDA3801BC063D583AE187BE005D6955E04E937C13B159EA898E",
       "method": "CapturePerformanceLevel",
       "tokens": 31,
@@ -19077,7 +18861,7 @@
     {
       "language": "CSharp",
       "hash": "A1E03750FEB3292ACEB41656386F4A8AA8B05077D9ABFB7DA103AA3D71320B9F",
-      "method": "ToFairchild",
+      "method": "ToModule",
       "tokens": 103,
       "current": [
         {
@@ -20497,7 +20281,7 @@
     {
       "language": "CSharp",
       "hash": "B053A3AB4F0B78A37DED57B2D744801187AED6EC54FEEAFE4B1AA9C454D6F48C",
-      "method": "SinclairEmulationModule",
+      "method": "PhilipsEmulationModule",
       "tokens": 47,
       "current": [
         {
@@ -27259,7 +27043,7 @@
     {
       "language": "CSharp",
       "hash": "F107F4D7D97C4E9F797468C991DF2090B47DF6E3F6F74E56044EFF0C28CAA51D",
-      "method": "NotifyDestroy",
+      "method": "NotifyHardwareContextDestroy",
       "tokens": 31,
       "current": [
         {
@@ -37921,6 +37705,6 @@
   "scope": "All current repository CSharp and PowerShell files; no age filter; candidates require semantic review",
   "qualificationCarryForward": {
     "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical",
-    "occurrences": 152
+    "occurrences": 168
   }
 }
