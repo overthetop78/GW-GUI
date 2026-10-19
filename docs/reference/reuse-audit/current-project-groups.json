@@ -1,9 +1,9 @@
 {
   "baseline": "ac7292d86^",
-  "currentCSharpFiles": 7287,
-  "outsideSrcCSharpFiles": 302,
+  "currentCSharpFiles": 7288,
+  "outsideSrcCSharpFiles": 303,
   "baselineMethodCount": 5848,
-  "currentMethodCount": 11643,
+  "currentMethodCount": 11652,
   "powerShellFunctionCount": 17,
   "groups": [
     {
@@ -561,7 +561,7 @@
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Input.cs",
           "name": "HandleLog",
-          "line": 62,
+          "line": 57,
           "tokens": 44,
           "hash": "04FBB5D32D9E5A8924669658158312747E0ED460438200A534F8A2759ACAC054",
           "shape": "122F42BD8CEFF21331835FC7C37D2BC217E930540A79B8EF66BF3B2D4AEA05F7"
@@ -569,7 +569,7 @@
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Input.cs",
           "name": "HandleLog",
-          "line": 65,
+          "line": 60,
           "tokens": 44,
           "hash": "04FBB5D32D9E5A8924669658158312747E0ED460438200A534F8A2759ACAC054",
           "shape": "122F42BD8CEFF21331835FC7C37D2BC217E930540A79B8EF66BF3B2D4AEA05F7"
@@ -577,7 +577,7 @@
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.Input.cs",
           "name": "HandleLog",
-          "line": 62,
+          "line": 57,
           "tokens": 44,
           "hash": "04FBB5D32D9E5A8924669658158312747E0ED460438200A534F8A2759ACAC054",
           "shape": "122F42BD8CEFF21331835FC7C37D2BC217E930540A79B8EF66BF3B2D4AEA05F7"
@@ -1197,7 +1197,7 @@
     {
       "language": "CSharp",
       "hash": "0A9D4012A0EEF58659F6F622D06187BDA6844EE126F30B196EAE963950A66758",
-      "method": "AtariEmulationModule",
+      "method": "SegaEmulationModule",
       "tokens": 45,
       "current": [
         {
@@ -1757,50 +1757,6 @@
     },
     {
       "language": "CSharp",
-      "hash": "11DD4CCF90C035E632CE6E685948950BFA29813294741B6BAB6D4A526E8B890A",
-      "method": "Publish",
-      "tokens": 152,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/KeyboardState.cs",
-          "name": "Publish",
-          "line": 12,
-          "tokens": 152,
-          "hash": "11DD4CCF90C035E632CE6E685948950BFA29813294741B6BAB6D4A526E8B890A",
-          "shape": "6A0107665A1ADFFAEE70005981C0FC8148CD13BDCC363EA502919FD754B65ED1"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/KeyboardState.cs",
-          "name": "Publish",
-          "line": 10,
-          "tokens": 152,
-          "hash": "11DD4CCF90C035E632CE6E685948950BFA29813294741B6BAB6D4A526E8B890A",
-          "shape": "6A0107665A1ADFFAEE70005981C0FC8148CD13BDCC363EA502919FD754B65ED1"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/KeyboardState.cs",
-          "name": "Publish",
-          "line": 12,
-          "tokens": 152,
-          "hash": "11DD4CCF90C035E632CE6E685948950BFA29813294741B6BAB6D4A526E8B890A",
-          "shape": "6A0107665A1ADFFAEE70005981C0FC8148CD13BDCC363EA502919FD754B65ED1"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [
-        {
-          "path": "src/GWGUI.Emulation.Atari/Services/AtariKeyboardState.cs",
-          "name": "Publish",
-          "line": 10,
-          "tokens": 152,
-          "hash": "4F72B41B567CE2FF25AC614E7C56A30D65C0A8D0DAAF691486586D44972E425C",
-          "shape": "6A0107665A1ADFFAEE70005981C0FC8148CD13BDCC363EA502919FD754B65ED1"
-        }
-      ],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
       "hash": "11DE277B1789256935C4E111BFD77C065AD0D8C7D8D6EEFD9CC0DC17DA48032F",
       "method": "ReadInfo",
       "tokens": 94,
@@ -2331,7 +2287,7 @@
         {
           "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Input.cs",
           "name": "HandleLog",
-          "line": 63,
+          "line": 58,
           "tokens": 46,
           "hash": "160D5B488248ABC78A924C933BF8DB30CA6408944DB7107D962CC37FE17D8710",
           "shape": "DDC26944E0B923685A5D4934E698C0773FBFB1B378209A10C8DB95051A3314C0"
@@ -2339,7 +2295,7 @@
         {
           "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.Input.cs",
           "name": "HandleLog",
-          "line": 63,
+          "line": 58,
           "tokens": 46,
           "hash": "160D5B488248ABC78A924C933BF8DB30CA6408944DB7107D962CC37FE17D8710",
           "shape": "DDC26944E0B923685A5D4934E698C0773FBFB1B378209A10C8DB95051A3314C0"
@@ -2347,7 +2303,7 @@
         {
           "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Input.cs",
           "name": "HandleLog",
-          "line": 63,
+          "line": 58,
           "tokens": 46,
           "hash": "160D5B488248ABC78A924C933BF8DB30CA6408944DB7107D962CC37FE17D8710",
           "shape": "DDC26944E0B923685A5D4934E698C0773FBFB1B378209A10C8DB95051A3314C0"
@@ -9850,7 +9806,7 @@
         {
           "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.Input.cs",
           "name": "FilterReservedKeyboardChord",
-          "line": 54,
+          "line": 47,
           "tokens": 107,
           "hash": "57E40BAEA0712FBBC32B298EFA1A0CB15E077A7BF97AC46EAF9C4F8B29A00E4B",
           "shape": "6EFDFF7E3AAB45246FEE69A0E436D23B4FA57DBE3DD76854C08B828979CEF2E9"
@@ -9858,7 +9814,7 @@
         {
           "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Input.cs",
           "name": "FilterReservedKeyboardChord",
-          "line": 48,
+          "line": 43,
           "tokens": 107,
           "hash": "57E40BAEA0712FBBC32B298EFA1A0CB15E077A7BF97AC46EAF9C4F8B29A00E4B",
           "shape": "6EFDFF7E3AAB45246FEE69A0E436D23B4FA57DBE3DD76854C08B828979CEF2E9"
@@ -9866,7 +9822,7 @@
         {
           "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.Input.cs",
           "name": "FilterReservedKeyboardChord",
-          "line": 48,
+          "line": 43,
           "tokens": 107,
           "hash": "57E40BAEA0712FBBC32B298EFA1A0CB15E077A7BF97AC46EAF9C4F8B29A00E4B",
           "shape": "6EFDFF7E3AAB45246FEE69A0E436D23B4FA57DBE3DD76854C08B828979CEF2E9"
@@ -9874,7 +9830,7 @@
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Input.cs",
           "name": "FilterReservedKeyboardChord",
-          "line": 47,
+          "line": 42,
           "tokens": 107,
           "hash": "57E40BAEA0712FBBC32B298EFA1A0CB15E077A7BF97AC46EAF9C4F8B29A00E4B",
           "shape": "6EFDFF7E3AAB45246FEE69A0E436D23B4FA57DBE3DD76854C08B828979CEF2E9"
@@ -9882,7 +9838,7 @@
         {
           "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Input.cs",
           "name": "FilterReservedKeyboardChord",
-          "line": 48,
+          "line": 43,
           "tokens": 107,
           "hash": "57E40BAEA0712FBBC32B298EFA1A0CB15E077A7BF97AC46EAF9C4F8B29A00E4B",
           "shape": "6EFDFF7E3AAB45246FEE69A0E436D23B4FA57DBE3DD76854C08B828979CEF2E9"
@@ -9890,7 +9846,7 @@
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Input.cs",
           "name": "FilterReservedKeyboardChord",
-          "line": 50,
+          "line": 45,
           "tokens": 107,
           "hash": "57E40BAEA0712FBBC32B298EFA1A0CB15E077A7BF97AC46EAF9C4F8B29A00E4B",
           "shape": "6EFDFF7E3AAB45246FEE69A0E436D23B4FA57DBE3DD76854C08B828979CEF2E9"
@@ -9898,7 +9854,7 @@
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.Input.cs",
           "name": "FilterReservedKeyboardChord",
-          "line": 47,
+          "line": 42,
           "tokens": 107,
           "hash": "57E40BAEA0712FBBC32B298EFA1A0CB15E077A7BF97AC46EAF9C4F8B29A00E4B",
           "shape": "6EFDFF7E3AAB45246FEE69A0E436D23B4FA57DBE3DD76854C08B828979CEF2E9"
@@ -12142,7 +12098,7 @@
     {
       "language": "CSharp",
       "hash": "68386C818382BCE400A3EDE65411B5CBD9D6A87F6D88FAF6501028CE28C38965",
-      "method": "ToSinclair",
+      "method": "ToModule",
       "tokens": 148,
       "current": [
         {
@@ -13098,6 +13054,47 @@
       "predecessors": [],
       "shapePredecessors": [],
       "qualification": "pending"
+    },
+    {
+      "language": "CSharp",
+      "hash": "70F04E7EAECD52FED96180A7F16D3DFFB696CBC1A186FF08D6FD2574A8385E47",
+      "method": "Publish",
+      "tokens": 45,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/KeyboardState.cs",
+          "name": "Publish",
+          "line": 12,
+          "tokens": 45,
+          "hash": "70F04E7EAECD52FED96180A7F16D3DFFB696CBC1A186FF08D6FD2574A8385E47",
+          "shape": "630188C1A3E451BD9E7CEC02B983CCCD80CF6BFCF79D0FE44C0AC9E3BE1151E3",
+          "qualification": "Typed keyboard publication adapter to original Atari transitions and shared modifiers verified in keyboardTransitionReuse; local guard/filter/map/character/order policies retained",
+          "qualificationSourceSha256": "FF5109318E95269DE8E66DB2924BD12406915CC91BB7AB0D29079BDEF7269501"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/KeyboardState.cs",
+          "name": "Publish",
+          "line": 12,
+          "tokens": 45,
+          "hash": "70F04E7EAECD52FED96180A7F16D3DFFB696CBC1A186FF08D6FD2574A8385E47",
+          "shape": "630188C1A3E451BD9E7CEC02B983CCCD80CF6BFCF79D0FE44C0AC9E3BE1151E3",
+          "qualification": "Typed keyboard publication adapter to original Atari transitions and shared modifiers verified in keyboardTransitionReuse; local guard/filter/map/character/order policies retained",
+          "qualificationSourceSha256": "100A27F718D4F384897F32F00551D194A1F5CD3DA56A60635D488FDF2041C2E6"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/KeyboardState.cs",
+          "name": "Publish",
+          "line": 10,
+          "tokens": 45,
+          "hash": "70F04E7EAECD52FED96180A7F16D3DFFB696CBC1A186FF08D6FD2574A8385E47",
+          "shape": "630188C1A3E451BD9E7CEC02B983CCCD80CF6BFCF79D0FE44C0AC9E3BE1151E3",
+          "qualification": "Typed keyboard publication adapter to original Atari transitions and shared modifiers verified in keyboardTransitionReuse; local guard/filter/map/character/order policies retained",
+          "qualificationSourceSha256": "A7030D768C4493CF9F13E33E491D17AE480237C16D5809BEA4046B064FA88728"
+        }
+      ],
+      "predecessors": [],
+      "shapePredecessors": [],
+      "qualification": "Qualified typed keyboard publication adapters; original loops shared and native policies retained"
     },
     {
       "language": "CSharp",
@@ -20323,65 +20320,6 @@
     },
     {
       "language": "CSharp",
-      "hash": "ACD2004B7D0ADB4AA382B50C10F30A7C834F5B7D0E4C05687379F1034E7D964D",
-      "method": "PublishKeyboardTransitions",
-      "tokens": 233,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Input.cs",
-          "name": "PublishKeyboardTransitions",
-          "line": 33,
-          "tokens": 233,
-          "hash": "ACD2004B7D0ADB4AA382B50C10F30A7C834F5B7D0E4C05687379F1034E7D964D",
-          "shape": "474423DC572B059ACD6A1EA9D0CE5C6D0E6A2200CC8A051ECF7F1B61D7BA3499"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.Input.cs",
-          "name": "PublishKeyboardTransitions",
-          "line": 33,
-          "tokens": 233,
-          "hash": "ACD2004B7D0ADB4AA382B50C10F30A7C834F5B7D0E4C05687379F1034E7D964D",
-          "shape": "474423DC572B059ACD6A1EA9D0CE5C6D0E6A2200CC8A051ECF7F1B61D7BA3499"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Input.cs",
-          "name": "PublishKeyboardTransitions",
-          "line": 32,
-          "tokens": 233,
-          "hash": "ACD2004B7D0ADB4AA382B50C10F30A7C834F5B7D0E4C05687379F1034E7D964D",
-          "shape": "474423DC572B059ACD6A1EA9D0CE5C6D0E6A2200CC8A051ECF7F1B61D7BA3499"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Input.cs",
-          "name": "PublishKeyboardTransitions",
-          "line": 33,
-          "tokens": 233,
-          "hash": "ACD2004B7D0ADB4AA382B50C10F30A7C834F5B7D0E4C05687379F1034E7D964D",
-          "shape": "474423DC572B059ACD6A1EA9D0CE5C6D0E6A2200CC8A051ECF7F1B61D7BA3499"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Input.cs",
-          "name": "PublishKeyboardTransitions",
-          "line": 35,
-          "tokens": 233,
-          "hash": "ACD2004B7D0ADB4AA382B50C10F30A7C834F5B7D0E4C05687379F1034E7D964D",
-          "shape": "474423DC572B059ACD6A1EA9D0CE5C6D0E6A2200CC8A051ECF7F1B61D7BA3499"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.Input.cs",
-          "name": "PublishKeyboardTransitions",
-          "line": 32,
-          "tokens": 233,
-          "hash": "ACD2004B7D0ADB4AA382B50C10F30A7C834F5B7D0E4C05687379F1034E7D964D",
-          "shape": "474423DC572B059ACD6A1EA9D0CE5C6D0E6A2200CC8A051ECF7F1B61D7BA3499"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
       "hash": "AE36B4FFA594AEE3CB0DD34F47F261005DD5DBE61B28504040D3B9E2778DE4C0",
       "method": "AudioSelection",
       "tokens": 82,
@@ -20701,7 +20639,7 @@
     {
       "language": "CSharp",
       "hash": "B053A3AB4F0B78A37DED57B2D744801187AED6EC54FEEAFE4B1AA9C454D6F48C",
-      "method": "FairchildEmulationModule",
+      "method": "PanasonicEmulationModule",
       "tokens": 47,
       "current": [
         {
@@ -25720,7 +25658,7 @@
         {
           "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Input.cs",
           "name": "CreateKeyboardMap",
-          "line": 164,
+          "line": 159,
           "tokens": 55,
           "hash": "E0BC603E350A0A3E43AA228224DDF07A41C832AA5D5F3729C1A432E1D25D79C0",
           "shape": "A494B9C1ABE840CAB2E2947D8C535FDF39D8E02B21B644F35941848DA03DB358"
@@ -25728,7 +25666,7 @@
         {
           "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.Input.cs",
           "name": "CreateKeyboardMap",
-          "line": 136,
+          "line": 131,
           "tokens": 55,
           "hash": "E0BC603E350A0A3E43AA228224DDF07A41C832AA5D5F3729C1A432E1D25D79C0",
           "shape": "A494B9C1ABE840CAB2E2947D8C535FDF39D8E02B21B644F35941848DA03DB358"
@@ -25736,7 +25674,7 @@
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Input.cs",
           "name": "CreateKeyboardMap",
-          "line": 137,
+          "line": 132,
           "tokens": 55,
           "hash": "E0BC603E350A0A3E43AA228224DDF07A41C832AA5D5F3729C1A432E1D25D79C0",
           "shape": "A494B9C1ABE840CAB2E2947D8C535FDF39D8E02B21B644F35941848DA03DB358"
@@ -25744,7 +25682,7 @@
         {
           "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Input.cs",
           "name": "CreateKeyboardMap",
-          "line": 136,
+          "line": 131,
           "tokens": 55,
           "hash": "E0BC603E350A0A3E43AA228224DDF07A41C832AA5D5F3729C1A432E1D25D79C0",
           "shape": "A494B9C1ABE840CAB2E2947D8C535FDF39D8E02B21B644F35941848DA03DB358"
@@ -25752,7 +25690,7 @@
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Input.cs",
           "name": "CreateKeyboardMap",
-          "line": 145,
+          "line": 140,
           "tokens": 55,
           "hash": "E0BC603E350A0A3E43AA228224DDF07A41C832AA5D5F3729C1A432E1D25D79C0",
           "shape": "A494B9C1ABE840CAB2E2947D8C535FDF39D8E02B21B644F35941848DA03DB358"
@@ -25760,7 +25698,7 @@
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.Input.cs",
           "name": "CreateKeyboardMap",
-          "line": 171,
+          "line": 166,
           "tokens": 55,
           "hash": "E0BC603E350A0A3E43AA228224DDF07A41C832AA5D5F3729C1A432E1D25D79C0",
           "shape": "A494B9C1ABE840CAB2E2947D8C535FDF39D8E02B21B644F35941848DA03DB358"
@@ -27379,7 +27317,7 @@
     {
       "language": "CSharp",
       "hash": "F107F4D7D97C4E9F797468C991DF2090B47DF6E3F6F74E56044EFF0C28CAA51D",
-      "method": "NotifyDestroy",
+      "method": "NotifyHardwareContextDestroy",
       "tokens": 31,
       "current": [
         {
@@ -27765,6 +27703,77 @@
       "predecessors": [],
       "shapePredecessors": [],
       "qualification": "pending"
+    },
+    {
+      "language": "CSharp",
+      "hash": "F4D9DE21E99613BAAD068CC85A4E87A8100694E24E1F0146DE2A9AD01E5D5B60",
+      "method": "PublishKeyboardTransitions",
+      "tokens": 63,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Input.cs",
+          "name": "PublishKeyboardTransitions",
+          "line": 33,
+          "tokens": 63,
+          "hash": "F4D9DE21E99613BAAD068CC85A4E87A8100694E24E1F0146DE2A9AD01E5D5B60",
+          "shape": "980FA15B101FFF4166DB7A5844456C5841D086702F20FD987F10F709321AE2FD",
+          "qualification": "Typed keyboard publication adapter to original Atari transitions and shared modifiers verified in keyboardTransitionReuse; local guard/filter/map/character/order policies retained",
+          "qualificationSourceSha256": "B4125ED362370D5FA40827C0C6D69DB4894E1773B5F61DF2772C5AE7E241BF3C"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Input.cs",
+          "name": "PublishKeyboardTransitions",
+          "line": 32,
+          "tokens": 63,
+          "hash": "F4D9DE21E99613BAAD068CC85A4E87A8100694E24E1F0146DE2A9AD01E5D5B60",
+          "shape": "980FA15B101FFF4166DB7A5844456C5841D086702F20FD987F10F709321AE2FD",
+          "qualification": "Typed keyboard publication adapter to original Atari transitions and shared modifiers verified in keyboardTransitionReuse; local guard/filter/map/character/order policies retained",
+          "qualificationSourceSha256": "F92FDA12E2E825A8505993A073557FB88D99ED7D9380D3FF8444FD36FC9ADFDC"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Input.cs",
+          "name": "PublishKeyboardTransitions",
+          "line": 35,
+          "tokens": 63,
+          "hash": "F4D9DE21E99613BAAD068CC85A4E87A8100694E24E1F0146DE2A9AD01E5D5B60",
+          "shape": "980FA15B101FFF4166DB7A5844456C5841D086702F20FD987F10F709321AE2FD",
+          "qualification": "Typed keyboard publication adapter to original Atari transitions and shared modifiers verified in keyboardTransitionReuse; local guard/filter/map/character/order policies retained",
+          "qualificationSourceSha256": "759C393D33323E727F4253CDE5ABF8B8FE5C24F5D4F11165E92CCABEEA38B0E3"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Input.cs",
+          "name": "PublishKeyboardTransitions",
+          "line": 33,
+          "tokens": 63,
+          "hash": "F4D9DE21E99613BAAD068CC85A4E87A8100694E24E1F0146DE2A9AD01E5D5B60",
+          "shape": "980FA15B101FFF4166DB7A5844456C5841D086702F20FD987F10F709321AE2FD",
+          "qualification": "Typed keyboard publication adapter to original Atari transitions and shared modifiers verified in keyboardTransitionReuse; local guard/filter/map/character/order policies retained",
+          "qualificationSourceSha256": "B40746F45FA161A080227C991B05603EB30C3DCDD91D674E2426251662301C2B"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.Input.cs",
+          "name": "PublishKeyboardTransitions",
+          "line": 32,
+          "tokens": 63,
+          "hash": "F4D9DE21E99613BAAD068CC85A4E87A8100694E24E1F0146DE2A9AD01E5D5B60",
+          "shape": "980FA15B101FFF4166DB7A5844456C5841D086702F20FD987F10F709321AE2FD",
+          "qualification": "Typed keyboard publication adapter to original Atari transitions and shared modifiers verified in keyboardTransitionReuse; local guard/filter/map/character/order policies retained",
+          "qualificationSourceSha256": "88F8770B735B65E2F3905F2C194EAFEF2D541A37BD8B465B4A7A120D6FFDC8D1"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.Input.cs",
+          "name": "PublishKeyboardTransitions",
+          "line": 33,
+          "tokens": 63,
+          "hash": "F4D9DE21E99613BAAD068CC85A4E87A8100694E24E1F0146DE2A9AD01E5D5B60",
+          "shape": "980FA15B101FFF4166DB7A5844456C5841D086702F20FD987F10F709321AE2FD",
+          "qualification": "Typed keyboard publication adapter to original Atari transitions and shared modifiers verified in keyboardTransitionReuse; local guard/filter/map/character/order policies retained",
+          "qualificationSourceSha256": "376ADDF95EBA1D6D82F10F3C7CE2DC59F99EB79C8E42D6915258F2F063E6CE0A"
+        }
+      ],
+      "predecessors": [],
+      "shapePredecessors": [],
+      "qualification": "Qualified typed keyboard publication adapters; original loops shared and native policies retained"
     },
     {
       "language": "CSharp",
@@ -28710,7 +28719,7 @@
         {
           "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Input.cs",
           "name": "HandleLed",
-          "line": 69,
+          "line": 64,
           "tokens": 51,
           "hash": "FF94CA3B3FDB1E5D8071728ED10409A0E7239535266178AB83E7FB5B3F5CF12E",
           "shape": "6D80FAC43CB3CBBBF9EE70C5F8711806197A44718722E009B76BCE6F65F9C4FD"
@@ -28718,7 +28727,7 @@
         {
           "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.Input.cs",
           "name": "HandleLed",
-          "line": 69,
+          "line": 64,
           "tokens": 51,
           "hash": "FF94CA3B3FDB1E5D8071728ED10409A0E7239535266178AB83E7FB5B3F5CF12E",
           "shape": "6D80FAC43CB3CBBBF9EE70C5F8711806197A44718722E009B76BCE6F65F9C4FD"
@@ -28726,7 +28735,7 @@
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Input.cs",
           "name": "HandleLed",
-          "line": 68,
+          "line": 63,
           "tokens": 51,
           "hash": "FF94CA3B3FDB1E5D8071728ED10409A0E7239535266178AB83E7FB5B3F5CF12E",
           "shape": "6D80FAC43CB3CBBBF9EE70C5F8711806197A44718722E009B76BCE6F65F9C4FD"
@@ -28734,7 +28743,7 @@
         {
           "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Input.cs",
           "name": "HandleLed",
-          "line": 69,
+          "line": 64,
           "tokens": 51,
           "hash": "FF94CA3B3FDB1E5D8071728ED10409A0E7239535266178AB83E7FB5B3F5CF12E",
           "shape": "6D80FAC43CB3CBBBF9EE70C5F8711806197A44718722E009B76BCE6F65F9C4FD"
@@ -28742,7 +28751,7 @@
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Input.cs",
           "name": "HandleLed",
-          "line": 71,
+          "line": 66,
           "tokens": 51,
           "hash": "FF94CA3B3FDB1E5D8071728ED10409A0E7239535266178AB83E7FB5B3F5CF12E",
           "shape": "6D80FAC43CB3CBBBF9EE70C5F8711806197A44718722E009B76BCE6F65F9C4FD"
@@ -28750,7 +28759,7 @@
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.Input.cs",
           "name": "HandleLed",
-          "line": 68,
+          "line": 63,
           "tokens": 51,
           "hash": "FF94CA3B3FDB1E5D8071728ED10409A0E7239535266178AB83E7FB5B3F5CF12E",
           "shape": "6D80FAC43CB3CBBBF9EE70C5F8711806197A44718722E009B76BCE6F65F9C4FD"
@@ -29911,7 +29920,7 @@
         {
           "path": "src/GWGUI.Emulation/Functions/ExternalCoreKeyboardFunctions.cs",
           "name": "CreateKeyMap",
-          "line": 5,
+          "line": 26,
           "tokens": 503,
           "hash": "7532A951E1A58D6A920A8CCC867A5D4467B0051E899DABE2DA23EFA99F262AF5",
           "shape": "202C213CD232410AC1D6B9F589E0F60A16594AA88F806622C143F6BBB9A81569"
@@ -31880,6 +31889,69 @@
       "qualification": "pending-symbol-and-policy-comparison"
     },
     {
+      "shape": "5C7A2A5EB1B2A589B50E77E6B28756FCFDDB18BB74E8DFEE56FA2C2D1DE8CC95",
+      "tokens": 76,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Functions/InputFunctions.Keyboard.cs",
+          "name": "Modifiers",
+          "line": 55,
+          "tokens": 76,
+          "hash": "6E1846B01DB70A866974360488FCC52EC0F379F39CC5009E5F4B7DE5261D276D",
+          "shape": "5C7A2A5EB1B2A589B50E77E6B28756FCFDDB18BB74E8DFEE56FA2C2D1DE8CC95"
+        },
+        {
+          "path": "src/GWGUI.Emulation/Functions/ExternalCoreKeyboardFunctions.cs",
+          "name": "Modifiers",
+          "line": 7,
+          "tokens": 76,
+          "hash": "67FCC905184E01504B5B65DA188CD3569E4174D1FFF05FCFF1FCC72A623D89ED",
+          "shape": "5C7A2A5EB1B2A589B50E77E6B28756FCFDDB18BB74E8DFEE56FA2C2D1DE8CC95"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Functions/KeyboardFunctions.cs",
+          "name": "Modifiers",
+          "line": 82,
+          "tokens": 76,
+          "hash": "6E1846B01DB70A866974360488FCC52EC0F379F39CC5009E5F4B7DE5261D276D",
+          "shape": "5C7A2A5EB1B2A589B50E77E6B28756FCFDDB18BB74E8DFEE56FA2C2D1DE8CC95"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Interop/Functions/KeyboardFunctions.cs",
+          "name": "Modifiers",
+          "line": 71,
+          "tokens": 76,
+          "hash": "6E1846B01DB70A866974360488FCC52EC0F379F39CC5009E5F4B7DE5261D276D",
+          "shape": "5C7A2A5EB1B2A589B50E77E6B28756FCFDDB18BB74E8DFEE56FA2C2D1DE8CC95"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Functions/KeyboardFunctions.cs",
+          "name": "Modifiers",
+          "line": 66,
+          "tokens": 76,
+          "hash": "6E1846B01DB70A866974360488FCC52EC0F379F39CC5009E5F4B7DE5261D276D",
+          "shape": "5C7A2A5EB1B2A589B50E77E6B28756FCFDDB18BB74E8DFEE56FA2C2D1DE8CC95"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Functions/InputFunctions.Keyboard.cs",
+          "name": "Modifiers",
+          "line": 52,
+          "tokens": 76,
+          "hash": "6E1846B01DB70A866974360488FCC52EC0F379F39CC5009E5F4B7DE5261D276D",
+          "shape": "5C7A2A5EB1B2A589B50E77E6B28756FCFDDB18BB74E8DFEE56FA2C2D1DE8CC95"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/InputFunctions.Keyboard.cs",
+          "name": "Modifiers",
+          "line": 52,
+          "tokens": 76,
+          "hash": "6E1846B01DB70A866974360488FCC52EC0F379F39CC5009E5F4B7DE5261D276D",
+          "shape": "5C7A2A5EB1B2A589B50E77E6B28756FCFDDB18BB74E8DFEE56FA2C2D1DE8CC95"
+        }
+      ],
+      "qualification": "pending-symbol-and-policy-comparison"
+    },
+    {
       "shape": "5E394723F13BE182BAB91D98E663C05CFFF0009244C1AFB6D458A6C088A86A7F",
       "tokens": 74,
       "current": [
@@ -33645,6 +33717,83 @@
         }
       ],
       "qualification": "pending-symbol-and-policy-comparison"
+    },
+    {
+      "shape": "980FA15B101FFF4166DB7A5844456C5841D086702F20FD987F10F709321AE2FD",
+      "tokens": 63,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.Input.cs",
+          "name": "PublishKeyboardTransitions",
+          "line": 36,
+          "tokens": 63,
+          "hash": "FDE23D7E1F26742432256A23DD356856D681971B0402EC59DD5FC4B2ABB0D84D",
+          "shape": "980FA15B101FFF4166DB7A5844456C5841D086702F20FD987F10F709321AE2FD",
+          "qualification": "Typed keyboard publication adapter to original Atari transitions and shared modifiers verified in keyboardTransitionReuse; local guard/filter/map/character/order policies retained",
+          "qualificationSourceSha256": "55C46DDCADD0C80D3FEF40CE14932FE4E3FA2C7F86537E2F6B7D1D1640C63AB2"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Input.cs",
+          "name": "PublishKeyboardTransitions",
+          "line": 33,
+          "tokens": 63,
+          "hash": "F4D9DE21E99613BAAD068CC85A4E87A8100694E24E1F0146DE2A9AD01E5D5B60",
+          "shape": "980FA15B101FFF4166DB7A5844456C5841D086702F20FD987F10F709321AE2FD",
+          "qualification": "Typed keyboard publication adapter to original Atari transitions and shared modifiers verified in keyboardTransitionReuse; local guard/filter/map/character/order policies retained",
+          "qualificationSourceSha256": "B4125ED362370D5FA40827C0C6D69DB4894E1773B5F61DF2772C5AE7E241BF3C"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalHostCallbacks.Input.cs",
+          "name": "PublishKeyboardTransitions",
+          "line": 32,
+          "tokens": 63,
+          "hash": "F4D9DE21E99613BAAD068CC85A4E87A8100694E24E1F0146DE2A9AD01E5D5B60",
+          "shape": "980FA15B101FFF4166DB7A5844456C5841D086702F20FD987F10F709321AE2FD",
+          "qualification": "Typed keyboard publication adapter to original Atari transitions and shared modifiers verified in keyboardTransitionReuse; local guard/filter/map/character/order policies retained",
+          "qualificationSourceSha256": "F92FDA12E2E825A8505993A073557FB88D99ED7D9380D3FF8444FD36FC9ADFDC"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalHostCallbacks.Input.cs",
+          "name": "PublishKeyboardTransitions",
+          "line": 35,
+          "tokens": 63,
+          "hash": "F4D9DE21E99613BAAD068CC85A4E87A8100694E24E1F0146DE2A9AD01E5D5B60",
+          "shape": "980FA15B101FFF4166DB7A5844456C5841D086702F20FD987F10F709321AE2FD",
+          "qualification": "Typed keyboard publication adapter to original Atari transitions and shared modifiers verified in keyboardTransitionReuse; local guard/filter/map/character/order policies retained",
+          "qualificationSourceSha256": "759C393D33323E727F4253CDE5ABF8B8FE5C24F5D4F11165E92CCABEEA38B0E3"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Input.cs",
+          "name": "PublishKeyboardTransitions",
+          "line": 33,
+          "tokens": 63,
+          "hash": "F4D9DE21E99613BAAD068CC85A4E87A8100694E24E1F0146DE2A9AD01E5D5B60",
+          "shape": "980FA15B101FFF4166DB7A5844456C5841D086702F20FD987F10F709321AE2FD",
+          "qualification": "Typed keyboard publication adapter to original Atari transitions and shared modifiers verified in keyboardTransitionReuse; local guard/filter/map/character/order policies retained",
+          "qualificationSourceSha256": "B40746F45FA161A080227C991B05603EB30C3DCDD91D674E2426251662301C2B"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.Input.cs",
+          "name": "PublishKeyboardTransitions",
+          "line": 32,
+          "tokens": 63,
+          "hash": "F4D9DE21E99613BAAD068CC85A4E87A8100694E24E1F0146DE2A9AD01E5D5B60",
+          "shape": "980FA15B101FFF4166DB7A5844456C5841D086702F20FD987F10F709321AE2FD",
+          "qualification": "Typed keyboard publication adapter to original Atari transitions and shared modifiers verified in keyboardTransitionReuse; local guard/filter/map/character/order policies retained",
+          "qualificationSourceSha256": "88F8770B735B65E2F3905F2C194EAFEF2D541A37BD8B465B4A7A120D6FFDC8D1"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.Input.cs",
+          "name": "PublishKeyboardTransitions",
+          "line": 33,
+          "tokens": 63,
+          "hash": "F4D9DE21E99613BAAD068CC85A4E87A8100694E24E1F0146DE2A9AD01E5D5B60",
+          "shape": "980FA15B101FFF4166DB7A5844456C5841D086702F20FD987F10F709321AE2FD",
+          "qualification": "Typed keyboard publication adapter to original Atari transitions and shared modifiers verified in keyboardTransitionReuse; local guard/filter/map/character/order policies retained",
+          "qualificationSourceSha256": "376ADDF95EBA1D6D82F10F3C7CE2DC59F99EB79C8E42D6915258F2F063E6CE0A"
+        }
+      ],
+      "qualification": "Qualified typed keyboard publication adapters; original loops shared and native policies retained"
     },
     {
       "shape": "98BFEA96C98C9ADBBB92A7A5966293BDB69AED7EA138CF83F9AAA5412AEA72D0",
@@ -37804,7 +37953,7 @@
   ],
   "scope": "All current repository CSharp and PowerShell files; no age filter; candidates require semantic review",
   "qualificationCarryForward": {
-    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical",
-    "occurrences": 114
+    "occurrences": 132,
+    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical"
   }
 }

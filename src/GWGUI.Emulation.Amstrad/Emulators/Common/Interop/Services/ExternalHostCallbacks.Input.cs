@@ -39,16 +39,9 @@ internal sealed partial class ExternalHostCallbacks
             return;
         keys = FilterReservedKeyboardChord(keys);
         var reverseMap = _keyboardMap.ToDictionary(pair => pair.Value, pair => pair.Key);
-        var modifiers = (ushort)((keys.Contains(EmulationKey.LeftShift) || keys.Contains(EmulationKey.RightShift) ? ShiftModifier : NoKeyboardModifiers)
-            | (keys.Contains(EmulationKey.LeftControl) || keys.Contains(EmulationKey.RightControl) ? ControlModifier : NoKeyboardModifiers)
-            | (keys.Contains(EmulationKey.LeftAlt) || keys.Contains(EmulationKey.RightAlt) ? AltModifier : NoKeyboardModifiers));
-        foreach (var key in _previousKeys.Except(keys).OrderBy(key => IsModifier(key) ? KeyboardOrdinaryKeyPriority : KeyboardModifierPriority))
-            if (reverseMap.TryGetValue(key, out var code))
-                _keyboardEvent(false, code, NoKeyboardCharacter, modifiers);
-        foreach (var key in keys.Except(_previousKeys).OrderBy(key => IsModifier(key) ? KeyboardModifierPriority : KeyboardOrdinaryKeyPriority))
-            if (reverseMap.TryGetValue(key, out var code))
-                _keyboardEvent(true, code, CharacterFor(code, keys), modifiers);
-        _previousKeys = new HashSet<EmulationKey>(keys);
+        ExternalCoreKeyboardFunctions.PublishTransitions(keys, reverseMap,
+            ExternalCoreKeyboardFunctions.Modifiers(keys), ref _previousKeys, ref _keyboardEvent,
+            IsModifier, CharacterFor);
     }
 
     internal IReadOnlySet<EmulationKey> FilterReservedKeyboardChord(IReadOnlySet<EmulationKey> keys)

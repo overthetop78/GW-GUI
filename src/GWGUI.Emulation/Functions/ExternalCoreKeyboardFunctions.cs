@@ -1,7 +1,28 @@
+using GWGUI.Emulation.Interop;
+
 namespace GWGUI.Emulation.Functions;
 
 internal static class ExternalCoreKeyboardFunctions
 {
+    internal static ushort Modifiers(IReadOnlySet<EmulationKey> keys) => (ushort)(
+        (HasShift(keys) ? ExternalCoreKeyboardConstants.ShiftModifier : ExternalCoreKeyboardConstants.NoModifiers) |
+        (keys.Contains(EmulationKey.LeftControl) || keys.Contains(EmulationKey.RightControl) ? ExternalCoreKeyboardConstants.ControlModifier : ExternalCoreKeyboardConstants.NoModifiers) |
+        (keys.Contains(EmulationKey.LeftAlt) || keys.Contains(EmulationKey.RightAlt) ? ExternalCoreKeyboardConstants.AltModifier : ExternalCoreKeyboardConstants.NoModifiers));
+
+    internal static void PublishTransitions(IReadOnlySet<EmulationKey> keys,
+        IReadOnlyDictionary<EmulationKey, uint> keyMap, ushort modifiers,
+        ref IReadOnlySet<EmulationKey> previous, ref ExternalCoreApi.KeyboardEvent? keyboardEvent,
+        Func<EmulationKey, bool> isModifier, Func<uint, IReadOnlySet<EmulationKey>, uint> characterFor)
+    {
+        foreach (var key in previous.Except(keys).OrderBy(key => isModifier(key) ? ExternalCoreKeyboardConstants.ModifierLastOrder : ExternalCoreKeyboardConstants.ModifierFirstOrder))
+            if (keyMap.TryGetValue(key, out var code))
+                keyboardEvent!(false, code, ExternalCoreKeyboardConstants.NoCharacter, modifiers);
+        foreach (var key in keys.Except(previous).OrderBy(key => isModifier(key) ? ExternalCoreKeyboardConstants.ModifierFirstOrder : ExternalCoreKeyboardConstants.ModifierLastOrder))
+            if (keyMap.TryGetValue(key, out var code))
+                keyboardEvent!(true, code, characterFor(code, keys), modifiers);
+        previous = new HashSet<EmulationKey>(keys);
+    }
+
     internal static IReadOnlyDictionary<EmulationKey, uint> CreateKeyMap()
     {
         var map = new Dictionary<EmulationKey, uint>

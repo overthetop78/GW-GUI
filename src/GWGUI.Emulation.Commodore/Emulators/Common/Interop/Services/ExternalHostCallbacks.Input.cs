@@ -33,14 +33,9 @@ internal sealed partial class ExternalHostCallbacks
     {
         if (_keyboardEvent is null) return;
         var reverseMap = _keyboardMap.ToDictionary(pair => pair.Value, pair => pair.Key);
-        var modifiers = (ushort)((keys.Contains(EmulationKey.LeftShift) || keys.Contains(EmulationKey.RightShift) ? NativeKeyboardModifier.Shift : NativeKeyboardModifier.None)
-            | (keys.Contains(EmulationKey.LeftControl) || keys.Contains(EmulationKey.RightControl) ? NativeKeyboardModifier.Control : NativeKeyboardModifier.None)
-            | (keys.Contains(EmulationKey.LeftAlt) || keys.Contains(EmulationKey.RightAlt) ? NativeKeyboardModifier.Alt : NativeKeyboardModifier.None));
-        foreach (var key in _previousKeys.Except(keys).OrderBy(key => IsModifier(key)))
-            if (reverseMap.TryGetValue(key, out var code)) _keyboardEvent(false, code, NoCharacter, modifiers);
-        foreach (var key in keys.Except(_previousKeys).OrderBy(key => !IsModifier(key)))
-            if (reverseMap.TryGetValue(key, out var code)) _keyboardEvent(true, code, CharacterFor(code, keys), modifiers);
-        _previousKeys = new HashSet<EmulationKey>(keys);
+        ExternalCoreKeyboardFunctions.PublishTransitions(keys, reverseMap,
+            ExternalCoreKeyboardFunctions.Modifiers(keys), ref _previousKeys, ref _keyboardEvent,
+            IsModifier, CharacterFor);
     }
 
     private static uint CharacterFor(uint code, IReadOnlySet<EmulationKey> keys)
