@@ -113,7 +113,7 @@ internal sealed partial class ExternalCore : IEmulatorCore
         _nativeInitialized = false;
         try
         {
-            CoreLifecycleFunctions.Cleanup(exports, gameLoaded, nativeInitialized, () => callbacks?.Dispose(), () => library?.Dispose());
+            ExternalCoreLifecycleFunctions.Cleanup(exports, gameLoaded, nativeInitialized, () => callbacks?.Dispose(), () => library?.Dispose());
         }
         finally
         {

@@ -16,24 +16,4 @@ internal static class CoreLifecycleFunctions
         exports.GetSystemAvInfo(out var avInfo);
         callbacks.ApplySystemAvInfo(avInfo);
     }
-
-    internal static void Cleanup(ExternalCoreExports? exports, bool gameLoaded, bool initialized, Action disposeCallbacks, Action disposeLibrary)
-    {
-        try
-        {
-            if (gameLoaded) exports?.UnloadGame();
-        }
-        finally
-        {
-            try
-            {
-                if (initialized) exports?.Deinitialize();
-            }
-            finally
-            {
-                try { disposeCallbacks(); }
-                finally { disposeLibrary(); }
-            }
-        }
-    }
 }

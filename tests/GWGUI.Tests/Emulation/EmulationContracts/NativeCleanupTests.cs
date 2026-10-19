@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Contracts;
+using GWGUI.Emulation.Functions;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 
@@ -19,7 +21,7 @@ public sealed class NativeCleanupTests
         var assembly = Assembly.Load($"gwgui.emulation.{family.ToLowerInvariant()}");
         var prefix = $"GWGUI.Emulation.{family}.Emulators.{adapter}.Interop";
         var coreType = assembly.GetType(prefix + ".Services.ExternalCore", throwOnError: true)!;
-        var exportsType = assembly.GetType(prefix + ".Contracts.ExternalCoreExports", throwOnError: true)!;
+        var exportsType = typeof(ExternalCoreExports);
         // Exercise ownership without running the constructor that probes a native DLL.
         var core = (IDisposable)RuntimeHelpers.GetUninitializedObject(coreType);
         var stop = coreType.GetMethod("Stop")!;
@@ -85,8 +87,10 @@ public sealed class NativeCleanupTests
     {
         var assembly = Assembly.Load($"gwgui.emulation.{family.ToLowerInvariant()}");
         var prefix = $"GWGUI.Emulation.{family}.Emulators.{adapter}.Interop";
-        var exportsType = assembly.GetType(prefix + ".Contracts.ExternalCoreExports", throwOnError: true)!;
-        var cleanupType = assembly.GetType(prefix + ".Functions.CoreLifecycleFunctions", throwOnError: true)!;
+        var exportsType = typeof(ExternalCoreExports);
+        var cleanupType = typeof(ExternalCoreLifecycleFunctions);
+        var coreType = assembly.GetType(prefix + ".Services.ExternalCore", throwOnError: true)!;
+        Assert.Equal(exportsType, coreType.GetField("_exports", BindingFlags.Instance | BindingFlags.NonPublic)!.FieldType);
         var cleanup = cleanupType.GetMethod("Cleanup", BindingFlags.NonPublic | BindingFlags.Static)!;
         var calls = new List<string>();
         var injected = new InvalidOperationException("Injected cleanup failure");

@@ -1,9 +1,9 @@
 {
   "baseline": "ac7292d86^",
-  "currentCSharpFiles": 7245,
+  "currentCSharpFiles": 7231,
   "outsideSrcCSharpFiles": 309,
   "baselineMethodCount": 5848,
-  "currentMethodCount": 11534,
+  "currentMethodCount": 11519,
   "powerShellFunctionCount": 17,
   "groups": [
     {
@@ -359,145 +359,6 @@
           "tokens": 46,
           "hash": "0419E87A1B9F2F3CA42718D5C6FA58BE88EA98F934B6C752CE7BA7687C3040AF",
           "shape": "E876A228967C053B3EAEBA296FF43CC3494D1D58426BF2F632AC254E2439F9A2"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
-      "hash": "0449D70CFF47131AC1D851F51A2F3F4CD8E9DD1D1334E81641370FF105EEA601",
-      "method": "Cleanup",
-      "tokens": 50,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Functions/CoreFunctions.Lifecycle.cs",
-          "name": "Cleanup",
-          "line": 6,
-          "tokens": 50,
-          "hash": "0449D70CFF47131AC1D851F51A2F3F4CD8E9DD1D1334E81641370FF105EEA601",
-          "shape": "C83A089CBBE9917C031B57928AF1D8779EA0D254D1FEDE1D20C95432C143935E"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Functions/CoreFunctions.Lifecycle.cs",
-          "name": "Cleanup",
-          "line": 6,
-          "tokens": 50,
-          "hash": "0449D70CFF47131AC1D851F51A2F3F4CD8E9DD1D1334E81641370FF105EEA601",
-          "shape": "C83A089CBBE9917C031B57928AF1D8779EA0D254D1FEDE1D20C95432C143935E"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Watara/Emulators/Potator/Interop/Functions/CoreFunctions.Lifecycle.cs",
-          "name": "Cleanup",
-          "line": 7,
-          "tokens": 50,
-          "hash": "0449D70CFF47131AC1D851F51A2F3F4CD8E9DD1D1334E81641370FF105EEA601",
-          "shape": "C83A089CBBE9917C031B57928AF1D8779EA0D254D1FEDE1D20C95432C143935E"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Functions/CoreFunctions.Lifecycle.cs",
-          "name": "Cleanup",
-          "line": 6,
-          "tokens": 50,
-          "hash": "0449D70CFF47131AC1D851F51A2F3F4CD8E9DD1D1334E81641370FF105EEA601",
-          "shape": "C83A089CBBE9917C031B57928AF1D8779EA0D254D1FEDE1D20C95432C143935E"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Functions/CoreFunctions.Lifecycle.cs",
-          "name": "Cleanup",
-          "line": 6,
-          "tokens": 50,
-          "hash": "0449D70CFF47131AC1D851F51A2F3F4CD8E9DD1D1334E81641370FF105EEA601",
-          "shape": "C83A089CBBE9917C031B57928AF1D8779EA0D254D1FEDE1D20C95432C143935E"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Functions/CoreFunctions.Lifecycle.cs",
-          "name": "Cleanup",
-          "line": 6,
-          "tokens": 50,
-          "hash": "0449D70CFF47131AC1D851F51A2F3F4CD8E9DD1D1334E81641370FF105EEA601",
-          "shape": "C83A089CBBE9917C031B57928AF1D8779EA0D254D1FEDE1D20C95432C143935E"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Interop/Functions/CoreFunctions.Lifecycle.cs",
-          "name": "Cleanup",
-          "line": 7,
-          "tokens": 50,
-          "hash": "0449D70CFF47131AC1D851F51A2F3F4CD8E9DD1D1334E81641370FF105EEA601",
-          "shape": "C83A089CBBE9917C031B57928AF1D8779EA0D254D1FEDE1D20C95432C143935E"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Functions/CoreFunctions.Lifecycle.cs",
-          "name": "Cleanup",
-          "line": 6,
-          "tokens": 50,
-          "hash": "0449D70CFF47131AC1D851F51A2F3F4CD8E9DD1D1334E81641370FF105EEA601",
-          "shape": "C83A089CBBE9917C031B57928AF1D8779EA0D254D1FEDE1D20C95432C143935E"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Interop/Functions/CoreFunctions.Lifecycle.cs",
-          "name": "Cleanup",
-          "line": 7,
-          "tokens": 50,
-          "hash": "0449D70CFF47131AC1D851F51A2F3F4CD8E9DD1D1334E81641370FF105EEA601",
-          "shape": "C83A089CBBE9917C031B57928AF1D8779EA0D254D1FEDE1D20C95432C143935E"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Panasonic/Emulators/Opera/Interop/Functions/CoreFunctions.Lifecycle.cs",
-          "name": "Cleanup",
-          "line": 7,
-          "tokens": 50,
-          "hash": "0449D70CFF47131AC1D851F51A2F3F4CD8E9DD1D1334E81641370FF105EEA601",
-          "shape": "C83A089CBBE9917C031B57928AF1D8779EA0D254D1FEDE1D20C95432C143935E"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Functions/CoreFunctions.Lifecycle.cs",
-          "name": "Cleanup",
-          "line": 6,
-          "tokens": 50,
-          "hash": "0449D70CFF47131AC1D851F51A2F3F4CD8E9DD1D1334E81641370FF105EEA601",
-          "shape": "C83A089CBBE9917C031B57928AF1D8779EA0D254D1FEDE1D20C95432C143935E"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Functions/CoreFunctions.Lifecycle.cs",
-          "name": "Cleanup",
-          "line": 6,
-          "tokens": 50,
-          "hash": "0449D70CFF47131AC1D851F51A2F3F4CD8E9DD1D1334E81641370FF105EEA601",
-          "shape": "C83A089CBBE9917C031B57928AF1D8779EA0D254D1FEDE1D20C95432C143935E"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Functions/CoreFunctions.Lifecycle.cs",
-          "name": "Cleanup",
-          "line": 20,
-          "tokens": 50,
-          "hash": "0449D70CFF47131AC1D851F51A2F3F4CD8E9DD1D1334E81641370FF105EEA601",
-          "shape": "C83A089CBBE9917C031B57928AF1D8779EA0D254D1FEDE1D20C95432C143935E"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Functions/CoreFunctions.Lifecycle.cs",
-          "name": "Cleanup",
-          "line": 6,
-          "tokens": 50,
-          "hash": "0449D70CFF47131AC1D851F51A2F3F4CD8E9DD1D1334E81641370FF105EEA601",
-          "shape": "C83A089CBBE9917C031B57928AF1D8779EA0D254D1FEDE1D20C95432C143935E"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Functions/CoreFunctions.Lifecycle.cs",
-          "name": "Cleanup",
-          "line": 6,
-          "tokens": 50,
-          "hash": "0449D70CFF47131AC1D851F51A2F3F4CD8E9DD1D1334E81641370FF105EEA601",
-          "shape": "C83A089CBBE9917C031B57928AF1D8779EA0D254D1FEDE1D20C95432C143935E"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Functions/CoreFunctions.Lifecycle.cs",
-          "name": "Cleanup",
-          "line": 6,
-          "tokens": 50,
-          "hash": "0449D70CFF47131AC1D851F51A2F3F4CD8E9DD1D1334E81641370FF105EEA601",
-          "shape": "C83A089CBBE9917C031B57928AF1D8779EA0D254D1FEDE1D20C95432C143935E"
         }
       ],
       "predecessors": [],
@@ -1115,7 +976,7 @@
     {
       "language": "CSharp",
       "hash": "0A9D4012A0EEF58659F6F622D06187BDA6844EE126F30B196EAE963950A66758",
-      "method": "AtariEmulationModule",
+      "method": "SegaEmulationModule",
       "tokens": 45,
       "current": [
         {
@@ -5810,6 +5671,33 @@
           "shape": "73DB7F77A1AFA98313DF96A94579D63D5F8CA7D735D78689AD965A6A74EC30B6",
           "qualification": "Module adapter: exact declared version/capability bindings and callback/observation order preserved; original Atari refused/options/unknown logic reused via SDK HandleRemainingCommand; original module diagnostic formatter and SNK-specific audio cases retained. Whole OnEnvironment method verified by inverse expansion and symbol/value checks in environmentRemainingCommandReuse; other methods in file not qualified by this proof.",
           "qualificationSourceSha256": "B01A64E35E107DC9B2E48F4250E306FBFF8333961895C06EF12FEC8D09D0CBDF"
+        }
+      ],
+      "predecessors": [],
+      "shapePredecessors": [],
+      "qualification": "pending"
+    },
+    {
+      "language": "CSharp",
+      "hash": "33DC394F2673299CA43F345BAFC49D2CAC19CD5E5FDDDE3BDF00E6658502702A",
+      "method": "Cleanup",
+      "tokens": 207,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Watara/Emulators/Potator/Interop/Services/ExternalCore.cs",
+          "name": "Cleanup",
+          "line": 126,
+          "tokens": 207,
+          "hash": "33DC394F2673299CA43F345BAFC49D2CAC19CD5E5FDDDE3BDF00E6658502702A",
+          "shape": "62B99A5FCC35A21A42292D05026C1DC93F7068EAE0BA3680FC6368A24D9BBF0B"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Interop/Services/ExternalCore.cs",
+          "name": "Cleanup",
+          "line": 219,
+          "tokens": 207,
+          "hash": "33DC394F2673299CA43F345BAFC49D2CAC19CD5E5FDDDE3BDF00E6658502702A",
+          "shape": "62B99A5FCC35A21A42292D05026C1DC93F7068EAE0BA3680FC6368A24D9BBF0B"
         }
       ],
       "predecessors": [],
@@ -11574,7 +11462,7 @@
     {
       "language": "CSharp",
       "hash": "68386C818382BCE400A3EDE65411B5CBD9D6A87F6D88FAF6501028CE28C38965",
-      "method": "ToModule",
+      "method": "ToSinclair",
       "tokens": 148,
       "current": [
         {
@@ -15094,65 +14982,6 @@
     },
     {
       "language": "CSharp",
-      "hash": "8C5D40803155F9791621F358409A700C6018142B1720AEE516131B23E1522F61",
-      "method": "DisposeNativeResources",
-      "tokens": 126,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/ExternalCore.Content.cs",
-          "name": "DisposeNativeResources",
-          "line": 10,
-          "tokens": 126,
-          "hash": "8C5D40803155F9791621F358409A700C6018142B1720AEE516131B23E1522F61",
-          "shape": "94BDBC2D09CA9BA7E41635DCCFC27F5F9BBED61CF196CEF676DAA6C6AB33C4CC"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/ExternalCore.Content.cs",
-          "name": "DisposeNativeResources",
-          "line": 10,
-          "tokens": 126,
-          "hash": "8C5D40803155F9791621F358409A700C6018142B1720AEE516131B23E1522F61",
-          "shape": "94BDBC2D09CA9BA7E41635DCCFC27F5F9BBED61CF196CEF676DAA6C6AB33C4CC"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/ExternalCore.Content.cs",
-          "name": "DisposeNativeResources",
-          "line": 10,
-          "tokens": 126,
-          "hash": "8C5D40803155F9791621F358409A700C6018142B1720AEE516131B23E1522F61",
-          "shape": "94BDBC2D09CA9BA7E41635DCCFC27F5F9BBED61CF196CEF676DAA6C6AB33C4CC"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/ExternalCore.Content.cs",
-          "name": "DisposeNativeResources",
-          "line": 10,
-          "tokens": 126,
-          "hash": "8C5D40803155F9791621F358409A700C6018142B1720AEE516131B23E1522F61",
-          "shape": "94BDBC2D09CA9BA7E41635DCCFC27F5F9BBED61CF196CEF676DAA6C6AB33C4CC"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/ExternalCore.Content.cs",
-          "name": "DisposeNativeResources",
-          "line": 10,
-          "tokens": 126,
-          "hash": "8C5D40803155F9791621F358409A700C6018142B1720AEE516131B23E1522F61",
-          "shape": "94BDBC2D09CA9BA7E41635DCCFC27F5F9BBED61CF196CEF676DAA6C6AB33C4CC"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/ExternalCore.Content.cs",
-          "name": "DisposeNativeResources",
-          "line": 10,
-          "tokens": 126,
-          "hash": "8C5D40803155F9791621F358409A700C6018142B1720AEE516131B23E1522F61",
-          "shape": "94BDBC2D09CA9BA7E41635DCCFC27F5F9BBED61CF196CEF676DAA6C6AB33C4CC"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
       "hash": "8C76F2AEC9C616758630CFA1903DF64AAF72FCE966978DD5787ED918FA1C2652",
       "method": "EjectMedia",
       "tokens": 101,
@@ -16604,33 +16433,6 @@
           "tokens": 53,
           "hash": "9880AE890FE9264F68594561D8FE56929280C5BECCEB2321030DB099CC4F8AB8",
           "shape": "D9B03CE13AAF0A91BFFDC2BE9AB7E3669DE6F5DA704BC9127F02FABE83E7D430"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
-      "hash": "98ABCCD9CF60775C898292BAE36E7420DEFFA50A78C25E1F9368BAC72AEC26A3",
-      "method": "Cleanup",
-      "tokens": 207,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Watara/Emulators/Potator/Interop/Services/ExternalCore.cs",
-          "name": "Cleanup",
-          "line": 126,
-          "tokens": 207,
-          "hash": "98ABCCD9CF60775C898292BAE36E7420DEFFA50A78C25E1F9368BAC72AEC26A3",
-          "shape": "62B99A5FCC35A21A42292D05026C1DC93F7068EAE0BA3680FC6368A24D9BBF0B"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Interop/Services/ExternalCore.cs",
-          "name": "Cleanup",
-          "line": 219,
-          "tokens": 207,
-          "hash": "98ABCCD9CF60775C898292BAE36E7420DEFFA50A78C25E1F9368BAC72AEC26A3",
-          "shape": "62B99A5FCC35A21A42292D05026C1DC93F7068EAE0BA3680FC6368A24D9BBF0B"
         }
       ],
       "predecessors": [],
@@ -18282,6 +18084,65 @@
     },
     {
       "language": "CSharp",
+      "hash": "A826AB30879CE13A3B17C456FE707749C3415A59CB89EAC78FAB3E9AC40C30AF",
+      "method": "DisposeNativeResources",
+      "tokens": 126,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/ExternalCore.Content.cs",
+          "name": "DisposeNativeResources",
+          "line": 10,
+          "tokens": 126,
+          "hash": "A826AB30879CE13A3B17C456FE707749C3415A59CB89EAC78FAB3E9AC40C30AF",
+          "shape": "94BDBC2D09CA9BA7E41635DCCFC27F5F9BBED61CF196CEF676DAA6C6AB33C4CC"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/ExternalCore.Content.cs",
+          "name": "DisposeNativeResources",
+          "line": 10,
+          "tokens": 126,
+          "hash": "A826AB30879CE13A3B17C456FE707749C3415A59CB89EAC78FAB3E9AC40C30AF",
+          "shape": "94BDBC2D09CA9BA7E41635DCCFC27F5F9BBED61CF196CEF676DAA6C6AB33C4CC"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/ExternalCore.Content.cs",
+          "name": "DisposeNativeResources",
+          "line": 10,
+          "tokens": 126,
+          "hash": "A826AB30879CE13A3B17C456FE707749C3415A59CB89EAC78FAB3E9AC40C30AF",
+          "shape": "94BDBC2D09CA9BA7E41635DCCFC27F5F9BBED61CF196CEF676DAA6C6AB33C4CC"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/ExternalCore.Content.cs",
+          "name": "DisposeNativeResources",
+          "line": 10,
+          "tokens": 126,
+          "hash": "A826AB30879CE13A3B17C456FE707749C3415A59CB89EAC78FAB3E9AC40C30AF",
+          "shape": "94BDBC2D09CA9BA7E41635DCCFC27F5F9BBED61CF196CEF676DAA6C6AB33C4CC"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/ExternalCore.Content.cs",
+          "name": "DisposeNativeResources",
+          "line": 10,
+          "tokens": 126,
+          "hash": "A826AB30879CE13A3B17C456FE707749C3415A59CB89EAC78FAB3E9AC40C30AF",
+          "shape": "94BDBC2D09CA9BA7E41635DCCFC27F5F9BBED61CF196CEF676DAA6C6AB33C4CC"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/ExternalCore.Content.cs",
+          "name": "DisposeNativeResources",
+          "line": 10,
+          "tokens": 126,
+          "hash": "A826AB30879CE13A3B17C456FE707749C3415A59CB89EAC78FAB3E9AC40C30AF",
+          "shape": "94BDBC2D09CA9BA7E41635DCCFC27F5F9BBED61CF196CEF676DAA6C6AB33C4CC"
+        }
+      ],
+      "predecessors": [],
+      "shapePredecessors": [],
+      "qualification": "pending"
+    },
+    {
+      "language": "CSharp",
       "hash": "A854379670413DCD473ADF343CCFFC243CA6A012416BBA742321EA7686787764",
       "method": "ControllerDefinitions",
       "tokens": 101,
@@ -19404,7 +19265,7 @@
     {
       "language": "CSharp",
       "hash": "B053A3AB4F0B78A37DED57B2D744801187AED6EC54FEEAFE4B1AA9C454D6F48C",
-      "method": "ColecoEmulationModule",
+      "method": "PanasonicEmulationModule",
       "tokens": 47,
       "current": [
         {
@@ -35622,7 +35483,7 @@
   ],
   "scope": "All current repository CSharp and PowerShell files; no age filter; candidates require semantic review",
   "qualificationCarryForward": {
-    "occurrences": 251,
+    "occurrences": 284,
     "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical"
   }
 }

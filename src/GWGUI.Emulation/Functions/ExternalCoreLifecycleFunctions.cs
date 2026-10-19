@@ -1,8 +1,10 @@
-using GWGUI.Emulation.Mattel.Emulators.Common.Interop.Contracts;
-namespace GWGUI.Emulation.Mattel.Emulators.Common.Interop.Functions;
+using GWGUI.Emulation.Contracts;
 
-internal static class CoreLifecycleFunctions
+namespace GWGUI.Emulation.Functions;
+
+internal static class ExternalCoreLifecycleFunctions
 {
+
     internal static void Cleanup(ExternalCoreExports? exports, bool gameLoaded, bool initialized, Action disposeCallbacks, Action disposeLibrary)
     {
         try

@@ -28,7 +28,7 @@ internal sealed partial class ExternalCore
         _supportsSaveStates = false;
         try
         {
-            CoreLifecycleFunctions.Cleanup(exports, gameLoaded, initialized, () => { try { if (gameLoaded) persistentMediaAdapter?.CompletePersistentMedia(persistentMediaState); } finally { callbacks?.Dispose(); } }, () => library?.Dispose());
+            ExternalCoreLifecycleFunctions.Cleanup(exports, gameLoaded, initialized, () => { try { if (gameLoaded) persistentMediaAdapter?.CompletePersistentMedia(persistentMediaState); } finally { callbacks?.Dispose(); } }, () => library?.Dispose());
         }
         finally
         {

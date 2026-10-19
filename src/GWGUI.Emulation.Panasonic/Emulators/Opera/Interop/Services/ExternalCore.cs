@@ -300,7 +300,7 @@ internal sealed class ExternalCore : IEmulatorCore, IEmulationCoreCallbacks
         try
         {
             try { input?.Release(); }
-            finally { CoreLifecycleFunctions.Cleanup(exports, loaded, initialized, () => environment?.Dispose(), () => library?.Dispose()); }
+            finally { ExternalCoreLifecycleFunctions.Cleanup(exports, loaded, initialized, () => environment?.Dispose(), () => library?.Dispose()); }
         }
         finally
         {

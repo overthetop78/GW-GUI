@@ -23,7 +23,7 @@ internal sealed partial class ExternalCore
         _gameLoaded = false;
         try
         {
-            CoreLifecycleFunctions.Cleanup(exports, gameLoaded, initialized, () => callbacks?.Dispose(), () => library?.Dispose());
+            ExternalCoreLifecycleFunctions.Cleanup(exports, gameLoaded, initialized, () => callbacks?.Dispose(), () => library?.Dispose());
         }
         finally
         {
