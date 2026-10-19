@@ -84,7 +84,8 @@ internal sealed class ExternalCore : IEmulatorCore, IEmulationCoreCallbacks
                 Path.Combine(sessionDirectory, "System"),
                 Path.Combine(sessionDirectory, "Content"),
                 saveDirectory ?? Path.Combine(sessionDirectory, "Saves"),
-                Path.Combine(sessionDirectory, "Assets")
+                Path.Combine(sessionDirectory, "Assets"),
+                NativeOptions.CreateCallbackHost
             );
             _input = new InputCallbackHost(configuration.Model, _environment);
             ExternalCoreEnvironmentFunctions.InstallCallbacks(_exports, this);

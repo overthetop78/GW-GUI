@@ -1,9 +1,9 @@
 {
   "baseline": "ac7292d86^",
-  "currentCSharpFiles": 7289,
+  "currentCSharpFiles": 7286,
   "outsideSrcCSharpFiles": 304,
   "baselineMethodCount": 5848,
-  "currentMethodCount": 11666,
+  "currentMethodCount": 11661,
   "powerShellFunctionCount": 17,
   "groups": [
     {
@@ -1197,7 +1197,7 @@
     {
       "language": "CSharp",
       "hash": "0A9D4012A0EEF58659F6F622D06187BDA6844EE126F30B196EAE963950A66758",
-      "method": "NecEmulationModule",
+      "method": "CommodoreEmulationModule",
       "tokens": 45,
       "current": [
         {
@@ -3035,14 +3035,6 @@
           "shape": "BD2224C16B18FC7E7D5DB580279EB8DED906BC863881F150777B851C9FFF2FAA"
         },
         {
-          "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Interop/Services/EnvironmentCallbackHost.cs",
-          "name": "OnLog",
-          "line": 90,
-          "tokens": 31,
-          "hash": "2011D0E425FB6CD09BF279029EB249040222A8A86F46C34BB3D44E21FADD433B",
-          "shape": "BD2224C16B18FC7E7D5DB580279EB8DED906BC863881F150777B851C9FFF2FAA"
-        },
-        {
           "path": "src/GWGUI.Emulation.Watara/Emulators/Potator/Interop/Services/EnvironmentCallbackHost.cs",
           "name": "OnLog",
           "line": 109,
@@ -3051,17 +3043,19 @@
           "shape": "BD2224C16B18FC7E7D5DB580279EB8DED906BC863881F150777B851C9FFF2FAA"
         },
         {
-          "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Interop/Services/EnvironmentCallbackHost.cs",
+          "path": "src/GWGUI.Emulation/Services/ExternalCoreEnvironmentCallbackHost.cs",
           "name": "OnLog",
-          "line": 90,
+          "line": 94,
           "tokens": 31,
           "hash": "2011D0E425FB6CD09BF279029EB249040222A8A86F46C34BB3D44E21FADD433B",
-          "shape": "BD2224C16B18FC7E7D5DB580279EB8DED906BC863881F150777B851C9FFF2FAA"
+          "shape": "BD2224C16B18FC7E7D5DB580279EB8DED906BC863881F150777B851C9FFF2FAA",
+          "qualification": "Original Thomson environment class shared in SDK; complete class, resource ownership/finally, option profile factories and consumer bindings verified in environmentHostClassReuse",
+          "qualificationSourceSha256": "4E6DC7060D195FCF64C2ACDD410E54CD2A7211198A891514A75F4DAD6B26FD38"
         }
       ],
       "predecessors": [],
       "shapePredecessors": [],
-      "qualification": "pending"
+      "qualification": "Partial occurrence qualification; unannotated members pending"
     },
     {
       "language": "CSharp",
@@ -3324,7 +3318,7 @@
         {
           "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Interop/Services/ExternalCore.cs",
           "name": "ThrowCallbackFailure",
-          "line": 211,
+          "line": 212,
           "tokens": 35,
           "hash": "225502367B511E96BA85998233B8636BCEE1968D75C04DB06F937AF9D3EF5A60",
           "shape": "FE4F22538EBC59A054E34D5B27C141D7862A5AA9E32504DD3493C261B7FD4CDA"
@@ -3332,7 +3326,7 @@
         {
           "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Interop/Services/ExternalCore.cs",
           "name": "ThrowCallbackFailure",
-          "line": 194,
+          "line": 195,
           "tokens": 35,
           "hash": "225502367B511E96BA85998233B8636BCEE1968D75C04DB06F937AF9D3EF5A60",
           "shape": "FE4F22538EBC59A054E34D5B27C141D7862A5AA9E32504DD3493C261B7FD4CDA"
@@ -4074,7 +4068,7 @@
         {
           "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Interop/Services/ExternalCore.cs",
           "name": "SaveState",
-          "line": 156,
+          "line": 157,
           "tokens": 118,
           "hash": "28C57645ED91D76709D5D894343C56545CD9AF059D3312D6F07EA99422FDC8F2",
           "shape": "D6353A43CA4D2C4DC3EBB79935F18C57F2FBBD4D1FB39980003882C48B0C7D07"
@@ -4082,7 +4076,7 @@
         {
           "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Interop/Services/ExternalCore.cs",
           "name": "SaveState",
-          "line": 139,
+          "line": 140,
           "tokens": 118,
           "hash": "28C57645ED91D76709D5D894343C56545CD9AF059D3312D6F07EA99422FDC8F2",
           "shape": "D6353A43CA4D2C4DC3EBB79935F18C57F2FBBD4D1FB39980003882C48B0C7D07"
@@ -4907,33 +4901,27 @@
           "shape": "97850ED7DF55930860275D37746F67BC3A2AC47FAD154EDB1C9DEE0C459A2B65"
         },
         {
-          "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Interop/Services/EnvironmentCallbackHost.cs",
-          "name": "ApplyAvInfo",
-          "line": 48,
-          "tokens": 41,
-          "hash": "2EE0C5BA355D536F0D42DA70E5810F2C6631A53CC9298A5FE88A5C9E54BCD63D",
-          "shape": "97850ED7DF55930860275D37746F67BC3A2AC47FAD154EDB1C9DEE0C459A2B65"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Interop/Services/EnvironmentCallbackHost.cs",
-          "name": "ApplyAvInfo",
-          "line": 48,
-          "tokens": 41,
-          "hash": "2EE0C5BA355D536F0D42DA70E5810F2C6631A53CC9298A5FE88A5C9E54BCD63D",
-          "shape": "97850ED7DF55930860275D37746F67BC3A2AC47FAD154EDB1C9DEE0C459A2B65"
-        },
-        {
           "path": "src/GWGUI.Emulation.Panasonic/Emulators/Opera/Interop/Services/EnvironmentCallbackHost.cs",
           "name": "ApplyAvInfo",
           "line": 47,
           "tokens": 41,
           "hash": "2EE0C5BA355D536F0D42DA70E5810F2C6631A53CC9298A5FE88A5C9E54BCD63D",
           "shape": "97850ED7DF55930860275D37746F67BC3A2AC47FAD154EDB1C9DEE0C459A2B65"
+        },
+        {
+          "path": "src/GWGUI.Emulation/Services/ExternalCoreEnvironmentCallbackHost.cs",
+          "name": "ApplyAvInfo",
+          "line": 52,
+          "tokens": 41,
+          "hash": "2EE0C5BA355D536F0D42DA70E5810F2C6631A53CC9298A5FE88A5C9E54BCD63D",
+          "shape": "97850ED7DF55930860275D37746F67BC3A2AC47FAD154EDB1C9DEE0C459A2B65",
+          "qualification": "Original Thomson environment class shared in SDK; complete class, resource ownership/finally, option profile factories and consumer bindings verified in environmentHostClassReuse",
+          "qualificationSourceSha256": "4E6DC7060D195FCF64C2ACDD410E54CD2A7211198A891514A75F4DAD6B26FD38"
         }
       ],
       "predecessors": [],
       "shapePredecessors": [],
-      "qualification": "pending"
+      "qualification": "Partial occurrence qualification; unannotated members pending"
     },
     {
       "language": "CSharp",
@@ -8697,33 +8685,6 @@
     },
     {
       "language": "CSharp",
-      "hash": "4B91FB6CEC709B51377400D864584DB15E09963AA54AC5F12AC50F506C4DBF82",
-      "method": "Dispose",
-      "tokens": 71,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Interop/Services/EnvironmentCallbackHost.cs",
-          "name": "Dispose",
-          "line": 96,
-          "tokens": 71,
-          "hash": "4B91FB6CEC709B51377400D864584DB15E09963AA54AC5F12AC50F506C4DBF82",
-          "shape": "1040D99C381912669F67C489E38A60353FD9CF31ED55C8EABAB382CC978E3B41"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Interop/Services/EnvironmentCallbackHost.cs",
-          "name": "Dispose",
-          "line": 96,
-          "tokens": 71,
-          "hash": "4B91FB6CEC709B51377400D864584DB15E09963AA54AC5F12AC50F506C4DBF82",
-          "shape": "1040D99C381912669F67C489E38A60353FD9CF31ED55C8EABAB382CC978E3B41"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
       "hash": "4C4E58340A22AD06D6CDA1D2A8766A6FF5F5EED37F5D386637401C644384231C",
       "method": "Begin",
       "tokens": 59,
@@ -12135,7 +12096,7 @@
     {
       "language": "CSharp",
       "hash": "68386C818382BCE400A3EDE65411B5CBD9D6A87F6D88FAF6501028CE28C38965",
-      "method": "ToSinclair",
+      "method": "ToModule",
       "tokens": 148,
       "current": [
         {
@@ -17041,7 +17002,7 @@
         {
           "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Interop/Services/ExternalCore.cs",
           "name": "LoadState",
-          "line": 177,
+          "line": 178,
           "tokens": 86,
           "hash": "93EBA1DB8858983FEC19E4B9D09C23A5FD0143FC65102307D3E229455481CE8D",
           "shape": "2DBBDFC4A910AAC5FE94F83D01BCB8CDD320B74C5B3DB180B9268E440417F73F"
@@ -17049,7 +17010,7 @@
         {
           "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Interop/Services/ExternalCore.cs",
           "name": "LoadState",
-          "line": 160,
+          "line": 161,
           "tokens": 86,
           "hash": "93EBA1DB8858983FEC19E4B9D09C23A5FD0143FC65102307D3E229455481CE8D",
           "shape": "2DBBDFC4A910AAC5FE94F83D01BCB8CDD320B74C5B3DB180B9268E440417F73F"
@@ -17412,33 +17373,6 @@
     },
     {
       "language": "CSharp",
-      "hash": "9700CDE67111CC54463AE8C45CDF68829FDB478EC2D90FFEBACDFBA957B950FA",
-      "method": "OnEnvironment",
-      "tokens": 514,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Interop/Services/EnvironmentCallbackHost.cs",
-          "name": "OnEnvironment",
-          "line": 55,
-          "tokens": 514,
-          "hash": "9700CDE67111CC54463AE8C45CDF68829FDB478EC2D90FFEBACDFBA957B950FA",
-          "shape": "6B8D9D4257AC409EF08BB9757CAAC715209AFDB23CCC91DDE1D12AC5D1CE543A"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Interop/Services/EnvironmentCallbackHost.cs",
-          "name": "OnEnvironment",
-          "line": 55,
-          "tokens": 514,
-          "hash": "9700CDE67111CC54463AE8C45CDF68829FDB478EC2D90FFEBACDFBA957B950FA",
-          "shape": "6B8D9D4257AC409EF08BB9757CAAC715209AFDB23CCC91DDE1D12AC5D1CE543A"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
       "hash": "9796FCB30C75327208B46384D3A14B43E8D1C21899F51D80F06BC0CC21CDDA8A",
       "method": "Read",
       "tokens": 114,
@@ -17760,7 +17694,7 @@
         {
           "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Interop/Services/ExternalCore.cs",
           "name": "Cleanup",
-          "line": 218,
+          "line": 219,
           "tokens": 207,
           "hash": "98ABCCD9CF60775C898292BAE36E7420DEFFA50A78C25E1F9368BAC72AEC26A3",
           "shape": "62B99A5FCC35A21A42292D05026C1DC93F7068EAE0BA3680FC6368A24D9BBF0B"
@@ -20549,7 +20483,7 @@
     {
       "language": "CSharp",
       "hash": "B053A3AB4F0B78A37DED57B2D744801187AED6EC54FEEAFE4B1AA9C454D6F48C",
-      "method": "SnkEmulationModule",
+      "method": "SharpEmulationModule",
       "tokens": 47,
       "current": [
         {
@@ -21115,22 +21049,6 @@
           "path": "src/GWGUI.Emulation.Watara/Emulators/Potator/Interop/Services/EnvironmentCallbackHost.cs",
           "name": "EnvironmentCallbackHost",
           "line": 34,
-          "tokens": 142,
-          "hash": "B775E56135BBFD4178F33FABA6CDD65D38D7C61F2F7C0FD9FE878F6B7E00ABB3",
-          "shape": "7A0143ED0BB4CF200AFFEA9B50E25067F798540838D146605941196FB0F57A03"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Interop/Services/EnvironmentCallbackHost.cs",
-          "name": "EnvironmentCallbackHost",
-          "line": 20,
-          "tokens": 142,
-          "hash": "B775E56135BBFD4178F33FABA6CDD65D38D7C61F2F7C0FD9FE878F6B7E00ABB3",
-          "shape": "7A0143ED0BB4CF200AFFEA9B50E25067F798540838D146605941196FB0F57A03"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Interop/Services/EnvironmentCallbackHost.cs",
-          "name": "EnvironmentCallbackHost",
-          "line": 20,
           "tokens": 142,
           "hash": "B775E56135BBFD4178F33FABA6CDD65D38D7C61F2F7C0FD9FE878F6B7E00ABB3",
           "shape": "7A0143ED0BB4CF200AFFEA9B50E25067F798540838D146605941196FB0F57A03"
@@ -22887,33 +22805,6 @@
           "tokens": 176,
           "hash": "C68EE6074EF186F31EFEDDAA43DC623A9CCEBDB0ED4445766EA0F16813013F17",
           "shape": "4C4FC5F6E2078DDA70ADA4A31290153D268E4DD75918838949FEE5D1505E2B66"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
-      "hash": "C71AB6F7BB749137FA86CDE1648D58721B3C97DAE396674E771A36C51620526C",
-      "method": "OptionCallbackHost",
-      "tokens": 92,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Watara/Emulators/Potator/Interop/Services/OptionCallbackHost.cs",
-          "name": "OptionCallbackHost",
-          "line": 9,
-          "tokens": 92,
-          "hash": "C71AB6F7BB749137FA86CDE1648D58721B3C97DAE396674E771A36C51620526C",
-          "shape": "8DC5309506D89463435EC00B3DFABE33056B5432DBF78729E7AC353ADCDC380E"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Interop/Services/OptionCallbackHost.cs",
-          "name": "OptionCallbackHost",
-          "line": 9,
-          "tokens": 92,
-          "hash": "C71AB6F7BB749137FA86CDE1648D58721B3C97DAE396674E771A36C51620526C",
-          "shape": "8DC5309506D89463435EC00B3DFABE33056B5432DBF78729E7AC353ADCDC380E"
         }
       ],
       "predecessors": [],
@@ -30322,7 +30213,7 @@
         {
           "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Interop/Services/ExternalCore.cs",
           "name": "LoadState",
-          "line": 177,
+          "line": 178,
           "tokens": 86,
           "hash": "93EBA1DB8858983FEC19E4B9D09C23A5FD0143FC65102307D3E229455481CE8D",
           "shape": "2DBBDFC4A910AAC5FE94F83D01BCB8CDD320B74C5B3DB180B9268E440417F73F"
@@ -30330,7 +30221,7 @@
         {
           "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Interop/Services/ExternalCore.cs",
           "name": "LoadState",
-          "line": 160,
+          "line": 161,
           "tokens": 86,
           "hash": "93EBA1DB8858983FEC19E4B9D09C23A5FD0143FC65102307D3E229455481CE8D",
           "shape": "2DBBDFC4A910AAC5FE94F83D01BCB8CDD320B74C5B3DB180B9268E440417F73F"
@@ -36135,7 +36026,7 @@
         {
           "path": "src/GWGUI.Emulation.Thomson/Emulators/Theodore/Interop/Services/ExternalCore.cs",
           "name": "SaveState",
-          "line": 156,
+          "line": 157,
           "tokens": 118,
           "hash": "28C57645ED91D76709D5D894343C56545CD9AF059D3312D6F07EA99422FDC8F2",
           "shape": "D6353A43CA4D2C4DC3EBB79935F18C57F2FBBD4D1FB39980003882C48B0C7D07"
@@ -36143,7 +36034,7 @@
         {
           "path": "src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Interop/Services/ExternalCore.cs",
           "name": "SaveState",
-          "line": 139,
+          "line": 140,
           "tokens": 118,
           "hash": "28C57645ED91D76709D5D894343C56545CD9AF059D3312D6F07EA99422FDC8F2",
           "shape": "D6353A43CA4D2C4DC3EBB79935F18C57F2FBBD4D1FB39980003882C48B0C7D07"
@@ -38019,7 +37910,7 @@
   ],
   "scope": "All current repository CSharp and PowerShell files; no age filter; candidates require semantic review",
   "qualificationCarryForward": {
-    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical",
-    "occurrences": 152
+    "occurrences": 152,
+    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical"
   }
 }

@@ -5,6 +5,12 @@ namespace GWGUI.Emulation.Thomson.Emulators.Theodore.Functions;
 
 internal static class RuntimeOptionFunctions
 {
+    internal static EmulationLegacyOptionHost<CoreOption> CreateCallbackHost(IReadOnlyDictionary<string, string> values) =>
+        new(values,
+        static (key, name, defaultValue, current, choices) => new CoreOption(key, name, null, null, defaultValue, current, choices.Select(value => new CoreOptionValue(value, value)).ToArray()),
+        static (option, value) => option.Values.Any(choice => choice.Value == value),
+        static (option, value) => option with { CurrentValue = value });
+
     internal static IReadOnlyDictionary<string, string> Prepare(MachineConfiguration configuration)
     {
         ConfigurationFunctions.Validate(configuration);

@@ -2,26 +2,30 @@ using System.IO;
 using System.Globalization;
 using System.Runtime.InteropServices;
 using GWGUI.Emulation.Interop;
+using GWGUI.Emulation.Constants;
+using GWGUI.Emulation.Contracts;
+using GWGUI.Emulation.Functions;
 
-namespace GWGUI.Emulation.Thomson.Emulators.Theodore.Interop.Services;
+namespace GWGUI.Emulation.Services;
 
-internal sealed class EnvironmentCallbackHost : IDisposable
+internal sealed class ExternalCoreEnvironmentCallbackHost : IDisposable
 {
     private enum NativePixelFormat { Rgb1555 = 0, Xrgb8888 = 1, Rgb565 = 2 }
     private const int EnglishLanguage = 0;
     private const int FrenchLanguage = 2;
-    private readonly VideoCallbackHost _video;
-    private readonly AudioCallbackHost _audio;
-    private readonly OptionCallbackHost _options;
+    private readonly ExternalCoreVideoCallbackHost _video;
+    private readonly ExternalCoreAudioCallbackHost _audio;
+    private readonly EmulationLegacyOptionHost<EmulationEnabledOption> _options;
     private readonly ExternalCoreVirtualFileSystem _files;
     private readonly Dictionary<uint, ExternalCoreUtf8String> _directories = [];
     private readonly ExternalCoreApi.LogCallback _log;
     private bool _disposed;
-    internal EnvironmentCallbackHost(VideoCallbackHost video, AudioCallbackHost audio, IReadOnlyDictionary<string, string> options, string systemDirectory, string contentDirectory, string saveDirectory, string assetsDirectory)
+    internal ExternalCoreEnvironmentCallbackHost(ExternalCoreVideoCallbackHost video, ExternalCoreAudioCallbackHost audio, IReadOnlyDictionary<string, string> options, string systemDirectory, string contentDirectory, string saveDirectory, string assetsDirectory,
+        Func<IReadOnlyDictionary<string, string>, EmulationLegacyOptionHost<EmulationEnabledOption>> createOptions)
     {
         _video = video;
         _audio = audio;
-        _options = new OptionCallbackHost(options);
+        _options = createOptions(options);
         _files = new ExternalCoreVirtualFileSystem();
         Callback = OnEnvironment;
         _log = OnLog;
@@ -38,7 +42,7 @@ internal sealed class EnvironmentCallbackHost : IDisposable
     }
     internal ExternalCoreApi.EnvironmentCallback Callback { get; }
     internal ExternalCoreApi.KeyboardEvent? Keyboard { get; private set; }
-    internal IReadOnlyList<CoreOption> Options => _options.Options;
+    internal IReadOnlyList<EmulationEnabledOption> Options => _options.Options;
     internal List<string> Diagnostics { get; } = [];
     internal bool SupportsNoGame { get; private set; }
     internal double FramesPerSecond { get; private set; }
