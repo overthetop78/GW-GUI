@@ -1,17 +1,12 @@
 {
-  "snapshot": "fad26a0878c1103d4ce53b53bd161021244276df",
+  "snapshot": "a2b05a6735800938c425024a5cdcdb243dc55aa8",
   "snapshotState": "Current worktree based on snapshot",
   "worktreeSourceChanges": [
-    "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Functions/CoreSettingsDescriptionFunctions.Builders.cs",
-    "src/GWGUI.Emulation.Microsoft/Common/Machines/Common/Functions/SettingsFunctions.Builders.cs",
-    "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Functions/CoreSettingsDescriptionFunctions.Builders.cs",
-    "src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Functions/SettingsFunctions.Builders.cs",
-    "src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/SettingsFunctions.Builders.cs",
-    "src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/SettingsFunctions.Builders.cs",
-    "src/GWGUI.Emulation/Functions/EmulationHardwareSettingsFunctions.cs"
+    "src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/InputFunctions.Keyboard.cs",
+    "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Constants/KeyboardConstants.cs"
   ],
   "scope": "All current non-ignored repository CSharp files, including hidden paths; BaseMethodDeclaration bodies with fewer than 30 tokens. Candidate presence is not a defect or a completion claim.",
-  "fileCount": 7258,
+  "fileCount": 7257,
   "methodBodyCount": 9573,
   "exactGroups": [
     {
@@ -14415,7 +14410,7 @@
           "name": "Character",
           "owner": "KeyboardFunctions",
           "kind": "MethodDeclaration",
-          "line": 57,
+          "line": 12,
           "parameters": "(uint code, IReadOnlySet<EmulationKey> keys)",
           "tokens": 15,
           "bodyTokens": "=> GWGUI . Emulation . Functions . ExternalCoreKeyboardFunctions . Character ( code , keys )",
@@ -73320,18 +73315,6 @@
           "shape": "02999BD750C4541E36D49C319AC8EF4790ECC425A6F02E8A28342ED318DFD3D9"
         },
         {
-          "path": "src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/InputFunctions.Keyboard.cs",
-          "name": "HasShift",
-          "owner": "KeyboardFunctions",
-          "kind": "MethodDeclaration",
-          "line": 71,
-          "parameters": "(IReadOnlySet<EmulationKey> keys)",
-          "tokens": 18,
-          "bodyTokens": "=> keys . Contains ( EmulationKey . LeftShift ) || keys . Contains ( EmulationKey . RightShift )",
-          "hash": "FD94BA1C07C24322E0B84CA2D79DFC0C0F218D2351CBA6B360E2276BBADFFB93",
-          "shape": "02999BD750C4541E36D49C319AC8EF4790ECC425A6F02E8A28342ED318DFD3D9"
-        },
-        {
           "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Functions/InputFunctions.Keyboard.cs",
           "name": "HasShift",
           "owner": "KeyboardFunctions",
@@ -73900,18 +73883,6 @@
           "shape": "FDA40F08AD16A6A6B545A427F3CF35C945BD4C823DD533A024F0B7F68B6AAE24"
         },
         {
-          "path": "src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/InputFunctions.Keyboard.cs",
-          "name": "AddRange",
-          "owner": "KeyboardFunctions",
-          "kind": "MethodDeclaration",
-          "line": 73,
-          "parameters": "(IDictionary<EmulationKey, uint> map, EmulationKey firstKey, uint firstCode, int count)",
-          "tokens": 19,
-          "bodyTokens": "=> GWGUI . Emulation . Functions . ExternalCoreKeyboardFunctions . AddRange ( map , firstKey , firstCode , count )",
-          "hash": "FF2373EE69FEF5656E4A680180D8C28C96B09E7B91EB9C66D3BCA5E9E88C870E",
-          "shape": "FDA40F08AD16A6A6B545A427F3CF35C945BD4C823DD533A024F0B7F68B6AAE24"
-        },
-        {
           "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Functions/InputFunctions.Keyboard.cs",
           "name": "AddRange",
           "owner": "KeyboardFunctions",
@@ -74412,18 +74383,6 @@
           "owner": "KeyboardFunctions",
           "kind": "MethodDeclaration",
           "line": 67,
-          "parameters": "(IReadOnlySet<EmulationKey> keys)",
-          "tokens": 18,
-          "bodyTokens": "=> keys . Contains ( EmulationKey . LeftShift ) || keys . Contains ( EmulationKey . RightShift )",
-          "hash": "FD94BA1C07C24322E0B84CA2D79DFC0C0F218D2351CBA6B360E2276BBADFFB93",
-          "shape": "02999BD750C4541E36D49C319AC8EF4790ECC425A6F02E8A28342ED318DFD3D9"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/InputFunctions.Keyboard.cs",
-          "name": "HasShift",
-          "owner": "KeyboardFunctions",
-          "kind": "MethodDeclaration",
-          "line": 71,
           "parameters": "(IReadOnlySet<EmulationKey> keys)",
           "tokens": 18,
           "bodyTokens": "=> keys . Contains ( EmulationKey . LeftShift ) || keys . Contains ( EmulationKey . RightShift )",
@@ -75992,6 +75951,20 @@
           "bodyTokens": "=> _optionHost . ValidateConfiguredValues ( )",
           "hash": "7F1031BC398A1300A39F53F9BE09ACF8B5613CC1E5270A0E7D69026D50CEB3B4",
           "shape": "0A6381ECD0267B5C6F14E803073AF2E6A53A9161183A908283FDC323CC4A28CC"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/InputFunctions.Keyboard.cs",
+          "name": "CreateKeyMap",
+          "owner": "KeyboardFunctions",
+          "kind": "MethodDeclaration",
+          "line": 8,
+          "parameters": "()",
+          "tokens": 6,
+          "bodyTokens": "=> SharedKeyboardFunctions . CreateKeyMap ( )",
+          "hash": "7779988A9122ACC9ECE3826C23F389CD6469A89E2B52B2999F5410202038A758",
+          "shape": "0A6381ECD0267B5C6F14E803073AF2E6A53A9161183A908283FDC323CC4A28CC",
+          "qualification": "Verified Atari binding to original SDK keyboard owner; atariKeyboardMapReuse constant equivalence and105 regression cases",
+          "qualificationSourceSha256": "8AF54C1FE1974045F8917D0A442828D0CBC724B458072396B37401E416856B9B"
         },
         {
           "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/CoreOptionHost.cs",
@@ -100329,6 +100302,20 @@
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5"
         },
         {
+          "path": "src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/InputFunctions.Keyboard.cs",
+          "name": "Modifiers",
+          "owner": "KeyboardFunctions",
+          "kind": "MethodDeclaration",
+          "line": 10,
+          "parameters": "(IReadOnlySet<EmulationKey> keys)",
+          "tokens": 7,
+          "bodyTokens": "=> SharedKeyboardFunctions . Modifiers ( keys )",
+          "hash": "1784C793EF5BE6F8D3A826E6F4624CF528A698043A779AAE6007DB8BB7F47F19",
+          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
+          "qualification": "Verified Atari binding to original SDK keyboard owner; atariKeyboardMapReuse constant equivalence and105 regression cases",
+          "qualificationSourceSha256": "8AF54C1FE1974045F8917D0A442828D0CBC724B458072396B37401E416856B9B"
+        },
+        {
           "path": "src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/MachineFunctions.cs",
           "name": "DeleteSessionDirectory",
           "owner": "MachineFunctions",
@@ -112221,7 +112208,7 @@
           "name": "Character",
           "owner": "KeyboardFunctions",
           "kind": "MethodDeclaration",
-          "line": 57,
+          "line": 12,
           "parameters": "(uint code, IReadOnlySet<EmulationKey> keys)",
           "tokens": 15,
           "bodyTokens": "=> GWGUI . Emulation . Functions . ExternalCoreKeyboardFunctions . Character ( code , keys )",
@@ -138352,7 +138339,7 @@
     }
   ],
   "qualificationCarryForward": {
-    "occurrences": 712,
-    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical"
+    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical",
+    "occurrences": 754
   }
 }

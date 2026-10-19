@@ -1,9 +1,9 @@
 {
   "baseline": "ac7292d86^",
-  "currentCSharpFiles": 7258,
+  "currentCSharpFiles": 7257,
   "outsideSrcCSharpFiles": 309,
   "baselineMethodCount": 5848,
-  "currentMethodCount": 11571,
+  "currentMethodCount": 11569,
   "powerShellFunctionCount": 17,
   "groups": [
     {
@@ -12375,14 +12375,6 @@
           "shape": "5C7A2A5EB1B2A589B50E77E6B28756FCFDDB18BB74E8DFEE56FA2C2D1DE8CC95"
         },
         {
-          "path": "src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/InputFunctions.Keyboard.cs",
-          "name": "Modifiers",
-          "line": 52,
-          "tokens": 76,
-          "hash": "6E1846B01DB70A866974360488FCC52EC0F379F39CC5009E5F4B7DE5261D276D",
-          "shape": "5C7A2A5EB1B2A589B50E77E6B28756FCFDDB18BB74E8DFEE56FA2C2D1DE8CC95"
-        },
-        {
           "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Functions/InputFunctions.Keyboard.cs",
           "name": "Modifiers",
           "line": 52,
@@ -17990,7 +17982,7 @@
     {
       "language": "CSharp",
       "hash": "A1E03750FEB3292ACEB41656386F4A8AA8B05077D9ABFB7DA103AA3D71320B9F",
-      "method": "ToFairchild",
+      "method": "ToModule",
       "tokens": 103,
       "current": [
         {
@@ -19533,7 +19525,7 @@
     {
       "language": "CSharp",
       "hash": "B053A3AB4F0B78A37DED57B2D744801187AED6EC54FEEAFE4B1AA9C454D6F48C",
-      "method": "FairchildEmulationModule",
+      "method": "SharpEmulationModule",
       "tokens": 47,
       "current": [
         {
@@ -28644,29 +28636,6 @@
       "qualification": "pending-symbol-and-policy-comparison"
     },
     {
-      "shape": "202C213CD232410AC1D6B9F589E0F60A16594AA88F806622C143F6BBB9A81569",
-      "tokens": 503,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation/Functions/ExternalCoreKeyboardFunctions.cs",
-          "name": "CreateKeyMap",
-          "line": 38,
-          "tokens": 503,
-          "hash": "7532A951E1A58D6A920A8CCC867A5D4467B0051E899DABE2DA23EFA99F262AF5",
-          "shape": "202C213CD232410AC1D6B9F589E0F60A16594AA88F806622C143F6BBB9A81569"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/InputFunctions.Keyboard.cs",
-          "name": "CreateKeyMap",
-          "line": 7,
-          "tokens": 503,
-          "hash": "D263E679446CF1B35D9342435A8062956C3895FD6E553C575069ECFA88DA46A8",
-          "shape": "202C213CD232410AC1D6B9F589E0F60A16594AA88F806622C143F6BBB9A81569"
-        }
-      ],
-      "qualification": "pending-symbol-and-policy-comparison"
-    },
-    {
       "shape": "23DBE5CB614CE6835FF1934FDADD4F1BA3C173AADD20628A92A5BE0FBAD6FA9C",
       "tokens": 80,
       "current": [
@@ -30475,14 +30444,6 @@
         },
         {
           "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Functions/InputFunctions.Keyboard.cs",
-          "name": "Modifiers",
-          "line": 52,
-          "tokens": 76,
-          "hash": "6E1846B01DB70A866974360488FCC52EC0F379F39CC5009E5F4B7DE5261D276D",
-          "shape": "5C7A2A5EB1B2A589B50E77E6B28756FCFDDB18BB74E8DFEE56FA2C2D1DE8CC95"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/InputFunctions.Keyboard.cs",
           "name": "Modifiers",
           "line": 52,
           "tokens": 76,
@@ -36039,7 +36000,7 @@
         {
           "path": "src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/InputFunctions.Keyboard.cs",
           "name": "IsModifier",
-          "line": 60,
+          "line": 15,
           "tokens": 34,
           "hash": "36E4712807E926AD98183634FFFD3EF52BEB0EFB200144E162E36B0923B8CB48",
           "shape": "FEA3A66B06A07500CF71210C81011318B631A54EE19BF932E234E74DDEF23604"
@@ -36143,7 +36104,7 @@
   ],
   "scope": "All current repository CSharp and PowerShell files; no age filter; candidates require semantic review",
   "qualificationCarryForward": {
-    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical",
-    "occurrences": 242
+    "occurrences": 259,
+    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical"
   }
 }

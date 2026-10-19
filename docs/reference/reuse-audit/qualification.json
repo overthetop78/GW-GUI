@@ -377658,5 +377658,1329 @@
       "otherMethodsNewlyQualified": 0,
       "partialMembersRestored": 65
     }
+  },
+  "atariKeyboardMapReuse": {
+    "before": [
+      {
+        "path": "src/GWGUI.Emulation/Functions/ExternalCoreKeyboardFunctions.cs",
+        "sha256": "1227C4CDD1565C5016391B5720CDB1E65632963C725D6B6A361ECAE234531AE0",
+        "source": "using GWGUI.Emulation.Interop;\r\n\r\nnamespace GWGUI.Emulation.Functions;\r\n\r\ninternal static class ExternalCoreKeyboardFunctions\r\n{\r\n    internal static ushort Modifiers(IReadOnlySet<EmulationKey> keys) => (ushort)(\n        (HasShift(keys) ? ExternalCoreKeyboardConstants.ShiftModifier : ExternalCoreKeyboardConstants.NoModifiers) |\n        (keys.Contains(EmulationKey.LeftControl) || keys.Contains(EmulationKey.RightControl) ? ExternalCoreKeyboardConstants.ControlModifier : ExternalCoreKeyboardConstants.NoModifiers) |\n        (keys.Contains(EmulationKey.LeftAlt) || keys.Contains(EmulationKey.RightAlt) ? ExternalCoreKeyboardConstants.AltModifier : ExternalCoreKeyboardConstants.NoModifiers));\n\n    internal static void PublishTransitions(IReadOnlySet<EmulationKey> keys,\n        IReadOnlyDictionary<EmulationKey, uint> keyMap, ushort modifiers,\n        ref IReadOnlySet<EmulationKey> previous, ref ExternalCoreApi.KeyboardEvent? keyboardEvent,\n        Func<EmulationKey, bool> isModifier, Func<uint, IReadOnlySet<EmulationKey>, uint> characterFor)\n    {\n        foreach (var key in previous.Except(keys).OrderBy(key => isModifier(key) ? ExternalCoreKeyboardConstants.ModifierLastOrder : ExternalCoreKeyboardConstants.ModifierFirstOrder))\n            if (keyMap.TryGetValue(key, out var code))\n                keyboardEvent!(false, code, ExternalCoreKeyboardConstants.NoCharacter, modifiers);\n        foreach (var key in keys.Except(previous).OrderBy(key => isModifier(key) ? ExternalCoreKeyboardConstants.ModifierFirstOrder : ExternalCoreKeyboardConstants.ModifierLastOrder))\n            if (keyMap.TryGetValue(key, out var code))\n                keyboardEvent!(true, code, characterFor(code, keys), modifiers);\n        previous = new HashSet<EmulationKey>(keys);\n    }\n\r\n    internal static void PublishCodeTransitions<TSet>(TSet current, ref TSet previous,\n        ExternalCoreApi.KeyboardEvent keyboardEvent, ushort modifiers,\n        Func<IEnumerable<uint>, IEnumerable<uint>> orderReleased,\n        Func<IEnumerable<uint>, IEnumerable<uint>> orderPressed, Func<uint, uint> characterFor)\n        where TSet : IReadOnlySet<uint>\n    {\n        foreach (var code in orderReleased(previous.Except(current)))\n            keyboardEvent(false, code, ExternalCoreKeyboardConstants.NoCharacter, modifiers);\n        foreach (var code in orderPressed(current.Except(previous)))\n            keyboardEvent(true, code, characterFor(code), modifiers);\n    }\n\r\n    internal static IReadOnlyDictionary<EmulationKey, uint> CreateKeyMap()\r\n    {\r\n        var map = new Dictionary<EmulationKey, uint>\r\n        {\r\n            [EmulationKey.Backspace] = ExternalCoreKeyboardConstants.Backspace,\r\n            [EmulationKey.Tab] = ExternalCoreKeyboardConstants.Tab,\r\n            [EmulationKey.Return] = ExternalCoreKeyboardConstants.Return,\r\n            [EmulationKey.Escape] = ExternalCoreKeyboardConstants.Escape,\r\n            [EmulationKey.Space] = ExternalCoreKeyboardConstants.Space,\r\n            [EmulationKey.Comma] = ',', [EmulationKey.Minus] = '-', [EmulationKey.Period] = '.',\r\n            [EmulationKey.Slash] = '/', [EmulationKey.Semicolon] = ';', [EmulationKey.Equals] = '=',\r\n            [EmulationKey.LeftBracket] = '[', [EmulationKey.Backslash] = '\\\\',\r\n            [EmulationKey.RightBracket] = ']', [EmulationKey.Quote] = '\\'', [EmulationKey.Backquote] = '`',\r\n            [EmulationKey.Delete] = ExternalCoreKeyboardConstants.Delete,\r\n            [EmulationKey.Up] = ExternalCoreKeyboardConstants.Up, [EmulationKey.Down] = ExternalCoreKeyboardConstants.Down,\r\n            [EmulationKey.Right] = ExternalCoreKeyboardConstants.Right, [EmulationKey.Left] = ExternalCoreKeyboardConstants.Left,\r\n            [EmulationKey.Insert] = ExternalCoreKeyboardConstants.Insert, [EmulationKey.Home] = ExternalCoreKeyboardConstants.Home,\r\n            [EmulationKey.End] = ExternalCoreKeyboardConstants.End, [EmulationKey.PageUp] = ExternalCoreKeyboardConstants.PageUp,\r\n            [EmulationKey.PageDown] = ExternalCoreKeyboardConstants.PageDown,\r\n            [EmulationKey.CapsLock] = ExternalCoreKeyboardConstants.CapsLock,\r\n            [EmulationKey.RightShift] = ExternalCoreKeyboardConstants.RightShift,\r\n            [EmulationKey.LeftShift] = ExternalCoreKeyboardConstants.LeftShift,\r\n            [EmulationKey.RightControl] = ExternalCoreKeyboardConstants.RightControl,\r\n            [EmulationKey.LeftControl] = ExternalCoreKeyboardConstants.LeftControl,\r\n            [EmulationKey.RightAlt] = ExternalCoreKeyboardConstants.RightAlt,\r\n            [EmulationKey.LeftAlt] = ExternalCoreKeyboardConstants.LeftAlt,\r\n            [EmulationKey.LeftAmiga] = ExternalCoreKeyboardConstants.LeftMeta,\r\n            [EmulationKey.RightAmiga] = ExternalCoreKeyboardConstants.RightMeta,\r\n            [EmulationKey.Help] = ExternalCoreKeyboardConstants.Help,\r\n            [EmulationKey.Break] = ExternalCoreKeyboardConstants.Break,\r\n            [EmulationKey.Undo] = ExternalCoreKeyboardConstants.Undo,\r\n            [EmulationKey.NumpadPeriod] = ExternalCoreKeyboardConstants.KeypadPeriod,\r\n            [EmulationKey.NumpadDivide] = ExternalCoreKeyboardConstants.KeypadDivide,\r\n            [EmulationKey.NumpadMultiply] = ExternalCoreKeyboardConstants.KeypadMultiply,\r\n            [EmulationKey.NumpadMinus] = ExternalCoreKeyboardConstants.KeypadMinus,\r\n            [EmulationKey.NumpadPlus] = ExternalCoreKeyboardConstants.KeypadPlus,\r\n            [EmulationKey.NumpadEnter] = ExternalCoreKeyboardConstants.KeypadEnter\r\n        };\r\n        AddRange(map, EmulationKey.A, ExternalCoreKeyboardConstants.FirstLetter, ExternalCoreKeyboardConstants.LetterCount);\r\n        AddRange(map, EmulationKey.D0, ExternalCoreKeyboardConstants.FirstDigit, ExternalCoreKeyboardConstants.DigitCount);\r\n        AddRange(map, EmulationKey.F1, ExternalCoreKeyboardConstants.FirstFunctionKey, ExternalCoreKeyboardConstants.FunctionKeyCount);\r\n        AddRange(map, EmulationKey.Numpad0, ExternalCoreKeyboardConstants.FirstKeypadDigit, ExternalCoreKeyboardConstants.DigitCount);\r\n        return map;\r\n    }\r\n\r\n\r\n    internal static uint Character(uint code, IReadOnlySet<EmulationKey> keys)\r\n    {\r\n        var shifted = HasShift(keys);\r\n        if (code is >= ExternalCoreKeyboardConstants.FirstLetter and <= ExternalCoreKeyboardConstants.LastLetter)\r\n            return shifted ^ keys.Contains(EmulationKey.CapsLock) ? code - ExternalCoreKeyboardConstants.UppercaseOffset : code;\r\n        if (!shifted) return IsPrintable(code) ? code : ExternalCoreKeyboardConstants.NoCharacter;\r\n        return code switch\r\n        {\r\n            '0' => ')', '1' => '!', '2' => '@', '3' => '#', '4' => '$', '5' => '%',\r\n            '6' => '^', '7' => '&', '8' => '*', '9' => '(', '-' => '_', '=' => '+',\r\n            '[' => '{', ']' => '}', '\\\\' => '|', ';' => ':', '\\'' => '\"', ',' => '<',\r\n            '.' => '>', '/' => '?', '`' => '~', _ => IsPrintable(code) ? code : ExternalCoreKeyboardConstants.NoCharacter\r\n        };\r\n    }\r\n\r\n\r\n    private static bool HasShift(IReadOnlySet<EmulationKey> keys) => keys.Contains(EmulationKey.LeftShift) || keys.Contains(EmulationKey.RightShift);\r\n\r\n\r\n    private static bool IsPrintable(uint code) => code is >= ExternalCoreKeyboardConstants.FirstPrintableCharacter and <= ExternalCoreKeyboardConstants.LastPrintableCharacter;\r\n\r\n\r\n    internal static void AddRange(IDictionary<EmulationKey, uint> map, EmulationKey firstKey, uint firstCode, int count)\r\n    {\r\n        for (var offset = ExternalCoreKeyboardConstants.FirstRangeOffset; offset < count; offset++)\r\n            map[(EmulationKey)((int)firstKey + offset)] = firstCode + checked((uint)offset);\r\n    }\r\n\r\n}\r\n",
+        "methods": {
+          "HasShift": {
+            "tokens": "private static bool HasShift ( IReadOnlySet < EmulationKey > keys ) => keys . Contains ( __constant_46 ) || keys . Contains ( __constant_47 ) ; ",
+            "constants": [
+              {
+                "length": 22,
+                "start": 87,
+                "value": 46,
+                "name": "EmulationKey.LeftShift"
+              },
+              {
+                "length": 23,
+                "start": 128,
+                "value": 47,
+                "name": "EmulationKey.RightShift"
+              }
+            ]
+          },
+          "Modifiers": {
+            "tokens": "internal static ushort Modifiers ( IReadOnlySet < EmulationKey > keys ) => ( ushort ) ( ( HasShift ( keys ) ? __constant_1 : __constant_0 ) | ( keys . Contains ( __constant_48 ) || keys . Contains ( __constant_49 ) ? __constant_2 : __constant_0 ) | ( keys . Contains ( __constant_50 ) || keys . Contains ( __constant_51 ) ? __constant_4 : __constant_0 ) ) ; ",
+            "constants": [
+              {
+                "length": 43,
+                "start": 109,
+                "value": 1,
+                "name": "ExternalCoreKeyboardConstants.ShiftModifier"
+              },
+              {
+                "length": 41,
+                "start": 155,
+                "value": 0,
+                "name": "ExternalCoreKeyboardConstants.NoModifiers"
+              },
+              {
+                "length": 24,
+                "start": 223,
+                "value": 48,
+                "name": "EmulationKey.LeftControl"
+              },
+              {
+                "length": 25,
+                "start": 266,
+                "value": 49,
+                "name": "EmulationKey.RightControl"
+              },
+              {
+                "length": 45,
+                "start": 295,
+                "value": 2,
+                "name": "ExternalCoreKeyboardConstants.ControlModifier"
+              },
+              {
+                "length": 41,
+                "start": 343,
+                "value": 0,
+                "name": "ExternalCoreKeyboardConstants.NoModifiers"
+              },
+              {
+                "length": 20,
+                "start": 411,
+                "value": 50,
+                "name": "EmulationKey.LeftAlt"
+              },
+              {
+                "length": 21,
+                "start": 450,
+                "value": 51,
+                "name": "EmulationKey.RightAlt"
+              },
+              {
+                "length": 41,
+                "start": 475,
+                "value": 4,
+                "name": "ExternalCoreKeyboardConstants.AltModifier"
+              },
+              {
+                "length": 41,
+                "start": 519,
+                "value": 0,
+                "name": "ExternalCoreKeyboardConstants.NoModifiers"
+              }
+            ]
+          },
+          "CreateKeyMap": {
+            "tokens": "internal static IReadOnlyDictionary < EmulationKey , uint > CreateKeyMap ( ) { var map = new Dictionary < EmulationKey , uint > { [ __constant_1 ] = __constant_8 , [ __constant_2 ] = __constant_9 , [ __constant_3 ] = __constant_13 , [ __constant_4 ] = __constant_27 , [ __constant_5 ] = __constant_32 , [ __constant_68 ] = ',' , [ __constant_72 ] = '-' , [ __constant_69 ] = '.' , [ __constant_70 ] = '/' , [ __constant_74 ] = ';' , [ __constant_73 ] = '=' , [ __constant_76 ] = '[' , [ __constant_71 ] = '\\\\' , [ __constant_77 ] = ']' , [ __constant_75 ] = '\\'' , [ __constant_78 ] = '`' , [ __constant_62 ] = __constant_127 , [ __constant_44 ] = __constant_273 , [ __constant_45 ] = __constant_274 , [ __constant_43 ] = __constant_275 , [ __constant_42 ] = __constant_276 , [ __constant_63 ] = __constant_277 , [ __constant_64 ] = __constant_278 , [ __constant_65 ] = __constant_279 , [ __constant_66 ] = __constant_280 , [ __constant_67 ] = __constant_281 , [ __constant_79 ] = __constant_301 , [ __constant_47 ] = __constant_303 , [ __constant_46 ] = __constant_304 , [ __constant_49 ] = __constant_305 , [ __constant_48 ] = __constant_306 , [ __constant_51 ] = __constant_307 , [ __constant_50 ] = __constant_308 , [ __constant_81 ] = __constant_311 , [ __constant_82 ] = __constant_312 , [ __constant_80 ] = __constant_315 , [ __constant_84 ] = __constant_318 , [ __constant_83 ] = __constant_322 , [ __constant_98 ] = __constant_266 , [ __constant_99 ] = __constant_267 , [ __constant_100 ] = __constant_268 , [ __constant_101 ] = __constant_269 , [ __constant_102 ] = __constant_270 , [ __constant_103 ] = __constant_271 } ; AddRange ( map , __constant_6 , __constant_97 , __constant_26 ) ; AddRange ( map , __constant_32 , __constant_48 , __constant_10 ) ; AddRange ( map , __constant_52 , __constant_282 , __constant_10 ) ; AddRange ( map , __constant_88 , __constant_256 , __constant_10 ) ; return map ; } ",
+            "constants": [
+              {
+                "length": 22,
+                "start": 163,
+                "value": 1,
+                "name": "EmulationKey.Backspace"
+              },
+              {
+                "length": 39,
+                "start": 189,
+                "value": 8,
+                "name": "ExternalCoreKeyboardConstants.Backspace"
+              },
+              {
+                "length": 16,
+                "start": 244,
+                "value": 2,
+                "name": "EmulationKey.Tab"
+              },
+              {
+                "length": 33,
+                "start": 264,
+                "value": 9,
+                "name": "ExternalCoreKeyboardConstants.Tab"
+              },
+              {
+                "length": 19,
+                "start": 313,
+                "value": 3,
+                "name": "EmulationKey.Return"
+              },
+              {
+                "length": 36,
+                "start": 336,
+                "value": 13,
+                "name": "ExternalCoreKeyboardConstants.Return"
+              },
+              {
+                "length": 19,
+                "start": 388,
+                "value": 4,
+                "name": "EmulationKey.Escape"
+              },
+              {
+                "length": 36,
+                "start": 411,
+                "value": 27,
+                "name": "ExternalCoreKeyboardConstants.Escape"
+              },
+              {
+                "length": 18,
+                "start": 463,
+                "value": 5,
+                "name": "EmulationKey.Space"
+              },
+              {
+                "length": 35,
+                "start": 485,
+                "value": 32,
+                "name": "ExternalCoreKeyboardConstants.Space"
+              },
+              {
+                "length": 18,
+                "start": 536,
+                "value": 68,
+                "name": "EmulationKey.Comma"
+              },
+              {
+                "length": 18,
+                "start": 564,
+                "value": 72,
+                "name": "EmulationKey.Minus"
+              },
+              {
+                "length": 19,
+                "start": 592,
+                "value": 69,
+                "name": "EmulationKey.Period"
+              },
+              {
+                "length": 18,
+                "start": 634,
+                "value": 70,
+                "name": "EmulationKey.Slash"
+              },
+              {
+                "length": 22,
+                "start": 662,
+                "value": 74,
+                "name": "EmulationKey.Semicolon"
+              },
+              {
+                "length": 19,
+                "start": 694,
+                "value": 73,
+                "name": "EmulationKey.Equals"
+              },
+              {
+                "length": 24,
+                "start": 736,
+                "value": 76,
+                "name": "EmulationKey.LeftBracket"
+              },
+              {
+                "length": 22,
+                "start": 770,
+                "value": 71,
+                "name": "EmulationKey.Backslash"
+              },
+              {
+                "length": 25,
+                "start": 816,
+                "value": 77,
+                "name": "EmulationKey.RightBracket"
+              },
+              {
+                "length": 18,
+                "start": 851,
+                "value": 75,
+                "name": "EmulationKey.Quote"
+              },
+              {
+                "length": 22,
+                "start": 880,
+                "value": 78,
+                "name": "EmulationKey.Backquote"
+              },
+              {
+                "length": 19,
+                "start": 925,
+                "value": 62,
+                "name": "EmulationKey.Delete"
+              },
+              {
+                "length": 36,
+                "start": 948,
+                "value": 127,
+                "name": "ExternalCoreKeyboardConstants.Delete"
+              },
+              {
+                "length": 15,
+                "start": 1000,
+                "value": 44,
+                "name": "EmulationKey.Up"
+              },
+              {
+                "length": 32,
+                "start": 1019,
+                "value": 273,
+                "name": "ExternalCoreKeyboardConstants.Up"
+              },
+              {
+                "length": 17,
+                "start": 1054,
+                "value": 45,
+                "name": "EmulationKey.Down"
+              },
+              {
+                "length": 34,
+                "start": 1075,
+                "value": 274,
+                "name": "ExternalCoreKeyboardConstants.Down"
+              },
+              {
+                "length": 18,
+                "start": 1125,
+                "value": 43,
+                "name": "EmulationKey.Right"
+              },
+              {
+                "length": 35,
+                "start": 1147,
+                "value": 275,
+                "name": "ExternalCoreKeyboardConstants.Right"
+              },
+              {
+                "length": 17,
+                "start": 1185,
+                "value": 42,
+                "name": "EmulationKey.Left"
+              },
+              {
+                "length": 34,
+                "start": 1206,
+                "value": 276,
+                "name": "ExternalCoreKeyboardConstants.Left"
+              },
+              {
+                "length": 19,
+                "start": 1256,
+                "value": 63,
+                "name": "EmulationKey.Insert"
+              },
+              {
+                "length": 36,
+                "start": 1279,
+                "value": 277,
+                "name": "ExternalCoreKeyboardConstants.Insert"
+              },
+              {
+                "length": 17,
+                "start": 1318,
+                "value": 64,
+                "name": "EmulationKey.Home"
+              },
+              {
+                "length": 34,
+                "start": 1339,
+                "value": 278,
+                "name": "ExternalCoreKeyboardConstants.Home"
+              },
+              {
+                "length": 16,
+                "start": 1389,
+                "value": 65,
+                "name": "EmulationKey.End"
+              },
+              {
+                "length": 33,
+                "start": 1409,
+                "value": 279,
+                "name": "ExternalCoreKeyboardConstants.End"
+              },
+              {
+                "length": 19,
+                "start": 1445,
+                "value": 66,
+                "name": "EmulationKey.PageUp"
+              },
+              {
+                "length": 36,
+                "start": 1468,
+                "value": 280,
+                "name": "ExternalCoreKeyboardConstants.PageUp"
+              },
+              {
+                "length": 21,
+                "start": 1520,
+                "value": 67,
+                "name": "EmulationKey.PageDown"
+              },
+              {
+                "length": 38,
+                "start": 1545,
+                "value": 281,
+                "name": "ExternalCoreKeyboardConstants.PageDown"
+              },
+              {
+                "length": 21,
+                "start": 1599,
+                "value": 79,
+                "name": "EmulationKey.CapsLock"
+              },
+              {
+                "length": 38,
+                "start": 1624,
+                "value": 301,
+                "name": "ExternalCoreKeyboardConstants.CapsLock"
+              },
+              {
+                "length": 23,
+                "start": 1678,
+                "value": 47,
+                "name": "EmulationKey.RightShift"
+              },
+              {
+                "length": 40,
+                "start": 1705,
+                "value": 303,
+                "name": "ExternalCoreKeyboardConstants.RightShift"
+              },
+              {
+                "length": 22,
+                "start": 1761,
+                "value": 46,
+                "name": "EmulationKey.LeftShift"
+              },
+              {
+                "length": 39,
+                "start": 1787,
+                "value": 304,
+                "name": "ExternalCoreKeyboardConstants.LeftShift"
+              },
+              {
+                "length": 25,
+                "start": 1842,
+                "value": 49,
+                "name": "EmulationKey.RightControl"
+              },
+              {
+                "length": 42,
+                "start": 1871,
+                "value": 305,
+                "name": "ExternalCoreKeyboardConstants.RightControl"
+              },
+              {
+                "length": 24,
+                "start": 1929,
+                "value": 48,
+                "name": "EmulationKey.LeftControl"
+              },
+              {
+                "length": 41,
+                "start": 1957,
+                "value": 306,
+                "name": "ExternalCoreKeyboardConstants.LeftControl"
+              },
+              {
+                "length": 21,
+                "start": 2014,
+                "value": 51,
+                "name": "EmulationKey.RightAlt"
+              },
+              {
+                "length": 38,
+                "start": 2039,
+                "value": 307,
+                "name": "ExternalCoreKeyboardConstants.RightAlt"
+              },
+              {
+                "length": 20,
+                "start": 2093,
+                "value": 50,
+                "name": "EmulationKey.LeftAlt"
+              },
+              {
+                "length": 37,
+                "start": 2117,
+                "value": 308,
+                "name": "ExternalCoreKeyboardConstants.LeftAlt"
+              },
+              {
+                "length": 22,
+                "start": 2170,
+                "value": 81,
+                "name": "EmulationKey.LeftAmiga"
+              },
+              {
+                "length": 38,
+                "start": 2196,
+                "value": 311,
+                "name": "ExternalCoreKeyboardConstants.LeftMeta"
+              },
+              {
+                "length": 23,
+                "start": 2250,
+                "value": 82,
+                "name": "EmulationKey.RightAmiga"
+              },
+              {
+                "length": 39,
+                "start": 2277,
+                "value": 312,
+                "name": "ExternalCoreKeyboardConstants.RightMeta"
+              },
+              {
+                "length": 17,
+                "start": 2332,
+                "value": 80,
+                "name": "EmulationKey.Help"
+              },
+              {
+                "length": 34,
+                "start": 2353,
+                "value": 315,
+                "name": "ExternalCoreKeyboardConstants.Help"
+              },
+              {
+                "length": 18,
+                "start": 2403,
+                "value": 84,
+                "name": "EmulationKey.Break"
+              },
+              {
+                "length": 35,
+                "start": 2425,
+                "value": 318,
+                "name": "ExternalCoreKeyboardConstants.Break"
+              },
+              {
+                "length": 17,
+                "start": 2476,
+                "value": 83,
+                "name": "EmulationKey.Undo"
+              },
+              {
+                "length": 34,
+                "start": 2497,
+                "value": 322,
+                "name": "ExternalCoreKeyboardConstants.Undo"
+              },
+              {
+                "length": 25,
+                "start": 2547,
+                "value": 98,
+                "name": "EmulationKey.NumpadPeriod"
+              },
+              {
+                "length": 42,
+                "start": 2576,
+                "value": 266,
+                "name": "ExternalCoreKeyboardConstants.KeypadPeriod"
+              },
+              {
+                "length": 25,
+                "start": 2634,
+                "value": 99,
+                "name": "EmulationKey.NumpadDivide"
+              },
+              {
+                "length": 42,
+                "start": 2663,
+                "value": 267,
+                "name": "ExternalCoreKeyboardConstants.KeypadDivide"
+              },
+              {
+                "length": 27,
+                "start": 2721,
+                "value": 100,
+                "name": "EmulationKey.NumpadMultiply"
+              },
+              {
+                "length": 44,
+                "start": 2752,
+                "value": 268,
+                "name": "ExternalCoreKeyboardConstants.KeypadMultiply"
+              },
+              {
+                "length": 24,
+                "start": 2812,
+                "value": 101,
+                "name": "EmulationKey.NumpadMinus"
+              },
+              {
+                "length": 41,
+                "start": 2840,
+                "value": 269,
+                "name": "ExternalCoreKeyboardConstants.KeypadMinus"
+              },
+              {
+                "length": 23,
+                "start": 2897,
+                "value": 102,
+                "name": "EmulationKey.NumpadPlus"
+              },
+              {
+                "length": 40,
+                "start": 2924,
+                "value": 270,
+                "name": "ExternalCoreKeyboardConstants.KeypadPlus"
+              },
+              {
+                "length": 24,
+                "start": 2980,
+                "value": 103,
+                "name": "EmulationKey.NumpadEnter"
+              },
+              {
+                "length": 41,
+                "start": 3008,
+                "value": 271,
+                "name": "ExternalCoreKeyboardConstants.KeypadEnter"
+              },
+              {
+                "length": 14,
+                "start": 3085,
+                "value": 6,
+                "name": "EmulationKey.A"
+              },
+              {
+                "length": 41,
+                "start": 3101,
+                "value": 97,
+                "name": "ExternalCoreKeyboardConstants.FirstLetter"
+              },
+              {
+                "length": 41,
+                "start": 3144,
+                "value": 26,
+                "name": "ExternalCoreKeyboardConstants.LetterCount"
+              },
+              {
+                "length": 15,
+                "start": 3211,
+                "value": 32,
+                "name": "EmulationKey.D0"
+              },
+              {
+                "length": 40,
+                "start": 3228,
+                "value": 48,
+                "name": "ExternalCoreKeyboardConstants.FirstDigit"
+              },
+              {
+                "length": 40,
+                "start": 3270,
+                "value": 10,
+                "name": "ExternalCoreKeyboardConstants.DigitCount"
+              },
+              {
+                "length": 15,
+                "start": 3336,
+                "value": 52,
+                "name": "EmulationKey.F1"
+              },
+              {
+                "length": 46,
+                "start": 3353,
+                "value": 282,
+                "name": "ExternalCoreKeyboardConstants.FirstFunctionKey"
+              },
+              {
+                "length": 46,
+                "start": 3401,
+                "value": 10,
+                "name": "ExternalCoreKeyboardConstants.FunctionKeyCount"
+              },
+              {
+                "length": 20,
+                "start": 3473,
+                "value": 88,
+                "name": "EmulationKey.Numpad0"
+              },
+              {
+                "length": 46,
+                "start": 3495,
+                "value": 256,
+                "name": "ExternalCoreKeyboardConstants.FirstKeypadDigit"
+              },
+              {
+                "length": 40,
+                "start": 3543,
+                "value": 10,
+                "name": "ExternalCoreKeyboardConstants.DigitCount"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "path": "src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/InputFunctions.Keyboard.cs",
+        "sha256": "4826EE963D2AFD0BFB595847CAD09E515D300BC851668F0EBC04E37BA5B014BA",
+        "source": "using GWGUI.Emulation;\r\n\r\nnamespace GWGUI.Emulation.Atari.Common.Machines.Common.Functions;\r\n\r\ninternal static class KeyboardFunctions\r\n{\r\n    internal static IReadOnlyDictionary<EmulationKey, uint> CreateKeyMap()\r\n    {\r\n        var map = new Dictionary<EmulationKey, uint>\r\n        {\r\n            [EmulationKey.Backspace] = KeyboardConstants.Backspace,\r\n            [EmulationKey.Tab] = KeyboardConstants.Tab,\r\n            [EmulationKey.Return] = KeyboardConstants.Return,\r\n            [EmulationKey.Escape] = KeyboardConstants.Escape,\r\n            [EmulationKey.Space] = KeyboardConstants.Space,\r\n            [EmulationKey.Comma] = ',', [EmulationKey.Minus] = '-', [EmulationKey.Period] = '.',\r\n            [EmulationKey.Slash] = '/', [EmulationKey.Semicolon] = ';', [EmulationKey.Equals] = '=',\r\n            [EmulationKey.LeftBracket] = '[', [EmulationKey.Backslash] = '\\\\',\r\n            [EmulationKey.RightBracket] = ']', [EmulationKey.Quote] = '\\'', [EmulationKey.Backquote] = '`',\r\n            [EmulationKey.Delete] = KeyboardConstants.Delete,\r\n            [EmulationKey.Up] = KeyboardConstants.Up, [EmulationKey.Down] = KeyboardConstants.Down,\r\n            [EmulationKey.Right] = KeyboardConstants.Right, [EmulationKey.Left] = KeyboardConstants.Left,\r\n            [EmulationKey.Insert] = KeyboardConstants.Insert, [EmulationKey.Home] = KeyboardConstants.Home,\r\n            [EmulationKey.End] = KeyboardConstants.End, [EmulationKey.PageUp] = KeyboardConstants.PageUp,\r\n            [EmulationKey.PageDown] = KeyboardConstants.PageDown,\r\n            [EmulationKey.CapsLock] = KeyboardConstants.CapsLock,\r\n            [EmulationKey.RightShift] = KeyboardConstants.RightShift,\r\n            [EmulationKey.LeftShift] = KeyboardConstants.LeftShift,\r\n            [EmulationKey.RightControl] = KeyboardConstants.RightControl,\r\n            [EmulationKey.LeftControl] = KeyboardConstants.LeftControl,\r\n            [EmulationKey.RightAlt] = KeyboardConstants.RightAlt,\r\n            [EmulationKey.LeftAlt] = KeyboardConstants.LeftAlt,\r\n            [EmulationKey.LeftAmiga] = KeyboardConstants.LeftMeta,\r\n            [EmulationKey.RightAmiga] = KeyboardConstants.RightMeta,\r\n            [EmulationKey.Help] = KeyboardConstants.Help,\r\n            [EmulationKey.Break] = KeyboardConstants.Break,\r\n            [EmulationKey.Undo] = KeyboardConstants.Undo,\r\n            [EmulationKey.NumpadPeriod] = KeyboardConstants.KeypadPeriod,\r\n            [EmulationKey.NumpadDivide] = KeyboardConstants.KeypadDivide,\r\n            [EmulationKey.NumpadMultiply] = KeyboardConstants.KeypadMultiply,\r\n            [EmulationKey.NumpadMinus] = KeyboardConstants.KeypadMinus,\r\n            [EmulationKey.NumpadPlus] = KeyboardConstants.KeypadPlus,\r\n            [EmulationKey.NumpadEnter] = KeyboardConstants.KeypadEnter\r\n        };\r\n        AddRange(map, EmulationKey.A, KeyboardConstants.FirstLetter, KeyboardConstants.LetterCount);\r\n        AddRange(map, EmulationKey.D0, KeyboardConstants.FirstDigit, KeyboardConstants.DigitCount);\r\n        AddRange(map, EmulationKey.F1, KeyboardConstants.FirstFunctionKey, KeyboardConstants.FunctionKeyCount);\r\n        AddRange(map, EmulationKey.Numpad0, KeyboardConstants.FirstKeypadDigit, KeyboardConstants.DigitCount);\r\n        return map;\r\n    }\r\n\r\n    internal static ushort Modifiers(IReadOnlySet<EmulationKey> keys) => (ushort)(\r\n        (HasShift(keys) ? KeyboardConstants.ShiftModifier : KeyboardConstants.NoModifiers) |\r\n        (keys.Contains(EmulationKey.LeftControl) || keys.Contains(EmulationKey.RightControl) ? KeyboardConstants.ControlModifier : KeyboardConstants.NoModifiers) |\r\n        (keys.Contains(EmulationKey.LeftAlt) || keys.Contains(EmulationKey.RightAlt) ? KeyboardConstants.AltModifier : KeyboardConstants.NoModifiers));\r\n\r\n    internal static uint Character(uint code, IReadOnlySet<EmulationKey> keys)\r\n        => GWGUI.Emulation.Functions.ExternalCoreKeyboardFunctions.Character(code, keys);\r\n\r\n    internal static bool IsModifier(EmulationKey key) => key is EmulationKey.LeftShift or EmulationKey.RightShift or EmulationKey.LeftControl or EmulationKey.RightControl or EmulationKey.LeftAlt or EmulationKey.RightAlt or EmulationKey.LeftAmiga or EmulationKey.RightAmiga;\r\n\r\n    internal static bool IsConsoleKeyActive(IReadOnlySet<EmulationKey> keys, uint buttonId) => buttonId switch\r\n    {\r\n        InputConstants.JoypadLeftShoulderId => keys.Contains(EmulationKey.AtariOption),\r\n        InputConstants.JoypadSelectId => keys.Contains(EmulationKey.AtariSelect),\r\n        InputConstants.JoypadStartId => keys.Contains(EmulationKey.AtariStart),\r\n        InputConstants.JoypadRightTriggerId => keys.Contains(EmulationKey.Help),\r\n        _ => false\r\n    };\r\n\r\n    private static bool HasShift(IReadOnlySet<EmulationKey> keys) => keys.Contains(EmulationKey.LeftShift) || keys.Contains(EmulationKey.RightShift);\r\n\r\n    private static void AddRange(IDictionary<EmulationKey, uint> map, EmulationKey firstKey, uint firstCode, int count)\r\n        => GWGUI.Emulation.Functions.ExternalCoreKeyboardFunctions.AddRange(map, firstKey, firstCode, count);\r\n}\r\n",
+        "methods": {
+          "HasShift": {
+            "tokens": "private static bool HasShift ( IReadOnlySet < EmulationKey > keys ) => keys . Contains ( __constant_46 ) || keys . Contains ( __constant_47 ) ; ",
+            "constants": [
+              {
+                "length": 22,
+                "start": 85,
+                "value": 46,
+                "name": "EmulationKey.LeftShift"
+              },
+              {
+                "length": 23,
+                "start": 126,
+                "value": 47,
+                "name": "EmulationKey.RightShift"
+              }
+            ]
+          },
+          "Modifiers": {
+            "tokens": "internal static ushort Modifiers ( IReadOnlySet < EmulationKey > keys ) => ( ushort ) ( ( HasShift ( keys ) ? __constant_1 : __constant_0 ) | ( keys . Contains ( __constant_48 ) || keys . Contains ( __constant_49 ) ? __constant_2 : __constant_0 ) | ( keys . Contains ( __constant_50 ) || keys . Contains ( __constant_51 ) ? __constant_4 : __constant_0 ) ) ; ",
+            "constants": [
+              {
+                "length": 31,
+                "start": 112,
+                "value": 1,
+                "name": "KeyboardConstants.ShiftModifier"
+              },
+              {
+                "length": 29,
+                "start": 146,
+                "value": 0,
+                "name": "KeyboardConstants.NoModifiers"
+              },
+              {
+                "length": 24,
+                "start": 203,
+                "value": 48,
+                "name": "EmulationKey.LeftControl"
+              },
+              {
+                "length": 25,
+                "start": 246,
+                "value": 49,
+                "name": "EmulationKey.RightControl"
+              },
+              {
+                "length": 33,
+                "start": 275,
+                "value": 2,
+                "name": "KeyboardConstants.ControlModifier"
+              },
+              {
+                "length": 29,
+                "start": 311,
+                "value": 0,
+                "name": "KeyboardConstants.NoModifiers"
+              },
+              {
+                "length": 20,
+                "start": 368,
+                "value": 50,
+                "name": "EmulationKey.LeftAlt"
+              },
+              {
+                "length": 21,
+                "start": 407,
+                "value": 51,
+                "name": "EmulationKey.RightAlt"
+              },
+              {
+                "length": 29,
+                "start": 432,
+                "value": 4,
+                "name": "KeyboardConstants.AltModifier"
+              },
+              {
+                "length": 29,
+                "start": 464,
+                "value": 0,
+                "name": "KeyboardConstants.NoModifiers"
+              }
+            ]
+          },
+          "CreateKeyMap": {
+            "tokens": "internal static IReadOnlyDictionary < EmulationKey , uint > CreateKeyMap ( ) { var map = new Dictionary < EmulationKey , uint > { [ __constant_1 ] = __constant_8 , [ __constant_2 ] = __constant_9 , [ __constant_3 ] = __constant_13 , [ __constant_4 ] = __constant_27 , [ __constant_5 ] = __constant_32 , [ __constant_68 ] = ',' , [ __constant_72 ] = '-' , [ __constant_69 ] = '.' , [ __constant_70 ] = '/' , [ __constant_74 ] = ';' , [ __constant_73 ] = '=' , [ __constant_76 ] = '[' , [ __constant_71 ] = '\\\\' , [ __constant_77 ] = ']' , [ __constant_75 ] = '\\'' , [ __constant_78 ] = '`' , [ __constant_62 ] = __constant_127 , [ __constant_44 ] = __constant_273 , [ __constant_45 ] = __constant_274 , [ __constant_43 ] = __constant_275 , [ __constant_42 ] = __constant_276 , [ __constant_63 ] = __constant_277 , [ __constant_64 ] = __constant_278 , [ __constant_65 ] = __constant_279 , [ __constant_66 ] = __constant_280 , [ __constant_67 ] = __constant_281 , [ __constant_79 ] = __constant_301 , [ __constant_47 ] = __constant_303 , [ __constant_46 ] = __constant_304 , [ __constant_49 ] = __constant_305 , [ __constant_48 ] = __constant_306 , [ __constant_51 ] = __constant_307 , [ __constant_50 ] = __constant_308 , [ __constant_81 ] = __constant_311 , [ __constant_82 ] = __constant_312 , [ __constant_80 ] = __constant_315 , [ __constant_84 ] = __constant_318 , [ __constant_83 ] = __constant_322 , [ __constant_98 ] = __constant_266 , [ __constant_99 ] = __constant_267 , [ __constant_100 ] = __constant_268 , [ __constant_101 ] = __constant_269 , [ __constant_102 ] = __constant_270 , [ __constant_103 ] = __constant_271 } ; AddRange ( map , __constant_6 , __constant_97 , __constant_26 ) ; AddRange ( map , __constant_32 , __constant_48 , __constant_10 ) ; AddRange ( map , __constant_52 , __constant_282 , __constant_10 ) ; AddRange ( map , __constant_88 , __constant_256 , __constant_10 ) ; return map ; } ",
+            "constants": [
+              {
+                "length": 22,
+                "start": 161,
+                "value": 1,
+                "name": "EmulationKey.Backspace"
+              },
+              {
+                "length": 27,
+                "start": 187,
+                "value": 8,
+                "name": "KeyboardConstants.Backspace"
+              },
+              {
+                "length": 16,
+                "start": 230,
+                "value": 2,
+                "name": "EmulationKey.Tab"
+              },
+              {
+                "length": 21,
+                "start": 250,
+                "value": 9,
+                "name": "KeyboardConstants.Tab"
+              },
+              {
+                "length": 19,
+                "start": 287,
+                "value": 3,
+                "name": "EmulationKey.Return"
+              },
+              {
+                "length": 24,
+                "start": 310,
+                "value": 13,
+                "name": "KeyboardConstants.Return"
+              },
+              {
+                "length": 19,
+                "start": 350,
+                "value": 4,
+                "name": "EmulationKey.Escape"
+              },
+              {
+                "length": 24,
+                "start": 373,
+                "value": 27,
+                "name": "KeyboardConstants.Escape"
+              },
+              {
+                "length": 18,
+                "start": 413,
+                "value": 5,
+                "name": "EmulationKey.Space"
+              },
+              {
+                "length": 23,
+                "start": 435,
+                "value": 32,
+                "name": "KeyboardConstants.Space"
+              },
+              {
+                "length": 18,
+                "start": 474,
+                "value": 68,
+                "name": "EmulationKey.Comma"
+              },
+              {
+                "length": 18,
+                "start": 502,
+                "value": 72,
+                "name": "EmulationKey.Minus"
+              },
+              {
+                "length": 19,
+                "start": 530,
+                "value": 69,
+                "name": "EmulationKey.Period"
+              },
+              {
+                "length": 18,
+                "start": 572,
+                "value": 70,
+                "name": "EmulationKey.Slash"
+              },
+              {
+                "length": 22,
+                "start": 600,
+                "value": 74,
+                "name": "EmulationKey.Semicolon"
+              },
+              {
+                "length": 19,
+                "start": 632,
+                "value": 73,
+                "name": "EmulationKey.Equals"
+              },
+              {
+                "length": 24,
+                "start": 674,
+                "value": 76,
+                "name": "EmulationKey.LeftBracket"
+              },
+              {
+                "length": 22,
+                "start": 708,
+                "value": 71,
+                "name": "EmulationKey.Backslash"
+              },
+              {
+                "length": 25,
+                "start": 754,
+                "value": 77,
+                "name": "EmulationKey.RightBracket"
+              },
+              {
+                "length": 18,
+                "start": 789,
+                "value": 75,
+                "name": "EmulationKey.Quote"
+              },
+              {
+                "length": 22,
+                "start": 818,
+                "value": 78,
+                "name": "EmulationKey.Backquote"
+              },
+              {
+                "length": 19,
+                "start": 863,
+                "value": 62,
+                "name": "EmulationKey.Delete"
+              },
+              {
+                "length": 24,
+                "start": 886,
+                "value": 127,
+                "name": "KeyboardConstants.Delete"
+              },
+              {
+                "length": 15,
+                "start": 926,
+                "value": 44,
+                "name": "EmulationKey.Up"
+              },
+              {
+                "length": 20,
+                "start": 945,
+                "value": 273,
+                "name": "KeyboardConstants.Up"
+              },
+              {
+                "length": 17,
+                "start": 968,
+                "value": 45,
+                "name": "EmulationKey.Down"
+              },
+              {
+                "length": 22,
+                "start": 989,
+                "value": 274,
+                "name": "KeyboardConstants.Down"
+              },
+              {
+                "length": 18,
+                "start": 1027,
+                "value": 43,
+                "name": "EmulationKey.Right"
+              },
+              {
+                "length": 23,
+                "start": 1049,
+                "value": 275,
+                "name": "KeyboardConstants.Right"
+              },
+              {
+                "length": 17,
+                "start": 1075,
+                "value": 42,
+                "name": "EmulationKey.Left"
+              },
+              {
+                "length": 22,
+                "start": 1096,
+                "value": 276,
+                "name": "KeyboardConstants.Left"
+              },
+              {
+                "length": 19,
+                "start": 1134,
+                "value": 63,
+                "name": "EmulationKey.Insert"
+              },
+              {
+                "length": 24,
+                "start": 1157,
+                "value": 277,
+                "name": "KeyboardConstants.Insert"
+              },
+              {
+                "length": 17,
+                "start": 1184,
+                "value": 64,
+                "name": "EmulationKey.Home"
+              },
+              {
+                "length": 22,
+                "start": 1205,
+                "value": 278,
+                "name": "KeyboardConstants.Home"
+              },
+              {
+                "length": 16,
+                "start": 1243,
+                "value": 65,
+                "name": "EmulationKey.End"
+              },
+              {
+                "length": 21,
+                "start": 1263,
+                "value": 279,
+                "name": "KeyboardConstants.End"
+              },
+              {
+                "length": 19,
+                "start": 1287,
+                "value": 66,
+                "name": "EmulationKey.PageUp"
+              },
+              {
+                "length": 24,
+                "start": 1310,
+                "value": 280,
+                "name": "KeyboardConstants.PageUp"
+              },
+              {
+                "length": 21,
+                "start": 1350,
+                "value": 67,
+                "name": "EmulationKey.PageDown"
+              },
+              {
+                "length": 26,
+                "start": 1375,
+                "value": 281,
+                "name": "KeyboardConstants.PageDown"
+              },
+              {
+                "length": 21,
+                "start": 1417,
+                "value": 79,
+                "name": "EmulationKey.CapsLock"
+              },
+              {
+                "length": 26,
+                "start": 1442,
+                "value": 301,
+                "name": "KeyboardConstants.CapsLock"
+              },
+              {
+                "length": 23,
+                "start": 1484,
+                "value": 47,
+                "name": "EmulationKey.RightShift"
+              },
+              {
+                "length": 28,
+                "start": 1511,
+                "value": 303,
+                "name": "KeyboardConstants.RightShift"
+              },
+              {
+                "length": 22,
+                "start": 1555,
+                "value": 46,
+                "name": "EmulationKey.LeftShift"
+              },
+              {
+                "length": 27,
+                "start": 1581,
+                "value": 304,
+                "name": "KeyboardConstants.LeftShift"
+              },
+              {
+                "length": 25,
+                "start": 1624,
+                "value": 49,
+                "name": "EmulationKey.RightControl"
+              },
+              {
+                "length": 30,
+                "start": 1653,
+                "value": 305,
+                "name": "KeyboardConstants.RightControl"
+              },
+              {
+                "length": 24,
+                "start": 1699,
+                "value": 48,
+                "name": "EmulationKey.LeftControl"
+              },
+              {
+                "length": 29,
+                "start": 1727,
+                "value": 306,
+                "name": "KeyboardConstants.LeftControl"
+              },
+              {
+                "length": 21,
+                "start": 1772,
+                "value": 51,
+                "name": "EmulationKey.RightAlt"
+              },
+              {
+                "length": 26,
+                "start": 1797,
+                "value": 307,
+                "name": "KeyboardConstants.RightAlt"
+              },
+              {
+                "length": 20,
+                "start": 1839,
+                "value": 50,
+                "name": "EmulationKey.LeftAlt"
+              },
+              {
+                "length": 25,
+                "start": 1863,
+                "value": 308,
+                "name": "KeyboardConstants.LeftAlt"
+              },
+              {
+                "length": 22,
+                "start": 1904,
+                "value": 81,
+                "name": "EmulationKey.LeftAmiga"
+              },
+              {
+                "length": 26,
+                "start": 1930,
+                "value": 311,
+                "name": "KeyboardConstants.LeftMeta"
+              },
+              {
+                "length": 23,
+                "start": 1972,
+                "value": 82,
+                "name": "EmulationKey.RightAmiga"
+              },
+              {
+                "length": 27,
+                "start": 1999,
+                "value": 312,
+                "name": "KeyboardConstants.RightMeta"
+              },
+              {
+                "length": 17,
+                "start": 2042,
+                "value": 80,
+                "name": "EmulationKey.Help"
+              },
+              {
+                "length": 22,
+                "start": 2063,
+                "value": 315,
+                "name": "KeyboardConstants.Help"
+              },
+              {
+                "length": 18,
+                "start": 2101,
+                "value": 84,
+                "name": "EmulationKey.Break"
+              },
+              {
+                "length": 23,
+                "start": 2123,
+                "value": 318,
+                "name": "KeyboardConstants.Break"
+              },
+              {
+                "length": 17,
+                "start": 2162,
+                "value": 83,
+                "name": "EmulationKey.Undo"
+              },
+              {
+                "length": 22,
+                "start": 2183,
+                "value": 322,
+                "name": "KeyboardConstants.Undo"
+              },
+              {
+                "length": 25,
+                "start": 2221,
+                "value": 98,
+                "name": "EmulationKey.NumpadPeriod"
+              },
+              {
+                "length": 30,
+                "start": 2250,
+                "value": 266,
+                "name": "KeyboardConstants.KeypadPeriod"
+              },
+              {
+                "length": 25,
+                "start": 2296,
+                "value": 99,
+                "name": "EmulationKey.NumpadDivide"
+              },
+              {
+                "length": 30,
+                "start": 2325,
+                "value": 267,
+                "name": "KeyboardConstants.KeypadDivide"
+              },
+              {
+                "length": 27,
+                "start": 2371,
+                "value": 100,
+                "name": "EmulationKey.NumpadMultiply"
+              },
+              {
+                "length": 32,
+                "start": 2402,
+                "value": 268,
+                "name": "KeyboardConstants.KeypadMultiply"
+              },
+              {
+                "length": 24,
+                "start": 2450,
+                "value": 101,
+                "name": "EmulationKey.NumpadMinus"
+              },
+              {
+                "length": 29,
+                "start": 2478,
+                "value": 269,
+                "name": "KeyboardConstants.KeypadMinus"
+              },
+              {
+                "length": 23,
+                "start": 2523,
+                "value": 102,
+                "name": "EmulationKey.NumpadPlus"
+              },
+              {
+                "length": 28,
+                "start": 2550,
+                "value": 270,
+                "name": "KeyboardConstants.KeypadPlus"
+              },
+              {
+                "length": 24,
+                "start": 2594,
+                "value": 103,
+                "name": "EmulationKey.NumpadEnter"
+              },
+              {
+                "length": 29,
+                "start": 2622,
+                "value": 271,
+                "name": "KeyboardConstants.KeypadEnter"
+              },
+              {
+                "length": 14,
+                "start": 2687,
+                "value": 6,
+                "name": "EmulationKey.A"
+              },
+              {
+                "length": 29,
+                "start": 2703,
+                "value": 97,
+                "name": "KeyboardConstants.FirstLetter"
+              },
+              {
+                "length": 29,
+                "start": 2734,
+                "value": 26,
+                "name": "KeyboardConstants.LetterCount"
+              },
+              {
+                "length": 15,
+                "start": 2789,
+                "value": 32,
+                "name": "EmulationKey.D0"
+              },
+              {
+                "length": 28,
+                "start": 2806,
+                "value": 48,
+                "name": "KeyboardConstants.FirstDigit"
+              },
+              {
+                "length": 28,
+                "start": 2836,
+                "value": 10,
+                "name": "KeyboardConstants.DigitCount"
+              },
+              {
+                "length": 15,
+                "start": 2890,
+                "value": 52,
+                "name": "EmulationKey.F1"
+              },
+              {
+                "length": 34,
+                "start": 2907,
+                "value": 282,
+                "name": "KeyboardConstants.FirstFunctionKey"
+              },
+              {
+                "length": 34,
+                "start": 2943,
+                "value": 10,
+                "name": "KeyboardConstants.FunctionKeyCount"
+              },
+              {
+                "length": 20,
+                "start": 3003,
+                "value": 88,
+                "name": "EmulationKey.Numpad0"
+              },
+              {
+                "length": 34,
+                "start": 3025,
+                "value": 256,
+                "name": "KeyboardConstants.FirstKeypadDigit"
+              },
+              {
+                "length": 28,
+                "start": 3061,
+                "value": 10,
+                "name": "KeyboardConstants.DigitCount"
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "originalOwner": {
+      "path": "src/GWGUI.Emulation.Atari/Functions/AtariKeyboardFunctions.cs",
+      "reference": "keyboardTransitionReuse.origin",
+      "commit": "08073b92a7f802007ca015b829a746d97d687437"
+    },
+    "nativeConsoleControlsRemainLocal": true,
+    "keyEntriesAndRangeConstantsEqual": true,
+    "equivalentMethods": [
+      "CreateKeyMap",
+      "Modifiers",
+      "HasShift"
+    ],
+    "semanticErrors": 0,
+    "state": "verified-source-block",
+    "replacedConstants": {
+      "sha256": "C1728CBFF79B4AB2433A25332DEBF25B0BEFEF251F9A36B938109F050C72C255",
+      "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Constants/KeyboardConstants.cs",
+      "examinedIdentifiers": 81,
+      "source": "using GWGUI.Emulation.Constants;\r\n\r\nnamespace GWGUI.Emulation.Atari.Emulators.Common.Interop.Constants;\r\n\r\n\r\n// Unique to GWGUI.Emulation.Atari.\r\ninternal static class KeyboardConstants\r\n{\r\n    internal const uint Backspace = 8;\r\n    internal const uint Tab = 9;\r\n    internal const uint Return = 13;\r\n    internal const uint Escape = 27;\r\n    internal const uint Space = 32;\r\n    internal const uint FirstPrintableCharacter = 32;\r\n    internal const uint LastPrintableCharacter = 126;\r\n    internal const uint Delete = 127;\r\n    internal const uint FirstKeypadDigit = 256;\r\n    internal const uint KeypadPeriod = 266;\r\n    internal const uint KeypadDivide = 267;\r\n    internal const uint KeypadMultiply = 268;\r\n    internal const uint KeypadMinus = 269;\r\n    internal const uint KeypadPlus = 270;\r\n    internal const uint KeypadEnter = 271;\r\n    internal const uint Up = 273;\r\n    internal const uint Down = 274;\r\n    internal const uint Right = 275;\r\n    internal const uint Left = 276;\r\n    internal const uint Insert = 277;\r\n    internal const uint Home = 278;\r\n    internal const uint End = 279;\r\n    internal const uint PageUp = 280;\r\n    internal const uint PageDown = 281;\r\n    internal const uint FirstFunctionKey = 282;\r\n    internal const uint CapsLock = 301;\r\n    internal const uint RightShift = 303;\r\n    internal const uint LeftShift = 304;\r\n    internal const uint RightControl = 305;\r\n    internal const uint LeftControl = 306;\r\n    internal const uint RightAlt = 307;\r\n    internal const uint LeftAlt = 308;\r\n    internal const uint LeftMeta = 311;\r\n    internal const uint RightMeta = 312;\r\n    internal const uint Help = 315;\r\n    internal const uint Break = 318;\r\n    internal const uint Undo = 322;\r\n    internal const uint FirstLetter = 'a';\r\n    internal const uint LastLetter = 'z';\r\n    internal const uint FirstDigit = '0';\r\n    internal const int LetterCount = 26;\r\n    internal const int DigitCount = 10;\r\n    internal const int FunctionKeyCount = 10;\r\n    internal const ushort ShiftModifier = 1;\r\n    internal const ushort ControlModifier = 2;\r\n    internal const ushort AltModifier = 4;\r\n    internal const uint UppercaseOffset = 32;\r\n    internal const uint NoCharacter = 0;\r\n    internal const ushort NoModifiers = 0;\r\n    internal const int FirstRangeOffset = 0;\r\n    internal const int ModifierFirstOrder = 0;\r\n    internal const int ModifierLastOrder = 1;\r\n}\r\n",
+      "compiledReferences": 0
+    },
+    "verification": {
+      "unchangedMethods": [
+        "Character",
+        "IsModifier",
+        "IsConsoleKeyActive"
+      ],
+      "semanticErrors": 0,
+      "keysAndModifiersEquivalent": true,
+      "newNativeKeyMapOwner": "ExternalCoreKeyboardFunctions",
+      "afterConstantDeletionSemanticErrors": 0
+    },
+    "tests": {
+      "newTestsAdded": 0,
+      "temporaryFilesCreated": 0,
+      "failed": 0,
+      "filter": "KeyboardTransitionTests|KeyboardModuleBindingTests|Emulation.Atari",
+      "passed": 105
+    },
+    "inventory": {
+      "sourceHashesUpdatedWithProof": 0,
+      "retiredPartialEvidence": [],
+      "additionalUnchangedFullMembersRetained": 0,
+      "oldPartialMembers": 65,
+      "reports": {
+        "docs/reference/reuse-audit/current-project-groups.json": {
+          "exactGroups": 0,
+          "methodBodyCount": 11569,
+          "renamedIdentifierGroups": 202,
+          "fileCount": 7257,
+          "groups": 454
+        },
+        "docs/reference/reuse-audit/short-method-groups.json": {
+          "exactGroups": 812,
+          "methodBodyCount": 9573,
+          "renamedIdentifierGroups": 378,
+          "fileCount": 7257,
+          "groups": 0
+        }
+      },
+      "partialMembersRestored": 65,
+      "otherMethodsNewlyQualified": 0,
+      "removedQualifiedOccurrencesInDeletedOwners": 0
+    }
   }
 }
