@@ -78,18 +78,4 @@ internal static class CoreHostFunctions
 
     internal static DiskStatus ReadDiskStatus(BinaryReader reader) => JsonSerializer.Deserialize<DiskStatus>(reader.ReadString(), JsonOptions) ?? throw new InvalidDataException(CoreHostErrors.CommunicationFailed);
 
-    internal static void DisposeTransport(IDisposable? resource)
-    {
-        if (resource is null) return;
-        try
-        {
-            resource.Dispose();
-        }
-        catch (IOException)
-        {
-        }
-        catch (ObjectDisposedException)
-        {
-        }
-    }
 }

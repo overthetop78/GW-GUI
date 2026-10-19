@@ -63,7 +63,7 @@ internal sealed partial class ProcessCore : IEmulatorCore
 
     private void TerminateHostProcess()
     {
-        try { CoreHostFunctions.DisposeTransport(_pipe); }
+        try { EmulationHostProtocolFunctions.DisposeTransport(_pipe); }
         finally { WaitForHostExit(graceful: false); }
     }
 
@@ -100,8 +100,8 @@ internal sealed partial class ProcessCore : IEmulatorCore
             {
                 try
                 {
-                    try { CoreHostFunctions.DisposeTransport(_writer); }
-                    finally { CoreHostFunctions.DisposeTransport(_pipe); }
+                    try { EmulationHostProtocolFunctions.DisposeTransport(_writer); }
+                    finally { EmulationHostProtocolFunctions.DisposeTransport(_pipe); }
                 }
                 finally { WaitForHostExit(graceful: true); }
             }

@@ -93,8 +93,8 @@ internal sealed partial class ProcessCore : IEmulatorCore
         finally
         {
             _disposed = true;
-            CoreHostFunctions.DisposeTransport(_writer);
-            CoreHostFunctions.DisposeTransport(_pipe);
+            EmulationHostProtocolFunctions.DisposeTransport(_writer);
+            EmulationHostProtocolFunctions.DisposeTransport(_pipe);
             _videoMap?.Dispose();
             _videoMemory?.Dispose();
             if (_process is not null)
