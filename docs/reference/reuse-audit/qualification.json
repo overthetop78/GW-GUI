@@ -292959,7 +292959,7 @@
         "after": "using System.Diagnostics;\r\n\r\nnamespace GWGUI.Emulation.Atari.Common.Machines.Common.Functions;\r\n\r\ninternal static class MachineFunctions\r\n{\r\n    internal static string ThreadName(Guid id, Emulator core) => $\"{MachineConstants.ThreadNamePrefix} {core} {id:N}\";\r\n\r\n    internal static long NextFrameTimestamp(long current, double framesPerSecond) => current + (long)(Stopwatch.Frequency / Math.Clamp(framesPerSecond, MachineConstants.MinimumFramesPerSecond, MachineConstants.MaximumFramesPerSecond));\r\n\r\n    internal static void ReleaseInput(IEmulatorCore core) => core.SetInput(EmulationInputSnapshot.Empty);\r\n\r\n    internal static void TryReleaseInput(IEmulatorCore core)\r\n    {\r\n        try { ReleaseInput(core); }\r\n        catch (Exception) { }\r\n    }\r\n\r\n    internal static void DeleteSessionDirectory(string sessionDirectory)\r\n        => EmulationSessionDirectoryFunctions.DeleteSessionDirectory(sessionDirectory);\r\n\r\n}\r\n"
       }
     ],
-    "state": "verified; original Amiga cleanup and Acorn generated-directory profile shared across 23 consumers; 33 existing targeted tests pass; SDK and all 23 modules semantically compile; product build grouped with next source block",
+    "state": "verified and built with 23 modules; original Amiga and Acorn policies shared across 23 consumers; 33 existing targeted tests pass",
     "decision": "Lift original Amiga full-path normalization and two swallowed exception types once; preserve original unguarded-name and generated GUID/read-only/reparse policies in separate named entry points. Legacy caller override stays in place. No new owner, state, flags, deletion targets or lifecycle changes.",
     "sdk": {
       "path": "src/GWGUI.Emulation/Functions/EmulationSessionDirectoryFunctions.cs",
@@ -293202,6 +293202,2028 @@
       "newQualifiedOccurrences": 38,
       "qualifiedConsumerPaths": 23,
       "largeBodies": 11662
-    }
+    },
+    "productBuild": "included and verified in sessionCleanupPathBuild"
+  },
+  "legacyConfigurationPathReuse": {
+    "origin": {
+      "amigaMethods": [
+        "    private string? StorePath(string? path)\r\n    {\r\n        if (string.IsNullOrWhiteSpace(path)) return null;\r\n        var fullPath = Path.GetFullPath(path);\r\n        var relative = Path.GetRelativePath(_pathBase, fullPath);\r\n        if (Path.IsPathFullyQualified(relative)) return fullPath;\r\n        if (relative != AmigaConfigurationStoreConstants.Value && !relative.StartsWith(AmigaConfigurationStoreConstants.Value + Path.DirectorySeparatorChar, StringComparison.Ordinal))\r\n            return relative.Replace(Path.DirectorySeparatorChar, '/');\r\n        return fullPath;\r\n    }",
+        "    private string? ResolvePath(string? path)\r\n    {\r\n        if (string.IsNullOrWhiteSpace(path)) return null;\r\n        if (Path.IsPathFullyQualified(path)) return path;\r\n        return Path.GetFullPath(Path.Combine(_pathBase, path.Replace('/', Path.DirectorySeparatorChar)));\r\n    }"
+      ],
+      "amiga": "ac7292d86^",
+      "atari": "9a104458f",
+      "atariSource": "using System.Text.Json;\r\n\r\nnamespace GWGUI.Emulation.Atari;\r\n\r\npublic sealed class AtariConfigurationStore\r\n{\r\n    private readonly string _directory;\r\n    private readonly string _pathBase;\r\n    private int _activeLoads;\r\n\r\n    public AtariConfigurationStore(string directory, string? pathBase = null)\r\n    {\r\n        _directory = Path.GetFullPath(\r\n            string.IsNullOrWhiteSpace(directory) ? throw new ArgumentException(nameof(directory)) : directory);\r\n        _pathBase = Path.GetFullPath(pathBase ?? directory);\r\n    }\r\n\r\n    public bool IsLoading => Volatile.Read(ref _activeLoads) > AtariConfigurationStoreConstants.NoActiveLoads;\r\n\r\n    public async Task<IReadOnlyList<AtariMachineConfiguration>> LoadAllAsync(\r\n        CancellationToken cancellationToken = default)\r\n    {\r\n        Interlocked.Increment(ref _activeLoads);\r\n        try\r\n        {\r\n            Directory.CreateDirectory(_directory);\r\n            var configurations = new List<AtariMachineConfiguration>();\r\n            foreach (var path in ConfigurationPaths())\r\n            {\r\n                cancellationToken.ThrowIfCancellationRequested();\r\n                try\r\n                {\r\n                    await using var stream = new FileStream(path, FileMode.Open, FileAccess.Read,\r\n                        FileShare.ReadWrite | FileShare.Delete, AtariConfigurationStoreConstants.WriteBufferSize,\r\n                        FileOptions.Asynchronous);\r\n                    using var json = await JsonDocument.ParseAsync(stream, cancellationToken: cancellationToken)\r\n                        .ConfigureAwait(false);\r\n                    var document = AtariConfigurationMigrationFunctions.MigrateToCurrent(json.RootElement);\r\n                    configurations.Add(AtariConfigurationStoreFunctions.FromDocument(document, _pathBase));\r\n                }\r\n                catch (JsonException) { }\r\n                catch (IOException) { }\r\n                catch (InvalidDataException) { }\r\n                catch (ArgumentException) { }\r\n            }\r\n            return configurations;\r\n        }\r\n        finally\r\n        {\r\n            Interlocked.Decrement(ref _activeLoads);\r\n        }\r\n    }\r\n\r\n    public async Task SaveAsync(AtariMachineConfiguration configuration,\r\n        CancellationToken cancellationToken = default)\r\n    {\r\n        ArgumentNullException.ThrowIfNull(configuration);\r\n        var document = AtariConfigurationStoreFunctions.ToDocument(configuration, _pathBase);\r\n        var machineDirectory = Path.Combine(_directory,\r\n            configuration.Id.ToString(AtariConfigurationStoreConstants.MachineIdentifierFormat));\r\n        await AtariConfigurationStoreFunctions.WriteDocumentAtomicallyAsync(\r\n            Path.Combine(machineDirectory, AtariConfigurationStoreConstants.MachineFileName), document,\r\n            cancellationToken).ConfigureAwait(false);\r\n    }\r\n\r\n    public void Delete(Guid id)\r\n    {\r\n        if (id == Guid.Empty) throw new ArgumentException(nameof(id));\r\n        var machineDirectory = Path.Combine(_directory,\r\n            id.ToString(AtariConfigurationStoreConstants.MachineIdentifierFormat));\r\n        if (Directory.Exists(machineDirectory)) Directory.Delete(machineDirectory, recursive: true);\r\n        var legacyPath = Path.Combine(_directory,\r\n            id.ToString(AtariConfigurationStoreConstants.MachineIdentifierFormat)\r\n            + AtariConfigurationStoreConstants.LegacyFileExtension);\r\n        if (File.Exists(legacyPath)) File.Delete(legacyPath);\r\n    }\r\n\r\n    private IEnumerable<string> ConfigurationPaths() => Directory.EnumerateDirectories(_directory)\r\n        .Select(directory => Path.Combine(directory, AtariConfigurationStoreConstants.MachineFileName))\r\n        .Concat(Directory.EnumerateFiles(_directory, AtariConfigurationStoreConstants.JsonSearchPattern))\r\n        .Where(File.Exists)\r\n        .Order(StringComparer.OrdinalIgnoreCase);\r\n}"
+    },
+    "items": [
+      {
+        "path": "src/GWGUI.Emulation.Amstrad/Common/Services/ConfigurationStore.cs",
+        "sha256": "556A69632335E47958D18FE43CE6FDC519C6E9022FF1F98B807A99831C41E0A2",
+        "module": "Amstrad",
+        "before": "using System.IO;\r\nusing System.Text.Json;\r\nusing GWGUI.Emulation.Functions;\r\n\r\nnamespace GWGUI.Emulation.Amstrad.Common.Services;\r\n\r\npublic sealed class ConfigurationStore\r\n{\r\n    private static readonly JsonSerializerOptions JsonOptions = new(JsonSerializerDefaults.Web)\r\n    {\r\n        WriteIndented = ConfigurationStoreConstants.WriteIndentedJson\r\n    };\r\n    private readonly string _directory;\r\n    private readonly string _pathBase;\r\n    private static readonly SemaphoreSlim SaveGate = new(ConfigurationStoreConstants.InitialWriterCount, ConfigurationStoreConstants.MaximumWriterCount);\r\n\r\n    public ConfigurationStore(string directory, string? pathBase = null)\r\n    {\r\n        _directory = Path.GetFullPath(directory);\r\n        _pathBase = Path.GetFullPath(pathBase ?? directory);\r\n    }\r\n\r\n    public Task<IReadOnlyList<MachineConfiguration>> LoadAllAsync(CancellationToken cancellationToken = default)\r\n    {\r\n        Directory.CreateDirectory(_directory);\r\n        var configurations = new List<MachineConfiguration>();\r\n        var paths = Directory.EnumerateDirectories(_directory).Select(directory => Path.Combine(directory, ConfigurationStoreConstants.MachineFileName)).Where(File.Exists).Order(StringComparer.OrdinalIgnoreCase);\r\n        foreach (var path in paths)\r\n        {\r\n            try\r\n            {\r\n                cancellationToken.ThrowIfCancellationRequested();\r\n                var json = ConfigurationFileAccessFunctions.ReadAllText(path);\r\n                var configuration = JsonSerializer.Deserialize<MachineConfiguration>(json, JsonOptions);\r\n                if (configuration is not null\r\n                    && configuration.SchemaVersion == ConfigurationStoreConstants.CurrentSchemaVersion)\r\n                    configurations.Add(ResolvePaths(configuration.EnsureId()));\r\n            }\r\n            catch (JsonException) { }\r\n            catch (IOException) { }\r\n        }\r\n        return Task.FromResult<IReadOnlyList<MachineConfiguration>>(configurations);\r\n    }\r\n\r\n    public async Task SaveAsync(MachineConfiguration configuration, CancellationToken cancellationToken = default)\r\n    {\r\n        await SaveGate.WaitAsync(cancellationToken).ConfigureAwait(false);\r\n        string? temporary = null;\r\n        try\r\n        {\r\n            configuration = configuration.EnsureId() with\r\n            {\r\n                SchemaVersion = ConfigurationStoreConstants.CurrentSchemaVersion\r\n            };\r\n            var machineDirectory = Path.Combine(_directory, configuration.Id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\r\n            Directory.CreateDirectory(machineDirectory);\r\n            var target = Path.Combine(machineDirectory, ConfigurationStoreConstants.MachineFileName);\r\n            temporary = target + ConfigurationStoreConstants.TemporaryNameSeparator + Guid.NewGuid().ToString(ConfigurationStoreConstants.MachineIdentifierFormat) + ConfigurationStoreConstants.TemporaryFileSuffix;\r\n            await using (var stream = new FileStream(temporary, FileMode.Create, FileAccess.Write, FileShare.None, ConfigurationStoreConstants.WriteBufferSize, ConfigurationStoreConstants.UseAsyncFileAccess))\r\n                await JsonSerializer.SerializeAsync(stream, StorePaths(configuration), JsonOptions, cancellationToken).ConfigureAwait(false);\r\n            ConfigurationFileAccessFunctions.ReplaceFile(temporary, target);\r\n        }\r\n        finally\r\n        {\r\n            if (temporary is not null && File.Exists(temporary)) File.Delete(temporary);\r\n            SaveGate.Release();\r\n        }\r\n    }\r\n\r\n    public void Delete(Guid id)\r\n    {\r\n        var target = Path.Combine(_directory, id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\r\n        if (Directory.Exists(target))\r\n            Directory.Delete(target, ConfigurationStoreConstants.RecursiveDirectoryDelete);\r\n    }\r\n\r\n    private MachineConfiguration StorePaths(MachineConfiguration configuration) => configuration with\r\n    {\r\n        Media = configuration.Media?.Select(media => media with { Path = StorePath(media.Path)! }).ToArray()\r\n    };\r\n\r\n    private MachineConfiguration ResolvePaths(MachineConfiguration configuration) => configuration with\r\n    {\r\n        Media = configuration.Media?.Select(media => media with { Path = ResolvePath(media.Path)! }).ToArray()\r\n    };\r\n\r\n    private string? StorePath(string? path)\r\n    {\r\n        if (string.IsNullOrWhiteSpace(path)) return null;\r\n        var fullPath = Path.GetFullPath(path);\r\n        var relative = Path.GetRelativePath(_pathBase, fullPath);\r\n        if (Path.IsPathFullyQualified(relative)) return fullPath;\r\n        if (relative != ConfigurationStoreConstants.ParentDirectoryName\r\n            && !relative.StartsWith(ConfigurationStoreConstants.ParentDirectoryName + Path.DirectorySeparatorChar, StringComparison.Ordinal))\r\n            return relative.Replace(Path.DirectorySeparatorChar, ConfigurationStoreConstants.StoredDirectorySeparator);\r\n        return fullPath;\r\n    }\r\n\r\n    private string? ResolvePath(string? path)\r\n    {\r\n        if (string.IsNullOrWhiteSpace(path)) return null;\r\n        if (Path.IsPathFullyQualified(path)) return path;\r\n        return Path.GetFullPath(Path.Combine(_pathBase, path.Replace(ConfigurationStoreConstants.StoredDirectorySeparator, Path.DirectorySeparatorChar)));\r\n    }\r\n}\r\n",
+        "methods": [
+          "    private string? StorePath(string? path)\r\n    {\r\n        if (string.IsNullOrWhiteSpace(path)) return null;\r\n        var fullPath = Path.GetFullPath(path);\r\n        var relative = Path.GetRelativePath(_pathBase, fullPath);\r\n        if (Path.IsPathFullyQualified(relative)) return fullPath;\r\n        if (relative != ConfigurationStoreConstants.ParentDirectoryName\r\n            && !relative.StartsWith(ConfigurationStoreConstants.ParentDirectoryName + Path.DirectorySeparatorChar, StringComparison.Ordinal))\r\n            return relative.Replace(Path.DirectorySeparatorChar, ConfigurationStoreConstants.StoredDirectorySeparator);\r\n        return fullPath;\r\n    }",
+          "    private string? ResolvePath(string? path)\r\n    {\r\n        if (string.IsNullOrWhiteSpace(path)) return null;\r\n        if (Path.IsPathFullyQualified(path)) return path;\r\n        return Path.GetFullPath(Path.Combine(_pathBase, path.Replace(ConfigurationStoreConstants.StoredDirectorySeparator, Path.DirectorySeparatorChar)));\r\n    }"
+        ],
+        "replacements": [
+          {
+            "before": "    private string? StorePath(string? path)\r\n    {\r\n        if (string.IsNullOrWhiteSpace(path)) return null;\r\n        var fullPath = Path.GetFullPath(path);\r\n        var relative = Path.GetRelativePath(_pathBase, fullPath);\r\n        if (Path.IsPathFullyQualified(relative)) return fullPath;\r\n        if (relative != ConfigurationStoreConstants.ParentDirectoryName\r\n            && !relative.StartsWith(ConfigurationStoreConstants.ParentDirectoryName + Path.DirectorySeparatorChar, StringComparison.Ordinal))\r\n            return relative.Replace(Path.DirectorySeparatorChar, ConfigurationStoreConstants.StoredDirectorySeparator);\r\n        return fullPath;\r\n    }",
+            "name": "StorePath",
+            "after": "    private string? StorePath(string? path)\r\n        => ConfigurationFileAccessFunctions.StorePath(string.IsNullOrWhiteSpace(path) ? null : path, _pathBase);"
+          },
+          {
+            "before": "    private string? ResolvePath(string? path)\r\n    {\r\n        if (string.IsNullOrWhiteSpace(path)) return null;\r\n        if (Path.IsPathFullyQualified(path)) return path;\r\n        return Path.GetFullPath(Path.Combine(_pathBase, path.Replace(ConfigurationStoreConstants.StoredDirectorySeparator, Path.DirectorySeparatorChar)));\r\n    }",
+            "name": "ResolvePath",
+            "after": "    private string? ResolvePath(string? path)\r\n        => ConfigurationFileAccessFunctions.ResolvePath(string.IsNullOrWhiteSpace(path) ? null : path, _pathBase);"
+          }
+        ],
+        "after": "using System.IO;\r\nusing System.Text.Json;\r\nusing GWGUI.Emulation.Functions;\r\n\r\nnamespace GWGUI.Emulation.Amstrad.Common.Services;\r\n\r\npublic sealed class ConfigurationStore\r\n{\r\n    private static readonly JsonSerializerOptions JsonOptions = new(JsonSerializerDefaults.Web)\r\n    {\r\n        WriteIndented = ConfigurationStoreConstants.WriteIndentedJson\r\n    };\r\n    private readonly string _directory;\r\n    private readonly string _pathBase;\r\n    private static readonly SemaphoreSlim SaveGate = new(ConfigurationStoreConstants.InitialWriterCount, ConfigurationStoreConstants.MaximumWriterCount);\r\n\r\n    public ConfigurationStore(string directory, string? pathBase = null)\r\n    {\r\n        _directory = Path.GetFullPath(directory);\r\n        _pathBase = Path.GetFullPath(pathBase ?? directory);\r\n    }\r\n\r\n    public Task<IReadOnlyList<MachineConfiguration>> LoadAllAsync(CancellationToken cancellationToken = default)\r\n    {\r\n        Directory.CreateDirectory(_directory);\r\n        var configurations = new List<MachineConfiguration>();\r\n        var paths = Directory.EnumerateDirectories(_directory).Select(directory => Path.Combine(directory, ConfigurationStoreConstants.MachineFileName)).Where(File.Exists).Order(StringComparer.OrdinalIgnoreCase);\r\n        foreach (var path in paths)\r\n        {\r\n            try\r\n            {\r\n                cancellationToken.ThrowIfCancellationRequested();\r\n                var json = ConfigurationFileAccessFunctions.ReadAllText(path);\r\n                var configuration = JsonSerializer.Deserialize<MachineConfiguration>(json, JsonOptions);\r\n                if (configuration is not null\r\n                    && configuration.SchemaVersion == ConfigurationStoreConstants.CurrentSchemaVersion)\r\n                    configurations.Add(ResolvePaths(configuration.EnsureId()));\r\n            }\r\n            catch (JsonException) { }\r\n            catch (IOException) { }\r\n        }\r\n        return Task.FromResult<IReadOnlyList<MachineConfiguration>>(configurations);\r\n    }\r\n\r\n    public async Task SaveAsync(MachineConfiguration configuration, CancellationToken cancellationToken = default)\r\n    {\r\n        await SaveGate.WaitAsync(cancellationToken).ConfigureAwait(false);\r\n        string? temporary = null;\r\n        try\r\n        {\r\n            configuration = configuration.EnsureId() with\r\n            {\r\n                SchemaVersion = ConfigurationStoreConstants.CurrentSchemaVersion\r\n            };\r\n            var machineDirectory = Path.Combine(_directory, configuration.Id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\r\n            Directory.CreateDirectory(machineDirectory);\r\n            var target = Path.Combine(machineDirectory, ConfigurationStoreConstants.MachineFileName);\r\n            temporary = target + ConfigurationStoreConstants.TemporaryNameSeparator + Guid.NewGuid().ToString(ConfigurationStoreConstants.MachineIdentifierFormat) + ConfigurationStoreConstants.TemporaryFileSuffix;\r\n            await using (var stream = new FileStream(temporary, FileMode.Create, FileAccess.Write, FileShare.None, ConfigurationStoreConstants.WriteBufferSize, ConfigurationStoreConstants.UseAsyncFileAccess))\r\n                await JsonSerializer.SerializeAsync(stream, StorePaths(configuration), JsonOptions, cancellationToken).ConfigureAwait(false);\r\n            ConfigurationFileAccessFunctions.ReplaceFile(temporary, target);\r\n        }\r\n        finally\r\n        {\r\n            if (temporary is not null && File.Exists(temporary)) File.Delete(temporary);\r\n            SaveGate.Release();\r\n        }\r\n    }\r\n\r\n    public void Delete(Guid id)\r\n    {\r\n        var target = Path.Combine(_directory, id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\r\n        if (Directory.Exists(target))\r\n            Directory.Delete(target, ConfigurationStoreConstants.RecursiveDirectoryDelete);\r\n    }\r\n\r\n    private MachineConfiguration StorePaths(MachineConfiguration configuration) => configuration with\r\n    {\r\n        Media = configuration.Media?.Select(media => media with { Path = StorePath(media.Path)! }).ToArray()\r\n    };\r\n\r\n    private MachineConfiguration ResolvePaths(MachineConfiguration configuration) => configuration with\r\n    {\r\n        Media = configuration.Media?.Select(media => media with { Path = ResolvePath(media.Path)! }).ToArray()\r\n    };\r\n\r\n    private string? StorePath(string? path)\r\n        => ConfigurationFileAccessFunctions.StorePath(string.IsNullOrWhiteSpace(path) ? null : path, _pathBase);\r\n\r\n    private string? ResolvePath(string? path)\r\n        => ConfigurationFileAccessFunctions.ResolvePath(string.IsNullOrWhiteSpace(path) ? null : path, _pathBase);\r\n}\r\n"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Commodore/Common/Services/ConfigurationStore.cs",
+        "sha256": "C8AA08C3B993BA9475C101355A043C3312ECAE260261CBC0E7600179B5335353",
+        "module": "Commodore",
+        "before": "using System.IO;\r\nusing System.Text.Json;\r\nusing GWGUI.Emulation.Functions;\r\n\r\nnamespace GWGUI.Emulation.Commodore.Common.Services;\r\n\r\npublic sealed class ConfigurationStore\r\n{\r\n    private static readonly JsonSerializerOptions JsonOptions = new(JsonSerializerDefaults.Web)\r\n    {\r\n        WriteIndented = ConfigurationStoreConstants.WriteIndentedJson,\r\n        UnmappedMemberHandling = System.Text.Json.Serialization.JsonUnmappedMemberHandling.Disallow\r\n    };\r\n    private readonly string _directory;\r\n    private readonly string _pathBase;\r\n    private static readonly SemaphoreSlim SaveGate = new(ConfigurationStoreConstants.InitialWriterCount, ConfigurationStoreConstants.MaximumWriterCount);\r\n\r\n    public ConfigurationStore(string directory, string? pathBase = null)\r\n    {\r\n        _directory = Path.GetFullPath(directory);\r\n        _pathBase = Path.GetFullPath(pathBase ?? directory);\r\n    }\r\n\r\n    public Task<IReadOnlyList<MachineConfiguration>> LoadAllAsync(CancellationToken cancellationToken = default)\r\n    {\r\n        Directory.CreateDirectory(_directory);\r\n        var configurations = new List<MachineConfiguration>();\r\n        var paths = Directory.EnumerateDirectories(_directory).Select(directory => Path.Combine(directory, ConfigurationStoreConstants.MachineFileName)).Where(File.Exists).Order(StringComparer.OrdinalIgnoreCase);\r\n        foreach (var path in paths)\r\n        {\r\n            try\r\n            {\r\n                cancellationToken.ThrowIfCancellationRequested();\r\n                var json = ConfigurationFileAccessFunctions.ReadAllText(path);\r\n                var configuration = JsonSerializer.Deserialize<MachineConfiguration>(json, JsonOptions);\r\n                if (configuration is not null\r\n                    && configuration.SchemaVersion == ConfigurationStoreConstants.CurrentSchemaVersion)\r\n                    configurations.Add(ResolvePaths(configuration.EnsureId()));\r\n            }\r\n            catch (JsonException) { }\r\n            catch (IOException) { }\r\n        }\r\n        return Task.FromResult<IReadOnlyList<MachineConfiguration>>(configurations);\r\n    }\r\n\r\n    public async Task SaveAsync(MachineConfiguration configuration, CancellationToken cancellationToken = default)\r\n    {\r\n        await SaveGate.WaitAsync(cancellationToken).ConfigureAwait(false);\r\n        string? temporary = null;\r\n        try\r\n        {\r\n            configuration = configuration.EnsureId() with\r\n            {\r\n                SchemaVersion = ConfigurationStoreConstants.CurrentSchemaVersion\r\n            };\r\n            var machineDirectory = Path.Combine(_directory, configuration.Id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\r\n            Directory.CreateDirectory(machineDirectory);\r\n            var target = Path.Combine(machineDirectory, ConfigurationStoreConstants.MachineFileName);\r\n            temporary = target + ConfigurationStoreConstants.TemporaryNameSeparator + Guid.NewGuid().ToString(ConfigurationStoreConstants.MachineIdentifierFormat) + ConfigurationStoreConstants.TemporaryFileSuffix;\r\n            await using (var stream = new FileStream(temporary, FileMode.Create, FileAccess.Write, FileShare.None, ConfigurationStoreConstants.WriteBufferSize, ConfigurationStoreConstants.UseAsyncFileAccess))\r\n                await JsonSerializer.SerializeAsync(stream, StorePaths(configuration), JsonOptions, cancellationToken).ConfigureAwait(false);\r\n            ConfigurationFileAccessFunctions.ReplaceFile(temporary, target);\r\n        }\r\n        finally\r\n        {\r\n            if (temporary is not null && File.Exists(temporary)) File.Delete(temporary);\r\n            SaveGate.Release();\r\n        }\r\n    }\r\n\r\n    public void Delete(Guid id)\r\n    {\r\n        var target = Path.Combine(_directory, id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\r\n        if (Directory.Exists(target))\r\n            Directory.Delete(target, ConfigurationStoreConstants.RecursiveDirectoryDelete);\r\n    }\r\n\r\n    private MachineConfiguration StorePaths(MachineConfiguration configuration) => configuration with\r\n    {\r\n        FirmwarePaths = configuration.FirmwarePaths?.ToDictionary(pair => pair.Key, pair => StorePath(pair.Value)!, StringComparer.Ordinal),\r\n        InitialDiskPath = StorePath(configuration.InitialDiskPath),\r\n        Floppies = configuration.Floppies?.Select(floppy => floppy with { Path = StorePath(floppy.Path)! }).ToArray(),\r\n        Media = configuration.Media?.Select(media => media with { Path = StorePath(media.Path)! }).ToArray()\r\n    };\r\n\r\n    private MachineConfiguration ResolvePaths(MachineConfiguration configuration) => configuration with\r\n    {\r\n        FirmwarePaths = configuration.FirmwarePaths?.ToDictionary(pair => pair.Key, pair => ResolvePath(pair.Value)!, StringComparer.Ordinal),\r\n        InitialDiskPath = ResolvePath(configuration.InitialDiskPath),\r\n        Floppies = configuration.Floppies?.Select(floppy => floppy with { Path = ResolvePath(floppy.Path)! }).ToArray(),\r\n        Media = configuration.Media?.Select(media => media with { Path = ResolvePath(media.Path)! }).ToArray()\r\n    };\r\n\r\n    private string? StorePath(string? path)\r\n    {\r\n        if (string.IsNullOrWhiteSpace(path)) return null;\r\n        var fullPath = Path.GetFullPath(path);\r\n        var relative = Path.GetRelativePath(_pathBase, fullPath);\r\n        if (Path.IsPathFullyQualified(relative)) return fullPath;\r\n        if (relative != ConfigurationStoreConstants.ParentDirectoryName\r\n            && !relative.StartsWith(ConfigurationStoreConstants.ParentDirectoryName + Path.DirectorySeparatorChar, StringComparison.Ordinal))\r\n            return relative.Replace(Path.DirectorySeparatorChar, ConfigurationStoreConstants.StoredDirectorySeparator);\r\n        return fullPath;\r\n    }\r\n\r\n    private string? ResolvePath(string? path)\r\n    {\r\n        if (string.IsNullOrWhiteSpace(path)) return null;\r\n        if (Path.IsPathFullyQualified(path)) return path;\r\n        return Path.GetFullPath(Path.Combine(_pathBase, path.Replace(ConfigurationStoreConstants.StoredDirectorySeparator, Path.DirectorySeparatorChar)));\r\n    }\r\n}\r\n",
+        "methods": [
+          "    private string? StorePath(string? path)\r\n    {\r\n        if (string.IsNullOrWhiteSpace(path)) return null;\r\n        var fullPath = Path.GetFullPath(path);\r\n        var relative = Path.GetRelativePath(_pathBase, fullPath);\r\n        if (Path.IsPathFullyQualified(relative)) return fullPath;\r\n        if (relative != ConfigurationStoreConstants.ParentDirectoryName\r\n            && !relative.StartsWith(ConfigurationStoreConstants.ParentDirectoryName + Path.DirectorySeparatorChar, StringComparison.Ordinal))\r\n            return relative.Replace(Path.DirectorySeparatorChar, ConfigurationStoreConstants.StoredDirectorySeparator);\r\n        return fullPath;\r\n    }",
+          "    private string? ResolvePath(string? path)\r\n    {\r\n        if (string.IsNullOrWhiteSpace(path)) return null;\r\n        if (Path.IsPathFullyQualified(path)) return path;\r\n        return Path.GetFullPath(Path.Combine(_pathBase, path.Replace(ConfigurationStoreConstants.StoredDirectorySeparator, Path.DirectorySeparatorChar)));\r\n    }"
+        ],
+        "replacements": [
+          {
+            "before": "    private string? StorePath(string? path)\r\n    {\r\n        if (string.IsNullOrWhiteSpace(path)) return null;\r\n        var fullPath = Path.GetFullPath(path);\r\n        var relative = Path.GetRelativePath(_pathBase, fullPath);\r\n        if (Path.IsPathFullyQualified(relative)) return fullPath;\r\n        if (relative != ConfigurationStoreConstants.ParentDirectoryName\r\n            && !relative.StartsWith(ConfigurationStoreConstants.ParentDirectoryName + Path.DirectorySeparatorChar, StringComparison.Ordinal))\r\n            return relative.Replace(Path.DirectorySeparatorChar, ConfigurationStoreConstants.StoredDirectorySeparator);\r\n        return fullPath;\r\n    }",
+            "name": "StorePath",
+            "after": "    private string? StorePath(string? path)\r\n        => ConfigurationFileAccessFunctions.StorePath(string.IsNullOrWhiteSpace(path) ? null : path, _pathBase);"
+          },
+          {
+            "before": "    private string? ResolvePath(string? path)\r\n    {\r\n        if (string.IsNullOrWhiteSpace(path)) return null;\r\n        if (Path.IsPathFullyQualified(path)) return path;\r\n        return Path.GetFullPath(Path.Combine(_pathBase, path.Replace(ConfigurationStoreConstants.StoredDirectorySeparator, Path.DirectorySeparatorChar)));\r\n    }",
+            "name": "ResolvePath",
+            "after": "    private string? ResolvePath(string? path)\r\n        => ConfigurationFileAccessFunctions.ResolvePath(string.IsNullOrWhiteSpace(path) ? null : path, _pathBase);"
+          }
+        ],
+        "after": "using System.IO;\r\nusing System.Text.Json;\r\nusing GWGUI.Emulation.Functions;\r\n\r\nnamespace GWGUI.Emulation.Commodore.Common.Services;\r\n\r\npublic sealed class ConfigurationStore\r\n{\r\n    private static readonly JsonSerializerOptions JsonOptions = new(JsonSerializerDefaults.Web)\r\n    {\r\n        WriteIndented = ConfigurationStoreConstants.WriteIndentedJson,\r\n        UnmappedMemberHandling = System.Text.Json.Serialization.JsonUnmappedMemberHandling.Disallow\r\n    };\r\n    private readonly string _directory;\r\n    private readonly string _pathBase;\r\n    private static readonly SemaphoreSlim SaveGate = new(ConfigurationStoreConstants.InitialWriterCount, ConfigurationStoreConstants.MaximumWriterCount);\r\n\r\n    public ConfigurationStore(string directory, string? pathBase = null)\r\n    {\r\n        _directory = Path.GetFullPath(directory);\r\n        _pathBase = Path.GetFullPath(pathBase ?? directory);\r\n    }\r\n\r\n    public Task<IReadOnlyList<MachineConfiguration>> LoadAllAsync(CancellationToken cancellationToken = default)\r\n    {\r\n        Directory.CreateDirectory(_directory);\r\n        var configurations = new List<MachineConfiguration>();\r\n        var paths = Directory.EnumerateDirectories(_directory).Select(directory => Path.Combine(directory, ConfigurationStoreConstants.MachineFileName)).Where(File.Exists).Order(StringComparer.OrdinalIgnoreCase);\r\n        foreach (var path in paths)\r\n        {\r\n            try\r\n            {\r\n                cancellationToken.ThrowIfCancellationRequested();\r\n                var json = ConfigurationFileAccessFunctions.ReadAllText(path);\r\n                var configuration = JsonSerializer.Deserialize<MachineConfiguration>(json, JsonOptions);\r\n                if (configuration is not null\r\n                    && configuration.SchemaVersion == ConfigurationStoreConstants.CurrentSchemaVersion)\r\n                    configurations.Add(ResolvePaths(configuration.EnsureId()));\r\n            }\r\n            catch (JsonException) { }\r\n            catch (IOException) { }\r\n        }\r\n        return Task.FromResult<IReadOnlyList<MachineConfiguration>>(configurations);\r\n    }\r\n\r\n    public async Task SaveAsync(MachineConfiguration configuration, CancellationToken cancellationToken = default)\r\n    {\r\n        await SaveGate.WaitAsync(cancellationToken).ConfigureAwait(false);\r\n        string? temporary = null;\r\n        try\r\n        {\r\n            configuration = configuration.EnsureId() with\r\n            {\r\n                SchemaVersion = ConfigurationStoreConstants.CurrentSchemaVersion\r\n            };\r\n            var machineDirectory = Path.Combine(_directory, configuration.Id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\r\n            Directory.CreateDirectory(machineDirectory);\r\n            var target = Path.Combine(machineDirectory, ConfigurationStoreConstants.MachineFileName);\r\n            temporary = target + ConfigurationStoreConstants.TemporaryNameSeparator + Guid.NewGuid().ToString(ConfigurationStoreConstants.MachineIdentifierFormat) + ConfigurationStoreConstants.TemporaryFileSuffix;\r\n            await using (var stream = new FileStream(temporary, FileMode.Create, FileAccess.Write, FileShare.None, ConfigurationStoreConstants.WriteBufferSize, ConfigurationStoreConstants.UseAsyncFileAccess))\r\n                await JsonSerializer.SerializeAsync(stream, StorePaths(configuration), JsonOptions, cancellationToken).ConfigureAwait(false);\r\n            ConfigurationFileAccessFunctions.ReplaceFile(temporary, target);\r\n        }\r\n        finally\r\n        {\r\n            if (temporary is not null && File.Exists(temporary)) File.Delete(temporary);\r\n            SaveGate.Release();\r\n        }\r\n    }\r\n\r\n    public void Delete(Guid id)\r\n    {\r\n        var target = Path.Combine(_directory, id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\r\n        if (Directory.Exists(target))\r\n            Directory.Delete(target, ConfigurationStoreConstants.RecursiveDirectoryDelete);\r\n    }\r\n\r\n    private MachineConfiguration StorePaths(MachineConfiguration configuration) => configuration with\r\n    {\r\n        FirmwarePaths = configuration.FirmwarePaths?.ToDictionary(pair => pair.Key, pair => StorePath(pair.Value)!, StringComparer.Ordinal),\r\n        InitialDiskPath = StorePath(configuration.InitialDiskPath),\r\n        Floppies = configuration.Floppies?.Select(floppy => floppy with { Path = StorePath(floppy.Path)! }).ToArray(),\r\n        Media = configuration.Media?.Select(media => media with { Path = StorePath(media.Path)! }).ToArray()\r\n    };\r\n\r\n    private MachineConfiguration ResolvePaths(MachineConfiguration configuration) => configuration with\r\n    {\r\n        FirmwarePaths = configuration.FirmwarePaths?.ToDictionary(pair => pair.Key, pair => ResolvePath(pair.Value)!, StringComparer.Ordinal),\r\n        InitialDiskPath = ResolvePath(configuration.InitialDiskPath),\r\n        Floppies = configuration.Floppies?.Select(floppy => floppy with { Path = ResolvePath(floppy.Path)! }).ToArray(),\r\n        Media = configuration.Media?.Select(media => media with { Path = ResolvePath(media.Path)! }).ToArray()\r\n    };\r\n\r\n    private string? StorePath(string? path)\r\n        => ConfigurationFileAccessFunctions.StorePath(string.IsNullOrWhiteSpace(path) ? null : path, _pathBase);\r\n\r\n    private string? ResolvePath(string? path)\r\n        => ConfigurationFileAccessFunctions.ResolvePath(string.IsNullOrWhiteSpace(path) ? null : path, _pathBase);\r\n}\r\n"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Microsoft/Common/Services/ConfigurationStore.cs",
+        "sha256": "3E7FE78D1B9AEFAA1F71A16F8320064D04ED013E2C4D72036E930BE0F3EE668C",
+        "module": "Microsoft",
+        "before": "using System.IO;\r\nusing System.Text.Json;\r\nusing GWGUI.Emulation.Functions;\r\n\r\nnamespace GWGUI.Emulation.Microsoft.Common.Services;\r\n\r\npublic sealed class ConfigurationStore\r\n{\r\n    private static readonly JsonSerializerOptions JsonOptions = new(JsonSerializerDefaults.Web)\r\n    {\r\n        WriteIndented = ConfigurationStoreConstants.WriteIndentedJson\r\n    };\r\n    private readonly string _directory;\r\n    private readonly string _pathBase;\r\n    private static readonly SemaphoreSlim SaveGate = new(ConfigurationStoreConstants.InitialWriterCount, ConfigurationStoreConstants.MaximumWriterCount);\r\n\r\n    public ConfigurationStore(string directory, string? pathBase = null)\r\n    {\r\n        _directory = Path.GetFullPath(directory);\r\n        _pathBase = Path.GetFullPath(pathBase ?? directory);\r\n    }\r\n\r\n    public Task<IReadOnlyList<MachineConfiguration>> LoadAllAsync(CancellationToken cancellationToken = default)\r\n    {\r\n        Directory.CreateDirectory(_directory);\r\n        var configurations = new List<MachineConfiguration>();\r\n        var paths = Directory.EnumerateDirectories(_directory).Select(directory => Path.Combine(directory, ConfigurationStoreConstants.MachineFileName)).Where(File.Exists).Order(StringComparer.OrdinalIgnoreCase);\r\n        foreach (var path in paths)\r\n        {\r\n            try\r\n            {\r\n                cancellationToken.ThrowIfCancellationRequested();\r\n                var json = ConfigurationFileAccessFunctions.ReadAllText(path);\r\n                var configuration = JsonSerializer.Deserialize<MachineConfiguration>(json, JsonOptions);\r\n                if (configuration is not null\r\n                    && configuration.SchemaVersion == ConfigurationStoreConstants.CurrentSchemaVersion)\r\n                    configurations.Add(ResolvePaths(configuration.EnsureId()));\r\n            }\r\n            catch (JsonException) { }\r\n            catch (IOException) { }\r\n        }\r\n        return Task.FromResult<IReadOnlyList<MachineConfiguration>>(configurations);\r\n    }\r\n\r\n    public async Task SaveAsync(MachineConfiguration configuration, CancellationToken cancellationToken = default)\r\n    {\r\n        await SaveGate.WaitAsync(cancellationToken).ConfigureAwait(false);\r\n        string? temporary = null;\r\n        try\r\n        {\r\n            configuration = configuration.EnsureId() with\r\n            {\r\n                SchemaVersion = ConfigurationStoreConstants.CurrentSchemaVersion\r\n            };\r\n            var machineDirectory = Path.Combine(_directory, configuration.Id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\r\n            Directory.CreateDirectory(machineDirectory);\r\n            var target = Path.Combine(machineDirectory, ConfigurationStoreConstants.MachineFileName);\r\n            temporary = target + ConfigurationStoreConstants.TemporaryNameSeparator + Guid.NewGuid().ToString(ConfigurationStoreConstants.MachineIdentifierFormat) + ConfigurationStoreConstants.TemporaryFileSuffix;\r\n            await using (var stream = new FileStream(temporary, FileMode.Create, FileAccess.Write, FileShare.None, ConfigurationStoreConstants.WriteBufferSize, ConfigurationStoreConstants.UseAsyncFileAccess))\r\n                await JsonSerializer.SerializeAsync(stream, StorePaths(configuration), JsonOptions, cancellationToken).ConfigureAwait(false);\r\n            ConfigurationFileAccessFunctions.ReplaceFile(temporary, target);\r\n        }\r\n        finally\r\n        {\r\n            if (temporary is not null && File.Exists(temporary)) File.Delete(temporary);\r\n            SaveGate.Release();\r\n        }\r\n    }\r\n\r\n    public void Delete(Guid id)\r\n    {\r\n        var target = Path.Combine(_directory, id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\r\n        if (Directory.Exists(target))\r\n            Directory.Delete(target, ConfigurationStoreConstants.RecursiveDirectoryDelete);\r\n    }\r\n\r\n    private MachineConfiguration StorePaths(MachineConfiguration configuration) => configuration with\r\n    {\r\n        Media = configuration.Media?.Select(media => media with { Path = StorePath(media.Path)! }).ToArray()\r\n    };\r\n\r\n    private MachineConfiguration ResolvePaths(MachineConfiguration configuration) => configuration with\r\n    {\r\n        Media = configuration.Media?.Select(media => media with { Path = ResolvePath(media.Path)! }).ToArray()\r\n    };\r\n\r\n    private string? StorePath(string? path)\r\n    {\r\n        if (string.IsNullOrWhiteSpace(path)) return null;\r\n        var fullPath = Path.GetFullPath(path);\r\n        var relative = Path.GetRelativePath(_pathBase, fullPath);\r\n        if (Path.IsPathFullyQualified(relative)) return fullPath;\r\n        if (relative != ConfigurationStoreConstants.ParentDirectoryName\r\n            && !relative.StartsWith(ConfigurationStoreConstants.ParentDirectoryName + Path.DirectorySeparatorChar, StringComparison.Ordinal))\r\n            return relative.Replace(Path.DirectorySeparatorChar, ConfigurationStoreConstants.StoredDirectorySeparator);\r\n        return fullPath;\r\n    }\r\n\r\n    private string? ResolvePath(string? path)\r\n    {\r\n        if (string.IsNullOrWhiteSpace(path)) return null;\r\n        if (Path.IsPathFullyQualified(path)) return path;\r\n        return Path.GetFullPath(Path.Combine(_pathBase, path.Replace(ConfigurationStoreConstants.StoredDirectorySeparator, Path.DirectorySeparatorChar)));\r\n    }\r\n}\r\n",
+        "methods": [
+          "    private string? StorePath(string? path)\r\n    {\r\n        if (string.IsNullOrWhiteSpace(path)) return null;\r\n        var fullPath = Path.GetFullPath(path);\r\n        var relative = Path.GetRelativePath(_pathBase, fullPath);\r\n        if (Path.IsPathFullyQualified(relative)) return fullPath;\r\n        if (relative != ConfigurationStoreConstants.ParentDirectoryName\r\n            && !relative.StartsWith(ConfigurationStoreConstants.ParentDirectoryName + Path.DirectorySeparatorChar, StringComparison.Ordinal))\r\n            return relative.Replace(Path.DirectorySeparatorChar, ConfigurationStoreConstants.StoredDirectorySeparator);\r\n        return fullPath;\r\n    }",
+          "    private string? ResolvePath(string? path)\r\n    {\r\n        if (string.IsNullOrWhiteSpace(path)) return null;\r\n        if (Path.IsPathFullyQualified(path)) return path;\r\n        return Path.GetFullPath(Path.Combine(_pathBase, path.Replace(ConfigurationStoreConstants.StoredDirectorySeparator, Path.DirectorySeparatorChar)));\r\n    }"
+        ],
+        "replacements": [
+          {
+            "before": "    private string? StorePath(string? path)\r\n    {\r\n        if (string.IsNullOrWhiteSpace(path)) return null;\r\n        var fullPath = Path.GetFullPath(path);\r\n        var relative = Path.GetRelativePath(_pathBase, fullPath);\r\n        if (Path.IsPathFullyQualified(relative)) return fullPath;\r\n        if (relative != ConfigurationStoreConstants.ParentDirectoryName\r\n            && !relative.StartsWith(ConfigurationStoreConstants.ParentDirectoryName + Path.DirectorySeparatorChar, StringComparison.Ordinal))\r\n            return relative.Replace(Path.DirectorySeparatorChar, ConfigurationStoreConstants.StoredDirectorySeparator);\r\n        return fullPath;\r\n    }",
+            "name": "StorePath",
+            "after": "    private string? StorePath(string? path)\r\n        => ConfigurationFileAccessFunctions.StorePath(string.IsNullOrWhiteSpace(path) ? null : path, _pathBase);"
+          },
+          {
+            "before": "    private string? ResolvePath(string? path)\r\n    {\r\n        if (string.IsNullOrWhiteSpace(path)) return null;\r\n        if (Path.IsPathFullyQualified(path)) return path;\r\n        return Path.GetFullPath(Path.Combine(_pathBase, path.Replace(ConfigurationStoreConstants.StoredDirectorySeparator, Path.DirectorySeparatorChar)));\r\n    }",
+            "name": "ResolvePath",
+            "after": "    private string? ResolvePath(string? path)\r\n        => ConfigurationFileAccessFunctions.ResolvePath(string.IsNullOrWhiteSpace(path) ? null : path, _pathBase);"
+          }
+        ],
+        "after": "using System.IO;\r\nusing System.Text.Json;\r\nusing GWGUI.Emulation.Functions;\r\n\r\nnamespace GWGUI.Emulation.Microsoft.Common.Services;\r\n\r\npublic sealed class ConfigurationStore\r\n{\r\n    private static readonly JsonSerializerOptions JsonOptions = new(JsonSerializerDefaults.Web)\r\n    {\r\n        WriteIndented = ConfigurationStoreConstants.WriteIndentedJson\r\n    };\r\n    private readonly string _directory;\r\n    private readonly string _pathBase;\r\n    private static readonly SemaphoreSlim SaveGate = new(ConfigurationStoreConstants.InitialWriterCount, ConfigurationStoreConstants.MaximumWriterCount);\r\n\r\n    public ConfigurationStore(string directory, string? pathBase = null)\r\n    {\r\n        _directory = Path.GetFullPath(directory);\r\n        _pathBase = Path.GetFullPath(pathBase ?? directory);\r\n    }\r\n\r\n    public Task<IReadOnlyList<MachineConfiguration>> LoadAllAsync(CancellationToken cancellationToken = default)\r\n    {\r\n        Directory.CreateDirectory(_directory);\r\n        var configurations = new List<MachineConfiguration>();\r\n        var paths = Directory.EnumerateDirectories(_directory).Select(directory => Path.Combine(directory, ConfigurationStoreConstants.MachineFileName)).Where(File.Exists).Order(StringComparer.OrdinalIgnoreCase);\r\n        foreach (var path in paths)\r\n        {\r\n            try\r\n            {\r\n                cancellationToken.ThrowIfCancellationRequested();\r\n                var json = ConfigurationFileAccessFunctions.ReadAllText(path);\r\n                var configuration = JsonSerializer.Deserialize<MachineConfiguration>(json, JsonOptions);\r\n                if (configuration is not null\r\n                    && configuration.SchemaVersion == ConfigurationStoreConstants.CurrentSchemaVersion)\r\n                    configurations.Add(ResolvePaths(configuration.EnsureId()));\r\n            }\r\n            catch (JsonException) { }\r\n            catch (IOException) { }\r\n        }\r\n        return Task.FromResult<IReadOnlyList<MachineConfiguration>>(configurations);\r\n    }\r\n\r\n    public async Task SaveAsync(MachineConfiguration configuration, CancellationToken cancellationToken = default)\r\n    {\r\n        await SaveGate.WaitAsync(cancellationToken).ConfigureAwait(false);\r\n        string? temporary = null;\r\n        try\r\n        {\r\n            configuration = configuration.EnsureId() with\r\n            {\r\n                SchemaVersion = ConfigurationStoreConstants.CurrentSchemaVersion\r\n            };\r\n            var machineDirectory = Path.Combine(_directory, configuration.Id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\r\n            Directory.CreateDirectory(machineDirectory);\r\n            var target = Path.Combine(machineDirectory, ConfigurationStoreConstants.MachineFileName);\r\n            temporary = target + ConfigurationStoreConstants.TemporaryNameSeparator + Guid.NewGuid().ToString(ConfigurationStoreConstants.MachineIdentifierFormat) + ConfigurationStoreConstants.TemporaryFileSuffix;\r\n            await using (var stream = new FileStream(temporary, FileMode.Create, FileAccess.Write, FileShare.None, ConfigurationStoreConstants.WriteBufferSize, ConfigurationStoreConstants.UseAsyncFileAccess))\r\n                await JsonSerializer.SerializeAsync(stream, StorePaths(configuration), JsonOptions, cancellationToken).ConfigureAwait(false);\r\n            ConfigurationFileAccessFunctions.ReplaceFile(temporary, target);\r\n        }\r\n        finally\r\n        {\r\n            if (temporary is not null && File.Exists(temporary)) File.Delete(temporary);\r\n            SaveGate.Release();\r\n        }\r\n    }\r\n\r\n    public void Delete(Guid id)\r\n    {\r\n        var target = Path.Combine(_directory, id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\r\n        if (Directory.Exists(target))\r\n            Directory.Delete(target, ConfigurationStoreConstants.RecursiveDirectoryDelete);\r\n    }\r\n\r\n    private MachineConfiguration StorePaths(MachineConfiguration configuration) => configuration with\r\n    {\r\n        Media = configuration.Media?.Select(media => media with { Path = StorePath(media.Path)! }).ToArray()\r\n    };\r\n\r\n    private MachineConfiguration ResolvePaths(MachineConfiguration configuration) => configuration with\r\n    {\r\n        Media = configuration.Media?.Select(media => media with { Path = ResolvePath(media.Path)! }).ToArray()\r\n    };\r\n\r\n    private string? StorePath(string? path)\r\n        => ConfigurationFileAccessFunctions.StorePath(string.IsNullOrWhiteSpace(path) ? null : path, _pathBase);\r\n\r\n    private string? ResolvePath(string? path)\r\n        => ConfigurationFileAccessFunctions.ResolvePath(string.IsNullOrWhiteSpace(path) ? null : path, _pathBase);\r\n}\r\n"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nec/Common/Services/ConfigurationStore.cs",
+        "sha256": "1FC1F72A7F34A7B5D087B20D30CE89AF6693D47F09D7F42DFED6872BD547317B",
+        "module": "Nec",
+        "before": "using System.IO;\r\nusing System.Text.Json;\r\nusing GWGUI.Emulation.Functions;\r\n\r\nnamespace GWGUI.Emulation.Nec.Common.Services;\r\n\r\npublic sealed class ConfigurationStore\r\n{\r\n    private static readonly JsonSerializerOptions JsonOptions = new(JsonSerializerDefaults.Web)\r\n    {\r\n        WriteIndented = ConfigurationStoreConstants.WriteIndentedJson\r\n    };\r\n    private readonly string _directory;\r\n    private readonly string _pathBase;\r\n    private static readonly SemaphoreSlim SaveGate = new(ConfigurationStoreConstants.InitialWriterCount, ConfigurationStoreConstants.MaximumWriterCount);\r\n\r\n    public ConfigurationStore(string directory, string? pathBase = null)\r\n    {\r\n        _directory = Path.GetFullPath(directory);\r\n        _pathBase = Path.GetFullPath(pathBase ?? directory);\r\n    }\r\n\r\n    public string MemoryDirectory(Guid id) => Path.Combine(_directory, id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat), ConfigurationStoreConstants.MemoryDirectoryName);\r\n\r\n    public Task<IReadOnlyList<MachineConfiguration>> LoadAllAsync(CancellationToken cancellationToken = default)\r\n    {\r\n        Directory.CreateDirectory(_directory);\r\n        var configurations = new List<MachineConfiguration>();\r\n        var paths = Directory.EnumerateDirectories(_directory).Select(directory => Path.Combine(directory, ConfigurationStoreConstants.MachineFileName)).Where(File.Exists).Order(StringComparer.OrdinalIgnoreCase);\r\n        foreach (var path in paths)\r\n        {\r\n            try\r\n            {\r\n                cancellationToken.ThrowIfCancellationRequested();\r\n                var json = ConfigurationFileAccessFunctions.ReadAllText(path);\r\n                var configuration = JsonSerializer.Deserialize<MachineConfiguration>(json, JsonOptions);\r\n                if (configuration is not null\r\n                    && configuration.SchemaVersion == ConfigurationStoreConstants.CurrentSchemaVersion)\r\n                    configurations.Add(ResolvePaths(configuration.EnsureId()));\r\n            }\r\n            catch (JsonException) { }\r\n            catch (IOException) { }\r\n        }\r\n        return Task.FromResult<IReadOnlyList<MachineConfiguration>>(configurations);\r\n    }\r\n\r\n    public async Task SaveAsync(MachineConfiguration configuration, CancellationToken cancellationToken = default)\r\n    {\r\n        await SaveGate.WaitAsync(cancellationToken).ConfigureAwait(false);\r\n        string? temporary = null;\r\n        try\r\n        {\r\n            configuration = configuration.EnsureId() with\r\n            {\r\n                SchemaVersion = ConfigurationStoreConstants.CurrentSchemaVersion\r\n            };\r\n            var machineDirectory = Path.Combine(_directory, configuration.Id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\r\n            Directory.CreateDirectory(machineDirectory);\r\n            var target = Path.Combine(machineDirectory, ConfigurationStoreConstants.MachineFileName);\r\n            temporary = target + ConfigurationStoreConstants.TemporaryNameSeparator + Guid.NewGuid().ToString(ConfigurationStoreConstants.MachineIdentifierFormat) + ConfigurationStoreConstants.TemporaryFileSuffix;\r\n            await using (var stream = new FileStream(temporary, FileMode.Create, FileAccess.Write, FileShare.None, ConfigurationStoreConstants.WriteBufferSize, ConfigurationStoreConstants.UseAsyncFileAccess))\r\n                await JsonSerializer.SerializeAsync(stream, StorePaths(configuration), JsonOptions, cancellationToken).ConfigureAwait(false);\r\n            ConfigurationFileAccessFunctions.ReplaceFile(temporary, target);\r\n        }\r\n        finally\r\n        {\r\n            if (temporary is not null && File.Exists(temporary)) File.Delete(temporary);\r\n            SaveGate.Release();\r\n        }\r\n    }\r\n\r\n    public void Delete(Guid id)\r\n    {\r\n        var target = Path.Combine(_directory, id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\r\n        if (Directory.Exists(target))\r\n            Directory.Delete(target, ConfigurationStoreConstants.RecursiveDirectoryDelete);\r\n    }\r\n\r\n    private MachineConfiguration StorePaths(MachineConfiguration configuration) => configuration with\r\n    {\r\n        Media = configuration.Media?.Select(media => media with { Path = StorePath(media.Path)! }).ToArray(),\r\n        FirmwarePath = StorePath(configuration.FirmwarePath),\r\n        FirmwarePaths = configuration.FirmwarePaths?.ToDictionary(item => item.Key, item => StorePath(item.Value)!, StringComparer.Ordinal)\r\n    };\r\n\r\n    private MachineConfiguration ResolvePaths(MachineConfiguration configuration) => configuration with\r\n    {\r\n        Media = configuration.Media?.Select(media => media with { Path = ResolvePath(media.Path)! }).ToArray(),\r\n        FirmwarePath = ResolvePath(configuration.FirmwarePath),\r\n        FirmwarePaths = configuration.FirmwarePaths?.ToDictionary(item => item.Key, item => ResolvePath(item.Value)!, StringComparer.Ordinal)\r\n    };\r\n\r\n    private string? StorePath(string? path)\r\n    {\r\n        if (string.IsNullOrWhiteSpace(path)) return null;\r\n        var fullPath = Path.GetFullPath(path);\r\n        var relative = Path.GetRelativePath(_pathBase, fullPath);\r\n        if (Path.IsPathFullyQualified(relative)) return fullPath;\r\n        if (relative != ConfigurationStoreConstants.ParentDirectoryName\r\n            && !relative.StartsWith(ConfigurationStoreConstants.ParentDirectoryName + Path.DirectorySeparatorChar, StringComparison.Ordinal))\r\n            return relative.Replace(Path.DirectorySeparatorChar, ConfigurationStoreConstants.StoredDirectorySeparator);\r\n        return fullPath;\r\n    }\r\n\r\n    private string? ResolvePath(string? path)\r\n    {\r\n        if (string.IsNullOrWhiteSpace(path)) return null;\r\n        if (Path.IsPathFullyQualified(path)) return path;\r\n        return Path.GetFullPath(Path.Combine(_pathBase, path.Replace(ConfigurationStoreConstants.StoredDirectorySeparator, Path.DirectorySeparatorChar)));\r\n    }\r\n}\r\n",
+        "methods": [
+          "    private string? StorePath(string? path)\r\n    {\r\n        if (string.IsNullOrWhiteSpace(path)) return null;\r\n        var fullPath = Path.GetFullPath(path);\r\n        var relative = Path.GetRelativePath(_pathBase, fullPath);\r\n        if (Path.IsPathFullyQualified(relative)) return fullPath;\r\n        if (relative != ConfigurationStoreConstants.ParentDirectoryName\r\n            && !relative.StartsWith(ConfigurationStoreConstants.ParentDirectoryName + Path.DirectorySeparatorChar, StringComparison.Ordinal))\r\n            return relative.Replace(Path.DirectorySeparatorChar, ConfigurationStoreConstants.StoredDirectorySeparator);\r\n        return fullPath;\r\n    }",
+          "    private string? ResolvePath(string? path)\r\n    {\r\n        if (string.IsNullOrWhiteSpace(path)) return null;\r\n        if (Path.IsPathFullyQualified(path)) return path;\r\n        return Path.GetFullPath(Path.Combine(_pathBase, path.Replace(ConfigurationStoreConstants.StoredDirectorySeparator, Path.DirectorySeparatorChar)));\r\n    }"
+        ],
+        "replacements": [
+          {
+            "before": "    private string? StorePath(string? path)\r\n    {\r\n        if (string.IsNullOrWhiteSpace(path)) return null;\r\n        var fullPath = Path.GetFullPath(path);\r\n        var relative = Path.GetRelativePath(_pathBase, fullPath);\r\n        if (Path.IsPathFullyQualified(relative)) return fullPath;\r\n        if (relative != ConfigurationStoreConstants.ParentDirectoryName\r\n            && !relative.StartsWith(ConfigurationStoreConstants.ParentDirectoryName + Path.DirectorySeparatorChar, StringComparison.Ordinal))\r\n            return relative.Replace(Path.DirectorySeparatorChar, ConfigurationStoreConstants.StoredDirectorySeparator);\r\n        return fullPath;\r\n    }",
+            "name": "StorePath",
+            "after": "    private string? StorePath(string? path)\r\n        => ConfigurationFileAccessFunctions.StorePath(string.IsNullOrWhiteSpace(path) ? null : path, _pathBase);"
+          },
+          {
+            "before": "    private string? ResolvePath(string? path)\r\n    {\r\n        if (string.IsNullOrWhiteSpace(path)) return null;\r\n        if (Path.IsPathFullyQualified(path)) return path;\r\n        return Path.GetFullPath(Path.Combine(_pathBase, path.Replace(ConfigurationStoreConstants.StoredDirectorySeparator, Path.DirectorySeparatorChar)));\r\n    }",
+            "name": "ResolvePath",
+            "after": "    private string? ResolvePath(string? path)\r\n        => ConfigurationFileAccessFunctions.ResolvePath(string.IsNullOrWhiteSpace(path) ? null : path, _pathBase);"
+          }
+        ],
+        "after": "using System.IO;\r\nusing System.Text.Json;\r\nusing GWGUI.Emulation.Functions;\r\n\r\nnamespace GWGUI.Emulation.Nec.Common.Services;\r\n\r\npublic sealed class ConfigurationStore\r\n{\r\n    private static readonly JsonSerializerOptions JsonOptions = new(JsonSerializerDefaults.Web)\r\n    {\r\n        WriteIndented = ConfigurationStoreConstants.WriteIndentedJson\r\n    };\r\n    private readonly string _directory;\r\n    private readonly string _pathBase;\r\n    private static readonly SemaphoreSlim SaveGate = new(ConfigurationStoreConstants.InitialWriterCount, ConfigurationStoreConstants.MaximumWriterCount);\r\n\r\n    public ConfigurationStore(string directory, string? pathBase = null)\r\n    {\r\n        _directory = Path.GetFullPath(directory);\r\n        _pathBase = Path.GetFullPath(pathBase ?? directory);\r\n    }\r\n\r\n    public string MemoryDirectory(Guid id) => Path.Combine(_directory, id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat), ConfigurationStoreConstants.MemoryDirectoryName);\r\n\r\n    public Task<IReadOnlyList<MachineConfiguration>> LoadAllAsync(CancellationToken cancellationToken = default)\r\n    {\r\n        Directory.CreateDirectory(_directory);\r\n        var configurations = new List<MachineConfiguration>();\r\n        var paths = Directory.EnumerateDirectories(_directory).Select(directory => Path.Combine(directory, ConfigurationStoreConstants.MachineFileName)).Where(File.Exists).Order(StringComparer.OrdinalIgnoreCase);\r\n        foreach (var path in paths)\r\n        {\r\n            try\r\n            {\r\n                cancellationToken.ThrowIfCancellationRequested();\r\n                var json = ConfigurationFileAccessFunctions.ReadAllText(path);\r\n                var configuration = JsonSerializer.Deserialize<MachineConfiguration>(json, JsonOptions);\r\n                if (configuration is not null\r\n                    && configuration.SchemaVersion == ConfigurationStoreConstants.CurrentSchemaVersion)\r\n                    configurations.Add(ResolvePaths(configuration.EnsureId()));\r\n            }\r\n            catch (JsonException) { }\r\n            catch (IOException) { }\r\n        }\r\n        return Task.FromResult<IReadOnlyList<MachineConfiguration>>(configurations);\r\n    }\r\n\r\n    public async Task SaveAsync(MachineConfiguration configuration, CancellationToken cancellationToken = default)\r\n    {\r\n        await SaveGate.WaitAsync(cancellationToken).ConfigureAwait(false);\r\n        string? temporary = null;\r\n        try\r\n        {\r\n            configuration = configuration.EnsureId() with\r\n            {\r\n                SchemaVersion = ConfigurationStoreConstants.CurrentSchemaVersion\r\n            };\r\n            var machineDirectory = Path.Combine(_directory, configuration.Id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\r\n            Directory.CreateDirectory(machineDirectory);\r\n            var target = Path.Combine(machineDirectory, ConfigurationStoreConstants.MachineFileName);\r\n            temporary = target + ConfigurationStoreConstants.TemporaryNameSeparator + Guid.NewGuid().ToString(ConfigurationStoreConstants.MachineIdentifierFormat) + ConfigurationStoreConstants.TemporaryFileSuffix;\r\n            await using (var stream = new FileStream(temporary, FileMode.Create, FileAccess.Write, FileShare.None, ConfigurationStoreConstants.WriteBufferSize, ConfigurationStoreConstants.UseAsyncFileAccess))\r\n                await JsonSerializer.SerializeAsync(stream, StorePaths(configuration), JsonOptions, cancellationToken).ConfigureAwait(false);\r\n            ConfigurationFileAccessFunctions.ReplaceFile(temporary, target);\r\n        }\r\n        finally\r\n        {\r\n            if (temporary is not null && File.Exists(temporary)) File.Delete(temporary);\r\n            SaveGate.Release();\r\n        }\r\n    }\r\n\r\n    public void Delete(Guid id)\r\n    {\r\n        var target = Path.Combine(_directory, id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\r\n        if (Directory.Exists(target))\r\n            Directory.Delete(target, ConfigurationStoreConstants.RecursiveDirectoryDelete);\r\n    }\r\n\r\n    private MachineConfiguration StorePaths(MachineConfiguration configuration) => configuration with\r\n    {\r\n        Media = configuration.Media?.Select(media => media with { Path = StorePath(media.Path)! }).ToArray(),\r\n        FirmwarePath = StorePath(configuration.FirmwarePath),\r\n        FirmwarePaths = configuration.FirmwarePaths?.ToDictionary(item => item.Key, item => StorePath(item.Value)!, StringComparer.Ordinal)\r\n    };\r\n\r\n    private MachineConfiguration ResolvePaths(MachineConfiguration configuration) => configuration with\r\n    {\r\n        Media = configuration.Media?.Select(media => media with { Path = ResolvePath(media.Path)! }).ToArray(),\r\n        FirmwarePath = ResolvePath(configuration.FirmwarePath),\r\n        FirmwarePaths = configuration.FirmwarePaths?.ToDictionary(item => item.Key, item => ResolvePath(item.Value)!, StringComparer.Ordinal)\r\n    };\r\n\r\n    private string? StorePath(string? path)\r\n        => ConfigurationFileAccessFunctions.StorePath(string.IsNullOrWhiteSpace(path) ? null : path, _pathBase);\r\n\r\n    private string? ResolvePath(string? path)\r\n        => ConfigurationFileAccessFunctions.ResolvePath(string.IsNullOrWhiteSpace(path) ? null : path, _pathBase);\r\n}\r\n"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nintendo/Common/Services/ConfigurationStore.cs",
+        "sha256": "13E2A25CF93DC48C7DD97C250AA5883E7ED499916E2C381E0F0D2BC218601774",
+        "module": "Nintendo",
+        "before": "using System.IO;\r\nusing System.Text.Json;\r\nusing GWGUI.Emulation.Functions;\r\n\r\nnamespace GWGUI.Emulation.Nintendo.Common.Services;\r\n\r\npublic sealed class ConfigurationStore\r\n{\r\n    private static readonly JsonSerializerOptions JsonOptions = new(JsonSerializerDefaults.Web)\r\n    {\r\n        WriteIndented = ConfigurationStoreConstants.WriteIndentedJson\r\n    };\r\n    private readonly string _directory;\r\n    private readonly string _pathBase;\r\n    private static readonly SemaphoreSlim SaveGate = new(ConfigurationStoreConstants.InitialWriterCount, ConfigurationStoreConstants.MaximumWriterCount);\r\n\r\n    public ConfigurationStore(string directory, string? pathBase = null)\r\n    {\r\n        _directory = Path.GetFullPath(directory);\r\n        _pathBase = Path.GetFullPath(pathBase ?? directory);\r\n    }\r\n\r\n    public Task<IReadOnlyList<MachineConfiguration>> LoadAllAsync(CancellationToken cancellationToken = default)\r\n    {\r\n        Directory.CreateDirectory(_directory);\r\n        var configurations = new List<MachineConfiguration>();\r\n        var paths = Directory.EnumerateDirectories(_directory).Select(directory => Path.Combine(directory, ConfigurationStoreConstants.MachineFileName)).Where(File.Exists).Order(StringComparer.OrdinalIgnoreCase);\r\n        foreach (var path in paths)\r\n        {\r\n            try\r\n            {\r\n                cancellationToken.ThrowIfCancellationRequested();\r\n                var json = ConfigurationFileAccessFunctions.ReadAllText(path);\r\n                var configuration = JsonSerializer.Deserialize<MachineConfiguration>(json, JsonOptions);\r\n                if (configuration is not null\r\n                    && configuration.SchemaVersion == ConfigurationStoreConstants.CurrentSchemaVersion)\r\n                    configurations.Add(ResolvePaths(configuration.EnsureId()));\r\n            }\r\n            catch (JsonException) { }\r\n            catch (IOException) { }\r\n        }\r\n        return Task.FromResult<IReadOnlyList<MachineConfiguration>>(configurations);\r\n    }\r\n\r\n    public async Task SaveAsync(MachineConfiguration configuration, CancellationToken cancellationToken = default)\r\n    {\r\n        await SaveGate.WaitAsync(cancellationToken).ConfigureAwait(false);\r\n        string? temporary = null;\r\n        try\r\n        {\r\n            configuration = configuration.EnsureId() with\r\n            {\r\n                SchemaVersion = ConfigurationStoreConstants.CurrentSchemaVersion\r\n            };\r\n            var machineDirectory = Path.Combine(_directory, configuration.Id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\r\n            Directory.CreateDirectory(machineDirectory);\r\n            var target = Path.Combine(machineDirectory, ConfigurationStoreConstants.MachineFileName);\r\n            temporary = target + ConfigurationStoreConstants.TemporaryNameSeparator + Guid.NewGuid().ToString(ConfigurationStoreConstants.MachineIdentifierFormat) + ConfigurationStoreConstants.TemporaryFileSuffix;\r\n            await using (var stream = new FileStream(temporary, FileMode.Create, FileAccess.Write, FileShare.None, ConfigurationStoreConstants.WriteBufferSize, ConfigurationStoreConstants.UseAsyncFileAccess))\r\n                await JsonSerializer.SerializeAsync(stream, StorePaths(configuration), JsonOptions, cancellationToken).ConfigureAwait(false);\r\n            ConfigurationFileAccessFunctions.ReplaceFile(temporary, target);\r\n        }\r\n        finally\r\n        {\r\n            if (temporary is not null && File.Exists(temporary)) File.Delete(temporary);\r\n            SaveGate.Release();\r\n        }\r\n    }\r\n\r\n    public void Delete(Guid id)\r\n    {\r\n        var target = Path.Combine(_directory, id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\r\n        if (Directory.Exists(target))\r\n            Directory.Delete(target, ConfigurationStoreConstants.RecursiveDirectoryDelete);\r\n    }\r\n\r\n    private MachineConfiguration StorePaths(MachineConfiguration configuration) => configuration with\r\n    {\r\n        Media = configuration.Media?.Select(media => media with { Path = StorePath(media.Path)! }).ToArray(),\r\n        FirmwarePaths = configuration.FirmwarePaths?.ToDictionary(item => item.Key, item => StorePath(item.Value)!, StringComparer.Ordinal)\r\n    };\r\n\r\n    private MachineConfiguration ResolvePaths(MachineConfiguration configuration) => configuration with\r\n    {\r\n        Media = configuration.Media?.Select(media => media with { Path = ResolvePath(media.Path)! }).ToArray(),\r\n        FirmwarePaths = configuration.FirmwarePaths?.ToDictionary(item => item.Key, item => ResolvePath(item.Value)!, StringComparer.Ordinal)\r\n    };\r\n\r\n    private string? StorePath(string? path)\r\n    {\r\n        if (string.IsNullOrWhiteSpace(path)) return null;\r\n        var fullPath = Path.GetFullPath(path);\r\n        var relative = Path.GetRelativePath(_pathBase, fullPath);\r\n        if (Path.IsPathFullyQualified(relative)) return fullPath;\r\n        if (relative != ConfigurationStoreConstants.ParentDirectoryName\r\n            && !relative.StartsWith(ConfigurationStoreConstants.ParentDirectoryName + Path.DirectorySeparatorChar, StringComparison.Ordinal))\r\n            return relative.Replace(Path.DirectorySeparatorChar, ConfigurationStoreConstants.StoredDirectorySeparator);\r\n        return fullPath;\r\n    }\r\n\r\n    private string? ResolvePath(string? path)\r\n    {\r\n        if (string.IsNullOrWhiteSpace(path)) return null;\r\n        if (Path.IsPathFullyQualified(path)) return path;\r\n        return Path.GetFullPath(Path.Combine(_pathBase, path.Replace(ConfigurationStoreConstants.StoredDirectorySeparator, Path.DirectorySeparatorChar)));\r\n    }\r\n}\r\n",
+        "methods": [
+          "    private string? StorePath(string? path)\r\n    {\r\n        if (string.IsNullOrWhiteSpace(path)) return null;\r\n        var fullPath = Path.GetFullPath(path);\r\n        var relative = Path.GetRelativePath(_pathBase, fullPath);\r\n        if (Path.IsPathFullyQualified(relative)) return fullPath;\r\n        if (relative != ConfigurationStoreConstants.ParentDirectoryName\r\n            && !relative.StartsWith(ConfigurationStoreConstants.ParentDirectoryName + Path.DirectorySeparatorChar, StringComparison.Ordinal))\r\n            return relative.Replace(Path.DirectorySeparatorChar, ConfigurationStoreConstants.StoredDirectorySeparator);\r\n        return fullPath;\r\n    }",
+          "    private string? ResolvePath(string? path)\r\n    {\r\n        if (string.IsNullOrWhiteSpace(path)) return null;\r\n        if (Path.IsPathFullyQualified(path)) return path;\r\n        return Path.GetFullPath(Path.Combine(_pathBase, path.Replace(ConfigurationStoreConstants.StoredDirectorySeparator, Path.DirectorySeparatorChar)));\r\n    }"
+        ],
+        "replacements": [
+          {
+            "before": "    private string? StorePath(string? path)\r\n    {\r\n        if (string.IsNullOrWhiteSpace(path)) return null;\r\n        var fullPath = Path.GetFullPath(path);\r\n        var relative = Path.GetRelativePath(_pathBase, fullPath);\r\n        if (Path.IsPathFullyQualified(relative)) return fullPath;\r\n        if (relative != ConfigurationStoreConstants.ParentDirectoryName\r\n            && !relative.StartsWith(ConfigurationStoreConstants.ParentDirectoryName + Path.DirectorySeparatorChar, StringComparison.Ordinal))\r\n            return relative.Replace(Path.DirectorySeparatorChar, ConfigurationStoreConstants.StoredDirectorySeparator);\r\n        return fullPath;\r\n    }",
+            "name": "StorePath",
+            "after": "    private string? StorePath(string? path)\r\n        => ConfigurationFileAccessFunctions.StorePath(string.IsNullOrWhiteSpace(path) ? null : path, _pathBase);"
+          },
+          {
+            "before": "    private string? ResolvePath(string? path)\r\n    {\r\n        if (string.IsNullOrWhiteSpace(path)) return null;\r\n        if (Path.IsPathFullyQualified(path)) return path;\r\n        return Path.GetFullPath(Path.Combine(_pathBase, path.Replace(ConfigurationStoreConstants.StoredDirectorySeparator, Path.DirectorySeparatorChar)));\r\n    }",
+            "name": "ResolvePath",
+            "after": "    private string? ResolvePath(string? path)\r\n        => ConfigurationFileAccessFunctions.ResolvePath(string.IsNullOrWhiteSpace(path) ? null : path, _pathBase);"
+          }
+        ],
+        "after": "using System.IO;\r\nusing System.Text.Json;\r\nusing GWGUI.Emulation.Functions;\r\n\r\nnamespace GWGUI.Emulation.Nintendo.Common.Services;\r\n\r\npublic sealed class ConfigurationStore\r\n{\r\n    private static readonly JsonSerializerOptions JsonOptions = new(JsonSerializerDefaults.Web)\r\n    {\r\n        WriteIndented = ConfigurationStoreConstants.WriteIndentedJson\r\n    };\r\n    private readonly string _directory;\r\n    private readonly string _pathBase;\r\n    private static readonly SemaphoreSlim SaveGate = new(ConfigurationStoreConstants.InitialWriterCount, ConfigurationStoreConstants.MaximumWriterCount);\r\n\r\n    public ConfigurationStore(string directory, string? pathBase = null)\r\n    {\r\n        _directory = Path.GetFullPath(directory);\r\n        _pathBase = Path.GetFullPath(pathBase ?? directory);\r\n    }\r\n\r\n    public Task<IReadOnlyList<MachineConfiguration>> LoadAllAsync(CancellationToken cancellationToken = default)\r\n    {\r\n        Directory.CreateDirectory(_directory);\r\n        var configurations = new List<MachineConfiguration>();\r\n        var paths = Directory.EnumerateDirectories(_directory).Select(directory => Path.Combine(directory, ConfigurationStoreConstants.MachineFileName)).Where(File.Exists).Order(StringComparer.OrdinalIgnoreCase);\r\n        foreach (var path in paths)\r\n        {\r\n            try\r\n            {\r\n                cancellationToken.ThrowIfCancellationRequested();\r\n                var json = ConfigurationFileAccessFunctions.ReadAllText(path);\r\n                var configuration = JsonSerializer.Deserialize<MachineConfiguration>(json, JsonOptions);\r\n                if (configuration is not null\r\n                    && configuration.SchemaVersion == ConfigurationStoreConstants.CurrentSchemaVersion)\r\n                    configurations.Add(ResolvePaths(configuration.EnsureId()));\r\n            }\r\n            catch (JsonException) { }\r\n            catch (IOException) { }\r\n        }\r\n        return Task.FromResult<IReadOnlyList<MachineConfiguration>>(configurations);\r\n    }\r\n\r\n    public async Task SaveAsync(MachineConfiguration configuration, CancellationToken cancellationToken = default)\r\n    {\r\n        await SaveGate.WaitAsync(cancellationToken).ConfigureAwait(false);\r\n        string? temporary = null;\r\n        try\r\n        {\r\n            configuration = configuration.EnsureId() with\r\n            {\r\n                SchemaVersion = ConfigurationStoreConstants.CurrentSchemaVersion\r\n            };\r\n            var machineDirectory = Path.Combine(_directory, configuration.Id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\r\n            Directory.CreateDirectory(machineDirectory);\r\n            var target = Path.Combine(machineDirectory, ConfigurationStoreConstants.MachineFileName);\r\n            temporary = target + ConfigurationStoreConstants.TemporaryNameSeparator + Guid.NewGuid().ToString(ConfigurationStoreConstants.MachineIdentifierFormat) + ConfigurationStoreConstants.TemporaryFileSuffix;\r\n            await using (var stream = new FileStream(temporary, FileMode.Create, FileAccess.Write, FileShare.None, ConfigurationStoreConstants.WriteBufferSize, ConfigurationStoreConstants.UseAsyncFileAccess))\r\n                await JsonSerializer.SerializeAsync(stream, StorePaths(configuration), JsonOptions, cancellationToken).ConfigureAwait(false);\r\n            ConfigurationFileAccessFunctions.ReplaceFile(temporary, target);\r\n        }\r\n        finally\r\n        {\r\n            if (temporary is not null && File.Exists(temporary)) File.Delete(temporary);\r\n            SaveGate.Release();\r\n        }\r\n    }\r\n\r\n    public void Delete(Guid id)\r\n    {\r\n        var target = Path.Combine(_directory, id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\r\n        if (Directory.Exists(target))\r\n            Directory.Delete(target, ConfigurationStoreConstants.RecursiveDirectoryDelete);\r\n    }\r\n\r\n    private MachineConfiguration StorePaths(MachineConfiguration configuration) => configuration with\r\n    {\r\n        Media = configuration.Media?.Select(media => media with { Path = StorePath(media.Path)! }).ToArray(),\r\n        FirmwarePaths = configuration.FirmwarePaths?.ToDictionary(item => item.Key, item => StorePath(item.Value)!, StringComparer.Ordinal)\r\n    };\r\n\r\n    private MachineConfiguration ResolvePaths(MachineConfiguration configuration) => configuration with\r\n    {\r\n        Media = configuration.Media?.Select(media => media with { Path = ResolvePath(media.Path)! }).ToArray(),\r\n        FirmwarePaths = configuration.FirmwarePaths?.ToDictionary(item => item.Key, item => ResolvePath(item.Value)!, StringComparer.Ordinal)\r\n    };\r\n\r\n    private string? StorePath(string? path)\r\n        => ConfigurationFileAccessFunctions.StorePath(string.IsNullOrWhiteSpace(path) ? null : path, _pathBase);\r\n\r\n    private string? ResolvePath(string? path)\r\n        => ConfigurationFileAccessFunctions.ResolvePath(string.IsNullOrWhiteSpace(path) ? null : path, _pathBase);\r\n}\r\n"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sega/Common/Services/ConfigurationStore.cs",
+        "sha256": "9557067714D1CE46347A9C13E131E583B126F918B5AFB948DC4DC069C7B529C3",
+        "module": "Sega",
+        "before": "using System.IO;\r\nusing System.Text.Json;\r\nusing GWGUI.Emulation.Functions;\r\n\r\nnamespace GWGUI.Emulation.Sega.Common.Services;\r\n\r\npublic sealed class ConfigurationStore\r\n{\r\n    private static readonly JsonSerializerOptions JsonOptions = new(JsonSerializerDefaults.Web)\r\n    {\r\n        WriteIndented = ConfigurationStoreConstants.WriteIndentedJson\r\n    };\r\n    private readonly string _directory;\r\n    private readonly string _pathBase;\r\n    private static readonly SemaphoreSlim SaveGate = new(ConfigurationStoreConstants.InitialWriterCount, ConfigurationStoreConstants.MaximumWriterCount);\r\n\r\n    public ConfigurationStore(string directory, string? pathBase = null)\r\n    {\r\n        _directory = Path.GetFullPath(directory);\r\n        _pathBase = Path.GetFullPath(pathBase ?? directory);\r\n    }\r\n\r\n    public Task<IReadOnlyList<MachineConfiguration>> LoadAllAsync(CancellationToken cancellationToken = default)\r\n    {\r\n        Directory.CreateDirectory(_directory);\r\n        var configurations = new List<MachineConfiguration>();\r\n        var paths = Directory.EnumerateDirectories(_directory).Select(directory => Path.Combine(directory, ConfigurationStoreConstants.MachineFileName)).Where(File.Exists).Order(StringComparer.OrdinalIgnoreCase);\r\n        foreach (var path in paths)\r\n        {\r\n            try\r\n            {\r\n                cancellationToken.ThrowIfCancellationRequested();\r\n                var json = ConfigurationFileAccessFunctions.ReadAllText(path);\r\n                var configuration = JsonSerializer.Deserialize<MachineConfiguration>(json, JsonOptions);\r\n                if (configuration is not null\r\n                    && configuration.SchemaVersion == ConfigurationStoreConstants.CurrentSchemaVersion)\r\n                    configurations.Add(ResolvePaths(configuration.EnsureId()));\r\n            }\r\n            catch (JsonException) { }\r\n            catch (IOException) { }\r\n        }\r\n        return Task.FromResult<IReadOnlyList<MachineConfiguration>>(configurations);\r\n    }\r\n\r\n    public async Task SaveAsync(MachineConfiguration configuration, CancellationToken cancellationToken = default)\r\n    {\r\n        await SaveGate.WaitAsync(cancellationToken).ConfigureAwait(false);\r\n        string? temporary = null;\r\n        try\r\n        {\r\n            configuration = configuration.EnsureId() with\r\n            {\r\n                SchemaVersion = ConfigurationStoreConstants.CurrentSchemaVersion\r\n            };\r\n            var machineDirectory = Path.Combine(_directory, configuration.Id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\r\n            Directory.CreateDirectory(machineDirectory);\r\n            var target = Path.Combine(machineDirectory, ConfigurationStoreConstants.MachineFileName);\r\n            temporary = target + ConfigurationStoreConstants.TemporaryNameSeparator + Guid.NewGuid().ToString(ConfigurationStoreConstants.MachineIdentifierFormat) + ConfigurationStoreConstants.TemporaryFileSuffix;\r\n            await using (var stream = new FileStream(temporary, FileMode.Create, FileAccess.Write, FileShare.None, ConfigurationStoreConstants.WriteBufferSize, ConfigurationStoreConstants.UseAsyncFileAccess))\r\n                await JsonSerializer.SerializeAsync(stream, StorePaths(configuration), JsonOptions, cancellationToken).ConfigureAwait(false);\r\n            ConfigurationFileAccessFunctions.ReplaceFile(temporary, target);\r\n        }\r\n        finally\r\n        {\r\n            if (temporary is not null && File.Exists(temporary)) File.Delete(temporary);\r\n            SaveGate.Release();\r\n        }\r\n    }\r\n\r\n    public void Delete(Guid id)\r\n    {\r\n        var target = Path.Combine(_directory, id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\r\n        if (Directory.Exists(target))\r\n            Directory.Delete(target, ConfigurationStoreConstants.RecursiveDirectoryDelete);\r\n    }\r\n\r\n    private MachineConfiguration StorePaths(MachineConfiguration configuration) => configuration with\r\n    {\r\n        Media = configuration.Media?.Select(media => media with { Path = StorePath(media.Path)! }).ToArray()\r\n    };\r\n\r\n    private MachineConfiguration ResolvePaths(MachineConfiguration configuration) => configuration with\r\n    {\r\n        Media = configuration.Media?.Select(media => media with { Path = ResolvePath(media.Path)! }).ToArray()\r\n    };\r\n\r\n    private string? StorePath(string? path)\r\n    {\r\n        if (string.IsNullOrWhiteSpace(path)) return null;\r\n        var fullPath = Path.GetFullPath(path);\r\n        var relative = Path.GetRelativePath(_pathBase, fullPath);\r\n        if (Path.IsPathFullyQualified(relative)) return fullPath;\r\n        if (relative != ConfigurationStoreConstants.ParentDirectoryName\r\n            && !relative.StartsWith(ConfigurationStoreConstants.ParentDirectoryName + Path.DirectorySeparatorChar, StringComparison.Ordinal))\r\n            return relative.Replace(Path.DirectorySeparatorChar, ConfigurationStoreConstants.StoredDirectorySeparator);\r\n        return fullPath;\r\n    }\r\n\r\n    private string? ResolvePath(string? path)\r\n    {\r\n        if (string.IsNullOrWhiteSpace(path)) return null;\r\n        if (Path.IsPathFullyQualified(path)) return path;\r\n        return Path.GetFullPath(Path.Combine(_pathBase, path.Replace(ConfigurationStoreConstants.StoredDirectorySeparator, Path.DirectorySeparatorChar)));\r\n    }\r\n}\r\n",
+        "methods": [
+          "    private string? StorePath(string? path)\r\n    {\r\n        if (string.IsNullOrWhiteSpace(path)) return null;\r\n        var fullPath = Path.GetFullPath(path);\r\n        var relative = Path.GetRelativePath(_pathBase, fullPath);\r\n        if (Path.IsPathFullyQualified(relative)) return fullPath;\r\n        if (relative != ConfigurationStoreConstants.ParentDirectoryName\r\n            && !relative.StartsWith(ConfigurationStoreConstants.ParentDirectoryName + Path.DirectorySeparatorChar, StringComparison.Ordinal))\r\n            return relative.Replace(Path.DirectorySeparatorChar, ConfigurationStoreConstants.StoredDirectorySeparator);\r\n        return fullPath;\r\n    }",
+          "    private string? ResolvePath(string? path)\r\n    {\r\n        if (string.IsNullOrWhiteSpace(path)) return null;\r\n        if (Path.IsPathFullyQualified(path)) return path;\r\n        return Path.GetFullPath(Path.Combine(_pathBase, path.Replace(ConfigurationStoreConstants.StoredDirectorySeparator, Path.DirectorySeparatorChar)));\r\n    }"
+        ],
+        "replacements": [
+          {
+            "before": "    private string? StorePath(string? path)\r\n    {\r\n        if (string.IsNullOrWhiteSpace(path)) return null;\r\n        var fullPath = Path.GetFullPath(path);\r\n        var relative = Path.GetRelativePath(_pathBase, fullPath);\r\n        if (Path.IsPathFullyQualified(relative)) return fullPath;\r\n        if (relative != ConfigurationStoreConstants.ParentDirectoryName\r\n            && !relative.StartsWith(ConfigurationStoreConstants.ParentDirectoryName + Path.DirectorySeparatorChar, StringComparison.Ordinal))\r\n            return relative.Replace(Path.DirectorySeparatorChar, ConfigurationStoreConstants.StoredDirectorySeparator);\r\n        return fullPath;\r\n    }",
+            "name": "StorePath",
+            "after": "    private string? StorePath(string? path)\r\n        => ConfigurationFileAccessFunctions.StorePath(string.IsNullOrWhiteSpace(path) ? null : path, _pathBase);"
+          },
+          {
+            "before": "    private string? ResolvePath(string? path)\r\n    {\r\n        if (string.IsNullOrWhiteSpace(path)) return null;\r\n        if (Path.IsPathFullyQualified(path)) return path;\r\n        return Path.GetFullPath(Path.Combine(_pathBase, path.Replace(ConfigurationStoreConstants.StoredDirectorySeparator, Path.DirectorySeparatorChar)));\r\n    }",
+            "name": "ResolvePath",
+            "after": "    private string? ResolvePath(string? path)\r\n        => ConfigurationFileAccessFunctions.ResolvePath(string.IsNullOrWhiteSpace(path) ? null : path, _pathBase);"
+          }
+        ],
+        "after": "using System.IO;\r\nusing System.Text.Json;\r\nusing GWGUI.Emulation.Functions;\r\n\r\nnamespace GWGUI.Emulation.Sega.Common.Services;\r\n\r\npublic sealed class ConfigurationStore\r\n{\r\n    private static readonly JsonSerializerOptions JsonOptions = new(JsonSerializerDefaults.Web)\r\n    {\r\n        WriteIndented = ConfigurationStoreConstants.WriteIndentedJson\r\n    };\r\n    private readonly string _directory;\r\n    private readonly string _pathBase;\r\n    private static readonly SemaphoreSlim SaveGate = new(ConfigurationStoreConstants.InitialWriterCount, ConfigurationStoreConstants.MaximumWriterCount);\r\n\r\n    public ConfigurationStore(string directory, string? pathBase = null)\r\n    {\r\n        _directory = Path.GetFullPath(directory);\r\n        _pathBase = Path.GetFullPath(pathBase ?? directory);\r\n    }\r\n\r\n    public Task<IReadOnlyList<MachineConfiguration>> LoadAllAsync(CancellationToken cancellationToken = default)\r\n    {\r\n        Directory.CreateDirectory(_directory);\r\n        var configurations = new List<MachineConfiguration>();\r\n        var paths = Directory.EnumerateDirectories(_directory).Select(directory => Path.Combine(directory, ConfigurationStoreConstants.MachineFileName)).Where(File.Exists).Order(StringComparer.OrdinalIgnoreCase);\r\n        foreach (var path in paths)\r\n        {\r\n            try\r\n            {\r\n                cancellationToken.ThrowIfCancellationRequested();\r\n                var json = ConfigurationFileAccessFunctions.ReadAllText(path);\r\n                var configuration = JsonSerializer.Deserialize<MachineConfiguration>(json, JsonOptions);\r\n                if (configuration is not null\r\n                    && configuration.SchemaVersion == ConfigurationStoreConstants.CurrentSchemaVersion)\r\n                    configurations.Add(ResolvePaths(configuration.EnsureId()));\r\n            }\r\n            catch (JsonException) { }\r\n            catch (IOException) { }\r\n        }\r\n        return Task.FromResult<IReadOnlyList<MachineConfiguration>>(configurations);\r\n    }\r\n\r\n    public async Task SaveAsync(MachineConfiguration configuration, CancellationToken cancellationToken = default)\r\n    {\r\n        await SaveGate.WaitAsync(cancellationToken).ConfigureAwait(false);\r\n        string? temporary = null;\r\n        try\r\n        {\r\n            configuration = configuration.EnsureId() with\r\n            {\r\n                SchemaVersion = ConfigurationStoreConstants.CurrentSchemaVersion\r\n            };\r\n            var machineDirectory = Path.Combine(_directory, configuration.Id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\r\n            Directory.CreateDirectory(machineDirectory);\r\n            var target = Path.Combine(machineDirectory, ConfigurationStoreConstants.MachineFileName);\r\n            temporary = target + ConfigurationStoreConstants.TemporaryNameSeparator + Guid.NewGuid().ToString(ConfigurationStoreConstants.MachineIdentifierFormat) + ConfigurationStoreConstants.TemporaryFileSuffix;\r\n            await using (var stream = new FileStream(temporary, FileMode.Create, FileAccess.Write, FileShare.None, ConfigurationStoreConstants.WriteBufferSize, ConfigurationStoreConstants.UseAsyncFileAccess))\r\n                await JsonSerializer.SerializeAsync(stream, StorePaths(configuration), JsonOptions, cancellationToken).ConfigureAwait(false);\r\n            ConfigurationFileAccessFunctions.ReplaceFile(temporary, target);\r\n        }\r\n        finally\r\n        {\r\n            if (temporary is not null && File.Exists(temporary)) File.Delete(temporary);\r\n            SaveGate.Release();\r\n        }\r\n    }\r\n\r\n    public void Delete(Guid id)\r\n    {\r\n        var target = Path.Combine(_directory, id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\r\n        if (Directory.Exists(target))\r\n            Directory.Delete(target, ConfigurationStoreConstants.RecursiveDirectoryDelete);\r\n    }\r\n\r\n    private MachineConfiguration StorePaths(MachineConfiguration configuration) => configuration with\r\n    {\r\n        Media = configuration.Media?.Select(media => media with { Path = StorePath(media.Path)! }).ToArray()\r\n    };\r\n\r\n    private MachineConfiguration ResolvePaths(MachineConfiguration configuration) => configuration with\r\n    {\r\n        Media = configuration.Media?.Select(media => media with { Path = ResolvePath(media.Path)! }).ToArray()\r\n    };\r\n\r\n    private string? StorePath(string? path)\r\n        => ConfigurationFileAccessFunctions.StorePath(string.IsNullOrWhiteSpace(path) ? null : path, _pathBase);\r\n\r\n    private string? ResolvePath(string? path)\r\n        => ConfigurationFileAccessFunctions.ResolvePath(string.IsNullOrWhiteSpace(path) ? null : path, _pathBase);\r\n}\r\n"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sony/Common/Services/ConfigurationStore.cs",
+        "sha256": "1185EB666D37BF9414C4FB6D222DC7C592FC674055A449A9C830C2D231515EF6",
+        "module": "Sony",
+        "before": "using System.IO;\r\nusing System.Text.Json;\r\nusing GWGUI.Emulation.Functions;\r\n\r\nnamespace GWGUI.Emulation.Sony.Common.Services;\r\n\r\npublic sealed class ConfigurationStore\r\n{\r\n    private static readonly JsonSerializerOptions JsonOptions = new(JsonSerializerDefaults.Web)\r\n    {\r\n        WriteIndented = ConfigurationStoreConstants.WriteIndentedJson\r\n    };\r\n    private readonly string _directory;\r\n    private readonly string _pathBase;\r\n    private static readonly SemaphoreSlim SaveGate = new(ConfigurationStoreConstants.InitialWriterCount, ConfigurationStoreConstants.MaximumWriterCount);\r\n\r\n    public ConfigurationStore(string directory, string? pathBase = null)\r\n    {\r\n        _directory = Path.GetFullPath(directory);\r\n        _pathBase = Path.GetFullPath(pathBase ?? directory);\r\n    }\r\n\r\n    public Task<IReadOnlyList<MachineConfiguration>> LoadAllAsync(CancellationToken cancellationToken = default)\r\n    {\r\n        Directory.CreateDirectory(_directory);\r\n        var configurations = new List<MachineConfiguration>();\r\n        var paths = Directory.EnumerateDirectories(_directory).Select(directory => Path.Combine(directory, ConfigurationStoreConstants.MachineFileName)).Where(File.Exists).Order(StringComparer.OrdinalIgnoreCase);\r\n        foreach (var path in paths)\r\n        {\r\n            try\r\n            {\r\n                cancellationToken.ThrowIfCancellationRequested();\r\n                var json = ConfigurationFileAccessFunctions.ReadAllText(path);\r\n                var configuration = JsonSerializer.Deserialize<MachineConfiguration>(json, JsonOptions);\r\n                if (configuration is not null\r\n                    && configuration.SchemaVersion == ConfigurationStoreConstants.CurrentSchemaVersion)\r\n                    configurations.Add(ResolvePaths(configuration.EnsureId()));\r\n            }\r\n            catch (JsonException) { }\r\n            catch (IOException) { }\r\n        }\r\n        return Task.FromResult<IReadOnlyList<MachineConfiguration>>(configurations);\r\n    }\r\n\r\n    public async Task SaveAsync(MachineConfiguration configuration, CancellationToken cancellationToken = default)\r\n    {\r\n        await SaveGate.WaitAsync(cancellationToken).ConfigureAwait(false);\r\n        string? temporary = null;\r\n        try\r\n        {\r\n            configuration = configuration.EnsureId() with\r\n            {\r\n                SchemaVersion = ConfigurationStoreConstants.CurrentSchemaVersion\r\n            };\r\n            var machineDirectory = Path.Combine(_directory, configuration.Id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\r\n            Directory.CreateDirectory(machineDirectory);\r\n            var target = Path.Combine(machineDirectory, ConfigurationStoreConstants.MachineFileName);\r\n            temporary = target + ConfigurationStoreConstants.TemporaryNameSeparator + Guid.NewGuid().ToString(ConfigurationStoreConstants.MachineIdentifierFormat) + ConfigurationStoreConstants.TemporaryFileSuffix;\r\n            await using (var stream = new FileStream(temporary, FileMode.Create, FileAccess.Write, FileShare.None, ConfigurationStoreConstants.WriteBufferSize, ConfigurationStoreConstants.UseAsyncFileAccess))\r\n                await JsonSerializer.SerializeAsync(stream, StorePaths(configuration), JsonOptions, cancellationToken).ConfigureAwait(false);\r\n            ConfigurationFileAccessFunctions.ReplaceFile(temporary, target);\r\n        }\r\n        finally\r\n        {\r\n            if (temporary is not null && File.Exists(temporary)) File.Delete(temporary);\r\n            SaveGate.Release();\r\n        }\r\n    }\r\n\r\n    public void Delete(Guid id)\r\n    {\r\n        var target = Path.Combine(_directory, id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\r\n        if (Directory.Exists(target))\r\n            Directory.Delete(target, ConfigurationStoreConstants.RecursiveDirectoryDelete);\r\n    }\r\n\r\n    private MachineConfiguration StorePaths(MachineConfiguration configuration) => configuration with\r\n    {\r\n        Media = configuration.Media?.Select(media => media with { Path = StorePath(media.Path)! }).ToArray()\r\n    };\r\n\r\n    private MachineConfiguration ResolvePaths(MachineConfiguration configuration) => configuration with\r\n    {\r\n        Media = configuration.Media?.Select(media => media with { Path = ResolvePath(media.Path)! }).ToArray()\r\n    };\r\n\r\n    private string? StorePath(string? path)\r\n    {\r\n        if (string.IsNullOrWhiteSpace(path)) return null;\r\n        var fullPath = Path.GetFullPath(path);\r\n        var relative = Path.GetRelativePath(_pathBase, fullPath);\r\n        if (Path.IsPathFullyQualified(relative)) return fullPath;\r\n        if (relative != ConfigurationStoreConstants.ParentDirectoryName\r\n            && !relative.StartsWith(ConfigurationStoreConstants.ParentDirectoryName + Path.DirectorySeparatorChar, StringComparison.Ordinal))\r\n            return relative.Replace(Path.DirectorySeparatorChar, ConfigurationStoreConstants.StoredDirectorySeparator);\r\n        return fullPath;\r\n    }\r\n\r\n    private string? ResolvePath(string? path)\r\n    {\r\n        if (string.IsNullOrWhiteSpace(path)) return null;\r\n        if (Path.IsPathFullyQualified(path)) return path;\r\n        return Path.GetFullPath(Path.Combine(_pathBase, path.Replace(ConfigurationStoreConstants.StoredDirectorySeparator, Path.DirectorySeparatorChar)));\r\n    }\r\n}\r\n",
+        "methods": [
+          "    private string? StorePath(string? path)\r\n    {\r\n        if (string.IsNullOrWhiteSpace(path)) return null;\r\n        var fullPath = Path.GetFullPath(path);\r\n        var relative = Path.GetRelativePath(_pathBase, fullPath);\r\n        if (Path.IsPathFullyQualified(relative)) return fullPath;\r\n        if (relative != ConfigurationStoreConstants.ParentDirectoryName\r\n            && !relative.StartsWith(ConfigurationStoreConstants.ParentDirectoryName + Path.DirectorySeparatorChar, StringComparison.Ordinal))\r\n            return relative.Replace(Path.DirectorySeparatorChar, ConfigurationStoreConstants.StoredDirectorySeparator);\r\n        return fullPath;\r\n    }",
+          "    private string? ResolvePath(string? path)\r\n    {\r\n        if (string.IsNullOrWhiteSpace(path)) return null;\r\n        if (Path.IsPathFullyQualified(path)) return path;\r\n        return Path.GetFullPath(Path.Combine(_pathBase, path.Replace(ConfigurationStoreConstants.StoredDirectorySeparator, Path.DirectorySeparatorChar)));\r\n    }"
+        ],
+        "replacements": [
+          {
+            "before": "    private string? StorePath(string? path)\r\n    {\r\n        if (string.IsNullOrWhiteSpace(path)) return null;\r\n        var fullPath = Path.GetFullPath(path);\r\n        var relative = Path.GetRelativePath(_pathBase, fullPath);\r\n        if (Path.IsPathFullyQualified(relative)) return fullPath;\r\n        if (relative != ConfigurationStoreConstants.ParentDirectoryName\r\n            && !relative.StartsWith(ConfigurationStoreConstants.ParentDirectoryName + Path.DirectorySeparatorChar, StringComparison.Ordinal))\r\n            return relative.Replace(Path.DirectorySeparatorChar, ConfigurationStoreConstants.StoredDirectorySeparator);\r\n        return fullPath;\r\n    }",
+            "name": "StorePath",
+            "after": "    private string? StorePath(string? path)\r\n        => ConfigurationFileAccessFunctions.StorePath(string.IsNullOrWhiteSpace(path) ? null : path, _pathBase);"
+          },
+          {
+            "before": "    private string? ResolvePath(string? path)\r\n    {\r\n        if (string.IsNullOrWhiteSpace(path)) return null;\r\n        if (Path.IsPathFullyQualified(path)) return path;\r\n        return Path.GetFullPath(Path.Combine(_pathBase, path.Replace(ConfigurationStoreConstants.StoredDirectorySeparator, Path.DirectorySeparatorChar)));\r\n    }",
+            "name": "ResolvePath",
+            "after": "    private string? ResolvePath(string? path)\r\n        => ConfigurationFileAccessFunctions.ResolvePath(string.IsNullOrWhiteSpace(path) ? null : path, _pathBase);"
+          }
+        ],
+        "after": "using System.IO;\r\nusing System.Text.Json;\r\nusing GWGUI.Emulation.Functions;\r\n\r\nnamespace GWGUI.Emulation.Sony.Common.Services;\r\n\r\npublic sealed class ConfigurationStore\r\n{\r\n    private static readonly JsonSerializerOptions JsonOptions = new(JsonSerializerDefaults.Web)\r\n    {\r\n        WriteIndented = ConfigurationStoreConstants.WriteIndentedJson\r\n    };\r\n    private readonly string _directory;\r\n    private readonly string _pathBase;\r\n    private static readonly SemaphoreSlim SaveGate = new(ConfigurationStoreConstants.InitialWriterCount, ConfigurationStoreConstants.MaximumWriterCount);\r\n\r\n    public ConfigurationStore(string directory, string? pathBase = null)\r\n    {\r\n        _directory = Path.GetFullPath(directory);\r\n        _pathBase = Path.GetFullPath(pathBase ?? directory);\r\n    }\r\n\r\n    public Task<IReadOnlyList<MachineConfiguration>> LoadAllAsync(CancellationToken cancellationToken = default)\r\n    {\r\n        Directory.CreateDirectory(_directory);\r\n        var configurations = new List<MachineConfiguration>();\r\n        var paths = Directory.EnumerateDirectories(_directory).Select(directory => Path.Combine(directory, ConfigurationStoreConstants.MachineFileName)).Where(File.Exists).Order(StringComparer.OrdinalIgnoreCase);\r\n        foreach (var path in paths)\r\n        {\r\n            try\r\n            {\r\n                cancellationToken.ThrowIfCancellationRequested();\r\n                var json = ConfigurationFileAccessFunctions.ReadAllText(path);\r\n                var configuration = JsonSerializer.Deserialize<MachineConfiguration>(json, JsonOptions);\r\n                if (configuration is not null\r\n                    && configuration.SchemaVersion == ConfigurationStoreConstants.CurrentSchemaVersion)\r\n                    configurations.Add(ResolvePaths(configuration.EnsureId()));\r\n            }\r\n            catch (JsonException) { }\r\n            catch (IOException) { }\r\n        }\r\n        return Task.FromResult<IReadOnlyList<MachineConfiguration>>(configurations);\r\n    }\r\n\r\n    public async Task SaveAsync(MachineConfiguration configuration, CancellationToken cancellationToken = default)\r\n    {\r\n        await SaveGate.WaitAsync(cancellationToken).ConfigureAwait(false);\r\n        string? temporary = null;\r\n        try\r\n        {\r\n            configuration = configuration.EnsureId() with\r\n            {\r\n                SchemaVersion = ConfigurationStoreConstants.CurrentSchemaVersion\r\n            };\r\n            var machineDirectory = Path.Combine(_directory, configuration.Id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\r\n            Directory.CreateDirectory(machineDirectory);\r\n            var target = Path.Combine(machineDirectory, ConfigurationStoreConstants.MachineFileName);\r\n            temporary = target + ConfigurationStoreConstants.TemporaryNameSeparator + Guid.NewGuid().ToString(ConfigurationStoreConstants.MachineIdentifierFormat) + ConfigurationStoreConstants.TemporaryFileSuffix;\r\n            await using (var stream = new FileStream(temporary, FileMode.Create, FileAccess.Write, FileShare.None, ConfigurationStoreConstants.WriteBufferSize, ConfigurationStoreConstants.UseAsyncFileAccess))\r\n                await JsonSerializer.SerializeAsync(stream, StorePaths(configuration), JsonOptions, cancellationToken).ConfigureAwait(false);\r\n            ConfigurationFileAccessFunctions.ReplaceFile(temporary, target);\r\n        }\r\n        finally\r\n        {\r\n            if (temporary is not null && File.Exists(temporary)) File.Delete(temporary);\r\n            SaveGate.Release();\r\n        }\r\n    }\r\n\r\n    public void Delete(Guid id)\r\n    {\r\n        var target = Path.Combine(_directory, id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));\r\n        if (Directory.Exists(target))\r\n            Directory.Delete(target, ConfigurationStoreConstants.RecursiveDirectoryDelete);\r\n    }\r\n\r\n    private MachineConfiguration StorePaths(MachineConfiguration configuration) => configuration with\r\n    {\r\n        Media = configuration.Media?.Select(media => media with { Path = StorePath(media.Path)! }).ToArray()\r\n    };\r\n\r\n    private MachineConfiguration ResolvePaths(MachineConfiguration configuration) => configuration with\r\n    {\r\n        Media = configuration.Media?.Select(media => media with { Path = ResolvePath(media.Path)! }).ToArray()\r\n    };\r\n\r\n    private string? StorePath(string? path)\r\n        => ConfigurationFileAccessFunctions.StorePath(string.IsNullOrWhiteSpace(path) ? null : path, _pathBase);\r\n\r\n    private string? ResolvePath(string? path)\r\n        => ConfigurationFileAccessFunctions.ResolvePath(string.IsNullOrWhiteSpace(path) ? null : path, _pathBase);\r\n}\r\n"
+      }
+    ],
+    "sdk": {
+      "path": "src/GWGUI.Emulation/Functions/ConfigurationFileAccessFunctions.cs",
+      "sha256": "AD9690F350B727F932ADA1B88E7894E2984AB0180A110FF948AA69F2C29B7350",
+      "before": "using System.Security.Cryptography;\r\nusing System.Text;\r\nusing System.IO;\r\nusing System.Text.Json;\r\n\r\nnamespace GWGUI.Emulation.Functions;\r\n\r\npublic static class ConfigurationFileAccessFunctions\r\n{\r\n    private const int DefaultReplacementRetryCount = 5;\r\n    private const int DefaultReplacementRetryDelayMilliseconds = 25;\r\n\r\n    internal static string? StorePath(string? path, string pathBase)\r\n    {\r\n        if (string.IsNullOrWhiteSpace(path)) return path;\r\n        var fullPath = Path.GetFullPath(path);\r\n        var relative = Path.GetRelativePath(pathBase, fullPath);\r\n        return IsInsideBase(relative) ? relative.Replace(Path.DirectorySeparatorChar, '/') : fullPath;\r\n    }\r\n\r\n    internal static string? ResolvePath(string? path, string pathBase)\r\n    {\r\n        if (string.IsNullOrWhiteSpace(path) || Path.IsPathFullyQualified(path)) return path;\r\n        return Path.GetFullPath(Path.Combine(pathBase, path.Replace('/', Path.DirectorySeparatorChar)));\r\n    }\r\n\r\n    private static bool IsInsideBase(string relative) =>\r\n        !Path.IsPathFullyQualified(relative)\r\n        && !string.Equals(relative, \"..\", StringComparison.Ordinal)\r\n        && !relative.StartsWith(\"..\" + Path.DirectorySeparatorChar, StringComparison.Ordinal)\r\n        && !relative.StartsWith(\"..\" + Path.AltDirectorySeparatorChar, StringComparison.Ordinal);\r\n\r\n    public static void WriteDocumentAtomically<T>(string path, T document,\r\n        JsonSerializerOptions options, string temporarySuffix) =>\r\n        WriteAtomicallyAsync(path, path + temporarySuffix, temporary =>\r\n        {\r\n            File.WriteAllText(temporary, JsonSerializer.Serialize(document, options));\r\n            return Task.CompletedTask;\r\n        }, static (source, target) => File.Move(source, target, overwrite: true)).GetAwaiter().GetResult();\r\n\r\n    internal static async Task WriteDocumentAtomicallyAsync<T>(string path, T document,\r\n        JsonSerializerOptions options, CancellationToken cancellationToken)\r\n    {\r\n        var fullPath = Path.GetFullPath(path);\r\n        var temporaryPath = fullPath + \".\" + Guid.NewGuid().ToString(\"N\") + \".tmp\";\r\n        await WriteAtomicallyAsync(fullPath, temporaryPath, async temporary =>\r\n        {\r\n            await using (var stream = new FileStream(temporary, FileMode.Create, FileAccess.Write,\r\n                             FileShare.None, 4096, FileOptions.Asynchronous | FileOptions.WriteThrough))\r\n            {\r\n                await JsonSerializer.SerializeAsync(stream, document, options, cancellationToken).ConfigureAwait(false);\r\n                await stream.FlushAsync(cancellationToken).ConfigureAwait(false);\r\n            }\r\n        }).ConfigureAwait(false);\r\n    }\r\n\r\n    internal static async Task WriteAtomicallyAsync(string target, string temporary, Func<string, Task> write,\r\n        Action<string, string>? replace = null)\r\n    {\r\n        Directory.CreateDirectory(Path.GetDirectoryName(target)!);\r\n        try\r\n        {\r\n            await write(temporary).ConfigureAwait(false);\r\n            if (replace is null) ReplaceFile(temporary, target);\r\n            else replace(temporary, target);\r\n        }\r\n        finally { DeleteIfExists(temporary); }\r\n    }\r\n\r\n    internal static void DeleteIfExists(string path)\r\n    {\r\n        if (File.Exists(path)) File.Delete(path);\r\n    }\r\n\r\n    public static string ReadAllText(string path) => WithFileLock(path, () => File.ReadAllText(path));\r\n\r\n    public static void ReplaceFile(string source, string target, int retryCount = DefaultReplacementRetryCount, int retryDelayMilliseconds = DefaultReplacementRetryDelayMilliseconds) =>\r\n        WithFileLock(target, () =>\r\n        {\r\n            for (var attempt = 0; attempt < retryCount; attempt++)\r\n            {\r\n                try\r\n                {\r\n                    File.Move(source, target, true);\r\n                    return;\r\n                }\r\n                catch (Exception error) when (error is IOException or UnauthorizedAccessException)\r\n                {\r\n                    if (attempt + 1 >= retryCount) break;\r\n                    Thread.Sleep(retryDelayMilliseconds * (attempt + 1));\r\n                }\r\n            }\r\n\r\n            File.Copy(source, target, true);\r\n            File.Delete(source);\r\n        });\r\n\r\n    private static T WithFileLock<T>(string path, Func<T> action)\r\n    {\r\n        using var mutex = CreateMutex(path);\r\n        var lockTaken = Wait(mutex);\r\n        try { return action(); }\r\n        finally { if (lockTaken) mutex.ReleaseMutex(); }\r\n    }\r\n\r\n    private static void WithFileLock(string path, Action action) =>\r\n        WithFileLock(path, () =>\r\n        {\r\n            action();\r\n            return true;\r\n        });\r\n\r\n    private static Mutex CreateMutex(string path)\r\n    {\r\n        var normalizedPath = Path.GetFullPath(path).ToUpperInvariant();\r\n        var hash = SHA256.HashData(Encoding.UTF8.GetBytes(normalizedPath));\r\n        return new Mutex(false, @\"Local\\GWGUI.ConfigurationFile.\" + Convert.ToHexString(hash));\r\n    }\r\n\r\n    private static bool Wait(Mutex mutex)\r\n    {\r\n        try { mutex.WaitOne(); }\r\n        catch (AbandonedMutexException) { }\r\n        return true;\r\n    }\r\n}\r\n"
+    },
+    "decision": "Reuse original Atari SDK path algorithms already shared by sixteen native modules; historical seven normalize blank values to null before calling. No new path algorithm, profile flag, catalogue or state; typed record projections, persistence, locks and file ownership unchanged.",
+    "state": "verified and built with 23 modules; seven historical path pairs use original SDK algorithms; historical blank-to-null retained; 29 pure tests pass; thirteen unused constants removed",
+    "verification": {
+      "semanticProjects": [
+        "GWGUI.Emulation",
+        "GWGUI.Emulation.Amstrad",
+        "GWGUI.Emulation.Commodore",
+        "GWGUI.Emulation.Microsoft",
+        "GWGUI.Emulation.Nec",
+        "GWGUI.Emulation.Nintendo",
+        "GWGUI.Emulation.Sega",
+        "GWGUI.Emulation.Sony"
+      ],
+      "newStateResourcesOrAlgorithms": 0,
+      "sources": [
+        {
+          "unrelatedSourceUnchanged": true,
+          "sha256": "AD903E013F1D2DA153D823F79A06F60E0B17C33FC13C10B21718144DD52FB800",
+          "baseReadonly": true,
+          "path": "src/GWGUI.Emulation.Amstrad/Common/Services/ConfigurationStore.cs",
+          "bindings": [
+            {
+              "bindings": [
+                "GWGUI.Emulation.Functions.ConfigurationFileAccessFunctions.StorePath(string?, string)",
+                "string.IsNullOrWhiteSpace(string?)"
+              ],
+              "method": "StorePath"
+            },
+            {
+              "bindings": [
+                "GWGUI.Emulation.Functions.ConfigurationFileAccessFunctions.ResolvePath(string?, string)",
+                "string.IsNullOrWhiteSpace(string?)"
+              ],
+              "method": "ResolvePath"
+            }
+          ],
+          "constants": [
+            {
+              "value": "..",
+              "name": "ParentDirectoryName"
+            },
+            {
+              "value": "..",
+              "name": "ParentDirectoryName"
+            },
+            {
+              "value": "/",
+              "name": "StoredDirectorySeparator"
+            },
+            {
+              "value": "/",
+              "name": "StoredDirectorySeparator"
+            }
+          ]
+        },
+        {
+          "unrelatedSourceUnchanged": true,
+          "sha256": "76F9BE3B6FAE64D6687E902FD175FCD235F3D86A58B391E913433FB598B82AE9",
+          "baseReadonly": true,
+          "path": "src/GWGUI.Emulation.Commodore/Common/Services/ConfigurationStore.cs",
+          "bindings": [
+            {
+              "bindings": [
+                "GWGUI.Emulation.Functions.ConfigurationFileAccessFunctions.StorePath(string?, string)",
+                "string.IsNullOrWhiteSpace(string?)"
+              ],
+              "method": "StorePath"
+            },
+            {
+              "bindings": [
+                "GWGUI.Emulation.Functions.ConfigurationFileAccessFunctions.ResolvePath(string?, string)",
+                "string.IsNullOrWhiteSpace(string?)"
+              ],
+              "method": "ResolvePath"
+            }
+          ],
+          "constants": [
+            {
+              "value": "..",
+              "name": "ParentDirectoryName"
+            },
+            {
+              "value": "..",
+              "name": "ParentDirectoryName"
+            },
+            {
+              "value": "/",
+              "name": "StoredDirectorySeparator"
+            },
+            {
+              "value": "/",
+              "name": "StoredDirectorySeparator"
+            }
+          ]
+        },
+        {
+          "unrelatedSourceUnchanged": true,
+          "sha256": "0514241D83CFCE6E5A7CF7AFFA23F0E6582C971FE77B1CB8C3215E8EDF2D4512",
+          "baseReadonly": true,
+          "path": "src/GWGUI.Emulation.Microsoft/Common/Services/ConfigurationStore.cs",
+          "bindings": [
+            {
+              "bindings": [
+                "GWGUI.Emulation.Functions.ConfigurationFileAccessFunctions.StorePath(string?, string)",
+                "string.IsNullOrWhiteSpace(string?)"
+              ],
+              "method": "StorePath"
+            },
+            {
+              "bindings": [
+                "GWGUI.Emulation.Functions.ConfigurationFileAccessFunctions.ResolvePath(string?, string)",
+                "string.IsNullOrWhiteSpace(string?)"
+              ],
+              "method": "ResolvePath"
+            }
+          ],
+          "constants": [
+            {
+              "value": "..",
+              "name": "ParentDirectoryName"
+            },
+            {
+              "value": "..",
+              "name": "ParentDirectoryName"
+            },
+            {
+              "value": "/",
+              "name": "StoredDirectorySeparator"
+            },
+            {
+              "value": "/",
+              "name": "StoredDirectorySeparator"
+            }
+          ]
+        },
+        {
+          "unrelatedSourceUnchanged": true,
+          "sha256": "BD0469A1DAA4BC641CB39FD7BDFE9E419CB41D3809831FDF8238B0F8BDD7A821",
+          "baseReadonly": true,
+          "path": "src/GWGUI.Emulation.Nec/Common/Services/ConfigurationStore.cs",
+          "bindings": [
+            {
+              "bindings": [
+                "GWGUI.Emulation.Functions.ConfigurationFileAccessFunctions.StorePath(string?, string)",
+                "string.IsNullOrWhiteSpace(string?)"
+              ],
+              "method": "StorePath"
+            },
+            {
+              "bindings": [
+                "GWGUI.Emulation.Functions.ConfigurationFileAccessFunctions.ResolvePath(string?, string)",
+                "string.IsNullOrWhiteSpace(string?)"
+              ],
+              "method": "ResolvePath"
+            }
+          ],
+          "constants": [
+            {
+              "value": "..",
+              "name": "ParentDirectoryName"
+            },
+            {
+              "value": "..",
+              "name": "ParentDirectoryName"
+            },
+            {
+              "value": "/",
+              "name": "StoredDirectorySeparator"
+            },
+            {
+              "value": "/",
+              "name": "StoredDirectorySeparator"
+            }
+          ]
+        },
+        {
+          "unrelatedSourceUnchanged": true,
+          "sha256": "EE22834CE04A9588BC6B02B5342C4DFD6F628BEC6038D985093237BA27FA28BC",
+          "baseReadonly": true,
+          "path": "src/GWGUI.Emulation.Nintendo/Common/Services/ConfigurationStore.cs",
+          "bindings": [
+            {
+              "bindings": [
+                "GWGUI.Emulation.Functions.ConfigurationFileAccessFunctions.StorePath(string?, string)",
+                "string.IsNullOrWhiteSpace(string?)"
+              ],
+              "method": "StorePath"
+            },
+            {
+              "bindings": [
+                "GWGUI.Emulation.Functions.ConfigurationFileAccessFunctions.ResolvePath(string?, string)",
+                "string.IsNullOrWhiteSpace(string?)"
+              ],
+              "method": "ResolvePath"
+            }
+          ],
+          "constants": [
+            {
+              "value": "..",
+              "name": "ParentDirectoryName"
+            },
+            {
+              "value": "..",
+              "name": "ParentDirectoryName"
+            },
+            {
+              "value": "/",
+              "name": "StoredDirectorySeparator"
+            },
+            {
+              "value": "/",
+              "name": "StoredDirectorySeparator"
+            }
+          ]
+        },
+        {
+          "unrelatedSourceUnchanged": true,
+          "sha256": "25FCAC220520D73C5F32DAC4844E007C16FFE33ACA71CD44C078996F4F508860",
+          "baseReadonly": true,
+          "path": "src/GWGUI.Emulation.Sega/Common/Services/ConfigurationStore.cs",
+          "bindings": [
+            {
+              "bindings": [
+                "GWGUI.Emulation.Functions.ConfigurationFileAccessFunctions.StorePath(string?, string)",
+                "string.IsNullOrWhiteSpace(string?)"
+              ],
+              "method": "StorePath"
+            },
+            {
+              "bindings": [
+                "GWGUI.Emulation.Functions.ConfigurationFileAccessFunctions.ResolvePath(string?, string)",
+                "string.IsNullOrWhiteSpace(string?)"
+              ],
+              "method": "ResolvePath"
+            }
+          ],
+          "constants": [
+            {
+              "value": "..",
+              "name": "ParentDirectoryName"
+            },
+            {
+              "value": "..",
+              "name": "ParentDirectoryName"
+            },
+            {
+              "value": "/",
+              "name": "StoredDirectorySeparator"
+            },
+            {
+              "value": "/",
+              "name": "StoredDirectorySeparator"
+            }
+          ]
+        },
+        {
+          "unrelatedSourceUnchanged": true,
+          "sha256": "578DC0F6B716B70561ADC1F238077EA2FAE93B62826F95E5F783EFEDC3EF9032",
+          "baseReadonly": true,
+          "path": "src/GWGUI.Emulation.Sony/Common/Services/ConfigurationStore.cs",
+          "bindings": [
+            {
+              "bindings": [
+                "GWGUI.Emulation.Functions.ConfigurationFileAccessFunctions.StorePath(string?, string)",
+                "string.IsNullOrWhiteSpace(string?)"
+              ],
+              "method": "StorePath"
+            },
+            {
+              "bindings": [
+                "GWGUI.Emulation.Functions.ConfigurationFileAccessFunctions.ResolvePath(string?, string)",
+                "string.IsNullOrWhiteSpace(string?)"
+              ],
+              "method": "ResolvePath"
+            }
+          ],
+          "constants": [
+            {
+              "value": "..",
+              "name": "ParentDirectoryName"
+            },
+            {
+              "value": "..",
+              "name": "ParentDirectoryName"
+            },
+            {
+              "value": "/",
+              "name": "StoredDirectorySeparator"
+            },
+            {
+              "value": "/",
+              "name": "StoredDirectorySeparator"
+            }
+          ]
+        }
+      ],
+      "policy": "Blank conversion remains historical; existing SDK performs canonical Path.GetFullPath/GetRelativePath boundary checks and slash storage, resolves only non-absolute values; native SDK null/whitespace behavior retained.",
+      "sdkUnchanged": true,
+      "semanticErrors": 0
+    },
+    "tests": {
+      "failed": 0,
+      "sha256": "0EA3E18018D042AC21BD45ACFCB8ECC5977780E24F4F30AC8062CE8675DE38D1",
+      "externalFixtures": 0,
+      "passed": 29,
+      "path": "tests/GWGUI.Tests/Emulation/LegacyConfigurationPathTests.cs",
+      "scope": "Seven historical profiles: blank, inside/outside/root/other drive/UNC paths, forward/back separators and malformed path; native SDK whitespace retention. Path string calculations only."
+    },
+    "inventory": {
+      "files": 7290,
+      "newQualifiedOccurrences": 28,
+      "normalizedGroups": 375,
+      "largeGroups": 471,
+      "exactGroups": 803,
+      "largeBodies": 11655,
+      "shortBodies": 9631
+    },
+    "removedConstants": [
+      {
+        "path": "src/GWGUI.Emulation.Amstrad/Common/Constants/ConfigurationStoreConstants.cs",
+        "sha256": "A91EA50038DB7C6061F32D44010C1737CFDEA995E55DB4D7585C5CD033915EC0",
+        "after": "namespace GWGUI.Emulation.Amstrad.Common.Constants;\r\n\r\n\r\ninternal static class ConfigurationStoreConstants\r\n{\r\n    internal const string MachineFileName = \"machine.json\";\r\n    internal const string TemporaryFileSuffix = \".tmp\";\r\n    internal const string MachineIdentifierFormat = \"N\";\r\n    internal const char StoredDirectorySeparator = '/';\r\n    internal const int WriteBufferSize = 4096;\r\n    internal const int CurrentSchemaVersion = 1;\r\n    internal const string TemporaryNameSeparator = \".\";\r\n    internal const int InitialWriterCount = 1;\r\n    internal const int MaximumWriterCount = 1;\r\n    internal const bool WriteIndentedJson = true;\r\n    internal const bool UseAsyncFileAccess = true;\r\n    internal const bool RecursiveDirectoryDelete = true;\r\n\r\n    internal const string ConfigurationsDirectoryName = \"Configurations\";\r\n}\r\n",
+        "referencesOutsideDeclaration": 0,
+        "retainedAmstradSeparator": true,
+        "removedNames": [
+          "ParentDirectoryName"
+        ],
+        "before": "namespace GWGUI.Emulation.Amstrad.Common.Constants;\r\n\r\n\r\ninternal static class ConfigurationStoreConstants\r\n{\r\n    internal const string MachineFileName = \"machine.json\";\r\n    internal const string TemporaryFileSuffix = \".tmp\";\r\n    internal const string MachineIdentifierFormat = \"N\";\r\n    internal const string ParentDirectoryName = \"..\";\r\n    internal const char StoredDirectorySeparator = '/';\r\n    internal const int WriteBufferSize = 4096;\r\n    internal const int CurrentSchemaVersion = 1;\r\n    internal const string TemporaryNameSeparator = \".\";\r\n    internal const int InitialWriterCount = 1;\r\n    internal const int MaximumWriterCount = 1;\r\n    internal const bool WriteIndentedJson = true;\r\n    internal const bool UseAsyncFileAccess = true;\r\n    internal const bool RecursiveDirectoryDelete = true;\r\n\r\n    internal const string ConfigurationsDirectoryName = \"Configurations\";\r\n}\r\n"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Commodore/Common/Constants/ConfigurationStoreConstants.cs",
+        "sha256": "D690FB52C4B7F2B0CB6D0CD7F94B4C73F36E940004B06C450431CA113BA5D826",
+        "after": "namespace GWGUI.Emulation.Commodore.Common.Constants;\r\n\r\n\r\ninternal static class ConfigurationStoreConstants\r\n{\r\n    internal const string MachineFileName = \"machine.json\";\r\n    internal const string TemporaryFileSuffix = \".tmp\";\r\n    internal const string MachineIdentifierFormat = \"N\";\r\n    internal const int WriteBufferSize = 4096;\r\n    internal const int CurrentSchemaVersion = 3;\r\n    internal const string TemporaryNameSeparator = \".\";\r\n    internal const int InitialWriterCount = 1;\r\n    internal const int MaximumWriterCount = 1;\r\n    internal const bool WriteIndentedJson = true;\r\n    internal const bool UseAsyncFileAccess = true;\r\n    internal const bool RecursiveDirectoryDelete = true;\r\n}\r\n",
+        "referencesOutsideDeclaration": 0,
+        "retainedAmstradSeparator": false,
+        "removedNames": [
+          "ParentDirectoryName",
+          "StoredDirectorySeparator"
+        ],
+        "before": "namespace GWGUI.Emulation.Commodore.Common.Constants;\r\n\r\n\r\ninternal static class ConfigurationStoreConstants\r\n{\r\n    internal const string MachineFileName = \"machine.json\";\r\n    internal const string TemporaryFileSuffix = \".tmp\";\r\n    internal const string MachineIdentifierFormat = \"N\";\r\n    internal const string ParentDirectoryName = \"..\";\r\n    internal const char StoredDirectorySeparator = '/';\r\n    internal const int WriteBufferSize = 4096;\r\n    internal const int CurrentSchemaVersion = 3;\r\n    internal const string TemporaryNameSeparator = \".\";\r\n    internal const int InitialWriterCount = 1;\r\n    internal const int MaximumWriterCount = 1;\r\n    internal const bool WriteIndentedJson = true;\r\n    internal const bool UseAsyncFileAccess = true;\r\n    internal const bool RecursiveDirectoryDelete = true;\r\n}\r\n"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Microsoft/Common/Constants/ConfigurationStoreConstants.cs",
+        "sha256": "58E53CCD03C8E8F2210A66ED7C55BACDB9A19168F8CF9C83F3670A6E5568594C",
+        "after": "namespace GWGUI.Emulation.Microsoft.Common.Constants;\r\n\r\n\r\ninternal static class ConfigurationStoreConstants\r\n{\r\n    internal const string MachineFileName = \"machine.json\";\r\n    internal const string TemporaryFileSuffix = \".tmp\";\r\n    internal const string MachineIdentifierFormat = \"N\";\r\n    internal const int WriteBufferSize = 4096;\r\n    internal const int CurrentSchemaVersion = 1;\r\n    internal const string TemporaryNameSeparator = \".\";\r\n    internal const int InitialWriterCount = 1;\r\n    internal const int MaximumWriterCount = 1;\r\n    internal const bool WriteIndentedJson = true;\r\n    internal const bool UseAsyncFileAccess = true;\r\n    internal const bool RecursiveDirectoryDelete = true;\r\n}\r\n",
+        "referencesOutsideDeclaration": 0,
+        "retainedAmstradSeparator": false,
+        "removedNames": [
+          "ParentDirectoryName",
+          "StoredDirectorySeparator"
+        ],
+        "before": "namespace GWGUI.Emulation.Microsoft.Common.Constants;\r\n\r\n\r\ninternal static class ConfigurationStoreConstants\r\n{\r\n    internal const string MachineFileName = \"machine.json\";\r\n    internal const string TemporaryFileSuffix = \".tmp\";\r\n    internal const string MachineIdentifierFormat = \"N\";\r\n    internal const string ParentDirectoryName = \"..\";\r\n    internal const char StoredDirectorySeparator = '/';\r\n    internal const int WriteBufferSize = 4096;\r\n    internal const int CurrentSchemaVersion = 1;\r\n    internal const string TemporaryNameSeparator = \".\";\r\n    internal const int InitialWriterCount = 1;\r\n    internal const int MaximumWriterCount = 1;\r\n    internal const bool WriteIndentedJson = true;\r\n    internal const bool UseAsyncFileAccess = true;\r\n    internal const bool RecursiveDirectoryDelete = true;\r\n}\r\n"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nec/Common/Constants/ConfigurationStoreConstants.cs",
+        "sha256": "9E42E20F2002556E2388307D0C3CA99EDC57DF712197B0FC6A5A9A6FB47D68DB",
+        "after": "namespace GWGUI.Emulation.Nec.Common.Constants;\r\n\r\n\r\ninternal static class ConfigurationStoreConstants\r\n{\r\n    internal const string MemoryDirectoryName = \"Memory\";\r\n    internal const string MachineFileName = \"machine.json\";\r\n    internal const string TemporaryFileSuffix = \".tmp\";\r\n    internal const string MachineIdentifierFormat = \"N\";\r\n    internal const int WriteBufferSize = 4096;\r\n    internal const int CurrentSchemaVersion = 1;\r\n    internal const string TemporaryNameSeparator = \".\";\r\n    internal const int InitialWriterCount = 1;\r\n    internal const int MaximumWriterCount = 1;\r\n    internal const bool WriteIndentedJson = true;\r\n    internal const bool UseAsyncFileAccess = true;\r\n    internal const bool RecursiveDirectoryDelete = true;\r\n}\r\n",
+        "referencesOutsideDeclaration": 0,
+        "retainedAmstradSeparator": false,
+        "removedNames": [
+          "ParentDirectoryName",
+          "StoredDirectorySeparator"
+        ],
+        "before": "namespace GWGUI.Emulation.Nec.Common.Constants;\r\n\r\n\r\ninternal static class ConfigurationStoreConstants\r\n{\r\n    internal const string MemoryDirectoryName = \"Memory\";\r\n    internal const string MachineFileName = \"machine.json\";\r\n    internal const string TemporaryFileSuffix = \".tmp\";\r\n    internal const string MachineIdentifierFormat = \"N\";\r\n    internal const string ParentDirectoryName = \"..\";\r\n    internal const char StoredDirectorySeparator = '/';\r\n    internal const int WriteBufferSize = 4096;\r\n    internal const int CurrentSchemaVersion = 1;\r\n    internal const string TemporaryNameSeparator = \".\";\r\n    internal const int InitialWriterCount = 1;\r\n    internal const int MaximumWriterCount = 1;\r\n    internal const bool WriteIndentedJson = true;\r\n    internal const bool UseAsyncFileAccess = true;\r\n    internal const bool RecursiveDirectoryDelete = true;\r\n}\r\n"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nintendo/Common/Constants/ConfigurationStoreConstants.cs",
+        "sha256": "6062C86576A6DB15AA1C189D8BE236B7CA3A6A4CEC570C2D35A2B0A14F20DA6D",
+        "after": "namespace GWGUI.Emulation.Nintendo.Common.Constants;\r\n\r\n\r\ninternal static class ConfigurationStoreConstants\r\n{\r\n    internal const string MachineFileName = \"machine.json\";\r\n    internal const string TemporaryFileSuffix = \".tmp\";\r\n    internal const string MachineIdentifierFormat = \"N\";\r\n    internal const int WriteBufferSize = 4096;\r\n    internal const int CurrentSchemaVersion = 1;\r\n    internal const string TemporaryNameSeparator = \".\";\r\n    internal const int InitialWriterCount = 1;\r\n    internal const int MaximumWriterCount = 1;\r\n    internal const bool WriteIndentedJson = true;\r\n    internal const bool UseAsyncFileAccess = true;\r\n    internal const bool RecursiveDirectoryDelete = true;\r\n}\r\n",
+        "referencesOutsideDeclaration": 0,
+        "retainedAmstradSeparator": false,
+        "removedNames": [
+          "ParentDirectoryName",
+          "StoredDirectorySeparator"
+        ],
+        "before": "namespace GWGUI.Emulation.Nintendo.Common.Constants;\r\n\r\n\r\ninternal static class ConfigurationStoreConstants\r\n{\r\n    internal const string MachineFileName = \"machine.json\";\r\n    internal const string TemporaryFileSuffix = \".tmp\";\r\n    internal const string MachineIdentifierFormat = \"N\";\r\n    internal const string ParentDirectoryName = \"..\";\r\n    internal const char StoredDirectorySeparator = '/';\r\n    internal const int WriteBufferSize = 4096;\r\n    internal const int CurrentSchemaVersion = 1;\r\n    internal const string TemporaryNameSeparator = \".\";\r\n    internal const int InitialWriterCount = 1;\r\n    internal const int MaximumWriterCount = 1;\r\n    internal const bool WriteIndentedJson = true;\r\n    internal const bool UseAsyncFileAccess = true;\r\n    internal const bool RecursiveDirectoryDelete = true;\r\n}\r\n"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sega/Common/Constants/ConfigurationStoreConstants.cs",
+        "sha256": "28D3C05EB362FAA63C46C4D8F1ADD0120A1DED282048476912D19FAEB6CAC0D0",
+        "after": "namespace GWGUI.Emulation.Sega.Common.Constants;\r\n\r\n\r\ninternal static class ConfigurationStoreConstants\r\n{\r\n    internal const string MachineFileName = \"machine.json\";\r\n    internal const string TemporaryFileSuffix = \".tmp\";\r\n    internal const string MachineIdentifierFormat = \"N\";\r\n    internal const int WriteBufferSize = 4096;\r\n    internal const int CurrentSchemaVersion = 1;\r\n    internal const string TemporaryNameSeparator = \".\";\r\n    internal const int InitialWriterCount = 1;\r\n    internal const int MaximumWriterCount = 1;\r\n    internal const bool WriteIndentedJson = true;\r\n    internal const bool UseAsyncFileAccess = true;\r\n    internal const bool RecursiveDirectoryDelete = true;\r\n}\r\n",
+        "referencesOutsideDeclaration": 0,
+        "retainedAmstradSeparator": false,
+        "removedNames": [
+          "ParentDirectoryName",
+          "StoredDirectorySeparator"
+        ],
+        "before": "namespace GWGUI.Emulation.Sega.Common.Constants;\r\n\r\n\r\ninternal static class ConfigurationStoreConstants\r\n{\r\n    internal const string MachineFileName = \"machine.json\";\r\n    internal const string TemporaryFileSuffix = \".tmp\";\r\n    internal const string MachineIdentifierFormat = \"N\";\r\n    internal const string ParentDirectoryName = \"..\";\r\n    internal const char StoredDirectorySeparator = '/';\r\n    internal const int WriteBufferSize = 4096;\r\n    internal const int CurrentSchemaVersion = 1;\r\n    internal const string TemporaryNameSeparator = \".\";\r\n    internal const int InitialWriterCount = 1;\r\n    internal const int MaximumWriterCount = 1;\r\n    internal const bool WriteIndentedJson = true;\r\n    internal const bool UseAsyncFileAccess = true;\r\n    internal const bool RecursiveDirectoryDelete = true;\r\n}\r\n"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sony/Common/Constants/ConfigurationStoreConstants.cs",
+        "sha256": "5A49DC2071B6AF2F2CADE4715895628F029942767A4CF79ED12C0BC6AA94E75B",
+        "after": "namespace GWGUI.Emulation.Sony.Common.Constants;\r\n\r\n\r\ninternal static class ConfigurationStoreConstants\r\n{\r\n    internal const string MachineFileName = \"machine.json\";\r\n    internal const string TemporaryFileSuffix = \".tmp\";\r\n    internal const string MachineIdentifierFormat = \"N\";\r\n    internal const int WriteBufferSize = 4096;\r\n    internal const int CurrentSchemaVersion = 1;\r\n    internal const string TemporaryNameSeparator = \".\";\r\n    internal const int InitialWriterCount = 1;\r\n    internal const int MaximumWriterCount = 1;\r\n    internal const bool WriteIndentedJson = true;\r\n    internal const bool UseAsyncFileAccess = true;\r\n    internal const bool RecursiveDirectoryDelete = true;\r\n}\r\n",
+        "referencesOutsideDeclaration": 0,
+        "retainedAmstradSeparator": false,
+        "removedNames": [
+          "ParentDirectoryName",
+          "StoredDirectorySeparator"
+        ],
+        "before": "namespace GWGUI.Emulation.Sony.Common.Constants;\r\n\r\n\r\ninternal static class ConfigurationStoreConstants\r\n{\r\n    internal const string MachineFileName = \"machine.json\";\r\n    internal const string TemporaryFileSuffix = \".tmp\";\r\n    internal const string MachineIdentifierFormat = \"N\";\r\n    internal const string ParentDirectoryName = \"..\";\r\n    internal const char StoredDirectorySeparator = '/';\r\n    internal const int WriteBufferSize = 4096;\r\n    internal const int CurrentSchemaVersion = 1;\r\n    internal const string TemporaryNameSeparator = \".\";\r\n    internal const int InitialWriterCount = 1;\r\n    internal const int MaximumWriterCount = 1;\r\n    internal const bool WriteIndentedJson = true;\r\n    internal const bool UseAsyncFileAccess = true;\r\n    internal const bool RecursiveDirectoryDelete = true;\r\n}\r\n"
+      }
+    ],
+    "productBuild": "included and verified in sessionCleanupPathBuild"
+  },
+  "sessionCleanupPathBuild": {
+    "command": "scripts/local-building.cmd --building=debug --modules=A",
+    "startedAt": "2026-10-19T06:05:50.0643666+02:00",
+    "state": "verified",
+    "before": [
+      {
+        "path": "global.json",
+        "exists": true,
+        "sha256": "EC7D038183957F0F2DD09078668AB7866560A585B3566836E5ECD105796260F4"
+      },
+      {
+        "path": "scripts/local-building.cmd",
+        "exists": true,
+        "sha256": "06027F2C20CB4CD2231BB9247B6CFAF23B60CE4E896103A76042EC3D2F30FF4B"
+      },
+      {
+        "path": "scripts/local-building/build.ps1",
+        "exists": true,
+        "sha256": "EAEF2EAE65381132F9E5AE8F73CDACAA01755AACAD2F334714352785CC82C700"
+      },
+      {
+        "path": "scripts/module-directory/build-module-directory.ps1",
+        "exists": true,
+        "sha256": "75DFD60CAC53DB8E4FF8FF274DB1A92A802E518C6C35AE1C7EAD3CA74065F054"
+      },
+      {
+        "path": "scripts/module-release/package-module.ps1",
+        "exists": true,
+        "sha256": "EFF57734FACEB7536E603A78DB0E43723BA22E8128C23BBB98C9F9B154BBE0F3"
+      },
+      {
+        "path": "scripts/publish-module-directory.cmd",
+        "exists": true,
+        "sha256": "20A8899A47EF613BE8D7E106C81FF1C00BCA6E00C5F3CC4B1FD1E596A9BA24FB"
+      },
+      {
+        "path": "scripts/publish-modules.cmd",
+        "exists": true,
+        "sha256": "3AD1334C3E0C2EDC5D0B8AEB416D9F096784A80F6F0DC1EABECD7BA5CADA5DFB"
+      },
+      {
+        "path": "scripts/publish-release.cmd",
+        "exists": true,
+        "sha256": "C6A1F3A111B00408FEFD153342140CA556B63A120C539830236B5D22B7987626"
+      },
+      {
+        "path": "scripts/publish-wiki.cmd",
+        "exists": true,
+        "sha256": "E6FA82514B4F43F7E45308FA925B16876C1F0924053BD611837D15C741A56C30"
+      },
+      {
+        "path": "scripts/release/package/organize_app/organize-application-output.ps1",
+        "exists": true,
+        "sha256": "DF28EE0A0FCD20ACABA2D1131DBE89CFE057D7FE6F3119D2F6BCBA2CA917469B"
+      },
+      {
+        "path": "scripts/release/package/organize_app/shared-component-files.ps1",
+        "exists": true,
+        "sha256": "BE18E987279943DFB6449F5920E29E2D0922206F0ECBABC95A1C4C8723061554"
+      },
+      {
+        "path": "scripts/release/package/package.ps1",
+        "exists": true,
+        "sha256": "04E9052B296679D70666C4559B372425AA92F68F79E666F7DA6234255BDD6B6A"
+      },
+      {
+        "path": "scripts/release/update-catalog/build-update-catalog.ps1",
+        "exists": true,
+        "sha256": "3E3D1FC84EA4F113F3B3B6BF14E9F35A3E7B305BF4F79153E20D7849D026988D"
+      },
+      {
+        "path": "scripts/release/update-catalog/emulation-modules/emulation-modules.ps1",
+        "exists": true,
+        "sha256": "3D75EB2584FDC3E6C9E2B153B919ADDF88748D1C92CB5D421699D0A5966E7625"
+      },
+      {
+        "path": "scripts/temp/analyze-media-data.ps1",
+        "exists": true,
+        "sha256": "AA775F80D85158C60C3AD3E5073420B4BA33949C2EC9DC8FA78F47CBAA77913A"
+      },
+      {
+        "path": "scripts/temp/common/DotNetProcess.ps1",
+        "exists": true,
+        "sha256": "31AC2B278BDE2D72222F440F825B6591BE38AF0AD16CCC6D969AA9ECFB3385FC"
+      },
+      {
+        "path": "scripts/temp/extract_data_from_ContentHex.ps1",
+        "exists": true,
+        "sha256": "6FB701484E9E322749CC2DC40964B7858E244ED725DC07A62FE5482281F47598"
+      },
+      {
+        "path": "scripts/temp/extract-media-files.ps1",
+        "exists": true,
+        "sha256": "7E3FB09B7F82364956CF923C0AC8B9BBE24D16327442B70990A3AE1CA63DFB1F"
+      },
+      {
+        "path": "scripts/temp/read-media-with-libretro.ps1",
+        "exists": true,
+        "sha256": "45EFF764E2539E5DBF223BFF176BAE71DD0B70A86AB12680E5DFB18DFF0772DC"
+      },
+      {
+        "path": "scripts/tests/test-app-accessibility.ps1",
+        "exists": true,
+        "sha256": "3CEE5946F141097643AE07175E52131D25C268DCDBBA287DA0892E1A3708A5F4"
+      },
+      {
+        "path": "scripts/tests/test-installer-upgrade.ps1",
+        "exists": true,
+        "sha256": "9A67170E382BBCBDF5DE0922AE8E74B283D6AA8DAE386913D73170F7BB157795"
+      },
+      {
+        "path": "scripts/tests/test-installer.ps1",
+        "exists": true,
+        "sha256": "A9CF61F494BCAE405D7A6CEFDE99CE8BB57C43C90A5C2FAFE44A2164751B15A1"
+      },
+      {
+        "path": "scripts/tools/find-invalid-documentation.ps1",
+        "exists": true,
+        "sha256": "3CDC9B369EE24651DFC07289AB2207A4604CA1883F47BFB8B526B8B2E6974406"
+      },
+      {
+        "path": "scripts/tools/stop-debug-gwgui.ps1",
+        "exists": true,
+        "sha256": "2E5B7FDA06F544830ADA911396C89305DFBECE95129C1C45DC3E9A3E91EFD1C2"
+      },
+      {
+        "path": "scripts/wiki/build-wiki.ps1",
+        "exists": true,
+        "sha256": "93D3D34A8CFC807CBC2DD755DCB97A32E93F8677C64EEA6B9E5D376A55427662"
+      },
+      {
+        "path": "scripts/wiki/publish-wiki.ps1",
+        "exists": true,
+        "sha256": "0B496084B44EBA11BE96271BC6AFA9F4AAA749E91CA2335556BFAD395CB36D2B"
+      },
+      {
+        "path": "src/GWGUI.App/GWGUI.App.csproj",
+        "exists": true,
+        "sha256": "45D17E66BC1DD5923693633986D0B6792A1D89DC1B25FDCDD44701D4EC72931C"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Acorn/Common/Machines/Common/Functions/MachineFunctions.cs",
+        "exists": true,
+        "sha256": "313B8165E196A27BBC5B1F00CC4AE43E91E788C5625F4AACE28FD03E1C0E0856"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Acorn/GWGUI.Emulation.Acorn.csproj",
+        "exists": true,
+        "sha256": "C5D7ED8C9804B7C017C65EE2D5538E3D886B35F391B76A45D047D0CB444BEFD3"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Acorn/module.json",
+        "exists": true,
+        "sha256": "5D1361DF84F667F12B408B9CA08E982E037C4C9D65D3AE020C87DB86450F29DB"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Amstrad/Common/Constants/ConfigurationStoreConstants.cs",
+        "exists": true,
+        "sha256": "A91EA50038DB7C6061F32D44010C1737CFDEA995E55DB4D7585C5CD033915EC0"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Amstrad/Common/Services/ConfigurationStore.cs",
+        "exists": true,
+        "sha256": "AD903E013F1D2DA153D823F79A06F60E0B17C33FC13C10B21718144DD52FB800"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Amstrad/Common/Services/Machine.Commands.cs",
+        "exists": true,
+        "sha256": "609C1CE624779AEE6538828A379BD092F4F1AEFBFFE883BB60C6A9680621B1FF"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Amstrad/GWGUI.Emulation.Amstrad.csproj",
+        "exists": true,
+        "sha256": "E5CD137AF53BFFCD58CBEF9F656499E89C8CE93D2672929432F514CBF62F5568"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Amstrad/module.json",
+        "exists": true,
+        "sha256": "0685C64F7DBFA038CDCEC72E0407222B33BD1147B842E6ECCD08072A92A30047"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Apple/Common/Machines/Common/Functions/MachineFunctions.cs",
+        "exists": true,
+        "sha256": "A72866139218B7F770AB9457E649568C60251F9CD0172E263680E472A07FB9BC"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Apple/GWGUI.Emulation.Apple.csproj",
+        "exists": true,
+        "sha256": "624CD4C0CC6BD90301FE79E6F781E57623F006EF2030CFF2FD9ECBE8603B05A4"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Apple/module.json",
+        "exists": true,
+        "sha256": "FBE09CFCB4F6A08E589D10464AD6741B26B145BCFAF296154A57C7A698AF1163"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/MachineFunctions.cs",
+        "exists": true,
+        "sha256": "3563E3A6B6A322753EE9C3C3EA6D53CA3AAFE862F5C92FED4A1409692007FDAC"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Atari/GWGUI.Emulation.Atari.csproj",
+        "exists": true,
+        "sha256": "0B69DEA50029B3D269EE60914F4239F18692D1A14A964301949FF2DBA6877C86"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Atari/module.json",
+        "exists": true,
+        "sha256": "51CC891084CC5412C7D00BF348F710FD5DE995C24EE67A606337BF1FE842306F"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Bandai/Common/Machines/Common/Functions/MachineFunctions.cs",
+        "exists": true,
+        "sha256": "EB885106E8D80F7977202B1C27F99F1EEA7C3E881C90C940A461DA017292B1EB"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Bandai/GWGUI.Emulation.Bandai.csproj",
+        "exists": true,
+        "sha256": "8731868F4238380DF2E63E5DC48DEDF906A6A1B891D84775EFD81B15F35BA19A"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Bandai/module.json",
+        "exists": true,
+        "sha256": "F6F87EA0A37548B557A4C12127904D272C80C4EE75B2CEC5653FDFB5DFFBFD82"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/MachineFunctions.cs",
+        "exists": true,
+        "sha256": "D6622D4CD52617A870AF07DD9F303843275B9ED7000C876BDE7274C34A5ADDEE"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Coleco/GWGUI.Emulation.Coleco.csproj",
+        "exists": true,
+        "sha256": "8B8E257FE498755B742F645D17A1A1FA1A55CF4AE833422631BD898347868F67"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Coleco/module.json",
+        "exists": true,
+        "sha256": "EE3B477DB0CCEEDD0C02D2C4548ED4E5B44D56EBA689195557DB607DF9218B14"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Commodore/Common/Constants/ConfigurationStoreConstants.cs",
+        "exists": true,
+        "sha256": "D690FB52C4B7F2B0CB6D0CD7F94B4C73F36E940004B06C450431CA113BA5D826"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Commodore/Common/Services/ConfigurationStore.cs",
+        "exists": true,
+        "sha256": "76F9BE3B6FAE64D6687E902FD175FCD235F3D86A58B391E913433FB598B82AE9"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Commodore/Common/Services/Machine.Commands.cs",
+        "exists": true,
+        "sha256": "7E88D4B4C6D3A58E4845C63FB59A51D80A697C03E84C3602F0872EEF4B9F4EC1"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Commodore/GWGUI.Emulation.Commodore.csproj",
+        "exists": true,
+        "sha256": "2484487C872A8CC2111BEEA0BE22B0D13DEF6996A4918B3AEF7C02F7E79C1433"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Commodore/module.json",
+        "exists": true,
+        "sha256": "715A8D7E88A5371FE1E576185FE0F2388F8CF19D29C42BCF9DA9FF4E48839A22"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Epoch/Common/Machines/Common/Functions/MachineFunctions.cs",
+        "exists": true,
+        "sha256": "E4AD229B23478D455A3E4AB8D80C66256AEDF4E70B200C210B9060CEF0BCBBEA"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Epoch/GWGUI.Emulation.Epoch.csproj",
+        "exists": true,
+        "sha256": "833629D231B69D9789FFA68C6C8757E21CC4818F6956B4A362AAF62E383296A6"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Epoch/module.json",
+        "exists": true,
+        "sha256": "4F9BE08D73FEB957D482FACD353D3DE33FACFE3EB811CDB760A0C43039FA3982"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Functions/MachineFunctions.cs",
+        "exists": true,
+        "sha256": "B354A4B063C61CB82128B4226CE7BE9AF102FB9E948A40E077E735730D1AB8C9"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Fairchild/GWGUI.Emulation.Fairchild.csproj",
+        "exists": true,
+        "sha256": "45E562B934ADAE7A24678A110C2C0DAE308B20FFE149D08BA30DFB365C4C5962"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Fairchild/module.json",
+        "exists": true,
+        "sha256": "2A189DF8B8D6ECA422D9A557E3543CC1BEB26795076B565DCB61A5CB3252E4B5"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/MachineFunctions.cs",
+        "exists": true,
+        "sha256": "9C25DB32F36FEDCB4022CB379EC0AE46A2022D80F33F37C7D848924E6F770F6A"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Mattel/GWGUI.Emulation.Mattel.csproj",
+        "exists": true,
+        "sha256": "0791D297AF339DDAAA0CB6AF8A44ADB3156503B84FDD56F4C497B7803403847B"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Mattel/module.json",
+        "exists": true,
+        "sha256": "F47DC3DB92E381580877689A2486482966240DAF8FF5E8D2FE10D9D693D6EF5A"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Microsoft/Common/Constants/ConfigurationStoreConstants.cs",
+        "exists": true,
+        "sha256": "58E53CCD03C8E8F2210A66ED7C55BACDB9A19168F8CF9C83F3670A6E5568594C"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Microsoft/Common/Services/ConfigurationStore.cs",
+        "exists": true,
+        "sha256": "0514241D83CFCE6E5A7CF7AFFA23F0E6582C971FE77B1CB8C3215E8EDF2D4512"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Microsoft/Common/Services/Machine.Commands.cs",
+        "exists": true,
+        "sha256": "D9A6A2BA24BFA05F10506763ADB715C0AA49F37D6CCE770AFD559C1C97624782"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Microsoft/GWGUI.Emulation.Microsoft.csproj",
+        "exists": true,
+        "sha256": "83B81BBC65B2070D889850635E5BC7603AEBC74BA8B2BF7C18ED59C2E770CD21"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Microsoft/module.json",
+        "exists": true,
+        "sha256": "43D19332331FCAA8F42C6B8CD1F7DF144606E3A988C21A997407AEF76BC19CC5"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nec/Common/Constants/ConfigurationStoreConstants.cs",
+        "exists": true,
+        "sha256": "9E42E20F2002556E2388307D0C3CA99EDC57DF712197B0FC6A5A9A6FB47D68DB"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nec/Common/Services/ConfigurationStore.cs",
+        "exists": true,
+        "sha256": "BD0469A1DAA4BC641CB39FD7BDFE9E419CB41D3809831FDF8238B0F8BDD7A821"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nec/Common/Services/Machine.Commands.cs",
+        "exists": true,
+        "sha256": "3549B456E003CAAF8632D793203E50A596E0DAE950BFB3190D863D15CCB189B3"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nec/GWGUI.Emulation.Nec.csproj",
+        "exists": true,
+        "sha256": "BCDC416DC7B08C38D7244523B3E7D3FE569A5618B80C9693F84D4F0A8394F6E8"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nec/module.json",
+        "exists": true,
+        "sha256": "418AB9A38DE74CB5003E3F5F343B90AEE5F9ADDDCAB4BC4257F16C018E112F32"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nintendo/Common/Constants/ConfigurationStoreConstants.cs",
+        "exists": true,
+        "sha256": "6062C86576A6DB15AA1C189D8BE236B7CA3A6A4CEC570C2D35A2B0A14F20DA6D"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nintendo/Common/Services/ConfigurationStore.cs",
+        "exists": true,
+        "sha256": "EE22834CE04A9588BC6B02B5342C4DFD6F628BEC6038D985093237BA27FA28BC"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nintendo/Common/Services/Machine.Commands.cs",
+        "exists": true,
+        "sha256": "9DBCAB187A05FC2339D3A3FCD2609FC8D7327B90E45894A4D6287BDDD416B59F"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nintendo/GWGUI.Emulation.Nintendo.csproj",
+        "exists": true,
+        "sha256": "5C53880ECF569F2508C22165163C4ECCC57DDB8D354435FD7DD36066E1054118"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nintendo/module.json",
+        "exists": true,
+        "sha256": "788A3664E12FF76C48BD1DC889037A4A949495669F8593DC2E1A5F873679F619"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Functions/MachineFunctions.cs",
+        "exists": true,
+        "sha256": "52ECD85BA69C1A9C644878CFAC2A65CE79A99168463FD10A2F4E3471A11BF0E6"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Panasonic/GWGUI.Emulation.Panasonic.csproj",
+        "exists": true,
+        "sha256": "56C39603191BF0D499E10B0D51A10F70F8126D7734421332F635B9108DB94E1A"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Panasonic/module.json",
+        "exists": true,
+        "sha256": "EA9A3616D39CD4D1F5E30E9976F5068D53ED1FFF6045385D768D7C90BB507BEE"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/MachineFunctions.cs",
+        "exists": true,
+        "sha256": "2B9587F3BC8A0861DA304885FC58DCE1859C4007C179D301B8C225E93FC19946"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Philips/GWGUI.Emulation.Philips.csproj",
+        "exists": true,
+        "sha256": "D710F842C3EEC902EBD72DA559E8DB51738882B3C101868AF2BE5FEF1A449136"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Philips/module.json",
+        "exists": true,
+        "sha256": "6EB25C1487B811A43F9D3A47CBEE2CAE00037733C012977E4F6524EBBB456D1E"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sega/Common/Constants/ConfigurationStoreConstants.cs",
+        "exists": true,
+        "sha256": "28D3C05EB362FAA63C46C4D8F1ADD0120A1DED282048476912D19FAEB6CAC0D0"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sega/Common/Services/ConfigurationStore.cs",
+        "exists": true,
+        "sha256": "25FCAC220520D73C5F32DAC4844E007C16FFE33ACA71CD44C078996F4F508860"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sega/Common/Services/Machine.Commands.cs",
+        "exists": true,
+        "sha256": "F8F0157D8A4FF7066A92AB28A54F620C6E8773E8392BF21F25AC7B3372C45939"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sega/GWGUI.Emulation.Sega.csproj",
+        "exists": true,
+        "sha256": "84C8C40DB0187221E7C0D4FCF25A30CC25E3CC5BA46BB642130771B893EC881E"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sega/module.json",
+        "exists": true,
+        "sha256": "5365B31349DE22D838CB7B2A8C539559C4A63BD88E69E29A270191EA81AA2577"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/MachineFunctions.cs",
+        "exists": true,
+        "sha256": "EA29C421173729E38822201A7FDF4DD19E21140B90539D23F5BAF64E71A1CA25"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sharp/GWGUI.Emulation.Sharp.csproj",
+        "exists": true,
+        "sha256": "492139470ED46F60044E0D656C7C319EFD09B1063022CBCB7E64BD252B8F9252"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sharp/module.json",
+        "exists": true,
+        "sha256": "D53D6EC4BEBA44812044807AFAC9BCB72DFF2610C4EF6B756F68BD8273962CA0"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/MachineFunctions.cs",
+        "exists": true,
+        "sha256": "7482FC62D5A5AB2D14911A12A327DDF74B8E709C399060F6221B651918DA8771"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sinclair/GWGUI.Emulation.Sinclair.csproj",
+        "exists": true,
+        "sha256": "2CD3BC3A64743D4B11CC6312544FE6108E1BF8DFD27D3758FB2828D3CF5FA242"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sinclair/module.json",
+        "exists": true,
+        "sha256": "9B470D469CEEA3E635CBA07A802BEF90B7B219FF0EA1A472D92AF8720EC659CB"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/MachineFunctions.cs",
+        "exists": true,
+        "sha256": "9027AA1E0AC9F0597D30C9DF47998C69D8389F77C3BC46D2D71BF78EB6571FC8"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Snk/GWGUI.Emulation.Snk.csproj",
+        "exists": true,
+        "sha256": "B734D83E941BB713D6043EA55D3175B58ED4E3E1A20900353AEF0193082B7C46"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Snk/module.json",
+        "exists": true,
+        "sha256": "F01DB0F0477C9E3396953A6E5F4C038664D443D8A8438190C090A203C752A3E1"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sony/Common/Constants/ConfigurationStoreConstants.cs",
+        "exists": true,
+        "sha256": "5A49DC2071B6AF2F2CADE4715895628F029942767A4CF79ED12C0BC6AA94E75B"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sony/Common/Services/ConfigurationStore.cs",
+        "exists": true,
+        "sha256": "578DC0F6B716B70561ADC1F238077EA2FAE93B62826F95E5F783EFEDC3EF9032"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sony/Common/Services/Machine.Commands.cs",
+        "exists": true,
+        "sha256": "7D05A5426F71B6AEE6150F745A492FFDEC6E9444BBF459183A988BFB12FD21E4"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sony/GWGUI.Emulation.Sony.csproj",
+        "exists": true,
+        "sha256": "AD1328E423A7E4A8A0BD3C1B406B5B6C4B8FBB5E074A3B2BD56C9CB674DC0FA4"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sony/module.json",
+        "exists": true,
+        "sha256": "2D42F1C300CF0AF603AC2F173E733190938222A97AD4C90EFDACEDC6EEC5A0D2"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Thomson/Common/Machines/Common/Functions/MachineFunctions.cs",
+        "exists": true,
+        "sha256": "ED0172B9F76877353E72744F1889CC83622159327A31682F71C57A20D4A9B8BA"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Thomson/GWGUI.Emulation.Thomson.csproj",
+        "exists": true,
+        "sha256": "C4FDABFB3825230FC0CD480AFA2DE67C78CCF0D24EEC2EAF0CF144B30A26DB5D"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Thomson/module.json",
+        "exists": true,
+        "sha256": "73607D4205DE7D262CE05C177098DA420502B7D0D5FCDBD27C83D43B436BAA9E"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Watara/Common/Machines/Common/Functions/MachineFunctions.cs",
+        "exists": true,
+        "sha256": "3CE4F5D5590A6401E5CDE3A70020A17DA313E5CEF3E014F3C01BCAA1F84F7A3C"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Watara/GWGUI.Emulation.Watara.csproj",
+        "exists": true,
+        "sha256": "A8C72698C6BA5326AA24DB4782DA7D0F21C966DFE25F5BF30DF6A0668243C5D0"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Watara/module.json",
+        "exists": true,
+        "sha256": "13EB5DAC82C5FAFAFA194447193A6A02EC755A4A4A083D43D73A25A2FEBEEC5D"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Wenquxing/Common/Machines/Common/Functions/MachineFunctions.cs",
+        "exists": true,
+        "sha256": "10031384C6018229ED7722E2E441CA221EFB36AE486E755F803F90CF2994455D"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Wenquxing/GWGUI.Emulation.Wenquxing.csproj",
+        "exists": true,
+        "sha256": "E22F6C874E8A20A6E28CFE250943F4347919384B79B52DB5E9D8A61C67AF9328"
+      },
+      {
+        "path": "src/GWGUI.Emulation.Wenquxing/module.json",
+        "exists": true,
+        "sha256": "911CC9E4D67C1C8BFB3D5E9D7133EEDF03F801CD769C2299155A994A7E544991"
+      },
+      {
+        "path": "src/GWGUI.Emulation/Functions/ConfigurationFileAccessFunctions.cs",
+        "exists": true,
+        "sha256": "AD9690F350B727F932ADA1B88E7894E2984AB0180A110FF948AA69F2C29B7350"
+      },
+      {
+        "path": "src/GWGUI.Emulation/Functions/EmulationSessionDirectoryFunctions.cs",
+        "exists": true,
+        "sha256": "6D337B79FCD335AF7205CBD5CD6E15B1143216F5D9D9F981E775815174E982C4"
+      },
+      {
+        "path": "src/GWGUI.Emulation/GWGUI.Emulation.csproj",
+        "exists": true,
+        "sha256": "5A9DABBDCBBE1C93A04D5ABA1BE00A0527421F3270F02FEBE063453AC5FB857C"
+      },
+      {
+        "path": "src/GWGUI.Infrastructure/GWGUI.Infrastructure.csproj",
+        "exists": true,
+        "sha256": "5AF1A6F4FD9761192136278A7420D9491A72A1CF7D5400140B72252127608336"
+      },
+      {
+        "path": "src/GWGUI.Launcher/GWGUI.Launcher.csproj",
+        "exists": true,
+        "sha256": "704C315EFBB669FA6BCC398F29B9FEB3A7BF2F41D9BE44E3B41D0CC81B023473"
+      },
+      {
+        "path": "src/GWGUI.MediaAnalysis/GWGUI.MediaAnalysis.csproj",
+        "exists": true,
+        "sha256": "5D914401AB2AAE3465A052EDBBC99B8E73495BBD2B2F3546543653C2169E1C65"
+      },
+      {
+        "path": "src/GWGUI.MediaEngine/GWGUI.MediaEngine.csproj",
+        "exists": true,
+        "sha256": "11A282DF1F8B5F162AA0ABEE100C18B8751389A1B51DE83C77D5684CC4A1A069"
+      },
+      {
+        "path": "src/GWGUI.MediaFileSystems/GWGUI.MediaFileSystems.csproj",
+        "exists": true,
+        "sha256": "BCA0D10E729A54C4C1A5F65D75DB27BF1C3EAF979C1474DF3FCDF876BA90D8D9"
+      },
+      {
+        "path": "src/GWGUI.Updater/GWGUI.Updater.csproj",
+        "exists": true,
+        "sha256": "6360F653C53DCC478D97631DE16CE136DB234F6342EA9AE463E3A2EFCE85C13F"
+      },
+      {
+        "path": "src/GWGUI.Updates/GWGUI.Updates.csproj",
+        "exists": true,
+        "sha256": "B87C1A99E3FD3EE39A2613EC0D071C5D7D7DF3575FAB40B70A5ACFC4EF27923D"
+      },
+      {
+        "path": "src/GWGUI.VideoPresentation/GWGUI.VideoPresentation.csproj",
+        "exists": true,
+        "sha256": "29F1202CBF6FACC651C0FE3C1A1E8E830CCBD4A5B292B8E3A29AF51E451CCEB3"
+      },
+      {
+        "path": "tests/GWGUI.Tests/Emulation/LegacyConfigurationPathTests.cs",
+        "exists": true,
+        "sha256": "0EA3E18018D042AC21BD45ACFCB8ECC5977780E24F4F30AC8062CE8675DE38D1"
+      }
+    ],
+    "coveredBlocks": [
+      "sessionDirectoryCleanupReuse",
+      "legacyConfigurationPathReuse"
+    ],
+    "after": [
+      {
+        "sha256": "EC7D038183957F0F2DD09078668AB7866560A585B3566836E5ECD105796260F4",
+        "exists": true,
+        "path": "global.json"
+      },
+      {
+        "sha256": "06027F2C20CB4CD2231BB9247B6CFAF23B60CE4E896103A76042EC3D2F30FF4B",
+        "exists": true,
+        "path": "scripts/local-building.cmd"
+      },
+      {
+        "sha256": "EAEF2EAE65381132F9E5AE8F73CDACAA01755AACAD2F334714352785CC82C700",
+        "exists": true,
+        "path": "scripts/local-building/build.ps1"
+      },
+      {
+        "sha256": "75DFD60CAC53DB8E4FF8FF274DB1A92A802E518C6C35AE1C7EAD3CA74065F054",
+        "exists": true,
+        "path": "scripts/module-directory/build-module-directory.ps1"
+      },
+      {
+        "sha256": "EFF57734FACEB7536E603A78DB0E43723BA22E8128C23BBB98C9F9B154BBE0F3",
+        "exists": true,
+        "path": "scripts/module-release/package-module.ps1"
+      },
+      {
+        "sha256": "20A8899A47EF613BE8D7E106C81FF1C00BCA6E00C5F3CC4B1FD1E596A9BA24FB",
+        "exists": true,
+        "path": "scripts/publish-module-directory.cmd"
+      },
+      {
+        "sha256": "3AD1334C3E0C2EDC5D0B8AEB416D9F096784A80F6F0DC1EABECD7BA5CADA5DFB",
+        "exists": true,
+        "path": "scripts/publish-modules.cmd"
+      },
+      {
+        "sha256": "C6A1F3A111B00408FEFD153342140CA556B63A120C539830236B5D22B7987626",
+        "exists": true,
+        "path": "scripts/publish-release.cmd"
+      },
+      {
+        "sha256": "E6FA82514B4F43F7E45308FA925B16876C1F0924053BD611837D15C741A56C30",
+        "exists": true,
+        "path": "scripts/publish-wiki.cmd"
+      },
+      {
+        "sha256": "DF28EE0A0FCD20ACABA2D1131DBE89CFE057D7FE6F3119D2F6BCBA2CA917469B",
+        "exists": true,
+        "path": "scripts/release/package/organize_app/organize-application-output.ps1"
+      },
+      {
+        "sha256": "BE18E987279943DFB6449F5920E29E2D0922206F0ECBABC95A1C4C8723061554",
+        "exists": true,
+        "path": "scripts/release/package/organize_app/shared-component-files.ps1"
+      },
+      {
+        "sha256": "04E9052B296679D70666C4559B372425AA92F68F79E666F7DA6234255BDD6B6A",
+        "exists": true,
+        "path": "scripts/release/package/package.ps1"
+      },
+      {
+        "sha256": "3E3D1FC84EA4F113F3B3B6BF14E9F35A3E7B305BF4F79153E20D7849D026988D",
+        "exists": true,
+        "path": "scripts/release/update-catalog/build-update-catalog.ps1"
+      },
+      {
+        "sha256": "3D75EB2584FDC3E6C9E2B153B919ADDF88748D1C92CB5D421699D0A5966E7625",
+        "exists": true,
+        "path": "scripts/release/update-catalog/emulation-modules/emulation-modules.ps1"
+      },
+      {
+        "sha256": "AA775F80D85158C60C3AD3E5073420B4BA33949C2EC9DC8FA78F47CBAA77913A",
+        "exists": true,
+        "path": "scripts/temp/analyze-media-data.ps1"
+      },
+      {
+        "sha256": "31AC2B278BDE2D72222F440F825B6591BE38AF0AD16CCC6D969AA9ECFB3385FC",
+        "exists": true,
+        "path": "scripts/temp/common/DotNetProcess.ps1"
+      },
+      {
+        "sha256": "6FB701484E9E322749CC2DC40964B7858E244ED725DC07A62FE5482281F47598",
+        "exists": true,
+        "path": "scripts/temp/extract_data_from_ContentHex.ps1"
+      },
+      {
+        "sha256": "7E3FB09B7F82364956CF923C0AC8B9BBE24D16327442B70990A3AE1CA63DFB1F",
+        "exists": true,
+        "path": "scripts/temp/extract-media-files.ps1"
+      },
+      {
+        "sha256": "45EFF764E2539E5DBF223BFF176BAE71DD0B70A86AB12680E5DFB18DFF0772DC",
+        "exists": true,
+        "path": "scripts/temp/read-media-with-libretro.ps1"
+      },
+      {
+        "sha256": "3CEE5946F141097643AE07175E52131D25C268DCDBBA287DA0892E1A3708A5F4",
+        "exists": true,
+        "path": "scripts/tests/test-app-accessibility.ps1"
+      },
+      {
+        "sha256": "9A67170E382BBCBDF5DE0922AE8E74B283D6AA8DAE386913D73170F7BB157795",
+        "exists": true,
+        "path": "scripts/tests/test-installer-upgrade.ps1"
+      },
+      {
+        "sha256": "A9CF61F494BCAE405D7A6CEFDE99CE8BB57C43C90A5C2FAFE44A2164751B15A1",
+        "exists": true,
+        "path": "scripts/tests/test-installer.ps1"
+      },
+      {
+        "sha256": "3CDC9B369EE24651DFC07289AB2207A4604CA1883F47BFB8B526B8B2E6974406",
+        "exists": true,
+        "path": "scripts/tools/find-invalid-documentation.ps1"
+      },
+      {
+        "sha256": "2E5B7FDA06F544830ADA911396C89305DFBECE95129C1C45DC3E9A3E91EFD1C2",
+        "exists": true,
+        "path": "scripts/tools/stop-debug-gwgui.ps1"
+      },
+      {
+        "sha256": "93D3D34A8CFC807CBC2DD755DCB97A32E93F8677C64EEA6B9E5D376A55427662",
+        "exists": true,
+        "path": "scripts/wiki/build-wiki.ps1"
+      },
+      {
+        "sha256": "0B496084B44EBA11BE96271BC6AFA9F4AAA749E91CA2335556BFAD395CB36D2B",
+        "exists": true,
+        "path": "scripts/wiki/publish-wiki.ps1"
+      },
+      {
+        "sha256": "45D17E66BC1DD5923693633986D0B6792A1D89DC1B25FDCDD44701D4EC72931C",
+        "exists": true,
+        "path": "src/GWGUI.App/GWGUI.App.csproj"
+      },
+      {
+        "sha256": "313B8165E196A27BBC5B1F00CC4AE43E91E788C5625F4AACE28FD03E1C0E0856",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Acorn/Common/Machines/Common/Functions/MachineFunctions.cs"
+      },
+      {
+        "sha256": "C5D7ED8C9804B7C017C65EE2D5538E3D886B35F391B76A45D047D0CB444BEFD3",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Acorn/GWGUI.Emulation.Acorn.csproj"
+      },
+      {
+        "sha256": "5D1361DF84F667F12B408B9CA08E982E037C4C9D65D3AE020C87DB86450F29DB",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Acorn/module.json"
+      },
+      {
+        "sha256": "A91EA50038DB7C6061F32D44010C1737CFDEA995E55DB4D7585C5CD033915EC0",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Amstrad/Common/Constants/ConfigurationStoreConstants.cs"
+      },
+      {
+        "sha256": "AD903E013F1D2DA153D823F79A06F60E0B17C33FC13C10B21718144DD52FB800",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Amstrad/Common/Services/ConfigurationStore.cs"
+      },
+      {
+        "sha256": "609C1CE624779AEE6538828A379BD092F4F1AEFBFFE883BB60C6A9680621B1FF",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Amstrad/Common/Services/Machine.Commands.cs"
+      },
+      {
+        "sha256": "E5CD137AF53BFFCD58CBEF9F656499E89C8CE93D2672929432F514CBF62F5568",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Amstrad/GWGUI.Emulation.Amstrad.csproj"
+      },
+      {
+        "sha256": "0685C64F7DBFA038CDCEC72E0407222B33BD1147B842E6ECCD08072A92A30047",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Amstrad/module.json"
+      },
+      {
+        "sha256": "A72866139218B7F770AB9457E649568C60251F9CD0172E263680E472A07FB9BC",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Apple/Common/Machines/Common/Functions/MachineFunctions.cs"
+      },
+      {
+        "sha256": "624CD4C0CC6BD90301FE79E6F781E57623F006EF2030CFF2FD9ECBE8603B05A4",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Apple/GWGUI.Emulation.Apple.csproj"
+      },
+      {
+        "sha256": "FBE09CFCB4F6A08E589D10464AD6741B26B145BCFAF296154A57C7A698AF1163",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Apple/module.json"
+      },
+      {
+        "sha256": "3563E3A6B6A322753EE9C3C3EA6D53CA3AAFE862F5C92FED4A1409692007FDAC",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/MachineFunctions.cs"
+      },
+      {
+        "sha256": "0B69DEA50029B3D269EE60914F4239F18692D1A14A964301949FF2DBA6877C86",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Atari/GWGUI.Emulation.Atari.csproj"
+      },
+      {
+        "sha256": "51CC891084CC5412C7D00BF348F710FD5DE995C24EE67A606337BF1FE842306F",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Atari/module.json"
+      },
+      {
+        "sha256": "EB885106E8D80F7977202B1C27F99F1EEA7C3E881C90C940A461DA017292B1EB",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Bandai/Common/Machines/Common/Functions/MachineFunctions.cs"
+      },
+      {
+        "sha256": "8731868F4238380DF2E63E5DC48DEDF906A6A1B891D84775EFD81B15F35BA19A",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Bandai/GWGUI.Emulation.Bandai.csproj"
+      },
+      {
+        "sha256": "F6F87EA0A37548B557A4C12127904D272C80C4EE75B2CEC5653FDFB5DFFBFD82",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Bandai/module.json"
+      },
+      {
+        "sha256": "D6622D4CD52617A870AF07DD9F303843275B9ED7000C876BDE7274C34A5ADDEE",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Coleco/Common/Machines/Common/Functions/MachineFunctions.cs"
+      },
+      {
+        "sha256": "8B8E257FE498755B742F645D17A1A1FA1A55CF4AE833422631BD898347868F67",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Coleco/GWGUI.Emulation.Coleco.csproj"
+      },
+      {
+        "sha256": "EE3B477DB0CCEEDD0C02D2C4548ED4E5B44D56EBA689195557DB607DF9218B14",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Coleco/module.json"
+      },
+      {
+        "sha256": "D690FB52C4B7F2B0CB6D0CD7F94B4C73F36E940004B06C450431CA113BA5D826",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Commodore/Common/Constants/ConfigurationStoreConstants.cs"
+      },
+      {
+        "sha256": "76F9BE3B6FAE64D6687E902FD175FCD235F3D86A58B391E913433FB598B82AE9",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Commodore/Common/Services/ConfigurationStore.cs"
+      },
+      {
+        "sha256": "7E88D4B4C6D3A58E4845C63FB59A51D80A697C03E84C3602F0872EEF4B9F4EC1",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Commodore/Common/Services/Machine.Commands.cs"
+      },
+      {
+        "sha256": "2484487C872A8CC2111BEEA0BE22B0D13DEF6996A4918B3AEF7C02F7E79C1433",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Commodore/GWGUI.Emulation.Commodore.csproj"
+      },
+      {
+        "sha256": "715A8D7E88A5371FE1E576185FE0F2388F8CF19D29C42BCF9DA9FF4E48839A22",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Commodore/module.json"
+      },
+      {
+        "sha256": "E4AD229B23478D455A3E4AB8D80C66256AEDF4E70B200C210B9060CEF0BCBBEA",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Epoch/Common/Machines/Common/Functions/MachineFunctions.cs"
+      },
+      {
+        "sha256": "833629D231B69D9789FFA68C6C8757E21CC4818F6956B4A362AAF62E383296A6",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Epoch/GWGUI.Emulation.Epoch.csproj"
+      },
+      {
+        "sha256": "4F9BE08D73FEB957D482FACD353D3DE33FACFE3EB811CDB760A0C43039FA3982",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Epoch/module.json"
+      },
+      {
+        "sha256": "B354A4B063C61CB82128B4226CE7BE9AF102FB9E948A40E077E735730D1AB8C9",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Fairchild/Common/Machines/Common/Functions/MachineFunctions.cs"
+      },
+      {
+        "sha256": "45E562B934ADAE7A24678A110C2C0DAE308B20FFE149D08BA30DFB365C4C5962",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Fairchild/GWGUI.Emulation.Fairchild.csproj"
+      },
+      {
+        "sha256": "2A189DF8B8D6ECA422D9A557E3543CC1BEB26795076B565DCB61A5CB3252E4B5",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Fairchild/module.json"
+      },
+      {
+        "sha256": "9C25DB32F36FEDCB4022CB379EC0AE46A2022D80F33F37C7D848924E6F770F6A",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/MachineFunctions.cs"
+      },
+      {
+        "sha256": "0791D297AF339DDAAA0CB6AF8A44ADB3156503B84FDD56F4C497B7803403847B",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Mattel/GWGUI.Emulation.Mattel.csproj"
+      },
+      {
+        "sha256": "F47DC3DB92E381580877689A2486482966240DAF8FF5E8D2FE10D9D693D6EF5A",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Mattel/module.json"
+      },
+      {
+        "sha256": "58E53CCD03C8E8F2210A66ED7C55BACDB9A19168F8CF9C83F3670A6E5568594C",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Microsoft/Common/Constants/ConfigurationStoreConstants.cs"
+      },
+      {
+        "sha256": "0514241D83CFCE6E5A7CF7AFFA23F0E6582C971FE77B1CB8C3215E8EDF2D4512",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Microsoft/Common/Services/ConfigurationStore.cs"
+      },
+      {
+        "sha256": "D9A6A2BA24BFA05F10506763ADB715C0AA49F37D6CCE770AFD559C1C97624782",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Microsoft/Common/Services/Machine.Commands.cs"
+      },
+      {
+        "sha256": "83B81BBC65B2070D889850635E5BC7603AEBC74BA8B2BF7C18ED59C2E770CD21",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Microsoft/GWGUI.Emulation.Microsoft.csproj"
+      },
+      {
+        "sha256": "43D19332331FCAA8F42C6B8CD1F7DF144606E3A988C21A997407AEF76BC19CC5",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Microsoft/module.json"
+      },
+      {
+        "sha256": "9E42E20F2002556E2388307D0C3CA99EDC57DF712197B0FC6A5A9A6FB47D68DB",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Nec/Common/Constants/ConfigurationStoreConstants.cs"
+      },
+      {
+        "sha256": "BD0469A1DAA4BC641CB39FD7BDFE9E419CB41D3809831FDF8238B0F8BDD7A821",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Nec/Common/Services/ConfigurationStore.cs"
+      },
+      {
+        "sha256": "3549B456E003CAAF8632D793203E50A596E0DAE950BFB3190D863D15CCB189B3",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Nec/Common/Services/Machine.Commands.cs"
+      },
+      {
+        "sha256": "BCDC416DC7B08C38D7244523B3E7D3FE569A5618B80C9693F84D4F0A8394F6E8",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Nec/GWGUI.Emulation.Nec.csproj"
+      },
+      {
+        "sha256": "418AB9A38DE74CB5003E3F5F343B90AEE5F9ADDDCAB4BC4257F16C018E112F32",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Nec/module.json"
+      },
+      {
+        "sha256": "6062C86576A6DB15AA1C189D8BE236B7CA3A6A4CEC570C2D35A2B0A14F20DA6D",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Nintendo/Common/Constants/ConfigurationStoreConstants.cs"
+      },
+      {
+        "sha256": "EE22834CE04A9588BC6B02B5342C4DFD6F628BEC6038D985093237BA27FA28BC",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Nintendo/Common/Services/ConfigurationStore.cs"
+      },
+      {
+        "sha256": "9DBCAB187A05FC2339D3A3FCD2609FC8D7327B90E45894A4D6287BDDD416B59F",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Nintendo/Common/Services/Machine.Commands.cs"
+      },
+      {
+        "sha256": "5C53880ECF569F2508C22165163C4ECCC57DDB8D354435FD7DD36066E1054118",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Nintendo/GWGUI.Emulation.Nintendo.csproj"
+      },
+      {
+        "sha256": "788A3664E12FF76C48BD1DC889037A4A949495669F8593DC2E1A5F873679F619",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Nintendo/module.json"
+      },
+      {
+        "sha256": "52ECD85BA69C1A9C644878CFAC2A65CE79A99168463FD10A2F4E3471A11BF0E6",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Functions/MachineFunctions.cs"
+      },
+      {
+        "sha256": "56C39603191BF0D499E10B0D51A10F70F8126D7734421332F635B9108DB94E1A",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Panasonic/GWGUI.Emulation.Panasonic.csproj"
+      },
+      {
+        "sha256": "EA9A3616D39CD4D1F5E30E9976F5068D53ED1FFF6045385D768D7C90BB507BEE",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Panasonic/module.json"
+      },
+      {
+        "sha256": "2B9587F3BC8A0861DA304885FC58DCE1859C4007C179D301B8C225E93FC19946",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/MachineFunctions.cs"
+      },
+      {
+        "sha256": "D710F842C3EEC902EBD72DA559E8DB51738882B3C101868AF2BE5FEF1A449136",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Philips/GWGUI.Emulation.Philips.csproj"
+      },
+      {
+        "sha256": "6EB25C1487B811A43F9D3A47CBEE2CAE00037733C012977E4F6524EBBB456D1E",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Philips/module.json"
+      },
+      {
+        "sha256": "28D3C05EB362FAA63C46C4D8F1ADD0120A1DED282048476912D19FAEB6CAC0D0",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Sega/Common/Constants/ConfigurationStoreConstants.cs"
+      },
+      {
+        "sha256": "25FCAC220520D73C5F32DAC4844E007C16FFE33ACA71CD44C078996F4F508860",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Sega/Common/Services/ConfigurationStore.cs"
+      },
+      {
+        "sha256": "F8F0157D8A4FF7066A92AB28A54F620C6E8773E8392BF21F25AC7B3372C45939",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Sega/Common/Services/Machine.Commands.cs"
+      },
+      {
+        "sha256": "84C8C40DB0187221E7C0D4FCF25A30CC25E3CC5BA46BB642130771B893EC881E",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Sega/GWGUI.Emulation.Sega.csproj"
+      },
+      {
+        "sha256": "5365B31349DE22D838CB7B2A8C539559C4A63BD88E69E29A270191EA81AA2577",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Sega/module.json"
+      },
+      {
+        "sha256": "EA29C421173729E38822201A7FDF4DD19E21140B90539D23F5BAF64E71A1CA25",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/MachineFunctions.cs"
+      },
+      {
+        "sha256": "492139470ED46F60044E0D656C7C319EFD09B1063022CBCB7E64BD252B8F9252",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Sharp/GWGUI.Emulation.Sharp.csproj"
+      },
+      {
+        "sha256": "D53D6EC4BEBA44812044807AFAC9BCB72DFF2610C4EF6B756F68BD8273962CA0",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Sharp/module.json"
+      },
+      {
+        "sha256": "7482FC62D5A5AB2D14911A12A327DDF74B8E709C399060F6221B651918DA8771",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/MachineFunctions.cs"
+      },
+      {
+        "sha256": "2CD3BC3A64743D4B11CC6312544FE6108E1BF8DFD27D3758FB2828D3CF5FA242",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Sinclair/GWGUI.Emulation.Sinclair.csproj"
+      },
+      {
+        "sha256": "9B470D469CEEA3E635CBA07A802BEF90B7B219FF0EA1A472D92AF8720EC659CB",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Sinclair/module.json"
+      },
+      {
+        "sha256": "9027AA1E0AC9F0597D30C9DF47998C69D8389F77C3BC46D2D71BF78EB6571FC8",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/MachineFunctions.cs"
+      },
+      {
+        "sha256": "B734D83E941BB713D6043EA55D3175B58ED4E3E1A20900353AEF0193082B7C46",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Snk/GWGUI.Emulation.Snk.csproj"
+      },
+      {
+        "sha256": "F01DB0F0477C9E3396953A6E5F4C038664D443D8A8438190C090A203C752A3E1",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Snk/module.json"
+      },
+      {
+        "sha256": "5A49DC2071B6AF2F2CADE4715895628F029942767A4CF79ED12C0BC6AA94E75B",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Sony/Common/Constants/ConfigurationStoreConstants.cs"
+      },
+      {
+        "sha256": "578DC0F6B716B70561ADC1F238077EA2FAE93B62826F95E5F783EFEDC3EF9032",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Sony/Common/Services/ConfigurationStore.cs"
+      },
+      {
+        "sha256": "7D05A5426F71B6AEE6150F745A492FFDEC6E9444BBF459183A988BFB12FD21E4",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Sony/Common/Services/Machine.Commands.cs"
+      },
+      {
+        "sha256": "AD1328E423A7E4A8A0BD3C1B406B5B6C4B8FBB5E074A3B2BD56C9CB674DC0FA4",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Sony/GWGUI.Emulation.Sony.csproj"
+      },
+      {
+        "sha256": "2D42F1C300CF0AF603AC2F173E733190938222A97AD4C90EFDACEDC6EEC5A0D2",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Sony/module.json"
+      },
+      {
+        "sha256": "ED0172B9F76877353E72744F1889CC83622159327A31682F71C57A20D4A9B8BA",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Thomson/Common/Machines/Common/Functions/MachineFunctions.cs"
+      },
+      {
+        "sha256": "C4FDABFB3825230FC0CD480AFA2DE67C78CCF0D24EEC2EAF0CF144B30A26DB5D",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Thomson/GWGUI.Emulation.Thomson.csproj"
+      },
+      {
+        "sha256": "73607D4205DE7D262CE05C177098DA420502B7D0D5FCDBD27C83D43B436BAA9E",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Thomson/module.json"
+      },
+      {
+        "sha256": "3CE4F5D5590A6401E5CDE3A70020A17DA313E5CEF3E014F3C01BCAA1F84F7A3C",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Watara/Common/Machines/Common/Functions/MachineFunctions.cs"
+      },
+      {
+        "sha256": "A8C72698C6BA5326AA24DB4782DA7D0F21C966DFE25F5BF30DF6A0668243C5D0",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Watara/GWGUI.Emulation.Watara.csproj"
+      },
+      {
+        "sha256": "13EB5DAC82C5FAFAFA194447193A6A02EC755A4A4A083D43D73A25A2FEBEEC5D",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Watara/module.json"
+      },
+      {
+        "sha256": "10031384C6018229ED7722E2E441CA221EFB36AE486E755F803F90CF2994455D",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Wenquxing/Common/Machines/Common/Functions/MachineFunctions.cs"
+      },
+      {
+        "sha256": "E22F6C874E8A20A6E28CFE250943F4347919384B79B52DB5E9D8A61C67AF9328",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Wenquxing/GWGUI.Emulation.Wenquxing.csproj"
+      },
+      {
+        "sha256": "911CC9E4D67C1C8BFB3D5E9D7133EEDF03F801CD769C2299155A994A7E544991",
+        "exists": true,
+        "path": "src/GWGUI.Emulation.Wenquxing/module.json"
+      },
+      {
+        "sha256": "AD9690F350B727F932ADA1B88E7894E2984AB0180A110FF948AA69F2C29B7350",
+        "exists": true,
+        "path": "src/GWGUI.Emulation/Functions/ConfigurationFileAccessFunctions.cs"
+      },
+      {
+        "sha256": "6D337B79FCD335AF7205CBD5CD6E15B1143216F5D9D9F981E775815174E982C4",
+        "exists": true,
+        "path": "src/GWGUI.Emulation/Functions/EmulationSessionDirectoryFunctions.cs"
+      },
+      {
+        "sha256": "5A9DABBDCBBE1C93A04D5ABA1BE00A0527421F3270F02FEBE063453AC5FB857C",
+        "exists": true,
+        "path": "src/GWGUI.Emulation/GWGUI.Emulation.csproj"
+      },
+      {
+        "sha256": "5AF1A6F4FD9761192136278A7420D9491A72A1CF7D5400140B72252127608336",
+        "exists": true,
+        "path": "src/GWGUI.Infrastructure/GWGUI.Infrastructure.csproj"
+      },
+      {
+        "sha256": "704C315EFBB669FA6BCC398F29B9FEB3A7BF2F41D9BE44E3B41D0CC81B023473",
+        "exists": true,
+        "path": "src/GWGUI.Launcher/GWGUI.Launcher.csproj"
+      },
+      {
+        "sha256": "5D914401AB2AAE3465A052EDBBC99B8E73495BBD2B2F3546543653C2169E1C65",
+        "exists": true,
+        "path": "src/GWGUI.MediaAnalysis/GWGUI.MediaAnalysis.csproj"
+      },
+      {
+        "sha256": "11A282DF1F8B5F162AA0ABEE100C18B8751389A1B51DE83C77D5684CC4A1A069",
+        "exists": true,
+        "path": "src/GWGUI.MediaEngine/GWGUI.MediaEngine.csproj"
+      },
+      {
+        "sha256": "BCA0D10E729A54C4C1A5F65D75DB27BF1C3EAF979C1474DF3FCDF876BA90D8D9",
+        "exists": true,
+        "path": "src/GWGUI.MediaFileSystems/GWGUI.MediaFileSystems.csproj"
+      },
+      {
+        "sha256": "6360F653C53DCC478D97631DE16CE136DB234F6342EA9AE463E3A2EFCE85C13F",
+        "exists": true,
+        "path": "src/GWGUI.Updater/GWGUI.Updater.csproj"
+      },
+      {
+        "sha256": "B87C1A99E3FD3EE39A2613EC0D071C5D7D7DF3575FAB40B70A5ACFC4EF27923D",
+        "exists": true,
+        "path": "src/GWGUI.Updates/GWGUI.Updates.csproj"
+      },
+      {
+        "sha256": "29F1202CBF6FACC651C0FE3C1A1E8E830CCBD4A5B292B8E3A29AF51E451CCEB3",
+        "exists": true,
+        "path": "src/GWGUI.VideoPresentation/GWGUI.VideoPresentation.csproj"
+      },
+      {
+        "sha256": "0EA3E18018D042AC21BD45ACFCB8ECC5977780E24F4F30AC8062CE8675DE38D1",
+        "exists": true,
+        "path": "tests/GWGUI.Tests/Emulation/LegacyConfigurationPathTests.cs"
+      }
+    ],
+    "modules": [
+      {
+        "id": "acorn",
+        "sha256": "665B9A8FE0C0D4526FE4E8F877B0DD8BD9D20AF913C604051D598FE539EC6BEC",
+        "path": "build/Debug/GW GUI/Modules/acorn/gwgui.emulation.acorn.dll",
+        "compiledPath": "src/GWGUI.Emulation.Acorn/bin/Debug/net10.0/win-x64/gwgui.emulation.acorn.dll",
+        "matchesCompiledOutput": true
+      },
+      {
+        "id": "amstrad",
+        "sha256": "4CC37A8EA70F7342570E20E6C1DFAB6716875D9C058C7EB40CECA667BD302978",
+        "path": "build/Debug/GW GUI/Modules/amstrad/gwgui.emulation.amstrad.dll",
+        "compiledPath": "src/GWGUI.Emulation.Amstrad/bin/Debug/net10.0/win-x64/gwgui.emulation.amstrad.dll",
+        "matchesCompiledOutput": true
+      },
+      {
+        "id": "apple",
+        "sha256": "CAE0704CA75CA38DC556A8923E148CD6A19D29B718CD0DE0ECC206506B66341B",
+        "path": "build/Debug/GW GUI/Modules/apple/gwgui.emulation.apple.dll",
+        "compiledPath": "src/GWGUI.Emulation.Apple/bin/Debug/net10.0/win-x64/gwgui.emulation.apple.dll",
+        "matchesCompiledOutput": true
+      },
+      {
+        "id": "atari",
+        "sha256": "4EA79E595C420F677E606D0DA30B259ED9367272E22E9A435AA6C47CAC3215B9",
+        "path": "build/Debug/GW GUI/Modules/atari/gwgui.emulation.atari.dll",
+        "compiledPath": "src/GWGUI.Emulation.Atari/bin/Debug/net10.0/win-x64/gwgui.emulation.atari.dll",
+        "matchesCompiledOutput": true
+      },
+      {
+        "id": "bandai",
+        "sha256": "11AA4B02FFC9A4EE7C4D4F4E866A0507EC8AB053F5525188961BFCA2931D3ACF",
+        "path": "build/Debug/GW GUI/Modules/bandai/gwgui.emulation.bandai.dll",
+        "compiledPath": "src/GWGUI.Emulation.Bandai/bin/Debug/net10.0/win-x64/gwgui.emulation.bandai.dll",
+        "matchesCompiledOutput": true
+      },
+      {
+        "id": "coleco",
+        "sha256": "D6D664423B2BEACC9038D2564722D683B7875FC57C1B820FBBB7E9313F186471",
+        "path": "build/Debug/GW GUI/Modules/coleco/gwgui.emulation.coleco.dll",
+        "compiledPath": "src/GWGUI.Emulation.Coleco/bin/Debug/net10.0/win-x64/gwgui.emulation.coleco.dll",
+        "matchesCompiledOutput": true
+      },
+      {
+        "id": "commodore",
+        "sha256": "FF157B299E098D4095C4E7E0B75AF7B78FB013783550BB7B15E0BF18D228E49E",
+        "path": "build/Debug/GW GUI/Modules/commodore/gwgui.emulation.commodore.dll",
+        "compiledPath": "src/GWGUI.Emulation.Commodore/bin/Debug/net10.0/win-x64/gwgui.emulation.commodore.dll",
+        "matchesCompiledOutput": true
+      },
+      {
+        "id": "epoch",
+        "sha256": "65BB1179DBB81ADCB989CB2B7535E7FF2A8A1BB5B28E9D7537F90CFFC7E8F270",
+        "path": "build/Debug/GW GUI/Modules/epoch/gwgui.emulation.epoch.dll",
+        "compiledPath": "src/GWGUI.Emulation.Epoch/bin/Debug/net10.0/win-x64/gwgui.emulation.epoch.dll",
+        "matchesCompiledOutput": true
+      },
+      {
+        "id": "fairchild",
+        "sha256": "FC240C7508A8EE100C1E814FAD3F8B936350BCBDD4A02F5D2C8C0BF7A9A7D5BE",
+        "path": "build/Debug/GW GUI/Modules/fairchild/gwgui.emulation.fairchild.dll",
+        "compiledPath": "src/GWGUI.Emulation.Fairchild/bin/Debug/net10.0/win-x64/gwgui.emulation.fairchild.dll",
+        "matchesCompiledOutput": true
+      },
+      {
+        "id": "mattel",
+        "sha256": "BA9F98522C5F2B1F172537CDF7CF278CD15090B3CCB3D5CFF884F37C66D01E8F",
+        "path": "build/Debug/GW GUI/Modules/mattel/gwgui.emulation.mattel.dll",
+        "compiledPath": "src/GWGUI.Emulation.Mattel/bin/Debug/net10.0/win-x64/gwgui.emulation.mattel.dll",
+        "matchesCompiledOutput": true
+      },
+      {
+        "id": "microsoft",
+        "sha256": "BCF668DEC01BF9A53B035ED95A545E2CFCC3D7062FB0DDF43EA5522A6A67F06F",
+        "path": "build/Debug/GW GUI/Modules/microsoft/gwgui.emulation.microsoft.dll",
+        "compiledPath": "src/GWGUI.Emulation.Microsoft/bin/Debug/net10.0/win-x64/gwgui.emulation.microsoft.dll",
+        "matchesCompiledOutput": true
+      },
+      {
+        "id": "nec",
+        "sha256": "B73486587FF7CEE356BB17B116C0B30203512932BA4AA0D09273C34185D30976",
+        "path": "build/Debug/GW GUI/Modules/nec/gwgui.emulation.nec.dll",
+        "compiledPath": "src/GWGUI.Emulation.Nec/bin/Debug/net10.0/win-x64/gwgui.emulation.nec.dll",
+        "matchesCompiledOutput": true
+      },
+      {
+        "id": "nintendo",
+        "sha256": "15F56ED55F383E6BDA860AC42AC368C0294017F18EBFC83E3B226B2627388139",
+        "path": "build/Debug/GW GUI/Modules/nintendo/gwgui.emulation.nintendo.dll",
+        "compiledPath": "src/GWGUI.Emulation.Nintendo/bin/Debug/net10.0/win-x64/gwgui.emulation.nintendo.dll",
+        "matchesCompiledOutput": true
+      },
+      {
+        "id": "panasonic",
+        "sha256": "CA30BCF4B4046BCDE3792152A6B28E668E49449B36D8C3BE0B310FF447F4E59E",
+        "path": "build/Debug/GW GUI/Modules/panasonic/gwgui.emulation.panasonic.dll",
+        "compiledPath": "src/GWGUI.Emulation.Panasonic/bin/Debug/net10.0/win-x64/gwgui.emulation.panasonic.dll",
+        "matchesCompiledOutput": true
+      },
+      {
+        "id": "philips",
+        "sha256": "8B0631D4154A03D488172F9AE30E33D4A324C98AAC3AD8308FBC77D7DF821B92",
+        "path": "build/Debug/GW GUI/Modules/philips/gwgui.emulation.philips.dll",
+        "compiledPath": "src/GWGUI.Emulation.Philips/bin/Debug/net10.0/win-x64/gwgui.emulation.philips.dll",
+        "matchesCompiledOutput": true
+      },
+      {
+        "id": "sega",
+        "sha256": "A503A5FD839A25AFAE31B0CB0EE04F7BD0C399E534EE0BA7C3B44DE809230030",
+        "path": "build/Debug/GW GUI/Modules/sega/gwgui.emulation.sega.dll",
+        "compiledPath": "src/GWGUI.Emulation.Sega/bin/Debug/net10.0/win-x64/gwgui.emulation.sega.dll",
+        "matchesCompiledOutput": true
+      },
+      {
+        "id": "sharp",
+        "sha256": "546A3D5BD60AA6B060E9F0F19893A34DC41DE5FB80E9BA6967202CB9507D96BE",
+        "path": "build/Debug/GW GUI/Modules/sharp/gwgui.emulation.sharp.dll",
+        "compiledPath": "src/GWGUI.Emulation.Sharp/bin/Debug/net10.0/win-x64/gwgui.emulation.sharp.dll",
+        "matchesCompiledOutput": true
+      },
+      {
+        "id": "sinclair",
+        "sha256": "F429CB10030B73D0E757040CF5758C204E0C624C6B7E470E2D481500DA088DB2",
+        "path": "build/Debug/GW GUI/Modules/sinclair/gwgui.emulation.sinclair.dll",
+        "compiledPath": "src/GWGUI.Emulation.Sinclair/bin/Debug/net10.0/win-x64/gwgui.emulation.sinclair.dll",
+        "matchesCompiledOutput": true
+      },
+      {
+        "id": "snk",
+        "sha256": "290AFE41796DE776BBE7993DF62053024C470CF63AEFA140BB5347ACFD61F17E",
+        "path": "build/Debug/GW GUI/Modules/snk/gwgui.emulation.snk.dll",
+        "compiledPath": "src/GWGUI.Emulation.Snk/bin/Debug/net10.0/win-x64/gwgui.emulation.snk.dll",
+        "matchesCompiledOutput": true
+      },
+      {
+        "id": "sony",
+        "sha256": "F28F702B8029CF745DCF8604D3E5CDA3B756DE24AD2AB3FE41CACF591228C11A",
+        "path": "build/Debug/GW GUI/Modules/sony/gwgui.emulation.sony.dll",
+        "compiledPath": "src/GWGUI.Emulation.Sony/bin/Debug/net10.0/win-x64/gwgui.emulation.sony.dll",
+        "matchesCompiledOutput": true
+      },
+      {
+        "id": "thomson",
+        "sha256": "14B9EFCBB8C317603228B84623CCCCF8F3E2FB465EA6907E6326E9B3D2243E1F",
+        "path": "build/Debug/GW GUI/Modules/thomson/gwgui.emulation.thomson.dll",
+        "compiledPath": "src/GWGUI.Emulation.Thomson/bin/Debug/net10.0/win-x64/gwgui.emulation.thomson.dll",
+        "matchesCompiledOutput": true
+      },
+      {
+        "id": "watara",
+        "sha256": "2A6EC4B43B9AA930D60155621856F1D769CED81E664B6067F093BD89A1F0BEF2",
+        "path": "build/Debug/GW GUI/Modules/watara/gwgui.emulation.watara.dll",
+        "compiledPath": "src/GWGUI.Emulation.Watara/bin/Debug/net10.0/win-x64/gwgui.emulation.watara.dll",
+        "matchesCompiledOutput": true
+      },
+      {
+        "id": "wenquxing",
+        "sha256": "9B60E3A0EFE9119A219A246B2B97DC3BDF205291EA94ED8B44237A817E7BC18A",
+        "path": "build/Debug/GW GUI/Modules/wenquxing/gwgui.emulation.wenquxing.dll",
+        "compiledPath": "src/GWGUI.Emulation.Wenquxing/bin/Debug/net10.0/win-x64/gwgui.emulation.wenquxing.dll",
+        "matchesCompiledOutput": true
+      }
+    ],
+    "exe": {
+      "path": "build/Debug/GW GUI/gwgui.exe",
+      "sha256": "DDF802126A6C64EFC835A4F4D16DF8B5A95E50652F9696CF2E3F03302ECAA949"
+    },
+    "sdk": {
+      "matchesCompiledSdk": true,
+      "sha256": "476A3CCBA7D1DFB07542C15C6731695724D258EA2D918F116F03CA1D88296A36",
+      "path": "build/Debug/GW GUI/lib/gwgui.emulation.dll",
+      "cleanupAndPathSignatures": [
+        {
+          "parameters": 2,
+          "type": "ConfigurationFileAccessFunctions",
+          "genericParameters": 0,
+          "name": "StorePath"
+        },
+        {
+          "parameters": 2,
+          "type": "ConfigurationFileAccessFunctions",
+          "genericParameters": 0,
+          "name": "ResolvePath"
+        },
+        {
+          "parameters": 1,
+          "type": "EmulationSessionDirectoryFunctions",
+          "genericParameters": 0,
+          "name": "DeleteSessionDirectory"
+        },
+        {
+          "parameters": 1,
+          "type": "EmulationSessionDirectoryFunctions",
+          "genericParameters": 0,
+          "name": "DeleteGeneratedSessionDirectory"
+        },
+        {
+          "parameters": 2,
+          "type": "EmulationSessionDirectoryFunctions",
+          "genericParameters": 0,
+          "name": "DeleteSessionDirectory"
+        }
+      ]
+    },
+    "exitCode": 0,
+    "completedAt": "2026-10-19T06:11:00.3104438+02:00"
   }
 }

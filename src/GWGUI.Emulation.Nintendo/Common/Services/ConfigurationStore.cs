@@ -87,21 +87,8 @@ public sealed class ConfigurationStore
     };
 
     private string? StorePath(string? path)
-    {
-        if (string.IsNullOrWhiteSpace(path)) return null;
-        var fullPath = Path.GetFullPath(path);
-        var relative = Path.GetRelativePath(_pathBase, fullPath);
-        if (Path.IsPathFullyQualified(relative)) return fullPath;
-        if (relative != ConfigurationStoreConstants.ParentDirectoryName
-            && !relative.StartsWith(ConfigurationStoreConstants.ParentDirectoryName + Path.DirectorySeparatorChar, StringComparison.Ordinal))
-            return relative.Replace(Path.DirectorySeparatorChar, ConfigurationStoreConstants.StoredDirectorySeparator);
-        return fullPath;
-    }
+        => ConfigurationFileAccessFunctions.StorePath(string.IsNullOrWhiteSpace(path) ? null : path, _pathBase);
 
     private string? ResolvePath(string? path)
-    {
-        if (string.IsNullOrWhiteSpace(path)) return null;
-        if (Path.IsPathFullyQualified(path)) return path;
-        return Path.GetFullPath(Path.Combine(_pathBase, path.Replace(ConfigurationStoreConstants.StoredDirectorySeparator, Path.DirectorySeparatorChar)));
-    }
+        => ConfigurationFileAccessFunctions.ResolvePath(string.IsNullOrWhiteSpace(path) ? null : path, _pathBase);
 }

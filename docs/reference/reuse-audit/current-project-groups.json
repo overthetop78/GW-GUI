@@ -1,9 +1,9 @@
 {
   "baseline": "ac7292d86^",
-  "currentCSharpFiles": 7289,
-  "outsideSrcCSharpFiles": 305,
+  "currentCSharpFiles": 7290,
+  "outsideSrcCSharpFiles": 306,
   "baselineMethodCount": 5848,
-  "currentMethodCount": 11662,
+  "currentMethodCount": 11655,
   "powerShellFunctionCount": 17,
   "groups": [
     {
@@ -11862,7 +11862,7 @@
     {
       "language": "CSharp",
       "hash": "68386C818382BCE400A3EDE65411B5CBD9D6A87F6D88FAF6501028CE28C38965",
-      "method": "ToModule",
+      "method": "ToSinclair",
       "tokens": 148,
       "current": [
         {
@@ -14625,73 +14625,6 @@
           "shape": "17FDE5BA813D7FCAA6671A93A46FFB5EE6BC54B3E404965C547C175CF610B91E"
         }
       ],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
-      "hash": "80841911741A7C75B68CF24353A26FA925607487C1DE33C2C9A7424E32BF690E",
-      "method": "StorePath",
-      "tokens": 91,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Amstrad/Common/Services/ConfigurationStore.cs",
-          "name": "StorePath",
-          "line": 87,
-          "tokens": 91,
-          "hash": "80841911741A7C75B68CF24353A26FA925607487C1DE33C2C9A7424E32BF690E",
-          "shape": "15DC66B408EACDFBB9E97F64D53C9A7D8DF8086AC61E367B0C4C61A16B03BEF4"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sega/Common/Services/ConfigurationStore.cs",
-          "name": "StorePath",
-          "line": 87,
-          "tokens": 91,
-          "hash": "80841911741A7C75B68CF24353A26FA925607487C1DE33C2C9A7424E32BF690E",
-          "shape": "15DC66B408EACDFBB9E97F64D53C9A7D8DF8086AC61E367B0C4C61A16B03BEF4"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Common/Services/ConfigurationStore.cs",
-          "name": "StorePath",
-          "line": 93,
-          "tokens": 91,
-          "hash": "80841911741A7C75B68CF24353A26FA925607487C1DE33C2C9A7424E32BF690E",
-          "shape": "15DC66B408EACDFBB9E97F64D53C9A7D8DF8086AC61E367B0C4C61A16B03BEF4"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nintendo/Common/Services/ConfigurationStore.cs",
-          "name": "StorePath",
-          "line": 89,
-          "tokens": 91,
-          "hash": "80841911741A7C75B68CF24353A26FA925607487C1DE33C2C9A7424E32BF690E",
-          "shape": "15DC66B408EACDFBB9E97F64D53C9A7D8DF8086AC61E367B0C4C61A16B03BEF4"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Microsoft/Common/Services/ConfigurationStore.cs",
-          "name": "StorePath",
-          "line": 87,
-          "tokens": 91,
-          "hash": "80841911741A7C75B68CF24353A26FA925607487C1DE33C2C9A7424E32BF690E",
-          "shape": "15DC66B408EACDFBB9E97F64D53C9A7D8DF8086AC61E367B0C4C61A16B03BEF4"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Common/Services/ConfigurationStore.cs",
-          "name": "StorePath",
-          "line": 87,
-          "tokens": 91,
-          "hash": "80841911741A7C75B68CF24353A26FA925607487C1DE33C2C9A7424E32BF690E",
-          "shape": "15DC66B408EACDFBB9E97F64D53C9A7D8DF8086AC61E367B0C4C61A16B03BEF4"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Commodore/Common/Services/ConfigurationStore.cs",
-          "name": "StorePath",
-          "line": 94,
-          "tokens": 91,
-          "hash": "80841911741A7C75B68CF24353A26FA925607487C1DE33C2C9A7424E32BF690E",
-          "shape": "15DC66B408EACDFBB9E97F64D53C9A7D8DF8086AC61E367B0C4C61A16B03BEF4"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
       "qualification": "pending"
     },
     {
@@ -18345,73 +18278,6 @@
     },
     {
       "language": "CSharp",
-      "hash": "9D1AE4BAC7F07754C30D17A79F062C55D0D4942098583AB4C83D8FFCD45FE008",
-      "method": "ResolvePath",
-      "tokens": 52,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Amstrad/Common/Services/ConfigurationStore.cs",
-          "name": "ResolvePath",
-          "line": 99,
-          "tokens": 52,
-          "hash": "9D1AE4BAC7F07754C30D17A79F062C55D0D4942098583AB4C83D8FFCD45FE008",
-          "shape": "8999B2AC54E0C95CE5A2BA10FE5310E7EACF01DBD9574B9F3A98136B59F4BEC1"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sega/Common/Services/ConfigurationStore.cs",
-          "name": "ResolvePath",
-          "line": 99,
-          "tokens": 52,
-          "hash": "9D1AE4BAC7F07754C30D17A79F062C55D0D4942098583AB4C83D8FFCD45FE008",
-          "shape": "8999B2AC54E0C95CE5A2BA10FE5310E7EACF01DBD9574B9F3A98136B59F4BEC1"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Common/Services/ConfigurationStore.cs",
-          "name": "ResolvePath",
-          "line": 105,
-          "tokens": 52,
-          "hash": "9D1AE4BAC7F07754C30D17A79F062C55D0D4942098583AB4C83D8FFCD45FE008",
-          "shape": "8999B2AC54E0C95CE5A2BA10FE5310E7EACF01DBD9574B9F3A98136B59F4BEC1"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nintendo/Common/Services/ConfigurationStore.cs",
-          "name": "ResolvePath",
-          "line": 101,
-          "tokens": 52,
-          "hash": "9D1AE4BAC7F07754C30D17A79F062C55D0D4942098583AB4C83D8FFCD45FE008",
-          "shape": "8999B2AC54E0C95CE5A2BA10FE5310E7EACF01DBD9574B9F3A98136B59F4BEC1"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Microsoft/Common/Services/ConfigurationStore.cs",
-          "name": "ResolvePath",
-          "line": 99,
-          "tokens": 52,
-          "hash": "9D1AE4BAC7F07754C30D17A79F062C55D0D4942098583AB4C83D8FFCD45FE008",
-          "shape": "8999B2AC54E0C95CE5A2BA10FE5310E7EACF01DBD9574B9F3A98136B59F4BEC1"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Common/Services/ConfigurationStore.cs",
-          "name": "ResolvePath",
-          "line": 99,
-          "tokens": 52,
-          "hash": "9D1AE4BAC7F07754C30D17A79F062C55D0D4942098583AB4C83D8FFCD45FE008",
-          "shape": "8999B2AC54E0C95CE5A2BA10FE5310E7EACF01DBD9574B9F3A98136B59F4BEC1"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Commodore/Common/Services/ConfigurationStore.cs",
-          "name": "ResolvePath",
-          "line": 106,
-          "tokens": 52,
-          "hash": "9D1AE4BAC7F07754C30D17A79F062C55D0D4942098583AB4C83D8FFCD45FE008",
-          "shape": "8999B2AC54E0C95CE5A2BA10FE5310E7EACF01DBD9574B9F3A98136B59F4BEC1"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
       "hash": "9DA824D469D1FFEB9EF87F9F9E3C985B56D3F75AF2D5EEC29F2FEE02E40379A8",
       "method": "Audio",
       "tokens": 163,
@@ -18861,7 +18727,7 @@
     {
       "language": "CSharp",
       "hash": "A1E03750FEB3292ACEB41656386F4A8AA8B05077D9ABFB7DA103AA3D71320B9F",
-      "method": "ToModule",
+      "method": "ToEpoch",
       "tokens": 103,
       "current": [
         {
@@ -19171,7 +19037,7 @@
     {
       "language": "CSharp",
       "hash": "A61349BFDFFA5D404CE7D0D458204D435194B5E4D84870DF4F9FBE26A86A9946",
-      "method": "ToFairchild",
+      "method": "ToEpoch",
       "tokens": 36,
       "current": [
         {
@@ -20281,7 +20147,7 @@
     {
       "language": "CSharp",
       "hash": "B053A3AB4F0B78A37DED57B2D744801187AED6EC54FEEAFE4B1AA9C454D6F48C",
-      "method": "PhilipsEmulationModule",
+      "method": "ColecoEmulationModule",
       "tokens": 47,
       "current": [
         {
@@ -37704,7 +37570,7 @@
   ],
   "scope": "All current repository CSharp and PowerShell files; no age filter; candidates require semantic review",
   "qualificationCarryForward": {
-    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical",
-    "occurrences": 168
+    "occurrences": 168,
+    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical"
   }
 }

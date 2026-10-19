@@ -6,8 +6,6 @@ internal static class ConfigurationStoreConstants
     internal const string MachineFileName = "machine.json";
     internal const string TemporaryFileSuffix = ".tmp";
     internal const string MachineIdentifierFormat = "N";
-    internal const string ParentDirectoryName = "..";
-    internal const char StoredDirectorySeparator = '/';
     internal const int WriteBufferSize = 4096;
     internal const int CurrentSchemaVersion = 1;
     internal const string TemporaryNameSeparator = ".";
