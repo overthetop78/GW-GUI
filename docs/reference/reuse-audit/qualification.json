@@ -310775,7 +310775,8 @@
       },
       "partiallyAnnotatedSources": 19,
       "unchangedWholeQualificationsRetained": 0
-    }
+    },
+    "productBuild": "included and verified in legacyHostLifetimeMediaBuild"
   },
   "legacyHostRemainingControls": {
     "originHost": "ac7292d86^:src/GWGUI.Emulation.Amiga/Emulators/PUAE/Services/AmigaCoreHost.cs",
@@ -311016,8 +311017,174 @@
           "onlyOriginalFourMembersMoved": true
         }
       ],
-      "commandEnums": [],
-      "existingSdkMethodsUnchanged": true
+      "commandEnums": [
+        {
+          "path": "src/GWGUI.Emulation.Amstrad\\Emulators\\Common\\Enums\\HostEnums.cs",
+          "values": {
+            "SoftReset": 12,
+            "InsertMedia": 5,
+            "EjectMedia": 6,
+            "Dispose": 11,
+            "SaveState": 7,
+            "Initialize": 1,
+            "HardReset": 3,
+            "Stop": 4,
+            "SetOption": 9,
+            "RunFrame": 2,
+            "SelectDisk": 10,
+            "LoadState": 8
+          },
+          "sha256": "8FCF4EFDE2FD6EE061934D8A7CC3FA909ADA366B65C196E1A81C405394E5F556"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Commodore\\Emulators\\Common\\Interop\\Enums\\HostEnums.cs",
+          "values": {
+            "InsertMedia": 5,
+            "EjectMedia": 6,
+            "Dispose": 11,
+            "SaveState": 7,
+            "Initialize": 1,
+            "HardReset": 3,
+            "Stop": 4,
+            "SetOption": 9,
+            "RunFrame": 2,
+            "SelectDisk": 10,
+            "LoadState": 8
+          },
+          "sha256": "E66174C157D5D0D1F0DF3E0691B5AC3783EDD5998C6B2791993683C7A1F93703"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nec\\Emulators\\Common\\Interop\\Enums\\HostEnums.cs",
+          "values": {
+            "SoftReset": 12,
+            "InsertMedia": 5,
+            "EjectMedia": 6,
+            "Dispose": 11,
+            "SaveState": 7,
+            "Initialize": 1,
+            "HardReset": 3,
+            "Stop": 4,
+            "SetOption": 9,
+            "RunFrame": 2,
+            "SelectDisk": 10,
+            "LoadState": 8
+          },
+          "sha256": "5D735E890AA56EAF73C2BF7089D2AAF8E17E17C5947A21EA82845D0B35078D6B"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nec\\Emulators\\BeetlePcfx\\Enums\\HostEnums.cs",
+          "values": {
+            "SoftReset": 12,
+            "InsertMedia": 5,
+            "EjectMedia": 6,
+            "Dispose": 11,
+            "SaveState": 7,
+            "Initialize": 1,
+            "HardReset": 3,
+            "Stop": 4,
+            "SetOption": 9,
+            "RunFrame": 2,
+            "SelectDisk": 10,
+            "LoadState": 8
+          },
+          "sha256": "6042B02E32DE4283BB3B5FB00533ED72E2FB3A541FE16D961F3A868D18558837"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nintendo\\Emulators\\Common\\Interop\\Enums\\HostEnums.cs",
+          "values": {
+            "SoftReset": 12,
+            "InsertMedia": 5,
+            "EjectMedia": 6,
+            "Dispose": 11,
+            "SaveState": 7,
+            "Initialize": 1,
+            "HardReset": 3,
+            "Stop": 4,
+            "SetOption": 9,
+            "RunFrame": 2,
+            "SelectDisk": 10,
+            "LoadState": 8
+          },
+          "sha256": "EC9EAC26AD37871004EE48379EC010D12C6266834B51AF309D6AE697BF688D2E"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sega\\Emulators\\Common\\Interop\\Enums\\HostEnums.cs",
+          "values": {
+            "SoftReset": 12,
+            "InsertMedia": 5,
+            "EjectMedia": 6,
+            "Dispose": 11,
+            "SaveState": 7,
+            "Initialize": 1,
+            "HardReset": 3,
+            "Stop": 4,
+            "SetOption": 9,
+            "RunFrame": 2,
+            "SelectDisk": 10,
+            "LoadState": 8
+          },
+          "sha256": "C9ACAA98A3E480CBD02567D185702E1141A698493B7829F41246D52E8309E5E6"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony\\Emulators\\Pcsx2\\Enums\\HostEnums.cs",
+          "values": {
+            "EjectMedia": 6,
+            "SetControllerPortDevice": 13,
+            "SelectDisk": 10,
+            "Initialize": 1,
+            "Dispose": 11,
+            "SaveState": 7,
+            "SoftReset": 12,
+            "LoadState": 8,
+            "HardReset": 3,
+            "RunFrame": 2,
+            "InsertMedia": 5,
+            "Stop": 4,
+            "SetOption": 9
+          },
+          "sha256": "0F60543EBAB1537A15CBACE435D2993FD679D5FC641E356D5BFE94012955F2AA"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony\\Emulators\\Common\\Interop\\Enums\\HostEnums.cs",
+          "values": {
+            "EjectMedia": 6,
+            "SetControllerPortDevice": 13,
+            "SelectDisk": 10,
+            "Initialize": 1,
+            "Dispose": 11,
+            "SaveState": 7,
+            "SoftReset": 12,
+            "LoadState": 8,
+            "HardReset": 3,
+            "RunFrame": 2,
+            "InsertMedia": 5,
+            "Stop": 4,
+            "SetOption": 9
+          },
+          "sha256": "6909ADD881CC5E5B4388467919FC373933496941425448E2B901E5E63934FF7B"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony\\Emulators\\Ppsspp\\Enums\\HostEnums.cs",
+          "values": {
+            "EjectMedia": 6,
+            "SetControllerPortDevice": 13,
+            "SelectDisk": 10,
+            "Initialize": 1,
+            "Dispose": 11,
+            "SaveState": 7,
+            "SoftReset": 12,
+            "LoadState": 8,
+            "HardReset": 3,
+            "RunFrame": 2,
+            "InsertMedia": 5,
+            "Stop": 4,
+            "SetOption": 9
+          },
+          "sha256": "A63B259CFF69886CA5C2405F0D063C8499725642C2C0E73EFE1ED1B242E7306B"
+        }
+      ],
+      "existingSdkMethodsUnchanged": true,
+      "commandEnumEvidenceCorrection": "Previous lookup used HostCommand.cs and returned no paths; replaced by nine actual HostEnums.cs sources with explicit evaluation of implicit enum values and required count9."
     },
     "tests": {
       "path": "tests/GWGUI.Tests/Emulation/CoreHostCommandTests.cs",
@@ -311139,6 +311306,1740 @@
         "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/CoreHost.cs",
         "sha256": "A5EC853E11B11AD0C1E0583D33BDB005BD72753461F5C6963EB100E0F4B87408"
       }
-    ]
+    ],
+    "productBuild": "included and verified in legacyHostLifetimeMediaBuild"
+  },
+  "legacyHostLifetimeMediaBuild": {
+    "coveredCommits": [
+      "e0cee3494",
+      "3b1463f43"
+    ],
+    "state": "verified",
+    "preparedAt": "2026-10-19T17:35:40.6543142+02:00",
+    "command": "scripts/local-building.cmd --building=debug --modules=A",
+    "before": [
+      {
+        "path": "global.json",
+        "sha256": "EC7D038183957F0F2DD09078668AB7866560A585B3566836E5ECD105796260F4",
+        "exists": true
+      },
+      {
+        "path": "scripts/local-building.cmd",
+        "sha256": "06027F2C20CB4CD2231BB9247B6CFAF23B60CE4E896103A76042EC3D2F30FF4B",
+        "exists": true
+      },
+      {
+        "path": "scripts/local-building/build.ps1",
+        "sha256": "EAEF2EAE65381132F9E5AE8F73CDACAA01755AACAD2F334714352785CC82C700",
+        "exists": true
+      },
+      {
+        "path": "scripts/module-directory/build-module-directory.ps1",
+        "sha256": "75DFD60CAC53DB8E4FF8FF274DB1A92A802E518C6C35AE1C7EAD3CA74065F054",
+        "exists": true
+      },
+      {
+        "path": "scripts/module-release/package-module.ps1",
+        "sha256": "EFF57734FACEB7536E603A78DB0E43723BA22E8128C23BBB98C9F9B154BBE0F3",
+        "exists": true
+      },
+      {
+        "path": "scripts/publish-module-directory.cmd",
+        "sha256": "20A8899A47EF613BE8D7E106C81FF1C00BCA6E00C5F3CC4B1FD1E596A9BA24FB",
+        "exists": true
+      },
+      {
+        "path": "scripts/publish-modules.cmd",
+        "sha256": "3AD1334C3E0C2EDC5D0B8AEB416D9F096784A80F6F0DC1EABECD7BA5CADA5DFB",
+        "exists": true
+      },
+      {
+        "path": "scripts/publish-release.cmd",
+        "sha256": "C6A1F3A111B00408FEFD153342140CA556B63A120C539830236B5D22B7987626",
+        "exists": true
+      },
+      {
+        "path": "scripts/publish-wiki.cmd",
+        "sha256": "E6FA82514B4F43F7E45308FA925B16876C1F0924053BD611837D15C741A56C30",
+        "exists": true
+      },
+      {
+        "path": "scripts/release/package/organize_app/organize-application-output.ps1",
+        "sha256": "DF28EE0A0FCD20ACABA2D1131DBE89CFE057D7FE6F3119D2F6BCBA2CA917469B",
+        "exists": true
+      },
+      {
+        "path": "scripts/release/package/organize_app/shared-component-files.ps1",
+        "sha256": "BE18E987279943DFB6449F5920E29E2D0922206F0ECBABC95A1C4C8723061554",
+        "exists": true
+      },
+      {
+        "path": "scripts/release/package/package.ps1",
+        "sha256": "04E9052B296679D70666C4559B372425AA92F68F79E666F7DA6234255BDD6B6A",
+        "exists": true
+      },
+      {
+        "path": "scripts/release/update-catalog/build-update-catalog.ps1",
+        "sha256": "3E3D1FC84EA4F113F3B3B6BF14E9F35A3E7B305BF4F79153E20D7849D026988D",
+        "exists": true
+      },
+      {
+        "path": "scripts/release/update-catalog/emulation-modules/emulation-modules.ps1",
+        "sha256": "3D75EB2584FDC3E6C9E2B153B919ADDF88748D1C92CB5D421699D0A5966E7625",
+        "exists": true
+      },
+      {
+        "path": "scripts/temp/analyze-media-data.ps1",
+        "sha256": "AA775F80D85158C60C3AD3E5073420B4BA33949C2EC9DC8FA78F47CBAA77913A",
+        "exists": true
+      },
+      {
+        "path": "scripts/temp/common/DotNetProcess.ps1",
+        "sha256": "31AC2B278BDE2D72222F440F825B6591BE38AF0AD16CCC6D969AA9ECFB3385FC",
+        "exists": true
+      },
+      {
+        "path": "scripts/temp/extract_data_from_ContentHex.ps1",
+        "sha256": "6FB701484E9E322749CC2DC40964B7858E244ED725DC07A62FE5482281F47598",
+        "exists": true
+      },
+      {
+        "path": "scripts/temp/extract-media-files.ps1",
+        "sha256": "7E3FB09B7F82364956CF923C0AC8B9BBE24D16327442B70990A3AE1CA63DFB1F",
+        "exists": true
+      },
+      {
+        "path": "scripts/temp/read-media-with-libretro.ps1",
+        "sha256": "45EFF764E2539E5DBF223BFF176BAE71DD0B70A86AB12680E5DFB18DFF0772DC",
+        "exists": true
+      },
+      {
+        "path": "scripts/tests/test-app-accessibility.ps1",
+        "sha256": "3CEE5946F141097643AE07175E52131D25C268DCDBBA287DA0892E1A3708A5F4",
+        "exists": true
+      },
+      {
+        "path": "scripts/tests/test-installer-upgrade.ps1",
+        "sha256": "9A67170E382BBCBDF5DE0922AE8E74B283D6AA8DAE386913D73170F7BB157795",
+        "exists": true
+      },
+      {
+        "path": "scripts/tests/test-installer.ps1",
+        "sha256": "A9CF61F494BCAE405D7A6CEFDE99CE8BB57C43C90A5C2FAFE44A2164751B15A1",
+        "exists": true
+      },
+      {
+        "path": "scripts/tools/find-invalid-documentation.ps1",
+        "sha256": "3CDC9B369EE24651DFC07289AB2207A4604CA1883F47BFB8B526B8B2E6974406",
+        "exists": true
+      },
+      {
+        "path": "scripts/tools/stop-debug-gwgui.ps1",
+        "sha256": "2E5B7FDA06F544830ADA911396C89305DFBECE95129C1C45DC3E9A3E91EFD1C2",
+        "exists": true
+      },
+      {
+        "path": "scripts/wiki/build-wiki.ps1",
+        "sha256": "93D3D34A8CFC807CBC2DD755DCB97A32E93F8677C64EEA6B9E5D376A55427662",
+        "exists": true
+      },
+      {
+        "path": "scripts/wiki/publish-wiki.ps1",
+        "sha256": "0B496084B44EBA11BE96271BC6AFA9F4AAA749E91CA2335556BFAD395CB36D2B",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.App/GWGUI.App.csproj",
+        "sha256": "45D17E66BC1DD5923693633986D0B6792A1D89DC1B25FDCDD44701D4EC72931C",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Acorn/Common/Services/CoreHost.cs",
+        "sha256": "E7DA44D46C3EADD6CB9AD876AA25A6D06E63EAA540E7F9DB6397734CFB00BA78",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Acorn/GWGUI.Emulation.Acorn.csproj",
+        "sha256": "C5D7ED8C9804B7C017C65EE2D5538E3D886B35F391B76A45D047D0CB444BEFD3",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Acorn/module.json",
+        "sha256": "5D1361DF84F667F12B408B9CA08E982E037C4C9D65D3AE020C87DB86450F29DB",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interfaces/IEmulatorCore.cs",
+        "sha256": "6CEDED4E5526E00426B269AFFE8A74EC7C1E58249EDBB183B38DEB013DF35AC3",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/CoreHost.cs",
+        "sha256": "F05B9CE75E63AEC813E5FDFFECF00E1D85F1ED0AD94E0F6B36F597C32EDF0C19",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Amstrad/GWGUI.Emulation.Amstrad.csproj",
+        "sha256": "E5CD137AF53BFFCD58CBEF9F656499E89C8CE93D2672929432F514CBF62F5568",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Amstrad/module.json",
+        "sha256": "0685C64F7DBFA038CDCEC72E0407222B33BD1147B842E6ECCD08072A92A30047",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Apple/Common/Services/CoreHost.cs",
+        "sha256": "D24549B131468138FC1BD82FDE4642C51AAB860A708F0C754847C22D1B6C11A4",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Apple/GWGUI.Emulation.Apple.csproj",
+        "sha256": "624CD4C0CC6BD90301FE79E6F781E57623F006EF2030CFF2FD9ECBE8603B05A4",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Apple/module.json",
+        "sha256": "FBE09CFCB4F6A08E589D10464AD6741B26B145BCFAF296154A57C7A698AF1163",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Atari/Common/Services/CoreHost.cs",
+        "sha256": "66274821097DB7A9756002BB996C51A4FBF8338C70E8AFD4C0A46A02563023F4",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Atari/GWGUI.Emulation.Atari.csproj",
+        "sha256": "0B69DEA50029B3D269EE60914F4239F18692D1A14A964301949FF2DBA6877C86",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Atari/module.json",
+        "sha256": "51CC891084CC5412C7D00BF348F710FD5DE995C24EE67A606337BF1FE842306F",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Bandai/Common/Services/CoreHost.cs",
+        "sha256": "E4DA69182F24F236016A06957AB7A4A6B2BADAE9A8BDCE84246CDED0C3D63AE3",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Bandai/GWGUI.Emulation.Bandai.csproj",
+        "sha256": "8731868F4238380DF2E63E5DC48DEDF906A6A1B891D84775EFD81B15F35BA19A",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Bandai/module.json",
+        "sha256": "F6F87EA0A37548B557A4C12127904D272C80C4EE75B2CEC5653FDFB5DFFBFD82",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Coleco/Common/Services/CoreHost.cs",
+        "sha256": "9E7E3F2318E37198580E44C75DC29214A2B3DF0FE1B46A4BE909443612E94EC7",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Coleco/GWGUI.Emulation.Coleco.csproj",
+        "sha256": "8B8E257FE498755B742F645D17A1A1FA1A55CF4AE833422631BD898347868F67",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Coleco/module.json",
+        "sha256": "EE3B477DB0CCEEDD0C02D2C4548ED4E5B44D56EBA689195557DB607DF9218B14",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interfaces/IEmulatorCore.cs",
+        "sha256": "AE41F5B5A33305F6D3204563BF3F0A5C5483272B63A74817ACA43C982A21005D",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/CoreHost.cs",
+        "sha256": "BF24C4E914A63031884909FD0446768D4C9E871893DED481851EF94E6D730BB2",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Commodore/GWGUI.Emulation.Commodore.csproj",
+        "sha256": "2484487C872A8CC2111BEEA0BE22B0D13DEF6996A4918B3AEF7C02F7E79C1433",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Commodore/module.json",
+        "sha256": "715A8D7E88A5371FE1E576185FE0F2388F8CF19D29C42BCF9DA9FF4E48839A22",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Epoch/Common/Services/CoreHost.cs",
+        "sha256": "DCDE9DBA32584645918580B307C2EFBE141A9A0E4FC60579809F23C6545F9CD2",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Epoch/GWGUI.Emulation.Epoch.csproj",
+        "sha256": "833629D231B69D9789FFA68C6C8757E21CC4818F6956B4A362AAF62E383296A6",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Epoch/module.json",
+        "sha256": "4F9BE08D73FEB957D482FACD353D3DE33FACFE3EB811CDB760A0C43039FA3982",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Fairchild/Common/Services/CoreHost.cs",
+        "sha256": "DFCAE0A86C6286A1AC17AFED3C3BA81336F24EC6D266CDFA89D3EAD19C7D3437",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Fairchild/GWGUI.Emulation.Fairchild.csproj",
+        "sha256": "45E562B934ADAE7A24678A110C2C0DAE308B20FFE149D08BA30DFB365C4C5962",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Fairchild/module.json",
+        "sha256": "2A189DF8B8D6ECA422D9A557E3543CC1BEB26795076B565DCB61A5CB3252E4B5",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Mattel/Common/Services/CoreHost.cs",
+        "sha256": "E6A765812779E9B280A2C58EB60F8C8FDBF8697BDAFA1BB282DB6952339E3603",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Mattel/GWGUI.Emulation.Mattel.csproj",
+        "sha256": "0791D297AF339DDAAA0CB6AF8A44ADB3156503B84FDD56F4C497B7803403847B",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Mattel/module.json",
+        "sha256": "F47DC3DB92E381580877689A2486482966240DAF8FF5E8D2FE10D9D693D6EF5A",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Microsoft/GWGUI.Emulation.Microsoft.csproj",
+        "sha256": "83B81BBC65B2070D889850635E5BC7603AEBC74BA8B2BF7C18ED59C2E770CD21",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Microsoft/module.json",
+        "sha256": "43D19332331FCAA8F42C6B8CD1F7DF144606E3A988C21A997407AEF76BC19CC5",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nec/Common/Interfaces/IEmulatorCore.cs",
+        "sha256": "498E0CCB39D388D975272A623A571FBE578237127C20EC6E8CBCD83E1BFFFB61",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nec/Emulators/BeetlePcfx/Services/CoreHost.cs",
+        "sha256": "E17B49B4F9219B2910C0DE025F8EB4332EA1266254B24BD211E1B2E2F8120784",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/CoreHost.cs",
+        "sha256": "78839F24A80B4384BBC20AF60B82F0329AE14B77D2355E123A4B95131077E4BE",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nec/GWGUI.Emulation.Nec.csproj",
+        "sha256": "BCDC416DC7B08C38D7244523B3E7D3FE569A5618B80C9693F84D4F0A8394F6E8",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nec/module.json",
+        "sha256": "418AB9A38DE74CB5003E3F5F343B90AEE5F9ADDDCAB4BC4257F16C018E112F32",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nintendo/Common/Interfaces/IEmulatorCore.cs",
+        "sha256": "7DCA082BF6584EB93B32C91D70A629C329336D46130827865EDB24DAAD561B64",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/CoreHost.cs",
+        "sha256": "C54BBF9581572C1F4887F9B6BC35AFD872D4429A556FF61ACCD8237C7DEBE433",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nintendo/GWGUI.Emulation.Nintendo.csproj",
+        "sha256": "5C53880ECF569F2508C22165163C4ECCC57DDB8D354435FD7DD36066E1054118",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Nintendo/module.json",
+        "sha256": "788A3664E12FF76C48BD1DC889037A4A949495669F8593DC2E1A5F873679F619",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Panasonic/Common/Services/CoreHost.cs",
+        "sha256": "BFC567E55603A6A9249602BC4152B8FE6E8B655BA75B3731BD32FAB3EEF16B42",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Panasonic/GWGUI.Emulation.Panasonic.csproj",
+        "sha256": "56C39603191BF0D499E10B0D51A10F70F8126D7734421332F635B9108DB94E1A",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Panasonic/module.json",
+        "sha256": "EA9A3616D39CD4D1F5E30E9976F5068D53ED1FFF6045385D768D7C90BB507BEE",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Philips/Common/Services/CoreHost.cs",
+        "sha256": "DDB3C2FCD38B7DC9CF3252CF625DF42145FA4F9C0EBEDA53E064B9C9206A5D2C",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Philips/GWGUI.Emulation.Philips.csproj",
+        "sha256": "D710F842C3EEC902EBD72DA559E8DB51738882B3C101868AF2BE5FEF1A449136",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Philips/module.json",
+        "sha256": "6EB25C1487B811A43F9D3A47CBEE2CAE00037733C012977E4F6524EBBB456D1E",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sega/Common/Interfaces/IEmulatorCore.cs",
+        "sha256": "1B2CD286C92288481CC42BAFA903306E8747F617928F6E57B1DE65333B05D97C",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/CoreHost.cs",
+        "sha256": "9B036ADBEFDBBCE25F9BB24AC41BA34D71A20F12792FF7668D207E90DEF5A721",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sega/GWGUI.Emulation.Sega.csproj",
+        "sha256": "84C8C40DB0187221E7C0D4FCF25A30CC25E3CC5BA46BB642130771B893EC881E",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sega/module.json",
+        "sha256": "5365B31349DE22D838CB7B2A8C539559C4A63BD88E69E29A270191EA81AA2577",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sharp/Common/Services/CoreHost.cs",
+        "sha256": "E07E108C78E934453C2BAAD3C3DAF8EA7B5D4C38C313D9258E67885A2D2B8C89",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sharp/GWGUI.Emulation.Sharp.csproj",
+        "sha256": "492139470ED46F60044E0D656C7C319EFD09B1063022CBCB7E64BD252B8F9252",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sharp/module.json",
+        "sha256": "D53D6EC4BEBA44812044807AFAC9BCB72DFF2610C4EF6B756F68BD8273962CA0",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sinclair/Common/Services/CoreHost.cs",
+        "sha256": "9F91EA8388008C9966874501264B34DD41C8D33DF8A5CC585B4783CE62E029FE",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sinclair/GWGUI.Emulation.Sinclair.csproj",
+        "sha256": "2CD3BC3A64743D4B11CC6312544FE6108E1BF8DFD27D3758FB2828D3CF5FA242",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sinclair/module.json",
+        "sha256": "9B470D469CEEA3E635CBA07A802BEF90B7B219FF0EA1A472D92AF8720EC659CB",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Snk/Common/Services/CoreHost.cs",
+        "sha256": "C7CFC3F94C214250A5563B158F8050FEFBA833EEFB8C4E085B4A9DD38381BE8C",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Snk/GWGUI.Emulation.Snk.csproj",
+        "sha256": "B734D83E941BB713D6043EA55D3175B58ED4E3E1A20900353AEF0193082B7C46",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Snk/module.json",
+        "sha256": "F01DB0F0477C9E3396953A6E5F4C038664D443D8A8438190C090A203C752A3E1",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sony/Common/Interfaces/IEmulatorCore.cs",
+        "sha256": "6AEE16D76824BBB58D8AECA6A0CC24F196D1879F5A0475BB4EE008C9F61B1333",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/CoreHost.cs",
+        "sha256": "57A0985C12280B9C1229E15364907DA47119187FFF595C6AE35F6A102437A916",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/CoreHost.cs",
+        "sha256": "7B30242D8C4FE243C4288A7E6271C9F0A83C30726361CAEF3A05E32933EB5CFB",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/CoreHost.cs",
+        "sha256": "A5EC853E11B11AD0C1E0583D33BDB005BD72753461F5C6963EB100E0F4B87408",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sony/GWGUI.Emulation.Sony.csproj",
+        "sha256": "AD1328E423A7E4A8A0BD3C1B406B5B6C4B8FBB5E074A3B2BD56C9CB674DC0FA4",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Sony/module.json",
+        "sha256": "2D42F1C300CF0AF603AC2F173E733190938222A97AD4C90EFDACEDC6EEC5A0D2",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Thomson/Common/Services/CoreHost.cs",
+        "sha256": "FF1B2C760390DA56DB912AC54B036B1B17F8331931685F25CD30CD360FAA4E3F",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Thomson/GWGUI.Emulation.Thomson.csproj",
+        "sha256": "C4FDABFB3825230FC0CD480AFA2DE67C78CCF0D24EEC2EAF0CF144B30A26DB5D",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Thomson/module.json",
+        "sha256": "73607D4205DE7D262CE05C177098DA420502B7D0D5FCDBD27C83D43B436BAA9E",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Watara/Common/Services/CoreHost.cs",
+        "sha256": "014EB6838BE285E8BE82C331872758E474E0440D32CCE8E1D1939022AD522BFF",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Watara/GWGUI.Emulation.Watara.csproj",
+        "sha256": "A8C72698C6BA5326AA24DB4782DA7D0F21C966DFE25F5BF30DF6A0668243C5D0",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Watara/module.json",
+        "sha256": "13EB5DAC82C5FAFAFA194447193A6A02EC755A4A4A083D43D73A25A2FEBEEC5D",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Wenquxing/Common/Services/CoreHost.cs",
+        "sha256": "8AE35F59AF6211D9DD6226B44F1A88C3C061567645161E48714E6E85EDE49165",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Wenquxing/GWGUI.Emulation.Wenquxing.csproj",
+        "sha256": "E22F6C874E8A20A6E28CFE250943F4347919384B79B52DB5E9D8A61C67AF9328",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation.Wenquxing/module.json",
+        "sha256": "911CC9E4D67C1C8BFB3D5E9D7133EEDF03F801CD769C2299155A994A7E544991",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation/Functions/EmulationHostProtocolFunctions.Host.cs",
+        "sha256": "A783A03B73ACF3AD1C538B39524AF51E444D30CB7954C826579C59EC0250B42D",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation/GWGUI.Emulation.csproj",
+        "sha256": "5A9DABBDCBBE1C93A04D5ABA1BE00A0527421F3270F02FEBE063453AC5FB857C",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Emulation/Interfaces/IEmulationCorePathMediaCommands.cs",
+        "sha256": "6111BDDD200FC454DB8DAF970E704A99EA987A652AFDF14C1956466C7B472F43",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Infrastructure/GWGUI.Infrastructure.csproj",
+        "sha256": "5AF1A6F4FD9761192136278A7420D9491A72A1CF7D5400140B72252127608336",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Launcher/GWGUI.Launcher.csproj",
+        "sha256": "704C315EFBB669FA6BCC398F29B9FEB3A7BF2F41D9BE44E3B41D0CC81B023473",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.MediaAnalysis/GWGUI.MediaAnalysis.csproj",
+        "sha256": "5D914401AB2AAE3465A052EDBBC99B8E73495BBD2B2F3546543653C2169E1C65",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.MediaEngine/GWGUI.MediaEngine.csproj",
+        "sha256": "11A282DF1F8B5F162AA0ABEE100C18B8751389A1B51DE83C77D5684CC4A1A069",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.MediaFileSystems/GWGUI.MediaFileSystems.csproj",
+        "sha256": "BCA0D10E729A54C4C1A5F65D75DB27BF1C3EAF979C1474DF3FCDF876BA90D8D9",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Updater/GWGUI.Updater.csproj",
+        "sha256": "6360F653C53DCC478D97631DE16CE136DB234F6342EA9AE463E3A2EFCE85C13F",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.Updates/GWGUI.Updates.csproj",
+        "sha256": "B87C1A99E3FD3EE39A2613EC0D071C5D7D7DF3575FAB40B70A5ACFC4EF27923D",
+        "exists": true
+      },
+      {
+        "path": "src/GWGUI.VideoPresentation/GWGUI.VideoPresentation.csproj",
+        "sha256": "29F1202CBF6FACC651C0FE3C1A1E8E830CCBD4A5B292B8E3A29AF51E451CCEB3",
+        "exists": true
+      },
+      {
+        "path": "tests/GWGUI.Tests/Emulation/CoreHostCommandTests.cs",
+        "sha256": "C2DBDA65A9DED94043D804121D3F311D20797B2AC9E26872A9C0C1B1804842FB",
+        "exists": true
+      },
+      {
+        "path": "tests/GWGUI.Tests/Emulation/CoreHostLifetimeTests.cs",
+        "sha256": "289A6FC08C99AA92B6B7D0FCCD3A9682DD9B55DDF3C6976037DB2F391E71F088",
+        "exists": true
+      }
+    ],
+    "after": [
+      {
+        "exists": true,
+        "sha256": "EC7D038183957F0F2DD09078668AB7866560A585B3566836E5ECD105796260F4",
+        "path": "global.json"
+      },
+      {
+        "exists": true,
+        "sha256": "06027F2C20CB4CD2231BB9247B6CFAF23B60CE4E896103A76042EC3D2F30FF4B",
+        "path": "scripts/local-building.cmd"
+      },
+      {
+        "exists": true,
+        "sha256": "EAEF2EAE65381132F9E5AE8F73CDACAA01755AACAD2F334714352785CC82C700",
+        "path": "scripts/local-building/build.ps1"
+      },
+      {
+        "exists": true,
+        "sha256": "75DFD60CAC53DB8E4FF8FF274DB1A92A802E518C6C35AE1C7EAD3CA74065F054",
+        "path": "scripts/module-directory/build-module-directory.ps1"
+      },
+      {
+        "exists": true,
+        "sha256": "EFF57734FACEB7536E603A78DB0E43723BA22E8128C23BBB98C9F9B154BBE0F3",
+        "path": "scripts/module-release/package-module.ps1"
+      },
+      {
+        "exists": true,
+        "sha256": "20A8899A47EF613BE8D7E106C81FF1C00BCA6E00C5F3CC4B1FD1E596A9BA24FB",
+        "path": "scripts/publish-module-directory.cmd"
+      },
+      {
+        "exists": true,
+        "sha256": "3AD1334C3E0C2EDC5D0B8AEB416D9F096784A80F6F0DC1EABECD7BA5CADA5DFB",
+        "path": "scripts/publish-modules.cmd"
+      },
+      {
+        "exists": true,
+        "sha256": "C6A1F3A111B00408FEFD153342140CA556B63A120C539830236B5D22B7987626",
+        "path": "scripts/publish-release.cmd"
+      },
+      {
+        "exists": true,
+        "sha256": "E6FA82514B4F43F7E45308FA925B16876C1F0924053BD611837D15C741A56C30",
+        "path": "scripts/publish-wiki.cmd"
+      },
+      {
+        "exists": true,
+        "sha256": "DF28EE0A0FCD20ACABA2D1131DBE89CFE057D7FE6F3119D2F6BCBA2CA917469B",
+        "path": "scripts/release/package/organize_app/organize-application-output.ps1"
+      },
+      {
+        "exists": true,
+        "sha256": "BE18E987279943DFB6449F5920E29E2D0922206F0ECBABC95A1C4C8723061554",
+        "path": "scripts/release/package/organize_app/shared-component-files.ps1"
+      },
+      {
+        "exists": true,
+        "sha256": "04E9052B296679D70666C4559B372425AA92F68F79E666F7DA6234255BDD6B6A",
+        "path": "scripts/release/package/package.ps1"
+      },
+      {
+        "exists": true,
+        "sha256": "3E3D1FC84EA4F113F3B3B6BF14E9F35A3E7B305BF4F79153E20D7849D026988D",
+        "path": "scripts/release/update-catalog/build-update-catalog.ps1"
+      },
+      {
+        "exists": true,
+        "sha256": "3D75EB2584FDC3E6C9E2B153B919ADDF88748D1C92CB5D421699D0A5966E7625",
+        "path": "scripts/release/update-catalog/emulation-modules/emulation-modules.ps1"
+      },
+      {
+        "exists": true,
+        "sha256": "AA775F80D85158C60C3AD3E5073420B4BA33949C2EC9DC8FA78F47CBAA77913A",
+        "path": "scripts/temp/analyze-media-data.ps1"
+      },
+      {
+        "exists": true,
+        "sha256": "31AC2B278BDE2D72222F440F825B6591BE38AF0AD16CCC6D969AA9ECFB3385FC",
+        "path": "scripts/temp/common/DotNetProcess.ps1"
+      },
+      {
+        "exists": true,
+        "sha256": "6FB701484E9E322749CC2DC40964B7858E244ED725DC07A62FE5482281F47598",
+        "path": "scripts/temp/extract_data_from_ContentHex.ps1"
+      },
+      {
+        "exists": true,
+        "sha256": "7E3FB09B7F82364956CF923C0AC8B9BBE24D16327442B70990A3AE1CA63DFB1F",
+        "path": "scripts/temp/extract-media-files.ps1"
+      },
+      {
+        "exists": true,
+        "sha256": "45EFF764E2539E5DBF223BFF176BAE71DD0B70A86AB12680E5DFB18DFF0772DC",
+        "path": "scripts/temp/read-media-with-libretro.ps1"
+      },
+      {
+        "exists": true,
+        "sha256": "3CEE5946F141097643AE07175E52131D25C268DCDBBA287DA0892E1A3708A5F4",
+        "path": "scripts/tests/test-app-accessibility.ps1"
+      },
+      {
+        "exists": true,
+        "sha256": "9A67170E382BBCBDF5DE0922AE8E74B283D6AA8DAE386913D73170F7BB157795",
+        "path": "scripts/tests/test-installer-upgrade.ps1"
+      },
+      {
+        "exists": true,
+        "sha256": "A9CF61F494BCAE405D7A6CEFDE99CE8BB57C43C90A5C2FAFE44A2164751B15A1",
+        "path": "scripts/tests/test-installer.ps1"
+      },
+      {
+        "exists": true,
+        "sha256": "3CDC9B369EE24651DFC07289AB2207A4604CA1883F47BFB8B526B8B2E6974406",
+        "path": "scripts/tools/find-invalid-documentation.ps1"
+      },
+      {
+        "exists": true,
+        "sha256": "2E5B7FDA06F544830ADA911396C89305DFBECE95129C1C45DC3E9A3E91EFD1C2",
+        "path": "scripts/tools/stop-debug-gwgui.ps1"
+      },
+      {
+        "exists": true,
+        "sha256": "93D3D34A8CFC807CBC2DD755DCB97A32E93F8677C64EEA6B9E5D376A55427662",
+        "path": "scripts/wiki/build-wiki.ps1"
+      },
+      {
+        "exists": true,
+        "sha256": "0B496084B44EBA11BE96271BC6AFA9F4AAA749E91CA2335556BFAD395CB36D2B",
+        "path": "scripts/wiki/publish-wiki.ps1"
+      },
+      {
+        "exists": true,
+        "sha256": "45D17E66BC1DD5923693633986D0B6792A1D89DC1B25FDCDD44701D4EC72931C",
+        "path": "src/GWGUI.App/GWGUI.App.csproj"
+      },
+      {
+        "exists": true,
+        "sha256": "E7DA44D46C3EADD6CB9AD876AA25A6D06E63EAA540E7F9DB6397734CFB00BA78",
+        "path": "src/GWGUI.Emulation.Acorn/Common/Services/CoreHost.cs"
+      },
+      {
+        "exists": true,
+        "sha256": "C5D7ED8C9804B7C017C65EE2D5538E3D886B35F391B76A45D047D0CB444BEFD3",
+        "path": "src/GWGUI.Emulation.Acorn/GWGUI.Emulation.Acorn.csproj"
+      },
+      {
+        "exists": true,
+        "sha256": "5D1361DF84F667F12B408B9CA08E982E037C4C9D65D3AE020C87DB86450F29DB",
+        "path": "src/GWGUI.Emulation.Acorn/module.json"
+      },
+      {
+        "exists": true,
+        "sha256": "6CEDED4E5526E00426B269AFFE8A74EC7C1E58249EDBB183B38DEB013DF35AC3",
+        "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interfaces/IEmulatorCore.cs"
+      },
+      {
+        "exists": true,
+        "sha256": "F05B9CE75E63AEC813E5FDFFECF00E1D85F1ED0AD94E0F6B36F597C32EDF0C19",
+        "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/CoreHost.cs"
+      },
+      {
+        "exists": true,
+        "sha256": "E5CD137AF53BFFCD58CBEF9F656499E89C8CE93D2672929432F514CBF62F5568",
+        "path": "src/GWGUI.Emulation.Amstrad/GWGUI.Emulation.Amstrad.csproj"
+      },
+      {
+        "exists": true,
+        "sha256": "0685C64F7DBFA038CDCEC72E0407222B33BD1147B842E6ECCD08072A92A30047",
+        "path": "src/GWGUI.Emulation.Amstrad/module.json"
+      },
+      {
+        "exists": true,
+        "sha256": "D24549B131468138FC1BD82FDE4642C51AAB860A708F0C754847C22D1B6C11A4",
+        "path": "src/GWGUI.Emulation.Apple/Common/Services/CoreHost.cs"
+      },
+      {
+        "exists": true,
+        "sha256": "624CD4C0CC6BD90301FE79E6F781E57623F006EF2030CFF2FD9ECBE8603B05A4",
+        "path": "src/GWGUI.Emulation.Apple/GWGUI.Emulation.Apple.csproj"
+      },
+      {
+        "exists": true,
+        "sha256": "FBE09CFCB4F6A08E589D10464AD6741B26B145BCFAF296154A57C7A698AF1163",
+        "path": "src/GWGUI.Emulation.Apple/module.json"
+      },
+      {
+        "exists": true,
+        "sha256": "66274821097DB7A9756002BB996C51A4FBF8338C70E8AFD4C0A46A02563023F4",
+        "path": "src/GWGUI.Emulation.Atari/Common/Services/CoreHost.cs"
+      },
+      {
+        "exists": true,
+        "sha256": "0B69DEA50029B3D269EE60914F4239F18692D1A14A964301949FF2DBA6877C86",
+        "path": "src/GWGUI.Emulation.Atari/GWGUI.Emulation.Atari.csproj"
+      },
+      {
+        "exists": true,
+        "sha256": "51CC891084CC5412C7D00BF348F710FD5DE995C24EE67A606337BF1FE842306F",
+        "path": "src/GWGUI.Emulation.Atari/module.json"
+      },
+      {
+        "exists": true,
+        "sha256": "E4DA69182F24F236016A06957AB7A4A6B2BADAE9A8BDCE84246CDED0C3D63AE3",
+        "path": "src/GWGUI.Emulation.Bandai/Common/Services/CoreHost.cs"
+      },
+      {
+        "exists": true,
+        "sha256": "8731868F4238380DF2E63E5DC48DEDF906A6A1B891D84775EFD81B15F35BA19A",
+        "path": "src/GWGUI.Emulation.Bandai/GWGUI.Emulation.Bandai.csproj"
+      },
+      {
+        "exists": true,
+        "sha256": "F6F87EA0A37548B557A4C12127904D272C80C4EE75B2CEC5653FDFB5DFFBFD82",
+        "path": "src/GWGUI.Emulation.Bandai/module.json"
+      },
+      {
+        "exists": true,
+        "sha256": "9E7E3F2318E37198580E44C75DC29214A2B3DF0FE1B46A4BE909443612E94EC7",
+        "path": "src/GWGUI.Emulation.Coleco/Common/Services/CoreHost.cs"
+      },
+      {
+        "exists": true,
+        "sha256": "8B8E257FE498755B742F645D17A1A1FA1A55CF4AE833422631BD898347868F67",
+        "path": "src/GWGUI.Emulation.Coleco/GWGUI.Emulation.Coleco.csproj"
+      },
+      {
+        "exists": true,
+        "sha256": "EE3B477DB0CCEEDD0C02D2C4548ED4E5B44D56EBA689195557DB607DF9218B14",
+        "path": "src/GWGUI.Emulation.Coleco/module.json"
+      },
+      {
+        "exists": true,
+        "sha256": "AE41F5B5A33305F6D3204563BF3F0A5C5483272B63A74817ACA43C982A21005D",
+        "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interfaces/IEmulatorCore.cs"
+      },
+      {
+        "exists": true,
+        "sha256": "BF24C4E914A63031884909FD0446768D4C9E871893DED481851EF94E6D730BB2",
+        "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/CoreHost.cs"
+      },
+      {
+        "exists": true,
+        "sha256": "2484487C872A8CC2111BEEA0BE22B0D13DEF6996A4918B3AEF7C02F7E79C1433",
+        "path": "src/GWGUI.Emulation.Commodore/GWGUI.Emulation.Commodore.csproj"
+      },
+      {
+        "exists": true,
+        "sha256": "715A8D7E88A5371FE1E576185FE0F2388F8CF19D29C42BCF9DA9FF4E48839A22",
+        "path": "src/GWGUI.Emulation.Commodore/module.json"
+      },
+      {
+        "exists": true,
+        "sha256": "DCDE9DBA32584645918580B307C2EFBE141A9A0E4FC60579809F23C6545F9CD2",
+        "path": "src/GWGUI.Emulation.Epoch/Common/Services/CoreHost.cs"
+      },
+      {
+        "exists": true,
+        "sha256": "833629D231B69D9789FFA68C6C8757E21CC4818F6956B4A362AAF62E383296A6",
+        "path": "src/GWGUI.Emulation.Epoch/GWGUI.Emulation.Epoch.csproj"
+      },
+      {
+        "exists": true,
+        "sha256": "4F9BE08D73FEB957D482FACD353D3DE33FACFE3EB811CDB760A0C43039FA3982",
+        "path": "src/GWGUI.Emulation.Epoch/module.json"
+      },
+      {
+        "exists": true,
+        "sha256": "DFCAE0A86C6286A1AC17AFED3C3BA81336F24EC6D266CDFA89D3EAD19C7D3437",
+        "path": "src/GWGUI.Emulation.Fairchild/Common/Services/CoreHost.cs"
+      },
+      {
+        "exists": true,
+        "sha256": "45E562B934ADAE7A24678A110C2C0DAE308B20FFE149D08BA30DFB365C4C5962",
+        "path": "src/GWGUI.Emulation.Fairchild/GWGUI.Emulation.Fairchild.csproj"
+      },
+      {
+        "exists": true,
+        "sha256": "2A189DF8B8D6ECA422D9A557E3543CC1BEB26795076B565DCB61A5CB3252E4B5",
+        "path": "src/GWGUI.Emulation.Fairchild/module.json"
+      },
+      {
+        "exists": true,
+        "sha256": "E6A765812779E9B280A2C58EB60F8C8FDBF8697BDAFA1BB282DB6952339E3603",
+        "path": "src/GWGUI.Emulation.Mattel/Common/Services/CoreHost.cs"
+      },
+      {
+        "exists": true,
+        "sha256": "0791D297AF339DDAAA0CB6AF8A44ADB3156503B84FDD56F4C497B7803403847B",
+        "path": "src/GWGUI.Emulation.Mattel/GWGUI.Emulation.Mattel.csproj"
+      },
+      {
+        "exists": true,
+        "sha256": "F47DC3DB92E381580877689A2486482966240DAF8FF5E8D2FE10D9D693D6EF5A",
+        "path": "src/GWGUI.Emulation.Mattel/module.json"
+      },
+      {
+        "exists": true,
+        "sha256": "83B81BBC65B2070D889850635E5BC7603AEBC74BA8B2BF7C18ED59C2E770CD21",
+        "path": "src/GWGUI.Emulation.Microsoft/GWGUI.Emulation.Microsoft.csproj"
+      },
+      {
+        "exists": true,
+        "sha256": "43D19332331FCAA8F42C6B8CD1F7DF144606E3A988C21A997407AEF76BC19CC5",
+        "path": "src/GWGUI.Emulation.Microsoft/module.json"
+      },
+      {
+        "exists": true,
+        "sha256": "498E0CCB39D388D975272A623A571FBE578237127C20EC6E8CBCD83E1BFFFB61",
+        "path": "src/GWGUI.Emulation.Nec/Common/Interfaces/IEmulatorCore.cs"
+      },
+      {
+        "exists": true,
+        "sha256": "E17B49B4F9219B2910C0DE025F8EB4332EA1266254B24BD211E1B2E2F8120784",
+        "path": "src/GWGUI.Emulation.Nec/Emulators/BeetlePcfx/Services/CoreHost.cs"
+      },
+      {
+        "exists": true,
+        "sha256": "78839F24A80B4384BBC20AF60B82F0329AE14B77D2355E123A4B95131077E4BE",
+        "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/CoreHost.cs"
+      },
+      {
+        "exists": true,
+        "sha256": "BCDC416DC7B08C38D7244523B3E7D3FE569A5618B80C9693F84D4F0A8394F6E8",
+        "path": "src/GWGUI.Emulation.Nec/GWGUI.Emulation.Nec.csproj"
+      },
+      {
+        "exists": true,
+        "sha256": "418AB9A38DE74CB5003E3F5F343B90AEE5F9ADDDCAB4BC4257F16C018E112F32",
+        "path": "src/GWGUI.Emulation.Nec/module.json"
+      },
+      {
+        "exists": true,
+        "sha256": "7DCA082BF6584EB93B32C91D70A629C329336D46130827865EDB24DAAD561B64",
+        "path": "src/GWGUI.Emulation.Nintendo/Common/Interfaces/IEmulatorCore.cs"
+      },
+      {
+        "exists": true,
+        "sha256": "C54BBF9581572C1F4887F9B6BC35AFD872D4429A556FF61ACCD8237C7DEBE433",
+        "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/CoreHost.cs"
+      },
+      {
+        "exists": true,
+        "sha256": "5C53880ECF569F2508C22165163C4ECCC57DDB8D354435FD7DD36066E1054118",
+        "path": "src/GWGUI.Emulation.Nintendo/GWGUI.Emulation.Nintendo.csproj"
+      },
+      {
+        "exists": true,
+        "sha256": "788A3664E12FF76C48BD1DC889037A4A949495669F8593DC2E1A5F873679F619",
+        "path": "src/GWGUI.Emulation.Nintendo/module.json"
+      },
+      {
+        "exists": true,
+        "sha256": "BFC567E55603A6A9249602BC4152B8FE6E8B655BA75B3731BD32FAB3EEF16B42",
+        "path": "src/GWGUI.Emulation.Panasonic/Common/Services/CoreHost.cs"
+      },
+      {
+        "exists": true,
+        "sha256": "56C39603191BF0D499E10B0D51A10F70F8126D7734421332F635B9108DB94E1A",
+        "path": "src/GWGUI.Emulation.Panasonic/GWGUI.Emulation.Panasonic.csproj"
+      },
+      {
+        "exists": true,
+        "sha256": "EA9A3616D39CD4D1F5E30E9976F5068D53ED1FFF6045385D768D7C90BB507BEE",
+        "path": "src/GWGUI.Emulation.Panasonic/module.json"
+      },
+      {
+        "exists": true,
+        "sha256": "DDB3C2FCD38B7DC9CF3252CF625DF42145FA4F9C0EBEDA53E064B9C9206A5D2C",
+        "path": "src/GWGUI.Emulation.Philips/Common/Services/CoreHost.cs"
+      },
+      {
+        "exists": true,
+        "sha256": "D710F842C3EEC902EBD72DA559E8DB51738882B3C101868AF2BE5FEF1A449136",
+        "path": "src/GWGUI.Emulation.Philips/GWGUI.Emulation.Philips.csproj"
+      },
+      {
+        "exists": true,
+        "sha256": "6EB25C1487B811A43F9D3A47CBEE2CAE00037733C012977E4F6524EBBB456D1E",
+        "path": "src/GWGUI.Emulation.Philips/module.json"
+      },
+      {
+        "exists": true,
+        "sha256": "1B2CD286C92288481CC42BAFA903306E8747F617928F6E57B1DE65333B05D97C",
+        "path": "src/GWGUI.Emulation.Sega/Common/Interfaces/IEmulatorCore.cs"
+      },
+      {
+        "exists": true,
+        "sha256": "9B036ADBEFDBBCE25F9BB24AC41BA34D71A20F12792FF7668D207E90DEF5A721",
+        "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/CoreHost.cs"
+      },
+      {
+        "exists": true,
+        "sha256": "84C8C40DB0187221E7C0D4FCF25A30CC25E3CC5BA46BB642130771B893EC881E",
+        "path": "src/GWGUI.Emulation.Sega/GWGUI.Emulation.Sega.csproj"
+      },
+      {
+        "exists": true,
+        "sha256": "5365B31349DE22D838CB7B2A8C539559C4A63BD88E69E29A270191EA81AA2577",
+        "path": "src/GWGUI.Emulation.Sega/module.json"
+      },
+      {
+        "exists": true,
+        "sha256": "E07E108C78E934453C2BAAD3C3DAF8EA7B5D4C38C313D9258E67885A2D2B8C89",
+        "path": "src/GWGUI.Emulation.Sharp/Common/Services/CoreHost.cs"
+      },
+      {
+        "exists": true,
+        "sha256": "492139470ED46F60044E0D656C7C319EFD09B1063022CBCB7E64BD252B8F9252",
+        "path": "src/GWGUI.Emulation.Sharp/GWGUI.Emulation.Sharp.csproj"
+      },
+      {
+        "exists": true,
+        "sha256": "D53D6EC4BEBA44812044807AFAC9BCB72DFF2610C4EF6B756F68BD8273962CA0",
+        "path": "src/GWGUI.Emulation.Sharp/module.json"
+      },
+      {
+        "exists": true,
+        "sha256": "9F91EA8388008C9966874501264B34DD41C8D33DF8A5CC585B4783CE62E029FE",
+        "path": "src/GWGUI.Emulation.Sinclair/Common/Services/CoreHost.cs"
+      },
+      {
+        "exists": true,
+        "sha256": "2CD3BC3A64743D4B11CC6312544FE6108E1BF8DFD27D3758FB2828D3CF5FA242",
+        "path": "src/GWGUI.Emulation.Sinclair/GWGUI.Emulation.Sinclair.csproj"
+      },
+      {
+        "exists": true,
+        "sha256": "9B470D469CEEA3E635CBA07A802BEF90B7B219FF0EA1A472D92AF8720EC659CB",
+        "path": "src/GWGUI.Emulation.Sinclair/module.json"
+      },
+      {
+        "exists": true,
+        "sha256": "C7CFC3F94C214250A5563B158F8050FEFBA833EEFB8C4E085B4A9DD38381BE8C",
+        "path": "src/GWGUI.Emulation.Snk/Common/Services/CoreHost.cs"
+      },
+      {
+        "exists": true,
+        "sha256": "B734D83E941BB713D6043EA55D3175B58ED4E3E1A20900353AEF0193082B7C46",
+        "path": "src/GWGUI.Emulation.Snk/GWGUI.Emulation.Snk.csproj"
+      },
+      {
+        "exists": true,
+        "sha256": "F01DB0F0477C9E3396953A6E5F4C038664D443D8A8438190C090A203C752A3E1",
+        "path": "src/GWGUI.Emulation.Snk/module.json"
+      },
+      {
+        "exists": true,
+        "sha256": "6AEE16D76824BBB58D8AECA6A0CC24F196D1879F5A0475BB4EE008C9F61B1333",
+        "path": "src/GWGUI.Emulation.Sony/Common/Interfaces/IEmulatorCore.cs"
+      },
+      {
+        "exists": true,
+        "sha256": "57A0985C12280B9C1229E15364907DA47119187FFF595C6AE35F6A102437A916",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/CoreHost.cs"
+      },
+      {
+        "exists": true,
+        "sha256": "7B30242D8C4FE243C4288A7E6271C9F0A83C30726361CAEF3A05E32933EB5CFB",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/CoreHost.cs"
+      },
+      {
+        "exists": true,
+        "sha256": "A5EC853E11B11AD0C1E0583D33BDB005BD72753461F5C6963EB100E0F4B87408",
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/CoreHost.cs"
+      },
+      {
+        "exists": true,
+        "sha256": "AD1328E423A7E4A8A0BD3C1B406B5B6C4B8FBB5E074A3B2BD56C9CB674DC0FA4",
+        "path": "src/GWGUI.Emulation.Sony/GWGUI.Emulation.Sony.csproj"
+      },
+      {
+        "exists": true,
+        "sha256": "2D42F1C300CF0AF603AC2F173E733190938222A97AD4C90EFDACEDC6EEC5A0D2",
+        "path": "src/GWGUI.Emulation.Sony/module.json"
+      },
+      {
+        "exists": true,
+        "sha256": "FF1B2C760390DA56DB912AC54B036B1B17F8331931685F25CD30CD360FAA4E3F",
+        "path": "src/GWGUI.Emulation.Thomson/Common/Services/CoreHost.cs"
+      },
+      {
+        "exists": true,
+        "sha256": "C4FDABFB3825230FC0CD480AFA2DE67C78CCF0D24EEC2EAF0CF144B30A26DB5D",
+        "path": "src/GWGUI.Emulation.Thomson/GWGUI.Emulation.Thomson.csproj"
+      },
+      {
+        "exists": true,
+        "sha256": "73607D4205DE7D262CE05C177098DA420502B7D0D5FCDBD27C83D43B436BAA9E",
+        "path": "src/GWGUI.Emulation.Thomson/module.json"
+      },
+      {
+        "exists": true,
+        "sha256": "014EB6838BE285E8BE82C331872758E474E0440D32CCE8E1D1939022AD522BFF",
+        "path": "src/GWGUI.Emulation.Watara/Common/Services/CoreHost.cs"
+      },
+      {
+        "exists": true,
+        "sha256": "A8C72698C6BA5326AA24DB4782DA7D0F21C966DFE25F5BF30DF6A0668243C5D0",
+        "path": "src/GWGUI.Emulation.Watara/GWGUI.Emulation.Watara.csproj"
+      },
+      {
+        "exists": true,
+        "sha256": "13EB5DAC82C5FAFAFA194447193A6A02EC755A4A4A083D43D73A25A2FEBEEC5D",
+        "path": "src/GWGUI.Emulation.Watara/module.json"
+      },
+      {
+        "exists": true,
+        "sha256": "8AE35F59AF6211D9DD6226B44F1A88C3C061567645161E48714E6E85EDE49165",
+        "path": "src/GWGUI.Emulation.Wenquxing/Common/Services/CoreHost.cs"
+      },
+      {
+        "exists": true,
+        "sha256": "E22F6C874E8A20A6E28CFE250943F4347919384B79B52DB5E9D8A61C67AF9328",
+        "path": "src/GWGUI.Emulation.Wenquxing/GWGUI.Emulation.Wenquxing.csproj"
+      },
+      {
+        "exists": true,
+        "sha256": "911CC9E4D67C1C8BFB3D5E9D7133EEDF03F801CD769C2299155A994A7E544991",
+        "path": "src/GWGUI.Emulation.Wenquxing/module.json"
+      },
+      {
+        "exists": true,
+        "sha256": "A783A03B73ACF3AD1C538B39524AF51E444D30CB7954C826579C59EC0250B42D",
+        "path": "src/GWGUI.Emulation/Functions/EmulationHostProtocolFunctions.Host.cs"
+      },
+      {
+        "exists": true,
+        "sha256": "5A9DABBDCBBE1C93A04D5ABA1BE00A0527421F3270F02FEBE063453AC5FB857C",
+        "path": "src/GWGUI.Emulation/GWGUI.Emulation.csproj"
+      },
+      {
+        "exists": true,
+        "sha256": "6111BDDD200FC454DB8DAF970E704A99EA987A652AFDF14C1956466C7B472F43",
+        "path": "src/GWGUI.Emulation/Interfaces/IEmulationCorePathMediaCommands.cs"
+      },
+      {
+        "exists": true,
+        "sha256": "5AF1A6F4FD9761192136278A7420D9491A72A1CF7D5400140B72252127608336",
+        "path": "src/GWGUI.Infrastructure/GWGUI.Infrastructure.csproj"
+      },
+      {
+        "exists": true,
+        "sha256": "704C315EFBB669FA6BCC398F29B9FEB3A7BF2F41D9BE44E3B41D0CC81B023473",
+        "path": "src/GWGUI.Launcher/GWGUI.Launcher.csproj"
+      },
+      {
+        "exists": true,
+        "sha256": "5D914401AB2AAE3465A052EDBBC99B8E73495BBD2B2F3546543653C2169E1C65",
+        "path": "src/GWGUI.MediaAnalysis/GWGUI.MediaAnalysis.csproj"
+      },
+      {
+        "exists": true,
+        "sha256": "11A282DF1F8B5F162AA0ABEE100C18B8751389A1B51DE83C77D5684CC4A1A069",
+        "path": "src/GWGUI.MediaEngine/GWGUI.MediaEngine.csproj"
+      },
+      {
+        "exists": true,
+        "sha256": "BCA0D10E729A54C4C1A5F65D75DB27BF1C3EAF979C1474DF3FCDF876BA90D8D9",
+        "path": "src/GWGUI.MediaFileSystems/GWGUI.MediaFileSystems.csproj"
+      },
+      {
+        "exists": true,
+        "sha256": "6360F653C53DCC478D97631DE16CE136DB234F6342EA9AE463E3A2EFCE85C13F",
+        "path": "src/GWGUI.Updater/GWGUI.Updater.csproj"
+      },
+      {
+        "exists": true,
+        "sha256": "B87C1A99E3FD3EE39A2613EC0D071C5D7D7DF3575FAB40B70A5ACFC4EF27923D",
+        "path": "src/GWGUI.Updates/GWGUI.Updates.csproj"
+      },
+      {
+        "exists": true,
+        "sha256": "29F1202CBF6FACC651C0FE3C1A1E8E830CCBD4A5B292B8E3A29AF51E451CCEB3",
+        "path": "src/GWGUI.VideoPresentation/GWGUI.VideoPresentation.csproj"
+      },
+      {
+        "exists": true,
+        "sha256": "C2DBDA65A9DED94043D804121D3F311D20797B2AC9E26872A9C0C1B1804842FB",
+        "path": "tests/GWGUI.Tests/Emulation/CoreHostCommandTests.cs"
+      },
+      {
+        "exists": true,
+        "sha256": "289A6FC08C99AA92B6B7D0FCCD3A9682DD9B55DDF3C6976037DB2F391E71F088",
+        "path": "tests/GWGUI.Tests/Emulation/CoreHostLifetimeTests.cs"
+      }
+    ],
+    "modules": [
+      {
+        "matchesCompiledOutput": true,
+        "sha256": "CA135CDF73315DE67ECDF62580A9EC3CED75B4E2CA5AF9BAD0E025FAA36F419E",
+        "path": "build/Debug/GW GUI/Modules/acorn/gwgui.emulation.acorn.dll",
+        "compiledPath": "src/GWGUI.Emulation.Acorn/bin/Debug/net10.0/win-x64/gwgui.emulation.acorn.dll",
+        "id": "acorn"
+      },
+      {
+        "matchesCompiledOutput": true,
+        "sha256": "7D38FCA0149AC0A9F93872DB32FB0600A8E737E4B0EEACF1863550BEB9FE64EF",
+        "path": "build/Debug/GW GUI/Modules/amstrad/gwgui.emulation.amstrad.dll",
+        "compiledPath": "src/GWGUI.Emulation.Amstrad/bin/Debug/net10.0/win-x64/gwgui.emulation.amstrad.dll",
+        "id": "amstrad"
+      },
+      {
+        "matchesCompiledOutput": true,
+        "sha256": "FD2C7DA478767E9723F431972403D9A5C39006BA824D2ACA717DD10199D15ABB",
+        "path": "build/Debug/GW GUI/Modules/apple/gwgui.emulation.apple.dll",
+        "compiledPath": "src/GWGUI.Emulation.Apple/bin/Debug/net10.0/win-x64/gwgui.emulation.apple.dll",
+        "id": "apple"
+      },
+      {
+        "matchesCompiledOutput": true,
+        "sha256": "217C0934BDAE04C851500227E474740683F9E8EF7BA7B800D4DF7F35741D87B1",
+        "path": "build/Debug/GW GUI/Modules/atari/gwgui.emulation.atari.dll",
+        "compiledPath": "src/GWGUI.Emulation.Atari/bin/Debug/net10.0/win-x64/gwgui.emulation.atari.dll",
+        "id": "atari"
+      },
+      {
+        "matchesCompiledOutput": true,
+        "sha256": "749302E5A3275503F57C52FD1ACA495B2A874E899A7FFCA9210AB29EC931E741",
+        "path": "build/Debug/GW GUI/Modules/bandai/gwgui.emulation.bandai.dll",
+        "compiledPath": "src/GWGUI.Emulation.Bandai/bin/Debug/net10.0/win-x64/gwgui.emulation.bandai.dll",
+        "id": "bandai"
+      },
+      {
+        "matchesCompiledOutput": true,
+        "sha256": "CB537E88EC2F2A54457AA84691DACE18590AB9540773BB4672D44162772C7BA7",
+        "path": "build/Debug/GW GUI/Modules/coleco/gwgui.emulation.coleco.dll",
+        "compiledPath": "src/GWGUI.Emulation.Coleco/bin/Debug/net10.0/win-x64/gwgui.emulation.coleco.dll",
+        "id": "coleco"
+      },
+      {
+        "matchesCompiledOutput": true,
+        "sha256": "87A730A3A86E2EF566A03CC5F0FA609A7F90071A91060150A34FD449C2A6E8EB",
+        "path": "build/Debug/GW GUI/Modules/commodore/gwgui.emulation.commodore.dll",
+        "compiledPath": "src/GWGUI.Emulation.Commodore/bin/Debug/net10.0/win-x64/gwgui.emulation.commodore.dll",
+        "id": "commodore"
+      },
+      {
+        "matchesCompiledOutput": true,
+        "sha256": "3A95AD2CBB3027ACA8AE3034317A15E893FCA013C24F0DEF2E0DAE60394FC281",
+        "path": "build/Debug/GW GUI/Modules/epoch/gwgui.emulation.epoch.dll",
+        "compiledPath": "src/GWGUI.Emulation.Epoch/bin/Debug/net10.0/win-x64/gwgui.emulation.epoch.dll",
+        "id": "epoch"
+      },
+      {
+        "matchesCompiledOutput": true,
+        "sha256": "68287D37141C89B653893D4C37D208DB962DA70F0B577B9D01A4800B50ECD57F",
+        "path": "build/Debug/GW GUI/Modules/fairchild/gwgui.emulation.fairchild.dll",
+        "compiledPath": "src/GWGUI.Emulation.Fairchild/bin/Debug/net10.0/win-x64/gwgui.emulation.fairchild.dll",
+        "id": "fairchild"
+      },
+      {
+        "matchesCompiledOutput": true,
+        "sha256": "A11D87676D1726757914CA02BC4EB5DA685B835BBA6930CFA6552D447B89404D",
+        "path": "build/Debug/GW GUI/Modules/mattel/gwgui.emulation.mattel.dll",
+        "compiledPath": "src/GWGUI.Emulation.Mattel/bin/Debug/net10.0/win-x64/gwgui.emulation.mattel.dll",
+        "id": "mattel"
+      },
+      {
+        "matchesCompiledOutput": true,
+        "sha256": "24176D39E14E40E4F95F4EA715C8279EF85B33FFD28B2141C14CCC3F75F09F04",
+        "path": "build/Debug/GW GUI/Modules/microsoft/gwgui.emulation.microsoft.dll",
+        "compiledPath": "src/GWGUI.Emulation.Microsoft/bin/Debug/net10.0/win-x64/gwgui.emulation.microsoft.dll",
+        "id": "microsoft"
+      },
+      {
+        "matchesCompiledOutput": true,
+        "sha256": "D4FF0677E01B3DCA4C83B5F7468E7106FAB4865CDA3FC56CC8995DF1B480725B",
+        "path": "build/Debug/GW GUI/Modules/nec/gwgui.emulation.nec.dll",
+        "compiledPath": "src/GWGUI.Emulation.Nec/bin/Debug/net10.0/win-x64/gwgui.emulation.nec.dll",
+        "id": "nec"
+      },
+      {
+        "matchesCompiledOutput": true,
+        "sha256": "3F1E41197DFB272BCEDB8C46EEDA1037E8CC2D15D1FB53C87CF40399DB8ED76A",
+        "path": "build/Debug/GW GUI/Modules/nintendo/gwgui.emulation.nintendo.dll",
+        "compiledPath": "src/GWGUI.Emulation.Nintendo/bin/Debug/net10.0/win-x64/gwgui.emulation.nintendo.dll",
+        "id": "nintendo"
+      },
+      {
+        "matchesCompiledOutput": true,
+        "sha256": "373058E744048B18C31360304EB1BBF185D71E32140F6078C38FB91D6B214744",
+        "path": "build/Debug/GW GUI/Modules/panasonic/gwgui.emulation.panasonic.dll",
+        "compiledPath": "src/GWGUI.Emulation.Panasonic/bin/Debug/net10.0/win-x64/gwgui.emulation.panasonic.dll",
+        "id": "panasonic"
+      },
+      {
+        "matchesCompiledOutput": true,
+        "sha256": "D00A7E2143484DAF9D1830662A10816E6458A97884E416E996A9662DDC92A86A",
+        "path": "build/Debug/GW GUI/Modules/philips/gwgui.emulation.philips.dll",
+        "compiledPath": "src/GWGUI.Emulation.Philips/bin/Debug/net10.0/win-x64/gwgui.emulation.philips.dll",
+        "id": "philips"
+      },
+      {
+        "matchesCompiledOutput": true,
+        "sha256": "9172DB6651592BBEE0494FEFB3BDA581452DC1925321E9C3420BD2C84C3DD9B3",
+        "path": "build/Debug/GW GUI/Modules/sega/gwgui.emulation.sega.dll",
+        "compiledPath": "src/GWGUI.Emulation.Sega/bin/Debug/net10.0/win-x64/gwgui.emulation.sega.dll",
+        "id": "sega"
+      },
+      {
+        "matchesCompiledOutput": true,
+        "sha256": "1D889794FA7577C83DE2B94E2CFE4F36315C6F94F3D32E3A68929728BDCC0CF6",
+        "path": "build/Debug/GW GUI/Modules/sharp/gwgui.emulation.sharp.dll",
+        "compiledPath": "src/GWGUI.Emulation.Sharp/bin/Debug/net10.0/win-x64/gwgui.emulation.sharp.dll",
+        "id": "sharp"
+      },
+      {
+        "matchesCompiledOutput": true,
+        "sha256": "105D6F2A12FE85B4011CE83D287D1B2CA758207FE57380F0B36130C73B191F21",
+        "path": "build/Debug/GW GUI/Modules/sinclair/gwgui.emulation.sinclair.dll",
+        "compiledPath": "src/GWGUI.Emulation.Sinclair/bin/Debug/net10.0/win-x64/gwgui.emulation.sinclair.dll",
+        "id": "sinclair"
+      },
+      {
+        "matchesCompiledOutput": true,
+        "sha256": "8B65012047B7CDB419B19A2B291E0C165021DA6427A68A86B46BAD8CE346B217",
+        "path": "build/Debug/GW GUI/Modules/snk/gwgui.emulation.snk.dll",
+        "compiledPath": "src/GWGUI.Emulation.Snk/bin/Debug/net10.0/win-x64/gwgui.emulation.snk.dll",
+        "id": "snk"
+      },
+      {
+        "matchesCompiledOutput": true,
+        "sha256": "E95D9BE7097B00061828F9091708639EE82D1C2E8195B96132AFFB85DEBC8133",
+        "path": "build/Debug/GW GUI/Modules/sony/gwgui.emulation.sony.dll",
+        "compiledPath": "src/GWGUI.Emulation.Sony/bin/Debug/net10.0/win-x64/gwgui.emulation.sony.dll",
+        "id": "sony"
+      },
+      {
+        "matchesCompiledOutput": true,
+        "sha256": "B84899A6E85552FB5117454BC1143D2BC9411C230746777B0C6268FADDCEB520",
+        "path": "build/Debug/GW GUI/Modules/thomson/gwgui.emulation.thomson.dll",
+        "compiledPath": "src/GWGUI.Emulation.Thomson/bin/Debug/net10.0/win-x64/gwgui.emulation.thomson.dll",
+        "id": "thomson"
+      },
+      {
+        "matchesCompiledOutput": true,
+        "sha256": "FD0B58E12E503DC7F25842A2A22DEF5CF891EB5953D09F611C5720ABD0E8E286",
+        "path": "build/Debug/GW GUI/Modules/watara/gwgui.emulation.watara.dll",
+        "compiledPath": "src/GWGUI.Emulation.Watara/bin/Debug/net10.0/win-x64/gwgui.emulation.watara.dll",
+        "id": "watara"
+      },
+      {
+        "matchesCompiledOutput": true,
+        "sha256": "8925970F06B429B78E1BFE23A760F42C3BA29BECC8585161EA43FFB25D7B4B32",
+        "path": "build/Debug/GW GUI/Modules/wenquxing/gwgui.emulation.wenquxing.dll",
+        "compiledPath": "src/GWGUI.Emulation.Wenquxing/bin/Debug/net10.0/win-x64/gwgui.emulation.wenquxing.dll",
+        "id": "wenquxing"
+      }
+    ],
+    "exe": {
+      "sha256": "5DDABFEC213D0D851E3AB39680AEF0D4FF0842CDFBC8B178B0A02CF5FC24BF43",
+      "path": "build/Debug/GW GUI/gwgui.exe"
+    },
+    "sdk": {
+      "verifiedSignatures": [
+        {
+          "name": "StorePath",
+          "genericParameters": 0,
+          "parameters": 2,
+          "type": "ConfigurationFileAccessFunctions"
+        },
+        {
+          "name": "ResolvePath",
+          "genericParameters": 0,
+          "parameters": 2,
+          "type": "ConfigurationFileAccessFunctions"
+        },
+        {
+          "name": "WithSaveGateAsync",
+          "genericParameters": 0,
+          "parameters": 3,
+          "type": "ConfigurationFileAccessFunctions"
+        },
+        {
+          "name": "WriteDocumentAtomicallyAsync",
+          "genericParameters": 1,
+          "parameters": 8,
+          "type": "ConfigurationFileAccessFunctions"
+        },
+        {
+          "name": "WriteDocumentAtomicallyAsync",
+          "genericParameters": 1,
+          "parameters": 4,
+          "type": "ConfigurationFileAccessFunctions"
+        },
+        {
+          "name": "DeleteDirectoryIfExists",
+          "genericParameters": 0,
+          "parameters": 2,
+          "type": "ConfigurationFileAccessFunctions"
+        },
+        {
+          "name": "EnumerateDocumentPaths",
+          "genericParameters": 0,
+          "parameters": 2,
+          "type": "ConfigurationFileAccessFunctions"
+        },
+        {
+          "name": "ReadDocumentsAsync",
+          "genericParameters": 2,
+          "parameters": 5,
+          "type": "ConfigurationFileAccessFunctions"
+        },
+        {
+          "name": "ReadDocumentsAsync",
+          "genericParameters": 1,
+          "parameters": 6,
+          "type": "ConfigurationFileAccessFunctions",
+          "referenceTypeConstraint": true
+        },
+        {
+          "name": "DisposePreviousCore",
+          "genericParameters": 1,
+          "parameters": 1,
+          "type": "EmulationHostProtocolFunctions"
+        },
+        {
+          "name": "RunCoreFrame",
+          "genericParameters": 3,
+          "parameters": 10,
+          "type": "EmulationHostProtocolFunctions"
+        },
+        {
+          "name": "WriteDiskSelection",
+          "genericParameters": 0,
+          "parameters": 2,
+          "type": "EmulationHostProtocolFunctions"
+        },
+        {
+          "name": "TryExecutePathMediaCommand",
+          "genericParameters": 0,
+          "parameters": 6,
+          "type": "EmulationHostProtocolFunctions"
+        },
+        {
+          "name": "WithSharedVideoMap",
+          "genericParameters": 0,
+          "parameters": 3,
+          "type": "EmulationHostProtocolFunctions"
+        }
+      ],
+      "sha256": "16993F30F09B12C0C965598194F6D606EC70F2B679B0E6855ABA2BF8284ED94E",
+      "matchesCompiledSdk": true,
+      "path": "build/Debug/GW GUI/lib/gwgui.emulation.dll"
+    },
+    "exitCode": 0,
+    "completedAt": "2026-10-19T17:41:02.7780042+02:00"
+  },
+  "legacyHostSessionComparison": {
+    "items": [
+      {
+        "factory": "core = createCore(corePath);",
+        "sha256": "F05B9CE75E63AEC813E5FDFFECF00E1D85F1ED0AD94E0F6B36F597C32EDF0C19",
+        "resetVideoInFinally": true,
+        "nativeDiagnostics": false,
+        "softReset": true,
+        "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/CoreHost.cs",
+        "windowsErrorMode": false,
+        "sonySuffix": false,
+        "controller": false,
+        "source": "using System.IO;\r\nusing GWGUI.Emulation.Amstrad.Emulators.Common.Functions;\r\nusing GWGUI.Emulation.Amstrad.Emulators.Common.Exceptions;\r\nusing GWGUI.Emulation.Amstrad.Emulators.Common.Contracts;\r\nusing GWGUI.Emulation.Amstrad.Emulators.Common.Services;\r\n\r\nusing System.IO.Pipes;\r\nusing System.Runtime.Versioning;\r\nusing System.Text.Json;\r\n\r\nnamespace GWGUI.Emulation.Amstrad.Emulators.Common.Services;\r\n\r\npublic static class CoreHost\r\n                {\r\n    [SupportedOSPlatform(CoreHostConstants.Windows)]\r\n    internal static void Run(string pipeName, string videoMapName, Func<string, IEmulatorCore> createCore)\r\n    {\r\n        ArgumentNullException.ThrowIfNull(createCore);\r\n        EmulationHostProtocolFunctions.WithSharedVideoMap(videoMapName, BufferConstants.FirstBufferIndex, videoMap =>\r\n            EmulationHostProtocolFunctions.RunConnectedSession(pipeName, CoreHostConstants.LocalPipeServerName, CoreHostConstants.PipeConnectTimeoutMilliseconds, (reader, transportWriter) =>\r\n            {\r\n                IEmulatorCore? core = null;\r\n                var lastVideoSequence = VideoConstants.InitialFrameSequence;\r\n                var lastDiagnosticCount = BufferConstants.EmptyCollectionCount;\r\n                try\r\n                {\r\n                    EmulationHostProtocolFunctions.RunCommandLoop<HostCommand>(reader, transportWriter, static commandReader => (HostCommand)commandReader.ReadByte(), HostCommand.Dispose, (command, writer) =>\r\n                    {\r\n                        switch (command)\r\n                        {\r\n                            case HostCommand.Initialize:\r\n                                var (corePath, session, saves, configuration) =\r\n                                    EmulationHostProtocolFunctions.ReadInitializationRequest(reader,\r\n                                        CoreHostProtocol.ReadString,\r\n                                        static requestReader => JsonSerializer.Deserialize<MachineConfiguration>(requestReader.ReadString(), CoreHostProtocol.JsonOptions) ?? throw new InvalidDataException(CommonExceptions.HostConfigurationInvalid()));\r\n                                try\r\n                                {\r\n                                    EmulationHostProtocolFunctions.DisposePreviousCore(ref core);\r\n                                }\r\n                                finally\r\n                                {\r\n                                    lastVideoSequence = VideoConstants.InitialFrameSequence;\r\n                                }\r\n\r\n                                core = createCore(corePath);\r\n                                core.Initialize(configuration, session, saves);\r\n                                writer.Write(true);\r\n                                EmulationHostProtocolFunctions.WriteCoreInitialization<IEmulatorCore, MachineConfiguration, CoreOption>(\r\n                                    writer, core, CoreHostProtocol.JsonOptions, ref lastDiagnosticCount, MediaConstants.SupportedExtensionSeparator);\r\n                                EmulationHostProtocolFunctions.WriteDiskSelection(writer, core);\r\n                                CoreHostProtocol.WriteLedStates(writer, core.LedStates);\r\n                                break;\r\n                            case HostCommand.RunFrame:\r\n                                var activeCore = EnsureCore(core);\r\n                                EmulationHostProtocolFunctions.RunCoreFrame<IEmulatorCore, MachineConfiguration, CoreOption>(\r\n                                    reader, writer, activeCore, CoreHostProtocol.ReadInput,\r\n                                    (frameWriter, pendingFrame) => CoreHostProtocol.WriteSharedFrame(frameWriter, pendingFrame, videoMap),\r\n                                    EmulationHostProtocolFunctions.WriteDiskSelection, CoreHostProtocol.WriteLedStates, static () => CoreHostProtocol.JsonOptions,\r\n                                    ref lastVideoSequence, ref lastDiagnosticCount);\r\n                                break;\r\n                            case HostCommand.SoftReset:\r\n                                EnsureCore(core).SoftReset();\r\n                                WriteSuccess(writer);\r\n                                break;\r\n                            case HostCommand.Dispose:\r\n                                EmulationHostProtocolFunctions.DisposePreviousCore(ref core);\r\n                                WriteSuccess(writer);\r\n                                break;\r\n                            default:\r\n                                if (!EmulationHostProtocolFunctions.TryExecutePathMediaCommand((byte)command, reader, writer,\r\n                                        () => EnsureCore(core), CoreHostProtocol.ReadBytes, WriteSuccess))\r\n                                    throw new InvalidDataException(CommonExceptions.UnknownHostCommand((byte)command));\r\n                                break;\r\n                        }\r\n                    }, (writer, error) =>\r\n                    {\r\n                        writer.Write(false);\r\n                        writer.Write(error.ToString());\r\n                    });\r\n                }\r\n                finally\r\n                {\r\n                    EmulationHostProtocolFunctions.DisposePreviousCore(ref core);\r\n                }\r\n            }));\r\n    }\r\n\r\n    private static IEmulatorCore EnsureCore(IEmulatorCore? core) => core ?? throw new InvalidOperationException(CommonExceptions.HostNotInitialized());\r\n    private static void WriteSuccess(BinaryWriter writer) => writer.Write(true);\r\n}\r\n"
+      },
+      {
+        "factory": "core = new ExternalCore(corePath);",
+        "sha256": "BF24C4E914A63031884909FD0446768D4C9E871893DED481851EF94E6D730BB2",
+        "resetVideoInFinally": false,
+        "nativeDiagnostics": false,
+        "softReset": false,
+        "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/CoreHost.cs",
+        "windowsErrorMode": false,
+        "sonySuffix": false,
+        "controller": false,
+        "source": "using System.IO;\r\n\r\nusing System.IO.Pipes;\r\nusing System.Runtime.Versioning;\r\nusing System.Text.Json;\r\n\r\nnamespace GWGUI.Emulation.Commodore.Emulators.Common.Interop.Services;\r\n\r\npublic static class CoreHost\r\n            {\r\n    [SupportedOSPlatform(CoreHostConstants.Windows)]\r\n    public static void Run(string pipeName, string videoMapName)\r\n    {\r\n        EmulationHostProtocolFunctions.WithSharedVideoMap(videoMapName, ProcessCoreConstants.ViewStartOffset, videoMap =>\r\n            EmulationHostProtocolFunctions.RunConnectedSession(pipeName, CoreHostConstants.LocalServerName, CoreHostConstants.PipeConnectionTimeoutMilliseconds, (reader, transportWriter) =>\r\n            {\r\n                ExternalCore? core = null;\r\n                var lastVideoSequence = CoreHostConstants.InitialVideoSequence;\r\n                var lastDiagnosticCount = CoreHostConstants.InitialDiagnosticCount;\r\n                try\r\n                {\r\n                    EmulationHostProtocolFunctions.RunCommandLoop<HostCommand>(reader, transportWriter, static commandReader => (HostCommand)commandReader.ReadByte(), HostCommand.Dispose, (command, writer) =>\r\n                    {\r\n                        switch (command)\r\n                        {\r\n                            case HostCommand.Initialize:\r\n                                var (corePath, session, saves, configuration) =\r\n                                    EmulationHostProtocolFunctions.ReadInitializationRequest(reader,\r\n                                        CoreHostProtocol.ReadString,\r\n                                        static requestReader => JsonSerializer.Deserialize<MachineConfiguration>(requestReader.ReadString(), CoreHostProtocol.JsonOptions) ?? throw new InvalidDataException(CoreExceptions.HostConfigurationInvalid()));\r\n                                EmulationHostProtocolFunctions.DisposePreviousCore(ref core);\r\n                                core = new ExternalCore(corePath);\r\n                                core.Initialize(configuration, session, saves);\r\n                                writer.Write(true);\r\n                                EmulationHostProtocolFunctions.WriteCoreInitialization<ExternalCore, MachineConfiguration, CoreOption>(\r\n                                    writer, core, CoreHostProtocol.JsonOptions, ref lastDiagnosticCount, ProcessCoreConstants.ExtensionSeparator);\r\n                                EmulationHostProtocolFunctions.WriteDiskSelection(writer, core);\r\n                                CoreHostProtocol.WriteLedStates(writer, core.LedStates);\r\n                                break;\r\n                            case HostCommand.RunFrame:\r\n                                var activeCore = EnsureCore(core);\r\n                                EmulationHostProtocolFunctions.RunCoreFrame<ExternalCore, MachineConfiguration, CoreOption>(\r\n                                    reader, writer, activeCore, CoreHostProtocol.ReadInput,\r\n                                    (frameWriter, pendingFrame) => CoreHostProtocol.WriteSharedFrame(frameWriter, pendingFrame, videoMap),\r\n                                    EmulationHostProtocolFunctions.WriteDiskSelection, CoreHostProtocol.WriteLedStates, static () => CoreHostProtocol.JsonOptions,\r\n                                    ref lastVideoSequence, ref lastDiagnosticCount);\r\n                                break;\r\n                            case HostCommand.Dispose:\r\n                                EmulationHostProtocolFunctions.DisposePreviousCore(ref core);\r\n                                WriteSuccess(writer);\r\n                                break;\r\n                            default:\r\n                                if (!EmulationHostProtocolFunctions.TryExecutePathMediaCommand((byte)command, reader, writer,\r\n                                        () => EnsureCore(core), CoreHostProtocol.ReadBytes, WriteSuccess))\r\n                                    throw new InvalidDataException(CoreExceptions.UnknownHostCommand((byte)command));\r\n                                break;\r\n                        }\r\n                    }, (writer, error) =>\r\n                    {\r\n                        writer.Write(false);\r\n                        writer.Write(error.ToString());\r\n                    });\r\n                }\r\n                finally\r\n                {\r\n                    EmulationHostProtocolFunctions.DisposePreviousCore(ref core);\r\n                }\r\n            }));\r\n    }\r\n\r\n    private static ExternalCore EnsureCore(ExternalCore? core) => core ?? throw new InvalidOperationException(CoreExceptions.HostNotInitialized());\r\n    private static void WriteSuccess(BinaryWriter writer) => writer.Write(true);\r\n}\r\n"
+      },
+      {
+        "factory": "core = new ExternalCore(corePath);",
+        "sha256": "E17B49B4F9219B2910C0DE025F8EB4332EA1266254B24BD211E1B2E2F8120784",
+        "resetVideoInFinally": false,
+        "nativeDiagnostics": false,
+        "softReset": true,
+        "path": "src/GWGUI.Emulation.Nec/Emulators/BeetlePcfx/Services/CoreHost.cs",
+        "windowsErrorMode": false,
+        "sonySuffix": false,
+        "controller": false,
+        "source": "using GWGUI.Emulation.Nec.Emulators.BeetlePcfx.Exceptions;\r\nusing GWGUI.Emulation.Nec.Emulators.BeetlePcfx.Constants;\r\nusing GWGUI.Emulation.Nec.Emulators.BeetlePcfx.Factories;\r\nusing GWGUI.Emulation.Nec.Emulators.BeetlePcfx.Functions;\r\nusing GWGUI.Emulation.Nec.Emulators.BeetlePcfx.Services;\r\nusing GWGUI.Emulation.Nec.Emulators.BeetlePcfx.Enums;\r\n\r\nusing System.IO.Pipes;\r\nusing System.Runtime.Versioning;\r\nusing System.Text.Json;\r\n\r\nusing System.IO;\r\n\r\nnamespace GWGUI.Emulation.Nec.Emulators.BeetlePcfx.Services;\r\n\r\npublic static class CoreHost\r\n                {\r\n    [SupportedOSPlatform(CoreHostConstants.Windows)]\r\n    public static void Run(string pipeName, string videoMapName)\r\n    {\r\n        EmulationHostProtocolFunctions.WithSharedVideoMap(videoMapName, 0, videoMap =>\r\n            EmulationHostProtocolFunctions.RunConnectedSession(pipeName, CoreHostConstants.Value, 15_000, (reader, transportWriter) =>\r\n            {\r\n                ExternalCore? core = null;\r\n                var lastVideoSequence = 0L;\r\n                var lastDiagnosticCount = 0;\r\n                try\r\n                {\r\n                    EmulationHostProtocolFunctions.RunCommandLoop<HostCommand>(reader, transportWriter, static commandReader => (HostCommand)commandReader.ReadByte(), HostCommand.Dispose, (command, writer) =>\r\n                    {\r\n                        switch (command)\r\n                        {\r\n                            case HostCommand.Initialize:\r\n                                var (corePath, session, saves, configuration) =\r\n                                    EmulationHostProtocolFunctions.ReadInitializationRequest(reader,\r\n                                        CoreHostProtocol.ReadString,\r\n                                        static requestReader => JsonSerializer.Deserialize<MachineConfiguration>(requestReader.ReadString(), CoreHostProtocol.JsonOptions) ?? throw new InvalidDataException(BeetlePcfxExceptions.HostConfigurationInvalid()));\r\n                                EmulationHostProtocolFunctions.DisposePreviousCore(ref core);\r\n                                core = new ExternalCore(corePath);\r\n                                core.Initialize(configuration, session, saves);\r\n                                writer.Write(true);\r\n                                EmulationHostProtocolFunctions.WriteCoreInitialization<ExternalCore, MachineConfiguration, CoreOption>(\r\n                                    writer, core, CoreHostProtocol.JsonOptions, ref lastDiagnosticCount, '|');\r\n                                EmulationHostProtocolFunctions.WriteDiskSelection(writer, core);\r\n                                CoreHostProtocol.WriteLedStates(writer, core.LedStates);\r\n                                break;\r\n                            case HostCommand.RunFrame:\r\n                                var activeCore = EnsureCore(core);\r\n                                EmulationHostProtocolFunctions.RunCoreFrame<ExternalCore, MachineConfiguration, CoreOption>(\r\n                                    reader, writer, activeCore, CoreHostProtocol.ReadInput,\r\n                                    (frameWriter, pendingFrame) => CoreHostProtocol.WriteSharedFrame(frameWriter, pendingFrame, videoMap),\r\n                                    EmulationHostProtocolFunctions.WriteDiskSelection, CoreHostProtocol.WriteLedStates, static () => CoreHostProtocol.JsonOptions,\r\n                                    ref lastVideoSequence, ref lastDiagnosticCount);\r\n                                break;\r\n                            case HostCommand.SoftReset:\r\n                                EnsureCore(core).SoftReset();\r\n                                WriteSuccess(writer);\r\n                                break;\r\n                            case HostCommand.Dispose:\r\n                                EmulationHostProtocolFunctions.DisposePreviousCore(ref core);\r\n                                WriteSuccess(writer);\r\n                                break;\r\n                            default:\r\n                                if (!EmulationHostProtocolFunctions.TryExecutePathMediaCommand((byte)command, reader, writer,\r\n                                        () => EnsureCore(core), CoreHostProtocol.ReadBytes, WriteSuccess))\r\n                                    throw new InvalidDataException(BeetlePcfxExceptions.UnknownHostCommand((byte)command));\r\n                                break;\r\n                        }\r\n                    }, (writer, error) =>\r\n                    {\r\n                        writer.Write(false);\r\n                        writer.Write((byte)(error is GWGUI.Emulation.Nec.Common.Exceptions.CoreMediaRequiredException ? GWGUI.Emulation.Nec.Common.Enums.CoreHostErrorKind.MediaRequired : GWGUI.Emulation.Nec.Common.Enums.CoreHostErrorKind.General));\r\n                        writer.Write(error.ToString());\r\n                    });\r\n                }\r\n                finally\r\n                {\r\n                    EmulationHostProtocolFunctions.DisposePreviousCore(ref core);\r\n                }\r\n            }));\r\n    }\r\n\r\n    private static ExternalCore EnsureCore(ExternalCore? core) => core ?? throw new InvalidOperationException(BeetlePcfxExceptions.HostNotInitialized());\r\n    private static void WriteSuccess(BinaryWriter writer) => writer.Write(true);\r\n}\r\n"
+      },
+      {
+        "factory": "core = new ExternalCore(corePath);",
+        "sha256": "78839F24A80B4384BBC20AF60B82F0329AE14B77D2355E123A4B95131077E4BE",
+        "resetVideoInFinally": false,
+        "nativeDiagnostics": false,
+        "softReset": true,
+        "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/CoreHost.cs",
+        "windowsErrorMode": false,
+        "sonySuffix": false,
+        "controller": false,
+        "source": "using GWGUI.Emulation.Nec.Emulators.Common.Interop.Exceptions;\r\nusing GWGUI.Emulation.Nec.Emulators.Common.Interop.Constants;\r\nusing GWGUI.Emulation.Nec.Emulators.Common.Interop.Contracts;\r\nusing GWGUI.Emulation.Nec.Emulators.Common.Interop.Functions;\r\nusing GWGUI.Emulation.Nec.Emulators.Common.Interop.Services;\r\nusing GWGUI.Emulation.Nec.Emulators.Common.Interop.Enums;\r\nusing System.IO.Pipes;\r\nusing System.Runtime.Versioning;\r\nusing System.Text.Json;\r\nusing System.IO;\r\n\r\n\r\n\r\nnamespace GWGUI.Emulation.Nec.Emulators.Common.Interop.Services;\r\n\r\npublic static class CoreHost\r\n                {\r\n    [SupportedOSPlatform(CoreHostConstants.Windows)]\r\n    public static void Run(string pipeName, string videoMapName)\r\n    {\r\n        EmulationHostProtocolFunctions.WithSharedVideoMap(videoMapName, 0, videoMap =>\r\n            EmulationHostProtocolFunctions.RunConnectedSession(pipeName, CoreHostConstants.Value, 15_000, (reader, transportWriter) =>\r\n            {\r\n                ExternalCore? core = null;\r\n                var lastVideoSequence = 0L;\r\n                var lastDiagnosticCount = 0;\r\n                try\r\n                {\r\n                    EmulationHostProtocolFunctions.RunCommandLoop<HostCommand>(reader, transportWriter, static commandReader => (HostCommand)commandReader.ReadByte(), HostCommand.Dispose, (command, writer) =>\r\n                    {\r\n                        switch (command)\r\n                        {\r\n                            case HostCommand.Initialize:\r\n                                var (corePath, session, saves, configuration) =\r\n                                    EmulationHostProtocolFunctions.ReadInitializationRequest(reader,\r\n                                        CoreHostProtocol.ReadString,\r\n                                        static requestReader => JsonSerializer.Deserialize<MachineConfiguration>(requestReader.ReadString(), CoreHostProtocol.JsonOptions) ?? throw new InvalidDataException(CoreExceptions.HostConfigurationInvalid()));\r\n                                EmulationHostProtocolFunctions.DisposePreviousCore(ref core);\r\n                                core = new ExternalCore(corePath);\r\n                                core.Initialize(configuration, session, saves);\r\n                                writer.Write(true);\r\n                                EmulationHostProtocolFunctions.WriteCoreInitialization<ExternalCore, MachineConfiguration, CoreOption>(\r\n                                    writer, core, CoreHostProtocol.JsonOptions, ref lastDiagnosticCount, '|');\r\n                                EmulationHostProtocolFunctions.WriteDiskSelection(writer, core);\r\n                                CoreHostProtocol.WriteLedStates(writer, core.LedStates);\r\n                                break;\r\n                            case HostCommand.RunFrame:\r\n                                var activeCore = EnsureCore(core);\r\n                                EmulationHostProtocolFunctions.RunCoreFrame<ExternalCore, MachineConfiguration, CoreOption>(\r\n                                    reader, writer, activeCore, CoreHostProtocol.ReadInput,\r\n                                    (frameWriter, pendingFrame) => CoreHostProtocol.WriteSharedFrame(frameWriter, pendingFrame, videoMap),\r\n                                    EmulationHostProtocolFunctions.WriteDiskSelection, CoreHostProtocol.WriteLedStates, static () => CoreHostProtocol.JsonOptions,\r\n                                    ref lastVideoSequence, ref lastDiagnosticCount);\r\n                                break;\r\n                            case HostCommand.SoftReset:\r\n                                EnsureCore(core).SoftReset();\r\n                                WriteSuccess(writer);\r\n                                break;\r\n                            case HostCommand.Dispose:\r\n                                EmulationHostProtocolFunctions.DisposePreviousCore(ref core);\r\n                                WriteSuccess(writer);\r\n                                break;\r\n                            default:\r\n                                if (!EmulationHostProtocolFunctions.TryExecutePathMediaCommand((byte)command, reader, writer,\r\n                                        () => EnsureCore(core), CoreHostProtocol.ReadBytes, WriteSuccess))\r\n                                    throw new InvalidDataException(CoreExceptions.UnknownHostCommand((byte)command));\r\n                                break;\r\n                        }\r\n                    }, (writer, error) =>\r\n                    {\r\n                        writer.Write(false);\r\n                        writer.Write((byte)(error is GWGUI.Emulation.Nec.Common.Exceptions.CoreMediaRequiredException ? GWGUI.Emulation.Nec.Common.Enums.CoreHostErrorKind.MediaRequired : GWGUI.Emulation.Nec.Common.Enums.CoreHostErrorKind.General));\r\n                        writer.Write(error.ToString());\r\n                    });\r\n                }\r\n                finally\r\n                {\r\n                    EmulationHostProtocolFunctions.DisposePreviousCore(ref core);\r\n                }\r\n            }));\r\n    }\r\n\r\n    private static ExternalCore EnsureCore(ExternalCore? core) => core ?? throw new InvalidOperationException(CoreExceptions.HostNotInitialized());\r\n    private static void WriteSuccess(BinaryWriter writer) => writer.Write(true);\r\n}\r\n"
+      },
+      {
+        "factory": "core = new ExternalCore(corePath);",
+        "sha256": "C54BBF9581572C1F4887F9B6BC35AFD872D4429A556FF61ACCD8237C7DEBE433",
+        "resetVideoInFinally": false,
+        "nativeDiagnostics": false,
+        "softReset": true,
+        "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/CoreHost.cs",
+        "windowsErrorMode": true,
+        "sonySuffix": false,
+        "controller": false,
+        "source": "using GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Exceptions;\r\nusing GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Constants;\r\nusing GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Contracts;\r\nusing GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Functions;\r\nusing GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Services;\r\nusing GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Enums;\r\n\r\nusing System.IO.Pipes;\r\nusing System.Runtime.Versioning;\r\nusing System.Runtime.InteropServices;\r\nusing System.Text.Json;\r\n\r\nusing System.IO;\r\n\r\nnamespace GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Services;\r\n\r\npublic static class CoreHost\r\n                {\r\n    [SupportedOSPlatform(CoreHostConstants.Windows)]\r\n    public static void Run(string pipeName, string videoMapName)\r\n    {\r\n        var previousErrorMode = GetErrorMode();\r\n        SetErrorMode(previousErrorMode | CoreHostConstants.SuppressCriticalErrorDialogs | CoreHostConstants.SuppressFaultDialogs);\r\n        try { RunSession(pipeName, videoMapName); }\r\n        finally { SetErrorMode(previousErrorMode); }\r\n    }\r\n\r\n    [SupportedOSPlatform(CoreHostConstants.Windows)]\r\n    private static void RunSession(string pipeName, string videoMapName)\r\n    {\r\n        EmulationHostProtocolFunctions.WithSharedVideoMap(videoMapName, 0, videoMap =>\r\n            EmulationHostProtocolFunctions.RunConnectedSession(pipeName, CoreHostConstants.LocalPipeServer, CoreHostConstants.ConnectionTimeoutMilliseconds, (reader, transportWriter) =>\r\n            {\r\n                ExternalCore? core = null;\r\n                var lastVideoSequence = 0L;\r\n                var lastDiagnosticCount = 0;\r\n                try\r\n                {\r\n                    EmulationHostProtocolFunctions.RunCommandLoop<HostCommand>(reader, transportWriter, static commandReader => (HostCommand)commandReader.ReadByte(), HostCommand.Dispose, (command, writer) =>\r\n                    {\r\n                        switch (command)\r\n                        {\r\n                            case HostCommand.Initialize:\r\n                                var (corePath, session, saves, configuration) =\r\n                                    EmulationHostProtocolFunctions.ReadInitializationRequest(reader,\r\n                                        CoreHostProtocol.ReadString,\r\n                                        static requestReader => JsonSerializer.Deserialize<MachineConfiguration>(requestReader.ReadString(), CoreHostProtocol.JsonOptions) ?? throw new InvalidDataException(CoreExceptions.HostConfigurationInvalid()));\r\n                                EmulationHostProtocolFunctions.DisposePreviousCore(ref core);\r\n                                core = new ExternalCore(corePath);\r\n                                core.Initialize(configuration, session, saves);\r\n                                writer.Write(true);\r\n                                EmulationHostProtocolFunctions.WriteCoreInitialization<ExternalCore, MachineConfiguration, CoreOption>(\r\n                                    writer, core, CoreHostProtocol.JsonOptions, ref lastDiagnosticCount, '|');\r\n                                EmulationHostProtocolFunctions.WriteDiskSelection(writer, core);\r\n                                CoreHostProtocol.WriteLedStates(writer, core.LedStates);\r\n                                break;\r\n                            case HostCommand.RunFrame:\r\n                                var activeCore = EnsureCore(core);\r\n                                EmulationHostProtocolFunctions.RunCoreFrame<ExternalCore, MachineConfiguration, CoreOption>(\r\n                                    reader, writer, activeCore, CoreHostProtocol.ReadInput,\r\n                                    (frameWriter, pendingFrame) => CoreHostProtocol.WriteSharedFrame(frameWriter, pendingFrame, videoMap),\r\n                                    EmulationHostProtocolFunctions.WriteDiskSelection, CoreHostProtocol.WriteLedStates, static () => CoreHostProtocol.JsonOptions,\r\n                                    ref lastVideoSequence, ref lastDiagnosticCount);\r\n                                break;\r\n                            case HostCommand.SoftReset:\r\n                                EnsureCore(core).SoftReset();\r\n                                WriteSuccess(writer);\r\n                                break;\r\n                            case HostCommand.Dispose:\r\n                                EmulationHostProtocolFunctions.DisposePreviousCore(ref core);\r\n                                WriteSuccess(writer);\r\n                                break;\r\n                            default:\r\n                                if (!EmulationHostProtocolFunctions.TryExecutePathMediaCommand((byte)command, reader, writer,\r\n                                        () => EnsureCore(core), CoreHostProtocol.ReadBytes, WriteSuccess))\r\n                                    throw new InvalidDataException(CoreExceptions.UnknownHostCommand((byte)command));\r\n                                break;\r\n                        }\r\n                    }, (writer, error) =>\r\n                    {\r\n                        writer.Write(false);\r\n                        writer.Write(error.ToString());\r\n                    });\r\n                }\r\n                finally\r\n                {\r\n                    EmulationHostProtocolFunctions.DisposePreviousCore(ref core);\r\n                }\r\n            }));\r\n    }\r\n\r\n    private static ExternalCore EnsureCore(ExternalCore? core) => core ?? throw new InvalidOperationException(CoreExceptions.HostNotInitialized());\r\n    private static void WriteSuccess(BinaryWriter writer) => writer.Write(true);\r\n\r\n    [DllImport(CoreHostConstants.KernelLibrary)]\r\n    private static extern uint GetErrorMode();\r\n\r\n    [DllImport(CoreHostConstants.KernelLibrary)]\r\n    private static extern uint SetErrorMode(uint mode);\r\n}\r\n"
+      },
+      {
+        "factory": "core = new ExternalCore(corePath);",
+        "sha256": "9B036ADBEFDBBCE25F9BB24AC41BA34D71A20F12792FF7668D207E90DEF5A721",
+        "resetVideoInFinally": false,
+        "nativeDiagnostics": false,
+        "softReset": true,
+        "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/CoreHost.cs",
+        "windowsErrorMode": true,
+        "sonySuffix": false,
+        "controller": false,
+        "source": "using GWGUI.Emulation.Sega.Emulators.Common.Interop.Exceptions;\r\nusing GWGUI.Emulation.Sega.Emulators.Common.Interop.Constants;\r\nusing GWGUI.Emulation.Sega.Emulators.Common.Interop.Contracts;\r\nusing GWGUI.Emulation.Sega.Emulators.Common.Interop.Functions;\r\nusing GWGUI.Emulation.Sega.Emulators.Common.Interop.Services;\r\nusing GWGUI.Emulation.Sega.Emulators.Common.Interop.Enums;\r\n\r\nusing System.IO.Pipes;\r\nusing System.Runtime.Versioning;\r\nusing System.Runtime.InteropServices;\r\nusing System.Text.Json;\r\n\r\nusing System.IO;\r\n\r\nnamespace GWGUI.Emulation.Sega.Emulators.Common.Interop.Services;\r\n\r\npublic static class CoreHost\r\n                {\r\n    [SupportedOSPlatform(CoreHostConstants.Windows)]\r\n    public static void Run(string pipeName, string videoMapName)\r\n    {\r\n        var previousErrorMode = GetErrorMode();\r\n        SetErrorMode(previousErrorMode | CoreHostConstants.SuppressCriticalErrorDialogs | CoreHostConstants.SuppressFaultDialogs);\r\n        try { RunSession(pipeName, videoMapName); }\r\n        finally { SetErrorMode(previousErrorMode); }\r\n    }\r\n\r\n    [SupportedOSPlatform(CoreHostConstants.Windows)]\r\n    private static void RunSession(string pipeName, string videoMapName)\r\n    {\r\n        EmulationHostProtocolFunctions.WithSharedVideoMap(videoMapName, 0, videoMap =>\r\n            EmulationHostProtocolFunctions.RunConnectedSession(pipeName, CoreHostConstants.LocalPipeServer, CoreHostConstants.ConnectionTimeoutMilliseconds, (reader, transportWriter) =>\r\n            {\r\n                ExternalCore? core = null;\r\n                var lastVideoSequence = 0L;\r\n                var lastDiagnosticCount = 0;\r\n                try\r\n                {\r\n                    EmulationHostProtocolFunctions.RunCommandLoop<HostCommand>(reader, transportWriter, static commandReader => (HostCommand)commandReader.ReadByte(), HostCommand.Dispose, (command, writer) =>\r\n                    {\r\n                        switch (command)\r\n                        {\r\n                            case HostCommand.Initialize:\r\n                                var (corePath, session, saves, configuration) =\r\n                                    EmulationHostProtocolFunctions.ReadInitializationRequest(reader,\r\n                                        CoreHostProtocol.ReadString,\r\n                                        static requestReader => JsonSerializer.Deserialize<MachineConfiguration>(requestReader.ReadString(), CoreHostProtocol.JsonOptions) ?? throw new InvalidDataException(CoreExceptions.HostConfigurationInvalid()));\r\n                                EmulationHostProtocolFunctions.DisposePreviousCore(ref core);\r\n                                core = new ExternalCore(corePath);\r\n                                core.Initialize(configuration, session, saves);\r\n                                writer.Write(true);\r\n                                EmulationHostProtocolFunctions.WriteCoreInitialization<ExternalCore, MachineConfiguration, CoreOption>(\r\n                                    writer, core, CoreHostProtocol.JsonOptions, ref lastDiagnosticCount, '|');\r\n                                EmulationHostProtocolFunctions.WriteDiskSelection(writer, core);\r\n                                CoreHostProtocol.WriteLedStates(writer, core.LedStates);\r\n                                break;\r\n                            case HostCommand.RunFrame:\r\n                                var activeCore = EnsureCore(core);\r\n                                EmulationHostProtocolFunctions.RunCoreFrame<ExternalCore, MachineConfiguration, CoreOption>(\r\n                                    reader, writer, activeCore, CoreHostProtocol.ReadInput,\r\n                                    (frameWriter, pendingFrame) => CoreHostProtocol.WriteSharedFrame(frameWriter, pendingFrame, videoMap),\r\n                                    EmulationHostProtocolFunctions.WriteDiskSelection, CoreHostProtocol.WriteLedStates, static () => CoreHostProtocol.JsonOptions,\r\n                                    ref lastVideoSequence, ref lastDiagnosticCount);\r\n                                break;\r\n                            case HostCommand.SoftReset:\r\n                                EnsureCore(core).SoftReset();\r\n                                WriteSuccess(writer);\r\n                                break;\r\n                            case HostCommand.Dispose:\r\n                                EmulationHostProtocolFunctions.DisposePreviousCore(ref core);\r\n                                WriteSuccess(writer);\r\n                                break;\r\n                            default:\r\n                                if (!EmulationHostProtocolFunctions.TryExecutePathMediaCommand((byte)command, reader, writer,\r\n                                        () => EnsureCore(core), CoreHostProtocol.ReadBytes, WriteSuccess))\r\n                                    throw new InvalidDataException(CoreExceptions.UnknownHostCommand((byte)command));\r\n                                break;\r\n                        }\r\n                    }, (writer, error) =>\r\n                    {\r\n                        writer.Write(false);\r\n                        writer.Write(error.ToString());\r\n                    });\r\n                }\r\n                finally\r\n                {\r\n                    EmulationHostProtocolFunctions.DisposePreviousCore(ref core);\r\n                }\r\n            }));\r\n    }\r\n\r\n    private static ExternalCore EnsureCore(ExternalCore? core) => core ?? throw new InvalidOperationException(CoreExceptions.HostNotInitialized());\r\n    private static void WriteSuccess(BinaryWriter writer) => writer.Write(true);\r\n\r\n    [DllImport(CoreHostConstants.KernelLibrary)]\r\n    private static extern uint GetErrorMode();\r\n\r\n    [DllImport(CoreHostConstants.KernelLibrary)]\r\n    private static extern uint SetErrorMode(uint mode);\r\n}\r\n"
+      },
+      {
+        "factory": "core = new ExternalCore(CoreCatalog.Get(configuration.EmulatorId), corePath);",
+        "sha256": "57A0985C12280B9C1229E15364907DA47119187FFF595C6AE35F6A102437A916",
+        "resetVideoInFinally": false,
+        "nativeDiagnostics": true,
+        "softReset": true,
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/CoreHost.cs",
+        "windowsErrorMode": false,
+        "sonySuffix": true,
+        "controller": true,
+        "source": "using GWGUI.Emulation.Sony.Emulators.Common.Interop.Exceptions;\r\nusing GWGUI.Emulation.Sony.Emulators.Common.Interop.Constants;\r\nusing GWGUI.Emulation.Sony.Emulators.Common.Interop.Contracts;\r\nusing GWGUI.Emulation.Sony.Emulators.Common.Interop.Functions;\r\nusing GWGUI.Emulation.Sony.Emulators.Common.Interop.Services;\r\nusing GWGUI.Emulation.Sony.Emulators.Common.Interop.Enums;\r\n\r\nusing System.IO.Pipes;\r\nusing System.Runtime.Versioning;\r\nusing System.Text.Json;\r\n\r\nusing System.IO;\r\nusing GWGUI.Emulation.Sony.Emulators.Common.Interop.Dictionaries;\r\n\r\nnamespace GWGUI.Emulation.Sony.Emulators.Common.Interop.Services;\r\n\r\npublic static class CoreHost\r\n                {\r\n    [SupportedOSPlatform(CoreHostConstants.Windows)]\r\n    public static void Run(string pipeName, string videoMapName)\r\n    {\r\n        EmulationHostProtocolFunctions.WithSharedVideoMap(videoMapName, 0, videoMap =>\r\n            EmulationHostProtocolFunctions.RunConnectedSession(pipeName, CoreHostConstants.LocalPipeServer, checked((int)TimeSpan.FromSeconds(ProcessCoreConstants.ConnectionTimeoutSeconds).TotalMilliseconds), (reader, transportWriter) =>\r\n            {\r\n                ExternalCore? core = null;\r\n                var lastVideoSequence = 0L;\r\n                var lastDiagnosticCount = 0;\r\n                try\r\n                {\r\n                    EmulationHostProtocolFunctions.RunCommandLoop<HostCommand>(reader, transportWriter, static commandReader => (HostCommand)commandReader.ReadByte(), HostCommand.Dispose, (command, writer) =>\r\n                    {\r\n                        switch (command)\r\n                        {\r\n                            case HostCommand.Initialize:\r\n                                var (corePath, session, saves, configuration) =\r\n                                    EmulationHostProtocolFunctions.ReadInitializationRequest(reader,\r\n                                        CoreHostProtocol.ReadString,\r\n                                        static requestReader => JsonSerializer.Deserialize<MachineConfiguration>(requestReader.ReadString(), CoreHostProtocol.JsonOptions) ?? throw new InvalidDataException(CoreExceptions.HostConfigurationInvalid()));\r\n                                EmulationHostProtocolFunctions.DisposePreviousCore(ref core);\r\n                                core = new ExternalCore(CoreCatalog.Get(configuration.EmulatorId), corePath);\r\n                                core.Initialize(configuration, session, saves);\r\n                                writer.Write(true);\r\n                                EmulationHostProtocolFunctions.WriteCoreInitialization<ExternalCore, MachineConfiguration, CoreOption>(\r\n                                    writer, core, CoreHostProtocol.JsonOptions, ref lastDiagnosticCount, '|');\r\n                                EmulationHostProtocolFunctions.WriteDiskSelection(writer, core);\r\n                                CoreHostProtocol.WriteLedStates(writer, core.LedStates);\r\n                                writer.Write(core.ShutdownRequested);\r\n                                ControllerFeedbackProtocol.Write(writer, core.ControllerFeedback);\r\n                                break;\r\n                            case HostCommand.RunFrame:\r\n                                var activeCore = EnsureCore(core);\r\n                                EmulationHostProtocolFunctions.RunCoreFrame<ExternalCore, MachineConfiguration, CoreOption>(\r\n                                    reader, writer, activeCore, CoreHostProtocol.ReadInput,\r\n                                    (frameWriter, pendingFrame) => CoreHostProtocol.WriteSharedFrame(frameWriter, pendingFrame, videoMap),\r\n                                    EmulationHostProtocolFunctions.WriteDiskSelection, CoreHostProtocol.WriteLedStates, static () => CoreHostProtocol.JsonOptions,\r\n                                    ref lastVideoSequence, ref lastDiagnosticCount);\r\n                                writer.Write(activeCore.ShutdownRequested);\r\n                                ControllerFeedbackProtocol.Write(writer, activeCore.ControllerFeedback);\r\n                                break;\r\n                            case HostCommand.SoftReset:\r\n                                EnsureCore(core).SoftReset();\r\n                                WriteSuccess(writer);\r\n                                break;\r\n                            case HostCommand.SetControllerPortDevice:\r\n                                EnsureCore(core).SetControllerPortDevice(reader.ReadInt32(), (ControllerType)reader.ReadInt32());\r\n                                WriteSuccess(writer);\r\n                                break;\r\n                            case HostCommand.Dispose:\r\n                                EmulationHostProtocolFunctions.DisposePreviousCore(ref core);\r\n                                WriteSuccess(writer);\r\n                                break;\r\n                            default:\r\n                                if (!EmulationHostProtocolFunctions.TryExecutePathMediaCommand((byte)command, reader, writer,\r\n                                        () => EnsureCore(core), CoreHostProtocol.ReadBytes, WriteSuccess))\r\n                                    throw new InvalidDataException(CoreExceptions.UnknownHostCommand((byte)command));\r\n                                break;\r\n                        }\r\n                    }, (writer, error) =>\r\n                    {\r\n                        writer.Write(false);\r\n                        writer.Write(CoreDiagnosticMonitor.WithNativeDiagnostics(error, core?.Diagnostics ?? []).ToString());\r\n                    });\r\n                }\r\n                finally\r\n                {\r\n                    EmulationHostProtocolFunctions.DisposePreviousCore(ref core);\r\n                }\r\n            }));\r\n    }\r\n\r\n    private static ExternalCore EnsureCore(ExternalCore? core) => core ?? throw new InvalidOperationException(CoreExceptions.HostNotInitialized());\r\n    private static void WriteSuccess(BinaryWriter writer) => writer.Write(true);\r\n}\r\n"
+      },
+      {
+        "factory": "core = new ExternalCore(corePath);",
+        "sha256": "7B30242D8C4FE243C4288A7E6271C9F0A83C30726361CAEF3A05E32933EB5CFB",
+        "resetVideoInFinally": false,
+        "nativeDiagnostics": false,
+        "softReset": true,
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/CoreHost.cs",
+        "windowsErrorMode": false,
+        "sonySuffix": true,
+        "controller": true,
+        "source": "using ControllerFeedbackProtocol = GWGUI.Emulation.Sony.Emulators.Common.Interop.Functions.ControllerFeedbackProtocol;\r\nusing GWGUI.Emulation.Sony.Emulators.Pcsx2.Exceptions;\r\nusing GWGUI.Emulation.Sony.Emulators.Pcsx2.Constants;\r\nusing GWGUI.Emulation.Sony.Emulators.Pcsx2.Contracts;\r\nusing GWGUI.Emulation.Sony.Emulators.Pcsx2.Factories;\r\nusing GWGUI.Emulation.Sony.Emulators.Pcsx2.Functions;\r\nusing GWGUI.Emulation.Sony.Emulators.Pcsx2.Services;\r\nusing GWGUI.Emulation.Sony.Emulators.Pcsx2.Enums;\r\n\r\nusing System.IO.Pipes;\r\nusing System.Runtime.Versioning;\r\nusing System.Text.Json;\r\n\r\nusing System.IO;\r\n\r\nnamespace GWGUI.Emulation.Sony.Emulators.Pcsx2.Services;\r\n\r\npublic static class CoreHost\r\n                {\r\n    [SupportedOSPlatform(CoreHostConstants.Windows)]\r\n    public static void Run(string pipeName, string videoMapName)\r\n    {\r\n        EmulationHostProtocolFunctions.WithSharedVideoMap(videoMapName, 0, videoMap =>\r\n            EmulationHostProtocolFunctions.RunConnectedSession(pipeName, CoreHostConstants.Value, 15_000, (reader, transportWriter) =>\r\n            {\r\n                ExternalCore? core = null;\r\n                var lastVideoSequence = 0L;\r\n                var lastDiagnosticCount = 0;\r\n                try\r\n                {\r\n                    EmulationHostProtocolFunctions.RunCommandLoop<HostCommand>(reader, transportWriter, static commandReader => (HostCommand)commandReader.ReadByte(), HostCommand.Dispose, (command, writer) =>\r\n                    {\r\n                        switch (command)\r\n                        {\r\n                            case HostCommand.Initialize:\r\n                                var (corePath, session, saves, configuration) =\r\n                                    EmulationHostProtocolFunctions.ReadInitializationRequest(reader,\r\n                                        CoreHostProtocol.ReadString,\r\n                                        static requestReader => JsonSerializer.Deserialize<MachineConfiguration>(requestReader.ReadString(), CoreHostProtocol.JsonOptions) ?? throw new InvalidDataException(Pcsx2Exceptions.HostConfigurationInvalid()));\r\n                                EmulationHostProtocolFunctions.DisposePreviousCore(ref core);\r\n                                core = new ExternalCore(corePath);\r\n                                core.Initialize(configuration, session, saves);\r\n                                writer.Write(true);\r\n                                EmulationHostProtocolFunctions.WriteCoreInitialization<ExternalCore, MachineConfiguration, CoreOption>(\r\n                                    writer, core, CoreHostProtocol.JsonOptions, ref lastDiagnosticCount, '|');\r\n                                EmulationHostProtocolFunctions.WriteDiskSelection(writer, core);\r\n                                CoreHostProtocol.WriteLedStates(writer, core.LedStates);\r\n                                writer.Write(core.ShutdownRequested);\r\n                                ControllerFeedbackProtocol.Write(writer, core.ControllerFeedback);\r\n                                break;\r\n                            case HostCommand.RunFrame:\r\n                                var activeCore = EnsureCore(core);\r\n                                EmulationHostProtocolFunctions.RunCoreFrame<ExternalCore, MachineConfiguration, CoreOption>(\r\n                                    reader, writer, activeCore, CoreHostProtocol.ReadInput,\r\n                                    (frameWriter, pendingFrame) => CoreHostProtocol.WriteSharedFrame(frameWriter, pendingFrame, videoMap),\r\n                                    EmulationHostProtocolFunctions.WriteDiskSelection, CoreHostProtocol.WriteLedStates, static () => CoreHostProtocol.JsonOptions,\r\n                                    ref lastVideoSequence, ref lastDiagnosticCount);\r\n                                writer.Write(activeCore.ShutdownRequested);\r\n                                ControllerFeedbackProtocol.Write(writer, activeCore.ControllerFeedback);\r\n                                break;\r\n                            case HostCommand.SoftReset:\r\n                                EnsureCore(core).SoftReset();\r\n                                WriteSuccess(writer);\r\n                                break;\r\n                            case HostCommand.SetControllerPortDevice:\r\n                                EnsureCore(core).SetControllerPortDevice(reader.ReadInt32(), (ControllerType)reader.ReadInt32());\r\n                                WriteSuccess(writer);\r\n                                break;\r\n                            case HostCommand.Dispose:\r\n                                EmulationHostProtocolFunctions.DisposePreviousCore(ref core);\r\n                                WriteSuccess(writer);\r\n                                break;\r\n                            default:\r\n                                if (!EmulationHostProtocolFunctions.TryExecutePathMediaCommand((byte)command, reader, writer,\r\n                                        () => EnsureCore(core), CoreHostProtocol.ReadBytes, WriteSuccess))\r\n                                    throw new InvalidDataException(Pcsx2Exceptions.UnknownHostCommand((byte)command));\r\n                                break;\r\n                        }\r\n                    }, (writer, error) =>\r\n                    {\r\n                        writer.Write(false);\r\n                        writer.Write(error.ToString());\r\n                    });\r\n                }\r\n                finally\r\n                {\r\n                    EmulationHostProtocolFunctions.DisposePreviousCore(ref core);\r\n                }\r\n            }));\r\n    }\r\n\r\n    private static ExternalCore EnsureCore(ExternalCore? core) => core ?? throw new InvalidOperationException(Pcsx2Exceptions.HostNotInitialized());\r\n    private static void WriteSuccess(BinaryWriter writer) => writer.Write(true);\r\n}\r\n"
+      },
+      {
+        "factory": "core = new ExternalCore(corePath);",
+        "sha256": "A5EC853E11B11AD0C1E0583D33BDB005BD72753461F5C6963EB100E0F4B87408",
+        "resetVideoInFinally": false,
+        "nativeDiagnostics": false,
+        "softReset": true,
+        "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/CoreHost.cs",
+        "windowsErrorMode": false,
+        "sonySuffix": false,
+        "controller": true,
+        "source": "using GWGUI.Emulation.Sony.Emulators.Ppsspp.Exceptions;\r\nusing GWGUI.Emulation.Sony.Emulators.Ppsspp.Constants;\r\nusing GWGUI.Emulation.Sony.Emulators.Ppsspp.Contracts;\r\nusing GWGUI.Emulation.Sony.Emulators.Ppsspp.Factories;\r\nusing GWGUI.Emulation.Sony.Emulators.Ppsspp.Functions;\r\nusing GWGUI.Emulation.Sony.Emulators.Ppsspp.Services;\r\nusing GWGUI.Emulation.Sony.Emulators.Ppsspp.Enums;\r\n\r\nusing System.IO.Pipes;\r\nusing System.Runtime.Versioning;\r\nusing System.Text.Json;\r\n\r\nusing System.IO;\r\n\r\nnamespace GWGUI.Emulation.Sony.Emulators.Ppsspp.Services;\r\n\r\npublic static class CoreHost\r\n                {\r\n    [SupportedOSPlatform(CoreHostConstants.Windows)]\r\n    public static void Run(string pipeName, string videoMapName)\r\n    {\r\n        EmulationHostProtocolFunctions.WithSharedVideoMap(videoMapName, 0, videoMap =>\r\n            EmulationHostProtocolFunctions.RunConnectedSession(pipeName, CoreHostConstants.Value, 15_000, (reader, transportWriter) =>\r\n            {\r\n                ExternalCore? core = null;\r\n                var lastVideoSequence = 0L;\r\n                var lastDiagnosticCount = 0;\r\n                try\r\n                {\r\n                    EmulationHostProtocolFunctions.RunCommandLoop<HostCommand>(reader, transportWriter, static commandReader => (HostCommand)commandReader.ReadByte(), HostCommand.Dispose, (command, writer) =>\r\n                    {\r\n                        switch (command)\r\n                        {\r\n                            case HostCommand.Initialize:\r\n                                var (corePath, session, saves, configuration) =\r\n                                    EmulationHostProtocolFunctions.ReadInitializationRequest(reader,\r\n                                        CoreHostProtocol.ReadString,\r\n                                        static requestReader => JsonSerializer.Deserialize<MachineConfiguration>(requestReader.ReadString(), CoreHostProtocol.JsonOptions) ?? throw new InvalidDataException(PpssppExceptions.HostConfigurationInvalid()));\r\n                                EmulationHostProtocolFunctions.DisposePreviousCore(ref core);\r\n                                core = new ExternalCore(corePath);\r\n                                core.Initialize(configuration, session, saves);\r\n                                writer.Write(true);\r\n                                EmulationHostProtocolFunctions.WriteCoreInitialization<ExternalCore, MachineConfiguration, CoreOption>(\r\n                                    writer, core, CoreHostProtocol.JsonOptions, ref lastDiagnosticCount, '|');\r\n                                EmulationHostProtocolFunctions.WriteDiskSelection(writer, core);\r\n                                CoreHostProtocol.WriteLedStates(writer, core.LedStates);\r\n                                writer.Write(core.ShutdownRequested);\r\n                                break;\r\n                            case HostCommand.RunFrame:\r\n                                var activeCore = EnsureCore(core);\r\n                                EmulationHostProtocolFunctions.RunCoreFrame<ExternalCore, MachineConfiguration, CoreOption>(\r\n                                    reader, writer, activeCore, CoreHostProtocol.ReadInput,\r\n                                    (frameWriter, pendingFrame) => CoreHostProtocol.WriteSharedFrame(frameWriter, pendingFrame, videoMap),\r\n                                    EmulationHostProtocolFunctions.WriteDiskSelection, CoreHostProtocol.WriteLedStates, static () => CoreHostProtocol.JsonOptions,\r\n                                    ref lastVideoSequence, ref lastDiagnosticCount);\r\n                                writer.Write(activeCore.ShutdownRequested);\r\n                                break;\r\n                            case HostCommand.SoftReset:\r\n                                EnsureCore(core).SoftReset();\r\n                                WriteSuccess(writer);\r\n                                break;\r\n                            case HostCommand.SetControllerPortDevice:\r\n                                EnsureCore(core).SetControllerPortDevice(reader.ReadInt32(), (ControllerType)reader.ReadInt32());\r\n                                WriteSuccess(writer);\r\n                                break;\r\n                            case HostCommand.Dispose:\r\n                                EmulationHostProtocolFunctions.DisposePreviousCore(ref core);\r\n                                WriteSuccess(writer);\r\n                                break;\r\n                            default:\r\n                                if (!EmulationHostProtocolFunctions.TryExecutePathMediaCommand((byte)command, reader, writer,\r\n                                        () => EnsureCore(core), CoreHostProtocol.ReadBytes, WriteSuccess))\r\n                                    throw new InvalidDataException(PpssppExceptions.UnknownHostCommand((byte)command));\r\n                                break;\r\n                        }\r\n                    }, (writer, error) =>\r\n                    {\r\n                        writer.Write(false);\r\n                        writer.Write(error.ToString());\r\n                    });\r\n                }\r\n                finally\r\n                {\r\n                    EmulationHostProtocolFunctions.DisposePreviousCore(ref core);\r\n                }\r\n            }));\r\n    }\r\n\r\n    private static ExternalCore EnsureCore(ExternalCore? core) => core ?? throw new InvalidOperationException(PpssppExceptions.HostNotInitialized());\r\n    private static void WriteSuccess(BinaryWriter writer) => writer.Write(true);\r\n}\r\n"
+      }
+    ],
+    "remaining": [
+      "Nintendo/Sega Windows error mode duplicated; Nintendo9af3b8e2e is earlier than Sega948c0e509",
+      "Local initialization factories and validation errors are family-specific bindings",
+      "Sony controller/shutdown/feedback and native diagnostic failure suffix remain family-specific",
+      "Amstrad injected factory and video reset finally differ",
+      "Commodore has no SoftReset command; native slot dispatch remains a separate protocol",
+      "Full session adapter consolidation/qualification requires remaining registration binding comparison; current shared fragments alone do not qualify whole sessions"
+    ],
+    "sharedOwners": [
+      "WithSharedVideoMap",
+      "RunConnectedSession",
+      "RunCommandLoop",
+      "ReadInitializationRequest",
+      "WriteCoreInitialization",
+      "RunCoreFrame",
+      "DisposePreviousCore",
+      "WriteDiskSelection",
+      "TryExecutePathMediaCommand",
+      "TryExecuteCoreStateCommand"
+    ],
+    "origin": "ac7292d86^:src/GWGUI.Emulation.Amiga/Emulators/PUAE/Services/AmigaCoreHost.cs",
+    "fullSessionsNewlyQualified": 0
+  },
+  "legacyWindowsErrorModeReuse": {
+    "items": [
+      {
+        "factory": "core = new ExternalCore(corePath);",
+        "sha256": "C54BBF9581572C1F4887F9B6BC35AFD872D4429A556FF61ACCD8237C7DEBE433",
+        "resetVideoInFinally": false,
+        "nativeDiagnostics": false,
+        "softReset": true,
+        "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/CoreHost.cs",
+        "windowsErrorMode": true,
+        "sonySuffix": false,
+        "controller": false,
+        "source": "using GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Exceptions;\r\nusing GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Constants;\r\nusing GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Contracts;\r\nusing GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Functions;\r\nusing GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Services;\r\nusing GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Enums;\r\n\r\nusing System.IO.Pipes;\r\nusing System.Runtime.Versioning;\r\nusing System.Runtime.InteropServices;\r\nusing System.Text.Json;\r\n\r\nusing System.IO;\r\n\r\nnamespace GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Services;\r\n\r\npublic static class CoreHost\r\n                {\r\n    [SupportedOSPlatform(CoreHostConstants.Windows)]\r\n    public static void Run(string pipeName, string videoMapName)\r\n    {\r\n        var previousErrorMode = GetErrorMode();\r\n        SetErrorMode(previousErrorMode | CoreHostConstants.SuppressCriticalErrorDialogs | CoreHostConstants.SuppressFaultDialogs);\r\n        try { RunSession(pipeName, videoMapName); }\r\n        finally { SetErrorMode(previousErrorMode); }\r\n    }\r\n\r\n    [SupportedOSPlatform(CoreHostConstants.Windows)]\r\n    private static void RunSession(string pipeName, string videoMapName)\r\n    {\r\n        EmulationHostProtocolFunctions.WithSharedVideoMap(videoMapName, 0, videoMap =>\r\n            EmulationHostProtocolFunctions.RunConnectedSession(pipeName, CoreHostConstants.LocalPipeServer, CoreHostConstants.ConnectionTimeoutMilliseconds, (reader, transportWriter) =>\r\n            {\r\n                ExternalCore? core = null;\r\n                var lastVideoSequence = 0L;\r\n                var lastDiagnosticCount = 0;\r\n                try\r\n                {\r\n                    EmulationHostProtocolFunctions.RunCommandLoop<HostCommand>(reader, transportWriter, static commandReader => (HostCommand)commandReader.ReadByte(), HostCommand.Dispose, (command, writer) =>\r\n                    {\r\n                        switch (command)\r\n                        {\r\n                            case HostCommand.Initialize:\r\n                                var (corePath, session, saves, configuration) =\r\n                                    EmulationHostProtocolFunctions.ReadInitializationRequest(reader,\r\n                                        CoreHostProtocol.ReadString,\r\n                                        static requestReader => JsonSerializer.Deserialize<MachineConfiguration>(requestReader.ReadString(), CoreHostProtocol.JsonOptions) ?? throw new InvalidDataException(CoreExceptions.HostConfigurationInvalid()));\r\n                                EmulationHostProtocolFunctions.DisposePreviousCore(ref core);\r\n                                core = new ExternalCore(corePath);\r\n                                core.Initialize(configuration, session, saves);\r\n                                writer.Write(true);\r\n                                EmulationHostProtocolFunctions.WriteCoreInitialization<ExternalCore, MachineConfiguration, CoreOption>(\r\n                                    writer, core, CoreHostProtocol.JsonOptions, ref lastDiagnosticCount, '|');\r\n                                EmulationHostProtocolFunctions.WriteDiskSelection(writer, core);\r\n                                CoreHostProtocol.WriteLedStates(writer, core.LedStates);\r\n                                break;\r\n                            case HostCommand.RunFrame:\r\n                                var activeCore = EnsureCore(core);\r\n                                EmulationHostProtocolFunctions.RunCoreFrame<ExternalCore, MachineConfiguration, CoreOption>(\r\n                                    reader, writer, activeCore, CoreHostProtocol.ReadInput,\r\n                                    (frameWriter, pendingFrame) => CoreHostProtocol.WriteSharedFrame(frameWriter, pendingFrame, videoMap),\r\n                                    EmulationHostProtocolFunctions.WriteDiskSelection, CoreHostProtocol.WriteLedStates, static () => CoreHostProtocol.JsonOptions,\r\n                                    ref lastVideoSequence, ref lastDiagnosticCount);\r\n                                break;\r\n                            case HostCommand.SoftReset:\r\n                                EnsureCore(core).SoftReset();\r\n                                WriteSuccess(writer);\r\n                                break;\r\n                            case HostCommand.Dispose:\r\n                                EmulationHostProtocolFunctions.DisposePreviousCore(ref core);\r\n                                WriteSuccess(writer);\r\n                                break;\r\n                            default:\r\n                                if (!EmulationHostProtocolFunctions.TryExecutePathMediaCommand((byte)command, reader, writer,\r\n                                        () => EnsureCore(core), CoreHostProtocol.ReadBytes, WriteSuccess))\r\n                                    throw new InvalidDataException(CoreExceptions.UnknownHostCommand((byte)command));\r\n                                break;\r\n                        }\r\n                    }, (writer, error) =>\r\n                    {\r\n                        writer.Write(false);\r\n                        writer.Write(error.ToString());\r\n                    });\r\n                }\r\n                finally\r\n                {\r\n                    EmulationHostProtocolFunctions.DisposePreviousCore(ref core);\r\n                }\r\n            }));\r\n    }\r\n\r\n    private static ExternalCore EnsureCore(ExternalCore? core) => core ?? throw new InvalidOperationException(CoreExceptions.HostNotInitialized());\r\n    private static void WriteSuccess(BinaryWriter writer) => writer.Write(true);\r\n\r\n    [DllImport(CoreHostConstants.KernelLibrary)]\r\n    private static extern uint GetErrorMode();\r\n\r\n    [DllImport(CoreHostConstants.KernelLibrary)]\r\n    private static extern uint SetErrorMode(uint mode);\r\n}\r\n"
+      },
+      {
+        "factory": "core = new ExternalCore(corePath);",
+        "sha256": "9B036ADBEFDBBCE25F9BB24AC41BA34D71A20F12792FF7668D207E90DEF5A721",
+        "resetVideoInFinally": false,
+        "nativeDiagnostics": false,
+        "softReset": true,
+        "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/CoreHost.cs",
+        "windowsErrorMode": true,
+        "sonySuffix": false,
+        "controller": false,
+        "source": "using GWGUI.Emulation.Sega.Emulators.Common.Interop.Exceptions;\r\nusing GWGUI.Emulation.Sega.Emulators.Common.Interop.Constants;\r\nusing GWGUI.Emulation.Sega.Emulators.Common.Interop.Contracts;\r\nusing GWGUI.Emulation.Sega.Emulators.Common.Interop.Functions;\r\nusing GWGUI.Emulation.Sega.Emulators.Common.Interop.Services;\r\nusing GWGUI.Emulation.Sega.Emulators.Common.Interop.Enums;\r\n\r\nusing System.IO.Pipes;\r\nusing System.Runtime.Versioning;\r\nusing System.Runtime.InteropServices;\r\nusing System.Text.Json;\r\n\r\nusing System.IO;\r\n\r\nnamespace GWGUI.Emulation.Sega.Emulators.Common.Interop.Services;\r\n\r\npublic static class CoreHost\r\n                {\r\n    [SupportedOSPlatform(CoreHostConstants.Windows)]\r\n    public static void Run(string pipeName, string videoMapName)\r\n    {\r\n        var previousErrorMode = GetErrorMode();\r\n        SetErrorMode(previousErrorMode | CoreHostConstants.SuppressCriticalErrorDialogs | CoreHostConstants.SuppressFaultDialogs);\r\n        try { RunSession(pipeName, videoMapName); }\r\n        finally { SetErrorMode(previousErrorMode); }\r\n    }\r\n\r\n    [SupportedOSPlatform(CoreHostConstants.Windows)]\r\n    private static void RunSession(string pipeName, string videoMapName)\r\n    {\r\n        EmulationHostProtocolFunctions.WithSharedVideoMap(videoMapName, 0, videoMap =>\r\n            EmulationHostProtocolFunctions.RunConnectedSession(pipeName, CoreHostConstants.LocalPipeServer, CoreHostConstants.ConnectionTimeoutMilliseconds, (reader, transportWriter) =>\r\n            {\r\n                ExternalCore? core = null;\r\n                var lastVideoSequence = 0L;\r\n                var lastDiagnosticCount = 0;\r\n                try\r\n                {\r\n                    EmulationHostProtocolFunctions.RunCommandLoop<HostCommand>(reader, transportWriter, static commandReader => (HostCommand)commandReader.ReadByte(), HostCommand.Dispose, (command, writer) =>\r\n                    {\r\n                        switch (command)\r\n                        {\r\n                            case HostCommand.Initialize:\r\n                                var (corePath, session, saves, configuration) =\r\n                                    EmulationHostProtocolFunctions.ReadInitializationRequest(reader,\r\n                                        CoreHostProtocol.ReadString,\r\n                                        static requestReader => JsonSerializer.Deserialize<MachineConfiguration>(requestReader.ReadString(), CoreHostProtocol.JsonOptions) ?? throw new InvalidDataException(CoreExceptions.HostConfigurationInvalid()));\r\n                                EmulationHostProtocolFunctions.DisposePreviousCore(ref core);\r\n                                core = new ExternalCore(corePath);\r\n                                core.Initialize(configuration, session, saves);\r\n                                writer.Write(true);\r\n                                EmulationHostProtocolFunctions.WriteCoreInitialization<ExternalCore, MachineConfiguration, CoreOption>(\r\n                                    writer, core, CoreHostProtocol.JsonOptions, ref lastDiagnosticCount, '|');\r\n                                EmulationHostProtocolFunctions.WriteDiskSelection(writer, core);\r\n                                CoreHostProtocol.WriteLedStates(writer, core.LedStates);\r\n                                break;\r\n                            case HostCommand.RunFrame:\r\n                                var activeCore = EnsureCore(core);\r\n                                EmulationHostProtocolFunctions.RunCoreFrame<ExternalCore, MachineConfiguration, CoreOption>(\r\n                                    reader, writer, activeCore, CoreHostProtocol.ReadInput,\r\n                                    (frameWriter, pendingFrame) => CoreHostProtocol.WriteSharedFrame(frameWriter, pendingFrame, videoMap),\r\n                                    EmulationHostProtocolFunctions.WriteDiskSelection, CoreHostProtocol.WriteLedStates, static () => CoreHostProtocol.JsonOptions,\r\n                                    ref lastVideoSequence, ref lastDiagnosticCount);\r\n                                break;\r\n                            case HostCommand.SoftReset:\r\n                                EnsureCore(core).SoftReset();\r\n                                WriteSuccess(writer);\r\n                                break;\r\n                            case HostCommand.Dispose:\r\n                                EmulationHostProtocolFunctions.DisposePreviousCore(ref core);\r\n                                WriteSuccess(writer);\r\n                                break;\r\n                            default:\r\n                                if (!EmulationHostProtocolFunctions.TryExecutePathMediaCommand((byte)command, reader, writer,\r\n                                        () => EnsureCore(core), CoreHostProtocol.ReadBytes, WriteSuccess))\r\n                                    throw new InvalidDataException(CoreExceptions.UnknownHostCommand((byte)command));\r\n                                break;\r\n                        }\r\n                    }, (writer, error) =>\r\n                    {\r\n                        writer.Write(false);\r\n                        writer.Write(error.ToString());\r\n                    });\r\n                }\r\n                finally\r\n                {\r\n                    EmulationHostProtocolFunctions.DisposePreviousCore(ref core);\r\n                }\r\n            }));\r\n    }\r\n\r\n    private static ExternalCore EnsureCore(ExternalCore? core) => core ?? throw new InvalidOperationException(CoreExceptions.HostNotInitialized());\r\n    private static void WriteSuccess(BinaryWriter writer) => writer.Write(true);\r\n\r\n    [DllImport(CoreHostConstants.KernelLibrary)]\r\n    private static extern uint GetErrorMode();\r\n\r\n    [DllImport(CoreHostConstants.KernelLibrary)]\r\n    private static extern uint SetErrorMode(uint mode);\r\n}\r\n"
+      }
+    ],
+    "state": "Original Nintendo Windows control reused by both wrappers; SDK/two modules compile, two real Windows success/failure cases pass; temporary test source/type removed and88 retained regressions pass; next grouped product build pending",
+    "constants": [
+      {
+        "source": "using GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Constants;\r\nusing GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Contracts;\r\nusing GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Functions;\r\nusing GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Services;\r\n\r\nnamespace GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Constants;\r\n\r\ninternal static class CoreHostConstants\r\n{\r\n    internal const string Windows = \"windows\";\r\n    internal const string LocalPipeServer = \".\";\r\n    internal const string KernelLibrary = \"kernel32.dll\";\r\n    internal const int ConnectionTimeoutMilliseconds = 15_000;\r\n    internal const uint SuppressCriticalErrorDialogs = 0x0001;\r\n    internal const uint SuppressFaultDialogs = 0x0002;\r\n}\r\n\r\n\r\n\r\n",
+        "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Constants/CoreHostConstants.cs",
+        "sha256": "ADCF13E41CB45D42ECEF4EEB02C69ECADC1AD32F3CA03C1A70ADBBA0B380F743"
+      },
+      {
+        "source": "using GWGUI.Emulation.Sega.Emulators.Common.Interop.Constants;\r\nusing GWGUI.Emulation.Sega.Emulators.Common.Interop.Contracts;\r\nusing GWGUI.Emulation.Sega.Emulators.Common.Interop.Functions;\r\nusing GWGUI.Emulation.Sega.Emulators.Common.Interop.Services;\r\n\r\nnamespace GWGUI.Emulation.Sega.Emulators.Common.Interop.Constants;\r\n\r\ninternal static class CoreHostConstants\r\n{\r\n    internal const string Windows = \"windows\";\r\n    internal const string LocalPipeServer = \".\";\r\n    internal const string KernelLibrary = \"kernel32.dll\";\r\n    internal const int ConnectionTimeoutMilliseconds = 15_000;\r\n    internal const uint SuppressCriticalErrorDialogs = 0x0001;\r\n    internal const uint SuppressFaultDialogs = 0x0002;\r\n}\r\n\r\n\r\n\r\n",
+        "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Constants/CoreHostConstants.cs",
+        "sha256": "087B559F184655A43F7AA0AC7BF42C07526A25EAD1002E49EFA5224C94AD417E"
+      }
+    ],
+    "copiedInto": "948c0e509:src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/CoreHost.cs",
+    "origin": "9af3b8e2e:src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/CoreHost.cs",
+    "verification": {
+      "originalControlBodyExactlyMoved": true,
+      "semanticProjects": [
+        "GWGUI.Emulation",
+        "GWGUI.Emulation.Nintendo",
+        "GWGUI.Emulation.Sega"
+      ],
+      "constants": [
+        {
+          "sha256": "8A1B7E4D067BEB19BB277FEE6BA85F75D5E40641341FD6CBFAC3E8912CBC6292",
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Constants/CoreHostConstants.cs",
+          "onlyMovedConstantsRemoved": true
+        },
+        {
+          "sha256": "CB7D5B7E7FC6185F508F0DBF2D7A6A83D6A3D4D936733359DA7AE5C87756FD60",
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Constants/CoreHostConstants.cs",
+          "onlyMovedConstantsRemoved": true
+        }
+      ],
+      "hosts": [
+        {
+          "sha256": "255B81EF62AEEB8332C95A14D98E963FA1FD6ADCB3B9B912D99AA726CCC51484",
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/CoreHost.cs",
+          "nativeImportsRemoved": true,
+          "runSessionUnchanged": true,
+          "localHelpersUnchanged": true
+        },
+        {
+          "sha256": "7569B82CBF0300E92D3A7ADAB0568CD36A54506AE665FE581A3A6A1DBC2E52F1",
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/CoreHost.cs",
+          "nativeImportsRemoved": true,
+          "runSessionUnchanged": true,
+          "localHelpersUnchanged": true
+        }
+      ],
+      "semanticErrors": 0
+    },
+    "sdk": {
+      "sha256": "C63854FA0DAE5DAEEDB6680033B9BE6EBA64E219458A11587C9E4B29B69791DC",
+      "path": "src/GWGUI.Emulation/Functions/EmulationHostProtocolFunctions.Windows.cs",
+      "source": "using System.Runtime.InteropServices;\nusing System.Runtime.Versioning;\n\nnamespace GWGUI.Emulation.Functions;\n\ninternal static partial class EmulationHostProtocolFunctions\n{\n    private const string KernelLibrary = \"kernel32.dll\";\n    private const uint SuppressCriticalErrorDialogs = 0x0001;\n    private const uint SuppressFaultDialogs = 0x0002;\n\n    [SupportedOSPlatform(\"windows\")]\n    internal static void WithSuppressedErrorDialogs(Action run)\n    {\n        var previousErrorMode = GetErrorMode();\n        SetErrorMode(previousErrorMode | SuppressCriticalErrorDialogs | SuppressFaultDialogs);\n        try { run(); }\n        finally { SetErrorMode(previousErrorMode); }\n    }\n\n    [DllImport(KernelLibrary)]\n    private static extern uint GetErrorMode();\n\n    [DllImport(KernelLibrary)]\n    private static extern uint SetErrorMode(uint mode);\n}\r\n"
+    },
+    "nativeTests": {
+      "failed": 0,
+      "passed": 2,
+      "realWindowsModeRestored": true,
+      "temporarySourceRemoved": true,
+      "path": "tests/GWGUI.Tests/Emulation/WindowsErrorModeAuditTests.cs",
+      "sha256": "52AA126069D7BA7160B7E0C49CA4CB7E0056353F5BC563BFCE05FAD6AC5CA29C",
+      "source": "using System.Runtime.InteropServices;\nusing System.Runtime.Versioning;\nusing GWGUI.Emulation.Functions;\n\nnamespace GWGUI.Tests.Emulation;\n\n[SupportedOSPlatform(\"windows\")]\npublic sealed class WindowsErrorModeAuditTests\n{\n    [Theory]\n    [InlineData(false)]\n    [InlineData(true)]\n    public void OriginalModeIsRestoredAfterSuccessOrFailure(bool fail)\n    {\n        var initial = GetErrorMode();\n        var invoked = false;\n        var failure = new InvalidOperationException(\"session failure\");\n        try\n        {\n            SetErrorMode(initial | 0x8000);\n            var baseline = GetErrorMode();\n            Action session = () =>\n            {\n                invoked = true;\n                Assert.Equal(baseline | 0x0001u | 0x0002u, GetErrorMode());\n                if (fail) throw failure;\n            };\n            if (fail)\n                Assert.Same(failure, Assert.Throws<InvalidOperationException>(\n                    () => EmulationHostProtocolFunctions.WithSuppressedErrorDialogs(session)));\n            else\n                EmulationHostProtocolFunctions.WithSuppressedErrorDialogs(session);\n            Assert.True(invoked);\n            Assert.Equal(baseline, GetErrorMode());\n        }\n        finally { SetErrorMode(initial); }\n        Assert.Equal(initial, GetErrorMode());\n    }\n\n    [DllImport(\"kernel32.dll\")]\n    private static extern uint GetErrorMode();\n\n    [DllImport(\"kernel32.dll\")]\n    private static extern uint SetErrorMode(uint mode);\n}\r\n",
+      "temporaryCompiledTypeAbsent": true,
+      "retainedRegressionTests": {
+        "assembly": "tests/GWGUI.Tests/bin/Debug/net10.0-windows10.0.19041.0/GWGUI.Tests.dll",
+        "sha256": "301C261B2DF5257A2F3957DC7D5C16E648B50291780B593A8A5ABE6E01323935",
+        "passed": 88,
+        "failed": 0
+      }
+    },
+    "inventory": {
+      "reports": {
+        "docs/reference/reuse-audit/short-method-groups.json": {
+          "exactGroups": 807,
+          "fileCount": 7295,
+          "groups": 0,
+          "renamedIdentifierGroups": 376,
+          "methodBodyCount": 9667
+        },
+        "docs/reference/reuse-audit/current-project-groups.json": {
+          "exactGroups": 0,
+          "fileCount": 7295,
+          "groups": 467,
+          "renamedIdentifierGroups": 210,
+          "methodBodyCount": 11662
+        }
+      },
+      "additionalUnchangedFullMembersRetained": 0,
+      "oldPartialMembers": 69,
+      "partialMembersRestored": 67,
+      "wholeSessionsNewlyQualified": 0,
+      "qualifiedWrappers": [
+        {
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/CoreHost.cs",
+          "kind": "exactGroups",
+          "name": "Run",
+          "report": "docs/reference/reuse-audit/short-method-groups.json",
+          "sha256": "255B81EF62AEEB8332C95A14D98E963FA1FD6ADCB3B9B912D99AA726CCC51484"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/CoreHost.cs",
+          "kind": "exactGroups",
+          "name": "Run",
+          "report": "docs/reference/reuse-audit/short-method-groups.json",
+          "sha256": "7569B82CBF0300E92D3A7ADAB0568CD36A54506AE665FE581A3A6A1DBC2E52F1"
+        }
+      ],
+      "retiredMisplacedMediaAnnotations": [
+        {
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/CoreHost.cs",
+          "kind": "groups",
+          "name": "Run",
+          "reason": "Previous path-media annotation was attached to the outer Windows Run wrapper, not its nested RunSession media body. Retired rather than transferred; actual RunSession fragments remain annotated.",
+          "report": "docs/reference/reuse-audit/current-project-groups.json"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/CoreHost.cs",
+          "kind": "groups",
+          "name": "Run",
+          "reason": "Previous path-media annotation was attached to the outer Windows Run wrapper, not its nested RunSession media body. Retired rather than transferred; actual RunSession fragments remain annotated.",
+          "report": "docs/reference/reuse-audit/current-project-groups.json"
+        }
+      ]
+    }
   }
 }

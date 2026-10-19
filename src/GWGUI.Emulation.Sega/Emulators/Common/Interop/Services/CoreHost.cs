@@ -7,7 +7,6 @@ using GWGUI.Emulation.Sega.Emulators.Common.Interop.Enums;
 
 using System.IO.Pipes;
 using System.Runtime.Versioning;
-using System.Runtime.InteropServices;
 using System.Text.Json;
 
 using System.IO;
@@ -19,10 +18,7 @@ public static class CoreHost
     [SupportedOSPlatform(CoreHostConstants.Windows)]
     public static void Run(string pipeName, string videoMapName)
     {
-        var previousErrorMode = GetErrorMode();
-        SetErrorMode(previousErrorMode | CoreHostConstants.SuppressCriticalErrorDialogs | CoreHostConstants.SuppressFaultDialogs);
-        try { RunSession(pipeName, videoMapName); }
-        finally { SetErrorMode(previousErrorMode); }
+        EmulationHostProtocolFunctions.WithSuppressedErrorDialogs(() => RunSession(pipeName, videoMapName));
     }
 
     [SupportedOSPlatform(CoreHostConstants.Windows)]
@@ -92,9 +88,4 @@ public static class CoreHost
     private static ExternalCore EnsureCore(ExternalCore? core) => core ?? throw new InvalidOperationException(CoreExceptions.HostNotInitialized());
     private static void WriteSuccess(BinaryWriter writer) => writer.Write(true);
 
-    [DllImport(CoreHostConstants.KernelLibrary)]
-    private static extern uint GetErrorMode();
-
-    [DllImport(CoreHostConstants.KernelLibrary)]
-    private static extern uint SetErrorMode(uint mode);
 }
