@@ -8,6 +8,25 @@ namespace GWGUI.Emulation.Functions;
 
 internal static partial class EmulationHostProtocolFunctions
 {
+    internal static void WaitForConnection(NamedPipeServerStream pipe, TimeSpan connectionTimeout,
+        CancellationToken cancellationToken)
+    {
+        var timeout = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
+        try
+        {
+            timeout.CancelAfter(connectionTimeout);
+            pipe.WaitForConnectionAsync(timeout.Token).GetAwaiter().GetResult();
+        }
+        finally { timeout.Dispose(); }
+    }
+
+    internal static void WaitForConnection(NamedPipeServerStream pipe, TimeSpan connectionTimeout)
+    {
+        var timeout = new CancellationTokenSource(connectionTimeout);
+        try { pipe.WaitForConnectionAsync(timeout.Token).GetAwaiter().GetResult(); }
+        finally { timeout.Dispose(); }
+    }
+
     internal static void WriteInitializationRequest<TConfiguration>(BinaryWriter writer,
         string corePath, int emulator, string sessionDirectory, string? saveDirectory,
         TConfiguration configuration, JsonSerializerOptions jsonOptions)

@@ -3,7 +3,7 @@
   "currentCSharpFiles": 7287,
   "outsideSrcCSharpFiles": 302,
   "baselineMethodCount": 5848,
-  "currentMethodCount": 11641,
+  "currentMethodCount": 11643,
   "powerShellFunctionCount": 17,
   "groups": [
     {
@@ -4552,7 +4552,7 @@
         {
           "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ProcessCore.cs",
           "name": "RunFrame",
-          "line": 119,
+          "line": 117,
           "tokens": 151,
           "hash": "2C88B46F949EFF37DF5384701D0515E807ED164319A80725FC78FCBF887E94C4",
           "shape": "58E9589100066AA9D12107A2B114D484AB8D35B9424DE3CD77B6F65B9CB448F3"
@@ -4560,7 +4560,7 @@
         {
           "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ProcessCore.cs",
           "name": "RunFrame",
-          "line": 119,
+          "line": 117,
           "tokens": 151,
           "hash": "2C88B46F949EFF37DF5384701D0515E807ED164319A80725FC78FCBF887E94C4",
           "shape": "58E9589100066AA9D12107A2B114D484AB8D35B9424DE3CD77B6F65B9CB448F3"
@@ -4568,7 +4568,7 @@
         {
           "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ProcessCore.cs",
           "name": "RunFrame",
-          "line": 108,
+          "line": 106,
           "tokens": 151,
           "hash": "2C88B46F949EFF37DF5384701D0515E807ED164319A80725FC78FCBF887E94C4",
           "shape": "58E9589100066AA9D12107A2B114D484AB8D35B9424DE3CD77B6F65B9CB448F3"
@@ -6521,164 +6521,174 @@
     },
     {
       "language": "CSharp",
-      "hash": "3AE69D0A4C679D62147C707F4E0109AA2769233B784B3742F4B26D6D6B2D2798",
+      "hash": "3B1E054E0514E3687CF29B309E268B734070A6249DC9155DD2C42609D453DB19",
       "method": "Initialize",
-      "tokens": 228,
+      "tokens": 207,
       "current": [
         {
-          "path": "src/GWGUI.Emulation.Panasonic/Common/Services/ProcessCore.cs",
-          "name": "Initialize",
-          "line": 81,
-          "tokens": 228,
-          "hash": "3AE69D0A4C679D62147C707F4E0109AA2769233B784B3742F4B26D6D6B2D2798",
-          "shape": "CEC0820437F4A5C671AB957572AF3BD23853E6D199E7A81D28995292506F1558",
-          "qualification": "Shared original five-field request writer and generic configuration type verified in initializationRequestReuse; remaining local connection/process lifecycle review pending",
-          "qualificationSourceSha256": "9C2BBDC0369B5D53A4BF0A1F7C72290A68878EF63F50A217EDB86BA5F43BD10A"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Wenquxing/Common/Services/ProcessCore.cs",
-          "name": "Initialize",
-          "line": 81,
-          "tokens": 228,
-          "hash": "3AE69D0A4C679D62147C707F4E0109AA2769233B784B3742F4B26D6D6B2D2798",
-          "shape": "CEC0820437F4A5C671AB957572AF3BD23853E6D199E7A81D28995292506F1558",
-          "qualification": "Shared original five-field request writer and generic configuration type verified in initializationRequestReuse; remaining local connection/process lifecycle review pending",
-          "qualificationSourceSha256": "449D0543F3CAD4E8FEF6C8F120FA48222F16E28CE15A1A0B60EB28D91DE2C01F"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Mattel/Common/Services/ProcessCore.cs",
+          "path": "src/GWGUI.Emulation.Fairchild/Common/Services/ProcessCore.cs",
           "name": "Initialize",
           "line": 84,
-          "tokens": 228,
-          "hash": "3AE69D0A4C679D62147C707F4E0109AA2769233B784B3742F4B26D6D6B2D2798",
-          "shape": "CEC0820437F4A5C671AB957572AF3BD23853E6D199E7A81D28995292506F1558",
-          "qualification": "Shared original five-field request writer and generic configuration type verified in initializationRequestReuse; remaining local connection/process lifecycle review pending",
-          "qualificationSourceSha256": "F884788D61FE59DAEC1C72FD7FB612B548D4623F46FDC856E7DC83E8FE4675B7"
+          "tokens": 207,
+          "hash": "3B1E054E0514E3687CF29B309E268B734070A6249DC9155DD2C42609D453DB19",
+          "shape": "05E4A1D7F3BCE517BAFD2007FF87991D29D5A683F05DEF90C561033A8684C4EC",
+          "qualification": "Shared original connection wait, unchanged duration/token policy and guarded failure cleanup verified in hostConnectionWaitReuse; remaining module-owned instance/resource lifecycle review pending",
+          "qualificationSourceSha256": "000DDA605A044045D3F78671E0C695BB3C071ACA940C6D4369D5EDD2BA0571D6"
         },
         {
           "path": "src/GWGUI.Emulation.Bandai/Common/Services/ProcessCore.cs",
           "name": "Initialize",
           "line": 84,
-          "tokens": 228,
-          "hash": "3AE69D0A4C679D62147C707F4E0109AA2769233B784B3742F4B26D6D6B2D2798",
-          "shape": "CEC0820437F4A5C671AB957572AF3BD23853E6D199E7A81D28995292506F1558",
-          "qualification": "Shared original five-field request writer and generic configuration type verified in initializationRequestReuse; remaining local connection/process lifecycle review pending",
-          "qualificationSourceSha256": "D3B5BB43E109B93995FD230E09D300C633B13D1BFA79A50B2082DD372A7642BB"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Apple/Common/Services/ProcessCore.cs",
-          "name": "Initialize",
-          "line": 85,
-          "tokens": 228,
-          "hash": "3AE69D0A4C679D62147C707F4E0109AA2769233B784B3742F4B26D6D6B2D2798",
-          "shape": "CEC0820437F4A5C671AB957572AF3BD23853E6D199E7A81D28995292506F1558",
-          "qualification": "Shared original five-field request writer and generic configuration type verified in initializationRequestReuse; remaining local connection/process lifecycle review pending",
-          "qualificationSourceSha256": "0AE1C461BF29A46A111015B642F03053D757EB9E3EE2D810638B13DD08F22BF2"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Thomson/Common/Services/ProcessCore.cs",
-          "name": "Initialize",
-          "line": 81,
-          "tokens": 228,
-          "hash": "3AE69D0A4C679D62147C707F4E0109AA2769233B784B3742F4B26D6D6B2D2798",
-          "shape": "CEC0820437F4A5C671AB957572AF3BD23853E6D199E7A81D28995292506F1558",
-          "qualification": "Shared original five-field request writer and generic configuration type verified in initializationRequestReuse; remaining local connection/process lifecycle review pending",
-          "qualificationSourceSha256": "0B364904B9A85CFE067A6AAC4014A273398E76B242FC5090C1ABC3B7109A0BCD"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Watara/Common/Services/ProcessCore.cs",
-          "name": "Initialize",
-          "line": 84,
-          "tokens": 228,
-          "hash": "3AE69D0A4C679D62147C707F4E0109AA2769233B784B3742F4B26D6D6B2D2798",
-          "shape": "CEC0820437F4A5C671AB957572AF3BD23853E6D199E7A81D28995292506F1558",
-          "qualification": "Shared original five-field request writer and generic configuration type verified in initializationRequestReuse; remaining local connection/process lifecycle review pending",
-          "qualificationSourceSha256": "AFEF0F2A49F9DE2BB4B7FE29DA918EBF40FD65026A166A721A9786F8C4CE1F99"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Fairchild/Common/Services/ProcessCore.cs",
-          "name": "Initialize",
-          "line": 84,
-          "tokens": 228,
-          "hash": "3AE69D0A4C679D62147C707F4E0109AA2769233B784B3742F4B26D6D6B2D2798",
-          "shape": "CEC0820437F4A5C671AB957572AF3BD23853E6D199E7A81D28995292506F1558",
-          "qualification": "Shared original five-field request writer and generic configuration type verified in initializationRequestReuse; remaining local connection/process lifecycle review pending",
-          "qualificationSourceSha256": "AE1332AD7371BCF449881B613DE8E8087138AA403447FBB54F7E90271202DC32"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Epoch/Common/Services/ProcessCore.cs",
-          "name": "Initialize",
-          "line": 84,
-          "tokens": 228,
-          "hash": "3AE69D0A4C679D62147C707F4E0109AA2769233B784B3742F4B26D6D6B2D2798",
-          "shape": "CEC0820437F4A5C671AB957572AF3BD23853E6D199E7A81D28995292506F1558",
-          "qualification": "Shared original five-field request writer and generic configuration type verified in initializationRequestReuse; remaining local connection/process lifecycle review pending",
-          "qualificationSourceSha256": "37876D50DE63D48E47D25BCDDD9CC84177F922A8BF5A35EE99A8846CC7C1A0CF"
+          "tokens": 207,
+          "hash": "3B1E054E0514E3687CF29B309E268B734070A6249DC9155DD2C42609D453DB19",
+          "shape": "05E4A1D7F3BCE517BAFD2007FF87991D29D5A683F05DEF90C561033A8684C4EC",
+          "qualification": "Shared original connection wait, unchanged duration/token policy and guarded failure cleanup verified in hostConnectionWaitReuse; remaining module-owned instance/resource lifecycle review pending",
+          "qualificationSourceSha256": "7B81F05C35B64C58B179BB746E628427F4819E35CD46CF7DDD6FF6AE348B6A6D"
         },
         {
           "path": "src/GWGUI.Emulation.Atari/Common/Services/ProcessCore.cs",
           "name": "Initialize",
           "line": 84,
-          "tokens": 228,
-          "hash": "3AE69D0A4C679D62147C707F4E0109AA2769233B784B3742F4B26D6D6B2D2798",
-          "shape": "CEC0820437F4A5C671AB957572AF3BD23853E6D199E7A81D28995292506F1558",
-          "qualification": "Shared original five-field request writer and generic configuration type verified in initializationRequestReuse; remaining local connection/process lifecycle review pending",
-          "qualificationSourceSha256": "662A65B2906BCD7B9AA0F37344633E898390674211853B3A2DC3C080DE4EACC2"
+          "tokens": 207,
+          "hash": "3B1E054E0514E3687CF29B309E268B734070A6249DC9155DD2C42609D453DB19",
+          "shape": "05E4A1D7F3BCE517BAFD2007FF87991D29D5A683F05DEF90C561033A8684C4EC",
+          "qualification": "Shared original connection wait, unchanged duration/token policy and guarded failure cleanup verified in hostConnectionWaitReuse; remaining module-owned instance/resource lifecycle review pending",
+          "qualificationSourceSha256": "4D8ABFA61FA4A48AEE8EC738EA3E093E5D23FFE79908A417BE2A33E1066BC74E"
         },
         {
           "path": "src/GWGUI.Emulation.Acorn/Common/Services/ProcessCore.cs",
           "name": "Initialize",
           "line": 84,
-          "tokens": 228,
-          "hash": "3AE69D0A4C679D62147C707F4E0109AA2769233B784B3742F4B26D6D6B2D2798",
-          "shape": "CEC0820437F4A5C671AB957572AF3BD23853E6D199E7A81D28995292506F1558",
-          "qualification": "Shared original five-field request writer and generic configuration type verified in initializationRequestReuse; remaining local connection/process lifecycle review pending",
-          "qualificationSourceSha256": "512C388A994EC56E13AF898BA60362F7A89FD4F55C64CAC5B28F242E79044613"
+          "tokens": 207,
+          "hash": "3B1E054E0514E3687CF29B309E268B734070A6249DC9155DD2C42609D453DB19",
+          "shape": "05E4A1D7F3BCE517BAFD2007FF87991D29D5A683F05DEF90C561033A8684C4EC",
+          "qualification": "Shared original connection wait, unchanged duration/token policy and guarded failure cleanup verified in hostConnectionWaitReuse; remaining module-owned instance/resource lifecycle review pending",
+          "qualificationSourceSha256": "143B007EEA2F2B09535269F9114E0A04952AB2E6BEDDB83E321AD949668274BE"
         },
         {
-          "path": "src/GWGUI.Emulation.Coleco/Common/Services/ProcessCore.cs",
+          "path": "src/GWGUI.Emulation.Epoch/Common/Services/ProcessCore.cs",
           "name": "Initialize",
           "line": 84,
-          "tokens": 228,
-          "hash": "3AE69D0A4C679D62147C707F4E0109AA2769233B784B3742F4B26D6D6B2D2798",
-          "shape": "CEC0820437F4A5C671AB957572AF3BD23853E6D199E7A81D28995292506F1558",
-          "qualification": "Shared original five-field request writer and generic configuration type verified in initializationRequestReuse; remaining local connection/process lifecycle review pending",
-          "qualificationSourceSha256": "1667A06A76B1B440CE4000AA2261C0A8E164A6002229603C6576FD7FD458D00D"
+          "tokens": 207,
+          "hash": "3B1E054E0514E3687CF29B309E268B734070A6249DC9155DD2C42609D453DB19",
+          "shape": "05E4A1D7F3BCE517BAFD2007FF87991D29D5A683F05DEF90C561033A8684C4EC",
+          "qualification": "Shared original connection wait, unchanged duration/token policy and guarded failure cleanup verified in hostConnectionWaitReuse; remaining module-owned instance/resource lifecycle review pending",
+          "qualificationSourceSha256": "0B759729919F53D1B0BBD451543B5A0416F6430400A8C79F90BD60EE26B86C7E"
         },
         {
-          "path": "src/GWGUI.Emulation.Sharp/Common/Services/ProcessCore.cs",
+          "path": "src/GWGUI.Emulation.Snk/Common/Services/ProcessCore.cs",
           "name": "Initialize",
-          "line": 82,
-          "tokens": 228,
-          "hash": "3AE69D0A4C679D62147C707F4E0109AA2769233B784B3742F4B26D6D6B2D2798",
-          "shape": "CEC0820437F4A5C671AB957572AF3BD23853E6D199E7A81D28995292506F1558",
-          "qualification": "Shared original five-field request writer and generic configuration type verified in initializationRequestReuse; remaining local connection/process lifecycle review pending",
-          "qualificationSourceSha256": "7DEA97660CE6F3183877CF350BCA475DA4C77334DFE6363AB7258F529FCB63C3"
+          "line": 83,
+          "tokens": 207,
+          "hash": "3B1E054E0514E3687CF29B309E268B734070A6249DC9155DD2C42609D453DB19",
+          "shape": "05E4A1D7F3BCE517BAFD2007FF87991D29D5A683F05DEF90C561033A8684C4EC",
+          "qualification": "Shared original connection wait, unchanged duration/token policy and guarded failure cleanup verified in hostConnectionWaitReuse; remaining module-owned instance/resource lifecycle review pending",
+          "qualificationSourceSha256": "CF11B460CC8302EEE91333E1CF7837DCFC92D802A22B7ED76B02FF24B4694D06"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Apple/Common/Services/ProcessCore.cs",
+          "name": "Initialize",
+          "line": 85,
+          "tokens": 207,
+          "hash": "3B1E054E0514E3687CF29B309E268B734070A6249DC9155DD2C42609D453DB19",
+          "shape": "05E4A1D7F3BCE517BAFD2007FF87991D29D5A683F05DEF90C561033A8684C4EC",
+          "qualification": "Shared original connection wait, unchanged duration/token policy and guarded failure cleanup verified in hostConnectionWaitReuse; remaining module-owned instance/resource lifecycle review pending",
+          "qualificationSourceSha256": "087BE76905DCAE9DE9E705DA3FC75CBDC51442D981D59FC0BD13D1791D6F5C5A"
         },
         {
           "path": "src/GWGUI.Emulation.Sinclair/Common/Services/ProcessCore.cs",
           "name": "Initialize",
           "line": 81,
-          "tokens": 228,
-          "hash": "3AE69D0A4C679D62147C707F4E0109AA2769233B784B3742F4B26D6D6B2D2798",
-          "shape": "CEC0820437F4A5C671AB957572AF3BD23853E6D199E7A81D28995292506F1558",
-          "qualification": "Shared original five-field request writer and generic configuration type verified in initializationRequestReuse; remaining local connection/process lifecycle review pending",
-          "qualificationSourceSha256": "E6D85010CD45A03A3571E4180EE024A10083F5C5423BA96F4FC4CED32797991B"
+          "tokens": 207,
+          "hash": "3B1E054E0514E3687CF29B309E268B734070A6249DC9155DD2C42609D453DB19",
+          "shape": "05E4A1D7F3BCE517BAFD2007FF87991D29D5A683F05DEF90C561033A8684C4EC",
+          "qualification": "Shared original connection wait, unchanged duration/token policy and guarded failure cleanup verified in hostConnectionWaitReuse; remaining module-owned instance/resource lifecycle review pending",
+          "qualificationSourceSha256": "69D9105F9C6BBC49E2457C132155AB122E9A5141489BE56BEB7B9352C9D0FBCD"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Coleco/Common/Services/ProcessCore.cs",
+          "name": "Initialize",
+          "line": 84,
+          "tokens": 207,
+          "hash": "3B1E054E0514E3687CF29B309E268B734070A6249DC9155DD2C42609D453DB19",
+          "shape": "05E4A1D7F3BCE517BAFD2007FF87991D29D5A683F05DEF90C561033A8684C4EC",
+          "qualification": "Shared original connection wait, unchanged duration/token policy and guarded failure cleanup verified in hostConnectionWaitReuse; remaining module-owned instance/resource lifecycle review pending",
+          "qualificationSourceSha256": "0439F59FD6E1947C02A928A8F8B998FB751731D2C1EBB3E1CAA57F3B53BB5596"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sharp/Common/Services/ProcessCore.cs",
+          "name": "Initialize",
+          "line": 82,
+          "tokens": 207,
+          "hash": "3B1E054E0514E3687CF29B309E268B734070A6249DC9155DD2C42609D453DB19",
+          "shape": "05E4A1D7F3BCE517BAFD2007FF87991D29D5A683F05DEF90C561033A8684C4EC",
+          "qualification": "Shared original connection wait, unchanged duration/token policy and guarded failure cleanup verified in hostConnectionWaitReuse; remaining module-owned instance/resource lifecycle review pending",
+          "qualificationSourceSha256": "9494C75C141BE2A7F2992613C7863129DC3E1BEBC0C2C4F34A3A8997C685C45C"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Wenquxing/Common/Services/ProcessCore.cs",
+          "name": "Initialize",
+          "line": 81,
+          "tokens": 207,
+          "hash": "3B1E054E0514E3687CF29B309E268B734070A6249DC9155DD2C42609D453DB19",
+          "shape": "05E4A1D7F3BCE517BAFD2007FF87991D29D5A683F05DEF90C561033A8684C4EC",
+          "qualification": "Shared original connection wait, unchanged duration/token policy and guarded failure cleanup verified in hostConnectionWaitReuse; remaining module-owned instance/resource lifecycle review pending",
+          "qualificationSourceSha256": "3EDAE6FB9AE9DDE97EAA06D4E45889170C59EA04045A23B8011E9207DC238403"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Mattel/Common/Services/ProcessCore.cs",
+          "name": "Initialize",
+          "line": 84,
+          "tokens": 207,
+          "hash": "3B1E054E0514E3687CF29B309E268B734070A6249DC9155DD2C42609D453DB19",
+          "shape": "05E4A1D7F3BCE517BAFD2007FF87991D29D5A683F05DEF90C561033A8684C4EC",
+          "qualification": "Shared original connection wait, unchanged duration/token policy and guarded failure cleanup verified in hostConnectionWaitReuse; remaining module-owned instance/resource lifecycle review pending",
+          "qualificationSourceSha256": "E91BE2802465F756CF0271E47DFF21DCF7C5EB71572434278B3EA93304A36E59"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Watara/Common/Services/ProcessCore.cs",
+          "name": "Initialize",
+          "line": 84,
+          "tokens": 207,
+          "hash": "3B1E054E0514E3687CF29B309E268B734070A6249DC9155DD2C42609D453DB19",
+          "shape": "05E4A1D7F3BCE517BAFD2007FF87991D29D5A683F05DEF90C561033A8684C4EC",
+          "qualification": "Shared original connection wait, unchanged duration/token policy and guarded failure cleanup verified in hostConnectionWaitReuse; remaining module-owned instance/resource lifecycle review pending",
+          "qualificationSourceSha256": "B4C9393535305D19FD5F3DDA1CDEA39F798700C3E0F73D1C55114345E83B4125"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Panasonic/Common/Services/ProcessCore.cs",
+          "name": "Initialize",
+          "line": 81,
+          "tokens": 207,
+          "hash": "3B1E054E0514E3687CF29B309E268B734070A6249DC9155DD2C42609D453DB19",
+          "shape": "05E4A1D7F3BCE517BAFD2007FF87991D29D5A683F05DEF90C561033A8684C4EC",
+          "qualification": "Shared original connection wait, unchanged duration/token policy and guarded failure cleanup verified in hostConnectionWaitReuse; remaining module-owned instance/resource lifecycle review pending",
+          "qualificationSourceSha256": "FE6EA76CB5E8A67838B642F1CB1780BE8412189B215DBCF356E565CB70C61994"
         },
         {
           "path": "src/GWGUI.Emulation.Philips/Common/Services/ProcessCore.cs",
           "name": "Initialize",
           "line": 84,
-          "tokens": 228,
-          "hash": "3AE69D0A4C679D62147C707F4E0109AA2769233B784B3742F4B26D6D6B2D2798",
-          "shape": "CEC0820437F4A5C671AB957572AF3BD23853E6D199E7A81D28995292506F1558",
-          "qualification": "Shared original five-field request writer and generic configuration type verified in initializationRequestReuse; remaining local connection/process lifecycle review pending",
-          "qualificationSourceSha256": "B2BD0AA49390A7AEB3E4D2D5F37AA16D9AE50DB90120FA7F68238E58A414CA94"
+          "tokens": 207,
+          "hash": "3B1E054E0514E3687CF29B309E268B734070A6249DC9155DD2C42609D453DB19",
+          "shape": "05E4A1D7F3BCE517BAFD2007FF87991D29D5A683F05DEF90C561033A8684C4EC",
+          "qualification": "Shared original connection wait, unchanged duration/token policy and guarded failure cleanup verified in hostConnectionWaitReuse; remaining module-owned instance/resource lifecycle review pending",
+          "qualificationSourceSha256": "C914957A5B2911E6DB31EDCE791D370C783C21C36F92368E09FBA8D5031CC8B9"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Thomson/Common/Services/ProcessCore.cs",
+          "name": "Initialize",
+          "line": 81,
+          "tokens": 207,
+          "hash": "3B1E054E0514E3687CF29B309E268B734070A6249DC9155DD2C42609D453DB19",
+          "shape": "05E4A1D7F3BCE517BAFD2007FF87991D29D5A683F05DEF90C561033A8684C4EC",
+          "qualification": "Shared original connection wait, unchanged duration/token policy and guarded failure cleanup verified in hostConnectionWaitReuse; remaining module-owned instance/resource lifecycle review pending",
+          "qualificationSourceSha256": "B2E3F1C13716709D15F126BBF566DDA5FE0637C4C7064F42D477367591687A2A"
         }
       ],
       "predecessors": [],
       "shapePredecessors": [],
-      "qualification": "Partial stage qualification; original request serialization shared; connection/process lifecycle remains pending"
+      "qualification": "Partial stage qualification; original connection waits shared and failure release guarded by finally; remaining instance/resource ownership pending"
     },
     {
       "language": "CSharp",
@@ -7236,7 +7246,7 @@
         {
           "path": "src/GWGUI.Emulation.Apple/Common/Services/ProcessCore.cs",
           "name": "SaveState",
-          "line": 149,
+          "line": 146,
           "tokens": 43,
           "hash": "3DEA10ACEC7EACDF0B2E98AEF3F14A17E82A1086C29746CC4BD146A3A1F04B63",
           "shape": "5F49213703B6A6386C604D0AB84AC3821302A83C7136674A5E046C79E93D8940"
@@ -7244,7 +7254,7 @@
         {
           "path": "src/GWGUI.Emulation.Acorn/Common/Services/ProcessCore.cs",
           "name": "SaveState",
-          "line": 148,
+          "line": 145,
           "tokens": 43,
           "hash": "3DEA10ACEC7EACDF0B2E98AEF3F14A17E82A1086C29746CC4BD146A3A1F04B63",
           "shape": "5F49213703B6A6386C604D0AB84AC3821302A83C7136674A5E046C79E93D8940"
@@ -7252,7 +7262,7 @@
         {
           "path": "src/GWGUI.Emulation.Watara/Common/Services/ProcessCore.cs",
           "name": "SaveState",
-          "line": 136,
+          "line": 133,
           "tokens": 43,
           "hash": "3DEA10ACEC7EACDF0B2E98AEF3F14A17E82A1086C29746CC4BD146A3A1F04B63",
           "shape": "5F49213703B6A6386C604D0AB84AC3821302A83C7136674A5E046C79E93D8940"
@@ -7260,7 +7270,7 @@
         {
           "path": "src/GWGUI.Emulation.Sinclair/Common/Services/ProcessCore.cs",
           "name": "SaveState",
-          "line": 133,
+          "line": 130,
           "tokens": 43,
           "hash": "3DEA10ACEC7EACDF0B2E98AEF3F14A17E82A1086C29746CC4BD146A3A1F04B63",
           "shape": "5F49213703B6A6386C604D0AB84AC3821302A83C7136674A5E046C79E93D8940"
@@ -7268,7 +7278,7 @@
         {
           "path": "src/GWGUI.Emulation.Sharp/Common/Services/ProcessCore.cs",
           "name": "SaveState",
-          "line": 141,
+          "line": 138,
           "tokens": 43,
           "hash": "3DEA10ACEC7EACDF0B2E98AEF3F14A17E82A1086C29746CC4BD146A3A1F04B63",
           "shape": "5F49213703B6A6386C604D0AB84AC3821302A83C7136674A5E046C79E93D8940"
@@ -7276,7 +7286,7 @@
         {
           "path": "src/GWGUI.Emulation.Thomson/Common/Services/ProcessCore.cs",
           "name": "SaveState",
-          "line": 133,
+          "line": 130,
           "tokens": 43,
           "hash": "3DEA10ACEC7EACDF0B2E98AEF3F14A17E82A1086C29746CC4BD146A3A1F04B63",
           "shape": "5F49213703B6A6386C604D0AB84AC3821302A83C7136674A5E046C79E93D8940"
@@ -7284,7 +7294,7 @@
         {
           "path": "src/GWGUI.Emulation.Snk/Common/Services/ProcessCore.cs",
           "name": "SaveState",
-          "line": 136,
+          "line": 134,
           "tokens": 43,
           "hash": "3DEA10ACEC7EACDF0B2E98AEF3F14A17E82A1086C29746CC4BD146A3A1F04B63",
           "shape": "5F49213703B6A6386C604D0AB84AC3821302A83C7136674A5E046C79E93D8940"
@@ -7292,7 +7302,7 @@
         {
           "path": "src/GWGUI.Emulation.Philips/Common/Services/ProcessCore.cs",
           "name": "SaveState",
-          "line": 148,
+          "line": 145,
           "tokens": 43,
           "hash": "3DEA10ACEC7EACDF0B2E98AEF3F14A17E82A1086C29746CC4BD146A3A1F04B63",
           "shape": "5F49213703B6A6386C604D0AB84AC3821302A83C7136674A5E046C79E93D8940"
@@ -7300,7 +7310,7 @@
         {
           "path": "src/GWGUI.Emulation.Wenquxing/Common/Services/ProcessCore.cs",
           "name": "SaveState",
-          "line": 133,
+          "line": 130,
           "tokens": 43,
           "hash": "3DEA10ACEC7EACDF0B2E98AEF3F14A17E82A1086C29746CC4BD146A3A1F04B63",
           "shape": "5F49213703B6A6386C604D0AB84AC3821302A83C7136674A5E046C79E93D8940"
@@ -7308,7 +7318,7 @@
         {
           "path": "src/GWGUI.Emulation.Atari/Common/Services/ProcessCore.cs",
           "name": "SaveState",
-          "line": 148,
+          "line": 145,
           "tokens": 43,
           "hash": "3DEA10ACEC7EACDF0B2E98AEF3F14A17E82A1086C29746CC4BD146A3A1F04B63",
           "shape": "5F49213703B6A6386C604D0AB84AC3821302A83C7136674A5E046C79E93D8940"
@@ -7316,7 +7326,7 @@
         {
           "path": "src/GWGUI.Emulation.Panasonic/Common/Services/ProcessCore.cs",
           "name": "SaveState",
-          "line": 133,
+          "line": 130,
           "tokens": 43,
           "hash": "3DEA10ACEC7EACDF0B2E98AEF3F14A17E82A1086C29746CC4BD146A3A1F04B63",
           "shape": "5F49213703B6A6386C604D0AB84AC3821302A83C7136674A5E046C79E93D8940"
@@ -7324,7 +7334,7 @@
         {
           "path": "src/GWGUI.Emulation.Mattel/Common/Services/ProcessCore.cs",
           "name": "SaveState",
-          "line": 148,
+          "line": 145,
           "tokens": 43,
           "hash": "3DEA10ACEC7EACDF0B2E98AEF3F14A17E82A1086C29746CC4BD146A3A1F04B63",
           "shape": "5F49213703B6A6386C604D0AB84AC3821302A83C7136674A5E046C79E93D8940"
@@ -7332,7 +7342,7 @@
         {
           "path": "src/GWGUI.Emulation.Coleco/Common/Services/ProcessCore.cs",
           "name": "SaveState",
-          "line": 148,
+          "line": 145,
           "tokens": 43,
           "hash": "3DEA10ACEC7EACDF0B2E98AEF3F14A17E82A1086C29746CC4BD146A3A1F04B63",
           "shape": "5F49213703B6A6386C604D0AB84AC3821302A83C7136674A5E046C79E93D8940"
@@ -7340,7 +7350,7 @@
         {
           "path": "src/GWGUI.Emulation.Fairchild/Common/Services/ProcessCore.cs",
           "name": "SaveState",
-          "line": 148,
+          "line": 145,
           "tokens": 43,
           "hash": "3DEA10ACEC7EACDF0B2E98AEF3F14A17E82A1086C29746CC4BD146A3A1F04B63",
           "shape": "5F49213703B6A6386C604D0AB84AC3821302A83C7136674A5E046C79E93D8940"
@@ -7348,7 +7358,7 @@
         {
           "path": "src/GWGUI.Emulation.Epoch/Common/Services/ProcessCore.cs",
           "name": "SaveState",
-          "line": 148,
+          "line": 145,
           "tokens": 43,
           "hash": "3DEA10ACEC7EACDF0B2E98AEF3F14A17E82A1086C29746CC4BD146A3A1F04B63",
           "shape": "5F49213703B6A6386C604D0AB84AC3821302A83C7136674A5E046C79E93D8940"
@@ -7356,7 +7366,7 @@
         {
           "path": "src/GWGUI.Emulation.Bandai/Common/Services/ProcessCore.cs",
           "name": "SaveState",
-          "line": 148,
+          "line": 145,
           "tokens": 43,
           "hash": "3DEA10ACEC7EACDF0B2E98AEF3F14A17E82A1086C29746CC4BD146A3A1F04B63",
           "shape": "5F49213703B6A6386C604D0AB84AC3821302A83C7136674A5E046C79E93D8940"
@@ -8685,7 +8695,7 @@
         {
           "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ProcessCore.cs",
           "name": "Begin",
-          "line": 248,
+          "line": 246,
           "tokens": 59,
           "hash": "4C4E58340A22AD06D6CDA1D2A8766A6FF5F5EED37F5D386637401C644384231C",
           "shape": "AD507A316DC65899970EDA6BE724E74EE0E96801B566CFB7D9CC44EC7FAF67DE"
@@ -8693,7 +8703,7 @@
         {
           "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ProcessCore.cs",
           "name": "Begin",
-          "line": 248,
+          "line": 246,
           "tokens": 59,
           "hash": "4C4E58340A22AD06D6CDA1D2A8766A6FF5F5EED37F5D386637401C644384231C",
           "shape": "AD507A316DC65899970EDA6BE724E74EE0E96801B566CFB7D9CC44EC7FAF67DE"
@@ -8701,7 +8711,7 @@
         {
           "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ProcessCore.cs",
           "name": "Begin",
-          "line": 214,
+          "line": 212,
           "tokens": 59,
           "hash": "4C4E58340A22AD06D6CDA1D2A8766A6FF5F5EED37F5D386637401C644384231C",
           "shape": "AD507A316DC65899970EDA6BE724E74EE0E96801B566CFB7D9CC44EC7FAF67DE"
@@ -8787,7 +8797,7 @@
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ProcessCore.cs",
           "name": "TerminateProcess",
-          "line": 298,
+          "line": 296,
           "tokens": 48,
           "hash": "4D66D0F6153579FF1A616FE88E7D664308F2E5E881FC47BE4BC3332D17CAF420",
           "shape": "7CA20EC089E08A2555F01702F21AFD97CAEBEDE1396EB33935487D5EDC529EB9"
@@ -8795,7 +8805,7 @@
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ProcessCore.cs",
           "name": "TerminateProcess",
-          "line": 303,
+          "line": 301,
           "tokens": 48,
           "hash": "4D66D0F6153579FF1A616FE88E7D664308F2E5E881FC47BE4BC3332D17CAF420",
           "shape": "7CA20EC089E08A2555F01702F21AFD97CAEBEDE1396EB33935487D5EDC529EB9"
@@ -12132,7 +12142,7 @@
     {
       "language": "CSharp",
       "hash": "68386C818382BCE400A3EDE65411B5CBD9D6A87F6D88FAF6501028CE28C38965",
-      "method": "ToModule",
+      "method": "ToSinclair",
       "tokens": 148,
       "current": [
         {
@@ -12192,7 +12202,7 @@
         {
           "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ProcessCore.cs",
           "name": "ReleaseHost",
-          "line": 190,
+          "line": 188,
           "tokens": 203,
           "hash": "68612FDC8E998CFF12A6A13E72C5A8DFCDC974EB955BA4D1F50E60A20475FBBE",
           "shape": "5AD1D15C01EEB767651A89888506D22BE7227F83954584086C028B127708AF8B"
@@ -12200,7 +12210,7 @@
         {
           "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ProcessCore.cs",
           "name": "ReleaseHost",
-          "line": 190,
+          "line": 188,
           "tokens": 203,
           "hash": "68612FDC8E998CFF12A6A13E72C5A8DFCDC974EB955BA4D1F50E60A20475FBBE",
           "shape": "5AD1D15C01EEB767651A89888506D22BE7227F83954584086C028B127708AF8B"
@@ -12476,7 +12486,7 @@
         {
           "path": "src/GWGUI.Emulation.Apple/Common/Services/ProcessCore.cs",
           "name": "GetDiskStatus",
-          "line": 137,
+          "line": 134,
           "tokens": 40,
           "hash": "69B1C156BB9CDB2D463B7901ED4EB55BFAE79190C8588D9EE4AED721967FCC9C",
           "shape": "F281992CA0BAD3C7E3EC6B4F456D716C6C58E5235E11984A77E405EF73EBAE0F"
@@ -12484,7 +12494,7 @@
         {
           "path": "src/GWGUI.Emulation.Acorn/Common/Services/ProcessCore.cs",
           "name": "GetDiskStatus",
-          "line": 136,
+          "line": 133,
           "tokens": 40,
           "hash": "69B1C156BB9CDB2D463B7901ED4EB55BFAE79190C8588D9EE4AED721967FCC9C",
           "shape": "F281992CA0BAD3C7E3EC6B4F456D716C6C58E5235E11984A77E405EF73EBAE0F"
@@ -12492,7 +12502,7 @@
         {
           "path": "src/GWGUI.Emulation.Watara/Common/Services/ProcessCore.cs",
           "name": "GetDiskStatus",
-          "line": 130,
+          "line": 127,
           "tokens": 40,
           "hash": "69B1C156BB9CDB2D463B7901ED4EB55BFAE79190C8588D9EE4AED721967FCC9C",
           "shape": "F281992CA0BAD3C7E3EC6B4F456D716C6C58E5235E11984A77E405EF73EBAE0F"
@@ -12500,7 +12510,7 @@
         {
           "path": "src/GWGUI.Emulation.Sinclair/Common/Services/ProcessCore.cs",
           "name": "GetDiskStatus",
-          "line": 127,
+          "line": 124,
           "tokens": 40,
           "hash": "69B1C156BB9CDB2D463B7901ED4EB55BFAE79190C8588D9EE4AED721967FCC9C",
           "shape": "F281992CA0BAD3C7E3EC6B4F456D716C6C58E5235E11984A77E405EF73EBAE0F"
@@ -12508,7 +12518,7 @@
         {
           "path": "src/GWGUI.Emulation.Sharp/Common/Services/ProcessCore.cs",
           "name": "GetDiskStatus",
-          "line": 129,
+          "line": 126,
           "tokens": 40,
           "hash": "69B1C156BB9CDB2D463B7901ED4EB55BFAE79190C8588D9EE4AED721967FCC9C",
           "shape": "F281992CA0BAD3C7E3EC6B4F456D716C6C58E5235E11984A77E405EF73EBAE0F"
@@ -12516,7 +12526,7 @@
         {
           "path": "src/GWGUI.Emulation.Thomson/Common/Services/ProcessCore.cs",
           "name": "GetDiskStatus",
-          "line": 127,
+          "line": 124,
           "tokens": 40,
           "hash": "69B1C156BB9CDB2D463B7901ED4EB55BFAE79190C8588D9EE4AED721967FCC9C",
           "shape": "F281992CA0BAD3C7E3EC6B4F456D716C6C58E5235E11984A77E405EF73EBAE0F"
@@ -12524,7 +12534,7 @@
         {
           "path": "src/GWGUI.Emulation.Snk/Common/Services/ProcessCore.cs",
           "name": "GetDiskStatus",
-          "line": 130,
+          "line": 128,
           "tokens": 40,
           "hash": "69B1C156BB9CDB2D463B7901ED4EB55BFAE79190C8588D9EE4AED721967FCC9C",
           "shape": "F281992CA0BAD3C7E3EC6B4F456D716C6C58E5235E11984A77E405EF73EBAE0F"
@@ -12532,7 +12542,7 @@
         {
           "path": "src/GWGUI.Emulation.Philips/Common/Services/ProcessCore.cs",
           "name": "GetDiskStatus",
-          "line": 136,
+          "line": 133,
           "tokens": 40,
           "hash": "69B1C156BB9CDB2D463B7901ED4EB55BFAE79190C8588D9EE4AED721967FCC9C",
           "shape": "F281992CA0BAD3C7E3EC6B4F456D716C6C58E5235E11984A77E405EF73EBAE0F"
@@ -12540,7 +12550,7 @@
         {
           "path": "src/GWGUI.Emulation.Wenquxing/Common/Services/ProcessCore.cs",
           "name": "GetDiskStatus",
-          "line": 127,
+          "line": 124,
           "tokens": 40,
           "hash": "69B1C156BB9CDB2D463B7901ED4EB55BFAE79190C8588D9EE4AED721967FCC9C",
           "shape": "F281992CA0BAD3C7E3EC6B4F456D716C6C58E5235E11984A77E405EF73EBAE0F"
@@ -12548,7 +12558,7 @@
         {
           "path": "src/GWGUI.Emulation.Atari/Common/Services/ProcessCore.cs",
           "name": "GetDiskStatus",
-          "line": 136,
+          "line": 133,
           "tokens": 40,
           "hash": "69B1C156BB9CDB2D463B7901ED4EB55BFAE79190C8588D9EE4AED721967FCC9C",
           "shape": "F281992CA0BAD3C7E3EC6B4F456D716C6C58E5235E11984A77E405EF73EBAE0F"
@@ -12556,7 +12566,7 @@
         {
           "path": "src/GWGUI.Emulation.Panasonic/Common/Services/ProcessCore.cs",
           "name": "GetDiskStatus",
-          "line": 127,
+          "line": 124,
           "tokens": 40,
           "hash": "69B1C156BB9CDB2D463B7901ED4EB55BFAE79190C8588D9EE4AED721967FCC9C",
           "shape": "F281992CA0BAD3C7E3EC6B4F456D716C6C58E5235E11984A77E405EF73EBAE0F"
@@ -12564,7 +12574,7 @@
         {
           "path": "src/GWGUI.Emulation.Mattel/Common/Services/ProcessCore.cs",
           "name": "GetDiskStatus",
-          "line": 136,
+          "line": 133,
           "tokens": 40,
           "hash": "69B1C156BB9CDB2D463B7901ED4EB55BFAE79190C8588D9EE4AED721967FCC9C",
           "shape": "F281992CA0BAD3C7E3EC6B4F456D716C6C58E5235E11984A77E405EF73EBAE0F"
@@ -12572,7 +12582,7 @@
         {
           "path": "src/GWGUI.Emulation.Coleco/Common/Services/ProcessCore.cs",
           "name": "GetDiskStatus",
-          "line": 136,
+          "line": 133,
           "tokens": 40,
           "hash": "69B1C156BB9CDB2D463B7901ED4EB55BFAE79190C8588D9EE4AED721967FCC9C",
           "shape": "F281992CA0BAD3C7E3EC6B4F456D716C6C58E5235E11984A77E405EF73EBAE0F"
@@ -12580,7 +12590,7 @@
         {
           "path": "src/GWGUI.Emulation.Fairchild/Common/Services/ProcessCore.cs",
           "name": "GetDiskStatus",
-          "line": 136,
+          "line": 133,
           "tokens": 40,
           "hash": "69B1C156BB9CDB2D463B7901ED4EB55BFAE79190C8588D9EE4AED721967FCC9C",
           "shape": "F281992CA0BAD3C7E3EC6B4F456D716C6C58E5235E11984A77E405EF73EBAE0F"
@@ -12588,7 +12598,7 @@
         {
           "path": "src/GWGUI.Emulation.Epoch/Common/Services/ProcessCore.cs",
           "name": "GetDiskStatus",
-          "line": 136,
+          "line": 133,
           "tokens": 40,
           "hash": "69B1C156BB9CDB2D463B7901ED4EB55BFAE79190C8588D9EE4AED721967FCC9C",
           "shape": "F281992CA0BAD3C7E3EC6B4F456D716C6C58E5235E11984A77E405EF73EBAE0F"
@@ -12596,7 +12606,7 @@
         {
           "path": "src/GWGUI.Emulation.Bandai/Common/Services/ProcessCore.cs",
           "name": "GetDiskStatus",
-          "line": 136,
+          "line": 133,
           "tokens": 40,
           "hash": "69B1C156BB9CDB2D463B7901ED4EB55BFAE79190C8588D9EE4AED721967FCC9C",
           "shape": "F281992CA0BAD3C7E3EC6B4F456D716C6C58E5235E11984A77E405EF73EBAE0F"
@@ -14478,33 +14488,6 @@
           "tokens": 38,
           "hash": "7E7761F01DB2DF3A466515300C5860DD6B4D0BE842AD192E007991973B8FCDF8",
           "shape": "1623B73908965A7F9A3BDB695464937F3D73CABFF531B3424B5C7F315E0806E3"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
-      "hash": "7F653F738C419F4E7987C0C57CCD13245CF4FC10A00F7729A6F0B16C3FAAEC82",
-      "method": "Initialize",
-      "tokens": 521,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ProcessCore.cs",
-          "name": "Initialize",
-          "line": 63,
-          "tokens": 521,
-          "hash": "7F653F738C419F4E7987C0C57CCD13245CF4FC10A00F7729A6F0B16C3FAAEC82",
-          "shape": "B96CFB7E76DAD066E4018E9A05DC0CAC2BB80CAE4E2DB73E539BCA392C71590B"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ProcessCore.cs",
-          "name": "Initialize",
-          "line": 63,
-          "tokens": 521,
-          "hash": "7F653F738C419F4E7987C0C57CCD13245CF4FC10A00F7729A6F0B16C3FAAEC82",
-          "shape": "B96CFB7E76DAD066E4018E9A05DC0CAC2BB80CAE4E2DB73E539BCA392C71590B"
         }
       ],
       "predecessors": [],
@@ -19212,7 +19195,7 @@
     {
       "language": "CSharp",
       "hash": "A1E03750FEB3292ACEB41656386F4A8AA8B05077D9ABFB7DA103AA3D71320B9F",
-      "method": "ToModule",
+      "method": "ToFairchild",
       "tokens": 103,
       "current": [
         {
@@ -20718,7 +20701,7 @@
     {
       "language": "CSharp",
       "hash": "B053A3AB4F0B78A37DED57B2D744801187AED6EC54FEEAFE4B1AA9C454D6F48C",
-      "method": "PanasonicEmulationModule",
+      "method": "FairchildEmulationModule",
       "tokens": 47,
       "current": [
         {
@@ -21156,6 +21139,37 @@
       "predecessors": [],
       "shapePredecessors": [],
       "qualification": "pending"
+    },
+    {
+      "language": "CSharp",
+      "hash": "B4A6EAE790C651EBA0B430ECBF40BD1B8AC6DB0D40FD31CD2E258514AE814CDD",
+      "method": "Initialize",
+      "tokens": 506,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ProcessCore.cs",
+          "name": "Initialize",
+          "line": 63,
+          "tokens": 506,
+          "hash": "B4A6EAE790C651EBA0B430ECBF40BD1B8AC6DB0D40FD31CD2E258514AE814CDD",
+          "shape": "A6F38CFA36CF1BAAE79B6F9BF0DDF8DC065681DFF9CC243998137B0624C90539",
+          "qualification": "Shared original connection wait, unchanged duration/token policy and guarded failure cleanup verified in hostConnectionWaitReuse; remaining module-owned instance/resource lifecycle review pending",
+          "qualificationSourceSha256": "804D3D6F240EC37A7C8E61E4BA1180FCC8DDFA25B9FE48F137C483C80A4E0C42"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ProcessCore.cs",
+          "name": "Initialize",
+          "line": 63,
+          "tokens": 506,
+          "hash": "B4A6EAE790C651EBA0B430ECBF40BD1B8AC6DB0D40FD31CD2E258514AE814CDD",
+          "shape": "A6F38CFA36CF1BAAE79B6F9BF0DDF8DC065681DFF9CC243998137B0624C90539",
+          "qualification": "Shared original connection wait, unchanged duration/token policy and guarded failure cleanup verified in hostConnectionWaitReuse; remaining module-owned instance/resource lifecycle review pending",
+          "qualificationSourceSha256": "FD9DA4B65DD5289FBAB096E552C2A05205D27F1894087F6D893D5DD6A73550EA"
+        }
+      ],
+      "predecessors": [],
+      "shapePredecessors": [],
+      "qualification": "Partial stage qualification; original connection waits shared and failure release guarded by finally; remaining instance/resource ownership pending"
     },
     {
       "language": "CSharp",
@@ -21782,7 +21796,7 @@
         {
           "path": "src/GWGUI.Emulation.Apple/Common/Services/ProcessCore.cs",
           "name": "HasUnsavedMediaChanges",
-          "line": 143,
+          "line": 140,
           "tokens": 38,
           "hash": "BC24C6C2531CA34FDA6AFC5EF539F9A8371E610C7CB3C2579B2D431411934080",
           "shape": "8DE5C0E8AA396B127146A01D891BD325731BF4626EC1AE86B40B38FA3817C959"
@@ -21790,7 +21804,7 @@
         {
           "path": "src/GWGUI.Emulation.Acorn/Common/Services/ProcessCore.cs",
           "name": "HasUnsavedMediaChanges",
-          "line": 142,
+          "line": 139,
           "tokens": 38,
           "hash": "BC24C6C2531CA34FDA6AFC5EF539F9A8371E610C7CB3C2579B2D431411934080",
           "shape": "8DE5C0E8AA396B127146A01D891BD325731BF4626EC1AE86B40B38FA3817C959"
@@ -21798,7 +21812,7 @@
         {
           "path": "src/GWGUI.Emulation.Sharp/Common/Services/ProcessCore.cs",
           "name": "HasUnsavedMediaChanges",
-          "line": 135,
+          "line": 132,
           "tokens": 38,
           "hash": "BC24C6C2531CA34FDA6AFC5EF539F9A8371E610C7CB3C2579B2D431411934080",
           "shape": "8DE5C0E8AA396B127146A01D891BD325731BF4626EC1AE86B40B38FA3817C959"
@@ -21806,7 +21820,7 @@
         {
           "path": "src/GWGUI.Emulation.Philips/Common/Services/ProcessCore.cs",
           "name": "HasUnsavedMediaChanges",
-          "line": 142,
+          "line": 139,
           "tokens": 38,
           "hash": "BC24C6C2531CA34FDA6AFC5EF539F9A8371E610C7CB3C2579B2D431411934080",
           "shape": "8DE5C0E8AA396B127146A01D891BD325731BF4626EC1AE86B40B38FA3817C959"
@@ -21814,7 +21828,7 @@
         {
           "path": "src/GWGUI.Emulation.Atari/Common/Services/ProcessCore.cs",
           "name": "HasUnsavedMediaChanges",
-          "line": 142,
+          "line": 139,
           "tokens": 38,
           "hash": "BC24C6C2531CA34FDA6AFC5EF539F9A8371E610C7CB3C2579B2D431411934080",
           "shape": "8DE5C0E8AA396B127146A01D891BD325731BF4626EC1AE86B40B38FA3817C959"
@@ -21822,7 +21836,7 @@
         {
           "path": "src/GWGUI.Emulation.Mattel/Common/Services/ProcessCore.cs",
           "name": "HasUnsavedMediaChanges",
-          "line": 142,
+          "line": 139,
           "tokens": 38,
           "hash": "BC24C6C2531CA34FDA6AFC5EF539F9A8371E610C7CB3C2579B2D431411934080",
           "shape": "8DE5C0E8AA396B127146A01D891BD325731BF4626EC1AE86B40B38FA3817C959"
@@ -21830,7 +21844,7 @@
         {
           "path": "src/GWGUI.Emulation.Coleco/Common/Services/ProcessCore.cs",
           "name": "HasUnsavedMediaChanges",
-          "line": 142,
+          "line": 139,
           "tokens": 38,
           "hash": "BC24C6C2531CA34FDA6AFC5EF539F9A8371E610C7CB3C2579B2D431411934080",
           "shape": "8DE5C0E8AA396B127146A01D891BD325731BF4626EC1AE86B40B38FA3817C959"
@@ -21838,7 +21852,7 @@
         {
           "path": "src/GWGUI.Emulation.Fairchild/Common/Services/ProcessCore.cs",
           "name": "HasUnsavedMediaChanges",
-          "line": 142,
+          "line": 139,
           "tokens": 38,
           "hash": "BC24C6C2531CA34FDA6AFC5EF539F9A8371E610C7CB3C2579B2D431411934080",
           "shape": "8DE5C0E8AA396B127146A01D891BD325731BF4626EC1AE86B40B38FA3817C959"
@@ -21846,7 +21860,7 @@
         {
           "path": "src/GWGUI.Emulation.Epoch/Common/Services/ProcessCore.cs",
           "name": "HasUnsavedMediaChanges",
-          "line": 142,
+          "line": 139,
           "tokens": 38,
           "hash": "BC24C6C2531CA34FDA6AFC5EF539F9A8371E610C7CB3C2579B2D431411934080",
           "shape": "8DE5C0E8AA396B127146A01D891BD325731BF4626EC1AE86B40B38FA3817C959"
@@ -21854,7 +21868,7 @@
         {
           "path": "src/GWGUI.Emulation.Bandai/Common/Services/ProcessCore.cs",
           "name": "HasUnsavedMediaChanges",
-          "line": 142,
+          "line": 139,
           "tokens": 38,
           "hash": "BC24C6C2531CA34FDA6AFC5EF539F9A8371E610C7CB3C2579B2D431411934080",
           "shape": "8DE5C0E8AA396B127146A01D891BD325731BF4626EC1AE86B40B38FA3817C959"
@@ -26741,7 +26755,7 @@
         {
           "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ProcessCore.cs",
           "name": "HardReset",
-          "line": 139,
+          "line": 137,
           "tokens": 52,
           "hash": "E9F11883F5862725437A760DAB91262332436FA01A2D80782ED7EC78C0C46595",
           "shape": "AEE701D990A0A8C7B7ACD421F166C8D3AFF63D511EE2DAF4844860E4DEE7A22B"
@@ -26749,7 +26763,7 @@
         {
           "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ProcessCore.cs",
           "name": "HardReset",
-          "line": 139,
+          "line": 137,
           "tokens": 52,
           "hash": "E9F11883F5862725437A760DAB91262332436FA01A2D80782ED7EC78C0C46595",
           "shape": "AEE701D990A0A8C7B7ACD421F166C8D3AFF63D511EE2DAF4844860E4DEE7A22B"
@@ -26757,7 +26771,7 @@
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ProcessCore.cs",
           "name": "HardReset",
-          "line": 148,
+          "line": 146,
           "tokens": 52,
           "hash": "E9F11883F5862725437A760DAB91262332436FA01A2D80782ED7EC78C0C46595",
           "shape": "AEE701D990A0A8C7B7ACD421F166C8D3AFF63D511EE2DAF4844860E4DEE7A22B"
@@ -27365,7 +27379,7 @@
     {
       "language": "CSharp",
       "hash": "F107F4D7D97C4E9F797468C991DF2090B47DF6E3F6F74E56044EFF0C28CAA51D",
-      "method": "NotifyHardwareContextDestroy",
+      "method": "NotifyDestroy",
       "tokens": 31,
       "current": [
         {
@@ -27667,7 +27681,7 @@
         {
           "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ProcessCore.cs",
           "name": "CompleteRequest",
-          "line": 257,
+          "line": 255,
           "tokens": 152,
           "hash": "F473FA03B284020FA6172C72E93BB42B339979D8422326F60602DDECA6439989",
           "shape": "88C91183F0013DAE40D17EAFBA2096CFCBFA37FD14BEF0A205140347CC403B55"
@@ -27675,7 +27689,7 @@
         {
           "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ProcessCore.cs",
           "name": "CompleteRequest",
-          "line": 257,
+          "line": 255,
           "tokens": 152,
           "hash": "F473FA03B284020FA6172C72E93BB42B339979D8422326F60602DDECA6439989",
           "shape": "88C91183F0013DAE40D17EAFBA2096CFCBFA37FD14BEF0A205140347CC403B55"
@@ -27683,7 +27697,7 @@
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ProcessCore.cs",
           "name": "CompleteRequest",
-          "line": 283,
+          "line": 281,
           "tokens": 152,
           "hash": "F473FA03B284020FA6172C72E93BB42B339979D8422326F60602DDECA6439989",
           "shape": "88C91183F0013DAE40D17EAFBA2096CFCBFA37FD14BEF0A205140347CC403B55"
@@ -27877,7 +27891,7 @@
         {
           "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ProcessCore.cs",
           "name": "TerminateProcess",
-          "line": 280,
+          "line": 278,
           "tokens": 55,
           "hash": "F66E601337934B5CC750B521923222C5FF08584198E09F828EA429BB09A0927F",
           "shape": "18026CEC5CFC68BA1D171197C9E78457DE7E7BA2280C2CD5FB698AF62F9FDE24"
@@ -27885,7 +27899,7 @@
         {
           "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ProcessCore.cs",
           "name": "TerminateProcess",
-          "line": 280,
+          "line": 278,
           "tokens": 55,
           "hash": "F66E601337934B5CC750B521923222C5FF08584198E09F828EA429BB09A0927F",
           "shape": "18026CEC5CFC68BA1D171197C9E78457DE7E7BA2280C2CD5FB698AF62F9FDE24"
@@ -31748,7 +31762,7 @@
         {
           "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/ProcessCore.cs",
           "name": "ReadResponseAsync",
-          "line": 284,
+          "line": 282,
           "tokens": 30,
           "hash": "295A76D851A9583D0FB9947651ACCB637D103BA5A6E7DFDE029E968FB04CD484",
           "shape": "579874EE8055293F12ED31827CA3403A8208495583CCD5C824C99011A7723102"
@@ -31756,7 +31770,7 @@
         {
           "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ProcessCore.cs",
           "name": "ReadResponseAsync",
-          "line": 242,
+          "line": 240,
           "tokens": 30,
           "hash": "553E777B8BD58A87A2875C733755AA55CAB22503EF87258609A4FE70C0B35838",
           "shape": "579874EE8055293F12ED31827CA3403A8208495583CCD5C824C99011A7723102"
@@ -31810,7 +31824,7 @@
         {
           "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/ProcessCore.cs",
           "name": "RunFrame",
-          "line": 122,
+          "line": 120,
           "tokens": 151,
           "hash": "7EA8F6916DC0729B689D4BA17246A79327B53BDAA6CBED9D87677A40827E4D88",
           "shape": "58E9589100066AA9D12107A2B114D484AB8D35B9424DE3CD77B6F65B9CB448F3"
@@ -31818,7 +31832,7 @@
         {
           "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ProcessCore.cs",
           "name": "RunFrame",
-          "line": 119,
+          "line": 117,
           "tokens": 151,
           "hash": "2C88B46F949EFF37DF5384701D0515E807ED164319A80725FC78FCBF887E94C4",
           "shape": "58E9589100066AA9D12107A2B114D484AB8D35B9424DE3CD77B6F65B9CB448F3"
@@ -31826,7 +31840,7 @@
         {
           "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ProcessCore.cs",
           "name": "RunFrame",
-          "line": 119,
+          "line": 117,
           "tokens": 151,
           "hash": "2C88B46F949EFF37DF5384701D0515E807ED164319A80725FC78FCBF887E94C4",
           "shape": "58E9589100066AA9D12107A2B114D484AB8D35B9424DE3CD77B6F65B9CB448F3"
@@ -31834,7 +31848,7 @@
         {
           "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ProcessCore.cs",
           "name": "RunFrame",
-          "line": 108,
+          "line": 106,
           "tokens": 151,
           "hash": "2C88B46F949EFF37DF5384701D0515E807ED164319A80725FC78FCBF887E94C4",
           "shape": "58E9589100066AA9D12107A2B114D484AB8D35B9424DE3CD77B6F65B9CB448F3"
@@ -32881,7 +32895,7 @@
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ProcessCore.cs",
           "name": "SetControllerPortDevice",
-          "line": 189,
+          "line": 187,
           "tokens": 71,
           "hash": "327C0D9E11A2162B28AF471DE2BD4D98CCC0E1F749B5AE8EC94087DA38F92A3D",
           "shape": "83F6062164C4A6437843320CED4327D4559DF2EC619B3C1FA7E42FD56A5AC76E"
@@ -32889,7 +32903,7 @@
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ProcessCore.cs",
           "name": "SetControllerPortDevice",
-          "line": 193,
+          "line": 191,
           "tokens": 71,
           "hash": "36DFDF3396A6FEB3274B0EBCEA87EB3F54132720DE217BE71C68D69260F378F2",
           "shape": "83F6062164C4A6437843320CED4327D4559DF2EC619B3C1FA7E42FD56A5AC76E"
@@ -32897,7 +32911,7 @@
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ProcessCore.cs",
           "name": "SetControllerPortDevice",
-          "line": 192,
+          "line": 190,
           "tokens": 71,
           "hash": "75050A1BA03EBCB6DC794821DC29111468DEE916C53DDD0F0A745EEC1D789AC1",
           "shape": "83F6062164C4A6437843320CED4327D4559DF2EC619B3C1FA7E42FD56A5AC76E"
@@ -33078,7 +33092,7 @@
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ProcessCore.cs",
           "name": "RunFrame",
-          "line": 127,
+          "line": 125,
           "tokens": 168,
           "hash": "CD5D0A155915C652FCDB7AD50888FBC2ECE88EE76B1F36DDD8EED04398EC7BE5",
           "shape": "848BB5C8DA58FA8D07AA445D6ADA31867EAE3B5B92A94A8D9C381F18A5E7ED11"
@@ -33086,7 +33100,7 @@
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ProcessCore.cs",
           "name": "RunFrame",
-          "line": 126,
+          "line": 124,
           "tokens": 168,
           "hash": "BDD9DD161BF17D9BBCF59F1338802D809588E642178504E1E79431EED9178A20",
           "shape": "848BB5C8DA58FA8D07AA445D6ADA31867EAE3B5B92A94A8D9C381F18A5E7ED11"
@@ -33186,7 +33200,7 @@
         {
           "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ProcessCore.cs",
           "name": "CompleteRequest",
-          "line": 257,
+          "line": 255,
           "tokens": 152,
           "hash": "F473FA03B284020FA6172C72E93BB42B339979D8422326F60602DDECA6439989",
           "shape": "88C91183F0013DAE40D17EAFBA2096CFCBFA37FD14BEF0A205140347CC403B55"
@@ -33194,7 +33208,7 @@
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ProcessCore.cs",
           "name": "CompleteRequest",
-          "line": 275,
+          "line": 273,
           "tokens": 152,
           "hash": "26881731027238083412547E6F93A81EB24D5FD7144E4E412C603215B8D09316",
           "shape": "88C91183F0013DAE40D17EAFBA2096CFCBFA37FD14BEF0A205140347CC403B55"
@@ -33202,7 +33216,7 @@
         {
           "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ProcessCore.cs",
           "name": "CompleteRequest",
-          "line": 257,
+          "line": 255,
           "tokens": 152,
           "hash": "F473FA03B284020FA6172C72E93BB42B339979D8422326F60602DDECA6439989",
           "shape": "88C91183F0013DAE40D17EAFBA2096CFCBFA37FD14BEF0A205140347CC403B55"
@@ -33210,7 +33224,7 @@
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ProcessCore.cs",
           "name": "CompleteRequest",
-          "line": 280,
+          "line": 278,
           "tokens": 152,
           "hash": "D5E4A6D32A331107EA3616F48A41D8A6E6383EA0449EAA44B5A9AE1CB6BAD614",
           "shape": "88C91183F0013DAE40D17EAFBA2096CFCBFA37FD14BEF0A205140347CC403B55"
@@ -33218,7 +33232,7 @@
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ProcessCore.cs",
           "name": "CompleteRequest",
-          "line": 283,
+          "line": 281,
           "tokens": 152,
           "hash": "F473FA03B284020FA6172C72E93BB42B339979D8422326F60602DDECA6439989",
           "shape": "88C91183F0013DAE40D17EAFBA2096CFCBFA37FD14BEF0A205140347CC403B55"
@@ -34181,7 +34195,7 @@
         {
           "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/ProcessCore.cs",
           "name": "Begin",
-          "line": 256,
+          "line": 254,
           "tokens": 59,
           "hash": "AEEFE384AF68FB80E3C6778100248E74CB8925231A3272C906D34D39044F22F9",
           "shape": "AD507A316DC65899970EDA6BE724E74EE0E96801B566CFB7D9CC44EC7FAF67DE"
@@ -34189,7 +34203,7 @@
         {
           "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ProcessCore.cs",
           "name": "Begin",
-          "line": 248,
+          "line": 246,
           "tokens": 59,
           "hash": "4C4E58340A22AD06D6CDA1D2A8766A6FF5F5EED37F5D386637401C644384231C",
           "shape": "AD507A316DC65899970EDA6BE724E74EE0E96801B566CFB7D9CC44EC7FAF67DE"
@@ -34197,7 +34211,7 @@
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ProcessCore.cs",
           "name": "Begin",
-          "line": 266,
+          "line": 264,
           "tokens": 59,
           "hash": "16943285AB08E7BAA7AF005173148EE66DB16A3ADC180F34521397E1E1EC2128",
           "shape": "AD507A316DC65899970EDA6BE724E74EE0E96801B566CFB7D9CC44EC7FAF67DE"
@@ -34205,7 +34219,7 @@
         {
           "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ProcessCore.cs",
           "name": "Begin",
-          "line": 248,
+          "line": 246,
           "tokens": 59,
           "hash": "4C4E58340A22AD06D6CDA1D2A8766A6FF5F5EED37F5D386637401C644384231C",
           "shape": "AD507A316DC65899970EDA6BE724E74EE0E96801B566CFB7D9CC44EC7FAF67DE"
@@ -34213,7 +34227,7 @@
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ProcessCore.cs",
           "name": "Begin",
-          "line": 271,
+          "line": 269,
           "tokens": 59,
           "hash": "68136092E67EC29E48C15F54904CE2C182B641A68044DE06BE275D25553BA71E",
           "shape": "AD507A316DC65899970EDA6BE724E74EE0E96801B566CFB7D9CC44EC7FAF67DE"
@@ -34221,7 +34235,7 @@
         {
           "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ProcessCore.cs",
           "name": "Begin",
-          "line": 214,
+          "line": 212,
           "tokens": 59,
           "hash": "4C4E58340A22AD06D6CDA1D2A8766A6FF5F5EED37F5D386637401C644384231C",
           "shape": "AD507A316DC65899970EDA6BE724E74EE0E96801B566CFB7D9CC44EC7FAF67DE"
@@ -34259,7 +34273,7 @@
         {
           "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/ProcessCore.cs",
           "name": "HardReset",
-          "line": 142,
+          "line": 140,
           "tokens": 52,
           "hash": "46568AB4BAA9FC0BD017E0194B54CBE6EDF1659602FACDF031095AC848C4EB4D",
           "shape": "AEE701D990A0A8C7B7ACD421F166C8D3AFF63D511EE2DAF4844860E4DEE7A22B"
@@ -34275,7 +34289,7 @@
         {
           "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ProcessCore.cs",
           "name": "HardReset",
-          "line": 139,
+          "line": 137,
           "tokens": 52,
           "hash": "E9F11883F5862725437A760DAB91262332436FA01A2D80782ED7EC78C0C46595",
           "shape": "AEE701D990A0A8C7B7ACD421F166C8D3AFF63D511EE2DAF4844860E4DEE7A22B"
@@ -34307,7 +34321,7 @@
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ProcessCore.cs",
           "name": "HardReset",
-          "line": 145,
+          "line": 143,
           "tokens": 52,
           "hash": "5EEB185D8CACA5BA626DD1D0158B1E33C4EB1FA142C4F9E19BFB141B501D41AD",
           "shape": "AEE701D990A0A8C7B7ACD421F166C8D3AFF63D511EE2DAF4844860E4DEE7A22B"
@@ -34323,7 +34337,7 @@
         {
           "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ProcessCore.cs",
           "name": "HardReset",
-          "line": 139,
+          "line": 137,
           "tokens": 52,
           "hash": "E9F11883F5862725437A760DAB91262332436FA01A2D80782ED7EC78C0C46595",
           "shape": "AEE701D990A0A8C7B7ACD421F166C8D3AFF63D511EE2DAF4844860E4DEE7A22B"
@@ -34339,7 +34353,7 @@
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ProcessCore.cs",
           "name": "HardReset",
-          "line": 149,
+          "line": 147,
           "tokens": 52,
           "hash": "C9030DEBE734450567DF3A4B6620FF6F2D4298B115808ED67B22B470516CC2E9",
           "shape": "AEE701D990A0A8C7B7ACD421F166C8D3AFF63D511EE2DAF4844860E4DEE7A22B"
@@ -34355,7 +34369,7 @@
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ProcessCore.cs",
           "name": "HardReset",
-          "line": 148,
+          "line": 146,
           "tokens": 52,
           "hash": "E9F11883F5862725437A760DAB91262332436FA01A2D80782ED7EC78C0C46595",
           "shape": "AEE701D990A0A8C7B7ACD421F166C8D3AFF63D511EE2DAF4844860E4DEE7A22B"
@@ -35860,7 +35874,7 @@
         {
           "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ProcessCore.cs",
           "name": "TerminateProcess",
-          "line": 246,
+          "line": 244,
           "tokens": 41,
           "hash": "4F84BBCFE63AD8ACF28CD1ADE580EC95CF09ABA23E605463BA2882281E118376",
           "shape": "D439AE7A383BF33FE00F1A293574F21F68E2D4BF3265972DFCEFF2CA48512C6A"
@@ -37790,7 +37804,7 @@
   ],
   "scope": "All current repository CSharp and PowerShell files; no age filter; candidates require semantic review",
   "qualificationCarryForward": {
-    "occurrences": 114,
-    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical"
+    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical",
+    "occurrences": 114
   }
 }

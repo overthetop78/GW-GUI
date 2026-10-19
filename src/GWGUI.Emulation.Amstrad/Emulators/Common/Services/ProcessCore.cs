@@ -90,8 +90,7 @@ internal sealed class ProcessCore : IEmulatorCore
             startInfo.ArgumentList.Add(pipeName);
             startInfo.ArgumentList.Add(videoMapName);
             _process = EmulationChildProcessLifetime.Start(startInfo, () => new InvalidOperationException(CommonExceptions.ProcessStartFailed()));
-            using var timeout = new CancellationTokenSource(TimeSpan.FromSeconds(ProcessCoreConstants.HostConnectTimeoutSeconds));
-            _pipe.WaitForConnectionAsync(timeout.Token).GetAwaiter().GetResult();
+            EmulationHostProtocolFunctions.WaitForConnection(_pipe, TimeSpan.FromSeconds(ProcessCoreConstants.HostConnectTimeoutSeconds));
             _writer = new BinaryWriter(_pipe, System.Text.Encoding.UTF8, true);
             Begin(HostCommand.Initialize);
             _writer.Write(_corePath ?? string.Empty);
@@ -112,10 +111,9 @@ internal sealed class ProcessCore : IEmulatorCore
             LedStates = CoreHostProtocol.ReadLedStates(Response);
             _initialized = true;
         }
-        catch
+        finally
         {
-            ReleaseHost();
-            throw;
+            if (!_initialized) ReleaseHost();
         }
     }
 

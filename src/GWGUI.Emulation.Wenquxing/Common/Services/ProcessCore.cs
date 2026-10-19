@@ -93,18 +93,15 @@ internal sealed partial class ProcessCore : IEmulatorCore
             _pipe = new NamedPipeServerStream(pipeName, PipeDirection.InOut, CoreHostConstants.MaximumPipeInstances, PipeTransmissionMode.Byte, PipeOptions.Asynchronous | PipeOptions.CurrentUserOnly, CoreHostConstants.PipeBufferSize, CoreHostConstants.PipeBufferSize);
             _process = StartHostProcess(pipeName, videoMapName);
             _hostProcessId = _process.Id;
-            using var timeout = CancellationTokenSource.CreateLinkedTokenSource(_cancellationToken);
-            timeout.CancelAfter(_connectionTimeout);
-            _pipe.WaitForConnectionAsync(timeout.Token).GetAwaiter().GetResult();
+            EmulationHostProtocolFunctions.WaitForConnection(_pipe, _connectionTimeout, _cancellationToken);
             _writer = new BinaryWriter(_pipe, Encoding.UTF8, leaveOpen: true);
             Request(HostCommand.Initialize, writer => EmulationHostProtocolFunctions.WriteInitializationRequest(writer, _corePath, (int)_emulator,
                 sessionDirectory, saveDirectory, configuration, CoreHostFunctions.JsonOptions), ReadInitialization, allowUninitialized: true);
             _initialized = true;
         }
-        catch
+        finally
         {
-            Dispose();
-            throw;
+            if (!_initialized) Dispose();
         }
     }
 
