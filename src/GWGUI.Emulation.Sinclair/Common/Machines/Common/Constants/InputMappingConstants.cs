@@ -2,7 +2,6 @@ namespace GWGUI.Emulation.Sinclair.Common.Machines.Common.Constants;
 
 internal static class InputMappingConstants
 {
-    internal const int ConsumedRelativeValue = 0;
     internal const string KeyboardPrefix = "Keyboard:";
     internal const string MousePrefix = "Mouse:";
     internal const string ControllerPrefix = "Controller:";

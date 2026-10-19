@@ -7,7 +7,6 @@ internal static class InputMappingConstants
     internal const string ControllerPrefix = "Controller:";
     internal const string ResourcePrefix = "Emulation.Snk.Input.";
     internal const int Unassigned = -1;
-    internal const int ConsumedRelativeValue = 0;
     internal const float PressedThreshold = 0.5f;
     internal const int PercentScale = 100;
     internal const string MouseLeft = "Left";

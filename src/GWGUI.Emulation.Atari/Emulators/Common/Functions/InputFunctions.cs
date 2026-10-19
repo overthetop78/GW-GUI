@@ -6,12 +6,6 @@ internal static class InputFunctions
 {
     private static readonly IReadOnlyDictionary<uint, EmulationKey> KeyboardMap = KeyboardFunctions.CreateKeyMap().ToDictionary(pair => pair.Value, pair => pair.Key);
 
-    internal static EmulationInputSnapshot Freeze(EmulationInputSnapshot? snapshot)
-    {
-        snapshot ??= EmulationInputSnapshot.Empty;
-        return new EmulationInputSnapshot(new HashSet<EmulationKey>(snapshot.Keys), snapshot.Pointer with { }, snapshot.Controllers.ToArray());
-    }
-
     internal static short State(EmulationInputSnapshot snapshot, uint port, uint device, uint index, uint id)
     {
         if (device == InputConstants.KeyboardDevice)
@@ -40,26 +34,6 @@ internal static class InputFunctions
         };
     }
 
-    internal static EmulationInputSnapshot Accumulate(EmulationInputSnapshot current, EmulationInputSnapshot update) => new(new HashSet<EmulationKey>(update.Keys), update.Pointer with
-    {
-        DeltaX = SaturatingAdd(current.Pointer.DeltaX, update.Pointer.DeltaX),
-        DeltaY = SaturatingAdd(current.Pointer.DeltaY, update.Pointer.DeltaY),
-        Wheel = SaturatingAdd(current.Pointer.Wheel, update.Pointer.Wheel),
-        HorizontalWheel = SaturatingAdd(current.Pointer.HorizontalWheel, update.Pointer.HorizontalWheel)
-    }, update.Controllers.ToArray());
-
-    internal static EmulationInputSnapshot ConsumeRelativePointer(EmulationInputSnapshot snapshot) =>
-        snapshot with
-        {
-            Pointer = snapshot.Pointer with
-            {
-                DeltaX = InputConstants.ConsumedRelativeValue,
-                DeltaY = InputConstants.ConsumedRelativeValue,
-                Wheel = InputConstants.ConsumedRelativeValue,
-                HorizontalWheel = InputConstants.ConsumedRelativeValue
-            }
-        };
-
     private static short MouseState(EmulationPointerState pointer, uint port, uint index, uint id)
     {
         if (port != InputConstants.PrimaryPort || index != InputConstants.LeftAnalogIndex)
@@ -79,5 +53,4 @@ internal static class InputFunctions
 
     private static short Boolean(bool value) => value ? InputConstants.ActiveState : InputConstants.InactiveState;
     private static short Clamp(int value) => (short)Math.Clamp(value, short.MinValue, short.MaxValue);
-    private static int SaturatingAdd(int left, int right) => (int)Math.Clamp((long)left + right, int.MinValue, int.MaxValue);
 }

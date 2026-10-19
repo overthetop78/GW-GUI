@@ -2,31 +2,10 @@ using GWGUI.Emulation;
 
 namespace GWGUI.Emulation.Bandai.Common.Services;
 
-internal sealed class InputFrameStore
+internal sealed class InputFrameStore : EmulationInputFrameStore
 {
-    private EmulationInputSnapshot _pending = EmulationInputSnapshot.Empty;
-    private EmulationInputSnapshot _polled = EmulationInputSnapshot.Empty;
+    protected override EmulationInputSnapshot Accumulate(EmulationInputSnapshot current, EmulationInputSnapshot update) =>
+        EmulationInputMappingFunctions.Freeze(update);
 
-    internal void Update(EmulationInputSnapshot? snapshot)
-    {
-        var frozen = InputFunctions.Freeze(snapshot);
-        EmulationInputSnapshot current;
-        do
-        {
-            current = Volatile.Read(ref _pending);
-        } while (!ReferenceEquals(Interlocked.CompareExchange(ref _pending, InputFunctions.Accumulate(current, frozen), current), current));
-    }
-
-    internal void Poll()
-    {
-        EmulationInputSnapshot current;
-        do
-        {
-            current = Volatile.Read(ref _pending);
-        } while (!ReferenceEquals(Interlocked.CompareExchange(ref _pending, InputFunctions.ConsumeRelativePointer(current), current), current));
-        Interlocked.Exchange(ref _polled, current);
-    }
-
-
-    internal EmulationInputSnapshot Polled => Volatile.Read(ref _polled);
+    protected override EmulationInputSnapshot ConsumeRelativePointer(EmulationInputSnapshot snapshot) => snapshot;
 }

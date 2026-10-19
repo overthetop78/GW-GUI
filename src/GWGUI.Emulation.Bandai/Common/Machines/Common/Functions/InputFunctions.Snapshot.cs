@@ -4,7 +4,7 @@ internal static class InputSnapshotFunctions
 {
     internal static EmulationInputSnapshot Apply(EmulationInputSnapshot snapshot, InputConfiguration? configuration, MachineModel model)
     {
-        if (configuration?.Controllers is not { Count: > 0 }) return InputFunctions.Freeze(snapshot with { Controllers = [] });
+        if (configuration?.Controllers is not { Count: > 0 }) return EmulationInputMappingFunctions.Freeze(snapshot with { Controllers = [] });
         var controllers = Enumerable.Repeat(EmulationControllerState.Empty, ControllerConstants.PortCount).ToArray();
         var targets = InputSnapshotDictionary.ForModel(model);
         foreach (var binding in configuration.Controllers)

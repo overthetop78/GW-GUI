@@ -167,7 +167,6 @@ internal sealed partial class ExternalHostCallbacks
     private static short Bool(bool value) => value ? ExternalCoreInteropConstants.PressedInputState : ExternalCoreInteropConstants.ReleasedInputState;
     private static short ClampToShort(int value) => (short)Math.Clamp(value, short.MinValue, short.MaxValue);
     private static int AccumulatePointerCoordinate(int coordinate, int delta) => (int)Math.Clamp((long)coordinate + (long)delta * PointerCoordinateScale, PointerCoordinateMinimum, PointerCoordinateMaximum);
-    private static int SaturatingAdd(int left, int right) => (int)Math.Clamp((long)left + right, int.MinValue, int.MaxValue);
     private static IReadOnlyDictionary<uint, EmulationKey> CreateKeyboardMap(IReadOnlyDictionary<uint, EmulationKey?>? overrides)
     {
         var map = new Dictionary<uint, EmulationKey>

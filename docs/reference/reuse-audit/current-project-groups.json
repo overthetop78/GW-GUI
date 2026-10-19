@@ -1,9 +1,9 @@
 {
   "baseline": "ac7292d86^",
-  "currentCSharpFiles": 7231,
-  "outsideSrcCSharpFiles": 309,
+  "currentCSharpFiles": 7214,
+  "outsideSrcCSharpFiles": 310,
   "baselineMethodCount": 5848,
-  "currentMethodCount": 11501,
+  "currentMethodCount": 11453,
   "powerShellFunctionCount": 17,
   "groups": [
     {
@@ -851,7 +851,7 @@
     {
       "language": "CSharp",
       "hash": "0A9D4012A0EEF58659F6F622D06187BDA6844EE126F30B196EAE963950A66758",
-      "method": "CommodoreEmulationModule",
+      "method": "AtariEmulationModule",
       "tokens": 45,
       "current": [
         {
@@ -3187,41 +3187,6 @@
     },
     {
       "language": "CSharp",
-      "hash": "213AC7E1CA3601C36CFE903C6AA7C43A9030479ADF353B6B7D01E023A3E6C171",
-      "method": "ConsumeRelativePointer",
-      "tokens": 52,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Coleco/Common/Functions/InputFunctions.cs",
-          "name": "ConsumeRelativePointer",
-          "line": 21,
-          "tokens": 52,
-          "hash": "213AC7E1CA3601C36CFE903C6AA7C43A9030479ADF353B6B7D01E023A3E6C171",
-          "shape": "3510A04272220114DB2D8550CC44CA1A0D0C231D24FCAB3288E27090D2AFD680"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Fairchild/Common/Functions/InputFunctions.cs",
-          "name": "ConsumeRelativePointer",
-          "line": 19,
-          "tokens": 52,
-          "hash": "213AC7E1CA3601C36CFE903C6AA7C43A9030479ADF353B6B7D01E023A3E6C171",
-          "shape": "3510A04272220114DB2D8550CC44CA1A0D0C231D24FCAB3288E27090D2AFD680"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Epoch/Common/Functions/InputFunctions.cs",
-          "name": "ConsumeRelativePointer",
-          "line": 21,
-          "tokens": 52,
-          "hash": "213AC7E1CA3601C36CFE903C6AA7C43A9030479ADF353B6B7D01E023A3E6C171",
-          "shape": "3510A04272220114DB2D8550CC44CA1A0D0C231D24FCAB3288E27090D2AFD680"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
       "hash": "225502367B511E96BA85998233B8636BCEE1968D75C04DB06F937AF9D3EF5A60",
       "method": "ThrowCallbackFailure",
       "tokens": 35,
@@ -4358,123 +4323,6 @@
     },
     {
       "language": "CSharp",
-      "hash": "2D64AECA24824004542BB91D85A8258BA84AC64DBFC32A137626505E007E77C5",
-      "method": "Accumulate",
-      "tokens": 96,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Functions/InputFunctions.cs",
-          "name": "Accumulate",
-          "line": 45,
-          "tokens": 96,
-          "hash": "2D64AECA24824004542BB91D85A8258BA84AC64DBFC32A137626505E007E77C5",
-          "shape": "5600DEADBE735648DB18D95B6714E6645215104F93092AEAB7545337BFB20CEA"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Acorn/Common/Machines/Common/Functions/InputFunctions.cs",
-          "name": "Accumulate",
-          "line": 11,
-          "tokens": 96,
-          "hash": "2D64AECA24824004542BB91D85A8258BA84AC64DBFC32A137626505E007E77C5",
-          "shape": "5600DEADBE735648DB18D95B6714E6645215104F93092AEAB7545337BFB20CEA"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/InputFunctions.cs",
-          "name": "Accumulate",
-          "line": 13,
-          "tokens": 96,
-          "hash": "2D64AECA24824004542BB91D85A8258BA84AC64DBFC32A137626505E007E77C5",
-          "shape": "5600DEADBE735648DB18D95B6714E6645215104F93092AEAB7545337BFB20CEA"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/InputFunctions.cs",
-          "name": "Accumulate",
-          "line": 13,
-          "tokens": 96,
-          "hash": "2D64AECA24824004542BB91D85A8258BA84AC64DBFC32A137626505E007E77C5",
-          "shape": "5600DEADBE735648DB18D95B6714E6645215104F93092AEAB7545337BFB20CEA"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/InputFunctions.cs",
-          "name": "Accumulate",
-          "line": 13,
-          "tokens": 96,
-          "hash": "2D64AECA24824004542BB91D85A8258BA84AC64DBFC32A137626505E007E77C5",
-          "shape": "5600DEADBE735648DB18D95B6714E6645215104F93092AEAB7545337BFB20CEA"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/InputFunctions.cs",
-          "name": "Accumulate",
-          "line": 13,
-          "tokens": 96,
-          "hash": "2D64AECA24824004542BB91D85A8258BA84AC64DBFC32A137626505E007E77C5",
-          "shape": "5600DEADBE735648DB18D95B6714E6645215104F93092AEAB7545337BFB20CEA"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/InputFunctions.cs",
-          "name": "Accumulate",
-          "line": 13,
-          "tokens": 96,
-          "hash": "2D64AECA24824004542BB91D85A8258BA84AC64DBFC32A137626505E007E77C5",
-          "shape": "5600DEADBE735648DB18D95B6714E6645215104F93092AEAB7545337BFB20CEA"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Functions/InputFunctions.cs",
-          "name": "Accumulate",
-          "line": 43,
-          "tokens": 96,
-          "hash": "2D64AECA24824004542BB91D85A8258BA84AC64DBFC32A137626505E007E77C5",
-          "shape": "5600DEADBE735648DB18D95B6714E6645215104F93092AEAB7545337BFB20CEA"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Coleco/Common/Functions/InputFunctions.cs",
-          "name": "Accumulate",
-          "line": 13,
-          "tokens": 96,
-          "hash": "2D64AECA24824004542BB91D85A8258BA84AC64DBFC32A137626505E007E77C5",
-          "shape": "5600DEADBE735648DB18D95B6714E6645215104F93092AEAB7545337BFB20CEA"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Fairchild/Common/Functions/InputFunctions.cs",
-          "name": "Accumulate",
-          "line": 11,
-          "tokens": 96,
-          "hash": "2D64AECA24824004542BB91D85A8258BA84AC64DBFC32A137626505E007E77C5",
-          "shape": "5600DEADBE735648DB18D95B6714E6645215104F93092AEAB7545337BFB20CEA"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Epoch/Common/Functions/InputFunctions.cs",
-          "name": "Accumulate",
-          "line": 13,
-          "tokens": 96,
-          "hash": "2D64AECA24824004542BB91D85A8258BA84AC64DBFC32A137626505E007E77C5",
-          "shape": "5600DEADBE735648DB18D95B6714E6645215104F93092AEAB7545337BFB20CEA"
-        }
-      ],
-      "predecessors": [
-        {
-          "path": "src/GWGUI.Emulation.Atari/Functions/AtariInputFunctions.cs",
-          "name": "Accumulate",
-          "line": 51,
-          "tokens": 96,
-          "hash": "2D64AECA24824004542BB91D85A8258BA84AC64DBFC32A137626505E007E77C5",
-          "shape": "5600DEADBE735648DB18D95B6714E6645215104F93092AEAB7545337BFB20CEA"
-        }
-      ],
-      "shapePredecessors": [
-        {
-          "path": "src/GWGUI.Emulation.Atari/Functions/AtariInputFunctions.cs",
-          "name": "Accumulate",
-          "line": 51,
-          "tokens": 96,
-          "hash": "2D64AECA24824004542BB91D85A8258BA84AC64DBFC32A137626505E007E77C5",
-          "shape": "5600DEADBE735648DB18D95B6714E6645215104F93092AEAB7545337BFB20CEA"
-        }
-      ],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
       "hash": "2DF7648339431C14FF205310E106D355E157D72A93A124B27D8CCAFF51191EBD",
       "method": "Magnitude",
       "tokens": 117,
@@ -5359,7 +5207,7 @@
         {
           "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Functions/InputFunctions.cs",
           "name": "MouseState",
-          "line": 65,
+          "line": 39,
           "tokens": 117,
           "hash": "33771B6F077A9510CD19EAD1DEB76F47F8796677D1A00D59BF09125B07DEEE45",
           "shape": "AA835549AA56BBE1A26A1E6DDB1F2A7F8ED677662BACF344088DFC75478F26DA"
@@ -5391,7 +5239,7 @@
         {
           "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Functions/InputFunctions.cs",
           "name": "MouseState",
-          "line": 63,
+          "line": 37,
           "tokens": 117,
           "hash": "33771B6F077A9510CD19EAD1DEB76F47F8796677D1A00D59BF09125B07DEEE45",
           "shape": "AA835549AA56BBE1A26A1E6DDB1F2A7F8ED677662BACF344088DFC75478F26DA"
@@ -8498,7 +8346,7 @@
     {
       "language": "CSharp",
       "hash": "4F02DAEAE45311749016D72F2B39A384D73ACFDBC8EAA2D267B0BE4556421ABB",
-      "method": "AdaptOptions",
+      "method": "Adapt",
       "tokens": 68,
       "current": [
         {
@@ -9206,115 +9054,6 @@
       ],
       "predecessors": [],
       "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
-      "hash": "574EF62DCD72BE318546703D680707D523F7ED7B013923FE4BF1BDD014149879",
-      "method": "Freeze",
-      "tokens": 39,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Functions/InputFunctions.cs",
-          "name": "Freeze",
-          "line": 11,
-          "tokens": 39,
-          "hash": "574EF62DCD72BE318546703D680707D523F7ED7B013923FE4BF1BDD014149879",
-          "shape": "929F0BE127550B382A979CF3859B35F80DB28E31C5DA68FE1B2930026802F97A"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Acorn/Common/Machines/Common/Functions/InputFunctions.cs",
-          "name": "Freeze",
-          "line": 5,
-          "tokens": 39,
-          "hash": "574EF62DCD72BE318546703D680707D523F7ED7B013923FE4BF1BDD014149879",
-          "shape": "929F0BE127550B382A979CF3859B35F80DB28E31C5DA68FE1B2930026802F97A"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/InputFunctions.cs",
-          "name": "Freeze",
-          "line": 7,
-          "tokens": 39,
-          "hash": "574EF62DCD72BE318546703D680707D523F7ED7B013923FE4BF1BDD014149879",
-          "shape": "929F0BE127550B382A979CF3859B35F80DB28E31C5DA68FE1B2930026802F97A"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/InputFunctions.cs",
-          "name": "Freeze",
-          "line": 7,
-          "tokens": 39,
-          "hash": "574EF62DCD72BE318546703D680707D523F7ED7B013923FE4BF1BDD014149879",
-          "shape": "929F0BE127550B382A979CF3859B35F80DB28E31C5DA68FE1B2930026802F97A"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/InputFunctions.cs",
-          "name": "Freeze",
-          "line": 7,
-          "tokens": 39,
-          "hash": "574EF62DCD72BE318546703D680707D523F7ED7B013923FE4BF1BDD014149879",
-          "shape": "929F0BE127550B382A979CF3859B35F80DB28E31C5DA68FE1B2930026802F97A"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/InputFunctions.cs",
-          "name": "Freeze",
-          "line": 7,
-          "tokens": 39,
-          "hash": "574EF62DCD72BE318546703D680707D523F7ED7B013923FE4BF1BDD014149879",
-          "shape": "929F0BE127550B382A979CF3859B35F80DB28E31C5DA68FE1B2930026802F97A"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/InputFunctions.cs",
-          "name": "Freeze",
-          "line": 7,
-          "tokens": 39,
-          "hash": "574EF62DCD72BE318546703D680707D523F7ED7B013923FE4BF1BDD014149879",
-          "shape": "929F0BE127550B382A979CF3859B35F80DB28E31C5DA68FE1B2930026802F97A"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Functions/InputFunctions.cs",
-          "name": "Freeze",
-          "line": 9,
-          "tokens": 39,
-          "hash": "574EF62DCD72BE318546703D680707D523F7ED7B013923FE4BF1BDD014149879",
-          "shape": "929F0BE127550B382A979CF3859B35F80DB28E31C5DA68FE1B2930026802F97A"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Coleco/Common/Functions/InputFunctions.cs",
-          "name": "Freeze",
-          "line": 7,
-          "tokens": 39,
-          "hash": "574EF62DCD72BE318546703D680707D523F7ED7B013923FE4BF1BDD014149879",
-          "shape": "929F0BE127550B382A979CF3859B35F80DB28E31C5DA68FE1B2930026802F97A"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Epoch/Common/Functions/InputFunctions.cs",
-          "name": "Freeze",
-          "line": 7,
-          "tokens": 39,
-          "hash": "574EF62DCD72BE318546703D680707D523F7ED7B013923FE4BF1BDD014149879",
-          "shape": "929F0BE127550B382A979CF3859B35F80DB28E31C5DA68FE1B2930026802F97A"
-        }
-      ],
-      "predecessors": [
-        {
-          "path": "src/GWGUI.Emulation.Atari/Functions/AtariInputFunctions.cs",
-          "name": "Freeze",
-          "line": 10,
-          "tokens": 39,
-          "hash": "574EF62DCD72BE318546703D680707D523F7ED7B013923FE4BF1BDD014149879",
-          "shape": "929F0BE127550B382A979CF3859B35F80DB28E31C5DA68FE1B2930026802F97A"
-        }
-      ],
-      "shapePredecessors": [
-        {
-          "path": "src/GWGUI.Emulation.Atari/Functions/AtariInputFunctions.cs",
-          "name": "Freeze",
-          "line": 10,
-          "tokens": 39,
-          "hash": "574EF62DCD72BE318546703D680707D523F7ED7B013923FE4BF1BDD014149879",
-          "shape": "929F0BE127550B382A979CF3859B35F80DB28E31C5DA68FE1B2930026802F97A"
-        }
-      ],
       "qualification": "pending"
     },
     {
@@ -10487,122 +10226,6 @@
       ],
       "predecessors": [],
       "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
-      "hash": "5F6A9DF40A62624957E8843FD26966ACB89DADF6A37E32D2EFEBFD37644B770C",
-      "method": "Poll",
-      "tokens": 54,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/InputFrameStore.cs",
-          "name": "Poll",
-          "line": 21,
-          "tokens": 54,
-          "hash": "5F6A9DF40A62624957E8843FD26966ACB89DADF6A37E32D2EFEBFD37644B770C",
-          "shape": "6D7C615B24063AB5FC0C0DD4D28C84737725F33179ACE83C128104DF89221F8C"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Acorn/Common/Services/InputFrameStore.cs",
-          "name": "Poll",
-          "line": 20,
-          "tokens": 54,
-          "hash": "5F6A9DF40A62624957E8843FD26966ACB89DADF6A37E32D2EFEBFD37644B770C",
-          "shape": "6D7C615B24063AB5FC0C0DD4D28C84737725F33179ACE83C128104DF89221F8C"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sinclair/Common/Services/InputFrameStore.cs",
-          "name": "Poll",
-          "line": 20,
-          "tokens": 54,
-          "hash": "5F6A9DF40A62624957E8843FD26966ACB89DADF6A37E32D2EFEBFD37644B770C",
-          "shape": "6D7C615B24063AB5FC0C0DD4D28C84737725F33179ACE83C128104DF89221F8C"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sharp/Common/Services/InputFrameStore.cs",
-          "name": "Poll",
-          "line": 20,
-          "tokens": 54,
-          "hash": "5F6A9DF40A62624957E8843FD26966ACB89DADF6A37E32D2EFEBFD37644B770C",
-          "shape": "6D7C615B24063AB5FC0C0DD4D28C84737725F33179ACE83C128104DF89221F8C"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Snk/Common/Services/InputFrameStore.cs",
-          "name": "Poll",
-          "line": 20,
-          "tokens": 54,
-          "hash": "5F6A9DF40A62624957E8843FD26966ACB89DADF6A37E32D2EFEBFD37644B770C",
-          "shape": "6D7C615B24063AB5FC0C0DD4D28C84737725F33179ACE83C128104DF89221F8C"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Philips/Common/Services/InputFrameStore.cs",
-          "name": "Poll",
-          "line": 20,
-          "tokens": 54,
-          "hash": "5F6A9DF40A62624957E8843FD26966ACB89DADF6A37E32D2EFEBFD37644B770C",
-          "shape": "6D7C615B24063AB5FC0C0DD4D28C84737725F33179ACE83C128104DF89221F8C"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Atari/Common/Services/InputFrameStore.cs",
-          "name": "Poll",
-          "line": 20,
-          "tokens": 54,
-          "hash": "5F6A9DF40A62624957E8843FD26966ACB89DADF6A37E32D2EFEBFD37644B770C",
-          "shape": "6D7C615B24063AB5FC0C0DD4D28C84737725F33179ACE83C128104DF89221F8C"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Mattel/Common/Services/InputFrameStore.cs",
-          "name": "Poll",
-          "line": 20,
-          "tokens": 54,
-          "hash": "5F6A9DF40A62624957E8843FD26966ACB89DADF6A37E32D2EFEBFD37644B770C",
-          "shape": "6D7C615B24063AB5FC0C0DD4D28C84737725F33179ACE83C128104DF89221F8C"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Coleco/Common/Services/InputFrameStore.cs",
-          "name": "Poll",
-          "line": 20,
-          "tokens": 54,
-          "hash": "5F6A9DF40A62624957E8843FD26966ACB89DADF6A37E32D2EFEBFD37644B770C",
-          "shape": "6D7C615B24063AB5FC0C0DD4D28C84737725F33179ACE83C128104DF89221F8C"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Fairchild/Common/Services/InputFrameStore.cs",
-          "name": "Poll",
-          "line": 20,
-          "tokens": 54,
-          "hash": "5F6A9DF40A62624957E8843FD26966ACB89DADF6A37E32D2EFEBFD37644B770C",
-          "shape": "6D7C615B24063AB5FC0C0DD4D28C84737725F33179ACE83C128104DF89221F8C"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Epoch/Common/Services/InputFrameStore.cs",
-          "name": "Poll",
-          "line": 20,
-          "tokens": 54,
-          "hash": "5F6A9DF40A62624957E8843FD26966ACB89DADF6A37E32D2EFEBFD37644B770C",
-          "shape": "6D7C615B24063AB5FC0C0DD4D28C84737725F33179ACE83C128104DF89221F8C"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Bandai/Common/Services/InputFrameStore.cs",
-          "name": "Poll",
-          "line": 20,
-          "tokens": 54,
-          "hash": "5F6A9DF40A62624957E8843FD26966ACB89DADF6A37E32D2EFEBFD37644B770C",
-          "shape": "6D7C615B24063AB5FC0C0DD4D28C84737725F33179ACE83C128104DF89221F8C"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [
-        {
-          "path": "src/GWGUI.Emulation.Atari/Services/AtariInputFrameStore.cs",
-          "name": "Poll",
-          "line": 21,
-          "tokens": 54,
-          "hash": "FD6F84B7DC15FEC86B9910617BC7EA654BD44052B4CA6B338F100A22B5AB73BA",
-          "shape": "6D7C615B24063AB5FC0C0DD4D28C84737725F33179ACE83C128104DF89221F8C"
-        }
-      ],
       "qualification": "pending"
     },
     {
@@ -17608,7 +17231,7 @@
     {
       "language": "CSharp",
       "hash": "A1E03750FEB3292ACEB41656386F4A8AA8B05077D9ABFB7DA103AA3D71320B9F",
-      "method": "ToFairchild",
+      "method": "ToModule",
       "tokens": 103,
       "current": [
         {
@@ -19218,7 +18841,7 @@
     {
       "language": "CSharp",
       "hash": "B053A3AB4F0B78A37DED57B2D744801187AED6EC54FEEAFE4B1AA9C454D6F48C",
-      "method": "FairchildEmulationModule",
+      "method": "SnkEmulationModule",
       "tokens": 47,
       "current": [
         {
@@ -20031,66 +19654,6 @@
       ],
       "predecessors": [],
       "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
-      "hash": "BA7F9C3DB600FC2EF953C77024E18E648F9CBFB75096CE47140999F3C9EE3960",
-      "method": "ConsumeRelativePointer",
-      "tokens": 36,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/InputFunctions.cs",
-          "name": "ConsumeRelativePointer",
-          "line": 21,
-          "tokens": 36,
-          "hash": "BA7F9C3DB600FC2EF953C77024E18E648F9CBFB75096CE47140999F3C9EE3960",
-          "shape": "D06FF8C7771AFA9DEFF99B3E5B939907117D63375450E9CCAFE0049163B2AB2A"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/InputFunctions.cs",
-          "name": "ConsumeRelativePointer",
-          "line": 21,
-          "tokens": 36,
-          "hash": "BA7F9C3DB600FC2EF953C77024E18E648F9CBFB75096CE47140999F3C9EE3960",
-          "shape": "D06FF8C7771AFA9DEFF99B3E5B939907117D63375450E9CCAFE0049163B2AB2A"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/InputFunctions.cs",
-          "name": "ConsumeRelativePointer",
-          "line": 21,
-          "tokens": 36,
-          "hash": "BA7F9C3DB600FC2EF953C77024E18E648F9CBFB75096CE47140999F3C9EE3960",
-          "shape": "D06FF8C7771AFA9DEFF99B3E5B939907117D63375450E9CCAFE0049163B2AB2A"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/InputFunctions.cs",
-          "name": "ConsumeRelativePointer",
-          "line": 21,
-          "tokens": 36,
-          "hash": "BA7F9C3DB600FC2EF953C77024E18E648F9CBFB75096CE47140999F3C9EE3960",
-          "shape": "D06FF8C7771AFA9DEFF99B3E5B939907117D63375450E9CCAFE0049163B2AB2A"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/InputFunctions.cs",
-          "name": "ConsumeRelativePointer",
-          "line": 21,
-          "tokens": 36,
-          "hash": "BA7F9C3DB600FC2EF953C77024E18E648F9CBFB75096CE47140999F3C9EE3960",
-          "shape": "D06FF8C7771AFA9DEFF99B3E5B939907117D63375450E9CCAFE0049163B2AB2A"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [
-        {
-          "path": "src/GWGUI.Emulation.Atari/Functions/AtariInputFunctions.cs",
-          "name": "ConsumeRelativePointer",
-          "line": 60,
-          "tokens": 36,
-          "hash": "A3D783F1410822A6B825F54DF2BCBEB66EF19F732DD6E7F50A83E8F8A21B7938",
-          "shape": "D06FF8C7771AFA9DEFF99B3E5B939907117D63375450E9CCAFE0049163B2AB2A"
-        }
-      ],
       "qualification": "pending"
     },
     {
@@ -21749,42 +21312,6 @@
       ],
       "predecessors": [],
       "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
-      "hash": "CB7B60043834F8F1863C427B29B4CEED93959618039F1648748722CF998D1F79",
-      "method": "ConsumeRelativePointer",
-      "tokens": 36,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Functions/InputFunctions.cs",
-          "name": "ConsumeRelativePointer",
-          "line": 53,
-          "tokens": 36,
-          "hash": "CB7B60043834F8F1863C427B29B4CEED93959618039F1648748722CF998D1F79",
-          "shape": "D06FF8C7771AFA9DEFF99B3E5B939907117D63375450E9CCAFE0049163B2AB2A"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Functions/InputFunctions.cs",
-          "name": "ConsumeRelativePointer",
-          "line": 51,
-          "tokens": 36,
-          "hash": "CB7B60043834F8F1863C427B29B4CEED93959618039F1648748722CF998D1F79",
-          "shape": "D06FF8C7771AFA9DEFF99B3E5B939907117D63375450E9CCAFE0049163B2AB2A"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [
-        {
-          "path": "src/GWGUI.Emulation.Atari/Functions/AtariInputFunctions.cs",
-          "name": "ConsumeRelativePointer",
-          "line": 60,
-          "tokens": 36,
-          "hash": "A3D783F1410822A6B825F54DF2BCBEB66EF19F732DD6E7F50A83E8F8A21B7938",
-          "shape": "D06FF8C7771AFA9DEFF99B3E5B939907117D63375450E9CCAFE0049163B2AB2A"
-        }
-      ],
       "qualification": "pending"
     },
     {
@@ -23572,33 +23099,6 @@
     },
     {
       "language": "CSharp",
-      "hash": "DAB19B475218183B62D98D30DFAD00D67AF4755186F95CEBE9F6C5D3A7012459",
-      "method": "Freeze",
-      "tokens": 38,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Fairchild/Common/Functions/InputFunctions.cs",
-          "name": "Freeze",
-          "line": 5,
-          "tokens": 38,
-          "hash": "DAB19B475218183B62D98D30DFAD00D67AF4755186F95CEBE9F6C5D3A7012459",
-          "shape": "0093EB830F4E1C8C0568E24AD2CA6D60EFE617C4B30AA64D3CFDF3F88F8005F9"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Bandai/Common/Functions/InputFunctions.cs",
-          "name": "Freeze",
-          "line": 5,
-          "tokens": 38,
-          "hash": "DAB19B475218183B62D98D30DFAD00D67AF4755186F95CEBE9F6C5D3A7012459",
-          "shape": "0093EB830F4E1C8C0568E24AD2CA6D60EFE617C4B30AA64D3CFDF3F88F8005F9"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
       "hash": "DAFC84C1D1F67040286C5953D3602E1870FA4C758DF6E564606F315C84DCDC8C",
       "method": "Translate",
       "tokens": 137,
@@ -23997,7 +23497,7 @@
         {
           "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Input.cs",
           "name": "CreateKeyboardMap",
-          "line": 159,
+          "line": 158,
           "tokens": 55,
           "hash": "E0BC603E350A0A3E43AA228224DDF07A41C832AA5D5F3729C1A432E1D25D79C0",
           "shape": "A494B9C1ABE840CAB2E2947D8C535FDF39D8E02B21B644F35941848DA03DB358"
@@ -24005,7 +23505,7 @@
         {
           "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.Input.cs",
           "name": "CreateKeyboardMap",
-          "line": 131,
+          "line": 130,
           "tokens": 55,
           "hash": "E0BC603E350A0A3E43AA228224DDF07A41C832AA5D5F3729C1A432E1D25D79C0",
           "shape": "A494B9C1ABE840CAB2E2947D8C535FDF39D8E02B21B644F35941848DA03DB358"
@@ -24013,7 +23513,7 @@
         {
           "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Input.cs",
           "name": "CreateKeyboardMap",
-          "line": 131,
+          "line": 130,
           "tokens": 55,
           "hash": "E0BC603E350A0A3E43AA228224DDF07A41C832AA5D5F3729C1A432E1D25D79C0",
           "shape": "A494B9C1ABE840CAB2E2947D8C535FDF39D8E02B21B644F35941848DA03DB358"
@@ -25608,7 +25108,7 @@
     {
       "language": "CSharp",
       "hash": "F107F4D7D97C4E9F797468C991DF2090B47DF6E3F6F74E56044EFF0C28CAA51D",
-      "method": "NotifyHardwareContextDestroy",
+      "method": "NotifyDestroy",
       "tokens": 31,
       "current": [
         {
@@ -25989,7 +25489,7 @@
           "hash": "F4D9DE21E99613BAAD068CC85A4E87A8100694E24E1F0146DE2A9AD01E5D5B60",
           "shape": "980FA15B101FFF4166DB7A5844456C5841D086702F20FD987F10F709321AE2FD",
           "qualification": "Typed keyboard publication adapter to original Atari transitions and shared modifiers verified in keyboardTransitionReuse; local guard/filter/map/character/order policies retained",
-          "qualificationSourceSha256": "B4125ED362370D5FA40827C0C6D69DB4894E1773B5F61DF2772C5AE7E241BF3C"
+          "qualificationSourceSha256": "535721737429DBCBD3A9203A4EEDFA43840108FB3096154546435F6F899417A1"
         },
         {
           "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Input.cs",
@@ -25999,7 +25499,7 @@
           "hash": "F4D9DE21E99613BAAD068CC85A4E87A8100694E24E1F0146DE2A9AD01E5D5B60",
           "shape": "980FA15B101FFF4166DB7A5844456C5841D086702F20FD987F10F709321AE2FD",
           "qualification": "Typed keyboard publication adapter to original Atari transitions and shared modifiers verified in keyboardTransitionReuse; local guard/filter/map/character/order policies retained",
-          "qualificationSourceSha256": "B40746F45FA161A080227C991B05603EB30C3DCDD91D674E2426251662301C2B"
+          "qualificationSourceSha256": "F254D76F30C3CF714CB5085C46CA72224BBAE66B7A46201373174B880659878A"
         },
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.Input.cs",
@@ -26019,128 +25519,12 @@
           "hash": "F4D9DE21E99613BAAD068CC85A4E87A8100694E24E1F0146DE2A9AD01E5D5B60",
           "shape": "980FA15B101FFF4166DB7A5844456C5841D086702F20FD987F10F709321AE2FD",
           "qualification": "Typed keyboard publication adapter to original Atari transitions and shared modifiers verified in keyboardTransitionReuse; local guard/filter/map/character/order policies retained",
-          "qualificationSourceSha256": "376ADDF95EBA1D6D82F10F3C7CE2DC59F99EB79C8E42D6915258F2F063E6CE0A"
+          "qualificationSourceSha256": "FC7866A37311864EFED71EC83BD9AEB6BCCD5D6812323BEFB3E13EB84D9616F3"
         }
       ],
       "predecessors": [],
       "shapePredecessors": [],
       "qualification": "All occurrences qualified individually; see member evidence"
-    },
-    {
-      "language": "CSharp",
-      "hash": "F5A9F2DC79E5DC143946DCFCB85D92A12711BB8C96472C1C61BD83674BEBEA43",
-      "method": "Update",
-      "tokens": 56,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/InputFrameStore.cs",
-          "name": "Update",
-          "line": 11,
-          "tokens": 56,
-          "hash": "F5A9F2DC79E5DC143946DCFCB85D92A12711BB8C96472C1C61BD83674BEBEA43",
-          "shape": "4F9384B846668837189706DA68581D6807412614309D00A26FD28654C366F0CF"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Acorn/Common/Services/InputFrameStore.cs",
-          "name": "Update",
-          "line": 10,
-          "tokens": 56,
-          "hash": "F5A9F2DC79E5DC143946DCFCB85D92A12711BB8C96472C1C61BD83674BEBEA43",
-          "shape": "4F9384B846668837189706DA68581D6807412614309D00A26FD28654C366F0CF"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sinclair/Common/Services/InputFrameStore.cs",
-          "name": "Update",
-          "line": 10,
-          "tokens": 56,
-          "hash": "F5A9F2DC79E5DC143946DCFCB85D92A12711BB8C96472C1C61BD83674BEBEA43",
-          "shape": "4F9384B846668837189706DA68581D6807412614309D00A26FD28654C366F0CF"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sharp/Common/Services/InputFrameStore.cs",
-          "name": "Update",
-          "line": 10,
-          "tokens": 56,
-          "hash": "F5A9F2DC79E5DC143946DCFCB85D92A12711BB8C96472C1C61BD83674BEBEA43",
-          "shape": "4F9384B846668837189706DA68581D6807412614309D00A26FD28654C366F0CF"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Snk/Common/Services/InputFrameStore.cs",
-          "name": "Update",
-          "line": 10,
-          "tokens": 56,
-          "hash": "F5A9F2DC79E5DC143946DCFCB85D92A12711BB8C96472C1C61BD83674BEBEA43",
-          "shape": "4F9384B846668837189706DA68581D6807412614309D00A26FD28654C366F0CF"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Philips/Common/Services/InputFrameStore.cs",
-          "name": "Update",
-          "line": 10,
-          "tokens": 56,
-          "hash": "F5A9F2DC79E5DC143946DCFCB85D92A12711BB8C96472C1C61BD83674BEBEA43",
-          "shape": "4F9384B846668837189706DA68581D6807412614309D00A26FD28654C366F0CF"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Atari/Common/Services/InputFrameStore.cs",
-          "name": "Update",
-          "line": 10,
-          "tokens": 56,
-          "hash": "F5A9F2DC79E5DC143946DCFCB85D92A12711BB8C96472C1C61BD83674BEBEA43",
-          "shape": "4F9384B846668837189706DA68581D6807412614309D00A26FD28654C366F0CF"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Mattel/Common/Services/InputFrameStore.cs",
-          "name": "Update",
-          "line": 10,
-          "tokens": 56,
-          "hash": "F5A9F2DC79E5DC143946DCFCB85D92A12711BB8C96472C1C61BD83674BEBEA43",
-          "shape": "4F9384B846668837189706DA68581D6807412614309D00A26FD28654C366F0CF"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Coleco/Common/Services/InputFrameStore.cs",
-          "name": "Update",
-          "line": 10,
-          "tokens": 56,
-          "hash": "F5A9F2DC79E5DC143946DCFCB85D92A12711BB8C96472C1C61BD83674BEBEA43",
-          "shape": "4F9384B846668837189706DA68581D6807412614309D00A26FD28654C366F0CF"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Fairchild/Common/Services/InputFrameStore.cs",
-          "name": "Update",
-          "line": 10,
-          "tokens": 56,
-          "hash": "F5A9F2DC79E5DC143946DCFCB85D92A12711BB8C96472C1C61BD83674BEBEA43",
-          "shape": "4F9384B846668837189706DA68581D6807412614309D00A26FD28654C366F0CF"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Epoch/Common/Services/InputFrameStore.cs",
-          "name": "Update",
-          "line": 10,
-          "tokens": 56,
-          "hash": "F5A9F2DC79E5DC143946DCFCB85D92A12711BB8C96472C1C61BD83674BEBEA43",
-          "shape": "4F9384B846668837189706DA68581D6807412614309D00A26FD28654C366F0CF"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Bandai/Common/Services/InputFrameStore.cs",
-          "name": "Update",
-          "line": 10,
-          "tokens": 56,
-          "hash": "F5A9F2DC79E5DC143946DCFCB85D92A12711BB8C96472C1C61BD83674BEBEA43",
-          "shape": "4F9384B846668837189706DA68581D6807412614309D00A26FD28654C366F0CF"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [
-        {
-          "path": "src/GWGUI.Emulation.Atari/Services/AtariInputFrameStore.cs",
-          "name": "Update",
-          "line": 10,
-          "tokens": 56,
-          "hash": "C49AE1C35DA4C0ACE286EB4B2BDF8AAD9CF27499BF1827360976B94745009041",
-          "shape": "4F9384B846668837189706DA68581D6807412614309D00A26FD28654C366F0CF"
-        }
-      ],
-      "qualification": "pending"
     },
     {
       "language": "CSharp",
@@ -31143,7 +30527,7 @@
         {
           "path": "src/GWGUI.Emulation/Functions/EmulationInputMappingFunctions.cs",
           "name": "TryRemovePrefix",
-          "line": 146,
+          "line": 154,
           "tokens": 49,
           "hash": "BA9AD9B4A071A397D6AA5DA269AD309318AAAFA9AEFBC283716FD07B0487765E",
           "shape": "8EB0DB36964E4C010361878FB2B3A491187182692E9DF4D1CE6E894BF28987C7"
@@ -31365,7 +30749,7 @@
           "hash": "FDE23D7E1F26742432256A23DD356856D681971B0402EC59DD5FC4B2ABB0D84D",
           "shape": "980FA15B101FFF4166DB7A5844456C5841D086702F20FD987F10F709321AE2FD",
           "qualification": "Typed keyboard publication adapter to original Atari transitions and shared modifiers verified in keyboardTransitionReuse; local guard/filter/map/character/order policies retained",
-          "qualificationSourceSha256": "55C46DDCADD0C80D3FEF40CE14932FE4E3FA2C7F86537E2F6B7D1D1640C63AB2"
+          "qualificationSourceSha256": "2F2DE56BACBDE374F9C385EDB9108182607230B0992CD3883EAF742FA4FB78A5"
         },
         {
           "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Input.cs",
@@ -31375,7 +30759,7 @@
           "hash": "F4D9DE21E99613BAAD068CC85A4E87A8100694E24E1F0146DE2A9AD01E5D5B60",
           "shape": "980FA15B101FFF4166DB7A5844456C5841D086702F20FD987F10F709321AE2FD",
           "qualification": "Typed keyboard publication adapter to original Atari transitions and shared modifiers verified in keyboardTransitionReuse; local guard/filter/map/character/order policies retained",
-          "qualificationSourceSha256": "B4125ED362370D5FA40827C0C6D69DB4894E1773B5F61DF2772C5AE7E241BF3C"
+          "qualificationSourceSha256": "535721737429DBCBD3A9203A4EEDFA43840108FB3096154546435F6F899417A1"
         },
         {
           "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Input.cs",
@@ -31385,7 +30769,7 @@
           "hash": "F4D9DE21E99613BAAD068CC85A4E87A8100694E24E1F0146DE2A9AD01E5D5B60",
           "shape": "980FA15B101FFF4166DB7A5844456C5841D086702F20FD987F10F709321AE2FD",
           "qualification": "Typed keyboard publication adapter to original Atari transitions and shared modifiers verified in keyboardTransitionReuse; local guard/filter/map/character/order policies retained",
-          "qualificationSourceSha256": "B40746F45FA161A080227C991B05603EB30C3DCDD91D674E2426251662301C2B"
+          "qualificationSourceSha256": "F254D76F30C3CF714CB5085C46CA72224BBAE66B7A46201373174B880659878A"
         },
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalHostCallbacks.Input.cs",
@@ -31405,7 +30789,7 @@
           "hash": "F4D9DE21E99613BAAD068CC85A4E87A8100694E24E1F0146DE2A9AD01E5D5B60",
           "shape": "980FA15B101FFF4166DB7A5844456C5841D086702F20FD987F10F709321AE2FD",
           "qualification": "Typed keyboard publication adapter to original Atari transitions and shared modifiers verified in keyboardTransitionReuse; local guard/filter/map/character/order policies retained",
-          "qualificationSourceSha256": "376ADDF95EBA1D6D82F10F3C7CE2DC59F99EB79C8E42D6915258F2F063E6CE0A"
+          "qualificationSourceSha256": "FC7866A37311864EFED71EC83BD9AEB6BCCD5D6812323BEFB3E13EB84D9616F3"
         }
       ],
       "qualification": "All occurrences qualified individually; see member evidence"
@@ -31958,7 +31342,7 @@
         {
           "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Functions/InputFunctions.cs",
           "name": "State",
-          "line": 17,
+          "line": 11,
           "tokens": 293,
           "hash": "759ED92F8E810330AB3DF8DF7A10F4CA814AD6AB65BC2690ABA002526A1511B6",
           "shape": "ADCF65BDC016FBF72EA82AEE6243940FF505333B82FEF29E9C7229CAAF24CBD4"
@@ -33274,77 +32658,6 @@
           "tokens": 62,
           "hash": "424BCDDDC9C71586B82E04B764B3D1D59AE8B044333D62624B4569F70E5ED958",
           "shape": "D03A9AEEA0FCEDC1F48CF914497DF545EF2DD057041F0D99316E8D5D42D148BE"
-        }
-      ],
-      "qualification": "pending-symbol-and-policy-comparison"
-    },
-    {
-      "shape": "D06FF8C7771AFA9DEFF99B3E5B939907117D63375450E9CCAFE0049163B2AB2A",
-      "tokens": 36,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Functions/InputFunctions.cs",
-          "name": "ConsumeRelativePointer",
-          "line": 53,
-          "tokens": 36,
-          "hash": "CB7B60043834F8F1863C427B29B4CEED93959618039F1648748722CF998D1F79",
-          "shape": "D06FF8C7771AFA9DEFF99B3E5B939907117D63375450E9CCAFE0049163B2AB2A"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Acorn/Common/Machines/Common/Functions/InputFunctions.cs",
-          "name": "ConsumeRelativePointer",
-          "line": 19,
-          "tokens": 36,
-          "hash": "C19C5BFF97EA461FB2C1FD9735F054239AA09E29E14D88C8CB2C3924BA81B538",
-          "shape": "D06FF8C7771AFA9DEFF99B3E5B939907117D63375450E9CCAFE0049163B2AB2A"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/InputFunctions.cs",
-          "name": "ConsumeRelativePointer",
-          "line": 21,
-          "tokens": 36,
-          "hash": "BA7F9C3DB600FC2EF953C77024E18E648F9CBFB75096CE47140999F3C9EE3960",
-          "shape": "D06FF8C7771AFA9DEFF99B3E5B939907117D63375450E9CCAFE0049163B2AB2A"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/InputFunctions.cs",
-          "name": "ConsumeRelativePointer",
-          "line": 21,
-          "tokens": 36,
-          "hash": "BA7F9C3DB600FC2EF953C77024E18E648F9CBFB75096CE47140999F3C9EE3960",
-          "shape": "D06FF8C7771AFA9DEFF99B3E5B939907117D63375450E9CCAFE0049163B2AB2A"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/InputFunctions.cs",
-          "name": "ConsumeRelativePointer",
-          "line": 21,
-          "tokens": 36,
-          "hash": "BA7F9C3DB600FC2EF953C77024E18E648F9CBFB75096CE47140999F3C9EE3960",
-          "shape": "D06FF8C7771AFA9DEFF99B3E5B939907117D63375450E9CCAFE0049163B2AB2A"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/InputFunctions.cs",
-          "name": "ConsumeRelativePointer",
-          "line": 21,
-          "tokens": 36,
-          "hash": "BA7F9C3DB600FC2EF953C77024E18E648F9CBFB75096CE47140999F3C9EE3960",
-          "shape": "D06FF8C7771AFA9DEFF99B3E5B939907117D63375450E9CCAFE0049163B2AB2A"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/InputFunctions.cs",
-          "name": "ConsumeRelativePointer",
-          "line": 21,
-          "tokens": 36,
-          "hash": "BA7F9C3DB600FC2EF953C77024E18E648F9CBFB75096CE47140999F3C9EE3960",
-          "shape": "D06FF8C7771AFA9DEFF99B3E5B939907117D63375450E9CCAFE0049163B2AB2A"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Functions/InputFunctions.cs",
-          "name": "ConsumeRelativePointer",
-          "line": 51,
-          "tokens": 36,
-          "hash": "CB7B60043834F8F1863C427B29B4CEED93959618039F1648748722CF998D1F79",
-          "shape": "D06FF8C7771AFA9DEFF99B3E5B939907117D63375450E9CCAFE0049163B2AB2A"
         }
       ],
       "qualification": "pending-symbol-and-policy-comparison"
@@ -35216,7 +34529,7 @@
   ],
   "scope": "All current repository CSharp and PowerShell files; no age filter; candidates require semantic review",
   "qualificationCarryForward": {
-    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical",
-    "occurrences": 298
+    "occurrences": 293,
+    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical"
   }
 }

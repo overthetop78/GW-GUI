@@ -4,7 +4,7 @@ internal static class ControllerFunctions
 {
     internal static EmulationInputSnapshot ApplyDeadZones(EmulationInputSnapshot input, IReadOnlyList<ControllerBinding>? bindings)
     {
-        var snapshot = InputFunctions.Freeze(input);
+        var snapshot = EmulationInputMappingFunctions.Freeze(input);
         if (bindings is null) return snapshot;
         var controllers = snapshot.Controllers.ToArray();
         foreach (var binding in bindings)

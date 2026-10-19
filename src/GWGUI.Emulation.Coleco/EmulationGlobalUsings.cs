@@ -44,3 +44,5 @@ global using CoreOption = GWGUI.Emulation.Contracts.EmulationTimingOption;
 global using CoreRelease = GWGUI.Emulation.Contracts.EmulationCatalogCoreRelease<GWGUI.Emulation.Coleco.Common.Machines.Common.Enums.Emulator>;
 global using EmulatorCatalogEntry = GWGUI.Emulation.Contracts.EmulationCoreCatalogEntry<GWGUI.Emulation.Coleco.Common.Machines.Common.Enums.Emulator, GWGUI.Emulation.Coleco.Common.Machines.Common.Enums.MachineModel>;
 global using HostError = global::GWGUI.Emulation.Contracts.HostError<GWGUI.Emulation.Coleco.Common.Enums.ErrorCategory, GWGUI.Emulation.Coleco.Common.Enums.ErrorCode>;
+
+global using InputFrameStore = GWGUI.Emulation.Services.EmulationInputFrameStore;

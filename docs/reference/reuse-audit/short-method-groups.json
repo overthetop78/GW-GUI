@@ -1,24 +1,72 @@
 {
-  "snapshot": "618c304382804be0b0726bcaf5612a82af2710f8",
+  "snapshot": "097ad6de293f8a4ba459875925e27a855f108598",
   "snapshotState": "Current worktree based on snapshot",
   "worktreeSourceChanges": [
-    "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Factories/LibretroMachineFactory.cs",
-    "src/GWGUI.Emulation.Snk/Emulators/FbAlpha/Factories/FbAlphaMachineFactory.cs",
-    "src/GWGUI.Emulation.Snk/Emulators/FbAlpha2012/Factories/FbAlpha2012MachineFactory.cs",
-    "src/GWGUI.Emulation.Snk/Emulators/FbAlpha2012NeoGeo/Factories/FbAlpha2012NeoGeoMachineFactory.cs",
-    "src/GWGUI.Emulation.Snk/Emulators/Geolith/Factories/GeolithMachineFactory.cs",
-    "src/GWGUI.Emulation.Snk/Emulators/HbMame/Factories/HbMameMachineFactory.cs",
-    "src/GWGUI.Emulation.Snk/Emulators/Mame2000/Factories/Mame2000MachineFactory.cs",
-    "src/GWGUI.Emulation.Snk/Emulators/Mame2003Plus/Factories/Mame2003PlusMachineFactory.cs",
-    "src/GWGUI.Emulation.Snk/Emulators/Mame2015/Factories/Mame2015MachineFactory.cs",
-    "src/GWGUI.Emulation.Snk/Emulators/MednafenNgp/Factories/MednafenNgpMachineFactory.cs",
-    "src/GWGUI.Emulation.Snk/Emulators/NeoCd/Factories/NeoCdMachineFactory.cs",
-    "src/GWGUI.Emulation.Snk/Emulators/Race/Factories/RaceMachineFactory.cs",
-    "tests/GWGUI.Tests/Emulation/Snk/SnkInputSettingsTests.cs"
+    "src/GWGUI.Emulation.Acorn/Common/Machines/Common/Constants/RuntimeConstants.cs",
+    "src/GWGUI.Emulation.Acorn/Common/Machines/Common/Functions/InputFunctions.cs",
+    "src/GWGUI.Emulation.Acorn/Common/Services/InputFrameStore.cs",
+    "src/GWGUI.Emulation.Acorn/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.Input.cs",
+    "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+    "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Functions/InputFunctions.cs",
+    "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/InputFrameStore.cs",
+    "src/GWGUI.Emulation.Atari/Common/Services/InputFrameStore.cs",
+    "src/GWGUI.Emulation.Atari/Emulators/Common/Functions/InputFunctions.cs",
+    "src/GWGUI.Emulation.Bandai/Common/Functions/ControllerFunctions.cs",
+    "src/GWGUI.Emulation.Bandai/Common/Functions/InputFunctions.cs",
+    "src/GWGUI.Emulation.Bandai/Common/Machines/Common/Functions/InputFunctions.Snapshot.cs",
+    "src/GWGUI.Emulation.Bandai/Common/Services/InputFrameStore.cs",
+    "src/GWGUI.Emulation.Coleco/Common/Functions/ControllerFunctions.cs",
+    "src/GWGUI.Emulation.Coleco/Common/Functions/InputFunctions.cs",
+    "src/GWGUI.Emulation.Coleco/Common/Services/InputFrameStore.cs",
+    "src/GWGUI.Emulation.Coleco/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.Input.cs",
+    "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+    "src/GWGUI.Emulation.Epoch/Common/Functions/ControllerFunctions.cs",
+    "src/GWGUI.Emulation.Epoch/Common/Functions/InputFunctions.cs",
+    "src/GWGUI.Emulation.Epoch/Common/Services/InputFrameStore.cs",
+    "src/GWGUI.Emulation.Epoch/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Fairchild/Common/Functions/ControllerFunctions.cs",
+    "src/GWGUI.Emulation.Fairchild/Common/Functions/InputFunctions.cs",
+    "src/GWGUI.Emulation.Fairchild/Common/Services/InputFrameStore.cs",
+    "src/GWGUI.Emulation.Fairchild/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Constants/InputMappingConstants.cs",
+    "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/ControllerFunctions.cs",
+    "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/InputFunctions.cs",
+    "src/GWGUI.Emulation.Mattel/Common/Services/InputFrameStore.cs",
+    "src/GWGUI.Emulation.Mattel/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.Input.cs",
+    "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+    "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Input.cs",
+    "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+    "src/GWGUI.Emulation.Philips/Common/Machines/Common/Constants/InputMappingConstants.cs",
+    "src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/ControllerFunctions.cs",
+    "src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/InputFunctions.cs",
+    "src/GWGUI.Emulation.Philips/Common/Services/InputFrameStore.cs",
+    "src/GWGUI.Emulation.Philips/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Input.cs",
+    "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs",
+    "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Constants/InputMappingConstants.cs",
+    "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/ControllerFunctions.cs",
+    "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/InputFunctions.cs",
+    "src/GWGUI.Emulation.Sharp/Common/Services/InputFrameStore.cs",
+    "src/GWGUI.Emulation.Sharp/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Constants/InputMappingConstants.cs",
+    "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/ControllerFunctions.cs",
+    "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/InputFunctions.cs",
+    "src/GWGUI.Emulation.Sinclair/Common/Services/InputFrameStore.cs",
+    "src/GWGUI.Emulation.Sinclair/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation.Snk/Common/Machines/Common/Constants/InputMappingConstants.cs",
+    "src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/ControllerFunctions.cs",
+    "src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/InputFunctions.cs",
+    "src/GWGUI.Emulation.Snk/Common/Services/InputFrameStore.cs",
+    "src/GWGUI.Emulation.Snk/EmulationGlobalUsings.cs",
+    "src/GWGUI.Emulation/Functions/EmulationInputMappingFunctions.cs",
+    "src/GWGUI.Emulation/Services/EmulationInputAccumulator.cs"
   ],
   "scope": "All current non-ignored repository CSharp files, including hidden paths; BaseMethodDeclaration bodies with fewer than 30 tokens. Candidate presence is not a defect or a completion claim.",
-  "fileCount": 7231,
-  "methodBodyCount": 9508,
+  "fileCount": 7214,
+  "methodBodyCount": 9494,
   "exactGroups": [
     {
       "hash": "0017F14C61995D644C52FF90F094E4708DC2CA772615CF2F5DD41E74BD202ECA",
@@ -1922,38 +1970,6 @@
           "bodyTokens": "=> ValueTask . CompletedTask",
           "hash": "083CC52B5670A56081AD454E3229F68D814DFEE230F575E735FD91ABC6966693",
           "shape": "BF288E22B2DBEA96D7B7A2D7D2E3AF89ADB9797E9BE511C70B02B176EE5DCA0E"
-        }
-      ],
-      "qualification": "pending-symbol-and-ownership-comparison"
-    },
-    {
-      "hash": "088D9FE0BB84B9CD9208248A65BC47265669AD79DCBB648D3485442F667C99CA",
-      "tokens": 21,
-      "bodyTokens": "=> InputFunctions . State ( Volatile . Read ( ref _polled ) , port , device , index , id )",
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/InputFrameStore.cs",
-          "name": "State",
-          "owner": "InputFrameStore",
-          "kind": "MethodDeclaration",
-          "line": 31,
-          "parameters": "(uint port, uint device, uint index, uint id)",
-          "tokens": 21,
-          "bodyTokens": "=> InputFunctions . State ( Volatile . Read ( ref _polled ) , port , device , index , id )",
-          "hash": "088D9FE0BB84B9CD9208248A65BC47265669AD79DCBB648D3485442F667C99CA",
-          "shape": "E0B837DB0EE2FCC2F8E99228017813979138CC23DC724AD87C00E7EC12A6697E"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Atari/Common/Services/InputFrameStore.cs",
-          "name": "State",
-          "owner": "InputFrameStore",
-          "kind": "MethodDeclaration",
-          "line": 30,
-          "parameters": "(uint port, uint device, uint index, uint id)",
-          "tokens": 21,
-          "bodyTokens": "=> InputFunctions . State ( Volatile . Read ( ref _polled ) , port , device , index , id )",
-          "hash": "088D9FE0BB84B9CD9208248A65BC47265669AD79DCBB648D3485442F667C99CA",
-          "shape": "E0B837DB0EE2FCC2F8E99228017813979138CC23DC724AD87C00E7EC12A6697E"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -10136,7 +10152,7 @@
           "name": "Boolean",
           "owner": "InputFunctions",
           "kind": "MethodDeclaration",
-          "line": 82,
+          "line": 56,
           "parameters": "(bool value)",
           "tokens": 10,
           "bodyTokens": "=> value ? InputConstants . ActiveState : InputConstants . InactiveState",
@@ -10148,7 +10164,7 @@
           "name": "Boolean",
           "owner": "InputFunctions",
           "kind": "MethodDeclaration",
-          "line": 80,
+          "line": 54,
           "parameters": "(bool value)",
           "tokens": 10,
           "bodyTokens": "=> value ? InputConstants . ActiveState : InputConstants . InactiveState",
@@ -14817,7 +14833,7 @@
           "hash": "2A0E032940DF242D6528728EBD1D986D16F75A5D3E1A93C5EEF361E1B18444F4",
           "shape": "690A04AD7CADEEAFE208E4C40BAE2336B9107030DAC83FB9861D7244C30C127D",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.ExternalCoreKeyboardFunctions.Character(uint, System.Collections.Generic.IReadOnlySet<GWGUI.Emulation.Enums.EmulationKey>); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "376ADDF95EBA1D6D82F10F3C7CE2DC59F99EB79C8E42D6915258F2F063E6CE0A"
+          "qualificationSourceSha256": "FC7866A37311864EFED71EC83BD9AEB6BCCD5D6812323BEFB3E13EB84D9616F3"
         },
         {
           "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Input.cs",
@@ -14831,7 +14847,7 @@
           "hash": "2A0E032940DF242D6528728EBD1D986D16F75A5D3E1A93C5EEF361E1B18444F4",
           "shape": "690A04AD7CADEEAFE208E4C40BAE2336B9107030DAC83FB9861D7244C30C127D",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.ExternalCoreKeyboardFunctions.Character(uint, System.Collections.Generic.IReadOnlySet<GWGUI.Emulation.Enums.EmulationKey>); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "B40746F45FA161A080227C991B05603EB30C3DCDD91D674E2426251662301C2B"
+          "qualificationSourceSha256": "F254D76F30C3CF714CB5085C46CA72224BBAE66B7A46201373174B880659878A"
         },
         {
           "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Functions/KeyboardFunctions.cs",
@@ -14859,7 +14875,7 @@
           "hash": "2A0E032940DF242D6528728EBD1D986D16F75A5D3E1A93C5EEF361E1B18444F4",
           "shape": "690A04AD7CADEEAFE208E4C40BAE2336B9107030DAC83FB9861D7244C30C127D",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.ExternalCoreKeyboardFunctions.Character(uint, System.Collections.Generic.IReadOnlySet<GWGUI.Emulation.Enums.EmulationKey>); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "B4125ED362370D5FA40827C0C6D69DB4894E1773B5F61DF2772C5AE7E241BF3C"
+          "qualificationSourceSha256": "535721737429DBCBD3A9203A4EEDFA43840108FB3096154546435F6F899417A1"
         },
         {
           "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Functions/KeyboardFunctions.cs",
@@ -38905,6 +38921,38 @@
       "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
+      "hash": "7A0CE9CD35B296B6A7597B2F7C604D1BF9D00ED1555B8D80606479A4315E0789",
+      "tokens": 15,
+      "bodyTokens": "=> InputFunctions . State ( Polled , port , device , index , id )",
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/InputFrameStore.cs",
+          "name": "State",
+          "owner": "InputFrameStore",
+          "kind": "MethodDeclaration",
+          "line": 8,
+          "parameters": "(uint port, uint device, uint index, uint id)",
+          "tokens": 15,
+          "bodyTokens": "=> InputFunctions . State ( Polled , port , device , index , id )",
+          "hash": "7A0CE9CD35B296B6A7597B2F7C604D1BF9D00ED1555B8D80606479A4315E0789",
+          "shape": "6BAF0D3D4EB6B92B9AC1ACB1F8837769B3E9A7D2854712801C9AFEA875EE542C"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Atari/Common/Services/InputFrameStore.cs",
+          "name": "State",
+          "owner": "InputFrameStore",
+          "kind": "MethodDeclaration",
+          "line": 7,
+          "parameters": "(uint port, uint device, uint index, uint id)",
+          "tokens": 15,
+          "bodyTokens": "=> InputFunctions . State ( Polled , port , device , index , id )",
+          "hash": "7A0CE9CD35B296B6A7597B2F7C604D1BF9D00ED1555B8D80606479A4315E0789",
+          "shape": "6BAF0D3D4EB6B92B9AC1ACB1F8837769B3E9A7D2854712801C9AFEA875EE542C"
+        }
+      ],
+      "qualification": "pending-symbol-and-ownership-comparison"
+    },
+    {
       "hash": "7A9CF7224B00CDB237F5D8DD8EC48E55F0387A696630567D9105053F154EDB32",
       "tokens": 7,
       "bodyTokens": "=> Settings . GetOptions ( configuration )",
@@ -42949,218 +42997,6 @@
       "qualification": "pending-symbol-and-ownership-comparison"
     },
     {
-      "hash": "88F6E5D50438A718BCB9416B8BB9EC0B6C3225E0F7B0B0534B6898534D7F4B22",
-      "tokens": 23,
-      "bodyTokens": "=> ( int ) Math . Clamp ( ( long ) left + right , int . MinValue , int . MaxValue )",
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Acorn/Common/Machines/Common/Functions/InputFunctions.cs",
-          "name": "SaturatingAdd",
-          "owner": "InputFunctions",
-          "kind": "MethodDeclaration",
-          "line": 31,
-          "parameters": "(int left, int right)",
-          "tokens": 23,
-          "bodyTokens": "=> ( int ) Math . Clamp ( ( long ) left + right , int . MinValue , int . MaxValue )",
-          "hash": "88F6E5D50438A718BCB9416B8BB9EC0B6C3225E0F7B0B0534B6898534D7F4B22",
-          "shape": "83D52CFB413886FEEF0BD687C4D95CC788DCD313A4F9D127FF10BE4638D0FA4B"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.Input.cs",
-          "name": "SaturatingAdd",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 170,
-          "parameters": "(int left, int right)",
-          "tokens": 23,
-          "bodyTokens": "=> ( int ) Math . Clamp ( ( long ) left + right , int . MinValue , int . MaxValue )",
-          "hash": "88F6E5D50438A718BCB9416B8BB9EC0B6C3225E0F7B0B0534B6898534D7F4B22",
-          "shape": "83D52CFB413886FEEF0BD687C4D95CC788DCD313A4F9D127FF10BE4638D0FA4B"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Functions/InputFunctions.cs",
-          "name": "SaturatingAdd",
-          "owner": "InputFunctions",
-          "kind": "MethodDeclaration",
-          "line": 84,
-          "parameters": "(int left, int right)",
-          "tokens": 23,
-          "bodyTokens": "=> ( int ) Math . Clamp ( ( long ) left + right , int . MinValue , int . MaxValue )",
-          "hash": "88F6E5D50438A718BCB9416B8BB9EC0B6C3225E0F7B0B0534B6898534D7F4B22",
-          "shape": "83D52CFB413886FEEF0BD687C4D95CC788DCD313A4F9D127FF10BE4638D0FA4B"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Functions/InputFunctions.cs",
-          "name": "SaturatingAdd",
-          "owner": "InputFunctions",
-          "kind": "MethodDeclaration",
-          "line": 82,
-          "parameters": "(int left, int right)",
-          "tokens": 23,
-          "bodyTokens": "=> ( int ) Math . Clamp ( ( long ) left + right , int . MinValue , int . MaxValue )",
-          "hash": "88F6E5D50438A718BCB9416B8BB9EC0B6C3225E0F7B0B0534B6898534D7F4B22",
-          "shape": "83D52CFB413886FEEF0BD687C4D95CC788DCD313A4F9D127FF10BE4638D0FA4B"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Coleco/Common/Functions/InputFunctions.cs",
-          "name": "SaturatingAdd",
-          "owner": "InputFunctions",
-          "kind": "MethodDeclaration",
-          "line": 33,
-          "parameters": "(int left, int right)",
-          "tokens": 23,
-          "bodyTokens": "=> ( int ) Math . Clamp ( ( long ) left + right , int . MinValue , int . MaxValue )",
-          "hash": "88F6E5D50438A718BCB9416B8BB9EC0B6C3225E0F7B0B0534B6898534D7F4B22",
-          "shape": "83D52CFB413886FEEF0BD687C4D95CC788DCD313A4F9D127FF10BE4638D0FA4B"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.Input.cs",
-          "name": "SaturatingAdd",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 121,
-          "parameters": "(int left, int right)",
-          "tokens": 23,
-          "bodyTokens": "=> ( int ) Math . Clamp ( ( long ) left + right , int . MinValue , int . MaxValue )",
-          "hash": "88F6E5D50438A718BCB9416B8BB9EC0B6C3225E0F7B0B0534B6898534D7F4B22",
-          "shape": "83D52CFB413886FEEF0BD687C4D95CC788DCD313A4F9D127FF10BE4638D0FA4B"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Epoch/Common/Functions/InputFunctions.cs",
-          "name": "SaturatingAdd",
-          "owner": "InputFunctions",
-          "kind": "MethodDeclaration",
-          "line": 33,
-          "parameters": "(int left, int right)",
-          "tokens": 23,
-          "bodyTokens": "=> ( int ) Math . Clamp ( ( long ) left + right , int . MinValue , int . MaxValue )",
-          "hash": "88F6E5D50438A718BCB9416B8BB9EC0B6C3225E0F7B0B0534B6898534D7F4B22",
-          "shape": "83D52CFB413886FEEF0BD687C4D95CC788DCD313A4F9D127FF10BE4638D0FA4B"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Fairchild/Common/Functions/InputFunctions.cs",
-          "name": "SaturatingAdd",
-          "owner": "InputFunctions",
-          "kind": "MethodDeclaration",
-          "line": 32,
-          "parameters": "(int left, int right)",
-          "tokens": 23,
-          "bodyTokens": "=> ( int ) Math . Clamp ( ( long ) left + right , int . MinValue , int . MaxValue )",
-          "hash": "88F6E5D50438A718BCB9416B8BB9EC0B6C3225E0F7B0B0534B6898534D7F4B22",
-          "shape": "83D52CFB413886FEEF0BD687C4D95CC788DCD313A4F9D127FF10BE4638D0FA4B"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/InputFunctions.cs",
-          "name": "SaturatingAdd",
-          "owner": "InputFunctions",
-          "kind": "MethodDeclaration",
-          "line": 33,
-          "parameters": "(int left, int right)",
-          "tokens": 23,
-          "bodyTokens": "=> ( int ) Math . Clamp ( ( long ) left + right , int . MinValue , int . MaxValue )",
-          "hash": "88F6E5D50438A718BCB9416B8BB9EC0B6C3225E0F7B0B0534B6898534D7F4B22",
-          "shape": "83D52CFB413886FEEF0BD687C4D95CC788DCD313A4F9D127FF10BE4638D0FA4B"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalHostCallbacks.Input.cs",
-          "name": "SaturatingAdd",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 129,
-          "parameters": "(int left, int right)",
-          "tokens": 23,
-          "bodyTokens": "=> ( int ) Math . Clamp ( ( long ) left + right , int . MinValue , int . MaxValue )",
-          "hash": "88F6E5D50438A718BCB9416B8BB9EC0B6C3225E0F7B0B0534B6898534D7F4B22",
-          "shape": "83D52CFB413886FEEF0BD687C4D95CC788DCD313A4F9D127FF10BE4638D0FA4B"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Input.cs",
-          "name": "SaturatingAdd",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 129,
-          "parameters": "(int left, int right)",
-          "tokens": 23,
-          "bodyTokens": "=> ( int ) Math . Clamp ( ( long ) left + right , int . MinValue , int . MaxValue )",
-          "hash": "88F6E5D50438A718BCB9416B8BB9EC0B6C3225E0F7B0B0534B6898534D7F4B22",
-          "shape": "83D52CFB413886FEEF0BD687C4D95CC788DCD313A4F9D127FF10BE4638D0FA4B"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/InputFunctions.cs",
-          "name": "SaturatingAdd",
-          "owner": "InputFunctions",
-          "kind": "MethodDeclaration",
-          "line": 33,
-          "parameters": "(int left, int right)",
-          "tokens": 23,
-          "bodyTokens": "=> ( int ) Math . Clamp ( ( long ) left + right , int . MinValue , int . MaxValue )",
-          "hash": "88F6E5D50438A718BCB9416B8BB9EC0B6C3225E0F7B0B0534B6898534D7F4B22",
-          "shape": "83D52CFB413886FEEF0BD687C4D95CC788DCD313A4F9D127FF10BE4638D0FA4B"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalHostCallbacks.Input.cs",
-          "name": "SaturatingAdd",
-          "owner": "ExternalHostCallbacks",
-          "kind": "MethodDeclaration",
-          "line": 157,
-          "parameters": "(int left, int right)",
-          "tokens": 23,
-          "bodyTokens": "=> ( int ) Math . Clamp ( ( long ) left + right , int . MinValue , int . MaxValue )",
-          "hash": "88F6E5D50438A718BCB9416B8BB9EC0B6C3225E0F7B0B0534B6898534D7F4B22",
-          "shape": "83D52CFB413886FEEF0BD687C4D95CC788DCD313A4F9D127FF10BE4638D0FA4B"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/InputFunctions.cs",
-          "name": "SaturatingAdd",
-          "owner": "InputFunctions",
-          "kind": "MethodDeclaration",
-          "line": 32,
-          "parameters": "(int left, int right)",
-          "tokens": 23,
-          "bodyTokens": "=> ( int ) Math . Clamp ( ( long ) left + right , int . MinValue , int . MaxValue )",
-          "hash": "88F6E5D50438A718BCB9416B8BB9EC0B6C3225E0F7B0B0534B6898534D7F4B22",
-          "shape": "83D52CFB413886FEEF0BD687C4D95CC788DCD313A4F9D127FF10BE4638D0FA4B"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/InputFunctions.cs",
-          "name": "SaturatingAdd",
-          "owner": "InputFunctions",
-          "kind": "MethodDeclaration",
-          "line": 32,
-          "parameters": "(int left, int right)",
-          "tokens": 23,
-          "bodyTokens": "=> ( int ) Math . Clamp ( ( long ) left + right , int . MinValue , int . MaxValue )",
-          "hash": "88F6E5D50438A718BCB9416B8BB9EC0B6C3225E0F7B0B0534B6898534D7F4B22",
-          "shape": "83D52CFB413886FEEF0BD687C4D95CC788DCD313A4F9D127FF10BE4638D0FA4B"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/InputFunctions.cs",
-          "name": "SaturatingAdd",
-          "owner": "InputFunctions",
-          "kind": "MethodDeclaration",
-          "line": 32,
-          "parameters": "(int left, int right)",
-          "tokens": 23,
-          "bodyTokens": "=> ( int ) Math . Clamp ( ( long ) left + right , int . MinValue , int . MaxValue )",
-          "hash": "88F6E5D50438A718BCB9416B8BB9EC0B6C3225E0F7B0B0534B6898534D7F4B22",
-          "shape": "83D52CFB413886FEEF0BD687C4D95CC788DCD313A4F9D127FF10BE4638D0FA4B"
-        },
-        {
-          "path": "src/GWGUI.Emulation/Services/EmulationInputAccumulator.cs",
-          "name": "SaturatingAdd",
-          "owner": "EmulationInputAccumulator",
-          "kind": "MethodDeclaration",
-          "line": 50,
-          "parameters": "(int left, int right)",
-          "tokens": 23,
-          "bodyTokens": "=> ( int ) Math . Clamp ( ( long ) left + right , int . MinValue , int . MaxValue )",
-          "hash": "88F6E5D50438A718BCB9416B8BB9EC0B6C3225E0F7B0B0534B6898534D7F4B22",
-          "shape": "83D52CFB413886FEEF0BD687C4D95CC788DCD313A4F9D127FF10BE4638D0FA4B"
-        }
-      ],
-      "qualification": "pending-symbol-and-ownership-comparison"
-    },
-    {
       "hash": "88FF62A8FFFD0DF43D59B3F93D634B4917D8DC8E6152B7CAB60AEE80BEDA35EC",
       "tokens": 8,
       "bodyTokens": "{ return CaptureOptionsDisplayCallback ( data ) ; }",
@@ -43969,6 +43805,112 @@
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
+    },
+    {
+      "hash": "8CFA5F1495458BACB8C2E9A6510B36ADC54D9D7EE909F27C279FF9A67F87CA5A",
+      "tokens": 7,
+      "bodyTokens": "=> EmulationInputMappingFunctions . Freeze ( input )",
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Epoch/Common/Functions/ControllerFunctions.cs",
+          "name": "FreezeMappedInput",
+          "owner": "ControllerFunctions",
+          "kind": "MethodDeclaration",
+          "line": 6,
+          "parameters": "(EmulationInputSnapshot input)",
+          "tokens": 7,
+          "bodyTokens": "=> EmulationInputMappingFunctions . Freeze ( input )",
+          "hash": "8CFA5F1495458BACB8C2E9A6510B36ADC54D9D7EE909F27C279FF9A67F87CA5A",
+          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
+          "qualification": "Verified direct use of original SDK snapshot freezing; atomicInputStoreReuse; same borrowed input copy with unchanged caller policy.",
+          "qualificationSourceSha256": "919C83F80E71F9F08C73003830149CD364255402B3D1C0F9648E4EE4F74F6256"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Fairchild/Common/Functions/ControllerFunctions.cs",
+          "name": "FreezeMappedInput",
+          "owner": "ControllerFunctions",
+          "kind": "MethodDeclaration",
+          "line": 6,
+          "parameters": "(EmulationInputSnapshot input)",
+          "tokens": 7,
+          "bodyTokens": "=> EmulationInputMappingFunctions . Freeze ( input )",
+          "hash": "8CFA5F1495458BACB8C2E9A6510B36ADC54D9D7EE909F27C279FF9A67F87CA5A",
+          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
+          "qualification": "Verified direct use of original SDK snapshot freezing; atomicInputStoreReuse; same borrowed input copy with unchanged caller policy.",
+          "qualificationSourceSha256": "574FF702816A985620266E1020305FEC4B8E5E66B330071512FA4B5A372591E6"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/ControllerFunctions.cs",
+          "name": "FreezeMappedInput",
+          "owner": "ControllerFunctions",
+          "kind": "MethodDeclaration",
+          "line": 6,
+          "parameters": "(EmulationInputSnapshot input)",
+          "tokens": 7,
+          "bodyTokens": "=> EmulationInputMappingFunctions . Freeze ( input )",
+          "hash": "8CFA5F1495458BACB8C2E9A6510B36ADC54D9D7EE909F27C279FF9A67F87CA5A",
+          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
+          "qualification": "Verified direct use of original SDK snapshot freezing; atomicInputStoreReuse; same borrowed input copy with unchanged caller policy.",
+          "qualificationSourceSha256": "D4990E0C7C34E846DACBFF3B39B70CC7F6EF73C5789C190C886CFC3B41B2E704"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/ControllerFunctions.cs",
+          "name": "FreezeMappedInput",
+          "owner": "ControllerFunctions",
+          "kind": "MethodDeclaration",
+          "line": 6,
+          "parameters": "(EmulationInputSnapshot input)",
+          "tokens": 7,
+          "bodyTokens": "=> EmulationInputMappingFunctions . Freeze ( input )",
+          "hash": "8CFA5F1495458BACB8C2E9A6510B36ADC54D9D7EE909F27C279FF9A67F87CA5A",
+          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
+          "qualification": "Verified direct use of original SDK snapshot freezing; atomicInputStoreReuse; same borrowed input copy with unchanged caller policy.",
+          "qualificationSourceSha256": "165685AADBB650C77E7A6F4836D2B5911622286A4B4AFCF9325EA031B799CD0E"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/ControllerFunctions.cs",
+          "name": "FreezeMappedInput",
+          "owner": "ControllerFunctions",
+          "kind": "MethodDeclaration",
+          "line": 6,
+          "parameters": "(EmulationInputSnapshot input)",
+          "tokens": 7,
+          "bodyTokens": "=> EmulationInputMappingFunctions . Freeze ( input )",
+          "hash": "8CFA5F1495458BACB8C2E9A6510B36ADC54D9D7EE909F27C279FF9A67F87CA5A",
+          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
+          "qualification": "Verified direct use of original SDK snapshot freezing; atomicInputStoreReuse; same borrowed input copy with unchanged caller policy.",
+          "qualificationSourceSha256": "FACBEBF1DBC1C2CDCD1A4C13D451BA2B5BDC0F69CF1F92D9EFBF37BC1FB3754E"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/ControllerFunctions.cs",
+          "name": "FreezeMappedInput",
+          "owner": "ControllerFunctions",
+          "kind": "MethodDeclaration",
+          "line": 6,
+          "parameters": "(EmulationInputSnapshot input)",
+          "tokens": 7,
+          "bodyTokens": "=> EmulationInputMappingFunctions . Freeze ( input )",
+          "hash": "8CFA5F1495458BACB8C2E9A6510B36ADC54D9D7EE909F27C279FF9A67F87CA5A",
+          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
+          "qualification": "Verified direct use of original SDK snapshot freezing; atomicInputStoreReuse; same borrowed input copy with unchanged caller policy.",
+          "qualificationSourceSha256": "A09772DFA7ACD45D83C85F0105F191E9F7D4572809EBC098D468AAA54A7E5D86"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/ControllerFunctions.cs",
+          "name": "FreezeMappedInput",
+          "owner": "ControllerFunctions",
+          "kind": "MethodDeclaration",
+          "line": 6,
+          "parameters": "(EmulationInputSnapshot input)",
+          "tokens": 7,
+          "bodyTokens": "=> EmulationInputMappingFunctions . Freeze ( input )",
+          "hash": "8CFA5F1495458BACB8C2E9A6510B36ADC54D9D7EE909F27C279FF9A67F87CA5A",
+          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
+          "qualification": "Verified direct use of original SDK snapshot freezing; atomicInputStoreReuse; same borrowed input copy with unchanged caller policy.",
+          "qualificationSourceSha256": "5292667B73037082541C7F86D9248D92D716D2A6D6D1E0EA3FE70B29E3F5752F"
+        }
+      ],
+      "qualification": "All occurrences qualified individually; see member evidence"
     },
     {
       "hash": "8D140C4BF91F46CF83DD338F916F5D38D6538FB83FC16C9FAC3CA1D09BA1BE32",
@@ -53528,7 +53470,7 @@
           "name": "Clamp",
           "owner": "InputFunctions",
           "kind": "MethodDeclaration",
-          "line": 83,
+          "line": 57,
           "parameters": "(int value)",
           "tokens": 18,
           "bodyTokens": "=> ( short ) Math . Clamp ( value , short . MinValue , short . MaxValue )",
@@ -53540,7 +53482,7 @@
           "name": "Clamp",
           "owner": "InputFunctions",
           "kind": "MethodDeclaration",
-          "line": 81,
+          "line": 55,
           "parameters": "(int value)",
           "tokens": 18,
           "bodyTokens": "=> ( short ) Math . Clamp ( value , short . MinValue , short . MaxValue )",
@@ -62002,11 +61944,11 @@
           "shape": "1FA7A807218C89C16201399408D1D1E697FF4435BCC3E86C09C04883D91B0B9D"
         },
         {
-          "path": "src/GWGUI.Emulation.Bandai/Common/Functions/InputFunctions.cs",
+          "path": "src/GWGUI.Emulation.Bandai/Common/Services/InputFrameStore.cs",
           "name": "ConsumeRelativePointer",
-          "owner": "InputFunctions",
+          "owner": "InputFrameStore",
           "kind": "MethodDeclaration",
-          "line": 13,
+          "line": 10,
           "parameters": "(EmulationInputSnapshot snapshot)",
           "tokens": 2,
           "bodyTokens": "=> snapshot",
@@ -64328,98 +64270,6 @@
           "bodyTokens": "{ Losses = Array . AsReadOnly ( losses . ToArray ( ) ) ; MetadataLossAccepted = metadataLossAccepted ; }",
           "hash": "D42DB830BB9C1D9149ED7BD995E865AD65942962B8987D0182959D13A02B5805",
           "shape": "DDE8866D83EF98DC73E3F977F05A7D77ECE7EB97D47B4853F4B82046669FA8F2"
-        }
-      ],
-      "qualification": "pending-symbol-and-ownership-comparison"
-    },
-    {
-      "hash": "D47B8851ECEE3ED8AA3319C517BFE0CB6DC0596D29C63D18D75560BF44F878EC",
-      "tokens": 7,
-      "bodyTokens": "=> InputFunctions . Freeze ( input )",
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Epoch/Common/Functions/ControllerFunctions.cs",
-          "name": "FreezeMappedInput",
-          "owner": "ControllerFunctions",
-          "kind": "MethodDeclaration",
-          "line": 6,
-          "parameters": "(EmulationInputSnapshot input)",
-          "tokens": 7,
-          "bodyTokens": "=> InputFunctions . Freeze ( input )",
-          "hash": "D47B8851ECEE3ED8AA3319C517BFE0CB6DC0596D29C63D18D75560BF44F878EC",
-          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Fairchild/Common/Functions/ControllerFunctions.cs",
-          "name": "FreezeMappedInput",
-          "owner": "ControllerFunctions",
-          "kind": "MethodDeclaration",
-          "line": 6,
-          "parameters": "(EmulationInputSnapshot input)",
-          "tokens": 7,
-          "bodyTokens": "=> InputFunctions . Freeze ( input )",
-          "hash": "D47B8851ECEE3ED8AA3319C517BFE0CB6DC0596D29C63D18D75560BF44F878EC",
-          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/ControllerFunctions.cs",
-          "name": "FreezeMappedInput",
-          "owner": "ControllerFunctions",
-          "kind": "MethodDeclaration",
-          "line": 6,
-          "parameters": "(EmulationInputSnapshot input)",
-          "tokens": 7,
-          "bodyTokens": "=> InputFunctions . Freeze ( input )",
-          "hash": "D47B8851ECEE3ED8AA3319C517BFE0CB6DC0596D29C63D18D75560BF44F878EC",
-          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/ControllerFunctions.cs",
-          "name": "FreezeMappedInput",
-          "owner": "ControllerFunctions",
-          "kind": "MethodDeclaration",
-          "line": 6,
-          "parameters": "(EmulationInputSnapshot input)",
-          "tokens": 7,
-          "bodyTokens": "=> InputFunctions . Freeze ( input )",
-          "hash": "D47B8851ECEE3ED8AA3319C517BFE0CB6DC0596D29C63D18D75560BF44F878EC",
-          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/ControllerFunctions.cs",
-          "name": "FreezeMappedInput",
-          "owner": "ControllerFunctions",
-          "kind": "MethodDeclaration",
-          "line": 6,
-          "parameters": "(EmulationInputSnapshot input)",
-          "tokens": 7,
-          "bodyTokens": "=> InputFunctions . Freeze ( input )",
-          "hash": "D47B8851ECEE3ED8AA3319C517BFE0CB6DC0596D29C63D18D75560BF44F878EC",
-          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/ControllerFunctions.cs",
-          "name": "FreezeMappedInput",
-          "owner": "ControllerFunctions",
-          "kind": "MethodDeclaration",
-          "line": 6,
-          "parameters": "(EmulationInputSnapshot input)",
-          "tokens": 7,
-          "bodyTokens": "=> InputFunctions . Freeze ( input )",
-          "hash": "D47B8851ECEE3ED8AA3319C517BFE0CB6DC0596D29C63D18D75560BF44F878EC",
-          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/ControllerFunctions.cs",
-          "name": "FreezeMappedInput",
-          "owner": "ControllerFunctions",
-          "kind": "MethodDeclaration",
-          "line": 6,
-          "parameters": "(EmulationInputSnapshot input)",
-          "tokens": 7,
-          "bodyTokens": "=> InputFunctions . Freeze ( input )",
-          "hash": "D47B8851ECEE3ED8AA3319C517BFE0CB6DC0596D29C63D18D75560BF44F878EC",
-          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5"
         }
       ],
       "qualification": "pending-symbol-and-ownership-comparison"
@@ -81829,7 +81679,7 @@
           "name": "Boolean",
           "owner": "InputFunctions",
           "kind": "MethodDeclaration",
-          "line": 82,
+          "line": 56,
           "parameters": "(bool value)",
           "tokens": 10,
           "bodyTokens": "=> value ? InputConstants . ActiveState : InputConstants . InactiveState",
@@ -81853,7 +81703,7 @@
           "name": "Boolean",
           "owner": "InputFunctions",
           "kind": "MethodDeclaration",
-          "line": 80,
+          "line": 54,
           "parameters": "(bool value)",
           "tokens": 10,
           "bodyTokens": "=> value ? InputConstants . ActiveState : InputConstants . InactiveState",
@@ -82254,11 +82104,11 @@
           "shape": "1FA7A807218C89C16201399408D1D1E697FF4435BCC3E86C09C04883D91B0B9D"
         },
         {
-          "path": "src/GWGUI.Emulation.Bandai/Common/Functions/InputFunctions.cs",
+          "path": "src/GWGUI.Emulation.Bandai/Common/Services/InputFrameStore.cs",
           "name": "ConsumeRelativePointer",
-          "owner": "InputFunctions",
+          "owner": "InputFrameStore",
           "kind": "MethodDeclaration",
-          "line": 13,
+          "line": 10,
           "parameters": "(EmulationInputSnapshot snapshot)",
           "tokens": 2,
           "bodyTokens": "=> snapshot",
@@ -94789,18 +94639,6 @@
           "shape": "4566DB8FAE7672BB8E2E6EB3E879C5F9D679D4D6D940A431C5070D59F9E0C2BB"
         },
         {
-          "path": "src/GWGUI.Emulation.Bandai/Common/Functions/InputFunctions.cs",
-          "name": "Accumulate",
-          "owner": "InputFunctions",
-          "kind": "MethodDeclaration",
-          "line": 11,
-          "parameters": "(EmulationInputSnapshot current, EmulationInputSnapshot update)",
-          "tokens": 5,
-          "bodyTokens": "=> Freeze ( update )",
-          "hash": "5C6658992CDC2282B3A00332F079A95EDDB685AA14DD48AED3BC759E8C37A211",
-          "shape": "4566DB8FAE7672BB8E2E6EB3E879C5F9D679D4D6D940A431C5070D59F9E0C2BB"
-        },
-        {
           "path": "src/GWGUI.Emulation.Bandai/Common/Services/Machine.cs",
           "name": "SetMuted",
           "owner": "Machine",
@@ -103809,6 +103647,18 @@
           "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5"
         },
         {
+          "path": "src/GWGUI.Emulation.Bandai/Common/Services/InputFrameStore.cs",
+          "name": "Accumulate",
+          "owner": "InputFrameStore",
+          "kind": "MethodDeclaration",
+          "line": 7,
+          "parameters": "(EmulationInputSnapshot current, EmulationInputSnapshot update)",
+          "tokens": 7,
+          "bodyTokens": "=> EmulationInputMappingFunctions . Freeze ( update )",
+          "hash": "2852476F0197E7390D3C7A04A81F6E8844819345F4D4CF134A2C7AFC4E547EC5",
+          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5"
+        },
+        {
           "path": "src/GWGUI.Emulation.Bandai/Common/Services/Machine.Lifecycle.cs",
           "name": "SetAudioVolume",
           "owner": "Machine",
@@ -104552,9 +104402,11 @@
           "line": 6,
           "parameters": "(EmulationInputSnapshot input)",
           "tokens": 7,
-          "bodyTokens": "=> InputFunctions . Freeze ( input )",
-          "hash": "D47B8851ECEE3ED8AA3319C517BFE0CB6DC0596D29C63D18D75560BF44F878EC",
-          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5"
+          "bodyTokens": "=> EmulationInputMappingFunctions . Freeze ( input )",
+          "hash": "8CFA5F1495458BACB8C2E9A6510B36ADC54D9D7EE909F27C279FF9A67F87CA5A",
+          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
+          "qualification": "Verified direct use of original SDK snapshot freezing; atomicInputStoreReuse; same borrowed input copy with unchanged caller policy.",
+          "qualificationSourceSha256": "919C83F80E71F9F08C73003830149CD364255402B3D1C0F9648E4EE4F74F6256"
         },
         {
           "path": "src/GWGUI.Emulation.Epoch/Common/Functions/CoreFunctions.Host.cs",
@@ -104902,9 +104754,11 @@
           "line": 6,
           "parameters": "(EmulationInputSnapshot input)",
           "tokens": 7,
-          "bodyTokens": "=> InputFunctions . Freeze ( input )",
-          "hash": "D47B8851ECEE3ED8AA3319C517BFE0CB6DC0596D29C63D18D75560BF44F878EC",
-          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5"
+          "bodyTokens": "=> EmulationInputMappingFunctions . Freeze ( input )",
+          "hash": "8CFA5F1495458BACB8C2E9A6510B36ADC54D9D7EE909F27C279FF9A67F87CA5A",
+          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
+          "qualification": "Verified direct use of original SDK snapshot freezing; atomicInputStoreReuse; same borrowed input copy with unchanged caller policy.",
+          "qualificationSourceSha256": "574FF702816A985620266E1020305FEC4B8E5E66B330071512FA4B5A372591E6"
         },
         {
           "path": "src/GWGUI.Emulation.Fairchild/Common/Functions/CoreFunctions.Host.cs",
@@ -105230,9 +105084,11 @@
           "line": 6,
           "parameters": "(EmulationInputSnapshot input)",
           "tokens": 7,
-          "bodyTokens": "=> InputFunctions . Freeze ( input )",
-          "hash": "D47B8851ECEE3ED8AA3319C517BFE0CB6DC0596D29C63D18D75560BF44F878EC",
-          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5"
+          "bodyTokens": "=> EmulationInputMappingFunctions . Freeze ( input )",
+          "hash": "8CFA5F1495458BACB8C2E9A6510B36ADC54D9D7EE909F27C279FF9A67F87CA5A",
+          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
+          "qualification": "Verified direct use of original SDK snapshot freezing; atomicInputStoreReuse; same borrowed input copy with unchanged caller policy.",
+          "qualificationSourceSha256": "D4990E0C7C34E846DACBFF3B39B70CC7F6EF73C5789C190C886CFC3B41B2E704"
         },
         {
           "path": "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/MachineFunctions.cs",
@@ -106062,9 +105918,11 @@
           "line": 6,
           "parameters": "(EmulationInputSnapshot input)",
           "tokens": 7,
-          "bodyTokens": "=> InputFunctions . Freeze ( input )",
-          "hash": "D47B8851ECEE3ED8AA3319C517BFE0CB6DC0596D29C63D18D75560BF44F878EC",
-          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5"
+          "bodyTokens": "=> EmulationInputMappingFunctions . Freeze ( input )",
+          "hash": "8CFA5F1495458BACB8C2E9A6510B36ADC54D9D7EE909F27C279FF9A67F87CA5A",
+          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
+          "qualification": "Verified direct use of original SDK snapshot freezing; atomicInputStoreReuse; same borrowed input copy with unchanged caller policy.",
+          "qualificationSourceSha256": "165685AADBB650C77E7A6F4836D2B5911622286A4B4AFCF9325EA031B799CD0E"
         },
         {
           "path": "src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/MachineFunctions.cs",
@@ -106480,9 +106338,11 @@
           "line": 6,
           "parameters": "(EmulationInputSnapshot input)",
           "tokens": 7,
-          "bodyTokens": "=> InputFunctions . Freeze ( input )",
-          "hash": "D47B8851ECEE3ED8AA3319C517BFE0CB6DC0596D29C63D18D75560BF44F878EC",
-          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5"
+          "bodyTokens": "=> EmulationInputMappingFunctions . Freeze ( input )",
+          "hash": "8CFA5F1495458BACB8C2E9A6510B36ADC54D9D7EE909F27C279FF9A67F87CA5A",
+          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
+          "qualification": "Verified direct use of original SDK snapshot freezing; atomicInputStoreReuse; same borrowed input copy with unchanged caller policy.",
+          "qualificationSourceSha256": "FACBEBF1DBC1C2CDCD1A4C13D451BA2B5BDC0F69CF1F92D9EFBF37BC1FB3754E"
         },
         {
           "path": "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
@@ -106882,9 +106742,11 @@
           "line": 6,
           "parameters": "(EmulationInputSnapshot input)",
           "tokens": 7,
-          "bodyTokens": "=> InputFunctions . Freeze ( input )",
-          "hash": "D47B8851ECEE3ED8AA3319C517BFE0CB6DC0596D29C63D18D75560BF44F878EC",
-          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5"
+          "bodyTokens": "=> EmulationInputMappingFunctions . Freeze ( input )",
+          "hash": "8CFA5F1495458BACB8C2E9A6510B36ADC54D9D7EE909F27C279FF9A67F87CA5A",
+          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
+          "qualification": "Verified direct use of original SDK snapshot freezing; atomicInputStoreReuse; same borrowed input copy with unchanged caller policy.",
+          "qualificationSourceSha256": "A09772DFA7ACD45D83C85F0105F191E9F7D4572809EBC098D468AAA54A7E5D86"
         },
         {
           "path": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
@@ -107282,9 +107144,11 @@
           "line": 6,
           "parameters": "(EmulationInputSnapshot input)",
           "tokens": 7,
-          "bodyTokens": "=> InputFunctions . Freeze ( input )",
-          "hash": "D47B8851ECEE3ED8AA3319C517BFE0CB6DC0596D29C63D18D75560BF44F878EC",
-          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5"
+          "bodyTokens": "=> EmulationInputMappingFunctions . Freeze ( input )",
+          "hash": "8CFA5F1495458BACB8C2E9A6510B36ADC54D9D7EE909F27C279FF9A67F87CA5A",
+          "shape": "572B12D1AC4B620ABBFA17BADDCE04D9C06758A33DA6C153DC1D9BEA9BFFC8F5",
+          "qualification": "Verified direct use of original SDK snapshot freezing; atomicInputStoreReuse; same borrowed input copy with unchanged caller policy.",
+          "qualificationSourceSha256": "5292667B73037082541C7F86D9248D92D716D2A6D6D1E0EA3FE70B29E3F5752F"
         },
         {
           "path": "src/GWGUI.Emulation.Snk/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
@@ -115115,7 +114979,7 @@
           "name": "InputSourcePressure",
           "owner": "EmulationInputMappingFunctions",
           "kind": "MethodDeclaration",
-          "line": 256,
+          "line": 264,
           "parameters": "(string source, EmulationControllerState controller, IReadOnlyList<EmulationControllerState> physical,\n        IReadOnlySet<EmulationKey> keys, IReadOnlyDictionary<string, bool> mouse)",
           "tokens": 13,
           "bodyTokens": "=> SourcePressure ( source , controller , physical , keys , mouse )",
@@ -115810,7 +115674,7 @@
           "hash": "2A0E032940DF242D6528728EBD1D986D16F75A5D3E1A93C5EEF361E1B18444F4",
           "shape": "690A04AD7CADEEAFE208E4C40BAE2336B9107030DAC83FB9861D7244C30C127D",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.ExternalCoreKeyboardFunctions.Character(uint, System.Collections.Generic.IReadOnlySet<GWGUI.Emulation.Enums.EmulationKey>); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "376ADDF95EBA1D6D82F10F3C7CE2DC59F99EB79C8E42D6915258F2F063E6CE0A"
+          "qualificationSourceSha256": "FC7866A37311864EFED71EC83BD9AEB6BCCD5D6812323BEFB3E13EB84D9616F3"
         },
         {
           "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Input.cs",
@@ -115824,7 +115688,7 @@
           "hash": "2A0E032940DF242D6528728EBD1D986D16F75A5D3E1A93C5EEF361E1B18444F4",
           "shape": "690A04AD7CADEEAFE208E4C40BAE2336B9107030DAC83FB9861D7244C30C127D",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.ExternalCoreKeyboardFunctions.Character(uint, System.Collections.Generic.IReadOnlySet<GWGUI.Emulation.Enums.EmulationKey>); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "B40746F45FA161A080227C991B05603EB30C3DCDD91D674E2426251662301C2B"
+          "qualificationSourceSha256": "F254D76F30C3CF714CB5085C46CA72224BBAE66B7A46201373174B880659878A"
         },
         {
           "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Functions/KeyboardFunctions.cs",
@@ -115852,7 +115716,7 @@
           "hash": "2A0E032940DF242D6528728EBD1D986D16F75A5D3E1A93C5EEF361E1B18444F4",
           "shape": "690A04AD7CADEEAFE208E4C40BAE2336B9107030DAC83FB9861D7244C30C127D",
           "qualification": "Verified complete one-call adapter to existing concrete SDK implementation GWGUI.Emulation.Functions.ExternalCoreKeyboardFunctions.Character(uint, System.Collections.Generic.IReadOnlySet<GWGUI.Emulation.Enums.EmulationKey>); simpleSdkForwardersQualification; simple arguments only.",
-          "qualificationSourceSha256": "B4125ED362370D5FA40827C0C6D69DB4894E1773B5F61DF2772C5AE7E241BF3C"
+          "qualificationSourceSha256": "535721737429DBCBD3A9203A4EEDFA43840108FB3096154546435F6F899417A1"
         },
         {
           "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Functions/KeyboardFunctions.cs",
@@ -116382,6 +116246,30 @@
           "tokens": 15,
           "bodyTokens": "=> GameInputControllerStateReader . Read ( _gameInput , entry , SystemButtons , IsInteropFailure , Release )",
           "hash": "F8E6B828B6D83A01C38B4FCBE6FCA9CE1ACEA94CBC865ED94E21E38337D25855",
+          "shape": "6BAF0D3D4EB6B92B9AC1ACB1F8837769B3E9A7D2854712801C9AFEA875EE542C"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/InputFrameStore.cs",
+          "name": "State",
+          "owner": "InputFrameStore",
+          "kind": "MethodDeclaration",
+          "line": 8,
+          "parameters": "(uint port, uint device, uint index, uint id)",
+          "tokens": 15,
+          "bodyTokens": "=> InputFunctions . State ( Polled , port , device , index , id )",
+          "hash": "7A0CE9CD35B296B6A7597B2F7C604D1BF9D00ED1555B8D80606479A4315E0789",
+          "shape": "6BAF0D3D4EB6B92B9AC1ACB1F8837769B3E9A7D2854712801C9AFEA875EE542C"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Atari/Common/Services/InputFrameStore.cs",
+          "name": "State",
+          "owner": "InputFrameStore",
+          "kind": "MethodDeclaration",
+          "line": 7,
+          "parameters": "(uint port, uint device, uint index, uint id)",
+          "tokens": 15,
+          "bodyTokens": "=> InputFunctions . State ( Polled , port , device , index , id )",
+          "hash": "7A0CE9CD35B296B6A7597B2F7C604D1BF9D00ED1555B8D80606479A4315E0789",
           "shape": "6BAF0D3D4EB6B92B9AC1ACB1F8837769B3E9A7D2854712801C9AFEA875EE542C"
         },
         {
@@ -141923,7 +141811,7 @@
     }
   ],
   "qualificationCarryForward": {
-    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical",
-    "occurrences": 2707
+    "occurrences": 2748,
+    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical"
   }
 }

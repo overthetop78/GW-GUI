@@ -2,6 +2,14 @@ namespace GWGUI.Emulation.Functions;
 
 public static class EmulationInputMappingFunctions
 {
+    internal static EmulationInputSnapshot Freeze(EmulationInputSnapshot? snapshot)
+    {
+        snapshot ??= EmulationInputSnapshot.Empty;
+        return new EmulationInputSnapshot(new HashSet<EmulationKey>(snapshot.Keys), snapshot.Pointer with { }, snapshot.Controllers.ToArray());
+    }
+
+    internal static int SaturatingAdd(int left, int right) => (int)Math.Clamp((long)left + right, int.MinValue, int.MaxValue);
+
     private static readonly IReadOnlyDictionary<string, int> ControllerButtons =
         new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase)
         {

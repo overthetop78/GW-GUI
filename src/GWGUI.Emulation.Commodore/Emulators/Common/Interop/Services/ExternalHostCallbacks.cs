@@ -88,9 +88,9 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
             {
                 var pointer = value.Pointer with
                 {
-                    DeltaX = SaturatingAdd(_pendingInput.Pointer.DeltaX, value.Pointer.DeltaX),
-                    DeltaY = SaturatingAdd(_pendingInput.Pointer.DeltaY, value.Pointer.DeltaY),
-                    Wheel = SaturatingAdd(_pendingInput.Pointer.Wheel, value.Pointer.Wheel)
+                    DeltaX = EmulationInputMappingFunctions.SaturatingAdd(_pendingInput.Pointer.DeltaX, value.Pointer.DeltaX),
+                    DeltaY = EmulationInputMappingFunctions.SaturatingAdd(_pendingInput.Pointer.DeltaY, value.Pointer.DeltaY),
+                    Wheel = EmulationInputMappingFunctions.SaturatingAdd(_pendingInput.Pointer.Wheel, value.Pointer.Wheel)
                 };
                 _pendingInput = value with
                 {

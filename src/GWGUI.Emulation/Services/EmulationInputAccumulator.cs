@@ -14,10 +14,10 @@ internal sealed class EmulationInputAccumulator
             {
                 Pointer = snapshot.Pointer with
                 {
-                    DeltaX = SaturatingAdd(_current.Pointer.DeltaX, snapshot.Pointer.DeltaX),
-                    DeltaY = SaturatingAdd(_current.Pointer.DeltaY, snapshot.Pointer.DeltaY),
-                    Wheel = SaturatingAdd(_current.Pointer.Wheel, snapshot.Pointer.Wheel),
-                    HorizontalWheel = SaturatingAdd(_current.Pointer.HorizontalWheel, snapshot.Pointer.HorizontalWheel)
+                    DeltaX = EmulationInputMappingFunctions.SaturatingAdd(_current.Pointer.DeltaX, snapshot.Pointer.DeltaX),
+                    DeltaY = EmulationInputMappingFunctions.SaturatingAdd(_current.Pointer.DeltaY, snapshot.Pointer.DeltaY),
+                    Wheel = EmulationInputMappingFunctions.SaturatingAdd(_current.Pointer.Wheel, snapshot.Pointer.Wheel),
+                    HorizontalWheel = EmulationInputMappingFunctions.SaturatingAdd(_current.Pointer.HorizontalWheel, snapshot.Pointer.HorizontalWheel)
                 }
             };
         }
@@ -46,6 +46,4 @@ internal sealed class EmulationInputAccumulator
     {
         lock (_gate) _current = EmulationInputSnapshot.Empty;
     }
-
-    private static int SaturatingAdd(int left, int right) => (int)Math.Clamp((long)left + right, int.MinValue, int.MaxValue);
 }

@@ -6,5 +6,5 @@ internal static class ControllerFunctions
 
     // These devices expose digital buttons. No analog scaling is applied to their native input.
     internal static EmulationInputSnapshot ApplyDeadZones(EmulationInputSnapshot input, IReadOnlyList<ControllerBinding>? bindings) =>
-        bindings?.Any(binding => binding.Port == ControllerConstants.FirstPort && binding.Peripheral == PeripheralCategory.None) == true ? input with { Controllers = [EmulationControllerState.Empty] } : InputFunctions.Freeze(input);
+        bindings?.Any(binding => binding.Port == ControllerConstants.FirstPort && binding.Peripheral == PeripheralCategory.None) == true ? input with { Controllers = [EmulationControllerState.Empty] } : EmulationInputMappingFunctions.Freeze(input);
 }
