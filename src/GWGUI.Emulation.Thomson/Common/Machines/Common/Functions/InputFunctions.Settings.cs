@@ -52,12 +52,10 @@ internal static class InputSettingsFunctions
     {
         if (settings.ControllerPorts.Count != ControllerConstants.PortCount || !settings.ControllerPorts.Select(port => port.Number).Order().SequenceEqual(Enumerable.Range(1, ControllerConstants.PortCount)))
             throw new ArgumentException(nameof(settings));
-        var controllers = settings.ControllerPorts.Select(port =>
-        {
-            if (!Enum.TryParse<PeripheralCategory>(port.SelectedControllerId, out var peripheral) || !SupportsPeripheral(configuration, port.Number - 1, peripheral))
-                throw new ArgumentException(nameof(settings));
-            return new ControllerBinding(port.Number - 1, peripheral, port.PhysicalDeviceId, new Dictionary<string, string>(port.Bindings.Values, StringComparer.Ordinal), port.DeadZonePercent, port.VisualId);
-        }).ToArray();
+        var controllers = EmulationInputMappingFunctions.CreateControllerBindings<PeripheralCategory, ControllerBinding>(
+            settings,
+            (index, peripheral) => SupportsPeripheral(configuration, index, peripheral),
+            static (port, peripheral, mappings) => new(port.Number - 1, peripheral, port.PhysicalDeviceId, mappings, port.DeadZonePercent, port.VisualId));
         var input = configuration.Input with
         {
             Keyboard = settings.Keyboard is null ? configuration.Input.Keyboard : new Dictionary<string, string>(settings.Keyboard.Values, StringComparer.Ordinal),

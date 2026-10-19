@@ -61,6 +61,17 @@ public static class EmulationInputMappingFunctions
         values.Where(item => !string.IsNullOrWhiteSpace(item.Key) && !string.IsNullOrWhiteSpace(item.Value))
             .ToDictionary(item => item.Key, item => item.Value, StringComparer.Ordinal);
 
+    public static TBinding[] CreateControllerBindings<TPeripheral, TBinding>(EmulationInputSettings settings,
+        Func<int, TPeripheral, bool> supportsPeripheral,
+        Func<EmulationControllerPort, TPeripheral, IReadOnlyDictionary<string, string>, TBinding> createBinding)
+        where TPeripheral : struct, Enum =>
+        settings.ControllerPorts.Select(port =>
+        {
+            if (!Enum.TryParse<TPeripheral>(port.SelectedControllerId, out var peripheral) || !supportsPeripheral(port.Number - 1, peripheral))
+                throw new ArgumentException(nameof(settings));
+            return createBinding(port, peripheral, new Dictionary<string, string>(port.Bindings.Values, StringComparer.Ordinal));
+        }).ToArray();
+
     public static IReadOnlySet<EmulationKey> MapKeyboard(IReadOnlySet<EmulationKey> keys, IReadOnlyDictionary<string, EmulationKey>? mappings)
     {
         if (mappings is null || mappings.Count == 0) return new HashSet<EmulationKey>(keys);

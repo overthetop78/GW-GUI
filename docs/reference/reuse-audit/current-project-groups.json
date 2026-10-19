@@ -1,9 +1,9 @@
 {
   "baseline": "ac7292d86^",
-  "currentCSharpFiles": 7285,
-  "outsideSrcCSharpFiles": 300,
+  "currentCSharpFiles": 7286,
+  "outsideSrcCSharpFiles": 301,
   "baselineMethodCount": 5848,
-  "currentMethodCount": 11629,
+  "currentMethodCount": 11635,
   "powerShellFunctionCount": 17,
   "groups": [
     {
@@ -8681,7 +8681,7 @@
     {
       "language": "CSharp",
       "hash": "4F02DAEAE45311749016D72F2B39A384D73ACFDBC8EAA2D267B0BE4556421ABB",
-      "method": "AdaptOptions",
+      "method": "Adapt",
       "tokens": 68,
       "current": [
         {
@@ -9624,7 +9624,7 @@
         {
           "path": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
           "name": "Validate",
-          "line": 90,
+          "line": 88,
           "tokens": 254,
           "hash": "57BEE01A214607D8C0EA899F6CA399869CC5E013EEBFC471F99E310CAA95CBE6",
           "shape": "65C33103424756A1539456DD6A5D0C5B8567B6849E523FA478781B76D89B4E57"
@@ -9632,7 +9632,7 @@
         {
           "path": "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
           "name": "Validate",
-          "line": 98,
+          "line": 96,
           "tokens": 254,
           "hash": "57BEE01A214607D8C0EA899F6CA399869CC5E013EEBFC471F99E310CAA95CBE6",
           "shape": "65C33103424756A1539456DD6A5D0C5B8567B6849E523FA478781B76D89B4E57"
@@ -17220,6 +17220,37 @@
     },
     {
       "language": "CSharp",
+      "hash": "961D0FA2614C1D198AC745019A437D099C1308ED3C2214E64E30E9DD0F07E057",
+      "method": "Apply",
+      "tokens": 244,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
+          "name": "Apply",
+          "line": 65,
+          "tokens": 244,
+          "hash": "961D0FA2614C1D198AC745019A437D099C1308ED3C2214E64E30E9DD0F07E057",
+          "shape": "F30F582E837A8D881D255E9A0FE13D8C70378F3BAFFDE23DA92DBEFDD5415511",
+          "qualification": "Shared controller projection verified in inputControllerProjectionReuse; local typed validation and configuration policy remain pending",
+          "qualificationSourceSha256": "5BC7776D72B50E9DE86F5A4E5CAFCB267611A292F35B49CE37D4A1B364F49477"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
+          "name": "Apply",
+          "line": 73,
+          "tokens": 244,
+          "hash": "961D0FA2614C1D198AC745019A437D099C1308ED3C2214E64E30E9DD0F07E057",
+          "shape": "F30F582E837A8D881D255E9A0FE13D8C70378F3BAFFDE23DA92DBEFDD5415511",
+          "qualification": "Shared controller projection verified in inputControllerProjectionReuse; local typed validation and configuration policy remain pending",
+          "qualificationSourceSha256": "1118FE127D36FD23F255A53A547CF861E2382051BE8D94505AC84D5093A7E7CE"
+        }
+      ],
+      "predecessors": [],
+      "shapePredecessors": [],
+      "qualification": "Partial stage qualification; original controller projection shared; remaining local typed configuration policy pending"
+    },
+    {
+      "language": "CSharp",
       "hash": "96780321219A65F5E98FDF8E3F682A2AC53B27CA5DB38CA84F52C2A8BD973E0E",
       "method": "Select",
       "tokens": 41,
@@ -18988,7 +19019,7 @@
     {
       "language": "CSharp",
       "hash": "A1E03750FEB3292ACEB41656386F4A8AA8B05077D9ABFB7DA103AA3D71320B9F",
-      "method": "ToModule",
+      "method": "ToFairchild",
       "tokens": 103,
       "current": [
         {
@@ -20488,7 +20519,7 @@
     {
       "language": "CSharp",
       "hash": "B053A3AB4F0B78A37DED57B2D744801187AED6EC54FEEAFE4B1AA9C454D6F48C",
-      "method": "PanasonicEmulationModule",
+      "method": "FairchildEmulationModule",
       "tokens": 47,
       "current": [
         {
@@ -25280,33 +25311,6 @@
     },
     {
       "language": "CSharp",
-      "hash": "DE4676BF801211DF976EFCEDE3A94AA72BFDD18AAA0E18966B0BABBFE9D9CA55",
-      "method": "Apply",
-      "tokens": 286,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Sinclair/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
-          "name": "Apply",
-          "line": 65,
-          "tokens": 286,
-          "hash": "DE4676BF801211DF976EFCEDE3A94AA72BFDD18AAA0E18966B0BABBFE9D9CA55",
-          "shape": "D3D68F8B834B284BE942A5917C95A1641A673BCD9AD7B352327292E6DDDE7B1F"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
-          "name": "Apply",
-          "line": 73,
-          "tokens": 286,
-          "hash": "DE4676BF801211DF976EFCEDE3A94AA72BFDD18AAA0E18966B0BABBFE9D9CA55",
-          "shape": "D3D68F8B834B284BE942A5917C95A1641A673BCD9AD7B352327292E6DDDE7B1F"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
       "hash": "DF89DAAC2B58A9FFFC916AE1A085E7E636607BE600F9831CA6F6B5F2409B7D15",
       "method": "DefaultEmulator",
       "tokens": 58,
@@ -27162,7 +27166,7 @@
     {
       "language": "CSharp",
       "hash": "F107F4D7D97C4E9F797468C991DF2090B47DF6E3F6F74E56044EFF0C28CAA51D",
-      "method": "NotifyHardwareContextDestroy",
+      "method": "NotifyDestroy",
       "tokens": 31,
       "current": [
         {
@@ -27848,7 +27852,7 @@
         {
           "path": "src/GWGUI.Emulation.Philips/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
           "name": "IsSource",
-          "line": 82,
+          "line": 80,
           "tokens": 46,
           "hash": "F789E50D13332A57C8486B0F31AAF7DE218C741529127C5D865B57C3C0DFF546",
           "shape": "76AE3B2E8E28F89EC92E24553FBB8439684F7C8734AA940A0889627904D0E97D"
@@ -27856,7 +27860,7 @@
         {
           "path": "src/GWGUI.Emulation.Mattel/Common/Machines/Common/Functions/InputFunctions.Settings.cs",
           "name": "IsSource",
-          "line": 57,
+          "line": 55,
           "tokens": 46,
           "hash": "F789E50D13332A57C8486B0F31AAF7DE218C741529127C5D865B57C3C0DFF546",
           "shape": "76AE3B2E8E28F89EC92E24553FBB8439684F7C8734AA940A0889627904D0E97D"
@@ -33353,7 +33357,7 @@
         {
           "path": "src/GWGUI.Emulation/Functions/EmulationInputMappingFunctions.cs",
           "name": "TryRemovePrefix",
-          "line": 135,
+          "line": 146,
           "tokens": 49,
           "hash": "BA9AD9B4A071A397D6AA5DA269AD309318AAAFA9AEFBC283716FD07B0487765E",
           "shape": "8EB0DB36964E4C010361878FB2B3A491187182692E9DF4D1CE6E894BF28987C7"
@@ -37721,7 +37725,7 @@
   ],
   "scope": "All current repository CSharp and PowerShell files; no age filter; candidates require semantic review",
   "qualificationCarryForward": {
-    "occurrences": 90,
-    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical"
+    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical",
+    "occurrences": 90
   }
 }

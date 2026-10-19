@@ -34,12 +34,10 @@ internal static class InputSettingsFunctions
         if (settings.ControllerPorts.Count != count || !settings.ControllerPorts.Select(port => port.Number).Order().SequenceEqual(Enumerable.Range(1, count))
             || settings.Mouse is not null || settings.Keyboard?.Values.Count > 0)
             throw new ArgumentException(nameof(settings));
-        var controllers = settings.ControllerPorts.Select(port =>
-        {
-            if (!Enum.TryParse<PeripheralCategory>(port.SelectedControllerId, out var peripheral) || !Peripherals(configuration.Model, configuration.Core).Contains(peripheral))
-                throw new ArgumentException(nameof(settings));
-            return new ControllerBinding(port.Number - 1, peripheral, port.PhysicalDeviceId, new Dictionary<string, string>(port.Bindings.Values, StringComparer.Ordinal), port.DeadZonePercent, port.VisualId);
-        }).ToArray();
+        var controllers = EmulationInputMappingFunctions.CreateControllerBindings<PeripheralCategory, ControllerBinding>(
+            settings,
+            (index, peripheral) => Peripherals(configuration.Model, configuration.Core).Contains(peripheral),
+            static (port, peripheral, mappings) => new(port.Number - 1, peripheral, port.PhysicalDeviceId, mappings, port.DeadZonePercent, port.VisualId));
         var result = configuration with { Input = new(settings.Keyboard?.Values, controllers) };
         ConfigurationFunctions.Validate(result);
         return result;
