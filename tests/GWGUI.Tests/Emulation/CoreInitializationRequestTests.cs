@@ -1,6 +1,8 @@
 using System.IO;
 using System.Text;
 using System.Text.Json;
+using GWGUI.Emulation.Contracts;
+using GWGUI.Emulation.Interfaces;
 using GWGUI.Emulation.Functions;
 
 namespace GWGUI.Tests.Emulation;
@@ -257,6 +259,160 @@ public sealed class CoreInitializationRequestTests
                 Assert.Equal("remaining", reader.ReadString());
             });
         });
+    }
+
+    [Theory]
+    [InlineData(null)]
+    [InlineData("saves")]
+    public void HostInitializationPreservesTheResponseAndTransfersTheCoreToItsSession(string? saves)
+        => VerifyHostInitialization(null, saves);
+
+    [Theory]
+    [InlineData("dispose")]
+    [InlineData("emulator")]
+    [InlineData("saves")]
+    [InlineData("configuration")]
+    [InlineData("factory")]
+    [InlineData("initialize")]
+    [InlineData("json")]
+    [InlineData("status")]
+    [InlineData("led")]
+    public void HostInitializationFailureKeepsTheOriginalOrderErrorAndReachableOwner(string failure)
+        => VerifyHostInitialization(failure, null);
+
+    private static void VerifyHostInitialization(string? failure, string? saves)
+    {
+        var stages = new[] { "dispose", "emulator", "saves", "configuration", "factory", "initialize", "json", "status", "led" };
+        var calls = new List<string>();
+        var expected = new InvalidOperationException("initialization failure");
+        void Step(string stage)
+        {
+            calls.Add(stage);
+            if (stage == failure) throw expected;
+        }
+
+        var previous = new InitializationCore { OnDispose = () => Step("dispose") };
+        var created = new InitializationCore();
+        InitializationCore? slot = previous;
+        var diagnosticCount = 9;
+        var options = new JsonSerializerOptions(JsonSerializerDefaults.Web);
+        using var input = new MemoryStream();
+        using var request = new BinaryWriter(input, Encoding.UTF8, leaveOpen: true);
+        request.Write("core.dll");
+        request.Write(17);
+        request.Write("session");
+        EmulationHostProtocolFunctions.WriteString(request, saves);
+        request.Write(JsonSerializer.Serialize(new Configuration("configured", 3), options));
+        request.Write("remaining");
+        request.Flush();
+        input.Position = 0;
+        using var reader = new BinaryReader(input, Encoding.UTF8, leaveOpen: true);
+        using var output = new MemoryStream();
+        using var writer = new BinaryWriter(output, Encoding.UTF8, leaveOpen: true);
+        created.OnInitialize = (configuration, session, saveDirectory) =>
+        {
+            Assert.Same(created, slot);
+            Assert.Equal(new Configuration("configured", 3), configuration);
+            Assert.Equal("session", session);
+            Assert.Equal(saves, saveDirectory);
+            Step("initialize");
+        };
+
+        try
+        {
+            void Initialize() => EmulationHostProtocolFunctions.InitializeCore<InitializationCore, int, Configuration, string>(
+                reader, writer,
+                (path, emulator) =>
+                {
+                    Assert.Null(slot);
+                    Assert.Equal("core.dll", path);
+                    Assert.Equal(17, emulator);
+                    Step("factory");
+                    return created;
+                }, ref slot, ref diagnosticCount,
+                value => { Assert.Null(slot); Step("emulator"); return value.ReadInt32(); },
+                value => { Step("saves"); return EmulationHostProtocolFunctions.ReadString(value); },
+                value => { Step("configuration"); return JsonSerializer.Deserialize<Configuration>(value.ReadString(), options)!; },
+                () => { Step("json"); return options; }, '|',
+                (response, core) =>
+                {
+                    Assert.Same(created, core);
+                    Assert.Equal(9, diagnosticCount);
+                    Step("status");
+                    response.Write(23);
+                },
+                (response, states) =>
+                {
+                    Assert.Equal(1, diagnosticCount);
+                    Step("led");
+                    EmulationHostProtocolFunctions.WriteLedStates(response, states);
+                });
+
+            if (failure is null) Initialize();
+            else Assert.Same(expected, Assert.Throws<InvalidOperationException>(Initialize));
+            var lastStage = failure is null ? stages.Length : Array.IndexOf(stages, failure) + 1;
+            Assert.Equal(stages.Take(lastStage), calls);
+            Assert.Equal(1, previous.DisposeCount);
+            Assert.Equal(0, created.DisposeCount);
+            var transferred = failure is null || Array.IndexOf(stages, failure) >= Array.IndexOf(stages, "initialize");
+            if (transferred) Assert.Same(created, slot);
+            else Assert.Null(slot);
+            Assert.Equal(failure is null or "led" ? 1 : 9, diagnosticCount);
+            if (failure is null)
+            {
+                Assert.Equal("remaining", reader.ReadString());
+                writer.Flush();
+                output.Position = 0;
+                using var response = new BinaryReader(output, Encoding.UTF8, leaveOpen: true);
+                Assert.Equal("hash", response.ReadString());
+                Assert.Equal(50d, response.ReadDouble());
+                Assert.Equal(44100, response.ReadInt32());
+                Assert.Equal(23, response.ReadInt32());
+                Assert.Equal("[\"option\"]", response.ReadString());
+                Assert.Equal("[\"ready\"]", response.ReadString());
+                Assert.Equal("core", response.ReadString());
+                Assert.Equal("1", response.ReadString());
+                Assert.Equal("a|b", response.ReadString());
+                Assert.True(EmulationHostProtocolFunctions.ReadLedStates(response, "test")[1]);
+                Assert.Equal(output.Length, output.Position);
+            }
+            Assert.True(input.CanRead);
+            Assert.True(output.CanWrite);
+        }
+        finally
+        {
+            try { EmulationHostProtocolFunctions.DisposePreviousCore(ref slot); }
+            finally
+            {
+                try { if (previous.DisposeCount == 0) previous.Dispose(); }
+                finally { if (created.DisposeCount == 0) created.Dispose(); }
+            }
+        }
+        Assert.Equal(1, created.DisposeCount);
+    }
+
+    private sealed class InitializationCore : IEmulationCoreRuntime<Configuration, string>
+    {
+        internal Action? OnDispose { get; init; }
+        internal Action<Configuration, string, string?>? OnInitialize { get; set; }
+        internal int DisposeCount { get; private set; }
+        public VideoFrame? LatestVideoFrame => null;
+        public AudioChunk? LatestAudioChunk => null;
+        public bool TryDequeueAudio(out AudioChunk? chunk) { chunk = null; return false; }
+        public IReadOnlyList<string> Options => ["option"];
+        public IReadOnlyList<string> Diagnostics => ["ready"];
+        public IReadOnlyDictionary<int, bool> LedStates { get; } = new Dictionary<int, bool> { [1] = true };
+        public string CoreName => "core";
+        public string CoreVersion => "1";
+        public IReadOnlySet<string> SupportedContentExtensions { get; } = new HashSet<string> { "b", "a" };
+        public string CoreSha256 => "hash";
+        public double FramesPerSecond => 50;
+        public int SampleRate => 44100;
+        public void Initialize(Configuration configuration, string sessionDirectory, string? saveDirectory = null)
+            => OnInitialize?.Invoke(configuration, sessionDirectory, saveDirectory);
+        public void RunFrame() => throw new NotSupportedException();
+        public void SetInput(EmulationInputSnapshot snapshot) => throw new NotSupportedException();
+        public void Dispose() { DisposeCount++; OnDispose?.Invoke(); }
     }
 
     private sealed class RecordingWriter : BinaryWriter

@@ -67,22 +67,16 @@ public static class CoreHost
 
     private static void Initialize(BinaryReader reader, BinaryWriter writer, Func<string, Emulator, IEmulatorCore> createCore, ref IEmulatorCore? core, ref int lastDiagnosticCount)
     {
-        EmulationHostProtocolFunctions.DisposePreviousCore(ref core);
-        var (corePath, emulator, session, saves, configuration) =
-            EmulationHostProtocolFunctions.ReadInitializationRequest(reader,
-                static requestReader => (Emulator)requestReader.ReadInt32(),
-                CoreHostFunctions.ReadString,
-                static requestReader => JsonSerializer.Deserialize<MachineConfiguration>(requestReader.ReadString(), CoreHostFunctions.JsonOptions) ?? throw new InvalidDataException(CoreHostErrors.InvalidConfiguration));
-        core = createCore(corePath, emulator);
-        core.Initialize(configuration, session, saves);
-        EmulationHostProtocolFunctions.WriteCoreInitialization<IEmulatorCore, MachineConfiguration, CoreOption>(
-            writer, core, CoreHostFunctions.JsonOptions, ref lastDiagnosticCount, CoreHostConstants.ExtensionListSeparator,
+        EmulationHostProtocolFunctions.InitializeCore<IEmulatorCore, Emulator, MachineConfiguration, CoreOption>(
+            reader, writer, createCore, ref core, ref lastDiagnosticCount,
+            static requestReader => (Emulator)requestReader.ReadInt32(), CoreHostFunctions.ReadString,
+            static requestReader => JsonSerializer.Deserialize<MachineConfiguration>(requestReader.ReadString(), CoreHostFunctions.JsonOptions) ?? throw new InvalidDataException(CoreHostErrors.InvalidConfiguration),
+            static () => CoreHostFunctions.JsonOptions, CoreHostConstants.ExtensionListSeparator,
             static (statusWriter, currentCore) =>
             {
                 statusWriter.Write(currentCore.SupportsSaveStates);
                 EmulationHostProtocolFunctions.WriteRuntimeStatus(statusWriter, currentCore.Region, currentCore.BufferedAudioFrames, currentCore.AudioOverrunCount, currentCore.AudioUnderrunCount);
-            });
-        CoreHostFunctions.WriteLedStates(writer, core.LedStates);
+            }, CoreHostFunctions.WriteLedStates);
     }
 
     [SupportedOSPlatform(CoreHostValues.Windows)]

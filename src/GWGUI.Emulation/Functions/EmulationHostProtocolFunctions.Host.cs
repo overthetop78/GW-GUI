@@ -59,6 +59,27 @@ internal static partial class EmulationHostProtocolFunctions
         return (corePath, emulator, session, saves, configuration);
     }
 
+    // The session owns the slot and releases it in its finally. Publishing the new
+    // core before Initialize keeps a failed instance reachable by that owner.
+    internal static void InitializeCore<TCore, TEmulator, TConfiguration, TOption>(
+        BinaryReader reader, BinaryWriter writer, Func<string, TEmulator, TCore> createCore,
+        ref TCore? core, ref int lastDiagnosticCount,
+        Func<BinaryReader, TEmulator> readEmulator, Func<BinaryReader, string?> readSaves,
+        Func<BinaryReader, TConfiguration> readConfiguration, Func<JsonSerializerOptions> jsonOptions,
+        char extensionSeparator, Action<BinaryWriter, TCore> writeStatus,
+        Action<BinaryWriter, IReadOnlyDictionary<int, bool>> writeLedStates)
+        where TCore : class, IEmulationCoreRuntime<TConfiguration, TOption>
+    {
+        DisposePreviousCore(ref core);
+        var (corePath, emulator, session, saves, configuration) =
+            ReadInitializationRequest(reader, readEmulator, readSaves, readConfiguration);
+        core = createCore(corePath, emulator);
+        core.Initialize(configuration, session, saves);
+        WriteCoreInitialization<TCore, TConfiguration, TOption>(
+            writer, core, jsonOptions(), ref lastDiagnosticCount, extensionSeparator, writeStatus);
+        writeLedStates(writer, core.LedStates);
+    }
+
     internal static void WriteInitializationRequest(ref BinaryWriter? writer, string corePath,
         Func<string?> session, Func<string?> saves, Action<BinaryWriter, string?> writeSaves,
         Func<string> serializeConfiguration)
