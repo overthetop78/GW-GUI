@@ -28,11 +28,13 @@ internal static class BindingsAndFeedbackScenarios
         var analogState = EmulationControllerState.Empty with { DeviceId = "axis", Controls = new EmulationControllerControls(new Dictionary<string, float> { ["Axis0"] = .55f }) };
         var analogSnapshot = EmulationInputSnapshot.Empty with { Keys = new HashSet<EmulationKey> { EmulationKey.LeftControl }, Controllers = [analogState] };
         const string analogBinding = "Keyboard:LeftControl+Controller:axis:Axis0Positive";
-        foreach (var family in new[] { "Mattel", "Philips", "Sharp", "Sinclair", "Snk", "Thomson", "Watara", "Panasonic", "Epoch" })
+        foreach (var family in new[] { "Shared", "Panasonic", "Epoch" })
         {
-            var assembly = System.Reflection.Assembly.Load("gwgui.emulation." + family.ToLowerInvariant());
-            var method = assembly.GetTypes().SelectMany(type => type.GetMethods(System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static))
-                .Single(candidate => candidate.Name is "Magnitude" or "Value" or "AxisValue" && candidate.GetParameters().Select(parameter => parameter.ParameterType).SequenceEqual(new[] { typeof(string), typeof(EmulationControllerState), typeof(EmulationInputSnapshot), typeof(int) }));
+            var method = family == "Shared"
+                ? typeof(GWGUI.Emulation.Functions.EmulationInputMappingFunctions).GetMethod("MappedInputMagnitude", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static)!
+                : System.Reflection.Assembly.Load("gwgui.emulation." + family.ToLowerInvariant()).GetTypes()
+                    .SelectMany(type => type.GetMethods(System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static))
+                    .Single(candidate => candidate.Name is "Magnitude" or "Value" or "AxisValue" && candidate.GetParameters().Select(parameter => parameter.ParameterType).SequenceEqual(new[] { typeof(string), typeof(EmulationControllerState), typeof(EmulationInputSnapshot), typeof(int) }));
             Assert.Equal(0f, (float)method.Invoke(null, [analogBinding, analogState, analogSnapshot, 20])!);
             var halfway = analogState with { Controls = new EmulationControllerControls(new Dictionary<string, float> { ["Axis0"] = .75f }) };
             var output = (float)method.Invoke(null, [analogBinding, halfway, analogSnapshot with { Controllers = new[] { halfway } }, 20])!;

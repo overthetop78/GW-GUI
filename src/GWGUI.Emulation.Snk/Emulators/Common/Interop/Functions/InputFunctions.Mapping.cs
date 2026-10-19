@@ -20,9 +20,9 @@ internal static class NativeInputMappingFunctions
                 if (string.IsNullOrWhiteSpace(mapping))
                     continue;
                 var physical = EmulationInputMappingFunctions.ResolveSourceController(mapping, snapshot.Controllers, source);
-                if (IsPressed(mapping, physical, snapshot))
+                if (EmulationInputMappingFunctions.IsMappedInputPressed(mapping, physical, snapshot))
                     buttons |= action.ButtonMask;
-                var magnitude = Magnitude(mapping, physical, snapshot, binding.DeadZonePercent);
+                var magnitude = EmulationInputMappingFunctions.MappedInputMagnitude(mapping, physical, snapshot, binding.DeadZonePercent);
                 switch (action.Command)
                 {
                     case ControllerCommand.Left:
@@ -44,8 +44,8 @@ internal static class NativeInputMappingFunctions
             {
                 DeviceId = source.DeviceId,
                 Buttons = buttons,
-                LeftX = Axis(horizontal),
-                LeftY = Axis(vertical)
+                LeftX = EmulationInputMappingFunctions.NormalizedAxis(horizontal),
+                LeftY = EmulationInputMappingFunctions.NormalizedAxis(vertical)
             };
         }
 
@@ -57,39 +57,5 @@ internal static class NativeInputMappingFunctions
         };
     }
 
-    private static short Axis(float value) => (short)(Math.Clamp(value, -1f, 1f) * short.MaxValue);
-    private static float Magnitude(string mapping, EmulationControllerState controller, EmulationInputSnapshot snapshot, int deadZone)
-    {
-        if (mapping.Contains('+') && !mapping.EndsWith('+'))
-        {
-            var combined = EmulationInputMappingFunctions.InputSourcePressure(mapping, controller, snapshot);
-            return combined <= (float)deadZone / InputMappingConstants.PercentScale ? 0f : Math.Clamp(combined, 0f, 1f);
-        }
-        if (!mapping.StartsWith(InputMappingConstants.ControllerPrefix, StringComparison.OrdinalIgnoreCase))
-            return IsPressed(mapping, controller, snapshot) ? 1f : 0f;
-        var value = EmulationInputMappingFunctions.ControllerSourcePressure(mapping, controller);
-        return value <= (float)deadZone / InputMappingConstants.PercentScale ? 0f : Math.Clamp(value, 0f, 1f);
-    }
 
-    private static bool IsPressed(string mapping, EmulationControllerState controller, EmulationInputSnapshot snapshot)
-    {
-        if (mapping.Contains('+' ) && !mapping.EndsWith('+')) return EmulationInputMappingFunctions.InputSourcePressure(mapping, controller, snapshot) > .5f;
-        if (mapping.StartsWith(InputMappingConstants.KeyboardPrefix, StringComparison.OrdinalIgnoreCase))
-            return Enum.TryParse<EmulationKey>(mapping[InputMappingConstants.KeyboardPrefix.Length..], out var key) && snapshot.Keys.Contains(key);
-        if (mapping.StartsWith(InputMappingConstants.MousePrefix, StringComparison.OrdinalIgnoreCase))
-            return mapping[InputMappingConstants.MousePrefix.Length..] switch
-            {
-                InputMappingConstants.MouseLeft => snapshot.Pointer.Left,
-                InputMappingConstants.MouseRight => snapshot.Pointer.Right,
-                InputMappingConstants.MouseMiddle => snapshot.Pointer.Middle,
-                InputMappingConstants.MouseExtended1 => snapshot.Pointer.ExtendedButton1,
-                InputMappingConstants.MouseExtended2 => snapshot.Pointer.ExtendedButton2,
-                InputMappingConstants.MouseWheelUp => snapshot.Pointer.Wheel > 0,
-                InputMappingConstants.MouseWheelDown => snapshot.Pointer.Wheel < 0,
-                InputMappingConstants.MouseWheelLeft => snapshot.Pointer.HorizontalWheel < 0,
-                InputMappingConstants.MouseWheelRight => snapshot.Pointer.HorizontalWheel > 0,
-                _ => false
-            };
-        return mapping.StartsWith(InputMappingConstants.ControllerPrefix, StringComparison.OrdinalIgnoreCase) && EmulationInputMappingFunctions.IsControllerSourcePressed(mapping, controller);
-    }
 }

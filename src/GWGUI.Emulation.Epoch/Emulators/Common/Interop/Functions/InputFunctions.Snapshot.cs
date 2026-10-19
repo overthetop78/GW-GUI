@@ -33,7 +33,7 @@ internal static class NativeInputSnapshotFunctions
                     continue;
                 }
                 var translatedShortcut = action.Key is EmulationKey.EpochPower or EmulationKey.EpochReset && snapshot.Keys.Contains(action.Key.Value);
-                if (!translatedShortcut && !IsPressed(mapping, physical, snapshot)) continue;
+                if (!translatedShortcut && !EmulationInputMappingFunctions.IsMappedInputPressed(mapping, physical, snapshot)) continue;
                 if (action.Button >= 0) buttons |= 1u << action.Button;
                 if (action.Key is EmulationKey target) keys.Add(target);
                 buttons |= action.CarrierMask;
@@ -59,7 +59,7 @@ internal static class NativeInputSnapshotFunctions
             return combined <= combinedDeadZone || combinedDeadZone >= 1f ? 0f : (combined - combinedDeadZone) / (1f - combinedDeadZone);
         }
         if (!mapping.StartsWith(InputMappingConstants.ControllerPrefix, StringComparison.OrdinalIgnoreCase))
-            return IsPressed(mapping, controller, snapshot) ? 1f : 0f;
+            return EmulationInputMappingFunctions.IsMappedInputPressed(mapping, controller, snapshot) ? 1f : 0f;
         var value = EmulationInputMappingFunctions.ControllerSourceValue(mapping, controller);
         var name = mapping[(mapping.LastIndexOf(':') + 1)..];
         var custom = controller.Controls.ContainsKey(name) || ((name.EndsWith('+') || name.EndsWith('-')) && controller.Controls.ContainsKey(name[..^1]));
@@ -71,20 +71,4 @@ internal static class NativeInputSnapshotFunctions
         return value <= deadZone || deadZone >= 1f ? 0f : (value - deadZone) / (1f - deadZone);
     }
 
-    private static bool IsPressed(string mapping, EmulationControllerState controller, EmulationInputSnapshot snapshot)
-    {
-        if (mapping.Contains('+' ) && !mapping.EndsWith('+')) return EmulationInputMappingFunctions.InputSourcePressure(mapping, controller, snapshot) > .5f;
-        if (mapping.StartsWith(InputMappingConstants.KeyboardPrefix, StringComparison.OrdinalIgnoreCase))
-            return Enum.TryParse<EmulationKey>(mapping[InputMappingConstants.KeyboardPrefix.Length..], out var key) && snapshot.Keys.Contains(key);
-        if (mapping.StartsWith(InputMappingConstants.MousePrefix, StringComparison.OrdinalIgnoreCase))
-            return mapping[InputMappingConstants.MousePrefix.Length..] switch
-            {
-                "Left" => snapshot.Pointer.Left, "Right" => snapshot.Pointer.Right, "Middle" => snapshot.Pointer.Middle,
-                "XButton1" => snapshot.Pointer.ExtendedButton1, "XButton2" => snapshot.Pointer.ExtendedButton2,
-                "WheelUp" => snapshot.Pointer.Wheel > 0, "WheelDown" => snapshot.Pointer.Wheel < 0,
-                "WheelLeft" => snapshot.Pointer.HorizontalWheel < 0, "WheelRight" => snapshot.Pointer.HorizontalWheel > 0,
-                _ => false
-            };
-        return mapping.StartsWith(InputMappingConstants.ControllerPrefix, StringComparison.OrdinalIgnoreCase) && EmulationInputMappingFunctions.IsControllerSourcePressed(mapping, controller);
-    }
 }

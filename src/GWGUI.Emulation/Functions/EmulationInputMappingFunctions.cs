@@ -314,4 +314,38 @@ public static class EmulationInputMappingFunctions
         }
         return opposite is null ? null : source[..^name.Length] + opposite;
     }
+
+    internal static bool IsMappedInputPressed(string mapping, EmulationControllerState controller, EmulationInputSnapshot snapshot)
+    {
+        if (mapping.Contains('+') && !mapping.EndsWith('+')) return EmulationInputMappingFunctions.InputSourcePressure(mapping, controller, snapshot) > .5f;
+        if (mapping.StartsWith(EmulationInputMappingConstants.KeyboardPrefix, StringComparison.OrdinalIgnoreCase))
+            return Enum.TryParse<EmulationKey>(mapping[EmulationInputMappingConstants.KeyboardPrefix.Length..], out var key)
+                && snapshot.Keys.Contains(key);
+        if (mapping.StartsWith(EmulationInputMappingConstants.MousePrefix, StringComparison.OrdinalIgnoreCase))
+            return mapping[EmulationInputMappingConstants.MousePrefix.Length..] switch
+            {
+                "Left" => snapshot.Pointer.Left, "Right" => snapshot.Pointer.Right, "Middle" => snapshot.Pointer.Middle,
+                "XButton1" => snapshot.Pointer.ExtendedButton1, "XButton2" => snapshot.Pointer.ExtendedButton2,
+                "WheelUp" => snapshot.Pointer.Wheel > 0, "WheelDown" => snapshot.Pointer.Wheel < 0,
+                "WheelLeft" => snapshot.Pointer.HorizontalWheel < 0, "WheelRight" => snapshot.Pointer.HorizontalWheel > 0,
+                _ => false
+            };
+        return mapping.StartsWith(EmulationInputMappingConstants.ControllerPrefix, StringComparison.OrdinalIgnoreCase)
+            && EmulationInputMappingFunctions.IsControllerSourcePressed(mapping, controller);
+    }
+
+    internal static short NormalizedAxis(float value) => (short)(Math.Clamp(value, -1f, 1f) * short.MaxValue);
+
+    internal static float MappedInputMagnitude(string mapping, EmulationControllerState controller, EmulationInputSnapshot snapshot, int deadZone)
+    {
+        if (mapping.Contains('+') && !mapping.EndsWith('+'))
+        {
+            var combined = EmulationInputMappingFunctions.InputSourcePressure(mapping, controller, snapshot);
+            return combined <= deadZone / 100f ? 0f : Math.Clamp(combined, 0f, 1f);
+        }
+        if (!mapping.StartsWith(EmulationInputMappingConstants.ControllerPrefix, StringComparison.OrdinalIgnoreCase))
+            return IsMappedInputPressed(mapping, controller, snapshot) ? 1f : 0f;
+        var value = EmulationInputMappingFunctions.ControllerSourcePressure(mapping, controller);
+        return value <= deadZone / 100f ? 0f : Math.Clamp(value, 0f, 1f);
+    }
 }
