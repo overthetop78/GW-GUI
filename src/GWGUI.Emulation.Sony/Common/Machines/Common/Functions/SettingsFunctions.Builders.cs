@@ -1,35 +1,21 @@
+using FieldBuilders = GWGUI.Emulation.Functions.EmulationHardwareSettingsFunctions;
+
 namespace GWGUI.Emulation.Sony.Common.Machines.Common.Functions;
 
 internal static partial class SettingsDescriptionFunctions
 {
-    private static EmulationSettingsBlock Block(string id, EmulationMachineTab tab, string title, string icon, int columns, params EmulationSettingsField[] fields) => new(id, tab, title, fields, icon, columns, IsCompact: tab is EmulationMachineTab.Cpu or EmulationMachineTab.Video);
+    private static EmulationSettingsBlock Block(string id, EmulationMachineTab tab, string title, string icon, int columns, params EmulationSettingsField[] fields) => FieldBuilders.Block(id, tab, title, icon, columns, fields, isCompact: tab is EmulationMachineTab.Cpu or EmulationMachineTab.Video);
 
-    private static EmulationSettingsField Information(string id, EmulationMachineTab tab, string block, string label, string value) => new(id, tab, block, label, EmulationSettingsEditor.Information, value, ExplanationResourceKey: ShortHelp(id), DetailedExplanationResourceKey: DetailedHelp(id));
+    private static EmulationSettingsField Information(string id, EmulationMachineTab tab, string block, string label, string value) => FieldBuilders.Information(id, tab, block, label, value, ShortHelp(id), DetailedHelp(id));
 
     private static EmulationSettingsField Toggle(string id, EmulationMachineTab tab, string block, string label, bool value, bool refreshSettingsOnChange = false) =>
-        new(id, tab, block, label, EmulationSettingsEditor.Toggle,
-            value ? SettingsDescriptionFunctionsConstants.Enabled : SettingsDescriptionFunctionsConstants.Disabled,
-            ExplanationResourceKey: ShortHelp(id),
-            DetailedExplanationResourceKey: DetailedHelp(id),
-            RefreshSettingsOnChange: refreshSettingsOnChange);
+        FieldBuilders.Toggle(id, tab, block, label, value, ShortHelp(id), DetailedHelp(id), refreshSettingsOnChange);
 
-    private static EmulationSettingsField Number(string id, EmulationMachineTab tab, string block, string label, string value) => new(id, tab, block, label, EmulationSettingsEditor.Number, value, ExplanationResourceKey: ShortHelp(id), DetailedExplanationResourceKey: DetailedHelp(id));
+    private static EmulationSettingsField Number(string id, EmulationMachineTab tab, string block, string label, string value) => FieldBuilders.Number(id, tab, block, label, value, ShortHelp(id), DetailedHelp(id));
 
-    private static EmulationSettingsField Select(string id, EmulationMachineTab tab, string block, string label, string value, IEnumerable<EmulationSettingsChoice> choices, bool requiresRestart = false) => new(id, tab, block, label,
-            EmulationSettingsEditor.Selection, value, choices.ToArray(),
-            ExplanationResourceKey: ShortHelp(id),
-            DetailedExplanationResourceKey: DetailedHelp(id),
-            RequiresRestart: requiresRestart);
+    private static EmulationSettingsField Select(string id, EmulationMachineTab tab, string block, string label, string value, IEnumerable<EmulationSettingsChoice> choices, bool requiresRestart = false) => FieldBuilders.Select(id, tab, block, label, value, choices.ToArray(), ShortHelp(id), DetailedHelp(id), requiresRestart: requiresRestart);
 
-    private static EmulationSettingsField AudioOutput(string? value) => new(
-        SettingsConstants.AudioOutput, EmulationMachineTab.Audio,
-        SettingsDescriptionFunctionsConstants.Audio,
-        SettingsDescriptionFunctionsConstants.ResourceAudioDevice,
-        EmulationSettingsEditor.Selection, value ?? string.Empty,
-        [new EmulationSettingsChoice(string.Empty, SettingsDescriptionFunctionsConstants.ResourceAudioDefaultOutput)],
-        ChoiceSource: EmulationSettingsChoiceSource.AudioOutputDevices,
-        ExplanationResourceKey: ShortHelp(SettingsConstants.AudioOutput),
-        DetailedExplanationResourceKey: DetailedHelp(SettingsConstants.AudioOutput));
+    private static EmulationSettingsField AudioOutput(string? value) => FieldBuilders.AudioOutput(SettingsConstants.AudioOutput, SettingsDescriptionFunctionsConstants.Audio, SettingsDescriptionFunctionsConstants.ResourceAudioDevice, value ?? string.Empty, [new EmulationSettingsChoice(string.Empty, SettingsDescriptionFunctionsConstants.ResourceAudioDefaultOutput)], ShortHelp(SettingsConstants.AudioOutput), DetailedHelp(SettingsConstants.AudioOutput));
 
     private static string? ShortHelp(string id) => SettingsHelpDictionary.Resources.TryGetValue(id, out var resource) ? resource + ".Short" : null;
 

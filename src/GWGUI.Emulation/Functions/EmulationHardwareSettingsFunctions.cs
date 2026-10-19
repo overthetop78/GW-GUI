@@ -47,5 +47,38 @@ internal static class EmulationHardwareSettingsFunctions
         : $"{bytes.ToString(CultureInfo.InvariantCulture)} B";
 
     private static EmulationSettingsField Information(string id, EmulationMachineTab tab, string block, string label, string value) =>
-        new(id, tab, block, label, EmulationSettingsEditor.Information, value);
+        Information(id, tab, block, label, value, null, null);
+
+    internal static EmulationSettingsField Information(string id, EmulationMachineTab tab, string block, string label, string value,
+        string? shortHelp, string? detailedHelp) =>
+        new(id, tab, block, label, EmulationSettingsEditor.Information, value,
+            ExplanationResourceKey: shortHelp, DetailedExplanationResourceKey: detailedHelp);
+
+    internal static EmulationSettingsBlock Block(string id, EmulationMachineTab tab, string title, string icon, int columns,
+        EmulationSettingsField[] fields, bool isCompact = false) => new(id, tab, title, fields, icon, columns, IsCompact: isCompact);
+
+    internal static EmulationSettingsField Toggle(string id, EmulationMachineTab tab, string block, string label, bool value,
+        string? shortHelp, string? detailedHelp, bool refreshSettingsOnChange = false) =>
+        new(id, tab, block, label, EmulationSettingsEditor.Toggle,
+            value ? EmulationSettingConstants.Enabled : EmulationSettingConstants.Disabled,
+            ExplanationResourceKey: shortHelp, DetailedExplanationResourceKey: detailedHelp,
+            RefreshSettingsOnChange: refreshSettingsOnChange);
+
+    internal static EmulationSettingsField Number(string id, EmulationMachineTab tab, string block, string label, string value,
+        string? shortHelp, string? detailedHelp) =>
+        new(id, tab, block, label, EmulationSettingsEditor.Number, value,
+            ExplanationResourceKey: shortHelp, DetailedExplanationResourceKey: detailedHelp);
+
+    internal static EmulationSettingsField Select(string id, EmulationMachineTab tab, string block, string label, string value,
+        IReadOnlyList<EmulationSettingsChoice> choices, string? shortHelp, string? detailedHelp,
+        bool isEnabled = true, bool requiresRestart = false) =>
+        new(id, tab, block, label, EmulationSettingsEditor.Selection, value, choices,
+            IsEnabled: isEnabled, ExplanationResourceKey: shortHelp, DetailedExplanationResourceKey: detailedHelp,
+            RequiresRestart: requiresRestart);
+
+    internal static EmulationSettingsField AudioOutput(string id, string block, string label, string value,
+        IReadOnlyList<EmulationSettingsChoice> choices, string? shortHelp, string? detailedHelp) =>
+        new(id, EmulationMachineTab.Audio, block, label, EmulationSettingsEditor.Selection, value, choices,
+            ChoiceSource: EmulationSettingsChoiceSource.AudioOutputDevices,
+            ExplanationResourceKey: shortHelp, DetailedExplanationResourceKey: detailedHelp);
 }

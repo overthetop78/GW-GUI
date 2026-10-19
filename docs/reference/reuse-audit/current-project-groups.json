@@ -3,7 +3,7 @@
   "currentCSharpFiles": 7258,
   "outsideSrcCSharpFiles": 309,
   "baselineMethodCount": 5848,
-  "currentMethodCount": 11586,
+  "currentMethodCount": 11571,
   "powerShellFunctionCount": 17,
   "groups": [
     {
@@ -31,74 +31,6 @@
       ],
       "predecessors": [],
       "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
-      "hash": "008379725E2A614B418ACB3B98F35388F4C09A336109BDA5BBAAA36CF9578333",
-      "method": "Toggle",
-      "tokens": 43,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Functions/CoreSettingsDescriptionFunctions.Builders.cs",
-          "name": "Toggle",
-          "line": 9,
-          "tokens": 43,
-          "hash": "008379725E2A614B418ACB3B98F35388F4C09A336109BDA5BBAAA36CF9578333",
-          "shape": "E1F8F433A2E6D460854CA049377DE64C9DCD58BDABB27EF6983CDB28946FF09F"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/SettingsFunctions.Builders.cs",
-          "name": "Toggle",
-          "line": 9,
-          "tokens": 43,
-          "hash": "008379725E2A614B418ACB3B98F35388F4C09A336109BDA5BBAAA36CF9578333",
-          "shape": "E1F8F433A2E6D460854CA049377DE64C9DCD58BDABB27EF6983CDB28946FF09F"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Functions/CoreSettingsDescriptionFunctions.Builders.cs",
-          "name": "Toggle",
-          "line": 9,
-          "tokens": 43,
-          "hash": "008379725E2A614B418ACB3B98F35388F4C09A336109BDA5BBAAA36CF9578333",
-          "shape": "E1F8F433A2E6D460854CA049377DE64C9DCD58BDABB27EF6983CDB28946FF09F"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Functions/SettingsFunctions.Builders.cs",
-          "name": "Toggle",
-          "line": 9,
-          "tokens": 43,
-          "hash": "008379725E2A614B418ACB3B98F35388F4C09A336109BDA5BBAAA36CF9578333",
-          "shape": "E1F8F433A2E6D460854CA049377DE64C9DCD58BDABB27EF6983CDB28946FF09F"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Microsoft/Common/Machines/Common/Functions/SettingsFunctions.Builders.cs",
-          "name": "Toggle",
-          "line": 9,
-          "tokens": 43,
-          "hash": "008379725E2A614B418ACB3B98F35388F4C09A336109BDA5BBAAA36CF9578333",
-          "shape": "E1F8F433A2E6D460854CA049377DE64C9DCD58BDABB27EF6983CDB28946FF09F"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/SettingsFunctions.Builders.cs",
-          "name": "Toggle",
-          "line": 9,
-          "tokens": 43,
-          "hash": "008379725E2A614B418ACB3B98F35388F4C09A336109BDA5BBAAA36CF9578333",
-          "shape": "E1F8F433A2E6D460854CA049377DE64C9DCD58BDABB27EF6983CDB28946FF09F"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [
-        {
-          "path": "src/GWGUI.Emulation.Amiga/Functions/AmigaSettingsDescriptionFunctions.cs",
-          "name": "Toggle",
-          "line": 190,
-          "tokens": 43,
-          "hash": "4BE4638D8E2C372D808A45DD3C6281FC07B712B75779413B24FE1511BF6599EF",
-          "shape": "E1F8F433A2E6D460854CA049377DE64C9DCD58BDABB27EF6983CDB28946FF09F"
-        }
-      ],
       "qualification": "pending"
     },
     {
@@ -1229,7 +1161,7 @@
     {
       "language": "CSharp",
       "hash": "0A9D4012A0EEF58659F6F622D06187BDA6844EE126F30B196EAE963950A66758",
-      "method": "AtariEmulationModule",
+      "method": "NecEmulationModule",
       "tokens": 45,
       "current": [
         {
@@ -11389,99 +11321,6 @@
     },
     {
       "language": "CSharp",
-      "hash": "6668D7F2D63E6C834D77DC6E42397104CD32428864AC390186E5B594372F1605",
-      "method": "Information",
-      "tokens": 31,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Functions/CoreSettingsDescriptionFunctions.Builders.cs",
-          "name": "Information",
-          "line": 7,
-          "tokens": 31,
-          "hash": "6668D7F2D63E6C834D77DC6E42397104CD32428864AC390186E5B594372F1605",
-          "shape": "BB0528F60BD2B260F8D4E3525CA6558BA2F55AAAFAA2E41A22DA7701AFDB5B61"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/SettingsFunctions.Builders.cs",
-          "name": "Information",
-          "line": 7,
-          "tokens": 31,
-          "hash": "6668D7F2D63E6C834D77DC6E42397104CD32428864AC390186E5B594372F1605",
-          "shape": "BB0528F60BD2B260F8D4E3525CA6558BA2F55AAAFAA2E41A22DA7701AFDB5B61"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Functions/CoreSettingsDescriptionFunctions.Builders.cs",
-          "name": "Information",
-          "line": 7,
-          "tokens": 31,
-          "hash": "6668D7F2D63E6C834D77DC6E42397104CD32428864AC390186E5B594372F1605",
-          "shape": "BB0528F60BD2B260F8D4E3525CA6558BA2F55AAAFAA2E41A22DA7701AFDB5B61"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Functions/SettingsFunctions.Builders.cs",
-          "name": "Information",
-          "line": 7,
-          "tokens": 31,
-          "hash": "6668D7F2D63E6C834D77DC6E42397104CD32428864AC390186E5B594372F1605",
-          "shape": "BB0528F60BD2B260F8D4E3525CA6558BA2F55AAAFAA2E41A22DA7701AFDB5B61"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Microsoft/Common/Machines/Common/Functions/SettingsFunctions.Builders.cs",
-          "name": "Information",
-          "line": 7,
-          "tokens": 31,
-          "hash": "6668D7F2D63E6C834D77DC6E42397104CD32428864AC390186E5B594372F1605",
-          "shape": "BB0528F60BD2B260F8D4E3525CA6558BA2F55AAAFAA2E41A22DA7701AFDB5B61"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/SettingsFunctions.Builders.cs",
-          "name": "Information",
-          "line": 7,
-          "tokens": 31,
-          "hash": "6668D7F2D63E6C834D77DC6E42397104CD32428864AC390186E5B594372F1605",
-          "shape": "BB0528F60BD2B260F8D4E3525CA6558BA2F55AAAFAA2E41A22DA7701AFDB5B61"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Commodore/Common/Machines/AmigaComputers/Functions/SettingsFunctions.Builders.cs",
-          "name": "Information",
-          "line": 8,
-          "tokens": 31,
-          "hash": "6668D7F2D63E6C834D77DC6E42397104CD32428864AC390186E5B594372F1605",
-          "shape": "BB0528F60BD2B260F8D4E3525CA6558BA2F55AAAFAA2E41A22DA7701AFDB5B61"
-        }
-      ],
-      "predecessors": [
-        {
-          "path": "src/GWGUI.Emulation.Amiga/Functions/AmigaSettingsDescriptionFunctions.cs",
-          "name": "Information",
-          "line": 186,
-          "tokens": 31,
-          "hash": "6668D7F2D63E6C834D77DC6E42397104CD32428864AC390186E5B594372F1605",
-          "shape": "BB0528F60BD2B260F8D4E3525CA6558BA2F55AAAFAA2E41A22DA7701AFDB5B61"
-        }
-      ],
-      "shapePredecessors": [
-        {
-          "path": "src/GWGUI.Emulation.Amiga/Functions/AmigaSettingsDescriptionFunctions.cs",
-          "name": "Information",
-          "line": 186,
-          "tokens": 31,
-          "hash": "6668D7F2D63E6C834D77DC6E42397104CD32428864AC390186E5B594372F1605",
-          "shape": "BB0528F60BD2B260F8D4E3525CA6558BA2F55AAAFAA2E41A22DA7701AFDB5B61"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Amiga/Functions/AmigaSettingsDescriptionFunctions.cs",
-          "name": "Number",
-          "line": 197,
-          "tokens": 31,
-          "hash": "FC21B1160003A8B49E89DFD6E28EAF3F60900E4293DCF8C4EAE0190EA341B8DB",
-          "shape": "BB0528F60BD2B260F8D4E3525CA6558BA2F55AAAFAA2E41A22DA7701AFDB5B61"
-        }
-      ],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
       "hash": "6677130020DE7F3BB405ECE9B1BBEE0204CC9C391CCEB373599E339D86C4F93E",
       "method": "SaveStateAsync",
       "tokens": 93,
@@ -11726,7 +11565,7 @@
     {
       "language": "CSharp",
       "hash": "68386C818382BCE400A3EDE65411B5CBD9D6A87F6D88FAF6501028CE28C38965",
-      "method": "ToSinclair",
+      "method": "ToModule",
       "tokens": 148,
       "current": [
         {
@@ -13386,6 +13225,67 @@
           "tokens": 38,
           "hash": "77615E1177DE9D89C58BC9CC1638677CFB89EFB62300BEFB92B572619341EE63",
           "shape": "931B220EE4F238E5A4B0491E79735E5DD7C09F5CB170CEE665D3D130E6A05654"
+        }
+      ],
+      "predecessors": [],
+      "shapePredecessors": [],
+      "qualification": "pending"
+    },
+    {
+      "language": "CSharp",
+      "hash": "795237B1D3AF25B495AD1C2309C5331D003F921977D4FC7206F9C9E55D439F77",
+      "method": "Select",
+      "tokens": 35,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Functions/SettingsFunctions.Builders.cs",
+          "name": "Select",
+          "line": 16,
+          "tokens": 35,
+          "hash": "795237B1D3AF25B495AD1C2309C5331D003F921977D4FC7206F9C9E55D439F77",
+          "shape": "C7267F16993D73A061EACF3E65B4C169E8D3DD97D5C0B689327F67C917D4B078",
+          "qualification": "Verified local resource and presentation binding to shared original settings constructors; settingBuildersReuse.verification36 expansions",
+          "qualificationSourceSha256": "0510A2F3AA5106EA4E612127A5ECEF2F82AF77D7E0C270C381663BC9CA933406"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Functions/CoreSettingsDescriptionFunctions.Builders.cs",
+          "name": "Select",
+          "line": 16,
+          "tokens": 35,
+          "hash": "795237B1D3AF25B495AD1C2309C5331D003F921977D4FC7206F9C9E55D439F77",
+          "shape": "C7267F16993D73A061EACF3E65B4C169E8D3DD97D5C0B689327F67C917D4B078",
+          "qualification": "Verified local resource and presentation binding to shared original settings constructors; settingBuildersReuse.verification36 expansions",
+          "qualificationSourceSha256": "D13817AA7257B32A4D1CB0408CE0060504B814AED80545251ADADC067299694E"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Microsoft/Common/Machines/Common/Functions/SettingsFunctions.Builders.cs",
+          "name": "Select",
+          "line": 16,
+          "tokens": 35,
+          "hash": "795237B1D3AF25B495AD1C2309C5331D003F921977D4FC7206F9C9E55D439F77",
+          "shape": "C7267F16993D73A061EACF3E65B4C169E8D3DD97D5C0B689327F67C917D4B078",
+          "qualification": "Verified local resource and presentation binding to shared original settings constructors; settingBuildersReuse.verification36 expansions",
+          "qualificationSourceSha256": "D56E2F7BA42781B76A8D5CC6DFB92B5EB1CBAA9C3E8EB5AA8ED010286C74A4D2"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/SettingsFunctions.Builders.cs",
+          "name": "Select",
+          "line": 16,
+          "tokens": 35,
+          "hash": "795237B1D3AF25B495AD1C2309C5331D003F921977D4FC7206F9C9E55D439F77",
+          "shape": "C7267F16993D73A061EACF3E65B4C169E8D3DD97D5C0B689327F67C917D4B078",
+          "qualification": "Verified local resource and presentation binding to shared original settings constructors; settingBuildersReuse.verification36 expansions",
+          "qualificationSourceSha256": "61AF239E177D2CDD56299E8F827FBBC23FFE4E18EDAF42D11B443709D844E2F1"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/SettingsFunctions.Builders.cs",
+          "name": "Select",
+          "line": 21,
+          "tokens": 35,
+          "hash": "795237B1D3AF25B495AD1C2309C5331D003F921977D4FC7206F9C9E55D439F77",
+          "shape": "C7267F16993D73A061EACF3E65B4C169E8D3DD97D5C0B689327F67C917D4B078",
+          "qualification": "Verified local resource and presentation binding to shared original settings constructors; settingBuildersReuse.verification36 expansions",
+          "qualificationSourceSha256": "20D950E9CC5E7302D8A087C88F885B59D3F83748437ED78522ABDF45B89D2A0E"
         }
       ],
       "predecessors": [],
@@ -16501,57 +16401,6 @@
     },
     {
       "language": "CSharp",
-      "hash": "96780321219A65F5E98FDF8E3F682A2AC53B27CA5DB38CA84F52C2A8BD973E0E",
-      "method": "Select",
-      "tokens": 41,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Functions/CoreSettingsDescriptionFunctions.Builders.cs",
-          "name": "Select",
-          "line": 18,
-          "tokens": 41,
-          "hash": "96780321219A65F5E98FDF8E3F682A2AC53B27CA5DB38CA84F52C2A8BD973E0E",
-          "shape": "85BEC410C17EDD0FDDA79F9D2ACAA760521DBFD48E7EC833D44C96A76F4820DA"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/SettingsFunctions.Builders.cs",
-          "name": "Select",
-          "line": 23,
-          "tokens": 41,
-          "hash": "96780321219A65F5E98FDF8E3F682A2AC53B27CA5DB38CA84F52C2A8BD973E0E",
-          "shape": "85BEC410C17EDD0FDDA79F9D2ACAA760521DBFD48E7EC833D44C96A76F4820DA"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Functions/SettingsFunctions.Builders.cs",
-          "name": "Select",
-          "line": 18,
-          "tokens": 41,
-          "hash": "96780321219A65F5E98FDF8E3F682A2AC53B27CA5DB38CA84F52C2A8BD973E0E",
-          "shape": "85BEC410C17EDD0FDDA79F9D2ACAA760521DBFD48E7EC833D44C96A76F4820DA"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Microsoft/Common/Machines/Common/Functions/SettingsFunctions.Builders.cs",
-          "name": "Select",
-          "line": 18,
-          "tokens": 41,
-          "hash": "96780321219A65F5E98FDF8E3F682A2AC53B27CA5DB38CA84F52C2A8BD973E0E",
-          "shape": "85BEC410C17EDD0FDDA79F9D2ACAA760521DBFD48E7EC833D44C96A76F4820DA"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/SettingsFunctions.Builders.cs",
-          "name": "Select",
-          "line": 18,
-          "tokens": 41,
-          "hash": "96780321219A65F5E98FDF8E3F682A2AC53B27CA5DB38CA84F52C2A8BD973E0E",
-          "shape": "85BEC410C17EDD0FDDA79F9D2ACAA760521DBFD48E7EC833D44C96A76F4820DA"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
       "hash": "9796FCB30C75327208B46384D3A14B43E8D1C21899F51D80F06BC0CC21CDDA8A",
       "method": "Read",
       "tokens": 114,
@@ -18141,7 +17990,7 @@
     {
       "language": "CSharp",
       "hash": "A1E03750FEB3292ACEB41656386F4A8AA8B05077D9ABFB7DA103AA3D71320B9F",
-      "method": "ToModule",
+      "method": "ToFairchild",
       "tokens": 103,
       "current": [
         {
@@ -18419,7 +18268,7 @@
     {
       "language": "CSharp",
       "hash": "A61349BFDFFA5D404CE7D0D458204D435194B5E4D84870DF4F9FBE26A86A9946",
-      "method": "ToEpoch",
+      "method": "ToFairchild",
       "tokens": 36,
       "current": [
         {
@@ -19684,7 +19533,7 @@
     {
       "language": "CSharp",
       "hash": "B053A3AB4F0B78A37DED57B2D744801187AED6EC54FEEAFE4B1AA9C454D6F48C",
-      "method": "PanasonicEmulationModule",
+      "method": "FairchildEmulationModule",
       "tokens": 47,
       "current": [
         {
@@ -21033,65 +20882,6 @@
     },
     {
       "language": "CSharp",
-      "hash": "BF295BCE7B2920AC57C706314FC7F1BC3A9D74D4479C8D7895623DAF0AD32512",
-      "method": "AudioOutput",
-      "tokens": 67,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Functions/CoreSettingsDescriptionFunctions.Builders.cs",
-          "name": "AudioOutput",
-          "line": 24,
-          "tokens": 67,
-          "hash": "BF295BCE7B2920AC57C706314FC7F1BC3A9D74D4479C8D7895623DAF0AD32512",
-          "shape": "23503C800AD290E1E619A793F6254AA9C9D2719F8A37B7746EC91A6E88E10449"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/SettingsFunctions.Builders.cs",
-          "name": "AudioOutput",
-          "line": 29,
-          "tokens": 67,
-          "hash": "BF295BCE7B2920AC57C706314FC7F1BC3A9D74D4479C8D7895623DAF0AD32512",
-          "shape": "23503C800AD290E1E619A793F6254AA9C9D2719F8A37B7746EC91A6E88E10449"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Functions/CoreSettingsDescriptionFunctions.Builders.cs",
-          "name": "AudioOutput",
-          "line": 35,
-          "tokens": 67,
-          "hash": "BF295BCE7B2920AC57C706314FC7F1BC3A9D74D4479C8D7895623DAF0AD32512",
-          "shape": "23503C800AD290E1E619A793F6254AA9C9D2719F8A37B7746EC91A6E88E10449"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Functions/SettingsFunctions.Builders.cs",
-          "name": "AudioOutput",
-          "line": 24,
-          "tokens": 67,
-          "hash": "BF295BCE7B2920AC57C706314FC7F1BC3A9D74D4479C8D7895623DAF0AD32512",
-          "shape": "23503C800AD290E1E619A793F6254AA9C9D2719F8A37B7746EC91A6E88E10449"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Microsoft/Common/Machines/Common/Functions/SettingsFunctions.Builders.cs",
-          "name": "AudioOutput",
-          "line": 24,
-          "tokens": 67,
-          "hash": "BF295BCE7B2920AC57C706314FC7F1BC3A9D74D4479C8D7895623DAF0AD32512",
-          "shape": "23503C800AD290E1E619A793F6254AA9C9D2719F8A37B7746EC91A6E88E10449"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/SettingsFunctions.Builders.cs",
-          "name": "AudioOutput",
-          "line": 24,
-          "tokens": 67,
-          "hash": "BF295BCE7B2920AC57C706314FC7F1BC3A9D74D4479C8D7895623DAF0AD32512",
-          "shape": "23503C800AD290E1E619A793F6254AA9C9D2719F8A37B7746EC91A6E88E10449"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
       "hash": "BFCE2A51A2B9FFAD3F167785523F7B64E72AA891DD7556803A545338EE2359E3",
       "method": "ApplySettings",
       "tokens": 221,
@@ -21162,6 +20952,77 @@
           "tokens": 45,
           "hash": "C1149842E65E1E9BC68CD765C6DBD8E153EC35B05B6CBD2638288D4142BF4273",
           "shape": "2DFAD142A23BC698F2B054AB7DF305E9741FB7050B0716CA3D9EB44BBD8B76B3"
+        }
+      ],
+      "predecessors": [],
+      "shapePredecessors": [],
+      "qualification": "pending"
+    },
+    {
+      "language": "CSharp",
+      "hash": "C17F35A219460DEF7A8029CAC09C5F6A35805053982EAD3E79964933B7B6612C",
+      "method": "AudioOutput",
+      "tokens": 51,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Functions/SettingsFunctions.Builders.cs",
+          "name": "AudioOutput",
+          "line": 18,
+          "tokens": 51,
+          "hash": "C17F35A219460DEF7A8029CAC09C5F6A35805053982EAD3E79964933B7B6612C",
+          "shape": "D98841B4D3ABD227A213D5F96C6EB390EF0E6D285BB72FAF70F95045F9C3766A",
+          "qualification": "Verified local resource and presentation binding to shared original settings constructors; settingBuildersReuse.verification36 expansions",
+          "qualificationSourceSha256": "0510A2F3AA5106EA4E612127A5ECEF2F82AF77D7E0C270C381663BC9CA933406"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Functions/CoreSettingsDescriptionFunctions.Builders.cs",
+          "name": "AudioOutput",
+          "line": 18,
+          "tokens": 51,
+          "hash": "C17F35A219460DEF7A8029CAC09C5F6A35805053982EAD3E79964933B7B6612C",
+          "shape": "D98841B4D3ABD227A213D5F96C6EB390EF0E6D285BB72FAF70F95045F9C3766A",
+          "qualification": "Verified local resource and presentation binding to shared original settings constructors; settingBuildersReuse.verification36 expansions",
+          "qualificationSourceSha256": "D13817AA7257B32A4D1CB0408CE0060504B814AED80545251ADADC067299694E"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Functions/CoreSettingsDescriptionFunctions.Builders.cs",
+          "name": "AudioOutput",
+          "line": 33,
+          "tokens": 51,
+          "hash": "C17F35A219460DEF7A8029CAC09C5F6A35805053982EAD3E79964933B7B6612C",
+          "shape": "D98841B4D3ABD227A213D5F96C6EB390EF0E6D285BB72FAF70F95045F9C3766A",
+          "qualification": "Verified local resource and presentation binding to shared original settings constructors; settingBuildersReuse.verification36 expansions",
+          "qualificationSourceSha256": "0BEFF7748678135067291A771858B8CEF22CA86F0DE19C0429E13B6E7A6BC458"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Microsoft/Common/Machines/Common/Functions/SettingsFunctions.Builders.cs",
+          "name": "AudioOutput",
+          "line": 18,
+          "tokens": 51,
+          "hash": "C17F35A219460DEF7A8029CAC09C5F6A35805053982EAD3E79964933B7B6612C",
+          "shape": "D98841B4D3ABD227A213D5F96C6EB390EF0E6D285BB72FAF70F95045F9C3766A",
+          "qualification": "Verified local resource and presentation binding to shared original settings constructors; settingBuildersReuse.verification36 expansions",
+          "qualificationSourceSha256": "D56E2F7BA42781B76A8D5CC6DFB92B5EB1CBAA9C3E8EB5AA8ED010286C74A4D2"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/SettingsFunctions.Builders.cs",
+          "name": "AudioOutput",
+          "line": 18,
+          "tokens": 51,
+          "hash": "C17F35A219460DEF7A8029CAC09C5F6A35805053982EAD3E79964933B7B6612C",
+          "shape": "D98841B4D3ABD227A213D5F96C6EB390EF0E6D285BB72FAF70F95045F9C3766A",
+          "qualification": "Verified local resource and presentation binding to shared original settings constructors; settingBuildersReuse.verification36 expansions",
+          "qualificationSourceSha256": "61AF239E177D2CDD56299E8F827FBBC23FFE4E18EDAF42D11B443709D844E2F1"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/SettingsFunctions.Builders.cs",
+          "name": "AudioOutput",
+          "line": 23,
+          "tokens": 51,
+          "hash": "C17F35A219460DEF7A8029CAC09C5F6A35805053982EAD3E79964933B7B6612C",
+          "shape": "D98841B4D3ABD227A213D5F96C6EB390EF0E6D285BB72FAF70F95045F9C3766A",
+          "qualification": "Verified local resource and presentation binding to shared original settings constructors; settingBuildersReuse.verification36 expansions",
+          "qualificationSourceSha256": "20D950E9CC5E7302D8A087C88F885B59D3F83748437ED78522ABDF45B89D2A0E"
         }
       ],
       "predecessors": [],
@@ -27442,99 +27303,6 @@
     },
     {
       "language": "CSharp",
-      "hash": "FC21B1160003A8B49E89DFD6E28EAF3F60900E4293DCF8C4EAE0190EA341B8DB",
-      "method": "Number",
-      "tokens": 31,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Functions/CoreSettingsDescriptionFunctions.Builders.cs",
-          "name": "Number",
-          "line": 16,
-          "tokens": 31,
-          "hash": "FC21B1160003A8B49E89DFD6E28EAF3F60900E4293DCF8C4EAE0190EA341B8DB",
-          "shape": "BB0528F60BD2B260F8D4E3525CA6558BA2F55AAAFAA2E41A22DA7701AFDB5B61"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/SettingsFunctions.Builders.cs",
-          "name": "Number",
-          "line": 16,
-          "tokens": 31,
-          "hash": "FC21B1160003A8B49E89DFD6E28EAF3F60900E4293DCF8C4EAE0190EA341B8DB",
-          "shape": "BB0528F60BD2B260F8D4E3525CA6558BA2F55AAAFAA2E41A22DA7701AFDB5B61"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Functions/CoreSettingsDescriptionFunctions.Builders.cs",
-          "name": "Number",
-          "line": 16,
-          "tokens": 31,
-          "hash": "FC21B1160003A8B49E89DFD6E28EAF3F60900E4293DCF8C4EAE0190EA341B8DB",
-          "shape": "BB0528F60BD2B260F8D4E3525CA6558BA2F55AAAFAA2E41A22DA7701AFDB5B61"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Functions/SettingsFunctions.Builders.cs",
-          "name": "Number",
-          "line": 16,
-          "tokens": 31,
-          "hash": "FC21B1160003A8B49E89DFD6E28EAF3F60900E4293DCF8C4EAE0190EA341B8DB",
-          "shape": "BB0528F60BD2B260F8D4E3525CA6558BA2F55AAAFAA2E41A22DA7701AFDB5B61"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Microsoft/Common/Machines/Common/Functions/SettingsFunctions.Builders.cs",
-          "name": "Number",
-          "line": 16,
-          "tokens": 31,
-          "hash": "FC21B1160003A8B49E89DFD6E28EAF3F60900E4293DCF8C4EAE0190EA341B8DB",
-          "shape": "BB0528F60BD2B260F8D4E3525CA6558BA2F55AAAFAA2E41A22DA7701AFDB5B61"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/SettingsFunctions.Builders.cs",
-          "name": "Number",
-          "line": 16,
-          "tokens": 31,
-          "hash": "FC21B1160003A8B49E89DFD6E28EAF3F60900E4293DCF8C4EAE0190EA341B8DB",
-          "shape": "BB0528F60BD2B260F8D4E3525CA6558BA2F55AAAFAA2E41A22DA7701AFDB5B61"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Commodore/Common/Machines/AmigaComputers/Functions/SettingsFunctions.Builders.cs",
-          "name": "Number",
-          "line": 16,
-          "tokens": 31,
-          "hash": "FC21B1160003A8B49E89DFD6E28EAF3F60900E4293DCF8C4EAE0190EA341B8DB",
-          "shape": "BB0528F60BD2B260F8D4E3525CA6558BA2F55AAAFAA2E41A22DA7701AFDB5B61"
-        }
-      ],
-      "predecessors": [
-        {
-          "path": "src/GWGUI.Emulation.Amiga/Functions/AmigaSettingsDescriptionFunctions.cs",
-          "name": "Number",
-          "line": 197,
-          "tokens": 31,
-          "hash": "FC21B1160003A8B49E89DFD6E28EAF3F60900E4293DCF8C4EAE0190EA341B8DB",
-          "shape": "BB0528F60BD2B260F8D4E3525CA6558BA2F55AAAFAA2E41A22DA7701AFDB5B61"
-        }
-      ],
-      "shapePredecessors": [
-        {
-          "path": "src/GWGUI.Emulation.Amiga/Functions/AmigaSettingsDescriptionFunctions.cs",
-          "name": "Information",
-          "line": 186,
-          "tokens": 31,
-          "hash": "6668D7F2D63E6C834D77DC6E42397104CD32428864AC390186E5B594372F1605",
-          "shape": "BB0528F60BD2B260F8D4E3525CA6558BA2F55AAAFAA2E41A22DA7701AFDB5B61"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Amiga/Functions/AmigaSettingsDescriptionFunctions.cs",
-          "name": "Number",
-          "line": 197,
-          "tokens": 31,
-          "hash": "FC21B1160003A8B49E89DFD6E28EAF3F60900E4293DCF8C4EAE0190EA341B8DB",
-          "shape": "BB0528F60BD2B260F8D4E3525CA6558BA2F55AAAFAA2E41A22DA7701AFDB5B61"
-        }
-      ],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
       "hash": "FD39A8C7FA1E6DDE5D4232F3CD5EDABBD286D19449DC6355E78DB4A7FB07EC69",
       "method": "CopyInputDescriptors",
       "tokens": 44,
@@ -28894,69 +28662,6 @@
           "tokens": 503,
           "hash": "D263E679446CF1B35D9342435A8062956C3895FD6E553C575069ECFA88DA46A8",
           "shape": "202C213CD232410AC1D6B9F589E0F60A16594AA88F806622C143F6BBB9A81569"
-        }
-      ],
-      "qualification": "pending-symbol-and-policy-comparison"
-    },
-    {
-      "shape": "23503C800AD290E1E619A793F6254AA9C9D2719F8A37B7746EC91A6E88E10449",
-      "tokens": 67,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Functions/CoreSettingsDescriptionFunctions.Builders.cs",
-          "name": "AudioOutput",
-          "line": 24,
-          "tokens": 67,
-          "hash": "BF295BCE7B2920AC57C706314FC7F1BC3A9D74D4479C8D7895623DAF0AD32512",
-          "shape": "23503C800AD290E1E619A793F6254AA9C9D2719F8A37B7746EC91A6E88E10449"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/SettingsFunctions.Builders.cs",
-          "name": "AudioOutput",
-          "line": 29,
-          "tokens": 67,
-          "hash": "BF295BCE7B2920AC57C706314FC7F1BC3A9D74D4479C8D7895623DAF0AD32512",
-          "shape": "23503C800AD290E1E619A793F6254AA9C9D2719F8A37B7746EC91A6E88E10449"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Functions/CoreSettingsDescriptionFunctions.Builders.cs",
-          "name": "AudioOutput",
-          "line": 35,
-          "tokens": 67,
-          "hash": "BF295BCE7B2920AC57C706314FC7F1BC3A9D74D4479C8D7895623DAF0AD32512",
-          "shape": "23503C800AD290E1E619A793F6254AA9C9D2719F8A37B7746EC91A6E88E10449"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Functions/SettingsFunctions.Builders.cs",
-          "name": "AudioOutput",
-          "line": 24,
-          "tokens": 67,
-          "hash": "BF295BCE7B2920AC57C706314FC7F1BC3A9D74D4479C8D7895623DAF0AD32512",
-          "shape": "23503C800AD290E1E619A793F6254AA9C9D2719F8A37B7746EC91A6E88E10449"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Microsoft/Common/Machines/Common/Functions/SettingsFunctions.Builders.cs",
-          "name": "AudioOutput",
-          "line": 24,
-          "tokens": 67,
-          "hash": "BF295BCE7B2920AC57C706314FC7F1BC3A9D74D4479C8D7895623DAF0AD32512",
-          "shape": "23503C800AD290E1E619A793F6254AA9C9D2719F8A37B7746EC91A6E88E10449"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/SettingsFunctions.Builders.cs",
-          "name": "AudioOutput",
-          "line": 24,
-          "tokens": 67,
-          "hash": "BF295BCE7B2920AC57C706314FC7F1BC3A9D74D4479C8D7895623DAF0AD32512",
-          "shape": "23503C800AD290E1E619A793F6254AA9C9D2719F8A37B7746EC91A6E88E10449"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Commodore/Common/Machines/AmigaComputers/Functions/SettingsFunctions.Builders.cs",
-          "name": "AudioOutput",
-          "line": 23,
-          "tokens": 67,
-          "hash": "230FF40091146ECB752157D4D157289877186F13AA6FCDDD256AA8B2FA6E380F",
-          "shape": "23503C800AD290E1E619A793F6254AA9C9D2719F8A37B7746EC91A6E88E10449"
         }
       ],
       "qualification": "pending-symbol-and-policy-comparison"
@@ -33811,102 +33516,6 @@
       "tokens": 31,
       "current": [
         {
-          "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Functions/CoreSettingsDescriptionFunctions.Builders.cs",
-          "name": "Information",
-          "line": 7,
-          "tokens": 31,
-          "hash": "6668D7F2D63E6C834D77DC6E42397104CD32428864AC390186E5B594372F1605",
-          "shape": "BB0528F60BD2B260F8D4E3525CA6558BA2F55AAAFAA2E41A22DA7701AFDB5B61"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Functions/CoreSettingsDescriptionFunctions.Builders.cs",
-          "name": "Number",
-          "line": 16,
-          "tokens": 31,
-          "hash": "FC21B1160003A8B49E89DFD6E28EAF3F60900E4293DCF8C4EAE0190EA341B8DB",
-          "shape": "BB0528F60BD2B260F8D4E3525CA6558BA2F55AAAFAA2E41A22DA7701AFDB5B61"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/SettingsFunctions.Builders.cs",
-          "name": "Information",
-          "line": 7,
-          "tokens": 31,
-          "hash": "6668D7F2D63E6C834D77DC6E42397104CD32428864AC390186E5B594372F1605",
-          "shape": "BB0528F60BD2B260F8D4E3525CA6558BA2F55AAAFAA2E41A22DA7701AFDB5B61"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/SettingsFunctions.Builders.cs",
-          "name": "Number",
-          "line": 16,
-          "tokens": 31,
-          "hash": "FC21B1160003A8B49E89DFD6E28EAF3F60900E4293DCF8C4EAE0190EA341B8DB",
-          "shape": "BB0528F60BD2B260F8D4E3525CA6558BA2F55AAAFAA2E41A22DA7701AFDB5B61"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Functions/CoreSettingsDescriptionFunctions.Builders.cs",
-          "name": "Information",
-          "line": 7,
-          "tokens": 31,
-          "hash": "6668D7F2D63E6C834D77DC6E42397104CD32428864AC390186E5B594372F1605",
-          "shape": "BB0528F60BD2B260F8D4E3525CA6558BA2F55AAAFAA2E41A22DA7701AFDB5B61"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Functions/CoreSettingsDescriptionFunctions.Builders.cs",
-          "name": "Number",
-          "line": 16,
-          "tokens": 31,
-          "hash": "FC21B1160003A8B49E89DFD6E28EAF3F60900E4293DCF8C4EAE0190EA341B8DB",
-          "shape": "BB0528F60BD2B260F8D4E3525CA6558BA2F55AAAFAA2E41A22DA7701AFDB5B61"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Functions/SettingsFunctions.Builders.cs",
-          "name": "Information",
-          "line": 7,
-          "tokens": 31,
-          "hash": "6668D7F2D63E6C834D77DC6E42397104CD32428864AC390186E5B594372F1605",
-          "shape": "BB0528F60BD2B260F8D4E3525CA6558BA2F55AAAFAA2E41A22DA7701AFDB5B61"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Functions/SettingsFunctions.Builders.cs",
-          "name": "Number",
-          "line": 16,
-          "tokens": 31,
-          "hash": "FC21B1160003A8B49E89DFD6E28EAF3F60900E4293DCF8C4EAE0190EA341B8DB",
-          "shape": "BB0528F60BD2B260F8D4E3525CA6558BA2F55AAAFAA2E41A22DA7701AFDB5B61"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Microsoft/Common/Machines/Common/Functions/SettingsFunctions.Builders.cs",
-          "name": "Information",
-          "line": 7,
-          "tokens": 31,
-          "hash": "6668D7F2D63E6C834D77DC6E42397104CD32428864AC390186E5B594372F1605",
-          "shape": "BB0528F60BD2B260F8D4E3525CA6558BA2F55AAAFAA2E41A22DA7701AFDB5B61"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Microsoft/Common/Machines/Common/Functions/SettingsFunctions.Builders.cs",
-          "name": "Number",
-          "line": 16,
-          "tokens": 31,
-          "hash": "FC21B1160003A8B49E89DFD6E28EAF3F60900E4293DCF8C4EAE0190EA341B8DB",
-          "shape": "BB0528F60BD2B260F8D4E3525CA6558BA2F55AAAFAA2E41A22DA7701AFDB5B61"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/SettingsFunctions.Builders.cs",
-          "name": "Information",
-          "line": 7,
-          "tokens": 31,
-          "hash": "6668D7F2D63E6C834D77DC6E42397104CD32428864AC390186E5B594372F1605",
-          "shape": "BB0528F60BD2B260F8D4E3525CA6558BA2F55AAAFAA2E41A22DA7701AFDB5B61"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/SettingsFunctions.Builders.cs",
-          "name": "Number",
-          "line": 16,
-          "tokens": 31,
-          "hash": "FC21B1160003A8B49E89DFD6E28EAF3F60900E4293DCF8C4EAE0190EA341B8DB",
-          "shape": "BB0528F60BD2B260F8D4E3525CA6558BA2F55AAAFAA2E41A22DA7701AFDB5B61"
-        },
-        {
           "path": "src/GWGUI.Emulation.Commodore/Common/Machines/AmigaComputers/Functions/SettingsFunctions.Builders.cs",
           "name": "Information",
           "line": 8,
@@ -34129,6 +33738,73 @@
           "tokens": 42,
           "hash": "2EF3CC49C83799DFD8781CBE946AF8D996AF6CBA9038650ACBFF6986932E1078",
           "shape": "C5EDE7A5FDB5C8D07F7D93F0E03F44A1FA20395D279948B7D558ABCBF5EFF183"
+        }
+      ],
+      "qualification": "pending-symbol-and-policy-comparison"
+    },
+    {
+      "shape": "C7267F16993D73A061EACF3E65B4C169E8D3DD97D5C0B689327F67C917D4B078",
+      "tokens": 35,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Functions/SettingsFunctions.Builders.cs",
+          "name": "Select",
+          "line": 16,
+          "tokens": 35,
+          "hash": "795237B1D3AF25B495AD1C2309C5331D003F921977D4FC7206F9C9E55D439F77",
+          "shape": "C7267F16993D73A061EACF3E65B4C169E8D3DD97D5C0B689327F67C917D4B078",
+          "qualification": "Verified local resource and presentation binding to shared original settings constructors; settingBuildersReuse.verification36 expansions",
+          "qualificationSourceSha256": "0510A2F3AA5106EA4E612127A5ECEF2F82AF77D7E0C270C381663BC9CA933406"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Functions/CoreSettingsDescriptionFunctions.Builders.cs",
+          "name": "Select",
+          "line": 16,
+          "tokens": 35,
+          "hash": "795237B1D3AF25B495AD1C2309C5331D003F921977D4FC7206F9C9E55D439F77",
+          "shape": "C7267F16993D73A061EACF3E65B4C169E8D3DD97D5C0B689327F67C917D4B078",
+          "qualification": "Verified local resource and presentation binding to shared original settings constructors; settingBuildersReuse.verification36 expansions",
+          "qualificationSourceSha256": "D13817AA7257B32A4D1CB0408CE0060504B814AED80545251ADADC067299694E"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Functions/CoreSettingsDescriptionFunctions.Builders.cs",
+          "name": "Select",
+          "line": 16,
+          "tokens": 35,
+          "hash": "66DE8606F1F61365AEC9E1A3EA092EF884B83DFB556A0018A2319DA0DBFB25C8",
+          "shape": "C7267F16993D73A061EACF3E65B4C169E8D3DD97D5C0B689327F67C917D4B078",
+          "qualification": "Verified local resource and presentation binding to shared original settings constructors; settingBuildersReuse.verification36 expansions",
+          "qualificationSourceSha256": "0BEFF7748678135067291A771858B8CEF22CA86F0DE19C0429E13B6E7A6BC458"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Microsoft/Common/Machines/Common/Functions/SettingsFunctions.Builders.cs",
+          "name": "Select",
+          "line": 16,
+          "tokens": 35,
+          "hash": "795237B1D3AF25B495AD1C2309C5331D003F921977D4FC7206F9C9E55D439F77",
+          "shape": "C7267F16993D73A061EACF3E65B4C169E8D3DD97D5C0B689327F67C917D4B078",
+          "qualification": "Verified local resource and presentation binding to shared original settings constructors; settingBuildersReuse.verification36 expansions",
+          "qualificationSourceSha256": "D56E2F7BA42781B76A8D5CC6DFB92B5EB1CBAA9C3E8EB5AA8ED010286C74A4D2"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/SettingsFunctions.Builders.cs",
+          "name": "Select",
+          "line": 16,
+          "tokens": 35,
+          "hash": "795237B1D3AF25B495AD1C2309C5331D003F921977D4FC7206F9C9E55D439F77",
+          "shape": "C7267F16993D73A061EACF3E65B4C169E8D3DD97D5C0B689327F67C917D4B078",
+          "qualification": "Verified local resource and presentation binding to shared original settings constructors; settingBuildersReuse.verification36 expansions",
+          "qualificationSourceSha256": "61AF239E177D2CDD56299E8F827FBBC23FFE4E18EDAF42D11B443709D844E2F1"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/SettingsFunctions.Builders.cs",
+          "name": "Select",
+          "line": 21,
+          "tokens": 35,
+          "hash": "795237B1D3AF25B495AD1C2309C5331D003F921977D4FC7206F9C9E55D439F77",
+          "shape": "C7267F16993D73A061EACF3E65B4C169E8D3DD97D5C0B689327F67C917D4B078",
+          "qualification": "Verified local resource and presentation binding to shared original settings constructors; settingBuildersReuse.verification36 expansions",
+          "qualificationSourceSha256": "20D950E9CC5E7302D8A087C88F885B59D3F83748437ED78522ABDF45B89D2A0E"
         }
       ],
       "qualification": "pending-symbol-and-policy-comparison"
@@ -35150,69 +34826,6 @@
           "tokens": 64,
           "hash": "67554A4928808C146B073B05BE7CB9838820BA00E8712EAF58CE9D19FFB9078A",
           "shape": "E1093F32B65D2CA2978B84427016323DEC8281C1703E33082AFCE3BE93EC956F"
-        }
-      ],
-      "qualification": "pending-symbol-and-policy-comparison"
-    },
-    {
-      "shape": "E1F8F433A2E6D460854CA049377DE64C9DCD58BDABB27EF6983CDB28946FF09F",
-      "tokens": 43,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Functions/CoreSettingsDescriptionFunctions.Builders.cs",
-          "name": "Toggle",
-          "line": 9,
-          "tokens": 43,
-          "hash": "008379725E2A614B418ACB3B98F35388F4C09A336109BDA5BBAAA36CF9578333",
-          "shape": "E1F8F433A2E6D460854CA049377DE64C9DCD58BDABB27EF6983CDB28946FF09F"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/SettingsFunctions.Builders.cs",
-          "name": "Toggle",
-          "line": 9,
-          "tokens": 43,
-          "hash": "008379725E2A614B418ACB3B98F35388F4C09A336109BDA5BBAAA36CF9578333",
-          "shape": "E1F8F433A2E6D460854CA049377DE64C9DCD58BDABB27EF6983CDB28946FF09F"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Functions/CoreSettingsDescriptionFunctions.Builders.cs",
-          "name": "Toggle",
-          "line": 9,
-          "tokens": 43,
-          "hash": "008379725E2A614B418ACB3B98F35388F4C09A336109BDA5BBAAA36CF9578333",
-          "shape": "E1F8F433A2E6D460854CA049377DE64C9DCD58BDABB27EF6983CDB28946FF09F"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Functions/SettingsFunctions.Builders.cs",
-          "name": "Toggle",
-          "line": 9,
-          "tokens": 43,
-          "hash": "008379725E2A614B418ACB3B98F35388F4C09A336109BDA5BBAAA36CF9578333",
-          "shape": "E1F8F433A2E6D460854CA049377DE64C9DCD58BDABB27EF6983CDB28946FF09F"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Microsoft/Common/Machines/Common/Functions/SettingsFunctions.Builders.cs",
-          "name": "Toggle",
-          "line": 9,
-          "tokens": 43,
-          "hash": "008379725E2A614B418ACB3B98F35388F4C09A336109BDA5BBAAA36CF9578333",
-          "shape": "E1F8F433A2E6D460854CA049377DE64C9DCD58BDABB27EF6983CDB28946FF09F"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/SettingsFunctions.Builders.cs",
-          "name": "Toggle",
-          "line": 9,
-          "tokens": 43,
-          "hash": "008379725E2A614B418ACB3B98F35388F4C09A336109BDA5BBAAA36CF9578333",
-          "shape": "E1F8F433A2E6D460854CA049377DE64C9DCD58BDABB27EF6983CDB28946FF09F"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Commodore/Common/Machines/AmigaComputers/Functions/SettingsFunctions.Builders.cs",
-          "name": "Toggle",
-          "line": 10,
-          "tokens": 43,
-          "hash": "6842F144DB16B89ED9AA47339C17F2146ED95DB684C8113B4A226C67F94AD0E8",
-          "shape": "E1F8F433A2E6D460854CA049377DE64C9DCD58BDABB27EF6983CDB28946FF09F"
         }
       ],
       "qualification": "pending-symbol-and-policy-comparison"
@@ -36531,6 +36144,6 @@
   "scope": "All current repository CSharp and PowerShell files; no age filter; candidates require semantic review",
   "qualificationCarryForward": {
     "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical",
-    "occurrences": 240
+    "occurrences": 242
   }
 }
