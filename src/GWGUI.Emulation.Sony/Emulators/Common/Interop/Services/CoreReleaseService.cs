@@ -15,19 +15,27 @@ public sealed class CoreReleaseService
     private readonly HttpClient _httpClient;
     private readonly string _directory;
     private readonly CoreReleaseSettings _settings;
+    private readonly string? _emulatorId;
+    private readonly Func<string, bool>? _isInstallationComplete;
+    private readonly Func<HttpClient, string, CancellationToken, Task>? _prepareInstallation;
 
-    internal CoreReleaseService(HttpClient httpClient, string directory, CoreReleaseSettings settings)
+    internal CoreReleaseService(HttpClient httpClient, string directory, CoreReleaseSettings settings,
+        string? emulatorId = null, Func<string, bool>? isInstallationComplete = null,
+        Func<HttpClient, string, CancellationToken, Task>? prepareInstallation = null)
     {
         _httpClient = httpClient;
         _directory = Path.GetFullPath(directory);
         _settings = settings;
+        _emulatorId = emulatorId;
+        _isInstallationComplete = isInstallationComplete;
+        _prepareInstallation = prepareInstallation;
     }
 
     public string RequiredLibraryPath => Path.Combine(_directory, _settings.InstalledLibraryName);
 
     public string? GetInstalledVersion()
     {
-        if (!File.Exists(RequiredLibraryPath)) return null;
+        if (!File.Exists(RequiredLibraryPath) || _isInstallationComplete?.Invoke(_directory) == false) return null;
         var manifestPath = Path.Combine(_directory, CoreReleaseConstants.CoreJson);
         if (!File.Exists(manifestPath)) return CoreReleaseConstants.Unknown;
         try
@@ -49,12 +57,14 @@ public sealed class CoreReleaseService
         }, cancellationToken).ConfigureAwait(false);
     }
 
-    public bool IsInstalled(CoreRelease release)
+    public bool IsInstalled(CoreRelease release) => FindInstalledLibraryPath() is not null;
+
+    internal string? FindInstalledLibraryPath()
     {
-        if (!File.Exists(RequiredLibraryPath)) return false;
-        try { VerifyWindowsX64Library(RequiredLibraryPath); return true; }
-        catch (IOException) { return false; }
-        catch (InvalidDataException) { return false; }
+        if (!File.Exists(RequiredLibraryPath) || _isInstallationComplete?.Invoke(_directory) == false) return null;
+        try { VerifyWindowsX64Library(RequiredLibraryPath, _emulatorId); return RequiredLibraryPath; }
+        catch (IOException) { return null; }
+        catch (InvalidDataException) { return null; }
     }
 
     public string GetLibraryPath(CoreRelease release) => RequiredLibraryPath;
@@ -79,19 +89,21 @@ public sealed class CoreReleaseService
                     if (release.IsZip)
                     {
                         EmulationCoreReleaseFunctions.ExtractExpectedLibrary(download, _settings.ArchiveLibraryName, extracted,
-                            static _ => CoreExceptions.ArchiveMissingLibrary(), preserveLastWriteTime: true);
+                            _ => CoreExceptions.ForEmulator(_emulatorId, CoreExceptionsResourceConstants.ArchiveMissingLibrary), preserveLastWriteTime: true);
                     }
                     else File.Copy(download, extracted, true);
                 },
                 archiveSize =>
                 {
-                    VerifyWindowsX64Library(extracted);
+                    VerifyWindowsX64Library(extracted, _emulatorId);
                     return EmulationCoreDiagnosticFunctions.CalculateSha256(extracted);
                 },
                 () => File.Move(extracted, destination, true),
                 sha256 => CoreManifestFunctions.WriteManifestAsync(release.Id, release.DownloadUri.AbsoluteUri, destination, sha256, cancellationToken),
                 () => Task.CompletedTask,
-                archiveSize => progress?.Report(CoreReleaseConstants.CompletedProgress)).ConfigureAwait(false);
+                archiveSize => progress?.Report(CoreReleaseConstants.CompletedProgress),
+                prepareReplacement: _prepareInstallation is { } prepare
+                    ? () => prepare(_httpClient, _directory, cancellationToken) : null).ConfigureAwait(false);
             return destination;
         }
         finally
@@ -102,7 +114,11 @@ public sealed class CoreReleaseService
     }
 
     internal static void VerifyWindowsX64Library(string path)
-        =>
+        => VerifyWindowsX64Library(path, null);
+
+    private static void VerifyWindowsX64Library(string path, string? emulatorId) =>
         EmulationCoreDiagnosticFunctions.VerifyWindowsX64Library(path,
-            CoreExceptions.DownloadedCoreNotPe, CoreExceptions.DownloadedCoreInvalidPe, CoreExceptions.DownloadedCoreWrongArchitecture);
+            () => CoreExceptions.ForEmulator(emulatorId, CoreExceptionsResourceConstants.DownloadedCoreNotPe),
+            () => CoreExceptions.ForEmulator(emulatorId, CoreExceptionsResourceConstants.DownloadedCoreInvalidPe),
+            () => CoreExceptions.ForEmulator(emulatorId, CoreExceptionsResourceConstants.DownloadedCoreWrongArchitecture));
 }

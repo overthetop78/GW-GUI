@@ -2,6 +2,10 @@ namespace GWGUI.Emulation.Sony.Emulators.Ppsspp.Constants;
 
 internal static class PpssppConstants
 {
+    internal const string LibraryFileName = "ppsspp_libretro.dll";
+    internal const string OfficialPackageUrl = "https://buildbot.libretro.com/nightly/windows/x86_64/latest/ppsspp_libretro.dll.zip";
+    internal static CoreReleaseSettings ReleaseSettings { get; } = new(new Uri(OfficialPackageUrl), LibraryFileName, LibraryFileName, DisplayName);
+
     internal const string Id = "ppsspp";
     internal const string Psp1000Model = "psp_1000";
     internal const int ExpandedMemoryKib = 64 * 1024;

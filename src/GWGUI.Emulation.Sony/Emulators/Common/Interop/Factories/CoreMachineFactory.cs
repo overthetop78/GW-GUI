@@ -84,15 +84,7 @@ internal abstract class CoreMachineFactory : IEmulatorAdapter, IEmulatorFirmware
     public ValueTask<string?> FindInstalledCorePathAsync(EmulatorManagementContext context, CancellationToken cancellationToken)
     {
         cancellationToken.ThrowIfCancellationRequested();
-        var path = ReleaseService(context).RequiredLibraryPath;
-        if (!File.Exists(path)) return ValueTask.FromResult<string?>(null);
-        try
-        {
-            CoreReleaseService.VerifyWindowsX64Library(path);
-            return ValueTask.FromResult<string?>(path);
-        }
-        catch (IOException) { return ValueTask.FromResult<string?>(null); }
-        catch (InvalidDataException) { return ValueTask.FromResult<string?>(null); }
+        return ValueTask.FromResult(ReleaseService(context).FindInstalledLibraryPath());
     }
 
     public IReadOnlyList<EmulationMedia> ResolveConfiguredMedia(MachineConfiguration configuration) => EmulationMediaConversionFunctions.ToCommon(configuration.Media ?? []);

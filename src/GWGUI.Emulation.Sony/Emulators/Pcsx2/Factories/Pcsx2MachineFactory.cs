@@ -1,3 +1,4 @@
+using CoreReleaseService = GWGUI.Emulation.Sony.Emulators.Common.Interop.Services.CoreReleaseService;
 using FirmwareConstants = GWGUI.Emulation.Sony.Emulators.Pcsx2.Constants.FirmwareConstants;
 using GWGUI.Emulation.Sony.Emulators.Pcsx2.Functions;
 using GWGUI.Emulation.Sony.Emulators.Common.Interop.Contracts;
@@ -45,14 +46,14 @@ internal sealed class Pcsx2MachineFactory : IEmulatorAdapter, IEmulatorFirmwareA
     public ValueTask<EmulationEmulatorInstallation> GetInstallationAsync(EmulatorManagementContext context, CancellationToken cancellationToken)
     {
         cancellationToken.ThrowIfCancellationRequested();
-        var service = new CoreReleaseService(context.HttpClient, context.CoreDirectory);
+        var service = ReleaseService(context);
         var version = service.GetInstalledVersion();
         return ValueTask.FromResult(new EmulationEmulatorInstallation(Definition, version));
     }
 
     public async ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindReleasesAsync(EmulatorManagementContext context, CancellationToken cancellationToken)
     {
-        var releases = await new CoreReleaseService(context.HttpClient, context.CoreDirectory).GetAvailableAsync(cancellationToken).ConfigureAwait(false);
+        var releases = await ReleaseService(context).GetAvailableAsync(cancellationToken).ConfigureAwait(false);
         _availableReleases = releases.ToDictionary(item => item.Id, StringComparer.Ordinal);
         return releases.Select(item => new EmulationEmulatorRelease(item.Id, item.DisplayName, item.Id, item.IsRequired)).ToArray();
     }
@@ -60,10 +61,18 @@ internal sealed class Pcsx2MachineFactory : IEmulatorAdapter, IEmulatorFirmwareA
     public async ValueTask<string> InstallAsync(EmulatorManagementContext context, EmulationEmulatorRelease release, IProgress<double>? progress, CancellationToken cancellationToken)
     {
         var selected = EmulationCoreReleaseFunctions.SelectRelease(_availableReleases, release);
-        return await new CoreReleaseService(context.HttpClient, context.CoreDirectory).InstallAsync(selected, progress, cancellationToken).ConfigureAwait(false);
+        return await ReleaseService(context).InstallAsync(selected, progress, cancellationToken).ConfigureAwait(false);
     }
 
-    public ValueTask<string?> FindInstalledCorePathAsync(EmulatorManagementContext context, CancellationToken cancellationToken) => new(new CoreProvider(context.HttpClient, context.CoreDirectory).FindInstalledPathAsync(cancellationToken));
+    public ValueTask<string?> FindInstalledCorePathAsync(EmulatorManagementContext context, CancellationToken cancellationToken)
+    {
+        ArgumentNullException.ThrowIfNull(context.HttpClient);
+        cancellationToken.ThrowIfCancellationRequested();
+        return ValueTask.FromResult(ReleaseService(context).FindInstalledLibraryPath());
+    }
+
+    private static CoreReleaseService ReleaseService(EmulatorManagementContext context) =>
+        new(context.HttpClient, context.CoreDirectory, Pcsx2Constants.ReleaseSettings, emulatorId: Pcsx2Constants.Id);
 
     public IReadOnlyList<EmulationMedia> ResolveConfiguredMedia(MachineConfiguration configuration) => EmulationMediaConversionFunctions.ToCommon(configuration.Media ?? []);
 

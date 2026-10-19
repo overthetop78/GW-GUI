@@ -1,9 +1,9 @@
 {
   "baseline": "ac7292d86^",
-  "currentCSharpFiles": 7281,
+  "currentCSharpFiles": 7273,
   "outsideSrcCSharpFiles": 309,
   "baselineMethodCount": 5848,
-  "currentMethodCount": 11654,
+  "currentMethodCount": 11644,
   "powerShellFunctionCount": 17,
   "groups": [
     {
@@ -130,45 +130,6 @@
           "tokens": 46,
           "hash": "010BF0CC1A7A329001C424B98CA552C242DCBF4B7357DA2F2DF40591B7C56C59",
           "shape": "C6F4835D5671C3B95EABC79CF706DC44C7FCF18835C4E5065F6A87F42BD50BC1"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
-      "hash": "0293F4E0B0478A39ADD1E78CA844098864795D8625A41DAD8BD13C690F0EF4D8",
-      "method": "InstallAsync",
-      "tokens": 42,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/BeetlePcfx/Factories/BeetlePcfxMachineFactory.cs",
-          "name": "InstallAsync",
-          "line": 57,
-          "tokens": 42,
-          "hash": "0293F4E0B0478A39ADD1E78CA844098864795D8625A41DAD8BD13C690F0EF4D8",
-          "shape": "3A6BB7E21C3D922185645C5F2B40AA178716B19E23D703FC507E1D960FA7FABF"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Factories/PpssppMachineFactory.cs",
-          "name": "InstallAsync",
-          "line": 51,
-          "tokens": 42,
-          "hash": "0293F4E0B0478A39ADD1E78CA844098864795D8625A41DAD8BD13C690F0EF4D8",
-          "shape": "3A6BB7E21C3D922185645C5F2B40AA178716B19E23D703FC507E1D960FA7FABF",
-          "qualification": "Typed installation adapter; original Amiga lookup verified in simpleFactoryReleaseSelectionReuse",
-          "qualificationSourceSha256": "6D510C8A7584BF638B35178BCAF104DF0998021EDD9AD8095F771A996E470818"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Factories/Pcsx2MachineFactory.cs",
-          "name": "InstallAsync",
-          "line": 60,
-          "tokens": 42,
-          "hash": "0293F4E0B0478A39ADD1E78CA844098864795D8625A41DAD8BD13C690F0EF4D8",
-          "shape": "3A6BB7E21C3D922185645C5F2B40AA178716B19E23D703FC507E1D960FA7FABF",
-          "qualification": "Typed installation adapter; original Amiga lookup verified in simpleFactoryReleaseSelectionReuse",
-          "qualificationSourceSha256": "B03A71B0ED577F0E4622B5DFA8D2BFCB664B61C57322AEE1DE91487982940EC5"
         }
       ],
       "predecessors": [],
@@ -1268,7 +1229,7 @@
     {
       "language": "CSharp",
       "hash": "0A9D4012A0EEF58659F6F622D06187BDA6844EE126F30B196EAE963950A66758",
-      "method": "CommodoreEmulationModule",
+      "method": "SegaEmulationModule",
       "tokens": 45,
       "current": [
         {
@@ -2893,22 +2854,6 @@
           "shape": "AE50C42A407089D868F320F5CE203EBC1F14F0E05699D0839D5D2DE48ADB44A2"
         },
         {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/CoreReleaseService.cs",
-          "name": "IsInstalled",
-          "line": 53,
-          "tokens": 44,
-          "hash": "18C7BB79A0AEC4C92A7567F81C98524C2C7EDF7AEE98F383DC9E6BB00E4A5982",
-          "shape": "AE50C42A407089D868F320F5CE203EBC1F14F0E05699D0839D5D2DE48ADB44A2"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/CoreReleaseService.cs",
-          "name": "IsInstalled",
-          "line": 52,
-          "tokens": 44,
-          "hash": "18C7BB79A0AEC4C92A7567F81C98524C2C7EDF7AEE98F383DC9E6BB00E4A5982",
-          "shape": "AE50C42A407089D868F320F5CE203EBC1F14F0E05699D0839D5D2DE48ADB44A2"
-        },
-        {
           "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/CoreReleaseService.cs",
           "name": "IsInstalled",
           "line": 54,
@@ -4426,6 +4371,22 @@
           "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Factories/CoreMachineFactory.cs",
           "name": "FindReleasesAsync",
           "line": 71,
+          "tokens": 70,
+          "hash": "2A8DDB8D27470228E7EF361B5011A8A7FAD85DA9331EDD0C78E42FA8F800A9D7",
+          "shape": "DE04789A9F3FD28B1360743FFB66E9EF5A94FE56E107F5F1A99BBACD3258A961"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Factories/Pcsx2MachineFactory.cs",
+          "name": "FindReleasesAsync",
+          "line": 54,
+          "tokens": 70,
+          "hash": "2A8DDB8D27470228E7EF361B5011A8A7FAD85DA9331EDD0C78E42FA8F800A9D7",
+          "shape": "DE04789A9F3FD28B1360743FFB66E9EF5A94FE56E107F5F1A99BBACD3258A961"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Factories/PpssppMachineFactory.cs",
+          "name": "FindReleasesAsync",
+          "line": 45,
           "tokens": 70,
           "hash": "2A8DDB8D27470228E7EF361B5011A8A7FAD85DA9331EDD0C78E42FA8F800A9D7",
           "shape": "DE04789A9F3FD28B1360743FFB66E9EF5A94FE56E107F5F1A99BBACD3258A961"
@@ -7569,22 +7530,6 @@
           "tokens": 39,
           "hash": "3EE32D675CC319A7E89C32C5203011D954A38BAB2D163CCC9BCD192204A2AFAA",
           "shape": "34005486CF3E8E526A689B90D2FB4808952C74C674364D3C0FD514FE32354C66"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/CoreProvider.cs",
-          "name": "FindInstalledPathAsync",
-          "line": 21,
-          "tokens": 39,
-          "hash": "3EE32D675CC319A7E89C32C5203011D954A38BAB2D163CCC9BCD192204A2AFAA",
-          "shape": "34005486CF3E8E526A689B90D2FB4808952C74C674364D3C0FD514FE32354C66"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/CoreProvider.cs",
-          "name": "FindInstalledPathAsync",
-          "line": 21,
-          "tokens": 39,
-          "hash": "3EE32D675CC319A7E89C32C5203011D954A38BAB2D163CCC9BCD192204A2AFAA",
-          "shape": "34005486CF3E8E526A689B90D2FB4808952C74C674364D3C0FD514FE32354C66"
         }
       ],
       "predecessors": [],
@@ -8595,41 +8540,6 @@
           "shape": "F60429C74B4665D134B3F50C0B32BF47E08E30C4D44FB1CD63A803F4AAAB7D35"
         }
       ],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
-      "hash": "490623079B48F6AE0E9078204866D7D868129EC4B9DA84496FAC5BC41D1E8389",
-      "method": "FindReleasesAsync",
-      "tokens": 77,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/BeetlePcfx/Factories/BeetlePcfxMachineFactory.cs",
-          "name": "FindReleasesAsync",
-          "line": 50,
-          "tokens": 77,
-          "hash": "490623079B48F6AE0E9078204866D7D868129EC4B9DA84496FAC5BC41D1E8389",
-          "shape": "C39E29645CABAD2A5A03FCD84453653CDF779141E17CC66D47094566C82407AC"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Factories/PpssppMachineFactory.cs",
-          "name": "FindReleasesAsync",
-          "line": 44,
-          "tokens": 77,
-          "hash": "490623079B48F6AE0E9078204866D7D868129EC4B9DA84496FAC5BC41D1E8389",
-          "shape": "C39E29645CABAD2A5A03FCD84453653CDF779141E17CC66D47094566C82407AC"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Factories/Pcsx2MachineFactory.cs",
-          "name": "FindReleasesAsync",
-          "line": 53,
-          "tokens": 77,
-          "hash": "490623079B48F6AE0E9078204866D7D868129EC4B9DA84496FAC5BC41D1E8389",
-          "shape": "C39E29645CABAD2A5A03FCD84453653CDF779141E17CC66D47094566C82407AC"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
       "qualification": "pending"
     },
     {
@@ -16403,41 +16313,6 @@
     },
     {
       "language": "CSharp",
-      "hash": "93541ADC13C85B36B505223E8F72DD418DA17457EAD457EA33B94FCC4D966746",
-      "method": "GetInstallationAsync",
-      "tokens": 46,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/BeetlePcfx/Factories/BeetlePcfxMachineFactory.cs",
-          "name": "GetInstallationAsync",
-          "line": 42,
-          "tokens": 46,
-          "hash": "93541ADC13C85B36B505223E8F72DD418DA17457EAD457EA33B94FCC4D966746",
-          "shape": "198E39518B5178B9D979BF013E2EF017A66AA323E6FE46CD0FEA21F390FD0103"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Factories/PpssppMachineFactory.cs",
-          "name": "GetInstallationAsync",
-          "line": 36,
-          "tokens": 46,
-          "hash": "93541ADC13C85B36B505223E8F72DD418DA17457EAD457EA33B94FCC4D966746",
-          "shape": "198E39518B5178B9D979BF013E2EF017A66AA323E6FE46CD0FEA21F390FD0103"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Factories/Pcsx2MachineFactory.cs",
-          "name": "GetInstallationAsync",
-          "line": 45,
-          "tokens": 46,
-          "hash": "93541ADC13C85B36B505223E8F72DD418DA17457EAD457EA33B94FCC4D966746",
-          "shape": "198E39518B5178B9D979BF013E2EF017A66AA323E6FE46CD0FEA21F390FD0103"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
       "hash": "93680B83D33AC75D0F6787B6BE25754CF61FE8FF03760F2AB9EDA11DD3A5B0F5",
       "method": "DefaultEmulator",
       "tokens": 52,
@@ -17301,12 +17176,29 @@
           "tokens": 35,
           "hash": "99CC348EDCBC899F046B28B37E0547716425CCB4C4E49D4CFF6FFA5185D49B31",
           "shape": "DCEEA65751BFCDB6664EC671F661B5B9090D6EE419A3790C42897FBCEB0D4948",
-          "qualification": "Typed installation adapter; original Amiga lookup verified in simpleFactoryReleaseSelectionReuse"
+          "qualification": "Typed installation adapter; original Amiga lookup verified in simpleFactoryReleaseSelectionReuse",
+          "qualificationSourceSha256": "4AED4025010275FBB3FB06D68978004871B943F3F4A4850AA41DEDEB802F9C26"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Factories/Pcsx2MachineFactory.cs",
+          "name": "InstallAsync",
+          "line": 61,
+          "tokens": 35,
+          "hash": "99CC348EDCBC899F046B28B37E0547716425CCB4C4E49D4CFF6FFA5185D49B31",
+          "shape": "DCEEA65751BFCDB6664EC671F661B5B9090D6EE419A3790C42897FBCEB0D4948"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Factories/PpssppMachineFactory.cs",
+          "name": "InstallAsync",
+          "line": 52,
+          "tokens": 35,
+          "hash": "99CC348EDCBC899F046B28B37E0547716425CCB4C4E49D4CFF6FFA5185D49B31",
+          "shape": "DCEEA65751BFCDB6664EC671F661B5B9090D6EE419A3790C42897FBCEB0D4948"
         }
       ],
       "predecessors": [],
       "shapePredecessors": [],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "Partial occurrence qualification; unannotated members pending"
     },
     {
       "language": "CSharp",
@@ -18364,7 +18256,7 @@
     {
       "language": "CSharp",
       "hash": "A1E03750FEB3292ACEB41656386F4A8AA8B05077D9ABFB7DA103AA3D71320B9F",
-      "method": "ToModule",
+      "method": "ToFairchild",
       "tokens": 103,
       "current": [
         {
@@ -18406,22 +18298,6 @@
           "path": "src/GWGUI.Emulation.Nec/Emulators/BeetlePcfx/Services/ExternalCoreInstaller.cs",
           "name": "WriteManifestAsync",
           "line": 66,
-          "tokens": 83,
-          "hash": "A20755D3D687AB4CE8990E0E99A63E6CA03644312CEB677FACE54035FCDD32B8",
-          "shape": "3AB715B51902B6D5D9B0906BC8123940BF3F749FDBA58C6F0857C49CC519DAFE"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Services/ExternalCoreInstaller.cs",
-          "name": "WriteManifestAsync",
-          "line": 41,
-          "tokens": 83,
-          "hash": "A20755D3D687AB4CE8990E0E99A63E6CA03644312CEB677FACE54035FCDD32B8",
-          "shape": "3AB715B51902B6D5D9B0906BC8123940BF3F749FDBA58C6F0857C49CC519DAFE"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalCoreInstaller.cs",
-          "name": "WriteManifestAsync",
-          "line": 67,
           "tokens": 83,
           "hash": "A20755D3D687AB4CE8990E0E99A63E6CA03644312CEB677FACE54035FCDD32B8",
           "shape": "3AB715B51902B6D5D9B0906BC8123940BF3F749FDBA58C6F0857C49CC519DAFE"
@@ -18649,6 +18525,33 @@
           "tokens": 51,
           "hash": "A51D0524387C9E827FA23F8DF514CB4131889B2F65AA944D4A40CB018D8580C8",
           "shape": "883003BCC663912E30CAE04A87FCB6AC3B9585D4075001C3DDC12D4F57C253EB"
+        }
+      ],
+      "predecessors": [],
+      "shapePredecessors": [],
+      "qualification": "pending"
+    },
+    {
+      "language": "CSharp",
+      "hash": "A5DB9EC95B1035EB128BEA006002D6923189EF4B4141CE217DC811B0289A7B31",
+      "method": "GetInstallationAsync",
+      "tokens": 39,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Factories/PpssppMachineFactory.cs",
+          "name": "GetInstallationAsync",
+          "line": 37,
+          "tokens": 39,
+          "hash": "A5DB9EC95B1035EB128BEA006002D6923189EF4B4141CE217DC811B0289A7B31",
+          "shape": "FEA9CDB149D7F1256708083B7B5F10698CD8E3AA6F716ACDEC352BA61D5A65DB"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Factories/Pcsx2MachineFactory.cs",
+          "name": "GetInstallationAsync",
+          "line": 46,
+          "tokens": 39,
+          "hash": "A5DB9EC95B1035EB128BEA006002D6923189EF4B4141CE217DC811B0289A7B31",
+          "shape": "FEA9CDB149D7F1256708083B7B5F10698CD8E3AA6F716ACDEC352BA61D5A65DB"
         }
       ],
       "predecessors": [],
@@ -19923,7 +19826,7 @@
     {
       "language": "CSharp",
       "hash": "B053A3AB4F0B78A37DED57B2D744801187AED6EC54FEEAFE4B1AA9C454D6F48C",
-      "method": "MattelEmulationModule",
+      "method": "FairchildEmulationModule",
       "tokens": 47,
       "current": [
         {
@@ -23980,14 +23883,6 @@
           "tokens": 98,
           "hash": "D2E6CE7C8C0A75A94192DFF41B7C02F9C0DF62DFB4C95A3BE8B067036808033C",
           "shape": "F702034DA35A8EF74F18338D982FC16704896D94B4BA1A01D4F4AB0257210444"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Factories/CoreMachineFactory.cs",
-          "name": "FindInstalledCorePathAsync",
-          "line": 84,
-          "tokens": 98,
-          "hash": "D2E6CE7C8C0A75A94192DFF41B7C02F9C0DF62DFB4C95A3BE8B067036808033C",
-          "shape": "F702034DA35A8EF74F18338D982FC16704896D94B4BA1A01D4F4AB0257210444"
         }
       ],
       "predecessors": [],
@@ -24108,6 +24003,33 @@
           "shape": "7A72A8B1C95F1D46E906B7530B5989745878082D8565BCA6A2C52E3ABAF3F5B5"
         }
       ],
+      "qualification": "pending"
+    },
+    {
+      "language": "CSharp",
+      "hash": "D43C44B872B2E9662B267AEFE59DBD7B837DE67B6E1EBF3073E24821AF5BC913",
+      "method": "FindInstalledCorePathAsync",
+      "tokens": 32,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Factories/PpssppMachineFactory.cs",
+          "name": "FindInstalledCorePathAsync",
+          "line": 58,
+          "tokens": 32,
+          "hash": "D43C44B872B2E9662B267AEFE59DBD7B837DE67B6E1EBF3073E24821AF5BC913",
+          "shape": "0D5900C81823755BE7EE16C05072E71A72B4614E6C02128BEEE89CE023D04990"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Factories/Pcsx2MachineFactory.cs",
+          "name": "FindInstalledCorePathAsync",
+          "line": 67,
+          "tokens": 32,
+          "hash": "D43C44B872B2E9662B267AEFE59DBD7B837DE67B6E1EBF3073E24821AF5BC913",
+          "shape": "0D5900C81823755BE7EE16C05072E71A72B4614E6C02128BEEE89CE023D04990"
+        }
+      ],
+      "predecessors": [],
+      "shapePredecessors": [],
       "qualification": "pending"
     },
     {
@@ -25420,22 +25342,6 @@
         },
         {
           "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/CoreReleaseService.cs",
-          "name": "GetInstalledVersion",
-          "line": 28,
-          "tokens": 115,
-          "hash": "E3FF6377348D5151A17D1FF1FAA3AC99DCD427A39A08B773A28932EF7FBFACCB",
-          "shape": "A161A81547E62C0FD3388836E8D721AEDF45BC817A592BD82C806273B7FAEDEC"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/CoreReleaseService.cs",
-          "name": "GetInstalledVersion",
-          "line": 29,
-          "tokens": 115,
-          "hash": "E3FF6377348D5151A17D1FF1FAA3AC99DCD427A39A08B773A28932EF7FBFACCB",
-          "shape": "A161A81547E62C0FD3388836E8D721AEDF45BC817A592BD82C806273B7FAEDEC"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/CoreReleaseService.cs",
           "name": "GetInstalledVersion",
           "line": 28,
           "tokens": 115,
@@ -28930,29 +28836,6 @@
       "qualification": "pending-symbol-and-policy-comparison"
     },
     {
-      "shape": "177C593B36C1C377E00B08D260D111B7CE0E07D7D1DF9938AAA4ADA82B62C2F1",
-      "tokens": 265,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/CoreReleaseService.cs",
-          "name": "InstallAsync",
-          "line": 62,
-          "tokens": 265,
-          "hash": "CA2E5297E77C0F43925148322606C05199CA8964BE00A657D7D449E1C9987419",
-          "shape": "177C593B36C1C377E00B08D260D111B7CE0E07D7D1DF9938AAA4ADA82B62C2F1"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/CoreReleaseService.cs",
-          "name": "InstallAsync",
-          "line": 64,
-          "tokens": 265,
-          "hash": "FEE0CB70C85996F0BB0537C6837E6E057E1E15143C1E59AD6CC5C555AA0F51BD",
-          "shape": "177C593B36C1C377E00B08D260D111B7CE0E07D7D1DF9938AAA4ADA82B62C2F1"
-        }
-      ],
-      "qualification": "pending-symbol-and-policy-comparison"
-    },
-    {
       "shape": "1789D408E3740C44F7AB0E4D8A217636004747441EF6E67E95D85449FDC562F6",
       "tokens": 45,
       "current": [
@@ -29781,14 +29664,6 @@
           "shape": "3A5AF1DA73918C681E4201FE380BCDF5FC1E065C8E8A775786B2B401A371D8AB",
           "qualification": "Qualified module-owned installation adapter: original SDK operations and current callbacks resolved; unchanged temporary-file cleanup policy verified in installationAdapterFinalQualification",
           "qualificationSourceSha256": "2909911145E60E1206A5C8B35E88C08B17CB45E02F17EB0E771845C7FE823CE5"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/CoreReleaseService.cs",
-          "name": "InstallAsync",
-          "line": 63,
-          "tokens": 263,
-          "hash": "6DD23F589E697391F90AF798FAC67A1FAF6E25F5F213A6DF6733B55C5683B7FE",
-          "shape": "3A5AF1DA73918C681E4201FE380BCDF5FC1E065C8E8A775786B2B401A371D8AB"
         }
       ],
       "qualification": "pending-symbol-and-policy-comparison"
@@ -31223,7 +31098,7 @@
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Factories/PpssppMachineFactory.cs",
           "name": "TryHandleHostCommand",
-          "line": 26,
+          "line": 27,
           "tokens": 53,
           "hash": "27DB99CA1FA2E7BAB0D50D558BAF85CA5839EFDB30BB53D1862D3BF2838618EF",
           "shape": "6074D3191E5899BF0143C1089F4D8E300AA659E7B578E2DB40325689389C80F8"
@@ -31239,7 +31114,7 @@
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Factories/Pcsx2MachineFactory.cs",
           "name": "TryHandleHostCommand",
-          "line": 35,
+          "line": 36,
           "tokens": 53,
           "hash": "5C127679E9610AD7C3ABA12D40669DE966CAAF29616B7C84FFB476652ACD80C1",
           "shape": "6074D3191E5899BF0143C1089F4D8E300AA659E7B578E2DB40325689389C80F8"
@@ -31653,29 +31528,6 @@
           "tokens": 84,
           "hash": "89EA9113C24C470A487B910F436F9071E2943BEFB2B9B5CD24925E3BE5D0FF5D",
           "shape": "6E5E12206F1E8AF4513A3A72E8553C45404F98B625E778D052A9DAB9ED69EDE0"
-        }
-      ],
-      "qualification": "pending-symbol-and-policy-comparison"
-    },
-    {
-      "shape": "6EF05BECD77A0E33E3B7530443B6D10D50350DC7367FEFE2EF664E0F720B9295",
-      "tokens": 236,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/BeetlePcfx/Services/ExternalCoreInstaller.cs",
-          "name": "InstallAsync",
-          "line": 38,
-          "tokens": 236,
-          "hash": "5423B5EC9022DD87019474ABB8F0700C0464EBC5F5D26B54ECDA6D66BB1C951E",
-          "shape": "6EF05BECD77A0E33E3B7530443B6D10D50350DC7367FEFE2EF664E0F720B9295"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Services/ExternalCoreInstaller.cs",
-          "name": "InstallAsync",
-          "line": 39,
-          "tokens": 236,
-          "hash": "7F11EB36726219F3AA3616DB2D1330A888EFADCB1ABF174C5FA2CFCA899F3030",
-          "shape": "6EF05BECD77A0E33E3B7530443B6D10D50350DC7367FEFE2EF664E0F720B9295"
         }
       ],
       "qualification": "pending-symbol-and-policy-comparison"
@@ -35403,7 +35255,7 @@
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Factories/PpssppMachineFactory.cs",
           "name": "Create",
-          "line": 61,
+          "line": 70,
           "tokens": 168,
           "hash": "95E42A0911796E283BDEBF1F73031B0B31DD5AA53D9587DADFDDFB7262A4FB95",
           "shape": "DB7F7F9197C3C0039F05494382B47CCE98DFCD119D4A0E0C974B52DD79D1168F"
@@ -35411,7 +35263,7 @@
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Factories/Pcsx2MachineFactory.cs",
           "name": "Create",
-          "line": 70,
+          "line": 79,
           "tokens": 168,
           "hash": "292B7A2ABCF21EE9281DC6AF4C35E4C8CE09B0316A2DAB73A36DB66EC1C3233F",
           "shape": "DB7F7F9197C3C0039F05494382B47CCE98DFCD119D4A0E0C974B52DD79D1168F"
@@ -35523,10 +35375,27 @@
           "tokens": 35,
           "hash": "99CC348EDCBC899F046B28B37E0547716425CCB4C4E49D4CFF6FFA5185D49B31",
           "shape": "DCEEA65751BFCDB6664EC671F661B5B9090D6EE419A3790C42897FBCEB0D4948",
-          "qualification": "Typed installation adapter; original Amiga lookup verified in simpleFactoryReleaseSelectionReuse"
+          "qualification": "Typed installation adapter; original Amiga lookup verified in simpleFactoryReleaseSelectionReuse",
+          "qualificationSourceSha256": "4AED4025010275FBB3FB06D68978004871B943F3F4A4850AA41DEDEB802F9C26"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Factories/Pcsx2MachineFactory.cs",
+          "name": "InstallAsync",
+          "line": 61,
+          "tokens": 35,
+          "hash": "99CC348EDCBC899F046B28B37E0547716425CCB4C4E49D4CFF6FFA5185D49B31",
+          "shape": "DCEEA65751BFCDB6664EC671F661B5B9090D6EE419A3790C42897FBCEB0D4948"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Factories/PpssppMachineFactory.cs",
+          "name": "InstallAsync",
+          "line": 52,
+          "tokens": 35,
+          "hash": "99CC348EDCBC899F046B28B37E0547716425CCB4C4E49D4CFF6FFA5185D49B31",
+          "shape": "DCEEA65751BFCDB6664EC671F661B5B9090D6EE419A3790C42897FBCEB0D4948"
         }
       ],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "Partial occurrence qualification; unannotated members pending"
     },
     {
       "shape": "DDBCB8AA4A800554EB17648A7BA637E80133D3062C195B9FBBA868CD95890F40",
@@ -35607,6 +35476,22 @@
           "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Factories/CoreMachineFactory.cs",
           "name": "FindReleasesAsync",
           "line": 71,
+          "tokens": 70,
+          "hash": "2A8DDB8D27470228E7EF361B5011A8A7FAD85DA9331EDD0C78E42FA8F800A9D7",
+          "shape": "DE04789A9F3FD28B1360743FFB66E9EF5A94FE56E107F5F1A99BBACD3258A961"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Factories/Pcsx2MachineFactory.cs",
+          "name": "FindReleasesAsync",
+          "line": 54,
+          "tokens": 70,
+          "hash": "2A8DDB8D27470228E7EF361B5011A8A7FAD85DA9331EDD0C78E42FA8F800A9D7",
+          "shape": "DE04789A9F3FD28B1360743FFB66E9EF5A94FE56E107F5F1A99BBACD3258A961"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sony/Emulators/Ppsspp/Factories/PpssppMachineFactory.cs",
+          "name": "FindReleasesAsync",
+          "line": 45,
           "tokens": 70,
           "hash": "2A8DDB8D27470228E7EF361B5011A8A7FAD85DA9331EDD0C78E42FA8F800A9D7",
           "shape": "DE04789A9F3FD28B1360743FFB66E9EF5A94FE56E107F5F1A99BBACD3258A961"
@@ -37179,7 +37064,7 @@
   ],
   "scope": "All current repository CSharp and PowerShell files; no age filter; candidates require semantic review",
   "qualificationCarryForward": {
-    "occurrences": 238,
-    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical"
+    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical",
+    "occurrences": 240
   }
 }
