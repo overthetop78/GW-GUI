@@ -27,6 +27,14 @@ internal static partial class EmulationHostProtocolFunctions
         finally { timeout.Dispose(); }
     }
 
+    internal static void DisposePreviousCore<TCore>(ref TCore? core) where TCore : class, IDisposable
+    {
+        var previousCore = core;
+        core = null;
+        try { previousCore?.Dispose(); }
+        finally { core = null; }
+    }
+
     internal static void WriteInitializationRequest<TConfiguration>(BinaryWriter writer,
         string corePath, int emulator, string sessionDirectory, string? saveDirectory,
         TConfiguration configuration, JsonSerializerOptions jsonOptions)

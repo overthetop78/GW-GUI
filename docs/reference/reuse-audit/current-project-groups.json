@@ -1,9 +1,9 @@
 {
   "baseline": "ac7292d86^",
-  "currentCSharpFiles": 7288,
-  "outsideSrcCSharpFiles": 303,
+  "currentCSharpFiles": 7289,
+  "outsideSrcCSharpFiles": 304,
   "baselineMethodCount": 5848,
-  "currentMethodCount": 11662,
+  "currentMethodCount": 11663,
   "powerShellFunctionCount": 17,
   "groups": [
     {
@@ -12135,7 +12135,7 @@
     {
       "language": "CSharp",
       "hash": "68386C818382BCE400A3EDE65411B5CBD9D6A87F6D88FAF6501028CE28C38965",
-      "method": "ToModule",
+      "method": "ToSinclair",
       "tokens": 148,
       "current": [
         {
@@ -14202,137 +14202,6 @@
           "tokens": 37,
           "hash": "7BB93435780B832D9872A11EBC91EF19F38A07054DFA7480AE38AF83C72E17B0",
           "shape": "32E78B008187925E445491D4490CD09F4BBA411CDC4E72F61951D7983D62EFDC"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
-      "hash": "7C115D688A2C5FC83219ECFC725D18A9F366175A239122ADA6E99164D93FF084",
-      "method": "Initialize",
-      "tokens": 198,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Atari/Common/Services/CoreHost.cs",
-          "name": "Initialize",
-          "line": 68,
-          "tokens": 198,
-          "hash": "7C115D688A2C5FC83219ECFC725D18A9F366175A239122ADA6E99164D93FF084",
-          "shape": "71619DC3F86FB361F86DAA8B693F69C0153D26994D71DA5BE37A1400B66B2A52"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Mattel/Common/Services/CoreHost.cs",
-          "name": "Initialize",
-          "line": 68,
-          "tokens": 198,
-          "hash": "7C115D688A2C5FC83219ECFC725D18A9F366175A239122ADA6E99164D93FF084",
-          "shape": "71619DC3F86FB361F86DAA8B693F69C0153D26994D71DA5BE37A1400B66B2A52"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Apple/Common/Services/CoreHost.cs",
-          "name": "Initialize",
-          "line": 69,
-          "tokens": 198,
-          "hash": "7C115D688A2C5FC83219ECFC725D18A9F366175A239122ADA6E99164D93FF084",
-          "shape": "71619DC3F86FB361F86DAA8B693F69C0153D26994D71DA5BE37A1400B66B2A52"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Fairchild/Common/Services/CoreHost.cs",
-          "name": "Initialize",
-          "line": 68,
-          "tokens": 198,
-          "hash": "7C115D688A2C5FC83219ECFC725D18A9F366175A239122ADA6E99164D93FF084",
-          "shape": "71619DC3F86FB361F86DAA8B693F69C0153D26994D71DA5BE37A1400B66B2A52"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Acorn/Common/Services/CoreHost.cs",
-          "name": "Initialize",
-          "line": 68,
-          "tokens": 198,
-          "hash": "7C115D688A2C5FC83219ECFC725D18A9F366175A239122ADA6E99164D93FF084",
-          "shape": "71619DC3F86FB361F86DAA8B693F69C0153D26994D71DA5BE37A1400B66B2A52"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Wenquxing/Common/Services/CoreHost.cs",
-          "name": "Initialize",
-          "line": 86,
-          "tokens": 198,
-          "hash": "7C115D688A2C5FC83219ECFC725D18A9F366175A239122ADA6E99164D93FF084",
-          "shape": "71619DC3F86FB361F86DAA8B693F69C0153D26994D71DA5BE37A1400B66B2A52"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sharp/Common/Services/CoreHost.cs",
-          "name": "Initialize",
-          "line": 67,
-          "tokens": 198,
-          "hash": "7C115D688A2C5FC83219ECFC725D18A9F366175A239122ADA6E99164D93FF084",
-          "shape": "71619DC3F86FB361F86DAA8B693F69C0153D26994D71DA5BE37A1400B66B2A52"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Watara/Common/Services/CoreHost.cs",
-          "name": "Initialize",
-          "line": 61,
-          "tokens": 198,
-          "hash": "7C115D688A2C5FC83219ECFC725D18A9F366175A239122ADA6E99164D93FF084",
-          "shape": "71619DC3F86FB361F86DAA8B693F69C0153D26994D71DA5BE37A1400B66B2A52"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Epoch/Common/Services/CoreHost.cs",
-          "name": "Initialize",
-          "line": 68,
-          "tokens": 198,
-          "hash": "7C115D688A2C5FC83219ECFC725D18A9F366175A239122ADA6E99164D93FF084",
-          "shape": "71619DC3F86FB361F86DAA8B693F69C0153D26994D71DA5BE37A1400B66B2A52"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sinclair/Common/Services/CoreHost.cs",
-          "name": "Initialize",
-          "line": 61,
-          "tokens": 198,
-          "hash": "7C115D688A2C5FC83219ECFC725D18A9F366175A239122ADA6E99164D93FF084",
-          "shape": "71619DC3F86FB361F86DAA8B693F69C0153D26994D71DA5BE37A1400B66B2A52"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Philips/Common/Services/CoreHost.cs",
-          "name": "Initialize",
-          "line": 68,
-          "tokens": 198,
-          "hash": "7C115D688A2C5FC83219ECFC725D18A9F366175A239122ADA6E99164D93FF084",
-          "shape": "71619DC3F86FB361F86DAA8B693F69C0153D26994D71DA5BE37A1400B66B2A52"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Thomson/Common/Services/CoreHost.cs",
-          "name": "Initialize",
-          "line": 61,
-          "tokens": 198,
-          "hash": "7C115D688A2C5FC83219ECFC725D18A9F366175A239122ADA6E99164D93FF084",
-          "shape": "71619DC3F86FB361F86DAA8B693F69C0153D26994D71DA5BE37A1400B66B2A52"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Panasonic/Common/Services/CoreHost.cs",
-          "name": "Initialize",
-          "line": 61,
-          "tokens": 198,
-          "hash": "7C115D688A2C5FC83219ECFC725D18A9F366175A239122ADA6E99164D93FF084",
-          "shape": "71619DC3F86FB361F86DAA8B693F69C0153D26994D71DA5BE37A1400B66B2A52"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Bandai/Common/Services/CoreHost.cs",
-          "name": "Initialize",
-          "line": 68,
-          "tokens": 198,
-          "hash": "7C115D688A2C5FC83219ECFC725D18A9F366175A239122ADA6E99164D93FF084",
-          "shape": "71619DC3F86FB361F86DAA8B693F69C0153D26994D71DA5BE37A1400B66B2A52"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Coleco/Common/Services/CoreHost.cs",
-          "name": "Initialize",
-          "line": 68,
-          "tokens": 198,
-          "hash": "7C115D688A2C5FC83219ECFC725D18A9F366175A239122ADA6E99164D93FF084",
-          "shape": "71619DC3F86FB361F86DAA8B693F69C0153D26994D71DA5BE37A1400B66B2A52"
         }
       ],
       "predecessors": [],
@@ -19576,7 +19445,7 @@
         {
           "path": "src/GWGUI.Emulation.Mattel/Common/Services/CoreHost.cs",
           "name": "RunFrame",
-          "line": 91,
+          "line": 88,
           "tokens": 157,
           "hash": "A62701E2738E279EC6834A5CAB29A186A0B9D240D28340B6019FB760C6F83F88",
           "shape": "48781563E0F43893F0CD452FED62DEF98CE23286E15176ABE5BDF5DEECB39E53"
@@ -19584,7 +19453,7 @@
         {
           "path": "src/GWGUI.Emulation.Wenquxing/Common/Services/CoreHost.cs",
           "name": "RunFrame",
-          "line": 116,
+          "line": 107,
           "tokens": 157,
           "hash": "A62701E2738E279EC6834A5CAB29A186A0B9D240D28340B6019FB760C6F83F88",
           "shape": "48781563E0F43893F0CD452FED62DEF98CE23286E15176ABE5BDF5DEECB39E53"
@@ -19592,7 +19461,7 @@
         {
           "path": "src/GWGUI.Emulation.Sharp/Common/Services/CoreHost.cs",
           "name": "RunFrame",
-          "line": 97,
+          "line": 88,
           "tokens": 157,
           "hash": "A62701E2738E279EC6834A5CAB29A186A0B9D240D28340B6019FB760C6F83F88",
           "shape": "48781563E0F43893F0CD452FED62DEF98CE23286E15176ABE5BDF5DEECB39E53"
@@ -19600,7 +19469,7 @@
         {
           "path": "src/GWGUI.Emulation.Sinclair/Common/Services/CoreHost.cs",
           "name": "RunFrame",
-          "line": 91,
+          "line": 82,
           "tokens": 157,
           "hash": "A62701E2738E279EC6834A5CAB29A186A0B9D240D28340B6019FB760C6F83F88",
           "shape": "48781563E0F43893F0CD452FED62DEF98CE23286E15176ABE5BDF5DEECB39E53"
@@ -19608,7 +19477,7 @@
         {
           "path": "src/GWGUI.Emulation.Philips/Common/Services/CoreHost.cs",
           "name": "RunFrame",
-          "line": 91,
+          "line": 88,
           "tokens": 157,
           "hash": "A62701E2738E279EC6834A5CAB29A186A0B9D240D28340B6019FB760C6F83F88",
           "shape": "48781563E0F43893F0CD452FED62DEF98CE23286E15176ABE5BDF5DEECB39E53"
@@ -19616,7 +19485,7 @@
         {
           "path": "src/GWGUI.Emulation.Thomson/Common/Services/CoreHost.cs",
           "name": "RunFrame",
-          "line": 91,
+          "line": 82,
           "tokens": 157,
           "hash": "A62701E2738E279EC6834A5CAB29A186A0B9D240D28340B6019FB760C6F83F88",
           "shape": "48781563E0F43893F0CD452FED62DEF98CE23286E15176ABE5BDF5DEECB39E53"
@@ -19624,7 +19493,7 @@
         {
           "path": "src/GWGUI.Emulation.Panasonic/Common/Services/CoreHost.cs",
           "name": "RunFrame",
-          "line": 91,
+          "line": 82,
           "tokens": 157,
           "hash": "A62701E2738E279EC6834A5CAB29A186A0B9D240D28340B6019FB760C6F83F88",
           "shape": "48781563E0F43893F0CD452FED62DEF98CE23286E15176ABE5BDF5DEECB39E53"
@@ -25892,7 +25761,7 @@
         {
           "path": "src/GWGUI.Emulation.Atari/Common/Services/CoreHost.cs",
           "name": "RunFrame",
-          "line": 91,
+          "line": 88,
           "tokens": 148,
           "hash": "E0CF34B85C7AEE3A88238FA762F2EDFA38EA84DC9BF73364B499E22311C8C29A",
           "shape": "0672645381F9296F312D2215309A64E5D3ECDB5CFAACDD5D8D4AC1A931BB1207"
@@ -25900,7 +25769,7 @@
         {
           "path": "src/GWGUI.Emulation.Apple/Common/Services/CoreHost.cs",
           "name": "RunFrame",
-          "line": 92,
+          "line": 89,
           "tokens": 148,
           "hash": "E0CF34B85C7AEE3A88238FA762F2EDFA38EA84DC9BF73364B499E22311C8C29A",
           "shape": "0672645381F9296F312D2215309A64E5D3ECDB5CFAACDD5D8D4AC1A931BB1207"
@@ -25908,7 +25777,7 @@
         {
           "path": "src/GWGUI.Emulation.Fairchild/Common/Services/CoreHost.cs",
           "name": "RunFrame",
-          "line": 91,
+          "line": 88,
           "tokens": 148,
           "hash": "E0CF34B85C7AEE3A88238FA762F2EDFA38EA84DC9BF73364B499E22311C8C29A",
           "shape": "0672645381F9296F312D2215309A64E5D3ECDB5CFAACDD5D8D4AC1A931BB1207"
@@ -25916,7 +25785,7 @@
         {
           "path": "src/GWGUI.Emulation.Acorn/Common/Services/CoreHost.cs",
           "name": "RunFrame",
-          "line": 91,
+          "line": 88,
           "tokens": 148,
           "hash": "E0CF34B85C7AEE3A88238FA762F2EDFA38EA84DC9BF73364B499E22311C8C29A",
           "shape": "0672645381F9296F312D2215309A64E5D3ECDB5CFAACDD5D8D4AC1A931BB1207"
@@ -25924,7 +25793,7 @@
         {
           "path": "src/GWGUI.Emulation.Epoch/Common/Services/CoreHost.cs",
           "name": "RunFrame",
-          "line": 91,
+          "line": 88,
           "tokens": 148,
           "hash": "E0CF34B85C7AEE3A88238FA762F2EDFA38EA84DC9BF73364B499E22311C8C29A",
           "shape": "0672645381F9296F312D2215309A64E5D3ECDB5CFAACDD5D8D4AC1A931BB1207"
@@ -25932,7 +25801,7 @@
         {
           "path": "src/GWGUI.Emulation.Bandai/Common/Services/CoreHost.cs",
           "name": "RunFrame",
-          "line": 91,
+          "line": 88,
           "tokens": 148,
           "hash": "E0CF34B85C7AEE3A88238FA762F2EDFA38EA84DC9BF73364B499E22311C8C29A",
           "shape": "0672645381F9296F312D2215309A64E5D3ECDB5CFAACDD5D8D4AC1A931BB1207"
@@ -25940,7 +25809,7 @@
         {
           "path": "src/GWGUI.Emulation.Coleco/Common/Services/CoreHost.cs",
           "name": "RunFrame",
-          "line": 91,
+          "line": 88,
           "tokens": 148,
           "hash": "E0CF34B85C7AEE3A88238FA762F2EDFA38EA84DC9BF73364B499E22311C8C29A",
           "shape": "0672645381F9296F312D2215309A64E5D3ECDB5CFAACDD5D8D4AC1A931BB1207"
@@ -26326,6 +26195,137 @@
           "tokens": 51,
           "hash": "E683125517BFAF22C24A956E647BA79FFDA33E867824C2422732532E1F6DF765",
           "shape": "87BA0AD33C61D7F9E88D569D52942C8A7C82B61D205EE511EDE862B9A7BD8066"
+        }
+      ],
+      "predecessors": [],
+      "shapePredecessors": [],
+      "qualification": "pending"
+    },
+    {
+      "language": "CSharp",
+      "hash": "E6AA205E4E72B9A930AC2730B28F12BB28639D2D731158ED40C0BAA9B262B8C7",
+      "method": "Initialize",
+      "tokens": 180,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Acorn/Common/Services/CoreHost.cs",
+          "name": "Initialize",
+          "line": 68,
+          "tokens": 180,
+          "hash": "E6AA205E4E72B9A930AC2730B28F12BB28639D2D731158ED40C0BAA9B262B8C7",
+          "shape": "7BB5EA9DA4ED78DEBA8FEA03174DABAFAEF0C24031B5643161B3BE19C559F3FC"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Atari/Common/Services/CoreHost.cs",
+          "name": "Initialize",
+          "line": 68,
+          "tokens": 180,
+          "hash": "E6AA205E4E72B9A930AC2730B28F12BB28639D2D731158ED40C0BAA9B262B8C7",
+          "shape": "7BB5EA9DA4ED78DEBA8FEA03174DABAFAEF0C24031B5643161B3BE19C559F3FC"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Panasonic/Common/Services/CoreHost.cs",
+          "name": "Initialize",
+          "line": 61,
+          "tokens": 180,
+          "hash": "E6AA205E4E72B9A930AC2730B28F12BB28639D2D731158ED40C0BAA9B262B8C7",
+          "shape": "7BB5EA9DA4ED78DEBA8FEA03174DABAFAEF0C24031B5643161B3BE19C559F3FC"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Fairchild/Common/Services/CoreHost.cs",
+          "name": "Initialize",
+          "line": 68,
+          "tokens": 180,
+          "hash": "E6AA205E4E72B9A930AC2730B28F12BB28639D2D731158ED40C0BAA9B262B8C7",
+          "shape": "7BB5EA9DA4ED78DEBA8FEA03174DABAFAEF0C24031B5643161B3BE19C559F3FC"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Apple/Common/Services/CoreHost.cs",
+          "name": "Initialize",
+          "line": 69,
+          "tokens": 180,
+          "hash": "E6AA205E4E72B9A930AC2730B28F12BB28639D2D731158ED40C0BAA9B262B8C7",
+          "shape": "7BB5EA9DA4ED78DEBA8FEA03174DABAFAEF0C24031B5643161B3BE19C559F3FC"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Epoch/Common/Services/CoreHost.cs",
+          "name": "Initialize",
+          "line": 68,
+          "tokens": 180,
+          "hash": "E6AA205E4E72B9A930AC2730B28F12BB28639D2D731158ED40C0BAA9B262B8C7",
+          "shape": "7BB5EA9DA4ED78DEBA8FEA03174DABAFAEF0C24031B5643161B3BE19C559F3FC"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sinclair/Common/Services/CoreHost.cs",
+          "name": "Initialize",
+          "line": 61,
+          "tokens": 180,
+          "hash": "E6AA205E4E72B9A930AC2730B28F12BB28639D2D731158ED40C0BAA9B262B8C7",
+          "shape": "7BB5EA9DA4ED78DEBA8FEA03174DABAFAEF0C24031B5643161B3BE19C559F3FC"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Wenquxing/Common/Services/CoreHost.cs",
+          "name": "Initialize",
+          "line": 86,
+          "tokens": 180,
+          "hash": "E6AA205E4E72B9A930AC2730B28F12BB28639D2D731158ED40C0BAA9B262B8C7",
+          "shape": "7BB5EA9DA4ED78DEBA8FEA03174DABAFAEF0C24031B5643161B3BE19C559F3FC"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Bandai/Common/Services/CoreHost.cs",
+          "name": "Initialize",
+          "line": 68,
+          "tokens": 180,
+          "hash": "E6AA205E4E72B9A930AC2730B28F12BB28639D2D731158ED40C0BAA9B262B8C7",
+          "shape": "7BB5EA9DA4ED78DEBA8FEA03174DABAFAEF0C24031B5643161B3BE19C559F3FC"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Coleco/Common/Services/CoreHost.cs",
+          "name": "Initialize",
+          "line": 68,
+          "tokens": 180,
+          "hash": "E6AA205E4E72B9A930AC2730B28F12BB28639D2D731158ED40C0BAA9B262B8C7",
+          "shape": "7BB5EA9DA4ED78DEBA8FEA03174DABAFAEF0C24031B5643161B3BE19C559F3FC"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sharp/Common/Services/CoreHost.cs",
+          "name": "Initialize",
+          "line": 67,
+          "tokens": 180,
+          "hash": "E6AA205E4E72B9A930AC2730B28F12BB28639D2D731158ED40C0BAA9B262B8C7",
+          "shape": "7BB5EA9DA4ED78DEBA8FEA03174DABAFAEF0C24031B5643161B3BE19C559F3FC"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Watara/Common/Services/CoreHost.cs",
+          "name": "Initialize",
+          "line": 61,
+          "tokens": 180,
+          "hash": "E6AA205E4E72B9A930AC2730B28F12BB28639D2D731158ED40C0BAA9B262B8C7",
+          "shape": "7BB5EA9DA4ED78DEBA8FEA03174DABAFAEF0C24031B5643161B3BE19C559F3FC"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Mattel/Common/Services/CoreHost.cs",
+          "name": "Initialize",
+          "line": 68,
+          "tokens": 180,
+          "hash": "E6AA205E4E72B9A930AC2730B28F12BB28639D2D731158ED40C0BAA9B262B8C7",
+          "shape": "7BB5EA9DA4ED78DEBA8FEA03174DABAFAEF0C24031B5643161B3BE19C559F3FC"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Philips/Common/Services/CoreHost.cs",
+          "name": "Initialize",
+          "line": 68,
+          "tokens": 180,
+          "hash": "E6AA205E4E72B9A930AC2730B28F12BB28639D2D731158ED40C0BAA9B262B8C7",
+          "shape": "7BB5EA9DA4ED78DEBA8FEA03174DABAFAEF0C24031B5643161B3BE19C559F3FC"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Thomson/Common/Services/CoreHost.cs",
+          "name": "Initialize",
+          "line": 61,
+          "tokens": 180,
+          "hash": "E6AA205E4E72B9A930AC2730B28F12BB28639D2D731158ED40C0BAA9B262B8C7",
+          "shape": "7BB5EA9DA4ED78DEBA8FEA03174DABAFAEF0C24031B5643161B3BE19C559F3FC"
         }
       ],
       "predecessors": [],
@@ -27385,7 +27385,7 @@
     {
       "language": "CSharp",
       "hash": "F107F4D7D97C4E9F797468C991DF2090B47DF6E3F6F74E56044EFF0C28CAA51D",
-      "method": "NotifyHardwareContextDestroy",
+      "method": "NotifyDestroy",
       "tokens": 31,
       "current": [
         {
@@ -38019,7 +38019,7 @@
   ],
   "scope": "All current repository CSharp and PowerShell files; no age filter; candidates require semantic review",
   "qualificationCarryForward": {
-    "occurrences": 148,
-    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical"
+    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical",
+    "occurrences": 152
   }
 }

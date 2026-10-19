@@ -66,16 +66,7 @@ public static class CoreHost
 
     private static void Initialize(BinaryReader reader, BinaryWriter writer, Func<string, Emulator, IEmulatorCore> createCore, ref IEmulatorCore? core, ref int lastDiagnosticCount)
     {
-        var previousCore = core;
-        core = null;
-        try
-        {
-            previousCore?.Dispose();
-        }
-        finally
-        {
-            core = null;
-        }
+        EmulationHostProtocolFunctions.DisposePreviousCore(ref core);
 
         var corePath = reader.ReadString();
         var emulator = (Emulator)reader.ReadInt32();
