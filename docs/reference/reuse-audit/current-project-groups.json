@@ -1,9 +1,9 @@
 {
   "baseline": "ac7292d86^",
-  "currentCSharpFiles": 7257,
+  "currentCSharpFiles": 7247,
   "outsideSrcCSharpFiles": 309,
   "baselineMethodCount": 5848,
-  "currentMethodCount": 11569,
+  "currentMethodCount": 11547,
   "powerShellFunctionCount": 17,
   "groups": [
     {
@@ -1161,7 +1161,7 @@
     {
       "language": "CSharp",
       "hash": "0A9D4012A0EEF58659F6F622D06187BDA6844EE126F30B196EAE963950A66758",
-      "method": "NecEmulationModule",
+      "method": "SegaEmulationModule",
       "tokens": 45,
       "current": [
         {
@@ -2180,10 +2180,10 @@
           "tokens": 133,
           "hash": "158E8E54700BE498A10B35A5C4F7FA897C31F8904361F09E230CCC933D21B652",
           "shape": "1ED85FF7128DFB65B9E786B070E8EDE6A70584EC9175B2F09D4833BC783C4A0A",
-          "qualificationLegacyQueries": "Partial original Amiga four-query policy only: SDK TryHandleLegacyQuery preserves three unconditional success replies and message-version write result, module version bindings and original catch boundary; see legacyEnvironmentQueryReuse. Other legacy handler branches remain pending.",
-          "qualificationLegacyQueriesSourceSha256": "A920FE0B1D36631D78E17F80137FE67716A1BC9C0CDB8DA6A3ADBFF023F2117F",
           "qualification": "Module adapter: original Nintendo callback/option selection and original Amiga queries now owned by SDK; module-specific content/render callbacks, diagnostic queue and native catch boundary remain local. Complete HandleEnvironment verified through original-position reconstruction,30 numeric selector values, unchanged query guard and existing borrowed callback contracts in legacyEnvironmentCallbackReuse. Other methods in file remain outside this whole-method proof.",
-          "qualificationSourceSha256": "A920FE0B1D36631D78E17F80137FE67716A1BC9C0CDB8DA6A3ADBFF023F2117F"
+          "qualificationSourceSha256": "A920FE0B1D36631D78E17F80137FE67716A1BC9C0CDB8DA6A3ADBFF023F2117F",
+          "qualificationLegacyQueries": "Partial original Amiga four-query policy only: SDK TryHandleLegacyQuery preserves three unconditional success replies and message-version write result, module version bindings and original catch boundary; see legacyEnvironmentQueryReuse. Other legacy handler branches remain pending.",
+          "qualificationLegacyQueriesSourceSha256": "A920FE0B1D36631D78E17F80137FE67716A1BC9C0CDB8DA6A3ADBFF023F2117F"
         },
         {
           "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs",
@@ -2192,10 +2192,10 @@
           "tokens": 133,
           "hash": "158E8E54700BE498A10B35A5C4F7FA897C31F8904361F09E230CCC933D21B652",
           "shape": "1ED85FF7128DFB65B9E786B070E8EDE6A70584EC9175B2F09D4833BC783C4A0A",
-          "qualificationLegacyQueries": "Partial original Amiga four-query policy only: SDK TryHandleLegacyQuery preserves three unconditional success replies and message-version write result, module version bindings and original catch boundary; see legacyEnvironmentQueryReuse. Other legacy handler branches remain pending.",
-          "qualificationLegacyQueriesSourceSha256": "52FA2992D881ED8BB6316AA4BE55747EE80D4EE326B3CFCA43429F49FE469A72",
           "qualification": "Module adapter: original Nintendo callback/option selection and original Amiga queries now owned by SDK; module-specific content/render callbacks, diagnostic queue and native catch boundary remain local. Complete HandleEnvironment verified through original-position reconstruction,30 numeric selector values, unchanged query guard and existing borrowed callback contracts in legacyEnvironmentCallbackReuse. Other methods in file remain outside this whole-method proof.",
-          "qualificationSourceSha256": "52FA2992D881ED8BB6316AA4BE55747EE80D4EE326B3CFCA43429F49FE469A72"
+          "qualificationSourceSha256": "52FA2992D881ED8BB6316AA4BE55747EE80D4EE326B3CFCA43429F49FE469A72",
+          "qualificationLegacyQueries": "Partial original Amiga four-query policy only: SDK TryHandleLegacyQuery preserves three unconditional success replies and message-version write result, module version bindings and original catch boundary; see legacyEnvironmentQueryReuse. Other legacy handler branches remain pending.",
+          "qualificationLegacyQueriesSourceSha256": "52FA2992D881ED8BB6316AA4BE55747EE80D4EE326B3CFCA43429F49FE469A72"
         }
       ],
       "predecessors": [],
@@ -2755,22 +2755,6 @@
       "current": [
         {
           "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/CoreReleaseService.cs",
-          "name": "IsInstalled",
-          "line": 52,
-          "tokens": 44,
-          "hash": "18C7BB79A0AEC4C92A7567F81C98524C2C7EDF7AEE98F383DC9E6BB00E4A5982",
-          "shape": "AE50C42A407089D868F320F5CE203EBC1F14F0E05699D0839D5D2DE48ADB44A2"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/CoreReleaseService.cs",
-          "name": "IsInstalled",
-          "line": 52,
-          "tokens": 44,
-          "hash": "18C7BB79A0AEC4C92A7567F81C98524C2C7EDF7AEE98F383DC9E6BB00E4A5982",
-          "shape": "AE50C42A407089D868F320F5CE203EBC1F14F0E05699D0839D5D2DE48ADB44A2"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/BeetlePcfx/Services/CoreReleaseService.cs",
           "name": "IsInstalled",
           "line": 52,
           "tokens": 44,
@@ -3372,6 +3356,14 @@
           "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Factories/CoreMachineFactory.cs",
           "name": "TryHandleHostCommand",
           "line": 57,
+          "tokens": 53,
+          "hash": "20A444877B6B88E6C341063D7DBC3C3BDD8203E03E3C4C0E75734B88D6D9E743",
+          "shape": "6074D3191E5899BF0143C1089F4D8E300AA659E7B578E2DB40325689389C80F8"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Factories/CoreMachineFactory.cs",
+          "name": "TryHandleHostCommand",
+          "line": 24,
           "tokens": 53,
           "hash": "20A444877B6B88E6C341063D7DBC3C3BDD8203E03E3C4C0E75734B88D6D9E743",
           "shape": "6074D3191E5899BF0143C1089F4D8E300AA659E7B578E2DB40325689389C80F8"
@@ -4278,7 +4270,7 @@
         {
           "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Factories/CoreMachineFactory.cs",
           "name": "FindReleasesAsync",
-          "line": 34,
+          "line": 40,
           "tokens": 70,
           "hash": "2A8DDB8D27470228E7EF361B5011A8A7FAD85DA9331EDD0C78E42FA8F800A9D7",
           "shape": "DE04789A9F3FD28B1360743FFB66E9EF5A94FE56E107F5F1A99BBACD3258A961"
@@ -7427,42 +7419,6 @@
     },
     {
       "language": "CSharp",
-      "hash": "3EE32D675CC319A7E89C32C5203011D954A38BAB2D163CCC9BCD192204A2AFAA",
-      "method": "FindInstalledPathAsync",
-      "tokens": 39,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/BeetlePcfx/Services/CoreProvider.cs",
-          "name": "FindInstalledPathAsync",
-          "line": 20,
-          "tokens": 39,
-          "hash": "3EE32D675CC319A7E89C32C5203011D954A38BAB2D163CCC9BCD192204A2AFAA",
-          "shape": "34005486CF3E8E526A689B90D2FB4808952C74C674364D3C0FD514FE32354C66"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/BeetlePceFast/Services/CoreProvider.cs",
-          "name": "FindInstalledPathAsync",
-          "line": 24,
-          "tokens": 39,
-          "hash": "3EE32D675CC319A7E89C32C5203011D954A38BAB2D163CCC9BCD192204A2AFAA",
-          "shape": "34005486CF3E8E526A689B90D2FB4808952C74C674364D3C0FD514FE32354C66"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [
-        {
-          "path": "src/GWGUI.Emulation.Amiga/Emulators/PUAE/Services/AmigaCoreProvider.cs",
-          "name": "FindInstalledPathAsync",
-          "line": 15,
-          "tokens": 39,
-          "hash": "080E33AC230178A219CF35E43662A09D07728F6E6AB35A20EE7578E71EE31621",
-          "shape": "34005486CF3E8E526A689B90D2FB4808952C74C674364D3C0FD514FE32354C66"
-        }
-      ],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
       "hash": "3EF747A1B21FE412C78AC40ACCAA8BC1453ABC53D2CD4EF5A427EEFD6627FE99",
       "method": "CanReadAsync",
       "tokens": 34,
@@ -7474,7 +7430,8 @@
           "tokens": 34,
           "hash": "3EF747A1B21FE412C78AC40ACCAA8BC1453ABC53D2CD4EF5A427EEFD6627FE99",
           "shape": "E83D16BB8383208D14620BC2FFDA8790C995EDC55AEA3F8ACEF1E31B20822EFA",
-          "qualification": "Typed parser adapter to verified shared recognition policy in diskReaderProbeReuse; specialized validator retained"
+          "qualification": "Typed parser adapter to verified shared recognition policy in diskReaderProbeReuse; specialized validator retained",
+          "qualificationSourceSha256": "7D5C19293B6E84FF900DFEAB2D8D11E64D93C68F393037B49477D0F71FCAAEC1"
         },
         {
           "path": "src/GWGUI.MediaEngine/Images/Formats/HardDisk/Qcow2/Qcow2Reader.cs",
@@ -7483,7 +7440,8 @@
           "tokens": 34,
           "hash": "3EF747A1B21FE412C78AC40ACCAA8BC1453ABC53D2CD4EF5A427EEFD6627FE99",
           "shape": "E83D16BB8383208D14620BC2FFDA8790C995EDC55AEA3F8ACEF1E31B20822EFA",
-          "qualification": "Typed parser adapter to verified shared recognition policy in diskReaderProbeReuse; specialized validator retained"
+          "qualification": "Typed parser adapter to verified shared recognition policy in diskReaderProbeReuse; specialized validator retained",
+          "qualificationSourceSha256": "70BE76639F9E100672B2292BC69DC33F4EB3E6A9E513893E48CE2890ECDE6B36"
         }
       ],
       "predecessors": [],
@@ -14077,51 +14035,6 @@
     },
     {
       "language": "CSharp",
-      "hash": "803989E5B6DFE60979D4441956FF6A5A8FB0DDA87FB5ABDEB7D59B9FBB74BCF1",
-      "method": "LoadGame",
-      "tokens": 71,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/BeetlePcfx/Services/ExternalCore.cs",
-          "name": "LoadGame",
-          "line": 236,
-          "tokens": 71,
-          "hash": "803989E5B6DFE60979D4441956FF6A5A8FB0DDA87FB5ABDEB7D59B9FBB74BCF1",
-          "shape": "609CD156B425830BB71DB9369D31EEC479D57869454E37993745D2118A925594"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalCore.cs",
-          "name": "LoadGame",
-          "line": 199,
-          "tokens": 71,
-          "hash": "803989E5B6DFE60979D4441956FF6A5A8FB0DDA87FB5ABDEB7D59B9FBB74BCF1",
-          "shape": "609CD156B425830BB71DB9369D31EEC479D57869454E37993745D2118A925594"
-        }
-      ],
-      "predecessors": [
-        {
-          "path": "src/GWGUI.Emulation.Amiga/Emulators/PUAE/Services/AmigaExternalCore.cs",
-          "name": "LoadGame",
-          "line": 345,
-          "tokens": 71,
-          "hash": "803989E5B6DFE60979D4441956FF6A5A8FB0DDA87FB5ABDEB7D59B9FBB74BCF1",
-          "shape": "609CD156B425830BB71DB9369D31EEC479D57869454E37993745D2118A925594"
-        }
-      ],
-      "shapePredecessors": [
-        {
-          "path": "src/GWGUI.Emulation.Amiga/Emulators/PUAE/Services/AmigaExternalCore.cs",
-          "name": "LoadGame",
-          "line": 345,
-          "tokens": 71,
-          "hash": "803989E5B6DFE60979D4441956FF6A5A8FB0DDA87FB5ABDEB7D59B9FBB74BCF1",
-          "shape": "609CD156B425830BB71DB9369D31EEC479D57869454E37993745D2118A925594"
-        }
-      ],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
       "hash": "8065EF5935E2374A05A7615CB00829A10BAC2FFD555E588EBCC7641E90263CF6",
       "method": "ReadMessage",
       "tokens": 62,
@@ -14776,14 +14689,6 @@
           "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalCore.cs",
           "name": "HardReset",
           "line": 206,
-          "tokens": 52,
-          "hash": "89651D0EF4C4DBC1F923B555458D72FBA349AB4EC263076C86E1BE53C245BDC3",
-          "shape": "AEE701D990A0A8C7B7ACD421F166C8D3AFF63D511EE2DAF4844860E4DEE7A22B"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalCore.cs",
-          "name": "HardReset",
-          "line": 169,
           "tokens": 52,
           "hash": "89651D0EF4C4DBC1F923B555458D72FBA349AB4EC263076C86E1BE53C245BDC3",
           "shape": "AEE701D990A0A8C7B7ACD421F166C8D3AFF63D511EE2DAF4844860E4DEE7A22B"
@@ -15603,15 +15508,7 @@
         {
           "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalCore.cs",
           "name": "ResolveConfiguredMedia",
-          "line": 161,
-          "tokens": 31,
-          "hash": "90ADD1B28438911B47924FF00BAFE41E133EF7DBD830E863FE8D2623CB97CFEE",
-          "shape": "4222899A6C51A11F5BAC755FED8F456EEF948F87F9393E5AB6F5D036D3729E86"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/BeetlePcfx/Services/ExternalCore.cs",
-          "name": "ResolveConfiguredMedia",
-          "line": 147,
+          "line": 167,
           "tokens": 31,
           "hash": "90ADD1B28438911B47924FF00BAFE41E133EF7DBD830E863FE8D2623CB97CFEE",
           "shape": "4222899A6C51A11F5BAC755FED8F456EEF948F87F9393E5AB6F5D036D3729E86"
@@ -15970,14 +15867,6 @@
         },
         {
           "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Exceptions/CoreExceptions.cs",
-          "name": "Text",
-          "line": 59,
-          "tokens": 46,
-          "hash": "9299AE70EAD54A793B6EA18E30A367148081D78DCAFECBA443BB66DA5370BC13",
-          "shape": "88E7C50023076A18F4DD7BC62F9C15D9F0B3F4211553180AA660FFF1FAB41829"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/BeetlePcfx/Exceptions/BeetlePcfxExceptions.cs",
           "name": "Text",
           "line": 59,
           "tokens": 46,
@@ -16881,7 +16770,8 @@
           "tokens": 35,
           "hash": "99CC348EDCBC899F046B28B37E0547716425CCB4C4E49D4CFF6FFA5185D49B31",
           "shape": "DCEEA65751BFCDB6664EC671F661B5B9090D6EE419A3790C42897FBCEB0D4948",
-          "qualification": "Typed installation adapter; original Amiga lookup verified in simpleFactoryReleaseSelectionReuse"
+          "qualification": "Typed installation adapter; original Amiga lookup verified in simpleFactoryReleaseSelectionReuse",
+          "qualificationSourceSha256": "7A5E35BE14547FA16C495DF6D44001C41E8A0A7EF2F4CD68C7DEDC48FDE6D850"
         },
         {
           "path": "src/GWGUI.Emulation.Nec/Emulators/Geargrafx/Factories/GeargrafxMachineFactory.cs",
@@ -16890,16 +16780,18 @@
           "tokens": 35,
           "hash": "99CC348EDCBC899F046B28B37E0547716425CCB4C4E49D4CFF6FFA5185D49B31",
           "shape": "DCEEA65751BFCDB6664EC671F661B5B9090D6EE419A3790C42897FBCEB0D4948",
-          "qualification": "Typed installation adapter; original Amiga lookup verified in simpleFactoryReleaseSelectionReuse"
+          "qualification": "Typed installation adapter; original Amiga lookup verified in simpleFactoryReleaseSelectionReuse",
+          "qualificationSourceSha256": "058AA445E247F0E93D6EB4D9259C2D65594BB82F574DD9CAB43B391C203B0E9B"
         },
         {
           "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Factories/CoreMachineFactory.cs",
           "name": "InstallAsync",
-          "line": 41,
+          "line": 47,
           "tokens": 35,
           "hash": "99CC348EDCBC899F046B28B37E0547716425CCB4C4E49D4CFF6FFA5185D49B31",
           "shape": "DCEEA65751BFCDB6664EC671F661B5B9090D6EE419A3790C42897FBCEB0D4948",
-          "qualification": "Typed installation adapter; original Amiga lookup verified in simpleFactoryReleaseSelectionReuse"
+          "qualification": "Typed installation adapter; original Amiga lookup verified in simpleFactoryReleaseSelectionReuse",
+          "qualificationSourceSha256": "F39729FCEB6B10000AB8C2C24252C01A490CF4D21FACA1C3168886796C090C3A"
         },
         {
           "path": "src/GWGUI.Emulation.Nec/Emulators/BeetleSgx/Factories/BeetleSgxMachineFactory.cs",
@@ -16908,7 +16800,8 @@
           "tokens": 35,
           "hash": "99CC348EDCBC899F046B28B37E0547716425CCB4C4E49D4CFF6FFA5185D49B31",
           "shape": "DCEEA65751BFCDB6664EC671F661B5B9090D6EE419A3790C42897FBCEB0D4948",
-          "qualification": "Typed installation adapter; original Amiga lookup verified in simpleFactoryReleaseSelectionReuse"
+          "qualification": "Typed installation adapter; original Amiga lookup verified in simpleFactoryReleaseSelectionReuse",
+          "qualificationSourceSha256": "4DEF11334E1BDDE0A26A13F1D87439E63DD96BB8F12E2BEDD80ED64B0A1F3AE8"
         },
         {
           "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Factories/CoreMachineFactory.cs",
@@ -16917,7 +16810,8 @@
           "tokens": 35,
           "hash": "99CC348EDCBC899F046B28B37E0547716425CCB4C4E49D4CFF6FFA5185D49B31",
           "shape": "DCEEA65751BFCDB6664EC671F661B5B9090D6EE419A3790C42897FBCEB0D4948",
-          "qualification": "Typed installation adapter; original Amiga lookup verified in simpleFactoryReleaseSelectionReuse"
+          "qualification": "Typed installation adapter; original Amiga lookup verified in simpleFactoryReleaseSelectionReuse",
+          "qualificationSourceSha256": "46E71C903D80DEAECBD6089F3BBBF30030BBFCDA4FFB5021C18E259B1F8851AC"
         },
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Factories/CoreMachineFactory.cs",
@@ -17258,33 +17152,6 @@
           "shape": "00C4BB87831F6E7602FE3D30589EF9D585027DA9937E95C73D54096266C84474"
         }
       ],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
-      "hash": "9B14F3B1FA53AB96A05DB2D5C63ED2D1C62AF5E71B02349342308B2544D1B844",
-      "method": "ValidateExtension",
-      "tokens": 49,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalCore.cs",
-          "name": "ValidateExtension",
-          "line": 260,
-          "tokens": 49,
-          "hash": "9B14F3B1FA53AB96A05DB2D5C63ED2D1C62AF5E71B02349342308B2544D1B844",
-          "shape": "AC95E65908476B9CE9520D4BB8EBD6158DBDF7604CE6AAFA43340694EC485BDA"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalCore.cs",
-          "name": "ValidateExtension",
-          "line": 207,
-          "tokens": 49,
-          "hash": "9B14F3B1FA53AB96A05DB2D5C63ED2D1C62AF5E71B02349342308B2544D1B844",
-          "shape": "AC95E65908476B9CE9520D4BB8EBD6158DBDF7604CE6AAFA43340694EC485BDA"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
       "qualification": "pending"
     },
     {
@@ -17982,7 +17849,7 @@
     {
       "language": "CSharp",
       "hash": "A1E03750FEB3292ACEB41656386F4A8AA8B05077D9ABFB7DA103AA3D71320B9F",
-      "method": "ToModule",
+      "method": "ToEpoch",
       "tokens": 103,
       "current": [
         {
@@ -18012,42 +17879,6 @@
       ],
       "predecessors": [],
       "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
-      "hash": "A20755D3D687AB4CE8990E0E99A63E6CA03644312CEB677FACE54035FCDD32B8",
-      "method": "WriteManifestAsync",
-      "tokens": 83,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/BeetlePcfx/Services/ExternalCoreInstaller.cs",
-          "name": "WriteManifestAsync",
-          "line": 66,
-          "tokens": 83,
-          "hash": "A20755D3D687AB4CE8990E0E99A63E6CA03644312CEB677FACE54035FCDD32B8",
-          "shape": "3AB715B51902B6D5D9B0906BC8123940BF3F749FDBA58C6F0857C49CC519DAFE"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalCoreInstaller.cs",
-          "name": "WriteManifestAsync",
-          "line": 63,
-          "tokens": 83,
-          "hash": "A20755D3D687AB4CE8990E0E99A63E6CA03644312CEB677FACE54035FCDD32B8",
-          "shape": "3AB715B51902B6D5D9B0906BC8123940BF3F749FDBA58C6F0857C49CC519DAFE"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [
-        {
-          "path": "src/GWGUI.Emulation.Amiga/Emulators/PUAE/Services/AmigaExternalCoreInstaller.cs",
-          "name": "WriteManifestAsync",
-          "line": 69,
-          "tokens": 83,
-          "hash": "3D4D5F093F7A19C4039F7DC69C5DEDF00C4E4241F23342DCA17FBBC70B4C6138",
-          "shape": "3AB715B51902B6D5D9B0906BC8123940BF3F749FDBA58C6F0857C49CC519DAFE"
-        }
-      ],
       "qualification": "pending"
     },
     {
@@ -18094,7 +17925,7 @@
         {
           "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/CoreReleaseService.cs",
           "name": "GetAvailableAsync",
-          "line": 42,
+          "line": 44,
           "tokens": 129,
           "hash": "A348D62D8E2C4BEFCED74D30353A85738718F07B9B313A6F52D4E2186807E444",
           "shape": "E14466FE6533CD42589822A63E227317DB46341C3DA1D1C684366355535C008B"
@@ -18260,7 +18091,7 @@
     {
       "language": "CSharp",
       "hash": "A61349BFDFFA5D404CE7D0D458204D435194B5E4D84870DF4F9FBE26A86A9946",
-      "method": "ToFairchild",
+      "method": "ToEpoch",
       "tokens": 36,
       "current": [
         {
@@ -19390,16 +19221,6 @@
           "qualificationSourceSha256": "576FAFA0A275BA47E53D7B834B44FA4E37E84E6056AD4E5FE06D363527CCC2AB"
         },
         {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/CoreReleaseService.cs",
-          "name": "InstallAsync",
-          "line": 62,
-          "tokens": 263,
-          "hash": "AE862C55852F57DEEA2FA1C5795147ACB588F60D40590B1098AE4333A5462B3B",
-          "shape": "3A5AF1DA73918C681E4201FE380BCDF5FC1E065C8E8A775786B2B401A371D8AB",
-          "qualification": "Qualified module-owned installation adapter: original SDK operations and current callbacks resolved; unchanged temporary-file cleanup policy verified in installationAdapterFinalQualification",
-          "qualificationSourceSha256": "2C808DC5F63F2DDEF71E5EED648ED517EA41063F0C76AC23A246C9A8A03DE2FE"
-        },
-        {
           "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/CoreReleaseService.cs",
           "name": "InstallAsync",
           "line": 62,
@@ -19412,7 +19233,7 @@
       ],
       "predecessors": [],
       "shapePredecessors": [],
-      "qualification": "All occurrences qualified individually; see member evidence"
+      "qualification": "pending"
     },
     {
       "language": "CSharp",
@@ -19497,7 +19318,8 @@
           "tokens": 63,
           "hash": "AF031A4965C5AF9D0297CBB6B31EFC592740C1D29D9F5AC4DF338EC6A86862F3",
           "shape": "5344F2FFD7843BA60A8B40526F570D3C9E9248EBBC225AB7B9E413DAFDC2B4F9",
-          "qualification": "Reader-selection stage shared and verified in sectorSourceSelectionReuse; remaining ownership review pending"
+          "qualification": "Reader-selection stage shared and verified in sectorSourceSelectionReuse; remaining ownership review pending",
+          "qualificationSourceSha256": "5803A0DECE353D3A57D1F3F0710FF7E734C11919C454D7D4C6B3F26C9A57ABFD"
         },
         {
           "path": "src/GWGUI.MediaEngine/Images/Conversion/Atari/AtrConversionService.cs",
@@ -19506,7 +19328,8 @@
           "tokens": 63,
           "hash": "AF031A4965C5AF9D0297CBB6B31EFC592740C1D29D9F5AC4DF338EC6A86862F3",
           "shape": "5344F2FFD7843BA60A8B40526F570D3C9E9248EBBC225AB7B9E413DAFDC2B4F9",
-          "qualification": "Reader-selection stage shared and verified in sectorSourceSelectionReuse; remaining ownership review pending"
+          "qualification": "Reader-selection stage shared and verified in sectorSourceSelectionReuse; remaining ownership review pending",
+          "qualificationSourceSha256": "CA5A3E9E01629E934311B931362487085869A228DC8618B67A8FD89EA17F1718"
         },
         {
           "path": "src/GWGUI.MediaEngine/Images/Conversion/Acorn/BbcDfsConversionService.cs",
@@ -19515,7 +19338,8 @@
           "tokens": 63,
           "hash": "AF031A4965C5AF9D0297CBB6B31EFC592740C1D29D9F5AC4DF338EC6A86862F3",
           "shape": "5344F2FFD7843BA60A8B40526F570D3C9E9248EBBC225AB7B9E413DAFDC2B4F9",
-          "qualification": "Reader-selection stage shared and verified in sectorSourceSelectionReuse; remaining ownership review pending"
+          "qualification": "Reader-selection stage shared and verified in sectorSourceSelectionReuse; remaining ownership review pending",
+          "qualificationSourceSha256": "CB09892725EE4220991BC2CD43F1F082130DB5ACDC4C0ABFF2DFA11B54AE7C7C"
         }
       ],
       "predecessors": [],
@@ -19525,7 +19349,7 @@
     {
       "language": "CSharp",
       "hash": "B053A3AB4F0B78A37DED57B2D744801187AED6EC54FEEAFE4B1AA9C454D6F48C",
-      "method": "SharpEmulationModule",
+      "method": "ColecoEmulationModule",
       "tokens": 47,
       "current": [
         {
@@ -21232,7 +21056,8 @@
           "tokens": 77,
           "hash": "C3E60F98B301BC5AF48BC237ACAF244B46FB9F5777C62F9BF455AE71E441FC5D",
           "shape": "9154E847E998C5111A9FEDED3DB977BC0122F77F0942C8475D8579AFD08BA9DB",
-          "qualification": "Typed installation adapter; shared selection and progress verified in factoryReleaseSelectionReuse"
+          "qualification": "Typed installation adapter; shared selection and progress verified in factoryReleaseSelectionReuse",
+          "qualificationSourceSha256": "6DBC69AAA92EAF02A3C57CA9186EEF778766A030DB5789C5617C0C09959ECB15"
         },
         {
           "path": "src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Factories/MachineFactory.cs",
@@ -21241,7 +21066,8 @@
           "tokens": 77,
           "hash": "C3E60F98B301BC5AF48BC237ACAF244B46FB9F5777C62F9BF455AE71E441FC5D",
           "shape": "9154E847E998C5111A9FEDED3DB977BC0122F77F0942C8475D8579AFD08BA9DB",
-          "qualification": "Typed installation adapter; shared selection and progress verified in factoryReleaseSelectionReuse"
+          "qualification": "Typed installation adapter; shared selection and progress verified in factoryReleaseSelectionReuse",
+          "qualificationSourceSha256": "D13453EA61B3E892F29D0A97BEEEEC823D11AE163E076CFA38E12A5BB2EBC875"
         },
         {
           "path": "src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Factories/LibretroMachineFactory.cs",
@@ -21250,7 +21076,8 @@
           "tokens": 77,
           "hash": "C3E60F98B301BC5AF48BC237ACAF244B46FB9F5777C62F9BF455AE71E441FC5D",
           "shape": "9154E847E998C5111A9FEDED3DB977BC0122F77F0942C8475D8579AFD08BA9DB",
-          "qualification": "Typed installation adapter; shared selection and progress verified in factoryReleaseSelectionReuse"
+          "qualification": "Typed installation adapter; shared selection and progress verified in factoryReleaseSelectionReuse",
+          "qualificationSourceSha256": "CB241530F11D09CF1D3F5778891148F407918AAA42A210DC9EC5356A36E704DE"
         },
         {
           "path": "src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Factories/LibretroMachineFactory.cs",
@@ -21259,7 +21086,8 @@
           "tokens": 77,
           "hash": "C3E60F98B301BC5AF48BC237ACAF244B46FB9F5777C62F9BF455AE71E441FC5D",
           "shape": "9154E847E998C5111A9FEDED3DB977BC0122F77F0942C8475D8579AFD08BA9DB",
-          "qualification": "Typed installation adapter; shared selection and progress verified in factoryReleaseSelectionReuse"
+          "qualification": "Typed installation adapter; shared selection and progress verified in factoryReleaseSelectionReuse",
+          "qualificationSourceSha256": "9ED522B638734D555AB18E1D50BA60CFB65C7CEBCAAA34DBD3620B6B58C75F4F"
         },
         {
           "path": "src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Factories/LibretroMachineFactory.cs",
@@ -21268,7 +21096,8 @@
           "tokens": 77,
           "hash": "C3E60F98B301BC5AF48BC237ACAF244B46FB9F5777C62F9BF455AE71E441FC5D",
           "shape": "9154E847E998C5111A9FEDED3DB977BC0122F77F0942C8475D8579AFD08BA9DB",
-          "qualification": "Typed installation adapter; shared selection and progress verified in factoryReleaseSelectionReuse"
+          "qualification": "Typed installation adapter; shared selection and progress verified in factoryReleaseSelectionReuse",
+          "qualificationSourceSha256": "BA79F422BDF1ABC364DE79346EE0067B2E90A6FC4679C48E21F5E8779D913801"
         },
         {
           "path": "src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Factories/LibretroMachineFactory.cs",
@@ -21277,7 +21106,8 @@
           "tokens": 77,
           "hash": "C3E60F98B301BC5AF48BC237ACAF244B46FB9F5777C62F9BF455AE71E441FC5D",
           "shape": "9154E847E998C5111A9FEDED3DB977BC0122F77F0942C8475D8579AFD08BA9DB",
-          "qualification": "Typed installation adapter; shared selection and progress verified in factoryReleaseSelectionReuse"
+          "qualification": "Typed installation adapter; shared selection and progress verified in factoryReleaseSelectionReuse",
+          "qualificationSourceSha256": "43C92610BB0C119B09EB2C1EC952166B5E555DB9D9597066174D508422463906"
         },
         {
           "path": "src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Factories/LibretroMachineFactory.cs",
@@ -21286,7 +21116,8 @@
           "tokens": 77,
           "hash": "C3E60F98B301BC5AF48BC237ACAF244B46FB9F5777C62F9BF455AE71E441FC5D",
           "shape": "9154E847E998C5111A9FEDED3DB977BC0122F77F0942C8475D8579AFD08BA9DB",
-          "qualification": "Typed installation adapter; shared selection and progress verified in factoryReleaseSelectionReuse"
+          "qualification": "Typed installation adapter; shared selection and progress verified in factoryReleaseSelectionReuse",
+          "qualificationSourceSha256": "02972C315EA4038BCDC58D79C4DE6EBFA63108CE5D578041527A040C2CE80AAB"
         },
         {
           "path": "src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Factories/MachineFactory.cs",
@@ -21295,7 +21126,8 @@
           "tokens": 77,
           "hash": "C3E60F98B301BC5AF48BC237ACAF244B46FB9F5777C62F9BF455AE71E441FC5D",
           "shape": "9154E847E998C5111A9FEDED3DB977BC0122F77F0942C8475D8579AFD08BA9DB",
-          "qualification": "Typed installation adapter; shared selection and progress verified in factoryReleaseSelectionReuse"
+          "qualification": "Typed installation adapter; shared selection and progress verified in factoryReleaseSelectionReuse",
+          "qualificationSourceSha256": "6AC5A9F44318EEEF5742F78CA7F23DC8D5EB4ABC0B62557C270A247382426149"
         },
         {
           "path": "src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Factories/MachineFactory.cs",
@@ -21304,7 +21136,8 @@
           "tokens": 77,
           "hash": "C3E60F98B301BC5AF48BC237ACAF244B46FB9F5777C62F9BF455AE71E441FC5D",
           "shape": "9154E847E998C5111A9FEDED3DB977BC0122F77F0942C8475D8579AFD08BA9DB",
-          "qualification": "Typed installation adapter; shared selection and progress verified in factoryReleaseSelectionReuse"
+          "qualification": "Typed installation adapter; shared selection and progress verified in factoryReleaseSelectionReuse",
+          "qualificationSourceSha256": "F2EF6C4231BAF4CD84E14193E3938623D975771CA0BB8C44555B39B546E7ECAF"
         },
         {
           "path": "src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Factories/MachineFactory.cs",
@@ -21313,7 +21146,8 @@
           "tokens": 77,
           "hash": "C3E60F98B301BC5AF48BC237ACAF244B46FB9F5777C62F9BF455AE71E441FC5D",
           "shape": "9154E847E998C5111A9FEDED3DB977BC0122F77F0942C8475D8579AFD08BA9DB",
-          "qualification": "Typed installation adapter; shared selection and progress verified in factoryReleaseSelectionReuse"
+          "qualification": "Typed installation adapter; shared selection and progress verified in factoryReleaseSelectionReuse",
+          "qualificationSourceSha256": "6CE03C0EFDC83CC8CB5FD473693679705675C593AA271BAA7CE06F753D6FD697"
         },
         {
           "path": "src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Factories/MachineFactory.cs",
@@ -21322,7 +21156,8 @@
           "tokens": 77,
           "hash": "C3E60F98B301BC5AF48BC237ACAF244B46FB9F5777C62F9BF455AE71E441FC5D",
           "shape": "9154E847E998C5111A9FEDED3DB977BC0122F77F0942C8475D8579AFD08BA9DB",
-          "qualification": "Typed installation adapter; shared selection and progress verified in factoryReleaseSelectionReuse"
+          "qualification": "Typed installation adapter; shared selection and progress verified in factoryReleaseSelectionReuse",
+          "qualificationSourceSha256": "82B3D8C3711FBA851F6C5F50FB5C38F3FF7702F5947FEAA1B9F43C04A14F0B8E"
         },
         {
           "path": "src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Factories/MachineFactory.cs",
@@ -21331,7 +21166,8 @@
           "tokens": 77,
           "hash": "C3E60F98B301BC5AF48BC237ACAF244B46FB9F5777C62F9BF455AE71E441FC5D",
           "shape": "9154E847E998C5111A9FEDED3DB977BC0122F77F0942C8475D8579AFD08BA9DB",
-          "qualification": "Typed installation adapter; shared selection and progress verified in factoryReleaseSelectionReuse"
+          "qualification": "Typed installation adapter; shared selection and progress verified in factoryReleaseSelectionReuse",
+          "qualificationSourceSha256": "D88FED7CD02390D4436A7900440F9076929A0373E6B85BA5330BBC28D1A12759"
         }
       ],
       "predecessors": [],
@@ -22133,14 +21969,6 @@
           "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalCore.cs",
           "name": "ResolveCorePath",
           "line": 301,
-          "tokens": 54,
-          "hash": "C882F494804D50CDCBDE09EBB9AE8703FD2146EEB5333443DB164AACC5D9DD07",
-          "shape": "B79D87DCD4BB30A034126C7C4DC61FF9956CE7F6CF003416A4ECE238C727ADF3"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalCore.cs",
-          "name": "ResolveCorePath",
-          "line": 321,
           "tokens": 54,
           "hash": "C882F494804D50CDCBDE09EBB9AE8703FD2146EEB5333443DB164AACC5D9DD07",
           "shape": "B79D87DCD4BB30A034126C7C4DC61FF9956CE7F6CF003416A4ECE238C727ADF3"
@@ -23564,14 +23392,6 @@
           "shape": "F702034DA35A8EF74F18338D982FC16704896D94B4BA1A01D4F4AB0257210444"
         },
         {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Factories/CoreMachineFactory.cs",
-          "name": "FindInstalledCorePathAsync",
-          "line": 47,
-          "tokens": 98,
-          "hash": "D2E6CE7C8C0A75A94192DFF41B7C02F9C0DF62DFB4C95A3BE8B067036808033C",
-          "shape": "F702034DA35A8EF74F18338D982FC16704896D94B4BA1A01D4F4AB0257210444"
-        },
-        {
           "path": "src/GWGUI.Emulation.Nec/Emulators/BeetleSgx/Factories/BeetleSgxMachineFactory.cs",
           "name": "FindInstalledCorePathAsync",
           "line": 53,
@@ -23745,14 +23565,6 @@
           "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalCore.cs",
           "name": "SaveState",
           "line": 223,
-          "tokens": 127,
-          "hash": "D4DB5A672ACF48D443BECF1F3F96694C9422E31CD511E3FAEA6DAE6BF7E8B7F3",
-          "shape": "E7A743DC0BC4193847D70969C3383F9DC430CC5C2E0DC3C2389DB6B77EF39EF3"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalCore.cs",
-          "name": "SaveState",
-          "line": 207,
           "tokens": 127,
           "hash": "D4DB5A672ACF48D443BECF1F3F96694C9422E31CD511E3FAEA6DAE6BF7E8B7F3",
           "shape": "E7A743DC0BC4193847D70969C3383F9DC430CC5C2E0DC3C2389DB6B77EF39EF3"
@@ -24297,14 +24109,6 @@
           "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalCore.cs",
           "name": "LoadState",
           "line": 240,
-          "tokens": 102,
-          "hash": "DD2DA12A202F91EE3364498CFDEB77C522444D6495FE329D459AB4E570AE2BE1",
-          "shape": "3D25C498D59996BAF974F6ADD529195FAC747540354E0F9141E80D4BA0DBA8FF"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalCore.cs",
-          "name": "LoadState",
-          "line": 224,
           "tokens": 102,
           "hash": "DD2DA12A202F91EE3364498CFDEB77C522444D6495FE329D459AB4E570AE2BE1",
           "shape": "3D25C498D59996BAF974F6ADD529195FAC747540354E0F9141E80D4BA0DBA8FF"
@@ -24987,15 +24791,7 @@
         {
           "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/CoreReleaseService.cs",
           "name": "GetInstalledVersion",
-          "line": 28,
-          "tokens": 115,
-          "hash": "E3FF6377348D5151A17D1FF1FAA3AC99DCD427A39A08B773A28932EF7FBFACCB",
-          "shape": "A161A81547E62C0FD3388836E8D721AEDF45BC817A592BD82C806273B7FAEDEC"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/BeetlePcfx/Services/CoreReleaseService.cs",
-          "name": "GetInstalledVersion",
-          "line": 28,
+          "line": 30,
           "tokens": 115,
           "hash": "E3FF6377348D5151A17D1FF1FAA3AC99DCD427A39A08B773A28932EF7FBFACCB",
           "shape": "A161A81547E62C0FD3388836E8D721AEDF45BC817A592BD82C806273B7FAEDEC"
@@ -28371,45 +28167,6 @@
       "qualification": "pending-symbol-and-policy-comparison"
     },
     {
-      "shape": "1376CC9F91B10C5E9D5F81A7CB5EF5006C9041371EBAF3091F3B1D23FA1CEAAF",
-      "tokens": 494,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/CoreHost.cs",
-          "name": "Run",
-          "line": 18,
-          "tokens": 494,
-          "hash": "50B794B95FE96160C8B71CBD465CA710EBD9D37F5EE590DC79F4D729B7216D83",
-          "shape": "1376CC9F91B10C5E9D5F81A7CB5EF5006C9041371EBAF3091F3B1D23FA1CEAAF",
-          "qualificationFrameResponse": "Partial fragment only: original Amiga RunFrame response ordering shared in legacyHostFrameResponseReuse; remaining initialization/command/session ownership control still pending",
-          "qualificationFrameResponseSourceSha256": "78839F24A80B4384BBC20AF60B82F0329AE14B77D2355E123A4B95131077E4BE",
-          "qualificationFixedVideoOwnership": "Partial acquisition/lifetime fragment only: original fixed Amiga map/view scopes shared in legacyFixedVideoOwnershipReuse; connected body unchanged; remaining core initialization/command/session controls pending",
-          "qualificationFixedVideoOwnershipSourceSha256": "78839F24A80B4384BBC20AF60B82F0329AE14B77D2355E123A4B95131077E4BE",
-          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
-          "qualificationCoreLifetimeSourceSha256": "78839F24A80B4384BBC20AF60B82F0329AE14B77D2355E123A4B95131077E4BE",
-          "qualificationPathMedia": "Partial original Amiga path-media dispatch and disk-selection response only; native slot protocol and local commands remain separate; see legacyHostRemainingControls; full session qualification pending",
-          "qualificationPathMediaSourceSha256": "78839F24A80B4384BBC20AF60B82F0329AE14B77D2355E123A4B95131077E4BE"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/BeetlePcfx/Services/CoreHost.cs",
-          "name": "Run",
-          "line": 18,
-          "tokens": 494,
-          "hash": "7EAB0A67FBAD57CD7CA3FDE66B47911E0540D6DA64F6C32E47A8E34AB2039698",
-          "shape": "1376CC9F91B10C5E9D5F81A7CB5EF5006C9041371EBAF3091F3B1D23FA1CEAAF",
-          "qualificationFrameResponse": "Partial fragment only: original Amiga RunFrame response ordering shared in legacyHostFrameResponseReuse; remaining initialization/command/session ownership control still pending",
-          "qualificationFrameResponseSourceSha256": "E17B49B4F9219B2910C0DE025F8EB4332EA1266254B24BD211E1B2E2F8120784",
-          "qualificationFixedVideoOwnership": "Partial acquisition/lifetime fragment only: original fixed Amiga map/view scopes shared in legacyFixedVideoOwnershipReuse; connected body unchanged; remaining core initialization/command/session controls pending",
-          "qualificationFixedVideoOwnershipSourceSha256": "E17B49B4F9219B2910C0DE025F8EB4332EA1266254B24BD211E1B2E2F8120784",
-          "qualificationCoreLifetime": "Partial owned-core lifetime only: command/finally detach through original SDK owner; historical replacement releases restored and native initialization preserved in hostCoreLifetimeReuse; full dispatch/session qualification still pending",
-          "qualificationCoreLifetimeSourceSha256": "E17B49B4F9219B2910C0DE025F8EB4332EA1266254B24BD211E1B2E2F8120784",
-          "qualificationPathMedia": "Partial original Amiga path-media dispatch and disk-selection response only; native slot protocol and local commands remain separate; see legacyHostRemainingControls; full session qualification pending",
-          "qualificationPathMediaSourceSha256": "E17B49B4F9219B2910C0DE025F8EB4332EA1266254B24BD211E1B2E2F8120784"
-        }
-      ],
-      "qualification": "pending-symbol-and-policy-comparison"
-    },
-    {
       "shape": "1789D408E3740C44F7AB0E4D8A217636004747441EF6E67E95D85449FDC562F6",
       "tokens": 45,
       "current": [
@@ -28788,19 +28545,19 @@
       "tokens": 125,
       "current": [
         {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/BeetlePcfx/Services/ExternalCore.cs",
-          "name": "PrepareContentPath",
-          "line": 149,
-          "tokens": 125,
-          "hash": "778D5F05FD76A5A0DD540BF71AD5B138350AA33413B5F639E9116B995E8CA409",
-          "shape": "26505774D52C147D3A4D8EE1C9C518D190D3F08C1D9349FD6A8FE9A88A1AD018"
-        },
-        {
           "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalCore.cs",
           "name": "PrepareContentPath",
           "line": 138,
           "tokens": 125,
           "hash": "E49044D62F2C2C9A913A1E3F17A894CE2A05FE134DAD05A969F9C1BF9FB2E9D9",
+          "shape": "26505774D52C147D3A4D8EE1C9C518D190D3F08C1D9349FD6A8FE9A88A1AD018"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Nec/Emulators/BeetlePcfx/Functions/BeetlePcfxStorageFunctions.cs",
+          "name": "PrepareContentPath",
+          "line": 84,
+          "tokens": 125,
+          "hash": "778D5F05FD76A5A0DD540BF71AD5B138350AA33413B5F639E9116B995E8CA409",
           "shape": "26505774D52C147D3A4D8EE1C9C518D190D3F08C1D9349FD6A8FE9A88A1AD018"
         }
       ],
@@ -28902,7 +28659,8 @@
           "tokens": 44,
           "hash": "7AF6C35858B03DE5DCB27E4772A23E403B545D43E055CB048653C695A20D9C38",
           "shape": "2FD4419D0BF476005C2BFE6AA73F3F36B24FA2A1D53F079ADAA16FC0C2805402",
-          "qualification": "Typed installation adapter; original Amiga lookup verified in simpleFactoryReleaseSelectionReuse"
+          "qualification": "Typed installation adapter; original Amiga lookup verified in simpleFactoryReleaseSelectionReuse",
+          "qualificationSourceSha256": "1F2B152F87BC090A36892C055ED35306C7E4A8ACCA22273B28129B773F45F4E3"
         },
         {
           "path": "src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Factories/MachineFactory.cs",
@@ -28911,7 +28669,8 @@
           "tokens": 44,
           "hash": "C353005657893721AA96701F1A4CA7DB01FE2C19B29F6DB52E18B54E2FA8B26B",
           "shape": "2FD4419D0BF476005C2BFE6AA73F3F36B24FA2A1D53F079ADAA16FC0C2805402",
-          "qualification": "Typed installation adapter; original Amiga lookup verified in simpleFactoryReleaseSelectionReuse"
+          "qualification": "Typed installation adapter; original Amiga lookup verified in simpleFactoryReleaseSelectionReuse",
+          "qualificationSourceSha256": "D940CF020E9D0F546B8A14965B4CC3A1B1A266A9917B1B03D2DF9D923D3EDB64"
         }
       ],
       "qualification": "All occurrences qualified individually; see member evidence"
@@ -29096,51 +28855,6 @@
       "qualification": "Partial occurrence qualification; unannotated members pending"
     },
     {
-      "shape": "3A5AF1DA73918C681E4201FE380BCDF5FC1E065C8E8A775786B2B401A371D8AB",
-      "tokens": 263,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/CoreReleaseService.cs",
-          "name": "InstallAsync",
-          "line": 62,
-          "tokens": 263,
-          "hash": "AE862C55852F57DEEA2FA1C5795147ACB588F60D40590B1098AE4333A5462B3B",
-          "shape": "3A5AF1DA73918C681E4201FE380BCDF5FC1E065C8E8A775786B2B401A371D8AB",
-          "qualification": "Qualified module-owned installation adapter: original SDK operations and current callbacks resolved; unchanged temporary-file cleanup policy verified in installationAdapterFinalQualification",
-          "qualificationSourceSha256": "576FAFA0A275BA47E53D7B834B44FA4E37E84E6056AD4E5FE06D363527CCC2AB"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/CoreReleaseService.cs",
-          "name": "InstallAsync",
-          "line": 62,
-          "tokens": 263,
-          "hash": "AE862C55852F57DEEA2FA1C5795147ACB588F60D40590B1098AE4333A5462B3B",
-          "shape": "3A5AF1DA73918C681E4201FE380BCDF5FC1E065C8E8A775786B2B401A371D8AB",
-          "qualification": "Qualified module-owned installation adapter: original SDK operations and current callbacks resolved; unchanged temporary-file cleanup policy verified in installationAdapterFinalQualification",
-          "qualificationSourceSha256": "2C808DC5F63F2DDEF71E5EED648ED517EA41063F0C76AC23A246C9A8A03DE2FE"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/BeetlePcfx/Services/CoreReleaseService.cs",
-          "name": "InstallAsync",
-          "line": 62,
-          "tokens": 263,
-          "hash": "889A3C666BD422F1D9F8BBCF6029821CB8A07E57F02065A91630668DD6FF05D7",
-          "shape": "3A5AF1DA73918C681E4201FE380BCDF5FC1E065C8E8A775786B2B401A371D8AB"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/CoreReleaseService.cs",
-          "name": "InstallAsync",
-          "line": 62,
-          "tokens": 263,
-          "hash": "AE862C55852F57DEEA2FA1C5795147ACB588F60D40590B1098AE4333A5462B3B",
-          "shape": "3A5AF1DA73918C681E4201FE380BCDF5FC1E065C8E8A775786B2B401A371D8AB",
-          "qualification": "Qualified module-owned installation adapter: original SDK operations and current callbacks resolved; unchanged temporary-file cleanup policy verified in installationAdapterFinalQualification",
-          "qualificationSourceSha256": "2909911145E60E1206A5C8B35E88C08B17CB45E02F17EB0E771845C7FE823CE5"
-        }
-      ],
-      "qualification": "pending-symbol-and-policy-comparison"
-    },
-    {
       "shape": "3AB6CA3847DF5D91EB16620D10AD321596418E1794717590706AF6AD523FCA2F",
       "tokens": 32,
       "current": [
@@ -29316,22 +29030,6 @@
           "line": 240,
           "tokens": 102,
           "hash": "DD2DA12A202F91EE3364498CFDEB77C522444D6495FE329D459AB4E570AE2BE1",
-          "shape": "3D25C498D59996BAF974F6ADD529195FAC747540354E0F9141E80D4BA0DBA8FF"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalCore.cs",
-          "name": "LoadState",
-          "line": 224,
-          "tokens": 102,
-          "hash": "DD2DA12A202F91EE3364498CFDEB77C522444D6495FE329D459AB4E570AE2BE1",
-          "shape": "3D25C498D59996BAF974F6ADD529195FAC747540354E0F9141E80D4BA0DBA8FF"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/BeetlePcfx/Services/ExternalCore.cs",
-          "name": "LoadState",
-          "line": 196,
-          "tokens": 102,
-          "hash": "1DC4636BB888E114401E77BC8569F30FAE8E5D6CC783372F27B2F92F40AF9B16",
           "shape": "3D25C498D59996BAF974F6ADD529195FAC747540354E0F9141E80D4BA0DBA8FF"
         },
         {
@@ -30503,53 +30201,6 @@
           "tokens": 33,
           "hash": "FF9807CCB038D15B9D344D77536B34EFAB92C487930EB520ACDE46D979638216",
           "shape": "5E44202DB023FC9E08E1F1A67F6EF8DF48CEDA239C8B8E6056C00324C9C623F5"
-        }
-      ],
-      "qualification": "pending-symbol-and-policy-comparison"
-    },
-    {
-      "shape": "6074D3191E5899BF0143C1089F4D8E300AA659E7B578E2DB40325689389C80F8",
-      "tokens": 53,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Factories/CoreMachineFactory.cs",
-          "name": "TryHandleHostCommand",
-          "line": 22,
-          "tokens": 53,
-          "hash": "20A444877B6B88E6C341063D7DBC3C3BDD8203E03E3C4C0E75734B88D6D9E743",
-          "shape": "6074D3191E5899BF0143C1089F4D8E300AA659E7B578E2DB40325689389C80F8"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/BeetlePcfx/Factories/BeetlePcfxMachineFactory.cs",
-          "name": "TryHandleHostCommand",
-          "line": 32,
-          "tokens": 53,
-          "hash": "50032695D87DD35B287EACFB36DBAF21BE4CD2EDE7C895396B890E3D886B8D03",
-          "shape": "6074D3191E5899BF0143C1089F4D8E300AA659E7B578E2DB40325689389C80F8"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/BeetlePceFast/Factories/BeetlePceFastMachineFactory.cs",
-          "name": "TryHandleHostCommand",
-          "line": 41,
-          "tokens": 53,
-          "hash": "20A444877B6B88E6C341063D7DBC3C3BDD8203E03E3C4C0E75734B88D6D9E743",
-          "shape": "6074D3191E5899BF0143C1089F4D8E300AA659E7B578E2DB40325689389C80F8"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Factories/CoreMachineFactory.cs",
-          "name": "TryHandleHostCommand",
-          "line": 22,
-          "tokens": 53,
-          "hash": "20A444877B6B88E6C341063D7DBC3C3BDD8203E03E3C4C0E75734B88D6D9E743",
-          "shape": "6074D3191E5899BF0143C1089F4D8E300AA659E7B578E2DB40325689389C80F8"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Factories/CoreMachineFactory.cs",
-          "name": "TryHandleHostCommand",
-          "line": 57,
-          "tokens": 53,
-          "hash": "20A444877B6B88E6C341063D7DBC3C3BDD8203E03E3C4C0E75734B88D6D9E743",
-          "shape": "6074D3191E5899BF0143C1089F4D8E300AA659E7B578E2DB40325689389C80F8"
         }
       ],
       "qualification": "pending-symbol-and-policy-comparison"
@@ -32696,22 +32347,6 @@
           "shape": "AC95E65908476B9CE9520D4BB8EBD6158DBDF7604CE6AAFA43340694EC485BDA"
         },
         {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalCore.cs",
-          "name": "ValidateExtension",
-          "line": 260,
-          "tokens": 49,
-          "hash": "9B14F3B1FA53AB96A05DB2D5C63ED2D1C62AF5E71B02349342308B2544D1B844",
-          "shape": "AC95E65908476B9CE9520D4BB8EBD6158DBDF7604CE6AAFA43340694EC485BDA"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/BeetlePcfx/Services/ExternalCore.cs",
-          "name": "ValidateExtension",
-          "line": 228,
-          "tokens": 49,
-          "hash": "BBCF4B1EEDAC3F65068A7AEBB3A9C86CAF4DF27FD4F4E7B9957377A5BE4A5BB5",
-          "shape": "AC95E65908476B9CE9520D4BB8EBD6158DBDF7604CE6AAFA43340694EC485BDA"
-        },
-        {
           "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalCore.cs",
           "name": "ValidateExtension",
           "line": 207,
@@ -32818,22 +32453,6 @@
           "line": 206,
           "tokens": 52,
           "hash": "89651D0EF4C4DBC1F923B555458D72FBA349AB4EC263076C86E1BE53C245BDC3",
-          "shape": "AEE701D990A0A8C7B7ACD421F166C8D3AFF63D511EE2DAF4844860E4DEE7A22B"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalCore.cs",
-          "name": "HardReset",
-          "line": 169,
-          "tokens": 52,
-          "hash": "89651D0EF4C4DBC1F923B555458D72FBA349AB4EC263076C86E1BE53C245BDC3",
-          "shape": "AEE701D990A0A8C7B7ACD421F166C8D3AFF63D511EE2DAF4844860E4DEE7A22B"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/BeetlePcfx/Services/ExternalCore.cs",
-          "name": "HardReset",
-          "line": 162,
-          "tokens": 52,
-          "hash": "0395F0D10AF4BA8C971FC18255D5964E754E5F7B99949586EAA32179A76907FF",
           "shape": "AEE701D990A0A8C7B7ACD421F166C8D3AFF63D511EE2DAF4844860E4DEE7A22B"
         },
         {
@@ -33176,22 +32795,6 @@
           "line": 301,
           "tokens": 54,
           "hash": "C882F494804D50CDCBDE09EBB9AE8703FD2146EEB5333443DB164AACC5D9DD07",
-          "shape": "B79D87DCD4BB30A034126C7C4DC61FF9956CE7F6CF003416A4ECE238C727ADF3"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalCore.cs",
-          "name": "ResolveCorePath",
-          "line": 321,
-          "tokens": 54,
-          "hash": "C882F494804D50CDCBDE09EBB9AE8703FD2146EEB5333443DB164AACC5D9DD07",
-          "shape": "B79D87DCD4BB30A034126C7C4DC61FF9956CE7F6CF003416A4ECE238C727ADF3"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/BeetlePcfx/Services/ExternalCore.cs",
-          "name": "ResolveCorePath",
-          "line": 250,
-          "tokens": 54,
-          "hash": "CB178661D07436105174AAB2FCDD7E25C9C2EBC35CDC53DD3BCB8CFA32F6BA32",
           "shape": "B79D87DCD4BB30A034126C7C4DC61FF9956CE7F6CF003416A4ECE238C727ADF3"
         },
         {
@@ -34480,7 +34083,8 @@
           "tokens": 35,
           "hash": "23AC3A1559EF47022CC5F1672649DB4F91EAA90D4E6752A71D33278E4032C88A",
           "shape": "DCEEA65751BFCDB6664EC671F661B5B9090D6EE419A3790C42897FBCEB0D4948",
-          "qualification": "Typed installation adapter; original Amiga lookup verified in simpleFactoryReleaseSelectionReuse"
+          "qualification": "Typed installation adapter; original Amiga lookup verified in simpleFactoryReleaseSelectionReuse",
+          "qualificationSourceSha256": "F9E6223C3AFF63666D81DCED2E6D7AB0B406B2292D6FBD231C55B06A579600A1"
         },
         {
           "path": "src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Factories/CoreMachineFactory.cs",
@@ -34489,7 +34093,8 @@
           "tokens": 35,
           "hash": "99CC348EDCBC899F046B28B37E0547716425CCB4C4E49D4CFF6FFA5185D49B31",
           "shape": "DCEEA65751BFCDB6664EC671F661B5B9090D6EE419A3790C42897FBCEB0D4948",
-          "qualification": "Typed installation adapter; original Amiga lookup verified in simpleFactoryReleaseSelectionReuse"
+          "qualification": "Typed installation adapter; original Amiga lookup verified in simpleFactoryReleaseSelectionReuse",
+          "qualificationSourceSha256": "7A5E35BE14547FA16C495DF6D44001C41E8A0A7EF2F4CD68C7DEDC48FDE6D850"
         },
         {
           "path": "src/GWGUI.Emulation.Nec/Emulators/Geargrafx/Factories/GeargrafxMachineFactory.cs",
@@ -34498,16 +34103,18 @@
           "tokens": 35,
           "hash": "99CC348EDCBC899F046B28B37E0547716425CCB4C4E49D4CFF6FFA5185D49B31",
           "shape": "DCEEA65751BFCDB6664EC671F661B5B9090D6EE419A3790C42897FBCEB0D4948",
-          "qualification": "Typed installation adapter; original Amiga lookup verified in simpleFactoryReleaseSelectionReuse"
+          "qualification": "Typed installation adapter; original Amiga lookup verified in simpleFactoryReleaseSelectionReuse",
+          "qualificationSourceSha256": "058AA445E247F0E93D6EB4D9259C2D65594BB82F574DD9CAB43B391C203B0E9B"
         },
         {
           "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Factories/CoreMachineFactory.cs",
           "name": "InstallAsync",
-          "line": 41,
+          "line": 47,
           "tokens": 35,
           "hash": "99CC348EDCBC899F046B28B37E0547716425CCB4C4E49D4CFF6FFA5185D49B31",
           "shape": "DCEEA65751BFCDB6664EC671F661B5B9090D6EE419A3790C42897FBCEB0D4948",
-          "qualification": "Typed installation adapter; original Amiga lookup verified in simpleFactoryReleaseSelectionReuse"
+          "qualification": "Typed installation adapter; original Amiga lookup verified in simpleFactoryReleaseSelectionReuse",
+          "qualificationSourceSha256": "F39729FCEB6B10000AB8C2C24252C01A490CF4D21FACA1C3168886796C090C3A"
         },
         {
           "path": "src/GWGUI.Emulation.Nec/Emulators/BeetleSgx/Factories/BeetleSgxMachineFactory.cs",
@@ -34516,7 +34123,8 @@
           "tokens": 35,
           "hash": "99CC348EDCBC899F046B28B37E0547716425CCB4C4E49D4CFF6FFA5185D49B31",
           "shape": "DCEEA65751BFCDB6664EC671F661B5B9090D6EE419A3790C42897FBCEB0D4948",
-          "qualification": "Typed installation adapter; original Amiga lookup verified in simpleFactoryReleaseSelectionReuse"
+          "qualification": "Typed installation adapter; original Amiga lookup verified in simpleFactoryReleaseSelectionReuse",
+          "qualificationSourceSha256": "4DEF11334E1BDDE0A26A13F1D87439E63DD96BB8F12E2BEDD80ED64B0A1F3AE8"
         },
         {
           "path": "src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Factories/CoreMachineFactory.cs",
@@ -34525,7 +34133,8 @@
           "tokens": 35,
           "hash": "99CC348EDCBC899F046B28B37E0547716425CCB4C4E49D4CFF6FFA5185D49B31",
           "shape": "DCEEA65751BFCDB6664EC671F661B5B9090D6EE419A3790C42897FBCEB0D4948",
-          "qualification": "Typed installation adapter; original Amiga lookup verified in simpleFactoryReleaseSelectionReuse"
+          "qualification": "Typed installation adapter; original Amiga lookup verified in simpleFactoryReleaseSelectionReuse",
+          "qualificationSourceSha256": "46E71C903D80DEAECBD6089F3BBBF30030BBFCDA4FFB5021C18E259B1F8851AC"
         },
         {
           "path": "src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Factories/CoreMachineFactory.cs",
@@ -34594,7 +34203,7 @@
         {
           "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Factories/CoreMachineFactory.cs",
           "name": "FindReleasesAsync",
-          "line": 34,
+          "line": 40,
           "tokens": 70,
           "hash": "2A8DDB8D27470228E7EF361B5011A8A7FAD85DA9331EDD0C78E42FA8F800A9D7",
           "shape": "DE04789A9F3FD28B1360743FFB66E9EF5A94FE56E107F5F1A99BBACD3258A961"
@@ -34871,22 +34480,6 @@
           "line": 223,
           "tokens": 127,
           "hash": "D4DB5A672ACF48D443BECF1F3F96694C9422E31CD511E3FAEA6DAE6BF7E8B7F3",
-          "shape": "E7A743DC0BC4193847D70969C3383F9DC430CC5C2E0DC3C2389DB6B77EF39EF3"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalCore.cs",
-          "name": "SaveState",
-          "line": 207,
-          "tokens": 127,
-          "hash": "D4DB5A672ACF48D443BECF1F3F96694C9422E31CD511E3FAEA6DAE6BF7E8B7F3",
-          "shape": "E7A743DC0BC4193847D70969C3383F9DC430CC5C2E0DC3C2389DB6B77EF39EF3"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Nec/Emulators/BeetlePcfx/Services/ExternalCore.cs",
-          "name": "SaveState",
-          "line": 179,
-          "tokens": 127,
-          "hash": "3339B6B63E5D0C115098D168489EB592622366A1820D93BADA273DEC22A04159",
           "shape": "E7A743DC0BC4193847D70969C3383F9DC430CC5C2E0DC3C2389DB6B77EF39EF3"
         },
         {
@@ -36104,7 +35697,7 @@
   ],
   "scope": "All current repository CSharp and PowerShell files; no age filter; candidates require semantic review",
   "qualificationCarryForward": {
-    "occurrences": 259,
+    "occurrences": 253,
     "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical"
   }
 }

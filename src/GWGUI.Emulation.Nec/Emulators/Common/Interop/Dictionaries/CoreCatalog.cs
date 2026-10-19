@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Nec.Emulators.BeetlePcfx.Constants;
 using BeetlePceCore = GWGUI.Emulation.Nec.Emulators.BeetlePce.Constants.CoreConstants;
 using Quasi88Core = GWGUI.Emulation.Nec.Emulators.Quasi88.Constants.CoreConstants;
 using NekoProjectIICore = GWGUI.Emulation.Nec.Emulators.NekoProjectII.Constants.CoreConstants;
@@ -16,6 +17,7 @@ internal static class CoreCatalog
         new(BeetlePceFastConstants.Id, BeetlePceFastConstants.LibraryName, ReleaseConstants.InstalledLibraryName),
         new(BeetleSgxConstants.Id, BeetleSgxConstants.LibraryName, BeetleSgxConstants.InstalledLibraryName),
         new(GeargrafxConstants.Id, GeargrafxConstants.LibraryName, GeargrafxConstants.InstalledLibraryName),
+        BeetlePcfxConstants.CoreDefinition,
         new(BeetlePceCore.Id, BeetlePceCore.LibraryName, BeetlePceCore.LibraryFileName),
         new(Quasi88Core.Id, Quasi88Core.LibraryName, Quasi88Core.LibraryFileName, Subsystems: GWGUI.Emulation.Nec.Emulators.Quasi88.Constants.StorageConstants.Subsystems),
         new(NekoProjectIICore.Id, NekoProjectIICore.LibraryName, NekoProjectIICore.LibraryFileName, GWGUI.Emulation.Nec.Emulators.NekoProjectII.Functions.ContentFunctions.Prepare),

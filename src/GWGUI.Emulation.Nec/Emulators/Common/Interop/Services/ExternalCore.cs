@@ -18,6 +18,7 @@ namespace GWGUI.Emulation.Nec.Emulators.Common.Interop.Services;
 internal sealed class ExternalCore : IEmulatorCore
 {
     private readonly string _corePath;
+    private string _errorResourcePrefix = "Emulation.Error.Core";
     private readonly List<nint> _contentBuffers = [];
     private ExternalCoreLibrary? _library;
     private ExternalHostCallbacks? _host;
@@ -65,6 +66,7 @@ internal sealed class ExternalCore : IEmulatorCore
     {
         _configuration = configuration;
         var definition = CoreCatalog.Get(configuration.EmulatorId);
+        _errorResourcePrefix = definition.ErrorResourcePrefix;
         var expectedLibraryName = definition.LibraryName;
         var isolatedLibraryName = definition.LibraryFileName;
         _sessionDirectory = Path.GetFullPath(sessionDirectory);
@@ -72,7 +74,7 @@ internal sealed class ExternalCore : IEmulatorCore
         var media = ResolveConfiguredMedia(configuration);
         foreach (var item in media)
             if (!File.Exists(item.Path))
-                throw new FileNotFoundException(CoreExceptions.MediaNotFound(), item.Path);
+                throw new FileNotFoundException(Error("MediaNotFound"), item.Path);
 
         var sourceCorePath = ResolveCorePath(_corePath);
         using (var stream = File.OpenRead(sourceCorePath))
@@ -86,7 +88,7 @@ internal sealed class ExternalCore : IEmulatorCore
         FirmwareFunctions.Prepare(configuration, systemDirectory);
         if (configuration.EmulatorId != GeargrafxConstants.Id
             && !string.IsNullOrWhiteSpace(configuration.FirmwarePath))
-            File.Copy(configuration.FirmwarePath, Path.Combine(systemDirectory, FirmwareCatalogConstants.PcEngineSystemCardFileName), true);
+            File.Copy(configuration.FirmwarePath, Path.Combine(systemDirectory, definition.FirmwareFileName ?? FirmwareCatalogConstants.PcEngineSystemCardFileName), true);
         Directory.CreateDirectory(contentDirectory);
         Directory.CreateDirectory(saveDirectory);
         var isolatedCoreDirectory = Path.Combine(sessionDirectory, ExternalCoreConstants.CoreDirectory);
@@ -94,18 +96,20 @@ internal sealed class ExternalCore : IEmulatorCore
         var isolatedCorePath = Path.Combine(isolatedCoreDirectory, isolatedLibraryName);
         File.Copy(sourceCorePath, isolatedCorePath, true);
         var contentPath = definition.PrepareContent is null ? PrepareContentPath(media, contentDirectory) : definition.PrepareContent(media, contentDirectory, systemDirectory);
-        _host = new ExternalHostCallbacks(systemDirectory, contentDirectory, saveDirectory, configuration.Options ?? new Dictionary<string, string>());
+        _host = new ExternalHostCallbacks(systemDirectory, contentDirectory, saveDirectory, configuration.Options ?? new Dictionary<string, string>(), definition.ErrorResourcePrefix);
 
         try
         {
             _library = new ExternalCoreLibrary(isolatedCorePath);
             var apiVersion = Export<ExternalCoreApi.GetApiVersion>(ExternalCoreConstants.RetroApiVersion)();
             if (apiVersion != ExternalCoreInteropConstants.ApiVersion)
-                throw new NotSupportedException(CoreExceptions.UnsupportedApiVersion(apiVersion));
+                throw new NotSupportedException(Error("UnsupportedApiVersion", apiVersion));
             Export<ExternalCoreApi.GetSystemInfo>(ExternalCoreConstants.RetroGetSystemInfo)(out var info);
             var libraryName = Marshal.PtrToStringUTF8(info.LibraryName);
             if (!string.Equals(libraryName, expectedLibraryName, StringComparison.OrdinalIgnoreCase))
-                throw new InvalidDataException(CoreExceptions.LibraryIdentityMismatch(libraryName));
+                throw new InvalidDataException(Error("LibraryIdentityMismatch", libraryName ?? string.Empty));
+            if (!info.NeedFullPath && definition.FullContentPathsRequired is { } fullPathsRequired)
+                throw new InvalidDataException(fullPathsRequired());
             CoreName = libraryName!;
             CoreVersion = Marshal.PtrToStringUTF8(info.LibraryVersion) ?? string.Empty;
             SupportedContentExtensions = ExternalCoreLibrary.ParseExtensions(info.ValidExtensions);
@@ -137,14 +141,16 @@ internal sealed class ExternalCore : IEmulatorCore
             if (contentPath is null)
             {
                 if (!_host.SupportsNoGame)
-                    throw new GWGUI.Emulation.Nec.Common.Exceptions.CoreMediaRequiredException(CoreExceptions.StartWithoutMediaUnsupported());
+                    throw new GWGUI.Emulation.Nec.Common.Exceptions.CoreMediaRequiredException(Error("StartWithoutMediaUnsupported"));
                 _gameLoaded = loadGame(0);
             }
             else if (definition.Subsystems?.TryGetValue(media.Count, out var subsystem) == true)
                 _gameLoaded = LoadSpecial(subsystem, media);
             else _gameLoaded = LoadGame(loadGame, contentPath, info.NeedFullPath);
-            if (!_gameLoaded) throw new InvalidOperationException(CoreExceptions.ContentRefused());
-            if (configuration.EmulatorId == GeargrafxConstants.Id)
+            if (!_gameLoaded) throw new InvalidOperationException(Error("ContentRefused"));
+            if (definition.LoadSaveRam is { } loadSaveRam)
+                loadSaveRam(_getMemoryData, _getMemorySize, saveDirectory, configuration);
+            else if (configuration.EmulatorId == GeargrafxConstants.Id)
                 GeargrafxSaveRamFunctions.Load(_getMemoryData, _getMemorySize, saveDirectory);
             else CoreSaveRamFunctions.Load(_getMemoryData, _getMemorySize, saveDirectory);
             _saveRamReady = true;
@@ -165,16 +171,16 @@ internal sealed class ExternalCore : IEmulatorCore
         return media.Count == 0 ? null : Path.GetFullPath(media[0].Path);
     }
 
-    public void RunFrame() => (_run ?? throw new InvalidOperationException(CoreExceptions.CoreNotInitialized()))();
+    public void RunFrame() => (_run ?? throw new InvalidOperationException(Error("CoreNotInitialized")))();
     public void HardReset()
     {
-        var configuration = _configuration ?? throw new InvalidOperationException(CoreExceptions.CoreNotInitialized());
-        var sessionDirectory = _sessionDirectory ?? throw new InvalidOperationException(CoreExceptions.CoreNotInitialized());
+        var configuration = _configuration ?? throw new InvalidOperationException(Error("CoreNotInitialized"));
+        var sessionDirectory = _sessionDirectory ?? throw new InvalidOperationException(Error("CoreNotInitialized"));
         var saveDirectory = _saveDirectory;
         Dispose();
         Initialize(configuration, sessionDirectory, saveDirectory);
     }
-    public void SoftReset() => (_reset ?? throw new InvalidOperationException(CoreExceptions.CoreNotInitialized()))();
+    public void SoftReset() => (_reset ?? throw new InvalidOperationException(Error("CoreNotInitialized")))();
     public void SetInput(EmulationInputSnapshot snapshot)
     {
         if (_host is not null) _host.Input = snapshot;
@@ -182,18 +188,18 @@ internal sealed class ExternalCore : IEmulatorCore
     public void InsertMedia(string path)
     {
         if (_configuration?.EmulatorId == GeargrafxConstants.Id)
-            throw new NotSupportedException(CoreExceptions.MediaRefused());
-        (_host ?? throw new InvalidOperationException(CoreExceptions.CoreNotInitialized())).DiskControl.Insert(path);
+            throw new NotSupportedException(Error("MediaRefused"));
+        (_host ?? throw new InvalidOperationException(Error("CoreNotInitialized"))).DiskControl.Insert(path);
     }
     public void EjectMedia()
     {
         EnsureDiskControlSupported();
-        (_host ?? throw new InvalidOperationException(CoreExceptions.CoreNotInitialized())).DiskControl.Eject();
+        (_host ?? throw new InvalidOperationException(Error("CoreNotInitialized"))).DiskControl.Eject();
     }
     public void SelectDisk(int index)
     {
         EnsureDiskControlSupported();
-        (_host ?? throw new InvalidOperationException(CoreExceptions.CoreNotInitialized())).DiskControl.Select(index);
+        (_host ?? throw new InvalidOperationException(Error("CoreNotInitialized"))).DiskControl.Select(index);
     }
 
     private void EnsureDiskControlSupported()
@@ -201,20 +207,20 @@ internal sealed class ExternalCore : IEmulatorCore
         if (_configuration?.EmulatorId != GeargrafxConstants.Id) return;
         var current = ResolveConfiguredMedia(_configuration).FirstOrDefault();
         if (current is null || !Path.GetExtension(current.Path).Equals(GeargrafxConstants.MmiExtension, StringComparison.OrdinalIgnoreCase))
-            throw new NotSupportedException(CoreExceptions.DiskControlUnavailable());
+            throw new NotSupportedException(Error("DiskControlUnavailable"));
     }
 
     public byte[] SaveState()
     {
-        var size = (_getSerializedSize ?? throw new InvalidOperationException(CoreExceptions.CoreNotInitialized()))();
+        var size = (_getSerializedSize ?? throw new InvalidOperationException(Error("CoreNotInitialized")))();
         if (size == ExternalCoreInteropConstants.EmptyNativeSize || size > SavedStateConstants.MaximumStateSize)
-            throw new InvalidOperationException(CoreExceptions.InvalidStateSize(size));
+            throw new InvalidOperationException(Error("InvalidStateSize", size));
         var state = new byte[(int)size];
         var buffer = Marshal.AllocHGlobal(state.Length);
         try
         {
             if (!_serialize!(buffer, size))
-                throw new InvalidOperationException(CoreExceptions.StateSaveFailed());
+                throw new InvalidOperationException(Error("StateSaveFailed"));
             Marshal.Copy(buffer, state, BufferConstants.FirstBufferIndex, state.Length);
         }
         finally { Marshal.FreeHGlobal(buffer); }
@@ -223,19 +229,19 @@ internal sealed class ExternalCore : IEmulatorCore
 
     public void LoadState(ReadOnlySpan<byte> state)
     {
-        if (state.IsEmpty) throw new ArgumentException(CoreExceptions.StateEmpty(), nameof(state));
+        if (state.IsEmpty) throw new ArgumentException(Error("StateEmpty"), nameof(state));
         var bytes = state.ToArray();
         var buffer = Marshal.AllocHGlobal(bytes.Length);
         try
         {
             Marshal.Copy(bytes, BufferConstants.FirstBufferIndex, buffer, bytes.Length);
             if (!_unserialize!(buffer, (nuint)bytes.Length))
-                throw new InvalidOperationException(CoreExceptions.StateRestoreFailed());
+                throw new InvalidOperationException(Error("StateRestoreFailed"));
         }
         finally { Marshal.FreeHGlobal(buffer); }
     }
 
-    public void SetOption(string key, string value) => (_host ?? throw new InvalidOperationException(CoreExceptions.CoreNotInitialized())).SetOption(key, value);
+    public void SetOption(string key, string value) => (_host ?? throw new InvalidOperationException(Error("CoreNotInitialized"))).SetOption(key, value);
 
     public void Stop()
     {
@@ -245,7 +251,9 @@ internal sealed class ExternalCore : IEmulatorCore
             if (_saveRamReady && _saveDirectory is { } directory
                 && _getMemoryData is not null && _getMemorySize is not null)
             {
-                if (_configuration?.EmulatorId == GeargrafxConstants.Id)
+                if (_configuration is { } configuration && CoreCatalog.Get(configuration.EmulatorId).SaveSaveRam is { } saveSaveRam)
+                    saveSaveRam(_getMemoryData, _getMemorySize, directory, configuration);
+                else if (_configuration?.EmulatorId == GeargrafxConstants.Id)
                     GeargrafxSaveRamFunctions.Save(_getMemoryData, _getMemorySize, directory);
                 else CoreSaveRamFunctions.Save(_getMemoryData, _getMemorySize, directory);
             }
@@ -262,7 +270,7 @@ internal sealed class ExternalCore : IEmulatorCore
         if (path is null) return;
         var extension = Path.GetExtension(path).TrimStart(MediaConstants.ExtensionPrefix);
         if (!SupportedContentExtensions.Contains(extension))
-            throw new InvalidDataException(CoreExceptions.UnsupportedContentExtension(extension));
+            throw new InvalidDataException(Error("UnsupportedContentExtension", extension));
     }
 
     private bool LoadGame(ExternalCoreApi.LoadGame loadGame, string path, bool needFullPath)
@@ -316,15 +324,17 @@ internal sealed class ExternalCore : IEmulatorCore
         }
     }
 
-    private T Export<T>(string name) where T : Delegate => (_library ?? throw new InvalidOperationException(CoreExceptions.CoreNotLoaded())).Resolve<T>(name);
+    private T Export<T>(string name) where T : Delegate => (_library ?? throw new InvalidOperationException(Error("CoreNotLoaded"))).Resolve<T>(name);
 
-    private static string ResolveCorePath(string path)
+    private string ResolveCorePath(string path)
     {
         if (!Path.IsPathFullyQualified(path))
-            throw new ArgumentException(CoreExceptions.CorePathNotAbsolute(), nameof(path));
-        if (!File.Exists(path)) throw new FileNotFoundException(CoreExceptions.CoreNotFound(), path);
+            throw new ArgumentException(Error("CorePathNotAbsolute"), nameof(path));
+        if (!File.Exists(path)) throw new FileNotFoundException(Error("CoreNotFound"), path);
         return path;
     }
+
+    private string Error(string name, params object[] arguments) => CoreExceptions.Text(_errorResourcePrefix + "." + name, arguments);
 
     public void Dispose()
     {

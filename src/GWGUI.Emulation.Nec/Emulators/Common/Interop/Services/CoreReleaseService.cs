@@ -15,12 +15,14 @@ public sealed class CoreReleaseService
     private readonly HttpClient _httpClient;
     private readonly string _directory;
     private readonly CoreReleaseSettings _settings;
+    private readonly string _errorResourcePrefix;
 
-    internal CoreReleaseService(HttpClient httpClient, string directory, CoreReleaseSettings settings)
+    internal CoreReleaseService(HttpClient httpClient, string directory, CoreReleaseSettings settings, string errorResourcePrefix = "Emulation.Error.Core")
     {
         _httpClient = httpClient;
         _directory = Path.GetFullPath(directory);
         _settings = settings;
+        _errorResourcePrefix = errorResourcePrefix;
     }
 
     public string RequiredLibraryPath => Path.Combine(_directory, _settings.InstalledLibraryName);
@@ -52,7 +54,7 @@ public sealed class CoreReleaseService
     public bool IsInstalled(CoreRelease release)
     {
         if (!File.Exists(RequiredLibraryPath)) return false;
-        try { VerifyWindowsX64Library(RequiredLibraryPath); return true; }
+        try { VerifyWindowsX64Library(RequiredLibraryPath, _errorResourcePrefix); return true; }
         catch (IOException) { return false; }
         catch (InvalidDataException) { return false; }
     }
@@ -79,13 +81,13 @@ public sealed class CoreReleaseService
                     if (release.IsZip)
                     {
                         EmulationCoreReleaseFunctions.ExtractExpectedLibrary(download, _settings.ArchiveLibraryName, extracted,
-                            static _ => CoreExceptions.ArchiveMissingLibrary(), preserveLastWriteTime: true);
+                            _ => CoreExceptions.Text(_errorResourcePrefix + ".ArchiveMissingLibrary"), preserveLastWriteTime: true);
                     }
                     else File.Copy(download, extracted, true);
                 },
                 archiveSize =>
                 {
-                    VerifyWindowsX64Library(extracted);
+                    VerifyWindowsX64Library(extracted, _errorResourcePrefix);
                     return EmulationCoreDiagnosticFunctions.CalculateSha256(extracted);
                 },
                 () => File.Move(extracted, destination, true),
@@ -101,8 +103,24 @@ public sealed class CoreReleaseService
         }
     }
 
+    internal string? FindInstalledLibraryPath()
+    {
+        if (!File.Exists(RequiredLibraryPath)) return null;
+        try
+        {
+            VerifyWindowsX64Library(RequiredLibraryPath, _errorResourcePrefix);
+            return RequiredLibraryPath;
+        }
+        catch (IOException) { return null; }
+        catch (InvalidDataException) { return null; }
+    }
+
     internal static void VerifyWindowsX64Library(string path)
-        =>
-        EmulationCoreDiagnosticFunctions.VerifyWindowsX64Library(path,
-            CoreExceptions.DownloadedCoreNotPe, CoreExceptions.DownloadedCoreInvalidPe, CoreExceptions.DownloadedCoreWrongArchitecture);
+        => VerifyWindowsX64Library(path, "Emulation.Error.Core");
+
+    private static void VerifyWindowsX64Library(string path, string errorResourcePrefix)
+        => EmulationCoreDiagnosticFunctions.VerifyWindowsX64Library(path,
+            () => CoreExceptions.Text(errorResourcePrefix + ".DownloadedCoreNotPe"),
+            () => CoreExceptions.Text(errorResourcePrefix + ".DownloadedCoreInvalidPe"),
+            () => CoreExceptions.Text(errorResourcePrefix + ".DownloadedCoreWrongArchitecture"));
 }

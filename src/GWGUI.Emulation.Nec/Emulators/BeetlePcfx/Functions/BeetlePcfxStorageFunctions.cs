@@ -1,3 +1,5 @@
+using System.IO;
+using GWGUI.Emulation.Nec.Emulators.BeetlePcfx.Exceptions;
 using GWGUI.Emulation.HardDisks;
 using GWGUI.Emulation.Nec.Emulators.BeetlePcfx.Constants;
 
@@ -79,4 +81,16 @@ internal static class BeetlePcfxStorageFunctions
         if (cd is not null)
             options[SettingsConstants.PcfxCdImageCache] = cd.CacheImage ? StorageSettingsFunctionsConstants.CacheEnabled : StorageSettingsFunctionsConstants.CacheDisabled;
     }
+    internal static string? PrepareContentPath(IReadOnlyList<MediaConfiguration> media, string contentDirectory)
+    {
+        if (media.Count == 0) return null;
+        if (media.Count == 1 || media.Any(item => item.Category != MediaCategory.Floppy))
+            return Path.GetFullPath(media[0].Path);
+        if (media.Count > ExternalCoreConstants.MaximumPlaylistEntries)
+            throw new ArgumentOutOfRangeException(nameof(media), BeetlePcfxExceptions.PlaylistLimitExceeded());
+        var playlist = Path.Combine(contentDirectory, ExternalCoreConstants.PlaylistName);
+        File.WriteAllLines(playlist, media.Select(item => Path.GetFullPath(item.Path)), new System.Text.UTF8Encoding(false));
+        return playlist;
+    }
+
 }

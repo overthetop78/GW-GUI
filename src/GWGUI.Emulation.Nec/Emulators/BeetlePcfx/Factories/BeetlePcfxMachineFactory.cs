@@ -1,12 +1,10 @@
-using ProcessCore = GWGUI.Emulation.Nec.Emulators.Common.Interop.Services.ProcessCore;
+using GWGUI.Emulation.Nec.Emulators.Common.Interop.Factories;
 using GWGUI.Emulation.Nec.Emulators.BeetlePcfx.Functions;
 using GWGUI.Emulation.Nec.Emulators.BeetlePcfx.Constants;
-using GWGUI.Emulation.Nec.Emulators.BeetlePcfx.Services;
-using System.IO;
 
 namespace GWGUI.Emulation.Nec.Emulators.BeetlePcfx.Factories;
 
-internal sealed class BeetlePcfxMachineFactory : IEmulatorAdapter, IEmulatorPersistentStorage, IEmulatorMachineDefaults, IEmulatorConfigurationValidation
+internal sealed class BeetlePcfxMachineFactory : CoreMachineFactory, IEmulatorPersistentStorage, IEmulatorMachineDefaults, IEmulatorConfigurationValidation
 {
     public void ValidateConfiguration(MachineConfiguration configuration)
     {
@@ -18,62 +16,15 @@ internal sealed class BeetlePcfxMachineFactory : IEmulatorAdapter, IEmulatorPers
     {
         if (Definition.MachineIds.Contains(configuration.Model)) PcFxBackupMemoryFunctions.EnsureInternalFile(directory);
     }
-    public EmulationStorageSettings DescribeStorage(MachineConfiguration configuration) => GWGUI.Emulation.Nec.Emulators.Common.Interop.Functions.CoreStorageSettingsFunctions.Describe(configuration);
-    public MachineConfiguration ApplyStorage(MachineConfiguration configuration, EmulationStorageSettings settings) => GWGUI.Emulation.Nec.Emulators.Common.Interop.Functions.CoreStorageSettingsFunctions.Apply(configuration, settings);
+    protected override CoreReleaseSettings ReleaseSettings => BeetlePcfxConstants.ReleaseSettings;
+    public override string EmulatorId => BeetlePcfxConstants.Id;
+    public override EmulationEmulatorDefinition Definition { get; } = new(BeetlePcfxConstants.Id, BeetlePcfxConstants.DisplayName, BeetlePcfxConstants.DescriptionResourceKey, new[] { "PcFx" }.ToHashSet(StringComparer.Ordinal));
 
-    public IReadOnlyList<EmulationSettingsBlock> GetSettingsBlocks(MachineConfiguration configuration) => GWGUI.Emulation.Nec.Emulators.Common.Interop.Functions.CoreSettingsDescriptionFunctions.Create(configuration);
-
-    private IReadOnlyDictionary<string, CoreRelease> _availableReleases = new Dictionary<string, CoreRelease>(StringComparer.Ordinal);
-
-    public string EmulatorId => BeetlePcfxConstants.Id;
-    public string EmulatorKey => BeetlePcfxConstants.Id;
-    public EmulationEmulatorDefinition Definition { get; } = new(BeetlePcfxConstants.Id, BeetlePcfxConstants.DisplayName, BeetlePcfxConstants.DescriptionResourceKey, new[] { "PcFx" }.ToHashSet(StringComparer.Ordinal));
-
-    public bool TryHandleHostCommand(IReadOnlyList<string> arguments, out int exitCode)
+    public override ValueTask<string?> FindInstalledCorePathAsync(EmulatorManagementContext context, CancellationToken cancellationToken)
     {
-        exitCode = 0;
-        if (arguments is not [BeetlePcfxConstants.CoreHostCommand, var pipeName, var videoMapName])
-            return false;
-        if (!OperatingSystem.IsWindows()) throw new PlatformNotSupportedException();
-        CoreHost.Run(pipeName, videoMapName);
-        return true;
+        ArgumentNullException.ThrowIfNull(context.HttpClient);
+        return base.FindInstalledCorePathAsync(context, cancellationToken);
     }
 
-    public ValueTask<EmulationEmulatorInstallation> GetInstallationAsync(EmulatorManagementContext context, CancellationToken cancellationToken)
-    {
-        cancellationToken.ThrowIfCancellationRequested();
-        var service = new CoreReleaseService(context.HttpClient, context.CoreDirectory);
-        var version = service.GetInstalledVersion();
-        return ValueTask.FromResult(new EmulationEmulatorInstallation(Definition, version));
-    }
-
-    public async ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindReleasesAsync(EmulatorManagementContext context, CancellationToken cancellationToken)
-    {
-        var releases = await new CoreReleaseService(context.HttpClient, context.CoreDirectory).GetAvailableAsync(cancellationToken).ConfigureAwait(false);
-        _availableReleases = releases.ToDictionary(item => item.Id, StringComparer.Ordinal);
-        return releases.Select(item => new EmulationEmulatorRelease(item.Id, item.DisplayName, item.Id, item.IsRequired)).ToArray();
-    }
-
-    public async ValueTask<string> InstallAsync(EmulatorManagementContext context, EmulationEmulatorRelease release, IProgress<double>? progress, CancellationToken cancellationToken)
-    {
-        var selected = EmulationCoreReleaseFunctions.SelectRelease(_availableReleases, release);
-        return await new CoreReleaseService(context.HttpClient, context.CoreDirectory).InstallAsync(selected, progress, cancellationToken).ConfigureAwait(false);
-    }
-
-    public ValueTask<string?> FindInstalledCorePathAsync(EmulatorManagementContext context, CancellationToken cancellationToken) => new(new CoreProvider(context.HttpClient, context.CoreDirectory).FindInstalledPathAsync(cancellationToken));
-
-    public IReadOnlyList<EmulationMedia> ResolveConfiguredMedia(MachineConfiguration configuration) => EmulationMediaConversionFunctions.ToCommon(configuration.Media ?? []);
-
-    public Machine Create(MachineConfiguration configuration, EmulatorCreationContext context)
-    {
-        var machineId = Guid.NewGuid();
-        var native = BeetlePcfxOptionFunctions.ToNative(configuration.EnsureId());
-        return new Machine(machineId, native,
-            new ProcessCore(context.HostExecutablePath, context.CorePath,
-                ProcessCoreConstants.CoreHost, ProcessCoreConstants.PipePrefix, ProcessCoreConstants.VideoMapPrefix,
-                BeetlePcfxConstants.DisplayName, "Emulation.Error.BeetlePcfx"),
-            native.Media ?? [], Path.Combine(context.SessionsDirectory, machineId.ToString(ConfigurationStoreConstants.MachineIdentifierFormat)),
-            native.AudioEnabled ? context.AudioOutputFactory?.Invoke() : null,
-            context.SaveDirectoryResolver?.Invoke(configuration));
-    }
+    protected override MachineConfiguration Configure(MachineConfiguration configuration) => BeetlePcfxOptionFunctions.ToNative(configuration);
 }

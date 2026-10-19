@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Nec.Emulators.Common.Interop.Constants;
+using GWGUI.Emulation.Nec.Emulators.Common.Interop.Dictionaries;
 using GWGUI.Emulation.Nec.Emulators.Common.Interop.Functions;
 using System.IO;
 using GWGUI.Emulation.Nec.Emulators.Common.Interop.Contracts;
@@ -22,7 +24,11 @@ internal abstract class CoreMachineFactory : IEmulatorAdapter
     public bool TryHandleHostCommand(IReadOnlyList<string> arguments, out int exitCode)
     {
         exitCode = 0;
-        return false;
+        if (arguments is not [ProcessCoreConstants.CoreHost, var pipeName, var videoMapName])
+            return false;
+        if (!OperatingSystem.IsWindows()) throw new PlatformNotSupportedException();
+        CoreHost.Run(pipeName, videoMapName);
+        return true;
     }
 
     public ValueTask<EmulationEmulatorInstallation> GetInstallationAsync(EmulatorManagementContext context, CancellationToken cancellationToken)
@@ -44,20 +50,11 @@ internal abstract class CoreMachineFactory : IEmulatorAdapter
         return await ReleaseService(context).InstallAsync(selected, progress, cancellationToken).ConfigureAwait(false);
     }
 
-    public ValueTask<string?> FindInstalledCorePathAsync(EmulatorManagementContext context, CancellationToken cancellationToken)
+    public virtual ValueTask<string?> FindInstalledCorePathAsync(EmulatorManagementContext context, CancellationToken cancellationToken)
     {
         cancellationToken.ThrowIfCancellationRequested();
-        var path = ReleaseService(context).RequiredLibraryPath;
-        if (!File.Exists(path)) return ValueTask.FromResult<string?>(null);
-        try
-        {
-            CoreReleaseService.VerifyWindowsX64Library(path);
-            return ValueTask.FromResult<string?>(path);
-        }
-        catch (IOException) { return ValueTask.FromResult<string?>(null); }
-        catch (InvalidDataException) { return ValueTask.FromResult<string?>(null); }
+        return ValueTask.FromResult(ReleaseService(context).FindInstalledLibraryPath());
     }
-
     public IReadOnlyList<EmulationMedia> ResolveConfiguredMedia(MachineConfiguration configuration) => EmulationMediaConversionFunctions.ToCommon(configuration.Media ?? []);
 
     public virtual Machine Create(MachineConfiguration configuration, EmulatorCreationContext context)
@@ -65,14 +62,30 @@ internal abstract class CoreMachineFactory : IEmulatorAdapter
         var machineId = Guid.NewGuid();
         var native = Configure(configuration.EnsureId());
         var sessionDirectory = Path.Combine(context.SessionsDirectory, machineId.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));
-        return new Machine(machineId, native,
-            new ProcessCore(context.HostExecutablePath, context.CorePath),
-            native.Media ?? [], sessionDirectory,
-            native.AudioEnabled ? context.AudioOutputFactory?.Invoke() : null,
-            context.SaveDirectoryResolver?.Invoke(configuration));
+        ProcessCore? core = null;
+        IAudioOutput? audio = null;
+        var ownershipTransferred = false;
+        try
+        {
+            var definition = CoreCatalog.Get(EmulatorId);
+            core = new ProcessCore(context.HostExecutablePath, context.CorePath,
+                displayName: definition.TransportDisplayName, errorPrefix: definition.ErrorResourcePrefix);
+            audio = native.AudioEnabled ? context.AudioOutputFactory?.Invoke() : null;
+            var machine = new Machine(machineId, native, core, native.Media ?? [], sessionDirectory, audio,
+                context.SaveDirectoryResolver?.Invoke(configuration));
+            ownershipTransferred = true;
+            return machine;
+        }
+        finally
+        {
+            if (!ownershipTransferred)
+            {
+                try { core?.Dispose(); }
+                finally { audio?.Dispose(); }
+            }
+        }
     }
-
     protected virtual MachineConfiguration Configure(MachineConfiguration configuration) => CoreSettingsFunctions.Configure(configuration);
 
-    private CoreReleaseService ReleaseService(EmulatorManagementContext context) => new(context.HttpClient, context.CoreDirectory, ReleaseSettings);
+    private CoreReleaseService ReleaseService(EmulatorManagementContext context) => new(context.HttpClient, context.CoreDirectory, ReleaseSettings, CoreCatalog.Get(EmulatorId).ErrorResourcePrefix);
 }
