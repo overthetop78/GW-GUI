@@ -38,6 +38,20 @@ public static class ConfigurationFileAccessFunctions
             return Task.CompletedTask;
         }, static (source, target) => File.Move(source, target, overwrite: true)).GetAwaiter().GetResult();
 
+    internal static async Task WithSaveGateAsync(SemaphoreSlim saveGate, Func<Task> write,
+        CancellationToken cancellationToken)
+    {
+        await saveGate.WaitAsync(cancellationToken).ConfigureAwait(false);
+        try
+        {
+            await write().ConfigureAwait(false);
+        }
+        finally
+        {
+            saveGate.Release();
+        }
+    }
+
     internal static async Task WriteDocumentAtomicallyAsync<TConfiguration>(SemaphoreSlim saveGate,
         string directory, TConfiguration configuration, Func<TConfiguration, TConfiguration> prepareConfiguration,
         Func<TConfiguration, Guid> configurationId, Func<TConfiguration, TConfiguration> storePaths,

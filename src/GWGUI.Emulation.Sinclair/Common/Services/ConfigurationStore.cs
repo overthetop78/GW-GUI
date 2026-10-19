@@ -39,17 +39,12 @@ public sealed class ConfigurationStore
     {
         ArgumentNullException.ThrowIfNull(configuration);
         ConfigurationFunctions.Validate(configuration);
-        await SaveGate.WaitAsync(cancellationToken).ConfigureAwait(false);
-        try
+        await ConfigurationFileAccessFunctions.WithSaveGateAsync(SaveGate, () =>
         {
             var document = ConfigurationStoreFunctions.ToDocument(configuration, _pathBase);
             var machineDirectory = Path.Combine(_directory, configuration.Id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));
-            await ConfigurationStoreFunctions.WriteDocumentAtomicallyAsync(Path.Combine(machineDirectory, ConfigurationStoreConstants.MachineFileName), document, cancellationToken).ConfigureAwait(false);
-        }
-        finally
-        {
-            SaveGate.Release();
-        }
+            return ConfigurationStoreFunctions.WriteDocumentAtomicallyAsync(Path.Combine(machineDirectory, ConfigurationStoreConstants.MachineFileName), document, cancellationToken);
+        }, cancellationToken).ConfigureAwait(false);
     }
 
     public void Delete(Guid id)

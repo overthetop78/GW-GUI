@@ -1,25 +1,27 @@
 {
-  "snapshot": "2f9d1647ae53f903e7216218e8cab18dd69f614a",
+  "snapshot": "9987657172fd09089ce6b8161876e448e1f02c3c",
   "snapshotState": "Current worktree based on snapshot",
   "worktreeSourceChanges": [
-    "src/GWGUI.Emulation.Amstrad/Common/Constants/ConfigurationStoreConstants.cs",
-    "src/GWGUI.Emulation.Amstrad/Common/Services/ConfigurationStore.cs",
-    "src/GWGUI.Emulation.Commodore/Common/Constants/ConfigurationStoreConstants.cs",
-    "src/GWGUI.Emulation.Commodore/Common/Services/ConfigurationStore.cs",
-    "src/GWGUI.Emulation.Microsoft/Common/Constants/ConfigurationStoreConstants.cs",
-    "src/GWGUI.Emulation.Microsoft/Common/Services/ConfigurationStore.cs",
-    "src/GWGUI.Emulation.Nec/Common/Constants/ConfigurationStoreConstants.cs",
-    "src/GWGUI.Emulation.Nec/Common/Services/ConfigurationStore.cs",
-    "src/GWGUI.Emulation.Nintendo/Common/Constants/ConfigurationStoreConstants.cs",
-    "src/GWGUI.Emulation.Nintendo/Common/Services/ConfigurationStore.cs",
-    "src/GWGUI.Emulation.Sega/Common/Constants/ConfigurationStoreConstants.cs",
-    "src/GWGUI.Emulation.Sega/Common/Services/ConfigurationStore.cs",
-    "src/GWGUI.Emulation.Sony/Common/Constants/ConfigurationStoreConstants.cs",
-    "src/GWGUI.Emulation.Sony/Common/Services/ConfigurationStore.cs",
+    "src/GWGUI.Emulation.Acorn/Common/Services/ConfigurationStore.cs",
+    "src/GWGUI.Emulation.Apple/Common/Services/ConfigurationStore.cs",
+    "src/GWGUI.Emulation.Atari/Common/Services/ConfigurationStore.cs",
+    "src/GWGUI.Emulation.Bandai/Common/Services/ConfigurationStore.cs",
+    "src/GWGUI.Emulation.Coleco/Common/Services/ConfigurationStore.cs",
+    "src/GWGUI.Emulation.Epoch/Common/Services/ConfigurationStore.cs",
+    "src/GWGUI.Emulation.Fairchild/Common/Services/ConfigurationStore.cs",
+    "src/GWGUI.Emulation.Mattel/Common/Services/ConfigurationStore.cs",
+    "src/GWGUI.Emulation.Panasonic/Common/Services/ConfigurationStore.cs",
+    "src/GWGUI.Emulation.Philips/Common/Services/ConfigurationStore.cs",
+    "src/GWGUI.Emulation.Sharp/Common/Services/ConfigurationStore.cs",
+    "src/GWGUI.Emulation.Sinclair/Common/Services/ConfigurationStore.cs",
+    "src/GWGUI.Emulation.Snk/Common/Services/ConfigurationStore.cs",
+    "src/GWGUI.Emulation.Thomson/Common/Services/ConfigurationStore.cs",
+    "src/GWGUI.Emulation.Watara/Common/Services/ConfigurationStore.cs",
+    "src/GWGUI.Emulation.Wenquxing/Common/Services/ConfigurationStore.cs",
     "src/GWGUI.Emulation/Functions/ConfigurationFileAccessFunctions.cs"
   ],
   "scope": "All current non-ignored repository CSharp files, including hidden paths; BaseMethodDeclaration bodies with fewer than 30 tokens. Candidate presence is not a defect or a completion claim.",
-  "fileCount": 7291,
+  "fileCount": 7292,
   "methodBodyCount": 9631,
   "exactGroups": [
     {
@@ -137434,6 +137436,6 @@
   ],
   "qualificationCarryForward": {
     "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical",
-    "occurrences": 510
+    "occurrences": 538
   }
 }
