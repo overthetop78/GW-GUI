@@ -1,5 +1,5 @@
 {
-  "snapshot": "9987657172fd09089ce6b8161876e448e1f02c3c",
+  "snapshot": "59f367dc36da857f763cd1f9311f20aac34bcc25",
   "snapshotState": "Current worktree based on snapshot",
   "worktreeSourceChanges": [
     "src/GWGUI.Emulation.Acorn/Common/Services/ConfigurationStore.cs",
@@ -137435,7 +137435,7 @@
     }
   ],
   "qualificationCarryForward": {
-    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical",
-    "occurrences": 538
+    "occurrences": 538,
+    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical"
   }
 }

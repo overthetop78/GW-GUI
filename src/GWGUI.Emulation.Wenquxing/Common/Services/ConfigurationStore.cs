@@ -3,7 +3,6 @@ using GWGUI.Emulation.Wenquxing.Common.Constants;
 using GWGUI.Emulation.Wenquxing.Common.Machines.Common.Contracts;
 using GWGUI.Emulation.Wenquxing.Common.Machines.Common.Functions;
 using System.IO;
-using System.Text.Json;
 
 namespace GWGUI.Emulation.Wenquxing.Common.Services;
 
@@ -20,24 +19,9 @@ public sealed class ConfigurationStore
     }
 
     public Task<IReadOnlyList<MachineConfiguration>> LoadAllAsync(CancellationToken cancellationToken = default)
-    {
-        Directory.CreateDirectory(_directory);
-        var configurations = new List<MachineConfiguration>();
-        foreach (var path in ConfigurationPaths())
-        {
-            cancellationToken.ThrowIfCancellationRequested();
-            try
-            {
-                using var parsed = JsonDocument.Parse(ConfigurationFileAccessFunctions.ReadAllText(path));
-                configurations.Add(ConfigurationStoreFunctions.FromDocument(ConfigurationStoreFunctions.Deserialize(parsed.RootElement), _pathBase));
-            }
-            catch (JsonException) { }
-            catch (IOException) { }
-            catch (InvalidDataException) { }
-            catch (ArgumentException) { }
-        }
-        return Task.FromResult<IReadOnlyList<MachineConfiguration>>(configurations);
-    }
+        => ConfigurationFileAccessFunctions.ReadDocumentsAsync(_directory, ConfigurationPaths,
+            static root => ConfigurationStoreFunctions.Deserialize(root),
+            document => ConfigurationStoreFunctions.FromDocument(document, _pathBase), cancellationToken);
 
     public async Task SaveAsync(MachineConfiguration configuration, CancellationToken cancellationToken = default)
     {

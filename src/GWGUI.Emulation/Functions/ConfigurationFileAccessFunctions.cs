@@ -111,6 +111,30 @@ public static class ConfigurationFileAccessFunctions
         if (File.Exists(path)) File.Delete(path);
     }
 
+    internal static Task<IReadOnlyList<TConfiguration>> ReadDocumentsAsync<TDocument, TConfiguration>(
+        string configurationDirectory, Func<IEnumerable<string>> paths, Func<JsonElement, TDocument> deserialize,
+        Func<TDocument, TConfiguration> restore, CancellationToken cancellationToken)
+    {
+        Directory.CreateDirectory(configurationDirectory);
+        var configurations = new List<TConfiguration>();
+        foreach (var path in paths())
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            try
+            {
+                var json = ReadAllText(path);
+                using var parsed = JsonDocument.Parse(json);
+                var document = deserialize(parsed.RootElement);
+                configurations.Add(restore(document));
+            }
+            catch (JsonException) { }
+            catch (IOException) { }
+            catch (InvalidDataException) { }
+            catch (ArgumentException) { }
+        }
+        return Task.FromResult<IReadOnlyList<TConfiguration>>(configurations);
+    }
+
     internal static Task<IReadOnlyList<TConfiguration>> ReadDocumentsAsync<TConfiguration>(
         string configurationDirectory, string fileName, Func<string, TConfiguration?> deserialize,
         Func<TConfiguration, bool> isSupported, Func<TConfiguration, TConfiguration> resolve,

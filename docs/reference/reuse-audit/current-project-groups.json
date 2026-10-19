@@ -3,7 +3,7 @@
   "currentCSharpFiles": 7292,
   "outsideSrcCSharpFiles": 308,
   "baselineMethodCount": 5848,
-  "currentMethodCount": 11669,
+  "currentMethodCount": 11670,
   "powerShellFunctionCount": 17,
   "groups": [
     {
@@ -561,32 +561,32 @@
         {
           "path": "src/GWGUI.Emulation.Atari/Common/Services/ConfigurationStore.cs",
           "name": "SaveAsync",
-          "line": 41,
+          "line": 23,
           "tokens": 84,
           "hash": "04CDEA4321863AD9A69D41872F41B94941103429C6B29439991FDEAAF1688108",
           "shape": "AEE5403C86972DBCEDFD3B3203BA8D94301199F06996D292C0C06BAF3B3C55C9",
           "qualification": "Typed native document/path/writer projection; original Atari gate control shared, expansion and call targets verified in nativeConfigurationSaveGateReuse",
-          "qualificationSourceSha256": "12EF0F216EC95CFF1195AC55D1AB9F77A3D4F971529D788A4AF40230EF568C97"
+          "qualificationSourceSha256": "9FF51FC49EAB26CC926628E0C8AB98FBA80EFF980DFD36A9F39217A272F49646"
         },
         {
           "path": "src/GWGUI.Emulation.Acorn/Common/Services/ConfigurationStore.cs",
           "name": "SaveAsync",
-          "line": 41,
+          "line": 23,
           "tokens": 84,
           "hash": "04CDEA4321863AD9A69D41872F41B94941103429C6B29439991FDEAAF1688108",
           "shape": "AEE5403C86972DBCEDFD3B3203BA8D94301199F06996D292C0C06BAF3B3C55C9",
           "qualification": "Typed native document/path/writer projection; original Atari gate control shared, expansion and call targets verified in nativeConfigurationSaveGateReuse",
-          "qualificationSourceSha256": "C2848530A9ECD853B286BFE3DC9AC3957B5C34000828EAF5005DEF826E8B9B70"
+          "qualificationSourceSha256": "ED3E5B4517BAD4BFFF48AC5DACDF060BFEDCBCF53855773D5FB4C1AF72612431"
         },
         {
           "path": "src/GWGUI.Emulation.Apple/Common/Services/ConfigurationStore.cs",
           "name": "SaveAsync",
-          "line": 41,
+          "line": 23,
           "tokens": 84,
           "hash": "04CDEA4321863AD9A69D41872F41B94941103429C6B29439991FDEAAF1688108",
           "shape": "AEE5403C86972DBCEDFD3B3203BA8D94301199F06996D292C0C06BAF3B3C55C9",
           "qualification": "Typed native document/path/writer projection; original Atari gate control shared, expansion and call targets verified in nativeConfigurationSaveGateReuse",
-          "qualificationSourceSha256": "86DF4C61375623509E5C1EAE25C452E2D8879F7CE9E61CDAA241E7C4775B04FF"
+          "qualificationSourceSha256": "8E363534B8906D85F9A3AFCAD675C2DE270A6BE5C737CADA1CA3D220E0408401"
         }
       ],
       "predecessors": [],
@@ -1265,7 +1265,7 @@
     {
       "language": "CSharp",
       "hash": "0A9D4012A0EEF58659F6F622D06187BDA6844EE126F30B196EAE963950A66758",
-      "method": "AtariEmulationModule",
+      "method": "NecEmulationModule",
       "tokens": 45,
       "current": [
         {
@@ -2828,132 +2828,132 @@
         {
           "path": "src/GWGUI.Emulation.Bandai/Common/Services/ConfigurationStore.cs",
           "name": "SaveAsync",
-          "line": 41,
+          "line": 23,
           "tokens": 91,
           "hash": "1A569C214119098475FBD2BAAA295B6E2C842ACB6861B76AE18FD35E43DA1B91",
           "shape": "DED6B85EF6330FD504667444A74A1187F1C8A1CB979646531EB8E2A322878B5D",
           "qualification": "Typed native document/path/writer projection; original Atari gate control shared, expansion and call targets verified in nativeConfigurationSaveGateReuse",
-          "qualificationSourceSha256": "990FAC75C97A7CC4BCDAB64FA5C26A8D64B0FF85A18AB7C604BA085F7C7EF56B"
+          "qualificationSourceSha256": "7865F8DC10D76056893010EBA14BBDFD6E1A0D31F7B887BE35532F092E374F16"
         },
         {
           "path": "src/GWGUI.Emulation.Epoch/Common/Services/ConfigurationStore.cs",
           "name": "SaveAsync",
-          "line": 41,
+          "line": 23,
           "tokens": 91,
           "hash": "1A569C214119098475FBD2BAAA295B6E2C842ACB6861B76AE18FD35E43DA1B91",
           "shape": "DED6B85EF6330FD504667444A74A1187F1C8A1CB979646531EB8E2A322878B5D",
           "qualification": "Typed native document/path/writer projection; original Atari gate control shared, expansion and call targets verified in nativeConfigurationSaveGateReuse",
-          "qualificationSourceSha256": "241AED373DA0C76707CF66D077B9019BD0C7E457B50B5C81A13953E05DBBBCDF"
+          "qualificationSourceSha256": "A321EA4A96985E060F3BB1459ECC0809FDA3E1FBC4D09662FA259145654CEE8F"
         },
         {
           "path": "src/GWGUI.Emulation.Thomson/Common/Services/ConfigurationStore.cs",
           "name": "SaveAsync",
-          "line": 42,
+          "line": 26,
           "tokens": 91,
           "hash": "1A569C214119098475FBD2BAAA295B6E2C842ACB6861B76AE18FD35E43DA1B91",
           "shape": "DED6B85EF6330FD504667444A74A1187F1C8A1CB979646531EB8E2A322878B5D",
           "qualification": "Typed native document/path/writer projection; original Atari gate control shared, expansion and call targets verified in nativeConfigurationSaveGateReuse",
-          "qualificationSourceSha256": "A131F99824DA55CC72F8085DDD76D62268F413B44FC30F8D8238D32E038B2734"
+          "qualificationSourceSha256": "FFC63564191605B8209B470B2067E9EE46B572FA733C4043DF4E87BC065C8FCD"
         },
         {
           "path": "src/GWGUI.Emulation.Wenquxing/Common/Services/ConfigurationStore.cs",
           "name": "SaveAsync",
-          "line": 42,
+          "line": 26,
           "tokens": 91,
           "hash": "1A569C214119098475FBD2BAAA295B6E2C842ACB6861B76AE18FD35E43DA1B91",
           "shape": "DED6B85EF6330FD504667444A74A1187F1C8A1CB979646531EB8E2A322878B5D",
           "qualification": "Typed native document/path/writer projection; original Atari gate control shared, expansion and call targets verified in nativeConfigurationSaveGateReuse",
-          "qualificationSourceSha256": "893DD30E3E6AAE3AEBD80087BA2318D10B0D416EBA35D2ED8742EE81C6F6080F"
+          "qualificationSourceSha256": "90F2A6C14F0EE7AAA3B1E09D616E663991E5BD217BD9BFA2DFFE5A99C93530C9"
         },
         {
           "path": "src/GWGUI.Emulation.Philips/Common/Services/ConfigurationStore.cs",
           "name": "SaveAsync",
-          "line": 41,
+          "line": 23,
           "tokens": 91,
           "hash": "1A569C214119098475FBD2BAAA295B6E2C842ACB6861B76AE18FD35E43DA1B91",
           "shape": "DED6B85EF6330FD504667444A74A1187F1C8A1CB979646531EB8E2A322878B5D",
           "qualification": "Typed native document/path/writer projection; original Atari gate control shared, expansion and call targets verified in nativeConfigurationSaveGateReuse",
-          "qualificationSourceSha256": "0F8B72FCC8788AC26FB0A308A607741B9F8393236220F77EBB7BDABEEB662490"
+          "qualificationSourceSha256": "D022CF44DE73E4A666580B12AEB4BB8C87489E69110AC455A481735D505D4971"
         },
         {
           "path": "src/GWGUI.Emulation.Coleco/Common/Services/ConfigurationStore.cs",
           "name": "SaveAsync",
-          "line": 41,
+          "line": 23,
           "tokens": 91,
           "hash": "1A569C214119098475FBD2BAAA295B6E2C842ACB6861B76AE18FD35E43DA1B91",
           "shape": "DED6B85EF6330FD504667444A74A1187F1C8A1CB979646531EB8E2A322878B5D",
           "qualification": "Typed native document/path/writer projection; original Atari gate control shared, expansion and call targets verified in nativeConfigurationSaveGateReuse",
-          "qualificationSourceSha256": "88EA6696621683C539E0C19F20CDA97927E4A07D4FFC3E5E56C77934E8A9A85A"
+          "qualificationSourceSha256": "D9BFED0BF55B03653B9EB827A14F393C2B22C37618D7E90F8DD2D98E06DEA681"
         },
         {
           "path": "src/GWGUI.Emulation.Panasonic/Common/Services/ConfigurationStore.cs",
           "name": "SaveAsync",
-          "line": 42,
+          "line": 26,
           "tokens": 91,
           "hash": "1A569C214119098475FBD2BAAA295B6E2C842ACB6861B76AE18FD35E43DA1B91",
           "shape": "DED6B85EF6330FD504667444A74A1187F1C8A1CB979646531EB8E2A322878B5D",
           "qualification": "Typed native document/path/writer projection; original Atari gate control shared, expansion and call targets verified in nativeConfigurationSaveGateReuse",
-          "qualificationSourceSha256": "8577FD0FC5A27132CDF660C084D0D39D292071C7DFCB17DD3DECD5EAF2EF1A22"
+          "qualificationSourceSha256": "EF2CEA51A41C4E4BE53D28628C42AF674E3BFC8CD4F8386F91F1368C7B209A44"
         },
         {
           "path": "src/GWGUI.Emulation.Mattel/Common/Services/ConfigurationStore.cs",
           "name": "SaveAsync",
-          "line": 41,
+          "line": 23,
           "tokens": 91,
           "hash": "1A569C214119098475FBD2BAAA295B6E2C842ACB6861B76AE18FD35E43DA1B91",
           "shape": "DED6B85EF6330FD504667444A74A1187F1C8A1CB979646531EB8E2A322878B5D",
           "qualification": "Typed native document/path/writer projection; original Atari gate control shared, expansion and call targets verified in nativeConfigurationSaveGateReuse",
-          "qualificationSourceSha256": "851B57FFD589212CD065A85A474BAB6873329B6AD15577448AD88C3ADF6677D5"
+          "qualificationSourceSha256": "5BCDED5ED5C233882F5C074270BA59F04B179F1D899C16382331C9D05A59AA15"
         },
         {
           "path": "src/GWGUI.Emulation.Watara/Common/Services/ConfigurationStore.cs",
           "name": "SaveAsync",
-          "line": 42,
+          "line": 26,
           "tokens": 91,
           "hash": "1A569C214119098475FBD2BAAA295B6E2C842ACB6861B76AE18FD35E43DA1B91",
           "shape": "DED6B85EF6330FD504667444A74A1187F1C8A1CB979646531EB8E2A322878B5D",
           "qualification": "Typed native document/path/writer projection; original Atari gate control shared, expansion and call targets verified in nativeConfigurationSaveGateReuse",
-          "qualificationSourceSha256": "B6F54A26241C9A2E48B3323998294F99966B154BAA17922829E055FC3011C7A6"
+          "qualificationSourceSha256": "A31A5F1DD89A8586FECBC49B9206F7C9A115F3B007D991B746B86BCA7E2810EC"
         },
         {
           "path": "src/GWGUI.Emulation.Fairchild/Common/Services/ConfigurationStore.cs",
           "name": "SaveAsync",
-          "line": 41,
+          "line": 23,
           "tokens": 91,
           "hash": "1A569C214119098475FBD2BAAA295B6E2C842ACB6861B76AE18FD35E43DA1B91",
           "shape": "DED6B85EF6330FD504667444A74A1187F1C8A1CB979646531EB8E2A322878B5D",
           "qualification": "Typed native document/path/writer projection; original Atari gate control shared, expansion and call targets verified in nativeConfigurationSaveGateReuse",
-          "qualificationSourceSha256": "E1C995D81AE7372D842BEB9DC69EAF18667955077F3BCF16D6128CE824E311E6"
+          "qualificationSourceSha256": "15F555589802643346DE7845AE8FC552155FF12447610C9009381D2CF66E3A38"
         },
         {
           "path": "src/GWGUI.Emulation.Snk/Common/Services/ConfigurationStore.cs",
           "name": "SaveAsync",
-          "line": 38,
+          "line": 22,
           "tokens": 91,
           "hash": "1A569C214119098475FBD2BAAA295B6E2C842ACB6861B76AE18FD35E43DA1B91",
           "shape": "DED6B85EF6330FD504667444A74A1187F1C8A1CB979646531EB8E2A322878B5D",
           "qualification": "Typed native document/path/writer projection; original Atari gate control shared, expansion and call targets verified in nativeConfigurationSaveGateReuse",
-          "qualificationSourceSha256": "F5CCA49EFE8056A74A854C04DBF5163326523C31002F5724E92089E7621B2E69"
+          "qualificationSourceSha256": "9BEF62F98AB06D5AF9334EA117BBB31629016B3E70A5F3EE5B615B0E5E157CB4"
         },
         {
           "path": "src/GWGUI.Emulation.Sinclair/Common/Services/ConfigurationStore.cs",
           "name": "SaveAsync",
-          "line": 38,
+          "line": 22,
           "tokens": 91,
           "hash": "1A569C214119098475FBD2BAAA295B6E2C842ACB6861B76AE18FD35E43DA1B91",
           "shape": "DED6B85EF6330FD504667444A74A1187F1C8A1CB979646531EB8E2A322878B5D",
           "qualification": "Typed native document/path/writer projection; original Atari gate control shared, expansion and call targets verified in nativeConfigurationSaveGateReuse",
-          "qualificationSourceSha256": "EA5DBC5F143073728E04F45EF595966CFCB4C1E83DAE90F9DC3447469771DFF8"
+          "qualificationSourceSha256": "16D452CE53937AB898EA1F6BDC8F3C0CDA97F3E5596F38BD778D2D4E6362BD03"
         },
         {
           "path": "src/GWGUI.Emulation.Sharp/Common/Services/ConfigurationStore.cs",
           "name": "SaveAsync",
-          "line": 38,
+          "line": 22,
           "tokens": 91,
           "hash": "1A569C214119098475FBD2BAAA295B6E2C842ACB6861B76AE18FD35E43DA1B91",
           "shape": "DED6B85EF6330FD504667444A74A1187F1C8A1CB979646531EB8E2A322878B5D",
           "qualification": "Typed native document/path/writer projection; original Atari gate control shared, expansion and call targets verified in nativeConfigurationSaveGateReuse",
-          "qualificationSourceSha256": "90F08E6A6BEE4E0716FDC0B82F7DF42F57510EAC529715DF884148344EC4F01B"
+          "qualificationSourceSha256": "3650ED391AB8DB67158C7CD02A590F2DBB3D0D5ABC6F30FF4881846A8D5F74CE"
         }
       ],
       "predecessors": [],
@@ -3772,73 +3772,6 @@
           "tokens": 144,
           "hash": "256745C9280719FE9666031C5D64DE75215FD6B2867B4D0CB083C91B3353A2F7",
           "shape": "9D4FB831778280C5022C8C0F0183BCB91517C274DDD8BE0B40BCEB32C9829E00"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
-      "hash": "26091EEF437A91D0B8C34A609BF7E9C5E3F40E340197EB8FEDA50C603D66CA87",
-      "method": "LoadAllAsync",
-      "tokens": 115,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Watara/Common/Services/ConfigurationStore.cs",
-          "name": "LoadAllAsync",
-          "line": 22,
-          "tokens": 115,
-          "hash": "26091EEF437A91D0B8C34A609BF7E9C5E3F40E340197EB8FEDA50C603D66CA87",
-          "shape": "F40B9EC9F02B02F7A32684797CFFF2D3351401996AE695A9ADB176E2D139EBFB"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sinclair/Common/Services/ConfigurationStore.cs",
-          "name": "LoadAllAsync",
-          "line": 18,
-          "tokens": 115,
-          "hash": "26091EEF437A91D0B8C34A609BF7E9C5E3F40E340197EB8FEDA50C603D66CA87",
-          "shape": "F40B9EC9F02B02F7A32684797CFFF2D3351401996AE695A9ADB176E2D139EBFB"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Sharp/Common/Services/ConfigurationStore.cs",
-          "name": "LoadAllAsync",
-          "line": 18,
-          "tokens": 115,
-          "hash": "26091EEF437A91D0B8C34A609BF7E9C5E3F40E340197EB8FEDA50C603D66CA87",
-          "shape": "F40B9EC9F02B02F7A32684797CFFF2D3351401996AE695A9ADB176E2D139EBFB"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Thomson/Common/Services/ConfigurationStore.cs",
-          "name": "LoadAllAsync",
-          "line": 22,
-          "tokens": 115,
-          "hash": "26091EEF437A91D0B8C34A609BF7E9C5E3F40E340197EB8FEDA50C603D66CA87",
-          "shape": "F40B9EC9F02B02F7A32684797CFFF2D3351401996AE695A9ADB176E2D139EBFB"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Snk/Common/Services/ConfigurationStore.cs",
-          "name": "LoadAllAsync",
-          "line": 18,
-          "tokens": 115,
-          "hash": "26091EEF437A91D0B8C34A609BF7E9C5E3F40E340197EB8FEDA50C603D66CA87",
-          "shape": "F40B9EC9F02B02F7A32684797CFFF2D3351401996AE695A9ADB176E2D139EBFB"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Wenquxing/Common/Services/ConfigurationStore.cs",
-          "name": "LoadAllAsync",
-          "line": 22,
-          "tokens": 115,
-          "hash": "26091EEF437A91D0B8C34A609BF7E9C5E3F40E340197EB8FEDA50C603D66CA87",
-          "shape": "F40B9EC9F02B02F7A32684797CFFF2D3351401996AE695A9ADB176E2D139EBFB"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Panasonic/Common/Services/ConfigurationStore.cs",
-          "name": "LoadAllAsync",
-          "line": 22,
-          "tokens": 115,
-          "hash": "26091EEF437A91D0B8C34A609BF7E9C5E3F40E340197EB8FEDA50C603D66CA87",
-          "shape": "F40B9EC9F02B02F7A32684797CFFF2D3351401996AE695A9ADB176E2D139EBFB"
         }
       ],
       "predecessors": [],
@@ -9846,7 +9779,7 @@
         {
           "path": "src/GWGUI.Emulation.Apple/Common/Services/ConfigurationStore.cs",
           "name": "ConfigurationPaths",
-          "line": 60,
+          "line": 42,
           "tokens": 37,
           "hash": "588E30EFADF86A88D8C73359E5D651E69DB7C181E9AABF8DF316764405E3B7F3",
           "shape": "3559066CF822E5EE0A3E76C3BB7839B6B4972A7C0843B92A796E01429240D08E"
@@ -9854,7 +9787,7 @@
         {
           "path": "src/GWGUI.Emulation.Acorn/Common/Services/ConfigurationStore.cs",
           "name": "ConfigurationPaths",
-          "line": 60,
+          "line": 42,
           "tokens": 37,
           "hash": "588E30EFADF86A88D8C73359E5D651E69DB7C181E9AABF8DF316764405E3B7F3",
           "shape": "3559066CF822E5EE0A3E76C3BB7839B6B4972A7C0843B92A796E01429240D08E"
@@ -9862,7 +9795,7 @@
         {
           "path": "src/GWGUI.Emulation.Watara/Common/Services/ConfigurationStore.cs",
           "name": "ConfigurationPaths",
-          "line": 61,
+          "line": 45,
           "tokens": 37,
           "hash": "588E30EFADF86A88D8C73359E5D651E69DB7C181E9AABF8DF316764405E3B7F3",
           "shape": "3559066CF822E5EE0A3E76C3BB7839B6B4972A7C0843B92A796E01429240D08E"
@@ -9870,7 +9803,7 @@
         {
           "path": "src/GWGUI.Emulation.Sinclair/Common/Services/ConfigurationStore.cs",
           "name": "ConfigurationPaths",
-          "line": 57,
+          "line": 41,
           "tokens": 37,
           "hash": "588E30EFADF86A88D8C73359E5D651E69DB7C181E9AABF8DF316764405E3B7F3",
           "shape": "3559066CF822E5EE0A3E76C3BB7839B6B4972A7C0843B92A796E01429240D08E"
@@ -9878,7 +9811,7 @@
         {
           "path": "src/GWGUI.Emulation.Sharp/Common/Services/ConfigurationStore.cs",
           "name": "ConfigurationPaths",
-          "line": 57,
+          "line": 41,
           "tokens": 37,
           "hash": "588E30EFADF86A88D8C73359E5D651E69DB7C181E9AABF8DF316764405E3B7F3",
           "shape": "3559066CF822E5EE0A3E76C3BB7839B6B4972A7C0843B92A796E01429240D08E"
@@ -9886,7 +9819,7 @@
         {
           "path": "src/GWGUI.Emulation.Thomson/Common/Services/ConfigurationStore.cs",
           "name": "ConfigurationPaths",
-          "line": 61,
+          "line": 45,
           "tokens": 37,
           "hash": "588E30EFADF86A88D8C73359E5D651E69DB7C181E9AABF8DF316764405E3B7F3",
           "shape": "3559066CF822E5EE0A3E76C3BB7839B6B4972A7C0843B92A796E01429240D08E"
@@ -9894,7 +9827,7 @@
         {
           "path": "src/GWGUI.Emulation.Snk/Common/Services/ConfigurationStore.cs",
           "name": "ConfigurationPaths",
-          "line": 57,
+          "line": 41,
           "tokens": 37,
           "hash": "588E30EFADF86A88D8C73359E5D651E69DB7C181E9AABF8DF316764405E3B7F3",
           "shape": "3559066CF822E5EE0A3E76C3BB7839B6B4972A7C0843B92A796E01429240D08E"
@@ -9902,7 +9835,7 @@
         {
           "path": "src/GWGUI.Emulation.Philips/Common/Services/ConfigurationStore.cs",
           "name": "ConfigurationPaths",
-          "line": 61,
+          "line": 43,
           "tokens": 37,
           "hash": "588E30EFADF86A88D8C73359E5D651E69DB7C181E9AABF8DF316764405E3B7F3",
           "shape": "3559066CF822E5EE0A3E76C3BB7839B6B4972A7C0843B92A796E01429240D08E"
@@ -9910,7 +9843,7 @@
         {
           "path": "src/GWGUI.Emulation.Wenquxing/Common/Services/ConfigurationStore.cs",
           "name": "ConfigurationPaths",
-          "line": 61,
+          "line": 45,
           "tokens": 37,
           "hash": "588E30EFADF86A88D8C73359E5D651E69DB7C181E9AABF8DF316764405E3B7F3",
           "shape": "3559066CF822E5EE0A3E76C3BB7839B6B4972A7C0843B92A796E01429240D08E"
@@ -9918,7 +9851,7 @@
         {
           "path": "src/GWGUI.Emulation.Atari/Common/Services/ConfigurationStore.cs",
           "name": "ConfigurationPaths",
-          "line": 60,
+          "line": 42,
           "tokens": 37,
           "hash": "588E30EFADF86A88D8C73359E5D651E69DB7C181E9AABF8DF316764405E3B7F3",
           "shape": "3559066CF822E5EE0A3E76C3BB7839B6B4972A7C0843B92A796E01429240D08E"
@@ -9926,7 +9859,7 @@
         {
           "path": "src/GWGUI.Emulation.Panasonic/Common/Services/ConfigurationStore.cs",
           "name": "ConfigurationPaths",
-          "line": 61,
+          "line": 45,
           "tokens": 37,
           "hash": "588E30EFADF86A88D8C73359E5D651E69DB7C181E9AABF8DF316764405E3B7F3",
           "shape": "3559066CF822E5EE0A3E76C3BB7839B6B4972A7C0843B92A796E01429240D08E"
@@ -9934,7 +9867,7 @@
         {
           "path": "src/GWGUI.Emulation.Mattel/Common/Services/ConfigurationStore.cs",
           "name": "ConfigurationPaths",
-          "line": 61,
+          "line": 43,
           "tokens": 37,
           "hash": "588E30EFADF86A88D8C73359E5D651E69DB7C181E9AABF8DF316764405E3B7F3",
           "shape": "3559066CF822E5EE0A3E76C3BB7839B6B4972A7C0843B92A796E01429240D08E"
@@ -9942,7 +9875,7 @@
         {
           "path": "src/GWGUI.Emulation.Coleco/Common/Services/ConfigurationStore.cs",
           "name": "ConfigurationPaths",
-          "line": 61,
+          "line": 43,
           "tokens": 37,
           "hash": "588E30EFADF86A88D8C73359E5D651E69DB7C181E9AABF8DF316764405E3B7F3",
           "shape": "3559066CF822E5EE0A3E76C3BB7839B6B4972A7C0843B92A796E01429240D08E"
@@ -9950,7 +9883,7 @@
         {
           "path": "src/GWGUI.Emulation.Fairchild/Common/Services/ConfigurationStore.cs",
           "name": "ConfigurationPaths",
-          "line": 61,
+          "line": 43,
           "tokens": 37,
           "hash": "588E30EFADF86A88D8C73359E5D651E69DB7C181E9AABF8DF316764405E3B7F3",
           "shape": "3559066CF822E5EE0A3E76C3BB7839B6B4972A7C0843B92A796E01429240D08E"
@@ -9958,7 +9891,7 @@
         {
           "path": "src/GWGUI.Emulation.Epoch/Common/Services/ConfigurationStore.cs",
           "name": "ConfigurationPaths",
-          "line": 61,
+          "line": 43,
           "tokens": 37,
           "hash": "588E30EFADF86A88D8C73359E5D651E69DB7C181E9AABF8DF316764405E3B7F3",
           "shape": "3559066CF822E5EE0A3E76C3BB7839B6B4972A7C0843B92A796E01429240D08E"
@@ -9966,7 +9899,7 @@
         {
           "path": "src/GWGUI.Emulation.Bandai/Common/Services/ConfigurationStore.cs",
           "name": "ConfigurationPaths",
-          "line": 61,
+          "line": 43,
           "tokens": 37,
           "hash": "588E30EFADF86A88D8C73359E5D651E69DB7C181E9AABF8DF316764405E3B7F3",
           "shape": "3559066CF822E5EE0A3E76C3BB7839B6B4972A7C0843B92A796E01429240D08E"
@@ -11862,7 +11795,7 @@
     {
       "language": "CSharp",
       "hash": "68386C818382BCE400A3EDE65411B5CBD9D6A87F6D88FAF6501028CE28C38965",
-      "method": "ToModule",
+      "method": "ToSinclair",
       "tokens": 148,
       "current": [
         {
@@ -15014,7 +14947,7 @@
         {
           "path": "src/GWGUI.Emulation.Apple/Common/Services/ConfigurationStore.cs",
           "name": "Delete",
-          "line": 52,
+          "line": 34,
           "tokens": 59,
           "hash": "868C9CC8C3155D98EA72ADFB3C5A69A4114238AC3A4342EA21ED3B5F0190BBE2",
           "shape": "74712BD6EA9734E52E7C00E2817661152ACC969D1D46BAE7F030BCD1DA82AFFD"
@@ -15022,7 +14955,7 @@
         {
           "path": "src/GWGUI.Emulation.Acorn/Common/Services/ConfigurationStore.cs",
           "name": "Delete",
-          "line": 52,
+          "line": 34,
           "tokens": 59,
           "hash": "868C9CC8C3155D98EA72ADFB3C5A69A4114238AC3A4342EA21ED3B5F0190BBE2",
           "shape": "74712BD6EA9734E52E7C00E2817661152ACC969D1D46BAE7F030BCD1DA82AFFD"
@@ -15030,7 +14963,7 @@
         {
           "path": "src/GWGUI.Emulation.Watara/Common/Services/ConfigurationStore.cs",
           "name": "Delete",
-          "line": 54,
+          "line": 38,
           "tokens": 59,
           "hash": "868C9CC8C3155D98EA72ADFB3C5A69A4114238AC3A4342EA21ED3B5F0190BBE2",
           "shape": "74712BD6EA9734E52E7C00E2817661152ACC969D1D46BAE7F030BCD1DA82AFFD"
@@ -15038,7 +14971,7 @@
         {
           "path": "src/GWGUI.Emulation.Sinclair/Common/Services/ConfigurationStore.cs",
           "name": "Delete",
-          "line": 50,
+          "line": 34,
           "tokens": 59,
           "hash": "868C9CC8C3155D98EA72ADFB3C5A69A4114238AC3A4342EA21ED3B5F0190BBE2",
           "shape": "74712BD6EA9734E52E7C00E2817661152ACC969D1D46BAE7F030BCD1DA82AFFD"
@@ -15046,7 +14979,7 @@
         {
           "path": "src/GWGUI.Emulation.Sharp/Common/Services/ConfigurationStore.cs",
           "name": "Delete",
-          "line": 50,
+          "line": 34,
           "tokens": 59,
           "hash": "868C9CC8C3155D98EA72ADFB3C5A69A4114238AC3A4342EA21ED3B5F0190BBE2",
           "shape": "74712BD6EA9734E52E7C00E2817661152ACC969D1D46BAE7F030BCD1DA82AFFD"
@@ -15054,7 +14987,7 @@
         {
           "path": "src/GWGUI.Emulation.Thomson/Common/Services/ConfigurationStore.cs",
           "name": "Delete",
-          "line": 54,
+          "line": 38,
           "tokens": 59,
           "hash": "868C9CC8C3155D98EA72ADFB3C5A69A4114238AC3A4342EA21ED3B5F0190BBE2",
           "shape": "74712BD6EA9734E52E7C00E2817661152ACC969D1D46BAE7F030BCD1DA82AFFD"
@@ -15062,7 +14995,7 @@
         {
           "path": "src/GWGUI.Emulation.Snk/Common/Services/ConfigurationStore.cs",
           "name": "Delete",
-          "line": 50,
+          "line": 34,
           "tokens": 59,
           "hash": "868C9CC8C3155D98EA72ADFB3C5A69A4114238AC3A4342EA21ED3B5F0190BBE2",
           "shape": "74712BD6EA9734E52E7C00E2817661152ACC969D1D46BAE7F030BCD1DA82AFFD"
@@ -15070,7 +15003,7 @@
         {
           "path": "src/GWGUI.Emulation.Philips/Common/Services/ConfigurationStore.cs",
           "name": "Delete",
-          "line": 53,
+          "line": 35,
           "tokens": 59,
           "hash": "868C9CC8C3155D98EA72ADFB3C5A69A4114238AC3A4342EA21ED3B5F0190BBE2",
           "shape": "74712BD6EA9734E52E7C00E2817661152ACC969D1D46BAE7F030BCD1DA82AFFD"
@@ -15078,7 +15011,7 @@
         {
           "path": "src/GWGUI.Emulation.Wenquxing/Common/Services/ConfigurationStore.cs",
           "name": "Delete",
-          "line": 54,
+          "line": 38,
           "tokens": 59,
           "hash": "868C9CC8C3155D98EA72ADFB3C5A69A4114238AC3A4342EA21ED3B5F0190BBE2",
           "shape": "74712BD6EA9734E52E7C00E2817661152ACC969D1D46BAE7F030BCD1DA82AFFD"
@@ -15086,7 +15019,7 @@
         {
           "path": "src/GWGUI.Emulation.Atari/Common/Services/ConfigurationStore.cs",
           "name": "Delete",
-          "line": 52,
+          "line": 34,
           "tokens": 59,
           "hash": "868C9CC8C3155D98EA72ADFB3C5A69A4114238AC3A4342EA21ED3B5F0190BBE2",
           "shape": "74712BD6EA9734E52E7C00E2817661152ACC969D1D46BAE7F030BCD1DA82AFFD"
@@ -15094,7 +15027,7 @@
         {
           "path": "src/GWGUI.Emulation.Panasonic/Common/Services/ConfigurationStore.cs",
           "name": "Delete",
-          "line": 54,
+          "line": 38,
           "tokens": 59,
           "hash": "868C9CC8C3155D98EA72ADFB3C5A69A4114238AC3A4342EA21ED3B5F0190BBE2",
           "shape": "74712BD6EA9734E52E7C00E2817661152ACC969D1D46BAE7F030BCD1DA82AFFD"
@@ -15102,7 +15035,7 @@
         {
           "path": "src/GWGUI.Emulation.Mattel/Common/Services/ConfigurationStore.cs",
           "name": "Delete",
-          "line": 53,
+          "line": 35,
           "tokens": 59,
           "hash": "868C9CC8C3155D98EA72ADFB3C5A69A4114238AC3A4342EA21ED3B5F0190BBE2",
           "shape": "74712BD6EA9734E52E7C00E2817661152ACC969D1D46BAE7F030BCD1DA82AFFD"
@@ -15110,7 +15043,7 @@
         {
           "path": "src/GWGUI.Emulation.Coleco/Common/Services/ConfigurationStore.cs",
           "name": "Delete",
-          "line": 53,
+          "line": 35,
           "tokens": 59,
           "hash": "868C9CC8C3155D98EA72ADFB3C5A69A4114238AC3A4342EA21ED3B5F0190BBE2",
           "shape": "74712BD6EA9734E52E7C00E2817661152ACC969D1D46BAE7F030BCD1DA82AFFD"
@@ -15118,7 +15051,7 @@
         {
           "path": "src/GWGUI.Emulation.Fairchild/Common/Services/ConfigurationStore.cs",
           "name": "Delete",
-          "line": 53,
+          "line": 35,
           "tokens": 59,
           "hash": "868C9CC8C3155D98EA72ADFB3C5A69A4114238AC3A4342EA21ED3B5F0190BBE2",
           "shape": "74712BD6EA9734E52E7C00E2817661152ACC969D1D46BAE7F030BCD1DA82AFFD"
@@ -15126,7 +15059,7 @@
         {
           "path": "src/GWGUI.Emulation.Epoch/Common/Services/ConfigurationStore.cs",
           "name": "Delete",
-          "line": 53,
+          "line": 35,
           "tokens": 59,
           "hash": "868C9CC8C3155D98EA72ADFB3C5A69A4114238AC3A4342EA21ED3B5F0190BBE2",
           "shape": "74712BD6EA9734E52E7C00E2817661152ACC969D1D46BAE7F030BCD1DA82AFFD"
@@ -15134,7 +15067,7 @@
         {
           "path": "src/GWGUI.Emulation.Bandai/Common/Services/ConfigurationStore.cs",
           "name": "Delete",
-          "line": 53,
+          "line": 35,
           "tokens": 59,
           "hash": "868C9CC8C3155D98EA72ADFB3C5A69A4114238AC3A4342EA21ED3B5F0190BBE2",
           "shape": "74712BD6EA9734E52E7C00E2817661152ACC969D1D46BAE7F030BCD1DA82AFFD"
@@ -16939,89 +16872,6 @@
     },
     {
       "language": "CSharp",
-      "hash": "953209B3E03F4BD734F3A2675B52DB0E8BAFD3A8FB7FC6BA0B1DCA57825A45E7",
-      "method": "LoadAllAsync",
-      "tokens": 125,
-      "current": [
-        {
-          "path": "src/GWGUI.Emulation.Apple/Common/Services/ConfigurationStore.cs",
-          "name": "LoadAllAsync",
-          "line": 19,
-          "tokens": 125,
-          "hash": "953209B3E03F4BD734F3A2675B52DB0E8BAFD3A8FB7FC6BA0B1DCA57825A45E7",
-          "shape": "644B1EF6E6D128641BAD51187835641B44EEE44F73B5FC5338A0C2EB0CAAE2B2"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Acorn/Common/Services/ConfigurationStore.cs",
-          "name": "LoadAllAsync",
-          "line": 19,
-          "tokens": 125,
-          "hash": "953209B3E03F4BD734F3A2675B52DB0E8BAFD3A8FB7FC6BA0B1DCA57825A45E7",
-          "shape": "644B1EF6E6D128641BAD51187835641B44EEE44F73B5FC5338A0C2EB0CAAE2B2"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Philips/Common/Services/ConfigurationStore.cs",
-          "name": "LoadAllAsync",
-          "line": 19,
-          "tokens": 125,
-          "hash": "953209B3E03F4BD734F3A2675B52DB0E8BAFD3A8FB7FC6BA0B1DCA57825A45E7",
-          "shape": "644B1EF6E6D128641BAD51187835641B44EEE44F73B5FC5338A0C2EB0CAAE2B2"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Atari/Common/Services/ConfigurationStore.cs",
-          "name": "LoadAllAsync",
-          "line": 19,
-          "tokens": 125,
-          "hash": "953209B3E03F4BD734F3A2675B52DB0E8BAFD3A8FB7FC6BA0B1DCA57825A45E7",
-          "shape": "644B1EF6E6D128641BAD51187835641B44EEE44F73B5FC5338A0C2EB0CAAE2B2"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Mattel/Common/Services/ConfigurationStore.cs",
-          "name": "LoadAllAsync",
-          "line": 19,
-          "tokens": 125,
-          "hash": "953209B3E03F4BD734F3A2675B52DB0E8BAFD3A8FB7FC6BA0B1DCA57825A45E7",
-          "shape": "644B1EF6E6D128641BAD51187835641B44EEE44F73B5FC5338A0C2EB0CAAE2B2"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Coleco/Common/Services/ConfigurationStore.cs",
-          "name": "LoadAllAsync",
-          "line": 19,
-          "tokens": 125,
-          "hash": "953209B3E03F4BD734F3A2675B52DB0E8BAFD3A8FB7FC6BA0B1DCA57825A45E7",
-          "shape": "644B1EF6E6D128641BAD51187835641B44EEE44F73B5FC5338A0C2EB0CAAE2B2"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Fairchild/Common/Services/ConfigurationStore.cs",
-          "name": "LoadAllAsync",
-          "line": 19,
-          "tokens": 125,
-          "hash": "953209B3E03F4BD734F3A2675B52DB0E8BAFD3A8FB7FC6BA0B1DCA57825A45E7",
-          "shape": "644B1EF6E6D128641BAD51187835641B44EEE44F73B5FC5338A0C2EB0CAAE2B2"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Epoch/Common/Services/ConfigurationStore.cs",
-          "name": "LoadAllAsync",
-          "line": 19,
-          "tokens": 125,
-          "hash": "953209B3E03F4BD734F3A2675B52DB0E8BAFD3A8FB7FC6BA0B1DCA57825A45E7",
-          "shape": "644B1EF6E6D128641BAD51187835641B44EEE44F73B5FC5338A0C2EB0CAAE2B2"
-        },
-        {
-          "path": "src/GWGUI.Emulation.Bandai/Common/Services/ConfigurationStore.cs",
-          "name": "LoadAllAsync",
-          "line": 19,
-          "tokens": 125,
-          "hash": "953209B3E03F4BD734F3A2675B52DB0E8BAFD3A8FB7FC6BA0B1DCA57825A45E7",
-          "shape": "644B1EF6E6D128641BAD51187835641B44EEE44F73B5FC5338A0C2EB0CAAE2B2"
-        }
-      ],
-      "predecessors": [],
-      "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
       "hash": "95AB8DF005FA2E6E0E6DA2B914BB622E192895984196F8E0D99DA64FA28FF77A",
       "method": "ToDocument",
       "tokens": 120,
@@ -18727,7 +18577,7 @@
     {
       "language": "CSharp",
       "hash": "A1E03750FEB3292ACEB41656386F4A8AA8B05077D9ABFB7DA103AA3D71320B9F",
-      "method": "ToEpoch",
+      "method": "ToModule",
       "tokens": 103,
       "current": [
         {
@@ -19037,7 +18887,7 @@
     {
       "language": "CSharp",
       "hash": "A61349BFDFFA5D404CE7D0D458204D435194B5E4D84870DF4F9FBE26A86A9946",
-      "method": "ToEpoch",
+      "method": "ToFairchild",
       "tokens": 36,
       "current": [
         {
@@ -19828,6 +19678,177 @@
     },
     {
       "language": "CSharp",
+      "hash": "ADE87A4603BF1BDA799F5D305CC2457ED36D5CBC826B20609DCF8B6FD1CAF665",
+      "method": "LoadAllAsync",
+      "tokens": 32,
+      "current": [
+        {
+          "path": "src/GWGUI.Emulation.Panasonic/Common/Services/ConfigurationStore.cs",
+          "name": "LoadAllAsync",
+          "line": 21,
+          "tokens": 32,
+          "hash": "ADE87A4603BF1BDA799F5D305CC2457ED36D5CBC826B20609DCF8B6FD1CAF665",
+          "shape": "169FA0995B0AD42761CB44CD45DE61F7B5FDBB5769A4B3D8BA2F556EE5D66945",
+          "qualification": "Typed native enumeration/parser/restoration projection; Atari control, JsonDocument lifetime and target bindings verified in nativeConfigurationLoadReuse",
+          "qualificationSourceSha256": "EF2CEA51A41C4E4BE53D28628C42AF674E3BFC8CD4F8386F91F1368C7B209A44"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sinclair/Common/Services/ConfigurationStore.cs",
+          "name": "LoadAllAsync",
+          "line": 17,
+          "tokens": 32,
+          "hash": "ADE87A4603BF1BDA799F5D305CC2457ED36D5CBC826B20609DCF8B6FD1CAF665",
+          "shape": "169FA0995B0AD42761CB44CD45DE61F7B5FDBB5769A4B3D8BA2F556EE5D66945",
+          "qualification": "Typed native enumeration/parser/restoration projection; Atari control, JsonDocument lifetime and target bindings verified in nativeConfigurationLoadReuse",
+          "qualificationSourceSha256": "16D452CE53937AB898EA1F6BDC8F3C0CDA97F3E5596F38BD778D2D4E6362BD03"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Watara/Common/Services/ConfigurationStore.cs",
+          "name": "LoadAllAsync",
+          "line": 21,
+          "tokens": 32,
+          "hash": "ADE87A4603BF1BDA799F5D305CC2457ED36D5CBC826B20609DCF8B6FD1CAF665",
+          "shape": "169FA0995B0AD42761CB44CD45DE61F7B5FDBB5769A4B3D8BA2F556EE5D66945",
+          "qualification": "Typed native enumeration/parser/restoration projection; Atari control, JsonDocument lifetime and target bindings verified in nativeConfigurationLoadReuse",
+          "qualificationSourceSha256": "A31A5F1DD89A8586FECBC49B9206F7C9A115F3B007D991B746B86BCA7E2810EC"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Coleco/Common/Services/ConfigurationStore.cs",
+          "name": "LoadAllAsync",
+          "line": 18,
+          "tokens": 32,
+          "hash": "ADE87A4603BF1BDA799F5D305CC2457ED36D5CBC826B20609DCF8B6FD1CAF665",
+          "shape": "169FA0995B0AD42761CB44CD45DE61F7B5FDBB5769A4B3D8BA2F556EE5D66945",
+          "qualification": "Typed native enumeration/parser/restoration projection; Atari control, JsonDocument lifetime and target bindings verified in nativeConfigurationLoadReuse",
+          "qualificationSourceSha256": "D9BFED0BF55B03653B9EB827A14F393C2B22C37618D7E90F8DD2D98E06DEA681"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Acorn/Common/Services/ConfigurationStore.cs",
+          "name": "LoadAllAsync",
+          "line": 18,
+          "tokens": 32,
+          "hash": "ADE87A4603BF1BDA799F5D305CC2457ED36D5CBC826B20609DCF8B6FD1CAF665",
+          "shape": "169FA0995B0AD42761CB44CD45DE61F7B5FDBB5769A4B3D8BA2F556EE5D66945",
+          "qualification": "Typed native enumeration/parser/restoration projection; Atari control, JsonDocument lifetime and target bindings verified in nativeConfigurationLoadReuse",
+          "qualificationSourceSha256": "ED3E5B4517BAD4BFFF48AC5DACDF060BFEDCBCF53855773D5FB4C1AF72612431"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Apple/Common/Services/ConfigurationStore.cs",
+          "name": "LoadAllAsync",
+          "line": 18,
+          "tokens": 32,
+          "hash": "ADE87A4603BF1BDA799F5D305CC2457ED36D5CBC826B20609DCF8B6FD1CAF665",
+          "shape": "169FA0995B0AD42761CB44CD45DE61F7B5FDBB5769A4B3D8BA2F556EE5D66945",
+          "qualification": "Typed native enumeration/parser/restoration projection; Atari control, JsonDocument lifetime and target bindings verified in nativeConfigurationLoadReuse",
+          "qualificationSourceSha256": "8E363534B8906D85F9A3AFCAD675C2DE270A6BE5C737CADA1CA3D220E0408401"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Atari/Common/Services/ConfigurationStore.cs",
+          "name": "LoadAllAsync",
+          "line": 18,
+          "tokens": 32,
+          "hash": "ADE87A4603BF1BDA799F5D305CC2457ED36D5CBC826B20609DCF8B6FD1CAF665",
+          "shape": "169FA0995B0AD42761CB44CD45DE61F7B5FDBB5769A4B3D8BA2F556EE5D66945",
+          "qualification": "Typed native enumeration/parser/restoration projection; Atari control, JsonDocument lifetime and target bindings verified in nativeConfigurationLoadReuse",
+          "qualificationSourceSha256": "9FF51FC49EAB26CC926628E0C8AB98FBA80EFF980DFD36A9F39217A272F49646"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Thomson/Common/Services/ConfigurationStore.cs",
+          "name": "LoadAllAsync",
+          "line": 21,
+          "tokens": 32,
+          "hash": "ADE87A4603BF1BDA799F5D305CC2457ED36D5CBC826B20609DCF8B6FD1CAF665",
+          "shape": "169FA0995B0AD42761CB44CD45DE61F7B5FDBB5769A4B3D8BA2F556EE5D66945",
+          "qualification": "Typed native enumeration/parser/restoration projection; Atari control, JsonDocument lifetime and target bindings verified in nativeConfigurationLoadReuse",
+          "qualificationSourceSha256": "FFC63564191605B8209B470B2067E9EE46B572FA733C4043DF4E87BC065C8FCD"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Sharp/Common/Services/ConfigurationStore.cs",
+          "name": "LoadAllAsync",
+          "line": 17,
+          "tokens": 32,
+          "hash": "ADE87A4603BF1BDA799F5D305CC2457ED36D5CBC826B20609DCF8B6FD1CAF665",
+          "shape": "169FA0995B0AD42761CB44CD45DE61F7B5FDBB5769A4B3D8BA2F556EE5D66945",
+          "qualification": "Typed native enumeration/parser/restoration projection; Atari control, JsonDocument lifetime and target bindings verified in nativeConfigurationLoadReuse",
+          "qualificationSourceSha256": "3650ED391AB8DB67158C7CD02A590F2DBB3D0D5ABC6F30FF4881846A8D5F74CE"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Bandai/Common/Services/ConfigurationStore.cs",
+          "name": "LoadAllAsync",
+          "line": 18,
+          "tokens": 32,
+          "hash": "ADE87A4603BF1BDA799F5D305CC2457ED36D5CBC826B20609DCF8B6FD1CAF665",
+          "shape": "169FA0995B0AD42761CB44CD45DE61F7B5FDBB5769A4B3D8BA2F556EE5D66945",
+          "qualification": "Typed native enumeration/parser/restoration projection; Atari control, JsonDocument lifetime and target bindings verified in nativeConfigurationLoadReuse",
+          "qualificationSourceSha256": "7865F8DC10D76056893010EBA14BBDFD6E1A0D31F7B887BE35532F092E374F16"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Mattel/Common/Services/ConfigurationStore.cs",
+          "name": "LoadAllAsync",
+          "line": 18,
+          "tokens": 32,
+          "hash": "ADE87A4603BF1BDA799F5D305CC2457ED36D5CBC826B20609DCF8B6FD1CAF665",
+          "shape": "169FA0995B0AD42761CB44CD45DE61F7B5FDBB5769A4B3D8BA2F556EE5D66945",
+          "qualification": "Typed native enumeration/parser/restoration projection; Atari control, JsonDocument lifetime and target bindings verified in nativeConfigurationLoadReuse",
+          "qualificationSourceSha256": "5BCDED5ED5C233882F5C074270BA59F04B179F1D899C16382331C9D05A59AA15"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Fairchild/Common/Services/ConfigurationStore.cs",
+          "name": "LoadAllAsync",
+          "line": 18,
+          "tokens": 32,
+          "hash": "ADE87A4603BF1BDA799F5D305CC2457ED36D5CBC826B20609DCF8B6FD1CAF665",
+          "shape": "169FA0995B0AD42761CB44CD45DE61F7B5FDBB5769A4B3D8BA2F556EE5D66945",
+          "qualification": "Typed native enumeration/parser/restoration projection; Atari control, JsonDocument lifetime and target bindings verified in nativeConfigurationLoadReuse",
+          "qualificationSourceSha256": "15F555589802643346DE7845AE8FC552155FF12447610C9009381D2CF66E3A38"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Philips/Common/Services/ConfigurationStore.cs",
+          "name": "LoadAllAsync",
+          "line": 18,
+          "tokens": 32,
+          "hash": "ADE87A4603BF1BDA799F5D305CC2457ED36D5CBC826B20609DCF8B6FD1CAF665",
+          "shape": "169FA0995B0AD42761CB44CD45DE61F7B5FDBB5769A4B3D8BA2F556EE5D66945",
+          "qualification": "Typed native enumeration/parser/restoration projection; Atari control, JsonDocument lifetime and target bindings verified in nativeConfigurationLoadReuse",
+          "qualificationSourceSha256": "D022CF44DE73E4A666580B12AEB4BB8C87489E69110AC455A481735D505D4971"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Wenquxing/Common/Services/ConfigurationStore.cs",
+          "name": "LoadAllAsync",
+          "line": 21,
+          "tokens": 32,
+          "hash": "ADE87A4603BF1BDA799F5D305CC2457ED36D5CBC826B20609DCF8B6FD1CAF665",
+          "shape": "169FA0995B0AD42761CB44CD45DE61F7B5FDBB5769A4B3D8BA2F556EE5D66945",
+          "qualification": "Typed native enumeration/parser/restoration projection; Atari control, JsonDocument lifetime and target bindings verified in nativeConfigurationLoadReuse",
+          "qualificationSourceSha256": "90F2A6C14F0EE7AAA3B1E09D616E663991E5BD217BD9BFA2DFFE5A99C93530C9"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Epoch/Common/Services/ConfigurationStore.cs",
+          "name": "LoadAllAsync",
+          "line": 18,
+          "tokens": 32,
+          "hash": "ADE87A4603BF1BDA799F5D305CC2457ED36D5CBC826B20609DCF8B6FD1CAF665",
+          "shape": "169FA0995B0AD42761CB44CD45DE61F7B5FDBB5769A4B3D8BA2F556EE5D66945",
+          "qualification": "Typed native enumeration/parser/restoration projection; Atari control, JsonDocument lifetime and target bindings verified in nativeConfigurationLoadReuse",
+          "qualificationSourceSha256": "A321EA4A96985E060F3BB1459ECC0809FDA3E1FBC4D09662FA259145654CEE8F"
+        },
+        {
+          "path": "src/GWGUI.Emulation.Snk/Common/Services/ConfigurationStore.cs",
+          "name": "LoadAllAsync",
+          "line": 17,
+          "tokens": 32,
+          "hash": "ADE87A4603BF1BDA799F5D305CC2457ED36D5CBC826B20609DCF8B6FD1CAF665",
+          "shape": "169FA0995B0AD42761CB44CD45DE61F7B5FDBB5769A4B3D8BA2F556EE5D66945",
+          "qualification": "Typed native enumeration/parser/restoration projection; Atari control, JsonDocument lifetime and target bindings verified in nativeConfigurationLoadReuse",
+          "qualificationSourceSha256": "9BEF62F98AB06D5AF9334EA117BBB31629016B3E70A5F3EE5B615B0E5E157CB4"
+        }
+      ],
+      "predecessors": [],
+      "shapePredecessors": [],
+      "qualification": "pending"
+    },
+    {
+      "language": "CSharp",
       "hash": "AE36B4FFA594AEE3CB0DD34F47F261005DD5DBE61B28504040D3B9E2778DE4C0",
       "method": "AudioSelection",
       "tokens": 82,
@@ -20147,7 +20168,7 @@
     {
       "language": "CSharp",
       "hash": "B053A3AB4F0B78A37DED57B2D744801187AED6EC54FEEAFE4B1AA9C454D6F48C",
-      "method": "EpochEmulationModule",
+      "method": "ColecoEmulationModule",
       "tokens": 47,
       "current": [
         {
@@ -23651,7 +23672,7 @@
         {
           "path": "src/GWGUI.Emulation.Apple/Common/Services/ConfigurationStore.cs",
           "name": "ConfigurationStore",
-          "line": 13,
+          "line": 12,
           "tokens": 39,
           "hash": "D1C7F5E6E029139FD2EC7EAD79F473A11F739960D50D6BEE5D1ADFDBFBCD753B",
           "shape": "3F6CAFB847E322D35264810B73CB579A12599D0442B4D3B00E30EB99281CEEAA"
@@ -23659,7 +23680,7 @@
         {
           "path": "src/GWGUI.Emulation.Acorn/Common/Services/ConfigurationStore.cs",
           "name": "ConfigurationStore",
-          "line": 13,
+          "line": 12,
           "tokens": 39,
           "hash": "D1C7F5E6E029139FD2EC7EAD79F473A11F739960D50D6BEE5D1ADFDBFBCD753B",
           "shape": "3F6CAFB847E322D35264810B73CB579A12599D0442B4D3B00E30EB99281CEEAA"
@@ -23667,7 +23688,7 @@
         {
           "path": "src/GWGUI.Emulation.Watara/Common/Services/ConfigurationStore.cs",
           "name": "ConfigurationStore",
-          "line": 16,
+          "line": 15,
           "tokens": 39,
           "hash": "D1C7F5E6E029139FD2EC7EAD79F473A11F739960D50D6BEE5D1ADFDBFBCD753B",
           "shape": "3F6CAFB847E322D35264810B73CB579A12599D0442B4D3B00E30EB99281CEEAA"
@@ -23675,7 +23696,7 @@
         {
           "path": "src/GWGUI.Emulation.Sinclair/Common/Services/ConfigurationStore.cs",
           "name": "ConfigurationStore",
-          "line": 12,
+          "line": 11,
           "tokens": 39,
           "hash": "D1C7F5E6E029139FD2EC7EAD79F473A11F739960D50D6BEE5D1ADFDBFBCD753B",
           "shape": "3F6CAFB847E322D35264810B73CB579A12599D0442B4D3B00E30EB99281CEEAA"
@@ -23683,7 +23704,7 @@
         {
           "path": "src/GWGUI.Emulation.Sharp/Common/Services/ConfigurationStore.cs",
           "name": "ConfigurationStore",
-          "line": 12,
+          "line": 11,
           "tokens": 39,
           "hash": "D1C7F5E6E029139FD2EC7EAD79F473A11F739960D50D6BEE5D1ADFDBFBCD753B",
           "shape": "3F6CAFB847E322D35264810B73CB579A12599D0442B4D3B00E30EB99281CEEAA"
@@ -23691,7 +23712,7 @@
         {
           "path": "src/GWGUI.Emulation.Thomson/Common/Services/ConfigurationStore.cs",
           "name": "ConfigurationStore",
-          "line": 16,
+          "line": 15,
           "tokens": 39,
           "hash": "D1C7F5E6E029139FD2EC7EAD79F473A11F739960D50D6BEE5D1ADFDBFBCD753B",
           "shape": "3F6CAFB847E322D35264810B73CB579A12599D0442B4D3B00E30EB99281CEEAA"
@@ -23699,7 +23720,7 @@
         {
           "path": "src/GWGUI.Emulation.Snk/Common/Services/ConfigurationStore.cs",
           "name": "ConfigurationStore",
-          "line": 12,
+          "line": 11,
           "tokens": 39,
           "hash": "D1C7F5E6E029139FD2EC7EAD79F473A11F739960D50D6BEE5D1ADFDBFBCD753B",
           "shape": "3F6CAFB847E322D35264810B73CB579A12599D0442B4D3B00E30EB99281CEEAA"
@@ -23707,7 +23728,7 @@
         {
           "path": "src/GWGUI.Emulation.Philips/Common/Services/ConfigurationStore.cs",
           "name": "ConfigurationStore",
-          "line": 13,
+          "line": 12,
           "tokens": 39,
           "hash": "D1C7F5E6E029139FD2EC7EAD79F473A11F739960D50D6BEE5D1ADFDBFBCD753B",
           "shape": "3F6CAFB847E322D35264810B73CB579A12599D0442B4D3B00E30EB99281CEEAA"
@@ -23715,7 +23736,7 @@
         {
           "path": "src/GWGUI.Emulation.Wenquxing/Common/Services/ConfigurationStore.cs",
           "name": "ConfigurationStore",
-          "line": 16,
+          "line": 15,
           "tokens": 39,
           "hash": "D1C7F5E6E029139FD2EC7EAD79F473A11F739960D50D6BEE5D1ADFDBFBCD753B",
           "shape": "3F6CAFB847E322D35264810B73CB579A12599D0442B4D3B00E30EB99281CEEAA"
@@ -23723,7 +23744,7 @@
         {
           "path": "src/GWGUI.Emulation.Atari/Common/Services/ConfigurationStore.cs",
           "name": "ConfigurationStore",
-          "line": 13,
+          "line": 12,
           "tokens": 39,
           "hash": "D1C7F5E6E029139FD2EC7EAD79F473A11F739960D50D6BEE5D1ADFDBFBCD753B",
           "shape": "3F6CAFB847E322D35264810B73CB579A12599D0442B4D3B00E30EB99281CEEAA"
@@ -23731,7 +23752,7 @@
         {
           "path": "src/GWGUI.Emulation.Panasonic/Common/Services/ConfigurationStore.cs",
           "name": "ConfigurationStore",
-          "line": 16,
+          "line": 15,
           "tokens": 39,
           "hash": "D1C7F5E6E029139FD2EC7EAD79F473A11F739960D50D6BEE5D1ADFDBFBCD753B",
           "shape": "3F6CAFB847E322D35264810B73CB579A12599D0442B4D3B00E30EB99281CEEAA"
@@ -23739,7 +23760,7 @@
         {
           "path": "src/GWGUI.Emulation.Mattel/Common/Services/ConfigurationStore.cs",
           "name": "ConfigurationStore",
-          "line": 13,
+          "line": 12,
           "tokens": 39,
           "hash": "D1C7F5E6E029139FD2EC7EAD79F473A11F739960D50D6BEE5D1ADFDBFBCD753B",
           "shape": "3F6CAFB847E322D35264810B73CB579A12599D0442B4D3B00E30EB99281CEEAA"
@@ -23747,7 +23768,7 @@
         {
           "path": "src/GWGUI.Emulation.Coleco/Common/Services/ConfigurationStore.cs",
           "name": "ConfigurationStore",
-          "line": 13,
+          "line": 12,
           "tokens": 39,
           "hash": "D1C7F5E6E029139FD2EC7EAD79F473A11F739960D50D6BEE5D1ADFDBFBCD753B",
           "shape": "3F6CAFB847E322D35264810B73CB579A12599D0442B4D3B00E30EB99281CEEAA"
@@ -23755,7 +23776,7 @@
         {
           "path": "src/GWGUI.Emulation.Fairchild/Common/Services/ConfigurationStore.cs",
           "name": "ConfigurationStore",
-          "line": 13,
+          "line": 12,
           "tokens": 39,
           "hash": "D1C7F5E6E029139FD2EC7EAD79F473A11F739960D50D6BEE5D1ADFDBFBCD753B",
           "shape": "3F6CAFB847E322D35264810B73CB579A12599D0442B4D3B00E30EB99281CEEAA"
@@ -23763,7 +23784,7 @@
         {
           "path": "src/GWGUI.Emulation.Epoch/Common/Services/ConfigurationStore.cs",
           "name": "ConfigurationStore",
-          "line": 13,
+          "line": 12,
           "tokens": 39,
           "hash": "D1C7F5E6E029139FD2EC7EAD79F473A11F739960D50D6BEE5D1ADFDBFBCD753B",
           "shape": "3F6CAFB847E322D35264810B73CB579A12599D0442B4D3B00E30EB99281CEEAA"
@@ -23771,7 +23792,7 @@
         {
           "path": "src/GWGUI.Emulation.Bandai/Common/Services/ConfigurationStore.cs",
           "name": "ConfigurationStore",
-          "line": 13,
+          "line": 12,
           "tokens": 39,
           "hash": "D1C7F5E6E029139FD2EC7EAD79F473A11F739960D50D6BEE5D1ADFDBFBCD753B",
           "shape": "3F6CAFB847E322D35264810B73CB579A12599D0442B4D3B00E30EB99281CEEAA"
@@ -37621,7 +37642,7 @@
   ],
   "scope": "All current repository CSharp and PowerShell files; no age filter; candidates require semantic review",
   "qualificationCarryForward": {
-    "occurrences": 182,
-    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical"
+    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical",
+    "occurrences": 182
   }
 }

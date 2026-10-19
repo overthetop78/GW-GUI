@@ -1,5 +1,4 @@
 using System.IO;
-using System.Text.Json;
 using GWGUI.Emulation.Functions;
 
 namespace GWGUI.Emulation.Atari.Common.Services;
@@ -17,26 +16,9 @@ public sealed class ConfigurationStore
     }
 
     public Task<IReadOnlyList<MachineConfiguration>> LoadAllAsync(CancellationToken cancellationToken = default)
-    {
-        Directory.CreateDirectory(_directory);
-        var configurations = new List<MachineConfiguration>();
-        foreach (var path in ConfigurationPaths())
-        {
-            cancellationToken.ThrowIfCancellationRequested();
-            try
-            {
-                var json = ConfigurationFileAccessFunctions.ReadAllText(path);
-                using var parsed = JsonDocument.Parse(json);
-                var document = ConfigurationStoreFunctions.Deserialize(parsed.RootElement);
-                configurations.Add(ConfigurationStoreFunctions.FromDocument(document, _pathBase));
-            }
-            catch (JsonException) { }
-            catch (IOException) { }
-            catch (InvalidDataException) { }
-            catch (ArgumentException) { }
-        }
-        return Task.FromResult<IReadOnlyList<MachineConfiguration>>(configurations);
-    }
+        => ConfigurationFileAccessFunctions.ReadDocumentsAsync(_directory, ConfigurationPaths,
+            static root => ConfigurationStoreFunctions.Deserialize(root),
+            document => ConfigurationStoreFunctions.FromDocument(document, _pathBase), cancellationToken);
 
     public async Task SaveAsync(MachineConfiguration configuration, CancellationToken cancellationToken = default)
     {
