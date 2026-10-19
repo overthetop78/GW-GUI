@@ -97,14 +97,8 @@ internal sealed partial class ProcessCore : IEmulatorCore
             timeout.CancelAfter(_connectionTimeout);
             _pipe.WaitForConnectionAsync(timeout.Token).GetAwaiter().GetResult();
             _writer = new BinaryWriter(_pipe, Encoding.UTF8, leaveOpen: true);
-            Request(HostCommand.Initialize, writer =>
-            {
-                writer.Write(_corePath);
-                writer.Write((int)_emulator);
-                writer.Write(Path.GetFullPath(sessionDirectory));
-                CoreHostFunctions.WriteString(writer, saveDirectory is null ? null : Path.GetFullPath(saveDirectory));
-                writer.Write(JsonSerializer.Serialize(configuration, CoreHostFunctions.JsonOptions));
-            }, ReadInitialization, allowUninitialized: true);
+            Request(HostCommand.Initialize, writer => EmulationHostProtocolFunctions.WriteInitializationRequest(writer, _corePath, (int)_emulator,
+                sessionDirectory, saveDirectory, configuration, CoreHostFunctions.JsonOptions), ReadInitialization, allowUninitialized: true);
             _initialized = true;
         }
         catch

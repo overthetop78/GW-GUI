@@ -8,6 +8,17 @@ namespace GWGUI.Emulation.Functions;
 
 internal static partial class EmulationHostProtocolFunctions
 {
+    internal static void WriteInitializationRequest<TConfiguration>(BinaryWriter writer,
+        string corePath, int emulator, string sessionDirectory, string? saveDirectory,
+        TConfiguration configuration, JsonSerializerOptions jsonOptions)
+    {
+        writer.Write(corePath);
+        writer.Write(emulator);
+        writer.Write(Path.GetFullPath(sessionDirectory));
+        WriteString(writer, saveDirectory is null ? null : Path.GetFullPath(saveDirectory));
+        writer.Write(JsonSerializer.Serialize(configuration, jsonOptions));
+    }
+
     internal static void WriteCoreInitialization<TCore, TConfiguration, TOption>(BinaryWriter writer, TCore core,
         JsonSerializerOptions jsonOptions, ref int lastDiagnosticCount, char extensionSeparator,
         Action<BinaryWriter, TCore>? writeStatus = null)
