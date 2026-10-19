@@ -107,18 +107,15 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     }
 
     private void PublishOutputs(ref long videoSequence)
-    {
-        if (_core.LatestVideoFrame is { } video && video.Sequence != videoSequence)
-        {
-            videoSequence = video.Sequence;
-            VideoFrameReady?.Invoke(this, video);
-        }
-        while (_core.TryDequeueAudio(out var audio) && audio is not null)
-        {
-            _audio.Write(audio);
-            AudioChunkReady?.Invoke(this, audio);
-        }
-    }
+        => EmulationFrameOutputFunctions.PublishOutputs(this, ref videoSequence,
+            static machine => machine._core.LatestVideoFrame,
+            static machine => machine._core.TryDequeueAudio(out var audio) ? audio : null,
+            static (machine, video) => machine.VideoFrameReady?.Invoke(machine, video),
+            static (machine, audio) =>
+            {
+                machine._audio.Write(audio);
+                machine.AudioChunkReady?.Invoke(machine, audio);
+            });
 
     private void FailPendingCommands(Exception error)
         => EmulationMachineCommand.FailPending(_commands, error);
