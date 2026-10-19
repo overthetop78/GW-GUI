@@ -1,42 +1,18 @@
 {
-  "snapshot": "8ceaf42069c96d56023a539c4221b12001888ab6",
+  "snapshot": "509306e47edc243aec3100f2723401af08d4ac05",
   "snapshotState": "Current worktree based on snapshot",
   "worktreeSourceChanges": [
-    "src/GWGUI.Emulation.Acorn/Common/Contracts/CoreContracts.cs",
-    "src/GWGUI.Emulation.Acorn/EmulationGlobalUsings.cs",
-    "src/GWGUI.Emulation.Apple/Common/Contracts/CoreContracts.cs",
-    "src/GWGUI.Emulation.Apple/EmulationGlobalUsings.cs",
-    "src/GWGUI.Emulation.Atari/EmulationGlobalUsings.cs",
-    "src/GWGUI.Emulation.Atari/Emulators/Common/Contracts/CoreContracts.cs",
-    "src/GWGUI.Emulation.Bandai/Common/Contracts/CoreContracts.cs",
-    "src/GWGUI.Emulation.Bandai/EmulationGlobalUsings.cs",
-    "src/GWGUI.Emulation.Coleco/Common/Contracts/CoreContracts.cs",
-    "src/GWGUI.Emulation.Coleco/EmulationGlobalUsings.cs",
-    "src/GWGUI.Emulation.Epoch/Common/Contracts/CoreContracts.cs",
-    "src/GWGUI.Emulation.Epoch/EmulationGlobalUsings.cs",
-    "src/GWGUI.Emulation.Fairchild/Common/Contracts/CoreContracts.cs",
-    "src/GWGUI.Emulation.Fairchild/EmulationGlobalUsings.cs",
-    "src/GWGUI.Emulation.Mattel/Common/Contracts/CoreContracts.cs",
-    "src/GWGUI.Emulation.Mattel/EmulationGlobalUsings.cs",
-    "src/GWGUI.Emulation.Panasonic/Common/Contracts/HostContracts.cs",
-    "src/GWGUI.Emulation.Panasonic/EmulationGlobalUsings.cs",
-    "src/GWGUI.Emulation.Philips/Common/Contracts/CoreContracts.cs",
-    "src/GWGUI.Emulation.Philips/EmulationGlobalUsings.cs",
-    "src/GWGUI.Emulation.Sharp/Common/Contracts/CoreContracts.cs",
-    "src/GWGUI.Emulation.Sharp/EmulationGlobalUsings.cs",
-    "src/GWGUI.Emulation.Sinclair/Common/Contracts/CoreContracts.cs",
-    "src/GWGUI.Emulation.Sinclair/EmulationGlobalUsings.cs",
-    "src/GWGUI.Emulation.Snk/Common/Contracts/CoreContracts.cs",
-    "src/GWGUI.Emulation.Snk/EmulationGlobalUsings.cs",
-    "src/GWGUI.Emulation.Thomson/Common/Contracts/HostContracts.cs",
-    "src/GWGUI.Emulation.Thomson/EmulationGlobalUsings.cs",
-    "src/GWGUI.Emulation.Watara/Common/Contracts/HostContracts.cs",
-    "src/GWGUI.Emulation.Watara/EmulationGlobalUsings.cs",
-    "src/GWGUI.Emulation.Wenquxing/Common/Contracts/HostContracts.cs",
-    "src/GWGUI.Emulation.Wenquxing/EmulationGlobalUsings.cs"
+    "src/GWGUI.MediaEngine/Contracts/Explorer/FileSystemEntry.cs",
+    "src/GWGUI.MediaEngine/Contracts/Explorer/FileSystemEntryAnalysis.cs",
+    "src/GWGUI.MediaEngine/Contracts/Explorer/FileSystemVolume.cs",
+    "src/GWGUI.MediaEngine/Enums/FileSystemEntryKind.cs",
+    "src/GWGUI.MediaFileSystems/Contracts/FileSystemEntry.cs",
+    "src/GWGUI.MediaFileSystems/Contracts/FileSystemEntryAnalysis.cs",
+    "src/GWGUI.MediaFileSystems/Contracts/FileSystemVolume.cs",
+    "src/GWGUI.MediaFileSystems/Enums/FileSystemEntryKind.cs"
   ],
   "scope": "All current non-ignored repository CSharp files, including hidden paths; BaseMethodDeclaration bodies with fewer than 30 tokens. Candidate presence is not a defect or a completion claim.",
-  "fileCount": 7289,
+  "fileCount": 7285,
   "methodBodyCount": 9531,
   "exactGroups": [
     {
@@ -134966,7 +134942,7 @@
     }
   ],
   "qualificationCarryForward": {
-    "occurrences": 374,
-    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical"
+    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical",
+    "occurrences": 374
   }
 }

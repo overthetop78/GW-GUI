@@ -1,9 +1,9 @@
 {
   "baseline": "ac7292d86^",
-  "currentCSharpFiles": 7289,
+  "currentCSharpFiles": 7285,
   "outsideSrcCSharpFiles": 300,
   "baselineMethodCount": 5848,
-  "currentMethodCount": 11631,
+  "currentMethodCount": 11629,
   "powerShellFunctionCount": 17,
   "groups": [
     {
@@ -11943,7 +11943,7 @@
     {
       "language": "CSharp",
       "hash": "68386C818382BCE400A3EDE65411B5CBD9D6A87F6D88FAF6501028CE28C38965",
-      "method": "ToSinclair",
+      "method": "ToModule",
       "tokens": 148,
       "current": [
         {
@@ -18988,7 +18988,7 @@
     {
       "language": "CSharp",
       "hash": "A1E03750FEB3292ACEB41656386F4A8AA8B05077D9ABFB7DA103AA3D71320B9F",
-      "method": "ToFairchild",
+      "method": "ToModule",
       "tokens": 103,
       "current": [
         {
@@ -20488,7 +20488,7 @@
     {
       "language": "CSharp",
       "hash": "B053A3AB4F0B78A37DED57B2D744801187AED6EC54FEEAFE4B1AA9C454D6F48C",
-      "method": "FairchildEmulationModule",
+      "method": "PanasonicEmulationModule",
       "tokens": 47,
       "current": [
         {
@@ -23299,71 +23299,6 @@
       ],
       "predecessors": [],
       "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
-      "hash": "CD8906CDB323F9FC13FC90049964CECF57F1CD558E065973392B971E6A3F4A4B",
-      "method": "FileSystemVolume",
-      "tokens": 103,
-      "current": [
-        {
-          "path": "src/GWGUI.MediaFileSystems/Contracts/FileSystemVolume.cs",
-          "name": "FileSystemVolume",
-          "line": 9,
-          "tokens": 103,
-          "hash": "CD8906CDB323F9FC13FC90049964CECF57F1CD558E065973392B971E6A3F4A4B",
-          "shape": "70E231C2692F1E011E9FB6483E1E2327740442B43EC9930C374055C7DC25AFE1",
-          "qualification": "Typed public contract initialization; distinct enum/entry/analysis types and defensive BCL copies; existing fileSystemTypedConstructorRevalidation proof unchanged",
-          "qualificationSourceSha256": "AF02E31D87390D5A9BBAD899AEB07AE0CFD16C047DECB935CECA3A963EFEF441"
-        },
-        {
-          "path": "src/GWGUI.MediaEngine/Contracts/Explorer/FileSystemVolume.cs",
-          "name": "FileSystemVolume",
-          "line": 9,
-          "tokens": 103,
-          "hash": "CD8906CDB323F9FC13FC90049964CECF57F1CD558E065973392B971E6A3F4A4B",
-          "shape": "70E231C2692F1E011E9FB6483E1E2327740442B43EC9930C374055C7DC25AFE1",
-          "qualification": "Typed public contract initialization; distinct enum/entry/analysis types and defensive BCL copies; existing fileSystemTypedConstructorRevalidation proof unchanged",
-          "qualificationSourceSha256": "6B50D69A5C4250879F0B127D36DB510ACE4BBF12EA8FBC43D37997C7CFEEC7B3"
-        }
-      ],
-      "predecessors": [
-        {
-          "path": "src/GWGUI.MediaEngine/Contracts/Explorer/FileSystemVolume.cs",
-          "name": "FileSystemVolume",
-          "line": 9,
-          "tokens": 103,
-          "hash": "CD8906CDB323F9FC13FC90049964CECF57F1CD558E065973392B971E6A3F4A4B",
-          "shape": "70E231C2692F1E011E9FB6483E1E2327740442B43EC9930C374055C7DC25AFE1"
-        },
-        {
-          "path": "src/GWGUI.MediaFileSystems/Contracts/FileSystemVolume.cs",
-          "name": "FileSystemVolume",
-          "line": 9,
-          "tokens": 103,
-          "hash": "CD8906CDB323F9FC13FC90049964CECF57F1CD558E065973392B971E6A3F4A4B",
-          "shape": "70E231C2692F1E011E9FB6483E1E2327740442B43EC9930C374055C7DC25AFE1"
-        }
-      ],
-      "shapePredecessors": [
-        {
-          "path": "src/GWGUI.MediaEngine/Contracts/Explorer/FileSystemVolume.cs",
-          "name": "FileSystemVolume",
-          "line": 9,
-          "tokens": 103,
-          "hash": "CD8906CDB323F9FC13FC90049964CECF57F1CD558E065973392B971E6A3F4A4B",
-          "shape": "70E231C2692F1E011E9FB6483E1E2327740442B43EC9930C374055C7DC25AFE1"
-        },
-        {
-          "path": "src/GWGUI.MediaFileSystems/Contracts/FileSystemVolume.cs",
-          "name": "FileSystemVolume",
-          "line": 9,
-          "tokens": 103,
-          "hash": "CD8906CDB323F9FC13FC90049964CECF57F1CD558E065973392B971E6A3F4A4B",
-          "shape": "70E231C2692F1E011E9FB6483E1E2327740442B43EC9930C374055C7DC25AFE1"
-        }
-      ],
       "qualification": "pending"
     },
     {
@@ -27945,71 +27880,6 @@
       ],
       "predecessors": [],
       "shapePredecessors": [],
-      "qualification": "pending"
-    },
-    {
-      "language": "CSharp",
-      "hash": "F928600A8786776D9F646245A1902529A7051F2CD06EDC205C46B96000DA686F",
-      "method": "FileSystemEntry",
-      "tokens": 172,
-      "current": [
-        {
-          "path": "src/GWGUI.MediaFileSystems/Contracts/FileSystemEntry.cs",
-          "name": "FileSystemEntry",
-          "line": 10,
-          "tokens": 172,
-          "hash": "F928600A8786776D9F646245A1902529A7051F2CD06EDC205C46B96000DA686F",
-          "shape": "C8FD14FDF6AE57B3DE90D73A0F3394C726C36FE24589A75C60D8284A759FBFD8",
-          "qualification": "Typed public contract initialization; distinct enum/entry/analysis types and defensive BCL copies; existing fileSystemTypedConstructorRevalidation proof unchanged",
-          "qualificationSourceSha256": "5A4F02E50F10C4ADCC491B08DF5E844A198D7A0F61E6246DD3DF872A89F221B5"
-        },
-        {
-          "path": "src/GWGUI.MediaEngine/Contracts/Explorer/FileSystemEntry.cs",
-          "name": "FileSystemEntry",
-          "line": 10,
-          "tokens": 172,
-          "hash": "F928600A8786776D9F646245A1902529A7051F2CD06EDC205C46B96000DA686F",
-          "shape": "C8FD14FDF6AE57B3DE90D73A0F3394C726C36FE24589A75C60D8284A759FBFD8",
-          "qualification": "Typed public contract initialization; distinct enum/entry/analysis types and defensive BCL copies; existing fileSystemTypedConstructorRevalidation proof unchanged",
-          "qualificationSourceSha256": "400B89636F2F8CA1A259D824EDA95CE8035A831472C1E55D0219550E033D9BE0"
-        }
-      ],
-      "predecessors": [
-        {
-          "path": "src/GWGUI.MediaEngine/Contracts/Explorer/FileSystemEntry.cs",
-          "name": "FileSystemEntry",
-          "line": 10,
-          "tokens": 172,
-          "hash": "F928600A8786776D9F646245A1902529A7051F2CD06EDC205C46B96000DA686F",
-          "shape": "C8FD14FDF6AE57B3DE90D73A0F3394C726C36FE24589A75C60D8284A759FBFD8"
-        },
-        {
-          "path": "src/GWGUI.MediaFileSystems/Contracts/FileSystemEntry.cs",
-          "name": "FileSystemEntry",
-          "line": 10,
-          "tokens": 172,
-          "hash": "F928600A8786776D9F646245A1902529A7051F2CD06EDC205C46B96000DA686F",
-          "shape": "C8FD14FDF6AE57B3DE90D73A0F3394C726C36FE24589A75C60D8284A759FBFD8"
-        }
-      ],
-      "shapePredecessors": [
-        {
-          "path": "src/GWGUI.MediaEngine/Contracts/Explorer/FileSystemEntry.cs",
-          "name": "FileSystemEntry",
-          "line": 10,
-          "tokens": 172,
-          "hash": "F928600A8786776D9F646245A1902529A7051F2CD06EDC205C46B96000DA686F",
-          "shape": "C8FD14FDF6AE57B3DE90D73A0F3394C726C36FE24589A75C60D8284A759FBFD8"
-        },
-        {
-          "path": "src/GWGUI.MediaFileSystems/Contracts/FileSystemEntry.cs",
-          "name": "FileSystemEntry",
-          "line": 10,
-          "tokens": 172,
-          "hash": "F928600A8786776D9F646245A1902529A7051F2CD06EDC205C46B96000DA686F",
-          "shape": "C8FD14FDF6AE57B3DE90D73A0F3394C726C36FE24589A75C60D8284A759FBFD8"
-        }
-      ],
       "qualification": "pending"
     },
     {
@@ -37851,7 +37721,7 @@
   ],
   "scope": "All current repository CSharp and PowerShell files; no age filter; candidates require semantic review",
   "qualificationCarryForward": {
-    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical",
-    "occurrences": 94
+    "occurrences": 90,
+    "policy": "Same body, method, path and unchanged source file; verify stored source hash where present; group membership identical"
   }
 }
