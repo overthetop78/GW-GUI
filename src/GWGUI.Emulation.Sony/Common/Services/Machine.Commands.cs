@@ -56,45 +56,45 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
             var nextFrame = TimeProvider.System.GetTimestamp();
             long videoSequence = 0;
 
-            while (!cancellationToken.IsCancellationRequested && !_core.ShutdownRequested)
-            {
-                lock (_gate)
-                    while (_pauseRequested && _commands.IsEmpty && !cancellationToken.IsCancellationRequested)
-                        Monitor.Wait(_gate, TimeSpan.FromMilliseconds(100));
-                if (cancellationToken.IsCancellationRequested) break;
-
-                while (_commands.TryDequeue(out var command)) command.Execute();
-
-                lock (_gate)
-                    if (_pauseRequested) continue;
-
-                _core.RunFrame();
-                if (_core.ShutdownRequested) break;
-                if (_core.LatestVideoFrame is { } video && video.Sequence != videoSequence)
-                {
-                    videoSequence = video.Sequence;
-                    VideoFrameReady?.Invoke(this, video);
-                }
-                while (_core.TryDequeueAudio(out var audio) && audio is not null)
-                {
-                    if (_audioOutput is not null && !_audioMuted)
+            EmulationFrameTimer.RunLoop(_gate, _commands, () => _pauseRequested,
+                () => {
+                    _core.RunFrame();
+                    if (_core.ShutdownRequested)
+                        return false;
+                    if (_core.LatestVideoFrame is { } video && video.Sequence != videoSequence)
                     {
-                        try
-                        {
-                            if (audio.SampleRate != _audioSampleRate || audio.ChannelLayout != _audioChannelLayout)
-                            {
-                                _audioOutput.Stop();
-                                StartAudioOutput(audio.SampleRate, audio.ChannelLayout);
-                            }
-                            WriteAudio(audio.InterleavedSamples.Span);
-                        }
-                        catch { _audioOutput.Dispose(); _audioOutput = null; }
+                        videoSequence = video.Sequence;
+                        VideoFrameReady?.Invoke(this, video);
                     }
-                    AudioChunkReady?.Invoke(this, audio);
-                }
 
-                nextFrame = EmulationFrameTimer.WaitForNextFrame(nextFrame, _core.FramesPerSecond, TimeProvider.System, Thread.Sleep);
-            }
+                    while (_core.TryDequeueAudio(out var audio) && audio is not null)
+                    {
+                        if (_audioOutput is not null && !_audioMuted)
+                        {
+                            try
+                            {
+                                if (audio.SampleRate != _audioSampleRate || audio.ChannelLayout != _audioChannelLayout)
+                                {
+                                    _audioOutput.Stop();
+                                    StartAudioOutput(audio.SampleRate, audio.ChannelLayout);
+                                }
+
+                                WriteAudio(audio.InterleavedSamples.Span);
+                            }
+                            catch
+                            {
+                                _audioOutput.Dispose();
+                                _audioOutput = null;
+                            }
+                        }
+
+                        AudioChunkReady?.Invoke(this, audio);
+                    }
+
+                    nextFrame = EmulationFrameTimer.WaitForNextFrame(nextFrame, _core.FramesPerSecond, TimeProvider.System, Thread.Sleep);
+                    return true;
+                },
+                () => !cancellationToken.IsCancellationRequested && !_core.ShutdownRequested, cancellationToken, 100);
         }
         catch (Exception error)
         {

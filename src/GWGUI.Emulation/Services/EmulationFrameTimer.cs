@@ -24,21 +24,41 @@ internal sealed class EmulationFrameTimer : IDisposable
         Func<long, double, long> nextFrameTimestamp, Action<long, CancellationToken> waitUntil,
         CancellationToken cancellationToken, int pauseWaitMilliseconds)
     {
-        while (!cancellationToken.IsCancellationRequested)
+        RunFrames(gate, commands, isPaused, () =>
+        {
+            runFrame();
+            nextFrame = nextFrameTimestamp(nextFrame, framesPerSecond());
+            waitUntil(nextFrame, cancellationToken);
+            if (nextFrame < Stopwatch.GetTimestamp()) nextFrame = Stopwatch.GetTimestamp();
+            return true;
+        }, () => !cancellationToken.IsCancellationRequested,
+            static command => command.Execute(rethrow: true), cancellationToken, pauseWaitMilliseconds);
+    }
+
+    internal static void RunLoop(object gate, ConcurrentQueue<EmulationMachineCommand> commands,
+        Func<bool> isPaused, Func<bool> runFrame, Func<bool> keepRunning, CancellationToken cancellationToken,
+        int pauseWaitMilliseconds)
+        => RunFrames(gate, commands, isPaused, runFrame, keepRunning,
+            static command => command.Execute(), cancellationToken, pauseWaitMilliseconds);
+
+    private static void RunFrames(object gate, ConcurrentQueue<EmulationMachineCommand> commands,
+        Func<bool> isPaused, Func<bool> runFrame, Func<bool> keepRunning,
+        Action<EmulationMachineCommand> executeCommand, CancellationToken cancellationToken,
+        int pauseWaitMilliseconds)
+    {
+        while (keepRunning())
         {
             lock (gate)
                 while (isPaused() && commands.IsEmpty && !cancellationToken.IsCancellationRequested)
                     Monitor.Wait(gate, TimeSpan.FromMilliseconds(pauseWaitMilliseconds));
             if (cancellationToken.IsCancellationRequested) break;
-            while (commands.TryDequeue(out var command)) command.Execute(rethrow: true);
+            while (commands.TryDequeue(out var command)) executeCommand(command);
             lock (gate)
                 if (isPaused()) continue;
-            runFrame();
-            nextFrame = nextFrameTimestamp(nextFrame, framesPerSecond());
-            waitUntil(nextFrame, cancellationToken);
-            if (nextFrame < Stopwatch.GetTimestamp()) nextFrame = Stopwatch.GetTimestamp();
+            if (!runFrame()) break;
         }
     }
+
 
     private const uint TimerAllAccess = 0x001F0003;
     private const uint HighResolution = 0x00000002;
